@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernetHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: ethernetHandler.php,v 1.1.1.2.2.1 2005/08/12 09:40:56 shibuya Exp $
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
@@ -20,14 +20,7 @@ $product = new Product( $cceClient );
 $oids = $cceClient->find("System");
 
 if ($product->isRaq()) {
-	if (file_exists( "/proc/user_beancounters" )) {
-	       	// OpenVZ Network Interfaces:
-		$cceClient->set($oids[0], "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField));
-	}
-	else {
-		// Regular Network Interfaces:
-		$cceClient->set($oids[0], "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField, "gateway" => $gatewayField));
-	}
+	$cceClient->set($oids[0], "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField, "gateway" => $gatewayField));
 } else {
 	$cceClient->set($oids[0], "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField));
 }
@@ -73,22 +66,15 @@ if($adminIf && ($$orig_field_name != $$new_field_name))
 	sleep(2);
 }
 
-if (file_exists( "/proc/user_beancounters" )) {
-    // OpenVZ Network Interfaces:
-    // Actually ... we do nothing here, because OpenVZ users are not
-    // allowed to change the network settings anyway. This is done
-    // on (or through) the master node only, but not inside the VPS.
-} 
-else {
-    // Regular Network Interfaces:
-    // handle all devices
-    $devices = array('eth0', 'eth1');
-    if (isset($deviceList))
+// handle all devices
+$devices = array('eth0', 'eth1');
+if (isset($deviceList))
 	$devices = $cceClient->scalar_to_array($deviceList);
 
-    // special array for admin if errors
-    $admin_if_errors = array();
-    for ($i = 0; $i < count($devices); $i ++) {
+// special array for admin if errors
+$admin_if_errors = array();
+for ($i = 0; $i < count($devices); $i ++)
+{
 	$var_name = "ipAddressField" . $devices[$i];
 	$ip_field = $$var_name;
 	$var_name = "ipAddressOrig" . $devices[$i];
@@ -114,12 +100,14 @@ else {
 			
 			$errors = array_merge($errors, $cceClient->errors());
 		}
-		$cceClient->setObject(
-			'Network', 
-			array("enabled" => "0"), 
-			"",
-			array("device" => $devices[$i])
-		);
+
+		$cceClient->setObject('Network',
+				array(
+					'enabled' => 0,
+					'bootproto' => 'none'
+					),
+			   '', array('device' => $devices[$i]));
+
 		if ($devices[$i] == $adminIf)
 			$admin_if_errors = $cceClient->errors();
 		else
@@ -173,7 +161,6 @@ else {
 		else
 			$errors = array_merge($errors, $cceClient->errors());
 	}
-    }
 }
 
 if ($call_to_handler)
