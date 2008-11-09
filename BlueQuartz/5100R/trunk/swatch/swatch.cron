@@ -1,0 +1,2 @@
+# swatch is the system watcher
+*/15 * * * *    root    /usr/sbin/swatch -c /etc/swatch.conf

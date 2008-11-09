@@ -1,0 +1,193 @@
+
+msgid "modPrinter"
+msgstr "Drucker ändern"
+
+msgid "printerNameExists"
+msgstr "Ein Drucker mit dem Namen [[VAR.name]] ist bereits vorhanden.  Geben Sie einen neuen Namen ein."
+
+msgid "printing"
+msgstr "Drucken"
+
+msgid "spooling"
+msgstr "Spoolvorgang"
+
+msgid "jobs"
+msgstr "Druckaufträge"
+
+msgid "enabled"
+msgstr "Aktiviert"
+
+msgid "disabled"
+msgstr "Deaktiviert"
+
+msgid "addPrinter_help"
+msgstr "Klicken Sie hier, um der vorhandenen Konfiguration einen Drucker hinzuzufügen."
+
+msgid "addNewPrinter" 
+msgstr "Drucker hinzufügen"
+
+msgid "printerNameField"
+msgstr "Name"
+
+msgid "printerNameField_help"
+msgstr "Geben Sie einen Namen für den Drucker ein.  Dieser Name sollte gegebenenfalls auch mit dem Namen der Druckwarteschlange auf dem Server identisch sein."
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "Aktivieren Sie diese Option, wenn dieser Drucker über eine USB-Schnittstelle angeschlossen ist."
+
+msgid "network"
+msgstr "Netzwerk"
+
+msgid "network_help"
+msgstr "Aktivieren Sie diese Option, wenn dieser Drucker über das Netzwerk angeschlossen ist."
+
+msgid "printerHostNameField"
+msgstr "Hostname"
+
+msgid "printerHostNameField_help"
+msgstr "Geben Sie den Hostnamen oder die IP-Adresse des Netzwerkdruckers ein."
+
+msgid "printerSpoolField"
+msgstr "Warteschlangenname"
+
+msgid "printerSpoolField_help"
+msgstr "Geben Sie den Namen der Warteschlange ein, über die an den Netzwerkdrucker gedruckt werden soll.  Wenn Sie den Warteschlangennamen nicht kennen, oder wenn Ihr Drucker über keinen Warteschlangennamen verfügt, lassen Sie dieses Feld leer."
+
+msgid "locationField"
+msgstr "Verbindungsart"
+
+msgid "locationField_help"
+msgstr "Wählen Sie die Verbindungsart aus, die zwischen Server und diesem Drucker besteht."
+
+msgid "ppdFileField"
+msgstr "PPD-Datei"
+
+msgid "ppdFileField_help"
+msgstr "Damit Computer auf diesem Drucker mithilfe von AppleShare drucken können, muss eine PPD-Datei auf diesen Server geladen werden.  Die PPD-Datei befindet sich im Allgemeinen auf einem Datenträger, der zum Lieferumfang des Druckers gehört."
+
+msgid "printserver"
+msgstr "Druckserver"
+
+msgid "printserver_help"
+msgstr "Hier können die Einstellungen des Druckservers geändert werden."
+
+msgid "printserverSettings"
+msgstr "Druckservereinstellungen"
+
+msgid "enableServersField"
+msgstr "Aktivieren"
+
+msgid "enableServersField_help"
+msgstr "Hier können Sie die Druckserverfunktionen aktivieren oder deaktivieren. Bei Aktivierung kann dieser Server als Druckerserver für sich und die zugehörigen Client-Rechner verwendet werden."
+
+msgid "basic"
+msgstr "Standard"
+
+msgid "basic_help"
+msgstr "Hier können Sie die Standardeinstellungen des Druckservers konfigurieren."
+
+msgid "advanced"
+msgstr "Erweitert"
+
+msgid "advanced_help"
+msgstr "Hier können Sie die erweiterten Einstellungen für den Druckserver konfigurieren, z. B. die Unterstützung des Druckservers für bestimmte Plattformen aktivieren und deaktivieren."
+
+msgid "printerListButton"
+msgstr "Drucker verwalten"
+
+msgid "printerListButton_help"
+msgstr "Hier können Sie Drucker hinzufügen und entfernen sowie Druckwarteschlangen verwalten."
+
+msgid "enableAppleshareField"
+msgstr "Apple-Druck aktivieren"
+
+msgid "enableAppleshareField_help"
+msgstr "Klicken Sie hier, um den Drucker für ein Appleshare-basiertes Netzwerk freizugeben."
+
+msgid "enableSambaField"
+msgstr "Windows-Druck aktivieren"
+
+msgid "enableSambaField_help"
+msgstr "Klicken Sie hier, um den Drucker für ein Windows-Netzwerk freizugeben."
+
+msgid "printerList"
+msgstr "Verfügbare Drucker"
+
+msgid "name"
+msgstr "Name"
+
+msgid "name_help"
+msgstr "Dies ist der Name des Druckers."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "Dies ist der Status des Druckers."
+
+msgid "listAction"
+msgstr "Aktion"
+
+msgid "listAction_help"
+msgstr "Drucker ändern oder löschen"
+
+msgid "jobList"
+msgstr "Aktuelle Druckaufträge - [[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "Druckwarteschlange löschen"
+
+msgid "clearQueue_help"
+msgstr "Hier können alle Druckaufträge gelöscht werden, die gegenwärtig für diesen Drucker vorliegen."
+
+msgid "suspendPrinter"
+msgstr "Druck anhalten"
+
+msgid "suspendPrinter_help"
+msgstr "Hiermit können Sie den Druckvorgang auf diesem Drucker anhalten.  Es können neue Druckaufträge in die Warteschlange gestellt werden, die jedoch nicht gedruckt werden."
+
+msgid "unsuspendPrinter"
+msgstr "Druck fortsetzen"
+
+msgid "unsuspendPrinter_help"
+msgstr "Hiermit können Sie den Druckvorgang auf diesem Drucker fortsetzen."
+
+msgid "owner"
+msgstr "Besitzer"
+
+msgid "owner_help"
+msgstr "Dies ist der Benutzer, der diesen Druckauftrag übergeben hat."
+
+msgid "size"
+msgstr "Größe"
+
+msgid "size_help"
+msgstr "Dies ist die Größe des Druckauftrags."
+
+msgid "date"
+msgstr "Uhrzeit"
+
+msgid "date_help"
+msgstr "Dies ist die Uhrzeit, zu der der Druckauftrag übergeben wurde."
+
+msgid "listAction"
+msgstr "Löschen"
+
+msgid "listAction_help"
+msgstr "Löschen eines Druckauftrags."
+
+msgid "removePrinterConfirm"
+msgstr "Möchten Sie den Drucker '[[VAR.printerName]]' wirklich löschen?"
+ 
+msgid "removeJobConfirm"
+msgstr "Möchten Sie den Auftrag im Besitz von '[[VAR.jobName]]' wirklich löschen?"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "Druckserver verwalten"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "Mit diesem Administratorrecht können Benutzer alle Aspekte des Netzwerk- und USB-Spoolvorgangs entsprechend der Konfiguration auf der Registerkarte 'Druckserver' verwalten."

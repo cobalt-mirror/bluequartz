@@ -1,0 +1,61 @@
+# translation of time.po to German
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: time\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-10-31 20:51+0200\n"
+"PO-Revision-Date: 2008-01-27 08:49+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "capgroup_adminTime"
+msgstr "Systemzeit verwalten"
+
+msgid "capgroup_adminTime_help"
+msgstr "Administrative Rechte umd die Systemzeit und Zeitzonen zu verwalten."
+
+msgid "ntpAddress"
+msgstr "NTP-Serveradresse"
+
+msgid "ntpAddress_help"
+msgstr "Geben Sie die Netzwerkadresse oder den vollqualifizierten Domänennamen eines  NTP-Servers (Network Time Protocol)  ein, mit dem Ihr Systemdatum und die Systemuhrzeit regelmäßig synchronisiert werden sollen. [[base-time.ntpDefaultServer]] ist z. B. ein verfügbarer NTP-Server. Eine Liste aller öffentlich verfügbaren NTP-Server finden Sie unter http://www.eecis.udel.edu/~mills/ntp/servers.html."
+
+msgid "ntpDefaultServer"
+msgstr "time.fu-berlin.de"
+
+msgid "systemDisplayedDate"
+msgstr "Datum"
+
+msgid "systemDisplayedDate_help"
+msgstr "Stellen Sie das aktuelle Datum ein."
+
+msgid "systemDisplayedTime"
+msgstr "Uhrzeit"
+
+msgid "systemDisplayedTimeZone"
+msgstr "Zeitzone"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Stellen Sie die aktuelle Zeitzone dieses Servers ein."
+
+msgid "systemDisplayedTime_help"
+msgstr "Stellen Sie die aktuelle Uhrzeit ein."
+
+msgid "time"
+msgstr "Serverzeit"
+
+msgid "timeSetting"
+msgstr "Zeiteinstellungen"
+
+msgid "time_help"
+msgstr "Hier können Sie die [[base-time.timeSetting]] ändern."
+

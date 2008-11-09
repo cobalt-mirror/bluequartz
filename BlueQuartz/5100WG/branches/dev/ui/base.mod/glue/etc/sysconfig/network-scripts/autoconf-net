@@ -1,0 +1,218 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl 
+# $Id: autoconf-net 201 2003-07-18 19:11:07Z will $ 
+#
+# This script will automatically configure the server
+# for a typical setup.  It will create any objects that
+# it needs but can't find. 
+#
+# It will configure:
+#   hostname, domainname, gateway
+#   eth0: ip address, netmask
+#   dns: forward and reverse entries for this machine  
+#        alias entries for this machine such as www, mail ... 
+#   dhcpd: client domain name, dns address, netmask, gateway
+#          max lease time
+# 
+# See below for the configured values.
+#
+# Copyright 1998 Cobalt Networks (http://www.cobaltnet.com)
+
+use CCE;
+use Socket 'PF_INET', 'AF_INET', 'SOCK_STREAM';
+use Net::Ping;
+
+### START HARDCODED PATHS
+$Debug = '0';
+$Netif = 'eth0';
+ $Debug = (-e "/etc/DEBUG")? 1 : 0;
+$^W = $Debug;
+
+# Address range to try to find an address for 
+# the primary interface, eth0
+# Also used for dhcp client default dns and gateway
+my $IPPREFIX = "10.6.18";
+my $IPSTART = "1";
+my $IPEND = "5";
+
+# The primary inteface netmask, also dhcp client default netmask 
+my $NETMASK     = "255.255.255.0"; 
+
+# The name of this machine
+my $HOSTNAME    = "myserver";
+
+# The domain of this machine, also dhcp client default domain
+my $DOMAIN      = "mydomain";
+
+# Set to 1 to enable DNS
+my $DNS         = 1;
+
+# Set to 1 to enable DNS autoconfiguration
+# NOTE: this is a separate feature from "autoconfigure network"
+#       it is possible to autoconfig network with DNS enabled and
+#       DNS autoconfig disabled. see DNS handlers for more info.
+my $DNS_AUTOCONFIG = 0;
+
+# These are aliases for this machine. 
+# DNS entries will be made for these.
+my @ALIASES = ("www", "mail", "pop", "smtp");
+
+# Set to 1 to enable DHCP server, 0 to disable
+my $DHCPD       = 1; 
+
+# The DHCP server dynamic address pool
+my ($DHCPD_POOL_START, $DHCPD_POOL_STOP) = ("10.6.18.30", "10.6.18.249");
+
+# DHCP server maximum lease time in seconds
+my $DHCPD_MAX_LEASE = 86400;
+
+### END HARDCODED PATHS
+
+# try to find a free address, abort if unsuccessful
+my $ipaddress = get_first_free_ip($IPPREFIX, $IPSTART, $IPEND);
+if (!$ipaddress) {
+    exit(1);
+}
+
+# currently only supports primary interface
+$interface = $Netif;
+
+# Get any current data and setup CCE if can't find needed objects
+my $cce = new CCE;
+$cce->connectuds();
+
+
+# Configure the primary interface: ip address and netmask
+my (@noids) = $cce->find("Network", { device => $interface } );
+# If couldn't find one, create one.
+if (@noids == 0) {
+    $cce->create("Network", { device => $interface });
+    @noids = $cce->find("Network", { device => $interface } );
+}
+
+# Update the IP address and netmask of the interface
+$cce->set( $noids[0], "", { ipaddr => $ipaddress, netmask => $NETMASK,
+                            enabled => "1", bootproto => "none" } );
+
+
+
+# Configure hostname, domainname, and gateway
+my (@soids) = $cce->find("System");
+if (@soids == 0) {
+    $cce->create("System", { hostname => $HOSTNAME,
+                             domainname => $DOMAIN,
+			     dns => $cce->array_to_scalar(($ipaddress)) });
+    @soids = $cce->find("System");
+} else {
+    $cce->set( $soids[0], "", { hostname => $HOSTNAME, 
+                                domainname => $DOMAIN,
+			        dns => $cce->array_to_scalar(($ipaddress)) });
+}
+
+# configure DNS
+if ($DNS) {
+    # create forward and reverse entry for this machine 
+    $cce->create("DnsRecord", { type => "A",
+                                hostname => $HOSTNAME,
+                                domainname => $DOMAIN,
+                                ipaddr => $ipaddress } );
+
+    $cce->create("DnsRecord", { type => "PTR",
+                                hostname => $HOSTNAME,
+                                domainname => $DOMAIN,
+                                ipaddr => $ipaddress,
+                                netmask => $NETMASK } );
+
+    # add aliases (CNAME) entries for servernames
+    foreach $alias (@ALIASES) {
+	$cce->create("DnsRecord", { type => "CNAME",
+				alias_hostname => $HOSTNAME,
+                                domainname => $DOMAIN,
+                                hostname => $alias,
+                                alias_domainname => $DOMAIN } );     
+    }
+	
+    # enable DNS
+    $cce->set( $soids[0], "DNS", { enabled => $DNS,
+                                   auto_config => $DNS_AUTOCONFIG,
+                                   commit => time } ); 
+}
+
+# configure DHCP server
+if ($DHCPD) {
+    # configure client settings
+    my (@dhcpserver) = $cce->find("DhcpParam");
+    if (@dhcpserver == 0) {
+        $cce->create("DhcpParam", {  
+                                    domainname => $DOMAIN,
+                                    gateway => $ipaddress,
+			            dns => $cce->array_to_scalar(($ipaddress)),
+				    netmask => $NETMASK,
+                                    lease => $DHCPD_MAX_LEASE } );  
+    } else {
+        $cce->set( $dhcpserver[0], "", {  
+                                    domainname => $DOMAIN,
+                                    gateway => $ipaddress,
+			            dns => $cce->array_to_scalar(($ipaddress)),
+				    netmask => $NETMASK,
+                                    lease => $DHCPD_MAX_LEASE } ); 
+    }
+
+    # configure lease pool; check to make sure it doesn't exist already
+    my @leasepool = $cce->find("DhcpDynamic", 
+                                { ipaddrlo => $DHCPD_POOL_START,
+                                  ipaddrhi => $DHCPD_POOL_STOP   } );
+    if (@leasepool == 0) {
+        $cce->create("DhcpDynamic", { ipaddrlo => $DHCPD_POOL_START,
+                                      ipaddrhi => $DHCPD_POOL_STOP   } );
+    }
+    # enable server
+    (@dhcpserver) = $cce->find("DhcpParam");
+    $cce->set( $dhcpserver[0], "", { enabled => $DHCPD } ); 
+}
+
+# Write to this file to indicate that we've configured the
+# network. This file used as a flag when bringing the interface up.
+#
+# Also call ifup to make sure eth0 is up, since calling CCE with
+# the old settings will not bring the interface up. In practice, this
+# case shouldn't happen, but if someone runs this on an already configured
+# machine, they'll need this line to bring the interface back up.
+system("/bin/touch /etc/NET-CONFIG; /sbin/ifup eth0");
+
+$cce->bye('SUCCESS');
+
+exit(0);
+
+#################################
+# Helper functions
+#################################
+
+# searches for first available ip address
+# params: ip prefix, e.g. 10.27.0
+#         start node, end node
+# will try addresses prefix.start -> prefix.end
+# returns first free address, or undef if fails
+sub get_first_free_ip
+{
+    my ($prefix, $start, $end) = @_;
+
+    return undef if ($Net::Ping::VERSION != "2.02");
+
+    # setup interface so that we can send out some pings
+    system("ifconfig eth0 down; ifconfig eth0 0.0.0.0; route add default dev eth0; sleep 2");
+
+    my ($current_node, $timeout, $status, $ip, $taken) = ($start, 3, "", "", "1");
+    my $pinger = Net::Ping->new("icmp");
+    while ($current_node <= $end) {
+	$ip = $prefix . "." . $current_node;
+        $status = $pinger->ping($ip, $timeout);
+        $taken = `arp -n | grep $ip | grep ether`; 
+        last if (! $taken);
+	$current_node += 1;
+    }
+    $pinger->close();
+    system("ifconfig eth0 down");
+    ($taken) ? return undef : return $ip;
+}
+
+

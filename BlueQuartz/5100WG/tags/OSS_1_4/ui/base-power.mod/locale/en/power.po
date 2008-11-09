@@ -1,0 +1,31 @@
+msgid "power"
+msgstr "Power"
+
+msgid "powerHelp"
+msgstr "The server appliance can be rebooted here."
+
+msgid "shutdownMessage"
+msgstr "For security reasons, this server appliance cannot be shutdown through the web user interface.  <BR>Please use the LCD Panel on the server appliance to shutdown instead."
+
+msgid "shutdownInstructions"
+msgstr "To power down the server appliance:<OL><LI>On the LCD console, press and hold down the Select button for approximately 2 seconds.<BR>The LCD screen displays: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SETUP NETWORK</CODE><BR><BR><LI>Press the Select button until POWER DOWN appears in the LCD screen: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POWER DOWN</CODE><BR><BR><LI>Press the Enter button.<BR><BR><LI>Use the arrow buttons to toggle the cursor between [Y] and [N]. Select [Y] to power down the system. The LCD screen displays:<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>PLEASE SWITCH POWER OFF NOW</CODE><BR><BR><LI>Press the On/Off button on the back panel to turn off the server appliance.</OL>" 
+
+msgid "reboot"
+msgstr "Reboot Now"
+
+msgid "reboot_help"
+msgstr "Click here to reboot the server appliance."
+
+msgid "askRebootConfirmation"
+msgstr "Are you sure you want to reboot the server appliance?"
+
+msgid "rebooting"
+msgstr "The server appliance is now rebooting.  It should be available again in a few minutes."
+
+# Capabilities
+
+msgid "capgroup_adminPower"
+msgstr "Manage System Power"
+
+msgid "capgroup_adminPower_help"
+msgstr "This administrative right allows a user to reboot this machine through the web interface"

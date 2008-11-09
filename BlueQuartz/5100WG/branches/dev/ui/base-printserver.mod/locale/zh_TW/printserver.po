@@ -1,0 +1,188 @@
+
+msgid "modPrinter"
+msgstr "更改印表機"
+
+msgid "printerNameExists"
+msgstr "具有名稱 [[VAR.name]] 的印表機已存在。請選擇新名稱。"
+
+msgid "printing"
+msgstr "列印"
+
+msgid "spooling"
+msgstr "排存作業"
+
+msgid "jobs"
+msgstr "工作"
+
+msgid "enabled"
+msgstr "已啟用"
+
+msgid "disabled"
+msgstr "關閉"
+
+msgid "addPrinter_help"
+msgstr "按一下此處新增印表機到現存的設定。"
+
+msgid "addNewPrinter" 
+msgstr "新增印表機"
+
+msgid "printerNameField"
+msgstr "名稱"
+
+msgid "printerNameField_help"
+msgstr "輸入印表機的名稱。這個名稱也必須是伺服器上的列印暫存區名稱（如果適用的話）。"
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "如果透過 USB 連接這個印表機，請選取這個項目"
+
+msgid "network"
+msgstr "網路"
+
+msgid "network_help"
+msgstr "如果透過網路連接這個印表機，請選取這個項目"
+
+msgid "printerHostNameField"
+msgstr "主機名稱"
+
+msgid "printerHostNameField_help"
+msgstr "請輸入主機名稱或遠端印表機的 IP 位址"
+
+msgid "printerSpoolField"
+msgstr "佇列名稱"
+
+msgid "printerSpoolField_help"
+msgstr "請輸入要列印到遠端印表機上的佇列之名稱。如果您不知道此佇列的名稱，或是您的印表機沒有停列名稱時，請讓此欄位空白。"
+
+msgid "locationField"
+msgstr "連線類型"
+
+msgid "locationField_help"
+msgstr "選取伺服器與這個印表機之間的連線類型。"
+
+msgid "ppdFileField"
+msgstr "PPD 檔"
+
+msgid "ppdFileField_help"
+msgstr "為了讓電腦使用 AppleShare 在這個印表機上列印，必須將 PPD 檔上載到這個伺服器。隨附於印表機的磁碟通常有提供 PPD 檔。"
+
+msgid "printserver"
+msgstr "列印伺服器"
+
+msgid "printserver_help"
+msgstr "可以在此處變更列印伺服器設定。"
+
+msgid "printserverSettings"
+msgstr "列印伺服器設定"
+
+msgid "enableServersField"
+msgstr "啟用"
+
+msgid "enableServersField_help"
+msgstr "開啟或關閉「列印伺服器」功能。開啟這個功能可讓這個伺服器設備扮演自己和從屬站的「列印伺服器」。 "
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "可以在此處配置「基本列印伺服器設定」。"
+
+msgid "advanced"
+msgstr "進階"
+
+msgid "advanced_help"
+msgstr "可以在此處配置「進階列印伺服器設定」，例如啟用和停用特定平台的「列印伺服器」支援。"
+
+msgid "printerListButton"
+msgstr "管理印表機"
+
+msgid "printerListButton_help"
+msgstr "新增印表機，移除印表機和管理列印佇列"
+
+msgid "enableAppleshareField"
+msgstr "啟用 Apple 列印"
+
+msgid "enableAppleshareField_help"
+msgstr "按一下此處即可在以 Appleshare 為基礎的網路上共用印表機。"
+
+msgid "enableSambaField"
+msgstr "啟用視窗列印"
+
+msgid "enableSambaField_help"
+msgstr "按一下此處即可在 Windows 網路上共用印表機。"
+
+msgid "printerList"
+msgstr "可用的印表機"
+
+msgid "name"
+msgstr "名稱"
+
+msgid "name_help"
+msgstr "印表機名稱"
+
+msgid "status"
+msgstr "狀態"
+
+msgid "status_help"
+msgstr "印表機狀態"
+
+msgid "listAction"
+msgstr "動作"
+
+msgid "listAction_help"
+msgstr "更改或刪除印表機"
+
+msgid "jobList"
+msgstr "目前列印工作 - [[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "清除列印佇列"
+
+msgid "clearQueue_help"
+msgstr "刪除目前在這個印表機上的所有列印工作。"
+
+msgid "suspendPrinter"
+msgstr "暫停列印"
+
+msgid "suspendPrinter_help"
+msgstr "暫停從這個印表機列印。可以佇列新工作，但不會進行列印。"
+
+msgid "unsuspendPrinter"
+msgstr "回復列印"
+
+msgid "unsuspendPrinter_help"
+msgstr "從這個印表機回復列印。"
+
+msgid "owner"
+msgstr "擁有者"
+
+msgid "owner_help"
+msgstr "送出這個列印工作的使用者。"
+
+msgid "size"
+msgstr "大小"
+
+msgid "size_help"
+msgstr "列印工作的大小。"
+
+msgid "date"
+msgstr "送出的時間"
+
+msgid "date_help"
+msgstr "送出的時間"
+
+msgid "removePrinterConfirm"
+msgstr "您是否確定要移除印表機 '[[VAR.printerName]]'？"
+
+msgid "removeJobConfirm"
+msgstr "您是否確定要刪除 '[[VAR.jobName]]' 所擁有的工作？"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "管理列印伺服器"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "這個管理權限可讓使用者依照在「列印伺服器」標籤中的配置情況，管理「網路」和「USB 排存作業」的一切。"
+

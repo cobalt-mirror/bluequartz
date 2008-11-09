@@ -1,0 +1,283 @@
+msgid "userList"
+msgstr "Lista de usuarios"
+
+msgid "users_help"
+msgstr "Administrar los usuarios."
+ 
+msgid "fullName"
+msgstr "Nombre completo"
+
+msgid "fullName_help"
+msgstr "Nombre completo del usuario."
+
+msgid "userName"
+msgstr "Nombre de usuario"
+
+msgid "userName_help"
+msgstr "Nombre utilizado por el sistema para identificar al usuario."
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Botones para eliminar a un usuario o modificar su configuración."
+
+msgid "addNewUser"
+msgstr "Añadir nuevo usuario"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "Cualquier carácter excepto el signo de dos puntos. Por ejemplo, Juan García."
+
+msgid "fullNameField_help"
+msgstr "Nombre completo del usuario. [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "sortNameField"
+msgstr "Nombre ordenable"
+
+msgid "sortNameField_help"
+msgstr "Escriba la versión ordenable del nombre del usuario."
+
+msgid "userNameField_rule"
+msgstr "Escribir hasta 12 caracteres, sólo caracteres alfanuméricos en minúsculas, puntos, guiones y subrayados. El primer caracter debe ser una letra. Por ejemplo, juan.garcía."
+
+msgid "userNameField_help"
+msgstr "Nombre que utilizará el sistema para identificar al usuario. [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "Ha especificado un valor para [[base-user.userNameField]] ya elegido por otra persona en este sistema. Escriba otro valor."
+
+msgid "passwordField"
+msgstr "Contraseña"
+
+msgid "passwordField_rule"
+msgstr "La contraseña debe tener entre 3 y 16 caracteres, al menos 5 caracteres con una mezcla de mayúsculas y minúsculas, números y signos de puntuación. No use palabras del diccionario. Las contraseñas distinguen mayúsculas y minúsculas."
+
+msgid "passwordField_help"
+msgstr "Contraseña que utilizará el sistema para identificar a este usuario. [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "La contraseña no es la misma en ambos campos. Inténtelo de nuevo."
+
+msgid "error-invalid-password"
+msgstr "La contraseña especificada no era válida. [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Espacio de disco máximo permitido (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Número entero entre 1 y 1024000."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Cuota de disco de este usuario, que es el límite de que dispone este usuario para el almacenamiento de páginas web, mensajes de correo electrónico y demás archivos. [[base-user.maxDiskSpaceField_rule]] El valor predeterminado para usuarios nuevos está en la sección Valores predeterminados de los usuarios."
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Límite de espacio para usuarios nuevos para el almacenamiento de páginas web, mensajes de correo electrónico y demás archivos. [[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "Pertenencia a grupos"
+
+msgid "memberGroupsField_help"
+msgstr "Grupos a los que pertenece este usuario. La columna izquierda muestra los grupos actuales. La derecha muestra los grupos potenciales. Para añadir a este usuario a un grupo, mueva el grupo de la columna derecha a la izquierda."
+
+msgid "memberGroups"
+msgstr "Grupos afiliados"
+
+msgid "allGroups"
+msgstr "Grupos no afiliados"
+
+msgid "modifyUser"
+msgstr "Modificar configuración del usuario - [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "Nueva contraseña"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "Configuración de correo electrónico - [[VAR.userName]]"
+
+msgid "emailAliasesField"
+msgstr "Alias de correo electrónico"
+
+msgid "emailAliasesField_rule"
+msgstr "Sólo caracteres alfanuméricos en minúsculas, puntos, guiones y subrayados. El valor predeterminado es el nombre y el primer apellido en minúsculas del usuario separados por un punto. Por ejemplo, juan.garcía."
+
+msgid "emailAliasesField_help"
+msgstr "Nombres adicionales con los que el usuario recibirá correo electrónico. [[base-user.emailAliasesField_rule]]"
+
+
+msgid "forwardEnableField"
+msgstr "Reenvío de correo electrónico"
+
+msgid "forwardEnableField_help"
+msgstr "Con el reenvío de correo electrónico, los mensajes futuros serán reenviados automáticamente a las direcciones de correo electrónico especificadas."
+
+msgid "forwardEnable"
+msgstr "Habilitar"
+
+msgid "forwardEmailField_rule"
+msgstr "Los valores especificados deben ser direcciones de correo electrónico válidas como usuario@dominio.com. Para especificar más de una dirección, use comas o escriba cada dirección en una línea diferente."
+
+msgid "forwardEmailField"
+msgstr "Direcciones de correo electrónico"
+
+msgid "forwardEmailField_help"
+msgstr "Direcciones de correo electrónico para reenviar el correo electrónico. [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "Mensaje de vacaciones"
+
+msgid "autoResponderField_help"
+msgstr "La característica Mensaje de vacaciones permite enviar automáticamente un mensaje personalizado a todas las personas que le envíen mensajes de correo electrónico. Esta función es útil si no puede leer su correo electrónico o si desea enviar un mensaje de respuesta automática al remitente."
+
+msgid "enableAutoResponderField"
+msgstr "Habilitar"
+
+msgid "autoResponderMessageField"
+msgstr "Respuesta automática"
+
+msgid "autoResponderMessageField_help"
+msgstr "Mensaje que se enviará automáticamente como respuesta al remitente de los mensajes de correo electrónico que reciba. "
+
+	# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+msgid "blank-vacation-msg"
+msgstr "Ha especificado un valor inválido para [[base-user.autoResponderMessageField]]."
+
+msgid "userDefaults"
+msgstr "Editar valores predeterminados de los usuarios"
+
+msgid "userDefaults_help"
+msgstr "Pulse aquí para modificar los valores predeterminados de usuarios nuevos."
+
+msgid "userNameGenField"
+msgstr "Creación de nombre de usuario"
+
+msgid "userNameGenField_help"
+msgstr "Método para crear automáticamente nombres de usuario después de introducir los nombres completos. Por ejemplo, para el nombre completo es Juan García, el nombre creado automáticamente sería juang, jgarcía, juan o garcía."
+
+msgid "first"
+msgstr "Sólo el nombre"
+
+msgid "last"
+msgstr "Sólo el apellido"
+
+msgid "firstInitLast"
+msgstr "Inicial del nombre y el apellido"
+
+msgid "firstLastInit"
+msgstr "Nombre e inicial del apellido"
+
+msgid "languageField"
+msgstr "Idioma preferido"
+
+msgid "languageField_help"
+msgstr "El servidor intentará mostrar las páginas en el idioma preferido que seleccione aquí. Si selecciona 'Definir a partir de las opciones del explorador', el servidor intentará mostrar las páginas basándose en las preferencias de idioma de su navegador. Si no está disponible dicho idioma, el servidor mostrará las páginas en el idioma predeterminado disponible para su servidor."
+
+msgid "account"
+msgstr "Cuenta"
+
+msgid "account_help"
+msgstr "Aquí puede definirse la configuración básica de cuenta."
+
+msgid "email"
+msgstr "Correo electrónico"
+
+msgid "email_help"
+msgstr "Parámetros de correo electrónico, como los alias, el reenvío y el mensaje de vacaciones."
+
+# Personal Profile Section
+
+msgid "personalEmail"
+msgstr "Correo electrónico"
+
+msgid "personalEmail_help"
+msgstr "Configuración de reenvío y respuesta automática de correo electrónico."
+
+# --- Style settings are not currently used, but may be added some time in the future
+msgid "styleField"
+msgstr "Estilo"
+
+msgid "styleField_help"
+msgstr "Cambiar el estilo gráfico para mostrar menús, botones y otros elementos."
+
+msgid "personalAccount"
+msgstr "Cuenta"
+
+msgid "personalAccount_help"
+msgstr "Información personal de la cuenta del usuario."
+
+msgid "accountSettings"
+msgstr "Configuración de cuenta - [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "¿Está seguro de que desea eliminar al usuario [[VAR.userName]]?"
+
+msgid "reloadMessage"
+msgstr "Su navegador se actualizará automáticamente para utilizar el estilo elegido."
+
+msgid "forwardSaveField"
+msgstr "Guardar copia"
+
+msgid "forwardSaveField_help"
+msgstr "Se guarda una copia de cada mensaje recibido en el buzón y se reenvía una copia a las direcciones especificadas."
+
+msgid "userDesc"
+msgstr "Observaciones"
+
+msgid "userDesc_help"
+msgstr "Esta columna proporciona información adicional sobre cada usuario."
+
+msgid "userDescField"
+msgstr "Observaciones"
+
+msgid "userDescField_help"
+msgstr "Escriba aquí información adicional o comentarios acerca del usuario."
+
+msgid "uidAlreadyTaken"
+msgstr "Error: el identificador de usuario especificado ya ha sido elegido."
+
+msgid "aliasAlreadyTaken"
+msgstr "No se pudo crear un usuario con ese nombre porque ya existe un alias de correo electrónico con ese nombre."
+
+msgid "aliasAlreadyTaken2"
+msgstr "No se pudo definir los alias de correo electrónico de este usuario porque uno o más de los alias especificados ya se están utilizando."
+
+msgid "add_user_help"
+msgstr "Pulse aquí para añadir un nuevo usuario."
+
+msgid "administrator"
+msgstr "Administrador"
+
+msgid "failed-to-add-user" 
+msgstr "La cuenta del usuario no pudo crearse por un error del sistema."
+
+msgid "security"
+msgstr "Capacidades"
+
+msgid "security_help"
+msgstr "Delegación de derechos administrativos en usuarios concretos"
+
+msgid "capsAllowed"
+msgstr "Permitidas"
+
+msgid "capsNotAllowed"
+msgstr "No permitidas"
+
+msgid "capabilities"
+msgstr "Capacidades"
+
+msgid "capabilities_help"
+msgstr "Crear una lista de las capacidades permitidas para este usuario"

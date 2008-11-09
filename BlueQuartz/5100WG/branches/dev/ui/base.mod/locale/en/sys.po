@@ -1,0 +1,123 @@
+# ifup
+
+msgid "detecting"
+msgstr "Detecting"
+
+msgid "network"
+msgstr "Network"
+
+# network-functions
+
+msgid "looking_for"
+msgstr "Looking for"
+
+msgid "dhcp_server"
+msgstr "DHCP server"
+
+msgid "no_net_found"
+msgstr "No Network Found"
+
+msgid "halt_or_connect"
+msgstr "[H]alt [C]onnect"
+
+msgid "autoconfigure"
+msgstr "Auto-configure"
+
+msgid "net_yes_no"
+msgstr "Net? [Y]es [N]o"
+
+msgid "failed"
+msgstr "     Failed"
+
+msgid "halting"
+msgstr "Halting"
+
+msgid "system"
+msgstr "System"
+
+# halt
+
+msgid "halt_1"
+msgstr "     SYSTEM     "
+
+msgid "halt_2"
+msgstr " POWERING  DOWN "
+
+msgid "reboot_1"
+msgstr "     SYSTEM     "
+
+msgid "reboot_2"
+msgstr "    REBOOTING   "
+
+# network
+
+msgid "network_start_1"
+msgstr "Setting up"
+
+msgid "network_start_2"
+msgstr "Network"
+
+msgid "network_stop_1"
+msgstr "Shutting down"
+
+msgid "network_stop_2"
+msgstr "Network"
+
+# rc.local
+
+msgid "lcd_ipaddr"
+msgstr "IP Address:"
+
+# rc.raid
+
+msgid "raid_status"
+msgstr "RAID Status:"
+
+msgid "raid_remove"
+msgstr "RAID Remove"
+
+msgid "raid_add"
+msgstr "RAID Add"
+
+msgid "raid_device_invalid"
+msgstr "Device Invalid"
+
+msgid "raid_device_toosmall"
+msgstr "Device Too Small"
+
+msgid "raid_setting_up"
+msgstr "Setting Up"
+
+msgid "raid_partitions"
+msgstr "Partitions..."
+
+msgid "raid_sync"
+msgstr "Sync RAID"
+
+msgid "raid_done_1"
+msgstr "RAID Setup"
+
+msgid "raid_done_2"
+msgstr "Complete"
+
+# rc.sysinit
+
+msgid "checking_disk_1"
+msgstr "Checking disk..."
+
+msgid "checking_disk_2"
+msgstr " "
+
+msgid "raid_fail_1"
+msgstr "RAID Startup"
+
+msgid "raid_fail_2"
+msgstr "Failure"
+
+msgid "clock_start_1"
+msgstr "Starting Clock..."
+
+# /etc/cron.quarter-hourly/db_checkpoint.pl
+msgid "checkPointFailed"
+msgstr "There may be a problem with user and group information on your server appliance.\nPlease check /var/log/dbrecover.log for error messages and verify that regular users (other than the 'admin' user)  are still able to log in.\nIf there are errors or users cannot access the system, reboot the machine to attempt to recover the user and group information."
+

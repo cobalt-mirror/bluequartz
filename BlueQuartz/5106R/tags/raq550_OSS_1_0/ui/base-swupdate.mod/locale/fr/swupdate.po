@@ -1,0 +1,583 @@
+
+# ----- SW Updates Tab
+msgid "software"
+msgstr "BlueLinQ"
+
+msgid "software_help"
+msgstr "La section [[base-swupdate.software]] permet de vérifier la disponibilité et d'installer de nouveaux logiciels ou des mises à jour."
+
+
+# ----- Menu items
+
+msgid "softwareNew"
+msgstr "Nouveau logiciel"
+
+msgid "softwareNew_help"
+msgstr "Cliquez ici pour vérifier la disponibilité et installer de nouveaux programmes."
+
+msgid "softwareUpdate"
+msgstr "Mises à jour"
+
+msgid "softwareUpdate_help"
+msgstr "Cliquez ici pour vérifier la disponibilité et installer de nouvelles mises à jour logiciels."
+
+msgid "softwareInstalled"
+msgstr "Logiciels installés"
+
+msgid "softwareInstalled_help"
+msgstr "Affiche la liste des modules logiciels actuellement installés sur ce système."
+
+msgid "softwareSettings"
+msgstr "Paramètres"
+
+msgid "softwareSettings_help"
+msgstr "La configuration de [[base-swupdate.software]] peut être modifiée ici."
+
+
+# ----- Splash screen message
+
+msgid "splashSoftwareMessage"
+msgstr "La section [[base-swupdate.software]] permet de gérer les applications installées sur le système."
+
+
+# --- Common strings
+
+msgid "install"
+msgstr "Installer"
+
+msgid "install_help"
+msgstr "Cliquez ici pour installer le module logiciel spécifié."
+
+msgid "installField"
+msgstr "Détails d'installation"
+
+msgid "installField_help"
+msgstr "Cliquez sur l'icône pour obtenir plus d'information sur l'obtention et l'installation de ce module logiciel."
+
+msgid "prepare"
+msgstr "Préparer"
+
+msgid "prepare_help"
+msgstr "Cliquez ici pour préparer l'installation du module logiciel."
+
+	# package info
+msgid "statusField"
+msgstr " "
+
+msgid "statusField_help"
+msgstr "Indique l'état de chaque module logiciel. Les nouveaux modules sont indiqués par un point, les anciens modules par un cercle."
+
+msgid "nameField"
+msgstr "Nom"
+
+msgid "nameField_help"
+msgstr "Nom du logiciel."
+
+msgid "versionField"
+msgstr "Version"
+
+msgid "versionField_help"
+msgstr "Version du logiciel."
+
+msgid "vendorField"
+msgstr "Editeur"
+
+msgid "vendorField_help"
+msgstr "Editeur du logiciel."
+
+msgid "copyrightField"
+msgstr "Copyright"
+
+msgid "copyrightField_help"
+msgstr "Copyright associé au module logiciel."
+
+msgid "descriptionField"
+msgstr "Description"
+
+msgid "descriptionField_help"
+msgstr "Description du module logiciel."
+
+msgid "licenseField"
+msgstr "Licence"
+
+msgid "licenseField_help"
+msgstr "Licence d'utilisation du module."
+
+msgid "accept"
+msgstr "Accepter"
+
+msgid "accept_help"
+msgstr "Cliquez ici si vous acceptez les termes de la licence d'utilisation du logiciel."
+
+msgid "decline"
+msgstr "Refuser"
+
+msgid "decline_help"
+msgstr "Cliquez ici si vous refusez les termes de la licence d'utilisation du logiciel."
+
+msgid "typeField"
+msgstr "Type"
+
+msgid "typeField_help"
+msgstr "Type de logiciel."
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Update"
+msgstr "Mise à jour"
+
+msgid "complete"
+msgstr "terminée"
+
+msgid "locationField"
+msgstr "Emplacement"
+
+msgid "locationField_help"
+msgstr "Le logiciel sera téléchargé depuis cet emplacement pendant l'installation."
+
+msgid "locationLocal"
+msgstr "Ce serveur"
+
+msgid "sizeField"
+msgstr "Taille (Mo)"
+
+msgid "sizeField_help"
+msgstr "Taille du module."
+
+msgid "uninstallableField"
+msgstr "Désinstallable"
+
+msgid "uninstallableField_help"
+msgstr "Ce champ indique si le module logiciel peut être désinstallé après avoir été installé."
+
+msgid "yes"
+msgstr "Oui"
+
+msgid "no"
+msgstr "Non"
+
+msgid "none"
+msgstr "Aucune"
+
+msgid "packagesNeededField"
+msgstr "Dépendances"
+
+msgid "packagesNeededField_help"
+msgstr "Les logiciels cités ici doivent être installés sur le système avant de procéder en toute sécurité à l'installation de ce module logiciel."
+
+
+# --- general user input strings
+
+msgid "locationFieldEnter"
+msgstr "Emplacement"
+
+msgid "locationFieldEnter_help"
+msgstr "Entrez l'emplacement à partir duquel le logiciel sera obtenu. Entrez une adresse URL commençant par http:// ou ftp:// pour télécharger le logiciel d'un emplacement sur l'Internet ou entrez l'emplacement du fichier du logiciel à télécharger. Cliquez sur Parcourir pour choisir un fichier sur votre disque dur. Si vous avez téléchargé des logiciels du répertoire /home/packages sur le serveur, une option permet de choisir l'un de ces logiciels."
+
+msgid "invalidUrl"
+msgstr "L'URL spécifiée n'est pas valide. [[base-swupdate.urlField_rule]]"
+
+
+
+# ----- New Software List Page
+
+msgid "availableListNew"
+msgstr "Liste des nouveaux logiciels disponibles"
+
+msgid "checkNow"
+msgstr "Vérifier disponibilité"
+
+msgid "checkNow_help"
+msgstr "Cliquez ici pour voir si de nouveaux logiciels sont disponibles."
+
+msgid "manualInstall"
+msgstr "Installation manuelle"
+
+msgid "manualInstall_help"
+msgstr "Cliquez ici pour effectuer une installation manuelle des modules logiciels."
+
+msgid "removePackage"
+msgstr "Souhaitez-vous réellement supprimer le module '[[VAR.packageName]]' de votre serveur ? Ce module logiciel n'a pas encore été installé."
+
+# ----- Software Updates
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "Vérifiez si des mises à jour logiciels sont disponibles."
+
+msgid "manualInstallUpdate"
+msgstr "Installation manuelle"
+
+msgid "manualInstallUpdate_help"
+msgstr "Effectue une installation manuelle des mises à jour logiciels."
+
+
+msgid "availableListUpdates"
+msgstr "Liste des mises à jour logiciels disponibles"
+
+
+# ----- View software details & install page
+
+msgid "downloadSoftware"
+msgstr "Installer le logiciel"
+
+msgid "unknownSize"
+msgstr "Inconnue"
+
+msgid "rebootpopup"
+msgstr "Votre serveur va devoir être redémarré après l'installation de ce module. Souhaitez-vous continuer ?"
+
+# ----- Manual install
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "Entrez une URL commençant par http:// ou ftp:// pour télécharger le logiciel depuis emplacement sur l'Internet."
+
+msgid "upload"
+msgstr "Télécharger"
+
+msgid "loaded"
+msgstr "Modules dans /home/packages"
+
+msgid "fileField"
+msgstr "Emplacement du fichier téléchargé"
+
+	# empty/invalid the same, specify both to be safe
+msgid "fileField_empty"
+msgstr "Vous n'avez pas entré d'emplacement de fichier pour le module logiciel à télécharger. Cliquez sur Parcourir pour choisir un fichier sur votre disque dur."
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+
+
+
+# ---- Status page
+
+msgid "installStatus"
+msgstr "Etat - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Message d'état"
+
+msgid "statusField_help"
+msgstr "Ce champ montre l'état actuel du module logiciel installé ou supprimé."
+
+msgid "progressField"
+msgstr "Progression"
+
+msgid "progressField_help"
+msgstr "Progression de l'installation ou de la suppression."
+
+msgid "dlPercent"
+msgstr "Téléchargement du fichier [[VAR.file]] : [[VAR.percent]] % terminé"
+
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "Initialisation..."
+
+msgid "downloading"
+msgstr "Téléchargement du module..."
+
+msgid "installing"
+msgstr "Installation du module..."
+
+msgid "executingPreInstallScript"
+msgstr "Exécution du (des) script(s) de pré-installation..."
+
+msgid "executingPostInstallScript"
+msgstr "Exécution du (des) script(s) de post-installation..."
+
+msgid "installingRpm"
+msgstr "Installation du composant [[VAR.rpm]]..."
+
+msgid "fail"
+msgstr "Echec"
+
+msgid "success"
+msgstr "Correct"
+
+msgid "currentlyUninstalling"
+msgstr "La désinstallation du module est en cours."
+
+msgid "cantUninstall"
+msgstr "Le module ne peut pas être supprimé car il n'est pas désinstallable."
+
+msgid "dependent"
+msgstr "Le module ne peut pas être supprimé car d'autres logiciels exigent qu'il soit installé. Les logiciels dépendant de ce module sont : [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "Suppression des modules RPM."
+
+msgid "runningUninstallScript"
+msgstr "Exécution du script de désinstallation."
+
+msgid "uninstalled"
+msgstr "Désinstallation complète."
+
+msgid "notUninstalled"
+msgstr "La désinstallation a échoué car il n'y avait rien pouvant être supprimé."
+
+msgid "packageInstallSuccess"
+msgstr "Installation du module réussie."
+
+
+	# -- generic message for other strings
+msgid "notInstalled"
+msgstr "Le module logiciel n'a pas été installé."
+
+msgid "cannotDownloadUrl"
+msgstr "Le fichier du module logiciel n'a pas pu être téléchargé depuis l'URL spécifiée. Vérifiez l'adresse URL et réessayez. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Le nom de fichier du module n'est pas valide. Vérifiez le nom et réessayez. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "Le module logiciel est déjà installé."
+
+msgid "verifyingPackage"
+msgstr "Vérification du module..."
+
+msgid "badPackage"
+msgstr "Le fichier du module est incomplet. La liste des programmes (packing_list) est non valide ou manquante. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "Une erreur s'est produite lors de la vérification du module. Il peut être corrompu ou ses informations d'authenticité peuvent être incorrecte. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "Une erreur s'est produite en ajoutant le logiciel dans la base de données CCE. La liste des programmes du logiciel (packing_list) n'est peut-être pas valide. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "Le module logiciel a besoin que d'autres modules soient préalablement installés. Installez le(s) module(s) suivants : [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "Un autre module est déjà en cours d'installation ou de désinstallation. Veuillez recommencer ultérieurement."
+
+msgid "obsoletePkg"
+msgstr "Le module [[VAR.name]] n'a pas été installé car il est obsolète."
+
+msgid "badProduct"
+msgstr "Le module [[VAR.name]] n'a pas été installé car il n'a pas été conçu pour ce modèle de serveur."
+
+msgid "hostNotFound"
+msgstr "L'hôte indiqué dans l'URL pour [[VAR.file]] est introuvable. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "Le module [[VAR.file]] est introuvable à l'emplacement indiqué."
+
+msgid "hostRefused"
+msgstr "L'hôte indiqué dans l'URL pour [[VAR.file]] a refusé la connexion."
+
+msgid "notDownloaded"
+msgstr "Le module [[VAR.file]] ne s'est pas téléchargé correctement probablement en raison de problèmes au niveau du serveur où il se trouve."
+
+msgid "noLocation"
+msgstr "Pas d'emplacement spécifié pour obtenir le module."
+
+msgid "missingRPM"
+msgstr "Le fichier du module est incomplet. Un ou plusieurs RPM sont manquants."
+
+msgid "missingSRPM"
+msgstr "Le fichier du module est incomplet. Un ou plusieurs SRPM sont manquants."
+
+msgid "preInstallFailed"
+msgstr "Un problème s'est produit au niveau du fichier du module. Echec du script de préinstallation."
+
+msgid "postInstallFailed"
+msgstr "Un problème s'est produit au niveau du fichier du module. Echec du script de postinstallation."
+
+msgid "rpmInstallError"
+msgstr "Un problème s'est produit au niveau du fichier du module. Une erreur s'est produite lors de l'installation du RPM [[VAR.rpm]]."
+
+msgid "errorWGET"
+msgstr "Une erreur s'est produite lors de la tentative d'exécution de wget."
+
+msgid "rebooting"
+msgstr "Votre serveur est maintenant en train de redémarrer. Il devrait être de nouveau disponible dans quelques minutes."
+
+msgid "uninstallrefresh"
+msgstr "La désinstallation du module a réussi. L'affichage de l'interface va être réactualisé dans un instant de façon à supprimer les services dépendant de ce module."
+
+msgid "installrefresh"
+msgstr "L'installation du module a réussi. L'affichage de l'interface va être réactualisé dans un instant de façon à vous donner accès aux nouveaux services apportés par ce module."
+
+# ------ Installed Software List
+
+msgid "installedList"
+msgstr "Liste des logiciels installés"
+
+msgid "uninstall"
+msgstr "Désinstaller"
+
+msgid "uninstall_help"
+msgstr "Si le module logiciel peut être désinstallé, cliquez sur le bouton Désinstaller pour supprimer le logiciel du serveur."
+
+msgid "uninstallConfirm"
+msgstr "Voulez-vous vraiment désinstaller '[[VAR.packageName]]' ?"
+
+
+
+# ------ Settings page
+
+msgid "softwareInstallSettings"
+msgstr "Paramètres [[base-swupdate.software]]"
+
+msgid "basic"
+msgstr "De base"
+
+msgid "basic_help"
+msgstr "Les paramètres les plus souvent utilisés se trouvent ici."
+
+msgid "advanced"
+msgstr "Avancé"
+
+msgid "advanced_help"
+msgstr "Les paramètres les moins souvent utilisés se trouvent ici."
+
+msgid "scheduleField"
+msgstr "Fréquence d'interrogation"
+
+msgid "scheduleField_help"
+msgstr "Modifier à quelle fréquence le serveur [[base-swupdate.software]] est interrogé pour vérifier la présence de nouveaux logiciels ou de mises à jour."
+
+msgid "daily"
+msgstr "Quotidien"
+
+msgid "weekly"
+msgstr "Hebdomadaire"
+
+msgid "monthly"
+msgstr "Mensuel"
+
+msgid "never"
+msgstr "Jamais"
+
+msgid "emailField"
+msgstr "Emails d'alerte"
+
+msgid "emailField_help"
+msgstr "Entrez les adresses électroniques auxquelles doivent être envoyées les notifications des nouveaux modules logiciels, des mises à jour ou les erreurs de connexion au serveur [[base-swupdate.software]]. N'inscrivez rien dans ce champ si vous ne voulez pas recevoir de notifications."
+
+msgid "pkgOIDmissing"
+msgstr "Une erreur s'est produite lors du chargement des informations relatives au module. Le module peut avoir été déjà effacé. Si ce n'est pas le cas, veuillez recommencer. Si le problème persiste, veuillez contacter le support technique ([[base-sauce-basic.techSupportEmail]])."
+
+msgid "serverField"
+msgstr "Serveur(s) [[base-swupdate.software]]"
+
+msgid "defaultServer"
+msgstr "http://updates.cobalt.com/packages/"
+
+msgid "serverField_help"
+msgstr "Entrez la ou les adresses HTTP du serveur à interroger pour les mises à jour logiciels. L'emplacement du serveur de mise à jour Cobalt Networks, est [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] n'a pas été en mesure de contacter le serveur indique. Veuillez vous assurer qu'il est bien accessible par votre serveur."
+
+msgid "httpProxyField"
+msgstr "Proxy HTTP:Port"
+
+msgid "httpProxyField_help"
+msgstr "Indiquez le serveur proxy et le port à utiliser pour les requêtes HTTP s'il faut utiliser un serveur proxy pour aller au-delà de votre pare-feu. Exemple : proxy.masociété.fr:8080."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]]  n'a pas été en mesure de contacter le proxy HTTP. Veuillez vous assurer qu'il est bien accessible par votre serveur."
+
+msgid "ftpProxyField"
+msgstr "Proxy FTP:Port"
+
+msgid "ftpProxyField_help"
+msgstr "Indiquez le serveur proxy et le port à utiliser pour les requêtes FTP si un serveur proxy est nécessaire pour aller au-delà de votre pare-feu. Exemple : proxy.masociété.fr:8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] n'a pas été en mesure de contacter le serveur FTP proxy. Veuillez vous assurer qu'il est bien accessible par votre serveur."
+
+msgid "autoField"
+msgstr "Installation automatique des mises à jour"
+
+msgid "autoField_help"
+msgstr "Si activé, [[base-swupdate.software]] installera automatiquement les modules authentifiés."
+
+msgid "requireSignatureField"
+msgstr "Les modules doivent être authentifiés"
+
+msgid "requireSignatureField_help"
+msgstr "Si activé, [[base-swupdate.software]] n'installera que les modules ayant passé le test d'authentification."
+
+msgid "checkSetField"
+msgstr "Logiciels à rechercher"
+
+msgid "checkSetField_help"
+msgstr "Choisissez le type de logiciel à rechercher lors des requêtes de mises à jour logiciels."
+
+msgid "all"
+msgstr "Tous les logiciels"
+
+msgid "updates"
+msgstr "Mises à jour seules"
+
+msgid "notificationLightField"
+msgstr "Témoin de notification"
+
+msgid "notificationLightField_help"
+msgstr "Indiquez le type de nouveau logiciel qui va activer le Témoin de notification, et le cas échéant, le type de nouveau logiciel qui va apparaître dans les messages d'alerte."
+
+
+# --- software update icon
+
+msgid "update"
+msgstr "Mise à jour"
+
+msgid "update_help"
+msgstr "Cliquez ici pour rechercher et installer de nouveaux logiciels ou des mises à jour. Cette icône change de couleur quand de nouveaux logiciels ou des mises à jour sont disponibles."
+
+
+# ----- Strings for emails
+
+msgid "QueryErrorSubject"
+msgstr "Un problème s'est produit lors de l'interrogation du serveur [[base-swupdate.software]]."
+
+msgid "NoProductInfoBody"
+msgstr "Le serveur [[base-swupdate.software]] n'a pas reconnu votre serveur. \ [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "Aucune URL n'est spécifiée pour le serveur [[base-swupdate.software]]."
+
+msgid "NoSWUpdateServerBody"
+msgstr "L'emplacement du serveur [[base-swupdate.software]] n'a pas pu être \n\
+déterminé. Allez à la page Paramètres [[base-swupdate.software]] et \n\
+spécifiez une URL pour le serveur [[base-swupdate.software]]."
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] ne parvient pas à déterminer les informations système."
+
+msgid "NoSystemInfoBody"
+msgstr "Le serveur n'est pas parvenu à déterminer les informations système nécessaires\nau serveur [[base-swupdate.software]]. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] n'est pas parvenu à récupérer la liste des modules \ndepuis le serveur [[base-swupdate.software]] situé à '[[VAR.location]]'. \nAssurez-vous que '[[VAR.location]]' est \nun serveur [[base-swupdate.software]] valide \net que vous pouvez l'interroger à l'aide de votre navigateur."
+
+msgid "BadPackageFmtBody"
+msgstr "Le serveur a renvoyé des informations sur le module que \n[[base-swupdate.software]] n'a pas comprises. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "Il n'y a pas de nouveau module disponible au téléchargement."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] a reçu une erreur inconnue ([[VAR.error]]) \nen tentan conr le serveur [[VAR.location]]."
+
+msgid "NewUpdatesSubject"
+msgstr "Un nouveau logiciel est disponible pour votre serveur"
+
+msgid "NewUpdatesBody"
+msgstr "Consultez le menu [[base-swupdate.software]] si vous voulez \ninstaller l'un des modules suivants :"
+

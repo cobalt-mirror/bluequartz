@@ -1,0 +1,227 @@
+# Server Management
+
+msgid "osName"
+msgstr "BlueQuartz"
+
+msgid "osVendor"
+msgstr "Project BlueQuartz"
+
+msgid "osDescription"
+msgstr "[[base-alpine.osName]] は、[[base-product.productName]]の基本ソフトウェアで、このサーバの動作に必要不可欠なソフトウェアパッケージです。"
+
+msgid "vendorSite"
+msgstr "http://BlueQuartz.org/"
+
+msgid "sysmanage"
+msgstr "サーバの管理"
+
+msgid "sysmanageDescription"
+msgstr "サーバの管理画面が表示され、サーバの設定や管理操作を行えます。"
+
+msgid "security"
+msgstr "セキュリティ"
+
+msgid "securityDescription"
+msgstr "ディジタル証明書とサーバのセキュリティを管理できます。"
+
+msgid "sitemanage"
+msgstr "サイトの管理"
+
+msgid "sitemanageDescription"
+msgstr "仮想サイトの新規作成、設定、変更、ユーザアカウントの管理などを行えます。"
+
+msgid "controlpanel"
+msgstr "ネットワークサービス"
+
+msgid "controlpanelDescription"
+msgstr "サーバの各種サービスを制御できます。"
+
+msgid "serverconfig"
+msgstr "システムの設定"
+
+msgid "serverconfigDescription"
+msgstr "ネットワーク、帯域幅、時刻と日付などを設定できます。"
+
+msgid "cpservicesDescription"
+msgstr "このサーバ上で利用したいサービスを設定できます。"
+
+msgid "sysmaintenance"
+msgstr "保守"
+
+msgid "sysmaintenanceDescription"
+msgstr "ストレージの制御、サーバの再起動などの操作を行えます。"
+
+msgid "serverusage"
+msgstr "サーバの利用状況"
+
+msgid "serverusageDescription"
+msgstr "このサーバの利用状況に関する統計が表示されます。"
+
+msgid "siteusage"
+msgstr "サイトの利用状況"
+
+msgid "siteusageDescription"
+msgstr "このサイトの利用状況に関する統計が表示されます。"
+
+msgid "netusage"
+msgstr "ネットワーク"
+
+msgid "netusageDescription"
+msgstr "このサーバ全体のネットワーク利用状況に関する統計が表示されます。"
+
+msgid "webusage"
+msgstr "ウェブ"
+
+msgid "webusageDescription"
+msgstr "ウェブ利用状況に関する統計が表示されます。"
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "FTP 利用状況に関する統計が表示されます。"
+
+msgid "mailusage"
+msgstr "電子メール"
+
+msgid "mailusageDescription"
+msgstr "電子メールの利用状況に関する統計が表示されます。"
+
+msgid "sysinfo"
+msgstr "システム情報"
+
+msgid "sysinfoDescription"
+msgstr "サーバ設定に関する情報が表示されます。"
+
+msgid "sysbackuprestore"
+msgstr "バックアップ／復元"
+
+msgid "sysbackuprestoreDescription"
+msgstr "サーバのデータをバックアップまたは復元できます。"
+
+# Site management
+
+msgid "usermgmt"
+msgstr "ユーザの管理"
+
+msgid "usermgmtDescription"
+msgstr "ユーザを追加、変更、削除できます。"
+
+# Programs  
+
+msgid "base-programs"
+msgstr "プログラム"
+
+msgid "base-programs_description"
+msgstr "このサーバにインストールされているプログラムへアクセスできます。"
+
+msgid "splashProgramsMessage"
+msgstr "ここでは、インストールされているツールやアプリケーションへアクセスできます。"
+
+# Personal Profile Strings
+
+msgid "splashPersonalMessage"
+msgstr "ユーザアカウント設定を表示、変更できます。"
+
+msgid "base-personalProfile"
+msgstr "個人プロフィール"
+
+msgid "base-personalProfile_description"
+msgstr "ユーザアカウント情報が表示されます。"
+
+# Setup wizard
+msgid "wizardSysSettings"
+msgstr "システム設定"
+
+msgid "wizardSysSettings_help"
+msgstr " "
+
+# this is the screen where you choose which type you want
+msgid "wizardRaid"
+msgstr "Raid の設定"
+
+msgid "wizardRaid_help"
+msgstr " "
+
+# this is the raid conversion status/wait screen
+msgid "wizardRaidBuild"
+msgstr "Raid の設定"
+
+msgid "wizardRaidBuild_help"
+msgstr " "
+
+msgid "wizardRegister"
+msgstr "製品登録"
+
+msgid "wizardRegister_help"
+msgstr " "
+
+# the finish page is not presented in the frameset, but we fill this
+# in for completeness and so that wizardFinish doesn't accidently show up
+# in the top frame while the page is loading...
+msgid "wizardFinish"
+msgstr " "
+
+msgid "wizardFinish_help"
+msgstr " "
+
+# end of Setup Wizard strings
+
+# login page strings (most of these should really be in a central location
+# probably)
+msgid "loginPageTitle"
+msgstr "ログイン - [[base-product.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "ログイン - [[VAR.hostname]]"
+
+msgid "loginMissingCookies"
+msgstr "ログイン前に、お使いのブラウザが cookie をサポートしていることを確認してください。"
+
+msgid "loginExpiredMessage"
+msgstr "ログインセッションがタイムアウトしました。再度ログインするには、ユーザ名とパスワードを入力してください。"
+
+msgid "loginByeMessage"
+msgstr "[[base-product.productName]] をご利用頂き誠にありがとうございます。"
+
+msgid "loginOkMessage"
+msgstr "ログインするには、ユーザ名とパスワードを入力してください。"
+
+msgid "loginAuthFailed"
+msgstr "入力したユーザ名またはパスワードが間違っています。ユーザ名とパスワードを確認して、もう一度お試しください。"
+
+msgid "loginNoCssMessage"
+msgstr "ログイン前に、お使いのブラウザが CSS (カスケーディングスタイルシート) をサポートしていることを確認してください。"
+
+msgid "loginNoJsMessage"
+msgstr "ログイン前に、お使いのブラウザが JavaScript をサポートしていることを確認してください。"
+
+msgid "loginPageUsername"
+msgstr "ユーザ名:"
+
+msgid "loginPagePassword"
+msgstr "パスワード:"
+
+msgid "loginPageSecurity"
+msgstr "セキュア接続:"
+
+msgid "loginPageLogin"
+msgstr "ログイン"
+
+# end of login page strings
+
+ # documentation 
+ 
+msgid "documentation"
+msgstr "文書"
+
+msgid "documentation_help"
+msgstr "このサーバのオンラインマニュアルが表示されます。" 
+
+msgid "pdfDescen"
+msgstr "BlueQuartz Hosting Edition マニュアル (英語)"
+
+msgid "pdfDescja"
+msgstr "BlueQuartz Hosting Edition マニュアル (日本語)"
+
+

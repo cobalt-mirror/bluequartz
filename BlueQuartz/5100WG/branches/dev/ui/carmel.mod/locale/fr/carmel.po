@@ -1,0 +1,124 @@
+msgid "productName"
+msgstr "Cobalt Qube 3"
+
+msgid "osName"
+msgstr "SE Sun Cobalt"
+
+msgid "osVendor"
+msgstr "Cobalt Networks"
+
+msgid "osDescription"
+msgstr "Le [[base-carmel.osName]] est le logiciel de base pour le [[base-carmel.productName]]. Ce module est nécessaire au fonctionnement de votre serveur."
+
+msgid "loginPageTitle"
+msgstr "Connexion - [[base-carmel.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "Connexion - [[VAR.hostName]]"
+
+msgid "loginNoCssMessage"
+msgstr "Avant la tentative de connexion, vérifiez si votre navigateur prend en charge les feuilles de style en cascade."
+
+msgid "loginNoJsMessage"
+msgstr "Avant la tentative de connexion, vérifiez si votre navigateur prend en charge la fonctionnalité JavaScript."
+
+msgid "loginOkMessage"
+msgstr "Pour vous connecter, entrez votre nom d'utilisateur et votre mot de passe."
+
+msgid "loginMissingCookies"
+msgstr "Avant la tentative de connexion, vérifiez si votre navigateur prend en charge les cookies."
+
+msgid "loginExpiredMessage"
+msgstr "Votre session de connexion a expiré. Pour vous connecter, entrez de nouveau votre nom d'utilisateur et votre mot de passe."
+
+msgid "loginAuthFailed"
+msgstr "Vous n'avez pas entré le mot de passe et/ou le nom d'utilisateur corrects. Recommencez."
+
+msgid "loginByeMessage"
+msgstr "Merci d'utiliser le [[base-carmel.productName]]."
+
+# This escaped acute symbol in place of the ' is necessary. 
+msgid "loginPageUsername"
+msgstr "Nom d´utilisateur: "
+
+msgid "loginPagePassword"
+msgstr "Mot de passe :"
+
+msgid "loginPageSecurity"
+msgstr "Connexion sécurisée :"
+
+msgid "loginPageLogin"
+msgstr "Connexion"
+
+msgid "splashAdminMessage"
+msgstr "La section Administration permet d'effectuer des tâches administratives diverses."
+
+msgid "splashProgramsMessage"
+msgstr "La section Programmes permet d'accéder aux programmes actuellement installés."
+
+msgid "splashPersonalMessage"
+msgstr "La section Profil personnel permet d'afficher votre compte utilisateur."
+
+msgid "thankYouMessage"
+msgstr "Merci d'utiliser le [[base-carmel.productName]]."
+
+msgid "base-administration"
+msgstr "Administration"
+
+msgid "base-administration_description"
+msgstr "[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr "Programmes"
+
+msgid "base-programs_description"
+msgstr "[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr "Profil personnel"
+
+msgid "base-personalProfile_description"
+msgstr "[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr "Utilisateurs et groupes"
+
+msgid "base-usersandgroups_description"
+msgstr "Les utilisateurs et les groupes peuvent être configurés ici."
+
+msgid "base-webServices"
+msgstr "Web"
+
+msgid "base-webServices_description"
+msgstr "Les services Web peuvent être configurés ici."
+
+msgid "base-networkServices"
+msgstr "Réseau"
+
+msgid "base-networkServices_description"
+msgstr "Les services réseau peuvent être configurés ici."
+
+msgid "base-security"
+msgstr "Sécurité"
+
+msgid "base-security_description"
+msgstr "Les services concernant la sécurité de votre serveur peuvent être configurés ici."
+
+msgid "base-system"
+msgstr "Système"
+
+msgid "base-system_help"
+msgstr "Les réglages système peuvent être affichés et configurés ici."
+
+msgid "base-maintenance"
+msgstr "Maintenance"
+
+msgid "base-maintenance_description"
+msgstr "Les activités de maintenance des données utilisateur et système sont configurées ici."
+
+msgid "usageInformation"
+msgstr "Statistiques"
+
+msgid "usageInformation_description"
+msgstr "Les statistiques d'utilisation sont affichées ici."
+

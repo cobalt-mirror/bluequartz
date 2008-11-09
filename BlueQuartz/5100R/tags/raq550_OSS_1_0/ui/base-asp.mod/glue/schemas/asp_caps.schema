@@ -1,0 +1,15 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: asp_caps.schema,v 1.1 2001/06/30 02:18:32 pbaltz Exp $
+
+    Capabilities associated with asp.
+-->
+<class
+    name="Capabilities" namespace="modifyAsp" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyAsp)"
+    />
+</class>
+

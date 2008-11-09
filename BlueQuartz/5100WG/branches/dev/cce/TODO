@@ -1,0 +1,5 @@
+TODO:
+----
+codb cleanup - e.g.: 15 calls to impl_obj_exists() on a GET
+be more stringent (and correct) about doing session cleanup 
+	(instead of blocking accept(), use select(), run cleanups at timeout)

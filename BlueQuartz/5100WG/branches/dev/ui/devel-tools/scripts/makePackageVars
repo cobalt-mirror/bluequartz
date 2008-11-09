@@ -1,0 +1,81 @@
+#!/usr/bin/perl
+
+$num = scalar @ARGV; 
+%makeValues = ();
+
+while ($i < $num) {
+    ($name, $val) = split "=", $ARGV[$i]; 
+    $makeValues{$name} = $val;
+    $i++;
+}
+
+while (($key, $val) = each %makeValues) {
+#    print "$key = $val\n";
+}
+
+while (<STDIN>) {
+    $line += 1;
+    if (/(.*?):\s*(.*?)\s*$/) {
+	$field = $1 ;
+	$fileVal = $2;
+	if (lc($fileVal) eq "[auto]") {
+#	    if (/(.*?):.*?\[auto\]/ && ($val = $makeValues{$1})) {
+	    if (!($value = $makeValues{$field})) {
+		die "Can't find value for $field. Please modify your makefile to include " . uc($field) . ", or remove line $line from your template.\n";
+	    }
+	} elsif (!$fileVal) {
+	    die "Can't find value for $field at line $line of the template file. The syntax should be 'field: value' or 'field: [auto]' if supplying the values from your makefile.";
+	} else {
+	    $value = $fileVal; 
+	}
+	print STDERR "field = $field, fileVal = $fileVal, makeValue = ". $makeValues{$field} . ", value = $value\n";
+	$check = $value;
+
+#	print $val;
+	$check =~ s/^\s+//;
+	$check =~ s/\s+$//;
+	if ($field eq "Vendor") {
+	    $check =~ s/[A-Za-z0-9]//g;
+	    die "--------------\nInvalid value for $field at line $line. It should only have characters and numbers.\n" if ($check ne "");
+	    $hasVendor = "true";
+ 	} elsif ($field eq "Name") {
+	    $check =~ s/[A-Za-z0-9]//g;
+	    die "--------------\nInvalid value for $field at line $line. It should only have characters and numbers.\n" if ($check ne "");
+	    $hasName = "true";
+ 	} elsif ($field eq "Version") {
+	    $check =~ s/^\d*(\.\d+){0,2}$//g;
+	    die "--------------\nInvalid value for $field at line $line. It should be of the form 'digits.<digits>.<digits>', where the second two sets of digits are optional.\n" if ($check ne "");
+	    $hasVersion = "true";
+	} elsif ($field eq "Depend" || $field eq "VisibleDepend") {
+	    $check =~ /^([A-Za-z0-9]+:[A-Za-z0-9]+)
+		\s*
+		    ([!<=>]*)
+			\s*
+			    (\d*(\.\d+){0,2})$
+				/x;
+	    $vendorPackage = $1;
+	    $comparison = $2;
+	    $version = $3;
+	    if (!$vendorPackage) {
+		die "--------------\nInvalid value for $field at line $line. No Vendor:Package listed.\m";
+	    } elsif (($comparison eq "!") && ($version)) {
+		die "--------------\nInvalid value for $field at line $line. Can't have both '!' and a version. ";
+	    } elsif (($comparison =~ /</) && ($comparison =~ />/)) {
+		die "--------------\nInvalid value for $field at line $line. Can't combine '<' and '>' in the same comparison. Use '!=' instead. ";
+	    } elsif ((($comparison =~ /</) || ($comparison =~ />/)) 
+		     && ($comparison =~ /!/)) {
+		die "--------------\nInvalid value for $field at line $line. Can't combine '!' and '<' or '>' in the same comparison. ";
+	    } elsif ($comparison && !$version) {
+		die "--------------\nInvalid value for $field at line $line. Comparison $comparison must include a version.";
+	    }
+	}
+
+	print "$field:\t\t\t$value\n";
+    } else {
+    }
+    
+}
+
+die "The fields 'Vendor', 'Name', and 'Version' must be filled out in order to continue. Please enter values for all three fields." if (!($hasVendor && $hasName && $hasVersion));
+
+

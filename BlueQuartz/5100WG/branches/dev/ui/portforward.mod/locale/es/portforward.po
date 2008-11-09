@@ -1,0 +1,103 @@
+# $Id: portforward.po 201 2003-07-18 19:11:07Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "Reenvío de puertos"
+
+msgid "portforwarding_menu_help"
+msgstr "Avance de puertos permite que esta máquina reenvíe a otra máquina cualquier tráfico que reciba en un puerto.  Esto resulta útil cuando desea permitir que una máquina de la red pueda acceder al mundo exterior."
+
+msgid "portforward_list"
+msgstr "Reglas de reenvío de puertos"
+
+msgid "form_port_rule"
+msgstr "Escriba un número de puerto válido.  [[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "Un número de puerto es un entero entre 1 y 65535"
+
+msgid "form_ipaddr_rule"
+msgstr "Escriba una dirección IP válida.  Por ejemplo, 192.168.0.1 es una dirección IP válida."
+
+msgid "sourcePort"
+msgstr "Puerto de origen"
+
+msgid "sourcePort_help"
+msgstr "Cualquier tráfico dirigido al puerto de origen de esta máquina se redirigirá al puerto de destino de otra máquina."
+
+msgid "sourcePort_invalid"
+msgstr "[[VAR.invalidValue]] es un valor no válido para [[base-portforward.sourcePort]].  [[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "IP de origen"
+
+msgid "sourceIP_help"
+msgstr "Cualquier tráfico dirigido al puerto especificado de esta dirección de origen se redirigirá a la máquina de destino."
+
+msgid "sourceIP_invalid"
+msgstr "[[VAR.invalidValue]] es un valor no válido para [[base-portforward.sourceIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "Protocolo"
+
+msgid "protocol_help"
+msgstr "Éste es el protocolo que se redirigirá."
+
+msgid "targetPort"
+msgstr "Puerto de destino"
+
+msgid "targetPort_help"
+msgstr "Éste es el puerto de la máquina que recibirá el tráfico."
+
+msgid "targetPort_invalid"
+msgstr "[[VAR.invalidValue]] es un valor no válido para [[base-portforward.targetPort]].  [[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "IP de destino"
+
+msgid "targetIP_help"
+msgstr "Ésta es la dirección IP de la máquina que recibirá el tráfico."
+
+msgid "targetIP_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-portforward.targetIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "Acción"
+
+msgid "action_help"
+msgstr "Puede modificar o colocar un registro de reenvío de puertos."
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "Registro de reenvío de puertos - Crear"
+
+msgid "title_modify"
+msgstr "Registro de reenvío de puertos - Modificar"
+
+msgid "description"
+msgstr "Comentarios"
+
+msgid "description_help"
+msgstr "Puede utilizar el cuadro [[base-portforward.description]] para guardar las notas relativas a los detalles de cada registro."
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "¿Desea eliminar esta regla de reenvío de puertos?"
+
+#errors
+msgid "collidingAddresses"
+msgstr "Ya existe un registro para el [[VAR.ip]]:[[VAR.port]] de origen."
+
+msgid "mustCrossInterfaces"
+msgstr "La combinación de [[base-portforward.sourceIP]] y [[base-portforward.targetIP]] que ha especificado no cruzará las interfaces de red.  [[base-portforward.portforwarding_menu]] debe encaminar el tráfico de una interfaz de red a otra."

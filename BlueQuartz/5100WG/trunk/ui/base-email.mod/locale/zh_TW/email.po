@@ -1,0 +1,319 @@
+# ----- Menu items
+
+msgid "emailServices"
+msgstr "電子郵件"
+
+msgid "emailServices_help"
+msgstr "按一下此處可配置[[base-email.emailServices]]。"
+
+msgid "emailServers"
+msgstr "電子郵件伺服器"
+
+msgid "emailServers_help"
+msgstr "按一下此處可配置[[base-email.emailServers]]。"
+
+
+# ----- Tabs
+
+msgid "advanced"
+msgstr "進階"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "按一下此處可配置基本[[base-email.emailSettings]]。"
+
+msgid "advanced_help"
+msgstr "按一下此處可配置進階[[base-email.emailSettings]]，如郵遞送排程和最大電子郵件大小。"
+
+
+# ----- Basic Email page
+
+msgid "emailSettings"
+msgstr "電子郵件伺服器設定"
+
+msgid "enableServersField"
+msgstr "啟用 SMTP 伺服器"
+
+msgid "enableServersField_help"
+msgstr "開啟或關閉「簡易郵件傳輸協定 (SMTP)」服務。啟用 SMTP 將可讓此伺服器設備作為 SMTP 伺服器，用來傳送及接收網際網路電子郵件。SMTP 並可讓使用者使用此伺服器設備來傳送電子郵件。"
+
+msgid "enableImapField"
+msgstr "啟用 IMAP 伺服器"
+
+msgid "enableImapField_help"
+msgstr "開啟或關閉「網際網路訊息存取協定 (IMAP)」服務。啟用這項服務，可讓使用者使用支援 IMAP 電子郵件的從屬站接收此伺服器設備中的電子郵件。IMAP 可讓使用者將電子郵件儲存在伺服器上，但使用者在處理其郵件期間，必須持續存取伺服器。"
+
+msgid "enablePopField"
+msgstr "啟用 POP 伺服器"
+
+msgid "enablePopField_help"
+msgstr "開啟或關閉「Post Office Protocol (POP)」郵件收取服務。啟用這項服務，可讓使用者使用大部份的標準電子郵件從屬站接收此伺服器設備中的電子郵件。"
+
+
+# ----- Advanced Email page
+
+msgid "queueTimeField"
+msgstr "郵遞排程"
+
+msgid "queueTimeField_help"
+msgstr "請設定此伺服器設備嘗試轉送排入佇列之電子郵件的頻率。"
+
+msgid "queue0"
+msgstr "立即"
+
+msgid "queue15"
+msgstr "每隔 15 分鐘"
+
+msgid "queue30"
+msgstr "每隔 30 分鐘"
+
+msgid "queue60"
+msgstr "每隔 1 小時"
+
+msgid "queue360"
+msgstr "每隔 6 小時"
+
+msgid "queue1440"
+msgstr "每天"
+
+msgid "maxEmailSizeField"
+msgstr "最大電子郵件大小 (MB)"
+
+msgid "maxEmailSizeField_rule"
+msgstr "請輸入一個大於 0 的整數。預設值為保留此欄位空白，如此可讓此伺服器傳送及接收任何大小的電子郵件訊息。"
+
+msgid "maxEmailSizeField_help"
+msgstr "請設定此伺服器將傳送或接收之電子郵件訊息的最大大小。  [[base-email.maxEmailSizeField_rule]]"
+
+msgid "masqAddressField"
+msgstr "強制寄件者的網域"
+
+msgid "masqAddressField_rule"
+msgstr "請輸入一個適當格式化的主機名稱或網域名稱；讓欄位空白。例如，www.sun.com 和 sun.com 就是有效的輸入。"
+
+msgid "masqAddressField_help"
+msgstr "請輸入網域名稱或 IP 位址，以覆寫此伺服器之使用者所寄出之電子郵件的「寄件者：」位址；這項功能又稱為「網域偽裝」。 [[base-email.masqAddressField_rule]]"
+
+msgid "smartRelayField"
+msgstr "智慧型轉件伺服器"
+
+msgid "smartRelayField_rule"
+msgstr "請輸入一個適當格式化的完整網域名稱；讓欄位空白。例如，sun.com 就是一個有效的輸入。"
+
+msgid "smartRelayField_help"
+msgstr "請輸入電子郵件伺服器的完整網域名稱，所有要送出電子郵件將透過其遞送。"
+
+msgid "popRelayField"
+msgstr "經 POP 鑑別的轉件"
+
+msgid "popRelayField_help"
+msgstr "勾選此選項，可啟用 POP 鑑別授予的 SMTP 轉件信任。如果勾選，則任何一位順利使用 POP 查看郵件的使用者，都將被信任 15 分鐘使用 SMTP 服務傳送電子郵件；這項功能適用於經常旅行的使用者。"
+
+msgid "relayField"
+msgstr "從主機/網域/IP 位址轉件電子郵件"
+
+msgid "relayField_rule"
+msgstr "請輸入將被信任為可使用此伺服器轉件電子郵件的 IP 位址、主機名稱和網域名稱的清單；您可使用數目不等的 0 來指定網路。例如，若要進行子網路遮罩為 255.255.0.0 之網路 192.168.1.1 的轉件，請指定位址 192.168.0.0。"
+
+msgid "relayField_help"
+msgstr "請輸入被允許透過此伺服器轉件電子郵件的 IP 位址、主機名稱和網域名稱。使用者並無法透過此伺服器傳送已送出的電子郵件，唯一的辦法是在此欄位內輸入與其進行連接機器的 IP 位址、主機名稱或網域名稱。[[base-email.relayField_rule]]"
+
+msgid "receiveField"
+msgstr "接收位址為主機/網域的電子郵件"
+
+msgid "receiveField_rule"
+msgstr "請輸入一個適當格式化的主機名稱或網域名稱；預設值為您伺服器設備的完整網域名稱。例如，www.sun.com 和 sun.com 就是有效的輸入。"
+
+msgid "receiveField_help"
+msgstr "請輸入此伺服器將接收其電子郵件的主機名稱或網域名稱。  [[base-email.receiveField_rule]]"
+
+msgid "blockHostField"
+msgstr "阻隔來自主機/網域的電子郵件"
+
+msgid "blockHostField_rule"
+msgstr "請輸入一個適當格式化的主機名稱或網域名稱；預設值為空白。例如，www.sun.com 和 sun.com 就是有效的輸入。"
+
+msgid "blockHostField_help"
+msgstr "請輸入不被允許郵遞電子郵件到此伺服器的主機名稱和網域名稱。  [[base-email.blockHostField_rule]]"
+
+msgid "blockUserField"
+msgstr "拒絕來自使用者的電子郵件"
+
+msgid "blockUserField_rule"
+msgstr "請輸入一個適當格式化的電子郵件位址；預設值為空白。例如，user@sun.com 就是一個有效的位址。"
+
+msgid "blockUserField_help"
+msgstr "請輸入不被允許郵遞電子郵件到此伺服器的使用者之電子郵件位址。  [[base-email.blockUserField_rule]]"
+
+msgid "duplicateKeys"
+msgstr "無法更新拒絕和轉件資訊；針對轉件和拒絕所列示的主機或網域重複。無法同時拒絕又轉件來自主機或網域的電子郵件。"
+
+
+
+# ----- Active Monitor strings 
+
+msgid "amEmailNameTag"
+msgstr "電子郵件伺服器"
+
+msgid "amSMTPNameTag"
+msgstr "SMTP 伺服器"
+
+msgid "amSMTPDetails"
+msgstr "簡易郵件傳輸協定 (SMTP) 伺服器明細"
+
+msgid "amPOP3NameTag"
+msgstr "POP 伺服器"
+
+msgid "amPOP3Details"
+msgstr "郵務傳輸協定 (POP) 伺服器明細"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP 伺服器"
+
+msgid "amIMAPDetails"
+msgstr "網際網路訊息存取協定 (IMAP) 伺服器明細"
+
+msgid "amEmailGreen"
+msgstr "此電子郵件系統正常運作中。"
+
+msgid "amEmailYellow"
+msgstr "電子郵件系統有問題。"
+
+msgid "amEmailRed"
+msgstr "電子郵件系統有嚴重的問題。"
+
+msgid "amSMTPNotRunning"
+msgstr "此 SMTP 伺服器不在執行中。"
+
+msgid "amSMTPBadResponse"
+msgstr "此 SMTP 伺服器發出無效的回應。"
+
+msgid "amSMTPStatusOK"
+msgstr "此 SMTP 伺服器正常運作中。"
+
+msgid "amPOP3NotRunning"
+msgstr "此 POP 伺服器不在執行中。"
+
+msgid "amPOP3BadResponse"
+msgstr "此 POP 伺服器發出無效的回應。"
+
+msgid "amPOP3StatusOK"
+msgstr "此 POP 伺服器正常運作中。"
+
+msgid "amIMAPNotRunning"
+msgstr "此 IMAP 伺服器不在執行中。"
+
+msgid "amIMAPBadResponse"
+msgstr "此 IMAP 伺服器發出無效的回應。"
+
+msgid "amIMAPStatusOK"
+msgstr "此 IMAP 伺服器正常運作中。"
+
+# --- Handler error messages
+	# vacation message 
+msgid "vacationSubject"
+msgstr "自動轉件自"
+
+msgid "cantGetUserInfo"
+msgstr "假期時無法從 CCE 取得使用者資訊。"
+
+msgid "badUser"
+msgstr "如果已移除或手動更改郵件伺服器配置檔，請回存原始配置檔，然後重試。"
+
+msgid "cantEditFile"
+msgstr "很抱歉，在嘗試編輯電子郵件配置檔時發生錯誤。 [[base-email.badUser]]"
+
+	# apop.pl -- call to GDBM_File perl module no workie
+msgid "could_not_tie_apop"
+msgstr "很抱歉，發生系統錯誤。 [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "很抱歉，在嘗試寫入 SMTP 伺服器配置檔時發生錯誤。 [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "很抱歉，由於系統配置失敗，目前無法啟動 SMTP 伺服器。  [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "很抱歉，由於系統配置失敗，目前無法重設 POP 或 IMAP 伺服器。  [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "很抱歉，在嘗試建立電子郵件伺服器對映檔時發生錯誤。 [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "很抱歉，在嘗試編輯電子郵件配置檔時發生錯誤。 [[base-email.badUser]]"
+
+msgid "aliasInUse"
+msgstr "很抱歉，此電子郵件別名 [[VAR.name]]，系統已在使用中。請選擇另一個別名。"
+
+msgid "nonExistentUser"
+msgstr "無法啟用轉寄，因為下列本端使用者不存在： [[VAR.users]]。請從轉寄位址清單中移除這些使用者或建立使用者，然後再啟用轉寄。"
+
+
+# --- sendmail.cf bounce messages ----
+
+msgid "CFinvalidListSyntax"
+msgstr "清單：；收件者位址的語法不正確"
+
+msgid "CFuserAddressRequired"
+msgstr "必須有使用者位址"
+
+msgid "CFcolonInHostname"
+msgstr "主機名稱不允許有冒號"
+
+msgid "CFinvalidHostname"
+msgstr "主機名稱無效"
+
+msgid "CFrealDomainRequired"
+msgstr "必須有實際網域名稱"
+
+msgid "CFdomainRequired"
+msgstr "必須有網域名稱"
+
+msgid "CFsenderDomainNoexist"
+msgstr "寄件者位址的網域不存在"
+
+msgid "CFaccessDenied"
+msgstr "拒絕存取"
+
+msgid "CFrelayDeniedTemp"
+msgstr "轉件暫時被拒絕。無法解析從屬站位址的 PTR 記錄。"
+
+msgid "CFrelayDeniedForged"
+msgstr "轉件遭拒。IP 名稱可能是偽造的 "
+
+msgid "CFrelayDeniedFailed"
+msgstr "轉件遭拒。IP 名稱查詢失敗 "
+
+msgid "CFrelayDenied"
+msgstr "轉件遭拒。請先檢查您的郵件或重新啟動郵件從屬站。"
+
+msgid "CFnotAuthenticated"
+msgstr "未鑑別"
+
+msgid "CFauthNotAllowed"
+msgstr " 不允許作為"
+
+# Catch All Fields
+msgid "catchAllEmail"
+msgstr "快取所有電子郵件"
+
+msgid "catchAllEmail_rule"
+msgstr "請輸入一個「username@domain」格式有效的電子郵件位址，或只輸入用來遞送郵件至本端使用者、電子郵件別名或郵遞列表的使用者名稱。"
+
+msgid "catchAllEmail_help"
+msgstr "請輸入一個您希望在這個伺服器上，接收所有電子郵件的郵件位址。這個位址必須是不同於伺服器上其他使用者的位址。如果想要啟用這個伺服器的[[base-email.catchAllEmail]]功能，您就必須輸入一個電子郵件位址。[[base-email.catchAllEmail_rule]]"
+
+msgid "invalidCatchAll"
+msgstr "您輸入了一個無效的[[base-email.catchAllEmail]]位址。所輸入的本端使用者、電子郵件別名，或郵遞列表應該已存在於這個伺服器上。[[base-email.catchAllEmail_rule]]"
+
+# Capabilities
+
+msgid "capgroup_adminEmailServers"
+msgstr "管理電子郵件"
+
+msgid "capgroup_adminEmailServers_help"
+msgstr "這個管理權限允許使用者管理電子郵件服務所使用的設定。"
+
+

@@ -1,0 +1,378 @@
+msgid "ipsec"
+msgstr "Punkt-zu-Punkt-VPN"
+
+msgid "ipsec_help"
+msgstr "[[base-ipsec.ipsec]]-Tunnel können hier konfiguriert werden. Mithilfe von [[base-ipsec.ipsec]] können Verbindungen zwischen zwei Rechnern verschlüsselt werden."
+
+msgid "tunnelList"
+msgstr "Tunnelliste"
+
+msgid "addTunnel_help"
+msgstr "Hinzufügen eines neuen Tunnels."
+
+msgid "localInfo"
+msgstr "Lokale Informationen anzeigen"
+
+msgid "localInfo_help"
+msgstr "Hiermit können Informationen über den lokalen Rechner angezeigt werden.  Remote-Administratoren benötigen diese Daten, um eine [[base-ipsec.ipsec]]-Verbindung zu diesem Rechner einzurichten."
+
+msgid "manageProfile"
+msgstr "Verbindungsprofile verwalten"
+
+msgid "manageProfile_help"
+msgstr "Hier können Sie die verschiedenen verfügbaren Verbindungsprofile verwalten. Ein Verbindungsprofil enthält die erforderlichen Einstellungen zum Herstellen einer Verbindung mit anderen [[base-ipsec.ipsec]]-Implementierungen."
+
+msgid "ipsecInfo"
+msgstr "Informationen über den lokalen Host"
+
+msgid "leftIpAddressField"
+msgstr "Lokale IP-Adresse"
+
+msgid "leftIpAddressField_help"
+msgstr "Dies ist die IP-Adresse der [[base-ipsec.ipsec]]-Schnittstelle."
+
+msgid "leftSubnetField"
+msgstr "Lokales Teilnetzwerk"
+
+msgid "leftSubnetField_help"
+msgstr "Dies ist das Teilnetzwerk (oder der IP-Adressenbereich im lokalen Teilnetzwerk), für das die primäre Schnittstelle des Qube zurzeit aktiviert ist."
+
+msgid "leftNetmaskField"
+msgstr "Netzwerkmaske des lokalen Teilnetzwerks"
+
+msgid "leftNetmaskField_help"
+msgstr "Dies ist die Netzwerkmaske, die zurzeit für die primäre Schnittstelle konfiguriert ist."
+
+msgid "leftRsaKeyField"
+msgstr "Öffentlicher RSA-Schlüssel des lokalen Hosts"
+
+msgid "leftRsaKeyField_help"
+msgstr "Dies ist der aktuelle öffentliche RSA-Schlüssel des Qube."
+
+msgid "profileList"
+msgstr "Profilliste"
+
+msgid "addProfile_help"
+msgstr "Hinzufügen eines neuen Profils."
+
+msgid "tname"
+msgstr "Name"
+
+msgid "tname_help"
+msgstr "Dies ist der Name eines Tunnels."
+
+msgid "pname"
+msgstr "Name"
+
+msgid "pname_help"
+msgstr "Dies ist der Name eines Profils."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "Dies ist der Status eines Tunnels."
+
+msgid "comment"
+msgstr "Kommentar"
+
+msgid "comment_help"
+msgstr "Dies ist ein kurzer Satz zur Beschreibung des Profils."
+
+msgid "listAction"
+msgstr "Aktion"
+
+msgid "listAction_help"
+msgstr "Mögliche Aktionen."
+
+msgid "addNewProfile"
+msgstr "Profil hinzufügen"
+
+msgid "nameField"
+msgstr "Name"
+
+msgid "nameField_help"
+msgstr "Geben Sie einen Namen für dieses Profil ein."
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "Echtheitsbestätigungsprotokoll"
+ 
+msgid "authField_help"
+msgstr "Die Echtheitsbestätigung kann als Teil der ESP-Verschlüsselung oder separat über das AH-Protokoll durchgeführt werden."
+ 
+msgid "pfsField"
+msgstr "Perfect Forward Secrecy"
+ 
+msgid "pfsField_help"
+msgstr "Hier können Sie festlegen, ob Perfect Forward Secrecy für die Schlüssel im Codierungskanal der Verbindung verwendet werden soll (bei PFS werden zuvor ausgehandelte Schlüssel durch die Verbreitung des Schlüsselaustauschprotokolls nicht gefährdet)."
+ 
+msgid "keylifeField"
+msgstr "Schlüssellebensdauer"
+ 
+msgid "keylifeField_help"
+msgstr "Hier wird festgelegt, wie viele Minuten eine bestimmte Verbindungsinstanz (ein Satz von Verschlüsselungs-/Echtheitsbestätigungsschlüsseln für Benutzerpakete) zwischen erfolgreicher Aushandlung und Abbau aufrechterhalten werden soll."
+ 
+msgid "rekeymarginField"
+msgstr "Verzögerung bis zur Neucodierung"
+ 
+msgid "rekeymarginField_help"
+msgstr "Hier können Sie festlegen, wie viele Minuten vor Verbindungsabbau Versuche zur Aushandlung einer Ersatzverbindung beginnen sollen."
+ 
+msgid "rekeyfuzzField"
+msgstr "Zufällige prozentuale Neucodierungsverzögerung"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "Dies ist der maximale Prozentsatz, um den der Neucodierungsspielraum nach dem Zufallsprinzip verlängert werden soll, um Neucodierungsintervalle nach dem Zufallsprinzip zu ermöglichen (wichtig für Hosts mit vielen Verbindungen)."
+ 
+msgid "keyingtriesField"
+msgstr "Codierungsversuche"
+ 
+msgid "keyingtriesField_help"
+msgstr "Hier können Sie festlegen, wie viele Versuche (ganze Zahl) unternommen werden sollen, um eine Verbindung oder eine Ersatzverbindung auszuhandeln, bevor die Versuche eingestellt werden. Der Wert 0 bedeutet, dass die Versuche niemals aufgegeben werden."
+ 
+msgid "ikelifetimeField"
+msgstr "Lebensdauer des Codierungskanals"
+ 
+msgid "ikelifetimeField_help"
+msgstr "Hier können Sie festlegen, wie viele Minuten der Codierungskanal einer Verbindung aufrechterhalten werden soll, bevor er neu ausgehandelt wird."
+ 
+msgid "commentsField"
+msgstr "Kommentar"
+ 
+msgid "commentsField_help"
+msgstr "Kommentare zur Beschreibung dieses Profils."
+
+msgid "addNewTunnel"
+msgstr "Tunnel hinzufügen"
+ 
+msgid "tunnelEnabledField"
+msgstr "Verbindung"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "Aktivieren Sie dieses Feld, wenn der Tunnel eingerichtet werden soll, oder deaktivieren Sie den Tunnel."
+ 
+msgid "tunnelNameField"
+msgstr "Name"
+ 
+msgid "tunnelNameField_help"
+msgstr "Geben Sie einen Namen für den Tunnel ein."
+ 
+msgid "rightProfileField"
+msgstr "Verbindungsprofil"
+ 
+msgid "rightProfileField_help"
+msgstr "Wählen Sie ein Verbindungsprofil aus."
+ 
+msgid "rightField"
+msgstr "Remote-[[base-ipsec.ipsec]]-Host"
+ 
+msgid "rightField_help"
+msgstr "Geben Sie die IP-Adresse des Rechners am anderen Ende des [[base-ipsec.ipsec]]-Tunnels ein."
+
+msgid "rightNextField"
+msgstr "Remote-Host-Gateway"
+ 
+msgid "rightNextField_help"
+msgstr "Hier können Sie das Gateway eingeben, das vom Remote-Rechner verwendet wird."
+ 
+msgid "rightSubnetField"
+msgstr "Remote-Teilnetzwerk"
+ 
+msgid "rightSubnetField_help"
+msgstr "Geben Sie das Teilnetzwerk hinter dem Remote-Rechner ein."
+ 
+msgid "rightNetmaskField"
+msgstr "Remote-Netzwerkmaske"
+ 
+msgid "rightNetmaskField_help"
+msgstr "Geben Sie die Netzwerkmaske hinter dem Remote-Rechner ein."
+ 
+msgid "tunnelCommentField"
+msgstr "Kommentar"
+ 
+msgid "tunnelCommentField_help"
+msgstr "Geben Sie einen Kommentar zur Beschreibung des Tunnels ein."
+
+msgid "modProfile"
+msgstr "Profil ändern -- [[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "Tunnel ändern -- [[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "Automatische Codierung mit RSA-Echtheitsbestätigung"
+
+msgid "autoSecret"
+msgstr "Automatische Codierung mit Shared Secrets"
+
+msgid "manual"
+msgstr "Manuelle Codierung"
+
+msgid "keyingField"
+msgstr "Codierungsart"
+
+msgid "authPubKeyField"
+msgstr "Remote-RSA-Schlüssel"
+
+msgid "authSecretKeyField"
+msgstr "Shared Secret"
+
+msgid "authKeyField"
+msgstr "Echtheitsbestätigungsschlüssel"
+
+msgid "encKeyField"
+msgstr "Verschlüsselungsschlüssel"
+
+msgid "valueField"
+msgstr "Verschlüsselungs-/Echtheitsbestätigungsschema"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "Wiedergabefenster"
+
+msgid "manualSettings"
+msgstr "Manuelle Codierungsparameter"
+
+msgid "autoSettings"
+msgstr "Automatische Codierungsparameter"
+
+msgid "enableAutoRsaField"
+msgstr "Automatische Codierung mit RSA-Echtheitsbestätigung ermöglichen"
+
+msgid "enableAutoRsaField_help"
+msgstr "Aktivieren Sie dieses Feld, wenn Sie für alle Tunnel mit diesem Profil die automatische Codierung mit RSA-Echtheitsbestätigung ermöglichen wollen."
+
+msgid "enableAutoSecretField"
+msgstr "Automatische Codierung mit Shared Secrets ermöglichen"
+
+msgid "enableAutoSecretField_help"
+msgstr "Aktivieren Sie dieses Feld, wenn Sie für alle Tunnel mit diesem Profil die automatische Codierung mit Shared Secrets ermöglichen wollen."
+
+msgid "enableManualField"
+msgstr "Manuelle Codierung ermöglichen"
+
+msgid "enableManualField_help"
+msgstr "Aktivieren Sie dieses Feld, wenn Sie für alle Tunnel mit diesem Profil die manuelle Codierung ermöglichen wollen."
+
+msgid "valueField_help"
+msgstr "Wählen Sie den für die Verschlüsselung und Echtheitsbestätigung zu verwendenden Algorithmus aus."
+
+msgid "replay_windowField_help"
+msgstr "Geben Sie eine ganze Zahl zwischen 0 und 64 für die Länge des Wiedergabefensters ein. 0 steht für\"kein Wiedergabeschutz\"."
+
+msgid "ignore"
+msgstr "Deaktivieren Sie diesen Tunnel"
+
+msgid "start"
+msgstr "Die Verbindung wird hergestellt"
+
+msgid "add"
+msgstr "Die Verbindung wird vom anderen Ende hergestellt"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "Dies ist die SPI-Nummer für diesen Tunnel.  Beide Enden des Tunnels müssen dieselbe SPI-Nummer aufweisen, damit die Verbindung hergestellt werden kann."
+
+msgid "keyingField_help"
+msgstr "Wählen Sie die Codierungsart für diese Verbindung aus."
+
+msgid "authPubKeyField_help"
+msgstr "Geben Sie den öffentlichen Schlüssel des Rechners am anderen Ende des Tunnels in Hexdarstellung und mit vorangestelltem '0x' ein."
+
+msgid "authSecretKeyField_help"
+msgstr "Geben Sie das von diesem Rechner und dem Rechner am anderen Ende des Tunnels verwendete Shared Secret ein."
+
+msgid "authKeyField_help"
+msgstr "Geben Sie den für die Echtheitsbestätigung verwendeten Schlüssel ein."
+
+msgid "encKeyField_help"
+msgstr "Geben Sie den für die Verschlüsselung verwendeten Schlüssel ein.  Lassen Sie dieses Feld bei Tunneln, die nur die Echtheitsbestätigung verwenden, leer."
+
+msgid "establishedTunnels"
+msgstr "Eingerichtete Tunnel: "
+
+msgid "nn"
+msgstr "Netzwerk-zu-Netzwerk"
+
+msgid "hh"
+msgstr "Host-zu-Host"
+
+msgid "hn"
+msgstr "Host-zu-Netzwerk"
+
+msgid "nh"
+msgstr "Netzwerk-zu-Host"
+
+msgid "tunnelProblem"
+msgstr "Alle Tunnel sind außer Betrieb oder können nicht gestartet werden."
+
+msgid "noConnections"
+msgstr "Die Tunnel sind betriebsbereit, es wurde jedoch keine Verbindung hergestellt"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]] lädt nicht einen oder mehrere der Tunnel, die mit diesem Objekt verknüpft sind.\nÜberprüfen Sie Ihre Einstellungen."
+
+msgid "disabled"
+msgstr "Deaktiviert"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]] kann nicht mit dem Verbindungsprofil [[VAR.profile]] verwendet werden.  Bitte wählen Sie ein anderes Verbindungsprofil oder eine andere Codierungsart aus."
+
+msgid "spiInUse"
+msgstr "Das angegebene SPI wird bereits verwendet.  Bitte wählen Sie ein anderes aus."
+
+msgid "openKey"
+msgstr "Schlüsselfenster öffnen"
+
+msgid "openKey_help"
+msgstr "Klicken Sie hier, um ein neues Fenster zu öffnen, das den öffentlichen Schlüssel dieses Qube enthält."
+
+msgid "IpsecKey"
+msgstr "Lokaler RSA-Schlüssel"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "Mit diesem Profil können Sie eine Verbindung mit einem anderen Qube3 herstellen"
+ 
+msgid "removeProfileConfirm"
+msgstr "Möchten Sie das Profil '[[VAR.profileName]]' wirklich löschen?"
+ 
+msgid "removeTunnelConfirm"
+msgstr "Möchten Sie den Tunnel '[[VAR.tunnelName]]' wirklich löschen?"
+ 
+msgid "mustSelectKeying"
+msgstr "Sie müssen mindestens einen Codierungstyp für dieses Profil aktivieren."
+
+msgid "profileInUse"
+msgstr "Dieses Profil wird von den folgenden aktiven Tunneln verwendet: [[VAR.list]].  Deaktivieren, löschen oder ändern Sie das Profil für alle aufgelisteten Tunnel, bevor Sie dieses Profil löschen."
+ 
+msgid "autoSettings_help"
+msgstr "Einstellungen für automatisch codierte Verbindungen, die dieses Profil verwenden."
+ 
+msgid "manualSettings_help"
+msgstr "Einstellungen für manuell codierte Verbindungen, die dieses Profil verwenden."
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "[[base-ipsec.ipsec]] verwalten"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "Dieses Administrationsrecht ermöglicht es dem Benutzer, alle Aspekte von [[base-ipsec.ipsec]] zu konfigurieren.  Hierzu gehört das Hinzufügen, Bearbeiten und Entfernen von [[base-ipsec.ipsec]]-Tunneln."
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "Nachricht"

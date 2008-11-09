@@ -1,0 +1,352 @@
+#!/bin/sh
+#
+# /etc/rc.d/rc.sysinit - run once at boot time
+#
+# Taken in part from Miquel van Smoorenburg's bcheckrc.
+#
+
+# Set the gettext domain
+DOMAIN=base-sys
+
+# Set the path
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+export PATH
+
+# Read in config data.
+if [ -f /etc/sysconfig/network ]; then
+    . /etc/sysconfig/network
+else
+    NETWORKING=no
+    HOSTNAME=localhost
+fi
+
+# Source functions
+. /etc/rc.d/init.d/functions
+
+# Start up swapping.
+action "Activating swap partitions" swapon -a
+
+# Set the hostname.
+action "Setting hostname ${HOSTNAME}" hostname ${HOSTNAME}
+
+# Set the NIS domain name
+if [ -n "$NISDOMAIN" ]; then
+    action "Setting NIS domain name $NISDOMAIN" domainname $NISDOMAIN
+else
+    domainname ""
+fi
+
+if [ -f /fsckoptions ]; then
+	fsckoptions=`cat /fsckoptions`
+    else
+	fsckoptions=
+fi
+
+if [ -f /forcefsck ]; then
+	fsckoptions="-f $fsckoptions"
+fi
+fsckoptions="$fsckoptions -y"
+
+# Give some feedback
+LINE1=`getmsg checking_disk_1`
+LINE2=`getmsg checking_disk_2`
+$LCD_STOP >& /dev/null
+$LCD_SWRITE -s "$LINE1" "$LINE2" &>/dev/null &
+
+RUN_QUOTACHECK=0
+if [ ! -f /fastboot ]; then
+        STRING="Checking root filesystem"
+	echo $STRING
+	fsck -T -a $fsckoptions /
+	rc=$?
+	
+	if [ "$rc" = "0" ]; then
+		success "$STRING"
+		echo
+	elif [ "$rc" = "1" ]; then
+	        passed "$STRING"
+		echo
+        fi
+	
+        # A return of 2 or higher means there were serious problems.
+	if [ $rc -gt 1 ]; then
+		failure "$STRING"
+		echo
+		echo
+		echo "*** An error occurred during the file system check."
+		echo "*** Dropping you to a shell; the system will reboot"
+		echo "*** when you leave the shell."
+
+		PS1="(Repair filesystem) \#"; export PS1
+		sulogin
+
+		echo "Unmounting file systems"
+		umount -a
+		mount -n -o remount,ro /
+		echo "Automatic reboot in progress."
+		reboot
+	elif [ "$rc" = "1" ]; then
+		_RUN_QUOTACHECK=1
+	fi
+fi
+
+# check for arguments 
+
+mount -t proc none /proc
+
+# Remount the root filesystem read-write.
+action "Remounting root filesystem in read-write mode" mount -n -o remount,rw /
+
+# Update quotas if fsck was run on /.
+#if [ X"$_RUN_QUOTACHECK" = X1 -a -x /sbin/quotacheck ]; then
+#	action "Checking root filesystem quotas"  /sbin/quotacheck -v /
+#fi
+
+if [ ! -f /etc/HOSTNAME ]; then
+    echo ${HOSTNAME} > /etc/HOSTNAME
+fi
+
+# Clear mtab
+>/etc/mtab
+
+# Enter root and /proc into mtab.
+mount -f /
+mount -f /proc
+
+# if /proc/cmdline is, run depmod anyway.
+if [ ! -f /proc/cmdline ] || [ -f /proc/ksyms -a ! "`grep -i nomodules /proc/cmdline`" ]; then
+    USEMODULES=y
+else
+    USEMODULES=
+fi
+
+# Our modutils don't support it anymore, so we might as well remove
+# the link.
+if [ -x /sbin/depmod -a -n "$USEMODULES" ]; then
+    # Get ready for kmod if module support in the kernel
+    if [ -z `uname -r | grep "-"` ]; then
+       # we're using a new kernel, no preferred needed
+       mver=`uname -r`
+    else
+       ktag="`cat /proc/version`"
+       mtag=grep -l "$ktag" /lib/modules/*/.rhkmvtag 2> /dev/null
+       if [ -n "$mtag" ]; then
+          mver=echo $mtag | sed -e 's,/lib/modules/,,' -e 's,/.rhkmvtag,,' -e 's,[       ].*$,,'
+       fi
+       if [ -n "$mver" ]; then
+         ln -sf /lib/modules/$mver /lib/modules/default
+       fi
+    fi
+    [ -n "$mver" -a -f "/boot/module-info-$mver" ] && ln -sf /boot/module-info-$mver /boot/module-info
+    [ -n "$mver" -a -f "/boot/System.map-$mver" ] && ln -sf /boot/System.map-$mver /boot/System.map
+    action "Finding module dependencies" depmod -a
+fi
+
+if [ -f /proc/sys/kernel/modprobe ]; then
+   if [ -n "$USEMODULES" ]; then
+       echo "/sbin/modprobe" > /proc/sys/kernel/modprobe
+   else
+       echo "" > /proc/sys/kernel/modprobe
+   fi
+fi
+
+# Add raid devices
+if [ -f /proc/mdstat -a -f /etc/raidtab -a -x /etc/rc.d/rc.raid ]; then
+	echo "Starting up RAID devices..."
+	echo
+	. /etc/rc.d/rc.raid
+	echo
+	echo
+
+	# A non-zero return means there were problems.
+	if [ $? -gt 0 ]; then
+		echo
+		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		echo "!!                                       !!"
+		echo "!! An error occurred during RAID startup !!"
+		echo "!!                                       !!"
+		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+		echo
+
+		LINE1=`getmsg raid_fail_1`
+		LINE2=`getmsg raid_fail_2`
+		$LCD_STOP >& /dev/null
+		$LCD_SWRITE -s "$LINE1" "$LINE2" &>/dev/null &
+		sleep 10
+
+		echo
+		echo "Automatic reboot in progress..."
+		echo "Unmounting file systems"
+		echo
+		LINE1=`getmsg reboot_1`
+		LINE2=`getmsg reboot_2`
+		$LCD_STOP >& /dev/null
+		$LCD_SWRITE -s "$LINE1" "$LINE2" &>/dev/null &
+		sleep 2
+
+		umount -a
+		mount -n -o remount,ro /
+		reboot
+	fi
+
+	# reset lcd message
+	LINE1=`getmsg checking_disk_1`
+	LINE2=`getmsg checking_disk_2`
+	$LCD_STOP >& /dev/null
+	$LCD_SWRITE -s "$LINE1" "$LINE2" &>/dev/null &
+fi
+
+# Check filesystems
+if [ ! -f /fastboot ]; then
+        STRING="Checking filesystems"
+	echo $STRING
+	fsck  -T -R -A -a $fsckoptions
+	rc=$?
+        if [ "$rc" = "0" ]; then
+		success "$STRING"
+		echo
+	elif [ "$rc" = "1" ]; then
+	        passed "$STRING"
+		echo
+	fi
+
+	# A return of 2 or higher means there were serious problems.
+	if [ $rc -gt 1 ]; then
+	        failure "$STRING"
+		echo
+		echo
+		echo "*** An error occurred during the file system check."
+		echo "*** Dropping you to a shell; the system will reboot"
+		echo "*** when you leave the shell."
+
+		PS1="(Repair filesystem) \#"; export PS1
+		sulogin
+
+		echo "Unmounting file systems"
+		umount -a
+		mount -n -o remount,ro /
+		echo "Automatic reboot in progress."
+		reboot
+#	elif [ "$rc" = "1" -a -x /sbin/quotacheck ]; then
+#		action "Checking filesystem quotas" /sbin/quotacheck -v -R -a
+	fi
+fi
+
+# Mount all other filesystems (except for NFS and /proc, which is already
+# mounted). Contrary to standard usage,
+# filesystems are NOT unmounted in single user mode.
+action "Mounting local filesystems" mount -a -t nonfs,smbfs,ncpfs,proc
+
+#if [ -x /sbin/quotaon ]; then
+#    action "Turning on user and group quotas for local filesystems" /sbin/quotaon -a
+#fi
+
+# Clean out /etc.
+rm -f /etc/mtab~ /fastboot /fsckoptions /forcefsck
+>/var/run/utmp
+touch /var/log/wtmp
+chgrp root /var/run/utmp /var/log/wtmp
+chmod 0664 /var/run/utmp /var/log/wtmp
+
+# Delete pam_console lock and refcount files
+rm -f /var/lock/console.lock
+rm -f /var/lock/console/*
+
+# Delete UUCP lock files.
+rm -f /var/lock/LCK*
+
+# Delete stale subsystem files.
+rm -f /var/lock/subsys/*
+
+# Delete stale pid files
+rm -f /var/run/*.pid
+
+# Delete X locks
+rm -f /tmp/.X*-lock
+
+# Delete Postgres sockets
+rm -f /tmp/.s.PGSQL.*
+
+# Set the system clock.
+ARC=0
+UTC=0
+if [ -f /etc/sysconfig/clock ]; then
+    . /etc/sysconfig/clock
+
+    # convert old style clock config to new values
+    if [ "${CLOCKMODE}" = "GMT" ]; then
+	    UTC=true
+    elif [ "${CLOCKMODE}" = "ARC" ]; then
+	    ARC=true
+    fi
+fi
+
+CLOCKDEF=""
+if [ -x /sbin/hwclock ]; then
+    CLOCKFLAGS="--hctosys"
+    CLOCK=/sbin/hwclock
+    $CLOCK --adjust
+else
+    CLOCKFLAGS="-a"
+    CLOCK=/sbin/clock
+fi
+
+case "$UTC" in
+  yes|true)
+    CLOCKFLAGS="$CLOCKFLAGS -u";
+    CLOCKDEF="$CLOCKDEF (utc)";
+  ;;
+esac
+
+if [ "$CLOCK" = "/sbin/clock" ]; then
+ case "$ARC" in
+   yes|true)
+     CLOCKFLAGS="$CLOCKFLAGS -A";
+     CLOCKDEF="$CLOCKDEF (arc)";
+   ;;
+ esac
+fi
+
+$LCD_STOP
+LINE1=`getmsg clock_start_1`
+$LCD_SWRITE "$LINE1" "" &>/dev/null &
+if [ -x /etc/rc.d/rc.clock ]; then
+	/etc/rc.d/rc.clock $CLOCKFLAGS
+else
+	$CLOCK $CLOCKFLAGS
+fi
+action "Setting clock $CLOCKDEF: `date`" date
+
+# Right, now turn on swap in case we swap to files.
+swapon -a >/dev/null 2>&1
+action "Enabling swap space" /bin/true
+
+# Initialize the serial ports.
+if [ -f /etc/rc.d/rc.serial ]; then
+	. /etc/rc.d/rc.serial
+fi
+
+# run cced init stuff
+if [ -x /etc/rc.d/rc.cced ]; then
+	/etc/rc.d/rc.cced
+fi
+
+# Load modules (for backward compatibility with VARs)
+if [ -f /etc/rc.d/rc.modules ]; then
+	/etc/rc.d/rc.modules
+fi
+
+# If a SCSI tape has been detected, load the st module unconditionally
+# since many SCSI tapes don't deal well with st being loaded and unloaded
+if [ -f /proc/scsi/scsi ] && cat /proc/scsi/scsi | grep -q 'Type:   Sequential-Access' 2>/dev/null ; then
+	if cat /proc/devices | grep -qv ' 9 st' ; then
+		if [ -n "$USEMODULES" ] ; then
+			# Try to load the module.  If it fails, ignore it...
+			modprobe st 2>/dev/null
+		fi
+	fi
+fi
+
+# Now that we have all of our basic modules loaded and the kernel going,
+# let's dump the syslog ring somewhere so we can find it later
+dmesg > /var/log/dmesg

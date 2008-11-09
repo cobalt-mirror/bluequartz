@@ -1,0 +1,61 @@
+<!-- 
+  $Id: dhcpd.schema 201 2003-07-18 19:11:07Z will $ 
+  Copyright 2000, Cobalt Networks.
+  author: andrew@cobalt.com
+  
+  This file describes the schema of the following class types:
+	DhcpParam
+	DhcpStatic
+	DhcpDynamic
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+  
+-->
+
+<!-------------------------------------------------------------------------
+  DhcpParam  
+    Stores the parameters to be assigned to DHCP clients. There should be
+    exactly one DhcpParam object at all times.
+-------------------------------------------------------------------------->
+
+<class name="DhcpParam" namespace="" version="1.0" createacl="ruleCapable(createDhcpParam)" destroyacl="ruleCapable(destroyDhcpParam)">
+  <property name="enabled" type="boolean" default="0" optional="true" writeacl="ruleCapable(modifyDhcpParam)"/>
+  <property name="domainname" type="domainname" optional="true"  writeacl="ruleCapable(modifyDhcpParam)"/>
+    <!-- domainname: second half of FQDN -->
+  <property name="gateway" type="ipaddr" optional="true"  writeacl="ruleCapable(modifyDhcpParam)"/>
+    <!-- ip address of the default gateway -->
+  <property name="dns" type="scalar" optional="true"  writeacl="ruleCapable(modifyDhcpParam)"/> 
+    <!-- ':' delimited list of DNS server IP addresses -->
+  <property name="netmask" type="ipaddr" optional="true"  writeacl="ruleCapable(modifyDhcpParam)"/>
+    <!-- netmask for the network -->
+  <property name="lease" type="int" default="86400"  writeacl="ruleCapable(modifyDhcpParam)"/>
+    <!-- the max lease time in seconds -->
+</class>
+
+<!-------------------------------------------------------------------------
+  DhcpStatic 
+	Stores the sets of ipaddr<->mac pairs to be assigned to DHCP clients
+-------------------------------------------------------------------------->
+
+<class name="DhcpStatic" namespace="" version="1.0" createacl="ruleCapable(createDhcpStatic)" destroyacl="ruleCapable(destroyDhcpStatic)">
+  <property name="ipaddr" type="ipaddr" writeacl="ruleCapable(modifyDhcpStatic)"/> 
+  <property name="mac" type="scalar" writeacl="ruleCapable(modifyDhcpStatic)"/>
+  <property name="hostname" type="hostname" writeacl="ruleCapable(modifyDhcpStatic)" default="static"/>
+</class>
+
+<!-------------------------------------------------------------------------
+  DhcpDynamic
+        Stores the sets of IP Address ranges to dynamically assign 
+	to DHCP clients
+-------------------------------------------------------------------------->
+
+<class name="DhcpDynamic" namespace="" version="1.0" createacl="ruleCapable(createDhcpDynamic)" destroyacl="ruleCapable(destroyDhcpDynamic)">
+  <property name="ipaddrlo" type="ipaddr" writeacl="ruleCapable(modifyDhcpDynamic)"/> 
+  <property name="ipaddrhi" type="ipaddr" writeacl="ruleCapable(modifyDhcpDynamic)"/> 
+  <property name="hostprefix" type="hostname" writeacl="ruleCapable(modifyDhcpDynamic)" default="lease"/> 
+</class>
+
+
+<!-- end of dhcpd.schema -->

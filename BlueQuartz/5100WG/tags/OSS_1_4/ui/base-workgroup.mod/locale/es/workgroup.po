@@ -1,0 +1,128 @@
+# ----- Menu 
+msgid "groups"
+msgstr "Administrar los grupos"
+
+msgid "groups_help"
+msgstr "[[base-workgroup.groups]]."
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr "Editar valores predeterminados de los grupos"
+
+msgid "groupDefaults_help"
+msgstr "Pulse aquí para modificar los valores predeterminados de los grupos nuevos."
+
+msgid "groupList"
+msgstr "Lista de grupos"
+
+msgid "groupName"
+msgstr "Nombre de grupo"
+
+msgid "groupName_help"
+msgstr "Nombre de un grupo de usuarios."
+
+msgid "groupMembers"
+msgstr "Miembros del grupo"
+
+msgid "groupMembers_help"
+msgstr "Usuarios que pertenecen al grupo."
+
+msgid "groupDesc"
+msgstr "Observaciones"
+
+msgid "groupDesc_help"
+msgstr "Esta columna describe el grupo."
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Botones para modificar la configuración de un grupo o eliminar un grupo."
+
+msgid "addNewGroup"
+msgstr "Añadir nuevo grupo"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Límite de espacio de disco predeterminado para los grupos nuevos para el almacenamiento de páginas web, mensajes de correo electrónico y demás archivos. [[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "Nombre del grupo"
+
+msgid "groupNameField_rule"
+msgstr "Máximo de 12 caracteres, sólo de tipo alfanuméricos en minúsculas, puntos, guiones y subrayados. Por ejemplo, contabilidad."
+
+msgid "groupNameField_help"
+msgstr "Nombre para identificar al grupo en el sistema. [[base-workgroup.groupNameField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Espacio de disco máximo permitido (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Número entero entre 1 y 1024000."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Cuota de disco de este grupo: límite de espacio de este grupo para el almacenamiento de páginas web, mensajes de correo electrónico y demás archivos. [[base-workgroup.maxDiskSpaceField_rule]] Esta cifra se define en la sección Valores predeterminados de los grupos."
+
+msgid "groupMembersField"
+msgstr "Pertenencia de usuarios"
+
+msgid "groupMembersField_help"
+msgstr "Usuarios de este grupo. La columna izquierda muestra los miembros actuales. La derecha muestra los miembros potenciales. Para añadir un usuario como miembro de este grupo, mueva al usuario de la columna derecha a la izquierda."
+
+msgid "groupUsers"
+msgstr "Usuarios afiliados"
+
+msgid "allUsers"
+msgstr "Usuarios no afiliados"
+
+msgid "groupDescField"
+msgstr "Observaciones"
+
+msgid "groupDescField_help"
+msgstr "Información adicional sobre el grupo, por ejemplo, comentarios o una descripción."
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "Modificar configuración del grupo - [[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "¿Está seguro de que desea eliminar el grupo [[VAR.groupName]]?"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "Ha especificado un valor para [[base-workgroup.groupNameField]] ya elegido por otra persona o reservado por el sistema. Escriba otro valor para [[base-workgroup.groupNameField]]."
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "Los miembros de este grupo de trabajo mantienen el sitio web accesible públicamente."
+
+msgid "add_group_help"
+msgstr "Pulse aquí para añadir un nuevo grupo de trabajo."
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "Administrar grupos"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "Este derecho administrativo permite que un usuario cree, suprima o modifique grupos."

@@ -1,0 +1,150 @@
+msgid "import"
+msgstr "匯入使用者"
+
+msgid "import_help"
+msgstr "請在此處將使用者和群組匯入伺服器。"
+
+msgid "userImport"
+msgstr "檔案匯入"
+
+msgid "dataUpload"
+msgstr "原始檔"
+
+msgid "dataUpload_help"
+msgstr "請選取標籤定界檔案，其包含要上載至系統的使用者清單。如需完整的檔案格式說明，請參閱伺服器設備手冊。"
+
+msgid "dataUpload_empty"
+msgstr "很抱歉，您並未選取要上載至伺服器進行匯入的檔案。"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "fileImport"
+msgstr "自檔案匯入"
+
+msgid "attempt"
+msgstr "未嘗試。"
+
+msgid "creating"
+msgstr "新增名稱為 [[VAR.name]] 的 [[VAR.class]]"
+
+msgid "modifying"
+msgstr "修改名稱為 [[VAR.name]] 的 [[VAR.class]]"
+
+msgid "importResults"
+msgstr "匯入結果"
+
+msgid "noFileSpecified"
+msgstr "接收檔案時發生錯誤"
+
+msgid "fileWasNoGood"
+msgstr "很抱歉，在接收指定的檔案時發生錯誤；請嘗試重新上載檔案。"
+
+msgid "badFileButtonCancel"
+msgstr "上一步"
+
+msgid "badFileButtonCancel_help"
+msgstr "按一下此處退回。"
+
+msgid "importResult"
+msgstr "匯入結果"
+
+msgid "result"
+msgstr "結果"
+
+msgid "action"
+msgstr "動作"
+
+msgid "reason"
+msgstr "原因"
+
+msgid "couldNotOpenFile"
+msgstr "很抱歉，在嘗試開啟上載的檔案時發生錯誤；請檢查該檔案的格式，然後重試。"
+
+msgid "success"
+msgstr "順利完成"
+
+msgid "fail"
+msgstr "失敗"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]]（第 [[VAR.line]] 行）"
+
+msgid "importNow"
+msgstr "立即匯入"
+
+msgid "importNow_help"
+msgstr "按一下此處，從所選取的檔案匯入使用者。"
+
+msgid "importErrors"
+msgstr "匯入錯誤"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] 錯誤"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] 錯誤"
+
+msgid "fullName"
+msgstr "完整名稱"
+
+msgid "fullName_help"
+msgstr "這些是匯入檔案所提供之登錄項的完整名稱。"
+
+msgid "name"
+msgstr "使用者名稱"
+
+msgid "name_help"
+msgstr "這些是匯入檔案所提供之登錄項的使用者名稱。"
+
+msgid "errorMessageHeader"
+msgstr "訊息"
+
+msgid "errorMessageHeader_help"
+msgstr "這些是在匯入時發生錯誤的詳細訊息。"
+
+msgid "importSucceeded"
+msgstr "匯入順利完成"
+
+msgid "importSucceededMessage"
+msgstr "在匯入時沒有發生任何錯誤。"
+
+msgid "importSucceededMessage_help"
+msgstr "在匯入時沒有發生任何錯誤。"
+
+msgid "importStatus"
+msgstr "匯入狀態"
+
+msgid "progressField"
+msgstr "進度"
+
+msgid "progressField_help"
+msgstr "這是匯入的進度。如果您離開這個區段，使用者匯入會繼續在背景中執行，但是就無法看到進度列。"
+
+msgid "status"
+msgstr "狀態"
+
+msgid "status_help"
+msgstr "這是目前的「匯入狀態」。"
+
+msgid "creatingUsers"
+msgstr "新增使用者 ([[VAR.pos]]/[[VAR.max]])"
+
+msgid "intname"
+msgstr "使用者名稱"
+
+msgid "intfullName"
+msgstr "完整名稱"
+
+msgid "intpassword"
+msgstr "密碼"
+
+msgid "intaliases"
+msgstr "電子郵件別名"
+
+msgid "importChanger"
+msgstr "選取匯入方式..."
+
+msgid "importChangerFile"
+msgstr "檔案匯入"
+

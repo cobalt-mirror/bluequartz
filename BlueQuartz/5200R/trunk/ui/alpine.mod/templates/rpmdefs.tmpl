@@ -1,0 +1,157 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+%{RootDir}/ui/web/*.php
+%{RootDir}/ui/web/*.html*
+%{RootDir}/ui/web/error
+%{RootDir}/ui/web/libImage/*
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+/etc/sysconfig/firstboot
+/usr/sausalito/ui/web/manuals/*
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1-85BQ19
+- Fixed duplicate include issue.
+
+* Sun Oct 29 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ18
+- reimport libImage/* and manuals/* to fix curruption issues.
+
+* Thu Oct 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ17
+- modify setup_capabilities.pl, re-setup capability group.
+
+* Tue Aug 14 2006 Brian Smith <brian@nuonce.net> 0.1-85BQ16
+- Missing comma added to "setup_capabilities.pl" script
+
+* Sat Aug 12 2006 Brian Smith <brian@nuonce.net> 0.1-85BQ15
+- modify setup_capabilities.pl, added dnsAdmin
+
+* Fri Apr 07 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ14
+- modify login.php to be enabled secure login by default.
+
+* Sun Dec 25 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ13
+- modified intro.html for BlueQuartz by Anders.
+
+* Sat Dec 24 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ12
+- login.php checks to accept license.
+
+* Fri Dec 23 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ11
+- change splash_G_top_left.gif for BlueQuartz by Anders.
+
+* Sun Nov 27 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ10
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Mon Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ9
+- rebuild with devel-tools 0.5.1
+
+* Sun Oct 02 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ8
+- fixed typo message.
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ7
+- modified locale file to provide BlueQuartz and BlueQuartz for the other locale.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ6
+- modified Group tag in rpmdefs.tmpl.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ5
+- add serial number.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.1-85BQ4
+- clean up spec file.
+<end $CHANGELOG>

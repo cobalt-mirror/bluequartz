@@ -1,0 +1,40 @@
+<typedef name="pptp_allowType_enum" type="re" data="^(all|some)$"/>
+
+<class name="System" namespace="Pptp" version="1.0">
+  <property name="enabled" type="boolean" default="0" optional="true"
+  	writeacl="ruleCapable(modifySystemPptp)"/>
+  <property name="allowType" type="pptp_allowType_enum" default="all"
+  	writeacl="ruleCapable(modifySystemPptp)"/>
+  <property name="allowData" type="scalar" array="1"
+  	writeacl="ruleCapable(modifySystemPptp)"/>
+  <property name="dns" type="ipaddr" array="1"
+  	writeacl="ruleCapable(modifySystemPptp)"/>
+  <property name="wins" type="ipaddr" array="1"
+  	writeacl="ruleCapable(modifySystemPptp)"/>
+</class>
+
+<class name="PptpDynamic" namespace="" version="1.0" createacl="ruleCapable(createPptpDynamic)" destroyacl="ruleCapable(destroyPptpDynamic)">
+  <property name="ipaddrlo" type="ipaddr" writeacl="ruleCapable(modifyPptpDynamic)"/> 
+  <property name="ipaddrhi" type="ipaddr" writeacl="ruleCapable(modifyPptpDynamic)"/> 
+</class>
+
+<class name="User" namespace="Pptp" version="1.0" createacl="ruleCapable(createUser)" destroyacl="ruleCapable(destroyUser)">
+  <property name="secret" type="password" readacl="ruleSelf" writeacl="ruleSelf"/>
+</class>
+
+<class name="Capabilities" namespace="modifySystemPptp" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemPptp)"/>
+	<property name="nameTag" type="scalar" default="[[base-pptp.cap_modifyPptp]]"/>
+</class>
+<class name="Capabilities" namespace="createPptpDynamic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createPptpDynamic)"/>
+	<property name="nameTag" type="scalar" default="[[base-pptp.cap_createPptpDynamic]]"/>
+</class>
+<class name="Capabilities" namespace="modifyPptpDynamic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyPptpDynamic)"/>
+	<property name="nameTag" type="scalar" default="[[base-pptp.cap_modifyPptpDynamic]]"/>
+</class>
+<class name="Capabilities" namespace="destroyPptpDynamic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyPptpDynamic)"/>
+	<property name="nameTag" type="scalar" default="[[base-pptp.cap_destroyPptpDynamic]]"/>
+</class>

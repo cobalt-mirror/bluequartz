@@ -1,0 +1,81 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "Datei & Drucken"
+
+msgid "fileSharing_help"
+msgstr "Klicken Sie zur Konfiguration der Dateidienste hierauf."
+
+msgid "guestShare"
+msgstr "Gastfreigabe"
+
+msgid "guestShare_help"
+msgstr "Klicken Sie zur Konfiguration der [[base-fileshare.fileSharingSettings]] hierauf."
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "Gastfreigabe-Einstellungen"
+
+msgid "guestShareField"
+msgstr "Gastzugriff aktivieren"
+
+msgid "guestShareField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Gastzugriff auf Apple File Sharing, FTP und die Windows-Dateifreigabe. Durch das Deaktivieren des Gastzugriffs an dieser Stelle wird der Zugriff auf diese Dienste durch Benutzer mit Konten auf diesem Server nicht deaktiviert."
+
+msgid "incomingEnable"
+msgstr "Aktivieren"
+
+msgid "incomingField"
+msgstr "Zugriff auf eingehende Dateien"
+
+msgid "incomingField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Zugriff auf eingehende Dateien. Ist diese Funktion aktiviert, können Gastbenutzer Dateien auf die Gastfreigabe hochladen."
+
+msgid "maxDiskSpaceField"
+msgstr "Maximal zulässiger Festplattenspeicher (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl zwischen 1 und 1024000 ein. Der Vorgabewert beträgt 50 MB."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Stellen Sie den maximal verfügbaren Festplattenspeicher zum Hochladen von eingehenden Dateien durch Gastbenutzer ein. [[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "Diese Workgroup bietet eine Datei-Freigabe mit Gastzugriff."
+
+
+# --- Handler messages
+
+	# -- guest.pl  ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr "Fehler: Benutzer bereits zugewiesen"
+
+msgid "groupDoesntExist"
+msgstr "Fehler: Gruppe existiert nicht"
+
+msgid "cantChangeGroup"
+msgstr "Fehler: Gruppe kann nicht geändert werden"
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "Leider trat ein Fehler auf. Der Gastbenutzer ist ungültig."
+
+msgid "invalidPath"
+msgstr "Leider trat ein Fehler auf. Der Gastfreigabe-Pfad ist ungültig."
+
+msgid "cantSetQuota"
+msgstr "Leider trat beim Versuch, die Gastfreigabe-Quote festzulegen, ein Fehler auf. Möglicherweise fehlen die notwendigen Konfigurationsdateien."
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "Verwaltung der Dateifreigabeeinstellungen"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, die Gastdateifreigabeeinstellungen zu ändern."
+
+msgid "capgroup_adminFileShare"
+msgstr "Verwaltung der Dateifreigabe"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, alle Aspekte der Dateifreigabe zu verwalten."

@@ -1,0 +1,139 @@
+# configuration bits for mod_rpmize
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %INSTALL>
+<begin glue>
+# now we need lots of symlinks
+cd $RPM_BUILD_ROOT
+
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/rc0.d
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/rc1.d
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/rc2.d
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/rc3.d
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/rc5.d
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/rc6.d
+mkdir -p $RPM_BUILD_ROOT/sbin
+mkdir -p $RPM_BUILD_ROOT/home/tmp
+mkdir -p $RPM_BUILD_ROOT/etc/locks
+
+# kill all process on shutdown
+ln -s ../init.d/killall $RPM_BUILD_ROOT/etc/rc.d/rc0.d/K90killall
+ln -s ../init.d/killall $RPM_BUILD_ROOT/etc/rc.d/rc6.d/K90killall
+
+# halt/reboot
+ln -s ../init.d/halt $RPM_BUILD_ROOT/etc/rc.d/rc0.d/S00halt
+ln -s ../init.d/halt $RPM_BUILD_ROOT/etc/rc.d/rc6.d/S00reboot
+
+# single user mode
+ln -s ../init.d/single $RPM_BUILD_ROOT/etc/rc.d/rc1.d/S00single
+
+# local stuff
+ln -s ../rc.local $RPM_BUILD_ROOT/etc/rc.d/rc2.d/S99local
+ln -s ../rc.local $RPM_BUILD_ROOT/etc/rc.d/rc3.d/S99local
+ln -s ../rc.local $RPM_BUILD_ROOT/etc/rc.d/rc5.d/S99local
+
+# interface control
+ln -s /etc/sysconfig/network-scripts/ifup $RPM_BUILD_ROOT/sbin/ifup
+ln -s /etc/sysconfig/network-scripts/ifdown $RPM_BUILD_ROOT/sbin/ifdown
+<end glue>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%dir %attr(1777,root,root) /home/tmp
+%dir /etc/locks
+%dir /etc/sysconfig/network-scripts
+%dir /etc/sysconfig/filesystems
+%config /etc/sysconfig/clock
+%config /etc/sysconfig/modules
+/etc/sysconfig/network-scripts/ifdown
+/etc/sysconfig/network-scripts/ifup
+/sbin/ifdown
+/sbin/ifup
+/etc/sysconfig/network-scripts/autoconf-net
+/etc/sysconfig/network-scripts/ifcfg_to_cce
+/etc/sysconfig/network-scripts/ifdown-post
+/etc/sysconfig/network-scripts/network-functions
+/etc/sysconfig/network-scripts/ifup-post
+/etc/sysconfig/network-scripts/ifdhcpc-done
+%config /etc/sysconfig/network-scripts/ifcfg-lo
+/etc/sysconfig/network-scripts/ifdown-ppp
+/etc/sysconfig/network-scripts/ifdown-sl
+/etc/sysconfig/network-scripts/ifup-ppp
+/etc/sysconfig/network-scripts/ifup-sl
+/etc/sysconfig/network-scripts/ifup-routes
+/etc/sysconfig/network-scripts/ifup-plip
+/etc/sysconfig/filesystems/xfs
+/etc/sysconfig/filesystems/ext2
+/etc/sysconfig/filesystems/unknown
+/etc/generic-release
+%config /etc/inittab
+/etc/rc.d/init.d/*
+/etc/rc.d/rc
+/etc/rc.d/rc.cced
+/etc/rc.d/rc.local
+/etc/rc.d/rc.sysinit
+/etc/rc.d/rc.raid
+/etc/rc.d/rc.clock
+/etc/rc.d/rc.modules
+/etc/rc.d/rc.sysctl
+%config /etc/rc.d/rc?.d/*
+%config /etc/pam.d/*
+%attr(0755,root,root) /etc/cron.quarter-hourly/db_checkpoint.pl
+/etc/logrotate.d/*
+%attr(0755,root,root) /usr/sausalito/sbin/selectLanguage
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+if [ "$1" = 1 ]; then
+	for file in random network inet; do
+		/sbin/chkconfig --add $file
+	done
+
+	if [ ! -f /var/log/wtmp ]; then
+		touch /var/log/wtmp
+	fi
+fi
+
+<end glue>
+<end %POST-INSTALL>

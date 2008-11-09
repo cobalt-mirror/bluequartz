@@ -1,0 +1,203 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgName"
+msgstr "Sun Cobalt DiskMirror"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] は、２台のハードドライブを使った定常的なコンテンツミラーリングを実行することにより、信頼性を飛躍的に高めることができます。"
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "RAID（Redundant Array of Independent Disks）の状態"
+
+msgid "raid_title"
+msgstr "RAID（Redundant Array of Independent Disks）の状態の詳細"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "ディスクミラーリングは、OFF になりました。"
+
+msgid "raid_working"
+msgstr "ディスクミラーリングは有効で、現在アクティブ状態です。ハードドライブは２台とも正常に機能しています。"
+
+msgid "raid_sync_in_progress"
+msgstr "サーバ上のデータを１台のハードドライブから別のハードドライブに複製しています。同期化が完了すると、ディスクミラーリングが有効になり、アクティブ状態になります。"
+
+msgid "raid_sync_in_progress_email"
+msgstr "サーバ上のデータを１台のハードドライブから別のハードドライブに複製しています。詳細については、アクティブモニタの [[base-raid.amDiskIntegrityNameTag]] エントリをご参照ください。"
+
+msgid "raid_sync_incomplete"
+msgstr "サーバ上のデータを１台のハードドライブから別のハードドライブに複製する処理が中断されました。複製が再開されるまでしばらくお待ちください。複製が再開されない場合には、[[base-sauce-basic.techSupportURL] にあるテクニカルサービスをご利用ください。"
+
+msgid "raid_sync_incomplete_email"
+msgstr "サーバ上のデータを１台のハードドライブから別のハードドライブに複製する処理が中断されました。詳細については、アクティブモニタの [[base-raid.amDiskIntegrityNameTag]] エントリをご参照ください。"
+
+msgid "raid_completed"
+msgstr "完了"
+
+msgid "raid_minutes_remaining"
+msgstr "分で完了"
+
+msgid "raid_sync_delayed"
+msgstr "同期は遅延されました。"
+
+msgid "raid_less_than_one_remaining"
+msgstr "残り 1 分未満"
+
+msgid "raid_failure"
+msgstr "ハードドライブに障害が発生しました。障害の発生した場所を下図に示します。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid0_failure"
+msgstr "１台のハードドライブで raid0 を設定できませんでした。障害の発生したディスクの場所を下図に示します。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、バックアップと OS リストア CD を使って /home ディレクトリを復元してください。"
+
+msgid "raid_failure_email"
+msgstr "ハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid0_failure_email"
+msgstr "１台のハードドライブで raid0 を設定できませんでした。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、バックアップと OS リストア CD を使って /home ディレクトリを復元してください。"
+
+msgid "raid_failure_email_Alpine_hda"
+msgstr "ドライブ 1 に障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。障害のあるドライブは、サーバの正面に向かって右側にあります。"
+
+msgid "raid0_failure_email_Alpine_hda"
+msgstr "ドライブ 1 で raid0 を設定できませんでした。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、バックアップと OS リストア CD を使って /home ディレクトリを復元してください。障害のあるドライブは、サーバの正面に向かって右側にあります。"
+
+msgid "raid0_failure_email_Alpine_hdc"
+msgstr "ドライブ 2 で raid0 を設定できませんでした。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、バックアップと OS リストア CD を使って /home ディレクトリを復元してください。障害のあるドライブは、サーバの右側、電源の隣にあります。"
+
+msgid "raid_failure_hdc_raq"
+msgstr "サーバ正面から向かって左側のハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid_failure_hda_raq"
+msgstr "サーバ正面から向かって右側のハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid_failure_qube"
+msgstr "ハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。詳細については、[アクティブモニタ] ページにある [RAID の詳細] 画面をご参照ください。"
+
+msgid "raid_failure_hdc_qube"
+msgstr "セカンダリハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。障害のあるドライブ（B）は、サーバの中央側に位置しており、サーバの正面に向かって右側にあります。"
+
+msgid "raid_failure_hda_qube"
+msgstr "プライマリハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。障害のあるドライブ（A）は、サーバの端側に位置しており、サーバの正面に向かって左側にあります。"
+
+
+# --- Handlers
+ 
+msgid "cantGetRAID"
+msgstr "RAID イベントオブジェクトを得られませんでした。"
+
+msgid "RAIDLevelChangeFailed"
+msgstr "RAID レベル変更スクリプトを実行できませんでした。"
+
+# --- raid setup
+
+msgid "raidstatus"
+msgstr "RAID の設定"
+
+msgid "configuring"
+msgstr "RAID を設定しています。設定には数分かかります。"
+
+msgid "raidstep1"
+msgstr "ディスクを準備しています..."
+
+msgid "raidstep2"
+msgstr "ディスク割り当てを設定しています..."
+
+msgid "raidstep3"
+msgstr "サービスを開始しています。..."
+
+msgid "setupNoDiskSpace"
+msgstr "エラー: 十分なディスク容量がありません。RAID を設定するまでデータを追加しないでください。すでにファイルをサーバに追加した場合には、そのファイルを削除してからもう一度お試しください。ご質問などがございましたら、テクニカルサポートまでお問い合わせください。"
+
+msgid "setupNoUmountHome"
+msgstr "エラー: /home をアンマウントできませんでした。システムにログインしていないか、プラグラムを起動していないかをご確認ください。"
+
+msgid "confirmRaid0"
+msgstr "データの保存にシステムで RAID ストライプをお使いになりますか？\n\nセットアップウィザードの完了後は、この設定は変更できません。"
+
+msgid "confirmRaid1"
+msgstr "データの保存にシステムで RAID ミラーリングをお使いになりますか？\n\nセットアップウィザードの完了後は、この設定は変更できません。"
+
+msgid "confirmRaid5"
+msgstr "データの保存にシステムでパリティ付き RAID ストライプをお使いになりますか？\n\nセットアップウィザードの完了後は、この設定は変更できません。"
+
+msgid "amDiskIntegrityNameTag"
+msgstr "ディスクの整合性"
+
+msgid "integrityOK"
+msgstr "ディスクは正常に動作しています。"
+
+msgid "integrityProblem"
+msgstr "ディスクの整合性に問題があります。"
+
+msgid "integritySevereProblem"
+msgstr "ディスクの整合性に深刻な問題があります。"
+
+msgid "raid_working_raq"
+msgstr "ディスクミラーリングは有効で、現在アクティブな状態です。"
+
+msgid "raid_sync_in_progress_raq"
+msgstr "サーバのデータは現在複製されており、ドライブの整合性が確保されています。この同期が完了すると、ディスクミラーリングが有効になり、アクティブな状態になります。"
+
+msgid "config_raid0"
+msgstr "このシステムは [[VAR.numdisks]] 台のディスクを使ったディスクストライプ (RAID 0) 用に設定されています。"
+
+msgid "config_raid1"
+msgstr "このシステムは [[VAR.numdisks]] 台のディスクを使ったディスクミラーリング (RAID 1) 用に設定されています。"
+
+msgid "config_raid5"
+msgstr "このシステムは [[VAR.numdisks]] 台のディスクを使ったパリティ付きディスクストライプ (RAID 5) 用に設定されています。"
+
+msgid "drives_ok"
+msgstr "全ドライブが正常に動作しています。"
+
+msgid "drives_problem"
+msgstr "１台または複数のハードディスクに障害が発生しました。ディスクの場所を下図に示します。詳細については、ディスクの画像の上でマウスを移動させると表示される説明をご参照ください。"
+
+msgid "drives_syncing_problem"
+msgstr "サーバ上のデータを１台のハードドライブから別のハードドライブに複製しています。ディスクの場所を下図に示します。詳細については、ディスクの画像の上でマウスを移動させると表示される説明をご参照ください。"
+
+msgid "drives_severe_problem"
+msgstr "１台または複数のハードディスクに障害が発生しました。ディスクの場所を下図に示します。詳細については、ディスクの画像の上でマウスを移動させると表示される説明をご参照ください。"
+
+msgid "per_drive_title"
+msgstr "ドライブの状態の詳細"
+
+msgid "drive_failed"
+msgstr "ハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "drive_failed_in_raid0"
+msgstr "ハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、バックアップと OS リストア CD を使って /home ディレクトリを復元してください。"
+
+msgid "drive_syncing"
+msgstr "サーバ上のデータを同期しています。"
+
+msgid "drive_ok"
+msgstr "ドライブは正常に動作しています。"
+
+msgid "Alpine_dev_hda"
+msgstr "ドライブ 1"
+
+msgid "Alpine_dev_hdc"
+msgstr "ドライブ 2"
+
+
+msgid "raid_failure_raq"
+msgstr "ハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+

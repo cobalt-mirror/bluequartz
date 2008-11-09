@@ -1,0 +1,11 @@
+msgid "cantEditFile"
+msgstr "Error al intentar modificar el archivo de configuración del cliente DHCP. Los cambios no tendrán efecto."
+
+msgid "eth0Timeout"
+msgstr "No puede accederse a ningún servidor DHCP desde la interfaz eth0. Compruebe la conexión y la accesibilidad del servidor."
+
+msgid "eth1Timeout"
+msgstr "No puede accederse a ningún servidor DHCP desde la interfaz eth1. Compruebe la conexión y la accesibilidad del servidor."
+
+msgid "allTimeout"
+msgstr "No se ha encontrado ningún servidor DHCP en ninguna de las interfaces que se están configurando. Compruebe la conexión e inténtelo de nuevo."

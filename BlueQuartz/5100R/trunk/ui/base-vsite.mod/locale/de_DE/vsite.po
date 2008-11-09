@@ -1,0 +1,686 @@
+# Header entry was created by KBabel!
+#
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-vsite\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-01 07:01+0200\n"
+"PO-Revision-Date: 2008-05-13 17:12+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "="
+msgstr "ist"
+
+msgid "actions"
+msgstr "Aktionen"
+
+msgid "actions_help"
+msgstr "Klicken Sie auf den Stift, um den Benutzer zu verändern. Klicken Sie auf den Mülleimer, um den Benutzer zu löschen."
+
+msgid "addAdminHelp"
+msgstr "Legt ein neues Administratorenkonto für den Server an."
+
+msgid "adminOptions"
+msgstr "Administrator-Optionen"
+
+msgid "adminPowers"
+msgstr "Zusätzliche Rechte"
+
+msgid "adminPowers_help"
+msgstr "Gewisse Administrationsrechte sind normalerweise ausschließlich dem 'admin'-Benutzer vorbehalten. Falls Sie einen weiteren Administrator an diesen Rechten teilhaben lassen wollen, dann bewegen Sie diese Rechte aus der Spalte [[base-vsite.disallowedAbilities]] in die [[base-vsite.allowedAbilities]] Spalte."
+
+msgid "adminUsersList"
+msgstr "Liste der Server-Administratoren"
+
+msgid "advancedSearch"
+msgstr "Erweiterte Suche"
+
+msgid "advancedSearch_help"
+msgstr "Suche nach Sites mit anderen Kriterien."
+
+msgid "allowedAbilities"
+msgstr "Zusätzliche Fähigkeiten"
+
+msgid "basicSettingsTab"
+msgstr "Grundeinstellungen"
+
+msgid "basicSettingsTab_help"
+msgstr "Konfigurieren Sie die am meisten genutzten Einstellungen."
+
+msgid "begins"
+msgstr "Beginnt mit"
+
+msgid "cantAddAdminToGroup"
+msgstr "Kann den Benutzer [[VAR.user]] nicht zur Benutzergruppe [[VAR.group]] hinzufügen."
+
+msgid "cantAddFtpVhost"
+msgstr "Diese Site konnte nicht zur Konfigurationsdatei des FTP-Servers hinzugefügt werden."
+
+msgid "cantAddSystemAlias"
+msgstr "Das Email-Alias [[VAR.alias]] für diese Site konnte nicht angelegt werden. Möglicherweise verwendet bereits ein anderer Benutzer dieses Alias. "
+
+msgid "cantAddSystemGroup"
+msgstr "Diese Site konnte nicht angelegt werden, weil das System die Benutzergruppe für diese Site nicht anlegen konnte."
+
+msgid "cantAddUserToServerAdminGroup"
+msgstr "Der Benutzer [[VAR.user]] konnte nicht zur Administratorengruppe des Servers hinzugefügt werden."
+
+msgid "cantAddUserToSiteAdminGroup"
+msgstr "Der Benutzer [[VAR.user]] konnte nicht zur Administratorengruppe der Site hinzugefügt werden."
+
+msgid "cantAddVirtualHost"
+msgstr "Die Site konnte nicht erstellt werden, weil der dazugehörige Webserver-Eintrag nicht erstellt werden konnte."
+
+msgid "cantChangeSitePreview"
+msgstr "Die Konfiguration der Webseiten-Vorschau konnte nicht modifiziert werden."
+
+msgid "cantCreateAtypeRecord"
+msgstr "[[base-vsite.operationFailed]] Der DNS-Eintrag für [[VAR.fqdn]] konnte nicht erstellt werden."
+
+msgid "cantCreateAtypeRecordForMail"
+msgstr "[[base-vsite.operationFailed]] Konnte den 'A Record' DNS-Eintrag für das Webserver Alias [[VAR.alias]] der Site [[VAR.fqdn]] nicht anlegen."
+
+msgid "cantCreateMXRecordForMailAlias"
+msgstr "[[base-vsite.operationFailed]] Konnte den 'MX Record' DNS-Eintrag für das Webserver Alias [[VAR.alias]] der Site [[VAR.fqdn]] nicht anlegen."
+
+msgid "cantCreateMailAlias"
+msgstr "[[base-vsite.operationFailed]] Das Mail Alias [[VAR.alias]] konnte nicht eingerichtet werden."
+
+msgid "cantCreateNetwork"
+msgstr "[[base-vsite.operationFailed]]  Das Netzwerk-Interface, welches mit der IP-Adresse dieser Seite zusammenhängt, kann nicht erstellt werden."
+
+msgid "cantCreateSiteAdminGroup"
+msgstr "Die Gruppe der Site-Administratoren kann nicht angelegt werden."
+
+msgid "cantCreateWebAlias"
+msgstr "[[base-vsite.operationFailed]] Der DNS-Eintrag für das Webserver-Alias [[VAR.alias]] der Site [[VAR.fqdn]] konnte nicht angelegt werden."
+
+msgid "cantDestroyNetwork"
+msgstr "Das Netzwerk-Interface, an welches die IP-Adresse dieser Site gebunden war, konnte nicht deaktiviert werden. Die Site wurde dennoch gelöscht."
+
+msgid "cantDisableVhost"
+msgstr "[[base-vsite.operationFailed]]  Der Webserver der Site kann nicht deaktiviert werden."
+
+msgid "cantMigrateDnsRecords"
+msgstr "[[base-vsite.operationFailed]] Die DNS-Einträge für [[VAR.fqdn]] konnten nicht so aktualisiert werden, dass sie mit den neuen Einstellungen dieser Site übereinstimmen."
+
+msgid "cantReadVsite"
+msgstr "[[base-vsite.operationFailed]] CCE liefert leider keine Informationen über diese Site."
+
+msgid "cantRemoveAdminFromGroup"
+msgstr "Der Benutzer [[VAR.user]] kann nicht aus der Benutzergruppe [[VAR.group]] gelöscht werden."
+
+msgid "cantRemoveUserFromServerAdminGroup"
+msgstr "Der Benutzer [[VAR.user]] kann nicht aus der Gruppe der Server-Administratoren gelöscht werden."
+
+msgid "cantRemoveUserFromSiteAdminGroup"
+msgstr "Der Benutzer [[VAR.user]] kann nicht aus der Gruppe der Site-Administratoren gelöscht werden."
+
+msgid "cantRestartDns"
+msgstr "[[base-vsite.operationFailed]] Der DNS-Server konnte nicht neu gestartet werden."
+
+msgid "cantSetSiteGroup"
+msgstr "Die Site konnte nicht erstellt werden, weil die Einstellungen der Site nicht aktualisiert werden konnten. Diese Einstellungen scheinen nicht mit der Gruppe der Site überein zu stimmen."
+
+msgid "cantSuspendUsers"
+msgstr "[[base-vsite.operationFailed]] Der Versuch, alle Benutzer dieser Site zu suspendieren, ist gescheitert."
+
+msgid "cantUpdateMailAlias"
+msgstr "[[base-vsite.operationFailed]]  Das Email-Alias [[VAR.alias]] konnte nicht aktualisiert werden."
+
+msgid "cantUpdateSiteAdminCaps"
+msgstr "[[base-vsite.operationFailed]] Die Privilegien des Site-Administrators konnten nicht aktualisiert werden."
+
+msgid "cantUpdateUserMailAliases"
+msgstr "[[base-vsite.operationFailed]] Die Email-Informationen für Benutzer dieser Site konnten nicht aktualisiert werden."
+
+msgid "cantUpdateVhost"
+msgstr "[[base-vsite.operationFailed]] Die Informationen des Webservers für diese Site konnten nicht aktualisiert werden."
+
+msgid "contains"
+msgstr "Enthält"
+
+msgid "couldNotAddAdminAccount"
+msgstr "[[base-vsite.operationFailed]] Das Konto des Site-Administrators für die Site  [[VAR.fqdn]] konnte nicht erstellt werden."
+
+msgid "createAdminUser"
+msgstr "Neuen Server-Administrator anlegen"
+
+msgid "defaultDomain"
+msgstr "[[base-vsite.domain]]"
+
+msgid "defaultDomain_help"
+msgstr "Die Standard-Domäne, zu der neu angelegte Sites gehören sollen."
+
+msgid "defaultHome"
+msgstr "Standardverzeichnis (/home)"
+
+msgid "defaultIpAddr"
+msgstr "[[base-vsite.ipAddr]]"
+
+msgid "defaultIpAddr_help"
+msgstr "Die Standard IP-Adresse, auf der alle neu angelegten Sites laufen sollen."
+
+msgid "deleteQuestion"
+msgstr "Sind Sie sicher, dass Sie den Administrator [[VAR.name]] löschen wollen?"
+
+msgid "deletingSite"
+msgstr "Lösche Site. Bitte warten..."
+
+msgid "deletingUser"
+msgstr "Lösche Benutzer. Bitte warten..."
+
+msgid "disallowedAbilities"
+msgstr "Verfügbare Privilegien"
+
+msgid "diskQuota_invalid"
+msgstr "Der für [[base-vsite.userDiskQuota]] eigegebene Wert ist entweder zu klein, oder keine Zahl. [[base-vsite.diskQuota_rule]]"
+
+msgid "diskQuota_rule"
+msgstr "Geben Sie ein, über wieviel Speicherplatz der Benutzer verfügen soll. Die eingegebene Ganzzahl sollte größer als eins sein. Oder lassen Sie das Feld leer, wenn Sie dem Benutzer allen verfügbaren Speicherplatz zuweisen wollen."
+
+msgid "diskUsedBySites"
+msgstr "Dieses Speichermedium kann nicht modifiziert werden, da die folgenden Sites dort gespeichert sind: [[VAR.sites]]. Bitte löschen Sie die Sites, bevor Sie das Speichermedium deaktivieren oder entfernen."
+
+msgid "displayOptions"
+msgstr "Optionen anzeigen"
+
+msgid "dns_auto"
+msgstr "Automatische DNS-Konfiguration"
+
+msgid "dns_auto_help"
+msgstr "Die automatische DNS-Konfiguration verwaltet die DNS-Einträge dieser Site. Web- und Mailserver-Aliasse werden nur unterstützt, wenn sie den gleichen Domänen-Namen wie die Site selbst verwenden. Dieser Dienst ist nicht dafür zuständig, Domänen-Namen beim Top-Level Registrar zu registrieren."
+
+msgid "domain"
+msgstr "Domänen-Name"
+
+msgid "domain_help"
+msgstr "Dies ist der Domänen-Name der Seite. Ein Domänen-Name ist der zweite Teil eines voll qualifizierten Domänen-Name. 'bluequartz.org' ist ein gültiger Domänen-Name. 'www.bluequartz.org' ist ein voll qualifizierter Domänen-Name."
+
+msgid "emailDisabled"
+msgstr "E-Mail deaktivieren"
+
+msgid "emailDisabled_help"
+msgstr "Deaktiviert den Email-Empfang für diese Domäne"
+
+msgid "ends"
+msgstr "Endet mit"
+
+msgid "enterFqdn"
+msgstr "Host- und Domänen-Name"
+
+msgid "enterFqdn_help"
+msgstr "Geben Sie den Hostnamen der Seite in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann ggf. 'www', 'mail' oder 'shop' sein. Der Domänen-Name ist 'bluequartz.org' oder 'meinefirma.de'."
+
+msgid "exitSitemgmt"
+msgstr "Site-Management verlassen"
+
+msgid "exitSitemgmtHelp"
+msgstr "Dieses Fenster schließen."
+
+msgid "fqdn"
+msgstr "Voller Hostname "
+
+msgid "fqdnInUse"
+msgstr "Die angegebene Kombination aus Host- und Domänen-Name [[VAR.fqdn]], wird bereits von einer anderen virtuellen Site verwendet."
+
+msgid "fqdnTooLong"
+msgstr "Der eingegebene Host- und Domänen-Name ist zu lang. Die Länge darf 255 Zeichen nicht überschreiten."
+
+msgid "fqdn_help"
+msgstr "Der Name der Site und damit auch ihr voll qualifizierte Domänen-Name. Die Sortier-Reihenfolge erfolgt zunächst nach Domänen-Name und dann erst nach Hostname."
+
+msgid "fullName"
+msgstr "Voller Name"
+
+msgid "fullName_help"
+msgstr "Der volle Name des Benutzers."
+
+msgid "generalSettings"
+msgstr "Generelle Einstellungen"
+
+msgid "generalSettings_help"
+msgstr "Modifizieren Sie die Einstellungen für diese Site und ihre Dienste."
+
+msgid "homePartition"
+msgstr "Ort des Heimatverzeichnisses für diese Site"
+
+msgid "homePartition_help"
+msgstr "Wählen Sie eine Verzeichnis, in dem das Heimatverzeichnis der Site abgelegt wird. Standardmäßig ist dies das /home Verzeichnis, welches sich auf der eigentlichen Festplatte Ihres Servers befindet. Weitere optionale Verzeichnisse können ggf. zur Verfügung stehen, falls weitere Speichermedien angeschlossen und verfügbar sind. In diesem Fall können Sie dann ein alternatives Heimatverzeichnis für Sites festlegen. Wird ein alternatives Speichermedium als Heimatverzeichnis festgelegt und dann das Speichermedium entfernt, so beeinträchtigt das natürlich die Funktion der Sites, die auf dem entfernten Speichermedium untergebracht waren."
+
+msgid "hostName"
+msgstr "Hostname"
+
+msgid "hostName_help"
+msgstr "Dies ist der Hostname der Site. Ein Hostname ist der erste Teil eines voll qualifizierten Domänen-Namens. Zum Beispiel 'www', 'mail' oder 'shop' sind gültige Hostnamen."
+
+msgid "inSubnet"
+msgstr "liegt im Subnetz"
+
+msgid "ipAddr"
+msgstr "IP-Adresse"
+
+msgid "ipAddr_help"
+msgstr "Dies ist die IP-Adresse der Site."
+
+msgid "listSuspended"
+msgstr "Suspendiert"
+
+msgid "listSuspended_help"
+msgstr "Dies zeigt an, ob die Site suspendiert ist. Wenn eine Site suspendiert ist, so ist der Zugang aller Benutzer dieser Site gesperrt. Dienste wie Email, Web, FTP und Shellzugang für die komplette Site und alle Benutzer sind dann nicht verfügbar."
+
+msgid "localhostNotAllowed"
+msgstr "Der Hostname 'localhost' ist reserviert und kann nicht als Hostname für virtuelle Sites verwendet werden."
+
+msgid "mailAliases"
+msgstr "Email-Server Aliasse"
+
+msgid "mailAliases_help"
+msgstr "Geben Sie weiter Host- und Domänen-Namen ein, für den dieser virtuelle Server Emails (SMTP-Port 25 und ggf. 587) akzeptieren soll. Separieren Sie die Einträge bitte durch Kommata oder Leerzeichen. Beispiel: 'mail.firma.de, smtp.firma.de, post.firma.de'."
+
+msgid "mailAliases_invalid"
+msgstr "Das Email-Server Alias [[VAR.invalidValue]] ist ungültig."
+
+msgid "mailCatchAll"
+msgstr "Catch-All Email-Adresse"
+
+msgid "mailCatchAll_help"
+msgstr "Geben Sie eine Email-Adresse an, die alle Nachrichten empfangen soll, die an unbekannte Benutzer und Mailinglisten adressiert sind. Wird das Feld leer gelassen, so werden Emails, die an nicht existierende Benutzer oder Mailinglisten adressiert sind, nicht akzeptiert. Falls die angegebene Adresse nicht existiert, werden Mails and unbekannte Benutzer und Mailinglisten zurückgewiesen, als ob keine Adresse angegeben worden wäre. ACHTUNG: Catch-All Email-Adressen sollte man heutzutage nicht mehr verwenden, weil sie die Menge an SPAM, die man sonst bekommt, dramatisch erhöhen."
+
+msgid "manageAdmin"
+msgstr "Einstellungen des Server-Administrators [[VAR.name]] ändern"
+
+msgid "manageAdminDescription"
+msgstr "Erstellen und verwalten Sie Konten von Server-Administratoren. [[base-vsite.manageAdminUsersBlurb]]"
+
+msgid "manageAdminUsers"
+msgstr "Server-Administratoren"
+
+msgid "manageAdminUsersBlurb"
+msgstr "Das Einrichten von anderen Administratorenkonten als dem 'admin' Konto erlaubt es dem Systemadministrator, verschiedene Administrationsaufgaben an vertrauenswürdige Personen zu delegieren. Administratorenkonten können mit verschiedenen Privilegien ausgestattet werden. Von eingeschränktem Zugriff bis hin zu Privilegien, die mit denen des eigentlichen 'admin'-Kontos identisch sind."
+
+msgid "maxUsers"
+msgstr "Maximale Anzahl von Benutzern "
+
+msgid "maxUsers_help"
+msgstr "Die maximale Anzahl von Benutzerkonten, die diese Seite haben kann."
+
+msgid "modVsiteSettings"
+msgstr "Einstellungen für die virtuelle Site [[VAR.site]]"
+
+msgid "mod_name"
+msgstr "Modul-Name"
+
+msgid "modifySearch"
+msgstr "Suche verändern"
+
+msgid "modifySearch_help"
+msgstr "Erlaubt die Veränderung der Suchkriterien, welche die Darstellung dieser Liste beeinflussen."
+
+msgid "newSearch"
+msgstr "Neue Suche"
+
+msgid "newSearch_help"
+msgstr "Neue Suche erstellen."
+
+msgid "newVsiteSettings"
+msgstr "Neue virtuelle Site anlegen"
+
+msgid "no"
+msgstr "Nein"
+
+msgid "noSuchSite"
+msgstr "Die angegebene Site [[VAR.site]] konnte nicht gefunden werden."
+
+msgid "notInSubnet"
+msgstr "Ist nicht im Subnetz"
+
+msgid "not_contains"
+msgstr "Enthält nicht"
+
+msgid "numResultsPerPage"
+msgstr "Sites pro Seite"
+
+msgid "numResultsPerPage_help"
+msgstr "Setzen Sie die Anzahl von Sites fest, die gleichzeitig angezeigt werden sollen. Sind mehr Sites vorhanden, als zur Darstellung auf eine Seite passen, so kann man über ein Pulldown-Menü durch die Liste blättern."
+
+msgid "numResultsPerPage_invalid"
+msgstr "Der eingegebene Wert für [[base-vsite.numResultsPerPage]] ist entweder zu klein oder keine Zahl. Bitte geben Sie eine ganze Zahl größer oder gleich eins ein."
+
+msgid "operationFailed"
+msgstr "Diese Aktion konnte nicht ausgeführt werden."
+
+msgid "otherServices"
+msgstr "Dienste und Features "
+
+msgid "otherServices_help"
+msgstr "Erlaubt es, verschiedene Dienste ein- oder ausschalten."
+
+msgid "overUserLimit"
+msgstr "[[base-vsite.operationFailed]] Die Site [[VAR.fqdn]], hat die maximale Anzahl von erlaubten Benutzern überschritten."
+
+msgid "quota"
+msgstr "Maximal erlaubter Festplattenspeicher (MB)"
+
+msgid "quota_help"
+msgstr "Der maximal erlaubte Festplattenspeicher in Megabytes (MB), der einer Seite zur Speicherung von Dateien, Webseiten, Emails und Logfiles zur Verfügung steht."
+
+msgid "removeFailed"
+msgstr "Das Löschen der Site ist fehlgeschlagen"
+
+msgid "removingSite"
+msgstr "Site löschen"
+
+msgid "removingUsers"
+msgstr "Benutzer löschen"
+
+msgid "rootAccess"
+msgstr "Root-Zugang"
+
+msgid "rootAccess_help"
+msgstr "Hat der Server-Administrator das Privileg 'root-Zugang', so darf er nach dem Login per SSH oder Telnet das Programm 'su' verwenden, um 'root'-Rechte auf dem Server zu erlangen. Dazu wird für diesen Benutzer ein neues (separates) Konto angelegt, welches 'root-benutzername' lautet und über 'root'-Rechte verfügt. Hat Server-Administrator 'bob' dieses Privileg, so loggt er sich zunächst als 'bob' per SSH auf dem Server ein und gibt dann 'su root-bob' ein. Als Passwort verwendet er das gleiche Passwort, wie für das Benutzer-Konto 'bob'."
+
+msgid "searchBy"
+msgstr "Suchen"
+
+msgid "searchBy_help"
+msgstr "Geben Sie die Siteneigenschaften ein, nach denen gesucht werden soll. Sites, welche den eingegebenen Text enthalten, werden angezeigt werden."
+
+msgid "searchCriteria"
+msgstr "Suchkriterien"
+
+msgid "searchCriteria_help"
+msgstr "Wählen Sie, wie nach dem gewählten Attribut gesucht werden soll. Das Pulldown-Menü kann dazu verwendet werden, wie exakt der Suchtext getroffen werden muß. Geben Sie den Suchtext in das Feld ein."
+
+msgid "searchOptions"
+msgstr "Suchoptionen"
+
+msgid "searchResults"
+msgstr "Suchergebnisse für virtuelle Sites"
+
+msgid "search_vsite_nonefound"
+msgstr "Es wurden keine virtuellen Sites gefunden, welche den Suchkriterien entsprechen. Bitte verändern Sie die Suchkriterien und probieren Sie es noch einmal."
+
+msgid "search_vsite_results"
+msgstr "Suchergebnisse ([[VAR.num]] virtuelle Sites gefunden)"
+
+msgid "search_vsite_results_1"
+msgstr "Suchergebnisse (1 virtuelle Site gefunden)"
+
+msgid "searchbut"
+msgstr "Suche"
+
+msgid "searchbut_help"
+msgstr "Suche nach virtuellen Sites, welche den angegebenen Kriterien entsprechen."
+
+msgid "services"
+msgstr "Dienste"
+
+msgid "siteDefaultsTab"
+msgstr "Grundeinstellungen"
+
+msgid "siteDefaultsTab_help"
+msgstr "Netzwerk-, Benutzer- und Email-Einstellungen für neue virtuelle Sites ändern"
+
+msgid "siteEmailSettings"
+msgstr "Email-Einstellungen für [[VAR.fqdn]]"
+
+msgid "siteMembersFound"
+msgstr "Die Site konnte nicht entfernt werden, weil einige Benutzerkonten der Site nicht gelöscht wurden. Bitte überprfen Sie, welche Benutzerkonten noch übrig sind und löschen Sie diese einzeln."
+
+msgid "siteRemoveConfirm"
+msgstr "Sind Sie sicher, dass Sie die Site [[VAR.fqdn]] löschen wollen?"
+
+msgid "siteUses"
+msgstr "Site nutzt"
+
+msgid "siteUses_help"
+msgstr "Wählen Sie die Dienste aus, um jene Sites zu finden, welche diese Dienste verwenden."
+
+msgid "siteWebSettings"
+msgstr "Web-Einstellungen für [[VAR.fqdn]]"
+
+msgid "site_preview"
+msgstr "Webseiten-Vorschau aktiv"
+
+msgid "site_preview_help"
+msgstr "Wenn diese Funktion aktiv ist, wird eine Webseiten-Vorschau zur Verfügung gestellt. Dies erlaubt es, die Webseite der virtuellen Site über 'http://ServerName/VsiteName/' zu erreichen. Das kann nützlich sein, wenn die DNS-Einträge für die Domäne der virtuellen Site noch nicht propagiert sind."
+
+msgid "siteaddbut"
+msgstr "Site anlegen"
+
+msgid "siteaddbut_help"
+msgstr "Eine neue virtuelle Site auf dem Server anlegen."
+
+msgid "sitedefaultsbut"
+msgstr "Virtuelle Sites: Template bearbeiten "
+
+msgid "sitedefaultsbut_help"
+msgstr "Einstellungen bearbeiten, die automatisch verwendet werden, wenn eine neue Site angelegt wird."
+
+msgid "sitemail"
+msgstr "Email"
+
+msgid "sitemail_help"
+msgstr "Hier klicken, um Email-Optionen wie z.B. Aliasse zu konfigurieren."
+
+msgid "sitemaintenance"
+msgstr "Wartung"
+
+msgid "sitemaintenanceDescription"
+msgstr "Hier klicken, um Verwaltungsaufgaben sowie Datensicherungen vorzunehmen."
+
+msgid "sitemanage"
+msgstr "Site-Management"
+
+msgid "sitemanageDescription"
+msgstr "Hier klicken, um virtuelle Sites und Benutzerkonten zu verwalten."
+
+msgid "siteservices"
+msgstr "Dienste"
+
+msgid "siteservicesDescription"
+msgstr "Hier klicken, um die verfügbaren Dienste für die Site zu konfigurieren."
+
+msgid "sitesettings"
+msgstr "Site-Einstellungen"
+
+msgid "sitesettingsDescription"
+msgstr "Hier klicken, um generelle Site- und Diensteinstellungen zu verändern."
+
+msgid "sitetabDescription"
+msgstr "Einstellungen der Site verwalten, wie z.B. Benutzerkonten, Mailing-Listen, FTP und Datensicherung."
+
+msgid "sitetabDescription_menu"
+msgstr "Über die Menüs können Sie die Einstellungen der Site [[VAR.hostname]] verwalten. Einschließlich Benutzerkonten, Mailing-Listen, FTP und Datensicherung."
+
+msgid "siteusage"
+msgstr "Nutzungsinformationen"
+
+msgid "siteusageDescription"
+msgstr "Hier können Sie Informationen über die Nutzung der Site einsehen."
+
+msgid "siteweb"
+msgstr "Web"
+
+msgid "siteweb_help"
+msgstr "Hier klicken, um Web-Optionen wie Skripsprachen zu konfigurieren."
+
+msgid "suspend"
+msgstr "Suspendieren"
+
+msgid "suspendUser"
+msgstr "Suspendierter Benutzer"
+
+msgid "suspendUser_help"
+msgstr "Suspendierte Benutzer können keine Dienste auf dem Server nutzen, solange die Suspendierung andauert."
+
+msgid "suspend_help"
+msgstr "Falls angeklickt, wird diese virtuelle Site suspendiert. Damit wird sowohl der Zugang zur Site und aller Dienste der Site für jedermann gesperrt. Das betrifft auch alle Benutzer der Site."
+
+msgid "suspended"
+msgstr "Suspendiert"
+
+msgid "suspended_help"
+msgstr "Auswählen, um alle virtuellen Sites aufzulisten, die momentan suspendiert sind."
+
+msgid "systemFqdnNotAllowed"
+msgstr "Die spezifizierte Kombination von Host- und Domänenname [[VAR.fqdn]] wird bereits vom Server selbst verwendet."
+
+msgid "usedMailAliases"
+msgstr "Die folgenden Mailserver Aliasse werden bereits verwendet und können daher nicht genutzt werden: [[VAR.aliases]]"
+
+msgid "usedWebAliases"
+msgstr "Die folgenden Web-Aliasse werden bereits verwendet und können daher nicht genutzt werden: [[VAR.aliases]]"
+
+msgid "userDiskQuota"
+msgstr "Maximal erlaubter Plattenspeicher (MB)"
+
+msgid "userDiskQuota_help"
+msgstr "Geben Sie den maximal erlaubten Festplattenspeicher in Megabytes an, den dieser User auf dem Server verwenden darf. Lassen Sie das Feld leer, um den Benutzer unbegrenzt Speicher zur Verfügung zu stellen."
+
+msgid "userInformation"
+msgstr "Benutzerinformationen"
+
+msgid "userName"
+msgstr "Benutzername"
+
+msgid "userNameCreate"
+msgstr "[[base-vsite.userName]]"
+
+msgid "userNameCreate_help"
+msgstr "Geben Sie den Benutzernamen des neuen Server-Administrators ein."
+
+msgid "userName_help"
+msgstr "Der Name des Benutzers."
+
+msgid "userOwnsAlias"
+msgstr "Das Email-Alias [[VAR.alias]] konnte nicht auf dem System angelegt werden. Der Benutzer [[VAR.user]] gehört zur virtuellen Site [[VAR.site]] und er scheint dieses Alias bereits zu verwenden. Verwenden Sie entweder ein anderes Alias, oder entfernen Sie das bereits verwendete Alias bei Benutzer [[VAR.user]]."
+
+msgid "userPassword"
+msgstr "Passwort"
+
+msgid "userPassword_help"
+msgstr "Geben Sie das Passwort des Benutzers ein."
+
+msgid "userSuspended"
+msgstr "Suspendiert"
+
+msgid "userSuspended_help"
+msgstr "Zeigt an, ob der Server-Administrator suspendiert wurde."
+
+msgid "version"
+msgstr "Version 1.0"
+
+msgid "virtualSiteList"
+msgstr "Virtuelle Sites"
+
+msgid "virtualSiteList_help"
+msgstr "Hier klicken, um virtuelle Sites anzulegen oder zu löschen."
+
+msgid "vsiteDefaults"
+msgstr "Vorlage für virtuelle Sites"
+
+msgid "vsiteSearch"
+msgstr "Virtuelle Sites suchen"
+
+msgid "vsiteUserOwnsAlias"
+msgstr "Das Email-Alias [[VAR.alias]] für diese Site konnte nicht angelegt werden. Der Benutzer [[VAR.user]] gehört zur virtuellen Site [[VAR.site]] und er scheint dieses Alias bereits zu verwenden. Verwenden Sie entweder ein anderes Alias, oder entfernen Sie das bereits verwendete Alias bei Benutzer [[VAR.user]]."
+
+msgid "vsiteUsingChangingIP"
+msgstr "Die IP-Adresse kann nicht geändert werden, weil eine oder mehrere andere Sites diese IP-Adresse ebenfalls verwenden."
+
+msgid "vsiteUsingIpAddress"
+msgstr "Das Netzwerk-Inteface kann nicht deaktiviert werden, weil eine oder mehrere Sites dieses Netzwerk-Interface verwenden."
+
+msgid "webAliases"
+msgstr "Webserver Aliasse"
+
+msgid "webAliases_help"
+msgstr "Geben Sie zusätzliche Host- und Domänennamen ein, für welche diese virtuelle Site Webanfragen akzeptieren soll. Trennen Sie die Einträge durch Kommata oder Leerzeichen. Beispiel: 'www.bluequartz.org, support.bluequarz.org'."
+
+msgid "webAliases_invalid"
+msgstr "Das Webserver-Alias [[VAR.invalidValue]] ist ungültig."
+
+msgid "windowTitle"
+msgstr "Verwalte virtuelle Site [[VAR.vsite]] als Benutzer [[VAR.user]]"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "cantCreateMXRecord"
+msgstr "[[base-vsite.operationFailed]] Der 'MX Record' (Mailserver DNS-Eintrag) für die Site [[VAR.fqdn]] und den Mailserver [[VAR.mailServer]] konnte nicht angelegt werden."
+
+msgid "defaultCatchAll"
+msgstr "Schrott1"
+
+msgid "defaultCatchAll_help"
+msgstr "Schrott2"
+
+msgid "defaultFullName"
+msgstr "Schrott3"
+
+msgid "defaultFullName_help"
+msgstr "Schrott4"
+
+msgid "defaultHostname"
+msgstr "Schrott5"
+
+msgid "defaultHostname_help"
+msgstr "Schrott6"
+
+msgid "defaultSiteAdmin"
+msgstr "Schrott7"
+
+msgid "defaultSiteAdmin_help"
+msgstr "Schrott8"
+
+msgid "ignoringPreviousCatchAll"
+msgstr "Eine Alle E-Mail Adressen abfangen Adresse wurde angegeben, aber ein anderes Konto soll dies bereits ebenfalls ausfhren. Das ursprngiche Konto wird alle E-Mail Adressen abfangen."
+
+msgid "initialUserDefaults"
+msgstr "Optional Startseite Benutzerkonto "
+
+msgid "initialUserName"
+msgstr "Benutzername"
+
+msgid "initialUserName_help"
+msgstr "Geben Sie den Benutzernamen fr das Benutzerkonto ein."
+
+msgid "isSiteAdminLabel"
+msgstr "Seitenadministrator"
+
+msgid "isSiteAdminLabel_help"
+msgstr "Seitenadministrator sind Benutzer, die die Einstellungen einer Seite konfigurieren knnen."
+
+msgid "optionalFirstUser"
+msgstr "Optional Benutzerkonto Seite"
+
+msgid "passwordRequired"
+msgstr "Es wurde kein Passwort für das Konto eingegeben. Das Konto wurde erstellt, aber das Passwort sollte so schnell wie möglich gesetzt werden."
+
+msgid "password_invalid"
+msgstr "Das Passwort für das Benutzerkonto stimmt nicht überein. Bitte stellen Sie sicher, dass Sie dasselbe Passwort in beide Felder eingeben haben."
+
+msgid "useAsCatchallLabel"
+msgstr "Alle E-Mail Adressen Abfangen"
+
+msgid "useAsCatchallLabel_help"
+msgstr "Alle E-Mail Adressen abfangen wird alle Nachrichten empfangen, die an nicht existierende Benutzerkonten dieser Seite gerichtet sind. Klicken Sie die Box an, damit das erstelle Benutzerkonten alle E-Mails abfngt."
+
+msgid "userwebs"
+msgstr "Benutzer-Webs aktivieren"
+
+msgid "userwebs_help"
+msgstr "Falls aktiviert, hat jeder Benutzer dieser Site einen eigenen Webspace, der über http://www.example.com/~username/ zu erreichen ist. Benutzer können dann ihre eigenen Webseiten per FTP in ihr persönliches /web Verzeichnis hochladen."
+

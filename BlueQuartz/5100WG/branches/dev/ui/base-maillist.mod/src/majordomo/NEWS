@@ -1,0 +1,101 @@
+Changes from 1.94.3 to 1.94.4 
+
+o Security fix for advertise/noadvertise eval hole.
+o Security fix for wrapper env overrun
+o Fixed race condition in unsubscribing, config lock not being freed,
+  EOF tests fail due to bad assumptions
+o mungedomain wasn't working properly
+o fixes to commented-out sample.cf code.
+o archive2.pl now has -D -M -Y arguments for 4 digit years.
+o added "welcome" and "announcments" keywords.
+o Digest fixes for -C
+
+
+Changes from 1.94.2 to 1.94.3:
+
+o removed wrapper since it snuck into the tarball
+o fixed medit.
+
+Changes from 1.94.1 to 1.94.2:
+
+o More documentation fixes.
+o increased checking in regexps
+o better locking
+o ignore directories in the list directory.
+o resend doesn't abort if the sendmail error is EX_NOUSER
+
+
+Changes from 1.94 to 1.94.1
+
+Improved Installation:
+
+The installation process has been improved.  The Makefile is now simpler
+and makes use of an external "install" program (included as install.sh).
+
+The permissions for all installed files can be easily set in the Makefile.
+In addition, the default permission for $homedir has been made slightly
+more lenient, to avoid problems with the mailer not being able to execute
+the wrapper.
+
+The installation checker, config-test, has been improved with more checks
+and better detection of situations where it's being run improperly.  It
+will automatically warn of new configuration variables that should be set
+in majordomo.cf.
+
+The digest and archive2.pl programs have been moved from the Tools
+directory to the main directory since they are usually run by the wrapper
+and must be there anyway.
+
+
+Changes visible to the Majordomo owner:
+
+The default $sendmail_command now includes the -oee option to force
+sendmail to mail as many errors as possible instead of exiting with nonzero
+exit code at unpredictable times.
+
+Code is provided in majordomo.cf to prevent majordomo, resend and the
+tools from running when the system load average exceeds a configurable
+limit.  This code is disabled by default.  It requires the standard
+"uptime" command.
+
+The default umask for all majordomo-created files is now set in
+majordomo.cf, and defaults to 007.
+
+The variable $shlock'retries has been renamed to $shlock'waittime to better
+match its actual meaning as the maximum time (in seconds) that the locking
+system will wait for a lock.
+
+A new variable, $majordomo_dont_reply, has been added.  Majordomo will not
+respond to any piece of mail sent from an address matching this regular
+expression.  It defaults to '(mailer-daemon|uucp|listserv|majordomo)\@'.
+
+The locking system has been improved and should have much greater
+resistance to looping and otherwise uncontrolled behavior in the face of
+improperly set permissions and nonexistent files.
+
+Many bugs relating to an improperly set $bounce_mailer have been fixed.
+This should end the abort messages complaining about null mailers not being
+executable.
+
+
+Changes visible to list owners:
+
+If a list adds its own Reply-To: header, any Reply-To: header in
+incoming messages will be removed.
+
+
+Changes visible to end users:
+
+Requests for confirmation have been made more detailed, and the backslash
+syntax for splitting long lines has been explained in those messages.
+
+Confirmation messages sent by the "subscribe" command have been
+improved.  They contain more reasons why a confirmation request
+may not be received.
+
+
+Many more checks for illegal addresses have been included.  Users are
+informed when they supply only their name or otherwise supply a nonsense
+address.
+
+The response to the who command includes a subscriber count.

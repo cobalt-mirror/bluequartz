@@ -1,0 +1,73 @@
+#!/bin/sh
+# $Id: cced.init 229 2003-07-18 20:22:20Z will $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# cced          This shell script takes care of starting and stopping
+#               cced (configuration engine daemon).
+#
+# chkconfig: 2345 7 97
+# description: cced is the core of sausalito
+# processname: cced
+# config: 
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+[ -f /usr/sausalito/sbin/cced ] || exit 0
+
+RETVAL=0
+export PERL5LIB=/usr/sausalito/perl:$PERL5LIB
+
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	echo -n "Starting cced: "
+	daemon /usr/sausalito/sbin/cced
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
+	echo "Running CCE constructors: "
+	/usr/sausalito/bin/cce_construct 2>&1 \
+		| logger -p local0.debug -t "CONSTRUCTOR"
+	;;
+  stop)
+	# Stop daemons.
+	echo -n "Shutting down cced: "
+	killall -TERM cced >/dev/null 2>&1
+
+	I=300
+	ps --no-headers -C cced > /dev/null 2>&1
+	R=$?
+	while [ "$R" != "1" -a "$I" -gt 0 ]; do
+		sleep 1;
+		I=$((I-1))
+		ps --no-headers -C cced > /dev/null 2>&1
+		R=$?
+	done
+	if [ "$I" = "0" ]; then
+		killall -9 cced >/dev/null 2>&1
+	fi
+	echo done
+	rm -f /var/lock/subsys/cced
+	;;
+  status)
+	status cced
+	RETVAL=$?
+	;;
+  restart)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  reload)
+	echo -n "Reloading cced configuration: "
+	killall -HUP cced >/dev/null 2>&1
+	echo done
+	;;
+  *)
+	echo "Usage: cced {start|stop|restart|reload|status}"
+	exit 1
+esac
+
+exit $RETVAL

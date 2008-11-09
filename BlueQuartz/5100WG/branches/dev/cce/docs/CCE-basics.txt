@@ -1,0 +1,75 @@
+An Overview of the CCE Architecture
+-----------------------------------
+
+To understand the things you can do with CCE, it is essential that you
+first understand the architecture and terminology.  There is no use hearing
+the words if you don't understand them.
+
+CCE stores "objects".  These objects represent things in the system, such as
+users, mailing lists, or network interfaces.  Like most object-oriented
+systems, objects are all instances of "classes".  Classes are defined in
+"schemas", which are configuration files.  For example, you might have a
+class called 'User'.  Every user on the system would get an instance of the 
+'User' class.  It's pretty straight forward, so far.
+
+The objects stored by CCE can have many "properties", which can be assigned
+"values".  To keep with our prior example, the 'User' class might have a
+property called 'name'.  The instance of the class for a user named joe
+might have the 'name' property set to the value 'joe'.  Still nothing too
+complex.
+
+Along with properties, classes can have "namespaces", which have properties
+and values of their own.  Think of a namespace as an add-on to a class.
+For example, the 'User' object for joe can have a namespace called
+'Disk', which has a few properties of its own.  This is where the
+software stores information about joe's disk usage.
+
+Namespaces provide a nice way for developers to group properties together,
+and to extend an existing class.  You can even have properties with the same
+name in more than one namespace!
+
+Classes and namespaces have an automatic relationship.  Whenever you create a
+'User' object, you automatically create a 'Disk' namespace.  Whenever you
+destroy a 'User' object, the associated 'Disk' namespace automatically goes
+with it.  Clear, still?
+
+Now that you understand the basics of what things are, you can start to
+discover the things you can do.  You can CREATE and DESTROY objects, and you
+can GET and SET properties.  These are "commands".
+
+Some commands, specifically CREATE, DESTROY, and SET, write information to
+CCE.  Whenever you issue one of these commands, you trigger an "event".
+This is where the good stuff happens.
+
+Events are the way that the system files stay in sync with CCE.  Developers
+can "register" (with config files) to handle events.  The config files
+specify which event or events to handle, and an action to take when that
+event happens - called a "handler".  To stick with our pal, joe, let's look
+at an example.  Whenever the 'password' property of a 'User' object changes,
+we want to update the system password list.  All this needs is one handler
+to see the event and make the proper changes.  Now whenever joe changes his
+password, the system gets updated.
+
+To make things even more flexible, every event can trigger more than one
+handler.  When all the handlers are done, the event is done.
+
+That covers the basics of terminology, but you still don't know how stuff
+happens.
+
+A "client" application, such as the Cobalt user-interface, has to make a
+"connection" to CCE.  Once it is connected, it can start doing some of the
+things we talked about above.  To issue commands, the client uses the
+"Cobalt System Configuration Protocol" or "CSCP".  This is the language that
+the client and CCE use to talk to each other.
+
+We understand that application developers don't want to deal with needless
+complexity, so we've provided a "client library" for them.  This is some
+program code that makes CSCP easy to use.
+
+The client, through the client library, issues CSCP commands.  CCE starts
+the appropriate events, and dispatches the proper handlers.  When everything
+is done, CCE notifies the client, and it can go about the rest of its
+business.
+
+Now you understand the basics.  If this is enough for you, congratulations.
+If not, don't worry.  There are a lot more details, if you want them.

@@ -1,0 +1,30 @@
+Author: Harris Vaegan-Lloyd
+Copyright Cobalt Network 2000
+
+Short descriptions of how importing works.
+
+The import.pl script/handler/polymorhpic thangy is run everytime it is desired
+that stuff be synced up.
+
+The mapping from ldap attirbutes to cce attributes is done as described in
+spec.txt.
+
+Searching is done for objects of class (cobalt|posix)(Account|Group). First
+group objects are added/modified then users.
+
+Before any syncing begins all objects that are to be imported have their
+syncCount attribute incremented if the connection is open and the first search
+for objects succeeds.
+
+As each object is added if it is not found in the database (Search done by
+looking for $obj->{name} in both cases.) it is added, if it is found it is
+modified. As per the new attributes and then it's CCE
+<obj>.LdapImport.syncCount attribute is set to 0.
+
+After that is done we check to see if any objects have a syncCount of past the
+maximum value (Say, 3.) and then delete them. This value shall be user
+configurable from never delete to 1 (Delete if the object is not there for a
+single search.)
+
+The code is fairly simple and commented so should prove self-explanatory.
+

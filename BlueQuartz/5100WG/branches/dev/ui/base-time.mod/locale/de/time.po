@@ -1,0 +1,42 @@
+msgid "time"
+msgstr "Zeit"
+
+msgid "timeSetting"
+msgstr "Zeiteinstellungen"
+
+msgid "time_help"
+msgstr "Hier können Sie [[base-time.timeSetting]] ändern."
+
+msgid "systemDisplayedDate"
+msgstr "Datum"
+
+msgid "systemDisplayedDate_help"
+msgstr "Stellen Sie das aktuelle Datum ein."
+
+msgid "systemDisplayedTime"
+msgstr "Uhrzeit"
+
+msgid "systemDisplayedTime_help"
+msgstr "Stellen Sie die aktuelle Uhrzeit ein."
+
+msgid "systemDisplayedTimeZone"
+msgstr "Zeitzone"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Stellen Sie die aktuelle Zeitzone dieses Servers ein."
+
+msgid "ntpAddress"
+msgstr "NTP-Serveradresse"
+
+msgid "ntpDefaultServer"
+msgstr "clock.isc.org"
+
+msgid "ntpAddress_help"
+msgstr "Geben Sie die Netzwerkadresse oder den vollqualifizierten Domänennamen eines Network Time Protocol (NTP)-Servers ein, mit dem Ihr Systemdatum und die Systemuhrzeit von Zeit zu Zeit synchronisiert werden. [[base-time.ntpDefaultServer]] ist z. B. ein verfügbarer NTP-Server. Eine Liste aller öffentlich verfügbaren NTP-Server finden Sie unter http://www.eecis.udel.edu/~mills/ntp/servers.htm."
+
+msgid "capgroup_adminTime_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, die Systemzeit und die Zeitzone einzustellen."
+
+msgid "capgroup_adminTime"
+msgstr "Verwaltung der Systemzeit"
+

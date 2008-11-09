@@ -1,0 +1,71 @@
+$Id: release_notes,v 1.7.2.5 2002/02/26 01:45:15 pbaltz Exp $
+
+These notes describe the changes in builds released to QA.
+
+M14 build (GM candidate 1 scheduled for 2/28)
+============================================
+bugs fixed:
+- #:	short description
+
+
+miscellaneous changes (anything that doesn't have a related bug):
+
+============================================
+
+
+Builds for post 12/31 - 2/25 please refer to bugzilla and cvs logs. (Sorry,
+but no one has been updating this.)
+
+
+Build for week of 12/31/01
+===========
+- 12546: Revise the arkeia client package to the most recent version for RH7.x.
+
+Bugs fixed:
+- #, short description
+- 13157: Can't change IP address of a site via Site Mgmt->General Settings
+- 13246: Mail to list bounced if "subscribe/unsubscribe" in Subject
+	 Updated help text for subscription policy to state that admin commands
+	 must be sent to majordomo@site
+- 13325, AM doesn't run when time is set to future and back
+- 13263: behavior when clicking modify different between vsite list and
+	 advanced search results list (new window still pops open for advanced)
+- 13323: Possible heap corruption in proftpd version 1.2.4 and earlier
+- 13177: compress logs rotated by logrotate by default
+- 13126: cyrus-sasl update to deal with possible string format syslog exploit
+- 13344: complain when adding/modifying a route with an unreachable gateway
+- 13324: bwmgmt.init rc script wasn't being run on bootup
+- 13241: print "Ip Addr Not Set" in lcd-showip if no ipaddr set
+- 12975: print "Saving settings please wait" message on LCD when saving
+- 12400: added adm1029ctl rpm to set acpi values (also bug #12403)
+- 13249: hopefully fixed by having base-time restart crond only if process
+	 already exists.
+- 13378: analog warning about corrupt lines in logfile for /var/log/ipacct
+- 13404: incorrect strings on advanced search page begining with "Enable"
+- 13399: fix beginning date problem for all site stat reports
+
+Build 1.176
+===========
+- Baseline for change log
+
+Build 1.157
+===========
+
+- Beta candidate build 4
+- This is the same as the 1.141 build with a new kernel RPM.
+- The vmkiller was re-enabled as the approved solution for external beta for the following bug:
+- 11317, program which allocates a lot of memory causes machine to crash
+
+Bugs fixed:
+- NA, problem with playback of recovery events could cause filesystem corruption
+
+Build 1.141
+===========
+
+- Beta candidate build 3
+- This is the same as 1.124 with a new palette RPM. The only difference is in the version of AutoFeatures.php, which is 1.7.4.3. This is to fix the one bug listed below.
+
+Bugs fixed:
+- 12688, changing general settings causes admserv to explode
+
+

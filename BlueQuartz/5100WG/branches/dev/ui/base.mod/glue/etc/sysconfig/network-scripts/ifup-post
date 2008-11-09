@@ -1,0 +1,60 @@
+#!/bin/sh
+
+cd /etc/sysconfig/network-scripts
+
+CONFIG=$1
+. network-functions
+. /etc/rc.d/init.d/functions
+
+source_config
+
+DEVICETYPE=`echo $DEVICE | sed "s/[0-9]*$//"`
+REALDEVICE=`echo $DEVICE | sed 's/:.*//g'`
+if echo $DEVICE | grep -q ':' ; then
+    ISALIAS=yes
+else
+    ISALIAS=no
+fi
+
+./ifup-routes ${DEVICE}
+
+if [ "$ISALIAS" = no ] ; then
+    allow_null_glob_expansion=foo
+    aliases=`ls ifcfg-${DEVICE}:*[^~] 2>/dev/null`
+    for alias in $aliases; do
+	    ./ifup $alias
+    done
+    unset allow_null_glob_expansion
+fi
+
+
+if [ "${DEVICE}" = "eth0" ]; then
+	if [ `hostname` = '(none)' -o `hostname` = localhost -a ${DEVICE} != lo ]; then
+		IPADDR=`ifconfig ${DEVICE} | grep 'inet addr' | awk -F: '{ print $2 } ' | awk '{ print $1 }'`
+		host=`host ${IPADDR} | grep Name: | awk '{ print $2 }'`
+		if [ -n "$host" ]; then
+			echo "$host" > /etc/HOSTNAME
+			hostname $host
+		fi
+	fi
+fi
+
+# The Web server needs some Redirect crap...
+if [ "${DEVICE}" = "eth0" ]; then
+  /usr/local/sbin/sethost </dev/null > /dev/null 2>&1
+fi
+
+# Notify programs that have requested notification
+( cd /var/run/netreport || exit
+  for i in * ; do
+    [ -f $i ] && \
+      kill -SIGIO $i >/dev/null 2>&1 || \
+        rm -f $i >/dev/null 2>&1
+  done
+)
+
+
+$LCD_STOP
+$LCD_SHOWIP
+
+exit 0

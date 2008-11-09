@@ -1,0 +1,537 @@
+# menu labels
+
+msgid "selectStat"
+msgstr "View Detailed Usage..."
+
+msgid "summary"
+msgstr "Summary"
+
+msgid "downloadBut"
+msgstr "Download Log"
+
+msgid "downloadBut_help"
+msgstr "Click to download the usage log for this service.  The log file contains service activity beginning at midnight on the date of the first activity until the end of the day for the date of the last activity for the dates specified when this report was generated.  If log files have been removed, there may be missing dates in the output log file."
+
+msgid "serverusage"
+msgstr "Usage Information"
+
+msgid "serverusageDescription"
+msgstr "Click here to browse server and network service usage statistics."
+
+msgid "netusage"
+msgstr "Network"
+
+msgid "netusageDescription"
+msgstr "Network usage statistics"
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Web usage statistics"
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "FTP usage statistics"
+
+msgid "mailusage"
+msgstr "Email"
+
+msgid "mailusageDescription"
+msgstr "Email usage statistics"
+
+# other msgs
+
+msgid "generateSettings"
+msgstr "Configure [[VAR.type]] Reporting Options"
+
+msgid "generateSettingsVsite"
+msgstr "Configure [[VAR.type]] Reporting Options for [[VAR.fqdn]]"
+
+msgid "customizeBut"
+msgstr "Generate New Report"
+
+msgid "customizeBut_help"
+msgstr "Customize a usage report by date."
+
+msgid "generateBut"
+msgstr "Generate Report"
+
+msgid "generateBut_help"
+msgstr "Generate reports using the options specified."
+
+msgid "generate"
+msgstr "Generate Reports"
+
+msgid "reportGenerated"
+msgstr "Report Generated"
+
+msgid "reportGenerated_help"
+msgstr "This is the date and time that this report was generated."
+
+msgid "startDate"
+msgstr "Starting From"
+
+msgid "startDate_help"
+msgstr "This is the date of the first activity that will be included in the report."
+
+msgid "endDate"
+msgstr "Ending On"
+
+msgid "endDate_help"
+msgstr "This is the date of the last activity that will be included in the report."
+
+msgid "requestCoverageHint"
+msgstr "Note that the dates covered in the report may be less than the days you selected if there was not activity over the full range selected."
+
+msgid "bytesTransfered"
+msgstr "Data Transferred"
+
+msgid "bytesTransfered_help"
+msgstr "The total quantity of data transferred by this service over the specified period."
+
+msgid "vsitesReportBut"
+msgstr "Use by Virtual Site"
+
+msgid "vsitesReportBut_help"
+msgstr "Get a report of usage based on virtual sites."
+
+msgid "periodicReportBut"
+msgstr "Periodic Reports"
+
+msgid "periodicReportBut_help"
+msgstr  "Get reports showing activity by day or hour." 
+
+msgid "historicalReportBut"
+msgstr "Historical Use by Day, Week, or Month."
+
+msgid "historicalReportBut_help"
+msgstr "Reports of daily, weekly, or monthly use."
+
+msgid "requestReportButweb"
+msgstr "Files Requested"
+
+msgid "requestReportButweb_help"
+msgstr "Categorizes requests by the files requested."
+
+msgid "requestReportButftp"
+msgstr "[[base-sitestats.requestReportButweb]]"
+
+msgid "requestReportButftp_help"
+msgstr "[[base-sitestats.requestReportButweb_help]]"
+
+msgid "requestReportButmail"
+msgstr "Senders and Recipients"
+
+msgid "requestReportButmail_help"
+msgstr "Categorizes mail service by the senders and recipients."
+
+msgid "requestReportBut"
+msgstr "Top Files Requested"
+
+msgid "requestReportBut_help"
+msgstr "Categorizes requests by the files requested."
+
+msgid "downloadLogBut"
+msgstr "Download Log File (All Dates)"
+
+msgid "downloadLogBut_help"
+msgstr "This link allows you to download the raw log file to your local machine."
+
+msgid "bytes_help"
+msgstr "The number of bytes transferred."
+
+msgid "pbytes"
+msgstr "Percentage of Bytes"
+
+msgid "pbytes_help"
+msgstr "The percentage of the total bytes transferred."
+
+msgid "ipAddr"
+msgstr "IP Address"
+
+msgid "ipAddr_help"
+msgstr "The IP addresses for this server.  The IP address, 127.0.0.1, is for local network traffic not received from an external IP address."
+
+msgid "site"
+msgstr "Site"
+
+msgid "site_help"
+msgstr "The name of the virtual site.  \"Server\" represents traffic that is not affiliated with any site."
+
+msgid "iDomain"
+msgstr "Recipient Domains"
+
+msgid "iDomain_help"
+msgstr "The domains of the recipient email address for mail handled by this server.  \"Server\" represents local recipients with no domain specified."
+
+msgid "oDomain"
+msgstr "Sender Domains"
+
+msgid "oDomain_help"
+msgstr "The domains of the sender email addresses for mail handled by this server.  \"Server\" represents local senders with no domain specified."
+
+msgid "Home"
+msgstr "Server"
+
+msgid "requests"
+msgstr "Requests"
+
+msgid "domain"
+msgstr "Domain"
+
+msgid "domain_help"
+msgstr "The domain from which the request originated.  Clients that do not have domain names are categorized as \"[[base-sitestats.unresolved numerical addresses]]\".  Note that the sums of indented rows are included in the totals for their respective parent rows.  For example, the traffic for all hosts which end in \".com\" will be reflected in the row which lists \".com\" in the Domain column."
+
+msgid "dailyHistory"
+msgstr "Daily History"
+
+msgid "weeklyHistory"
+msgstr "Weekly History"
+
+msgid "monthlyHistory"
+msgstr "Monthly History"
+
+msgid "dailyHistory_help"
+msgstr "Click here to see historical activity on a daily basis."
+
+msgid "weeklyHistory_help"
+msgstr "Click here to see historical activity on a weekly basis."
+
+msgid "monthlyHistory_help"
+msgstr "Click here to see historical activity on a monthly basis."
+
+msgid "daily"
+msgstr "Daily Usage"
+
+msgid "hourly"
+msgstr "Use by Hour of Day"
+
+msgid "useByDayOfWeek"
+msgstr "Use by Day of Week"
+
+msgid "weekly"
+msgstr "Weekly Usage"
+
+msgid "monthly"
+msgstr "Monthly Usage"
+
+msgid "filetype"
+msgstr "File Type"
+
+msgid "filetype_help"
+msgstr "The type of file requested based on the file extension.  For example, a file with .jpg extension would be a JPEG graphic."
+
+msgid "requestFile"
+msgstr "File"
+
+msgid "requestFile_help"
+msgstr "The name of the file requested."
+
+msgid "requestNumber"
+msgstr "Requests"
+
+msgid "requestNumber_help"
+msgstr "The number of requests for this file."
+
+msgid "noDataError"
+msgstr "No data were found for activity during the period specified.  You may want to try another set of dates."
+
+msgid "fullDailyDesc"
+msgstr "This report shows the cumulative activity for each day included in the report."
+
+msgid "fullWeeklyDesc"
+msgstr "This report shows the cumulative activity for each week included in the report."
+
+msgid "fullMonthlyDesc"
+msgstr "This report shows the cumulative activity for each month included in the report."
+
+msgid "hourlySummaryDesc"
+msgstr "This report shows the hourly distribution of the cumulative activity."
+
+msgid "dailySummaryDesc"
+msgstr "This report shows the daily distribution of the cumulative activity."
+
+msgid "gigabyte_abbr"
+msgstr "GB"
+
+msgid "megabyte_abbr"
+msgstr "MB"
+
+msgid "kilobyte_abbr"
+msgstr "KB"
+
+# Vsite menu defaults, per-site config
+
+msgid "sitestatsTabName"
+msgstr "Usage Information"
+
+msgid "sitestatsTabName_help"
+msgstr "Configure Virtual Site usage statistics generation and usage history preservation."
+
+msgid "sitestatsEnable"
+msgstr "Enable Statistics Generation"
+
+msgid "sitestatsEnable_help"
+msgstr "Check to enable Virtual Site web, FTP, and email usage statistics."
+
+msgid "sitestatsConsolidate"
+msgstr "Detail Level"
+
+msgid "sitestatsConsolidate_help"
+msgstr "The detail level determines whether daily statistics information files are combined into one monthly statistics information file per month.  This does not affect statistics information for the current month.  If Daily is selected, you can generate reports containing less than one month's worth of statistics for months prior to the current month.  If Monthly is selected, you can only generate reports containing the statistics for whole months for months prior to the current month.  Statistics combination cannot be undone for months that have been combined already.  Selecting Monthly will consume less disk space compared to Daily."
+
+msgid "sitestatsConsolidateDaily"
+msgstr "Daily"
+
+msgid "sitestatsConsolidateMonthly"
+msgstr "Monthly"
+
+msgid "sitestatsPurge"
+msgstr "Statistics History"
+
+msgid "sitestatsPurge_help"
+msgstr "This option determines how far back in time you will be able to cover in statistics reports. A longer period of time allows you to generate reports with a longer history at the expense of disk space."
+
+msgid "bytes"
+msgstr "Bytes"
+
+msgid "never"
+msgstr "Forever"
+
+msgid "month"
+msgstr "1 Month"
+
+msgid "2month"
+msgstr "2 Months"
+
+msgid "3month"
+msgstr "3 Months"
+
+msgid "6month"
+msgstr "6 Months"
+
+msgid "year"
+msgstr "1 Year"
+
+msgid "2year"
+msgstr "2 Years"
+
+msgid "3year"
+msgstr "3 Years"
+
+msgid "4year"
+msgstr "4 Years"
+
+msgid "5year"
+msgstr "5 Years"
+
+msgid "byIP"
+msgstr "Use by IP Address"
+
+msgid "sendReceiveByDomain"
+msgstr "Sending and Receiving Domains"
+
+msgid "referringSite"
+msgstr "Referring Site Report"
+
+msgid "typesReportBut"
+msgstr "File Types"
+
+msgid "requestorDomain"
+msgstr "Client Domains"
+
+msgid "summaryStats"
+msgstr "[[VAR.type]] Statistics Summary"
+
+msgid "summaryStatsVsite"
+msgstr "[[VAR.type]] Statistics Summary for [[VAR.fqdn]]"
+
+msgid "otherStatistics"
+msgstr "Detailed Statistics"
+
+msgid "view"
+msgstr "View"
+
+msgid "view_help"
+msgstr "Click to view a detailed usage report."
+
+msgid "reportType"
+msgstr "Report"
+
+msgid "reportType_help"
+msgstr "The following detailed statistics are available."
+
+msgid "firstRequest"
+msgstr "First Activity"
+
+msgid "firstRequest_help"
+msgstr "The date of the first activity covered in this report. Note that the dates covered in the report may be less than the days you selected if there was not activity over the full range selected."
+
+msgid "lastRequest"
+msgstr "Last Activity"
+
+msgid "lastRequest_help"
+msgstr "The date of the last activity covered in this report. Note that the dates covered in the report may be less than the days you selected if there was not activity over the full range selected."
+
+msgid "successfulRequests"
+msgstr "Total Requests"
+
+msgid "successfulRequests_help"
+msgstr "The number of individual transactions this service has made."
+
+msgid "totalSent"
+msgstr "Total Sent"
+
+msgid "totalSent_help"
+msgstr "The number of outgoing service requests."
+
+msgid "totalReceived"
+msgstr "Total Received"
+
+msgid "totalReceived_help"
+msgstr "The number of incoming service requests."
+
+msgid "distinctFiles"
+msgstr "Distinct Files"
+
+msgid "distinctFiles_help"
+msgstr "The number of unique files serviced."
+
+msgid "uniqueHosts"
+msgstr "Unique Clients"
+
+msgid "uniqueHosts_help"
+msgstr "The number of unique computers that have made service requests."
+
+msgid "pageRequests"
+msgstr "Successful Requests"
+
+msgid "pageRequests_help"
+msgstr "This is the total number of successful service requests."
+
+msgid "failedRequests"
+msgstr "Failed Requests"
+
+msgid "failedRequests_help"
+msgstr "This is the total number of failed service requests."
+
+msgid "vsiteStatsIn"
+msgstr "Mail Recipients by Domain"
+
+msgid "vsiteStatsOut"
+msgstr "Mail Senders by Domain"
+
+msgid "Site"
+msgstr "Virtual Site Hostname"
+
+msgid "Site_help"
+msgstr "The fully qualified domain name of the active virtual site.  'Server' represents service requests that are not associated with any Virtual Site."
+
+msgid "requests_help"
+msgstr "The total number of service requests by the adjacent Virtual Site."
+
+msgid "vsites_in"
+msgstr "Mail Recipients"
+
+msgid "vsites_in_help"
+msgstr "Click to view the recipient domains for mail handled by this server."
+
+msgid "vsites_out"
+msgstr "Mail Senders"
+
+msgid "vsites_out_help"
+msgstr "Click to view the sender domains for mail handled by this server."
+
+msgid "vsiteStats"
+msgstr "[[VAR.type]] Use by Virtual Site"
+
+msgid "domainStats"
+msgstr "[[VAR.type]] Use by Domain"
+
+msgid "vsiteStatsVsite"
+msgstr "[[VAR.type]] Use by Virtual Site for [[VAR.fqdn]]"
+
+msgid "domainStatsVsite"
+msgstr "[[VAR.type]] Use by Domain for [[VAR.fqdn]]"
+
+msgid "requestStats"
+msgstr "Requested [[VAR.type]] Data"
+
+msgid "requestStatsVsite"
+msgstr "Requested [[VAR.type]] Data for [[VAR.fqdn]]"
+
+msgid "typeStats"
+msgstr "[[VAR.type]] Use by File Type"
+
+msgid "typeStatsVsite"
+msgstr "[[VAR.type]] Use by File Type for [[VAR.fqdn]]"
+
+msgid "requestStatsOut"
+msgstr "Outgoing Email"
+
+msgid "requestStatsIn"
+msgstr "Incoming Email"
+
+msgid "requestStatsOutVsite"
+msgstr "Mail Senders via [[VAR.fqdn]]"
+
+msgid "requestStatsInVsite"
+msgstr "Mail Recipients via [[VAR.fqdn]]"
+
+msgid "requestInBut"
+msgstr "View Mail Recipients"
+
+msgid "requestInBut_help"
+msgstr "Click to view the mail recipients for messages handled by this server."
+
+msgid "requestOutBut"
+msgstr "View Mail Senders"
+
+msgid "requestOutBut_help"
+msgstr "Click to view the mail senders for messages handled by this server."
+
+msgid "requestFileIn"
+msgstr "Mail Sender"
+
+msgid "requestFileIn_help"
+msgstr "These are the sender email addresses.  These include mail sent by users who are site members and mail from external email addresses sent to site members."
+
+msgid "requestFileOut"
+msgstr "Mail Recipient"
+
+msgid "requestFileOut_help"
+msgstr "These are the recipient email addresses.  These include mail received by users who are members of this site as well as mail sent to external email addresses from users of this site."
+
+msgid "sitestatsSettingsButton"
+msgstr "Settings"
+
+msgid "sitestatsSettingsButtonHelp"
+msgstr "Click to configure Usage Information and Statistics Generation for this site."
+
+msgid "sitestatsSettings"
+msgstr "Usage Information Settings for [[VAR.fqdn]]"
+
+msgid "statsQuota"
+msgstr "Usage Logs"
+
+# embedded analog messages
+
+msgid "unresolved numerical addresses"
+msgstr "Unknown"
+
+# vsite service name
+msgid "serviceName"
+msgstr "Usage Information"
+
+msgid "directories"
+msgstr "Index Files"
+
+# some handler error messages
+msgid "cantEnableLogrotate"
+msgstr "Unable to enable log file rotation for this site."
+
+msgid "systemError"
+msgstr "A system error occured while reading information.  Please contact technical support."

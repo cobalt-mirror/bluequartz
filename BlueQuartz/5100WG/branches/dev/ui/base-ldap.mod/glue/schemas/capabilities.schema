@@ -1,0 +1,9 @@
+<class name="Capabilities" namespace="modifyLdapExport" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyLdapExport)"/>
+	<property name="nameTag" type="scalar" default="[[base-ldap.cap_modifyLdapExport]]"/>
+</class>
+
+<class name="Capabilities" namespace="modifySystemLdapImport" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="nameTag" type="scalar" default="[[base-ldap.cap_modifySystemLdapImport]]"/>
+</class>

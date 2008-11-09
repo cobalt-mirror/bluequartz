@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# checkout a bunch of modules listed in the packing list
+
+# arguments: 
+# cvsroot, module, tag = $1, $2, $3
+function module_checkout {
+    root=$1
+    module=$2
+    tag=$3
+    newtag=
+
+    if [ x"$tag" != x ]; then
+        newtag="-r $tag"
+    fi
+
+    if [ -d $module ]; then
+	echo "updating module: $module..."
+	CVSROOT=$root cvs update -P $newtag $module
+    else
+	echo "attempting to checkout module: $module..."
+        CVSROOT=$root cvs co -P $newtag $module
+    fi
+
+    # see if there are any subsidiary modules
+    if [ -e $module/$PACKING_LIST ]; then 
+        newmods=`grep ^MODULE: $module/$PACKING_LIST | \
+		sed -e 's/MODULE: //' -e 's/#.*//'`
+	for mod in $newmods; do
+	    module_checkout $root $mod $tag
+	done
+    fi
+
+    find $module | xargs touch
+}
+
+# figure out what modules are needed 
+if [ ! -e ${PACKING_LIST:=packing_list} ]; then
+    echo "$0: can't find $PACKING_LIST!"
+    exit -1
+fi
+MODULES=`grep ^MODULE: $PACKING_LIST | sed -e 's/MODULE: //' -e 's/#.*//'`
+
+# take in arguments
+if [ x"$CVSROOT" = x ]; then
+    echo -n "Enter CVSROOT: "
+    read CVSROOT
+    CVSROOT=`echo $CVSROOT | sed -e 's/;//g'`
+    CVSROOT=`eval echo $CVSROOT`
+fi
+
+if [ x"$CVSTAG" = x ]; then
+    echo -n "Enter CVS tag: "
+    read CVSTAG
+fi
+
+if [ x"$BUILDDIR" = x ]; then
+    echo -n "Enter build directory: "
+    read BUILDDIR
+fi
+
+if [ x"$BUILDDIR" != x ]; then
+    BUILDDIR=`echo $BUILDDIR | sed -e 's/;//g'`
+    BUILDDIR=`eval echo $BUILDDIR`
+    cd $BUILDDIR
+    if [ $? != 0 ]; then
+	echo "ERROR: can't change directory to $BUILDDIR!"
+	exit 1
+    fi
+fi
+
+
+# checkout modules
+for module in $MODULES; do
+    module_checkout $CVSROOT $module $CVSTAG
+done

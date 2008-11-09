@@ -1,0 +1,61 @@
+msgid "appleshare"
+msgstr "Apple"
+
+msgid "appleshare_help"
+msgstr "[[base-appleshare.appleshareSettings]]可在此处更改。"
+
+msgid "appleshareSettings"
+msgstr "Apple 文件共享设置"
+
+msgid "enableServerField"
+msgstr "启用服务器"
+
+msgid "enableServerField_help"
+msgstr "打开或关闭 Apple 文件共享。来宾访问 Apple 文件共享通过进入[[base-fileshare.guestShare]]进行配置。"
+
+msgid "maxUserField"
+msgstr "并发用户最大数量"
+
+msgid "maxUserField_rule"
+msgstr "请输入一个 1 和 1024 之间的整数。缺省值是 25。"
+
+msgid "maxUserField_help"
+msgstr "更改同时连接至 Apple 文件共享的用户最大数量。[[base-appleshare.maxUserField_rule]]"
+
+
+# ---- Active Monitor
+
+msgid "amAppleshareNameTag"
+msgstr "Apple 文件共享服务器"
+
+msgid "amDetailsTitle"
+msgstr "Apple 文件共享服务器详细信息"
+
+msgid "amNotResponding"
+msgstr "Apple 文件共享服务器没有运行。"
+
+msgid "amStatusOK"
+msgstr "Apple 文件共享服务器运行正常。"
+
+# ---- Handlers
+
+msgid "badUser"
+msgstr "如果服务器配置文件被删除或手动修改，请恢复原始版本并重试。"
+
+msgid "cantConfigFile"
+msgstr "对不起，在试图修改 Apple 文件共享配置文件时出现错误。[[base-appleshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "对不起，在试图修改 Apple 文件共享配置文件时出现错误。[[base-appleshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "对不起，在试图修改 Apple 文件共享配置文件时出现错误。[[base-appleshare.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminAppleShare"
+msgstr "管理 Apple 文件共享"
+
+msgid "capgroup_adminAppleShare_help"
+msgstr "此管理权限允许用户修改用于 Apple 文件共享的设置。"
+

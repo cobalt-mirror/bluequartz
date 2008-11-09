@@ -1,0 +1,95 @@
+VERSIONS for MHonArc
+
+---------------------------------------------------------------------------
+MHonArc Release Version: 2.4.6
+
+---------------------------------------------------------------------------
+SCCS Versions
+
+The following list the SCCS versions of the various source files
+comprising this release of MHonArc:
+
+mhonarc:
+	 mhonarc 2.5 00/04/24 00:13:37
+mha-dbedit:
+	 mha-dbedit 1.3 00/04/24 00:13:52
+mha-dbrecover:
+	 mha-dbrecover 1.3 00/04/24 00:13:55
+mha-decode:
+	 mha-decode 1.3 00/04/24 00:13:53
+lib/base64.pl:
+	 base64.pl 2.1 98/03/02 20:24:23
+lib/ewhutil.pl:
+	 ewhutil.pl 2.7 00/02/08 10:04:07
+lib/iso2022jp.pl:
+	 iso2022jp.pl 1.2 00/01/15 17:54:50
+lib/iso8859.pl:
+	 iso8859.pl 2.4 99/08/13 22:10:35
+lib/mhamain.pl:
+	 mhamain.pl 2.20 00/04/24 00:05:57
+lib/mhdb.pl:
+	 mhdb.pl 2.12 00/02/13 03:28:23
+lib/mhdysub.pl:
+	 mhdysub.pl 2.4 99/07/25 02:02:34
+lib/mhexternal.pl:
+	 mhexternal.pl 2.7 99/06/25 13:59:18
+lib/mhfile.pl:
+	 mhfile.pl 2.4 99/06/25 14:13:41
+lib/mhidxrc.pl:
+	 mhidxrc.pl 2.6 99/08/08 20:01:19
+lib/mhindex.pl:
+	 mhindex.pl 1.6 99/10/01 02:03:44
+lib/mhinit.pl:
+	 mhinit.pl 2.20 00/02/13 03:28:47
+lib/mhlock.pl:
+	 mhlock.pl 1.2 99/07/13 00:48:29
+lib/mhmimetypes.pl:
+	 mhmimetypes.pl 1.4 00/01/15 17:54:32
+lib/mhmsgextbody.pl:
+	 mhmsgextbody.pl 1.1 99/09/28 23:17:50
+lib/mhmsgfile.pl:
+	 mhmsgfile.pl 1.4 99/08/04 23:14:15
+lib/mhnote.pl:
+	 mhnote.pl 1.2 99/06/25 14:21:43
+lib/mhnull.pl:
+	 mhnull.pl 1.3 99/06/25 14:18:03
+lib/mhopt.pl:
+	 mhopt.pl 2.19 00/02/13 03:28:54
+lib/mhrcfile.pl:
+	 mhrcfile.pl 2.13 00/02/13 03:28:50
+lib/mhrcvars.pl:
+	 mhrcvars.pl 2.11 00/01/19 13:16:41
+lib/mhrmm.pl:
+	 mhrmm.pl 1.4 00/04/24 00:03:36
+lib/mhscan.pl:
+	 mhscan.pl 1.2 99/06/25 14:23:50
+lib/mhsingle.pl:
+	 mhsingle.pl 1.5 99/08/04 23:39:52
+lib/mhthread.pl:
+	 mhthread.pl 2.6 99/06/25 14:18:25
+lib/mhtime.pl:
+	 mhtime.pl 2.8 00/01/15 17:51:12
+lib/mhtxtenrich.pl:
+	 mhtxtenrich.pl 2.4 00/02/08 10:04:43
+lib/mhtxthtml.pl:
+	 mhtxthtml.pl 2.12 00/02/05 19:33:31
+lib/mhtxtplain.pl:
+	 mhtxtplain.pl 2.9 00/04/24 00:02:43
+lib/mhtxtsetext.pl:
+	 mhtxtsetext.pl 2.2 99/08/15 21:52:26
+lib/mhtxttsv.pl:
+	 mhtxttsv.pl 2.3 99/06/25 14:21:02
+lib/mhusage.pl:
+	 mhusage.pl 2.13 00/02/13 03:28:52
+lib/mhutil.pl:
+	 mhutil.pl 2.9 00/01/17 17:18:15
+lib/osinit.pl:
+	 osinit.pl 2.4 99/07/13 00:46:45
+lib/qprint.pl:
+	 qprint.pl 2.4 00/04/24 00:04:24
+lib/readmail.pl:
+	 readmail.pl 2.7 99/09/28 23:15:00
+
+---------------------------------------------------------------------------
+Earl Hood, mhonarc@pobox.com
+@(#) VERSIONS 00/04/24 00:20:39

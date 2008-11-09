@@ -1,0 +1,81 @@
+#Name: base-devel
+#Id: $Id: packing_list,v 1.76.2.10 2002/03/12 05:36:54 uzi Exp $
+#
+
+# lowlevel utilities and commands
+RPM: make-3.79.1-5.i386.rpm
+RPM: autoconf-2.13-14.noarch.rpm
+RPM: automake-1.4p5-2.noarch.rpm
+RPM: binutils-2.11.90.0.8-12.i386.rpm
+RPM: bison-1.28-2.i386.rpm
+RPM: byacc-1.9-18.i386.rpm
+RPM: cpp-2.95.3-1.i386.rpm
+RPM: cvs-1.10.8-C1.i386.rpm
+RPM: flex-2.5.4a-13.i386.rpm
+RPM: gcc-2.95.3-1.i386.rpm
+RPM: gcc-c++-2.95.3-1.i386.rpm
+RPM: gcc-chill-2.95.3-1.i386.rpm
+RPM: gcc-g77-2.95.3-1.i386.rpm
+RPM: gcc-java-2.95.3-1.i386.rpm
+RPM: gcc-libgcj-2.95.3-1.i386.rpm
+RPM: gcc-objc-2.95.3-1.i386.rpm
+RPM: gdb-5.0rh-5.i386.rpm
+RPM: j2sdk-1_3_0-linux.rpm
+RPM: libtool-1.4-8.i386.rpm
+RPM: libtool-libs-1.4-8.i386.rpm
+RPM: nasm-0.98-1.i386.rpm
+RPM: nasm-doc-0.98-1.i386.rpm
+RPM: nasm-rdoff-0.98-1.i386.rpm
+RPM: re2c-0.9-2.i386.rpm
+RPM: rcs-5.7-14.i386.rpm
+RPM: sharutils-4.2.1-7.i386.rpm
+RPM: strace-4.2.20010119-3.i386.rpm
+
+RPM: sg-cpp-1.1.2-30_SG201_cobalt.i386.rpm
+RPM: sg-egcs-1.1.2-30_SG201_cobalt.i386.rpm
+
+# NOTE: the kernel isn't here because it is almost always hardware/product
+#       dependent
+
+# include files and libraries
+#RPM: apache-devel-1.3.20-Alpine_1C2.i386.rpm
+RPM: apache-devel-1.3.20-Alpine_1C8stackguard.i386.rpm
+RPM: ucd-snmp-devel-4.2.3-2C1.i386.rpm
+RPM: db3-devel-3.2.9-1.i386.rpm
+RPM: db1-devel-1.85-7.i386.rpm
+RPM: e2fsprogs-devel-1.22-0.i386.rpm
+RPM: freetype-devel-2.0.1-4.i386.rpm
+RPM: gd-2.0.1-1C1.i386.rpm
+RPM: gd-devel-2.0.1-1C1.i386.rpm
+RPM: glibc-devel-2.2.3-C4.i386.rpm
+RPM: glibc-profile-2.2.3-C4.i386.rpm
+RPM: glib-devel-1.2.7-1C2.i386.rpm
+#RPM: imap-devel-2000c-C1.i386.rpm
+RPM: imap-devel-2000c-stackguardC2.i386.rpm
+RPM: libjpeg-devel-6b-10.i386.rpm
+RPM: libpng-devel-1.0.5-3.i386.rpm
+RPM: libstdc++-devel-2.95.3-1.i386.rpm
+RPM: libtermcap-devel-2.0.8-20.i386.rpm
+RPM: libxml-devel-1.8.7-1.i386.rpm
+RPM: libxml2-devel-2.2.2-1.i386.rpm
+RPM: ncurses-devel-5.2-2C1.i386.rpm
+RPM: openldap-devel-1.2.11-15C1.i386.rpm
+RPM: openssl-devel-0.9.6-2C1.i386.rpm
+RPM: pciutils-devel-2.1.8-8.i386.rpm
+RPM: perl-Devel-Symdump-2.00-2.i386.rpm
+RPM: php-devel-4.0.6-C4.i386.rpm
+RPM: readline-devel-4.1-9.i386.rpm
+RPM: rpm-devel-3.0.6-6x.i386.rpm
+RPM: slang-devel-1.4.4-C1.i386.rpm
+RPM: zlib-devel-1.1.3-25.7.i386.rpm
+RPM: XFree86-devel-3.3.6-20.i386.rpm
+
+# XFS devel rpms
+RPM: acl-devel-1.1.3-0.i386.rpm
+RPM: attr-devel-1.1.3-0.i386.rpm
+RPM: dmapi-devel-0.2.2-0.i386.rpm
+RPM: xfsprogs-devel-1.3.13-0C1.i386.rpm
+
+# compatibility rpms for glibc 2.0/2.1
+RPM: compat-glibc-6.2-2.1.3.2C1.i386.rpm
+RPM: compat-binutils-5.2-2.9.1.0.23.1.i386.rpm

@@ -1,0 +1,31 @@
+msgid "power"
+msgstr "電源"
+
+msgid "powerHelp"
+msgstr "サーバを再起動できます。"
+
+msgid "shutdownMessage"
+msgstr "<BR>セキュリティ上の理由により、ブラウザ画面からこのサーバの電源を切ることはできません。サーバの電源を切る必要があれば、サーバ本体の前面にある LCD パネルを次の手順で操作してください。"
+
+msgid "shutdownInstructions"
+msgstr "サーバの電源切断手順：<OL><LI>LCD パネルの右上隅にある［選択］ボタンを約２秒間押し続けると、LCD パネルに次のメニューが表示されます。<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE>センタク: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ネットワーク ノ セッテイ</CODE><BR><BR><LI>LCD パネルに次のメニューが表示されるまで、［選択］ボタンを数回押してください。<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE>センタク: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;デンゲン セツダン</CODE><BR><BR><LI>ここで、右下隅にある［実行］ボタンを押します。<BR><BR><LI>[Y]ハイ [N]イイエ と表示されるので、矢印ボタンを使って [Y]ハイ を選びます。システムのシャットダウン処理が開始します。電源スイッチを切る用意が出来ると、LCDパネルに次のメッセージが表示されます。<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE>デンゲン スイッチヲ</CODE><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<CODE>オフニ シテクダサイ</CODE><BR><BR><LI>この状態でサーバ本体背面にある電源スイッチをオフにすることにより、サーバの電源を安全に落とせます。</OL>" 
+
+msgid "reboot"
+msgstr "今すぐ再起動する"
+
+msgid "reboot_help"
+msgstr "このボタンをクリックすると、サーバが直ちに再起動します。"
+
+msgid "askRebootConfirmation"
+msgstr "サーバを再起動してよろしいですか？"
+
+msgid "rebooting"
+msgstr "サーバを再起動しています。再起動の完了には数分間かかります。"
+
+# Capabilities
+
+msgid "capgroup_adminPower"
+msgstr "システム電源の管理"
+
+msgid "capgroup_adminPower_help"
+msgstr "この管理権限を持つユーザはウェブインターフェイスからこのマシンを再起動できます。"

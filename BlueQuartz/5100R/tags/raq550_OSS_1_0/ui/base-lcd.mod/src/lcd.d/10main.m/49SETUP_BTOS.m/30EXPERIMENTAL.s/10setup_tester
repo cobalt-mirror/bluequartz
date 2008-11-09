@@ -1,0 +1,8 @@
+#!/usr/bin/perl
+
+open(SETUP, ">/test_dir/main_script");
+print SETUP "#!/bin/bash\n";
+print SETUP "\n";
+print SETUP "/test/scripts/exp_build\n";
+close(SETUP);
+system("chmod a+x /test_dir/main_script");

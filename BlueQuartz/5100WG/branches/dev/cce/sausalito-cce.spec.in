@@ -1,0 +1,165 @@
+Summary: Cobalt CCE Server and Clients 
+Name: sausalito-cce
+Version: XX_VER_XX
+Release: XX_REL_XX
+Copyright: Cobalt
+Group: Sausalito/Daemons
+Source: sausalito-cce.tar.gz
+Prefix: /usr/sausalito
+BuildRoot: /var/tmp/cce-root
+# Maximum RPM: "There are times when RPM's automatic dependency
+# processing may not be desirable."  Yeah, like when it crashes.
+# AutoReqProv: no
+
+%description
+sausalito-cce has both the server and client parts of cce.
+
+%package server
+Group: Sausalito/Daemons
+Summary: The CCE server daemon
+
+%description server
+The cce-server package contains the server-side parts of the Cobalt 
+Configuration Engine.
+
+%package client
+Group: Sausalito/Libraries
+Summary: The CCE client libraries
+
+%description client
+The cce-client package contains the client-side parts of the Cobalt 
+Configuration Engine.
+
+%prep
+%setup -n cce
+
+%build
+CCETOPDIR=/usr/sausalito make all
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/bin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/codb
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/conf
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/schemas
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sessions
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/handlers
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/constructor
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/destructor
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/capstone
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/devel
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/lib
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/include
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/perl
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
+mkdir -p $RPM_BUILD_ROOT/etc/pam.d
+mkdir -p $RPM_BUILD_ROOT/lib/security
+mkdir -p $RPM_BUILD_ROOT/usr/lib/apache/php
+make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
+
+%files server
+%defattr(-,root,root)
+%dir /usr/sausalito/
+%dir /usr/sausalito/sbin
+/usr/sausalito/sbin/*
+%dir /usr/sausalito/bin
+/usr/sausalito/bin/pperl
+/usr/sausalito/bin/pperld
+%dir /usr/sausalito/codb
+%dir /usr/sausalito/conf
+%dir /usr/sausalito/schemas
+/usr/sausalito/schemas/*
+%dir /usr/sausalito/sessions
+%dir /usr/sausalito/handlers
+%dir /usr/sausalito/constructor
+%dir /usr/sausalito/destructor
+%dir /usr/sausalito/capstone
+%dir /usr/sausalito/devel
+%dir /usr/sausalito/lib
+%dir /usr/sausalito/include
+%dir /usr/sausalito/perl
+/etc/rc.d/init.d/*
+/etc/pam.d/*
+/lib/security/*
+
+%files client
+%attr(-,root,httpd)/usr/sausalito/bin/ccewrap
+%config %attr(-,root,root)/etc/ccewrap.conf
+%defattr(-,root,root)
+/usr/sausalito/bin/cce_construct  
+/usr/sausalito/bin/cceclient
+/usr/sausalito/lib/*.so*
+/usr/sausalito/include/*
+/usr/sausalito/ui/libPhp/*
+/usr/sausalito/perl/*
+/usr/lib/apache/php/*
+/usr/share/locale/*
+
+
+%post server
+# only run on install, not upgrade 
+if [ "$1" = "1" ]; then
+	/sbin/chkconfig --add cced.init
+fi
+
+
+%postun server
+# only run if this is the last instance to be removed
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del cced.init
+fi
+
+%post client
+# only run on install, not upgrade
+if [ "$1" = "1" ]; then
+	LIB=/usr/sausalito/lib
+	cp /etc/ld.so.conf /etc/ld.so.conf.bak
+	egrep "^$LIB[ 	]*$" /etc/ld.so.conf >/dev/null \
+		|| echo $LIB >> /etc/ld.so.conf
+	/sbin/ldconfig
+fi
+
+%changelog
+* Mon Jul 17 2000 Tim Hockin <thockin@cobalt.com>
+- logging merge with mainline
+- reorgs
+- no more local0 logging
+
+* Thu Jul 7 2000 Tim Hockin <thockin@cobalt.com>
+- did away with cce_patch_syslog (see %post server)
+- mucho cleanup, especially dir ownerships
+- make rpm happy about files/owners
+
+* Wed Jul 6 2000 Mike Waychison <mwaychison@cobalt.com>
+- added ccewrap attr and got rid of wildcard for /usr/sausalito/bin
+
+* Wed Jun 28 2000 Tim Hockin <thockin@cobalt.com>
+- renamed cced.schema basetypes.schema
+- use absolute path in %post
+
+* Fri Jun 16 2000 Tim Hockin <thockin@cobalt.com>
+- don't remove /usr/sausalito/lib from ld.so.conf when we uninstall client
+
+* Wed May 24 2000 Jonathan Mayer <jmayer@cobalt.com>
+- added syslog.conf updates.
+
+* Sun May 21 2000 Tim Hockin <thockin@cobalt.com>
+- Added libcce includes
+
+* Tue May 09 2000 Tim Hockin <thockin@cobalt.com>
+- added cced.pam
+
+* Sat Apr 27 2000 Adrian Sun <asun@cobalt.com>
+- added cced.init to rpm build
+
+* Thu Apr 27 2000 Tim Hockin <thockin@cobalt.com>
+- added server conf directories
+- added cced.schema
+
+* Wed Apr 26 2000 Adrian Sun <asun@cobalt.com>
+- renamed.
+
+* Wed Mar 29 2000 Adrian Sun <asun@cobalt.com>
+- unified cce-client and server spec files into a single one.

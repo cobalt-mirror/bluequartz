@@ -1,0 +1,58 @@
+# The following are the strings used for the menu.
+
+msgid "pkgName"
+msgstr "Sun Cobalt Web 高速缓存存储器"
+
+msgid "pkgVendor"
+msgstr "Sun Cobalt 服务器"
+
+msgid "pkgDescription"
+msgstr "[[base-cache.pkgName]]程序包通过高速缓存频繁请求的网页而优化网络的性能。"
+
+msgid "cache"
+msgstr "Web 高速缓存"
+
+msgid "cache_description"
+msgstr "[[base-cache.modifyCache]]可在此处更改。"
+
+# The following are the strings used for the modification screen.
+
+msgid "modifyCache"
+msgstr "Web 高速缓存设置"
+
+msgid "enabled"
+msgstr "启用服务器"
+
+msgid "enabled_help"
+msgstr "打开或关闭 Web 高速缓存。当启用时，该服务器设备将作为 Web 客户机的代理高速缓存服务器。这可提高 Web 请求的速度，并降低带宽要求。为充分利用这一功能，Web 浏览器必须设置为将此服务器设备用作其 HTTP 代理，并将代理端口号设置为 3128。"
+
+# The following are used by the handler.
+
+msgid "no_system_object"
+msgstr "对不起，出现错误。无法找到系统对象。"
+
+msgid "no_prim_network_object"
+msgstr "对不起，出现错误。无法找到主接口的网络对象。"
+
+# Active Monitor Strings
+
+msgid "amNameTag"
+msgstr "Web 高速缓存服务器"
+
+msgid "amStatusOK"
+msgstr "[[base-cache.amNameTag]]运行正常。"
+
+msgid "amNotRunning"
+msgstr "[[base-cache.amNameTag]]没有运行。"
+
+msgid "amDetailsTitle"
+msgstr "Web 高速缓存服务器详细信息"
+
+# Capabilities
+
+msgid "capgroup_adminWebCache"
+msgstr "管理 Web 高速缓存存储器和 Web 访问"
+
+msgid "capgroup_adminWebCache_help"
+msgstr "此管理权限允许用户修改用于 Web 高速缓存存储器的设置。"
+

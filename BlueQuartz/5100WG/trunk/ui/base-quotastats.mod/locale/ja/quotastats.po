@@ -1,0 +1,149 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "ディスク"
+
+msgid "diskUsageMenuDesc"
+msgstr "ディスクの使用状況が表示されます。"
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "ディスクの使用状況"
+
+msgid "diskUsageSummary"
+msgstr "パーティション別ディスク使用状況"
+
+msgid "userQuotas"
+msgstr "ユーザ別ディスク使用状況"
+
+msgid "groupQuotas"
+msgstr "グループ別ディスク使用状況"
+
+msgid "selectUsage"
+msgstr "統計の区分を選択…"
+
+msgid "usageSummary"
+msgstr "パーティション別"
+
+msgid "usageUser"
+msgstr "ユーザ別"
+
+msgid "usageGroup"
+msgstr "グループ別"
+
+msgid "lastCollectionDate"
+msgstr "統計の生成時刻"
+
+msgid "lastCollectionDate_help"
+msgstr "現在表示されているディスク使用状況が生成された時刻です。"
+
+msgid "notRunYet"
+msgstr "ディスク使用状況の統計はまだ生成されていません。"
+
+msgid "updateNow"
+msgstr "使用状況の統計を更新する"
+
+msgid "updateNow_help"
+msgstr "このボタンをクリックすると、現時点におけるディスク使用状況を確認できます。統計情報の生成にはしばらく時間がかかります。"
+
+msgid "askUpdateNowConfirmation"
+msgstr "ディスクの使用状況を確認しますか？この処理には数分かかります。"
+
+# Summary
+
+msgid "partition"
+msgstr "パーティション"
+
+msgid "partition_help"
+msgstr "ファイルシステムパーティションの名前と用途が表示されます。"
+
+msgid "usedSpace"
+msgstr "使用中（MB）"
+
+msgid "usedSpace_help"
+msgstr "使用されているファイルシステムパーティションの容量がメガバイトを単位として表示されます。"
+
+msgid "available"
+msgstr "空き（MB）"
+
+msgid "available_help"
+msgstr "使用可能なファイルシステムパーティションの空き容量がメガバイトを単位として表示されます。"
+
+msgid "totalSpace"
+msgstr "合計（MB）"
+
+msgid "totalSpace_help"
+msgstr "各ファイルシステムパーティションに割り当てられているディスク容量がメガバイトを単位として表示されます。"
+
+msgid "pct"
+msgstr "使用率"
+
+msgid "pct_help"
+msgstr "使用可能なディスク容量全体に占める、使用中のディスク容量の割合です。"
+
+msgid "rootFiles"
+msgstr "システムファイル - ルート (/)"
+
+msgid "varFiles"
+msgstr "システムファイル - VAR (/var)"
+
+msgid "userFiles"
+msgstr "ユーザ／グループファイル - ホーム (/home)"
+
+msgid "totals"
+msgstr "合計"
+
+
+# Users
+
+msgid "user"
+msgstr "ユーザ"
+
+msgid "user_help"
+msgstr "ディスク空間が割り当てられているユーザのユーザ名です。"
+
+msgid "blocks"
+msgstr "使用中（MB）"
+
+msgid "blocks_help"
+msgstr "使用されているディスク容量がメガバイトを単位として表示されます。"
+
+msgid "quota"
+msgstr "割当容量（MB）"
+
+msgid "quota_help"
+msgstr "各ユーザに割り当てられているディスク容量がメガバイトを単位として表示されます。"
+
+msgid "allUsers"
+msgstr "合計"
+
+# Groups
+
+msgid "group"
+msgstr "グループ"
+
+msgid "group_help"
+msgstr "ディスク空間が割り当てられているグループの名前です。"
+
+msgid "allGroups"
+msgstr "合計"
+
+msgid "mailQuotaUserSubject"
+msgstr "ユーザのディスク使用状況に関する警告 - [[VAR.date]]"
+
+msgid "mailQuotaUserBody"
+msgstr "警告：\n\n[[VAR.host]] のユーザ [[VAR.user]] は、割り当て容量の\n [[VAR.pct]]% を超えるディスク容量を使用しており、空き容量は [[VAR.free]]MB \n未満です。不要なファイルの削除、データの移動などを行うか、\nディスク容量の割り当て増加をリクエストする必要があります。\n\n  "
+
+msgid "mailQuotaGroupSubject"
+msgstr "グループのディスク使用状況に関する警告 - [[VAR.date]]"
+
+msgid "mailQuotaGroupBody"
+msgstr "警告：\n\n[[VAR.host]] のグループ [[VAR.group]] は、割り当て容量の\n [[VAR.pct]]% を超えるディスク容量を使用しており、空き容量は [[VAR.free]]MB 未満です。\n不要なファイルの削除、データの移動などを行うか、\n追加ディスク容量の割り当てをリクエストする必要があります。\n\n "
+
+msgid "unknownDiskUsage"
+msgstr "不明"
+
+msgid "unlimitedQuota"
+msgstr "無制限"
+

@@ -1,0 +1,154 @@
+# handlers
+msgid "couldntDeletePppCfg"
+msgstr "無法刪除 PPP 配置"
+
+msgid "couldntStartPpp"
+msgstr "無法啟動數據機"
+
+msgid "couldntStopPpp"
+msgstr "無法停止數據機"
+
+msgid "cantGetModem"
+msgstr "很抱歉，發生伺服器錯誤。目前沒有數據機狀態。"
+
+msgid "modemProblem"
+msgstr "數據機有問題。如果您有外接式數據機，請確定其已穩固地連接到您伺服器上的序列埠，且數據機的電源已打開。如果您有內接式數據機，請重新啟動您的伺服器。"
+
+msgid "offNow"
+msgstr "未連接"
+
+msgid "onNow"
+msgstr "已連接"
+                                                                                 
+# strings for test of modem on demand
+msgid "saveTest"
+msgstr "儲存並測試數據機設定"
+
+msgid "saveTest_help"
+msgstr "這將會儲存您的現行設定，並嘗試測試連接到您的網際網路服務供應商，以驗證此設定。"
+
+msgid "testModem"
+msgstr "正在測試數據機設定..."
+
+msgid "testFail"
+msgstr "錯誤"
+
+msgid "testFailMsg"
+msgstr "因系統錯誤而無法執行數據機測試。請確定您的數據機設定正確，然後重試。如果測試重複失敗，請重新啟動伺服器設備。"
+
+msgid "initModem"
+msgstr "起始設定"
+
+msgid "initModem_help"
+msgstr "這顯示數據機起始設定狀態。起始設定測試在檢查數據機是否已連接到伺服器並作出回應。"
+
+msgid "initModemStage"
+msgstr "正在起始設定..."
+
+msgid "initModemSuccess"
+msgstr "順利完成"
+
+msgid "initModemFail"
+msgstr "起始設定失敗：如果您有外接式數據機，請確定數據機已適當地連接到您的伺服器，且數據機的電源已打開。請參閱數據機文件，確定正在使用的起始設定字串 '[[VAR.init]]' 正確。"
+
+msgid "dialModem"
+msgstr "連接"
+
+msgid "dialModem_help"
+msgstr "這顯示數據機連接狀態。連接測試在檢查數據機是否可用來撥接及連線到您的網際網路服務供應商。"
+
+msgid "dialModemStage"
+msgstr "正在撥接 [[VAR.phone]]..."
+
+msgid "dialModemSuccess"
+msgstr "順利完成"
+
+msgid "dialModemFail"
+msgstr "撥接失敗：  [[VAR.errmsg]]"
+
+msgid "noDialtone"
+msgstr "沒有撥號音。"
+
+msgid "busy"
+msgstr "撥接的電話號碼忙線中。"
+
+msgid "noCarrier"
+msgstr "沒有載波。"
+
+msgid "waiting"
+msgstr "遠端電腦沒有回應。"
+
+msgid "unknownError"
+msgstr "發生不明錯誤。"
+
+msgid "pppdAuth"
+msgstr "驗證"
+
+msgid "pppdAuth_help"
+msgstr "這顯示驗證狀態。驗證測試在檢查伺服器是否可登入遠端伺服器。"
+
+msgid "pppdAuthStage"
+msgstr "正在傳送登入資訊..."
+
+msgid "pppdAuthFail"
+msgstr "驗證失敗：  [[VAR.errmsg]]"
+
+msgid "noResponse"
+msgstr "遠端伺服器沒有回應。"
+
+msgid "authFailure"
+msgstr "所提供的使用者名稱和密碼被遠端伺服器所拒絕。"
+
+msgid "remoteTerm"
+msgstr "遠端伺服器終止了連接。"
+
+msgid "pppdAuthSuccess"
+msgstr "順利完成"
+
+msgid "dnsTest"
+msgstr "名稱解析"
+
+msgid "dnsTest_help"
+msgstr "這顯示網域名稱解析測試的狀態。網域名稱解析用來將文字式主電腦名稱和網域名稱轉換成數字型 IP 位址，反之亦然。"
+
+msgid "dnsTestStage"
+msgstr "正在連絡名稱伺服器..."
+
+msgid "dnsTestFail"
+msgstr "無法連絡您的 DNS 伺服器。請檢查您的 TCP/IP 設定，確定所指定的 DNS 伺服器正確。"
+
+msgid "dnsTestSuccess"
+msgstr "順利完成"
+
+msgid "netTest"
+msgstr "網路連接"
+
+msgid "netTest_help"
+msgstr "這顯示網路連接測試的狀態。這項測試會嘗試連接遠端網站。"
+
+msgid "netTestStage"
+msgstr "正在連接遠端網站..."
+
+msgid "netTestFail"
+msgstr "無法連接遠端網站。請檢查您的數據機和 TCP/IP 設定，然後重試。"
+
+msgid "netTestSuccess"
+msgstr "順利完成"
+
+msgid "back"
+msgstr "上一頁"
+
+msgid "back_help"
+msgstr "這將會返回數據機設定頁。"
+
+msgid "ppp0_in_use"
+msgstr "無法開啟數據機連接，因為另一項裝置正在使用介面。如果您要使用 DSL，必須先停用 PPPoE，然後才可使用數據機進行連接。"
+
+# Capabilities
+
+msgid "capgroup_adminModem"
+msgstr "管理數據機"
+
+msgid "capgroup_adminModem_help"
+msgstr "這個管理權限允許使用者更改數據機的設定。"
+

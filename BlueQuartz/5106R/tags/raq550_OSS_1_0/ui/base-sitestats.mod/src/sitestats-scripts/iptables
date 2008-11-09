@@ -1,0 +1,61 @@
+#!/bin/sh
+# $Id: iptables,v 1.3 2001/10/05 18:07:31 will Exp $
+# Startup script for iptables-based firewall
+#
+# chkconfig: 345 10 90
+# description: Sets up traffic monitoring for statistics generation
+# config: /etc/iptables.conf
+
+. /etc/rc.d/init.d/functions
+
+# a function to reset a chain
+IPTABLES="/usr/bin/iptables"
+
+if [ ! -f /etc/iptables.conf ]; then
+	echo "Generating iptables ruleset..."
+	/etc/cron.hourly/log_traffic > /dev/null 2>&1
+fi
+
+case "$1" in
+	start)
+		echo -n "Loading iptables rules: "
+		if test -e /etc/iptables.conf
+		then
+			/bin/sh /etc/iptables.conf
+			echo "loaded."
+		else
+			failure "iptables startup"
+		fi
+		;;
+	reload | restart)
+		$0 stop
+		echo -n "Loading iptables rules: "
+		if test -e /etc/iptables.conf
+		then
+			/bin/sh /etc/iptables.conf
+			echo "loaded."
+		else
+			failure "iptables startup"
+		fi
+		;;
+	stop)
+                echo -n "Stopping iptables logging: "
+                $IPTABLES -F INPUT
+		$IPTABLES -F OUTPUT
+                $IPTABLES -X acctin
+		$IPTABLES -X acctout
+                success "iptables log disabled"
+		;;
+	status)
+		$IPTABLES -L
+		;;
+	*)
+		echo "Usage: $0 {start|stop|reload|restart|status}"
+		exit 1
+esac
+
+echo ""
+
+exit 0
+
+

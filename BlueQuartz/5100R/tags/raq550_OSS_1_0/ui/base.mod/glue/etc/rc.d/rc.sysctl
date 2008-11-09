@@ -1,0 +1,19 @@
+#!/bin/sh
+# add kernel sysctl configs here
+
+# turn on syn cookies
+if [ -e /proc/sys/net/ipv4/tcp_syncookies ]; then
+	echo 1 > /proc/sys/net/ipv4/tcp_syncookies
+fi
+
+# bump up max concurrent dquots
+if [ -e /proc/sys/fs/dquot-max ]; then
+	echo 65536 > /proc/sys/fs/dquot-max
+fi
+
+# we want admin to be in lots of groups
+if [ -e /proc/sys/kernel/ngroups-max ]; then
+	echo 4096 > /proc/sys/kernel/ngroups-max
+fi
+
+exit 0

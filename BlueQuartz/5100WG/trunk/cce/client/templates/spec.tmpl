@@ -1,0 +1,35 @@
+# vendor and service name
+%define Vendor [VENDOR]
+%define Service [SERVICE]
+%define RootDir [ROOTDIR]
+
+Summary: CCE locale rpm
+Name: sausalito-%{Service}
+Vendor: [VENDORNAME]
+Version: [VERSION]
+Release: [RELEASE]
+Copyright: Cobalt Networks, Inc.
+Group: CCE/%{Service}
+Source: %{Vendor}-%{Service}-[VERSION].tar.gz
+BuildRoot: /var/tmp/%{Vendor}-%{Service}
+
+%description
+This is a skeleton package. It builds the ui, locale, and glue rpms.
+
+[DESCRIPTION_SECTION]
+
+%prep
+%setup -n %{Vendor}-%{Service}-[VERSION]
+
+%build
+make mod_locale
+
+%install
+rm -rf $RPM_BUILD_ROOT
+PREFIX=$RPM_BUILD_ROOT make install_locale
+
+[FILES_SECTION]
+
+%changelog
+* Tue Jan 23 2001 Patrick Baltz <patrick.baltz@sun.com>
+- template for cce locale rpms based on asun's skeleton in devel-tools

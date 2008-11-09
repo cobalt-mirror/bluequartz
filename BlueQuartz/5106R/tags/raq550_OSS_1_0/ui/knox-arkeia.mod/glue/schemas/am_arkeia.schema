@@ -1,0 +1,33 @@
+<!-- $Id: am_arkeia.schema,v 1.4 2001/09/05 04:24:23 jcheng Exp $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved -->
+
+<!-- This is the AM namespace for monitoring the Knox Arkeia client daemon -->
+<class name="ActiveMonitor" namespace="Arkeia" version="1.0">
+	<!-- Required attributes for the ActiveMonitor namespace -->
+	<property name="enabled"	type="boolean"	default="0"/>
+	<property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean"	default="1"/>
+
+	<!-- Determine that status of Knox Arkiea using an external script -->
+	<property name="type"		type="scalar"	default="exec"/>
+	<property name="typeData"	type="scalar"
+	    default="/usr/sausalito/swatch/bin/am_arkeia.sh"/>
+
+	<!-- This test is not a member of an aggregate test set -->
+	<property name="aggmember"	type="boolean"	default="0"/>
+
+	<!-- Information about the state of the service being monitored -->
+	<property name="currentState"	type="amstate"	default="N"/>
+	<property name="lastChange"	type="uint"	default="0"/>
+	<property name="lastRun"	type="uint"	default="0"/>
+	<property name="currentMessage"	type="scalar"	default=""/>
+	<property name="nameTag"	type="scalar"
+	    default="[[knox-arkeia.arkeia]]"/>
+
+	<!--
+	    The page to display when requesting details about the most recent
+	    ActiveMonitor run on this service.
+	-->
+	<property name="URL"		type="scalar"
+	    default="/knox/arkeia/arkeia_amdetails.php"/>
+</class>

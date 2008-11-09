@@ -1,0 +1,128 @@
+# ----- Menu 
+msgid "groups"
+msgstr "Gruppen"
+
+msgid "groups_help"
+msgstr "Hier können Sie Gruppen verwalten."
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr "Gruppenvorgaben bearbeiten"
+
+msgid "groupDefaults_help"
+msgstr "Klicken Sie hier, um die Vorgaben für neue Gruppen zu ändern."
+
+msgid "groupList"
+msgstr "Gruppenliste"
+
+msgid "groupName"
+msgstr "Gruppenname"
+
+msgid "groupName_help"
+msgstr "Der Name einer Gruppe von Benutzern."
+
+msgid "groupMembers"
+msgstr "Gruppenmitglieder"
+
+msgid "groupMembers_help"
+msgstr "Die Benutzer, die der Gruppe angehören."
+
+msgid "groupDesc"
+msgstr "Anmerkungen"
+
+msgid "groupDesc_help"
+msgstr "Diese Spalte enthält beschreibende Informationen über die Gruppe."
+
+msgid "listAction"
+msgstr "Aktion"
+
+msgid "listAction_help"
+msgstr "Dies sind die Schaltflächen, mit denen die Einstellungen einer Gruppe geändert werden können oder eine Gruppe entfernt werden kann."
+
+msgid "addNewGroup"
+msgstr "Neue Gruppe hinzufügen"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Stellen Sie den vorgegebenen maximalen Festplattenspeicher für neue Gruppen ein. Dabei handelt es sich um den maximal für Gruppen verfügbaren Speicherplatz, in dem Gruppen Webseiten, E-Mail-Nachrichten und andere Gruppendateien speichern können. [[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "Gruppenname"
+
+msgid "groupNameField_rule"
+msgstr "Bitte geben Sie maximal 12 Zeichen ein, die nur aus alphanumerischen Zeichen in Kleinschreibung, Punkten, Bindestrichen und Unterstrichen bestehen.  Eine gültige Eingabe ist z. B. pruefung."
+
+msgid "groupNameField_help"
+msgstr "Geben Sie den Namen ein, den das System verwendet, um die Gruppe zu identifizieren. [[base-workgroup.groupNameField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Maximal zulässiger Festplattenspeicher (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl zwischen 1 und 1024000 ein."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Stellen Sie die Festplattenquote dieser Gruppe ein. Dabei handelt es sich um den maximal für diese Gruppe verfügbaren Speicherplatz, in dem Webseiten, E-Mail-Nachrichten und andere Gruppendateien gespeichert werden können. [[base-workgroup.maxDiskSpaceField_rule]] Der Vorgabewert für neue Gruppen wird im Abschnitt 'Gruppenvorgaben' eingestellt."
+
+msgid "groupMembersField"
+msgstr "Benutzermitgliedschaft"
+
+msgid "groupMembersField_help"
+msgstr "Stellen Sie die Benutzermitgliedschaft dieser Gruppe ein. Die linke Spalte enthält die Benutzer, die momentan dieser Gruppe angehören. Die rechte Spalte enthält die Benutzer, die dieser Gruppe angehören können. Um einen Benutzer als Mitglied dieser Gruppe hinzuzufügen, verschieben Sie den Benutzer aus der rechten Spalte in die linke."
+
+msgid "groupUsers"
+msgstr "Zugehörige Benutzer"
+
+msgid "allUsers"
+msgstr "Nicht zugehörige Benutzer"
+
+msgid "groupDescField"
+msgstr "Anmerkungen"
+
+msgid "groupDescField_help"
+msgstr "Geben Sie hier weitere Informationen über die Gruppe ein, z. B. Anmerkungen oder eine Beschreibung."
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "Gruppeneinstellungen ändern - [[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "Wollen Sie die Gruppe [[VAR.groupName]] wirklich entfernen?"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "Sie haben einen Wert im Feld [[base-workgroup.groupNameField]] eingegeben, den ein anderer Benutzer bereits belegt hat oder der systemseitig reserviert ist. Bitte geben Sie hier einen anderen Wert ein."
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "Mitglieder dieser Workgroup pflegen die öffentlich zugängliche Website."
+
+msgid "add_group_help"
+msgstr "Klicken Sie hier, um eine neue Workgroup hinzuzufügen."
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "Verwaltung der Gruppen"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, Gruppen zu erstellen, zu löschen und zu ändern."

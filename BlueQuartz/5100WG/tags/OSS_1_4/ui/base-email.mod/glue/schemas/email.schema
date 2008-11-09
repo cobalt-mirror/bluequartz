@@ -1,0 +1,70 @@
+<typedef 
+	name="emailQueueTime" 
+	type="re" 
+	data="(immediate|quarter-hourly|half-hourly|hourly|quarter-daily|daily)"/>
+
+<typedef name="mail_alias" type="re" data="^[a-z0-9_\-][a-z0-9_\.\-]*$" />
+
+<class name="User" namespace="Email" version="1.0" createacl="ruleCapable(createUser)" destroyacl="ruleCapable(destroyUser)">
+	<property name="aliases" type="mail_alias" array="yes" writeacl="ruleCapable(modifyUser)"/>
+	<property name="apop" type="boolean" writeacl="ruleCapable(modifyUser)" default="0"/>
+	<property 
+		name="forwardEnable" 
+		type="boolean" 
+		readacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		default="0"
+	/>
+	<property
+		name="forwardSave"
+		type="boolean"
+		readacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		default="0"
+	/>
+	<property 
+		name="forwardEmail" 
+		type="scalar" 
+		readacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)" 
+		writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		array="yes"
+		/>
+	<property 
+		name="vacationOn" 
+		type="boolean" 
+		readacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)" 
+		writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		default="0"/>
+	<property 
+		name="vacationMsg" 
+		type="scalar" 
+		readacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)" 
+		writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser)"
+		/>
+</class>
+
+<class name="System" namespace="Email" version="1.0">
+	<property name="enableSMTP" type="boolean" default="1" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="enableImap" type="boolean" default="1" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="enablePop" type="boolean" default="1" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="popRelay" type="boolean" default="0" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="relayFor" type="hostname" array="yes"  writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="acceptForDomain" type="boolean" default="0" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="acceptFor" type="hostname" array="yes"  writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="deniedHosts" type="hostname" array="yes"  writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="deniedUsers" type="hostname" array="yes"  writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="routes" type="hostname" array="yes"  writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="queueTime" type="emailQueueTime" default="immediate" optional="true" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="masqAddress" type="hostname" optional="true" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="smartRelay" type="hostname" optional="true" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="privacy" type="boolean" default="1" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="maxMessageSize" type="int" optional="true" writeacl="ruleCapable(modifyEmailServers)"/>
+	<property name="catchAllEmail" type="scalar" optional="true" writeacl="ruleCapable(modifyEmailServers)"/>
+</class>
+
+<!-- EmailAlias use is now deprecated for performance reasons.
+<class name="EmailAlias" namespace="" version="1.0">
+  <property name="name" type="alphanum_plus"/>
+  <property name="action" type="scalar"/>
+</class>
+-->

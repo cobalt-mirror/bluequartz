@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for i in by_date by_file by_hour by_ip by_ref web_totals
+do
+  rm -f /var/local/$i.dat
+done

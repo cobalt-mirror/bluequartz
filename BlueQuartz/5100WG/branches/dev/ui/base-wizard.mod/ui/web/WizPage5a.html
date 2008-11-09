@@ -1,0 +1,97 @@
+##PREAMBLE##
+##CUSTOM-PREAMBLE##
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+	<head>
+		##HEADER-CHARSET##
+		<title>Setup: DSL &amp; Broadband Settings</title>
+		<link rel=stylesheet type="text/css" href="wizard.css">
+		##HEADER-JAVASCRIPT##
+	</head>
+
+	<body bgcolor="#ffffff" ##BODY-ATTRIBUTES##>
+		<div align="center">
+			<table border="0" cellspacing="0" cellpadding="0" height="80%">
+				<tr>
+					<td>
+						<div align="center">
+							<table width="690" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td>
+										<table width="532" border="0" cellspacing="0" cellpadding="0" height="77">
+											<tr height="25">
+												<td colspan="2" width="532" height="25"><img src="/libImage/Top-Left.gif" alt="" width="532" height="25" border="0"></td>
+											</tr>
+											<tr height="52">
+												<td width="19" height="52"><img src="/libImage/Top-Left-Text-Buffer.gif" alt="" width="19" height="52" border="0"></td>
+												<td valign="top" bgcolor="#f2f7ff" width="513" height="52" background="/libImage/Top-Left-Text-Fill.gif">
+													<div class="Setting-Type">
+														DSL &amp; Broadband Settings</div>
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td width="158"><img src="/libImage/Top-Right.gif" alt="" width="158" height="77" border="0"></td>
+								</tr>
+							</table>
+							<table width="690" border="0" cellspacing="0" cellpadding="0">
+								<!-- ================= Error Messages ================= -->
+									<?php WizShowError("<div class='Setting-Description'>".$i18n->getHtml("##PAGE-DESCRIPTION##")."</div>"); ?>
+								<!-- ================= Error Messages ================= -->
+								<tr>
+									<td width="51"><img src="/libImage/Network-Left.gif" alt="" width="51" height="326" border="0"></td>
+									<td valign="top" bgcolor="#f5f9ff" width="588" background="/libImage/Network-Fill.gif">
+										##WIZARD-FORM##
+									</td>
+									<td width="51"><img src="/libImage/Right.gif" alt="" width="51" height="326" border="0"></td>
+								</tr>
+							</table>
+							<table width="690" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td><img src="/libImage/Network-Bottom-Left.gif" alt="" width="532" height="89" border="0"></td>
+									<td align="right" width="158">
+										<table width="158" border="0" cellspacing="0" cellpadding="0">
+											<tr height="42">
+												<td width="55" height="42"><img src="/libImage/Nav-Top-Left.gif" alt="" width="55" height="42" border="0"></td>
+												<td width="39" height="42">##ENABLED-BACK-BUTTON##</td>
+												<td width="39" height="42">##ENABLED-NEXT-BUTTON##</td>
+												<td width="25" height="42"><img src="/libImage/Nav-Top-Right.gif" alt="" width="25" height="42" border="0"></td>
+											</tr>
+											<tr height="47">
+												<td colspan="4" width="158" height="47"><img src="/libImage/Nav-Bottom.gif" alt="" width="158" height="47" border="0" name="ProgressBar"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>
+
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

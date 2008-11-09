@@ -1,0 +1,24 @@
+[VPN Partner Aliases]
+sfbay     = vpn-sfbay.sun.com
+ebay      = vpn-sfbay.sun.com
+central   = vpn-central.sun.com
+uk        = vpn-uk.sun.com
+east      = vpn-east.sun.com
+holland   = vpn-holland.sun.com
+singapore = vpn-singapore.sun.com
+japan     = vpn-japan.sun.com
+
+[VPN User]
+UserName = ________@vpn
+IPPrimary = sfbay
+IPSecondary = central
+IPEnabled = True
+LoginMethod = Shared Key
+NetBTEnabled = True
+ExcludeLocalLAN = True
+ExcludeDHCP = True
+UseFTCP = True
+FTCPDestinationPort = 80
+SharedKey = CHANGEME
+PAPAuthSecret = CHANGEME
+

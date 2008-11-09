@@ -1,0 +1,57 @@
+###
+### Is this file still necessary?  I don't think this module is even being used any more...
+###
+
+msgid "identity"
+msgstr "組織"
+
+msgid "modifyIdentity"
+msgstr "識別情報の変更"
+
+msgid "identityHelp"
+msgstr "このマシンの識別情報を設定します。"
+
+msgid "country"
+msgstr "国"
+
+msgid "country_empty"
+msgstr "国フィールドは必須入力項目です。"
+
+msgid "country_help"
+msgstr "このマシンが設置されている国の 2 文字の国コードです（例：Australia は AU、Poland は PL）。"
+
+msgid "state"
+msgstr "州"
+
+msgid "state_help"
+msgstr "このマシンが設置されている州の 2 文字の州コードです（例：California、America は CA、New South Wales、Australia は NSW）。"
+
+msgid "state_empty"
+msgstr "州フィールドは必須入力項目です。"
+
+msgid "locality"
+msgstr "所在地"
+
+msgid "locality_help"
+msgstr "このマシンが設置されている所在地の完全な名前です（例：Sydney、「San Fransisco」）。"
+
+msgid "locality_empty"
+msgstr "所在地フィールドは必須入力項目です。"
+
+msgid "organisation"
+msgstr "組織"
+
+msgid "organisation_help"
+msgstr "このフィールドに関連する会社名です（例：「Null Pointer Corp」）。"
+
+msgid "organisation_empty"
+msgstr "[[base-identity.organisation]] 名は必須入力項目です"
+
+msgid "organisationUnit"
+msgstr "[[base-identity.organisation]] ユニット"
+
+msgid "organisationUnit_help"
+msgstr "主にこのマシンを使用するユニットです（例：「Web ホスト」、「エンジニアリング」、「営業」）。"
+
+msgid "organisationUnit_empty"
+msgstr "ユニット名は必須入力項目です"

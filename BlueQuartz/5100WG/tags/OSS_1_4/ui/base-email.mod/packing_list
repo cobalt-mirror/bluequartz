@@ -1,0 +1,11 @@
+# put any default packages here.
+RPM: base-email-locale-ja
+RPM: base-email-locale-fr
+RPM: base-email-locale-es
+RPM: base-email-locale-en
+RPM: base-email-locale-de
+RPM: base-email-ui
+RPM: base-email-glue
+RPM: base-email-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE
+RPM: base-email-am-1.0.2-3.i386.rpm

@@ -1,0 +1,224 @@
+msgid "pptp"
+msgstr "远程访问"
+
+msgid "pptp_menu"
+msgstr "远程访问 VPN"
+
+msgid "pptp_menu_help"
+msgstr "[[base-pptp.pptp]]设置可在此处更改。"
+
+msgid "pptp_settings_block"
+msgstr "[[base-pptp.pptp]]设置"
+
+msgid "pptp_access"
+msgstr "访问"
+
+msgid "pptp_access_help"
+msgstr "打开或关闭 PPTP 访问。您可以设置 PPTP 访问权限使得没有用户、所有用户，或只有一些用户可以访问 PPTP 服务。"
+
+msgid "pptp_access_disabled"
+msgstr "不允许任何用户访问"
+
+msgid "pptp_access_allusers"
+msgstr "允许所有用户访问。"
+
+msgid "pptp_access_someusers"
+msgstr "只允许指定用户访问"
+
+msgid "pptp_access_someusers_selector_allowed"
+msgstr "允许访问的用户"
+
+msgid "pptp_access_someusers_selector_disallowed"
+msgstr "不允许访问的用户"
+
+msgid "pptp_access_someusers_selector_label"
+msgstr " "
+
+msgid "pptp_dns_addresses"
+msgstr "客户机 DNS 地址"
+
+msgid "pptp_dns_addresses_help"
+msgstr "输入您的本地域名服务器的 IP 地址或自动为这些客户机提供服务的服务器的地址。域名服务器将文本式主机名和域名转换为数字式 IP 地址，也可将数字式 IP 地址转换为文本式主机名和域名。请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "pptp_wins_addresses"
+msgstr "客户机 WINS 地址"
+
+msgid "pptp_wins_addresses_help"
+msgstr "输入您的本地 WINS 服务器的 IP 地址或自动为这些客户机提供服务的服务器的地址。WINS 服务器将 Windows 的主机名转换为数字式 IP 地址，也可将数字式 IP 地址转换为 Windows 的文本式主机名。这使得通过虚拟专用网浏览网络邻居成为可能。请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。" 
+
+# list page
+
+msgid "dynamic_ranges_button"
+msgstr "修改远程地址分配"
+
+msgid "dynamic_ranges_button_help"
+msgstr "单击此处设置此服务器将分配给请求[[base-pptp.pptp]]连接的客户机的 IP 地址。"
+
+msgid "dynamic_ranges"
+msgstr "远程地址分配列表"
+
+msgid "list_ipaddr_range_from"
+msgstr "IP 地址范围（从）"
+
+msgid "list_ipaddr_range_from_help"
+msgstr "这是远程分配的 IP 地址范围的低端。"
+
+msgid "list_ipaddr_range_to"
+msgstr "IP 地址范围（到）"
+
+msgid "list_ipaddr_range_to_help"
+msgstr "这是远程分配的 IP 地址范围的高端。"
+
+msgid "list_action"
+msgstr "操作"
+
+msgid "list_action_help"
+msgstr "这些是用于修改或删除远程分配的 IP 地址范围的按钮。"
+
+msgid "removeDynamicConfirm"
+msgstr "是否确实要从远程分配的 IP 地址列表中删除范围[[VAR.ipaddrlo]]—[[VAR.ipaddrhi]]？"
+
+# Create/Modify range page
+
+msgid "modify_dynamic_block"
+msgstr "修改远程地址分配范围"
+
+msgid "create_dynamic_block"
+msgstr "创建远程地址分配范围"
+
+msgid "block_ipaddr_range_from"
+msgstr "IP 地址范围（从）"
+
+msgid "ipaddrlo"
+msgstr "[[base-pptp.block_ipaddr_range_from]]"
+
+msgid "block_ipaddr_range_from_help"
+msgstr "这是远程分配的 IP 地址范围的低端。"
+
+msgid "block_ipaddr_range_to"
+msgstr "IP 地址范围（到）"
+
+msgid "ipaddrhi"
+msgstr "[[base-pptp.block_ipaddr_range_to]]"
+
+msgid "block_ipaddr_range_to_help"
+msgstr "这是远程分配的 IP 地址范围的高端。"
+
+msgid "ip_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "pptp_secret_rule"
+msgstr "保密口令应该是 3 到 16 个字符，且应该不同于系统口令。"
+
+
+msgid "ipaddrlo_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是对[[base-dhcpd.gatewayField]]无效的值。[[base-dhcpd.gatewayField_rule]]"
+
+msgid "ipaddrhi_invalid"
+msgstr "对不起, [[VAR.invalidValue]]是无效的[[base-pptp.block_ipaddr_range_to]]的值。[[base-pptp.ip_rule]]"
+
+msgid "pptp_secret_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是对您的保密口令无效的值。[[base-pptp.pptp_secret_rule]]"
+
+# Notification 
+
+msgid "pptp_notify_block"
+msgstr "通知用户"
+
+msgid "pptp_notify_header"
+msgstr "注意"
+
+msgid "pptp_notify_text"
+msgstr "下列列出的用户尚未启用其远程访问帐户。若要启用其他的帐户，必须在远程访问页面登录并输入保密的口令。<p>[[VAR.users]]<p>需要通过电子邮件得到有关此信息的通知吗？"
+
+msgid "pptp_notify_yes"
+msgstr "是"
+
+msgid "pptp_notify_yes_help"
+msgstr "单击此处向那些没有设定远程访问保密口令的用户发送电子邮件通知。"
+
+msgid "pptp_notify_no"
+msgstr "否"
+
+msgid "pptp_notify_no_help"
+msgstr "单击此处继续而不通知这些用户关于其远程访问保密口令的信息。"
+
+# User side
+msgid "pptp_user_menu"
+msgstr "远程访问"
+
+msgid "pptp_user_menu_help"
+msgstr "您远程访问帐户的设置可在此处更改。"
+
+msgid "pptp_user_block"
+msgstr "远程访问设置"
+
+msgid "pptp_user_secret"
+msgstr "保密口令"
+
+msgid "pptp_user_secret_help"
+msgstr "这是创建虚拟专用网络连接时将用到的保密口令。您选定保密口令前，不会启用远程访问。[[base-pptp.pptp_secret_rule]]"
+
+msgid "pptp_user_secret_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "secret"
+msgstr "保密口令"
+
+msgid "pptp_user_setyoursecret"
+msgstr "启用远程访问帐户之前，需要输入认证过程中要使用的保密口令。请在下面输入一个 3 到 16 个字符长的保密口令。此保密口令应不同于系统口令且应只有您自己知晓。"
+
+msgid "pptp_user_yoursecretisset"
+msgstr "您的保密口令似乎已经正确设置。您的远程访问帐户现已启用且已准备就绪，可以随时使用。如果需要获得任何有关使用新虚拟专用网络的帮助，请与系统管理员联系。以后可以随时返回该页面更改您的保密口令。"
+
+
+msgid "returnToLogin"
+msgstr "注销"
+
+msgid "returnToLogin_help"
+msgstr "单击此处注销。"
+
+# Email notification
+
+msgid "pptp_notify_email_subject"
+msgstr "您已经获准远程访问您的网络"
+
+msgid "pptp_notify_email_body"
+msgstr "系统管理员已经启用了您帐户的远程访问功能。\
+远程访问允许您通过因特网连接到您的网络，\
+就像您的本地计算机实际是网络的一部分。\
+这种类型的远程访问通常称为点对点通道\
+协议 (PPTP)，而且在 Windows 平台上能够得到很好的支持。在\
+使用此功能之前，需要输入连接认证时要用到的保密口令。\
+这可以通过连接到 URL：\n\
+\n\
+http://[[VAR.hostname]]:444/nav/single.php?root=base_pptp_user\n\
+\n\
+来进行。如果您有任何其他问题，请与系统管理员联系。"
+
+
+msgid "passwordAlreadySecret"
+msgstr "您不能选择与远程访问保密口令相同的系统口令。"
+
+msgid "secretAlreadyPassword"
+msgstr "您的远程访问保密口令一定不能与您的系统帐户口令相同。"
+
+
+# errors
+
+msgid "pptp_need_one_range"
+msgstr "在激活 PPTP 服务器之前，至少需要有一个有效的远程分配的 IP 范围。"
+
+msgid "pptp_disabling_service_no_ranges"
+msgstr "PPTP 服务已被禁用，因为不再有任何有效的远程分配的 IP 范围。若要重新启用该服务，必须先添加一个有效的 IP 范围。"
+
+# Capabilities
+
+msgid "capgroup_adminPptp"
+msgstr "管理[[base-pptp.pptp_menu]]"
+
+msgid "capgroup_adminPptp_help"
+msgstr "此管理权限允许用户配置远程访问 VPN 的所有方面。包括指定哪些用户获准可以远程访问和配置 PPTP 服务。"
+
+msgid "ipAddrRangeLowHigherThanHigh"
+msgstr "所指定的 IP 地址范围无效。[[base-pptp.list_ipaddr_range_from]]必须低于[[base-pptp.list_ipaddr_range_to]]。"

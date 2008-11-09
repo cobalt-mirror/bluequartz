@@ -1,0 +1,225 @@
+#
+# This files is for LDAP Export and Import, but does not include File Import
+#
+
+# Base strings
+
+msgid "ldapName"
+msgstr "Lightweight Directory Access Protocol (LDAP)"
+
+	#item for import method drop-down
+msgid "importChangerLdap"
+msgstr "[[base-ldap.ldapName]] Import"
+
+
+#----- Menu
+
+	# AKA Ldap Export :
+msgid "export"
+msgstr "LDAP Directory"
+
+
+# ---- LDAP directory/export page
+
+msgid "ldapExport"
+msgstr "[[base-ldap.ldapName]] Directory"
+
+msgid "ldapExportDescription"
+msgstr "A user directory provided by the [[base-ldap.ldapName]] service can be configured here."
+
+msgid "exportEnabled"
+msgstr "Enable"
+
+msgid "exportEnabled_help"
+msgstr "Turn the [[base-ldap.ldapName]] service on or off. Turning this feature on allows users to use standard LDAP clients to obtain email addresses and other information about users on this server appliance."
+
+msgid "baseDn"
+msgstr "Base Distinctive Name (Dn)"
+
+msgid "baseDn_rule"
+msgstr "For example, o=My Organization, c=US is a valid entry."
+
+msgid "baseDn_help"
+msgstr "Please enter the base distinctive name (Dn) of your user directory.  [[base-ldap.baseDn_rule]]"
+
+msgid "baseDn_empty"
+msgstr "Sorry, you have not entered a value for [[base-ldap.baseDn]]. [[base-ldap.baseDn_rule]]"
+
+msgid "emailBase"
+msgstr "Email Domain Name"
+
+msgid "emailBase_help"
+msgstr "Enter an alternate domain name for email addresses exported in your directory. If the host name of this server appliance is mail.company.com, but receives mail for @company.com, you may wish to set the email domain name to company.com. This will cause all email addresses in the directory to be shown as user@company.com rather than user@mail.company.com."
+
+msgid "emailBase_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-ldap.emailBase]]. Please enter a properly formatted host name or domain name."
+
+
+# ------ LDAP Import section 
+
+msgid "ldapImport"
+msgstr "[[base-ldap.ldapName]] Import"
+
+msgid "import"
+msgstr "Import Now"
+
+msgid "import_help"
+msgstr "Click here to import users from the specified [[base-ldap.ldapName]] server."
+
+msgid "server"
+msgstr "Server Network Address"
+
+msgid "server_help"
+msgstr "Enter the IP address or hostname of the server from which you wish to import users. [[base-ldap.server_rule]]"
+
+msgid "server_rule"
+msgstr "For example, cobalt.com or 192.168.10.23 are valid entries." 
+
+msgid "server_empty"
+msgstr "Sorry, you have not entered a value for [[base-ldap.server]]."
+
+msgid "server_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-ldap.server]]. Please enter a valid host name or IP address. [[base-ldap.server_rule]]"
+
+msgid "base"
+msgstr "Base Distinctive Name (Dn)"
+
+msgid "base_help"
+msgstr "Enter the base of the LDAP entries to import."
+
+msgid "base_empty"
+msgstr "Sorry, you have not entered a value for [[base-ldap.base]]."
+
+msgid "bindDn"
+msgstr "Binding Distinctive Name (Dn)"
+
+msgid "bindDn_help"
+msgstr "Enter the binding distinctive name (Dn) of the admin user on the LDAP server.  This value along with its respective password are needed to authenticate and acquire the appropriate information for importing users. For example, cn=myname, C=US is a valid entry."
+
+msgid "bindDn_rule"
+msgstr "Please enter a properly formatted binding distinctive name (Dn). For example, cn=myname, C=US is a valid entry."
+
+msgid "bindDn_empty"
+msgstr "Sorry, you have not entered a value for [[base-ldap.bindDn]]. [[base-ldap.bindDn_rule]]"
+
+msgid "passwordAuth"
+msgstr "Password"
+
+msgid "passwordAuth_help"
+msgstr "Enter the password for the binding distinctive name (Dn)"
+
+msgid "passwordAuth_empty"
+msgstr "Sorry, you have not entered a value for [[base-ldap.passwordAuth]]."
+
+msgid "passwordAuth_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again." 
+
+msgid "userFilter"
+msgstr "User Filter"
+
+msgid "userFilter_help"
+msgstr "Enter the filter used for determining which object classes to import as users.  The value used if left blank is (|(objectClass=cobaltAccount)(objectClass=posixAccount))"
+
+msgid "groupFilter"
+msgstr "Group Filter"
+
+msgid "groupFilter_help"
+msgstr "Enter the filter used for determining which object classes to import as groups.  The value used if left blank is (|(objectClass=cobaltGroup)(objectClass=posixGroup))"
+
+
+
+# ------ Import Error msgs
+
+msgid "couldnt_connect_to_ldap_server"
+msgstr "Could not connect to the LDAP server '[[VAR.server]]'. Please check your settings and try again."
+
+msgid "couldnt_bind_to_ldap_server"
+msgstr "Sorry, an error occurred while binding to the specified LDAP server. Please check your settings and try again."
+
+msgid "couldnt_search"
+msgstr "Sorry, an error occurred while searching: [[VAR.error]]."
+
+msgid "couldnt_fetch_system_object"
+msgstr "Sorry, an error occurred while trying to fetch the system object."
+
+msgid "problems_occured_with_entry"
+msgstr "[[VAR.entry]]   Problems occurred while importing: [[VAR.err]]."
+
+
+
+msgid "importErrors"
+msgstr "Import Errors"
+
+msgid "errorMessage"
+msgstr "Error Message"
+
+msgid "errorMessage_help"
+msgstr "This is a list of the errors that occurred during the LDAP import."
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] error"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] errors"
+
+msgid "importStatus"
+msgstr "Import Status"
+
+msgid "statusField"
+msgstr "Status"
+
+msgid "statusField_help"
+msgstr "This is the status of the import."
+
+msgid "addingGroup"
+msgstr "Adding Groups"
+
+msgid "addingUser"
+msgstr "Adding Users"
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "This is the progress of the import."
+
+msgid "importSucceeded"
+msgstr "Import Completed"
+
+msgid "importSucceededMessage"
+msgstr "The import succeeded"
+
+msgid "importSucceededMessage_help"
+msgstr "The import succeeded without any errors."
+
+msgid "queryingLdap"
+msgstr "Querying LDAP server for details."
+
+
+msgid "cannotEditBlock"
+msgstr "Sorry, an error occurred while rewriting the configuration files."
+
+msgid "cannotLinkLdap"
+msgstr "Sorry, an error occurred while trying to link the init-scripts."
+
+msgid "cannotStartLdap"
+msgstr "Sorry, an error occurred while trying to start LDAP."
+
+msgid "cannotRestartLdap"
+msgstr "Sorry, an error occurred while restarting the LDAP service."
+
+msgid "cannotRemoveLink"
+msgstr "Sorry, an error occurred while trying to unlink the init-scripts."
+
+msgid "cannotStopLdap"
+msgstr "Sorry, an error occurred while trying to stop the LDAP service."
+
+msgid "logFilename"
+msgstr "[[VAR.filename]]"
+
+# Cpaabilities
+msgid "capgroup_adminLdapExport"
+msgstr "Manage LDAP Directory"
+
+msgid "capgroup_adminLdapExport_help"
+msgstr "This administrative right allows a user to modify the settings used by the LDAP directory."

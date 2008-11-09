@@ -1,0 +1,263 @@
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "按一下此處，可檢視[[base-am.activeMonitor]]狀態資訊。如果[[base-am.activeMonitor]]所監控的任何元件發生嚴重的問題，這個圖示會變成紅色。"
+
+msgid "activeMonitor"
+msgstr "動態監控"
+
+msgid "activeMonitor_help"
+msgstr "按一下此處以檢查系統元件的正確作業。"
+
+msgid "amStatusMenuName"
+msgstr "狀態"
+
+msgid "amStatusMenuDesc"
+msgstr "按一下此處，可檢視[[base-am.activeMonitor]]的狀態資訊。"
+
+msgid "amObjNotFound"
+msgstr "很抱歉，發生系統錯誤。找不到 ActiveMonitor 物件。"
+
+msgid "amSysClients"
+msgstr "系統狀態 - 概觀"
+
+msgid "amClientName"
+msgstr "元件名稱"
+
+msgid "amClientName_help"
+msgstr "這是受監控元件的名稱。"
+
+msgid "action"
+msgstr "[[palette.detail]]"
+
+msgid "action_help"
+msgstr "按一下此處，可檢視關於受監控之元件的詳細資訊。"
+
+msgid "amServClients"
+msgstr "服務狀態 - 概觀"
+
+msgid "amOtherClients"
+msgstr "其他狀態 - 概觀"
+
+msgid "amClientStatus"
+msgstr "現行狀態"
+
+msgid "amClientStatus_help"
+msgstr "這是受監控元件的現行狀態。"
+
+msgid "amClientLastChange"
+msgstr "前次變更的狀態"
+
+msgid "amNever"
+msgstr "不監控"
+
+msgid "amClientLastChange_help"
+msgstr "這是前次受監控元件變更的狀態。"
+
+msgid "amSettingsMenuName"
+msgstr "設定"
+
+msgid "amSettingsMenuDesc"
+msgstr "按一下此處以配置[[base-am.amSettings]]。"
+
+msgid "amSettings"
+msgstr "動態監控設定"
+
+msgid "enableAMField"
+msgstr "啟用監控"
+
+msgid "enableAMField_help"
+msgstr "開啟或關閉[[base-am.activeMonitor]]。啟用這項功能可定期檢查特定的系統元件是否正常運作。您可從以下選取這些系統元件。"
+
+msgid "alertEmailList"
+msgstr "警示通知電子郵件"
+
+msgid "alertEmailList_help"
+msgstr "請輸入電子郵件位址清單，[[base-am.activeMonitor]]將傳送警示訊息到此電子郵件位址。"
+
+msgid "itemsToMonitor"
+msgstr "受監控的元件"
+
+msgid "itemsToMonitor_help"
+msgstr "請選取要由[[base-am.activeMonitor]]定期檢查的特定系統元件。左側直欄顯示目前正在監控的系統元件。右側直欄顯示可以監控的系統元件。若要新增要加以監控的系統元件，請將右側直欄的系統元件移至左側直欄。"
+
+msgid "selected"
+msgstr "監控的元件"
+
+msgid "notSelected"
+msgstr "未監控的元件"
+
+msgid "amNoMessage"
+msgstr "目前沒有此元件的資訊。"
+
+msgid "amNotMonitored"
+msgstr "目前並沒有監控此元件。"
+
+msgid "amNotEnabled"
+msgstr "此元件並未啟用。"
+
+msgid "alreadyMadeAM"
+msgstr "很抱歉，發生系統錯誤。ActiveMonitor 物件已存在。"
+
+msgid "amCPUName"
+msgstr "CPU 用量"
+
+msgid "amCPUWarning"
+msgstr "正在[[VAR.status]]使用 CPU。"
+
+msgid "amUseLight"
+msgstr "輕度"
+
+msgid "amUseModerate"
+msgstr "適度"
+
+msgid "amUseHeavy"
+msgstr "重度"
+
+msgid "amCPUDetails"
+msgstr "CPU 用量明細"
+
+msgid "amCPUStats"
+msgstr "CPU 統計值"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] 分鐘平均負載"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] 分鐘平均負載"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "這是在 [[VAR.mins]] 分鐘時段內等候被處理器執行的作業數。正常的平均負載為 0.0 到 3.0 之間。"
+
+msgid "amCPULoadAvg_help"
+msgstr "這是在 [[VAR.mins]] 分鐘時段內等候被處理器執行的作業數。正常的平均負載為 0.0 到 3.0 之間。"
+
+msgid "amCPUUptime"
+msgstr "系統啟動時間"
+
+msgid "amCPUUptime_help"
+msgstr "這是伺服器設備已開啟並運作中的時間長度。"
+
+msgid "days"
+msgstr "[[VAR.val]] 天、"
+
+msgid "hours"
+msgstr "[[VAR.val]] 小時、"
+
+msgid "minutes"
+msgstr "[[VAR.val]] 分鐘"
+
+msgid "day"
+msgstr "[[VAR.val]] 天、"
+
+msgid "hour"
+msgstr "[[VAR.val]] 小時、"
+
+msgid "minute"
+msgstr "[[VAR.val]] 分鐘"
+
+msgid "amCPUTemp"
+msgstr "CPU 溫度"
+
+msgid "amCPUTemp_help"
+msgstr "這是目前處理器的溫度（攝氏）。而一般處理器正常的溫度應介於 30 到 60 度之間。"
+
+msgid "degrees"
+msgstr "[[VAR.val]] 度"
+
+msgid "amMemoryName"
+msgstr "記憶體用量"
+
+msgid "amMemDetails"
+msgstr "記憶體用量明細"
+
+msgid "amMemWarning"
+msgstr "正在[[VAR.status]]使用系統記憶體。"
+
+msgid "amMemStats"
+msgstr "記憶體用量統計值"
+
+msgid "amMemTotal"
+msgstr "實體記憶體總計"
+
+msgid "amMemTotal_help"
+msgstr "這是系統上可用的實際記憶體總計。"
+
+msgid "amMemFree"
+msgstr "可用的實體記憶體"
+
+msgid "amMemFree_help"
+msgstr "這是系統上可用的實際記憶體數。"
+
+msgid "amSwapTotal"
+msgstr "替換空間總計"
+
+msgid "amSwapTotal_help"
+msgstr "這是系統上可用的替換空間總計。"
+
+msgid "amSwapFree"
+msgstr "可用的替換空間"
+
+msgid "amSwapFree_help"
+msgstr "這是系統上可用的替換空間數。"
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "amMemUsed"
+msgstr "記憶體用量"
+
+msgid "amMemUsed_help"
+msgstr "這是系統正在使用的實體或實際記憶體數。全時使用大部份的實際記憶體是正常的。"
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB（為全部的 [[VAR.pcnt]] %）"
+
+msgid "amSwapUsed"
+msgstr "替換記憶體用量"
+
+msgid "amSwapUsed_help"
+msgstr "這是系統正在使用的替換或虛擬記憶體數。即使在仍有實際記憶體可用的情況下，全時使用部份的替換記憶體仍是正常的。"
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] （全部的 [[VAR.pcnt]] %)"
+
+msgid "amKey"
+msgstr "鍵值："
+
+msgid "amKeyGrey"
+msgstr "沒有資訊或未啟用監控"
+
+msgid "amKeyGreen"
+msgstr "正常"
+
+msgid "amKeyYellow"
+msgstr "問題"
+
+msgid "amKeyRed"
+msgstr "嚴重問題"
+
+msgid "amUpdateNow"
+msgstr "立即檢查狀態"
+
+msgid "amUpdateNowConfirm"
+msgstr "您確定要立即檢查狀態嗎？這項作業可能要花費數分鐘。"
+
+msgid "amUpdateNow_help"
+msgstr "按一下此處，可立即開始更新系統和服務狀態資訊。這項作業可能費時長達數分鐘，並將在背景中進行。"
+
+msgid "amUpdateNow_disabledHelp"
+msgstr "目前正在更新系統狀態。"
+
+msgid "amDetailNoName"
+msgstr "很抱歉，在產生此頁面時發生問題；變數 'name' 尚未定義。"
+
+msgid "capgroup_adminActiveMonitor"
+msgstr "管理活動監控"
+
+msgid "capgroup_adminActiveMonitor_help"
+msgstr "這個管理權限允許使用者監視動態監控的設定及狀態。一旦授予此能力後\
+，雖然不會自動將使用者加入' [[base-am.alertEmailList]]' 清單，但使用者仍可將自己\
+加入清單內。"
+

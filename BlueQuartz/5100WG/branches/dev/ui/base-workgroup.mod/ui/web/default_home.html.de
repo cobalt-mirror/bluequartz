@@ -1,0 +1,59 @@
+<HTML>
+<HEAD>
+<!-- locale-sensitive -->
+	<TITLE>Willkommen</TITLE>
+</HEAD>
+<!-- locale-sensitive -->
+<BODY BGCOLOR="#FFFFFF" LINK="#333399" ALINK="#66CC00" VLINK="#0033CC" STYLE="font-family:sans-serif;">
+	<BR>
+	<BR><BR>
+	<DIV ALIGN="center">
+	<TABLE BORDER="0" WIDTH="650">
+		<TR>
+			<TD VALIGN="top" WIDTH="387">
+				<!-- locale-sensitive -->
+				<FONT FACE="Helvetica, Arial, Sans-Serif">
+				<BR>
+				<!-- locale-sensitive -->
+				<FONT SIZE="5" COLOR="#000099"><B>Willkommen beim Sun Cobalt Qube&nbsp;3</B></FONT>
+				<BR>
+				<BR>
+				<BR>
+				<!-- locale-sensitive -->
+				Der Sun Cobalt Qube bietet Benutzern leistungsstarke Kommunikations-
+                    und Kollaborationsdienste.<BR>
+				<P>
+				<!-- locale-sensitive -->
+
+Melden Sie sich bei Ihrem Qube an, indem Sie auf den Link klicken
+                    oder die URL eingeben. 
+<BR>
+<A HREF="/login/">http://&lt;your.host.domain&gt;/login/</A> <BR>
+
+<FONT SIZE="-1"><I>
+                    (Ersetzen Sie  "&lt;your.host.domain&gt;" mit dem Host-Namen oder der
+                    IP-Adresse Ihres Qube).
+</I></FONT>
+
+				<BR>
+				<BR>
+				<BR>
+				<P>
+				<!-- locale-sensitive -->
+				<FONT SIZE="4" COLOR="#000099"><B>Wichtige Information</B></FONT><BR>
+
+Diese Seite ist ein Platzhalter für die Homepage Ihrer eigenen
+                    Website und kann leicht durch Ihre eigene Seite ersetzt werden.
+                    Übertragen Sie einfach Ihren neuen Inhalt in das Verzeichnis
+
+<B>/home/groups/home/web</B></FONT>
+			</TD>
+			
+			<TD VALIGN="top" WIDTH="263">
+				<IMG SRC="splashDefaultWeb.jpg" ALT="Qube 3" WIDTH="263" HEIGHT="263" ALIGN="right">
+			</TD>
+		</TR>
+	</TABLE>
+	</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+# The following are the strings used for the menu.
+
+msgid "pkgName"
+msgstr "Sun Cobalt Web Cache"
+
+msgid "pkgVendor"
+msgstr "Sun Cobalt Networks"
+
+msgid "pkgDescription"
+msgstr "Das [[base-cache.pkgName]]-Paket verbessert die Netzwerkleistung, indem oft aufgerufene Webseiten im Cache-Speicher zwischengespeichert werden."
+
+msgid "cache"
+msgstr "Web Caching"
+
+msgid "cache_description"
+msgstr "Hier können Sie [[base-cache.modifyCache]] ändern."
+
+# The following are the strings used for the modification screen.
+
+msgid "modifyCache"
+msgstr "Web Caching-Einstellungen"
+
+msgid "enabled"
+msgstr "Server aktivieren"
+
+msgid "enabled_help"
+msgstr "Aktivieren oder deaktivieren Sie die Web Caching-Funktion. Ist die Funktion aktiviert, fungiert dieser Server als Proxy-Caching-Server für Web-Clients. Dadurch können die Geschwindigkeit der Web-Abfragen erhöht und Bandbreitenanforderungen verringert werden. Um diese Funktion zu nutzen, müssen Web-Browser so konfiguriert sein, dass sie diesen Server als HTTP-Proxy verwenden. Die Proxy-Portnummer muss auf 3128 eingestellt sein."
+
+# The following are used by the handler.
+
+msgid "no_system_object"
+msgstr "Leider trat ein Fehler auf. Das Systemobjekt wurde nicht gefunden."
+
+msgid "no_prim_network_object"
+msgstr "Leider trat ein Fehler auf. Das Netzwerkobjekt für die primäre Schnittstelle wurde nicht gefunden."
+
+# Active Monitor Strings
+
+msgid "amNameTag"
+msgstr "Web Caching-Server"
+
+msgid "amStatusOK"
+msgstr "Der [[base-cache.amNameTag]] arbeitet normal."
+
+msgid "amNotRunning"
+msgstr "Der [[base-cache.amNameTag]] ist nicht in Betrieb."
+
+msgid "amDetailsTitle"
+msgstr "Web Caching-Server-Details"
+
+# Capabilities
+
+msgid "capgroup_adminWebCache"
+msgstr "Verwaltung von Web-Caching und Web-Zugriff"
+
+msgid "capgroup_adminWebCache_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, die vom Web-Caching verwendeten Einstellungen zu ändern."

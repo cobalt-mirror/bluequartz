@@ -1,0 +1,124 @@
+# This is not a shell script; it provides functions to network scripts
+# that source it.
+
+# START HARDCODED PATHS
+CCECLIENT=/usr/sausalito/bin/cceclient
+AUTO_CONF_SCRIPT="/etc/sysconfig/network-scripts/autoconf-net"
+SELECT_LANGUAGE=/usr/sausalito/sbin/selectLanguage
+
+. /etc/rc.d/init.d/functions
+# END HARDCODED PATHS
+
+DOMAIN=base-sys
+
+source_config ()
+{
+    DEVNAME=`basename $CONFIG | sed 's/^ifcfg-//g'`
+
+    . $CONFIG
+    if basename $CONFIG | grep -q '[^g]-' ; then
+	PARENTCONFIG=`echo $CONFIG | sed 's/-[^-]*$//g'`
+	PARENTDEVNAME=`echo $PARENTCONFIG | sed 's/^ifcfg-//g'`
+	[ -f $PARENTCONFIG ] || {
+	    echo "Missing config file $PARENTCONFIG." >&2
+	    exit 1
+	}
+	. $PARENTCONFIG
+    fi
+}
+
+# tries for 60 seconds to get network setup via DHCP
+# the /var/state/dhcp/LEASED file will flag if this was a success
+function send_dhcp_request {
+            # Send a DHCP request...
+            echo -n "Trying DHCP on ${DEVICE}..."
+            rm -f /var/state/dhcp/LEASED
+            DOMAIN=base-sys
+	    LINE1=`getmsg looking_for`
+	    LINE2=`getmsg dhcp_server`
+	    $LCD_STOP  &>/dev/null 
+	    $LCD_SWRITE -s "$LINE1" "$LINE2" &>/dev/null &
+            kill_process_description "dhclient -cf /etc/dhclient.conf.${DEVICE} ${DEVICE}" -TERM
+            /sbin/dhclient -cf /etc/dhclient.conf.${DEVICE} ${DEVICE} &
+            COUNT=0
+            while [ $COUNT -le 60 ]; do
+              [ -f /var/state/dhcp/LEASED ] && break
+              sleep 1
+              COUNT=$((COUNT+1))
+            done
+            if [ ! -f /var/state/dhcp/LEASED ]; then
+                kill_process_description "dhclient -cf /etc/dhclient.conf.${DEVICE} ${DEVICE}" -TERM
+            fi
+}
+
+# runs lcdstart to setup ip/nm/gw via lcd until successful
+function get_ip_from_lcd   {
+        rm -f /etc/NET-CONFIG
+        while [ ! -f /etc/NET-CONFIG ]; do
+                ifconfig ${DEVICE} down
+                /sbin/lcdstart -b
+        done
+        IPSETUP=yes
+
+}
+
+# this checks if there is a network link
+# sets $LINKSTATUS = 1 if link is on eth0
+function check_for_link {
+	LINKSTATUS=1
+}
+
+# Returns 1 to halt, 2 to connect
+function halt_or_connect {
+	LINE1=`getmsg no_net_found`
+	LINE2=`getmsg halt_or_connect`
+	/sbin/lcd-yesno -s -y 41 -n 48 -1 "$LINE1" -2 "$LINE2"
+	echo $?
+}
+
+# halts the machine; tries to halt via CCE. If can't, does it using shutdown
+function do_halt {
+	LINE1=`getmsg halting`
+	LINE2=`getmsg system`
+	$LCD_STOP
+	$LCD_SWRITE -s "$LINE1" "$LINE2" &>/dev/null &
+
+	SYSOID=`echo "find System" | $CCECLIENT  | grep 104 | cut -f 3 -d " "`
+
+	# if couldn't find System object, shutdown manually
+	if [ -z $SYSOID ]; then
+		shutdown -h now
+	else
+        	echo "set $SYSOID halt = \"1\"" | $CCECLIENT > /dev/null 2>&1
+	fi
+
+	# sleep and give halt time to kick in
+	sleep 120
+	exit 1;
+}
+
+# asks user via lcd if they'd like to autoconfigure the network
+# sets $AUTOCONFIGURE to 1 if yes, 2 if no
+function autoconfigure_yes_no {
+        if [ -x $AUTO_CONF_SCRIPT ]; then
+		LINE1=`getmsg autoconfigure`
+		LINE2=`getmsg net_yes_no`
+        	/sbin/lcd-yesno -s -y 46 -n 4C -1 "$LINE1" -2 "$LINE2"
+		AUTOCONFIGURE=$?  
+	else
+		AUTOCONFIGURE=2
+	fi
+}
+
+# automatically configures the network by calling the autoconfigure script
+function autoconfigure_network {
+	$AUTO_CONF_SCRIPT
+        if [ $? -eq 0 ]; then
+        	IPSETUP=yes
+        fi
+}
+
+# ask the user which locale to use
+function select_language {
+	$SELECT_LANGUAGE
+}

@@ -1,0 +1,9 @@
+<item
+    id="base_server_webalizer"
+    label="Webalizer"
+    description="Webalizer Statistics."
+    url="/base/sitestats/webalizer.php?group=server" >
+    <parent id="base_serverusage" order="15">
+        <access require="adminUser"/>
+    </parent>
+</item>

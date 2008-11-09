@@ -1,0 +1,227 @@
+msgid "ups"
+msgstr "UPS"
+
+msgid "upsSettings"
+msgstr "UPS ¤ÎÀßÄê"
+
+msgid "version"	
+msgstr "¥Ð¡¼¥¸¥ç¥ó 1.0"
+
+msgid "upsDescription"
+msgstr "ÌµÄäÅÅÅÅ¸»ÁõÃÖ (UPS) ¤òÀßÄê¤Ç¤­¤Þ¤¹Ž¡"
+
+msgid "stateField"
+msgstr "UPS ¥ª¥×¥·¥ç¥ó"
+
+msgid "stateField_help"
+msgstr "Ìµ¸ú¤Ë¤¹¤ë¤«¡¢¥Þ¥¹¥¿¡¼¤Þ¤¿¤Ï¥¹¥ì¡¼¥Ö¤È¤·¤ÆÍ­¸ú¤Ë¤·¤Æ¤¯¤À¤µ¤¤Ž¡¥Þ¥¹¥¿¡¼ÀßÄê¤Ç¤Ï¡¢UPS ¤òÂè 2 ¤Î¥·¥ê¥¢¥ë¥Ý¡¼¥È¤ËÄ¾ÀÜÀÜÂ³¤·¤Æ¤¯¤À¤µ¤¤Ž¡¥¹¥ì¡¼¥Ö¤Ï¡¢UPS ¾å¤Î¾ðÊó¤Ë¤Ä¤¤¤Æ¥Þ¥¹¥¿¡¼¤ÈÄÌ¿®¤·¤Þ¤¹Ž¡"
+
+msgid "macsField"
+msgstr "¥¹¥ì¡¼¥Ö MAC ¥¢¥É¥ì¥¹"
+
+msgid "macsField_help"
+msgstr "Wake On LAN ¥Þ¥¸¥Ã¥¯¥Ñ¥±¥Ã¥È¤ò¼õ¿®¤¹¤ë MAC ¥¢¥É¥ì¥¹¤Î¥ê¥¹¥È¤Ç¤¹Ž¡³Æ¥¹¥ì¡¼¥Ö¥Þ¥·¥ó¤Î \"[[base-power.poweroptions_menu]]\" ¥á¥Ë¥å¡¼¤Ç¡¢¤³¤ÎÀßÄê¤òÍ­¸ú¤Ë¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Þ¤¹Ž¡"
+
+msgid "masteripField"
+msgstr "¥Þ¥¹¥¿¡¼¤Î IP ¥¢¥É¥ì¥¹"
+
+msgid "masteripField_help"
+msgstr "¤³¤Î¥¹¥ì¡¼¥Ö¤¬»È¤¦¥Þ¥¹¥¿¡¼¤Î IP ¥¢¥É¥ì¥¹¤Ç¤¹Ž¡"
+
+msgid "wakeSlavesField"
+msgstr "ÅÅ¸»Éüµì»þ¤Ë¥¹¥ì¡¼¥Ö¤òµ¯Æ°"
+
+msgid "wakeSlavesField_help"
+msgstr "¤³¤Î¥Þ¥¹¥¿¡¼¤¬¡¢ÅÅ¸»Éüµì»þ¤Ë Wake On LAN ¥Þ¥¸¥Ã¥¯¥Ñ¥±¥Ã¥È¤ò³Æ¥¹¥ì¡¼¥Ö¤ËÁ÷¿®¤¹¤ë¤è¤¦ÀßÄê¤Ç¤­¤Þ¤¹Ž¡³Æ¥¹¥ì¡¼¥Ö¥Þ¥·¥ó¤Î \"[[base-power.poweroptions_menu]]\" ¥á¥Ë¥å¡¼¤Ç¡¢¤³¤ÎÀßÄê¤òÍ­¸ú¤Ë¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Þ¤¹Ž¡"
+
+msgid "wakeDelayField"
+msgstr "¥¹¥ì¡¼¥Ö¤Îµ¯Æ°´Ö³Ö (ÉÃ)"
+
+msgid "wakeDelayField_help"
+msgstr "³Æ¥¹¥ì¡¼¥Ö¥Þ¥·¥ó¤¬µ¯Æ°¤¹¤ë´Ö³Ö¤ò 0 ¡Á 300 ÉÃ¤Î´Ö¤Ç»ØÄê¤·¤Æ¤¯¤À¤µ¤¤Ž¡¥Ç¥Õ¥©¥ë¥ÈÃÍ¤Ï 30 ÉÃ¤Ç¤¹Ž¡"
+
+msgid "disabled"
+msgstr "Ìµ¸ú"
+
+msgid "master"
+msgstr "¥Þ¥¹¥¿¡¼¤È¤·¤ÆÀßÄê"
+
+msgid "slave"
+msgstr "¥¹¥ì¡¼¥Ö¤È¤·¤ÆÀßÄê"
+
+msgid "cantSysconf"
+msgstr "/etc/sysconfig/ups ¤òÊÔ½¸¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿Ž¡"
+
+msgid "cantUPSMONconf"
+msgstr "/etc/ups/upsmon.conf ¤òÊÔ½¸¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿Ž¡"
+
+msgid "cantUPSDconf"
+msgstr "/etc/ups/upsd.conf ¤òÊÔ½¸¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿Ž¡"
+
+msgid "cantmacfile"
+msgstr "/etc/ups/wol-macs ¤È¤¤¤¦ MAC ¥Õ¥¡¥¤¥ë¤òÊÔ½¸¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿Ž¡"
+
+msgid "masterisinvalid"
+msgstr "»ØÄê¤µ¤ì¤¿¥Þ¥¹¥¿¡¼¥¢¥É¥ì¥¹¤ÏÉÔÀµ¤Ç¤¹Ž¡"
+
+msgid "masterislocal"
+msgstr "¥Þ¥·¥ó¤ËÂÐ¤·¤Æ¥í¡¼¥«¥ë¤Î¥Þ¥¹¥¿¡¼¥¢¥É¥ì¥¹¤¬»ØÄê¤µ¤ì¤Þ¤·¤¿Ž¡¤³¤Î¥·¥¹¥Æ¥à¤ò¡¢¥Þ¥¹¥¿¡¼¤È¥¹¥ì¡¼¥Ö¤ÎÎ¾Êý¤ËÀßÄê¤¹¤ë¤³¤È¤Ï¤Ç¤­¤Þ¤»¤óŽ¡"
+
+msgid "masterisempty"
+msgstr "¥¹¥ì¡¼¥Ö¤È¤·¤ÆÀßÄê¤·¤Þ¤·¤¿¤¬¡¢¥Þ¥¹¥¿¡¼¤È¤·¤ÆÀßÄê¤µ¤ì¤Æ¤¤¤ë¥Þ¥·¥ó¤¬¤¢¤ê¤Þ¤»¤óŽ¡¥Þ¥¹¥¿¡¼¤Î IP ¥¢¥É¥ì¥¹¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤Ž¡"
+
+# For Active Monitor
+msgid "amUPSNameTag"
+msgstr "UPS"
+
+msgid "amUPSStats"
+msgstr "UPS ¤Î¾õÂÖ"
+
+msgid "amUPSDetails"
+msgstr "UPS ¤Î¾ÜºÙ"
+
+msgid "amUPSBattPct"
+msgstr "[[VAR.val]]%"
+
+msgid "amUPSBattLevel"
+msgstr "¥Ð¥Ã¥Æ¥ê¤Î¥ì¥Ù¥ë"
+
+msgid "amUPSBattLevel_help"
+msgstr "¥Ð¥Ã¥Æ¥ê¤Î½¼ÅÅ¥Ñ¡¼¥»¥ó¥È¤Ç¤¹Ž¡"
+
+msgid "amUPSStatusOFF"
+msgstr "¥ª¥Õ"
+
+msgid "amUPSStatusOL"
+msgstr "¥ª¥ó¥é¥¤¥ó"
+
+msgid "amUPSStatusOB"
+msgstr "¥Ð¥Ã¥Æ¥ê"
+
+msgid "amUPSStatusLB"
+msgstr "Äã¥Ð¥Ã¥Æ¥ê"
+
+msgid "amUPSStatusCAL"
+msgstr "¥­¥ã¥ê¥Ö¥ì¡¼¥·¥ç¥óÃæ"
+
+msgid "amUPSStatusTRIM"
+msgstr "ÆþÎÏÅÅ°µ¤Î¥È¥ê¥àÃæ"
+
+msgid "amUPSStatusBOOST"
+msgstr "ÆþÎÏÅÅ°µ¤ÎÁýÉýÃæ"
+
+msgid "amUPSStatusOVER"
+msgstr "²áÉé²Ù"
+
+msgid "amUPSStatusRB"
+msgstr "¥Ð¥Ã¥Æ¥êÍ×¸ò´¹"
+
+msgid "amUPSStatusFSD"
+msgstr "¶¯À©¥·¥ã¥Ã¥È¥À¥¦¥ó¾õÂÖ"
+
+msgid "amUPSStatus"
+msgstr "UPS ¤Î¾õÂÖ"
+
+msgid "amUPSStatus_help"
+msgstr "UPS ¤Î¾õÂÖ¡¢¥ª¥ó¥é¥¤¥ó (ÄÌÅÅÃæ)¡¢¥Ð¥Ã¥Æ¥ê¤ÇÆ°ºîÃæ¡¢ÉÔÌÀ¤Î¾õÂÖ¤Ê¤É¤ò¼¨¤·¤Þ¤¹Ž¡"
+
+msgid "amCantConnect"
+msgstr "UPS ¥Ç¡¼¥â¥ó¤ËÀÜÂ³¤Ç¤­¤Þ¤»¤óŽ¡"
+
+msgid "amOnBattery"
+msgstr "UPS ¤ÏÅÅÎÏ¤ò¼º¤¤¡¢¥Ð¥Ã¥Æ¥ê¤ÇÆ°ºîÃæ¤Ç¤¹Ž¡UPS ¤ÎÅÅ¸»¤¬¡¢ÊÉ¤Î¥³¥ó¥»¥ó¥È¤ËÀµ¤·¤¯ÀÜÂ³¤µ¤ì¤Æ¤ª¤ê¡¢ÅÅ¸»¤Ë¤ÏÌäÂê¤¬¤Ê¤¤¤³¤È¤ò¤´³ÎÇ§¤¯¤À¤µ¤¤Ž¡"
+
+msgid "amBatteryLow"
+msgstr "UPS ¤Î¥Ð¥Ã¥Æ¥ê¥ì¥Ù¥ë¤Ï¡¢[[VAR.level]] ¥Ñ¡¼¥»¥ó¥È°Ê²¼¤Ë²¼¤¬¤ê¤Þ¤·¤¿Ž¡"
+
+msgid "amAllOK"
+msgstr "UPS ¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Þ¤¹Ž¡"
+
+# LCD
+msgid "lcdenable1"
+msgstr "UPS:"
+
+msgid "lcdenable2"
+msgstr " [ ]µÝ  [ ]µÌ"
+
+msgid "lcdstate1"
+msgstr "UPS É ¾¯Ã²"
+
+msgid "lcdstate2"
+msgstr "[M]Ï½À° [S]½Ú°ÌÞ"
+
+msgid "lcdmasterip"
+msgstr "Ï½À°IPÉ Æ­³Ø®¸:"
+
+msgid "lcdbadset1"
+msgstr "Ì¾²Å IP±ÄÞÚ½¦"
+
+msgid "lcdbadset2"
+msgstr "Æ­³Ø®¸ ¼Ï¼À"
+
+msgid "lcdsavecancel1"
+msgstr "[S]Î¿ÞÝ/[C]·¬Ý¾Ù"
+
+msgid "lcdsavecancel2"
+msgstr " "
+
+msgid "lcdtryagain"
+msgstr "Ó³²ÁÄÞ ººÛÐÏ½¶?"
+
+msgid "lcdyesno"
+msgstr "  [Y]Ê²  [N]²²´"
+
+msgid "lcdsaving1"
+msgstr "¾¯Ã²¦ Î¿ÞÝ¼Ã²Ï½ "
+
+msgid "lcdsaving2"
+msgstr "¼ÊÞ×¸ µÏÁ¸ÀÞ»² ... "
+
+msgid "CONFIGURE UPS"
+msgstr "   UPS É ¾¯Ã²   "
+
+msgid "UPS"
+msgstr " "
+
+msgid "Setting up"
+msgstr "UPS ¦ ¾¯Ã² ¼Ã²Ï½"
+
+msgid "Shutting down"
+msgstr "UPS ¦ Ã²¼ ¼Ã²Ï½ "
+
+# Email
+msgid "emailSTATUSCHANGE"
+msgstr "UPS ¤Î¾õÂÖ¤¬ÊÑ¹¹¤µ¤ì¤Þ¤·¤¿:"
+
+msgid "emailSUBJECT"
+msgstr "UPS ¤Î¾õÂÖ¤ÎÊÑ¹¹"
+
+msgid "emailONLINE"
+msgstr "UPS ¤Ï¥ª¥ó¥é¥¤¥ó¤ËÉüµì¤·¤Æ¤¤¤Þ¤¹Ž¡"
+
+msgid "emailONBATT"
+msgstr "UPS ¤Ï¥Ð¥Ã¥Æ¥ê¤ÇÆ°ºîÃæ¤Ç¤¹Ž¡"
+
+msgid "emailLOWBATT"
+msgstr "UPS ¤Ï¥Ð¥Ã¥Æ¥ê¤ÇÆ°ºîÃæ¤Ç¡¢Äã¥Ð¥Ã¥Æ¥ê¤Ë¤Ê¤Ã¤Æ¤¤¤Þ¤¹¡£"
+
+msgid "emailFSD"
+msgstr "UPS ¤Ï¥Þ¥¹¥¿¡¼¤Ë¤è¤Ã¤Æ¥·¥ã¥Ã¥È¥À¥¦¥ó¤µ¤ì¤Æ¤¤¤Þ¤¹Ž¡"
+
+msgid "emailCOMMOK"
+msgstr "UPS ¤ò»È¤Ã¤Æ³ÎÎ©¤µ¤ì¤¿ÄÌ¿®"
+
+msgid "emailCOMMBAD"
+msgstr "UPS ¤Ë¼º¤ï¤ì¤¿ÄÌ¿®"
+
+msgid "emailSHUTDOWN"
+msgstr "¥·¥¹¥Æ¥à¤ò¥·¥ã¥Ã¥È¥À¥¦¥ó¤·¤Æ¤¤¤Þ¤¹Ž¡"
+
+msgid "emailREPLBATT"
+msgstr "UPS ¥Ð¥Ã¥Æ¥ê¤¬ÉÔÎÉ¤Î¤¿¤á¡¢¸ò´¹¤¬É¬Í×¤Ç¤¹Ž¡"
+
+msgid "emailNOCOMM"
+msgstr "´Æ»ë¤Î¤¿¤á¤Ë UPS ¤ËÀÜÂ³¤Ç¤­¤Þ¤»¤óŽ¡"
+
+msgid "emailGOINGDOWN"
+msgstr "¤³¤Î¥·¥¹¥Æ¥à¤Ï¥·¥ã¥Ã¥È¥À¥¦¥ó¤µ¤ì¤Æ¤¤¤Þ¤¹Ž¡"

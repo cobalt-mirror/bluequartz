@@ -1,0 +1,43 @@
+<?php
+// $Id: 30_PHP.php.modifyWeb.Vsite,v 1.1 2001/11/05 08:08:12 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+
+include('UIExtension.php');
+
+class PHPExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$cce = $ServerScriptHelper->getCceClient();
+
+		// will assume the container is a PagedBlock for the time being
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-apache");
+
+		$featurePHP = $cce->get($parameters['CCE_OID'], 'PHP');
+
+		if ($parameters['IS_SITE_ADMIN']) {
+			if ( $featurePHP['enabled'] )
+				$container->addFormField(
+					$factory->getBoolean('php', $featurePHP['enabled'], 'r'),
+					$factory->getLabel('php'), $page_id
+					);
+		} else {
+				$container->addFormField(
+					$factory->getBoolean('php', $featurePHP['enabled'], 'rw'),
+					$factory->getLabel('php'), $page_id
+					);
+		}
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+    global $php;
+		$cce = $ServerScriptHelper->getCceClient();
+
+    $cce->set($parameters['CCE_OID'], 'PHP', array('enabled' => $php));
+    $errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

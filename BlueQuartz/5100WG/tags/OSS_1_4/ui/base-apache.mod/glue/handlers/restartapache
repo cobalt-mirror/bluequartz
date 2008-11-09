@@ -1,0 +1,13 @@
+#!/bin/sh
+# $Id: restartapache 3 2003-07-17 15:19:15Z will $
+#
+# signal apache to reload it's configuration files.
+
+/etc/httpd/conf/conf_assemble > /dev/null
+/etc/rc.d/init.d/httpd restart > /dev/null
+
+# what if i just don't?
+# /etc/rc.d/init.d/admserv restart >> /tmp/httpd.restart
+
+echo BYE SUCCESS
+#cat > /dev/null

@@ -1,0 +1,255 @@
+# Menu
+
+msgid "webUsage"
+msgstr "Web"
+
+msgid "webstatMenuDesc"
+msgstr "Hier können Sie die Webserver-Nutzungsstatistik finden."
+
+# Page Selector & Table Headers
+
+msgid "noStats"
+msgstr "Die Statistik ist leider momentan nicht verfügbar."
+
+msgid "notAvailable"
+msgstr "Nicht verfügbar"
+
+msgid "selectStat"
+msgstr "Statistik auswählen..."
+
+msgid "webtotals"
+msgstr "Zusammenfassung"
+
+msgid "webtotals_header"
+msgstr "Web-Nutzung - Zusammenfassung"
+
+msgid "webbyip"
+msgstr "Aktivste Anforderer"
+
+msgid "webbyip_header"
+msgstr "Web-Nutzung - Aktivste Anforderer"
+
+msgid "webbyfile"
+msgstr "Am meisten angeforderte Seiten"
+
+msgid "webbyfile_header"
+msgstr "Web-Nutzung - Am meisten angeforderte Seiten"
+
+msgid "webbyref"
+msgstr "Am häufigsten verweisende Seiten"
+
+msgid "webbyref_header"
+msgstr "Web-Nutzung - Am häufigsten verweisende Seiten"
+
+msgid "webbyhour"
+msgstr "Anforderungen pro Stunde"
+
+msgid "webbyhour_header"
+msgstr "Web-Nutzung - Anforderungen pro Stunde"
+
+msgid "webbydate"
+msgstr "Anforderungen pro Tag"
+
+msgid "webbydate_header"
+msgstr "Web-Nutzung - Anforderungen pro Tag"
+
+# Page Details
+# Summary
+
+msgid "genDate"
+msgstr "Letzte Überprüfung der Nutzung"
+
+msgid "genDate_help"
+msgstr "Die zuletzt erstellte Web-Nutzungsstatistik."
+
+msgid "periodStart"
+msgstr "Berichtszeitraum (Von)"
+
+msgid "periodStart_help"
+msgstr "Der Beginn des Zeitraums, den diese Web-Nutzungsstatistik abdeckt."
+
+msgid "periodEnd"
+msgstr "Berichtszeitraum (Bis)"
+
+msgid "periodEnd_help"
+msgstr "Das Ende des Zeitraums, den diese Web-Nutzungsstatistik abdeckt."
+
+msgid "totalHits"
+msgstr "Anforderungen insgesamt"
+
+msgid "totalHits_help"
+msgstr "Die Gesamtzahl der Web-Anforderungen oder Treffer während des Berichtszeitraums."
+
+msgid "badHits"
+msgstr "Anzahl fehlerhafter Anforderungen"
+
+msgid "badHits_help"
+msgstr "Die Anzahl der fehlerhaften Web-Anforderungen oder Treffer während des Berichtszeitraums. Dies sind Anforderungen für Webseiten, die aus verschiedenen Gründen nicht erfüllt werden können. Zum Beispiel können dies Anforderungen für Webseiten sein, die auf diesem Webserver nicht vorhanden sind."
+
+msgid "numIPs"
+msgstr "Anzahl der einzelnen anfordernden Computer"
+
+msgid "numIPs_help"
+msgstr "Die Anzahl der einzelnen Computer, die während des Berichtszeitraums Webseiten angefordert haben."
+
+msgid "numFiles"
+msgstr "Anzahl einzelner angeforderter Seiten"
+
+msgid "numFiles_help"
+msgstr "Die Anzahl der einzelnen Webseiten, die während des Berichtszeitraums angefordert wurden."
+
+msgid "numRefs"
+msgstr "Anzahl einzelner verweisender Seiten"
+
+msgid "numRefs_help"
+msgstr "Die Anzahl der einzelnen verweisenden Seiten während des Berichtszeitraums. Verweisende Seiten sind Webseiten, die Hyperlinks zu den Webseiten auf diesem Webserver enthalten."
+
+msgid "numBytes"
+msgstr "Anzahl der heruntergeladenen Bytes"
+
+msgid "numBytes_help"
+msgstr "Die Anzahl der Bytes, die während des Berichtszeitraums heruntergeladen wurden."
+
+# Most Active Requesters
+
+msgid "hostname"
+msgstr "Name des Anforderers"
+
+msgid "hostname_help"
+msgstr "Der Hostname des Computers, der Webseiten von diesem Webserver angefordert hat."
+
+msgid "hits"
+msgstr "Anforderungen"
+
+msgid "hits_help"
+msgstr "Die Anzahl der vom anfordernden Computer generierten Web-Anforderungen oder Treffer."
+
+msgid "referrer"
+msgstr "Verweisende Seite"
+
+msgid "referrer_help"
+msgstr "Die Webseite, die den Anforderer auf die Webseiten auf diesem Webserver verwiesen hat."
+
+# Most Requested Pages
+
+msgid "file"
+msgstr "Seite"
+
+msgid "file_help"
+msgstr "Die Webseite, die vom Anforderer angefordert wird."
+
+msgid "pagehits"
+msgstr "Anforderungen"
+
+msgid "pagehits_help"
+msgstr "Die Anzahl der Web-Anforderungen oder Treffer für diese Webseite."
+
+# Most Frequent Referring Pages
+
+msgid "refhits"
+msgstr "Anforderungen"
+
+msgid "refhits_help"
+msgstr "Die Anzahl der Web-Anforderungen oder Treffer von dieser verweisenden Seite."
+
+# Hourly Requests
+
+msgid "00_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen Mitternacht und 1 Uhr aufgezeichnet wurden."
+
+msgid "01_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 1 und 2 Uhr aufgezeichnet wurden."
+
+msgid "02_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 2 und 3 Uhr aufgezeichnet wurden."
+
+msgid "03_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 3 und 4 Uhr aufgezeichnet wurden."
+
+msgid "04_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 4 und 5 Uhr aufgezeichnet wurden."
+
+msgid "05_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 5 und 6 Uhr aufgezeichnet wurden."
+
+msgid "06_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 6 und 7 Uhr aufgezeichnet wurden."
+
+msgid "07_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 7 und 8 Uhr aufgezeichnet wurden."
+
+msgid "08_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 8 und 9 Uhr aufgezeichnet wurden."
+
+msgid "09_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 9 und 10 Uhr aufgezeichnet wurden."
+
+msgid "10_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 10 und 11 Uhr aufgezeichnet wurden."
+
+msgid "11_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 11 und 12 Uhr aufgezeichnet wurden."
+
+msgid "12_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 12 und 13 Uhr aufgezeichnet wurden."
+
+msgid "13_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 13 und 14 Uhr aufgezeichnet wurden."
+
+msgid "14_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 14 und 15 Uhr aufgezeichnet wurden."
+
+msgid "15_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 15 und 16 Uhr aufgezeichnet wurden."
+
+msgid "16_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 16 und 17 Uhr aufgezeichnet wurden."
+
+msgid "17_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 17 und 18 Uhr aufgezeichnet wurden."
+
+msgid "18_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 18 und 19 Uhr aufgezeichnet wurden."
+
+msgid "19_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 19 und 20 Uhr aufgezeichnet wurden."
+
+msgid "20_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 20 und 21 Uhr aufgezeichnet wurden."
+
+msgid "21_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 21 und 22 Uhr aufgezeichnet wurden."
+
+msgid "22_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 22 und 23 Uhr aufgezeichnet wurden."
+
+msgid "23_help"
+msgstr "Die Anzahl der Web-Anforderungen, die zwischen 23 Uhr und Mitternacht aufgezeichnet wurden."
+
+# Daily Requests
+
+msgid "date"
+msgstr "Datum"
+
+msgid "date_help"
+msgstr "Das Datum, an dem die Web-Anforderungen oder Treffer erzeugt wurden."
+
+msgid "dayhits"
+msgstr "Anforderungen"
+
+msgid "dayhits_help"
+msgstr "Die Anzahl der Web-Anforderungen oder Treffer an diesem Datum."
+
+# Button
+
+msgid "resetStats"
+msgstr "Statistik zurücksetzen"
+
+msgid "resetStats_help"
+msgstr "Klicken Sie hier, um die gesamte Web-Nutzungsstatistik zurückzusetzen und mit der Erfassung statistischer Daten neu zu beginnen."
+
+msgid "askResetConfirmation"
+msgstr "Wollen Sie die Web-Nutzungsstatistik wirklich zurücksetzen?"
+
+msgid "Unknown"
+msgstr "Unbekannt"

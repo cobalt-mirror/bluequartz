@@ -1,0 +1,32 @@
+msgid "power"
+msgstr "電源"
+
+msgid "powerHelp"
+msgstr "此處可重新啟動伺服器設備。"
+
+msgid "shutdownMessage"
+msgstr "基於安全性考量，您無法透過 web 使用者介面關閉本伺服器設備。<BR>請改用伺服器設備上的 LCD 畫面來關機。"
+
+msgid "shutdownInstructions"
+msgstr "關閉伺服器設備電源的步驟如下：<OL><LI>在 LCD 主控台上，按住「選取」按鈕約 2 秒。<BR>即顯示 LCD 螢幕：<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SETUP NETWORK</CODE><BR><BR><LI>按住「選取」按鈕，直到 POWER DOWN 出現在 LCD 螢幕中：<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POWER DOWN</CODE><BR><BR><LI>按 Enter 按鈕。<BR><BR><LI>使用箭頭按鈕，在 [Y] 與 [N] 之間輪換游標。選取 [Y] 關閉系統的電源。LCD 螢幕顯示：<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>PLEASE SWITCH POWER OFF NOW</CODE><BR><BR><LI>按下後面板上的「開關」按鈕，關閉伺服器設備。</OL>" 
+
+msgid "reboot"
+msgstr "立即重新啟動"
+
+msgid "reboot_help"
+msgstr "按一下此處，可重新啟動伺服器設備。"
+
+msgid "askRebootConfirmation"
+msgstr "您確定要重新啟動伺服器設備嗎？"
+
+msgid "rebooting"
+msgstr "現在正在重新啟動伺服器設備；稍候幾分鐘應可再度使用。"
+
+# Capabilities
+
+msgid "capgroup_adminPower"
+msgstr "管理系統電源"
+
+msgid "capgroup_adminPower_help"
+msgstr "這個管理權限可讓使用者透過 Web 介面重新啟動這台機器"
+

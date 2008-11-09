@@ -1,0 +1,226 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: ipnmgw 259 2004-01-03 06:28:40Z shibuya $
+#
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved
+#
+# This script is called when the user requests 
+# Setup Network from the LCD panel and during 
+# the first boot. It sets the
+# Primary IP address, netmask and gateway.
+# Can also be used with the console.
+
+use POSIX;
+use Getopt::Std;
+use CCE;
+use I18n;
+require LCD;
+
+use vars qw/ $opt_c $opt_s $opt_b /;
+
+my $LOCK = "/etc/locks/ipnmgw";
+(! -e $LOCK) || die "Will not start ipnmgw: lock file at $LOCK\n";
+system("/sbin/lcdstop");
+system("touch $LOCK");
+
+getopts("scbi:");
+$method = ($opt_c) ? "console" : "lcd";
+$method = ($opt_b) ? "both" : $method;
+$option = ($opt_s) ? "-s" : "";
+my $debug = 0;
+my ($pid, $cce);
+my $firstboot = 1;
+
+sub debug {
+    my @args = @_;
+
+    system("echo $args[0] ip $my_ip nm $my_nm >/dev/cua0");
+    system("/sbin/route >/dev/cua0");
+    system("/sbin/ifconfig >/dev/cua0");
+    system("/bin/ping -c 4 $my_ip >/dev/cua0");
+}
+
+# Not as intrusive as cleanup... for when the LCD is locked so that it
+# doesn't kill the process which *does* have the lock.
+sub lcd_locked_cleanup {
+    print STDERR "LCD locked by another process - try again later.\n";
+    kill USR1, $pid;
+    sleep 1;
+    $cce->bye('SUCCESS');
+    unlink $LOCK;
+    exit(2);
+}
+
+# Called when used with "both" option to kill off
+# lcd children processes and signal the other ipnmgw process to exit 
+sub cleanup {
+        unlink $LOCK;
+	$debug && print STDERR "DEBUG $$: In cleanup.\n";
+	kill USR1, $pid;
+	sleep(1);
+	open (PS, "/bin/ps -A o pid,args|");
+	while (<PS>) {
+		if ( /^\s*(\d+)\s.*lcd-/ ) {
+			kill SIGKILL, $1;
+			$debug && print STDERR "DEBUG $$: killing $1.\n";
+		}
+	}
+	close(PS);
+}
+
+# USR1 signal handler to cleanup and exit
+sub USR1HANDLE {
+	$debug && print STDERR "DEBUG $$: Caught SIGUSR1\n";
+	$cce->bye('SUCCESS') if ( $cce );
+	unlink $LOCK;
+	exit(2);
+}
+
+my $i18n = new I18n;
+$i18n->setLocale(&I18n::i18n_getSystemLocale());
+
+$firstboot = 0 if ( -e "/etc/NET-CONFIG" );
+
+# use primary interface by default
+$interface = ($opt_i) ? $opt_i : "eth0";
+
+if ( $method eq "both" || $method eq "console") {
+	system("/usr/bin/clear");
+	print $i18n->get("[[base-lcd.console_hello]]");
+}
+
+# we do both console and lcd on a fresh boot
+if ( $opt_b ) {
+	# handle signals. ignore terms on firstboot
+	$SIG{INT} = 'IGNORE';
+	$SIG{USR2} = 'IGNORE';
+
+	$SIG{TERM} = 'IGNORE';
+	$SIG{QUIT} = 'IGNORE';
+	$SIG{ABRT} = 'IGNORE';
+
+	$SIG{USR1} = \&USR1HANDLE;
+	$method = "lcd";
+
+	$pid = fork();
+	if ($pid == 0) {
+		# child
+		$pid = getppid();	
+		$method = "console";
+	} elsif ($pid < 0) {
+		print STDERR "Unable to setup network with console (ipnmgw fork error): $!\n";
+	}
+}
+
+# Get any current data and setup CCE if can't find needed objects
+$cce = new CCE;
+$cce->connectuds();
+
+my (@soids) = $cce->find("System");
+# If couldn't find one, create one.
+if (@soids == 0) {
+    $cce->create("System", { hostname => "localhost", 
+                             domainname => "localdomain" });
+    @soids = $cce->find("System");
+}
+my ($ok, $object) = $cce->get( $soids[0] );
+$my_gw = ${$object}{'gateway'} if ($ok);
+
+my (@noids) = $cce->find("Network", { device => $interface } );
+# If couldn't find one, create one.
+if (@noids == 0) {
+    $cce->create("Network", { device => $interface });
+    @noids = $cce->find("Network", { device => $interface } );
+}
+
+($ok, $object) = $cce->get( $noids[0] );
+if ($ok) {
+    $my_ip = ${$object}{'ipaddr'};
+    $my_nm = ${$object}{'netmask'};
+}
+
+# if all else fails set them to some defaults (0's and such)
+$my_gw = "0.0.0.0" unless $my_gw;
+$my_nm = "0" unless $my_nm;       # We'll guess later
+$my_ip = "0.0.0.0" unless $my_ip;
+
+my (@ip);
+
+my $done = 0;
+do {
+# Enter IP
+    $my_ip = &LCD::get_ipaddr($method,$my_ip,$interface,$option);
+    lcd_locked_cleanup unless defined($my_ip);
+    @ip = split(/\./,$my_ip);
+
+# Enter Netmask
+    # If we couldn't get an already set netmask, set according to IP
+    if ($my_nm eq "0") {
+	if ($ip[0] < 127) {
+	    $my_nm = "255.0.0.0";
+	}
+	elsif ($ip[0] < 192) {
+	    $my_nm = "255.255.0.0";
+	}
+	else {
+	    $my_nm = "255.255.255.0";
+	}
+    }
+    $my_nm = &LCD::get_netmask($method,$my_nm,$interface,$option);
+    lcd_locked_cleanup unless defined($my_nm);
+    
+# Enter Gateway
+    # The get_gateway() function can set my_gw to "none".  Since we're in
+    # a do-while loop, this could be a secondary time through here in the
+    # case of $firstboot.
+    $my_gw = "0.0.0.0" if ($my_gw eq "none" || $my_gw eq "");
+
+    $my_gw = &LCD::get_gateway($method,$my_gw,$option);
+    lcd_locked_cleanup unless defined($my_gw);
+
+    # FIXME - Verification step needed here
+
+    if ( ! &LCD::save($method,$my_ip,$my_nm,$my_gw)) {
+	if ( ! $firstboot ) {
+		if ( $pid )  {
+			cleanup();
+		} 
+		$cce->bye('SUCCESS');
+		unlink $LOCK;
+		exit(1);
+	}
+    } else {
+	$done = 1;
+    }
+
+} while ( ! $done );
+
+# Write to this file to indicate that we've configured the
+# network. This file used as a flag when bringing the interface up.
+system("echo 'BOOTPROTO=lcd' > /etc/NET-CONFIG");
+
+# Update CCE with settings
+# Update the IP address and netmask of the interface
+$cce->set( $noids[0], "", { ipaddr => $my_ip, netmask => $my_nm,
+                            enabled => "1", bootproto => "none" } )
+    if (@noids > 0);
+
+$my_gw = ($my_gw eq "none") ? "" : $my_gw;
+
+if (@soids > 0) {
+    # Update the gateway
+    $cce->set( $soids[0], "", { gateway => $my_gw } ); 
+    if ( $my_gw ) {
+        $cce->set( $soids[0], "Network", { internetMode => "lan" } );
+    } else {
+        $cce->set( $soids[0], "Network", { internetMode => "none" } );
+    }
+}
+
+if ( $pid ) {
+	cleanup();
+}
+$cce->bye('SUCCESS');
+unlink $LOCK;
+exit(2);
+

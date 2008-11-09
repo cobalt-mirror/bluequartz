@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# chkconfig: 235 75 75
+# description: Tomcat jsp server
+# processname: tomcat
+
+# Source function library.
+DOMAIN=base-services
+. /etc/rc.d/init.d/functions
+
+# See if the Cobalt Java config will get our path for us...
+if [ -e /etc/profile.d/java.sh ]; then
+  source /etc/profile.d/java.sh
+else 
+  export JAVA_HOME=/usr/java/jdk1.3
+  export PATH=$PATH:$JAVA_HOME
+fi
+
+export TOMCAT_HOME=/usr/java/jakarta-tomcat
+    
+# Use this hook to do things like customize your CLASSPATH for JDBC drivers
+# and stuff.
+if [ -e /etc/profile.d/tomcat.sh ]; then
+  source /etc/profile.d/tomcat.sh
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+    LINE1=`getmsg tomcat_start_1`
+    LINE2=`getmsg tomcat_start_2`
+    $LCD_STOP
+    $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+    echo -n "$LINE1 $LINE2: "
+
+    $TOMCAT_HOME/bin/startup.sh -security
+  ;;
+
+  stop)
+    LINE1=`getmsg tomcat_stop_1`
+    LINE2=`getmsg tomcat_stop_2`
+    $LCD_STOP
+    $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+    echo -n "$LINE1 $LINE2: "
+
+    $TOMCAT_HOME/bin/shutdown.sh
+  ;;
+
+  restart)
+    $0 stop
+    $0 start
+  ;;
+
+  reload)
+    $0 stop
+    $0 start
+  ;;
+
+  *)
+        echo "Usage: $0 {start|stop|restart|reload}"
+        exit 1
+esac

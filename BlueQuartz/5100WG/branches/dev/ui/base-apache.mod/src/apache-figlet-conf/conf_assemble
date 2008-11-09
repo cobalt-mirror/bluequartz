@@ -1,0 +1,32 @@
+#!/usr/bin/perl -w
+
+use DirHandle;
+use FileHandle;
+
+my $file = '/etc/httpd/conf/access.conf';
+my $figlet_dir = '/etc/httpd/conf/figlets';
+my $today = `date`; chomp($today);
+
+my $backup = $file . '~';
+if (-e $backup) { unlink ($backup) || die; }
+if (-e $file) {
+	link ($file, $backup) || die;
+	unlink ($file) || die;
+}
+
+my $fh = new FileHandle(">$file") || die;
+print $fh "# $file\n";
+print $fh "# regenerated $today\n\n";
+
+my $cnt =0;
+my $d = new DirHandle($figlet_dir) || die("Couldn't read $figlet_dir: $!");
+my @files = sort grep {/\.figlet$/} grep {!/^\./} $d->read();
+foreach $_ (@files) {
+	print $fh "Include ${figlet_dir}/$_\n";
+  $cnt++;
+}
+print $fh "\n# Absorbed $cnt figlets.\n";
+$fh->close();
+
+chmod 0644, $file;
+

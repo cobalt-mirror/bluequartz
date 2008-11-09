@@ -1,0 +1,193 @@
+
+msgid "modPrinter"
+msgstr "Modifier une imprimante"
+
+msgid "printerNameExists"
+msgstr "Une imprimante appelée [[VAR.name]] existe déjà.  Choisissez un nouveau nom."
+
+msgid "printing"
+msgstr "Impression"
+
+msgid "spooling"
+msgstr "Mise en spool"
+
+msgid "jobs"
+msgstr "Travaux"
+
+msgid "enabled"
+msgstr "Activé"
+
+msgid "disabled"
+msgstr "Désactivé"
+
+msgid "addPrinter_help"
+msgstr "Cliquez ici pour ajouter une imprimante à votre configuration existante."
+
+msgid "addNewPrinter" 
+msgstr "Ajouter une imprimante"
+
+msgid "printerNameField"
+msgstr "Nom"
+
+msgid "printerNameField_help"
+msgstr "Entrez un nom pour l'imprimante.  Ce devrait être également le nom du spool d'impression du serveur, le cas échéant."
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "Sélectionnez cette option si l'imprimante est connectée via USB"
+
+msgid "network"
+msgstr "Réseau"
+
+msgid "network_help"
+msgstr "Sélectionnez cette option si l'imprimante est connectée via le réseau"
+
+msgid "printerHostNameField"
+msgstr "Nom d'hôte"
+
+msgid "printerHostNameField_help"
+msgstr "Entrez le nom d'hôte ou l'adresse IP de l'imprimante distante"
+
+msgid "printerSpoolField"
+msgstr "Nom de la file d'attente"
+
+msgid "printerSpoolField_help"
+msgstr "Entrez le nom de la file d'attente d'impression sur l'imprimante distante.  Si vous ne connaissez pas le nom de la file d'attente ou si votre imprimante n'a pas de nom de file d'attente, laissez ce champ vide."
+
+msgid "locationField"
+msgstr "Type de connexion"
+
+msgid "locationField_help"
+msgstr "Sélectionnez le type de connexion entre le serveur et cette imprimante."
+
+msgid "ppdFileField"
+msgstr "Fichier PPD"
+
+msgid "ppdFileField_help"
+msgstr "Pour que les ordinateurs puissent imprimer sur cette imprimante avec AppleShare, un fichier PPD doit être téléchargé vers ce serveur.  Le fichier PPD est généralement fourni sur un disque livré avec l'imprimante."
+
+msgid "printserver"
+msgstr "Serveur d'impression"
+
+msgid "printserver_help"
+msgstr "Les paramètres du serveur d'impression peuvent être modifiés ici."
+
+msgid "printserverSettings"
+msgstr "Paramètres du serveur d'impression"
+
+msgid "enableServersField"
+msgstr "Activer"
+
+msgid "enableServersField_help"
+msgstr "Activer ou désactiver la fonctionnalité de Serveur d'impression. L'activation de cette fonction permet à ce serveur d'agir comme serveur d'impression pour lui-même et pour ses clients."
+
+msgid "basic"
+msgstr "Base"
+
+msgid "basic_help"
+msgstr "Les paramètres de serveur d'impression de base peuvent être configurés ici."
+
+msgid "advanced"
+msgstr "Avancé"
+
+msgid "advanced_help"
+msgstr "Les paramètres de serveur d'impression avancés, tels que l'activation et la désactivation du support de Serveur d'impression pour des plates-formes spécifiques, peuvent être configurés ici."
+
+msgid "printerListButton"
+msgstr "Gérer les imprimantes"
+
+msgid "printerListButton_help"
+msgstr "Ajouter ou supprimer des imprimantes et gérer les files d'attente d'impression"
+
+msgid "enableAppleshareField"
+msgstr "Activer l'impression Apple"
+
+msgid "enableAppleshareField_help"
+msgstr "Cliquez ici pour activer le partage d'imprimante sur un réseau basé sur Appleshare."
+
+msgid "enableSambaField"
+msgstr "Activer l'impression Windows"
+
+msgid "enableSambaField_help"
+msgstr "Cliquez ici pour activer le partage d'imprimante sur un réseau Windows."
+
+msgid "printerList"
+msgstr "Imprimantes disponibles"
+
+msgid "name"
+msgstr "Nom"
+
+msgid "name_help"
+msgstr "Le nom de l'imprimante"
+
+msgid "status"
+msgstr "État"
+
+msgid "status_help"
+msgstr "L'état de l'imprimante"
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Modifier ou supprimer une imprimante"
+
+msgid "jobList"
+msgstr "Travaux d'impression en cours - [[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "Effacer la file d'attente d'impression"
+
+msgid "clearQueue_help"
+msgstr "Supprimer tous les travaux d'impression en cours sur cette imprimante."
+
+msgid "suspendPrinter"
+msgstr "Suspendre l'impression"
+
+msgid "suspendPrinter_help"
+msgstr "Suspendre l'impression sur cette imprimante.  Des nouveaux travaux peuvent être mis en file d'attente, mais rien ne sera imprimé."
+
+msgid "unsuspendPrinter"
+msgstr "Reprendre l'impression"
+
+msgid "unsuspendPrinter_help"
+msgstr "Reprendre l'impression sur cette imprimante."
+
+msgid "owner"
+msgstr "Propriétaire"
+
+msgid "owner_help"
+msgstr "L'utilisateur qui a soumis ce travail d'impression."
+
+msgid "size"
+msgstr "Taille"
+
+msgid "size_help"
+msgstr "Taille du travail d'impression."
+
+msgid "date"
+msgstr "Heure de soumission"
+
+msgid "date_help"
+msgstr "Heure de soumission"
+
+msgid "listAction"
+msgstr "Supprimer"
+
+msgid "listAction_help"
+msgstr "Supprimer un travail."
+
+msgid "removePrinterConfirm"
+msgstr "Voulez-vous vraiment supprimer l'imprimante '[[VAR.printerName]]' ?"
+ 
+msgid "removeJobConfirm"
+msgstr "Voulez-vous vraiment supprimer le travail détenu par '[[VAR.jobName]]' ?"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "Gérer le serveur d'impression"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "Ce droit administratif permet à un utilisateur de gérer tous les aspects du spooling réseau et USB configuré dans l'onglet Serveur d'impression."

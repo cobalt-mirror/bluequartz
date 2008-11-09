@@ -1,0 +1,134 @@
+<typedef name="authType" type="re" data="^(esp|ah)$" />
+<typedef name="keyingType"  type="re" data = "^(autoSecret|autoRsa|manual)$" /> 
+<typedef name="hexType" type="re" data="^(0x[0-9a-fA-F_]+)?$"/>
+<typedef name="authValueType" type="re" data="^[^-]+(-[^-]+-[^-]+)?$"/>
+<typedef name="myint" type="re" data="-?[0-9]+"/>
+<typedef name="myalphanum_plus" type="re" data="^[a-zA-Z][a-zA-Z0-9._\s-]*$"/>
+<typedef name="enabledType" type="re" data="(add|start|ignore)"/>
+
+
+<class name="IpsecProfile" namespace="" version="1.0"
+	createacl="ruleCapable(createIpsecProfile)" destroyacl="ruleCapable(destroyIpsecProfile)">
+	<!-- common fields -->
+	<property name="name" type="myalphanum_plus" default=""
+		writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="comments" type="scalar" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="enableAutoRsa" type="boolean" default="0"
+		writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="enableAutoSecret" type="boolean" default="0"
+		writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="enableManual" type="boolean" default="0"
+		writeacl="ruleCapable(modifyIpsecProfile)"/>
+
+	<!-- automatic keying fields -->
+	<property name="auth" type="authType" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="pfs" type="boolean" default="0"
+		writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="keylife" type="int" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="rekeymargin" type="int" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="rekeyfuzz" type="int" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="keyingtries" type="int" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="ikelifetime" type="int" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+
+	<!-- manual keying fields -->
+	<property name="manualAuth" type="authType" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="authValue" type="authValueType" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+	<property name="replayWindow" type="myint" default=""
+		optional="true" writeacl="ruleCapable(modifyIpsecProfile)"/>
+</class>
+
+       
+<class name="System" namespace="IpsecRSAKey" version="1.0">
+       <property name="publicKey"      type="scalar"  default=""
+       	writeacl="ruleCapable(modifySystemIpsecRSAKey)"/>
+</class>
+       
+
+<class name="IpsecTunnel" namespace="" version="1.0"
+	createacl="ruleCapable(createIpsecTunnel)" destroyacl="ruleCapable(destroyIpsecTunnel)">
+      <property name="enabled"          type="enabledType"      default=""
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="name"             type="myalphanum_plus"  default=""
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="profile"          type="scalar"        default=""
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="remoteIp"         type="ipaddr"        default=""
+                writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="remoteGatewayIp"  type="ipaddr"        default="" optional="true"
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="remoteSubnet"     type="ipaddr"        default="" optional="true"
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="remoteNetmask"    type="ipaddr"        default="" optional="true"
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="keying"		type="keyingType"    default=""
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="authKey"	        type="scalar"        default=""
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+
+<!--
+      <property name="encKey"		type="hexType"       default="" optional="true"
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="spi"              type="hexType"       default=""
+                writeacl="ruleCapable(modifyIpsecTunnel)"/>
+-->
+
+
+      <property name="comments"         type="scalar"        default=""
+		writeacl="ruleCapable(modifyIpsecTunnel)"/>
+      <property name="isup"             type="int"           default="0"
+                writeacl="ruleCapable(modifyIpsecTunnel)"/>
+</class>
+
+
+<!-- ipsec capabilities -->
+<class name="Capabilities" namespace="modifySystemIpsecRSAKey" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifySystemIpsecRSAKey)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_modifySystemIpsecRSAKey]]"/>
+</class>
+<class name="Capabilities" namespace="createIpsecProfile" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createIpsecProfile)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_createIpsecProfile]]"/>
+</class>
+<class name="Capabilities" namespace="modifyIpsecProfile" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyIpsecProfile)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_modifyIpsecProfile]]"/>
+</class>
+<class name="Capabilities" namespace="destroyIpsecProfile" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyIpsecProfile)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_destroyIpsecProfile]]"/>
+</class>
+<class name="Capabilities" namespace="createIpsecTunnel" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createIpsecTunnel)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_createIpsecTunnel]]"/>
+</class>
+<class name="Capabilities" namespace="modifyIpsecTunnel" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyIpsecTunnel)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_modifyIpsecTunnel]]"/>
+</class>
+<class name="Capabilities" namespace="destroyIpsecTunnel" version="1.0">
+        <property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyIpsecTunnel)"/>
+        <property name="nameTag" type="scalar"
+		default="[[base-ipsec.capgroup_destroyIpsecTunnel]]"/>
+</class>

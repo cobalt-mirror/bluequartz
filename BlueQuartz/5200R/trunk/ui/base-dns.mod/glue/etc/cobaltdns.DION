@@ -1,0 +1,22 @@
+#
+# Enter your zone format here
+#
+# zone-format-8 specify a >= 8-bit network zone format
+# zone-format-16 specify a >= 16-bit network zone format
+# zone-format-24 specify a >= 24-bit network zone format
+#
+
+# RFC 2317 format
+# zone-format-8: %2/%n.%1.in-addr.arpa
+# zone-format-16: %3/%n.%2.%1.in-addr.arpa
+# zone-format-24: %4/%n.%3.%2.%1.in-addr.arpa
+
+# OCN style
+# zone-format-8: %2.%1.in-addr.arpa
+# zone-format-16: %3.%2.%1.in-addr.arpa
+# zone-format-24: %4.%3.%2.%1.in-addr.arpa
+
+# DION style
+zone-format-8: %2h.%1.in-addr.arpa
+zone-format-16: %3h.%2.%1.in-addr.arpa
+zone-format-24: %4h.%3.%2.%1.in-addr.arpa

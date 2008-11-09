@@ -1,0 +1,347 @@
+# --- Menu
+
+msgid "maillists"
+msgstr "メーリングリスト"
+
+msgid "maillistsHelp"
+msgstr "[[base-maillist.maillistList]]を管理できます。"
+
+
+# --- Mailing Lists page
+
+msgid "maillistList"
+msgstr "メーリングリスト"
+
+msgid "maillistNameHeader"
+msgstr "リスト名"
+
+msgid "maillistNameHeader_help"
+msgstr "メーリングリストの名前です。"
+
+msgid "recipientsHeader"
+msgstr "購読者"
+
+msgid "recipientsHeader_help"
+msgstr "各メーリングリストを購読しているユーザの一覧です。"
+
+msgid "groupSubscriber"
+msgstr "[[VAR.group]] グループのメンバー全員"
+
+msgid "maillistDescHeader"
+msgstr "備考"
+
+msgid "maillistDescHeader_help"
+msgstr "各メーリングリストの説明やコメントなどです。"
+
+msgid "maillistActionHeader"
+msgstr "修正・削除"
+
+msgid "maillistActionHeader_help"
+msgstr "これらのアイコンをクリックすると、メーリングリストの修正または削除を行えます。ゴミ箱がグレー表示されているメーリングリストは削除できません。"
+
+msgid "confirm_removal_of_list"
+msgstr "[[VAR.list]] メーリングリストを削除してもよろしいですか？"
+
+
+# ----- Add/modify a mailing list Basic
+
+msgid "createMailList"
+msgstr "メーリングリストの追加"
+
+msgid "modifyMailList"
+msgstr "メーリングリストの修正"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"
+msgstr "詳細"
+
+msgid "basic_help"
+msgstr "メーリングリストに関する基本的なオプションはここで設定できます。"
+
+msgid "advanced_help"
+msgstr "投稿や購読の規則など、メーリングリストに関する詳細を設定できます。"
+
+msgid "listName"
+msgstr "リスト名"
+
+msgid "listName_rule"
+msgstr "リスト名には、半角の英小文字、数字、ハイフン、アンダースコアだけが使えます。はじめの１文字は必ず英小文字にしてください。（例： eigyo、coba-q、shomu_2 など）"
+
+msgid "listName_help"
+msgstr "追加したいメーリングリストの名前を入力してください。[[base-maillist.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-maillist.listName]]には指定できません。[[base-maillist.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "[[base-maillist.listName]]を指定してください。[[base-maillist.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "グループのメンバー"
+
+msgid "workgroupMembers_help"
+msgstr "このリストに関連付けられているグループに所属するユーザの一覧です。グループメンバーは全員このメーリングリストを自動的に購読します。"
+
+msgid "group_field"
+msgstr "グループリスト名"
+
+msgid "group_field_help"
+msgstr "グループメーリングリストの名前です。グループメンバーは全員このメーリングリストを自動的に購読します。"
+
+msgid "save"
+msgstr "保存"
+
+msgid "save_help"
+msgstr "メーリングリストを保存"
+
+
+msgid "localSubscribers"
+msgstr "ローカル購読者"
+
+msgid "localSubscribers_help"
+msgstr "このメーリングリストを購読するローカルユーザを指定してください。右欄には現在購読していないローカルユーザの一覧が表示されています。購読させたいユーザを右欄から左欄に移動してください。購読を取り消したいユーザは右欄に移動してください。"
+
+msgid "subscribed"
+msgstr "現在購読しているユーザ"
+
+msgid "unsubscribed"
+msgstr "現在購読していないユーザ"
+
+msgid "remoteSubscribers"
+msgstr "リモート購読者"
+
+msgid "remoteSubscribers_rule"
+msgstr "各リモートユーザの電子メールアドレスを正しい形式で入力してください。（例： shibuya@cobalt.co.jp）"
+
+msgid "remoteSubscribers_help"
+msgstr "このメーリングリストを購読するリモートユーザを指定してください。リモートユーザとはこのサーバ上にアカウントを持っていないユーザを意味します。[[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-maillist.remoteSubscribers]]には指定できません。  [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "description"
+msgstr "備考"
+
+msgid "description_help"
+msgstr "このメーリングリストに関する説明やコメントを入力できます。"
+
+
+
+# ----- Add/modify a mailing list Advanced
+
+msgid "moderator"
+msgstr "リスト管理者"
+
+msgid "moderator_rule"
+msgstr "このリストを管理するユーザのユーザ名（ローカルユーザの場合）または電子メールアドレス（リモートユーザの場合)を入力してください。デフォルトはadminです。（例： shibuya@cobalt.co.jp、yasuda など）"
+
+msgid "moderator_help"
+msgstr "ここで指定するユーザには、このメーリングリストの管理権限が与えられます。[[base-maillist.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-maillist.moderator]] には指定できません。[[base-maillist.moderator_rule]]"
+
+# handler version
+msgid "Moderator-does-not-exist"
+msgstr "メーリングリスト管理者名が不正です。[[VAR.moderator]] というユーザは見つかりません。"
+
+
+msgid "moderator_empty"
+msgstr "[[base-maillist.moderator]] を指定してください。投稿や購読のポリシーを持たないメーリングリストの場合でも、リスト管理者を指定する必要があります。[[base-maillist.moderator_rule]]"
+
+msgid "policies"
+msgstr "ポリシーの設定"
+
+msgid "password"
+msgstr "パスワード"
+
+msgid "password_help"
+msgstr "このメーリングリストの管理者パスワードを指定してください。このパスワードは、電子メールを使ってリスト管理業務（購読の許可や投稿メッセージの管理など）を行う際に必要になります。電子メールによるリスト管理を行わない場合には、パスワードを省略しても構いません。"
+
+msgid "postingPolicy"
+msgstr "投稿ポリシー"
+
+msgid "postingPolicy_help"
+msgstr "このメーリングリストへ投稿する際に適用されるポリシーを選択してください。［リスト管理者の許可が必要］を選ぶと、リスト管理者の許可を得たメッセージのみがリストに掲示されます。"
+
+msgid "postingPolicy-any"
+msgstr "全てのユーザが投稿できる"
+
+msgid "postingPolicy-members"
+msgstr "購読者のみが投稿できる"
+
+msgid "postingPolicy-moderated"
+msgstr "リスト管理者の許可が必要"
+
+msgid "subscriptionPolicy"
+msgstr "購読ポリシー"
+
+msgid "subscriptionPolicy_help"
+msgstr "このメーリングリストを購読する際に適用されるポリシーを選択してください。"
+
+msgid "subscriptionPolicy-open"
+msgstr "開放： どのユーザでも自由に購読できる"
+
+msgid "subscriptionPolicy-closed"
+msgstr "限定： 購読にはリスト管理者の許可が必要"
+
+msgid "subscriptionPolicy-confirm"
+msgstr "確認： 購読には電子メールによる確認が必要"
+
+msgid "maxlength"
+msgstr "最大メッセージサイズ"
+
+msgid "maxlength_help"
+msgstr "このメーリングリストへ送信を許可するメッセージの最大サイズを選択してください。ここで指定するサイズを超えるメッセージは受信を拒否されます。"
+
+msgid "maxlength-5120"
+msgstr "5 KB"
+msgid "maxlength-51200"
+msgstr "50 KB"
+msgid "maxlength-512000"
+msgstr "500 KB"
+msgid "maxlength-1048576"
+msgstr "10 MB"
+msgid "maxlength-104857600"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "返信ポリシー"
+
+msgid "replyToList_help"
+msgstr "このメーリングリストに掲示されたメッセージに対する返信メッセージの送り先を指定してください。［リスト宛に返信］を選ぶと、返信はリスト宛に送られます。［投稿者宛に返信］を選ぶと、返信はメッセージの投稿者にのみ送られます。"
+
+msgid "replyToList-true"
+msgstr "リスト宛に返信"
+
+msgid "replyToList-0"
+msgstr "投稿者宛に返信"
+
+msgid "archiveSettings"
+msgstr "アーカイブの設定"
+
+msgid "archiveEnabled"
+msgstr "アーカイブを有効にする"
+
+msgid "archiveEnabled_help"
+msgstr "このボックスをチェックすると、メーリングリストに投稿されたメッセージは全て指定された期間だけアーカイブに保存されます。WebMail がインストールされていれば、このサーバの登録ユーザは過去の投稿メッセージを閲覧できます。"
+
+msgid "keepForDays"
+msgstr "保存日数"
+
+msgid "keepForDays_help"
+msgstr "アーカイブされたメッセージの保存期間を指定してください。空欄のまま残すと、アーカイブされたメッセージは無期限に保存されます。"
+
+msgid "keepForDays_rule"
+msgstr "アーカイブされたメッセージの保存日数を指定してください。 ゼロ（0）を入力すると、アーカイブされたメッセージは無期限に保存されます。 "
+
+msgid "keepForDays_empty"
+msgstr "[[base-maillist.keepForDays]] の値が指定されていません。 [[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "[[base-maillist.keepForDays]] フィールドの指定値が不正です。アーカイブされたメッセージの保存期間を整数で指定してください。空欄のまま残すと、アーカイブされたメッセージは無期限に保存されます。"
+
+
+# ------ Handler messages
+
+msgid "name-already-taken"
+msgstr "ご指定のメーリングリスト名はすでに存在します。別の名前を使ってもう一度お試しください。"
+
+msgid "Mail-alias-already-taken"
+msgstr "ご指定のメーリングリストに必要な電子メールエイリアスと同じ名前を持つ電子メールエイリアスがすでに存在するため、メーリングリストを作成できませんでした。メーリングリストに別の名前を指定するか、または類似の名前を持つ電子メールエイリアスを削除してからもう一度お試しください。"
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "このサーバ上に存在するグループのメーリングリストは削除できません。"
+
+msgid "Could-not-create-maillist"
+msgstr "エラーが発生したため、メーリングリストは作成されませんでした。"
+
+
+
+# ----- Archives for users with accounts
+
+#--- List view
+msgid "maillistArchive"
+msgstr "メーリングリストのアーカイブ - [[VAR.name]]"
+
+msgid "title"
+msgstr "件名"
+
+msgid "title_help"
+msgstr "メッセージの件名です。"
+
+msgid "author"
+msgstr "投稿者"
+
+msgid "author_help"
+msgstr "メッセージを投稿したユーザの名前または電子メールアドレスです。"
+
+msgid "date"
+msgstr "日付"
+
+msgid "date_help"
+msgstr "メッセージを受信した日付です。"
+
+#--- Read message view
+msgid "readMessage"
+msgstr "メッセージを読む"
+
+msgid "readMessage_help"
+msgstr "メッセージを読むことができます。"
+
+msgid "from"
+msgstr "差出人"
+
+msgid "from_help"
+msgstr "メッセージを送信したユーザの名前または電子メールアドレスです。"
+
+msgid "subject"
+msgstr "件名"
+
+msgid "subject_help"
+msgstr "メッセージの件名です。"
+
+msgid "message"
+msgstr "本文"
+
+msgid "message_help"
+msgstr "メッセージの本文です。"
+
+msgid "replySender"
+msgstr "返信"
+
+msgid "replySender_help"
+msgstr "このメッセージに返信するには、ここをクリックしてください。"
+
+msgid "replyAll"
+msgstr "全員に返信"
+
+msgid "replyAll_help"
+msgstr "このボタンをクリックすると、このメッセージの差出人と受信者全員に返信できます。"
+
+# ------ Misc  (i.e. I have no idea)
+
+msgid "membership"
+msgstr "メンバーシップ"
+
+msgid "membership_help"
+msgstr "メンバーシップでは、このメーリングリストに関連するユーザを指定します。"
+
+
+# ------- Strings for email messages
+
+msgid "WelcomeMessageSubject"
+msgstr "アーカイブを閲覧できます"
+
+msgid "WelcomeMessageBody"
+msgstr "お知らせ： このサーバの登録ユーザは、[[VAR.name]]という名前のメーリングリストのアーカイブを WebMail から見ることができます。このメッセージに返信する必要はありません。"
+
+# Capabilities
+
+msgid "capgroup_adminMaillist"
+msgstr "メーリングリストの管理"
+
+msgid "capgroup_adminMaillist_help"
+msgstr "この管理権限を持つユーザは、このマシンで管理しているメーリングリストを作成、破棄、変更できます。"

@@ -1,0 +1,39 @@
+
+
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Les paramètres Telnet peuvent être configurés ici."
+
+msgid "telnetSettings"
+msgstr "Paramètres Telnet"
+
+msgid "access"
+msgstr "Accès"
+
+msgid "access_help"
+msgstr "Choisissez la stratégie d'accès Telnet. Telnet est utilisé par les utilisateurs avancés ou l'administrateur du serveur pour exécuter des scripts ou commandes shell. La désactivation ou la restriction de l'accès Telnet permet d'accroître la sécurité. "
+
+msgid "none"
+msgstr "Inactif - Pas de connexion"
+
+msgid "root"
+msgstr "Actif - Administrateur uniquement"
+
+msgid "reg"
+msgstr "Actif -Tous les utilisateur"
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Serveur Telnet"
+
+msgid "amDetailsTitle"
+msgstr "Détails du serveur Telnet"
+
+msgid "amNotAccepting"
+msgstr "Le serveur Telnet ne fonctionne pas."
+
+msgid "amStatusOK"
+msgstr "Le serveur Telnet fonctionne normalement."

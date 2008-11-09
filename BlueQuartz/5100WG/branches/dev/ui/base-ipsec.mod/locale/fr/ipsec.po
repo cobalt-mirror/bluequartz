@@ -1,0 +1,381 @@
+msgid "ipsec"
+msgstr "VPN point à point"
+
+msgid "ipsec_help"
+msgstr "Les tunnels [[base-ipsec.ipsec]] peuvent être configurés ici.  [[base-ipsec.ipsec]] permet de chiffre les connexions entre deux machines."
+
+msgid "tunnelList"
+msgstr "Liste des tunnels"
+
+msgid "addTunnel_help"
+msgstr "Ajouter un nouveau tunnel."
+
+msgid "localInfo"
+msgstr "Voir les informations locales"
+
+msgid "localInfo_help"
+msgstr "Visualiser des informations sur la machine locale.  Ces données peuvent être requises par un Administrateur distant tentant de configurer une connexion [[base-ipsec.ipsec]] avec cette machine."
+
+msgid "manageProfile"
+msgstr "Gérer les profils de connexion"
+
+msgid "manageProfile_help"
+msgstr "Vous pouvez gérer ici les différents profils de connexion disponibles. Un profil de connexion décrit les réglages nécessaires pour se connecter à d'autres implémentations [[base-ipsec.ipsec]."
+
+msgid "ipsecInfo"
+msgstr "Informations sur l'hôte local"
+
+msgid "leftIpAddressField"
+msgstr "Adresse IP locale"
+
+msgid "leftIpAddressField_help"
+msgstr "L'adresse IP de l'interface [[base-ipsec.ipsec]]."
+
+msgid "leftSubnetField"
+msgstr "Sous-réseau local"
+
+msgid "leftSubnetField_help"
+msgstr "Le sous-réseau (ou plage d'adresses IP sur le réseau local) où se trouve actuellement l'interface primaire du Qube."
+
+msgid "leftNetmaskField"
+msgstr "Masque de sous-réseau local"
+
+msgid "leftNetmaskField_help"
+msgstr "Le masque de réseau actuellement configuré sur l'interface primaire."
+
+msgid "leftRsaKeyField"
+msgstr "Clé publique RSA de l'hôte local"
+
+msgid "leftRsaKeyField_help"
+msgstr "La clé publique RSA actuelle du Qube."
+
+msgid "profileList"
+msgstr "Liste de profils"
+
+msgid "addProfile_help"
+msgstr "Ajouter un nouveau profil."
+
+msgid "tname"
+msgstr "Nom"
+
+msgid "tname_help"
+msgstr "Le nom d'un tunnel."
+
+msgid "pname"
+msgstr "Nom"
+
+msgid "pname_help"
+msgstr "Le nom d'un profil."
+
+msgid "status"
+msgstr "État"
+
+msgid "status_help"
+msgstr "L'état d'un tunnel."
+
+msgid "comment"
+msgstr "Commentaire"
+
+msgid "comment_help"
+msgstr "Brève description du profil."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Actions possibles."
+
+msgid "addNewProfile"
+msgstr "Ajouter un profil"
+
+msgid "nameField"
+msgstr "Nom"
+
+msgid "nameField_help"
+msgstr "Entrez un nom pour ce profil."
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "Protocole d'authentification"
+ 
+msgid "authField_help"
+msgstr "Indique si l'authentification doit se faire dans le cadre du chiffrement ESP ou séparément à l'aide du protocole AH."
+ 
+msgid "pfsField"
+msgstr "Perfect Forward Security (PFS)"
+ 
+msgid "pfsField_help"
+msgstr "Indique si la sécurité PFS est souhaitée sur le canal d'échange de clés de la connexion (avec PFS, une pénétration du protocole d'échange des clés ne compromet pas les clés négociées antérieurement)."
+ 
+msgid "keylifeField"
+msgstr "Durée de vie des clés"
+ 
+msgid "keylifeField_help"
+msgstr "Temps, en minutes, pendant lequel une instance particulière d'une connexion (un ensemble de clés de chiffrement/authentification pour des paquets utilisateur) doit durer, depuis la réussite de la négociation jusqu'à l'expiration."
+ 
+msgid "rekeymarginField"
+msgstr "Délai de renégociation"
+ 
+msgid "rekeymarginField_help"
+msgstr "Délai, en minutes, indiquant combien de temps avant l'expiration d'une connexion devraient commencer les tentatives de négociation d'un remplacement."
+ 
+msgid "rekeyfuzzField"
+msgstr "Pourcentage aléatoire du délai de renégociation"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "Pourcentage maximum dont la marge de renégociation devrait être augmentée afin de générer des intervalles de renégociation aléatoires (important pour les hôtes comptant beaucoup de connexions)."
+ 
+msgid "keyingtriesField"
+msgstr "Tentatives d'échange de clés"
+ 
+msgid "keyingtriesField_help"
+msgstr "Nombre (entier) de tentatives qui devraient être faites de négocier une connexion, ou un remplacement, avant d'abandonner ; la valeur 0 signifie un nombre illimité (pas d'abandon)."
+ 
+msgid "ikelifetimeField"
+msgstr "Durée de vie du canal d'échange de clés"
+ 
+msgid "ikelifetimeField_help"
+msgstr "Temps, en minutes, que devrait durer le canal d'échange de clés d'une connexion avant une renégociation."
+ 
+msgid "commentsField"
+msgstr "Commentaire"
+ 
+msgid "commentsField_help"
+msgstr "Commentaire décrivant ce profil."
+
+msgid "addNewTunnel"
+msgstr "Ajouter un tunnel"
+ 
+msgid "tunnelEnabledField"
+msgstr "Connexion"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "Choisissez à quel moment le tunnel doit être établi ou désactivez le tunnel."
+ 
+msgid "tunnelNameField"
+msgstr "Nom"
+ 
+msgid "tunnelNameField_help"
+msgstr "Entrer un nom pour le tunnel."
+ 
+msgid "rightProfileField"
+msgstr "Profil de connexion"
+ 
+msgid "rightProfileField_help"
+msgstr "Sélectionner un profil de connexion."
+ 
+msgid "rightField"
+msgstr "Hôte [[base-ipsec.ipsec]] distant"
+ 
+msgid "rightField_help"
+msgstr "Entrez l'adresse IP de la machine à l'autre extrémité du tunnel [[base-ipsec.ipsec]]."
+
+msgid "rightNextField"
+msgstr "Passerelle de l'hôte distant"
+ 
+msgid "rightNextField_help"
+msgstr "Entrer la passerelle utilisée par la machine distante."
+ 
+msgid "rightSubnetField"
+msgstr "Sous-réseau distant"
+ 
+msgid "rightSubnetField_help"
+msgstr "Entrer le sous-réseau au-delà de la machine distante."
+ 
+msgid "rightNetmaskField"
+msgstr "Masque de réseau distant"
+ 
+msgid "rightNetmaskField_help"
+msgstr "Entrer le masque du réseau au-delà de la machine distante."
+ 
+msgid "tunnelCommentField"
+msgstr "Commentaire"
+ 
+msgid "tunnelCommentField_help"
+msgstr "Entrer un commentaire décrivant ce tunnel."
+
+msgid "modProfile"
+msgstr "Modifier un profil - [[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "Modifier un tunnel - [[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "Échange automatique de clés avec authentification RSA"
+
+msgid "autoSecret"
+msgstr "Échange automatique de clés avec Shared Secrets"
+
+msgid "manual"
+msgstr "Échange de clés manuel"
+
+msgid "keyingField"
+msgstr "Type d'échange de clés"
+
+msgid "authPubKeyField"
+msgstr "Clé RSA distante"
+
+msgid "authSecretKeyField"
+msgstr "Shared Secret"
+
+msgid "authKeyField"
+msgstr "Clé d'authentification"
+
+msgid "encKeyField"
+msgstr "Clé de chiffrement"
+
+msgid "valueField"
+msgstr "Plan de chiffrement/authentification"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "Fenêtre Reproduire"
+
+msgid "manualSettings"
+msgstr "Paramètres d'échange de clés manuel"
+
+msgid "autoSettings"
+msgstr "Paramètres d'échange de clés automatique"
+
+msgid "enableAutoRsaField"
+msgstr "Permettre l'échange de clés automatique avec authentification RSA"
+
+msgid "enableAutoRsaField_help"
+msgstr "Cochez cette case si vous souhaitez autoriser les tunnels qui utilisent ce profil à employer l'échange de clés automatique avec l'authentification RSA"
+
+msgid "enableAutoSecretField"
+msgstr "Permettre l'échange de clés automatique avec Shared Secrets"
+
+msgid "enableAutoSecretField_help"
+msgstr "Cochez cette case si vous souhaitez autoriser les tunnels qui utilisent ce profil à employer l'échange de clés automatique avec Shared Secrets"
+
+msgid "enableManualField"
+msgstr "Permettre l'échange de clés manuel"
+
+msgid "enableManualField_help"
+msgstr "Cochez cette case si vous souhaitez autoriser les tunnels qui utilisent ce profil à employer l'échange de clés manuel"
+
+msgid "valueField_help"
+msgstr "Sélectionnez les algorithmes à utiliser pour le chiffrement et l'authentification."
+
+msgid "replay_windowField_help"
+msgstr "Entrez un nombre entier compris entre 0 et 64 pour spécifier la longueur de la fenêtre de reproduction, 0 signifiant\"aucune protection\"."
+
+msgid "ignore"
+msgstr "Désactiver ce tunnel"
+
+msgid "start"
+msgstr "Nous lançons la connexion"
+
+msgid "add"
+msgstr "L'autre extrémité lance la connexion"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "Le numéro SPI pour ce tunnel.  Pour que la connexion fonctionne, les numéros SPI aux deux extrémités du tunnel doivent correspondre."
+
+msgid "keyingField_help"
+msgstr "Sélectionnez le type d'échange de clés à utiliser pour cette connexion."
+
+msgid "authPubKeyField_help"
+msgstr "Entrez la clé publique, en hexa, précédée du préfixe '0x', de la machine à l'autre extrémité du tunnel."
+
+msgid "authSecretKeyField_help"
+msgstr "Entrez le secret partagé entre cette machine et la machine à l'autre extrémité du tunnel"
+
+msgid "authKeyField_help"
+msgstr "Entrez la clé utilisée pour l'authentification"
+
+msgid "encKeyField_help"
+msgstr "Entrez la clé utilisée pour le chiffrement.  Pour les tunnels d'authentification uniquement, laissez ce champ vide"
+
+msgid "establishedTunnels"
+msgstr "Tunnels établis : "
+
+msgid "nn"
+msgstr "Réseau à réseau"
+
+msgid "hh"
+msgstr "Hôte à hôte"
+
+msgid "hn"
+msgstr "Hôte à réseau"
+
+msgid "nh"
+msgstr "Réseau à hôte"
+
+msgid "tunnelProblem"
+msgstr "Tous les tunnels sont inactifs ou ne peuvent pas être lancés."
+
+msgid "noConnections"
+msgstr "Les tunnels sont prêts mais personne n'a lancé une connexion"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]] ne chargera pas un ou plusieurs tunnels associés à cet élément.\nVeuillez vérifier vos réglages."
+
+msgid "disabled"
+msgstr "Désactivé"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]] ne peut pas être utilisé avec le profil de connexion [[VAR.profile]].  Veuillez sélectionner un autre profil de connexion ou un autre type d'échange de clés."
+
+msgid "spiInUse"
+msgstr "Le SPI spécifié est déjà utilisé.  Veuillez en choisir un autre."
+
+msgid "openKey"
+msgstr "Ouvrir une fenêtre de clé"
+
+msgid "openKey_help"
+msgstr "Cliquez ici pour ouvrir une nouvelle fenêtre contenant la clé publique de ce Qube."
+
+msgid "IpsecKey"
+msgstr "Clé RSA locale"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "Utiliser ce profil pour se connecter à un autre Qube3"
+ 
+msgid "removeProfileConfirm"
+msgstr "Voulez-vous vraiment supprimer le profil '[[VAR.profileName]]' ?"
+ 
+msgid "removeTunnelConfirm"
+msgstr "Voulez-vous vraiment supprimer le tunnel '[[VAR.tunnelName]]' ?"
+ 
+msgid "   AUTOUPDATE   "
+msgstr "   MISE À JOUR AUTOMATIQUE   "
+
+msgid "mustSelectKeying"
+msgstr "Vous devez activer au moins un type d'échange de clés pour ce profil."
+ 
+msgid "profileInUse"
+msgstr "Ce profil est utilisé par les tunnels actif suivants : [[VAR.list]].  Veuillez désactiver, supprimer ou modifier le profil de tous les tunnels indiqués avant de supprimer le profil actuel."
+ 
+msgid "autoSettings_help"
+msgstr "Réglages pour les connexions établies automatiquement avec ce profil."
+ 
+msgid "manualSettings_help"
+msgstr "Réglages pour les connexions établies manuellement avec ce profil."
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "Gérer [[base-ipsec.ipsec]]"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "Ce droit administratif permet à un utilisateur de configurer tous les aspects d'[[base-ipsec.ipsec]].  Cela inclut l'ajout, la modification et la suppression de tunnels [[base-ipsec.ipsec]]."
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "place pour un message"

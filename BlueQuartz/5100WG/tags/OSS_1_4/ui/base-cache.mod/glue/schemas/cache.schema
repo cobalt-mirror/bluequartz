@@ -1,0 +1,53 @@
+<!-- 
+  $Id: cache.schema 3 2003-07-17 15:19:15Z will $ 
+  Copyright 2000, Cobalt Networks.
+  
+  This file describes the schema used for Web Caching
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+  
+-->
+
+<!-- System.Cache -->
+
+<class name="System" namespace="Cache" version="1.0">
+  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(modifyWebCache)"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring Caching -->
+<class name="ActiveMonitor" namespace="Cache" version="1.1">
+    <property name="enabled"    	type="boolean" 	default="0"/>
+    <property name="monitor"    	type="boolean" 	default="1" writeacl="ruleCapable(modifyActiveMonitor)"/>
+    <property name="type"		type="scalar"	default="tcp"/>
+    <property name="typeData"		type="scalar"	default="3128"/>
+
+    <property name="restart"		type="scalar"	
+	default="/etc/rc.d/init.d/squid restart >/dev/null 2>&amp;1"/>
+    <property name="retries"		type="int"	default="2"/>
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-cache.amStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-cache.amNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-cache.amNameTag]]"/>
+
+    <property name="URL"	 	type="scalar" 
+ 	default="/base/cache/cache_amdetails.php"/>
+    <property name="UIGroup"            type="scalar"   default="service"/>
+</class>
+
+<!-- end of cache.schema -->
+
+<!-- capabilities stuff -->
+
+<class name="Capabilities" namespace="modifyWebCache" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyWebCache)"/>
+	<property name="nameTag" type="scalar" default="[[base-cache.cap_modifyWebCache]]"/>
+</class>

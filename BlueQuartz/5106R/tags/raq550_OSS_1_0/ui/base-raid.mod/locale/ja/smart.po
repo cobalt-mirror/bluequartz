@@ -1,0 +1,41 @@
+msgid "SMARTnameTag"
+msgstr "SMART (Self-Monitoring Analysis and Reporting Technology) の状態の詳細"
+
+msgid "noAMobject"
+msgstr "アクティブモニタのオブジェクトが見つかりません"
+
+msgid "errRefreshingSnapshot"
+msgstr "SMART の状態のスナップショット記録中のエラー"
+
+msgid "errRegettingObject"
+msgstr "アクティブモニタのオブジェクトを検索中のエラー"
+
+msgid "smartFailures"
+msgstr "１台または複数のディスクでエラーが発生しました。システムをバックアップして、障害のあるディスクを交換してください。"
+
+msgid "smartDeclining"
+msgstr "[[VAR.drives]] ドライブは機能が低下していますが、今のところデータを喪失することなく動作しています。機能の低下したドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "smartOK"
+msgstr "ディスクはすべて正常に動作しています。"
+
+msgid "turned_off_drives"
+msgstr "[[VAR.drives]] ドライブ上で問題が発生したため、このドライブは無効にされました。問題の発生したドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "unsafe"
+msgstr "[[VAR.drives]] ドライブに問題が発生しましたが、オフにすると情報が失われます。問題の発生したドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "standalone"
+msgstr "[[VAR.drives]] ドライブに問題が発生しましたが、オフにすると情報が失われます。問題の発生したスタンドアローン型ドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "drive_off"
+msgstr "このドライブは、問題が発生したためオフにされました。ドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "unsafe_drive"
+msgstr "このドライブに問題が発生しましたが、オフにすると情報が失われます。ドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "unsafe_drive_standalone"
+msgstr "このドライブに問題が発生しましたが、オフにすると情報が失われます。スタンドアローン型ドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
+
+msgid "drive_declining"
+msgstr "このドライブは機能が低下していますが、今のところデータを喪失することなく動作しています。機能の低下したドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"

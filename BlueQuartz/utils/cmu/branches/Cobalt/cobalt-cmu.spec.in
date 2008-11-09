@@ -1,0 +1,66 @@
+# $Id: cobalt-cmu.spec.in 922 2003-07-17 15:22:40Z will $
+
+Summary: Cobalt Migration Utility
+Name: [PRODUCT]-cmu
+Version: [VERSION]
+Release: 0
+Copyright: GPL
+Vendor: Cobalt Networks, Inc.
+Group: Applications
+Source: cpr.tar.gz
+BuildRoot: /var/tmp/%{name}-%{version}-root
+BuildArchitectures: noarch
+
+%description
+Cobalt Migration Utility (CMU)
+
+CMU is used to migrate virtual site, user, groups and other data and meta-data 
+seamlessly between multiple Cobalt platforms.  It (will) also provides 
+tools for migrating from the third party platforms to the Cobalt 
+platform.  
+
+
+%prep
+%setup -n cpr
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/cmu/scripts
+mkdir -p $RPM_BUILD_ROOT/usr/cmu/perl/Archive/Zip
+mkdir -p $RPM_BUILD_ROOT/etc/cmu
+mkdir -p $RPM_BUILD_ROOT/home/cmu
+mkdir -p $RPM_BUILD_ROOT/usr/man/man5
+mkdir -p $RPM_BUILD_ROOT/usr/man/man8
+mkdir -p $RPM_BUILD_ROOT/usr/doc/cmu-[VERSION]
+make install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+# Directories
+%attr(750,root,admin) %dir /home/cmu
+%attr(755,root,root) %dir /etc/cmu
+%attr(755,root,root) %dir /usr/cmu
+%attr(755,root,root) %dir /usr/cmu/scripts
+%attr(755,root,root) %dir /usr/cmu/perl/Archive
+%attr(755,root,root) %dir /usr/cmu/perl/Archive/Zip
+%attr(755,root,root) %dir /usr/sbin
+
+# Config files /etc/cmu
+%config %attr(600,root,root) /etc/cmu/cmuConfig.xml
+%attr(600,root,root) /etc/cmu/cobaltBase.xml
+
+
+%attr(700,root,root) /usr/sbin/*
+
+# Files in /usr/cmu
+%attr(700,root,root) /usr/cmu/scripts/*
+%attr(600,root,root) /usr/cmu/perl/*.pm
+%attr(600,root,root) /usr/cmu/perl/Archive/*.pm
+%attr(600,root,root) /usr/cmu/perl/Archive/Zip/*.pm
+
+# man pages
+%attr(644,root,man) /usr/man/*/*
+

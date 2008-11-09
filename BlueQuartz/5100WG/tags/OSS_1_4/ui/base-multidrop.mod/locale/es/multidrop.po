@@ -1,0 +1,74 @@
+# ----- Menu
+msgid "multidrop"
+msgstr "Recuperación"
+
+msgid "multidropHelp"
+msgstr "Configuración de la recuperación remota de correo electrónico."
+
+# ----- Remote Retrieval (aka multidrop)page
+
+msgid "modifyMultidrop"
+msgstr "Configuración de recuperación remota"
+
+msgid "enableField"
+msgstr "Habilitar recuperación remota"
+
+msgid "enableField_help"
+msgstr "Activar o desactivar la recuperación remota o Multidrop para recuperar periódicamente correo electrónico desde un servidor remoto. Consulte el manual de su servidor para más información."
+
+msgid "serverField"
+msgstr "Servidor remoto de correo electrónico"
+
+msgid "serverField_eg"
+msgstr "Por ejemplo, 192.168.1.100 y mail.cobalt.com."
+
+msgid "serverField_rule"
+msgstr "Dirección de red o un nombre de dominio completo con el formato apropiado para el [[base-multidrop.serverField]]. [[base-multidrop.serverField_eg]]"
+
+msgid "serverField_help"
+msgstr "Dirección de red o el nombre de dominio completo del servidor remoto de correo electrónico desde el que desea recuperar los mensajes de correo electrónico de todo su dominio. [[base-multidrop.serverField_eg]]"
+
+msgid "userDomainField"
+msgstr "Nombre de dominio de correo electrónico"
+
+msgid "userDomainField_rule"
+msgstr "Un [[base-multidrop.userDomainField]] que sea una dirección de red o un nombre de dominio completo con formato apropiado. Por ejemplo, 192.168.1.100 y mail.cobalt.com."
+
+msgid "userDomainField_help"
+msgstr "Nombre de dominio para enviar su correo electrónico. Por ejemplo, cobalt.com si la dirección es juan@cobalt.com, que tiene buzón de recuperación remota."
+
+msgid "userNameField"
+msgstr "Nombre de usuario"
+
+msgid "userNameField_help"
+msgstr "Nombre de usuario de la cuenta del servidor remoto de correo electrónico desde la que desea recuperar los mensajes de correo de todo su dominio."
+
+msgid "userNameField_rule"
+msgstr "Nombre de usuario de un máximo de 12 caracteres y con únicamente caracteres alfanuméricos en minúsculas, puntos, guiones y subrayados."
+
+msgid "passwordField"
+msgstr "Contraseña"
+
+msgid "passwordField_help"
+msgstr "Contraseña de la cuenta del servidor remoto de correo electrónico desde la que desea recuperar los mensajes de correo de todo su dominio."
+
+msgid "passwordField_invalid"
+msgstr "La contraseña no es la misma en ambos campos. Inténtelo de nuevo."
+
+msgid "intervalField"
+msgstr "Frecuencia de recuperación"
+
+msgid "intervalField_rule"
+msgstr "Intervalo que sea un número mayor que 0."
+
+msgid "intervalField_help"
+msgstr "La frecuencia en minutos para recuperar los mensajes de correo electrónico entrantes desde el servidor remoto de correo electrónico."
+
+msgid "protoField"
+msgstr "Protocolo de recuperación de mensajes"
+
+msgid "protoField_help"
+msgstr "Método de recuperación de mensajes de correo electrónico desde el servidor remoto. Si el servidor remoto de correo electrónico admite ESMTP, se puede usar el método ETRN. POP3, predeterminado, funciona para la mayoría de los usuarios."
+
+msgid "badInterval"
+msgstr "El [[base-multidrop.intervalField]] debe ser mayor que cero."

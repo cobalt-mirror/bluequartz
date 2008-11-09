@@ -1,0 +1,112 @@
+msgid "frontpage"
+msgstr "Frontpage Server Extensions"
+
+msgid "frontpage_help"
+msgstr "Frontpage Server Extensions are used so that webs may be published using the Frontpage client application.  Frontpage makes simple graphic design and web forms easy to implement."
+
+msgid "frontpageSettings"
+msgstr "Frontpage Server Extensions Settings"
+
+msgid "systemEnabled"
+msgstr "Enable the Root Web"
+
+msgid "systemEnabled_help"
+msgstr "Check to enable Frontpage publishing for the home group web site."
+
+msgid "passwd"
+msgstr "Webmaster password"
+
+msgid "passwd_help"
+msgstr "Open this web using the Frontpage user webmaster and this password."
+
+msgid "passwd_empty"
+msgstr "Please enter the webmaster password."
+
+msgid "fpx_failed"
+msgstr "A FrontPage Root Web could not be enabled"
+
+msgid "fpxEnabled"
+msgstr "FrontPage Server Extensions"
+
+msgid "fpxEnabled_help"
+msgstr "FrontPage Server Extensions are enabled for this user."
+
+# RaQ handlers
+
+msgid "noNamespace"
+msgstr "FrontPage web services are unavailable.  "
+
+msgid "couldNotAccessUser"
+msgstr "A FrontPage user web could not be created for a user of this site."
+
+msgid "failInstallUserweb"
+msgstr "[[base-frontpage.couldNotAccessUser]]"
+
+msgid "failUninstallUserweb"
+msgstr "A FrontPage user web could not be removed for a user of this site."
+
+msgid "failInstallSite"
+msgstr "A FrontPage web could not be created for this site.  FrontPage may not be enabled if the existing web site contains files that conflict with FrontPage webs, such as .htaccess files."
+
+msgid "failUninstallSite"
+msgstr "The FrontPage site web could not be disabled."
+
+msgid "missingWebmasterPassword"
+msgstr "Please specify a password for the default FrontPage user login named webmaster.  "
+
+# RaQ UI
+
+msgid "fpxTabName"
+msgstr "FrontPage"
+
+msgid "fpxSettings"
+msgstr "[[base-frontpage.fpxTabName]] Settings for [[VAR.fqdn]]"
+
+msgid "siteFpxHelp"
+msgstr "Enable FrontPage for the site."
+
+msgid "fpxTabName_help"
+msgstr "Enable or disable FrontPage site and user webs."
+
+msgid "fpxFullText"
+msgstr "Enable FrontPage Server Extensions"
+
+msgid "fpxFullText_help"
+msgstr "Enable to create a FrontPage web for the site. "
+
+msgid "enableFpxDefault"
+msgstr "Enable FrontPage Server Extensions"
+
+msgid "enableFpxDefault_help"
+msgstr "Check the box to have FrontPage Server Extensions turned on by default when creating a new site."
+
+msgid "enableFpxUserDefault"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUserDefault_help"
+msgstr "Check the box to have FrontPage Server Extensions turned on by default when creating a new user."
+
+msgid "enableFpxUser"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUser_help"
+msgstr "Check the box to enable the use of FrontPage Server Extensions for the user."
+
+msgid "enable"
+msgstr "Enable"
+
+msgid "fpxPassword"
+msgstr "webmaster Password"
+
+msgid "fpxPassword_help"
+msgstr "The site web is initially accessed using the login name webmaster and this password.  User webs are accessed by the respective usernames and their system password.  The FrontPage client is used to manage access to these webs."
+
+msgid "Frontpage_passwordWebmaster_invalid"
+msgstr "Sorry, you have not entered the same webmaster password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "userQuotaTooSmall"
+msgstr "The user quota must be at least 20 MB to enable a FrontPage user web."
+
+msgid ""
+msgstr ""
+

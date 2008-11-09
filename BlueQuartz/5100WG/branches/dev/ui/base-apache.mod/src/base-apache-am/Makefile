@@ -1,0 +1,20 @@
+# $Id: Makefile 201 2003-07-18 19:11:07Z will $
+#
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+
+#ifdef TOPDIR
+#include $(TOPDIR)/devel/defines.mk
+#else
+include /usr/sausalito/devel/defines.mk
+#endif
+
+BINDIR = $(SWATCHBINDIR)
+BINS = am_apache.exp am_admserv.exp
+
+.PHONY: all
+all: install
+
+install: $(BINS)
+	mkdir -p $(BINDIR)
+	install -m 750 -o root -g root $(BINS) $(BINDIR)

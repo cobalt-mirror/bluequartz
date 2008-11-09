@@ -1,0 +1,381 @@
+msgid "ipsec"
+msgstr "點對點 VPN"
+
+msgid "ipsec_help"
+msgstr "[[base-ipsec.ipsec]] 無法於此進行配置。[[base-ipsec.ipsec]] 允許您對兩部機器之間的連線進行加密。"
+
+msgid "tunnelList"
+msgstr "通道清單"
+
+msgid "addTunnel_help"
+msgstr "新增通道"
+
+msgid "localInfo"
+msgstr "檢視本端資訊"
+
+msgid "localInfo_help"
+msgstr "檢視關於本端機器的資訊。遠端 Administrator 在試著設定到此機器的[[base-ipsec.ipsec]] 連線時，便會需要這項資料。"
+
+msgid "manageProfile"
+msgstr "管理連線設定檔"
+
+msgid "manageProfile_help"
+msgstr "在此您可管理不同的可用連線設定檔。需要說明這些設定的連線設定檔，以便連接到其他的[[base-ipsec.ipsec]] 實行。"
+
+msgid "ipsecInfo"
+msgstr "區域主電腦資訊"
+
+msgid "leftIpAddressField"
+msgstr "本端 IP 位址"
+
+msgid "leftIpAddressField_help"
+msgstr "[[base-ipsec.ipsec]] 介面的 IP 位址。"
+
+msgid "leftSubnetField"
+msgstr "本端子網域"
+
+msgid "leftSubnetField_help"
+msgstr "目前在 Qube 主要介面的子網域（或在區域網路上的 IP 位址範圍）是開啟的。"
+
+msgid "leftNetmaskField"
+msgstr "本端子網域網路遮罩"
+
+msgid "leftNetmaskField_help"
+msgstr "已配置目前主要介面的網路遮罩。"
+
+msgid "leftRsaKeyField"
+msgstr "區域主電腦 RSA 公開金鑰"
+
+msgid "leftRsaKeyField_help"
+msgstr "Qube 目前的 RSA 公開金鑰。"
+
+msgid "profileList"
+msgstr "設定檔清單"
+
+msgid "addProfile_help"
+msgstr "新增設定檔"
+
+msgid "tname"
+msgstr "名稱"
+
+msgid "tname_help"
+msgstr "這是通道的名稱。"
+
+msgid "pname"
+msgstr "名稱"
+
+msgid "pname_help"
+msgstr "這是設定檔的名稱。"
+
+msgid "status"
+msgstr "狀態"
+
+msgid "status_help"
+msgstr "這是通道的狀態。"
+
+msgid "comment"
+msgstr "建議"
+
+msgid "comment_help"
+msgstr "這是說明設定檔的短句。"
+
+msgid "listAction"
+msgstr "動作"
+
+msgid "listAction_help"
+msgstr "可能的動作。"
+
+msgid "addNewProfile"
+msgstr "新增設定檔"
+
+msgid "nameField"
+msgstr "名稱"
+
+msgid "nameField_help"
+msgstr "輸入此設定檔的名稱。"
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "驗證協定"
+ 
+msgid "authField_help"
+msgstr "驗證是否該是 ESP 加密的一部份，或另使用 AH 協定。"
+ 
+msgid "pfsField"
+msgstr "完美的轉寄安全性"
+ 
+msgid "pfsField_help"
+msgstr "連接的通道鍵控是否要求「完美的轉寄安全性」﹝透過 PFS 通信協定的關鍵變更不會危及稍早已協定的金鑰。﹞"
+ 
+msgid "keylifeField"
+msgstr "金鑰生命週期"
+ 
+msgid "keylifeField_help"
+msgstr "應該多少時間（以分鐘計）才夠完成一個特定連接案例﹝使用者套裝軟體的一組加密/證實方法﹞的成功協商。"
+ 
+msgid "rekeymarginField"
+msgstr "延遲重新輸入"
+ 
+msgid "rekeymarginField_help"
+msgstr "在完成連接前，應該有多少時間（以分鐘計）可著手嘗試協商一個替代物。"
+ 
+msgid "rekeyfuzzField"
+msgstr "隨機重新鍵控延遲的百分比"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "重新鍵控空間的最大百分比應該隨機地增加，以便任意排列重新鍵控的週期﹝主機多方連接是很重要的﹞。"
+ 
+msgid "keyingtriesField"
+msgstr "嘗試鍵控"
+ 
+msgid "keyingtriesField_help"
+msgstr "在放棄之前，必須嘗試多少次﹝一個整數﹞來協商連接或替代物；數字為 0 表示不曾放棄。"
+ 
+msgid "ikelifetimeField"
+msgstr "鍵控通道生命週期"
+ 
+msgid "ikelifetimeField_help"
+msgstr "在重新協商前，連接鍵控通道應持續多久（以分鐘計）。"
+ 
+msgid "commentsField"
+msgstr "建議"
+ 
+msgid "commentsField_help"
+msgstr "設定檔的指令說明"
+
+msgid "addNewTunnel"
+msgstr "新增通道"
+ 
+msgid "tunnelEnabledField"
+msgstr "連接"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "請在應建立通道時選擇，或是停用該通道。"
+ 
+msgid "tunnelNameField"
+msgstr "名稱"
+ 
+msgid "tunnelNameField_help"
+msgstr "請輸入這個通道的名稱。"
+ 
+msgid "rightProfileField"
+msgstr "連接設定檔"
+ 
+msgid "rightProfileField_help"
+msgstr "請選取連接設定檔。"
+
+msgid "rightField"
+msgstr "遠端[[base-ipsec.ipsec]] 主機"
+ 
+msgid "rightField_help"
+msgstr "輸入[[base-ipsec.ipsec]] 通道另一端上機器的 IP 位址。"
+
+msgid "rightNextField"
+msgstr "遠端主機的閘道器"
+ 
+msgid "rightNextField_help"
+msgstr "請輸入遠端機器所使用的閘道器。"
+ 
+msgid "rightSubnetField"
+msgstr "遠端子網域"
+ 
+msgid "rightSubnetField_help"
+msgstr "在遠端機器的後面輸入子網域。"
+ 
+msgid "rightNetmaskField"
+msgstr "遠端網路遮罩"
+ 
+msgid "rightNetmaskField_help"
+msgstr "在遠端機器的後面書輸入網路的遮罩。"
+ 
+msgid "tunnelCommentField"
+msgstr "建議"
+ 
+msgid "tunnelCommentField_help"
+msgstr "請輸入形容這個通道的說明。"
+
+msgid "modProfile"
+msgstr "更改設定檔 － [[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "更改通道 － [[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "附有 RSA 驗證的「自動鍵控」"
+
+msgid "autoSecret"
+msgstr "附有「共用密碼」的「自動鍵控」"
+
+msgid "manual"
+msgstr "手動鍵控"
+
+msgid "keyingField"
+msgstr "鍵控類型"
+
+msgid "authPubKeyField"
+msgstr "遠端 RSA 金鑰"
+
+msgid "authSecretKeyField"
+msgstr "共用密碼"
+
+msgid "authKeyField"
+msgstr "驗證金鑰"
+
+msgid "encKeyField"
+msgstr "加密金鑰"
+
+msgid "valueField"
+msgstr "加密/驗證計畫"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "重映視窗"
+
+msgid "manualSettings"
+msgstr "手動鍵控參數"
+
+msgid "autoSettings"
+msgstr "自動鍵控參數"
+
+msgid "enableAutoRsaField"
+msgstr "允許附有「RSA 驗證」的「自動鍵控」"
+
+msgid "enableAutoRsaField_help"
+msgstr "如果您想允許使用此設定檔的通道去使用附有 RSA 驗證的自動鍵控，請勾選此方框"
+
+msgid "enableAutoSecretField"
+msgstr "允許附有「共用密碼」的「自動鍵控」"
+
+msgid "enableAutoSecretField_help"
+msgstr "如果您想允許使用此設定檔的通道去使用附有「共用密碼」的自動鍵控，請勾選此方框"
+
+msgid "enableManualField"
+msgstr "允許「手動鍵控」"
+
+msgid "enableManualField_help"
+msgstr "如果您想允許使用此設定檔的通道去使用手動鍵控，請勾選此方框"
+
+msgid "valueField_help"
+msgstr "選取要用於加密和認證的演算法"
+
+msgid "replay_windowField_help"
+msgstr "輸入一個介於 0 和 64 之間的整數，代表重新播放視窗的長度，0 表示無\
+重新播放保護。"
+
+msgid "ignore"
+msgstr "停用此通道"
+
+msgid "start"
+msgstr "我們啟動連線"
+
+msgid "add"
+msgstr "另一端啟動連線"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "此通道的 SPI 號碼。通道兩端的 SPI 號碼必須符合，連線才能有作用。"
+
+msgid "keyingField_help"
+msgstr "選擇要用於此連線的鍵控類型。"
+
+msgid "authPubKeyField_help"
+msgstr "請輸入通道另一端機器的公開金鑰，用十六進位制，前面加上 '0x'。"
+
+msgid "authSecretKeyField_help"
+msgstr "輸入本機器和通道另一端的機器之間的共用密碼"
+
+msgid "authKeyField_help"
+msgstr "輸入用於認證的金鑰"
+
+msgid "encKeyField_help"
+msgstr "輸入用於加密的金鑰。在僅限認證通道中，將此欄位保留空白"
+
+msgid "establishedTunnels"
+msgstr "已建立的通道："
+
+msgid "nn"
+msgstr "網路對網路"
+
+msgid "hh"
+msgstr "主機對主機"
+
+msgid "hn"
+msgstr "主機對網路"
+
+msgid "nh"
+msgstr "網路對主機"
+
+msgid "tunnelProblem"
+msgstr "所有通道都當機，或無法啟動。"
+
+msgid "noConnections"
+msgstr "通道已備妥，但無人啟動連線"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]] 將無法載入與此項目相關的一或多個通道。\n請檢查您的設定。"
+
+msgid "disabled"
+msgstr "關閉"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]] 無法與 [[VAR.profile]] 連線設定檔一起使用。請選擇不\
+同的連線設定檔或鍵控類型。"
+
+msgid "spiInUse"
+msgstr "您所指定的 SPI 已在使用中。請選擇另一個。"
+
+msgid "openKey"
+msgstr "開啟金鑰視窗"
+
+msgid "openKey_help"
+msgstr "按這裡以開啟包含此 Qube 公開金鑰的新視窗。"
+
+msgid "IpsecKey"
+msgstr "本機 RSA 金鑰"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "請使用此設定檔來連接到另一個 Qube3"
+
+msgid "removeProfileConfirm"
+msgstr "您是否確定要刪除設定檔 '[[VAR.profileName]]'？"
+
+msgid "removeTunnelConfirm"
+msgstr "您是否確定要刪除通道 '[[VAR.tunnelName]]'？"
+
+msgid "mustSelectKeying"
+msgstr "對於此設定檔，您必須啟用至少一項類型的輸入方式。"
+
+msgid "profileInUse"
+msgstr "此設定檔由下列作用中的通道所使用：[[VAR.list]]。在刪除此設定檔之前，請先停用、刪除或變更所有列出通道的設定檔。"
+
+msgid "autoSettings_help"
+msgstr "使用此設定檔以便設定成自動輸入的連線。"
+
+msgid "manualSettings_help"
+msgstr "使用此設定檔以便設定成手動輸入的連線。"
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "管理[[base-ipsec.ipsec]]"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "這項管理權限允許使用者配置[[base-ipsec.ipsec]] 所有的層面。這包括新增、編輯及移除[[base-ipsec.ipsec]] 通道。"
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "訊息"
+

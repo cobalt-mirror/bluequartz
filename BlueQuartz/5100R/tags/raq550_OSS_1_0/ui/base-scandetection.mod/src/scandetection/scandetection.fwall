@@ -1,0 +1,75 @@
+default
+
+   pass
+
+     label=shutdown
+     {
+     timeout=30
+     !recv/srcaddr/log
+     }
+
+
+     label=tcp-4
+     {
+       timeout=3600
+       send/tcp/rst/srcaddr/dstaddr/log=portscan
+     }
+
+     label=udp-4
+     {
+       timeout=3600
+       icmp/3/3/send/srcaddr/dstaddr/log=portscan
+     }
+
+
+
+     label=tcp-3
+     {
+       timeout=3600
+       send/tcp/rst/srcaddr/dstaddr/trigger=tcp-4
+     }
+
+     label=udp-3
+     {
+       timeout=3600
+       icmp/3/3/send/srcaddr/dstaddr/trigger=tcp-4
+     }
+
+
+
+     label=tcp-2
+     {
+       timeout=3600
+       send/tcp/rst/srcaddr/dstaddr/trigger=tcp-3
+     }
+
+     label=udp-2
+     {
+       timeout=3600
+       icmp/3/3/send/srcaddr/dstaddr/trigger=tcp-3
+     }
+
+
+
+     label=tcp-1
+     {
+       timeout=3600
+       send/tcp/rst/srcaddr/dstaddr/trigger=tcp-2
+     }
+
+     label=udp-1
+     {
+       timeout=3600
+       icmp/3/3/send/srcaddr/dstaddr/trigger=tcp-2
+     }
+
+
+
+     send/tcp/rst/trigger=tcp-1
+     icmp/3/3/send/trigger=udp-1
+     all
+  
+  log
+
+    rejected
+

@@ -1,0 +1,42 @@
+<?php
+// $Id: 20_Asp.php.modifyWeb.Vsite,v 1.1 2001/11/05 08:08:57 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+// Asp.php.modify.Vsite
+
+include_once('UIExtension.php');
+
+class AspExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$factory =& $ServerScriptHelper->getHtmlComponentFactory('base-asp');
+		$cce =& $ServerScriptHelper->getCceClient();
+		
+		$defaults = $cce->get($parameters['CCE_OID'], 'Asp');
+
+        $allowed = $ServerScriptHelper->getAllowed('modifyAsp');
+        
+        // hide field if non-admin is viewing and not enabled
+        if (!$allowed && !$defaults['enabled'])
+            return;
+            
+		$aspEnable =& $factory->getBoolean('Asp_enabled', $defaults['enabled'],
+                                        ($allowed ? 'rw' : 'r'));
+		
+		// assume PagedBlock because that is most likely going to be it
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$container->addFormField($aspEnable, $factory->getLabel('enableAsp'), 
+                        $page_id);
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+		global $Asp_enabled;
+
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$cce->set($parameters["CCE_OID"], "Asp", array("enabled" => $Asp_enabled));
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

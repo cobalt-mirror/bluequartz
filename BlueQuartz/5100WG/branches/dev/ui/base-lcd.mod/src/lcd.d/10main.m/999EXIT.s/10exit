@@ -1,0 +1,4 @@
+#!/bin/sh
+
+[ -x /etc/rc.d/init.d/lcd-showip ] && /etc/rc.d/init.d/lcd-showip
+

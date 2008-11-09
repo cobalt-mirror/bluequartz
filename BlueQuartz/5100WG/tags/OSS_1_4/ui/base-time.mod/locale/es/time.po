@@ -1,0 +1,44 @@
+msgid "time"
+msgstr "Fecha y hora"
+
+msgid "timeSetting"
+msgstr "Configuración de fecha y hora"
+
+msgid "time_help"
+msgstr "[[base-time.timeSetting]]."
+
+msgid "systemDisplayedDate"
+msgstr "Fecha"
+
+msgid "systemDisplayedDate_help"
+msgstr "Defina la fecha actual."
+
+msgid "systemDisplayedTime"
+msgstr "Hora"
+
+msgid "systemDisplayedTime_help"
+msgstr "Hora actual."
+
+msgid "systemDisplayedTimeZone"
+msgstr "Zona horaria"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Zona horaria actual de este dispositivo servidor."
+
+msgid "ntpAddress"
+msgstr "Dirección del servidor NTP"
+
+msgid "ntpDefaultServer"
+msgstr "time.cobalt.com"
+
+msgid "ntpAddress_help"
+msgstr "Dirección de red o el nombre de dominio completo de un servidor de protocolo de fecha/hora de red (NTP) con el que se sincronizará periódicamente la fecha y la hora de su sistema. Por ejemplo, [[base-time.ntpDefaultServer]] es un servidor NTP disponible. Puede encontrar una lista de otros servidores NTP disponibles públicamente en http://www.eecis.udel.edu/~mills/ntp/servers.htm."
+
+
+# Capabilities
+
+msgid "capgroup_adminTime"
+msgstr "Administrar hora del sistema"
+
+msgid "capgroup_adminTime_help"
+msgstr "Este derecho administrativo permite que un usuario defina la hora y la zona horaria del sistema."

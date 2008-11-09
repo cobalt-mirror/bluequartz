@@ -1,0 +1,149 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "Disk"
+
+msgid "diskUsageMenuDesc"
+msgstr "Disk usage statistics can be viewed here."
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "Disk Usage"
+
+msgid "diskUsageSummary"
+msgstr "Disk Usage - Summary"
+
+msgid "userQuotas"
+msgstr "Disk Usage - Users"
+
+msgid "groupQuotas"
+msgstr "Disk Usage - Groups"
+
+msgid "selectUsage"
+msgstr "Select Usage..."
+
+msgid "usageSummary"
+msgstr "Summary"
+
+msgid "usageUser"
+msgstr "Users"
+
+msgid "usageGroup"
+msgstr "Groups"
+
+msgid "lastCollectionDate"
+msgstr "Usage Last Checked"
+
+msgid "lastCollectionDate_help"
+msgstr "This is the last time disk usage statistics were generated."
+
+msgid "notRunYet"
+msgstr "Disk usage statistics have not yet been generated."
+
+msgid "updateNow"
+msgstr "Check Usage Now"
+
+msgid "updateNow_help"
+msgstr "Click here to update disk usage information immediately.  The statistics may take several minutes to generate."
+
+msgid "askUpdateNowConfirmation"
+msgstr "Are you sure you want to check disk usage now?  This operation may take several minutes."
+
+# Summary
+
+msgid "partition"
+msgstr "Partition"
+
+msgid "partition_help"
+msgstr "This shows the name of the file system partition and what the partition is used for."
+
+msgid "usedSpace"
+msgstr "Used (MB)"
+
+msgid "usedSpace_help"
+msgstr "This is the amount of space in megabytes used on the file system partition."
+
+msgid "available"
+msgstr "Free (MB)"
+
+msgid "available_help"
+msgstr "This is the amount of space in megabytes available on the file system partition."
+
+msgid "totalSpace"
+msgstr "Total (MB)"
+
+msgid "totalSpace_help"
+msgstr "This is the amount of space in megabytes allocated to the file system partition."
+
+msgid "pct"
+msgstr "Percentage Used"
+
+msgid "pct_help"
+msgstr "This is the percentage of the total available or allocated disk space that has been used."
+
+msgid "rootFiles"
+msgstr "System Files - Root Partition (/)"
+
+msgid "varFiles"
+msgstr "System Files - Var Partition (/var)"
+
+msgid "userFiles"
+msgstr "User and Group Files - Home Partition (/home)"
+
+msgid "totals"
+msgstr "All Partitions"
+
+
+# Users
+
+msgid "user"
+msgstr "User Name"
+
+msgid "user_help"
+msgstr "This is the user to whom the disk usage information applies."
+
+msgid "blocks"
+msgstr "Used (MB)"
+
+msgid "blocks_help"
+msgstr "This is the amount of space in megabytes that is currently being used."
+
+msgid "quota"
+msgstr "Allowed (MB)"
+
+msgid "quota_help"
+msgstr "This is the maximum allowed disk space usage in megabytes."
+
+msgid "allUsers"
+msgstr "All Users"
+
+# Groups
+
+msgid "group"
+msgstr "Group Name"
+
+msgid "group_help"
+msgstr "This is the group to which the disk usage information applies."
+
+msgid "allGroups"
+msgstr "All Groups"
+
+msgid "mailQuotaUserSubject"
+msgstr "User Disk Usage Warning"
+
+msgid "mailQuotaUserBody"
+msgstr "Warning:\n\nThe disk usage for user [[VAR.user]] on [[VAR.host]] is\nover [[VAR.pct]]% of the allocated limit with less than [[VAR.free]] MB free.\nPlease consider deleting some files, moving some data to another location, or\nrequesting an increase in the maximum storage limit.\n\n  "
+
+msgid "mailQuotaGroupSubject"
+msgstr "Group Disk Usage Warning"
+
+msgid "mailQuotaGroupBody"
+msgstr "Warning:\n\nThe disk usage for group [[VAR.group]] on [[VAR.host]] is\nover [[VAR.pct]]% of the allocated limit with less than [[VAR.free]] MB free.\nPlease consider deleting some files, moving some data to another location, or\nrequesting an increase in the maximum storage limit.\n\n  "
+
+msgid "unknownDiskUsage"
+msgstr "Unknown"
+
+msgid "unlimitedQuota"
+msgstr "Unlimited"
+

@@ -1,0 +1,78 @@
+msgid "readSnmpCommunityField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-snmp.readSnmpCommunityField]] 值。  [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField_help"
+msgstr "請輸入此伺服器設備所屬的「讀寫 SNMP 社群」。  [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "capgroup_adminSnmp_help"
+msgstr "這個管理權限可讓使用者變更 SNMP 設定"
+
+msgid "snmpSettings"
+msgstr "簡易網路管理通訊協定 (SNMP) 設定"
+
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-snmp.readWriteSnmpCommunityField]] 值。 [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "cannotCreateSynlink"
+msgstr "在建立符號鏈結 (symlink) 時發生錯誤 [[VAR.msg]]"
+
+msgid "cannotStopSnmpService"
+msgstr "在停止 Snmp 服務時發生錯誤 [[VAR.msg]]"
+
+msgid "readSnmpCommunityField_rule"
+msgstr "您輸入的「唯讀 SNMP 社群」只能包含英數字元以及 '-' 和 '_'。"
+
+msgid "enableServer_help"
+msgstr "開啟或關閉簡易網路管理通訊協定 (SNMP) 伺服器。SNMP 是一種網路管理通信協定，並可以利用此協定在網路上監視及控制網路裝置，以及管理配置、統計值收集、效能和安全性。"
+
+msgid "readEqualWrite"
+msgstr "若要讓社群讀取及寫入，在「讀取」和「寫入」欄位中加以輸入即可；您的讀取社群已被變更以反映這些需求。"
+
+msgid "readNorWriteSet"
+msgstr "很抱歉，您必須輸入讀取及/或寫入社群才能啟用 SNMP。"
+
+msgid "readSnmpCommunityField_help"
+msgstr "請輸入此伺服器設備所屬的「唯讀 SNMP 社群」。  [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "enableServer"
+msgstr "啟用伺服器"
+
+msgid "cannotFork"
+msgstr "在分支時發生錯誤 [[VAR.msg]]"
+
+msgid "amDetailsTitle"
+msgstr "簡易網路管理通訊協定 (SNMP) 伺服器明細"
+
+msgid "cannotBreakLink"
+msgstr "在取消符號鏈結 (symlink) 時發生錯誤 [[VAR.msg]]"
+
+msgid "amSNMPStatusOK"
+msgstr "此 SNMP 檔案正常運作中。"
+
+msgid "readSnmpCommunityField"
+msgstr "唯讀 SNMP 社群"
+
+msgid "amSNMPNameTag"
+msgstr "簡易網路管理通訊協定 (SNMP) 伺服器"
+
+msgid "capgroup_adminSnmp"
+msgstr "管理 SNMP"
+
+msgid "snmp"
+msgstr "SNMP"
+
+msgid "cannotStartSnmpServer"
+msgstr "在啟動 Snmp 伺服器時發生錯誤 [[VAR.msg]]"
+
+msgid "amSNMPNotRunning"
+msgstr "此 SNMP 伺服器不在執行中。"
+
+msgid "readWriteSnmpCommunityField"
+msgstr "讀寫 SNMP 社群"
+
+msgid "readWriteSnmpCommunityField_rule"
+msgstr "您輸入的「讀寫 SNMP 社群」只能包含英數字元以及 '-' 和 '_'。"
+
+msgid "snmp_help"
+msgstr "此處可變更[[base-snmp.snmpSettings]]。"
+

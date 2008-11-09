@@ -1,0 +1,122 @@
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "osName"
+msgstr "Sun Cobalt OS"
+
+msgid "osVendor"
+msgstr "Sun Cobalt"
+
+msgid "osDescription"
+msgstr "The [[base-carmel.osName]] is the base software for the [[base-carmel.productName]]. This software package is required in order for your server appliance to function."
+
+msgid "loginPageTitle"
+msgstr "Login - [[base-carmel.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "Login - [[VAR.hostName]]"
+
+msgid "loginNoCssMessage"
+msgstr "Before trying to login, please verify that your browser supports Cascading Style Sheets functionality."
+
+msgid "loginNoJsMessage"
+msgstr "Before trying to login, please verify that your browser supports JavaScript functionality."
+
+msgid "loginOkMessage"
+msgstr "To login, please enter your user name and password."
+
+msgid "loginMissingCookies"
+msgstr "Before trying to login, please verify that your browser supports cookie functionality."
+
+msgid "loginExpiredMessage"
+msgstr "Your login session has expired.  To login again, please enter your user name and password."
+
+msgid "loginAuthFailed"
+msgstr "You have not entered a correct username and/or password.  Please try again."
+
+msgid "loginByeMessage"
+msgstr "Thank you for using the [[base-carmel.productName]]."
+
+msgid "loginPageUsername"
+msgstr "User Name:"
+
+msgid "loginPagePassword"
+msgstr "Password:"
+
+msgid "loginPageSecurity"
+msgstr "Secure Connect:"
+
+msgid "loginPageLogin"
+msgstr "Login"
+
+msgid "splashAdminMessage"
+msgstr "The Administration section allows you to perform various administrative tasks."
+
+msgid "splashProgramsMessage"
+msgstr "The Programs section allows you to access currently installed programs."
+
+msgid "splashPersonalMessage"
+msgstr "The Personal Profile section allows you to view your user account information."
+
+msgid "thankYouMessage"
+msgstr "Thank you for using the [[base-carmel.productName]]."
+
+msgid "base-administration"
+msgstr "Administration"
+
+msgid "base-administration_description"
+msgstr "[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr "Programs"
+
+msgid "base-programs_description"
+msgstr "[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr "Personal Profile"
+
+msgid "base-personalProfile_description"
+msgstr "[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr "Users & Groups"
+
+msgid "base-usersandgroups_description"
+msgstr "Users and groups can be configured here."
+
+msgid "base-webServices"
+msgstr "Web"
+
+msgid "base-webServices_description"
+msgstr "Web services can be configured here."
+
+msgid "base-networkServices"
+msgstr "Network"
+
+msgid "base-networkServices_description"
+msgstr "Network services can be configured here."
+
+msgid "base-security"
+msgstr "Security"
+
+msgid "base-security_description"
+msgstr "Services concerning the security of your server appliance can be configured here."
+
+msgid "base-system"
+msgstr "System"
+
+msgid "base-system_help"
+msgstr "System settings can be viewed and configured here."
+
+msgid "base-maintenance"
+msgstr "Maintenance"
+
+msgid "base-maintenance_description"
+msgstr "System and user data maintenance activities can be configured here."
+
+msgid "usageInformation"
+msgstr "Usage Information"
+
+msgid "usageInformation_description"
+msgstr "Usage statistics and information can be viewed here."

@@ -1,0 +1,322 @@
+$Id: spec.i18n.lib.txt 3 2003-07-17 15:19:15Z will $
+(tabstop=4)
+
+i18n library specification
+
+Conventions
+
+	locale ::= lang-code [ '_' country-code [ '_' variant-code ] ]
+	
+		lang-code ::= two-letter ISO-639 language code (ie. 'ja')
+		country-code ::= two-letter ISO-3166 country code (ie. 'JP')
+		variant-code ::= a language variant code (ie. 'EUC').
+	
+	for example: 'ja_JP_EUC'
+	
+	domain ::= a grouping for a similar set of resources - for example
+		the sendmail package may be a unique domain.  In practical
+		terms, localization strings are packaged by domain.
+
+	Whenever a function returns a string, the user should assume that
+	string to be read-only.  All allocated memory will be freed in
+	course, by the i18n_destroy() function.
+
+Domain Special Entries
+
+	Each domain defines the default language for it's use in it's
+	own prop file. This file contains only a locale specification
+	and nothing else.
+
+	File is located in the same directory and locale property files
+	except it's name is derived from the domain ratehr than the locale
+	e.g. cobalt.prop
+	
+Functions
+
+	void *i18n_new(char *domain, char *locales);
+	
+		parameters:
+			domain -- the optional default domain for this i18n object
+			locales -- a comma-separated list of locates the user
+				is signalling can be understood.
+		
+		returns: a pointer to a new i18n object, or null if domain
+			is not found.
+		
+		i18n_new creates a new "i18n" object.  
+		
+		This i18n object contains:
+			- a specification of the default domain
+			- a list of user-requested locales
+			- a cache of "negotiated locales for domain" 
+			- a list of allocated strings (for later de-allocation)
+		
+		Every time a tag from a new domain is fetched, the possible
+		locales for that domain is negotiated.  This result is cached
+		within the i18n object for use in future fetches from the same
+		domain.
+		
+		The important idea is that separate locale negotiation occurs
+		for each domain.  This allows to have a system where different
+		domains can have different languages defined (ie. cobalt core
+		might have several languages available, but some 3PD-contributed
+		modules might only have a couple of languages).	
+		
+		This can result in a page that contains a mix of languages: 
+		we all agree that this is the desired behavior.
+
+		(allocates new memory)
+		
+	void i18n_destroy(void *i18n)
+	
+		Deallocates memory allocated by the i18n_new and other
+		functions.  This must be done, or else calling applications
+		will leak memory.
+	
+	char *i18n_locales(void *i18n, char *domain)
+
+		Get a list of negotiated locales for a certain domain.
+
+		parameters:
+		
+			i18n      The i18n object created using the i18n_new fn.
+				    the i18n object specifies the default domain and 
+				    locales.
+			domain    The domain for the negotiated locales (NULL to
+				    indicate default)
+
+	char *i18n_get(void *i18n, char *domain, char *tag, GHashTable *vars)
+	
+		This function gets the text, exactly as defined, from the
+		domain/locale database.
+
+		parameters:
+		
+			i18n      The i18n object created using the i18n_new fn.
+				    the i18n object specifies the default domain and 
+				    locales.
+			domain    The domain of the requested tag (may be NULL to
+				    indicate default)
+			tag       The tag ID of the string being retreived.
+			vars      A GHashTable of variable:value pairs.
+		
+		returns:
+
+			The interpolated, localized string.
+	
+		The localized string is identified by the "tag" specified in
+		the function call and the "domain" specified within the i18n
+		object.  The locale used is the one negotiated during the
+		creation of the i18n object.
+
+		Interpolation is performed on the string according to the rules
+		described lated in this document.	
+			
+	char *i18n_get_html(void *i18n, char *tag, char *domain, GHashTable *vars)
+	
+		The same as i18n_get, except that the returned string is
+		escaped suitable for use in an HTML document.  For
+		example:
+			< is encoded as &lt;
+			& is encoded as &amp;
+			etc.
+
+	char *i18n_get_js(void *i18n, char *tag, char *domain GHashTable *vars)
+	
+		The same as i18n_get, except that the returned string is
+		escaped suitable for use in a Javascript string.
+
+	char *i18n_get_file (const void *i18n, char *file)
+     	
+     		Finds an appropriately localized version of the file specified
+     		by *fileid.
+     		
+	char *i18n_get_property(void *i18n, char *property, char *domain, char *lang);
+
+		Get a property of the specified locale.  For example, if the
+		DNS 2317 feature is supported only for Japanese, then the
+		locale property "dns2317" is only true
+		for Japanese.
+
+	char *i18n_strftime(void *i18n, char *domain, char *format, time_t t)
+		
+		Convert epochal time "t" to a localized date string.
+		
+		This is just a shallow wrapper around the POSIX strftime
+		function.  See "man 3 strftime" for details.  
+		
+		Pseudocode for this function:
+			1. select a best locale for the specified domain.
+			2. call the C fn: "setlocale(LC_TIME, thislocale)"
+			3. call the C strftime function.
+
+	char *i18n_get_datetime(void *i18n, time_t t)
+
+		Return a date/time formatted string for the preferred locale
+		(wrapper for strftime).
+	
+	char *i18n_get_date(void *i18n, time_t t)
+
+		Return a date formatted string for the preferred locale
+		(wrapper for strftime).
+	
+	char *i18n_get_time(void *i18n, time_t t)
+
+		Return a time formatted string for the preferred locale
+		(wrapper for strftime).
+	
+	char *i18n_encode_html(char *s)
+	
+		Escapes the string "s" suitable for use in an HTML document.
+		(allocates new memory)
+	
+	char *i18n_encode_js(char *s)
+	
+		Escapes the string "s" suitable for use in Javascript code.	
+		(allocates new memory)
+
+Negotiation Algorithm
+
+	The client provides an ordered list of acceptable locales, such as:
+		ja_jp_EUC, ko, en
+
+	Each domain is available for a set of implemented locales, such as:
+		ja, en
+
+	Negotiation is performed using the following method:
+		1. the first locale is popped off the client's list of
+		   acceptable locales.
+		2. If the locale is implemented in the domain, return locale.
+		3. Strip the variant code from the locale and check step 2 again.
+		4. Strip the country code from the locale and check step 2 again.
+		5. pop the next locale off the client's list of acceptable
+		   locales and return to step 2.  If no more locales are available,
+		   return the default locale for the domain.
+
+	If negotation fails to identify a common locale, the default locale
+	specified for the domain is used instead.
+	
+Interpolation rules
+
+	Every time a localized string is retreived from the i18n database,
+	it undergoes interpolation according to the rules defined below.
+	There are three main rules:
+		1. Interpolation of variables, which allows variables supplied
+		   by the calling function to be substituted into the string.
+		2. Interpolation of embedded tags, which enables i18n to
+		   embed other i18n strings into themselves.
+		3. Interpolation of the special case.
+
+	In general, things that are interpolated are contained within
+	the special character sequence "[[" and "]]".
+
+	INTERPOLATION OF TAGS:
+
+	variable-substitution ::= "[[" tagtype "." taginfo "]]"
+	tagtype ::= [a-zA-Z]+	("var", "file", "str")
+	taginfo ::= [a-zA-Z0-9\-_]+
+
+		When a tag is encountered during string translation, the tag is
+		expanded, according to the rules of the tagtype, and inserted
+		into the result string in place of the tag.
+
+		If the tagtype is "file", i18n_get_file() is called.  If the
+		tagtype is "str", i18n_get() is called.  If the tagtype is
+		"var", the taginfo is looked up in the argument list of
+		variables and inserted.
+		
+		If the key indicated by the taginfo string is not defined,
+		the error is logged, and the result string is the string
+		literal of the tag.
+
+		The following examples assume that the i18n_get_* function
+		was called with the following varargs: 
+			"a", "alpha", "b", "beta", "doug", "west"
+		Examples:
+			[[var.a]]      ->		alpha
+			[[var.doug]]   ->		west
+			[[var.Bogus]]  ->		[[var.Bogus]]
+			[[var.alpha]]  ->		[[var.alpha]]
+			[[var.]        ->		[[var.]]
+
+	INTERPOLATION OF NESTED TAGS:
+
+	interp-loop ::= "[[EVAL LOOP " + tagtype + "." + taginfo + "]]"
+		Since the embedded string can in turn contain additional
+		tags that require interpolation, interpolation will parse the 
+		result string repeatedly until no further expansions are found,
+		or until a loop is detected, at which point an error is
+		inserted, and parsing is halted.p
+
+
+	INTERPOLATION OF THE SPECIAL CASE:
+
+	special-case ::= "[[]]"
+
+		Always interpolates to the string "[[".  Just so have a way of
+		generating this string inside the UI, if we need it.
+
+
+PHP3 Interface
+
+	We should probably simplify this interface down for the PHP
+	interface.  Probably something like this:
+	
+	<?i18n_init("en")?>       (initializes the i18n subsystem)
+	
+	<?tag("page-title">?>     (prints the specified tag)
+
+	Or similiar in an object wrapper.
+	
+	These PHP wrappers should also take care of memory management,
+	freeing strings as soon as they aren't needed anymore.
+	
+Perl Interface
+
+	The Perl interface is currently a wrapper around the command line
+	interface.
+
+	Creating a New Object:
+	
+	new() - creates a new I18n object
+
+		Parameters: none
+		Returns: an I18n object
+		Example:
+			my $i18n = new I18n;
+
+	Setting the Locale:
+	
+	$i18n->setLocale($locale) - sets the locale to use for
+                internationalizing strings
+	
+		Parameters: $locale is the locale to use for 
+                            internationalizing strings
+		Returns: none
+		Example:
+			$i18n->setLocale("en");
+
+	Retrieving Strings:
+	
+	$string = $i18n->get($tag, \%vars) - gets the internationalized string
+		specified by $tag using	%vars for variable interpolation
+
+		Parameters: $tag specifies which string to retrieve
+			    \%vars specifies variable/value pairs used 
+                            for variable interpolation (optional)
+	        Returns: $string is the interpolated tag
+		Examples:
+			$userAlert = $i18n->get("[[mydomain.alert]]");
+			$hello = $i18n->get("[[greet.hi]]", { name => "bob" } );
+	
+	Example:
+
+		#!/usr/bin/perl
+		use I18n;
+	
+		my $i18n = new I18n;
+		$i18n->setLocale("en");
+		%myVars = ( firstName => "Peter", lastName => "Pan" );
+	
+		$welcomeMessage = $i18n->get("[[mydomain.welcome]]", \%myVars);
+

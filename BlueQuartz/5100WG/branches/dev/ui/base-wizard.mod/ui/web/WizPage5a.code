@@ -1,0 +1,160 @@
+##CUSTOM-PREAMBLE##
+<?php
+  global $WizHostNameField;
+  global $WizDomainNameField;
+  global $WizDnsAddressesField;
+  global $WizConnectionTypeField;
+  global $WizOldBootProto;
+
+	$WizOldBootProto = $eth1["bootproto"];
+?>
+
+##PAGE-TITLE##
+networkMessage
+
+##PAGE-DESCRIPTION##
+networkMessage
+
+##WIZARD-FORM##
+	<!----------- Beginning Of Wizard Form ----------->
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='5a'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<input type='hidden' name='WizPreviousPage' value='5'>
+		<input type='hidden' name='WizHostNameField' value='<?php print $WizHostNameField; ?>'>
+		<input type='hidden' name='WizDomainNameField' value='<?php print $WizDomainNameField; ?>'>
+		<input type='hidden' name='WizDnsAddressesField' value='<?php print $WizDnsAddressesField; ?>'>
+		<input type='hidden' name='WizConnectionTypeField' value='<?php print $WizConnectionTypeField; ?>'>
+		<input type='hidden' name='WizOldBootProto' value='<?php print $WizOldBootProto; ?>'>
+		<div class="Setting-Description">Your Cable Modem or DSL Connection should be connected to the Ethernet port labeled &quot;II&quot; on your <? print $i18n->get("[[base-product.productName]]");?>. Please enter the appropriate configuration settings given by your internet service provider.</div>
+		<br>
+		<div class="Setting-Label">
+			<table width="451" border="0" cellspacing="0" cellpadding="2">
+				<tr>
+					<td width="18">
+						<div align="right" class="Setting-Label">
+							<INPUT TYPE="radio" NAME="WizNetworkField" VALUE="WizDhcp" checked  ></div>
+					</td>
+					<td>
+						<div class="Setting-Label">Connect Automatically Using DHCP</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="18"></td>
+					<td>
+						<table width="100%" border="0" cellspacing="0" cellpadding="2">
+							<tr>
+								<td width="128">
+									<div class="Setting-Label">
+										<div align="right">
+											Client Host Name:</div>
+									</div>
+								</td>
+								<td>
+									<div class="Setting-Info-Text">
+										<INPUT TYPE="TEXT" NAME="WizDhcpHostNameField" VALUE="" SIZE="15"  onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;">&nbsp;(optional)</div>
+								</td>
+								<td width="128">
+									<div class="Setting-Label">
+										<div align="right">
+											Client Identifier:</div>
+									</div>
+								</td>
+								<td>
+									<div class="Setting-Info-Text">
+										<INPUT TYPE="TEXT" NAME="WizDhcpClientIdField" VALUE="" SIZE="15"  onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;">&nbsp;(optional)</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="18"></td>
+					<td><img src="/libImage/empty.gif" alt="" width="10" height="5" border="0"></td>
+				</tr>
+				<tr>
+					<td width="18">
+						<div align="right" class="Setting-Label">
+							<INPUT TYPE="radio" NAME="WizNetworkField" VALUE="WizPppoe"  ></div>
+					</td>
+					<td>
+						<div class="Setting-Label">
+							Connect Automatically Using PPPoE</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="18"></td>
+					<td>
+						<table width="100%" border="0" cellspacing="0" cellpadding="2">
+							<tr>
+								<td width="128">
+									<div class="Setting-Label">
+										<div align="right">
+											User Name:</div>
+									</div>
+								</td>
+								<td>
+										<INPUT TYPE="TEXT" NAME="WizPppUserNameField" VALUE="" SIZE="25"  onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;">
+								</td>
+							</tr>
+							<tr>
+								<td width="128">
+									<div class="Setting-Label">
+										<div align="right">
+											Password:</div>
+									</div>
+								</td>
+								<td>
+										<INPUT TYPE="PASSWORD" NAME="WizPppPasswordField" VALUE="" SIZE="25" >
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="18"></td>
+					<td><img src="/libImage/empty.gif" alt="" width="10" height="5" border="0"></td>
+				</tr>
+				<tr>
+					<td width="18">
+						<div align="right" class="Setting-Label">
+							<INPUT TYPE="radio" NAME="WizNetworkField" VALUE="WizStatic" ></div>
+					</td>
+					<td>
+						<div class="Setting-Label">
+							Specify Manually</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="18"></td>
+					<td>
+						<table width="100%" border="0" cellspacing="0" cellpadding="2">
+							<tr>
+								<td width="128">
+									<div class="Setting-Label">
+										<div align="right">IP Address:</div>
+									</div>
+								</td>
+								<td><INPUT TYPE="TEXT" NAME="WizIpAddressField" VALUE="" SIZE="25" MAXLENGTH="15" onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;"></td>
+							</tr>
+							<tr>
+								<td width="128">
+									<div class="Setting-Label">
+										<div align="right">Subnet Mask:</div>
+									</div>
+								</td>
+								<td><INPUT TYPE="TEXT" NAME="WizNetMaskField" VALUE="" SIZE="25" MAXLENGTH="15" onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;"></td>
+							</tr>
+							<tr>
+								<td align="right" width="128">
+									<div class="Setting-Label">Gateway:</div>
+								</td>
+								<td><INPUT TYPE="TEXT" NAME="WizGatewayField" SIZE="25" MAXLENGTH="15" onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+

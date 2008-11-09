@@ -1,0 +1,503 @@
+CSCP Protocol Spec
+-----------------------
+$Id: CSCP.spec.txt 3 2003-07-17 15:19:15Z will $
+authors: Jonathan Mayer, Tim Hockin
+
+-----------
+0. Abstract
+-----------
+
+  A simple protocol for communications between clients and the CCE, and
+  between the CCE and event handlers.
+
+---------------------------
+1. Definitions and Versions
+---------------------------
+
+  This specification is applicable to CSCP version 0.80.  If the CSCP
+  version is less than this, the CSCP protocol engine is out of date.  If
+  the CSCP version is greater than this, this document may be out of date,
+  or merely out of sync.
+
+  For better reading of this document, some terms should be defined:  
+
+  CSCP: Cobalt System Configuration Protocol.
+  Handler: An action performed when an event occurs.
+  Actuator: See Handler.
+  Event: A change in a property of a managed object.
+  
+---------
+2. States
+---------
+
+  CSCP has two contexts: client context and handler context.  Some
+  additional commands are made available in handler mode.
+
+  The CSCP state machine looks roughly like this:
+
+  0. Wait for connection, go to ID state.
+  1. ID state: the server emits an ID message, described below.
+     The connection then switches over to the Command state.
+  2. Command state: the server waits for commands from the
+     client, and responds to them.  Depending on the context (client
+     or handler) some commands may be unavailable.
+
+  When initially connected, the user has the priviledges of the
+  "nobody" user.  The AUTH command can be used to authenticate
+  to the priviledge level of other users.  However, there is no explicit
+  authentication state.
+
+-------------------------
+3. Identification Message
+-------------------------
+
+  When a CSCP session begins, the server starts the connection by
+  transmitting a CSCP header to the client.  This header is described
+  below in lazy-BNF notation.
+  
+  ObjectID-Line and Attribute-Line are only meaningful in the context
+  of CCEd communicating with an event handler.  However, they are
+  part of the formal CSCP definition.
+
+  Header ::= Identifier-Line ObjectID-Line? Ready-Line
+  
+  Identifier-Line ::= "100 CSCP/" version nl
+  
+  ObjectID-Line ::= "101 EVENT " object-id "." (namespace ".")? property
+  
+  Ready-Line ::= "200 Ready" nl
+
+3.1 Example Headers
+
+  This is an example header that a UI client would expect to see when
+  connecting to CCEd:
+  
+    100 CSCP/1.0
+    200 Ready
+  
+  These are example headers that an event handler would expect to see
+  when CCEd connects to the handler:
+  
+    100 CSCP/1.0
+    101 Event 5._CREATE
+    200 OK
+
+    100 CSCP/1.0
+    101 Event 27.Foo.enable
+    200 OK
+
+    100 CSCP/1.0
+    101 Event 93..enable
+    200 OK
+
+-----------
+4. Messages
+-----------
+
+  Certain patterns repeatedly occur in CSCP.
+
+  All lines sent by the server consist of a numeric code and a set of 
+  arguments.
+
+  The first digit (hundreds place) of the code defines whther the message 
+  is informational, a warning, a success or a failure.
+
+  100-199 = Informational
+  200-299 = Success
+  300-399 = Warning
+  400-499 = Failure
+  900-999 = System issued message (can be sent at any time)
+
+  A response is made up of any number of 100 or 300 lines, finishing with a 
+  single 200 or 400 line.
+
+  Response codes are shared between different commands.  However, messages
+  with the same code always share the same syntax, regardless of the
+  command the message is responding to.
+  
+  The lowest 30 codes of each 100/300 block and the lowest 10 codes of 
+  each 200/400 block is reserved for common messages.  Codes outside those
+  blocks are allocated as-needed.
+
+  The following is a more detailed breakdown of allocations:
+
+  "100 CSCP/" version
+  "101 EVENT oid.event"
+  "102 DATA " key " = " val
+  "103 DATA " key " = " val (uncommitted)
+  "104 OBJECT " oid
+  "105 NAMESPACE " namespace
+  "106 INFO " msg
+  "107 CREATED"
+  "108 DESTROYED"
+  "109 SESSIONID " session-id-string
+  "110 CLASS " classname
+  111-119 : reserved
+  120-129 : reserved for protocol headers
+  130-199 : allocated for commands
+
+  "200 READY"
+  "201 OK"
+  "202 GOODBYE"
+  203-209 : reserved
+  210-299 : allocated for commands
+ 
+  "300 UNKNOWN OBJECT " oid
+  "301 UNKNOWN CLASS " class
+  "302 BAD DATA " oid " " key " " value
+  "303 UNKNOWN NAMESPACE " namespace
+  "304 PERMISSION DENIED" reason
+  "305 WARN " msg
+  "306 ERROR " msg
+  "307 OUT OF MEMORY"
+  308-329 : reserved
+  330-399 : allocated for commands
+
+  "400 NOT READY"
+  "401 FAIL"
+  "402 BAD COMMAND"
+  "403 BAD PARAMETERS"
+  404-410 : reserved
+  420-499 : allocated for commands
+
+  "998 SHUTTING DOWN"
+  "999 ENGINE ON FIRE"
+
+
+------------------
+5. Command Summary
+------------------
+
+5.1 Command Summary
+
+  This is the total set of CSCP commands:
+
+  AUTH      Authenticates as a user, to get that user's access priviledges.
+            (Starts a new session).
+  AUTHKEY   Authenticates to an already existing session.
+  ENDKEY    Expire the current sessionid.
+  WHOAMI    Returns the oid of the currently authenticated user.
+  BYE       Closes the connection.
+  COMMIT    Triggers any postponed handler activity.
+  CREATE    Creates a new object of a certain class.
+  DESTROY   Destroys an object.
+  FIND      Finds all objects that match a given criteria.
+  GET       Gets all properties of a certain object.
+  NAMES     Lists namespaces associated with a class (ie. services).
+  CLASSES   Lists all classes.
+  SET       Sets the properties of a certain object.
+
+  These additional commands are available in "handler" mode (when the
+  CCEd is communicating with a handler):
+   
+  BADDATA   Reports that an unrecognized attribute or value was passed.
+  INFO	Report a piece of information.
+  WARN	Report a warning/error.
+
+5.2 Common Syntax Definitions
+
+  Syntax for commands is described in lazy-BNF notation (ie. it kind of
+  looks like BNF, but is human readable).
+
+  sp ::= [ \t]+ (any number of whitespace characters)
+  nl ::= '\n'
+  CLASSNAME ::= "SITE" | "USER" | "GROUP" | "MAILLIST"
+  alphanumeric_string ::= [A-Za-z0-9_]+
+  quoted_string ::= "\"" [^\"]* "\""
+  stringvalue ::= quoted_string | alphanumeric_string
+  KEY ::= stringvalue
+  VALUE ::= stringvalue
+  OID ::= stringvalue
+  
+---------------------
+6. CSCP Commands
+---------------------
+
+6.1 The AUTH Command
+
+  The auth command authenticates the client to have the permissions
+  of the specified user.  To re-AUTH to the default (anonymous) user,
+  specify username and password as blank strings ("").
+
+  Syntax:
+  
+    "AUTH" sp USERNAME sp PASSWORD nl
+  
+  USERNAME is the user's username.
+  PASSWORD is the user's password (unencrypted).
+  
+  Return values:
+    109, 201, 401
+
+6.2 The AUTHKEY Command
+
+  Authenticates to an existing session, assuming that sessions's
+  uid and priviledges.
+
+  Syntax:
+
+	"AUTHKEY" sp USERNAME sp SESSION-KEY nl
+
+  SESSION-KEY is an alphanumeric string that uniquely identifies
+  a session/user pair.
+
+  Return values:
+	109, 201, 401
+
+6.3 The ENDKEY Command
+
+  The endkey command alerts the server to immediately expire the current
+  sessionid, and not allow it as a parameter to authkey.
+
+  Syntax:
+  	
+	"ENDKEY" nl
+
+  Return values:
+  	201
+
+6.4 The CREATE Command
+
+  The create command takes a class name and a list of attributes, and
+  creates a new object of that type.
+  
+  Syntax:
+    "CREATE" sp CLASSNAME ( sp KEY sp "=" sp VALUE )* nl
+
+  Informational responses:
+    104    
+  Warning responses:
+    301, 302, 303, 304
+  Return values:
+    201, 401
+
+6.5 The DESTROY Command
+
+  The destroy command takes an oid and destroys the object.
+
+  Syntax:
+    "DESTROY" sp oid
+
+  Informational responses:
+    300, 304
+  Return values:
+    201, 401
+    
+   
+6.6 The SET Command
+
+  The set command modifies the attributes of an existing object.
+  
+  Syntax:
+    "SET" sp OID ("." NAMESPACE)? ( sp KEY sp? "=" sp? VALUE )* nl
+
+  Warning responses:
+    300, 302, 303, 304
+  Return values:
+    201, 401
+
+6.7 The GET Command
+
+  The get command returns all of the current attributes for the specified
+  object.  In the face of transactions (such as a handler's view of the
+  ODB), GET will return both the previous state and the current state, in
+  that order.  There are two info messages to denote that an object was
+  just created (has no previous state) or just destroyed (has no current
+  state).
+  
+  Syntax:
+    "GET" sp OID ("." NAMESPACE)? nl
+
+  Informational responses:
+    102, 103, 107, 108
+  Warning responses:
+    300, 303
+  Return values:
+    201, 401
+
+6.8 The COMMIT Command
+
+  The commit command triggers any defered activity.
+  
+  Syntax:
+    "COMMIT" nl
+  
+  Informational responses:
+    106
+  Warning responses:
+    305
+  Return values:
+    201, 401
+
+6.9 The NAMES Command
+
+  The NAMES command returns a list of all defined namespaces for a class.
+  
+  Syntax:
+    "NAMES" sp (OID|CLASSNAME) nl
+  
+  Informational responses:
+    105
+  Warning responses:
+    300, 301
+  Return values:
+    201, 401
+
+6.10 The CLASSES Command
+
+  The CLASSES command returns a list of all defined classes.
+  
+  Syntax:
+    "CLASSES" nl
+  
+  Informational responses:
+    110
+  Return values:
+    201
+
+6.11 The FIND Command
+
+  The find command searches through object space to find all objects
+  of a given class that match a criteria.
+  
+  Syntax:
+    "FIND" sp CLASSNAME (sp ("SORT"|"SORTNUM") sp SORTKEY)? 
+       ( sp KEY sp? "=" sp? VALUE )* nl
+  
+  Find searches within the set of objects that belong to class "CLASSNAME."
+
+  Find finds all of the objects of that class whose properties match
+  the properties set forth in the KEY/VALUE list.  KEY may be of the form
+  PROPERTY or NAMESPACE.PROPERTY.
+
+  If the SORT option is specified, the objects are returned in order,
+  sorted alphanumerically from lowest to highest according to the value
+  of the SORTKEY property of each object.  SORTKEY may be of the form
+  PROPERTY or NAMESPACE.PROPERTY.
+
+  If the SORTNUM option is specified, the objects are returned in
+  order as with the "SORT" option, except that the objects are
+  sorted in numeric order (ie 9 < 10), as opposed to alphanumeric
+  order (ie. 9 > 10, because "9" comes after "1").
+
+  SORTNUM is capable of handling the sorting of integers ("11"), floating
+  point numbers ("12.54"), and version numbers ("v1.5.3.27").  Version
+  numbers are special numbers that must start with the letter "v".  They
+  differ from floating point numbers in the sense that every group of
+  digits within the version numbers is compared like an integer.  For
+  example:
+	0.15 is less than 0.2 (floating point numbers), but
+	v0.15 is greater than v0.2 (version numbers).
+
+  Informational responses:
+    104
+  Warning responses:
+    301
+  Return values:
+    201, 401
+   
+6.12 The WHOAMI Command
+
+  Syntax: 
+  	"WHOAMI" nl
+
+  If the session is currently authenticated, returns the OID of the
+  User object that the connection is currently authenticated as.  If the
+  connection is not authenticated, or is authenticated as "" (anonymous),
+  the OID returned will be -1;
+
+  Informational responses:
+	104
+  Return values:
+	201
+
+6.13 The BYE Command
+
+  The "Bye-Condition" field is optional, and is ignored unless
+  CCEd is talking to an event handler (ie. is in "handler" mode).
+  
+  In handler context, if the "Bye-Condition" is omitted (or if the
+  handler exits without issuing a "BYE" command), the handler is
+  assumed to have failed (i.e. as if the handler had issued the 
+  command "BYE FAIL").
+
+  Syntax:
+    "BYE" Bye-Condition? nl
+    Bye-Condition ::= ( Bye-Success | Bye-Failure | Bye-Defer )
+    Bye-Success ::= "SUCCESS"
+    Bye-Failure ::= "FAIL"
+    Bye-Defer   ::= "DEFER"
+  
+  Return values:
+    202
+
+-------------------------------
+7. CSCP Handler Extensions
+-------------------------------
+
+7.1 The BADDATA Command
+
+  The BADDATA command is used by a handler to report that one of the
+  attributes or data in the current operation isn't valid for the
+  specified class and namespace.
+  
+  Reporting bad data is left to the discretion of the handler.  Handlers
+  can choose to not flag BADDATA errors if they want to facilitate
+  future extensions to a namespace.
+
+  Syntax:
+    "BADDATA" sp OID sp KEY sp VALUE nl
+  
+  Return value:
+    201
+
+7.2 The INFO Command
+
+  The INFO command is used by a handler to report some piece of info for
+  use by the front-end.  The parameter MESSAGE is a single string formatted
+  as listed below.  This format allows easy parsing by internationalization
+  software at higher levels.
+
+  Syntax:
+    "INFO" sp MESSAGE nl
+
+    MESSAGE ::= domain ":" tag (<sp>+ var1name <sp>* "=" <sp>* var1val)* 
+
+    Varibale names must follow all the same guidelines as a property name,
+    and variable values must be alphanumeric or a properly quoted and
+    escaped string.
+
+  Return value:
+    201
+
+7.3 The WARN Command
+
+  The WARN command is used by a handler to report some piece of info for
+  use by the front-end.  See INFO command for information on MESSAGE
+  parameter format.
+
+  Syntax:
+    "WARN" sp MESSAGE nl
+
+  Return value:
+    201
+
+
+---------------------
+A. Future Development
+---------------------
+
+  Security: This whole protocol should be encrypted.  If TCP based
+  connections are neede, an SSL-smart helper application can be a
+  pass-through for UNIX domain -> TCP traffic.
+
+---------------------
+B. Builtin Properties of Objects
+---------------------
+
+  Whenever a hash is returned from the object database, it always
+  has these "magic" properties inserted in it:
+  
+  OID           The unique identifier number for the object
+  CLASS         The class of the object
+  NAMESPACE     The namespace of the the subset of properties retrieved

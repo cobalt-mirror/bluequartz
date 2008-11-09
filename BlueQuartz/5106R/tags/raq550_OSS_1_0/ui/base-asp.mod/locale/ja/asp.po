@@ -1,0 +1,97 @@
+# Server Management Menu
+
+msgid "asp"
+msgstr "ASP"
+
+msgid "aspid"
+msgstr "アクティブサーバページ (ASP)"
+
+msgid "asp_help"
+msgstr "[[base-asp.aspid]] の設定を変更できます。"
+
+msgid "aspAdmin_menu"
+msgstr "ASP"
+
+msgid "aspAdmin_menu_help"
+msgstr "[[base-asp.aspid]] の設定を変更できます。"
+
+msgid "aspAdmin"
+msgstr "ASP 管理"
+
+msgid "aspAdmin_help"
+msgstr "[[base-asp.aspid]] の設定を変更できます。"
+
+# ASP config pages
+
+msgid "aspSettings"
+msgstr "[[base-asp.aspid]] の設定"
+
+msgid "enableServer_help"
+msgstr "全サーバの [[base-asp.aspid]] サービスの ON/OFF を切り替えます。ASP のサポートは、[サイトの管理] 画面から各サイト別に有効にできます。"
+
+msgid "enableServer"
+msgstr "サービスを有効にする"
+
+msgid "enableAdminServer"
+msgstr "管理サーバを有効にする"
+
+msgid "enableAdminServer_help"
+msgstr "[[base-asp.aspAdmin]]サーバを有効にできます。[[base-asp.aspAdmin]]サーバへアクセスするには、［[[base-asp.accessAdmin]]］ボタンをクリックしてください。いずれかのサイトで [[base-asp.asp]] サーバが使われている場合には、パブリック ASP サービスは自動的に有効になります。"
+
+msgid "manageAdminServer"
+msgstr "管理サーバへアクセス"
+
+msgid "manageAdminServer_help"
+msgstr "このボタンをクリックすると、ASP 管理サーバへアクセスし、詳細設定とデータベース接続サポートの管理を行えます。"
+
+# ui extension
+msgid "enableAsp"
+msgstr "ASP を有効にする"
+
+msgid "enableAsp_help"
+msgstr "アクティブサーバページ (ASP) サービスを有効にできます。"
+
+msgid ""
+msgstr " "
+
+# AM support
+
+msgid "amAspNameTag"
+msgstr "[[base-asp.aspid]]"
+
+msgid "amAspDetailsTitle"
+msgstr "[[base-asp.amAspNameTag]] の詳細"
+
+msgid "amAspNotRunning"
+msgstr "ASP サービスは動作しておらず、起動することもできませんでした。[[base-apache.amAdmservNameTag]] で、ASP サービスを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。ASP サービスが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも ASP サービスが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amAspStatusOK"
+msgstr "ASP サービスは正常に動作しています。"
+
+msgid "accessAdmin"
+msgstr "管理サーバへアクセス"
+
+msgid "accessAdmin_help"
+msgstr "[[base-asp.manageAdminServer_help]]"
+
+msgid "accessAdmin_disabled"
+msgstr "[[base-asp.accessAdmin]]"
+
+msgid "accessAdmin_disabledHelp"
+msgstr "[[base-asp.manageAdminServer_help]]ASP 管理サーバへアクセスするには、管理サーバを有効にしておく必要があります。"
+
+# initscript strings
+msgid "casp_start_1"
+msgstr "ｾｯﾃｲ ｼﾃｲﾏｽ:"
+
+msgid "casp_start_2"
+msgstr "ASP ｻｰﾊﾞ"
+
+msgid "casp_stop_1"
+msgstr "ｼｭｳﾘｮｳ ｼﾃｲﾏｽ:"
+
+msgid "casp_stop_2"
+msgstr "ASP ｻｰﾊﾞ"
+
+msgid ""
+msgstr ""

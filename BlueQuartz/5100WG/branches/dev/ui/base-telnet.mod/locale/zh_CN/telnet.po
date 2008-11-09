@@ -1,0 +1,42 @@
+msgid "none"
+msgstr "关闭—不允许登录"
+
+msgid "capgroup_adminTelnet"
+msgstr "管理 Telnet "
+
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "amTelnetNameTag"
+msgstr "Telnet 服务器"
+
+msgid "access"
+msgstr "访问"
+
+msgid "amNotAccepting"
+msgstr "Telnet 服务器没有运行。"
+
+msgid "telnetMenu_help"
+msgstr "Telnet 设置可在此处配置."
+
+msgid "telnetSettings"
+msgstr "Telnet 设置"
+
+msgid "amStatusOK"
+msgstr "Telnet 服务器运行正常。"
+
+msgid "access_help"
+msgstr "选择 telnet 访问的策略。Telnet 由高级用户或服务器管理员用于运行外壳脚本或使用外壳命令。为了提高安全性，建议关闭或限制 telnet 访问。 "
+
+msgid "amDetailsTitle"
+msgstr "Telnet 服务器详细信息"
+
+msgid "capgroup_adminTelnet_help"
+msgstr "这个管理权限允许用户管理这台机器的 Telnet 访问。"
+
+msgid "root"
+msgstr "打开—仅允许管理员登录"
+
+msgid "reg"
+msgstr "打开—允许所有用户登录"
+

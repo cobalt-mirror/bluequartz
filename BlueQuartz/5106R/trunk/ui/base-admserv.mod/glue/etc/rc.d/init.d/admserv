@@ -1,0 +1,128 @@
+#!/bin/sh
+#
+# chkconfig: 235 74 74
+# description: Apache is a World Wide Web server.  It is used to serve \
+#	       HTML files and CGI.
+#
+# processname: httpd.admsrv
+# pidfile: /var/run/admserv.pid
+# config: /etc/admserv/conf/access.conf
+# config: /etc/admserv/conf/httpd.conf
+# config: /etc/admserv/conf/srm.conf
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# hack to make sure apache has locale information set
+# i18n needs to be fixed
+if [ -f /etc/sysconfig/i18n ]; then
+	. /etc/sysconfig/i18n
+fi
+
+# location of httpd.admsrv binary
+ADMSERV="/usr/sbin/httpd.admsrv"
+prog=httpd.admsrv
+pidfile=/var/run/admserv.pid
+conffile=/etc/admserv/conf/httpd.conf
+
+[ -f $ADMSERV ] || exit 1
+
+start() {
+	echo -n "Starting admin web server: "
+	export LANG LC_ALL LINGUAS
+	export PHPRC="/etc/admserv"
+        export PERL5LIB="/usr/sausalito/perl"
+	daemon $ADMSERV -f $conffile
+
+	RETVAL=$?
+	echo -n " "
+	[ $RETVAL = 0 ] && touch /var/lock/subsys/$prog && success
+	echo
+	return $RETVAL
+}
+
+kill_httpd()
+{
+	echo -n " $prog "
+	count=0
+	pid=`/bin/cat $pidfile 2>/dev/null`
+
+	while [ "$pid" != "" ] && [ $count != 30 ]; do
+		if [ "`ps h $pid 2>/dev/null | grep $prog`" != "" ]; then
+			kill -TERM $pid
+			count=$(($count+1))
+			usleep 10000
+		else
+			rm -f $pidfile
+			success
+			return 0
+		fi
+	done
+
+	# make sure it is really dead
+	pid=`pidofproc $prog`
+	if [ "$pid" != "" ]; then
+		kill -KILL $pid
+	fi
+	
+	pid=`pidofproc $prog`
+	if [ "$pid" == "" ]; then
+		success
+		return 0
+	else
+		failure
+		return 1
+	fi
+}
+
+stop() {
+	echo -n "Stopping admin web server: "
+	#
+	# library functions are nice, but unfortunately apache
+	# takes a long time to die.  use custom process killer instead.
+	#
+	kill_httpd
+	RETVAL=$?
+	echo
+	[ $RETVAL = 0 ] && rm -f /var/lock/subsys/$prog $pidfile
+}
+
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	status httpd.admsrv
+	;;
+  restart)
+	stop
+	start
+	;;
+  condrestart)
+	if [ -f ${pidfile} ] ; then
+		stop
+		start
+	fi
+	;;
+  reload)
+	echo -n "Reloading admin web server: "
+	[ -f $pidfile ] && {
+	    kill -USR1 `cat $pidfile`
+	    echo -n httpd.admsrv
+	}
+	echo
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|reload|status}"
+	exit 1
+esac
+
+exit 0

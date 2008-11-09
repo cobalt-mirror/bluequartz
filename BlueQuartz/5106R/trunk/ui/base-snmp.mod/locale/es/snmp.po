@@ -1,0 +1,109 @@
+msgid "snmpSettings"
+msgstr 
+"Configuración del protocolo de administración de red simple (SNMP)"
+
+
+# --- Menu
+
+msgid "snmp"
+msgstr 
+"SNMP"
+
+msgid "snmp_help"
+msgstr 
+"[[base-snmp.snmpSettings]]."
+
+
+# --- SNMP page
+
+msgid "enableServer"
+msgstr 
+"Habilitar servidor"
+
+msgid "enableServer_help"
+msgstr 
+"Activar o desactivar el servidor SNMP (protocolo simple de administración de red), que permite supervisar y controlar los dispositivos de red y administrar las configuraciones, la recopilación de estadísticas, el rendimiento y la seguridad de una red."
+
+msgid "readSnmpCommunityField"
+msgstr 
+"Comunidad SNMP de sólo lectura"
+
+msgid "readSnmpCommunityField_rule"
+msgstr 
+"La comunidad SNMP de sólo lectura sólo puede contener caracteres alfanuméricos y signos '-' y '_'."
+
+msgid "readSnmpCommunityField_help"
+msgstr 
+"Comunidad SNMP de sólo lectura a la que pertenece este servidor. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readSnmpCommunityField_invalid"
+msgstr 
+"[[VAR.invalidValue]] no es un valor válido para [[base-snmp.readSnmpCommunityField]]. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField"
+msgstr 
+"Comunidad SNMP de lectura y escritura"
+
+msgid "readWriteSnmpCommunityField_rule"
+msgstr 
+"La comunicad SNMP de lectura y escritura sólo puede contener caracteres alfanuméricos y los signos '-' y '_'."
+
+msgid "readWriteSnmpCommunityField_help"
+msgstr 
+"Comunidad SNMP de lectura y escritura a la que pertenece este servidor. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr 
+"[[VAR.invalidValue]] no es un valor válido para [[base-snmp.readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+# --- Other handler messages
+
+msgid "readNorWriteSet"
+msgstr 
+"Se debe especificar una comunidad de lectura y/o escritura para habilitar el servicio SNMP."
+
+msgid "readEqualWrite"
+msgstr 
+"Para leer y escribir, especificar la comunidad en el campo Lectura y escritura. La comunidad de lectura ha cambiado para reflejar estos requisitos."
+
+	# --- These won't be shown in UI
+msgid "cannotFork"
+msgstr 
+"Error al bifurcar [[VAR.msg]]"
+
+msgid "cannotCreateSynlink"
+msgstr 
+"Error al crear vínculo simbólico [[VAR.msg]]"
+
+msgid "cannotStartSnmpServer"
+msgstr 
+"Error al iniciar el servidor SNMP [[VAR.msg]]"
+
+msgid "cannotStopSnmpService"
+msgstr 
+"Error al detener el servidor SNMP [[VAR.msg]]"
+
+msgid "cannotBreakLink"
+msgstr 
+"Error al deshacer vínculo simbólico [[VAR.msg]]"
+
+
+# --- Active Monitor
+
+msgid "amSNMPNameTag"
+msgstr 
+"Servidor de protocolo SNMP"
+
+msgid "amDetailsTitle"
+msgstr 
+"Detalles del servidor SNMP"
+
+msgid "amSNMPNotRunning"
+msgstr 
+"El servidor SNMP no se está ejecutando."
+
+msgid "amSNMPStatusOK"
+msgstr 
+"El servidor SNMP funciona normalmente."
+
+

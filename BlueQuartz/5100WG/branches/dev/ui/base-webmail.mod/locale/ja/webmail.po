@@ -1,0 +1,546 @@
+# -------- Initial labels and descriptions
+msgid "webmail"
+msgstr "WebMail"
+
+msgid "version"
+msgstr "バージョン 1.0Ｊ"
+
+msgid "webmailDescription"
+msgstr "[[base-webmail.webmail]] を使うと、ウェブブラウザを使って電子メールを送受信できます。"
+
+msgid "webmailSplash"
+msgstr "[[base-webmail.webmailDescription]]"
+
+msgid "splashWelcomeTo"
+msgstr "[[base-carmel.osVendor]] WebMail へようこそ!"
+
+msgid "splashWelcomeTo_monterey"
+msgstr "Cobalt Networks WebMail へようこそ!"
+
+# Messages Tab
+msgid "messages"
+msgstr "メッセージ"
+
+msgid "messagesDescription"
+msgstr "[[base-webmail.webmailSplash]]"
+
+msgid "logout"
+msgstr "ログアウト"
+
+msgid "logoutDescription"
+msgstr "このアイコンをクリックすると、WebMail が終了します。"
+
+
+# -------- Menu Items
+msgid "compose"
+msgstr "新規メール"
+
+msgid "composeDescription"
+msgstr "新しい電子メールメッセージを作成できます。"
+
+msgid "mailboxes"
+msgstr "メールフォルダ"
+
+msgid "mailboxesDescription"
+msgstr "電子メールの保存や仕分けに使えるフォルダの一覧です。" 
+
+msgid "inbox"
+msgstr "受信ボックス"
+
+msgid "inboxDescription"
+msgstr "受信したメール"
+
+msgid "sent"
+msgstr "送信済みのメール"
+
+msgid "sentDescription"
+msgstr "送信済みのメール"
+
+msgid "sent-mail"
+msgstr "送信ボックス"
+
+msgid "Sent-mail_help"
+msgstr "送信ボックスには、送信済みメールのコピーが保管されます。"
+
+msgid "mailboxadmin"
+msgstr "フォルダの管理"
+
+msgid "mailboxadminDescription"
+msgstr "メールフォルダを新規作成、名称変更、削除できます。"
+
+msgid "maillists"
+msgstr "メーリングリスト"
+
+msgid "maillistsDescription"
+msgstr "ここをクリックすると、現在購読しているメーリングリストのアーカイブが表示されます。"
+
+msgid "openThisMaillistFolder"
+msgstr "ここをクリックすると、このメーリングリストアーカイブの内容が表示されます。"
+
+
+# ------- General Purpose Strings (these get re-used)
+
+msgid "to"
+msgstr "宛先"
+
+msgid "cc"
+msgstr "CC"
+
+msgid "from"
+msgstr "差出人"
+
+msgid "attachments"
+msgstr "添付"
+
+msgid "attachments_help"
+msgstr "この電子メールに添付されているファイルです。"
+
+msgid "subject"
+msgstr "件名"
+
+msgid "subject_help"
+msgstr "この電子メールの件名です。"
+
+msgid "noSubject"
+msgstr "<件名なし>"
+
+msgid "noSender"
+msgstr "<不明>"
+
+msgid "bcc"
+msgstr "BCC"
+
+msgid "body"
+msgstr "本文"
+
+msgid "viewAsHTML"
+msgstr "[この電子メールは HTML 形式で送信されています。HTML 形式でこの電子メールを表示するには、「HTML で表示」をクリックしてください。]\n\n\n"
+
+msgid "body_help"
+msgstr "電子メールの本文です。"
+
+msgid "sender"
+msgstr "差出人"
+
+msgid "sender_help"
+msgstr "この電子メールの差出人の名前または電子メールアドレスです。"
+
+msgid "date"
+msgstr "日付"
+
+msgid "date_help"
+msgstr "この電子メールを受信した日付です。"
+
+msgid "forward"
+msgstr "転送"
+
+msgid "forward_help"
+msgstr "このボタンをクリックすると、このメッセージを別の電子メールアドレスに転送できます。"
+
+msgid "remove"
+msgstr "削除"
+
+msgid "remove_help"
+msgstr "このボタンをクリックすると、このメッセージを削除できます。"
+
+	# JS confirm
+msgid "removeMessage"
+msgstr "このメッセージを削除してよろしいですか？"
+
+
+msgid "subject_empty"
+msgstr "[[base-webmail.cmpSubject]]が指定されていません。"
+
+msgid "body_empty"
+msgstr "電子メールの本文が記述されていません。"
+
+msgid "toAddy_empty"
+msgstr "この電子メールの宛先が指定されていません。"
+
+msgid "toAddy_invalid"
+msgstr "宛先フィールドに指定した電子メールアドレスをもう一度ご確認ください。電子メールアドレスは、yasuda@cobaltqube.org、Hisao Shibuya <shibuya@cobalt.com> などの形式で入力し、複数の宛先に送りたい場合には、各アドレスを半角のコンマで区切ってください。"
+
+msgid "ccAddy_invalid"
+msgstr "CCフィールドに指定した電子メールアドレスをもう一度ご確認ください。電子メールアドレスは、yasuda@cobaltqube.org、Hisao Shibuya <shibuya@cobalt.com> などの形式で入力し、複数の宛先に送りたい場合には、各アドレスを半角のコンマで区切ってください。"
+
+msgid "bccAddy_invalid"
+msgstr "BCC フィールドに指定した電子メールアドレスをもう一度ご確認ください。電子メールアドレスは、yasuda@cobaltqube.org、Hisao Shibuya <shibuya@cobalt.com> などの形式で入力し、複数の宛先に送りたい場合には、各アドレスを半角のコンマで区切ってください。"
+
+
+
+# ------- Compose page
+
+msgid "composeMsg"
+msgstr "新規メール"
+
+
+msgid "cmpTo"
+msgstr "宛先"
+
+msgid "cmpTo_help"
+msgstr "このメッセージの宛先の電子メールアドレスを入力してください。"
+
+msgid "cmpCc"
+msgstr "CC"
+
+msgid "cmpCc_help"
+msgstr "このメッセージのコピーを誰かに送りたい場合には、その電子メールアドレスを入力してください。CC は Carbon Copy の略です。"
+
+msgid "cmpBcc"
+msgstr "BCC"
+
+msgid "cmpBcc_help"
+msgstr "このフィールドに電子メールアドレスを入力すると、BCC （Blind Carbon Copy） が送られます。BCC として送られるメッセージには、他の受信者のリストは表示されません。"
+
+msgid "cmpAttachments"
+msgstr "添付"
+
+msgid "cmpAttachments_help"
+msgstr "添付されているファイルのリストです。リストの右側にあるアイコンをクリックすると、添付ファイルを追加または削除できます。"
+
+msgid "cmpAttachmentsSingle"
+msgstr "[[base-webmail.cmpAttachments]]"
+
+msgid "cmpAttachmentsSingle_help"
+msgstr "ファイルを添付するには、「参照」ボタンをクリックしてください。"
+
+msgid "cmpAddAttachment"
+msgstr "追加"
+
+msgid "cmpAddAttachment_help"
+msgstr "このアイコンをクリックすると、添付ファイルを追加できます。"
+
+msgid "cmpRemoveAttachment"
+msgstr "削除"
+
+msgid "cmpRemoveAttachment_help"
+msgstr "このアイコンをクリックすると、添付ファイルを削除できます。"
+
+msgid "cmpSubject"
+msgstr "件名"
+
+msgid "cmpSubject_help"
+msgstr "電子メールの件名を入力してください。"
+
+msgid "cmpBody"
+msgstr "本文"
+
+msgid "cmpBody_help"
+msgstr "ここにメッセージの本文を記述してください。"
+
+msgid "send"
+msgstr "送信"
+
+msgid "send_help"
+msgstr "このボタンをクリックすると、電子メールメッセージが送信されます。"
+
+msgid "messageSent"
+msgstr "送信済みメッセージ"
+
+msgid "msgSent"
+msgstr "宛先"
+
+msgid "msgSent_help"
+msgstr "メッセージの宛先アドレスです。"
+
+msgid "errorSettingAnsweredFlag"
+msgstr "メッセージに返信済みマークを付ける際にエラーが発生しました。"
+
+msgid "forwardMsg"
+msgstr "転送"
+
+msgid "origMsgSeparator"
+msgstr "---------- 元のメッセージ ----------\n"
+
+msgid "forwardMsgSeparator"
+msgstr "---------- 転送するメッセージ ----------\n"
+
+msgid "replyto"
+msgstr "返信先"
+
+# ------- Folder List 
+
+
+msgid "Inbox_help"
+msgstr "受信ボックスには、受信した電子メールが保管されます。"
+
+msgid "removeMessages"
+msgstr "削除"
+
+msgid "removeMessages_help"
+msgstr "このボタンをクリックすると、このページ上で選択されているメッセージが削除されます。"
+
+msgid "removeMessagesConfirm"
+msgstr "これらのメッセージを削除してよろしいですか？"
+
+msgid "errorRemovingMessageNoneSelected"
+msgstr "削除したいメッセージを選択してください。このページ上で選択されているメッセージだけが削除されます。"
+
+msgid "errorMovingMessage"
+msgstr "指定されたメッセージの移動中にエラーが発生しました。"
+
+msgid "errorMovingMessageNoneSelected"
+msgstr "移動したいメッセージを指定してください。このページ上で選択されているメッセージのみを移動できます。"
+
+msgid "status"
+msgstr "状態"
+
+msgid "status_help"
+msgstr "各メッセージの状態です。白丸は既読メッセージを、青丸は未読メッセージを示します。"
+
+msgid "openThisFolder"
+msgstr "クリックすると、このフォルダに含まれるメッセージが一覧表示されます。"
+
+# --------- Inbox
+
+msgid "shownMessage"
+msgstr " ([[VAR.showing]]表示)"
+
+msgid "showingAll"
+msgstr "すべて"
+
+msgid "singularMessage"
+msgstr "[[VAR.count]] メッセージ"
+
+msgid "pluralMessages"
+msgstr "[[VAR.count]] メッセージ"
+
+msgid "keyTitle"
+msgstr "記号の意味："
+
+msgid "keyReplied"
+msgstr " 返信済みまたは転送済みメッセージ"
+
+msgid "keyNew"
+msgstr " 新規または未読メッセージ"
+
+msgid "keyOld"
+msgstr " 既読メッセージ"
+
+
+
+
+# --------- Read Message
+
+msgid "readMessage"
+msgstr "メッセージを読む"
+
+msgid "reply"
+msgstr "返信"
+
+msgid "reply_help"
+msgstr "このボタンをクリックすると、このメッセージの差出人に返信できます。"
+
+msgid "replyAll"
+msgstr "全員に返信"
+
+msgid "replyAll_help"
+msgstr "このボタンをクリックすると、このメッセージの差出人と CC されている受信者全員に返信できます。"
+
+msgid "from_help"
+msgstr "このメッセージを送った人の電子メールアドレスです。"
+
+msgid "read_to"
+msgstr "宛先"
+
+msgid "read_to_help"
+msgstr "このメッセージの宛先の電子メールアドレスです。"
+
+msgid "read_cc"
+msgstr "CC"
+
+msgid "read_cc_help"
+msgstr "このメッセージのコピーが送られた先の電子メールアドレスです。"
+
+msgid "viewHtml"
+msgstr "HTMLで表示"
+
+
+# ---------- Read Message Action (reply, replyall, forward, remove, move)
+
+msgid "replyMsg"
+msgstr "返信"
+
+msgid "replyAllMsg"
+msgstr "全員に返信"
+
+
+
+
+# --------- Sent Mail
+
+msgid "sentto"
+msgstr "宛先"
+
+msgid "sentto_help"
+msgstr "このメッセージの宛先の電子メールアドレスです。"
+
+msgid "dateSent"
+msgstr "日付"
+
+msgid "dateSent_help"
+msgstr "このメッセージを送信した日付です。"
+
+
+
+
+# --------- Manage Folders
+
+msgid "mailboxName"
+msgstr "名前"
+
+msgid "mailboxName_help"
+msgstr "フォルダ名です。"
+
+msgid "mailboxAction"
+msgstr "操作"
+
+msgid "mailboxAction_help"
+msgstr "フォルダの名前を変更するには鉛筆アイコンを、フォルダを削除するにはゴミ箱アイコンをそれぞれクリックしてください。"
+
+msgid "removeMailbox"
+msgstr "削除"
+
+msgid "addMailbox"
+msgstr "追加"
+
+msgid "addMailbox_help"
+msgstr "このボタンをクリックすると、新規フォルダを作成できます。"
+
+msgid "mailboxDeleteStatus"
+msgstr "フォルダ削除の状態"
+
+msgid "confirmRemoveMailbox"
+msgstr "[[VAR.name]] フォルダを削除してよろしいですか？"
+
+msgid "deletionMailboxFailed"
+msgstr "フォルダの削除中にエラーが発生しました。"
+
+
+# --------- Add Folder
+
+
+msgid "createMailbox"
+msgstr "新規フォルダの作成"
+
+msgid "newMailboxName"
+msgstr "フォルダの名前"
+
+msgid "mailboxName_rule"
+msgstr "名前は 1 ～ 250 文字で指定してください。"
+
+msgid "newMailboxName_help"
+msgstr "新規フォルダの名前を入力してください。"
+
+# Used for both create/rename
+msgid "mailbox_empty"
+msgstr "フォルダ名が入力されていません。"
+
+msgid "mailboxNameIsTooLong"
+msgstr "フォルダ名 [[VAR.mailboxName]] は長すぎます。[[base-webmail.mailboxName_rule]]" 
+
+msgid "mailboxCreationFailed"
+msgstr "[[VAR.mailbox]] フォルダの作成中にエラーが発生しました。"
+
+msgid "mailboxOnlyWhitespace"
+msgstr "フォルダ名にはスペースしか含まれていません。他の文字も含んだフォルダ名を入力してください。" 
+
+msgid  "mailboxInitalPeriod"
+msgstr "フォルダ名の最初の文字にピリオドは使用できません。"
+
+# ---------- Rename Folder
+
+msgid "renameMailbox"
+msgstr "フォルダ名の変更 - [[VAR.origMailbox]]"
+
+msgid "renameMailboxName"
+msgstr "フォルダの名前"
+
+msgid "renameMailboxName_help"
+msgstr "必要に応じてフォルダの名前を変更してください。"
+
+msgid "mailboxRenamingFailed"
+msgstr "フォルダ名を [[VAR.oldName]] から [[VAR.newName]] へ変更中にエラーが発生しました。"
+
+
+
+# ----------- Login Page
+
+msgid "welcomeTo"
+msgstr "[[carmel.osVendor]] WebMail へようこそ!メールボックスを開くには、ログイン名とパスワードを入力してください。"
+
+msgid "webmailLogin" 
+msgstr "WebMail ログイン"
+
+msgid "login"
+msgstr "ログイン"
+
+msgid "password"
+msgstr "パスワード"
+
+msgid "submit"
+msgstr "OK"
+
+msgid "authenticationFailed"
+msgstr "認証に失敗しました。ユーザ名とパスワードを確認して、もう一度お試しください。"
+
+msgid "imapLocked"
+msgstr "メールボックスに接続できませんでした。しばらくしてからもう一度お試しください。"
+
+msgid "imapServerDown"
+msgstr "IMAP サーバに接続できませんでした。サーバがダウンしている、サーバの IMAP サービスが無効にされているなどの理由が考えられます。システム管理者にお問い合わせください。"
+
+msgid "noImapAccount"
+msgstr "IMAP サーバのアカウントを確認してください。 システム管理者にお問い合わせください。"
+
+# ----------- Internal Stuff
+
+
+msgid "re"
+msgstr "Re: "
+
+msgid "fwd"
+msgstr "Fwd: "
+
+msgid "moveto"
+msgstr "移動..."
+
+msgid "mailFolder"
+msgstr "mail/"
+
+# name of sentmail for IMAP connect
+msgid "sentMailFolder"
+msgstr "送信ボックス"
+
+msgid "inboxFolder"
+msgstr "受信ボックス"
+
+msgid "INBOX"
+msgstr "受信ボックス"
+
+msgid "errorFetchingHeader"
+msgstr "メッセージヘッダーの読み出しエラー"
+
+msgid "errorFetchingStructure"
+msgstr "メッセージ構造の読み出しエラー"
+
+msgid "errorSendingMessageSingle"
+msgstr "メッセージの送信中にエラーが発生しました。[[VAR.emails]] という電子メールアドレスが見つかりません。"
+
+msgid "errorSendingMessagePlural"
+msgstr "メッセージの送信中にエラーが発生しました。[[VAR.emails]] という電子メールアドレスが見つかりません。"
+
+msgid "errorArchivingMessage"
+msgstr "メッセージは送信されましたが、送信されたメッセージのコピーを「送信ボックス」フォルダに保存中にエラーが発生しました。"
+
+
+
+# -------- Other Stuff
+
+msgid "ok"
+msgstr "OK"
+
+msgid "webmailDownImapNotRunning"
+msgstr "WebMail はシステム管理者により使用不可にされています。"
+
+

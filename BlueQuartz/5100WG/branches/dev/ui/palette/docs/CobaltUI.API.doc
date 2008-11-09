@@ -1,0 +1,513 @@
+CobaltUI API specification
+--------------------------
+$Id: CobaltUI.API.doc 201 2003-07-18 19:11:07Z will $
+
+Contents:
+  1.0 Overview
+  2.0 Example
+  3.0 UI Function Reference
+  4.0 Handler Function Reference
+    4.1 Default Handler Functions.
+      4.1.1 Actions - What are they really?
+    4.2 Import HTTP variables.
+    4.3 Extending the Handler
+      4.3.1 Functions to extend.
+      4.3.2 Special Variables.
+  
+
+1.0 Overview
+
+  CobaltUI is a tool to quickly build consistent web page forms
+  that are consistent with the Cobalt user interface.  
+  
+  The objectives are:
+    - to hide the complexity of underlying HTML and Javascript.
+    - to hide the complexity of underlying UIFC widget set to the extent
+      that the 3PD would be unaware if it changed nature entirely.
+    - to hide the i18n library, and instead deal with internationalization
+      in a more automated way.
+    - provide a mechanism for presenting web forms, including warnings
+      and error messages from previous form submissions.
+
+2.0 Example
+
+   One of the design goals of the CobaltUI library is to resemble a markup
+language as much possible. In it's simplest form (Using default handlers) we
+simply describe the Form/Object (The assumption is made that they are
+sufficently similiar.) inform CobaltUI what we need ut to do for us and it
+takes care of the rest of the hard yakka.
+
+<?php
+
+  include ("CobaltUI.php"); # include the module
+  
+  $Ui = new CobaltUI( 	# create new CobaltUI handle
+    $sessionId,       	# authentication information (from cookie)
+    "base-example",   	# domain for auto-generated i18n tags.
+  );
+
+  $Ui->DescribeAction( 'Action' => 'SET',
+                       'Target' => 'System',
+                    'Namespace' => 'Identity' );
+  
+  $Ui->Handle();
+  $Ui->StartPage(); # Begin the page.
+
+	$Ui->StartBlock("blocktitle"); # table header, with title.
+
+		$Ui->TextField("foo");
+			# creates the entire "foo" row of the form.
+		$Ui->Alters("bar", array("a","b","c"));
+			# Creates the entire row needed for a pulldown
+			# form.
+		$Ui->AddButtons();
+			# adds buttons to the bottom of the page.
+  
+	  $Ui->EndBlock();
+		# Table footer.
+  $Ui->EndPage();
+	# HTML footer.
+?>  
+
+3.0 Function Reference
+
+#############################################################################
+# $ui = CobaltUI ($sessionId, $domain = "none")                             #
+#############################################################################
+
+The CobaltUI object constructor.
+
+PARAMETERS:
+
+  $sessionId: the CCE authentication key to use to authenticate the user.
+    If the user is not authenticated, this key should be undefined or
+    empty.
+
+  $domain: Some CobaltUI functions automatically generate i18n tags
+    for certain UI elements.  The $domain parameter sets the default
+    domain name to use for all of these auto-generated i18n tags.
+
+RETURNS:
+  a new CobaltUI object.
+
+#############################################################################
+#     $ui->StartPage ()                                                     #
+#############################################################################
+
+Generates the HTML page header.
+
+PARAMETERS:
+
+  none.  In some sub-classes of CobaltUI, this function takes some 
+  parameters relating to automatic data handling.  See the specs of
+  those particular implementations for details.
+
+RETURNS:
+
+  nothing.
+  
+#############################################################################
+#     $ui->StartBlock( $label = "", $views = array() )                      #
+#############################################################################
+
+Generates the HTML table header for a form table.
+
+PARAMETERS:
+
+  $label: interpolates to the title for the block on this page.
+  
+  $views: an array of "view" names.  Currently, this array is
+    ignored and the view names are instead extracted from the
+    actual "SetBlockView" calls.
+
+RETURNS:
+
+  nothing.
+  
+#############################################################################
+# $ui->SetBlockView ( $viewname )                                           #
+#############################################################################
+ 
+Informs CobaltUI that all form fields that follow are part of the
+view specified by "viewname".  This is part of how CobaltUI is used
+to construct formed with tabbed views, such that each tab
+exposes a different set of form fields.
+
+PARAMETERS:
+
+  $viewname: the name of the view to switch to for all following form
+    fields.
+
+RETURNS:
+
+  nothing.
+ 
+#############################################################################
+# $ui->AddButtons ()                                                        #
+#############################################################################
+
+Generates the HTML for the SAVE and CANCEL buttons at the bottom of
+the table.  
+
+The SAVE button will always be asimed at itself. Cancel will aim at the
+$Ui->Parent variable, which also defaults to self, but may be set elsewhere.
+
+PARAMETERS:
+
+  None.
+
+RETURNS:
+
+  nothing.
+  
+#############################################################################
+# $ui->EndBlock ()                                                          #
+#############################################################################
+
+Generates the HTML table footer for a form table.
+
+PARAMETERS:
+
+  none.
+  
+RETURNS:
+
+  nothing.
+  
+#############################################################################
+# $ui->EndPage ()                                                           #
+#############################################################################
+
+Generates the HTML page footer.
+
+PARAMETERS:
+
+  none.
+
+RETURNS:
+
+  nothing.
+
+
+#############################################################################
+#                                                                           #
+# Basic form field generator functions.                                     #
+#                                                                           #
+# $ui->UserName ( $tag, $opts = false )                                     #
+# $ui->FullName ( $tag, $opts = false )                                     #
+# $ui->GroupName ( $tag, $opts = false )                                    #
+# $ui->IpAddress ( $tag, $opts = false )                                    #
+# $ui->NetAddress ( $tag, $opts = false )                                   #
+# $ui->MacAddress ( $tag, $opts = false )                                   #
+# $ui->TextField ( $tag, $opts = false )                                    #
+# $ui->TextBlock ( $tag, $opts = false )                                    #
+# $ui->Integer ( $tag, $min = 0, $max = 10000, $opts = false )              #
+# $ui->DomainName ( $tag, $opts = false )                                   #
+# $ui->Boolean ( $tag, $opts = false )                                      #
+# $ui->Password ( $tag, $opts = false )                                     #
+# $ui->EmailAddress ( $tag, $opts = false )                                 #
+#############################################################################
+
+Generates a form field of the listed type.  Most of these fields are
+simple text input fields with an associated javascript "onChange" handler
+that performs data validation.
+
+PARAMETERS:
+
+  $tag: the name of the form field.  This string is used to generate
+    the various i18n tags associated with this row of the form table, as
+    well as specifying the name of the HTML form field.
+  
+  $min: only applies to Integer and is the minimum value that will be accepted
+	as input for the created field.  The default is 0.
+
+  $max: only applies to Integer and is the maximum value that will be accepted
+	as input for the created field.  The default is 10000.
+
+  $opts: an associative array of additional options.
+
+RETURNS:
+
+  nothing.
+  
+I18N:
+
+The following I18N tags are automatically generated:
+
+  ${tag} - the label for this form field row.
+  ${tag}_help - the help text shown when the mouse hovers over the label.
+  ${tag}_invalid - the text shown when the javascript onChange handler
+    returns false.
+  ${tag}_empty - the text shown when the javascript onChange handler
+    returns false because the field was empty and is not optional.
+
+#############################################################################
+# $ui->ListField ( $tag, $opts = false )                                    #
+#############################################################################
+
+As above except instead of working on a scalar value this creates a form
+field which is used for arrays of values.
+
+PARAMETERS:
+
+  $tag: the name of the form field.  This string is used to generate
+    the various i18n tags associated with this row of the form table, as
+    well as specifying the name of the HTML form field.
+  
+  $opts: an associative array of additional options.
+
+RETURNS:
+
+  nothing.
+  
+I18N:
+
+The following I18N tags are automatically generated:
+
+  ${tag} - the label for this form field row.
+  ${tag}_help - the help text shown when the mouse hovers over the label.
+  ${tag}_invalid - the text shown when the javascript onChange handler
+    returns false.
+  ${tag}_empty - the text shown when the javascript onChange handler
+    returns false because the field was empty and is not optional.
+
+#############################################################################
+# $ui->SelectField ( $tag, $choices, $opts = false)                         #
+#############################################################################
+
+Generates a pull-down select list where only one item can be selected
+at a time.  Redundant with Alters.
+
+PARAMETERS:
+ 
+  $tag: the name of the form field.  This string is used to generate
+    the various i18n tags associated with this row of the form table, as
+    well as specifying the name of the HTML form field.
+
+  $choices: array of choices to choose from.  The value returned when
+    this form is submitted will be equal to one of these values.  
+  
+  $opts: an associative array of additional options.
+
+RETURNS:
+
+  nothing.
+  
+I18N:
+
+The following I18N tags are automatically generated:
+
+  ${tag} - the label for this form field row.
+  ${tag}_help - the help text shown when the mouse hovers over the label.
+  ${tag}_invalid - the text shown when the javascript onChange handler
+    returns false.
+  ${tag}_empty - the text shown when the javascript onChange handler
+    returns false because the field was empty and is not optional.  
+  ${tag}-${choice} - the text shown in the pull-down menu.
+
+#############################################################################
+# $ui->SetSelectField( $tag, $selname, $unselname, $elements,               #
+#                      $opts = false)                                       #
+#############################################################################
+
+Generates a widget that displays two lists of items, and lets the user
+move items back and forth between the two lists.
+
+PARAMETERS:
+ 
+  $tag: the name of the form field.  This string is used to generate
+    the various i18n tags associated with this row of the form table, as
+    well as specifying the name of the HTML form field.
+
+  $selname: name of the left list of items.
+  
+  $unselname: name of the right list of items.
+  
+  $elements: array of all elements (selected and unselected).  These
+    elements are assumed to be already internationalized.
+  
+  $opts: an associative array of additional options.
+
+RETURNS:
+
+  nothing.
+  
+I18N:
+
+The following I18N tags are automatically generated:
+
+  ${tag} - the label for this form field row.
+  ${tag}_help - the help text shown when the mouse hovers over the label.
+  ${tag}_empty - the text shown when the javascript onChange handler
+    returns false because the field was empty and is not optional.  
+
+4.0 Handler Function Reference.
+
+    The Handler functions are not strictly a part of CobaltUI, they are simply
+the default handler mechanisms supplied within the module and can be
+overriden via inheritance by the developer.
+
+##########################################################################
+# $Ui->Handle( $data = false );                                          #
+##########################################################################
+
+Handles the hash of data passed into it. This function preforms all of the
+cce work necessary in the actyion described in this form.
+
+PARAMETERS:
+
+  $data - The data to handle.
+          Defaults to a combination of HTTP post and get vars.
+
+RETURNS:
+
+  Nothing. On success returns you to the Parent page (See special HTTP
+  vars.)
+
+#########################################################################
+# $Ui->DescribeAction( $array );                                        #
+#########################################################################
+
+Describes to the CobaltUI exactly what action it is required to preform. A
+number of arguments can be passed (All of which can be overpowered by HTTP
+vars.)
+
+  Arguments
+    
+    $array - A associative array of values...
+      Action    - What action to preform. ADD, SET, DEL or the
+                  all powerful AAS. (See subsection on what is an action.)
+                  Defaults to SET.
+      Target    - What class of object shall we work on. No default.
+      Namespace - What namepsace to operate in (Only valid on SET
+                  operations.) Defaults to none.
+      Parent    - What page to return to after we succeed in this action or
+                  when the cancel button is pressed. Defaults to self.
+
+  Returns
+
+    Nothing.
+
+4.1.1 Actions what are they really !?
+
+      What actions result from which setting can be summarised in this
+matrix. I know this looks hairy, but that's because it would be better
+described as a tree than a table ;).
+
+To find the final action of a form. Reason that the values of Action Target
+and Namepsace would be for it (Remembering that the optioin specified in the
+code are overriden by passed in variables.) and follow the graph.
+
+Action.   Target    Namespace.      Result.
+
+ADD-----> Class   ----------------> "CREATE $Class x=y"
+
+SET-----> Numeric ----> None  ----> "SET $Target x=y"
+    \              \--> Name  ----> "SET $Target.$Namespace x=y"
+     \ # Below.
+      --> Class  -----> None -----> "SET $Target x=y"
+                   \--> Name -----> "SET $Target.$Namespace x=y"
+
+AAS-----> Numeric ----------------> "SET $Target x=y"
+    \---> Class   ----------------> "CREATE $Target x=y"
+
+DEL-----> Numeric ----------------> "DELETE $Target"
+
+
+If CobaltUI receives a "SET" command, but with a ono numeric Target is
+assumes that it is being asked to set the only instance of that class on the
+System as in the first example below. In teh case it searches the system and
+if it find only one instance of a class it will use that instance's oid,
+otherwise it will report an error.
+
+Examples..
+
+  $Ui->DescribeAction( Target => 'System',
+                       Namespace => 'Ldap',
+		       Action => 'SET' );
+    Modifies the Ldap namespace of the system object.
+
+  $Ui->DescribeAction( Target => 'User',
+                       Action => 'AAS' );
+    Create and modifies users depending on Target (See speical data
+    variables.)
+
+4.2 Important data variables.
+
+The following data variables have special meaning.
+
+_ACTION
+_TARGET
+_NAMESPACE
+_PARENT
+  Allow a calling script to over-ride these values in the CobaltUI object.
+
+  For example a list page may call a script which has the actions set as..
+
+  Action = AAS, Target = USER
+
+  as ...   /script.php?_TARGET=12 when it wishes to use the script to modify
+  OID 12.
+
+  In the same vein it may call the script as
+
+  /script.php?_PARENT=/list.php
+
+  If it wishes the script to return to it upon success.
+
+4.3 Extending Handlers.
+
+  CobaltUI is extended by inheritance. Any handler which wish to use extra
+  functionality does so by inheriting from CobaltUI and replacing functions.
+
+  The user interface and handler sections of CoblatUI (Logically seperate
+  even if stored in the same file.) interface through a few variables that
+  UI expects the handler to set.
+
+4.3.1 Functions to extend in case of inadequacy.
+
+  $Ui->DescribeAction()
+
+  $Ui->Handle()
+
+  $Ui->HandleGet()
+  $Ui->HandleSet()
+
+  Each of these actions has a corresponding _Function that actually preforms
+  the bulk of the work. This is needed as PHP has a Very broken inheritance
+  model. In a real language ( Eiffel forever! ) one could over power
+  function x and then call the function x of the parent within out own
+  class.
+
+  In php to gain the same functionality you define the function as..
+
+  function Function() {
+    return $this-?_Function();
+  }
+
+  And leave the child to overpower the function and call _Function
+  themselves if they desire the parent's functionality.
+
+4.3.2 
+
+  Special variables.
+
+  The following variables are used by the UI and must be initialised by the
+  time they are called.
+
+  $Ui->Data
+    A hash of data used by the UI components to get their value.
+    e.g The textfield named 'foo' will quiery $Ui->Data['foo'] for it's
+    value.
+  $Ui->Errors
+    An array of CceError objects. Everytime a CCE operation occurs merge
+    it's errors into this array. If any other errors occur construct a
+    CceError object and add it to the array.
+  $Ui->BadData
+    A named array of problems wiht keys. If you set $Ui->BadData['foo'] then
+    the field FOO will have an error exclamation mark and that message
+    next to it.
+  $Ui->Parent
+    The URL that the cancel button links to and the page to return to when
+    the action suceeds.
+

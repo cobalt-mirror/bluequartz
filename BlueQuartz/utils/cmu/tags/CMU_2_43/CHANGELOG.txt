@@ -1,0 +1,38 @@
+
+2.27 (01-17-2002)
+- Last version of CMU supported by Sun. Does not do from-XTR or any-550.
+
+#######################################################################
+
+2.33 (05-14-2002)
+
+2.34 (05-21-2002)
+
+2.36 (06-24-2002)
+
+2.38 (07-08-2002)
+- File permissions for a user with a period in their name do not get set
+correctly. 
+- If a file is larger than 900 megabytes, CMU will go into a endless
+loop until it runs out of memory.
+- File permissions on the user mail spool are not set correctly. 
+- Group file permission can get set to the wrong site number (siteX).
+- Vacation auto reply settings fail to migrate.
+- Users importing on a RaQ3, the string "off" appears in the  Forwarding
+mail field.  The RaQ then forwards all mail messages sent to the  user
+to the nonexistent email address ("off").
+- Incorrect permissions on /etc/shadow after import 
+
+2.39 (08-08-2002)
+
+2.41 (09-19-2002)
+
+2.42 (10-10-2002)
+- added importing of SSL certs on RaQ550
+- fixed a bug where suspended sites where re-activated after migration
+- fixed a bug where merging vsites didn't work on RaQ550
+- fixed the problem of the CMU process locking up if too many errors are detected. 
+- fixed a bug where file names with $ and ` where not imported correctly.
+
+2.43 (10-28-2002)
+- FrontPage users webs where not activated on import on RaQ550, this has been fixed.

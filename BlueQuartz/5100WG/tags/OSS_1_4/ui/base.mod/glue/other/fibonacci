@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+# a silly script that does nothing useful.  this is a kludgey hack.
+
+my @seq = (1,1);
+# compute the fibonacci sequence
+for ($i = 1; $i < 100; $i++) {
+	push (@seq, $seq[$#seq] + $seq[$#seq-1]);
+}
+
+# all done! :-)
+exit 0;
+

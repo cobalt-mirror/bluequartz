@@ -1,0 +1,33 @@
+<!-- $Id: MailList.schema 3 2003-07-17 15:19:15Z will $ -->
+
+<!-------------------------------------------------------------------
+  MailList
+  
+  Represents a mailing list (majordomo, LISTSERV, etc.)
+--------------------------------------------------------------------->
+
+<!-- FIXME: these should be enums eventually -->
+<typedef name="postPolicy" type="re" 
+  data="^((moderated)|(any)|(members))?$" />
+<typedef name="subPolicy" type="re"
+  data="^((closed)|(open)|(confirm))?$" />
+<typedef name="maillistname" type="re" data="^[a-z0-9][a-z0-9_.-]*"/>
+
+<class name="MailList" namespace="" createacl="ruleCapable(createMaillist)" destroyacl="ruleCapable(destroyMaillist)" version="1.0">
+  <property name="name" type="maillistname" writeacl="ruleCapable(modifyMaillist)"/> <!-- name of list -->
+  <property name="apassword" type="scalar"  writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="postPolicy" type="postPolicy" default="members" writeacl="ruleCapable(modifyMaillist)"/> 
+  <property name="subPolicy" type="subPolicy" default="confirm" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="local_recips" type="accountname" array="true" optional="true" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="remote_recips" type="scalar" array="true" optional="true" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="moderator" type="scalar" default="admin" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="group" type="accountname" optional="true" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="enabled" type="boolean" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="update" type="int" writeacl="ruleCapable(modifyMaillist)"/> <!-- write timestamp to update -->
+  <property name="maxlength" type="int" default="0" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="replyToList" type="boolean" default="true" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="description" type="scalar" default="" optional="true"  writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="desc_readonly" type="boolean" default="" optional="true" writeacl="ruleCapable(modifyMaillist)" />
+</class>
+
+<!-- end of file -->

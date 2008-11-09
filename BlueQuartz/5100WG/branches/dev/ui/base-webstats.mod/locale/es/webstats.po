@@ -1,0 +1,255 @@
+# Menu
+
+msgid "webUsage"
+msgstr "Web"
+
+msgid "webstatMenuDesc"
+msgstr "Estadísticas de uso del servidor Web."
+
+# Page Selector & Table Headers
+
+msgid "noStats"
+msgstr "Las estadísticas no están disponibles temporalmente."
+
+msgid "notAvailable"
+msgstr "No disponible"
+
+msgid "selectStat"
+msgstr "Seleccionar estadísticas..."
+
+msgid "webtotals"
+msgstr "Resumen"
+
+msgid "webtotals_header"
+msgstr "Uso del servidor Web - Resumen"
+
+msgid "webbyip"
+msgstr "Solicitantes más activos"
+
+msgid "webbyip_header"
+msgstr "Uso del servidor Web - Solicitantes más activos"
+
+msgid "webbyfile"
+msgstr "Páginas más solicitadas"
+
+msgid "webbyfile_header"
+msgstr "Uso del servidor Web - Páginas más solicitadas"
+
+msgid "webbyref"
+msgstr "Páginas remisivas más frecuentes"
+
+msgid "webbyref_header"
+msgstr "Uso del servidor Web - Páginas remisivas más frecuentes"
+
+msgid "webbyhour"
+msgstr "Solicitudes por hora"
+
+msgid "webbyhour_header"
+msgstr "Uso del servidor Web - Solicitudes por hora"
+
+msgid "webbydate"
+msgstr "Solicitudes por día"
+
+msgid "webbydate_header"
+msgstr "Uso del servidor Web - Solicitudes por día"
+
+# Page Details
+# Summary
+
+msgid "genDate"
+msgstr "Última comprobación del uso"
+
+msgid "genDate_help"
+msgstr "Últimas estadísticas de uso del servidor Web."
+
+msgid "periodStart"
+msgstr "Período de cobertura del informe (Desde)"
+
+msgid "periodStart_help"
+msgstr "Inicio del período de estas estadísticas de uso del servidor Web."
+
+msgid "periodEnd"
+msgstr "Período de cobertura del informe (Hasta)"
+
+msgid "periodEnd_help"
+msgstr "Final del período de estas estadísticas de uso del servidor Web."
+
+msgid "totalHits"
+msgstr "Número total de solicitudes"
+
+msgid "totalHits_help"
+msgstr "Número de solicitudes web generadas durante el período del informe."
+
+msgid "badHits"
+msgstr "Número de solicitudes erróneas"
+
+msgid "badHits_help"
+msgstr "Número de solicitudes web erróneas durante el período del informe. Estas solicitudes no se satisficieron por diversos motivos. Por ejemplo, tal vez se hayan realizado para páginas web que no existen en este servidor web."
+
+msgid "numIPs"
+msgstr "Número de equipos únicos que han hecho solicitudes"
+
+msgid "numIPs_help"
+msgstr "Número de equipos únicos que han solicitado páginas web durante el período del informe."
+
+msgid "numFiles"
+msgstr "Número de páginas únicas solicitadas"
+
+msgid "numFiles_help"
+msgstr "Número de páginas web únicas que se han solicitado durante el período del informe."
+
+msgid "numRefs"
+msgstr "Número de páginas remisivas únicas"
+
+msgid "numRefs_help"
+msgstr "Número de páginas remisivas únicas durante el período del informe. Estas páginas web contienen hipervínculos a las páginas web de este servidor web."
+
+msgid "numBytes"
+msgstr "Número de bytes descargados"
+
+msgid "numBytes_help"
+msgstr "Número de bytes descargados durante el período del informe."
+
+# Most Active Requesters
+
+msgid "hostname"
+msgstr "Nombre del solicitante"
+
+msgid "hostname_help"
+msgstr "Nombre del equipo que solicitó páginas web desde este servidor web."
+
+msgid "hits"
+msgstr "Solicitudes"
+
+msgid "hits_help"
+msgstr "Número total de solicitudes web generadas por el solicitante."
+
+msgid "referrer"
+msgstr "Remitente"
+
+msgid "referrer_help"
+msgstr "Página web que remitió al solicitante a las páginas web de este servidor web."
+
+# Most Requested Pages
+
+msgid "file"
+msgstr "Página"
+
+msgid "file_help"
+msgstr "Página web solicitada por el solicitante."
+
+msgid "pagehits"
+msgstr "Solicitudes"
+
+msgid "pagehits_help"
+msgstr "Número de solicitudes web de esta página web."
+
+# Most Frequent Referring Pages
+
+msgid "refhits"
+msgstr "Solicitudes"
+
+msgid "refhits_help"
+msgstr "Número de solicitudes web desde este remitente."
+
+# Hourly Requests
+
+msgid "00_help"
+msgstr "Número de solicitudes web registradas entre las 00:00 y las 01:00."
+
+msgid "01_help"
+msgstr "Número de solicitudes web registradas entre las 01:00 y las 02:00."
+
+msgid "02_help"
+msgstr "Número de solicitudes web registradas entre las 02:00 y las 03:00."
+
+msgid "03_help"
+msgstr "Número de solicitudes web registradas entre las 03:00 y las 04:00."
+
+msgid "04_help"
+msgstr "Número de solicitudes web registradas entre las 04:00 y las 05:00."
+
+msgid "05_help"
+msgstr "Número de solicitudes web registradas entre las 05:00 y las 06:00."
+
+msgid "06_help"
+msgstr "Número de solicitudes web registradas entre las 06:00 y las 07:00."
+
+msgid "07_help"
+msgstr "Número de solicitudes web registradas entre las 07:00 y las 08:00."
+
+msgid "08_help"
+msgstr "Número de solicitudes web registradas entre las 08:00 y las 09:00."
+
+msgid "09_help"
+msgstr "Número de solicitudes web registradas entre las 09:00 y las 10:00."
+
+msgid "10_help"
+msgstr "Número de solicitudes web registradas entre las 10:00 y las 11:00."
+
+msgid "11_help"
+msgstr "Número de solicitudes web registradas entre las 11:00 y las 12:00."
+
+msgid "12_help"
+msgstr "Número de solicitudes web registradas entre las 12:00 y las 13:00."
+
+msgid "13_help"
+msgstr "Número de solicitudes web registradas entre las 13:00 y las 14:00."
+
+msgid "14_help"
+msgstr "Número de solicitudes web registradas entre las 14:00 y las 15:00."
+
+msgid "15_help"
+msgstr "Número de solicitudes web registradas entre las 15:00 y las 16:00."
+
+msgid "16_help"
+msgstr "Número de solicitudes web registradas entre las 16:00 y las 17:00."
+
+msgid "17_help"
+msgstr "Número de solicitudes web registradas entre las 17:00 y las 18:00."
+
+msgid "18_help"
+msgstr "Número de solicitudes web registradas entre las 18:00 y las 19:00."
+
+msgid "19_help"
+msgstr "Número de solicitudes web registradas entre las 19:00 y las 20:00."
+
+msgid "20_help"
+msgstr "Número de solicitudes web registradas entre las 20:00 y las 21:00."
+
+msgid "21_help"
+msgstr "Número de solicitudes web registradas entre las 21:00 y las 22:00."
+
+msgid "22_help"
+msgstr "Número de solicitudes web registradas entre las 22:00 y las 23:00."
+
+msgid "23_help"
+msgstr "Número de solicitudes web registradas entre las 23:00 y las 00:00."
+
+# Daily Requests
+
+msgid "date"
+msgstr "Fecha"
+
+msgid "date_help"
+msgstr "Fecha en que se generaron las solicitudes web."
+
+msgid "dayhits"
+msgstr "Solicitudes"
+
+msgid "dayhits_help"
+msgstr "Número de solicitudes web realizadas en esta fecha."
+
+# Button
+
+msgid "resetStats"
+msgstr "Reiniciar estadísticas"
+
+msgid "resetStats_help"
+msgstr "Pulse aquí para reiniciar todas las estadísticas de uso del servidor Web y comenzar a generar estadísticas de nuevo."
+
+msgid "askResetConfirmation"
+msgstr "¿Está seguro de que desea reiniciar las estadísticas de uso del servidor Web?"
+
+msgid "Unknown"
+msgstr "Desconocido"

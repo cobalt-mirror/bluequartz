@@ -1,0 +1,90 @@
+User Interface Logging
+
+Author: Kevin K.M. Chiu
+Copyright 2001, Cobalt Networks.  All rights reserved.
+$Id: log.txt 201 2003-07-18 19:11:07Z will $
+
+Overview
+========
+Cobalt machines have to lead the usability game in its class because
+ease-of-use has huge impact of how good "appliances" are. The web user
+interface is the primary interface between users and Cobalt machines,
+so its fine-tuning is necessary. Tuning requires the knowledge of how
+users interact with the user interface. A logging system can gather
+this information. By enabling logging during customer testing, real
+usage patterns can be recorded.
+
+Implementation
+==============
+There are several requirements that guides the design of such a
+logging system:
+- It can be enabled/disabled by configuration flags, so that It can be
+  enabled in testing systems but not shipping systems.
+- Logging must be "invisible" to users, so that gathered data is
+  "real-life".
+- When disabled, there should be no trace of this feature in the user
+  interface frontend.
+- It must be simple to implement.
+- Logging should be done at a more detailed level. For example, "A
+  label is read" is not as good as "The cursor rolled over label C at
+  time 2 and rolled out until time 4".
+- Logged data must be human comprehensable and machine parsable. This
+  leaves room for analytical tools to work on the data.
+
+The "logPath" directive under the configuration file ui.cfg specifies
+where the log file is.  If it does not exist or it does not have any
+value, logging is disabled.  Shipping systems have logging disabled.
+
+Each line of the log file records one event because the user interface
+is event driven. Each line is of format <log> defined below:
+
+<log> ::= <timestamp> TAB <user> TAB <event> TAB <target> TAB <id>
+  [TAB <parameter>]*
+  A line in the log file
+
+<timestamp> ::= <data-time> defined in RFC822
+  e.g. 25 May 2001 12:30:00 -0800
+
+<user> ::= non-tabbed string
+  The login name of the user.
+
+<event> ::= non-tabbed string
+  The name of the event. e.g. "mouseOver", "click"
+
+<target> ::= non-tabbed string
+  This is the target the event is acting on. e.g. "Label",
+  "collapsibleList"
+
+<id> ::= non-tabbed string
+  This is the identifier that tells which instance of the target the
+  event is acting on. e.g. "base_administration"
+
+/usr/sausalito/ui/web/libJs/uiLog.js and
+/usr/sausalito/ui/web/uiLog.php are code that implements logging.
+
+There are several user interface components that are made
+logging-aware.
+
+UIFC Label class logs mouseOver, mouseOut and click events. The label
+property of the Label class is used as the log id. This provides
+insight in what are the harder to understand parts of the user
+interface because users tend to read descriptions for those items.
+
+UIFC Button class logs mouseOver, mouseOut and click events. This
+gives information about how hard is it to understand the buttons and
+how frequent they are used.
+
+UIFC Page class logs load and unload events. This tells when and how
+frequent the pages are accessed and how sticky they are.
+
+collapsibleList navigation manager logs mouseOver, mouseOut and click
+events for menus. This gives information about how navigation is
+performed.
+
+There is no need for flow navigation manager to log events because the
+Page class logs which page is accessed already.
+
+FormFields use FormFieldBuilder to construct themselves, so logging
+for FormFields can be implemented within FormFieldBuilder methods.
+Logged events include change and click. These events are all logged
+unless the HTML input fields do not support them.

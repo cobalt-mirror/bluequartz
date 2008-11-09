@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyEmailServers" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyEmailServers)"/>
+	<property name="nameTag" type="scalar" default="[[base-email.cap_modifyEmailServers]]"/>
+</class>

@@ -1,0 +1,14 @@
+Creating a new configuration object
+# Cce configuration
+	Test..prop1     exec:/bin/ls      validate
+	Test..prop1     exec:/bin/cp      test
+	Test..prop1     exec:/bin/ash      test
+	Test..prop2     exec:/bin/bash      configure
+	Test..prop3     exec:/bin/cat      test
+	Test..prop4     exec:/bin/dd      cleanup
+	Test..prop5     exec:/bin/chmod      execute
+	Test.ns1.prop1     exec:/bin/ln      execute
+	Test.mail.prop1     exec:/bin/echo      execute
+	Test.ns1.prop2     exec:/bin/grep      test
+	Test.namespace.*     exec:/bin/kill      test
+	Test..*     exec:/bin/rm      execute

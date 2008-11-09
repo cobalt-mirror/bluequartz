@@ -1,0 +1,379 @@
+msgid "ipsec"
+msgstr "点对点VPN"
+
+msgid "ipsec_help"
+msgstr "此处可配置[[base-ipsec.ipsec]]隧道。[[base-ipsec.ipsec]]允许对两台机器间的连接进行加密。"
+
+msgid "tunnelList"
+msgstr "通道列表"
+
+msgid "addTunnel_help"
+msgstr "添加一个新通道。"
+
+msgid "localInfo"
+msgstr "查看本地信息"
+
+msgid "localInfo_help"
+msgstr "请查看本地机器的有关信息。试图设置到本机的[[base-ipsec.ipsec]]连接的任何远程管理员都需要该数据。"
+
+msgid "manageProfile"
+msgstr "管理连接配置文件"
+
+msgid "manageProfile_help"
+msgstr "在此您可以管理可用的不同连接配置文件。连接配置文件描述连接到其他[[base-ipsec.ipsec]]执行程序所需的设置。"
+
+msgid "ipsecInfo"
+msgstr "本地主机信息"
+
+msgid "leftIpAddressField"
+msgstr "本地 IP 地址"
+
+msgid "leftIpAddressField_help"
+msgstr "[[base-ipsec.ipsec]]接口的 IP 地址。"
+
+msgid "leftSubnetField"
+msgstr "本地子网"
+
+msgid "leftSubnetField_help"
+msgstr "子网（或本地网络的 IP 地址范围）Qube 的主接口当前正在运行。"
+
+msgid "leftNetmaskField"
+msgstr "本地子网掩码"
+
+msgid "leftNetmaskField_help"
+msgstr "网络掩码当前配置在主接口上。"
+
+msgid "leftRsaKeyField"
+msgstr "本地主机 RSA 公用密钥"
+
+msgid "leftRsaKeyField_help"
+msgstr "Qube 的当前 RSA 公用密钥。"
+
+msgid "profileList"
+msgstr "配置文件列表"
+
+msgid "addProfile_help"
+msgstr "添加一个新的配置文件。"
+
+msgid "tname"
+msgstr "名称"
+
+msgid "tname_help"
+msgstr "这是一个通道的名称。"
+
+msgid "pname"
+msgstr "名称"
+
+msgid "pname_help"
+msgstr "这是一个配置文件的名称。"
+
+msgid "status"
+msgstr "状态"
+
+msgid "status_help"
+msgstr "这是一个通道的状态。"
+
+msgid "comment"
+msgstr "注释"
+
+msgid "comment_help"
+msgstr "这是一个描述配置文件的短句。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "可能的操作。"
+
+msgid "addNewProfile"
+msgstr "添加一个配置文件"
+
+msgid "nameField"
+msgstr "名称"
+
+msgid "nameField_help"
+msgstr "输入此配置文件的名称。"
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "认证协议"
+ 
+msgid "authField_help"
+msgstr "认证是否作为 ESP 加密的一部分，或是另外使用 AH 协议"
+ 
+msgid "pfsField"
+msgstr "完好的转发安全性"
+ 
+msgid "pfsField_help"
+msgstr "密钥是否具有完好的安全性取决于连接密钥的通道（用 PFS，密钥交换协议的渗透使密钥协商更早的妥协）。"
+ 
+msgid "keylifeField"
+msgstr "密钥有效期"
+ 
+msgid "keylifeField_help"
+msgstr "一个连接的特殊实例（用户文件包的一套加密/认证密钥）从成功协商到过期可以持续多长时间（以分钟计）。"
+ 
+msgid "rekeymarginField"
+msgstr "重新加密延迟"
+ 
+msgid "rekeymarginField_help"
+msgstr "从连接过期试图协商一个替换开始要多长时间（以分钟计）。"
+ 
+msgid "rekeyfuzzField"
+msgstr "任意重新加密延迟比率"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "重新加密极限任意增加到任意化重新加密间隔的最大百分率（这对于具有许多连接的主机很重要）。"
+ 
+msgid "keyingtriesField"
+msgstr "重新加密尝试"
+ 
+msgid "keyingtriesField_help"
+msgstr "协商一个连接或进行一次替换，在放弃之前可以进行多少次尝试（整数）；值 0 意味着永不放弃。"
+ 
+msgid "ikelifetimeField"
+msgstr "重新加密通道有效期"
+ 
+msgid "ikelifetimeField_help"
+msgstr "在重新协商之前，连接的加密通道应持续多长时间（以分钟计）。"
+ 
+msgid "commentsField"
+msgstr "注释"
+ 
+msgid "commentsField_help"
+msgstr "描述此配置文件的注释。"
+
+msgid "addNewTunnel"
+msgstr "添加一个通道"
+ 
+msgid "tunnelEnabledField"
+msgstr "连接"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "选择应建立该通道或禁用该通道时的时间。"
+ 
+msgid "tunnelNameField"
+msgstr "名称"
+ 
+msgid "tunnelNameField_help"
+msgstr "输入通道的名称。"
+ 
+msgid "rightProfileField"
+msgstr "连接配置文件"
+ 
+msgid "rightProfileField_help"
+msgstr "选择一个连接配置文件。"
+
+msgid "rightField"
+msgstr "远程[[base-ipsec.ipsec]]主机"
+ 
+msgid "rightField_help"
+msgstr "输入[[base-ipsec.ipsec]]隧道另一端机器的 IP 地址。"
+
+msgid "rightNextField"
+msgstr "远程主机的网关"
+ 
+msgid "rightNextField_help"
+msgstr "输入远程机器使用的网关。"
+ 
+msgid "rightSubnetField"
+msgstr "远程子网"
+ 
+msgid "rightSubnetField_help"
+msgstr "输入远程机器之后的子网。"
+ 
+msgid "rightNetmaskField"
+msgstr "远程网络掩码"
+ 
+msgid "rightNetmaskField_help"
+msgstr "输入远程机器之后的网络掩码。"
+ 
+msgid "tunnelCommentField"
+msgstr "注释"
+ 
+msgid "tunnelCommentField_help"
+msgstr "输入描述此通道的注释。"
+
+msgid "modProfile"
+msgstr "修改配置文件—[[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "修改通道—[[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "以 RSA 认证自动加密"
+
+msgid "autoSecret"
+msgstr "以共享秘密自动加密"
+
+msgid "manual"
+msgstr "手动加密"
+
+msgid "keyingField"
+msgstr "加密类型"
+
+msgid "authPubKeyField"
+msgstr "远程 RSA 密钥"
+
+msgid "authSecretKeyField"
+msgstr "共享秘密"
+
+msgid "authKeyField"
+msgstr "认证密钥"
+
+msgid "encKeyField"
+msgstr "加密密钥"
+
+msgid "valueField"
+msgstr "加密/认证方案"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "回放窗口"
+
+msgid "manualSettings"
+msgstr "手动加密参数"
+
+msgid "autoSettings"
+msgstr "自动加密参数"
+
+msgid "enableAutoRsaField"
+msgstr "允许以 RSA 认证自动加密"
+
+msgid "enableAutoRsaField_help"
+msgstr "如果您希望允许使用此配置文件的通道以 RSA 认证自动加密，请选中此框"
+
+msgid "enableAutoSecretField"
+msgstr "允许以共享秘密自动加密"
+
+msgid "enableAutoSecretField_help"
+msgstr "如果您希望允许使用此配置文件的通道以共享秘密自动加密，请选中此框"
+
+msgid "enableManualField"
+msgstr "允许手动加密"
+
+msgid "enableManualField_help"
+msgstr "如果您希望允许使用此配置文件的通道以手动加密，请选中此框"
+
+msgid "valueField_help"
+msgstr "选择用于加密和认证的算法。"
+
+msgid "replay_windowField_help"
+msgstr "输入 0 与 64 之间的一个整数表示回放窗口的长度，0 意味着无回放保护。"
+
+msgid "ignore"
+msgstr "禁用此通道"
+
+msgid "start"
+msgstr "我们这一端启动该连接"
+
+msgid "add"
+msgstr "另一端启动该连接"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "此通道的 SPI 编号。要使连接工作，SPI 编号必须在该通道的两端都要匹配。"
+
+msgid "keyingField_help"
+msgstr "选择用于此连接的加密类型。"
+
+msgid "authPubKeyField_help"
+msgstr "输入该通道另一端机器的公用密钥（以十六进制表示，带“0x”前缀）。"
+
+msgid "authSecretKeyField_help"
+msgstr "输入此机器与该通道另一端的机器共享的秘密。"
+
+msgid "authKeyField_help"
+msgstr "输入用于认证的密钥。"
+
+msgid "encKeyField_help"
+msgstr "输入用于加密的密钥。在仅认证通道中，此字段要留空。"
+
+msgid "establishedTunnels"
+msgstr "建立的通道："
+
+msgid "nn"
+msgstr "网络到网络"
+
+msgid "hh"
+msgstr "主机到主机"
+
+msgid "hn"
+msgstr "主机到网络"
+
+msgid "nh"
+msgstr "网络到主机"
+
+msgid "tunnelProblem"
+msgstr "所有停用的、或无法启动的通道。"
+
+msgid "noConnections"
+msgstr "通道就绪，但没有通道启动连接"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]]不会装入一个或多个与该项相关联的隧道。\n请检查您的设置。"
+
+msgid "disabled"
+msgstr "禁用"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]]不能与[[VAR.profile]]连接配置文件一起使用。请选择另一个连接配置文件或另一类加密。"
+
+msgid "spiInUse"
+msgstr "您指定的 SPI 已在使用中。请另选一个。"
+
+msgid "openKey"
+msgstr "打开密钥窗口"
+
+msgid "openKey_help"
+msgstr "单击此处打开一个包含此 Qube 的公用密钥的新窗口。"
+
+msgid "IpsecKey"
+msgstr "本地 RSA 密钥"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "请使用本配置文件连接到另一个 Qube3"
+
+msgid "removeProfileConfirm"
+msgstr "是否确定要删除配置文件“[[VAR.profileName]]”？"
+
+msgid "removeTunnelConfirm"
+msgstr "是否确定要删除配置文件“[[VAR.tunnelName]]”？"
+
+msgid "mustSelectKeying"
+msgstr "您必须为该配置文件启用至少一种密钥。"
+
+msgid "profileInUse"
+msgstr "活动隧道[[VAR.list]]正在使用该配置文件。删除该配置文件前，请禁用、删除或更改所有列出的隧道的配置文件。"
+
+msgid "autoSettings_help"
+msgstr "使用该配置文件自动加密连接的设置。"
+
+msgid "manualSettings_help"
+msgstr "使用该配置文件手动加密连接的设置。"
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "管理[[base-ipsec.ipsec]]"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "本管理权限允许用户对[[base-ipsec.ipsec]]进行全面配置，包括添加、编辑和删除[[base-ipsec.ipsec]]隧道。"
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "此处的消息"
+

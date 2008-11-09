@@ -1,0 +1,120 @@
+<!-- $Id: dns.schema 3 2003-07-17 15:19:15Z will $ -->
+
+<typedef name="dns_record_type" type="re"
+  data="^(A|PTR|CNAME|MX|NS)$"/>
+<typedef name="dns_email" type="re" data="^[a-zA-Z0-9_-]+\@[a-zA-Z0-9\._-]+$" errmsg="[[base-dns.admin_email_rule]]"/>
+<typedef name="dns_zone_format" type="re" data="^(RFC2317|DION|OCN-JT|USER)$"/>
+<typedef name="dns_hostname" type="re" data="^[A-Za-z0-9\*][A-Za-z0-9\-]*(\.[A-Za-z0-9][A-Za-z0-9\-]*)*$"/>
+
+<!-- global DNS settings -->
+
+<class name="System" namespace="DNS" version="1.0">
+  <!-- Basic -->
+  <property name="enabled" type="boolean" default="" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="commit" type="int" default="" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="auto_config" type="boolean" default="" writeacl="ruleCapable(modifySystemDns)"/>
+
+  <property name="dirty" type="int" default="0" writeacl="ruleCapable(modifySystemDns)"/>
+
+  <!-- Advanced -->
+  <property name="zone_xfer_ipaddr" type="ipaddr"
+    array="yes" optional="true" default="" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="forwarders" type="ipaddr" 
+    array="yes" optional="true" default="" writeacl="ruleCapable(modifySystemDns)"/>
+
+  <!-- Zone Format Tab -->
+  <property name="zone_format" type="dns_zone_format"
+	default="rfc2317" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="zone_format_24" type="scalar"
+	default="%4/%n.%3.%2.%1.in-addr.arpa" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="zone_format_16" type="scalar"
+	default="%3/%n.%2.%1.in-addr.arpa" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="zone_format_8" type="scalar"
+	default="%2/%n.%1.in-addr.arpa" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="zone_format_0" type="scalar"
+	default="%1/%n.in-addr.arpa" writeacl="ruleCapable(modifySystemDns)"/>
+
+  <!-- needs default admin@fqdn -->
+  <property name="admin_email" type="dns_email" optional="true" default="" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="default_refresh" type="int" default="10800" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="default_retry" type="int" default="3600" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="default_expire" type="int" default="604800" writeacl="ruleCapable(modifySystemDns)"/>
+  <property name="default_ttl" type="int" default="86400" writeacl="ruleCapable(modifySystemDns)"/>
+</class>
+
+<class name="DnsSlaveZone" namespace="" version="1.0" createacl="ruleCapable(createDnsSlaveZone)" destroyacl="ruleCapable(destroyDnsSlaveZone)">
+  <!-- identify the authority record by domain and/or network: -->
+  <property name="domain" type="domainname" optional="true" default="" writeacl="ruleCapable(modifyDnsSlaveZone)"/>
+  <property name="ipaddr" type="ipaddr" optional="true" default="" writeacl="ruleCapable(modifyDnsSlaveZone)"/>
+  <property name="netmask" type="netmask" optional="true" default="" writeacl="ruleCapable(modifyDnsSlaveZone)"/>
+  
+  <!-- zone transfer from these servers: -->
+  <property 
+    name="masters" 
+    type="ipaddr" 
+    array="yes" 
+    writeacl="ruleCapable(modifyDnsSlaveZone)"
+  />
+</class>
+
+<!-- domain-specific DNS settings (ie. SOA stuff) -->
+
+<class name="DnsSOA" namespace="" version="1.0" createacl="ruleCapable(createDnsSOA)" destroyacl="ruleCapable(destroyDnsSOA)">
+  <!-- identify the authority record by domain and/or network: -->
+  <property name="domainname" type="domainname" optional="true" default="" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="ipaddr" type="ipaddr" optional="true" default="" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="netmask" type="netmask" optional="true" default="" writeacl="ruleCapable(modifyDnsSOA)"/>
+  
+  <!-- SOA properties, used to override the defaults -->
+  <property name="primary_dns" type="fqdn" 
+                 optional="true" default="" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="secondary_dns" type="fqdn"
+                 optional="true" default="" array="yes" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="domain_admin" type="dns_email"
+    optional="true" default="" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="refresh" type="int" default="10800" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="retry" type="int" default="3600" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="expire" type="int" default="604800" writeacl="ruleCapable(modifyDnsSOA)"/>
+  <property name="ttl" type="int" default="86400" writeacl="ruleCapable(modifyDnsSOA)"/>
+</class>
+
+<!-- specific DNS records -->
+<!--
+How the fields of DnsRecord are meant to be used:
+ type A: hostname,domainname -> ipaddr
+ type PTR: ipaddr,netmask -> hostname,domainname
+ type CNAME: hostname, domainname -> alias_hostname, alias_domainname
+ type MX: hostname,domainname,and/or ip -> mail_server_name (w/ mail_server_priority)
+ type NS: hostname,domainname,and/or ip -> delegate_pri_dns, delegate_sec_dns
+-->
+<class name="DnsRecord" namespace="" version="1.0" createacl="ruleCapable(createDnsRecord)" destroyacl="ruleCapable(destroyDnsRecord)">
+  
+  <!-- common for all types of record: -->
+  <property name="type" type="dns_record_type" default="" writeacl="ruleCapable(modifyDnsRecord)"/>
+  <property name="hostname" type="dns_hostname" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  <property name="domainname" type="domainname" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  <property name="ipaddr" type="ipaddr" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  <property name="netmask" type="netmask" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  
+  <!-- for MX record only: -->
+  <property name="mail_server_name" type="fqdn" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  <property name="mail_server_priority" type="scalar" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  
+  <!-- for CNAME record only: -->
+  <!-- Note that these are the alias TARGETS, authority is tied to hostname and domainame -->
+  <property name="alias_hostname" type="hostname" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+  <property name="alias_domainname" type="domainname" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+
+  <!-- for PTR and SUBNETDEL only -->
+  <property name="network" type="network" default="" optional="true" writeacl="ruleCapable(modifyDnsRecord)"/>
+   
+  <!-- for DELE* records only: -->
+  <property 
+    name="delegate_dns_servers" 
+    type="fqdn" 
+    default="" 
+    array="yes"  
+    writeacl="ruleCapable(modifyDnsRecord)"/>
+
+</class>
+

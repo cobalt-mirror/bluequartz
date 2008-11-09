@@ -1,0 +1,71 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+#
+# Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: ip_masqing 201 2003-07-18 19:11:07Z will $
+# ip_masqing
+# enable/disable ip masquerading using ipchains/iptables
+
+use Sauce::Service;
+use Sauce::Util;
+use CCE;
+
+my $iptables = 0;
+$iptables = 1 if (-x '/usr/bin/iptables');
+my %ipconf;
+$ipconf{0} = '/etc/ipchains.conf';
+$ipconf{1} = '/etc/iptables.conf';
+
+my $DEBUG = 0;
+
+my $cce = new CCE;
+$cce->connectfd();
+
+my $sysoid = $cce->event_oid();
+my ($ok, $sys) = $cce->get($sysoid, 'Network');
+
+if (!$ok) 
+{ 
+    $DEBUG && print STDERR "$0: could not get system object $sysoid\n";
+    $cce->bye('FAIL', '[[base-network.cantReadSystem]]');
+    exit(1);
+}
+
+my $enabled = $sys->{nat} || 0;
+
+my $rule = '';
+if ($enabled) 
+{
+    if ($iptables)
+    {
+        $rule = "/usr/bin/iptables -A POSTROUTING -t nat -j MASQUERADE\n"; # -o eth1/ipsec0/ppp0 
+    }
+    else
+    {
+        $rule = "/sbin/ipchains -I forward 2 -j MASQ\n";
+    }
+} 
+else 
+{
+    $rule = "# ip forwarding disabled ($enabled).\n";
+}
+
+# edit the ipchains configuration file
+Sauce::Util::replaceblock(
+    $ipconf{$iptables},
+    '# start of ip_forwarding block',
+    $rule,
+    '# end of ip_forwarding block',
+);
+
+# restart ipchains
+if($iptables)
+{
+    service_run_init('iptables', 'restart');
+}
+else
+{
+    service_run_init('ipchains', 'restart');
+}
+
+$cce->bye('SUCCESS');
+exit(0);

@@ -1,0 +1,149 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "Festplatte"
+
+msgid "diskUsageMenuDesc"
+msgstr "Hier können Sie eine Festplattenbelegungs-Statistik einsehen."
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "Festplattenbelegung"
+
+msgid "diskUsageSummary"
+msgstr "Festplattenbelegung - Überblick"
+
+msgid "userQuotas"
+msgstr "Festplattenbelegung - Benutzer"
+
+msgid "groupQuotas"
+msgstr "Festplattenbelegung - Gruppen"
+
+msgid "selectUsage"
+msgstr "Belegung auswählen..."
+
+msgid "usageSummary"
+msgstr "Überblick"
+
+msgid "usageUser"
+msgstr "Benutzer"
+
+msgid "usageGroup"
+msgstr "Gruppen"
+
+msgid "lastCollectionDate"
+msgstr "Letzte Überprüfung der Belegung"
+
+msgid "lastCollectionDate_help"
+msgstr "Zeigt an, wann die Statistik der Festplattenbelegung zuletzt erzeugt wurde."
+
+msgid "notRunYet"
+msgstr "Es wurde noch keine Festplattenbelegungs-Statistik erstellt."
+
+msgid "updateNow"
+msgstr "Belegung jetzt überprüfen"
+
+msgid "updateNow_help"
+msgstr "Klicken Sie hier, um sofort mit der Aktualisierung der Festplattenbelegungs-Informationen zu beginnen. Es kann mehrere Minuten dauern, bis die Statistik erzeugt wurde."
+
+msgid "askUpdateNowConfirmation"
+msgstr "Wollen Sie die Festplattenbelegung jetzt wirklich überprüfen?  Dies kann mehrere Minuten dauern."
+
+# Summary
+
+msgid "partition"
+msgstr "Partition"
+
+msgid "partition_help"
+msgstr "Zeigt den Namen der Dateisystem-Partition und ihren Verwendungszweck an."
+
+msgid "usedSpace"
+msgstr "Belegt (MB)"
+
+msgid "usedSpace_help"
+msgstr "Die Menge des auf der Dateisystem-Partition belegten Speichers in Megabyte."
+
+msgid "available"
+msgstr "Frei (MB)"
+
+msgid "available_help"
+msgstr "Die Menge des auf der Dateisystem-Partition verfügbaren Speichers in Megabyte."
+
+msgid "totalSpace"
+msgstr "Insgesamt (MB)"
+
+msgid "totalSpace_help"
+msgstr "Die Menge des der Dateisystem-Partition insgesamt zugewiesenen Speichers in Megabyte."
+
+msgid "pct"
+msgstr "Belegt (Prozent)"
+
+msgid "pct_help"
+msgstr "Zeigt an, welcher Prozentsatz des gesamten verfügbaren oder zugewiesenen Festplattenspeichers belegt ist."
+
+msgid "rootFiles"
+msgstr "Systemdateien - Root-Partition (/)"
+
+msgid "varFiles"
+msgstr "Systemdateien - Var-Partition (/var)"
+
+msgid "userFiles"
+msgstr "Benutzer- und Gruppendateien - Home-Partition (/home)"
+
+msgid "totals"
+msgstr "Alle Partitionen"
+
+
+# Users
+
+msgid "user"
+msgstr "Benutzername"
+
+msgid "user_help"
+msgstr "Der Benutzer, für den die Festplattenbelegungs-Informationen gelten."
+
+msgid "blocks"
+msgstr "Belegt (MB)"
+
+msgid "blocks_help"
+msgstr "Der derzeit belegte Speicher in Megabyte."
+
+msgid "quota"
+msgstr "Zulässig (MB)"
+
+msgid "quota_help"
+msgstr "Die maximal zulässige Festplattenbelegung in Megabyte."
+
+msgid "allUsers"
+msgstr "Alle Benutzer"
+
+# Groups
+
+msgid "group"
+msgstr "Gruppenname"
+
+msgid "group_help"
+msgstr "Die Gruppe, für die die Festplattenbelegungs-Informationen gelten."
+
+msgid "allGroups"
+msgstr "Alle Gruppen"
+
+msgid "mailQuotaUserSubject"
+msgstr "Warnmeldung für Benutzer zur Festplattenbelegung"
+
+msgid "mailQuotaUserBody"
+msgstr "Warnung:\n\nDie Festplattenbelegung für Benutzer [[VAR.user]] auf [[VAR.host]] liegt\nüber [[VAR.pct]] % des zugewiesenen Grenzwerts. Es sind weniger als [[VAR.free]] MB frei.\nBitte löschen Sie einige Dateien, verschieben Sie Daten an einen anderen Speicherort oder \nbitten Sie um eine Erhöhung des Speichergrenzwerts.\n\n  "
+
+msgid "mailQuotaGroupSubject"
+msgstr "Warnmeldung für Gruppen zur Festplattenbelegung"
+
+msgid "mailQuotaGroupBody"
+msgstr "Warnung:\n\nDie Festplattenbelegung für Gruppe [[VAR.group]] auf [[VAR.host]] liegt\nüber [[VAR.pct]] % des zugewiesenen Grenzwerts. Es sind weniger als [[VAR.free]] MB frei.\nBitte löschen Sie einige Dateien, verschieben Sie Daten an einen anderen Speicherort oder \nbitten Sie um eine Erhöhung des Speichergrenzwerts.\n\n  "
+
+msgid "unknownDiskUsage"
+msgstr "Unbekannt"
+
+msgid "unlimitedQuota"
+msgstr "Unbegrenzt"
+

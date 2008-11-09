@@ -1,0 +1,36 @@
+msgid "cacheACLSettings"
+msgstr "Accès Web restreint"
+
+msgid "cacheACL"
+msgstr "Accès Web"
+
+msgid "cacheACL_help"
+msgstr "L'accès au Web peut être controlé ici si ce serveur est utilisé comme passerelle ou cache Web."
+
+msgid "whitelist"
+msgstr "Sites autorisés"
+
+msgid "blacklist"
+msgstr "Sites bloqués"
+
+msgid "all"
+msgstr "Non restreint"
+
+msgid "mode"
+msgstr "Règle de restriction"
+
+msgid "mode_help"
+msgstr "Choisissez le type de restriction voulu : Sites autorisés ne permet l'accès qu'aux sites spécifiés ; Sites bloqués bloque l'accès aux sites spécifiés ; Non restreint donne accès à tous les sites, sans aucune restriction. Uniquement l'accès au Web est affecté par ces restrictions. FTP et tout autre protocole ne sont pas affectés."
+
+msgid "domains"
+msgstr "Noms de domaine ou de machine"
+
+msgid "domains_help"
+msgstr "Entrez les noms de domaines et de machines auxquels s'applique la restriction. Des noms de domaine génériques peuvent être utilisés en ajoutant un point avant le nom de domaine. Par exemple www.sun.fr ne s'appliquera qu'a ce site, par contre .sun.fr s'appliquera à www.sun.fr, cobalt.sun.fr, ainsi qu'à tout autre site Web utilisant le domaine sun.fr."
+
+msgid "ipaddr"
+msgstr "Adresses IP"
+
+msgid "ipaddr_help"
+msgstr "Entrez les adresses IP auxquelles s'applique la restriction."
+

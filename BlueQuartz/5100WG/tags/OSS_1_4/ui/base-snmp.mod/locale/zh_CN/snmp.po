@@ -1,0 +1,92 @@
+msgid "snmpSettings"
+msgstr "简单网络管理协议 (SNMP) 设置"
+
+
+# --- Menu
+
+msgid "snmp"
+msgstr "SNMP"
+
+msgid "snmp_help"
+msgstr "[[base-snmp.snmpSettings]]可在此处更改。"
+
+
+# --- SNMP page
+
+msgid "enableServer"
+msgstr "启用服务器"
+
+msgid "enableServer_help"
+msgstr "打开或关闭简单网络管理协议 (SNMP) 服务器。SNMP 是一种网络管理协议，提供了一种监视和控制网络设备，并管理网络配置、统计信息收集、性能和安全性的方法。"
+
+msgid "readSnmpCommunityField"
+msgstr "只读 SNMP 团体"
+
+msgid "readSnmpCommunityField_rule"
+msgstr "您输入的只读 SNMP 团体只能包含带有 '-' 和 '_' 的字母数字字符。"
+
+msgid "readSnmpCommunityField_help"
+msgstr "输入此服务器设备所属的只读 SNMP 团体。 [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readSnmpCommunityField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-snmp.readSnmpCommunityField]]的无效值。 [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField"
+msgstr "读取和写入 SNMP 团体"
+
+msgid "readWriteSnmpCommunityField_rule"
+msgstr "您输入的读取和写入 SNMP 团体只能包含带有 '-' 和 '_' 的字母数字字符。"
+
+msgid "readWriteSnmpCommunityField_help"
+msgstr "输入此服务器设备所属的读取和写入 SNMP 团体。 [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-snmp.readWriteSnmpCommunityField]]的无效值。[[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+# --- Other handler messages
+
+msgid "readNorWriteSet"
+msgstr "对不起，您必须输入启用 SNMP 的读取和/或写入团体。"
+
+msgid "readEqualWrite"
+msgstr "要使团体能够读取和写入，需足够地将其输入“读取”和“写入”字段。您的读取团体已经改变，以反应这些要求。"
+
+	# --- These won't be shown in UI
+msgid "cannotFork"
+msgstr "派生[[VAR.msg]]时出现错误"
+
+msgid "cannotCreateSynlink"
+msgstr "创建 Symlink[[VAR.msg]]时出现错误"
+
+msgid "cannotStartSnmpServer"
+msgstr "启动 Snmp 服务器[[VAR.msg]]时出现错误"
+
+msgid "cannotStopSnmpService"
+msgstr "终止 Snmp 服务[[VAR.msg]]时出现错误"
+
+msgid "cannotBreakLink"
+msgstr "断开 symlink[[VAR.msg]]时出现错误"
+
+
+# --- Active Monitor
+
+msgid "amSNMPNameTag"
+msgstr "简单网络管理协议 (SNMP) 服务器"
+
+msgid "amDetailsTitle"
+msgstr "简单网络管理协议 (SNMP) 服务器详细信息"
+
+msgid "amSNMPNotRunning"
+msgstr "SNMP 服务器没有运行。"
+
+msgid "amSNMPStatusOK"
+msgstr "SNMP 服务器运行正常。"
+
+# Capabilities
+
+msgid "capgroup_adminSnmp"
+msgstr "管理 SNMP"
+
+msgid "capgroup_adminSnmp_help"
+msgstr "这个管理权限允许用户改变 SNMP 设置"
+

@@ -1,0 +1,158 @@
+msgid "import"
+msgstr "Import Users"
+
+msgid "import_help"
+msgstr "Import users and groups onto the server here."
+
+msgid "userImport"
+msgstr "File Import"
+
+msgid "dataUpload"
+msgstr "Source File"
+
+msgid "dataUpload_help"
+msgstr "Select the tab delimited file containing a list of users to be uploaded to the system.  Please refer to the server appliance manual for the complete file format description."
+
+msgid "dataUpload_empty"
+msgstr "Sorry, you have not selected a file to be uploaded to the server for import."
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "fileImport"
+msgstr "Import From File"
+
+msgid "attempt"
+msgstr "Not attempted."
+
+msgid "creating"
+msgstr "Adding [[VAR.class]] named [[VAR.name]]"
+
+msgid "modifying"
+msgstr "Modifying [[VAR.class]] named [[VAR.name]]"
+
+msgid "importResults"
+msgstr "Import Result"
+
+msgid "result"
+msgstr "Result"
+
+msgid "action"
+msgstr "Action"
+
+msgid "reason"
+msgstr "Reason"
+
+msgid "noFileSpecified"
+msgstr "Error receiving file"
+
+msgid "fileWasNoGood"
+msgstr "Sorry, an error occurred while receiving the file specified. Please try uploading the file again."
+
+msgid "badFileButtonCancel"
+msgstr "Back"
+
+msgid "badFileButtonCancel_help"
+msgstr "Click here to go back"
+
+msgid "importResult"
+msgstr "Import Result"
+
+msgid "result"
+msgstr "Result"
+
+msgid "action"
+msgstr "Action"
+
+msgid "reason"
+msgstr "Reason"
+
+msgid "couldNotOpenFile"
+msgstr "Sorry, an error occurred while trying to open the uploaded file. Please check the format of the file and try again."
+
+msgid "success"
+msgstr "Success"
+
+msgid "fail"
+msgstr "Fail"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (line [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Import Now"
+
+msgid "importNow_help"
+msgstr "Click here to import the users from the selected file."
+
+msgid "importErrors"
+msgstr "Import Errors"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] errors"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] error"
+
+msgid "fullName"
+msgstr "Full Name"
+
+msgid "fullName_help"
+msgstr "These are full names of the entries supplied by the import file."
+
+msgid "name"
+msgstr "User Name"
+
+msgid "name_help"
+msgstr "These are user names of the entries supplied by the import file."
+
+msgid "errorMessageHeader"
+msgstr "Message"
+
+msgid "errorMessageHeader_help"
+msgstr "These are detailed messages for errors which occurred during import."
+
+msgid "importSucceeded"
+msgstr "Import Succeeded"
+
+msgid "importSucceededMessage"
+msgstr "No errors occurred while importing."
+
+msgid "importSucceededMessage_help"
+msgstr "No errors occurred while importing."
+
+msgid "importStatus"
+msgstr "Import Status"
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "This is the progress of the import. If you leave this section the user import will continue to run in the background but the progress bar will no longer be visible."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "This is the current Status of Import."
+
+msgid "creatingUsers"
+msgstr "Adding Users ([[VAR.pos]]/[[VAR.max]])"
+
+msgid "intname"
+msgstr "username"
+
+msgid "intfullName"
+msgstr "fullname"
+
+msgid "intpassword"
+msgstr "password"
+
+msgid "intaliases"
+msgstr "email aliases"
+
+msgid "importChanger"
+msgstr "Select Import Method..."
+
+msgid "importChangerFile"
+msgstr "File Import"

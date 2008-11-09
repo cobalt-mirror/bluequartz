@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- $Id: Qube3.cobaltBase.xml 907 2004-04-15 14:38:16Z anders $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -->
+<cobaltBase>
+  <name value = "Cobalt base configuration"/>
+  <product value =  "Qube3"/>
+  <version value = "[VERSION]"/>
+  <versionRequired value = "2.29"/>
+  <libs>
+    <scanout value = "/usr/cmu/scripts/Qube3scanout.pl"/>
+	<adjust value = "/usr/cmu/scripts/Qube3adjust.pl"/>
+	<conflict value = "/usr/cmu/scripts/Qube3conflict.pl"/>
+	<scanin value = "/usr/cmu/scripts/Qube3scanin.pl"/>
+  </libs>
+  <cmuXml value = "cmu.xml"/>
+  <tmpDir value = "/home/tmp"/>
+  <cmuDir value = "/home/cmu"/>
+  <cmuUser value = "root"/>
+  <cmuGroup value = "admin"/>
+  <libDir value = "/usr/cmu/perl"/>
+  <logFile value = "/home/cmu/cmu.log"/>
+  <lockFile value = "/home/cmu/cmu.lock"/>
+  <skipAdjust value = "f"/>
+  <skipConflict value = "f"/>
+  <confOnly	value = "f"/>
+  <noPasswd value = "f"/>
+  <adminFiles value = "f"/>
+  <webEnabled value = "f"/>
+  <userPasswd value = "123456"/>
+  <debug value = "f"/>
+  <conflict>
+	<userName>
+		<class value = "user"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "checkAll"/>
+		<validate value = "isUserQube"/>
+	</userName>
+	<userNameNumber>
+		<class value = "user"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "checkAll"/>
+		<validate value = "isUserQube"/>
+	</userNameNumber>
+	<userNameLength>
+		<class value = "user"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "checkAll"/>
+		<validate value = "isUserQube"/>
+	</userNameLength>
+	<userAlias>
+		<class value = "alias"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+		</actions>
+	</userAlias>
+	<groupName>
+		<class value = "group"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "checkAll"/>
+		<validate value = "isGroupQube"/>
+	</groupName>
+	<groupNameNumber>
+		<class value = "group"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "checkAll"/>
+		<validate value = "isGroupQube"/>
+	</groupNameNumber>
+	<listName>
+		<class value = "list"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "detectMailList"/>
+		<validate value = "isGroupQube"/>
+	</listName>
+	<listNameNumber>
+		<class value = "list"/> 
+		<defaultAction value = "Drop"/>
+		<actions>
+			<Quit value = "quit"/>
+			<Drop value = "dropClass"/>
+			<Change value = "changeClass"/>
+		</actions>
+		<detector value = "checkAll"/>
+		<validate value = "isGroupQube"/>
+	</listNameNumber>
+  </conflict>
+</cobaltBase>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

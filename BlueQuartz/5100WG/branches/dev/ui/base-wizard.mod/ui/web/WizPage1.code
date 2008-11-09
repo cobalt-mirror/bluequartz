@@ -1,0 +1,103 @@
+##HEADER-CUSTOM-JAVASCRIPT##
+		<script language="JavaScript">
+		function WizSetLanguage(browserLocale)
+		{
+			var radioButtons = eval('document.WizardForm.WizLocale');
+
+			for (r = 0; r < radioButtons.length; r++)
+			{
+				if (radioButtons[r].value == browserLocale)
+				{
+					radioButtons[r].checked = true;
+					break;
+				}
+			}
+		}
+		</script>
+
+##BODY-ATTRIBUTES##
+	onLoad="WizSetLanguage('<?php print WizDetermineLocale(); ?>'); MM_swapImgRestore(); MM_preloadImages('/libImage/Nav-Progress.gif');"
+
+##PAGE-TITLE##
+localeSettings
+
+##PAGE-DESCRIPTION##
+localeMessage
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='1'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<div class="Setting-Description"><?php if ($WizError == "") print $i18n->get("localeMessage"); ?></div>
+		<div align="center">
+			<br>
+		</div>
+		<div class="Setting-Label" align="center">
+			<table width="377" border="0" cellspacing="0" cellpadding="5">
+				<tr>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="en" id="en" border="0"></td>
+								<td><label for="en"><img src="/libImage/English.gif" alt="" width="51" height="16" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="de" id="de" border="0"></td>
+								<td><label for="de"><img src="/libImage/German.gif" alt="" width="55" height="13" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="es" id="es" border="0"></td>
+								<td><label for="es"><img src="/libImage/Spanish.gif" alt="" width="55" height="16" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="fr" id="fr" border="0"></td>
+								<td><label for="fr"><img src="/libImage/French.gif" alt="" width="58" height="15" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="ja" id="ja" border="0"></td>
+								<td><label for="ja"><img src="/libImage/Japanese.gif" alt="" width="44" height="13" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="zh_CN" id="zh_CN" border="0"></td>
+								<td><label for="zh_CN"><img src="/libImage/SimpChinese.gif" alt="" width="60" height="13" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" name="WizLocale" value="zh_TW" id="zh_TW" border="0"></td>
+								<td><label for="zh_TW"><img src="/libImage/TradChinese.gif" alt="" width="60" height="13" border="0"></label></td>
+							</tr>
+						</table>
+					</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</form>

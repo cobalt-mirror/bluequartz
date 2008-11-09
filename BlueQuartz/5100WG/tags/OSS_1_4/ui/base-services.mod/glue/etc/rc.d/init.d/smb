@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# chkconfig: 235 91 85
+#
+# description: Samba
+#
+
+# Source function library.
+DOMAIN=base-services
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+SMB_ENABLED=yes
+NMB_ENABLED=yes
+
+# See how we were called.
+case "$1" in
+  start)
+	if [ x"$SMB_ENABLED" = xyes ] || [ x"$NMB_ENABLED" = xyes ]; then
+		LINE1=`getmsg smb_start_1`
+		LINE2=`getmsg smb_start_2`
+		$LCD_STOP
+        	$LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+		echo -n "$LINE1 $LINE2: "
+		if [ x"$SMB_ENABLED" = xyes ]; then 
+			daemon smbd -D 	
+		fi
+		if [ x"$NMB_ENABLED" = xyes ]; then
+			daemon nmbd -D 
+		fi
+		echo
+		touch /var/lock/subsys/smb
+	fi
+	;;
+  stop)
+	if [ x"$SMB_ENABLED" = xyes ] || [ x"$NMB_ENABLED" = xyes ]; then
+		LINE1=`getmsg smb_stop_1`
+		LINE2=`getmsg smb_stop_2`
+		$LCD_STOP
+        	$LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+		echo -n "$LINE1 $LINE2: "
+	fi
+	killproc smbd
+	killproc nmbd
+	rm -f /var/lock/subsys/smb
+	if [ x"$SMB_ENABLED" = xyes ] || [ x"$NMB_ENABLED" = xyes ]; then
+		echo ""
+	fi
+	;;
+  status)
+	status smb
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  *)
+	echo "Usage: smb {start|stop|restart|status}"
+	exit 1
+esac
+
+exit 0

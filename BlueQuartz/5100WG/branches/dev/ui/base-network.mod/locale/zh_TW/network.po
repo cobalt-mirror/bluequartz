@@ -1,0 +1,657 @@
+# --- Menu
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "此處可變更 TCP/IP 設定。"
+
+msgid "tcpIpSettings"
+msgstr "TCP/IP 設定"
+
+msgid "wan"
+msgstr "網際網路"
+
+msgid "wan_help"
+msgstr "此處可變更網際網路設定。"
+
+
+# --- TCP/IP Page
+
+msgid "hostNameField"
+msgstr "主電腦名稱"
+
+msgid "hostNameField_rule"
+msgstr "請輸入只包含小寫英數、破折號或句點的字元。例如，www 就是一個有效的名稱。"
+
+msgid "hostNameField_help"
+msgstr "請輸入這部伺服器設備的主電腦名稱。主電腦名稱結合網域名稱應可以唯一識別這個伺服器設備。  [[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "網域名稱"
+
+msgid "domainNameField_rule"
+msgstr "請輸入只包含小寫英數、破折號或句點的字元。例如，cobalt.com 就是一個有效的名稱。"
+
+msgid "domainNameField_help"
+msgstr "請輸入這部伺服器的網域名稱。主電腦名稱結合網域名稱應可以唯一識別這個伺服器設備。  [[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS 伺服器"
+
+msgid "dnsAddressesField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。這個欄位若是留白，將會使這部機器無法按主電腦名稱或網域名稱尋找他部機器，並將導致網路功能窒礙難行。"
+
+msgid "dnsAddressesField_help"
+msgstr "請輸入您區域網域名稱伺服器的 IP 位址。網域名稱伺服器會將文字式主電腦名稱和網域名稱轉換成數字型 IP 位址，反之亦然。  [[base-network.dnsAddressesField_rule]]"
+
+msgid "primaryInterface"
+msgstr "主要介面"
+
+msgid "ipAddressField1"
+msgstr "IP 位址"
+
+msgid "ipAddressField1_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "ipAddressField1_help"
+msgstr "請輸入主要介面的 IP 位址，該介面通常是連接到企業網路端。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，次要介面保留不使用。  [[base-network.ipAddressField1_rule]]"
+
+msgid "secondaryInterface"
+msgstr "次要介面"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField1]]"
+
+msgid "ipAddressField2_help"
+msgstr "請輸入次要介面的 IP 位址，該介面通常是連接到網際網路端。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，次要介面保留不使用。  [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "很抱歉，如果已填寫「IP 位址」欄位，則「IP 網路遮罩」也必須填寫。 [[base-network.netMaskField1_rule]]"
+
+msgid "netMaskField1"
+msgstr "IP 網路遮罩"
+
+msgid "netMaskField1_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，255.255.255.0 就是有效的數字。"
+
+msgid "netMaskField1_help"
+msgstr "請輸入主要介面的網路遮罩。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，次要介面保留不使用。  [[base-network.netMaskField1_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，255.255.255.0 就是有效的數字。"
+
+msgid "netMaskField2_help"
+msgstr "請輸入次要介面的網路遮罩。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，次要介面保留不使用。  [[base-network.netMaskField2_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC 位址"
+
+msgid "macAddressField_help"
+msgstr "「媒體存取控制 (MAC)」位址是網路介面卡的硬體位址。這個硬體位址是唯一的 ID，製造後即不可再更改。"
+
+
+# Add static Routes
+
+msgid "routes"
+msgstr "修改靜態路徑"
+
+msgid "routes_help"
+msgstr "按一下此處，可建立由此伺服器設備到其他子網路的靜態路徑。"
+
+	# list
+msgid "routeList-list-title"
+msgstr "靜態路徑清單"
+
+msgid "createRoute"
+msgstr "新增靜態路徑"
+
+msgid "route-target"
+msgstr "目標網路 IP 位址"
+
+msgid "route-target_help"
+msgstr "這是列示的靜態路徑所參照的子網路 IP 位址。"
+
+msgid "route-netmask"
+msgstr "目標網路子網路遮罩"
+
+msgid "route-netmask_help"
+msgstr "這是列示的靜態路徑所參照的子網路網路遮罩。"
+
+msgid "route-gateway"
+msgstr "閘道器"
+
+msgid "route-gateway_help"
+msgstr "這是遞送目標子網路網路流量的網路閘道器。"
+
+msgid "route-device"
+msgstr "裝置"
+
+msgid "route-device_help"
+msgstr "這是遞送靜態路徑所有流量的網路介面。"
+
+msgid "modifyRoute"
+msgstr "修改靜態路徑"
+
+	# Add a route form
+msgid "route_form_target"
+msgstr "目標子網路"
+
+msgid "route_form_target_help"
+msgstr "請輸入要重新遞送的子網路之 IP 位址。  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.0 就是有效的數字。"
+
+msgid "route_form_target_empty"
+msgstr "很抱歉，您並未輸入[[base-network.route_form_target]]的值。  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-network.route_form_target]]值。  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "目標網路遮罩"
+
+msgid "route_form_netmask_help"
+msgstr "請輸入要重新遞送的子網路之網路遮罩。  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，255.255.255.0 就是有效的數字。"
+
+msgid "route_form_netmask_empty"
+msgstr "很抱歉，您並未輸入[[base-network.route_form_netmask]]的值。  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-network.route_form_netmask]]值。  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "閘道器"
+
+msgid "route_form_gateway_help"
+msgstr "請輸入此伺服器之子網路上的網路閘道器之 IP 位址，目標子網路所封裝的封包會透過此 IP 位址重新遞送。  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "route_form_gateway_empty"
+msgstr "很抱歉，您並未輸入[[base-network.route_form_gateway]]的值。  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-network.route_form_gateway]]值。  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "網路介面"
+
+msgid "route_form_device_help"
+msgstr "請選取目標子網路所封裝的封包要重新遞送所使用的網路介面。如果沒有指定任何裝置，將根據網路閘道器的 IP 位址選取裝置。"
+
+msgid "route_form_device-eth0"
+msgstr "主要乙太網路介面 (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "次要乙太網路介面 (eth1)"
+
+msgid "route_form_device-ppp0"
+msgstr "點對點通信協定介面 (ppp0)"
+
+msgid "routeList_action_header"
+msgstr "動作"
+
+msgid "routeList_action_header_help"
+msgstr "按一下修改圖示可變更路徑的設定，或按一下移除圖示可刪除路徑。"
+
+
+
+# --- Internet Page
+
+	# change type drop-down
+
+msgid "changeMode"
+msgstr "變更網際網路連接為..."
+
+msgid "none"
+msgstr "無或只限企業網路使用"
+
+msgid "broadband"
+msgstr "纜線數據機或 DSL"
+
+msgid "lan"
+msgstr "區域網路 (LAN) 上的閘道器"
+
+msgid "narrowband"
+msgstr "類比數據機或 ISDN"
+
+
+	# - Gateway on LAN
+	
+msgid "lanSettings"
+msgstr "網際網路設定 - 區域網路 (LAN) 上的閘道器"
+
+msgid "gatewayField"
+msgstr "伺服器閘道器"
+
+msgid "gatewayField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "gatewayField_help"
+msgstr "請輸入此伺服器設備之區域網路閘道器的 IP 位址；這是主要和次要介面的閘道器。網路閘道器可讓您的伺服器連接到您區域網路區域以外的世界。  [[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "IP 轉向和假名"
+
+msgid "forwardField_help"
+msgstr "請選取利用伺服器設備傳遞封包的方法。選擇具假名的封包傳遞，可進行網路位址轉換；這可讓您的組織透過此伺服器設備，在一個公共可存取的 IP 位址與多個私人 IP 位址之間，轉換網路傳遞的所有資訊，以共享網際網路存取。選擇只有封包傳遞而沒有假名，則只允許一個網路介面與其他介面之間的資訊傳遞，並不提供網址轉換。選擇無封包傳遞並不允許在一個網路介面與其他介面之間的任何資訊的傳遞。"
+
+msgid "forward"
+msgstr "只傳遞 IP 封包"
+
+msgid "forwardNat"
+msgstr "轉向具假名的 IP 封包"
+
+msgid "forwardOff"
+msgstr "不傳遞 IP 封包"
+
+
+
+# --- Cable Modem/DSL
+
+msgid "broadbandSettings"
+msgstr "網際網路設定 - 纜線數據機或 DSL"
+
+msgid "networkField"
+msgstr "次要介面"
+
+msgid "networkField_help"
+msgstr "請為此伺服器設備的次要介面選取適當的網路功能配置。"
+
+msgid "dhcp"
+msgstr "使用動態主電腦配置通信協定 (DHCP) 自動取得"
+
+msgid "dhcpHostNameField"
+msgstr "從屬站主電腦名稱"
+
+msgid "dhcpHostNameField_rule"
+msgstr "請輸入只包含小寫英數、破折號或句點的字元。例如，www 就是一個有效的名稱。"
+
+msgid "dhcpHostNameField_help"
+msgstr "請輸入識別此伺服器為「動態主電腦配置通信協定 (DHCP)」從屬站的主機名稱。  [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-network.dhcpHostNameField]]值。  [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "從屬站 ID"
+
+msgid "dhcpClientIdField_help"
+msgstr "請輸入識別此伺服器為「動態主電腦配置通信協定 (DHCP)」從屬站的識別字串。"
+
+msgid "pppoe"
+msgstr "使用乙太網路上的點對點通信協定 (PPPoE) 自動取得"
+
+msgid "pppUserNameField"
+msgstr "使用者名稱"
+
+msgid "pppUserNameField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」的使用者名稱。"
+
+msgid "pppUserNameField_empty"
+msgstr "很抱歉，您並未輸入[[base-network.pppUserNameField]]的值。"
+
+msgid "pppPasswordField"
+msgstr "密碼"
+
+msgid "pppPasswordField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」的密碼。"
+
+msgid "pppPasswordField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "static"
+msgstr "手動指定"
+
+msgid "ipAddressField"
+msgstr "IP 位址"
+
+msgid "ipAddressField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "ipAddressField_help"
+msgstr "請輸入次要介面的 IP 位址，該介面通常是連接到網際網路端。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，次要介面保留不使用。  [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "子網路遮罩"
+
+msgid "netMaskField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，255.255.255.0 就是有效的數字。"
+
+msgid "netMaskField_help"
+msgstr "請輸入主要介面的網路遮罩。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，次要介面保留不使用。  [[base-network.netMaskField_rule]]"
+
+msgid "natField"
+msgstr "IP 假名"
+
+msgid "natField_help"
+msgstr "請選擇是否要讓此伺服器設備執行 IP 假名。IP 假名可進行網路位址轉換，可讓您的組織透過此伺服器設備，在一個公共可存取的 IP 位址與多個私人可存取的 IP 位址之間，轉換網路傳遞的所有資訊，以共享網際網路存取。"
+
+
+# No internet connection
+
+msgid "wanNoneMessage"
+msgstr "沒有網際網路連接。"
+
+msgid "wanNoneConfirm"
+msgstr "您確定不指定網際網路連接類型嗎？"
+
+
+
+
+
+# Modem/ISDN	   NOTE:  These strings are also in the file wizard.po in the module base-wizard.mod. They need to be in both places
+
+msgid "modemAuthModeField"
+msgstr "驗證模式"
+
+msgid "modemAuthModeField_help"
+msgstr "撥號網路連線有兩種常見的驗證模式；請向服務供應商詢問有關您所適用的驗證模式。"
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthHostField"
+msgstr "伺服器主電腦名稱"
+
+msgid "modemAuthHostField_help"
+msgstr "使用 CHAP 撥號驗證時必須提供撥號伺服器主電腦的名稱；請向服務供應商詢問使用 CHAP 驗證時所要指定的伺服器主電腦名稱。"
+
+msgid "modemAuthHostField_invalid"
+msgstr "抱歉，對[[base-network.modemAuthHostField]]而言，[[VAR.invalidValue]] 為一個無效的值。"
+
+msgid "modemConnStatus"
+msgstr "連接狀態"
+
+msgid "modemConnStatus_help"
+msgstr "這個選項顯示目前的連接狀態，並指出目前數據機是否已連線到您的網際網路服務供應商。"
+
+msgid "modemSettings"
+msgstr "網際網路設定 - 類比數據機或 ISDN"
+
+msgid "modemConnModeField"
+msgstr "連接模式"
+
+msgid "modemConnModeField_help"
+msgstr "請選取是否應一律建立數據機連接、需要外傳資訊時才建立連接，或是永遠不建立連接。"
+
+msgid "demand"
+msgstr "僅在必要時連接"
+
+msgid "on"
+msgstr "一律開啟連接"
+
+msgid "off"
+msgstr "一律關閉連接"
+
+msgid "modemUserNameField"
+msgstr "撥接帳戶使用者名稱"
+
+msgid "modemUserNameField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」之撥接帳戶的使用者名稱。"
+
+msgid "modemUserNameField_empty"
+msgstr "很抱歉，您並未輸入[[base-network.modemUserNameField]]的值；請輸入登入您「網際網路服務供應商 (ISP)」之撥接帳戶的使用者名稱。"
+
+msgid "modemPasswordField"
+msgstr "撥接帳戶密碼"
+
+msgid "modemPasswordField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」之撥接帳戶的密碼；在兩個欄位中都輸入相同的密碼可防止鍵入錯誤。"
+
+msgid "modemPasswordField_empty"
+msgstr "很抱歉，您並未輸入[[base-network.modemPasswordField]]的值；請輸入登入您「網際網路服務供應商 (ISP)」之撥接帳戶的密碼。"
+
+msgid "modemPasswordField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "modemPhoneField"
+msgstr "電話號碼"
+
+msgid "modemPhoneField_help"
+msgstr "請輸入您「網際網路服務供應商 (ISP)」的電話號碼。"
+
+msgid "modemPhoneField_empty"
+msgstr "很抱歉，您並未輸入[[base-network.modemPhoneField]]的值；請輸入您「網際網路服務供應商 (ISP)」的電話號碼。"
+
+msgid "modemInitStrField"
+msgstr "數據機起始設定字串"
+
+msgid "modemInitStrField_help"
+msgstr "請輸入數據機起始設定字串，該字串會在撥接之前傳遞至數據機。您必須輸入起始設定字串，否則伺服器將無法使用數據機。如果您不知道數據機的適當起始設定字串，請嘗試輸入 'ATZ' 或參閱數據機文件。"
+
+msgid "modemInitStrField_empty"
+msgstr "很抱歉，您並未輸入[[base-network.modemInitStrField]]的值。您必須輸入起始設定字串，否則伺服器將無法使用數據機。如果您不知道數據機的適當起始設定字串，請嘗試輸入 'ATZ' 或參閱數據機文件。"
+
+msgid "modemIpField"
+msgstr "區域 IP 位址"
+
+msgid "modemIpField_help"
+msgstr "如果您的「網際網路服務供應商 (ISP)」已靜態指定 IP 的位址，請輸入數據機連接的本端 IP 位址。"
+
+msgid "modemIpField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-network.modemIpField]]值。"
+
+msgid "modemSpeedField"
+msgstr "數據機速度（鮑）"
+
+msgid "modemSpeedField_help"
+msgstr "請選取序列線路連接數據機的速度。預設值為 115200。"
+
+msgid "modemPulseField"
+msgstr "啟用脈衝式撥接"
+
+msgid "modemPulseField_help"
+msgstr "開啟或關閉脈衝式撥接。啟用這個功能後，將使用脈衝式撥接，而非按鍵撥接。預設值為關閉脈衝式撥接。"
+
+msgid "saveTest"
+msgstr "儲存並測試"
+
+msgid "saveTest_help"
+msgstr "這個選項會儲存您現行的設定，並嘗試測試連線到您的網際網路服務供應商，以驗證此設定。"
+
+
+# --- IP Address change confirm notice
+msgid "confirmNoDhcp"
+msgstr "從「動態主電腦配置通信協定 (DHCP)」伺服器中取得了您的 [[VAR.interface]] 設定。\n變更這些設定將會關閉對 [[VAR.interface]] 的 DHCP 查詢；您是否要繼續？"
+
+msgid "ethernetChanged"
+msgstr "您的網路設定已變更；稍後系統將會嘗試連接到您的新 IP 位址。\n如果沒有出現登入頁，請在 Web 瀏覽器中鍵入新位址來連接到您的伺服器設備。"
+
+
+
+# --- Network Usage Info
+
+msgid "netUsage"
+msgstr "網路"
+
+msgid "netUsage_help"
+msgstr "可在此處找到網路用量統計。"
+
+msgid "amNetUsage"
+msgstr "網路用量"
+
+msgid "eth0"
+msgstr "[[base-network.eth0_name]] (eth0)"
+
+msgid "eth0_name"
+msgstr "主要介面"
+
+msgid "eth1"
+msgstr "[[base-network.eth1_name]] (eth1)"
+
+msgid "eth1_name"
+msgstr "次要介面"
+
+msgid "ppp0"
+msgstr "[[base-network.ppp0_name]] (ppp0)"
+
+msgid "ppp0_name"
+msgstr "點對點通信協定（PPP）介面"
+
+
+# --- Active Monitor
+msgid "amIface"
+msgstr "網路介面"
+
+msgid "amIface_help"
+msgstr "這是網路介面 ID。"
+
+msgid "amSentB"
+msgstr "已送出（位元組）"
+
+msgid "amSentB_help"
+msgstr "這是已在此網路介面上送出的位元組總數。"
+
+msgid "amRcvdB"
+msgstr "已收到（位元組）"
+
+msgid "amRcvdB_help"
+msgstr "這是已在此網路介面上收到的位元組總數。"
+
+msgid "amErrors"
+msgstr "錯誤"
+
+msgid "amErrors_help"
+msgstr "這是已在此網路介面上傳出或收到的錯誤總數。"
+
+msgid "amColls"
+msgstr "碰撞"
+
+msgid "amColls_help"
+msgstr "這是已在此網路介面上偵測到的碰撞總數。"
+
+msgid "amNetworkNameTag"
+msgstr "網路狀態"
+
+msgid "amNetDetails"
+msgstr "網路狀態明細"
+
+msgid "amIfaceIsDown"
+msgstr "網路介面 [[VAR.iface]] 已停止。"
+
+msgid "amGatewayIsUnreachable"
+msgstr "無法到達網路閘道器。"
+
+msgid "amNetworkOK"
+msgstr "此網路正常運作中。"
+
+msgid "dialoutWindowing"
+msgstr "連接區間"
+
+msgid "dialoutWindowing_help"
+msgstr "數據機可能限制在一天中的某些時間使用。依預設，是允許在一天中的任何時間撥接數據機。"
+
+msgid "dialTimes"
+msgstr "連接時間"
+
+msgid "noDialTimes"
+msgstr "不連接"
+
+# Strings for Connection Period time labels
+msgid "modem_hour_0"
+msgstr "00:00 - 00:59"
+msgid "modem_hour_1"
+msgstr "01:00 - 01:59"
+msgid "modem_hour_2"
+msgstr "02:00 - 02:59"
+msgid "modem_hour_3"
+msgstr "03:00 - 03:59"
+msgid "modem_hour_4"
+msgstr "04:00 - 04:59"
+msgid "modem_hour_5"
+msgstr "05:00 - 05:59"
+msgid "modem_hour_6"
+msgstr "06:00 - 06:59"
+msgid "modem_hour_7"
+msgstr "07:00 - 07:59"
+msgid "modem_hour_8"
+msgstr "08:00 - 08:59"
+msgid "modem_hour_9"
+msgstr "09:00 - 09:59"
+msgid "modem_hour_10"
+msgstr "10:00 - 10:59"
+msgid "modem_hour_11"
+msgstr "11:00 - 11:59"
+msgid "modem_hour_12"
+msgstr "12:00 - 12:59"
+msgid "modem_hour_13"
+msgstr "13:00 - 13:59"
+msgid "modem_hour_14"
+msgstr "14:00 - 14:59"
+msgid "modem_hour_15"
+msgstr "15:00 - 15:59"
+msgid "modem_hour_16"
+msgstr "16:00 - 16:59"
+msgid "modem_hour_17"
+msgstr "17:00 - 17:59"
+msgid "modem_hour_18"
+msgstr "18:00 - 18:59"
+msgid "modem_hour_19"
+msgstr "19:00 - 19:59"
+msgid "modem_hour_20"
+msgstr "20:00 - 20:59"
+msgid "modem_hour_21"
+msgstr "21:00 - 21:59"
+msgid "modem_hour_22"
+msgstr "22:00 - 22:59"
+msgid "modem_hour_23"
+msgstr "23:00 - 23:59"
+
+# for modem_status.pl invoked directly from modem.php
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+
+# capabilities
+msgid "capgroup_adminNetworkSettings"
+msgstr "管理網路設定"
+
+msgid "capgroup_adminNetworkSettings_help"
+msgstr "這個管理權限可讓使用者變更全系統網路設定，例如預設閘道器和 dns 設定"
+
+msgid "capgroup_adminRoutes"
+msgstr "管理靜態路徑"
+
+msgid "capgroup_adminRoutes_help"
+msgstr "這個管理權限可讓使用者建立、損毀和更改這台機器的網路子系統使用的靜態路徑"
+
+msgid "capgroup_adminNetwork"
+msgstr "管理 TCP/IP 和網際網路"
+
+msgid "capgroup_adminNetwork_help"
+msgstr "這個管理權限可讓使用者管理這台機器上的所有網路設定"
+
+msgid "capgroup_adminNetworkInterfaces"
+msgstr "管理網路介面"
+
+msgid "capgroup_adminNetworkInterfaces_help"
+msgstr "這個管理權限可讓使用者建立、損毀和更改這台機器上的網路介面的設定"
+
+msgid "portFwd"
+msgstr "埠號轉向"
+
+msgid "portFwd_help"
+msgstr "按一下此處新增埠號轉向規則。埠號轉向可讓您將網路流量從一個介面和埠轉向另一個介面和埠。"
+

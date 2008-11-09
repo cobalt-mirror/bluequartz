@@ -1,0 +1,170 @@
+#error messages
+
+msgid "errorEmailBody"
+msgstr "Une erreur s'est produite durant le processus AutoLoad : "
+
+msgid "errorEmailSubject"
+msgstr "Erreur AutoLoad"
+
+msgid "nosettings"
+msgstr "Paramètres AutoLoad introuvables."
+
+msgid "cantdownload"
+msgstr "La liste des modules n'a pas pu être téléchargée du serveur AutoLoad spécifié."
+
+msgid "badpacakge"
+msgstr "La liste des modules du serveur AutoLoad n'a pas pu être décompactée."
+
+msgid "badpkgfmt"
+msgstr "La liste des modules du serveur AutoLoad n'a pas pu être lue."
+
+msgid "badinstall"
+msgstr "Une erreur s'est produite lors de l'installation de [[VAR.name]]"
+
+#used by wizard stuff
+
+msgid "network"
+msgstr "Configuration de l'interface secondaire"
+
+msgid "network_help"
+msgstr " "
+
+msgid "servers"
+msgstr "Configuration du serveur AutoUpdate"
+
+msgid "servers_help"
+msgstr " "
+
+#used on network.php
+msgid "networkSettings"
+msgstr "Paramètres réseau"
+
+msgid "networkField"
+msgstr "Paramètres réseau"
+
+msgid "networkField_help"
+msgstr "Configurez votre interface secondaire"
+
+msgid "dhcpHostNameField"
+msgstr "Nom d'hôte du client"
+
+msgid "dhcpHostNameField_help"
+msgstr "Entrez le nom d'hôte qui identifie ce serveur comme client DHCP (Dynamic Host Configuration Protocol)."
+
+msgid "dhcpClientIdField"
+msgstr "Identificateur du client"
+
+msgid "dhcpClientIdField_help"
+msgstr "Entrez la chaîne d'identification qui identifie ce serveur comme un client DHCP (Dynamic Host Configuration Protocol)."
+
+msgid "pppoe"
+msgstr "Obtenir automatiquement avec PPPoE"
+
+msgid "dhcp"
+msgstr "Obtenir automatiquement avec DHCP"
+
+msgid "pppUserNameField"
+msgstr "Nom d'utilisateur"
+
+msgid "pppUserNameField_help"
+msgstr "Entrez le nom d'utilisateur employé pour vous connecter à votre fournisseur d'accès à Internet."
+
+msgid "pppPasswordField"
+msgstr "Mot de passe"
+
+msgid "pppPasswordField_help"
+msgstr "Entrez le mot de passe employé pour vous connecter à votre fournisseur d'accès à Internet."
+
+msgid "static"
+msgstr "Spécifier manuellement"
+
+msgid "ipAddressField"
+msgstr "Adresse IP"
+
+msgid "ipAddressField_help"
+msgstr "Entrez l'adresse IP de l'interface secondaire, qui est généralement connectée au côté Internet."
+
+msgid "netMaskField"
+msgstr "Masque de réseau"
+
+msgid "netMaskField_help"
+msgstr "Entrez le masque de réseau de l'interface secondaire"
+
+msgid "gatewayField"
+msgstr "Passerelle"
+
+msgid "gatewayField_help"
+msgstr "Entrez l'adresse IP de la passerelle de réseau locale pour cet appliance serveur. Il s'agit de la passerelle pour les interfaces tant primaire que secondaire."
+
+msgid "dnsField"
+msgstr "Serveurs DNS"
+
+msgid "dnsField_help"
+msgstr "Entrez l'adresse IP de votre ou vos serveurs de noms de domaine locaux."
+
+#used on server.php
+
+msgid "serverSettings"
+msgstr "Paramètres du serveur AutoUpdate"
+
+msgid "serverField"
+msgstr "Serveur AutoUpdate"
+
+msgid "serverField_help"
+msgstr "Entrez le nom d'hôte ou l'adresse IP du serveur AutoUpdate."
+
+msgid "proxyField"
+msgstr "Proxy HTTP"
+
+msgid "proxyField_help"
+msgstr "Entrez le nom d'hôte ou l'adresse IP d'un proxy HTTP, s'il y en a un sur votre réseau."
+
+msgid "authField"
+msgstr "Signe d'authentification"
+
+msgid "authField_help"
+msgstr "Entrez toute information d'authentification requise pour accéder au serveur AutoUpdate."
+
+msgid "invalidServer"
+msgstr "Le serveur spécifié ne semble pas être un serveur AutoUpdate.  Vérifiez vos paramètres et réessayez."
+
+# used in the lcd script
+msgid "autoupdate_server"
+msgstr "  SERVEUR IP :  "
+
+msgid "autoupdate_secure"
+msgstr " ACTIVER SSL ?  "
+
+msgid "autoupdate_proxy"
+msgstr "  PROXY IP :    "
+
+msgid "autoupdate_proxy_question"
+msgstr " CONFIG. PROXY ?"
+
+msgid "autoupdate_auth"
+msgstr " SIGNE AUTH. :  "
+
+msgid "autoupdate_auth_question"
+msgstr "CONFIG. AUTH. ? "
+
+msgid "checking_server_1"
+msgstr "VERIFI. DU SERV. "
+ 
+msgid "checking_server_2"
+msgstr "VEUIL. PATIENTER ... "
+
+msgid "cant_contact_server_1"
+msgstr "IMPOS. CONTACTER"
+
+msgid "cant_contact_server_2"
+msgstr "    SERVEUR     "
+
+msgid "invalid_server_1"
+msgstr "ADRESSE SERVEUR "
+
+msgid "invalid_server_2"
+msgstr "   INCORRECTE    "
+
+msgid "reenter_data"
+msgstr "  REESSAYER ?   "
+

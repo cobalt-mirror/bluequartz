@@ -1,0 +1,9 @@
+<< /var/lib/pgsql/data >>
+        logasm: pg_log
+ 
+<< /var/lib/pgsql/data/base/cobalt >>
+        postgresasm: .
+ 
+<< /var/lib/pgsql/data/base/cobalt >>
+        skip: ?* *
+ 

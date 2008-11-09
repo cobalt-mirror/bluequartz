@@ -1,0 +1,124 @@
+# --- Menu
+
+msgid "apache"
+msgstr 
+"Web"
+
+msgid "apache_help"
+msgstr 
+"[[base-apache.apacheSettings]]."
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr 
+"Configuración del servidor Web"
+
+msgid "frontpageField"
+msgstr 
+"Extensiones del servidor FrontPage"
+
+msgid "frontpageField_help"
+msgstr 
+"Activar o desactivar las Extensiones del servidor FrontPage."
+
+msgid "frontpageEnabled"
+msgstr 
+"Habilitar"
+
+msgid "passwordWebmasterField"
+msgstr 
+"Contraseña de webmaster"
+
+msgid "passwordWebmasterField_help"
+msgstr 
+"Contraseña para el webmaster de cliente FrontPage. Se accede al sitio web del grupo seleccionando Abrir Web en el cliente FrontPage. Se inicia la sesión con el nombre de inicio webmaster y contraseña. Tras su autenticación, los usuarios adicionales de FrontPage se administran con el cliente FrontPage."
+
+msgid "passwordWebmasterField_rule"
+msgstr 
+"La contraseña debe ser de 3 a 16 caracteres de largo. Debe contener al menos 5 caracteres con mayúsculas, minúsculas, números y signos de puntuación. No usar palabras del diccionario. Las contraseñas distinguen mayúsculas y minúsculas."
+
+msgid "passwordWebmasterField_invalid"
+msgstr 
+"La contraseña no es la misma en ambos campos. Inténtelo de nuevo."
+
+msgid "cgiAccessField"
+msgstr 
+"Acceso a CGI"
+
+msgid "cgiAccessField_help"
+msgstr 
+"Activar o desactivar el acceso a CGI. Los derechos a tal acceso se pueden definir para que tanto el administrador o  todos, o ciertos usuarios puedan añadir archivos de secuencia de comandos CGI."
+
+msgid "cgiAll"
+msgstr "Permitir acceso a todos los usuarios"
+
+msgid "cgiNone"
+msgstr 
+"No permitir acceso a ningún usuario"
+
+msgid "cgiSubset"
+msgstr 
+"Permitir acceso únicamente a los usuarios especificados"
+
+msgid "cgiUsersAllowed"
+msgstr 
+"Usuarios con permiso de acceso"
+
+msgid "cgiUsersDisallowed"
+msgstr 
+"Usuarios sin permiso de acceso"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr 
+" "
+
+msgid "cgiUsersField_empty"
+msgstr 
+"No ha seleccionado ningún usuario para acceder a CGI. Añada usuarios con tal permiso o elija una opción de acceso diferente."
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr 
+"No es posible configurar correctamente el acceso a CGI ahora."
+
+msgid "systemObjectNotFound"
+msgstr 
+"La configuración del servidor no está disponible ahora. Inténtelo más tarde."
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr 
+"Servidor web"
+
+msgid "amApacheDetails"
+msgstr "Detalles del servidor web"
+
+msgid "amNotRunning"
+msgstr "El servidor web no está funcionando."
+
+msgid "amStatusOK"
+msgstr "El servidor web funciona normalmente."
+
+msgid "amAdmservNameTag"
+msgstr "Server Desktop"
+
+msgid "amAdmservDetails"
+msgstr "Detalles del Server Desktop"
+
+msgid "amAdmservNotRunning"
+msgstr "El Server Desktop no está funcionando."
+
+msgid "amAdmservStatusOK"
+msgstr "El Server Desktop funciona normalmente."
+
+msgid "capgroup_adminApache_help"
+msgstr "Este derecho administrativo permite que un usuario modifique la configuración de los sitios Web públicos, incluidos los derechos del sitio individual del usuario (por ejemplo, frontpage, cgi, ...)"
+
+msgid "capgroup_adminApache"
+msgstr "Administrar Servidor Web"
+

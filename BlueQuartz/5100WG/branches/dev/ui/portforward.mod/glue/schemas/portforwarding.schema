@@ -1,0 +1,39 @@
+<SCHEMA NAME =		"Port Forwarding"
+	VENDOR = 	"Sun Microsystems"
+	VERSION = 	"1.0"
+/>
+
+<typedef 
+	name="portForward_port" 
+	type="re"
+	data="^(([1-9])|([1-9][0-9])|([1-9][0-9][0-9])|([1-9][0-9][0-9][0-9])|([1-5][0-9][0-9][0-9][0-9])|(6[0-4][0-9][0-9][0-9])|(65[0-4][0-9][0-9])|(655[0-2][0-9])|(6553[0-6]))$"
+/>
+
+<typedef
+	name="portForward_protocol"
+	type="re"
+	data="^((TCP)|(UDP))$"
+/>
+
+<class name="PortForward" version="1.0" createacl="ruleCapable(createPortForward)" destroyacl="ruleCapable(destroyPortForward)">
+	<property name="enabled"	type="boolean" default="1" writeacl="ruleCapable(modifyPortForward)"/>
+	<property name="sourceIP"	type="devicename" writeacl="ruleCapable(modifyPortForward)"/>
+	<property name="sourcePort"	type="portForward_port" writeacl="ruleCapable(modifyPortForward)" />
+	<property name="targetIP"	type="ipaddr" writeacl="ruleCapable(modifyPortForward)"/>
+	<property name="targetPort"	type="portForward_port" writeacl="ruleCapable(modifyPortForward)" />
+	<property name="protocol"	type="portForward_protocol" writeacl="ruleCapable(modifyPortForward)" />
+	<property name="description"	type="scalar" writeacl="ruleCapable(modifyPortForward)" />
+</class>
+
+<class name="Capabilities" namespace="createPortForward" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createPortForward)"/>
+	<property name="nameTag" type="scalar" default="[[base-portforward.cap_createPortForward]]"/>
+</class>
+<class name="Capabilities" namespace="destroyPortForward" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyPortForward)"/>
+	<property name="nameTag" type="scalar" default="[[base-portforward.cap_destroyPortForward]]"/>
+</class>
+<class name="Capabilities" namespace="modifyPortForward" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyPortForward)"/>
+	<property name="nameTag" type="scalar" default="[[base-portforward.cap_modifyPortForward]]"/>
+</class>

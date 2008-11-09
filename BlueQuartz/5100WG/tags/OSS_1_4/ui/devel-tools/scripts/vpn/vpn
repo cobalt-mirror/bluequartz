@@ -1,0 +1,101 @@
+#!/bin/sh
+#
+# $Id: vpn 3 2003-07-17 15:19:15Z will $
+# Duncan Laurie (void@sun.com)
+#
+
+DEVICE="eth0"
+TUNNEL="/usr/sbin/open_tunnel"
+OUTPUT="/etc/vpn_config"
+INPUT="/etc/vpn_config.in"
+LOG="/var/log/vpn.log"
+MODULE="vpnmod"
+VERBOSE="0"
+CONNECT="1"
+BACKGROUND="1"
+DEBUG=
+USER=
+HOST=
+PASS=
+
+function Usage {
+    let $# && echo "Error: $@!"
+    echo
+    echo "Usage: $0 -[hvnb] [-i dev] [-s host] [-u user] <password>"
+    echo "   Ex: $0 -i ppp0 -s central ffffffff"
+    echo
+    echo "       -h          print this help"
+    echo "       -v          increase debug level"
+    echo "       -n          do not connect (test config file generation)"
+    echo "       -b          do not background tunnel process"
+    echo "       -i dev      network interface"
+    echo "       -s host     vpn gateway to connect to"
+    echo "       -u user     username to connect with"
+    echo "       password    8 character password from token card"
+    echo
+    exit 0
+}
+
+test $UID -eq 0 || Usage "Must be root"
+
+while getopts ":i:o:u:s:vhnb" OPTION ; do
+  case $OPTION in
+    i) DEVICE=$OPTARG   ;;
+    h) Usage 		;;
+    v) let VERBOSE+=1	;;
+    n) CONNECT=0	;;
+    b) BACKGROUND=0	;;
+    s) HOST=$OPTARG	;;
+    u) USER=$OPTARG	;;
+  esac
+done
+
+test $OPTIND -eq $# || Usage "No password given"
+shift $[$OPTIND-1]
+PASS=$1
+
+test ${#PASS} -eq 8 || Usage "Password must be 8 characters"
+
+test -n "$USER" || {
+    USER=`sed -ne "s/^UserName = //ip" $INPUT`
+    test -n "$USER" || Usage "User not found in template"
+}
+
+test -n "$HOST" || {
+    HOST=`sed -ne "s/^IPPrimary = //ip" $INPUT`
+    test -n "$HOST" || Usage "Server not found in template"
+}
+
+egrep "^$MODULE" /proc/modules > /dev/null 2>&1 || {
+    MODPATH="/lib/modules/`uname -r`/kernel/net/${MODULE}.o"
+    test -e $MODPATH || Usage "Could not find module at $MODPATH"
+    modprobe $MODULE
+    egrep "^$MODULE" /proc/modules > /dev/null 2>&1 ||
+          Usage "Unable to load module: $MODULE"
+}
+
+egrep -v -e "^(UserName|IPPrimary|RADIUSPassword)" $INPUT > $OUTPUT
+
+cat >> $OUTPUT <<END
+IPPrimary = $HOST
+UserName = $USER
+RADIUSPassword = $PASS
+END
+
+let $CONNECT || {
+    echo "not connecting."
+    exit 0
+}
+
+let $VERBOSE && {
+    echo "Connecting to $HOST as $USER..."
+    while let VERBOSE-=1 ; do
+        DEBUG="-x $DEBUG"
+    done
+}
+
+COMMAND="$TUNNEL -d $DEVICE $DEBUG $HOST $USER"
+let $BACKGROUND \
+    && (exec nohup $COMMAND </dev/null>> $LOG 2>&1 &) \
+    || $COMMAND
+

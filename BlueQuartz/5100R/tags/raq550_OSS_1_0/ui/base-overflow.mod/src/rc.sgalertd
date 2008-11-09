@@ -1,0 +1,69 @@
+#!/bin/sh
+#
+# sgalertd      This shell script takes care of starting and stopping
+#               sgalertd.
+#
+# chkconfig: 235 81 29
+# description: sgalertd alerts sysadmin about detected buffer overruns
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: rc.sgalertd,v 1.3.2.2 2002/04/06 01:18:35 pbaltz Exp $
+
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Source i18n configuration.
+. /etc/sysconfig/i18n
+export LANG LC_ALL LINGUAS
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+RETVAL=0
+
+# See how we were called.
+case "$1" in
+  start)
+        # Start daemons.
+        echo -n "Starting sgalertd: "
+        if [ -x /usr/sbin/pafmgr ]
+        then
+            /usr/sbin/pafmgr -e sgalertd
+        else
+	    daemon sgalertd
+        fi
+	RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch /var/lock/subsys/sgalertd
+        ;;
+  stop)
+        # Stop daemons.
+        echo -n "Shutting down sgalertd: "
+        if [ -x /usr/sbin/pafmgr ]
+        then
+            /usr/sbin/pafmgr -q sgalertd
+        else
+	    killproc sgalertd
+        fi
+	RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/sgalertd
+        ;;
+  status)
+	status sgalertd
+	RETVAL=$?
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  *)
+        echo "Usage: sgalertd {start|stop|restart|status}"
+        exit 1
+esac
+
+exit $RETVAL

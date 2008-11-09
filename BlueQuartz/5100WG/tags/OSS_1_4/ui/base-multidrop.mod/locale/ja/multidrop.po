@@ -1,0 +1,74 @@
+# ----- Menu
+msgid "multidrop"
+msgstr "リモート受信"
+
+msgid "multidropHelp"
+msgstr "リモート電子メールサーバからの電子メールの受信を設定できます。"
+
+# ----- Remote Retrieval (aka multidrop)page
+
+msgid "modifyMultidrop"
+msgstr "リモート受信の設定"
+
+msgid "enableField"
+msgstr "リモート受信を有効にする"
+
+msgid "enableField_help"
+msgstr "このボックスをチェックすると、リモート受信（「マルチドロップ」とも呼ばれる）機能が有効になり、リモート電子メールサーバ上にある電子メールを一定の時間間隔で自動的に受信できます。この機能を使うと、プロバイダのメールアカウントなどに届く電子メールをまとめて受信できます。リモート受信の詳細については、このサーバのユーザマニュアルをご参照ください。"
+
+msgid "serverField"
+msgstr "リモート電子メールサーバ"
+
+msgid "serverField_eg"
+msgstr "（指定例： 192.168.1.100、mail.cobalt.com など）"
+
+msgid "serverField_rule"
+msgstr "[[base-multidrop.serverField]]のネットワークアドレスまたはドメインネームを入力してください。[[base-multidrop.serverField_eg]]"
+
+msgid "serverField_help"
+msgstr "リモート電子メールサーバのネットワークアドレスまたはドメインネームを入力してください。[[base-multidrop.serverField_eg]]"
+
+msgid "userDomainField"
+msgstr "電子メールドメインネーム"
+
+msgid "userDomainField_rule"
+msgstr "[[base-multidrop.serverField]]のネットワークアドレスまたはドメインネームを正しい形式で入力してください。（指定例： 192.168.1.100、mail.cobalt.com など)"
+
+msgid "userDomainField_help"
+msgstr "リモート受信したい電子メールの宛先アドレスに使われているドメインネームを入力してください。例えば、メールアドレスが yasuda@coba-q.com であれば、coba-q.com と指定します。リモート受信（マルチドロップ）機能は、このドメインネーム宛のメールをリモート電子メールサーバから受信し、このサーバのマルチドロップメールボックスに保管します。"
+
+msgid "userNameField"
+msgstr "ユーザ名"
+
+msgid "userNameField_help"
+msgstr "リモート電子メールサーバへのアクセスに必要な電子メールアカウントのユーザ名を入力してください。"
+
+msgid "userNameField_rule"
+msgstr "ユーザ名には、半角の英小文字、英数字、ピリオド、ハイフン、アンダースコアのみが使えます。また、ユーザ名は 12 文字以下で指定してください。"
+
+msgid "passwordField"
+msgstr "パスワード"
+
+msgid "passwordField_help"
+msgstr "リモート電子メールサーバへのアクセスに必要な電子メールアカウントのパスワードを入力してください。"
+
+msgid "passwordField_invalid"
+msgstr "パスワードフィールドに入力した２つのパスワードが一致しません。入力ミス防止のため、同じパスワードを２回入力する必要があります。パスワードを入力し直してください。"
+
+msgid "intervalField"
+msgstr "リモート受信の頻度"
+
+msgid "intervalField_rule"
+msgstr "リモート受信の頻度（間隔）は正の整数で指定してください。"
+
+msgid "intervalField_help"
+msgstr "リモート電子メールサーバから電子メールを受信する時間間隔を分を単位として正の整数で入力してください。"
+
+msgid "protoField"
+msgstr "リモート受信プロトコル"
+
+msgid "protoField_help"
+msgstr "リモート電子メールサーバから電子メールを受信する際に使うメールプロトコルを指定してください。「ETRN」は、ESMTP 対応のリモート電子メールサーバである場合にのみご指定ください。デフォルトは POP3 で、これはほとんどすべてのメールサーバがサポートしているプロトコルです。"
+
+msgid "badInterval"
+msgstr "[[base-multidrop.intervalField]] には 1 以上の値を指定する必要があります。"

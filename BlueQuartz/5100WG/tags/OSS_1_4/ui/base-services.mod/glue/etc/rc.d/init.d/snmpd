@@ -1,0 +1,50 @@
+#!/bin/bash
+# cmu-snmp init file for snmpd
+#
+# chkconfig: - 40 40
+# description: Simple Network Management Protocol (SNMP) Daemon
+#
+#
+# source function library
+DOMAIN=base-services
+. /etc/rc.d/init.d/functions
+
+case "$1" in
+  start)
+	LINE1=`getmsg snmp_start_1`
+	LINE2=`getmsg snmp_start_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+        daemon /usr/sbin/snmpd -f
+        touch /var/lock/subsys/snmpd
+        echo
+        ;;
+  stop)
+	LINE1=`getmsg snmp_stop_1`
+	LINE2=`getmsg snmp_stop_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+        killproc snmpd
+        rm -f /var/lock/subsys/snmpd
+        echo
+        ;;
+  hard-restart)
+        killproc snmpd
+	sleep 2
+        daemon /usr/sbin/snmpd -f
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  status)
+        status snmpd
+        ;;
+  *)
+        echo "Usage: snmpd {start|stop|restart|status}"
+        exit 1
+esac
+
+exit 0

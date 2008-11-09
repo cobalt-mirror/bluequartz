@@ -1,0 +1,347 @@
+msgid "addressbook"
+msgstr "地址簿"
+
+msgid "addressbookDescription"
+msgstr "[[base-addressbook.addressbook]]可使您访问此服务器上其他用户的联络信息，并能够维护个人地址簿。"
+
+# -------- Public Address Book (aka common)
+
+msgid "addressbookcommon"
+msgstr "用户"
+
+msgid "addressbookcommonDescription"
+msgstr "单击此处访问此服务器上其他用户的联络信息。"
+
+msgid "addressbookCommon"
+msgstr "用户地址簿"
+
+msgid "addressbookCommonView"
+msgstr "查看联络信息"
+
+
+# -------- Private Address Book
+
+msgid "addressbookprivate"
+msgstr "个人"
+
+msgid "addressbookprivateDescription"
+msgstr "单击此处在您的[[base-addressbook.addressbookPrivate]]中添加或编辑条目。"
+
+
+msgid "addressbookPrivate"
+msgstr "个人地址簿"
+
+msgid "addressbookPrivateAdd"
+msgstr "添加联系人"
+
+msgid "addressbookPrivateModify"
+msgstr "修改联系人"
+
+
+# -------- Common Strings
+
+msgid "fullname"
+msgstr "全名"
+
+msgid "fullname_rule"
+msgstr "请输入除冒号外的任何字符。例如，John Doe 就是有效输入。"
+
+msgid "fullname_help"
+msgstr "这显示联系人的全名。"
+
+msgid "username"
+msgstr "用户名"
+
+msgid "username_help"
+msgstr "这显示联系人的用户名。"
+
+msgid "email"
+msgstr "电子邮件地址"
+
+msgid "email_rule"
+msgstr "请输入格式正确的电子邮件地址。例如，user@cobalt.com 就是有效的输入。"
+
+msgid "email_help"
+msgstr "这显示联系人的电子邮件地址。"
+
+msgid "userdesc"
+msgstr "备注"
+
+msgid "userdesc_help"
+msgstr "这显示联系人的附加信息。"
+
+# --------- Action icons
+msgid "view"
+msgstr "详细信息"
+
+msgid "view_help"
+msgstr "单击此处查看此联系人的联络信息。"
+
+msgid "mail"
+msgstr "邮件"
+
+msgid "mail_help"
+msgstr "单击此处向此联系人发送电子邮件。"
+
+msgid "web"
+msgstr "Web"
+
+msgid "web_help"
+msgstr "单击此处查看此用户的网页。"
+
+msgid "listAction"
+msgstr "操作"
+
+# re-used for action columns with different actions, so be generic
+msgid "listAction_help"
+msgstr "单击图标对输入执行操作。"
+
+
+# ------- View Contact Info (Public)
+
+msgid "phone"
+msgstr "电话号码"
+
+msgid "phone_help"
+msgstr "这显示联系人的电话号码。"
+
+msgid "fax"
+msgstr "传真号码"
+
+msgid "fax_help"
+msgstr "这是联系人的传真号码。"
+
+msgid "homeUrl"
+msgstr "网址"
+
+msgid "homeUrl_help"
+msgstr "这是联系人网页的 URL。"
+
+msgid "address"
+msgstr "地址"
+
+msgid "address_help"
+msgstr "这是联系人的地址。"
+
+
+# -------- Add/Modify Private Contact
+
+msgid "enterFullname"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "enterFullname_help"
+msgstr "输入此联系人的全名。[[base-addressbook.fullname_rule]]"
+
+msgid "enterEmail"
+msgstr "[[base-addressbook.email]]"
+
+msgid "enterEmail_help"
+msgstr "输入此联系人的电子邮件地址。[[base-addressbook.email_rule]]"
+
+msgid "enterPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "enterPhone_help"
+msgstr "输入此联系人的电话号码。"
+
+msgid "enterFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "enterFax_help"
+msgstr "输入此联系人的传真号码。"
+
+msgid "enterHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "enterHomeUrl_help"
+msgstr "输入此联系人网页的 URL。例如，'http://www.myserver.com/~mycontact/' 就是有效的输入。"
+
+msgid "enterAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "enterAddress_help"
+msgstr "输入此联系人的地址。"
+
+msgid "enterRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "enterRemarks_help"
+msgstr "输入此联系人的附加信息，如备注或说明。"
+
+msgid "removeAddressbookPrivateConfirm"
+msgstr "是否确定要删除联系人[[VAR.fullname]]？"
+
+
+
+# ------ Groups
+
+msgid "addressbookgroups"
+msgstr "组"
+
+msgid "addressbookgroupsDescription"
+msgstr "单击此处查看此服务器上的组列表。"
+
+msgid "addressbookgroupsScrollList"
+msgstr "组列表"
+
+msgid "groupname"
+msgstr "名称"
+
+msgid "groupname_help"
+msgstr "这显示组的名称。"
+
+msgid "groupmembers"
+msgstr "成员"
+
+msgid "groupmembers_help"
+msgstr "这将列出属于该组的成员。"
+
+msgid "groupactions"
+msgstr "操作"  
+
+msgid "groupactions_help"
+msgstr "这些是您可能对这些组执行的操作。"
+
+msgid "groupCountSingular"
+msgstr "[[VAR.count]]个组"
+
+msgid "groupCountPlural"
+msgstr "[[VAR.count]]个组"
+
+msgid "groupdesc"
+msgstr "备注"
+
+msgid "groupdesc_help"
+msgstr "这将提供每一组的附加信息。"
+
+msgid "groupMail"
+msgstr "邮件"
+
+msgid "groupMail_help"
+msgstr "单击此处向该组发送电子邮件。"
+
+msgid "groupWeb"
+msgstr "Web"
+
+msgid "groupWeb_help"
+msgstr "单击此处查看该组的网页。"
+
+
+
+# -------- Get address from webmail
+
+msgid "addressbookimport"
+msgstr "地址簿导入"
+
+msgid "addressbookimportDescription"
+msgstr "选择地址"
+
+msgid "addressesSelect"
+msgstr "选择"
+
+msgid "addressesSelect_help"
+msgstr "选择您将发送此电子邮件的联系人。"
+
+msgid "addressesSelectButton"
+msgstr "选择"
+
+msgid "addressesSelectButton_help"
+msgstr "单击此处导入当前所选联系人的电子邮件地址。"
+
+msgid "addressesFullName"
+msgstr "全名"
+
+msgid "addressesFullName_help"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "addressesEmail"
+msgstr "电子邮件地址"
+
+msgid "addressesEmail_help"
+msgstr "[[base-addressbook.email]]"
+
+msgid "singleEmailEmptyMessage"
+msgstr "对不起，联系人：'[[VAR.name]]' 没有电子邮件地址。"
+
+msgid "pluralEmailEmptyMessage"
+msgstr "对不起，；联系人：'[[VAR.names]]' 没有电子邮件地址。"
+
+msgid "groupEmailFormat"
+msgstr "组 '[[VAR.name]]' <[[VAR.email]]>"
+
+msgid "addressbookprivate_help"
+msgstr "单击此处从个人地址簿导入电子邮件地址。"
+
+msgid "addressbookcommon_help"
+msgstr "单击此处导入此服务器设备其他用户的电子邮件地址。"
+
+# -------- Internal, extra stuff
+
+msgid "ellipses"
+msgstr "..."
+
+msgid "errorPrivateGetAll"
+msgstr "对不起，在读取个人地址簿输入时出现错误。"
+
+msgid "errorPrivateModify"
+msgstr "对不起，在修改个人地址簿输入时出现错误。"
+
+msgid "errorPrivateAdd"
+msgstr "对不起，在向个人地址簿添加输入时出现错误。"
+
+msgid "errorPrivateDrop"
+msgstr "对不起，在从个人地址簿中删除输入时出现错误。"
+
+msgid "errorPersonalGet"
+msgstr "对不起，在试图获取个人信息时出现错误。"
+
+
+
+# --------- Personal Profile stuff
+
+msgid "addressbookPersonal"
+msgstr "个人信息"
+
+msgid "addressbookPersonalDescription"
+msgstr "单击此处管理您的个人联系信息。"
+
+msgid "addressbookPersonalBlock"
+msgstr "个人信息设置 -[[VAR.name]]"
+
+msgid "persHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "persHomeUrl_help"
+msgstr "输入您的网页的 URL。例如，http://www.myserver.com/~mycontact/ 就是有效的输入。"
+
+msgid "persPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "persPhone_help"
+msgstr "输入您的电话号码。"
+
+msgid "persFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "persFax_help"
+msgstr "输入您的传真号码。"
+
+msgid "persAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "persAddress_help"
+msgstr "输入您的地址。"
+
+msgid "persRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "persRemarks_help"
+msgstr "输入附加信息，如备注或说明。"
+
+
+# ---------- POSSIBLY HOMELESS ----------
+
+msgid "addresses"
+msgstr "地址"
+
+

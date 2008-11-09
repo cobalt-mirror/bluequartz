@@ -1,0 +1,227 @@
+msgid "ups"
+msgstr "UPS"
+
+msgid "upsSettings"
+msgstr "UPS の設定"
+
+msgid "version"	
+msgstr "バージョン 1.0"
+
+msgid "upsDescription"
+msgstr "無停電電源装置 (UPS) を設定できます｡"
+
+msgid "stateField"
+msgstr "UPS オプション"
+
+msgid "stateField_help"
+msgstr "無効にするか、マスターまたはスレーブとして有効にしてください｡マスター設定では、UPS を第 2 のシリアルポートに直接接続してください｡スレーブは、UPS 上の情報についてマスターと通信します｡"
+
+msgid "macsField"
+msgstr "スレーブ MAC アドレス"
+
+msgid "macsField_help"
+msgstr "Wake On LAN マジックパケットを受信する MAC アドレスのリストです｡各スレーブマシンの \"[[base-power.poweroptions_menu]]\" メニューで、この設定を有効にする必要があります｡"
+
+msgid "masteripField"
+msgstr "マスターの IP アドレス"
+
+msgid "masteripField_help"
+msgstr "このスレーブが使うマスターの IP アドレスです｡"
+
+msgid "wakeSlavesField"
+msgstr "電源復旧時にスレーブを起動"
+
+msgid "wakeSlavesField_help"
+msgstr "このマスターが、電源復旧時に Wake On LAN マジックパケットを各スレーブに送信するよう設定できます｡各スレーブマシンの \"[[base-power.poweroptions_menu]]\" メニューで、この設定を有効にする必要があります｡"
+
+msgid "wakeDelayField"
+msgstr "スレーブの起動間隔 (秒)"
+
+msgid "wakeDelayField_help"
+msgstr "各スレーブマシンが起動する間隔を 0 ～ 300 秒の間で指定してください｡デフォルト値は 30 秒です｡"
+
+msgid "disabled"
+msgstr "無効"
+
+msgid "master"
+msgstr "マスターとして設定"
+
+msgid "slave"
+msgstr "スレーブとして設定"
+
+msgid "cantSysconf"
+msgstr "/etc/sysconfig/ups を編集できませんでした｡"
+
+msgid "cantUPSMONconf"
+msgstr "/etc/ups/upsmon.conf を編集できませんでした｡"
+
+msgid "cantUPSDconf"
+msgstr "/etc/ups/upsd.conf を編集できませんでした｡"
+
+msgid "cantmacfile"
+msgstr "/etc/ups/wol-macs という MAC ファイルを編集できませんでした｡"
+
+msgid "masterisinvalid"
+msgstr "指定されたマスターアドレスは不正です｡"
+
+msgid "masterislocal"
+msgstr "マシンに対してローカルのマスターアドレスが指定されました｡このシステムを、マスターとスレーブの両方に設定することはできません｡"
+
+msgid "masterisempty"
+msgstr "スレーブとして設定しましたが、マスターとして設定されているマシンがありません｡マスターの IP アドレスを指定してください｡"
+
+# For Active Monitor
+msgid "amUPSNameTag"
+msgstr "UPS"
+
+msgid "amUPSStats"
+msgstr "UPS の状態"
+
+msgid "amUPSDetails"
+msgstr "UPS の詳細"
+
+msgid "amUPSBattPct"
+msgstr "[[VAR.val]]%"
+
+msgid "amUPSBattLevel"
+msgstr "バッテリのレベル"
+
+msgid "amUPSBattLevel_help"
+msgstr "バッテリの充電パーセントです｡"
+
+msgid "amUPSStatusOFF"
+msgstr "オフ"
+
+msgid "amUPSStatusOL"
+msgstr "オンライン"
+
+msgid "amUPSStatusOB"
+msgstr "バッテリ"
+
+msgid "amUPSStatusLB"
+msgstr "低バッテリ"
+
+msgid "amUPSStatusCAL"
+msgstr "キャリブレーション中"
+
+msgid "amUPSStatusTRIM"
+msgstr "入力電圧のトリム中"
+
+msgid "amUPSStatusBOOST"
+msgstr "入力電圧の増幅中"
+
+msgid "amUPSStatusOVER"
+msgstr "過負荷"
+
+msgid "amUPSStatusRB"
+msgstr "バッテリ要交換"
+
+msgid "amUPSStatusFSD"
+msgstr "強制シャットダウン状態"
+
+msgid "amUPSStatus"
+msgstr "UPS の状態"
+
+msgid "amUPSStatus_help"
+msgstr "UPS の状態、オンライン (通電中)、バッテリで動作中、不明の状態などを示します｡"
+
+msgid "amCantConnect"
+msgstr "UPS デーモンに接続できません｡"
+
+msgid "amOnBattery"
+msgstr "UPS は電力を失い、バッテリで動作中です｡UPS の電源が、壁のコンセントに正しく接続されており、電源には問題がないことをご確認ください｡"
+
+msgid "amBatteryLow"
+msgstr "UPS のバッテリレベルは、[[VAR.level]] パーセント以下に下がりました｡"
+
+msgid "amAllOK"
+msgstr "UPS は正常に動作しています｡"
+
+# LCD
+msgid "lcdenable1"
+msgstr "UPS:"
+
+msgid "lcdenable2"
+msgstr " [ ]ｵﾝ  [ ]ｵﾌ"
+
+msgid "lcdstate1"
+msgstr "UPS ﾉ ｾｯﾃｲ"
+
+msgid "lcdstate2"
+msgstr "[M]ﾏｽﾀｰ [S]ｽﾚｰﾌﾞ"
+
+msgid "lcdmasterip"
+msgstr "ﾏｽﾀｰIPﾉ ﾆｭｳﾘｮｸ:"
+
+msgid "lcdbadset1"
+msgstr "ﾌｾｲﾅ IPｱﾄﾞﾚｽｦ"
+
+msgid "lcdbadset2"
+msgstr "ﾆｭｳﾘｮｸ ｼﾏｼﾀ"
+
+msgid "lcdsavecancel1"
+msgstr "[S]ﾎｿﾞﾝ/[C]ｷｬﾝｾﾙ"
+
+msgid "lcdsavecancel2"
+msgstr " "
+
+msgid "lcdtryagain"
+msgstr "ﾓｳｲﾁﾄﾞ ｺｺﾛﾐﾏｽｶ?"
+
+msgid "lcdyesno"
+msgstr "  [Y]ﾊｲ  [N]ｲｲｴ"
+
+msgid "lcdsaving1"
+msgstr "ｾｯﾃｲｦ ﾎｿﾞﾝｼﾃｲﾏｽ "
+
+msgid "lcdsaving2"
+msgstr "ｼﾊﾞﾗｸ ｵﾏﾁｸﾀﾞｻｲ ... "
+
+msgid "CONFIGURE UPS"
+msgstr "   UPS ﾉ ｾｯﾃｲ   "
+
+msgid "UPS"
+msgstr " "
+
+msgid "Setting up"
+msgstr "UPS ｦ ｾｯﾃｲ ｼﾃｲﾏｽ"
+
+msgid "Shutting down"
+msgstr "UPS ｦ ﾃｲｼ ｼﾃｲﾏｽ "
+
+# Email
+msgid "emailSTATUSCHANGE"
+msgstr "UPS の状態が変更されました:"
+
+msgid "emailSUBJECT"
+msgstr "UPS の状態の変更"
+
+msgid "emailONLINE"
+msgstr "UPS はオンラインに復旧しています｡"
+
+msgid "emailONBATT"
+msgstr "UPS はバッテリで動作中です｡"
+
+msgid "emailLOWBATT"
+msgstr "UPS はバッテリで動作中で、低バッテリになっています。"
+
+msgid "emailFSD"
+msgstr "UPS はマスターによってシャットダウンされています｡"
+
+msgid "emailCOMMOK"
+msgstr "UPS を使って確立された通信"
+
+msgid "emailCOMMBAD"
+msgstr "UPS に失われた通信"
+
+msgid "emailSHUTDOWN"
+msgstr "システムをシャットダウンしています｡"
+
+msgid "emailREPLBATT"
+msgstr "UPS バッテリが不良のため、交換が必要です｡"
+
+msgid "emailNOCOMM"
+msgstr "監視のために UPS に接続できません｡"
+
+msgid "emailGOINGDOWN"
+msgstr "このシステムはシャットダウンされています｡"

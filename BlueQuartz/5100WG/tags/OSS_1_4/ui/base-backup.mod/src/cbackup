@@ -1,0 +1,221 @@
+#!/usr/bin/perl -w -I. -I/usr/sausalito/perl
+$0 = 'cbackup';
+use strict;
+use Getopt::Long;
+use Backup;
+
+# $Id: cbackup 3 2003-07-17 15:19:15Z will $
+# 
+# Cobalt Backup Utility
+# Authors: Jeff Lovell <jlovell@cobalt.com>, Brenda Mula <bmula@cobalt.com>
+# Copyright 2000 Cobalt Networks, Inc.
+
+# Some globals we'll need
+my ($name,$fileset,$users,$groups,$method,$errors,$create);
+my ($location,$username,$password,$backup_config,$allusers,$allgroups,$test);
+
+# FTP?
+my $ftp = 0;
+
+# Start clean with no errors
+$errors = 0;
+
+# Handle command-line options
+parse_cmd();
+
+# Validate
+validate();
+
+if ( $test ) { 
+	$create = 0 
+} else {
+	$create = 1;
+}
+
+# Create a new Backup Object
+my $bu = Backup->new( 
+	create		=>	$create,
+	name            =>      $name,
+	backupconfig	=>	$backup_config,
+	fileset		=>	$fileset,
+	ftp		=>	$ftp,
+	groups		=>	$groups,
+	users		=>	$users,
+	test		=>	$test
+);
+
+# Test connection
+if ( $test ) {
+	# if mount() returns non-NULL, error occured
+	exit 1 if mount($method);
+
+	# success
+	exit 0;
+}
+
+# Mount the proper filesystem
+mount($method);
+
+# Do it Doug!
+backup();
+
+if ($errors) {
+    exit 1;
+}
+exit 0;
+
+## Subroutines ##
+
+sub parse_cmd
+{
+	GetOptions 
+	(	
+		"backup_config"		=>	\$backup_config,
+		"name=s"		=>	\$name,
+		"allusers"		=>	\$allusers,
+		"users=s"		=>	\$users,
+		"allgroups"		=>	\$allgroups,
+		"groups=s"		=>	\$groups,
+		"fileset=s"		=>	\$fileset,
+		"location=s"		=>	\$location,
+		"method=s"		=>	\$method,
+		"password=s"		=>	\$password,
+		"username=s"		=>	\$username,
+		"test"			=>	\$test
+	);
+
+	# Harvest the bad options
+	SWITCH: {
+		( ! $location )			&& do {
+			print STDERR "Error: Location mut be provided.\n";
+			usage();
+			exit 1;
+		};
+		( ! $method )			&& do {
+			print STDERR "Error: Method must be provided.\n";
+			usage();
+			exit 1;
+		};
+		( $allusers )			&& do {
+			$users = "all";
+		};
+		( $allgroups )			&& do {
+			$groups = "all";
+		};
+		( $fileset && $fileset !~ /^(0|1|2|7|14|31)$/ )	&& do {
+			print STDERR "Error: $fileset is not a valid set\n";
+			usage();
+			exit 1;
+		};
+		( ! $fileset )			&& do {
+			$fileset = 0;
+		};
+		( ! $backup_config )		&& do {
+			$backup_config = 0; 
+		};
+		( $method !~ /^(nfs|ftp|smb)$/i )	&& do {
+			print STDERR "Error: $method method not supported.  ";
+			print STDERR "Error: Use one FTP, SMB, of NFS\n";
+			usage();
+			exit 1;
+		};
+		( $method =~ /^ftp$/i )		&& do {
+			$ftp = 1;	# set ftp flag
+		};
+		last SWITCH;
+	}
+}
+
+sub validate
+{
+	# "\\foo\bar\dir" or "foo/bar/dir" or "foo:/bar/dir"
+	if (($method =~ /^smb$/i) && ($location !~ /\\\\[^\\]+\\[^\\]+.*/)
+	 || ($method =~ /^ftp$/i) && ($location !~ /^[^\/]+.*$/) 
+	 || ($method =~ /^nfs$/i) && ($location !~ /^[^\/:]+:\/.*/)) {
+		print STDERR "$location is not correct format for $method\n";
+		exit 1;
+	}
+
+	return;
+}
+
+
+sub usage
+{
+	my $bu = Backup->new();
+	my $ver = $bu->get_version();
+
+print STDERR <<USAGE;
+
+cbackup version $ver Copyright (c) 1999,2000 Cobalt Networks, Inc.
+
+Usage: cbackup arguments [options]
+
+Synopsis: 
+	This utility is used to backup Cobalt Networks products to
+	supported network devices.
+
+Arguments:
+	--name=string	        # Name of backup job
+	--method=string		# FTP, SMB, or NFS
+	--location=string	# Network share were backup is to be stored
+
+Options:
+	--allusers		# Backup all users and their mail
+	--allgroups		# Backup all groups
+	--backup_config		# Backup system config
+	--fileset		# Number of days to backup (0 is full backup)
+				# Supported days (31, 14, 7, 2, 1)
+	--users=string,string	# Backup specified users ( CSV )
+	--groups=string,string	# Backup specified groups ( CSV )
+	--username=string	# Username used to access network share
+	--password=string	# Password used to access network share
+	--test			# Set test mode on
+
+USAGE
+		
+}
+
+sub mount
+{
+	my $fs = shift;
+	my $ret;
+
+	MOUNT: {
+		( $fs =~ /^nfs$/i )	&& do {
+			# Add error checking for correct format
+			$ret = $bu->mount("nfs", $location);
+			last MOUNT;
+		};
+		( $fs =~ /^smb$/i )	&& do {
+			# Add error checking for correct format
+			$ret = $bu->mount("smb", $location, 
+				$username, $password);
+			last MOUNT;
+		};
+		( $fs =~ /^ftp$/i )	&& do {
+			# Add error checking for correct format
+			$ret = $bu->mount("ftp", $location, 
+				$username, $password);
+			last MOUNT;
+		};
+		die "Invalid or unsupported mount type: $fs\n";
+	}
+
+	if (!$ret) {
+		die "Error mounting $location via $fs\n";
+	}
+
+	return;
+}
+
+sub backup
+{
+	if (!$bu->backup()) {
+		die "Backup failed\n";
+	}
+
+	return;
+}
+
+__DATA__

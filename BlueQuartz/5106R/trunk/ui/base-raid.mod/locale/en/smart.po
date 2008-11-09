@@ -1,0 +1,41 @@
+msgid "SMARTnameTag"
+msgstr "Self-Monitoring Analysis and Reporting Technology (SMART) Status Details"
+
+msgid "noAMobject"
+msgstr "Cannot find Active Monitor object"
+
+msgid "errRefreshingSnapshot"
+msgstr "Error recording snapshot of SMART status"
+
+msgid "errRegettingObject"
+msgstr "Error re-finding Active Monitor object"
+
+msgid "smartFailures"
+msgstr "One or more of your disks has an error. Please backup your system and replace the bad disk. (FIXME! which disk should I replace??)"
+
+msgid "smartDeclining"
+msgstr "The following drives have started to weaken, but are currently able to run without losing any data: [[VAR.display_names]]. Please refer to [[base-sauce-basic.techSupportURL]] for help in replacing a weakened drive."
+
+msgid "smartOK"
+msgstr "Drive self monitoring is performing normally on all installed drives."
+
+msgid "turned_off_drives"
+msgstr "The following drives are beginning to fail and have been disabled: [[VAR.display_names]]. Please refer to [[base-sauce-basic.techSupportURL]] for help on how to back up and replace the failed drives."
+
+msgid "unsafe"
+msgstr "The following drives are beginning to fail but cannot be turned off without losing information: [[VAR.display_names]]. Please refer to [[base-sauce-basic.techSupportURL]] for help on how to back up and replace the failed drives."
+
+msgid "standalone"
+msgstr "The following drives are beginning to fail but cannot be turned off without losing information: [[VAR.display_names]]. Please refer to [[base-sauce-basic.techSupportURL]] for help on how to back up and replace stand-alone failed drives."
+
+msgid "drive_off"
+msgstr "This drive has been turned off because it has failed. Please refer to [[base-sauce-basic.techSupportURL]] for instructions on replacing this drive."
+
+msgid "unsafe_drive"
+msgstr "This drive has failed but cannot be turned off without losing information. Please refer to [[base-sauce-basic.techSupportURL]] for instructions on replacing the drive."
+
+msgid "unsafe_drive_standalone"
+msgstr "This drive has failed but cannot be turned off without losing information. Please refer to [[base-sauce-basic.techSupportURL]] for instructions on replacing a stand-alone drive."
+
+msgid "drive_declining"
+msgstr "This drive has started to weaken but currently is able to run without losing any data. Please refer to [[base-sauce-basic.techSupportURL]] for instructions on replacing a declining disk."

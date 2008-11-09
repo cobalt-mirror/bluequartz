@@ -1,0 +1,95 @@
+#!/usr/bin/perl
+# $Id: conflict 922 2003-07-17 15:22:40Z will $
+# Cobalt Networks, Inc http::/www.cobalt.com
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+# If you are not toor, go away :)
+die "You must run this script as root\n" if ($< != 0);
+
+require Getopt::Std;
+my $opts = {};
+Getopt::Std::getopts('f:e:ghi:s:', $opts);
+
+#use lib "/usr/cmu/perl";
+use lib "/cvs/cpr/perl_modules";
+require RaQConflict;
+use TreeXml;
+require CmuCfg;
+use strict;
+	
+if(defined($opts->{h})) { CmuCfg::printConflictHelp(); }
+
+my ($confXml, $glbConf, $appConf);
+my $newConf = CmuCfg::mapOpts('conflict', $opts);
+if($newConf->{readConfig} eq 't') {
+	$appConf = CmuCfg::getConf();
+	$glbConf = CmuCfg::getGlbConf($appConf);
+} else {
+	while (my $line = <STDIN>) { $confXml .= $line; }
+	$glbConf = TreeXml::readXmlStream($confXml, 0);
+}
+$glbConf = CmuCfg::mergeOpts($glbConf, $newConf);
+
+# parse the file stuff
+my ($resoXml, $eTree, $iTree);
+# resolutoin
+if(defined($glbConf->{resoXml})) { $resoXml = $glbConf->{resoXml}; }
+else { die "you need to provide a filename for the final resolution\n"; }
+
+# current Tree
+if(-f $glbConf->{exData}) { $eTree = TreeXml::readXml($glbConf->{exData}, 0); }
+else { die "you need to provide an export filename\n"; }
+
+#imported Tree
+if(-f $glbConf->{imData}) { $iTree = TreeXml::readXml($glbConf->{imData}, 0); } 
+else { die "you need to provide an import filename\n"; }
+
+my $flict = RaQConflict->new($eTree, $iTree, $glbConf);
+
+# get the session ID
+if(defined($glbConf->{sessID})) { $flict->{sessID} = $glbConf->{sessID}; }
+else { die "you must provide a session id\n"; }
+
+# be uber paraniod about recursion
+my (@keys, $ret, $result);
+
+warn "\n===> Checking Virtual Sites <===\n";
+@keys = keys %{ $flict->getVsites('im') };
+foreach my $site (@keys) {
+	$ret = $flict->detectVsiteFqdn($site);	
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+
+	$ret = $flict->detectIpService($site, 'ssl');
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+	
+	$ret = $flict->detectIpService($site, 'ftp');
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+	
+	$ret = $flict->detectWebDomains($site);
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+	elsif(ref($ret) eq 'ARRAY') {
+		foreach my $r (@{ $ret }) { $flict->runResult($r) }
+	}
+
+	$ret = $flict->detectEmailDomains($site);
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+	elsif(ref($ret) eq 'ARRAY') {
+		foreach my $r (@{ $ret }) { $flict->runResult($r) }
+	}
+}
+
+warn "===> Checking Users <===\n";
+@keys = keys %{ $flict->getUsers('im') };	
+foreach my $user (@keys) {
+	$ret = $flict->detectUserName($user);
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+
+	$ret = $flict->detectUserQuota($user);
+	if(ref($ret) eq 'Resolve') { $flict->runResult($ret) }
+}
+
+my $final = {};
+TreeXml::addNode('migrate', $flict->{im}, $final);
+TreeXml::writeXml($final, $resoXml);
+
+exit 0;

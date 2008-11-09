@@ -1,0 +1,50 @@
+<?php
+// $Id: Apop.php.defaults.User,v 1.5 2001/10/22 08:05:55 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+// Apop.php.defaults.User
+//
+// UI extension for user defaults
+// Configures UserServices.APOP.enabled property (apop enabled)
+
+include_once('UIExtension.php');
+
+class APOPExtension extends UIExtension
+{
+	function display(&$helper, &$container, &$prams)
+	{
+		$cce = $helper->getCceClient();
+
+		// don't show if feature not enabled for this vsite
+		if ( isset($prams["VSITE_OID"]) ) {
+			$feature = $cce->get($prams["VSITE_OID"], "APOP");
+			if ( !$feature["enabled"] )
+				return;
+		}
+
+		$props = $cce->get($prams["CCE_SERVICES_OID"], "APOP");
+
+		$factory = $helper->getHtmlComponentFactory("base-email");
+		$page_id = $prams['PAGED_BLOCK_DEFAULT_PAGE'];
+		
+		$container->addFormField(
+				$factory->getBoolean("APOP_enabled", $props["enabled"]),
+				$factory->getLabel("enableApop"),
+				$page_id
+			);
+	}
+
+	function handle(&$helper, &$errors, &$prams)
+	{
+		global $APOP_enabled;
+
+        if (!isset($APOP_enabled))
+            return;
+
+		$cce = $helper->getCceClient();
+		
+		$cce->set($prams["CCE_SERVICES_OID"], "APOP", array("enabled" => $APOP_enabled));
+
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

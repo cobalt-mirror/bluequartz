@@ -1,0 +1,59 @@
+msgid "arkeia"
+msgstr "Knox Arkeia"
+
+msgid "arkeia_help"
+msgstr "Les [[knox-arkeia.arkeiaSettings]] peuvent être changés ici."
+
+msgid "arkeiaSettings"
+msgstr "Paramètres de sauvegarde de Knox Arkeia"
+
+msgid "enableServer"
+msgstr "Activer le client Arkeia"
+
+msgid "enableServer_help"
+msgstr " Démarre et stoppe le client Arkeia."
+
+msgid "enabledButNoData"
+msgstr " Afin d'activer le client, vous devez indiquer au moins un serveur de sauvegarde Arkeia."
+
+msgid "arkeiaHostField"
+msgstr "Nom du serveur Arkeia"
+
+msgid "arkeiaHostField_rule"
+msgstr "Un nom d’hôte complet est indiqué sous la forme serveur.domaine.fr, comme par exemple www.sun.fr."
+
+msgid "arkeiaHostField_help"
+msgstr " Entrez le nom d’hôte complet du serveur de sauvegarde Arkeia principal.  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_invalid"
+msgstr "[[VAR.invalidValue]] est une valeur incorrecte pour [[knox-arkeia.arkeiaHostField]].  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_empty"
+msgstr " Vous n'avez pas entré de valeur pour [[knox-arkeia.arkeiaHostField]].  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_LookupFailed"
+msgstr "Impossible de trouver le serveur Arkeia. Veuillez vérifier que l'hôte est accessible sur le réseau et que les entrées DNS sont correctes."
+
+msgid "arkeiaLocalHost_LookupFailed"
+msgstr "Les entrées DNS de ce serveur Arkeia sont incorrectes. Veuillez vérifier que les valeurs entrées ont une résolution DNS standard et inverse."
+
+msgid "port"
+msgstr "Numéro de port"
+
+msgid "port_help"
+msgstr "Le client de sauvegarde Knox Arkeia doit savoir quel port utiliser pour pouvoir communiquer avec les autres hôtes qui utilisent les services Knox, y compris le serveur de sauvegarde Knox Arkeia. Le port par défaut est 617. La modification de cette valeur n'est pas recommandée à moins que cela ne soit absolument nécessaire. Si vous modifiez cette valeur, assurez-vous que les autres hôtes sur le réseau qui utilisent les services Knox sont configurés pour utiliser le même port."
+
+msgid "cannotFork"
+msgstr " Une erreur est survenue lors de la tentative de connexion."
+
+msgid "cannotCreateSymlink"
+msgstr " Une erreur est survenue lors de la création du symlink par script-init."
+
+msgid "cannotStartArkeiaServer"
+msgstr " Une erreur est survenue lors de la tentative de démarrage du service "
+
+msgid "cannotStopArkeiaServer"
+msgstr " Une erreur est survenue lors de la tentative d'arrêt du service "
+
+msgid "cannotBreakLink"
+msgstr "Une erreur est survenue lors de la suppression des script-init."

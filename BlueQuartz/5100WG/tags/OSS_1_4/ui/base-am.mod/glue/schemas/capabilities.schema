@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyActiveMonitor" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyActiveMonitor)"/>
+	<property name="nameTag" type="scalar" default="[[base-am.cap_modifyActiveMonitor]]"/>
+</class>

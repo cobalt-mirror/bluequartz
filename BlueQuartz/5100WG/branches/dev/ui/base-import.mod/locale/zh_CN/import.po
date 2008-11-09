@@ -1,0 +1,159 @@
+msgid "import"
+msgstr "导入"
+
+msgid "import_help"
+msgstr "在此处将用户和组导入到服务器上。"
+
+msgid "userImport"
+msgstr "文件导入"
+
+msgid "dataUpload"
+msgstr "源文件"
+
+msgid "dataUpload_help"
+msgstr "选择以制表符定界的文件，包含要上载到系统的用户的列表。请参考服务器设备手册，查看完整的文件格式说明。"
+
+msgid "dataUpload_empty"
+msgstr "对不起，您没有选择要上载到服务器进行导入的文件。"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "fileImport"
+msgstr "从文件导入"
+
+msgid "attempt"
+msgstr "未尝试。"
+
+msgid "creating"
+msgstr "添加名称为[[VAR.name]]的[[VAR.class]]"
+
+msgid "modifying"
+msgstr "修改名称为[[VAR.name]]的[[VAR.class]]"
+
+msgid "importResults"
+msgstr "导入结果"
+
+msgid "result"
+msgstr "结果"
+
+msgid "action"
+msgstr "操作"
+
+msgid "reason"
+msgstr "原因"
+
+msgid "noFileSpecified"
+msgstr "接收文件时出现错误"
+
+msgid "fileWasNoGood"
+msgstr "对不起，在接收指定的文件时出现错误。请再次尝试上载文件。"
+
+msgid "badFileButtonCancel"
+msgstr "返回"
+
+msgid "badFileButtonCancel_help"
+msgstr "单击此处返回"
+
+msgid "importResult"
+msgstr "导入结果"
+
+msgid "result"
+msgstr "结果"
+
+msgid "action"
+msgstr "操作"
+
+msgid "reason"
+msgstr "原因"
+
+msgid "couldNotOpenFile"
+msgstr "对不起，在尝试打开上载的文件时出现错误。请检查文件格式并重试。"
+
+msgid "success"
+msgstr "成功"
+
+msgid "fail"
+msgstr "失败"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]]（行[[VAR.line]]）"
+
+msgid "importNow"
+msgstr "立即导入"
+
+msgid "importNow_help"
+msgstr "单击此处从所选文件中导入用户。"
+
+msgid "importErrors"
+msgstr "导入错误"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]]个错误"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]]个错误"
+
+msgid "fullName"
+msgstr "全名"
+
+msgid "fullName_help"
+msgstr "这些是导入文件所提供的输入的全名。"
+
+msgid "name"
+msgstr "用户名"
+
+msgid "name_help"
+msgstr "这些是导入文件所提供的输入的用户名。"
+
+msgid "errorMessageHeader"
+msgstr "消息"
+
+msgid "errorMessageHeader_help"
+msgstr "这些是导入时出现的详细错误消息。"
+
+msgid "importSucceeded"
+msgstr "导入成功"
+
+msgid "importSucceededMessage"
+msgstr "导入时未出现错误。"
+
+msgid "importSucceededMessage_help"
+msgstr "导入时未出现错误。"
+
+msgid "importStatus"
+msgstr "导入状态"
+
+msgid "progressField"
+msgstr "进度"
+
+msgid "progressField_help"
+msgstr "这是导入的进度。如果您不进行这部分，用户导入将在后台继续运行，但无法看到进度条。"
+
+msgid "status"
+msgstr "状态"
+
+msgid "status_help"
+msgstr "这是当前的导入状态。"
+
+msgid "creatingUsers"
+msgstr "添加用户 ([[VAR.pos]]/[[VAR.max]])"
+
+msgid "intname"
+msgstr "用户名"
+
+msgid "intfullName"
+msgstr "全名"
+
+msgid "intpassword"
+msgstr "口令"
+
+msgid "intaliases"
+msgstr "电子邮件别名"
+
+msgid "importChanger"
+msgstr "选择导入方法..."
+
+msgid "importChangerFile"
+msgstr "文件导入"
+

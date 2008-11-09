@@ -1,0 +1,557 @@
+msgid "fail"
+msgstr "失敗"
+
+msgid "softwareInstalled_help"
+msgstr "此處顯示目前安裝在系統上的軟體套件列示。"
+
+msgid "badFileName"
+msgstr "很抱歉，套裝檔案的檔名無效。請檢查名稱，然後重試。 [[base-swupdate.notInstalled]]"
+
+msgid "hostRefused"
+msgstr "[[VAR.file]] 之 URL 中指定的主電腦拒絕連線。"
+
+msgid "New"
+msgstr "新建"
+
+msgid "softwareNewSun_help"
+msgstr "檢視和安裝來自 Sun Cobalt 的新軟體。"
+
+msgid "accept"
+msgstr "接受"
+
+msgid "scheduleField"
+msgstr "查詢排程"
+
+msgid "errorWGET"
+msgstr "很抱歉，在嘗試執行 wget 時發生錯誤。"
+
+msgid "NoProductInfoBody"
+msgstr "[[base-swupdate.software]] 伺服器無法辨識您的產品。\n\
+[[base-sauce-basic.contactTechSupport]]"
+
+msgid "notUninstalled"
+msgstr "解除安裝失敗，因為沒有可供移除的套件。"
+
+msgid "requireSignatureField"
+msgstr "必須鑑別套件"
+
+msgid "packagesNeededField_help"
+msgstr "此處列示的套件必須先安裝在系統上，然後才能安全地安裝此套件。"
+
+msgid "softwareSettings"
+msgstr "設定"
+
+msgid "httpProxyField"
+msgstr "HTTP proxy：埠"
+
+msgid "installStatus"
+msgstr "狀態 - [[VAR.fileName]]"
+
+msgid "none"
+msgstr "無"
+
+msgid "softwareUpdateSun"
+msgstr "Sun Cobalt 更新"
+
+msgid "versionField"
+msgstr "版本"
+
+msgid "checkNowUpdate_help"
+msgstr "檢查是否有軟體更新。"
+
+msgid "ftpProxyField"
+msgstr "FTP proxy：埠"
+
+msgid "locationField_help"
+msgstr "這是在安裝期間下載軟體套件的位置。"
+
+msgid "emailField_help"
+msgstr "請輸入電子郵件位址，在新的或更新的軟體套件或是「軟體更新」查詢中的錯誤通知會傳送到此電子郵件位址。何時傳送電子郵件通知是由您對「軟體通知燈」選取的選項所決定。如果您不希望收到這些通知，請保留此欄位空白。"
+
+msgid "checkNow"
+msgstr "立即檢查可用性"
+
+msgid "update"
+msgstr "更新"
+
+msgid "checkSetField"
+msgstr "要檢查的軟體"
+
+msgid "httpProxyField_help"
+msgstr "如果要到達您防火牆外圍需要 PROXY 伺服器，請針對 HTTP 查詢輸入 PROXY 伺服器和埠號。範例：proxy.mycompany.com:8080。"
+
+msgid "sizeField_help"
+msgstr "這是套件的大小。"
+
+msgid "all"
+msgstr "所有軟體"
+
+msgid "availableListUpdates"
+msgstr "可用的軟體更新清單"
+
+msgid "softwareSettings_help"
+msgstr "此處可變更 [[base-swupdate.software]] 設定。"
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] 無法判定系統資訊。"
+
+msgid "softwareUpdate_help"
+msgstr "檢視和安裝來自協力廠商的軟體更新。"
+
+msgid "fileField_empty"
+msgstr "很抱歉，您並未輸入要上載之套件的檔案位置；請按「瀏覽」，選擇您本端硬碟機上的檔案。"
+
+msgid "rebootpopup"
+msgstr "在安裝此套件後，必須重新啟動伺服器設備。您是否要繼續？"
+
+msgid "CCEsetError"
+msgstr "在新增套件至 CCE 資料庫時發生錯誤。套件 packing_list 可能無效。 [[base-swupdate.notInstalled]]"
+
+msgid "vendorField"
+msgstr "供應商"
+
+msgid "descriptionField"
+msgstr "說明"
+
+msgid "uninstallConfirm"
+msgstr "您確定要解除安裝 '[[VAR.packageName]]' 嗎？"
+
+msgid "install"
+msgstr "安裝"
+
+msgid "softwareNew"
+msgstr "協力廠商軟體"
+
+msgid "advanced_help"
+msgstr "此處可找到最不常用的設定。"
+
+msgid "initializing"
+msgstr "正在起始設定..."
+
+msgid "hostNotFound"
+msgstr "找不到 [[VAR.file]] 之 URL 中指定的主電腦。 [[base-swupdate.notInstalled]]"
+
+msgid "never"
+msgstr "不檢查"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "這個管理權限可讓使用者管理 BlueLinQ。這樣可讓使用者安裝新軟體和更新現存的軟體。"
+
+msgid "checkSetField_help"
+msgstr "請選擇要在每一次「軟體更新」查詢時都檢查的軟體類型。"
+
+msgid "prepare"
+msgstr "準備"
+
+msgid "installField_help"
+msgstr "按此圖示，可顯示關於取得及安裝此套件的進一步資訊。"
+
+msgid "removingRPM"
+msgstr "移除套件 RPM。"
+
+msgid "QueryErrorSubject"
+msgstr "在查詢 [[base-swupdate.software]] 伺服器時發生問題。"
+
+msgid "autoField"
+msgstr "自動安裝更新"
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] 無法連絡指定的伺服器；請確定可從您的伺服器設備加以存取。"
+
+msgid "copyrightField"
+msgstr "著作權"
+
+msgid "manualInstall_help"
+msgstr "按一下此處，可執行軟體套件的手動安裝。"
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]] 設定"
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "capgroup_adminBlueLinq"
+msgstr "管理 BlueLinQ"
+
+msgid "yes"
+msgstr "是"
+
+msgid "daily"
+msgstr "每日"
+
+msgid "locationFieldEnter"
+msgstr "位置"
+
+msgid "fileField"
+msgstr "上載檔案位置"
+
+msgid "executingPostInstallScript"
+msgstr "正在執行安裝後置程序..."
+
+msgid "NoSWUpdateServerBody"
+msgstr "無法判定 [[base-swupdate.software]] 伺服器\n\
+的位置。請跳至 [[base-swupdate.software]] 設定頁，\n\
+然後指定 [[base-swupdate.software]] 伺服器的 URL。"
+
+msgid "fileNotFound"
+msgstr "在指定的位置找不到套件 [[VAR.file]]。"
+
+msgid "packageInstallSuccess"
+msgstr "套件安裝順利完成。"
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] 無法連絡 HTTP PROXY 伺服器；請確定可從您的伺服器設備加以存取。"
+
+msgid "loaded"
+msgstr "/home/packages 中的套件"
+
+msgid "complete"
+msgstr "完成"
+
+msgid "prepare_help"
+msgstr "按一下此處，準備軟體套件進行安裝。"
+
+msgid "ftpProxyField_help"
+msgstr "如果要到達您防火牆外圍需要 PROXY 伺服器，請針對 FTP 查詢輸入 PROXY 伺服器和埠號。範例：proxy.mycompany.com:8080。"
+
+msgid "installField"
+msgstr "安裝明細"
+
+msgid "sizeField"
+msgstr "大小 (MB)"
+
+msgid "missingSRPM"
+msgstr "套裝檔案不完整。遺失一或多個 SRPM。"
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]] 伺服器"
+
+msgid "installLock"
+msgstr "目前正在安裝或解除安裝另一個套件。請稍後重試。"
+
+msgid "url"
+msgstr "URL"
+
+msgid "manualInstallUpdate"
+msgstr "手動安裝"
+
+msgid "nameField_help"
+msgstr "這裡顯示軟體套件的名稱。"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] 無法從位於 [[VAR.location]] 的\n\
+[[base-swupdate.software]] 伺服器中接收套件清單。\n\
+請檢查確定 [[VAR.location]]\n\
+是有效的 [[base-swupdate.software]] 伺服器，並確定您可從 Web 瀏覽器\n\
+加以查詢。"
+
+msgid "badFormat"
+msgstr "在驗證套裝檔案時發生錯誤。它可能已毀損或是其鑑別資訊不正確。 [[base-swupdate.notInstalled]]"
+
+msgid "executingPreInstallScript"
+msgstr "正在執行安裝前置程序..."
+
+msgid "accept_help"
+msgstr "如果您願意接受授權合約的條款，請按一下此處。"
+
+msgid "pkgOIDmissing"
+msgstr "在擷取關於套件的資訊時發生問題。該套件可能已被刪除；如果不是被刪除，請重試。如果問題持續存在，請連絡技術支援 ([[base-sauce-basic.techSupportEmail]])。"
+
+msgid "notDownloaded"
+msgstr "套件 [[VAR.file]] 無法適當下載，可能是因為該套件所在的伺服器正遇到問題。"
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "BadPackageFmtBody"
+msgstr "伺服器傳回\n\
+[[base-swupdate.software]] 無法瞭解的套件資訊。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "obsoletePkg"
+msgstr "未安裝 [[VAR.name]] 套件，因為它已過時。"
+
+msgid "manualInstallUpdate_help"
+msgstr "執行軟體套件的手動安裝。"
+
+msgid "preInstallFailed"
+msgstr "套裝檔案有問題；安裝前置程序失敗。"
+
+msgid "updates"
+msgstr "只限更新"
+
+msgid "invalidUrl"
+msgstr "所指定的 URL 無效。[[base-swupdate.urlField_rule]]"
+
+msgid "unknownSize"
+msgstr "不明"
+
+msgid "NoPackagesBody"
+msgstr "沒有新的套件可供下載。"
+
+msgid "noLocation"
+msgstr "未指定要取得套件的位置。"
+
+msgid "locationField"
+msgstr "位置"
+
+msgid "progressField"
+msgstr "進度"
+
+msgid "decline"
+msgstr "拒絕"
+
+msgid "installing"
+msgstr "正在安裝套件..."
+
+msgid "locationLocal"
+msgstr "此伺服器設備"
+
+msgid "softwareUpdate"
+msgstr "協力廠商更新"
+
+msgid "no"
+msgstr "否"
+
+msgid "availableListNew"
+msgstr "可用的新軟體清單"
+
+msgid "installingRpm"
+msgstr "正在安裝元件 [[VAR.rpm]]..."
+
+msgid "softwareNewSun"
+msgstr "Sun Cobalt 軟體"
+
+msgid "NewUpdatesSubject"
+msgstr "新的軟體可用于您的伺服器設備"
+
+msgid "licenseField_help"
+msgstr "這顯示軟體套件的授權合約。"
+
+msgid "badProduct"
+msgstr "未安裝 [[VAR.name]] 套件，因為它並非針對此伺服器設備而建立的。"
+
+msgid "cannotDownloadUrl"
+msgstr "很抱歉，無法從指定的 URL 下載套裝檔案。請檢查 URL，然後重試。 [[base-swupdate.notInstalled]]"
+
+msgid "installrefresh"
+msgstr "已順利安裝此套件。稍後，使用者介面將會更新，以便提供您對新服務的存取。"
+
+msgid "uninstall_help"
+msgstr "如果無法解除安裝軟體套件，則針對該套件按「解除安裝」按鈕，就會將它從系統中移除。"
+
+msgid "statusField_help"
+msgstr "這顯示每一個軟體套件的狀態。新的套件是以點表示，舊的套件則是以圓圈表示。"
+
+msgid "upload"
+msgstr "上載"
+
+msgid "software_help"
+msgstr "[[base-swupdate.software]] 區段可讓您檢查及安裝新的或更新的軟體套件。"
+
+msgid "downloading"
+msgstr "正在下載套件..."
+
+msgid "packageAlreadyInstalled"
+msgstr "已安裝此軟體套件。"
+
+msgid "missingRPM"
+msgstr "套裝檔案不完整。遺失一或多個 RPM。"
+
+msgid "notificationLightField"
+msgstr "軟體通知燈"
+
+msgid "softwareInstalled"
+msgstr "已安裝的軟體"
+
+msgid "uninstallableField"
+msgstr "無法安裝"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "未對 [[base-swupdate.software]] 伺服器指定任何 URL。"
+
+msgid "typeField"
+msgstr "類型"
+
+msgid "advanced"
+msgstr "進階"
+
+msgid "urlField_rule"
+msgstr "請輸入以 http:// 或 ftp:// 開頭的 URL，從網際網路上的某個位置下載套件。"
+
+msgid "NoSystemInfoBody"
+msgstr "伺服器無法判定\n\
+[[base-swupdate.software]] 伺服器所需的系統資訊。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "descriptionField_help"
+msgstr "這顯示軟體套件的說明。"
+
+msgid "verifyingPackage"
+msgstr "正在驗證套件..."
+
+msgid "nameField"
+msgstr "名稱"
+
+msgid "versionField_help"
+msgstr "這裡顯示軟體套件的版本。"
+
+msgid "monthly"
+msgstr "每月"
+
+msgid "dependent"
+msgstr "無法移除此套件，因為需要安裝好下列軟體套件：[[VAR.depend]]"
+
+msgid "scheduleField_help"
+msgstr "變更檢查的頻率，檢查 [[base-swupdate.software]] 伺服器是否有新的或更新的軟體套件。"
+
+msgid "decline_help"
+msgstr "按一下此處，可拒絕授權合約。"
+
+msgid "update_help"
+msgstr "按一下此處，可檢查及安裝新的或更新的軟體套件。一旦有新的或更新的軟體套件時，這個圖示的顏色就會改變。"
+
+msgid "installedList"
+msgstr "已安裝的軟體清單"
+
+msgid "packagesNeededField"
+msgstr "相依套件"
+
+msgid "success"
+msgstr "順利完成"
+
+msgid "defaultServer"
+msgstr "http://updates.cobalt.com/packages/"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "downloadSoftware"
+msgstr "安裝軟體"
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] 在嘗試連絡位於 [[VAR.location]] 的伺服器時，\n\
+收到不明的錯誤 ([[VAR.error]])。"
+
+msgid "removePackage"
+msgstr "您是否確定要自系統中移除 '[[VAR.packageName]]' 套件？這組套件尚未安裝。"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "uninstallableField_help"
+msgstr "這個欄位指出套件在安裝後是否可解除安裝。"
+
+msgid "autoField_help"
+msgstr "若經啟用，[[base-swupdate.software]] 將會自動安裝經鑑別的套件。"
+
+msgid "uninstall"
+msgstr "解除安裝"
+
+msgid "dlPercent"
+msgstr "正在下載檔案 [[VAR.file]] ： 已完成 [[VAR.percent]]%"
+
+msgid "typeField_help"
+msgstr "這顯示軟體套件的類型。"
+
+msgid "cantUninstall"
+msgstr "無法移除此套件，因為它沒有標示為可解除安裝。"
+
+msgid "locationFieldEnter_help"
+msgstr "請輸入可取得軟體套件的位置。請輸入一個以 http:// 或 ftp:// 開頭的 URL，從網際網路上的某個位址下載套件，或是輸入要上載之套件的檔案位置。按「瀏覽」可選擇您本端硬碟機上的檔案。如果您已將套件下載到您伺服器設備上的 /home/packages 目錄，則還會有一個選項可供選擇這其中的一個套件。"
+
+msgid "emailField"
+msgstr "電子郵件通知"
+
+msgid "licenseField"
+msgstr "授權"
+
+msgid "software"
+msgstr "BlueLinQ"
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] 無法連絡 FTP PROXY 伺服器；請確定可從您的伺服器設備加以存取。"
+
+msgid "failedDep"
+msgstr "必須先安裝其他軟體套件，然後才能安裝此軟體套件。請安裝下列套件： [[VAR.dep]]。"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "basic_help"
+msgstr "此處可找到最常用的設定。"
+
+msgid "weekly"
+msgstr "每週"
+
+msgid "manualInstall"
+msgstr "手動安裝"
+
+msgid "serverField_help"
+msgstr "請輸入要查詢新軟體和更新之伺服器位址的 URL。預設伺服器位址的 URL 為 [[base-swupdate.defaultServer]]。"
+
+msgid "requireSignatureField_help"
+msgstr "若經啟用，[[base-swupdate.software]] 將只安裝通過鑑別檢查的套件。"
+
+msgid "uninstallrefresh"
+msgstr "已順利解除安裝此套件。稍後，使用者介面將會更新，以便移除該套件所提供的服務。"
+
+msgid "badPackage"
+msgstr "套裝檔案不完整。packing_list 無效或遺失。 [[base-swupdate.notInstalled]]"
+
+msgid "vendorField_help"
+msgstr "這裡顯示軟體套件的供應商。"
+
+msgid "splashSoftwareMessage"
+msgstr "[[base-swupdate.software]] 區段可讓您管理已安裝在系統上的軟體應用程式。"
+
+msgid "rebooting"
+msgstr "現在正在重新啟動伺服器設備；稍候幾分鐘應可再度使用。"
+
+msgid "rpmInstallError"
+msgstr "套裝檔案有問題。在安裝 RPM [[VAR.rpm]] 時發生錯誤。"
+
+msgid "progressField_help"
+msgstr "這是安裝或移除的進度。"
+
+msgid "currentlyUninstalling"
+msgstr "目前正在解除安裝套件。"
+
+msgid "install_help"
+msgstr "按一下此處，可安裝指定的軟體套件。"
+
+msgid "runningUninstallScript"
+msgstr "執行解除安裝描述檔。"
+
+msgid "uninstalled"
+msgstr "解除安裝完成。"
+
+msgid "checkNow_help"
+msgstr "按一下此處，可檢查是否有新的軟體套件。"
+
+msgid "notInstalled"
+msgstr "未安裝此軟體套件。"
+
+msgid "invalidUpload"
+msgstr "所指定的檔案未上載成功。"
+
+msgid "softwareUpdateSun_help"
+msgstr "檢視和安裝來自 Sun Cobalt 的軟體更新。"
+
+msgid "softwareNew_help"
+msgstr "檢視和安裝來自協力廠商的新軟體。"
+
+msgid "NewUpdatesBody"
+msgstr "如果想要安裝下列套裝軟體，請檢查 [[base-swupdate.software]] 功能表：\n\
+"
+
+msgid "statusField"
+msgstr " "
+
+msgid "copyrightField_help"
+msgstr "這顯示軟體套件相關的著作權。"
+
+msgid "postInstallFailed"
+msgstr "套裝檔案有問題；安裝後置程序失敗。"
+
+msgid "notificationLightField_help"
+msgstr "變更將啟動「軟體通知燈」之新軟體的類型，以及（如果適用的話）何種類型的新軟體將出現在通知電子郵件中。"
+

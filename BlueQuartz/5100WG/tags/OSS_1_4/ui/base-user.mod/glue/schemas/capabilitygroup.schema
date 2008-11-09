@@ -1,0 +1,9 @@
+<class name="CapabilityGroup" version="0.1">
+    <property name="name" type="word"/>
+    <property name="capabilities" type="word"/>
+    <property name="nameTag" type="scalar"/>
+    <property name="nameTagHelp" type="scalar"/>
+    <property name="sort" type="uint" default="100"/>
+</class>
+
+

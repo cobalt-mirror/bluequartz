@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# $Id: rssh 201 2003-07-18 19:11:07Z will $
+# requires bash v2
+# Duncan Laurie (void@sun.com)
+#
+# tunnel ssh protocol through SOCKS Proxy
+#
+
+ssh_Options="Protocol Cipher ForwardX11 LogLevel ProxyCommand $ssh_Options"
+
+: ${Cipher:=blowfish}
+: ${Protocol:=1}
+: ${ForwardX11:=no}
+: ${LogLevel:=INFO}
+
+[ "$SOCKS_SERVER" ] && ProxyCommand="socks-tunnel -R remote -S ${SOCKS_SERVER} %h %p"
+
+function do_exit ()
+{
+    [ $# -ge 1 ] && echo $*
+    exit
+}
+
+case $(basename $0) in
+    rssh) ssh_Prog=$(type -path ssh) ;;
+    rscp) ssh_Prog=$(type -path scp) ;;
+    *) do_exit "Invalid command: $(basename $0)" ;;
+esac
+
+[ -x $ssh_Prog ] || do_exit "Command not found: $ssh_Command"
+
+[ $# -ge 1 ] || do_exit "No host specified!"
+
+if [ "$1" = "-d" ]; then
+    shift
+    ssh_Debug=1
+fi
+
+(( $ssh_Debug )) && LogLevel=DEBUG
+
+for opt in $ssh_Options; do
+    val=${!opt}
+    [ "$val" ] || continue
+    (( $ssh_Debug )) && echo "OPTION: ${opt}=${val// /=}"
+    ssh_Command="$ssh_Command -o ${opt}=${val// /=}"
+done
+
+(( $ssh_Debug )) && echo $ssh_Prog $ssh_Command ${1+"$@"}
+
+exec $ssh_Prog $ssh_Command ${1+"$@"}
+

@@ -1,0 +1,176 @@
+# --- Menu
+
+msgid "winshare"
+msgstr "Windows"
+
+msgid "winshare_help"
+msgstr "[[base-winshare.winshareSettings]]を設定できます。"
+
+# --- Common
+msgid "winshareSettings"
+msgstr "Windows ファイル共有の設定"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "基本的な [[base-winshare.winshareSettings]]項目を指定できます。"
+
+msgid "advanced_help"
+msgstr "WINS サーバ設定などの詳細な [[base-winshare.winshareSettings]]項目を指定できます。"
+
+msgid "advanced"
+msgstr "詳細"
+
+# ---- Basic page
+
+msgid "enableServerField"
+msgstr "Windows ファイル共有を有効にする"
+
+msgid "enableServerField_help"
+msgstr "このボックスをチェックすると、Windows ファイル共有が有効になります。Windows ファイル共有へのゲストアクセスは、「[[base-fileshare.guestShare]]」で設定できます。"
+
+msgid "maxUserField"
+msgstr "同時アクセスを許すユーザの最大数"
+
+msgid "maxUserField_rule"
+msgstr "1 ～ 1024 の整数を入力してください。デフォルトは 25 です。"
+
+msgid "maxUserField_help"
+msgstr "同時にWindows ファイル共有を通してアクセスできるユーザの最大数を指定してください。[[base-winshare.maxUserField_rule]]"
+
+msgid "workgroupField"
+msgstr "ワークグループ"
+
+msgid "workgroupField_rule"
+msgstr "デフォルトは WORKGROUP です。"
+
+msgid "workgroupField_help"
+msgstr "Windows ファイル共用が所属するワークグループ名を入力してください。"
+
+
+# ---- Advanced
+
+msgid "networkLogonField"
+msgstr "Windows ドメインコントローラ"
+
+msgid "networkLogonField_help"
+msgstr "このボックスをチェックすると、Windows ドメインコントローラが有効になります。この機能を有効にすると、このサーバは Windows ネットワークのドメインコントローラとして機能し、Windows 95/98/NT4/2000 がこのユニットに対する認証を行うのと移動プロファイルを使用することが可能になります。"
+
+msgid "winsServerField"
+msgstr "WINS サーバ"
+
+msgid "winsServerField_help"
+msgstr "WINS （Windows Internet Naming Service） の提供におけるこのサーバの役割を指定してください。複数のサブネット上にある Windowsコンピュータを NetBIOS 名で特定するには、WINS （Windows Internet Naming Service） を提供するサーバがネットワーク上に必要です。"
+
+msgid "winsServerNone"
+msgstr "WINS サーバとして使用しない"
+
+msgid "winsServerSelf"
+msgstr "WINS サーバとして使用する"
+
+msgid "winsServerOthers"
+msgstr "次のアドレスにある WINS サーバを使用する:"
+
+msgid "winsServerIpAddressField"
+msgstr "IP アドレス"
+
+msgid "winsServerIpAddressField_rule"
+msgstr "0 ～ 255 の４組の数値をピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "winsServerIpAddressField_help"
+msgstr "0 ～ 255 の４組の数値をピリオドで区切って入力してください。（指定例：192.168.1.1）"
+
+
+# ---- Handler msgs
+
+msgid "badUser"
+msgstr "サーバ設定ファイルを削除または手動で変更してある場合には、元のファイルを復元してから、もう一度お試しください。"
+
+msgid "cantConfigFile"
+msgstr "Windows ファイル共有設定ファイルの変更中にエラーが発生しました。[[base-winshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Windows ファイル共有設定ファイルの変更中にエラーが発生しました。[[base-winshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Windows ファイル共有設定ファイルの変更中にエラーが発生しました。"
+
+msgid "cantModifyPassword"
+msgstr "Windows ファイル共有設定ファイルの変更中にエラーが発生しました。"
+
+
+# ---- Active Monitor
+
+msgid "amWinshareNameTag"
+msgstr "Windows ファイル共有サーバ"
+
+msgid "amDetailsTitle"
+msgstr "Windows ファイル共有サーバの詳細"
+
+msgid "amNotRunning"
+msgstr "Windows ファイル共有サーバは動作していません。"
+
+msgid "amStatusOk"
+msgstr "Windows ファイル共有サーバは正常に動作しています。"
+
+# Capabilities
+
+msgid "capgroup_adminSamba"
+msgstr "Windows ファイル共有の管理"
+
+msgid "capgroup_adminSamba_help"
+msgstr "この管理権限を持つユーザは、Windows ファイル共有が使用する設定を変更できます。"
+
+# Machine list 
+
+msgid "windowsMachineButton"
+msgstr "ドメインメンバー"
+
+msgid "windowsMachineButton_help"
+msgstr "ドメインへの参加を許可する前にネットワーク上の Windows コンピュータの一覧を作成する"
+
+msgid "windowsMachinesList"
+msgstr "ドメインメンバー"
+
+msgid "wm_addMachine_help"
+msgstr "ここをクリックすると、コンピュータをドメインメンバー一覧に追加できます"
+
+msgid "wm_name"
+msgstr "マシン名"
+
+msgid "wm_name_help"
+msgstr "これらは、ネットワーク上でコンピュータに割り当てられた名前です"
+
+msgid "wm_remarks"
+msgstr "備考"
+
+msgid "wm_remarks_help"
+msgstr "このコラムは、各ドメインメンバーの追加情報を提供します"
+
+msgid "wm_actions"
+msgstr "操作"
+
+msgid "wm_actions_help"
+msgstr "これらのボタンを使用して、ドメインメンバーの設定を変更したり、Windows のネットワークからコンピュータを削除できます"
+
+msgid "modWindowsMachineBlock"
+msgstr "ドメインメンバーの変更 - [[var.name]]"
+
+msgid "addWindowsMachineBlock"
+msgstr "ドメインメンバーの作成"
+
+msgid "machine_name"
+msgstr "マシン名"
+
+msgid "machine_name_help"
+msgstr "Windows ベースのコンピュータの名前を指定してください"
+
+msgid "machine_description"
+msgstr "備考"
+
+msgid "machine_description_help"
+msgstr "これは、ドメインメンバーレコードのユーザ定義の説明です"
+
+msgid "removeMachineConfirm"
+msgstr "ドメインメンバー一覧からコンピュータ '[[VAR.machineName]]'  を削除してもよろしいですか？ "

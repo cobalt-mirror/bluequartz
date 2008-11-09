@@ -1,0 +1,378 @@
+msgid "ipsec"
+msgstr "VPN Punto a punto"
+
+msgid "ipsec_help"
+msgstr "[[base-ipsec.ipsec]] aquí puede configurar túneles.  [[base-ipsec.ipsec]] permite codificar conexiones entre dos máquinas."
+
+msgid "tunnelList"
+msgstr "Lista de túneles"
+
+msgid "addTunnel_help"
+msgstr "Agregar un nuevo túnel."
+
+msgid "localInfo"
+msgstr "Visualizar información local"
+
+msgid "localInfo_help"
+msgstr "Vea la información sobre la máquina local.  Estos datos los necesitaría un administrador remoto para intentar configurar una conexión [[base-ipsec.ipsec]] con esta máquina."
+
+msgid "manageProfile"
+msgstr "Administrar perfiles de conexión"
+
+msgid "manageProfile_help"
+msgstr "Aquí puede gestionar los diferentes perfiles de conexión disponibles. Un perfil de conexión describe la configuración necesaria para conectar a otras implementaciones [[base-ipsec.ipsec]]."
+
+msgid "ipsecInfo"
+msgstr "Información del sistema local"
+
+msgid "leftIpAddressField"
+msgstr "Dirección IP local"
+
+msgid "leftIpAddressField_help"
+msgstr "La dirección IP de la interfaz [[base-ipsec.ipsec]]."
+
+msgid "leftSubnetField"
+msgstr "Subred local"
+
+msgid "leftSubnetField_help"
+msgstr "La subred (o el intervalo de direcciones IP de la red local) en la que se encuentra la interfaz primaria Qube actualmente."
+
+msgid "leftNetmaskField"
+msgstr "Máscara de red de la subred local"
+
+msgid "leftNetmaskField_help"
+msgstr "La máscara de red que está configurada actualmente en la interfaz primaria."
+
+msgid "leftRsaKeyField"
+msgstr "Clave pública RSA del sistema local"
+
+msgid "leftRsaKeyField_help"
+msgstr "La clave pública RSA actual de Qube."
+
+msgid "profileList"
+msgstr "Lista de perfiles"
+
+msgid "addProfile_help"
+msgstr "Agregar un nuevo perfil."
+
+msgid "tname"
+msgstr "Nombre"
+
+msgid "tname_help"
+msgstr "Éste es el nombre de un túnel."
+
+msgid "pname"
+msgstr "Nombre"
+
+msgid "pname_help"
+msgstr "Éste es el nombre de un perfil."
+
+msgid "status"
+msgstr "Estado"
+
+msgid "status_help"
+msgstr "Éste es el estado de un túnel."
+
+msgid "comment"
+msgstr "Comentarios"
+
+msgid "comment_help"
+msgstr "Ésta es una cadena corta que describe el perfil."
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Acciones posibles."
+
+msgid "addNewProfile"
+msgstr "Agregar un perfil"
+
+msgid "nameField"
+msgstr "Nombre"
+
+msgid "nameField_help"
+msgstr "Escriba un nombre para este perfil."
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "Protocolo de autenticación"
+ 
+msgid "authField_help"
+msgstr "Indica si es preciso realizar la autenticación como parte del cifrado ESP, o de forma separada mediante el protocolo AH."
+ 
+msgid "pfsField"
+msgstr "Seguridad de reenvío perfecto"
+ 
+msgid "pfsField_help"
+msgstr "Indica si la seguridad de reenvío perfecto de las claves debe incluirse en el canal de claves de conexiones (con PFS, la penetración del protocolo de intercambio de claves no pone en peligro las claves negociadas con anterioridad)."
+ 
+msgid "keylifeField"
+msgstr "Caducidad de la clave"
+ 
+msgid "keylifeField_help"
+msgstr "Indica la duración en minutos de una instancia particular de una conexión (un conjunto de claves de cifrado/autenticación para paquetes de usuario), que abarca desde la negociación satisfactoria hasta la caducidad."
+ 
+msgid "rekeymarginField"
+msgstr "Retraso de reasignación de claves"
+ 
+msgid "rekeymarginField_help"
+msgstr "Indica el tiempo (en minutos) que debe transcurrir antes de que la conexión caduque y se intente negociar un comienzo de sustitución."
+ 
+msgid "rekeyfuzzField"
+msgstr "Porcentaje de retraso de reasignación de claves aleatorio"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "Indica el porcentaje máximo en que debe aumentarse aleatoriamente el margen de reasignación de claves a fin de aleatorizar los intervalos de reasignación de claves (importante para sistemas con muchas conexiones)."
+ 
+msgid "keyingtriesField"
+msgstr "Intentos de asignación de claves"
+ 
+msgid "keyingtriesField_help"
+msgstr "Indica el número de intentos (un número entero) que deben realizarse para negociar una conexión, o una sustitución de la misma, antes de dejar de hacerlo; el valor 0 indica que los intentos se repiten de forma indefinida."
+ 
+msgid "ikelifetimeField"
+msgstr "Caducidad del canal de asignación de claves"
+ 
+msgid "ikelifetimeField_help"
+msgstr "Indica el tiempo (en minutos) que debe durar un canal de asignación de claves antes de volver a negociarse."
+ 
+msgid "commentsField"
+msgstr "Comentarios"
+ 
+msgid "commentsField_help"
+msgstr "Comentarios que describen este perfil."
+
+msgid "addNewTunnel"
+msgstr "Agregar un nuevo túnel"
+ 
+msgid "tunnelEnabledField"
+msgstr "Conexión"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "Seleccione cuándo debe establecerse el túnel o si hay que deshabilitarlo."
+ 
+msgid "tunnelNameField"
+msgstr "Nombre"
+ 
+msgid "tunnelNameField_help"
+msgstr "Escriba un nombre para el túnel."
+ 
+msgid "rightProfileField"
+msgstr "Perfil de conexión"
+ 
+msgid "rightProfileField_help"
+msgstr "Seleccione un perfil de conexión."
+
+msgid "rightField"
+msgstr "Sistema [[base-ipsec.ipsec]] remoto"
+ 
+msgid "rightField_help"
+msgstr "Introduzca la dirección IP de la máquina en el otro extremo del túnel [[base-ipsec.ipsec]]."
+ 
+msgid "rightNextField"
+msgstr "Pasarela del sistema remoto"
+ 
+msgid "rightNextField_help"
+msgstr "Escriba la puerta de enlace que utiliza la máquina remota."
+ 
+msgid "rightSubnetField"
+msgstr "Subred remota"
+ 
+msgid "rightSubnetField_help"
+msgstr "Escriba la subred que se encuentra detrás de la máquina remota."
+ 
+msgid "rightNetmaskField"
+msgstr "Máscara de red remota"
+ 
+msgid "rightNetmaskField_help"
+msgstr "Escriba la máscara de red de la red que se encuentra detrás de la máquina remota."
+ 
+msgid "tunnelCommentField"
+msgstr "Comentarios"
+ 
+msgid "tunnelCommentField_help"
+msgstr "Escriba un comentario que describa este túnel."
+
+msgid "modProfile"
+msgstr "Modificar un perfil -- [[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "Modificar un túnel -- [[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "Asignación automática de claves con autenticación RSA"
+
+msgid "autoSecret"
+msgstr "Asignación automática de claves con secretos compartidos"
+
+msgid "manual"
+msgstr "Asignación manual de claves"
+
+msgid "keyingField"
+msgstr "Tipo de asignación de claves"
+
+msgid "authPubKeyField"
+msgstr "Clave RSA remota"
+
+msgid "authSecretKeyField"
+msgstr "Secreto compartido"
+
+msgid "authKeyField"
+msgstr "Clave de autenticación"
+
+msgid "encKeyField"
+msgstr "Clave de cifrado"
+
+msgid "valueField"
+msgstr "Esquema de cifrado/autenticación"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "Ventana de repetición"
+
+msgid "manualSettings"
+msgstr "Parámetros de asignación de claves manuales"
+
+msgid "autoSettings"
+msgstr "Parámetros de asignación de claves automáticas"
+
+msgid "enableAutoRsaField"
+msgstr "Permitir asignación automática de claves con autenticación RSA"
+
+msgid "enableAutoRsaField_help"
+msgstr "Marque esta casilla si desea permitir que los túneles que usen este perfil establezcan claves automáticamente con autenticación RSA "
+
+msgid "enableAutoSecretField"
+msgstr "Permitir asignación automática de claves con secretos compartidos"
+
+msgid "enableAutoSecretField_help"
+msgstr "Marque esta casilla si desea permitir que los túneles que usen este perfil establezcan claves automáticamente con secretos compartidos"
+
+msgid "enableManualField"
+msgstr "Permitir asignación manual de claves"
+
+msgid "enableManualField_help"
+msgstr "Marque esta casilla si desea permitir que los túneles que usen este perfil establezcan claves manualmente"
+
+msgid "valueField_help"
+msgstr "Seleccione el algoritmo que usar para encriptación y autenticación."
+
+msgid "replay_windowField_help"
+msgstr "Escriba un número entero entre 0 y 64 como longitud de ventana de reproducción, 0 significa que no hay protección de reproducción."
+
+msgid "ignore"
+msgstr "Inhabilitar este túnel."
+
+msgid "start"
+msgstr "Nosotros iniciamos la conexión"
+
+msgid "add"
+msgstr "El otro extremo inicia la conexión"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "Número SPI para este túnel.  Los números SPI deben coincidir en ambos extremos del túnel para que la conexión funcione."
+
+msgid "keyingField_help"
+msgstr "Seleccione el tipo de clave que usar en esta conexión."
+
+msgid "authPubKeyField_help"
+msgstr "Escriba la clave pública, en hexadecimal y precedida de '0x', de la máquina del otro extremo del túnel."
+
+msgid "authSecretKeyField_help"
+msgstr "Escriba el secreto compartido entre esta máquina y la del otro extremo del túnel."
+
+msgid "authKeyField_help"
+msgstr "Escriba la clave usada para autenticación"
+
+msgid "encKeyField_help"
+msgstr "Escriba la clave usada para encriptación.  En túneles de sólo autenticación, deje este campo en blanco"
+
+msgid "establishedTunnels"
+msgstr "Túneles establecidos: "
+
+msgid "nn"
+msgstr "Red a red"
+
+msgid "hh"
+msgstr "Sistema a sistema"
+
+msgid "hn"
+msgstr "Sistema a red"
+
+msgid "nh"
+msgstr "Red a sistema"
+
+msgid "tunnelProblem"
+msgstr "Todos los túneles están desactivados o no pueden iniciarse."
+
+msgid "noConnections"
+msgstr "Los túneles están listos, pero nadie ha iniciado una conexión"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]] no cargará uno o más de los túneles asociados con este elemento.\nCompruebe la configuración."
+
+msgid "disabled"
+msgstr "Inhabilitado"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]] no puede usarse con el perfil de conexión [[VAR.profile]]. Seleccione un perfil de conexión o tipo de clave distinto."
+
+msgid "spiInUse"
+msgstr "El SPI que ha especificado ya está en uso.  Por favor elija otro."
+
+msgid "openKey"
+msgstr "Abrir ventana de clave"
+
+msgid "openKey_help"
+msgstr "Haga clic aquí para abrir una ventana nueva que contenga la clave pública de este Qube."
+
+msgid "IpsecKey"
+msgstr "Clave RSA local"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "Utilice este perfil para conectar a otra Qube3"
+ 
+msgid "removeProfileConfirm"
+msgstr "¿Seguro que desea suprimir el perfil '[[VAR.profileName]]'?"
+ 
+msgid "removeTunnelConfirm"
+msgstr "¿Seguro que desea suprimir el túnel '[[VAR.tunnelName]]'?"
+ 
+msgid "mustSelectKeying"
+msgstr "Debe activar al menos un tipo de inserción para este perfil."
+ 
+msgid "profileInUse"
+msgstr "Este perfil está siendo utilizado por los siguientes túneles activos: [[VAR.list]].  Desactive, suprima o cambie el perfil de todos los túneles de la lista antes de suprimir este perfil."
+ 
+msgid "autoSettings_help"
+msgstr "Valores para conexiones tecleadas automáticamente utilizando este perfil."
+ 
+msgid "manualSettings_help"
+msgstr "Valores para conexiones tecleadas manualmente utilizando este perfil."
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "Administrar [[base-ipsec.ipsec]]"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "Este derecho administrativo permite a los usuarios configurar todos los aspectos de [[base-ipsec.ipsec]].  Esto incluye la adición, edición y eliminación de túneles [[base-ipsec.ipsec]]."
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "mensaje aquí"

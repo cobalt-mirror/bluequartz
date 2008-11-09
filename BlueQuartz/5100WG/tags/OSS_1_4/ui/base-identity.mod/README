@@ -1,0 +1,3 @@
+This used to contol ssl identification.  That is all done in base-ssl.mod now.
+That is more than likely where you want to be, unless you have an explicit need
+for base-identity.mod.

@@ -1,0 +1,291 @@
+#!/usr/bin/perl -w
+
+use lib '/usr/sausalito/perl';
+use CCE;
+use I18n;
+use LCD;
+use POSIX "sys_wait_h";
+
+$i18n = new I18n;
+
+$cce = new CCE;
+$cce->connectuds();
+
+$i18n->setLocale(I18n::i18n_getSystemLocale($cce));
+
+#LCD defs
+$LCD_YESNO = "/sbin/lcd-yesno";
+$LCD_GETIP = "/sbin/lcd-getip";
+$LCD_GETPASS = "/sbin/lcd-getpass";
+$LCD_WRITE = "/sbin/lcd-write";
+$LCD_SWRITE = "/sbin/lcd-swrite";
+$LCD_STOP = "/sbin/lcdstop";
+
+$DEBUG = 0;
+
+if($DEBUG){
+	open D, "+>/tmp/lcd.autoupdate.$$";
+	print D scalar localtime time;
+	print D "\n";
+}
+
+my($server, $auth);
+
+system("/sbin/lcdstop");
+system("rm -f /etc/locks/.lcdlock") if (-e "/etc/locks/.lcdlock");
+#ask for the server ip
+
+ENTER_DATA:
+
+$server = getIP("autoupdate_server");
+print D $server."\n" if $DEBUG;
+
+if ($server eq '0.0.0.0') {
+	writeMsg('invalid_server_1', 'invalid_server_2');
+	if(getYN("reenter_data")){
+		print D "re-entering data.\n" if $DEBUG;
+		goto ENTER_DATA;
+	}else{
+		if($DEBUG){
+			print D "exiting...";
+		        close D;
+		}
+ 
+		$cce->bye("SUCCESS");
+		exit(1); 
+	}
+}
+
+#is it a secure server?
+$secure = getYN("autoupdate_secure");
+print D $secure."\n" if $DEBUG;
+
+#ask for (optional) auth token.
+$auth = getPass("autoupdate_auth", 1);
+print $auth."\n" if $DEBUG;
+
+$proto = $secure ? "https://" : "http://";
+
+print D "TESTING" if $DEBUG;
+if(!testServer($proto.$server.'/packages/', $auth)){
+	print D "server config error.\n" if $DEBUG;
+	writeMsg("cant_contact_server_1", "cant_contact_server_2");
+	if(getYN("reenter_data")){
+		print D "re-entering data.\n" if $DEBUG;
+		goto ENTER_DATA;
+	}else{
+		if($DEBUG){
+			print D "exiting...";
+		        close D;
+		}
+ 
+		$cce->bye("SUCCESS");
+		exit(1); 
+	}
+}
+
+#create SWUpdateServer object
+my @oids=$cce->find("SWUpdateServer", {autoUpdate=>1, name=>'autoupdate'});
+
+
+if(scalar @oids){
+	$cce->set($oids[0], "", {location=>$proto.$server."/packages/", username=>$auth, httppass=>$auth});
+}else{
+	$cce->create("SWUpdateServer", {name=>"autoupdate", location=>$proto.$server."/packages/", autoUpdate=>1, username=>$auth, httppass=>$auth});
+}
+
+
+#touch System.AutoUpdate.run which
+#starts the autoupdate process.
+@oids = $cce->find("System");
+$cce->set($oids[0], "AutoUpdate", {run=>time()});
+
+if($DEBUG){
+	close D;
+}
+
+
+#return success to everything
+$cce->bye("SUCCESS");
+exit(0);
+
+sub writeMsg{
+	my($ttag, $btag) = @_;
+	my $top = $i18n->get($ttag, {}, "base-autoupdate");
+	my $bottom = $i18n->get($btag, {}, "base-autoupdate");
+
+	my $ret = `$LCD_WRITE \"$top\" \"$bottom\"`;
+	print D "$ret\n" if $DEBUG;
+	sleep(4);
+	return 1;
+}
+
+sub writeSMsg{
+	my($ttag, $btag) = @_;
+	my $top = $i18n->get($ttag, {}, "base-autoupdate");
+	my $bottom = $i18n->get($btag, {}, "base-autoupdate");
+
+	# Background the printing... don't forget to `$LCD_STOP` when done!
+	unless ($pid = fork) {
+		my $ret = `$LCD_SWRITE -s \"$top\" \"$bottom\"`;
+		print D "$ret\n" if $DEBUG;
+		exit 0;
+	}
+	return 1;
+}
+
+#returns IP address
+sub getIP{
+	my($tag, $optional)=@_;
+	$optional=0 unless defined $optional;
+	my $ip=0;
+
+	if($optional){
+		if(getYN($tag."_question")){
+			my $title = $i18n->get($tag, {}, "base-autoupdate");
+			$ip = `$LCD_GETIP -1 \"$title\"`;
+		}
+	}else{
+		my $title = $i18n->get($tag, {}, "base-autoupdate");
+		$ip = `$LCD_GETIP -1 \"$title\"`;
+	}
+	
+	return $ip;
+}
+
+#returns 1 if yes, 0 if no.
+sub getYN{
+	my($tag)=@_;
+
+	my $title = $i18n->get($tag, {}, "base-autoupdate");
+	my $yesno = $i18n->get("yes_no", {}, "base-lcd");
+	system("$LCD_YESNO -1 \"$title\" -2 \"$yesno\"");
+
+	return !( ($? >> 8) - 1 ); 
+	# $? >> 8 = real exit code of program
+	# yes = 1, no = 2
+	# w/ -1, yes=0, no=1
+	# w/ !, yes = 1, no = 0
+
+}
+
+#retruns string [ a-z0-9]
+sub getPass{
+	my($tag, $optional)=@_;
+	$optional=0 unless defined $optional;
+        my $num="";
+ 
+        if($optional){
+                if(getYN($tag."_question")){
+                        my $title = $i18n->get($tag, {}, "base-autoupdate");
+                        $num = `$LCD_GETPASS -1 \"$title\"`;
+                }
+        }else{
+		my $title = $i18n->get($tag, {}, "base-autoupdate");
+		$num = `$LCD_GETPASS -1 \"$title\"`;
+	}
+	$num=~s/[^\n]*\n(.*)/$1/ if $num=~/\n/;
+        return $num; 
+
+}
+
+sub testServer{
+	my($server, $pass) = @_;
+	print D "server: $server\npass: $pass\n" if $DEBUG;
+
+	writeSMsg("checking_server_1", "checking_server_2");
+
+	my $file = POSIX::tmpnam();
+	print D "$file\n";
+
+	# Fork off a subprocess to attempt the wget
+	# Why am I doing this?  Because in some cases where wget cannot
+	# reach the server (try "1.0.0.0" for an address), it can take
+	# about 3 minutes to return.  That's far too long.
+	#
+	# This unfortunately leaves a wget process hanging around if the
+	# timeout is exceeded.  It'll eventually die off and be ignored,
+	# so it's no big deal... otherwise this mechanism works fine.
+	unless ($pid = fork) {
+	    print D "/usr/bin/wget -t 2 -T 60 \"$server\" -O $file 2>&1\n" if $DEBUG;
+
+	    open(WGET, "/usr/bin/wget -t 2 -T 60 \"$server\" -O $file 2>&1 |");
+	    print D "wget starting:";
+ 
+            while (<WGET>) {
+	        print D;
+                if (/Host\s+not\s+found/i) {
+                    close(WGET);
+	            system("/bin/rm -f $file");
+                    exit 0;
+                }
+ 
+                if (/404\s+Not\s+Found/i) {
+                    close(WGET);
+	            system("/bin/rm -f $file");
+                    exit 0;
+                }
+ 
+                if (/refused/i) {
+                    close(WGET);
+	            system("/bin/rm -f $file");
+                    exit 0;
+                }
+
+	        if (/Giving\s+up./i) {
+	            close(WGET);
+	            system("/bin/rm -f $file");
+	            exit 0;
+	        }
+            }	
+
+	    my $info=`/usr/bin/file $file`;
+	    close(WGET);
+            system("/bin/rm -f $file");
+
+            if($info=~/tar|gzip/){
+                print D "testServer: return 1\n";
+                exit 1;
+            }else{
+                print D "testServer: return 0\n";
+                exit 0;
+            }
+
+        } else {
+
+	    my $counter = 0;		# timeout counter
+	    my $finished = 0;
+	    my $ret;
+
+	    while (!$finished) {
+		my $status;
+
+		$counter++;
+		if ($counter >= 30) {	# 30-second timeout
+		    kill 9, $pid;	# kill child, but doesn't kill "wget"
+		    $finished++;
+		    $ret = 0;
+		    last;
+		}
+
+		# This might need a little explaining...
+		# "WNOHANG" means non-blocking...
+		# $status = 0 if we have a child.
+		# $status < 0 if we have no child.
+		# $status > 0 if the child has just returned.
+		#   in this final case, $? is it's return value.
+		$status = waitpid $pid, WNOHANG;
+		$ret = $?;
+		sleep 1;
+
+		if ($status > 0) {		# Child just exited
+			$finished++;
+		} elsif ($status < 0) {		# No children
+			$finished++;
+			$ret = 0;
+		}
+	    }
+	    `$LCD_STOP`;	# Stop our writeSMsg()
+	    return $ret;
+	}
+}

@@ -1,0 +1,317 @@
+msgid "dhcpd"
+msgstr "DHCP"
+
+msgid "dhcpd_help"
+msgstr "按一下此處，可變更[[base-dhcpd.dhcpdSettings]]。"
+
+msgid "dhcpdSettings"
+msgstr "動態主電腦配置通信協定 (DHCP) 設定"
+
+msgid "enableServerField"
+msgstr "啟用伺服器"
+
+msgid "enableServerField_help"
+msgstr "開啟或關閉「動態主電腦配置通信協定 (DHCP)」伺服器功能。開啟這項功能，可讓從屬站機器在此伺服器設備啟動時，自動取得網路功能配置設定。"
+
+msgid "settingsForClients"
+msgstr "DHCP 從屬站設定"
+
+msgid "settingsForClients_help"
+msgstr "按一下此處可配置「DHCP 從屬站設定」。這些是會在啟動時自動伺服從屬站的網路功能配置設定。"
+
+msgid "domainNameField"
+msgstr "從屬站網域名稱"
+
+msgid "domainNameField_rule"
+msgstr "只能輸入小寫英數字元、破折號或句點。例如，sun.com 就是一個有效的登錄。"
+
+msgid "domainNameField_help"
+msgstr "請輸入將自動伺服這些從屬站的網域名稱。這個網域名稱通常與此伺服器設備的網域名稱相同。  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-dhcpd.domainNameField]]值。  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_empty"
+msgstr "很抱歉，您並未輸入[[base-dhcpd.domainNameField]]的值。  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "從屬站 DNS 位址"
+
+msgid "dnsAddressesField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "dnsAddressesField_help"
+msgstr "請輸入您區域網域名稱伺服器（其將自動伺服這些從屬站）的 IP 位址。網域名稱伺服器會將文字式主機名稱和網域名稱轉換成數字型 IP 位址，反之亦然。  [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-dhcpd.dnsAddressesField]]值。  [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_empty"
+msgstr "很抱歉，您並未輸入[[base-dhcpd.dnsAddressesField]]的值。  [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "subnetMaskField" 
+msgstr "從屬站子網路遮罩"
+
+msgid "subnetMaskField_rule" 
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，255.255.255.0 就是有效的數字。"
+
+msgid "subnetMaskField_help"
+msgstr "請輸入將自動伺服這些從屬站的子網路遮罩。  [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-dhcpd.subnetMaskField]]值。  [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_empty"
+msgstr "很抱歉，您並未輸入[[base-dhcpd.subnetMaskField]]的值。  [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "從屬站預設閘道"
+
+msgid "gatewayField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "gatewayField_help"
+msgstr "請輸入將自動伺服這些從屬站之區域網路閘道的 IP 位址。網路閘道可讓您的伺服器連接到您區域網路區域以外的世界。  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-dhcpd.gatewayField]]值。  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_empty"
+msgstr "很抱歉，您並未輸入[[base-dhcpd.gatewayField]]的值。  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "maxLeaseField"
+msgstr "最大閒置時間（秒）"
+
+msgid "maxLeaseField_rule"
+msgstr "請輸入一個大於零的整數。預設值為 86400。"
+
+msgid "maxLeaseField_help"
+msgstr "「動態主電腦配置通信協定 (DHCP)」伺服器所指定的網路功能資訊會在固定的時限後終止。請輸入閒置終止之前的最大時限（以秒為單位）。  [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-dhcpd.maxLeaseField]]值。  [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_empty"
+msgstr "很抱歉，您並未輸入[[base-dhcpd.maxLeaseField]]。  [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "addressAssignments"
+msgstr "修改位址指定"
+
+msgid "addressAssignments_help"
+msgstr "按一下此處，可設定將此伺服器的 IP 位址指定給要求 IP 位址的從屬站。"
+
+msgid "dynamicAssignmentList"
+msgstr "動態位址指定清單"
+
+msgid "ipAddressLow"
+msgstr "IP 位址範圍（起始）"
+
+msgid "ipAddressLow_help"
+msgstr "這是動態指定 IP 位址範圍的下限。"
+
+msgid "ipAddressHi"
+msgstr "IP 位址範圍（終止）"
+
+msgid "ipAddressHi_help"
+msgstr "這是動態指定 IP 位址範圍的上限。"
+
+msgid "listActionDyn"
+msgstr "動作"
+
+msgid "listActionDyn_help"
+msgstr "這些是用來修改或移除動態指定之 IP 位址範圍的按鈕。"
+
+msgid "removeDynamicConfirm"
+msgstr "您確定要移除在範圍 [[VAR.ipAddressLow]] 到 [[VAR.ipAddressHi]] 的 IP 位址嗎？"
+
+msgid "addNewDynamic"
+msgstr "新增動態位址指定"
+
+msgid "ipAddressLowField"
+msgstr "IP 位址範圍（起始）"
+
+msgid "ipAddressLowField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.100 就是有效的數字。"
+
+msgid "ipAddressLowField_help"
+msgstr "請輸入此伺服器動態指定之 IP 位址範圍的第一個或最低的 IP 位址。  [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-dhcpd.ipAddressLowField]]值。  [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_empty"
+msgstr "很抱歉，您並未輸入 [[base-dhcpd.ipAddressLowField]]的值。  [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressHiField"
+msgstr "IP 位址範圍（終止）"
+
+msgid "ipAddressHiField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.110 就是有效的數字。"
+
+msgid "ipAddressHiField_help"
+msgstr "請輸入此伺服器動態指定之 IP 位址範圍的最後一個或最高的 IP 位址。  [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-dhcpd.ipAddressHiField]]值。  [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_empty"
+msgstr "很抱歉，您並未輸入 [[base-dhcpd.ipAddressHiField]]的值。  [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "staticAssignmentList"
+msgstr "固定位址指定清單"
+
+msgid "ipAddress"
+msgstr "IP 位址"
+
+msgid "ipAddress_help"
+msgstr "這是靜態分派給指定 MAC 位址電腦的 IP 位址。"
+
+msgid "macAddress"
+msgstr "MAC 位址"
+
+msgid "macAddress_help"
+msgstr "這是電腦的 MAC 位址，會被靜態分派到指定 IP 位址。"
+
+msgid "listActionStatic"
+msgstr "動作"
+
+msgid "listActionStatic_help"
+msgstr "這些是用來修改或移除靜態指定 IP 位址的按鈕。"
+
+msgid "removeStaticConfirm"
+msgstr "您確定要移除對 MAC 位址 [[VAR.macAddress]] 指定的 IP 位址 [[VAR.ipAddress]] 嗎？"
+
+msgid "addNewStatic" 
+msgstr "新增靜態位址分派"
+
+msgid "ipAddressField"
+msgstr "IP 位址"
+
+msgid "ipAddressField_rule"
+msgstr "[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressField_help"
+msgstr "請輸入要由此伺服器靜態地指定給特定電腦（由特定的「媒體存取控制 (MAC)」位址所識別）的 IP 位址。  [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-dhcpd.ipAddressField]]值。  [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "很抱歉，您並未輸入 [[base-dhcpd.ipAddressField]]的值。  [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "macAddrAlreadySpecified"
+msgstr "所指定的 MAC 位址已有指定的 IP 位址。"
+
+msgid "macAddressField"
+msgstr "MAC 位址"
+
+msgid "macAddressField_rule"
+msgstr "請輸入 12 個十六進位數字的序列，每隔 2 個數字即以冒號分隔。例如，00:10:E0:01:33:AB 就是一個有效的序列。"
+
+msgid "macAddressField_help" 
+msgstr "請輸入要由此伺服器靜態指定 IP 位址之電腦的「媒體存取控制 (MAC)」位址。MAC 位址是網路介面卡的硬體位址。這個硬體位址是唯一的 ID，自製造後即不可再更改。  [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-dhcpd.macAddressField]]值。  [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_empty"
+msgstr "很抱歉，您並未輸入 [[base-dhcpd.macAddressField]]的值。  [[base-dhcpd.macAddressField_rule]]"
+
+msgid "cantSetParam"
+msgstr "無法設定 DHCP 參數。"
+
+msgid "noIPAddrRange"
+msgstr "缺少「起始 IP 位址」或「終止 IP 位址」。請輸入要指定給您網路上之從屬站的 IP 位址範圍的開始和結束 IP 位址。"
+
+msgid "ipAddrRangeNotValid"
+msgstr "IP 位址範圍無效。請輸入要指定給您網路上之從屬站的 IP 位址範圍的開始和結束位址。「起始 IP 位址」必須低於「終止 IP 位址」。"
+
+msgid "modDynamicAddress"
+msgstr "修改動態位址指定"
+
+msgid "modStaticAddress"
+msgstr "修改靜態位址指定"
+
+msgid "noDhcpConf"
+msgstr "很抱歉，找不到 DHCP 伺服器配置檔 /etc/dhcpd.conf。請嘗試重新配置 DHCP 設定。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "noSystemObj"
+msgstr "DHCP 參數設定作業找不到系統物件。請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "noNetworkObj"
+msgstr "DHCP 參數設定作業找不到網路物件。請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "noParamObj"
+msgstr "DHCP 參數設定作業找不到 DhcpParam 物件。請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "parameters"
+msgstr "參數"
+
+msgid "noConfigFile"
+msgstr "很抱歉，找不到 DHCP 伺服器配置檔 /etc/dhcpd.conf。請嘗試重新配置 DHCP 設定。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "cannotLock"
+msgstr "配置檔 /etc/dhcpd.conf 檔在使用中。請稍後重試。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "cantUpdateConf"
+msgstr "系統無法更新配置檔 /etc/dhcpd.conf。請嘗試重新配置 DHCP 設定。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "rangeMismatch"
+msgstr "主要介面的 IP 位址與要指定給 DHCP 從屬站之 IP 位址在不同的子網路上。請檢查「位址指定」，確定它們與伺服器在相同的子網路上。"
+
+msgid "gwMismatch"
+msgstr "主要介面的 IP 位址與要指定給 DHCP 從屬站之「預設閘道」在不同的子網路上。請檢查「從屬站預設閘道」，確定它與伺服器在相同的子網路上。"
+
+msgid "ipMismatch"
+msgstr "主要介面的 IP 位址與要指定給 DHCP 從屬站（針對此「靜態位址指定」）之 IP 位址在不同的子網路上。請針對此「靜態位址指定」，輸入一個與伺服器在相同子網路上的 IP 位址。"
+
+msgid "wrongOrder"
+msgstr "[[base-dhcpd.ipAddrRangeNotValid]]."
+
+msgid "noLeaseFile"
+msgstr "無法開啟配置檔 /etc/dhcpd.leases。請移除這個檔案、重新配置 DHCP 設定，然後重新啟動 DHCP 伺服器。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "initScriptError"
+msgstr "無法對 DHCP 伺服器執行起始設定 Script；請重試。這個檔案可能已毀損或遺失。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "initLinkOnFail"
+msgstr "系統無法配置起始設定 Script，以後在啟動時不能自動啟動 DHCP 伺服器；請重試。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "initLinkOffFail"
+msgstr "系統無法移除起始設定 Script，以後在啟動時不能停用 DHCP 伺服器；請重試。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "offFail"
+msgstr "系統無法關閉 DHCP 伺服器；請重新嘗試停用該伺服器。如果您仍然看到這則訊息，請連絡 [[base-carmel.osVendor]] 技術支援。"
+
+msgid "cannotStartDhcp"
+msgstr "無法啟用 DHCP 伺服器。請確定您已配置「DHCP 從屬站設定」，並至少新增了一個「位址指定」。同時請確定「預設閘道」及「位址指定」與伺服器的主要介面在相同的子網路上。"
+
+msgid "amDHCPNameTag"
+msgstr "動態主電腦配置通信協定 (DHCP) 伺服器"
+
+msgid "amDetailsTitle"
+msgstr "動態主電腦配置通信協定 (DHCP) 伺服器明細"
+
+msgid "amDHCPNotRunning"
+msgstr "此 DHCP 伺服器不在執行中。"
+
+msgid "amDHCPStatusOK"
+msgstr "此 DHCP 檔案正常運作中。"
+
+msgid "turnedOffDhcpdIpChange"
+msgstr "DHCP 服務已停用。新的系統 IP 位址與要指定給 DHCP 從屬站的 IP 位址在不同的子網路上。請檢查「位址指定」，確定它們與伺服器在相同的子網路上。"
+
+msgid "errorWhileDisablingDhcpdIpChange"
+msgstr "在嘗試停用您的 DHCP 服務時發生錯誤。請重新配置 DHCP 位址分派，使其與伺服器的主要介面在相同的子網路上。"
+
+# This is only for engineering debug.
+msgid "cceError"
+msgstr "從資料庫擷取 DHCP 物件時，發生「配置引擎」錯誤。"
+
+# Capabilities
+msgid "capgroup_adminDhcpd"
+msgstr "管理 DHCP"
+
+msgid "capgroup_adminDhcpd_help"
+msgstr "這個管理權限允許使用者管理所有 DHCP 的相關設定，包括建立靜態及動態位址分派。"
+

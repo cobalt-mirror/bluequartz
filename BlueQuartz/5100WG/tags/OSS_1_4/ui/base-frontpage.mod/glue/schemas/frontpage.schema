@@ -1,0 +1,8 @@
+
+<class name="System" namespace="Frontpage" version="1.0">
+        <!-- Basic properties -->
+        <property name="enabled" type="boolean" default="" writeacl="ruleCapable(modifyFrontpage)"/>
+        <property name="passwordWebmaster" readacl="ruleAdmin,ruleCapable(modifyFrontpage)" type="scalar" writeacl="ruleCapable(modifyFrontpage)"/>
+</class>
+
+

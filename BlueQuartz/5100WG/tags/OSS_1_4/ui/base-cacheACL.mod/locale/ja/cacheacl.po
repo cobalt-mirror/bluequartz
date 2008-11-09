@@ -1,0 +1,35 @@
+msgid "cacheACLSettings"
+msgstr "ウェブアクセス制限"
+
+msgid "cacheACL"
+msgstr "ウェブアクセス"
+
+msgid "cacheACL_help"
+msgstr "このサーバがゲートウェイまたはプロキシとして使用されている場合は、ここでウェブアクセスを制御できます。"
+
+msgid "whitelist"
+msgstr "アクセス可"
+
+msgid "blacklist"
+msgstr "アクセス不可"
+
+msgid "all"
+msgstr "制限なし"
+
+msgid "mode"
+msgstr "制限ポリシー"
+
+msgid "mode_help"
+msgstr "制限の種類を選ぶ： ｢アクセス可｣は指定したサイトへのアクセスを許可します。｢アクセス不可｣は指定したサイトへのアクセスを拒否します。｢制限なし｣は全てのサイトへのアクセスを許可します。  このポリシーは、ウェブアクセスにのみ影響を与え、FTP や他のプロトコルには影響を与えないことにご注意ください。"
+
+msgid "domains"
+msgstr "ホスト/ドメイン"
+
+msgid "domains_help"
+msgstr "ウェブアクセスを制限するホスト名およびドメインネームを入力してください。  ドメインネームの先頭にピリオドを置くことにより、ドメインネームの一括指定ができます。  例えば、｢www.sun.com｣ と入力すると、制限ポリシーはそのホストのみに適用されますが、｢.sun.com｣ と入力すると｢www.sun.com｣、｢cobalt.sun.com｣、および｢sun.com｣ドメインを共有する他の全てのウェブサイトに制限ポリシーが適用されます。 "
+
+msgid "ipaddr"
+msgstr "IP アドレス"
+
+msgid "ipaddr_help"
+msgstr "この制限ポリシーを適用する IP アドレスの一覧を入力してください。 "

@@ -1,0 +1,9 @@
+# FS_QUOTACHECK specifies whether or not to run quotacheck.
+# FS_MKFS_OPTS specifies filesystem specific mkfs options. 
+# FS_REPAIR_PROG specifies fsck repair program.
+# FS_REPAIR_OPT specifies whether or not to force fsck.
+FS_QUOTACHECK="yes"
+FS_MKFS_OPTS="-m 0"
+FS_MKFS="/sbin/mke2fs $FS_MKFS_OPTS"
+FS_REPAIR="no"
+FS_REPAIR_PROG="/sbin/e2fsck -f"

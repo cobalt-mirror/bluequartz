@@ -1,0 +1,11 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: maillist_rules.schema 201 2003-07-18 19:11:07Z will $
+
+    security rules for modifying mail lists and mail list servers
+-->
+
+<rule
+    name="ruleMailingLists" type="perl" 
+    data="rules/base/maillist/maillist_rules.pl"
+/>

@@ -1,0 +1,55 @@
+<?php
+// $Id: 10_Telnet.php.shell.System,v 1.1 2001/10/19 23:06:02 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+
+include_once('UIExtension.php');
+
+class TelnetExtension extends UIExtension
+{
+    function display(&$helper, &$container, $prams)
+    {
+        $factory = $helper->getHtmlComponentFactory('base-telnet');
+        $cce = $helper->getCceClient();
+
+        $settings = $cce->get($prams['CCE_OID'], 'Telnet');
+
+        $telnetField =& $factory->getMultiChoice('Telnet_enabled');
+
+        $enable =& $factory->getOption('enabled', $settings['enabled']);
+        $enable->setLabel($factory->getLabel('telnetEnable', false));
+
+        $rate =& $factory->getInteger("Telnet_connectRate", 
+                        $settings["connectRate"], 1, 1024);
+        $rate->showBounds(1);
+        $rate->setWidth(5);
+        
+        $enable->addFormField(
+            $rate,
+            $factory->getLabel('connectRateField')
+            );
+        
+        $telnetField->addOption($enable);
+        $container->addFormField(
+            $telnetField,
+            $factory->getLabel('enableTelnet'),
+            $prams['PAGED_BLOCK_DEFAULT_PAGE']
+            );
+    }
+
+    function handle(&$helper, &$errors, $prams)
+    {
+        global $Telnet_enabled, $Telnet_connectRate;
+    
+        $cce = $helper->getCceClient();
+
+        $cce->set($prams['CCE_OID'], 'Telnet',
+                    array(
+                            'enabled' => ($Telnet_enabled ? 1 : 0),
+                            'connectRate' => $Telnet_connectRate
+                            ));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

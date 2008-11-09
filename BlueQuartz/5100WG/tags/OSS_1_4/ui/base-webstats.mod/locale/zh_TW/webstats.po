@@ -1,0 +1,256 @@
+# Menu
+
+msgid "webUsage"
+msgstr "Web"
+
+msgid "webstatMenuDesc"
+msgstr "此處可找到 Web 伺服器用量統計。"
+
+# Page Selector & Table Headers
+
+msgid "noStats"
+msgstr "很抱歉，暫時沒有統計值。"
+
+msgid "notAvailable"
+msgstr "沒有統計值"
+
+msgid "selectStat"
+msgstr "選取統計..."
+
+msgid "webtotals"
+msgstr "摘要"
+
+msgid "webtotals_header"
+msgstr "Web 用量 - 摘要"
+
+msgid "webbyip"
+msgstr "最活躍的要求端"
+
+msgid "webbyip_header"
+msgstr "Web 用量 - 最活躍的要求端"
+
+msgid "webbyfile"
+msgstr "要求最多的網頁"
+
+msgid "webbyfile_header"
+msgstr "Web 用量 - 要求最多的網頁"
+
+msgid "webbyref"
+msgstr "最常參照的網頁"
+
+msgid "webbyref_header"
+msgstr "Web 用量 - 最常參照的網頁"
+
+msgid "webbyhour"
+msgstr "每小時要求"
+
+msgid "webbyhour_header"
+msgstr "Web 用量 - 每小時要求"
+
+msgid "webbydate"
+msgstr "每日要求"
+
+msgid "webbydate_header"
+msgstr "Web 用量 - 每日要求"
+
+# Page Details
+# Summary
+
+msgid "genDate"
+msgstr "前次檢查的用量"
+
+msgid "genDate_help"
+msgstr "這是前次產生的 Web 用量統計值。"
+
+msgid "periodStart"
+msgstr "報表涵括周期（起始）　"
+
+msgid "periodStart_help"
+msgstr "這是這些 Web 用量統計涵括之周期的起始。"
+
+msgid "periodEnd"
+msgstr "報表涵括周期（終止）"
+
+msgid "periodEnd_help"
+msgstr "這是這些 Web 用量統計涵括之周期的終止處。"
+
+msgid "totalHits"
+msgstr "要求總數"
+
+msgid "totalHits_help"
+msgstr "這是在報表周期期間產生的 Web 要求或點按的總數。"
+
+msgid "badHits"
+msgstr "無效要求的數目"
+
+msgid "badHits_help"
+msgstr "這是在報表周期期間產生的無效 Web 要求或點按的數目；這些是由於各種因素而無法滿足的網頁要求。例如，這些要求可能是對並不存在此 Web 伺服器上的網頁所提出。"
+
+msgid "numIPs"
+msgstr "提出要求之特定電腦的數目"
+
+msgid "numIPs_help"
+msgstr "這是在報表周期期間要求網頁之特定電腦的數目。"
+
+msgid "numFiles"
+msgstr "要求特定網頁的數目"
+
+msgid "numFiles_help"
+msgstr "這是在報表周期期間所要求的特定網頁的數目。"
+
+msgid "numRefs"
+msgstr "特定參照網頁的數目"
+
+msgid "numRefs_help"
+msgstr "這是在報表周期期間特定參照網頁的數目。參照網頁是指與此 Web 伺服器上之網頁有超連結的網頁。"
+
+msgid "numBytes"
+msgstr "下載的位元組數"
+
+msgid "numBytes_help"
+msgstr "這是在報表周期期間所下載的位元組數。"
+
+# Most Active Requesters
+
+msgid "hostname"
+msgstr "要求端名稱"
+
+msgid "hostname_help"
+msgstr "這是向此 Web 伺服器要求網頁之電腦的主機名稱。"
+
+msgid "hits"
+msgstr "要求"
+
+msgid "hits_help"
+msgstr "這是要求端所產生的 Web 要求或點按的數目。"
+
+msgid "referrer"
+msgstr "參照網頁"
+
+msgid "referrer_help"
+msgstr "這是將要求端參照到此 Web 伺服器上的網頁之網頁。"
+
+# Most Requested Pages
+
+msgid "file"
+msgstr "網頁"
+
+msgid "file_help"
+msgstr "這是要求端所要求的網頁。"
+
+msgid "pagehits"
+msgstr "要求"
+
+msgid "pagehits_help"
+msgstr "這是對此網頁的 Web 要求或點按的數目。"
+
+# Most Frequent Referring Pages
+
+msgid "refhits"
+msgstr "要求"
+
+msgid "refhits_help"
+msgstr "這是來自此參照網頁的 Web 要求或點按的數目。"
+
+# Hourly Requests
+
+msgid "00_help"
+msgstr "這是在 12 AM 到 1 AM 之間所記錄的 Web 要求數。"
+
+msgid "01_help"
+msgstr "這是在 1 AM 到 2 AM 之間所記錄的 Web 要求數。"
+
+msgid "02_help"
+msgstr "這是在 2 AM 到 3 AM 之間所記錄的 Web 要求數。"
+
+msgid "03_help"
+msgstr "這是在 3 AM 到 4 AM 之間所記錄的 Web 要求數。"
+
+msgid "04_help"
+msgstr "這是在 4 AM 到 5 AM 之間所記錄的 Web 要求數。"
+
+msgid "05_help"
+msgstr "這是在 5 AM 到 6 AM 之間所記錄的 Web 要求數。"
+
+msgid "06_help"
+msgstr "這是在 6 AM 到 7 AM 之間所記錄的 Web 要求數。"
+
+msgid "07_help"
+msgstr "這是在 7 AM 到 8 AM 之間所記錄的 Web 要求數。"
+
+msgid "08_help"
+msgstr "這是在 8 AM 到 9 AM 之間所記錄的 Web 要求數。"
+
+msgid "09_help"
+msgstr "這是在 9 AM 到 10 AM 之間所記錄的 Web 要求數。"
+
+msgid "10_help"
+msgstr "這是在 10 AM 到 11 AM 之間所記錄的 Web 要求數。"
+
+msgid "11_help"
+msgstr "這是在 11 AM 到 12 PM 之間所記錄的 Web 要求數。"
+
+msgid "12_help"
+msgstr "這是在 12 PM 到 1 PM 之間所記錄的 Web 要求數。"
+
+msgid "13_help"
+msgstr "這是在 1 PM 到 2 PM 之間所記錄的 Web 要求數。"
+
+msgid "14_help"
+msgstr "這是在 2 PM 到 3 PM 之間所記錄的 Web 要求數。"
+
+msgid "15_help"
+msgstr "這是在 3 PM 到 4 PM 之間所記錄的 Web 要求數。"
+
+msgid "16_help"
+msgstr "這是在 4 PM 到 5 PM 之間所記錄的 Web 要求數。"
+
+msgid "17_help"
+msgstr "這是在 5 PM 到 6 PM 之間所記錄的 Web 要求數。"
+
+msgid "18_help"
+msgstr "這是在 6 PM 到 7 PM 之間所記錄的 Web 要求數。"
+
+msgid "19_help"
+msgstr "這是在 7 PM 到 8 PM 之間所記錄的 Web 要求數。"
+
+msgid "20_help"
+msgstr "這是在 8 PM 到 9 PM 之間所記錄的 Web 要求數。"
+
+msgid "21_help"
+msgstr "這是在 9 PM 到 10 PM 之間所記錄的 Web 要求數。"
+
+msgid "22_help"
+msgstr "這是在 10 PM 到 11 PM 之間所記錄的 Web 要求數。"
+
+msgid "23_help"
+msgstr "這是在 11 PM 到 12 AM 之間所記錄的 Web 要求數。"
+
+# Daily Requests
+
+msgid "date"
+msgstr "日期"
+
+msgid "date_help"
+msgstr "這是 Web 要求或點按產生的日期。"
+
+msgid "dayhits"
+msgstr "要求"
+
+msgid "dayhits_help"
+msgstr "這是此日期之 Web 要求或點按的數目。"
+
+# Button
+
+msgid "resetStats"
+msgstr "重設統計"
+
+msgid "resetStats_help"
+msgstr "按一下此處，可重設所有的 Web 用量統計，並重新開始收集統計值。"
+
+msgid "askResetConfirmation"
+msgstr "您確定要重設 Web 用量統計值嗎？"
+
+msgid "Unknown"
+msgstr "不明"
+

@@ -1,0 +1,231 @@
+#!/usr/bin/perl -w
+
+use lib '/usr/sausalito/perl';
+use CCE;
+use I18n;
+use LCD;
+use POSIX;
+
+$i18n = new I18n;
+
+$cce = new CCE;
+$cce->connectuds();
+
+$i18n->setLocale(I18n::i18n_getSystemLocale($cce));
+
+#LCD defs
+$LCD_YESNO = "/sbin/lcd-yesno";
+$LCD_GETIP = "/sbin/lcd-getip";
+$LCD_GETPASS = "/sbin/lcd-getpass";
+$LCD_WRITE = "/sbin/lcd-write";
+
+
+$DEBUG = 0;
+
+if($DEBUG){
+	open D, "+>/tmp/lcd.autoupdate.$$";
+	print D scalar localtime time;
+	print D "\n";
+}
+
+my($server, $proxy, $auth);
+
+system("/sbin/lcdstop");
+system("rm -f /etc/locks/.lcdlock") if (-e "/etc/locks/.lcdlock");
+#ask for the server ip
+
+ENTER_DATA:
+
+$server = getIP("autoupdate_server");
+print D $server."\n" if $DEBUG;
+
+#is it a secure server?
+$secure = getYN("autoupdate_secure");
+print D $secure."\n" if $DEBUG;
+
+#ask for the (optional) proxy
+#$proxy = getIP("autoupdate_proxy", 1);
+#print D $proxy."\n" if $DEBUG;
+
+#ask for (optional) auth token.
+$auth = getPass("autoupdate_auth", 1);
+print $auth."\n" if $DEBUG;
+
+$proto = $secure ? "https://" : "http://";
+print D "TESTING" if $DEBUG;
+if(!testServer($proto.$server.'/packages/', $auth)){
+	print D "server config error.\n" if $DEBUG;
+	writeMsg("cant_contact_server_1", "cant_contact_server_2");
+	if(getYN("reenter_data")){
+		print D "re-entering data.\n" if $DEBUG;
+		goto ENTER_DATA;
+	}else{
+		if($DEBUG){
+			print D "exiting...";
+		        close D;
+		}
+ 
+		$cce->bye("SUCCESS");
+		exit(1); 
+	}
+}
+
+#create SWUpdateServer object
+my @oids=$cce->find("SWUpdateServer", {autoUpdate=>1, name=>'autoupdate'});
+
+
+if(scalar @oids){
+	$cce->set($oids[0], "", {location=>$proto.$server."/packages/", username=>$auth, httppass=>$auth});
+}else{
+	$cce->create("SWUpdateServer", {name=>"autoupdate", location=>$proto.$server."/packages/", autoUpdate=>1, username=>$auth, httppass=>$auth});
+}
+
+
+#modify System.SWUpdate w/ proxy
+@oids = $cce->find("System");
+#$cce->set($oids[0], "SWUpdate", {httpproxy=>$proxy}) if $proxy;
+
+
+#touch System.AutoUpdate.run which
+#starts the autoupdate process.
+$cce->set($oids[0], "AutoUpdate", {run=>time()});
+
+if($DEBUG){
+	close D;
+}
+
+
+#return success to everything
+$cce->bye("SUCCESS");
+exit(0);
+
+sub writeMsg{
+	my($ttag, $btag) = @_;
+	my $top = $i18n->get($ttag, {}, "base-lcd");
+	my $bottom = $i18n->get($btag, {}, "base-lcd");
+
+	my $ret = `$LCD_WRITE \"$top\" \"$bottom\"`;
+	print D "$ret\n" if $DEBUG;
+	sleep(5);
+	return 1;
+}
+
+#returns IP address
+sub getIP{
+	my($tag, $optional)=@_;
+	$optional=0 unless defined $optional;
+	my $ip=0;
+
+	if($optional){
+		if(getYN($tag."_question")){
+			my $title = $i18n->get($tag, {}, "base-lcd");
+			$ip = `$LCD_GETIP -1 \"$title\"`;
+		}
+	}else{
+		my $title = $i18n->get($tag, {}, "base-lcd");
+		$ip = `$LCD_GETIP -1 \"$title\"`;
+	}
+
+
+	return $ip;
+}
+
+#returns 1 if yes, 0 if no.
+sub getYN{
+	my($tag)=@_;
+
+	my $title = $i18n->get($tag, {}, "base-lcd");
+	my $yesno = $i18n->get("yes_no", {}, "base-lcd");
+	system("$LCD_YESNO -1 \"$title\" -2 \"$yesno\"");
+
+	return !( ($? >> 8) - 1 ); 
+	# $? >> 8 = real exit code of program
+	# yes = 1, no = 2
+	# w/ -1, yes=0, no=1
+	# w/ !, yes = 1, no = 0
+
+}
+
+#retruns string [ a-z0-9]
+sub getPass{
+	my($tag, $optional)=@_;
+	$optional=0 unless defined $optional;
+        my $num="";
+ 
+        if($optional){
+                if(getYN($tag."_question")){
+                        my $title = $i18n->get($tag, {}, "base-lcd");
+                        $num = `$LCD_GETPASS -1 \"$title\"`;
+                }
+        }else{
+		my $title = $i18n->get($tag, {}, "base-lcd");
+		$num = `$LCD_GETPASS -1 \"$title\"`;
+	}
+	$num=~s/[^\n]*\n(.*)/$1/ if $num=~/\n/;
+        return $num; 
+
+}
+
+sub testServer{
+	my($server, $pass) = @_;
+	print D "server: $server\npass: $pass\n" if $DEBUG;
+
+	my $file = POSIX::tmpnam();
+	print D "$file\n";
+#	my $authstr;
+
+#	if($pass){
+#		$authstr = "--http-user $pass --http-pass $pass";
+#	}else{
+#		$authstr = "";
+#	}
+
+	print D "/usr/bin/wget -t 2 -T 60 \"$server\" -O $file 2>&1\n" if $DEBUG;
+
+	open(WGET, "/usr/bin/wget -t 2 -T 60 \"$server\" -O $file 2>&1 |");
+	print D "wget starting:";
+ 
+    while (<WGET>) {
+	print D;
+        if (/Host\s+not\s+found/i) {
+            close(WGET);
+	    system("/bin/rm -f $file");
+            return 0;
+        }
+ 
+        if (/404\s+Not\s+Found/i) {
+            close(WGET);
+	    system("/bin/rm -f $file");
+            return 0;
+        }
+ 
+        if (/refused/i) {
+            close(WGET);
+	    system("/bin/rm -f $file");
+            return 0;
+        }
+
+	if (/Giving\s+up./i) {
+	    close(WGET);
+	    system("rm -f $file");
+	    return 0;
+
+	}
+
+        if (/Authorization\s+Required/i) {
+            close(WGET);
+            system("rm -f $file");
+            return 0;
+
+        }	
+    }	
+	my $info=`/usr/bin/file $file`;
+        system("/bin/rm -f $file");
+        if($info=~/tar|gzip/){
+		print D "testServer: return 1\n";
+                return 1;
+        }else{
+		print D "testServer: return 0\n";
+                return 0;
+        }
+}

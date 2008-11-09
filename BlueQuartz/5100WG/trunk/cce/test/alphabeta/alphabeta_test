@@ -1,0 +1,41 @@
+#!/usr/bin/perl 
+#
+# Alpha and Beta class are tied together by a handler that causes a Beta
+# object to be created that mirrors all operations on the Alpha object.
+#
+# this test verifies that CREATE and DESTROY commands called from 
+# within handlers function properly.
+
+my $errors = 0;
+
+use lib qw( /usr/sausalito/perl );
+use CCE;
+my $cce = new CCE;
+$cce->connectuds();
+
+print STDERR "connected, starting...\n";
+
+$cce->create("Alpha", { 'name' => 'alphaone' });
+
+my @a_oids = $cce->find("Alpha", { 'name' => 'alphaone' });
+my @b_oids = $cce->find("Beta", { 'name' => 'alphaone' });
+
+if ($#a_oids != 0) {
+  $errors++; print STDERR "Alpha:alphaone was not created\n";
+}
+if ($#b_oids != 0) {
+  $errors++; print STDERR "Beta:alphaone was not created\n";
+}
+
+$cce->destroy($a_oids[0]);
+
+my @a_oids = $cce->find("Alpha", { 'name' => 'alphaone' });
+my @b_oids = $cce->find("Beta", { 'name' => 'alphaone' });
+
+if ($#a_oids != -1) {
+  $errors++; print STDERR "Alpha:alphaone was not destroyed\n";
+}
+if ($#b_oids != -1) {
+  $errors++; print STDERR "Beta:alphaone was not destroyed\n";
+}
+

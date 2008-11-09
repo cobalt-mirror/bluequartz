@@ -1,0 +1,129 @@
+# ----- Menu 
+msgid "groups"
+msgstr "组"
+
+msgid "groups_help"
+msgstr "[[base-workgroup.groups]]可在此处管理。"
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr "编辑组缺省值"
+
+msgid "groupDefaults_help"
+msgstr "单击此处更改新组的缺省设置。"
+
+msgid "groupList"
+msgstr "组列表"
+
+msgid "groupName"
+msgstr "组名"
+
+msgid "groupName_help"
+msgstr "这是用户组的名称。"
+
+msgid "groupMembers"
+msgstr "组成员"
+
+msgid "groupMembers_help"
+msgstr "这些是组中的用户。"
+
+msgid "groupDesc"
+msgstr "备注"
+
+msgid "groupDesc_help"
+msgstr "此栏提供该组的说明信息。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "这些是用于修改组设置或删除组的按钮。"
+
+msgid "addNewGroup"
+msgstr "添加新组"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "设置新组的缺省最大磁盘空间。这是组存储网页、电子邮件和所有其它组文件的可用最大磁盘空间。 [[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "组名"
+
+msgid "groupNameField_rule"
+msgstr "请输入不多于 12 个字符，其中只包括小写字母数字字符、句点、连字符和下划线。例如，engineering 就是有效的输入。"
+
+msgid "groupNameField_help"
+msgstr "输入系统用于识别组的名称。 [[base-workgroup.groupNameField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "允许的最大磁盘空间 (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "请输入 1 和 1024000 之间的整数。 "
+
+msgid "maxDiskSpaceField_help"
+msgstr "设置此组的磁盘限额。这是此组用于存储网页、电子邮件和所有其它组文件的可用最大磁盘空间。[[base-workgroup.maxDiskSpaceField_rule]]新组的缺省值在组缺省值部分设置。"
+
+msgid "groupMembersField"
+msgstr "用户成员资格"
+
+msgid "groupMembersField_help"
+msgstr "设置此组的用户成员资格。左栏显示当前属于该组的用户。右栏显示可能属于此组的用户。要将用户添加为此组的成员，将用户从左栏移到右栏。"
+
+msgid "groupUsers"
+msgstr "关联的用户"
+
+msgid "allUsers"
+msgstr "无关联的用户"
+
+msgid "groupDescField"
+msgstr "备注"
+
+msgid "groupDescField_help"
+msgstr "在此处输入组的附加信息，例如说明或注释。"
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "修改组设置—[[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "是否确定要删除组[[VAR.groupName]]？"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "对不起，您为[[base-workgroup.groupNameField]]输入的值已被另一人占用，或被系统保留。请为[[base-workgroup.groupNameField]]输入其它值。"
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "此工作组成员维护公共访问的网站。"
+
+msgid "add_group_help"
+msgstr "单击此处添加新工作组。"
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "管理组"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "这个管理权限允许用户创建，销毁和修改组。"
+

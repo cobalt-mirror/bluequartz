@@ -1,0 +1,96 @@
+# This is the packing list for Alpine(aka 4100R)
+#
+RPM: setup-raq4-alpine6.noarch.rpm
+MODULE: base.mod:DEV_4100R
+
+RPM: kernel-2.4.16C12_%HGEN%-1.i386.rpm                        :kernel
+RPM: kernel-headers-2.4.16C12_%HGEN%-1.i386.rpm                :kernel
+RPM: kernel-source-2.4.16C12_%HGEN%-1.i386.rpm                 :kernel
+RPM: bwmgmt-1.0.0_2.4.16C12_%HGEN%-1.i386.rpm                  :kernel
+RPM: fwall-kernel-1.8_2.4.16C12_%HGEN%-4.i386.rpm              :kernel
+
+# rom utils
+RPM: nvram-0.9.12-1.i386.rpm				:rom-utils
+
+# other kernel related stuff
+RPM: ipchains-1.3.10_2.4.3C1-C1.i386.rpm		:kernel
+RPM: iptables-1.2.1a-C1.i386.rpm			:kernel
+RPM: iptables-devel-1.2.1a-C1.i386.rpm			:kernel
+RPM: wakealarm-1.2-1.i386.rpm				:kernel
+
+# product specific items
+RPM: proftpd-conf-alpine-3.noarch.rpm			
+RPM: apache-conf-ptlobos-15.noarch.rpm			
+RPM: samba-config-2800R-1.0-C1.noarch.rpm		
+
+# the Sausalito core
+RPM: sausalito-cce-server-0.80.1-23.i386.rpm		:cce
+RPM: sausalito-cce-client-0.80.1-23.i386.rpm		:cce
+
+# the BlueLinQ release
+#RPM: base-swupdate-ui-1.1.0-97.noarch.rpm               :bluelinq
+#RPM: base-swupdate-glue-1.1.0-97.noarch.rpm             :bluelinq
+#RPM: base-swupdate-locale-en-1.1.0-97.noarch.rpm        :bluelinq
+#RPM: base-swupdate-capstone-1.1.0-97.noarch.rpm         :bluelinq
+
+MODULE: devel-tools
+MODULE: i18n:DEV_4100R
+MODULE: gallery:DEV_4100R
+MODULE: palette:DEV_4100R
+
+# another product specific item, needs to be installed 
+# after gallery b/c it overwrites some images
+MODULE: alpine.mod:DEV_4100R
+
+# core product modules needed on every product
+MODULE: base-devel.mod:DEV_4100R
+MODULE: base-services.mod:DEV_4100R
+MODULE: sauce-basic.mod:DEV_4100R
+MODULE: base-apache.mod:DEV_4100R
+MODULE: base-disk.mod:DEV_4100R
+MODULE: base-memory.mod:DEV_4100R
+MODULE: base-wizard.mod:DEV_4100R
+MODULE: base-user.mod:DEV_4100R
+MODULE: base-system.mod:DEV_4100R
+MODULE: base-network.mod:DEV_4100R
+MODULE: base-time.mod:DEV_4100R
+MODULE: base-lcd.mod:DEV_4100R
+MODULE: base-documentation.mod:DEV_4100R
+MODULE: base-am.mod:DEV_4100R
+MODULE: base-schedule.mod:DEV_4100R
+
+# features of the product
+MODULE: base-asp.mod:DEV_4100R
+MODULE: base-ups.mod:DEV_4100R
+MODULE: base-vsite.mod:DEV_4100R
+MODULE: base-email.mod:DEV_4100R
+MODULE: base-maillist.mod:DEV_4100R
+MODULE: base-power.mod:DEV_4100R
+MODULE: base-ssl.mod:DEV_4100R
+MODULE: base-import.mod:DEV_4100R
+MODULE: base-shell.mod:DEV_4100R
+MODULE: base-telnet.mod:DEV_4100R
+MODULE: base-ssh.mod:DEV_4100R
+MODULE: base-bandwidth.mod:DEV_4100R
+MODULE: base-ftp.mod:DEV_4100R
+MODULE: base-frontpage.mod:DEV_4100R
+MODULE: base-snmp.mod:DEV_4100R
+MODULE: base-dns.mod:DEV_4100R
+MODULE: base-sitestats.mod:DEV_4100R
+MODULE: base-raid.mod:DEV_4100R
+MODULE: base-java.mod:DEV_4100R
+MODULE: monterey-backup.mod:DEV_4100R
+MODULE: base-backupcontrol.mod:DEV_4100R
+MODULE: base-storage.mod:DEV_4100R
+MODULE: base-autoupdate.mod:DEV_4100R
+MODULE: base-swupdate.mod:DEV_4100R
+RPM: InterBaseCS_LI-V6.0-1C1.i386.rpm			
+
+# third party mods
+MODULE: legato-networker.mod:DEV_4100R
+MODULE: knox-arkeia.mod:DEV_4100R
+
+# The Sun Cobalt SHP project
+MODULE: base-overflow.mod:DEV_4100R
+MODULE: base-scandetection.mod:DEV_4100R
+

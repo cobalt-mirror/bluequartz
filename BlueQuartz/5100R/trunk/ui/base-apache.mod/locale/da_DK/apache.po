@@ -1,0 +1,270 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-09 14:59+0200\n"
+"PO-Revision-Date: 2007-12-14 12:44+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "ClientMaxError"
+msgstr ""
+"Den indtastede værdi for [[base-apache.maxClientsField]] er lavere end "
+"værdien indtastet for [[base-apache.maxSpareField]]. Skønt dette er okay, "
+"kan det have en indflydelse på serverens ydeevne. Det anbefales at værdien "
+"for [[base-apache.maxClientsField]] er større end værdien for [[base-"
+"apache.maxSpareField]]."
+
+msgid "MinMaxError"
+msgstr ""
+"[[base-apache.maxSpareField]] skal være højere end eller lig med [[base-"
+"apache.minSpareField]]."
+
+msgid "amAdmservDetails"
+msgstr "Detaljer om serverskrivebordet"
+
+msgid "amAdmservNameTag"
+msgstr "Serverskrivebord"
+
+msgid "amAdmservNotRunning"
+msgstr ""
+"[[base-apache.amAdmservNameTag]]kører ikke og kunne ikke genstartes. Prøv at "
+"genstarte serveren ved at klikke på knappen [[base-power.reboot]] i menuen "
+"[[base-power.power]] under [[base-alpine.serverconfig]]. Kan du stadig ikke "
+"komme ind på [[base-apache.amAdmservNameTag]], gå da venligst til [[base-"
+"sauce-basic.techSupportURL]] for teknisk support."
+
+msgid "amAdmservStatusOK"
+msgstr "Serverskrivebordet kører normalt."
+
+msgid "amApacheDetails"
+msgstr "Webserverdetaljer"
+
+msgid "amApacheNameTag"
+msgstr "Webserver"
+
+msgid "amNotRunning"
+msgstr ""
+"[[base-apache.amApacheNameTag]] kører ikke og kunne ikke genstartes. Prøv at "
+"genstarte serveren ved at klikke på knappen [[base-power.reboot]] i menuen "
+"[[base-power.power]] under [[base-alpine.serverconfig]]. Kan du stadig ikke "
+"tilgå [[base-apache.amApacheNameTag]], besøg da venligst [[base-sauce-"
+"basic.techSupportURL]] for teknisk support."
+
+msgid "amStatusOK"
+msgstr "Webserveren kører som den skal."
+
+msgid "apache"
+msgstr "Web"
+
+msgid "apacheSettings"
+msgstr "Webindstillinger"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]] kan ændres her."
+
+msgid "cantConfigCgi"
+msgstr "Beklager, men CGI adgang kan ikke konfigureres korrekt i øjeblikket."
+
+msgid "cgi"
+msgstr "Aktiver Common Gateway Interface (CGI)"
+
+msgid "cgiAccessField"
+msgstr "CGI adgang"
+
+msgid "cgiAccessField_help"
+msgstr ""
+"Slå CGI adgang til eller fra. Du kan indstille adgangsrettigheder for CGI så "
+"kun serveradministratoren kan tilføje CGI scripts, eller så både "
+"administrator og alle valgte brugere kan tilføje CGI filer."
+
+msgid "cgiAll"
+msgstr "Giv adgang til alle brugere"
+
+msgid "cgiI18nName"
+msgstr "Common Gateway Interface (CGI)"
+
+msgid "cgiNone"
+msgstr "Tillad ikke adgang for brugere"
+
+msgid "cgiSubset"
+msgstr "Tillad kun adgang for specificerede brugere"
+
+msgid "cgiUsersAllowed"
+msgstr "Brugere med adgang"
+
+msgid "cgiUsersDisallowed"
+msgstr "Brugere uden adgang"
+
+msgid "cgiUsersField"
+msgstr "_"
+
+msgid "cgiUsersField_empty"
+msgstr ""
+"Beklager, men du har ikke valgt nogle brugere med CGI adgang. Vælg venligst "
+"brugere som må bruge CGI eller vælg en anden adgangsindstilling."
+
+msgid "cgi_help"
+msgstr "Aktiver brug af CGI applikationer"
+
+msgid "frontpageEnabled"
+msgstr "Aktiver"
+
+msgid "frontpageField"
+msgstr "FrontPage Server Extentions"
+
+msgid "frontpageField_help"
+msgstr "Slå FrontPage Server Extentions til eller fra."
+
+msgid "hostnameLookupsField"
+msgstr "Lav værtsopslag"
+
+msgid "hostnameLookupsField_help"
+msgstr ""
+"Dette slår værtsnavnsopslag til på webservere, Dette medfører at serveren "
+"foretager et DNS opslag på klientens IP adresse når denne forbinder til "
+"serveren, og gemmer dette i en logfil. Denne værtsnavneinformation er "
+"derefter tilgængelig i webserverens forbrugsrapporter. Uden denne "
+"indstilling vil kun klienternes IP adresser vlive rapporteret. ADVARSEL: Ved "
+"at aktivere denne mulighed forringes serverens ydeevne."
+
+msgid "maxClientsField"
+msgstr "Maksimalt antal simultane forbindelser"
+
+msgid "maxClientsField_empty"
+msgstr ""
+"Specificer venligst det maksimale antal simultane forbindelser til "
+"webserveren."
+
+msgid "maxClientsField_help"
+msgstr ""
+"Dette er det maksimale antal forespørgsler der kan laves mod webserveren på "
+"noget tidspunkt. Hver forbindelse kræver sin egen webserverproces. Hvis "
+"dette tal overskrides vil klienterne modtage en besked om at serveren er "
+"optaget, og blive bedt om at forsøge igen senere. Denne indstilling er smart "
+"hvis man vil kontrollere belastningen på webserveren. [[base-"
+"apache.maxServersRAM]]"
+
+msgid "maxClientsField_invalid"
+msgstr ""
+"Det specificerede maksimale antal simultane forbindelser er ikke gyldigt. "
+"Specificer venligst et cifer inden for den anførte mængde."
+
+msgid "maxServersRAM"
+msgstr ""
+"Det maksimale antal webservere er begrænset af mængden af RAM der er "
+"installeret i serveren."
+
+msgid "maxSpareField"
+msgstr "Maksimalt antal servere i reserve"
+
+msgid "maxSpareField_empty"
+msgstr ""
+"Specificer venligst et maksimalt antalt webservere som skal holdes i "
+"reserve."
+
+msgid "maxSpareField_help"
+msgstr ""
+"Webserveren vil starte yderligere processer, efter behov,for at tage hånd om "
+"yderligere belastning. Dette tal er det maksimale antal processer som "
+"systemet vil starte. Sider med meget trafik bør øge dette tal for at give "
+"bedre ydeevne. [[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_invalid"
+msgstr "[[base-apache.minSpareField_invalid]]"
+
+msgid "minSpareField"
+msgstr "Minimum antal servere i reserve"
+
+msgid "minSpareField_empty"
+msgstr ""
+"Specificer venligst et tal for det minimale antal servere der skal holdes i "
+"reserve."
+
+msgid "minSpareField_help"
+msgstr ""
+"Når serveren starter, eller ikke foretager sig noget, så er dette det "
+"minimale antal webserverprocesser der er tilgængelige for at håndtere "
+"webforespørgsler. [[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_invalid"
+msgstr ""
+"Det specificerede antal servere i reserve er ikke gyldigt. Indtast venligst "
+"et cifer inden for den givne mængde."
+
+msgid "passwordWebmasterField"
+msgstr "webmaster adgangskode"
+
+msgid "passwordWebmasterField_help"
+msgstr ""
+"Indtast en adgangskode til FrontPage klientens webmasterbruger. Websiden kan "
+"tilgås ved at vælge \"Åbn web\" i FrontPage klienten. Log derefter ind med "
+"brugernavnet webmaster og den adgangskode du specificerer her. Når du er "
+"autoriseret vil du kunne oprette yderligere FrontPage brugere igennem "
+"FrontPage klienten."
+
+msgid "passwordWebmasterField_invalid"
+msgstr ""
+"Beklager, men du har ikke indtastet samme adgangskode i begge felter. Den "
+"samme adgangskode skal tastes i begge felter for at sikre imod tastefejl. "
+"Prøv venligst igen."
+
+msgid "passwordWebmasterField_rule"
+msgstr ""
+"Adgangskoden bør være mellem 3 og 16 karakterer lang. En god adgangskode bør "
+"indeholde minimum 5 karakterer, med en blanding af små og store bogstaver, "
+"samt tal og punkteringstejn. Det bør aldrig være et ord der kan findes i en "
+"ordbog. Adgangskode er følsomme over for forskelle mellem små og store "
+"bogstaver."
+
+msgid "php"
+msgstr "Aktiver PHP"
+
+msgid "phpI18nName"
+msgstr "PHP scripting"
+
+msgid "php_help"
+msgstr "Aktiver brug af PHP scripts."
+
+msgid "ssi"
+msgstr "Aktiver Server-Side Inkluderinger (SSI)"
+
+msgid "ssiI18nName"
+msgstr "Server-Side Inkluderinger"
+
+msgid "ssi_help"
+msgstr "Aktiver brug af Server-Side Inkluderinger."
+
+msgid "systemObjectNotFound"
+msgstr ""
+"Beklager, men serverkonfiguration kan ikke foretages i øjeblikket. Vent "
+"venligst og prøv igen senere."
+
+msgid "webScripting"
+msgstr "Web"
+
+msgid "webScriptingDescription"
+msgstr "Konfigurer webindstillinger såsom programmeringssprog."
+
+msgid "webScriptingTitle"
+msgstr "Webscriptingindstillinger for [[VAR.fqdn]]"
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+msgid "userwebs"
+msgstr "Enable user owned webs"
+
+msgid "userwebs_help"
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
+
+msgid "ftpnonadminI18nName"
+msgstr "FTP for non-Site admins enabled"
+
+msgid "userwebsI18nName"
+msgstr "User owned webs enabled"

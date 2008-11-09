@@ -1,0 +1,266 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0755,root,root)/usr/local/sbin/vacation.pl
+%attr(0755,root,root)/usr/local/sbin/break-smrsh-loop.pl
+%attr(0644,root,root)/etc/cron.d/break-smrsh-loop.cron
+%attr(0755,root,root)/usr/sausalito/bin/remove_domain.pl
+%attr(0755,root,root)/usr/sausalito/bin/findalias.pl
+/etc/smrsh/vacation.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin capstone>
+# capstone post-install
+
+<end capstone>
+
+<begin glue>
+# glue post-install
+if [ ! -d /etc/mail ]; then \
+	mkdir -p /etc/mail; \
+fi
+
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+
+if [ $1 = 2 ]; then
+    /usr/sausalito/bin/remove_domain.pl
+fi
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Thu May 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ31
+- Added /usr/sausalito/bin/findalias.pl - small helper script that lists 
+- all web- and email-server aliasses.
+
+* Tue Apr 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ30
+- POP before SMTP for Active Monitor set to disabled by default.
+
+* Thu Feb 28 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.1-0BQ29
+- clean up APOP feature to remove extension, conf, schema, handler (#14).
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ28
+- German locales added.
+- Fixed /usr/sausalito/swatch/bin/check-popb4smtp.sh in base-email-am *again*.
+- Was not working right with German locales. Should be fine for all now.
+
+* Wed Jan 23 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ27
+- Fixed /usr/sausalito/swatch/bin/check-popb4smtp.sh in base-email-am
+- Was not working right with non English locales.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ26
+- Danish locales added. Thanks to Jes Klittum!
+
+* Wed Dec 19 2007 <brian@nuonce.net> 1.3.1-0BQ25
+- loosen sendmail permission by hardcoding Envelope fields.
+- patch submited by Patricko
+
+* Sun Dec 16 2007 05:36 PM EST <mstauber@solarspeed.net> 1.3.1-0BQ24
+- Added provisions to monitor SMTP-Auth and POP before SMTP in Active Monitor
+
+* Sat Dec 14 2007 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ23
+- Fixed the issue with the "server map".  Duplicate keys in
+- the /etc/mail/access file caused issues
+
+* Sat Dec 2 2006 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ22
+- added a killall -9 in the restart script.  Also made it so it
+- stops and starts the service instead of just restarting it.
+
+* Tue Aug 22 2006 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ21
+- fixed break-smrsh-loop.cron.  Piped to /dev/null
+
+* Tue Aug 15 2006 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ20
+- fixed "user.conf" & "vsite.conf" needed to add; _CREATE to both
+
+* Thu Aug 10 2006 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ19
+- Added contrib: break-smrsh-loop.pl by; Patrick
+
+* Thu Aug 10 2006 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ18
+- Updated vacation.pl w/ Patrick (patricko@staff.singnet.com.sg) fixes
+
+* Sun Aug 06 2006 Brian N. Smith <brian@nuonce.net> 1.3.0-0BQ17
+- Removed: abuse, postmaster, operator, manager from protected
+- Aliases
+
+* Thu Aug 03 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ16
+- add disable email feature by Brian.
+
+* Sun Jul 16 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ15
+- fixed the error that the block or relay list is removed by Brian.
+
+* Sat Jul 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ14
+- add remove_domain.pl.
+
+* Sat Jul 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ13
+- modify syncEmailService.pl to remove .backup files.
+
+* Sat Jul 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ12
+- modified validate_alias.pl back to Cobalt codes.
+
+* Sun Jun 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ11
+- enable imap and pop services by default to fix the issue that service is disabled after update.
+- remove server's domain name from '/etc/mail/access' by Brian.
+- modify system.pl to fix the issue that the handler doesn't set queue time correctly.
+
+* Thu Jun 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ10
+- disable ActiveMonitor for imap by default.
+
+* Thu Jun 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ9
+- require base-bluequartz-glue >= 1.20060618.
+
+* Thu Jun 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ8
+- require base-bluequartz-glue >= 1.20060615.
+
+* Mon Jun 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ7
+- disable ActiveMonitor for pop and imap by default.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ6
+- remove backup scripts at syncEmailService.pl.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ5
+- require base-bluequartz-glue >= 1.20060611.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ4
+- restart cced after updating glue package.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ3
+- to copy certs file for ssl services.
+
+* Sat Jun 10 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ2
+- remove APOP extensions.
+
+* Sat Jun 10 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-0BQ1
+- add SMTPS, submission port, SMTP Auth, POPS and IMAPS functions.
+
+* Thu May 04 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ21
+- modify forward.pl to fix the .forward issue with cmu by C. Hemsing.
+
+* Tue Apr 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ20
+- modify validate_alias.pl to remove 'amanda' alias from the reserved list by Brian.
+
+* Sun Apr 16 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ19
+- modify validate_alias.pl to add 'amanda' alias to the reserved list.
+
+* Sat Apr 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ18
+- modify validate_alias.pl to remove address usuful used.
+
+* Tue Mar 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ17
+- Relaying for your entire network is kind of stupid. By Brian.
+
+* Fri Feb 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ16
+- modify the link for smrsh.
+
+* Tue Feb 13 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ15
+- modified validate_alias.pl to reject the user who will be reserved.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ14
+- modified validate_alias.pl to reject the user which in /etc/mail/aliases.
+
+* Wed Nov 16 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ13
+- don't restart sendmail, if sendmail is already enabled.
+
+* Fri Oct 28 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ12
+- modified apop handler that quoated popauth command.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ11
+- rebuild with devel-tools 0.5.1
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ10
+- modified Group tag in rpmdefs.tmpl.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-92BQ9
+- clean up spec file.
+<end $CHANGELOG>

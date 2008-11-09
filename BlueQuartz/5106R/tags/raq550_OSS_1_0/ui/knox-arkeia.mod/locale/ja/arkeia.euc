@@ -1,0 +1,82 @@
+msgid "arkeia"
+msgstr "Knox Arkeia"
+
+msgid "arkeia_help"
+msgstr "[[knox-arkeia.settings]] を変更できます。"
+
+msgid "settings"
+msgstr "Knox Arkeia バックアップの設定"
+
+msgid "enabled"
+msgstr "クライアントを有効にする"
+
+msgid "enabled_help"
+msgstr "Knox Arkeia バックアップクライアントの ON/OFF を切り替えます。"
+
+msgid "server_empty"
+msgstr "[[knox-arkeia.arkeia]] バックアップサーバを有効にするには、有効なホスト名または IP アドレスを指定してください。"
+
+msgid "server_invalid"
+msgstr "指定したホスト名または IP アドレスは、DNS により確認できません。正常な動作のためには、バックアップサーバのホスト名または IP アドレスを [[knox-arkeia.arkeia]] バックアップの DNS に入力してください。"
+
+msgid "server"
+msgstr "[[knox-arkeia.arkeia]] サーバ名"
+
+msgid "server_help"
+msgstr "サーバの正しいドメインネームまたは IP アドレスを指定してください｡正しいドメインネームの形式は server.domain.com (指定例： www.example.com) です。"
+
+msgid "server_invalid"
+msgstr "[[VAR.invalidValue]] は [[knox-arkeia.server]] には指定できません。 [[knox-arkeia.server_help]]"
+
+msgid "server_dns_error"
+msgstr "指定された Arkeia バックアップサーバが見つかりません。ネットワークへの接続と DNS の設定を確認してください。"
+
+msgid "client_dns_erro"
+msgstr "このクライアントマシンの DNS エントリが不正です。正引きおよび逆引き DNS エントリをご確認ください。"
+
+msgid "port"
+msgstr "ポート番号"
+
+msgid "port_help"
+msgstr "Knox Arkeia バックアップクライアントを使って Knox サービスを利用している他のホスト（Knox Arkeia バックアップサーバを含む）と通信するには、正しいポート番号（有効な範囲は 0 〜 65535）を指定する必要があります。特に変更する必要がなければ、デフォルトのポート番号（617）をそのままお使いください。変更する場合には、Knox サービスを使っているネットワーク上の他のホストにも同じポート番号を指定してください。"
+
+msgid "port_empty"
+msgstr "[[knox-arkeia.port_help]]"
+
+msgid "port_invalid"
+msgstr "[[knox-arkeia.port_help]]"
+
+msgid "start_daemon_failed"
+msgstr "サービスの起動中にエラーが発生しました。"
+
+msgid "stop_daemon_failed"
+msgstr "サービスの停止中にエラーが発生しました。"
+
+msgid "am_stopped"
+msgstr "[[knox-arkeia.arkeia] クライアントデーモンは動作しておらず、起動することもできませんでした。[[base-apache.amAdmservNameTag]] で、[[knox-arkeia.arkeia] クライアントデーモンを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。[[knox-arkeia.arkeia] クライアントデーモンが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも [[knox-arkeia.arkeia] クライアントデーモンが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "am_restarted"
+msgstr "[[knox-arkeia.arkeia] クライアントデーモンを再起動しました。"
+
+msgid "am_running"
+msgstr "[[knox-arkeia.arkeia] クライアントデーモンは動作しています。"
+
+msgid "am_unknown"
+msgstr "[[knox-arkeia.arkeia] デーモンの状態は不明です。"
+
+msgid "firewall"
+msgstr "ファイヤウォールのサポート"
+
+msgid "firewall_help"
+msgstr "[[knox.arkeia.port_help]]"
+
+msgid "set_server_failed"
+msgstr "[[knox-arkeia.arkeia]] サーバ名を保存できませんでした。"
+
+msgid "set_port_failed"
+msgstr "[[knox-arkeia.arkeia]] ポート番号を保存できませんでした。"
+
+msgid "bad_parameters"
+msgstr "[[knox-arkeia.arkeia]] サービスへの変更は保存されませんでした。"
+
+

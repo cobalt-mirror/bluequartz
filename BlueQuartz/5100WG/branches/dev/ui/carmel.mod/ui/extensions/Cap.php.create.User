@@ -1,0 +1,63 @@
+<?php
+// $Id: Cap.php.create.User 3 2003-07-17 15:19:15Z will $
+// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+// UI extension class for Capibilities for Users
+
+include('UIExtension.php');
+
+class CapExtension extends UIExtension
+{
+
+		function cmp($va, $vb) {
+                        $a = $va["sort"];
+                        $b = $vb["sort"];
+                        if ($a == $b) return 0;
+                        return ($a < $b ? -1 : 1);
+                }
+
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	/*
+	 *adds a second page to the user screen to allow for capabilities.
+	 */
+	{
+		$cce = $ServerScriptHelper->getCceClient();
+		$i18n = $ServerScriptHelper->getI18n();
+		$defaults = $cce->get($parameters["CCE_SERVICES_OID"], "Cap");
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-carmel");		
+
+		//assume paged block
+		$container->addPage("security", $factory->getLabel("security"));
+
+		/* take care of the capabilities stuff */
+		$capgroups =& $ServerScriptHelper->getAllCapabilityGroups();
+		/* get rid of any nested capgroups */
+		$masterExpansion = array();
+		foreach ($capgroups as $cap) {
+			if ($cap["expanded"] != NULL) {
+				$masterExpansion = array_merge($masterExpansion, array_diff($cap["expanded"], array($cap["name"])));
+			}
+		}
+
+		include_once("uifc/Label.php");
+
+		usort($capgroups, "cmp");
+		foreach ($capgroups as $cap) {
+			// If I can't do this..  then I don't show it.
+			if (!$ServerScriptHelper->getAllowed($cap["name"]))
+				continue;
+			if (in_array($cap["name"], $masterExpansion))
+				continue;
+			$container->addFormField(
+				$factory->getBoolean("capgroup_" . $cap["name"], false, "rw"),
+				new Label($container->getPage(), $i18n->interpolate($cap["nameTag"]), $i18n->interpolate($cap["nameTagHelp"])),
+				"security"
+			);
+		}
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+
+	}
+}
+?>

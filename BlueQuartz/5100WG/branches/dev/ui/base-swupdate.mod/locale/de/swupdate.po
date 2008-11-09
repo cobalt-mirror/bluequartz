@@ -1,0 +1,607 @@
+# ----- SW Updates Tab
+msgid "software"
+msgstr "BlueLinQ"
+
+msgid "software_help"
+msgstr "Im Abschnitt BlueLinQ können Sie Ihr System auf neue oder aktualisierte Softwarepakete überprüfen oder diese installieren."
+
+
+# ----- Menu items
+
+msgid "softwareNew"
+msgstr "Neue Software"
+
+msgid "softwareNew_help"
+msgstr "Hier können Sie Ihr System auf neue Softwareanwendungen überprüfen und diese installieren."
+
+msgid "softwareUpdate"
+msgstr "Updates"
+
+msgid "softwareUpdate_help"
+msgstr "Hier können Sie Ihr System auf Updates für bereits installierte Software überprüfen und die Updates installieren."
+
+msgid "softwareInstalled"
+msgstr "Installierte Software"
+
+msgid "softwareInstalled_help"
+msgstr "Hier finden Sie eine Liste der Softwarepakete, die derzeit auf dem System installiert sind."
+
+msgid "softwareSettings"
+msgstr "Einstellungen"
+
+msgid "softwareSettings_help"
+msgstr "Hier können Sie [[base-swupdate.software]]-Einstellungen ändern."
+
+
+# ----- Splash screen message
+
+msgid "splashSoftwareMessage"
+msgstr "Mit dem Abschnitt [[base-swupdate.software]] können Sie auf Ihrem System installierte Softwareanwendungen verwalten."
+
+
+# --- Common strings
+
+msgid "install"
+msgstr "Installieren"
+
+msgid "install_help"
+msgstr "Klicken Sie hier, um das angegebene Softwarepaket zu installieren."
+
+msgid "installField"
+msgstr "Installationsdetails"
+
+msgid "installField_help"
+msgstr "Klicken Sie auf das Symbol, um weitere Informationen zum Beziehen und Installieren dieses Pakets anzuzeigen."
+
+msgid "prepare"
+msgstr "Vorbereiten"
+
+msgid "prepare_help"
+msgstr "Klicken Sie hier, um das Softwarepaket für die Installation vorzubereiten."
+
+	# package info
+msgid "nameField"
+msgstr "Name"
+
+msgid "nameField_help"
+msgstr "Zeigt den Namen des Softwarepakets an."
+
+msgid "versionField"
+msgstr "Version"
+
+msgid "versionField_help"
+msgstr "Zeigt die Version des Softwarepakets an."
+
+msgid "vendorField"
+msgstr "Anbieter"
+
+msgid "vendorField_help"
+msgstr "Zeigt den Anbieter des Softwarepakets an."
+
+msgid "copyrightField"
+msgstr "Copyright"
+
+msgid "copyrightField_help"
+msgstr "Zeigt das mit dem Softwarepaket verbundene Copyright an."
+msgid "descriptionField"
+msgstr "Beschreibung"
+
+msgid "descriptionField_help"
+msgstr "Zeigt eine Beschreibung des Softwarepakets an."
+
+msgid "licenseField"
+msgstr "Lizenz"
+
+msgid "licenseField_help"
+msgstr "Zeigt die Lizenzvereinbarung für das Paket."
+
+msgid "accept"
+msgstr "Akzeptieren"
+
+msgid "accept_help"
+msgstr "Klicken Sie hier, um die Bedingungen der Lizenzvereinbarung zu akzeptieren."
+
+msgid "decline"
+msgstr "Ablehnen"
+
+msgid "decline_help"
+msgstr "Klicken Sie hier, um die Lizenzvereinbarung abzulehnen."
+
+msgid "typeField"
+msgstr "Typ"
+
+msgid "typeField_help"
+msgstr "Zeigt den Typ des Softwarepakets an."
+
+msgid "New"
+msgstr "Neu"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "complete"
+msgstr "Komplett"
+
+msgid "locationField"
+msgstr "Speicherort"
+
+msgid "locationField_help"
+msgstr "Der Speicherort, von dem das Softwarepaket bei der Installation heruntergeladen wird."
+
+msgid "locationLocal"
+msgstr "Auf diesem Server"
+
+msgid "sizeField"
+msgstr "Größe (MB)"
+
+msgid "sizeField_help"
+msgstr "Die Größe des Pakets."
+
+msgid "uninstallableField"
+msgstr "Deinstallierbar"
+
+msgid "uninstallableField_help"
+msgstr "Dieses Feld gibt an, ob das Paket nach der Installation deinstalliert werden kann."
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "no"
+msgstr "Nein"
+
+msgid "none"
+msgstr "Keine"
+
+msgid "packagesNeededField"
+msgstr "Abhängige Pakete"
+
+msgid "packagesNeededField_help"
+msgstr "Die hier aufgeführten Pakete müssen auf dem System installiert werden, bevor dieses Paket sicher installiert werden kann."
+
+
+# --- general user input strings
+
+msgid "locationFieldEnter"
+msgstr "Speicherort"
+
+msgid "locationFieldEnter_help"
+msgstr "Geben Sie einen Speicherort ein, von dem das Softwarepaket heruntergeladen werden kann. Geben Sie eine URL ein, die entweder mit http:// oder ftp:// beginnt und mit der das Paket von einem Speicherort im Internet heruntergeladen werden kann, oder geben Sie den Dateispeicherort des Pakets ein. Klicken Sie auf Durchsuchen, um eine Datei auf Ihrer lokalen Festplatte zu wählen. Wenn Sie Pakete in das Verzeichnis /home/packages auf Ihrem Server heruntergeladen haben, können Sie auch eines dieser Pakete auswählen."
+
+msgid "invalidUrl"
+msgstr "Die angegebene URL ist ungültig. [[base-swupdate.urlField_rule]]"
+
+
+
+# ----- New Software List Page
+
+msgid "availableListNew"
+msgstr "Liste der verfügbaren neuen Software"
+
+msgid "checkNow"
+msgstr "Verfügbarkeit jetzt überprüfen"
+
+msgid "checkNow_help"
+msgstr "Klicken Sie hier, um zu überprüfen, ob neue Softwarepakete verfügbar sind."
+
+msgid "manualInstall"
+msgstr "Manuell installieren"
+
+msgid "manualInstall_help"
+msgstr "Klicken Sie hier, um Softwarepakete manuell zu installieren."
+
+msgid "removePackage"
+msgstr "Möchten Sie das [[VAR.packageName]]-Paket wirklich vom System entfernen? Dieses Paket wurde noch nicht installiert."
+
+# ----- Software Updates
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "Überprüfen Sie, ob Software-Updates verfügbar sind."
+
+msgid "manualInstallUpdate"
+msgstr "Manuell installieren"
+
+msgid "manualInstallUpdate_help"
+msgstr "Installieren Sie Software-Updates manuell."
+
+
+msgid "availableListUpdates"
+msgstr "Liste der verfügbaren Software-Updates"
+
+
+# ----- View software details & install page
+
+msgid "downloadSoftware"
+msgstr "Software installieren"
+
+msgid "unknownSize"
+msgstr "Unbekannt"
+
+msgid "rebootpopup"
+msgstr "Ihr Server muss nach der Installation dieses Pakets neu gestartet werden. Möchten Sie fortfahren?"
+
+# ----- Manual install
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "Geben Sie eine URL ein, die entweder mit http:// oder ftp:// beginnt und mit der das Paket von einem Speicherort im Internet heruntergeladen werden kann."
+
+msgid "upload"
+msgstr "Hochladen"
+
+msgid "loaded"
+msgstr "Pakete in /home/packages"
+
+msgid "fileField"
+msgstr "Speicherort der Hochladedatei"
+
+	# empty/invalid the same, specify both to be safe
+msgid "fileField_empty"
+msgstr "Sie haben keinen Dateispeicherort für ein hochzuladendes Paket ausgewählt. Klicken Sie auf Durchsuchen, um eine Datei auf Ihrer lokalen Festplatte zu wählen."
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+
+
+
+# ---- Status page
+
+msgid "installStatus"
+msgstr "Status - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Statusmeldung"
+
+msgid "statusField_help"
+msgstr "Dieses Feld zeigt den aktuellen Status des zu installierenden oder zu entfernenden Pakets an."
+
+msgid "progressField"
+msgstr "Verlauf"
+
+msgid "progressField_help"
+msgstr "Der Verlauf der Installation oder Deinstallation."
+
+msgid "dlPercent"
+msgstr "Datei [[VAR.file]] wird heruntergeladen: [[VAR.percent]]% fertig"
+
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "Initialisierung..."
+
+msgid "downloading"
+msgstr "Paket wird heruntergeladen..."
+
+msgid "installing"
+msgstr "Paket wird installiert..."
+
+msgid "executingPreInstallScript"
+msgstr "Vorinstallations-Skript(s) wird/werden ausgeführt..."
+
+msgid "executingPostInstallScript"
+msgstr "Nachinstallations-Skript(s) wird/werden ausgeführt..."
+
+msgid "installingRpm"
+msgstr "Komponente [[VAR.rpm]] wird installiert..."
+
+msgid "fail"
+msgstr "Fehlgeschlagen"
+
+msgid "success"
+msgstr "Erfolg"
+
+msgid "currentlyUninstalling"
+msgstr "Paket wird deinstalliert."
+
+msgid "cantUninstall"
+msgstr "Das Paket kann nicht entfernt werden, weil es nicht als deinstallierbar gekennzeichnet ist."
+
+msgid "dependent"
+msgstr "Das Paket kann nicht entfernt werden, weil andere Softwarepakete erfordern, dass es installiert ist. Die folgenden anderen Pakete hängen von diesem Paket ab: [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "Paket-RPMs werden entfernt."
+
+msgid "runningUninstallScript"
+msgstr "Deinstallations-Skript wird ausgeführt."
+
+msgid "uninstalled"
+msgstr "Deinstallation abgeschlossen."
+
+msgid "notUninstalled"
+msgstr "Die Deinstallation schlug fehl, weil keine Komponenten gefunden wurden, die entfernt werden konnten."
+
+msgid "packageInstallSuccess"
+msgstr "Paketinstallation erfolgreich."
+
+
+	# -- generic message for other strings
+msgid "notInstalled"
+msgstr "Das Softwarepaket wurde nicht installiert."
+
+msgid "cannotDownloadUrl"
+msgstr "Die Paketdatei konnte leider nicht von der angegebenen URL heruntergeladen werden. Bitte überprüfen Sie die URL und versuchen Sie es noch einmal. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Der Dateiname der Paketdatei ist ungültig. Bitte überprüfen Sie den Namen und versuchen Sie es noch einmal. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "Das Softwarepaket ist bereits installiert."
+
+msgid "verifyingPackage"
+msgstr "Paket wird überprüft..."
+
+msgid "badPackage"
+msgstr "Die Paketdatei ist unvollständig. Die Paketliste (packing_list) ist ungültig oder fehlt. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "Das Format der Paketdatei ist ungültig. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "Beim Hinzufügen des Pakets zur CCE-Datenbank trat ein Fehler auf. Die Paketliste (packing_list) ist möglicherweise ungültig. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "Das Softwarepaket erfordert, dass ein oder mehrere andere Softwarepakete zuerst installiert werden. Bitte installieren Sie das/die Paket(e) [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "Ein anderes Paket wird momentan installiert oder deinstalliert. Bitte versuchen Sie es noch einmal."
+
+msgid "obsoletePkg"
+msgstr "Das [[VAR.name]] Paket wurde nicht installiert, da es nicht mehr aktuell ist."
+
+msgid "badProduct"
+msgstr "Das [[VAR.name]] Paket wurde nicht installiert, da es nicht für diesen Server konzipiert wurde."
+
+msgid "hostNotFound"
+msgstr "Der in der URL für [[VAR.file]] angegebene Host wurde nicht gefunden. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "Das Paket [[VAR.file]] wurde am angegebenen Speicherort nicht gefunden."
+
+msgid "hostRefused"
+msgstr "Der in der URL für [[VAR.file]] angegebene Host verweigerte die Verbindung."
+
+msgid "notDownloaded"
+msgstr "Das Paket [[VAR.file]] konnte nicht richtig heruntergeladen werden, weil vermutlich der Server, auf dem sich das Paket befindet, Probleme verzeichnete."
+
+msgid "noLocation"
+msgstr "Kein Speicherort zum Herunterladen des Pakets angegeben."
+
+msgid "missingRPM"
+msgstr "Die Paketdatei ist unvollständig. Ein oder mehrere RPM(s) fehlt/fehlen."
+
+msgid "missingSRPM"
+msgstr "Die Paketdatei ist unvollständig. Ein oder mehrere SRPM(s) fehlt/fehlen."
+
+msgid "preInstallFailed"
+msgstr "Mit der Paketdatei ist ein Problem aufgetreten. Das Vorinstallations-Skript ist fehlgeschlagen."
+
+msgid "postInstallFailed"
+msgstr "Mit der Paketdatei ist ein Problem aufgetreten. Das Nachinstallations-Skript ist fehlgeschlagen."
+
+msgid "rpmInstallError"
+msgstr "Mit der Paketdatei ist ein Problem aufgetreten. Bei der Installation des RPM [[VAR.rpm]] ist ein Fehler aufgetreten."
+
+msgid "errorWGET"
+msgstr "Leider trat beim Versuch, wget auszuführen, ein Fehler auf."
+
+msgid "rebooting"
+msgstr "Der Server wird jetzt neu gestartet. Er steht in wenigen Minuten wieder zur Verfügung."
+
+msgid "uninstallrefresh"
+msgstr "Das Softwarepaket wurde erfolgreich deinstalliert. In Kürze wird die Benutzeroberfläche aktualisiert, um die von dem Paket gelieferten Dienste zu entfernen."
+
+msgid "installrefresh"
+msgstr " Das Softwarepaket wurde erfolgreich installiert. In Kürze wird die Benutzeroberfläche aktualisiert, um Ihnen Zugriff auf die neuen Dienste zu gewähren."
+
+# ------ Installed Software List
+
+msgid "installedList"
+msgstr "Liste der installierten Software"
+
+msgid "uninstall"
+msgstr "Deinstallieren"
+
+msgid "uninstall_help"
+msgstr "Wenn das Softwarepaket deinstalliert werden kann, klicken Sie auf die Schaltfläche Deinstallieren, um es vom System zu entfernen."
+
+msgid "uninstallConfirm"
+msgstr "Wollen Sie [[VAR.packageName]] wirklich deinstallieren?"
+
+
+
+# ------ Settings page
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]]-Einstellungen"
+
+msgid "basic"
+msgstr "Grundlegend"
+
+msgid "basic_help"
+msgstr "Hier finden Sie die am häufigsten verwendeten Einstellungen."
+
+msgid "advanced"
+msgstr "Erweitert"
+
+msgid "advanced_help"
+msgstr "Hier finden Sie weniger verwendete Einstellungen."
+
+msgid "scheduleField"
+msgstr "Abfrageplan"
+
+msgid "scheduleField_help"
+msgstr "Ändern Sie, wie oft der [[base-swupdate.software]]-Server auf neue oder aktualisierte Softwarepakete überprüft wird."
+
+msgid "daily"
+msgstr "Täglich"
+
+msgid "weekly"
+msgstr "Wöchentlich"
+
+msgid "monthly"
+msgstr "Monatlich"
+
+msgid "never"
+msgstr "Nie"
+
+msgid "emailField"
+msgstr "Benachrichtigungs-E-Mail"
+
+msgid "emailField_help"
+msgstr "Geben Sie die E-Mail-Adresse(n) ein, an die Benachrichtigungen über neue oder aktualisierte Softwarepakete oder Fehler bei Software-Update-Abfragen gesendet werden sollen. Wann E-Mail-Benachrichtigungen gesendet werden, hängt von der von Ihnen ausgewählten Option für den Software-Melder ab. Lassen Sie dieses Feld leer, wenn Sie diese Benachrichtigungen nicht erhalten möchten."
+
+msgid "pkgOIDmissing"
+msgstr "Beim Abruf von Informationen zu dem Paket ist ein Problem aufgetreten. Das Paket kann bereits gelöscht worden sein. Falls dies nicht der Fall ist, wenden Sie sich bitte an den Technische Kundendienst: ([[base-sauce-basic.techSupportEmail]])."
+
+msgid "serverField"
+msgstr "Software-Update-Server"
+
+msgid "defaultServer"
+msgstr "http://updates.cobalt.com/packages/"
+
+msgid "serverField_help"
+msgstr "Geben Sie die HTTP-Adresse(n) zur Abfrage von Software-Updates ein. Der Speicherort des Update-Servers von Cobalt Networks lautet [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] konnte den angegebenen Server nicht kontaktieren. Bitte stellen Sie sicher, dass er von Ihrem Server aus zugänglich ist."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] konnte den HTTP-Proxy-Server Server nicht kontaktieren. Bitte stellen Sie sicher, dass er von Ihrem Server aus zugänglich ist."
+
+msgid "httpProxyField"
+msgstr "HTTP-Proxy:Port"
+
+msgid "httpProxyField_help"
+msgstr "Geben Sie den Proxy-Server und Port für HTTP-Abfragen ein, wenn ein Proxy-Server außerhalb Ihrer Brandmauer benötigt wird. Beispiel: proxy.meinefirma.com:8080."
+
+msgid "ftpProxyField"
+msgstr "FTP-Proxy:Port"
+
+msgid "ftpProxyField_help"
+msgstr "Geben Sie den Proxy-Server und Port für FTP-Abfragen ein, wenn ein Proxy-Server außerhalb Ihrer Brandmauer benötigt wird. Beispiel: proxy.meinefirma.com:8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] konnte den FTP-Proxy-Server nicht kontaktieren. Bitte stellen Sie sicher, dass er von Ihrem Server aus zugänglich ist."
+
+msgid "autoField"
+msgstr "Updates automatisch installieren"
+
+msgid "autoField_help"
+msgstr " Wenn diese Funktion aktiviert ist, installiert [[base-swupdate.software]] automatisch authentifizierte Pakete."
+
+msgid "requireSignatureField"
+msgstr "Pakete müssen authentifiziert werden."
+
+msgid "requireSignatureField_help"
+msgstr "Wenn diese Funktion aktiviert ist, installiert [[base-swupdate.software]] nur Pakete, die eine Authentifizierungsprüfung bestanden haben."
+
+msgid "checkSetField"
+msgstr "Zu überprüfende Software"
+
+msgid "checkSetField_help"
+msgstr "Wählen Sie den Softwaretyp, nach dem bei jeder Software-Update-Abfrage geprüft wird."
+
+msgid "all"
+msgstr "Jede Software"
+
+msgid "updates"
+msgstr "Nur Updates"
+
+msgid "notificationLightField"
+msgstr "Software-Melder"
+
+msgid "notificationLightField_help"
+msgstr "Ändern Sie, welcher neue Softwaretyp den Software-Melder aktiviert und ggf. in Benachrichtigungs-E-Mails erscheint."
+
+
+# --- software update icon
+
+msgid "update"
+msgstr "Update"
+
+msgid "update_help"
+msgstr "Klicken Sie hier, um Ihr System auf neue oder aktualisierte Softwarepakete zu überprüfen und diese zu installieren. Dieses Symbol ändert seine Farbe, wenn neue oder aktualisierte Softwarepakete verfügbar sind."
+
+
+#---- Handler messages
+
+msgid "noServersFound"
+msgstr "Es wurden keine Software-Update-Server gefunden. Bitte überprüfen Sie Ihre Internetverbindung und die [[base-swupdate.software]]-Einstellungen."
+
+msgid "queryError"
+msgstr "Leider trat bei der Abfrage des Software-Update-Servers ein Fehler auf. Bitte überprüfen Sie Ihre Internetverbindung und die [[base-swupdate.software]]-Einstellungen."
+
+msgid "noValidPackageListGrabbed"
+msgstr "[[base-swupdate.software]] konnte keine Liste der Softwarepakete abrufen. Bitte überprüfen Sie Ihre Internetverbindung und die [[base-swupdate.software]]-Einstellungen."
+
+
+# ----- Strings for emails
+
+
+msgid "QueryErrorSubject"
+msgstr "Bei der Abfrage des [[base-swupdate.software]]-Servers trat ein Problem auf."
+
+msgid "NoProductInfoBody"
+msgstr "Der [[base-swupdate.software]]-Server hat Ihr Produkt nicht erkannt. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "Für den [[base-swupdate.software]]-Server wurde keine URL angegeben."
+
+msgid "NoSWUpdateServerBody"
+msgstr "Der Speicherort des [[base-swupdate.software]]-Servers konnte nicht bestimmt werden. Bitte gehen Sie zur Seite mit den [[base-swupdate.software]]-Einstellungen und geben Sie eine URL für den [[base-swupdate.software]]-Server an."
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] konnte die Systeminformationen nicht bestimmen."
+
+msgid "NoSystemInfoBody"
+msgstr "Der Server konnte die Systeminformationen nicht bestimmen, die vom [[base-swupdate.software]]-Server benötigt werden. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] konnte keine Liste der Pakete vom [[base-swupdate.software]]-Server unter [[VAR.location]] abrufen. Bitte vergewissern Sie sich, dass [[VAR.location]] ein gültiger [[base-swupdate.software]]-Server ist und dass Sie ihn über Ihren Web-Browser abfragen können."
+
+msgid "BadPackageFmtBody"
+msgstr "Der Server hat Paketinformationen zurückgegeben, die [[base-swupdate.software]] nicht verstanden hat. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "Es stehen keine Pakete zum Herunterladen zur Verfügung."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] erhielt einen unbekannten Fehler ([[VAR.error]]), als versucht wurde, den [[VAR.location]]-Server zu kontaktieren."
+
+msgid "NewUpdatesSubject"
+msgstr "Neue Software ist für Ihren Server verfügbar"
+
+msgid "NewUpdatesBody"
+msgstr "Bitte überprüfen Sie das [[base-swupdate.software]]-Menü, wenn Sie eines der folgenden Pakete installieren möchten:"
+
+msgid "softwareNewSun_help"
+msgstr "Anzeigen und Installieren verfügbarer neuer Software von Sun Cobalt."
+
+msgid "softwareUpdateSun"
+msgstr "Sun Cobalt Updates"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, BlueLing zu verwalten.  Damit kann neue Software installiert und vorhandene Software aktualisiert werden."
+
+msgid "capgroup_adminBlueLinq"
+msgstr "Verwaltung von BlueLinq"
+
+msgid "softwareNewSun"
+msgstr "Sun Cobalt Software"
+
+msgid "invalidUpload"
+msgstr "Fehler beim Hochladen der angegebenen Datei."
+
+msgid "softwareUpdateSun_help"
+msgstr "Anzeigen und Installieren verfügbarer Software-Updates von Sun Cobalt."
+

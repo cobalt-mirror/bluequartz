@@ -1,0 +1,17 @@
+<!-- 
+  $Id: basic.schema 201 2003-07-18 19:11:07Z will $ 
+  Copyright 2000, Cobalt Networks.
+  author: jmayer@cobalt.com
+  
+  This file contains a few type definitions that are useful
+  across several different base modules and could be of use
+  to others as well.
+-->
+
+<!-- type definitions -->
+
+<typedef name="devicename" type="re" data="^[A-Za-z0-9]+$"/>
+
+<typedef name="accountname" type="re" data="^[a-z][a-z0-9_.-]{0,11}$"/>
+
+<!-- end of basic.schema -->

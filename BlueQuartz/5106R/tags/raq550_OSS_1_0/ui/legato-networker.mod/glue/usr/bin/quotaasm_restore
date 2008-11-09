@@ -1,0 +1,185 @@
+#!/bin/sh
+#
+# $Id: quotaasm_restore,v 1.1 2001/09/14 19:05:20 bservies Exp $
+# Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+#
+
+# usage: quotaasm_recover filename
+#
+# Description:
+# 	This script determines the directory from the filename path and changes
+# into that directory before exec'ing tar to extract the recover stream origin-
+# ally created by quotaasm.
+#
+#
+
+
+#
+# Print on stderr
+#
+asm_echo() {
+	echo "$*" >&2
+}
+
+#
+# Print an error message
+#
+asm_error() {
+	asm_echo "$Myname: $*"
+}
+
+#
+# Check quota information for the filesystems containing the given list of
+# files.
+#
+asm_quotaop() {
+
+	#
+	# Determine which operation is requested and set up the appropriate
+	# command for the given verbosity level.
+	#
+	op=$1
+	shift
+	case "$op" in
+	on)
+		if [ $VVerbose = true ]; then
+			CMD="/sbin/quotaon -v"
+		else
+			CMD="/sbin/quotaon"
+		fi
+		;;
+	off)
+		if [ $VVerbose = true ]; then
+			CMD="/sbin/quotaoff -v"
+		else
+			CMD="/sbin/quotaoff"
+		fi
+		;;
+	check)
+		if [ $VVerbose = true ]; then
+			CMD="/sbin/quotacheck -vug"
+		else
+			CMD="/sbin/quotacheck -ug"
+		fi
+		;;
+	*)
+		/bin/echo "Invalid quota operation requested: $op"
+		exit 1
+		;;
+	esac
+
+
+	while [ $# -gt 0 ] ; do
+		fsname=$1
+		if [ -f $fsname ]; then
+			#
+			# The given argument is a file.  Get it's parent
+			# directory.
+			#
+			fsname=`/usr/bin/dirname $1`
+		fi
+
+		/bin/grep $fsname /etc/fstab | /bin/grep quota > /dev/null 2>&1
+		RESULT=$?
+		if [ ${RESULT} -eq 0 ]; then
+			#
+			# grep returns 0 if matches were found.  The
+			# filesystem exists in fstab and has the quota
+			# option turned on.  Run the requested command.
+			#
+			$CMD $fsname > /dev/null 2>&1
+		fi
+
+		# Check the next filesystem
+		shift
+	done
+}
+
+
+#
+# Process arguments
+#
+# Sets the following shell variables:
+# Myname=	Name of this ASM
+# Exec_path= 	Path for ASM executables
+# Verbose=	If true print info
+# VVerbose=	If true print all file names
+#
+asm_setup() {
+	Myname=`/bin/basename $0`
+	Exec_path=`/usr/bin/dirname $0`
+	Ppath=`pwd`
+	Verbose=false
+	VVerbose=false
+	shift
+	while [ $# -gt 0 ]; do
+		case "$1" in
+		-v)
+			if [ $Verbose = true ]; then
+				VVerbose=true
+				Asm_args="$Asm_args $1"
+			else
+				Verbose=true
+				Nsrfile_args="$Nsrfile_args $1"
+			fi
+			shift
+			;;
+		-p)
+			arg=`dirname $2`
+			if [ "." != "$arg" ]; then
+				#
+				# We are not in the correct directory.  The
+				# directory has a '.' pre-pended to it for
+				# reasons unknown.  Strip that off before
+				# continuing.
+				#
+				Ppath=`expr substr $arg 2 length $arg`
+				cd $Ppath
+			fi
+			shift
+			shift
+			;;
+		-*)
+			asm_error "Unknown flag $1"
+			asm_usage
+			;;
+		*)
+			Files="$Files $1"
+			shift
+			;;
+		esac
+	done
+}
+
+#
+# Begining of main shell program
+#
+asm_setup $0 $*
+
+#
+# Turn quotas off for the filesystems containing the list of files
+# being restored.
+#
+asm_quotaop off $Ppath
+
+#
+# Process the recover stream
+#
+CMD="/bin/tar --extract --file -"
+if [ $VVerbose = true ]; then
+	CMD="/bin/tar --extract --verbose --file -"
+	asm_echo $CMD
+fi
+${CMD}
+
+# Turn quotas back on to use the new files
+asm_quotaop on $Ppath
+
+#
+# Update the quota information for the filesystems to ensure it is
+# correct.
+#
+asm_quotaop check $Ppath
+
+# All done
+exit 0

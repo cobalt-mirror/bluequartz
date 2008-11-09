@@ -1,0 +1,84 @@
+#!/bin/sh
+#
+# named           This shell script takes care of starting and stopping
+#                 named (BIND DNS server).
+#
+# chkconfig: 345 55 45
+# description: named (BIND) is a Domain Name Server (DNS) \
+# that is used to resolve host names to IP addresses.
+# probe: true
+
+DOMAIN=base-services
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 1
+
+[ -f /usr/sbin/named ] || exit 1
+
+[ -f /etc/named.conf ] || exit 1
+
+# See how we were called.
+case "$1" in
+  start)
+        # Start daemons.
+	LINE1=`getmsg named_start_1`
+	LINE2=`getmsg named_start_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+        daemon named -u named
+        echo
+        touch /var/lock/subsys/named
+        ;;
+  stop)
+        # Stop daemons.
+	LINE1=`getmsg named_stop_1`
+	LINE2=`getmsg named_stop_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+        killproc named
+        rm -f /var/lock/subsys/named
+        echo
+        ;;
+  status)
+        #/usr/sbin/ndc status
+	status named
+        exit $?
+        ;;
+  hard-restart)
+        killproc named
+        sleep 2
+	$0 start
+        ;;
+  restart)
+        #/usr/sbin/ndc restart
+	$0 stop
+	$0 start
+        exit $?
+        ;;
+  reload)
+        #/usr/sbin/ndc reload
+	$0 stop
+	$0 start
+        exit $?
+        ;; 
+  probe)
+        # named knows how to reload intelligently; we don't want linuxconf
+        # to offer to restart every time
+        /usr/sbin/ndc reload >/dev/null 2>&1 || echo start
+        exit 0
+        ;;
+  
+  *)
+        echo "Usage: named {start|stop|status|restart|reload}"
+        exit 1
+esac
+
+exit 0

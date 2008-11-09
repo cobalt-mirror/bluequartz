@@ -1,0 +1,488 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "wizardLicense"
+msgstr "Binärcode-Lizenzvereinbarung"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Administrator-Einstellungen"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Administrator-Einstellungen"
+
+msgid "adminMessage"
+msgstr "[[base-wizard.productName]] erfordert einen Administrator, der Aufgaben wie das Hinzufügen von Benutzern und Gruppen sowie das Konfigurieren von Einstellungen übernimmt. Der Benutzername des Administrators lautet admin. Geben Sie für den Administrator ein schwer zu erratendes Passwort ein. Bitte merken Sie sich das Passwort."
+
+msgid "adminNameField"
+msgstr "Benutzername"
+
+msgid "adminNameField_help"
+msgstr "Der Name, den das System verwendet, um den Administrator zu identifizieren. Dieser Name kann nicht geändert werden."
+
+msgid "passwordField"
+msgstr "Passwort"
+
+msgid "passwordField_rule"
+msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie Zahlen und Satzzeichen bestehen. Es sollten keine in einem Wörterbuch zu findenden Wörter verwendet werden. Bei Passwörtern wird die Groß- und Kleinschreibung berücksichtigt."
+
+msgid "passwordField_help"
+msgstr "Geben Sie das Passwort ein, das das System verwendet, um den Administrator zu identifizieren. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "passwordField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.passwordField]] eingegeben. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "Neues Passwort"
+
+msgid "newPasswordField_help"
+msgstr "Geben Sie das Passwort ein, das das System verwendet, um den Administrator zu identifizieren. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Zeiteinstellungen"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Zeiteinstellungen"
+
+msgid "timeMessage"
+msgstr "[[base-wizard.productName]] erfordert das korrekte Datum und die Uhrzeit, um richtig zu funktionieren. Bitte geben Sie das aktuelle Datum und die Uhrzeit sowie die entsprechende Zeitzone ein."
+
+msgid "dateField"
+msgstr "Datum und Uhrzeit"
+
+msgid "dateField_help"
+msgstr "Stellen Sie das aktuelle Datum ein."
+
+msgid "timeField"
+msgstr "Uhrzeit"
+
+msgid "timeField_help"
+msgstr "Stellen Sie die aktuelle Uhrzeit ein."
+
+msgid "timeZoneField"
+msgstr "Zeitzone"
+
+msgid "timeZoneField_help"
+msgstr "Stellen Sie die Zeitzone ein, in der sich dieser Server befindet."
+
+msgid "wizardUsers"
+msgstr "Benutzereinstellungen"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Gruppeneinstellungen"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Netzwerkintegration"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "Netzwerkeinstellungen"
+
+msgid "networkMessage"
+msgstr "[[base-wizard.productName]] kann so eingerichtet werden, dass das Programm in einem Intranet innerhalb Ihrer Organisation sowie im ganzen Internet verfügbar ist. Bitte geben Sie den Host- und Domänennamen dieses Servers sowie einen erreichbaren Domänenserver und eine Methode für Netzwerkverbindungen ein."
+
+msgid "hostNameField"
+msgstr "Hostname"
+
+msgid "hostNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Eine gültige Eingabe ist z. B. www."
+
+msgid "hostNameField_help"
+msgstr "Geben Sie den Hostnamen dieses Servers ein. Der Host- und der Domänenname sollten diesen Server eindeutig identifizieren. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domänenname"
+
+msgid "domainNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Eine gültige Eingabe ist z. B. meinbuero.de."
+
+msgid "domainNameField_help"
+msgstr "Geben Sie den Domänennamen dieses Servers ein. Der Host- und der Domänenname sollten diesen Server eindeutig identifizieren. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS-Server"
+
+msgid "dnsAddressesField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1. Wenn Sie dieses Feld leer lassen, kann dieser Rechner keine anderen Rechner nach dem Host- oder Domänennamen finden und es kommt zu Netzwerkproblemen."
+
+msgid "dnsAddressesField_help"
+msgstr "Geben Sie die IP-Adresse oder -Adressen Ihres bzw. Ihrer lokalen Domänennamen-Servers/Server ein. Geben Sie jeweils eine Adresse pro Zeile ein. Ein Domänennamen-Server übersetzt Host- und Domänennamen in IP-Adressen und umgekehrt. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Internetverbindung"
+
+msgid "internetField_help"
+msgstr "Wählen Sie den Typ der Internetverbindung aus, der mit diesem Server verwendet wird."
+
+msgid "none"
+msgstr "Keine oder nur Intranetverwendung"
+
+msgid "broadband"
+msgstr "Kabelmodem oder DSL"
+
+msgid "lan"
+msgstr "Gateway im lokalen Netzwerk (LAN)"
+
+msgid "narrowband"
+msgstr "Analogmodem oder ISDN"
+
+msgid "wizardBroadband"
+msgstr "Broadband-Einstellungen"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Broadband-Einstellungen"
+
+msgid "broadbandMessage"
+msgstr "Ihr Kabelmodem oder Ihre DSL-Verbindung sollte mit der sekundären Schnittstelle des [[base-wizard.productName]] verbunden sein. Geben Sie die entsprechenden Konfigurationseinstellungen ein, die Sie von Ihrem Internet-Dienstanbieter erhalten haben."
+
+msgid "networkField"
+msgstr "Sekundäre Schnittstelle"
+
+msgid "networkField_help"
+msgstr "Wählen Sie die entsprechende Netzwerkkonfiguration für die sekundäre Schnittstelle dieses Servers aus. Ihr Internet-Dienstanbieter kann Ihnen die für diesen Schritt benötigten Informationen bereitstellen."
+
+msgid "dhcp"
+msgstr "Automatisch mit dynamischem Host-Konfigurationsprotokoll (DHCP) abrufen"
+
+msgid "dhcpHostNameField"
+msgstr "Client-Hostname"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Eine gültige Eingabe ist z. B. www.meinbuero.de."
+
+msgid "dhcpHostNameField_help"
+msgstr "Geben Sie den Hostnamen ein, der diesen Server als dynamischen Host-Konfigurationsprotokoll (DHCP)-Client identifiziert. [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client-Bezeichner"
+
+msgid "dhcpClientIdField_help"
+msgstr "Geben Sie die Identifikationszeichenfolge ein, die diesen Server als dynamischen Host-Konfigurationsprotokoll (DHCP)-Client identifiziert."
+
+msgid "pppoe"
+msgstr "Automatisch mit Point-to-Point-Protokoll über Ethernet (PPPoE) abrufen"
+
+msgid "pppUserNameField"
+msgstr "Benutzername"
+
+msgid "pppUserNameField_help"
+msgstr "Geben Sie den Benutzernamen ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "pppPasswordField"
+msgstr "Passwort"
+
+msgid "pppPasswordField_help"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.pppPasswordField]] eingegeben."
+
+msgid "pppPasswordField_help"
+msgstr "Sie haben keinen Wert für [[base-wizard.pppPasswordField]] eingegeben."
+
+msgid "static"
+msgstr "Manuell angeben"
+
+msgid "ipAddressField"
+msgstr "IP-Adresse"
+
+msgid "ipAddressField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "ipAddressField_help"
+msgstr "Geben Sie die IP-Adresse der sekundären Schnittstelle ein, die meist mit der Internet-Seite verbunden ist. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Subnetzmaske"
+
+msgid "netMaskField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 255.255.255.0."
+
+msgid "netMaskField_help"
+msgstr "Geben Sie die Netzwerkmaske der primären Schnittstelle ein. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "gatewayField_help"
+msgstr "Geben Sie die IP-Adresse Ihres lokalen Netzwerk-Gateways ein. Über ein Netzwerk-Gateway (auch Router genannt) können Sie eine Verbindung mit Computern außerhalb Ihres lokalen Netzwerkbereichs herstellen. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Sekundäre Schnittstelle"
+
+msgid "ipAddressField2"
+msgstr "IP-Adresse"
+
+msgid "ipAddressField2_help"
+msgstr "Geben Sie die IP-Adresse der sekundären Schnittstelle ein, die meist mit der Internet-Seite verbunden ist. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Die Felder IP-Adresse und IP-Netzwerkmaske müssen entweder beide ausgefüllt oder beide leer sein."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "Geben Sie die Netzwerkmaske der sekundären Schnittstelle ein. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC-Adresse"
+
+msgid "macAddressField_help" 
+msgstr "Die Media Acess Control (MAC)-Adresse ist die Hardware-Adresse der Netzwerk-Schnittstellenkarte. Diese Hardware-Adresse kommt nur einmal vor und kann nach der Herstellung nicht geändert werden."
+
+msgid "wizardLan"
+msgstr "Lokale Netzwerkeinstellungen"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Geben Sie das Standard-Gateway für diesen Server ein. Wenn sich das Gateway im Netzwerk befindet, das mit der sekundären Schnittstelle verbunden ist, geben Sie die Schnittstellen-Informationen ebenfalls ein."
+
+msgid "lanSettings"
+msgstr "Lokale Netzwerkeinstellungen"
+
+msgid "wizardModem"
+msgstr "Modemeinstellungen"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Ihr Analogmodem oder Ihre ISDN-Verbindung sollte mit der seriellen Port-Schnittstelle des [[base-wizard.productName]] verbunden sein. Geben Sie die entsprechenden Konfigurationseinstellungen ein, die Sie von Ihrem Internet-Dienstanbieter erhalten haben."
+
+msgid "modemSettings"
+msgstr "Modemeinstellungen"
+
+msgid "connModeField"
+msgstr "Verbindungsmodus"
+
+msgid "connModeField_help"
+msgstr "Geben Sie an, ob die Modemverbindung nur hergestellt werden soll, wenn dies für eine ausgehende Verbindung notwendig ist, immer hergestellt werden soll oder nie hergestellt werden soll."
+
+msgid "demand"
+msgstr "Verbindung nur bei Bedarf"
+
+msgid "on"
+msgstr "Verbindung immer hergestellt"
+
+msgid "off"
+msgstr "Verbindung immer deaktiviert"
+
+msgid "userNameField"
+msgstr "Benutzername des Wählverbindungskontos"
+
+msgid "userNameField_help"
+msgstr "Geben Sie den Benutzernamen des Wählverbindungskontos ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "userNameField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.userNameField]] eingegeben. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Passwort des Wählverbindungskontos"
+
+msgid "modemPasswordField_help"
+msgstr "Geben Sie das Passwort des Wählverbindungskontos ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "modemPasswordField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.modemPasswordField]] eingegeben. Geben Sie das Passwort des Wählverbindungskontos ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "modemPhoneField"
+msgstr "Telefonnummer für Wählverbindung"
+
+msgid "modemPhoneField_help"
+msgstr "Geben Sie die Telefonnummer für die Wählverbindung mit Ihrem Internet-Dienstanbieter ein."
+
+msgid "initStringField"
+msgstr "Modeminitialisierungs-Zeichenfolge"
+
+msgid "initStringField_help"
+msgstr "Geben Sie die Modeminitialisierungs-Zeichenfolge ein, die vor dem Wählen an das Modem weitergegeben wird."
+
+msgid "initStringField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.initStringField]] eingegeben. Sie müssen eine Initialisierungs-Zeichenfolge eingeben, da der Server Ihr Modem sonst nicht verwenden kann. Wenn Sie die Standard-Initialisierungs-Zeichenfolge Ihres Modems nicht kennen, versuchen Sie es mit der Eingabe von ATZ oder schlagen Sie in Ihrer Modemdokumentation nach."
+
+msgid "localIpField"
+msgstr "Lokale IP-Adresse"
+
+msgid "localIpField_help"
+msgstr "Geben Sie die lokale IP-Adresse nur an diesem Ende der Modemverbindung ein, wenn Ihr Internet-Dienstanbieter eine lokale IP-Adresse zugewiesen hat."
+
+msgid "pulseField"
+msgstr "Impulswahl aktivieren"
+
+msgid "pulseField_help"
+msgstr "Aktivieren oder deaktivieren Sie die Impulswahl. Wenn Sie diese Funktion aktivieren, wird die Impulswahl anstelle der Tonwahl verwendet. Per Vorgabe bleibt die Impulswahl deaktiviert."
+
+msgid "wizardRegistration"
+msgstr "Produktregistrierung"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Produktregistrierung"
+
+msgid "regRightArrow"
+msgstr "Pfeil nach rechts"
+
+msgid "regSubmit"
+msgstr "Absenden"
+
+msgid "regSubmit_help"
+msgstr "Klicken Sie hier, um Ihren [[base-wizard.productName]] zu registrieren."
+
+msgid "regCancel"
+msgstr "Später registrieren"
+
+msgid "regCancel_help"
+msgstr "Klicken Sie hier, um die Registrierung abzubrechen. Wenn Sie die Registrierung abbrechen, können Sie Ihren [[base-wizard.productName]] später immer noch registrieren."
+
+msgid "regTextOffline"
+msgstr "Sie müssen [[base-wizard.productName]] bei Sun Microsystems registrieren, um Anspruch auf technischen Support zu haben. Ihr Netzwerk ist offensichtlich nicht für die elektronische Registrierung konfiguriert. Registrieren Sie statt dessen [[base-wizard.productName]], indem Sie die Seite <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> besuchen und den Verknüpfungen zum Sun Cobalt Support folgen.  Sun respektiert Ihre Privatsphäre und erkennt an, dass die persönlichen Daten, die Sie uns zur Verfügung stellen, in angemessenem Umfang geschützt und verarbeitet werden müssen. Bitte lesen Sie vor der Registrierung Ihres Produkts die Sun-Richtlinien für den Datenschutz im Internet unter <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A>, damit Sie wissen, was wir zum Schutz Ihrer Daten unternehmen."
+
+msgid "fullNameField"
+msgstr "Vollständiger Name"
+
+msgid "fullNameField_help"
+msgstr "Geben Sie Ihren vollständigen Namen ein."
+
+msgid "fullNameField_rule"
+msgstr "Bitte geben Sie beliebige Zeichen ein, nur keine Doppelpunkte. Eine gültige Eingabe ist z. B. Hans-Günter Großmann."
+
+msgid "titleField"
+msgstr "Position"
+
+msgid "titleField_help"
+msgstr "Geben Sie Ihre Position ein."
+
+msgid "companyField"
+msgstr "Firmenname"
+
+msgid "companyField_help"
+msgstr "Geben Sie den Namen Ihrer Firma ein."
+
+msgid "addressField"
+msgstr "Vollständige Adresse"
+
+msgid "addressField_help"
+msgstr "Geben Sie Ihre vollständige Adresse ein."
+
+msgid "countryField"
+msgstr "Land"
+
+msgid "countryField_help"
+msgstr "Geben Sie Ihr Land ein."
+
+msgid "emailField"
+msgstr "E-Mail-Adresse"
+
+msgid "emailField_help"
+msgstr "Geben Sie Ihre E-Mail-Adresse ein."
+
+msgid "emailField_rule"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse im Format benutzer@domaene.de ein."
+
+msgid "phoneField"
+msgstr "Telefonnummer"
+
+msgid "phoneField_help"
+msgstr "Geben Sie Ihre Telefonnummer ein."
+
+msgid "faxField"
+msgstr "Faxnummer"
+
+msgid "faxField_help"
+msgstr "Geben Sie Ihre Faxnummer ein."
+
+msgid "licenseHeader"
+msgstr "<B>Um die Bedingungen der folgenden Binärcode-Lizenzvereinbarung zu akzeptieren oder abzulehnen, müssen Sie bis zum Ende des Dokuments blättern.</B>"
+
+msgid "licenseClick"
+msgstr "Durch Klicken auf den Pfeil unten bestätigen Sie den Erhalt und die Akzeptierung der Bedingungen, die auf der im Lieferumfang Ihres [[base-wizard.productName]] befindlichen Garantie-/Registrierungskarte aufgeführt werden. Sie bestätigen auch, dass Sie die folgende Lizenzvereinbarung akzeptieren."
+
+msgid "regText"
+msgstr "Sie müssen [[base-wizard.productName]] bei Sun Microsystems registrieren, um Anspruch auf technischen Support zu haben. Geben Sie zur elektronischen Registrierung die folgenden Informationen ein, und klicken Sie auf Absenden. Sie können [[base-wizard.productName]] auch registrieren, indem Sie <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> öffnen und den Verknüpfungen zum Sun Cobalt Support folgen.  Sun respektiert Ihre Privatsphäre und erkennt an, dass die persönlichen Daten, die Sie uns zur Verfügung stellen, in angemessenem Umfang geschützt und verarbeitet werden müssen. Bitte lesen Sie vor der Registrierung Ihres Produkts die Sun-Richtlinien für den Datenschutz im Internet unter <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A>, damit Sie wissen, was wir zum Schutz Ihrer Daten unternehmen."
+
+#msgid "license"
+#msgstr "<CENTER><BR>Sun Microsystems, Inc.<P>Binärcode-Lizenzvereinbarung</center><P><P>LESEN SIE DIE BESTIMMUNGEN DIESER VEREINBARUNG UND DER MITGELIEFERTEN ERGÄNZENDEN LIZENZBESTIMMUNGEN (IM FOLGENDEN ZUSAMMENFASSEND 'VEREINBARUNG' GENANNT), BEVOR SIE DAS SOFTWARE-MEDIENPAKET ÖFFNEN. DURCH DAS ÖFFNEN DES SOFTWARE-MEDIENPAKETS ERKLÄREN SIE IHR EINVERSTÄNDNIS MIT DEN BESTIMMUNGEN DIESER VEREINBARUNG. WENN SIE DIE SOFTWARE AUF ELEKTRONISCHEM WEGE HERUNTERLADEN, MÜSSEN SIE IHR EINVERSTÄNDNIS MIT DIESEN BESTIMMUNGEN DURCH KLICKEN AUF DIE SCHALTFLÄCHE 'ICH STIMME ZU' AM ENDE DIESER VEREINBARUNG ERKLÄREN. FALLS SIE NICHT ALLEN BESTIMMUNGEN ZUSTIMMEN, IST DIE UNBENUTZTE SOFTWARE GEGEN RÜCKERSTATTUNG DES KAUFPREISES AN DEN VERKÄUFER ZURÜCKZUGEBEN ODER, WENN DIE SOFTWARE AUF ELEKTRONISCHEM WEG HERUNTERGELADEN WERDEN SOLLTE, IST AUF DIE SCHALTFLÄCHE 'ICH STIMME NICHT ZU' AM ENDE DIESER VEREINBARUNG ZU KLICKEN.<P>1. LIZENZ ZUR VERWENDUNG DER SOFTWARE. Sun erteilt Ihnen eine nicht exklusive und nicht übertragbare Lizenz für die interne Verwendung ausschließlich der beigefügten Software und Dokumentation sowie aller von Sun zur Verfügung gestellten Korrekturen (im Folgenden zusammenfassend 'Software' genannt) für die Anzahl der Benutzer und die Computerhardware, für die die entsprechende Gebühr bezahlt wurde.<P>2. BESCHRÄNKUNGEN. Die Software ist vertraulich und urheberrechtlich geschützt. Die Software und alle damit verbundenen Rechte des intellektuellen Eigentums sind Eigentum von Sun und/oder seinen Lizenzgebern. Außer einer einzigen Kopie der Software für Archivierungszwecke dürfen Sie keine Kopien der Software anfertigen, es sei denn, dies wurde in ergänzenden Lizenzbestimmungen ausdrücklich genehmigt. Die Software darf nicht verändert, dekompiliert oder durch Reverse Engineering analysiert werden, soweit die Durchsetzung dieser Bestimmung gesetzlich zulässig ist. Sie bestätigen, dass die Software nicht für Entwicklung, Konstruktion, Betrieb oder Wartung von nuklearen Einrichtungen entwickelt, lizenziert oder vorgesehen ist. Sun gibt weder eine ausdrückliche noch eine stillschweigende Garantie für die Eignung zu solchen Zwecken. Durch diese Vereinbarung werden keine Rechte, Ansprüche oder Beteiligungen auf bzw. an Warenzeichen, Dienstleistungsmarken, Logos oder Handelsmarken von Sun oder seinen Lizenzgebern erteilt.<P>3. BESCHRÄNKTE GARANTIE. Sun garantiert, dass für eine Zeitdauer von neunzig (90) Tagen nach dem durch eine Kopie der Quittung belegten Kaufdatum die Medien, auf denen die Software geliefert wird (falls zutreffend), bei normaler Verwendung frei von Material- und Verarbeitungsfehlern sind. Mit Ausnahme der vorgenannten Bestimmungen wird die Software geliefert, 'WIE SIE IST'. Entsprechend dieser beschränkten Garantie besteht Ihr ausschließliches Recht und die ausschließliche Pflicht von Sun darin, dass Sun nach eigenem Ermessen die Softwaremedien entweder ersetzen oder den für die Software gezahlten Preis zurückerstatten kann.<P>4. GARANTIEAUSCHLUSS. FALLS IN DIESER VEREINBARUNG NICHT ANDERS ANGEGEBEN, WERDEN ALLE AUSDRÜCKLICHEN ODER STILLSCHWEIGENDEN BEDINGUNGEN, ERKLÄRUNGEN UND GARANTIEN EINSCHLIESSLICH JEGLICHER STILLSCWEIGENDER GARANTIE FÜR DIE VERKÄUFLICHKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK ODER DEN NICHTEINGRIFF IN DIE RECHTE ANDERER AUSGESCHLOSSEN, ES SEI DENN, DIESER AUSSCHLUSS WIRD FÜR RECHTLICH UNGÜLTIG ERKLÄRT.<P>5. HAFTUNGSBEGRENZUNG. SOFERN GESETZLICH MÖGLICH, HAFTET SUN ODER SEINE LIZENZGEBER IN KEINEM FALL FÜR UMSATZ-, GEWINN- ODER DATENVERLUSTE ODER FÜR SPEZIELLE, INDIREKTE, FOLGE- ODER ZUFÄLLIGE SCHÄDEN ODER BUSSGELDER, GLEICHGÜLTIG, WIE DIE SCHÄDEN ENTSTANDEN SIND, UND UNABHÄNGIG VON DER HAFTUNGSTHEORIE, WENN DIE URSACHE DIE VERWENDUNG ODER UNMÖGLICHKEIT DER VERWENDUNG DER SOFTWARE IST ODER EIN ZUSAMMENHANG MIT DER VERWENDUNG ODER UNMÖGLICHKEIT DER VERWENDUNG DER SOFTWARE BESTEHT. DIES TRIFFT AUCH ZU, WENN SUN ÜBER DIE MÖGLICHKEIT SOLCHER SCHÄDEN INFORMIERT WORDEN IST.  In keinem Fall geht die Haftung von Sun über den von Ihnen für die in dieser Vereinbarung beschriebene Software gezahlten Geldbetrag hinaus, gleichgültig, ob durch Vertragsverletzung, unerlaubte Handlung (einschließlich Fahrlässigkeit) oder aus anderen Gründen. Die vorgenannten Beschränkungen sind auch dann gültig, falls die oben beschriebene Garantie ihren wesentlichen Zweck nicht erfüllt.<P>6. BEENDIGUNG. Diese Vereinbarung ist bis zu ihrer Beendigung gültig. Sie können diese Vereinbarung jederzeit durch Vernichtung aller Kopien der Software beenden. Diese Vereinbarung erlischt sofort und ohne Benachrichtigung durch Sun, wenn Sie gegen die Bestimmungen dieser Vereinbarung verstoßen. Bei Beendigung der Vereinbarung sind Sie verpflichtet, alle Kopien der Software zu vernichten. <P>7. EXPORTBESTIMMUNGEN. Die gesamte Software einschließlich der technischen Daten, für deren Lieferung diese Vereinbarung gilt, unterliegt den US-amerikanischen Exportkontrollgesetzen. In anderen Ländern können dafür ebenfalls Export- oder Importbestimmungen gelten. Sie bestätigen, dass Sie diese Gesetze und Bestimmungen genau einhalten werden und dass Sie für die Erlangung solcher Lizenzen für den Export, Reexport oder Import verantwortlich sind, falls diese nach der Auslieferung der Software an Sie erforderlich sein sollte. <P>8. BESCHRÄNKTE RECHTE DER REGIERUNG DER USA.  Wenn Software durch die oder im Namen der Regierung der USA oder durch einen oder im Namen eines Hauptauftragnehmers oder Subunternehmers (auf allen Ebenen) der Regierung der USA erworben wird, beschränken sich die Rechte der Regierung bezüglich der Software und der Begleitdokumentation auf die in dieser Vereinbarung festgelegten Rechte. Dies entspricht 48 CFR 227.7201 bis 227.7202-4 (für den Einkauf durch das Verteidigungsministerium (DOD) und 48 CFR 2.101 und 12.212 (für den Einkauf durch andere Behörden).<P>9. ANWENDBARES RECHT. Für diese Vereinbarung gelten die Gesetze des US-amerikanischen Bundesstaates Kalifornien und die entsprechenden Bundesgesetze der USA. Die Wahl eines anderen Rechts oder eines anderen Gerichtsstands ist ausgeschlossen.<P>10. Trennbarkeit. Falls eine Bestimmung dieser Vereinbarung für nichtig erklärt wird, gelten die anderen Bestimmungen dieser Vereinbarung weiter, es sein denn, ohne diese Bestimmung würde die Absicht der Beteiligten unmöglich gemacht. In letzterem Fall erlischt die Vereinbarung sofort.<P>11. INTEGRATION. Diese Vereinbarung umfasst die gesamte Vereinbarung zwischen Ihnen und Sun bezüglich des Vereinbarungsgegenstands.  Sie ersetzt alle vorherigen oder gleichzeitigen mündlichen oder schriftlichen Mitteilungen, Vorschläge, Erklärungen und Garantien und hat während der Gültigkeitsdauer dieser Vereinbarung Vorrang vor entgegenstehenden oder zusätzlichen Bestimmungen von Angeboten, Aufträgen, Bestätigungen oder anderen Mitteilungen zwischen den Beteiligten bezüglich des Vereinbarungsgegenstands. Änderungen dieser Vereinbarungen sind nur gültig, wenn diese schriftlich niedergelegt und von einem Vertretungsberechtigten aller Beteiligten unterschrieben worden sind.<P>Anfragen können an folgende Adresse gerichtet werden: Sun Microsystems, Inc. 901 San Antonio Road, Palo Alto, California 94303 (Form ID#011801)<P><P>Sun Microsystems, Inc.<P>Zusatzbestimmungen für Sun Cobalt Qube<P><P>Diese Zusatzbestimmungen für Sun Cobalt Qube ergänzen die Bestimmungen der Binärcode-Lizenzvereinbarung ('BCL').  Bestimmungen in Großbuchstaben, die nicht in diesem Dokument definiert sind, haben die in der BCL festgelegte Bedeutung. Diese Zusatzbestimmungen haben Vorrang vor allen widersprüchlichen oder entgegenstehenden Bestimmungen in der BCL.  Mit der Verwendung der Software wird die durch diese Bestimmungen ergänzte BCL akzeptiert. <P>1.  LIZENZBESTIMMUNGEN DURCH DRITTE. Software, deren ursprünglicher Lizenzgeber nicht Sun ist, unterliegt den Lizenzbestimmungen des ursprünglichen Lizenzgebers ('Zusätzliche Lizenzbestimmungen') in den Header-Dateien, die durch diese Referenz in dieses Dokument aufgenommen werden. Zusätzliche Lizenzbestimmungen haben Vorrang, wenn ein Konflikt mit der BCL oder diesen Zusatzbestimmungen besteht.  <P>A.  BSD-Lizenz.  Für Software, die im Rahmen der BSD-Lizenz für Sun lizenziert wurde, unterliegt Ihre Unterlizenz den folgenden zusätzlichen Lizenzbestimmungen: <P>BSD Copyright<P><P>Copyright (c) 1991, 1992, 1993, 1994 Die Regenten der Universität von Kalifornien. Alle Rechte vorbehalten.<P>Weitergabe und Verwendung in Quell- und Binärdateien in veränderter oder nicht veränderter Form sind erlaubt, wenn die folgenden Bedingungen erfüllt werden:<P><P>1.   Bei der Weitergabe von Quellcode müssen der obige Copyright-Hinweis, diese Liste der Bedingungen und der folgende Haftungsausschluss mit weitergegeben werden.<P>2.   Bei der Weitergabe von Binärcode müssen der obige Copyright-Hinweis, diese Liste der Bedingungen und der folgende Haftungsausschluss in der Dokumentation und/oder anderen mitgelieferten Materialien enthalten sein.<P>3.   Alle Werbematerialien, in denen Funktionen oder die Verwendung dieser Software erwähnt werden, müssen die  folgende Quellenangabe enthalten: Dieses Produkt enthält von der Universität von Kalifornien/Berkeley und ihren Mitarbeitern entwickelte Software.<P>4.    Weder der Name der Universität noch die Namen ihrer Mitarbeiter dürfen ohne spezielle vorherige schriftliche Genehmigung zur Billigung von oder Werbung für Produkte verwendet werden, die aus dieser Software abgeleitet wurden.<P><P>DIESE SOFTWARE WIRD VON DEN REGENTEN UND MITARBEITERN ZUR VERFÜGUNG GESTELLT, 'WIE SIE IST'. JEGLICHE AUSDRÜCKLICHE ODER STILLSCWEIGENDE GARANTIEN EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE STILLSCHWEIGENDEN GARANTIEN FÜR DIE VERKÄUFLICHKEIT UND EIGNUNG FÜR EINEN BESTIMMTEN ZWECK WERDEN AUSGESCHLOSSEN. IN KEINEM FALL HAFTEN DIE REGENTEN ODER MITARBEITER FÜR DIREKTE, INDIREKTE, ZUFÄLLIGE, SPEZIELLE, EXEMPLARISCHE ODER FOLGESCHÄDEN (EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE BESCHAFFUNG VON ERSATZWAREN ODER -LEISTUNGEN, NICHTVERWENDBARKEIT, GEWINNVERLUST ODER GESCHÄFTSUNTERBRECHUNG), GLEICHGÜLTIG, WIE DIE SCHÄDEN ENTSTANDEN SIND UND UNABHÄNGIG VON DER HAFTUNGSTHEORIE, OB DURCH VERTRAGSVERLETZUNG, HAFTUNG OHNE VERSCHULDEN ODER UNERLAUBTE HANDLUNG (EINSCHLIESSLICH FAHRLÄSSIGKEIT ODER ANDERES), WENN DIE URSACHE DIE VERWENDUNG DER SOFTWARE IST, AUCH WENN ÜBER DIE MÖGLICHKEIT SOLCHER SCHÄDEN INFORMIERT WORDEN IST.<P>B.  GNU General Public License  Für Software, die im Rahmen der GNU General Public License lizenziert wurde, unterliegt Ihre Unterlizenz den folgenden zusätzlichen Lizenzbestimmungen:  <P><P>GNU General Public License<P>Version 2, Juni 1991<P>Copyright (C) 1989, 1991 Free Software Foundation, Inc.<P>59 Temple Place - Suite 330, Boston, MA 02111-1307, USA<P><P>BESTIMMUNGEN FÜR DAS KOPIEREN, DIE WEITERGABE UND ÄNDERUNG <P>Diese Lizenz gilt für alle Programme oder andere Werke, die einen vom Urheberrechtseigentümer angebrachten Vermerk enthalten, dass sie entsprechend den Bestimmungen dieser General Public License weitergegeben werden können. Im Folgenden ist mit 'Programm' ein derartiges Programm oder Werk gemeint. Ein 'Werk, das auf dem Programm basiert', ist entweder das Programm oder ein davon abgeleitetes Werk entsprechend dem Urheberrecht: das heißt, ein Werk, das das Programm oder einen Teil davon unverändert oder mit Änderungen und/oder übersetzt in eine andere Sprache enthält. (Im Folgenden wird die Übersetzung ohne Einschränkungen in dem Begriff 'Änderung' mit eingeschlossen.) Die Lizenznehmer werden mit 'Sie' angesprochen.<P>Andere Aktivitäten als das Kopieren, Weitergeben und Ändern werden von dieser Lizenz nicht erfasst. Für die Ausführung des Programms gibt es keine Beschränkungen. Für die Programmausgabe gelten diese Lizenzbestimmungen nur, wenn der Inhalt ein auf dem Programm basierendes Werk darstellt (unabhängig von der Erstellung durch die Ausführung des Programms). Ob dies zutrifft, hängt von der Funktion des Programms ab. <P>1.  Sie dürfen unveränderte Kopien des Programmquellcodes, wie er empfangen wurde, mit jedem Medium unter der Bedingung kopieren und weitergeben, dass Sie auf jeder Kopie einen geeigneten Copyright-Hinweis und den Garantieausschluss gut sichtbar und in angemessener Art und Weise anbringen. Hinweise, die sich auf diese Lizenz und den Garantieausschluss beziehen, dürfen nicht verändert werden. Dem weitergegebenen Programm ist eine Kopie dieser Lizenz beizufügen. <P>Sie dürfen für den physikalischen Vorgang der Übertragung einer Kopie eine Gebühr verlangen und gegen Zahlung einer Gebühr eine Garantie anbieten, falls Sie dies möchten. <P>2. Sie dürfen die Kopie(n) des Programms bzw. Teile davon verändern, d. h. ein Werk ausführen, das auf dem Programm basiert, und diese Änderungen bzw. das Werk entsprechend den Bedingungen von Paragraph 1 (oben) kopieren und weitergeben, wenn Sie außerdem die folgenden Bedingungen einhalten: <P>Die veränderten Dateien müssen deutlich mit dem Hinweis, dass sie von Ihnen verändert wurden, und mit dem Änderungsdatum versehen sein. <P>Sie müssen dafür sorgen, dass alle von Ihnen verbreiteten oder veröffentlichten Werke, die das Programm ganz oder teilweise enthalten oder davon abgeleitet sind, entsprechend den Bestimmungen dieser Lizenz als Ganzes für alle Dritten kostenlos lizenziert werden. <P>Wenn das veränderte Programm bei seiner Ausführung normalerweise Befehle interaktiv einliest, müssen Sie dafür sorgen, dass beim Start im üblichen interaktiven Modus eine Meldung mit einer geeigneten Copyright-Anzeige und einem Hinweis darauf ausgegeben wird, dass keine Garantie übernommen wird (bzw. dass Sie eine Garantie übernehmen) und dass die Benutzer das Programm entsprechend diesen Bestimmungen weitergeben können. Dabei ist anzugeben, wie eine Kopie dieser Lizenz auf dem Bildschirm angezeigt werden kann. (Ausnahme: Wenn das Programm selbst interaktiv ist, aber normalerweise solche eine Meldung nicht ausgibt, muss ihr auf dem Programm basierendes Werk ebenfalls keine entsprechende Meldung ausgeben.) <P>Diese Anforderungen gelten für das gesamte geänderte Werk. Wenn abgrenzbare Teile dieses Werks nicht von dem Programm abgeleitet sind und in vertretbarer Weise als unabhängige und separate Werke an sich betrachtet werden können, gilt diese Lizenz und ihre Bestimmungen nicht, wenn die Teile als separate Werke verbreitet werden. Wenn dieselben Teile jedoch als Teil eines Ganzen verteilt werden, das ein Werk darstellt, das auf dem Programm basiert, muss die Weitergabe des Ganzen entsprechend den Bestimmungen dieser Lizenz erfolgen. Die Rechte für andere Lizenznehmer beziehen sich dann auf dieses komplette Ganze und damit auf jeden einzelnen Teil des Werks unabhängig vom Autor. <P>Mit diesem Paragraph sollen keine Rechte beansprucht oder Ihre Rechte auf Werke, die vollständig von Ihnen selbst programmiert wurden, beschränkt werden, sondern das Recht zur Kontrolle der Verteilung von abgeleiteten oder gemeinsamen Werken ausgeübt werden, die auf dem Programm basieren. <P>Durch die bloße gemeinsame Abspeicherung eines anderen, nicht auf dem Programm basierenden Werks mit dem Programm (oder einem auf dem Programm basierenden Werk) auf demselben Speicher- oder Weitergabemedium erstreckt sich diese Lizenz nicht automatisch auf das andere Werk. <P>3. Sie dürfen das Programm (oder ein auf dem Programm basierendes Werk entsprechend Paragraph 2) im Objektcode oder in ausführbarer Form entsprechend den Bestimmungen in den Paragraphen 1 und 2 (oben) kopieren und verteilen, wenn Sie außerdem eine der folgenden Maßnahmen durchführen: <P>Beigabe des vollständigen entsprechenden maschinenlesbaren Quellcodes, der entsprechend den Bestimmungen in den Paragraphen 1 und 2 (oben) auf einem für den Austausch von Software üblicherweise verwendeten Medium verteilt werden muss oder <P>Beigabe eines schriftlichen, mindestens drei Jahre gültigen Angebots, Dritten für eine Gebühr, die nicht über die Kosten der physikalischen Verteilung der Software hinausgeht, den vollständigen entsprechenden maschinenlesbaren Quellcode zu liefern, der entsprechend den Bestimmungen in den Paragraphen 1 und 2 (oben) auf einem für den Austausch von Software üblicherweise verwendeten Medium gespeichert sein muss, oder <P>Beigabe der Informationen bezüglich des Angebots zur Lieferung des Quellcodes, die Ihnen zugegangen sind.  (Diese Alternative gilt nur für die nichtkommerzielle Verteilung und ist nur dann zulässig, wenn Sie das Programm als Objektcode oder in ausführbarer Form mit einem derartigen Angebot entsprechend Teilparagraph b (oben) erhalten haben.) <P>Der Quellcode eines Werks ist die am besten geeignete Form, wenn an dem Werk Veränderungen vorgenommen werden sollen. Der vollständige Quellcode für ein ausführbares Werk umfasst den gesamten Quellcode aller enthaltenen Module sowie aller entsprechenden Schnittstellendefinitionsdateien und Skripte für die Steuerung der Kompilierung und Installation der ausführbaren Datei. Als Ausnahme muss jedoch kein Quellcode weitergegeben werden, der normalerweise mit den Hauptkomponenten (Compile, Kernel usw.) des Betriebssystems geliefert wird (entweder als Quell- oder Binärcode), auf dem die ausführbare Datei ausgeführt wird, es sei denn, die Komponente selbst ist der ausführbaren Datei beigegeben. <P>Wenn die Verteilung des ausführbaren oder Objektcodes durch Kopieren von einem bestimmten Rechner angeboten wird, gilt das Angebot, den Quellcode von demselben Rechner zu kopieren, als Verteilung des Quellcodes, auch wenn Dritte den Quellcode nicht zusammen mit dem Objektcode kopieren müssen. <P>4.  Das Programm darf ausschließlich entsprechend den Bestimmungen dieser Lizenz kopiert, verändert, weiterlizenziert oder verteilt werden. Jeder Versuch des Kopierens, Änderns, Weiterlizenzierens oder Verteilens des Programms unter Verletzung der Lizenzbestimmungen ist nichtig und führt automatisch zum Verlust Ihrer Rechte entsprechend dieser Lizenz. Beteiligte, die Kopien oder Rechte unter dieser Lizenz von Ihnen erhalten haben, verlieren ihre Rechte jedoch nicht, wenn diese Beteiligten die Bestimmungen der Lizenz vollständig einhalten. <P>5.  Sie müssen die Bestimmungen dieser Lizenz nicht akzeptieren, da Sie sie nicht unterschrieben haben. Die Erlaubnis zum Ändern oder Verteilen des Programms oder der daraus abgeleiteten Werke wird jedoch nur durch diese Lizenz erteilt. Wenn Sie diese Lizenz nicht akzeptieren, ist es Ihnen gesetzlich verboten, das Programm zu ändern oder zu verteilen. Durch das Ändern oder Verteilen des Programms (oder eines auf dem Programm basierenden Werks) machen Sie daher deutlich, dass Sie diese Lizenz mit sämtlichen Bestimmungen für das Kopieren, Verteilen und Ändern des Programms oder des darauf basierenden Werks akzeptieren. <P>6.  Bei jeder Weitergabe des Programms (oder eines auf dem Programm basierenden Werks) erhält der Empfänger automatisch eine Lizenz vom ursprünglichen Lizenzgeber, das Programm entsprechend dieser Bestimmungen kopieren, verteilen oder ändern zu dürfen. Sie dürfen dem Empfänger keine Auflagen machen, die die Ausübung seiner hierin zugestandenen Rechte weiter beschränken. Sie sind nicht für die Einhaltung dieser Lizenz durch Dritte verantwortlich. <P>7.  Wenn Ihnen als Folge eines Gerichtsurteils oder Anschuldigung der Patentverletzung oder aus einem anderen Grund (nicht auf Patentsachen beschränkt) Bedingungen auferlegt werden (durch gerichtliche Anordnung, Vereinbarung usw.), die den Bedingungen dieser Lizenz widersprechen, gelten die Bestimmungen dieser Lizenz weiterhin. Wenn es Ihnen die Verteilung entsprechend den Verpflichtungen, die sich aus dieser Lizenz und anderen entsprechenden Verpflichtungen ergeben, nicht möglich ist, dürfen Sie das Programm folglich nicht verteilen. Wenn z. B. eine Patentlizenz die Weitergabe des Programms ohne Lizenzgebühren durch alle, die direkt oder indirekt Kopien von Ihnen empfangen, nicht zulässt, bleibt als einziger Weg, beide Lizenzen nicht zu verletzen, das Programm nicht zu verteilen. <P>Falls ein Teil dieses Paragraphen unter bestimmten Umständen für ungültig oder nichtig erklärt wird, so gilt der Rest des Paragraphen weiterhin, und der Paragraph als Ganzes gilt unter anderen Umständen. <P>Es ist nicht der Zweck dieses Paragraphen, Sie zu veranlassen, Patente oder andere Eigentumsrechtsansprüche zu verletzen oder die Gültigkeit solcher Ansprüche anzufechten. Dieser Paragraph hat den alleinigen Zweck, die Integrität des freien Softwareverteilungssystems zu schützen, das durch öffentliche Lizenzvergabe praktiziert wird. Viele haben umfangreiche Beiträge zur weiten Palette der über dieses System verteilten Software geleistet und sich dabei auf die durchgängige Anwendung des Sytems gestützt. Der Autor/Spender muss selbst entscheiden, ob er oder sie Software über andere Systeme verteilen will. Die Lizenznehmer können niemanden zwingen, diese Entscheidung in der einen oder anderen Richtung zu treffen. <P>In diesem Paragraphen soll deutlich gemacht werden, welche Konsequenzen sich aus den vorangegangenen Bestimmungen der Lizenz ergeben können. <P>8.  Wenn die Verteilung und/oder die Verwendung des Programms in bestimmten Ländern durch Patente oder durch das Urheberrecht geschützte Schnittstellen beschränkt ist, kann der ursprüngliche Urheberrechtseigentümer eine spezielle geographische Verteilungsbeschränkung hinzufügen, durch die jene Länder ausgeschlossen werden, damit die Verteilung nur in den anderen, nicht ausgeschlossenen Ländern stattfindet. In einem derartigen Fall gilt die Beschränkung für die Lizenz, als ob diese direkt im Lizenztext enthalten wäre. <P>9. Die Free Software Foundation kann von Zeit zu Zeit geänderte und/oder neue Versionen der General Public License veröffentlichen. Solche neuen Versionen sind den gegenwärtig gültigen Versionen prinzipiell ähnlich, können aber im Einzelnen abweichen, um neuen Problemen oder Anliegen Rechnung zu tragen. <P>Jede Version hat eine eindeutige Versionsnummer. Wenn im Programm eine Versionsnummer dieser Lizenz angegeben ist, die für diese und 'alle nachfolgenden Versionen' gilt, können Sie wählen, ob die Bestimmungen dieser Version oder einer später von der Free Software Foundation veröffentlichten Version gelten sollen. Wenn im Programm keine Versionsnummer für diese Lizenz angegeben ist, können Sie sich für eine beliebige von der Free Software Foundation veröffentlichte Version entscheiden. <P>10.  Wenn Sie Teile des Programms in andere freie Programme integrieren möchten, deren Verteilungsbestimmungen sich von denen dieser Lizenz unterscheiden, sollten Sie den Autor um eine entsprechende Genehmigung bitten. Wenn es sich um Software handelt, deren Urheberrecht bei der Free Software Foundation liegt, können Sie sich an die Free Software Foundation wenden. In bestimmten Fällen sind Ausnahmen möglich. Bei unserer Entscheidung lassen wir uns von zwei Zielen leiten: dem Erhalt des Kostenlos-Status aller Ableitungen von unserer kostenlosen Software und die Förderung der gemeinsamen Nutzung und Wiederverwendung von Software allgemein. <P>GARANTIEAUSSCHLUSS 11.  DA ES SICH UM EIN KOSTENLOSES PROGRAMM HANDELT, WIRD DAFÜR IM RAHMEN DES GELTENDEN RECHTS KEINE GARANTIE FÜR DAS PROGRAMM ÜBERNOMMEN. FALLS NICHTS ANDERES SCHRIFTLICH FESTGELEGT IST, WIRD DAS PROGRAMM VON DEN URHEBERRECHTSEIGENTÜMERN UND/ODER DRITTEN ZUR VERFÜGUNG GESTELLT, 'WIE ES IST', OHNE JEGLICHE GARANTIE, WEDER AUSDRÜCKLICH NOCH STILLSCHWEIGEND, EINSCHLIESSLICH, DOCH NICHT BESCHRÄNKT AUF STILLSCHWEIGENDE GARANTIEN BEZÜGLICH DER VERKÄUFLICHKEIT UND EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. DAS GESAMTE RISIKO BEZÜGLICH QUALITÄT UND LEISTUNG DES PROGRAMMS LIEGT BEI IHNEN. FALLS SICH DAS PROGRAMM ALS FEHLERHAFT ERWEISEN SOLLTE, MÜSSEN SIE FÜR DIE KOSTEN ALLER NOTWENDIGEN WARTUNGSARBEITEN, REPARATUREN ODER KORREKTUREN SELBST AUFKOMMEN. <P>12.  IN KEINEM FALL, ES SEI DENN, ES WIRD DURCH DAS GELTENDE RECHT VERLANGT ODER SCHRIFTLICH VEREINBART, HAFTEN DIE URHEBERRECHTSEIGENTÜMER ODER DRITTE, DIE DAS PROGRAMM ENTSPRECHEND DEN OBEN DARGELEGTEN BESTIMMUNGEN GEÄNDERT UND/ODER WEITERGEGEBEN HABEN, FÜR SCHÄDEN EINSCHLIESSLICH ALLGEMEINER, SPEZIELLER, ZUFÄLLIGER ODER FOLGESCHÄDEN, WENN DIE URSACHE DIE VERWENDUNG ODER UNMÖGLICHKEIT DER VERWENDUNG DES PROGRAMMS IST (EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DATENVERLUST ODER BESCHÄDIGUNG VON DATEN, VERLUSTE, DIE SIE ODER DRITTE ERLEIDEN ODER DIE TATSACHE, DASS DAS PROGRAMM NICHT MIT ANDEREN PROGRAMMEN ZUSAMMENARBEITET), AUCH WENN SOLCH EIN URHEBERRECHTSEIGENTÜMER ODER DRITTER ÜBER DIE MÖGLICHKEIT SOLCHER SCHÄDEN INFORMIERT WURDE. <P>C.  SSL-Lizenz.  Für Software, die im Rahmen der SSL-Lizenz für Sun lizenziert wurde, unterliegt Ihre Unterlizenz den folgenden zusätzlichen Lizenzbestimmungen: <P>Copyright (c) 1998-1999 Ralf S. Engelschall. Alle Rechte vorbehalten.<P>Weitergabe und Verwendung in Quell- und Binärdateien in veränderter oder nicht veränderter Form sind erlaubt, wenn die folgenden Bedingungen erfüllt werden:<P>1.   Bei der Weitergabe von Quellcode müssen der obige Copyright-Hinweis, diese Liste der Bedingungen und der folgende Haftungsausschluss mit weitergegeben werden.<P>2.   Bei der Weitergabe von Binärcode müssen der obige Copyright-Hinweis, diese Liste der Bedingungen und der folgende Haftungsausschluss in der Dokumentation und/oder anderen mitgelieferten Materialien enthalten sein.<P>3.  Alle Werbematerialien, in denen Funktionen oder die Verwendung dieser Software erwähnt werden, müssen die  folgende Quellenangabe enthalten: <P>'Dieses Produkt enthält Software, die von Ralf S. Engelschall <rse@engelschall.com> für die Verwendung im Projekt mod_ssl entwickelt wurde (http://www.engelschall.com/sw/mod_ssl/).'<P>4.  Die Bezeichnung 'mod_ssl' darf ohne vorherige schriftliche Genehmigung nicht zur Billigung von oder Werbung für Produkte verwendet werden, die aus dieser Software abgeleitet wurden. Die schriftliche Genehmigung kann über rse@engelschall.com beantragt werden. <P>5.  Ohne vorherige Genehmigung durch Ralf S. Engelschall dürfen aus dieser Software abgeleitete Produkte nicht 'mod_ssl' genannt werden, und 'mod_ssl' darf nicht in deren Namen enthalten sein.<P>6.  Bei Weitergabe in jeglicher Form muss die folgende Quellenangabe erhalten bleiben:<P>'Dieses Produkt enthält Software, die von Ralf S. Engelschall <rse@engelschall.com> für die Verwendung im Projekt mod_ssl entwickelt wurde (http://www.engelschall.com/sw/mod_ssl/).'<P>DIESE SOFTWARE WIRD VON RALF S. ENGELSCHALL ZUR VERFÜGUNG GESTELLT, 'WIE SIE IST'. JEGLICHE AUSDRÜCKLICHE ODER STILLSCHWEIGENDE GARANTIEN, EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF STILLSCHWEIGENDE GARANTIEN BEZÜGLICH DER VERKÄUFLICHKEIT UND EIGNUNG FÜR EINEN BESTIMMTEN ZWECK WERDEN AUSGESCHLOSSEN. IN KEINEM FALL HAFTEN RALF S. ENGELSCHALL ODER SEINE MITARBEITER FÜR DIREKTE, INDIREKTE, ZUFÄLLIGE, SPEZIELLE, EXEMPLARISCHE ODER FOLGESCHÄDEN (EINSCHLIESSLICH, ABER NICHT BESCHRÄNKT AUF DIE BESCHAFFUNG VON ERSATZWAREN ODER -LEISTUNGEN, NICHTVERWENDBARKEIT, GEWINNVERLUST ODER GESCHÄFTSUNTERBRECHUNG), GLEICHGÜLTIG, WIE DIE SCHÄDEN ENTSTANDEN SIND UND UNABHÄNGIG VON DER HAFTUNGSTHEORIE, OB DURCH VERTRAGSVERLETZUNG, HAFTUNG OHNE VERSCHULDEN ODER UNERLAUBTE HANDLUNG (EINSCHLIESSLICH FAHRLÄSSIGKEIT ODER ANDERES), WENN DIE URSACHE DIE VERWENDUNG DER SOFTWARE IST, AUCH WENN ER ÜBER DIE MÖGLICHKEIT SOLCHER SCHÄDEN INFORMIERT WORDEN IST. <P>2.  ZUSÄTZLICHE VERWENDUNGSBESTIMMUNGEN.<P>A.  BlueLinQ-Funktion.  Für die Verwendung der Sun Cobalt Qube BlueLinQ-Funktion gelten die Bestimmungen der BCL und diese ergänzenden Bestimmungen. Darin ist ohne Beschränkung eingeschlossen:<P>(i) Ihre Kontaktaufnahme mit Sun,<BR>(ii) Download von Software und Informationen von einer beliebigen Sun-Website und<BR>(iii) Ihre Entscheidung, Software und Informationen auf verwaltete Geräte zu verteilen.<BR><P>3.  ZUSÄTZLICHE BESCHRÄNKUNGEN. Es ist verboten, ohne vorherige schriftliche Genehmigung von Sun die Ergebnisse von auf der Software ausgeführten Benchmark- oder Vergleichstests zu veröffentlichen oder Dritten zugänglich zu machen.<P><P>EULA-Web.806-2740-11DAA  8/27/2001 2:30 PM<P>"
+
+#msgid "license"
+#msgstr "<BR>Sun Cobalt, Inc.<BR>LIZENZ-VEREINBARUNG<BR><BR>DURCH DIE INSTALLATION DIESES PRODUKTS STIMMEN SIE (DIE ORGANISATION, DER DIE BEILIEGENDEN SOFTWARE-PROGRAMME ZUR VERFÜGUNG GESTELLT WERDEN) ZU, DASS SIE AN ALLE BESTIMMUNGEN DER IM FOLGENDEN AUFGEFÜHRTEN LIZENZ-VEREINBARUNG UND BESCHRÄNKTEN GARANTIE GEBUNDEN SIND.  WENN SIE DEM NICHT ZUSTIMMEN, MÜSSEN SIE SOFORT DAS VOLLSTÄNDIGE PRODUKT UND ALLE ZUGEHÖRIGEN MATERIALIEN AN DIE ORGANISATION ZURÜCKGEBEN, BEI DER SIE DIESE GEKAUFT HABEN.<BR><BR>Diese Lizenz-Vereinbarung (im Folgenden 'diese Vereinbarung' genannt) räumt Ihnen eine nicht exklusive und nicht übertragbare Lizenz zur Verwendung der Software (im Folgenden zusammenfassend 'die Software' genannt) ein, die Ihnen von Sun Cobalt zur Verfügung gestellt wurde. (Sun Cobalt).  Die Software umfasst die Software, die Ihnen auf Datenträgern, Disketten, CD-ROMs und/oder als Teil der Ausrüstung zur Verfügung gestellt wurde, die in diesem Paket (der Hardware) enthalten ist. Sie beinhaltet auch alle Änderungen, Erweiterungen an und/oder Ersetzungen von Software, die Ihnen von Sun Cobalt zur Verfügung gestellt wurde.  Diese Vereinbarung enthält auch bestimmte Beschränkungen hinsichtlich Ihrer Verwendung der Software and Hardware.<BR><BR>Sie dürfen keine Kopie der Software anfertigen und sind auch nicht befugt, Kopien der schriftlichen Materialien zu erstellen, die der Software und/oder der Hardware beiliegen.  Die Software auf der Betriebssystem-Wiederherstellungs-CD ist nur dazu vorgesehen, die anfängliche werkseitige Funktionalität des Sun Cobalt-Produkts wiederherzustellen.<BR><BR>Sun Cobalt und seine Lizenzgeber behalten das Eigentum an der Software, und Ihnen werden keine anderen Rechte eingeräumt als die Lizenz zur Verwendung der Software gemäß den Bestimmungen, die in dieser Vereinbarung enthalten sind.  Sie erkennen an, dass es sich bei der zugrundeliegenden Struktur, Abfolge, Organisation und dem Quellcode der Software sowie bei Aufbau und Struktur der Hardware um wertvolle Geschäftsgeheimnisse von Sun Cobalt und/oder dessen Lizenzgebern handelt, und Sie stimmen zu, dass Sie die Software nicht dekompilieren, disassemblieren, durch Reverse Engineering analysieren oder auf irgendeine Art verändern sowie dass Sie die Hardware nicht durch Reverse Engineering analysieren.<BR><BR>Sie dürfen Ihre Rechte an der Verwendung der Software weder übertragen noch abtreten, es sei denn, in Zusammenhang mit der Übertragung der Hardware, mit der oder für die die Software zur Verfügung gestellt wurde, und nur dann, falls Sun Cobalt die schriftliche Erklärung des Übertragungsempfängers erhält, dass dieser allen Bestimmungen dieser Vereinbarung zustimmt.  Sie dürfen Ihre Rechte zur Verwendung der Software ohne die vorherige schriftliche Zustimmung von Sun Cobalt nicht übertragen oder abtreten. Jeder Versuch einer Abtretung ohne eine solche Zustimmung ist nichtig.  Sie dürfen die Software, Hardware und zugehörigen Materialien nicht exportieren, wenn dadurch die Exportkontrollgesetze der Vereinigten Staaten von Amerika und anderer Länder verletzt werden.<BR><BR>Bei jeder Verletzung der Bestimmungen dieser Vereinbarung erlöschen Ihre Rechte zur Verwendung der Software und zugehörigen Hardware automatisch, und Sie sind dazu verpflichtet, die Software an Sun Cobalt zurückzugeben oder zu zerstören und die Hardware an Sun Cobalt zurückzugeben.<BR><BR>Für diese Vereinbarung gelten die Gesetze des US-amerikanischen Bundestaates Kalifornien, mit Ausnahme der Bestimmungen, die sich auf die Anwendbarkeit der Gesetze anderer Gerichtsstände beziehen.<BR><BR>Sie erkennen an, dass für den Export der Software die Exportkontrollgesetze der Vereinigten Staaten von Amerika und anderer Länder gelten.  Sie erklären Ihre Zustimmung zur Einhaltung aller zutreffenden Exportkontrollgesetze.<BR><BR>Wenn es sich bei Ihnen um eine Dienststelle oder Einrichtung der Vereinigten Staaten von Amerika (der Regierung) handelt, wird Ihnen die gesamte Software und zugehörige Dokumentation gemäß den für andere Endbenutzer anwendbaren Beschränkungen zur Verfügung gestellt, und dies in Übereinstimmung mit den Bestimmungen dieser Vereinbarung und gemäß DFARS 227.7202-1(a) und 227.7202-3(a) (1995), DFARS 252.227-7013(c)(1)(ii) (Oct. 1988), FAR 12.212(a)(1995), FAR 52.227-19 oder FAR 52.227-14 (Alt III), sofern zutreffend."
+
+
+msgid "wizardLocale"
+msgstr "Bevorzugte Sprache"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "Wählen Sie die bevorzugte Sprache zur Verwaltung dieses Servers aus.  Die Webschnittstelle kann zwar mit jeder Spracheinstellung benutzt werden, vom Aktiven Monitor erzeugte Nachrichten sowie die Menüs auf dem LCD-Bildschirm verwenden jedoch die bevorzugte Sprache."
+
+msgid "localeField"
+msgstr "Wählen Sie Ihre bevorzugte Sprache."
+
+msgid "localeField_help"
+msgstr "Die bevorzugte Sprache dient dem Aktiven Monitor zum Erstellen von Nachrichten, dem LCD-Bildschirm zur Anzeige von Menüs sowie der administrativen Webschnittstelle, falls keine bevorzugte Browser-Sprache gefunden werden kann."
+
+msgid "localeSettings"
+msgstr "Bevorzugte Srache"
+
+msgid "accept"
+msgstr "Ich stimme zu"
+
+msgid "accept_help"
+msgstr "Klicken Sie auf 'Ich stimme zu', wenn Sie die Bestimmungen der Lizenz-Vereinbarung gelesen haben, diesen zustimmen und bereit zum Fortfahren sind."
+
+msgid "decline"
+msgstr "Ich stimme nicht zu"
+
+msgid "decline_help"
+msgstr "Wenn Sie die Bestimmungen der Lizenz-Vereinbarung ablehnen, können Sie den Sun Cobalt Qube 3 nicht verwenden."
+
+msgid "declineError"
+msgstr "Vor dem Fortfahren müssen Sie auf Ich stimme zu klicken, um zu bestätigen, dass Sie die Lizenz-Vereinbarung gelesen haben und dieser zustimmen."
+
+msgid ""
+msgstr ""
+
+msgid "license"
+msgstr "<center>Sun Microsystems, Inc.<br><b>Binärcode-Lizenzvertrag</b></center><p>BITTE LESEN SIE DIE BEDINGUNGEN DIESES BINÄRCODE-LIZENZVERTRAGS UND ALLE ZUSATZBEDINGUNGEN (ZUSAMMEN DER 'VERTRAG') VOR DEM ÖFFNEN DES SOFTWAREMEDIEN-PAKETS SORGFÄLTIG DURCH. DURCH ÖFFNEN DES SOFTWARE-MEDIENPAKETS ERKENNEN SIE DIE BEDINGUNGEN DIESES VERTRAGS AN. FALLS SIE ELEKTRONISCH AUF DIE SOFTWARE ZUGREIFEN, GEBEN SIE IHRE ZUSTIMMUNG ZU DIESEN BEDINGUNGEN, INDEM SIE AUF DIE SCHALTFLÄCHE 'ANNEHMEN' AM ENDE DIESES VERTRAGS KLICKEN. WENN SIE NICHT ALLEN BEDINGUNGEN ZUSTIMMEN, GEBEN SIE DIE UNBENUTZTE SOFTWARE UMGEHEND ZUR RÜCKERSTATTUNG DES KAUFPREISES AN DIE VERKAUFSSTELLE ZURÜCK, ODER WÄHLEN SIE BEI ELEKTRONISCHEM ZUGRIFF DIE SCHALTFLÄCHE 'ABLEHNEN' AM ENDE DIESES VERTRAGS.<p>1. BENUTZERLIZENZ. Sun erteilt Ihnen eine einfache und nicht übertragbare Lizenz zur ausschließlich internen Benutzung der beiliegenden Software und Dokumentation sowie aller von Sun bereitgestellten Fehlerbehebungsprogramme (zusammen die 'Software') durch die Anzahl der Benutzer und die Klasse der Computer-Hardware, für welche die entsprechende Gebühr entrichtet wurde.<p>2. EINSCHRÄNKUNGEN. Bei der Software handelt es sich um vertrauliches und urheberrechtlich geschütztes Material. Das Eigentumsrecht an der Software und allem dazugehörigen geistigen Eigentum verbleibt bei Sun und/oder seinen Lizenzgebern. Wenn keine spezifische Genehmigung durch irgendwelche Zusatzlizenzbedingungen vorliegt, dürfen Sie keinerlei Kopien der Software anfertigen, mit Ausnahme einer einzigen Kopie der Software für Archivierungszwecke.  Die Software darf nicht modifiziert, dekompiliert oder durch Reverse-Engineering rekonstruiert werden, es sei denn, eine entsprechende Erzwingung ist durch geltendes Recht verboten. Sie erkennen an, dass die Software nicht zur Verwendung beim Design, der Konstruktion, dem Betrieb bzw. der Wartung einer Kernkraftanlage konzipiert, lizenziert oder entwickelt wurde. Sun lehnt jegliche ausdrückliche oder stillschweigende Garantie der Eignung für solche Zwecke ab. Im Rahmen dieses Vertrags werden keinerlei Rechte, Eigentumsrechte oder Anrechte auf irgendwelche Marken, Servicemarken, Logos oder Markennamen von Sun oder seinen Lizenzgebern gewährt.<p>3. BESCHRÄNKTE GARANTIE. Sun gewährleistet, dass die Medien, auf denen die Software bereitgestellt wird (falls zutreffend), für einen Zeitraum von neunzig (90) Tagen ab Kaufdatum, das durch eine Kopie der Quittung nachzuweisen ist, bei normalem Gebrauch keine Materialfehler und Herstellungsmängel aufweist. Mit Ausnahme des Vorangegangenen wird die Software ohne Mängel bereitgestellt. Das ausschließliche Rechtsmittel und die einzige Haftungsverpflichtung von Sun im Rahmen dieser beschränkten Garantie besteht darin, dass Sun nach eigenem Ermessen die Software-Medien ersetzen oder die für die Software bezahlte Gebühr zurückerstatten wird.<p>4. GARANTIEABLEHNUNG. WENN NICHT ANDERS IN DIESEM VERTRAG ANGEGEBEN, WERDEN ALLE AUSDRÜCKLICHEN ODER STILLSCHWEIGENDEN BEDINGUNGEN, ZUSICHERUNGEN UND GARANTIEN, EINSCHLIESSLICH JEGLICHER GARANTIE DER MARKTGÄNGIGKEIT, EIGNUNG FÜR EINEN BESTIMMTEN ZWECK ODER DER NICHT-VERLETZUNG, ABGELEHNT, AUSSER WENN EINE DERARTIGE ABLEHNUNG RECHTLICH ALS UNGÜLTIG ANGESEHEN WIRD.<p>5. HAFTUNGSBEGRENZUNG. IN DEM UMFANG, IN DEM ES GESETZLICH NICHT VERBOTEN IST, ÜBERNEHMEN SUN BZW. SEINE LIZENZGEBER AUF KEINEN FALL IRGENDWELCHE HAFTUNG FÜR EINKOMMENS-, GEWINN- ODER DATENVERLUSTE ODER FÜR SONDER-, INDIREKTE, FOLGE-, NEBENSCHÄDEN ODER SCHADENSERSATZANSPRÜCHE, UNABHÄNGIG VON DER URSACHE UND DER HAFTUNGSTHEORIE, DIE SICH AUS DER VERWENDUNG ODER IM ZUSAMMENHANG MIT DER VERWENDUNG BZW. DEM UNVERMÖGEN DER VERWENDUNG DER SOFTWARE ERGEBEN, SELBST WENN SUN VON EINER MÖGLICHKEIT DIESER SCHÄDEN UNTERRICHTET WURDE. In keinem Fall überschreitet die Haftung durch Sun Ihnen gegenüber, ob durch Vertrag oder eine unerlaubte Handlung (einschließlich Fahrlässigkeit) oder auf sonstige Weise, den Betrag, den Sie im Rahmen dieses Vertrags für die Software bezahlt haben. Die vorangegangenen Beschränkungen gelten auch, wenn die oben genannte Garantie ihren wesentlichen Zweck verfehlt.<p>6. BEENDIGUNG. Dieser Vertrag ist bis zu seiner Beendigung gültig. Sie können diesen Vertrag jederzeit kündigen, indem Sie alle Kopien der Software vernichten. Dieser Vertrag wird sofort und ohne Benachrichtigung durch Sun gekündigt, wenn Sie irgendwelche Bestimmungen dieses Vertrags nicht einhalten. Nach Kündigung müssen Sie alle Kopien der Software vernichten.<p>7. AUSFUHRBESTIMMUNGEN. Alle Software und technischen Daten, die im Rahmen dieses Vertrags ausgeliefert werden, unterliegen den US-Ausfuhrüberwachungsgesetzen und können Aus- oder Einfuhrbestimmungen in anderen Ländern unterliegen. Sie erklären sich bereit, alle solchen Gesetze und Vorschriften streng zu befolgen, und erkennen an, dass Sie dafür verantwortlich sind, Lizenzen zur Ausfuhr, Neuausfuhr oder Einfuhr einzuholen, wenn dies nach der Auslieferung an Sie erforderlich ist.<p>8. EINGESCHRÄNKTE RECHTE DER US-REGIERUNG. Wenn die Software durch oder im Namen der US-Regierung oder durch einen Hauptlieferanten oder Unterlieferanten der US-Regierung (auf jeder Ebene) erworben wird, verfügt die Regierung nur über die Rechte an der Software und der dazugehörigen Dokumentation, wie sie in diesem Vertrag aufgeführt sind; dies ist in Übereinstimmung mit 48 CFR 227.7201 bis 227.7202-4 (bei einem Erwerb durch das DOD [Verteidigungsministerium]) und mit 48 CFR 2.101 und 12.212 (bei einem Erwerb durch andere Behörden).<p>9. GELTENDES RECHT. Alle Klagen in Bezug auf diesen Vertrag unterliegen dem kalifornischen Recht und dem maßgebenden US-Bundesrecht. Es bestehen keine Rechtswahlregeln irgendeiner Gerichtsbarkeit.<p>10. TEILBARKEIT. Wenn irgendwelche Bestimmungen dieses Vertrags nicht durchgesetzt werden können, bleibt dieser Vertrag unter Unterlassung dieser Bestimmung in Kraft, es sei denn, diese Auslassung würde den vereinbarten Zweck der Parteien vereiteln, woraufhin dieser Vertrag sofort beendet wird.<p>11. INTEGRATION. Dieser Vertrag stellt in Bezug auf den Gegenstand den gesamten Vertrag zwischen Ihnen und Sun dar. Er hebt alle vorherigen oder gleichzeitigen mündlichen oder schriftlichen Mitteilungen, Vorschläge, Zusicherungen und Garantien auf und ist bei jeglichen zuwiderlaufenden oder zusätzlichen Bestimmungen jeglicher Angebote, Aufträge, Bestätigungen oder sonstiger Mitteilungen zwischen den Parteien in Bezug auf den Vertragsgegenstand während des Vertragszeitraums ausschlaggebend. Eine Änderung dieses Vertrags ist nur dann bindend, wenn sie schriftlich erfolgt und von einem befugten Vertreter jeder Partei unterzeichnet wird.<p>Bei Fragen wenden Sie sich bitte an: Sun Microsystems, Inc. 901 San Antonio Road, Palo Alto, California 94303 USA<br>(Formular-ID-Nr. 011801).<p><center>Sun Microsystems, Inc.<br><b>Zusatzbedingungen für Sun Cobalt Qube</b></center><p>Diese Zusatzbedingungen für Sun Cobalt Qube sind eine Ergänzung der Bedingungen des Binärcode-Lizenzvertrags ('BCL'). Die in den Zusatzbedingungen kursiv geschriebenen, aber nicht definierten Begriffe haben die im BCL bestimmte Bedeutung. Diese Zusatzbedingungen ersetzen alle unvereinbaren oder widersprüchlichen Bedingungen des BCL. Die Verwendung der Software erfolgt mit der Akzeptierung des hier ergänzten BCL. <p>1.  LIZENZBEDINGUNGEN VON DRITTANBIETERN. Einige Teile der Software werden mit Hinweisen und/oder Lizenzen von Drittanbietern zur Verfügung gestellt, die die Verwendung dieser Teile bestimmen. <p>2.  WEITERE VERWENDUNGSBEDINGUNGEN.<br>A. BlueLinQ-Funktion. Die Bedingungen des BCL und dieser Zusatzbedingungen gelten für den Betrieb der Sun Cobalt Qube's BlueLinQ-Funktion einschließlich und ohne Beschränkung:<br>i Ihrer Kontaktaufnahme mit Sun <br>ii Software- und Informations-Downloads von den Sun-Websites und <br>iii Ihrer Wahl, die Software und Informationen an verwaltete Geräte zu verteilen<p>3.  WEITERE BESCHRÄNKUNGEN. Sie dürfen keine Ergebnisse von Benchmark- oder Vergleichstests, die an der Software durchgeführt wurden, ohne die vorherige schriftliche Einwilligung von Sun an einen Dritten weiterleiten oder veröffentlichen.<p>EULA-Web.806-2740-11DAA 	17.10.01 	10:00"
+
+
+
+
+
+

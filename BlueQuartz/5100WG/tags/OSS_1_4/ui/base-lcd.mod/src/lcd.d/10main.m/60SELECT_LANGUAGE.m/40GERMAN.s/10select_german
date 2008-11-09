@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: 10select_german 3 2003-07-17 15:19:15Z will $
+# Sets locale auto-negotiation order
+
+use POSIX;
+use I18n;
+
+my $ret = I18n::i18n_setSystemLocale('de');
+exit $ret;
+

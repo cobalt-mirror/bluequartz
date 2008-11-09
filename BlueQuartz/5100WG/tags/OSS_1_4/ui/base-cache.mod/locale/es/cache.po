@@ -1,0 +1,57 @@
+# The following are the strings used for the menu.
+
+msgid "pkgName"
+msgstr "Sun Cobalt Web Cache"
+
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgDescription"
+msgstr "El programa [[base-cache.pkgName]] mejora el rendimiento de la red colocando en la caché las páginas web solicitadas frecuentemente."
+
+msgid "cache"
+msgstr "Caché web"
+
+msgid "cache_description"
+msgstr "Modificar la [[base-cache.modifyCache]]."
+
+# The following are the strings used for the modification screen.
+
+msgid "modifyCache"
+msgstr "Configuración de caché web"
+
+msgid "enabled"
+msgstr "Habilitar servidor"
+
+msgid "enabled_help"
+msgstr "Activar o desactivar Caché web, con lo que el servidor actuará como un servidor de caché proxy para clientes web y así se aumenta la velocidad de las solicitudes web y se reduce los requisitos de ancho de banda. Para aprovechar esta función, los exploradores web deben configurarse para usar este dispositivo servidor como proxy HTTP y usar el puerto proxy 3128."
+
+# The following are used by the handler.
+
+msgid "no_system_object"
+msgstr "Se ha producido un error. No se encontró el objeto sistema."
+
+msgid "no_prim_network_object"
+msgstr "Se ha producido un error. No se encontró el objeto red para la interfaz principal."
+
+# Active Monitor Strings
+
+msgid "amNameTag"
+msgstr "Servidor de caché web"
+
+msgid "amStatusOK"
+msgstr "El [[base-cache.amNameTag]] funciona normalmente."
+
+msgid "amNotRunning"
+msgstr "El [[base-cache.amNameTag]] no se está ejecutando."
+
+msgid "amDetailsTitle"
+msgstr "Detalles del servidor de caché web"
+
+# Capabilities
+
+msgid "capgroup_adminWebCache"
+msgstr "Administrar la puesta en antememoria Web y el acceso Web"
+
+msgid "capgroup_adminWebCache_help"
+msgstr "Este derecho administrativo permite que un usuario modifique la configuración utilizada por la puesta en antememoria Web."

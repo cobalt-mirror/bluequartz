@@ -1,0 +1,176 @@
+#error messages
+
+msgid "errorEmailBody"
+msgstr "Se ha producido un error durante el proceso de carga automática: "
+
+msgid "errorEmailSubject"
+msgstr "Error de carga automática"
+
+msgid "nosettings"
+msgstr "No se puede encontrar la configuración de carga automática."
+
+msgid "cantdownload"
+msgstr "No se ha podido descargar la lista de paquetes desde el servidor de carga automática especificado.\n\n[[VAR.badHost]]"
+
+msgid "badpacakge"
+msgstr "No se ha podido descomprimir la lista de paquetes desde el servidor de carga automática."
+
+msgid "badpkgfmt"
+msgstr "No se ha podido leer la lista de paquetes desde el servidor de carga automática."
+
+msgid "badinstall"
+msgstr "Se ha producido un error durante la instalación [[VAR.name]]"
+
+#used by wizard stuff
+
+msgid "network"
+msgstr "Configuración de la interfaz secundaria"
+
+msgid "network_help"
+msgstr " "
+
+msgid "servers"
+msgstr "Configuración del servidor de actualización automática"
+
+msgid "servers_help"
+msgstr " "
+
+#used on network.php
+msgid "networkSettings"
+msgstr "Configuración de red"
+
+msgid "networkField"
+msgstr "Configuración de red"
+
+msgid "networkField_help"
+msgstr "Configura la interfaz secundaria"
+
+msgid "dhcpHostNameField"
+msgstr "Nombre del sistema cliente"
+
+msgid "dhcpHostNameField_help"
+msgstr "Escriba el nombre del sistema que identifica este servidor como cliente de protocolo de configuración de sistema dinámico (DHCP) cliente."
+
+msgid "dhcpClientIdField"
+msgstr "Identificador de cliente"
+
+msgid "dhcpClientIdField_help"
+msgstr "Escriba la cadena de identificación que identifica este servidor como un protocolo de configuración de sistema dinámico (DHCP) cliente."
+
+msgid "pppoe"
+msgstr "Obtención automática mediante PPPoE"
+
+msgid "dhcp"
+msgstr "Obtención automática mediante DHCP"
+
+msgid "pppUserNameField"
+msgstr "Nombre de usuario"
+
+msgid "pppUserNameField_help"
+msgstr "Escriba el nombre de usuario que utiliza para conectar con su proveedor de servicios de Internet."
+
+msgid "pppPasswordField"
+msgstr "Contraseña"
+
+msgid "pppPasswordField_help"
+msgstr "Escriba la contraseña que utiliza para conectar con su proveedor de servicios de Internet."
+
+msgid "static"
+msgstr "Especificación manual"
+
+msgid "ipAddressField"
+msgstr "Dirección IP"
+
+msgid "ipAddressField_help"
+msgstr "Escriba la dirección IP de la interfaz secundaria, que por lo general se conecta al lado de Internet."
+
+msgid "netMaskField"
+msgstr "Máscara de red"
+
+msgid "netMaskField_help"
+msgstr "Escriba la máscara de red de la interfaz secundaria"
+
+msgid "gatewayField"
+msgstr "Puerta de enlace"
+
+msgid "gatewayField_help"
+msgstr "Escriba la dirección IP  de la puerta de enlace de la red local relativa a esta aplicación de servidor. Se trata de la puerta para las interfaces primaria y secundaria."
+
+msgid "dnsField"
+msgstr "Servidores DNS"
+
+msgid "dnsField_help"
+msgstr "Escriba la dirección IP o la dirección del servidor o servidores de nombres de dominios locales."
+
+#used on server.php
+
+msgid "serverSettings"
+msgstr "Configuración del servidor de actualización automática"
+
+msgid "serverField"
+msgstr "Servidor de actualización automática"
+
+msgid "serverField_help"
+msgstr "Escriba el nombre de sistema o la dirección IP del servidor de actualización automática."
+
+msgid "proxyField"
+msgstr "Proxy HTTP"
+
+msgid "proxyField_help"
+msgstr "Escriba el nombre de sistema o la dirección IP de un proxy HTTP, siempre y cuando haya uno en la red."
+
+msgid "authField"
+msgstr "Token de autenticación"
+
+msgid "authField_help"
+msgstr "Escriba la información de autenticación que necesite para acceder al servidor de actualización automática."
+
+msgid "invalidServer"
+msgstr "El servidor que ha escrito no parece ser un servidor de actualización automática.  Compruebe la configuración y vuelva a intentarlo."
+
+# used in the lcd script
+msgid "autoupdate_server"
+msgstr " SERVIDOR IP:  "
+
+msgid "autoupdate_secure"
+msgstr " HABILITAR SSL?   "
+
+msgid "autoupdate_proxy"
+msgstr "   PROXY IP:    "
+
+msgid "autoupdate_proxy_question"
+msgstr "CONFIG. PROXY? "
+
+msgid "autoupdate_auth"
+msgstr "     TOKEN      "
+
+msgid "autoupdate_auth_question"
+msgstr "CONF. AUTENTIC.?"
+
+msgid "checking_server_1"
+msgstr "COMPROBAN. SERV."
+ 
+msgid "checking_server_2"
+msgstr "ESPERE ... "
+
+msgid "cant_contact_server_1"
+msgstr "SIN CONTACTAR"
+
+msgid "cant_contact_server_2"
+msgstr " SERVIDOR "
+
+msgid "invalid_server_1"
+msgstr "SERVIDOR NO VAL."
+
+msgid "invalid_server_2"
+msgstr "DIREC.ESCRITA"
+
+msgid "reenter_data"
+msgstr "REINTENTAR?"
+
+
+msgid "statusEmailSubject"
+msgstr "AutoLoad Status"
+
+msgid "statusEmailBody"
+msgstr "The following packages were installed by AutoUpdate:\n"

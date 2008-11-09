@@ -1,0 +1,22 @@
+<!-- $Id: MailList-Archive.schema 3 2003-07-17 15:19:15Z will $ -->
+
+<!-------------------------------------------------------------------
+  MailList.Archive schema
+ 
+  Contains archive-specific configuration information 
+--------------------------------------------------------------------->
+
+<!-- FIXME: these should be enums eventually -->
+<!-- typedef name="postPolicy" type="re" data="^((moderated)|(any)|(members))?$" --> 
+<!-- typedef name="subPolicy" type="re"
+  data="^((closed)|(open)|(confirm))?$" / -->
+
+<class name="MailList" namespace="Archive" createacl="ruleCapable(createMaillist)" destroyacl="ruleCapable(destroyMaillist)" version="1.0">
+  <property name="domain" type="scalar" default="base-MHonArc" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="keep_for_days" type="int" default="30" writeacl="ruleCapable(modifyMaillist)"/>
+  <property name="archiver" type="scalar" 
+	default="/home/mhonarc/bin/mh-wrapper" writeacl="ruleCapable(modifyMaillist)"/>
+</class>
+
+<!-- end of file -->

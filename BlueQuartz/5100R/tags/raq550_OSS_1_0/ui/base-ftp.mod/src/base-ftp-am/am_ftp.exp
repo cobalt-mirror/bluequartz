@@ -1,0 +1,53 @@
+#!/usr/bin/expect
+
+source /usr/sausalito/swatch/statecodes.tcl
+
+# don't echo the dialog
+log_user 0
+
+# we use telnet to connect
+spawn telnet localhost 21
+expect {
+    "Connected to" {}
+    default { # we don't connect properly
+	# try to restart
+	# use catch so we don't report errors on the exec,
+	# only on the dialog itself
+	catch {exec /etc/rc.d/init.d/inet restart >&/dev/null} result
+	sleep 3
+	# redo test, fail if get an error again
+	spawn telnet localhost 21
+	expect {
+	    "Connected to" {}
+	    default {
+		puts -nonewline $env(redMsg);
+		flush stdout;
+		exit $AM_STATE_RED;
+	    }
+	}
+    }
+}
+
+expect {
+    "220 " {}
+    default { # fail if we're not greeted properly
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+
+send "QUIT\r"
+expect {
+    "221 " {}
+    default { # fail if we're not ack-ed properly
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+
+puts -nonewline $env(greenMsg)
+flush stdout;
+exit $AM_STATE_GREEN
+

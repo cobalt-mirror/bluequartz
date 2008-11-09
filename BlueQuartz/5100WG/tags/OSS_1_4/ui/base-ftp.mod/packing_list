@@ -1,0 +1,12 @@
+# put any default packages here.
+RPM: base-ftp-locale-zh_TW
+RPM: base-ftp-locale-zh_CN
+RPM: base-ftp-locale-fr
+RPM: base-ftp-locale-es
+RPM: base-ftp-locale-en
+RPM: base-ftp-locale-de
+RPM: base-ftp-ui
+RPM: base-ftp-glue
+RPM: base-ftp-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE
+RPM: base-ftp-am-1.0.2-3.i386.rpm

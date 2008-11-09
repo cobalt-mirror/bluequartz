@@ -1,0 +1,103 @@
+# $Id: portforward.po 201 2003-07-18 19:11:07Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "Port Forwarding"
+
+msgid "portforwarding_menu_help"
+msgstr "Port Forwarding allows this machine to forward any traffic it receives on a port over to another machine.  This is useful for when you wish to allow access to a machine within your network to the outside world."
+
+msgid "portforward_list"
+msgstr "Port Forwarding Rules"
+
+msgid "form_port_rule"
+msgstr "Please enter a valid port number.  [[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "A port number is an integer between 1 and 65535."
+
+msgid "form_ipaddr_rule"
+msgstr "Please enter a valid IP Address.  For example, 192.168.0.1 is a valid IP Address."
+
+msgid "sourcePort"
+msgstr "Source Port"
+
+msgid "sourcePort_help"
+msgstr "Any traffic directed to the source port of this machine will be redirected to another machine's target port."
+
+msgid "sourcePort_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-portforward.sourcePort]].  [[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "Source IP"
+
+msgid "sourceIP_help"
+msgstr "Any traffic directed to the specified port at this source address will be redirected to the target machine."
+
+msgid "sourceIP_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-portforward.sourceIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "Protocol"
+
+msgid "protocol_help"
+msgstr "This is the protocol that will be redirected."
+
+msgid "targetPort"
+msgstr "Target Port"
+
+msgid "targetPort_help"
+msgstr "This is the port of the machine that will be receiving the traffic."
+
+msgid "targetPort_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-portforward.targetPort]].  [[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "Target IP"
+
+msgid "targetIP_help"
+msgstr "This is the IP address of the machine that will be receiving the traffic."
+
+msgid "targetIP_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-portforward.targetIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "Action"
+
+msgid "action_help"
+msgstr "You may either modify or drop a port forwarding record."
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "Port Forwarding Record - Create"
+
+msgid "title_modify"
+msgstr "Port Forwarding Record - Modify"
+
+msgid "description"
+msgstr "Comments"
+
+msgid "description_help"
+msgstr "You may use the [[base-portforward.description]] field to keep notes on the details of each record."
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "Are you sure you want to delete this Port Forwarding Rule?"
+
+#errors
+msgid "collidingAddresses"
+msgstr "There already exists a record for source [[VAR.ip]]:[[VAR.port]]."
+
+msgid "mustCrossInterfaces"
+msgstr "The combination of [[base-portforward.sourceIP]] and [[base-portforward.targetIP]] you have entered will not cross network interfaces.  [[base-portforward.portforwarding_menu]] must route traffic from one network interface to another."

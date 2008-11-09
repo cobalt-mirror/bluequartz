@@ -1,0 +1,109 @@
+##CUSTOM-PREAMBLE##
+<?php
+  global $WizHostNameField;
+  global $WizDomainNameField;
+  global $WizDnsAddressesField;
+  global $WizConnectionTypeField;
+
+  switch ($WizConnectionTypeField)
+	{
+	case 'broadband':
+		$WizConnBroadBandSelected = "SELECTED";
+		break;
+	case 'narrowband':
+		$WizConnModemSelected = "SELECTED";
+		break;
+	case 'lan':
+		$WizConnLanSelected = "SELECTED";
+		break;
+	default:
+		$WizConnNoneSelected = "SELECTED";
+		break;
+	}
+ $sys=$cceClient->getObject("System");
+ 
+ $WizHostNameField=$sys["hostname"];
+ $WizDomainNameField=$sys["domainname"];
+ $WizDnsAddressesField=preg_replace("/&/", "\n", $sys["dns"]);
+ $WizDnsAddressesField=trim($WizDnsAddressesField);
+?>
+
+##HEADER-CUSTOM-JAVASCRIPT##
+	<script language="JavaScript"><!--
+			function WizTextAreaReformat(element)
+			{
+				var text = element.value;
+				var newText = "";
+				var delimiters = ", \r\n\t";
+				var lastCh = ",";
+
+				for(var i = 0; i < text.length; i++)
+				{
+					var ch = text.charAt(i);
+
+					if(delimiters.indexOf(ch) == -1)
+						newText += ch;
+					else if(delimiters.indexOf(lastCh) == -1)
+						newText += "\n";
+					lastCh = ch;
+				}
+				element.value = newText;
+			}
+	//-->
+	</script>
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='5'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<div class="Setting-Description">
+	Please enter the host name and domain name of this server appliance as well as a reachable domain server and a method of network connectivity.</div>
+		<br>
+		<div class="Setting-Label">
+			<table width="507" border="0" cellspacing="0" cellpadding="2">
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">Host Name:</div>
+					</td>
+					<td>
+						<div class="Setting-Static-Item">
+							<INPUT type="text" name="WizHostNameField" size="20" value="<?php print $WizHostNameField; ?>"></div>
+					</td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							Domain Name:</div>
+					</td>
+					<td valign="top"><INPUT type="text" name="WizDomainNameField" size="20" value="<?php print $WizDomainNameField; ?>"></td>
+				</tr>
+				<tr>
+					<td width="114"></td>
+					<td valign="top"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							Connect Using:</div>
+					</td>
+					<td valign="top"><SELECT NAME="WizConnectionTypeField" ID="WizConnectionTypeField"  SIZE="1">
+							<OPTION VALUE="none" <?php print $WizConnNoneSelected; ?>><?php print $i18n->getHtml("none"); ?></OPTION>
+							<OPTION VALUE="broadband" <?php print $WizConnBroadBandSelected; ?>><?php print $i18n->getHtml("broadband"); ?></OPTION>
+							<OPTION VALUE="lan" <?php print $WizConnLanSelected; ?>><?php print $i18n->getHtml("lan"); ?></OPTION>
+							<OPTION VALUE="narrowband" <?php print $WizConnModemSelected; ?>><?php print $i18n->getHtml("narrowband"); ?></OPTION>
+						</SELECT></td>
+				</tr>
+				<tr>
+					<td width="114"></td>
+					<td valign="top"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+				</tr>
+				<tr>
+					<td valign="top" width="114">
+						<div align="right" class="Setting-Label">
+							DNS Servers:</div>
+					</td>
+					<td valign="top"><TEXTAREA name="WizDnsAddressesField" rows="4" cols="20" onChange="WizTextAreaReformat(document.WizardForm.WizDnsAddressesField.textArea); wrap="off"><?php print $WizDnsAddressesField; ?></TEXTAREA></td>
+				</tr>
+			</table>
+		</div>
+	</form>

@@ -1,0 +1,36 @@
+msgid "cacheACLSettings"
+msgstr "Beschränkter Internet-Zugriff"
+
+msgid "cacheACL"
+msgstr "Web-Zugriff"
+
+msgid "cacheACL_help"
+msgstr "Wenn dieser Server als Gateway oder Proxy benutzt wird, kann Zugriff auf das Internet kann von hier aus gesteuert werden."
+
+msgid "whitelist"
+msgstr "Zulassen"
+
+msgid "blacklist"
+msgstr "Sperren"
+
+msgid "all"
+msgstr "Uneingeschränkt"
+
+msgid "mode"
+msgstr "Einschränkungsrichtlinien"
+
+msgid "mode_help"
+msgstr "Wählen Sie die Einschränkungsmethode: Zulassen gestattet nur Zugriff auf die angegebenen Sites, während Sperren Zugriff auf die angegebenen Sites verhindert. Uneingeschränkt gestattet Zugriff auf alle Sites. Beachten Sie, dass diese Einstellungen nur den Zugriff auf Websites beeinflussen, FTP und andere Protokolle bleiben hiervon unberührt."
+
+msgid "domains"
+msgstr "Host/Domain-Namen"
+
+msgid "domains_help"
+msgstr "Geben Sie Host- und Domänennamen ein, um den Zugriff auf das Internet zu beschränken. Sie können pauschale Domänennamen einsetzen, indem Sie dem Domänennamen einen Punkt voranstellen. Zum Beispiel betrifft der Eintrag www.sun.com nur diesen einen Server, der Eintrag .sun.com hingegen weitet die Einschränkungsrichtlinien auf www.sun.com, cobalt.sun.com, sowie auf alle anderen Websites aus, die der Domäne sun.com angehören."
+
+msgid "ipaddr"
+msgstr "IP-Addressen"
+
+msgid "ipaddr_help"
+msgstr "Tragen Sie hier IP-Adressen ein, die mit diesen Richtlinien verwendet werden sollen."
+

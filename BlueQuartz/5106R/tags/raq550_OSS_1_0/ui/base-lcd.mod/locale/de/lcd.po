@@ -1,0 +1,333 @@
+#: lcd-flash.c:28 lcd-getip.c:39 lcd-write.c:27
+msgid "LCD in use... try again later\n"
+msgstr "LCD in Gebrauch. Spaeter erneut versuchen.\n"
+
+#: lcd-flash.c:35 lcd-getip.c:45 lcd-swrite.c:54 lcd-write.c:54
+# lcd-yesno.c:37
+#: lcdsleep.c:30 lcdstart.c:92 link.c:23 netconfig.c:96 nonet.c:33
+#: readbutton.c:20
+msgid "LCD is not present\n"
+msgstr "LCD nicht vorhanden\n"
+
+#: lcd-getip.c:33 messages.h:36
+msgid "PRIMARY IP ADDR:"
+msgstr "PRIMAERE IP-ADR.:"
+
+msgid "enter_secondary_ip"
+msgstr "SEKUNDAERE IP:"
+
+#: lcd-getip.c:66 lcd-yesno.c:64
+#, c-format
+msgid "Unknown switch %s\n"
+msgstr "Unbek. Schalter %s\n"
+
+#: lcd-getip.c:68
+#, c-format
+msgid "usage-getip"
+msgstr "Verwendung: %s [-1 <line text>] [-i <ip addr>]\n"
+
+#: lcd-swrite.c:87 lcd-write.c:64
+msgid "Please pass text to display\n"
+msgstr "Bitte Text zur Anzeige weitergeben\n"
+
+#: lcd-yesno.c:27
+msgid "Is this Correct?"
+msgstr "Stimmt das?"
+
+#: lcd-yesno.c:29 messages.h:29
+msgid "yes_no"
+msgstr "  [J]A  [N]EIN  "
+
+#: lcd-yesno.c:66
+#, c-format
+msgid "usage-yesno"msgstr "Verwendung: %s [-y <pos>] [-n <pos>] [-1 <line text>] [-2 <line text>]\n"
+
+#: lcdsleep.c:37
+msgid "LCD Awake\n"
+msgstr "LCD wach\n"
+
+#: lcdsleep.c:71
+msgid "LCD Sleeping\n"
+msgstr "LCD schlaeft\n"
+
+#: lcdstart.c:283 netconfig.c:268
+msgid "/sbin/swritelcd Verifying and Saving &>/dev/null &"
+msgstr "/sbin/swritelcd UEberpruefen und speichern &>/dev/null &"
+
+#: led-write.c:30
+msgid "LED Set Aborted - All LEDs on produces a hardware Reset\n"
+msgstr "LED-Einstellung abgebrochen - Alle LEDs aktiviert fuehrt zu Hardware-Zuruecksetzen\n"
+
+#: link.c:30
+msgid "No Link Detected\n"
+msgstr "Kein Link festgestellt\n"
+
+#: link.c:34
+msgid "Link Detected\n"
+msgstr "Link festgestellt\n"
+
+#: linkstatus.c:38
+#, c-format
+msgid "eth0: Link state is %d\n"
+msgstr "eth0: Linkstatus %d\n"
+
+#: linkstatus.c:46
+#, c-format
+msgid "eth1: Link state is %d\n"
+msgstr "eth1: Linkstatus %d\n"
+
+#: messages.h:52 nonet.c:46 nonet.c:47
+msgid "NO NETWORK FOUND"
+msgstr "KEIN NETZW. GEF."
+
+#: messages.h:53 nonet.c:48 nonet.c:49
+msgid "halt_connect"
+msgstr "[A]NH. [V]ERB."
+
+#: messages.h:16 nonet.c:103 nonet.c:104
+msgid "  POWER DOWN?   "
+msgstr "  ABSCHALTEN?   "
+
+#: nonet.c:178
+msgid "/sbin/swritelcd Halting System &>/dev/null &"
+msgstr "/sbin/swritelcd System wird angehalten &>/dev/null &"
+
+#: messages.h:12
+msgid "SELECT:         "
+msgstr "AUSWAEHLEN:     "
+
+#: messages.h:13
+msgid "  SYSTEM INFO   "
+msgstr "SYSTEMINFO   "
+
+#: messages.h:14
+msgid " SETUP NETWORK  "
+msgstr "SETUP: NETZWERK"
+
+msgid "ADVANCED NETWORK"
+msgstr "ERWEIT. NETZWERK"
+
+msgid "REVIEW SETTINGS "
+msgstr "EINST. PRUEFEN"
+
+msgid " SETUP PRIMARY  "
+msgstr "SETUP: PRIMAERE"
+
+msgid "  DHCP PRIMARY  "
+msgstr "DHCP PRIMAERE"
+
+msgid "SETUP SECONDARY "
+msgstr "SETUP: SEKUNDAERE"
+
+msgid " DHCP SECONDARY "
+msgstr "DHCP SEKUNDAERE"
+
+#: messages.h:15
+msgid "   POWER DOWN   "
+msgstr "   ABSCHALTEN   "
+
+#: messages.h:17
+msgid "     REBOOT     "
+msgstr "    NEUSTART    "
+#      "                "
+
+#: messages.h:18
+msgid "    REBOOT?     "
+msgstr "   NEUSTART?   "
+
+#: messages.h:19
+msgid " RESET NETWORK  "
+msgstr "NETZW. ZURUECKS."
+
+#: messages.h:20
+msgid " RESET NETWORK? "
+msgstr "NETZW. ZURUECKS.?"
+
+#: messages.h:21 messages.h:25
+msgid "   RESETTING    "
+msgstr "  ZURUECKSETZEN VON  "
+
+#: messages.h:22
+msgid "    NETWORK     "
+msgstr "  NETZWERK  "
+
+msgid  "    ROUTES      "
+msgstr "    ROUTEN      "
+
+#: messages.h:23
+msgid " RESET FILTERS  "
+msgstr "FILTER ZURUECKS."
+
+#: messages.h:24
+msgid " RESET FILTERS? "
+msgstr "FILTER ZURUECKS.?"
+
+#: messages.h:26
+msgid "    FILTERS     "
+msgstr "   FILTER   "
+
+msgid " RESET ROUTES? "
+msgstr " ROUTEN ZURUECKS.?  "
+
+#: messages.h:27
+msgid "      EXIT      "
+msgstr "    BEENDEN   "
+ 
+#: messages.h:28
+msgid "     EXIT?      "
+msgstr "   BEENDEN?   "
+
+#: messages.h:30
+msgid "RESETTING ADMIN "
+msgstr "WIRD ZURUECKGES."
+
+#: messages.h:31
+msgid "   PASSWORD     "
+msgstr "AMIN.-PASSWORT"
+
+#: messages.h:33
+msgid "SAVE/CANCEL"
+msgstr "[S]PEI./[A]BBR. "
+
+#: messages.h:34
+msgid "      SAVE      "
+msgstr "   SPEICHERN   "
+
+#: messages.h:35
+msgid "      EDIT      "
+msgstr "  BEARBEITEN  "
+
+#: messages.h:37
+msgid "INVALID IP:     "
+msgstr "UNGUELTIGE IP:  "
+
+#: messages.h:38
+msgid "IP Address:     "
+msgstr "IP-Adresse:   "
+
+msgid "lcd_ipaddr"
+msgstr "IP-Adresse:     "
+
+#: messages.h:39
+msgid " PLEASE SAVE IP "
+msgstr "IP SPEICHERN:"
+
+#: messages.h:40
+msgid "    ADDRESS     "
+msgstr "   ADRESSE   "
+
+#: messages.h:41
+msgid "ENTER GATEWAY:  "
+msgstr "GATEWAY EING.:"
+
+#: messages.h:42
+msgid "INVALID GATEWAY:"
+msgstr "UNGUELT. GATEWAY:"
+
+#: messages.h:43
+msgid "PRIMARY NETMASK:"
+msgstr "PRIM. NETZMASKE:"
+
+msgid "enter_secondary_nm"
+msgstr "SEKUNDAERE MASKE:"
+
+#: messages.h:44
+msgid "INVALID NETMASK:"
+msgstr "UNGUEL. N.MASKE:"
+
+#: messages.h:45
+msgid "  PLEASE SAVE   "
+msgstr "BITTE SPEICHERN"
+
+#: messages.h:46
+msgid "    NETMASK     "
+msgstr "  NETZMASKE  "
+
+#: messages.h:47
+msgid "ENTER DNS:      "
+msgstr "DNS EINGEBEN:  "
+
+#: messages.h:48
+msgid "INVALID DNS:    "
+msgstr "UNGUELT. DNS:   "
+
+#: messages.h:49
+msgid "VERIFYING:      "
+msgstr "PRUEFT:     "
+
+#: messages.h:50
+msgid "     SAVING     "
+msgstr "  SPEICHERT  "
+
+#: messages.h:51
+msgid "SYSTEM REBOOTING"
+msgstr "SYSTEM-NEUSTART"
+
+msgid "default_gateway"
+msgstr "Stand.-Gateway:"
+
+msgid "primary_ip"
+msgstr "Primaere IP:"
+
+msgid "primary_nm"
+msgstr "Prim. Netzmaske:"
+
+msgid "secondary_ip"
+msgstr "Sekundaere IP:"
+
+msgid "secondary_nm"
+msgstr "Sekund. Maske:"
+
+msgid "notconfigured"
+msgstr "Nicht konfig."
+
+msgid "dhcp_setup"
+msgstr "   DHCP-Setup"
+
+msgid "failed"
+msgstr " FEHLGESCHLAGEN "
+
+msgid "direct_reboot_1"
+msgstr "    NEUSTART    "
+
+msgid "direct_reboot_2"
+msgstr "   DIREKT     "
+
+msgid "delayed_reboot_1"
+msgstr "   NEUSTART    "
+
+msgid "delayed_reboot_2"
+msgstr "  IN 4 MINUTEN  "
+
+msgid "direct_halt_1"
+msgstr "    ANHALTEN     "
+
+msgid "direct_halt_2"
+msgstr "   DIREKT     "
+
+msgid "delayed_halt_1"
+msgstr "    ANHALTEN     "
+
+msgid "delayed_halt_2"
+msgstr "  IN 4 MINUTEN  "
+
+msgid "SELECT LANGUAGE "
+msgstr "    SPRACHE     "
+
+msgid "    ENGLISH     "
+msgstr "    ENGLISH     "
+
+msgid "     FRENCH     "
+msgstr "    FRANCAIS    "
+
+msgid "    SPANISH     "
+msgstr "    ESPANOL     "
+
+msgid "     GERMAN     "
+msgstr "    DEUTSCH     "
+
+msgid "    JAPANESE    "
+msgstr "   JAPANISCH   "
+
+
+

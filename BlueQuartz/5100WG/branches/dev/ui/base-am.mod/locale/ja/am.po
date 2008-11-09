@@ -1,0 +1,437 @@
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "[[base-am.activeMonitor]] は、システムの動作を常に監視しています。ここをクリックすると、各システムコンポーネントの動作状況に関する情報が表示されます。深刻な問題が発生すると、このアイコンが赤で表示されます。"
+
+msgid "activeMonitor"
+msgstr "アクティブモニタ"
+
+msgid "activeMonitor_help"
+msgstr "システムコンポーネントの動作状況を確認できます。"
+
+msgid "amStatusMenuName"
+msgstr "動作状況"
+
+msgid "amStatusMenuDesc"
+msgstr "[[base-am.activeMonitor]]が監視しているシステムコンポーネントの動作状況に関する情報が表示されます。"
+
+msgid "amObjNotFound"
+msgstr "システムエラーが発生しました。ActiveMonitor オブジェクトが見つかりません。"
+
+msgid "amSysClients"
+msgstr "システムの動作状況 - 概要"
+
+msgid "amClientName"
+msgstr "コンポーネント名"
+
+msgid "amClientName_help"
+msgstr "監視されているコンポーネントの名前です。"
+
+msgid "action"
+msgstr "詳細"
+
+msgid "action_help"
+msgstr "ここをクリックすると、監視されているコンポーネントに関する詳細情報が表示されます。"
+
+msgid "amServClients"
+msgstr "サービスの動作状況- 概要"
+
+msgid "amOtherClients"
+msgstr "その他の動作状況- 概要"
+
+msgid "amClientStatus"
+msgstr "現在の動作状況"
+
+msgid "amClientStatus_help"
+msgstr "監視されているコンポーネントの現在の動作状況です。"
+
+msgid "amClientLastChange"
+msgstr "最後に動作状況が変化した時刻"
+
+msgid "amNever"
+msgstr "なし"
+
+msgid "amClientLastChange_help"
+msgstr "監視されているコンポーネントの動作状況が最後に変化した時刻です。"
+
+msgid "amSettingsMenuName"
+msgstr "設定"
+
+msgid "amSettingsMenuDesc"
+msgstr "[[base-am.amSettings]]はここで変更できます。"
+
+msgid "amSettings"
+msgstr "アクティブモニタの設定"
+
+msgid "enableAMField"
+msgstr "監視する"
+
+msgid "enableAMField_help"
+msgstr "このボックスをチェックすると、[[base-am.activeMonitor]] の監視機能が有効になります。各システムコンポーネントが正しく動作しているかどうかを容易に確認できます。監視対象のシステムコンポーネントは、次のフィールドで指定できます。"
+
+msgid "alertEmailList"
+msgstr "警告メールの送信先"
+
+msgid "alertEmailList_help"
+msgstr "[[base-am.activeMonitor]] は、ここに指定されている電子メールアドレスへ警告メッセージを送信します。"
+
+msgid "itemsToMonitor"
+msgstr "監視対象のコンポーネント"
+
+msgid "itemsToMonitor_help"
+msgstr "[[base-am.activeMonitor]] が定期的に動作状況を確認するシステムコンポーネントを指定できます。左欄には、現在監視されているシステムコンポーネントの一覧が表示されています。右欄には、監視されていないシステムコンポーネントが表示されています。監視する必要のないシステムコンポーネントがあれば、右欄へ移動してください。"
+
+msgid "selected"
+msgstr "監視されているコンポーネント"
+
+msgid "notSelected"
+msgstr "監視されていないコンポーネント"
+
+msgid "amNoMessage"
+msgstr "現在、このコンポーネントに関する情報はありません。"
+
+msgid "amNotMonitored"
+msgstr "現在、このコンポーネントは監視されていません。"
+
+msgid "amNotEnabled"
+msgstr "このコンポーネントは有効にされていません。"
+
+msgid "alreadyMadeAM"
+msgstr "システムエラーが発生しました。Active Monitor オブジェクトはすでに存在します。"
+
+msgid "amCPUName"
+msgstr "CPU の使用状況"
+
+msgid "amCPUWarning_light"
+msgstr "現在、CPU の負荷は軽度です。"
+
+msgid "amCPUWarning_moderate"
+msgstr "現在、CPU の負荷は中程度です。これは、一時的な需要の増加に起因するとも考えられます。サービスの一部を他の Sun Cobalt サーバに移行する、CGI スクリプトを簡素化する、などの対策を講じてください。"
+
+msgid "amCPUWarning_heavy"
+msgstr "現在、CPU にかなり高い負荷がかかっています。サーバのパフォーマンスに悪影響を及ぼす恐れがありますので、サービスの一部を他の Sun Cobalt サーバに移行する、CGI スクリプトを簡素化する、などの対策を直ちに講じてください。"
+
+msgid "amUseLight"
+msgstr "軽度"
+
+msgid "amUseModerate"
+msgstr "中程度"
+
+msgid "amUseHeavy"
+msgstr "重度"
+
+msgid "amCPUDetails"
+msgstr "CPU 使用状況の詳細"
+
+msgid "amCPUStats"
+msgstr "CPU の統計情報"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] 分間の平均負荷"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] 分間の平均負荷"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "[[VAR.mins]] 分間に平均いくつのタスクがプロセッサの処理を待つかを示す統計数字です。平常の平均負荷は 0.0 ～ 3.0 です。"
+
+msgid "amCPULoadAvg_help"
+msgstr "[[VAR.mins]] 分間に平均いくつのタスクがプロセッサの処理を待つかを示す統計数字です。平常の平均負荷は 0.0 ～ 3.0 です。"
+
+msgid "amCPUUptime"
+msgstr "連続稼動時間"
+
+msgid "amCPUUptime_help"
+msgstr "前回の起動時から数えて、サーバが何日何時間継続的に動作しているかを示します。"
+
+msgid "days"
+msgstr "[[VAR.val]] 日　"
+
+msgid "hours"
+msgstr "[[VAR.val]] 時間　"
+
+msgid "minutes"
+msgstr "[[VAR.val]] 分"
+
+msgid "day"
+msgstr "[[VAR.val]] 日　"
+
+msgid "hour"
+msgstr "[[VAR.val]] 時間　"
+
+msgid "minute"
+msgstr "[[VAR.val]] 分"
+
+msgid "amCPUTemp"
+msgstr "CPU の温度"
+
+msgid "amCPUTemp_help"
+msgstr "プロセッサの現在の温度（℃）です。平常では、プロセッサの温度は 30 ～ 60 ℃ です。"
+
+msgid "degrees"
+msgstr "[[VAR.val]] ℃"
+
+msgid "amMemoryName"
+msgstr "メモリの使用状況"
+
+msgid "amMemDetails"
+msgstr "メモリ使用状況の詳細"
+
+msgid "amMemWarning_light"
+msgstr "現在、システムメモリの使用率は軽度です。"
+
+msgid "amMemWarning_moderate"
+msgstr "現在、システムメモリの使用率は中程度です。メモリが不足することも考えられますので、Sun Cobalt サーバへの DRAM の追加をご考慮ください。"
+
+msgid "amMemWarning_heavy"
+msgstr "現在、システムメモリの使用率は重度です。メモリが不足していますので、Sun Cobalt サーバへの DRAM の追加をお勧めします。"
+
+msgid "amMemStats"
+msgstr "メモリに関する統計情報"
+
+msgid "amMemTotal"
+msgstr "物理メモリ（総容量）"
+
+msgid "amMemTotal_help"
+msgstr "このシステムに組み込まれている実メモリの総容量です。"
+
+msgid "amMemFree"
+msgstr "物理メモリの空き容量"
+
+msgid "amMemFree_help"
+msgstr "現在使われていない実メモリの空き容量です。"
+
+msgid "amSwapTotal"
+msgstr "総スワップ容量"
+
+msgid "amSwapTotal_help"
+msgstr "このシステムで利用できるスワップ領域の総容量です。"
+
+msgid "amSwapFree"
+msgstr "スワップ領域の空き容量"
+
+msgid "amSwapFree_help"
+msgstr "現在使われていないスワップ領域の空き容量です。"
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "amMemUsed"
+msgstr "メモリの使用率"
+
+msgid "amMemUsed_help"
+msgstr "現在使われている物理メモリ （実メモリ） の容量です。実メモリの大部分が常に使用されていることもあります。"
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB（総メモリ容量の [[VAR.pcnt]] % を使用中）"
+
+msgid "amSwapUsed"
+msgstr "スワップの使用率"
+
+msgid "amSwapUsed_help"
+msgstr "このシステムで利用できるスワップメモリ （仮想メモリ） の容量です。実メモリに空きがあっても、スワップメモリの一部が常に使用されていることもあります。"
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] （総スワップ容量の [[VAR.pcnt]] % を使用中）"
+
+msgid "amPagesSec"
+msgstr "[[VAR.pages]] ページ／秒"
+
+msgid "pagesPerSec"
+msgstr "毎秒のページ数"
+
+msgid "pagesPerSec_help"
+msgstr "メモリの利用状況を示す統計数字です。「[[base-am.pagesPerSec]]」の値が大きすぎる場合には、メモリが不足しているためシステムは効率的に動作していないと考えられます。必要に応じて物理メモリを追加してください。"
+
+msgid "amSwapsSec"
+msgstr "[[VAR.swaps]] スワップ／秒"
+
+msgid "swapsPerSec"
+msgstr "毎秒のスワップ数"
+
+msgid "swapsPerSec_help"
+msgstr "メモリの利用状況を示す統計数字です。「[[base-am.swapsPerSec]]」の値が大きすぎる場合には、メモリが不足しているためシステムは効率的に動作していないと考えられます。必要に応じて物理メモリを追加してください。"
+
+msgid "amKey"
+msgstr "色と意味:"
+
+msgid "amKeyGrey"
+msgstr "情報がないか、監視が無効に設定されています。"
+
+msgid "amKeyGreen"
+msgstr "正常に動作中"
+
+msgid "amKeyYellow"
+msgstr "問題発生"
+
+msgid "amKeyRed"
+msgstr "深刻な問題発生"
+
+msgid "amUpdateNow"
+msgstr "情報の更新"
+
+msgid "amUpdateNowConfirm"
+msgstr "現在の動作状況を確認して、表示されている情報を更新します。処理には数分かかりますが、続行してよろしいですか？"
+
+msgid "amUpdateNow_help"
+msgstr "このボタンをクリックすると、システムとサービスの動作状況に関する最新の情報が表示されます。動作状況の確認には数分かかりますが、全てバックグラウンドで処理されます。"
+
+msgid "amUpdateNow_disabledHelp"
+msgstr "現在、[[base-am.activeMonitor]] は無効に設定されています。有効にするには、[[base-am.amSettingsMenuName]] メニューから「[[base-am.enableAMField]]」を選択してください。"
+
+msgid "amDetailNoName"
+msgstr "このページの生成処理中に問題が発生しました。name という変数が定義されていません。"
+
+msgid "amFansOK"
+msgstr "冷却ファンは全て正常に動作しています。"
+
+msgid "amFansSlow"
+msgstr "回転速度の遅い冷却ファンがあります。問題の冷却ファンの位置を下に画像で示します。対処法については、ユーザマニュアルをご参照ください。"
+
+msgid "amFansSlow_email_fan1"
+msgstr "電源冷却用ファンの回転速度が落ちています。サーバの電源を切り、筐体正面から見て右側の奥に位置する電源冷却用ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "amFansSlow_email_fan3"
+msgstr "システム冷却用ファンの回転速度が落ちています。サーバの電源を切り、筐体正面から見て右側の手前に位置するシステム冷却用ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "amFansSlow_email_fan2"
+msgstr "CPU 冷却用ファンの回転速度が落ちています。サーバの電源を切り、筐体正面から見て左側の手前に位置する CPU  冷却用ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "amFansDangerouslySlow"
+msgstr "極度に回転速度の遅い冷却ファンがあり、危険な状態です。問題の冷却ファンの位置を下の画像に示します。対処法については、ユーザマニュアルをご参照ください。" 
+
+msgid "amFansDangerouslySlow_email_fan1"
+msgstr "電源冷却用ファンの回転速度が極度に遅いため、危険な状態です。サーバの電源を切り、筐体正面から見て右側の奥に位置する電源冷却用ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "amFansDangerouslySlow_email_fan3"
+msgstr "システム冷却用ファンの回転速度が極度に遅いため、危険な状態です。サーバの電源を切り、筐体正面から見て右側の手前に位置するシステム冷却用ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "amFansDangerouslySlow_email_fan2"
+msgstr "CPU 冷却用ファンの回転速度が極度に遅いため、危険な状態です。サーバの電源を切り、筐体正面から見て左側の手前に位置する CPU 冷却用ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "fanName"
+msgstr "[[VAR.fanNumber]] 番の冷却ファン"
+
+msgid "fanSpeed"
+msgstr "[[VAR.speed]] RPM"
+
+msgid "amFanDetails"
+msgstr "冷却ファンの詳細"
+
+msgid "amFanStats"
+msgstr "冷却ファンの統計"
+
+msgid "amFanName"
+msgstr "冷却ファン"
+
+msgid "amTempsOK"
+msgstr "装置の温度は正常です。"
+
+msgid "amTempsHot"
+msgstr "装置コンポーネント中に通常よりも高温で動作しているものがあります。冷却用ファンの適正な動作とサーバの通気性を確認してください。"
+
+msgid "amTempsDangerouslyHot"
+msgstr "装置コンポーネント中に危険なほどの高温で動作しているものがあります。ファンの故障が考えられますので、冷却用ファンの適正な動作とサーバの通気性を確認してください。"
+
+msgid "amTempName"
+msgstr "温度"
+
+msgid "sensorNameCPU"
+msgstr "CPU の温度"
+
+msgid "sensorNameCPU_help"
+msgstr "プロセッサの動作温度です。"
+
+msgid "sensorNameCase"
+msgstr "内部気温"
+
+msgid "sensorNameCase_help"
+msgstr "サーバ筐体内部の気温です。"
+
+msgid "amTemp"
+msgstr "[[VAR.temp]] ℃"
+
+msgid "amTempDetails"
+msgstr "温度の詳細"
+
+msgid "amTempStats"
+msgstr "温度の統計"
+
+msgid "amECCName"
+msgstr "ECCメモリ補正"
+
+msgid "amECCDetails"
+msgstr "[[base-am.amECCName]] の詳細"
+
+msgid "uncorrMemErrors"
+msgstr "Sun Cobalt サーバアプライアンス上で致命的なメモリエラーが発生しました。サーバを再起動して見てください。それでも同様のエラーが生じる場合には、メモリモジュールが正しく固定されているかどうかをご確認ください。メモリモジュールの交換については、[[base-sauce-basic.techSupportURL]]をご参照ください。"
+
+msgid "tooManyMemErrors"
+msgstr "Sun Cobalt サーバアプライアンス上で小規模のメモリエラーが多数発生しました。サーバを再起動して見てください。それでも同様のエラーが生じる場合には、メモリモジュールが正しく固定されているかどうかをご確認ください。メモリモジュールの交換については、[[base-sauce-basic.techSupportURL]]をご参照ください。"
+ 
+msgid "someCorrMemErrors"
+msgstr "Sun Cobalt サーバアプライアンス上で小規模のメモリエラーがいくつか発生しました。サーバを再起動して見てください。それでも同様のエラーが生じる場合には、メモリモジュールが正しく固定されているかどうかをご確認ください。メモリモジュールの交換については、[[base-sauce-basic.techSupportURL]]をご参照ください。"
+
+msgid "amECCOK"
+msgstr "メモリエラーは発生していません。"
+
+msgid "viewEccLogs"
+msgstr "ECC ログの表示"
+
+msgid "viewEccLogs_help"
+msgstr "このボタンをクリックすると、ECC メモリのログが表示されます。"
+
+msgid "eccLogs"
+msgstr "ECC メモリのログ"
+
+msgid "cant_get_faninfo"
+msgstr "冷却ファンの統計を入手できません。"
+
+msgid "cant_get_tempinfo"
+msgstr "温度の統計を入手できません。"
+
+msgid "bad_ecc_errors"
+msgstr "この DIMM で致命的エラーが発生しました。"
+
+msgid "corr_ecc_errors"
+msgstr "この DIMM で小規模なメモリエラーがいくつか発生しました。"
+
+msgid "no_ecc_errors"
+msgstr "この DIMM は正常に動作しています。"
+
+msgid "slotempty"
+msgstr "この DIMM スロットは空いています。"
+
+msgid "acpi_temp_subject"
+msgstr "装置のオーバーヒートによるシャットダウン"
+
+msgid "acpi_temp_shutdown"
+msgstr "CPU またはシステム内部の温度が許容限度を超えました。安全のため、このサーバは自動的にシャットダウンします。筐体内の冷却ファンの動作と空調および配線などの環境要因を確認してください。"
+
+msgid "acpi_fans_subject"
+msgstr "冷却ファンに起因するシャットダウン"
+
+msgid "acpi_fans_shutdown_fan1"
+msgstr "電源冷却用ファンの回転速度が極度に遅いため、装置にとって危険な状態です。安全のため、このサーバは自動的にシャットダウンします。電源冷却用ファンは、筐体正面から見て右側の奥に位置しています。冷却ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "acpi_fans_shutdown_fan3"
+msgstr "システム冷却用ファンの回転速度が極度に遅いため、装置にとって危険な状態です。安全のため、このサーバは自動的にシャットダウンします。システム冷却用ファンは、筐体正面から見て右側の手前に位置しています。冷却ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "acpi_fans_shutdown_fan2"
+msgstr "CPU 冷却用ファンの回転速度が極度に遅いため、装置にとって危険な状態です。安全のため、このサーバは自動的にシャットダウンします。CPU 冷却用ファンは、筐体正面から見て左側の奥に位置しています。冷却ファンの接続と通気性を確認してください。それでも冷却ファンが正しく回転しない場合には、冷却ファンの故障が考えられます。冷却ファンの交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "no_mem_stats"
+msgstr "現在、メモリの使用状況に関する統計を入手できません。しばらくしてから再度お試しください。"
+msgid "amMemWarning"
+msgstr "現在、システムメモリの使用率は[[VAR.status]]です。"
+
+msgid "capgroup_adminActiveMonitor_help"
+msgstr "この管理権限をもつユーザは、アクティブモニタの設定と動作状況を確認できます。  この権限を取得したユーザは「 '[[base-am.alertEmailList]]' 」リストに自動的には追加されませんが、手動で追加することは可能です。"
+
+msgid "capgroup_adminActiveMonitor"
+msgstr "アクティブモニタの管理"
+
+msgid "amCPUWarning"
+msgstr "現在、CPU の負荷は[[VAR.status]]です。"
+

@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+# $Id: caddvsite,v 1.2 2001/08/24 17:10:09 jeffb Exp $
+use strict;
+
+$0 = "caddvsite";
+
+use lib "/usr/sausalito/perl";
+use lib "/home/shell-tools/perl";
+
+require Shell;
+require ShellCCE;
+
+my $shell = Shell->new($0);
+if(!$shell->isObj('fqdn')) {
+	$shell->usage();
+	die "You must provide the --fqdn option\n";
+}
+my $fqdn = $shell->obj('fqdn');
+if($fqdn =~ /([0-9a-zA-Z\-]+)\.(.*)/) {
+	$shell->putObj('hostname', $1);
+	$shell->putObj('domain', $2);
+	$shell->delObj('fqdn');
+} else { die "Invalid fully qualified domain name: $fqdn\n" }
+	
+
+# connect to CCE
+my $cce = new ShellCCE;
+$cce->connectuds();
+
+# setup some vars I always use w/ cce
+my ($ok, $bad, @info, $defaults, $oid);
+
+# populate some defaults
+($oid) = $cce->find('System');
+($ok, $defaults) = $cce->get($oid, 'VsiteDefaults');
+if(!$shell->isObj('ipaddr') && !defined $defaults->{ipaddr}) {
+	print "You must provide the --ipaddr option\n";
+	$cce->bye("later");
+	exit 1;
+} elsif(!$shell->isObj('ipaddr')) {
+	$shell->putObj('ipaddr', $defaults->{ipaddr});
+}
+$shell->putObj('maxusers', $defaults->{maxusers}) if(!$shell->isObj('maxusers'));
+$shell->putObj('volume', $defaults->{volume}) if(!$shell->isObj('volume'));
+$shell->putObj('quota', $defaults->{quota}, 'Disk') if(!$shell->isObj('quota', 'Disk'));
+
+$cce->normalizeObj($shell);
+my $vsiteRef = $cce->unLoad($shell->{obj});
+
+($ok, $bad, @info) = $cce->create("Vsite", $vsiteRef);
+if($ok == 0) {
+	print "Error creating vsite:\n";
+	$cce->printReturn($bad, @info);
+	$cce->bye("you messed up");
+	exit 1;
+}
+
+$oid = $cce->oid();
+$cce->setNameSpaces($shell->{obj}, $oid);
+
+warn "Virtual site ", $fqdn, " has been created.\n";
+$cce->bye("chill till the next episode");
+
+exit 0;

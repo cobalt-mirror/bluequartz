@@ -1,0 +1,64 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgName"
+msgstr "Sun Cobalt DiskMirror"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] améliore la fiabilité en copiant les données à l'identique sur deux disques durs."
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "Etat du système RAID (Redundant Array of Independent Disks)"
+
+msgid "raid_title"
+msgstr "Etat détailé du système RAID (Redundant Array of Independent Disks)"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "La mise en miroir des disques est désactivée."
+
+msgid "raid_working"
+msgstr "La mise en miroir des disques est activée et actuellement opérationnelle. Les deux disques durs fonctionnent correctement."
+
+msgid "raid_sync_in_progress"
+msgstr "Les données du serveur sont en cours de duplication d'un disque dur à l'autre. La mise en miroir des disques sera activée et opérationnelle une fois cette synchronisation terminée."
+
+msgid "raid_completed"
+msgstr "terminée"
+
+msgid "raid_minutes_remaining"
+msgstr "minute(s) restante(s)"
+
+msgid "raid_failure_raq"
+msgstr "Défaillance d'un disque dur. Mettez le serveur hors tension et remplacez le disque dur en panne en utilisant un disque de taille identique au disque restant. Les données seront dupliquées automatiquement vers le disque dur de remplacement."
+
+msgid "raid_failure_hdc_raq"
+msgstr "Défaillance du disque dur gauche. Arrêtez le serveur et remplacez ce disque par un disque de taille identique. Le disque défectueux se trouve à gauche, en faisant face au cadre de plastique bleu à l'avant du serveur."
+
+msgid "raid_failure_hda_raq"
+msgstr "Défaillance du disque dur droit. Arrêtez le serveur et remplacez ce disque par un disque de taille identique. Le disque défectueux se trouve à droite, en faisant face au cadre de plastique bleu à l'avant du serveur."
+
+msgid "raid_failure_qube"
+msgstr "Défaillance d'un disque dur. Mettez le serveur hors tension et remplacez le disque dur en panne en utilisant un disque de taille identique au disque restant. Les données seront dupliquées automatiquement vers le disque dur de remplacement. Vérifiez les détails RAID dans Active Monitor pour plus d'informations."
+
+msgid "raid_failure_hdc_qube"
+msgstr "Défaillance du disque dur secondaire. Arrêtez le serveur et remplacez ce disque par un disque de taille identique. L'unité en panne (étiquetée B) est située au centre du serveur. Il s'agit du disque dur de droite quand on fait face à l'avant du serveur."
+
+msgid "raid_failure_hda_qube"
+msgstr "Défaillance du disque dur primaire. Arrêtez le serveur et remplacez ce disque par un disque de taille identique. L'unité en panne (étiquetée A) est située près du bord du serveur. Il s'agit du disque dur de gauche quand on fait face à l'avant du serveur"

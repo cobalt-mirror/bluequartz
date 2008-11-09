@@ -1,0 +1,116 @@
+# $Id: portforward.po 201 2003-07-18 19:11:07Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "埠號轉向"
+
+msgid "portforwarding_menu_help"
+msgstr "埠號轉向可讓這台機器將它在某個埠接收的資料轉向另一台機器。當\
+您想要讓網路內的機器去存取外界的機器時，這樣做很有用。"
+
+msgid "portforward_list"
+msgstr "埠號轉向規則"
+
+msgid "form_port_rule"
+msgstr "請輸入有效的通訊埠編號。\
+[[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "通訊埠編號是介於 1 到 65535 之間的整數。"
+
+msgid "form_ipaddr_rule"
+msgstr "請輸入一個有效的 IP 位址。例如，192.168.0.1 就是一個有效的 IP 位址。"
+
+msgid "sourcePort"
+msgstr "來源埠"
+
+msgid "sourcePort_help"
+msgstr "導向這台機器來源埠的流量會重新導向另一台機器的目標埠。"
+
+msgid "sourcePort_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 對\
+[[base-portforward.sourcePort]]而言是無效的值。\
+[[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "來源 IP"
+
+msgid "sourceIP_help"
+msgstr "導向這個來源端位址上的指定埠的流量會重新導向目標機器。"
+
+msgid "sourceIP_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 對\
+[[base-portforward.sourceIP]] 而言是無效的值。[[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "通信協定"
+
+msgid "protocol_help"
+msgstr "這是會重新導向的通信協定。"
+
+msgid "targetPort"
+msgstr "目標埠"
+
+msgid "targetPort_help"
+msgstr "這是會接收流量的機器的埠。"
+
+msgid "targetPort_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 對\
+[[base-portforward.targetPort]]而言是無效的值。\
+[[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "目標 IP"
+
+msgid "targetIP_help"
+msgstr "這是會接收流量的機器的 IP 位址。"
+
+msgid "targetIP_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 對\
+[[base-portforward.targetIP]] 而言是無效的值。\
+[[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "動作"
+
+msgid "action_help"
+msgstr "您可以更改或刪除埠號轉向記錄。"
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "埠號轉向記錄 - 建立"
+
+msgid "title_modify"
+msgstr "埠號轉向記錄 - 更改"
+
+msgid "description"
+msgstr "說明"
+
+msgid "description_help"
+msgstr "您可以使用[[base-portforward.description]]欄位記錄每一筆記錄的明細。"
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "您確定要刪除此「埠轉向規則」嗎？"
+
+#errors
+msgid "collidingAddresses"
+msgstr "來源的記錄 [[VAR.ip]]:[[VAR.port]] 已經存在。"
+
+msgid "mustCrossInterfaces"
+msgstr "您輸入的 [[base-portforward.sourceIP]] 與\
+[[base-portforward.targetIP]] 的組合不會跨越網路介面。\
+[[base-portforward.portforwarding_menu]]必須從一個網路介面遞送流量到另一\
+個網路介面。"
+

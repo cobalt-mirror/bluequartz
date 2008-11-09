@@ -1,0 +1,75 @@
+## NOTE: this is the Disk Usage section of Personal Profile + bits of Active Monitor 
+
+# --- Menu
+msgid "userDiskUsage"
+msgstr "ディスクの使用状況"
+
+msgid "userDiskUsage_help"
+msgstr "ここをクリックすると、ディスクの使用状況に関する情報が表示されます。"
+
+msgid "diskUsageFor"
+msgstr "ディスクの使用状況 - [[VAR.userName]]"
+
+msgid "userDiskUsed"
+msgstr "使用ディスク容量（MB）"
+
+msgid "userDiskUsed_help"
+msgstr "現在使用しているディスク容量です。（単位： メガバイト）"
+
+msgid "userDiskFree"
+msgstr "空きディスク容量（MB）"
+
+msgid "userDiskFree_help"
+msgstr "使用できるディスクの空き容量です。（単位： メガバイト）"
+
+msgid "userDiskPercentage"
+msgstr "使用率"
+
+msgid "userDiskPercentage_help"
+msgstr "使用可能なディスク容量全体の中で、現在使用中のディスク容量が占める割合を示します。"
+
+msgid "userOverQuota"
+msgstr "ディスク容量に関する警告"
+
+msgid "userOverQuota_help"
+msgstr "現在、割り当てられているディスク容量を超過する量のディスク空間が使用されていることを示します。不要になった古いファイルや電子メールをこのサーバから削除して、ディスク空間の空きを増やしてください。"
+
+msgid "overQuotaMsg"
+msgstr "現在、割り当てられているディスク容量を超過する量のディスク空間が使用されています。不要になった古いファイルや電子メールをこのサーバから削除して、ディスク空間の空きを増やしてください。"
+
+
+# ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
+
+msgid "amDiskNameTag"
+msgstr "ディスクの使用状況"
+
+msgid "amDetails"
+msgstr "ディスク使用状況の詳細"
+
+	# also sent in email to admin if disk usage high
+msgid "amDiskWarning"
+msgstr "ディスクのパーティションがほぼ一杯です。[[VAR.fs]] パーティション上のディスク容量の [[VAR.pcnt]] % が使用中です。このパーティション上の空き容量は、[[VAR.free]] MB です。"
+
+msgid "amDiskOk"
+msgstr "ディスクの使用状況は正常です。"
+
+
+# --- Handler messages, don't show in UI
+
+msgid "cantExecuteDf"
+msgstr "df コマンドを実行できません。"
+
+msgid "cantExecuteRepquota"
+msgstr "repquota コマンドを実行できません。"
+
+msgid "cantSetSystemObject"
+msgstr "システムオブジェクトに設定できません。"
+
+msgid "cantSetUserObject"
+msgstr "ユーザオブジェクトに設定できません。"
+
+msgid "systemObjectNotFound"
+msgstr "システムオブジェクトが見つかりません。"
+
+msgid "couldNotGetId"
+msgstr "システムファイルでアカウント設定が見つかりませんでした。  このユーザはシステム設定ファイルから手動で削除された可能性があります。"

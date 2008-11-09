@@ -1,0 +1,150 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "磁盘"
+
+msgid "diskUsageMenuDesc"
+msgstr "磁盘利用率统计信息可在此处查看。"
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "磁盘利用率"
+
+msgid "diskUsageSummary"
+msgstr "磁盘利用率—摘要"
+
+msgid "userQuotas"
+msgstr "磁盘利用率—用户"
+
+msgid "groupQuotas"
+msgstr "磁盘利用率—组"
+
+msgid "selectUsage"
+msgstr "选择利用率..."
+
+msgid "usageSummary"
+msgstr "摘要"
+
+msgid "usageUser"
+msgstr "用户"
+
+msgid "usageGroup"
+msgstr "组"
+
+msgid "lastCollectionDate"
+msgstr "上次检查的利用率"
+
+msgid "lastCollectionDate_help"
+msgstr "这是所生成的上次磁盘利用率统计信息。"
+
+msgid "notRunYet"
+msgstr "磁盘利用率统计信息还未生成。"
+
+msgid "updateNow"
+msgstr "立即检查利用率"
+
+msgid "updateNow_help"
+msgstr "单击此处立即更新磁盘利用率信息。统计信息可能需要几分钟时间生成。"
+
+msgid "askUpdateNowConfirmation"
+msgstr "是否确定立即检查磁盘利用率。此项操作可能要花几分钟时间。"
+
+# Summary
+
+msgid "partition"
+msgstr "分区"
+
+msgid "partition_help"
+msgstr "这显示文件系统分区的名称以及其用途。"
+
+msgid "usedSpace"
+msgstr "已用 (MB)"
+
+msgid "usedSpace_help"
+msgstr "这是文件系统分区中已用的空间数量 (MB)。"
+
+msgid "available"
+msgstr "可用 (MB)"
+
+msgid "available_help"
+msgstr "这是文件系统分区中可用的空间数量 (MB)。"
+
+msgid "totalSpace"
+msgstr "总计 (MB)"
+
+msgid "totalSpace_help"
+msgstr "这是为文件系统分区分配的空间数量 (MB)。"
+
+msgid "pct"
+msgstr "已用百分比"
+
+msgid "pct_help"
+msgstr "这是可用总磁盘空间或已用的所分配磁盘空间的百分比。"
+
+msgid "rootFiles"
+msgstr "系统文件—根分区 (/)"
+
+msgid "varFiles"
+msgstr "系统文件—Var 分区 (/var)"
+
+msgid "userFiles"
+msgstr "用户或组文件—主分区 (/home)"
+
+msgid "totals"
+msgstr "所有分区"
+
+
+# Users
+
+msgid "user"
+msgstr "用户名"
+
+msgid "user_help"
+msgstr "这是磁盘利用率信息适用的用户。"
+
+msgid "blocks"
+msgstr "已用 (MB)"
+
+msgid "blocks_help"
+msgstr "这是当前使用的磁盘空间数量 (MB)。"
+
+msgid "quota"
+msgstr "允许 (MB)"
+
+msgid "quota_help"
+msgstr "这是所允许的最大磁盘空间利用率 (MB)。"
+
+msgid "allUsers"
+msgstr "所有用户"
+
+# Groups
+
+msgid "group"
+msgstr "组名"
+
+msgid "group_help"
+msgstr "这是磁盘利用率信息适用的组。"
+
+msgid "allGroups"
+msgstr "所有组"
+
+msgid "mailQuotaUserSubject"
+msgstr "用户磁盘利用率报警"
+
+msgid "mailQuotaUserBody"
+msgstr "警告：\n\n[[VAR.host]]上[[VAR.user]]用户使用的磁盘空间\n超过了所分配的限制[[VAR.pct]]%，另外还需要[[VAR.free]]MB 的可用空间。\n请考虑删除某些文件、将某些数据转移到其它位置，或\n请求增加最大存储限制。\n\n  "
+
+msgid "mailQuotaGroupSubject"
+msgstr "组磁盘使用警告"
+
+msgid "mailQuotaGroupBody"
+msgstr "警告：\n\n[[VAR.host]]组[[VAR.group]]使用的的磁盘空间\n超过了所分配的限制[[VAR.pct]]%，另外还需要[[VAR.free]]MB 的可用空间。\n请考虑删除某些文件、将某些数据转移到其它位置，或\n请求增加最大存储限制。\n\n  "
+
+msgid "unknownDiskUsage"
+msgstr "未知"
+
+msgid "unlimitedQuota"
+msgstr "无限"
+
+

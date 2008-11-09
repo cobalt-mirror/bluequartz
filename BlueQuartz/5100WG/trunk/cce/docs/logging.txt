@@ -1,0 +1,12 @@
+			CCE logging
+
+CCE_SYSLOG
+	if (!nl) syslog
+	if (-V) stderr
+
+DPRINTF
+	if (-d <DBG_X>) stderr
+
+if -V or -d, don't close stderr.
+if -nl, assume -V
+

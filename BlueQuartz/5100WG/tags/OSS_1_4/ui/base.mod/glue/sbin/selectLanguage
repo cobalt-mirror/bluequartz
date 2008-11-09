@@ -1,0 +1,113 @@
+#!/usr/bin/perl
+
+use lib '/usr/sausalito/perl/';
+use I18n;
+
+my $i18n = new I18n;
+$i18n->setLocale(I18n::i18n_getSystemLocale());
+
+# Allow services to start
+sleep 5; 
+
+# Disable lcd-swrite as used by init scripts that ignore locks
+my $LOCK = '/etc/locks/.lcdlock';
+my $LCD_SWRITE = '/sbin/lcd-swrite';
+my $LCD_STAGE = '/sbin/lcd-swrite.disabled';
+rename($LCD_SWRITE, $LCD_STAGE) || die "Could not rename lcd-swrite: $!";
+
+# Create dummy lcd-swrite
+open(SWRITE, ">$LCD_SWRITE");
+print SWRITE "#!/bin/sh\nexit 0\n";
+close(SWRITE);
+chmod(0755, $LCD_SWRITE);
+system('/usr/bin/killall -9 lcd-swrite >/dev/null 2>&1');
+
+open(LOCK, ">$LOCK");
+print LOCK $$;
+close(LOCK);
+
+my $dir="/etc/lcd.d/10main.m/60SELECT_LANGUAGE.m";
+my @langs;
+my %buttons = (
+            Select => ["32256","15616"],
+            Enter => ["48640","15872"],
+            Right => ["56832","14080"],
+            Up => ["62976","12032"],
+            Left => ["64000","15104"],
+            Down => ["60928","7936"],
+            Reset => ["64512"],
+            );
+$LCD_WRITE = "/sbin/lcd-write";
+$LCD_READ  = "/sbin/readbutton";
+$LCD_STOP  = "/sbin/lcdstop";
+$LCD_KILLALL  = "/usr/bin/killall lcd-swrite >/dev/null 2>&1";
+
+opendir D, $dir;
+foreach(readdir D){
+	next unless /\d+(\w+)\.s/ && !/EXIT/i;
+	push @langs, [$1, [sort grep {!/^\./} <$dir/$_/*>]];
+}
+
+# Late service restarts from CCE constructors can race the LCD
+system($LCD_STOP); 
+sleep 1;
+system($LCD_STOP); 
+system($LCD_KILLALL); 
+
+$idx=getSelection(@langs);
+
+unlink($LCD_SWRITE);
+unlink($LOCK);
+rename($LCD_STAGE, $LCD_SWRITE);
+
+foreach(@{$langs[$idx]->[1]}){
+	system("$_");
+}
+
+sub getSelection{
+	my @langs=@_;
+	my $count=0;
+	my $langstr=$i18n->get("[[base-lcd.SELECT LANGUAGE ]]");
+	$langstr='SELECT LANGUAGE:';
+
+	while(1){
+		my $lang=$langs[$count]->[0];
+		$lang =~ s/_/ /g;
+
+		#stupid padding tricks...
+		my $plen=16-length($lang);
+		if($plen%2 == 0){
+			my $pad=" " x ($plen/2);
+			$lang=$pad.$lang.$pad;
+		}else{
+			my $pad=" " x (int($plen/2));
+			$lang=$pad.$lang.$pad." ";
+		}
+		my $option=$i18n->get("[[base-lcd.$lang]]");
+
+		system($LCD_KILLALL); 
+		system("$LCD_WRITE -s \"$langstr\" \"$option\"");
+		while (system("$LCD_READ") != 0)
+		{
+			system($LCD_KILLALL);
+		}
+
+		for (;;)
+		{
+			my $b = 0;
+
+			while (($b = system("$LCD_READ")) == 0){}
+			while (system("$LCD_READ") != 0){};
+
+			return $count if (scalar(grep(/^\Q$b\E$/, @{ $buttons{Enter} })));
+			last if (scalar(grep(/^\Q$b\E$/, @{ $buttons{Select} })));
+		}
+
+		if($count+1 == scalar(@langs)){
+			$count=0;
+		}else{
+			$count++;
+		}
+	}
+}
+

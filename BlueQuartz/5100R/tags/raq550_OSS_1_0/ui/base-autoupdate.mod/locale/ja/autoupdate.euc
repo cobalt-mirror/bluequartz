@@ -1,0 +1,178 @@
+#error messages
+
+msgid "errorEmailBody"
+msgstr "AutoLoad Ãæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Þ¤·¤¿¡§ "
+
+msgid "errorEmailSubject"
+msgstr "AutoLoad ¥¨¥é¡¼"
+
+msgid "nosettings"
+msgstr "AutoLoad ¤ÎÀßÄê¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¤Ç¤·¤¿¡£"
+
+msgid "cantdownload"
+msgstr "»ØÄê¤µ¤ì¤¿ AutoLoad ¥µ¡¼¥Ð¤«¤é¥Ñ¥Ã¥±¡¼¥¸¤Î°ìÍ÷¤ò¥À¥¦¥ó¥í¡¼¥É¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£\n\n[[VAR.badHost]]"
+
+msgid "badpacakge"
+msgstr "AutoLoad ¥µ¡¼¥Ð¤«¤é¥À¥¦¥ó¥í¡¼¥É¤·¤¿¥Ñ¥Ã¥±¡¼¥¸¤Î°ìÍ÷¤ò¥¢¥ó¥Ñ¥Ã¥¯¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£"
+
+msgid "badpkgfmt"
+msgstr "AutoLoad ¥µ¡¼¥Ð¤«¤é¥À¥¦¥ó¥í¡¼¥É¤·¤¿¥Ñ¥Ã¥±¡¼¥¸¤Î°ìÍ÷¤òÆÉ¤ß¹þ¤á¤Þ¤»¤ó¤Ç¤·¤¿¡£"
+
+msgid "badinstall"
+msgstr "[[VAR.name]] ¤ò¥¤¥ó¥¹¥È¡¼¥ëÃæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Þ¤·¤¿"
+
+msgid "statusEmailSubject"
+msgstr "AutoLoad ¤Î¾õÂÖ"
+
+msgid "statusEmailBody"
+msgstr "AutoUpdate ¤Ë¤è¤ê¼¡¤Î¥Ñ¥Ã¥±¡¼¥¸¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Þ¤·¤¿:\n"
+
+#used by wizard stuff
+
+msgid "network"
+msgstr "¥»¥«¥ó¥À¥ê¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤ÎÀßÄê"
+
+msgid "network_help"
+msgstr " "
+
+msgid "servers"
+msgstr "AutoUpdate ¥µ¡¼¥Ð¤ÎÀßÄê"
+
+msgid "servers_help"
+msgstr " "
+
+#used on network.php
+msgid "networkSettings"
+msgstr "¥Í¥Ã¥È¥ï¡¼¥¯¤ÎÀßÄê"
+
+msgid "networkField"
+msgstr "¥Í¥Ã¥È¥ï¡¼¥¯¤ÎÀßÄê"
+
+msgid "networkField_help"
+msgstr "¥»¥«¥ó¥À¥ê¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤òÀßÄê¤Ç¤­¤Þ¤¹¡£"
+
+msgid "dhcpHostNameField"
+msgstr "¥¯¥é¥¤¥¢¥ó¥È¥Û¥¹¥ÈÌ¾"
+
+msgid "dhcpHostNameField_help"
+msgstr "¤³¤Î¥µ¡¼¥Ð¤ò DHCP ¡ÊDynamic Host Configuration Protocol¡Ë ¥¯¥é¥¤¥¢¥ó¥È¤È¤·¤Æ¼±ÊÌ¤¹¤ë¤¿¤á¤Î¥Û¥¹¥ÈÌ¾¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "dhcpClientIdField"
+msgstr "¥¯¥é¥¤¥¢¥ó¥È¤Î¼±ÊÌ»Ò"
+
+msgid "dhcpClientIdField_help"
+msgstr "¤³¤Î¥µ¡¼¥Ð¤ò DHCP ¡ÊDynamic Host Configuration Protocol ¡Ë ¥¯¥é¥¤¥¢¥ó¥È¤È¤·¤Æ¼±ÊÌ¤¹¤ë¤¿¤á¤Î¼±ÊÌÊ¸»úÎó¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "pppoe"
+msgstr "PPPoE ¤ò»²¾È"
+
+msgid "dhcp"
+msgstr "DHCP ¤ò»²¾È"
+
+msgid "pppUserNameField"
+msgstr "¥æ¡¼¥¶Ì¾"
+
+msgid "pppUserNameField_help"
+msgstr "¥¤¥ó¥¿¡¼¥Í¥Ã¥È¥µ¡¼¥Ó¥¹¥×¥í¥Ð¥¤¥À¡ÊISP¡Ë¤Î¥¢¥«¥¦¥ó¥È¤Ø¥í¥°¥¤¥ó¤¹¤ë¤¿¤á¤ËÉ¬Í×¤Ê¥æ¡¼¥¶Ì¾¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "pppPasswordField"
+msgstr "¥Ñ¥¹¥ï¡¼¥É"
+
+msgid "pppPasswordField_help"
+msgstr "¥¤¥ó¥¿¡¼¥Í¥Ã¥È¥µ¡¼¥Ó¥¹¥×¥í¥Ð¥¤¥À¡ÊISP¡Ë¤Î¥¢¥«¥¦¥ó¥È¤Ø¥í¥°¥¤¥ó¤¹¤ë¤¿¤á¤ËÉ¬Í×¤Ê¥Ñ¥¹¥ï¡¼¥É¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "static"
+msgstr "¼êÆ°¤ÇÀßÄê"
+
+msgid "ipAddressField"
+msgstr "IP ¥¢¥É¥ì¥¹"
+
+msgid "ipAddressField_help"
+msgstr "¥»¥«¥ó¥À¥ê¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤Î IP ¥¢¥É¥ì¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£ÄÌ¾ï¡¢¥»¥«¥ó¥À¥ê¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤Ï¥¤¥ó¥¿¡¼¥Í¥Ã¥È¤Ø¤ÎÀÜÂ³¤Ë»È¤ï¤ì¤Þ¤¹¡£"
+
+msgid "netMaskField"
+msgstr "¥Í¥Ã¥È¥Þ¥¹¥¯"
+
+msgid "netMaskField_help"
+msgstr "¥»¥«¥ó¥À¥ê¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤Î¥Í¥Ã¥È¥ï¡¼¥¯¥Þ¥¹¥¯¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "gatewayField"
+msgstr "¥²¡¼¥È¥¦¥§¥¤"
+
+msgid "gatewayField_help"
+msgstr "¤³¤Î¥µ¡¼¥Ð¤Î¥í¡¼¥«¥ë¥Í¥Ã¥È¥ï¡¼¥¯¥²¡¼¥È¥¦¥§¥¤¤Î IP ¥¢¥É¥ì¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£¤³¤ì¤Ï¥×¥é¥¤¥Þ¥ê¤È¥»¥«¥ó¥À¥ê¤ÎÎ¾Êý¤Î¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹¤ËÂÐ±þ¤¹¤ë¥²¡¼¥È¥¦¥§¥¤¥¢¥É¥ì¥¹¤Ç¤¹¡£"
+
+msgid "dnsField"
+msgstr "DNS ¥µ¡¼¥Ð"
+
+msgid "dnsField_help"
+msgstr "¥í¡¼¥«¥ë¥É¥á¥¤¥ó¥Í¡¼¥à¥µ¡¼¥Ð¤Î IP ¥¢¥É¥ì¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+#used on server.php
+
+msgid "serverSettings"
+msgstr "AutoUpdate ¥µ¡¼¥Ð¤ÎÀßÄê"
+
+msgid "serverField"
+msgstr "AutoUpdate ¥µ¡¼¥Ð"
+
+msgid "serverField_help"
+msgstr "AutoUpdate ¥µ¡¼¥Ð¤Î¥Û¥¹¥ÈÌ¾¤Þ¤¿¤Ï IP ¥¢¥É¥ì¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "proxyField"
+msgstr "HTTP ¥×¥í¥­¥·"
+
+msgid "proxyField_help"
+msgstr "HTTP ¥×¥í¥­¥·¤¬¥Í¥Ã¥È¥ï¡¼¥¯¾å¤Ë¤¢¤ë¾ì¹ç¡¢¤½¤Î¥Û¥¹¥ÈÌ¾¤Þ¤¿¤Ï IP ¥¢¥É¥ì¥¹¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "authField"
+msgstr "Ç§¾Ú¥È¡¼¥¯¥ó"
+
+msgid "authField_help"
+msgstr "AutoUpdate ¥µ¡¼¥Ð¤Ø¤Î¥¢¥¯¥»¥¹¤ËÉ¬Í×¤ÊÇ§¾Ú¾ðÊó¤òÆþÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+
+msgid "invalidServer"
+msgstr "ÆþÎÏ¤·¤¿¥µ¡¼¥Ð¤ò AutoUpdate ¥µ¡¼¥Ð¤È¤·¤ÆÇ§¼±¤Ç¤­¤Þ¤»¤ó¡£ÀßÄê¤ò³ÎÇ§¤·¤Æ¡¢¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£"
+
+# used in the lcd script
+msgid "autoupdate_server"
+msgstr "    »°ÊÞ IP:    "
+
+msgid "autoupdate_secure"
+msgstr "SSL ¦ Õ³º³Æ¼Ï½¶?"
+
+msgid "autoupdate_proxy"
+msgstr "   ÌßÛ·¼ IP:    "
+
+msgid "autoupdate_proxy_question"
+msgstr "ÌßÛ·¼¦ ¾¯Ã²¼Ï½¶?"
+
+msgid "autoupdate_auth"
+msgstr "  ÆÝ¼®³ Ä°¸Ý:   "
+
+msgid "autoupdate_auth_question"
+msgstr "Ä°¸Ý¦Æ­³Ø®¸¼Ï½¶?"
+
+msgid "checking_server_1"
+msgstr "»°ÊÞ¦ Áª¯¸¼Ã²Ï½ "
+
+msgid "checking_server_2"
+msgstr "¼ÊÞ×¸µÏÁ¸ÀÞ»²..."
+
+msgid "cant_contact_server_1"
+msgstr "     »°ÊÞÆ      "
+
+msgid "cant_contact_server_2"
+msgstr "  ¾Â¿Þ¸ ÃÞ·Ï¾Ý  "
+
+msgid "invalid_server_1"
+msgstr " »°ÊÞ ±ÄÞÚ½ ¶Þ  "
+
+msgid "invalid_server_2"
+msgstr "    Ì¾² ÃÞ½     "
+
+msgid "reenter_data"
+msgstr "  »²¼º³ ¼Ï½¶?   "
+
+msgid "AUTOUPDATE"
+msgstr " ¼ÞÄÞ³ ±¯ÌßÃÞ°Ä "

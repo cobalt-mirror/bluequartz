@@ -1,0 +1,104 @@
+# --- Menu
+
+msgid "apache"
+msgstr "Web Server"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]] can be changed here."
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "Web Settings"
+
+msgid "frontpageField"
+msgstr "FrontPage Server Extensions"
+
+msgid "frontpageField_help"
+msgstr "Turn FrontPage Server Extensions on or off."
+
+msgid "frontpageEnabled"
+msgstr "Enable"
+
+msgid "passwordWebmasterField"
+msgstr "webmaster Password"
+
+msgid "passwordWebmasterField_help"
+msgstr "Enter a password for the FrontPage client webmaster. The home group web site may be accessed by selecting Open Web in the FrontPage client.  Login using the login name webmaster and the password you specify here.  Once authenticated, additional FrontPage users are managed using the FrontPage client."
+
+msgid "passwordWebmasterField_rule"
+msgstr "The password should be between 3 and 16 characters long.  A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation.  It should not spell out any words found in the dictionary.  Passwords are case sensitive."
+
+msgid "passwordWebmasterField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "cgiAccessField"
+msgstr "CGI Access"
+
+msgid "cgiAccessField_help"
+msgstr "Turn CGI Access on or off. You can set the CGI access rights so that only the server appliance administrator can add CGI script files, or both the administrator and all or selected users can add CGI script files."
+
+msgid "cgiAll"
+msgstr "Allow Access To All Users"
+
+msgid "cgiNone"
+msgstr "Do Not Allow Access To Any User"
+
+msgid "cgiSubset"
+msgstr "Allow Access To Specified Users Only"
+
+msgid "cgiUsersAllowed"
+msgstr "Users Allowed Access"
+
+msgid "cgiUsersDisallowed"
+msgstr "Users Not Allowed Access"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "Sorry, you have not selected any users for CGI Access. Please add users who are allowed CGI Access or choose a different access option."
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "Sorry, CGI Access could not be correctly configured at this time."
+
+msgid "systemObjectNotFound"
+msgstr "Sorry, server configuration is temporarily unavailable.  Please wait and try again."
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "Web Server"
+
+msgid "amApacheDetails"
+msgstr "Web Server Details"
+
+msgid "amNotRunning"
+msgstr "The web server is not running."
+
+msgid "amStatusOK"
+msgstr "The web server is operating normally."
+
+msgid "amAdmservNameTag"
+msgstr "Server Desktop"
+
+msgid "amAdmservDetails"
+msgstr "Server Desktop Details"
+
+msgid "amAdmservNotRunning"
+msgstr "The Server Desktop is not running."
+
+msgid "amAdmservStatusOK"
+msgstr "The Server Desktop is operating normally."
+
+# Capabilities
+
+msgid "capgroup_adminApache"
+msgstr "Manage Web Server"
+
+msgid "capgroup_adminApache_help"
+msgstr "This administrative right allows a user to modify the public websites' settings, including individual user site rights (eg: frontpage, cgi, ...)"

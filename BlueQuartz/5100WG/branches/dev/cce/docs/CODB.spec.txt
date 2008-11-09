@@ -1,0 +1,39 @@
+CODB
+
+<new>
+Properties are stored in a berkeley hash database called "objects.db" in
+the CCEDBDIR (default /usr/sausalito/codb).  Each property has a key of
+the form of "<OID>.<namespace>.<propertyname>" (eg. "1.Network.Enabled"
+or "5..Username").  The value of this key is the value of the property.
+</new>
+
+The list of OIDs currently in use by codb is stored in the file
+"codb.oids".  It is stored in intspan format - using the "-" and ","
+characters to indicate continuous lists of numbers and disjoint sets of
+numbers respectively.  (ie, "1-5" means 1 2 3 4 5 and "1,7" means 1 7)
+
+The index of classname->OID mappings is stored in a berkeley hash
+database called "db.classes".  The key is the classname, and the value
+is the OID of that class.  Duplicate keys are of course permitted.
+
+Any schema defined indexes are stored in CCEDBDIR/indexes.
+(In version 0.80 they were stored in CCEDBDIR)
+They are berkeley hash databases called "db.<classname>.<indexname>".
+The key for each element is the value of the property they are indexed
+on.  The data is the OID.
+
+The version of the data stored on disk is stored in a file
+"codb.version".  This version is a plaintext form of the CCE rpm
+version.  If it is not found or invalid, CCE attempts to guess the
+version by looking for the file "db.classes" (introduced in version
+0.80.1).  If not found, it assumes a 0.76 version database, else it
+assumes version 0.80.
+
+version 0.80 differences compared to version 1.0:
+Objects are stored in the "objects" directory - the directory name is
+the OID, the files within are named "<namespace>.<property>" and contain
+the value of the property.
+version 0.76 differences compared to version 0.80:
+The class index is stored in "objects/0/".  Each class is represented by
+a file called "CLASS=<classname>".  The data is OIDs in 8 digit
+hexadecimal format, seperated (and terminated) by "," characters.

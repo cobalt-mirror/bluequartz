@@ -1,0 +1,167 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: enable_archives 259 2004-01-03 06:28:40Z shibuya $
+#
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# depends on:
+#   MailList._CREATE
+#   MailList.name
+#   MailList.Archive.enabled
+
+my $DEBUG = 0;
+$DEBUG && open(STDERR, ">>/tmp/enable_archives");
+$DEBUG && warn "$0 ". `date`;
+
+use Sauce::Util;
+use File::Path;
+use strict;
+use CCE;
+use I18n;
+use SendEmail;
+my $cce = new CCE;
+$cce->connectfd();
+
+my $oid = $cce->event_oid();
+$DEBUG && warn "OID: $oid";
+
+my $ok;
+my ($main_old, $main_new, $arch_old, $arch_new);
+my $obj_main; ($ok, $obj_main, $main_old, $main_new) = $cce->get($oid, "");
+unless($ok)
+{
+	$cce->bye('DEFER');
+	exit 0;
+}
+# De-activate on virtual-sites
+if($obj_main->{site})
+{
+	$cce->bye('SUCCESS');
+	exit 0;
+}
+my $obj_arch; ($ok, $obj_arch, $arch_old, $arch_new) = $cce->get($oid, "Archive");
+
+unless($ok) {
+	$DEBUG && warn "Defering until we can get $oid";
+	$cce->bye('DEFER');
+	exit 0;
+}
+
+my $listname = $obj_main->{"name"};
+$listname =~ s/\//_/g;
+
+$DEBUG && warn "Listname: $listname";
+
+my $action = "/dev/null";
+if ($obj_arch->{enabled}) {
+	my $expireDays = $obj_arch->{keep_for_days};
+	$expireDays = $expireDays * 24 * 60 * 60; # expire works in seconds
+	my $expireAction = "";
+	if ($expireDays) {
+		$expireAction = "$expireDays"; 
+	}
+
+	$action = "\"|/home/mhonarc/bin/mh-wrapper ${listname} ${expireDays}\"";
+}
+
+$ok = Sauce::Util::editfile('/etc/mail/aliases.majordomo', \&setArchiveEnabled,
+	$listname, $action);
+if (!$ok) {
+	$cce->bye("DEFER");
+	exit();
+}
+
+Sauce::Util::modifyfile('/etc/mail/aliases.db');
+system('/usr/bin/newaliases -O DisableGetHostByAddr=True > /dev/null 2>&1');
+
+my $umask = umask(022);
+Sauce::Util::makedirectory("/usr/sausalito/ui/web/base/maillist/archives", 0755);
+Sauce::Util::chownfile('mail', 'daemon', '/usr/sausalito/ui/web/base/maillist/archives');
+umask($umask);
+
+if ($obj_arch->{"enabled"}) {
+	
+	# make sure the directory to store files in exists first
+	if(! -d "/home/mhonarc/data"){
+		$umask = umask(022);
+		mkpath("/home/mhonarc/data", 0, 0755);
+		umask($umask);
+	}
+
+	# setup archive directory, before sending email
+	if (! -d "home/mhonarc/directory/${listname}") {
+		Sauce::Util::makedirectory("/home/mhonarc/data/${listname}", 0755);
+		Sauce::Util::chownfile('mail', 'daemon', "/home/mhonarc/data/${listname}");
+	}
+
+	if (! -e "/home/mhonarc/data/${listname}.enabled") {
+		# need to send a welcome message
+		use FileHandle;
+		my $locale = _get_locale();
+		if (!$locale) {
+			$locale = 'en';
+		}
+		my $i18n = new I18n();
+		$i18n->setLocale($locale);
+#ROLLBACK EMAIL
+		SendEmail::sendEmail($obj_main->{name},  #to
+			"root <root>",	#from
+			$i18n->get("[[base-maillist.WelcomeMessageSubject]]"), #subject
+			$i18n->get("[[base-maillist.WelcomeMessageBody]]",{name=>$obj_main->{name}}) #body
+		);
+		Sauce::Util::modifyfile("/home/mhonarc/data/${listname}.enabled");
+		system("/bin/touch","/home/mhonarc/data/${listname}.enabled");
+	}
+} else {
+	Sauce::Util::unlinkfile("/home/mhonarc/data/${listname}.enabled");
+	Sauce::Util::unlinkfile("/usr/sausalito/ui/web/base/maillist/archives/${listname}");
+	rmtree("/home/mhonarc/data/${listname}",0);
+}
+
+sub setArchiveEnabled
+{
+	my ($fin, $fout, $listname, $action) = @_;
+	my $ok = 0;
+	while( <$fin> ) {
+		if (/${listname}-archival:\s*(.*)/) {
+			print $fout "${listname}-archival: $action\n";
+			$ok = 1;
+		} else {
+			print $fout $_;
+		}
+	}
+
+	return $ok;
+}
+
+sub _get_locale
+# _get_locale -- Get the locale of the admin user
+#
+# Arguments: None
+# Returns:   Locale of admin, undef on failure
+{
+	my $language;
+
+	my $cce = new CCE;
+	$cce->connectuds();
+
+	my (@oids) = $cce->find('System');
+	my ($ok, $object) = $cce->get( $oids[0] ) if (@oids > 0);
+	$language = ${$object}{'productLanguage'} if ($ok);
+	$cce->bye("SUCCESS");
+
+	if ( ! $language ) {
+		die "Failed to get locale\n";
+	}
+
+	chomp $language;
+
+	# success
+	return $language if (length $language > 0 && $language ne "browser");
+
+	# failure
+	return "en";
+}
+
+$cce->bye("SUCCESS");
+exit(0);
+

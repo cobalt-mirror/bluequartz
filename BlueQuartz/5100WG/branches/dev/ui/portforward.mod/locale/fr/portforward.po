@@ -1,0 +1,103 @@
+# $Id: portforward.po 201 2003-07-18 19:11:07Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "Transfert de port"
+
+msgid "portforwarding_menu_help"
+msgstr "Le transfert de port permet à cette machine de transférer vers une autre machine tout le trafic qu'elle reçoit sur un port.  Cette fonction est pratique lorsque vous souhaitez autoriser une machine de votre réseau à accéder au monde extérieur."
+
+msgid "portforward_list"
+msgstr "Règles de transfert de port"
+
+msgid "form_port_rule"
+msgstr "Entrez un numéro de port correct.  [[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "Un numéro de port est un nombre entier entre 1 et 65535."
+
+msgid "form_ipaddr_rule"
+msgstr "Entrez un adresse IP correcte.  Par exemple, 192.168.0.1 est une adresse IP correcte."
+
+msgid "sourcePort"
+msgstr "Port source"
+
+msgid "sourcePort_help"
+msgstr "Tout trafic dirigé vers le port source de cette machine sera redirigé vers le port cible d'une autre machine."
+
+msgid "sourcePort_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour le [[base-portforward.sourcePort]].  [[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "IP source"
+
+msgid "sourceIP_help"
+msgstr "Tout trafic dirigé vers le port spécifié à cette adresse source sera redirigé vers la machine cible."
+
+msgid "sourceIP_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour l'[[base-portforward.sourceIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "Protocole"
+
+msgid "protocol_help"
+msgstr "C'est le protocole qui sera redirigé."
+
+msgid "targetPort"
+msgstr "Port cible"
+
+msgid "targetPort_help"
+msgstr "C'est le port de la machine qui recevra le trafic."
+
+msgid "targetPort_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour le [[base-portforward.targetPort]].  [[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "IP cible"
+
+msgid "targetIP_help"
+msgstr "C'est l'adresse IP de la machine qui recevra le trafic."
+
+msgid "targetIP_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour l'[[base-portforward.targetIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "Action"
+
+msgid "action_help"
+msgstr "Vous pouvez modifier ou abandonner un transfert de port."
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "Enregistrement de transfert de port - Créer"
+
+msgid "title_modify"
+msgstr "Enregistrement de transfert de port - Modifier"
+
+msgid "description"
+msgstr "Commentaires"
+
+msgid "description_help"
+msgstr "Vous pouvez utiliser le champ [[base-portforward.description]] pour noter des détails concernant chaque enregistrement."
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "Voulez-vous vraiment supprimer cette règle de transfert de port ?"
+
+#errors
+msgid "collidingAddresses"
+msgstr "Il existe déjà un transfert pour la source [[VAR.ip]]:[[VAR.port]]."
+
+msgid "mustCrossInterfaces"
+msgstr "La combinaison introduite ([[base-portforward.sourceIP]] et [[base-portforward.targetIP]]) ne traversera pas les interfaces réseau.  [[base-portforward.portforwarding_menu]] doit router le trafic d'une interface réseau vers une autre."

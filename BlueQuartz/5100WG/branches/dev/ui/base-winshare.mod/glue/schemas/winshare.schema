@@ -1,0 +1,13 @@
+<!--
+        $Id: winshare.schema 201 2003-07-18 19:11:07Z will $
+        Copyright(c) 2000 Cobalt Networks, Inc.
+        Author: asun@@cobalt.com
+
+        this adds namespaces for the windows filesharing module.
+-->
+
+<class name="System" namespace="WinShare" version="1.0">
+        <property name="enabled" type="boolean" default="1" writeacl="ruleCapable(modifyWinshare)"/>
+        <property name="maxConnections" type="int" default="25" writeacl="ruleCapable(modifyWinshare)"/>
+</class>
+

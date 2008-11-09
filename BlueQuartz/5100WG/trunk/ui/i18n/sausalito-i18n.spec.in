@@ -1,0 +1,98 @@
+Summary: Cobalt i18n library
+Name: sausalito-i18n
+Version: XX_VER_XX
+Release: XX_REL_XX
+Copyright: Cobalt
+Group: Sausalito/Libraries
+Source: sausalito-i18n.tar.gz
+Prefix: /usr/sausalito
+BuildRoot: /var/tmp/sausalito-i18n-root
+Requires: glib >= 1.2.7
+
+%description
+sausalito-i18n is a wrapper library for i18n functions.
+
+%package devel
+Summary: The Sausalito i18n development libraries.
+Group: Sausalito/Development/Libraries
+
+%description devel
+sausalito-i18n-devel includes the include files and static libraries for the 
+Sausalito i18n functions.
+
+%prep
+%setup -n sausalito-i18n
+
+%build
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
+rm $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
+
+%files
+%defattr(-,root,root)
+/usr/sausalito/lib/*.so*
+/usr/sausalito/bin/i18n_get
+/usr/sausalito/bin/i18n_translate
+/usr/sausalito/ui/libPhp/*
+/usr/lib/php4/*
+/usr/sausalito/perl/I18n.pm
+/usr/sausalito/perl/SendEmail.pm
+/usr/sausalito/perl/I18nMail.pm
+/usr/sausalito/perl/JConv.pl
+/usr/sausalito/bin/i18nmail.pl
+/etc/php.d/i18n.ini
+
+%files devel
+%defattr(-,root,root)
+/usr/sausalito/lib/*.a
+/usr/sausalito/include/cce/*.h
+
+%post
+# only run on install, not upgrade
+if [ "$1" = 1 ]; then
+	LIB=/usr/sausalito/lib
+	cp /etc/ld.so.conf /etc/ld.so.conf.bak
+	egrep "^$LIB[ 	]*$" /etc/ld.so.conf >/dev/null \
+		|| echo $LIB >> /etc/ld.so.conf
+fi
+/sbin/ldconfig
+
+# make sure these links exist or setlocale doesn't work right
+# temporary fix for now.  try both just to make sure this happens
+if [ -d "/usr/lib/locale/en_US" ]; then
+	ln -sf /usr/lib/locale/en_US /usr/lib/locale/en
+fi
+if [ -d "/usr/share/locale/en_US" ]; then
+	ln -sf /usr/share/locale/en_US /usr/share/locale/en
+fi
+
+%changelog
+* Tue Jul 22 2003 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- (0.70.2-76OQ1)
+- delete last blank line on PHP files.
+- build for php-4.2.x
+- add i18n.ini file for extension.
+
+* Tue Jun 27 2000 Tim Hockin <thockin@cobalt.com>
+- Rev bump, try to figure out why ldconfig is not run on new builds
+
+* Fri Jun 16 2000 Tim Hockin <thockin@cobalt.com>
+- make sure /usr/sausalito/lib is in ld.so.conf
+
+* Mon May 29 2000 Patrick Bose <pbose@cobalt.com>
+- 0.11-1 adding perl client library
+
+* Wed Apr 26 2000 Adrian Sun <asun@cobalt.com>
+- renamed 
+
+* Tue Mar 15 2000 Adrian Sun <asun@cobalt.com>
+- re-worked source tree
+
+* Tue Feb 29 2000 Adrian Sun <asun@cobalt.com>
+- added I18n.php install
+
+* Fri Feb 25 2000 Adrian Sun <asun@cobalt.com>
+- initial version

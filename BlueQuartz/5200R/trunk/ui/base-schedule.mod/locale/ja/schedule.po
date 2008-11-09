@@ -1,0 +1,17 @@
+# $Id: schedule.po,v 1.1.2.1 2002/03/12 22:50:23 pbaltz Exp $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+msgid "bad_action"
+msgstr "指定された操作は存在しないか、実行できません。"
+
+msgid "bad_start_time"
+msgstr "指定された開始時間は不正です。"
+
+msgid "cannot_create_timer"
+msgstr "新規のスケジュールを /etc/cron.d に追加できませんでした。"
+
+msgid "timer_add_failed"
+msgstr "新規のスケジュールを cron に追加できませんでした。"
+
+msgid "timer_delete_failed"
+msgstr "指定されたファイルを /etc/cron.d から削除できませんでした。"

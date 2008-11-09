@@ -1,0 +1,319 @@
+# ----- Menu items
+
+msgid "emailServices"
+msgstr "Email"
+
+msgid "emailServices_help"
+msgstr "Click here to configure [[base-email.emailServices]]."
+
+msgid "emailServers"
+msgstr "Email Servers"
+
+msgid "emailServers_help"
+msgstr "Click here to configure [[base-email.emailServers]]."
+
+
+# ----- Tabs
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "basic_help"
+msgstr "Click here to configure basic [[base-email.emailSettings]]."
+
+msgid "advanced_help"
+msgstr "Click here to configure advanced [[base-email.emailSettings]] such as delivery schedule and maximum email size."
+
+
+# ----- Basic Email page
+
+msgid "emailSettings"
+msgstr "Email Servers Settings"
+
+msgid "enableServersField"
+msgstr "Enable SMTP Server"
+
+msgid "enableServersField_help"
+msgstr "Turn the Simple Mail Transfer Protocol (SMTP) service on or off. Enabling SMTP will allow this server appliance to act as an SMTP server for sending and receiving Internet email between other servers. SMTP also allows users to use this server appliance for sending email."
+
+msgid "enableImapField"
+msgstr "Enable IMAP Server"
+
+msgid "enableImapField_help"
+msgstr "Turn the Internet Message Access Protocol (IMAP) service on or off. Enabling this service allows users to retrieve email from this server appliance using email clients that support IMAP. IMAP allows users to store email on the server but requires continuous access to the server during the time the user is working with their mail."
+
+msgid "enablePopField"
+msgstr "Enable POP Server"
+
+msgid "enablePopField_help"
+msgstr "Turn the Post Office Protocol (POP) mail retrieval service on or off.  Enabling this service allows users to retrieve email from this server appliance using most standard email clients."
+
+
+# ----- Advanced Email page
+
+msgid "queueTimeField"
+msgstr "Delivery Schedule"
+
+msgid "queueTimeField_help"
+msgstr "Set how frequently this server appliance will attempt to transfer queued email."
+
+msgid "queue0"
+msgstr "Immediate"
+
+msgid "queue15"
+msgstr "Every 15 Minutes"
+
+msgid "queue30"
+msgstr "Every 30 Minutes"
+
+msgid "queue60"
+msgstr "Every Hour"
+
+msgid "queue360"
+msgstr "Every 6 Hours"
+
+msgid "queue1440"
+msgstr "Every Day"
+
+msgid "maxEmailSizeField"
+msgstr "Maximum Email Size (MB)"
+
+msgid "maxEmailSizeField_rule"
+msgstr "Please enter an integer greater than 0.  The default value is to leave this field empty which will allow this server to send and receive email messages of any size."
+
+msgid "maxEmailSizeField_help"
+msgstr "Set the maximum size of email messages that this server will send or receive.  [[base-email.maxEmailSizeField_rule]]"
+
+msgid "masqAddressField"
+msgstr "Force Sender's Domain"
+
+msgid "masqAddressField_rule"
+msgstr "Please enter a properly formatted IP address, host name, or domain name.  The default value is to leave this field empty.  For example, 192.168.1.100, www.sun.com and sun.com are valid entries."
+
+msgid "masqAddressField_help"
+msgstr "Enter a domain name or IP address to override the From: address of email sent by users of this server.  This feature is also called Domain Masquerade. [[base-email.masqAddressField_rule]]"
+
+msgid "smartRelayField"
+msgstr "Smart Relay Server"
+
+msgid "smartRelayField_rule"
+msgstr "Please enter a properly formatted fully-qualified domain name.  The default value is to leave this field empty.  For example sun.com is a valid entry."
+
+msgid "smartRelayField_help"
+msgstr "Enter the  fully-qualified domain name of an email server through which all outgoing email will be routed."
+
+msgid "popRelayField"
+msgstr "POP Authenticated Relaying"
+
+msgid "popRelayField_help"
+msgstr "Check to enable SMTP relay trusts by POP authentication.  If checked, any user who successfully uses POP to check mail will be trusted for 15 minutes to send email using the SMTP service.  This feature is suitable for users who frequently travel."
+
+msgid "relayField"
+msgstr "Relay Email From Hosts/Domains/IP Addresses"
+
+msgid "relayField_rule"
+msgstr "Please enter a list of IP addresses, host and domain names that will be trusted to relay email using this server.  Networks may be specified by using 0's.  For example, to allow relaying for a network 192.168.1.1 with subnet mask 255.255.0.0, specify the address 192.168.0.0."
+
+msgid "relayField_help"
+msgstr "Enter the IP addresses, host or domain names that are allowed to relay email through this server.  A user will not be able to send outgoing email through this server unless the IP address, host or domain name of the machine they are connecting from is entered in this field.  [[base-email.relayField_rule]]"
+
+msgid "receiveField"
+msgstr "Receive Email Addressed To Hosts/Domains"
+
+msgid "receiveField_rule"
+msgstr "Please enter a properly formatted host name or domain name.  The default value is the fully-qualified domain name of your server appliance.  For example, www.sun.com and sun.com are valid entries."
+
+msgid "receiveField_help"
+msgstr "Enter the host names or domain names for which this server will receive email.  [[base-email.receiveField_rule]]"
+
+msgid "blockHostField"
+msgstr "Block Email From Hosts/Domains"
+
+msgid "blockHostField_rule"
+msgstr "Please enter a properly formatted host name or domain name.  The default value is to leave this field empty.  For example, www.sun.com and sun.com are valid entries."
+
+msgid "blockHostField_help"
+msgstr "Enter the host names and domain names that are not allowed to deliver email to this server.  [[base-email.blockHostField_rule]]"
+
+msgid "blockUserField"
+msgstr "Block Email From Users"
+
+msgid "blockUserField_rule"
+msgstr "Please enter a properly formatted email address.  The default value is to leave this field empty.  For example, user@sun.com is a valid entry."
+
+msgid "blockUserField_help"
+msgstr "Enter the email addresses of users that are not allowed to deliver email to this server.  [[base-email.blockUserField_rule]]"
+
+msgid "duplicateKeys"
+msgstr "Blocking and relaying information could not be updated.  There are duplicate hosts or domains listed for both relaying and blocking.  Email from a host or domain cannot be blocked and relayed simultaneously."
+
+
+
+# ----- Active Monitor strings 
+
+msgid "amEmailNameTag"
+msgstr "Email Servers"
+
+msgid "amSMTPNameTag"
+msgstr "SMTP Server"
+
+msgid "amSMTPDetails"
+msgstr "Simple Mail Transfer Protocol (SMTP) Server Details"
+
+msgid "amPOP3NameTag"
+msgstr "POP Server"
+
+msgid "amPOP3Details"
+msgstr "Post Office Protocol (POP) Server Details"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP Server"
+
+msgid "amIMAPDetails"
+msgstr "Internet Message Access Protocol (IMAP) Server Details"
+
+msgid "amEmailGreen"
+msgstr "The email system is operating normally."
+
+msgid "amEmailYellow"
+msgstr "There is a problem with the email system."
+
+msgid "amEmailRed"
+msgstr "There is a severe problem with the email system."
+
+msgid "amSMTPNotRunning"
+msgstr "The SMTP server is not running."
+
+msgid "amSMTPBadResponse"
+msgstr "The SMTP server gave a bad response."
+
+msgid "amSMTPStatusOK"
+msgstr "The SMTP server is operating normally."
+
+msgid "amPOP3NotRunning"
+msgstr "The POP server is not running."
+
+msgid "amPOP3BadResponse"
+msgstr "The POP server gave a bad response."
+
+msgid "amPOP3StatusOK"
+msgstr "The POP server is operating normally."
+
+msgid "amIMAPNotRunning"
+msgstr "The IMAP server is not running."
+
+msgid "amIMAPBadResponse"
+msgstr "The IMAP server gave a bad response."
+
+msgid "amIMAPStatusOK"
+msgstr "The IMAP server is operating normally."
+
+
+# --- Handler error messages
+	# vacation message 
+msgid "vacationSubject"
+msgstr "Automated Reply from"
+
+msgid "cantGetUserInfo"
+msgstr "Vacation was unable to obtain user information from CCE."
+
+msgid "badUser"
+msgstr "If mail server configuration files were removed or manually modified, please restore the original versions and try again."
+
+msgid "cantEditFile"
+msgstr "Sorry, an error occurred while trying to edit an email configuration file. [[base-email.badUser]]"
+
+	# apop.pl -- call to GDBM_File perl module no workie
+msgid "could_not_tie_apop"
+msgstr "Sorry, a system error occurred. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "Sorry, an error occurred while trying to write the SMTP server configuration file. [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "Sorry, the SMTP server could not be started at this time due to a system configuration failure.  [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "Sorry, the POP or IMAP server could not be reset at this time because of a system configuration failure.  [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "Sorry, an error occurred while trying to create an email server map file. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "Sorry, an error occurred while trying to edit an email configuration file. [[base-email.badUser]]"
+
+msgid "aliasInUse"
+msgstr "Sorry, the email alias [[VAR.name]] is already in use on this system.  Please choose another."
+
+msgid "nonExistentUser"
+msgstr "Forwarding cannot be enabled because the following local usernames do not exist: [[VAR.users]].  Please remove these users from the list of forwarding addresses, or create the users before enabling forwarding."
+
+
+# --- sendmail.cf bounce messages ----
+
+msgid "CFinvalidListSyntax"
+msgstr "List:; syntax illegal for recipient addresses"
+
+msgid "CFuserAddressRequired"
+msgstr "User address required"
+
+msgid "CFcolonInHostname"
+msgstr "Colon illegal in host name part"
+
+msgid "CFinvalidHostname"
+msgstr "Invalid host name"
+
+msgid "CFrealDomainRequired"
+msgstr "Real domain name required"
+
+msgid "CFdomainRequired"
+msgstr "Domain name required"
+
+msgid "CFsenderDomainNoexist"
+msgstr "Domain of sender address does not exist "
+
+msgid "CFaccessDenied"
+msgstr "Access denied"
+
+msgid "CFrelayDeniedTemp"
+msgstr "Relaying temporarily denied.  Cannot resolve PTR record for client address "
+
+msgid "CFrelayDeniedForged"
+msgstr "Relaying denied.  IP name possibly forged "
+
+msgid "CFrelayDeniedFailed"
+msgstr "Relaying denied.  IP name lookup failed "
+
+msgid "CFrelayDenied"
+msgstr "Relaying denied.  Please check your mail first or restart your mail client."
+
+msgid "CFnotAuthenticated"
+msgstr "not authenticated"
+
+msgid "CFauthNotAllowed"
+msgstr " not allowed to act as "
+
+# Catch All Fields
+msgid "catchAllEmail"
+msgstr "Catch All Email"
+
+msgid "catchAllEmail_rule"
+msgstr "Please enter a valid email address of the form username@domain or just username to deliver the mail to a local user, email alias, or mailing list."
+
+msgid "catchAllEmail_help"
+msgstr "Enter the email address of the person that you wish to receive all email to this server that doesn't match an actual user on this server.  You must enter an email address if you wish to enable the [[base-email.catchAllEmail]] feature of this server.  [[base-email.catchAllEmail_rule]]"
+
+msgid "invalidCatchAll"
+msgstr "You have entered an invalid [[base-email.catchAllEmail]] address.  The local user, email alias, or mailing list you enter must already exist on this server.  [[base-email.catchAllEmail_rule]]"
+
+# Capabilities
+
+msgid "capgroup_adminEmailServers"
+msgstr "Manage Email"
+
+msgid "capgroup_adminEmailServers_help"
+msgstr "This administrative right allows a user to manage the settings used by the email services"
+

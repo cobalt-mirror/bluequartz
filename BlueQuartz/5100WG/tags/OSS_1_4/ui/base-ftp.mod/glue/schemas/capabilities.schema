@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyFtpServer" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyFtpServer)"/>
+	<property name="nameTag" type="scalar" default="[[base-email.cap_modifyFtpServer]]"/>
+</class>

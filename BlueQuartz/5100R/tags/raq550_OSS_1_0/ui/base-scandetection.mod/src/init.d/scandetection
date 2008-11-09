@@ -1,0 +1,214 @@
+#!/bin/sh
+#
+# chkconfig: 345 72 28
+# description: Loads and unloads scandetection modules and daemons.
+#
+#########################################################################
+#
+# Name: scandetection
+# Author: Jesse Throwe
+# Description: This is the startup script for scandetection
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: scandetection,v 1.5 2001/10/15 19:56:21 jthrowe Exp $
+#
+#########################################################################
+
+#
+# Globals
+#
+RELEASE=`/bin/uname -r`
+if grep SMP /proc/version > /dev/null
+then
+	SMP="-smp"
+else
+	SMP=""
+fi
+
+PIDDIR=/var/run
+PIDEXT=pn.pid
+
+#
+# Source function library.  
+# Note: This is where the PATH envar is set
+#
+if [ -f /etc/rc.d/init.d/functions ];
+then
+    . /etc/rc.d/init.d/functions
+else
+    echo "ERROR: /etc/rc.d/init.d/functions does not exist"
+    exit 1;
+fi
+
+#
+# Determine whether the phoenix module is loaded in the kernel or not
+#
+module_loaded () {
+
+    MODULE_L="phoenix-${RELEASE}${SMP}"
+
+    lsmod | grep "^$MODULE_L" > /dev/null 2> /dev/null
+
+    if [ $? -eq 0 ]; then
+        unset MODULE_L
+        return 1;                # module is already loaded
+    else
+        unset MODULE_L
+        return 0;
+    fi
+}
+
+# 
+# Install the phoenix module in the kernel
+#
+load_module () {
+
+    MODULE="/lib/modules/phoenix/phoenix-${RELEASE}${SMP}.o"
+    ret=0
+
+    # If the module is already loaded, then we don't reload it.
+    # If the user has updated the module, they should run the script
+    # with the 'shutdown' parameter before trying to load the new
+    # module.  
+
+    module_loaded;
+    if [ $? -eq 1 ]; then
+       unset MODULE
+       return $ret
+    fi
+
+    echo "Loading phoenix module..."
+
+    if [ -f ${MODULE} ];
+    then
+	insmod -v ${MODULE}
+	if [ $? -ne 0 ];
+	then
+            ret=1
+            echo "**********************************************"
+            echo "***"
+            echo "***   ERROR: Unable to load '${MODULE}'"
+            echo "***"
+            echo "***   NO firewalls will be installed!"
+            echo "***"
+            echo "***   Please check, that the Phoenix module that matches your"
+            echo "***   kernel revision ($RELEASE), is loaded onto your system."
+            echo "***"
+            echo "**********************************************"
+	else
+	    echo "`basename ${MODULE}` successfully loaded."
+	fi
+    else
+        ret=1
+        echo "**********************************************"
+        echo "***"
+        echo "***   ERROR: '${MODULE}' does not exist!"
+        echo "***"
+        echo "***   NO firewalls will be installed!"
+        echo "***"
+        echo "***   Check that the package was installed correctly."
+        echo "***"
+        echo "**********************************************"
+    fi
+    unset MODULE
+    return $ret
+}
+
+#
+# Unload the phoenix module from the kernel
+#
+unload_module () {
+
+    MODULE="phoenix-${RELEASE}${SMP}"
+
+    echo -n "Unloading phoenix kernel module: "
+
+    rmmod ${MODULE}
+    if [ $? -ne 0 ];
+    then
+        echo "ERROR: unable to unload module '${MODULE}'"
+    else
+        echo ${MODULE}
+    fi
+    unset MODULE
+}
+
+amstatus () {
+
+    if [ -f /usr/sausalito/swatch/statecodes ]; then
+	. /usr/sausalito/swatch/statecodes
+    fi
+
+    # Assume ok
+    FINAL_RET=$AM_STATE_GREEN
+    msg="[[base-fwall.amStatusGreen]]"
+
+    # Alert daemon
+    ps --no-heading -C pafalertd > /dev/null 2>&1
+    alertd="$?"
+
+    # Log daemon
+    ps --no-heading -C paflogd > /dev/null 2>&1
+    logd="$?"
+
+    # Kernel module
+    module_loaded;
+    module="$?"
+
+    if [ $alertd -ne 0 -o $logd -ne 0 -o $module -eq 0 ]; then
+	msg="[[base-fwall.amStatusRed]]"
+	FINAL_RET=$AM_STATE_RED
+    fi
+    
+    echo -ne "$msg"
+    exit $FINAL_RET
+}
+
+
+#
+# Mainline: see how we were called.
+#
+case "$1" in
+    start)
+	load_module;                    # attach phoenix module to kernel
+        started="$?"                    # save return value
+
+        paflogd;
+	pafalertd&
+	
+	/usr/sausalito/handlers/base/scandetection/loadfirewalls.pl;
+        exit 0;
+	;;
+
+    stop)
+# 1.  remove firewalls from interfaces
+# 2. unload module
+        killall paflogd;
+        killall pafalertd;
+
+        exit 0;
+	;;
+
+    shutdown)
+	unload_module;                  # unload phoenix module from kernel
+	;;
+     
+    restart)
+	/etc/rc.d/init.d/scandetection stop
+	/etc/rc.d/init.d/scandetection start
+	;;
+
+    amstatus)
+        amstatus;
+        ;;
+
+    *)
+	echo "Usage: $0 {start|stop|shutdown|status|amstatus} [paflogd|pafalertd]"
+	echo "restart - stop then start"
+        echo "restart pafalertd|paflogd - restart specified daemons only"
+	exit 1;
+	;;
+
+esac
+
+exit 0
+

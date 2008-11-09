@@ -1,0 +1,81 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: vsite_services.schema 639 2005-11-11 02:53:01Z shibuya $
+
+    This registers the scripting portion of VirtualHosts as a service
+    available to Vsites.  This makes the service part of VirtualHosts
+    more consistent with the way all other services work.
+    
+    These need to be in seperate namespaces to provide easier searching.
+-->
+<class 
+    name="VsiteServices" namespace="PHP" version="1.0"
+>
+    <property name="featureEnabled" type="boolean" default="1"/>
+
+    <property
+        name="i18nName" type="scalar" default="[[base-apache.phpI18nName]]"
+    />
+
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+<class
+    name="VsiteServices" namespace="CGI" version="1.0"
+>
+    <property name="featureEnabled" type="boolean" default="1"/>
+    
+    <property
+        name="i18nName" type="scalar" default="[[base-apache.cgiI18nName]]"
+    />
+
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+<class
+    name="VsiteServices" namespace="SSI" version="1.0"
+>
+    <property name="featureEnabled" type="boolean" default="1"/>
+    
+    <property
+        name="i18nName" type="scalar" default="[[base-apache.ssiI18nName]]"
+    />
+
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<!-- Tack some more namespaces onto Vsite -->
+<class 
+    name="Vsite" namespace="PHP" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+<class 
+    name="Vsite" namespace="CGI" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>   
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+<class 
+    name="Vsite" namespace="SSI" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>

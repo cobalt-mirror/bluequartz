@@ -1,0 +1,70 @@
+# Global tech support strings
+
+	# ご参考: ヨーロッパ、中近東、アフリカからは、+31 71 565 7070 までお電話ください。または、support-emea@cobalt.com 宛に電子メールをお送りください。
+	# 日本からは、support-japan@cobalt.com 宛に電子メールをお送りください。
+msgid "techSupportUSPhone"
+msgstr "(888) 702-6225"
+
+msgid "techSupportIntlPhone"
+msgstr "1 (650) 623-2679"
+
+msgid "techSupportEmail"
+msgstr "support@cobalt.com"
+	
+	# This should work for at least USA and Canada
+msgid "contactTechSupport"
+msgstr "[[base-carmel.osVendor]] のテクニカルサポートへのご連絡は、[[base-sauce-basic.techSupportUSPhone]]（米国以外 [[base-sauce-basic.techSupportIntlPhone]]）までお電話ください。または、[[base-sauce-basic.techSupportEmail]] 宛に電子メールをお送りください。"
+
+
+msgid "kill_dhclient_failed"
+msgstr "dhclient の動作停止を確認できません。"
+
+msgid "gateway-not-reachable"
+msgstr "指定されたゲートウェイにアクセスできません。指定のゲートウェイがアクセス可能なサブネットワーク上にあることを確認してください。また、「ダイレクトルーティング」ルールも確認してください。"
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "このルートを、ルーティングテーブルに追加できませんでした。サブネット ([[VAR.target]]) 上にゲートウェイ ([[VAR.gateway]]) が存在していない可能性があります。"
+
+msgid "invalid-route"
+msgstr "このルートを、ルーティングテーブルに追加できませんでした。  ご指定のゲートウェイにアクセスできない可能性があります。"
+
+msgid "disable-interface-first"
+msgstr "現在使われているネットワークインターフェイスの設定は削除できません。このインターフェイスを無効にしてから、設定を削除してください。"
+
+msgid "Invalid-object"
+msgstr "内部エラー： 不正なオブジェクトを削除しようとしました。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "エラーが発生しました。[[VAR.name]] というユーザはすでに削除されています。"
+
+msgid "failed-to-add-user"
+msgstr "内部エラー： 新規ユーザ $name を作成できませんでした。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "割当容量として指定した値が大きすぎます。最大許容ディスク割当容量は、[[VAR.max]] です。"
+
+msgid "hostname-too-long"
+msgstr "指定されたホスト名が長すぎます。ホスト名は 40 文字以下で指定してください。"
+
+msgid "descReadOnly"
+msgstr "ユーザの説明は読み出し専用です。"
+
+# Capabilities
+msgid "capgroup_adminUser"
+msgstr "ユーザの管理"
+
+msgid "capgroup_adminUser_help"
+msgstr "この管理権限を持つユーザは、このマシン上でほかのユーザを作成、破棄、変更できます。"
+
+msgid "capgroup_adminUserGroupMailingList"
+msgstr "ユーザおよびグループの管理"
+
+msgid "capgroup_adminUserGroupMailingList_help"
+msgstr "この管理権限を持つユーザは、このマシン上でほかのユーザとグループを作成、破棄、変更できます。"
+
+# capabilities errors
+msgid "permsNotAvailable"
+msgstr "別のユーザに設定するにはこれらの権限を持っている必要があります（admin としてログインしていますか？）。"
+
+msgid "needPermToRemovePerm"
+msgstr "別のユーザから削除するにはこの権限を持っている必要があります。"

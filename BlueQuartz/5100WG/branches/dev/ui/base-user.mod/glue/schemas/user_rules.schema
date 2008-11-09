@@ -1,0 +1,42 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: user_rules.schema 201 2003-07-18 19:11:07Z will $
+   
+    Rules for creating/modifying/destroying users.
+-->
+
+<rule
+    name="ruleModifyUser" type="acl"
+    data="( ruleCapable(adminUsers) AND NOT ruleTargetSysAdmin ) OR ( ruleCapable(siteAdmin) AND ruleMatchSite AND NOT ruleTargetSysAdmin )"
+/>
+
+<rule
+    name="ruleModifyUserDefaults" type="acl"
+    data="( ruleCapable(adminUsers) AND NOT ruleTargetSysAdmin ) OR ( ruleCapable(siteAdmin) AND ruleMatchSite AND NOT ruleTargetSysAdmin )"
+/>
+
+<!-- matches the site properties on the user and target object -->
+<rule
+    name="ruleMatchSite" type="acl"
+    data="rulePropertyMatchProperty(.site,.site)"
+/>
+
+<!-- checks to see if the target object is a systemAdministrator object -->
+<rule
+    name="ruleTargetSysAdmin" type="acl"
+    data="rulePropertyMatchValue(.systemAdministrator,1)"
+/>
+
+<!-- builtins to improve performance of user operations -->
+<!-- Takes two arguments - the names of the properties to check -->
+<rule
+    name="rulePropertyMatchProperty" type="builtin"
+    data="rule_property_match_property"
+/>
+<!-- Takes two arguments - name of the property, value to check -->
+<rule
+    name="rulePropertyMatchValue" type="builtin"
+    data="rule_property_match_value"
+/>
+
+

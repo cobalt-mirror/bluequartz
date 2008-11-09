@@ -1,0 +1,187 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: listmod_virtusertable 3 2003-07-17 15:19:15Z will $
+#
+# listmod_virtusertable depends on:
+#		name
+#		_CREATE
+#		_DESTROY
+
+# golden virtusertable
+# bbspot-approval@vhost42.cobalt.com      52-6800bbspot-approval
+# bbspot-request@vhost42.cobalt.com       52-6800bbspot-request
+# owner-bbspot@vhost42.cobalt.com owner-52-6800bbspot
+# bbspot-owner@vhost42.cobalt.com 52-6800bbspot-owner
+
+use strict;
+use CCE;
+my $cce = new CCE( 'Domain' => 'base-maillist' );
+$cce->connectfd();
+
+my $virtusertable = '/etc/mail/virtusertable';
+
+my $DEBUG = 0;
+$DEBUG && open(STDERR, ">>/tmp/listmod_virtusertable");
+$DEBUG && warn "$0 ".`date`;
+
+my $oid = $cce->event_oid();
+my $obj = $cce->event_object();
+my $new = $cce->event_new();
+my $old = $cce->event_old();
+
+# We substitute LIST out of the equation
+my @alii = ('LIST-approval', 'LIST-request', 
+		'owner-LIST', 'LIST-owner', 'LIST');
+
+my $ret = 1;
+
+if(!$new->{site} && !$obj->{site} && !$old->{site})
+{
+	# Hey Stew, FIXME here!
+
+	$DEBUG && warn "No site affiliation found";
+	# find server fqdn, use that in place of a site
+	my($ok, $system) = $cce->get( ($cce->find('System'))[0] );
+	
+	# FIXME Handle failed system find/load
+	 
+	$ret = Sauce::Util::editfile(
+		$virtusertable,
+		*edit_alii,
+		1,
+		$new->{name},
+		$system->{hostname}.'.'.$system->{domainname},
+		$new->{name});
+
+}
+elsif($cce->event_is_create())
+{
+	$DEBUG && warn "Adding list... ";
+	$DEBUG && warn $new->{name}.', '.$new->{internal_name};
+	{
+		my ($ok, $site) = $cce->get($site_oids[0]);
+
+		$ret = Sauce::Util::editfile(
+			$virtusertable,
+			*edit_alii,
+			1,
+			$new->{name},
+			$site->{fqdn},
+			$new->{internal_name});
+
+	my @site_oids = $cce->find('Vsite', {'name' => $new->{site}});
+	if ($site_oids[0])
+	{
+		my ($ok, $site) = $cce->get($site_oids[0]);
+
+		$ret = Sauce::Util::editfile(
+			$virtusertable,
+			*edit_alii,
+			1,
+			$new->{name},
+			$site->{fqdn},
+			$new->{internal_name},
+			);
+	}
+	else
+	{
+		$cce->bye('DEFER');
+	}
+}
+elsif ($cce->event_is_destroy())
+{
+	$DEBUG && warn "Deleting list...";
+
+	$ret = Sauce::Util::editfile(
+		$virtusertable,
+		*edit_alii,
+		0,
+		$old->{name},
+		'XXXnodomainXXX',
+		$old->{internal_name},
+		);
+}
+elsif ($new->{name} && $old->{name})
+{
+	$DEBUG && warn "List changing names...";
+	my @site_oids = $cce->find('Vsite', {'name' => $obj->{site}});
+	if ($site_oids[0])
+	{
+		my ($ok, $site) = $cce->get($site_oids[0]);
+
+		# Ignore return value on alias deletion
+		Sauce::Util::editfile(
+			$virtusertable,
+			*edit_alii,
+			0,
+			$old->{name},
+			$site->{fqdn},
+			$old->{internal_name},
+			);
+		$ret = Sauce::Util::editfile(
+			$virtusertable,
+			*edit_alii,
+			1,
+			$new->{name},
+			$site->{fqdn},
+			$new->{internal_name},
+			);
+	}
+}
+else 
+{
+	# This is not my beautiful house, this is not my beautiful car...
+	$DEBUG && warn "Could not find purpose, motivation.";
+}
+
+if($ret)
+{
+	$DEBUG && warn "disconnect cced, success";
+	$cce->bye('SUCCESS');
+	exit 0;
+}
+else
+{
+	$DEBUG && warn "disconnect cced, failure";
+	$cce->bye('FAIL');
+	exit 1;
+}
+
+# Subs
+
+sub edit_alii
+{
+	my ($in, $out, $add, $name, $domain, $internal_name) = @_;
+	$internal_name ||= $name;
+	$DEBUG && warn "edit_alii invoked: ".join(', ',@_)."\n";
+
+	my ($line_config, %config, $instance, %internal_name);
+
+	my @these_alii = @alii;
+	foreach $instance (@these_alii)
+	{
+		# internal addressing
+		my $internal = $instance;
+		$internal =~ s/LIST/$internal_name/;
+
+		# external, worldly addressing
+		$instance =~ s/LIST/$name/;
+
+		$config{$instance.'@'.$domain} = 1;
+		$internal_name{$internal} = 1;
+		$line_config .= $instance.'@'.$domain."\t".$internal."\n";
+	}
+	$DEBUG && warn "Line Config:\n$line_config\n";
+
+	while(<$in>)
+	{
+		if(/^(\S+)\s+(\S+)/) 
+		{
+			next if ($config{$1});
+			next if ($internal_name{$2} && !$add);
+		}
+		print $out $_;
+	}
+	print $out $line_config if ($add);
+	return 1;	
+}
+

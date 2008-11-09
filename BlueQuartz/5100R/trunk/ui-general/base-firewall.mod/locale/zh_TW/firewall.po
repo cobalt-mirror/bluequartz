@@ -1,0 +1,440 @@
+msgid "firewall-is-dirty-message_help"
+msgstr "這則訊息通知您已對防火牆配置完成了變更（未儲存）　。按「套用變更」按鈕可儲存變更。"
+
+msgid "dest_ip_start_invalid"
+msgstr "在「目的 IP 位址 (低)」欄位中指定了無效的的 IP 位址。請以 172.16.1.1 的格式指定 IP 位址。"
+
+msgid "FirewallTop"
+msgstr "封包過濾防火牆設定"
+
+msgid "header_policy_help"
+msgstr "這是決定所有符合此規則之封包的結果策略。如果封包符合某給定規則所指定的所有標準（來源、目的地、介面、協定），則指定的策略將套用到該封包。"
+
+msgid "FirewallRulesinput"
+msgstr "輸入規則"
+
+msgid "FirewallEnable2_help"
+msgstr "這是啟動防火牆的兩個必要步驟的第二個步驟。"
+
+msgid "capgroup_adminFirewall_help"
+msgstr "這個管理權限允許使用者管理系統防火強所有方面。"
+
+msgid "Select_chain"
+msgstr "選取要編輯的規則鏈 ..."
+
+msgid "Order_help"
+msgstr "請編輯下列的數字欄位來變更規則套用的順序。按「重新排序」按鈕可套用變更。"
+
+msgid "JUMP"
+msgstr "跳至鏈"
+
+msgid "encap"
+msgstr "Encap"
+
+msgid "redir_target_invalid"
+msgstr "「轉向至本地端埠號」的欄位中必須含有一個\
+指定埠號的正整數 （如 23）。"
+
+msgid "source_ports_field"
+msgstr "來源埠號"
+
+msgid "ipip"
+msgstr "IPIP"
+
+msgid "FirewallEnable1_help"
+msgstr "請稍候，正在套用您的防火牆設定。"
+
+msgid "source_ports_invalid"
+msgstr "指定了無效的「來源端埠號」範圍；「來源端埠號」必須為正整數，為了要建立只符合於一個埠的規則，請以指定範圍的方式輸入一個埠號 （即 23-23）。"
+
+msgid "ppp0"
+msgstr "PPP 撥接介面"
+
+msgid "redir_target_field_help"
+msgstr "如果已在前述選取了轉向策略，請輸入要轉向之封包（且符合此防火牆規則者）的本端埠號；否則，這個欄位會被忽略。"
+
+msgid "source_ip_start_invalid"
+msgstr "在「來源 IP 位址 (低)」欄位中指定了無效的的 IP 位址。請以 172.16.1.1 的格式指定 IP 位址。"
+
+msgid "EditFirewallRule"
+msgstr "編輯防火牆規則"
+
+msgid "eth0"
+msgstr "主要乙太網路介面"
+
+msgid "eth1"
+msgstr "次要乙太網路介面"
+
+msgid "Any"
+msgstr "任意"
+
+msgid "FirewallRulesforward"
+msgstr "轉向規則"
+
+msgid "policy_ACCEPT"
+msgstr "接受"
+
+msgid "general_settings"
+msgstr "防火牆設定"
+
+msgid "FirewallConfiguration"
+msgstr "防火牆設定"
+
+msgid "all"
+msgstr "任一網路通信協定"
+
+msgid "apply-changes-popup"
+msgstr "\
+-------------------------------------------------------\n\
+                    變更執行中的防火牆規則 \n\
+-------------------------------------------------------\n\
+\n\
+您即將套用最近的變更到\n\
+封包過濾防火牆的執行狀態。\n\
+\n\
+配置不正確的防火牆可能\n\
+會導致您無法存取伺服器\n\
+的 Web 介面。\n\
+\n\
+這道防火牆施行一種保護功能，\n\
+其將會在您的瀏覽器階段作業終止\n\
+六十秒後，自動關閉\n\
+防火牆。\n\
+\n\
+當您的階段作業終止時，只要稍候一分鐘，\n\
+就可嘗試重新存取伺服器。\n\
+\n\
+您是否要繼續？"
+
+msgid "header_order_help"
+msgstr "這是規則將套用到封包的順序。每一個封包都會經過分析，以判定其是否符合各個規則（依所示的規則順序）　所指定的標準。"
+
+msgid "criteria_proto"
+msgstr "Protocol=[[VAR.proto]];"
+
+msgid "interface_field"
+msgstr "網路介面"
+
+msgid "defaultPolicyField_help"
+msgstr "請選取此規則鏈的預設策略。預設策略決定將對所有不符合上列任一規則的封包進行何種動作。"
+
+msgid "chain_output"
+msgstr "輸出規則鏈"
+
+msgid "reorder-button"
+msgstr "重新排序"
+
+msgid "source_ip_stop_field_help"
+msgstr "請輸入要符合此規則之 IP 位址範圍內的最後一個或最高的來源 IP 位址。若要符合任一來源 IP 位址，請保留「來源 IP 位址」欄位空白。"
+
+msgid "tcp"
+msgstr "TCP"
+
+msgid "DestCriteriaSection"
+msgstr "目的標準"
+
+msgid "enable-firewall-button"
+msgstr "啟用防火牆"
+
+msgid "policy_RETURN"
+msgstr "返回"
+
+msgid "policy_MASQ"
+msgstr "偽裝"
+
+msgid "SourceCriteriaSection"
+msgstr "來源標準"
+
+msgid "policy_DENY"
+msgstr "禁止"
+
+msgid "any"
+msgstr "任一網路介面"
+
+msgid "defaultPolicy"
+msgstr "預設策略"
+
+msgid "explain-firewall-enable1-page"
+msgstr "請稍候，正在套用您的防火牆設定。\
+\
+這個頁面應會自動更新為「防火牆配置」頁。\
+如果不然，您防火牆的配置可能有誤，請稍候 60 秒，\
+讓防火牆保護功能啟動，然後嘗試重新存取您的\
+伺服器。"
+
+msgid "capgroup_adminFirewall"
+msgstr "管理基本防火牆"
+
+msgid "dest_ports_field"
+msgstr "目的埠號"
+
+msgid "policy_REJECT"
+msgstr "拒絕"
+
+msgid "reorder-button_help"
+msgstr "按一下此處，可根據您對上清單格中的數字「排序」欄位的變更，對您的規則重新排序。"
+
+msgid "header_order"
+msgstr "順序"
+
+msgid "GeneralCriteriaSection_help"
+msgstr "標準用來決定防火牆規則應套用到哪一個封包。其他標準（如封包的協定和連接介面）也可使封包與規則正確相符。"
+
+msgid "dest_ip_stop_field"
+msgstr "目的 IP 位址（上限）　"
+
+msgid "Selectchain"
+msgstr "選取區段..."
+
+msgid "ipip-rule-cannot-have-ports"
+msgstr "IPIP 協定不支援埠號；因此，\
+您無法以埠號來找到相配的 IPIP 封包。"
+
+msgid "enableFirewall"
+msgstr "啟用防火牆"
+
+msgid "criteria_interface"
+msgstr "Interface=[[VAR.iface]];"
+
+msgid "defaultPolicyField"
+msgstr "預設策略"
+
+msgid "confirm-firewall-button"
+msgstr "確認設定"
+
+msgid "interface_field_help"
+msgstr "請輸入要符合此規則的封包網路協定。"
+
+msgid "confirm-firewall-button_help"
+msgstr "請按一下此處，永久保留您的防火牆設定。"
+
+msgid "FirewallConfiguration_help"
+msgstr "防火牆作業可讓您定義防火牆策略，限制允許哪種網路流量可通過您的伺服器。這是一種高階的伺服器安全功能，因此請務必先參閱可用的文件，然後再行配置防火牆。"
+
+msgid "header_dest"
+msgstr "目的標準"
+
+msgid "FirewallRulesoutput"
+msgstr "輸出規則"
+
+msgid "dest_ip_start_field_help"
+msgstr "請輸入要符合此規則之 IP 位址範圍內的第一個或最低的目的 IP 位址。若要符合任一目的 IP 位址，請保留「目的 IP 位址」欄位空白。"
+
+msgid "dest_ip_start_field"
+msgstr "目的 IP 位址（下限）　"
+
+msgid "udp"
+msgstr "UDP"
+
+msgid "CreateFirewallRule"
+msgstr "新增防火牆規則"
+
+msgid "GeneralCriteriaSection"
+msgstr "其他標準"
+
+msgid "REDIRECT"
+msgstr "轉向至埠號"
+
+msgid "DestCriteriaSection_help"
+msgstr "標準用來決定防火牆規則應套用到哪一個封包。目的標準可找到相配的、傳送到特定連接的封包。"
+
+msgid "protocol_field"
+msgstr "網路通信協定"
+
+msgid "policy_REDIRECT"
+msgstr "轉向至埠號"
+
+msgid "policy_JUMP"
+msgstr "跳至鏈 [[VAR.jump]]"
+
+msgid "header_dest_help"
+msgstr "這是過濾封包所將採行的目的標準。封包的目的參數將與給定規則的標準比較。如果符合所有的標準，則對該規則所指定的策略將會套用到該封包。"
+
+msgid "firewall-congrat-page"
+msgstr "恭喜您！如果您可看到這則訊息，表示您的防火牆設定運作正常。請按以下的「確認設定」按鈕，永久保留這些防火牆設定。"
+
+msgid "dest_ip_stop_invalid"
+msgstr "在「目的 IP 位址 (高)」欄位中指定了無效的的 IP 位址。請以 172.16.1.1 的格式指定 IP 位址。"
+
+msgid "firewall-congrat-page_help"
+msgstr "恭喜您！"
+
+msgid "criteria_ports"
+msgstr "Port=[[VAR.ports]];"
+
+msgid "dest_ports_field_help"
+msgstr "請輸入要符合此規則之目的 IP 位址範圍內的第一個及最後一個埠號。若要符合任一目的埠號，請保留「目的埠號」欄位空白。"
+
+msgid "source_ip_start_field"
+msgstr "來源 IP 位址（下限）　"
+
+msgid "EditRuleChain"
+msgstr "規則鏈"
+
+msgid "FirewallTop_help"
+msgstr "防火牆作業可讓您定義防火牆策略，限制允許哪種網路流量可通過您的伺服器。這是一種高階的伺服器安全功能，因此請務必先參閱可用的文件，然後再行配置防火牆。"
+
+msgid "source_ip_stop_field"
+msgstr "來源 IP 位址（上限）　"
+
+msgid "header_source_help"
+msgstr "這是過濾封包所將採行的來源標準。封包的來源參數將與給定規則的標準比較。如果符合所有的標準，則對該規則所指定的策略將會套用到該封包。"
+
+msgid "proceed-button_help"
+msgstr "按此按鈕將會套用新的防火牆設定。"
+
+msgid "commit-changes-button_help"
+msgstr "您已更改了定義防火牆的規則，\
+但您必須按這個按鈕，變更才會套用到\
+執行中的防火牆系統。"
+
+msgid "ACCEPT"
+msgstr "接受"
+
+msgid "redir_target_field"
+msgstr "轉向至本端埠號"
+
+msgid "source_ip_stop_invalid"
+msgstr "在「來源 IP 位址 (高)」欄位中指定了無效的的 IP 位址。請以 172.16.1.1 的格式指定 IP 位址。"
+
+msgid "proceed-button"
+msgstr "套用設定"
+
+msgid "MASQ"
+msgstr "偽裝"
+
+msgid "protocol_field_help"
+msgstr "請輸入要符合此規則的封包網路協定。"
+
+msgid "source_ports_field_help"
+msgstr "請輸入要符合此規則之來源 IP 位址範圍內的第一個及最後一個來源埠號。若要符合任一來源埠號，請保留「來源埠號」欄位空白。"
+
+msgid "DENY"
+msgstr "禁止"
+
+msgid "header_action_help"
+msgstr "這些是用來更改或移除規則的按鈕。"
+
+msgid "criteria_ip"
+msgstr "IP=[[VAR.low]]-[[VAR.high]];"
+
+msgid "disable-firewall-button"
+msgstr "關閉防火牆"
+
+msgid "chain_forward"
+msgstr "轉向規則鏈"
+
+msgid "enableFirewall_help"
+msgstr "啟用或關閉封包過濾防火牆。"
+
+msgid "dest_ports_invalid"
+msgstr "指定了無效的「目的端埠號」範圍；「目的端埠號」必須為正整數，為了要建立只符合於一個埠的規則，請以指定範圍的方式輸入一個埠號 （即 23-23）。"
+
+msgid "firewall_menu"
+msgstr "基本防火牆"
+
+msgid "FirewallEnable1"
+msgstr "防火牆啟動"
+
+msgid "FirewallEnable2"
+msgstr "防火牆配置完成"
+
+msgid "icmp"
+msgstr "ICMP"
+
+msgid "firewall-is-dirty-message"
+msgstr "您已對防火牆配置完成了變更（未儲存）　。"
+
+msgid "firewall-not-dirty_help"
+msgstr "這個按鈕用來套用您的配置變更到執行中的防火牆。\
+目前並沒有可套用的新變更。"
+
+msgid "RETURN"
+msgstr "返回"
+
+msgid "commit-changes-button"
+msgstr "立即套用變更"
+
+msgid "chain_input"
+msgstr "輸入規則鏈"
+
+msgid "firewall-not-enabled_help"
+msgstr "這個按鈕用來套用您的配置變更到執行中的防火牆。\
+目前，您的防火牆尚未啟用，\
+因此不需套用變更。"
+
+msgid "no_rules_defined"
+msgstr "這個規則鏈不含任何規則。請按「新增」，為此規則鏈建立規則。"
+
+msgid "policy_field"
+msgstr "策略"
+
+msgid "SourceCriteriaSection_help"
+msgstr "標準用來決定防火牆規則應套用到哪一個封包。來源標準可找到相配的、來自特定連接的封包。"
+
+msgid "firewall_menu_help"
+msgstr "此處可配置[[base-firewall.FirewallTop]]。防火牆作業可讓您定義過濾策略，以限制通過此伺服器設備的網路流量。"
+
+msgid "DescribePolicy"
+msgstr "鏈策略"
+
+msgid "encap-rule-cannot-have-ports"
+msgstr "Encap 協定不支援埠號；因此，\
+您無法以埠號來找到相配的 Encap 封包。"
+
+msgid "explain-firewall-enable1-page_help"
+msgstr "請按「套用設定」繼續，或按「取消」返回「防火牆配置」頁。"
+
+msgid "REJECT"
+msgstr "拒絕"
+
+msgid "dest_ip_stop_field_help"
+msgstr "請輸入要符合此規則之 IP 位址範圍內的最後一個或第一個目的 IP 位址。若要符合任一目的 IP 位址，請保留「目的 IP 位址」欄位空白。"
+
+msgid "header_action"
+msgstr "動作"
+
+msgid "policy_field_help"
+msgstr "請選取此規則鏈的策略。此策略決定將對所有符合此防火牆規則的封包進行何種動作。接受封包可讓它繼續通過這部機器。禁止封包是捨棄該封包，猶如其從未到達這部機器。拒絕封包則如同禁止封包一樣捨棄封包，但會通知傳送者該封包已遭捨棄。偽裝封包是在封包通過防火牆時加以重新寫入，使該封包看來有如起始於防火牆；這項策略僅適用於配置轉寄規則。轉向封包是在封包通過防火牆時加以重新寫入，使該封包的目的地看來有如在本端埠號；這項策略僅適用於配置輸入規則。"
+
+msgid "header_source"
+msgstr "來源標準"
+
+msgid "header_policy"
+msgstr "策略"
+
+msgid "DescribePolicy_help"
+msgstr "規則的策略指出對符合規則之封包過濾標準\
+的封包之處置方式。"
+
+msgid "source_ip_start_field_help"
+msgstr "請輸入要符合此規則之 IP 位址範圍內的第一個或最低的來源 IP 位址。若要符合任一來源 IP 位址，請保留「來源 IP 位址」欄位空白。"
+
+msgid "defaultPolicy_help"
+msgstr "此規則鏈的預設策略決定將對所有不符合上列任一規則的封包進行何種動作。"
+
+msgid "EditRuleChain_help"
+msgstr "請選取要配置的規則鏈。防火牆是由三個個別的規則鏈所配置。輸入鏈用來過濾進入機器的封包。轉向鏈用來過濾其目的地為另一部機器的封包。輸出鏈則用來過濾傳出機器的封包。"
+
+msgid "confirm-enabling-popup"
+msgstr "\
+-------------------------------------------------------\n\
+                    啟用防火牆 \n\
+-------------------------------------------------------\n\
+\n\
+您即將啟用您的封包過濾防火牆。\n\
+\n\
+配置不正確的防火牆可能\n\
+會導致您無法存取伺服器\n\
+的 Web 介面。\n\
+\n\
+這道防火牆施行一種保護功能，\n\
+其將會在您的瀏覽器階段作業終止\n\
+六十秒後，自動關閉\n\
+防火牆。\n\
+\n\
+當您的階段作業終止時，只要稍候一分鐘，\n\
+就可嘗試重新存取伺服器。\n\
+\n\
+您是否要繼續？"
+

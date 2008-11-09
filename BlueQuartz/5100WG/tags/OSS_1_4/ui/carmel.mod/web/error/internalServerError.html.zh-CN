@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<META NAME="Copyright" VALUE="Copyright (C) 2000, Cobalt Networks, Inc.  保留所有权利。">
+<META HTTP-EQUIV="content-type" CONTENT="text/html; charset=gb2312">
+<!-- locale-sensitive -->
+<TITLE>服务器内部错误</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF"  BACKGROUND="/libImage/blocksTile.gif">
+<BLOCKQUOTE> 
+
+    <P>&nbsp;</P>
+        
+  <DIV ALIGN="center">
+    <TABLE WIDTH="400" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+      <TR BGCOLOR="#999999"> 
+        <TD>
+          <TABLE WIDTH="400" BORDER="0" CELLSPACING="1" CELLPADDING="5" ALIGN="center">
+            <TR BGCOLOR="#990000"> 
+              <TD COLSPAN="2"> <!-- locale-sensitive -->
+                <DIV ALIGN="left"><FONT COLOR="#FFFFFF" SIZE="3"><B>服务器内部错误 </B> </FONT></DIV>
+              </TD>
+            </TR>
+            <TR> 
+              <TD BGCOLOR="#FFFFFF" COLSPAN="2" VALIGN="middle">              
+              <TABLE WIDTH="100%">
+		<TR>
+			<TD><IMG SRC="/libImage/warning.gif" WIDTH="40" HEIGHT="40" ALIGN="middle"></TD> <TD><FONT
+SIZE="2"><!-- locale-sensitive -->服务器因遇到内部错误或存在配置错误而无法满足您的请求。管理员可能还没有对此目录启用 CGI 访问。</FONT>
+			</TD>
+		</TR>
+	</TABLE>
+	</TD>
+            </TR>
+          </TABLE>
+        </TD>
+      </TR>
+    </TABLE>
+  </DIV>
+</BLOCKQUOTE>
+</HTML>

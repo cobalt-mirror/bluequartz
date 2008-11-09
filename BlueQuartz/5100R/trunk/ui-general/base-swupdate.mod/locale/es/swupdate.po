@@ -1,0 +1,711 @@
+# ----- SW Updates Tab
+msgid "software"
+msgstr 
+"BlueLinQ"
+
+msgid "software_help"
+msgstr 
+"La sección [[base-swupdate.software]] le permite comprobar e instalar programas nuevos o actualizados."
+
+
+# ----- Menu items
+
+msgid "softwareNew"
+msgstr 
+"Programas nuevos"
+
+msgid "softwareNew_help"
+msgstr 
+"Comprobación e instalación de programas nuevos."
+
+msgid "softwareUpdate"
+msgstr 
+"Actualizaciones"
+
+msgid "softwareUpdate_help"
+msgstr 
+"Comprobación e instalación de actualizaciones."
+
+msgid "softwareInstalled"
+msgstr 
+"Programas instalados"
+
+msgid "softwareInstalled_help"
+msgstr 
+"Lista de los programas instalados actualmente en el sistema."
+
+msgid "softwareSettings"
+msgstr 
+"Configuración"
+
+msgid "softwareSettings_help"
+msgstr 
+"Configuración de [[base-swupdate.software]]."
+
+
+# ----- Splash screen message
+
+msgid "splashSoftwareMessage"
+msgstr 
+"La sección [[base-swupdate.software]] le permite administrar los programas instalados en el sistema."
+
+
+# --- Common strings
+
+msgid "install"
+msgstr 
+"Instalar"
+
+msgid "install_help"
+msgstr 
+"Pulse aquí para instalar el programa especificado."
+
+msgid "installField"
+msgstr 
+"Detalles de la instalación"
+
+msgid "installField_help"
+msgstr 
+"Pulse en el icono para más información sobre cómo obtener e instalar este programa."
+
+msgid "prepare"
+msgstr 
+"Preparar"
+
+msgid "prepare_help"
+msgstr 
+"Pulse aquí para preparar la instalación del programa."
+
+	# package info
+msgid "nameField"
+msgstr 
+"Nombre"
+
+msgid "nameField_help"
+msgstr 
+"Nombre del programa."
+
+msgid "versionField"
+msgstr 
+"Versión"
+
+msgid "versionField_help"
+msgstr 
+"Versión del programa."
+
+msgid "vendorField"
+msgstr 
+"Fabricante"
+
+msgid "vendorField_help"
+msgstr 
+"Fabricante del programa."
+
+msgid "copyrightField"
+msgstr "Derechos Copyright"
+
+msgid "copyrightField_help"
+msgstr "Derechos Copyright de este paquete de software."
+
+msgid "descriptionField"
+msgstr "Descripción"
+
+msgid "descriptionField_help"
+msgstr "Descripción del programa."
+
+msgid "licenseField"
+msgstr "Licencia"
+
+msgid "licenseField_help"
+msgstr "Acuerdo de la licencia de este paquete."
+
+msgid "accept"
+msgstr "Aceptar"
+
+msgid "accept_help"
+msgstr "Presione aquí para acceptar los términos de esta licencia."
+
+msgid "decline"
+msgstr "Rehusar"
+
+msgid "decline_help"
+msgstr "Presione aquí para rehusar los términos de esta licencia."
+
+
+msgid "typeField"
+msgstr "Tipo"
+
+msgid "typeField_help"
+msgstr "Tipo de programa."
+
+msgid "New"
+msgstr 
+"Nuevo"
+
+msgid "Update"
+msgstr 
+"Actualización"
+
+msgid "complete"
+msgstr 
+"completo"
+
+msgid "locationField"
+msgstr 
+"Ubicación"
+
+msgid "locationField_help"
+msgstr "Ubicación desde la que se descargará el programa en la instalación."
+
+msgid "locationLocal"
+msgstr "Este servidor local."
+
+msgid "sizeField"
+msgstr "Tamaño (MB)"
+
+msgid "sizeField_help"
+msgstr 
+"Tamaño del programa."
+
+msgid "uninstallableField"
+msgstr 
+"Desinstalable"
+
+msgid "uninstallableField_help"
+msgstr 
+"Este campo indica si el programa puede desinstalarse."
+
+msgid "yes"
+msgstr 
+"Sí"
+
+msgid "no"
+msgstr 
+"No"
+
+msgid "none"
+msgstr 
+"Ninguno"
+
+msgid "packagesNeededField"
+msgstr 
+"Programas dependientes"
+
+msgid "packagesNeededField_help"
+msgstr 
+"Estos programas deben instalarse en el sistema antes de instalar este programa."
+
+
+# --- general user input strings
+
+msgid "locationFieldEnter"
+msgstr 
+"Ubicación"
+
+msgid "locationFieldEnter_help"
+msgstr 
+"Ubicación para obtener el programa. Desde una dirección URL que comience con http:// o ftp:// descargue el programa de Internet, o bien pulse Examinar para cargar un archivo del disco duro local. Si ha descargado programas al directorio /home/packages de su servidor, también podrá elegir uno de estos programas."
+
+msgid "invalidUrl"
+msgstr 
+"La dirección URL especificada no es válida. [[base-swupdate.urlField_rule]]"
+
+
+
+# ----- New Software List Page
+
+msgid "availableListNew"
+msgstr 
+"Lista de programas nuevos disponibles"
+
+msgid "checkNow"
+msgstr 
+"Comprobar disponibilidad ahora"
+
+msgid "checkNow_help"
+msgstr 
+"Pulse aquí para comprobar la disponibilidad de programas nuevos."
+
+msgid "manualInstall"
+msgstr "Instalar manualmente"
+
+msgid "manualInstall_help"
+msgstr "Pulse aquí para realizar una instalación manual de programas."
+
+msgid "removePackage"
+msgstr "¿Realmente desea remover el '[[VAR.packageName]]' de su sistema? Este aún no ha sido instalado."
+
+# ----- Software Updates
+
+msgid "checkNowUpdate"
+msgstr 
+"[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr 
+"Compruebe si hay disponibles actualizaciones de programas."
+
+msgid "manualInstallUpdate"
+msgstr 
+"Instalar manualmente"
+
+msgid "manualInstallUpdate_help"
+msgstr 
+"Realice una instalación manual de las actualizaciones de programas."
+
+
+msgid "availableListUpdates"
+msgstr 
+"Lista de actualizaciones de programas disponibles"
+
+
+# ----- View software details & install page
+
+msgid "downloadSoftware"
+msgstr "Instalar programa"
+
+msgid "unknownSize"
+msgstr "Desconocido"
+
+msgid "rebootpopup"
+msgstr "Su servidor necesitara reiniciar despues de instalar este paquete. ¿Desea continuar?"
+
+# ----- Manual install
+
+msgid "url"
+msgstr 
+"URL"
+
+msgid "urlField"
+msgstr 
+"[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr 
+"Escriba una dirección URL que comience con http:// o ftp:// para descargar el programa de Internet."
+
+msgid "upload"
+msgstr 
+"Cargar"
+
+msgid "loaded"
+msgstr 
+"Programas ubicados en /home/packages"
+
+msgid "fileField"
+msgstr 
+"Ubicación de archivos de carga"
+
+	# empty/invalid the same, specify both to be safe
+msgid "fileField_empty"
+msgstr 
+"No se ha especificado un archivo de programa para cargar. Pulse Examinar para seleccionar un archivo en su disco duro."
+
+msgid "fileField_invalid"
+msgstr 
+"[[base-swupdate.fileField_empty]]"
+
+
+
+
+# ---- Status page
+
+msgid "installStatus"
+msgstr 
+"Estado - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr 
+"Mensaje de estado"
+
+msgid "statusField_help"
+msgstr 
+"Estado actual del programa que se está instalando o eliminando."
+
+msgid "progressField"
+msgstr 
+"Progreso"
+
+msgid "progressField_help"
+msgstr 
+"Progreso de la instalación o eliminación."
+
+msgid "dlPercent"
+msgstr 
+"Descargando archivo [[VAR.file]]: [[VAR.percent]]% completado"
+
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "Iniciando..."
+
+msgid "downloading"
+msgstr "Descargando el paquete..."
+
+msgid "installing"
+msgstr 
+"Instalando programa..."
+
+msgid "executingPreInstallScript"
+msgstr 
+"Ejecutando secuencia(s) de comandos de preinstalación..."
+
+msgid "executingPostInstallScript"
+msgstr 
+"Ejecutando secuencia(s) de comandos postinstalación..."
+
+msgid "installingRpm"
+msgstr 
+"Instalando componente [[VAR.rpm]]..."
+
+msgid "fail"
+msgstr 
+"Error"
+
+msgid "success"
+msgstr 
+"Con éxito"
+
+msgid "currentlyUninstalling"
+msgstr 
+"El programa se está desinstalando."
+
+msgid "cantUninstall"
+msgstr 
+"No puede eliminarse el programa porque no está marcado como desinstalable."
+
+msgid "dependent"
+msgstr 
+"No puede eliminarse este programa porque otros programas requieren que esté instalado. Éstos son: [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr 
+"Eliminando componentes RPM del programa."
+
+msgid "runningUninstallScript"
+msgstr 
+"Ejecutando secuencia de comandos de desinstalación."
+
+msgid "uninstalled"
+msgstr 
+"Desinstalación completa."
+
+msgid "notUninstalled"
+msgstr 
+"Error en la desinstalación: no había nada que eliminar."
+
+msgid "packageInstallSuccess"
+msgstr 
+"La instalación del programa ha tenido éxito."
+
+
+	# -- generic message for other strings
+msgid "notInstalled"
+msgstr 
+"No se ha instalado el programa."
+
+msgid "cannotDownloadUrl"
+msgstr 
+"No ha sido posible descargar el archivo del programa desde la dirección URL especificada. Compruébela e intente de nuevo. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr 
+"El nombre del archivo del programa no es válido. Compruébelo e intente de nuevo. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr 
+"El programa ya está instalado."
+
+msgid "verifyingPackage"
+msgstr 
+"Comprobando programa..."
+
+msgid "badPackage"
+msgstr 
+"El archivo del programa está incompleto. Falta o no es válida la lista de empaquetamiento. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr 
+"El formato del archivo del programa no es válido. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr 
+"Error al añadir el programa a la base de datos CCE. La lista de empaquetamiento del programa podría no ser válida. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "El programa requiere la instalación de uno o más programas. Instale el/los programa/s [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "Otro paquete se esta instalando o desinstalando actualmente. Por favor intentelo después."
+
+msgid "obsoletePkg"
+msgstr "El paquete [[VAR.name]] no se instaló por que no esta presente en el sistema."
+
+msgid "badProduct"
+msgstr "El paquete [[VAR.name]] no se ha intalado por que no fue diseñado para este servidor."
+
+msgid "hostNotFound"
+msgstr "No se encontró el servidor especificado en la dirección URL para [[VAR.file]]. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr 
+"No se encontró el programa [[VAR.file]] en la ubicación especificada."
+
+msgid "hostRefused"
+msgstr "El servidor especificado en la dirección URL para [[VAR.file]] rechazó la conexión."
+
+msgid "notDownloaded"
+msgstr "Error en la descarga de [[VAR.file]], posiblemente por problemas en el servidor."
+
+msgid "noLocation"
+msgstr 
+"No se ha especificado una ubicación de donde descargar el programa."
+
+msgid "missingRPM"
+msgstr "El archivo del programa está incompleto. Faltan uno o más RPM."
+
+msgid "missingSRPM"
+msgstr "Este paquete ésta incompleto, le faltan uno o más archivos SRPM(s)."
+
+msgid "preInstallFailed"
+msgstr 
+"Ha habido un problema con el archivo del programa. Error de secuencia de comandos de preinstalación."
+
+msgid "postInstallFailed"
+msgstr 
+"Ha habido un problema con el archivo del programa. Error de secuencia de comandos postinstalación."
+
+msgid "rpmInstallError"
+msgstr 
+"Ha habido un problema con el archivo del programa. Error al instalar el RPM [[VAR.rpm]]."
+
+msgid "errorWGET"
+msgstr "Error al intentar ejecutar wget."
+
+msgid "rebooting"
+msgstr "El servidor esta reiniciando. Estará disponible en unos minutos."
+
+msgid "uninstallrefresh"
+msgstr "El paquete se ha desinstalado con éxito. En unos momentos el interfaz se refrescará y removera los servicios que este paquete proporciona."
+
+msgid "installrefresh"
+msgstr "El paquete se ha instalado con éxito. En unos momentos el interfaz se refrescará y le dara acceso a estos nuevos servicios."
+
+
+# ------ Installed Software List
+
+msgid "installedList"
+msgstr 
+"Lista de programas instalados"
+
+msgid "uninstall"
+msgstr 
+"Desinstalar"
+
+msgid "uninstall_help"
+msgstr 
+"Si el programa puede desinstalarse, se eliminará del sistema al pulsar Desinstalar."
+
+msgid "uninstallConfirm"
+msgstr 
+"¿Está seguro de que desea desinstalar '[[VAR.packageName]]'?"
+
+
+
+# ------ Settings page
+
+msgid "softwareInstallSettings"
+msgstr 
+"Configuración de [[base-swupdate.software]]"
+
+msgid "basic"
+msgstr 
+"Básica"
+
+msgid "basic_help"
+msgstr 
+"Parámetros de configuración más frecuentes."
+
+msgid "advanced"
+msgstr 
+"Avanzada"
+
+msgid "advanced_help"
+msgstr 
+"Parámetros de configuración menos frecuentes."
+
+msgid "scheduleField"
+msgstr 
+"Frecuencia de consultas"
+
+msgid "scheduleField_help"
+msgstr 
+"Frecuencia con la que se comprueba la disponibilidad de programas nuevos o actualizados en el servidor [[base-swupdate.software]]."
+
+msgid "daily"
+msgstr 
+"Diariamente"
+
+msgid "weekly"
+msgstr 
+"Semanalmente"
+
+msgid "monthly"
+msgstr 
+"Mensualmente"
+
+msgid "never"
+msgstr 
+"Nunca"
+
+msgid "emailField"
+msgstr "Mensajes de correo de notificación"
+
+msgid "emailField_help"
+msgstr "Dirección/es de correo electrónico para las notificaciones de disponibilidad de programas nuevos o actualizados o de errores en las consultas de actualización de programas. La opción de notificación de programas determinará cuándo se notificará por correo electrónico. Deje en blanco este campo si no desea recibirlas."
+
+msgid "pkgOIDmissing"
+msgstr "Problema al recuperar información de este paquete. Es probable que haya sido borrado.Si no parece asi intentelo de nuevo y si el problema persiste, contacte al equipo de soporte tecnico."
+
+msgid "serverField"
+msgstr 
+"Servidores de actualizaciones de programas"
+
+msgid "defaultServer"
+msgstr "http://updates.cobalt.com/packages/"
+
+msgid "serverField_help"
+msgstr "Dirección o direcciones HTTP para las actualizaciones de programas. La ubicación del servidor de actualizaciones de Cobalt Networks es [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] no pudo contactar al servidor específicado.  Por favor verifique la conección."
+
+msgid "httpProxyField"
+msgstr "Proxy:puerto HTTP"
+
+msgid "httpProxyField_help"
+msgstr "Servidor proxy y el puerto para consultas HTTP para tener acceso fuera del cortafuego. Ejemplo: proxy.miempresa.com:8080."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] no pudo encontrar el servidor proxy HTTP. Por favor asegurese que este este disponible desde su servidor."
+
+msgid "ftpProxyField"
+msgstr 
+"Proxy:puerto FTP"
+
+msgid "ftpProxyField_help"
+msgstr 
+"Servidor proxy y el puerto para consultas FTP para tener acceso fuera del cortafuego. Ejemplo: proxy.miempresa.com:8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] no pudo encontrar el servidor proxy FTP. Por favor asegurese que este este disponible desde su servidor."
+
+msgid "autoField"
+msgstr "Instalar actualizaciones automáticamente"
+
+msgid "autoField_help"
+msgstr "Si esta activó el [[base-swupdate.software]] automaticamente instalará paquetes autenticados."
+
+msgid "requireSignatureField"
+msgstr "El paquete debe ser autenticado."
+
+msgid "requireSignatureField_help"
+msgstr "Si [[base-swupdate.software]] esta activo, no instalará paquetes aún si estos son auténticos."
+
+msgid "checkSetField"
+msgstr 
+"Programas para comprobar"
+
+msgid "checkSetField_help"
+msgstr 
+"Tipo de programa a comprobar en cada consulta de actualizaciones de programas."
+
+msgid "all"
+msgstr 
+"Todos los programas"
+
+msgid "updates"
+msgstr 
+"Sólo actualizaciones"
+
+msgid "notificationLightField"
+msgstr 
+"Aviso de notificación de programas"
+
+msgid "notificationLightField_help"
+msgstr 
+"Cambiar el tipo de programas nuevos que activará el Aviso de notificación de programas y, si corresponde, el tipo de programas nuevos que aparecerá en las notificaciones."
+
+
+# --- software update icon
+
+msgid "update"
+msgstr 
+"Actualización"
+
+msgid "update_help"
+msgstr 
+"Pulse aquí para comprobar e instalar los programas nuevos o actualizados. Este icono cambia de color si hay programas nuevos o actualizados."
+
+
+#---- Handler messages
+
+msgid "noServersFound"
+msgstr 
+"No se ha encontrado ningún servidor de actualizaciones de programas. Compruebe su conexión a Internet y la configuración de [[base-swupdate.software]]."
+
+msgid "queryError"
+msgstr 
+"Error al consultar el servidor de actualizaciones de programas. Compruebe su conexión a Internet y la configuración de [[base-swupdate.software]]."
+
+msgid "noValidPackageListGrabbed"
+msgstr 
+"[[base-swupdate.software]] no ha podido obtener una lista de programas. Compruebe su conexión a Internet y la configuración de [[base-swupdate.software]]."
+
+
+# ----- Strings for emails
+
+
+msgid "QueryErrorSubject"
+msgstr 
+"Error al consultar el servidor [[base-swupdate.software]]."
+
+msgid "NoProductInfoBody"
+msgstr "El servidor [[base-swupdate.software]] no reconoció su producto.  [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr 
+"No se ha especificado una dirección URL para el servidor [[base-swupdate.software]]."
+
+msgid "NoSWUpdateServerBody"
+msgstr 
+"No ha sido posible determinar la ubicación del servidor de [[base-swupdate.software]]. Vaya a la página Configuración de [[base-swupdate.software]] y especifique una dirección URL para el servidor [[base-swupdate.software]]."
+
+msgid "NoSystemInfoSubject"
+msgstr 
+"[[base-swupdate.software]] no puede determinar la información del sistema."
+
+msgid "NoSystemInfoBody"
+msgstr "El servidor no ha podido determinar la información del sistema requerida por el servidor [[base-swupdate.software]]. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] no ha podido recuperar una lista de programas del servidor [[base-swupdate.software]] ubicado en '[[VAR.location]]'.  Asegúrese de que '[[VAR.location]]' es un servidor de [[base-swupdate.software]] válido y de que puede consultarlo desde su navegador web."
+
+msgid "BadPackageFmtBody"
+msgstr "El servidor devolvió información del programa que [[base-swupdate.software]] no entendió. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr 
+"No hay programas disponibles para descargar."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] recibió un error desconocido ([[VAR.error]]) al intentar conectarse al servidor de [[VAR.location]]."
+
+msgid "NewUpdatesSubject"
+msgstr 
+"Hay programas nuevos disponibles para su dispositivo servidor"
+
+msgid "NewUpdatesBody"
+msgstr 
+"Compruebe el menú de [[base-swupdate.software]] si desea instalar alguno de los siguientes programas:"

@@ -1,0 +1,57 @@
+###
+### Is this file still necessary?  I don't think this module is even being used any more...
+###
+
+msgid "identity"
+msgstr "Organization"
+
+msgid "modifyIdentity"
+msgstr "Modify identity"
+
+msgid "identityHelp"
+msgstr "Set identity information for this machine."
+
+msgid "country"
+msgstr "Country"
+
+msgid "country_empty"
+msgstr "Country is a non-optional field."
+
+msgid "country_help"
+msgstr "The country that this machine is located in the form of a two letter country code. e.g AU for Australia, PL for Poland."
+
+msgid "state"
+msgstr "State"
+
+msgid "state_help"
+msgstr "The state that this machine is located in the form of the abbreviation. e.g. CA for California, America. NSW for New South Wales, Australia."
+
+msgid "state_empty"
+msgstr "State field is required"
+
+msgid "locality"
+msgstr "Locality"
+
+msgid "locality_help"
+msgstr "The locality that this machine is located in the form of a full name. e.g. Sydney or 'San Fransisco'"
+
+msgid "locality_empty"
+msgstr "Locality field is required"
+
+msgid "organisation"
+msgstr "Organization"
+
+msgid "organisation_help"
+msgstr "The company that this box is primarially associated with. e.g. 'Null Pointer Corp.'"
+
+msgid "organisation_empty"
+msgstr "[[base-identity.organisation]] name is required"
+
+msgid "organisationUnit"
+msgstr "[[base-identity.organisation]] Unit"
+
+msgid "organisationUnit_help"
+msgstr "The unit that this machine is mainly used by. e.g. 'Web Hosting', 'Engineering' or 'Sales'"
+
+msgid "organisationUnit_empty"
+msgstr "Unit name is required"

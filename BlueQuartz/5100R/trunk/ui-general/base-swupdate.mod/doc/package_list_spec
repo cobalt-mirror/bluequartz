@@ -1,0 +1,102 @@
+Spec for package list format (v1.0) and package header (v1.0):
+
+-------
+
+[PackageList -- Version=1.0]
+[Package -- Version=1.0]
+Vendor:                <vendorname ([A-z0-9]+)>
+VendorTag:             <i18n'izable vendor string>
+Name:                  <packagename ([A-z0-9]+)>        
+NameTag:               <i18n'izable package name string>
+FileName:              <package.tar.gz> -- used by the actual packing list
+			if unspecified, the RPMS, SRPMS, and scripts
+			directories are not in a separate tar ball.
+			Not supported yet on the first Carmels.
+Category:	       <category information ([A-z0-9]+)>
+Location:              <url> -- used only by the server. No need to fill this
+			into package list in the packages because there can be
+			many locations for the same package.
+InfoURL:               <additional information url> -- optional.
+		       use this if you want to pop-up a new site.
+InfoURLOptions:		<things that should be sent>
+			they can include the following:
+				serialnum, product, vendor
+Version:               <version of the package>            
+VersionTag:            <i18n'izable version number if you don't want the
+			standard numbers to be displayed>            
+Size:                  <size in bytes> -- only used by the server. No need to
+			fill this into package list in the packages.
+Product:               <product requirements: e.g., 4100WG or 4...WG>
+Product:               
+.
+.
+.
+PackageType:           (complete|update)
+Options:               uninstallable,reboot,refreshui,refreshcce
+LongDesc:	       <i18n'izable long description>
+ShortDesc:             <i18n'izable short description>
+Copyright:	       <i18n'izable copyright string>
+License:               <i18n'izable license info> -- optional
+Splash:		       pre-install,post-install,pre-uninstall,post-uninstall
+EncryptionFormat:      none -- optional. only useful if FileName is specified. 
+Depend:                <package dependencies. e.g., vendor:packageA > 3>
+Depend:			the package won't show up in the new/updates pages
+                        if these dependencies aren't met.
+			here's what's expected:
+	vendor:package			vendor-package must exist
+	vendor:package !		vendor-package must not exist
+	vendor:package <=> version	vendor-package lt,eq,gt version
+	vendor:package != version	vendor-package ne version
+.
+.
+.
+VisibleDepend:	       <just like Depend except that the package will 
+VisibleDepend:	        show up in the new/updates lists
+			even if dependencies aren't met.>
+.
+.
+.
+Obsoletes:	       <obsoletes vendor-packages>
+.                      format:
+.		       vendor:package
+.		       vendor:package <=> version
+.		
+RPM:		       -- used only by the actual package packing list
+.		       Order matters. Always put RPMs that depends on others
+.		       after those that are being depended upon
+.
+SRPM:		       -- used only by the actual package packing list
+.
+.
+.
+[/Package]
+[/PackageList]
+---
+
+interactions between package list server and qube:
+
+1) qube requests a package list. it sends its swupdate version,
+   serial number, current package list and versions, and product 
+   information to the update server. the current packages are bundled 
+   up by url encoding an array that has been cce converted. i.e.,
+	(vendor, name, version) and (vendor2, name2, version2) ->
+	vendor:name:version          vendor2:name2:version2    ->
+	&vendor:name:version&vendor2:name2:version2&           ->
+	url_encode("", [A-z0-9+_-])
+	
+
+2) server sends back a tarball containing a packing list and locales
+   for the packing list. this tarball can be optionally signed.
+
+tarball.gz structure:
+	package_list
+	vendor-packageA-version/locale/en/serviceA.mo
+	vendor-packageA-version/splash/*
+	vendor-packageB-version/locale/en/serviceC.mo
+
+
+the qube installs the package info in the following place:
+	locale/lang/blah.mo -> 
+	/usr/share/locale/lang/LC_MESSAGES/.swupdate:vendor-name-version.mo
+
+	splash/* -> /usr/sausalito/ui/web/.swupdate/vendor/name-version/*

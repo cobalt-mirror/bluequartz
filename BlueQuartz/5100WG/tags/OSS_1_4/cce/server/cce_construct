@@ -1,0 +1,109 @@
+#!/usr/bin/perl
+#
+# Copyright(c) 2000 Cobalt Networks, Inc.
+# Author: Adrian Sun (asun@cobalt.com)
+#
+# the much simpler sysreset
+# it's like the old one, but it makes cce do all of the hard work.
+#
+# syntax: $0 <type>
+# where type can be one of 
+#   sysinit
+#   sysreset
+#   [nothing]
+
+my $consdir = '/usr/sausalito/constructor';
+my $destroydir = '/usr/sausalito/destructor';
+my $preferdir = 'base';
+
+system("/usr/bin/logger", "cce_construct started");
+
+sub get_files
+{
+    my ($dir, $allowpat, $excludepat) = @_;
+    my $name;
+    my %hash, %dirhash;
+    local *DIR;
+
+    if (opendir(DIR, $dir)) {
+	while ($_ = readdir(DIR)) {
+            next if /^\./; # always ignore stuff starting with .
+	    $name = "$dir/$_";
+	    if (-d $name) {
+		%dirhash = get_files($name, $allowpat, $excludepat);
+		foreach $name (keys %dirhash) {
+		    $hash{$name} = $dirhash{$name};
+		}
+	    } else {
+		next if $allowpat and not /^$allowpat/;
+		next if $excludepat and /^$excludepat/;
+		$hash{"$_$dir"} = $name;
+	    }
+	}
+	closedir(DIR);
+    }
+    return %hash;
+}
+
+my %hash;
+my ($key, $allowpat, $excludepat);
+
+# if this were really working, it would go through the database
+# and destroy all of the objects in it before running the 
+# destructors.	
+while ($ARGV[0] =~ /^\-/) {
+    if ($ARGV[0] eq '-f') {
+	print "i'm pretending to reset the machine to factory defaults.\n";
+#	print "----- destructing -----\n";
+#   destroy objects
+#   run other destructors
+#   run base destructors
+#	print "\n----- done -----\n";
+    }
+
+    shift;
+}
+
+if ($ARGV[0]) {
+    $allowpat = ':' . $ARGV[0] . ':';
+} else {
+    $excludepat = ':';
+}
+
+
+# running constructors
+print "----- constructing -----\n";
+# run the base one first 
+%hash = get_files("$consdir/$preferdir", $allowpat, $excludepat);
+if (%hash) {
+    foreach $key (sort keys %hash) {
+	print("   $hash{$key}\n");
+	system('/usr/bin/logger', "***** cce_construct: $hash{$key}");
+	`$hash{$key}`;
+    }
+}
+
+# now, collate the rest of the directories and run
+# them in alphabetical order.
+
+my (@dirs, $dir);
+if (opendir(PDIR, $consdir)) {
+    while ($_ = readdir(PDIR)) {
+	next if /^\./;
+	next if /^$preferdir$/;
+	push @dirs, $_;
+    }
+}
+
+foreach $dir (sort @dirs) {
+    %hash = get_files("$consdir/$dir", $allowpat, $excludepat);
+    if (%hash) {
+	foreach $key (sort keys %hash) {
+	    print("   $hash{$key}\n");
+	    system("/usr/bin/logger", "*** cce_construct: $hash{$key}");
+	    `$hash{$key}`;
+	}
+    }
+}
+system("/usr/bin/logger", "***** cce_construct finished");
+print "\n----- done -----\n";

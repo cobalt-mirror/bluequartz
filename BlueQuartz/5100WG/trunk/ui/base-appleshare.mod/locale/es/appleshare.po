@@ -1,0 +1,60 @@
+msgid "appleshare"
+msgstr "Apple"
+
+msgid "appleshare_help"
+msgstr "[[base-appleshare.appleshareSettings]]."
+
+msgid "appleshareSettings"
+msgstr "Configuración de archivos compartidos Apple"
+
+msgid "enableServerField"
+msgstr "Habilitar servidor"
+
+msgid "enableServerField_help"
+msgstr "Active o desactive el uso de archivos compartidos Apple. El acceso de invitado a esta función se configura en [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Número máximo de usuarios simultáneos"
+
+msgid "maxUserField_rule"
+msgstr "Escribir un número entero entre 1 y 1024. El valor predeterminado es 25."
+
+msgid "maxUserField_help"
+msgstr "Cambiar el número máximo de usuarios que pueden conectarse simultáneamente a Uso compartido de archivos Apple. [[base-appleshare.maxUserField_rule]]"
+
+
+# ---- Active Monitor
+
+msgid "amAppleshareNameTag"
+msgstr "Servidor de Uso compartido de archivos Apple"
+
+msgid "amDetailsTitle"
+msgstr "Detalles del servidor de Uso compartido de archivos Apple"
+
+msgid "amNotResponding"
+msgstr "El servidor de Uso compartido de archivos Apple no se está ejecutando."
+
+msgid "amStatusOK"
+msgstr "El servidor de Uso compartido de archivos Apple funciona normalmente."
+
+# ---- Handlers
+
+msgid "badUser"
+msgstr "Si se eliminaron o modificaron manualmente los archivos de configuración del servidor, restaure las versiones originales e inténtelo de nuevo."
+
+msgid "cantConfigFile"
+msgstr "Error al intentar modificar los archivos de configuración de Uso compartido de archivos Apple. [[base-appleshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Error al modificar los archivos de configuración de Uso compartido de archivos Apple. [[base-appleshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Error al modificar los archivos de configuración de Uso compartido de archivos Apple. [[base-appleshare.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminAppleShare"
+msgstr "Administrar uso compartido de archivos en Apple"
+
+msgid "capgroup_adminAppleShare_help"
+msgstr "Este derecho administrativo permite que un usuario modifique la configuración utilizada por el uso compartido de archivos en Apple."

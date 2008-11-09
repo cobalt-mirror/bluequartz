@@ -1,0 +1,170 @@
+<styleResource name="[[trueBlue.trueBlue]]">
+  <style id="Login">
+    <property name="fontFamily" target="medium" value="" />
+    <property name="fontSize" target="medium" value="13pt" />
+    <property name="textDecoration" target="medium" value="none"/>
+
+    <property name="fontFace" target="small" value="" />
+    <property name="fontFamily" target="small" value="" />
+    <property name="fontSize" target="small" value="9pt" />
+
+    <property name="fontFamily" value="" />
+    <property name="fontSize" value="17pt" />
+ 
+    <property name="fontFamily" target="login" value="" />
+    <property name="fontWeight" target="login" value="" />
+    <property name="textDecoration" target="login" value=""/>
+  </style>
+
+  <style id="Page">
+    <property name="fontFamily" value=""/>
+    <property name="fontSize" value="11pt"/>
+  </style>
+
+  <style id="PagedBlock">
+    <property name="fontFamily" target="dividerLabel" value=""/>
+    <property name="fontSize" target="dividerLabel" value="11pt"/>
+
+    <property name="fontFamily" target="labelLabel" value=""/>
+    <property name="fontSize" target="labelLabel" value="9pt"/>
+
+    <property name="fontFamily" target="subscript" value=""/>
+    <property name="fontSize" target="subscript" value="9pt"/>
+
+    <property name="fontFamily" target="tabSelected" value=""/>
+    <property name="fontSize" target="tabSelected" value="9pt"/>
+
+    <property name="fontFamily" target="tabUnselected" value=""/>
+    <property name="fontSize" target="tabUnselected" value="9pt"/>
+
+    <property name="fontFamily" target="titleLabel" value=""/>
+    <property name="fontSize" target="titleLabel" value="11pt"/>
+  </style>
+
+  <style id="Button">
+    <property name="fontFamily" target="normal" value=""/>
+    <property name="fontSize" target="normal" value="9pt"/>
+
+    <property name="fontFamily" target="disabled" value=""/>
+    <property name="fontSize" target="disabled" value="9pt"/>
+  </style>
+
+  <style id="Bar">
+    <property name="fontFamily" value=""/>
+    <property name="fontSize" value="9pt"/>
+  </style>
+
+  <style id="CancelButton">
+    <property name="fontFamily" target="normal" value=""/>
+    <property name="fontSize" target="normal" value="9pt"/>
+
+    <property name="fontFamily" target="disabled" value=""/>
+    <property name="fontSize" target="disabled" value="9pt"/>
+  </style>
+
+  <style id="Label">
+    <property name="fontFamily" value=""/>
+    <property name="fontSize" value="9pt"/>
+  </style>
+
+  <style id="MultiChoice">
+    <property name="fontFamily" target="choiceLabel" value=""/>
+    <property name="fontSize" target="choiceLabel" value="9pt"/>
+
+    <property name="fontFamily" target="formFieldLabel" value=""/>
+    <property name="fontSize" target="formFieldLabel" value="9pt"/>
+
+    <property name="fontFamily" target="subscript" value=""/>
+    <property name="fontSize" target="subscript" value="9pt"/>
+  </style>
+
+  <style id="Password">
+    <property name="fontFamily" target="subscript" value=""/>
+    <property name="fontSize" target="subscript" value="9pt"/>
+  </style>
+
+  <style id="SaveButton">
+    <property name="fontFamily" target="normal" value=""/>
+    <property name="fontSize" target="normal" value="9pt"/>
+
+    <property name="fontFamily" target="disabled" value=""/>
+    <property name="fontSize" target="disabled" value="9pt"/>
+  </style>
+
+  <style id="ScrollList">
+    <property name="fontFamily" target="entryCell" value=""/>
+    <property name="fontSize" target="entryCell" value="9pt"/>
+
+    <property name="fontFamily" target="controlLabel" value=""/>
+    <property name="fontSize" target="controlLabel" value="11pt"/>
+
+    <property name="fontFamily" target="labelLabel" value=""/>
+    <property name="fontSize" target="labelLabel" value="11pt"/>
+
+    <property name="fontFamily" target="titleLabel" value=""/>
+    <property name="fontSize" target="titleLabel" value="11pt"/>
+  </style>
+
+  <style id="collapsibleList">
+    <property name="fontFamily" target="near" value=""/>
+    <property name="fontSize" target="near" value="9pt"/>
+
+    <property name="fontFamily" target="normal" value=""/>
+    <property name="fontSize" target="normal" value="9pt"/>
+
+    <property name="fontFamily" target="selected" value=""/>
+    <property name="fontSize" target="selected" value="9pt"/>
+  </style>
+
+  <style id="info">
+    <property name="fontFamily" target="error" value=""/>
+    <property name="fontSize" target="error" value="9pt"/>
+
+    <property name="fontFamily" target="help" value=""/>
+    <property name="fontSize" target="help" value="9pt"/>
+
+    <property name="fontFamily" target="status" value=""/>
+    <property name="fontSize" target="status" value="9pt"/>
+
+    <property name="fontFamily" target="wait" value=""/>
+    <property name="fontSize" target="wait" value="9pt"/>
+  </style>
+
+  <style id="tab">
+    <property name="fontFamily" target="selected" value=""/>
+    <property name="fontSize" target="selected" value="9pt"/>
+
+    <property name="fontFamily" target="unselected" value=""/>
+    <property name="fontSize" target="unselected" value="9pt"/>
+  </style>
+
+  <style id="title">
+    <property name="fontFamily" target="description" value=""/>
+    <property name="fontSize" target="description" value="9pt"/>
+
+    <property name="fontFamily" target="title" value=""/>
+    <property name="fontSize" target="title" value="15pt"/>
+  </style>
+</styleResource>
+
+ 
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

@@ -1,0 +1,82 @@
+#!/bin/sh
+#
+# rc.halt       This file is executed by init when it goes into runlevel
+#               0 (halt) or runlevel 6 (reboot). It kills all processes,
+#               unmounts file systems and then either halts or reboots.
+#
+# Author:       Miquel van Smoorenburg, <miquels@drinkel.nl.mugnet.org>
+#               Modified for RHS Linux by Damien Neil
+#
+
+# Set the path.
+PATH=/sbin:/bin:/usr/bin:/usr/sbin
+
+# Source function library.
+DOMAIN=base-sys
+. /etc/rc.d/init.d/functions
+
+# See how we were called.
+case "$0" in
+  *halt)
+	message="SYSTEM HALTED"
+        LINE1=`getmsg halt_1`
+        LINE2=`getmsg halt_2`
+	command="halt"
+	;;
+  *reboot)
+	message="SYSTEM REBOOTING"
+        LINE1=`getmsg reboot_1`
+        LINE2=`getmsg reboot_2`
+	command="reboot"
+	;;
+  *)
+	echo "Usage: $0 {halt|reboot}"
+	exit 1
+	;;
+esac
+
+# sync up the hw clock
+if [ -f /etc/sysconfig/clock ]; then
+        . /etc/sysconfig/clock
+        case $UTC in
+        yes|true)
+                CLOCK_FLAGS=-u
+        ;;
+        esac
+fi
+/sbin/clock -w $CLOCK_FLAGS
+rm -f /etc/adjtime
+/sbin/clock -w $CLOCK_FLAGS
+
+# Kill all processes.
+[ "${BASH+bash}" = bash ] && enable kill
+
+echo "Sending all processes the TERM signal..."
+kill -15 -1
+sleep 5
+echo "Sending all processes the KILL signal.."
+kill -9 -1
+
+# Write to wtmp file before unmounting /var
+halt -w
+
+# Turn off swap, then unmount file systems.
+# NOT turning off swap as workaround for 13256
+# echo "Turning off swap"
+# swapoff -a
+echo "Unmounting file systems"
+umount -a
+mount -n -o remount,ro /
+
+echo "Remounting remaining filesystems (if any) readonly"
+mount | awk '/ext2/ { print $3 }' | while read line; do
+    mount -n -o ro,remount $line
+done
+
+
+# Now halt or reboot.
+$LCD_WRITE -s "$LINE1" "$LINE2"
+echo "$message"
+[ -f /fastboot ] && echo "On the next boot fsck will be skipped."
+eval $command -d
+

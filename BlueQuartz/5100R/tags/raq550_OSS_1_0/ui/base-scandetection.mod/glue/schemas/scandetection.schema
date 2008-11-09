@@ -1,0 +1,36 @@
+<!-- This is the AM Namespace for monitoring Scandetection -->
+<!--  Copyright 2001 Sun Microsystems, Inc. All rights reserved. -->
+<!-- $Id: scandetection.schema,v 1.8 2001/10/04 21:45:40 will Exp $ -->
+
+<class name="System" namespace="Scandetection" version="1.0">
+	<property 
+		name="paranoiaLevel"	type="int" default="1" 
+		writeacl="ruleCapable(scanDetection)"
+	/>
+	<property 
+		name="timeout" type="int" default="300" 
+		writeacl="ruleCapable(scanDetection)"
+	/>
+	<property 
+		name="numScans" type="int" default="5" 
+		writeacl="ruleCapable(scanDetection)"
+	/>
+	<property 
+		name="alertEmail" type="scalar" default="admin" 
+		writeacl="ruleCapable(scanDetection)"
+	/>
+	<property 
+		name="permBlocked" type="ipaddr" array="yes" optional="true" 
+		default="" writeacl="ruleCapable(scanDetection)"
+	/>
+	<property 
+		name="permUnblocked" type="ipaddr" array="yes" optional="true" 
+		default="" writeacl="ruleCapable(scanDetection)"
+	/>
+	<property
+		name="alertMe" type="boolean" default="0" writeacl="ruleCapable(scanDetection)"
+	/>
+	<property
+		name="lockouttime" type="int" default="30" writeacl="rulecapable(scanDetection)"
+	/>
+</class>

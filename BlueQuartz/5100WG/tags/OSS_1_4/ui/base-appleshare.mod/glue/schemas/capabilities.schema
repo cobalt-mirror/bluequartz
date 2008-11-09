@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyAppleShare" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyAppleShare)"/>
+	<property name="nameTag" type="scalar" default="[[base-appleshare.cap_modifyAppleShare]]"/>
+</class>

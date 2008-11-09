@@ -1,0 +1,44 @@
+msgid "time"
+msgstr "時刻"
+
+msgid "timeSetting"
+msgstr "時刻の設定"
+
+msgid "time_help"
+msgstr "日付と時刻を設定できます。"
+
+msgid "systemDisplayedDate"
+msgstr "日付と時刻"
+
+msgid "systemDisplayedDate_help"
+msgstr "現在の日付と時刻を指定してください。"
+
+msgid "systemDisplayedTime"
+msgstr "時刻"
+
+msgid "systemDisplayedTime_help"
+msgstr "現在の時刻を指定してください。"
+
+msgid "systemDisplayedTimeZone"
+msgstr "時間帯"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "現在地の時間帯を指定してください。"
+
+msgid "ntpAddress"
+msgstr "NTP サーバのアドレス"
+
+msgid "ntpDefaultServer"
+msgstr "time.cobalt.com"
+
+msgid "ntpAddress_help"
+msgstr "ここに NTP （Network Time Protocol） サーバのネットワークアドレスまたはドメインネームを指定すると、毎日システムの時刻が同期されます。（指定例： [[base-time.ntpDefaultServer]]）その他にも、一般に公開されている NTP サーバの一覧が http://www.eecis.udel.edu/~mills/ntp/servers.htm に掲載されていますのでご利用ください。"
+
+
+# Capabilities
+
+msgid "capgroup_adminTime"
+msgstr "時刻の管理"
+
+msgid "capgroup_adminTime_help"
+msgstr "この管理権限を持つユーザは、システムの時刻と時間帯を設定することができます。"

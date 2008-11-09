@@ -1,0 +1,85 @@
+# configuration bits for mod_rpmize
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%dir /etc/skel/group/en/web
+%dir /etc/skel/group/ja/web
+%dir /etc/skel/group/de/web
+%dir /etc/skel/group/es/web
+%dir /etc/skel/group/fr/web
+%dir /etc/skel/group/zh_TW/web
+%dir /etc/skel/group/zh_CN/web
+/etc/skel/group/zh_TW/web/*.html
+/etc/skel/group/zh_CN/web/*.html
+/etc/skel/group/en/web/*.html
+/etc/skel/group/ja/web/*.html
+/etc/skel/group/de/web/*.html
+/etc/skel/group/es/web/*.html
+/etc/skel/group/fr/web/*.html
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin locale>
+if [ ! -e "/usr/sausalito/ui/web/base/workgroup/default_home.html.zh-TW" ]; then \
+        if [ -e "/usr/sausalito/ui/web/base/workgroup/default_home.html.zh_TW" ]; then \
+                ln -s /usr/sausalito/ui/web/base/workgroup/default_home.html.zh_TW /usr/sausalito/ui/web/base/workgroup/default_home.html.zh-TW; \
+        fi; \
+fi
+
+if [ ! -e "/usr/sausalito/ui/web/base/workgroup/default_home.html.zh-CN" ]; then \
+        if [ -e "/usr/sausalito/ui/web/base/workgroup/default_home.html.zh_CN" ]; then \
+                ln -s /usr/sausalito/ui/web/base/workgroup/default_home.html.zh_CN /usr/sausalito/ui/web/base/workgroup/default_home.html.zh-CN; \
+        fi; \
+fi
+<end locale>
+
+<end %POST-INSTALL>
+
+<begin $CHANGELOG>
+* Sun Jul 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-43BQ1
+- bild for BlueQuartz 5100WG.
+<end $CHANGELOG>

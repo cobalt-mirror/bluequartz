@@ -1,0 +1,348 @@
+# --- Menu
+
+msgid "maillists"
+msgstr "郵寄清單"
+
+msgid "maillistsHelp"
+msgstr "此處可管理[[base-maillist.maillistList]]。"
+
+
+# --- Mailing Lists page
+
+msgid "maillistList"
+msgstr "郵寄清單"
+
+msgid "maillistNameHeader"
+msgstr "名稱"
+
+msgid "maillistNameHeader_help"
+msgstr "這是郵寄清單的名稱。"
+
+msgid "recipientsHeader"
+msgstr "用戶"
+
+msgid "recipientsHeader_help"
+msgstr "這些是訂閱郵寄清單的組員。"
+
+msgid "groupSubscriber"
+msgstr "[[VAR.group]] 群組的所有組員。"
+
+msgid "maillistDescHeader"
+msgstr "備註"
+
+msgid "maillistDescHeader_help"
+msgstr "這個欄位包含每一個郵寄清單的其餘資訊。"
+
+msgid "maillistActionHeader"
+msgstr "動作"
+
+msgid "maillistActionHeader_help"
+msgstr "這些是用來更改或刪除郵寄清單的按鈕。"
+
+msgid "confirm_removal_of_list"
+msgstr "您確定要移除 [[VAR.list]] 郵寄清單嗎？"
+
+
+# ----- Add/modify a mailing list Basic
+
+msgid "createMailList"
+msgstr "新增郵寄清單"
+
+msgid "modifyMailList"
+msgstr "更改郵寄清單"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"
+msgstr "進階"
+
+msgid "basic_help"
+msgstr "此處可配置基本郵寄清單選項。"
+
+msgid "advanced_help"
+msgstr "此處可配置進階郵寄清單選項，如刊登和署名策略。"
+
+msgid "listName"
+msgstr "清單名稱"
+
+msgid "listName_rule"
+msgstr "請只輸入小寫英數字元、破折號和點號。例如，sales 就是一個有效的名稱。"
+
+msgid "listName_help"
+msgstr "請輸入郵寄清單的名稱。  [[base-maillist.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-maillist.listName]]值。  [[base-maillist.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "很抱歉，您並未輸入[[base-maillist.listName]]的值。   [[base-maillist.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "群組組員"
+
+msgid "workgroupMembers_help"
+msgstr "這個欄位包含一份使用者清單，這些使用者目前為此清單群組的組員。此群組的所有組員都一律訂閱此郵寄清單。"
+
+msgid "group_field"
+msgstr "群組清單名稱"
+
+msgid "group_field_help"
+msgstr "這是群組郵寄清單的名稱。此群組的所有組員都會自動訂閱此郵寄清單。"
+
+msgid "save"
+msgstr "儲存"
+
+msgid "save_help"
+msgstr "儲存此郵寄清單。"
+
+
+msgid "localSubscribers"
+msgstr "本地用戶"
+
+msgid "localSubscribers_help"
+msgstr "請選取訂閱此郵寄清單的本地使用者。若要訂閱使用者，請將使用者從「未訂閱」欄位移至「已訂閱」欄位。"
+
+msgid "subscribed"
+msgstr "已訂閱使用者"
+
+msgid "unsubscribed"
+msgstr "未訂閱使用者"
+
+msgid "remoteSubscribers"
+msgstr "遠端用戶"
+
+msgid "remoteSubscribers_rule"
+msgstr "請輸入一個格式化的電子郵件位址，例如，user@cobalt.com 就是一個有效的位址。"
+
+msgid "remoteSubscribers_help"
+msgstr "請輸入訂閱此郵寄清單的遠端使用者。遠端使用者是指在此伺服器設備上沒有帳戶的使用者。 [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-maillist.remoteSubscribers]]值。  [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "description"
+msgstr "備註"
+
+msgid "description_help"
+msgstr "請在此處輸入關於郵寄清單的其餘資訊或說明。"
+
+
+
+# ----- Add/modify a mailing list Advanced
+
+msgid "moderator"
+msgstr "擁有者/仲裁者"
+
+msgid "moderator_rule"
+msgstr "請輸入此伺服器設備上一位有效使用者的、格式化的電子郵件位址或使用者名稱；預設值為 admin。例如，user@cobalt.com 和 admin 就是一個有效的登錄項。"
+
+msgid "moderator_help"
+msgstr "請輸入執行郵寄清單的所有管理任務之使用者的電子郵件位址。  [[base-maillist.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-maillist.moderator]]值。  [[base-maillist.moderator_rule]]"
+
+	# handler version
+msgid "Moderator-does-not-exist"
+msgstr "無效的仲裁者：使用者 [[VAR.moderator]]不存在。"
+
+
+msgid "moderator_empty"
+msgstr "很抱歉，您並未輸入[[base-maillist.moderator]]的值。即使未對郵寄清單指定任何仲裁策略，您也必須輸入一個值。  [[base-maillist.moderator_rule]]"
+
+msgid "policies"
+msgstr "策略"
+
+msgid "password"
+msgstr "密碼"
+
+msgid "password_help"
+msgstr "請輸入此郵寄清單的管理密碼。在透過電子郵件執行某些清單管理作業（例如，核准署名或仲裁訊息）時，會使用此密碼。如果您不打算使用這些功能，您可保留此欄位空白。"
+
+msgid "postingPolicy"
+msgstr "刊登策略"
+
+msgid "postingPolicy_help"
+msgstr "請選取此郵寄清單的刊登策略。如果您選擇「仲裁者確認所有訊息」，則每個訊息都需經清單擁有者/仲裁者核准。"
+
+msgid "postingPolicy-any"
+msgstr "所有使用者皆可刊登訊息"
+
+msgid "postingPolicy-members"
+msgstr "只限用戶可刊登訊息"
+
+msgid "postingPolicy-moderated"
+msgstr "仲裁者確認所有訊息"
+
+msgid "subscriptionPolicy"
+msgstr "署名策略"
+
+msgid "subscriptionPolicy_help"
+msgstr "請選取郵寄清單的署名策略。"
+
+msgid "subscriptionPolicy-open"
+msgstr "開放：任何使用者都可訂閱。"
+
+msgid "subscriptionPolicy-closed"
+msgstr "關閉：署名必須經清單擁有者核准。"
+
+msgid "subscriptionPolicy-confirm"
+msgstr "確認：署名必須經電子郵件確認。"
+
+msgid "maxlength"
+msgstr "最大訊息長度"
+
+msgid "maxlength_help"
+msgstr "請選取對傳送到此郵寄清單之訊息所允許的最大大小（以千位元組或百萬位元組為單位）。超過此大小的訊息將遭到拒絕。"
+
+msgid "maxlength-5120"
+msgstr "5 kb"
+msgid "maxlength-51200"
+msgstr "50 kb"
+msgid "maxlength-512000"
+msgstr "500 kb"
+msgid "maxlength-1048576"
+msgstr "10 MB"
+msgid "maxlength-104857600"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "回覆策略"
+
+msgid "replyToList_help"
+msgstr "請設定此郵寄清單的回覆策略。如果您選擇「回覆給清單」，回覆將傳送給清單；否則，回覆將只會傳給訊息的原作者。"
+
+msgid "replyToList-true"
+msgstr "回覆給清單"
+
+msgid "replyToList-0"
+msgstr "回覆給寄件者"
+
+msgid "archiveSettings"
+msgstr "歸檔"
+
+msgid "archiveEnabled"
+msgstr "啟用"
+
+msgid "archiveEnabled_help"
+msgstr "請設定是否要將傳送到此郵寄清單的訊息歸檔。在此伺服器設備上擁有帳戶的使用者，將能夠使用 WebMail 帳戶（如果已安裝 WebMail 的話）存取這些歸檔的資料。"
+
+msgid "keepForDays"
+msgstr "保留期間（天）"
+
+msgid "keepForDays_help"
+msgstr "請輸入一個指定時間長度的數字（以天數為單位），此數字是要將訊息保留在歸檔的天數。輸入零 (0) 可無限制地保留歸檔訊息。"
+
+msgid "keepForDays_rule"
+msgstr "請輸入一個指定時間長度的數字（以天數為單位），此數字是要將訊息保留在歸檔的天數。輸入零 (0) 可無限制地保留歸檔訊息。 "
+
+msgid "keepForDays_empty"
+msgstr "很抱歉，您並未指定[[base-maillist.keepForDays]]的值。 [[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "很抱歉，欄位[[base-maillist.keepForDays]]含有無效值。  [[base-maillist.keepForDays_rule]]"
+
+
+# ------ Handler messages
+
+msgid "name-already-taken"
+msgstr "很抱歉，指定名稱的郵寄清單已存在；請輸入不同的名稱，然後重試。"
+
+msgid "Mail-alias-already-taken"
+msgstr "很抱歉，無法建立郵寄清單，因為清單所需的電子郵件別名已存在。郵寄清單請另外指定一個名稱或移除具有類似名稱的電子郵件別名。"
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "很抱歉，無法移除此伺服器設備上的使用者群組之郵寄清單。"
+
+msgid "Could-not-create-maillist"
+msgstr "很抱歉，發生錯誤；無法建立郵寄清單。 "
+
+
+
+# ----- Archives for users with accounts
+
+	#--- List view
+msgid "maillistArchive"
+msgstr "郵寄清單歸檔 - [[VAR.name]]"
+
+msgid "title"
+msgstr "標題"
+
+msgid "title_help"
+msgstr "這是訊息的標題。"
+
+msgid "author"
+msgstr "寄件者"
+
+msgid "author_help"
+msgstr "這是寄件者的名稱或電子郵件位址。"
+
+msgid "date"
+msgstr "日期"
+
+msgid "date_help"
+msgstr "這是收到訊息的日期。"
+
+	#--- Read message view
+msgid "readMessage"
+msgstr "閱讀訊息"
+
+msgid "readMessage_help"
+msgstr "閱讀訊息"
+
+msgid "from"
+msgstr "寄件者"
+
+msgid "from_help"
+msgstr "這是寄件者的名稱及（或）電子郵件位址。"
+
+msgid "subject"
+msgstr "標題"
+
+msgid "subject_help"
+msgstr "這是訊息的標題。"
+
+msgid "message"
+msgstr "訊息"
+
+msgid "message_help"
+msgstr "這是訊息的本文。"
+
+msgid "replySender"
+msgstr "回覆給寄件者"
+
+msgid "replySender_help"
+msgstr "按一下此處，可回覆給寄件者。"
+
+msgid "replyAll"
+msgstr "全部回覆"
+
+msgid "replyAll_help"
+msgstr "按一下此處，可回覆給寄件者及其他所有的接收者。"
+
+# ------ Misc  (i.e. I have no idea)
+
+msgid "membership"
+msgstr "組員"
+
+msgid "membership_help"
+msgstr "組員定義與此郵寄清單的使用者。"
+
+
+# ------- Strings for email messages
+
+msgid "WelcomeMessageSubject"
+msgstr "已啟用歸檔功能"
+
+msgid "WelcomeMessageBody"
+msgstr "這封電子郵件通知您已對此伺服器上擁有帳戶的使用者啟用了郵寄清單 '[[VAR.name]]' 的歸檔作業；這些使用者將能夠從 WebMail 內存取此歸檔資料。您不必回覆本郵件。"
+
+# Capabilities
+
+msgid "capgroup_adminMaillist"
+msgstr "管理郵遞列表"
+
+msgid "capgroup_adminMaillist_help"
+msgstr "這個管理權限允許使用者建立、銷毀及更改這台機器所擁有的郵遞列表。"
+

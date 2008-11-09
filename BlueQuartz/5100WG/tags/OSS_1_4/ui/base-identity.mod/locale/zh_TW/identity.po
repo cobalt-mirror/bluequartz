@@ -1,0 +1,58 @@
+###
+### Is this file still necessary?  I don't think this module is even being used any more...
+###
+
+msgid "identity"
+msgstr "組織"
+
+msgid "modifyIdentity"
+msgstr "修改識別"
+
+msgid "identityHelp"
+msgstr "設定這部機器的識別資訊。"
+
+msgid "country"
+msgstr "國家"
+
+msgid "country_empty"
+msgstr "國家並非是選用欄位。"
+
+msgid "country_help"
+msgstr "這部機器所在的國家，其格式為兩個英文字母的國碼。例如：澳洲國碼為 AU，而波蘭國碼為 PL。"
+
+msgid "state"
+msgstr "州/省"
+
+msgid "state_help"
+msgstr "這部機器所在的州/省，格式為州/省的縮寫，例如：以 CA 代表美國的加州，以 NSW 代表澳洲的新南威爾斯。"
+
+msgid "state_empty"
+msgstr "「州/省」是必要的欄位"
+
+msgid "locality"
+msgstr "位置"
+
+msgid "locality_help"
+msgstr "這部機器所在的位置，其格式為所在位置的全名，例如：「Sydney（雪梨）」或「San Fransisco（舊金山）」"
+
+msgid "locality_empty"
+msgstr "「位置」是必要的欄位"
+
+msgid "organisation"
+msgstr "組織"
+
+msgid "organisation_help"
+msgstr "與此方塊有主要關聯性的公司，例如：'Null Pointer Corp.'"
+
+msgid "organisation_empty"
+msgstr "[[base-identity.organisation]]是必要的名稱"
+
+msgid "organisationUnit"
+msgstr "[[base-identity.organisation]]部門"
+
+msgid "organisationUnit_help"
+msgstr "主要是使用這部機器的部門，例如：「網路控管部門」、「工程部門」或「銷售部門」"
+
+msgid "organisationUnit_empty"
+msgstr "部門名稱為必要項目"
+

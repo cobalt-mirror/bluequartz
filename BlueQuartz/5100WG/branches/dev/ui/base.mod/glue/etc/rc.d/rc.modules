@@ -1,0 +1,11 @@
+#!/bin/sh
+
+CONF=/etc/sysconfig/modules
+while read LINE; do
+	LINE=`echo $LINE | sed 's/\#.*//'`
+	if [ -n "$LINE" ]; then
+		modprobe -s $LINE
+	fi
+done < $CONF
+
+exit 0

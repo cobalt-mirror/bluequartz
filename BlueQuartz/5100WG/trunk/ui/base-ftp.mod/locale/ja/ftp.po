@@ -1,0 +1,57 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftp_help"
+msgstr "[[base-ftp.ftpSettings]]を変更できます。"
+
+msgid "ftpSettings"
+msgstr "FTP の設定"
+
+msgid "enableServerField"
+msgstr "FTP サーバを有効にする"
+
+msgid "enableServerField_help"
+msgstr "このボックスをチェックすると、FTP（File Transfer Protocol）サービスが有効になります。匿名 FTP アクセスは、「[[base-fileshare.guestShare]]」で設定できます。"
+
+msgid "maxUserField"
+msgstr "同時アクセスを許可するユーザの最大数"
+
+msgid "maxUserField_rule"
+msgstr "1 ～ 1024 の整数を入力してください。デフォルトは 25（人）です。"
+
+msgid "maxUserField_help"
+msgstr "FTP サーバへ同時にアクセスを許可するユーザの最大数を指定できます。[[base-ftp.maxUserField_rule]]"
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "FTP サーバ"
+
+msgid "amDetailsTitle"
+msgstr "FTP サーバの詳細"
+
+msgid "amNotResponding"
+msgstr "FTP サーバは動作していません。"
+
+msgid "base-ftp.amBadResponse"
+msgstr "FTP サーバが正しく応答しませんでした。"
+
+msgid "amStatusOK"
+msgstr "FTP サーバは正常に動作しています。"
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "サーバ設定ファイルを削除または手動で変更してある場合には、元のファイルを復元してからもう一度お試しください。"
+
+msgid "cantConfigFile"
+msgstr "FTP 設定ファイルの更新中にエラーが発生しました。[[base-ftp.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminFtpServer"
+msgstr "FTP サーバ設定の管理"
+
+msgid "capgroup_adminFtpServer_help"
+msgstr "この管理権限を持つユーザは、このマシンの FTP サーバが使用する設定を変更できます。"

@@ -1,0 +1,128 @@
+# ----- Menu 
+msgid "groups"
+msgstr "Groupes"
+
+msgid "groups_help"
+msgstr "Les [[base-workgroup.groups]] d'utilisateurs peuvent être gérés ici."
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr " Paramètres par défaut"
+
+msgid "groupDefaults_help"
+msgstr "Cliquez ici pour modifier les paramètres par défaut des nouveaux groupes."
+
+msgid "groupList"
+msgstr "Groupes"
+
+msgid "groupName"
+msgstr "Nom de groupe"
+
+msgid "groupName_help"
+msgstr "Nom du groupe d'utilisateurs."
+
+msgid "groupMembers"
+msgstr "Membres du groupe"
+
+msgid "groupMembers_help"
+msgstr "Liste des utilisateurs qui appartiennent au groupe."
+
+msgid "groupDesc"
+msgstr "Remarques"
+
+msgid "groupDesc_help"
+msgstr "Description du groupe."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Boutons permettant de modifier les paramètres d'un groupe ou de supprimer un groupe."
+
+msgid "addNewGroup"
+msgstr "Ajouter un nouveau groupe"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Permet de définir l'espace disque maximum par défaut des nouveaux groupes. Il s'agit de l'espace disque maximum disponible aux groupes pour le stockage des pages Web, du courrier électronique et de tout autre fichier. [[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "Nom de groupe"
+
+msgid "groupNameField_rule"
+msgstr "Entrez un nom ne dépassant pas 12 caractères et ne contenant que des caractères alphanumériques en minuscule, des points, des tirets et des traits de soulignement. ingénierie est un exemple d'entrée valide."
+
+msgid "groupNameField_help"
+msgstr "Entrez le nom que doit utiliser le système pour identifier le groupe. [[base-workgroup.groupNameField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Espace disque maximum permis (Mo)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Entrez un nombre entier compris 1 et 1024000. "
+
+msgid "maxDiskSpaceField_help"
+msgstr "Permet de définir le quota de disque de ce groupe. Il s'agit de l'espace disque maximum que peut utiliser ce groupe pour stocker des pages Web, du courrier électronique et tout autre type de fichier. [[base-workgroup.maxDiskSpaceField_rule]] La valeur par défaut des nouveaux groupes est définie dans la section Paramètres par défaut."
+
+msgid "groupMembersField"
+msgstr "Appartenance utilisateur"
+
+msgid "groupMembersField_help"
+msgstr "Définir l'appartenance utilisateur de ce groupe. La colonne de gauche montre les utilisateurs qui font partie actuellement de ce groupe. La colonne de droite montre les utilisateurs pouvant être ajoutés à ce groupe. Pour ajouter un utilisateur à la liste de ce groupe, faites passer l'utilisateur de la colonne de droite à la colonne de gauche."
+
+msgid "groupUsers"
+msgstr "Utilisateurs affiliés"
+
+msgid "allUsers"
+msgstr "Utilisateurs non affiliés"
+
+msgid "groupDescField"
+msgstr "Remarques"
+
+msgid "groupDescField_help"
+msgstr "Entrez des informations supplémentaires sur le groupe, une description ou des commentaires par exemple, ici."
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "Modifier les paramètres du groupe - [[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "Voulez-vous vraiment supprimer le groupe [[VAR.groupName]]?"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "Vous avez entré une valeur pour [[base-workgroup.groupNameField]] qui a déjà été utilisée par une autre personne ou qui est réservée par le système. Entrez une autre valeur pour [[base-workgroup.groupNameField]]."
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "Les membres de ce groupe de travail peuvent gérer le contenu du site Web publique."
+
+msgid "add_group_help"
+msgstr "Cliquez ici pour ajouter un nouveau groupe de travail."
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "Gérer des groupes"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "Ce droit administratif permet à un utilisateur de créer, supprimer et modifier des groupes"

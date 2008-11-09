@@ -1,0 +1,178 @@
+#!/usr/bin/perl -w -I. -I/usr/sausalito/perl
+$0 = 'crestore';
+use strict;
+use Getopt::Long;
+use Backup;
+
+# $Id: crestore 201 2003-07-18 19:11:07Z will $
+# 
+# Cobalt Restore Utility
+# Authors: Jeff Lovell <jlovell@cobalt.com>, Brenda Mula <bmula@cobalt.com>
+# Copyright 2000 Cobalt Networks, Inc.
+# http://www.cobalt.com
+
+# Some globals we need
+my ($method,$location);
+my ($username,$password);
+my ($restoredir);
+
+# FTP?
+my $ftp = 0;
+
+# Handle command-line options
+parse_cmd();
+
+# Validate Input
+validate();
+
+# Create a new Backup Object
+my $bu = Backup->new(
+	create		=>	0,
+	ftp		=>	$ftp,
+	restoredir	=>	$restoredir
+);
+
+# Mount up the filesystem
+mount($method);
+
+# Do it Doug!
+restore();
+
+unless($restoredir eq "/"){ #if we are doing a restore to a temp directory
+	$restoredir=~s/[^a-zA-Z0-9\/\\]//g;
+	system("chown -R admin:restore $restoredir");
+	system("chmod -R g+w $restoredir");
+}
+
+## Subroutines ##
+
+sub parse_cmd
+{
+	GetOptions 
+	(	
+		"location=s"		=>	\$location,
+		"method=s"		=>	\$method,
+		"username=s"		=>	\$username,
+		"password=s"		=>	\$password,
+		"relocate=s"		=>	\$restoredir
+	);
+
+	SWITCH: {
+		( ! $location )	&& do {
+			print STDERR "Backup location must be provided.\n";
+			usage();
+			exit 1;
+		};
+		( ! $method )		&& do {
+			print STDERR "Backup method must be provided.\n";
+			usage();
+			exit 1;
+		};
+		( $method !~ /^(nfs|ftp|smb|local)$/i )	&& do {
+			print STDERR "$method method not supported.  ";
+			print STDERR "Use one of the following methods:\n";
+			print STDERR "FTP, NFS, SMB, or local\n";
+			usage();
+			exit 1;
+		};
+		( $method =~ /^ftp$/i )	&& do {
+			$ftp = 1;       # set ftp flag
+		};
+		( ! $restoredir )	&& do {
+			$restoredir = '/';
+		};
+		last SWITCH;
+	}
+
+	return;
+}
+
+sub validate
+{
+        # "\\foo\bar\dir" or "foo/bar/dir" or "foo:/bar/dir"
+        if (($method =~ /^smb$/i) && ($location !~ /\\\\[^\\]+\\[^\\]+.*/)
+         || ($method =~ /^ftp$/i) && ($location !~ /^[^\/]+.*$/)
+         || ($method =~ /^nfs$/i) && ($location !~ /^[^\/:]+:\/.*/)
+         || ($method =~ /^local$/i) && ($location !~ /^\/.*$/)) {
+                print STDERR "$location is not correct format for $method\n";
+                exit 1;
+        }
+
+	return;
+}
+
+sub usage
+{
+	my $bu = Backup->new();
+	my $ver = $bu->get_version();
+
+print STDERR <<USAGE;
+
+crestore version $ver Copyright (c) 1999,2000 Cobalt Networks, Inc.
+
+Usage: crestore arguments [options]
+
+Synopsis: 
+	This utility is used to backup Cobalt Networks products to
+	supported network devices.
+
+Arguments:
+	--method=string	     # FTP, SMB, NFS, or local
+	--location=string    # Method specific location where backup is stored
+
+Options:
+	--username=string    # Username used to access network share
+	--password=string    # Password used to access network share
+	--relocate=string    # Directory to restore to other than
+			     # overwriting the current files
+
+USAGE
+
+	return;
+}
+
+sub mount
+{
+	my $fs = shift;
+	my $ret;
+
+	MOUNT: {
+		( $fs =~ /^nfs$/i )	&& do {
+			$ret = $bu->mount("nfs", $location);
+			last MOUNT;
+		};
+		( $fs =~ /^smb$/i )	&& do {
+			$ret = $bu->mount("smb", $location,
+				$username, $password);
+			last MOUNT;
+		};
+		( $fs =~ /^ftp$/i )	&& do {
+			$ret = $bu->mount("ftp", $location,
+				$username, $password);
+			last MOUNT;
+		};
+		( $fs =~ /^local$/i )	&& do {
+			# Backup stored locally
+			$ret = $bu->mount("local", $location);
+			last MOUNT;
+		};
+		die "Invalid or unsupported mount type: $fs\n";
+	}
+
+	if (!$ret) {
+		die "Error mounting $location via $fs\n";
+	}
+
+	return;
+}
+
+sub restore
+{
+	if (!$bu->restore()) {
+		die "Restore failed\n";
+	}
+
+	return;
+}
+
+__DATA__

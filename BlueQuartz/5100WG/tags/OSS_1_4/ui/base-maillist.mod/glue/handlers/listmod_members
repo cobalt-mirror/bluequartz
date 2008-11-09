@@ -1,0 +1,23 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/maillist
+# $Id: listmod_members 3 2003-07-17 15:19:15Z will $
+#
+# listmod_members depends on:
+#		name
+#		local_recips
+#		remote_recips
+#		_CREATE
+
+use MailList; # should be a local file
+use CCE;
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $oid = $cce->event_oid();
+my $obj = $cce->event_object();
+
+# create subscriber list:
+MailList::rewrite_members($obj);
+
+$cce->bye('SUCCESS');
+exit(0);
+

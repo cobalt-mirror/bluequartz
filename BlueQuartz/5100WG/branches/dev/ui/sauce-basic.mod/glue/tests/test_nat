@@ -1,0 +1,56 @@
+#!/usr/bin/perl
+
+my $errors = 0;
+sub error {
+  $errors++;
+  print STDERR "ERROR $errors: @_\n";
+}
+sub fatal {
+  $errors++;
+  print STDERR "FATAL $errors: @_\n";
+  exit($errors);
+}
+
+use lib qw( /usr/sausalito/perl );
+use CCE;
+
+$CCE::DEBUG = 0;
+$cce = new CCE; 
+$cce->connectuds();
+
+my ($sysoid) = $cce->find("System");
+my ($ok, $sysobj) = $cce->get($sysoid, "Network");
+if (!$ok) { fatal("No system object"); }
+
+($ok) = $cce->set($sysoid,"Network",{nat => 0});
+if (!$ok) { error("set nat=0 failed"); }
+
+if (is_nat_enabled()) {
+  error("nat=0, but nat was not turned off.");
+}
+
+
+($ok) = $cce->set($sysoid,"Network",{nat => 1});
+if (!$ok) { error("set nat=1 failed"); }
+
+if (!is_nat_enabled()) {
+  error("nat=1, but nat was not turned on.");
+}
+
+sub is_nat_enabled
+{
+  my $fwbin = '/sbin/ipchains -L forward';
+  $fwbin = '/usr/bin/iptables -L FORWARD' if (-x '/usr/bin/iptables');
+  my @data = `$fwbin`;
+  my $flag = 0;
+  while (defined($_ = shift(@data))) {
+    if (m/^MASQ\s+all\s+\S+\s+anywhere\s+anywhere/) {
+      $flag = 1;
+    }
+  }
+  print STDERR $flag ? "Nat is enabled\n" : "Nat is NOT enabled.\n";
+  return $flag;
+}
+
+print "$errors errors.\n";
+exit($errors);

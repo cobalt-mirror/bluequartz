@@ -1,0 +1,18 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: email_caps.schema 201 2003-07-18 19:11:07Z will $
+
+    modifyEmail namespace for the Capabilities object to control access
+    to email properties without forcing Users to be sysadmin
+-->
+<class
+    name="Capabilities" namespace="modifyEmail" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyEmail)"
+    />
+    <property
+        name="nameTag" type="scalar" default=""
+    />
+</class>

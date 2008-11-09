@@ -1,0 +1,31 @@
+#!/bin/bash
+# Convenience script to find a RaQ amongst the many...
+# Copyright 2001 Sun Microsystems, Inc., All rights reserved.
+# By: Joshua "uzi" Uziel
+# $Id: blinkme 259 2004-01-03 06:28:40Z shibuya $
+
+# Check if we have a sysfault light on the unit.
+SYSFAULT="/proc/sys/cobalt/sysfault"
+if [ ! -f $SYSFAULT ];
+then
+	echo "Couldn't find $SYSFAULT"
+	exit 1
+fi
+
+# Record the original state of the sysfault light.
+SYSDEF=`cat $SYSFAULT`
+
+# If we're killed "nicely", we clean up after ourselves.
+trap "echo $SYSDEF > $SYSFAULT; exit 0" TERM
+trap "echo $SYSDEF > $SYSFAULT; exit 0" ABRT
+trap "echo $SYSDEF > $SYSFAULT; exit 0" INT
+trap "echo $SYSDEF > $SYSFAULT; exit 0" HUP
+
+# Blink until we're sent a signal.
+while [ 1 ];
+do
+	echo 1 > $SYSFAULT
+	usleep 250000
+	echo 0 > $SYSFAULT
+	usleep 250000
+done

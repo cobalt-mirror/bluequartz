@@ -1,0 +1,1337 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2008-01-11 09:17+0100\n"
+"PO-Revision-Date: 2008-01-11 12:36+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "activity"
+msgstr "Aktivitet"
+
+msgid "add"
+msgstr "Tilføj"
+
+msgid "addAlias"
+msgstr "Tilføj alias"
+
+msgid "addAliasButton"
+msgstr "Tilføj alias"
+
+msgid "addAliasButton_help"
+msgstr "Føj et nyt alias til denne server."
+
+msgid "add_help"
+msgstr "Klik her for at tilføje intervallet til listen."
+
+msgid "adminRedirect"
+msgstr ""
+"Om få sekunder vil du blive omdirrigeret til den nye IP-adresse.  Hvis du "
+"ikke omdirrigeres, klik da på knappen [[base-network.reconnect]] nedenfor, "
+"for at forsøge at forbinde til den nye IP-adresse.  Hvis dette slår fejl, "
+"kan ændring af IP-adressen være slået fejl og du skal klikke på knappen "
+"[[base-network.oldIPReconnect]] for igen at forbinde til serverens tidligere "
+"IP-adresse."
+
+msgid "aliasActions"
+msgstr "Handlinger"
+
+msgid "aliasActions_help"
+msgstr ""
+"Klik Redigér ikonet for at ændre indstillinger for dette alias.  Klik på "
+"Fjern ikonet for at fjerne dette alias."
+
+msgid "aliasIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasIpaddr_help"
+msgstr "Den IP-adresse aliasset lytter på."
+
+msgid "aliasModIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasModIpaddr_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet den IP-adresse som aliasset skal lytte p"
+"å.[[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_help"
+msgstr "Den IP-adresse som aliasset skal lytte på."
+
+msgid "aliasModIpaddr_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er ikke en gyldig IP-adresse.[[base-"
+"network.ipAddressField_rule]]"
+
+msgid "aliasName"
+msgstr "Grænsefladealias"
+
+msgid "aliasName_help"
+msgstr "Grænsefladens og aliassets nummer hvortil dette alias er knyttet."
+
+msgid "aliasNetmask"
+msgstr "Netmaske"
+
+msgid "aliasNetmask_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en netmaske for dette alias.[[base-"
+"network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_help"
+msgstr "Dette alias' netmaske."
+
+msgid "aliasNetmask_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er ikke en gyldig netmaske.[[base-"
+"network.route_form_netmask_rule]]"
+
+msgid "aliasSettings"
+msgstr "Grænsefladealiasser"
+
+msgid "aliasSettings_help"
+msgstr ""
+"Indstillinger for yderligere IP-adresser som denne server skal svare på."
+
+msgid "aliaseth0"
+msgstr "Primært grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth1"
+msgstr "Sekundært grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth2"
+msgstr "Tredje grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth3"
+msgstr "Fjerde grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth4"
+msgstr "Femte grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth5"
+msgstr "Sjette grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth6"
+msgstr "Syvende grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth7"
+msgstr "Ottende grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth8"
+msgstr "Niende grænsefladealias [[VAR.num]]"
+
+msgid "aliaseth9"
+msgstr "Tiende grænsefladealias [[VAR.num]]"
+
+msgid "amColls"
+msgstr "Kollisioner"
+
+msgid "amColls_help"
+msgstr ""
+"Det totale antal kollision der er registreret på denne netværksgrænseflade."
+
+msgid "amErrors"
+msgstr "Fejl"
+
+msgid "amErrors_help"
+msgstr ""
+"Det totale antal fejl der er sendt eller modtaget på denne "
+"netværksgrænseflade."
+
+msgid "amGatewayIsUnreachable"
+msgstr ""
+"Netværkets gateway er ikke tilgængelig. Check venligst at netværkskablet er "
+"korrekt sat i og at dine netværksindstillinger er korrekt konfigureret. Du "
+"kan enten konfigurere netværksindstillinger via [[base-"
+"apache.amAdmservNameTag]], eller via serverens LCD panel, hvis den har et "
+"sådant. Check også at selve netværket er i drift."
+
+msgid "amIface"
+msgstr "Netværksgrænseflade"
+
+msgid "amIfaceIsDown"
+msgstr "Netværksgrænsefladen [[VAR.iface]] er nede."
+
+msgid "amIface_help"
+msgstr "Dette er netværksgrænsefladens identifikator."
+
+msgid "amNetDetails"
+msgstr "Statusdetajler for netværk"
+
+msgid "amNetStats"
+msgstr "Netværksstatistikker"
+
+msgid "amNetUsage"
+msgstr "Netværksforbrug"
+
+msgid "amNetworkNameTag"
+msgstr "Netværksstatus"
+
+msgid "amNetworkOK"
+msgstr "Netværket fungerer normalt."
+
+msgid "amRcvdB"
+msgstr "Modtaget (Byte)"
+
+msgid "amRcvdB_help"
+msgstr ""
+"Dette er det totale antal byte der er modtaget på denne netværksgrænseflade."
+
+msgid "amSentB"
+msgstr "Sendt (Byte)"
+
+msgid "amSentB_help"
+msgstr ""
+"Dette er det totale antal byte der er sendt via denne netværksgrænseflade."
+
+msgid "assocIface"
+msgstr "Grænseflade"
+
+msgid "assocIface_help"
+msgstr "Den fysiske grænseflade som dette alias skal knyttes til."
+
+msgid "badDefaultGateway"
+msgstr ""
+"Beklager, men gatewayen, [[VAR.gateway]], kan ikke nåes med den nuværende "
+"konfiguration.  Check venligst netværksindstillingerne for at sikre at "
+"mindre en af netværksgrænsefladerne er placeret på samme netværk som "
+"standard gatewayen."
+
+msgid "broadband"
+msgstr "Kabelmodem eller DSL"
+
+msgid "broadbandSettings"
+msgstr "Internetindstillinger - Kabelmodem eller DSL"
+
+msgid "cancel"
+msgstr "Annuller"
+
+msgid "cancel_help"
+msgstr ""
+"Klik her for at annullere de ændringer der er foretaget til intervallet."
+
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "cant_change_range"
+msgstr ""
+"Beklager, men det specificerede interval kan ikke ændres. Følgende IP-"
+"adresse(r) er inden for dette interval: [[VAR.affected_ips]]."
+
+msgid "cant_delete_range"
+msgstr ""
+"Beklager, men det specificerede interval kan ikke slettes. Følgende IP-"
+"adresse(r) er inden for dette interval: [[VAR.affected_ips]]."
+
+msgid "cant_enable_pooling"
+msgstr ""
+"Følgende IP-adresse(r) er ikke inden for nogen af de tilladte intervaller: "
+"[[VAR.ips_not_covered]].  Opret venligst et interval der inkluderer "
+"denne/disse adresse(r) før [[base-network.sitepooling]] aktiveres."
+
+msgid "changeMode"
+msgstr "Skift internetforbindelse til..."
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "collisions"
+msgstr "Kollisioner"
+
+msgid "collisions_help"
+msgstr ""
+"Antallet af netværkskollisioner. Et højt antal kollisioner kan være et tegn "
+"på netværksproblemer."
+
+msgid "confirmMigrateAliases"
+msgstr ""
+"Det [[VAR.interface]] har grænsefladealiasser der er afhængige af det.  "
+"Deaktivering af denne grænseflade vil medføre at disse aliasser flyttes til "
+"den primære grænseflade.  Aliasserne kan flyttes til en anden grænseflade "
+"efter ændringen ved at modificere hvert alias.\n"
+"\n"
+"Er du sikker på at du vil deaktivere det [[VAR.interface]]?"
+
+msgid "confirmNoDhcp"
+msgstr ""
+"Indstillingerne for dit [[VAR.interface]] blev hentet fra en Dynamic Host "
+"Configuration Protocol (DHCP) server.\n"
+"Ændring af disse indstillinger vil deaktivere DHCP-opslag på det "
+"[[VAR.interface]].  Ønsker du at fortsætte?"
+
+msgid "createRoute"
+msgstr "Tilføj statisk rute"
+
+msgid "demand"
+msgstr "Opret kun forbindelse når påkrævet"
+
+msgid "dhcp"
+msgstr "Hent automatisk via Dynamic Host Configuration Protocol (DHCP)"
+
+msgid "dhcpClientIdField"
+msgstr "Klientidentifikator"
+
+msgid "dhcpClientIdField_help"
+msgstr ""
+"Indtast den identifikationsstreng der identificerer denne server som en "
+"Dynamic Host Configuration Protocol (DHCP) klient."
+
+msgid "dhcpHostNameField"
+msgstr "Klientens værtsnavn"
+
+msgid "dhcpHostNameField_help"
+msgstr ""
+"Indtast det værtsnavn der identificerer denne server som en Dynamic Host "
+"Configuration Protocol (DHCP) klient.  [[base-"
+"network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
+"network.dhcpHostNameField]].  [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_rule"
+msgstr ""
+"Indtast venligst kun små, alfanumeriske karakterer, bindestreget og "
+"punktummer.  www er, for eksempel, en gyldig indtastning."
+
+msgid "dialTimes"
+msgstr "Forbindelsestidspunkter"
+
+msgid "dialoutWindowing"
+msgstr "Forbindelsesperiode"
+
+msgid "dialoutWindowing_help"
+msgstr ""
+"Modemet kan begrænses til bestemte timer på dagen.  Som standard er modemet "
+"tilladt at ringe op på alle tider af døgnet. "
+
+msgid "disable-interface-first"
+msgstr ""
+"Beklager, men du kan ikke fjerne indstillinger for en aktiv "
+"netværksgrændeflade.  Deaktiver venligst grænsefladen før du prøver at "
+"fjerne disse indstillinger."
+
+msgid "dnsAddressesField"
+msgstr "DNS-servere"
+
+msgid "dnsAddressesField_help"
+msgstr ""
+"Indtast IP-adressen/adresserne på din/dine lokale domænenavneserver/servere. "
+" En domænenavneserver oversætter værtsnavne og domænenavne til numeriske "
+"IP-adresser, og vice-versa.  [[base-network.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 adskilt af punktummer. "
+" 192.168.1.1 er, for eksempel, en gyldig indtastning.  Lader du dette felt "
+"være tomt vil det forhindre denne maskine i at finde andre maskiner ud fra "
+"værtsnavn eller domænenavn og vil medføre netværksproblemer."
+
+msgid "domainNameField"
+msgstr "Domænenavn"
+
+msgid "domainNameField_help"
+msgstr ""
+"Indtast denne server domænenavn.  Værtsnavn og domænenavn kombineret skal, "
+"på unik vis, identificere denne server.  [[base-"
+"network.domainNameField_rule]]"
+
+msgid "domainNameField_rule"
+msgstr ""
+"Indtast venligst kun små alfanumeriske bogstaver, bindestreger og "
+"punktummer.  Den første karakter skal være et bogstav og den sidste karakter "
+"skal enten være et bogstav eller et tal.  eksempel.dk er, for eksempel, en "
+"gyldig indtastning."
+
+msgid "enabledField"
+msgstr "Aktiveret"
+
+msgid "enabledField_help"
+msgstr ""
+"Aktiver [[base-network.sitepooling]]. Kun IP-adresser inden for de "
+"intervaller der vises nedenfor, vil kunne bruges af virtuelle websteder."
+
+msgid "enterFqdn"
+msgstr "Værts- og domænenavn"
+
+msgid "enterFqdn_help"
+msgstr ""
+"Indtast serverens værtsnavn i det første felt og domænenavnet i det andet "
+"felt.  www er, for eksempel, et gyldigt værtsnavn, og eksempel.dk er et "
+"gyldigt domænenavn.  Indtast venligst kun små alfanumeriske bogstaver, "
+"bindestreger og punktummer."
+
+msgid "errors"
+msgstr "Fejl"
+
+msgid "errors_help"
+msgstr ""
+"Antallet af fejl i forbindelse med afsendelse og modtagelse på "
+"netværksgrænsefladen. Et højt antal fejl kan indikere netværksproblemer."
+
+msgid "eth0"
+msgstr "Primære grænseflade (eth0)"
+
+msgid "eth0_help"
+msgstr "Statistikker for den primære netværksgrænseflade."
+
+msgid "eth1"
+msgstr "Sekundære grænseflade (eth1)"
+
+msgid "eth1_help"
+msgstr "Statistikker for den sekundære netværksgrænseflade."
+
+msgid "eth2"
+msgstr "Netværksgrænseflade (eth2)"
+
+msgid "eth3"
+msgstr "Netværksgrænseflade (eth3)"
+
+msgid "eth4"
+msgstr "Netværksgrænseflade (eth4)"
+
+msgid "eth5"
+msgstr "Netværksgrænseflade (eth5)"
+
+msgid "eth6"
+msgstr "Netværksgrænseflade (eth6)"
+
+msgid "eth7"
+msgstr "Netværksgrænseflade (eth7)"
+
+msgid "eth8"
+msgstr "Netværksgrænseflade (eth8)"
+
+msgid "eth9"
+msgstr "Netværksgrænseflade (eth9)"
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernetChanged"
+msgstr ""
+"Dine netværksindstillinger er ændret. Om få øjeblikke vil systemet forsøge "
+"at forbinde til din nye IP-adresse. \n"
+"Hvis log ind-siden ikke vises, forbind da cenligt til din server ved at "
+"indtaste den nye adresse i din web browser. "
+
+msgid "ethernet_help"
+msgstr "Klik her for at ændre TCP/IP-indstillinger."
+
+msgid "forward"
+msgstr "Videresend kun IP-pakker"
+
+msgid "forwardField"
+msgstr "IP-videresendelse og maskering"
+
+msgid "forwardField_help"
+msgstr ""
+"Vælg metode til videresendelse af pakker igennem denne server.  Vælges "
+"pakkevideresendelse med maskering aktiverer netværksadresseoversættelse.  "
+"Dette giver din organisation mulighed for at dele internetforbindelse, ved "
+"at oversætte al netværkstrafik mellem en enkelt offentligt tilgængelig IP-"
+"adresse og mange private IP-adresser, igennem denne server.  Vælges "
+"pakkevideresendelse uden maskering tillades kun trafik mellem en "
+"netværksgrænseflade og en anden uden at foretage "
+"netværksadresseoversættelse.  Fravælges pakkevideresendelse tillades ingen "
+"trafik mellem netværksgrænseflader."
+
+msgid "forwardNat"
+msgstr "Videresend IP-pakker med maskering"
+
+msgid "forwardOff"
+msgstr "Videresend ikke IP-pakker"
+
+msgid "gateway-not-reachable"
+msgstr ""
+"Den specificerede gateway kunne ikke nåes.  Sørg venligst for at din gateway "
+"er inden for et opnåeligt sub-netværk.  Du skal muligvis også checke dine "
+"regler for Direkte Rutning"
+
+msgid "gatewayField"
+msgstr "Serverens Gateway"
+
+msgid "gatewayField_help"
+msgstr ""
+"Indtast IP-adressen på den lokale netværksgateway som denne server skal "
+"forbinde igenne,  Dette er gateway for både den primære og sekundære "
+"grænseflade. En netværksgateway giver din server mulighed for at forbinde "
+"til verden uden for dit lokale netværk.  [[base-network.gatewayField_rule]]"
+
+msgid "gatewayField_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 separeret af "
+"punktummer.  192.168.1.1 er, for eksempel, en gyldig indtastning."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr ""
+"Beklager, men denne rute kunne till tilføjes til rutetabellen.  Gatewayen "
+"([[VAR.gateway]]) kan ikke ligge inden for målets subnet ([[VAR.target]])."
+
+msgid "helpeth2"
+msgstr "tredje grænseflade"
+
+msgid "helpeth3"
+msgstr "fjerde grænseflade"
+
+msgid "helpeth4"
+msgstr "femte grænseflade"
+
+msgid "helpeth5"
+msgstr "sjette grænseflade"
+
+msgid "helpeth6"
+msgstr "syvende grænseflade"
+
+msgid "helpeth7"
+msgstr "ottende grænseflade"
+
+msgid "helpeth8"
+msgstr "niende grænseflade"
+
+msgid "helpeth9"
+msgstr "tiende grænseflade"
+
+msgid "hostNameField"
+msgstr "Værtsnavn"
+
+msgid "hostNameField_help"
+msgstr ""
+"Indtast serverens værtsnavn.  Værtsnavn og domænenavn kombineret skal, på "
+"unik vis, identificere denne server.  [[base-network.hostNameField_rule]]"
+
+msgid "hostNameField_rule"
+msgstr ""
+"Indtast venligst kun små alfanumeriske karakterer, bindestreger eller "
+"punktummer.  www er, for eksempel, en gyldig indtastning."
+
+msgid "ifaceUsedByAlias"
+msgstr ""
+"Grænsefladen kunne ikke deaktiveres, fordi et grænsefladealias afhænger af "
+"den.  Alle grænsefladealiasser for denne grænseflade skal slettes før den "
+"kan deaktiveres."
+
+msgid "ifaceUsedByRoute"
+msgstr ""
+"Grænsefladen kunne ikke deaktiveres, fordi den bruges af en statisk rute.  "
+"Slet venligst den statiske rute der benytter denne grænseflade før den "
+"deaktiveres."
+
+msgid "interfaceeth0"
+msgstr "Primære grænseflade"
+
+msgid "interfaceeth1"
+msgstr "Sekundære grænseflade"
+
+msgid "interfaceeth2"
+msgstr "Trejde grænseflade"
+
+msgid "interfaceeth3"
+msgstr "Fjerde grænseflade"
+
+msgid "interfaceeth4"
+msgstr "Femte grænseflade"
+
+msgid "interfaceeth5"
+msgstr "Sjette grænseflade"
+
+msgid "interfaceeth6"
+msgstr "Syvende grænseflade"
+
+msgid "interfaceeth7"
+msgstr "Ottende grænseflade"
+
+msgid "interfaceeth8"
+msgstr "Niende grænseflade"
+
+msgid "interfaceeth9"
+msgstr "Tiende grænseflade"
+
+msgid "invalid-route"
+msgstr ""
+"Beklager, men ruten til [[VAR.network]] kunne ikke føjes til rutetabellen.  "
+"Det er muligt at den specificerede gateway, [[VAR.gateway]], ikke kan nåes. "
+" Målet er [[VAR.network]] som burde være opnåeligt via gatewayen "
+"[[VAR.gateway]], og ruten føjes til grænsefladen, [[VAR.device]]."
+
+msgid "invalidNetmaskAlias"
+msgstr ""
+"Beklager, men den indtastede værdi for netmaske, [[VAR.netmask]], er ikke en "
+"brugbar netmaske.  [[base-network.validNetmaskHelp]]"
+
+msgid "invalidNetmaskReal"
+msgstr ""
+"Beklager, men den indtastede værdi for netmaske, [[VAR.netmask]], til "
+"enheden [[VAR.device]] er ikke en brugbar netmaske.  [[base-"
+"network.validNetmaskHelp]]"
+
+msgid "ipAddressField"
+msgstr "IP-adresse"
+
+msgid "ipAddressField1"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressField1_help"
+msgstr ""
+"Indtast den primære grænseflades IP-adresse, som normalt forbindes til "
+"intranet-siden.  Hvis du kun bruger en netværksgrænsefladeforbindelse til "
+"serveren, brug da den primære grænseflade og lad den sekundære grænseflade "
+"være tom.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressField2_help"
+msgstr ""
+"Indtast den sekundøre grænseflades IP-adresse, som normalt forbindes til "
+"internet-siden.  Hvis du kun bruger en netværksgrænsefladeforbindelse til "
+"serveren, brug da den primære grænseflade og lad den sekundære grænseflade "
+"være tom.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet IP-adressen på [[VAR.interface]].  "
+"[[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_help"
+msgstr ""
+"Indtast IP-adressen på det [[VAR.name]].  Hvis du kun bruger en "
+"netværksgrænsefladeforbindelse til serveren, brug da den primære grænseflade "
+"og lad de andre grænseflader være tomme.[[base-"
+"network.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-network.ipAddressField]] er "
+"ikke en IP-adresse.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 separeret af "
+"punktummer. 192.168.1.1 er, for eksempel, en gyldig indtastning."
+
+msgid "ipAddressFieldeth0_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet den primære grænseflades IP-adresse, som "
+"typisk forbindes til intranet-siden.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr ""
+"Beklager, men IP-adressens netmaske er påkrævet hvis feltet IP-adresse er "
+"udfyldt.[[base-network.netMaskField_rule]]"
+
+msgid "ip_not_in_range"
+msgstr ""
+"IP-adressen [[VAR.ipaddr]] er ikke inden for nogen af de gyldige "
+"intervaller. Vælg venligst en anden IP-adresse."
+
+msgid "ip_restricted"
+msgstr ""
+"IP-adressen [[VAR.ipaddr]] er ikke tilladt. Vælg venligst en anden IP-"
+"adresse."
+
+msgid "lan"
+msgstr "Gateway på lokalt netværk (LAN)"
+
+msgid "lanSettings"
+msgstr "Internetindstillinger - Gateway på lokalt netværk (LAN)"
+
+msgid "macAddressField"
+msgstr "MAC-adresse"
+
+msgid "macAddressField_help"
+msgstr ""
+"Medie Access Control (MAC) adressen er netværkskortets hardwareadresse.  "
+"Denne hardwareadresse er en unik identifikator og kan ikke ændres efter "
+"produktion."
+
+msgid "max"
+msgstr "Slut på interval"
+
+msgid "max_help"
+msgstr "Dette er den sidste IP-adresse i intervallet."
+
+msgid "min"
+msgstr "Start af interval"
+
+msgid "minGreaterThanMax"
+msgstr ""
+"Den første IP-adresse [[VAR.range_min]] i intervallet har en højere værdi "
+"end den sidste IP-adresse [[VAR.range_max]]. Indtast venligst en start-IP-"
+"adresse der er mindre end, eller lig med, den sidste adresse i intervallet."
+
+msgid "min_help"
+msgstr "Dette er den første IP-adresse i intervallet."
+
+msgid "missing_part_of_range"
+msgstr ""
+"Du har indtastet et ugyldigt interval. Indtast venligst både en start- og en "
+"afslutnings-IP-adresse. Hvis du ønsker at intervallet kun indeholder en "
+"enkelt IP-adresse, så indtast da venligst denne IP-adresse som både start og "
+"slut på intervallet."
+
+msgid "modAlias"
+msgstr "Redigér alias"
+
+msgid "modemAuthHostField"
+msgstr "Serverens værtsnavn"
+
+msgid "modemAuthHostField_help"
+msgstr ""
+"Opkaldsserverens værtsnavn er nødvendig for CHAP dial-up-autorisation.  "
+"Konsulter din udbyder for at få serverens værtsnavn hvis CHAP-autorisation "
+"benyttes."
+
+msgid "modemAuthHostField_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
+"network.modemAuthHostField]]."
+
+msgid "modemAuthModeField"
+msgstr "Autorisationsmodus"
+
+msgid "modemAuthModeField_help"
+msgstr ""
+"Der er to almindelige autorisationsmodi der kan benyttes med dial-up "
+"forbindelser. Konsulter din udbyder for at få information opm hvilken modus "
+"der skal benyttes."
+
+msgid "modemConnModeField"
+msgstr "Forbindelsesmodus"
+
+msgid "modemConnModeField_help"
+msgstr ""
+"Vælg hvorvidt modemforbindelsen altid skal være forbundet, kun skal "
+"forbindes når det er nødvendigt for at skabe en udgående forbindelse, eller "
+"aldrig skal forbindes."
+
+msgid "modemConnStatus"
+msgstr "Forbindelsesstatus"
+
+msgid "modemConnStatus_help"
+msgstr ""
+"Dette viser den nuværende forbindellsesstatus og indikerer hvorvidt modemet "
+"i øjeblikket er forbundet til din internetudbyder."
+
+msgid "modemInitStrField"
+msgstr "Modeminitialiseringsstreng"
+
+msgid "modemInitStrField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.modemInitStrField]].  Du skal indtaste en initialiseringsstreng, "
+"ellers vil din server ikke kunne benytte modemet.  Hvis du ikke kender dit "
+"modems korrekte initialiseringsstreng, prøv da at indtaste 'ATZ' eller "
+"konsulter dit modems dokumentation."
+
+msgid "modemInitStrField_help"
+msgstr ""
+"Indtast den modeminitialiseringsstreng som skal sendes til modemet før "
+"opkald. Du skal indtaste en initialiseringsstreng, ellers vil din server "
+"ikke kunne benytte modemet.  Hvis du ikke kender dit modems korrekte "
+"initialiseringsstreng, prøv da at indtaste 'ATZ' eller konsulter dit modems "
+"dokumentation."
+
+msgid "modemIpField"
+msgstr "Lokal IP-adresse"
+
+msgid "modemIpField_help"
+msgstr ""
+"Indtast kun den lokale IP-adresse på denne side af modemforbindelsen hvis du "
+"har fået tildelt en statisk IP-adresse af din internetudbyder."
+
+msgid "modemIpField_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
+"network.modemIpField]]."
+
+msgid "modemPasswordField"
+msgstr "Adgangskode til Dial-Up-konto"
+
+msgid "modemPasswordField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.modemPasswordField]].  Indtast venligst den adgangskode som skal "
+"bruges til din dial-up-konto for at logge ind hos din internetudbyder."
+
+msgid "modemPasswordField_help"
+msgstr ""
+"Indtast den adgangskode som skal bruges til din dial-up-konto for at logge "
+"ind hos din internetudbyder. Den samme adgangskode skal indtastes i begge "
+"felter for at sikre mod tastefejl."
+
+msgid "modemPasswordField_invalid"
+msgstr ""
+"Beklager, men du har ikke indtastet den samme adgangskode i begge felter.  "
+"Den samme adgangskode skal tastes i begge felter for at sikre mod tastefejl."
+
+msgid "modemPhoneField"
+msgstr "Telefonnummer"
+
+msgid "modemPhoneField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.modemPhoneField]].  Indtast venligst telefonnummeret på din "
+"internetudbyder."
+
+msgid "modemPhoneField_help"
+msgstr "Indtast telefonnummeret på din internetudbyder."
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "modemPulseField"
+msgstr "Aktiver puls-opkald"
+
+msgid "modemPulseField_help"
+msgstr ""
+"Slå puls-opkald til eller fra.  Aktivering af denne funktion vil bruge puls-"
+"opkald i stedet for tone-opkald.  Standard er at lave puls-opkald være slået "
+"fra."
+
+msgid "modemSettings"
+msgstr "Internetindstillinger - Analogt modem eller IDSN"
+
+msgid "modemSpeedField"
+msgstr "Modemhastighed (Baud)"
+
+msgid "modemSpeedField_help"
+msgstr ""
+"Vælg hastigheden på den serielforbindelse der er til modemet.  "
+"Standardværdien er 115200."
+
+msgid "modemUserNameField"
+msgstr "Brugernavn til Dial-Up-konto"
+
+msgid "modemUserNameField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.modemUserNameField]].  Indtast venligst brugernavnet på den dial-up-"
+"konto der skal bruges for at logge ind hos din internetudbyder."
+
+msgid "modemUserNameField_help"
+msgstr ""
+"Indtast brugernavnet på den dial-up-konto der skal bruges for at logge ind "
+"hos din internetudbyder."
+
+msgid "modem_hour_0"
+msgstr "00:00 - 00:59"
+
+msgid "modem_hour_1"
+msgstr "01:00 - 01:59"
+
+msgid "modem_hour_10"
+msgstr "10:00 - 10:59"
+
+msgid "modem_hour_11"
+msgstr "11:00 - 11:59"
+
+msgid "modem_hour_12"
+msgstr "12:00 - 12:59"
+
+msgid "modem_hour_13"
+msgstr "13:00 - 13:59"
+
+msgid "modem_hour_14"
+msgstr "14:00 - 14:59"
+
+msgid "modem_hour_15"
+msgstr "15:00 - 15:59"
+
+msgid "modem_hour_16"
+msgstr "16:00 - 16:59"
+
+msgid "modem_hour_17"
+msgstr "17:00 - 17:59"
+
+msgid "modem_hour_18"
+msgstr "18:00 - 18:59"
+
+msgid "modem_hour_19"
+msgstr "19:00 - 19:59"
+
+msgid "modem_hour_2"
+msgstr "02:00 - 02:59"
+
+msgid "modem_hour_20"
+msgstr "20:00 - 20:59"
+
+msgid "modem_hour_21"
+msgstr "21:00 - 21:59"
+
+msgid "modem_hour_22"
+msgstr "22:00 - 22:59"
+
+msgid "modem_hour_23"
+msgstr "23:00 - 23:59"
+
+msgid "modem_hour_3"
+msgstr "03:00 - 03:59"
+
+msgid "modem_hour_4"
+msgstr "04:00 - 04:59"
+
+msgid "modem_hour_5"
+msgstr "05:00 - 05:59"
+
+msgid "modem_hour_6"
+msgstr "06:00 - 06:59"
+
+msgid "modem_hour_7"
+msgstr "07:00 - 07:59"
+
+msgid "modem_hour_8"
+msgstr "08:00 - 08:59"
+
+msgid "modem_hour_9"
+msgstr "09:00 - 09:59"
+
+msgid "modifyRoute"
+msgstr "Redigér statisk rute"
+
+msgid "narrowband"
+msgstr "Analogt modem eller ISDN"
+
+msgid "natField"
+msgstr "IP-maskering"
+
+msgid "natField_help"
+msgstr ""
+"Vælg hvorvidt denne server skal foretage IP-maskering. IP-maskering "
+"aktiverer netværksadresseoversættelse som tillader din organisation af dele "
+"internetforbindelse ved, gennem denne server, at oversætte alt "
+"netværkstrafik mellem din ene offentligt tilgængelige IP-adresse og dine "
+"mange private IP-adresser."
+
+msgid "netMaskField"
+msgstr "IP-Netmaske"
+
+msgid "netMaskField1"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskField1_help"
+msgstr ""
+"Indtast den primære grænseflades netmaske.  Hvis du kun bruger en "
+"netværksgrænsefladeforbindelse til denne server, brug da den primære "
+"grænseflade og lad den sekundære grænseflade være tom.  [[base-"
+"network.netMaskField_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskField2_help"
+msgstr ""
+"Indtast den sekundære grænseflades netmaske.  Hvis du kun bruger en "
+"netværksgrænsefladeforbindelse til denne server, brug da den primære "
+"grænseflade og lad den sekundære grænseflade være tom.  [[base-"
+"network.netMaskField_rule]]"
+
+msgid "netMaskField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet netmasken tilhørende den "
+"[[VAR.interface]].  [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_help"
+msgstr ""
+"Indtast netmasken til den [[VAR.name]].  Hvis du kun bruger en "
+"netværksgrænsefladeforbindelse til denne server, brug da den primære "
+"grænseflade og lad de andre grænseflader være tomme.  [[base-"
+"network.netMaskField_rule]]"
+
+msgid "netMaskField_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-network.netMaskField]] er ikke "
+"en IP-netværksmaske.  [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 separeret af "
+"punktummer.  255.255.255.0 er, for eksempel, en gyldig indtastning."
+
+msgid "netMaskFieldeth0_empty"
+msgstr ""
+"Beklager, men du gar ikke indtastet den primære grænseflades netmaske. "
+"[[base-network.netMaskField_rule]]"
+
+msgid "netMaskIpAddressMismatch"
+msgstr ""
+"Beklager, men  [[base-network.ipAddressField]] er påkrævet hvis feltet "
+"[[base-network.netMaskField]] er udfyldt.  [[base-"
+"network.ipAddressField_rule]]"
+
+msgid "netUsage"
+msgstr "Netværk"
+
+msgid "netUsage_help"
+msgstr "Netværkets forbrugsstatistikker kan findes her."
+
+msgid "networkField"
+msgstr "Sekundære grænseflade"
+
+msgid "networkField_help"
+msgstr ""
+"Vælg den ønskede netværkskonfiguration til den sekundære netværksgrænseflade "
+"på denne server."
+
+msgid "noDialTimes"
+msgstr "Forbind ikke"
+
+msgid "noDuplicateDevices"
+msgstr ""
+"En anden grænseflade eller alias er allerede tildelt enheden, "
+"[[VAR.device]].  Enhedens navn for hver grænseflade og alias skal være unik."
+
+msgid "noDuplicateIPsAllowed"
+msgstr ""
+"En anden grænseflade eller alias med IP-adressen, [[VAR.ipaddr]], findes "
+"allerede.  IP-adressen for hver grænseflade og alias skal være unik."
+
+msgid "none"
+msgstr "Ingen eller kun Intranetbrug"
+
+msgid "off"
+msgstr "Aldrig forbundet"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "oldIPReconnect"
+msgstr "Forbind til gammel adresse"
+
+msgid "oldIPReconnect_help"
+msgstr ""
+"Klik her for at forsøge at forbinde til serverens gamle IP-adresse.  Dette "
+"bør kun bruges hvis forbindelse til den nye IP-adresse med knappen [[base-"
+"network.reconnect]] er slået fejl."
+
+msgid "on"
+msgstr "Altid forbundet"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "pooling_block"
+msgstr "[[base-network.sitepooling]]"
+
+msgid "ppp0"
+msgstr "Point-to-Point Protocol grænseflade (ppp0)"
+
+msgid "pppPasswordField"
+msgstr "Adgangskode"
+
+msgid "pppPasswordField_help"
+msgstr ""
+"Indtast den adgangskode der skal bruges for at logge ind hos din "
+"internetudbyder."
+
+msgid "pppPasswordField_invalid"
+msgstr ""
+"Beklager, men du har ikke indtastet samme adgangskode i begge felter.  Samme "
+"adgangskode skal indtastes i begge felter for at sikre mod tastefejl.  Prøv "
+"venligst igen."
+
+msgid "pppUserNameField"
+msgstr "Brugernavn"
+
+msgid "pppUserNameField_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.pppUserNameField]]."
+
+msgid "pppUserNameField_help"
+msgstr ""
+"Indtast det brugernavn der skal benyttes for at logge ind hos din "
+"internetudbyder."
+
+msgid "pppoe"
+msgstr "Hent automatisk med Point-to-Point Protocol Over Ethernet (PPPoE)"
+
+msgid "primaryInterface"
+msgstr "Primære grænseflade"
+
+msgid "primarySettings"
+msgstr "Primære indstillinger"
+
+msgid "primarySettings_help"
+msgstr ""
+"Indstillinger for de fysiske ethernetporte på serveren i tillæg til "
+"serverens DNS indstillinger samt værts- og domænenavne."
+
+msgid "rangeList"
+msgstr "Acceptable intervaller"
+
+msgid "reconnect"
+msgstr "Forbind til ny adresse"
+
+msgid "reconnect_help"
+msgstr "Klik her for at forbinde til serverens nye IP-adresse."
+
+msgid "recv_bytes"
+msgstr "Byte modtaget"
+
+msgid "recv_bytes_help"
+msgstr "Antallet af byte der er modtaget på netværksgrænsefladen."
+
+msgid "recv_packets"
+msgstr "Pakker modtaget"
+
+msgid "recv_packets_help"
+msgstr "Antallet af pakker der er modtaget på netværksgrænsefladen."
+
+msgid "restricted"
+msgstr "Adgang til denne side er forbudt."
+
+msgid "route-device"
+msgstr "Enhed"
+
+msgid "route-device_help"
+msgstr ""
+"Dette er den netværksgrænseflade igennem hvilken alt trafik mod den statiske "
+"rute sendes."
+
+msgid "route-gateway"
+msgstr "Gateway"
+
+msgid "route-gateway_help"
+msgstr ""
+"Dette er den gateway igennem hvilken netværkstrafik for målsubnettet vil "
+"blive rutet."
+
+msgid "route-netmask"
+msgstr "Subnetmaske for målnetværk"
+
+msgid "route-netmask_help"
+msgstr ""
+"Dette er netmasken for det subnet til hvilket den viste statiske rute "
+"refererer."
+
+msgid "route-target"
+msgstr "IP-adresse for målnetværk"
+
+msgid "route-target_help"
+msgstr ""
+"Dette er IP-adressen for det subnet til hvilket den viste statiske rute "
+"refererer."
+
+msgid "routeList-list-title"
+msgstr "Liste over statiske ruter"
+
+msgid "routeList_action_header"
+msgstr "Handlinger"
+
+msgid "routeList_action_header_help"
+msgstr ""
+"Klik Redigér-ikonet for at ændre indstillinger for rute, eller klik på "
+"Fjern-ikonet for at slette en rute."
+
+msgid "route_form_device"
+msgstr "Netværksgrænseflade"
+
+msgid "route_form_device-eth0"
+msgstr "Primære Ethernet grænseflade (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "Sekundære Ethernet grænseflade (eth1)"
+
+msgid "route_form_device-eth2"
+msgstr "Ethernet grænseflade (eth2)"
+
+msgid "route_form_device-eth3"
+msgstr "Ethernet grænseflade (eth3)"
+
+msgid "route_form_device-eth4"
+msgstr "Ethernet grænseflade (eth4)"
+
+msgid "route_form_device-eth5"
+msgstr "Ethernet grænseflade (eth5)"
+
+msgid "route_form_device-eth6"
+msgstr "Ethernet grænseflade (eth6)"
+
+msgid "route_form_device-eth7"
+msgstr "Ethernet grænseflade (eth7)"
+
+msgid "route_form_device-eth8"
+msgstr "Ethernet grænseflade (eth8)"
+
+msgid "route_form_device-eth9"
+msgstr "Ethernet grænseflade (eth9)"
+
+msgid "route_form_device-ppp0"
+msgstr "Point-to-Point Protocol grænseflade (ppp0)"
+
+msgid "route_form_device_help"
+msgstr ""
+"Vælg den netværksgrænseflade igennem hvilken pakker til målsubnettet vil "
+"blive gen-rutet.  Hvis ingen enhed er valgt, vil en enhed blive valgt på "
+"baggrund af netværksgatewayens IP-adresse."
+
+msgid "route_form_gateway"
+msgstr "Gateway"
+
+msgid "route_form_gateway_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.route_form_gateway]].  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_help"
+msgstr ""
+"Indtast IP-adressen på den netværksgateway på denne servers subnet igennem "
+"hvilken pakkerne på vej mod målsubnettet vil blive gen-rutet.  [[base-"
+"network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
+"network.route_form_gateway]].  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 separeret af "
+"punktummer.  192.168.1.1  er, for eksempel, en gyldig indtastning."
+
+msgid "route_form_netmask"
+msgstr "Målnetværkets netmaske"
+
+msgid "route_form_netmask_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.route_form_netmask]].  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_help"
+msgstr ""
+"Indtast netmasken for det subnet der skal gen-rutes.  [[base-"
+"network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
+"network.route_form_netmask]].  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 separeret af "
+"punktummer.  255.255.255.0 er, for eksempel, en gyldig indtastning."
+
+msgid "route_form_target"
+msgstr "Målsubnet"
+
+msgid "route_form_target_empty"
+msgstr ""
+"Beklager, men du har ikke indtastet en værdi for [[base-"
+"network.route_form_target]].  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_help"
+msgstr ""
+"Indtast den IP-adresse i subnettet som skal gen-routes.  [[base-"
+"network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr ""
+"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
+"network.route_form_target]].  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr ""
+"Indtast venligst en serie af fire tal mellem 0 og 255 separeret af "
+"punktummer.  192.168.1.0  er, for eksempel, en gyldig indtastning."
+
+msgid "routes"
+msgstr "Redigér statiske ruter"
+
+msgid "routes_help"
+msgstr ""
+"Klik her for at oprette sattiske ruter fra denne server til andre subnet."
+
+msgid "save"
+msgstr "Gem"
+
+msgid "saveEnabled"
+msgstr "Gem"
+
+msgid "saveEnabled_help"
+msgstr "Klik her for at gemme status for aktivering"
+
+msgid "saveTest"
+msgstr "Gem og test"
+
+msgid "saveTest_help"
+msgstr ""
+"Dette vil gemme dine nuværende indstillinger og forsøge at teste "
+"forbindelsen til din internetudbyder for at verificere indstillingerne."
+
+msgid "save_help"
+msgstr "Klik her for at gemme de ændringer der gjort til intervallet."
+
+msgid "secondaryInterface"
+msgstr "Sekundære grænseflade"
+
+msgid "sent_bytes"
+msgstr "Byte sendt"
+
+msgid "sent_bytes_help"
+msgstr "Antallet af byte sendt gennem netværksgrænsefladen."
+
+msgid "sent_packets"
+msgstr "Pakker sendt"
+
+msgid "sent_packets_help"
+msgstr "Antallet af pakker sendt gennem netværksgrænsefladen."
+
+msgid "sitepooling"
+msgstr "Allokering af IP-adresser"
+
+msgid "sitepoolingDescription"
+msgstr ""
+"Klik her for at specificere de acceptable IP-adresseintervaller på denne "
+"server."
+
+msgid "static"
+msgstr "Specificér manuelt"
+
+msgid "stats_disabled"
+msgstr "Grænseflade deaktiveret"
+
+msgid "tcpIpSettings"
+msgstr "TCP/IP indstillinger"
+
+msgid "validNetmaskHelp"
+msgstr ""
+"Brugbare netmasker skal bestå af en serie af fire tal mellem 0 og 255 "
+"separeret af punktummer.  Hvis du ønsker at specificere et subnetværk, så "
+"skal de indledende tal være 128, 192, 224, 240, 248, 252 eller 254.  "
+"255.255.0.0 og 255.128.0.0 er, for eksempel, brugbare netmasker."
+
+msgid "valid_ranges"
+msgstr "Gyldige intervaller:"
+
+msgid "valid_ranges_help"
+msgstr ""
+"Kun IP-adresser inden for de oplistede intervaller er tilladt af bruge på "
+"dette system."
+
+msgid "verify_delete"
+msgstr "Er du sikker på at du vil fjerne den statiske rute [[VAR.route]]?"
+
+msgid "wan"
+msgstr "Internet"
+
+msgid "wanNoneConfirm"
+msgstr ""
+"Er du sikker på at du ikke vil specificere en forbindelsestype til "
+"internettet?"
+
+msgid "wanNoneMessage"
+msgstr "Der er ingen internetforbindelse."
+
+msgid "wan_help"
+msgstr "Klik her for at ændre internetindstillinger."

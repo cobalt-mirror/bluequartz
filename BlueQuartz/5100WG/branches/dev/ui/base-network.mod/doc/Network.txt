@@ -1,0 +1,12 @@
+Network class specification $Revision: 201 $
+
+Network
+  device	ethN
+  ipaddr	B.B.B.B
+  netmask	B.B.B.B
+  mac		B:B:B:B:B:B
+  enabled
+
+PS: A separate class of object is going to need to be used for
+configuring the network interfaces of virtual sites (for security
+purposes).  Just something to keep in mind.

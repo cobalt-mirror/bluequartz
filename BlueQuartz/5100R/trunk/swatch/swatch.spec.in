@@ -1,0 +1,127 @@
+Summary: System Watcher
+Name: swatch
+Version: XX_VER_XX
+Release: 0BQ17%{?dist}
+Vendor: Project BlueQuartz
+License: BSD
+Group: System Environment/BlueQuartz
+Source: swatch.tar.gz
+BuildRoot: /tmp/swatch
+BuildArchitectures: noarch
+Obsoletes: base-swatch
+
+%description
+This is the System Watcher (SWATCH).  It is generally run from cron, to
+monitor the state of requested services, and report changes to CCE.
+
+%prep
+%setup -n swatch
+
+%build
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sbin
+mkdir -p $RPM_BUILD_ROOT/etc
+mkdir -p $RPM_BUILD_ROOT/etc/cron.d
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/swatch/
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/swatch/bin
+#mkdir -p $RPM_BUILD_ROOT/usr/share/locale/de/LC_MESSAGES
+mkdir -p $RPM_BUILD_ROOT/usr/share/locale/en/LC_MESSAGES
+#mkdir -p $RPM_BUILD_ROOT/usr/share/locale/es/LC_MESSAGES
+#mkdir -p $RPM_BUILD_ROOT/usr/share/locale/fr/LC_MESSAGES
+mkdir -p $RPM_BUILD_ROOT/usr/share/locale/ja/LC_MESSAGES
+mkdir -p $RPM_BUILD_ROOT/usr/share/locale/da_DK/LC_MESSAGES
+make install PREFIX=$RPM_BUILD_ROOT
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%attr(750,root,root) /usr/sbin/swatch
+%config(noreplace) /etc/swatch.conf
+%attr(644,root,root) /etc/cron.d/swatch.cron
+%attr(644,root,root) /usr/share/locale/*/LC_MESSAGES/swatch.mo
+%attr(644,root,root) /usr/sausalito/swatch/statecodes
+%attr(644,root,root) /usr/sausalito/swatch/statecodes.tcl
+%attr(755,root,root) %dir /usr/sausalito/swatch/bin
+%attr(755,root,root) %dir /usr/sausalito/swatch
+
+%changelog
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BQ17
+- German locales added.
+
+* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 3.0.2-0BQ16
+- remove obsolete spec file.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BQ15
+- Danish locales added. Thanks to Jes Klittum!
+
+* Sun Dec 16 2007 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BQ14
+- Version number brought in line with BlueQuartz again.
+
+* Sat Oct 27 2007 Michael Stauber <mstauber@solarspeed.net> 3.0.1-VBQSOL1
+- Fixed /usr/sbin/swatch for usage on Virtual BlueQuartz
+- Emails now show hostname in Subject
+
+* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 3.0.0-0BQ13
+- remove .svn directory from the archive.
+
+* Mon Dec 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ12
+- modifies swatch code like doing same as Cobalt one on aggregate type.
+
+* Mon Dec 05 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ11
+- modified swatch.cron and swatch about PATH issue.
+
+* Sat Dec 03 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ10
+- noreplace swatch.conf.
+
+* Sat Dec 03 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ9
+- modifies swatch code like doing same as Cobalt one.
+
+* Sat Dec 03 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ8
+- add Obsoletes base-swatch
+
+* Wed Nov 02 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ7
+- change package name to swatch instead of base-swatch.
+- change version number.
+
+* Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ6
+- use vendor macro for Vendor tag.
+
+* Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ5
+- disable de, es and fr locales.
+
+* Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ4
+- use PACKAGE_DIR instead of /usr/src/redhat.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ3
+- rebuild with devel-tools 0.5.1
+- modified swatch to support enabled config.
+
+* Sun Aug 14 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ2
+- clean up spec file.
+
+* Wed Apr 13 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ1
+- build for BlueQuartz based on TLAS base-swatch module.
+
+* Fri Jun 15 2001 James Cheng <james.y.cheng@sun.com>
+  - statecodes for TCL
+
+* Wed Aug 23 2000 Tim Hockin <thockin@cobalt.com>
+  - Remove testmode (more trouble than it is worth to fix right now)
+
+* Mon Aug 21 2000 Tim Hockin <thockin@cobalt.com>
+  - Change to use only CCE, no config files
+
+* Mon Jun 19 2000 Tim Hockin <thockin@cobalt.com>
+  - Add /usr/sausalito/swatch/statecode file
+  - Revision moves to 3 fields
+
+* Mon Jun 12 2000 Tim Hockin <thockin@cobalt.com>
+  - Add i18n stuff
+
+* Thu Jun 08 2000 Tim Hockin <thockin@cobalt.com>
+  - First build of swatch rpms

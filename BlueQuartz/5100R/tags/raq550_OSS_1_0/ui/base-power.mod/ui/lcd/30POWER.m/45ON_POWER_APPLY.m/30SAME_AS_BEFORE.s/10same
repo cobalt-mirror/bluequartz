@@ -1,0 +1,40 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: 10same,v 1.1 2001/08/28 00:59:14 pbose Exp $
+#
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# Configure soft power behavior to act like a hard power switch...
+# power on if on before power loss, remain off if off before
+
+use POSIX;
+use Term::ReadLine;
+use Getopt::Std;
+use CCE;
+use I18n;
+require LCD;
+
+getopts("sc");
+$option = ($opt_s) ? "-s" : "";
+
+my $i18n = new I18n;
+
+$line1 = $i18n->get("[[base-power.samePower1]]");
+$line2 = $i18n->get("[[base-power.samePower2]]");
+
+if ($opt_c) {
+	printf("\n$line1\n$line2\n\n");
+} else {
+	system("/sbin/lcd-write $option \"$line1\" \"$line2\"");
+}
+
+sleep 2;
+
+my $cce = new CCE;
+$cce->connectuds();
+
+
+my (@soids) = $cce->find("System");
+$cce->set( $soids[0], 'Power', {  'powermode' => 'same' } );
+
+exit(0);
+

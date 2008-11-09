@@ -1,0 +1,18 @@
+# No UI
+msgid "cantConfigFile"
+msgstr "No se pudo modificar el archivo de configuración Samba."
+
+msgid "dhcpUnsupported"
+msgstr "Actualmente no se puede obtener la dirección del servidor WINS desde el servidor DHCP."
+
+msgid "missingWinsIP"
+msgstr "Escribir la dirección IP de su servidor WINS en el campo Dirección IP para utilizar otro equipo de su red como servidor WINS."
+
+msgid "windowsMachineAlreadyExists"
+msgstr "Una máquina con el nombre [[VAR.name]] ya existe.  Elija un nombre distinto."
+
+msgid "couldNotClearOldMachine"
+msgstr "No se ha podido eliminar [[VAR.name]]."
+
+msgid "couldNotCreateNewMachine"
+msgstr "No se ha podido crear [[VAR.name]].  Revise el nombre y vuelva a intentarlo."

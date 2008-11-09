@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyFrontpage" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyFrontpage)"/>
+	<property name="nameTag" type="scalar" default="[[base-frontpage.cap_modifyFrontpage]]"/>
+</class>

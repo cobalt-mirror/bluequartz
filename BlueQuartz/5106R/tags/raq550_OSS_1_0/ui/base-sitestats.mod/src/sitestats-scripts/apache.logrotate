@@ -1,0 +1,41 @@
+/var/log/httpd/access {
+    daily
+    prerotate
+	rm -rf /home/tmp/.logrotate_apache_access >/dev/null 2>&1
+	cp /var/log/httpd/access /home/tmp/.logrotate_apache_access >/dev/null 2>&1
+    endscript
+    missingok
+    postrotate
+	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null || true
+        /usr/local/sbin/split_logs web < /home/tmp/.logrotate_apache_access 
+	rm -f /home/tmp/.logrotate_apache_access >/dev/null 2>&1
+    endscript
+}
+
+/var/log/httpd/agent_log {
+    missingok
+    postrotate
+	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}
+
+/var/log/httpd/error {
+    missingok
+    postrotate
+	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}
+
+/var/log/httpd/referer_log {
+    missingok
+    postrotate
+	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}
+
+/var/log/httpd/ssl_request_log {
+    missingok
+    postrotate
+	/bin/kill -HUP `cat /var/run/httpd.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}

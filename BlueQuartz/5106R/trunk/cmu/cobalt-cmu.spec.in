@@ -1,0 +1,221 @@
+# $Id: cobalt-cmu.spec.in 1066 2008-01-27 09:21:48Z shibuya $
+
+Summary: Cobalt Migration Utility
+Name: [PRODUCT]-cmu
+Version: [VERSION]
+Release: 0BQ18%{?dist}
+Vendor: %{vendor}
+License: Sun modified BSD
+Group: Applications/Archiving
+Source: cpr.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildArchitectures: noarch
+
+Requires: perl(Compress::Zlib)
+Requires: perl(XML::Parser)
+
+%description
+Cobalt Migration Utility (CMU)
+
+CMU is used to migrate virtual site, user, groups and other data and meta-data 
+seamlessly between multiple Cobalt platforms.  It (will) also provides 
+tools for migrating from the third party platforms to the Cobalt 
+platform.  
+
+
+%prep
+%setup -n cpr
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/cmu/scripts
+mkdir -p $RPM_BUILD_ROOT/usr/cmu/perl/Archive/Zip
+mkdir -p $RPM_BUILD_ROOT/etc/cmu
+mkdir -p $RPM_BUILD_ROOT/home/cmu
+mkdir -p $RPM_BUILD_ROOT/usr/man/man5
+mkdir -p $RPM_BUILD_ROOT/usr/man/man8
+make install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+# Directories
+%attr(750,root,root) %dir /home/cmu
+%attr(755,root,root) %dir /etc/cmu
+%attr(755,root,root) %dir /usr/cmu
+%attr(755,root,root) %dir /usr/cmu/scripts
+%attr(755,root,root) %dir /usr/cmu/perl/Archive
+%attr(755,root,root) %dir /usr/cmu/perl/Archive/Zip
+
+# Config files /etc/cmu
+%config %attr(600,root,root) /etc/cmu/cmuConfig.xml
+%attr(600,root,root) /etc/cmu/cobaltBase.xml
+%attr(600,root,root) /etc/cmu/csoft.xml
+
+
+%attr(700,root,root) /usr/sbin/*
+
+# Files in /usr/cmu
+%attr(700,root,root) /usr/cmu/scripts/*
+%attr(600,root,root) /usr/cmu/perl/*.pm
+%attr(600,root,root) /usr/cmu/perl/Archive/*.pm
+%attr(600,root,root) /usr/cmu/perl/Archive/Zip/*.pm
+
+# man pages
+%attr(644,root,man) /usr/man/*/*
+
+%changelog
+* Wed Jul 03 2008 Michael Stauber <mstauber@solarspeed.net>
+- version 2.66-0BQ18
+- add 5106R platform
+
+* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.65-0BQ17
+- add 5200R platform
+
+* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.64-0BQ16
+- add 5200R platform
+
+* Mon May 08 2006 Hisao SHIBUYA <shibuya@turbolinux.co.jp>
+- version 2.63-0BQ15
+- modify adjustPath to be one way path.
+
+* Mon May 08 2006 Hisao SHIBUYA <shibuya@turbolinux.co.jp>
+- version 2.62-0BQ14
+- fix the issue that couldn't import RaQ550 date on TLAS1HE.
+
+* Fri May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.61-0BQ13
+- fix the issue that override index.html page on the ~user by C. Hemsing.
+
+* Thu May 04 2006 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.60-0BQ12
+- fix siteadmin issue that not inport siteadmin capability by C. Hemsing.
+
+* Tue Apr 25 2006 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.59-0BQ11
+- remove chown debug logs.
+
+* Tue Apr 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.59-0BQ10
+- fix siteadmin issue that not inport siteadmin capability by Taco.
+
+* Fri Mar 31 2006 Hisao SHIBUYA <shibuya@turbolinux.co.jp>
+- version 2.58-0BQ9
+- fix mailbox uid and gid for TLAS.
+
+* Wed Mar 29 2006 Hisao SHIBUYA <shibuya@turbolinux.co.jp>
+- version 2.57-0BQ8
+- support TLAS2.
+- change group SITEX-logs for logs directory after restoring.
+
+* Fri Dec 16 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.56-0BQ7
+- support 5105R.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.56-0BQ6
+- add dist macro for release.
+
+* Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.56-0BQ4
+- use vendor macro for Vendor tag.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.56-0BQ3
+- rebuild with devel-tools 0.5.1
+
+* Sun Oct 09 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.56
+- support TLAS1HE
+
+* Thu Sep 01 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.55
+- dnsImport supports 5100R series.
+
+* Tue Aug 23 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- version 2.54
+- support 5100R series.
+- clean up spec file.
+
+* Fri May 09 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- version 2.53
+- remove the altname tag for Japanese migrations in RaQ550adjust.pl
+- fix for the way CMU adds double-byte chars to CCE
+
+* Mon May 05 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- version 2.52
+- fixed a bug in dnsImport where very-high priority need to get
+  changed to very_high for cce
+- added writing of configuration for thrid party scripts they now get
+  two arguments first is the destination dir second is the configuration
+  in xml format in a file
+
+* Wed Apr 09 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- version 2.51
+Changes:
+- Added -D option to cmuExport and cmuImport to export and import DNS
+  server settings (RaQ550 to RaQ550 DNS migration no done yet)
+- If the md5sums do not match skip the tar archive (duh!)
+- Fixes for RaQ550 to RaQ550 conflict resolution
+- RaQ550adjust.pl now lower cases all email aliases for users 
+- Fixes for RaQ550scanin.pl 
+- Auto dns will now reflect the correct setting instead of being always
+  on, Auto dns will be turned off if -D is provided
+
+
+* Mon Oct 28 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.43
+- FrontPage users webs where not activated on import on RaQ550,
+  this has been fixed.
+
+* Thu Oct 10 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.42
+- added importing of SSL certs on RaQ550
+- fixed a bug where suspended sites where re-activated after migration
+- fixed a bug where merging vsites didn't work on RaQ550
+- fixed the problem of the CMU process locking up if too many errors
+  are detected. 
+- fixed a bug where file names with $ and ` where not imported
+  correctly.
+
+* Thu Sep 19 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.41
+
+* Thu Aug 08 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.39
+
+* Mon Jul 08 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.38
+Bugs fixed:
+- File permissions for a user with a period in their name do not get
+  set correctly. 
+- If a file is larger than 900 megabytes, CMU will go into a endless
+  loop until it runs out of memory.
+- File permissions on the user mail spool are not set correctly. 
+- Group file permission can get set to the wrong site number (siteX).
+- Vacation auto reply settings fail to migrate.
+- Users importing on a RaQ3, the string "off" appears in the Forwarding
+  mail field.
+  The RaQ then forwards all mail messages sent to the user to the
+  nonexistent email address ("off").
+- Incorrect permissions on /etc/shadow after import 
+
+* Mon Jun 24 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.36
+
+* Tue May 21 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.34
+
+* Tue May 14 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.33
+
+
+* Thu Jan 17 2002 Jeff Bilicki <jeffb@cobalt.com>
+- version 2.27 
+- Latest version of CMU officially supported by Sun.
+  Does not do migrations from the XTR, or 550 at all.
+

@@ -1,0 +1,49 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftp_help"
+msgstr "Hier können Sie [[base-ftp.ftpSettings]] ändern."
+
+msgid "ftpSettings"
+msgstr "File Transfer Protocol (FTP)-Einstellungen"
+
+msgid "enableServerField"
+msgstr "Server aktivieren"
+
+msgid "enableServerField_help"
+msgstr "Aktivieren oder deaktivieren Sie die File Transfer Protocol (FTP)-Funktionalität. Um den Anonymous FTP-Zugriff zu konfigurieren, gehen Sie zu [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Höchstzahl der gleichzeitig angemeldeten Benutzer"
+
+msgid "maxUserField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl zwischen 1 und 1024 ein. Der Vorgabewert beträgt 25."
+
+msgid "maxUserField_help"
+msgstr "Legen Sie die Höchstzahl der Benutzer fest, die gleichzeitig mit dem FTP-Server verbunden sein können. [[base-ftp.maxUserField_rule]]"
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "File Transfer Protocol (FTP)-Server"
+
+msgid "amDetailsTitle"
+msgstr "File Transfer Protocol (FTP)-Server-Details"
+
+msgid "amNotResponding"
+msgstr "Der FTP-Server ist nicht in Betrieb."
+
+msgid "base-ftp.amBadResponse"
+msgstr "Der FTP-Server hat eine fehlerhafte Rückmeldung ausgegeben."
+
+msgid "amStatusOK"
+msgstr "Der FTP-Server arbeitet normal."
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "Wenn Server-Konfigurationsdateien entfernt oder manuell geändert wurden, stellen Sie bitte die Originalversionen wieder her und versuchen Sie es noch einmal."
+
+msgid "cantConfigFile"
+msgstr "Leider trat beim Versuch, die FTP-Konfigurationsdateien zu modifizieren, ein Fehler auf. [[base-ftp.badUser]]"

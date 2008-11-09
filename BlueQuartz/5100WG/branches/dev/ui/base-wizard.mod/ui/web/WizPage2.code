@@ -1,0 +1,22 @@
+##BODY-ATTRIBUTES##
+	onLoad="MM_swapImgRestore(); MM_preloadImages('/libImage/Nav-Progress.gif');"
+
+##PAGE-DESCRIPTION##
+  licenseClick
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='2'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<input type='hidden' name='WizLicenseDecision' value='Decline'>
+		<div class='Setting-Description'><?php if ($WizError == "" ) print($i18n->get("licenseClick")); ?></div>
+		<iframe src="/base/wizard/WizPage2a.php" width="100%" height="250">
+		<?php print($i18n->get("license")); ?>
+		<br>
+		<br>
+		<center>
+		<input type="Submit" value="<?php echo $i18n->getHtml('decline'); ?>" onClick="document.WizardForm.WizLicenseDecision.value = 'Decline'; document.WizardForm.submit();">
+		<input type="Submit" value="<?php echo $i18n->getHtml('accept'); ?>" onClick="document.WizardForm.WizLicenseDecision.value = 'Accept';  MM_swapImage('ProgressBar','','/libImage/Nav-Progress.gif',1); document.WizardForm.submit();">
+		</center>
+		</iframe>
+	</form>

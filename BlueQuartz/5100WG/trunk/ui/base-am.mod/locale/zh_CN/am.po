@@ -1,0 +1,261 @@
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "单击此处查看[[base-am.activeMonitor]]状态信息。如果[[base-am.activeMonitor]]监视的任何组件存在严重问题，此图标则变成红色。"
+
+msgid "activeMonitor"
+msgstr "活动监视器"
+
+msgid "activeMonitor_help"
+msgstr "单击此处检查系统组件能否正确运行。"
+
+msgid "amStatusMenuName"
+msgstr "状态"
+
+msgid "amStatusMenuDesc"
+msgstr "单击此处查看[[base-am.activeMonitor]]状态信息。"
+
+msgid "amObjNotFound"
+msgstr "对不起，出现系统错误。无法找到 ActiveMonitor 对象。"
+
+msgid "amSysClients"
+msgstr "系统状态—概述"
+
+msgid "amClientName"
+msgstr "组件名称"
+
+msgid "amClientName_help"
+msgstr "这是受监视组件的名称。"
+
+msgid "action"
+msgstr "[[palette.detail]]" 
+
+msgid "action_help"
+msgstr "单击此处查看受监视组件的更详细信息。"
+
+msgid "amServClients"
+msgstr "服务状态—概述"
+
+msgid "amOtherClients"
+msgstr "其他状态—概述"
+
+msgid "amClientStatus"
+msgstr "当前状态"
+
+msgid "amClientStatus_help"
+msgstr "这是受监视组件的当前状态。"
+
+msgid "amClientLastChange"
+msgstr "上次更改的状态"
+
+msgid "amNever"
+msgstr "从不"
+
+msgid "amClientLastChange_help"
+msgstr "这是受监视组件状态最后一次更改的时间。"
+
+msgid "amSettingsMenuName"
+msgstr "设置"
+
+msgid "amSettingsMenuDesc"
+msgstr "单击此处配置[[base-am.amSettings]]。"
+
+msgid "amSettings"
+msgstr "活动监视器设置"
+
+msgid "enableAMField"
+msgstr "启用监视"
+
+msgid "enableAMField_help"
+msgstr "打开或关闭[[base-am.activeMonitor]]。启用此功能可定期检查特定的系统组件是否正确运行。这些系统组件可从下面选择。"
+
+msgid "alertEmailList"
+msgstr "报警通知电子邮件"
+
+msgid "alertEmailList_help"
+msgstr "输入[[base-am.activeMonitor]]将向其发送报警消息的电子邮件地址列表。"
+
+msgid "itemsToMonitor"
+msgstr "受监视组件"
+
+msgid "itemsToMonitor_help"
+msgstr "选择将由[[base-am.activeMonitor]]定期检查的特定系统组件。左栏显示当前被监视的系统组件。右栏显示可能被监视的系统组件。要添加被监视的系统组件，将其从右栏移动到左栏中。"
+
+msgid "selected"
+msgstr "受监视组件"
+
+msgid "notSelected"
+msgstr "不受监视的组件"
+
+msgid "amNoMessage"
+msgstr "当前没有关于此组件的信息。"
+
+msgid "amNotMonitored"
+msgstr "当前此组件没有受监视。"
+
+msgid "amNotEnabled"
+msgstr "此组件未启用。"
+
+msgid "alreadyMadeAM"
+msgstr "对不起，出现系统错误。ActiveMonitor 对象已经存在。"
+
+msgid "amCPUName"
+msgstr "CPU 利用率"
+
+msgid "amCPUWarning"
+msgstr "CPU 正被[[VAR.status]]使用。"
+
+msgid "amUseLight"
+msgstr "少许"
+
+msgid "amUseModerate"
+msgstr "中度"
+
+msgid "amUseHeavy"
+msgstr "大量"
+
+msgid "amCPUDetails"
+msgstr "CPU 利用率详细信息"
+
+msgid "amCPUStats"
+msgstr "CPU 统计信息"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]]分钟平均负荷"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]]分钟平均负荷"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "这是[[VAR.mins]]分钟内等待处理器运行的任务的平均数量。无论何处的正常平均负荷都是介于 0.0 和 3.0 之间。"
+
+msgid "amCPULoadAvg_help"
+msgstr "这是[[VAR.mins]]分钟内等待处理器运行的任务的平均数量。无论何处的正常平均负荷都是介于 0.0 和 3.0 之间。"
+
+msgid "amCPUUptime"
+msgstr "系统运行时间"
+
+msgid "amCPUUptime_help"
+msgstr "这是服务器设备打开并运行的时间长度。"
+
+msgid "days"
+msgstr "[[VAR.val]]天，"
+
+msgid "hours"
+msgstr "[[VAR.val]]小时，"
+
+msgid "minutes"
+msgstr "[[VAR.val]]分钟"
+
+msgid "day"
+msgstr "[[VAR.val]]天，"
+
+msgid "hour"
+msgstr "[[VAR.val]]小时，"
+
+msgid "minute"
+msgstr "[[VAR.val]]分钟"
+
+msgid "amCPUTemp"
+msgstr "CPU 温度"
+
+msgid "amCPUTemp_help"
+msgstr "这是处理器的当前温度（以摄氏度计）。正常情况下，处理器的温度在 30 摄氏度和 60 摄氏度之间。"
+
+msgid "degrees"
+msgstr "[[VAR.val]]摄氏度"
+
+msgid "amMemoryName"
+msgstr "内存利用率"
+
+msgid "amMemDetails"
+msgstr "内存利用率详细信息"
+
+msgid "amMemWarning"
+msgstr "系统内存正被[[VAR.status]]使用。"
+
+msgid "amMemStats"
+msgstr "内存利用率统计信息"
+
+msgid "amMemTotal"
+msgstr "物理内存总量"
+
+msgid "amMemTotal_help"
+msgstr "这是系统上真正可用的内存总量。"
+
+msgid "amMemFree"
+msgstr "可用物理内存"
+
+msgid "amMemFree_help"
+msgstr "这是系统上真正可用的内存数量。"
+
+msgid "amSwapTotal"
+msgstr "总交换空间"
+
+msgid "amSwapTotal_help"
+msgstr "这是系统上可用的交换空间总量。"
+
+msgid "amSwapFree"
+msgstr "可用交换空间"
+
+msgid "amSwapFree_help"
+msgstr "这是系统上可用的交换空间数量。"
+
+msgid "MemKB"
+msgstr "[[VAR.val]]KB"
+
+msgid "amMemUsed"
+msgstr "内存利用率"
+
+msgid "amMemUsed_help"
+msgstr "这是系统上正在使用的物理内存或真正内存数量。正常情况下大部分真正内存始终被使用。"
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]]KB（总量的[[VAR.pcnt]]%）"
+
+msgid "amSwapUsed"
+msgstr "交换利用率"
+
+msgid "amSwapUsed_help"
+msgstr "这是系统上正在使用的交换内存或虚拟内存数量。正常情况下即使当真正内存仍可用时，有些交换内存始终被使用。"
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]]（总量的[[VAR.pcnt]]%）"
+
+msgid "amKey"
+msgstr "关键字："
+
+msgid "amKeyGrey"
+msgstr "无可用信息或监视未启用"
+
+msgid "amKeyGreen"
+msgstr "正常"
+
+msgid "amKeyYellow"
+msgstr "问题"
+
+msgid "amKeyRed"
+msgstr "严重问题"
+
+msgid "amUpdateNow"
+msgstr "立即检查状态"
+
+msgid "amUpdateNowConfirm"
+msgstr "是否确定立即检查状态？此项操作可能要花几分钟时间。"
+
+msgid "amUpdateNow_help"
+msgstr "单击此处立即更新系统和服务状态信息。此项操作可能要花几分钟时间，而且将在后台进行。"
+
+msgid "amUpdateNow_disabledHelp"
+msgstr "系统状态当前正在更新。"
+
+msgid "amDetailNoName"
+msgstr "对不起，生成本页时出现错误。变量“名称”未定义。"
+
+msgid "capgroup_adminActiveMonitor"
+msgstr "管理活动监视器"
+
+msgid "capgroup_adminActiveMonitor_help"
+msgstr "此管理权允许用户监视活动的监视器设置和状态。此用户不会自动添加到 '[[base-am.alertEmailList]]' 列表，但是在提供此功能之后，他们可以自己进行添加。"
+

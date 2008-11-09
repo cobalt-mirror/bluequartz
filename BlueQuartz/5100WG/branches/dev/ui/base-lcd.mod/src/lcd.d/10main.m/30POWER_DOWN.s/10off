@@ -1,0 +1,68 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: 10off 201 2003-07-18 19:11:07Z will $
+#
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved
+#
+# This script is called when the user selects Power Down
+# from the lcd panel. It sets the halt flag in the System object.
+
+use POSIX;
+use LCD;
+use Term::ReadLine;
+use Getopt::Std;
+use CCE;
+
+use vars qw/ $opt_c $opt_s /;
+
+getopts("sc");
+$option = ($opt_s) ? "-s" : "";
+
+my $i18n = new I18n;
+
+$rebootstr = $i18n->get("[[base-lcd.  POWER DOWN?   ]]");
+$yesnostr = $i18n->get("[[base-lcd.yes_no]]");
+
+if ($opt_c) {
+  printf("\n$rebootstr\n\n");
+  $term = new Term::ReadLine 'select';
+  $choice = $term->readline("[Y]ES/[N]O > ");
+
+  exit 1 if ($choice !~ /^y/i);
+
+} else {
+  $result = system("/sbin/lcd-yesno $option -1 \"$rebootstr\" -2 \"$yesnostr\"");
+  exit 1 unless ($result == 256);
+}
+
+my $lcdstr1 = $i18n->get("[[base-sys.halting]]");
+my $lcdstr2 = $i18n->get("[[base-sys.system]]");
+system("/sbin/lcd-write $option \"$lcdstr1\" \"$lcdstr2\"");
+
+system("/bin/rm -f /etc/locks/.lcdlock") if (-e "/etc/locks/.lcdlock");
+
+my $cce = new CCE;
+$connect = eval { $cce->connectuds(); };
+if ( defined $connect ) {
+	eval {
+	my (@oids) = $cce->find("System");
+	$cce->set( $oids[0], "Power", { halt => time } ) if (@oids > 0);
+	$cce->bye("SUCCESS");
+	}
+} else {
+	# if couldn't connect to cce, shutdown manually
+	my $lcdstr1 = $i18n->get("[[base-lcd.direct_halt_1]]");
+	my $lcdstr2 = $i18n->get("[[base-lcd.direct_halt_2]]");
+	system("/sbin/lcd-write $option \"$lcdstr1\" \"$lcdstr2\"");
+	system("/sbin/shutdown -h now");
+}
+
+sleep 60;
+# if we're here, no errors were reported, but we haven't halted
+# alert that we'll try manual halt shortly
+my $lcdstr1 = $i18n->get("[[base-lcd.delayed_halt_1]]");
+my $lcdstr2 = $i18n->get("[[base-lcd.delayed_halt_2]]");
+system("/sbin/lcd-write $option \"$lcdstr1\" \"$lcdstr2\"");
+sleep 240;
+system("/sbin/shutdown -h now");
+

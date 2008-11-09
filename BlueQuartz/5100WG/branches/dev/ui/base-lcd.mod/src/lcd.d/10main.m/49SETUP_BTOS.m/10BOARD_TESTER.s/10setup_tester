@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+
+if ($ARGV[0] eq "-s") {
+    $option = "-s";
+} else {
+    $option = "";
+}
+
+$my_ip = `/sbin/lcd-getip $option -1 \"Scan PC IP:\"`;
+open(SETUP, ">/test_dir/main_script");
+print SETUP "#!/bin/bash\n";
+print SETUP "\n";
+print SETUP "mount $my_ip:/sync /sync\n";
+print SETUP "/test/scripts/board_test\n";
+close(SETUP);
+system("chmod a+x /test_dir/main_script");

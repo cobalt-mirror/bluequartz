@@ -1,0 +1,225 @@
+msgid "pptp"
+msgstr "遠端存取"
+
+msgid "pptp_menu"
+msgstr "遠端存取 VPN"
+
+msgid "pptp_menu_help"
+msgstr "[[base-pptp.pptp]]可以在此處變更設定。"
+
+msgid "pptp_settings_block"
+msgstr "[[base-pptp.pptp]]設定"
+
+msgid "pptp_access"
+msgstr "存取"
+
+msgid "pptp_access_help"
+msgstr "開啟或關閉 PPTP 存取。您可以設定 PPTP 存取權，讓全部或部份或不讓使用者存取 PPTP 服務。"
+
+msgid "pptp_access_disabled"
+msgstr "不允許任何使用者存取"
+
+msgid "pptp_access_allusers"
+msgstr "允許存取所有使用者"
+
+msgid "pptp_access_someusers"
+msgstr "只允許存取指定的使用者"
+
+msgid "pptp_access_someusers_selector_allowed"
+msgstr "允許使用者存取"
+
+msgid "pptp_access_someusers_selector_disallowed"
+msgstr "不允許使用者存取"
+
+msgid "pptp_access_someusers_selector_label"
+msgstr " "
+
+msgid "pptp_dns_addresses"
+msgstr "從屬站 DNS 位址"
+
+msgid "pptp_dns_addresses_help"
+msgstr "輸入那些會自動服務這些從屬站的本地網域名稱伺服器的 IP 位址。網域名稱伺服器將文字型主機名稱和網域名稱轉換成數字型 IP 位址，反之亦然。請輸入以句點分隔的一連串介於 0 與 255 的四個數字，例如，192.168.1.1 是有效輸入。"
+
+msgid "pptp_wins_addresses"
+msgstr "從屬站 WINS 位址"
+
+msgid "pptp_wins_addresses_help"
+msgstr "輸入那些會自動服務這些從屬站的本地 WINS 伺服器的 IP 位址。WINS 伺服器將 Windows 主機名稱轉換成數字型 IP 位址，反之亦然。這使得跨越「虛擬專用網路」瀏覽「網路上的芳鄰」成為可能。請輸入以句點分隔的一連串介於 0 與 255 的四個數字，例如，192.168.1.1 是有效輸入。" 
+
+# list page
+
+msgid "dynamic_ranges_button"
+msgstr "更改遠端位址分派"
+
+msgid "dynamic_ranges_button_help"
+msgstr "按一下此處設定 IP 位址，這個伺服器會將該位址指定給要求[[base-pptp.pptp]] 連線的從屬站。"
+
+msgid "dynamic_ranges"
+msgstr "遠端位址分派清單"
+
+msgid "list_ipaddr_range_from"
+msgstr "IP 位址範圍（開始）"
+
+msgid "list_ipaddr_range_from_help"
+msgstr "這是遠端指定 IP 位址範圍的下限。"
+
+msgid "list_ipaddr_range_to"
+msgstr "IP 位址範圍（結束）"
+
+msgid "list_ipaddr_range_to_help"
+msgstr "這是遠端指定 IP 位址範圍的上限。"
+
+msgid "list_action"
+msgstr "動作"
+
+msgid "list_action_help"
+msgstr "這些是用來更改或移除遠端指定 IP 位址範圍的按鈕。"
+
+msgid "removeDynamicConfirm"
+msgstr "您確定要從遠端指定的 IP 清單移除範圍 [[VAR.ipaddrlo]] - [[VAR.ipaddrhi]] 嗎？"
+
+# Create/Modify range page
+
+msgid "modify_dynamic_block"
+msgstr "更改遠端位址分派範圍"
+
+msgid "create_dynamic_block"
+msgstr "建立遠端位址分派範圍"
+
+msgid "block_ipaddr_range_from"
+msgstr "IP 位址範圍（開始）"
+
+msgid "ipaddrlo"
+msgstr "[[base-pptp.block_ipaddr_range_from]]"
+
+msgid "block_ipaddr_range_from_help"
+msgstr "這是遠端指定 IP 位址範圍的下限。"
+
+msgid "block_ipaddr_range_to"
+msgstr "IP 位址範圍（結束）"
+
+msgid "ipaddrhi"
+msgstr "[[base-pptp.block_ipaddr_range_to]]"
+
+msgid "block_ipaddr_range_to_help"
+msgstr "這是遠端指定 IP 位址範圍的上限。"
+
+msgid "ip_rule"
+msgstr "請輸入以句點分隔一連串介於 0 與 255 的四個數字。例如，192.168.1.1 是有效輸入。"
+
+msgid "pptp_secret_rule"
+msgstr "密語的長度應該介於 3 到 16 個字元，且不得與系統密碼一樣。"
+
+
+msgid "ipaddrlo_invalid"
+msgstr "抱歉，[[VAR.invalidValue]] 是 [[base-pptp.block_ipaddr_range_from]]的無效值。  [[base-pptp.ip_rule]]"
+
+msgid "ipaddrhi_invalid"
+msgstr "抱歉，[[VAR.invalidValue]] 對 [[base-pptp.block_ipaddr_range_to]]而言是無效值。  [[base-pptp.ip_rule]]"
+
+msgid "pptp_secret_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的密語值。\
+[[base-pptp.pptp_secret_rule]]"
+
+# Notification 
+
+msgid "pptp_notify_block"
+msgstr "通知使用者"
+
+msgid "pptp_notify_header"
+msgstr "通知"
+
+msgid "pptp_notify_text"
+msgstr " 下列使用者清單尚未啟用「遠端存取」帳戶。若要啟用他們的帳戶，他們必須登入並在遠端存取頁面上輸入密語。 <p>[[VAR.users]]<p>您要透過電子郵件通知他們這件事嗎？"
+
+msgid "pptp_notify_yes"
+msgstr "是"
+
+msgid "pptp_notify_yes_help"
+msgstr "按一下此處使電子郵件通知傳給尚未設定「遠端存取」密語的使用者。"
+
+msgid "pptp_notify_no"
+msgstr "否"
+
+msgid "pptp_notify_no_help"
+msgstr "按一下此處繼續，但不通知這些使用者有關他們的「遠端存取」密語。"
+
+# User side
+msgid "pptp_user_menu"
+msgstr "遠端存取"
+
+msgid "pptp_user_menu_help"
+msgstr "可以在此處變更「遠端存取」帳戶的設定。"
+
+msgid "pptp_user_block"
+msgstr "遠端存取設定"
+
+msgid "pptp_user_secret"
+msgstr "密語"
+
+msgid "pptp_user_secret_help"
+msgstr "這是您在建立「虛擬專用網路」連線時會使用的密語。要等到選取密語之後\
+才會啟用「遠端存取」。[[base-pptp.pptp_secret_rule]]"
+
+msgid "pptp_user_secret_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "secret"
+msgstr "密語"
+
+msgid "pptp_user_setyoursecret"
+msgstr "啟用「遠端存取」帳戶之前，您必須輸入要在認證處理時使用的密語。請輸\
+入一個 3 到 16 字元的密語。這個密語應該與系統密碼不同而且只有您自己知道。"
+
+msgid "pptp_user_yoursecretisset"
+msgstr "您已經完成密語的設定。「遠端存取」帳戶目前已啟用而且可以使用。\
+如果需要協助，以啟用新的「虛擬專用網路」，請聯繫系統管理員。此後您可以隨時\
+返回這個網頁變更您的密語。"
+
+
+msgid "returnToLogin"
+msgstr "登出"
+
+msgid "returnToLogin_help"
+msgstr "按一下此處登出。"
+
+# Email notification
+
+msgid "pptp_notify_email_subject"
+msgstr "已授與您「遠端存取」您的網路"
+
+msgid "pptp_notify_email_body"
+msgstr "系統管理員啟用您帳戶的「遠端存取」。「遠端存取」可讓您透過網際網路\
+連接您的網路，就好像您家中的電腦實際上是網路的一部份。這種「遠端存取」通常\
+稱為「點對點通道通信協定 (PPTP)」，而且在 Windows 平台上有充份支援。使用這個功
+能之前，您必須輸入用於連線認證的密語。您可以遵循這個 URL 完成這項工作：\
+\n\nhttp://[[VAR.hostname]]:444/nav/single.php?root=base_pptp_user\n\n如果\
+有其他問題，請聯繫系統管理員。"
+
+
+msgid "passwordAlreadySecret"
+msgstr "您不可以選取與「遠端存取」密語相同的系統密碼。"
+
+msgid "secretAlreadyPassword"
+msgstr "「遠端存取」密語必須與「系統帳戶密碼」不同。"
+
+
+# errors
+
+msgid "pptp_need_one_range"
+msgstr "您需要有至少一個有效的遠端指定 IP 範圍之後才能啟用 PPTP 服務。"
+
+msgid "pptp_disabling_service_no_ranges"
+msgstr "已停用 PPTP 服務，因為不再有任何有效遠端指定 IP 範圍。若要重新啟用此服務，您必須先新增有效 IP 範圍。"
+
+# Capabilities
+
+msgid "capgroup_adminPptp"
+msgstr "管理[[base-pptp.pptp_menu]]"
+
+msgid "capgroup_adminPptp_help"
+msgstr "這個管理權限可讓使用者配置「遠端存取 VPN」。這包括指定哪些使用者被授與遠端存取以及 PPTP 服務的設定。"
+
+msgid "ipAddrRangeLowHigherThanHigh"
+msgstr "指定的 IP 位址範圍無效。此 [[base-pptp.list_ipaddr_range_from]]必須低於 [[base-pptp.list_ipaddr_range_to]]。"
+

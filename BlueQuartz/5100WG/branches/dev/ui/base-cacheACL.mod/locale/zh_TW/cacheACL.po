@@ -1,0 +1,42 @@
+msgid "cacheACLSettings"
+msgstr "有限制的 Web 存取"
+
+msgid "cacheACL"
+msgstr "Web 存取"
+
+msgid "cacheACL_help"
+msgstr "如果這部伺服器為閘道器或為代理 (Proxy) 伺服器，則可以在這部伺服器上控制 Web 的存取。"
+
+msgid "whitelist"
+msgstr "允許存取"
+
+msgid "blacklist"
+msgstr "封鎖存取"
+
+msgid "all"
+msgstr "未設限"
+
+msgid "modeField"
+msgstr "限制策略"
+
+msgid "modeField_help"
+msgstr "請選擇限制的類型：「經許可的存取」，只允許存取指定的網站；「經封鎖的存取」，不允許存取指定的網站；「未設限」，允許存取所有的網站。請注意，上述限制策略只會影響網站的存取，FTP 以及其他的通訊協定則不受影響。"
+
+msgid "domainsField"
+msgstr "主機/網域"
+
+msgid "domainsField_help"
+msgstr "請輸入要限制 Web 存取的主機名稱和網域名稱；如果要指定某個網域範圍內的多個網域名稱，請在網域名稱之前加上一個英文的句點字元。例如，如果輸入的是 www.sun.com，則限制策略只會套用於該部主機，但如果您輸入的是 .sun.com，則會將限制策略套用於 www.sun.com、cobalt.sun.com，以及所有名稱內含 sun.com 的網站。"
+
+msgid "domainsField_invalid"
+msgstr "抱歉，[[VAR.invalidValue]] 對於[[base-cacheACL.domainsField]]而言是無效的值。  [[base-cacheACL.domainsField_help]]"
+
+msgid "ipaddrField"
+msgstr "IP 位址"
+
+msgid "ipaddrField_help"
+msgstr "請輸入對此策略所用的 IP 位址清單。"
+
+msgid "ipaddrField_invalid"
+msgstr "抱歉，[[VAR.invalidValue]] 對於 [[base-cacheACL.ipaddrField]]而言是無效的值。 [[base-cacheACL.ipaddrField_help]]"
+

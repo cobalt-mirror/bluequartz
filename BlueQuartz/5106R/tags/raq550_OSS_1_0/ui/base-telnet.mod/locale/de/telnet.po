@@ -1,0 +1,37 @@
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Hier können Sie Telnet-Einstellungen konfigurieren."
+
+msgid "telnetSettings"
+msgstr "Telnet-Einstellungen"
+
+msgid "access"
+msgstr "Zugriff"
+
+msgid "access_help"
+msgstr "Wählen Sie die Richtlinie für den Telnet-Zugriff. Telnet wird von erfahrenen Benutzern oder vom Server-Administrator dazu verwendet, Shell-Skripts oder -Befehle auszuführen. Aus Gründen der erhöhten Sicherheit wird empfohlen, den Telnet-Zugriff zu deaktivieren oder einzuschränken. "
+
+msgid "none"
+msgstr "Aus - Keine Anmeldungen zulassen"
+
+msgid "root"
+msgstr "Ein - Nur Administrator-Anmeldungen zulassen"
+
+msgid "reg"
+msgstr "Ein - Alle Benutzeranmeldungen zulassen"
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Telnet-Server"
+
+msgid "amDetailsTitle"
+msgstr "Telnet-Server-Details"
+
+msgid "amNotAccepting"
+msgstr "Der Telnet-Server ist nicht in Betrieb."
+
+msgid "amStatusOK"
+msgstr "Der Telnet-Server arbeitet normal."

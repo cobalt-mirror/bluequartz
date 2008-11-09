@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+# $Id: betagamma_handler 229 2003-07-18 20:22:20Z will $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+$| = 1;
+
+# sleep half a second.  we need the output to be ordered.
+sleep 0.5;
+
+while(<>)
+{
+	print STDERR "betahandler: ", $_;
+	if (/^200 READY/)
+	{
+		last;
+	}
+}
+
+print STDERR "betahandler: ", "SET 3 name=bar\n";
+print "SET 3 name=bar\n";
+
+while (<>)
+{
+	print STDERR "betahandler: ", $_;
+	if (/^4/ || /^2/)
+	{
+		last;
+	}
+}
+
+print STDERR "betahandler: ", "BADDATA 0 beta bar\n";
+print "BADDATA 0 beta bar\n";
+
+print STDERR "betahandler: ", "BYE SUCCESS\n";
+print "BYE SUCCESS\n";
+
+while (<>)
+{
+	print STDERR "betahandler: ", $_;
+}
+

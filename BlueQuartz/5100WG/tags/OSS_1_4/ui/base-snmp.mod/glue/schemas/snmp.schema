@@ -1,0 +1,12 @@
+<class name="System" namespace="Snmp" version="1.0">
+	<property 
+		name="enabled" type="boolean" default="0"
+		writeacl="ruleCapable(modifySystemSnmp)"
+	/>
+	<property name="readCommunity" type="scalar" default="public"
+		writeacl="ruleCapable(modifySystemSnmp)"
+	/>
+	<property name="readWriteCommunity" type="scalar" default="private"
+		writeacl="ruleCapable(modifySystemSnmp)"
+	/>
+</class>

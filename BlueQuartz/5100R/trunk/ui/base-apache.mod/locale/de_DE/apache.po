@@ -1,0 +1,236 @@
+# translation of base-apache.po to German
+# Header entry was created by KBabel!
+#
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: Projet BlueQuartz\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-10-31 20:32+0200\n"
+"PO-Revision-Date: 2008-05-13 17:15+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0.2\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "ClientMaxError"
+msgstr "Der eingegebene Wert für [[base-apache.maxClientsField]] ist kleiner als der eingegebenen Wert für [[base-apache.maxSpareField]].  Auch wenn das O.K. ist, kann dies die Leistung des Servers negativ beeinflussen. Es wird empfohlen, dass der Wert für [[base-apache.maxClientsField]] größer oder gleich em Wert für [[base-apache.maxSpareField]] ist."
+
+msgid "MinMaxError"
+msgstr "Die [[base-apache.maxSpareField]] muß größer oder gleich dem [[base-apache.minSpareField]] sein."
+
+msgid "amAdmservDetails"
+msgstr "Server-Desktop-Details"
+
+msgid "amAdmservNameTag"
+msgstr "Server-Desktop"
+
+msgid "amAdmservNotRunning"
+msgstr "Der Server-Desktop ist nicht in Betrieb."
+
+msgid "amAdmservStatusOK"
+msgstr "Das Server-Desktop ist in Betrieb."
+
+msgid "amApacheDetails"
+msgstr "Webserver-Details"
+
+msgid "amApacheNameTag"
+msgstr "Webserver"
+
+msgid "amNotRunning"
+msgstr "Der Webserver ist nicht in Betrieb."
+
+msgid "amStatusOK"
+msgstr "Der Webserver arbeitet normal."
+
+msgid "apache"
+msgstr "Web"
+
+msgid "apacheSettings"
+msgstr "Web-Einstellungen"
+
+msgid "apache_help"
+msgstr "Hier können Sie die [[base-apache.apacheSettings]] ändern."
+
+msgid "cantConfigCgi"
+msgstr "Der CGI-Zugriff konnte leider nicht richtig konfiguriert werden."
+
+msgid "cgi"
+msgstr "Common Gateway Interface (CGI) Einschalten"
+
+msgid "cgiAccessField"
+msgstr "CGI-Zugriff"
+
+msgid "cgiAccessField_help"
+msgstr "Aktivieren oder deaktivieren Sie den CGI-Zugriff. Sie können die CGI-Zugriffsrechte so einstellen, dass nur der Serveradministrator CGI-Skriptdateien hinzufügen kann oder dass sowohl der Administrator als auch alle oder nur ausgewählte Benutzer CGI-Skriptdateien hinzufügen können."
+
+msgid "cgiAll"
+msgstr "Allen Benutzern Zugriff gewähren"
+
+msgid "cgiI18nName"
+msgstr "Common Gateway Interface (CGI)"
+
+msgid "cgiNone"
+msgstr "Keinem Benutzer Zugriff gewähren"
+
+msgid "cgiSubset"
+msgstr "Nur bestimmten Benutzern Zugriff gewähren"
+
+msgid "cgiUsersAllowed"
+msgstr "Benutzer mit Rechten für CGI"
+
+msgid "cgiUsersDisallowed"
+msgstr "Benutzer ohne Rechte für CGI"
+
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "Sie haben keinen Benutzer CGI-Zugriff gewährt. Bitte wählen Sie Benutzer aus, die CGI-Zugriff erhalten sollen, oder wählen Sie eine andere Zugriffsoption aus."
+
+msgid "cgi_help"
+msgstr "Die Nutzung von CGI-Applikationen gestatten."
+
+msgid "frontpageEnabled"
+msgstr "Aktivieren"
+
+msgid "frontpageField"
+msgstr "FrontPage Server-Erweiterungen"
+
+msgid "frontpageField_help"
+msgstr "Aktivieren oder deaktivieren Sie die FrontPage Server-Erweiterungen."
+
+msgid "hostnameLookupsField"
+msgstr "Hostname Lookups"
+
+msgid "hostnameLookupsField_help"
+msgstr "Dies aktiviert die DNS-Auflösung für Webzugriffe von Besuchern. Bei jedem Webzugriff führt der Server einen 'nslookup' auf die IP-Addresse des Besuchers durch und protokolliert dessen Hostname in die Logdateien. Dies führt dazu, dass Webzugriffe langsamer ablaufen und mehr Server-Last verursachen. Falls Sie diese Option nicht einschalten, wird statt dem Hostnamen des Besuchers nur die IP-Addresse protokolliert, was in der Regel vorzuziehen ist. WARNUNG: Falls sie 'Hostname Lookups' aktivieren, kann dies die Leistung Ihres Webservers negativ beeinflussen."
+
+msgid "maxClientsField"
+msgstr "Maximale Anzahl von Verbindungen"
+
+msgid "maxClientsField_empty"
+msgstr "Bitte geben Sie die maximale Anzahl von simultanen Webserververbindungen an."
+
+msgid "maxClientsField_help"
+msgstr "Dies ist die maximale Anzahl von Anfragen, die gleichzeitig vom Server ausgeführt werden. Jede Verbindung braucht ihre eigenen Webserverprozess. Falls mehr Anfragen an den Webserver geschickt werden, als erlaubt, so werden weitere Verbindungsanfragen abgelehnt. Diese Einstellung ist hilfreich um die Belastung Ihres Servers innerhalb tolerabler Grenzen zu halten. [[base-apache.maxServersRAM]]"
+
+msgid "maxClientsField_invalid"
+msgstr "Die angegebenen Wert für die maximale Anzahl von Verbindungen ist ungültig. Bitte geben Sie einen Wert der innerhalb des spezifizierten Bereiches liegt."
+
+msgid "maxServersRAM"
+msgstr "Die maximale Anzahl von Webservern ist abhängig von der Menge an verfügbarem Arbeitsspeicher."
+
+msgid "maxSpareField"
+msgstr "Maximale Anzahl von zusätzlichen Webserver-Prozessen"
+
+msgid "maxSpareField_empty"
+msgstr "Bitte geben Sie die maximale Anzahl von zusätzlichen Webserver-Prozessen an. "
+
+msgid "maxSpareField_help"
+msgstr "Der Webserver wird ntigenfalls weitere Prozesse starten, um den erhhten Bedarf zu decken. Dies ist die maximale Anzahl von Prozessen, die der Server starten wird, um den erhhten Bedarf zu decken. Viel besuchte Seiten sollten eine hohe Nummer fr bessere Performance haben.  [[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_invalid"
+msgstr "[[base-apache.minSpareField_invalid]]"
+
+msgid "minSpareField"
+msgstr "Minimale Anzahl von verfügbaren Webservern"
+
+msgid "minSpareField_empty"
+msgstr "Bitte geben Sie die minimale Anzahl von Webserver-Prozessen an."
+
+msgid "minSpareField_help"
+msgstr "Wenn der Webserver startet oder wenn er im Leerlauf ist, dann ist dies die minimale Anzahl von Webserverprozessen, die für Webanfragen zur Verfügung steht.  [[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_invalid"
+msgstr "Die angegebenen Anzahl von Webservern ist ungültig. Bitte geben Sie eine ganze Zahl ein, die im angegebenen Bereich liegt."
+
+msgid "passwordWebmasterField"
+msgstr "Webmaster Passwort"
+
+msgid "passwordWebmasterField_help"
+msgstr "Geben Sie ein Passwort für den Frontpage Webmaster ein. Auf die Webseite des Gruppennetzes kann dann im Frontpage Client zugegriffen werden, indem man sich per Benutzername 'webmaster' und dem hier angegebenen Passwort anmeldet. Weitere Frontpage Benutzer können dann über den Frontpage Client verwaltet werden."
+
+msgid "passwordWebmasterField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "passwordWebmasterField_rule"
+msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie Zahlen und Satzzeichen bestehen. Verwenden Sie keine Wörter, die man in einem Wörterbuch finden kann. Bitte beachten Sie, dass Groß- und Kleinschreibung bei Passwörtern berücksichtigt wird."
+
+msgid "php"
+msgstr "PHP Scripting Einschalten"
+
+msgid "phpI18nName"
+msgstr "PHP Scripting"
+
+msgid "php_help"
+msgstr "Nutzung von PHP Scripts einschalten."
+
+msgid "ssi"
+msgstr "Server-Side Includes (SSI) einschalten"
+
+msgid "ssiI18nName"
+msgstr "Server-Side Includes (SSI)"
+
+msgid "ssi_help"
+msgstr "Nutzung von Server-Side Includes einschalten."
+
+msgid "systemObjectNotFound"
+msgstr "Die Serverkonfiguration ist derzeit leider nicht verfügbar. Bitte warten Sie und versuchen Sie es noch einmal."
+
+msgid "webScripting"
+msgstr "Web"
+
+msgid "webScriptingDescription"
+msgstr "Web Optionen einstellen, wie z.B. Scripting Sprachen."
+
+msgid "webScriptingTitle"
+msgstr "Web Scripting Einstellungen für [[VAR.fqdn]]"
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+msgid "asp"
+msgstr "ASP Einschalten"
+
+msgid "aspI18nName"
+msgstr "Active Server Pages (ASP)"
+
+msgid "asp_help"
+msgstr "Die Nutzung von Akiven Serverseiten einschalten (Apache::ASP)."
+
+msgid "python"
+msgstr "Python Scripting einschalten"
+
+msgid "pythonI18nName"
+msgstr "Python Scripting"
+
+msgid "python_help"
+msgstr "Nutzung von Python Scripts einschalten."
+
+msgid "webmail"
+msgstr "Webmail Zugang einschalten"
+
+msgid "webmailI18nName"
+msgstr "Webmail Zugang"
+
+msgid "webmail_help"
+msgstr "Webmail Zugang einschalten, um Nutzern zu gestatten, Ihre E-mails via Web Interface zu erreichen."
+
+msgid "userwebs"
+msgstr "Benutzer-Webs aktivieren"
+
+msgid "userwebs_help"
+msgstr "Falls aktiviert, hat jeder Benutzer dieser Site einen eigenen Webspace, der über http://www.example.com/~username/ zu erreichen ist. Benutzer können dann ihr eigenen Webseiten per FTP in ihr persönliches /web Verzeichnis hochladen."
+
+msgid "ftpnonadminI18nName"
+msgstr "Benutzern FTP erlauben"
+
+msgid "userwebsI18nName"
+msgstr "Benutzer-Webs aktiviert"

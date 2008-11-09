@@ -1,0 +1,5 @@
+lcdsleep needs to lock lcd??
+incorporate menu traversing/executing into lcdsleep
+build cache file of menu structure with datestamp of menu structure,
+rebuild cache on datestamp change, otherwise run from cache
+filenames can't be strings (language wonk)

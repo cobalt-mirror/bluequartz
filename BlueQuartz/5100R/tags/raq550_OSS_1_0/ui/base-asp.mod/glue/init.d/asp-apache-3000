@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# Startup script for the Chili!Soft ASP Server
+# for Cobalt servers
+#
+# chkconfig: 345 86 15
+# description: Chili!Soft ASP
+# probe: true
+
+DOMAIN=base-asp
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# See how we were called.
+case "$1" in
+  start)
+	LINE1=`getmsg casp_start_1`
+	LINE2=`getmsg casp_start_2`
+        $LCD_STOP
+	$LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+        echo -n "$LINE1 $LINE2: "
+        /home/chiliasp/asp-apache-3000/caspctrl startall >/dev/null 2>&1
+        /home/chiliasp/asp-apache-3000/caspctrl status >/dev/null && success $1 || failed $1
+        echo
+        touch /var/lock/subsys/asp-apache-3000
+        ;;
+  stop)
+	        # Stop daemons.
+        LINE1=`getmsg casp_stop_1`
+        LINE2=`getmsg casp_stop_2`
+        $LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+        echo -n "$LINE1 $LINE2: "
+        /home/chiliasp/asp-apache-3000/caspctrl stopall >/dev/null 2>&1
+        /home/chiliasp/asp-apache-3000/caspctrl status >/dev/null && failed $1 || success $1
+        echo
+        rm -f /var/lock/subsys/asp-apache-3000
+        ;;
+  status)
+        /home/chiliasp/asp-apache-3000/caspctrl status
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+esac
+
+exit 0
+

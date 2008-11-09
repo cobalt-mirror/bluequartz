@@ -1,0 +1,176 @@
+# --- Menu
+
+msgid "winshare"
+msgstr "Windows"
+
+msgid "winshare_help"
+msgstr "[[base-winshare.winshareSettings]] can be changed here."
+
+# --- Common
+msgid "winshareSettings"
+msgstr "Windows File Sharing Settings"
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "basic_help"
+msgstr "Basic [[base-winshare.winshareSettings]] can be configured here."
+
+msgid "advanced_help"
+msgstr "Advanced [[base-winshare.winshareSettings]] such as WINS Server settings can be configured here."
+
+msgid "advanced"
+msgstr "Advanced"
+
+# ---- Basic page
+
+msgid "enableServerField"
+msgstr "Enable Server"
+
+msgid "enableServerField_help"
+msgstr "Turn Windows File Sharing on or off.  Guest access to Windows File Sharing can be configured by going to [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Maximum Simultaneous Users"
+
+msgid "maxUserField_rule"
+msgstr "Please enter an integer between 1 and 1024.  The default value is 25."
+
+msgid "maxUserField_help"
+msgstr "Change the maximum number of users that can be connected to the Windows File Share at the same time.  [[base-winshare.maxUserField_rule]]"
+
+msgid "workgroupField"
+msgstr "Workgroup"
+
+msgid "workgroupField_rule"
+msgstr "The default value is WORKGROUP."
+
+msgid "workgroupField_help"
+msgstr "Enter the name of the workgroup to which your Windows File Share should belong."
+
+
+# ---- Advanced
+
+msgid "networkLogonField"
+msgstr "Windows Domain Controller"
+
+msgid "networkLogonField_help"
+msgstr "Turn Windows Domain Controller on or off.  Turning this feature on allows this server appliance to act as a domain controller for a windows network.  This will allow Windows 95/98/NT4/2000 to authenticate against this unit and use roaming profiles."
+
+msgid "winsServerField"
+msgstr "Windows Internet Naming Service (WINS) Server"
+
+msgid "winsServerField_help"
+msgstr "Select a role for this server appliance in providing the Windows Internet Naming Service.  A server running the Windows Internet Naming Service is required in order to locate Windows machines by their NetBIOS names across multiple subnets."
+
+msgid "winsServerNone"
+msgstr "Do Not Use As WINS Server"
+
+msgid "winsServerSelf"
+msgstr "Use As WINS Server"
+
+msgid "winsServerOthers"
+msgstr "Use The Following Address As WINS Server"
+
+msgid "winsServerIpAddressField"
+msgstr "IP Address"
+
+msgid "winsServerIpAddressField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "winsServerIpAddressField_help"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+
+# ---- Handler msgs
+
+msgid "badUser"
+msgstr "If server configuration files were removed or manually modified, please restore the original versions and try again."
+
+msgid "cantConfigFile"
+msgstr "Sorry, an error occurred while trying to modify the Windows File Sharing configuration files. [[base-winshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Sorry, an error occurred while trying to modify the Windows File Sharing configuration files. [[base-winshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Sorry, an error occurred while trying to modify the Windows File Sharing configuration files."
+
+msgid "cantModifyPassword"
+msgstr "Sorry, an error occurred while trying to modify the Windows File Sharing configuration files."
+
+
+# ---- Active Monitor
+
+msgid "amWinshareNameTag"
+msgstr "Windows File Sharing Server"
+
+msgid "amDetailsTitle"
+msgstr "Windows File Sharing Server Details"
+
+msgid "amNotRunning"
+msgstr "The Windows file sharing server is not running."
+
+msgid "amStatusOk"
+msgstr "The Windows file sharing server is operating normally."
+
+# Capabilities
+
+msgid "capgroup_adminSamba"
+msgstr "Manage Windows File Sharing"
+
+msgid "capgroup_adminSamba_help"
+msgstr "This administrative rights allows a user to modify the settings used by Windows File Sharing"
+
+# Machine list 
+
+msgid "windowsMachineButton"
+msgstr "Domain Members"
+
+msgid "windowsMachineButton_help"
+msgstr "Create a list of Windows computers on your network before allowing them to join the domain"
+
+msgid "windowsMachinesList"
+msgstr "Domain Members"
+
+msgid "wm_addMachine_help"
+msgstr "Click here to add a computer to this list of domain members"
+
+msgid "wm_name"
+msgstr "Machine Name"
+
+msgid "wm_name_help"
+msgstr "These are the assigned names of the computers on your network"
+
+msgid "wm_remarks"
+msgstr "Remarks"
+
+msgid "wm_remarks_help"
+msgstr "This column provides additional information about each domain member"
+
+msgid "wm_actions"
+msgstr "Action"
+
+msgid "wm_actions_help"
+msgstr "These are the buttons used to modify settings of a domain member or to remove a computer from your windows network"
+
+msgid "modWindowsMachineBlock"
+msgstr "Modify Domain Member - [[var.name]]"
+
+msgid "addWindowsMachineBlock"
+msgstr "Create Domain Member"
+
+msgid "machine_name"
+msgstr "Machine Name"
+
+msgid "machine_name_help"
+msgstr "This is the name of the Windows based computer" 
+
+msgid "machine_description"
+msgstr "Remarks"
+
+msgid "machine_description_help"
+msgstr "This is a user defined description of this domain member record"
+
+msgid "removeMachineConfirm"
+msgstr "Are you sure you wish to remove the computer '[[VAR.machineName]]' from your list of domain members?"

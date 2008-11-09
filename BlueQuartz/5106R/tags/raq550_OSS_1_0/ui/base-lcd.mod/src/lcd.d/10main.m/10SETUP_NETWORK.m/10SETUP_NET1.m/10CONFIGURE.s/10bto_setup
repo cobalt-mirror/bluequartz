@@ -1,0 +1,185 @@
+#!/usr/bin/perl
+
+use POSIX;
+use Locale::gettext;
+
+$language = `cat /etc/cobalt/locale`;
+$language = "en_US" unless (defined($language));
+setlocale(LC_MESSAGES, $language);
+bindtextdomain("panel-utils", "/usr/share/locale");
+textdomain("panel-utils");
+system("/sbin/lcdstop");
+
+if ($ARGV[0] eq "-s") {
+    $option = "-s";
+} else {
+    $option = "";
+}
+
+sub debug {
+    my @args = @_;
+
+    system("echo $args[0] ip $my_ip nm $my_nm bc $my_bcast nw $my_nw >/dev/cua0");
+    system("/sbin/route >/dev/cua0");
+    system("/sbin/ifconfig >/dev/cua0");
+    system("/bin/ping -c 4 $my_ip >/dev/cua0");
+}
+
+# FIXME - get this from the name of the function being called
+$interface = "eth0";
+
+# Get any current data
+
+# Find IP & Netmask
+$my_ip = 0;
+$my_nm = 0;
+# see if anything is currently programmed and up...
+open(IFCFG,"/sbin/ifconfig |");
+while (<IFCFG>) {
+    $cur_if = $1 if (/^(\S+)/);
+    if (($cur_if eq $interface) && /inet addr:(\S+).*Mask:(\S+)/o) {
+	$my_ip = $1;
+	$my_nm = $2;
+    }
+}
+close(IFCFG);
+
+# Nothing was programmed, check /etc/sysconfig/network-scripts/ifcfg-"$interface"
+if ($my_ip == 0) {
+    open(IFCFG, "/etc/sysconfig/network-scripts/ifcfg-$interface");
+    while (<IFCFG>) {
+	$my_ip = $1 if (/^IPADDR=(.+)/);
+	$my_nm = $1 if (/^NETMASK=(.+)/);
+    }
+    close(IFCFG);
+}
+
+# Find Gateway
+$my_gw = 0;
+# see if anything is currently programmed and up...
+open(ROUTE,"/sbin/route -n |");
+while (<ROUTE>) {
+    if (/^0\.0\.0\.0\s+(\S+).+\s(\S+)$/o) {
+	$cur_gw_dev = $2;
+	$my_gw = $1 if ($cur_gw_dev eq $interface);
+    }
+}
+close(ROUTE);
+
+# Nothing was programmed, check /etc/sysconfig/network
+if ($my_gw == 0 && !defined($cur_gw_dev)) {
+    open(NETWORK,"/etc/sysconfig/network");
+    while(<NETWORK>) {
+	$cur_gw_dev = $1 if (/^GATEWAYDEV=(\S+)/);
+	$my_gw = $1 if (($cur_gw_dev eq $interface) && /^GATEWAY=(\S+)/);
+    }
+}
+
+# if all else fails set them to some defaults (0's and such)
+$my_gw = "0.0.0.0" if ($my_gw == 0);
+$my_nm = "255.0.0.0" if ($my_nm == 0);
+$my_ip = "0.0.0.0" if ($my_ip == 0);
+
+$dup = 1;
+do {
+# Enter IP
+    $ok = 0;
+    while (!$ok) {
+	$ipstr = gettext("PRIMARY IP ADDR:");
+	$my_ip = `/sbin/lcd-getip $option -1 \"$ipstr\" -i $my_ip`;
+# Check for validity
+	$ok = 1;
+	@ip = split(/\./,$my_ip);
+	$ok = 0 if ($ip[0] == 0 || $ip[0] > 223);
+	$ok = 0 if ($ip[3] == 0);
+	if ($ok == 0) {
+	    $xipstr = gettext("INVALID IP:     ");
+	    system("/sbin/lcd-write $option \"$xipstr\" \"$my_ip\"");
+	    system("/sbin/lcd-flash $option");
+	}
+    }
+    
+# Enter Netmask
+    $ok = 0;
+# If we couldn't get an already set netmask, set according to IP
+    if ($my_nm == 0) {
+	if ($ip[0] < 127) {
+	    $my_nm = "255";
+	} elsif ($ip[0] < 192) {
+	    $my_nm = "255.255";
+	} else {
+	    $my_nm = "255.255.255";
+	}
+    }
+    while (!$ok) {
+	$nmstr = gettext("PRIMARY NETMASK:");
+	$my_nm = `/sbin/lcd-getip $option -1 "$nmstr" -i $my_nm`;
+# Check for validity
+	@nm = split(/\./,$my_nm);
+	$mask = 0;
+	for($i=0;$i<4;$i++) {
+	    $nw[$i] = int($ip[$i]) & int($nm[$i]);
+	    $bc[$i] = int($nw[$i]) ^ int($nm[$i]) ^ 255;
+	    $mask |= $nm[$i];
+	    $mask = $mask << 8 if ($i != 3);
+	}
+	$my_bcast = join('.',@bc);
+	$my_nw = join('.',@nw);
+	$mask = ~$mask;
+	$ok = 1;
+	$ok = 0 if ($mask & ($mask + 1));
+	if ($ok == 0) {
+	    $xnmstr = gettext("INVALID NETMASK:");
+	    system("/sbin/lcd-write $option \"$xnmstr\" \"$my_nm\"");
+	    system("/sbin/lcd-flash $option");
+	}
+    }
+    
+# Enter Gateway
+    if ($cur_gw_dev eq $interface) {
+	$ok = 0;
+	while (!$ok) {
+	    $gwstr = gettext("ENTER GATEWAY:  ");
+	    $my_gw = `/sbin/lcd-getip $option -1 "$gwstr" -i $my_gw`;
+# Check for validity
+	    $ok = 1;
+	    @ip = split(/\./,$my_gw);
+	    $ok = 0 if ($ip[0] == 0 || $ip[0] > 223);
+	    $ok = 0 if ($ip[3] == 0);
+	    if ($ok == 0) {
+		$xgwstr = gettext("INVALID GATEWAY:");
+		system("/sbin/lcd-write $option \"$xgwstr\" \"$my_gw\"");
+		system("/sbin/lcd-flash $option");
+	    }
+	}
+    }
+    # FIXME - Verification step needed here
+    $dup = 0;
+} while ($dup == 1);
+
+$savestr = gettext("SAVE/CANCEL");
+$result = system("/sbin/lcd-yesno -s -y 1 -n 8 -1 \"$savestr\" -2 \"                \"");
+exit(1) if ($result != 256);
+
+# OK? then save it...
+open(IFCFG,">/etc/sysconfig/network-scripts/ifcfg-eth0");
+print IFCFG "DEVICE=eth0\n";
+print IFCFG "IPADDR=$my_ip\n";
+print IFCFG "NETMASK=$my_nm\n";
+print IFCFG "NETWORK=$my_nw\n";
+print IFCFG "BROADCAST=$my_bcast\n";
+print IFCFG "ONBOOT=yes\n";
+close(IFCFG);
+
+open(NETWORK,">/etc/sysconfig/network");
+print NETWORK "NETWORKING=yes\n";
+print NETWORK "FORWARD_IPV4=no\n";
+print NETWORK "HOSTNAME=bto-master.mfg.cobaltmicro.com\n";
+print NETWORK "GATEWAYDEV=eth0\n";
+print NETWORK "GATEWAY=$my_gw\n";
+close(NETWORK);
+
+open(NETCONFIG,">/etc/NET-CONFIG");
+print NETCONFIG "BOOTPROTO=lcd\n";
+close(NETCONFIG);
+system("/sbin/reboot");

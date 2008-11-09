@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Stackguard binary search
+#
+# Use: sglist
+#
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: sglist,v 1.2 2001/09/28 21:42:17 jthrowe Exp $
+
+DIRS="/bin /usr/bin /sbin /usr/sbin"
+
+find $DIRS -maxdepth 1 -type f -perm +111 | while read f
+do
+	if [ -r "$f" ]
+	then
+		case `grep -ac 'StackGuard .* canary = %x died' "$f"` in
+		0)	;;
+		*)	echo "$f"
+			;;
+		esac
+	else
+		echo "$f not readable or nonexistent" >&2
+	fi
+done
+
+exit 0

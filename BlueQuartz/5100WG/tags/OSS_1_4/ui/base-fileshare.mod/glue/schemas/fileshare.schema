@@ -1,0 +1,15 @@
+<! --
+	$Id: fileshare.schema 3 2003-07-17 15:19:15Z will $
+	Copyright(c) Cobalt Networks, Inc.
+	Author: asun@cobalt.com
+	
+	This provides the schema used for filesharing services.
+	NOTE: the guest group should not have access to anything.
+-->
+<class name="System" namespace="FileShare" version="1.0">
+	<property name="guestEnabled" type="boolean" default="" writeacl="ruleCapable(modifyFileShare)"/>
+	<property name="guestQuota" type="int" default="50" writeacl="ruleCapable(modifyFileShare)"/>
+	<property name="guestUser" type="accountname" default="guest-share" writeacl="ruleCapable(modifyFileShare)"/>
+	<property name="guestGroup" type="accountname" default="guest" writeacl="ruleCapable(modifyFileShare)"/>
+	<property name="guestWorkGroup" type="accountname" default="guest-share" writeacl="ruleCapable(modifyFileShare)"/>
+</class>

@@ -1,0 +1,58 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftp_help"
+msgstr "[[base-ftp.ftpSettings]]可在此处更改。"
+
+msgid "ftpSettings"
+msgstr "文件传输协议 (FTP) 设置"
+
+msgid "enableServerField"
+msgstr "启用服务器"
+
+msgid "enableServerField_help"
+msgstr "打开或关闭文件传输协议 (FTP) 功能。匿名 FTP 访问通过进入[[base-fileshare.guestShare]]配置。"
+
+msgid "maxUserField"
+msgstr "并发用户最大数量"
+
+msgid "maxUserField_rule"
+msgstr "请输入一个 1 和 1024 之间的整数。缺省值是 25。"
+
+msgid "maxUserField_help"
+msgstr "设置可同时连接至 FTP 服务器的用户最大数量。[[base-ftp.maxUserField_rule]]"
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "文件传输协议 (FTP) 服务器"
+
+msgid "amDetailsTitle"
+msgstr "文件传输协议 (FTP) 服务器详细信息"
+
+msgid "amNotResponding"
+msgstr "FTP 服务器没有运行。"
+
+msgid "base-ftp.amBadResponse"
+msgstr "FTP 服务器给出错误响应。"
+
+msgid "amStatusOK"
+msgstr "FTP 服务器运行正常。"
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "如果服务器配置文件被删除或手动修改，请恢复原始版本并重试。"
+
+msgid "cantConfigFile"
+msgstr "对不起，在尝试修改 FTP 配置文件时出现错误。[[base-ftp.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminFtpServer"
+msgstr "管理 Ftp 服务器设置"
+
+msgid "capgroup_adminFtpServer_help"
+msgstr "此管理权限允许用户修改此机器上的 Ftp 服务器所使用的设置。"
+

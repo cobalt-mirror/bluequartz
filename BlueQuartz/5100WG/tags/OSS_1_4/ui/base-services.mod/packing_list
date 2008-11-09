@@ -1,0 +1,125 @@
+#Name: base-services
+#Id: $Id: packing_list 3 2003-07-17 15:19:15Z will $
+#
+
+# crypto
+SRPM: openssl-0.9.5a-3.src.rpm
+SRPM: openssh-2.2.0p1-2C1.src.rpm
+SRPM: gnupg-1.0.3-1.src.rpm
+RPM: gnupg-1.0.3-1.i386.rpm
+
+# apache
+RPM: apache-1.3.12-1C11.i386.rpm
+RPM: apache-conf-carmel-8.noarch.rpm
+RPM: apache-icons-pacifica-1.noarch.rpm
+RPM: apache-openssl-1.3.12-1C11.i386.rpm
+RPM: apache-mod_perl-1.3.12-1C11.i386.rpm
+RPM: freetype-1.3.1-2C2.i386.rpm
+RPM: frontpage-4.0-3.i386.rpm
+RPM: php-4.0.3pl1-C1q3.i386.rpm
+RPM: gd-1.3-5.i386.rpm
+
+## No:
+## # cobalt rpms
+## RPM: sausalito-cce-client-0.15-1.i386.rpm
+## RPM: sausalito-cce-server-0.15-1.i386.rpm
+## RPM: sausalito-i18n-0.11-2.i386.rpm
+## RPM: sausalito-palette-0.2-6.noarch.rpm
+## RPM: sausalito-gallery-0.1-4.noarch.rpm
+
+# mail
+RPM: cyrus-sasl-1.5.24-C2.i386.rpm
+RPM: imap-4.7c2-C3.i386.rpm
+RPM: mailx-8.1.1-16C1.i386.rpm
+RPM: mutt-1.2.5i-C1.i386.rpm
+RPM: elm-2.5.3-6.i386.rpm
+RPM: pine-4.21-C1.i386.rpm
+RPM: procmail-3.13.1-2C1.i386.rpm
+RPM: qpopper-3.0.2-C6.i386.rpm
+RPM: sendmail-8.10.2-C1.i386.rpm
+RPM: sendmail-cf-8.10.2-C1.i386.rpm
+RPM: sendmail-doc-8.10.2-C1.i386.rpm
+RPM: sendmail-conf-8.10.2-C1.i386.rpm
+# RPM: majordomo-1.94.4-C12.i386.rpm is now in base-maillist.mod
+RPM: poprelayd-2.0-1.noarch.rpm
+RPM: nkf-1.0-2.i386.rpm
+
+# other networking
+RPM: bind-8.2.2_P5-C5.i386.rpm
+RPM: bind-utils-8.2.2_P5-C5.i386.rpm
+RPM: cmu-snmp-3.5-C4.i386.rpm
+RPM: cmu-snmp-utils-3.5-C4.i386.rpm
+RPM: dhcp-2.0-1C9.i386.rpm
+RPM: dhcp-client-2.0-1C9.i386.rpm
+RPM: netatalk-1.4b2+asun2.1.4-pre39.i386.rpm
+RPM: netatalk-config-1.4b2+asun2.1.4-pre39.i386.rpm
+# RPM: ipchains-1.3.8-3.i386.rpm # now in base-firewall
+RPM: ntp-4.0.99k-C1.i386.rpm
+RPM: ppp-2.3.11-4C1.i386.rpm
+RPM: rp-pppoe-1.9-1.i386.rpm
+RPM: samba-2.0.7-4C1.i386.rpm
+RPM: samba-common-2.0.7-4C1.i386.rpm
+RPM: samba-client-2.0.7-4C1.i386.rpm
+RPM: samba-config-3000WG-1.0-C1.noarch.rpm
+RPM: pidentd-2.8.5-3.i386.rpm
+
+# other web/ftp
+RPM: libwww-perl-5.43-1.i386.rpm
+RPM: lynx-2.8.3-2.i386.rpm
+RPM: indexhtml-6.0-1.noarch.rpm
+RPM: lftp-2.2.6-1.i386.rpm
+RPM: ncftp-3.0beta21-3.i386.rpm
+RPM: proftpd-1.2.0rc2-C3.i386.rpm
+
+# perl
+RPM: Authen-PAM.pm-0.04-1.i386.rpm
+RPM: Data-Dumper-2.101-1.i386.rpm
+RPM: Digest-MD5-2.07-1.i386.rpm
+RPM: GD-1.15-1.i386.rpm
+RPM: GIFgraph-1.10-1.i386.rpm
+RPM: HTML-Parser-2.23-1.i386.rpm
+RPM: LWPng-alpha-0.24-1.i386.rpm
+RPM: MIME-Base64-2.11-1.i386.rpm
+RPM: WebFS-FileCopy-1.00-1.i386.rpm
+RPM: URI-1.02-1.i386.rpm
+RPM: perl-CGI.pm-2.56-1.i386.rpm
+RPM: perl-IO-1.20-1.i386.rpm
+RPM: perl-MD5-1.7-6.i386.rpm
+RPM: perl-quota-1.2.3-1C2.i386.rpm
+RPM: perl-XML-Parser-2.26-2.i386.rpm
+RPM: perl-Jcode-0.60-1.i386.rpm
+
+# postgres
+RPM: postgresql-7.0.2-2C1.i386.rpm
+RPM: postgresql-server-7.0.2-2C1.i386.rpm
+RPM: postgresql-devel-7.0.2-2C1.i386.rpm
+RPM: postgresql-test-7.0.2-2C1.i386.rpm
+RPM: postgresql-perl-7.0.2-2C1.i386.rpm
+RPM: postgresql-python-7.0.2-2C1.i386.rpm
+RPM: postgresql-tcl-7.0.2-2C1.i386.rpm
+RPM: postgresql-tk-7.0.2-2C1.i386.rpm
+RPM: postgresql-jdbc-7.0.2-2C1.i386.rpm
+RPM: postgresql-odbc-7.0.2-2C1.i386.rpm
+
+# MySQL
+RPM: MySQL-3.22.32-1.i386.rpm
+RPM: MySQL-shared-3.22.32-1.i386.rpm
+RPM: MySQL-client-3.22.32-1.i386.rpm
+RPM: MySQL-devel-3.22.32-1.i386.rpm
+
+
+# misc
+RPM: finger-0.16-5.i386.rpm
+RPM: jre-1.2-v2.i386.rpm
+# don't include these here include in there own modules
+# RPM: arkeia-client-4.0.5-9.i386.rpm
+# RPM: lgtoclnt-rh-5.5.2-1.i386.rpm
+# RPM: lgtoman-rh-5.5.2-1.noarch.rpm
+RPM: base-services-locale-ja
+RPM: base-services-locale-fr
+RPM: base-services-locale-es
+RPM: base-services-locale-en
+RPM: base-services-locale-de
+RPM: base-services-glue
+RPM: base-services-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE

@@ -1,0 +1,104 @@
+# $Id: portforward.po 201 2003-07-18 19:11:07Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "端口转发"
+
+msgid "portforwarding_menu_help"
+msgstr "端口转发允许这台机器将在某端口上接收的通信量转发到另一台机器。当需要允许从网络中的某台机器访问外部环境时，该功能非常有用。"
+
+msgid "portforward_list"
+msgstr "端口转发规则"
+
+msgid "form_port_rule"
+msgstr "请输入有效的端口号。[[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "端口号是 1 和 65535 之间的一个整数。"
+
+msgid "form_ipaddr_rule"
+msgstr "请输入有效的 IP 地址。例如 192.168.0.1 就是有效的 IP 地址。"
+
+msgid "sourcePort"
+msgstr "源端口"
+
+msgid "sourcePort_help"
+msgstr "任何直接定向到这台机器源端口的通信量将被重定向到另一台机器的目标端口。"
+
+msgid "sourcePort_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是对[[base-portforward.sourcePort]]无效的值。[[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "源 IP"
+
+msgid "sourceIP_help"
+msgstr "任何直接定向到这个源地址指定端口的通信量都将被重定向到目标机器上。"
+
+msgid "sourceIP_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是对[[base-portforward.sourceIP]]无效的值。[[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "协议"
+
+msgid "protocol_help"
+msgstr "这是将被重定向的协议。"
+
+msgid "targetPort"
+msgstr "目标端口"
+
+msgid "targetPort_help"
+msgstr "这是将接收通信量的机器端口。"
+
+msgid "targetPort_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是对[[base-portforward.targetPort]]无效的值。[[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "目标 IP"
+
+msgid "targetIP_help"
+msgstr "这是将接收通信量的机器的 IP 地址。"
+
+msgid "targetIP_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是对[[base-portforward.targetIP]]无效的值。[[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "操作"
+
+msgid "action_help"
+msgstr "您可以修改或删除一个端口转发记录。"
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "端口转发记录—创建"
+
+msgid "title_modify"
+msgstr "端口转发记录—修改"
+
+msgid "description"
+msgstr "注释"
+
+msgid "description_help"
+msgstr "您可使用[[base-portforward.description]]字段来保存对每个记录的详细信息的注释。"
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "是否确实要删除此端口转发规则？"
+
+#errors
+msgid "collidingAddresses"
+msgstr "这里已经存在一个源[[VAR.ip]]:[[VAR.port]]的记录。"
+
+msgid "mustCrossInterfaces"
+msgstr "您输入的[[base-portforward.sourceIP]]和[[base-portforward.targetIP]]组合将不能通过网络接口。[[base-portforward.portforwarding_menu]]必须将通信量从一个网络接口发送到另一个网络接口。"
+

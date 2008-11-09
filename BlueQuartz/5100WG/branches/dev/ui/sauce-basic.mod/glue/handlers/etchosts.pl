@@ -1,0 +1,102 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+#$Id: etchosts.pl 3 2003-07-17 15:19:15Z will $
+
+use strict;
+use Sauce::Config;
+use Sauce::Util;
+use CCE;
+
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+# get system and network object ids:
+my ($system_oid) = $cce->find("System");
+my @network_oids = $cce->find("Network");
+
+# get system object:
+my ($ok, $obj) = $cce->get($system_oid);
+if (!$ok) { 
+	# FIXME: fail
+}
+
+# get all network objects:
+my @networks = ();
+{
+  my %nets = ();
+  foreach $_ (@network_oids) {
+	  my ($ok, $obj) = $cce->get($_);
+    if ($ok) { $nets{$obj->{device}} = $obj; }
+  }
+  foreach $_ (sort keys %nets)
+  {
+  	push (@networks, $nets{$_});
+  }
+}
+
+# munge hostname
+my ($hostname, $domainname);
+$hostname = $obj->{hostname};
+$domainname= $obj->{domainname};
+$hostname =~ s/\.${domainname}$//;
+my $name = $obj->{hostname};
+
+my $etchosts = <<EOT ;
+# /etc/hosts
+# Auto-generated file.  Keep your customizations at the bottom of this file.
+127.0.0.1		localhost localhost.localdomain
+EOT
+if ($_ = shift(@networks)) {
+	$etchosts .= $_->{ipaddr} ."\t\t${hostname}.${domainname} ${hostname}\n";
+}
+# this is probably optional:
+foreach $_ (@networks) {
+	my $dev = $_->{device};
+	if ($_->{ipaddr}) {
+	   $etchosts .= $_->{ipaddr} . "\t\t${hostname}-${dev}.${domainname} ${hostname}-${dev}\n";
+	} else {
+	   $etchosts .= "# $dev has not been configured.\n";
+        }
+}
+$etchosts .= <<EOT ;
+#END of auto-generated code.  Customize beneath this line.
+EOT
+
+# update /etc/hosts
+{
+  my $fn = sub {
+    my ($fin, $fout) = (shift,shift);
+    my ($text) = (shift);
+    print $fout $text;
+    my $flag = 0;
+    while (defined($_ = <$fin>)) {
+    	if ($flag) { print $fout $_; }
+      else { if (m/^#END/) { $flag = 1; } }
+    }
+    return 1;
+  };
+  Sauce::Util::editfile('/etc/hosts', $fn, $etchosts);
+  chmod(0644,'/etc/hosts');
+};
+
+$cce->bye('SUCCESS');
+exit(0);
+
+# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+# 
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
+# 
+# -Redistribution of source code must retain the above copyright notice, 
+# this list of conditions and the following disclaimer.
+# 
+# -Redistribution in binary form must reproduce the above copyright notice, 
+# this list of conditions and the following disclaimer in the documentation  
+# and/or other materials provided with the distribution.
+# 
+# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+# be used to endorse or promote products derived from this software without 
+# specific prior written permission.
+# 
+# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# 
+# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.

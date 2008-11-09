@@ -1,0 +1,69 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: 10reboot 259 2004-01-03 06:28:40Z shibuya $
+#
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved
+#
+# This script is called when the user selects Reboot
+# from the lcd panel.
+
+use POSIX;
+use LCD;
+use Term::ReadLine;
+use Getopt::Std;
+use CCE;
+use I18n;
+
+use vars qw/ $opt_c $opt_s /;
+
+getopts("sc");
+$option = ($opt_s) ? "-s" : "";
+
+my $i18n = new I18n;
+
+$rebootstr = $i18n->get("[[base-lcd.    REBOOT?     ]]");
+$yesnostr = $i18n->get("[[base-lcd.yes_no]]");
+
+if ($opt_c) {
+  printf("\n$rebootstr\n\n");
+  $term = new Term::ReadLine 'select';
+  $choice = $term->readline("[Y]ES/[N]O > ");
+
+  exit 1 if ($choice !~ /^y/i);
+
+} else {
+  $result = system("/sbin/lcd-yesno $option -1 \"$rebootstr\" -2 \"$yesnostr\"");
+  exit 1 unless ($result == 256);
+}
+
+my $lcdstr1 = $i18n->get("[[base-sys.reboot_1]]");
+my $lcdstr2 = $i18n->get("[[base-sys.reboot_2]]");
+system("/sbin/lcd-write $option \"$lcdstr1\" \"$lcdstr2\"");
+
+system("/bin/rm -f /etc/locks/.lcdlock") if (-e "/etc/locks/.lcdlock");
+
+my $cce = new CCE;
+$connect = eval { $cce->connectuds(); };
+if ( defined $connect ) {
+	eval {
+	my (@oids) = $cce->find("System");
+	$cce->set( $oids[0], "Power", { reboot => time } ) if (@oids > 0);
+	$cce->bye("SUCCESS");
+	}
+} else {
+	# if couldn't connect to cce, shutdown manually
+	my $lcdstr1 = $i18n->get("[[base-lcd.direct_reboot_1]]");
+	my $lcdstr2 = $i18n->get("[[base-lcd.direct_reboot_2]]");
+	system("/sbin/lcd-write $option \"$lcdstr1\" \"$lcdstr2\"");
+	system("/sbin/shutdown -r now");
+}
+
+sleep 60;
+# if we're here, no errors were reported, but we haven't rebooted
+# alert that we'll try manual reboot shortly
+my $lcdstr1 = $i18n->get("[[base-lcd.delayed_reboot_1]]");
+my $lcdstr2 = $i18n->get("[[base-lcd.delayed_reboot_2]]");
+system("/sbin/lcd-write $option \"$lcdstr1\" \"$lcdstr2\"");
+sleep 240;
+system("/sbin/shutdown -r now");
+

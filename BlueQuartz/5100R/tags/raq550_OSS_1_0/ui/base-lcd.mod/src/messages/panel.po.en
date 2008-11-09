@@ -1,0 +1,33 @@
+
+# en_panel.po - english localization of panel messages (product independent)
+# $Id: panel.po.en,v 1.1 2001/11/08 23:31:27 jlovell Exp $
+
+msgid "start_service"
+msgstr "Setting Up"
+
+msgid "stop_service"
+msgstr "Shutting Down"
+
+msgid "httpd"
+msgstr "Web Service"
+
+msgid "cced"
+msgstr "Configuration"
+
+msgid "klogd"
+msgstr "Logging Service"
+
+msgid "syslogd"
+msgstr "Logging Service"
+
+msgid "xinetd"
+msgstr "Inetd Service"
+
+msgid "snmpd"
+msgstr "SNMP Service"
+
+msgid "sendmail"
+msgstr "Mail Service"
+
+msgid "portmap"
+msgstr "Portmap Service"

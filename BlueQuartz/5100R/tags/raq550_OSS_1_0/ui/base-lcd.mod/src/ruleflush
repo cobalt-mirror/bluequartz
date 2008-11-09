@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+
+# author: Andrew Bose 
+#       Cobalt Networks
+# version: 1.0
+# date: 11-17-98
+#
+# Copyright (C) 1998, Cobalt Networks, Inc
+# All rights reserved
+
+use Cobalt::Nat;
+
+use strict;
+
+nat_set_rules();
+
+1;
+
+
+

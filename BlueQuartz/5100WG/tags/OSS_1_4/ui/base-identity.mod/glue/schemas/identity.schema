@@ -1,0 +1,12 @@
+
+<typedef name="countryCode" type="re" data="^[A-Z][A-Z]$"/>
+<typedef name="x500" type="re" data="^[A-Za-z\.-_ ]+$"/>
+
+<class name="System" namespace="Identity" version="1.0">
+	<property name="country" type="countryCode" default="US"/>
+	<property name="state" type="x500" default="CA"/>
+	<property name="locality" type="x500" default="Unknown"/>
+	<property name="organisation" type="x500" default="Unknown"/>
+	<property name="organisationUnit" type="x500" default="Unknown"/>
+</class>
+

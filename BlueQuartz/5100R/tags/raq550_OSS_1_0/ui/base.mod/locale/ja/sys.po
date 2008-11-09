@@ -1,0 +1,122 @@
+# ifup
+
+msgid "detecting"
+msgstr "ﾈｯﾄﾜｰｸ ｦ"
+
+msgid "network"
+msgstr "ｹﾝｼｭﾂ ｼﾃｲﾏｽ"
+
+# network-functions
+
+msgid "looking_for"
+msgstr "DHCP ｻｰﾊﾞｦ"
+
+msgid "dhcp_server"
+msgstr "ｻｶﾞｼﾃｲﾏｽ"
+
+msgid "no_net_found"
+msgstr "ﾈｯﾄﾜｰｸｶﾞ ﾐﾂｶﾘﾏｾﾝ"
+
+msgid "halt_or_connect"
+msgstr "[ﾃ]ｲｼ [ｾ]ﾂｿﾞｸ"
+
+msgid "autoconfigure"
+msgstr "ﾈｯﾄﾜｰｸｦｼﾞﾄﾞｳｾｯﾃｲ"
+
+msgid "net_yes_no"
+msgstr "ｼﾏｽｶ? [ﾊ]ｲ [ｲ]ｲｴ"
+
+msgid "failed"
+msgstr " ... ﾃﾞｷﾏｾﾝﾃﾞｼﾀ"
+
+msgid "halting"
+msgstr "ｼｽﾃﾑ ｦ"
+
+msgid "system"
+msgstr "ｼｬｯﾄﾀﾞｳﾝ ｼﾃｲﾏｽ"
+
+# halt
+
+msgid "halt_1"
+msgstr "  ﾃﾞﾝｹﾞﾝ ｽｲｯﾁｦ  "
+
+msgid "halt_2"
+msgstr "  ｵﾌﾆ ｼﾃｸﾀﾞｻｲ   "
+
+msgid "reboot_1"
+msgstr "     ｼｽﾃﾑ ｦ     "
+
+msgid "reboot_2"
+msgstr "  ｻｲｷﾄﾞｳ ｼﾃｲﾏｽ  "
+
+# network
+
+msgid "network_start_1"
+msgstr "ﾈｯﾄﾜｰｸ ｦ"
+
+msgid "network_start_2"
+msgstr "ｾｯﾃｲ ｼﾃｲﾏｽ"
+
+msgid "network_stop_1"
+msgstr "ﾈｯﾄﾜｰｸ ｦ"
+
+msgid "network_stop_2"
+msgstr "ｼｬｯﾄﾀﾞｳﾝ ｼﾃｲﾏｽ"
+
+# rc.local
+
+msgid "lcd_ipaddr"
+msgstr "IP ｱﾄﾞﾚｽ:"
+
+# rc.raid
+
+msgid "raid_status"
+msgstr "RAID ﾉ ｼﾞｮｳﾀｲ:"
+
+msgid "raid_remove"
+msgstr "RAID ﾉ ｻｸｼﾞｮ"
+
+msgid "raid_add"
+msgstr "RAID ﾉ ﾂｲｶ"
+
+msgid "raid_device_invalid"
+msgstr "ﾌｾｲﾅ ﾃﾞﾊﾞｲｽ ﾃﾞｽ"
+
+msgid "raid_device_toosmall"
+msgstr "ﾃﾞﾊﾞｲｽｶﾞ ﾁｲｻｽｷﾞﾏｽ"
+
+msgid "raid_setting_up"
+msgstr "ﾊﾟｰﾃｨｼｮﾝ ｦ"
+
+msgid "raid_partitions"
+msgstr "ｾｯﾃｲ ｼﾃｲﾏｽ"
+
+msgid "raid_sync"
+msgstr "RAID ﾉ ﾄﾞｳｷﾁｭｳ"
+
+msgid "raid_done_1"
+msgstr "RAID ﾉ ｾｯﾃｲ"
+
+msgid "raid_done_2"
+msgstr "ｶﾝﾘｮｳ"
+
+# rc.sysinit
+
+msgid "checking_disk_1"
+msgstr "ﾃﾞｨｽｸ ｦ "
+
+msgid "checking_disk_2"
+msgstr "ﾁｪｯｸ ｼﾃｲﾏｽ..."
+
+msgid "raid_fail_1"
+msgstr "RAID ｦ ｷﾄﾞｳ"
+
+msgid "raid_fail_2"
+msgstr "ﾃﾞｷﾏｾﾝﾃﾞｼﾀ"
+
+msgid "clock_start_1"
+msgstr "ｸﾛｯｸｦｽﾀｰﾄｼﾃｲﾏｽ..."
+
+msgid "checkPointFailed"
+msgstr "このサーバアプライアンスに登録されているユーザとグループ関連の情報に何らかの問題が発生した恐れがあります。\n/var/log/dbrecover.log というログファイルにエラーメッセージが含まれていないか、また一般ユーザ（admin 以外のユーザ）が正常にログインできるかどうか確認してください。\nエラーメッセージが見つかった、または一般ユーザがログインできない場合には、サーバを再起動することによりユーザおよびグループ情報の復元を試みてください。"
+

@@ -1,0 +1,96 @@
+#
+# $Id: README 3 2003-07-17 15:19:15Z will $
+# Duncan Laurie (void@sun.com)
+#
+
+[ DESCRIPTION ]
+
+  This is a collection of tools/scripts for working with the SOCKS
+  servers in place at Sun.  They should work from any SWAN/Cobalt/VPN
+  connection, and are intended to simplify proxy setup and enable
+  remote DNS resolution for the SSH protocol.
+
+
+[ INSTALL ]
+
+  Simple way is to run "make debian" or "make redhat" followed by
+  "make install".  That basically does the following steps:
+
+  Edit proxy.conf and define your socks wrapper program, for RedHat
+  this is normally runsocks, and on Debian (dante) it is socksify.
+  Then put proxy.conf in /etc and source it from your profile:
+
+    [ -s /etc/proxy.conf ] && . /etc/proxy.conf
+
+  Compile the tunnel program and install it:
+
+    gcc -O2 socks-tunnel.c -o socks-tunnel
+    strip socks-tunnel
+    install -m755 socks-tunnel /usr/sbin
+
+  Install rssh and create a hardlink to rscp:
+
+    install -m755 rssh /usr/sbin
+    ln /usr/sbin/{rssh,rscp}
+
+
+[ USAGE ]
+
+  When the proxy.conf file is read it will set several environment
+  variables relating to proxy servers.  There are two type of proxy
+  servers it handles, SOCKS and http.  For SOCKS servers, these
+  variables are set:
+
+    SOCKS_SERVER, SOCKS4_SERVER, SOCKS5_SERVER
+
+  and for http proxys the following variables are set:
+
+    http_proxy, ftp_proxy
+
+  In addition, some common network services are aliases with r+prefix
+  to wrap them in socks-aware environment.  The list of services is
+  networkServiceList in proxy.conf, by default this list contains
+  telnet, ftp, and cvs.  This means there will be corresponding shell
+  aliases rtelnet, rftp, and rcvs defined.
+
+  The OpenSSH protocol implementation does not work with the "socksify"
+  or "runsocks" wrappers, due to the common suid bit set on the binary.
+  The solution is to use the "-o ProxyCommand" option of openssh to
+  tunnel the connection through a SOCKS proxy.
+
+  The provided socks-tunnel is a generic tunnel program that is run
+  like this:
+
+    socks-tunnel [-dnhs45] [-R resolve] [-H proxy-server-sepc]
+                 [-S [user@]socks-server[:port]] <host> <port>
+
+  Example use of ssh with socks-tunnel:
+
+    ssh -o ProxyCommand="socks-tunnel -R remote -S $SOCKS_SERVER %h %p"
+        -l duncan glazed.sfbay.sun.com
+
+  The wrapper script rssh/rscp does this transparently for you.  It
+  will only use the ProxyCommand option if the SOCKS_SERVER environment
+  variable is defined (this is done automatically if you source the
+  proxy.conf in your profile).  Some SSH options can be overridden with
+  the following syntax:
+
+    Cipher=3des Protocol=2 rssh duncan@glazed
+
+  These options (and their default values) are:
+
+    Cipher=blowfish
+    Protocol=1
+    ForwardX11=no
+    LogLevel=INFO
+
+  Other options can be defined like this:
+
+    ssh_Options=ForwardAgent ForwardAgent=yes rssh duncan@glazed
+
+  For simple debugging of both this script and the ssh connection,
+  you can use the -d option to display the ssh options used and set
+  LogLevel to DEBUG:
+
+    rssh -d duncan@glazed
+

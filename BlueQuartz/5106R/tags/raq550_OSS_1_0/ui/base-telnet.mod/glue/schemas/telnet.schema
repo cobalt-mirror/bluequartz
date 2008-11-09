@@ -1,0 +1,26 @@
+<!-- 
+  $Id: telnet.schema 259 2004-01-03 06:28:40Z shibuya $ 
+  Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
+
+  The System.Telnet namespace
+-->
+
+<!-- access : one of 'none', 'root', or 'reg' -->
+<typedef name="telnetaccess" type="re" data="none|root|reg"/>
+
+<class name="System" namespace="Telnet" version="1.0">
+    <property 
+        name="enabled" type="boolean" default="1"
+        writeacl="ruleCapable(modifyTelnet)"
+    />
+    <property 
+        name="access" type="telnetaccess" default="none"
+        writeacl="ruleCapable(modifyTelnet)"
+    />
+    <property 
+        name="connectRate" type="int" default="40"
+        writeacl="ruleCapable(modifyTelnet)"
+    />
+</class>
+
+<!-- end of telnet.schema -->

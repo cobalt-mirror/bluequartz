@@ -1,0 +1,19 @@
+<!-- This is the AM Namespace for monitoring Network (from sauce-basic.mod) -->
+<class name="ActiveMonitor" 	namespace="Network" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"    	type="boolean" 	default="1" writeacl="ruleCapable(modifyActiveMonitor)"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"	
+	default="/usr/sausalito/swatch/bin/am_network.sh"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"   		type="scalar"  	
+	default="[[base-network.amNetworkNameTag]]"/>
+
+    <property name="URL"	 	type="scalar" 
+	default="/base/am/detailPage.php?name=Network&amp;title=[[base-network.amNetDetails]]"/>
+    <property name="UIGroup"            type="scalar"   default="system"/>
+</class>

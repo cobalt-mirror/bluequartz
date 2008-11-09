@@ -1,0 +1,29 @@
+<!--
+  For information on how Active Monitor works, see the documentation in the
+  config files.  For schema details look at am.schema.
+-->
+
+<!-- This is the AM Namespace for monitoring CPU -->
+<class name="ActiveMonitor" namespace="ECC" version="1.1">
+    <property name="enabled"            type="boolean"  default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean"  default="1"/>
+    <property name="type"               type="scalar"   default="exec"/>
+    <property name="typeData"           type="scalar"   
+	default="/usr/sausalito/swatch/bin/am_ecc.pl"/>
+
+    <property name="currentState"       type="amstate"  default="N"/>
+    <property name="lastChange"         type="uint"     default="0"/>
+    <property name="lastRun"            type="uint"     default="0"/>
+    <property name="currentMessage"     type="scalar"   default=""/>
+    <property name="nameTag"   		type="scalar"  	
+	default="[[base-am.amECCName]]"/>
+    <property name="URL"	    	type="scalar" 
+ 	default="/base/am/ecc_details.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+
+    <property name="hideUI"		type="boolean"	default="0"/>
+    <property name="sysfault"		type="boolean"	default="0" />
+    <property name="corrThreshold"	type="scalar"	default="10"/>
+    <property name="uncorrTheshold"	type="scalar"	default="0"/>
+</class>

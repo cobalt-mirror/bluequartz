@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# this runs all of the sysinit stage cced constructors
+#
+
+. /etc/rc.d/init.d/functions
+
+[ -x /usr/sausalito/sbin/cced ] || exit 0
+
+/usr/sausalito/sbin/cced
+/usr/sausalito/bin/cce_construct sysinit 2>&1 | \
+	logger -p local0.debug -t "CONSTRUCTOR-sysinit"
+killproc cced

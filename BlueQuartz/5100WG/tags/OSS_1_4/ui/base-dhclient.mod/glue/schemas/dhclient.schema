@@ -1,0 +1,9 @@
+<class name="Network" namespace="Dhclient" version="1.0">
+	<property name="hostName" type="scalar" writeacl="ruleCapable(modifyNetworkDhclient)"/>
+	<property name="identifier" type="scalar" writeacl="ruleCapable(modifyNetworkDhclient)"/>
+</class>
+
+<class name="Capabilities" namespace="modifyNetworkDhclient" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyNetworkDhclient)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhclient.cap_modifyNetworkDhclient]]"/>
+</class>

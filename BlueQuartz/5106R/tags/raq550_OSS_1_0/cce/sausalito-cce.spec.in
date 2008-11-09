@@ -1,0 +1,148 @@
+# $Id: sausalito-cce.spec.in 259 2004-01-03 06:28:40Z shibuya $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+Summary: Cobalt CCE Server and Clients 
+Name: sausalito-cce
+Version: XX_VER_XX
+Release: XX_REL_XX
+Copyright: Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+Group: Sausalito/Daemons
+Source: sausalito-cce.tar.gz
+Prefix: /usr/sausalito
+BuildRoot: /var/tmp/cce-root
+# Maximum RPM: "There are times when RPM's automatic dependency
+# processing may not be desirable."  Yeah, like when it crashes.
+# AutoReqProv: no
+
+%description
+sausalito-cce has both the server and client parts of cce.
+
+%package server
+Group: Sausalito/Daemons
+Summary: The CCE server daemon
+
+%description server
+The cce-server package contains the server-side parts of the Cobalt 
+Configuration Engine.
+
+%package client
+Group: Sausalito/Libraries
+Summary: The CCE client libraries
+
+%description client
+The cce-client package contains the client-side parts of the Cobalt 
+Configuration Engine.
+
+%prep
+%setup -n cce
+
+%build
+CCETOPDIR=/usr/sausalito make all
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/bin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/codb
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/codb/txn
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/conf
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/schemas
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sessions
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/handlers
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/constructor
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/destructor
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/capstone
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/devel
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/lib
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/include
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/perl
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
+mkdir -p $RPM_BUILD_ROOT/etc/pam.d
+mkdir -p $RPM_BUILD_ROOT/lib/security
+mkdir -p $RPM_BUILD_ROOT/usr/lib/apache/php
+make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
+
+%files server
+%defattr(-,root,root)
+%dir /usr/sausalito/
+%dir /usr/sausalito/sbin
+/usr/sausalito/sbin/*
+%dir /usr/sausalito/bin
+/usr/sausalito/bin/pperl
+/usr/sausalito/bin/pperld
+%dir /usr/sausalito/codb
+%dir /usr/sausalito/codb/txn
+%dir /usr/sausalito/conf
+%dir /usr/sausalito/schemas
+/usr/sausalito/schemas/*
+%dir /usr/sausalito/sessions
+%dir /usr/sausalito/handlers
+%dir /usr/sausalito/constructor
+%dir /usr/sausalito/destructor
+%dir /usr/sausalito/capstone
+%dir /usr/sausalito/devel
+%dir /usr/sausalito/lib
+%dir /usr/sausalito/include
+%dir /usr/sausalito/perl
+/etc/rc.d/init.d/*
+/etc/pam.d/*
+/lib/security/*
+
+%files client
+%attr(-,root,httpd)/usr/sausalito/bin/ccewrap
+%config %attr(-,root,root)/etc/ccewrap.conf
+%defattr(-,root,root)
+%dir /etc/ccewrap.d
+/usr/sausalito/bin/cce_construct  
+/usr/sausalito/bin/cceclient
+/usr/sausalito/lib/*.so*
+/usr/sausalito/include/*
+/usr/sausalito/ui/libPhp/*
+/usr/sausalito/perl/*
+/usr/lib/apache/php/*
+/usr/share/locale/*
+
+
+%post server
+# only run on install, not upgrade 
+if [ "$1" = "1" ]; then
+	/sbin/chkconfig --add cced.init
+fi
+
+
+%postun server
+# only run if this is the last instance to be removed
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del cced.init
+fi
+
+%post client
+# only run on install, not upgrade
+if [ "$1" = "1" ]; then
+	LIB=/usr/sausalito/lib
+	cp /etc/ld.so.conf /etc/ld.so.conf.bak
+	egrep "^$LIB[ 	]*$" /etc/ld.so.conf >/dev/null \
+		|| echo $LIB >> /etc/ld.so.conf
+	/sbin/ldconfig
+fi
+
+%changelog
+* Wed Feb 27 2002 CCE Team <cce@sun.com>
+-- This is a short summary of some major changes from version 0.76 to 0.80.1
+- "rollback" handlers run on failure of a transaction
+- Extensible security rules can be specified in schemas
+- Create and destroy acls can be specified on namespaces
+- ACLs accept boolean logic rules
+- More builtin security rules
+- "begin"/"commit" creates a single transaction from multiple commands
+- ccewrap now looks in /etc/ccewrap.d/ directory for new XML format files
+- CCE can be put in a read-only mode using the "admin suspend" command
+- "find" enhanced with a regular expression search capability
+- "find" enhanced with more builtin sort types
+- Indexes can be defined to speed up searching
+- Logging of all CSCP commands has a consistant format
+- Handlers can be specified as relative paths
+- Handlers run chdir'd to their location, not /tmp
+- Connections from uid 0 which auth/authkey, correctly lose admin privledges
+- "baddata"/"warn" messages are escaped
+- Handlers default to fail, not success

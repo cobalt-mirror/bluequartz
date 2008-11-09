@@ -1,0 +1,316 @@
+msgid "dhcpd"
+msgstr "DHCP"
+
+msgid "dhcpd_help"
+msgstr "Klicken Sie zur Änderung der [[base-am.amSettings]] hierauf."
+
+msgid "dhcpdSettings"
+msgstr "Dynamisches Host-Konfigurationsprotokoll (DHCP)-Einstellungen"
+
+msgid "enableServerField"
+msgstr "Server aktivieren"
+
+msgid "enableServerField_help"
+msgstr "Aktivieren oder deaktivieren Sie die dynamische Host-Konfigurationsprotokoll (DHCP)-Serverfunktionalität. Wenn diese Funktion aktiviert wird, kann ein Client-Rechner automatisch beim Start Netzwerkkonfigurations-Einstellungen von diesem Server abrufen."
+
+msgid "settingsForClients"
+msgstr "DHCP-Client-Einstellungen"
+
+msgid "settingsForClients_help"
+msgstr "Klicken Sie zur Konfiguration der DHCP-Client-Einstellungen hierauf.  Dies sind die Netzwerkkonfigurationseinstellungen, die beim Hochfahren automatisch auf die Clients übertragen werden."
+
+msgid "domainNameField"
+msgstr "Client-Domänenname"
+
+msgid "domainNameField_rule"
+msgstr "Geben Sie nur Zahlen, Kleinbuchstaben, Bindestriche oder Punkte ein.  sun.com ist z. B. ein gültiger Eintrag."
+
+msgid "domainNameField_help"
+msgstr "Geben Sie den Domänennamen ein, der automatisch auf diese Clients übertragen wird. Dieser Domänenname ist meist der gleiche Domänenname wie der dieses Servers. [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.domainNameField]]. [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.domainNameField]] eingegeben. [[base-dhcpd.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Client-DNS-Adressen"
+
+msgid "dnsAddressesField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "dnsAddressesField_help"
+msgstr "Geben Sie die IP-Adresse oder -Adressen Ihres lokalen Domänennamen-Servers ein, die automatisch auf diese Clients übertragen wird/werden. Ein Domänennamen-Server übersetzt Texthostnamen und -domänennamen in numerische IP-Adressen und umgekehrt. [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.dnsAddressesField]]. [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.dnsAddressesField]] eingegeben. [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "subnetMaskField" 
+msgstr "Client-Subnetzmaske"
+
+msgid "subnetMaskField_rule" 
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 255.255.255.0."
+
+msgid "subnetMaskField_help"
+msgstr "Geben Sie die Subnetzmaske ein, die automatisch auf diese Clients übertragen wird. [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.subnetMaskField]]. [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.subnetMaskField]] eingegeben. [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Client-Standard-Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "gatewayField_help"
+msgstr "Geben Sie die IP-Adresse Ihres lokalen Netzwerk-Gateways ein, die automatisch auf diese Clients übertragen wird. Über ein Netzwerk-Gateway können Sie eine Verbindung mit Computern außerhalb Ihres lokalen Netzwerkbereichs herstellen. [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.gatewayField]]. [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.gatewayField]] eingegeben. [[base-dhcpd.gatewayField_rule]]"
+
+msgid "maxLeaseField"
+msgstr "Maximale Lease-Zeit (Sekunden)"
+
+msgid "maxLeaseField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl über Null ein. Der Vorgabewert ist 86400."
+
+msgid "maxLeaseField_help"
+msgstr "Die von einem dynamischen Host-Konfigurationsprotokoll (DHCP)-Server zugewiesenen Netzwerkinformationen verfallen nach einem bestimmten Zeitraum. Geben Sie den Höchstzeitraum in Sekunden ein, bevor ein Lease abläuft. [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.maxLeaseField]]. [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.maxLeaseField]] eingegeben. [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "addressAssignments"
+msgstr "Adressenzuweisungen ändern"
+
+msgid "addressAssignments_help"
+msgstr "Klicken Sie hier, um die IP-Adressen festzulegen, die dieser Server Clients zuweist, die eine IP-Adresse anfordern."
+
+msgid "dynamicAssignmentList"
+msgstr "Liste der dynamischen Adressenzuweisungen"
+
+msgid "ipAddressLow"
+msgstr "IP-Adressbereich (Von)"
+
+msgid "ipAddressLow_help"
+msgstr "Dies ist der untere Bereich von IP-Adressen, die dynamisch zugewiesen werden."
+
+msgid "ipAddressHi"
+msgstr "IP-Adressbereich (Bis)"
+
+msgid "ipAddressHi_help"
+msgstr "Dies ist der obere Bereich von IP-Adressen, die dynamisch zugewiesen werden."
+
+msgid "listActionDyn"
+msgstr "Aktion"
+
+msgid "listActionDyn_help"
+msgstr "Dies sind die Schaltflächen, mit denen ein Bereich von IP-Adressen, die dynamisch zugewiesen werden, geändert oder entfernt werden kann."
+
+msgid "removeDynamicConfirm"
+msgstr "Wollen Sie den Bereich der IP-Adressen von [[VAR.ipAddressLow]] bis [[VAR.ipAddressHi]] wirklich entfernen?"
+
+msgid "addNewDynamic"
+msgstr "Neue dynamische Adressenzuweisung hinzufügen"
+
+msgid "ipAddressLowField"
+msgstr "IP-Adressbereich (Von)"
+
+msgid "ipAddressLowField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.100."
+
+msgid "ipAddressLowField_help"
+msgstr "Geben Sie die erste oder niedrigste IP-Adresse im Bereich der IP-Adressen ein, die von diesem Server dynamisch zugewiesen werden sollen. [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.ipAddressLowField]]. [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.ipAddressLowField]] eingegeben. [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressHiField"
+msgstr "IP-Adressbereich (Bis)"
+
+msgid "ipAddressHiField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.110."
+
+msgid "ipAddressHiField_help"
+msgstr "Geben Sie die letzte oder höchste IP-Adresse im Bereich der IP-Adressen ein, die von diesem Server dynamisch zugewiesen werden sollen. [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.ipAddressHiField]]. [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.ipAddressHiField]] eingegeben. [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "staticAssignmentList"
+msgstr "Liste der statischen Adressenzuweisungen"
+
+msgid "ipAddress"
+msgstr "IP-Adresse"
+
+msgid "ipAddress_help"
+msgstr "Dies ist die IP-Adresse, die dem Computer mit der angegebenen MAC-Adresse beständig und statisch zugewiesen wird."
+
+msgid "macAddress"
+msgstr "MAC-Adresse"
+
+msgid "macAddress_help"
+msgstr "Dies ist die MAC-Adresse des Computers, dem die angegebene IP-Adresse beständig und statisch zugewiesen wird."
+
+msgid "listActionStatic"
+msgstr "Aktion"
+
+msgid "listActionStatic_help"
+msgstr "Dies sind die Schaltflächen, mit denen eine IP-Adresse, die statisch zugewiesen wird, geändert oder entfernt werden kann."
+
+msgid "removeStaticConfirm"
+msgstr "Wollen Sie die Zuweisung der IP-Adresse [[VAR.ipAddress]] zur MAC-Adresse [[VAR.macAddress]] wirklich entfernen?"
+
+msgid "addNewStatic" 
+msgstr "Neue statische Adressenzuweisung hinzufügen"
+
+msgid "ipAddressField"
+msgstr "IP-Adresse"
+
+msgid "ipAddressField_rule"
+msgstr "[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressField_help"
+msgstr "Geben Sie die IP-Adresse ein, die einem bestimmten Computer, der durch eine spezifische Media Access Control (MAC)-Adresse identifiziert wird, von diesem Server statisch zugewiesen werden soll. [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.ipAddressField]]. [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.ipAddressField]] eingegeben. [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "macAddrAlreadySpecified"
+msgstr "Der angegebenen MAC-Adresse wurde bereits eine IP-Adresse zugewiesen."
+
+msgid "macAddressField"
+msgstr "MAC-Adresse"
+
+msgid "macAddressField_rule"
+msgstr "Bitte geben Sie eine Reihe von 12 Hexadezimalziffern ein, die alle 2 Ziffern von einem Doppelpunkt getrennt werden. Eine gültige Eingabe ist z. B. 00:10:E0:01:33:AB."
+
+msgid "macAddressField_help" 
+msgstr "Geben Sie die Media Access Control (MAC)-Adresse des Computers ein, der von diesem Server statisch eine IP-Adresse zugewiesen wird. Eine MAC-Adresse ist die Hardware-Adresse der Netzwerk-Schnittstellenkarte. Diese Hardware-Adresse kommt nur einmal vor und kann nach der Herstellung nicht geändert werden. [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dhcpd.macAddressField]]. [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-dhcpd.macAddressField]] eingegeben. [[base-dhcpd.macAddressField_rule]]"
+
+msgid "cantSetParam"
+msgstr "DHCP-Parameter können nicht eingestellt werden."
+
+msgid "noIPAddrRange"
+msgstr "Die Von- oder Zu-IP-Adresse fehlt.  Bitte geben Sie eine IP-Adresse für den Beginn des IP-Adressenbereichs und eine IP-Adresse für das Ende des IP-Adressenbereichs ein, der Clients im Netzwerk zugewiesen wird."
+
+msgid "ipAddrRangeNotValid"
+msgstr "Der IP-Adressenbereich ist ungültig.   Bitte geben Sie eine IP-Adresse für den Beginn des IP-Adressenbereichs und eine IP-Adresse für das Ende des IP-Adressenbereichs ein, der Clients im Netzwerk zugewiesen wird. Die Von-IP-Adresse muss einen niedrigeren Wert als die Zu-IP-Adresse haben."
+
+msgid "modDynamicAddress"
+msgstr "Dynamische Adressenzuweisung ändern"
+
+msgid "modStaticAddress"
+msgstr "Statische Adressenzuweisung ändern"
+
+msgid "noDhcpConf"
+msgstr "Die DHCP-Serverkonfigurationsdatei /etc/dhcpd.conf wurde leider nicht gefunden. Versuchen Sie, Ihre DHCP-Einstellungen neu zu konfigurieren. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "noSystemObj"
+msgstr "DHCP-Parametersatz-Operation konnte das Systemobjekt nicht finden. Bitte kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "noNetworkObj"
+msgstr "DHCP-Parametersatz-Operation konnte das Netzwerkobjekt nicht finden.   Bitte kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "noParamObj"
+msgstr "DHCP-Parametersatz-Operation konnte das DhcpParam-Objekt nicht finden. Bitte kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "parameters"
+msgstr "Parameter"
+
+msgid "noConfigFile"
+msgstr "Die DHCP-Serverkonfigurationsdatei /etc/dhcpd.conf wurde leider nicht gefunden. Versuchen Sie, Ihre DHCP-Einstellungen neu zu konfigurieren. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "cannotLock"
+msgstr "Die Konfigurationsdatei /etc/dhcpd.conf wird verwendet. Versuchen Sie es später noch einmal. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "cantUpdateConf"
+msgstr "Das System kann die Konfigurationsdatei /etc/dhcpd.conf nicht aktualisieren. Versuchen Sie, Ihre DHCP-Einstellungen neu zu konfigurieren. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "rangeMismatch"
+msgstr "Die IP-Adresse der primären Schnittstelle befindet sich in einem anderen Subnetz als die den DHCP-Clients zuzuweisenden IP-Adressen. Bitte überprüfen Sie Ihre Adressenzuweisungen und vergewissern Sie sich, dass sie sich im gleichen Subnetz befinden wie der Server."
+
+msgid "gwMismatch"
+msgstr "Die IP-Adresse der primären Schnittstelle befindet sich in einem anderen Subnetz als das den DHCP-Clients zuzuweisende Standard-Gateway. Bitte überprüfen Sie Ihr Client-Standard-Gateway und vergewissern Sie sich, dass es sich im gleichen Subnetz befindet wie der Server."
+
+msgid "ipMismatch"
+msgstr "Die IP-Adresse der primären Schnittstelle befindet sich in einem anderen Subnetz als die einem DHCP-Client für diese statische Adressenzuweisung zuzuweisende IP-Adresse. Bitte geben Sie eine IP-Adresse für diese statische Adressenzuweisung ein, die sich im gleichen Subnetz befindet wie der Server."
+
+msgid "wrongOrder"
+msgstr "[[base-dhcpd.ipAddrRangeNotValid]]."
+
+msgid "noLeaseFile"
+msgstr "Die Konfigurationsdatei /etc/dhcpd.leases kann nicht geöffnet werden. Entfernen Sie diese Datei, konfigurieren Sie Ihre DHCP-Einstellungen neu und starten Sie den DHCP-Server neu. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "initScriptError"
+msgstr "Das Initialisierungsskript für den DHCP-Server konnte nicht ausgeführt werden. Bitte versuchen Sie es noch einmal. Diese Datei ist unter Umständen beschädigt oder fehlt. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "initLinkOnFail"
+msgstr "Das System konnte das Initialisierungsskript für den automatischen Start des DHCP-Servers bei nachfolgenden Systemstartvorgängen nicht konfigurieren. Bitte versuchen Sie es noch einmal. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "initLinkOffFail"
+msgstr "Das System konnte das Initialisierungsskript nicht entfernen, um den DHCP-Server bei nachfolgenden Startvorgängen zu deaktivieren. Bitte versuchen Sie es noch einmal. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "offFail"
+msgstr "Das System konnte den DHCP-Server nicht abschalten. Bitte versuchen Sie noch einmal, den Server zu deaktivieren. Wenn diese Meldung weiterhin angezeigt wird, kontaktieren Sie den Technischen Kundendienst von [[base-carmel.osVendor]]."
+
+msgid "cannotStartDhcp"
+msgstr "Der DHCP-Server konnte nicht aktiviert werden. Bitte vergewissern Sie sich, dass Sie die DHCP-Client-Einstellungen konfiguriert und mindestens eine Adressenzuweisung hinzugefügt haben. Stellen Sie außerdem sicher, dass das Standard-Gateway und die Adressenzuweisungen sich im gleichen Subnetz befinden wie die primäre Schnittstelle des Servers."
+
+msgid "amDHCPNameTag"
+msgstr "Dynamisches Host-Konfigurationsprotokoll (DHCP)-Server"
+
+msgid "amDetailsTitle"
+msgstr "Dynamisches Host-Konfigurationsprotokoll (DHCP)-Server-Details"
+
+msgid "amDHCPNotRunning"
+msgstr "Der DHCP-Server ist nicht in Betrieb."
+
+msgid "amDHCPStatusOK"
+msgstr "Der DHCP-Server arbeitet normal."
+
+msgid "turnedOffDhcpdIpChange"
+msgstr "Der DHCP-Dienst wurde deaktiviert. Die neue IP-Adresse des Systems befindet sich in einem anderen Subnetz als die IP-Adressen, die den DHCP-Clients zugewiesen werden sollen. Bitte überprüfen Sie Ihre Adressenzuweisungen und vergewissern Sie sich, dass sie sich im gleichen Subnetz befinden wie der Server."
+
+msgid "errorWhileDisablingDhcpdIpChange"
+msgstr "Leider trat beim Versuch, Ihren DHCP-Dienst zu deaktivieren, ein Fehler auf.  Bitte konfigurieren Sie die DHCP-Adressenzuweisungen neu, damit sie sich im gleichen Subnetz befinden wie die primäre Schnittstelle des Servers."
+
+# This is only for engineering debug.
+msgid "cceError"
+msgstr "Konfigurations-Engine-Fehler beim Abrufen von DHCP-Objekten aus der Datenbank."
+
+# Capabilities
+msgid "capgroup_adminDhcpd"
+msgstr "DHCP-Verwaltung"
+
+msgid "capgroup_adminDhcpd_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, alle Einstellungen zu verwalten, die im Zusammenhang mit DHCP stehen, darunter auch statische und dynamische Adresszuweisungen."

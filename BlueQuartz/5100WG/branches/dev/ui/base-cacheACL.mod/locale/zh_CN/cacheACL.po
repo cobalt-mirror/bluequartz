@@ -1,0 +1,41 @@
+msgid "cacheACLSettings"
+msgstr "受限 Web 访问"
+
+msgid "cacheACL"
+msgstr "Web 访问 "
+
+msgid "cacheACL_help"
+msgstr "如果将本服务器用作网关或代理服务器，则可在此处控制 Web 权限。"
+
+msgid "whitelist"
+msgstr "许可访问"
+
+msgid "blacklist"
+msgstr "禁止访问"
+
+msgid "all"
+msgstr "不受限"
+
+msgid "modeField"
+msgstr "限制策略"
+
+msgid "modeField_help"
+msgstr "选择限制类型：允许访问，仅允许访问指定的站点；限制访问，阻塞或不允许访问指定站点；不受限，允许访问所有站点。注：此策略仅影响 web 访问，而不影响 ftp 和其他协议。"
+
+msgid "domainsField"
+msgstr "主机／域"
+
+msgid "domainsField_help"
+msgstr "输入限制 Web 权限的主机名和域名。可以通过在域名前加一个圆点号来使用外围域名。例如，条目 www.sun.com 仅用于该主机，但是条目 .sun.com 会将限制策略应用到 www.sun.com、cobalt.sun.com 和所有共享 sun.com 域的其他网站。"
+
+msgid "domainsField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]不是[[base-cacheACL.domainsField]]的有效值。[[base-cacheACL.domainsField_help]]"
+
+msgid "ipaddrField"
+msgstr "IP 地址"
+
+msgid "ipaddrField_help"
+msgstr "请输入要用于该策略的 IP 地址列表。"
+
+msgid "ipaddrField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]不是[[base-cacheACL.ipaddrField]]的有效值。[[base-cacheACL.ipaddrField_help]]"

@@ -1,0 +1,99 @@
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "[[legato-networker.networkerSettings]] を変更できます。"
+
+msgid "networkerSettings"
+msgstr "Legato NetWorker バックアップの設定"
+
+msgid "enableServer"
+msgstr "クライアントを有効にする"
+
+msgid "badHostname"
+msgstr "指定されたホスト名は、Legato バックアップサーバではありません。ホスト名と、サーバの設定をご確認ください。"
+
+msgid "enableServer_help"
+msgstr "Legato NetWorker バックアップクライアントの ON/OFF を切り替えます。"
+
+msgid "enabledButNoData"
+msgstr "サーバを有効にするには、少なくとも一台の Legato バックアップサーバを指定してください。"
+
+msgid "lgNetWorkerHostField"
+msgstr "Legato サーバのホスト名"
+
+msgid "lgNetWorkerHostField_help"
+msgstr "Legato NetWorker バックアップサーバのホスト名＋ドメインネームを指定してください。[[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[legato-networker.lgNetWorkerHostField]] には指定できません。Legato NetWorker バックアップサーバのホスト名＋ドメインネームを正しく指定してください。[[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_empty"
+msgstr "[[legato-networker.lgNetWorkerHostField]] への入力は省略できません。Legato NetWorker バックアップサーバのホスト名＋ドメインネームを正しく指定してください。[[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "Legato サーバのホスト名が不正です。"
+
+msgid "lgNetWorkerHostField_rule"
+msgstr "（指定例： host.domain.co.jp、backup.cobalt.comなど）"
+
+msgid "lgNetWorkerHostField_LookupFailed"
+msgstr "Legato サーバの中に見つからないものがあります。ネットワークへの接続と DNS エントリを確認してください。"
+
+msgid "lgNetWorkerLocalHost_LookupFailed"
+msgstr "このクライアントマシンの DNS エントリが不正です。正引きおよび逆引き DNS エントリをご確認ください。"
+
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "Legato NetWorker バックアップシステム"
+
+msgid "networkerSettings"
+msgstr "Legato NetWorker バックアップの設定"
+
+msgid "lgNetWorkerIPField_help"
+msgstr "Legato NetWorker バックアップサーバの IP アドレスを指定してください。[[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[legato-networker.lgNetWorkerIPField]]には指定できません。Legato NetWorker バックアップサーバの IP アドレスを正しく指定してください。[[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_empty"
+msgstr "[[legato-networker.lgNetWorkerIPField]]は省略できません。Legato NetWorker バックアップサーバの IP アドレスを指定してください。[[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "servPorts"
+msgstr "サービスポートの範囲"
+
+msgid "servPorts_help"
+msgstr "このシステムが使うサービスポートの範囲を指定してください。"
+
+msgid "connPorts"
+msgstr "接続ポートの範囲"
+
+msgid "connPorts_help"
+msgstr "このシステムが使う接続ポートの範囲を指定してください。"
+
+msgid "cannotFork"
+msgstr "fork の実行中にエラーが発生しました。"
+
+msgid "cannotCreateSymlink"
+msgstr "init-script symlink の生成中にエラーが発生しました。"
+
+msgid "cannotStartLegatoServer"
+msgstr "サービスの起動中にエラーが発生しました。"
+
+msgid "cannotStopLegatoServer"
+msgstr "サービスの停止中にエラーが発生しました。"
+
+msgid "cannotBreakLink"
+msgstr "init-scripts の unlink 中にエラーが発生しました。"
+
+msgid "am_stopped"
+msgstr "[[legato-networker.networker]] クライアントデーモンは動作しておらず、起動することもできませんでした。[[base-apache.amAdmservNameTag]] で、[[legato-networker.networker]] クライアントデーモンを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。[[legato-networker.networker]] クライアントデーモンが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも [[legato-networker.networker]] クライアントデーモンが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "am_running"
+msgstr "[[legato-networker.networker]] クライアントデーモンは動作しています。"
+ 
+msgid "am_unknown"
+msgstr "[[legato-networker.networker]] クライアントデーモンの状態は不明です。"
+

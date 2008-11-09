@@ -1,0 +1,59 @@
+msgid "arkeia"
+msgstr "Knox Arkeia"
+
+msgid "arkeia_help"
+msgstr "[[knox-arkeia.arkeiaSettings]] puede modificarse aquí."
+
+msgid "arkeiaSettings"
+msgstr "Controles de la copia de seguridad de Knox Arkeia"
+
+msgid "enableServer"
+msgstr "Habilitar el cliente"
+
+msgid "enableServer_help"
+msgstr "Encender o apagar el cliente Knox Arkeia"
+
+msgid "enabledButNoData"
+msgstr "Para habilitar el servidor, usted debe escribir por lo menos un servidor de seguridad Arkeia"
+
+msgid "arkeiaHostField"
+msgstr "Nombre del servidor de seguridad"
+
+msgid "arkeiaHostField_rule"
+msgstr "Un nombre de dominio calificado en la forma de: servidor.dominio.com, por ejemplo www.cobalt.com"
+
+msgid "arkeiaHostField_help"
+msgstr "Escriba el nombre de dominio completamente calificado del servidor de seguridad knox Arkeia.  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor inválido para [[knox-arkeia.arkeiaHostField]].  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_empty"
+msgstr "Lo sentimos, no ha escrito un valor para [[knox-arkeia.arkeiaHostField]].  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_LookupFailed"
+msgstr "No ha sido posible encontrar el servidor Arkeia. Por favor compruebe que el operador sea accesible desde la red, y la información del DNS sea válida. "
+
+msgid "arkeiaLocalHost_LookupFailed"
+msgstr "Los datos de DNS para este cliente son inválidos. Por favor verifique que los datos de entrada y salida sean los correctos."
+
+msgid "port"
+msgstr "Numero de puerto"
+
+msgid "port_help"
+msgstr "El cliente de seguridad Knox Arkeia necesita saber que puerto usar para comunicarse con otros operadores por medio de servicios knox, incluyendo la copia de seguridad.  El valor por omisión es 167. No se recomienda alterar este valor a menos que sea necesario. Si usted cambia este valor, asegúrese de que los otros operadores en la red estén configurados para usar el mismo numero de puerto especificado."
+
+msgid "cannotFork"
+msgstr "Error al tratar de penetrar"
+
+msgid "cannotCreateSymlink"
+msgstr "Error al crear el init-script symlink"
+
+msgid "cannotStartArkeiaServer"
+msgstr "Error al tratar de iniciar el servicio"
+
+msgid "cannotStopArkeiaServer"
+msgstr "Error al tratar de detener el servicio"
+
+msgid "cannotBreakLink"
+msgstr "Error al tratar de separar los init-scripts"

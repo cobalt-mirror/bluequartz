@@ -1,0 +1,18 @@
+# No UI
+msgid "cantConfigFile"
+msgstr "Impossible de modifier le fichier de configuration samba."
+
+msgid "dhcpUnsupported"
+msgstr "L'obtention de l'adresse du serveur WINS auprès du serveur DHCP n'est actuellement pas prise en charge."
+
+msgid "missingWinsIP"
+msgstr "Vous devez entrer l'adresse IP du serveur WINS dans le champ d'adresse IP pour utiliser un autre ordinateur du réseau en tant que serveur WINS."
+
+msgid "windowsMachineAlreadyExists"
+msgstr "Une machine appelée [[VAR.name]] existe déjà.  Choisissez un autre nom."
+
+msgid "couldNotClearOldMachine"
+msgstr "[[VAR.name]] n'a pas pu être supprimée."
+
+msgid "couldNotCreateNewMachine"
+msgstr "[[VAR.name]] n'a pas pu être créée.  Vérifiez le nom et réessayez."

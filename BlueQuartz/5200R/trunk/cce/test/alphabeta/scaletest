@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+# $Id: scaletest 259 2004-01-03 06:28:40Z shibuya $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+use lib qw( ../../client/perl );
+use CCE;
+use Time::HiRes qw ( gettimeofday tv_interval );
+my $cce = new CCE;
+if ($#ARGV >= 0) {
+  $cce->connectuds($ARGV[0]);
+} else {
+  $cce->connectuds("cced.socket");
+}
+
+my $t= time();
+
+my @dur = ();
+for (my $i = 0; $i < 500; $i++) {
+	my $t0 = [gettimeofday];
+	$cce->create("Beta", { 'name' => $t . ".$i", "foo" => $i });
+	my $d = tv_interval($t0, [gettimeofday]);
+	print STDERR "$d\n";
+	push (@dur, $d);
+}
+
+

@@ -1,0 +1,14 @@
+##BODY-ATTRIBUTES##
+	onLoad="MM_swapImgRestore(); MM_preloadImages('/libImage/wizWelcomeProgress.gif');"
+
+##PAGE-BODY##
+	wizardWelcome
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='0'>
+		<input type='hidden' name='WizPrevious' value='0'>
+	</form>
+
+##WELCOME-STARTER##
+	<a href="javascript: document.WizardForm.submit();" onClick="MM_swapImage('ProgressBar2','','/libImage/wizWelcomeProgress.gif',1);" alt="Continue" title="Continue" onMouseOver="window.status = 'Press to continue';"><img src="/libImage/wizWelcomeNext.gif" alt="" width="57" height="45" border="0"></a>

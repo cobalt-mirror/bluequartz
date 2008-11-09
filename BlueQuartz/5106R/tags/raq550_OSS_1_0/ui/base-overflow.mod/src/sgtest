@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# Stackguard detector
+#
+# Use: sgtest <file> ...
+#
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+
+
+case $# in
+0)	echo "No file name given" >&2
+	exit 1
+	;;
+esac
+
+res=0
+
+for f
+do
+	if [ -r "$f" ]
+	then
+		case `grep -ac 'StackGuard .* canary = %x died' "$f"` in
+		0)	echo "$f unprotected"
+			res=1
+			;;
+		*)	echo "$f protected"
+			;;
+		esac
+	else
+		echo "$f not readable or nonexistent" >&2
+	fi
+done
+
+exit $res

@@ -1,0 +1,64 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgName"
+msgstr "Sun Cobalt DiskMirror"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] は、２台のハードドライブを使った定常的なコンテンツミラーリングを実行することにより、信頼性を飛躍的に高めることができます。"
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "RAID（Redundant Array of Independent Disks）の状態"
+
+msgid "raid_title"
+msgstr "RAID（Redundant Array of Independent Disks）の状態の詳細"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "ディスクミラーリングは、OFFになりました。"
+
+msgid "raid_working"
+msgstr "ディスクミラーリングは有効で、現在アクティブ状態です。ハードドライブは２台とも正常に機能しています。"
+
+msgid "raid_sync_in_progress"
+msgstr "サーバ上のデータを１台のハードドライブから別のハードドライブに複製しています。同期化が完了すると、ディスクミラーリングが有効になり、アクティブ状態になります。"
+
+msgid "raid_completed"
+msgstr "完了"
+
+msgid "raid_minutes_remaining"
+msgstr "分で完了"
+
+msgid "raid_failure_raq"
+msgstr "ハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid_failure_hdc_raq"
+msgstr "サーバ正面から向かって左側のハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid_failure_hda_raq"
+msgstr "サーバ正面から向かって右側のハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。"
+
+msgid "raid_failure_qube"
+msgstr "ハードドライブに障害が生じ発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。交換後、データは自動的に復元されます。詳細については、[アクティブモニター] ページにある [RAID の詳細] 画面をご参照ください。"
+
+msgid "raid_failure_hdc_qube"
+msgstr "セカンダリハードドライブに障害が発生しました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。障害のあるドライブ（B）は、サーバの中央側に位置しており、サーバの正面に向かって右側にあります。"
+
+msgid "raid_failure_hda_qube"
+msgstr "プライマリハードドライブに障害が生じました。サーバをシャットダウンし、障害の発生したハードドライブを同容量のものと交換してください。障害のあるドライブ（A）は、サーバの端側に位置しており、サーバの正面に向かって左側にあります。"

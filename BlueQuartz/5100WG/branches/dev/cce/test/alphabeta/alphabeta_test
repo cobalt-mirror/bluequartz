@@ -1,0 +1,62 @@
+#!/usr/bin/perl 
+# $Id: alphabeta_test 229 2003-07-18 20:22:20Z will $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# Alpha and Beta class are tied together by a handler that causes a Beta
+# object to be created that mirrors all operations on the Alpha object.
+#
+# this test verifies that CREATE and DESTROY commands called from 
+# within handlers function properly.
+
+my $errors = 0;
+
+use lib qw( ../../client/perl );
+use CCE;
+my $cce = new CCE;
+
+if ($#ARGV >= 0) {
+  $cce->connectuds($ARGV[0]);
+} else {
+  $cce->connectuds("cced.socket");
+}
+
+$cce->create("Alpha", { 'name' => 'alphaone' });
+
+my @a_oids = $cce->find("Alpha", { 'name' => 'alphaone' });
+my @b_oids = $cce->find("Beta", { 'name' => 'alphaone' });
+
+if ($#a_oids != 0) {
+  $errors++; print STDERR "Alpha:alphaone was not created\n";
+}
+if ($#b_oids != 0) {
+  $errors++; print STDERR "Beta:alphaone was not created\n";
+}
+
+$cce->set($a_oids[0], "", {'name' => 'alphatwo' });
+
+my @a_oids = $cce->find("Alpha", { 'name' => 'alphatwo' });
+my @b_oids = $cce->find("Beta", { 'name' => 'alphatwo' });
+
+if ($#a_oids != 0) {
+  $errors++; print STDERR "Alpha:alphatwo was not set\n";
+}
+if ($#b_oids != 0) {
+  $errors++; print STDERR "Beta:alphatwo was not set\n";
+}
+
+$cce->destroy($a_oids[0]);
+
+my @a_oids = $cce->find("Alpha", { 'name' => 'alphatwo' });
+my @b_oids = $cce->find("Beta", { 'name' => 'alphatwo' });
+
+if ($#a_oids != -1) {
+  $errors++; print STDERR "Alpha:alphatwo was not destroyed\n";
+}
+if ($#b_oids != -1) {
+  $errors++; print STDERR "Beta:alphatwo was not destroyed\n";
+}
+
+$cce->create("Alpha", { 'name' => 'fail-on-create' });
+$cce->create("Alpha", { 'name' => 'beta-fail-on-create' });
+$cce->destroy($cce->oid);
+

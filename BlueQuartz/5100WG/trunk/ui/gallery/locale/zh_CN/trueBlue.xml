@@ -1,0 +1,500 @@
+<styleResource name="[[trueBlue.trueBlue]]">
+  <style id="Login">
+    <property name="fontFamily" target="medium" value="sans-serif" />
+    <property name="fontSize" target="medium" value="14pt" />
+    <property name="textDecoration" target="medium" value="none"/>
+
+    <property name="color" target="error" value="#990000" />
+
+    <property name="backgroundColor" target="small" value="#000099" />
+    <property name="color" target="small" value="#FFFFFF" />
+    <property name="fontFace" target="small" value="verdana" />
+    <property name="fontFamily" target="small" value="sans-serif" />
+    <property name="fontSize" target="small" value="10pt" />
+    <property name="fontWeight" target="small" value="bold" />
+    <property name="textDecoration" target="small" value="none" />
+
+    <property name="color" value="#000099" />
+    <property name="fontFamily" value="sans-serif" />
+    <property name="fontSize" value="18pt" />
+    <property name="fontWeight" value="bold" />
+    <property name="textDecoration" value="none"/>
+    <property name="fontStyle" value="italic" />
+
+    <property name="fontFamily" target="login" value="sans-serif" />
+    <property name="fontSize" target="login" value="medium" />
+    <property name="fontWeight" value="bold" />
+    <property name="textDecoration" target="login" value="none"/>
+
+    <property name="backgroundColor" target="button" value="#990000" />
+  </style>
+
+  <style id="Page">
+    <property name="aLinkColor" value="#0033CC"/>
+    <property name="backgroundImage" value="/libImage/blocksTileSmall.gif"/>
+    <property name="center" value="true"/>
+    <property name="fontFamily" value="sans-serif"/>
+    <property name="fontSize" value="12pt"/>
+  </style>
+
+  <style id="SimpleBlock">
+    <property name="borderColor" value="#CCCCCC"/>
+    <property name="borderThickness" value="1"/>
+    <property name="dividerAlign" value="left"/>
+    <property name="dividerHeight" value="5"/>
+    <property name="titleAlign" value="left"/>
+    <property name="width" value="550"/>
+
+    <property name="backgroundColor" target="dividerCell" value="#CCCCCC"/>
+    <property name="backgroundColor" target="htmlComponentCell" value="#FFFFFF"/>
+    <property name="backgroundColor" target="titleCell" value="#000099"/>
+
+    <property name="color" target="dividerLabel" value="#000000"/>
+    <property name="fontFamily" target="dividerLabel" value="sans-serif"/>
+    <property name="fontSize" target="dividerLabel" value="12pt"/>
+    <property name="textDecoration" target="dividerLabel" value="none"/>
+
+    <property name="color" target="titleLabel" value="#FFFFFF"/>
+    <property name="fontFamily" target="titleLabel" value="sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="12pt"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+  </style>
+
+  <style id="PagedBlock">
+    <property name="borderColor" value="#CCCCCC"/>
+    <property name="borderThickness" value="1"/>
+    <property name="dividerAlign" value="left"/>
+    <property name="dividerHeight" value="5"/>
+    <property name="tabAlign" value="right"/>
+    <property name="tabDividerHeight" value="3"/>
+    <property name="titleAlign" value="left"/>
+    <property name="width" value="550"/>
+
+    <property name="backgroundColor" target="dividerCell" value="#CCCCCC"/>
+    <property name="backgroundColor" target="labelCell" value="#FFFFFF"/>
+    <property name="backgroundColor" target="formFieldCell" value="#FFFFFF"/>
+    <property name="backgroundColor" target="tabDivider" value="#999999"/>
+    <property name="backgroundColor" target="titleCell" value="#000099"/>
+
+    <property name="color" target="dividerLabel" value="#000000"/>
+    <property name="fontFamily" target="dividerLabel" value="sans-serif"/>
+    <property name="fontSize" target="dividerLabel" value="12pt"/>
+    <property name="textDecoration" target="dividerLabel" value="none"/>
+
+    <property name="color" target="labelLabel" value="#333399"/>
+    <property name="fontFamily" target="labelLabel" value="sans-serif"/>
+    <property name="fontSize" target="labelLabel" value="10pt"/>
+    <property name="textDecoration" target="labelLabel" value="none"/>
+
+    <property name="color" target="subscript" value="#000000"/>
+    <property name="fontFamily" target="subscript" value="sans"/>
+    <property name="fontSize" target="subscript" value="10pt"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+
+    <property name="backgroundColor" target="tabSelected" value="#999999"/>
+    <property name="color" target="tabSelected" value="#FFFFFF"/>
+    <property name="fontFamily" target="tabSelected" value="sans-serif"/>
+    <property name="fontSize" target="tabSelected" value="10pt"/>
+    <property name="fontWeight" target="tabSelected" value="bold"/>
+    <property name="leftImage" target="tabSelected" value="/libImage/tabGreyLeftSelected.gif"/>
+    <property name="rightImage" target="tabSelected" value="/libImage/tabGreyRightSelected.gif"/>
+    <property name="textDecoration" target="tabSelected" value="none"/>
+
+    <property name="backgroundColor" target="tabUnselected" value="#666666"/>
+    <property name="color" target="tabUnselected" value="#FFFFFF"/>
+    <property name="fontFamily" target="tabUnselected" value="sans-serif"/>
+    <property name="fontSize" target="tabUnselected" value="10pt"/>
+    <property name="fontWeight" target="tabUnselected" value="bold"/>
+    <property name="leftImage" target="tabUnselected" value="/libImage/tabGreyLeftUnselected.gif"/>
+    <property name="rightImage" target="tabUnselected" value="/libImage/tabGreyRightUnselected.gif"/>
+    <property name="textDecoration" target="tabUnselected" value="none"/>
+
+    <property name="color" target="titleLabel" value="#FFFFFF"/>
+    <property name="fontFamily" target="titleLabel" value="sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="12pt"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+  </style>
+
+  <style id="Button">
+    <property name="backgroundColor" target="normal" value="#000099"/>
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="sans-serif"/>
+    <property name="fontSize" target="normal" value="10pt"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/buttonLeftDot.gif"/>
+    <property name="rightImage" target="normal" value="/libImage/buttonRight.gif"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="backgroundColor" target="disabled" value="#CCCCCC"/>
+    <property name="color" target="disabled" value="#FFFFFF"/>
+    <property name="fontFamily" target="disabled" value="sans-serif"/>
+    <property name="fontSize" target="disabled" value="10pt"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/buttonLeftDotGray.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/buttonRightGray.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+  </style>
+
+  <style id="Bar">
+    <property name="emptyImage" value="/libImage/bar2.jpg"/>
+    <property name="endImage" value="/libImage/bar3.jpg"/>
+    <property name="filledImage" value="/libImage/bar1.jpg"/>
+    <property name="fontFamily" value="sans-serif"/>
+    <property name="fontSize" value="10pt"/>
+    <property name="startImage" value="/libImage/bar0.jpg"/>
+    <property name="vemptyImage" value="/libImage/vbarEmpty.gif"/>
+    <property name="vendImage" value="/libImage/vbarEmpty.gif"/>
+    <property name="vfilledImage" value="/libImage/vbarFill.gif"/>
+    <property name="vstartImage" value="/libImage/vbarStart.gif"/>
+  </style>
+
+  <style id="ImageButton">
+  </style>
+
+  <style id="DetailButton">
+    <property name="detailIcon" value="/libImage/detail.gif"/>
+    <property name="detailIconDisabled" value="/libImage/detailGray.gif"/>
+  </style>
+
+  <style id="ModifyButton">
+    <property name="modifyIcon" value="/libImage/modify.gif"/>
+    <property name="modifyIconDisabled" value="/libImage/modifyGray.gif"/>
+  </style>
+
+  <style id="RemoveButton">
+    <property name="removeIcon" value="/libImage/remove.gif"/>
+    <property name="removeIconDisabled" value="/libImage/removeGray.gif"/>
+  </style>
+
+  <style id="UninstallButton">
+    <property name="uninstallIcon" value="/libImage/uninstall.gif"/>
+    <property name="uninstallIconDisabled" value="/libImage/uninstallGray.gif"/>
+  </style>
+
+  <style id="CancelButton">
+    <property name="backgroundColor" target="normal" value="#000099"/>
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="sans-serif"/>
+    <property name="fontSize" target="normal" value="10pt"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/buttonLeftDot.gif"/>
+    <property name="rightImage" target="normal" value="/libImage/buttonRight.gif"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="backgroundColor" target="disabled" value="#CCCCCC"/>
+    <property name="color" target="disabled" value="#FFFFFF"/>
+    <property name="fontFamily" target="disabled" value="sans-serif"/>
+    <property name="fontSize" target="disabled" value="10pt"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/buttonLeftDotGray.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/buttonRight.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+  </style>
+
+  <style id="Label">
+    <property name="color" value="#000000"/>
+    <property name="fontFamily" value="sans-serif"/>
+    <property name="fontSize" value="10pt"/>
+    <property name="textDecoration" value="none"/>
+  </style>
+
+  <style id="MultiChoice">
+    <property name="backgroundColor" target="fieldGrouper" value="#CCCCCC"/>
+
+    <property name="color" target="choiceLabel" value="#000000"/>
+    <property name="fontFamily" target="choiceLabel" value="sans-serif"/>
+    <property name="fontSize" target="choiceLabel" value="10pt"/>
+    <property name="textDecoration" target="choiceLabel" value="none"/>
+
+    <property name="color" target="formFieldLabel" value="#333399"/>
+    <property name="fontFamily" target="formFieldLabel" value="sans-serif"/>
+    <property name="fontSize" target="formFieldLabel" value="10pt"/>
+    <property name="textDecoration" target="formFieldLabel" value="none"/>
+
+    <property name="color" target="subscript" value="#000000"/>
+    <property name="fontFamily" target="subscript" value="sans"/>
+    <property name="fontSize" target="subscript" value="10pt"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+  </style>
+
+  <style id="Password">
+    <property name="color" target="subscript" value="#000000"/>
+    <property name="fontFamily" target="subscript" value="sans"/>
+    <property name="fontSize" target="subscript" value="10pt"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+  </style>
+
+  <style id="SaveButton">
+    <property name="backgroundColor" target="normal" value="#000099"/>
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="sans-serif"/>
+    <property name="fontSize" target="normal" value="10pt"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/buttonLeftDot.gif"/>
+    <property name="rightImage" target="normal" value="/libImage/buttonRight.gif"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="backgroundColor" target="disabled" value="#CCCCCC"/>
+    <property name="color" target="disabled" value="#FFFFFF"/>
+    <property name="fontFamily" target="disabled" value="sans-serif"/>
+    <property name="fontSize" target="disabled" value="10pt"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/buttonLeftDotGray.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/buttonRight.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+  </style>
+
+  <style id="SetSelector">
+    <property name="addIcon" value="/libImage/leftArrow.gif"/>
+    <property name="addIconDisabled" value="/libImage/leftArrowGray.gif"/>
+    <property name="removeIcon" value="/libImage/rightArrow.gif"/>
+    <property name="removeIconDisabled" value="/libImage/rightArrowGray.gif"/>
+  </style>
+
+  <style id="ScrollList">
+    <property name="borderColor" value="#CCCCCC"/>
+    <property name="borderThickness" value="1"/>
+    <property name="controlAlign" value="LEFT"/>
+    <property name="sortAscendingIcon" value="/libImage/downArrowGray.gif"/>
+    <property name="sortDescendingIcon" value="/libImage/upArrowGray.gif"/>
+    <property name="sortedAscendingIcon" value="/libImage/downArrow.gif"/>
+    <property name="sortedDescendingIcon" value="/libImage/upArrow.gif"/>
+    <property name="titleAlign" value="LEFT"/>
+    <property name="width" value="550"/>
+
+    <property name="backgroundColor" target="entryCell" value="#FFFFFF"/>
+    <property name="fontFamily" target="entryCell" value="sans-serif"/>
+    <property name="fontSize" target="entryCell" value="10pt"/>
+
+    <property name="backgroundColor" target="controlCell" value="#CCCCCC"/>
+
+    <property name="backgroundColor" target="labelCell" value="#FFFFFF"/>
+
+    <property name="backgroundColor" target="titleCell" value="#000099"/>
+
+    <property name="color" target="controlLabel" value="#000000"/>
+    <property name="fontFamily" target="controlLabel" value="sans-serif"/>
+    <property name="fontSize" target="controlLabel" value="12pt"/>
+    <property name="textDecoration" target="controlLabel" value="none"/>
+
+    <property name="color" target="labelLabel" value="#333399"/>
+    <property name="fontFamily" target="labelLabel" value="sans-serif"/>
+    <property name="fontSize" target="labelLabel" value="12pt"/>
+    <property name="textDecoration" target="labelLabel" value="none"/>
+
+    <property name="color" target="titleLabel" value="#FFFFFF"/>
+    <property name="fontFamily" target="titleLabel" value="sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="12pt"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+  </style>
+
+  <style id="cListNavigation">
+    <property name="collapsibleListWidth" value="180"/>
+    <property name="infoHeight" value="50"/>
+    <property name="tabHeight" value="40"/>
+  </style>
+
+  <style id="flowNavigation">
+    <property name="controlHeight" value="49"/>
+    <property name="infoHeight" value="50"/>
+    <property name="titleHeight" value="40"/>
+  </style>
+
+  <style id="singleNavigation">
+    <property name="infoHeight" value="50"/>
+    <property name="titleHeight" value="40"/>
+  </style>
+
+  <style id="collapsibleList">
+    <property name="aLinkColor" value="#0033CC"/>
+    <property name="borderThickness" value="0"/>
+    <property name="collapsedIcon" value="/libImage/arrowRight.gif"/>
+    <property name="dividerImage" value="/libImage/listBevel.gif"/>
+    <property name="expandedIcon" value="/libImage/arrowDown.gif"/>
+    <property name="selectedIcon" value="/libImage/spaceHolder15x15.gif"/>
+    <property name="unselectedIcon" value="/libImage/spaceHolder15x15.gif"/>
+    <property name="width" value="100%"/>
+
+    <property name="backgroundColor" target="page" value="#003399"/>
+
+    <property name="backgroundColor" target="listNear" value="#0033CC"/>
+    <property name="backgroundColor" target="listNormal" value="#003399"/>
+    <property name="backgroundColor" target="listSelected" value="#FFFFFF"/>
+
+    <property name="color" target="near" value="#FFFFFF"/>
+    <property name="fontFamily" target="near" value="sans-serif"/>
+    <property name="fontSize" target="near" value="10pt"/>
+    <property name="fontWeight" target="near" value="bold"/>
+    <property name="textDecoration" target="near" value="none"/>
+
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="sans-serif"/>
+    <property name="fontSize" target="normal" value="10pt"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="selected" value="#000000"/>
+    <property name="fontFamily" target="selected" value="sans-serif"/>
+    <property name="fontSize" target="selected" value="10pt"/>
+    <property name="fontWeight" target="selected" value="bold"/>
+    <property name="textDecoration" target="selected" value="none"/>
+  </style>
+
+  <style id="flowControl">
+    <property name="backgroundImage" value="/libImage/controlBackground.gif"/>
+    <property name="backImage" value="/libImage/back.gif"/>
+    <property name="backImageDisabled" value="/libImage/backGray.gif"/>
+    <property name="finishImage" value="/libImage/finish.gif"/>
+    <property name="finishImageDisabled" value="/libImage/finishGray.gif"/>
+    <property name="nextImage" value="/libImage/next.gif"/>
+    <property name="nextImageDisabled" value="/libImage/nextGray.gif"/>
+  </style>
+
+  <style id="StatusSignal">
+    <property name="disabledIcon" value="/libImage/greyball.gif"/>
+    <property name="noMonitorIcon" value="/libImage/greyball.gif"/>
+    <property name="failureIcon" value="/libImage/redball.gif"/>
+    <property name="newIcon" value="/libImage/new.gif"/>
+    <property name="noneIcon" value="/libImage/greyball.gif"/>
+    <property name="normalIcon" value="/libImage/greenball.gif"/>
+    <property name="oldIcon" value="/libImage/old.gif"/>
+    <property name="pendingIcon" value="/libImage/greyball.gif"/>
+    <property name="problemIcon" value="/libImage/yellowball.gif"/>
+    <property name="repliedIcon" value="/libImage/replied.gif"/>
+    <property name="severeProblemIcon" value="/libImage/redball.gif"/>
+    <property name="successIcon" value="/libImage/greenball.gif"/>
+  </style>
+
+  <style id="info">
+    <property name="backgroundColor" target="error" value="#990000"/>
+    <property name="color" target="error" value="#FFFFFF"/>
+    <property name="errorIcon" target="error" value="/libImage/infoErrorError.gif"/>
+    <property name="fontFamily" target="error" value="sans-serif"/>
+    <property name="fontSize" target="error" value="10pt"/>
+    <property name="lastIcon" target="error" value="/libImage/infoLeftError.gif"/>
+    <property name="lastIconDisabled" target="error" value="/libImage/infoLeftErrorGray.gif"/>
+    <property name="nextIcon" target="error" value="/libImage/infoRightError.gif"/>
+    <property name="nextIconDisabled" target="error" value="/libImage/infoRightErrorGray.gif"/>
+    <property name="revealMask" target="error" value="/libImage/revealMaskError.gif"/>
+    <property name="typeIcon" target="error" value="/libImage/infoError.gif"/>
+
+    <property name="backgroundColor" target="help" value="#000099"/>
+    <property name="color" target="help" value="#FFFFFF"/>
+    <property name="errorIcon" target="help" value="/libImage/infoErrorHelp.gif"/>
+    <property name="fontFamily" target="help" value="sans-serif"/>
+    <property name="fontSize" target="help" value="10pt"/>
+    <property name="lastIcon" target="help" value="/libImage/infoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="help" value="/libImage/infoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="help" value="/libImage/infoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="help" value="/libImage/infoRightHelpGray.gif"/>
+    <property name="revealMask" target="help" value="/libImage/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="help" value="/libImage/infoHelp.gif"/>
+
+    <property name="backgroundColor" target="status" value="#000099"/>
+    <property name="color" target="status" value="#FFFFFF"/>
+    <property name="errorIcon" target="status" value="/libImage/infoErrorHelp.gif"/>
+    <property name="fontFamily" target="status" value="sans-serif"/>
+    <property name="fontSize" target="status" value="10pt"/>
+    <property name="lastIcon" target="status" value="/libImage/infoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="status" value="/libImage/infoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="status" value="/libImage/infoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="status" value="/libImage/infoRightHelpGray.gif"/>
+    <property name="revealMask" target="status" value="/libImage/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="status" value="/libImage/spaceHolder.gif"/>
+
+    <property name="backgroundColor" target="wait" value="#000099"/>
+    <property name="color" target="wait" value="#FFFFFF"/>
+    <property name="errorIcon" target="wait" value="/libImage/infoErrorHelp.gif"/>
+    <property name="fontFamily" target="wait" value="sans-serif"/>
+    <property name="fontSize" target="wait" value="10pt"/>
+    <property name="lastIcon" target="wait" value="/libImage/infoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="wait" value="/libImage/infoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="wait" value="/libImage/infoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="wait" value="/libImage/infoRightHelpGray.gif"/>
+    <property name="revealMask" target="wait" value="/libImage/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="wait" value="/libImage/clock.gif"/>
+  </style>
+
+  <style id="tab">
+    <property name="aLinkColor" value="#0033CC"/>
+    <property name="backgroundImage" value="/libImage/topBackground.gif"/>
+    <property name="logo" value="/libImage/sun_cobalt_logo.gif"/>
+    <property name="logoutImage" value="/libImage/logout.gif"/>
+    <property name="monitorOffImage" value="/libImage/monitorOff.gif"/>
+    <property name="monitorOnImage" value="/libImage/monitorOn.gif"/>
+    <property name="selectedImageLeft" value="/libImage/tabLeftSelected.gif"/>
+    <property name="selectedImageRight" value="/libImage/tabRightSelected.gif"/>
+    <property name="top" value="13"/>
+    <property name="unselectedImageLeft" value="/libImage/tabLeftUnselected.gif"/>
+    <property name="unselectedImageRight" value="/libImage/tabRightUnselected.gif"/>
+    <property name="updateOffImage" value="/libImage/updateOff.gif"/>
+    <property name="updateOnImage" value="/libImage/updateOn.gif"/>
+    <property name="manualOffImage" value="/libImage/helpicon.gif"/>
+
+    <property name="backgroundColor" target="selected" value="#66CC00"/>
+    <property name="color" target="selected" value="#000000"/>
+    <property name="fontFamily" target="selected" value="sans-serif"/>
+    <property name="fontSize" target="selected" value="10pt"/>
+    <property name="fontWeight" target="selected" value="bold"/>
+    <property name="textDecoration" target="selected" value="none"/>
+
+    <property name="backgroundColor" target="unselected" value="#339900"/>
+    <property name="color" target="unselected" value="#000000"/>
+    <property name="fontFamily" target="unselected" value="sans-serif"/>
+    <property name="fontSize" target="unselected" value="10pt"/>
+    <property name="fontWeight" target="unselected" value="bold"/>
+    <property name="textDecoration" target="unselected" value="none"/>
+  </style>
+
+  <style id="title">
+    <property name="backgroundImage" value="/libImage/topBackground.gif"/>
+    <property name="logo" value="/libImage/sun_cobalt_logo.gif"/>
+
+    <property name="color" target="description" value="#FFFFFF"/>
+    <property name="fontFamily" target="description" value="sans-serif"/>
+    <property name="fontSize" target="description" value="10pt"/>
+
+    <property name="color" target="title" value="#FFFFFF"/>
+    <property name="fontFamily" target="title" value="sans-serif"/>
+    <property name="fontSize" target="title" value="16pt"/>
+    <property name="fontWeight" target="title" value="bold"/>
+  </style>
+
+  <style id="splash">
+    <property name="swupdate" value="/libImage/splashUpdates.jpg"/>
+  </style>
+
+  <style id="loginPage">
+    <property name="fontFace" value=""/>
+
+    <property name="backgroundColor" target="small" value="#000099"/>
+    <property name="color" target="small" value="#FFFFFF"/>
+    <property name="fontFamily" target="small" value=""/>
+    <property name="fontSize" target="small" value="9"/>
+    <property name="fontWeight" target="small" value="bold"/>
+    <property name="textDecoration" target="small" value="none"/>
+  </style>
+</styleResource>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

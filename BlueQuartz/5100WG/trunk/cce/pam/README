@@ -1,0 +1,8 @@
+# $Id: README 3 2003-07-17 15:19:15Z will $
+#
+
+this module is an authentication module that performs an authentication check against CCE.  It assumes the secret is a sessionId but has a fallback to trying to authenticate using the secret as a plain text password.  This fallback will give CCE a change to challenge pam_pwdb.
+
+module services provided:
+
+	auth		_authetication and _setcred (blank)

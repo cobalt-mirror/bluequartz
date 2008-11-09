@@ -1,0 +1,12 @@
+#!/usr/bin/perl
+# $Id: fpxTest 922 2003-07-17 15:22:40Z will $
+
+use lib "../lib";
+use RaQUtil;
+
+my $dir = "/home/sites/comeone.mutha.com";
+
+my $pass = RaQUtil::getFpxPass($dir);
+
+warn "pass is: ", $pass, "\n";
+

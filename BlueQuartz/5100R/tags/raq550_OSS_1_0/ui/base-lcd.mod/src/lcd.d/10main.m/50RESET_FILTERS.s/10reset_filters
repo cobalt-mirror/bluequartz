@@ -1,0 +1,60 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: 10reset_filters 3 2003-07-17 15:19:15Z will $
+#
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved
+#
+# This script is called when the user requests 
+# Reset Filters via the LCD. It has the effect of 
+# disabling firewall filters.
+
+use POSIX;
+use I18n;
+use CCE;
+
+if ($ARGV[0] eq "-s") {
+    $option = "-s";
+} else {
+    $option = "";
+}
+
+my $cce = new CCE;
+$cce->connectuds();
+
+my $i18n = new I18n;
+
+$resetstr = $i18n->get("[[base-lcd. RESET FILTERS? ]]");
+$yesnostr = $i18n->get("[[base-lcd.yes_no]]");
+$result = system("/sbin/lcd-yesno $option -1 \"$resetstr\" -2 \"$yesnostr\"");
+if ($result == 256) {
+
+  $reset1 = $i18n->get("[[base-lcd.   RESETTING    ]]");
+  $reset2 = $i18n->get("[[base-lcd.    FILTERS     ]]");
+  system("/sbin/lcd-write $option \"$reset1\" \"$reset2\"");
+
+  # Pause, so the user has a chance at reading the message.
+  system("/bin/sleep 4");
+
+  my (@soids) = $cce->find("System");
+  $cce->set( $soids[0], "Firewall", { enabled => "0", commit => time } )
+      if (@soids > 0);
+}
+
+
+$resetstr = $i18n->get("[[base-lcd. RESET ROUTES? ]]");
+$result = system("/sbin/lcd-yesno $option -1 \"$resetstr\" -2 \"$yesnostr\"");
+if ($result == 256) {
+
+  $reset1 = $i18n->get("[[base-lcd.   RESETTING    ]]");
+  $reset2 = $i18n->get("[[base-lcd.    ROUTES      ]]");
+  system("/sbin/lcd-write $option \"$reset1\" \"$reset2\"");
+
+  # These routes are a pain in the rear ...
+  my (@roids) = $cce->find("Route");
+  my $roid;
+  foreach $roid (@roids) {
+	  $cce->destroy($roid);
+  }
+}
+
+$cce->bye("SUCCESS");

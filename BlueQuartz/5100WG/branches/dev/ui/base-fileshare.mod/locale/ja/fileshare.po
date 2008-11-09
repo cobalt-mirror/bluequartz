@@ -1,0 +1,81 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "ファイルと印刷"
+
+msgid "fileSharing_help"
+msgstr "ここをクリックすると、ファイルサービスを設定できます。"
+
+msgid "guestShare"
+msgstr "ゲスト共有"
+
+msgid "guestShare_help"
+msgstr "ここをクリックすると、[[base-fileshare.fileSharingSettings]] を設定できます。"
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "ゲスト共有の設定"
+
+msgid "guestShareField"
+msgstr "ゲストアクセスを許可する"
+
+msgid "guestShareField_help"
+msgstr "登録ユーザ以外のゲストユーザによる Apple ファイル共有、FTP、Windows ファイル共有を介したファイル共有を許可するかどうかを指定してください。ゲストアクセスを禁止しても、このサーバ上にアカウントを持つ登録ユーザはファイル共有サービスを利用できます。"
+
+msgid "incomingEnable"
+msgstr "許可する"
+
+msgid "incomingField"
+msgstr "ゲストによるファイルのアップロード"
+
+msgid "incomingField_help"
+msgstr "登録ユーザ以外のゲストユーザによるファイルのアップロードを許可するかどうかを指定してください。このボックスをチェックすると、ゲストユーザは [ゲスト共有] フォルダにファイルをアップロードできるようになります。"
+
+msgid "maxDiskSpaceField"
+msgstr "最大ディスク容量（MB）"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "メガバイトを単位とし、1 ～ 1024000 の整数で指定してください。デフォルトは 50 MBです。"
+
+msgid "maxDiskSpaceField_help"
+msgstr "ゲストユーザがファイルのアップロードに使えるディスク容量の最大値を指定してください。[[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "このグループのユーザは、ゲストユーザとのファイル共有が可能です。"
+
+
+# --- Handler messages
+
+	# -- guest.pl  ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr " Error:  User already taken"
+
+msgid "groupDoesntExist"
+msgstr "Error:  Group doesn't exist"
+
+msgid "cantChangeGroup"
+msgstr "Error:  Can't change group"
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "エラーが発生しました。このゲストユーザは不正です。"
+
+msgid "invalidPath"
+msgstr "エラーが発生しました。このゲスト共有パスは不正です。"
+
+msgid "cantSetQuota"
+msgstr "ゲスト共有割当の設定中にエラーが発生しました。必要な設定ファイルが不足している可能性があります。"
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "ファイル共有設定の管理"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "この管理権限を持つユーザは、ゲストファイル共有設定を変更できます。"
+
+msgid "capgroup_adminFileShare"
+msgstr "ファイル共有の管理"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "この管理者権限を持つユーザは、ファイル共有の全ての設定を管理できます。"

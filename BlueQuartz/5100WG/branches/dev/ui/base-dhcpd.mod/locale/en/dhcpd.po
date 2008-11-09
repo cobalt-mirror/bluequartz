@@ -1,0 +1,316 @@
+msgid "dhcpd"
+msgstr "DHCP"
+
+msgid "dhcpd_help"
+msgstr "Click here to change [[base-dhcpd.dhcpdSettings]]."
+
+msgid "dhcpdSettings"
+msgstr "Dynamic Host Configuration Protocol (DHCP) Settings"
+
+msgid "enableServerField"
+msgstr "Enable Server"
+
+msgid "enableServerField_help"
+msgstr "Turn Dynamic Host Configuration Protocol (DHCP) server functionality on or off.  Turning this feature on allows a client machine to automatically obtain networking configuration settings at startup from this server appliance."
+
+msgid "settingsForClients"
+msgstr "DHCP Client Settings"
+
+msgid "settingsForClients_help"
+msgstr "Click here to configure DHCP Client Settings.  These are the networking configuration settings that will be automatically served to the clients at startup time."
+
+msgid "domainNameField"
+msgstr "Client Domain Name"
+
+msgid "domainNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  For example, sun.com is a valid entry."
+
+msgid "domainNameField_help"
+msgstr "Enter the domain name which will be served automatically to these clients.  This domain name is usually the same as the domain name of this server appliance.  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.domainNameField]].  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.domainNameField]].  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Client DNS Addresses"
+
+msgid "dnsAddressesField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "dnsAddressesField_help"
+msgstr "Enter the IP address or addresses of your local domain name server or servers which will be served automatically to these clients.  A domain name server translates textual host names and domain names into numerical IP addresses, and vice-versa.  [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.dnsAddressesField]].  [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.dnsAddressesField]].  [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "subnetMaskField" 
+msgstr "Client Subnet Mask"
+
+msgid "subnetMaskField_rule" 
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 255.255.255.0 is a valid entry."
+
+msgid "subnetMaskField_help"
+msgstr "Enter the subnet mask which will be served automatically to these clients.  [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.subnetMaskField]].  [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.subnetMaskField]].  [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Client Default Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "gatewayField_help"
+msgstr "Enter the IP address of your local network gateway which will be served automatically to these clients.  A network gateway allows you to connect to the world outside of your local network area.  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.gatewayField]].  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.gatewayField]].  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "maxLeaseField"
+msgstr "Maximum Lease Time (Seconds)"
+
+msgid "maxLeaseField_rule"
+msgstr "Please enter an integer greater than zero.  The default value is 86400."
+
+msgid "maxLeaseField_help"
+msgstr "The networking information assigned by a Dynamic Host Configuration Protocol (DHCP) server expires after a fixed period of time.  Enter the maximum period of time in seconds before a lease expires.  [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.maxLeaseField]].  [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.maxLeaseField]].  [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "addressAssignments"
+msgstr "Modify Address Assignments"
+
+msgid "addressAssignments_help"
+msgstr "Click here to setup the IP addresses that this server will assign to clients requesting an IP address."
+
+msgid "dynamicAssignmentList"
+msgstr "Dynamic Address Assignment List"
+
+msgid "ipAddressLow"
+msgstr "IP Address Range (From)"
+
+msgid "ipAddressLow_help"
+msgstr "This is the low end of the range of IP addresses being assigned dynamically."
+
+msgid "ipAddressHi"
+msgstr "IP Address Range (To)"
+
+msgid "ipAddressHi_help"
+msgstr "This is the high end of the range of IP addresses being assigned dynamically."
+
+msgid "listActionDyn"
+msgstr "Action"
+
+msgid "listActionDyn_help"
+msgstr "These are the buttons used to modify or remove a range of IP addresses being assigned dynamically."
+
+msgid "removeDynamicConfirm"
+msgstr "Are you sure you want to remove the range of IP addresses from [[VAR.ipAddressLow]] to [[VAR.ipAddressHi]]?"
+
+msgid "addNewDynamic"
+msgstr "Add New Dynamic Address Assignment"
+
+msgid "ipAddressLowField"
+msgstr "IP Address Range (From)"
+
+msgid "ipAddressLowField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.100 is a valid entry."
+
+msgid "ipAddressLowField_help"
+msgstr "Enter the first or lowest IP address in the range of IP addresses to be dynamically assigned by this server.  [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.ipAddressLowField]].  [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.ipAddressLowField]].  [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressHiField"
+msgstr "IP Address Range (To)"
+
+msgid "ipAddressHiField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.110 is a valid entry."
+
+msgid "ipAddressHiField_help"
+msgstr "Enter the last or highest IP address in the range of IP addresses to be dynamically assigned by this server.  [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.ipAddressHiField]].  [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.ipAddressHiField]].  [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "staticAssignmentList"
+msgstr "Static Address Assignment List"
+
+msgid "ipAddress"
+msgstr "IP Address"
+
+msgid "ipAddress_help"
+msgstr "This is the IP address that will be assigned consistently and statically to the computer with the specified MAC address."
+
+msgid "macAddress"
+msgstr "MAC Address"
+
+msgid "macAddress_help"
+msgstr "This is the MAC address of the computer that will be consistently and statically assigned the specified IP address."
+
+msgid "listActionStatic"
+msgstr "Action"
+
+msgid "listActionStatic_help"
+msgstr "These are the buttons used to modify or remove an IP address being assigned statically."
+
+msgid "removeStaticConfirm"
+msgstr "Are you sure you want to remove the assignment of the IP address [[VAR.ipAddress]] to the MAC address [[VAR.macAddress]]?"
+
+msgid "addNewStatic" 
+msgstr "Add New Static Address Assignment"
+
+msgid "ipAddressField"
+msgstr "IP Address"
+
+msgid "ipAddressField_rule"
+msgstr "[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressField_help"
+msgstr "Enter the IP address to be statically assigned by this server to a specific computer that is identified by a specific Media Access Control (MAC) address.  [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.ipAddressField]].  [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.ipAddressField]].  [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "macAddrAlreadySpecified"
+msgstr "The MAC Address specified has already been assigned an IP Address."
+
+msgid "macAddressField"
+msgstr "MAC Address"
+
+msgid "macAddressField_rule"
+msgstr "Please enter a series of 12 hexadecimal digits separated by a colon between every 2 digits.  For example, 00:10:E0:01:33:AB is a valid entry."
+
+msgid "macAddressField_help" 
+msgstr "Enter the Media Access Control (MAC) address of the computer to be statically assigned an IP address by this server.  A MAC address is the hardware address of the network interface card.  This hardware address is a unique identifier and cannot be changed after manufacture.  [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dhcpd.macAddressField]].  [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_empty"
+msgstr "Sorry, you have not entered a value for [[base-dhcpd.macAddressField]].  [[base-dhcpd.macAddressField_rule]]"
+
+msgid "cantSetParam"
+msgstr "Cannot set DHCP Parameters."
+
+msgid "noIPAddrRange"
+msgstr "The From or To IP address is missing.  Please enter an IP address for the beginning of the range of IP addresses as well as an IP address for the end of the range of IP addresses to assign to clients on your network."
+
+msgid "ipAddrRangeNotValid"
+msgstr "IP address range is not valid.   Please enter an IP address for the beginning and end of the range of IP addresses to assign to clients on your network. The From IP address must be lower than the To IP address."
+
+msgid "modDynamicAddress"
+msgstr "Modify Dynamic Address Assignment"
+
+msgid "modStaticAddress"
+msgstr "Modify Static Address Assignment"
+
+msgid "noDhcpConf"
+msgstr "Sorry, the DHCP server configuration file, /etc/dhcpd.conf, could not be found.  Try reconfiguring your DHCP settings.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "noSystemObj"
+msgstr "DHCP Parameter set operation could not find the System object.  Please contact [[base-carmel.osVendor]] technical support."
+
+msgid "noNetworkObj"
+msgstr "DHCP Parameter set operation could not find the Network object.    Please contact [[base-carmel.osVendor]] technical support."
+
+msgid "noParamObj"
+msgstr "DHCP Parameter set operation could not find the DhcpParam object.  Please contact [[base-carmel.osVendor]] technical support."
+
+msgid "parameters"
+msgstr "Parameters"
+
+msgid "noConfigFile"
+msgstr "Sorry, the DHCP server configuration file, /etc/dhcpd.conf, could not be found.  Try reconfiguring your DHCP settings.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "cannotLock"
+msgstr "The configuration file /etc/dhcpd.conf file is in use.  Try again later.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "cantUpdateConf"
+msgstr "The system cannot update the configuration file, /etc/dhcpd.conf.  Try reconfiguring your DHCP settings.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "rangeMismatch"
+msgstr "The IP address of the Primary interface is on a different subnet than the IP addresses to be assigned to DHCP clients.  Please check your Address Assignments and ensure that they are on the same subnet as the server."
+
+msgid "gwMismatch"
+msgstr "The IP address of the Primary interface is on a different subnet than the Default Gateway to be assigned to DHCP clients.  Please check your Client Default Gateway and ensure that it is on the same subnet as the server."
+
+msgid "ipMismatch"
+msgstr "The IP address of the Primary interface is on a different subnet than the IP Address to be assigned to a DHCP client for this Static Address Assignment.  Please enter an IP Address for this Static Address Assignment that is on the same subnet as the server."
+
+msgid "wrongOrder"
+msgstr "[[base-dhcpd.ipAddrRangeNotValid]]."
+
+msgid "noLeaseFile"
+msgstr "The configuration file, /etc/dhcpd.leases, cannot be opened.  Remove this file, reconfigure your DHCP Settings and restart the DHCP server.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "initScriptError"
+msgstr "The initialization script for the DHCP server could not be executed.  Please try again.  This file may be corrupt or missing.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "initLinkOnFail"
+msgstr "The system was unable to configure the initialization script for starting the DHCP server automatically on subsequent boots.  Please try again.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "initLinkOffFail"
+msgstr "The system was unable to remove the initialization script to disable the DHCP server on subsequent boots.  Please try again.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "offFail"
+msgstr "The system was unable to turn off the DHCP server.  Please try disabling the server again.  If you still see this message, contact [[base-carmel.osVendor]] technical support."
+
+msgid "cannotStartDhcp"
+msgstr "The DHCP server could not be enabled.  Please make sure that you have configured the DHCP Client Settings and added at least one Address Assignment.  Also ensure that the Default Gateway and Address Assignments are on the same subnet as the Primary interface of the server."
+
+msgid "amDHCPNameTag"
+msgstr "Dynamic Host Configuration Protocol (DHCP) Server"
+
+msgid "amDetailsTitle"
+msgstr "Dynamic Host Configuration Protocol (DHCP) Server Details"
+
+msgid "amDHCPNotRunning"
+msgstr "The DHCP server is not running."
+
+msgid "amDHCPStatusOK"
+msgstr "The DHCP server is operating normally."
+
+msgid "turnedOffDhcpdIpChange"
+msgstr "The DHCP service has been disabled. The new IP address of the system is on a different subnet than the IP addresses to be assigned to DHCP clients.  Please check your Address Assignments and ensure that they are on the same subnet as the server."
+
+msgid "errorWhileDisablingDhcpdIpChange"
+msgstr "An error occurred while trying to disable your DHCP service.  Please reconfigure the DHCP Address Assignemts so they are on the same subnet as the Primary interface of the server."
+
+# This is only for engineering debug.
+msgid "cceError"
+msgstr "Configuration Engine error retrieving DHCP objects from the database."
+
+# Capabilities
+msgid "capgroup_adminDhcpd"
+msgstr "Manage DHCP"
+
+msgid "capgroup_adminDhcpd_help"
+msgstr "This administrative right allows a user to manage all DHCP related settings, including creating static and dynamic address assignments"

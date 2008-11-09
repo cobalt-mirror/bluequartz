@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifySystemTelnet" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemTelnet)"/>
+	<property name="nameTag" type="scalar" default="[[base-telnet.cap_modifySystemTelnet]]"/>
+</class>

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>MHonArc Resources: MAILTOURL</title>
+</head>
+<body>
+
+<address>
+<a href="../resources.html#mailtourl">MHonArc Resource List</a>
+</address>
+
+<hr>
+<h1>MAILTOURL</h1>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Syntax</h2>
+
+<dl>
+
+<dt><strong>Envariable</strong><dt>
+<dd><p>
+<code>M2H_MAILTOURL=</code><var>URL-template</var>
+</p>
+</dd>
+
+<dt><strong>Element</strong><dt>
+<dd><p>
+<code>&lt;MAILTOURL&gt;<br></code>
+<var>URL-template</var><br>
+<code>&lt;/MAILTOURL&gt;<br></code>
+</p>
+</dd>
+
+<dt><strong>Command-line Option</strong><dt>
+<dd><p>
+<code>-mailtourl </code><var>URL-template</var>
+</p>
+</dd>
+
+</dl>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Description</h2>
+
+<p>The MAILTOURL defines the URL template for hyperlinking mail
+addresses in message headers when the
+<a href="mailto.html">MAILTO</a> resource is active.
+</p>
+
+<DL>
+<DT><STRONG>NOTE</STRONG> 
+<DD><P>The MAILTOURL resource has
+different rules for variable expansion. If a
+variable does not exactly match the set of variables available for
+the MAILTOURL, the variable text will be taken literally
+as part of the element content. Therefore, a single "<CODE>$</CODE>"
+can be used to represent a "<CODE>$</CODE>" character.  </P>
+<P>Also,
+variables in the MAILTOURL should <STRONG>NOT</STRONG>
+have "<CODE>:</CODE><VAR>NU</VAR>" modifier. This will prevent the
+variables from be recognized. <EM>MHonArc</EM> will automatically
+treat the replacement value as a part of a URL string.
+</P>
+</DD></DL>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Default Setting</h2>
+
+<pre>
+mailto:$TO$
+</pre>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Resource Variables</h2>
+
+<table border=1>
+<tr bgcolor="#C0C0C0">
+<th>Variable</th><th>Value</th>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMADDR" href="../rcvars.html#FROMADDR"><strong><code>$FROMADDR$</code></strong></a></td>
+<td>The e-mail address in the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMADDRDOMAIN" href="../rcvars.html#FROMADDRDOMAIN"><strong><code>$FROMADDRDOMAIN$</code></strong></a></td>
+<td>The e-mail address domain of the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMADDRNAME" href="../rcvars.html#FROMADDRNAME"><strong><code>$FROMADDRNAME$</code></strong></a></td>
+<td>The e-mail address "username" (or local-part) of the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMNAME" href="../rcvars.html#FROMNAME"><strong><code>$FROMNAME$</code></strong></a></td>
+<td>The human name of the person in the <tt>From:</tt> field of the message. If no human name is found, the username specified in the e-mail address is used.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGGMTDATE" href="../rcvars.html#MSGGMTDATE"><strong><code>$MSGGMTDATE$</code></strong></a></td>
+<td>GMT date of current message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGID" href="../rcvars.html#MSGID"><strong><code>$MSGID$</code></strong></a></td>
+<td>The message-id of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGLOCALDATE" href="../rcvars.html#MSGLOCALDATE"><strong><code>$MSGLOCALDATE$</code></strong></a></td>
+<td>Local date of current message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TO" href="../rcvars.html#TO"><strong><code>$TO$</code></strong></a></td>
+<td>The email address (MAILTOURL only).</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TOADDRDOMAIN" href="../rcvars.html#TOADDRDOMAIN"><strong><code>$TOADDRDOMAIN$</code></strong></a></td>
+<td>The e-mail address domain (MAILTOURL only).</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TOADDRNAME" href="../rcvars.html#TOADDRNAME"><strong><code>$TOADDRNAME$</code></strong></a></td>
+<td>The e-mail address "username" (or local-part) (MAILTOURL only).</td>
+</tr>
+</table>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Examples</h2>
+
+<p>The following example defines how MAILTOURL can be used
+to have e-mail addresses linked to a CGI program:
+</p>
+
+<pre>
+<b>&lt;MailToURL&gt;</b>
+/cgi-bin/mailform.cgi?to=$TO$;subject=$SUBJECT$;srcid=$MSGID$
+<b>&lt;/MailToURL&gt;</b>
+</pre>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Version</h2>
+
+<p>1.0
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>See Also</h2>
+
+<p>
+<a href="mailto.html">MAILTO</a>
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<address>
+99/10/01 01:19:24<br>
+<img align="top" src="../monicon.gif" alt="">
+<a href="http://www.pobox.com/~ehood/mhonarc.html"><strong>MHonArc</strong></a><br>
+Copyright &#169; 1997-1998, <a href="http://www.pobox.com/~ehood/">Earl Hood</a>, <a href="mailto:mhonarc@pobox.com">mhonarc@pobox.com</a><br>
+</address>
+
+</body>
+</html>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

@@ -1,0 +1,92 @@
+# $Id: documentation.po 259 2004-01-03 06:28:40Z shibuya $
+
+# -------------- upper-banner button -----------------------
+
+msgid "manual"
+msgstr "マニュアルの表示"
+
+msgid "manual_help"
+msgstr "このアイコンをクリックすると、マニュアルが表示されます。"
+
+msgid "manualButton"
+msgstr "マニュアルの表示"
+
+msgid "manualButton_help"
+msgstr "このアイコンをクリックすると、オンラインの製品マニュアルおよび参考資料を選んで表示できます。"
+
+
+# ---------------- pop-up interface ---------------------
+
+msgid "folder"
+msgstr "製品マニュアル"
+
+msgid "folderDescription"
+msgstr "オンラインの製品マニュアルおよび参考資料の一覧。"
+
+msgid "logout"
+msgstr "閉じる"
+
+msgid "logoutDescription"
+msgstr "文書表示画面を閉じます。"
+
+msgid "documentation"
+msgstr "ユーザマニュアル"
+
+msgid "documentationDescription"
+msgstr "Sun Cobalt サーバのマニュアルを表示。"
+
+msgid "documentation_acrobat_help"
+msgstr "ここをクリックすると、アドビシステムズ社のウェブサイトから Adobe Acrobat Reader をダウンロードできます。"
+
+msgid "documentation_acrobat"
+msgstr "Sun Cobalt サーバのオンラインマニュアルを開くには、PDF ファイル (.pdf) を表示できるソフトウェア (Adobe Acrobat Reader など) が必要です。"
+
+msgid "pdfDescription"
+msgstr "文書名"
+
+msgid "pdfDescription_help"
+msgstr "オンラインマニュアルの文書名です。"
+
+msgid "pdfSize"
+msgstr "文書サイズ"
+
+msgid "pdfSize_help"
+msgstr "オンラインマニュアルは、Sun Cobalt サーバ上にローカルでホストされています。マニュアルを頻繁に参照する必要があれば、ブラウザのディスクキャッシュを 20MB 以上に設定することによりアクセス速度を向上できます。"
+
+msgid "pdfAction"
+msgstr "表示"
+
+msgid "pdfAction_help"
+msgstr "地球アイコンをクリックすると、マニュアルを表示またはダウンロードできます。"
+
+msgid "openPdf"
+msgstr "表示"
+
+msgid "openPdf_help"
+msgstr "PDF ファイル (.pdf) を表示するための Plug-in ユーティリティ (Adobe Acrobat Reader など) がブラウザにインストールされていれば、マニュアルは自動的に開きます。"
+
+msgid "megabytes"
+msgstr "MB"
+
+msgid "pdfCountPlural"
+msgstr "[[VAR.count]] 文書"
+
+msgid "pdfCountSingular"
+msgstr "[[VAR.count]] 文書"
+
+msgid "manualPdfList"
+msgstr "ユーザマニュアル"
+
+# -------------- Online support page  -----------------------
+
+msgid "supportLink"
+msgstr "オンラインサポート"
+
+msgid "supportLink_help"
+msgstr "Sun オンラインサポートセンターに関する情報が表示されます。"
+
+msgid "support"
+msgstr "オンラインサポート"
+
+msgid "supportText"
+msgstr "<b>カスタマーサービスおよびテクニカルサポート</b> <br><br>サン・マイクロシステムズ社のサポートサービスは、オンラインサポートセンター (OSC) から提供されます。<br><br><a href=\"http://www.sun.co.jp/service/online\" target=\"support\">http://www.sun.co.jp/service/online</a> へアクセスすると、OSC のウエルカムページが表示されます。画面をスクロールして、「ようこそ Online Support Center へ！！」というリンクをクリックすると、OSC のホームページが表示されます。<br><br>Sun Cobalt 製品に関するサポート情報を得るには、「サン・コバルト・サポート・サービス」というリンクをクリックしてください。サン・コバルト・サポート・サービスのホームページが表示されます。このページには、製品情報、ソフトウェアアップデート、ユーザマニュアルなどダウンロードサイト、ユーザグループや販売代理店のホームページなどへのリンクがあります。また、Sun Cobalt Knowledge Base (英語) や Sun Cobalt Support Forums (英語) へのリンクもあり、必要な情報を検索したり、ディスカッションに参加することができます。<br><br>これらのリンクを使っても必要な情報が見つからない場合には、サン・コバルト・サポート・サービスをお申し込み頂けば、Sun Cobalt のサポートエンジニアによるサポートサービスを受けられます。"

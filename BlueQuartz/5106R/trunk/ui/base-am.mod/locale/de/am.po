@@ -1,0 +1,256 @@
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB ([[VAR.pcnt]] % der Gesamtmenge)"
+
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "Klicken Sie hier, um die Statusinformationen des aktiven Monitors anzuzeigen. Dieses Symbol erscheint in Rot, wenn bei einer der vom Monitor überwachten Komponenten schwerwiegende Probleme auftreten."
+
+msgid "activeMonitor"
+msgstr "Aktiver Monitor"
+
+msgid "activeMonitor_help"
+msgstr "Hier können Sie Systemkomponenten auf den einwandfreien Betrieb überprüfen."
+
+msgid "amStatusMenuName"
+msgstr "Status"
+
+msgid "amStatusMenuDesc"
+msgstr "Hier können Sie Statusinformationen des aktiven Monitors anzeigen."
+
+msgid "amObjNotFound"
+msgstr "Leider trat ein Systemfehler auf. Das Aktiver Monitor-Objekt wurde nicht gefunden."
+
+msgid "amSysClients"
+msgstr "Systemstatus - Überblick"
+
+msgid "amClientName"
+msgstr "Komponentenname"
+
+msgid "amClientName_help"
+msgstr "Der Name der überwachten Komponente."
+
+msgid "action"
+msgstr "Aktion"
+
+msgid "action_help"
+msgstr "Klicken Sie hier, um ausführliche Informationen über die überwachte Komponente anzuzeigen."
+
+msgid "amServClients"
+msgstr "Dienststatus - Überblick"
+
+msgid "amOtherClients"
+msgstr "Sonstiger Status - Überblick"
+
+msgid "amClientStatus"
+msgstr "Aktueller Status"
+
+msgid "amClientStatus_help"
+msgstr "Der aktuelle Status der überwachten Komponente."
+
+msgid "amClientLastChange"
+msgstr "Letzte Statusänderung"
+
+msgid "amNever"
+msgstr "Nie"
+
+msgid "amClientLastChange_help"
+msgstr "Die letzte Statusänderung der überwachten Komponente."
+
+msgid "amSettingsMenuName"
+msgstr "Einstellungen"
+
+msgid "amSettingsMenuDesc"
+msgstr "Hier können Sie die Einstellungen des aktiven Monitors konfigurieren."
+
+msgid "amSettings"
+msgstr "Aktiver Monitor-Einstellungen"
+
+msgid "enableAMField"
+msgstr "Überwachung aktivieren"
+
+msgid "enableAMField_help"
+msgstr "Aktivieren oder deaktivieren Sie den aktiven Monitor. Wenn Sie diese Funktion aktivieren, können bestimmte Systemkomponenten regelmäßig auf den einwandfreien Betrieb überprüft werden. Diese Systemkomponenten können unten ausgewählt werden."
+
+msgid "alertEmailList"
+msgstr "Alarmbenachrichtigungs-E-Mail"
+
+msgid "alertEmailList_help"
+msgstr "Geben Sie die Liste der E-Mail-Adressen ein, an die der aktive Monitor Alarmbenachrichtigungen schickt."
+
+msgid "itemsToMonitor"
+msgstr "Überwachte Komponenten"
+
+msgid "itemsToMonitor_help"
+msgstr "Wählen Sie die spezifischen Systemkomponenten, die von dem aktiven Monitor regelmäßig überprüft werden sollen. Die linke Spalte enthält die Systemkomponenten, die momentan überwacht werden. Die rechte Spalte enthält die Systemkomponenten, die überwacht werden können. Um eine Systemkomponente zu überwachen, verschieben Sie diese aus der rechten Spalte in die linke."
+
+msgid "selected"
+msgstr "Überwachte Komponenten"
+
+msgid "notSelected"
+msgstr "Nicht überwachte Komponenten"
+
+msgid "amNoMessage"
+msgstr "Für diese Komponente stehen momentan keine Informationen zur Verfügung."
+
+msgid "amNotMonitored"
+msgstr "Diese Komponente wird derzeit nicht überwacht."
+
+msgid "amNotEnabled"
+msgstr "Diese Komponente ist nicht aktiviert."
+
+msgid "alreadyMadeAM"
+msgstr "Leider trat ein Systemfehler auf. Ein Aktiver Monitor-Objekt ist bereits vorhanden."
+
+msgid "amCPUName"
+msgstr "CPU-Auslastung"
+
+msgid "amCPUWarning"
+msgstr "Die Auslastung der CPU ist [[VAR.status]]."
+
+msgid "amUseLight"
+msgstr "gering"
+
+msgid "amUseModerate"
+msgstr "mäßig"
+
+msgid "amUseHeavy"
+msgstr "hoch"
+
+msgid "amCPUDetails"
+msgstr "CPU-Auslastungsdetails"
+
+msgid "amCPUStats"
+msgstr "CPU-Statistik"
+
+msgid "amCPULoadAvg"
+msgstr "Durchschnittliche Nutzung während der letzten Minute"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "Durchschnittliche Nutzung während der letzten [[VAR.mins]] Minuten"
+
+msgid "amCPULoadAvg_help"
+msgstr "Hierbei handelt es sich um die Durchschnittszahl der Aufgaben, die über einen Zeitraum von [[VAR.mins]] Minuten darauf warten, vom Prozesser ausgeführt zu werden. Der normale Belastungsdurchschnitt liegt zwischen 0,0 und 3,0."
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "Hierbei handelt es sich um die Durchschnittszahl der Aufgaben, die über einen Zeitraum von [[VAR.mins]] Minuten darauf warten, vom Prozesser ausgeführt zu werden. Der normale Belastungsdurchschnitt liegt zwischen 0,0 und 3,0."
+
+msgid "amCPUUptime"
+msgstr "Systembetriebszeit"
+
+msgid "amCPUUptime_help"
+msgstr "Die Zeitspanne, in der die Serverkomponente aktiviert und in Betrieb ist."
+
+msgid "days"
+msgstr "[[VAR.val]] Tage,"
+
+msgid "hours"
+msgstr "[[VAR.val]] Stunden,"
+
+msgid "minutes"
+msgstr "[[VAR.val]] Minuten"
+
+msgid "day"
+msgstr "[[VAR.val]] Tag,"
+
+msgid "hour"
+msgstr "[[VAR.val]] Stunde,"
+
+msgid "minute"
+msgstr "[[VAR.val]] Minute"
+
+msgid "amCPUTemp"
+msgstr "CPU-Temperatur"
+
+msgid "amCPUTemp_help"
+msgstr "Die momentane Temperatur des Prozessors in °C.  Die normale Prozessortemperatur liegt zwischen 30 und 60 °C."
+
+msgid "degrees"
+msgstr "[[VAR.val]] °C"
+
+msgid "amMemoryName"
+msgstr "Speicherauslastung"
+
+msgid "amMemDetails"
+msgstr "Speicherauslastungsdetails"
+
+msgid "amMemWarning"
+msgstr "Die Auslastung des Systemspeichers ist [[VAR.status]]."
+
+msgid "amMemStats"
+msgstr "Speicherauslastungsstatistik"
+
+msgid "amMemTotal"
+msgstr "Physischer Speicher insgesamt"
+
+msgid "amMemTotal_help"
+msgstr "Die Gesamtmenge des auf dem System zur Verfügung stehenden Arbeitsspeichers."
+
+msgid "amMemFree"
+msgstr "Nicht belegter physischer Speicher"
+
+msgid "amMemFree_help"
+msgstr "Die Menge des auf dem System nicht belegten, zur Verfügung stehenden Arbeitsspeichers."
+
+msgid "amSwapTotal"
+msgstr "Auslagerungsspeicher insgesamt"
+
+msgid "amSwapTotal_help"
+msgstr "Die Menge des auf dem System zur Verfügung stehenden Auslagerungsspeichers."
+
+msgid "amSwapFree"
+msgstr "Nicht belegter Auslagerungsspeicher"
+
+msgid "amSwapFree_help"
+msgstr "Die Menge des auf dem System zur Verfügung stehenden, nicht belegten Auslagerungsspeichers."
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "amMemUsed"
+msgstr "Speicherauslastung"
+
+msgid "amMemUsed_help"
+msgstr "Die Menge des auf dem System belegten physischen oder Arbeitsspeichers. Es ist normal, wenn ein Großteil des Arbeitsspeichers zu jedem Zeitpunkt verwendet wird."
+
+msgid "amSwapUsed"
+msgstr "Auslastung des Auslagerungsspeichers"
+
+msgid "amSwapUsed_help"
+msgstr "Die Menge des auf dem System belegten Auslagerungs- oder virtuellen Speichers. Es ist normal, wenn ein Teil des Auslagerungsspeichers zu jedem Zeitpunkt verwendet wird, selbst wenn noch Arbeitsspeicher verfügbar ist."
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] ([[VAR.pcnt]] % der Gesamtmenge)"
+
+msgid "amKey"
+msgstr "Schlüssel:"
+
+msgid "amKeyGrey"
+msgstr "Keine Informationen verfügbar oder Überwachung nicht aktiviert"
+
+msgid "amKeyGreen"
+msgstr "Normal"
+
+msgid "amKeyYellow"
+msgstr "Problem"
+
+msgid "amKeyRed"
+msgstr "Schwerwiegendes Problem"
+
+msgid "amUpdateNow"
+msgstr "Status jetzt überprüfen"
+
+msgid "amUpdateNowConfirm"
+msgstr "Wollen Sie den Status jetzt wirklich überprüfen?  Dies kann mehrere Minuten dauern."
+
+msgid "amUpdateNow_help"
+msgstr "Klicken Sie hier, um sofort mit der Aktualisierung des Systems und der Dienststatusinformationen zu beginnen. Dies kann mehrere Minuten lang dauern. Der Vorgang läuft im Hintergrund ab."
+
+msgid "amDetailNoName"
+msgstr "Leider trat beim Erstellen dieser Seite ein Problem auf. Die Variable Name wurde nicht definiert."
+
+
+
+

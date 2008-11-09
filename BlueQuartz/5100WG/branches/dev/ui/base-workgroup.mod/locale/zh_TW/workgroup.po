@@ -1,0 +1,129 @@
+# ----- Menu 
+msgid "groups"
+msgstr "群組"
+
+msgid "groups_help"
+msgstr "此處可管理[[base-workgroup.groups]]。"
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr "編輯群組預設值"
+
+msgid "groupDefaults_help"
+msgstr "按一下此處，可變更新群組的預設設定。"
+
+msgid "groupList"
+msgstr "群組清單"
+
+msgid "groupName"
+msgstr "群組名稱"
+
+msgid "groupName_help"
+msgstr "這是使用者群組的名稱。"
+
+msgid "groupMembers"
+msgstr "群組成員"
+
+msgid "groupMembers_help"
+msgstr "這些是屬於該群組的成員。"
+
+msgid "groupDesc"
+msgstr "備註"
+
+msgid "groupDesc_help"
+msgstr "這個直欄提供有關群組的敘述性資訊。"
+
+msgid "listAction"
+msgstr "動作"
+
+msgid "listAction_help"
+msgstr "這些是用來修改群組的設定或移除群組的按鈕。"
+
+msgid "addNewGroup"
+msgstr "新增群組"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "請設定新群組的最大預設磁碟空間；這是可供群組儲存網頁、電子郵件訊息及其他所有的群組檔案之最大磁碟空間。  [[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "群組名稱"
+
+msgid "groupNameField_rule"
+msgstr "請輸入 12 個（含）以下只包含小寫英數字元、句點、連字符號和底線的字元。例如，engineering 就是一個有效的名稱。"
+
+msgid "groupNameField_help"
+msgstr "請輸入系統用來識別此群組的名稱。"
+
+msgid "maxDiskSpaceField"
+msgstr "容許的最大磁碟空間 (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "請輸入一個介於 1 到  1024000 之間的整數。 "
+
+msgid "maxDiskSpaceField_help"
+msgstr "請設定此群組的磁碟限額；這是可供此群組用於儲存網頁、電子郵件訊息及其他所有的群組檔案之最大磁碟空間。  [[base-workgroup.maxDiskSpaceField_rule]]  新群組的預設值是設定於「群組預設值」區段。"
+
+msgid "groupMembersField"
+msgstr "使用者成員"
+
+msgid "groupMembersField_help"
+msgstr "請設定此群組的使用者成員。左側直欄顯示目前屬於此群組的使用者。右側直欄顯示可以新增至此群組的使用者。若要新增使用者成為此群組的成員，請將右側直欄的使用者移至左側直欄。"
+
+msgid "groupUsers"
+msgstr "關聯使用者"
+
+msgid "allUsers"
+msgstr "非關聯使用者"
+
+msgid "groupDescField"
+msgstr "備註"
+
+msgid "groupDescField_help"
+msgstr "請在此處輸入有關群組的其他資訊，如說明或註解。"
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "修改群組設定 - [[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "您確定要移除群組 [[VAR.groupName]] 嗎？"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "很抱歉，您輸入的[[base-workgroup.groupNameField]]值已被另一位人士採用或為系統所保留；請輸入另一個[[base-workgroup.groupNameField]]的值。"
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "此工作群組的成員維護公眾可存取的網站。"
+
+msgid "add_group_help"
+msgstr "按一下此處，可新增工作群組。"
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "管理群組"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "這個管理權限可讓使用者建立、消滅和更改群組"
+

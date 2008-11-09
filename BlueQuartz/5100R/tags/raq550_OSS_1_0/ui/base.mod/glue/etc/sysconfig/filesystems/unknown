@@ -1,0 +1,10 @@
+# FS_QUOTACHECK specifies whether or not to run quotacheck.
+# FS_MKFS specifies the filesytem-specific mkfs.
+# FS_MKFS_OPTS specifies filesystem specific mkfs options. 
+# FS_REPAIR specifies whether or not to force repair.
+# FS_REPAIR_PROG specifies the repair program.
+FS_QUOTACHECK="yes"
+FS_MKFS_OPTS=""
+FS_MKFS="/sbin/mkfs $FS_MKFS_OPTS"
+FS_REPAIR="no"
+FS_REPAIR_PROG="/sbin/mkfs -f"

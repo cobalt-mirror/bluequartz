@@ -1,0 +1,77 @@
+#!/usr/bin/perl -w -I. -I/usr/sausalito/perl
+
+# $Id: cobalt_postbackup,v 1.3 2001/04/06 22:15:21 bservies Exp $
+# 
+# Copyright 2000 Cobalt Networks, Inc., All Rights Reserved
+#
+use strict;
+use Getopt::Long;
+
+use vars qw ($opt_ccedir $opt_debug $opt_file $opt_verbose);
+my ($rc);
+
+sub dprintf {
+        my ($level, $format, @args) = @_;
+        if (defined $opt_debug && $level <= $opt_debug) {
+                print STDERR "$0: ";
+                print STDERR sprintf $format, @args;
+        }
+}
+
+
+sub execute_cmd {
+	my @cmd = @_;
+	my ($msg, $rc);
+
+	$rc = 0xffff & system(@cmd);
+	if ($rc == 0) {
+		$msg = "ran with normal exit.";
+	} elsif ($rc == 0xff00) {
+		$msg = "command failed: $!";
+	} elsif ($rc > 0x80) {
+		$rc >>= 8;
+		$msg = "ran with non-zero exit status $rc";
+	} else {
+		$msg = "ran with ";
+		if ($rc & 0x80) {
+			$rc &= ~0x80;
+			$msg .= "core dump from ";
+		}
+		$msg .= "signal $rc";
+	}
+	dprintf(3, "command \"%s\" exited with %d.  Reason: \"%s\"\n", join " ", @cmd, $msg, $rc);
+	return ($msg, $rc);
+}
+
+#
+# Main
+#
+
+#
+# Open the log file to store output from sub-commands.  Backup
+# systems don't like extra stuff in the streams, normally.  If the
+# log file is not available, just throw the output to null so the
+# backup can continue.
+#
+open (LOG, ">> /var/cobalt/backup.log") || open (LOG, "> /dev/null");
+close STDOUT;
+open STDOUT, ">&LOG";
+close STDERR;
+open STDERR, ">&LOG";
+
+# Make sure the log output is unbuffered
+select STDOUT; $| = 1;
+select STDERR; $| = 1;
+select LOG; $| = 1;
+
+# Process any command line options
+&GetOptions("debug:i", "verbose:i");
+
+#
+# Remove the files from the backup directory so that they do not
+# exist at reboot.
+#
+unlink ("/var/cobalt/backups/cce.tar");
+unlink ("/var/cobalt/backups/cobalt.sql");
+
+0;

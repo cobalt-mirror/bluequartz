@@ -1,0 +1,17 @@
+#!/bin/sh
+
+rm `find /usr/sausalito/ui/style/ -name "*.compiled.*"` >/dev/null 2>&1
+
+echo "** make clean"
+make clean
+echo "** make"
+make
+echo "** make install"
+make install
+echo "** reload httpd, admserv, cced"
+/etc/rc.d/init.d/cced.init reload
+/etc/rc.d/init.d/admserv reload
+/etc/rc.d/init.d/httpd reload
+killall pperld 2>/dev/null
+echo ""
+echo "** Fin"

@@ -1,0 +1,11 @@
+<class name="System" namespace="CacheACL" version="1.0">
+  <property name="mode" type="scalar" default="all" writeacl="ruleCapable(modifyWebCacheAcl)"/>
+  <property name="domains" type="scalar" writeacl="ruleCapable(modifyWebCacheAcl)" />
+  <property name="ipaddr" type="scalar"  writeacl="ruleCapable(modifyWebCacheAcl)"/>
+</class>
+
+<class name="Capabilities" namespace="modifyWebCacheAcl" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyWebCacheAcl)"/>
+	<property name="nameTag" type="scalar" default="[[base-cacheACL.cap_modifyWebCacheAcl]]"/>
+</class>
+

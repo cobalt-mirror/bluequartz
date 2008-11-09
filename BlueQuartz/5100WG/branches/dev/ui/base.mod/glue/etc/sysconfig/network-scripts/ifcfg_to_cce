@@ -1,0 +1,117 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl
+#
+# This script will configure network settings in CCE
+# for a specified interface with the following logic:
+#   Find the System and required Network objects
+#     Create those objects if needed
+#   Set the System and Network objects with the new settings
+#
+# Copyright 1998 Cobalt Networks (http://www.cobaltnet.com)
+
+$ENV{"PATH"} = "/sbin:/usr/sbin:/usr/bin:/bin";
+use vars qw($opt_q $opt_r $opt_a $opt_m $opt_g $opt_h $opt_d $opt_s $opt_i $opt_e $opt_b);
+
+use Getopt::Std;
+use CCE;
+getopts('qra:m:g:h:d:s:i:e:b:');
+
+if ($opt_q)
+{
+    print "$0 [options]
+Options:
+         -q             this help text
+         -a address     set the IP address
+         -m netmask     set the netmask
+         -g gateway     set the default gateway (or ``none'' for no gateway)
+         -h hostname    set the hostname (e.g. 'wallace')
+         -d domainname  set the domainname (e.g. 'cobaltnet.com')
+	 -s dns servers set the dns servers
+         -i interface   which interface to configure (e.g. eth0, eth1)
+         -e enabled     1 or 0 for yes or no
+         -b bootproto   e.g. lcd, dhcp
+         -r refresh     update the refresh flag on the Network
+";
+    exit;
+
+}
+
+### START HARDCODED PATHS
+$Debug = '0';
+$Debug = (-e "/etc/DEBUG") ? 1 : 0;
+$^W = $Debug;
+### END HARDCODED PATHS
+
+# EXTREME debugging
+$Debug && open(CON,">>/dev/console");
+$Debug && print CON "HELLO IN CONVERT -a $opt_a -m $opt_m -g $opt_g -h $opt_h -d $opt_d -s $opt_s -i $opt_i -e $opt_e -b $opt_b r:( $opt_r ) \n"; 
+$Debug && print CON "SETUP-NETWORK: $opt_a / $opt_m   Gateway: $opt_g \n";
+
+# Get oids and setup CCE if can't find needed objects
+my $cce = new CCE;
+$cce->connectuds();
+
+# Get the System and Network oids; create them if needed
+my (@soids) = $cce->find("System");
+if (@soids == 0) {
+    $cce->create("System", { hostname => "localhost",
+                             domainname => "localdomain" });
+    @soids = $cce->find("System");
+}
+my ($ok, $sobj) = $cce->get( $soids[0] );
+
+$interface = ($opt_i) ? $opt_i : "eth0";
+
+my (@noids) = $cce->find("Network", { device => $interface } );
+if (@noids == 0) {
+    $iface = { device => $interface };
+    if ($interface !~ /:\d+$/)
+    {
+        $iface->{real} = 1;
+    }
+    $cce->create("Network", $iface);
+    @noids = $cce->find("Network", { device => $interface } );
+}
+
+# convert space separated dns servers to array
+my @dnsarray = split(" ", $opt_s);
+my $olddns = ${$sobj}{'dns'};
+my ($entry, @newdns);
+foreach $entry ( @dnsarray ) {
+  if ( $olddns !~ m/$entry/ ) {
+    push ( @newdns, $entry );
+  }
+}
+@newdns = (@newdns, $cce->scalar_to_array($olddns)); 
+my $dns = $cce->array_to_scalar( @newdns );
+
+# Create updates for System object
+my %sys_updates;
+$sys_updates{'gateway'} = $opt_g if ($opt_g);
+$sys_updates{'hostname'} = $opt_h if ($opt_h);
+$sys_updates{'domainname'} = $opt_d if ($opt_d);
+$sys_updates{'dns'} = $dns if ($opt_s);
+
+# Network
+my %net_updates;
+$net_updates{'ipaddr'} = $opt_a if ($opt_a);
+$net_updates{'netmask'} = $opt_m if ($opt_m);
+$net_updates{'enabled'} = $opt_e if ($opt_e);
+$net_updates{'bootproto'} = $opt_b if ($opt_b);
+$net_updates{'refresh'} = time if ($opt_r);
+
+# Update CCE with settings
+# Update the IP address and netmask of the interface
+if (%net_updates) {
+	$cce->set( $noids[0], "", \%net_updates )
+		if (@noids > 0);
+}
+
+# Update the hostname, domainname, and gateway
+if (%sys_updates) {
+	$cce->set( $soids[0], "", \%sys_updates ) 
+    		if (@soids > 0);
+}
+
+$cce->bye('SUCCESS');
+
+$Debug && close CON;

@@ -1,0 +1,38 @@
+<?php
+// $Id: 20_SSH.php.shell.System,v 1.1.1.1 2001/10/19 19:43:04 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+
+include_once('UIExtension.php');
+
+class SSHExtension extends UIExtension
+{
+    function display(&$helper, &$container, $prams)
+    {
+        $factory = $helper->getHtmlComponentFactory('base-ssh');
+        $cce = $helper->getCceClient();
+
+        $settings = $cce->get($prams['CCE_OID'], 'SSH');
+
+        $sshField =& $factory->getBoolean('SSH_enabled', $settings['enabled']);
+
+        $container->addFormField(
+            $sshField,
+            $factory->getLabel('enableSSH'),
+            $prams['PAGED_BLOCK_DEFAULT_PAGE']
+            );
+    }
+
+    function handle(&$helper, &$errors, $prams)
+    {
+        global $SSH_enabled;
+    
+        $cce = $helper->getCceClient();
+
+        $cce->set($prams['CCE_OID'], 'SSH',
+                    array('enabled' => ($SSH_enabled ? 1 : 0)));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

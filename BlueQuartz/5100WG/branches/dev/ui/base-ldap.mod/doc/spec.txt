@@ -1,0 +1,128 @@
+
+Author: Harris Vaegan-Lloyd
+Subject: LDAP / Sausalito Integration.
+
+0.0 Contents
+1.0 Disclaimer
+2.0 Alternatives.
+ 2.1 Export Users
+ 2.2 Import Users
+ 2.3 Syn Users
+ 2.4 Full LDAP/CCE link
+3.0 Platform
+4.0 Integration
+5.0 Reccomendataion.
+
+1.0 Disclaimer.
+
+	Saying that we intend to integrate Carmel into existing networks with
+LDAP is a completly meaningless statement. LDAP can be used in a variety of
+ways within our product. In order of time spent to implement these are..
+
+	1. Export username/group information via ldap.
+	2. One time syncs with external databases that have an ldap interface.
+	3. Constantly being synched with an external source.
+	4. Direct control of all of sausalito via an ldap client.
+
+	Keep in mind that LDAP has had the hell hyped out of it with Win2k so
+any solution we use should coexist to at least some extent. LDAP is another
+one of those good solutions that got overhyped and ended up being used for
+all the wrong reasons, let's not be that company that grabs any new
+technology with a catachy acronym and kludges it onto our product, eh?
+
+2.0 Summary of alternatives.
+
+	2.1 Export Information.
+
+		Allows external clients to use the Qube as an ldap server for
+	looking up information. What information is pretty arbitary, but cold
+	range from username/group/(password)? to full office, phonenumber,
+	address, organisational position.
+
+		Possibly also allow the qube to act as an ldap proxy. LDAP servers
+	can act like DNS servers, local servers areq queried by local clients
+	who are very dumb and the the servers handle the work of finding an
+	answer that is outside of their own domain.
+
+		This will involve nothing more than writing an addition to openldap
+	which will allow it to query via cscp the qubes own internal database
+	and pass that on to clients as well as writing handlers and UI to
+	control ldap referring and caching within openldap.
+
+	2.2 One Time Syncs.
+
+		Allows the user to aim the qube at an ldap server, suck down
+	user/group/password/email information and have it automagically added to
+	the Qube.
+
+		This will involve writing UI and handlers to query a remote LDAP
+	database and add the user/groups as appropriate. Requires a handler to
+	read ldap information and add users as well as a UI element to control
+	which server will be queried and what aparmeters will be passed to the
+	query.
+
+	2.3 Constant Sync.
+
+		In this alternative absolutely no authorative user/group information
+	is stored on the Qube, rather this information is held on an external
+	ldap server and the Qube garners all it's information from this.
+
+		Possibly implemented in the same manner as one time syncs, except
+	updated periodically (Removing non existing users as well.) or could be
+	done by intelligent use of PAM and nsswitch.conf along with periodically
+	recreating directory structures.
+
+	2.4 LDAP interface to CCE.
+
+		A 3pd extensible method of mapping CCE object ont to LDAP
+	objects not just for users and groups but for every aspect of the site
+	. This may or may not be implemented post carmel release along with a
+	CCE/SNMP direct interface ( Much of the same tools and techniques
+	would be used. ), but this shall not be done by carmel release.
+
+		The general gist is that a generic mappings woudl be
+	defined on a class by class basis for ldap object to cce object
+	mapping and all add/modify/search operations would use these.
+
+		To do this really propertly ldap schemas would have to be
+	generated from these mappiung and strct checking enabled.
+
+3.0 Platform.
+
+	The reasonable solution for carmel is to use the openldap server. It is
+a GPL ldap server, that I (Harris.) have worked on in the past and have found
+passable for day to day opeation.
+
+	However after further experience I deem it sucky in terms of internal
+code quality and ease of development especially for new databases.
+
+4.0 Integration.
+
+	LDAP, SSL and a number of other authentication processes (I think.) use
+a similiar information structure to LDAP. This is probably known to most
+people as the SSL "C=AU/O=Cobalt/OU=Engineering......" identification tag.
+This type of information should probably be globally configurable and on a
+group by group basis if exporting of ldap information and SSL authentication
+is to be done right now or in the future.
+
+5.0 Reccomendation
+
+	Option 3 (Constant Sync.) would probably be very attractive to the
+corporate/educational market. Send a Qube out to a school preconfigured and
+remove all administration, have user/group admin handled transperantly by
+the same central database that handles enrollments/new hires.
+
+	Option 3, done by periodically repolling and removing dead users
+(Possibly with a warning message and a weeks grace period.) is the best
+effort/reward payment. Option 1 can and probably should coexist with this,
+except not holding any information locally and just passing all requests up
+the stream, having the parent LDAP server as the same machine as the
+user/group/password source.
+
+	The difference between Option 2 and 3 is minimal, I shall probably
+implement Option 2 then move that to Option 3 (Time permitting.)
+
+	Option 4 shall be saved for a later project (In the same run as SNMP
+integration?). It's simply to hairy to fit into this timespace.
+
+	Very much a work in progress, don't trust anything.

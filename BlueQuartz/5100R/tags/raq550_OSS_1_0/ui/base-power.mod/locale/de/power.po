@@ -1,0 +1,23 @@
+msgid "power"
+msgstr "Ein/Aus"
+
+msgid "powerHelp"
+msgstr "Der Server kann hier neu gestartet werden."
+
+msgid "shutdownMessage"
+msgstr "Aus Sicherheitsgründen kann dieser Server nicht über die Web-Benutzeroberfläche abgeschaltet werden. <BR>Bitte verwenden Sie stattdessen das LCD-Display am Server, um den Server abzuschalten."
+
+msgid "shutdownInstructions"
+msgstr "So schalten Sie den Server ab:<OL><LI>Drücken Sie auf dem LCD-Display die Taste 'Auswählen' und halten Sie diese ca. 2 Sekunden lang gedrückt.<BR>Auf dem LCD-Bildschirm wird Folgendes angezeigt: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>AUSWAEHLEN: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NETZWERK EINRICHTEN</CODE><BR><BR><LI>Drücken Sie die Taste 'Auswählen', bis ABSCHALTEN angezeigt wird: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>AUSWAEHLEN: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABSCHALTEN</CODE><BR><BR><LI>Drücken Sie die Eingabetaste.<BR><BR><LI>Verwenden Sie die Pfeiltasten, um den Cursor von [J] auf [N] und umgekehrt zu verschieben. Wählen Sie [J] aus, um das System abzuschalten. Auf dem LCD-Bildschirm wird Folgendes angezeigt:<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>BITTE JETZT ABSCHALTEN</CODE><BR><BR><LI>Drücken Sie den Hauptschalter an der Rückseite, um den Server abzuschalten.</OL>" 
+
+msgid "reboot"
+msgstr "Jetzt neu starten"
+
+msgid "reboot_help"
+msgstr "Klicken Sie hier, um den Server neu zu starten."
+
+msgid "askRebootConfirmation"
+msgstr "Wollen Sie den Server wirklich neu starten?"
+
+msgid "rebooting"
+msgstr "Der Server wird jetzt neu gestartet. Er steht in wenigen Minuten wieder zur Verfügung."

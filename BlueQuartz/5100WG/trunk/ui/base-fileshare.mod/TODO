@@ -1,0 +1,8 @@
+This is how it should work:
+	Whenever we add a group, a handler from base-fileshare creates a
+		corresponding FileShare object in CCE
+	Winshare/appleshare/whatever have registered on FileShare props
+	Winshare/appleshare etc. can then make the exports happen
+	Other services can make a new FileShare object (with a specified path)
+		samba/atalk etc all respond correctly
+

@@ -1,0 +1,260 @@
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "Click here to view [[base-am.activeMonitor]] status information. This icon turns red if any of the components monitored by [[base-am.activeMonitor]] have severe problems."
+
+msgid "activeMonitor"
+msgstr "Active Monitor"
+
+msgid "activeMonitor_help"
+msgstr "Click here to check system components for correct operation."
+
+msgid "amStatusMenuName"
+msgstr "Status"
+
+msgid "amStatusMenuDesc"
+msgstr "Click here to view [[base-am.activeMonitor]] status information."
+
+msgid "amObjNotFound"
+msgstr "Sorry, a system error occurred. The Active Monitor object could not be found."
+
+msgid "amSysClients"
+msgstr "System Status - Overview"
+
+msgid "amClientName"
+msgstr "Component Name"
+
+msgid "amClientName_help"
+msgstr "This is the name of the monitored component."
+
+msgid "action"
+msgstr "[[palette.detail]]"
+
+msgid "action_help"
+msgstr "Click here to view more detailed information about the monitored component."
+
+msgid "amServClients"
+msgstr "Service Status - Overview"
+
+msgid "amOtherClients"
+msgstr "Other Status - Overview"
+
+msgid "amClientStatus"
+msgstr "Current Status"
+
+msgid "amClientStatus_help"
+msgstr "This is the current status of the monitored component."
+
+msgid "amClientLastChange"
+msgstr "Status Last Changed"
+
+msgid "amNever"
+msgstr "Never"
+
+msgid "amClientLastChange_help"
+msgstr "This is the last time the status of the monitored component changed."
+
+msgid "amSettingsMenuName"
+msgstr "Settings"
+
+msgid "amSettingsMenuDesc"
+msgstr "Click here to configure [[base-am.amSettings]]."
+
+msgid "amSettings"
+msgstr "Active Monitor Settings"
+
+msgid "enableAMField"
+msgstr "Enable Monitoring"
+
+msgid "enableAMField_help"
+msgstr "Turn [[base-am.activeMonitor]] on or off.  Enabling this functionality allows specific system components to be regularly checked for proper operation.  These system components can be selected below."
+
+msgid "alertEmailList"
+msgstr "Alert Notification Emails"
+
+msgid "alertEmailList_help"
+msgstr "Enter the list of email addresses to which [[base-am.activeMonitor]] will send alert messages."
+
+msgid "itemsToMonitor"
+msgstr "Monitored Components"
+
+msgid "itemsToMonitor_help"
+msgstr "Select the specific system components to be regularly checked by [[base-am.activeMonitor]].  The left column shows the system components which are currently being monitored.  The right column shows the system components which could possibly be monitored.  To add a system component to be monitored, move the system component from the right column to the left column."
+
+msgid "selected"
+msgstr "Components Monitored"
+
+msgid "notSelected"
+msgstr "Components Not Monitored"
+
+msgid "amNoMessage"
+msgstr "There is no information available for this component at this time."
+
+msgid "amNotMonitored"
+msgstr "This component is not being monitored at this time."
+
+msgid "amNotEnabled"
+msgstr "This component is not enabled."
+
+msgid "alreadyMadeAM"
+msgstr "Sorry, a system error occurred. An Active Monitor object already exists."
+
+msgid "amCPUName"
+msgstr "CPU Usage"
+
+msgid "amCPUWarning"
+msgstr "The CPU is being [[VAR.status]] used."
+
+msgid "amUseLight"
+msgstr "lightly"
+
+msgid "amUseModerate"
+msgstr "moderately"
+
+msgid "amUseHeavy"
+msgstr "heavily"
+
+msgid "amCPUDetails"
+msgstr "CPU Usage Details"
+
+msgid "amCPUStats"
+msgstr "CPU Statistics"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] Minute Load Average"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] Minute Load Average"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "This is the average number of tasks waiting to be run by the processor over a [[VAR.mins]] minute period of time.  The normal load average is anywhere between 0.0 and 3.0."
+
+msgid "amCPULoadAvg_help"
+msgstr "This is the average number of tasks waiting to be run by the processor over a [[VAR.mins]] minute period of time.  The normal load average is anywhere between 0.0 and 3.0."
+
+msgid "amCPUUptime"
+msgstr "System Uptime"
+
+msgid "amCPUUptime_help"
+msgstr "This is the length of time the server appliance has been turned on and operating."
+
+msgid "days"
+msgstr "[[VAR.val]] Days,"
+
+msgid "hours"
+msgstr "[[VAR.val]] Hours,"
+
+msgid "minutes"
+msgstr "[[VAR.val]] Minutes"
+
+msgid "day"
+msgstr "[[VAR.val]] Day,"
+
+msgid "hour"
+msgstr "[[VAR.val]] Hour,"
+
+msgid "minute"
+msgstr "[[VAR.val]] Minute"
+
+msgid "amCPUTemp"
+msgstr "CPU Temperature"
+
+msgid "amCPUTemp_help"
+msgstr "This is the current temperature of the processor in °C.  The normal processor temperature is anywhere between 30 and 60 °C."
+
+msgid "degrees"
+msgstr "[[VAR.val]] °C"
+
+msgid "amMemoryName"
+msgstr "Memory Usage"
+
+msgid "amMemDetails"
+msgstr "Memory Usage Details"
+
+msgid "amMemWarning"
+msgstr "System memory is being [[VAR.status]] used."
+
+msgid "amMemStats"
+msgstr "Memory Usage Statistics"
+
+msgid "amMemTotal"
+msgstr "Total Physical Memory"
+
+msgid "amMemTotal_help"
+msgstr "This is the amount of total real memory available on the system."
+
+msgid "amMemFree"
+msgstr "Free Physical Memory"
+
+msgid "amMemFree_help"
+msgstr "This is the amount of free real memory available on the system."
+
+msgid "amSwapTotal"
+msgstr "Total Swap Space"
+
+msgid "amSwapTotal_help"
+msgstr "This is the amount of total swap space available on the system."
+
+msgid "amSwapFree"
+msgstr "Free Swap Space"
+
+msgid "amSwapFree_help"
+msgstr "This is the amount of free swap space available on the system."
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "amMemUsed"
+msgstr "Memory Usage"
+
+msgid "amMemUsed_help"
+msgstr "This is the amount of physical or real memory in use on the system.  It is normal for most of real memory to used at all times."
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB ([[VAR.pcnt]] % of total)"
+
+msgid "amSwapUsed"
+msgstr "Swap Usage"
+
+msgid "amSwapUsed_help"
+msgstr "This is the amount of swap or virtual memory in use on the system.  It is normal for some swap memory to be used at all times, even when real memory is still available."
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] ([[VAR.pcnt]] % of total)"
+
+msgid "amKey"
+msgstr "Key:"
+
+msgid "amKeyGrey"
+msgstr "No Information Available or Monitoring Not Enabled"
+
+msgid "amKeyGreen"
+msgstr "Normal"
+
+msgid "amKeyYellow"
+msgstr "Problem"
+
+msgid "amKeyRed"
+msgstr "Severe Problem"
+
+msgid "amUpdateNow"
+msgstr "Check Status Now"
+
+msgid "amUpdateNowConfirm"
+msgstr "Are you sure you want to check status now?  This operation may take several minutes."
+
+msgid "amUpdateNow_help"
+msgstr "Click here to immediately begin updating system and service status information.  This may take as long as several minutes, and will proceed in the background."
+
+msgid "amUpdateNow_disabledHelp"
+msgstr "The system status is currently being updated."
+
+msgid "amDetailNoName"
+msgstr "Sorry, there was a problem generating this page.  The variable 'name' is not defined."
+
+msgid "capgroup_adminActiveMonitor"
+msgstr "Manage Active Monitor"
+
+msgid "capgroup_adminActiveMonitor_help"
+msgstr "This administrative right allows a user to watch over the active monitor settings and status.  This user will not get automatically get added to the '[[base-am.alertEmailList]]' list, but they may add themselves once given this capability."

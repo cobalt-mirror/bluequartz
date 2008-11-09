@@ -1,0 +1,36 @@
+<!-- This is the AM Namespace for monitoring Scandetection -->
+<!--  Copyright 2001 Sun Microsystems, Inc. All rights reserved. -->
+<!--  $Id: scandetection-am.schema,v 1.4 2001/09/28 20:40:03 jthrowe Exp $ -->
+
+<class name="ActiveMonitor" namespace="Scandetection" version="1.0">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"
+	default="/usr/sausalito/swatch/bin/am_scandetection.sh"/>
+
+    <property name="restart"		type="scalar"	
+	default="/etc/rc.d/init.d/scandetection restart >/dev/null 2>&amp;1"/>
+    <property name="retries"		type="int"	default="2"/>
+
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-scandetection.amStatusGreen]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-scandetection.amStatusRed]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-scandetection.amScandetectionNameTag]]"/>
+
+    <property name="lastAlert"          type="uint"     default="0"/>
+    <property name="alertType"          type="scalar"   default=""/>
+    <property name="alertTime"          type="uint"     default="0"/>
+
+    <property name="URL"	 	type="scalar" 
+	default="/base/scandetection/scandetection_amDetails.php"/>
+    <property name="UIGroup"            type="scalar"   default="service"/>
+</class>

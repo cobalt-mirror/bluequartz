@@ -1,0 +1,17 @@
+# put any default packages here.
+RPM: MHonArc-2.4.6.1-1.i386.rpm
+RPM: mh-wrapper-1.0.1-1.i386.rpm
+RPM: refresh_list-1.0.1-1.i386.rpm
+RPM: majordomo-1.94.4.1-CC13.i386.rpm
+RPM: base-maillist-locale-ja
+RPM: base-maillist-locale-fr
+RPM: base-maillist-locale-es
+RPM: base-maillist-locale-en
+RPM: base-maillist-locale-de
+RPM: base-maillist-ui
+RPM: base-maillist-glue
+RPM: base-maillist-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE
+RPM: majordomo-1.94.4.1-CC13.i386.rpm
+RPM: mh-wrapper-1.0.1-1.i386.rpm
+RPM: MHonArc-2.4.6.1-1.i386.rpm

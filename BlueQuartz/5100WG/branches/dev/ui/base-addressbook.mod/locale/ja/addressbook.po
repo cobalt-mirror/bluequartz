@@ -1,0 +1,346 @@
+msgid "addressbook"
+msgstr "アドレス帳"
+
+msgid "addressbookDescription"
+msgstr "[[base-addressbook.addressbook]]には、このサーバの登録ユーザに関する情報が表示されます。また、自分の住所録を作ることもできます。"
+
+# -------- Public Address Book (aka common)
+
+msgid "addressbookcommon"
+msgstr "登録ユーザ"
+
+msgid "addressbookcommonDescription"
+msgstr "このサーバに登録されているユーザの一覧が表示されます。"
+
+msgid "addressbookCommon"
+msgstr "登録ユーザの一覧"
+
+msgid "addressbookCommonView"
+msgstr "連絡先情報を表示"
+
+
+# -------- Private Address Book
+
+msgid "addressbookprivate"
+msgstr "個人アドレス帳"
+
+msgid "addressbookprivateDescription"
+msgstr "自分のアドレス帳を作成できます。"
+
+
+msgid "addressbookPrivate"
+msgstr "個人アドレス帳"
+
+msgid "addressbookPrivateAdd"
+msgstr "連絡先情報を追加"
+
+msgid "addressbookPrivateModify"
+msgstr "連絡先情報を修正"
+
+
+# -------- Common Strings
+
+msgid "fullname"
+msgstr "氏名"
+
+msgid "fullname_rule"
+msgstr "コロンは使えません。（指定例： 田辺純子）"
+
+msgid "fullname_help"
+msgstr "連絡先の氏名です。"
+
+msgid "username"
+msgstr "ユーザ名"
+
+msgid "username_help"
+msgstr "連絡先のユーザ名（電子メールアドレス）です。"
+
+msgid "email"
+msgstr "電子メールアドレス"
+
+msgid "email_rule"
+msgstr "電子メールアドレスを正しい形式で入力してください。（例：junko@cobalt.co.jp）"
+
+msgid "email_help"
+msgstr "連絡先の電子メールアドレスです。"
+
+msgid "userdesc"
+msgstr "備考"
+
+msgid "userdesc_help"
+msgstr "連絡先に関する情報やコメントです。"
+
+# --------- Action icons
+msgid "view"
+msgstr "詳細"
+
+msgid "view_help"
+msgstr "このアイコンをクリックすると、連絡先に関するより詳しい情報が表示されます。"
+
+msgid "mail"
+msgstr "メールを送る"
+
+msgid "mail_help"
+msgstr "このアイコンをクリックすると、この連絡先に電子メールを送信できます。"
+
+msgid "web"
+msgstr "ウェブページを表示"
+
+msgid "web_help"
+msgstr "このアイコンをクリックすると、このユーザのウェブページが表示されます。"
+
+msgid "listAction"
+msgstr "操作"
+
+# re-used for action columns with different actions, so be generic
+msgid "listAction_help"
+msgstr "これらのアイコンをクリックすると、各種の操作を行えます。"
+
+
+# ------- View Contact Info (Public)
+
+msgid "phone"
+msgstr "電話番号"
+
+msgid "phone_help"
+msgstr "連絡先の電話番号です。"
+
+msgid "fax"
+msgstr "ファックス番号"
+
+msgid "fax_help"
+msgstr "連絡先のファックス番号です。"
+
+msgid "homeUrl"
+msgstr "ウェブページアドレス"
+
+msgid "homeUrl_help"
+msgstr "連絡先のウェブページの URL です。"
+
+msgid "address"
+msgstr "住所"
+
+msgid "address_help"
+msgstr "連絡先の住所です。"
+
+
+# -------- Add/Modify Private Contact
+
+msgid "enterFullname"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "enterFullname_help"
+msgstr "連絡先の氏名を記入してください。 [[base-addressbook.fullname_rule]]"
+
+msgid "enterEmail"
+msgstr "[[base-addressbook.email]]"
+
+msgid "enterEmail_help"
+msgstr "連絡先の電子メールアドレスを記入してください。 [[base-addressbook.email_rule]]"
+
+msgid "enterPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "enterPhone_help"
+msgstr "連絡先の電話番号を記入してください。"
+
+msgid "enterFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "enterFax_help"
+msgstr "連絡先のファックス番号を記入してください。"
+
+msgid "enterHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "enterHomeUrl_help"
+msgstr "連絡先のウェブページの URL を記入してください。 （例： http://www.mubit.co.jp/~yachita/）"
+
+msgid "enterAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "enterAddress_help"
+msgstr "連絡先の住所を記入してください。"
+
+msgid "enterRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "enterRemarks_help"
+msgstr "この連絡先に関する情報やコメントを記入してください。"
+
+msgid "removeAddressbookPrivateConfirm"
+msgstr "[[VAR.fullname]]さんをアドレス帳から削除してよろしいですか？"
+
+
+
+# ------ Groups
+
+msgid "addressbookgroups"
+msgstr "グループ"
+
+msgid "addressbookgroupsDescription"
+msgstr "このサーバ上にあるグループの一覧が表示されます。"
+
+msgid "addressbookgroupsScrollList"
+msgstr "グループのリスト"
+
+msgid "groupname"
+msgstr "グループ名"
+
+msgid "groupname_help"
+msgstr "グループの名前です。"
+
+msgid "groupmembers"
+msgstr "所属メンバー"
+
+msgid "groupmembers_help"
+msgstr "各グループに所属するメンバーの一覧です。"
+
+msgid "groupactions"
+msgstr "操作"
+
+msgid "groupactions_help"
+msgstr "これらのアイコンを使うと、グループ宛に電子メールを送ったり、グループのウェブページを表示できます。"
+
+msgid "groupCountSingular"
+msgstr "グループ数: [[VAR.count]]"
+
+msgid "groupCountPlural"
+msgstr "グループ数: [[VAR.count]]"
+
+msgid "groupdesc"
+msgstr "備考"
+
+msgid "groupdesc_help"
+msgstr "各グループに関する説明やコメントなどが表示されます。"
+
+msgid "groupMail"
+msgstr "グループにメールを送信"
+
+msgid "groupMail_help"
+msgstr "このアイコンをクリックすると、このグループに電子メールを送信できます。"
+
+msgid "groupWeb"
+msgstr "グループのウェブページを表示"
+
+msgid "groupWeb_help"
+msgstr "このアイコンをクリックすると、このグループのウェブページが表示されます。"
+
+
+
+# -------- Get address from webmail
+
+msgid "addressbookimport"
+msgstr "アドレス帳のインポート"
+
+msgid "addressbookimportDescription"
+msgstr "アドレスを選択"
+
+msgid "addressesSelect"
+msgstr "選択"
+
+msgid "addressesSelect_help"
+msgstr "この電子メールの送信先を指定してください。"
+
+msgid "addressesSelectButton"
+msgstr "選択"
+
+msgid "addressesSelectButton_help"
+msgstr "ここをクリックすると、選択されている連絡先の電子メールアドレスをインポートできます。"
+
+msgid "addressesFullName"
+msgstr "氏名"
+
+msgid "addressesFullName_help"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "addressesEmail"
+msgstr "電子メールアドレス"
+
+msgid "addressesEmail_help"
+msgstr "[[base-addressbook.email]]"
+
+msgid "singleEmailEmptyMessage"
+ msgstr " [[VAR.name]]さんの電子メールアドレスは記入されていません。"
+
+msgid "pluralEmailEmptyMessage"
+ msgstr "[[VAR.names]]さんの電子メールアドレスは記入されていません。"
+
+msgid "groupEmailFormat"
+msgstr "'[[VAR.name]]' <[[VAR.email]]>"
+
+msgid "addressbookprivate_help"
+msgstr "「私のアドレス帳」から電子メールアドレスを選択できます。"
+
+msgid "addressbookcommon_help"
+msgstr "このサーバ上の登録ユーザの電子メールアドレスを選択できます。"
+
+# -------- Internal, extra stuff
+
+msgid "ellipses"
+msgstr "..."
+
+msgid "errorPrivateGetAll"
+msgstr "アドレス帳の情報を読み出し中にエラーが発生しました。"
+
+msgid "errorPrivateModify"
+msgstr "アドレス帳の情報を修正中にエラーが発生しました。"
+
+msgid "errorPrivateAdd"
+msgstr "アドレス帳に情報を追加中にエラーが発生しました。"
+
+msgid "errorPrivateDrop"
+msgstr "アドレス帳から情報を削除中にエラーが発生しました。"
+
+msgid "errorPersonalGet"
+msgstr "個人情報の取得中にエラーが発生しました。"
+
+
+
+# --------- Personal Profile stuff
+
+msgid "addressbookPersonal"
+msgstr "個人情報"
+
+msgid "addressbookPersonalDescription"
+msgstr "ここをクリックすると、自分についての情報を記入できます。"
+
+msgid "addressbookPersonalBlock"
+msgstr "個人情報を管理 - [[VAR.name]]"
+
+msgid "persHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "persHomeUrl_help"
+msgstr "ご自分のウェブページの URL を記入してください。 （例：http://www.cobaltqube.org/~yasuda/）"
+
+msgid "persPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "persPhone_help"
+msgstr "ご自分の電話番号を記入してください。"
+
+msgid "persFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "persFax_help"
+msgstr "ご自分のファックス番号を記入してください。"
+
+msgid "persAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "persAddress_help"
+msgstr "ご自分の住所を記入してください。"
+
+msgid "persRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "persRemarks_help"
+msgstr "その他の情報やコメント、説明などを記入してください。"
+
+
+# ---------- POSSIBLY HOMELESS ----------
+
+msgid "addresses"
+msgstr "住所"
+

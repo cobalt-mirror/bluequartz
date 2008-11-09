@@ -1,0 +1,395 @@
+msgid "userList"
+msgstr "User List"
+
+msgid "userListTitle"
+msgstr "User List for [[VAR.fqdn]]"
+
+msgid "users_help"
+msgstr "Click here to manage Users."
+ 
+msgid "fullName"
+msgstr "Full Name"
+
+msgid "fullName_help"
+msgstr "This is the full name of the user."
+
+msgid "userName"
+msgstr "User Name"
+
+msgid "userName_help"
+msgstr "This is the name used by the system to identify the user."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "These are the buttons used to modify settings of a user or to remove a user."
+
+msgid "addNewUser"
+msgstr "Add New User"
+
+msgid "addNewUserTitle"
+msgstr "Add New User to [[VAR.fqdn]]"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "Please enter any characters except colons.  For example, John Doe is a valid entry."
+
+msgid "fullNameField_help"
+msgstr "Enter the full name of the user.  [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "userNameField_rule"
+msgstr "Please enter no more than 31 characters containing only lowercase alphanumeric characters, periods, hyphens and underscores.  The first character must be a letter. For example, john.doe is a valid entry."
+
+msgid "userNameField_help"
+msgstr "Enter the name to be used by the system to identify the user.  [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "Sorry, you have entered a value for [[base-user.userNameField]] that is not available on this system.  Please enter another value for [[base-user.userNameField]]."
+
+msgid "userNameSuggest"
+msgstr "[[base-user.userNameAlreadyTaken]]  The following names are available: [[VAR.list]]."
+
+msgid "passwordField"
+msgstr "Password"
+
+msgid "passwordField_rule"
+msgstr "The password should be between 3 and 16 characters long.  A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation.  It should not spell out any words found in the dictionary.  Passwords are case sensitive."
+
+msgid "passwordField_help"
+msgstr "Enter the password to be used by the system to identify this user.  [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "error-invalid-password"
+msgstr "Sorry, the password you entered was invalid.  [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Maximum Allowed Disk Space"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "The maximum allowed disk space must be within the range specified in parentheses."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Set the disk quota of this user.  This is the maximum disk space available to this user for the storage of web pages, email messages and all other user files.  [[base-user.maxDiskSpaceField_rule]]  The default value for new users is set in the User Template section."
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Set the default maximum disk space for new users.  This is the maximum disk space available to users for the storage of web pages, email messages and all other user files.  [[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "Group Membership"
+
+msgid "memberGroupsField_help"
+msgstr "Set the group membership of this user.  The left column shows the groups to which this user currently belongs.  The right column shows the groups to which this user could possibly belong.  To add this user as a member of a group, move the group from the right column to the left column."
+
+msgid "memberGroups"
+msgstr "Groups Affiliated"
+
+msgid "allGroups"
+msgstr "Groups Not Affiliated"
+
+msgid "modifyUser"
+msgstr "Modify User Settings for [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "New Password"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "Email Settings for [[VAR.userName]]"
+
+msgid "emailAlias"
+msgstr "Email Alias"
+
+msgid "emailAliasesField"
+msgstr "Email Aliases"
+
+msgid "emailAliasesField_rule"
+msgstr "Please enter characters containing only lowercase alphanumeric characters, periods, hyphens and underscores.  The default value is the lowercase first and last name of the user separated by a period.  For example, john.doe is a valid entry."
+
+msgid "emailAliasesField_help"
+msgstr "Enter additional names that the user will receive email as.  [[base-user.emailAliasesField_rule]]"
+
+
+msgid "forwardEnableField"
+msgstr "Email Forwarding"
+
+msgid "forwardEnableField_help"
+msgstr "Enabling email forwarding causes email received in the future to be automatically forwarded to the email addresses specified."
+
+msgid "forwardEnable"
+msgstr "Enable"
+
+msgid "forwardEmailField_rule"
+msgstr "The values entered must be valid email addresses such as user@example.com.  To specify multiple addresses, separate the addresses with a comma, or put each address on a separate line."
+
+msgid "forwardEmailField"
+msgstr "Email Addresses"
+
+msgid "forwardEmailField_help"
+msgstr "Enter the email addresses to which you would like your email forwarded. [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "Vacation Message"
+
+msgid "autoResponderField_help"
+msgstr "Vacation Message allows you to automatically send a custom message to everyone who sends you email. This is useful if you are unable to read your email, or want to send an automatic response message to the sender."
+
+msgid "enableAutoResponderField"
+msgstr "Enable"
+
+msgid "autoResponderMessageField"
+msgstr "Auto-Reply"
+
+msgid "autoResponderMessageField_help"
+msgstr "Enter the message which will be sent automatically as a reply to the sender of every email you receive. "
+
+	# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+msgid "blank-vacation-msg"
+msgstr "Sorry,  you have entered an invalid value for [[base-user.autoResponderMessageField]]."
+
+msgid "userDefaults"
+msgstr "Edit User Template"
+
+msgid "userDefaults_help"
+msgstr "Click here to change default settings for new users."
+
+msgid "userDefaultsTitle"
+msgstr "Edit User Template for [[VAR.fqdn]]"
+
+msgid "basicDefaults"
+msgstr "Basic"
+
+msgid "serviceDefaults"
+msgstr "Services"
+
+msgid "usersPerPage"
+msgstr "Number of Users per Page"
+
+msgid "usersPerPage_help"
+msgstr "Set the number of users to display per page in the user list."
+
+msgid "userNameGenField"
+msgstr "User Name Generation"
+
+msgid "userNameGenField_help"
+msgstr "Set the method by which user names are automatically generated after entering full names.  For example, if John Doe is the full name, then either johnd, jdoe, john or doe would be the automatically generated user name."
+
+msgid "first"
+msgstr "Only First Name"
+
+msgid "last"
+msgstr "Only Last Name"
+
+msgid "firstInitLast"
+msgstr "Initial of First Name & Last Name"
+
+msgid "firstLastInit"
+msgstr "First Name & Initial of Last Name"
+
+msgid "languageField"
+msgstr "Language Preference"
+
+msgid "languageField_help"
+msgstr "The server will try to display pages in the preferred language you select here. If you select 'Set From Browser Options', the server will try to display pages based on your web browser's language preferences.  If the language you select is unavailable, the server will display pages using the default language that is available to your server."
+
+msgid "account"
+msgstr "Account"
+
+msgid "account_help"
+msgstr "Click here to configure basic account settings."
+
+msgid "email"
+msgstr "Email"
+
+msgid "email_help"
+msgstr "Click here to configure email settings such as aliases, forwarding and vacation message."
+
+# Personal Profile Section
+
+msgid "personalEmail"
+msgstr "Email"
+
+msgid "personalEmail_help"
+msgstr "Click here to manage your email forwarding and auto response settings."
+
+# --- Style settings are not currently used, but may be added some time in the future
+msgid "styleField"
+msgstr "Style"
+
+msgid "styleField_help"
+msgstr "Changes the graphical style used to display menus, buttons, and other items."
+
+msgid "personalAccount"
+msgstr "Account"
+
+msgid "personalAccount_help"
+msgstr "Click here to manage personal user account information."
+
+msgid "accountSettings"
+msgstr "Account Settings for [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "Are you sure you want to remove the user [[VAR.userName]]?"
+
+msgid "reloadMessage"
+msgstr "Your web browser will now refresh automatically to use the chosen language."
+
+msgid "forwardSaveField"
+msgstr "Save Copy"
+
+msgid "forwardSaveField_help"
+msgstr "Save Copy saves a copy of every email received to the mailbox in addition to forwarding a copy to the email addresses specified."
+
+msgid "userDesc"
+msgstr "Remarks"
+
+msgid "userDesc_help"
+msgstr "This column provides additional information about each user."
+
+msgid "userDescField"
+msgstr "Remarks"
+
+msgid "userDescField_help"
+msgstr "Enter additional information or comments about the user here."
+
+msgid "uidAlreadyTaken"
+msgstr "Sorry, an error occurred. The uid entered is already taken."
+
+msgid "aliasAlreadyTaken"
+msgstr "Sorry, this user could not be created with the specified name because an email alias already exists for that name."
+
+msgid "aliasAlreadyTaken2"
+msgstr "Sorry, this user's email aliases could not be set because one or more of the specified aliases is already in use."
+
+msgid "add_user_help"
+msgstr "Click here to add a new user."
+
+msgid "administrator"
+msgstr "Administrator"
+
+msgid "failed-to-add-user"
+msgstr "A user account could not be created because of a system error."
+
+# for user_services.pl
+msgid "cantCreateUserServices"
+msgstr "Unable to create the UserServices object."
+
+# user search strings
+msgid "="
+msgstr "is"
+
+msgid "match"
+msgstr "contains"
+
+msgid "nomatch"
+msgstr "does not contain"
+
+msgid "searchbut"
+msgstr "Search"
+
+msgid "searchbut_help"
+msgstr "Click here to retrieve a list of users based on the entered criteria."
+
+msgid "userSearch"
+msgstr "Search Users"
+
+msgid "userSearchCriteria"
+msgstr "Search:"
+
+msgid "userSearchCriteria_help"
+msgstr "You can use this search tool to find users based on the criteria you specify.  Select the field on which to search and choose how the text you enter should be compared against the field."
+
+# Capabilities
+msgid "capgroup_adminUser"
+msgstr "Manage Users"
+
+msgid "capgroup_adminUser_help"
+msgstr "This administrative right allows a user to create, destroy and modify other users on this machine"
+
+msgid "siteAdminEnabled"
+msgstr "Site Administrator"
+
+msgid "siteAdminEnabled_help"
+msgstr "This user is a site administrator."
+
+msgid "userSuspended"
+msgstr "User Suspended"
+
+msgid "userSuspended_help"
+msgstr "This user is suspended and will be denied access to system services associated with that account such as telnet, FTP, mail, and web access to their files.  Email sent to this account will be rejected and the sender will receive an error message."
+
+msgid "rights"
+msgstr "Status"
+
+msgid "rights_help"
+msgstr "This column displays icons for features enabled for the user.  Move your mouse over the icons for more information on each item."
+
+msgid "emailAliases"
+msgstr "Email Aliases"
+
+msgid "emailAliases_help"
+msgstr "This column lists the email aliases for the user.  The user can receive email addressed to these names in addition to the user name."
+
+msgid "suspendUser"
+msgstr "Suspended"
+
+msgid "suspendUser_help"
+msgstr "Suspending a user will prevent that user from accessing system services associated with that account such as telnet, FTP, mail, and Web access to their files.  Email sent to the suspended user's account will be rejected and the sender will receive an error message."
+
+msgid "siteAdministratorField"
+msgstr "Site Administrator"
+
+msgid "siteAdministratorField_help"
+msgstr "Site administrators are users who are capable of configuring settings for a site."
+
+msgid "cantDeleteUser"
+msgstr "Unable to delete the specified user."
+
+msgid "cleanupOldFiles"
+msgstr "This user owns files that are under the site's directory but not in the user's home directory that you may want to keep.  You must delete these files or reassign the ownership to another user before deleting this user."
+
+# handler error messages for root_access.pl
+msgid "cantGetRootAccess"
+msgstr "Unable to get the RootAccess namespace for [[VAR.name]] from CCE."
+
+msgid "cantDisableRootAccess"
+msgstr "Unable to disable root access for [[VAR.name]]."
+
+msgid "cantEnableRootAccess"
+msgstr "Unable to enable root access for [[VAR.name]]."
+
+msgid "cantDeleteAlterRoot"
+msgstr "Unable to remove the root user account, [[VAR.root]]."
+
+msgid "cantCreateAlterRoot"
+msgstr "Unable to create the root user account, [[VAR.root]]."
+
+msgid "cantUpdateAlterRoot"
+msgstr "Unable to synchronize the root user account password for the root account, [[VAR.root]], to match the password for [[VAR.name]]'s account."
+
+msgid "emailDisabled"
+msgstr "Disable User's Email"
+
+msgid "emailDisabled_help"
+msgstr "This will disable the user's email for his main account and all aliases"
+
+msgid "dnsAdministratorField"
+msgstr "DNS Administrator"
+ 
+msgid "dnsAdministratorField_help"
+msgstr "This user is a DNS Administrator."

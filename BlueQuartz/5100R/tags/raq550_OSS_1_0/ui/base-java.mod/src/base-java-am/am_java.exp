@@ -1,0 +1,49 @@
+#!/usr/bin/expect
+#
+# $Id: am_java.exp,v 1.1.2.2 2002/01/29 02:43:27 pbaltz Exp $
+# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+#
+# check if tomcat is alive by asking for a jsp page through apache
+#
+
+source /usr/sausalito/swatch/statecodes.tcl
+
+# turn off echo
+log_user 0
+
+spawn telnet localhost 80
+expect {
+	"Connected to" {}
+	default {
+		# if we can't connect to apache we have nothing to say
+		exit $AM_STATE_NOINFO
+	}
+}
+
+# ask for a jsp page
+send "HEAD /foo.jsp HTTP/1.0\r\n"
+
+expect {
+	"HTTP/1.1 404 Not" {}
+	default {
+		# try to restart tomcat
+		catch { 
+			exec /etc/rc.d/init.d/tomcat.init restart >&/dev/null
+		} result
+		sleep 10
+		spawn telnet localhost 80
+		send "HEAD /foo.jsp HTTP/1.0\r\n"
+		expect {
+			"HTTP/1.1 404 Not" {}
+			default {
+				puts -nonewline $env(redMsg);
+				flush stdout;
+				exit $AM_STATE_RED;
+			}
+		}
+	}
+}
+
+puts -nonewline $env(greenMsg);
+flush stdout;
+exit $AM_STATE_GREEN;

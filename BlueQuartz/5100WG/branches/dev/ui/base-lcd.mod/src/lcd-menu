@@ -1,0 +1,132 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+#
+# $Id: lcd-menu 201 2003-07-18 19:11:07Z will $
+#
+# Copyright 2000 Cobalt Networks, Inc.
+# http://www.cobalt.com/
+#
+
+use POSIX;
+use Locale::gettext;
+use Getopt::Std;
+require LCD;
+use I18n;
+
+use vars qw/ $method $opt_c /;
+
+######################################################################
+##
+## main routine
+##
+
+getopts("c");
+$method = ($opt_c) ? "console" : "lcd";
+
+$menu_path_default = "/etc/lcd.d";
+$panel_lock_file = "/etc/cobalt/.LCK..cobtpanel";
+
+my $i18n = new I18n;
+my $language = &LCD::get_locale();
+$i18n->setLocale($language) if (defined $language);
+
+# top level menu path selection
+$tld = $menu_path_default;
+$tld = $ARGV[0] if (-d $ARGV[0]);
+die "invalid menu path: $tld\n" unless (-d $tld);
+
+# button list should be in here
+die "invalid button list: $tld/button_list\n"
+	unless (-e "$tld/button_list");
+require "$tld/button_list";
+ 
+if ( -e $panel_lock_file ) {
+  $ret=system("/usr/local/sbin/fppasswd.sh -c");
+  if ($ret == 0)  {
+    # now do select on menu
+    &select_menu($tld);
+  }
+} else {
+  # now do select on menu
+  &select_menu($tld);
+}
+
+# all done
+exit(1);
+
+######################################################################
+##
+## menu selection
+##
+sub select_menu ($)
+{
+    my $menupath = shift;
+    my(%menu,@items,$selection);
+
+    return unless (-d $menupath);
+
+    opendir(DIR, $menupath) ||
+	die gettext("Invalid menu directory $directory: $!");
+    while (my $dir = readdir(DIR))
+    {
+	if ($dir =~ /^(\d+)(.+)\.(.)/) {
+	    $menu{$dir}{index}  = $1;
+	    $menu{$dir}{name}   = $2;
+	    $menu{$dir}{type}   = $3;
+	    $menu{$dir}{string} = `$menupath/$dir/string` if (-x "$menupath/$dir/string");
+	}
+    }
+    closedir(DIR);
+
+    @items = keys(%menu);
+    if (scalar(@items) == 1) {
+	$selection = $items[0];
+    }
+    else {
+	for ($method)
+	{
+	    /^lcd/ && do {
+		$selection = &LCD::menu_lcd(\%menu,\%buttons);
+	    };
+	    /^console/ && do {
+		$selection = &LCD::menu_console(\%menu);
+	    };
+	}
+    }
+
+    if ($menu{$selection}{type} eq 'm') {
+	&select_menu("$menupath/$selection");
+    }
+    elsif ($menu{$selection}{type} eq 's') {
+	&run_script("$menupath/$selection");
+    }
+}
+
+######################################################################
+##
+## run the indicated program
+##
+sub run_script ($)
+{
+    my $scriptdir = shift;
+
+    # return unless this is a valid directory
+    return unless (-d $scriptdir);
+
+    opendir(DIR, $scriptdir) ||
+	die gettext("Invalid script directory $directory: $!");
+
+    while (my $scriptfile = readdir(DIR))
+    {
+	if ($scriptfile =~ /^\d+(.+)/) {
+	    my $script = "$scriptdir/$scriptfile";
+	    my $option = ($opt_c) ? '-c' : '-s';
+	    next unless (-x $script);
+	    system($script,$option);
+
+	    last if ($? >> 8 != 0);
+	}
+    }
+    closedir(DIR);
+    return;
+}
+

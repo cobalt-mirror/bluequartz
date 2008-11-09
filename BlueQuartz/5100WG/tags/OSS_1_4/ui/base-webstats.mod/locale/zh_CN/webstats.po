@@ -1,0 +1,256 @@
+# Menu
+
+msgid "webUsage"
+msgstr "Web"
+
+msgid "webstatMenuDesc"
+msgstr "Web 服务器利用率统计信息可在此处查看。"
+
+# Page Selector & Table Headers
+
+msgid "noStats"
+msgstr "对不起，当前无法获得统计信息。"
+
+msgid "notAvailable"
+msgstr "无法获得"
+
+msgid "selectStat"
+msgstr "选择统计信息..."
+
+msgid "webtotals"
+msgstr "摘要"
+
+msgid "webtotals_header"
+msgstr "Web 利用率—摘要"
+
+msgid "webbyip"
+msgstr "最积极的请求者"
+
+msgid "webbyip_header"
+msgstr "Web 利用率—最积极的请求者"
+
+msgid "webbyfile"
+msgstr "请求最多的网页"
+
+msgid "webbyfile_header"
+msgstr "Web 利用率—请求最多的网页"
+
+msgid "webbyref"
+msgstr "查阅最频繁的网页"
+
+msgid "webbyref_header"
+msgstr "Web 利用率—查询最频繁的网页"
+
+msgid "webbyhour"
+msgstr "小时请求次数"
+
+msgid "webbyhour_header"
+msgstr "Web 利用率—小时请求次数"
+
+msgid "webbydate"
+msgstr "日请求次数"
+
+msgid "webbydate_header"
+msgstr "Web 利用率—日请求次数"
+
+# Page Details
+# Summary
+
+msgid "genDate"
+msgstr "上次检查的利用率"
+
+msgid "genDate_help"
+msgstr "这是所生成的上次 Web 利用率统计信息。"
+
+msgid "periodStart"
+msgstr "报告覆盖期间（从）"
+
+msgid "periodStart_help"
+msgstr "这是这些 Web 利用率统计信息覆盖的期间开端。"
+
+msgid "periodEnd"
+msgstr "报告覆盖期间（至）"
+
+msgid "periodEnd_help"
+msgstr "这是这些 Web 利用率统计信息覆盖的期间结束。"
+
+msgid "totalHits"
+msgstr "请求总次数"
+
+msgid "totalHits_help"
+msgstr "这是报告期间内所生成的 Web 请求或点击总次数。"
+
+msgid "badHits"
+msgstr "不良请求次数"
+
+msgid "badHits_help"
+msgstr "这是报告期间内不良 Web 请求或点击次数。这些是由于多种原因无法完成的网页请求。例如，这些请求可能是对于此 Web 服务器上不存在的网页。"
+
+msgid "numIPs"
+msgstr "发出请求的互不相同的计算机数"
+
+msgid "numIPs_help"
+msgstr "这是报告期间内特定计算机请求网页的次数。"
+
+msgid "numFiles"
+msgstr "被请求的互不相同的页面数"
+
+msgid "numFiles_help"
+msgstr "这是报告期间内特定网页被请求的次数。"
+
+msgid "numRefs"
+msgstr "被查阅的互不相同的页面数"
+
+msgid "numRefs_help"
+msgstr "这是报告期间内被查阅的互不相同的页面数。查阅网页是指包含此 Web 服务器上网页超级链接的网页。"
+
+msgid "numBytes"
+msgstr "下载的字节数"
+
+msgid "numBytes_help"
+msgstr "这是报告期间内所下载的字节数。"
+
+# Most Active Requesters
+
+msgid "hostname"
+msgstr "请求者姓名"
+
+msgid "hostname_help"
+msgstr "这是请求此 Web 服务器上网页的计算机主机名。"
+
+msgid "hits"
+msgstr "请求"
+
+msgid "hits_help"
+msgstr "这是请求者生成的 Web 请求或点击次数。"
+
+msgid "referrer"
+msgstr "查阅者"
+
+msgid "referrer_help"
+msgstr "这是请求者在此 Web 服务器上查阅的网页。"
+
+# Most Requested Pages
+
+msgid "file"
+msgstr "页"
+
+msgid "file_help"
+msgstr "这是正被请求者请求的网页。"
+
+msgid "pagehits"
+msgstr "请求"
+
+msgid "pagehits_help"
+msgstr "这是请求或点击此网页的次数。"
+
+# Most Frequent Referring Pages
+
+msgid "refhits"
+msgstr "请求"
+
+msgid "refhits_help"
+msgstr "这是此查阅者请求或点击网页的次数。"
+
+# Hourly Requests
+
+msgid "00_help"
+msgstr "这是 12 AM 和 1 AM 之间记录的 Web 请求次数。"
+
+msgid "01_help"
+msgstr "这是 1 AM 和 2 AM 之间记录的 Web 请求次数。"
+
+msgid "02_help"
+msgstr "这是 2 AM 和 3 AM 之间记录的 Web 请求次数。"
+
+msgid "03_help"
+msgstr "这是 3 AM 和 4 AM 之间记录的 Web 请求次数。"
+
+msgid "04_help"
+msgstr "这是 4 AM 和 5 AM 之间记录的 Web 请求次数。"
+
+msgid "05_help"
+msgstr "这是 5 AM 和 6 AM 之间记录的 Web 请求次数。"
+
+msgid "06_help"
+msgstr "这是 6 AM 和 7 AM 之间记录的 Web 请求次数。"
+
+msgid "07_help"
+msgstr "这是 7 AM 和 8 AM 之间记录的 Web 请求次数。"
+
+msgid "08_help"
+msgstr "这是 8 AM 和 9 AM 之间记录的 Web 请求次数。"
+
+msgid "09_help"
+msgstr "这是 9 AM 和 10 AM 之间记录的 Web 请求次数。"
+
+msgid "10_help"
+msgstr "这是 10 AM 和 11 AM 之间记录的 Web 请求次数。"
+
+msgid "11_help"
+msgstr "这是 11 AM 和 12 PM 之间记录的 Web 请求次数。"
+
+msgid "12_help"
+msgstr "这是 12 PM 和 1 PM 之间记录的 Web 请求次数。"
+
+msgid "13_help"
+msgstr "这是 1 PM 和 2 PM 之间记录的 Web 请求次数。"
+
+msgid "14_help"
+msgstr "这是 2 PM 和 3 PM 之间记录的 Web 请求次数。"
+
+msgid "15_help"
+msgstr "这是 3 PM 和 4 PM 之间记录的 Web 请求次数。"
+
+msgid "16_help"
+msgstr "这是 4 PM 和 5 PM 之间记录的 Web 请求次数。"
+
+msgid "17_help"
+msgstr "这是 5 PM 和 6 PM 之间记录的 Web 请求次数。"
+
+msgid "18_help"
+msgstr "这是 6 PM 和 7 PM 之间记录的 Web 请求次数。"
+
+msgid "19_help"
+msgstr "这是 7 PM 和 8 PM 之间记录的 Web 请求次数。"
+
+msgid "20_help"
+msgstr "这是 8 PM 和 9 PM 之间记录的 Web 请求次数。"
+
+msgid "21_help"
+msgstr "这是 9 PM 和 10 PM 之间记录的 Web 请求次数。"
+
+msgid "22_help"
+msgstr "这是 10 PM 和 11 PM 之间记录的 Web 请求次数。"
+
+msgid "23_help"
+msgstr "这是 11 PM 和 12 AM 之间记录的 Web 请求次数。"
+
+# Daily Requests
+
+msgid "date"
+msgstr "日期"
+
+msgid "date_help"
+msgstr "这是 Web 请求或点击生成的日期。"
+
+msgid "dayhits"
+msgstr "请求"
+
+msgid "dayhits_help"
+msgstr "这是此日期内 Web 请求或点击的次数。"
+
+# Button
+
+msgid "resetStats"
+msgstr "重设统计信息"
+
+msgid "resetStats_help"
+msgstr "单击此处重设所有 Web 利用率统计信息，并重新开始收集统计信息。"
+
+msgid "askResetConfirmation"
+msgstr "是否确定要重设 Web 利用率统计信息？"
+
+msgid "Unknown"
+msgstr "未知"
+

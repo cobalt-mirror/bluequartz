@@ -1,0 +1,237 @@
+#!/usr/bin/perl
+#
+# Author: Kevin K.M. Chiu
+# Copyright 2001, Cobalt Networks.  All rights reserved.
+# $Id: makeServer 201 2003-07-18 19:11:07Z will $
+
+# makeServer is a utility that generates a package information file suitable
+# for BlueLinQ clients to download. Program help is available using the -h
+# option of the utility. This utility is designed to turn machines into
+# BlueLinQ servers quickly for BlueLinQ testing purposes.
+#
+# The simpliest way to make a BlueLinQ server is copy all the PKG files into a
+# web accessible directory, then run "makeServer" inside this directory. A
+# "packages" file is generated and a BlueLinQ server is born. To reference to
+# this server, enter the URL of the "packages" file in the BlueLinQ server URL
+# field on the advanced section of the BlueLinQ settings page on BlueLinQ
+# clients.
+#
+# If the package information file should have a name other than "packages", use
+# the -o option.
+#
+# All PKG files must have a Location field in their packing_list. Otherwise,
+# they are not shown on the BlueLinQ pages. makeServer can fill this field up
+# automatically. To do this, simply remove this field from the packing_list of
+# PKGs that automatic fill up is desired and supply a -u option with the URL of
+# the web accessible directory the PKG files are placed. Use -f to override all
+# location fields even if they exist.
+#
+# packing_list Size fields are automatically calculated unless -s is used.
+
+use strict;
+use Cwd;
+use Getopt::Std;
+
+# get options
+getopts('d:fho:su:');
+use vars qw($opt_d $opt_f $opt_h $opt_o $opt_s $opt_u);
+
+# default file name of the output
+my $outputFile = 'packages';
+
+# temporary directory for tar
+my $tmpTarDir = "/tmp/pkgTar$$";
+my $tmpUntarDir = "/tmp/pkgUntar$$";
+
+# binary locations
+my $cp = '/bin/cp';
+my $mkdir = '/bin/mkdir';
+my $rm = '/bin/rm';
+my $tar = '/bin/tar';
+
+my $helpText = <<END;
+Usage: $0
+  [-d <PKG file directory>]
+  [-h]
+  [-o <output file name>]
+  [-u <URL root of PKG files> [-f]]
+
+Generates a package information file from PKGs that is suitable for BlueLinQ
+clients to download. The URL to the file generated should be entered into the
+BlueLinQ server URL field on the advanced section of the BlueLinQ settings
+page.
+
+  -d  Directory where all PKG files available on this server is located.
+      Current working directory is the default.
+  -h  Show this help.
+  -o  The name of the output file which is a tarball of PKG information.
+      "$outputFile" is the default.
+  -s  Do not fill in Size field. Sizes of all PKGs are automatically calculated
+      and filled into packing_list (replace the originals if they exist) by
+      default.
+  -u  URL root of PKG files. For example, if the directory of the PKG files are
+      accessible under http://<ip>/packages/<pkg>, then this URL should be
+      http://<ip>/packages/. If specified, Location fields are added to
+      packing_list of PKGs if they are not defined.
+  -f  Modify all Location fields of all the packing_list even if they have the
+      fields defined.
+END
+
+# show help if necessary
+if($opt_h) {
+    print $helpText;
+    exit;
+}
+
+# find PKG file directory
+my $dir = cwd();
+if($opt_d) {
+    $dir = $opt_d;
+}
+
+# find output file name
+my $outputPath = "$dir/$outputFile";
+if($opt_o) {
+    $outputPath = $opt_o;
+}
+
+# find URL root
+my $urlRoot = '';
+if($opt_u) {
+    $urlRoot = $opt_u;
+}
+
+# read the directory
+opendir(DIR, $dir)
+    || die 'ERROR: Cannot open $dir';
+my @pkgFiles = readdir(DIR);
+closedir(DIR);
+
+# remove hidden files
+@pkgFiles = grep !/^\./, @pkgFiles;
+# remove non-pkg files
+@pkgFiles = grep /\.pkg$/i, @pkgFiles;
+
+# make directory for tarball
+system("$mkdir -p $tmpTarDir");
+
+# the full package_list
+my $packageList = "[PackageList -- Version=1.0]\n";
+
+my $pkgFile;
+foreach $pkgFile (@pkgFiles) {
+    # clean up
+    system("$rm -rf $tmpUntarDir");
+
+    # make directory
+    system("$mkdir -p $tmpUntarDir");
+
+    # untar
+    system("$tar -xzf $dir/$pkgFile -C $tmpUntarDir");
+
+    # read the packing_list
+    my $isLocationDefined = 0;
+    my $line = '';
+    my $name = '';
+    my $version = '';
+    my $vendor = '';
+    open(FILE, "<$tmpUntarDir/packing_list");
+    while($line = <FILE>) {
+	# ignore the PackageList tags
+	if($line =~ /^\s*\[\/?PackageList/) {
+	    next;
+	}
+
+	# ignore Size line if no -s
+	if(!$opt_s && $line =~ /^\s*Size:/) {
+	    next;
+	}
+
+	# going out of package block?
+	if($line =~ /^\s*\[\/Package]$/) {
+	    # define Size field if no -s
+	    if(!$opt_s) {
+		my @fileInfo = stat("$dir/$pkgFile");
+		# element 7 is file size
+		$packageList .= "Size: $fileInfo[7]\n";
+	    }
+
+	    # deal with Location field
+	    my $location = "Location: $urlRoot$pkgFile\n";
+	    # put in location anyway if -f
+	    if($opt_f) {
+		$packageList .= $location;
+	    }
+	    # define Location if it is not defined and URL root is specified
+	    elsif(!$isLocationDefined && $urlRoot ne '') {
+		$packageList .= $location;
+	    }
+	    # give warning if no Location is defined
+	    elsif(!$isLocationDefined) {
+		print STDERR "WARNING: Package $vendor-$name-$version does not have a Location field specified in the packing_list. It may not show up on BlueLinQ pages.\n";
+	    }
+	}
+
+	# found Location line?
+	if($line =~ /^\s*Location:/) {
+	    $isLocationDefined = 1;
+
+	    # do not use this line if it needs to be replaced
+	    if($opt_f) {
+		next;
+	    }
+	}
+
+	# find name
+	if($line =~ /^\s*Name:\s+(.*)$/) {
+	    $name = $1;
+
+	    # space at the end breaks file names
+	    $name =~ s/\s+$//;
+	}
+
+	# find vendor
+	if($line =~ /^\s*Vendor:\s+(.*)$/) {
+	    $vendor = $1;
+
+	    # space at the end breaks file names
+	    $vendor =~ s/\s+$//;
+	}
+
+	# find version
+	if($line =~ /^\s*Version:\s+(.*)$/) {
+	    $version = $1;
+
+	    # space at the end breaks file names
+	    $version =~ s/\s+$//;
+	}
+
+	# append line to full package list
+	$packageList .= $line;
+    }
+    close(FILE);
+
+    # copy pkginfo directory if it exists
+    if(-d "$tmpUntarDir/pkginfo") {
+	my $pkgDirName = "$vendor-$name-$version";
+	system("$mkdir -p $tmpTarDir/$pkgDirName");
+	system("$cp -r $tmpUntarDir/pkginfo/* $tmpTarDir/$pkgDirName");
+    }
+}
+
+# close the PackageList tag
+$packageList .= '[/PackageList]';
+
+# write the package_list
+open(FILE, ">$tmpTarDir/package_list");
+print FILE $packageList;
+close(FILE);
+
+# make the tarball
+system("$tar -czf $outputPath -C $tmpTarDir . 2>/dev/null");
+
+# clean up
+system("$rm -rf $tmpTarDir");
+system("$rm -rf $tmpUntarDir");
+
+exit;

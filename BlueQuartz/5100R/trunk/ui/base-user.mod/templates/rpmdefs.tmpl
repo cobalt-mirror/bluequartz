@@ -1,0 +1,221 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+/etc/skel/user/en/web/
+/etc/skel/user/ja/web/
+/etc/skel/user/es/web/
+/etc/skel/user/fr/web/
+/etc/skel/user/de/web/
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Wed Sep 10 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ7
+- Updated locale in regards to new password minumum length of six characters.
+
+* Fri Sep 05 2008 Brian Smith <brian@nuonce.net> 1.2.0-0BQ6
+- Fixed it so that the skel .bash* files are copied to user's home directories
+
+* Fri Sep 05 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ5
+- fixed the issue that fail to add user and vsite with get_free_uid/gid.
+
+* Wed Aug 28 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ4
+- fixed the issue that admin and root-admin password isn't able to be sync.
+
+* Tue Aug 26 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ3
+- Small update in personalAccountHandler.php, userModHandler.php and userAddHandler.php
+- Now uses strcasecmp() to check if password equals username in upper and lower case.
+
+* Sat Aug 23 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ2
+- fixed the issue that handler is in infinite loop when admin user is added.
+
+* Wed Aug 20 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ1
+- it stores user information in shadow instead of pwdb.
+- remove all pwdb stuff.
+
+* Wed May 14 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ27
+- Added provisions to disallow FTP access for not-siteAdmin users.
+
+* Tue May 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ26
+- Moved cracklib functionality to sausalito-i18n package
+- PLEASE NOTE: Added requirement for sausalito-i18n >= 0.70.2-86BQ16
+
+* Sun May 11 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ25
+- Added functionality from Base-Secure-Passwords.
+- Passwords are now checked against cracklib to detect if they're secure enough.
+- Dissalows that the password equals the username, too.
+- PLEASE NOTE: Requires sausalito-cce-server >= 0.80.3-1BQ34 and base-admserv-capstone >= 1.0.1-0BQ11 
+
+* Wed Feb 13 2008 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ24
+- Made so new systems can't run conversation.  New "trigger" called: runconvert
+
+* Wed Feb 13 2008 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ23
+- Added in original: system-auth for pam
+- Fixed nsswitch.conf in scripts
+- Fixed saslauthd in scripts
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ22
+- German locales added.
+
+* Wed Jan 23 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ21
+- Added constructor 55_fix_solarspeed_nopam.pl
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ20
+- Danish locales added. Thanks to Jes Klittum!
+
+* Fri Dec 14 2007 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ19
+- modified: convert2passwd.php
+- If they already ran the conversion, let them know
+- modified: convert2password.po
+- added message alerting to conversion
+
+* Fri Dec 14 2007 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ18
+- New users will be stored in flat files.
+- Switching off the old pwdb files
+- The following files have been modified:
+- locale/en/convert2passwd.po
+- handlers/convert2passwd.pl
+- handlers/convert2passwd.sh
+- schemas/convert2passwd.schema
+- conf/convert2passwd.conf
+- ui/menu/convert2passwd.xml
+- ui/web/convert2passwdHandler.php
+- ui/web/convert2passwd.php
+
+* Mon Aug 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ17
+- Added Japanese messages.
+- Added the dns administrator field for userAdd.php.
+
+* Sat Aug 12 2006 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ16
+- Modified userMod.php - Added dnsAdmin checkbox
+- Modified userModHandler.php - Added handler to add dnsAdmin into Capabilities
+- Modified user.po - Added language entries for dnsAdmin
+
+* Thu Aug 03 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ15
+- add disable email feature by Brian.
+
+* Wed Apr 26 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ14
+- modified Base.pm to copy .bash* files for skelton.
+
+* Tue Feb 13 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ13
+- modified handle_user.pl to reject the user who will be reserved.
+
+* Wed Feb 08 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ12
+- set system locale for admin's locale by default.
+
+* Fri Dec 02 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ11
+- modified handle_user.pl to reject the user which in /etc/passwd and don't check uid.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ10
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ9
+- modified handle_user.pl to reject the user which in /etc/passwd and uid is grater than 100.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ8
+- rebuild with devel-tools 0.5.1
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ7
+- modified Group tag.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ6
+- clean up spec file.
+<end $CHANGELOG>

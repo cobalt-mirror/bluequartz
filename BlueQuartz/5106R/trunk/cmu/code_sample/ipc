@@ -1,0 +1,26 @@
+#!/usr/bin/perl 
+use lib "../perl_modules";
+
+use IPC::Open2;
+use CmuCfg;
+use TreeXml;
+use vars qw($glbConf);
+
+my $cobaltBase = {};
+addNode('cobaltBase', $glbConf, $cobaltBase);
+
+#my $xmlCmd = "/home/cpr/scripts/Qube3scanout.pl";
+my $xmlCmd = "/home/cpr/code_sample/ipced";
+#my $xmlCmd = $glbConf->{libs}->{scanout};
+
+my $flip;
+#my $pid = open2(*RE, *WR, $xmlCmd); 
+if($pid = open2(*RE, *WR, $xmlCmd)) {
+	print WR writeXml($cobaltBase);
+	close (WR);
+	while(my $lip = <RE>) {
+		$flip .= $lip;
+	}
+	close (RE);
+	print "lip: ", $flip, "\n";
+}

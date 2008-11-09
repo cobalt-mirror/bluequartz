@@ -1,0 +1,41 @@
+msgid "cacheACLSettings"
+msgstr "Restricted Web Access"
+
+msgid "cacheACL"
+msgstr "Web Access"
+
+msgid "cacheACL_help"
+msgstr "Web access can be controlled here if this server is being used as a gateway or proxy."
+
+msgid "whitelist"
+msgstr "Permitted Access"
+
+msgid "blacklist"
+msgstr "Blocked Access"
+
+msgid "all"
+msgstr "Unrestricted"
+
+msgid "modeField"
+msgstr "Restriction Policy"
+
+msgid "modeField_help"
+msgstr "Choose the type of restriction: Permitted Access, only allow access to the specified sites; Blocked Access, disallow access to the specified sites; Unrestricted, allow access to all sites.  Note that only web access is affected by this policy, ftp and other protocols are unaffected."
+
+msgid "domainsField"
+msgstr "Hosts/Domains"
+
+msgid "domainsField_help"
+msgstr "Enter the host and domain names to restrict Web access.  Blanket domain names may be used by including a leading period character before a domain name.  For example, the entry www.sun.com will apply to only that host, but the entry .sun.com will apply the Restriction Policy to www.sun.com, cobalt.sun.com, and all other web sites sharing the sun.com domain."
+
+msgid "domainsField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-cacheACL.domainsField]].  [[base-cacheACL.domainsField_help]]"
+
+msgid "ipaddrField"
+msgstr "IP Addresses"
+
+msgid "ipaddrField_help"
+msgstr "Enter a list of IP addresses to be used with this policy."
+
+msgid "ipaddrField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-cacheACL.ipaddrField]].  [[base-cacheACL.ipaddrField_help]]"

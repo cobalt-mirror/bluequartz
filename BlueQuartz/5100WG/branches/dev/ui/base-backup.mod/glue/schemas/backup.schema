@@ -1,0 +1,78 @@
+<!-- 
+  $Id: backup.schema 201 2003-07-18 19:11:07Z will $ 
+  Copyright 2000, Cobalt Networks.
+  
+  This file describes the schema of the following class types:
+	Backup
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+  
+-->
+
+<!-- local type definitions -->
+
+<typedef 
+	name="backupname" 
+	type="re" 
+	data="^[a-zA-Z0-9]{1,36}$"
+	errmsg="[[base-backup.invalidBackupName]]"
+/>
+
+<typedef
+	name="backuppath"
+	type="re"
+	data="^[\/\\a-zA-Z0-9_.:-]+$"
+/>
+
+
+<!-------------------------------------------------------------------------
+   Backup
+    Just a trigger for scheduling and executing backups.
+-------------------------------------------------------------------------->
+
+<class name="Backup" namespace="" version="1.0">
+  <property 
+        name="backupTag"
+	type="backupname" 
+  	default="unknown"
+  />
+
+  <!-- backup : set to 1 to perform backup, leave at 0 for nothing -->
+  <property name="pendingBackup"        type="int" default="0"/>
+
+  <property name="backupConfiguration"  type="boolean" default="1"/>
+  <property name="backupSchedule"       type="scalar" 
+	default="backupImmediate"/>
+  <property name="backupOwner"          type="scalar" default="admin"/>
+
+  <property name="backupType"           type="scalar" default="full"/>
+  <property name="backupFileSet"        type="int"    default="0"/>
+  <property name="backupMethod"         type="scalar" default="nfs"/>
+
+  <property name="backupUserScope"      type="scalar" default="all"/>
+  <property name="backupUsers"          type="scalar" default=""/>
+
+  <property name="backupGroupScope"     type="scalar" default="all"/>
+  <property name="backupGroups"         type="scalar" default=""/>
+
+  <!-- 
+       backup : Destination describes how to get to backup 
+       i.e lease156:/shares/md0/shares/2/mp3/ 
+  -->
+  <property name="backupDestination"    type="backuppath" default=""/>
+  <property name="backupUsername"       type="scalar" default=""/>
+  <property name="password"             type="scalar" default=""/>
+
+  <!-- 
+       backup : Location describes exact location 
+       i.e /tmp/file6fgnBg/20000615060640 
+  -->
+  <property name="backupLocation"       type="scalar" default=""/>
+
+  <property name="backupCronFile"       type="scalar" default=""/>
+
+</class>
+
+<!-- end of backup.schema -->

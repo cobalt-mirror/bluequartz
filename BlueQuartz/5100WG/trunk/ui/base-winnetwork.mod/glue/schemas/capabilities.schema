@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyWinnetwork" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyWinnetwork)"/>
+	<property name="nameTag" type="scalar" default="[[base-winnetwork.cap_modifyWinnetwork]]"/>
+</class>

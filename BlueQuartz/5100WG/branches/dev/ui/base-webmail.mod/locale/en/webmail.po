@@ -1,0 +1,549 @@
+# -------- Initial labels and descriptions
+msgid "webmail"
+msgstr "WebMail"
+
+msgid "version"
+msgstr "Version 1.0"
+
+msgid "webmailDescription"
+msgstr "[[base-webmail.webmail]] allows you to send and read email using your web browser."
+
+msgid "webmailSplash"
+msgstr "[[base-webmail.webmailDescription]]"
+
+msgid "splashWelcomeTo"
+msgstr "Welcome to [[base-carmel.osVendor]] WebMail!"
+
+msgid "splashWelcomeTo_monterey"
+msgstr "Welcome to Sun Cobalt Webmail!"
+
+# Messages Tab
+msgid "messages"
+msgstr "Messages"
+
+msgid "messagesDescription"
+msgstr "[[base-webmail.webmailSplash]]"
+
+msgid "logout"
+msgstr "Logout"
+
+msgid "logoutDescription"
+msgstr "Click here to close WebMail"
+
+
+# -------- Menu Items
+msgid "compose"
+msgstr "Compose"
+
+msgid "composeDescription"
+msgstr "Click here to compose a new email message."
+
+msgid "mailboxes"
+msgstr "Folder List"
+
+msgid "mailboxesDescription"
+msgstr "Click here to view email folders." 
+
+msgid "inbox"
+msgstr "Inbox"
+
+msgid "inboxDescription"
+msgstr "Incoming Mail"
+
+msgid "sent"
+msgstr "Sent"
+
+msgid "sentDescription"
+msgstr "Sent Mail"
+
+msgid "sent-mail"
+msgstr "Sent-mail"
+
+msgid "Sent-mail_help"
+msgstr "The Sent Mail folder contains email messages you have sent."
+
+msgid "mailboxadmin"
+msgstr "Manage Folders"
+
+msgid "mailboxadminDescription"
+msgstr "Click here to add, rename, or remove email folders."
+
+msgid "maillists"
+msgstr "Mailing Lists"
+
+msgid "maillistsDescription"
+msgstr "Click here to view archives of mailing lists to which you are currently subscribed."
+
+msgid "openThisMaillistFolder"
+msgstr "Click here to view this mailing list archive."
+
+
+# ------- General Purpose Strings (these get re-used)
+
+msgid "to"
+msgstr "To"
+
+msgid "cc"
+msgstr "CC"
+
+msgid "from"
+msgstr "From"
+
+msgid "attachments"
+msgstr "Attachments"
+
+msgid "attachments_help"
+msgstr "Attachments included with the message."
+
+msgid "subject"
+msgstr "Subject"
+
+msgid "subject_help"
+msgstr "This is the subject of the message."
+
+msgid "noSubject"
+msgstr "<No Subject>"
+
+msgid "noSender"
+msgstr "<No Sender>"
+
+msgid "bcc"
+msgstr "Bcc"
+
+msgid "body"
+msgstr "Message"
+
+msgid "viewAsHTML"
+msgstr "[This email was sent formatted in HTML. To view this email with formatting, click View as HTML above.]\n\n\n"
+
+msgid "body_help"
+msgstr "This is the email message"
+
+msgid "sender"
+msgstr "Sender"
+
+msgid "sender_help"
+msgstr "This is the name or email address of the person who sent the message."
+
+msgid "date"
+msgstr "Date"
+
+msgid "date_help"
+msgstr "This is the date the message was received."
+
+msgid "forward"
+msgstr "Forward"
+
+msgid "forward_help"
+msgstr "Click here to forward this message to another recipient."
+
+msgid "remove"
+msgstr "Remove"
+
+msgid "remove_help"
+msgstr "Click here to remove this message."
+
+	# JS confirm
+msgid "removeMessage"
+msgstr "Are you sure you wish to delete this message?"
+
+
+msgid "subject_empty"
+msgstr "Sorry, you have not entered a [[base-webmail.cmpSubject]]."
+
+msgid "body_empty"
+msgstr "Sorry, you have not entered any message text."
+
+msgid "toAddy_empty"
+msgstr "Sorry, you have not specified a recipient for this email in the To field."
+
+msgid "toAddy_invalid"
+msgstr "Sorry, The email address(es) entered in the To field are not recognizable.  Please enter email addresses in the form 'jsmith@company.com' or 'John Smith <jsmith@company.com>' separated by commas."
+
+msgid "ccAddy_invalid"
+msgstr "Sorry, The email address(es) entered in the Cc field are not recognizable.  Please enter email addresses in the form 'jsmith@company.com' or 'John Smith <jsmith@company.com>' separated by commas."
+
+msgid "bccAddy_invalid"
+msgstr "Sorry, The email address(es) entered in the BCc field are not recognizable.  Please enter email addresses in the form 'jsmith@company.com' or 'John Smith <jsmith@company.com>' separated by commas."
+
+
+
+# ------- Compose page
+
+msgid "composeMsg"
+msgstr "Compose"
+
+
+msgid "cmpTo"
+msgstr "To"
+
+msgid "cmpTo_help"
+msgstr "Enter the email address of this message's recipient. You may use a comma to separate the email addresses."
+
+msgid "cmpCc"
+msgstr "CC"
+
+msgid "cmpCc_help"
+msgstr "Enter the email addresses of recipients who should receive a copy of this message. You may use a comma to separate the email addresses."
+
+msgid "cmpBcc"
+msgstr "BCC"
+
+msgid "cmpBcc_help"
+msgstr "Enter the email addresses of recipients who should recive a copy of this message. A Blind Carbon Copy (BCC) will not include a list of the other recipients in the message. You may use a comma to separate the email addresses."
+
+msgid "cmpAttachments"
+msgstr "Attachments"
+
+msgid "cmpAttachments_help"
+msgstr "This is the list of attachments for this message.  File attachments can be added or removed by clicking the icons to the right of the attachment list."
+
+msgid "cmpAttachmentsSingle"
+msgstr "[[base-webmail.cmpAttachments]]"
+
+msgid "cmpAttachmentsSingle_help"
+msgstr "Click the Browse button to add an attachment to this message."
+
+msgid "cmpAddAttachment"
+msgstr "Add"
+
+msgid "cmpAddAttachment_help"
+msgstr "Click here to add an attachment."
+
+msgid "cmpRemoveAttachment"
+msgstr "Remove"
+
+msgid "cmpRemoveAttachment_help"
+msgstr "Click here to remove an attachment."
+
+msgid "cmpSubject"
+msgstr "Subject"
+
+msgid "cmpSubject_help"
+msgstr "Enter the subject of this message."
+
+msgid "cmpBody"
+msgstr "Message"
+
+msgid "cmpBody_help"
+msgstr "Enter your email message here."
+
+msgid "send"
+msgstr "Send"
+
+msgid "send_help"
+msgstr "Click here to send this message."
+
+msgid "messageSent"
+msgstr "Message Sent"
+
+msgid "msgSent"
+msgstr "Addressed To"
+
+msgid "msgSent_help"
+msgstr "The addresses to which your message was sent."
+
+msgid "errorSettingAnsweredFlag"
+msgstr "Sorry, an error occurred while trying to mark the message as answered."
+
+msgid "forwardMsg"
+msgstr "Forward"
+
+msgid "origMsgSeparator"
+msgstr "---------- Original message ----------\n"
+
+msgid "forwardMsgSeparator"
+msgstr "---------- Forwarded message ----------\n"
+
+msgid "replyto"
+msgstr "Reply-To"
+
+# ------- Folder List 
+
+
+msgid "Inbox_help"
+msgstr "The Inbox contains incoming email."
+
+msgid "removeMessages"
+msgstr "Remove"
+
+msgid "removeMessages_help"
+msgstr "Click here to remove the selected messages. You can only remove one page of messages at a time."
+
+msgid "removeMessagesConfirm"
+msgstr "Are you sure you wish to delete the selected messages?"
+
+msgid "errorRemovingMessageNoneSelected"
+msgstr "Please select the messages you wish to remove first. You can only remove one page of messages at a time. No messages were removed."
+
+msgid "errorMovingMessage"
+msgstr "Sorry, an error occurred while trying to move the selected messages."
+
+msgid "errorMovingMessageNoneSelected"
+msgstr "Please select the messages you wish to move first. You can only move one page of messages at a time. No messages were moved. "
+
+msgid "status"
+msgstr " "
+
+msgid "status_help"
+msgstr "This is the status of each message. Read messages are indicated by a circle, and unread messages are indicated by a dot."
+
+msgid "openThisFolder"
+msgstr "Click here to view a list of the messages in this folder."
+
+# --------- Inbox
+
+msgid "shownMessage"
+msgstr " ([[VAR.showing]] shown)"
+
+msgid "showingAll"
+msgstr "All"
+
+msgid "singularMessage"
+msgstr "[[VAR.count]] Message"
+
+msgid "pluralMessages"
+msgstr "[[VAR.count]] Messages"
+
+msgid "keyTitle"
+msgstr "Message Key"
+
+msgid "keyReplied"
+msgstr "Message has been replied to or forwarded."
+
+msgid "keyNew"
+msgstr "Message is new or unread."
+
+msgid "keyOld"
+msgstr "Message has been read."
+
+
+
+
+# --------- Read Message
+
+msgid "readMessage"
+msgstr "Read Message"
+
+msgid "reply"
+msgstr "Reply"
+
+msgid "reply_help"
+msgstr "Click here to reply to the author of the message."
+
+msgid "replyAll"
+msgstr "Reply All"
+
+msgid "replyAll_help"
+msgstr "Click here to reply to the author and all other recipients of the message."
+
+msgid "from_help"
+msgstr "This is the email address of the person who sent the message."
+
+msgid "read_to"
+msgstr "To"
+
+msgid "read_to_help"
+msgstr "This is the email address to which the message was sent."
+
+msgid "read_cc"
+msgstr "CC"
+
+msgid "read_cc_help"
+msgstr "These are additional email addresses to which a copy of this message was sent."
+
+msgid "viewHtml"
+msgstr "View as HTML"
+
+
+# ---------- Read Message Action (reply, replyall, forward, remove, move)
+
+msgid "replyMsg"
+msgstr "Reply"
+
+msgid "replyAllMsg"
+msgstr "Reply All"
+
+
+
+
+# --------- Sent Mail
+
+msgid "sentto"
+msgstr "Sent To"
+
+msgid "sentto_help"
+msgstr "This is the email address to which the message was sent."
+
+msgid "dateSent"
+msgstr "Date"
+
+msgid "dateSent_help"
+msgstr "This is the date the message was sent."
+
+
+
+
+# --------- Manage Folders
+
+msgid "mailboxName"
+msgstr "Name"
+
+msgid "mailboxName_help"
+msgstr "This is the name of the folder."
+
+msgid "mailboxAction"
+msgstr "Action"
+
+msgid "mailboxAction_help"
+msgstr "Click the edit icon to edit a folder, or click the remove icon to delete a folder."
+
+msgid "removeMailbox"
+msgstr "Remove"
+
+msgid "addMailbox"
+msgstr "Add"
+
+msgid "addMailbox_help"
+msgstr "Click here to add a new folder."
+
+msgid "mailboxDeleteStatus"
+msgstr "Folder deletion status"
+
+msgid "confirmRemoveMailbox"
+msgstr "Are you sure you want to remove the folder '[[VAR.name]]'?"
+
+msgid "deletionMailboxFailed"
+msgstr "Sorry, an error occurred while trying to remove the folder."
+
+
+# --------- Add Folder
+
+
+msgid "createMailbox"
+msgstr "Add Folder"
+
+msgid "newMailboxName"
+msgstr "Name"
+
+msgid "mailboxName_rule"
+msgstr "Please enter a name between 1 and 250 characters."
+
+msgid "newMailboxName_help"
+msgstr "Enter the name of the new folder you wish to add."
+
+# Used for both create/rename
+msgid "mailbox_empty"
+msgstr "Sorry, you have not entered a folder Name."
+
+msgid "mailboxNameIsTooLong"
+msgstr "The folder name '[[VAR.mailboxName]]' is too long. [[base-webmail.mailboxName_rule]]" 
+
+msgid "mailboxCreationFailed"
+msgstr "Sorry, an error occurred while trying to create the folder '[[VAR.mailbox]]'."
+
+msgid "mailboxOnlyWhitespace"
+msgstr "Sorry, you have entered a folder name that only contains spaces. Please enter a name that contains other characters as well." 
+
+msgid  "mailboxInitalPeriod"
+msgstr "Sorry, you have entered a folder name with a period as it's first character. This is not an allowed mailbox name."
+
+# ---------- Rename Folder
+
+msgid "renameMailbox"
+msgstr "Modify Folder - [[VAR.origMailbox]]"
+
+msgid "renameMailboxName"
+msgstr "Name"
+
+msgid "renameMailboxName_help"
+msgstr "Enter a new name for this folder."
+
+msgid "mailboxRenamingFailed"
+msgstr "Sorry, an error occurred while trying to rename the folder '[[VAR.oldName]]' to '[[VAR.newName]]'."
+
+
+
+# ----------- Login Page
+
+msgid "welcomeTo"
+msgstr "Welcome to [[carmel.osVendor]] WebMail.  Please enter your login name and password to access your mail."
+
+msgid "webmailLogin" 
+msgstr "WebMail Login"
+
+msgid "login"
+msgstr "Login"
+
+msgid "password"
+msgstr "Password"
+
+msgid "submit"
+msgstr "Submit"
+
+msgid "authenticationFailed"
+msgstr "Sorry, authentication Failed. Please check your username and password and try again."
+
+msgid "imapLocked"
+msgstr "Sorry, the connection to your mailbox failed. Please try again in a moment."
+
+msgid "imapServerDown"
+msgstr "Sorry, the connection to the IMAP server failed. The server may be experiencing difficulties, or may be disabled by your system administrator. Please contact your system administrator for assistance."
+
+msgid "noImapAccount"
+msgstr "Sorry, you do not have an account on this IMAP server. Please contact your system administrator for assistance."
+
+# ----------- Internal Stuff
+
+
+msgid "re"
+msgstr "Re: "
+
+msgid "fwd"
+msgstr "Fwd: "
+
+msgid "moveto"
+msgstr "Move to..."
+
+msgid "mailFolder"
+msgstr "mail/"
+
+# name of sentmail for IMAP connect
+msgid "sentMailFolder"
+msgstr "Sent-mail"
+
+msgid "inboxFolder"
+msgstr "Inbox"
+
+msgid "INBOX"
+msgstr "Inbox"
+
+msgid "errorFetchingHeader"
+msgstr "Error reading the message header"
+
+msgid "errorFetchingStructure"
+msgstr "Error reading the message structure"
+
+msgid "errorSendingMessageSingle"
+msgstr "Sorry, an error occurred while trying to send the message.  The email address '[[VAR.emails]]' is not valid or does not exist."
+
+msgid "errorSendingMessagePlural"
+msgstr "Sorry, an error occurred while trying to send the messages.  The email address '[[VAR.emails]]' are not valid or do not exist."
+
+msgid "errorArchivingMessage"
+msgstr "The message was sent, but an error occurred while trying to save a copy to your Sent Mail folder."
+
+
+
+# -------- Other Stuff
+
+msgid "errorMovingMessage"
+msgstr "Sorry, an error occurred while trying to move the selected messages."
+
+msgid "ok"
+msgstr "Ok"
+
+msgid "webmailDownImapNotRunning"
+msgstr "WebMail has been disabled by your system administrator."
+
+

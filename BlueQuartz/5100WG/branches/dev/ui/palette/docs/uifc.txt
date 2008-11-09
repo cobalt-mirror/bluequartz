@@ -1,0 +1,436 @@
+UIFC (User Interface Foundation Class)
+
+Author: Kevin K.M. Chiu
+Copyright 2000, Cobalt Networks.  All rights reserved.
+$Id: uifc.txt 201 2003-07-18 19:11:07Z will $
+
+Overview
+========
+
+UIFC is a comprehensive set of class libraries for Cobalt's user interface
+(UI) components. Their functions include generation of HTML code for rendering
+and Javascript code for error checking.
+
+Complete class hierarchy diagrams are in palette/docs/uifc1.gif,
+palette/docs/uifc2.gif and palette/docs/uifc3.gif.
+
+As pre-requisites to UIFC, you should have basic knowledge about object
+oriented design and programming as well as PHP. This is because UIFC is object
+oriented and implemented in PHP.
+
+The design of UIFC is emphasized on the balance of user interface consistency
+and flexibility. User interfaces are generally very customization intensive.
+Therefore, UIFC needs to be flexible enough. On the other hand, a high degree
+of consistency makes user interfaces more user-friendly, so UIFC needs to put
+a bit of constriant on how its classes are used.
+
+If you are new to UIFC, HtmlComponentFactory is your starting point. It is
+basically a factory that constructs UIFC class in the most commonly used way.
+
+Features
+========
+
+HTML Generation
+---------------
+UIFC contains classes of visual components. They have methods to generate
+the look-and-feel in HTML. For example, the IpAddress class generates HTML
+code that represents an IP address data type. This way, a change in
+look-and-feel of a visual component within the whole user interface can
+be accomplished by modifying just one class.
+
+Error Checking
+--------------
+Form fields in UIFC supports the plug-in of Javascript error checking code.
+This feature is useful for checking and reporting error interactively. Not
+all form fields requires error checking because their input set may be limited
+to valid data.
+
+Reusable Code
+-------------
+The class hierarchy of UIFC is designed to be reusable. It is easy to subclass
+a UIFC class and make a more specific visual component. A class B IP address,
+for example, can be made by subclassing the IpAddress class. FormFieldBuilder
+is also supplied to generate HTML code.
+
+Hidden Complexity
+-----------------
+Javascript and HTML coding can be complex. UIFC classes encapsulate this
+complexity and shield users from it.
+
+The Basics
+==========
+
+There are two classes that forms the most basic building blocks of web pages.
+They are ServerScriptHelper and HtmlComponentFactory. HtmlComponentFactory is
+within UIFC, but ServerScriptHelper is not. ServerScriptHelper helps maintain
+sessions, maintains CCE connection, get user preferences and do common server
+scripts work. HtmlComponentFactory manufactures HTML components to be used on
+the pages. Before you proceed, it is good to take a brief look on the
+interfaces of the two classes at palette/libPhp/ServerScriptHelper.php and
+palette/libPhp/uifc/HtmlComponentFactory.php.
+
+Here is a simple example of making a UI page:
+
+<?php
+// include server script helper
+include("ServerScriptHelper.php");
+
+// instantiate the helper
+$serverScriptHelper = new ServerScriptHelper();
+
+// ask helper to make a HTML component factory
+// i18nDomain is the domain used to internationalize the page
+// it can be different for different pages
+// handle.php is the URL that this page submits to
+$factory = $serverScriptHelper->getHtmlComponentFactory("i18nDomain", "handler.php");
+
+// use the factory to manufacture a page
+$page = $factory->getPage();
+
+// use the factory to manufacture a paged block
+// titleId is the i18n message ID of the title of the block
+$block = $factory->getPagedBlock("titleId");
+
+// make an IP address form field here and add it to the block
+// the IP address has a default of 192.168.0.1 and an ID of ipAddressField
+// the addFormField() method of the block takes a form field as the first
+// parameter and a label as the second.
+// we use a generic label here to label the form field
+// the ipAddressLabel parameter of getLabel() is a i18n message ID
+$block->addFormField(
+  $factory->getIpAddress("ipAddressField", "192.168.0.1"),
+  $factory->getLabel("ipAddressLabel")
+);
+
+// make a boolean form field and add it to the block
+// the ID of the field is booleanField and it is false by default
+$block->addFormField(
+  $factory->getBoolean("booleanField", false),
+  $factory->getLabel("booleanLabel")
+);
+
+// add a save button to submit the page
+// we use the HTML component factory to manufacture a save button
+// we can ask the page to get the action URL to submit itself using
+// getSubmitAction()
+$block->addButton($factory->getSaveButton($page->getSubmitAction()));
+
+// because PHP do not support destructors for objects, we need to explicitly
+// invoke it. This includes closing CCE connection and other things.
+$serverScriptHelper->destructor();
+?>
+<!--
+print HTML for the header portion of the page
+all HTML and Javascript must reside within the header and footer of the page
+ -->
+<?php print($page->toHeaderHtml()); ?>
+
+<!--
+print HTML for the block
+this includes the IP address form field, boolean form field as well as the save
+button because they are all part of the block
+-->
+<?php print($block->toHtml()); ?>
+
+<!--
+custom HTML and Javascript can be put here within the page header and footer
+this is optional
+-->
+
+<!-- print HTML for the footer portion of the page -->
+<?php print($page->toFooterHtml()); ?>
+
+Now the page is done. Easy huh? How about the handler CGI script, PHP script
+or other programs that handle the submission of the page? The page we made
+basically made two HTML input fields, one named ipAddressField and the other
+booleanField. They are available as two form submit variables using the POST method.
+
+Here is a simple PHP example of what the submission handler looks like:
+
+<?php
+// include server script helper
+include("ServerScriptHelper.php");
+
+// instantiate helper
+$serverScriptHelper = new ServerScriptHelper();
+
+// here we store the submitted results to a file called "resultFile"
+// variables ipAddressField and booleanField are defined form field IDs in the page
+// generation script (see above), so they are available here
+// of course this piece of code should be replaced by something useful
+// for your purpose
+$file = fopen("resultFile", "w");
+fwrite($file, "IP address submitted = $ipAddressField\n");
+fwrite($file, "Boolean submitted = $booleanField\n");
+fclose($file);
+
+// we want to redirect the viewer back to the script that generates the page (see
+// above)
+// pathToPage.php is the URL to the page generation script
+// we use toHandlerHtml() here to generates the HTML and Javascript code necessary
+// for the redirection
+print($serverScriptHelper->toHandlerHtml("pathToPage.php"));
+
+// we need object destructor and PHP do not support it, so we call it explicitly
+$serverScriptHelper->destructor();
+?>
+
+It is up to you to use other languages or APIs to handle the submission, all you need
+to know is that the form fields defined in the generation script are available as
+form submit variables with a name equal to that of the ID of the form fields.
+
+Variables can be strings or array of strings. Some form fields (e.g. SetSelector)
+allows users to select multiple entries and therefore, return arrays. To workaround
+the hassle that PHP requires variable names for arrays to end with a "[]" which in
+turn breaks Javascript references, UIFC encodes array of strings into strings. It
+utilizes URL encoding technique with ampersand (&) as delimiter. For example, values
+"value a" and "value b" are encoded as "&value%20a&value%20b&". Note that the encoded
+value starts and ends with ampersands. This holds true even if the array has just 1
+element. An empty array is encoded by an empty string. In PHP, there is a class built
+specifically for encoding and decoding purposes. It is called ArrayPacker.php. Here is
+an example use of ArrayPacker.php:
+
+// include array packer
+include("ArrayPacker.php");
+
+// instantiate array packer
+$arrayPacker = new ArrayPacker();
+
+// construct an example array
+$values = array("value a", "value b");
+
+// encode into a string
+$encodedString = $arrayPacker->arrayToString($values);
+
+// decode string back to an array
+$decodedArray = $arrayPacker->stringToArray($encodedString);
+
+Internationalization is supported by HTML component factory. The i18n domain
+of the above example is i18nDomain. If we look into how the factory really
+operates to make form fields, it uses form field IDs to make message IDs to
+get messages from the i18n library. Use the above code as an example, several
+messages are being fetched to construct the IP address form field. They are:
+
+ipAddressField_invalid
+  - message ID for the message that basically says "IP address is invalid".
+
+ipAddressField_empty
+  - message ID for the message that basically says "IP address is missing".
+
+The message IDs are composed by the ID of the form field with _invalid and
+_empty as suffices. These messages are not always used, however. For example,
+if a form field is optional, the empty message will never be shown. If any of
+these messages are help out, default messages are used.
+
+Internationalization of labels uses different suffices. For the example above
+with a label for IP address, message IDs are:
+
+ipAddressLabel
+  - message ID for the label text that basically says "IP Address".
+
+ipAddressLabel_help
+  - message ID for the description text that basically says "An IP address
+    consists of 4 octets separated by dots".
+
+Common Pitfalls
+===============
+
+There are several things to avoid when using UIFC.
+
+- Pay special attention in modifying or extending UIFC classes to add new
+  functionalities. New functionalities can introduce inconsistency because
+  nowhere else on the existing user interface uses them. A lot of times, a
+  little more thinking on how the user interface pages are designed can avoid
+  the change. Of course, new functionalities can be good if done right.
+- Because UIFC is written in PHP and PHP does not have good support for object
+  oriented programing, UIFC users can actually directly refer to private
+  variables and methods of UIFC classes. For good programming practice, do not
+  do this.
+- Using UIFC to format free flow text paragraphs is not a good idea. Pure HTML
+  provides more formatting capabilities than UIFC. You can even put HTML inside
+  UIFC pages.
+- The toHeaderHtml() method of Page object outputs HTTP headers. Do not print
+  anything before this method. As a common PHP catch, blank lines are printed.
+  The following code gives warning because there is a blank line above the
+  method:
+  <?php
+  ...
+  ?>
+
+  <?php
+  print($page->toHeaderHtml());
+  ?>
+- Because PHP is intepreted and more or less typeless, it is very easy to pass
+  in parameters of wrong types to functions/methods. This can generate runtime
+  errors from UIFC classes that your code is not directly using. Be careful
+  and read API documentation.
+
+Classes
+=======
+
+HTML Component Factory
+----------------------
+
+HTML component factory is a class that creates different kinds of HTML
+component objects. It provides easy methods to make these objects than
+instantiating the classes themselves. It achieves this simplicity by making
+generalized assumptions on how the classes are going to be instantiated.
+Therefore, in some rare cases, direct instantiation of classes using "new" is
+necessary.
+
+HTML component factory needs an I18n object to work. It will internationalize
+the objects it creates automatically.
+
+The class definition can be found under
+palette/libPhp/uifc/HtmlComponentFactory.php. It is basically a bunch of
+"getObject" methods.
+
+Form Field
+----------
+
+Form fields are the centerpieces in UIFC. Each form field represents an input
+data type shown on the user interface. Its class definition can be found under
+palette/libPhp/uifc/FormField.php.
+
+FormField itself is an abstract class. Therefore, only instantiate the
+concrete subclasses instead (e.g., Boolean, IpAddress, MultiChoice).
+
+toHtml() is one of the most interesting form field methods. It generates HTML
+and Javascript that represents the form field by reading its properties.
+Concrete sub-classes of the FormField class must provide an implementation of
+this method.
+
+The id property is the identifier of form fields. Therefore, always choose an
+unique id. It is the name attribute of the HTML input elements (e.g. checkbox,
+radio, select, text, textarea) when the form field is presented as HTML.
+
+The value property gives the default value of form fields. It can be of
+different type for different form fields.
+
+The access property of form fields can be set to hidden, read-only, write-only
+or read-write. It effects how the form field is being presented, whether as a
+hidden field, non-editable field, editable field without defaults or editable
+field with defaults.
+
+Here is a list of all the concrete subclasses of form fields:
+- Selection
+Boolean			For true/false or on/off type of selection
+MultiChoice		Select one/many out of a list of options
+SetSelector		Select a subset out of a set
+
+- Typed Input/Output
+Date			Year, month and date
+DomainName		Domain name
+EmailAddress		Email address
+FileUpload		For uploading files through web pages
+FullName		Full name of a person
+GroupName		Name of a workgroup
+Integer			Positive to negative integers
+IpAddress		IP address
+MailListName		Name of mailing list
+NetAddress		Network address can be domain name or IP address
+Password		User password
+SnmpCommunity		Community name for SNMP
+TextBlock		Block of text
+TextField		Line of text
+Time			Hour and minute
+TimeZone		Geographical time zone
+Url			URL
+UserName		Name of a user in the system
+
+- Status
+StatusSignal		Signal that represents a status
+
+- List
+DomainNameList		List of domain names
+EmailAddressList	List of email addresses
+IpAddressList		List of IP addresses
+NetAddressList		List of network addresses
+TextList		List of words
+UrlList			List of URLs
+UserNameList		List of user names
+
+- Container
+CompositeFormField	Generic container for any form field
+
+Paged Block
+-----------
+
+A paged block is a visual grouping of form fields. The class definition is in
+palette/libPhp/uifc/PagedBlock.php.
+
+Each block as a label and one to many pages.
+
+toHtml() is the method that returns the HTML and Javascript representation
+of the paged block. This includes the HTML representation and its label, the
+form fields it contains, along with their labels.
+
+To build a paged block with only one page, first use the addFormField() method
+to add form fields to the block, then use toHtml(). For paged block with
+multiple pages, use addPage() to add pages first, then use addFormField() to
+add form fields to each pages. Finally, use toHtml() to render.
+
+Page
+----
+
+The definition of the Page class is in palette/libPhp/uifc/Page.php. This is
+the class that is used to encapsulate all the HTML and Javascript
+representations.
+
+It has toHeaderHtml() and toFooterHtml() methods. toHeaderHtml() gives all the
+essential HTML and javascript headers for a page. This includes the HTML, BODY,
+etc. tags. toFooterHtml() gives all the essential matching footers.
+
+Each UIFC page should have one and only one Page object. All the HTML and
+Javascript representations of other objects must live within the toHeaderHtml()
+and toFooterHtml() calls. Otherwise, undefined result can occur.
+
+Each Page has one and only one form object. It can be obtained by the getForm()
+method. The action URL that this form submits to can be obtained by the
+getSubmitAction() method.
+
+Form
+----
+
+The class definition of the Form class is in palette/libPhp/uifc/Form.php.
+
+Do not instantiate this class. Use the getForm() method of the Page class to
+obtain a form object.
+
+Most likely, general users of UIFC do not need to touch this class. Its
+interface may be useful when making new form fields.
+
+Form Field Builder
+------------------
+
+Form field builder generates form fields at the HTML level. The definition of
+this class is in palette/libPhp/uifc/FormFieldBuilder.php. This class contains
+methods that makes HTML input elements such as checkbox, radio and text.
+
+This class is mostly used by the toHtml() methods of form fields.
+
+Label
+-----
+
+The Label class is defined under palette/libPhp/uifc/Label.php. It represents
+a label on the user interface.
+
+Label is a property of the class which is in type string. This is the label
+string of the label.
+
+Property description is the description of the label. It is a string.
+
+toHtml() method is used to return the HTML that represents the label.
+
+Button
+------
+
+The button class represents a button on the user interface. The class
+definition is under palette/libPhp/uifc/Button.php.
+
+It has an action property which is used in the HREF attribute of the HTML A
+tag.
+
+It has a label object of the Label class to label itself.
+
+toHtml() method is used to return the HTML that represents the button.

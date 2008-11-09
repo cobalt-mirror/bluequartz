@@ -1,0 +1,393 @@
+msgid "firewall_menu"
+msgstr "Brandmauer"
+
+msgid "firewall_menu_help"
+msgstr "Hier können Sie [[base-firewall.FirewallTop]] konfigurieren.  Mit Hilfe von Brandmauern können Sie Filterrichtlinien definieren, die den Netzwerkverkehr über diesen Server beschränken."
+
+msgid "FirewallTop"
+msgstr "Paketfilter-Brandmauer-Einstellungen"
+
+msgid "FirewallTop_help"
+msgstr "Mit Hilfe von Brandmauern können Sie Richtlinien zur Beschränkung des Netzwerkverkehrs definieren, der über den Server geleitet wird. Dabei handelt es sich um eine erweiterte Sicherheitsfunktion Ihres Servers. Ziehen Sie daher die verfügbare Dokumentation zu Rate, bevor Sie Ihre Brandmauer konfigurieren."
+
+msgid "EditRuleChain"
+msgstr "Regelkette"
+
+msgid "EditRuleChain_help"
+msgstr "Wählen Sie eine zu konfigurierende Regelkette aus. Die Brandmauer wird durch drei separate Regelketten konfiguriert. Die Eingangskette filtert auf dem Rechner eingehende Pakete. Die Weiterleitungskette filtert Pakete, die für einen anderen Rechner bestimmt sind. Die Ausgangskette filtert vom Rechner ausgehende Pakete."
+
+msgid "enableFirewall"
+msgstr "Brandmauer aktivieren"
+
+msgid "enableFirewall_help"
+msgstr "Aktivieren oder deaktivieren Sie Ihre Paketfilter-Brandmauer."
+
+msgid "firewall-not-dirty_help"
+msgstr "Mit dieser Schaltfläche wenden Sie Ihre Konfigurationsänderungen auf die ausgeführte Brandmauer an. Momentan können Sie keine neuen Änderungen übernehmen."
+
+msgid "firewall-not-enabled_help"
+msgstr "Mit dieser Schaltfläche wenden Sie Ihre Konfigurationsänderungen auf die ausgeführte Brandmauer an. Momentan ist Ihre Brandmauer nicht aktiviert, daher müssen Sie keine Änderungen übernehmen."
+
+msgid "Selectchain"
+msgstr "Abschnitt auswählen..."
+
+msgid "general_settings"
+msgstr "Brandmauer-Einstellungen"
+
+msgid "chain_input"
+msgstr "Eingangs-Regelkette"
+
+msgid "chain_output"
+msgstr "Ausgangs-Regelkette"
+
+msgid "chain_forward"
+msgstr "Weiterleitungs-Regelkette"
+
+msgid "commit-changes-button"
+msgstr "Änderungen jetzt übernehmen"
+
+msgid "commit-changes-button_help"
+msgstr "Sie haben die Definitionsregeln Ihrer Brandmauer geändert, doch werden Ihre Änderungen erst vom ausgeführten Brandmauer-System übernommen, wenn Sie auf diese Schaltfläche klicken."
+
+msgid "enable-firewall-button"
+msgstr "Brandmauer aktivieren"
+
+msgid "disable-firewall-button"
+msgstr "Brandmauer deaktivieren"
+
+msgid "FirewallRulesinput"
+msgstr "Eingangsregeln"
+
+msgid "header_order"
+msgstr "Reihenfolge"
+
+msgid "header_order_help"
+msgstr "Die Reihenfolge, in der die Regeln auf die Pakete angewendet werden.  Jedes Paket wird analysiert, um zu bestimmen, ob es den Kriterien jeder Regel in der Reihenfolge der aufgelisteten Regeln entspricht."
+
+msgid "header_source"
+msgstr "Quellkriterien"
+
+msgid "header_source_help"
+msgstr "Die Quellkriterien, nach denen die Pakete gefiltert werden. Die Quellparameter eines Pakets werden mit den Kriterien einer gegebenen Regel verglichen. Die für diese Regel angegebene Richtlinie wird auf das Paket angewendet, wenn alle Kriterien erfüllt sind."
+
+msgid "header_dest"
+msgstr "Zielkriterien"
+
+msgid "header_dest_help"
+msgstr "Die Zielkriterien, nach denen die Pakete gefiltert werden. Die Zielparameter eines Pakets werden mit den Kriterien einer gegebenen Regel verglichen. Die für diese Regel angegebene Richtlinie wird auf das Paket angewendet, wenn alle Kriterien erfüllt sind."
+
+msgid "header_policy"
+msgstr "Richtlinie"
+
+msgid "header_policy_help"
+msgstr "Die Richtlinie, die das Ergebnis aller Pakete bestimmt, die dieser Regel entsprechen. Wenn ein Paket alle durch eine bestimmte Regel festgelegten Kriterien erfüllt (Quelle, Ziel, Schnittstelle, Protokoll), wird die angegebene Richtlinie auf das Paket angewendet."
+
+msgid "header_action"
+msgstr "Aktion"
+
+msgid "header_action_help"
+msgstr "Dies sind die Schaltflächen, mit denen eine Regel geändert oder entfernt werden kann."
+
+msgid "defaultPolicyField"
+msgstr "Standard-Richtlinie"
+
+msgid "defaultPolicyField_help"
+msgstr "Wählen Sie die Standard-Richtlinie für diese Regelkette aus. Die Standard-Richtlinie bestimmt, was mit Paketen geschieht, die keiner der oben aufgeführten Regeln entsprechen."
+
+msgid "CreateFirewallRule"
+msgstr "Neue Brandmauer-Regel hinzufügen"
+
+# Source
+
+msgid "SourceCriteriaSection"
+msgstr "Quellkriterien"
+
+msgid "SourceCriteriaSection_help"
+msgstr "Mit Hilfe von Kriterien wird bestimmt, auf welche Pakete eine Brandmauer-Regel angewendet werden soll. Quellkriterien werden dazu verwendet, Pakete, die von einer bestimmten Verbindung eingehen, zu vergleichen."
+
+msgid "source_ip_start_field"
+msgstr "Quell-IP-Adresse (niedrigste)"
+
+msgid "source_ip_start_field_help"
+msgstr "Geben Sie die erste oder niedrigste Quell-IP-Adresse im Bereich der IP-Adressen ein, die mit dieser Regel verglichen werden soll. Um beliebige Quell-IP-Adressen zu vergleichen, lassen Sie die Quell-IP-Adressenfelder leer."
+
+msgid "source_ip_stop_field"
+msgstr "Quell-IP-Adresse (höchste)"
+
+msgid "source_ip_stop_field_help"
+msgstr "Geben Sie die letzte oder höchste Quell-IP-Adresse im Bereich der IP-Adressen ein, die mit dieser Regel verglichen werden soll. Um beliebige Quell-IP-Adressen zu vergleichen, lassen Sie die Quell-IP-Adressenfelder leer."
+
+msgid "source_ports_field"
+msgstr "Quell-Portnummer(n)"
+
+msgid "source_ports_field_help"
+msgstr "Geben Sie die erste und letzte Quell-Portnummer im Bereich der Quell-IP-Adressen ein, die mit dieser Regel verglichen werden soll. Um beliebige Quell-Portnummern zu vergleichen, lassen Sie die Quell-Portnummernfelder leer."
+
+# error messages:
+
+msgid "source_ip_start_invalid"
+msgstr "Für das Feld Quell-IP-Adresse (niedrigste) wurde eine ungültige IP-Adresse angegeben. Geben Sie eine IP-Adresse im Format 172.16.1.1 ein."
+
+msgid "source_ip_stop_invalid"
+msgstr "Für das Feld Quell-IP-Adresse (höchste) wurde eine ungültige IP-Adresse angegeben. Geben Sie eine IP-Adresse im Format 172.16.1.1 ein."
+
+msgid "dest_ip_start_invalid"
+msgstr "Für das Feld Ziel-IP-Adresse (niedrigste) wurde eine ungültige IP-Adresse angegeben. Geben Sie eine IP-Adresse im Format 172.16.1.1 ein."
+
+msgid "dest_ip_stop_invalid"
+msgstr "Für das Feld Ziel-IP-Adresse (höchste) wurde eine ungültige IP-Adresse angegeben. Geben Sie eine IP-Adresse im Format 172.16.1.1 ein."
+
+msgid "source_ports_invalid"
+msgstr "Der angegebene Quell-Portnummernbereich ist ungültig. Quell-Portnummern müssen positive Ganzzahlen sein. Um eine Regel zu definieren, die nur einem Port entspricht, geben Sie diese Portnummer als Bereich ein (z. B. 23-23)."
+
+msgid "dest_ports_invalid"
+msgstr "Der angegebene Ziel-Portnummernbereich ist ungültig. Portnummern müssen positive Ganzzahlen sein. Um eine Regel zu definieren, die nur einem Port entspricht, geben Sie diese Portnummer als Bereich ein (z. B. 23-23)."
+
+msgid "redir_target_invalid"
+msgstr "Das Feld An lokale Portnummer umleiten muss aus einer positiven Ganzzahl bestehen, die eine Portnummer angibt (z. B. 23)."
+
+# Destination
+
+msgid "DestCriteriaSection"
+msgstr "Zielkriterien"
+
+msgid "DestCriteriaSection_help"
+msgstr "Mit Hilfe von Kriterien wird bestimmt, auf welche Pakete eine Brandmauer-Regel angewendet werden soll. Zielkriterien werden dazu verwendet, Pakete, die an eine bestimmte Verbindung gesendet werden, zu vergleichen."
+
+msgid "dest_ip_start_field"
+msgstr "Ziel-IP-Adresse (niedrigste)"
+
+msgid "dest_ip_start_field_help"
+msgstr "Geben Sie die erste oder niedrigste Ziel-IP-Adresse im Bereich der IP-Adressen ein, die mit dieser Regel verglichen werden soll. Um beliebige Ziel-IP-Adressen zu vergleichen, lassen Sie die Ziel-IP-Adressenfelder leer."
+
+msgid "dest_ip_stop_field"
+msgstr "Ziel-IP-Adresse (höchste)"
+
+msgid "dest_ip_stop_field_help"
+msgstr "Geben Sie die letzte oder höchste Ziel-IP-Adresse im Bereich der IP-Adressen ein, die mit dieser Regel verglichen werden soll. Um beliebige Ziel-IP-Adressen zu vergleichen, lassen Sie die Ziel-IP-Adressenfelder leer."
+
+msgid "dest_ports_field"
+msgstr "Ziel-Portnummer(n)"
+
+msgid "dest_ports_field_help"
+msgstr "Geben Sie die erste und letzte Ziel-Portnummer im Bereich der Ziel-IP-Adressen ein, die mit dieser Regel verglichen werden soll. Um beliebige Ziel-Portnummern zu vergleichen, lassen Sie die Ziel-Portnummernfelder leer."
+
+# Other
+
+msgid "GeneralCriteriaSection"
+msgstr "Sonstige Kriterien"
+
+msgid "GeneralCriteriaSection_help"
+msgstr "Mit Hilfe von Kriterien wird bestimmt, auf welche Pakete eine Brandmauer-Regel angewendet werden soll. Andere Kriterien wie z. B. das Protokoll und die Verbindungsschnittstelle der Pakete können ebenfalls eingesetzt werden, um Pakete mit einer Regel zu vergleichen."
+
+msgid "protocol_field"
+msgstr "Netzwerkprotokoll"
+
+msgid "protocol_field_help"
+msgstr "Geben Sie das Netzwerkprotokoll der Pakete ein, die mit dieser Regel verglichen werden sollen."
+
+msgid "all"
+msgstr "Beliebiges Netzwerkprotokoll"
+msgid "tcp"
+msgstr "TCP"
+msgid "udp"
+msgstr "UDP"
+msgid "icmp"
+msgstr "ICMP"
+msgid "ipip"
+msgstr "IPIP"
+msgid "encap"
+msgstr "Encap"
+
+msgid "interface_field"
+msgstr "Netzwerkschnittstelle"
+
+msgid "interface_field_help"
+msgstr "Geben Sie die Netzwerkschnittstelle der Pakete ein, die mit dieser Regel verglichen werden sollen."
+
+msgid "any"
+msgstr "Beliebige Netzwerkschnittstelle"
+msgid "eth0"
+msgstr "Primäre Ethernet-Schnittstelle"
+msgid "eth1"
+msgstr "Sekundäre Ethernet-Schnittstelle"
+msgid "ppp0"
+msgstr "PPP-Wählverbindungs-Schnittstelle"
+
+# Policy
+
+msgid "DescribePolicy"
+msgstr "Kettenrichtlinie"
+
+msgid "DescribePolicy_help"
+msgstr "Die Richtlinie einer Regel gibt die Disposition eines Pakets an, das die Paketfilterkriterien einer Regel erfüllt."
+
+msgid "policy_field"
+msgstr "Richtlinie"
+
+msgid "policy_field_help"
+msgstr "Wählen Sie die Richtlinie für diese Regelkette aus. Die Richtlinie bestimmt, was mit Paketen geschieht, die dieser Brandmauer-Regel entsprechen. Wenn ein Paket akzeptiert wird, kann es über diesen Rechner weitergeleitet werden. Wird ein Paket hingegen verweigert, wird es gelöscht, so als ob es nie bei diesem Rechner angekommen wäre. Wenn ein Paket abgelehnt wird, wird es so gelöscht wie bei der Verweigerung, doch wird der Absender informiert, dass das Paket gelöscht wurde. Durch Maskieren eines Pakets wird das Paket umgeschrieben, wenn es die Brandmauer durchdringt. Dies hat den Anschein, als ob das Paket an der Brandmauer entstanden wäre. Diese Richtlinie gilt nur, wenn Weiterleitungsregeln konfiguriert werden. Durch Umleiten eines Pakets wird das Paket umgeschrieben, wenn es die Brandmauer durchdringt. Dies hat den Anschein, als ob das Paket für eine lokale Portnummer bestimmt wäre. Diese Richtlinie gilt nur, wenn Eingangsregeln konfiguriert werden."
+
+msgid "redir_target_field"
+msgstr "An lokale Portnummer umleiten"
+
+msgid "redir_target_field_help"
+msgstr "Wenn die Umleitungsrichtlinie oben ausgewählt wurde, geben Sie eine lokale Portnummer für Pakete ein, die dieser Brandmauer-Regel entsprechen und umgeleitet werden. Ansonsten wird dieses Feld ignoriert."
+
+msgid "redir_target_invalid"
+msgstr "Der zur Umleitung eingegebene Port ist ungültig. Bitte geben Sie eine positive Ganzzahl als Portnummer ein."
+
+msgid "EditFirewallRule"
+msgstr "Brandmauer-Regel bearbeiten"
+
+msgid "FirewallRulesforward"
+msgstr "Weiterleitungsregeln"
+
+msgid "FirewallRulesoutput"
+msgstr "Ausgangsregeln"
+
+msgid "Select_chain"
+msgstr "Zu bearbeitende Kette auswählen..."
+
+msgid "defaultPolicy"
+msgstr "Standard-Richtlinie"
+
+msgid "defaultPolicy_help"
+msgstr "Die Standard-Richtlinie für diese Kette bestimmt, was mit Paketen geschieht, die keiner der oben aufgeführten Regeln entsprechen."
+
+msgid "criteria_ip"
+msgstr "IP=[[VAR.low]]-[[VAR.high]];"
+
+msgid "criteria_ports"
+msgstr "Port=[[VAR.ports]];"
+
+msgid "criteria_proto"
+msgstr "Protokoll=[[VAR.proto]];"
+
+msgid "criteria_interface"
+msgstr "Schnittstelle=[[VAR.iface]];"
+
+msgid "policy_ACCEPT"
+msgstr "Akzeptieren"
+
+msgid "policy_DENY"
+msgstr "Verweigern"
+
+msgid "policy_REJECT"
+msgstr "Ablehnen"
+
+msgid "policy_MASQ"
+msgstr "Maskieren"
+
+msgid "policy_REDIRECT"
+msgstr "An Port [[VAR.redir]] umleiten"
+
+msgid "policy_RETURN"
+msgstr "Zurücksenden"
+
+msgid "policy_JUMP"
+msgstr "Zu Kette [[VAR.jump]] springen"
+
+msgid "ACCEPT"
+msgstr "Akzeptieren"
+
+msgid "DENY"
+msgstr "Verweigern"
+
+msgid "REJECT"
+msgstr "Ablehnen"
+
+msgid "MASQ"
+msgstr "Maskieren"
+
+msgid "REDIRECT"
+msgstr "An Port umleiten"
+
+msgid "RETURN"
+msgstr "Zurücksenden"
+
+msgid "JUMP"
+msgstr "Zu Kette [[VAR.jump]] springen"
+
+msgid "no_rules_defined"
+msgstr "Diese Kette enthält keine Regeln. Klicken Sie auf Hinzufügen, um eine Regel für diese Kette festzulegen."
+
+msgid "FirewallEnable1"
+msgstr "Brandmauer-Aktivierung"
+
+msgid "FirewallEnable1_help"
+msgstr "Bitte warten Sie, während Ihre Brandmauer-Einstellungen übernommen werden."
+
+msgid "explain-firewall-enable1-page"
+msgstr "Bitte warten Sie, während Ihre Brandmauer-Einstellungen übernommen werden. Diese Seite sollte automatisch mit der Brandmauer-Konfigurationsseite aktualisiert werden. Ist das nicht der Fall, wurde Ihre Brandmauer möglicherweise falsch konfiguriert. Warten Sie sechzig Sekunden, damit die Brandmauer-Sicherheitsfunktion aktiviert werden kann, und versuchen Sie dann noch einmal, auf Ihren Server zuzugreifen."
+
+msgid "explain-firewall-enable1-page_help"
+msgstr "Klicken Sie auf Einstellungen übernehmen, um fortzufahren, oder auf Abbrechen, um zur Brandmauer-Konfigurationsseite zurückzukehren."
+
+msgid "proceed-button"
+msgstr "Einstellungen übernehmen"
+
+msgid "proceed-button_help"
+msgstr "Wenn Sie auf diese Schaltfläche klicken, werden Ihre neuen Brandmauer-Einstellungen übernommen."
+
+msgid "FirewallEnable2"
+msgstr "Brandmauer-Konfiguration abgeschlossen"
+
+msgid "FirewallEnable2_help"
+msgstr "Dies ist der zweite von zwei Schritten zur Aktivierung der Brandmauer."
+
+msgid "firewall-congrat-page"
+msgstr "Testseite!  Wenn Sie diese Meldung lesen können, funktionieren Ihre Brandmauer-Einstellungen richtig. Bitte klicken Sie auf die Schaltfläche Einstellungen bestätigen unten, um diese Brandmauer-Einstellungen permanent zu speichern."
+
+msgid "firewall-congrat-page_help"
+msgstr "Testseite!"
+
+msgid "confirm-firewall-button"
+msgstr "Einstellungen bestätigen"
+
+msgid "confirm-firewall-button_help"
+msgstr "Bitte klicken Sie hier, um Ihre Brandmauer-Einstellungen permanent zu speichern."
+
+msgid "reorder-button"
+msgstr "Neu sortieren"
+
+msgid "reorder-button_help"
+msgstr "Klicken Sie hier, um Ihre Regeln den Änderungen des numerischen Reihenfolgefelds in der Tabelle oben entsprechend neu zu sortieren."
+
+msgid "Order_help"
+msgstr "Bearbeiten Sie die numerischen Felder unten, um die Reihenfolge zu ändern, in der die Regeln angewendet werden. Klicken Sie auf die Schaltfläche Neu sortieren, um Ihre Änderungen anzuwenden."
+
+msgid "firewall-is-dirty-message"
+msgstr "Sie haben Änderungen an der Brandmauer-Konfiguration noch nicht gespeichert."
+
+msgid "firewall-is-dirty-message_help"
+msgstr "Diese Meldung benachrichtigt Sie, wenn Sie Änderungen an der Brandmauer-Konfiguration noch nicht gespeichert haben. Klicken Sie auf die Schaltfläche Änderungen übernehmen, um Ihre Änderungen zu speichern."
+
+msgid "apply-changes-popup"
+msgstr "-------------------------------------------------------\n             Regeln der ausgeführten Brandmauer ändern\n-------------------------------------------------------\n\nIhre unlängst vorgenommenen Änderungen \nwerden in Kürze auf die ausgeführte Paketfilter-Brandmauer angewendet. \n\nEs ist möglich, dass eine falsch konfigurierte Brandmauer \nverhindert, dass Sie auf die Webschnittstelle Ihres \nServers zugreifen können. \n\nDiese Brandmauer implementiert eine \nSicherheitsfunktion, die die Brandmauer nach \nsechzig Sekunden automatisch deaktiviert, wenn Ihre Browser-\nSitzung unterbrochen wird.\n\nWenn die Verbindung unterbrochen werden sollte, warten Sie eine \nMinute und versuchen Sie, noch einmal auf Ihren Server zuzugreifen. \nMöchten Sie fortfahren?"
+
+msgid "confirm-enabling-popup"
+msgstr "-------------------------------------------------------\n                    Brandmauer aktivieren\n-------------------------------------------------------\n\nIhre Paketfilter-Brandmauer wird jetzt aktiviert.\n\nEs ist möglich, dass eine falsch konfigurierte Brandmauer \nverhindert, dass Sie auf die Webschnittstelle Ihres \nServers zuzugreifen können. \n\nDiese Brandmauer implementiert eine \nSicherheitsfunktion, die die Brandmauer nach \nsechzig Sekunden automatisch deaktiviert, wenn Ihre Browser-\nSitzung unterbrochen wird.\n\nWenn die Verbindung unterbrochen werden sollte, warten Sie eine \nMinute und versuchen Sie, noch einmal auf Ihren Server zuzugreifen. \n\nMöchten Sie fortfahren?"
+
+msgid "FirewallConfiguration"
+msgstr "Brandmauer-Einstellungen"
+
+msgid "FirewallConfiguration_help"
+msgstr "Mit Hilfe von Brandmauern können Sie Richtlinien zur Beschränkung des Netzwerkverkehrs definieren, der über den Server geleitet wird. Dabei handelt es sich um eine erweiterte Sicherheitsfunktion Ihres Servers. Ziehen Sie daher die verfügbare Dokumentation zu Rate, bevor Sie Ihre Brandmauer konfigurieren."
+
+msgid "ipip-rule-cannot-have-ports"
+msgstr "Das IPIP-Protokoll unterstützt Portnummern nicht. Sie können daher keinen Vergleich mit einem Bereich von Portnummern für ein IPIP-Paket durchführen."
+
+msgid "encap-rule-cannot-have-ports"
+msgstr "Das Encap-Protokoll unterstützt Portnummern nicht. Sie können daher keinen Vergleich mit einem Bereich von Portnummern für ein Encap-Paket durchführen."
+
+msgid "Any"
+msgstr "Beliebige"
+
+# Capabilities
+
+msgid "capgroup_adminFirewall"
+msgstr "Verwaltung der Standard-Firewall"
+
+msgid "capgroup_adminFirewall_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, alle Aspekte der System-Firewall zu verwalten."

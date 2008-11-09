@@ -1,0 +1,103 @@
+# $Id: cce.spec.in 229 2003-07-18 20:22:20Z will $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+Summary: Cobalt CCE Server and Client
+Name: cce
+Version: @@VERSION@@
+Release: @@RELEASE@@
+Vendor: Sun Microsystems, Inc.
+Copyright: 2002 Sun Microsystems, Inc.
+Group: System/Daemons
+Source: cce-@@VERSION@@-@@RELEASE@@.tar.gz
+BuildRoot: /var/tmp/cce-root
+Obsoletes: sausalito-cce-client sausalito-cce-server
+
+%description
+CCE is the backend engine of the Cobalt Appliance Development Environment.  
+
+%prep
+%setup -n cce
+
+%build
+CCETOPDIR=/usr/sausalito make all
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/bin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/codb
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/codb/txn
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/conf
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/schemas
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sessions
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/handlers
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/constructor
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/destructor
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/capstone
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/devel
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/lib
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/include
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/perl
+mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
+mkdir -p $RPM_BUILD_ROOT/etc/pam.d
+mkdir -p $RPM_BUILD_ROOT/lib/security
+mkdir -p $RPM_BUILD_ROOT/usr/lib/apache/php
+make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
+
+%files
+%defattr(-,root,root)
+%dir /usr/sausalito/
+%dir /usr/sausalito/sbin
+/usr/sausalito/sbin/*
+%dir /usr/sausalito/bin
+/usr/sausalito/bin/pperl
+/usr/sausalito/bin/pperld
+%dir /usr/sausalito/codb
+%dir /usr/sausalito/codb/txn
+%dir /usr/sausalito/conf
+%dir /usr/sausalito/schemas
+/usr/sausalito/schemas/*
+%dir /usr/sausalito/sessions
+%dir /usr/sausalito/handlers
+%dir /usr/sausalito/constructor
+%dir /usr/sausalito/destructor
+%dir /usr/sausalito/capstone
+%dir /usr/sausalito/devel
+%dir /usr/sausalito/lib
+%dir /usr/sausalito/include
+%dir /usr/sausalito/perl
+/etc/rc.d/init.d/*
+/etc/pam.d/*
+#/lib/security/*
+
+#%attr(-,root,httpd)/usr/sausalito/bin/ccewrap
+#%config %attr(-,root,root)/etc/ccewrap.conf
+%defattr(-,root,root)
+#%dir /etc/ccewrap.d
+/usr/sausalito/bin/cce_construct  
+/usr/sausalito/bin/cceclient
+/usr/sausalito/lib/*.so*
+/usr/sausalito/include/*
+#/usr/sausalito/ui/libPhp/*
+#/usr/sausalito/perl/*
+#/usr/lib/apache/php/*
+
+
+%post
+# only run on install, not upgrade 
+if [ "$1" = "1" ]; then
+	/sbin/chkconfig --add cced.init
+	LIB=/usr/sausalito/lib
+	cp /etc/ld.so.conf /etc/ld.so.conf.bak
+	egrep "^$LIB[ 	]*$" /etc/ld.so.conf >/dev/null \
+		|| echo $LIB >> /etc/ld.so.conf
+	/sbin/ldconfig
+fi
+
+%postun
+# only run if this is the last instance to be removed
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del cced.init
+fi
+
+%changelog

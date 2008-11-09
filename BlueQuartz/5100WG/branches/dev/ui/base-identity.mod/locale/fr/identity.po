@@ -1,0 +1,57 @@
+###
+### Is this file still necessary?  I don't think this module is even being used any more...
+###
+
+msgid "identity"
+msgstr "Société"
+
+msgid "modifyIdentity"
+msgstr "Modifier l'identité"
+
+msgid "identityHelp"
+msgstr "Définir les informations d'identité pour cette machine."
+
+msgid "country"
+msgstr "Pays"
+
+msgid "country_empty"
+msgstr "Le pays est un champ obligatoire."
+
+msgid "country_help"
+msgstr "Le pays où se trouve cette machine, sous la forme d'un code de deux lettres (p. ex. AU pour l'Australie, PL pour la Pologne)."
+
+msgid "state"
+msgstr "État"
+
+msgid "state_help"
+msgstr "L'état où se trouve cette machine, sous sa forme abrégée (p. ex. CA pour la Californie aux États-Unis ou NSW pour le New South Wales en Australie."
+
+msgid "state_empty"
+msgstr "L'état est un champ obligatoire"
+
+msgid "locality"
+msgstr "Localité"
+
+msgid "locality_help"
+msgstr "La localité où se trouve cette machine, sous sa forme complète (p. ex. Sydney ou 'San Francisco')"
+
+msgid "locality_empty"
+msgstr "La localité est un champ obligatoire"
+
+msgid "organisation"
+msgstr "Société"
+
+msgid "organisation_help"
+msgstr "La société à laquelle cette boîte est essentiellement associée. p. ex. 'Null Pointer Corp.'"
+
+msgid "organisation_empty"
+msgstr "Le nom de la [[base-identity.organisation]] est obligatoire"
+
+msgid "organisationUnit"
+msgstr "Unité de la [[base-identity.organisation]]"
+
+msgid "organisationUnit_help"
+msgstr "L'unité où cette machine est surtout utilisée, p. ex. 'Web Hosting', 'Engineering' ou 'Ventes'"
+
+msgid "organisationUnit_empty"
+msgstr "Le nom de l'unité est obligatoire"

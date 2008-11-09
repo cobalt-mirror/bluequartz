@@ -1,0 +1,387 @@
+
+
+# LCD-Panel Utilities
+# Copyright (C) 1999 Cobalt Networks, Inc.
+# 
+# Lyle Sheer , 1999
+# Duncan Laurie , 1999
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: panel-utils 4.0\n"
+"POT-Creation-Date: 1999-06-10 01:25-0700\n"
+"PO-Revision-Date: 1999-07-07 11:32\n"
+"Last-Translator: Duncan Laurie \n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Date: 1999-07-07 11:32:00\n"
+"From: Duncan Laurie \n"
+
+#: lcd-flash.c:28 lcd-getip.c:39 lcd-write.c:27
+msgid "LCD in use... try again later\n"
+msgstr "LCD en cours de fonctionnement... réessayer ultérieurement\n"
+
+#: lcd-flash.c:35 lcd-getip.c:45 lcd-swrite.c:54 lcd-write.c:54 lcd-yesno.c:37
+#: lcdsleep.c:30 lcdstart.c:92 link.c:23 netconfig.c:96 nonet.c:33
+#: readbutton.c:20
+msgid "LCD is not present\n"
+msgstr "LCD N'EST PAS PRESENT\n"
+
+#: lcd-getip.c:33 messages.h:36
+msgid "PRIMARY IP ADDR:"
+msgstr "IP PRIMAIRE:"
+
+msgid "enter_secondary_ip"
+msgstr "IP SECOND:"
+
+#: lcd-getip.c:66 lcd-yesno.c:64
+#, c-format
+msgid "Unknown switch %s\n"
+msgstr "Commutateur inconnu %s\n"
+
+#: lcd-getip.c:68
+#, c-format
+msgid "usage-getip"
+msgstr "Usage : %s [-1 ] [-i ]\n"
+
+#: lcd-swrite.c:87 lcd-write.c:64
+msgid "Please pass text to display\n"
+msgstr "Transférer texte à l'afficheur\n"
+
+#: lcd-yesno.c:27
+msgid "Is this Correct?"
+msgstr "EST-CE CORRECTE?"
+
+#: lcd-yesno.c:29 messages.h:29
+msgid "yes_no"
+msgstr "  [O]UI  [N]ON   "
+
+#: lcd-yesno.c:66
+#, c-format
+msgid "usage-yesno"
+msgstr "Usage : %s [-y ] [-n ] [-1 ] [-2 ]\n"
+
+#: lcdsleep.c:37
+msgid "LCD Awake\n"
+msgstr "LCD EN EVEIL\n"
+
+#: lcdsleep.c:71
+msgid "LCD Sleeping\n"
+msgstr "VEILLE LCD\n"
+
+#: lcdstart.c:283 netconfig.c:268
+msgid "/sbin/swritelcd Verifying and Saving &>/dev/null &"
+msgstr "/sbin/swritelcd VERIF ET SAUVEGARDE &>/dev/null &"
+
+#: led-write.c:30
+msgid "LED Set Aborted - All LEDs on produces a hardware Reset\n"
+msgstr "Abandon de l'init. LED - Une réinit. matériel se produit si toutes les LED sont allumées\n"
+
+#: link.c:30
+msgid "No Link Detected\n"
+msgstr "PAS DE LIEN DETECTE\n"
+
+#: link.c:34
+msgid "Link Detected\n"
+msgstr "LIEN DÉTECTÉ\n"
+
+#: linkstatus.c:38
+#, c-format
+msgid "eth0: Link state is %d\n"
+msgstr "eth0: LE LIEN EST %d\n"
+
+#: linkstatus.c:46
+#, c-format
+msgid "eth1: Link state is %d\n"
+msgstr "eth1: LE LIEN EST %d\n"
+
+#: messages.h:52 nonet.c:46 nonet.c:47
+msgid "NO NETWORK FOUND"
+msgstr "PAS DE RESEAU"
+
+#: messages.h:53 nonet.c:48 nonet.c:49
+msgid "halt_connect"
+msgstr "[A]RRET [C]ONNEX"
+
+#: messages.h:16 nonet.c:103 nonet.c:104
+msgid "  POWER DOWN?   "
+msgstr "  ETEINDRE ?   "
+
+#: nonet.c:178
+msgid "/sbin/swritelcd Halting System &>/dev/null &"
+msgstr "/sbin/swritelcd ARRET SYSTEME &>/dev/null &"
+
+#: messages.h:12
+msgid "SELECT:         "
+msgstr "SELECTIONNER:   "
+
+#: messages.h:13
+msgid "  SYSTEM INFO   "
+msgstr " INFOS SYSTEME  "
+
+#: messages.h:14
+msgid " SETUP NETWORK  "
+msgstr " CONFIG RESEAU  "
+
+msgid "ADVANCED NETWORK"
+msgstr " RESEAU AVANCE  "
+
+msgid "REVIEW SETTINGS "
+msgstr " REVOIR PARAM  "
+
+msgid " SETUP PRIMARY  "
+msgstr "CONFIG PRIMAIRE "
+
+msgid "  DHCP PRIMARY  "
+msgstr " DHCP PRIMAIRE  "
+
+msgid "SETUP SECONDARY "
+msgstr "CONF SECONDAIRE "
+
+msgid " DHCP SECONDARY "
+msgstr "DHCP SECONDAIRE "
+
+#: messages.h:15
+msgid "   POWER DOWN   "
+msgstr "    ETEINDRE    "
+
+#: messages.h:17
+msgid "     REBOOT     "
+msgstr "   REDEMARRER   "
+
+#: messages.h:18
+msgid "    REBOOT?     "
+msgstr " REDEMARRER ? "
+
+#: messages.h:19
+msgid " RESET NETWORK  "
+msgstr " REINIT RESEAU  "
+
+#: messages.h:20
+msgid " RESET NETWORK? "
+msgstr "REINIT RESEAU ? "
+
+#: messages.h:21 messages.h:25
+msgid "   RESETTING    "
+msgstr "REINITIALISATION"
+
+#: messages.h:22
+msgid "    NETWORK     "
+msgstr "     RESEAU     "
+
+msgid "    ROUTES      "
+msgstr "     ROUTES     "
+
+#: messages.h:23
+msgid " RESET FILTERS  "
+msgstr " REINIT FILTRES "
+
+#: messages.h:24
+msgid " RESET FILTERS? "
+msgstr "REINIT FILTRES?"
+
+#: messages.h:26
+msgid "    FILTERS     "
+msgstr "    FILTRES     "
+
+msgid " RESET ROUTES? "
+msgstr " REINIT ROUTES? "
+
+#: messages.h:27
+msgid "      EXIT      "
+msgstr "    QUITTER     "
+
+#: messages.h:28
+msgid "     EXIT?      "
+msgstr "   QUITTER ?    "
+
+#: messages.h:30
+msgid "RESETTING ADMIN "
+msgstr "  REINIT ADMIN  "
+
+#: messages.h:31
+msgid "   PASSWORD     "
+msgstr "  MOT DE PASSE  "
+
+#: messages.h:33
+msgid "SAVE/CANCEL"
+msgstr "[S]AUV/[A]NNULER"
+
+#: messages.h:34
+msgid "      SAVE      "
+msgstr "  SAUVEGARDER   "
+
+#: messages.h:35
+msgid "      EDIT      "
+msgstr "    MODIFIER    "
+
+#: messages.h:37
+msgid "INVALID IP:     "
+msgstr "IP NON VALIDE : "
+
+#: messages.h:38
+msgid "IP Address:     "
+msgstr "ADRESSE IP :    "
+
+msgid "lcd_ipaddr"
+msgstr "ADRESSE IP :    "
+
+#: messages.h:39
+msgid " PLEASE SAVE IP "
+msgstr " SAUVEGARDER IP "
+
+#: messages.h:40
+msgid "    ADDRESS     "
+msgstr "    ADRESSE     "
+
+#: messages.h:41
+msgid "ENTER GATEWAY:  "
+msgstr " PASSERELLE:"
+
+#: messages.h:42
+msgid "INVALID GATEWAY:"
+msgstr " PASERELLE INV.:"
+
+#: messages.h:43
+msgid "PRIMARY NETMASK:"
+msgstr "MASQUE PRIMAIRE:"
+
+msgid "enter_secondary_nm"
+msgstr "MASQUE SECONDRE:"
+
+#: messages.h:44
+msgid "INVALID NETMASK:"
+msgstr "MASQUE INVALIDE:"
+
+#: messages.h:45
+msgid "  PLEASE SAVE   "
+msgstr "  SAUVEGARDER   "
+
+#: messages.h:46
+msgid "    NETMASK     "
+msgstr " MASQUE RESEAU  "
+
+#: messages.h:47
+msgid "ENTER DNS:      "
+msgstr "  ENTRER DNS :  "
+
+#: messages.h:48
+msgid "INVALID DNS:    "
+msgstr "DNS INVALIDE :  "
+
+#: messages.h:49
+msgid "VERIFYING:      "
+msgstr " VERIFICATION : "
+
+#: messages.h:50
+msgid "     SAVING     "
+msgstr "   SAUVEGARDE   "
+
+#: messages.h:51
+msgid "SYSTEM REBOOTING"
+msgstr "  REDEMARRAGE   "
+
+msgid "default_gateway"
+msgstr " PASSERELLE:"
+
+msgid "primary_ip"
+msgstr "IP PRIMAIRE :"
+
+msgid "primary_nm"
+msgstr "MASQUE PRIMAIRE:"
+
+msgid "secondary_ip"
+msgstr "IP SECONDAIRE :"
+
+msgid "secondary_nm"
+msgstr "MASQUE SECOND.:"
+
+msgid "notconfigured"
+msgstr "NON CONFIGURE"
+
+msgid "dhcp_setup"
+msgstr "CONFIGURER DHCP"
+
+msgid "failed"
+msgstr "     ECHEC     "
+
+msgid "direct_reboot_1"
+msgstr "  REDEMARRAGE"
+
+msgid "direct_reboot_2"
+msgstr "    IMMEDIAT    "
+
+msgid "delayed_reboot_1"
+msgstr "  REDEMARRAGE"
+
+msgid "delayed_reboot_2"
+msgstr " DANS 4 MINUTES "
+
+msgid "direct_halt_1"
+msgstr "     ARRET      "
+
+msgid "direct_halt_2"
+msgstr "    IMMEDIAT    "
+
+msgid "delayed_halt_1"
+msgstr "    ARRET     "
+
+msgid "delayed_halt_2"
+msgstr " DANS 4 MINUTES "
+
+msgid "SELECT LANGUAGE "
+msgstr "     LANGUE     "
+
+msgid "    ENGLISH     "
+msgstr "    ENGLISH     "
+
+msgid "     FRENCH     "
+msgstr "    FRANCAIS    "
+
+msgid "    SPANISH     "
+msgstr "    ESPANOL     "
+
+msgid "     GERMAN     "
+msgstr "    DEUTSCH     "
+
+msgid "    JAPANESE    "
+msgstr "    JAPONAIS    "
+
+msgid "autoupdate_proxy"
+msgstr "  PROXY IP :    "
+
+msgid "reenter_data"
+msgstr "  REESSAYER ?   "
+
+msgid "autoupdate_auth_question"
+msgstr "CONFIG. SIGNE ? "
+
+msgid " SIMPL CHINESE  "
+msgstr " SIMPL. CHINESE "
+
+msgid "cant_contact_server_1"
+msgstr "IMPOS. CONTACTER"
+
+msgid "cant_contact_server_2"
+msgstr "    SERVEUR     "
+
+msgid "   AUTOUPDATE   "
+msgstr "MISE A JOUR AUTO"
+
+msgid "autoupdate_proxy_question"
+msgstr "CONFIG. PROXY ? "
+
+msgid "  TRAD CHINESE  "
+msgstr " TRAD. CHINESE  "
+
+msgid "autoupdate_secure"
+msgstr " ACTIVER SSL ?  "
+
+msgid "autoupdate_server"
+msgstr "  SERVEUR IP :  "
+
+msgid "autoupdate_auth"
+msgstr "    SIGNE :     "
+

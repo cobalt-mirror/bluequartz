@@ -1,0 +1,25 @@
+<!-- This is the AM Namespace for monitoring SNMP -->
+<class name="ActiveMonitor" 	namespace="SNMP" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="0"/>
+    <property name="monitor"	writeACL="ruleCapable(modifyActiveMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"
+	default="/usr/sausalito/swatch/bin/am_snmp.pl"/>
+
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-snmp.amSNMPStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-snmp.amSNMPNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-snmp.amSNMPNameTag]]"/>
+
+    <property name="URL"	     	type="scalar"  	
+	default="/base/snmp/snmp_amdetails.php"/>
+    <property name="UIGroup"		type="scalar"   default="service"/>
+</class>

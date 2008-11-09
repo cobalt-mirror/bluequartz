@@ -1,0 +1,519 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "Sauvegarde"
+
+msgid "backupMenu_help"
+msgstr "Cliquez ici pour planifier et visualiser les sauvegardes."
+
+msgid "restoreMenu"
+msgstr "Restaurer"
+
+msgid "restoreMenu_help"
+msgstr "Cliquez ici pour sélectionner et activer des restaurations."
+
+msgid "scheduleListHeader"
+msgstr "Liste des sauvegardes programmées"
+
+msgid "backupAddHeader"
+msgstr "Ajout de sauvegarde programmée"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "Nom de sauvegarde"
+
+msgid "backupName_help"
+msgstr "Affiche le nom de la sauvegarde."
+
+msgid "backupInterval"
+msgstr "Fréquence de sauvegarde"
+
+msgid "backupInterval_help"
+msgstr "Fréquence d'exécution de cette tâche de sauvegarde."
+
+msgid "backupMethod"
+msgstr "Méthode de sauvegarde"
+
+msgid "backupMethod_help"
+msgstr "Méthode de partage de fichiers réseau utilisée pour stocker la sauvegarde."
+
+msgid "backupDestination"
+msgstr "Destination"
+
+msgid "backupDestination_invalid"
+msgstr "Le champ Emplacement de sauvegarde n´est pas sous le format escompté ou contient des caractères invalides."
+
+msgid "backupDestination_help"
+msgstr "Emplacement de destination de la sauvegarde."
+
+msgid "backupConfiguration"
+msgstr "Sauvegarde des données de configuration"
+
+msgid "backupConfiguration_help"
+msgstr "Indique si les données de configuration système sont incluses dans la sauvegarde."
+
+msgid "usersToBackup"
+msgstr "Utilisateurs à sauvegarder"
+
+msgid "usersToBackup_help"
+msgstr "Utilisateurs inclus dans la sauvegarde."
+
+msgid "groupsToBackup"
+msgstr "Groupes à sauvegarder"
+
+msgid "groupsToBackup_help"
+msgstr "Goupes inclus dans la sauvegarde."
+
+msgid "backupFileSet"
+msgstr "Fichiers à sauvegarder"
+
+msgid "backupFileSet_help"
+msgstr "Groupes de fichiers inclus dans la sauvegarde."
+
+msgid "removeBackup"
+msgstr "Supprimer"
+
+msgid "removeBackup_help"
+msgstr "Cliquez ici pour supprimer définitivement cette sauvegarde."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Ces boutons permettent d'afficher les détails d'une sauvegarde programmée, de supprimer une sauvegarde programmée ou de restaurer une sauvegarde programmée précédemment."
+
+msgid "unknown"
+msgstr "Inconnue"
+
+msgid "all"
+msgstr "Tous"
+
+msgid "none"
+msgstr "Aucune"
+
+msgid "yes"
+msgstr "Oui"
+
+msgid "no"
+msgstr "Non"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "Détails de sauvegarde programmée"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "Seuls des caractères alphanumériques sont admis.  La valeur par défaut est la date de planification de la sauvegarde."
+
+msgid "backupNameField_help"
+msgstr "Entrez le nom de la tâche de sauvegarde. [[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-backup.backupNameField]]. [[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "La valeur entrée pour [[base-backup.backupNameField]] n'est pas correcte. [[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "Données de configuration de sauvegarde"
+
+msgid "backupConfigurationField_help"
+msgstr "Choisissez si les données de configuration système doivent être incluses dans la sauvegarde."
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "Sélectionnez quels sont les utilisateurs à inclure dans la sauvegarde."
+
+msgid "backupUsersField_empty"
+msgstr "Vous n'avez pas désigné d'utilisateurs particuliers à sauvegarder. Utilisez les boutons fléchés pour désigner les utilisateurs voulus."
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "Sélectionnez quels sont les groupes à inclure dans la sauvegarde."
+
+msgid "backupGroupsField_empty"
+msgstr "Vous n'avez pas désigné de groupes particuliers à sauvegarder. Utilisez les boutons fléchés pour désigner les groupes voulus."
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "Sélectionnez les fichiers à sauvegarder."
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "Sélectionnez la fréquence d'exécution de cette sauvegarde."
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "Sélectionnez la méthode de partage de fichiers réseau utilisée pour stocker la sauvegarde."
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "Nom d'utilisateur"
+
+msgid "backupUsername_help"
+msgstr "Entrez le nom d'utilisateur utilisé pour la connexion au serveur de destination."
+
+msgid "backupPassword"
+msgstr "Mot de passe"
+
+msgid "backupPassword_help"
+msgstr "Entrez le mot de passe utilisé pour la connexion au serveur de destination."
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Partage de fichiers Windows (SMB)"
+
+msgid "backupSambaDestination"
+msgstr "Emplacement"
+
+msgid "backupSambaDestination_rule"
+msgstr "Par exemple, &#092;&#092;share&#092;sharedfolder est une entrée correcte."
+
+msgid "backupSambaDestination_help"
+msgstr "Entrez l'emplacement [[base-backup.backupViaWinFile]] utilisé pour enregistrer cette sauvegarde. [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "Vous n'avez pas entré de valeur pour l'emplacement [[base-backup.backupViaWinFile]]. [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaUsername_empty"
+msgstr "Vous n'avez pas entré de valeur pour l'emplacement [[base-backup.backupViaWinFile]]. Entrez le nom d'utilisateur utilisé pour la connexion au serveur de destination."
+
+
+msgid "backupViaFTP"
+msgstr "Protocole de transfert de fichiers (FTP)"
+
+msgid "backupFTPDestination"
+msgstr "Emplacement"
+
+msgid "backupFTPDestination_rule"
+msgstr "partage.cobalt.com/partage/ est un exemple d'entrée correcte."
+
+msgid "backupFTPDestination_help"
+msgstr "Entrez l'emplacement FTP utilisé pour stocker cette sauvegarde. [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "Vous n'avez pas entré de valeur pour l'emplacement FTP. [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "Vous n'avez pas entré de valeur pour le nom d'utilisateur FTP. Entrez le nom d'utilisateur utilisé pour la connexion au serveur de destination."
+
+
+msgid "backupViaNFS"
+msgstr "Network File System (NFS)"
+
+msgid "backupNFSDestination"
+msgstr "Emplacement"
+
+msgid "backupNFSDestination_rule"
+msgstr "partage.cobalt.com:/partage/ est un exemple d'entrée correcte."
+
+msgid "backupNFSDestination_help"
+msgstr "Entrez l'emplacement NFS utilisé pour enregistrer cette sauvegarde. [[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "Vous n'avez pas entré de valeur pour l'emplacement NFS. [[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "Voulez-vous vraiment supprimer la sauvegarde programmée [[VAR.backupName]] ?"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "Liste des fichiers de sauvegarde"
+
+msgid "backupDate"
+msgstr "Début de sauvegarde"
+
+msgid "backupDate_help"
+msgstr "Affiche la date et l'heure de début de la sauvegarde."
+
+msgid "backupRetval"
+msgstr "Etat"
+
+msgid "backupRetval_help"
+msgstr "Ceci indique si la sauvegarde a réussi, échoué ou est en cours."
+
+msgid "statusSuccess"
+msgstr "Succés"
+
+msgid "statusSuccess_help"
+msgstr "Cette sauvegarde s'est effectuée avec succés.."
+
+msgid "statusPending"
+msgstr "Sauvegarde en cours"
+
+msgid "statusPending_help"
+msgstr "Cette sauvegarde est en cours."
+
+msgid "statusFailure"
+msgstr "Echec"
+
+msgid "statusFailure_help"
+msgstr "Cette sauvegarde a échoué. Vérifiez les paramètres et recommencez."
+
+msgid "restoreBackup"
+msgstr "Restaurer"
+
+msgid "restoreBackup_help"
+msgstr "Cliquez ici pour restaurer cette sauvegarde maintenant."
+
+msgid "restoreFromDir"
+msgstr "Restaurer manuellement"
+
+msgid "restoreFromDir_help"
+msgstr "Restaurer une sauvegarde depuis un répertoire local ou distant."
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "Sauvegarde terminée"
+
+msgid "backupEnded_help"
+msgstr "Affiche la date et l'heure de fin de la sauvegarde."
+
+msgid "backupLocation"
+msgstr "Destination"
+
+msgid "backupLocation_help"
+msgstr "Emplacement de destination de la sauvegarde."
+
+msgid "historyDetailHeader"
+msgstr "Détails d'un article de l'historique"
+
+msgid "usersInBackup"
+msgstr "Utilisateurs"
+
+msgid "usersInBackup_help"
+msgstr "Utilisateurs sont inclus dans la sauvegarde."
+
+msgid "groupsInBackup"
+msgstr "Groupes"
+
+msgid "groupsInBackup_help"
+msgstr "Groupes inclus dans la sauvegarde."
+
+msgid "removeButton"
+msgstr "Supprimer"
+
+msgid "removeButton_help"
+msgstr "Cliquez ici pour supprimer maintenant l'historique de cette sauvegarde. Seul l'historique, et non la sauvegarde elle-même, sera supprimé."
+
+msgid "removeHistoryConfirm"
+msgstr "Supprimer l'historique de sauvegarde '[[VAR.name]]' effectué [[VAR.time]] ?"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "Restaurer une sauvegarde"
+
+msgid "restorePlace"
+msgstr "Emplacement des fichiers restaurés"
+
+msgid "restorePlace_help"
+msgstr "Choisir l'emplacement des fichiers restaurés. Le remplacement de fichier écrase les fichiers sur le disque dur si il trouve un fichier de mêmes nom et emplacement que le fichier restauré. Dans le partage des fichiers de restauration, la restauration des fichiers place les fichiers dans le répertoire du groupe de restauration '/home/groups/restore'. Ceci permet de ne copier manuellement que les fichiers qu'on désire restaurer."	
+
+msgid "restoreOver"
+msgstr "Remplacer les fichiers existants"
+
+msgid "restoreTemp"
+msgstr "Restaurer dans le partage de fichiers de restauration"
+
+msgid "backupFileshareMissing"
+msgstr "Le partage de fichiers de restauration est introuvable. Vérifiez que le groupe et le répertoire de restauration existent."
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "Restaurer à partir du répertoire"
+
+msgid "restoreDirField"
+msgstr "Répertoire"
+
+msgid "restoreDirField_rule"
+msgstr "/home/users/admin/20000910171607 est un exemple d'entrée correcte."
+
+msgid "restoreDirField_help"
+msgstr "Entrez le nom du répertoire local ou distant contenant la sauvegarde à restaurer. [[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "Utilisateurs à ne pas sauvegarder"
+
+msgid "backupAllUsers"
+msgstr "Sauvegarder tous les utilisateurs"
+
+msgid "backupNoUsers"
+msgstr "Ne pas sauvegarder d'utilisateurs"
+
+msgid "backupUserSubset"
+msgstr "Ne sauvegarder que certains utilisateurs"
+
+msgid "groupsNotToBackup"
+msgstr "Groupes à ne pas sauvegarder"
+
+msgid "backupAllGroups"
+msgstr "Sauvegarder tous les groupes"
+
+msgid "backupNoGroups"
+msgstr "Ne pas sauvegarder de groupes"
+
+msgid "backupGroupSubset"
+msgstr "Ne sauvegarder que certains groupes"
+
+msgid "backupModified31days"
+msgstr "Tous les fichiers modifiés au cours des 31 derniers jours"
+
+msgid "backupModified14days"
+msgstr "Tous les fichiers modifiés au cours des 14 derniers jours"
+
+msgid "backupModified7days"
+msgstr "Tous les fichiers modifiés au cours des 7 derniers jours"
+
+msgid "backupModified2days"
+msgstr "Tous les fichiers modifiés au cours des 2 derniers jours"
+
+msgid "backupModified1days"
+msgstr "Tous les fichiers modifiés au cours de la dernière journée"
+
+msgid "backupAllFiles"
+msgstr "Tous les fichiers"
+
+msgid "backupImmediate"
+msgstr "Sauvegarder immédiatement une seule fois"
+
+msgid "backupImmediate_help"
+msgstr "Cette sauvegarde sera exécutée une fois et immédiatement."
+
+msgid "daily"
+msgstr "Sauvegarder une fois par jour"
+
+msgid "daily_help"
+msgstr "Cette sauvegarde sera exécutée une fois par jour."
+
+msgid "weekly"
+msgstr "Sauvegarder une fois par semaine"
+
+msgid "weekly_help"
+msgstr "Cette sauvegarde sera exécutée une fois par semaine."
+
+msgid "monthly"
+msgstr "Sauvegarder une fois par mois"
+
+msgid "monthly_help"
+msgstr "Cette sauvegarde sera exécutée une fois par mois."
+
+msgid "backupCCEDmessage"
+msgstr "Un composant crucial du système (CCE) est actuellement hors service car une sauvegarde ou une restauration système est en cours. Réessayez dans quelques instants."
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "Le partage de fichiers de sauvegarde, le nom d'utilisateur ou le mot de passe spécifié est incorrect ou actuellement inaccessible."
+
+    #  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "La valeur entrée pour [[VAR.invalidValue]] n'est pas correcte pour [[base-backup.backupName]]. [[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "La valeur que vous avez entrée pour [[base-backup.backupName]] existe déjà dans le système. Entrez une autre valeur pour [[base-backup.backupName]]."
+
+	# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "Vérifiez vos paramètres"
+
+msgid "backupReason"
+msgstr "Motif"
+
+	# backup.pl
+msgid "backupError"
+msgstr "Une erreur s'est produite lors de la tentative d'exécution de [[VAR.prog]]."
+
+	# Constructor
+msgid "restoreDescription"
+msgstr "Ce groupe de travail est utilisé pour la restauration des données de sauvegarde."
+
+msgid "permission"
+msgstr "Permission d'accès au fichier"
+
+msgid "fileowner"
+msgstr "Propriétaire du fichier"
+
+msgid "filesize"
+msgstr "Taille de fichier"
+
+msgid "date"
+msgstr "Date de modification"
+
+msgid "File"
+msgstr "Nom de fichier"
+
+msgid "immediatePopup"
+msgstr "La sauvegarde immédiate [[VAR.name]] est démarrée.\nSélectionnez le menu Restaurer pour plus d'information sur cette sauvegarde ainsi que les autres."
+
+msgid "restoreOverPopup"
+msgstr "La restauration [[VAR.name]] est démarrée.\nLe serveur redémarrera une fois la restauration terminée."
+
+msgid "restoreTempPopup"
+msgstr "La restauration [[VAR.name]] est démarrée.\nLes fichiers seront disponibles dans le partage de fichiers de restauration une fois la restauration terminée."
+
+msgid "osversion_conflict"
+msgstr "Cette archive ne peut être restaurée que vers un partage de fichiers car elle a été créée en utilisant une version différente de système d'exploitation Sun Cobalt OS."
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "Gérer les sauvegardes"
+
+msgid "capgroup_adminBackup_help"
+msgstr "Ce droit administratif permet à un utilisateur de sauvegarder et restaurer la totalité du système"

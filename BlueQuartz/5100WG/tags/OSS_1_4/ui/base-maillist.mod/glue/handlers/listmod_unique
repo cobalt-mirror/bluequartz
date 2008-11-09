@@ -1,0 +1,28 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: listmod_unique 3 2003-07-17 15:19:15Z will $
+#
+# listmod_unique checks for the uniqueness of the list name.
+#		name
+#		_CREATE
+
+use CCE;
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $oid = $cce->event_oid();
+my $obj = $cce->event_object();
+
+# make sure list names are unique:
+my @matches = $cce->find('MailList', { 'name' => $obj->{name} } );
+if ($#matches > 0) {
+	$cce->baddata($oid, 'name', '[[base-maillist.name-already-taken]]');
+  $cce->bye('FAIL');
+  exit(1);
+}
+
+# check if the alias already exists by polling sendmail:
+# FIXME
+
+$cce->bye('SUCCESS');
+exit(0);
+

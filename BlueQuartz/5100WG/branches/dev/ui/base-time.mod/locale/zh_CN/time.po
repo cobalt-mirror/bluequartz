@@ -1,0 +1,42 @@
+msgid "ntpAddress"
+msgstr "NTP 服务器地址"
+
+msgid "systemDisplayedTimeZone"
+msgstr "时区"
+
+msgid "capgroup_adminTime_help"
+msgstr "这个管理权限允许用户设置系统时间和时区。"
+
+msgid "systemDisplayedTime"
+msgstr "时间"
+
+msgid "ntpDefaultServer"
+msgstr "time.cobalt.com"
+
+msgid "systemDisplayedDate_help"
+msgstr "设置当前日期。"
+
+msgid "capgroup_adminTime"
+msgstr "管理系统时间"
+
+msgid "time"
+msgstr "时间"
+
+msgid "ntpAddress_help"
+msgstr "输入网络时间协议 (NTP) 服务器的网络地址或完全限定的域名，您的系统日期和时间将定期与该服务器同步。例如，[[base-time.ntpDefaultServer]]是可用的 NTP 服务器。您可从下列地址查看其它可公开获得的 NTP 服务器列表：http://www.eecis.udel.edu/~mills/ntp/servers.htm。"
+
+msgid "systemDisplayedTime_help"
+msgstr "设置当前时间。"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "设置此服务器设备当前的时区。"
+
+msgid "systemDisplayedDate"
+msgstr "日期和时间"
+
+msgid "time_help"
+msgstr "[[base-time.timeSetting]]可在此处更改。"
+
+msgid "timeSetting"
+msgstr "时间设置"
+

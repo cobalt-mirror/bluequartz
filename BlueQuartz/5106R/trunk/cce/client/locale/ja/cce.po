@@ -1,0 +1,39 @@
+msgid "cceErrorSentence"
+msgstr "サーバの内部エラーが発生しました。"
+
+msgid "cceHandlerErrorSentence"
+msgstr "サーバの内部エラーが発生しました。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownAttr"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.key]] という属性が不明です。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownClass"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.key]] というクラスが不明です。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownNs"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.key]] というネームスペースが不明です。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownOid"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.oid]] というオブジェクトが不明です。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "permissionDenied"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.key]] のパーミッションが拒否されました。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownErrorCode"
+msgstr "[[base-cce.cceErrorSentence]]原因不明のエラーが発生しました。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidType"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.key]] は不正なタイプです。[[base-sauce-basic.contactTechSupport]]"
+
+	# User input invalid but validation fell through
+msgid "invalidData"
+msgstr "[[VAR.key]] フィールドに不正なデータが入力されました。入力データを確認し、もう一度お試しください。"
+
+msgid "outOfMemory"
+msgstr "[[base-cce.cceErrorSentence]]システムには割り当てできる十分なメモリがないため、動作を継続できません。"
+
+msgid "badRegex"
+msgstr "[[base-cce.cceErrorSentence]]  [[VAR.key]] は不正な正規表現です。"
+
+msgid "suspended"
+msgstr "サーバデスクトップは現在ロックされているため、変更できません。[[VAR.key]]"

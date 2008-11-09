@@ -1,0 +1,564 @@
+/* $Id: CODB.pseudo 229 2003-07-18 20:22:20Z will $ */
+/* Copyright 2001 Sun Microsystems, Inc.  All rights reserved. */
+/*
+ * Tim Hockin
+ *
+ * This is a proposed API and some pseudocode for a new version of the
+ * Cobalt Object Database.
+ *
+ * This version should be faster, cleaner, and more extendable 
+ * Add to these ideas a stacked layer model of services to run on gets and
+ * commits.
+ *
+ * Cache needs to be either in shared memory, or in a single process,
+ * through which all object accesses go.
+ *
+ * We'd need to decide on whether objects are volatile or not:
+ *	Time 0:	A = new handle		B = new handle
+ *	Time 1:	A gets oid n		B gets oid n
+ *	Time 2:	A read n.foo as 0	B reads n.bar as 0
+ *	Time 3:	A sets n.foo = 1	B sets n.bar = 1
+ *	Time 4:	A commits	
+ *	Time 5:	A reads n		B reads n
+ *
+ * Question:  does B see foo == 1 or foo == 0 ?
+ *   volatile:  A gets foo == 1, bar == 0 ; B gets foo == 1, bar == 1
+ *   non-volatile: A gets foo == 1, bar == 0 ; B gets foo == 0, bar == 1
+ */
+ 
+
+/*
+ * fundamental datatypes
+ */
+
+typedef long			oid_t;		/* note signedness... */
+typedef enum {...} 		codb_ret_t;
+typedef struct _codb_handle 	codb_handle;	/* all these are OPAQUE */	
+typedef struct _codb_obj 	codb_obj;
+typedef struct _codb_props	codb_props;
+
+
+/*
+ * summary of exported functions
+ */
+
+/* init */
+codb_ret_t 		codb_init(void);
+
+/* handle functions */
+codb_handle *	codb_handle_new(void);
+void 			codb_handle_destroy(codb_handle *);
+codb_ret_t 		codb_handle_errval(codb_handle *);
+
+/* cache functions - probably only internal */
+void 			codb_expire_ocache(int s);
+void 			codb_flush_ocache(void);
+
+/* object operatiosn */
+char *		codb_obj_get_prop(codb_handle *, codb_obj *, "prop");
+codb_obj *		codb_obj_assign(codb_obj *);
+void 			codb_obj_release(codb_obj *);
+
+/* database operations */
+codb_obj *		codb_get(codb_handle *, oidt_t, "namespace");
+char *		codb_get_prop(codb_handle *, oidt_t, "prop");
+int 			codb_exists(codb_handle *, oid_t);
+codb_ret_t 		codb_set(codb_handle *, codb_obj *, codb_props *);
+codb_obj *		codb_create(codb_handle *, "class", codb_props *);
+codb_ret_t 		codb_destroy(codb_handle *, codb_obj *);
+GSList *		codb_find(codb_handle *, "class", codb_props *);
+GSList *		codb_names(codb_handle *, "class");
+GSList *		codb_classlist(codb_handle *);
+codb_ret_t 		codb_commit(codb_handle *);
+codb_ret_t 		codb_cancel(codb_handle *);
+
+/* properties operations */
+codb_props *	codb_props_new(void);
+void 			codb_props_destroy(codb_props *);
+int 			codb_props_set(codb_props *, "prop", "val");
+char *		codb_props_get(codb_props *, "prop");
+void 			codb_props_clear(codb_props *);
+codb_props *	codb_props_merge(codb_props *, codb_props *);
+
+
+
+/*
+ * codb exported functions
+ *
+ * always handle NULL codb_handle * with an error
+ * always set handle.errval (except accessor function for errval)
+ * always handle bad params
+ */
+
+/* initialize */
+codb_ret_t
+codb_init(void):
+{
+	run all initializers
+	set alarm to run codb_expire_ocache
+}
+
+
+/* 
+ * create new codb_handle 
+ * allocates memory
+ */
+codb_handle *
+codb_handle_new(void):
+{
+	allocate codb_handle
+	set handle.errval
+	return new codb_handle
+}
+
+
+/* 
+ * clean up a codb_handle 
+ */
+void
+codb_handle_destroy(codb_handle *);
+{
+	free memory in handle
+}
+
+
+/* 
+ * get the most recent errval from a handle 
+ */
+codb_ret_t
+codb_handle_errval(codb_handle *):
+{
+	ASSERT(handle != NULL)
+
+	return most recent errval
+}
+
+
+/*
+ * flush old items in ocache
+ */
+void
+codb_expire_ocache(int s):
+{
+	for each obj in ocache {
+		if (refcount = 0 && lastused > 5 minutes ago) {
+			flush_obj_from_ocache(obj);
+		}
+	}
+}
+
+
+/*
+ * flush all ocache
+ */
+void
+codb_flush_ocache(void):
+{
+	for each obj in ocache {
+		flush_obj_from_ocache(obj);
+	}
+}
+
+
+/* 
+ * get a property from a codb_obj pointer 
+ * this can be called, even after an obj is detroyed, but not commited
+ */
+char *
+codb_obj_get_prop(codb_handle *, codb_obj *, "prop"):
+{
+	ASSERT(handle != NULL)
+
+	if (!obj || !prop) {
+		set handle.errval
+		return NULL
+	}
+
+	set handle.errval to success;
+
+	if (obj is in handle.mod_cache) {
+		return value from handle.mod_cache
+	} else {
+		return value from obj
+	}
+}
+		
+
+/* 
+ * assign the codb_obj *, while incrementing refcount
+ */
+codb_obj *
+codb_obj_assign(codb_obj *):
+{
+	if (obj)
+		increment obj refcount
+	}
+	return obj
+}
+
+
+/* 
+ * decrement refcount
+ */
+void
+codb_obj_release(codb_obj *):
+{
+	if (obj) {
+		decrement obj refcount
+		if refcount == 0
+		set lastused to current time
+	}
+}
+
+
+/* 
+ * get a codb_obj pointer 
+ */
+codb_obj *
+codb_get(codb_handle *, oidt_t, "namespace"):
+{
+	ASSERT(handle != NULL)
+
+	if (oid <= 0) {
+		set handle.errval
+		return NULL
+	}
+
+	if (!namespace) {
+		namespace = ""
+	}
+
+	if (oid+namespace is in handle.destroy_cache) {
+		set handle.errval
+		return NULL;
+	}
+
+	set handle.errval
+
+	if (oid+namespace is in handle.create_cache) {
+		increment refcount
+		return pointer to obj in create_cache
+	}
+
+	if (oid+namespace is not in ocache) {
+		load object into ocache
+		if (object does not exist) {
+			set handle.errval
+			return NULL
+		}
+	}
+
+	increment refcount
+	return pointer to obj in ocache;
+}
+
+
+/*
+ * FIXME: need a get_old and get_changed
+ */
+
+
+/* 
+ * get a property of an oid
+ */
+char *
+codb_get_prop(codb_handle *, oidt_t, "prop"):
+{
+	ASSERT(handle != NULL)
+
+	obj = codb_get(handle, oid, NULL);
+	ret = codb_obj_get_prop(handle, obj, prop);
+	codb_obj_release(obj);
+
+	return ret;
+}
+	
+/* 
+ * test that oid exists
+ */
+#define codb_exists(h, oid)	(codb_get_prop(h, oid, "CLASS") ? 1 : 0)
+
+
+/* 
+ * set a codb_props on a codb_obj 
+ * copies data from props (allocates memory, to be freed internally)
+ */
+codb_ret_t
+codb_set(codb_handle *, codb_obj *, codb_props *):
+{
+	ASSERT(handle != NULL)
+
+	if (!obj) {
+		set handle.errval
+		return handle.errval;
+	}
+
+	set handle.errval
+
+	if (!props) {
+		return handle.errval
+	}
+		
+	if (obj is in handle.destroy_cache) {
+		set handle.errval
+		return handle.errval;
+	}
+
+	if (obj is in handle.modify_cache) {
+		merge changes with modify_cache
+	} else {
+		create changes in codb_handle
+	}
+
+	return handle.errval;
+}
+
+
+/* 
+ * create a new codb_obj, and set props on it 
+ * copies data from props (allocates mem, to be freed internally)
+ */
+codb_obj *
+codb_create(codb_handle *, "class", codb_props *):
+{
+	ASSERT(handle != NULL)
+
+	if (!class) {
+		set handle.errval
+		return NULL;
+	}
+		
+	allocate new oid
+	allocate new codb_obj in create_cache
+	if (props) {
+		call codb_set(handle, newobj, props
+	}
+	set handle.errval
+	
+	increment refcount
+	return newobj
+}
+
+
+/* destroy a codb_obj */
+codb_ret_t
+codb_destroy(codb_handle *, codb_obj *):
+{
+	ASSERT(handle != NULL)
+
+	if (!obj) {
+		set handle.errval
+		return handle.errval;
+	}
+
+	if (obj is not in handle.destroy_cache) {
+		if (obj is in handle.create_cache) {
+			decrement refcount
+			remove from handle.create_cache;
+		}
+		increment refcount
+		put codb_obj in handle.destroy_cache
+		set handle.errval
+	} else {
+		set handle.errval
+	}
+
+	return handle.errval
+}
+
+
+/*
+ * get a list (of codb_obj *) of objects of specified class that match
+ * criteria
+ */
+GSList *
+codb_find(codb_handle *, "class", codb_props *):
+{
+	ASSERT(handle != NULL)
+
+	if (!class) {
+		/* find all objects */
+		class = "";
+	}
+
+	look at index for class
+	for each item in index {
+		if (!props) {
+			increment refcount
+			add to list
+			continue
+		}
+		for each property in criteria {
+			get value (through codb_handle)
+			compare
+			if (equal) {
+				increment refcount
+				add to list
+			}
+		}
+	}
+	set handle.errval
+	return list
+}
+
+
+/* 
+ * get a list (of strings) of all namespaces of a class
+ * strings are static, do not free 
+ */
+GSList *
+codb_names(codb_handle *, "class"):
+{
+	ASSERT(handle != NULL)
+
+	if (!class) {
+		set handle.errval
+		return NULL
+	}
+
+	query classconf layer
+	set handle.errval
+	return list
+}
+
+
+/* 
+ * get a list (of strings) of all classes on the system 
+ * strings are static, do not free 
+ */
+GSList *
+codb_classlist(codb_handle *):
+{
+	ASSERT(handle != NULL)
+
+	query classconf layer
+	set handle.errval
+	return list
+}
+
+
+/* sync codb_handle buffers with database */
+codb_ret_t 
+codb_commit(codb_handle *):
+{
+	ASSERT(handle != NULL)
+
+	create objects in handle.create_cache
+	modify objects in handle.mod_cache
+	destroy objects in handle.destroy_cache
+
+	set handle.errval
+	return list
+}
+
+
+/* flush pending changes */
+codb_ret_t 
+codb_cancel(codb_handle *):
+{
+	ASSERT(handle != NULL)
+
+	clear handle.create_cache
+	clear handle.mod_cache
+	clear handle.destroy_cache
+
+	set handle.errval
+	return list
+}
+
+
+
+
+/*
+ * codb_props
+ *
+ * none of these functions allocate memory for keys or values
+ * they use the pointers AS PASSED
+ */
+
+/* new codb_props */
+codb_props *
+codb_props_new(void):
+{
+	return a new GHashTable
+}
+
+
+/* destroy a codb_props */
+void 
+codb_props_destroy(codb_props *):
+{
+	if (props) {
+		call codb_props_clear(props)
+		destroy the GHashTable
+	}
+}
+
+
+/* set a property in a codb_props (return set value or NULL) */
+int
+codb_props_set(codb_props *, "prop", "val"):
+{
+	if (!props || !prop) {
+		return -1
+	}
+
+	ret = hash_lookup(prop)
+	if (ret) {
+		remove prop from hash
+	}
+
+	set prop
+
+	return 0
+}
+
+
+/* get a property from a codb_props */
+char *
+codb_props_get(codb_props *, "prop"):
+{
+	if (prop) {
+		return hash_lookup(prop)
+	} else {
+		return NULL
+	}
+}
+
+
+/* clear all properties in a codb_props */
+void 
+codb_props_clear(codb_props *):
+{
+	if (prop) {
+		for each item in hash {
+			remove item from hash
+		}
+	}
+}
+
+
+/* 
+ * merge a codb_props into a new codb_props 
+ * if both hashes have same key, value in first hash wins
+ * allocates memory for a new codb_props structure
+ */
+codb_props *
+codb_props_merge(codb_props *, codb_props *):
+{
+	create new hash
+	if (props1) {
+		for each item in props1 {
+			add to newhash
+		}
+	}
+	if (props2) {
+		for each item in props2 {
+			if item does not exist in newhash {
+				add item to newhash
+			}
+		}
+	}
+
+	return newhash
+}

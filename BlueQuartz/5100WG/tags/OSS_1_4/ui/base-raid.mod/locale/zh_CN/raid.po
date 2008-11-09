@@ -1,0 +1,65 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgName"
+msgstr "Sun Cobalt 磁盘镜像"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]]通过主动映射两个硬盘驱动器中的内容而增强稳定性。"
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "独立磁盘冗余阵列 (RAID) 状态"
+
+msgid "raid_title"
+msgstr "独立磁盘冗余阵列 (RAID) 状态的详细信息"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "磁盘映射已禁用。"
+
+msgid "raid_working"
+msgstr "磁盘映射已启用，且当前为活动状态。两个硬盘驱动器都正常运行。"
+
+msgid "raid_sync_in_progress"
+msgstr "服务器数据当前正从一个硬盘驱动器向另一个硬盘驱动器复制。磁盘映射将在此同步过程完成后启用并进入活动状态。"
+
+msgid "raid_completed"
+msgstr "完成"
+
+msgid "raid_minutes_remaining"
+msgstr "剩余分钟数"
+
+msgid "raid_failure_raq"
+msgstr "一个硬盘驱动器失败。请关闭服务器设备，并用与剩余驱动器大小相同的新驱动器替换失败的硬盘驱动器。数据将自动恢复到替换的硬盘驱动器中。"
+
+msgid "raid_failure_hdc_raq"
+msgstr "左侧硬盘驱动器失败。请关闭服务器设备，并用相同大小的新驱动器替换此驱动器。当面对服务器设备前侧的蓝色塑料窗口时，失败的驱动器位于左侧。"
+
+msgid "raid_failure_hda_raq"
+msgstr "右侧硬盘驱动器失败。请关闭服务器设备，并用相同大小的新驱动器替换此驱动器。当面对服务器设备前侧的蓝色塑料窗口时，失败的驱动器位于右侧。"
+
+msgid "raid_failure_qube"
+msgstr "一个硬盘驱动器失败。请关闭服务器设备，并用与剩余驱动器大小相同的新驱动器替换失败的硬盘驱动器。数据将自动恢复到替换的硬盘驱动器中。如需了解更多信息，请检查活动监视器 RAID 详细信息屏幕。"
+
+msgid "raid_failure_hdc_qube"
+msgstr "辅助硬盘驱动器失败。请关闭服务器设备，并用相同大小的新驱动器替换此驱动器。失败的驱动器（标签 B）靠近服务器设备中心。当面对服务器设备前侧时，它是右侧的硬盘驱动器。"
+
+msgid "raid_failure_hda_qube"
+msgstr "主硬盘驱动器失败。请关闭服务器设备，并用相同大小的新驱动器替换此驱动器。失败的驱动器（标签 B）靠近服务器设备边缘。当面对服务器设备前侧时，它是左侧硬盘驱动器。"
+

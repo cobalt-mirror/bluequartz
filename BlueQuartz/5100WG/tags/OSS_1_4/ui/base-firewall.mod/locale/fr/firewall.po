@@ -1,0 +1,448 @@
+msgid "firewall_menu"
+msgstr "Pare-feu de base"
+
+msgid "firewall_menu_help"
+msgstr "Les [[base-firewall.FirewallTop]] peuvent être configurées ici. L'utilisation d'un pare-feu permet de définir la politique de sécurité controlant le trafic réseau autorisé à transiter par ce serveur."
+
+msgid "FirewallTop"
+msgstr "Règles de filtrage"
+
+msgid "FirewallTop_help"
+msgstr "L'utilisation d'un pare-feu permet de définir les types de trafic réseau autorisés à transiter par ce serveur. Comme il s'agit d'une fonction de sécurité avancée du serveur, n'oubliez pas de consulter la documentation disponible avant de configurer le pare-feu."
+
+msgid "EditRuleChain"
+msgstr "Jeu de Règles"
+
+msgid "EditRuleChain_help"
+msgstr "Sélectionnez un jeu de règles de filtrage à configurer. Le pare-feu est configuré à l'aide de trois jeux de règles séparés. Le jeu en entrée sert à filtrer les paquets destinés au serveur. Le jeu de transit sert à filtrer les paquets traversant le serveur mais destinés à une autre machine. Le jeu de sortie sert à filtrer les paquets émis par le serveur."
+
+msgid "enableFirewall"
+msgstr "Activer le pare-feu"
+
+msgid "enableFirewall_help"
+msgstr "Active ou désactive le pare-feu."
+
+msgid "firewall-not-dirty_help"
+msgstr "Ce bouton est utilisé pour appliquer vos changements \
+au pare-feu en fonctionnement. Actuellement, aucun changement \
+n'a été effectué."
+
+msgid "firewall-not-enabled_help"
+msgstr "Ce bouton permet d'appliquer les changements de configuration \
+au pare-feu en fonctionnement. Comme votre pare-feu n'est pas actif, \
+il est inutile d'appliquer des changements."
+
+msgid "Selectchain"
+msgstr "Sélectionner une section..."
+
+msgid "general_settings"
+msgstr "Paramètres de filtrage"
+
+msgid "chain_input"
+msgstr "Règles d'entrée"
+
+msgid "chain_output"
+msgstr "Règles de sortie"
+
+msgid "chain_forward"
+msgstr "Règles de transit"
+
+msgid "commit-changes-button"
+msgstr "Appliquer les changements"
+
+msgid "commit-changes-button_help"
+msgstr "Vous avez modifié les règles de filtrage, néanmoins vos changements \
+ne seront appliqués à la politique de filtrage du pare-feu actif que \
+lorsque vous aurez cliqué sur ce bouton."
+
+msgid "enable-firewall-button"
+msgstr "Activer le pare-feu"
+
+msgid "disable-firewall-button"
+msgstr "Désactiver paramètres"
+
+msgid "FirewallRulesinput"
+msgstr "Règles d'entrée"
+
+msgid "header_order"
+msgstr "Ordre"
+
+msgid "header_order_help"
+msgstr "Ordre dans lequel les règles sont appliquées aux paquets. Chaque paquet est individuellement analysé pour déterminer s'il correspond aux critères spécifiés par chaque règle, ceci dans l'ordre d'apparition des règles."
+
+msgid "header_source"
+msgstr "Critères source"
+
+msgid "header_source_help"
+msgstr "Critères de source qui vont servir à filtrer les paquets. Les paramètres de source d'un paquet seront comparés aux critères d'une règle donnée. La stratégie spécifiée pour cette règle sera appliquée au paquet uniquement si tous les critères sont satisfaits."
+
+msgid "header_dest"
+msgstr "Critères destination"
+
+msgid "header_dest_help"
+msgstr "Les paquets sont filtrés selon ces critères de destination. Les paramètres de destination d'un paquet seront comparés aux critères d'une règle donnée. La stratégie spécifiée pour cette règle sera appliquée au paquet uniquement si tous les critères sont satisfaits."
+
+msgid "header_policy"
+msgstr "Stratégie"
+
+msgid "header_policy_help"
+msgstr " stratégie qui sera appliquée aux paquets répondant aux critères de cette règle. Si un paquet satisfait tous les critères spécifiés par une règle donnée (source, destination, interface, protocole), la stratégie spécifiée est alors appliquée au paquet."
+
+msgid "header_action"
+msgstr "Action"
+
+msgid "header_action_help"
+msgstr "Boutons utilisés pour modifier ou supprimer une règle."
+
+msgid "defaultPolicyField"
+msgstr "Stratégie par défaut"
+
+msgid "defaultPolicyField_help"
+msgstr "Sélectionnez la stratégie par défaut pour ce jeu de règles. La stratégie par défaut détermine la stratégie à appliquer aux paquets ne répondant aux critères d'aucune des règles citées ci-dessus."
+
+msgid "CreateFirewallRule"
+msgstr "Ajouter une règle"
+
+# Source
+
+msgid "SourceCriteriaSection"
+msgstr "Critères source"
+
+msgid "SourceCriteriaSection_help"
+msgstr "Les critères permettent de déterminer à quels paquets une règle de filtrage doit s'appliquer. Les critères de source servent à prendre en compte les paquets provenant d'un emetteur spécifique."
+
+msgid "source_ip_start_field"
+msgstr "Adresse IP source (basse)"
+
+msgid "source_ip_start_field_help"
+msgstr "Entrez la première ou la plus basse Adresse IP de la plage d'adresses IP source à associer à cette règle. Pour accepter n'importe quelle adresse IP source, n'inscrivez rien dans les champs Adresse IP source."
+
+msgid "source_ip_stop_field"
+msgstr "Adresse IP source (haute)"
+
+msgid "source_ip_stop_field_help"
+msgstr "Entrez la dernière ou la plus haute Adresse IP de la plage d'adresses IP source à associer à cette règle. Pour accepter n'importe quelle adresse IP source, n'inscrivez rien dans les champs Adresse IP source."
+
+msgid "source_ports_field"
+msgstr "Numéro(s) de port source"
+
+msgid "source_ports_field_help"
+msgstr "Entrez le premier et le dernier numéro de port de la plage d'adresses IP source à associer à cette règle. Pour accepter n'importe quel numéro de port source, n'inscrivez rien dans les champs numéro de port source."
+
+# error messages:
+
+msgid "source_ip_start_invalid"
+msgstr "Une adresse IP non valide a été spécifiée pour l'adresse IP source (basse). Entrez une adresse IP de la forme 172.16.1.1."
+
+msgid "source_ip_stop_invalid"
+msgstr "Une adresse IP non valide a été spécifiée pour l'adresse IP source (haute). Entrez une adresse IP de la forme 172.16.1.1."
+
+msgid "dest_ip_start_invalid"
+msgstr "Une adresse IP non valide a été spécifiée pour l'Adresse IP destination (basse). Entrez une adresse IP de la forme 172.16.1.1."
+
+msgid "dest_ip_stop_invalid"
+msgstr "Une adresse IP non valide a été spécifiée pour l'Adresse IP destination (haute). Entrez une adresse IP de la forme 172.16.1.1."
+
+msgid "source_ports_invalid"
+msgstr "La plage des numéros de port source spécifiée n'est pas valide. Les numéros de port source doivent être des nombres entiers positifs. Pour créer une règle ne prenant en compte qu'un seul port, entrez celui-ci sous la forme d'une plage de valeurs (par exemple 23-23)."
+
+msgid "dest_ports_invalid"
+msgstr "La plage des numéros de port destination spécifiée n'est pas valide. Les numéros de port destination doivent être des nombres entiers positifs. Pour créer une règle ne prenant en compte qu'un seul port, entrez celui-ci sous la forme d'une plage de valeurs (par exemple 23-23)."
+
+msgid "redir_target_invalid"
+msgstr "Le champ Rediriger vers un port local doit contenir un \
+nombre entier positif indiquant le numéro de port (par exemple 23)."
+
+# Destination
+
+msgid "DestCriteriaSection"
+msgstr "Critères de destination"
+
+msgid "DestCriteriaSection_help"
+msgstr "Les critères permettent de déterminer à quels paquets une règle de filtrage doit s'appliquer. Les critères de destination permettent de prendre en compte les paquets destinés à une cible spécifique."
+
+msgid "dest_ip_start_field"
+msgstr "Adresse IP destination (basse)"
+
+msgid "dest_ip_start_field_help"
+msgstr "Entrez la première ou la plus basse adresse IP de la plage d'adresses IP destination à associer à cette règle. Pour accepter n'importe quelle Adresse IP destination, n'inscrivez rien dans les champs Adresse IP destination."
+
+msgid "dest_ip_stop_field"
+msgstr "Adresse IP destination (haute)"
+
+msgid "dest_ip_stop_field_help"
+msgstr "Entrez la dernière ou la plus haute Adresse IP de la plage d'adresses IP destination à associer à cette règle. Pour accepter n'importe quelle Adresse IP destination, n'inscrivez rien dans les champs Adresse IP destination."
+
+msgid "dest_ports_field"
+msgstr "Numéro(s) de port destination"
+
+msgid "dest_ports_field_help"
+msgstr "Entrez le premier et le dernier numéro de port de la plage d'adresses IP destination à associer à cette règle. Pour accepter n'importe quel numéro de port destination, n'inscrivez rien dans les champs numéro de port destination."
+
+# Other
+
+msgid "GeneralCriteriaSection"
+msgstr "Autres critères"
+
+msgid "GeneralCriteriaSection_help"
+msgstr "Les critères permettent de déterminer à quels paquets une règle de filtrage doit s'appliquer. Vous pouvez également utiliser d'autres critères tels que le protocole et l'interface ethernet pour filtrer les paquets."
+
+msgid "protocol_field"
+msgstr "Protocole réseau"
+
+msgid "protocol_field_help"
+msgstr "Entrez le protocole réseau utilisé par les paquets répondant à cette règle."
+
+msgid "all"
+msgstr "Tout protocole réseau"
+msgid "tcp"
+msgstr "TCP"
+msgid "udp"
+msgstr "UDP"
+msgid "icmp"
+msgstr "ICMP"
+msgid "ipip"
+msgstr "IPIP"
+msgid "encap"
+msgstr "Encap"
+
+msgid "interface_field"
+msgstr "Interface réseau"
+
+msgid "interface_field_help"
+msgstr "Entrez l'interface réseau sur laquelle doivent transiter les paquets répondant à cette règle."
+
+msgid "any"
+msgstr "Toute interface réseau"
+msgid "eth0"
+msgstr "Interface Ethernet primaire"
+msgid "eth1"
+msgstr "Interface Ethernet secondaire"
+msgid "ppp0"
+msgstr "Interface dialup PPP"
+
+# Policy
+
+msgid "DescribePolicy"
+msgstr "Stratégie de filtrage"
+
+msgid "DescribePolicy_help"
+msgstr "Une stratégie de filtrage définie l'action appliquée à un paquet \
+qui a répondu aux critères de filtrage d'une règle."
+
+msgid "policy_field"
+msgstr "Stratégie"
+
+msgid "policy_field_help"
+msgstr "Sélectionnez la stratégie pour cette règle. La stratégie détermine ce qui arrive aux paquets répondant à une règle de filtrage. Accepter un paquet permet à celui-ci de poursuivre son cheminement normal au travers du serveur. Bloquer un paquet supprime le paquet comme s'il n'était jamais parvenu à cette machine. Rejeter un paquet supprime le paquet comme Bloquer le fait mais l'émetteur est informé que le paquet a été refusé. Masquer un paquet réécrit le paquet au moment où il traverse le pare-feu de sorte que le paquet apparaît comme émis par le pare-feu. Cette stratégie n'est applicable qu'aux règles de transit. Rediriger un paquet réécrit le paquet lorsqu'il traverse le pare-feu de sorte que le paquet semble destiné à un numéro de port local de ce serveur. Cette stratégie n'est applicable qu'aux règles d'entrée."
+
+msgid "redir_target_field"
+msgstr "Rediriger vers un port local"
+
+msgid "redir_target_field_help"
+msgstr "Si la stratégie de redirection a été sélectionnée ci-dessus, entrez un numéro de port local pour les paquets répondant à cette règle de redirection. Sinon, ce champ est ignoré."
+
+msgid "redir_target_invalid"
+msgstr "Le port de redirection entré n'est pas valide. Entrez un nombre entier positif comme numéro de port (par exemple 23)."
+
+msgid "EditFirewallRule"
+msgstr "Modifier la règle"
+
+msgid "FirewallRulesforward"
+msgstr "Règles de transit"
+
+msgid "FirewallRulesoutput"
+msgstr "Règles de sortie"
+
+msgid "Select_chain"
+msgstr "Sélectionner un jeu de règles à modifier ..."
+
+msgid "defaultPolicy"
+msgstr "Stratégie par défaut"
+
+msgid "defaultPolicy_help"
+msgstr "La stratégie par défaut pour ce jeu de règles détermine ce qui arrive aux paquets ne répondant aux critères d'aucune des règles citées ci-dessus."
+
+msgid "criteria_ip"
+msgstr "IP=[[VAR.low]]-[[VAR.high]];"
+
+msgid "criteria_ports"
+msgstr "Port=[[VAR.ports]];"
+
+msgid "criteria_proto"
+msgstr "Protocole=[[VAR.proto]];"
+
+msgid "criteria_interface"
+msgstr "Interface=[[VAR.iface]];"
+
+msgid "policy_ACCEPT"
+msgstr "Accepter"
+
+msgid "policy_DENY"
+msgstr "Bloquer"
+
+msgid "policy_REJECT"
+msgstr "Rejeter"
+
+msgid "policy_MASQ"
+msgstr "Masquer"
+
+msgid "policy_REDIRECT"
+msgstr "Rediriger vers le port [[VAR.redir]]"
+
+msgid "policy_RETURN"
+msgstr "Renvoyer"
+
+msgid "policy_JUMP"
+msgstr "Aller au jeu de règles [[VAR.jump]]"
+
+msgid "ACCEPT"
+msgstr "Accepter"
+
+msgid "DENY"
+msgstr "Bloquer"
+
+msgid "REJECT"
+msgstr "Rejeter"
+
+msgid "MASQ"
+msgstr "Masquer"
+
+msgid "REDIRECT"
+msgstr "Rediriger vers le port"
+
+msgid "RETURN"
+msgstr "Renvoyer"
+
+msgid "JUMP"
+msgstr "Aller au jeu de règles"
+
+msgid "no_rules_defined"
+msgstr "Ce jeu ne contient pas de règles. Cliquez sur Ajouter pour créer une règle pour ce jeu."
+
+msgid "FirewallEnable1"
+msgstr "Activation du pare-feu"
+
+msgid "FirewallEnable1_help"
+msgstr "Patientez pendant l'application des paramètres du pare-feu."
+
+msgid "explain-firewall-enable1-page"
+msgstr "Patientez pendant l'application des paramètres au pare-feu.  \
+\
+Cette page doit se rafraîchir automatiquement sur la page de configuration du pare-feu. \
+Dans le cas contraire, votre pare-feu est probablement mal configuré. \
+Patientez soixante secondes que la fonction de protection désactive le pare-feu \
+et essayez d'accéder de nouveau au serveur."
+
+msgid "explain-firewall-enable1-page_help"
+msgstr "Cliquez sur Appliquer les paramètres pour continuer ou sur Annuler pour revenir à la page de configuration du pare-feu."
+
+msgid "proceed-button"
+msgstr "Appliquer les paramètres"
+
+msgid "proceed-button_help"
+msgstr "Cliquez sur ce bouton pour appliquer les nouvelles règles de filtrage."
+
+msgid "FirewallEnable2"
+msgstr "Configuration du pare-feu effectuée"
+
+msgid "FirewallEnable2_help"
+msgstr "Ceci est la deuxième et dernière étape nécessaire à l'activation du pare-feu."
+
+msgid "firewall-congrat-page"
+msgstr "Félicitations ! Si vous lisez ce message, les paramètres de votre pare-feu fonctionnent correctement. Cliquez sur le bouton Confirmer les paramètres ci-dessous pour garder définitivement les paramètres du pare-feu."
+
+msgid "firewall-congrat-page_help"
+msgstr "Félicitations !"
+
+msgid "confirm-firewall-button"
+msgstr "Confirmer paramètres"
+
+msgid "confirm-firewall-button_help"
+msgstr "Cliquez ici pour garder définitivement les paramètres du pare-feu."
+
+msgid "reorder-button"
+msgstr "Réorganiser"
+
+msgid "reorder-button_help"
+msgstr "Cliquez ici pour réorganiser les règles en fonction des changements que vous avez effectués dans les champs d'ordre du tableau ci-dessus."
+
+msgid "Order_help"
+msgstr "Modifiez les champs d'ordre numériques ci-dessous pour modifier l'ordre dans lequel les règles sont appliquées aux paquets. Cliquez sur le bouton Réorganiser pour appliquer les changements d'ordre."
+
+msgid "firewall-is-dirty-message"
+msgstr "Vous avez modifié la configuration du pare-feu sans sauvegarder les changements."
+
+msgid "firewall-is-dirty-message_help"
+msgstr "Ce message vous indique si les changements de configuration du pare-feu n'ont pas été sauvegardés. Cliquez sur le bouton Appliquer les changements pour enregistrer les changements."
+
+msgid "apply-changes-popup"
+msgstr "\
+-------------------------------------------------------\n\
+         Changer les règles du pare-feu actif \n\
+-------------------------------------------------------\n\
+\n\
+Vous êtes sur le point d'appliquer les changements \n\
+récents à la politique courante de filtrage de paquets \n\
+de votre pare-feu. \n\
+\n\
+Si le pare-feu est mal configuré, vous risquez \n\
+de ne plus avoir accés à l'interface Web \n\
+de votre serveur. \n\
+\n\
+Ce pare-feu met en oeuvre une fonction de protection \n\
+qui désactive le pare-feu automatiquement après \n\
+soixante secondes si la session avec votre navigateur \n\
+est interrompue. \n\
+\n\
+Si vous êtes déconnecté, attendez une minute avant de \n\
+réessayer d'accéder de nouveau au serveur. \n\
+\n\
+Voulez-vous continuer ?"
+
+msgid "confirm-enabling-popup"
+msgstr "\
+-------------------------------------------------------\n\
+                  Activer le pare-feu \n\
+-------------------------------------------------------\n\
+\n\
+Vous êtes sur point d'activer votre pare-feu. \n\
+\n\
+Si le pare-feu est mal configuré, vous risquez \n\
+de ne plus avoir accés à l'interface Web \n\
+de votre serveur. \n\
+\n\
+Ce pare-feu met en oeuvre une fonction de protection \n\
+qui désactive le pare-feu automatiquement après \n\
+soixante secondes si la session avec votre navigateur \n\
+est interrompue. \n\
+\n\
+Si vous êtes déconnecté, attendez une minute avant de \n\
+réessayer d'accéder de nouveau au serveur. \n\
+\n\
+Voulez-vous continuer ?"
+
+msgid "FirewallConfiguration"
+msgstr "Paramètres de filtrage"
+
+msgid "FirewallConfiguration_help"
+msgstr "L'utilisation d'un pare-feu permet de définir la politique de sécurité controlant le trafic réseau autorisé à transiter par ce serveur. Comme il s'agit d'une fonction de sécurité avancée du serveur, n'oubliez pas de consulter la documentation disponible avant de configurer le pare-feu."
+
+msgid "ipip-rule-cannot-have-ports"
+msgstr "Le protocole IPIP ne prend pas en charge les numéros de port. \
+Vous ne pouvez donc pas filtrer un paquet IPIP selon une série de numéros de port."
+
+msgid "encap-rule-cannot-have-ports"
+msgstr "Le protocole Encap ne prend pas en charge les numéros de port. \
+Vous ne pouvez donc pas filtrer un paquet Encap selon une série de numéros de port."
+
+msgid "Any"
+msgstr "Toute"
+
+# Capabilities
+
+msgid "capgroup_adminFirewall"
+msgstr "Gérer le pare-feu de base"
+
+msgid "capgroup_adminFirewall_help"
+msgstr "Ce droit administratif permet à un utilisateur de gérer tous les aspects du pare-feu du système"

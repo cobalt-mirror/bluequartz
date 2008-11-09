@@ -1,0 +1,178 @@
+#error messages
+
+msgid "errorEmailBody"
+msgstr "AutoLoad 中にエラーが発生しました： "
+
+msgid "errorEmailSubject"
+msgstr "AutoLoad エラー"
+
+msgid "nosettings"
+msgstr "AutoLoad の設定が見つかりませんでした。"
+
+msgid "cantdownload"
+msgstr "指定された AutoLoad サーバからパッケージの一覧をダウンロードできませんでした。\n\n[[VAR.badHost]]"
+
+msgid "badpacakge"
+msgstr "AutoLoad サーバからダウンロードしたパッケージの一覧をアンパックできませんでした。"
+
+msgid "badpkgfmt"
+msgstr "AutoLoad サーバからダウンロードしたパッケージの一覧を読み込めませんでした。"
+
+msgid "badinstall"
+msgstr "[[VAR.name]] をインストール中にエラーが発生しました"
+
+msgid "statusEmailSubject"
+msgstr "AutoLoad の状態"
+
+msgid "statusEmailBody"
+msgstr "AutoUpdate により次のパッケージがインストールされました:\n"
+
+#used by wizard stuff
+
+msgid "network"
+msgstr "セカンダリインターフェイスの設定"
+
+msgid "network_help"
+msgstr " "
+
+msgid "servers"
+msgstr "AutoUpdate サーバの設定"
+
+msgid "servers_help"
+msgstr " "
+
+#used on network.php
+msgid "networkSettings"
+msgstr "ネットワークの設定"
+
+msgid "networkField"
+msgstr "ネットワークの設定"
+
+msgid "networkField_help"
+msgstr "セカンダリインターフェイスを設定できます。"
+
+msgid "dhcpHostNameField"
+msgstr "クライアントホスト名"
+
+msgid "dhcpHostNameField_help"
+msgstr "このサーバを DHCP （Dynamic Host Configuration Protocol） クライアントとして識別するためのホスト名を入力してください。"
+
+msgid "dhcpClientIdField"
+msgstr "クライアントの識別子"
+
+msgid "dhcpClientIdField_help"
+msgstr "このサーバを DHCP （Dynamic Host Configuration Protocol ） クライアントとして識別するための識別文字列を入力してください。"
+
+msgid "pppoe"
+msgstr "PPPoE を参照"
+
+msgid "dhcp"
+msgstr "DHCP を参照"
+
+msgid "pppUserNameField"
+msgstr "ユーザ名"
+
+msgid "pppUserNameField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のアカウントへログインするために必要なユーザ名を入力してください。"
+
+msgid "pppPasswordField"
+msgstr "パスワード"
+
+msgid "pppPasswordField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のアカウントへログインするために必要なパスワードを入力してください。"
+
+msgid "static"
+msgstr "手動で設定"
+
+msgid "ipAddressField"
+msgstr "IP アドレス"
+
+msgid "ipAddressField_help"
+msgstr "セカンダリインターフェイスの IP アドレスを入力してください。通常、セカンダリインターフェイスはインターネットへの接続に使われます。"
+
+msgid "netMaskField"
+msgstr "ネットマスク"
+
+msgid "netMaskField_help"
+msgstr "セカンダリインターフェイスのネットワークマスクを入力してください。"
+
+msgid "gatewayField"
+msgstr "ゲートウェイ"
+
+msgid "gatewayField_help"
+msgstr "このサーバのローカルネットワークゲートウェイの IP アドレスを入力してください。これはプライマリとセカンダリの両方のインターフェイスに対応するゲートウェイアドレスです。"
+
+msgid "dnsField"
+msgstr "DNS サーバ"
+
+msgid "dnsField_help"
+msgstr "ローカルドメインネームサーバの IP アドレスを入力してください。"
+
+#used on server.php
+
+msgid "serverSettings"
+msgstr "AutoUpdate サーバの設定"
+
+msgid "serverField"
+msgstr "AutoUpdate サーバ"
+
+msgid "serverField_help"
+msgstr "AutoUpdate サーバのホスト名または IP アドレスを入力してください。"
+
+msgid "proxyField"
+msgstr "HTTP プロキシ"
+
+msgid "proxyField_help"
+msgstr "HTTP プロキシがネットワーク上にある場合、そのホスト名または IP アドレスを入力してください。"
+
+msgid "authField"
+msgstr "認証トークン"
+
+msgid "authField_help"
+msgstr "AutoUpdate サーバへのアクセスに必要な認証情報を入力してください。"
+
+msgid "invalidServer"
+msgstr "入力したサーバを AutoUpdate サーバとして認識できません。設定を確認して、もう一度お試しください。"
+
+# used in the lcd script
+msgid "autoupdate_server"
+msgstr "    ｻｰﾊﾞ IP:    "
+
+msgid "autoupdate_secure"
+msgstr "SSL ｦ ﾕｳｺｳﾆｼﾏｽｶ?"
+
+msgid "autoupdate_proxy"
+msgstr "   ﾌﾟﾛｷｼ IP:    "
+
+msgid "autoupdate_proxy_question"
+msgstr "ﾌﾟﾛｷｼｦ ｾｯﾃｲｼﾏｽｶ?"
+
+msgid "autoupdate_auth"
+msgstr "  ﾆﾝｼｮｳ ﾄｰｸﾝ:   "
+
+msgid "autoupdate_auth_question"
+msgstr "ﾄｰｸﾝｦﾆｭｳﾘｮｸｼﾏｽｶ?"
+
+msgid "checking_server_1"
+msgstr "ｻｰﾊﾞｦ ﾁｪｯｸｼﾃｲﾏｽ "
+
+msgid "checking_server_2"
+msgstr "ｼﾊﾞﾗｸｵﾏﾁｸﾀﾞｻｲ..."
+
+msgid "cant_contact_server_1"
+msgstr "     ｻｰﾊﾞﾆ      "
+
+msgid "cant_contact_server_2"
+msgstr "  ｾﾂｿﾞｸ ﾃﾞｷﾏｾﾝ  "
+
+msgid "invalid_server_1"
+msgstr " ｻｰﾊﾞ ｱﾄﾞﾚｽ ｶﾞ  "
+
+msgid "invalid_server_2"
+msgstr "    ﾌｾｲ ﾃﾞｽ     "
+
+msgid "reenter_data"
+msgstr "  ｻｲｼｺｳ ｼﾏｽｶ?   "
+
+msgid "AUTOUPDATE"
+msgstr " ｼﾞﾄﾞｳ ｱｯﾌﾟﾃﾞｰﾄ "

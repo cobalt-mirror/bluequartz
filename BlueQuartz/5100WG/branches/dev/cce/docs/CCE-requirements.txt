@@ -1,0 +1,108 @@
+Requirements and Objectives for the Cobalt Configuration Engine (CCE)
+$Id: CCE-requirements.txt 229 2003-07-18 20:22:20Z will $
+
+Requirements for CCE:
+
+  1) CCE must not be inherently tied to any hardware or form-factor.
+
+  2) CCE must not be inherently tied to any particular system software,
+  with the exception of binary or source level compatibility.
+
+  3) CCE must provide a mechanism for distributing changes to configurable
+  item ("events") to appropriate applications.
+
+  4) CCE must be modular.  Developers must be capable of adding and removing
+  self-contained software packages.
+
+  5) Developers must be able to "register" actions to receive events.  Adding
+  or removing resgistrations for an event must not interfere with any other
+  registrations.
+
+  6) Developers must be able to extend existing CCE data structures.
+  Developers must be able to provide and use new data structures.
+
+  7) CCE must provide atomic changes to the system.  A change must fully
+  complete or not complete at all.  That is, no event will partially fail.
+
+  8) CCE must ensure data integrity and coherency.
+
+  9) CCE must allow nested event invocations.  Nested invocations must be
+  atomic with respect to the event originator.  That is, a nested event will
+  not be completed if the top-level event does not complete.
+
+  10) CCE must provide a mechanism to enumerate configurable items.
+
+  11) CCE must provide a mechanism to retrieve configurable items.
+
+  12) CCE must provide a mechanism to add and remove configurable items.
+
+  13) CCE must provide a mechanism to allow safe backups of CCE data.
+
+  14) CCE must provide a mechanism to report errors to the event originator.
+
+  15) CCE must provide reasonable APIs to access all exposed functionality.
+  (see CCE library requirements below).
+
+  16) CCE must authenticate non-root users to the system authentication
+  mechanism.  All system changes must be authenticated.  Sensitive data
+  must be protectable from non-authenticated and non-allowed users.
+
+  17) CCE must provide a mechanism to assign privileges to non-admin users.
+
+  18) CCE must be capable of logging every event and transaction.  CCE
+  must, at minimum, log all change-inducing events.
+
+  19) There must be a common, well defined set of base data types for CCE.
+
+  20) CCE must handle error conditions gracefully.
+
+  21) CCE must not interpret, translate, or generate localized data.
+
+
+Requirements for the CCE client library
+
+  1) CCE APIs must be available from (at minimum): C, Perl, PHP, Java.
+
+  2) CCE APIs must be as consistent as possible across languages.
+
+  3) Language bindings for CCE must be published.
+
+  4) CCE APIs must be safe with respect to asynchronous events (such as a
+  dead connection).
+
+  5) There must be a set of APIs for common tasks, such as data manipulation.
+  This includes, at minimum: escaping a string, unescaping a string,
+  transforming native data to a CCE-safe format, and transforming CCE data to
+  a native format (such as arrays).
+
+  6) The CCE library must be data-transparent.  No user data shall be
+  interpreted by the client library, except as needed to transform it to a
+  transmission safe form.
+
+  7) CCE APIs must be extensible.  Future versions of the library must
+  support compatible APIs.
+
+  8) The CCE library must be re-entrant, with respect to a threaded
+  application.  The library need not guarantee consistency if multiple threads
+  pass a pointer to the same object into library routines.
+
+  9) The library should alert the caller to the use of deprecated
+  functionality.
+
+  10) The library must be aware of CCE versions and should offer compatibility
+  modes where possible.  This version information shall be made available to
+  the caller.
+
+  11) The library must not interpret, translate, or generate localized data.
+
+  12) The library must handle all error conditions specified in the CCE
+  specification.
+
+  13) The library should depend on as few external libraries or utilities as
+  possible.
+
+  14) Debugging and profiling shall be able to be enabled or disabled at 
+  run-time.
+
+  15) All status codes should be enumerated, and all status checks should use
+  the enumerations.

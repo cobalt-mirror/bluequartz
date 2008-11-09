@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>MHonArc Resources: LISTEND</title>
+</head>
+<body>
+
+<address>
+<a href="../resources.html#listend">MHonArc Resource List</a>
+</address>
+
+<hr>
+<h1>LISTEND</h1>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Syntax</h2>
+
+<dl>
+
+<dt><strong>Envariable</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+<dt><strong>Element</strong><dt>
+<dd><p>
+<code>&lt;LISTEND&gt;<br></code>
+<var>markup ...</var><br>
+<code>&lt;/LISTEND&gt;<br></code>
+</p>
+</dd>
+
+<dt><strong>Command-line Option</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+</dl>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Description</h2>
+
+<P>The LISTEND resource specifies the markup to
+end the message list in the main index. This resource works in conjuction
+with
+<a href="listbegin.html">LISTBEGIN</a> and
+<a href="litemplate.html">LITEMPLATE</a> resources
+to format the main index page(es).
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Default Setting</h2>
+
+<PRE>
+<b>&lt;ListEnd&gt;</b>
+&lt;/UL&gt;
+<b>&lt;/ListEnd&gt;</b>
+</PRE>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Resource Variables</h2>
+
+<table border=1>
+<tr bgcolor="#C0C0C0">
+<th>Variable</th><th>Value</th>
+</tr>
+<tr valign=top>
+<td align=center><a name="DOCURL" href="../rcvars.html#DOCURL"><strong><code>$DOCURL$</code></strong></a></td>
+<td>URL to documentation.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="ENV" href="../rcvars.html#ENV"><strong><code>$ENV$</code></strong></a></td>
+<td>Value of an environment variable.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="GMTDATE" href="../rcvars.html#GMTDATE"><strong><code>$GMTDATE$</code></strong></a></td>
+<td>Current GMT date.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXFNAME" href="../rcvars.html#IDXFNAME"><strong><code>$IDXFNAME$</code></strong></a></td>
+<td>Filename of main index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXLABEL" href="../rcvars.html#IDXLABEL"><strong><code>$IDXLABEL$</code></strong></a></td>
+<td>Label for main index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXPREFIX" href="../rcvars.html#IDXPREFIX"><strong><code>$IDXPREFIX$</code></strong></a></td>
+<td>Prefix of filenames of main index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXSIZE" href="../rcvars.html#IDXSIZE"><strong><code>$IDXSIZE$</code></strong></a></td>
+<td>Max number of messages that may be listed in index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXTITLE" href="../rcvars.html#IDXTITLE"><strong><code>$IDXTITLE$</code></strong></a></td>
+<td>The title of the main index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="LOCALDATE" href="../rcvars.html#LOCALDATE"><strong><code>$LOCALDATE$</code></strong></a></td>
+<td>Current local date.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NUMOFIDXMSG" href="../rcvars.html#NUMOFIDXMSG"><strong><code>$NUMOFIDXMSG$</code></strong></a></td>
+<td>Number of message listed.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NUMOFMSG" href="../rcvars.html#NUMOFMSG"><strong><code>$NUMOFMSG$</code></strong></a></td>
+<td>Number of messages in the archive.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NUMOFPAGES" href="../rcvars.html#NUMOFPAGES"><strong><code>$NUMOFPAGES$</code></strong></a></td>
+<td>Number of index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="OUTDIR" href="../rcvars.html#OUTDIR"><strong><code>$OUTDIR$</code></strong></a></td>
+<td>Pathname of archive.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="PAGENUM" href="../rcvars.html#PAGENUM"><strong><code>$PAGENUM$</code></strong></a></td>
+<td>Current index page number.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="PG" href="../rcvars.html#PG"><strong><code>$PG$</code></strong></a></td>
+<td>Filename of an index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="PGLINK" href="../rcvars.html#PGLINK"><strong><code>$PGLINK$</code></strong></a></td>
+<td>Markup linking to an index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="PGLINKLIST" href="../rcvars.html#PGLINKLIST"><strong><code>$PGLINKLIST$</code></strong></a></td>
+<td>List of links to index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="PROG" href="../rcvars.html#PROG"><strong><code>$PROG$</code></strong></a></td>
+<td>Program name</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXFNAME" href="../rcvars.html#TIDXFNAME"><strong><code>$TIDXFNAME$</code></strong></a></td>
+<td>Filename of thread index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXLABEL" href="../rcvars.html#TIDXLABEL"><strong><code>$TIDXLABEL$</code></strong></a></td>
+<td>Label for thread index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXPREFIX" href="../rcvars.html#TIDXPREFIX"><strong><code>$TIDXPREFIX$</code></strong></a></td>
+<td>Prefix of filenames of thread index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXTITLE" href="../rcvars.html#TIDXTITLE"><strong><code>$TIDXTITLE$</code></strong></a></td>
+<td>Title of thread index.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="VERSION" href="../rcvars.html#VERSION"><strong><code>$VERSION$</code></strong></a></td>
+<td>Program version.</td>
+</tr>
+</table>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Examples</h2>
+
+<p>None.
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Version</h2>
+
+<p>1.0
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>See Also</h2>
+
+<p>
+<a href="listbegin.html">LISTBEGIN</a>,
+<a href="litemplate.html">LITEMPLATE</a>
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<address>
+99/10/01 01:19:23<br>
+<img align="top" src="../monicon.gif" alt="">
+<a href="http://www.pobox.com/~ehood/mhonarc.html"><strong>MHonArc</strong></a><br>
+Copyright &#169; 1997-1998, <a href="http://www.pobox.com/~ehood/">Earl Hood</a>, <a href="mailto:mhonarc@pobox.com">mhonarc@pobox.com</a><br>
+</address>
+
+</body>
+</html>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

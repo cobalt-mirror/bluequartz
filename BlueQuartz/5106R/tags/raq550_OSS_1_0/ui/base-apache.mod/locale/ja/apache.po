@@ -1,0 +1,192 @@
+# --- Menu
+
+msgid "apache"
+msgstr "ウェブ"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]] を変更できます。"
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "ウェブの設定"
+
+msgid "frontpageField"
+msgstr "FrontPage サーバエクステンション"
+
+msgid "frontpageField_help"
+msgstr "このボックスをチェックすると、FrontPage サーバエクステンションが有効になります。"
+
+msgid "frontpageEnabled"
+msgstr "FrontPageを有効にする"
+
+msgid "passwordWebmasterField"
+msgstr "Webmasterのパスワード"
+
+msgid "passwordWebmasterField_help"
+msgstr "FrontPage クライアントの Webmaster のパスワードを入力してください。FrontPage クライアントで [ウェブを開く] を選択すると、home グループのウェブサイトにアクセスできます。webmaster というユーザ名とここで指定するパスワードを使ってログインすると、FrontPage クライアントから他の FrontPage ユーザを管理できます。"
+
+msgid "passwordWebmasterField_rule"
+msgstr "パスワードには 3 ～ 16 文字を使用できます。少なくとも 5 文字以上で、大文字と小文字の両方を使い、数字や記号を含むパスワードをお勧めします。辞書にあるような一般的な語句は使用しないようにしてください。パスワード中の大文字と小文字は区別されます。"
+
+msgid "passwordWebmasterField_invalid"
+msgstr "パスワードが一致しません。入力ミスを防ぐため、同じパスワード２回入力してください。もう一度お試しください。"
+
+msgid "cgiAccessField"
+msgstr "CGI アクセス"
+
+msgid "cgiAccessField_help"
+msgstr "CGI アクセスの許可レベルを指定してください。CGI アクセスを許可されたユーザは CGI スクリプトファイルを追加できます。CGI アクセスをサーバ管理者のみに許可することも、ユーザ全員または特定のユーザのみに許可することもできます。"
+
+msgid "cgiAll"
+msgstr "全てのユーザに CGI アクセスを許可する。"
+
+msgid "cgiNone"
+msgstr "どのユーザにも CGI アクセスを許可しない。"
+
+msgid "cgiSubset"
+msgstr "次のユーザにのみ CGI アクセスを許可する："
+
+msgid "cgiUsersAllowed"
+msgstr "許可するユーザ"
+
+msgid "cgiUsersDisallowed"
+msgstr "許可しないユーザ"
+
+# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "CGI アクセスを許可するユーザが選択されていません。CGI アクセスを許可したいユーザを指定するか、別のオプションを選んでください。"
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "CGI アクセスを正しく設定できませんでした。"
+
+msgid "systemObjectNotFound"
+msgstr "サーバ設定は一時的に使用できません。しばらくしてから、もう一度お試しください。"
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "ウェブサーバ"
+
+msgid "amApacheDetails"
+msgstr "ウェブサーバの詳細"
+
+msgid "amNotRunning"
+msgstr "[[base-apache.amApacheNameTag]] は動作しておらず、起動することもできませんでした。[[base-alpine.serverconfig]] の「[[base-power.power]]」メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバを再起動して見てください。それでも [[base-apache.amApacheNameTag]] にアクセスできない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amStatusOK"
+msgstr "ウェブサーバは正常に動作しています。"
+
+msgid "amAdmservNameTag"
+msgstr "サーバデスクトップ"
+
+msgid "amAdmservDetails"
+msgstr "サーバデスクトップの詳細"
+
+msgid "amAdmservNotRunning"
+msgstr "[[base-apache.amAdmservNameTag]] は動作しておらず、起動することもできませんでした。[[base-alpine.serverconfig]] の「[[base-power.power]]」メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバを再起動して見てください。それでも [[base-apache.amAdmservNameTag]] にアクセスできない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amAdmservStatusOK"
+msgstr "サーバデスクトップは正常に動作しています。"
+
+msgid "maxServersRAM"
+msgstr "ウェブサーバの最大数は、このサーバに搭載されている RAM の容量に制約されます。"
+
+msgid "minSpareField"
+msgstr "最小スペアサーバ数"
+
+msgid "minSpareField_help"
+msgstr "この数字は、ウェブサーバの起動時およびアイドル時に受け取ったウェブリクエストに応対するためのウェブサーバプロセスの最小数を示します。[[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_empty"
+msgstr "「最小スペアサーバ数」欄に、スペアウェブサーバの最小数を指定してください。"
+
+msgid "minSpareField_invalid"
+msgstr "「最小スペアサーバ数」欄に指定されたスペアウェブサーバの最小数が不正です。表示されている範囲内の整数で指定してください。"
+
+msgid "maxSpareField"
+msgstr "最大スペアサーバ数"
+
+msgid "maxSpareField_help"
+msgstr "リクエスト数が多くなると、ウェブサーバは必要に応じて追加的なプロセスを起動します。この数字は、ウェブサーバの最大数を示します。トラフィックの多いサイトでは、この数字を大きめに設定することによりパフォーマンスを向上できます。[[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_empty"
+msgstr "「最大スペアサーバ数」欄にスペアウェブサーバの最大数を指定してください。"
+
+msgid "maxSpareField_invalid"
+msgstr "「最大スペアサーバ数」欄に指定されたスペアウェブサーバの最大数が不正です。表示されている範囲内の整数で指定してください。"
+
+msgid "maxClientsField"
+msgstr "最大同時接続数"
+
+msgid "maxClientsField_help"
+msgstr "この数字は、サーバが同時に応対するクライアントからのリクエストの最大数を示します。各クライアント接続にはそれぞれ専用のウェブサーバプロセスが必要です。この値を超える数のリクエストを受け取ると、クライアント側に「現在サーバはビジー状態なため、しばらくしてから再度お試しください」という内容のメッセージが表示されます。ここに適正な値を設定することにより、サーバの過負荷を避けることができます。[[base-apache.maxServersRAM]]"
+
+msgid "maxClientsField_empty"
+msgstr "「最大同時接続数」欄に、許容する同時ウェブサーバ接続の最大数を指定してください。"
+
+msgid "maxClientsField_invalid"
+msgstr "「最大同時接続数」欄に指定された同時ウェブサーバ接続の最大数が不正です。表示されている範囲内の整数で指定してください。"
+
+msgid "hostnameLookupsField"
+msgstr "ホストネーム問い合わせ"
+
+msgid "hostnameLookupsField_help"
+msgstr "このボックスをチェックすると、ウェブサーバのホストネーム問い合わせが有効になり、クライアントの接続時にサーバはクライアント IP を DNS へ問い合わせ、受け取ったホスト名をログファイルに記録します。このボックスをチェックしない場合には、クライアントの IP アドレスのみがウェブサーバ利用ドメイン報告書に書き込まれます。ご注意： このオプションを有効にすると、ウェブサーバのパフォーマンスが低下します。"
+
+msgid "MinMaxError"
+msgstr "「[[base-apache.maxSpareField]]」には、「[[base-apache.minSpareField]]」と同じかまたはそれ以上の値を指定してください。"
+
+msgid "ClientMaxError"
+msgstr "「[[base-apache.maxClientsField]]」には、「[[base-apache.maxSpareField]]」と同じかまたはそれ以上の値を指定してください。"
+
+msgid ""
+msgstr ""
+
+# strings for UI extenstions
+msgid "webScripting"
+msgstr "ウェブ"
+
+msgid "webScriptingTitle"
+msgstr "ウェブスクリプト設定 - [[VAR.fqdn]]"
+
+msgid "webScriptingDescription"
+msgstr "使用するスクリプト言語などのウェブオプションを設定できます。"
+
+msgid "cgi"
+msgstr "CGI (Common Gateway Interface) を有効にする"
+
+msgid "cgi_help"
+msgstr "このボックスをチェックすると、CGI アプリケーションの使用が許可されます。"
+
+msgid "php"
+msgstr "PHP スクリプトを有効にする"
+
+msgid "php_help"
+msgstr "このボックスをチェックすると、PHP スクリプトの使用が許可されます。"
+
+msgid "ssi"
+msgstr "SSI (Server-Side Includes) を有効にする"
+
+msgid "ssi_help"
+msgstr "このボックスをチェックすると、SSI の使用が許可されます。"
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+# i18n names for vsite services namespaces provided by this module
+
+msgid "phpI18nName"
+msgstr "PHP スクリプト"
+
+msgid "cgiI18nName"
+msgstr "CGI (Common Gateway Interface)"
+
+msgid "ssiI18nName"
+msgstr "SSI (Server-Side Includes)"

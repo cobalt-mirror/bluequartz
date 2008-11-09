@@ -1,0 +1,519 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "バックアップ"
+
+msgid "backupMenu_help"
+msgstr "ここをクリックすると、バックアップのスケジュールを作成、変更できます。"
+
+msgid "restoreMenu"
+msgstr "復元"
+
+msgid "restoreMenu_help"
+msgstr "ここをクリックすると、バックアップファイルを選択、復元できます。"
+
+msgid "scheduleListHeader"
+msgstr "スケジュールされているバックアップ"
+
+msgid "backupAddHeader"
+msgstr "バックアップスケジュールの追加"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "バックアップ名"
+
+msgid "backupName_help"
+msgstr "バックアップジョブの名前です。"
+
+msgid "backupInterval"
+msgstr "バックアップの頻度"
+
+msgid "backupInterval_help"
+msgstr "バックアップジョブの実行頻度です。"
+
+msgid "backupMethod"
+msgstr "バックアップ手段"
+
+msgid "backupMethod_help"
+msgstr "バックアップファイルの転送と保存に使うネットワークファイル共有手段を指定してください。"
+
+msgid "backupDestination"
+msgstr "保存先"
+
+msgid "backupDestination_invalid"
+msgstr "保存先フィールドに対応していないフォーマットまたは不正な文字が入力されています。 "
+
+msgid "backupDestination_help"
+msgstr "指定されているバックアップファイルの保存先です。"
+
+msgid "backupConfiguration"
+msgstr "システム設定のバックアップ"
+
+msgid "backupConfiguration_help"
+msgstr "システム設定データがバックアップされるかどうかを示します。"
+
+msgid "usersToBackup"
+msgstr "バックアップするユーザ"
+
+msgid "usersToBackup_help"
+msgstr "バックアップされるユーザを示します。"
+
+msgid "groupsToBackup"
+msgstr "バックアップするグループ"
+
+msgid "groupsToBackup_help"
+msgstr "バックアップされるグループを示します。"
+
+msgid "backupFileSet"
+msgstr "増分バックアップ"
+
+msgid "backupFileSet_help"
+msgstr "どのようなファイルがバックアップされるかを示します。"
+
+msgid "removeBackup"
+msgstr "削除"
+
+msgid "removeBackup_help"
+msgstr "このボタンをクリックすると、このバックアップジョブが完全に削除されます。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "鉛筆アイコンをクリックすると、バックアップジョブの詳細が表示されます。ゴミ箱アイコンをクリックすると、バックアップジョブを削除できます。"
+
+msgid "unknown"
+msgstr "不明"
+
+msgid "all"
+msgstr "全て"
+
+msgid "none"
+msgstr "なし"
+
+msgid "yes"
+msgstr "バックアップされる"
+
+msgid "no"
+msgstr "バックアップされない"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "バックアップスケジュールの詳細"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "名前には半角の英数字のみが使えます。  デフォルトとして、バックアップをスケジュールした日付が表示されます。"
+
+msgid "backupNameField_help"
+msgstr "バックアップジョブの名前を指定してください。[[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "[[base-backup.backupNameField]]が指定されていません。[[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "[[base-backup.backupNameField]]の指定値が不正です。[[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "設定データをバックアップする"
+
+msgid "backupConfigurationField_help"
+msgstr "バックアップにシステム設定データを含めるかどうかを指定してください。"
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "バックアップの対象となるユーザを選択してください。"
+
+msgid "backupUsersField_empty"
+msgstr "バックアップの対象となるユーザが指定されていません。矢印ボタンを使って、バックアップしたいユーザを指定してください。"
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "バックアップの対象となるグループを選択してください。"
+
+msgid "backupGroupsField_empty"
+msgstr "バックアップの対象となるグループが指定されていません。矢印ボタンを使って、バックアップしたいグループを指定してください。"
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "過去の一定期間に変更されたファイルだけを選んでバックアップしたい場合には、その期間を指定してください。"
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "バックアップの実行頻度を指定してください。"
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "バックアップファイルの転送と保存に使うネットワークファイル共有手段を指定してください。"
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "ユーザ名"
+
+msgid "backupUsername_help"
+msgstr "保存先へのログインに必要なユーザ名を入力してください。"
+
+msgid "backupPassword"
+msgstr "パスワード"
+
+msgid "backupPassword_help"
+msgstr "保存先へのログインに必要なパスワードを入力してください。"
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Windows ファイル共有（SMB）"
+
+msgid "backupSambaDestination"
+msgstr "保存先"
+
+msgid "backupSambaDestination_rule"
+msgstr "（指定例： &#092;&#092;share&#092;sharedfolder）"
+
+msgid "backupSambaDestination_help"
+msgstr "バックアップファイルを保存したいクライアントPCと共有フォルダの名前を指定してください。[[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "保存先の Windows パソコン名と共有フォルダを指定してください。"
+
+msgid "backupSambaUsername_empty"
+msgstr "保存先[[base-backup.backupViaWinFile]]のユーザ名を指定してください。これは、そのクライアントPCへログインするときに使うユーザ名です。"
+
+
+msgid "backupViaFTP"
+msgstr "FTPサーバ"
+
+msgid "backupFTPDestination"
+msgstr "保存先"
+
+msgid "backupFTPDestination_rule"
+msgstr "（指定例： share.cobalt.com/sharedfolder/）"
+
+msgid "backupFTPDestination_help"
+msgstr "バックアップファイルを保存したい FTP サーバのアドレスと共有フォルダを指定してください。[[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "保存先 FTP サーバのアドレスが指定されていません。[[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "FTP サーバのユーザ名が指定されていません。これは、その FTP サーバへログインするために必要なユーザ名です。"
+
+
+msgid "backupViaNFS"
+msgstr "NFS"
+
+msgid "backupNFSDestination"
+msgstr "保存先"
+
+msgid "backupNFSDestination_rule"
+msgstr "（指定例： share.cobalt.com:/sharedfolder/）"
+
+msgid "backupNFSDestination_help"
+msgstr "バックアップファイルを保存したい NFS (Network File System) のアドレスを指定してください。[[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "保存先 NFS のアドレスが指定されていません。[[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "[[VAR.backupName]]という名前のバックアップスケジュールを削除してよろしいですか？"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "バックアップファイルのリスト"
+
+msgid "backupDate"
+msgstr "バックアップの開始時刻"
+
+msgid "backupDate_help"
+msgstr "バックアップが開始された日付と時刻を示します。"
+
+msgid "backupRetval"
+msgstr "状態"
+
+msgid "backupRetval_help"
+msgstr "バックアップジョブの実行状態（正常に終了、異常発生、実行中）を示します。"
+
+msgid "statusSuccess"
+msgstr "正常に終了"
+
+msgid "statusSuccess_help"
+msgstr "このバックアップジョブは正常に実行され、完了しました。"
+
+msgid "statusPending"
+msgstr "実行中"
+
+msgid "statusPending_help"
+msgstr "このバックアップジョブは現在実行中です。"
+
+msgid "statusFailure"
+msgstr "異常発生"
+
+msgid "statusFailure_help"
+msgstr "このバックアップジョブは実行できませんでした。設定内容を再度ご確認ください。"
+
+msgid "restoreBackup"
+msgstr "復元 "
+
+msgid "restoreBackup_help"
+msgstr "このアイコンをクリックすると、このバックアップファイルを今すぐ復元できます。"
+
+msgid "restoreFromDir"
+msgstr "バックアップファイルを指定して復元"
+
+msgid "restoreFromDir_help"
+msgstr "このボタンをクリックすると、このパソコンのハードディスクに保存されているバックアップファイルを指定して復元できます。"
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "バックアップの完了時刻"
+
+msgid "backupEnded_help"
+msgstr "バックアップが完了した日付と時刻を示します。"
+
+msgid "backupLocation"
+msgstr "保存先"
+
+msgid "backupLocation_help"
+msgstr "バックアップの保存先です。"
+
+msgid "historyDetailHeader"
+msgstr "バックアップ履歴の詳細"
+
+msgid "usersInBackup"
+msgstr "ユーザ"
+
+msgid "usersInBackup_help"
+msgstr "バックアップされるユーザを示します。"
+
+msgid "groupsInBackup"
+msgstr "グループ"
+
+msgid "groupsInBackup_help"
+msgstr "バックアップされるグループを示します。"
+
+msgid "removeButton"
+msgstr "削除"
+
+msgid "removeButton_help"
+msgstr "このアイコンをクリックすると、このバックアップ履歴を削除できます。バックアップ履歴を削除しても、設定されているバックアップのスケジュールは削除されませんのでご注意ください。"
+
+msgid "removeHistoryConfirm"
+msgstr "[[VAR.name]] というバックアップの履歴（実行日時： [[VAR.time]]）を削除しますか？"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "バックアップファイルの復元"
+
+msgid "restorePlace"
+msgstr "復元されるファイルの保存先"
+
+msgid "restorePlace_help"
+msgstr "復元されるファイルの保存先を選択してください。「現在のファイルを置換する」を選ぶと、バックアップに含まれるファイルと同じディレクトリにある同じ名前のファイルは全て上書きされます。 「restore グループに渡す」を選ぶと、バックアップに含まれるファイルは全て restore グループの /home/groups/restore ディレクトリに保存されます。それにより、restore グループに所属するユーザは誰でも、復元したいファイルを選んで手動で復元できます。"
+
+msgid "restoreOver"
+msgstr "現在のファイルを置換する"
+
+msgid "restoreTemp"
+msgstr "restore グループに渡す"
+
+msgid "backupFileshareMissing"
+msgstr "restore という名前のファイル共有フォルダが見つかりません。restore グループとそのグループディレクトリが存在することを確認してください。"
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "バックアップファイルの指定"
+
+msgid "restoreDirField"
+msgstr "バックアップファイルの保存場所"
+
+msgid "restoreDirField_rule"
+msgstr "（指定例： /home/users/admin/20011030120001）"
+
+msgid "restoreDirField_help"
+msgstr "復元したいバックアップファイルが保存されているローカルディレクトリへのパスとバックアップファイル名を入力してください。[[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "バックアップしないユーザ"
+
+msgid "backupAllUsers"
+msgstr "全ユーザをバックアップする"
+
+msgid "backupNoUsers"
+msgstr "どのユーザもバックアップしない"
+
+msgid "backupUserSubset"
+msgstr "指定したユーザのみをバックアップする"
+
+msgid "groupsNotToBackup"
+msgstr "バックアップしないグループ"
+
+msgid "backupAllGroups"
+msgstr "全グループをバックアップする"
+
+msgid "backupNoGroups"
+msgstr "どのグループもバックアップしない"
+
+msgid "backupGroupSubset"
+msgstr "指定したグループのみをバックアップする"
+
+msgid "backupModified31days"
+msgstr "過去 31 日間に変更されたファイルのみ"
+
+msgid "backupModified14days"
+msgstr "過去 14 日間に変更されたファイルのみ"
+
+msgid "backupModified7days"
+msgstr "過去 7 日間に変更されたファイルのみ"
+
+msgid "backupModified2days"
+msgstr "過去 2 日間に変更されたファイルのみ"
+
+msgid "backupModified1days"
+msgstr "過去 1 日間に変更されたファイルのみ"
+
+msgid "backupAllFiles"
+msgstr "全てのファイルをバックアップする"
+
+msgid "backupImmediate"
+msgstr "直ちに１回だけ"
+
+msgid "backupImmediate_help"
+msgstr "今すぐ、一度だけバックアップ処理が行われます。"
+
+msgid "daily"
+msgstr "１日１回"
+
+msgid "daily_help"
+msgstr "２４時間毎にバックアップ処理が行われます。"
+
+msgid "weekly"
+msgstr "毎週１回"
+
+msgid "weekly_help"
+msgstr "毎週一回バックアップ処理が行われます。"
+
+msgid "monthly"
+msgstr "毎月１回"
+
+msgid "monthly_help"
+msgstr "毎月一回バックアップ処理が行われます。"
+
+msgid "backupCCEDmessage"
+msgstr "システムのバックアップまたは復元処理を実行中のため、重要なシステムコンポーネント（CCE）は現在動作していません。しばらくしてからもう一度お試しください。"
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "指定された保存先にアクセスできませんでした。保存先のアドレス、ユーザ名、パスワードを確認してからもう一度お試しください。"
+
+#  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "[[VAR.invalidValue]] は、[[base-backup.backupName]] には不正な値です。 [[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "指定された名前（[[base-backup.backupName]]）はシステム上で既に使われています。別の名前を[[base-backup.backupName]]フィールドに入力してください。"
+
+# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "設定内容を再度ご確認ください。"
+
+msgid "backupReason"
+msgstr "原因"
+
+# backup.pl
+msgid "backupError"
+msgstr "[[VAR.prog]] の実行中にエラーが発生しました。"
+
+# Constructor
+msgid "restoreDescription"
+msgstr "このグループは、バックアップデータの復元に使います。"
+
+msgid "permission"
+msgstr "ファイルの許可レベル"
+
+msgid "fileowner"
+msgstr "ファイルの所有者"
+
+msgid "filesize"
+msgstr "ファイルサイズ"
+
+msgid "date"
+msgstr "修正日"
+
+msgid "File"
+msgstr "ファイル名"
+
+msgid "immediatePopup"
+msgstr "「[[VAR.name]]」という名前のバックアップジョブが直ちに実行されます。\nバックアップファイルの詳細については、「復元」ページをご参照ください。"
+
+msgid "restoreOverPopup"
+msgstr "「[[VAR.name]]」という名前のバックアップファイルが復元されます。\n処理が完了すると、サーバは自動的に再起動します。"
+
+msgid "restoreTempPopup"
+msgstr "「[[VAR.name]]」という名前のバックアップファイルが復元されます。\n処理が完了すると、restore という名前のファイル共有フォルダに復元用のファイルがコピーされます。"
+
+msgid "osversion_conflict"
+msgstr "This backup archive can only be restored to a fileshare because it was created with a different Sun Cobalt OS version."
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "バックアップの管理"
+
+msgid "capgroup_adminBackup_help"
+msgstr "この管理権限を持つユーザは、システム全体のバックアップと復元を行うことができます。"

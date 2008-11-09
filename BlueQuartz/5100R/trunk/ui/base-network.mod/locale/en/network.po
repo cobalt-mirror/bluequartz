@@ -1,0 +1,1046 @@
+# --- Menu
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "Click here to change TCP/IP Settings."
+
+msgid "tcpIpSettings"
+msgstr "TCP/IP Settings"
+
+msgid "wan"
+msgstr "Internet"
+
+msgid "wan_help"
+msgstr "Click here to change Internet settings."
+
+
+# --- TCP/IP Page
+
+msgid "primarySettings"
+msgstr "Primary Settings"
+
+msgid "primarySettings_help"
+msgstr "Settings for the real Ethernet ports of the server in addition to the server's DNS settings and host and domain names."
+
+msgid "aliasSettings"
+msgstr "Interface Aliases"
+
+msgid "aliasSettings_help"
+msgstr "Settings for additional IP addresses for which this server should respond."
+
+msgid "enterFqdn"
+msgstr "Host and Domain Name"
+
+msgid "enterFqdn_help"
+msgstr "Enter the host name of the server in the first field and the domain name in the second field.  For example, www is a valid host name, and example.com is a valid domain name.  Please enter only lowercase alphanumeric characters, dashes or periods."
+
+msgid "hostNameField"
+msgstr "Host Name"
+
+msgid "hostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  For example, www is a valid entry."
+
+msgid "hostNameField_help"
+msgstr "Enter the host name of this server appliance.  The host name and the domain name combined together should uniquely identify this server appliance.  [[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domain Name"
+
+# make consistent with rfc 1035
+msgid "domainNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  The first character must be a letter, and the last character must be either a letter or number.  For example, example.com is a valid entry."
+
+msgid "domainNameField_help"
+msgstr "Enter the domain name of this server appliance.  The host name and the domain name combined together should uniquely identify this server appliance.  [[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS Servers"
+
+msgid "dnsAddressesField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry.  Leaving this field empty will prevent this machine from finding other machines by hostname or domain name and will cause networking difficulties."
+
+msgid "dnsAddressesField_help"
+msgstr "Enter the IP address or addresses of your local domain name server or servers.  A domain name server translates textual host names and domain names into numerical IP addresses, and vice-versa.  [[base-network.dnsAddressesField_rule]]"
+
+# interface names.  These only show up in the UI if their corresponding
+# network device actually exists according to the kernel. 10 should be enough.
+msgid "interfaceeth0"
+msgstr "Primary Interface"
+
+msgid "interfaceeth1"
+msgstr "Secondary Interface"
+
+msgid "interfaceeth2"
+msgstr "Third Interface"
+
+msgid "helpeth2"
+msgstr "third interface"
+
+msgid "interfaceeth3"
+msgstr "Fourth Interface"
+
+msgid "helpeth3"
+msgstr "fourth interface"
+
+msgid "interfaceeth4"
+msgstr "Fifth Interface"
+
+msgid "helpeth4"
+msgstr "fifth interface"
+
+msgid "interfaceeth5"
+msgstr "Sixth Interface"
+
+msgid "helpeth5"
+msgstr "sixth interface"
+
+msgid "interfaceeth6"
+msgstr "Seventh Interface"
+
+msgid "helpeth6"
+msgstr "seventh interface"
+
+msgid "interfaceeth7"
+msgstr "Eighth Interface"
+
+msgid "helpeth7"
+msgstr "eighth interface"
+
+msgid "interfaceeth8"
+msgstr "Ninth Interface"
+
+msgid "helpeth8"
+msgstr "ninth interface"
+
+msgid "interfaceeth9"
+msgstr "Tenth Interface"
+
+msgid "helpeth9"
+msgstr "tenth interface"
+
+# leave these forms, because they may be used somewhere
+msgid "primaryInterface"
+msgstr "Primary Interface"
+
+msgid "secondaryInterface"
+msgstr "Secondary Interface"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Sorry, the IP Network Mask is required if the IP Address field is filled in. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskIpAddressMismatch"
+msgstr "Sorry, the [[base-network.ipAddressField]] is required if the [[base-network.netMaskField]] field is filled in.  [[base-network.ipAddressField_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC Address"
+
+msgid "macAddressField_help"
+msgstr "The Media Access Control (MAC) address is the hardware address of the network interface card.  This hardware address is a unique identifier and cannot be changed after manufacture."
+
+# alias settings page for TCP/IP settings
+msgid "addAliasButton"
+msgstr "Add Alias"
+
+msgid "addAliasButton_help"
+msgstr "Add a new alias for this server."
+
+msgid "aliasName"
+msgstr "Interface Alias"
+
+msgid "aliasName_help"
+msgstr "The interface and the alias number with which this alias is associated with."
+
+msgid "aliasIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasIpaddr_help"
+msgstr "The IP address on which this alias is listening."
+
+msgid "aliasNetmask"
+msgstr "Netmask"
+
+msgid "aliasNetmask_empty"
+msgstr "Sorry, you have not entered a netmask for this alias. [[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is not a valid netmask. [[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_help"
+msgstr "The netmask for this alias."
+
+msgid "aliasActions"
+msgstr "Actions"
+
+msgid "aliasActions_help"
+msgstr "Click the Modify icon to change settings for this alias.  Click the Remove icon to remove this alias."
+
+msgid "aliaseth0"
+msgstr "Primary Interface Alias [[VAR.num]]"
+
+msgid "aliaseth1"
+msgstr "Secondary Interface Alias [[VAR.num]]"
+
+msgid "aliaseth2"
+msgstr "Third Interface Alias [[VAR.num]]"
+
+msgid "aliaseth3"
+msgstr "Fourth Interface Alias [[VAR.num]]"
+
+msgid "aliaseth4"
+msgstr "Fifth Interface Alias [[VAR.num]]"
+
+msgid "aliaseth5"
+msgstr "Sixth Interface Alias [[VAR.num]]"
+
+msgid "aliaseth6"
+msgstr "Seventh Interface Alias [[VAR.num]]"
+
+msgid "aliaseth7"
+msgstr "Eighth Interface Alias [[VAR.num]]"
+
+msgid "aliaseth8"
+msgstr "Ninth Interface Alias [[VAR.num]]"
+
+msgid "aliaseth9"
+msgstr "Tenth Interface Alias [[VAR.num]]"
+
+# add/modify alias page
+msgid "addAlias"
+msgstr "Add Alias"
+
+msgid "modAlias"
+msgstr "Modify Alias"
+
+msgid "assocIface"
+msgstr "Interface"
+
+msgid "assocIface_help"
+msgstr "The real interface to which this alias should be associated."
+
+msgid "aliasModIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasModIpaddr_empty"
+msgstr "Sorry, you have not entered the IP address on which this alias should listen. [[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is not a valid IP address. [[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_help"
+msgstr "The IP address on which this alias should listen."
+
+
+# Add static Routes
+
+msgid "routes"
+msgstr "Modify Static Routes"
+
+msgid "routes_help"
+msgstr "Click here to create static routes from this server appliance to other subnets."
+
+	# list
+msgid "routeList-list-title"
+msgstr "Static Route List"
+
+msgid "createRoute"
+msgstr "Add Static Route"
+
+msgid "route-target"
+msgstr "Target Network IP Address"
+
+msgid "route-target_help"
+msgstr "This is the IP address of the subnet to which the listed static route refers."
+
+msgid "route-netmask"
+msgstr "Target Network Subnet Mask"
+
+msgid "route-netmask_help"
+msgstr "This is the netmask of the subnet to which the listed static route refers."
+
+msgid "route-gateway"
+msgstr "Gateway"
+
+msgid "route-gateway_help"
+msgstr "This is the network gateway through which the network traffic of the target subnet will be routed."
+
+msgid "route-device"
+msgstr "Device"
+
+msgid "route-device_help"
+msgstr "This is the network interface through which all traffic for the static route will be routed."
+
+msgid "modifyRoute"
+msgstr "Modify Static Route"
+
+msgid "verify_delete"
+msgstr "Are you sure you want to remove the static route [[VAR.route]]?"
+
+	# Add a route form
+msgid "route_form_target"
+msgstr "Target Subnet"
+
+msgid "route_form_target_help"
+msgstr "Enter the IP address of the subnet to be re-routed.  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.0 is a valid entry."
+
+msgid "route_form_target_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.route_form_target]].  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-network.route_form_target]].  [[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "Target Network Mask"
+
+msgid "route_form_netmask_help"
+msgstr "Enter the network mask of the subnet to be re-routed.  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 255.255.255.0 is a valid entry."
+
+msgid "route_form_netmask_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.route_form_netmask]].  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-network.route_form_netmask]].  [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "Gateway"
+
+msgid "route_form_gateway_help"
+msgstr "Enter the IP address of the network gateway on the subnet of this server through which the packets bound for the target subnet will be re-routed.  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "route_form_gateway_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.route_form_gateway]].  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-network.route_form_gateway]].  [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "Network Interface"
+
+msgid "route_form_device_help"
+msgstr "Select the network interface through which packets bound for the target subnet will be re-routed.  If no device is specified, a device will be selected based on the IP address of the network gateway."
+
+msgid "route_form_device-eth0"
+msgstr "Primary Ethernet Interface (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "Secondary Ethernet Interface (eth1)"
+
+msgid "route_form_device-eth2"
+msgstr "Ethernet Interface (eth2)"
+
+msgid "route_form_device-eth3"
+msgstr "Ethernet Interface (eth3)"
+
+msgid "route_form_device-eth4"
+msgstr "Ethernet Interface (eth4)"
+
+msgid "route_form_device-eth5"
+msgstr "Ethernet Interface (eth5)"
+
+msgid "route_form_device-eth6"
+msgstr "Ethernet Interface (eth6)"
+
+msgid "route_form_device-eth7"
+msgstr "Ethernet Interface (eth7)"
+
+msgid "route_form_device-eth8"
+msgstr "Ethernet Interface (eth8)"
+
+msgid "route_form_device-eth9"
+msgstr "Ethernet Interface (eth9)"
+
+msgid "route_form_device-ppp0"
+msgstr "Point-to-Point Protocol Interface (ppp0)"
+
+msgid "routeList_action_header"
+msgstr "Actions"
+
+msgid "routeList_action_header_help"
+msgstr "Click the Modify icon to change settings for a route, or click the Remove icon to delete a route."
+
+
+
+# --- Internet Page
+
+	# change type drop-down
+
+msgid "changeMode"
+msgstr "Change Internet Connection to..."
+
+msgid "none"
+msgstr "None or Intranet Use Only"
+
+msgid "broadband"
+msgstr "Cable Modem or DSL"
+
+msgid "lan"
+msgstr "Gateway on Local Area Network (LAN)"
+
+msgid "narrowband"
+msgstr "Analog Modem or ISDN"
+
+
+	# - Gateway on LAN
+	
+msgid "lanSettings"
+msgstr "Internet Settings - Gateway on Local Area Network (LAN)"
+
+msgid "gatewayField"
+msgstr "Server Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "gatewayField_help"
+msgstr "Enter the IP address of the local network gateway for this server appliance.  This is the gateway for both the primary and secondary interfaces. A network gateway allows your server to connect to the world outside of your local network area.  [[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "IP Forwarding and Masquerading"
+
+msgid "forwardField_help"
+msgstr "Select the method of forwarding packets through the server appliance.  Choosing packet forwarding with masquerading enables network address translation.  This allows your organization to share Internet access by translating all network traffic between one publicly accessible IP address and many private IP addresses through this server appliance.  Choosing only packet forwarding with no masquerading allows traffic only between one network interface and the other without providing network address translation.  Choosing no packet forwarding does not allow any traffic between one network interface and the other."
+
+msgid "forward"
+msgstr "Forward IP Packets Only"
+
+msgid "forwardNat"
+msgstr "Forward IP Packets With Masquerading"
+
+msgid "forwardOff"
+msgstr "Do Not Forward IP Packets"
+
+
+
+# --- Cable Modem/DSL
+
+msgid "broadbandSettings"
+msgstr "Internet Settings - Cable Modem or DSL"
+
+msgid "networkField"
+msgstr "Secondary Interface"
+
+msgid "networkField_help"
+msgstr "Select the appropriate networking configuration for the secondary interface of this server appliance."
+
+msgid "dhcp"
+msgstr "Obtain Automatically Using Dynamic Host Configuration Protocol (DHCP)"
+
+msgid "dhcpHostNameField"
+msgstr "Client Host Name"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  For example, www is a valid entry."
+
+msgid "dhcpHostNameField_help"
+msgstr "Enter the host name that identifies this server as a Dynamic Host Configuration Protocol (DHCP) client.  [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-network.dhcpHostNameField]].  [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client Identifier"
+
+msgid "dhcpClientIdField_help"
+msgstr "Enter the identification string that identifies this server as a Dynamic Host Configuration Protocol (DHCP) client."
+
+msgid "pppoe"
+msgstr "Obtain Automatically Using Point-to-Point Protocol Over Ethernet (PPPoE)"
+
+msgid "pppUserNameField"
+msgstr "User Name"
+
+msgid "pppUserNameField_help"
+msgstr "Enter the user name used to login to your Internet service provider."
+
+msgid "pppUserNameField_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.pppUserNameField]]."
+
+msgid "pppPasswordField"
+msgstr "Password"
+
+msgid "pppPasswordField_help"
+msgstr "Enter the password used to login to your Internet service provider."
+
+msgid "pppPasswordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "static"
+msgstr "Specify Manually"
+
+# general ip and netmask strings, there is specialized help text
+# for the primary and secondary interfaces.  all other interfaces use these.
+msgid "ipAddressField"
+msgstr "IP Address"
+
+msgid "ipAddressField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "ipAddressField_help"
+msgstr "Enter the IP address of the [[VAR.name]].  If you are using only one network interface connection to the server appliance, use the primary interface and leave the other interfaces empty.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "Sorry, the value entered for [[base-network.ipAddressField]] is not an IP address.  [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "IP Network Mask"
+
+msgid "netMaskField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 255.255.255.0 is a valid entry."
+
+msgid "netMaskField_help"
+msgstr "Enter the network mask of the [[VAR.name]].  If you are using only one network interface connection to the server appliance, use the primary interface and leave the other interfaces empty.  [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_invalid"
+msgstr "Sorry, the value entered for [[base-network.netMaskField]] is not an IP network mask.  [[base-network.netMaskField_rule]]"
+
+# specialized help for the above fields for eth0 and eth1
+# to keep them "friendly" if no more interfaces are added
+msgid "ipAddressField1"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressFieldeth0_empty"
+msgstr "Sorry, you have not entered the IP address of the primary interface, which is typically connected to the Intranet side.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "Sorry, you have not entered the IP address of the [[VAR.interface]].  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField1_help"
+msgstr "Enter the IP address of the primary interface, which is typically connected to the Intranet side.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressField2_help"
+msgstr "Enter the IP address of the secondary interface, which is typically connected to the Internet side.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField1"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskFieldeth0_empty"
+msgstr "Sorry, you have not entered the network mask of the primary interface. [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_empty"
+msgstr "Sorry, you have not entered the network mask of the [[VAR.interface]].  [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField1_help"
+msgstr "Enter the network mask of the primary interface.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-network.netMaskField_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskField2_help"
+msgstr "Enter the network mask of the secondary interface.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-network.netMaskField_rule]]"
+
+# error message to protect routes and aliases from having their
+# interface disabled
+msgid "ifaceUsedByRoute"
+msgstr "The interface could not be disabled, because it is used by a static route(s).  Please delete the static routes using this interface before disabling the interface."
+
+msgid "ifaceUsedByAlias"
+msgstr "The interface could not be disabled, because it is needed by an interface alias(es).  All interface aliases for the interface must be deleted before it can be disabled."
+
+msgid "natField"
+msgstr "IP Masquerading"
+
+msgid "natField_help"
+msgstr "Select whether to have this server appliance perform IP masquerading. IP masquerading enables network address translation which allows your organization to share Internet access by translating through this server appliance all network traffic between your one publicly accessible IP address and your many privately accessible IP addresses."
+
+
+# No internet connection
+
+msgid "wanNoneMessage"
+msgstr "There is no Internet connection."
+
+msgid "wanNoneConfirm"
+msgstr "Are you sure you do not want to specify an Internet connection type?"
+
+
+
+
+
+# Modem/ISDN	   NOTE:  These strings are also in the file wizard.po in the module base-wizard.mod. They need to be in both places
+
+msgid "modemAuthModeField"
+msgstr "Authentication Mode"
+
+msgid "modemAuthModeField_help"
+msgstr "There are two common authentication modes for use with dial-up network connections.  Consult your service provider for the authentication mode to be used."
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthHostField"
+msgstr "Server Hostname"
+
+msgid "modemAuthHostField_help"
+msgstr "The dial-up server hostname is necessary for CHAP dial-up authentication.  Consult your service provider for the server hostname if CHAP authentication is used.  "
+
+msgid "modemAuthHostField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-network.modemAuthHostField]]."
+
+msgid "modemConnStatus"
+msgstr "Connection Status"
+
+msgid "modemConnStatus_help"
+msgstr "This shows the current connection status and indicates whether the modem is currently connected to your Internet service provider."
+
+msgid "modemSettings"
+msgstr "Internet Settings - Analog Modem or ISDN"
+
+msgid "modemConnModeField"
+msgstr "Connection Mode"
+
+msgid "modemConnModeField_help"
+msgstr "Select whether the modem connection should always be established, should be established only when necessary for an outgoing connection, or should never be established."
+
+msgid "demand"
+msgstr "Connection On Demand Only"
+
+msgid "on"
+msgstr "Connection Always On"
+
+msgid "off"
+msgstr "Connection Always Off"
+
+msgid "modemUserNameField"
+msgstr "Dial-Up Account User Name"
+
+msgid "modemUserNameField_help"
+msgstr "Enter the user name of the dial-up account used to login to your Internet service provider."
+
+msgid "modemUserNameField_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.modemUserNameField]].  Please enter the user name of the dial-up account used to login to your Internet service provider."
+
+msgid "modemPasswordField"
+msgstr "Dial-Up Account Password"
+
+msgid "modemPasswordField_help"
+msgstr "Enter the password of the dial-up account used to login to your Internet service provider. The same password is entered in both fields to protect against typing errors."
+
+msgid "modemPasswordField_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.modemPasswordField]].  Please enter the password of the dial-up account used to login to your Internet service provider."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "modemPhoneField"
+msgstr "Phone Number"
+
+msgid "modemPhoneField_help"
+msgstr "Enter the phone number of your Internet service provider."
+
+msgid "modemPhoneField_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.modemPhoneField]].  Please enter the phone number of your Internet service provider."
+
+msgid "modemInitStrField"
+msgstr "Modem Initialization String"
+
+msgid "modemInitStrField_help"
+msgstr "Enter the modem initialization string which will be passed to the modem before dialing. You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modem's proper initialization string, try entering 'ATZ' or consult your modem documentation."
+
+msgid "modemInitStrField_empty"
+msgstr "Sorry, you have not entered a value for [[base-network.modemInitStrField]].  You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modem's proper initialization string, try entering 'ATZ' or consult your modem documentation."
+
+msgid "modemIpField"
+msgstr "Local IP Address"
+
+msgid "modemIpField_help"
+msgstr "Enter the local IP address at this end of the modem connection only if one has been statically assigned by your Internet service provider."
+
+msgid "modemIpField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-network.modemIpField]]."
+
+msgid "modemSpeedField"
+msgstr "Modem Speed (Baud)"
+
+msgid "modemSpeedField_help"
+msgstr "Select the speed of the serial line connection to the modem.  The default value is 115200."
+
+msgid "modemPulseField"
+msgstr "Enable Pulse Dialing"
+
+msgid "modemPulseField_help"
+msgstr "Turn pulse dialing on or off.  Enabling this feature will use pulse dialing instead of tone dialing.  The default value is to leave pulse dialing off."
+
+msgid "saveTest"
+msgstr "Save and Test"
+
+msgid "saveTest_help"
+msgstr "This will save your current settings and attempt a test connection to your Internet service provider to verify the settings."
+
+
+# --- IP Address change confirm notice
+msgid "confirmNoDhcp"
+msgstr "Your [[VAR.interface]] settings were obtained from a Dynamic Host Configuration Protocol (DHCP) server.\nChanging these settings will turn off DHCP lookups on the [[VAR.interface]].  Do you want to continue?"
+
+msgid "ethernetChanged"
+msgstr "Your network settings have changed. In a few moments the system will attempt to connect to your new IP address. \nIf the login page fails to appear, please connect to your server appliance by typing the new address into your web browser."
+
+msgid "confirmMigrateAliases"
+msgstr "The [[VAR.interface]] has interface aliases that depend upon it.  Disabling the interface will cause those interface aliases to be moved to the primary interface.  The aliases can be moved to another interface after the change by modifying each alias.\n\nAre you sure you want to disable the [[VAR.interface]]?"
+
+msgid "adminRedirect"
+msgstr "In a few seconds, you should be redirected to the new IP address.  If you are not redirected, please click the [[base-network.reconnect]] button below to attempt to connect to the new IP address.  If that fails, changing the IP address may have failed, and you should click the [[base-network.oldIPReconnect]] button to attempt to reconnect to the server's previous IP address."
+
+msgid "reconnect"
+msgstr "Connect To New Address"
+
+msgid "reconnect_help"
+msgstr "Click here to connect to the server's new IP address."
+
+msgid "oldIPReconnect"
+msgstr "Connect To Old Address"
+
+msgid "oldIPReconnect_help"
+msgstr "Click here to attempt to reconnect to the server's old IP address.  This should only be used if connecting to the new IP address with the [[base-network.reconnect]] button has failed."
+
+# --- Network Usage Info
+
+msgid "netUsage"
+msgstr "Network"
+
+msgid "netUsage_help"
+msgstr "Network usage statistics can be found here."
+
+msgid "amNetUsage"
+msgstr "Network Usage"
+
+msgid "eth0"
+msgstr "Primary Interface (eth0)"
+
+msgid "eth0_help"
+msgstr "The statistics for the primary network interface"
+
+msgid "eth1"
+msgstr "Secondary Interface (eth1)"
+
+msgid "eth1_help"
+msgstr "The statistics for the secondary network interface"
+
+msgid "eth2"
+msgstr "Network Interface (eth2)"
+
+msgid "eth3"
+msgstr "Network Interface (eth3)"
+
+msgid "eth4"
+msgstr "Network Interface (eth4)"
+
+msgid "eth5"
+msgstr "Network Interface (eth5)"
+
+msgid "eth6"
+msgstr "Network Interface (eth6)"
+
+msgid "eth7"
+msgstr "Network Interface (eth7)"
+
+msgid "eth8"
+msgstr "Network Interface (eth8)"
+
+msgid "eth9"
+msgstr "Network Interface (eth9)"
+
+msgid "ppp0"
+msgstr "Point-to-Point Protocol Interface (ppp0)"
+
+# --- Active Monitor
+msgid "amIface"
+msgstr "Network Interface"
+
+msgid "amIface_help"
+msgstr "This is the network interface identifier."
+
+msgid "amSentB"
+msgstr "Sent (Bytes)"
+
+msgid "amSentB_help"
+msgstr "This is the total number of bytes sent on this network interface."
+
+msgid "amRcvdB"
+msgstr "Received (Bytes)"
+
+msgid "amRcvdB_help"
+msgstr "This is the total number of bytes received on this network interface."
+
+msgid "amErrors"
+msgstr "Errors"
+
+msgid "amErrors_help"
+msgstr "This is the total number of errors sent or received on this network interface."
+
+msgid "amColls"
+msgstr "Collisions"
+
+msgid "amColls_help"
+msgstr "This is the total number of collisions detected on this network interface."
+
+msgid "amNetworkNameTag"
+msgstr "Network Status"
+
+msgid "amNetDetails"
+msgstr "Network Status Details"
+
+msgid "amIfaceIsDown"
+msgstr "The network interface [[VAR.iface]] is down."
+
+msgid "amGatewayIsUnreachable"
+msgstr "The network gateway is not reachable. Please check that the network cable is plugged in securely, and that your network settings are configured properly. You can configure the network settings either through the [[base-apache.amAdmservNameTag]], or through the front panel LCD. Also check that the network itself is operating correctly."
+
+msgid "amNetworkOK"
+msgstr "The network is operating normally."
+
+msgid "dialoutWindowing"
+msgstr "Connection Period"
+
+msgid "dialoutWindowing_help"
+msgstr "Modem use may be restricted to certain hours of the day.  By default, the modem is allowed to dial any time of day. "
+
+msgid "dialTimes"
+msgstr "Connect Times"
+
+msgid "noDialTimes"
+msgstr "Do Not Connect"
+
+# Strings for Connection Period time labels
+msgid "modem_hour_0"
+msgstr "00:00 - 00:59"
+msgid "modem_hour_1"
+msgstr "01:00 - 01:59"
+msgid "modem_hour_2"
+msgstr "02:00 - 02:59"
+msgid "modem_hour_3"
+msgstr "03:00 - 03:59"
+msgid "modem_hour_4"
+msgstr "04:00 - 04:59"
+msgid "modem_hour_5"
+msgstr "05:00 - 05:59"
+msgid "modem_hour_6"
+msgstr "06:00 - 06:59"
+msgid "modem_hour_7"
+msgstr "07:00 - 07:59"
+msgid "modem_hour_8"
+msgstr "08:00 - 08:59"
+msgid "modem_hour_9"
+msgstr "09:00 - 09:59"
+msgid "modem_hour_10"
+msgstr "10:00 - 10:59"
+msgid "modem_hour_11"
+msgstr "11:00 - 11:59"
+msgid "modem_hour_12"
+msgstr "12:00 - 12:59"
+msgid "modem_hour_13"
+msgstr "13:00 - 13:59"
+msgid "modem_hour_14"
+msgstr "14:00 - 14:59"
+msgid "modem_hour_15"
+msgstr "15:00 - 15:59"
+msgid "modem_hour_16"
+msgstr "16:00 - 16:59"
+msgid "modem_hour_17"
+msgstr "17:00 - 17:59"
+msgid "modem_hour_18"
+msgstr "18:00 - 18:59"
+msgid "modem_hour_19"
+msgstr "19:00 - 19:59"
+msgid "modem_hour_20"
+msgstr "20:00 - 20:59"
+msgid "modem_hour_21"
+msgstr "21:00 - 21:59"
+msgid "modem_hour_22"
+msgstr "22:00 - 22:59"
+msgid "modem_hour_23"
+msgstr "23:00 - 23:59"
+
+# for modem_status.pl invoked directly from modem.php
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+# stuff from sauce-basic that belongs here
+msgid "gateway-not-reachable"
+msgstr "The specified gateway could not be reached.  Please check to make certain that your gateway is within a reachable sub-network.  You might also want to check your Direct Routing rules."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Sorry, this route could not be added to the routing table.  The gateway ([[VAR.gateway]]) cannot lie within the target subnet ([[VAR.target]])."
+
+msgid "invalid-route"
+msgstr "Sorry, the route to [[VAR.network]] could not be added to the routing table.  It is possible that the specified gateway, [[VAR.gateway]], is unreachable.  The target is [[VAR.network]] which should be reachable via the gateway, [[VAR.gateway]], and the route is being added to the interface, [[VAR.device]]."
+
+msgid "badDefaultGateway"
+msgstr "Sorry, the default gateway, [[VAR.gateway]], is unreachable with the current configuration.  Please check the network settings to make sure at least one of the network interfaces is located on the same network as the default gateway."
+
+msgid "disable-interface-first"
+msgstr "Sorry, you can not remove settings for an enabled network interface.  Please disable the interface before you attempt to remove the settings."
+
+msgid "amNetStats"
+msgstr "Network Statistics"
+
+msgid "activity"
+msgstr "Activity"
+
+msgid "recv_bytes"
+msgstr "Bytes Received"
+
+msgid "recv_bytes_help"
+msgstr "The number of bytes received on the network interface."
+
+msgid "recv_packets"
+msgstr "Packets Received"
+
+msgid "recv_packets_help"
+msgstr "The number of packets received on the network interface."
+
+msgid "sent_bytes"
+msgstr "Bytes Sent"
+
+msgid "sent_bytes_help"
+msgstr "The number of bytes sent on the network interface."
+
+msgid "sent_packets"
+msgstr "Packets Sent"
+
+msgid "sent_packets_help"
+msgstr "The number of packets sent on the network interface."
+
+msgid "errors"
+msgstr "Errors"
+
+msgid "errors_help"
+msgstr "The number of transmit and receive errors on the network interface. A large number of errors may be indicative of network problems."
+
+msgid "collisions"
+msgstr "Collisions"
+
+msgid "collisions_help"
+msgstr "The number of network collisions. A large number of collisions may be indicative of network problems."
+
+msgid "stats_disabled"
+msgstr "Interface disabled"
+
+
+
+# --- IP Pooling strings
+
+msgid "pooling_block"
+msgstr "[[base-network.sitepooling]]"
+
+msgid "enabledField"
+msgstr "Enabled"
+
+msgid "enabledField_help"
+msgstr "Enable [[base-network.sitepooling]]. Only IP addresses within the ranges listed below will be allowed for use by virtual sites."
+
+msgid "rangeList"
+msgstr "Acceptable Ranges"
+
+msgid "min"
+msgstr "Beginning of Range"
+
+msgid "min_help"
+msgstr "This is the beginning IP address of the range."
+
+msgid "max"
+msgstr "End of Range"
+
+msgid "max_help"
+msgstr "This is the ending IP address of the range."
+
+msgid "add"
+msgstr "Add"
+
+msgid "add_help"
+msgstr "Click here to add the range to the list."
+
+msgid "save"
+msgstr "Save"
+
+msgid "save_help"
+msgstr "Click here to save the changes made to the range."
+
+msgid "saveEnabled"
+msgstr "Save"
+
+msgid "saveEnabled_help"
+msgstr "Click here to save the Enabled status."
+
+msgid "sitepooling"
+msgstr "IP Address Allocation"
+
+msgid "sitepoolingDescription"
+msgstr "Click here to specify acceptable IP address ranges for this server."
+
+msgid "restricted"
+msgstr "Access to this page has been restricted."
+
+msgid "cant_enable_pooling"
+msgstr "The following IP address(es) are not within any of the allowed ranges: [[VAR.ips_not_covered]].  Please create a range that includes these address(es) before enabling [[base-network.sitepooling]]."
+
+msgid "missing_part_of_range"
+msgstr "You have entered an invalid range. Please enter both a beginning and an ending IP address. If you wish to enter a range that covers a single IP address, please enter the IP address as both the beginning and the end of the range."
+
+msgid "minGreaterThanMax"
+msgstr "The beginning IP [[VAR.range_min]] of the range is higher than the ending IP [[VAR.range_max]]. Please enter a beginning IP address that is less than or equal to the end of the range." 
+
+msgid "ip_not_in_range"
+msgstr "The IP address [[VAR.ipaddr]] is not within any of the valid ranges. Please choose another IP address."
+
+msgid "cant_change_range"
+msgstr "Sorry, I can't change the specified range. The following IP address(es) are within that range: [[VAR.affected_ips]]."
+
+msgid "ip_restricted"
+msgstr "The IP address [[VAR.ipaddr]] is not allowed. Please choose another IP address."
+
+msgid "cant_delete_range"
+msgstr "Sorry, I can't delete the specified range. The following IP address(es) are within that range: [[VAR.affected_ips]]."
+
+msgid "cancel"
+msgstr "Cancel"
+
+msgid "cancel_help"
+msgstr "Click here to cancel the changes made to the range."
+
+msgid "valid_ranges"
+msgstr "Valid Ranges:"
+
+msgid "valid_ranges_help"
+msgstr "Only IPs within the listed ranges are allowed for use on the system."
+
+# (some) handler error messages
+# no_duplicates.pl
+msgid "noDuplicateDevices"
+msgstr "Another interface or alias is already assigned the device name, [[VAR.device]].  The device name for each interface and alias must be unique."
+
+msgid "noDuplicateIPsAllowed"
+msgstr "Another interface or alias with the IP address, [[VAR.ipaddr]], already exists.  The IP address for each interface and alias must be unique."
+
+# validate_netmask.pl
+msgid "invalidNetmaskReal"
+msgstr "Sorry, the value entered for netmask, [[VAR.netmask]], for the [[VAR.device]] is not a usable netmask.  [[base-network.validNetmaskHelp]]"
+
+msgid "invalidNetmaskAlias"
+msgstr "Sorry, the value entered for netmask, [[VAR.netmask]], is not a usable netmask.  [[base-network.validNetmaskHelp]]"
+
+msgid "validNetmaskHelp"
+msgstr "Usable netmasks must consist of a series of four numbers between 0 and 255 separated by periods.  If you wish to specify a sub-network, the leading numbers must be 255 and the sub-network number must be 128, 192, 224, 240, 248, 252, or 254.  For example, 255.255.0.0 and 255.128.0.0 are usable netmasks."

@@ -1,0 +1,31 @@
+<!--
+	$Id: winnetwork.schema 201 2003-07-18 19:11:07Z will $
+	Copyright(c) 2000 Cobalt Networks, Inc.
+	Author: asun@cobalt.com
+
+	this adds namespaces for the windows networking module.
+-->
+
+<typedef name="winsSetting" type="re" data="^(none|self|dhcp|others)*$"/>
+<typedef name="workgroup" type="re" data="^[A-Z0-9\.\#\$\-\_\!]+$"/>
+
+<class name="System" namespace="WinNetwork" version="1.0">
+	<property name="enabled" type="boolean" default="1" writeacl="ruleCapable(modifyWinnetwork)"/>
+	<property name="domainLogon" type="boolean" default="0" writeacl="ruleCapable(modifyWinnetwork)"/>
+	<property name="workgroup" type="workgroup" default="WORKGROUP" writeacl="ruleCapable(modifyWinnetwork)"/>
+	<!-- winsSetting can be "none", "self", "dhcp" or "others" -->
+	<property name="winsSetting" type="winsSetting" default="none" writeacl="ruleCapable(modifyWinnetwork)"/>
+	<!-- winsIpAddress is used when winsSetting is "others" -->
+	<property name="winsIpAddress" type="ipaddr" optional="1" writeacl="ruleCapable(modifyWinnetwork)"/>
+</class>
+
+<class name="WindowsMachine" namespace="" version="1.0"
+	createacl="ruleCapable(modifyWinnetwork)" 
+	destroyacl="ruleCapable(modifyWinnetwork)">
+	<property name="enabled" type="boolean" default="1" 
+		writeacl="ruleCapable(modifyWinnetwork)"/>
+	<property name="name" type="word"
+		writeacl="ruleCapable(modifyWinnetwork)"/>
+	<property name="description" type="scalar"
+		writeacl="ruleCapable(modifyWinnetwork)"/>
+</class>

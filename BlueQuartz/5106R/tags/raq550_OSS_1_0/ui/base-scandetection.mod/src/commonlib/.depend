@@ -1,0 +1,68 @@
+Alert.o: Alert.cpp Alert.h Externalizable.h ObjectInput.h DataInput.h \
+ ObjectOutput.h DataOutput.h Exception.h
+ArrayList.o: ArrayList.c ArrayList.h
+BufferedQueue.o: BufferedQueue.cpp BufferedQueue.h Exception.h \
+ Thread.h
+BufferedQueue.test.o: BufferedQueue.test.cpp BufferedQueue.h \
+ Exception.h Thread.h
+CommandPacket.o: CommandPacket.cpp CommandPacket.h DataUnit.h \
+ Externalizable.h ObjectInput.h DataInput.h ObjectOutput.h \
+ DataOutput.h Exception.h
+DataInput.o: DataInput.cpp DataInput.h
+DataOutput.o: DataOutput.cpp DataOutput.h
+DataUnit.o: DataUnit.cpp DataUnit.h Externalizable.h ObjectInput.h \
+ DataInput.h ObjectOutput.h DataOutput.h Exception.h
+ErrorPacket.o: ErrorPacket.cpp ErrorPacket.h DataUnit.h \
+ Externalizable.h ObjectInput.h DataInput.h ObjectOutput.h \
+ DataOutput.h Exception.h
+Event.o: Event.cpp Event.h Thread.h Exception.h utility.h
+EventScheduler.o: EventScheduler.cpp EventScheduler.h Event.h Thread.h \
+ Exception.h libphoenix.h pack.h port.h ArrayList.h
+EventScheduler.test.o: EventScheduler.test.cpp EventScheduler.h \
+ Event.h Thread.h Exception.h
+ObjectBuffer.o: ObjectBuffer.cpp ObjectBuffer.h ObjectInput.h \
+ DataInput.h Externalizable.h ObjectOutput.h DataOutput.h Exception.h
+ObjectFile.o: ObjectFile.cpp ObjectFile.h Externalizable.h \
+ ObjectBuffer.h ObjectInput.h DataInput.h ObjectOutput.h DataOutput.h \
+ Exception.h
+ObjectFile.test.o: ObjectFile.test.cpp ObjectFile.h Externalizable.h \
+ DataUnit.h ObjectInput.h DataInput.h ObjectOutput.h DataOutput.h \
+ Exception.h
+ObjectInput.o: ObjectInput.cpp ObjectInput.h DataInput.h \
+ Externalizable.h Exception.h DataUnit.h ObjectOutput.h DataOutput.h
+ObjectOutput.o: ObjectOutput.cpp ObjectOutput.h DataOutput.h \
+ Externalizable.h
+ObjectSocket.o: ObjectSocket.cpp ObjectSocket.h ObjectInput.h \
+ DataInput.h Externalizable.h ObjectOutput.h DataOutput.h Socket.h
+ObjectSocket.test.o: ObjectSocket.test.cpp Socket.h ServerSocket.h \
+ ObjectSocket.h ObjectInput.h DataInput.h Externalizable.h \
+ ObjectOutput.h DataOutput.h DataUnit.h
+Profile.o: Profile.c Profile_impl.h Profile.h serial.h
+serial.o: serial.c serial.h
+ServerSocket.o: ServerSocket.cpp Socket.h ServerSocket.h Exception.h
+SmtpClient.o: SmtpClient.cpp Exception.h libphoenix.h pack.h port.h \
+ ArrayList.h SmtpClient.h Socket.h
+SmtpClient.test.o: SmtpClient.test.cpp SmtpClient.h
+SmtpNotifier.o: SmtpNotifier.cpp SmtpNotifier.h AlertNotifier.h \
+ Alert.h Externalizable.h utility.h SmtpClient.h libphoenix.h pack.h \
+ port.h ArrayList.h CceClient.h
+Socket.o: Socket.cpp utility.h Socket.h /usr/include/netdb.h \
+ Exception.h
+SynchronizedDeque.o: SynchronizedDeque.cpp SynchronizedDeque.h \
+ Thread.h
+SignalHandler.o: SignalHandler.cpp SignalHandler.h Thread.h \
+ libphoenix.h pack.h port.h ArrayList.h Exception.h utility.h
+Thread.o: Thread.cpp Exception.h Thread.h utility.h
+Thread.test.o: Thread.test.cpp Thread.h
+TimeTable.o: TimeTable.cpp TimeTable.h Exception.h Externalizable.h \
+ ObjectInput.h DataInput.h ObjectOutput.h DataOutput.h
+TimeTable.test.o: TimeTable.test.cpp TimeTable.h Exception.h \
+ Externalizable.h
+utility.o: utility.cpp utility.h
+spawn.o: spawn.c
+processutil.o: processutil.cpp Exception.h utility.h processutil.h
+CceClient.o: CceClient.c CceClient.h libphoenix.h pack.h port.h \
+ ArrayList.h
+FileParse.o: FileParse.c CceClient.h libphoenix.h pack.h port.h \
+ ArrayList.h readconfig.h
+readconfig.o: readconfig.c readconfig.h

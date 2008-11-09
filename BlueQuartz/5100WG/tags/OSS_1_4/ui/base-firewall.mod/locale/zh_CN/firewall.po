@@ -1,0 +1,442 @@
+msgid "firewall_menu"
+msgstr "基础防火墙"
+
+msgid "firewall_menu_help"
+msgstr "[[base-firewall.FirewallTop]]可在此处配置。防火墙功能可使您确定限制通过此服务器设备的网络流量的过滤策略。"
+
+msgid "FirewallTop"
+msgstr "数据包过滤防火墙设置"
+
+msgid "FirewallTop_help"
+msgstr "防火墙功能可使您确定限制哪类网络流量允许通过服务器的策略。这是服务器的高级安全功能，因此在配置防火墙前一定要参考可用的文档。"
+
+msgid "EditRuleChain"
+msgstr "规则链"
+
+msgid "EditRuleChain_help"
+msgstr "选择要配置的规则链。防火墙由三个独立的规则链配置。输入链用于过滤到达机器的数据包。转发链用于过滤到达另一机器的数据包。输出链用于过滤离开机器的数据包。"
+
+msgid "enableFirewall"
+msgstr "启用防火墙"
+
+msgid "enableFirewall_help"
+msgstr "启用或禁用包过滤防火墙。"
+
+msgid "firewall-not-dirty_help"
+msgstr "此按钮用于将配置更改应用于\
+正在运行的防火墙。当前，您没有要应用的新更改。"
+
+msgid "firewall-not-enabled_help"
+msgstr "此按钮用于将配置更改应用于\
+正在运行的防火墙。当前，您的防火墙没有启用，因此\
+无需应用更改。"
+
+msgid "Selectchain"
+msgstr "选择区段..."
+
+msgid "general_settings"
+msgstr "防火墙设置"
+
+msgid "chain_input"
+msgstr "输入规则链"
+
+msgid "chain_output"
+msgstr "输出规则链"
+
+msgid "chain_forward"
+msgstr "转发规则链"
+
+msgid "commit-changes-button"
+msgstr "立即应用更改"
+
+msgid "commit-changes-button_help"
+msgstr "您已经修改了定义防火墙的规则，但您的\
+更改将在单击此按钮后才用于\
+正在运行的防火墙。"
+
+msgid "enable-firewall-button"
+msgstr "启用防火墙"
+
+msgid "disable-firewall-button"
+msgstr "禁用防火墙"
+
+msgid "FirewallRulesinput"
+msgstr "输入规则"
+
+msgid "header_order"
+msgstr "顺序"
+
+msgid "header_order_help"
+msgstr "这是规则应用于数据包的顺序。每个数据包都要经过分析，才能确定它是否按照规则列出的顺序满足每个规则规定的条件。"
+
+msgid "header_source"
+msgstr "源条件"
+
+msgid "header_source_help"
+msgstr "这是数据包过滤的源条件。数据包的源参数将与给定规则的条件进行对比。如果所有条件满足要求，为该规则指定的策略将应用于数据包。"
+
+msgid "header_dest"
+msgstr "目标条件"
+
+msgid "header_dest_help"
+msgstr "这是数据包过滤的目标条件。数据包的目标参数将与给定规则的条件进行对比。如果所有条件满足要求，为该规则确定的策略将应用于数据包。"
+
+msgid "header_policy"
+msgstr "策略"
+
+msgid "header_policy_help"
+msgstr "这是确定任何符合此规则的数据包外出的策略。如果一个数据包满足指定规则（源、目标、接口、协议）规定的所有条件，则指定的策略将应用于数据包。"
+
+msgid "header_action"
+msgstr "操作"
+
+msgid "header_action_help"
+msgstr "这些是用于修改或删除规则的按钮。"
+
+msgid "defaultPolicyField"
+msgstr "缺省策略"
+
+msgid "defaultPolicyField_help"
+msgstr "选择此规则链的缺省策略。缺省策略决定任何不满足以上规则的数据包将出现什么现象。"
+
+msgid "CreateFirewallRule"
+msgstr "添加新防火墙规则"
+
+# Source
+
+msgid "SourceCriteriaSection"
+msgstr "源条件"
+
+msgid "SourceCriteriaSection_help"
+msgstr "条件用于确定防火墙规则应用于哪些数据包。源条件可用于匹配来自特定连接的数据包。"
+
+msgid "source_ip_start_field"
+msgstr "源 IP 地址（低）"
+
+msgid "source_ip_start_field_help"
+msgstr "在此规则将匹配的 IP 地址范围内输入第一个或最低的源 IP 地址。要匹配任何源 IP 地址，将源 IP 地址字段留空。"
+
+msgid "source_ip_stop_field"
+msgstr "源 IP 地址（高）"
+
+msgid "source_ip_stop_field_help"
+msgstr "在此规则将匹配的 IP 地址范围内输入最后一个或最高源 IP 地址。要匹配任何源 IP 地址，将源 IP 地址字段留空。"
+
+msgid "source_ports_field"
+msgstr "源端口号码"
+
+msgid "source_ports_field_help"
+msgstr "在此规则将匹配的源 IP 地址范围内输入第一个或最后一个源端口号码。要匹配任何源端口号码，将源端口号码字段留空。"
+
+# error messages:
+
+msgid "source_ip_start_invalid"
+msgstr "在“源 IP 地址（低）”字段指定的 IP 地址无效。请以 172.16.1.1 形式指定 IP 地址。"
+
+msgid "source_ip_stop_invalid"
+msgstr "在“源 IP 地址（高）”字段指定的 IP 地址无效。请以 172.16.1.1 形式指定 IP 地址。"
+
+msgid "dest_ip_start_invalid"
+msgstr "在“目的地 IP 地址（低）”字段指定的 IP 地址无效。请以 172.16.1.1 形式指定 IP 地址。"
+
+msgid "dest_ip_stop_invalid"
+msgstr "在“目的地 IP 地址（高）”字段指定的 IP 地址无效。请以 172.16.1.1 形式指定 IP 地址。"
+
+msgid "source_ports_invalid"
+msgstr "指定的“源端口号”范围无效。源端口号必须是正整数。要创建仅符合一个端口的规则，请输入该端口号作为范围（即 23-23）。"
+
+msgid "dest_ports_invalid"
+msgstr "指定的“目的地端口号”范围无效。端口号必须是正整数。要创建仅符合一个端口的规则，请输入该端口号作为范围（即 23-23）。"
+
+msgid "redir_target_invalid"
+msgstr "“重定向到本地端口号”字段必须包含一个\
+表明端口号（即 23）的正整数。"
+
+# Destination
+
+msgid "DestCriteriaSection"
+msgstr "目标条件"
+
+msgid "DestCriteriaSection_help"
+msgstr "条件用于确定防火墙规则应用于哪些数据包。目标条件可用于匹配转向特定连接的数据包。"
+
+msgid "dest_ip_start_field"
+msgstr "目的地 IP 地址（低）"
+
+msgid "dest_ip_start_field_help"
+msgstr "在此规则将匹配的 IP 地址范围内输入第一个或最低目的地 IP 地址。要匹配任何目的地 IP 地址，将目的地 IP 地址字段留空。"
+
+msgid "dest_ip_stop_field"
+msgstr "目的地 IP 地址（高）"
+
+msgid "dest_ip_stop_field_help"
+msgstr "在此规则将匹配的 IP 地址范围内输入最后一个或最高目的地 IP 地址。要匹配任何目的地 IP 地址，将目的地 IP 地址字段留空。"
+
+msgid "dest_ports_field"
+msgstr "目的地端口号码"
+
+msgid "dest_ports_field_help"
+msgstr "在此规则将匹配的目的地 IP 地址范围内输入第一个或最后一个的目的地端口号码。要匹配任何目的地端口号码，将目的地端口号码字段留空。"
+
+# Other
+
+msgid "GeneralCriteriaSection"
+msgstr "其他条件"
+
+msgid "GeneralCriteriaSection_help"
+msgstr "条件用于确定防火墙规则应用于哪些数据包。如数据包协议和连接接口等其他条件也可用于匹配数据包与规则。"
+
+msgid "protocol_field"
+msgstr "网络协议"
+
+msgid "protocol_field_help"
+msgstr "输入此规则匹配的数据包的网络协议。"
+
+msgid "all"
+msgstr "任何网络协议"
+msgid "tcp"
+msgstr "TCP"
+msgid "udp"
+msgstr "UDP"
+msgid "icmp"
+msgstr "ICMP"
+msgid "ipip"
+msgstr "IPIP"
+msgid "encap"
+msgstr "Encap"
+
+msgid "interface_field"
+msgstr "网络接口"
+
+msgid "interface_field_help"
+msgstr "输入此规则匹配的数据包的网络接口。"
+
+msgid "any"
+msgstr "任何网络接口"
+msgid "eth0"
+msgstr "主以太网接口"
+msgid "eth1"
+msgstr "辅助以太网接口"
+msgid "ppp0"
+msgstr "PPP 拨号接口"
+
+# Policy
+
+msgid "DescribePolicy"
+msgstr "链策略"
+
+msgid "DescribePolicy_help"
+msgstr "规则的策略指出已匹配规则数据包的过滤条件的\
+数据包处理状态。"
+
+msgid "policy_field"
+msgstr "策略"
+
+msgid "policy_field_help"
+msgstr "选择此规则链的策略。策略决定与此防火墙规则匹配的任何数据包将发生什么现象。接受数据包允许它继续通过此机器。否决数据包则将其丢弃，使之永远不会到达机器。拒绝数据包与否则数据包一样将其丢弃，但是会通知发送人数据包已被丢弃。伪装数据包则在通过防火墙时进行重写，犹如数据包是自防火墙发出的。此策略只在配置转发规则时适用。重定向数据包则在数据包通过防火墙时进行重写，犹如数据包的目标是本地端口号码。此策略只在配置输入规则时适用。"
+
+msgid "redir_target_field"
+msgstr "重定向至本地端口号码"
+
+msgid "redir_target_field_help"
+msgstr "如果上面选择了重定向策略，输入匹配要重定向的防火墙规则的数据包的本地端口号码。否则，忽略此字段。"
+
+msgid "EditFirewallRule"
+msgstr "编辑防火墙规则"
+
+msgid "FirewallRulesforward"
+msgstr "转发规则"
+
+msgid "FirewallRulesoutput"
+msgstr "输出规则"
+
+msgid "Select_chain"
+msgstr "选择要编辑的链..."
+
+msgid "defaultPolicy"
+msgstr "缺省策略"
+
+msgid "defaultPolicy_help"
+msgstr "此链的缺省策略将适用于不匹配以上所列规则的数据包。"
+
+msgid "criteria_ip"
+msgstr "IP=[[VAR.low]]-[[VAR.high]];"
+
+msgid "criteria_ports"
+msgstr "端口=[[VAR.ports]];"
+
+msgid "criteria_proto"
+msgstr "协议=[[VAR.proto]];"
+
+msgid "criteria_interface"
+msgstr "接口=[[VAR.iface]];"
+
+msgid "policy_ACCEPT"
+msgstr "接受"
+
+msgid "policy_DENY"
+msgstr "否决"
+
+msgid "policy_REJECT"
+msgstr "拒绝"
+
+msgid "policy_MASQ"
+msgstr "伪装"
+
+msgid "policy_REDIRECT"
+msgstr "重定向至端口"
+
+msgid "policy_RETURN"
+msgstr "返回"
+
+msgid "policy_JUMP"
+msgstr "跳转至链[[VAR.jump]]"
+
+msgid "ACCEPT"
+msgstr "接受"
+
+msgid "DENY"
+msgstr "否决"
+
+msgid "REJECT"
+msgstr "拒绝"
+
+msgid "MASQ"
+msgstr "伪装"
+
+msgid "REDIRECT"
+msgstr "重定向至端口"
+
+msgid "RETURN"
+msgstr "返回"
+
+msgid "JUMP"
+msgstr "跳转至链"
+
+msgid "no_rules_defined"
+msgstr "此链不包含规则。单击“添加”为此链创建规则。"
+
+msgid "FirewallEnable1"
+msgstr "防火墙激活"
+
+msgid "FirewallEnable1_help"
+msgstr "请等待防火墙设置生效。"
+
+msgid "explain-firewall-enable1-page"
+msgstr "请等待防火墙设置生效。\
+此页应自动刷新为“防火墙配置”页。如果没有自动刷新，\
+则您的防火墙可能配置错误。等待 60 秒钟，使防火墙保护\
+功能激活，然后再次尝试访问服务器。"
+
+msgid "explain-firewall-enable1-page_help"
+msgstr "单击“应用设置”继续，或单击“取消”返回至“防火墙配置”页。"
+
+msgid "proceed-button"
+msgstr "应用设置"
+
+msgid "proceed-button_help"
+msgstr "单击此按钮将应用您的新防火墙设置。"
+
+msgid "FirewallEnable2"
+msgstr "防火墙配置完成"
+
+msgid "FirewallEnable2_help"
+msgstr "这是激活防火墙两个必要步骤的第二步。"
+
+msgid "firewall-congrat-page"
+msgstr "恭喜您！如果您能看到此消息，表示您的防火墙设置正常工作。请单击下面的“确认设置”按钮，永久保留这些防火墙设置。"
+
+msgid "firewall-congrat-page_help"
+msgstr "恭喜您！"
+
+msgid "confirm-firewall-button"
+msgstr "确认设置"
+
+msgid "confirm-firewall-button_help"
+msgstr "请单击此处永久保留您的防火墙设置。"
+
+msgid "reorder-button"
+msgstr "重新排序"
+
+msgid "reorder-button_help"
+msgstr "单击此处，根据您对上表中数字式顺序字段所进行的更改对规则进行重新排序。"
+
+msgid "Order_help"
+msgstr "编辑下面的数字字段，更改规则应用的顺序。单击“重新排序”按钮应用更改。"
+
+msgid "firewall-is-dirty-message"
+msgstr "您已经对防火墙配置进行了未保存的更改。"
+
+msgid "firewall-is-dirty-message_help"
+msgstr "当您对防火墙配置进行了未保存的更改时，此消息会通知您。单击“应用更改”按钮保存您所做的更改。"
+
+msgid "apply-changes-popup"
+msgstr "\
+-------------------------------------------------------\n\
+             更改正在运行的防火墙规则\n\
+-------------------------------------------------------\n\
+\n\
+您要将最新的更改应用于 \n\
+数据包过滤防火墙的运行状态。 \n\
+\n\
+配置错误的防火墙可能会 \n\
+妨碍您访问服务器的 \n\
+Web 接口。  \n\
+\n\
+此防火墙执行的保护功能 \n\
+将在您的浏览器会话断开连接 \n\
+60 秒后自动\n\
+禁用。\n\
+\n\
+如果您应该断开连接，只需等待一 \n\
+分钟，就可尝试再次访问服务器。 \n\
+\n\
+是否希望继续？"
+
+msgid "confirm-enabling-popup"
+msgstr "\
+-------------------------------------------------------\n\
+                    启用防火墙 \n\
+-------------------------------------------------------\n\
+\n\
+您将启用您的数据包过滤防火墙。\n\
+\n\
+配置错误的防火墙可能会 \n\
+妨碍您访问服务器的 \n\
+Web 接口。  \n\
+\n\
+此防火墙执行的保护功能 \n\
+将在您的浏览器会话断开连接 \n\
+60 秒后自动 \n\
+禁用。\n\
+\n\
+如果您断开连接，只需等待一 \n\
+分钟，就可尝试再次访问服务器。 \n\
+\n\
+是否希望继续？"
+
+msgid "FirewallConfiguration"
+msgstr "防火墙设置"
+
+msgid "FirewallConfiguration_help"
+msgstr "防火墙功能可使您确定限制哪类网络流量允许通过服务器的策略。这是服务器的高级安全功能，因此在配置防火墙前一定要参考可用的文档。"
+
+msgid "ipip-rule-cannot-have-ports"
+msgstr "IPIP 协议不支持端口号码。因此，您\
+不能匹配 IPIP 数据包的端口号码范围。"
+
+msgid "encap-rule-cannot-have-ports"
+msgstr "Encap 协议不支持端口号码。因此，您\
+不能匹配 Encap 数据包的端口号码范围。"
+
+msgid "Any"
+msgstr "任何"
+
+# Capabilities
+
+msgid "capgroup_adminFirewall"
+msgstr "管理基础防火墙"
+
+msgid "capgroup_adminFirewall_help"
+msgstr "此管理权限允许用户管理系统防火墙的所有方面。"
+

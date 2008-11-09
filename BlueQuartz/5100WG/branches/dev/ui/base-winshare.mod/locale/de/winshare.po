@@ -1,0 +1,176 @@
+# --- Menu
+
+msgid "winshare"
+msgstr "Windows"
+
+msgid "winshare_help"
+msgstr "Hier können Sie [[base-winshare.winshareSettings]] ändern."
+
+# --- Common
+msgid "winshareSettings"
+msgstr "Einstellungen der Windows-Dateifreigabe"
+
+msgid "basic"
+msgstr "Grundlegend"
+
+msgid "basic_help"
+msgstr "Hier können Sie grundlegende [[base-winshare.winshareSettings]] konfigurieren."
+
+msgid "advanced_help"
+msgstr "Hier können Sie erweiterte [[base-winshare.winshareSettings]] wie z. B. WINS-Server-Einstellungen konfigurieren."
+
+msgid "advanced"
+msgstr "Erweitert"
+
+# ---- Basic page
+
+msgid "enableServerField"
+msgstr "Server aktivieren"
+
+msgid "enableServerField_help"
+msgstr "Aktivieren oder deaktivieren Sie die Windows-Dateifreigabe. Um den Gastzugriff auf die Windows-Dateifreigabe zu konfigurieren, gehen Sie zu [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Höchstzahl der gleichzeitig angemeldeten Benutzer"
+
+msgid "maxUserField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl zwischen 1 und 1024 ein. Der Vorgabewert beträgt 25."
+
+msgid "maxUserField_help"
+msgstr "Ändern Sie die Höchstzahl der Benutzer, die gleichzeitig mit der Windows-Dateifreigabe verbunden sein können. [[base-winshare.maxUserField_rule]]"
+
+msgid "workgroupField"
+msgstr "Workgroup"
+
+msgid "workgroupField_rule"
+msgstr "Der Vorgabewert ist WORKGROUP."
+
+msgid "workgroupField_help"
+msgstr "Geben Sie den Namen der Workgroup ein, der Ihre Windows-Dateifreigabe angehören soll."
+
+
+# ---- Advanced
+
+msgid "networkLogonField"
+msgstr "Windows 95/98-Netzwerk-Anmeldungs-Authentifizierung"
+
+msgid "networkLogonField_help"
+msgstr "Aktivieren oder deaktivieren Sie die Windows 95/98-Netzwerk-Anmeldungs-Authentifizierung. Wenn Sie diese Funktion aktivieren, kann dieser Server für alle Ihre Windows 95/98-Netzwerkanmeldungen als Authentifizierungs-Server fungieren."
+
+msgid "winsServerField"
+msgstr "Windows Internet Naming Service (WINS)-Server"
+
+msgid "winsServerField_help"
+msgstr "Wählen Sie eine Rolle für diesen Server bei der Bereitstellung des Windows Internet Naming Service aus. Ein Server, der den Windows Internet Naming Service ausführt, ist erforderlich, um Windows-Rechner nach ihren NetBIOS-Namen subnetzübergreifend zu finden."
+
+msgid "winsServerNone"
+msgstr "Nicht als WINS-Server verwenden"
+
+msgid "winsServerSelf"
+msgstr "Als WINS-Server verwenden"
+
+msgid "winsServerOthers"
+msgstr "Die folgende Adresse als WINS-Server verwenden"
+
+msgid "winsServerIpAddressField"
+msgstr "IP-Adresse"
+
+msgid "winsServerIpAddressField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "winsServerIpAddressField_help"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+
+# ---- Handler msgs
+
+msgid "badUser"
+msgstr "Wenn Server-Konfigurationsdateien entfernt oder manuell geändert wurden, stellen Sie bitte die Originalversionen wieder her und versuchen Sie es noch einmal."
+
+msgid "cantConfigFile"
+msgstr "Leider trat beim Versuch, die Windows-Dateifreigabe-Konfigurationsdateien zu modifizieren, ein Fehler auf. [[base-winshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Leider trat beim Versuch, die Windows-Dateifreigabe-Konfigurationsdateien zu modifizieren, ein Fehler auf. [[base-winshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Leider trat beim Versuch, die Windows-Dateifreigabe-Konfigurationsdateien zu modifizieren, ein Fehler auf."
+
+msgid "cantModifyPassword"
+msgstr "Leider trat beim Versuch, die Windows-Dateifreigabe-Konfigurationsdateien zu modifizieren, ein Fehler auf."
+
+
+# ---- Active Monitor
+
+msgid "amWinshareNameTag"
+msgstr "Windows-Dateifreigabe-Server"
+
+msgid "amDetailsTitle"
+msgstr "Windows-Dateifreigabe-Server-Details"
+
+msgid "amNotRunning"
+msgstr "Der Windows-Dateifreigabe-Server ist nicht in Betrieb."
+
+msgid "amStatusOk"
+msgstr "Der Windows-Dateifreigabe-Server arbeitet normal."
+
+# Capabilities
+
+msgid "capgroup_adminSamba"
+msgstr "Verwaltung der Windows-Dateifreigabe"
+
+msgid "capgroup_adminSamba_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, die für die Windows-Dateiverwaltung gültigen Einstellungen zu ändern."
+
+# Machine list 
+
+msgid "windowsMachineButton"
+msgstr "Domänenmitglieder"
+
+msgid "windowsMachineButton_help"
+msgstr "Erstellen einer Liste der Windows-Computer in Ihrem Netzwerk, bevor diese Mitglied der Domäne werden dürfen."
+
+msgid "windowsMachinesList"
+msgstr "Domänenmitglieder"
+
+msgid "wm_addMachine_help"
+msgstr "Klicken Sie hierauf, um einen Computer in die Liste der Domänenmitglieder einzufügen."
+
+msgid "wm_name"
+msgstr "Rechnername"
+
+msgid "wm_name_help"
+msgstr "Dies sind die den am Netzwerk angeschlossenen Computern zugewiesenen Namen"
+
+msgid "wm_remarks"
+msgstr "Kommentare"
+
+msgid "wm_remarks_help"
+msgstr "Diese Spalte enthält zusätzliche Informationen über alle Domänenmitglieder."
+
+msgid "wm_actions"
+msgstr "Aktion"
+
+msgid "wm_actions_help"
+msgstr "Dies sind die Schaltflächen, mit denen die Einstellungen für ein Domänenmitglied geändert können oder ein Computer aus dem Windows-Netzwerk entfernt werden kann."
+
+msgid "modWindowsMachineBlock"
+msgstr "Änderung der Einstellungen für ein Domänenmitglied - [[var.name]]"
+
+msgid "addWindowsMachineBlock"
+msgstr "Erstellen eines Domänenmitglieds"
+
+msgid "machine_name"
+msgstr "Rechnername"
+
+msgid "machine_name_help"
+msgstr "Dies ist der Name des Windows-basierten Computers."
+
+msgid "machine_description"
+msgstr "Kommentare"
+
+msgid "machine_description_help"
+msgstr "Dies ist eine benutzerdefinierte Beschreibung dieses Domänenmitglieddatensatzes."
+
+msgid "removeMachineConfirm"
+msgstr "Möchten Sie den Computer '[[VAR.machineName]]' wirklich aus der Liste der Domänenmitglieder entfernen?"

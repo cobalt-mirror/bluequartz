@@ -1,0 +1,149 @@
+msgid "import"
+msgstr "インポート"
+
+msgid "import_help"
+msgstr "ユーザやグループをこのサーバにインポートできます。"
+
+msgid "userImport"
+msgstr "ファイルのインポート"
+
+msgid "dataUpload"
+msgstr "ソースファイル"
+
+msgid "dataUpload_help"
+msgstr "システムにアップロードしたいユーザリストを含むファイル（タブ区切り）を指定してください。ファイル形式の詳細については、ユーザマニュアルをご参照ください。"
+
+msgid "dataUpload_empty"
+msgstr "このサーバにアップロード（インポート）するファイルが指定されていません。"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "fileImport"
+msgstr "ファイルをインポート"
+
+msgid "attempt"
+msgstr "未試行"
+
+msgid "creating"
+msgstr "[[VAR.name]] という名前の [[VAR.class]] を追加しています"
+
+msgid "modifying"
+msgstr "[[VAR.name]] という名前の [[VAR.class]] を修正しています"
+
+msgid "importResults"
+msgstr "インポートの結果"
+
+msgid "noFileSpecified"
+msgstr "ファイルの受信エラー"
+
+msgid "fileWasNoGood"
+msgstr "指定ファイルの受信中にエラーが発生しました。ファイルをもう一度アップロードして見てください。"
+
+msgid "badFileButtonCancel"
+msgstr "戻る"
+
+msgid "badFileButtonCancel_help"
+msgstr "前の画面に戻るには、ここをクリックしてください。"
+
+msgid "importResult"
+msgstr "インポートの結果"
+
+msgid "result"
+msgstr "結果"
+
+msgid "action"
+msgstr "対処"
+
+msgid "reason"
+msgstr "原因"
+
+msgid "couldNotOpenFile"
+msgstr "アップロードしたファイルを開く際にエラーが発生しました。ファイル形式を確認してから、もう一度お試しください。"
+
+msgid "success"
+msgstr "成功"
+
+msgid "fail"
+msgstr "失敗"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]]（[[VAR.line]] 行）"
+
+msgid "importNow"
+msgstr "インポートする"
+
+msgid "importNow_help"
+msgstr "ファイルを指定してからこのボタンをクリックすると、ユーザのインポートが開始されます。"
+
+msgid "importErrors"
+msgstr "インポートエラー"
+
+msgid "errorCountPlural"
+msgstr "エラー数： [[VAR.count]]"
+
+msgid "errorCountSingular"
+msgstr "エラー数： [[VAR.count]]"
+
+msgid "fullName"
+msgstr "氏名"
+
+msgid "fullName_help"
+msgstr "インポートファイルに含まれているユーザの氏名です。"
+
+msgid "name"
+msgstr "ユーザ名"
+
+msgid "name_help"
+msgstr "インポートファイルに含まれているユーザのユーザ名です。"
+
+msgid "errorMessageHeader"
+msgstr "メッセージ"
+
+msgid "errorMessageHeader_help"
+msgstr "インポート中に発生したエラーに関する詳細メッセージです。"
+
+msgid "importSucceeded"
+msgstr "インポートに成功しました"
+
+msgid "importSucceededMessage"
+msgstr "インポート中にエラーは発生しませんでした。"
+
+msgid "importSucceededMessage_help"
+msgstr "インポート中にエラーは発生しませんでした。"
+
+msgid "importStatus"
+msgstr "インポートの状態"
+
+msgid "progressField"
+msgstr "進行状況"
+
+msgid "progressField_help"
+msgstr "インポートの進行状況です。"
+
+msgid "status"
+msgstr "状態"
+
+msgid "status_help"
+msgstr "インポートの現在の状態です。"
+
+msgid "creatingUsers"
+msgstr "ユーザを追加しています （[[VAR.pos]]/[[VAR.max]]）"
+
+msgid "intname"
+msgstr "ユーザ名"
+
+msgid "intfullName"
+msgstr "氏名"
+
+msgid "intpassword"
+msgstr "パスワード"
+
+msgid "intaliases"
+msgstr "電子メールエイリアス"
+
+msgid "importChanger"
+msgstr "インポート方法の選択..."
+
+msgid "importChangerFile"
+msgstr "ファイルをインポートする"

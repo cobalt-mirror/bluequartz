@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<STYLE TYPE="text/css">
+<!--
+BIG {font-size:14pt;}
+STRONG {color:#990000;font-size:14pt;}
+SMALL {background-color:#000099;color:#FFFFFF;font-size:10pt;font-weight:bold;text-decoration:none;}
+-->
+</STYLE>
+</HEAD>
+<BODY BACKGROUND="/libImage/blocksTile.gif" onResize="if(navigator.appName == 'Netscape') location.reload()">
+
+<!-- CSS check -->
+<DIV ID="checkCss" STYLE="position:absolute"></DIV>
+<SCRIPT LANGUAGE="javascript">
+cssEnabled = false;
+if(document.layers && document.checkCss != null)
+  cssEnabled = true;
+if(document.all && checkCss != null)
+  cssEnabled = true;
+if(document.getElementById && document.getElementById != null)
+  cssEnabled = true;
+</SCRIPT>
+
+<!-- cookie check -->
+<SCRIPT LANGUAGE="javascript">
+cookieEnabled = false;
+var cookie = "cookieSupport=true";
+document.cookie = cookie;
+if(document.cookie.indexOf(cookie) != -1)
+  cookieEnabled = true;
+</SCRIPT>
+
+<!-- SSL check -->
+<SCRIPT LANGUAGE="javascript">
+sslEnabled = false;
+/*
+sslEnabled = true;
+var name = navigator.appName;
+var version = navigator.appVersion;
+// no SSL for IE on Mac
+if(name.indexOf("Microsoft") != -1 && version.indexOf("Mac") != -1)
+  sslEnabled = false;
+*/
+</SCRIPT>
+
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="80%">
+  <TR>
+    <TD><IMG SRC="/libImage/splashGeneral.jpg" ALT=" " WIDTH="368" HEIGHT="337"></TD>
+    <TD VALIGN="BOTTOM">
+      <SCRIPT LANGUAGE="javascript">
+	if(!cssEnabled) {
+	  <!-- locale-sensitive -->
+	  document.write("<FONT SIZE=\"+1\" COLOR=\"#990000\">ご使用のブラウザで Cascading Style Sheets 機能を有効にし、このページを更新してから、ログイン操作を行ってください。</FONT>");
+	} else if(!cookieEnabled) {
+	  <!-- locale-sensitive -->
+	  document.write("<STRONG>ご使用のブラウザで Cookie 機能を有効にし、このページを更新してから、ログイン操作を行ってください。</STRONG>");
+	} else {
+	  <!-- locale-sensitive -->
+	  document.write("<BIG>Sun Cobalt Qube 550 をご利用頂きまして誠にありがとうございます!  ほんの数分間で、電子メール、ウェブ、ファイル共有などのネットワーク機能を立ち上げることができます。</BIG>");
+
+	  var action = sslEnabled ? "https://"+location.hostname+":81/loginHandler.php" : "http://"+location.hostname+":444/loginHandler.php";
+
+	  document.write("<FORM ACTION=\""+action+"\" ENCTYPE=\"application/x-www-form-urlencoded\" METHOD=\"POST\" NAME=\"form\" onSubmit=\"this.timeStamp.value = (new Date()).getTime(); return true;\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"timeStamp\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"target\" VALUE=\"/nav/flow.php?root=base_wizardLocale\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"fallback\" VALUE=\"/login.php?target=/nav/flow.php?root=base_wizardLocale\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginName\" VALUE=\"admin\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginPassword\" VALUE=\"admin\">");
+	  <!-- locale-sensitive -->
+	  document.write("<DIV ALIGN=\"right\"><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><IMG BORDER=\"0\" SRC=\"/libImage/buttonLeftDot.gif\"></A></TD><TD NOWRAP BGCOLOR=\"#000099\"><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><SMALL>開始</SMALL></A></TD><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit(); \"><IMG BORDER=\"0\" SRC=\"/libImage/buttonRight.gif\"></A></TD></TR></TABLE>&nbsp;&nbsp;&nbsp;&nbsp;</DIV>");
+	  document.write("</FORM>");
+	}
+      </SCRIPT>
+      <NOSCRIPT>
+	<!-- locale-sensitive -->
+	<STRONG>ご使用のブラウザで JavaScript 機能を有効にし、このページを更新してから、ログイン操作を行ってください。</STRONG>
+      </NOSCRIPT>
+    </TD>
+  </TR>
+</TABLE>
+</CENTER>
+
+</BODY>
+</HTML>

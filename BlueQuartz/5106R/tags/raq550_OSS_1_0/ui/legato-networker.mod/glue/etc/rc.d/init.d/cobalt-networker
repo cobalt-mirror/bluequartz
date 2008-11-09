@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# chkconfig: 2345 95 05
+# description:	This shell script takes care of starting and stopping
+#		networker clients for RedHat based Linux machines.
+#
+# note that this will have to change if a server (nsrd) is added.
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+NSRDIR=/usr/sbin
+
+[ -f ${NSRDIR}/nsrexecd ] || exit 0
+
+# See how we were called.
+case "$1" in
+	start)
+		# Start daemons.
+		echo -n "Starting Legato NetWorker: "
+		daemon ${NSRDIR}/nsrexecd -f /nsr/res/servers
+		echo
+		;;
+	stop)
+		# Stop daemons.
+		echo -n "Shutting down Legato NetWorker: "
+		killproc nsrexecd
+		echo
+		;;
+
+	restart)
+		$0 stop
+		$0 start
+		;;
+
+ 	status)
+		status nsrexecd
+		;;
+ 
+	*)
+		echo "Usage: named {start|stop|restart|status}"
+		exit 1
+esac
+
+exit 0

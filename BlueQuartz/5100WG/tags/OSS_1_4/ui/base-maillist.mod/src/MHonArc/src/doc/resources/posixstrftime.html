@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>MHonArc Resources: POSIXSTRFTIME</title>
+</head>
+<body>
+
+<address>
+<a href="../resources.html#posixstrftime">MHonArc Resource List</a><br>
+</address>
+
+<hr>
+<h1>POSIXSTRFTIME</h1>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Syntax</h2>
+
+<dl>
+
+<dt><strong>Envariable</strong><dt>
+<dd><p>
+<code>M2H_POSIXSTRFTIME=</code>[ <code>0</code> | <code>1</code> ]
+</p>
+</dd>
+
+<dt><strong>Element</strong><dt>
+<dd><p><br>
+<code>&lt;POSIXSTRFTIME&gt;</code><br>
+<code>&lt;NOPOSIXSTRFTIME&gt;</code><br>
+</p>
+</dd>
+
+<dt><strong>Command-line Option</strong><dt>
+<dd><p><br>
+<code>-posixstrftime </code><br>
+<code>-noposixstrftime </code>
+</p>
+</dd>
+
+</dl>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Description</h2>
+
+<p>If POSIXSTRFTIME is set, then <b><tt>POSIX::strftime()</tt></b>
+is used to process time format strings as defined by the
+<a href="gmtdatefmt.html">GMTDATEFMT</a>,
+<a href="localdatefmt.html">LOCALDATEFMT</a>,
+<a href="msggmtdatefmt.html">MSGGMTDATEFMT</a>, and
+<a href="msglocaldatefmt.html">MSGLOCALDATEFMT</a> resources.
+If <b><tt>POSIX::strftime()</tt></b> is used, the resources
+<a href="months.html">MONTHS</a>,
+<a href="monthsabr.html">MONTHSABR</a>,
+<a href="weekdays.html">WEEKDAYS</a>, and
+<a href="weekdaysabr.html">WEEKDAYSABR</a> will have no
+effect.  Month names and weekday names will be determined
+by your systems locale.  See your system's manual page on
+<b><tt>strftime()</tt></b> for more information.
+</p>
+
+<p>If not set (the default), time format strings are processed
+by MHonArc specific code.  A reason to activate POSIXSTRFTIME is
+if your system's <b><tt>strftime()</tt></b> supports conversion
+specifications you require which are not supported by MHonArc.
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Default Setting</h2>
+
+<p>Off.
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Resource Variables</h2>
+
+<p>N/A
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Examples</h2>
+
+<p>None.
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Version</h2>
+
+<p>2.4.3
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>See Also</h2>
+
+<p>
+<a href="gmtdatefmt.html">GMTDATEFMT</a>,
+<a href="localdatefmt.html">LOCALDATEFMT</a>,
+<a href="msggmtdatefmt.html">MSGGMTDATEFMT</a>,
+<a href="msglocaldatefmt.html">MSGLOCALDATEFMT</a>
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<address>
+99/10/01 01:19:27<br>
+<img align="top" src="../monicon.gif" alt="">
+<a href="http://www.pobox.com/~ehood/mhonarc.html"
+><strong>MHonArc</strong></a><br>
+Copyright &#169; 1999, <a href="http://www.pobox.com/~ehood/"
+>Earl Hood</a>, <a href="mailto:mhonarc@pobox.com"
+>mhonarc@pobox.com</a><br>
+</address>
+
+</body>
+</html>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

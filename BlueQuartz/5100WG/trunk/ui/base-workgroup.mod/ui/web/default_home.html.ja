@@ -1,0 +1,44 @@
+<HTML lang="ja">
+<HEAD>
+<!-- locale-sensitive -->
+	<TITLE>ようこそ</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=x-sjis">
+</HEAD>
+<!-- locale-sensitive -->
+<BODY BGCOLOR="#FFFFFF" LINK="#333399" ALINK="#66CC00" VLINK="#0033CC">
+	<BR>
+	<BR><BR>
+	<DIV ALIGN="center">
+	<TABLE BORDER="0" WIDTH="650">
+		<TR>
+			<TD VALIGN="top" WIDTH="387">
+				<!-- locale-sensitive -->
+				<BR>
+				<!-- locale-sensitive -->
+				<FONT SIZE="5" COLOR="#000099"><B>Sun Cobalt Qube 3 へようこそ</B></FONT>
+				<BR>
+				<BR>
+				<BR>
+				<!-- locale-sensitive -->
+				Sun Cobalt Qube は、ユーザにパワフルなコミュニケーション手段を与え、グループ業務の効率化を実現します。<BR>
+				<P>
+				<!-- locale-sensitive -->
+				Qube へログインするには、ブラウザの URL フィールドに <A HREF="/login">http://&lt;ホスト名＋ドメインネーム&gt;/login/</A> とタイプ入力してください。<BR>
+				<FONT SIZE="-1"><I>【&lt;ホスト名＋ドメインネーム&gt;は、お使いの Qube のホスト名とドメインネーム（または IP アドレス）で置き換えてください。】</I></FONT>
+				<BR>
+				<BR>
+				<BR>
+				<P>
+				<!-- locale-sensitive -->
+				<FONT SIZE="4" COLOR="#000099"><B>管理者の方へ</B></FONT><BR>
+				このページは、この Qube 3 のホームページのテンプレートです。このテンプレートページをご自分のホームページで置き換えるには、<B>/home/groups/home/web/</B> というディレクトリにホームページ用のファイルをコピーするだけで簡単に行えます。</FONT>
+			</TD>
+			
+			<TD VALIGN="top" WIDTH="263">
+				<IMG SRC="splashDefaultWeb.jpg" ALT="Qube 3" WIDTH="263" HEIGHT="263" ALIGN="right">
+			</TD>
+		</TR>
+	</TABLE>
+	</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,151 @@
+msgid "productName"
+msgstr "Cobalt Qube 3"
+
+msgid "osName"
+msgstr "SE Cobalt"
+
+msgid "osVendor"
+msgstr "Cobalt Networks"
+
+msgid "osDescription"
+msgstr 
+"[[base-carmel.osName]] es el software básico del [[base-carmel.productName]], necesario para que funcione su dispositivo servidor."
+
+msgid "loginPageTitle"
+msgstr 
+"Inicio de sesión - [[base-carmel.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr 
+"Inicio de sesión - [[VAR.hostName]]"
+
+msgid "loginNoCssMessage"
+msgstr 
+"Antes de iniciar la sesión, compruebe que su navegador admite la función de hojas de estilos en cascada."
+
+msgid "loginNoJsMessage"
+msgstr 
+"Antes de intentar iniciar la sesión, compruebe que su navegador admite la función de JavaScript."
+
+msgid "loginOkMessage"
+msgstr 
+"Para iniciar la sesión, escriba su nombre de usuario y su contraseña."
+
+msgid "loginMissingCookies"
+msgstr 
+"Antes de intentar iniciar la sesión, compruebe que su navegador admite la función de cookies."
+
+msgid "loginExpiredMessage"
+msgstr 
+"Su sesión ha caducado. Para iniciar una sesión de nuevo, escriba su nombre de usuario y su contraseña."
+
+msgid "loginAuthFailed"
+msgstr 
+"No ha especificado un nombre de usuario y/o una contraseña correctos. Inténtelo de nuevo."
+
+msgid "loginByeMessage"
+msgstr 
+"Gracias por usar el [[base-carmel.productName]]."
+
+msgid "loginPageUsername"
+msgstr 
+"Nombre de usuario:"
+
+msgid "loginPagePassword"
+msgstr 
+"Contraseña:"
+
+msgid "loginPageSecurity"
+msgstr 
+"Conexión segura:"
+
+msgid "loginPageLogin"
+msgstr 
+"Inicio de sesión"
+
+msgid "splashAdminMessage"
+msgstr 
+"Esta sección le permite realizar diversas funciones admistrativas."
+
+msgid "splashProgramsMessage"
+msgstr 
+"Acceso a los programas instalados."
+
+msgid "splashPersonalMessage"
+msgstr 
+"Información de su cuenta."
+
+msgid "thankYouMessage"
+msgstr 
+"Gracias por usar el [[base-carmel.productName]]."
+
+msgid "base-administration"
+msgstr 
+"Administración"
+
+msgid "base-administration_description"
+msgstr 
+"[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr 
+"Programas"
+
+msgid "base-programs_description"
+msgstr 
+"[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr 
+"Perfil personal"
+
+msgid "base-personalProfile_description"
+msgstr 
+"[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr 
+"Usuarios y grupos"
+
+msgid "base-usersandgroups_description"
+msgstr 
+"Configurar usuarios y grupos."
+
+msgid "base-webServices"
+msgstr 
+"Servicios web"
+
+msgid "base-webServices_description"
+msgstr 
+"Configurar servicios web."
+
+msgid "base-networkServices"
+msgstr 
+"Servicios de red"
+
+msgid "base-networkServices_description"
+msgstr 
+"Configurar servicios de red."
+
+msgid "base-system"
+msgstr 
+"Sistema"
+
+msgid "base-system_help"
+msgstr 
+"Ver y modificar la configuración del sistema."
+
+msgid "base-maintenance"
+msgstr 
+"Mantenimiento"
+
+msgid "base-maintenance_description"
+msgstr 
+"Configurar mantenimiento de los datos de los usuarios y del sistema."
+
+msgid "usageInformation"
+msgstr "Estadísticas"
+
+msgid "usageInformation_description"
+msgstr 
+"Ver información y estadísticas sobre el uso."

@@ -1,0 +1,193 @@
+
+msgid "modPrinter"
+msgstr "Modificar una impresora"
+
+msgid "printerNameExists"
+msgstr "Ya existe una impresora con el nombre [[VAR.name]].  Seleccione un nombre nuevo."
+
+msgid "printing"
+msgstr "Impresión"
+
+msgid "spooling"
+msgstr "Puesta en cola"
+
+msgid "jobs"
+msgstr "Trabajos"
+
+msgid "enabled"
+msgstr "Habilitado"
+
+msgid "disabled"
+msgstr "Desactivado"
+
+msgid "addPrinter_help"
+msgstr "Haga clic aquí para agregar una impresora a la configuración existente."
+
+msgid "addNewPrinter" 
+msgstr "Agregar una impresora"
+
+msgid "printerNameField"
+msgstr "Nombre"
+
+msgid "printerNameField_help"
+msgstr "Escriba un nombre para la impresora, que también será el nombre de la cola de impresión del servidor, en el caso de que proceda."
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "Seleccione este elemento si la impresora está conectada a través de un puerto USB."
+
+msgid "network"
+msgstr "Red"
+
+msgid "network_help"
+msgstr "Seleccione este elemento si la impresora está conectada a través de la red."
+
+msgid "printerHostNameField"
+msgstr "Nombre de sistema"
+
+msgid "printerHostNameField_help"
+msgstr "Introduzca el nombre del sistema o la dirección IP de la impresora remota"
+
+msgid "printerSpoolField"
+msgstr "Nombre de cola"
+
+msgid "printerSpoolField_help"
+msgstr "Introduzca el nombre de la cola en la que se va a imprimir en la impresora remota. Si no conoce el nombre de cola o la impresora no tiene ningún nombre de cola, deje este campo en blanco."
+
+msgid "locationField"
+msgstr "Tipo de conexión"
+
+msgid "locationField_help"
+msgstr "Seleccione el tipo de conexión que el servidor tiene a esta impresora."
+
+msgid "ppdFileField"
+msgstr "Archivo PPD"
+
+msgid "ppdFileField_help"
+msgstr "Para que los equipos puedan imprimir con esta impresora mediante AppleShare, se debe cargar un archivo PPD en este servidor.  El archivo PPD se encuentra por lo general en un disco que se suministra con la impresora."
+
+msgid "printserver"
+msgstr "Servidor de impresión"
+
+msgid "printserver_help"
+msgstr "En este punto es posible cambiar la configuración del servidor de impresión."
+
+msgid "printserverSettings"
+msgstr "Configuración del servidor de impresión"
+
+msgid "enableServersField"
+msgstr "Habilitar"
+
+msgid "enableServersField_help"
+msgstr "Activa o desactiva el funcionamiento del servidor de impresión. La activación de esta función permite que esta aplicación de servidor actúe como un servidor de impresión para sí mismo y para sus clientes."
+
+msgid "basic"
+msgstr "Básica"
+
+msgid "basic_help"
+msgstr "En este punto es posible definir la configuración básica del servidor de impresión."
+
+msgid "advanced"
+msgstr "Avanzada"
+
+msgid "advanced_help"
+msgstr "En este punto es posible realizar una configuración avanzada del servidor de impresión, como puede ser la activación o desactivación de la compatibilidad de éste con plataformas específicas."
+
+msgid "printerListButton"
+msgstr "Administrar impresoras"
+
+msgid "printerListButton_help"
+msgstr "Agregar impresoras, eliminar impresoras y gestionar colas de impresión"
+
+msgid "enableAppleshareField"
+msgstr "Activar la impresión Apple"
+
+msgid "enableAppleshareField_help"
+msgstr "Haga clic aquí para activar el uso compartido de impresoras en una red basada en Appleshare."
+
+msgid "enableSambaField"
+msgstr "Activar la impresión en Windows"
+
+msgid "enableSambaField_help"
+msgstr "Haga clic aquí para activar el uso compartido de impresoras en una red de Windows."
+
+msgid "printerList"
+msgstr "Impresoras disponibles"
+
+msgid "name"
+msgstr "Nombre"
+
+msgid "name_help"
+msgstr "Nombre de la impresora"
+
+msgid "status"
+msgstr "Estado"
+
+msgid "status_help"
+msgstr "Estado de la impresora"
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Modificar o eliminar una impresora"
+
+msgid "jobList"
+msgstr "Trabajos de impresión actuales - [[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "Borrar la cola de impresión"
+
+msgid "clearQueue_help"
+msgstr "Borra todos los trabajos de impresión actuales de esta impresora."
+
+msgid "suspendPrinter"
+msgstr "Suspender impresión."
+
+msgid "suspendPrinter_help"
+msgstr "Suspende la impresión con esta impresora.  Los nuevos trabajos se colocan en la cola de impresión, pero no se imprime nada."
+
+msgid "unsuspendPrinter"
+msgstr "Reanudar impresión."
+
+msgid "unsuspendPrinter_help"
+msgstr "Reanuda la impresión con esta impresora."
+
+msgid "owner"
+msgstr "Propietario"
+
+msgid "owner_help"
+msgstr "El usuario que ha enviado este trabajo de impresión."
+
+msgid "size"
+msgstr "Tamaño"
+
+msgid "size_help"
+msgstr "El tamaño del trabajo de impresión."
+
+msgid "date"
+msgstr "Tiempo enviado"
+
+msgid "date_help"
+msgstr "Tiempo enviado"
+
+msgid "listAction"
+msgstr "Eliminar"
+
+msgid "listAction_help"
+msgstr "Elimina un trabajo."
+
+msgid "removePrinterConfirm"
+msgstr "¿Seguro que desea eliminar la impresora '[[VAR.printerName]]'?"
+ 
+msgid "removeJobConfirm"
+msgstr "¿Seguro que desea suprimir el trabajo propiedad de '[[VAR.jobName]]'?"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "Administrar servidor de impresión"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "Este derecho administrativo permite que un usuario administre todos los aspectos de la red y de la cola USB tal como se han configurado en la ficha Servidor de impresión."

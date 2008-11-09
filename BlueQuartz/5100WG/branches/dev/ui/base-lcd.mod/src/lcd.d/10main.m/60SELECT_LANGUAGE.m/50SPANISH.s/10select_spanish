@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: 10select_spanish 201 2003-07-18 19:11:07Z will $
+# Sets locale auto-negotiation order
+
+use POSIX;
+use I18n;
+
+my $ret = I18n::i18n_setSystemLocale('es');
+exit $ret;
+

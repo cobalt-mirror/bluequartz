@@ -1,0 +1,123 @@
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "osName"
+msgstr "Sun Cobalt OS"
+
+msgid "osVendor"
+msgstr "Sun Cobalt"
+
+msgid "osDescription"
+msgstr "[[base-carmel.osName]]是[[base-carmel.productName]]的基本软件。为使您的服务器设备正常运行，必须有此软件包。"
+
+msgid "loginPageTitle"
+msgstr "登录 - [[base-carmel.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "登录 - [[VAR.hostName]]"
+
+msgid "loginNoCssMessage"
+msgstr "在尝试登录之前，请检验您的浏览器是否支持层叠样式表功能。"
+
+msgid "loginNoJsMessage"
+msgstr "在尝试登录之前，请检验您的浏览器支持 JavaScript 功能。"
+
+msgid "loginOkMessage"
+msgstr "若要登录，请输入您的用户名和口令。"
+
+msgid "loginMissingCookies"
+msgstr "在尝试登录之前，请检验您的浏览器支持 cookie 功能。"
+
+msgid "loginExpiredMessage"
+msgstr "您的登录会话已经终止。若要重新登录，请输入您的用户名和口令。"
+
+msgid "loginAuthFailed"
+msgstr "您输入的用户名和口令不正确。请重试。"
+
+msgid "loginByeMessage"
+msgstr "谢谢您使用[[base-carmel.productName]]。"
+
+msgid "loginPageUsername"
+msgstr "用户名："
+
+msgid "loginPagePassword"
+msgstr "口令："
+
+msgid "loginPageSecurity"
+msgstr "安全连接："
+
+msgid "loginPageLogin"
+msgstr "登录"
+
+msgid "splashAdminMessage"
+msgstr "管理部分允许您执行各种管理任务。"
+
+msgid "splashProgramsMessage"
+msgstr "程序部分允许您访问当前安装的程序。"
+
+msgid "splashPersonalMessage"
+msgstr "个人档案部分允许您查看用户帐户信息。"
+
+msgid "thankYouMessage"
+msgstr "谢谢您使用[[base-carmel.productName]]。"
+
+msgid "base-administration"
+msgstr "管理"
+
+msgid "base-administration_description"
+msgstr "[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr "程序"
+
+msgid "base-programs_description"
+msgstr "[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr "个人档案"
+
+msgid "base-personalProfile_description"
+msgstr "[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr "用户和组"
+
+msgid "base-usersandgroups_description"
+msgstr "用户和组可在此处配置。"
+
+msgid "base-webServices"
+msgstr "Web"
+
+msgid "base-webServices_description"
+msgstr "Web 服务可在此处配置。"
+
+msgid "base-networkServices"
+msgstr "网络"
+
+msgid "base-networkServices_description"
+msgstr "网络服务可在此处配置。"
+
+msgid "base-security"
+msgstr "安全"
+
+msgid "base-security_description"
+msgstr "关于您服务器设备安全方面的服务可在此处配置。"
+
+msgid "base-system"
+msgstr "系统"
+
+msgid "base-system_help"
+msgstr "系统设置可在此处查看和配置。"
+
+msgid "base-maintenance"
+msgstr "维护"
+
+msgid "base-maintenance_description"
+msgstr "系统和用户数据维护活动可在此处配置。"
+
+msgid "usageInformation"
+msgstr "利用率信息"
+
+msgid "usageInformation_description"
+msgstr "利用率统计和信息可在此处查看。"
+

@@ -1,0 +1,96 @@
+##CUSTOM-PREAMBLE##
+<?php
+  global $WizHostNameField;
+  global $WizDomainNameField;
+  global $WizDnsAddressesField;
+  global $WizConnectionTypeField;
+?>
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='5c'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<input type='hidden' name='WizPreviousPage' value='5'>
+		<input type='hidden' name='WizHostNameField' value='<?php print $WizHostNameField; ?>'>
+		<input type='hidden' name='WizDomainNameField' value='<?php print $WizDomainNameField; ?>'>
+		<input type='hidden' name='WizDnsAddressesField' value='<?php print $WizDnsAddressesField; ?>'>
+		<input type='hidden' name='WizConnectionTypeField' value='<?php print $WizConnectionTypeField; ?>'>
+		<div class="Setting-Description">
+			<font color="#000011">Your Analog Modem or ISDN Connection should be connected the serial port on your Qube. Please enter the appropriate configuration settings which you should obtain from your ISP.</font></div>
+		<br>
+		<div class="Setting-Label">
+			<table width="507" border="0" cellspacing="0" cellpadding="2">
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">Connection Mode:</div>
+					</td>
+					<td valign="top"><SELECT  name="WizModemConnectionMode" id="connModeField" size="1">
+							<OPTION value="demand" ><?php print $i18n->getHTML("demand"); ?></OPTION>
+
+							<OPTION value="on" ><?php print $i18n->getHTML("on"); ?></OPTION>
+
+							<OPTION value="off" SELECTED><?php print $i18n->getHTML("off"); ?></OPTION>
+						</SELECT></td>
+				</tr>
+				<tr>
+					<td width="114"></td>
+					<td valign="top"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							Account Name:</div>
+					</td>
+					<td valign="top"><INPUT type="text" name="WizModemAccountNameField" value="" size="20" maxlength="15"></td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">Password:</div></td>
+					<td valign="top"><INPUT type="password" name="WizModemPasswordField" value="" size="20" maxlength="256"></td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							Phone Number:</div>
+					</td>
+					<td valign="top"><INPUT TYPE="TEXT" NAME="WizModemPhoneNumberField" VALUE="" SIZE="20" MAXLENGTH="15"></td>
+				</tr>
+				<tr>
+					<td width="114"></td>
+					<td valign="top">
+						<table width="100%" border="0" cellspacing="0" cellpadding="2">
+							<tr>
+								<td width="20">
+									<INPUT type="checkbox" name="WizModemPulseField" value="true">
+								</td>
+								<td>
+									<div class="Setting-Label">
+										Use Pulse Dialing</div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="114">
+					<div class="Setting-Label" align="right">
+							Modem Initialization String:</div></td>
+					<td><INPUT type="text" name="WizModemInitStringField" VALUE="ATZ" SIZE="20"></td>
+				</tr>
+				<tr>
+					<td valign="top" width="114"></td>
+					<td valign="top"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">Local IP Address:</div>
+					</td>
+					<td valign="top">
+						<div class="Setting-Info-Text">
+							<INPUT TYPE="TEXT" NAME="WizModemLocalIpField" VALUE="" SIZE="20" MAXLENGTH="15"> (optional)</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+

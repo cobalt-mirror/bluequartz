@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+
+use lib qw( /usr/sausalito/perl );
+use CCE;
+$cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $oid = $cce->event_oid();
+
+my (@chains) = $cce->find("FirewallChain", { "rules" => $oid } );
+# delete all instances of rule from all chains:
+foreach my $chain_oid (@chains) {
+  my ($ok, $chain) = $cce->get($chain_oid);
+  if ($ok) {
+    # remove link from chain:
+    my @r = CCE->scalar_to_array($chain->{rules});
+    @r = grep { $_ != $oid } @r;
+    $chain->{rules} = CCE->array_to_scalar(@r);
+    # write object back to database:
+    $cce->set($chain_oid, "", $chain);
+  }
+}
+
+{
+  my (@oids) = $cce->find("System");
+  $cce->set($oids[0], "Firewall", { 'dirty' => 1 });
+}
+
+$cce->bye("SUCCESS");

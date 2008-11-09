@@ -1,0 +1,6 @@
+/var/log/backup.log {
+	missingok
+	compress
+	rotate 1
+	size 5M
+}

@@ -1,0 +1,4 @@
+<class name="System" namespace="AutoUpdate" version="1.0">
+	<!-- set to the time to start an autoupdate  -->
+	<property name="run" type="int" default="0"/>
+</class>

@@ -1,0 +1,10 @@
+<class name="Bandwidth" namespace="" version="1.0"
+ 	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+	
+	<property name="bwlimit" type="int"
+				 writeacl="ruleCapable(adminUser)"/>
+
+	<property name="ipaddr" type="ipaddr"
+				 writeacl="ruleCapable(adminUser)"/>
+</class>
+

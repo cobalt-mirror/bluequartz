@@ -1,0 +1,199 @@
+<typedef 
+	name="emailQueueTime" 
+	type="re" 
+	data="(immediate|quarter-hourly|half-hourly|hourly|quarter-daily|daily)"/>
+
+<typedef name="mail_alias" type="re" data="^[a-z0-9_\-][a-z0-9_\.\-]*$" />
+
+<typedef 
+  name="fq_email_address" 
+  type="re" 
+  data="^[a-zA-Z0-9\\._-]+\@[a-zA-Z0-9\\._-]+$"
+  errmsg = "[[base-email.bad_blockUserField]]"
+/>
+
+<class 
+    name="UserServices" namespace="APOP" version="1.0"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+	<property name="featureEnabled" type="boolean" default="1"/>
+
+	<!-- the default properties for this service used in creating Users -->
+	<!-- Require Authenticated POP for the user? -->
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteUserDefaults )"
+    />
+</class>
+
+<class
+    name="User" namespace="APOP" version="1.0"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleModifyUser"
+    />
+
+	<!-- 
+    this is the password stored in the APOP database.
+	without storing this version, you must enter the password any time
+	you enable APOP for a user. and worse, without being able to
+	set properties in multiple namespaces at once, you would have to
+	allow a set to User.Email.apop and hope that someone then resets the
+	password so that the change actually gets made to the APOP database 
+    -->
+	<property 
+        name="apop_password" type="scalar" 
+        readacl="ruleSelf" writeacl="ruleSelf OR ruleModifyUser"
+        optional="true"
+    />
+</class>
+
+<class 
+    name="User" namespace="Email" version="1.1"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+	<property 
+        name="aliases" type="mail_alias" array="yes"
+        writeacl="ruleSelf OR ruleModifyUser"
+    	/>
+
+	<property 
+		name="forwardEnable" 
+		type="boolean" 
+		readacl="ruleSelf OR ruleModifyUser"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default="0"
+	/>
+	<property
+		name="forwardSave"
+		type="boolean"
+		readacl="ruleSelf OR ruleModifyUser"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default="0"
+	/>
+	<property 
+		name="forwardEmail" 
+		type="scalar" 
+		readacl="ruleSelf OR ruleModifyUser"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default=""
+		array="yes"
+		/>
+	<property 
+		name="vacationOn" 
+		type="boolean" 
+		readacl="ruleSelf OR ruleModifyUser"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default="0"/>
+	<property 
+		name="vacationMsg" 
+		type="scalar" 
+		readacl="ruleSelf OR ruleModifyUser"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default=""/>
+</class>
+
+<class 
+    name="VsiteServices" namespace="APOP" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+	<property name="featureEnabled" type="boolean" default="1"/>
+
+    <property 
+        name="i18nName" type="scalar" 
+        default="[[base-email.apopEnabled]]"
+    />
+
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+</class>
+
+<class 
+    name="Vsite" namespace="APOP" version="1.0"
+    createacl="ruleCapable(modifyEmail)" destroyacl="ruleCapable(modifyEmail)"
+>
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+</class>
+
+<class name="System" namespace="Email" version="1.0"
+	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+	<property 
+        name="enableSMTP" type="boolean" default="1"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="enableImap" type="boolean" default="1"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+        <property
+        name="imapConnectRate" type="int" default="1024"
+        writeacl="ruleCapable(modifyFtp)"
+    />
+	<property 
+        name="enablePop" type="boolean" default="1"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+        <property
+        name="popConnectRate" type="int" default="80"
+        writeacl="ruleCapable(modifyFtp)"
+    />
+	<property 
+        name="popRelay" type="boolean" default="0"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="relayFor" type="hostname" array="yes" 
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="acceptForDomain" type="boolean" default="0"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="acceptFor" type="hostname" array="yes"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="deniedHosts" type="hostname" array="yes" 
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="deniedUsers" type="fq_email_address" array="yes" 
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="routes" type="hostname" array="yes" 
+        writeacl="ruleCapable(modifyEmail)"
+    />
+
+	<property 
+        name="queueTime" type="emailQueueTime" 
+        default="immediate" optional="true"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="masqAddress" type="hostname" optional="true"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="smartRelay" type="hostname" optional="true"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="privacy" type="boolean" default="1"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+	<property 
+        name="maxMessageSize" type="int" optional="true"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+</class>
+

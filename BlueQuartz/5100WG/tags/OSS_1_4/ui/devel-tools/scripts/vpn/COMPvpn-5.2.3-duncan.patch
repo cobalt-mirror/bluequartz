@@ -1,0 +1,176 @@
+diff -ruN COMPvpn-5.2.3.pristine/Makefile COMPvpn-5.2.3/Makefile
+--- COMPvpn-5.2.3.pristine/Makefile	Wed Dec 31 17:00:00 1969
++++ COMPvpn-5.2.3/Makefile	Tue May  7 15:04:56 2002
+@@ -0,0 +1,26 @@
++
++DESTDIR = 
++PREFIX	= /usr
++KERNEL	= $(PREFIX)/src/linux
++KVER	= `uname -r`
++CC	= gcc
++
++.PHONY:	vpnmod
++vpnmod: module.o device.o vpnprocess.o wrap.o log.o
++	ld -L. -r -o $@.o $^ -lrrsrc_k -lclient_k
++
++install: vpnmod
++	install -m644 vpnmod.o $(DESTDIR)/lib/modules/$(KVER)/kernel/net
++	install -m644 vpn_config.in $(DESTDIR)/etc
++	install -m755 {open,close}_tunnel scep_app vpn_control vpn $(DESTDIR)$(PREFIX)/sbin
++	install libscep.so.1.0 $(DESTDIR)$(PREFIX)/lib
++	(cd $(DESTDIR)$(PREFIX)/lib;\
++	 ln -sf libscep.so.1.0 libscep.so.1;\
++	 ln -sf libscep.so.1.0 libscep.so;) 
++
++clean:
++	-rm -f *~ *.o
++
++.c.o:
++	$(CC) -O2 -I. -I$(KERNEL)/include -D__KERNEL__ -D__NO_VERSION__ -DLINUX -DDRIVER -c $(<F) -o $(@F)
++
+diff -ruN COMPvpn-5.2.3.pristine/stepclient.h COMPvpn-5.2.3/stepclient.h
+--- COMPvpn-5.2.3.pristine/stepclient.h	Mon Jul 30 10:04:21 2001
++++ COMPvpn-5.2.3/stepclient.h	Tue May  7 15:04:56 2002
+@@ -467,7 +467,7 @@
+ #endif
+ 
+ #include <linux/skbuff.h>
+-#include <linux/malloc.h>
++#include <linux/slab.h>
+ #include <linux/in.h>
+ 
+ /* This needs to be after the include of in.h */
+diff -ruN COMPvpn-5.2.3.pristine/vpn COMPvpn-5.2.3/vpn
+--- COMPvpn-5.2.3.pristine/vpn	Wed Dec 31 17:00:00 1969
++++ COMPvpn-5.2.3/vpn	Tue May  7 15:04:56 2002
+@@ -0,0 +1,97 @@
++#!/bin/sh
++
++DEVICE="eth0"
++TUNNEL="/usr/sbin/open_tunnel"
++OUTPUT="/etc/vpn_config"
++INPUT="/etc/vpn_config.in"
++LOG="/var/log/vpn.log"
++MODULE="vpnmod"
++VERBOSE="0"
++CONNECT="1"
++BACKGROUND="1"
++DEBUG=
++USER=
++HOST=
++PASS=
++
++function Usage {
++    let $# && echo "Error: $@!"
++    echo
++    echo "Usage: $0 -[hvnb] [-i dev] [-s host] [-u user] <password>"
++    echo "   Ex: $0 -i ppp0 -s central ffffffff"
++    echo
++    echo "       -h          print this help"
++    echo "       -v          increase debug level"
++    echo "       -n          do not connect (test config file generation)"
++    echo "       -b          do not background tunnel process"
++    echo "       -i dev      network interface"
++    echo "       -s host     vpn gateway to connect to"
++    echo "       -u user     username to connect with"
++    echo "       password    8 character password from token card"
++    echo
++    exit 0
++}
++
++test $UID -eq 0 || Usage "Must be root"
++
++while getopts ":i:o:u:s:vhnb" OPTION ; do
++  case $OPTION in
++    i) DEVICE=$OPTARG   ;;
++    h) Usage 		;;
++    v) let VERBOSE+=1	;;
++    n) CONNECT=0	;;
++    b) BACKGROUND=0	;;
++    s) HOST=$OPTARG	;;
++    u) USER=$OPTARG	;;
++  esac
++done
++
++test $OPTIND -eq $# || Usage "No password given"
++shift $[$OPTIND-1]
++PASS=$1
++
++test ${#PASS} -eq 8 || Usage "Password must be 8 characters"
++
++test -n "$USER" || {
++    USER=`sed -ne "s/^UserName = //ip" $INPUT`
++    test -n "$USER" || Usage "User not found in template"
++}
++
++test -n "$HOST" || {
++    HOST=`sed -ne "s/^IPPrimary = //ip" $INPUT`
++    test -n "$HOST" || Usage "Server not found in template"
++}
++
++egrep "^$MODULE" /proc/modules > /dev/null 2>&1 || {
++    MODPATH="/lib/modules/`uname -r`/kernel/net/${MODULE}.o"
++    test -e $MODPATH || Usage "Could not find module at $MODPATH"
++    modprobe $MODULE
++    egrep "^$MODULE" /proc/modules > /dev/null 2>&1 ||
++          Usage "Unable to load module: $MODULE"
++}
++
++egrep -v -e "^(UserName|IPPrimary|RADIUSPassword)" $INPUT > $OUTPUT
++
++cat >> $OUTPUT <<END
++IPPrimary = $HOST
++UserName = $USER
++RADIUSPassword = $PASS
++END
++
++let $CONNECT || {
++    echo "not connecting."
++    exit 0
++}
++
++let $VERBOSE && {
++    echo "Connecting to $HOST as $USER..."
++    while let VERBOSE-=1 ; do
++        DEBUG="-x $DEBUG"
++    done
++}
++
++COMMAND="$TUNNEL -d $DEVICE $DEBUG $HOST $USER"
++let $BACKGROUND \
++    && (exec nohup $COMMAND </dev/null>> $LOG 2>&1 &) \
++    || $COMMAND
++
+diff -ruN COMPvpn-5.2.3.pristine/vpn_config.in COMPvpn-5.2.3/vpn_config.in
+--- COMPvpn-5.2.3.pristine/vpn_config.in	Wed Dec 31 17:00:00 1969
++++ COMPvpn-5.2.3/vpn_config.in	Tue May  7 15:11:04 2002
+@@ -0,0 +1,17 @@
++[VPN Partner Aliases]
++sfbay = 192.18.42.74
++central = 192.18.98.200
++
++[VPN User]
++UserName = ________@vpn
++IPPrimary = sfbay
++IPSecondary = central
++LoginMethod = Shared Key
++NetBTEnabled = True
++ExcludeLocalLAN = True
++ExcludeDHCP = True
++IPEnabled = True
++UseFTCP = True
++SharedKey = vpn4sun
++PAPAuthSecret = vpn4sun
++
+diff -ruN COMPvpn-5.2.3.pristine/vpnprocess.c COMPvpn-5.2.3/vpnprocess.c
+--- COMPvpn-5.2.3.pristine/vpnprocess.c	Thu Dec 27 15:47:52 2001
++++ COMPvpn-5.2.3/vpnprocess.c	Tue May  7 15:04:56 2002
+@@ -201,7 +201,7 @@
+ struct sk_buff *process_rx_ftcp_packet(struct sk_buff *skb, int *pass)
+ {
+ 	FTCP_PKT_TYPE ftcp_type;
+-	ulong id_info;
++	uint32_t id_info;
+ 	byte auth_type;
+ 	struct iphdr *ipp = (struct iphdr *) skb->data;
+ 	STEP_SA *sa_p;

@@ -1,0 +1,57 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftp_help"
+msgstr "[[base-ftp.ftpSettings]]."
+
+msgid "ftpSettings"
+msgstr "Configuración del protocolo de transferencia de archivos (FTP)"
+
+msgid "enableServerField"
+msgstr "Habilitar servidor"
+
+msgid "enableServerField_help"
+msgstr "Activar o desactivar la función FTP (protocolo de transferencia de archivos). El acceso FTP anónimo se configura en [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Número máximo de usuarios simultáneos"
+
+msgid "maxUserField_rule"
+msgstr "Escribir un número entero entre 1 y 1024. El valor predeterminado es 25."
+
+msgid "maxUserField_help"
+msgstr "Definir el número máximo de usuarios simultáneos del servidor FTP. [[base-ftp.maxUserField_rule]]"
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "Servidor FTP"
+
+msgid "amDetailsTitle"
+msgstr "Detalles del servidor FTP"
+
+msgid "amNotResponding"
+msgstr "El servidor FTP no se está ejecutando."
+
+msgid "base-ftp.amBadResponse"
+msgstr "El servidor FTP dio una respuesta errónea."
+
+msgid "amStatusOK"
+msgstr "El servidor FTP funciona normalmente."
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "Si se han eliminado o modificado manualmente los archivos de configuración del servidor, restaurar las versiones originales e intentar de nuevo."
+
+msgid "cantConfigFile"
+msgstr "Error al intentar modificar los archivos de configuración FTP. [[base-ftp.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminFtpServer"
+msgstr "Administrar configuración del servidor FTP"
+
+msgid "capgroup_adminFtpServer_help"
+msgstr "Este derecho administrativo permite que un usuario administre la configuración utilizada por el servidor ftp de esta máquina."

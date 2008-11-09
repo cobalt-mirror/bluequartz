@@ -1,0 +1,3 @@
+# Check the disk quotas and send email notices if necessary
+# Do this every night at 11:30 PM
+30 23 * * *	root	/usr/sausalito/sbin/get_quota_stats.pl -m >/dev/null 2>/dev/null

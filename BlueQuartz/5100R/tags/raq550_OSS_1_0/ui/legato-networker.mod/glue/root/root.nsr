@@ -1,0 +1,24 @@
+<< / >>
+        skip: tmp_mnt
+        +skip: core
+	+quotaasm: quota.user quota.group
+<< /tmp >>
+        skip: .?* *
+<< /nsr >>
+        allow
+<< /nsr/logs >>
+        logasm: .
+<< /etc/httpd/logs >>
+	logasm: .
+<< /etc/admserv/logs >>
+	logasm: .
+<< /var >>
+        +logasm: .
+<< /var/spool/mail >>
+        mailasm: .
+<< /dev >>
+	+skip: .
+<< /mnt >>
+	+skip: .
+<< /proc >>
+	+skip: .

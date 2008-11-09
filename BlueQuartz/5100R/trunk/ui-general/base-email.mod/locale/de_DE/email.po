@@ -1,0 +1,420 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: email.po\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-27 09:18+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "CFaccessDenied"
+msgstr "Zugriff verweigert"
+
+msgid "CFauthNotAllowed"
+msgstr " darf nicht als fungieren "
+
+msgid "CFcolonInHostname"
+msgstr "Doppelpunkt im Hostnamen ist nicht zuässig"
+
+msgid "CFdomainRequired"
+msgstr "Domänenname erforderlich"
+
+msgid "CFinvalidHostname"
+msgstr "Ungültiger Hostname"
+
+msgid "CFinvalidListSyntax"
+msgstr "List:; Syntax unzulässig für Empfängeradressen"
+
+msgid "CFnotAuthenticated"
+msgstr "nicht zugriffsberechtigt"
+
+msgid "CFrealDomainRequired"
+msgstr "Echter Domänenname erforderlich"
+
+msgid "CFrelayDenied"
+msgstr "Weiterleitung abgelehnt. Bitte versuchen Sie, erneut Emails zu empfangen bevor Sie erneut den Postversand versuchen. Oder starten Sie Ihr Email-Programm neu."
+
+msgid "CFrelayDeniedFailed"
+msgstr "Weiterleitung abgelehnt. IP-Adresse konnte nicht aufgelößt werden."
+
+msgid "CFrelayDeniedForged"
+msgstr "Weiterleitung abgelehnt. IP-Adresse möglicherweise gefälscht."
+
+msgid "CFrelayDeniedTemp"
+msgstr "Weiterleitung vorrübergehend abgelehnt. Konnte den PTR (Reverse) Record für die Client-Adresse nicht auflösen."
+
+msgid "CFsenderDomainNoexist"
+msgstr "Domäne des Absenders existiert nicht"
+
+msgid "CFuserAddressRequired"
+msgstr "Benutzeradresse erforderlich"
+
+msgid "IMAP"
+msgstr "IMAP Dienst"
+
+msgid "POP"
+msgstr "POP Dienst"
+
+msgid "SMTP"
+msgstr "SMTP Dienst"
+
+msgid "advanced"
+msgstr "Erweitert"
+
+msgid "advanced_help"
+msgstr "Hier können Sie erweiterte [[base-email.emailSettings]] wie z.B. den Übertragungszeitplan und die maximal erlaubte E-Mail-Größe konfigurieren."
+
+msgid "aliasInUse"
+msgstr "Der E-Mail-Aliasname [[VAR.name]] wird auf diesem System bereits verwendet. Bitte wählen Sie einen anderen Namen aus."
+
+msgid "amEmailGreen"
+msgstr "Der Mailserver funktioniert einwandfrei."
+
+msgid "amEmailNameTag"
+msgstr "Mailserver"
+
+msgid "amEmailRed"
+msgstr "Der Mailserver meldet ein schwerwiegendes Problem."
+
+msgid "amEmailYellow"
+msgstr "Der Mailserver meldet ein Problem."
+
+msgid "amIMAPBadResponse"
+msgstr "Der IMAP-Server reagiert nicht erwartungsgemäß."
+
+msgid "amIMAPDetails"
+msgstr "Status des Internet Message Access Protocol (IMAP) Servers"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP Server"
+
+msgid "amIMAPNotRunning"
+msgstr "Der IMAP-Server läuft nicht und konnte nicht neu gestartet werden. Bitte versuchen Sie, den IMAP-Server manuell neu zu starten."
+
+msgid "amIMAPStatusOK"
+msgstr "Der IMAP-Server funktioniert einwandfrei."
+
+msgid "amPOP3BadResponse"
+msgstr "Der POP-Server reagiert nicht erwartungsgemäß."
+
+msgid "amPOP3Details"
+msgstr "Status des Post Office Protocol (POP) Servers"
+
+msgid "amPOP3NameTag"
+msgstr "POP Server"
+
+msgid "amPOP3NotRunning"
+msgstr "Der POP-Server läuft nicht und konnte nicht neu gestartet werden. Bitte versuchen Sie, den POP-Server manuell neu zu starten."
+
+msgid "amPOP3StatusOK"
+msgstr "Der POP-Server funktioniert einwandfrei."
+
+msgid "amSMTPBadResponse"
+msgstr "Der SMTP-Server reagiert nicht erwartungsgemäß."
+
+msgid "amSMTPDetails"
+msgstr "Status des Simple Mail Transfer Protocol (SMTP) Server "
+
+msgid "amSMTPNameTag"
+msgstr "SMTP-Server"
+
+msgid "amSMTPNotRunning"
+msgstr "Der SMTP-Server läuft nicht und konnte nicht neu gestartet werden. Bitte versuchen Sie, den SMTP-Server manuell neu zu starten."
+
+msgid "amSMTPStatusOK"
+msgstr "Der SMTP-Server funktioniert einwandfrei."
+
+msgid "apopEnabled"
+msgstr "Authentifiziertes POP (APOP)"
+
+msgid "apopEnabled_help"
+msgstr "Authentifiziertes POP (APOP) ist für diesen Benutzer aktiviert."
+
+msgid "apopFullText"
+msgstr "APOP aktivieren"
+
+msgid "apopFullText_help"
+msgstr "Authentifiziertes POP (APOP) aktivieren."
+
+msgid "apopPwRequired"
+msgstr "Die Eingabe eines neuen Passworts ist nötig, um APOP für einen Benutzer zu aktivieren."
+
+msgid "badUser"
+msgstr "Falls die Konfigurationsdateien des Mailservers entfernt oder manuell editiert wurden, dann stellen Sie bitte die Originalversionen wieder her und versuchen Sie es noch einmal."
+
+msgid "bad_blockUserField"
+msgstr "Sie haben eine ungültige Adresse in das Feld [[base-email.blockUserField]] eingetragen. Bitte geben Sie eine korrekt formatierte Email-Adresse ein oder lassen Sie das Feld leer. "
+
+msgid "basic"
+msgstr "Dienste"
+
+msgid "basic_help"
+msgstr "Klicken Sie hier um grundlegende  [[base-email.emailSettings]] vorzunehmen und die einzelnen emailspezifischen Dienste zu aktivieren oder zu deaktivieren."
+
+msgid "blockHostField"
+msgstr "E-Mail von Hosts oder Domänen blockieren"
+
+msgid "blockHostField_help"
+msgstr "Geben Sie die Host- oder Domänennamen ein, denen es nicht gestattet wird, E-Mail an diesen Server zu senden. [[base-email.blockHostField_rule]]"
+
+msgid "blockHostField_rule"
+msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Dieses Feld ist normalerweise leer. Gültige Eingaben sind z. B. 'www.bluequartz.org' oder 'bluequartz.org'."
+
+msgid "blockUserField"
+msgstr "E-Mail von Benutzern blockieren"
+
+msgid "blockUserField_help"
+msgstr "Geben Sie die E-Mail-Adressen von Benutzern ein, denen nicht gestattet wird, E-Mail an diesen Server senden. [[base-email.blockUserField_rule]]"
+
+msgid "blockUserField_rule"
+msgstr "Bitte geben Sie eine E-Mai -Adresse im richtigen Format ein. Dieses Feld ist normalerweise leer. Eine gültige Eingabe ist z. B. 'mustermann@firma.de'"
+
+msgid "cantCreateAlias"
+msgstr "Email-Aliasse für diesen Benutzer wurden nicht angelegt."
+
+msgid "cantEditFile"
+msgstr "Leider trat beim Versuch eine Konfigurationsdatei des Mailservers zu bearbeiten ein Fehler auf. [[base-email.badUser]]"
+
+msgid "cantGetUserInfo"
+msgstr "Die Urlaubsfunktion konnte keine Benutzerinformationen von CCE abrufen."
+
+msgid "could_not_tie_apop"
+msgstr "Leider trat ein Systemfehler auf. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "Leider trat beim Versuch eine Konfigurationsdatei des Mailservers zu bearbeiten ein Fehler auf. [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "Der POP und/oder IMAP Server konnte wegen eines Systemfehlers nicht neu gestartet werden. [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "Der SMTP Server konnte wegen eines Systemfehlers nicht neu gestartet werden.  [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "Beim Versuch die Benutzertabelle des Mailservers neu zu schreiben trat ein Fehler auf. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "Beim Versuch die Konfigurationsdatei des Mailservers zu ändern trat ein Fehler auf. [[base-email.badUser]]"
+
+msgid "duplicateKeys"
+msgstr "Die Mailserver Konfigurationsdatei, die für Zugriffs- und Relayfunktionen zuständig ist, konnte nicht aktualisiert werden. Möglicherweise beinhaltet sie Doubletten von Host- oder Domänen-Namen. Oder es wurde versucht, den selben Host oder Benutzer für das Relaying freizuschalten und ihn gleichzeitig zu blockieren. Beides auf einmal ist nicht zulässig."
+
+msgid "emailServers"
+msgstr "Mailserver"
+
+msgid "emailServers_help"
+msgstr "Klicken Sie hier zur Konfiguration des[[base-email.emailServers]]."
+
+msgid "emailServers_menu"
+msgstr "Email"
+
+msgid "emailServices"
+msgstr "Email-Dienste"
+
+msgid "emailServices_help"
+msgstr "Klicken Sie hier um die [[base-email.emailServices]] zu konfigurieren."
+
+msgid "emailSettings"
+msgstr "Mailserver-Einstellungen"
+
+msgid "enableApop"
+msgstr "APOP aktivieren"
+
+msgid "enableApop_help"
+msgstr "Erlaubt es, APOP für Benutzer zu aktivieren. APOP ist eine sichere Methode der Anmeldung an einem POP3 Server. Nur wenige Email-Programme unterstützen APOP, wie z.B. Fetchmail, KMail oder Eudora."
+
+msgid "enableImapField"
+msgstr "IMAP aktivieren"
+
+msgid "enableImapField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Internet Message Access Protocol (IMAP)-Dienst. Wenn Sie diesen Dienst aktivieren, können Benutzer unter Einsatz von E-Mail-Clients, die IMAP unterstützen, E-Mail von diesem Server abrufen. Mit IMAP können Benutzer E-Mail auf dem Server speichern. Dabei ist jedoch kontinuierlicher Zugriff auf den Server erforderlich, während der Benutzer an seinen E-Mails arbeitet."
+
+msgid "enableImapsField"
+msgstr "IMAPS aktivieren"
+
+msgid "enableImapsField_help"
+msgstr "Aktivieren oder deaktivieren Sie den IMAPS-Server mit TLS/SSL Verschlüsselung. Wenn Sie diesen Dienst aktivieren, können Benutzer unter Einsatz von E-Mail-Clients, die IMAPS unterstützen, E-Mail von diesem Server abrufen. Mit IMAPS können Benutzer E-Mail auf dem Server speichern. Dabei ist jedoch kontinuierlicher Zugriff auf den Server erforderlich, während der Benutzer an seinen E-Mails arbeitet."
+
+msgid "enablePopField"
+msgstr "POP aktivieren"
+
+msgid "enablePopField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Post Office Protocol (POP)-Server. Wenn Sie diesen Dienst aktivieren, können Benutzer unter Einsatz der meisten E-Mail-Clients E-Mail von diesem Server abrufen."
+
+msgid "enablePopsField"
+msgstr "POP aktivieren"
+
+msgid "enablePopsField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Post Office Protocol (POP)-Server mit TLS/SSL Unterstützung. Wenn Sie diesen Dienst aktivieren, können Benutzer unter Einsatz der meisten E-Mail-Clients E-Mail von diesem Server abrufen."
+
+msgid "enableSMTPAuthField"
+msgstr "SMTP Auth aktivieren"
+
+msgid "enableSMTPAuthField_help"
+msgstr "Erlaubt die Aktivierung des Dienstes zur SMTP Authentifizierung. Ist dieser Dienst aktiviert, können Benutzer nur noch Emails versenden, wenn Sie sich mit ihrem Benutzernamen und Passwort am Postausgangsserver anmelden. Sie sollten diese Option aktivieren, damit Ihr Server nicht als offenes Relay misbraucht wird."
+
+msgid "enableSMTPSField"
+msgstr "SMTPS Server aktivieren"
+
+msgid "enableSMTPSField_help"
+msgstr "Erlaubt die Aktivierung des SMTP Servers mit SSL-Unterstützung."
+
+msgid "enableServersField"
+msgstr "SMTP Server aktivieren"
+
+msgid "enableServersField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Simple Mail Transfer Protocol (SMTP)-Dienst. Wenn Sie SMTP aktivieren, kann dieser Server als SMTP-Server zum Senden und Empfangen von E-Mail zwischen anderen Servern fungieren. Mit SMTP können Benutzer diesen Server auch zum Senden von E-Mail verwenden."
+
+msgid "enableSubmissionPortField"
+msgstr "Submission Port aktivieren"
+
+msgid "enableSubmissionPortField_help"
+msgstr "Aktiviert den Submission Port (587) für den alternativen Versand von Emails."
+
+msgid "imapConnectRateField"
+msgstr "Anzahl der maximal erlaubten IMAP Verbindungen"
+
+msgid "imapConnectRateField_help"
+msgstr "Anzahl der maximal pro Minute erlaubten IMAP Verbindungen. Zusätzliche Verbindungsanfragen werden bei Erreichen des Limits abgelehnt."
+
+msgid "imapConnectRateField_invalid"
+msgstr "Bitte geben Sie einen Wert ein, der innerhalb des gültigen Bereichs liegt. Der Standardwert ist 1024."
+
+msgid "imapConnectRateField_missing"
+msgstr "[[base-email.imapConnectRateField_invalid]]"
+
+msgid "masqAddressCantBeLocalhost"
+msgstr "Die erzwungene Absenderadresse darf nicht 'localhost' sein."
+
+msgid "masqAddressField"
+msgstr "Erzwungene Absenderadresse"
+
+msgid "masqAddressField_help"
+msgstr "Geben Sie einen Domänen-Namen oder IP-Adresse ein, welche die Absende-Adresse aller Emails, die durch diesen Server laufen, ersetzt. Diese Funktion nennt man auch 'Domain Masquerading'. [[base-email.masqAddressField_rule]]"
+
+msgid "masqAddressField_rule"
+msgstr "Bitte geben Sie eine richtig formatierte IP-Adresse, einen Host- oder einen Domänennamen ein. Per Vorgabe wird dieses Feld leer gelassen. Gültige Eingaben sind z. B. '192.168.1.100', 'www.bluequartz.org' oder 'bluequartz.org'."
+
+msgid "maxEmailSizeField"
+msgstr "Maximale E-Mail-Größe (MB)"
+
+msgid "maxEmailSizeField_help"
+msgstr "Stellen Sie die maximale Größee der E-Mai Nachrichten ein, die dieser Server senden oder empfangen kann. [[base-email.maxEmailSizeField_rule]]"
+
+msgid "maxEmailSizeField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl größer als '0' ein. Standardmäßig ist dieses Feld leer. Dadurch kann dieser Server E-Mail-Nachrichten jeder Größe senden und empfangen."
+
+msgid "nonExistentUser"
+msgstr "Die Weiterleitung kann nicht aktiviert werden, weil die folgenden lokalen Benutzernamen nicht vorhanden sind: [[VAR.users]]. Bitte entfernen Sie diese Benutzer von der Liste der Weiterleitungsadressen oder erstellen Sie sie, bevor Sie die Weiterleitung aktivieren."
+
+msgid "popConnectRateField"
+msgstr "Maximale Anzahl von POP Verbindungen"
+
+msgid "popConnectRateField_help"
+msgstr "[[base-email.imapConnectRateField_help]]"
+
+msgid "popConnectRateField_invalid"
+msgstr "Bitte geben Sie eine Zahl an, die innerhalb des spezifizierten Bereichs liegt. Der Standardwert ist 80."
+
+msgid "popConnectRateField_missing"
+msgstr "[[base-email.popConnectRateField_invalid]]"
+
+msgid "popRelayField"
+msgstr "POP Authentifiziertes Relaying"
+
+msgid "popRelayField_help"
+msgstr "Markieren Sie diese Option, um SMTP-Versand durch POP-Authentifizierung zu ermöglichen. Ist diese Option markiert, wird jedem Benutzer, der POP erfolgreich zur Überprüfung von E-Mail verwendet, 15 Minuten lang gestattet, mit dem SMTP-Dienst E-Mail zu senden. Diese Funktion ist veraltet und Sie sollten stattdessen SMTP-Auth verwenden."
+
+msgid "queue0"
+msgstr "Sofort"
+
+msgid "queue1440"
+msgstr "Täglich"
+
+msgid "queue15"
+msgstr "Alle 15 Minuten"
+
+msgid "queue30"
+msgstr "Alle 30 Minuten"
+
+msgid "queue360"
+msgstr "Alle 6 Stunden"
+
+msgid "queue60"
+msgstr "Stündlich"
+
+msgid "queueTimeField"
+msgstr "Übertragungszeitplan"
+
+msgid "queueTimeField_help"
+msgstr "Legen Sie fest, wie oft dieser Server versucht, E-Mail aus der Warteschlange zu übertragen. Normalerweise sollte dies auf 'Sofort' stehen, doch dafür benötigen Sie eine permanente Internetanbindung des Servers. Falls Sie keine permanente Internetanbindung des Servers haben, sollten Sie eine der anderen Methoden verwenden."
+
+msgid "receiveField"
+msgstr "Email für folgende Hosts und Domänen empfangen"
+
+msgid "receiveField_help"
+msgstr "Geben Sie die Host- oder Domänennamen ein, für die dieser Server E-Mails empfangen soll. [[base-email.receiveField_rule]]"
+
+msgid "receiveField_rule"
+msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Der Vorgabewert ist der vollqualifizierte Domänenname Ihres Servers. Gültige Eingaben sind z. B. 'www.bluequartz.org' oder 'bluequartz.org'."
+
+msgid "relayField"
+msgstr "E-Mail von Hosts/Domänen/IP-Adressen weiterleiten"
+
+msgid "relayField_help"
+msgstr "Geben Sie die vollqualifizierten Domänennamen, IP-Adressen oder Hostnamen ein, denen es erlaubt wird, ausgehende Emails über Ihren Mailserver zu verschicken. [[base-email.relayField_rule]]"
+
+msgid "relayField_rule"
+msgstr "Geben Sie eine Liste der IP-Adressen, Host- und Domänennamen ein, denen gestattet wird, E-Mails über diesen Server zu verschicken. Netzwerke können mit Nullen angegeben werden. Um z. B. das Weiterleiten für das Netzwerk '192.168.0.0' mit der Subnetzmaske '255.255.0.0' zu ermöglichen, geben Sie die Adresse '192.168.0.0' an."
+
+msgid "smartRelayField"
+msgstr "Smart Relay Server"
+
+msgid "smartRelayField_help"
+msgstr "Geben Sie den vollqualifizierten Domänennamen eines Mailservers ein, über den alle ausgehenden E-Mail-Nachrichten geleitet werden."
+
+msgid "smartRelayField_rule"
+msgstr "Bitte geben Sie einen vollqualifizierten Domänennamen im richtigen Format ein. Per Vorgabe wird dieses Feld leer gelassen. Eine gültige Eingabe ist z. B. 'bluequartz.org'."
+
+msgid "userEmail"
+msgstr "Email-Einstellungen für Benutzer"
+
+msgid "vacationSubject"
+msgstr "Automatische Antwort von"
+
+msgid "amSMTPAuthBadResponse"
+msgstr "Der SMTP-Auth Server gab eine unerwartete Rückantwort."
+
+msgid "amSMTPAuthDetails"
+msgstr "SMTP-Auth Server Status"
+
+msgid "amSMTPAuthNameTag"
+msgstr "SMTP-Auth Server"
+
+msgid "amSMTPAuthNotRunning"
+msgstr "Der SMTP-Auth Server läuft nicht und konnte nicht neu gestartet werden. Bitte versuchen Sie, den SMTP-Auth Server manuell neu zu starten."
+
+msgid "amSMTPAuthStatusOK"
+msgstr "Der SMTP-Auth Server funktioniert einwandfrei."
+
+msgid "ampopRelayBadResponse"
+msgstr "Der POP Authentifiziertes Relaying Server gab eine unerwartete Rückantwort."
+
+msgid "ampopRelayDetails"
+msgstr "POP Authenticated Relaying Status"
+
+msgid "ampopRelayNameTag"
+msgstr "POP Authenticated Relaying Dienst"
+
+msgid "ampopRelayNotRunning"
+msgstr "Der POP Authenticated Relaying Dienst läuft nicht und konnte nicht neu gestartet werden. Bitte versuchen Sie, den POP Authenticated Relaying Dienst manuell neu zu starten."
+
+msgid "ampopRelayStatusOK"
+msgstr "Der POP Authenticated Relaying Server funktioniert einwandfrei."
+

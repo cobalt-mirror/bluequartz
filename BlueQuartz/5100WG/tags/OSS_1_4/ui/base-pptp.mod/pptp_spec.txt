@@ -1,0 +1,130 @@
+PPTP -- 3wks
+----
+
+Overview
+--------
+PPTP is a technology that provides VPN solution for Windows
+95/98/NT/2000 clients via PPP connections. Through PPTP, private
+networks behind Cobalt machines on the Internet can be accessed by
+authenticated users.
+
+Required Software
+-----------------
+- PoPToP
+  PoPToP is the PPTP server software for Linux. More information at
+  http://www.moretonbay.com/vpn/pptp.html
+- PPPD
+- MSCHAPv2 and MPPE patches for PPPD
+  MPPE is for Microsoft encryption (MPPE). MSCHAPv2 is for
+  authentication.
+
+Implementation
+--------------
+Cobalt machines need new user interface as well as new CCE classes for
+PPTP.
+
+There is no support to give static IP addresses based on username.
+This is more advanced than the needs of Cobalt users in general.  The
+implementation of pptpd forces cleartext password to be stored in a
+CHAP secret file for each user that needs a static IP address.  For
+machines that did not have this secret file in place, when PPTP is
+installed and a user is enbaled, their pptp account will be locked until they
+provice a secret to be used in pptp authentication.  This secret will be kept
+in CCE for the rest of this users' lifespan and may be changed by the user at
+any given time via the UI.  Checks will not be made to ensure that the secret
+differs from the user' system password.
+
+A new namespace Pptp is introduced under the System class. Its
+properties are:
+
+enable ::= [0|1]
+  True when PPTP is enabled.
+allowType ::= [all|some]
+allowData ::= [scalar of data used in conjunction with allowType]
+
+A new class called PptpDynamic is also introduced.  It's properties are:
+ipaddrlo ::= IP Address
+ipaddrhi ::= IP Address
+  This is the IP address range being set into /etc/pptpd.conf as
+  remoteip. The range must be big enough for each PPTP client to have
+  an unique address. (Notice:  there will be a hardcoded limit in pptp of 100
+  simultaneous connections which should be ample for our purposes).
+
+A user interface is provided for users to disable PPTP, enabled PPTP for all
+users, or only enable PPTP for specified users.  This interface will be
+similar to that of CGI-Access.  The administrator will also have to create one
+or more valid ip ranges to be used as remote ips for the connecting machines
+before enabling the service.  The localip used in the ppp connection will be
+hardwired to the ip address of eth0 and assumed to be on the intranet side of
+the appliance.  It will be the administrators responsibility to ensure that
+all remoteip ranges fall within the intranet netmask.
+
+Migration Path
+--------------
+
+Alot of care needs to be taken in the Mendocino update that includes PPTP.
+Here is a summary of the steps to be taken by an administrator to enable PPTP
+for their users:
+
+	- Install the new mendocino package.
+	- Go to the PPTP page and add at least one valid ip range to be used
+	  by the remote clients.
+	- Enable the service.
+		- Either 'All users' is selected
+				or
+		- 'Specified users' is selected.  In this case the admin would
+		  create a list of users to be allowed PPTP access.
+	- Once the admin has saved his config, he will be prompted with a list
+	  of users that do not have their secrets set, and therefore need to
+	  be told to set them in the UI.  A question asking the admin whether
+	  or not to mail these users a notice is given.  If the admin
+	  acknoledges, then a localized (system default language / overriden
+	  be user locale) email will be sent to them to notify them of this,
+	  given them a url where they can set this secret.
+	
+Questions
+---------
+- Q: Why are there no encryption keys needed?
+  A: PPTP uses PPP as the authentication algorithm, so it does not
+     need keys like PGP or IPSec. PPTP only needs username and
+     password for PAP or CHAP type of authentication.
+- Q: Why not just hard-code local and remote IP addresses?
+  A: It is difficult to decide what these IP addresses would be
+     because IP addresses can be in-use already.
+
+Sample Configuration Files
+--------------------------
+
+/etc/ppp/pptp-options 
+	debug
+	name pptp 
+	auth
+	require-chap
+	proxyarp
+	lock
+	debug
+	name pptp
+	+chap
+	+chapms
+	+chapms-v2
+	mppe-40
+	mppe-128
+	mppe-stateless
+	proxyarp
+	ms-dns 10.9.25.254
+	#ms-wins none
+
+/etc/pptpd.conf 
+	option /etc/ppp/pptp-options
+	speed 115200
+	localip 192.168.0.1
+	remoteip 192.168.1.234-238
+
+/etc/ppp/chap-secrets
+	<username>	pptp	<secret>	*
+	...
+
+References
+----------
+http://poptop.lineo.com/
+

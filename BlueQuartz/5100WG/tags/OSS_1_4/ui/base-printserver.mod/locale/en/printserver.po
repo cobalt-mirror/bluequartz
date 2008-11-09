@@ -1,0 +1,196 @@
+
+msgid "modPrinter"
+msgstr "Modify a Printer"
+
+msgid "printerNameExists"
+msgstr "A printer with the name [[VAR.name]] already exists.  Please choose a new name."
+
+msgid "printing"
+msgstr "Printing"
+
+msgid "spooling"
+msgstr "Spooling"
+
+msgid "jobs"
+msgstr "Jobs"
+
+msgid "enabled"
+msgstr "Enabled"
+
+msgid "disabled"
+msgstr "Disabled"
+
+msgid "addPrinter_help"
+msgstr "Click here to add a printer to your existing configuration."
+
+msgid "addNewPrinter" 
+msgstr "Add a Printer"
+
+msgid "printerNameField"
+msgstr "Name"
+
+msgid "printerNameField_rule"
+msgstr "Enter only letters and numbers; do not use spaces, hyphens or underscores."
+
+msgid "printerNameField_help"
+msgstr "Enter a name for the printer.  This should also be the name of the print spool on the server, if that is applicable."
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "Select this item if this printer is connected via USB"
+
+msgid "network"
+msgstr "Network"
+
+msgid "network_help"
+msgstr "Select this item if this printer is connected over the Network."
+
+msgid "printerHostNameField"
+msgstr "Host Name"
+
+msgid "printerHostNameField_help"
+msgstr "Enter the host name or IP address of the remote printer."
+
+msgid "printerSpoolField"
+msgstr "Queue Name"
+
+msgid "printerSpoolField_help"
+msgstr "Enter the name of the queue to be printed to on the remote printer.  If you don't know the queue name or your printer has no queue name leave this field blank."
+
+msgid "locationField"
+msgstr "Type of Connection"
+
+msgid "locationField_help"
+msgstr "Select the type of connection the server has to this printer."
+
+msgid "ppdFileField"
+msgstr "PPD File"
+
+msgid "ppdFileField_help"
+msgstr "In order for computers to print to this printer using AppleShare, a PPD file must be uploaded to this server.  The PPD file is usually provided on a disk that comes with the printer."
+
+msgid "printserver"
+msgstr "Print Server"
+
+msgid "printserver_help"
+msgstr "Print Server settings can be changed here."
+
+msgid "printserverSettings"
+msgstr "Print Server Settings"
+
+msgid "enableServersField"
+msgstr "Enable"
+
+msgid "enableServersField_help"
+msgstr "Turn Print Server functionality on or off. Turning this feature on allows this server appliance to act as a Print Server for itself and for its clients."
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "basic_help"
+msgstr "Basic Print Server Settings can be configured here."
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "advanced_help"
+msgstr "Advanced Print Server Settings such as enabling and disabling Print Server support for specific platforms can be configured here."
+
+msgid "printerListButton"
+msgstr "Manage Printers"
+
+msgid "printerListButton_help"
+msgstr "Add printers, remove printers and manage print queues"
+
+msgid "enableAppleshareField"
+msgstr "Enable Apple Printing"
+
+msgid "enableAppleshareField_help"
+msgstr "Click here to enable printer sharing on an AppleShare network."
+
+msgid "enableSambaField"
+msgstr "Enable Windows Printing"
+
+msgid "enableSambaField_help"
+msgstr "Click here to enable printer sharing on a Windows network."
+
+msgid "printerList"
+msgstr "Available Printers"
+
+msgid "name"
+msgstr "Name"
+
+msgid "name_help"
+msgstr "The name of the printer."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "The status of the printer."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Modify, delete or view the queue for a printer."
+
+msgid "jobList"
+msgstr "Current Print Jobs - [[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "Clear the Print Queue"
+
+msgid "clearQueue_help"
+msgstr "Delete all print jobs currently on this printer."
+
+msgid "suspendPrinter"
+msgstr "Suspend Printing"
+
+msgid "suspendPrinter_help"
+msgstr "Suspend printing from this printer.  New jobs can be Queued, but nothing will be printed."
+
+msgid "unsuspendPrinter"
+msgstr "Resume Printing"
+
+msgid "unsuspendPrinter_help"
+msgstr "Resume printing from this printer."
+
+msgid "owner"
+msgstr "Owner"
+
+msgid "owner_help"
+msgstr "The user that submitted this print job."
+
+msgid "size"
+msgstr "Size"
+
+msgid "size_help"
+msgstr "The size of the print job."
+
+msgid "date"
+msgstr "Time Submitted"
+
+msgid "date_help"
+msgstr "Time Submitted"
+
+msgid "listAction"
+msgstr "Delete"
+
+msgid "listAction_help"
+msgstr "Delete a job."
+
+msgid "removePrinterConfirm"
+msgstr "Are you sure you want to remove the printer '[[VAR.printerName]]'?"
+
+msgid "removeJobConfirm"
+msgstr "Are you sure you want to delete the job owned by '[[VAR.jobName]]'?"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "Manage Print Server"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "This administrative right allows a user to manage all aspects of Network and USB Spooling as configured in the Print Server tab."

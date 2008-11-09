@@ -1,0 +1,16 @@
+#
+# Version 1.2
+#
+# History:
+# 03/12/98 - 1.1 - LNS - First release
+# 05/18/98 - 1.2 - LNS - Now handles old style button panels
+
+%buttons = (
+	    Select => ["32256","15616"],
+	    Enter => ["48640","15872"],
+	    Right => ["56832","14080"],
+	    Up => ["62976","12032"],
+	    Left => ["64000","15104"],
+	    Down => ["60928","7936"],
+	    Reset => ["64512"],
+	    );

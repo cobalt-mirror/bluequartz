@@ -1,0 +1,48 @@
+<!-- 
+  This file describes the schema of the following class types:
+    ActiveMonitor, RAID namespace
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+-->
+
+  <class name="ActiveMonitor" 	namespace="RAID" 	version="1.0">
+    <property name="enabled"      	type="boolean" 	default="1"/>
+    <property name="monitor"      	type="boolean" 	default="1" writeacl="ruleCapable(modifyActiveMonitor)"/>
+    <property name="currentState" 	type="amstate" 	default="G"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	default="[[base-raid.amRAIDNameTag]]"/>
+    <property name="URL"	     	type="scalar"  	
+	default="/base/raid/raid_amdetails.php"/>
+    <property name="UIGroup"               type="scalar"   default="system"/>
+  </class>
+
+<!-- end of raid.schema -->
+
+
+
+
+<class name="ActiveMonitor" 	namespace="RAID" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"    	type="boolean" 	default="1" writeacl="ruleCapable(modifyActiveMonitor)"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"	
+	default="/usr/sausalito/swatch/bin/raidState.pl"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="RAID"/>
+
+    <property name="URL"	     	type="scalar"  	
+	default="/base/raid/raid_amdetails.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+
+    <property name="PERL5LIB"		type="scalar"	
+	default="/usr/sausalito/perl"/>
+</class>

@@ -1,0 +1,149 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "Disque"
+
+msgid "diskUsageMenuDesc"
+msgstr "Les statistiques d'espace disque peuvent être visualisées ici."
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "Espace disque"
+
+msgid "diskUsageSummary"
+msgstr "Espace disque - Récapitulatif"
+
+msgid "userQuotas"
+msgstr "Espace disque - Utilisateurs"
+
+msgid "groupQuotas"
+msgstr "Espace disque - Groupes"
+
+msgid "selectUsage"
+msgstr "Sélectionner..."
+
+msgid "usageSummary"
+msgstr "Récapitulatif"
+
+msgid "usageUser"
+msgstr "Utilisateurs"
+
+msgid "usageGroup"
+msgstr "Groupes"
+
+msgid "lastCollectionDate"
+msgstr "Date de dernière vérification"
+
+msgid "lastCollectionDate_help"
+msgstr "Dernière fois que les statistiques d'espace disque ont été générées."
+
+msgid "notRunYet"
+msgstr "Les statistiques d'espace disque n'ont pas encore été générées."
+
+msgid "updateNow"
+msgstr "Vérifier maintenant"
+
+msgid "updateNow_help"
+msgstr "Cliquez ici pour mettre à jour immédiatement les informations concernant l'espace disque. La génération des statistiques peut prendre plusieurs minutes."
+
+msgid "askUpdateNowConfirmation"
+msgstr "Voulez-vous vraiment vérifier l'espace disque maintenant ? Cette opération peut prendre plusieurs minutes."
+
+# Summary
+
+msgid "partition"
+msgstr "Partition"
+
+msgid "partition_help"
+msgstr "Nom de la partition ainsi que son utilisation."
+
+msgid "usedSpace"
+msgstr "Utilisé (Mo)"
+
+msgid "usedSpace_help"
+msgstr "Espace en méga-octets utilisé sur la partition."
+
+msgid "available"
+msgstr "Disponible (Mo)"
+
+msgid "available_help"
+msgstr "Espace en méga-octets disponible sur la partition."
+
+msgid "totalSpace"
+msgstr "Total (Mo)"
+
+msgid "totalSpace_help"
+msgstr "Espace total en méga-octets alloué à la partition."
+
+msgid "pct"
+msgstr "Pourcentage utilisé"
+
+msgid "pct_help"
+msgstr "Pourcentage d'espace disque total disponible ou alloué qui a été utilisé."
+
+msgid "rootFiles"
+msgstr "Fichiers système - Partition racine ou Root (/)"
+
+msgid "varFiles"
+msgstr "Fichiers système - Partition Var (/var)"
+
+msgid "userFiles"
+msgstr "Fichiers des groupes et utilisateurs - Partition Home (/home)"
+
+msgid "totals"
+msgstr "Toutes les partitions"
+
+
+# Users
+
+msgid "user"
+msgstr "Nom d'utilisateur"
+
+msgid "user_help"
+msgstr "Utilisateur concerné par les statistiques sur l'espace disque."
+
+msgid "blocks"
+msgstr "Utilisé (Mo)"
+
+msgid "blocks_help"
+msgstr "Espace en méga-octets utilisé actuellement."
+
+msgid "quota"
+msgstr "Permis (Mo)"
+
+msgid "quota_help"
+msgstr "Espace disque maximum permis en méga-octets."
+
+msgid "allUsers"
+msgstr "Tous les utilisateurs"
+
+# Groups
+
+msgid "group"
+msgstr "Nom de groupe"
+
+msgid "group_help"
+msgstr "Groupe concerné par les statistiques sur l'espace disque."
+
+msgid "allGroups"
+msgstr "Tous les groupes"
+
+msgid "mailQuotaUserSubject"
+msgstr "Avertissement sur l'espace disque d'utilisateur"
+
+msgid "mailQuotaUserBody"
+msgstr "Avertissement :\n\nL'espace disque pour l'utilisateur [[VAR.user]] sur [[VAR.host]] est\nsupérieur à [[VAR.pct]] % du seuil permis avec moins de [[VAR.free]] Mo de disponibles.\nSupprimez certains fichiers, déplacez des données vers un autre emplacement ou \ndemandez une augmentation du seuil de stockage maximum.\n\n "
+
+msgid "mailQuotaGroupSubject"
+msgstr "Avertissement sur l'espace disque de groupe"
+
+msgid "mailQuotaGroupBody"
+msgstr "Avertissement :\n\nL'espace disque pour le groupe [[VAR.group]] sur [[VAR.host]] est\nsupérieur à [[VAR.pct]] % du seuil permis avec moins de [[VAR.free]] Mo de disponibles.\nSupprimez certains fichiers, déplacez des données vers un autre emplacement ou \ndemandez une augmentation du seuil de stockage maximum.\n\n "
+
+msgid "unknownDiskUsage"
+msgstr "Inconnu"
+
+msgid "unlimitedQuota"
+msgstr "Non limité"
+

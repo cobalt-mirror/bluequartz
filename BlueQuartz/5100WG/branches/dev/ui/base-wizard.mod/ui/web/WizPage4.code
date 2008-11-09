@@ -1,0 +1,95 @@
+##CUSTOM-PREAMBLE##
+	<?php
+
+	include_once("ServerScriptHelper.php");
+	include_once("base/wizard/WizardSupport.php");
+	include_once("base/wizard/WizardTimeZones.php");
+
+	global $WizError;
+	global $WizLocalTime;
+
+	if ($WizLocalTime == "")
+	{
+		$WizLocalTime = date("Y:m:d:H:i");
+	}
+
+	WizGetTimeZoneControls($WizTimeZoneHTML, $WizTimeZoneJS); 
+
+	?>
+
+##HEADER-CUSTOM-JAVASCRIPT##
+	<script defer language="JavaScript"><!--
+		<?php print WizGetTimeZoneJavaScript(); ?>
+		<?php print $WizTimeZoneJS; ?>
+	//-->
+	</script>
+
+##BODY-ATTRIBUTES##
+	onLoad="WizSetDefaults(); MM_swapImgRestore(); MM_preloadImages('/libImage/Nav-Progress.gif');"
+
+##WIZARD-FORM##
+	<div class="Setting-Description"><?php print $i18n->getHtml("timeMessage"); ?></div><br>
+	<table width="469" border="0" cellspacing="0" cellpadding="2">
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='4'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<tr>
+			<td width="92">
+				<div align="right" class="Setting-Label">
+																	Date:</div>
+			</td>
+			<td>
+				<!-- Date -->
+				<?php print WizGetDateHTML($WizLocalTime); ?>
+			</td>
+		</tr>
+		<tr>
+			<td width="92">
+				<div align="center"></div>
+			</td>
+			<td><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+		</tr>
+		<tr>
+			<td width="92">
+				<div align="right" class="Setting-Label">
+																	Time:</div>
+			</td>
+			<td>
+				 <!-- Time -->
+				<?php print WizGetTimeHTML($WizLocalTime); ?>
+			</td>
+		</tr>
+		<tr>
+			<td width="92">
+				<div align="center"></div>
+			</td>
+			<td><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+		</tr>
+		<tr>
+			<td valign="top" width="92">
+				<div align="right" class="Setting-Label">Time Zone:</div></td>
+			<td valign="top"><!-- Time Zone --><?php print $WizTimeZoneHTML; ?></td>
+		</tr>
+		<tr>
+			<td width="92">
+				<div align="center"></div>
+			</td>
+			<td><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+		</tr>
+		<tr>
+			<td width="92">
+				<div align="right" class="Setting-Label">Network Time Server:</div>
+			</td>
+			<td valign="top"><INPUT TYPE="TEXT" NAME="WizNtpServer" VALUE="" SIZE="32"  onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;">
+				<div class="Setting-Info-Text">
+					(optional)</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="92">
+				<img src="/libImage/empty.gif" alt="" width="92" height="1" border="0">
+			</td>
+			<td></td>
+		</tr>
+	</table>
+	</form>

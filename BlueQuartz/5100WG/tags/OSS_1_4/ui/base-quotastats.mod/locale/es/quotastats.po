@@ -1,0 +1,149 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "Disco"
+
+msgid "diskUsageMenuDesc"
+msgstr "Ver las estadísticas de uso del disco."
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "Uso del disco"
+
+msgid "diskUsageSummary"
+msgstr "Uso del disco - Resumen"
+
+msgid "userQuotas"
+msgstr "Uso del disco - Usuarios"
+
+msgid "groupQuotas"
+msgstr "Uso del disco - Grupos"
+
+msgid "selectUsage"
+msgstr "Seleccionar uso..."
+
+msgid "usageSummary"
+msgstr "Resumen"
+
+msgid "usageUser"
+msgstr "Usuarios"
+
+msgid "usageGroup"
+msgstr "Grupos"
+
+msgid "lastCollectionDate"
+msgstr "Última comprobación de uso"
+
+msgid "lastCollectionDate_help"
+msgstr "Últimas estadísticas de uso del disco."
+
+msgid "notRunYet"
+msgstr "Aún no se han generado estadísticas de uso del disco."
+
+msgid "updateNow"
+msgstr "Comprobar uso ahora"
+
+msgid "updateNow_help"
+msgstr "Pulse aquí para actualizar la información sobre el uso del disco. Pueden transcurrir varios minutos hasta que se generen las estadísticas."
+
+msgid "askUpdateNowConfirmation"
+msgstr "¿Está seguro de que desea comprobar el uso del disco? Esto puede tardar varios minutos."
+
+# Summary
+
+msgid "partition"
+msgstr "Partición"
+
+msgid "partition_help"
+msgstr "Nombre y uso de la partición del sistema de archivos."
+
+msgid "usedSpace"
+msgstr "Espacio utilizado (MB)"
+
+msgid "usedSpace_help"
+msgstr "Espacio utilizado en megabytes en la partición del sistema de archivos."
+
+msgid "available"
+msgstr "Espacio libre (MB)"
+
+msgid "available_help"
+msgstr "Espacio libre en megabytes en la partición del sistema de archivos."
+
+msgid "totalSpace"
+msgstr "Espacio total (MB)"
+
+msgid "totalSpace_help"
+msgstr " Espacio asignado en megabytes a la partición del sistema de archivos."
+
+msgid "pct"
+msgstr "Porcentaje utilizado"
+
+msgid "pct_help"
+msgstr "Porcentaje del disco disponible o asignado."
+
+msgid "rootFiles"
+msgstr "Archivos del sistema - Partición raíz (/)"
+
+msgid "varFiles"
+msgstr "Archivos del sistema - Partición var (/var)"
+
+msgid "userFiles"
+msgstr "Archivos de usuarios y grupos - Partición principal (/home)"
+
+msgid "totals"
+msgstr "Total de particiones"
+
+
+# Users
+
+msgid "user"
+msgstr "Nombre de usuario"
+
+msgid "user_help"
+msgstr "Usuario vinculado con la información de uso del disco."
+
+msgid "blocks"
+msgstr "Espacio utilizado (MB)"
+
+msgid "blocks_help"
+msgstr "Espacio utilizado en megabytes."
+
+msgid "quota"
+msgstr "Espacio permitido (MB)"
+
+msgid "quota_help"
+msgstr "Espacio de disco máximo permitido en megabytes."
+
+msgid "allUsers"
+msgstr "Todos los usuarios"
+
+# Groups
+
+msgid "group"
+msgstr "Nombre de grupo"
+
+msgid "group_help"
+msgstr "Grupo vinculado a la información de uso del disco."
+
+msgid "allGroups"
+msgstr "Todos los grupos"
+
+msgid "mailQuotaUserSubject"
+msgstr "Notificación a usuario sobre uso de disco"
+
+msgid "mailQuotaUserBody"
+msgstr "Aviso:\n\nEl usuario [[VAR.user]] en [[VAR.host]] ha\nsuperado el [[VAR.pct]]% límite asignado de espacio en disco, y hay menos de [[VAR.free]] MB libres.\nSe recomienda eliminar archivos, mover datos o\nsolicitar un aumento del límite de almacenamiento.\n\n "
+
+msgid "mailQuotaGroupSubject"
+msgstr "Notificación a grupo sobre uso de disco"
+
+msgid "mailQuotaGroupBody"
+msgstr "Aviso:\n\nEl grupo [[VAR.group]] en [[VAR.host]] ha\nsuperado el [[VAR.pct]]% límite asignado de espacio en disco, y hay menos de [[VAR.free]] MB libres.\nSe recomienda eliminar archivos, mover datos o\nsolicitar un aumento del límite de almacenamiento. \n\n "
+
+msgid "unknownDiskUsage"
+msgstr "Desconocído"
+
+msgid "unlimitedQuota"
+msgstr "Ilimitada"
+

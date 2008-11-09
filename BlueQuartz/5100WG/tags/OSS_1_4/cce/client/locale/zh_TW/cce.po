@@ -1,0 +1,34 @@
+msgid "cceErrorSentence"
+msgstr "很抱歉，發生內部伺服器錯誤。"
+
+msgid "cceHandlerErrorSentence"
+msgstr "很抱歉，發生內部伺服器錯誤。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownAttr"
+msgstr "[[base-cce.cceErrorSentence]] 屬性[[VAR.key]]不明。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownClass"
+msgstr "[[base-cce.cceErrorSentence]] 類別[[VAR.key]]不明。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownNs"
+msgstr "[[base-cce.cceErrorSentence]] 宣告名稱儲存區[[VAR.key]]不明。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownOid"
+msgstr "[[base-cce.cceErrorSentence]] 物件[[VAR.oid]]不明。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "permissionDenied"
+msgstr "[[base-cce.cceErrorSentence]][[VAR.key]]的許可被拒絕。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownErrorCode"
+msgstr "[[base-cce.cceErrorSentence]] 發生不明的錯誤。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidType"
+msgstr "[[base-cce.cceErrorSentence]] 類型[[VAR.key]]無效。[[base-sauce-basic.contactTechSupport]]"
+
+	# User input invalid but validation fell through
+msgid "invalidData"
+msgstr "很抱歉，在欄位[[VAR.key]]中所輸入的資料無效；請檢查輸入，然後重試。"
+
+msgid "outOfMemory"
+msgstr "[[base-cce.cceErrorSentence]] 系統無法配置足夠的記憶體繼續運作。"
+

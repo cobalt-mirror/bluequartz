@@ -1,0 +1,607 @@
+<!--
+Merlot
+ Design and Implimetation - Arlo Rose
+ ©2002 - Sun Microsystems, Inc.
+-->
+<styleResource name="[[Merlot.Merlot]]">
+  <style id="Login">
+    <property name="fontFamily" target="medium" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" target="medium" value="14px" />
+    <property name="textDecoration" target="medium" value="none"/>
+
+    <property name="color" target="error" value="#990000" />
+
+    <property name="backgroundColor" target="small" value="#000099" />
+    <property name="color" target="small" value="#FFFFFF" />
+    <property name="fontFace" target="small" value="verdana" />
+    <property name="fontFamily" target="small" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" target="small" value="12px" />
+    <property name="fontWeight" target="small" value="bold" />
+    <property name="textDecoration" target="small" value="none" />
+
+    <property name="color" value="#000099" />
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" value="18px" />
+    <property name="fontWeight" value="bold" />
+    <property name="textDecoration" value="none"/>
+    <property name="fontStyle" value="italic" />
+
+    <property name="fontFamily" target="login" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" target="login" value="medium" />
+    <property name="fontWeight" target="login" value="bold" />
+    <property name="textDecoration" target="login" value="none"/>
+
+    <property name="backgroundColor" target="button" value="#990000" />
+  </style>
+
+  <style id="Page">
+    <property name="useSplashXML" value="true"/>
+    <property name="aLinkColor" value="#FFFFFF"/>
+    <property name="backgroundColor" value="#EAF2FF"/>
+    <property name="backgroundImage" value="/libImage/BackgroundCorner.gif"/>
+    <property name="backgroundRepeat" value="no-repeat"/>
+    <property name="backgroundAttachment" value="fixed"/>
+    <property name="center" value="true"/>
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+  </style>
+
+  <style id="SplashScreens">
+    <property name="aLinkColor" value="#FFFFFF"/>
+    <property name="backgroundColor" value="#EAF2FF"/>
+    <property name="backgroundRepeat" value="no-repeat"/>
+    <property name="backgroundAttachment" value="fixed"/>
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+    <property name="fontWeight" value="bold" />
+    
+    <property name="adminBackground" value="/libImage/Admin-Splash.gif"/>
+    <property name="swupdateBackground" value="/libImage/SWUpdate-Splash.gif"/>
+    <property name="programsBackground" value="/libImage/Programs-Splash.gif"/>
+    <property name="personalBackground" value="/libImage/Personal-Splash.gif"/>
+    <property name="webMailBackground" value="/libImage/WebMail-Splash.gif"/>
+    
+    <property name="adminSplash" value="/libImage/MerlotSplashSpacer.gif"/>
+    <property name="swupdateSplash" value="/libImage/MerlotSplashSpacer.gif"/>
+    <property name="programsSplash" value="/libImage/MerlotSplashSpacer.gif"/>
+    <property name="personalSplash" value="/libImage/MerlotSplashSpacer.gif"/>
+    <property name="webMailSplash" value="/libImage/MerlotSplashSpacer.gif"/>
+
+  </style>
+
+  <style id="PagedBlock">
+    <property name="borderColor" value="#F7FAFF"/>
+    <property name="borderThickness" value="0"/>
+    <property name="cellPadding" value="0"/>
+    <property name="dividerAlign" value="left"/>
+    <property name="dividerHeight" value="20"/>
+    <property name="tabAlign" value="right"/>
+    <property name="tabDividerHeight" value="3"/>
+    <property name="titleAlign" value="left"/>
+    <property name="titleHeightBuffer" value="27"/>
+    <property name="width" value="550"/>
+
+    <property name="useShadow" value="true"/>
+    <property name="shadowTopLeftCorner" value="/libImage/FrameTopLeftCorner.gif"/>
+    <property name="shadowTop" value="/libImage/FrameTop.gif"/>
+    <property name="shadowTopLeft" value="/libImage/FrameTopLeft.gif"/>
+    <property name="shadowTopRight" value="/libImage/FrameTopRight.gif"/>
+    <property name="shadowTopRightCorner" value="/libImage/FrameTopRightCorner.gif"/>
+    <property name="shadowLeft" value="/libImage/FrameLeft.gif"/>
+    <property name="shadowLeftTop" value="/libImage/FrameLeftTop.gif"/>
+    <property name="shadowRight" value="/libImage/FrameRight.gif"/>
+    <property name="shadowRightTop" value="/libImage/FrameRightTop.gif"/>
+    <property name="shadowLeftBottom" value="/libImage/FrameLeftBottom.gif"/>
+    <property name="shadowRightBottom" value="/libImage/FrameRightBottom.gif"/>
+    <property name="shadowBottomLeftCorner" value="/libImage/FrameBottomLeftCorner.gif"/>
+    <property name="shadowBottom" value="/libImage/FrameBottom.gif"/>
+    <property name="shadowBottomLeft" value="/libImage/FrameBottomLeft.gif"/>
+    <property name="shadowBottomRight" value="/libImage/FrameBottomRight.gif"/>
+    <property name="shadowBottomRightCorner" value="/libImage/FrameBottomRightCorner.gif"/>
+
+    <property name="listDivider" value="/libImage/MerlotLargeDivider.gif"/>
+
+    <property name="backgroundColor" target="dividerCell" value="#E7E9EE"/>
+    <property name="backgroundColor" target="labelCell" value="#F7FAFF"/>
+    <property name="backgroundColor" target="formFieldCell" value="#F7FAFF"/>
+    <property name="backgroundColor" target="tabDivider" value="#F7FAFF"/>
+    <property name="backgroundColor" target="titleCell" value="#C9E0FD"/>
+
+    <property name="color" target="dividerLabel" value="#000000"/>
+    <property name="fontFamily" target="dividerLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="dividerLabel" value="12px"/>
+    <property name="fontWeight" target="dividerLabel" value="bold"/>
+    <property name="textDecoration" target="dividerLabel" value="none"/>
+
+    <property name="color" target="labelLabel" value="#000000"/>
+    <property name="fontFamily" target="labelLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="labelLabel" value="12px"/>
+    <property name="textDecoration" target="labelLabel" value="none"/>
+
+    <property name="color" target="subscript" value="#999999"/>
+    <property name="fontFamily" target="subscript" value="Verdana,Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="subscript" value="10px"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+
+    <property name="color" target="tabSelected" value="#000000"/>
+    <property name="fontFamily" target="tabSelected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="tabSelected" value="12px"/>
+    <property name="fontWeight" target="tabSelected" value="bold"/>
+    <property name="leftImage" target="tabSelected" value="/libImage/MerlotPageTabLeftSelected.gif"/>
+    <property name="rightImage" target="tabSelected" value="/libImage/MerlotPageTabRightSelected.gif"/>
+    <property name="fillImage" target="tabSelected" value="/libImage/MerlotPageTabFillSelected.gif"/>
+    <property name="textDecoration" target="tabSelected" value="none"/>
+
+    <property name="color" target="tabUnselected" value="#000000"/>
+    <property name="fontFamily" target="tabUnselected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="tabUnselected" value="12px"/>
+    <property name="fontWeight" target="tabUnselected" value="bold"/>
+    <property name="leftImage" target="tabUnselected" value="/libImage/MerlotPageTabLeftUnselected.gif"/>
+    <property name="rightImage" target="tabUnselected" value="/libImage/MerlotPageTabRightUnselected.gif"/>
+    <property name="fillImage" target="tabUnselected" value="/libImage/MerlotTabFillUnselected.gif"/>
+    <property name="textDecoration" target="tabUnselected" value="none"/>
+
+    <property name="color" target="titleLabel" value="#000000"/>
+    <property name="fontFamily" target="titleLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="18px"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+    <!-- <property name="fontVariant" target="titleLabel" value="small-caps"/> -->
+  </style>
+
+  <style id="Button">
+    <property name="aLinkColor" value="#FFFFFF"/>
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/MerlotButtonLeft.gif"/>
+    <property name="rightImage" target="normal" value="/libImage/MerlotButtonRight.gif"/>
+    <property name="fillImage" target="normal" value="/libImage/MerlotButtonFill.gif"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="disabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="disabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="disabled" value="12px"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="disabled" value="/libImage/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+
+	<property name="useHeaderButton" value="true"/>
+
+    <property name="color" target="header" value="#FFFFFF"/>
+    <property name="fontFamily" target="header" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="header" value="12px"/>
+    <property name="fontWeight" target="header" value="bold"/>
+    <property name="leftImage" target="header" value="/libImage/MerlotHeaderButtonLeft.gif"/>
+    <property name="rightImage" target="header" value="/libImage/MerlotHeaderButtonRight.gif"/>
+    <property name="fillImage" target="header" value="/libImage/MerlotHeaderButtonFill.gif"/>
+    <property name="textDecoration" target="header" value="none"/>
+
+    <property name="color" target="headerDisabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="headerDisabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="headerDisabled" value="12px"/>
+    <property name="fontWeight" target="headerDisabled" value="bold"/>
+    <property name="leftImage" target="headerDisabled" value="/libImage/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="headerDisabled" value="/libImage/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="headerDisabled" value="/libImage/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="headerDisabled" value="none"/>
+  </style>
+
+  <style id="Bar">
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+    
+    <property name="startImage" value="/libImage/MerlotProgressLeft.gif"/>
+    <property name="leftBumper" value="/libImage/MerlotProgressLeftBumper.gif"/>
+    <property name="filledImage" value="/libImage/MerlotProgressFill.gif"/>
+    <property name="rightBumper" value="/libImage/MerlotProgressRightBumper.gif"/>
+    <property name="emptyImage" value="/libImage/MerlotProgressEmpty.gif"/>
+    <property name="endImage" value="/libImage/MerlotProgressRight.gif"/>
+    <property name="bumperWidth" value="14"/>
+    
+    <property name="vstartImage" value="/libImage/MerlotVertProgressLeft.gif"/>
+    <property name="vleftBumper" value="/libImage/MerlotVertProgressLeftBumper.gif"/>
+    <property name="vfilledImage" value="/libImage/MerlotVertProgressFill.gif"/>
+    <property name="vrightBumper" value="/libImage/MerlotVertProgressRightBumper.gif"/>
+    <property name="vemptyImage" value="/libImage/MerlotVertProgressEmpty.gif"/>
+    <property name="vendImage" value="/libImage/MerlotVertProgressRight.gif"/>
+    <property name="vbumperWidth" value="14"/>
+  </style>
+
+  <style id="ImageButton">
+  </style>
+
+  <style id="UserStatusIcons">
+    <property name="shellIcon" value="/libImage/MerlotShell.gif"/>
+    <property name="frontPageIcon" value="/libImage/MerlotFrontPage.gif"/>
+    <property name="apopIcon" value="/libImage/MerlotApop.gif"/>
+    <property name="shellIconInactive" value="/libImage/MerlotShellInactive.gif"/>
+    <property name="frontPageIconInactive" value="/libImage/MerlotFrontPageInactive.gif"/>
+    <property name="apopIconInactive" value="/libImage/MerlotApopInactive.gif"/>
+    <property name="inactiveUserIcon" value="/libImage/MerlotInactiveUser.gif"/>
+  </style>
+
+  <style id="BackupStatusIcons">
+    <property name="restoreIcon" value="/libImage/MerlotUpload.gif"/>
+    <property name="restoreIconInactive" value="/libImage/MerlotUploadDisabled.gif"/>
+  </style>
+
+  <style id="DetailButton">
+    <property name="detailIcon" value="/libImage/MerlotInspectActive.gif"/>
+    <property name="detailIconDisabled" value="/libImage/MerlotInspectInactive.gif"/>
+  </style>
+
+  <style id="ModifyButton">
+    <property name="modifyIcon" value="/libImage/MerlotEditActive.gif"/>
+    <property name="modifyIconDisabled" value="/libImage/MerlotEditInactive.gif"/>
+  </style>
+
+  <style id="RemoveButton">
+    <property name="removeIcon" value="/libImage/MerlotDeleteActive.gif"/>
+    <property name="removeIconDisabled" value="/libImage/MerlotDeleteInactive.gif"/>
+  </style>
+
+  <style id="UninstallButton">
+    <property name="uninstallIcon" value="/libImage/MerlotDeleteActive.gif"/>
+    <property name="uninstallIconDisabled" value="/libImage/MerlotDeleteInactive.gif"/>
+  </style>
+
+  <style id="CancelButton">
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/MerlotButtonLeft.gif"/>
+    <property name="rightImage" target="normal" value="/libImage/MerlotButtonRight.gif"/>
+    <property name="fillImage" target="normal" value="/libImage/MerlotButtonFill.gif"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="disabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="disabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="disabled" value="12px"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="disabled" value="/libImage/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>  </style>
+
+  <style id="Label">
+    <property name="color" value="#000000"/>
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+    <property name="textDecoration" value="none"/>
+  </style>
+
+  <style id="MultiChoice">
+    <property name="backgroundColor" target="fieldGrouper" value="#CCCCCC"/>
+
+    <property name="color" target="choiceLabel" value="#000000"/>
+    <property name="fontFamily" target="choiceLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="choiceLabel" value="12px"/>
+    <property name="textDecoration" target="choiceLabel" value="none"/>
+
+    <property name="color" target="formFieldLabel" value="#333399"/>
+    <property name="fontFamily" target="formFieldLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="formFieldLabel" value="12px"/>
+    <property name="textDecoration" target="formFieldLabel" value="none"/>
+
+    <property name="color" target="subscript" value="#999999"/>
+    <property name="fontFamily" target="subscript" value="Verdana,Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="subscript" value="10px"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+  </style>
+
+  <style id="Password">
+    <property name="color" target="subscript" value="#000000"/>
+    <property name="fontFamily" target="subscript" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="subscript" value="12px"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+  </style>
+
+  <style id="SaveButton">
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/MerlotButtonLeft.gif"/>
+    <property name="rightImage" target="normal" value="/libImage/MerlotButtonRight.gif"/>
+    <property name="fillImage" target="normal" value="/libImage/MerlotButtonFill.gif"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="disabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="disabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="disabled" value="12px"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="disabled" value="/libImage/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+  </style>
+
+  <style id="SetSelector">
+    <property name="addIcon" value="/libImage/MerlotLeftArrow.gif"/>
+    <property name="addIconDisabled" value="/libImage/MerlotLeftArrowDisabled.gif"/>
+    <property name="removeIcon" value="/libImage/MerlotRightArrow.gif"/>
+    <property name="removeIconDisabled" value="/libImage/MerlotRightArrowDisabled.gif"/>
+    <property name="upIcon" value="/libImage/MerlotUpArrow.gif"/>
+    <property name="upIconDisabled" value="/libImage/MerlotUpArrowDisabled.gif"/>
+    <property name="downIcon" value="/libImage/MerlotDownArrow.gif"/>
+    <property name="downIconDisabled" value="/libImage/MerlotDownArrowDisabled.gif"/>
+  </style>
+
+  <style id="ScrollList">
+    <property name="borderColor" value="#F7FAFF"/>
+    <property name="borderThickness" value="0"/>
+    <property name="cellPadding" value="0"/>
+    <property name="controlAlign" value="LEFT"/>
+    <property name="sortAscendingIcon" value="/libImage/MerlotInactiveSortDown.gif"/>
+    <property name="sortDescendingIcon" value="/libImage/MerlotInactiveSortUp.gif"/>
+    <property name="sortedAscendingIcon" value="/libImage/MerlotActiveSortDown.gif"/>
+    <property name="sortedDescendingIcon" value="/libImage/MerlotActiveSortUp.gif"/>
+    <property name="titleAlign" value="LEFT"/>
+    <property name="titleHeightBuffer" value="27"/>
+    <property name="width" value="550"/>
+
+    <property name="useShadow" value="true"/>
+    <property name="shadowTopLeftCorner" value="/libImage/FrameTopLeftCorner.gif"/>
+    <property name="shadowTop" value="/libImage/FrameTop.gif"/>
+    <property name="shadowTopLeft" value="/libImage/FrameTopLeft.gif"/>
+    <property name="shadowTopRight" value="/libImage/FrameTopRight.gif"/>
+    <property name="shadowTopRightCorner" value="/libImage/FrameTopRightCorner.gif"/>
+    <property name="shadowLeft" value="/libImage/FrameLeft.gif"/>
+    <property name="shadowLeftTop" value="/libImage/FrameLeftTop.gif"/>
+    <property name="shadowRight" value="/libImage/FrameRight.gif"/>
+    <property name="shadowRightTop" value="/libImage/FrameRightTop.gif"/>
+    <property name="shadowLeftBottom" value="/libImage/FrameLeftBottom.gif"/>
+    <property name="shadowRightBottom" value="/libImage/FrameRightBottom.gif"/>
+    <property name="shadowBottomLeftCorner" value="/libImage/FrameBottomLeftCorner.gif"/>
+    <property name="shadowBottom" value="/libImage/FrameBottom.gif"/>
+    <property name="shadowBottomLeft" value="/libImage/FrameBottomLeft.gif"/>
+    <property name="shadowBottomRight" value="/libImage/FrameBottomRight.gif"/>
+    <property name="shadowBottomRightCorner" value="/libImage/FrameBottomRightCorner.gif"/>
+
+    <property name="listDivider" value="/libImage/MerlotLargeDivider.gif"/>
+
+    <property name="useActiveLabel" value="true"/>
+    <property name="activeColumnBackground" value="/libImage/MerlotActiveColumn.gif"/>
+    <property name="inactiveColumnBackground" value="/libImage/MerlotInactiveColumn.gif"/>
+
+    <property name="backgroundColor" target="entryCell" value="#F7FAFF"/>
+    <property name="fontFamily" target="entryCell" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="entryCell" value="12px"/>
+
+    <property name="backgroundColor" target="controlCell" value="#E7E9EE"/>
+    <property name="backgroundColor" target="labelCell" value="#F7FAFF"/>
+    <property name="backgroundColor" target="titleCell" value="#C9E0FD"/>
+
+    <property name="color" target="controlLabel" value="#000000"/>
+    <property name="fontFamily" target="controlLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="controlLabel" value="12px"/>
+    <property name="textDecoration" target="controlLabel" value="none"/>
+    <property name="fontWeight" target="controlLabel" value="bold"/>
+
+    <property name="color" target="labelLabel" value="#000000"/>
+    <property name="fontFamily" target="labelLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="labelLabel" value="12px"/>
+    <property name="textDecoration" target="labelLabel" value="none"/>
+    <property name="fontWeight" target="labelLabel" value="bold"/>
+
+    <property name="color" target="activeLabelLabel" value="#ffffff"/>
+    <property name="fontFamily" target="activeLabelLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="activeLabelLabel" value="12px"/>
+    <property name="textDecoration" target="activeLabelLabel" value="none"/>
+    <property name="fontWeight" target="activeLabelLabel" value="bold"/>
+
+    <property name="color" target="titleLabel" value="#000000"/>
+    <property name="fontFamily" target="titleLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="18px"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+    <!-- <property name="fontVariant" target="titleLabel" value="small-caps"/> -->
+  </style>
+
+  <style id="cListNavigation">
+    <property name="collapsibleListWidth" value="180"/>
+    <property name="infoHeight" value="50"/>
+    <property name="tabHeight" value="40"/>
+  </style>
+
+  <style id="flowNavigation">
+    <property name="controlHeight" value="49"/>
+    <property name="infoHeight" value="50"/>
+    <property name="titleHeight" value="40"/>
+  </style>
+
+  <style id="singleNavigation">
+    <property name="infoHeight" value="50"/>
+    <property name="titleHeight" value="40"/>
+  </style>
+
+  <style id="collapsibleList">
+    <property name="aLinkColor" value="#FFFFFF"/>
+    <property name="borderThickness" value="0"/>
+    <property name="collapsedIcon" value="/libImage/MerlotDisclosureRight.gif"/>
+    <property name="dividerImage" value="/libImage/MerlotDivider.gif"/>
+    <property name="expandedIcon" value="/libImage/MerlotDisclosureDown.gif"/>
+    <property name="selectedIcon" value="/libImage/MerlotItemEdit.gif"/>
+    <property name="unselectedIcon" value="/libImage/Empty19x16.gif"/>
+    <property name="width" value="100%"/>
+
+    <property name="backgroundColor" target="page" value="#244789"/>
+    <property name="backgroundImage" target="page" value="/libImage/NavListCorner.gif"/>
+    <property name="backgroundRepeat" target="page" value="no-repeat"/>
+    <property name="backgroundAttachment" target="page" value="fixed"/>
+
+    <property name="color" target="near" value="#FFFFFF"/>
+    <property name="fontFamily" target="near" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="near" value="12px"/>
+    <property name="fontWeight" target="near" value="bold"/>
+    <property name="textDecoration" target="near" value="none"/>
+
+    <property name="color" target="normal" value="#FFFFFF"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="selected" value="#99B4DB"/>
+    <property name="fontFamily" target="selected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="selected" value="12px"/>
+    <property name="fontWeight" target="selected" value="bold"/>
+    <property name="textDecoration" target="selected" value="none"/>
+  </style>
+
+  <style id="flowControl">
+    <property name="backgroundImage" value="/libImage/controlBackground.gif"/>
+    <property name="backImage" value="/libImage/back.gif"/>
+    <property name="backImageDisabled" value="/libImage/backGray.gif"/>
+    <property name="finishImage" value="/libImage/finish.gif"/>
+    <property name="finishImageDisabled" value="/libImage/finishGray.gif"/>
+    <property name="nextImage" value="/libImage/next.gif"/>
+    <property name="nextImageDisabled" value="/libImage/nextGray.gif"/>
+  </style>
+
+  <style id="StatusSignal">
+    <property name="disabledIcon" value="/libImage/MerlotGrayLight.gif"/>
+    <property name="noMonitorIcon" value="/libImage/MerlotGrayLight.gif"/>
+    <property name="failureIcon" value="/libImage/MerlotRedLight.gif"/>
+    <property name="newIcon" value="/libImage/MerlotBlueLight"/>
+    <property name="noneIcon" value="/libImage/MerlotGrayLight.gif"/>
+    <property name="normalIcon" value="/libImage/MerlotGreenLight.gif"/>
+    <property name="oldIcon" value="/libImage/MerlotSemiBlueLight.gif"/>
+    <property name="pendingIcon" value="/libImage/MerlotGrayLight.gif"/>
+    <property name="problemIcon" value="/libImage/MerlotYellowLight.gif"/>
+    <property name="repliedIcon" value="/libImage/MerlotReply.gif"/>
+    <property name="severeProblemIcon" value="/libImage/MerlotRedLight.gif"/>
+    <property name="successIcon" value="/libImage/MerlotGreenLight.gif"/>
+  </style>
+
+  <style id="info">
+    <property name="backgroundColor" target="error" value="#990000"/>
+    <property name="color" target="error" value="#FFFFFF"/>
+    <property name="errorIcon" target="error" value="/libImage/MerlotInfoErrorError.gif"/>
+    <property name="fontFamily" target="error" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="error" value="12px"/>
+    <property name="fontWeight" target="error" value="bold"/>
+    <property name="lastIcon" target="error" value="/libImage/MerlotInfoLeftError.gif"/>
+    <property name="lastIconDisabled" target="error" value="/libImage/MerlotInfoLeftErrorGray.gif"/>
+    <property name="nextIcon" target="error" value="/libImage/MerlotInfoRightError.gif"/>
+    <property name="nextIconDisabled" target="error" value="/libImage/MerlotInfoRightErrorGray.gif"/>
+    <property name="revealMask" target="error" value="/libImage/revealMaskError.gif"/>
+    <property name="typeIcon" target="error" value="/libImage/MerlotAlertHelp.gif"/>
+
+    <property name="backgroundColor" target="help" value="#250646"/>
+    <property name="color" target="help" value="#FFFFFF"/>
+    <property name="errorIcon" target="help" value="/libImage/MerlotInfoErrorHelp.gif"/>
+    <property name="fontFamily" target="help" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="help" value="12px"/>
+    <property name="fontWeight" target="help" value="bold"/>
+    <property name="lastIcon" target="help" value="/libImage/MerlotInfoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="help" value="/libImage/MerlotInfoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="help" value="/libImage/MerlotInfoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="help" value="/libImage/MerlotInfoRightHelpGray.gif"/>
+    <property name="revealMask" target="help" value="/libImage/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="help" value="/libImage/MerlotInfoHelp.gif"/>
+
+    <property name="backgroundColor" target="status" value="#250646"/>
+    <property name="color" target="status" value="#FFFFFF"/>
+    <property name="errorIcon" target="status" value="/libImage/MerlotInfoErrorHelp.gif"/>
+    <property name="fontFamily" target="status" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="status" value="12px"/>
+    <property name="fontWeight" target="status" value="bold"/>
+    <property name="lastIcon" target="status" value="/libImage/MerlotInfoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="status" value="/libImage/MerlotInfoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="status" value="/libImage/MerlotInfoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="status" value="/libImage/MerlotInfoRightHelpGray.gif"/>
+    <property name="revealMask" target="status" value="/libImage/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="status" value="/libImage/spaceHolder.gif"/>
+
+    <property name="backgroundColor" target="wait" value="#250646"/>
+    <property name="color" target="wait" value="#FFFFFF"/>
+    <property name="errorIcon" target="wait" value="/libImage/MerlotInfoErrorHelp.gif"/>
+    <property name="fontFamily" target="wait" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="wait" value="12px"/>
+    <property name="fontWeight" target="wait" value="bold"/>
+    <property name="lastIcon" target="wait" value="/libImage/MerlotInfoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="wait" value="/libImage/MerlotInfoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="wait" value="/libImage/MerlotInfoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="wait" value="/libImage/MerlotInfoRightHelpGray.gif"/>
+    <property name="revealMask" target="wait" value="/libImage/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="wait" value="/libImage/MerlotInfoClock.gif"/>
+  </style>
+
+  <style id="tab">
+    <property name="aLinkColor" value="#000000"/>
+    <property name="backgroundColor" value="#244789"/>
+    <property name="logo" value="/libImage/SunCobaltLogo.gif"/>
+    <property name="logoutImage" value="/libImage/MerlotLogOut.gif"/>
+    <property name="monitorOffImage" value="/libImage/MerlotStatusOkay.gif"/>
+    <property name="monitorOnImage" value="/libImage/MerlotStatusBad.gif"/>
+    <property name="selectedImageLeft" value="/libImage/MerlotTabLeftSelected.gif"/>
+    <property name="selectedImageRight" value="/libImage/MerlotTabRightSelected.gif"/>
+    <property name="selectedImageFill" value="/libImage/MerlotTabFillSelected.gif"/>
+    <property name="top" value="20"/>
+    <property name="unselectedImageLeft" value="/libImage/MerlotTabLeftUnselected.gif"/>
+    <property name="unselectedImageRight" value="/libImage/MerlotTabRightUnselected.gif"/>
+    <property name="unselectedImageFill" value="/libImage/MerlotTabFillUnselected.gif"/>
+    <property name="updateOffImage" value="/libImage/MerlotUpdateNone.gif"/>
+    <property name="updateOnImage" value="/libImage/MerlotUpdateYeah.gif"/>
+    <property name="manualOffImage" value="/libImage/MerlotHelp.gif"/>
+
+    <property name="color" target="selected" value="#000000"/>
+    <property name="fontFamily" target="selected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="selected" value="12px"/>
+    <property name="fontWeight" target="selected" value="bold"/>
+    <property name="textDecoration" target="selected" value="none"/>
+
+    <property name="color" target="unselected" value="#000000"/>
+    <property name="fontFamily" target="unselected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="unselected" value="12px"/>
+    <property name="fontWeight" target="unselected" value="bold"/>
+    <property name="textDecoration" target="unselected" value="none"/>
+  </style>
+
+  <style id="title">
+    <property name="backgroundImage" value="/libImage/Merlot_title_background.gif"/>
+    <property name="logo" value="/libImage/SunCobaltLogo.gif"/>
+
+    <property name="color" target="description" value="#FFFFFF"/>
+    <property name="fontFamily" target="description" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="description" value="12px"/>
+
+    <property name="color" target="title" value="#FFFFFF"/>
+    <property name="fontFamily" target="title" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="title" value="16px"/>
+    <property name="fontWeight" target="title" value="bold"/>
+  </style>
+  
+  <style id="AddressBook">
+    <property name="Inspect" value="/libImage/MerlotInspectActive.gif"/>
+    <property name="Email" value="/libImage/MerlotEmailActive.gif"/>
+    <property name="Web" value="/libImage/MerlotWebActive.gif"/>
+  </style>
+  
+</styleResource>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

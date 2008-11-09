@@ -1,0 +1,42 @@
+msgid "cacheACLSettings"
+msgstr "Beschränkter Internet-Zugriff"
+
+msgid "cacheACL"
+msgstr "Web-Zugriff"
+
+msgid "cacheACL_help"
+msgstr "Wenn dieser Server als Gateway oder Proxy benutzt wird, kann Zugriff auf das Internet kann von hier aus gesteuert werden."
+
+msgid "whitelist"
+msgstr "Zulassen"
+
+msgid "blacklist"
+msgstr "Sperren"
+
+msgid "all"
+msgstr "Uneingeschränkt"
+
+msgid "modeField"
+msgstr "Einschränkungsrichtlinien"
+
+msgid "modeField_help"
+msgstr "Wählen Sie die Einschränkungsmethode: Zulassen gestattet nur Zugriff auf die angegebenen Sites, während Sperren Zugriff auf die angegebenen Sites verhindert. Uneingeschränkt gestattet Zugriff auf alle Sites. Beachten Sie, dass diese Einstellungen nur den Zugriff auf Websites beeinflussen, FTP und andere Protokolle bleiben hiervon unberührt."
+
+msgid "domainsField"
+msgstr "Host/Domain-Namen"
+
+msgid "domainsField_help"
+msgstr "Geben Sie Host- und Domänennamen ein, um den Zugriff auf das Internet zu beschränken. Sie können pauschale Domänennamen einsetzen, indem Sie dem Domänennamen einen Punkt voranstellen. Zum Beispiel betrifft der Eintrag www.sun.com nur diesen einen Server, der Eintrag .sun.com hingegen weitet die Einschränkungsrichtlinien auf www.sun.com, cobalt.sun.com, sowie auf alle anderen Websites aus, die der Domäne sun.com angehören."
+
+msgid "domainsField_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-cacheACL.domainsField]].  [[base-cacheACL.domainsField_help]]"
+
+msgid "ipaddrField"
+msgstr "IP-Addressen"
+
+msgid "ipaddrField_help"
+msgstr "Geben Sie eine Liste mit IP-Adressen ein, die mit dieser Richtlinie verwendet werden sollen."
+
+msgid "ipaddrField_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-cacheACL.ipaddrField]].  [[base-cacheACL.ipaddrField_help]]"
+

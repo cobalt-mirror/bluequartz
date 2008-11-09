@@ -1,0 +1,472 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "wizardLicense"
+msgstr "二進制碼軟體授權合約"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "系統管理員設定"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "系統管理員設定"
+
+msgid "adminMessage"
+msgstr "[[base-wizard.productName]] 需要系統管理員處理諸如新增使用者和群組以及配置設定等作業。系統管理員的使用者名稱為 admin。請為系統管理員輸入一個很難猜測的密碼；請牢記該密碼以備將來使用。"
+
+msgid "adminNameField"
+msgstr "使用者名稱"
+
+msgid "adminNameField_help"
+msgstr "這是系統用來識別系統管理員的名稱，無法變更。"
+
+msgid "passwordField"
+msgstr "密碼"
+
+msgid "passwordField_rule"
+msgstr "密碼的長度須介於 3 到 16 個字元之間。一個好的密碼應至少包含 5 個混合大小寫字母以及數字和標點的字元。拼成的密碼不應為任何可在字典中找到的單字。密碼區分大小寫。"
+
+msgid "passwordField_help"
+msgstr "請輸入系統用來識別系統管理員的密碼。  [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "passwordField_empty"
+msgstr "很抱歉，您並未輸入[[base-wizard.passwordField]]的值。  [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "新密碼"
+
+msgid "newPasswordField_help"
+msgstr "請輸入系統用來識別系統管理員的密碼。  [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "時間設定"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "時間設定"
+
+msgid "timeMessage"
+msgstr "[[base-wizard.productName]] 需要正確的日期和時間才能正常運作。請輸入目前的日期和時間及適當的時區。"
+
+msgid "dateField"
+msgstr "日期和時間"
+
+msgid "dateField_help"
+msgstr "設定今天的日期。"
+
+msgid "timeField"
+msgstr "時間"
+
+msgid "timeField_help"
+msgstr "設定目前的時間。"
+
+msgid "timeZoneField"
+msgstr "時區"
+
+msgid "timeZoneField_help"
+msgstr "設定這部伺服器設備所在的時區。"
+
+msgid "wizardUsers"
+msgstr "使用者設定"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "群組設定"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "網路整合"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "網路設定"
+
+msgid "networkMessage"
+msgstr "您可將 [[base-wizard.productName]] 設成可從您公司內的企業網路上存取，甚至可從網際網路上存取。請輸入此伺服器設備的主機名稱和網域名稱，以及可連接的網域伺服器和網路連通方法。"
+
+msgid "hostNameField"
+msgstr "主機名稱"
+
+msgid "hostNameField_rule"
+msgstr "請輸入只包含小寫英數、破折號或句點的字元。例如，www 就是一個有效的名稱。"
+
+msgid "hostNameField_help"
+msgstr "請輸入這部伺服器設備的主機名稱。主機名稱結合網域名稱應可唯一地識別這部伺服器設備。  [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "網域名稱"
+
+msgid "domainNameField_rule"
+msgstr "請輸入只包含小寫英數、破折號或句點的字元。例如，cobalt.com 就是一個有效的名稱。"
+
+msgid "domainNameField_help"
+msgstr "請輸入這部伺服器設備的網域名稱。主機名稱結合網域名稱應可唯一地識別這部伺服器設備。  [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS 伺服器"
+
+msgid "dnsAddressesField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以點號分隔。例如，192.168.1.1 就是有效的數字。這個欄位若是留白，將會使這部機器無法按主機名稱或網域名稱尋找他部機器，並將導致網路功能窒礙難行。"
+
+msgid "dnsAddressesField_help"
+msgstr "請輸入您區域網域名稱伺服器的 IP 位址（每行一個位址）　。網域名稱伺服器會將主機名稱和網域名稱轉換成 IP 位址，反之亦然。  [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-wizard.dnsAddressesField]]值。  [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "連接網際網路"
+
+msgid "internetField_help"
+msgstr "請選取此伺服器設備的網際網路連接類型。"
+
+msgid "none"
+msgstr "無或只限企業網路使用"
+
+msgid "broadband"
+msgstr "纜線數據機或 DSL"
+
+msgid "lan"
+msgstr "區域網路 (LAN) 上的閘道"
+
+msgid "narrowband"
+msgstr "類比數據機或 ISDN"
+
+msgid "wizardBroadband"
+msgstr "設定寬頻"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "設定寬頻"
+
+msgid "broadbandMessage"
+msgstr "您的「纜線數據機」或「DSL 連接」應連接到 [[base-wizard.productName]] 的次要介面。請輸入您的「網際網路服務供應商 (ISP)」提供給您的適當配置設定。"
+
+msgid "networkField"
+msgstr "次要介面"
+
+msgid "networkField_help"
+msgstr "請為此伺服器設備的次要介面選取適當的網路功能配置。您的「網際網路服務供應商 (ISP)」應會提供您完成此步驟所需的資訊。"
+
+msgid "dhcp"
+msgstr "使用動態主機配置通信協定 (DHCP) 自動取得"
+
+msgid "dhcpHostNameField"
+msgstr "從屬站主機名稱"
+
+msgid "dhcpHostNameField_rule"
+msgstr "請輸入只包含小寫英數、破折號或句點的字元。例如，www 就是一個有效的名稱。"
+
+msgid "dhcpHostNameField_help"
+msgstr "請輸入識別此伺服器為「動態主機配置通信協定 (DHCP)」從屬站的主機名稱。  [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "從屬站 ID"
+
+msgid "dhcpClientIdField_help"
+msgstr "請輸入識別此伺服器為「動態主機配置通信協定 (DHCP)」從屬站的識別字串。"
+
+msgid "pppoe"
+msgstr "使用乙太網路上的點對點通信協定 (PPPoE) 自動取得"
+
+msgid "pppUserNameField"
+msgstr "使用者名稱"
+
+msgid "pppUserNameField_help"
+msgstr "請輸入用來登入您「網際網路服務供應商 (ISP)」的使用者名稱。"
+
+msgid "pppPasswordField"
+msgstr "密碼"
+
+msgid "pppPasswordField_help"
+msgstr "請輸入用來登入您「網際網路服務供應商 (ISP)」的密碼。"
+
+msgid "static"
+msgstr "手動指定"
+
+msgid "ipAddressField"
+msgstr "IP 位址"
+
+msgid "ipAddressField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以點號分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "ipAddressField_help"
+msgstr "請輸入次要介面的 IP 位址，該介面通常是連接到網際網路端。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，而保留次要介面空白。  [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "子網路遮罩"
+
+msgid "netMaskField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以點號分隔。例如，255.255.255.0 就是有效的數字。"
+
+msgid "netMaskField_help"
+msgstr "請輸入主要介面的網路遮罩。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，而保留次要介面空白。  [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "閘道"
+
+msgid "gatewayField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以點號分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "gatewayField_help"
+msgstr "請輸入您區域網路閘道的 IP 位址。網路閘道有時又稱為路由器，可讓您連接區域網路以外的世界。  [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "次要介面"
+
+msgid "ipAddressField2"
+msgstr "IP 位址"
+
+msgid "ipAddressField2_help"
+msgstr "請輸入次要介面的 IP 位址，該介面通常是連接到網際網路端。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，而保留次要介面空白。  [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "「IP 位址」和「IP 網路遮罩」兩個欄位必須都填寫或是都保留空白。"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "請輸入次要介面的網路遮罩。如果您只使用一個網路介面連接伺服器設備，請使用主要介面，而保留次要介面空白。  [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC 位址"
+
+msgid "macAddressField_help"
+msgstr "「媒體存取控制 (MAC)」位址是網路介面卡的硬體位址。這個硬體位址是唯一的 ID，自製造後即不可再更改。"
+
+msgid "wizardLan"
+msgstr "區域網路 (LAN) 設定"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "請輸入此伺服器設備的預設閘道。如果該閘道是在連接次要介面的網路上，也請輸入該介面的資訊。"
+
+msgid "lanSettings"
+msgstr "區域網路 (LAN) 設定"
+
+msgid "wizardModem"
+msgstr "數據機設定"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "您的「類比式數據機」或「ISDN 連接」應連接到 [[base-wizard.productName]] 的序列埠介面。請輸入您自「網際網路服務供應商 (ISP)」取得的適當配置設定。"
+
+msgid "modemSettings"
+msgstr "數據機設定"
+
+msgid "connModeField"
+msgstr "連接模式"
+
+msgid "connModeField_help"
+msgstr "請選取是否只在有必要對外連接時建立數據機連接、一律建立連接，或是不要建立連接。"
+
+msgid "demand"
+msgstr "僅在必要時連接"
+
+msgid "on"
+msgstr "一律保持連接"
+
+msgid "off"
+msgstr "一律不要連接"
+
+msgid "userNameField"
+msgstr "撥接帳戶使用者名稱"
+
+msgid "userNameField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」之撥接帳戶的使用者名稱。"
+
+msgid "userNameField_empty"
+msgstr "很抱歉，您並未輸入[[base-wizard.userNameField]]的值。  [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "撥接帳戶密碼"
+
+msgid "modemPasswordField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」之撥接帳戶的密碼。"
+
+msgid "modemPasswordField_empty"
+msgstr "很抱歉，您並未輸入[[base-wizard.modemPasswordField]]的值；請輸入用來登入您「網際網路服務供應商 (ISP)」之撥接帳戶的密碼。"
+
+msgid "modemPasswordField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "modemPhoneField"
+msgstr "撥接電話號碼"
+
+msgid "modemPhoneField_help"
+msgstr "請輸入用來撥接您「網際網路服務供應商 (ISP)」的電話號碼。"
+
+msgid "initStringField"
+msgstr "數據機起始設定字串"
+
+msgid "initStringField_help"
+msgstr "請輸入數據機起始設定字串，該字串將在撥接前傳遞到數據機。"
+
+msgid "initStringField_empty"
+msgstr "您並未輸入[[base-wizard.initStringField]]的值。您必須輸入起始設定字串，否則伺服器將無法使用數據機。如果您不知道數據機的預設起始設定字串，請嘗試輸入 'ATZ' 或參閱數據機文件。"
+
+msgid "localIpField"
+msgstr "區域 IP 位址"
+
+msgid "localIpField_help"
+msgstr "如果您的「網際網路服務供應商 (ISP)」已指定 IP 位址，請輸入數據機連接的這一端的本端 IP 位址。"
+
+msgid "pulseField"
+msgstr "啟用脈衝式撥接"
+
+msgid "pulseField_help"
+msgstr "開啟或關閉脈衝式撥接。啟用這個功能後，將使用脈衝式撥接，而非按鍵撥接。預設值為關閉脈衝式撥接。"
+
+msgid "wizardRegistration"
+msgstr "產品註冊"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "產品註冊"
+
+msgid "regRightArrow"
+msgstr "向右箭頭"
+
+msgid "regSubmit"
+msgstr "提出"
+
+msgid "regSubmit_help"
+msgstr "按一下此處，可註冊您的 [[base-wizard.productName]]。"
+
+msgid "regCancel"
+msgstr "稍後註冊"
+
+msgid "regCancel_help"
+msgstr "按一下此處，可取消註冊。如果選擇取消，您還是能夠在稍後註冊您的 [[base-wizard.productName]]。"
+
+msgid "regTextOffline"
+msgstr "您必須向 Sun Microsystems 註冊您的 [[base-wizard.productName]]，才能獲得技術支援。您的網路似乎並未配置成電子式註冊。請造訪 <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> 並遵循連到 Sun Cobalt Support 的鏈結，來註冊您的 [[base-wizard.productName]] 。對於您個人的隱私，我們絕對會尊重；對於您所分享的個人識別資訊，我們也會善盡保護及管理的義務。在您註冊產品之前，我們非常希望您能前往 <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A> 來複查 Sun Microsystems 的隱私政策，進而瞭解我們採取哪些步驟來保護及管理您的隱私。"
+
+msgid "fullNameField"
+msgstr "全名"
+
+msgid "fullNameField_help"
+msgstr "請輸入您的全名。"
+
+msgid "fullNameField_rule"
+msgstr "請輸入冒號以外的任何字元。例如，John Doe 就是一個有效的字元。"
+
+msgid "titleField"
+msgstr "工作職稱"
+
+msgid "titleField_help"
+msgstr "請輸入您的工作職稱。"
+
+msgid "companyField"
+msgstr "公司名稱"
+
+msgid "companyField_help"
+msgstr "請輸入您的公司名稱。"
+
+msgid "addressField"
+msgstr "完整住址"
+
+msgid "addressField_help"
+msgstr "請輸入您的完整住址。"
+
+msgid "countryField"
+msgstr "國家"
+
+msgid "countryField_help"
+msgstr "請輸入您的國家。"
+
+msgid "emailField"
+msgstr "電子郵件位址"
+
+msgid "emailField_help"
+msgstr "請輸入您的電子郵件位址。"
+
+msgid "emailField_rule"
+msgstr "請輸入 user@domain.com 格式的有效電子郵件位址。"
+
+msgid "phoneField"
+msgstr "電話號碼"
+
+msgid "phoneField_help"
+msgstr "請輸入您的電話號碼。"
+
+msgid "faxField"
+msgstr "傳真號碼"
+
+msgid "faxField_help"
+msgstr "請輸入您的傳真號碼。"
+
+msgid "licenseHeader"
+msgstr "<B>您必須捲動至文件末端，以「接受」或「拒絕」以下的「二進制碼軟體授權合約」條款。"
+
+msgid "licenseClick"
+msgstr "按下面的箭頭按鈕，表示您承認接受 [[base-wizard.productName]] 隨附的「註冊/登錄卡」及以下「授權合約」上載明的合約條款。"
+
+msgid "regText"
+msgstr "您必須向 Sun Microsystems 註冊您的 [[base-wizard.productName]]，才能獲得技術支援。如要以電子方式來註冊，請提供下列的資訊，然後再按一下「提交」。 您也可以造訪 <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> 並遵循連到 Sun Cobalt Support 的鏈結，來註冊您的 [[base-wizard.productName]]。對於您個人的隱私，我們絕對會尊重；對於您所分享的個人識別資訊，我們也會善盡保護及管理的義務。在您註冊產品之前，我們非常希望您能前往 <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A> 來複查 Sun Microsystems 的隱私政策，進而瞭解我們採取哪些步驟來保護及管理您的隱私。"
+
+msgid "wizardLocale"
+msgstr "偏好的語言"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "選取要用於伺服器管理的偏好的語言。"
+
+msgid "localeField"
+msgstr "選取偏好的語言"
+
+msgid "localeField_help"
+msgstr "在傳送電子郵件通知、LCD 主控台顯示功能表及管理 Web 介面時，如果找不到偏好的瀏覽器語言，「動態監控」會使用「偏好的語言」。"
+
+msgid "localeSettings"
+msgstr "偏好的語言"
+
+msgid "accept"
+msgstr "接受"
+
+msgid "accept_help"
+msgstr "如果您已閱讀且同意軟體授權合約的條款，並準備繼續，請按「接受」。"
+
+msgid "decline"
+msgstr "拒絕"
+
+msgid "decline_help"
+msgstr "如果您拒絕軟體授權合約的條款，您就無法使用 Sun Cobalt Qube 3"
+
+msgid "declineError"
+msgstr "在繼續之前，您必須按「接受」，確認您已閱讀並同意軟體授權合約。"
+
+msgid ""
+msgstr ""
+
+msgid "license"
+msgstr "<center>Sun Microsystems, Inc.<br><b>二進位程式碼授權合約</b></center><p>請於開啟本軟體媒體包裝前仔細閱讀本合約各項條款及任何規定之補充授權條款 (總稱為「合約」)。若您開啟了軟體媒體的包裝，代表您同意本「合約」之各項條款。若您使用電子方式存取本軟體，請藉由選擇按下了本合約最後面的「接受」按鈕代表您接受本「合約」各項條款。若您不同意「合約」中所有條款，請立即將未使用的軟體送回購買處要求退款。如果您以電子方式存取本軟體，請選擇按下了本合約最後面的「拒絕」按鈕。<p>1. 使用授權。Sun 將依使用者數目與電腦硬體等級並已支付相當費用者，同意給予您非專屬及不可移轉之授權，對僅於內部使用隨附軟體與文件以及由 Sun 所提供之錯誤更正 (總稱為「軟體」)。<p>2. 限制：本軟體為機密資料、且保留著作權。Sun 及 (或) 其授權者保留對本軟體及所有相關智慧財產權之所有權。除經任何補充授權條款之特別授權，您不可以複製本軟體，但為檔案保存之目的而複製一份副本者，不在此限。您不可以對本軟體進行修改、解譯或反向工程，但相關適用法律明定禁止限制者，不在此限。您認知到本軟體並非設計、授權或意圖使用於設計、建造、操作或維護任何核子設施。Sun 拒絕對適合上述使用提供任何明示或暗示性擔保。任何有關 Sun 或其授權者之商標、服務標章、標示或商標名稱之權利、所有權或利益，並未於本合約中授權。<p>3. 有限擔保責任。Sun 憑收據副本擔保於購買之日起九十 (90) 日內，含有本軟體之媒體 (若包含) 於正常使用下，應免於材質或製造上的缺陷。除了前述事項外，本「軟體」將以其「現狀」提供。您唯一救濟權及 Sun 依本項有限擔保之全部義務，為 Sun 選擇更換本軟體媒體物或退回購買本軟體之費用。<p>4. 擔保排除事項。除本合約具體說明，拒絕對所有明示或暗示之狀況、代理與擔保之責任，包括任何暗示可銷性、適合特殊目的或非侵權性之保證，但限制範圍被法律宣告無效者，不在此限。<p>5. 義務之限制。於未被法律所禁止之範圍， SUN 或其授權者將不會對任何所失收入、利益或資料、或對特別、間接、附隨、衍生性或懲罰性損害，不論是否依債務原理，對其之發生或關於使用或者無法使用本軟體負責。依本合約， Sun 對您的責任之額度將不會超過您為購買本軟體所支付之金額，不論基於契約、侵權行為 (包含過失) 或其他原因。上述限制亦適用於前述擔保責任未能達成基本目的之時。<p>6. 終止。本「合約」於終止前持續有效。您可藉銷毀本「軟體」所有備份來終止本「合約」。若您未能遵守本「合約」之規定，本合約將可不經 Sun 之通知立即終止。「合約」終止後，您必需銷毀本「軟體」所有備份。<p>7. 出口規定。所有依照本「合約」提供之軟體與技術資料受限於美國出口管制條例，且可能同時受其他國家之進出口法令所限制。您同意嚴格遵守所有相關法令，並認知可能於交付予您之後，您有義務獲得相關出口、再出口或進口許可。<p>8. 美國政府受限制權利。若本軟體之取得者為美國政府、或美國政府代表，或者美國政府的承包商或轉包商 (不論層級)，依照 48 CFR 227.7201 到 227.7202-4 (適用於國防部之獲取) 與 48 CFR 2.101 及 12.212 (適用於非國放不之獲取) 之規定，美國政府在本「軟體」與相關文件中的權利，將僅限於本「合約」中陳述的部分。<p>9. 準據法。有關本「合約」的任何訴訟將適用於美國加州法律及美國聯邦法律。沒有任何司法管轄權之法律規定可供選擇適用。<p>10. 獨立性。若本「合約」中之任何條款被限制無法執行時，本「合約」其他條款仍有效，除非刪除部分將使當事人一方失去締約目的，此時本「合約」將立即終止。<p>11. 整合性。本「合約」是您與 Sun 在本主題上之全部合約。它將取代之前與同時存在之所有口頭或書面通訊、建議、表示或擔保，並優先適用於與本「合約」各條款所涵蓋主題內之任何報價、訂購、認可、與其他相關各方間通訊之衝突或額外條款。非經雙方授權代表之書面簽署，對於本「合約」之修改將無拘束力。<p>如果您有相關問題，請洽詢︰Sun Microsystems, Inc.? 901 San Antonio Road, Palo Alto, California 94303<br>(表格 ID#011801)<p><center>Sun Microsystems, Inc.<br><b>Sun Cobalt Qube 補充條款</b></center><p>這些 Sun Cobalt Qube「補充條款」補充了「二進位程式碼授權合約」之內容。本「補充條款」文中以括號標明、且未加以定義的詞彙，其意義與「合約」中相同。本補充授權條款應取代任何與「合約」不一致或衝突的條款。使用本「軟體」代表您接受「合約」與此處所提及之補充條款。<p>1.  協力廠商授權條款。本「軟體」的某些部分同時提供了來自其他廠商的注意與授權事項，該部分之使用將受限於此等事項。<p>2.  額外使用條件。<p>A.  BlueLinQ 功能。BCL 與這些「補充條款」適用於 Sun Cobalt Qube 的 BlueLinQ 功能的運作，包括但不限於：<p>(i)	您與 Sun 的聯繫；<br>(ii)	任何由 Sun 網站下載的軟體與資訊；以及<br>(iii)	您選擇將軟體與資訊傳布到受管理的裝置。<p>3.  額外限制。未經 Sun 事前書面同意，您不能將在本「軟體」上執行的測速或比較測試加以出版、或提供給任何其他第三人。<p>EULA-Web.806-2740-11DAA 	2001/10/17 	上午 10:00"

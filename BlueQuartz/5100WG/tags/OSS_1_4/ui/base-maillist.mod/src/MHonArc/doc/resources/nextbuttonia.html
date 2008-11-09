@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>MHonArc Resources: NEXTBUTTONIA</title>
+</head>
+<body>
+
+<address>
+<a href="../resources.html#nextbuttonia">MHonArc Resource List</a>
+</address>
+
+<hr>
+<h1>NEXTBUTTONIA</h1>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Syntax</h2>
+
+<dl>
+
+<dt><strong>Envariable</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+<dt><strong>Element</strong><dt>
+<dd><p><br>
+<code>&lt;NEXTBUTTONIA&gt;<br></code>
+<var>markup ...</var><br>
+<code>&lt;/NEXTBUTTONIA&gt;<br></code>
+</p>
+</dd>
+
+<dt><strong>Command-line Option</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+</dl>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Description</h2>
+
+<p>NEXTBUTTONIA defines the value for the <code>$BUTTON(NEXT)$</code>
+resource variable when there is no next message to the current message
+according to the message list order of the main index.  See the
+<a href="nextbutton.html">NEXTBUTTON</a> for defining the
+value of <code>$BUTTON(NEXT)$</code> when there is a next message.
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Default Setting</h2>
+
+<pre>
+<b>&lt;NextButtonIA chop&gt;</b>
+[Date Next]
+<b>&lt;/NextButtonIA&gt;</b>
+</pre>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Resource Variables</h2>
+
+<table border=1>
+<tr bgcolor="#C0C0C0">
+<th>Variable</th><th>Value</th>
+</tr>
+<tr valign=top>
+<td align=center><a name="BUTTON" href="../rcvars.html#BUTTON"><strong><code>$BUTTON$</code></strong></a></td>
+<td>Button markup linking to a message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="DATE" href="../rcvars.html#DATE"><strong><code>$DATE$</code></strong></a></td>
+<td>The date of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="DDMMYYYY" href="../rcvars.html#DDMMYYYY"><strong><code>$DDMMYYYY$</code></strong></a></td>
+<td>Message date in dd/mm/yyyy format.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="DOCURL" href="../rcvars.html#DOCURL"><strong><code>$DOCURL$</code></strong></a></td>
+<td>URL to documentation.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="ENV" href="../rcvars.html#ENV"><strong><code>$ENV$</code></strong></a></td>
+<td>Value of an environment variable.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROM" href="../rcvars.html#FROM"><strong><code>$FROM$</code></strong></a></td>
+<td>The complete text in the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMADDR" href="../rcvars.html#FROMADDR"><strong><code>$FROMADDR$</code></strong></a></td>
+<td>The e-mail address in the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMADDRDOMAIN" href="../rcvars.html#FROMADDRDOMAIN"><strong><code>$FROMADDRDOMAIN$</code></strong></a></td>
+<td>The e-mail address domain of the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMADDRNAME" href="../rcvars.html#FROMADDRNAME"><strong><code>$FROMADDRNAME$</code></strong></a></td>
+<td>The e-mail address "username" (or local-part) of the <tt>From:</tt> field of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="FROMNAME" href="../rcvars.html#FROMNAME"><strong><code>$FROMNAME$</code></strong></a></td>
+<td>The human name of the person in the <tt>From:</tt> field of the message. If no human name is found, the username specified in the e-mail address is used.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="GMTDATE" href="../rcvars.html#GMTDATE"><strong><code>$GMTDATE$</code></strong></a></td>
+<td>Current GMT date.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="ICON" href="../rcvars.html#ICON"><strong><code>$ICON$</code></strong></a></td>
+<td>The context-type sensistive icon.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="ICONURL" href="../rcvars.html#ICONURL"><strong><code>$ICONURL$</code></strong></a></td>
+<td>The URL to the context-type sensistive icon.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXFNAME" href="../rcvars.html#IDXFNAME"><strong><code>$IDXFNAME$</code></strong></a></td>
+<td>Filename of main index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXLABEL" href="../rcvars.html#IDXLABEL"><strong><code>$IDXLABEL$</code></strong></a></td>
+<td>Label for main index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXPREFIX" href="../rcvars.html#IDXPREFIX"><strong><code>$IDXPREFIX$</code></strong></a></td>
+<td>Prefix of filenames of main index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXSIZE" href="../rcvars.html#IDXSIZE"><strong><code>$IDXSIZE$</code></strong></a></td>
+<td>Max number of messages that may be listed in index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="IDXTITLE" href="../rcvars.html#IDXTITLE"><strong><code>$IDXTITLE$</code></strong></a></td>
+<td>The title of the main index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="LINK" href="../rcvars.html#LINK"><strong><code>$LINK$</code></strong></a></td>
+<td>Link markup linking to a message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="LOCALDATE" href="../rcvars.html#LOCALDATE"><strong><code>$LOCALDATE$</code></strong></a></td>
+<td>Current local date.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MMDDYYYY" href="../rcvars.html#MMDDYYYY"><strong><code>$MMDDYYYY$</code></strong></a></td>
+<td>Message date in mm/dd/yyyy format.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSG" href="../rcvars.html#MSG"><strong><code>$MSG$</code></strong></a></td>
+<td>Filename of message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGGMTDATE" href="../rcvars.html#MSGGMTDATE"><strong><code>$MSGGMTDATE$</code></strong></a></td>
+<td>GMT date of current message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGID" href="../rcvars.html#MSGID"><strong><code>$MSGID$</code></strong></a></td>
+<td>The message-id of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGLOCALDATE" href="../rcvars.html#MSGLOCALDATE"><strong><code>$MSGLOCALDATE$</code></strong></a></td>
+<td>Local date of current message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGNUM" href="../rcvars.html#MSGNUM"><strong><code>$MSGNUM$</code></strong></a></td>
+<td>The message number assigned to the message by MHonArc (includes leading zeros).</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="MSGPREFIX" href="../rcvars.html#MSGPREFIX"><strong><code>$MSGPREFIX$</code></strong></a></td>
+<td>Filename prefix for message files.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NOTE" href="../rcvars.html#NOTE"><strong><code>$NOTE$</code></strong></a></td>
+<td>Message annotation.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NUMFOLUP" href="../rcvars.html#NUMFOLUP"><strong><code>$NUMFOLUP$</code></strong></a></td>
+<td>Number of explicit follow-ups to the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NUMOFMSG" href="../rcvars.html#NUMOFMSG"><strong><code>$NUMOFMSG$</code></strong></a></td>
+<td>Number of messages in the archive.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="NUMOFPAGES" href="../rcvars.html#NUMOFPAGES"><strong><code>$NUMOFPAGES$</code></strong></a></td>
+<td>Number of index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="ORDNUM" href="../rcvars.html#ORDNUM"><strong><code>$ORDNUM$</code></strong></a></td>
+<td>The current listing number of the message.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="OUTDIR" href="../rcvars.html#OUTDIR"><strong><code>$OUTDIR$</code></strong></a></td>
+<td>Pathname of archive.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="PROG" href="../rcvars.html#PROG"><strong><code>$PROG$</code></strong></a></td>
+<td>Program name</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="SUBJECTNA" href="../rcvars.html#SUBJECTNA"><strong><code>$SUBJECTNA$</code></strong></a></td>
+<td>The subject text of the message without the anchor element.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXFNAME" href="../rcvars.html#TIDXFNAME"><strong><code>$TIDXFNAME$</code></strong></a></td>
+<td>Filename of thread index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXLABEL" href="../rcvars.html#TIDXLABEL"><strong><code>$TIDXLABEL$</code></strong></a></td>
+<td>Label for thread index page.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXPREFIX" href="../rcvars.html#TIDXPREFIX"><strong><code>$TIDXPREFIX$</code></strong></a></td>
+<td>Prefix of filenames of thread index pages.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TIDXTITLE" href="../rcvars.html#TIDXTITLE"><strong><code>$TIDXTITLE$</code></strong></a></td>
+<td>Title of thread index.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="TSLICE" href="../rcvars.html#TSLICE"><strong><code>$TSLICE$</code></strong></a></td>
+<td>A <em>slice</em> of the thread listing relative to the current message.  Size of slice determined by the TSLICE resource.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="VERSION" href="../rcvars.html#VERSION"><strong><code>$VERSION$</code></strong></a></td>
+<td>Program version.</td>
+</tr>
+<tr valign=top>
+<td align=center><a name="YYYYMMDD" href="../rcvars.html#YYYYMMDD"><strong><code>$YYYYMMDD$</code></strong></a></td>
+<td>Message date in yyyy/mm/dd format.</td>
+</tr>
+</table>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Examples</h2>
+
+<p>The following shows how an button image can be used to
+show no next message is avaliable:
+</p>
+
+<pre>
+<b>&lt;NextButtonIA chop&gt;</b>
+&lt;IMG SRC="nextia.gif" ALT="[Date Next]">
+<b>&lt;/NextButtonIA gt;</b>
+</pre>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Version</h2>
+
+<p>1.2
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>See Also</h2>
+
+<p>
+<a href="nextbutton.html">NEXTBUTTON</a>,
+<a href="prevbutton.html">PREVBUTTON</a>,
+<a href="prevbuttonia.html">PREVBUTTONIA</a>,
+<a href="tnextbutton.html">TNEXTBUTTON</a>,
+<a href="tnextbuttonia.html">TNEXTBUTTONIA</a>,
+<a href="toplinks.html">TOPLINKS</a>
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<address>
+99/10/01 01:19:26<br>
+<img align="top" src="../monicon.gif" alt="">
+<a href="http://www.pobox.com/~ehood/mhonarc.html"><strong>MHonArc</strong></a><br>
+Copyright &#169; 1997-1998, <a href="http://www.pobox.com/~ehood/">Earl Hood</a>, <a href="mailto:mhonarc@pobox.com">mhonarc@pobox.com</a><br>
+</address>
+
+</body>
+</html>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

@@ -1,0 +1,255 @@
+# Menu
+
+msgid "webUsage"
+msgstr "ウェブ"
+
+msgid "webstatMenuDesc"
+msgstr "ウェブサーバの使用状況が表示されます。"
+
+# Page Selector & Table Headers
+
+msgid "noStats"
+msgstr "現在、統計情報は一時的に使用できません。"
+
+msgid "notAvailable"
+msgstr "利用できません"
+
+msgid "selectStat"
+msgstr "統計区分を選択…"
+
+msgid "webtotals"
+msgstr "全体のサマリー"
+
+msgid "webtotals_header"
+msgstr "ウェブ使用状況 - 全体のサマリー"
+
+msgid "webbyip"
+msgstr "最も活発なリクエスタ"
+
+msgid "webbyip_header"
+msgstr "ウェブ使用状況 - 最も活発なリクエスタ"
+
+msgid "webbyfile"
+msgstr "最もリクエストの多いページ"
+
+msgid "webbyfile_header"
+msgstr "ウェブ使用状況 - 最もリクエストの多いページ"
+
+msgid "webbyref"
+msgstr "最も参照頻度の高いページ"
+
+msgid "webbyref_header"
+msgstr "ウェブ使用状況 - 最も参照頻度の高いページ"
+
+msgid "webbyhour"
+msgstr "１時間あたりのリクエスト"
+
+msgid "webbyhour_header"
+msgstr "ウェブ使用状況 - １時間あたりのリクエスト"
+
+msgid "webbydate"
+msgstr "１日あたりのリクエスト"
+
+msgid "webbydate_header"
+msgstr "ウェブ使用状況 - １日あたりのリクエスト"
+
+# Page Details
+# Summary
+
+msgid "genDate"
+msgstr "統計値の生成時刻"
+
+msgid "genDate_help"
+msgstr "このウェブ使用状況統計が生成された時刻です。"
+
+msgid "periodStart"
+msgstr "対象期間の開始時刻"
+
+msgid "periodStart_help"
+msgstr "このウェブ使用状況統計の対象となる期間の開始時刻です。"
+
+msgid "periodEnd"
+msgstr "対象期間の終了時刻"
+
+msgid "periodEnd_help"
+msgstr "このウェブ使用状況統計の対象となる期間の終了時刻です。"
+
+msgid "totalHits"
+msgstr "リクエスト総数"
+
+msgid "totalHits_help"
+msgstr "対象期間中に受信したウェブリクエスト（「ヒット」）の総数です。"
+
+msgid "badHits"
+msgstr "不良リクエスト数"
+
+msgid "badHits_help"
+msgstr "対象期間中に受信した不良ウェブリクエスト（「ヒット」）の総数です。ウェブページに対するこれらのリクエストは、何らかの原因で実行できませんでした。このウェブサーバ上に存在しないウェブページに対するリクエストなどがその理由です。"
+
+msgid "numIPs"
+msgstr "リクエストを送ったコンピュータの台数"
+
+msgid "numIPs_help"
+msgstr "対象期間中にウェブページをリクエストしたコンピュータの台数（重複を除く）です。"
+
+msgid "numFiles"
+msgstr "リクエストされたページ数"
+
+msgid "numFiles_help"
+msgstr "対象期間中にリクエストされたウェブページの枚数（重複を除く）です。"
+
+msgid "numRefs"
+msgstr "紹介ページ数"
+
+msgid "numRefs_help"
+msgstr "対象期間中にこのウェブサーバ上のウェブページへのリンクを提供した紹介ページの枚数（重複を除く）です。「紹介ページ」とは、このウェブサーバ上のウェブページへのハイパーリンクを含むウェブページを意味します。"
+
+msgid "numBytes"
+msgstr "ダウンロードされたバイト数"
+
+msgid "numBytes_help"
+msgstr "対象期間中にダウンロードされたデータのバイト数です。"
+
+# Most Active Requesters
+
+msgid "hostname"
+msgstr "リクエスタ名"
+
+msgid "hostname_help"
+msgstr "このウェブサーバ上にあるウェブページをリクエストしたコンピュータのホスト名です。"
+
+msgid "hits"
+msgstr "リクエスト"
+
+msgid "hits_help"
+msgstr "リクエスタから受信したウェブリクエスト（「ヒット」）の総数です。"
+
+msgid "referrer"
+msgstr "紹介者"
+
+msgid "referrer_help"
+msgstr "リクエスタにこのウェブサーバ上のウェブページを紹介したウェブページ（「紹介ページ」）です。"
+
+# Most Requested Pages
+
+msgid "file"
+msgstr "ページ"
+
+msgid "file_help"
+msgstr "リクエスタがリクエストしたウェブページです。"
+
+msgid "pagehits"
+msgstr "リクエスト"
+
+msgid "pagehits_help"
+msgstr "このウェブページに対するウェブリクエスト（「ヒット」）の数です。"
+
+# Most Frequent Referring Pages
+
+msgid "refhits"
+msgstr "リクエスト"
+
+msgid "refhits_help"
+msgstr "この紹介者からのウェブリクエスト（「ヒット」）の数です。"
+
+# Hourly Requests
+
+msgid "00_help"
+msgstr "午前 12 時から午前 1 時までの間に記録したウェブリクエストの数です。"
+
+msgid "01_help"
+msgstr "午前 1 時から午前 2 時の間に記録したウェブリクエストの数です。"
+
+msgid "02_help"
+msgstr "午前 1 時から午前 2 時の間に記録したウェブリクエストの数です。"
+
+msgid "03_help"
+msgstr "午前 3 時から午前 4 時の間に記録したウェブリクエストの数です。"
+
+msgid "04_help"
+msgstr "午前 4 時から午前 5 時の間に記録したウェブリクエストの数です。"
+
+msgid "05_help"
+msgstr "午前 5 時から午前 6 時の間に記録したウェブリクエストの数です。"
+
+msgid "06_help"
+msgstr "午前 6 時から午前 7 時の間に記録したウェブリクエストの数です。"
+
+msgid "07_help"
+msgstr "午前 7 時から午前 8 時の間に記録したウェブリクエストの数です。"
+
+msgid "08_help"
+msgstr "午前 8 時から午前 9 時の間に記録したウェブリクエストの数です。"
+
+msgid "09_help"
+msgstr "午前 9 時から午前 10 時の間に記録したウェブリクエストの数です。"
+
+msgid "10_help"
+msgstr "午前 10 時から午前 11 時の間に記録したウェブリクエストの数です。"
+
+msgid "11_help"
+msgstr "午前 11 時から正午の間に記録したウェブリクエストの数です。"
+
+msgid "12_help"
+msgstr "正午から午後 1 時の間に記録したウェブリクエストの数です。"
+
+msgid "13_help"
+msgstr "午後 1 時から午後 2 時の間に記録したウェブリクエストの数です。"
+
+msgid "14_help"
+msgstr "午後 2 時から午後 3 時の間に記録したウェブリクエストの数です。"
+
+msgid "15_help"
+msgstr "午後 3 時から午後 4 時の間に記録したウェブリクエストの数です。"
+
+msgid "16_help"
+msgstr "午後 4 時から午後 5 時の間に記録したウェブリクエストの数です。"
+
+msgid "17_help"
+msgstr "午後 5 時から午後 6 時の間に記録したウェブリクエストの数です。"
+
+msgid "18_help"
+msgstr "午後 6 時から午後 7 時の間に記録したウェブリクエストの数です。"
+
+msgid "19_help"
+msgstr "午後 7 時から午後 8 時の間に記録したウェブリクエストの数です。"
+
+msgid "20_help"
+msgstr "午後 8 時から午後 9 時の間に記録したウェブリクエストの数です。"
+
+msgid "21_help"
+msgstr "午後 9 時から午後 10 時の間に記録したウェブリクエストの数です。"
+
+msgid "22_help"
+msgstr "午後 10 時から午後 11 時の間に記録したウェブリクエストの数です。"
+
+msgid "23_help"
+msgstr "午後 11 時から午前 12 時の間に記録したウェブリクエストの数です。"
+
+# Daily Requests
+
+msgid "date"
+msgstr "日付"
+
+msgid "date_help"
+msgstr "ウェブリクエスト（「ヒット」）を受信した日付です。"
+
+msgid "dayhits"
+msgstr "リクエスト"
+
+msgid "dayhits_help"
+msgstr "この日1日のウェブリクエスト（「ヒット」）の数です。"
+
+# Button
+
+msgid "resetStats"
+msgstr "統計情報を更新する"
+
+msgid "resetStats_help"
+msgstr "このボタンをクリックすると、現在のウェブ使用状況の統計報告は全て消去され、新しい統計情報の収集が開始されます。"
+
+msgid "askResetConfirmation"
+msgstr "ウェブ使用状況の統計情報を更新してよろしいですか？"
+
+msgid "Unknown"
+msgstr "不明"

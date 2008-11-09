@@ -1,0 +1,317 @@
+msgid "dhcpd"
+msgstr "DHCP"
+
+msgid "dhcpd_help"
+msgstr "单击此处更改[[base-dhcpd.dhcpdSettings]]。"
+
+msgid "dhcpdSettings"
+msgstr "动态主机配置协议 (DHCP) 设置"
+
+msgid "enableServerField"
+msgstr "启用服务器"
+
+msgid "enableServerField_help"
+msgstr "打开或关闭动态主机配置协议 (DHCP) 服务器功能。打开此功能允许客户机在启动时从此服务器设备上自动获取网络配置设置。"
+
+msgid "settingsForClients"
+msgstr "DHCP 客户机设置"
+
+msgid "settingsForClients_help"
+msgstr "单击此处配置 DHCP 客户机设置。这些网络配置设置将在启动时自动为客户机提供。"
+
+msgid "domainNameField"
+msgstr "客户机域名"
+
+msgid "domainNameField_rule"
+msgstr "请只输入小写的字母数字字符、破折号或句点。例如，sun.com 就是有效的输入。"
+
+msgid "domainNameField_help"
+msgstr "输入将自动为这些客户机服务的域名。此域名通常与此服务器设备的域名相同。 [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.domainNameField]]的无效值。 [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.domainNameField]]输入值。 [[base-dhcpd.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "客户机 DNS 地址"
+
+msgid "dnsAddressesField_rule"
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "dnsAddressesField_help"
+msgstr "输入您的本地域名服务器的 IP 地址或自动为这些客户机提供服务的服务器的地址。域名服务器将文本的主机名和域名转换为数字式的 IP 地址，也可将数字式 IP 地址转换为文本的主机名和域名。[[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.dnsAddressesField]]的无效值。 [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.dnsAddressesField]]输入值。 [[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "subnetMaskField" 
+msgstr "客户机子网掩码"
+
+msgid "subnetMaskField_rule" 
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，255.255.255.0 就是有效的输入。"
+
+msgid "subnetMaskField_help"
+msgstr "输入将自动为这些客户机服务的子网掩码。 [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.subnetMaskField]]的无效值。 [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.subnetMaskField]]输入值。 [[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "客户机缺省网关"
+
+msgid "gatewayField_rule"
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "gatewayField_help"
+msgstr "输入将自动为这些客户机服务的本地网关的 IP 地址。网关允许您与您的本地网关区域外界连接。 [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.gatewayField]]的无效值。 [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.gatewayField]]输入值。 [[base-dhcpd.gatewayField_rule]]"
+
+msgid "maxLeaseField"
+msgstr "最大租用时间（秒）"
+
+msgid "maxLeaseField_rule"
+msgstr "请输入大于零的整数。缺省值是 86400。"
+
+msgid "maxLeaseField_help"
+msgstr "动态主机配置协议 (DHCP) 服务器分配的网络信息在固定的时间段后失效。输入租用到期前最长的时间段（以秒表示）。 [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.maxLeaseField]]的无效值。 [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.maxLeaseField]]输入值。 [[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "addressAssignments"
+msgstr "修改地址分配"
+
+msgid "addressAssignments_help"
+msgstr "单击此处设置将分配至请求 IP 地址的客户机的服务器的 IP 地址。"
+
+msgid "dynamicAssignmentList"
+msgstr "动态地址分配列表"
+
+msgid "ipAddressLow"
+msgstr "IP 地址范围（从）"
+
+msgid "ipAddressLow_help"
+msgstr "这是动态分配的 IP 地址范围的起点。"
+
+msgid "ipAddressHi"
+msgstr "IP 地址范围（到）"
+
+msgid "ipAddressHi_help"
+msgstr "这是动态分配的 IP 地址范围的终点。"
+
+msgid "listActionDyn"
+msgstr "操作"
+
+msgid "listActionDyn_help"
+msgstr "这些是用于修改或删除动态分配的 IP 地址范围的按钮。"
+
+msgid "removeDynamicConfirm"
+msgstr "是否确定要删除从[[VAR.ipAddressLow]]到[[VAR.ipAddressHi]]的 IP 地址范围？"
+
+msgid "addNewDynamic"
+msgstr "添加新动态地址分配"
+
+msgid "ipAddressLowField"
+msgstr "IP 地址范围（从）"
+
+msgid "ipAddressLowField_rule"
+msgstr "请输入 0 和 255 之间四个连续数字，用句点隔开。例如，192.168.1.100 就是有效的输入。"
+
+msgid "ipAddressLowField_help"
+msgstr "输入此服务器动态分配的 IP 地址范围内第一个或最低的 IP 地址。 [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.ipAddressLowField]]的无效值。[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.ipAddressLowField]]输入值。 [[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressHiField"
+msgstr "IP 地址范围（到）"
+
+msgid "ipAddressHiField_rule"
+msgstr "请输入 0 和 255 之间四个连续数字，用句点隔开。例如，192.168.1.110 就是有效的输入。"
+
+msgid "ipAddressHiField_help"
+msgstr "输入此服务器动态分配的 IP 地址范围内最后一个或最高的 IP 地址。 [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.ipAddressHiField]]的无效值。 [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.ipAddressHiField]]输入值。 [[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "staticAssignmentList"
+msgstr "静态地址分配列表"
+
+msgid "ipAddress"
+msgstr "IP 地址"
+
+msgid "ipAddress_help"
+msgstr "这是采用指定的 MAC 地址一致并静态地分配给计算机的 IP 地址。"
+
+msgid "macAddress"
+msgstr "MAC 地址"
+
+msgid "macAddress_help"
+msgstr "这是一致并静态地分配指定的 IP 地址的计算机的 MAC 地址。"
+
+msgid "listActionStatic"
+msgstr "操作"
+
+msgid "listActionStatic_help"
+msgstr "这些是用于修改或删除静态分配的 IP 地址的按钮。"
+
+msgid "removeStaticConfirm"
+msgstr "是否确定要删除从 IP 地址[[VAR.ipAddress]]到 MAC 地址[[VAR.macAddress]]的分配？"
+
+msgid "addNewStatic" 
+msgstr "添加新的静态地址分配"
+
+msgid "ipAddressField"
+msgstr "IP 地址"
+
+msgid "ipAddressField_rule"
+msgstr "[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressField_help"
+msgstr "输入此服务器静态分配给由特定媒体访问控制 (MAC) 地址识别的特定计算机的 IP 地址。[[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.ipAddressField]]的无效值。 [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.ipAddressField]]输入值。 [[base-dhcpd.ipAddressField_rule]]"
+
+msgid "macAddrAlreadySpecified"
+msgstr "指定的 MAC 地址已被分配了一个 IP 地址。"
+
+msgid "macAddressField"
+msgstr "MAC 地址"
+
+msgid "macAddressField_rule"
+msgstr "请输入 12 个连续的十六进制数字，每 2 个数字之间用冒号隔开。例如，00:10:E0:01:33:AB 就是有效的输入。"
+
+msgid "macAddressField_help" 
+msgstr "输入此服务器将静态分配 IP 地址的计算机的媒体访问控制 (MAC) 地址。MAC 地址是网络接口卡的硬件地址。此硬件地址是唯一的标识符，并且在生成后无法更改。[[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dhcpd.macAddressField]]的无效值。 [[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_empty"
+msgstr "对不起，您没有为[[base-dhcpd.macAddressField]]输入值。 [[base-dhcpd.macAddressField_rule]]"
+
+msgid "cantSetParam"
+msgstr "无法设置 DHCP 参数。"
+
+msgid "noIPAddrRange"
+msgstr "缺少开始或结束 IP 地址。请输入 IP 地址范围开始以及结束的 IP 地址，以分配给您网络上的客户机。"
+
+msgid "ipAddrRangeNotValid"
+msgstr "IP 地址范围无效。请输入 IP 地址范围开始和结束 IP 地址，以分配给您网络上的客户机。开始 IP 地址必须小于结束 IP 地址。"
+
+msgid "modDynamicAddress"
+msgstr "修改动态地址分配"
+
+msgid "modStaticAddress"
+msgstr "修改静态地址分配"
+
+msgid "noDhcpConf"
+msgstr "对不起，无法找到 DHCP 服务器配置文件 /etc/dhcpd.conf。尝试重新配置您的 DHCP 设置。如果仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "noSystemObj"
+msgstr "DHCP 参数设置操作无法找到系统对象。请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "noNetworkObj"
+msgstr "DHCP 参数设置操作无法找到网络对象。请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "noParamObj"
+msgstr "DHCP 参数设置操作无法找到 DhcpParam 对象，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "parameters"
+msgstr "参数"
+
+msgid "noConfigFile"
+msgstr "对不起，无法找到 DHCP 服务器配置文件 /etc/dhcpd.conf。尝试重新配置您的 DHCP 设置。如果仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "cannotLock"
+msgstr "配置文件 /etc/dhcpd.conf 正在使用。请稍后再试。如果仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "cantUpdateConf"
+msgstr "系统无法更新配置文件 /etc/dhcpd.conf。尝试重新配置您的 DHCP 设置。如果您仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "rangeMismatch"
+msgstr "主接口的 IP 地址在不同的子网上，而不是分配给 DHCP 客户机的 IP 地址。请检查您的地址分配，并确认它们与服务器在同一子网上。"
+
+msgid "gwMismatch"
+msgstr "主接口的 IP 地址与分配给 DHCP 客户机的缺省网关在不同的子网上。请检查您的客户机缺省网关，并确认它与服务器在同一子网上。"
+
+msgid "ipMismatch"
+msgstr "主接口的 IP 地址与为此静态地址分配而分配给 DHCP 客户机的 IP 地址在不同的子网上。请输入与服务器在同一子网上的此静态地址分配的 IP 地址。"
+
+msgid "wrongOrder"
+msgstr "[[base-dhcpd.ipAddrRangeNotValid]]."
+
+msgid "noLeaseFile"
+msgstr "无法打开配置文件 /etc/dhcpd.leases。删除此文件，重新配置您的 DHCP 设置，并重新启动 DHCP 服务器。如果您仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "initScriptError"
+msgstr "无法执行 DHCP 服务器的初始化脚本。请重试。此文件可能被破坏或缺失。如果您仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "initLinkOnFail"
+msgstr "系统无法配置用于自动启动后续引导的 DHCP 服务器的初始化脚本。请重试。如果您仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "initLinkOffFail"
+msgstr "系统无法删除用于禁用后续引导的 DHCP 服务器的初始化脚本。请重试。如果您仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "offFail"
+msgstr "系统无法关闭 DHCP 服务器。请重试禁用服务器。如果您仍看到此消息，请与[[base-carmel.osVendor]]技术支持联系。"
+
+msgid "cannotStartDhcp"
+msgstr "无法启用 DHCP 服务器。请确保您已经配置了 DHCP 客户机设置，并添加了至少一个地址分配。还要确保缺省网关和地址分配与服务器的主接口位于同一子网。"
+
+msgid "amDHCPNameTag"
+msgstr "动态主机配置协议 (DHCP) 服务器"
+
+msgid "amDetailsTitle"
+msgstr "动态主机配置协议 (DHCP) 服务器详细信息"
+
+msgid "amDHCPNotRunning"
+msgstr "DHCP 服务器没有运行。"
+
+msgid "amDHCPStatusOK"
+msgstr "DHCP 服务器运行正常。"
+
+msgid "turnedOffDhcpdIpChange"
+msgstr "DHCP 服务已被禁用。系统的新 IP 地址与分配给 DHCP 客户机的 IP 地址在不同的子网上。请检查您的地址分配，并确保它们与服务器位于同一子网上。"
+
+msgid "errorWhileDisablingDhcpdIpChange"
+msgstr "在尝试禁用您的 DHCP 服务时出现错误。请重新配置 DHCP 地址分配，使它们与服务器的主接口位于同一子网上。"
+
+# This is only for engineering debug.
+msgid "cceError"
+msgstr "从数据库中检索 DHCP 对象时出现配置引擎错误。"
+
+# Capabilities
+msgid "capgroup_adminDhcpd"
+msgstr "管理 DHCP"
+
+msgid "capgroup_adminDhcpd_help"
+msgstr "此管理权限允许用户管理所有 DHCP 相关设置，包括创建静态和动态的地址分配。"
+

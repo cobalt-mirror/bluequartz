@@ -1,0 +1,547 @@
+# -------- Initial labels and descriptions
+msgid "webmail"
+msgstr "WebMail"
+
+msgid "version"
+msgstr "1.0 版"
+
+msgid "webmailDescription"
+msgstr "[[base-webmail.webmail]] 可讓您使用 Web 瀏覽器傳送及閱讀電子郵件。"
+
+msgid "webmailSplash"
+msgstr "[[base-webmail.webmailDescription]]"
+
+msgid "splashWelcomeTo"
+msgstr "歡迎使用 [[base-carmel.osVendor]] WebMail！"
+
+msgid "splashWelcomeTo_monterey"
+msgstr "歡迎使用 Sun Cobalt Webmail！"
+
+# Messages Tab
+msgid "messages"
+msgstr "訊息"
+
+msgid "messagesDescription"
+msgstr "[[base-webmail.webmailSplash]]"
+
+msgid "logout"
+msgstr "登出"
+
+msgid "logoutDescription"
+msgstr "按一下此處，可關閉 WebMail"
+
+
+# -------- Menu Items
+msgid "compose"
+msgstr "撰寫"
+
+msgid "composeDescription"
+msgstr "按一下此處，可撰寫電子郵件訊息。"
+
+msgid "mailboxes"
+msgstr "資料夾清單"
+
+msgid "mailboxesDescription"
+msgstr "按一下此處，可檢視電子郵件資料夾。" 
+
+msgid "inbox"
+msgstr "收件匣"
+
+msgid "inboxDescription"
+msgstr "收進來的郵件"
+
+msgid "sent"
+msgstr "已寄出"
+
+msgid "sentDescription"
+msgstr "已寄出郵件"
+
+msgid "sent-mail"
+msgstr "已寄出的郵件"
+
+msgid "Sent-mail_help"
+msgstr "「已寄出郵件」資料夾包含您已寄出的電子郵件訊息。"
+
+msgid "mailboxadmin"
+msgstr "管理資料夾"
+
+msgid "mailboxadminDescription"
+msgstr "按一下此處，可新增、更名或移除電子郵件資料夾。"
+
+msgid "maillists"
+msgstr "郵寄清單"
+
+msgid "maillistsDescription"
+msgstr "按一下此處，可檢視您目前訂閱之郵寄清單的記錄。"
+
+msgid "openThisMaillistFolder"
+msgstr "按一下此處，可檢視此郵寄清單的記錄。"
+
+
+# ------- General Purpose Strings (these get re-used)
+
+msgid "to"
+msgstr "收件者"
+
+msgid "cc"
+msgstr "CC"
+
+msgid "from"
+msgstr "寄件者"
+
+msgid "attachments"
+msgstr "附加檔案"
+
+msgid "attachments_help"
+msgstr "隨訊息寄出的附加檔案。"
+
+msgid "subject"
+msgstr "標題"
+
+msgid "subject_help"
+msgstr "這是訊息的標題。"
+
+msgid "noSubject"
+msgstr "<無標題>"
+
+msgid "noSender"
+msgstr "<無寄件者>"
+
+msgid "bcc"
+msgstr "Bcc"
+
+msgid "body"
+msgstr "訊息"
+
+msgid "viewAsHTML"
+msgstr "[此封電子郵件已使用 HTML 格式寄出；若要檢視該封格式化的電子郵件，請按一下上方的「以 HTML 格式檢視」。]\n\n\n"
+
+msgid "body_help"
+msgstr "這是電子郵件訊息。"
+
+msgid "sender"
+msgstr "寄件者"
+
+msgid "sender_help"
+msgstr "這是寄件者的名稱或電子郵件位址。"
+
+msgid "date"
+msgstr "日期"
+
+msgid "date_help"
+msgstr "這是收到郵件的日期。"
+
+msgid "forward"
+msgstr "轉寄"
+
+msgid "forward_help"
+msgstr "按一下此處，可將此訊息轉寄給另一位收件者。"
+
+msgid "remove"
+msgstr "移除"
+
+msgid "remove_help"
+msgstr "按一下此處，可移除這個訊息。"
+
+	# JS confirm
+msgid "removeMessage"
+msgstr "您確定要刪除這個訊息嗎？"
+
+
+msgid "subject_empty"
+msgstr "很抱歉，您並未輸入 [[base-webmail.cmpSubject]]。"
+
+msgid "body_empty"
+msgstr "很抱歉，您並未輸入任何訊息文字。"
+
+msgid "toAddy_empty"
+msgstr "很抱歉，您並未在「收件者」欄位內指定此電子郵件的收件者。"
+
+msgid "toAddy_invalid"
+msgstr "很抱歉，無法辨識「收件者」欄位中所輸入的電子郵件位址。請以 'jsmith@company.com' 或 'John Smith <jsmith@company.com>' 的形式輸入電子郵件位址，並以逗點區隔。"
+
+msgid "ccAddy_invalid"
+msgstr "很抱歉，無法辨識「CC」欄位中所輸入的電子郵件位址。請以 'jsmith@company.com' 或 'John Smith <jsmith@company.com>' 的形式輸入電子郵件位址，並以逗點區隔。"
+
+msgid "bccAddy_invalid"
+msgstr "很抱歉，無法辨識 Bcc 欄位中所輸入的電子郵件位址。請以 'jsmith@company.com' 或 'John Smith <jsmith@company.com>' 的形式輸入電子郵件位址，並以逗點區隔。"
+
+
+
+# ------- Compose page
+
+msgid "composeMsg"
+msgstr "撰寫"
+
+
+msgid "cmpTo"
+msgstr "收件者"
+
+msgid "cmpTo_help"
+msgstr "請輸入收件者的電子郵件位址。您可以使用逗點來區隔電子郵件位址。"
+
+msgid "cmpCc"
+msgstr "CC"
+
+msgid "cmpCc_help"
+msgstr "請輸入郵件副本收件者的電子郵件位址。您可以使用逗點來區隔電子郵件位址。"
+
+msgid "cmpBcc"
+msgstr "Bcc"
+
+msgid "cmpBcc_help"
+msgstr "請輸入郵件副本收件者的電子郵件位址。(BCC) 將不會併入郵件其他收件者的清單中。您可以使用逗點來區隔電子郵件位址。"
+
+msgid "cmpAttachments"
+msgstr "附加檔案"
+
+msgid "cmpAttachments_help"
+msgstr "這是此訊息的附加檔案清單。按附加檔案清單右邊的圖示，可新增或移除附加檔案。"
+
+msgid "cmpAttachmentsSingle"
+msgstr "[[base-webmail.cmpAttachments]]"
+
+msgid "cmpAttachmentsSingle_help"
+msgstr "按「瀏覽」按鈕，可新增附加檔案到此訊息。"
+
+msgid "cmpAddAttachment"
+msgstr "新增"
+
+msgid "cmpAddAttachment_help"
+msgstr "按一下此處，可新增附加檔案。"
+
+msgid "cmpRemoveAttachment"
+msgstr "移除"
+
+msgid "cmpRemoveAttachment_help"
+msgstr "按一下此處，可移除附加檔案。"
+
+msgid "cmpSubject"
+msgstr "標題"
+
+msgid "cmpSubject_help"
+msgstr "請輸入這封訊息的標題。"
+
+msgid "cmpBody"
+msgstr "訊息"
+
+msgid "cmpBody_help"
+msgstr "請在此處輸入您的電子郵件訊息本文。"
+
+msgid "send"
+msgstr "傳送"
+
+msgid "send_help"
+msgstr "按一下此處，可傳送這封訊息。"
+
+msgid "messageSent"
+msgstr "已送出訊息"
+
+msgid "msgSent"
+msgstr "寄到"
+
+msgid "msgSent_help"
+msgstr "訊息送達的位址。"
+
+msgid "errorSettingAnsweredFlag"
+msgstr "很抱歉，在嘗試將訊息標示為已回覆時發生錯誤。"
+
+msgid "forwardMsg"
+msgstr "轉寄"
+
+msgid "origMsgSeparator"
+msgstr "---------- 原始訊息 ----------\n"
+
+msgid "forwardMsgSeparator"
+msgstr "---------- 轉寄的訊息 ----------\n"
+
+msgid "replyto"
+msgstr "回覆給"
+
+# ------- Folder List 
+
+
+msgid "Inbox_help"
+msgstr "「收件匣」包含收到的電子郵件。"
+
+msgid "removeMessages"
+msgstr "移除"
+
+msgid "removeMessages_help"
+msgstr "按一下此處，可移除選定的訊息。您一次只能移除一個訊息。"
+
+msgid "removeMessagesConfirm"
+msgstr "您確定要刪除選定的訊息嗎？"
+
+msgid "errorRemovingMessageNoneSelected"
+msgstr "請先選取要移除的訊息。您一次只能移除一封訊息；未移除任何訊息。"
+
+msgid "errorMovingMessage"
+msgstr "很抱歉，在嘗試移動選定的訊息時發生錯誤。"
+
+msgid "errorMovingMessageNoneSelected"
+msgstr "請先選取要移動的訊息。您一次只能移動一封訊息；未移動任何訊息。 "
+
+msgid "status"
+msgstr " "
+
+msgid "status_help"
+msgstr "這是每一個訊息的狀態。已讀訊息是以圓圈表示，未讀訊息則是以點表示。"
+
+msgid "openThisFolder"
+msgstr "按一下此處，可檢視此資料夾中的訊息清單。"
+
+# --------- Inbox
+
+msgid "shownMessage"
+msgstr " （顯示 [[VAR.showing]]）"
+
+msgid "showingAll"
+msgstr "全部"
+
+msgid "singularMessage"
+msgstr "[[VAR.count]] 訊息"
+
+msgid "pluralMessages"
+msgstr "[[VAR.count]] 訊息"
+
+msgid "keyTitle"
+msgstr "訊息鍵值"
+
+msgid "keyReplied"
+msgstr "訊息已回覆或轉寄。"
+
+msgid "keyNew"
+msgstr "訊息是新收進來的或尚未讀取。"
+
+msgid "keyOld"
+msgstr "訊息已讀取。"
+
+
+
+
+# --------- Read Message
+
+msgid "readMessage"
+msgstr "讀取訊息"
+
+msgid "reply"
+msgstr "回覆"
+
+msgid "reply_help"
+msgstr "按一下此處，可回覆給訊息的作者。"
+
+msgid "replyAll"
+msgstr "全部回覆"
+
+msgid "replyAll_help"
+msgstr "按一下此處，可回覆給寄件者及其他所有的接收者。"
+
+msgid "from_help"
+msgstr "這是寄件者的電子郵件位址。"
+
+msgid "read_to"
+msgstr "收件者"
+
+msgid "read_to_help"
+msgstr "這是訊息寄達的電子郵件位址。"
+
+msgid "read_cc"
+msgstr "CC"
+
+msgid "read_cc_help"
+msgstr "這些是副本寄達的電子郵件位址。"
+
+msgid "viewHtml"
+msgstr "以 HTML 檢視"
+
+
+# ---------- Read Message Action (reply, replyall, forward, remove, move)
+
+msgid "replyMsg"
+msgstr "回覆"
+
+msgid "replyAllMsg"
+msgstr "全部回覆"
+
+
+
+
+# --------- Sent Mail
+
+msgid "sentto"
+msgstr "收件位址"
+
+msgid "sentto_help"
+msgstr "這是訊息寄達的電子郵件位址。"
+
+msgid "dateSent"
+msgstr "日期"
+
+msgid "dateSent_help"
+msgstr "這是訊息寄出的日期。"
+
+
+
+
+# --------- Manage Folders
+
+msgid "mailboxName"
+msgstr "名稱"
+
+msgid "mailboxName_help"
+msgstr "這是資料夾的名稱。"
+
+msgid "mailboxAction"
+msgstr "動作"
+
+msgid "mailboxAction_help"
+msgstr "按編輯圖示可編輯資料夾，或按移除圖示可刪除資料夾。"
+
+msgid "removeMailbox"
+msgstr "移除"
+
+msgid "addMailbox"
+msgstr "新增"
+
+msgid "addMailbox_help"
+msgstr "按一下此處，可新增資料夾。"
+
+msgid "mailboxDeleteStatus"
+msgstr "資料夾刪除狀態"
+
+msgid "confirmRemoveMailbox"
+msgstr "您確定要移除資料夾 '[[VAR.name]]' 嗎？"
+
+msgid "deletionMailboxFailed"
+msgstr "很抱歉，在嘗試移除資料夾時發生錯誤。"
+
+
+# --------- Add Folder
+
+
+msgid "createMailbox"
+msgstr "新增資料夾"
+
+msgid "newMailboxName"
+msgstr "名稱"
+
+msgid "mailboxName_rule"
+msgstr "請輸入一個介於 1 到 250 個字元的名稱。"
+
+msgid "newMailboxName_help"
+msgstr "請輸入您要新增之新資料夾的名稱。"
+
+# Used for both create/rename
+msgid "mailbox_empty"
+msgstr "很抱歉，您並未輸入資料夾名稱。"
+
+msgid "mailboxNameIsTooLong"
+msgstr "資料夾名稱 '[[VAR.mailboxName]]' 太長。 [[base-webmail.mailboxName_rule]]" 
+
+msgid "mailboxCreationFailed"
+msgstr "很抱歉，在嘗試建立資料夾 '[[VAR.mailbox]]' 時發生錯誤。"
+
+msgid "mailboxOnlyWhitespace"
+msgstr "很抱歉，您輸入了一個只包含空格的資料夾名稱；請輸入也包含其他字元的名稱。" 
+
+msgid  "mailboxInitalPeriod"
+msgstr "很抱歉，您輸入的資料夾名稱的起始字元為句點；這不是一個可被接受的信箱名稱。"
+
+# ---------- Rename Folder
+
+msgid "renameMailbox"
+msgstr "更改資料夾 - [[VAR.origMailbox]]"
+
+msgid "renameMailboxName"
+msgstr "名稱"
+
+msgid "renameMailboxName_help"
+msgstr "請輸入這個資料夾的新名稱。"
+
+msgid "mailboxRenamingFailed"
+msgstr "很抱歉，在嘗試將資料夾 '[[VAR.oldName]]' 更名為 '[[VAR.newName]]' 時發生錯誤。"
+
+
+
+# ----------- Login Page
+
+msgid "welcomeTo"
+msgstr "歡迎使用 [[carmel.osVendor]] WebMail。請輸入您的登入名稱和密碼來存取您的郵件。"
+
+msgid "webmailLogin" 
+msgstr "WebMail 登入"
+
+msgid "login"
+msgstr "登入"
+
+msgid "password"
+msgstr "密碼"
+
+msgid "submit"
+msgstr "提出"
+
+msgid "authenticationFailed"
+msgstr "很抱歉，驗證失敗。請檢查您的使用者名稱和密碼，然後重試。"
+
+msgid "imapLocked"
+msgstr "很抱歉，無法連接到您的信箱。請稍後重試。"
+
+msgid "imapServerDown"
+msgstr "很抱歉，連接 IMAP 伺服器失敗。伺服器可能遇到問題，或是被您的系統管理員所關閉。請聯繫您的系統管理員以取得協助。"
+
+msgid "noImapAccount"
+msgstr "很抱歉，您在這部 IMAP 伺服器上沒有任何帳戶；請連繫您的系統系統管理員以取得協助。"
+
+# ----------- Internal Stuff
+
+
+msgid "re"
+msgstr "回覆： "
+
+msgid "fwd"
+msgstr "轉寄： "
+
+msgid "moveto"
+msgstr "移至..."
+
+msgid "mailFolder"
+msgstr "郵件/"
+
+# name of sentmail for IMAP connect
+msgid "sentMailFolder"
+msgstr "已寄出的郵件"
+
+msgid "inboxFolder"
+msgstr "收件匣"
+
+msgid "INBOX"
+msgstr "收件匣"
+
+msgid "errorFetchingHeader"
+msgstr "讀取訊息標頭時發生錯誤"
+
+msgid "errorFetchingStructure"
+msgstr "讀取訊息結構時發生錯誤"
+
+msgid "errorSendingMessageSingle"
+msgstr "很抱歉，在嘗試傳送訊息時發生錯誤。電子郵件位址 '[[VAR.emails]]' 無效或不存在。"
+
+msgid "errorSendingMessagePlural"
+msgstr "很抱歉，在嘗試傳送訊息時發生錯誤。電子郵件位址 '[[VAR.emails]]' 無效或不存在。"
+
+msgid "errorArchivingMessage"
+msgstr "訊息已送出，但在儲存副本到您「已寄出郵件」的資料夾時發生錯誤。"
+
+
+
+# -------- Other Stuff
+
+msgid "ok"
+msgstr "確定"
+
+msgid "webmailDownImapNotRunning"
+msgstr "WebMail 已被您的系統管理員所關閉。"
+
+
+

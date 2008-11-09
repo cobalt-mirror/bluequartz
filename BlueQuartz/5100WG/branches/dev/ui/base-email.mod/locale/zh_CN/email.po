@@ -1,0 +1,320 @@
+# ----- Menu items
+
+msgid "emailServices"
+msgstr "电子邮件"
+
+msgid "emailServices_help"
+msgstr "单击此处配置[[base-email.emailServices]]。"
+
+msgid "emailServers"
+msgstr "电子邮件服务器"
+
+msgid "emailServers_help"
+msgstr "单击此处配置[[base-email.emailServers]]。"
+
+
+# ----- Tabs
+
+msgid "advanced"
+msgstr "高级"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "单击此处配置基本的[[base-email.emailSettings]]。"
+
+msgid "advanced_help"
+msgstr "单击此处配置高级[[base-email.emailSettings]]，如传送预定和最大电子邮件大小。"
+
+
+# ----- Basic Email page
+
+msgid "emailSettings"
+msgstr "电子邮件服务器设置"
+
+msgid "enableServersField"
+msgstr "启用 SMTP 服务器"
+
+msgid "enableServersField_help"
+msgstr "打开或关闭简单邮件传输协议 (SMTP) 服务。启用 SMTP 将允许此服务器设备用作 SMTP 服务器，以在其他服务器之间发送和接收因特网邮件。SMTP 还允许用户使用此服务器设备发送电子邮件。"
+
+msgid "enableImapField"
+msgstr "启用 IMAP 服务器"
+
+msgid "enableImapField_help"
+msgstr "打开或关闭因特网消息访问协议 (IMAP) 服务。启用此服务允许用户采用支持 IMAP 的电子邮件客户机从此服务器设备上接收电子邮件。IMAP 允许用户在服务器上存储电子邮件，但在用户处理其邮件时需要持续访问服务器。"
+
+msgid "enablePopField"
+msgstr "启用 POP 服务器"
+
+msgid "enablePopField_help"
+msgstr "打开或关闭邮局协议 (POP) 邮件检索服务。启用此服务允许用户使用大多数标准电子邮件客户机从此服务器设备中接收电子邮件。"
+
+
+# ----- Advanced Email page
+
+msgid "queueTimeField"
+msgstr "传递预定"
+
+msgid "queueTimeField_help"
+msgstr "设置此服务器设备尝试传输排队电子邮件的频率。"
+
+msgid "queue0"
+msgstr "立即"
+
+msgid "queue15"
+msgstr "每 15 分钟"
+
+msgid "queue30"
+msgstr "每 30 分钟"
+
+msgid "queue60"
+msgstr "每小时"
+
+msgid "queue360"
+msgstr "每 6 小时"
+
+msgid "queue1440"
+msgstr "每天"
+
+msgid "maxEmailSizeField"
+msgstr "最大电子邮件大小 (MB)"
+
+msgid "maxEmailSizeField_rule"
+msgstr "请输入大于 0 的整数。缺省值是将此字段留空，以允许此服务器发送并接收任意大小的电子邮件消息。"
+
+msgid "maxEmailSizeField_help"
+msgstr "设置此服务器将发送或接收的电子邮件的最大值。 [[base-email.maxEmailSizeField_rule]]"
+
+msgid "masqAddressField"
+msgstr "强制发送人的域"
+
+msgid "masqAddressField_rule"
+msgstr "请输入格式正确的 IP 地址、主机名或域名。缺省值为将此字段留为空白。例如，192.168.1.100、www.sun.com 和 sun.com 为有效的输入。"
+
+msgid "masqAddressField_help"
+msgstr "输入域名或 IP 地址，覆盖此服务器用户发送的电子邮件的“发件人”地址。此功能也被称作“域伪装”。[[base-email.masqAddressField_rule]]"
+
+msgid "smartRelayField"
+msgstr "智能转接服务器"
+
+msgid "smartRelayField_rule"
+msgstr "请输入格式正确且完全限定的域名。缺省值为将此字段留为空白。例如，sun.com 为有效的输入。"
+
+msgid "smartRelayField_help"
+msgstr "输入电子邮件服务器的完全限定域名，所有外发电子邮件将通过此服务器路由。"
+
+msgid "popRelayField"
+msgstr "POP 认证转接"
+
+msgid "popRelayField_help"
+msgstr "选择通过 POP 认证启用 SMTP 转接信任。如果选择后，成功使用 POP 检查邮件的用户将有 15 分钟的可信时间，使用 SMTP 服务发送电子邮件。此功能适用于经常旅行的用户。"
+
+msgid "relayField"
+msgstr "转接来自这些主机/域/IP 的电子邮件"
+
+msgid "relayField_rule"
+msgstr "请输入一个可信任使用此服务器转接电子邮件的 IP 地址、主机和域名列表。网络可通过使用 0 指定。例如，要允许使用子网掩码 255.255.0.0 为网络 192.168.1.1 转接，则指定地址为 192.168.0.0。"
+
+msgid "relayField_help"
+msgstr "输入允许通过此服务器转接电子邮件的 IP 地址、主机或域名。如果不将所连接机器的 IP 地址、主机或域名输入到此字段中，用户则不能向外发送电子邮件。[[base-email.relayField_rule]]"
+
+msgid "receiveField"
+msgstr "接收发送给这些主机/域的电子邮件"
+
+msgid "receiveField_rule"
+msgstr "请输入格式正确的主机名或域名。缺省值是您的服务器设备完全限定的域名。例如，www.sun.com 和 sun.com 为有效的输入。"
+
+msgid "receiveField_help"
+msgstr "输入此服务器将接收电子邮件的主机名或域名。 [[base-email.receiveField_rule]]"
+
+msgid "blockHostField"
+msgstr "阻止来自这些主机/域的电子邮件"
+
+msgid "blockHostField_rule"
+msgstr "请输入正确格式的主机名或域名。缺省值为将此字段留为空白。例如，www.sun.com 和 sun.com 为有效的输入。"
+
+msgid "blockHostField_help"
+msgstr "输入不允许向此服务器发送电子邮件的主机名和域名。[[base-email.blockHostField_rule]]"
+
+msgid "blockUserField"
+msgstr "阻止来自这些用户的电子邮件"
+
+msgid "blockUserField_rule"
+msgstr "请输入格式正确的电子邮件地址。缺省值为将此字段留为空白。例如，user@sun.com 为有效的输入。"
+
+msgid "blockUserField_help"
+msgstr "输入不允许向此服务器发送电子邮件的用户的电子邮件地址。 [[base-email.blockUserField_rule]]"
+
+msgid "duplicateKeys"
+msgstr "正在阻止或转接的信息不能更新。转接和阻止都有重复的主机或域列表。来自主机或域的电子邮件无法同时被阻止和转接。"
+
+
+
+# ----- Active Monitor strings 
+
+msgid "amEmailNameTag"
+msgstr "电子邮件服务器"
+
+msgid "amSMTPNameTag"
+msgstr "SMTP 服务器"
+
+msgid "amSMTPDetails"
+msgstr "简单邮件传输协议 (SMTP) 服务器详细信息"
+
+msgid "amPOP3NameTag"
+msgstr "POP 服务器"
+
+msgid "amPOP3Details"
+msgstr "邮局协议 (POP) 服务器详细信息"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP 服务器"
+
+msgid "amIMAPDetails"
+msgstr "因特网消息访问协议 (IMAP) 服务器详细信息"
+
+msgid "amEmailGreen"
+msgstr "电子邮件系统运行正常。"
+
+msgid "amEmailYellow"
+msgstr "电子邮件系统出现错误。"
+
+msgid "amEmailRed"
+msgstr "电子邮件系统出现严重错误。"
+
+msgid "amSMTPNotRunning"
+msgstr "SMTP 服务器没有运行。"
+
+msgid "amSMTPBadResponse"
+msgstr "SMTP 服务器给出错误响应。"
+
+msgid "amSMTPStatusOK"
+msgstr "SMTP 服务器运行正常。"
+
+msgid "amPOP3NotRunning"
+msgstr "POP 服务器没有运行。"
+
+msgid "amPOP3BadResponse"
+msgstr "POP 服务器给出错误响应。"
+
+msgid "amPOP3StatusOK"
+msgstr "POP 服务器运行正常。"
+
+msgid "amIMAPNotRunning"
+msgstr "IMAP 服务器没有运行。"
+
+msgid "amIMAPBadResponse"
+msgstr "IMAP 服务器给出错误响应。"
+
+msgid "amIMAPStatusOK"
+msgstr "IMAP 服务器运行正常。"
+
+
+# --- Handler error messages
+	# vacation message 
+msgid "vacationSubject"
+msgstr "自动回复自"
+
+msgid "cantGetUserInfo"
+msgstr "休假期不能从 CCE 获得用户信息。"
+
+msgid "badUser"
+msgstr "如果邮件服务器配置文件被删除或手动修改，请恢复原始版本并重试。"
+
+msgid "cantEditFile"
+msgstr "对不起，在尝试编辑电子邮件配置文件时出现错误。[[base-email.badUser]]"
+
+	# apop.pl -- call to GDBM_File perl module no workie
+msgid "could_not_tie_apop"
+msgstr "对不起，出现系统错误。[[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "对不起，在尝试写入 SMTP 服务器配置文件时出现错误。[[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "对不起，SMTP 服务器由于系统配置故障而在此时无法启动。 [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "对不起，由于系统配置故障，POP 或 IMAP 服务器在此时无法重新设置。 [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "对不起，在尝试创建电子邮件服务器映射文件时出现错误。[[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "对不起，在尝试编辑电子邮件配置文件时出现错误。[[base-email.badUser]]"
+
+msgid "aliasInUse"
+msgstr "对不起，电子邮件别名[[VAR.name]]已经在此系统中使用。请选择另一别名。"
+
+msgid "nonExistentUser"
+msgstr "转发无法启用，因为以下本地用户名不存在：[[VAR.users]]。请从转发地址列表中删除这些用户，或在启用转发前创建用户。"
+
+
+# --- sendmail.cf bounce messages ----
+
+msgid "CFinvalidListSyntax"
+msgstr "列表：；收件人地址语法不合法"
+
+msgid "CFuserAddressRequired"
+msgstr "要求的用户地址"
+
+msgid "CFcolonInHostname"
+msgstr "主机名部分中的冒号不合法"
+
+msgid "CFinvalidHostname"
+msgstr "无效主机名"
+
+msgid "CFrealDomainRequired"
+msgstr "要求的真正域名"
+
+msgid "CFdomainRequired"
+msgstr "要求的域名"
+
+msgid "CFsenderDomainNoexist"
+msgstr "发送人地址的域不存在"
+
+msgid "CFaccessDenied"
+msgstr "访问被拒绝"
+
+msgid "CFrelayDeniedTemp"
+msgstr "转接暂时被拒绝。无法解析客户机地址的 PTR 记录"
+
+msgid "CFrelayDeniedForged"
+msgstr "转接被拒绝。IP 名称可能为伪造的"
+
+msgid "CFrelayDeniedFailed"
+msgstr "转接被拒绝。IP 名称查询失败"
+
+msgid "CFrelayDenied"
+msgstr "转接被拒绝。请首先检查您的邮件，或重新启动邮件客户机。"
+
+msgid "CFnotAuthenticated"
+msgstr "未认证"
+
+msgid "CFauthNotAllowed"
+msgstr "不允许用作"
+
+# Catch All Fields
+msgid "catchAllEmail"
+msgstr "检查所有Email"
+
+msgid "catchAllEmail_rule"
+msgstr "请输入一个有效的电子邮件地址，格式为 username@domain，或者仅使用用户名（给本地用户发送邮件），电子邮件别名，或邮件列表。"
+
+msgid "catchAllEmail_help"
+msgstr "所输入的服务器上您想接收的所有个人电子邮件地址与此服务器上的实际用户不匹配。如果要启用此服务器上的[[base-email.catchAllEmail]]功能，必须输入一个电子邮件地址。  [[base-email.catchAllEmail_rule]]"
+
+msgid "invalidCatchAll"
+msgstr "您输入的[[base-email.catchAllEmail]]地址是无效地址。您输入的本地用户，电子邮件别名, 或邮件列表必须已存在于该服务器上。[[base-email.catchAllEmail_rule]]"
+
+# Capabilities
+
+msgid "capgroup_adminEmailServers"
+msgstr "管理电子邮件"
+
+msgid "capgroup_adminEmailServers_help"
+msgstr "此管理权限允许用户管理用于电子邮件服务的设置。"
+
+

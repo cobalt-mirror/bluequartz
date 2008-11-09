@@ -1,0 +1,216 @@
+<!-- 
+  $Id: basic.schema 3 2003-07-17 15:19:15Z will $ 
+  Copyright 2000, Cobalt Networks.
+  author: jmayer@cobalt.com
+  
+  This file describes the schema of the following class types:
+    System
+    Network
+    Workgroup
+    User
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+  
+-->
+
+<!-- local type definitions -->
+
+<typedef name="bootproto"  type="re"
+  data = "^(dhcp|none)$"
+/>
+
+<typedef name="devicename" type="re" data="^[a-z0-9]+:{0,1}[0-9]*$"/>
+
+<typedef name="accountname" type="re" data="^[a-z][a-z0-9_.-]{0,11}$"/>
+
+<typedef name="internetMode"  type="re"
+  data = "^(none|broadband|lan|narrowband)$"
+/>
+
+<!------------------------------------------------------------------------
+  SYSTEM 
+    Stores all system-wide configuration settings.  There should be
+    exactly one System object at all times.
+------------------------------------------------------------------------>
+
+<class name="System" namespace="" version="1.1">
+  <property name="productName" type="scalar" readacl="ruleAll" />
+    <!-- name of the product -->
+
+  <!-- useful system identification properties -->
+  <property name="productIdentity" type="scalar" readacl="ruleAll" />
+  <property name="productBuild" type="scalar" readacl="ruleAll" />
+  <property name="productLanguage" type="scalar" readacl="ruleAll" />
+  <property name="productVendor" type="scalar" readacl="ruleAll" />
+  <property name="productBuildString" type="scalar" readacl="ruleAll" />
+
+  <property name="serialNumber" type="scalar" />
+    <!-- hardware serial number of the product -->
+  <property name="productSerialNumber" type="scalar" />
+    <!-- serial number of the product (as seen on the sticker on the box) -->
+  <property name="isRegistered" type="boolean" default="0" />
+    <!-- has the user sent in a electronic registration -->
+  <property name="hostname" type="hostname" default="localhost"
+  	readacl="ruleAll" writeacl="ruleCapable(modifySystemNetwork)"
+  />
+    <!-- hostname: first half of FQDN -->
+  <property name="domainname" type="domainname"
+  	readacl="ruleAll" writeacl="ruleCapable(modifySystemNetwork)"
+  />
+    <!-- domainname: second half of FQDN -->
+  <property name="gateway" type="ipaddr" optional="true" writeacl="ruleCapable(modifySystemNetwork)" />
+    <!-- ip address of the default gateway -->
+  <property name="dns" type="scalar" array="yes" writeacl="ruleCapable(modifySystemNetwork)"/>
+    <!-- an array of DNS server IP addresses -->
+  <property name="reboot" type="int" default="0" writeacl="ruleCapable(modifySystemPower)"/>
+    <!-- set to current time to reboot the machine. -->
+  <property name="halt" type="int" default="0" writeacl="ruleCapable(modifySystemPower)"/>
+    <!-- set to current time to halt the machine. -->
+  <property name="console" type="boolean" default="0"/>
+    <!-- enable or disable the system console -->
+  <property name="locales" type="scalar" default="&amp;en&amp;" array="yes"/>
+    <!-- an array of locale strings the system supports -->
+</class>
+
+<!-------------------------------------------------------------------------
+  System.Network
+    Stores system-wide network configuration settings.
+-------------------------------------------------------------------------->
+
+<class name="System" namespace="Network" version="1.0">
+  <property name="internetMode" type="internetMode" default="none" writeacl="ruleCapable(modifySystemNetwork)"/>
+    <!-- the Internet connectivity mode -->
+  <property name="ipForwarding" type="boolean" default="0" writeacl="ruleCapable(modifySystemNetwork)"/>
+    <!-- set to true to enable ip forwarding -->
+  <property name="nat" type="boolean" default="0" writeacl="ruleCapable(modifySystemNetwork)"/>
+    <!-- set to true to enable NAT -->
+</class>
+
+<!-------------------------------------------------------------------------
+  NETWORK
+    stores settings relevant to the basic (non-virtual) TCP/IP network
+    interfaces.
+-------------------------------------------------------------------------->
+
+<class name="Network" namespace="" version="1.0" createacl="ruleCapable(createNetwork)" destroyacl="ruleCapable(destroyNetwork)">
+  <property name="device" type="devicename" writeacl="ruleCapable(modifyNetwork)"/>
+    <!-- usually eth0, eth1, etc. -->
+  <property name="ipaddr" type="ipaddr" writeacl="ruleCapable(modifyNetwork)" />
+  <property name="netmask" type="ipaddr" writeacl="ruleCapable(modifyNetwork)" /> 
+  <property name="mac" type="scalar" writeacl="ruleCapable(modifyNetwork)"/> <!-- READ ONLY -->
+  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(modifyNetwork)"/>
+  <property name="refresh" type="scalar"  writeacl="ruleCapable(modifyNetwork)"/>
+  <property name="bootproto" type="bootproto" default="none"  writeacl="ruleCapable(modifyNetwork)"/>
+</class>
+
+<!-------------------------------------------------------------------------
+  ROUTE
+    used to add additional gateways for some routes
+-------------------------------------------------------------------------->
+
+<class name="Route" namespace="" version="1.0" createacl="ruleCapable(createRoute)" destroyacl="ruleCapable(destroyRoute)">
+  <property name="target" type="ipaddr" writeacl="ruleCapable(modifyRoute)" />
+    <!-- the destination subnet or host to perform routing for -->
+  <property name="netmask" type="ipaddr" writeacl="ruleCapable(modifyRoute)"/>
+    <!-- the netmask of target subnet -->
+  <property name="gateway" type="ipaddr" default="0.0.0.0" optional="true" writeacl="ruleCapable(modifyRoute)"/>
+    <!-- IP address of gateway for this subnet -->
+  <property name="device" type="devicename" default="" optional="true" writeacl="ruleCapable(modifyRoute)"/>
+</class>
+
+<!-------------------------------------------------------------------------
+  WORKGROUP
+    stores all workgroup specific settings.
+-------------------------------------------------------------------------->
+
+<class name="Workgroup" namespace="" createacl="ruleCapable(createWorkgroup)" destroyacl="ruleCapable(destroyWorkgroup)" version="1.0">
+  <property name="enabled" writeacl="ruleCapable(modifyWorkgroup)" type="boolean" default="0"/>
+  <property 
+	name="members" 
+	type="accountname" 
+	array="true" 
+	optional="true"
+	writeacl="ruleCapable(modifyWorkgroup)"
+  />
+  <property name="name" type="accountname" writeacl="ruleCapable(modifyWorkgroup)" />
+  <property name="description" type="scalar" optional="true" writeacl="ruleCapable(modifyWorkgroup)" />
+  <property name="desc_readonly" type="boolean" optional="true" writeacl="ruleCapable(modifyWorkgroup)" default="0"/>
+  <property name="dont_delete" type="boolean" optional="true" writeacl="ruleCapable(modifyWorkgroup)" default="0"/>
+</class>
+
+<!-------------------------------------------------------------------------
+  System.WorkgroupDefaults
+    All system-wide default settings for use when creating new Workgroups.
+-------------------------------------------------------------------------->
+
+<class name="System" namespace="WorkgroupDefaults" version="1.0">
+  <property name="quota" type="int" default="300" writeacl="ruleCapable(modifyWorkgroupDefaults)"/>
+  <property name="description" type="scalar" default="" writeacl="ruleCapable(modifyWorkgroupDefaults)" /> 
+</class>
+
+<!-------------------------------------------------------------------------
+  User
+    all user specific settings.
+-------------------------------------------------------------------------->
+
+<class name="User" namespace="" createacl="ruleCapable(createUser)" destroyacl="ruleCapable(destroyUser)" version="1.0">
+  <property name="enabled" type="boolean" default="1"
+  	readacl="ruleAll" writeacl="ruleCapable(modifyUser)"
+  />
+  <property name="name" type="accountname"
+  	readacl="ruleAll" writeacl="ruleSelf,ruleCapable(modifyUser)"
+  />
+  <property 
+	name="password" 
+	type="password" 
+	readacl="ruleSelf,ruleCapable(modifyUser)" 
+	writeacl="ruleSelf,ruleCapable(modifyUser)" 
+	optional="true"/>
+
+  <!-- these two properties should only be written to by the
+       User.password handler -->
+  <property name="md5_password" type="scalar" readacl="ruleSelf,ruleCapable(modifyUser)" writeacl="ruleSelf,ruleCapable(modifyUser)" optional="true"/>
+  <property name="crypt_password" type="scalar" readacl="ruleSelf,ruleCapable(modifyUser)" writeacl="ruleSelf,ruleCapable(modifyUser)" optional="true"/>
+
+  <property name="fullName" type="scalar" readacl="ruleAll" writeacl="ruleSelf,ruleCapable(modifyUser)"/>
+  <property name="sortName" type="scalar" writeacl="ruleSelf,ruleCapable(modifyUser)"/>
+  <property name="shell" readacl="ruleSelf,ruleCapable(modifyUser)" type="scalar" />
+  <property name="site" type="alphanum" />
+  <property name="siteAdministrator" readacl="ruleSelf" type="boolean" default="0"/>
+  <property name="systemAdministrator" readacl="ruleSelf" type="boolean" default="0"/>
+  <property 
+	name="localePreference" 
+	type="scalar" 
+	writeacl="ruleSelf,ruleCapable(modifyUser)"
+	readacl="ruleAll"
+	default="browser"
+  />
+  <property name="stylePreference" type="scalar" writeacl="ruleSelf,ruleCapable(modifyUser)"/>
+  <property name="uiRights" type="word" array="yes" readacl="ruleSelf" writeacl="ruleAdmin,ruleCapable(modifyUser)"/>
+  <property name="description" type="scalar" optional="true" writeacl="ruleSelf,ruleCapable(modifyUser)" />
+  <property name="desc_readonly" type="boolean" default="0" />
+
+  <!-- this property is a list of capabilities that CCE understands.. -->
+  <property name="capabilities" type="word" array="1" writeacl="ruleCapable(modifyUser)"/>
+
+  <!-- this is the list of capabilityGroups that the application layer takes care of -->
+  <property name="capLevels" type="word" array="1" writeacl="ruleCapable(modifyUser)"/> 
+</class>
+
+<!-------------------------------------------------------------------------
+  System.UserDefaults
+    system-wide default settings for newly created Users
+-------------------------------------------------------------------------->
+
+<typedef name="userNameGenMode" type="re" data="^(firstInitLast|firstLastInit|first|last)$"/>
+
+<class name="System" namespace="UserDefaults" version="1.0">
+  <property name="quota" type="int" default="100" writeacl="ruleCapable(modifyUserDefaults)"/>
+  <property name="description" type="scalar" default="" writeacl="ruleCapable(modifyUserDefault)"/>
+  <property name="userNameGenMode" type="userNameGenMode" default="firstInitLast" writeacl="ruleCapable(modifyUserDefaults)"/> <!-- UI use only -->
+</class>
+
+
+<!-- end of basic.schema -->

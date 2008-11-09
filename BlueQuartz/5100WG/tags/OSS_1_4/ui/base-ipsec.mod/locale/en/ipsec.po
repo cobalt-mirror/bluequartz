@@ -1,0 +1,387 @@
+msgid "ipsec"
+msgstr "Point-to-Point VPN"
+
+msgid "ipsec_help"
+msgstr "[[base-ipsec.ipsec]] tunnels can be configured here.  [[base-ipsec.ipsec]] allows you to encrypt connections between two machines."
+
+msgid "tunnelList"
+msgstr "Tunnel List"
+
+msgid "addTunnel_help"
+msgstr "Add a new Tunnel."
+
+msgid "localInfo"
+msgstr "View Local Information"
+
+msgid "localInfo_help"
+msgstr "View Information about the local machine.  This data would be needed by any remote Administrator trying to setup a [[base-ipsec.ipsec]] connection to this machine."
+
+msgid "manageProfile"
+msgstr "Manage Connection Profiles"
+
+msgid "manageProfile_help"
+msgstr "Here you can manage the different connection profiles available. A connection profile describes the settings needed to connect to other [[base-ipsec.ipsec]] implementations."
+
+msgid "ipsecInfo"
+msgstr "Local Host Information"
+
+msgid "leftIpAddressField"
+msgstr "Local IP address"
+
+msgid "leftIpAddressField_help"
+msgstr "The IP address of the [[base-ipsec.ipsec]] Interface."
+
+msgid "leftSubnetField"
+msgstr "Local Subnet"
+
+msgid "leftSubnetField_help"
+msgstr "The Subnet (or range of IP addresses on the local network) the Qube's Primary Interface is currently on."
+
+msgid "leftNetmaskField"
+msgstr "Local Subnet Netmask"
+
+msgid "leftNetmaskField_help"
+msgstr "The Netmask currently configured on the Primary Interface."
+
+msgid "leftRsaKeyField"
+msgstr "Local Host RSA Public Key"
+
+msgid "leftRsaKeyField_help"
+msgstr "The Qube's current RSA public key."
+
+msgid "profileList"
+msgstr "Profile List"
+
+msgid "addProfile_help"
+msgstr "Add a new Profile."
+
+msgid "tname"
+msgstr "Name"
+
+msgid "tname_help"
+msgstr "This is the name of a Tunnel."
+
+msgid "pname"
+msgstr "Name"
+
+msgid "pname_help"
+msgstr "This is the name of a Profile."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "This is the status of a tunnel."
+
+msgid "comment"
+msgstr "Comment"
+
+msgid "comment_help"
+msgstr "This is a short sentance describing the Profile."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Possbile actions."
+
+msgid "addNewProfile"
+msgstr "Add a Profile"
+
+msgid "nameField"
+msgstr "Name"
+
+msgid "nameField_help"
+msgstr "Enter a name for this profile."
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "Authentication Protocol"
+ 
+msgid "authField_help"
+msgstr "Whether authentication should be done as part of ESP encryption, or separately using the AH protocol."
+ 
+msgid "pfsField"
+msgstr "Perfect Forward Security"
+ 
+msgid "pfsField_help"
+msgstr "Whether Perfect Forward Secrecy of keys is desired on the connection's keying channel (with PFS, penetration of the key-exchange protocol does not compromise keys negotiated earlier)."
+ 
+msgid "keylifeField"
+msgstr "Key Lifetime"
+ 
+msgid "keylifeField_help"
+msgstr "How long, in minutes, a particular instance of a connection (a set of encryption/authentication keys for user packets) should last, from successful negotiation to expiry."
+ 
+msgid "rekeymarginField"
+msgstr "Re-Keying Delay"
+ 
+msgid "rekeymarginField_help"
+msgstr "How long, in minutes, before connection expiry should attempts to negotiate a replacement begin."
+ 
+msgid "rekeyfuzzField"
+msgstr "Random Re-Keying Delay Percent"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "Maximum percentage by which rekeymargin should be randomly increased to randomize rekeying intervals (important for hosts with many connections)."
+ 
+msgid "keyingtriesField"
+msgstr "Keying Attempts"
+ 
+msgid "keyingtriesField_help"
+msgstr "How many attempts (an integer) should be made to negotiate a connection, or a replacement for one, before giving up; the value 0 means never give up."
+ 
+msgid "ikelifetimeField"
+msgstr "Keying Channel Lifetime"
+ 
+msgid "ikelifetimeField_help"
+msgstr "How long, in minutes, the keying channel of a connection should last before being renegotiated."
+ 
+msgid "commentsField"
+msgstr "Comment"
+ 
+msgid "commentsField_help"
+msgstr "Comments describing this profile."
+
+msgid "addNewTunnel"
+msgstr "Add a Tunnel"
+ 
+msgid "tunnelEnabledField"
+msgstr "Connection"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "Select when the tunnel should be established, or disable the tunnel."
+ 
+msgid "tunnelNameField"
+msgstr "Name"
+ 
+msgid "tunnelNameField_help"
+msgstr "Enter a name for the tunnel."
+
+msgid "tunnelNameField_rule"
+msgstr "A tunnel name must start with a letter and can include letters, numbers, periods, dashes and underscores."
+ 
+msgid "rightProfileField"
+msgstr "Connection Profile"
+ 
+msgid "rightProfileField_help"
+msgstr "Select a connection profile."
+
+msgid "rightField"
+msgstr "Remote [[base-ipsec.ipsec]] Host"
+ 
+msgid "rightField_help"
+msgstr "Enter the IP address of the machine on the other end of the [[base-ipsec.ipsec]] tunnel."
+
+msgid "rightField_rule"
+msgstr "Please enter a valid IP address."
+
+msgid "rightNextField"
+msgstr "Remote Host's Gateway"
+ 
+msgid "rightNextField_help"
+msgstr "Enter the gateway used by the remote machine."
+ 
+msgid "rightNextField_rule"
+msgstr "Please enter a valid IP address."
+
+msgid "rightSubnetField"
+msgstr "Remote Subnet"
+ 
+msgid "rightSubnetField_help"
+msgstr "Enter the Subnet behind the remote machine."
+
+msgid "rightNetmaskField"
+msgstr "Remote Netmask"
+ 
+msgid "rightNetmaskField_help"
+msgstr "Enter the Netmask of the network behind the remote machine."
+ 
+msgid "tunnelCommentField"
+msgstr "Comment"
+ 
+msgid "tunnelCommentField_help"
+msgstr "Enter a comment describing this tunnel."
+
+msgid "modProfile"
+msgstr "Modify a Profile -- [[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "Modify a Tunnel -- [[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "Automatic Keying with RSA Authentication"
+
+msgid "autoSecret"
+msgstr "Automatic Keying with Shared Secrets"
+
+msgid "manual"
+msgstr "Manual Keying"
+
+msgid "keyingField"
+msgstr "Keying Type"
+
+msgid "authPubKeyField"
+msgstr "Remote RSA key"
+
+msgid "authSecretKeyField"
+msgstr "Shared Secret"
+
+msgid "authKeyField"
+msgstr "Authentication Key"
+
+msgid "encKeyField"
+msgstr "Encryption Key"
+
+msgid "valueField"
+msgstr "Encryption/Authentication scheme"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "Replay Window"
+
+msgid "manualSettings"
+msgstr "Manual Keying Parameters"
+
+msgid "autoSettings"
+msgstr "Automatic Keying Parameters"
+
+msgid "enableAutoRsaField"
+msgstr "Allow Automatic Keying with RSA Authentication"
+
+msgid "enableAutoRsaField_help"
+msgstr "Check this box if you wish to allow tunnels using this profile to use automatic keying with RSA authentication"
+
+msgid "enableAutoSecretField"
+msgstr "Allow Automatic Keying with Shared Secrets"
+
+msgid "enableAutoSecretField_help"
+msgstr "Check this box if you wish to allow tunnels using this profile to use automatic keying with Shared Secrets"
+
+msgid "enableManualField"
+msgstr "Allow Manual Keying"
+
+msgid "enableManualField_help"
+msgstr "Check this box if you wish to allow tunnels using this profile to use manual keying"
+
+msgid "valueField_help"
+msgstr "Select the algorithms to be used for encryption and authentication."
+
+msgid "replay_windowField_help"
+msgstr "Enter an integer between 0 and 64 for the length of the replay-window, 0 means no replay protection."
+
+msgid "ignore"
+msgstr "Disable this tunnel"
+
+msgid "start"
+msgstr "We start the connection"
+
+msgid "add"
+msgstr "The other end starts the connection"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "The SPI number for this tunnel.  The SPI numbers much match on both ends of the tunnel for the connection to work."
+
+msgid "keyingField_help"
+msgstr "Select the type of keying to be used for this connection."
+
+msgid "authPubKeyField_help"
+msgstr "Enter the public key, in hex, prepended with '0x', of the machine on the other end of the tunnel."
+
+msgid "authSecretKeyField_help"
+msgstr "Enter the secret shared between this machine and the machine on the other end of the tunnel"
+
+msgid "authKeyField_help"
+msgstr "Enter the key used for authentication"
+
+msgid "encKeyField_help"
+msgstr "Enter the key used for encryption.  In authentication-only tunnels, leave this field blank"
+
+msgid "establishedTunnels"
+msgstr "Established Tunnels: "
+
+msgid "nn"
+msgstr "Network-to-Network"
+
+msgid "hh"
+msgstr "Host-to-Host"
+
+msgid "hn"
+msgstr "Host-to-Network"
+
+msgid "nh"
+msgstr "Network-to-Host"
+
+msgid "tunnelProblem"
+msgstr "All tunnels are down or cannot be started."
+
+msgid "noConnections"
+msgstr "Tunnels are ready but no one has started a connection"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]] will not load one or more of the tunnels associated with this item.\nPlease check your settings."
+
+msgid "disabled"
+msgstr "Disabled"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]] cannot be used with the [[VAR.profile]] connection profile.  Please select a different connection profile or type of keying."
+
+msgid "spiInUse"
+msgstr "The SPI you have specified is already in use.  Please choose another."
+
+msgid "openKey"
+msgstr "Open Key Window"
+
+msgid "openKey_help"
+msgstr "Click here to open a new window containing this Qube's public key."
+
+msgid "IpsecKey"
+msgstr "Local RSA Key"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "Use this profile to connect to another Qube3"
+
+msgid "removeProfileConfirm"
+msgstr "Are you sure you want to delete the profile '[[VAR.profileName]]'?"
+
+msgid "removeTunnelConfirm"
+msgstr "Are you sure you want to delete the tunnel '[[VAR.tunnelName]]'?"
+
+msgid "mustSelectKeying"
+msgstr "You must enable at least one type of keying for this profile."
+
+msgid "profileInUse"
+msgstr "This profile is being used by the following active tunnels: [[VAR.list]].  Please disable, delete or change the profile of all listed tunnels before deleting this profile."
+
+msgid "autoSettings_help"
+msgstr "Settings for automatically keyed connections using this profile."
+
+msgid "manualSettings_help"
+msgstr "Settings for manually keyed connections using this profile."
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "Manage [[base-ipsec.ipsec]]"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "This administrative right allows a users to configure all aspects of [[base-ipsec.ipsec]].  This includes adding, editing, and removing [[base-ipsec.ipsec]] tunnels."
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "message here"

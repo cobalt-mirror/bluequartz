@@ -1,0 +1,2750 @@
+#
+# CONFIDENTIAL - DO NOT DISTRIBUTE OUTSIDE SUN/COBALT
+#
+Spec: Cobalt Configuration Engine (CCE) v1.0
+Author: Michael Pashniak, TIm Hockin
+"One spec to rule them all..."
+$Id: CCE.spec.txt 229 2003-07-18 20:22:20Z will $
+
+
+TODO:
+	* FIXMEs
+	* fix XREFS
+	* fix numbering and ToC
+	* document max connections
+
+Abstract
+
+  The Cobalt Configuration Engine (CCE) provides a mechanism for abstracted
+  configuration infomation to be stored and propagated to the system in an
+  extensible and modular way.  This document is the engineering specification
+  for CCE 1.0.
+
+Table of Contents
+	//FIXME: put the ToC here
+
+
+0. Changes in this document
+
+  03/28/2002 TPH	initial creation
+
+1. The CCE daemon
+
+  The CCE daemon is the server process that implements CCE.  This section
+  covers functionality of the process.  Because CCE is expected to run on
+  multiple platforms, some details become platform specific, and are noted as
+  such.
+
+1.1. Commandline options
+
+  The following command line options are recognized by CCE.
+
+  -c dir	    set the CCE base directory (default: /usr/sausalito)
+  -h		    display help information and exit successfully
+  -l LOG_OPT=file   set the output file for a logging option (XREF: see
+		    logging below); this option may be used multiple times for
+		    different logging options; if 'file' is blank, the logging
+		    option will be disabled
+  -nl		    disable logging
+  -st		    set the session timeout in seconds (default: 3600)
+  -V		    run verbosely in the foreground, sending errors to stderr
+  -v		    display version information and exit successfully
+
+  Other command line options may be supported for internal use, but are not
+  exported interfaces and may change at any time.
+
+1.2. Daemon behavior
+
+  When CCE becomes a daemon, it redirects stdin, stdout, and stderr to
+  /dev/null.  It then sets its umask to 027 and disconnects from the
+  controlling TTY in an OS-specific manner.
+
+1.3. Connecting
+
+  A connection to CCE is formed by making a read-write connection to the UNIX
+  domain socket "/usr/sausalito/cced.socket".  The socket defaults to mode
+  666, owner root, group root.  These defaults may be overridden by a
+  particular installation. Once connected, CSCP is used to communicate (XREF:
+  see CSCP).
+
+1.4. Handling multiple clients
+
+  CCE handles multiple connected clients with forked-server model.  Multiple
+  read operations from different clients proceed in parallel.  Write
+  operations from clients are serialized.  Write operations initiated during a
+  write from another client block until the lock can be acquired.  CCE
+  provides consistency and atomicity for object state in reader vs. writer
+  races.
+
+1.5. Connections from root processes
+
+  Connections made from processes with UID 0 (as determined by an OS-specific
+  manner) are automatically granted full privileges.  Any later authentication
+  request may drop these privileges (XREF: see authentication).
+
+1.6. Session management
+
+  Each authenticated connection to CCE is assigned a randomly generated, 63
+  character, alphanumeric session identifiers.  A session identifier allows
+  the user to re-authenticate without a password.  This allows front-end
+  software to not store passwords (XFREF: see AUTHKEY).
+
+  A session identifier is valid for 3600 (or the value of the '-st' command
+  line option, if specified) seconds from the time it is issued, with the
+  following exceptions:
+
+  * Whenever a session using the session identifier is closed, the timeout
+  is restarted.
+
+  * Whenever the session identifier is used to resume a session, the timeout
+  is restarted.
+
+  * When a key is expired manually (XREF: see ENDKEY), the timeout is
+  cancelled, and the session identifier is no longer valid
+  is issued.
+
+1.7. Signal handling
+
+  CCE recognizes several signals to have specific meaning.  Because CCE is a
+  forked server, the parent, or master process should always be the target of
+  signals.  The following signals are explicitly caught and handled by the
+  master process.  Any other signal behaves as defined by the OS.
+
+  * SIGHUP	send SIGTERM to children, then safely re-start
+  * SIGINT	send SIGTERM to children, then safely exit
+  * SIGTERM	send SIGTERM to children, then safely exit
+  * SIGQUIT	send SIGTERM to children, then safely exit
+  * SIGCHLD	reap any child processes that have exited
+
+  The following signals are explicitly caught and handled by all child, or
+  slave processes.  Any other signal behaves as defined by the OS.
+
+  * SIGPIPE	ignored
+  * SIGHUP	safely exit
+  * SIGINT	safely exit
+  * SIGQUIT	safely exit
+  * SIGTERM	safely exit
+
+1.8. Restarting
+
+  Restarting CCE via SIGHUP terminates all open clients (XREF: see SHUTTING
+  DOWN), de-initializes and releases all resources, and finally re-initializes
+  all needed resources.
+
+1.9. Logging
+
+  CCE has two main logging mechanisms.  CCE internal errors, startup messages,
+  and signal messages are logged via syslog() using the LOG_DAEMON facility.
+  Error conditions are logged with the LOG_ERR level.  Startup and signal
+  messages are logged with the LOG_NOTICE level.
+
+  Other messages are logged as determined by a list of logging options, which
+  can be changed via the '-l' command line option (XREF: see Command line 
+  options above).  The available logging options are:
+
+	LOG_CSCP		Log all CSCP write operations, parse errors,
+				and handler failures.
+	LOG_HANDLERS		Log all handler starts and stops.
+	LOG_COMMANDS		Log all incoming CSCP commands
+	LOG_ALLCSCP		Log all CSCP commands and responses
+	LOG_AUTH		Log all authentications (AUTH)
+	LOG_AUTHKEY		Log all re-authentications (AUTHKEY)
+	LOG_AUTHFAIL		Log all failed authentications (AUTH, AUTHKEY)
+	LOG_CONFIG		Log all errors with CCE configuration
+
+  Each logging option may be directed to different files.  The default logging
+  state is as follows:
+
+	LOG_WRITES		/var/log/cce.log
+	LOG_CONFIG		/var/log/cce.log
+	LOG_AUTH		/var/log/cce-auth.log
+	LOG_AUTHFAIL		/var/log/cce-auth.log
+
+  All other logging options are off by default.
+
+2. The Cobalt system configuration protocol (CSCP)
+
+  CSCP is the text-based protocol used for communicationg with CCE.  This
+  specification applies to CSCP versions 1.0 and greater.
+
+2.1. States
+
+  The CSCP protocol is a simple state machine system.  The state machine for a
+  connection is dependent on the context of that connection.  Connections may
+  have one of several contexts:
+
+  * client	a client application
+  * handler	a handler
+  * read-only	rules and rollback handlers (XREF: see below)
+
+  Each context has slightly different specifics for some states.  Upon
+  connection, the server emits the CSCP header (XREF: see below), then
+  progress through the different states as described below.
+
+  1. CMD state:
+     The server waits for commands from the client, and responds to them.
+     Some commands are not available in some contexts.
+  2. TXN state:
+     This state is entered when the BEGIN command is issued from the CMD
+     state.  While in this state, no handlers will be run in response to
+     events.  When the COMMIT command is issued, handlers will be run for
+     all the events that have occured, and the connection will transition back
+     to the CMD state.  No handler coalescing will be performed.  If the
+     connection is closed before the COMMIT command is issued, all delayed
+     operations will be lost.
+
+2.2. Authentication
+
+  When initially connected, the user has no privileges, unless the connection
+  was initiated by a process with UID 0 (XREF: see connections from root
+  processes above).  Privileges may gained/dropped by the AUTH and AUTHKEY
+  commands (XREF: see below).  In order to authenticate successfully, CCE must
+  find a "User" object which has the property "name" set to the value of the
+  requested username for authentication.  The "User" object must have an
+  "enabled" property which must be boolean TRUE (1).  If these conditions are
+  satisfied, CCE uses PAM to authenticate the username and password, using the
+  PAM stack "cced".  Privileges may be dropped by authenticating with the
+  username and password set to "".  This will revert the connection to the
+  anonymous level.
+
+2.3. Encoding
+
+  All CSCP messages are 7-bit ASCII strings, terminated by a newline ('\n').
+  Tokens in a message are whitespace delimted.  Whitespace is defined as any
+  number of space (' ') or tab ('\t') characters. Multiple whitespace
+  characters are not significant, except within quoted strings.  Leading
+  whitespace is ignored.
+
+  The only characters allowed in CSCP messages are as follows:
+
+  * The upper and lower case letters 'a' through 'z'
+  * The numbers '0' though '9'
+  * The ASCII space character (' ')
+  * The ASCII tab character ('\t')
+  * The double-quote character ('"')
+  * The characters "~`!@#$%^&*()-_+=|{}[];:',.<>/?", but only between
+    double-quotes (a quoted string)
+  * A single backslash character ('\'), when used in an escape sequence, or
+    as the target of an escape sequence.
+
+  All other characters are only valid within quoted strings, and must be
+  escaped.  Escaping a character involves substituting a series of allowed
+  characters for a non-allowed character.  There are several standard escape
+  sequences which are described below.
+
+  character	escaped string
+  ---------	--------------
+  '\a'		"\a"
+  '\b'		"\b"
+  '\f'		"\f"
+  '\n'		"\n"
+  '\r'		"\r"
+  '\t'		"\t"
+  '\v'		"\v"
+  '"'		"\""
+  '\'		"\\"
+
+  Any character which requires escaping but does not fall into the standard
+  table must be escaped as follows: a backslash ('\') followed by the string
+  representation of the 3 digit octal value of the character.  For example the
+  ASCII character DEL has the value 127 (0x7f hex, 177 octal).  The escaped
+  form of this character is "\177".
+
+2.4. General syntax
+
+  Throughout the definition of the CSCP grammar, the following terminal tokens
+  will be used:
+
+	/* basic character classes */
+	SP_C		[ \t]
+	NUM_C		[0-9]
+	HEX_C		[0-9A-Fa-f]
+	ALPHA_C		[A-Za-z]
+	PUNCT_C		[~`!@#$%^&*()\-_+=|{}[\];:',.<>/?]
+	SAFE_C		({ALPHA_C}|{NUM_C}|{PUNCT_C})
+	ESCABLE_C	({ALPHA_C}|{NUM_C}|{PUNCT_C}|\\|\")
+
+	/* terminal tokens */
+	NL		\n
+	SP		{SP}+
+	NUMBER		({NUM_C}+|0[xX]{HEX_C}+) 
+	C_ID		({ALPHA_C}|_)({ALPHA_C}|{NUM_C}|_)*
+	Q_STR		\"({SAFE_C}|{SP}|\\{ESCABLE_C})*\"
+	SESSION_ID_STR	({ALPHA_C}|{NUM_C}){63}
+
+  Throughout the definition of the CSCP grammar, the following non-terminal
+  tokens will be used:
+
+	sp ::= SP
+
+	opt_sp ::= <sp> | ""
+
+	nl ::= <opt_sp> NL
+
+	oid ::= NUMBER
+
+	property ::= <bare_prop> | <namespace> '.' <bare_prop>
+
+	bare_prop ::= C_ID
+
+	namespace ::= C_ID
+
+	class ::= C_ID
+
+	typedef ::= C_ID
+
+	schema ::= C_ID
+
+	cscp_token ::= C_ID | NUMBER | Q_STR
+
+2.5. Message classes
+
+  All lines sent by the server consist of a numeric code and a set of defined
+  arguments.  The first digit of the code (the hundreds place) defines the
+  class of the message.  The following are valid ranges for messages:
+
+  * 100-199 = Informational
+  * 200-299 = Success
+  * 300-399 = Warning
+  * 400-499 = Failure
+  * 900-999 = System issued message (can be sent at any time)
+
+  All messages, with the exception of 900 class messages, are only ever issued
+  in response to a command.  System messages, the 900 class, can be issued at
+  any time, and may be followed by a disconnection from CCE.
+
+2.6. Messages
+
+  Messages from the server are not command specific, and always have the same
+  syntax, regardless of originating command.  The following grammar defines
+  all possible messages.
+
+  Informational messages contain requested data, as well as status and
+  messages from handlers.
+
+	info_msg ::= <msg_cscp_id> | <msg_event> | <msg_data>
+		|    <msg_new_data> | <msg_object> | <msg_namespace>
+		|    <msg_info> | <msg_created> | <msg_destroyed>
+		|    <msg_sessionid> | <msg_class> | <msg_rollback>
+		|    <msg_help> | <msg_schema>
+
+	msg_cscp_id ::= "100" <sp> "CSCP/" <cscp_ver> <nl>
+	cscp_ver ::= <number> '.' <number>
+
+	msg_event ::= "101" <sp> "EVENT" <sp> <oid> '.' <event_name> <nl>
+	event_name ::= <property> | "_CREATE" | "_DESTROY"
+
+	msg_data ::=
+		"102" <sp> "DATA" <sp> <prop> <sp> '=' <sp> Q_STR <nl>
+
+	msg_new_data ::=
+		"103" <sp> "DATA" <sp> <prop> <sp> '=' <sp> Q_STR <nl>
+
+	msg_object ::= "104" <sp> "OBJECT" <sp> <oid> <nl>
+
+	msg_namespace ::= "105" <sp> "NAMESPACE" <sp> <namespace> <nl>
+
+	msg_info ::= "106" <sp> "INFO" <sp> Q_STR <nl>
+
+	msg_created ::= "107" <sp> "CREATED" <nl>
+
+	msg_destroyed ::= "108" <sp> "DESTROYED" <nl>
+
+	msg_sessionid ::= "109" <sp> "SESSIONID" SESSION_ID_STR <nl>
+
+	msg_class ::= "110" <sp> "CLASS" <class> <nl>
+
+	msg_rollback ::= "111" <sp> "ROLLBACK" <nl>
+
+	msg_help ::= "112" <sp> "HELP" <sp> C_ID <sp> Q_STR <nl>
+
+	msg_schema ::= "113" <sp> "SCHEMA" <sp> <schema> <nl>
+
+  Warning messages contain information about errors and unusual server
+  conditions, as well as warnings from handlers.
+
+	warn_msg ::= <msg_unkobj> | <msg_unkclass> | <msg_baddata>
+		|    <msg_unknspace> | <msg_permdenied> | <msg_warn>
+		|    <msg_error> | <msg_oom> | <msg_badregex>
+		|    <msg_suspended> | <msg_deprecated> | <msg_unkprop>
+		|    <msg_unktype> | <msg_unkschema> | <msg_syntaxerr> 
+		|    <msg_conflict>
+
+	msg_unkobj ::= "300" <sp> "UNKNOWN OBJECT" <sp> <oid> <nl>
+
+	msg_unkclass ::= 301 <sp> "UNKNOWN CLASS" <sp> <class> <nl>
+
+	msg_baddata ::=
+		"302" <sp> "BAD DATA" <sp> <oid> <sp> Q_STR <sp> Q_STR <nl>
+
+	msg_unknspace ::= "303" <sp> "UNKNOWN NAMESPACE" <sp> <namespace> <nl>
+
+	msg_permdenied ::= "304" <sp> "PERMISSION DENIED" <sp> Q_STR <nl>
+
+	msg_warn ::= "305" <sp> "WARN" <sp> Q_STR <nl>
+
+	msg_error ::= "306" <sp> "ERROR" <sp> Q_STR <nl>
+	** (this message is deprecated)
+
+	msg_oom ::= "307" <sp> "OUT OF MEMORY" <nl>
+
+	msg_badregex ::= "308" <sp> "BAD REGEX" <sp> Q_STR <nl>
+
+	msg_suspended ::= "309" <sp> "SUSPENDED" <sp> Q_STR <nl>
+
+	msg_deprecated ::= "310" <sp> "DEPRECATED" <sp> Q_STR <nl>
+
+	msg_unkprop ::= "311" <sp> "UNKNOWN PROPERTY" <sp> <property> <nl>
+
+	msg_unktype ::= "312" <sp> "UNKNOWN TYPEDEF" <sp> <typedef> <nl>
+
+	msg_unkschema ::= "313" <sp> "UNKNOWN SCHEMA" <sp> <schema> <nl>
+
+	msg_syntaxerr ::= "314" <sp> "SYNTAX ERROR" <sp> Q_STR <nl>
+
+	msg_conflict ::= "315" <sp> "CONFLICT" <sp> Q_STR <nl>
+
+  Success messages indicate that the command is complete and has succeeded.
+
+	success_msg ::= <msg_ready> | <msg_ok> | <msg_goodbye>
+
+	msg_ready ::= "200" <sp> "READY" <nl>
+
+	msg_ok ::= "201" <sp> "OK" <nl>
+
+	msg_goodbye ::= "202" <sp> "GOODBYE" <nl>
+
+  Failure messages indicate that the command is terminated and has not
+  succeeded.
+
+	fail_msg ::= <msg_notready> | <msg_fail> | <msg_badcommand>
+		|    <msg_badparams>
+
+	msg_notready ::= "400" <sp> "NOT READY" <nl>
+	** (this message is deprecated)
+
+	msg_fail ::= "401" <sp> "FAIL" <nl>
+
+	msg_badcommand ::= "402" <sp> "BAD COMMAND" <nl>
+
+	msg_badparams ::= "403" <sp> "BAD PARAMETERS" <nl>
+
+  Server messages are issued when the server encounters a non-command
+  associated condition, and may be followed by CCE dropping the connection.
+
+	server_msg ::= <msg_shutdown> | <msg_badnomem>
+
+	msg_shutdown ::= "998" <sp> "SHUTTING DOWN" <nl>
+
+	msg_badnomem ::= "999" <sp> "OUT OF MEMORY" <nl>
+
+  Any message code not explicitly defined is reserved for future use.
+
+2.7. Connection headers
+
+  When a connection to CCE is established, the server issues a set of messages
+  known as the connection header.  Some portions of the connection header only
+  apply to some connection contexts.  For example, only handlers see the
+  <event_list> item.
+
+  The connection header has the following syntax:
+
+	  connection_header ::=
+		<msg_cscp_id> <event_list> <connection_flags> <msg_ready>
+	  event_list ::= <event_list> <msg_event> | ""
+	  connection_flags ::= <suspended_flag> <rollback_flag>
+	  suspended_flag ::= <msg_suspended> | ""
+	  rollback_flag ::= <msg_rollback> | ""
+
+2.8. Commands and responses
+
+  CSCP is primarily a client driven dialog.  The client issues commands, and
+  the server issues responses.  All responses have the following structure:
+
+	cmd_response ::= <resp_msgs> <final_msg>
+	resp_msgs ::= <resp_msgs> <resp_msg> | ""
+	resp_msg ::= <info_msg> | <warn_msg>
+	final_msg ::= <success_msg> | <fail_msg> | <server_msg>
+
+  CSCP encompasses several commands and sub-commands.  CSCP is case
+  insensitive with regard to commands and keywords.  The following is the
+  complete list of supported commands:
+
+  * ADMIN	Umbrella command for administrative sub-commands
+      SUSPEND	Stop accepting write operations
+      RESUME	Resume accepting write operations
+      DEBUG	Set the debugging mask for this connection
+  * AUTH	Authenticate as a user
+  * AUTHKEY	Authenticate to an already existing session
+  * BADDATA	Issue a BAD DATA message from a handler
+  * BEGIN	Start the TXN state
+  * BYE		Close the connection
+  * CLASSES	List all classes
+  * COMMIT	Trigger any postponed handler activity in TXN state
+  * CREATE	Create a new object
+  * DESTROY	Destroy an object
+  * ENDKEY	Expire the current sessionid
+  * FIND	Find objects that match given criteria
+  * GET		Get properties of objects
+  * HELP	Get help information for the current connection state
+  * INFO	Issue an INFO message from a handler
+  * NAMES	List namespaces associated with a class or object
+  * SCHEMA	Umbrella command for schema sub-commands
+      ADD	Add a schema to CCE
+      LIST	List all schemas
+      REMOVE	Remove a schema from CCE
+  * SET		Set properties of an object
+  * VALIDATE	Attempt to validate a piece of data against a typedef or
+		property
+  * WARN	Issue a WARN message from a handler
+  * WHOAMI	Return the oid of the currently authenticated user
+
+  All commands receive one <cmd_response>.  The specific messages within that
+  response depend upon the command issued.  Any <cmd_response> may have the
+  following messages:
+
+  * <msg_oom>
+  * <msg_deprecated>
+  * <msg_suspended>
+
+  All commands receive one <msg_ok> or <msg_fail> to terminate the
+  <cmd_response>, unless otherwise noted.
+
+2.8.1. The ADMIN command
+
+  The ADMIN command has sub-commands that allow run-time administration of CCE.
+  Use of the ADMIN command without a sub-command is a syntax error.
+
+2.8.1.1. The ADMIN DEBUG command
+
+  ADMIN DEBUG changes the debugging mask for the current connection. This
+  command requires admin privileges.
+
+	cmd_admin_debug ::= "ADMIN" <sp> "DEBUG" NUMBER <nl>
+
+  Arguments:
+	* The numeric or hexadecimal debugging mask
+
+  Response messages:
+	* <msg_permdenied>
+
+2.8.1.2. The ADMIN SUSPEND command
+
+  ADMIN SUSPEND puts CCE into a read-only state.  Once suspended, all
+  write commands from all clients will fail, with a <msg_suspended> warning.
+  This command takes exactly one argument - the reason for suspension. If CCE
+  is already suspended, this command will fail.  This command requires admin
+  privileges.
+
+	cmd_admin_suspend ::= "ADMIN" <sp> "SUSPEND" <sp> <cscp_token> <nl>
+
+  Arguments:
+	* reason for suspension
+
+  Contexts/States:
+	* client/CMD
+
+  Response messages:
+	* <msg_permdenied>
+
+2.8.1.3. The ADMIN RESUME command
+
+  ADMIN RESUME does the opposite of ADMIN SUSPEND.  Once resumed, all write
+  commands from all clients can proceed.  This command takes no arguments.  If
+  CCE is not suspended, this command will fail.  This command requires admin
+  privileges.
+
+	cmd_admin_resume ::= "ADMIN" <sp> "RESUME" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* client/CMD
+
+  Response messages:
+	* <msg_permdenied>
+
+2.8.2. The AUTH command
+
+  The AUTH command attempts to authenticate the client to a specified user
+  with a specified password.  This command takes two arguments - the username
+  and the password with which to authenticate.  To revert the connection to
+  minimal privileges (anonymous), use "" as the username and password.
+
+	cmd_auth ::= "AUTH" <sp> <cscp_token> <sp> <cscp_token> <nl>
+
+  Arguments:
+	* username
+	* password
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_sessionid>
+
+2.8.3. The AUTHKEY command
+
+  The AUTHKEY command attempts to authenticate the client to a specified user
+  session, resuming that session's privileges.  This command takes two
+  arguments - the username and the session identifier.  If the session
+  identifier does not exist, or the username does not match, this command will
+  fail.
+
+	cmd_authkey ::= "AUTHKEY" <sp> <cscp_token> <sp> <cscp_token> <nl>
+
+  Arguments:
+	* username
+	* session identifier
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+
+2.8.4. The BADDATA command
+
+  he BADDATA command is used by handlers to report that one of the attributes
+  or data in the current operation is not valid.  This command takes three
+  arguments - the object id, the invalid property and the value or reason.
+
+	cmd_baddata ::=
+		"BADDATA" <sp> <oid> <sp> <cscp_token> <sp> <cscp_token> <nl>
+
+  Arguments:
+	* object id
+	* property
+	* value or reason
+
+  Contexts/States:
+	* handler/all
+
+  Response messages:
+
+2.8.5. The BEGIN command
+
+  The BEGIN command initiates the TXN state of CSCP.  This command takes no
+  arguments.
+
+	cmd_begin ::= "BEGIN" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* client/CMD
+	* handler/CMD
+
+  Response messages:
+
+2.8.6. The BYE command
+
+  The BYE command terminates a CSCP connection.  This command takes one option
+  argument - a status code.  In client context, the argument is ignored.  In
+  handler context, they status code indicates to CCE the exit status of the
+  handler.  If a handler does not issue the BYE command, or issues the BYE
+  command with no arguments, the handler is assumed to have issued the BYE
+  command with the status code set to "FAIL".
+
+	cmd_bye ::= "BYE" <bye_status> <nl>
+	bye_status ::= "SUCCESS" | "FAIL" | "DEFER" | ""
+
+  Arguments:
+	* status code (optional)
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_goodbye>
+
+2.8.7. The CLASSES command
+
+  The CLASSES command returns a list of all defined classes.  This command
+  takes no arguments.
+
+	cmd_classes ::= "CLASSES" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_class>
+
+2.8.8. The COMMIT command
+
+  The COMMIT command ends the TXN state.  This command takes no arguments.
+
+	cmd_commit ::= "COMMIT" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* client/TXN
+	* handler/TXN
+
+  Response messages:
+	* any message issued by any command run in TXN state
+
+2.8.9. The CREATE command
+
+  The CREATE command creates an instance of a class.  This command takes one
+  mandatory argument - the classname.  It can also take a list of property
+  assignments, with which the object will be initialized.  If the specified
+  class does not exists, or any namespace or property assigned to does not
+  exist, this command will fail.  If the calling user does not have permission
+  to create this object, the command will fail.
+
+	cmd_create :: "CREATE" <sp> <class> <sp> <assignment_list> <nl>
+	assignment_list ::= <assignment_list> <sp> <assignment> | ""
+	assignment ::= <property> <opt_sp> '=' <opt_sp> <cscp_token>
+
+  Arguments:
+	* classname
+	* assignment list
+
+  Contexts/States:
+	* client/all
+	* handler/all
+
+  Response messages:
+	* <msg_object>
+	* <msg_unkclass>
+	* <msg_unknspace>
+	* <msg_unkprop>
+	* <msg_permdenied>
+	* <msg_info>
+	* <msg_warn>
+	* <msg_baddata>
+
+2.8.10. The DESTROY command
+
+  The DESTROY command destroys an object.  This command takes one argument -
+  the object id to destroy.  If the specified object id does not exist, or the
+  calling user does not have permission to destroy the object, this command
+  will fail.
+
+	cmd_destroy ::= "DESTROY" <sp> <oid> <nl>
+
+  Arguments:
+	* object id
+
+  Contexts/States:
+	* client/all
+	* handler/all
+
+  Response messages:
+	* <msg_unkobj>
+	* <msg_permdenied>
+	* <msg_info>
+	* <msg_warn>
+	* <msg_baddata>
+
+2.8.11. The ENDKEY command
+
+  The ENDKEY command immediately expires the current session identifier.  Any
+  future uses of the session identifier will fail.  This command takes no
+  arguments.
+
+	cmd_endkey ::= "ENDKEY" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+
+2.8.12. The FIND command
+
+  The FIND command lists all objects of a specified class that match a set of
+  criteria.  The criteria may be exact or regex matches, and the results may
+  be sorted or unsorted.  This command takes at least one argument - the
+  classname.  If the specified class does not exist, or any of the criteria
+  namespaces or properties do not exist, this command will fail.  The FIND
+  command attempts to do an indexed search, if possible.  The exact-match
+  criteria are evaluated in order, until an indexed property is found.  If an
+  index is found, it used as the primary index for the FIND.
+
+	cmd_find ::= "FIND" <sp> <class> <find_args> <nl>
+	find_args ::= <find_args> <sp> <find_arg> | ""
+	find_arg ::= <find_ctl> | <criterion>
+	find_ctl ::= "SORTPROP" <sp> <cscp_token>
+		|    "SORTTYPE" <sp> <cscp_token>
+	criterion ::= <property> <opt_sp> '=' <opt_sp> <cscp_token>
+		|     <property> <opt_sp> '~' <opt_sp> <cscp_token>
+
+  Arguments:
+	* classname
+	* "SORTPROP" property
+	* "SORTTYPE" type
+	* criteria
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_object>
+	* <msg_unkclass>
+	* <msg_unknspace>
+	* <msg_unkprop>
+
+2.8.13. The GET command
+
+  The GET command retrieves some or all of the properties of one or more
+  objects.  When used from a handler, the GET command returns values of
+  properties as they existed before the transaction in <msg_data> messages and
+  the pending values in <msg_new_data> messages.  If an object has been
+  created in the transaction, it has no previous state, and all new state.
+  This is indicated by a <msg_created> message.  Likewise, if an object
+  has been destroyed in the transaction, a <msg_destroyed> is sent.  Because
+  GET can return data for multiple objects, each group of data messages is
+  preceded by a <msg_object> message.
+
+  The GET command has two ways of identifying desired properties.  The
+  explicit <oid> '.' <property> syntax allows the caller to specify individual
+  properites of any namespace.  The <oid> syntax allows the caller to request
+  all the properties of the main namespace (for compatibility).  This syntax
+  has been supplanted by the ".*" syntax, to indicate all properties of a
+  particular object or namespace.
+
+  When the requested properties are not explicit (an entire oid or namespace),
+  GET silently filters out data items for which the caller does not have
+  read permission.  In case of explicit properties for which the caller does 
+  not have permission, CCE returns <msg_permdenied> for each denied property,
+  but succeeds, unless another error occurs.
+
+  Before retrieving any data, all requested properties are validated for
+  existance.  If any object, namespace, or property requested does not exist,
+  no data will be returned and the command will fail.
+
+	cmd_get ::= "GET" <sp> <get_args> <nl>
+	get_args ::= <get_args> <sp> <get_arg> | <get_arg>
+	get_arg ::= <oid> '.' <property>
+		|   <oid>
+		|   <oid> '.' '*'
+		|   <oid> '.' <namespace> '.' '*'
+
+  Arguments:
+	* requested properties
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_object>
+	* <msg_data>
+	* <msg_new_data>
+	* <msg_created>
+	* <msg_destroyed>
+	* <msg_unkobj>
+	* <msg_unknspace>
+	* <msg_unkprop>
+	* <msg_permdenied>
+	* <msg_unktype>
+
+2.8.14. The HELP command
+
+  The HELP command is used to get help information for interactive use (rare).
+  This command takes no arguments.
+
+	cmd_help ::= "HELP" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_help>
+
+2.8.15. The INFO command
+
+  The INFO command allows handlers to issue informational messages to the
+  transaction originator.  This command takes one argument - the message to
+  issue.
+
+	cmd_info ::= "INFO" <sp> <cscp_token> <nl>
+
+  Arguments:
+	* message
+
+  Contexts/States:
+	* handler/all
+
+  Response messages:
+
+2.8.16. The NAMES command
+
+  The NAMES command queries the list of namespaces on an object or class.
+  This command takes one argument - the object id or classname.  If the
+  specified oid or class does not exist, this command will fail.
+
+	cmd_names ::= "NAMES" <sp> <oid> <nl>
+		|     "NAMES" <sp> <class> <nl>
+
+  Arguments:
+	* classname or object id
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_namespace>
+	* <msg_unkobj>
+	* <msg_unkclass>
+
+2.8.17. The SCHEMA command
+
+  The SCHEMA command hase several sub-commands.  These commands are used to
+  interact with CCE scemas.  This command takes at least one argument - the
+  sub-command.
+
+2.8.17.1. The SCHEMA ADD command
+
+  SCHEMA ADD inserts a schema definition into CCE.  This command takes exactly
+  one argument - the XML schema description.  CCE parses the schema for valid
+  syntax, makes sure no conflict would be created, and, if all checks succeed,
+  inserts the schema definition.  A schema can only be inserted as a whole
+  unit.  If any part of the schema fails validation, the whole schema fails.
+  Once added, a schema is available for use.  If the schema has invalid
+  syntax, the command will fail with <msg_syntaxerr>.  If the schema would
+  cause a conflict, the command will fail with <msg_conflict>. This command
+  requires admin privileges.
+
+	cmd_schema_add ::= "SCHEMA" <sp> "ADD" <sp> <cscp_token> <nl>
+
+  Arguments:
+	* the schema definition
+
+  Contexts/States:
+	* client/CMD
+
+  Response messages:
+	* <msg_permdenied>
+	* <msg_syntaxerr>
+	* <msg_conflict>
+
+2.8.17.2. The SCHEMA LIST command
+
+  SCHEMA LIST shows a list of all installed schemas.  This command takes no
+  arguments.
+
+	cmd_schema_list ::= "SCHEMA" <sp> "LIST" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* client/CMD
+
+  Response messages:
+	* <msg_schema>
+
+2.8.17.3. The SCHEMA REMOVE command
+
+  SCHEMA REMOVE removes a schema definition from CCE.  This command takes
+  exactly one argument - the schema name.  The schema is removed as a whole
+  unit.  If a schema is removed, all items in the schema are removed.
+  Once removed, a schema is no longer available for use.  Any handlers for
+  properties, classes, or namespace in the removed schema will not be run.
+  References to rules, matchtypes, or typedefs in the removed schema will
+  fail.  It is important to note that instance data is removed from CCE, but 
+  handlers are not triggered.
+
+  If the specified schema does not exist, the command will fail with
+  <msg_unkschema>.  This command requires admin privileges.
+
+	cmd_schema_remove ::= "SCHEMA" <sp> "REMOVE" <sp> <schema> <nl>
+
+  Arguments:
+	* the schema name
+
+  Contexts/States:
+	* client/CMD
+
+  Response messages:
+	* <msg_permdenied>
+	* <msg_unkschema>
+
+2.8.18. The SET command
+
+  The SET command modifies properties of an object.  This command takes at
+  least one argument - the object ID.  For compatibility, the caller may
+  specify the <oid> '.' <namespace> in which to set properties.  If any
+  specified property designates a namespace, the command will fail.  If any
+  specified property or namespace does not exist, or the object does not
+  exist, the command will fail.  The SET command will silently ignore any
+  property whose name begins with an underscore ('_'), as those properties are
+  reserved (XREF: see schemas below).
+
+	cmd_set ::= "SET" <sp> <oid> <assignment_list> <nl>
+		|   "SET" <sp> <oid> '.' <namespace> <assignment_list> <nl>
+
+  Arguments:
+	* object id or object id and namespace
+	* assignment list
+
+  Contexts/States:
+	* client/all
+	* handler/all
+
+  Response messages:
+	* <msg_unkobj>
+	* <msg_unknspace>
+	* <msg_unkprop>
+	* <msg_permdenied>
+	* <msg_info>
+	* <msg_warn>
+	* <msg_baddata>
+
+2.8.19. The VALIDATE command
+
+  The VALIDATE command allows the caller to determine whether a particular
+  value would be accepted for a particular datatype or property.  This command
+  takes three arguments - the data target type (TYPEDEF or PROPERTY), the data
+  target (typedef or property name), and the data.
+
+	cmd_validate ::= "VALIDATE" <sp> <validate_tgt> <sp> <cscp_token> <nl>
+	validate_tgt ::= "TYPEDEF" <sp> <typedef>
+		|        "PROPERTY" <sp> <class> '.' <property>
+
+  Arguments:
+	* "TYPEDEF" or "PROPERTY"
+	* the typedef or property to validate against
+	* the data to validate
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_unkclass>
+	* <msg_unknspace>
+	* <msg_unkprop>
+	* <msg_unktype>
+
+2.8.20. The WARN command
+
+  The WARN command allows handlers to issue warning messages to the
+  transaction originator.  This command takes one argument - the message to
+  issue.
+
+	cmd_warn ::= "WARN" <sp> <cscp_token> <nl>
+
+  Arguments:
+	* message
+
+  Contexts/States:
+	* handler/all
+
+  Response messages:
+
+2.8.21. The WHOAMI command
+
+  The WHOAMI command returns the object id of the currently authenticated
+  User object.  If the connection is not authenticated, or is authenticated as
+  "" (anonymous), this command will fail.  WHOAMI takes no arguments.
+
+	cmd_whoami ::= "WHOAMI" <nl>
+
+  Arguments:
+
+  Contexts/States:
+	* all/all
+
+  Response messages:
+	* <msg_object>
+
+3. The client library
+
+  The CCE client library (libcce) is used by applications which must
+  communicate with CCE.  This specification applies to libcce versions 1.0
+  and greater.  This definiton focuses on the C language, with other language
+  issues noted seperately.
+  #FIXME: talk about the handler library
+
+3.1. Data structures
+
+  Several data structures are used throughout CCE.  These are the exported
+  structure interfaces.  Any other structure exported by the library, but not
+  defined here is not supported, and may change at any time.
+
+3.1.1. cce_baddata_t
+
+  This type represents the data payload of a CSCP BADDATA command, as found in
+  a CCE response.
+
+	typedef struct cce_baddata_t {
+		cce_oid_t oid;
+		char *key;
+		char *value;
+	} cce_baddata_t;
+
+3.1.2. cce_bye_t
+
+  This is an enumerated type which represents the possible arguments to the
+  CSCP BYE command.
+
+	typedef enum cce_bye_t {
+		CCE_BYE_NONE = 0,
+		CCE_BYE_SUCCESS,
+		CCE_BYE_FAIL,
+		CCE_BYE_DEFER,
+	} cce_bye_t;
+
+3.1.3. cce_cmd_t
+
+  This is an enumerated type, which represents the known CSCP commands.
+
+	typedef enum cce_cmd_t {
+		CCE_CMD_NONE = 0,
+		CCE_CMD_ADMIN_DEBUG,
+		CCE_CMD_ADMIN_RESUME,
+		CCE_CMD_ADMIN_SUSPEND,
+		CCE_CMD_AUTH,
+		CCE_CMD_AUTHKEY,
+		CCE_CMD_BADDATA,
+		CCE_CMD_BEGIN,
+		CCE_CMD_BYE,
+		CCE_CMD_CLASSES,
+		CCE_CMD_COMMIT,
+		CCE_CMD_CREATE,
+		CCE_CMD_DESTROY,
+		CCE_CMD_ENDKEY,
+		CCE_CMD_FIND,
+		CCE_CMD_GET,
+		CCE_CMD_INFO,
+		CCE_CMD_NAMES,
+		CCE_CMD_SCHEMA,
+		CCE_CMD_SET,
+		CCE_CMD_VALIDATE,
+		CCE_CMD_WARN,
+		CCE_CMD_WHOAMI,
+	} cce_cmd_t;
+
+3.1.4. cce_conn_t
+
+  This is the CCE connection handle.  CCE operations require a valid instance
+  of this type.
+
+	typedef struct cce_conn_t {
+		int state;           /* connection state - used internally */
+		int fd_to;           /* connection file descriptors */
+		int fd_from;
+		int cscp_vmaj;       /* the CSCP version number: 0.101 > 0.50 */
+		int cscp_vmin;
+		cce_event_t *events; /* array of events (for handlers) */
+		char *suspended;     /* are we suspended? why? */
+		int rollback;        /* are we in a rollback? */
+	} cce_conn_t;
+
+3.1.5. cce_cscp_t
+
+  This message represents a raw CSCP message, less the keyword(s).
+
+	typedef struct cce_cscp_t {
+		cce_msg_t msgid;
+		char **payload;
+	} cce_cscp_t;
+
+3.1.6. cce_err_t
+
+  This is an enumerated type, which is used to return status from CCE
+  functions.  The values of this enumeration do not include 0, in order to
+  discourage use of the enumeration as a boolean.
+
+	typedef enum cce_err_t {
+		CCE_OK = 1,	/* operation succeeded */
+		CCE_FAIL,	/* operation received a 400 or 900 from CCE */
+		CCE_EINVAL,
+		CCE_ENOMEM,
+		CCE_ENOENT,
+		CCE_ECONNREFUSED,
+		CCE_ETIMEDOUT,
+		CCE_EPIPE,
+		CCE_EBADF,
+	} cce_err_t;
+
+3.1.7. cce_event_t
+
+  This type is used to represent event messages in a CSCP header.
+
+	typedef struct cce_event_t {
+		cce_oid_t oid;
+		char *event;
+	} cce_event_t;
+
+3.1.8. cce_get_t
+
+  This type is used for the CCE_CMD_GET arguments.  It defines a single target
+  to get.  The 'property' member may be either a plain property or
+  namespace.property, or a wildcard.  Wildcards are either "*", indicating all
+  properties of the default namespace or "namespace.*", indicating all
+  properties of the specified namespace.  If property is NULL, it will be
+  treated as if it contained the string "*".
+
+	typedef struct cce_get_t {
+		cce_oid_t oid;
+		char *property;
+	}
+
+3.1.9. cce_msg_t
+
+  This type is an enumeration of all known CSCP response messages.
+
+	typedef enum cce_msg_t {
+		CCE_MSG_CSCP = 100,
+		CCE_MSG_EVENT = 101,
+		CCE_MSG_DATA = 102,
+		CCE_MSG_NEWDATA = 103,
+		CCE_MSG_OBJECT = 104,
+		CCE_MSG_NAMESPACE = 105,
+		CCE_MSG_INFO = 106,
+		CCE_MSG_CREATED = 107,
+		CCE_MSG_DESTROYED = 108,
+		CCE_MSG_SESSIONID = 109,
+		CCE_MSG_CLASS = 110,
+		CCE_MSG_ROLLBACK = 111,
+		CCE_MSG_HELP = 112,
+		CCE_MSG_SCHEMA = 113,
+
+		CCE_MSG_READY = 200,
+		CCE_MSG_OK = 201,
+		CCE_MSG_GOODBYE = 202,
+
+		CCE_MSG_UNKOBJECT = 300,
+		CCE_MSG_UNKCLASS = 301,
+		CCE_MSG_BADDATA = 302,
+		CCE_MSG_UNKNAMESPACE = 303,
+		CCE_MSG_PERMDENIED = 304,
+		CCE_MSG_WARN = 305,
+		CCE_MSG_ERROR = 306,
+		CCE_MSG_NOMEM = 307,
+		CCE_MSG_BADREGEX = 308,
+		CCE_MSG_SUSPENDED = 309,
+		CCE_MSG_DEPRECATED = 310,
+		CCE_MSG_UNKPROP = 311,
+		CCE_MSG_UNKTYPE = 312,
+		CCE_MSG_UNKSCHEMA = 313,
+		CCE_MSG_SYNTAXERR = 314,
+		CCE_MSG_CONFLICT = 315,
+
+		CCE_MSG_NOTREADY = 400,
+		CCE_MSG_FAIL = 401,
+		CCE_MSG_BADCMD = 402,
+		CCE_MSG_BADPARAMS = 403,
+
+		CCE_MSG_SHUTDOWN = 998,
+		CCE_MSG_BADNOMEM = 999,
+	} cce_msg_t;
+
+3.1.10. cce_oid_t
+
+  This type is used to identify an object in CCE.  It is an unsigned integer
+  type.  Valid values are greater than zero.  The value zero is out of bounds,
+  and can be used to indicated unpopulated or invalid values.
+
+	typedef unsigned int cce_oid_t;
+
+3.1.11. cce_params_t
+
+  This type represents the argument structures for all CSCP commands.  Only
+  one first-level member of this type may be used at a time.
+
+	typedef union cce_params_t {
+		struct {
+			unsigned long value;
+		} admin_debug;
+		struct {
+			char *reason;
+		} admin_suspend;
+		struct {
+			char *username;
+			char *password;
+		} auth;
+		struct {
+			char *username;
+			char *sessionkey;
+		} authkey;
+		struct {
+			cce_oid_t oid;
+			char *key;
+			char *value;
+		} baddata;
+		struct {
+			cce_bye_t status;
+		} bye;
+		struct {
+			char *classname;
+			cce_props_t *props;
+		} create;
+		struct {
+			cce_oid_t oid;
+		} destroy;
+		struct {
+			char *classname;
+			cce_props_t *exact_props;
+			cce_props_t *regex_props;
+			char *sorttype;
+			char *sortprop;
+		} find;
+		struct {
+			int nrequests;
+			cce_get_t *requests;
+		} get;
+		struct {
+			char *message;
+		} info;
+		struct {
+			char *classname;
+			cce_oid_t oid;
+		} names;
+		struct {
+			char *schema;
+		} schema_add;
+		struct {
+			char *schema;
+		} schema_remove;
+		struct {
+			cce_oid_t oid;
+			char *namespace;
+			cce_props_t *props;
+		} set;
+		struct {
+			enum {VALID_PROPERTY, VALID_TYPEDEF} type;
+			char *target;
+			char *value;
+		} validate;
+		struct {
+			char *message;
+		} warn;
+	} cce_params_t;
+
+3.1.12. cce_props_t
+
+  This is an opaque type which represents a hash of properties and values.
+  This type can be accessed by cce_props_ family of functions.
+
+	struct cce_props_t;
+	typedef struct cce_props_t cce_props_t;
+
+3.1.13. cce_resp_t
+
+  This complex type represents the results of a CSCP command.
+
+	typedef struct cce_resp {
+		cce_cscp_t *status;     /* msg num of the closing status msg */
+		char *sessionkey;       /* 109 SESSIONID */
+		cce_oid_t *oids;        /* 104 OBJECT - terminated by -1 */
+		cce_props_t *data_old;  /* 102 DATA */
+		cce_props_t *data_new;  /* 103 DATA */
+		char **names;           /* 105 NAMESPACE */
+		char **classes;         /* 110 CLASS */
+		char **schemas;         /* 113 SCHEMAS */
+		char **info;            /* 106 INFO */
+		char **warn;            /* 305 WARN */
+		cce_baddata_t **baddata;/* 302 BAD DATA */
+		char **permdenied;      /* 304 PERMISSION DENIED */
+		char **deprecated;      /* 310 DEPRECATED */
+		char **help_cmds        /* 112 HELP */
+		char **help_text        /* 112 HELP */
+		cce_cscp_t **emergency; /* 9?? */
+		cce_cscp_t **warnings;  /* 3xx others */
+	} cce_resp;
+
+3.2. Functional interfaces
+
+  The functional interfaces to CCE can be broken into three major groups -
+  functions dealing with connections and connection structures, functions
+  dealing with CCE directly, and helper functions.
+
+3.2.1 cce_conn_new()
+
+  cce_conn_t *cce_conn_new(void);
+
+  Prepare a cce_conn_t structure for use.  This function is for utility, and
+  is merely a thin wrapper for malloc().
+
+  Params:
+	none
+
+  Returns:
+	* a pointer to a CCE connection structure: success
+	* NULL: failure
+
+3.2.2. cce_conn_destroy()
+
+  void cce_conn_destroy(cce_conn_t *cce);
+
+  De-allocate a cce_conn_t structure.  This function is for utility, and
+  is merely a wrapper for free().
+
+  Params:
+	* cce: a pointer to the CCE connection structure to destroy
+
+  Returns:
+	none
+
+3.2.3. cce_connect()
+
+  cce_err_t cce_connect(cce_conn_t *cce);
+
+  Initiate a connection to CCE using the default connection method.  This
+  function assumes the default connection is the UNIX domain socket
+  "/usr/sausalito/cced.socket".  Client applications should use this
+  function.  If/when new connection methods to CCE are developed, this
+  function will allow clients to properly connect to CCE without knowing the
+  details of the connection method.  Any memory allocated to populate the
+  connection structure will be deallocated by the library during
+  disconnection (XREF: see cce_command(CCE_CMD_BYE)).
+
+  Params:
+	* cce: a pointer to the CCE connection structure to populate
+
+  Returns:
+	* CCE_OK: success
+	* CCE_ENOENT: the default socket does not exist
+	* CCE_ECONNREFUSED: the connection was not accepted
+	* CCE_ETIMEDOUT: the connection timed out while reading
+	* CCE_EPIPE: the connection was closed while reading
+	* CCE_ENOMEM: a memory allocation failed
+
+3.2.4. cce_connect_handler()
+
+  cce_err_t cce_connect_handler(cce_conn_t *cce);
+
+  Initiate a connection to CCE as a handler.  This function assumes the
+  default connection is on stdin and stdout file descriptors.  Handlers
+  should use this function.  If/when the handler connection mechanism is
+  changed, this function will allow handlers to connect to CCE without
+  knowing the details of the connection method.  Any memory allocated to
+  populate the connection structure will be deallocated by the library
+  during disconnection (see cce_command(CCE_CMD_BYE)).
+
+  Params:
+	* cce: a pointer to the CCE connection structure to populate
+
+  Returns:
+	* CCE_OK: success
+	* CCE_EBADF: one of the file descriptors was invalid
+	* CCE_ETIMEDOUT: the connection timed out while reading
+	* CCE_EPIPE: the connection was closed while reading
+	* CCE_ENOMEM: a memory allocation failed
+
+3.2.5. cce_resp_clear()
+
+  cce_err_t cce_resp_clear(cce_resp *resp);
+
+  Clear out a CCE response structure after use.  The library must allocate
+  memory for data held by the response structure, and this memory should be
+  de-allocated before reuse or release of the response structure.  This
+  function does not free the response structure itself, just the data
+  within.  If the passed response structure is not properly initialized
+  (i.e. it is not the result of a call to cce_command), the results are
+  undefined.
+
+3.2.6. cce_command()
+
+  cce_err_t cce_command(cce_conn_t *cce, cce_cmd_t cmd, cce_params_t *params,
+	cce_resp *response);
+
+  Issue a command to CCE.  All CCE commands use this function.  Each command
+  has different expectations of the params structure, which are detailed
+  below.  All data passed into or out of this function is assumed to be
+  unescaped.  For example, data passed in to CCE_CMD_SET in a cce_props_t
+  structure will be escaped by the library.  Conversely, data returned from
+  CCE_CMD_GET will be unescaped by the library, if needed, and presented to
+  the caller in unescaped form.
+
+  Params:
+	* cmd: the specific command to execute
+	* cce: a pointer to the CCE connection structure
+	* params: a pointer to the CCE parameters structure for the
+	  specified command
+	* response: a pointer to a CCE response structure to be populated
+
+  Returns:
+	* CCE_OK: success
+	* CCE_FAIL: CCE returned failure
+	* CCE_EINVAL: the specified cmd was not valid
+	* CCE_EINVAL: the params structure was not valid
+	* CCE_ENOMEM: a memory allocation failed
+	#FIXME:  more more more
+
+3.2.6.1. CCE_CMD_ADMIN_DEBUG
+
+  Change the debugging level for the current connection.  This command
+  requires admin privileges.  This command expects the 'admin_debug' member of
+  the params argument to be initialized.  This maps to the CSCP 'ADMIN DEBUG'
+  command.
+
+3.2.6.2. CCE_CMD_ADMIN_RESUME
+
+  Issue a resume command to CCE.  This command ignores the params argument.
+  This maps to the CSCP 'ADMIN RESUME' command.
+
+3.2.6.3. CCE_CMD_ADMIN_SUSPEND
+
+  Issue a suspend command to CCE.  This command expects the 'admin_suspend'
+  member of the params argument to be initialized.  This maps to the CSCP
+  'ADMIN SUSPEND' command.
+
+3.2.6.4. CCE_CMD_AUTH
+
+  Authenticate to CCE.  This command expects the 'auth' member of the
+  params argument to be initialized.  This maps to the CSCP 'AUTH' command.
+  A successful 'AUTH' may return a session key, for use in 'AUTHKEY'.  The
+  session key, if returned is stored in the response structure's
+  'sessionkey' member.  The absence of this key is not necessarily a
+  failure, as some systems may not support session keys.
+
+3.2.6.5. CCE_CMD_AUTHKEY
+
+  Authenticate to an existing CCE session.  This command expects the
+  'authkey' member of the params argument to be initialized.  This maps to
+  the CSCP 'AUTHKEY' command.
+
+3.2.6.6. CCE_CMD_BADDATA
+
+  Issue a bad-data message.  This command is only valid from handlers.  Any
+  other use of this command will fail.  This command expects the 'baddata'
+  member of the params argument to be initialized.  This maps to the CSCP
+  'BADDATA' command.
+
+3.2.6.7. CCE_CMD_BEGIN
+
+  Begin a CCE transaction.  Other commands executed during a transaction are
+  grouped and executed when the transaction is committed (CCE_CMD_COMMIT).
+  This command ignores the params argument.  This maps to the CSCP 'BEGIN'
+  command.
+
+3.2.6.8. CCE_CMD_BYE
+
+  Close the session with CCE.  This function should be used by all client
+  and handler applications to indicate to CCE that they are finished.  This
+  function will close the 'fd_to' and 'fd_from' members of the connection
+  structure, and flag it as closed.  This function will also free any memory
+  allocated within the connection structure by the library.  This function
+  expects the 'bye' member of the params argument to be initialized.  If
+  the params argument is NULL, no status will be sent.  This is acceptable
+  for client applications, but no-status for handlers is assumed to be a
+  failure.  This maps to the CSCP 'BYE' command.
+
+3.2.6.9. CCE_CMD_CLASSES
+
+  Get the list of known CCE classes.  This command ignores the params
+  argument.  This maps to the CSCP 'CLASSES' command.
+
+3.2.6.10. CCE_CMD_COMMIT
+
+  Commit a CCE transaction.  CCE will execute transaction-delayed commands
+  when this command is issued.  This command ignores the params argument.
+  This maps to the CSCP 'COMMIT' command.
+
+3.2.6.11. CCE_CMD_CREATE
+
+  Create a new instance of a specified class in CCE.  This command expects
+  the 'create' member of the params argument to be initialized.  This maps
+  to the CSCP 'CREATE' command.  If successful, the object-id of the newly
+  created object is stored in the response structure's 'oids' member.
+
+3.2.6.12. CCE_CMD_DESTROY
+
+  Destroy a specified object in CCE.  This command expects the 'destroy'
+  member of the params argument to be initialized.  This maps to the CSCP
+  'DESTROY' command.
+
+3.2.6.13. CCE_CMD_ENDKEY
+
+  Expire an existing CCE session key.  This command ignores the params
+  argument.  This maps to the CSCP 'ENDKEY' command.
+
+3.2.6.14. CCE_CMD_FIND
+
+  Find the list of objects in CCE with match specified criteria.  This
+  command expects the 'find' member of the params argument to be
+  initialized.  This maps to the CSCP 'FIND' command.
+
+3.2.6.15. CCE_CMD_GET
+
+  Get an object or namespace of an object from CCE.  This command expects
+  the 'get' member of the params argument to be initialized.  This maps to
+  the CSCP 'GET' command.
+
+3.2.6.16. CCE_CMD_INFO
+
+  Issue an informational message.  This command is only valid from handlers.
+  Any other use of this command will fail.  This command expects the 'info'
+  member of the params argument to be initialized.  This maps to the CSCP
+  'INFO' command.
+
+3.2.6.17. CCE_CMD_NAMES
+
+  Get the list of namespaces for an object-id or class.  This command
+  expects the 'names' member of the params argument to be initialized.  If
+  the 'class' member of the params is non-NULL, it will be used as the
+  target of the command, otherwise the 'oid' member will be used.  This maps
+  to the CSCP 'NAMES' command.
+
+3.2.6.18. CCE_CMD_SCHEMA_ADD
+
+  Add a schema definition to CCE.  This command expects the 'schema_add'
+  member of the params argument to be initialized with a pointer to the
+  schema XML content.  This maps to the CSCP 'SCHEMA ADD' command.
+
+3.2.6.19. CCE_CMD_SCHEMA_LIST
+
+  Get the list of known CCE schemas.  This command ignores the params
+  argument.  This maps to the CSCP 'SCHEMA LIST' command.
+
+3.2.6.20. CCE_CMD_SCHEMA_REMOVE
+
+  Remove a schema definition from CCE.  This command expects the
+  'schema_remove' member of the params argument to be initialized with the
+  schema name.  This maps to the CSCP 'SCHEMA REMOVE' command.
+
+3.2.6.21. CCE_CMD_SET
+
+  Set values in an object or namespace of an object.  This command expects
+  the 'set' member of the params argument to be initialized.  This maps to
+  the CSCP 'SET' command.
+
+3.2.6.22. CCE_CMD_VALIDATE
+
+  Validate data against a CCE typedef or property.  This command expects the
+  'validate' member of the params argument to be initialized.  This maps to
+  the CSCP 'VALIDATE' command.
+
+3.2.6.23. CCE_CMD_WARN
+
+  Issue a warning message.  This command is only valid from handlers.  Any
+  other use of this command will fail.  This command expects the 'warn'
+  member of the params argument to be initialized.  This maps to the CSCP
+  'WARN' command.
+
+3.2.6.24. CCE_CMD_WHOAMI
+
+  Return the OID of the currently authenticated user.  This command ignores
+  the params argument.  This maps to the CSCP 'WHOAMI' command.  If
+  authenticated, this command returns the object-id of the authenticated
+  user in the response structure's 'oids' member.  If not authenticated,
+  this command will fail.
+
+3.2.7. cce_stresc()
+
+  char *cce_stresc(const char *source);
+
+  Escape a string to a form suitable for CSCP transmission.  This function
+  allocates memory for the new string and returns the allocated pointer.
+  The caller is expected to free() the data when it is done.
+
+  Params:
+	* source: the string to be escaped
+
+  Returns:
+	* a pointer to the escaped string: success
+	* NULL: could not allocate memory
+
+3.2.8. cce_strunesc()
+
+  char *cce_strunesc(const char *source);
+
+  Unescape a string.  This function allocates memory for the new string and
+  returns the allocated pointer.  The caller is expected to free() the data
+  when it is done.
+
+  Params:
+	* source: the string to be unescaped
+
+  Returns:
+	* a pointer to the unescaped string: success
+	* NULL: could not allocate memory
+
+3.2.9. cce_bool_to_native()
+
+  int cce_bool_to_native(const char *source);
+
+  Transform a CCE-style boolean string to a language-native boolean.
+
+  Params:
+	* source: the CCE boolean string
+
+  Returns:
+	* 0: false
+	* 1: true
+	* -1: invalid boolean value
+
+3.2.10. cce_native_to_bool()
+
+  char *cce_native_to_bool(int source);
+
+  Transform a language-native boolean to a CCE-style boolean string.  This
+  function allocates memory for the CCE boolean.  The caller is expected to
+  free() the memory.
+
+  Params:
+	* source: the native boolean value
+
+  Returns:
+	* a pointer to the boolean string: success
+	* NULL: could not allocate memory or invalid boolean
+
+3.2.11. cce_int_to_native()
+
+  int cce_int_to_native(const char *source);
+
+  Transform a CCE-style integer string to a language-native integer.
+
+  Params:
+	* source: the CCE integer string
+
+  Returns:
+	* an integer: the integer value
+
+3.2.12. cce_native_to_int()
+
+  char *cce_native_to_int(int source);
+
+  Transform a language-native integer to a CCE-style integer string.  This
+  function allocates memory for the CCE integer.  The caller is expected to
+  free() the memory.
+
+  Params:
+	* source: the native integer value
+
+  Returns:
+	* a pointer to the integer string: success
+	* NULL: could not allocate memory or invalid boolean
+
+3.2.13. cce_array_to_native()
+
+  char **cce_array_to_native(const char *source);
+
+  Transform a CCE-style array string to a language-native array.
+
+  Params:
+	* source: the CCE array string
+
+  Returns:
+	* a pointer to a NULL-terminated array of strings: success
+	* NULL: could not allocate memory or invalid array
+
+3.2.14. cce_native_to_array()
+
+  char *cce_native_to_array(const char **source);
+
+  Transform a language-native array to a CCE-style array string.  This
+  function allocates memory for the CCE array.  The caller is expected to
+  free() the memory.
+
+  Params:
+	* source: the native array
+
+  Returns:
+	* a pointer to the array string: success
+	* NULL: could not allocate memory or invalid array
+
+3.2.15. cce_props_new()
+
+  cce_props_t *cce_props_new(void);
+
+  Allocate and initialize a CCE properties structure.  This structure is
+  essentially an associative array, or 1-to-1 hash of strings.  Structures
+  allocated by this function should be freed with cce_props_destroy().
+
+  Params:
+	none
+
+  Returns:
+	* a pointer to a new cce_props_t: success
+	* NULL: could not allocate memory
+
+3.2.16. cce_props_destroy()
+
+  void cce_props_destroy(cce_props_t *props);
+
+  Deallocate a CCE properties structure.  This function frees the data
+  contained within the structure, as well as the structure itself.
+
+  Params:
+	* props: a pointer to the properties structure to be destroyed
+  Returns:
+	none
+
+3.2.17. cce_props_get()
+
+  char *cce_props_get(cce_props_t *props, const char *key);
+
+  Fetch the value stored for the given key in a CCE properties structure.
+  This function returns a pointer to contained data.  That is to say, the
+  value returned by this function must not be deallocated by the caller.
+
+  Params:
+	* props: a pointer to the properties structure
+	* key: the string key to fetch
+  Returns:
+	* a pointer to a string: success
+	* NULL: the key does not exist, or props or key was NULL
+
+3.2.18. cce_props_set()
+
+  cce_err_t cce_props_set(cce_props_t *props, char *key, char *value);
+
+  Store the value for the given key in the CCE properties structure.  If
+  the specified key already exists in the structure, the old value will be
+  deallocated and the new value stored.  The properties structure will make
+  a copy of the key and value, which can be managed by cce_props_*
+  functions.  If value is NULL, the key will be removed from the structure.
+
+  Params:
+	* props: a pointer to the properties structure
+	* key: the string key to store
+	* value: the string value to store or NULL
+  Returns:
+	* CCE_OK: success
+	* CCE_EINVAL: props or key were NULL
+
+3.2.19. cce_props_unset()
+
+  cce_err_t cce_props_unset(cce_props_t *props, char *key);
+
+  Remove the specified key from a CCE properties structure.
+
+  Params:
+	* props: a pointer to the properties structure
+	* key: the string key to remove
+  Returns:
+	* CCE_OK: success
+	* CCE_EINVAL: props or key were NULL
+
+3.2.20. cce_props_renew()
+
+  cce_err_t cce_props_renew(cce_props_t *props);
+
+  Re-initialize a CCE properties structure.  This function will unset all
+  keys in the specified structure.
+
+  Params:
+	* props: a pointer to the properties structure
+  Returns:
+	* CCE_OK: success
+	* CCE_EINVAL: props was NULL
+	* CCE_ENOMEM: could not allocate memory
+
+3.2.21. cce_props_index()
+
+  cce_err_t cce_props_index(cce_props_t *props, int idx, char **key,
+	char **value);
+
+  Fetch a specific indexed key/value pair from a CCE properties structure.
+  This function is used for iterating over the contents of a CCE properties
+  structure.  The data is indexed in physical order (FIFO) and indexes are
+  consistent until an entry is unset (cce_props_unset() or cce_props_set()
+  with a value of NULL).  When an entry is unset, indexes may change, and
+  stored index values may become out-of-bounds.  To ensure data consistency,
+  never unset a value while iterating, and be very careful when modifying or
+  adding values while iterating.  The key and value pointers returned are
+  owned by the CCE properties structure and must not be freed.  The key or
+  value argument may be NULL, in which case the respective data will not be
+  stored.  If the properties structure has no elements or the request index is
+  out-of-bounds, the data stored will be NULL.
+
+  Params:
+	* props: a pointer to the properties structure
+	* idx: the index of the data to fetch
+	* key: a pointer to the string to be set to the key, or NULL
+	* value: a pointer to the string to be set to the value, or NULL
+  Returns:
+	* CCE_OK: success
+	* CCE_EINVAL: props was NULL or index requested was out-of-bounds
+
+3.2.22. cce_props_clone()
+
+  cce_props_t *cce_props_clone(cce_props_t *props);
+
+  Create a clone of the specified CCE properties structure.  This function,
+  like cce_props_new(), allocates a structure which must be freed by
+  cce_props_destroy().
+
+  Params:
+	* props: a pointer to the properties structure
+  Returns:
+	* a pointer to a cce_props_t: success
+	* NULL: could not allocate memory or props was NULL
+
+3.2.23. cce_props_merge()
+
+  cce_props_t *cce_props_merge(cce_props_t *base, cce_props_t *mask);
+
+  Merge all the properties in base with all the properties in mask into a
+  new CCE properties structure.  This function, like cce_props_new(),
+  allocates a structure which must be freed by cce_props_destroy().  If a
+  key exists in both base and mask, the value in mask will override the
+  value in base.
+
+  Params:
+	* base: a pointer to the base properties structure to merge
+	* mask: a pointer to the properties structure to merge from
+  Returns:
+	* a pointer to a cce_props: success
+	* NULL: could not allocate memory or base or mask was NULL
+
+3.2.24. cce_props_count()
+
+  int cce_props_count(cce_props_t *props);
+
+  Count the number of unique keys in the CCE properties structure.
+
+  Params:
+	* props: a pointer to the properties structure
+  Returns:
+	* an integer: the number of elements in the hash
+
+3.3. Language bindings
+
+  In addition to C, the CCE client library is available in the following
+  languages:
+	* Perl - mandatory
+	* Java - mandatory
+	* PHP - mandatory
+	* TCL - desired
+	* Python - optional
+
+  These language bindings are provided by generating glue logic which
+  allows each of these language engines to access the C routines.  This
+  allows single-source development for all languages.  Some languages
+  have specific requirements syntactically or conventionally.  Where
+  possible the CCE client library will retain it's API across languages.
+  Where necessary, the API changes will be noted here.
+
+3.3.1. Perl
+
+  In order to access the CCE functionality from Perl, calling programs must
+  use the Perl library loading mechanism.  Each Perl program which requires
+  CCE connectivity must include the following code before any CCE specific
+  code:
+
+  use CCE;
+  #FIXME: use cce; would be more API consistent, but less Perl-ish
+
+  This will cause the CCE library to load and the Perl 'CCE' namespace to be
+  defined.
+
+3.3.1.1. Constants
+
+  All enumerated or defined constants in C must be prepended by the Perl
+  scalar identifier '$'. For example 'CCE_OK' becomes '$CCE_OK'.
+  #FIXME: we either export all or export none - these may need to be $CCE::OK
+  #  a small patch to swig can fix this to export constants but not the rest
+  #  thoughts?
+
+3.3.1.2. Types
+
+  Perl does not have the concept of enumerated integers.  All enumerated
+  types in C become plain integers in Perl.
+
+3.3.1.3. Functions
+
+  All functions are part of the CCE namespace and must be addressed as such.
+  For example 'cce_connect()' becomes 'CCE::connect()'.
+
+3.3.1.4. Structures
+
+  All structures in C become blessed hash references in Perl.  Because Perl
+  does not have the concept of allocating the actual blessed hash on the
+  stack, structures must be allocated with Perl constructors.  For example,
+  to create the parallel of a cce_conn_t C structure, 'struct cce_conn_t;'
+  becomes 'my $cce = new CCE::conn();'
+  #FIXME: we may want to decide to use C cce_conn_new() for everything.
+  #  If so, can we keep that here?
+  #FIXME: there is an alternative which uses Perl native hashes, but
+  #  requires much more glue logic - what do people think of this?
+
+  Accessing these structures is slightly different from normal Perl hashes,
+  but identical to Perl hash references.  For example, the 'cce_conn_t.state'
+  member in C becomes '$cce->{state}' in Perl.  The 'params.auth.username'
+  member in C becomes '$params->{auth}->{username}' in Perl.
+
+  For API consistency, functions in C do not get turned into methods on
+  objects in Perl.
+
+  The only structure from C which changes fundamentally for Perl is the
+  'cce_props_t' structure.  In Perl this becomes a Perl native hash.
+
+3.3.2. Java
+
+  Java programs which require use of the CCE library must explicitly import
+  the CCE Java modules:
+
+  import CCE;
+  #FIXME: import cce; would be more API consistent, but less Java-ish
+  import CCE_conn;
+  import CCE_params;
+  import CCE_resp;
+  #FIXME: this list is incomplete
+  #FIXME: This can be simplified, but I'm not sure how quite yet
+
+  This will cause the library to be loaded and the Java 'CCE' class to be
+  defined.
+
+3.3.2.1. Constants
+
+  Java does not have the C concept of global constants.  All constants are
+  within the CCE class.  For example 'CCE_OK' becomes 'CCE.OK'.
+
+3.3.2.2. Types
+
+  Java does not have the concept of enumerated integers without using
+  complex datatypes.  All enumerated types in C become plain integers in
+  Java.
+
+3.3.2.3. Functions
+
+  All C functions are static methods of the CCE class and must be addressed
+  as such.  For example 'cce_connect()' becomes 'CCE.connect()' in Java.
+
+3.3.2.4. Structures
+
+  All C structures become true classes in Java.  These classes provide get
+  and set accessor methods for the members of structures, as well as
+  constructors and destructors.
+
+  Java conventions dictate that accessor functions use camel or "bumpy caps"
+  notation.  For example the accessor function for the 'state' member would
+  be 'getState()', and the accessor to write the 'cscp_vmaj' member would be
+  'setCscp_vmaj()'.
+
+  For API consistency, functions in C do not get turned into methods on
+  objects in Java with the following exceptions:
+
+  * cce_props_* functions become methods on CCE_props objects
+
+3.3.3. PHP
+
+  PHP scripts which require use of the CCE library must explicitly include
+  the CCE PHP modules:
+
+  include CCE;
+
+  This will cause the CCE library to be loaded and all functions to become
+  available.  The PHP binding for the CCE library is very close to the C API
+  in most respects.
+
+3.3.3.1. Types
+
+  Because PHP is an untyped language, all enumerated types are treated as
+  plain integers.
+
+3.3.3.2. Structures
+
+  All C structures become PHP objects.  These objects provide get and set
+  accessor methods for the members of structures, as well as constructors
+  and destructors.
+
+  PHP conventions dictate that accessor functions use camel or "bumpy caps"
+  notation.  For example the accessor function for the 'state' member would
+  be 'getState()', and the accessor to write the 'cscp_vmaj' member would be
+  'setCscp_vmaj()'.
+
+  The only C structure that changed significantly in PHP is the cce_props_t
+  structure, which becomes a PHP associative array.
+
+4. Conf
+
+  Conf files are the handler registration files.  They are parsed only when
+  CCE starts up.
+
+4.1. Location of files
+
+  CCE searches for a directory named 'conf' under the CCE base directory
+  ('/usr/sausalito' by default).  CCE will attempt to parse any file in this
+  directory which ends with the postix ".conf".  CCE will recurse into any
+  sub-directories and repeat the algorithm, until all files and sub-directories
+  have been examined.  The only exception to these rules is that any file or
+  directory which begins with a period ('.') is ignored.
+
+4.2. File format
+
+  The format of a CCE handler config file is very simple: each file has any
+  number of lines, with 2 or 3 fields per line.  Any line starting with a
+  hash mark ('#') is considered a comment.  Comments and blank lines are
+  ignored.  Leading and trailing whitespace are ignored.  Each line has the
+  following form:
+
+	<event>    <handler>    <stage>
+
+4.3. Events
+
+  The event field is comprised of two subfields of the form:
+
+	<class_name>.<event_name>
+
+  The class_name subfield must be the name of a valid CCE class.  The
+  event_name subfield may be any of:
+
+	_CREATE		an object of specified class is created
+	_DESTROY	an object of specified class is destroyed
+	property	this property of specified class is modified
+	ns.property	this property of specified class.namespace is modified
+	*		any property of specified class is modified
+
+4.4. Handlers
+
+  The handler field is comprised of two subfields of the form:
+
+	<handler_type>:<handler_data>
+
+  The handler_type subfield may be any of:
+
+	exec		execute a binary
+	perl		execute a Perl script (optimized vs. exec)
+	echo		print a string to the log and to stderr
+
+  The handler_data subfield depends entirely on the handler type.  The values
+  for each type are as follows:
+
+	exec		the path to a binary file (if the first character is
+			not '/', the CCE base directory is prepended)
+	perl		the path to a perl script (if the first character is
+			not '/', the CCE base directory is prepended)
+	echo		any string of alphanumeric, minus, or underscore
+			characters
+
+4.5. Stages
+
+  Stages allow handler writers to suggest a relative order in which their
+  handlers should execute.  Stage names are case insensitive.  Valid values
+  for this field are:
+
+	VALIDATE
+	CONFIGURE
+	EXECUTE
+	TEST
+	CLEANUP
+
+  The stage field is optional.  If omitted, the EXECUTE stage will be assumed.
+  Relative ordering of handlers is only guaranteed between stages.  Within a
+  stage, ordering of handlers is not guaranteed, except as determined by the
+  CSCP 'BYE DEFER' command (XREF: see BYE DEFER above).
+
+  Handlers in the CLEANUP stage have some special attributes.  CLEANUP
+  handlers are run after all other handlers, and may not fail.  This stage is
+  used for non-reversable operations.
+
+  The stage field may be postfixed by a period ('.') and the flag "ROLLBACK"
+  (case insensitive).  This indicates that a handler expects to be run if the
+  triggering transaction fails, in addition to normal usage.  Only CLEANUP
+  handlers can have the ROLLBACK flag.
+
+4.6. Error handling
+
+  If CCE attempts to parse a file which has invalid syntax, an error message
+  is logged, and the current line is discarded.  If CCE attempts to
+  parse a file with no <conf_line> elements, a warning message is logged.
+
+  Handlers are not validated for valid data at parse time.  If an exec handler
+  specifies a file that does not exist, the execution of that handler will
+  fail.
+
+4.7. Sample conf file
+
+  Class._CREATE     exec:/path/to/create_handler          EXECUTE
+  Class._DESTROY    perl:/path/to/destroy_handler         EXECUTE
+  Class.property    perl:relative/path/to/mod_handler     VALIDATE
+  Class.property    perl:relative/path/to/mod_handler2    CONFIGURE
+  Class.*           exec:relative/path/to/mod_handler3    TEST
+
+5. Schema
+
+  Schema files are the mechanism by which data structures are defined to CCE.
+  Schemas are XML files which are installed into CCE, and contain definitions
+  of the various data structures stored by CCE.
+
+5.1. Installing
+
+  Schema definition files are installed into CCE by the 'cce_schema install'
+  command.  This process inserts the schema structure into CCE, which can then
+  access the structures immediately.
+
+5.2. Uninstalling
+
+  Schemas are uninstalled by the 'cce_schema remove' command.  This process
+  removes all instances of classes in the schema, removes all namespaces (and
+  associated data) in the schema, and removes all rules, typedefs, and
+  matchtypes in the schema.  (XREF: see CSCP 'SCHEMA REMOVE' command)
+
+  In the case of external dependencies on a schema, such as TYPEDEFs (XREF:
+  see TYPEDEF below), the dependencies will be broken.
+
+5.3. File format
+
+  Schema description files are simple XML files.  A schema file consists of a
+  top-level SCHEMA element, which contains sub-elements - the contents of that
+  schema.
+
+  As with all XML, tokens are whitespace delimited, element and attribute 
+  names are a C style identifiers, and attribute values are always wurrounded
+  by single quotes (') or double quotes (").  Element and attribute names are
+  case-insensitive.  Comments begin with "<!--" and end with "-->".  All text
+  within comments is ignored.
+
+5.3.1. The SCHEMA element
+
+  The SCHEMA element is the top-level element of a schema file, and is used to
+  logically group elements together.
+
+  Element: "SCHEMA"
+  Required attributes: "NAME", "VENDOR", "VERSION"
+
+  NAME, VENDOR, and VERSION are freeform identifiers, and may be any string.
+
+5.3.2. The CLASS element
+
+  A CLASS is the formal definition of an object's structure.  An object has
+  exactly the properties of it's CLASS.  The CLASS element is also used to
+  define namespaces.  CLASSes are sub-elements of SCHEMAs.
+
+  Element: "CLASS"
+  Required attributes: "NAME", "VERSION"
+  Optional attributes: "NAMESPACE", "CREATEACL", "DESTROYACL"
+
+  NAME must be a C identifier.
+
+  VERSION may be any string, but is, by convention, an integer or floating
+  point number (examples: "1", "3.1415").
+
+  NAMESPACE must be a C identifier, a blank string (""), or unspecified.
+
+  CREATEACL and DESTROYACL must be acl-strings (XREF: see below).  If
+  unspecified, the default value is the builtin rule "rule_sysadmin".
+
+5.3.2.1 Magic properties
+
+  All CLASS elements automatically have the following properties, which may be
+  retrieved by the CSCP 'GET' command (XREF: see GET above).
+
+	_CLASS		the string name of the class
+	_CLASSVER	the class or namespace version, as in the schema
+	_MTIME		the integer timestamp (seconds since epoch) of the
+			last modification of any property of any namespace of
+			the object
+	_NAMESPACE	the string name of the namespace, or ""
+	_OID		the integer value of the object identifier
+
+5.3.3. The PROPERTY element
+
+  A PROPERTY is a sub-element of a CLASS.  A single PROPERTY defines a single
+  datum within a CLASS.
+
+  Element: "PROPERTY"
+  Required attributes: "NAME", "TYPE"
+  Optional attributes: "DEFAULT", "OPTIONAL", "ARRAY", "READACL", "WRITEACL"
+
+  NAME must be a C identifier.  All property names beginning with an
+  underscore ('_') are reserved.
+
+  TYPE must be a valid TYPEDEF name.  A PROPERTY with a TYPE that refers to a
+  TYPEDEF which does not exist will fail all data validation on writes.
+
+  DEFAULT may be any value that is valid for the specified TYPE.  If DEFAULT
+  is unspecified, the default value is an empty string (""), which may or
+  may-not be valid for the TYPE of the PROPERTY.
+
+  OPTIONAL may be the values "0" (zero), "1", or unspecified.  If unspecified
+  or assigned the value "0", the optional flag is set to false, otherwise, the
+  optional flag is set to true.  When set to true, data for this property can
+  be either the empty string ("") or data which is valid for the TYPE
+  specified.
+
+  ARRAY may be the values "0" (zero), "1", or unspecified.  If unspecified or
+  assigned the value "0", the array flag is set to false, otherwise, the array
+  flag is set to true.  When set to true, data for this property is assumed to
+  be an unbounded array of data, of the type specified.
+
+  READACL must be an acl-string (XREF: see below).  If unspecified, the
+  default value is the builtin rule "rule_user".
+
+  WRITEACL must be an acl-string (XREF: see below).  If unspecified, the 
+  default value is the builtin rule "rule_sysadmin".
+
+5.3.4. The INDEX element
+
+  An INDEX element defines a search index for faster lookups and searches.
+  INDEXes are sub-elements of CLASSes.
+
+  Element: "INDEX"
+  Required attributes: "NAME", "PROPERTY"
+
+  NAME must be a C identifier.
+
+  PROPERTY must be the name of a PROPERTY in the class.
+
+5.3.5. The TYPEDEF element
+
+  A TYPEDEF is a definition of valid values for a PROPERTY.  TYPEDEFs are
+  sub-elements of SCHEMAs.
+
+  Element: "TYPEDEF"
+  Required attributes: "NAME", "TYPE", "DATA"
+  Optional attributes: "ERRMSG"
+
+  NAME must be a C identifier.
+
+  TYPE must be one of "re" or "extern".
+
+  DATA must be TYPE appropriate data validator.  For TYPE "re" it should be
+  a valid regular expression, for TYPE "extern" it should be the path to an
+  external program to validate data.
+
+  ERRMSG may be any string, or unspecified.  This value will be returned by
+  CCE when a caller attempts to write invalid data to an instance of this
+  TYPEDEF.
+
+5.3.6. The RULE element
+
+  A RULE is a definition of a security rule that can be used in ACLs.  RULEs
+  are sub-elements of SCHEMAs.
+
+  Element: "RULE"
+  Required attributes: "NAME", "TYPE", "DATA"
+
+  NAME must be a C identifier.
+
+  TYPE must be one of "acl", "builtin", "exec" or "perl".
+
+  DATA must be a TYPE appropriate value.  For TYPE "acl" it should be a valid
+  acl-string which will be expanded and re-evaluated.  If, during evaluation,
+  a rule of TYPE "acl" is encountered more than once, a deadlock is detected
+  and the evaluation will fail.
+
+  For TYPE "builtin" DATA should be one of the builtin rules (XREF: see builtin
+  rules below).  Some builtin RULEs take arguments.  Arguments are specified
+  below (XREF: see args below).
+
+  For TYPEs "exec" and "perl" DATA should be the path to an external program
+  or Perl script respectively.  If the first character of the DATA is not
+  '/', the CCE base directory will be prefixed to the DATA value. TYPE
+  "exec" and "perl" rules are run in a manner similar to a handler, but in the
+  read-only CSCP context.  TYPE "exec" and "perl" rules must end successfully
+  (XREF: see BYE above) to satisfy the RULE evaluation.
+
+5.3.6.1. Builtin rule_all
+
+  This rule is satisfied in all circumstances.
+
+5.3.6.2. Builtin rule_capable(<capability>)
+
+  This rule is satisfied if the authenticated User has the specified
+  capability (XREF: see capabilities below).  If the capability argument is
+  not specified, this rule is not satisfied.
+
+#FIXME: keep these?  If so, cover them in Base Rules schema: talk w/Oren
+#FIXME: rename to rule_props_match
+5.3.6.3. Builtin rule_property_match_property(<userprop>, <targetprop>)
+
+  This rule takes two arguments, which are the property or namespace.property
+  fields to compare on the authenticated user object id and the target object
+  id, respectively.  This rule is satisfied if the two properties match.
+  Example:
+
+	rule_property_match_property('.id', '.idnum') would compare the 'id'
+	property on the User object with the 'idnum' property on the target 
+	object.
+
+#FIXME: rename to rule_prop_eq
+5.3.6.3. Builtin rule_property_match_value(<targetprop>, <value>)
+
+  This rule takes two arguments, which are the property or namespace.property
+  field on the the target object and the value against which to compare it,
+  respectively.  This rule is satisfied if the two values match.  Example:
+
+	rule_property_match_value('.enabled', 1) would compare the 'enabled'
+	property on the target object with the value 1.
+
+5.3.6.5. Builtin rule_self
+
+  This rule is satisfied if the user initiating the operation is operating on
+  their own User object id.
+
+5.3.6.6. Builtin rule_sysadmin
+
+  This rule is satisfied in one of two ways.  Either the connection is from a
+  UID 0 (root) process, and has not dropped privileges, or the authenticated
+  User has the "systemAdministrator" property of their User object set to a
+  boolean TRUE.
+
+5.3.6.7. rule_user
+
+  This rule is satisfied if the user initiating the operation is any
+  authenticated user (the connection is not anonymous).
+
+5.3.7. The MATCHTYPE element
+
+  A MATCHTYPE is a definition of a comparison mechanism that can be
+  used when searching and sorting data.  The result of an attempted match is
+  that one element is less than (comes before), equal to (matches), or greater
+  than (comes after) another.  MATCHTYPEs are sub-elements of SCHEMAs.
+
+  Element: "MATCHTYPE"
+  Required attributes: "NAME", "TYPE", "DATA"
+
+  NAME must be a C identifier.
+
+  TYPE must be "builtin".
+
+  DATA must be a TYPE appropriate value. For TYPE "builtin" it should be one
+  of the builtins defined below.  Some builtin MATCHTYPEs take arguments.
+  Arguments are specified below (XREF: see args below).
+
+5.3.7.1. Builtin match_ascii
+
+  This MATCHTYPE does a simple ASCII character-by-character comparison.
+
+5.3.7.2. Builtin match_hostname
+
+  This MATCHTYPE matches data as fully-qualified domain dames (FQDN).  Data is
+  compared section-by-section.  For example:
+
+	mail.foo.com  is less than       www.foo.com
+  but
+	www.goo.com   is greater than    www.foo.com
+
+5.3.7.3. Builtin match_ip
+
+  This MATCHTYPE attempts to match the data as IP addresses.  Data is
+  compared octet-by-octet, from least to most significant.  For example:
+
+	10.9.8.123    is less than       10.9.8.234
+  but
+	10.9.9.123    is greater than    10.9.8.234
+
+5.3.7.4. Builtin match_locale(<locale>)
+
+  This MATCHTYPE uses the strcoll() function, using the locale specified to do
+  a locale-sensitive search.
+
+5.3.7.5. Builtin match_numeric
+
+  This MATCHTYPE attempts to match the values as if they were integer or
+  floating point numbers.
+
+5.4. Arguments to RULEs and MATCHTYPEs
+
+  Arguments are specified in parentheses and seperated by commas.  Arguments
+  may be single or double quoted, in which case the unescaped contents of the
+  quote become the argument, or they may be left unquoted, in which case the
+  next word (regex [^ \t,()]) becomes the argument.  Examples:
+
+	* rule_example(foo)
+	  - 1 argument: "foo"
+	* rule_example(foo, bar)
+	  - 2 arguments: "foo" and "bar"
+	* rule_example('foo', 'bar')
+	  - 2 arguments: "foo" and "bar"
+	* rule_example('()', ',', some escaped stuff);
+	  - 3 arguments: "()", "," and "some escaped stuff"
+
+  If the RULE/MATCHTYPE element specifies arguments, and the caller of the
+  RULE/MATCHTYPE specifies arguments, the caller's arguments are used.
+  Whenever arguments are specified at either level, they muct be fully
+  specified.
+
+5.5. ACLs
+
+  Several things in CCE are protected by "access control lists" or ACLs.  All
+  properties can have read and write ACLs.  All classes and namespaces can
+  have create and destroy ACLs.  An acl-string is an expression defining the
+  RULE elements to examine to determine whether an operation is permitted.
+  acl-strings are boolean expressions.  The following logical operators are
+  allowed:
+
+	AND		boolean 'and'
+	OR		boolean 'or'
+	,		boolean 'or'
+	NOT		boolean 'not'
+	(		begin sub-expression
+	)		end sub-expression
+
+  Expressions are evaluate left to right, with short-circuit evaluation, as in
+  the C language.
+
+5.6. Default schemas
+
+  CCE provides the following schemas, for general usage by other schemas.  It
+  is safe for add-on schemas to assume the existance of these base schemas:
+
+	* Base Typedefs		TYPEDEF definitions for primitive datatypes
+	* Base Rules		RULE definitions for builtin rules
+	* Base Matchtypes	MATCHTYPE definitions for builtin matchtypes
+
+5.6.1. Base typedefs
+
+  The following TYPEDEFs are provided by CCE:
+  #FIXME: re-evaluate FQDN/hostname/domainname types
+
+	typedef		description
+	-------		-----------
+	scalar		any series of characters
+	word		a series of one or more non-whitespace characters
+	alphanum	a series of one or more alphabetic or numeric
+			characters
+	alphanum_plus	a series of one or more alphanum characters, period
+			('.'), underscore ('_'), or dash ('-') characters
+	int		a signed integer value, with optional unary minus
+			('-') or zero
+	uint		an unsigned integer value
+	boolean		true ('1') or false ('0') values
+	ipaddr		an IP address - 4 integer values between 0 and 255,
+			seperated by periods '.'
+	network		a networ identifier - an IP address followed by a 
+			slash ('/') and a number between 1 and 32.
+	email_address	a series of one or more alphanum_plus characters
+			followed by an 'at' ('@') followed by one or more
+			alphanum_plus characters
+	netmask		either a number between 1 and 32, or a series of
+			bit-aligned values in dotted-quad format
+	fqdn		a fully-qualified domain name - an alphanum character
+			followed by zero or more alphanum or dash ('-')
+			characters, repeated one or more of times, seperated by
+			periods ('.'), finally followed by one or more
+			alphabetic characters
+	hostname	an alphanum character followed by zero or more
+			alphanum or dash ('-') characters, repeated one or
+			more of times, seperated by periods ('.')
+	domainname	an alphanum character followed by zero or more
+			alphanum or dash ('-') characters, repeated one or
+			more of times, seperated by periods ('.')
+	password	a series of 3 to 16 characters that comprise a valid
+			password
+
+5.6.2. Base Rules
+
+  The following RULEs are provided by CCE:
+
+	rule		description
+	----		-----------
+	ruleAdmin	builtin: rule_sysadmin
+	ruleAll		builtin: rule_all
+	ruleUser	builtin: rule_user
+	ruleSelf	builtin: rule_self
+	ruleCapable	builtin: rule_capable
+
+5.6.3. Base Matchtypes
+
+  The following MATCHTYPEs  are provided by CCE:
+
+	matchtype	description
+	---------	-----------
+	ascii		builtin: match_ascii
+	hostname	builtin: match_hostname
+	ip		builtin: match_ip
+	locale		builtin: match_locale
+	numeric		builtin: match_numeric
+
+5.7. The cce_schema tool
+
+  The cce_schema too is a commandline interface to manipulate schemas in CCE.
+  It takes several options, each of which has sub-options.
+
+	* cce_schema install -f <schema file>
+	* cce_schema install "<schema definition>"
+	* cce_schema uninstall <schema>
+	* cce_schema uninstall -f <schema file>
+
+5.8. Sample schema
+
+  <SCHEMA name="Sample" vendor="Sun Microsystems, Inc." version="1.0">
+	<TYPEDEF name="sample" type="re" data="[0-5]*"/>
+	<CLASS name="Sample" namespace="" version="1.1">
+		<PROPERTY name="enabled" type="boolean" default="1"
+			readacl="ruleUser" writeacl="ruleAdmin"/>
+	</CLASS>
+  </SCHEMA>
+
+
+6. Event Dispatching
+
+  When an event is triggered, CCE processes the registered handlers by stage.
+  Handlers of different types have some different details of processing.
+
+6.1. Processing 'exec' handlers
+
+  Before being executed, an exec handler is verified.  The binary to be run
+  must both exist and be executable.  Assuming the handler passes
+  verification, the following steps are taken:
+
+	* the standard input and standard output file descriptors are
+	  connected to CCE for CSCP reads and writes, respectively
+	* the curent directory is changed for the handler is changed to the
+	  directory of the executable
+	* all file descriptors greater than STDERR_FILENO are closed
+	* the handler is run with UID 0 (root) privileges
+	* CCE waits for the handler to exit
+
+  All handlers are expected to indicate their exit status with the BYE command
+  (XREF: see 'BYE' command). If the handler uses the 'BYE' command, but does
+  not specify a status, it is assumed to have failed.
+
+6.2. Processing 'perl' handlers
+
+  Before being executed, a perl handler is verified.  The perl script to be
+  run must exist.  Assuming the handler passes verification, the following
+  steps are taken:
+
+	* the standard input and standard output file descriptors are
+	  connected to CCE for CSCP reads and writes, respectively
+	* the curent directory is changed for the handler is changed to the
+	  directory of the executable
+	* all file descriptors greater than STDERR_FILENO are closed
+	* the handler is run with UID 0 (root) privileges
+	* CCE waits for the handler to exit
+
+  If the perl script does not explicitly use the CSCP 'BYE' command, or does
+  not specify a status for the 'BYE' command, it is assumed to have failed
+  (XREF: see BYE above).
+
+6.3. Processing 'echo' handlers
+
+  Echo handlers are printed to the logfile and to CCEs standard error.
+
+6.4. Dispatching
+
+  The stages are processed in the following order:
+
+	VALIDATE
+	CONFIGURE
+	EXECUTE
+	TEST
+	CLEANUP
+
+  Within a stage, the list of handlers is uniquefied.  any handler which is
+  unique, as determined by it's handler_type:handler_data tuple, will only be
+  run once in a stage.
+
+  All the handlers in a stage must complete successfully before the next stage
+  is begun.  Any handler which exits with a "DEFER" status (XREF: see BYE
+  DEFER above) is moved to the end of the stage run-queue for re-processing.
+  When all handlers in the stage have been processed once, any handlers which
+  were deferred are re-processed.  This cycle repeats until all handlers
+  complete successfully, until a failure, or until all remaining handlers
+  defer (deadlock), which is considered a failurefor the transaction.
+
+  Any transactions which are triggered by handlers (sub-transactions) are
+  processed in depth-first order.  All handlers for a sub-transaction must
+  complete before the triggering transaction can proceed.  The exception to
+  this is CLEANUP stage handlers.  Any handler which is in the CLEANUP stage
+  is run only at the top level transaction.
+
+  If any handler fails, the transaction is considered a failure and is rolled
+  back.  The exception to this is CLEANUP stage handlers, which can not fail.
+  Any CLEANUP handler which fails will be logged, but processing will
+  continue.  During a rollback, any CLEANUP handler which had the ROLLBACK
+  flag will be processed.
+
+  It is important to note that if a sub-transaction fails, only the
+  sub-transaction is rolled back.  The triggering handler may or may not pass
+  the failure up by failing itself.
+
+6.5. Error handling
+
+  During event dispatching, all errors are logged.
+
+7. Security
+
+  Aspects of security are covered throughout this specification.  This section
+  covers issues not covered else where, and serves as a cross-reference.
+
+7.1. Authentication
+
+  For details on CCE authentication, see "Authentication", "Connections from
+  root processes", "AUTH" and "AUTHKEY" above. #XREF
+
+7.2. Security of data
+
+  All properties in CCE are protected by read and write access control lists.
+  For details, see "The PROPERTY element" and "ACLs" above.
+
+  All classes and namespace in CCE are protected by create and destroy access
+  control lists.  For details see "The CLASS element" and "ACLs" above. Both
+  class and namespace definitions may have create and destroy ACLs.  When an
+  object is created or destroyed, the CREATACL or DESTORYACL for each
+  namespace must succeed for the operation to succeed.  In general, CREATEACL
+  and DESTROYACL should only be used on class definitions.
+
+  When an object is created, properties can be assigned.  If any property is
+  not writeable (writeacl fails) by the creating User, the create will fail.
+  An object can be created by a User who can not write to some properties, as
+  long as the unwriteable properties are left their default value.
+
+7.3. Capabilities
+
+  One of the builtin securoty rules that can be used from any ACL is
+  rule_capable (XREF: see rule_capable above).  This rule accesses CCE's
+  capabilities model.  In order to enable capabilities, the User object must 
+  have a 'capabilities' field (an array or words).  When a capability is
+  required via rule_capable, CCE will search the capabilities array of the
+  authenticated User for the specified capability.  If it is found, the User
+  has that capability.
+
+8. Tools
+
+  CCE provides some tools to make using CCE easier.  while they are part of
+  the CCE distribution, they are not part of CCE proper, and have therefore
+  been defined seperately.
+
+8.1. cceclient
+
+  As part of the CCE distribution, the program 'cceclient'.  This commandline
+  tool provides a raw interface to the CSCP protocol.  By default it will
+  attempt to connect to the default CCE socket (/usr/sausalito/cced.socket).
+  If a commandline argument is specified, cceclient will attempt to use that
+  as the path to the socket, instead.  cceclient reads standard input until it
+  receives end-of-file, or until CCE disconnects, at which time it exits with
+  a return code of EXIT_SUCCESS.
+
+8.2. PAM CCE
+
+  As part of the CCE distribution, a PAM (pluggable-authentication-module)
+  module is provided, to allow programs to authenticate to CCE.  It is a
+  standard PAM module, requiring the username and a sessionkey, or the
+  username and a password.  The module is named 'pam_cce.so'.
+
+8.3. Persistent Perl
+
+  In order to optimize Perl execution, CCE provides a persistant Perl
+  implementation.  This mitigates the startup overhead of Perl for things like
+  handlers.  To run a Perl script through the persistant Perl interpreter, the
+  command 'pperl' is provided.
+
+  The pperl command takes on argument - the path to a perl script to execute.
+  The standard input for pperl is relayed to the Perl interpreter, and the
+  standard output from the Perl interpreter is relayed back to pperl.
+  Anything sent to standard error from the Perl script is sent to the standard
+  error descriptor of the Perl interpreter.  Because the Perl script is run by
+  the interpreter, the exit code of pperl may or may not reflect the exit code
+  of the Perl script, and should not be relied upon.
+
+8.3.1. Details of pperl and pperld
+
+  The persistant Perl system in CCE is implemented as a daemon (pperld) which
+  listens on a UNIX socket (/var/run/cce/pperld.socket).  The pperl program
+  connects to this socket, and sends the name of the Perl script to execute,
+  followed by a newline.  If the connecting process is owned by root, or by
+  the same UID or EUID as pperld, pperld will fork(), and the Perl script will 
+  be run.  For convenience, the directory in which the Perl script resides is
+  added to Perl's '@INC' array.  When the Perl script exits, the connection is
+  closed and the pperl program exits.
+
+8.4. ccewrap
+
+  #FIXME: OY!
+
+8.5. #FIXME: upgrade utility
+
+8.6. cce_construct
+
+  #FIXME: OY!
+
+#
+# CONFIDENTIAL - DO NOT DISTRIBUTE OUTSIDE SUN/COBALT
+#

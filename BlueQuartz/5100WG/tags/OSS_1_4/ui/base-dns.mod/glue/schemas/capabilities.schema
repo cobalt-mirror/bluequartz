@@ -1,0 +1,47 @@
+<!-- System.Dns -->
+<class name="Capabilities" namespace="modifySystemDns" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemDns)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_modifySystemDns]]"/>
+</class>
+
+<!-- DnsSlaveZone -->
+<class name="Capabilities" namespace="createDnsSlaveZone" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createDnsSlaveZone)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_createDnsSlaveZone]]"/>
+</class>
+<class name="Capabilities" namespace="destroyDnsSlaveZone" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyDnsSlaveZone)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_destroyDnsSlaveZone]]"/>
+</class>
+<class name="Capabilities" namespace="modifyDnsSlaveZone" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDnsSlaveZone)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_modifyDnsSlaveZone]]"/>
+</class>
+
+<!-- DnsSOA -->
+<class name="Capabilities" namespace="createDnsSOA" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createDnsSOA)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_createDnsSOA]]"/>
+</class>
+<class name="Capabilities" namespace="destroyDnsSOA" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyDnsSOA)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_destroyDnsSOA]]"/>
+</class>
+<class name="Capabilities" namespace="modifyDnsSOA" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDnsSOA)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_modifyDnsSOA]]"/>
+</class>
+
+<!-- DnsRecord -->
+<class name="Capabilities" namespace="createDnsRecord" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createDnsRecord)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_createDnsRecord]]"/>
+</class>
+<class name="Capabilities" namespace="destroyDnsRecord" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyDnsRecord)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_destroyDnsRecord]]"/>
+</class>
+<class name="Capabilities" namespace="modifyDnsRecord" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDnsRecord)"/>
+	<property name="nameTag" type="scalar" default="[[base-dns.cap_modifyDnsRecord]]"/>
+</class>

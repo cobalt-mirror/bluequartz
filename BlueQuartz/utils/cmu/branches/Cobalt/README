@@ -1,0 +1,45 @@
+# $Id: README 922 2003-07-17 15:22:40Z will $
+# Cobalt Networks, Inc http://www.cobalt.com/
+
+Cobalt Migration Utility
+
+Manifest
+========
+
+docs/ 
+	- contains documentation
+
+specs/
+	- contains specs that define how migration works
+
+code_samples/
+	- contains tools for working with Migration Utitily at a low level
+
+perl_modules/
+	- contains perl modules needed by the Migiration Utility
+
+lib/
+	- contains libraries for different platforms
+
+scripts/
+	- Migration utilities
+
+man/
+	- contains the groff files for the man pages
+
+How to Build CPR
+================
+
+To build make sure you rev the version number in these two files
+Makefile:15
+VERSION   =   2.3
+perl_modules/TreeXml.pm:29
+$VERSION = 2.3;
+
+For Qube2 place the following rpms in /usr/src/redhat/RPMS/noarch
+perl-XML-Parser-2.29-2.mips.rpm
+perl-MIME-Base64-2.11-1.mips.rpm
+perl-Compress-Zlib-1.11-1.mipsel.rpm
+
+For Qube 3 place the follwing rpms in /usr/src/redhat/RPMS/noarch
+perl-Compress-Zlib-1.11-1.i386.rpm

@@ -1,0 +1,148 @@
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: scandetection.po,v 1.14 2001/11/06 00:18:51 jcheng Exp $
+
+# --- Menu
+
+msgid "menu"
+msgstr "Scan Detection"
+
+msgid "description"
+msgstr "Manage port scan detection settings"
+
+# --- Labels
+
+msgid "scandetectionSettings"
+msgstr "Scan Detection Settings"
+
+msgid "confirmClearBlocked"
+msgstr "Are you sure you want to clear the blocked list?"
+
+msgid "scandetectionShowBlocked"
+msgstr "Blocked IP addresses"
+
+msgid "dosWarning"
+msgstr "WARNING - Enabling the Blocking option may make you vulnerable to Denial of Service Attacks."
+
+# --- Buttons 
+
+msgid "viewlogButton"
+msgstr "View Log"
+
+msgid "showBlocked"
+msgstr "View Blocked IP addresses"
+
+msgid "clearBlocked"
+msgstr "Clear Blocked IP addresses"
+
+msgid "refreshButton"
+msgstr "Refresh Log"
+
+msgid "save"
+msgstr "SAVE"
+
+# --- Dropdowns
+
+msgid "scandetectionLevel0"
+msgstr "Do Nothing"
+
+msgid "scandetectionLevel1"
+msgstr "Log only"
+
+msgid "scandetectionLevel2"
+msgstr "Log and Block"
+# --- Settings
+
+msgid "scandetectionLevel"
+msgstr "Action Against Detected Scans"
+
+msgid "timeout"
+msgstr "Time Between Scans (In Seconds)"
+
+msgid "setNumScans"
+msgstr "Number of Ports Scanned"
+
+msgid "alertEmail"
+msgstr "Email Address for Alerts"
+
+msgid "permBlocked"
+msgstr "IP Addresses Always Blocked"
+
+msgid "permUnblocked"
+msgstr "IP Addresses Never Blocked"
+
+msgid "alertMe"
+msgstr "Enable Email Alerts"
+
+# --- help
+
+msgid "scandetectionLevel_help"
+msgstr "Choose what action to take when a scan is detected.  Your choices are to do nothing, log the scans (Default), or log the scans and block the machine scanning you."
+
+msgid "timeout_help"
+msgstr "Maximum time between probes to keep an alert alive."
+
+msgid "setNumScans_help"
+msgstr "The number of ports that must be probed by an IP before an alert is generated and, if enabled, the IP is blocked."
+
+msgid "alertEmail_help"
+msgstr "Enter the address to be notified of any alerts.  Defaults to admin@localhost."
+
+msgid "permBlocked_help"
+msgstr "This list of IP addresses is always denied access to any port on or through the appliance."
+
+msgid "permUnblocked_help"
+msgstr "This list of IP addresses CANNOT be denied access to any port on or through the appliance."
+
+msgid "viewlogButton_help"
+msgstr "View the scan detection log file"
+
+msgid "showBlocked_help"
+msgstr "Show the list of currently blocked IP addresses"
+
+msgid "clearBlocked_help"
+msgstr "Clear the blocked IP addresses"
+
+msgid "alertMe_help"
+msgstr "Enables email alerts when a scan is detected.  If enabled, alerts go to the email addresses set in Active Monitor."
+
+# --- Active Monitor
+
+msgid "amStatusGreen"
+msgstr "The scan detection daemons are functioning properly."
+
+msgid "amStatusRed"
+msgstr "One or more of the scan detection daemons are not functioning properly."
+
+msgid "amScandetectionNameTag"
+msgstr "Scan Detection"
+
+msgid "amDetailsTitle"
+msgstr "Scan Detection Details"
+
+# --- LCD
+
+msgid "clear_scandetect"
+msgstr "Clear Portscans?"
+
+# --- EMAIL
+
+msgid "portscanSubject"
+msgstr "Port Scan Detected"
+
+msgid "alertEmailSubject"
+msgstr "[[VAR.subject]]"
+
+msgid "alertEmailBody"
+msgstr "This alert notification is to inform you of network activity occurring on your host.\n\n\
+           Timestamp:  [[VAR.timestamp]]\n\
+          Alert Type:  [[VAR.type]]\n\
+           Interface:  [[VAR.interface]]\n\
+            Protocol:  [[VAR.protocol]]\n\
+ Packet Size (bytes):  [[VAR.pktsize]]\n\n\
+      Source Address:  [[VAR.srcaddr]]\n\
+         Source port:  [[VAR.srcport]]\n\
+           Direction:  [[VAR.direction]]\n\
+ Destination Address:  [[VAR.dstaddr]]\n\
+    Destination Port:  [[VAR.dstport]]\n\n\
+           Log Entry:  [[VAR.logentry]]\n"
+

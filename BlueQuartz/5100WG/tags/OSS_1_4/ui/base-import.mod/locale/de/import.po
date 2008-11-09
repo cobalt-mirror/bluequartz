@@ -1,0 +1,149 @@
+msgid "import"
+msgstr "Import von Benutzern"
+
+msgid "import_help"
+msgstr "Hier können Sie Benutzer und Gruppen auf den Server importieren."
+
+msgid "userImport"
+msgstr "Datei importieren"
+
+msgid "dataUpload"
+msgstr "Quelldatei"
+
+msgid "dataUpload_help"
+msgstr "Wählen Sie die durch Tabulatoren getrennte Datei aus, die eine Liste der Benutzer enthält, die auf das System hochgeladen werden. Bitte schlagen Sie im Benutzerhandbuch nach. Dort finden Sie eine genaue Beschreibung des Dateiformats."
+
+msgid "dataUpload_empty"
+msgstr "Sie haben keine Datei zum Hochladen auf den Server für den Import ausgewählt."
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "fileImport"
+msgstr "Aus Datei importieren"
+
+msgid "attempt"
+msgstr "Nicht versucht."
+
+msgid "creating"
+msgstr "[VAR.class]] namens [[VAR.name]] wird hinzugefügt."
+
+msgid "modifying"
+msgstr "[VAR.class]] mit der Bezeichnung [[VAR.name]] wird geändert."
+
+msgid "importResults"
+msgstr "Ergebnis importieren"
+
+msgid "noFileSpecified"
+msgstr "Fehler beim Empfang der Datei"
+
+msgid "fileWasNoGood"
+msgstr "Leider trat beim Empfang der angegebenen Datei ein Fehler auf. Bitte versuchen Sie noch einmal, die Datei hochzuladen."
+
+msgid "badFileButtonCancel"
+msgstr "Zurück"
+
+msgid "badFileButtonCancel_help"
+msgstr "Klicken Sie hier, um zurückzugehen."
+
+msgid "importResult"
+msgstr "Ergebnis importieren"
+
+msgid "result"
+msgstr "Ergebnis"
+
+msgid "action"
+msgstr "Handlung"
+
+msgid "reason"
+msgstr "Grund"
+
+msgid "couldNotOpenFile"
+msgstr "Leider trat beim Versuch, die hochgeladene Datei zu öffnen, ein Fehler auf. Bitte überprüfen Sie das Dateiformat und versuchen Sie es noch einmal."
+
+msgid "success"
+msgstr "Erfolg"
+
+msgid "fail"
+msgstr "Fehlgeschlagen"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (Zeile [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Jetzt importieren"
+
+msgid "importNow_help"
+msgstr "Klicken Sie hier, um die Benutzer aus der ausgewählten Datei zu importieren."
+
+msgid "importErrors"
+msgstr "Importfehler"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] Fehler"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] Fehler"
+
+msgid "fullName"
+msgstr "Vollständiger Name"
+
+msgid "fullName_help"
+msgstr "Die vollständigen Namen der von der Importdatei bereitgestellten Einträge."
+
+msgid "name"
+msgstr "Benutzername"
+
+msgid "name_help"
+msgstr "Die Benutzernamen der von der Importdatei bereitgestellten Einträge."
+
+msgid "errorMessageHeader"
+msgstr "Meldung"
+
+msgid "errorMessageHeader_help"
+msgstr "Detaillierte Meldungen für Fehler, die beim Import aufgetreten sind."
+
+msgid "importSucceeded"
+msgstr "Import erfolgreich"
+
+msgid "importSucceededMessage"
+msgstr "Beim Import traten keine Fehler auf."
+
+msgid "importSucceededMessage_help"
+msgstr "Beim Import traten keine Fehler auf."
+
+msgid "importStatus"
+msgstr "Importstatus"
+
+msgid "progressField"
+msgstr "Verlauf"
+
+msgid "progressField_help"
+msgstr "Der Verlauf des Imports. Wenn dieser Abschnitt nicht geändert wird, findet der Benutzerimport weiterhin im Hintergrund statt, doch ist die Verlaufsleiste nicht länger sichtbar."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "Der aktuelle Status des Imports."
+
+msgid "creatingUsers"
+msgstr "Benutzer werden hinzugefügt ([[VAR.pos]]/[[VAR.max]])."
+
+msgid "intname"
+msgstr "Benutzername"
+
+msgid "intfullName"
+msgstr "Vollständiger Name"
+
+msgid "intpassword"
+msgstr "Passwort"
+
+msgid "intaliases"
+msgstr "E-Mail-Aliase"
+
+msgid "importChanger"
+msgstr "Importmethode auswählen..."
+
+msgid "importChangerFile"
+msgstr "Datei importieren"

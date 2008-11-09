@@ -1,0 +1,479 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+
+msgid "wizardLicense"
+msgstr "Contrat de licence"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Paramètres administrateur"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Paramètres administrateur"
+
+msgid "adminMessage"
+msgstr "Le [[base-wizard.productName]] nécessite un administrateur se chargeant de tâches telles que l'ajout des utilisateurs et des groupes ou la configuration des paramètres. Le nom d'utilisateur de l'administrateur est admin. Entrez un mot de passe difficile à deviner pour l'administrateur. Souvenez-vous de ce mot de passe pour usage ultérieur."
+
+msgid "adminNameField"
+msgstr "Nom d'utilisateur"
+
+msgid "adminNameField_help"
+msgstr "Nom utilisé par le système pour identifier l'administrateur ; il ne peut pas être modifié."
+
+msgid "passwordField"
+msgstr "Mot de passe"
+
+msgid "passwordField_rule"
+msgstr "Le mot de passe doit contenir de 3 à 16 caractères. Pour être efficace, le mot de passe doit contenir au moins 5 caractères et combiner des majuscules et des minuscules, ainsi que des chiffres et la ponctuation. Il ne doit pas correspondre à l'orthographe de mots tirés du dictionnaire. Les mots de passe distinguent les majuscules et les minuscules."
+
+msgid "passwordField_help"
+msgstr "Entrez le mot de passe que le système doit utiliser pour identifier l'administrateur. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Vous n'avez pas entré le même mot de passe dans les deux champs. Le même mot de passe est entré dans les deux champs pour éliminer les erreurs de frappe. Veuillez recommencer."
+
+msgid "passwordField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-wizard.passwordField]]. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "Nouveau mot de passe"
+
+msgid "newPasswordField_help"
+msgstr "Entrez le mot de passe que le système doit utiliser pour identifier l'administrateur. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Mise à l'heure"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Mise à l'heure"
+
+msgid "timeMessage"
+msgstr "Le [[base-wizard.productName]] a besoin de connaître la date et l'heure pour fonctionner correctement. Entrez la date et l'heure actuelles ainsi que le fuseau horaire approprié."
+
+msgid "dateField"
+msgstr "Date"
+
+msgid "dateField_help"
+msgstr "Indiquer la date actuelle."
+
+msgid "timeField"
+msgstr "Heure"
+
+msgid "timeField_help"
+msgstr "Indiquer l'heure actuelle."
+
+msgid "timeZoneField"
+msgstr "Fuseau horaire"
+
+msgid "timeZoneField_help"
+msgstr "Indiquer le fuseau horaire à l'emplacement du serveur."
+
+msgid "wizardUsers"
+msgstr "Paramètres utilisateur"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Paramètres de groupe"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Intégration réseau"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "Paramètres réseau"
+
+msgid "networkMessage"
+msgstr "Le [[base-wizard.productName]] peut être configuré pour être accessible depuis un intranet au sein d'une organisation ainsi que depuis l'Internet. Entrez le nom d'hôte et le nom de domaine de ce serveur ainsi qu'un serveur DNS accessible et le type de type de connectivité Internet."
+
+msgid "hostNameField"
+msgstr "Nom d'hôte"
+
+msgid "hostNameField_rule"
+msgstr "N'entrez que des caractères alphanumériques en minuscules, des tirets ou des points. www est un exemple d'entrée valide."
+
+msgid "hostNameField_help"
+msgstr "Entrez le nom d'hôte de ce serveur. Ce serveur doit être identifié de manière unique par la combinaison de son nom d'hôte et de son nom de domaine. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Nom de domaine"
+
+msgid "domainNameField_rule"
+msgstr "N'entrez que des caractères alphanumériques en minuscules, des tirets ou des points. cobalt.com est un exemple d'entrée valide."
+
+msgid "domainNameField_help"
+msgstr "Entrez le nom du domaine de ce serveur. Ce serveur doit être identifié de manière unique par la combinaison de son nom d'hôte et de son nom de domaine. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Serveurs DNS"
+
+msgid "dnsAddressesField_rule"
+msgstr "Entrez une série de quatre nombres compris entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée valide. Si vous n'inscrivez rien dans ce champ, cet ordinateur ne peut pas identifier les autres ordinateurs par nom d'hôte ou de domaine, ce qui entraînera des problèmes sur le réseau."
+
+msgid "dnsAddressesField_help"
+msgstr "Entrez les adresses (ou l'adresse) IP de vos serveurs (ou de votre serveur) de nom de domaine locaux (local). Un serveur de nom de domaine convertit les noms de domaines et d'hôtes textuels en adresses IP numériques, et réciproquement. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte dans [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Connexion Internet"
+
+msgid "internetField_help"
+msgstr "Sélectionnez le type de connexion Internet qui sera raccordée à ce serveur."
+
+msgid "none"
+msgstr "Aucune ou utilisation Intranet seule"
+
+msgid "broadband"
+msgstr "Modem câble ou DSL"
+
+msgid "lan"
+msgstr "Passerelle sur réseau local (LAN)"
+
+msgid "narrowband"
+msgstr "Modem analogique ou RNIS"
+
+msgid "wizardBroadband"
+msgstr "Paramètres large bande"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Paramètres de large bande (DSL ou modem câble)"
+
+msgid "broadbandMessage"
+msgstr "Votre connexion DSL ou modem câble doit être connectée à l'interface secondaire du [[base-wizard.productName]]. Entrez les paramètres de configuration appropriés indiqués par votre fournisseur d'accès Internet."
+
+msgid "networkField"
+msgstr "Interface secondaire"
+
+msgid "networkField_help"
+msgstr "Sélectionnez la configuration réseau appropriée pour l'interface secondaire de ce serveur. Votre fournisseur d'accès Internet doit vous communiquer les informations requises pour effectuer cette opération."
+
+msgid "dhcp"
+msgstr "Obtenir les paramètres réseau automatiquement en utilisant le protocole DHCP"
+
+msgid "dhcpHostNameField"
+msgstr "Nom d'hôte client"
+
+msgid "dhcpHostNameField_rule"
+msgstr "N'entrez que des caractères alphanumériques en minuscules, des tirets ou des points. www est un exemple d'entrée valide."
+
+msgid "dhcpHostNameField_help"
+msgstr "Entrez le nom identifiant ce serveur auprès du serveur DHCP. [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Identificateur client"
+
+msgid "dhcpClientIdField_help"
+msgstr "Entrez la chaîne d'identification identifiant ce serveur auprès du serveur DHCP."
+
+msgid "pppoe"
+msgstr "Obtenir les paramètres réseau automatiquement en utilisant le protocole PPPoE"
+
+msgid "pppUserNameField"
+msgstr "Nom d'utilisateur"
+
+msgid "pppUserNameField_help"
+msgstr "Entrez le nom d'utilisateur utilisé pour la connexion au fournisseur d'accès Internet."
+
+msgid "pppPasswordField"
+msgstr "Mot de passe"
+
+msgid "pppPasswordField_help"
+msgstr "Entrez le mot de passe utilisé pour la connexion au fournisseur d'accès Internet."
+
+msgid "pppPasswordField_help"
+msgstr "Vous n'avez pas entré de valeur pour [[base-wizard.pppPasswordField]]."
+
+msgid "static"
+msgstr "Spécifier manuellement"
+
+msgid "ipAddressField"
+msgstr "Adresse IP"
+
+msgid "ipAddressField_rule"
+msgstr "Entrez une série de quatre nombres compris entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée valide."
+
+msgid "ipAddressField_help"
+msgstr "Entrez l'adresse IP de l'interface secondaire de ce serveur, celle connectée normalement au côté Internet. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Masque sous-réseau"
+
+msgid "netMaskField_rule"
+msgstr "Entrez une série de quatre nombres compris entre 0 et 255 séparés par des points. 255.255.255.0 est un exemple d'entrée valide."
+
+msgid "netMaskField_help"
+msgstr "Entrez le masque réseau de l'interface secondaire. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Passerelle du serveur"
+
+msgid "gatewayField_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte."
+
+msgid "gatewayField_help"
+msgstr "Entrez l'adresse IP de la passerelle du réseau local. Une passerelle réseau, appelée parfois routeur ou gateway, permet la connexion à l'extérieur au réseau local. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Interface secondaire"
+
+msgid "ipAddressField2"
+msgstr "Adresse IP"
+
+msgid "ipAddressField2_help"
+msgstr "Entrez l'adresse IP de l'interface secondaire, celle qui est normalement connectée à l'Internet. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Les champs Adresse IP et Masque réseau IP doivent être remplis ou laissés tous les deux vides."
+
+msgid "netMaskField2"
+msgstr "Masque sous-réseau"
+
+msgid "netMaskField2_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 255.255.255.0 est un exemple d'entrée correcte."
+
+msgid "netMaskField2_help"
+msgstr "Entrez le Masque réseau de l'interface secondaire. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "Adresse MAC"
+
+msgid "macAddressField_help"
+msgstr "L'adresse MAC (Media Access Control) est l'adresse matériel de la carte réseau. Cette adresse matériel est un identificateur unique qui n'est pas modifiable après la sortie d'usine."
+
+msgid "wizardLan"
+msgstr "Paramètres réseau local (LAN)"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Entrez la passerelle par défaut pour ce serveur. Si la passerelle est sur le réseau connecté à l'interface secondaire, entrez également les informations d'interface."
+
+msgid "lanSettings"
+msgstr "Paramètres réseau local (LAN)"
+
+msgid "wizardModem"
+msgstr "Paramètres modem"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Votre Modem analogique ou adaptateur RNIS doit être connectée à l'interface série du [[base-wizard.productName]]. Entrez les paramètres de configuration communiqués par votre fournisseur d'accès Internet."
+
+msgid "modemSettings"
+msgstr "Paramètres modem"
+
+msgid "connModeField"
+msgstr "Mode de connexion"
+
+msgid "connModeField_help"
+msgstr "Choisissez si la connexion modem doit être établie uniquement sur demande lors d'une connexion sortante, si elle doit toujours rester établie ou si elle ne doit jamais être établie."
+
+msgid "demand"
+msgstr "Connexion uniquement sur demande"
+
+msgid "on"
+msgstr "Connexion toujours active"
+
+msgid "off"
+msgstr "Connexion toujours inactive"
+
+msgid "userNameField"
+msgstr "Nom d'utilisateur compte d'accès"
+
+msgid "userNameField_help"
+msgstr "Entrez le nom d'utilisateur du compte d'accès Internet."
+
+msgid "userNameField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-wizard.userNameField]]. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Mot de passe compte d'accès"
+
+msgid "modemPasswordField_help"
+msgstr "Entrez le mot de passe du compte d'accès Internet."
+
+msgid "modemPasswordField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-wizard.modemPasswordField]]. Entrez le mot de passe du compte d'accès Internet."
+
+msgid "modemPasswordField_invalid"
+msgstr "Vous n'avez pas entré le même mot de passe dans les deux champs. Le même mot de passe est entré dans les deux champs pour éliminer les erreurs de frappe. Veuillez recommencer."
+
+msgid "modemPhoneField"
+msgstr "Numéro d'accès"
+
+msgid "modemPhoneField_help"
+msgstr "Entrez le numéro de téléphone utilisé pour la connexion au fournisseur d'accès Internet."
+
+msgid "initStringField"
+msgstr "Chaîne d'initialisation du modem"
+
+msgid "initStringField_help"
+msgstr "Entrez la chaîne d'initialisation du modem qui sera transmise au modem avant la numérotation."
+
+msgid "initStringField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-wizard.initStringField]]. Vous devez entrer une chaîne d'initialisation sinon le serveur ne pourra pas utiliser votre modem. Si vous ne connaissez pas la chaîne d'initialisation par défaut du modem, essayez 'ATZ' ou consultez la documentation du modem."
+
+msgid "localIpField"
+msgstr "Adresse IP locale"
+
+msgid "localIpField_help"
+msgstr "N'entrez l'adresse IP locale de ce côté de la connexion du modem que si cette adresse a été attribuée par votre fournisseur d'accès Internet."
+
+msgid "pulseField"
+msgstr "Numéroter par impulsions"
+
+msgid "pulseField_help"
+msgstr "Active ou désactive les impulsions. Cette fonction permet de sélectionner la numérotation par impulsions au lieu de la numérotation par fréquence vocale. La valeur par défaut consiste à désactiver la numérotation par impulsions."
+
+msgid "wizardRegistration"
+msgstr "Enregistrement du produit"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Enregistrement du produit"
+
+msgid "regRightArrow"
+msgstr "la flèche droite"
+
+msgid "regSubmit"
+msgstr "Envoyer"
+
+msgid "regSubmit_help"
+msgstr "Cliquez ici pour enregistrer votre [[base-wizard.productName]]."
+
+msgid "regCancel"
+msgstr "S'inscrire ultérieurement"
+
+msgid "regCancel_help"
+msgstr "Cliquez ici pour annuler l'enregistrement. Si vous choisissez d'annuler, vous pouvez enregistrer votre [[base-wizard.productName]] ultérieurement."
+
+msgid "regText"
+msgstr "Vous devez enregistrer votre [[base-wizard.productName]] auprès de Cobalt pour bénéficier du support technique. Pour enregistrer le produit par voie électronique, fournissez les informations suivantes et cliquez sur [[VAR.button]]. Vous pouvez également enregistrer votre [[base-wizard.productName]] en remplissant la carte d'inscription/garantie contenue dans le coffret d'expédition. Les informations que vous nous fournissez seront gérées en respectant la clause de confidentialité de 'Cobalt Networks' énoncée sur notre site Web (www.cobalt.com)."
+
+msgid "regTextOffline"
+msgstr "Vous devez enregistrer votre [[base-wizard.productName]] auprès de Cobalt Networks pour bénéficier du support technique. Votre réseau ne semble pas être configuré correctement pour l'enregistrement électronique. Veuillez enregistrer votre [[base-wizard.productName]] en remplissant la carte d'inscription/garantie contenue dans le coffret d'expédition. Les informations que vous nous fournissez seront gérées en respectant la clause de confidentialité de Cobalt Networks énoncée sur notre site Web (www.cobalt.com)."
+
+msgid "fullNameField"
+msgstr "Nom et prénom"
+
+msgid "fullNameField_help"
+msgstr "Entrez votre nom et votre prénom."
+
+msgid "fullNameField_rule"
+msgstr "Veuillez entrer n'importe quels caractères sauf les deux-points. Jean Dupont est un exemple d'entrée valide."
+
+msgid "titleField"
+msgstr "Fonctions"
+
+msgid "titleField_help"
+msgstr "Entrer votre titre de fonction."
+
+msgid "companyField"
+msgstr "Raison sociale"
+
+msgid "companyField_help"
+msgstr "Entrez la raison sociale de votre entreprise."
+
+msgid "addressField"
+msgstr "Adresse"
+
+msgid "addressField_help"
+msgstr "Entrez votre adresse complète."
+
+msgid "countryField"
+msgstr "Pays"
+
+msgid "countryField_help"
+msgstr "Entrez votre pays de résidence."
+
+msgid "emailField"
+msgstr "Adresse email"
+
+msgid "emailField_help"
+msgstr "Entrez votre adresse email."
+
+msgid "emailField_rule"
+msgstr "Entrez une adresse email valide sous la forme utilisateur@domaine.fr."
+
+msgid "phoneField"
+msgstr "Téléphone"
+
+msgid "phoneField_help"
+msgstr "Entrez votre numéro de téléphone."
+
+msgid "faxField"
+msgstr "Numéro de fax"
+
+msgid "faxField_help"
+msgstr "Entrez votre numéro de fax."
+
+msgid "licenseClick"
+msgstr "En cliquant sur le bouton fléché, vous reconnaissez recevoir et accepter les termes et conditions énoncés sur la carte d'enregistrement/garantie incluse avec le [[base-wizard.productName]] et avec le Contrat de licence ci-dessous."
+
+msgid "license"
+msgstr "Cobalt Networks, Inc. <BR>CONTRAT DE LICENCE <BR><BR>EN INSTALLANT CE PRODUIT, L'ACHETEUR (L'ENTITE A LAQUELLE LES PROGRAMMES LOGICIELS CI-JOINTS SONT FOURNIS) ACCEPTE D'ETRE LIE A TOUS LES TERMES DU CONTRAT DE LICENCE ET A LA GARANTIE LIMITEE ENONCEE CI-DESSOUS. SI VOUS N'ACCEPTEZ PAS D'ETRE AINSI LIE, VOUS DEVEZ RENVOYER RAPIDEMENT LE PRODUIT COMPLET AVEC TOUTES LES MATIERES D'ACCOMPAGNEMENT, A L'ENTITE QUI VOUS L'A FOURNI. <BR><BR>Ce contrat de licence (ce \"Contrat\") vous accorde le droit non exclusif et non transférable d'utiliser le logiciel (collectivement, le \"logiciel\") que vous a fourni Cobalt Networks. Le \"Logiciel\" regroupe le logiciel qui vous a été fourni sur disques, disquettes, CD-ROM et/ou l'équipement contenu dans cette livraison (le \"Matériel\") et toutes les modifications, améliorations et/ou remplacements desdits Logiciels fournis par Cobalt Networks. <BR><BR>Ce Contrat impose également certaines restrictions sur l'utilisation de ce Logiciel et du Matériel. L'acheteur n'est pas autorisé à effectuer des copies du Logiciel ni à copier les documentations écrites qui accompagnent le Logiciel et/ou le Matériel. Le Logiciel sur le cédérom de restauration du système d'exploitation n'est destiné qu'à restaurer la fonctionnalité d'usine du produit Cobalt Networks. Cobalt Networks et ses concédants conservent la propriété du Logiciel et aucun droit ne vous est accordé en dehors de l'autorisation d'utiliser le Logiciel selon les termes expressément énoncés dans ce Contrat. <BR><BR>Vous reconnaissez que la structure sous-jacente, la séquence, l'organisation et le code source du Logiciel et la conception et la structure du Matériel sont des secrets commerciaux précieux de et/ou de ses concédants, et vous convenez de ne pas décompiler, désassembler, analyser (rétrotechnique)ou modifier en aucune façon le Logiciel ou de désassembler le Matériel. <BR><BR>Vous n'êtes pas autorisé à transférer ou à assigner vos droits d'utilisation du Logiciel sauf lors d'un transfert de l'un des produits matériels avec lequel ou pour lequel il a été fourni, et dans ce cas, uniquement si Cobalt Networks reçoit l'accord écrit du destinataire du transfert d'être lié par tous les termes de ce Contrat. <BR><BR>Vous n'êtes pas autorisé à transférer ni à assigner vos droits d'utilisation du Logiciel sans l'accord préalablement écrit de Cobalt Networks. Toute tentative d'attribution non consentie sera déclarée nulle. <BR><BR>Vous n'êtes pas autorisé à exporter le Logiciel, le Matériel et les documentations apparentées en infraction aux lois de contrôle des exportations des Etats-Unis d'Amérique et d'autres pays. En cas de violation de l'une des clauses de ce Contrat, vos droits d'utiliser le Logiciel et le Matériel apparenté seront automatiquement résiliés et vous serez dans l'obligation de renvoyer à Cobalt Networks ou de détruire le Logiciel, et de renvoyer le Matériel. <BR><BR>Ce Contrat est régi par la loi de Californie en excluant les clauses concernant l'applicabilité des lois d'autres juridictions. Vous reconnaissez que l'exportation du Logiciel est régie par les lois sur le contrôle des exportations des Etats-Unis d'Amérique et d'autres pays. Vous acceptez de respecter toutes lesdites lois sur le contrôle des exportations. <BR><BR>Si le bénéficiaire est une agence et/ou l'instrumentalité des Etats-Unis d'Amérique (le \"Gouvernement\"), tous les Logiciels et la documentation apparentée sont sujets aux restrictions applicables aux autres acheteurs finaux conformément aux termes de ce Contrat comme cela est prévu dans les directives DFARS 227.7202-1(a) et 227.7202-3(a) (1995), DFARS 252.227-7013(c)(1)(ii) (Oct. 1988), FAR 12.212(a)(1995), FAR 52.227-19 ou FAR 52.227-14 (Alt III), selon le cas."
+
+msgid "wizardLocale"
+msgstr "Langue de base"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "Indiquez la langue de base pour l'administration de ce serveur. L'interface web de ce serveur peut être naviguée avec n'importe quelle langue mais les messages d'alertes générés par Active Monitor et les menus s'affichant sur la console LCD utiliseront la langue de base."
+
+msgid "localeField"
+msgstr "Indiquez la langue de base"
+
+msgid "localeField_help"
+msgstr "La langue de base est utilisée par Active Monitor lors de l'envoi des messages d'alerte, par la console LCD pour l'affichage des menus et par l'interface web d'administration si le navigateur utilisé n'a pas de langue par défaut."
+
+msgid "localeSettings"
+msgstr "Langue de base"
+
+msgid ""
+msgstr ""
+msgid "accept_help"
+msgstr "Appuyez sur Accepter si vous avez lu et acceptez les termes du contrat de licence et êtes prêt à continuer"
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "accept"
+msgstr "Accepter"
+
+msgid "decline"
+msgstr "Refuser"
+
+msgid "licenseHeader"
+msgstr "<B>Pour Accepter ou Refuser les termes du Contrat de Licence de Code binaire ci-dessous, vous devez faire défiler le document jusqu'à la fin.</B>"
+
+msgid "decline_help"
+msgstr "Si vous refusez les termes du contrat de licence, vous ne pourrez pas utiliser Sun Cobalt Qube 3"
+
+msgid "declineError"
+msgstr "Vous devez appuyer sur Accepter pour reconnaître avoir lu et accepter le contrat de licence avant de pouvoir continuer."
+

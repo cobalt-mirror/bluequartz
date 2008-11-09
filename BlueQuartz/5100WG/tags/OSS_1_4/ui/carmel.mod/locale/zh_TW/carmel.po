@@ -1,0 +1,123 @@
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "osName"
+msgstr "Sun Cobalt OS"
+
+msgid "osVendor"
+msgstr "Sun Cobalt"
+
+msgid "osDescription"
+msgstr "[[base-carmel.osName]] 是 [[base-carmel.productName]] 的基本軟體；要讓伺服器設備能運作，需要這組軟體套件。"
+
+msgid "loginPageTitle"
+msgstr "登入 - [[base-carmel.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "登入 - [[VAR.hostName]]"
+
+msgid "loginNoCssMessage"
+msgstr "在嘗試登入之前，請驗證您的瀏覽器是否支援「階式排列樣式表 (Cascading Style Sheets)」功能。"
+
+msgid "loginNoJsMessage"
+msgstr "在嘗試登入之前，請驗證您的瀏覽器是否支援 JavaScript 功能。"
+
+msgid "loginOkMessage"
+msgstr "若要登入，請輸入您的使用者名稱和密碼。"
+
+msgid "loginMissingCookies"
+msgstr "在嘗試登入之前，請驗證您的瀏覽器是否支援 cookie 功能。"
+
+msgid "loginExpiredMessage"
+msgstr "您的登入階段作業已終止；若要重新登入，請輸入您的使用者名稱和密碼。"
+
+msgid "loginAuthFailed"
+msgstr "您並未輸入正確的使用者名稱及/或密碼；請重試。"
+
+msgid "loginByeMessage"
+msgstr "感謝您使用 [[base-carmel.productName]]。"
+
+msgid "loginPageUsername"
+msgstr "使用者名稱："
+
+msgid "loginPagePassword"
+msgstr "密碼："
+
+msgid "loginPageSecurity"
+msgstr "安全連接："
+
+msgid "loginPageLogin"
+msgstr "登入"
+
+msgid "splashAdminMessage"
+msgstr "「管理」區段可讓您執行各種管理作業。"
+
+msgid "splashProgramsMessage"
+msgstr "「程式」區段可讓您存取目前已安裝的程式。"
+
+msgid "splashPersonalMessage"
+msgstr "「個人設定檔」區段可讓您檢視您的使用者帳戶資訊。"
+
+msgid "thankYouMessage"
+msgstr "感謝您使用 [[base-carmel.productName]]。"
+
+msgid "base-administration"
+msgstr "管理"
+
+msgid "base-administration_description"
+msgstr "[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr "程式"
+
+msgid "base-programs_description"
+msgstr "[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr "個人設定檔"
+
+msgid "base-personalProfile_description"
+msgstr "[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr "使用者和群組"
+
+msgid "base-usersandgroups_description"
+msgstr "此處可配置使用者和群組。"
+
+msgid "base-webServices"
+msgstr "Web"
+
+msgid "base-webServices_description"
+msgstr "此處可配置 Web 服務。"
+
+msgid "base-networkServices"
+msgstr "網路"
+
+msgid "base-networkServices_description"
+msgstr "此處可配置網路服務。"
+
+msgid "base-security"
+msgstr "安全性"
+
+msgid "base-security_description"
+msgstr "可以在此處配置有關伺服器設備安全方面的服務。"
+
+msgid "base-system"
+msgstr "系統"
+
+msgid "base-system_help"
+msgstr "此處可檢視及配置系統設定。"
+
+msgid "base-maintenance"
+msgstr "維護"
+
+msgid "base-maintenance_description"
+msgstr "此處可配置系統和使用者資料維護活動。"
+
+msgid "usageInformation"
+msgstr "用量資訊"
+
+msgid "usageInformation_description"
+msgstr "此處可檢視用量統計值和資訊。"
+

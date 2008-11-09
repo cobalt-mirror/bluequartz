@@ -1,0 +1,20 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: overflow_caps.schema,v 1.1.1.1 2001/09/18 15:08:38 steve Exp $
+
+    overflow capability used to limit access to to properties for
+    items in System.Overflow
+    
+-->
+
+<class
+    name="Capabilities" namespace="overflow" version="1.0"
+>   
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(overflow)"
+    />
+    <property
+        name="nameTag" type="scalar" default=""
+    />
+</class>

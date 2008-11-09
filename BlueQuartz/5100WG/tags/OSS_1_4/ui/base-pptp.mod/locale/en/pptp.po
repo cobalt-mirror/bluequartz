@@ -1,0 +1,226 @@
+msgid "pptp"
+msgstr "Remote Access"
+
+msgid "pptp_menu"
+msgstr "Remote Access VPN"
+
+msgid "pptp_menu_help"
+msgstr "[[base-pptp.pptp]] Settings can be changed here."
+
+msgid "pptp_settings_block"
+msgstr "[[base-pptp.pptp]] Settings"
+
+msgid "pptp_access"
+msgstr "Access"
+
+msgid "pptp_access_help"
+msgstr "Turn PPTP Access on or off. You can set the PPTP access rights so that either no, all or some users may access the PPTP service."
+
+msgid "pptp_access_disabled"
+msgstr "Do Not Allow Access To Any User"
+
+msgid "pptp_access_allusers"
+msgstr "Allow access to all users"
+
+msgid "pptp_access_someusers"
+msgstr "Allow access to specified users only"
+
+msgid "pptp_access_someusers_selector_allowed"
+msgstr "Users Allowed Access"
+
+msgid "pptp_access_someusers_selector_disallowed"
+msgstr "Users Not Allowed Access"
+
+msgid "pptp_access_someusers_selector_label"
+msgstr " "
+
+msgid "pptp_dns_addresses"
+msgstr "Client DNS Addresses"
+
+msgid "pptp_dns_addresses_help"
+msgstr "Enter the IP address or addresses of your local domain name server or servers which will be served automatically to these clients. A domain name server translates textual host names and domain names into numerical IP addresses, and vice-versa. Please enter a series of four numbers between 0 and 255 separated by periods. For example, 192.168.1.1 is a valid entry."
+
+msgid "pptp_wins_addresses"
+msgstr "Client WINS Addresses"
+
+msgid "pptp_wins_addresses_help"
+msgstr "Enter the IP address or addresses of your local WINS server or servers which will be served automatically to these clients. A WINS server translates Windows host names into numerical IP addresses, and vice-versa. This makes browsing the Network Neighborhood possible across the Virtual Private Network. Please enter a series of four numbers between 0 and 255 separated by periods. For example, 192.168.1.1 is a valid entry." 
+
+# list page
+
+msgid "dynamic_ranges_button"
+msgstr "Modify Remote Address Assignments"
+
+msgid "dynamic_ranges_button_help"
+msgstr "Click here to setup the IP addresses that this server will assign to clients requesting [[base-pptp.pptp]] connection."
+
+msgid "dynamic_ranges"
+msgstr "Remote Address Assignment List"
+
+msgid "list_ipaddr_range_from"
+msgstr "IP Address Range (from)"
+
+msgid "list_ipaddr_range_from_help"
+msgstr "This is the low end of the range of IP addresses being assigned remotely."
+
+msgid "list_ipaddr_range_to"
+msgstr "IP Address Range (to)"
+
+msgid "list_ipaddr_range_to_help"
+msgstr "This is the high end of the range of IP addresses being assigned remotely."
+
+msgid "list_action"
+msgstr "Action"
+
+msgid "list_action_help"
+msgstr "These are the buttons used to modify or remove a range of IP addresses being assigned remotely."
+
+msgid "removeDynamicConfirm"
+msgstr "Are you sure you wish to remove the range [[VAR.ipaddrlo]] - [[VAR.ipaddrhi]] from the list of remotely assigned IPs?"
+
+# Create/Modify range page
+
+msgid "modify_dynamic_block"
+msgstr "Modify Remote Address Assignment Range"
+
+msgid "create_dynamic_block"
+msgstr "Create Remote Address Assignment Range"
+
+msgid "block_ipaddr_range_from"
+msgstr "IP Address Range (from)"
+
+msgid "ipaddrlo"
+msgstr "[[base-pptp.block_ipaddr_range_from]]"
+
+msgid "block_ipaddr_range_from_help"
+msgstr "This is the low end of the range of IP addresses being assigned remotely."
+
+msgid "block_ipaddr_range_to"
+msgstr "IP Address Range (to)"
+
+msgid "ipaddrhi"
+msgstr "[[base-pptp.block_ipaddr_range_to]]"
+
+msgid "block_ipaddr_range_to_help"
+msgstr "This is the high end of the range of IP addresses being assigned remotely."
+
+msgid "ip_rule"
+msgstr "Please enter a series of four number between 0 and 255 seperated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "pptp_secret_rule"
+msgstr "The secret passphrase should be between 3 and 16 characters long and should be different from your System Password."
+
+
+msgid "ipaddrlo_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-pptp.block_ipaddr_range_from]].  [[base-pptp.ip_rule]]"
+
+msgid "ipaddrhi_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-pptp.block_ipaddr_range_to]].  [[base-pptp.ip_rule]]"
+
+msgid "pptp_secret_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for your secret passphrase.  [[base-pptp.pptp_secret_rule]]"
+
+# Notification 
+
+msgid "pptp_notify_block"
+msgstr "Notify Users"
+
+msgid "pptp_notify_header"
+msgstr "Notice"
+
+msgid "pptp_notify_text"
+msgstr "The following list of users have not yet enabled their Remote Access accounts.  To enable their accounts, they must log in and enter a secret passphrase in the remote access page.  <p>[[VAR.users]]<p>Do you wish to have them notified by email concerning this?"
+
+msgid "pptp_notify_yes"
+msgstr "Yes"
+
+msgid "pptp_notify_yes_help"
+msgstr "Click here to have an email notice sent out to those users that have not yet set their Remote Access secret passphrase."
+
+msgid "pptp_notify_no"
+msgstr "No"
+
+msgid "pptp_notify_no_help"
+msgstr "Click here to continue without notifying these users about their Remote Access secret passphrase."
+
+# User side
+msgid "pptp_user_menu"
+msgstr "Remote Access"
+
+msgid "pptp_user_menu_help"
+msgstr "Settings for your Remote Access account can be changed here."
+
+msgid "pptp_user_block"
+msgstr "Remote Access Settings"
+
+msgid "pptp_user_secret"
+msgstr "Secret Passphrase"
+
+msgid "pptp_user_secret_help"
+msgstr "This is the secret passphrase you will use when creating a Virtual Private Network connection.  Your Remote Access will not be enabled until you select a secret passphrase.  [[base-pptp.pptp_secret_rule]]"
+
+msgid "pptp_user_secret_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "secret"
+msgstr "Secret Passphrase"
+
+msgid "pptp_user_setyoursecret"
+msgstr "Before your Remote Access account is enabled, you will need to enter a secret passphrase to be used during the authentication process.  Please enter a secret passphrase below that is 3 to 16 characters long.  The secret passphrase should be different from your system password and should be kept to yourself."
+
+msgid "pptp_user_yoursecretisset"
+msgstr "Your secret passphrase seems to have been properly set.  Your Remote Access account is now enabled and is ready to use.  Please contact your system administrator if you need any help getting your new Virtual Private Network working.  You can change your secret passphrase at any time in the future by returning to this page."
+
+
+msgid "returnToLogin"
+msgstr "Logout"
+
+msgid "returnToLogin_help"
+msgstr "Click here to logout."
+
+# Email notification
+
+msgid "pptp_notify_email_subject"
+msgstr "You have been granted Remote Access to your network"
+
+msgid "pptp_notify_email_body"
+msgstr "Your system administrator has enabled Remote Access for your \
+account.  Remote Access allows you to connect to your network over the \
+internet as if your home computer were actually a part of the network. \
+This type of Remote Access is most commonly called Point-to-Point Tunneling \
+Protocol (PPTP) and is well supported on the Windows platform.  Before you \
+use this feature, you will need to enter a secret passphrase that will be used in the \
+authentication of the connection.  This can be done by following this URL:\n\
+\n\
+http://[[VAR.hostname]]:444/nav/single.php?root=base_pptp_user\n\
+\n\
+If you have any other questions, please contact your system administrator."
+
+
+msgid "passwordAlreadySecret"
+msgstr "You may not select a system password that is the same as your Remote Access secret passphrase."
+
+msgid "secretAlreadyPassword"
+msgstr "Your Remote Access secret passphrase must be different from your System Account Password."
+
+
+# errors
+
+msgid "pptp_need_one_range"
+msgstr "You need to have at least one valid range of remotely assigned IPs before enabling the PPTP service."
+
+msgid "pptp_disabling_service_no_ranges"
+msgstr "The PPTP service has been disabled because there are no longer any valid remotely assigned IP ranges.  To reenable the service, you must first add a valid IP range."
+
+# Capabilities
+
+msgid "capgroup_adminPptp"
+msgstr "Manage [[base-pptp.pptp_menu]]"
+
+msgid "capgroup_adminPptp_help"
+msgstr "This administrative right allows a user to configure all aspects of Remote Access VPN.  This includes specifying which users are granted remote access and configuration of the PPTP service."
+
+msgid "ipAddrRangeLowHigherThanHigh"
+msgstr "The specified IP address range is invalid.  The [[base-pptp.list_ipaddr_range_from]] must be lower than the [[base-pptp.list_ipaddr_range_to]]."
+
+

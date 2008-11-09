@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+# chkconfig: 235 75 75
+# description: Apache is a World Wide Web server.  It is used to serve \
+#	       HTML files and CGI.
+#
+# processname: httpd
+# pidfile: /var/run/httpd.pid
+# config: /etc/httpd/conf/access.conf
+# config: /etc/httpd/conf/httpd.conf
+# config: /etc/httpd/conf/srm.conf
+
+# Source function library.
+DOMAIN=base-services
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 1
+
+# binary location
+HTTPD="/usr/sbin/httpd"
+
+[ -f $HTTPD ] || exit 1
+
+# See how we were called.
+case "$1" in
+  start)
+	LINE1=`getmsg httpd_start_1`
+	LINE2=`getmsg httpd_start_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+	$HTTPD -f /etc/httpd/conf/httpd.conf
+	echo -n httpd
+	echo
+	touch /var/lock/subsys/httpd
+	;;
+  stop)
+	LINE1=`getmsg httpd_stop_1`
+	LINE2=`getmsg httpd_stop_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+	[ -f /var/run/httpd.pid ] && {
+	    kill `cat /var/run/httpd.pid`
+	    echo -n httpd
+	}
+	echo
+	rm -f /var/lock/subsys/httpd
+	rm -f /var/run/httpd.pid
+	;;
+  status)
+	status httpd
+	;;
+  hard-restart)
+	[ -f /var/run/httpd.pid ] && {
+	    kill `cat /var/run/httpd.pid`
+	}
+	rm -f /var/run/httpd.pid
+	sleep 2
+	$HTTPD -f /etc/httpd/conf/httpd.conf
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  reload)
+	[ -f /var/run/httpd.pid ] && {
+	    kill -USR1 `cat /var/run/httpd.pid`
+	}
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|reload|status}"
+	exit 1
+esac
+
+exit 0

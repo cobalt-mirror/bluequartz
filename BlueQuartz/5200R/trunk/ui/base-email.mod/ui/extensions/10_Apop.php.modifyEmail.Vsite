@@ -1,0 +1,54 @@
+<?php
+// $Id: 10_Apop.php.modifyEmail.Vsite,v 1.1 2001/11/05 08:09:48 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+if (defined('APOPEXTENSION_MODIFYEMAIL_VSITE'))
+{
+	return 1;
+}
+define('APOPEXTENSION_MODIFYEMAIL_VSITE', 1);
+
+include_once('UIExtension.php');
+
+class APOPExtension extends UIExtension
+{
+	function display(&$helper, &$container, &$prams)
+	{
+		if (isset($prams['APOP_enabled']))
+		{
+			$props = array('enabled' => $prams['APOP_enabled']);
+		}
+		else
+		{
+			$cce = $helper->getCceClient();
+			$props = $cce->get($prams['CCE_OID'], 'APOP');
+		}
+
+        /* only show if this user can change it or it's enabled */
+        $allowed = $helper->getAllowed('modifyEmail');
+        if (!$allowed && !$props['enabled'])
+            return;
+            
+		$factory = $helper->getHtmlComponentFactory('base-email');
+		$page_id = $prams['PAGED_BLOCK_DEFAULT_PAGE'];
+		
+		$container->addFormField(
+				$factory->getBoolean('APOP_enabled', $props['enabled'],
+                                    ($allowed ? 'rw' : 'r')),
+				$factory->getLabel('apopFullText'),
+				$page_id
+			);
+	}
+
+	function handle(&$helper, &$errors, &$prams)
+	{
+		global $APOP_enabled;
+
+		$cce = $helper->getCceClient();
+		
+		$cce->set($prams['CCE_OID'], 'APOP', array('enabled' => $APOP_enabled));
+
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

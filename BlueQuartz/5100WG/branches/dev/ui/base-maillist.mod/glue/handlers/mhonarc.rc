@@ -1,0 +1,358 @@
+<HTMLEXT>
+php
+</HTMLEXT>
+
+<CharsetConverters>
+iso-2022-jp;toSjis::toSjis;/usr/sausalito/handlers/base/maillist/tosjis.pl
+</CharsetConverters>
+
+<MAILTO>
+<MAIN>
+
+<NOTHREAD>
+<MultiPg>
+<NOFOLREFS>
+<IdxSize>
+50
+</IdxSize>
+<REVERSE>
+<MsgGmtDateFmt>
+%m/%d/%Y
+</MsgGmtDateFmt>
+
+<FieldOrder>
+</FieldOrder>
+
+<!-- main page -->
+<IdxFname>
+main.php
+</IdxFname>
+
+<IdxPrefix>
+main
+</IdxPrefix>
+
+<IdxPgBegin>
+// $
+$listname = 
+	"$ENV(MLNAME)$";
+// $
+$numOfIdxMsg =
+	"$NUMOFIDXMSG$";
+
+// $
+$numOfMsg =
+	"$NUMOFMSG$";
+
+// $
+$pageNum =
+	"$PAGENUM$";
+
+include("ServerScriptHelper.php");
+include("uifc/ScrollList.php");
+
+ $serverScriptHelper = new ServerScriptHelper(());
+ $factory = $serverScriptHelper->getHtmlComponentFactory(()"base-maillist");
+ $page = $factory->getPage(()); 
+
+if (isset($_ScrollList_pageIndex_1) && $pageNum != ($_ScrollList_pageIndex_1+1)) {
+	header ("Location: main" . ($_ScrollList_pageIndex_1?$_ScrollList_pageIndex_1+1:"") . ".php?_ScrollList_pageIndex_1=$_ScrollList_pageIndex_1");
+	exit;
+}
+// $
+$labelAr[] = $factory->getLabel("title");
+$labelAr[] = $factory->getLabel("author");
+$labelAr[] = $factory->getLabel("date");
+$scrollList = new ScrollList ($page, "maillistArchive", $factory->getLabel("maillistArchive", "", array("name" => $listname)), $labelAr );
+$scrollList->setLength(50);
+//$scrollList = $factory->getScrollList($listname, array("title", "author", "date"));
+
+// Add the spoofer values
+$spoof = array();
+for ($i=0;$i<($pageNum-1)*50;$i++) {
+	$scrollList->addEntry($spoof);
+}
+
+</IdxPgBegin>
+
+<Title>
+(tite goes here!!!!)   Mailing list test
+</Title>
+
+<!--<PrevPgLink chop>
+[<a href="$PREVPG$">goes to prev page....(local)?</A>]
+</PrevPgLink>
+
+<NextPgLink chop>
+[<a href="$NEXTPG$">goes to next page.....(local)?</A>]
+</NextPgLink>-->
+
+
+
+
+
+<ListBegin>
+
+</ListBegin>
+
+<POSIXSTRFTIME>
+
+<LiTemplate>
+// $
+$fromAddyName = 
+	"$FROMADDRNAME$";
+// $
+$fromAddyDomain =
+	"$FROMADDRDOMAIN$";
+// $
+$fromAddy =
+	"$FROMNAME$";
+//$
+$subject =
+	"$SUBJECTNA$";
+// $
+$url =
+	"$MSG$";
+// $
+$from =
+	"$FROMNAME$";
+// $
+$msg = 
+	"$MSG$";
+// $
+$date = 
+	"$MSGLOCALDATE(CUR;%s)$";
+
+if(preg_match("/=\?([^?]+)\?([^?]+)\?([^?]+)\?=.*/",$from,$matches)){
+        if($matches[2] == "B"){
+                $from=base64_decode($matches[3]);
+		if(strtoupper($matches[1]) == "ISO-2022-JP"){
+                        $from = $i18n->encodeString($from, '', '', 'ja');
+                }
+        }else if($matches[2] == "Q"){
+                $from=quoted_printable_decode($matches[3]);
+        }
+} 
+
+$matches=array();
+
+if(preg_match("/^(?:\[[^\]]+\] )?=\?([^?]+)\?([^?]+)\?([^?]+)\?=.*/",$subject,$matches)){
+        if(preg_match("/^(\[[^\]]+\])/",$subject,$id)){
+                $subject=$id[1]." ";
+        }else{
+                $subject="";
+        } 
+        if($matches[2] == "B"){
+                $subject=$subject.base64_decode($matches[3]);
+                if(strtoupper($matches[1]) == "ISO-2022-JP"){
+                        $subject = $i18n->encodeString($subject, '', '', 'ja');
+                }
+        }else if($matches[2] == "Q"){
+                $subject=$subject.quoted_printable_decode($matches[3]);
+        }
+} 
+
+$table = get_html_translation_table($HTML_ENTITIES);
+$table = array_flip($table);
+
+$scrollList->addEntry( array(
+$factory->getUrl("bleh", 
+	$url, strtr($subject, $table),"","r"),
+$factory->getTextField("bleh", 
+	$from,"r"),
+$factory->getTimeStamp("bleh",
+	$date, "datetime", "r")
+));
+</LiTemplate>
+
+<ListEnd>
+
+</ListEnd>
+
+<IdxPgEnd>
+for($i=(($pageNum-1)*50)+$numOfIdxMsg;$i<$numOfMsg;$i++) {
+	$scrollList->addEntry($spoof);
+}	
+
+print $page->toHeaderHtml(());
+print $scrollList->toHtml();
+print $page->toFooterHtml();
+
+?>
+</IdxPgEnd>
+
+<MsgPgBegin>
+include("ServerScriptHelper.php");
+
+ $serverScriptHelper = new ServerScriptHelper(());
+ $factory = $serverScriptHelper->getHtmlComponentFactory(()"base-maillist");
+ $page = $factory->getPage();
+ $i18n = $serverScriptHelper->getI18n();
+
+</MsgPgBegin>
+
+<MsgBodySep>
+
+</MsgBodySep>
+
+<MsgBodyEnd>
+// $
+$date = 
+	"$MSGLOCALDATE(CUR;%s)$";
+
+$block = $factory->getPagedBlock("readMessage");
+$widths = array(()"20%", "80%");
+$block->setColumnWidths($widths);
+
+$matches=array();
+
+if(preg_match("/=\?([^?]+)\?([^?]+)\?([^?]+)\?=(.*)/",$fromAddy,$matches)){
+	if($matches[2] == "B"){
+		$fromName=base64_decode($matches[3]);
+		if(strtoupper($matches[1]) == "ISO-2022-JP"){
+			$fromName = $i18n->encodeString($fromName, '', '', 'ja');
+		}
+		$fromAddy="$fromName $matches[4]";
+	}else if($matches[2] == "Q"){
+		$fromAddy=quoted_printable_decode($matches[3]).$matches[4];
+	}
+}
+
+
+$fromAddyLabel = $factory->getTextField("blehFrom", $fromAddy, "r");
+
+$label = "from";
+
+$block->addFormField(
+	$fromAddyLabel,
+	$factory->getLabel($label)
+);
+// $
+$timeStamp = $factory->getTimeStamp("timeStamp", $date, "datetime", "r");
+
+$label = "date";
+
+$block->addFormField(
+	$timeStamp,
+	$factory->getLabel($label)
+);
+
+$table = get_html_translation_table($HTML_ENTITIES);
+$table = array_flip($table);
+
+if(preg_match("/^(?:\[[^\]]+\] )?=\?([^?]+)\?([^?]+)\?([^?]+)\?=.*/",$subject,$matches)){
+
+        if(preg_match("/^(\[[^\]]+\])/",$subject,$id)){
+                $subject=$id[1]." ";
+        }else{
+                $subject="";
+        } 
+        if($matches[2] == "B"){
+                $subject=$subject.base64_decode($matches[3]);
+                if(strtoupper($matches[1]) == "ISO-2022-JP"){
+                        $subject = $i18n->encodeString($subject, '', '', 'ja');
+                }
+        }else if($matches[2] == "Q"){
+                $subject=$subject.quoted_printable_decode($matches[3]);
+        }
+} 
+
+$subj = $factory->getTextField("subject", strtr($subject, $table), "r");
+
+$label = "subject";
+
+$block->addFormField(
+	$subj,
+	$factory->getLabel($label)
+);
+
+$noHtmlMsg = substr($msg, 5);
+$noHtmlMsg = substr($noHtmlMsg, 0, strlen($noHtmlMsg)-7);
+
+$message = $factory->getTextBlock("message", strtr($noHtmlMsg, $table), "r");
+$message->setWrap(()true);
+
+$label = "message";
+
+$block->addFormField(
+	$message,
+	$factory->getLabel($label)
+);
+
+$action = "main.php";
+
+$block->addButton($factory->getBackButton($action));
+//$
+</MsgBodyEnd>
+
+<MsgHead>
+//$
+</MsgHead>
+
+<MsgPgEnd>
+// $
+$listaddy =
+	"$ENV(MLNAME)$";
+// $
+$to = 
+	"$TO$";
+// $
+$srcid = 
+	"$MSGID$";
+
+$replySenderButton = $factory->getButton("javascript: reply()", "replySender");
+$replyAllButton = $factory->getButton("javascript: replyAll()", "replyAll");
+
+print $page->toHeaderHtml(());
+?>
+<SCRIPT language="javascript">
+function reply() {
+	document.form.action = "/base/webmail/compose.php?srcid=1";
+	document.form.submit();
+}	
+</SCRIPT>
+<SCRIPT language="javascript">
+function replyAll() {
+        document.form.action = "/base/webmail/compose.php?srcid=1&maillistall=1";
+        document.form.submit();
+}
+</SCRIPT>
+<?php
+print "<input type=\"hidden\" name=\"subject\" value=\"$subject\">";
+print "<input type=\"hidden\" name=\"body\" value=\"" . rawurlencode($noHtmlMsg) . "\">";
+print "<input type=\"hidden\" name=\"listaddy\" value=\"". trim($listaddy). "\">";
+print "<input type=\"hidden\" name=\"fromAddy\" value=\"". trim($fromAddy). "\">";
+print "<br><center><table border=0><tr><td valign=middle>" . $replySenderButton->toHtml() . "</td><td valign=middle>" . $replyAllButton->toHtml(()) . "</td></tr></table></center><br>";
+print $block->toHtml();
+print $page->toFooterHtml();
+?>
+</MsgPgEnd>
+
+<SubjectStart>
+
+</SubjectStart>
+
+<SubjectEnd>
+
+</SubjectEnd>
+
+<SubjectHeader>
+$SUBJECTNA$
+</SubjectHeader>
+
+<RefsBegin>
+
+</RefsBegin>
+
+<RefsEnd>
+
+</RefsEnd>
+
+<Refslitxt>
+
+</Refslitxt>
+
+<BotLinks>
+
+</BotLinks>
+

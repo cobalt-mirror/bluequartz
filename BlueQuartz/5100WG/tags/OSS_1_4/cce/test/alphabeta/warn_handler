@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+
+use lib qw( /usr/sausalito/perl );
+
+use CCE;
+$cce = new CCE; $cce->connectfd();
+
+$cce->warn("[[one.two]]");
+$cce->warn("[[two.three]]");
+$cce->info("[[three.four]]");
+$cce->bye("SUCCESS");
+exit(0);
+

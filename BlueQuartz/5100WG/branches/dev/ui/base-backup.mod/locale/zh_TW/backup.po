@@ -1,0 +1,520 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "備份"
+
+msgid "backupMenu_help"
+msgstr "按一下此處，可排程及檢視備份。"
+
+msgid "restoreMenu"
+msgstr "回存"
+
+msgid "restoreMenu_help"
+msgstr "按一下此處，可選取並啟動回存。"
+
+msgid "scheduleListHeader"
+msgstr "排定的備份清單"
+
+msgid "backupAddHeader"
+msgstr "新增排定的備份"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "備份名稱"
+
+msgid "backupName_help"
+msgstr "這顯示備份工作的名稱。"
+
+msgid "backupInterval"
+msgstr "備份間隔"
+
+msgid "backupInterval_help"
+msgstr "這顯示此備份工作將執行的頻率。"
+
+msgid "backupMethod"
+msgstr "備份的方法"
+
+msgid "backupMethod_help"
+msgstr "這顯示用來儲存備份的網路檔案共享方法。"
+
+msgid "backupDestination"
+msgstr "目的地"
+
+msgid "backupDestination_invalid"
+msgstr "備份「位址」欄位中含有非預期格式的資料，或是鍵入了無效的字元。"
+
+msgid "backupDestination_help"
+msgstr "這顯示備份儲存到的目的地。"
+
+msgid "backupConfiguration"
+msgstr "配置資料的備份"
+
+msgid "backupConfiguration_help"
+msgstr "這顯示系統配置資料是否內含於備份中。"
+
+msgid "usersToBackup"
+msgstr "要備份的使用者"
+
+msgid "usersToBackup_help"
+msgstr "這顯示備份內含哪些使用者。"
+
+msgid "groupsToBackup"
+msgstr "要備份的群組"
+
+msgid "groupsToBackup_help"
+msgstr "這顯示備份內含哪些群組。"
+
+msgid "backupFileSet"
+msgstr "要備份的檔案"
+
+msgid "backupFileSet_help"
+msgstr "這顯示備份內含哪些檔案集。"
+
+msgid "removeBackup"
+msgstr "移除"
+
+msgid "removeBackup_help"
+msgstr "按一下此處，可永久移除此備份工作。"
+
+msgid "listAction"
+msgstr "動作"
+
+msgid "listAction_help"
+msgstr "這些是用來檢視排定備份的明細、移除排定的備份或回存先前排定的備份之按鈕。"
+
+msgid "unknown"
+msgstr "不明"
+
+msgid "all"
+msgstr "全部"
+
+msgid "none"
+msgstr "無"
+
+msgid "yes"
+msgstr "是"
+
+msgid "no"
+msgstr "否"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "排定的備份明細"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "請限輸入英數字元。預設值為備份排定的日期。"
+
+msgid "backupNameField_help"
+msgstr "請輸入備份工作的名稱。 [[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "很抱歉，您並未輸入 [[base-backup.backupNameField]] 的值。  [[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "很抱歉，您輸入了無效的 [[base-backup.backupNameField]] 值。  [[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "備份配置資料"
+
+msgid "backupConfigurationField_help"
+msgstr "請選擇備份中是否要併入系統配置資料。"
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "請選取備份中要併入哪些使用者。"
+
+msgid "backupUsersField_empty"
+msgstr "很抱歉，您並未指定任何要備份的個別使用者；請使用箭頭按鈕來指定要備份的使用者。"
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "請選取備份中要併入哪些群組。"
+
+msgid "backupGroupsField_empty"
+msgstr "很抱歉，您並未指定任何要備份的個別群組；請使用箭頭按鈕來指定要備份的群組。"
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "請選取要備份的檔案。"
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "請選取要執行此備份的頻率。"
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "請選取用來儲存備份的網路檔案共享方法。"
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "使用者名稱"
+
+msgid "backupUsername_help"
+msgstr "請輸入用來連接目的伺服器的使用者名稱。"
+
+msgid "backupPassword"
+msgstr "密碼"
+
+msgid "backupPassword_help"
+msgstr "請輸入用來連接目的伺服器的密碼。"
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Windows 檔案共享 (SMB)"
+
+msgid "backupSambaDestination"
+msgstr "位置"
+
+msgid "backupSambaDestination_rule"
+msgstr "例如，&#092;&#092;share&#092;sharedfolder 便是無效的登錄。"
+
+msgid "backupSambaDestination_help"
+msgstr "請輸入用來儲存此備份的 [[base-backup.backupViaWinFile]] 位址。  [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "很抱歉，您並未輸入 [[base-backup.backupViaWinFile]] 位置的值。  [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaUsername_empty"
+msgstr "很抱歉，您並未輸入 [[base-backup.backupViaWinFile]] 使用者名稱的值。請輸入用來連接目的伺服器的使用者名稱。"
+
+
+msgid "backupViaFTP"
+msgstr "檔案轉送通訊協定 (FTP)"
+
+msgid "backupFTPDestination"
+msgstr "位置"
+
+msgid "backupFTPDestination_rule"
+msgstr "例如，share.cobalt.com/sharedfolder/ 就是一個有效的位置。"
+
+msgid "backupFTPDestination_help"
+msgstr "請輸入用來儲存此備份的 FTP 位置。  [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "很抱歉，您並未輸入 FTP 位置的值。  [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "很抱歉，您並未輸入 FTP 使用者名稱的值；請輸入用來連接目的伺服器的使用者名稱。"
+
+
+msgid "backupViaNFS"
+msgstr "網路檔案系統 (NFS)"
+
+msgid "backupNFSDestination"
+msgstr "位置"
+
+msgid "backupNFSDestination_rule"
+msgstr "例如，share.cobalt.com:/sharedfolder/ 就是一個有效的位置。"
+
+msgid "backupNFSDestination_help"
+msgstr "請輸入用來儲存此備份的 NFS 位置。  [[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "很抱歉，您並未輸入 NFS 位置的值。  [[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "您確定要移除排定的備份 [[VAR.backupName]] 嗎？"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "備份檔清單"
+
+msgid "backupDate"
+msgstr "備份已啟動"
+
+msgid "backupDate_help"
+msgstr "其中顯示備份啟動時啟動的日期和時間。"
+
+msgid "backupRetval"
+msgstr "狀態"
+
+msgid "backupRetval_help"
+msgstr "這裡指出備份是成功、失敗或擱置。"
+
+msgid "statusSuccess"
+msgstr "順利完成"
+
+msgid "statusSuccess_help"
+msgstr "備份順利完成。"
+
+msgid "statusPending"
+msgstr "目前正在執行中"
+
+msgid "statusPending_help"
+msgstr "備份目前正在執行中。"
+
+msgid "statusFailure"
+msgstr "失敗"
+
+msgid "statusFailure_help"
+msgstr "備份無法完成；請檢查您的設定，然後重試。"
+
+msgid "restoreBackup"
+msgstr "回存"
+
+msgid "restoreBackup_help"
+msgstr "按一下此處，立即回存這項備份。"
+
+msgid "restoreFromDir"
+msgstr "手動回存"
+
+msgid "restoreFromDir_help"
+msgstr "從裝載的本端目錄中回存備份。"
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "備份已完成"
+
+msgid "backupEnded_help"
+msgstr "其中顯示備份完成時的日期和時間。"
+
+msgid "backupLocation"
+msgstr "目的地"
+
+msgid "backupLocation_help"
+msgstr "其中顯示備份儲存到的目的地。"
+
+msgid "historyDetailHeader"
+msgstr "歷程項目明細"
+
+msgid "usersInBackup"
+msgstr "使用者"
+
+msgid "usersInBackup_help"
+msgstr "這顯示此備份內含哪些使用者。"
+
+msgid "groupsInBackup"
+msgstr "群組"
+
+msgid "groupsInBackup_help"
+msgstr "這顯示此備份內含哪些群組。"
+
+msgid "removeButton"
+msgstr "移除"
+
+msgid "removeButton_help"
+msgstr "按一下此處，可立即移除此備份的歷程。這個動作只會移除備份的歷程，並不移除備份集本身。"
+
+msgid "removeHistoryConfirm"
+msgstr "要移除在 [[VAR.time]] 時完成之備份 '[[VAR.name]]' 的歷程？"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "回存備份"
+
+msgid "restorePlace"
+msgstr "回存檔案的位置"
+
+msgid "restorePlace_help"
+msgstr "請選擇回存檔案的位置。如果您的硬碟機上有一個檔案的名稱和位置與正在回存的檔案之名稱和位置相同，則置換現存的檔案將會覆寫該檔案。將檔案回存到回存檔案共享會將檔案置於回存群組的目錄 '/home/groups/restore' 中；如此可讓您手動複製只限於您想要回存的那些檔案。"	
+
+msgid "restoreOver"
+msgstr "取代現存的檔案"
+
+msgid "restoreTemp"
+msgstr "回存到回存檔案共享"
+
+msgid "backupFileshareMissing"
+msgstr "很抱歉，找不到回存檔案共享；請確認回存群組和回存群組目錄存在。"
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "自目錄中手動回存"
+
+msgid "restoreDirField"
+msgstr "目錄"
+
+msgid "restoreDirField_rule"
+msgstr "例如，/home/users/admin/20000910171607 就是一個有效的目錄。"
+
+msgid "restoreDirField_help"
+msgstr "請輸入您想要回存之備份的本端或裝載的目錄名稱。 [[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "不備份的使用者"
+
+msgid "backupAllUsers"
+msgstr "備份全部使用者"
+
+msgid "backupNoUsers"
+msgstr "不備份任何使用者"
+
+msgid "backupUserSubset"
+msgstr "只備份指定的使用者"
+
+msgid "groupsNotToBackup"
+msgstr "不備份的群組"
+
+msgid "backupAllGroups"
+msgstr "備份全部群組"
+
+msgid "backupNoGroups"
+msgstr "不備份任何群組"
+
+msgid "backupGroupSubset"
+msgstr "只備份指定的群組"
+
+msgid "backupModified31days"
+msgstr "在最近 31 天內曾更改的所有檔案"
+
+msgid "backupModified14days"
+msgstr "在最近 14 天內曾更改的所有檔案"
+
+msgid "backupModified7days"
+msgstr "在最近 7 天內曾更改的所有檔案"
+
+msgid "backupModified2days"
+msgstr "在最近 2 天內曾更改的所有檔案"
+
+msgid "backupModified1days"
+msgstr "在最近一天內曾更改的所有檔案"
+
+msgid "backupAllFiles"
+msgstr "所有檔案"
+
+msgid "backupImmediate"
+msgstr "立即備份一次"
+
+msgid "backupImmediate_help"
+msgstr "此備份將立即執行，並且僅執行一次。"
+
+msgid "daily"
+msgstr "每天備份一次"
+
+msgid "daily_help"
+msgstr "此備份將每天執行一次。"
+
+msgid "weekly"
+msgstr "每週備份一次"
+
+msgid "weekly_help"
+msgstr "此備份將每週執行一次。"
+
+msgid "monthly"
+msgstr "每月備份一次"
+
+msgid "monthly_help"
+msgstr "此備份將每月執行一次。"
+
+msgid "backupCCEDmessage"
+msgstr "關鍵系統元件 (CCE) 目前停止運作，因為系統備份或回存正在執行中；請稍後重試。"
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "所指定的備份共享、使用者名稱或密碼錯誤或目前無法存取。"
+
+    #  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的 [[base-backup.backupName]]值。  [[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "很抱歉，您輸入的 [[base-backup.backupName]]，系統中已存在；請輸入另一個 [[base-backup.backupName]] 的值。"
+
+	# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "請檢查您的設定"
+
+msgid "backupReason"
+msgstr "原因"
+
+	# backup.pl
+msgid "backupError"
+msgstr "很抱歉，在嘗試執行 [[VAR.prog]] 時發生錯誤。"
+
+	# Constructor
+msgid "restoreDescription"
+msgstr "此工作群組用於備份資料的回存。"
+
+msgid "permission"
+msgstr "檔案授權"
+
+msgid "fileowner"
+msgstr "檔案擁有者"
+
+msgid "filesize"
+msgstr "檔案大小"
+
+msgid "date"
+msgstr "修改日期"
+
+msgid "File"
+msgstr "檔名"
+
+msgid "immediatePopup"
+msgstr "已開始立即備份 [[VAR.name]] 的作業。\n如需有關這個備份或其他備份作業的詳細資訊，請選取「回存」功能表。"
+
+msgid "restoreOverPopup"
+msgstr "已開始執行回存 [[VAR.name]] 的作業。\n系統會在回存作業完成後重新啟動。"
+
+msgid "restoreTempPopup"
+msgstr "已開始執行回存 [[VAR.name]] 的作業。\n當回存作業完成後，請至回存檔案共用區 (file share) 取得您所需要的檔案。"
+
+msgid "osversion_conflict"
+msgstr "此備份文檔只能回存到一個共享檔案因為它是由不同的 Sun Cobalt 操作系統產生"
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "管理備份"
+
+msgid "capgroup_adminBackup_help"
+msgstr "這個管理權限允許使用者備份及回存整個系統。"
+

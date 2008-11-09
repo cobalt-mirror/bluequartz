@@ -1,0 +1,177 @@
+# --- Menu
+
+msgid "winshare"
+msgstr "Windows"
+
+msgid "winshare_help"
+msgstr "[[base-winshare.winshareSettings]]可在此处更改。"
+
+# --- Common
+msgid "winshareSettings"
+msgstr "Windows 文件共享设置"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "基本[[base-winshare.winshareSettings]]可在此处配置。"
+
+msgid "advanced_help"
+msgstr "如 WINS 服务器设置等高级[[base-winshare.winshareSettings]]可在此处配置。"
+
+msgid "advanced"
+msgstr "高级"
+
+# ---- Basic page
+
+msgid "enableServerField"
+msgstr "启用服务器"
+
+msgid "enableServerField_help"
+msgstr "打开或关闭 Windows 文件共享。来宾访问 Windows 文件共享通过进入[[base-fileshare.guestShare]]进行配置。"
+
+msgid "maxUserField"
+msgstr "并发用户最大数量"
+
+msgid "maxUserField_rule"
+msgstr "请输入一个 1 和 1024 之间的整数。缺省值是 25。"
+
+msgid "maxUserField_help"
+msgstr "更改可同时连接至 Windows 文件共享的用户最大数量。 [[base-winshare.maxUserField_rule]]"
+
+msgid "workgroupField"
+msgstr "工作组"
+
+msgid "workgroupField_rule"
+msgstr "缺省值是 WORKGROUP。"
+
+msgid "workgroupField_help"
+msgstr "输入您的 Windows 文件共享所属的工作组名称。"
+
+
+# ---- Advanced
+
+msgid "networkLogonField"
+msgstr "Windows 域控制器"
+
+msgid "networkLogonField_help"
+msgstr "打开或关闭 Windows 域控制器。打开此功能允许服务器设备作为 Windows 网络的一个域控制器。这将允许 Windows 95/98/NT4/2000 根据此域控制器进行鉴别并使用漫游配置文件。"
+
+msgid "winsServerField"
+msgstr "Windows 因特网命名服务 (WINS) 服务器"
+
+msgid "winsServerField_help"
+msgstr "选择此服务器设备在提供 Windows 因特网命名服务时的角色。要求有运行 Windows 因特网命名服务的服务器，这样才能根据多个子网中的 NetBIOS 名称确定 Windows 机器。"
+
+msgid "winsServerNone"
+msgstr "不用作 WINS 服务器"
+
+msgid "winsServerSelf"
+msgstr "用作 WINS 服务器"
+
+msgid "winsServerOthers"
+msgstr "将下列地址用作 WINS 服务器"
+
+msgid "winsServerIpAddressField"
+msgstr "IP 地址"
+
+msgid "winsServerIpAddressField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "winsServerIpAddressField_help"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+
+# ---- Handler msgs
+
+msgid "badUser"
+msgstr "如果服务器配置文件被删除或手动修改，请恢复原始版本并重试。"
+
+msgid "cantConfigFile"
+msgstr "对不起，在尝试修改 Windows 文件共享配置文件时出现错误。[[base-winshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "对不起，在尝试修改 Windows 文件共享配置文件时出现错误。[[base-winshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "对不起，在尝试修改 Windows 文件共享配置文件时出现错误。"
+
+msgid "cantModifyPassword"
+msgstr "对不起，在尝试修改 Windows 文件共享配置文件时出现错误。"
+
+
+# ---- Active Monitor
+
+msgid "amWinshareNameTag"
+msgstr "Windows 文件共享服务器"
+
+msgid "amDetailsTitle"
+msgstr "Windows 文件共享服务器详细信息"
+
+msgid "amNotRunning"
+msgstr "Windows 文件共享服务器没有运行。"
+
+msgid "amStatusOk"
+msgstr "Windows 文件共享服务器运行正常。"
+
+# Capabilities
+
+msgid "capgroup_adminSamba"
+msgstr "管理 Windows 文件共享"
+
+msgid "capgroup_adminSamba_help"
+msgstr "这个管理权限允许用户修改用于 Windows 文件共享的设置。"
+
+# Machine list 
+
+msgid "windowsMachineButton"
+msgstr "域成员"
+
+msgid "windowsMachineButton_help"
+msgstr "在允许他们加入域之前，在您的网络上创建一个 Windows 计算机列表。"
+
+msgid "windowsMachinesList"
+msgstr "域成员"
+
+msgid "wm_addMachine_help"
+msgstr "单击此处在域成员列表中添加一台计算机"
+
+msgid "wm_name"
+msgstr "机器名称"
+
+msgid "wm_name_help"
+msgstr "这些是您网络中分配的计算机名称。"
+
+msgid "wm_remarks"
+msgstr "备注"
+
+msgid "wm_remarks_help"
+msgstr "此栏将提供每一域成员的附加信息。"
+
+msgid "wm_actions"
+msgstr "操作"
+
+msgid "wm_actions_help"
+msgstr "这些是用于修改域成员设置或删除您 Windows 网络中计算机的按钮。"
+
+msgid "modWindowsMachineBlock"
+msgstr "修改域成员[[var.name]]"
+
+msgid "addWindowsMachineBlock"
+msgstr "创建域成员"
+
+msgid "machine_name"
+msgstr "机器名称"
+
+msgid "machine_name_help"
+msgstr "这是基于 Windows 的计算机名称" 
+
+msgid "machine_description"
+msgstr "备注"
+
+msgid "machine_description_help"
+msgstr "这是一个用户定义的关于域成员记录的说明"
+
+msgid "removeMachineConfirm"
+msgstr "是否真要从域成员列表中删除计算机[[VAR.machineName]]？"
+

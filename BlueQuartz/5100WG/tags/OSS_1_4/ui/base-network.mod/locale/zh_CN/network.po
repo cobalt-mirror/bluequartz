@@ -1,0 +1,657 @@
+# --- Menu
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "TCP/IP 设置可在此处更改。"
+
+msgid "tcpIpSettings"
+msgstr "TCP/IP 设置"
+
+msgid "wan"
+msgstr "因特网"
+
+msgid "wan_help"
+msgstr "因特网设置可在此处更改。"
+
+
+# --- TCP/IP Page
+
+msgid "hostNameField"
+msgstr "主机名"
+
+msgid "hostNameField_rule"
+msgstr "请只输入小写的字母数字字符、下划线或句点。例如，www 是一个有效输入。"
+
+msgid "hostNameField_help"
+msgstr "输入此服务器设备的主机名。结合在一起的主机名和域名应独特地标识此服务器设备。 [[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "域名"
+
+msgid "domainNameField_rule"
+msgstr "请只输入小写的字母数字字符、破折号或句点。例如，cobalt.com 就是有效的输入。"
+
+msgid "domainNameField_help"
+msgstr "输入此服务器设备的域名。结合在一起的主机名和域名应独特地标识此服务器设备。 [[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS 服务器"
+
+msgid "dnsAddressesField_rule"
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。将此字段留空将使此机器无法通过主机名或域名找到其他机器，或者导致联网困难。"
+
+msgid "dnsAddressesField_help"
+msgstr "输入您的本地域名服务器或服务器的 IP 地址或地址。域名服务器将文本的主机名和域名转换为数字式的 IP 地址，也可将数字式 IP 地址转为为文本的主机名和域名。 [[base-network.dnsAddressesField_rule]]"
+
+msgid "primaryInterface"
+msgstr "主接口"
+
+msgid "ipAddressField1"
+msgstr "IP 地址"
+
+msgid "ipAddressField1_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "ipAddressField1_help"
+msgstr "输入主接口的 IP 地址，该接口一般与内部网侧连接。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。[[base-network.ipAddressField1_rule]]"
+
+msgid "secondaryInterface"
+msgstr "辅助接口"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField1]]"
+
+msgid "ipAddressField2_help"
+msgstr "输入辅助接口的 IP 地址，该接口一般与因特网侧连接。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。[[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "对不起，如果填写 IP 地址字段，则需要 IP 网络掩码。[[base-network.netMaskField1_rule]]"
+
+msgid "netMaskField1"
+msgstr "IP 网络掩码"
+
+msgid "netMaskField1_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，255.255.255.0 就是有效的输入。"
+
+msgid "netMaskField1_help"
+msgstr "输入主接口的网络掩码。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。 [[base-network.netMaskField1_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，255.255.255.0 就是有效的输入。"
+
+msgid "netMaskField2_help"
+msgstr "输入辅助接口的网络掩码。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。 [[base-network.netMaskField2_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC 地址"
+
+msgid "macAddressField_help"
+msgstr "媒体访问控制 (MAC) 地址是网络接口卡的硬件地址。此硬件地址是唯一的标识符，并且在生产后无法更改。"
+
+
+# Add static Routes
+
+msgid "routes"
+msgstr "修改静态路由"
+
+msgid "routes_help"
+msgstr "单击此处创建从此服务器设备至其他子网的静态路由。"
+
+	# list
+msgid "routeList-list-title"
+msgstr "静态路由表"
+
+msgid "createRoute"
+msgstr "添加静态路由"
+
+msgid "route-target"
+msgstr "目标网络 IP 地址"
+
+msgid "route-target_help"
+msgstr "这是所列静态路由参考的子网 IP 地址。"
+
+msgid "route-netmask"
+msgstr "目标网络子网掩码"
+
+msgid "route-netmask_help"
+msgstr "这是所列静态路由参考的子网掩码。"
+
+msgid "route-gateway"
+msgstr "网关"
+
+msgid "route-gateway_help"
+msgstr "这是目标子网通信路由通过的网关。"
+
+msgid "route-device"
+msgstr "设备"
+
+msgid "route-device_help"
+msgstr "这时静态路由所有通信量通过的网络接口。"
+
+msgid "modifyRoute"
+msgstr "修改静态路由"
+
+	# Add a route form
+msgid "route_form_target"
+msgstr "目标子网"
+
+msgid "route_form_target_help"
+msgstr "输入重新路由的子网的 IP 地址。 [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.0 就是有效的输入。"
+
+msgid "route_form_target_empty"
+msgstr "对不起，您没有为[[base-network.route_form_target]]输入值。[[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-network.route_form_target]]的无效值。[[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "目标网络掩码"
+
+msgid "route_form_netmask_help"
+msgstr "输入重新路由的子网的网络掩码。 [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，255.255.255.0 就是有效的输入。"
+
+msgid "route_form_netmask_empty"
+msgstr "对不起，您没有为[[base-network.route_form_netmask]]输入值。[[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-network.route_form_netmask]]的无效值。[[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "网关"
+
+msgid "route_form_gateway_help"
+msgstr "输入此服务器子网上网络网关的 IP 地址，为目标子网捆绑的数据包将通过它重新路由。[[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "route_form_gateway_empty"
+msgstr "对不起，您没有为[[base-network.route_form_gateway]]输入值。[[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-network.route_form_gateway]]的无效值。[[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "网络接口"
+
+msgid "route_form_device_help"
+msgstr "选择网络接口，为目标子网捆绑的数据包将通过它重新路由。如果未指定设备，设备将基于网络网关的 IP 地址选择。"
+
+msgid "route_form_device-eth0"
+msgstr "主以太网接口 (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "辅助以太网接口 (eth1)"
+
+msgid "route_form_device-ppp0"
+msgstr "点对点协议接口 (ppp0)"
+
+msgid "routeList_action_header"
+msgstr "操作"
+
+msgid "routeList_action_header_help"
+msgstr "单击修改图标更改路由设置，或单击删除图标删除路由。"
+
+
+
+# --- Internet Page
+
+	# change type drop-down
+
+msgid "changeMode"
+msgstr "改变因特网连接..."
+
+msgid "none"
+msgstr "不用或只用内部网"
+
+msgid "broadband"
+msgstr "电缆调制解调器或 DSL"
+
+msgid "lan"
+msgstr "局域网 (LAN) 上的网关"
+
+msgid "narrowband"
+msgstr "模拟调制解调器或 ISDN"
+
+
+	# - Gateway on LAN
+	
+msgid "lanSettings"
+msgstr "因特网设置—局域网 (LAN) 上的网关"
+
+msgid "gatewayField"
+msgstr "服务器网关"
+
+msgid "gatewayField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "gatewayField_help"
+msgstr "输入此服务器设备本地网络网关的 IP 地址。这是主接口和辅助接口的网关。网络网关允许您的服务器与本地网络区域外面的世界连接。 [[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "IP 转发和伪装"
+
+msgid "forwardField_help"
+msgstr "选择转发数据包通过服务器的方法。选择通过伪装进行数据包转发可进行网络地址转换。这可使您的组织通过在一个公用可达 IP 地址和多个专用 IP 地址之间转换通过此服务器设备所有的网络通信量，从而实现因特网访问的共享。如果仅选择无伪装的数据包转发，则仅能实现一个网络接口与另一个网络接口间的通信，而不提供网络地址转换。选择无数据包转发不允许网络接口间的通信。"
+
+msgid "forward"
+msgstr "仅转发 IP 数据包"
+
+msgid "forwardNat"
+msgstr "转发具有伪装的 IP 数据包"
+
+msgid "forwardOff"
+msgstr "不转发 IP 数据包"
+
+
+
+# --- Cable Modem/DSL
+
+msgid "broadbandSettings"
+msgstr "因特网设置—电缆调制解调器或 DSL"
+
+msgid "networkField"
+msgstr "辅助接口"
+
+msgid "networkField_help"
+msgstr "为此服务器设备的辅助接口选择适当的联网配置。"
+
+msgid "dhcp"
+msgstr "使用动态主机配置协议 (DHCP) 自动获取"
+
+msgid "dhcpHostNameField"
+msgstr "客户机主机名"
+
+msgid "dhcpHostNameField_rule"
+msgstr "请只输入小写的字母数字字符、下划线或句点。例如，www 是一个有效输入。"
+
+msgid "dhcpHostNameField_help"
+msgstr "输入将此服务器识别为动态主机配置协议 (DHCP) 客户机的主机名。 [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-network.dhcpHostNameField]]的无效值。[[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "客户机标识符"
+
+msgid "dhcpClientIdField_help"
+msgstr "输入将此服务器识别为动态主机配置协议 (DHCP) 客户机的标识字符串。"
+
+msgid "pppoe"
+msgstr "使用通过以太网的点对点协议 (PPPoE) 自动获取"
+
+msgid "pppUserNameField"
+msgstr "用户名"
+
+msgid "pppUserNameField_help"
+msgstr "输入用于登录到您的因特网服务供应商的用户名。"
+
+msgid "pppUserNameField_empty"
+msgstr "对不起，您没有为[[base-network.pppUserNameField]]输入值。"
+
+msgid "pppPasswordField"
+msgstr "口令"
+
+msgid "pppPasswordField_help"
+msgstr "输入用于登录到您的因特网服务供应商的口令。"
+
+msgid "pppPasswordField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+msgid "static"
+msgstr "手动指定"
+
+msgid "ipAddressField"
+msgstr "IP 地址"
+
+msgid "ipAddressField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "ipAddressField_help"
+msgstr "输入辅助接口的 IP 地址，该接口一般与因特网侧连接。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。[[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "子网掩码"
+
+msgid "netMaskField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，255.255.255.0 就是有效的输入。"
+
+msgid "netMaskField_help"
+msgstr "输入主接口的网络掩码。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。 [[base-network.netMaskField_rule]]"
+
+msgid "natField"
+msgstr "IP 伪装"
+
+msgid "natField_help"
+msgstr "选择是否让此服务器设备执行 IP 伪装。IP 伪装可实现网络地址转换，这将使您的组织通过在一个公用可达 IP 地址和专用 IP 地址之间转换通过此服务器设备的所有网络通信，从而实现因特网访问共享。"
+
+
+# No internet connection
+
+msgid "wanNoneMessage"
+msgstr "无因特网连接。"
+
+msgid "wanNoneConfirm"
+msgstr "是否确定不希望指定因特网连接类型？"
+
+
+
+
+
+# Modem/ISDN	   NOTE:  These strings are also in the file wizard.po in the module base-wizard.mod. They need to be in both places
+
+msgid "modemAuthModeField"
+msgstr "认证模式"
+
+msgid "modemAuthModeField_help"
+msgstr "有两种使用拨号网络连接的常用认证模式。有关如何使用认证模式的信息，请咨询您的服务供应商。"
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthHostField"
+msgstr "服务器主机名"
+
+msgid "modemAuthHostField_help"
+msgstr "CHAP 拨号认证必须具有拨号服务器主机名。如果已使用 CHAP 认证，需要服务器主机名时，请咨询您的服务供应商。"
+
+msgid "modemAuthHostField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]对于[[base-network.modemAuthHostField]]是无效值。"
+
+msgid "modemConnStatus"
+msgstr "连接状态"
+
+msgid "modemConnStatus_help"
+msgstr "这显示当前的连接状态，并指出当前调制解调器是否已与您的因特网服务供应商连接。"
+
+msgid "modemSettings"
+msgstr "因特网设置—模拟调制解调器或 ISDN"
+
+msgid "modemConnModeField"
+msgstr "连接模式"
+
+msgid "modemConnModeField_help"
+msgstr "选择是否始终建立调制解调器连接、是否只在出局连接时建立连接，或者永远不建立连接。"
+
+msgid "demand"
+msgstr "仅要求时连接"
+
+msgid "on"
+msgstr "始终连接"
+
+msgid "off"
+msgstr "始终不连接"
+
+msgid "modemUserNameField"
+msgstr "拨号帐户用户名"
+
+msgid "modemUserNameField_help"
+msgstr "输入用于登录到您的因特网服务供应商的拨号帐户用户名。"
+
+msgid "modemUserNameField_empty"
+msgstr "对不起，您没有为[[base-network.modemUserNameField]]输入值。请输入用于登录到您的因特网服务供应商的拨号帐户用户名。"
+
+msgid "modemPasswordField"
+msgstr "拨号帐户口令"
+
+msgid "modemPasswordField_help"
+msgstr "输入用于登录到您的因特网服务供应商的拨号帐户口令。两个字段中输入相同口令是为了防止键入错误。"
+
+msgid "modemPasswordField_empty"
+msgstr "对不起，您没有为[[base-network.modemPasswordField]]输入值。请输入用于登录到您的因特网服务供应商的拨号帐户口令。"
+
+msgid "modemPasswordField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+msgid "modemPhoneField"
+msgstr "电话号码"
+
+msgid "modemPhoneField_help"
+msgstr "输入您的因特网服务供应商的电话号码。"
+
+msgid "modemPhoneField_empty"
+msgstr "对不起，您没有为[[base-network.modemPhoneField]]输入值。请输入您的因特网服务供应商的电话号码。"
+
+msgid "modemInitStrField"
+msgstr "调制解调器初始化字符串"
+
+msgid "modemInitStrField_help"
+msgstr "输入拨号前将传送至调制解调器的调制解调器初始化字符串。您必须输入一个初始化字符串，否则，您的服务器将无法使用调制解调器。如果您不知道调制解调器正确的初始化字符串，尝试输入 'ATZ'，或查询调制解调器文件。"
+
+msgid "modemInitStrField_empty"
+msgstr "对不起，您没有为[[base-network.modemInitStrField]]输入值。您必须输入一个初始化字符串，否则，您的服务器将无法使用调制解调器。如果您不知道调制解调器正确的初始化字符串，尝试输入 'ATZ'，或查询调制解调器文件。"
+
+msgid "modemIpField"
+msgstr "本地 IP 地址"
+
+msgid "modemIpField_help"
+msgstr "只有在您的因特网服务供应商进行静态分配时，在调制解调器连接的这一端输入本地 IP 地址。"
+
+msgid "modemIpField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-network.modemIpField]]的无效值。"
+
+msgid "modemSpeedField"
+msgstr "调制解调器速度（波特）"
+
+msgid "modemSpeedField_help"
+msgstr "选择与调制解调器进行串行线路连接的速度。缺省值是 115200。"
+
+msgid "modemPulseField"
+msgstr "启用脉冲拨号"
+
+msgid "modemPulseField_help"
+msgstr "打开或关闭脉冲拨号。启用此功能将使用脉冲拨号代替音频拨号。缺省值是关闭脉冲拨号。"
+
+msgid "saveTest"
+msgstr "保存与测试"
+
+msgid "saveTest_help"
+msgstr "这将保存您当前的设置，并尝试与您的因特网服务供应商进行测试连接，以验证设置。"
+
+
+# --- IP Address change confirm notice
+msgid "confirmNoDhcp"
+msgstr "您的[[VAR.interface]]设置从动态主机配置协议(DHCP) 服务器获取。\n更改这些设置将关闭[[VAR.interface]]上的 DHCP 检查。是否继续？"
+
+msgid "ethernetChanged"
+msgstr "您的网络设置已经更改。系统将在几分钟后尝试与您的新 IP 地址连接。 \n如果登录页未出现，请在您的 Web 浏览器中键入新地址，连接到您的服务器设备。"
+
+
+
+# --- Network Usage Info
+
+msgid "netUsage"
+msgstr "网络"
+
+msgid "netUsage_help"
+msgstr "网络利用率统计信息可在此处查看。"
+
+msgid "amNetUsage"
+msgstr "网络利用率"
+
+msgid "eth0"
+msgstr "[[base-network.eth0_name]] (eth0)"
+
+msgid "eth0_name"
+msgstr "主接口"
+
+msgid "eth1"
+msgstr "[[base-network.eth1_name]] (eth1)"
+
+msgid "eth1_name"
+msgstr "辅助接口"
+
+msgid "ppp0"
+msgstr "[[base-network.ppp0_name]] (ppp0)"
+
+msgid "ppp0_name"
+msgstr "点对点协议接口"
+
+
+# --- Active Monitor
+msgid "amIface"
+msgstr "网络接口"
+
+msgid "amIface_help"
+msgstr "这是网络接口标识符。"
+
+msgid "amSentB"
+msgstr "发送（字节）"
+
+msgid "amSentB_help"
+msgstr "这是此网络接口发送的字节总数。"
+
+msgid "amRcvdB"
+msgstr "接收（字节）"
+
+msgid "amRcvdB_help"
+msgstr "这是此网络接口接收的字节总数。"
+
+msgid "amErrors"
+msgstr "错误"
+
+msgid "amErrors_help"
+msgstr "这是此网络接口发送或接收的错误总数。"
+
+msgid "amColls"
+msgstr "冲突"
+
+msgid "amColls_help"
+msgstr "这是在此网络接口上检测到的冲突总数。"
+
+msgid "amNetworkNameTag"
+msgstr "网络状态"
+
+msgid "amNetDetails"
+msgstr "网络状态详细信息"
+
+msgid "amIfaceIsDown"
+msgstr "网络接口[[VAR.iface]]已关闭。"
+
+msgid "amGatewayIsUnreachable"
+msgstr "网络网关无法到达。"
+
+msgid "amNetworkOK"
+msgstr "网络运行正常。"
+
+msgid "dialoutWindowing"
+msgstr "连接期间"
+
+msgid "dialoutWindowing_help"
+msgstr "调制解调器使用可限制在一天几个小时。缺省设置是一天任何时间都允许拨打调制解调器。 "
+
+msgid "dialTimes"
+msgstr "连接时间"
+
+msgid "noDialTimes"
+msgstr "不连接"
+
+# Strings for Connection Period time labels
+msgid "modem_hour_0"
+msgstr "00:00 - 00:59"
+msgid "modem_hour_1"
+msgstr "01:00 - 01:59"
+msgid "modem_hour_2"
+msgstr "02:00 - 02:59"
+msgid "modem_hour_3"
+msgstr "03:00 - 03:59"
+msgid "modem_hour_4"
+msgstr "04:00 - 04:59"
+msgid "modem_hour_5"
+msgstr "05:00 - 05:59"
+msgid "modem_hour_6"
+msgstr "06:00 - 06:59"
+msgid "modem_hour_7"
+msgstr "07:00 - 07:59"
+msgid "modem_hour_8"
+msgstr "08:00 - 08:59"
+msgid "modem_hour_9"
+msgstr "09:00 - 09:59"
+msgid "modem_hour_10"
+msgstr "10:00 - 10:59"
+msgid "modem_hour_11"
+msgstr "11:00 - 11:59"
+msgid "modem_hour_12"
+msgstr "12:00 - 12:59"
+msgid "modem_hour_13"
+msgstr "13:00 - 13:59"
+msgid "modem_hour_14"
+msgstr "14:00 - 14:59"
+msgid "modem_hour_15"
+msgstr "15:00 - 15:59"
+msgid "modem_hour_16"
+msgstr "16:00 - 16:59"
+msgid "modem_hour_17"
+msgstr "17:00 - 17:59"
+msgid "modem_hour_18"
+msgstr "18:00 - 18:59"
+msgid "modem_hour_19"
+msgstr "19:00 - 19:59"
+msgid "modem_hour_20"
+msgstr "20:00 - 20:59"
+msgid "modem_hour_21"
+msgstr "21:00 - 21:59"
+msgid "modem_hour_22"
+msgstr "22:00 - 22:59"
+msgid "modem_hour_23"
+msgstr "23:00 - 23:59"
+
+# for modem_status.pl invoked directly from modem.php
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+
+# capabilities
+msgid "capgroup_adminNetworkSettings"
+msgstr "管理网络设置"
+
+msgid "capgroup_adminNetworkSettings_help"
+msgstr "这个管理权限允许用户更改系统广域网设置，如缺省网关和 DNS 设置。"
+
+msgid "capgroup_adminRoutes"
+msgstr "管理静态路由"
+
+msgid "capgroup_adminRoutes_help"
+msgstr "此管理权限允许用户创建，销毁和修改这台机器网络子系统上的静态路由"
+
+msgid "capgroup_adminNetwork"
+msgstr "管理 TCP/IP 和因特网"
+
+msgid "capgroup_adminNetwork_help"
+msgstr "此管理权限允许用户管理这台机器上网络设置的所有方面。"
+
+msgid "capgroup_adminNetworkInterfaces"
+msgstr "管理网络接口"
+
+msgid "capgroup_adminNetworkInterfaces_help"
+msgstr "此管理权限允许用户创建，销毁和修改这台机器上的网络接口设置。"
+
+msgid "portFwd"
+msgstr "端口转发"
+
+msgid "portFwd_help"
+msgstr "单击此处添加端口转发规则。端口转发允许将网络通信量从一个接口和端口转发到另一个接口和端口。"
+

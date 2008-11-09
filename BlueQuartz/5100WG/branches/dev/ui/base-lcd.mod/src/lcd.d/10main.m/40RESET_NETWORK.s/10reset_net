@@ -1,0 +1,67 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: 10reset_net 201 2003-07-18 19:11:07Z will $
+#
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved
+#
+# This script is called when the user requests to reset
+# the network settings via the LCD. It has the effect of 
+# disabling eth0 and eth1 and setting the hostname to localhost,
+# domainname to localdomain, gateway to 0.0.0.0 and blanking out
+# dns servers. It also disables firewall filters.
+# Then the system is halted. When the system is 
+# restarted, the user will be prompted to reconfigure the network via
+# the LCD.
+
+use POSIX;
+use CCE;
+use I18n;
+
+if ($ARGV[0] eq "-s") {
+    $option = "-s";
+} else {
+    $option = "";
+}
+
+my $i18n = new I18n;
+
+$resetstr = $i18n->get("[[base-lcd. RESET NETWORK? ]]");
+$yesnostr = $i18n->get("[[base-lcd.yes_no]]");
+$result = system("/sbin/lcd-yesno $option -1 \"$resetstr\" -2 \"$yesnostr\"");
+exit(1) if ($result != 256);
+
+$reset1 = $i18n->get("[[base-lcd.   RESETTING    ]]");
+$reset2 = $i18n->get("[[base-lcd.    NETWORK     ]]");
+system("/sbin/lcd-write $option \"$reset1\" \"$reset2\"");
+
+# Remove the NET-CONFIG file so that when the machine reboots
+# the user must resetup the network via the LCD
+system("rm -f /etc/NET-CONFIG");
+system("rm -f /etc/locks/.lcdlock") if (-e "/etc/locks/.lcdlock");
+
+# Reset network through CCE: reset hostname, domainname, gateway
+# and disable eth0, eth1, and firewall filters
+my $cce = new CCE;
+$cce->connectuds();
+
+my (@soids) = $cce->find("System");
+if (@soids > 0) {
+    $cce->set( $soids[0], "", 
+	   { hostname => "localhost", domainname => "localdomain", 
+	     gateway => "", dns => "" } );
+    $cce->set( $soids[0], "Firewall", { enabled => "0" } );
+}
+
+my (@oids) = $cce->find("Network", { "device" => "eth1" } );
+$cce->set( $oids[0], "", { ipaddr => "0.0.0.0", netmask => "0.0.0.0", enabled => "0", bootproto => "none" } )
+    if (@oids > 0);
+
+my (@oids) = $cce->find("Network", { "device" => "eth0" } );
+$cce->set( $oids[0], "", { ipaddr => "0.0.0.0", netmask => "0.0.0.0", enabled => "0", bootproto => "none" } )
+    if (@oids > 0);
+
+$cce->set( $soids[0], "Power", {reboot => time } );
+
+$cce->bye("SUCCESS");
+
+

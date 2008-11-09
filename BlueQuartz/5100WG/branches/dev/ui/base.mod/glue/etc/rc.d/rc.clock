@@ -1,0 +1,21 @@
+#!/bin/sh
+
+clock $* 2>&1 | grep "timed out" >/dev/null
+
+#if grep failed - we got out ok...
+if [ "$?" -ne "0" ]; then
+	exit 0
+fi
+
+cat << _EOF_ | mail sys -s "Warning: Possible battery failure"
+
+The real-time clock seems to have failed to start.  This may be due to a
+battery problem, and should be acknowledged.  Please shut down this system,
+power it off for 10 seconds, then power it on.  If this error occurs again,
+your battery may need to be replaced.
+
+This error is not system-threatening, but the system time may drift while the
+real-time clock is not running.
+
+_EOF_
+exit 1

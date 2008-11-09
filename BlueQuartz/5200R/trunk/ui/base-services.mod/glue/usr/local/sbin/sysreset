@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# the old style sysreset script accepts the following options:
+# -f    reset to factory defaults
+# -c    clean system but leave the net config
+#
+# we just pass everything to cce_construct now.
+
+/usr/sausalito/bin/cce_construct $* sysreset

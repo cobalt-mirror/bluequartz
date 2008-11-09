@@ -1,0 +1,70 @@
+#! /bin/sh
+#
+# inet          Start TCP/IP networking services. This script
+#               sets the hostname, creates the routes and
+#               starts the Internet Network Daemon & RPC portmapper.
+#
+# Author:       Miquel van Smoorenburg, <miquels@drinkel.nl.mugnet.org>
+#               Various folks at Red Hat
+#
+# chkconfig: 345 50 50
+# description: The internet superserver daemon (commonly called inetd) \
+#              starts a variety of other internet services as needed. It \
+#              is responsible for starting many services, including telnet, \
+#              ftp, rsh, and rlogin. Disabling inetd disables all of the \
+#              services it is responsible for.
+# processname: inetd
+# pidfile: /var/run/inetd.pid
+# config: /etc/sysconfig/network
+# config: /etc/inetd.conf
+
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Get config.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if [ ${NETWORKING} = "no" ]
+then
+	exit 1
+fi
+
+[ -f /usr/sbin/inetd ] || exit 1
+
+# See how we were called.
+case "$1" in
+  start)
+	echo -n "Starting INET services: "
+	daemon inetd
+	echo
+	touch /var/lock/subsys/inet
+	;;
+  stop)
+	echo -n "Stopping INET services: "
+	killproc inetd
+	echo
+	rm -f /var/lock/subsys/inet
+	;;
+  status)
+	status inetd
+	;;
+  hard-restart)
+	killproc inetd
+	sleep 2
+	daemon inetd
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  reload)
+	killall -HUP inetd
+	;;
+  *)
+	echo "Usage: inet {start|stop|status|restart|reload}"
+	exit 1
+esac
+
+exit 0

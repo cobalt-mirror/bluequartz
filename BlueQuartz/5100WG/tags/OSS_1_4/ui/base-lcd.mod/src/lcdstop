@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# stop displaying message with blinking *
+#
+#          Cobalt Micro 1997
+#
+
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+kill -9 `pidof /sbin/lcd-swrite` 
+kill -9 `pidof /sbin/swritelcd`
+kill -9 `pidof /sbin/lcd-flash`
+#[ -e /etc/locks/.lcdlock ] && rm -f /etc/locks/.lcdlock
+
+exit 0
+
+

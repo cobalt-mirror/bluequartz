@@ -1,0 +1,72 @@
+#!/bin/sh
+# $Id: iptables 201 2003-07-18 19:11:07Z will $
+# Startup script for iptables-based firewall
+#
+# chkconfig: 345 10 90
+# description: Sets up traffic monitoring for statistics generation
+# config: /etc/iptables.conf
+
+. /etc/rc.d/init.d/functions
+
+# a function to reset a chain
+IPTABLES="/usr/bin/iptables"
+
+if [ ! -f /etc/iptables.conf ]; then
+	if [ -x /etc/cron.hourly/log_traffic ]; then
+		echo "Generating iptables ruleset..."
+		/etc/cron.hourly/log_traffic > /dev/null 2>&1
+	fi
+fi
+
+case "$1" in
+	start)
+		echo -n "Loading iptables modules: "
+		/sbin/modprobe ip_tables
+		/sbin/modprobe iptable_filter
+		/sbin/modprobe ip_conntrack
+		/sbin/modprobe ip_conntrack_ftp
+		echo "loaded."
+
+		echo -n "Loading iptables rules: "
+		if test -e /etc/iptables.conf
+		then
+			/bin/sh /etc/iptables.conf
+			echo "loaded."
+		else
+			failure "iptables startup"
+		fi
+		;;
+	reload | restart)
+		$0 stop
+		echo -n "Loading iptables rules: "
+		if test -e /etc/iptables.conf
+		then
+			/bin/sh /etc/iptables.conf
+			echo "loaded."
+		else
+			failure "iptables startup"
+		fi
+		;;
+	stop)
+                echo -n "Stopping iptables logging: "
+                $IPTABLES -F INPUT
+		$IPTABLES -F OUTPUT
+		$IPTABLES -F FORWARD
+		$IPTABLES -t nat -F
+                $IPTABLES -X acctin
+		$IPTABLES -X acctout
+                success "iptables log disabled"
+		;;
+	status)
+		$IPTABLES -L
+		;;
+	*)
+		echo "Usage: $0 {start|stop|reload|restart|status}"
+		exit 1
+esac
+
+echo ""
+
+exit 0
+
+

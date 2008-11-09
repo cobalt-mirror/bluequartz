@@ -1,0 +1,93 @@
+#!/bin/sh
+#
+# quota
+#
+# turn disk quotas on and off.
+#
+
+# Source function library.
+DOMAIN=base-services
+. /etc/rc.d/init.d/functions
+
+# path to "dont check" flag
+DONTCHECK=/etc/cobalt/dont_check_quotas
+
+# max number of boots without rebuilding the quota file
+MAXBOOTCOUNT=10
+
+case "$1" in
+    start)
+	# always run quotacheck if quota files are missing OR if they are
+        # zero bytes in length. nope. don't run quotacheck if "noauto"
+	# is specified.
+        for PART in `grep quota /etc/fstab | awk '$4 !~ /noauto/ {print $2}'`
+        do
+	    getfsinfo $PART
+	    if [ "$FS_QUOTACHECK" = "no" ]; then
+		continue;
+	    fi
+
+	    quotacheck=1
+
+	    if [ ! -s $PART/quota.user ]; then
+		echo "$PART/quota.user missing... rebuilding"
+		/bin/rm -f $DONTCHECK
+	    fi
+	    if [ ! -s $PART/quota.group ]; then
+		echo "$PART/quota.group missing... rebuilding"
+		/bin/rm -f $DONTCHECK
+	    fi
+
+	    touch $PART/quota.user
+	    chmod 600 $PART/quota.user
+	    touch $PART/quota.group
+	    chmod 600 $PART/quota.group
+	done
+
+        if [ "$quotacheck" = "" ]; then
+		exit 0
+	fi
+
+	# don't go more than MAXBOOTCOUNT w/o a quotacheck
+	if [ -e $DONTCHECK ]; then
+            echo `/bin/cat $DONTCHECK` boots since last quotacheck
+            if [ `cat $DONTCHECK` -gt $MAXBOOTCOUNT ]; then
+	        /bin/rm -f $DONTCHECK
+            else
+	        # advance counter
+	        /usr/bin/expr `/bin/cat $DONTCHECK` + 1 > $DONTCHECK
+            fi
+	fi
+
+	# do we have to do a quotacheck?
+	if [ -e $DONTCHECK ]; then
+	    echo "skipping quotacheck"
+        else
+	    # Check quota
+	    if [ -x /sbin/quotacheck ]
+	    then
+	        LINE1=`getmsg checking_disk_quotas_1`
+	        LINE2=`getmsg checking_disk_quotas_2`
+	        $LCD_STOP
+                $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+		echo "Checking quotas. This may take some time."
+		/sbin/quotacheck -avug
+		echo " Done."
+
+	        echo 0 > $DONTCHECK
+	    fi
+	fi
+
+	# turn quota on
+	if [ -x /sbin/quotaon ]; then
+	    echo "Turning on quota."
+	    /sbin/quotaon -avug
+	fi;;
+
+    stop)
+	if [ -x /sbin/quotaoff ]
+	then
+	    echo "Turning off quota."
+            /sbin/quotaoff -avug
+        fi;;
+esac

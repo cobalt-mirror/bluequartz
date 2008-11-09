@@ -1,0 +1,91 @@
+Summary: Sun Cobalt Shell Tools
+Name: [PRODUCT]-shell-tools
+Version: [VERSION]
+Release: 0
+Vendor: Sun Microsystems, Inc.
+Copyright: Sun Microsystems, Inc. 2001
+Group: Base
+Source: shell-tools.tar.gz
+BuildRoot: /var/tmp/%{name}-root
+BuildArchitectures: noarch
+
+%description
+This is a collection of perl scripts and modules to perfom ui functions
+from the command line
+
+%prep
+%setup -n shell-tools
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/scripts
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/conf
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/perl
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/perl/Getopt
+make install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+# Directories
+%attr(755,root,root) %dir /usr/shell-tools
+%attr(755,root,root) %dir /usr/shell-tools/conf
+%attr(755,root,root) %dir /usr/shell-tools/scripts
+%attr(755,root,root) %dir /usr/shell-tools/perl
+%attr(755,root,root) %dir /usr/shell-tools/perl/Getopt
+%attr(755,root,root) %dir /usr/sbin
+
+%attr(755,root,root) /usr/sbin/*
+
+# Files in /usr/shell-tools
+%attr(644,root,root) /usr/shell-tools/conf/*
+%attr(755,root,root) /usr/shell-tools/scripts/*
+%attr(644,root,root) /usr/shell-tools/perl/*.pm
+%attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
+
+%changelog
+* Mon May 21 2001 Jeff Bilicki <jeff.bilicki@sun.com>
+- 1.1-3
+- added the cservices module: man cservices
+- changed all Cobalt stuff to Sun stuff
+- updated the SEE ALSO sections of the man pages to reflect the new prog names
+
+* Tue Nov 28 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.1-2
+- change everything to c-program name including the name pages
+
+* Thu Sep 7 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.1-1 
+- added man pages
+- added suspend and unsuspend commands
+
+* Tue Sep 5 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.1-0
+- added -g [group] flag to useradd, use inplace of -d [fqdn]
+- fixed a problem with ASP not enabling on RaQ 4
+- changed syntax on delvsite from -f [fqdn] to -d [fqdn] for comformity
+- changed all the use Cobalt::* to require Cobalt::*
+
+* Fri Aug 25 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-5
+- added -w to adduser for email forward.
+
+* Wed Aug 16 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-4
+- minor fixes to adduser
+
+* Thu Jun 22 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-3
+- minor bug fixes
+
+* Tue Jun 13 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-2
+- added email alias field to adduser. 
+- create deluser and delvsitre for RaQ 3
+
+* Tue Jun 06 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-1
+- Initial creatation of the rpm for RaQ3 and RaQ4

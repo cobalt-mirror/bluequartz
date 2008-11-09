@@ -1,0 +1,63 @@
+Release Notes for MHonArc
+=========================
+<http://www.mhonarc.org/>
+
+Read the CHANGES document for changes that may affect you if you are
+a user of an earlier version of MHonArc.
+
+===========================================================================
+
+  ==>	IMPORTANT IF UPGRADING FROM v2.1.x OR EARLIER:
+    
+	If you have archives created with v2.1.x, or earlier, you
+	must update the archives before using versions v2.2, or
+	later.
+
+	To update your archives, you use the mha-dbedit program
+	using the def-mime.mrc in the examples directory.  For example:
+
+	    mha-dbedit -rcfile examples/def-mime.mrc \
+		       -outdir /path/to/archive
+
+	Make sure that the mhonarc you are using is v2.2, or later.
+	Change the -rcfile and -outdir pathnames to reflect where
+	you are running mhonarc and where your archive is located,
+	respectively.
+
+	Note, if your archives are using custom settings of
+	MIMEFILTERS, MIMEARGS, and/or CHARSETCONVERTERS resources,
+	you will need to create a variant version of def-mime.mrc
+	(included in the examples directory) to include your settings
+	and use the variant version when updating your archives.
+
+  ==>	If upgrading from v2.1.x, or earlier, any custom filters you
+	have developed may need to modified.  If your filter accessed
+	some main variables, your filter will not operate properly.
+	All variables that used to be in package "main" are no longer.
+	The major variables are now in package "mhonarc".  For example,
+	$::OUTDIR is now $mhonarc::OUTDIR.  See the MIMEFILTERS
+	resource page for more information.
+
+  ==>	See the Warnings in the documentation for the HTMLEXT and
+	MSGPREFIX resources before using them.
+
+  ==>	Occasionally, a new release of MHonArc may contain new
+	MIME filters.  See the CHANGES file to check if any new filters
+	have been added.
+
+	If you confirm that new filters have been added, and you want
+	to apply them to your archives, you use the mha-dbedit program
+	using the def-mime.mrc in the examples directory.  For example:
+
+	    mha-dbedit -rcfile examples/def-mime.mrc \
+		       -outdir /path/to/archive
+
+	Note, if your archives are using custom settings of
+	MIMEFILTERS, MIMEARGS, and/or CHARSETCONVERTERS resources,
+	you will need to create a variant version of def-mime.mrc
+	(included in the examples directory) to include your settings
+	and use the variant version when updating your archives.
+
+===========================================================================
+@(#) RELNOTES 00/04/24 00:20:38
+Earl Hood, mhonarc@pobox.com

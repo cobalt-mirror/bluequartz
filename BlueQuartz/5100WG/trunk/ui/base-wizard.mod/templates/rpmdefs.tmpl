@@ -1,0 +1,122 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0700, root, root) %{RootDir}/sbin/copy.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ x"`grep \"/usr/sausalito/sbin/copy.pl\" /etc/ccewrap.conf`" = x"" ]; then \
+	echo /usr/sausalito/sbin/copy.pl >> /etc/ccewrap.conf; \
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+rm -f /usr/sausalito/ui/web/base/wizard/start.html
+ln -s /usr/sausalito/ui/web/base/wizard/start.html.en /usr/sausalito/ui/web/base/wizard/start.html
+<end ui>
+<begin locale>
+# locale post-install
+if [ ! -e "/usr/sausalito/ui/web/base/wizard/start.html.zh-CN" ]; then \
+	if [ -e "/usr/sausalito/ui/web/base/wizard/start.html.zh_CN" ]; then \
+	        ln -s /usr/sausalito/ui/web/base/wizard/start.html.zh_CN /usr/sausalito/ui/web/base/wizard/start.html.zh-CN; \
+	fi; \
+fi
+ 
+if [ ! -e "/usr/sausalito/ui/web/base/wizard/start.html.zh-TW" ]; then \
+        if [ -e "/usr/sausalito/ui/web/base/wizard/start.html.zh_TW" ]; then \
+                ln -s /usr/sausalito/ui/web/base/wizard/start.html.zh_TW /usr/sausalito/ui/web/base/wizard/start.html.zh-TW; \
+        fi; \
+fi
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Sun Jul 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-59BQ1
+- build for BlueQuartz 5100WG.
+<end $CHANGELOG>

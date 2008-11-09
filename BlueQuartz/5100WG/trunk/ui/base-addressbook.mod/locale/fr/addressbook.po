@@ -1,0 +1,346 @@
+msgid "addressbook"
+msgstr "Carnet d´adresses"
+
+msgid "addressbookDescription"
+msgstr "Le [[base-addressbook.addressbook]] vous permet de rechercher les autres utilisateurs de ce serveur et de mettre à jour votre carnet d´adresses privé."
+
+# -------- Public Address Book (aka common)
+
+msgid "addressbookcommon"
+msgstr "Utilisateurs"
+
+msgid "addressbookcommonDescription"
+msgstr "Cliquez ici pour accéder aux coordonnées des autres utilisateurs de ce serveur."
+
+msgid "addressbookCommon"
+msgstr "Carnet d´adresses des utilisateurs"
+
+msgid "addressbookCommonView"
+msgstr "Afficher les coordonnées"
+
+
+# -------- Private Address Book
+
+msgid "addressbookprivate"
+msgstr "Personnel"
+
+msgid "addressbookprivateDescription"
+msgstr "Cliquez ici pour ajouter ou modifier les entrées de votre [[base-addressbook.addressbookPrivate]]."
+
+
+msgid "addressbookPrivate"
+msgstr "Carnet d´adresses personnel"
+
+msgid "addressbookPrivateAdd"
+msgstr "Ajouter un contact"
+
+msgid "addressbookPrivateModify"
+msgstr "Modifier un contact"
+
+
+# -------- Common Strings
+
+msgid "fullname"
+msgstr "Nom et prénom"
+
+msgid "fullname_rule"
+msgstr "Entrez n´importe quel caractère sauf deux-points. Jean Dupont est un exemple d´entrée correcte."
+
+msgid "fullname_help"
+msgstr "Affiche le nom et le prénom du contact."
+
+msgid "username"
+msgstr "Nom d´utilisateur"
+
+msgid "username_help"
+msgstr "Affiche le nom d´utilisateur du contact."
+
+msgid "email"
+msgstr "Adresse email"
+
+msgid "email_rule"
+msgstr "Entrez une adresse email de format correct. utilisateur@cobalt.com est un exemple d´entrée correcte."
+
+msgid "email_help"
+msgstr "Affiche l´adresse email du contact."
+
+msgid "userdesc"
+msgstr "Remarques"
+
+msgid "userdesc_help"
+msgstr "Affiche des informations supplémentaires sur le contact."
+
+# --------- Action icons
+msgid "view"
+msgstr "Détails"
+
+msgid "view_help"
+msgstr "Cliquez ici pour afficher les informations permettant de joindre ce contact."
+
+msgid "mail"
+msgstr "Courrier"
+
+msgid "mail_help"
+msgstr "Cliquez ici pour envoyer un message électronique à ce contact."
+
+msgid "web"
+msgstr "Web"
+
+msgid "web_help"
+msgstr "Cliquez ici pour afficher la page Web de cet utilisateur."
+
+msgid "listAction"
+msgstr "Actions"
+
+# re-used for action columns with different actions, so be generic
+msgid "listAction_help"
+msgstr "Cliquez sur les icônes pour intervenir sur l´entrée."
+
+
+# ------- View Contact Info (Public)
+
+msgid "phone"
+msgstr "Téléphone"
+
+msgid "phone_help"
+msgstr "Affiche le numéro de téléphone du contact."
+
+msgid "fax"
+msgstr "Fax"
+
+msgid "fax_help"
+msgstr "Affiche le numéro de fax du contact."
+
+msgid "homeUrl"
+msgstr "Adresse de page Web"
+
+msgid "homeUrl_help"
+msgstr "URL de la page Web du contact."
+
+msgid "address"
+msgstr "Adresse"
+
+msgid "address_help"
+msgstr "Affiche l´adresse du contact."
+
+
+# -------- Add/Modify Private Contact
+
+msgid "enterFullname"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "enterFullname_help"
+msgstr "Entrez le nom et le prénom de ce contact. [[base-addressbook.fullname_rule]]"
+
+msgid "enterEmail"
+msgstr "[[base-addressbook.email]]"
+
+msgid "enterEmail_help"
+msgstr "Entrez l´adresse email de ce contact. [[base-addressbook.email_rule]]"
+
+msgid "enterPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "enterPhone_help"
+msgstr "Entrez le numéro de téléphone de ce contact."
+
+msgid "enterFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "enterFax_help"
+msgstr "Entrez le numéro de fax de ce contact."
+
+msgid "enterHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "enterHomeUrl_help"
+msgstr "Entrez l´URL de la page Web de ce contact. ´http://www.monserveur.fr/~moncontact/´ est un exemple d´entrée correcte."
+
+msgid "enterAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "enterAddress_help"
+msgstr "Entrez l´adresse de ce contact."
+
+msgid "enterRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "enterRemarks_help"
+msgstr "Entrez des informations complémentaires (par exemple des commentaires ou description) sur ce contact."
+
+msgid "removeAddressbookPrivateConfirm"
+msgstr "Voulez-vous vraiment supprimer le contact [[VAR.fullname]] ?"
+
+
+
+# ------ Groups
+
+msgid "addressbookgroups"
+msgstr "Groupes"
+
+msgid "addressbookgroupsDescription"
+msgstr "Cliquez ici pour afficher la liste des groupes sur ce serveur."
+
+msgid "addressbookgroupsScrollList"
+msgstr "Liste des groupes"
+
+msgid "groupname"
+msgstr "Nom"
+
+msgid "groupname_help"
+msgstr "Affiche le nom du groupe."
+
+msgid "groupmembers"
+msgstr "Membres"
+
+msgid "groupmembers_help"
+msgstr "Membres du groupe."
+
+msgid "groupactions"
+msgstr "Actions" 
+
+msgid "groupactions_help"
+msgstr "Ce sont les actions qui peuvent être effectuées sur ces groupes."
+
+msgid "groupCountSingular"
+msgstr "[[VAR.count]] groupe"
+
+msgid "groupCountPlural"
+msgstr "[[VAR.count]] groupes"
+
+msgid "groupdesc"
+msgstr "Remarques"
+
+msgid "groupdesc_help"
+msgstr "Informations complémentaires sur chaque groupe."
+
+msgid "groupMail"
+msgstr "Courrier"
+
+msgid "groupMail_help"
+msgstr "Cliquez ici pour envoyer un message électronique à ce groupe."
+
+msgid "groupWeb"
+msgstr "Web"
+
+msgid "groupWeb_help"
+msgstr "Cliquez ici pour afficher la page Web de ce groupe."
+
+
+
+# -------- Get address from webmail
+
+msgid "addressbookimport"
+msgstr "Importer adresses"
+
+msgid "addressbookimportDescription"
+msgstr "Sélectionner adresses"
+
+msgid "addressesSelect"
+msgstr "Sélectionner"
+
+msgid "addressesSelect_help"
+msgstr "Sélectionnez les contacts à qui vous allez envoyer ce message."
+
+msgid "addressesSelectButton"
+msgstr "Sélectionner"
+
+msgid "addressesSelectButton_help"
+msgstr "Cliquez ici pour importer les adresses électroniques des contacts qui ont été sélectionnés."
+
+msgid "addressesFullName"
+msgstr "Nom et prénom"
+
+msgid "addressesFullName_help"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "addressesEmail"
+msgstr "Adresse email"
+
+msgid "addressesEmail_help"
+msgstr "[[base-addressbook.email]]"
+
+msgid "singleEmailEmptyMessage"
+msgstr "Le contact : ´[[VAR.name]]´ n´a pas d´adresse électronique."
+
+msgid "pluralEmailEmptyMessage"
+msgstr "Les contacts : ´[[VAR.names]]´ n´ont pas d´adresses électroniques."
+
+msgid "groupEmailFormat"
+msgstr "Groupe ´[[VAR.name]]´ <[[VAR.email]]>"
+
+msgid "addressbookprivate_help"
+msgstr "Cliquez ici pour importer les adresses électroniques depuis votre carnet d´adresses personnel."
+
+msgid "addressbookcommon_help"
+msgstr "Cliquez ici pour importer les adresses électroniques d´autres utilisateurs de ce serveur."
+
+# -------- Internal, extra stuff
+
+msgid "ellipses"
+msgstr "..."
+
+msgid "errorPrivateGetAll"
+msgstr "Une erreur s´est produite lors de la lecture de votre carnet d´adresses personnel."
+
+msgid "errorPrivateModify"
+msgstr "Une erreur s´est produite lors de la modification du carnet d´adresses."
+
+msgid "errorPrivateAdd"
+msgstr "Une erreur s´est produite lors de l´ajout d´une entrée à votre carnet d´adresses privé."
+
+msgid "errorPrivateDrop"
+msgstr "Une erreur s´est produite lors de la suppression d´une entrée de votre carnet d´adresses privé."
+
+msgid "errorPersonalGet"
+msgstr "Une erreur s´est produite lors de la tentative de récupération de vos informations personnelles."
+
+
+
+# --------- Personal Profile stuff
+
+msgid "addressbookPersonal"
+msgstr "Infos personnelles"
+
+msgid "addressbookPersonalDescription"
+msgstr "Cliquez ici pour gérer vos informations de contact personnelles."
+
+msgid "addressbookPersonalBlock"
+msgstr "Paramètres de contact personnel - [[VAR.name]]"
+
+msgid "persHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "persHomeUrl_help"
+msgstr "Entrez l´URL de votre page Web. http://www.monserveur.fr/~moncontact/ est un exemple d´entrée correcte."
+
+msgid "persPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "persPhone_help"
+msgstr "Entrez votre numéro de téléphone."
+
+msgid "persFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "persFax_help"
+msgstr "Entrez votre numéro de fax."
+
+msgid "persAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "persAddress_help"
+msgstr "Entrez votre adresse."
+
+msgid "persRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "persRemarks_help"
+msgstr "Entrez des informations complémentaires, commentaires ou description par exemple."
+
+
+# ---------- POSSIBLY HOMELESS ----------
+
+msgid "addresses"
+msgstr "Adresses"
+

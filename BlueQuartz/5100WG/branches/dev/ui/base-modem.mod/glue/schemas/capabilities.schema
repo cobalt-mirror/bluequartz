@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifySystemModem" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemModem)"/>
+	<property name="nameTag" type="scalar" default="[[base-modem.cap_modifySystemModem]]"/>
+</class>

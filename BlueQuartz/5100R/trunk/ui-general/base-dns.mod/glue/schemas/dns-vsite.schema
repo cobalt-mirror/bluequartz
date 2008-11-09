@@ -1,0 +1,9 @@
+<class
+    name="Vsite" namespace="DNS" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+        <property
+        name="domains" type="scalar" default="" array="yes"
+        writeacl="ruleCapable(adminUser)"
+        />
+</class>

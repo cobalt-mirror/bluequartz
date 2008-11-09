@@ -1,0 +1,36 @@
+#!/usr/bin/perl -U 
+
+# Author: Mike Waychison, Kevin K.M. Chiu
+# Copyright 2000, Cobalt Networks.  All rights reserved.
+# $Id: setTime 3 2003-07-17 15:19:15Z will $
+
+use lib "/usr/sausalito/perl";
+
+use POSIX;
+use CCE;
+
+my ($epochTime, $timeZone, $ntpAddress, $hasNtp) = @ARGV;
+
+# make attributes for time. only include the things that actually change.
+my %attributes;
+$attributes{epochTime} = $epochTime if $epochTime;
+$attributes{timeZone} = $timeZone if $timeZone;
+$attributes{ntpAddress} = $ntpAddress if $hasNtp;
+
+my $pid;
+defined($pid = fork) or die "Can't fork: $!";
+exit if $pid;
+
+POSIX::setsid() or die "Can't start a new session: $!";
+
+# set time into CCE
+my $cce = new CCE();
+$cce->connectuds();
+# We must auth to CCE so that our sessionId doesn't expire
+$cce->authkey($ENV{CCE_USERNAME}, $ENV{CCE_SESSIONID});
+
+my ($sysId) = $cce->find('System');
+$cce->set($sysId, 'Time', \%attributes);
+$cce->bye('SUCCESS');
+
+exit 0;

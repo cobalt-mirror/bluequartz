@@ -1,0 +1,31 @@
+<class name="System" namespace="LdapImport" version="1.0">
+	<property name="server"        type="hostname" optional="yes"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="base"          type="scalar" optional="yes"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="bindDn"        type="scalar" optional="yes"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="passwordAuth"          type="word" optional="yes"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="userFilter"        type="scalar" optional="yes"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="groupFilter"        type="scalar" optional="yes"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+	<property name="now"           type="word" default="0"
+		writeacl="ruleCapable(modifySystemLdapImport)"/>
+</class>
+
+<class name="System" namespace="LdapExport" version="1.0">
+	<property name="exportEnabled" type="boolean" writeacl="ruleCapable(modifyLdapExport)"/>
+	<property name="baseDn" type="scalar" optional="yes" writeacl="ruleCapable(modifyLdapExport)"/>
+	<property name="emailBase" type="hostname" readacl="ruleAll" optional="yes" writeacl="ruleCapable(modifyLdapExport)"/>
+</class>
+
+<class name="User" namespace="LdapImport" version="1.0" createacl="ruleCapable(createUser)" destroyacl="ruleCapable(destroyUser)">
+	<property name="syncCount" type="int" writeacl="ruleCapable(modifyUser)"/>
+</class>
+
+<class name="Workgroup" namespace="LdapImport" createacl="ruleCapable(createWorkgroup)" destroyacl="ruleCapable(destroyWorkgroup)" version="1.0">
+	<property name="syncCount" writeacl="ruleCapable(modifyWorkgroup)" type="int"/>
+</class>
+

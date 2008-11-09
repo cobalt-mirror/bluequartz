@@ -1,0 +1,128 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl
+# $Id: 10ipnmgw 3 2003-07-17 15:19:15Z will $
+#
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved
+#
+# This script is called when the user requests 
+# Setup Network from the LCD panel and during 
+# the first boot. It sets the
+# Primary IP address, netmask and gateway.
+
+use POSIX;
+use Getopt::Std;
+use CCE;
+require LCD;
+
+use vars qw/ $opt_c $opt_s /;
+
+system("/sbin/lcdstop");
+
+getopts("sci:");
+$method = ($opt_c) ? "console" : "lcd";
+$option = ($opt_s) ? "-s" : "";
+
+sub debug {
+    my @args = @_;
+
+    system("echo $args[0] ip $my_ip nm $my_nm >/dev/cua0");
+    system("/sbin/route >/dev/cua0");
+    system("/sbin/ifconfig >/dev/cua0");
+    system("/bin/ping -c 4 $my_ip >/dev/cua0");
+}
+
+# use primary interface by default
+$interface = ($opt_i) ? $opt_i : "eth0";
+
+# Get any current data and setup CCE if can't find needed objects
+my $cce = new CCE;
+$cce->connectuds();
+
+my (@soids) = $cce->find("System");
+# If couldn't find one, create one.
+if (@soids == 0) {
+    $cce->create("System", { hostname => "localhost", 
+                             domainname => "localdomain" });
+    @soids = $cce->find("System");
+}
+my ($ok, $object) = $cce->get( $soids[0] );
+$my_gw = ${$object}{'gateway'} if ($ok);
+
+my (@noids) = $cce->find("Network", { device => $interface } );
+# If couldn't find one, create one.
+if (@noids == 0) {
+    $cce->create("Network", { device => $interface });
+    @noids = $cce->find("Network", { device => $interface } );
+}
+
+($ok, $object) = $cce->get( $noids[0] );
+if ($ok) {
+    $my_ip = ${$object}{'ipaddr'};
+    $my_nm = ${$object}{'netmask'};
+}
+
+# if all else fails set them to some defaults (0's and such)
+$my_gw = "0.0.0.0" unless $my_gw;
+$my_nm = "0" unless $my_nm;       # We'll guess later
+$my_ip = "0.0.0.0" unless $my_ip;
+
+my (@ip);
+
+$dup = 1;
+do {
+# Enter IP
+    $my_ip = &LCD::get_ipaddr($method,$my_ip,$interface,$option);
+    @ip = split(/\./,$my_ip);
+
+# Enter Netmask
+    # If we couldn't get an already set netmask, set according to IP
+    if ($my_nm eq "0") {
+	if ($ip[0] < 127) {
+	    $my_nm = "255.0.0.0";
+	}
+	elsif ($ip[0] < 192) {
+	    $my_nm = "255.255.0.0";
+	}
+	else {
+	    $my_nm = "255.255.255.0";
+	}
+    }
+    $my_nm = &LCD::get_netmask($method,$my_nm,$interface,$option);
+    
+# Enter Gateway
+    $my_gw = &LCD::get_gateway($method,$my_gw,$option);
+
+    # FIXME - Verification step needed here
+    $dup = 0;
+} while ($dup == 1);
+
+if (! &LCD::save($method,$my_ip,$my_nm,$my_gw)) {
+    $cce->bye('SUCCESS');
+    exit 1;
+}
+
+# Write to this file to indicate that we've configured the
+# network. This file used as a flag when bringing the interface up.
+system("/bin/touch /etc/NET-CONFIG");
+
+# Update CCE with settings
+# Update the IP address and netmask of the interface
+$cce->set( $noids[0], "", { ipaddr => $my_ip, netmask => $my_nm,
+                            enabled => "1", bootproto => "none" } )
+    if (@noids > 0);
+
+$my_gw = ($my_gw eq "none") ? "" : $my_gw;
+
+if (@soids > 0) {
+    # Update the gateway
+    $cce->set( $soids[0], "", { gateway => $my_gw } ); 
+    if ( $my_gw ) {
+        $cce->set( $soids[0], "Network", { internetMode => "lan" } );
+    } else {
+        $cce->set( $soids[0], "Network", { internetMode => "none" } );
+    }
+}
+
+$cce->bye('SUCCESS');
+
+exit(2);

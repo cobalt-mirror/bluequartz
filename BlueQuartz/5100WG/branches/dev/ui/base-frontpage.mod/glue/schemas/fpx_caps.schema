@@ -1,0 +1,14 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: fpx_caps.schema 201 2003-07-18 19:11:07Z will $
+    
+    Capabilities related to Frontpage.
+-->
+
+<!-- this is used to show or hide the fpx menu in site settings -->
+<class
+    name="Capabilities" namespace="siteFrontpage" version="1.0"
+>
+    <property name="capable" type="boolean" default="1"/>
+</class>
+

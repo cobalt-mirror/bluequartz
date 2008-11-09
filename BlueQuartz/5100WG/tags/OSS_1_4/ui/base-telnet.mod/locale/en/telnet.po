@@ -1,0 +1,46 @@
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Telnet Settings can be configured here."
+
+msgid "telnetSettings"
+msgstr "Telnet Settings"
+
+msgid "access"
+msgstr "Access"
+
+msgid "access_help"
+msgstr "Choose the policy for telnet access.  Telnet is used by advanced users or the server administrator to run shell scripts or use shell commands. Turning off or restricting telnet access is suggested for increased security. "
+
+msgid "none"
+msgstr "Off - Do Not Allow Logins"
+
+msgid "root"
+msgstr "On - Allow Only Administrator Logins"
+
+msgid "reg"
+msgstr "On - Allow All User Logins"
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Telnet Server"
+
+msgid "amDetailsTitle"
+msgstr "Telnet Server Details"
+
+msgid "amNotAccepting"
+msgstr "The telnet server is not running."
+
+msgid "amStatusOK"
+msgstr "The telnet server is operating normally."
+
+# Capabilities
+
+msgid "capgroup_adminTelnet"
+msgstr "Manage Telnet"
+
+msgid "capgroup_adminTelnet_help"
+msgstr "This administrative right allows a user to manage telnet access to this machine"
+

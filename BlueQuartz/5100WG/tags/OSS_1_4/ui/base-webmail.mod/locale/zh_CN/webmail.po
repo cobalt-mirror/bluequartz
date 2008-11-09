@@ -1,0 +1,546 @@
+# -------- Initial labels and descriptions
+msgid "webmail"
+msgstr "WebMail"
+
+msgid "version"
+msgstr "版本 1.0"
+
+msgid "webmailDescription"
+msgstr "[[base-webmail.webmail]]允许您使用 Web 浏览器发送和阅读电子邮件。"
+
+msgid "webmailSplash"
+msgstr "[[base-webmail.webmailDescription]]"
+
+msgid "splashWelcomeTo"
+msgstr "欢迎使用 [[base-carmel.osVendor]] WebMail!"
+
+msgid "splashWelcomeTo_monterey"
+msgstr "欢迎使用 Sun Cobalt Webmail！"
+
+# Messages Tab
+msgid "messages"
+msgstr "邮件"
+
+msgid "messagesDescription"
+msgstr "[[base-webmail.webmailSplash]]"
+
+msgid "logout"
+msgstr "退出"
+
+msgid "logoutDescription"
+msgstr "单击此处关闭 WebMail"
+
+
+# -------- Menu Items
+msgid "compose"
+msgstr "编写"
+
+msgid "composeDescription"
+msgstr "单击此处编写新的电子邮件。"
+
+msgid "mailboxes"
+msgstr "文件夹列表"
+
+msgid "mailboxesDescription"
+msgstr "单击此处查看电子邮件文件夹。" 
+
+msgid "inbox"
+msgstr "收件箱"
+
+msgid "inboxDescription"
+msgstr "接收到的邮件"
+
+msgid "sent"
+msgstr "发送"
+
+msgid "sentDescription"
+msgstr "已发送邮件"
+
+msgid "sent-mail"
+msgstr "已发送邮件"
+
+msgid "Sent-mail_help"
+msgstr "“已发送邮件”文件夹包含您已经发送的电子邮件。"
+
+msgid "mailboxadmin"
+msgstr "管理文件夹"
+
+msgid "mailboxadminDescription"
+msgstr "单击此处添加、重命名或删除电子邮件文件夹。"
+
+msgid "maillists"
+msgstr "邮件列表"
+
+msgid "maillistsDescription"
+msgstr "单击此处查看您当前预订的邮件列表的归档。"
+
+msgid "openThisMaillistFolder"
+msgstr "单击此处查看此邮件列表归档。"
+
+
+# ------- General Purpose Strings (these get re-used)
+
+msgid "to"
+msgstr "收件人"
+
+msgid "cc"
+msgstr "CC"
+
+msgid "from"
+msgstr "发件人"
+
+msgid "attachments"
+msgstr "附件"
+
+msgid "attachments_help"
+msgstr "邮件中包含的附件。"
+
+msgid "subject"
+msgstr "主题"
+
+msgid "subject_help"
+msgstr "这是邮件的主题。"
+
+msgid "noSubject"
+msgstr "<无主题>"
+
+msgid "noSender"
+msgstr "<无发送人>"
+
+msgid "bcc"
+msgstr "Bcc"
+
+msgid "body"
+msgstr "邮件"
+
+msgid "viewAsHTML"
+msgstr "[此电子邮件已以 HTML 格式发送。要查看带有格式的电子邮件，请单击上面的“按 HTML 格式查看”。]\n\n\n"
+
+msgid "body_help"
+msgstr "这是电子邮件消息。"
+
+msgid "sender"
+msgstr "发送人"
+
+msgid "sender_help"
+msgstr "这是邮件发送人的姓名或电子邮件地址。"
+
+msgid "date"
+msgstr "日期"
+
+msgid "date_help"
+msgstr "这是接收邮件的日期。"
+
+msgid "forward"
+msgstr "转发"
+
+msgid "forward_help"
+msgstr "单击此处将此邮件转发给另一收件人。"
+
+msgid "remove"
+msgstr "删除"
+
+msgid "remove_help"
+msgstr "单击此处删除此邮件。"
+
+	# JS confirm
+msgid "removeMessage"
+msgstr "是否确定要删除此邮件？"
+
+
+msgid "subject_empty"
+msgstr "对不起，您没有输入[[base-webmail.cmpSubject]]。"
+
+msgid "body_empty"
+msgstr "对不起，您没有输入任何邮件文本。"
+
+msgid "toAddy_empty"
+msgstr "对不起，您没有在“收件人”字段中输入此电子邮件的收件人。"
+
+msgid "toAddy_invalid"
+msgstr "对不起，在“收件人”字段中输入的电子邮件地址无法识别。请输入 'jsmith@company.com' 或 'John Smith <jsmith@company.com>' 形式的电子邮件地址，中间用逗号隔开。"
+
+msgid "ccAddy_invalid"
+msgstr "对不起，在 Cc 字段中输入的电子邮件地址无法识别。请输入 'jsmith@company.com' 或 'John Smith <jsmith@company.com>' 形式的电子邮件地址，中间用逗号隔开。"
+
+msgid "bccAddy_invalid"
+msgstr "对不起，在 BCC 字段中输入的电子邮件地址无法识别。请输入 'jsmith@company.com' 或 'John Smith <jsmith@company.com>' 形式的电子邮件地址，中间用逗号隔开。"
+
+
+
+# ------- Compose page
+
+msgid "composeMsg"
+msgstr "编写"
+
+
+msgid "cmpTo"
+msgstr "收件人"
+
+msgid "cmpTo_help"
+msgstr "输入此邮件收件人的电子邮件地址。您可使用逗号将电子邮件地址隔开。"
+
+msgid "cmpCc"
+msgstr "CC"
+
+msgid "cmpCc_help"
+msgstr "输入接收此邮件副本的收件人电子邮件地址。您可使用逗号将电子邮件地址隔开。"
+
+msgid "cmpBcc"
+msgstr "BCC"
+
+msgid "cmpBcc_help"
+msgstr "输入接收此邮件副本的收件人的电子邮件地址。密送 (Bcc) 将不在邮件中包含其他收件人列表。您可使用逗号将电子邮件地址隔开。"
+
+msgid "cmpAttachments"
+msgstr "附件"
+
+msgid "cmpAttachments_help"
+msgstr "这是此邮件的附件列表。文件附件可通过单击附件列表右侧的图标来添加或删除。"
+
+msgid "cmpAttachmentsSingle"
+msgstr "[[base-webmail.cmpAttachments]]"
+
+msgid "cmpAttachmentsSingle_help"
+msgstr "单击“浏览”按钮为此邮件添加附件。"
+
+msgid "cmpAddAttachment"
+msgstr "添加"
+
+msgid "cmpAddAttachment_help"
+msgstr "单击此处添加附件。"
+
+msgid "cmpRemoveAttachment"
+msgstr "删除"
+
+msgid "cmpRemoveAttachment_help"
+msgstr "单击此处删除附件。"
+
+msgid "cmpSubject"
+msgstr "主题"
+
+msgid "cmpSubject_help"
+msgstr "输入此邮件的主题。"
+
+msgid "cmpBody"
+msgstr "邮件"
+
+msgid "cmpBody_help"
+msgstr "在此处输入您的电子邮件。"
+
+msgid "send"
+msgstr "发送"
+
+msgid "send_help"
+msgstr "单击此处发送此邮件。"
+
+msgid "messageSent"
+msgstr "邮件已发送"
+
+msgid "msgSent"
+msgstr "收信地址"
+
+msgid "msgSent_help"
+msgstr "您的邮件所发送到的地址。"
+
+msgid "errorSettingAnsweredFlag"
+msgstr "对不起，在尝试将邮件标记为“已答复”时出现错误。"
+
+msgid "forwardMsg"
+msgstr "转发"
+
+msgid "origMsgSeparator"
+msgstr "---------- 原始邮件 ----------\n"
+
+msgid "forwardMsgSeparator"
+msgstr "---------- 转发邮件 ----------\n"
+
+msgid "replyto"
+msgstr "回复至"
+
+# ------- Folder List 
+
+
+msgid "Inbox_help"
+msgstr "收件箱中包含接收的邮件。"
+
+msgid "removeMessages"
+msgstr "删除"
+
+msgid "removeMessages_help"
+msgstr "单击此处删除所选择的邮件。您一次只能删除一页邮件。"
+
+msgid "removeMessagesConfirm"
+msgstr "是否确定要删除所选择的邮件？"
+
+msgid "errorRemovingMessageNoneSelected"
+msgstr "请首先选择希望删除的邮件。您一次只能删除一页邮件。没有删除的邮件。"
+
+msgid "errorMovingMessage"
+msgstr "对不起，在尝试移动所选择的邮件时出现错误。"
+
+msgid "errorMovingMessageNoneSelected"
+msgstr "请首先选择希望移动的邮件。您一次只能移动一页邮件。没有移动的邮件。 "
+
+msgid "status"
+msgstr " "
+
+msgid "status_help"
+msgstr "这是每个邮件的状态。已阅读邮件以圈表示，未阅读的邮件以点表示。"
+
+msgid "openThisFolder"
+msgstr "单击此处查看此文件夹中的邮件列表。"
+
+# --------- Inbox
+
+msgid "shownMessage"
+msgstr "（显示[[VAR.showing]]封）"
+
+msgid "showingAll"
+msgstr "全部"
+
+msgid "singularMessage"
+msgstr "[[VAR.count]]封邮件"
+
+msgid "pluralMessages"
+msgstr "[[VAR.count]]封邮件"
+
+msgid "keyTitle"
+msgstr "邮件键值"
+
+msgid "keyReplied"
+msgstr "邮件已回复或转发。"
+
+msgid "keyNew"
+msgstr "邮件是新邮件或未被阅读。"
+
+msgid "keyOld"
+msgstr "邮件已经阅读。"
+
+
+
+
+# --------- Read Message
+
+msgid "readMessage"
+msgstr "阅读邮件"
+
+msgid "reply"
+msgstr "回复"
+
+msgid "reply_help"
+msgstr "单击此处回复邮件作者。"
+
+msgid "replyAll"
+msgstr "回复全部"
+
+msgid "replyAll_help"
+msgstr "单击此处回复邮件作者及其他所有接收人。"
+
+msgid "from_help"
+msgstr "这是邮件发送人的电子邮件地址。"
+
+msgid "read_to"
+msgstr "收件人"
+
+msgid "read_to_help"
+msgstr "这是接收电子邮件的地址。"
+
+msgid "read_cc"
+msgstr "CC"
+
+msgid "read_cc_help"
+msgstr "这是接收该邮件附件的其他电子邮件地址。"
+
+msgid "viewHtml"
+msgstr "以 HTML 查看"
+
+
+# ---------- Read Message Action (reply, replyall, forward, remove, move)
+
+msgid "replyMsg"
+msgstr "回复"
+
+msgid "replyAllMsg"
+msgstr "回复全部"
+
+
+
+
+# --------- Sent Mail
+
+msgid "sentto"
+msgstr "收件人"
+
+msgid "sentto_help"
+msgstr "这是接收电子邮件的地址。"
+
+msgid "dateSent"
+msgstr "日期"
+
+msgid "dateSent_help"
+msgstr "这是发送消息的日期。"
+
+
+
+
+# --------- Manage Folders
+
+msgid "mailboxName"
+msgstr "名称"
+
+msgid "mailboxName_help"
+msgstr "这是文件夹的名称。"
+
+msgid "mailboxAction"
+msgstr "操作"
+
+msgid "mailboxAction_help"
+msgstr "单击编辑图标编辑文件夹，或单击删除按钮删除文件夹。"
+
+msgid "removeMailbox"
+msgstr "删除"
+
+msgid "addMailbox"
+msgstr "添加"
+
+msgid "addMailbox_help"
+msgstr "单击此处添加新文件夹。"
+
+msgid "mailboxDeleteStatus"
+msgstr "文件夹删除状态"
+
+msgid "confirmRemoveMailbox"
+msgstr "是否确定要删除文件夹 '[[VAR.name]]'？"
+
+msgid "deletionMailboxFailed"
+msgstr "对不起，在尝试删除文件夹时出现错误。"
+
+
+# --------- Add Folder
+
+
+msgid "createMailbox"
+msgstr "文件夹"
+
+msgid "newMailboxName"
+msgstr "名称"
+
+msgid "mailboxName_rule"
+msgstr "请输入 1 到 250 个字符的名称。"
+
+msgid "newMailboxName_help"
+msgstr "输入您希望添加的新文件夹名称。"
+
+# Used for both create/rename
+msgid "mailbox_empty"
+msgstr "对不起，您没有输入文件夹名称。"
+
+msgid "mailboxNameIsTooLong"
+msgstr "文件夹名称 '[[VAR.mailboxName]]' 过长。[[base-webmail.mailboxName_rule]]" 
+
+msgid "mailboxCreationFailed"
+msgstr "对不起，在尝试创建文件夹 '[[VAR.mailbox]]' 时出现错误。"
+
+msgid "mailboxOnlyWhitespace"
+msgstr "对不起，您输入了只包含空格的文件夹名称。请输入也包含其它字符的名称。" 
+
+msgid  "mailboxInitalPeriod"
+msgstr "对不起，您输入了以句点作为第一个字符的文件夹名称。这不是允许的邮箱名称。"
+
+# ---------- Rename Folder
+
+msgid "renameMailbox"
+msgstr "修改文件夹—[[VAR.origMailbox]]"
+
+msgid "renameMailboxName"
+msgstr "名称"
+
+msgid "renameMailboxName_help"
+msgstr "输入此文件夹的新名称。"
+
+msgid "mailboxRenamingFailed"
+msgstr "对不起，在尝试将文件夹 '[[VAR.oldName]]' 重命名为 '[[VAR.newName]]' 时出现错误。"
+
+
+
+# ----------- Login Page
+
+msgid "welcomeTo"
+msgstr "欢迎使用[[carmel.osVendor]]WebMail。请输入访问邮件的登录名和口令。"
+
+msgid "webmailLogin" 
+msgstr "WebMail 登录"
+
+msgid "login"
+msgstr "登录"
+
+msgid "password"
+msgstr "口令"
+
+msgid "submit"
+msgstr "提交"
+
+msgid "authenticationFailed"
+msgstr "对不起，认证失败。请检查您的用户名和口令，然后重试。"
+
+msgid "imapLocked"
+msgstr "对不起，连接邮箱失败。请稍后再试。"
+
+msgid "imapServerDown"
+msgstr "对不起，连接 IMAP 服务器失败。服务器可能出现问题，或者被您的系统管理员禁用。请与系统管理员联系，寻求帮助。"
+
+msgid "noImapAccount"
+msgstr "对不起，您在此 IMAP 服务器上没有帐户。请与系统管理员联系。"
+
+# ----------- Internal Stuff
+
+
+msgid "re"
+msgstr "事由： "
+
+msgid "fwd"
+msgstr "转发： "
+
+msgid "moveto"
+msgstr "移动至..."
+
+msgid "mailFolder"
+msgstr "邮件/"
+
+# name of sentmail for IMAP connect
+msgid "sentMailFolder"
+msgstr "已发送邮件"
+
+msgid "inboxFolder"
+msgstr "收件箱"
+
+msgid "INBOX"
+msgstr "收件箱"
+
+msgid "errorFetchingHeader"
+msgstr "读取邮件信头时出现错误"
+
+msgid "errorFetchingStructure"
+msgstr "读取邮件结构时出现错误"
+
+msgid "errorSendingMessageSingle"
+msgstr "对不起，尝试发送邮件时出现错误。电子邮件地址 '[[VAR.emails]]' 无效或不存在。"
+
+msgid "errorSendingMessagePlural"
+msgstr "对不起，尝试发送邮件时出现错误。电子邮件地址 '[[VAR.emails]]' 无效或不存在。"
+
+msgid "errorArchivingMessage"
+msgstr "邮件已发送，但在尝试向您的“已发送邮件”文件夹保存副本时出现错误。"
+
+
+
+# -------- Other Stuff
+msgid "ok"
+msgstr "Ok"
+
+msgid "webmailDownImapNotRunning"
+msgstr "WebMail 已被您的系统管理员禁用。"
+
+
+

@@ -1,0 +1,30 @@
+#!/usr/bin/perl -I../perl_modules
+# $Id: fileTest 922 2003-07-17 15:22:40Z will $
+
+use strict;
+use lib "../perl_modules";
+
+my $fileName = "/tmp/file.xml";
+
+
+treeXml($fileName);
+
+
+exit 0;
+
+sub treeXml {
+	require TreeXml;
+	my $file = shift;
+	my $data = TreeXml::readXml($file, 0);
+
+	my $cmd = `basename $0`;
+	chomp($cmd);
+	warn `ps -C $cmd -o pid,\%cpu,\%mem,rss,vsize,state,etime,fname --no-headers`;
+
+	warn "data is: ", $data, "\n";
+	#TreeXml::writeXml($data, "/tmp/out.xml");
+#	use Data::Dumper;
+#	warn Dumper($data);
+
+	return; 
+}

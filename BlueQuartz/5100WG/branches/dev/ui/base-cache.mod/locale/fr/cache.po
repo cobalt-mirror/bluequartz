@@ -1,0 +1,57 @@
+# The following are the strings used for the menu.
+
+msgid "pkgName"
+msgstr "Sun Cobalt Web Cache"
+
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgDescription"
+msgstr "Le module [[base-cache.pkgName]] améliore les performances réseau en stockant temporairement dans un cache les pages Web demandées."
+
+msgid "cache"
+msgstr "Cache Web"
+
+msgid "cache_description"
+msgstr "Les [[base-cache.modifyCache]] peuvent être modifiés ici."
+
+# The following are the strings used for the modification screen.
+
+msgid "modifyCache"
+msgstr "Paramètres du cache Web"
+
+msgid "enabled"
+msgstr "Activer le cache"
+
+msgid "enabled_help"
+msgstr "Active ou désactive le cache Web. Si activé, ce serveur agira comme serveur de mise en cache proxy pour les clients web, ce qui peut augmenter la vitesse d'affichage des pages Web et réduire les besoins de bande passante. Pour bénéficier de cette fonction, les navigateurs Web doivent être configurés pour pouvoir utiliser ce serveur comme proxy HTTP, avec 3128 comme numéro de port."
+
+# The following are used by the handler.
+
+msgid "no_system_object"
+msgstr "Une erreur s'est produite. L'objet Système est introuvable."
+
+msgid "no_prim_network_object"
+msgstr "Une erreur s'est produite. L'objet Réseau pour l'interface primaire est introuvable."
+
+# Active Monitor Strings
+
+msgid "amNameTag"
+msgstr "Cache Web"
+
+msgid "amStatusOK"
+msgstr "Le [[base-cache.amNameTag]] fonctionne normalement."
+
+msgid "amNotRunning"
+msgstr "Le [[base-cache.amNameTag]] ne fonctionne pas."
+
+msgid "amDetailsTitle"
+msgstr "Détails du Cache Web"
+
+# Capabilities
+
+msgid "capgroup_adminWebCache"
+msgstr "Gérer le Cache Web et l'accès Web"
+
+msgid "capgroup_adminWebCache_help"
+msgstr "Ce droit administratif permet à un utilisateur de modifier les paramètres utilisés par le Cache Web"

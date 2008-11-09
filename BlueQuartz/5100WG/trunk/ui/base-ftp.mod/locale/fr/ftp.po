@@ -1,0 +1,57 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftp_help"
+msgstr "Les [[base-ftp.ftpSettings]] peuvent être modifiés ici."
+
+msgid "ftpSettings"
+msgstr "Paramètres du serveur de transfert de fichiers (FTP)"
+
+msgid "enableServerField"
+msgstr "Activer le serveur"
+
+msgid "enableServerField_help"
+msgstr "Active ou désactive le serveur de transfert de fichiers (FTP). L'accès FTP anonyme est configuré en allant à [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Utilisateurs simultanés maximum"
+
+msgid "maxUserField_rule"
+msgstr "Entrez un nombre entier compris entre 1 et 1024. La valeur par défaut est 25."
+
+msgid "maxUserField_help"
+msgstr "Définissez le nombre maximum d'utilisateurs qui peuvent être connectés au serveur FTP simultanément. [[base-ftp.maxUserField_rule]]"
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "Serveur de transfert de fichiers (FTP)"
+
+msgid "amDetailsTitle"
+msgstr "Détails du serveur de transfert de fichiers (FTP)"
+
+msgid "amNotResponding"
+msgstr "Le serveur FTP ne fonctionne pas."
+
+msgid "base-ftp.amBadResponse"
+msgstr "Le serveur FTP a donné une mauvaise réponse."
+
+msgid "amStatusOK"
+msgstr "Le serveur FTP fonctionne normalement."
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "Les fichiers de configuration du serveur FTP ont été supprimés ou modifiés manuellement, restaurez leur version initiale et recommencez."
+
+msgid "cantConfigFile"
+msgstr "Une erreur s'est produite lors de la tentative de modification des fichiers de configuration du serveur FTP. [[base-ftp.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminFtpServer"
+msgstr "Gérer les paramètres du serveur FTP"
+
+msgid "capgroup_adminFtpServer_help"
+msgstr "Ce droit administratif permet à un utilisateur de modifier les paramètres utilisés par le serveur FTP sur cette machine"

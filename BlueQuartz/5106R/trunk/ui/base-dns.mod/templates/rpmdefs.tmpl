@@ -1,0 +1,189 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+/etc/cobaltdns.DION
+/etc/cobaltdns.OCN-JT
+/etc/cobaltdns.RFC2317
+%attr(0700,root,root)%{RootDir}/sbin/named_enable.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+if [ -d /var/named/chroot/var/named ]; then
+  chmod 0770 /var/named/chroot/var/named
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-93BQ28
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-93BQ27
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-93BQ26
+- Fixed duplicate include issue.
+
+* Thu Oct 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ25
+- modify dns-vsite.schema to fix the issue that admin user doesn't create Vsite.
+
+* Sat Sep 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ24
+- chmod 0770 /var/named/chroot/var to fix the issue for secondary server.
+
+* Mon Aug 14 2006 Brian N. Smith <brian@nuonce.net> 1.1.0-93BQ23
+- Added back "auto_a" & "auto_mx".  Accidentially over wrote this file
+
+* Mon Aug 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ22
+- Added Japanese messages.
+
+* Sat Aug 12 2006 Brian N. Smith <brian@nuonce.net> 1.1.0-93BQ21
+- Added: dns-vsite.schema it was left off from previous update
+
+* Sat Aug 12 2006 Brian N. Smith <brian@nuonce.net> 1.1.0-93BQ20
+- Added: dns_caps.schema for dnsAdmin
+- Added: array.inc - array_merge doesn't work well when keys are ints
+- Added: vsite_dns_add.php - new Virtual Site DNS Manager
+- Added: vsite_dns_soa.php - new Virtual Site DNS Manager
+- Added: vsite_records.php - new Virtual Site DNS Manager
+- Added: base-dns-vsite.xml - Virtual Site menu for DNS Manager
+- Modified: validate_dnsrecords.pl - Duplicate check errors, disable error.  DNS allowed dups.
+- Modified: dns.schema changed adminUser -> dnsAdmin for DNS Records & Commit
+- Modified: dns.po - Added English Language for new feature.  JA needs to be added still.
+
+* Wed Aug 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ19
+- Added Japanese messages.
+
+* Sat Aug 05 2006 Brian N. Smith <brian@nuonce.net> 1.1.0-93BQ18
+- Added "auto_a" & "auto_mx" to schema file
+- Added "auto_dns" tab into DNS Web GUI
+- Added "auto_a", "auto_a_help", "auto_mx", "auto_mx_help" into English Locale
+-   Also added: "auto_dns" & "auto_dns_help"
+-   Need to add Japanese Language File
+
+* Thu Jul 20 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ17
+- restart cced.init after installing.
+
+* Thu Jul 20 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ16
+- modify message file for Japanese.
+
+* Thu Jul 20 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ15
+- add Requires sausalito-palette >= 0.5.1-0BQ2 for InetAddress class.
+- add recursion request form.
+
+* Thu May 04 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ14
+- Addition for custom include named.conf file by C. Hemsing.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ13
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ12
+- rebuild with devel-tools 0.5.1
+
+* Sun Oct 09 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ11
+- modified validate_dnsrecords.pl to fix the issues that no hostname record is not added if same domain record is exist.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ10
+- modified Group tag in rpmdefs.tmpl.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ9
+- add serial number.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-93BQ8
+- clean up spec file.
+<end $CHANGELOG>

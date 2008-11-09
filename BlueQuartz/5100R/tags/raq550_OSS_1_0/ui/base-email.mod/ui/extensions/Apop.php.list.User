@@ -1,0 +1,35 @@
+<?php
+// $Id: Apop.php.list.User,v 1.2 2001/07/26 04:15:29 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+// UI extension for user list - shows icon if user has APOP access
+
+include_once('UIExtension.php');
+
+class APOPExtension extends UIExtension
+{
+	function display(&$helper, &$container, &$prams)
+	{
+		$factory = $helper->getHtmlComponentFactory("base-email");
+		$cce = $helper->getCceClient();
+
+		// don't show if not enabled for vsite
+		if ( isset($prams["VSITE_OID"]) ) {
+			$feature = $cce->get($prams["VSITE_OID"], "APOP");
+			if ( !$feature["enabled"] )
+				return;
+		}
+
+		// get user object to extract current value
+		$props = $cce->get($prams["CCE_OID"], "APOP");
+
+		$container[] = ($props["enabled"]) ? $factory->getImageLabel("apopEnabled", "/libImage/apop_icon_small.gif") : $factory->getImageLabel("blank", "/libImage/blankIcon.gif", false);
+
+	}
+
+	// this is a display only extension
+	function handle(&$helper, &$errors, &$prams)
+	{
+	}
+}
+?>

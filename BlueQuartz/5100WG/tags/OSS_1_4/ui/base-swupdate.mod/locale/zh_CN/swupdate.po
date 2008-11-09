@@ -1,0 +1,601 @@
+# ----- SW Updates Tab
+msgid "software"
+msgstr "BlueLinQ"
+
+msgid "software_help"
+msgstr "[[base-swupdate.software]]使您可检查并安装新的或更新的软件包。"
+
+
+# ----- Menu items
+
+msgid "softwareNew"
+msgstr "第三方软件"
+
+msgid "softwareNew_help"
+msgstr "查看并安装可用的第三方新软件。"
+
+msgid "softwareNewSun"
+msgstr "Sun Cobalt 软件"
+
+msgid "softwareNewSun_help"
+msgstr "查看并安装可用的 Sun Cobalt 新软件"
+
+msgid "softwareUpdate"
+msgstr "第三方更新"
+
+msgid "softwareUpdate_help"
+msgstr "查看并安装可用的第三方软件更新程序。"
+
+msgid "softwareUpdateSun"
+msgstr "Sun Cobalt 更新"
+ 
+msgid "softwareUpdateSun_help"
+msgstr "查看并安装可用的 Sun Cobalt 软件更新程序"
+
+msgid "softwareInstalled"
+msgstr "已安装软件"
+
+msgid "softwareInstalled_help"
+msgstr "系统中当前已安装的软件包列表可在此处查看。"
+
+msgid "softwareSettings"
+msgstr "设置"
+
+msgid "softwareSettings_help"
+msgstr "[[base-swupdate.software]]设置可在此处更改。"
+
+
+# ----- Splash screen message
+
+msgid "splashSoftwareMessage"
+msgstr "[[base-swupdate.software]]部分使您可管理系统中已安装的软件应用程序。"
+
+
+# --- Common strings
+
+msgid "install"
+msgstr "安装"
+
+msgid "install_help"
+msgstr "单击此处安装指定的软件包。"
+
+msgid "installField"
+msgstr "安装信息"
+
+msgid "installField_help"
+msgstr "单击图标显示获取并安装此软件包的更多信息。"
+
+msgid "prepare"
+msgstr "准备"
+
+msgid "prepare_help"
+msgstr "单击此处准备要安装的软件包。"
+
+	# package info
+msgid "statusField"
+msgstr " "
+
+msgid "statusField_help"
+msgstr "这显示每一软件包的状态。新软件包以点表示，旧软件包以圈表示。"
+
+msgid "nameField"
+msgstr "名称"
+
+msgid "nameField_help"
+msgstr "这显示软件包的名称。"
+
+msgid "versionField"
+msgstr "版本"
+
+msgid "versionField_help"
+msgstr "这显示软件包的版本。"
+
+msgid "vendorField"
+msgstr "供应商"
+
+msgid "vendorField_help"
+msgstr "这显示软件包的供应商。"
+
+msgid "copyrightField"
+msgstr "版权"
+
+msgid "copyrightField_help"
+msgstr "这显示与软件包相关的版权。"
+
+msgid "descriptionField"
+msgstr "说明"
+
+msgid "descriptionField_help"
+msgstr "这显示软件包的说明。"
+
+msgid "licenseField"
+msgstr "许可"
+
+msgid "licenseField_help"
+msgstr "这显示软件包的许可协议。"
+
+msgid "accept"
+msgstr "接受"
+
+msgid "accept_help"
+msgstr "如果希望接受许可协议条款，单击此处."
+
+msgid "decline"
+msgstr "拒绝"
+
+msgid "decline_help"
+msgstr "单击此处拒绝许可协议。"
+
+msgid "typeField"
+msgstr "类型"
+
+msgid "typeField_help"
+msgstr "这显示软件包的类型。"
+
+msgid "New"
+msgstr "新"
+
+msgid "Update"
+msgstr "更新"
+
+msgid "complete"
+msgstr "完整"
+
+msgid "locationField"
+msgstr "位置"
+
+msgid "locationField_help"
+msgstr "这是安装过程中软件包下载的位置。"
+
+msgid "locationLocal"
+msgstr "此服务器设备"
+
+msgid "sizeField"
+msgstr "大小 (MB)"
+
+msgid "sizeField_help"
+msgstr "这是软件包的大小。"
+
+msgid "uninstallableField"
+msgstr "无法卸载"
+
+msgid "uninstallableField_help"
+msgstr "此字段表示软件包在安装之后是否能卸载。"
+
+msgid "yes"
+msgstr "是"
+
+msgid "no"
+msgstr "否"
+
+msgid "none"
+msgstr "无"
+
+msgid "packagesNeededField"
+msgstr "从属软件包"
+
+msgid "packagesNeededField_help"
+msgstr "此处所列的软件包必须先安装在系统上，然后才能安全地安装。"
+
+
+# --- general user input strings
+
+msgid "locationFieldEnter"
+msgstr "位置"
+
+msgid "locationFieldEnter_help"
+msgstr "输入应获取软件包的位置。输入以 http:// 或 ftp:// 开始的 URL，从因特网上下载软件包，或者输入要上载软件包的文件位置。单击“浏览”选择您本地硬盘上的文件。如果您将软件包下载到您服务器设备上的 /home/packages 目录中，也会出现选择其中一个软件包的选项。"
+
+msgid "invalidUrl"
+msgstr "指定的 URL 无效。[[base-swupdate.urlField_rule]]"
+
+
+# ----- New Software List Page
+
+msgid "availableListNew"
+msgstr "可用新软件列表"
+
+msgid "checkNow"
+msgstr "立即检查可用性"
+
+msgid "checkNow_help"
+msgstr "单击此处检查新软件包是否可用。"
+
+msgid "manualInstall"
+msgstr "手动安装"
+
+msgid "manualInstall_help"
+msgstr "单击此处执行软件包的手动安装。"
+
+msgid "removePackage"
+msgstr "是否真的希望从系统中删除 '[[VAR.packageName]]' 软件包？此软件包没有安装。"
+
+# ----- Software Updates
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "检查软件升级版是否可用。"
+
+msgid "manualInstallUpdate"
+msgstr "手动安装"
+
+msgid "manualInstallUpdate_help"
+msgstr "执行软件升级版的手动安装。"
+
+
+msgid "availableListUpdates"
+msgstr "可用软件升级版列表"
+
+
+# ----- View software details & install page
+
+msgid "downloadSoftware"
+msgstr "安装软件"
+
+msgid "unknownSize"
+msgstr "未知"
+
+msgid "rebootpopup"
+msgstr "安装此软件包后，您的系统需要重新启动。是否继续？"
+
+# ----- Manual install
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "输入以 http:// or ftp:// 开始的 URL，从因特网上下载软件包。"
+
+msgid "upload"
+msgstr "上载"
+
+msgid "loaded"
+msgstr "/home/packages 中的软件包"
+
+msgid "fileField"
+msgstr "上载文件位置"
+
+	# empty/invalid the same, specify both to be safe
+msgid "fileField_empty"
+msgstr "对不起，您没有输入上载软件包的文件位置。单击“浏览”选择您的本地硬盘上的文件。"
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "invalidUpload"
+msgstr "无法成功上载指定的文件。"
+
+# ---- Status page
+
+msgid "installStatus"
+msgstr "状态—[[VAR.fileName]]"
+
+msgid "progressField"
+msgstr "进度"
+
+msgid "progressField_help"
+msgstr "这是安装或删除的进度。"
+
+msgid "dlPercent"
+msgstr "正在下载文件[[VAR.file]]：已完成[[VAR.percent]]%"
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "正在初始化..."
+
+msgid "downloading"
+msgstr "正在下载软件包..."
+
+msgid "installing"
+msgstr "正在安装软件包..."
+
+msgid "executingPreInstallScript"
+msgstr "正在执行预安装脚本..."
+
+msgid "executingPostInstallScript"
+msgstr "正在执行后安装脚本..."
+
+msgid "installingRpm"
+msgstr "正在安装组件[[VAR.rpm]]..."
+
+msgid "fail"
+msgstr "失败"
+
+msgid "success"
+msgstr "成功"
+
+msgid "currentlyUninstalling"
+msgstr "当前正在卸载软件包。"
+
+msgid "cantUninstall"
+msgstr "无法删除该软件包，因为它已标识为不可卸载。"
+
+msgid "dependent"
+msgstr "无法删除该软件包，因为下列软件包需要安装此软件包：[[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "正在删除软件包 RPM。"
+
+msgid "runningUninstallScript"
+msgstr "正在运行卸载脚本。"
+
+msgid "uninstalled"
+msgstr "卸载完成。"
+
+msgid "notUninstalled"
+msgstr "卸载失败，因为没有可删除的内容。"
+
+msgid "packageInstallSuccess"
+msgstr "软件包安装成功。"
+
+
+	# -- generic message for other strings
+msgid "notInstalled"
+msgstr "软件包未安装。"
+
+msgid "cannotDownloadUrl"
+msgstr "对不起，软件包无法从指定的 URL 下载。请检查 URL 并重试。[[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "对不起，软件包的文件名无效。请检查名称并重试。[[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "软件包已经安装。"
+
+msgid "verifyingPackage"
+msgstr "正在验证软件包..."
+
+msgid "badPackage"
+msgstr "软件包文件不完整。packing_list 无效或缺失。[[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "验证软件包文件时出现错误。它可能已破坏，或者没有正确的认证信息。[[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "向 CCE 数据库添加软件包时出现错误。软件包 packing_list 可能无效。[[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "软件包需要首先安装其他软件包。请安装以下软件包：[[VAR.dep]]"
+
+msgid "installLock"
+msgstr "正在安装或卸载另一软件包。请稍后再试。"
+
+msgid "obsoletePkg"
+msgstr "[[VAR.name]]软件包未安装，因为它不存在。"
+
+msgid "badProduct"
+msgstr "[[VAR.name]]软件包未安装，因为它不是为此服务器设备创建的。"
+
+msgid "hostNotFound"
+msgstr "未找到在 URL 中为[[VAR.file]]指定的主机。[[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "在指定位置未找到软件包[[VAR.file]]。"
+
+msgid "hostRefused"
+msgstr "在 URL 中为[[VAR.file]]指定的主机拒绝连接。"
+
+msgid "notDownloaded"
+msgstr "软件包[[VAR.file]]无法正确下载，可能是由于软件包所在的服务器出现了问题。"
+
+msgid "noLocation"
+msgstr "未指定获取软件包的位置。"
+
+msgid "missingRPM"
+msgstr "软件包文件不完整。一个或多个 RPM 缺失。"
+
+msgid "missingSRPM"
+msgstr "软件包文件不完整。一个或多个 SRPM 缺失。"
+
+msgid "preInstallFailed"
+msgstr "软件包文件出现问题。预安装脚本失败。"
+
+msgid "postInstallFailed"
+msgstr "软件包文件出现问题。后安装脚本失败。"
+
+msgid "rpmInstallError"
+msgstr "软件包文件出现问题。安装 RPM[[VAR.rpm]]时出现错误。"
+
+msgid "errorWGET"
+msgstr "对不起，尝试运行 wget 时出现错误。"
+
+msgid "rebooting"
+msgstr "服务器设备正在重新引导。几分钟后可用。"
+
+msgid "uninstallrefresh"
+msgstr "软件包成功卸载。稍后将刷新用户接口，以删除由该软件包提供的服务。"
+
+msgid "installrefresh"
+msgstr "软件包成功卸载。稍后将刷新用户接口，以使您能访问新服务。"
+
+# ------ Installed Software List
+
+msgid "installedList"
+msgstr "已安装软件列表"
+
+msgid "uninstall"
+msgstr "卸载"
+
+msgid "uninstall_help"
+msgstr "如果软件包可卸载，单击软件包的“卸载”按钮将其从系统中删除。"
+
+msgid "uninstallConfirm"
+msgstr "是否确定要卸载 '[[VAR.packageName]]'？"
+
+
+
+# ------ Settings page
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software] 设置"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "最常用的设置可在此处找到。"
+
+msgid "advanced"
+msgstr "高级"
+
+msgid "advanced_help"
+msgstr "不太常用的设置可在此处找到。"
+
+msgid "scheduleField"
+msgstr "查询预定"
+
+msgid "scheduleField_help"
+msgstr "更改检查[[base-swupdate.software]]服务器是否有新的或更新软件包的频率。"
+
+msgid "daily"
+msgstr "每天"
+
+msgid "weekly"
+msgstr "每周"
+
+msgid "monthly"
+msgstr "每月"
+
+msgid "never"
+msgstr "从不"
+
+msgid "emailField"
+msgstr "通知电子邮件"
+
+msgid "emailField_help"
+msgstr "输入当软件更新查询中有新的或更新的软件包或有错误时将接收通知的电子邮件地址。何时发送电子邮件通知由您选择“软件通知指示灯”的选项决定。如果您不希望收到这些通知，将此字段留空。"
+
+msgid "pkgOIDmissing"
+msgstr "检索软件包信息时出现错误。软件包可能已被删除。如果不是这样，请重试。如果问题仍然存在，请与技术支持联系([[base-sauce-basic.techSupportEmail]])。"
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]]服务器"
+
+msgid "defaultServer"
+msgstr "http://updates.cobalt.com/packages/"
+
+msgid "serverField_help"
+msgstr "输入查询新软件或更新版的服务器位置的 URL。缺省服务器位置的 URL 是[[base-swupdate.defaultServer]]。"
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]]无法与指定的服务器联系。请确保能从您的服务器设备访问该指定服务器。"
+
+msgid "httpProxyField"
+msgstr "HTTP 代理:端口"
+
+msgid "httpProxyField_help"
+msgstr "如果代理服务器需要访问防火墙外部，输入 HTTP 查询的代理服务器和端口。例如：proxy.mycompany.com:8080。"
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]]无法联系 HTTP 代理服务器，请确保能从您的服务器设备访问该代理服务器。"
+
+msgid "ftpProxyField"
+msgstr "FTP 代理:端口"
+
+msgid "ftpProxyField_help"
+msgstr "如果代理服务器需要访问防火墙外部，输入 FTP 查询的代理服务器和端口。例如：proxy.mycompany.com:8080。"
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]]无法联系 FTP 代理服务器。请确保您的服务器设备可访问该代理服务器。"
+
+msgid "autoField"
+msgstr "自动安装更新版"
+
+msgid "autoField_help"
+msgstr "如果启用后，[[base-swupdate.software]]将自动安装认证合格的软件包。"
+
+msgid "requireSignatureField"
+msgstr "软件包必须经过认证"
+
+msgid "requireSignatureField_help"
+msgstr "如果启用，[[base-swupdate.software]]将只安装通过认证检查的软件包。"
+
+msgid "checkSetField"
+msgstr "检查的软件"
+
+msgid "checkSetField_help"
+msgstr "检查每一 Software Update 查询中要检查的软件类型。"
+
+msgid "all"
+msgstr "全部软件"
+
+msgid "updates"
+msgstr "仅更新版"
+
+msgid "notificationLightField"
+msgstr "软件通知指示灯"
+
+msgid "notificationLightField_help"
+msgstr "更改哪种新软件将激活软件通知指示灯，如果有可能，更改哪种新软件将出现在通知电子邮件中。"
+
+
+# --- software update icon
+
+msgid "update"
+msgstr "更新"
+
+msgid "update_help"
+msgstr "单击此处检查并安装新的或更新的软件包。当新的或更新的软件包可用时，此图标的颜色会改变。"
+
+
+# ----- Strings for emails
+
+msgid "QueryErrorSubject"
+msgstr "查询[[base-swupdate.software]]服务器时出现错误。"
+
+msgid "NoProductInfoBody"
+msgstr "[[base-swupdate.software]]服务器没有识别您的产品。\n\
+[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "没有为[[base-swupdate.software]]服务器指定 URL。"
+
+msgid "NoSWUpdateServerBody"
+msgstr "无法确定[[base-swupdate.software]]服务器的\n\
+位置。请转到[[base-swupdate.software]]设置页，并\n\
+为[[base-swupdate.software]]服务器指定 URL。"
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]]无法确定系统信息。"
+
+msgid "NoSystemInfoBody"
+msgstr "服务器无法确定\n\
+[[base-swupdate.software]]服务器需要的系统信息。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]]无法从位于[[VAR.location]]的\n\
+[[base-swupdate.software]]服务器检索软件包列表。\n\
+请检查并确保[[VAR.location]]\n\
+是有效的[[base-swupdate.software]]服务器，而且您可从 Web 浏览器\n\
+中进行查询。"
+
+msgid "BadPackageFmtBody"
+msgstr "服务器返回\n\
+[[base-swupdate.software]]无法理解的软件包信息。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "没有可供下载的新软件包。"
+
+msgid "UnknownErrorBody"
+msgstr "当尝试联系位于[[VAR.location]]的服务器时，\n\
+[[base-swupdate.software]]接收到未知错误([[VAR.error]])。"
+
+msgid "NewUpdatesSubject"
+msgstr "新软件可用于您的服务器设备"
+
+msgid "NewUpdatesBody"
+msgstr "如果希望安装下列任一软件包，请检查[[base-swupdate.software]]菜单："
+
+# Capabilities
+msgid "capgroup_adminBlueLinq"
+msgstr "管理 BlueLinQ"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "这个管理权限允许用户管理 BlueLinQ。这将允许用户安装新软件和更新已有软件。"
+

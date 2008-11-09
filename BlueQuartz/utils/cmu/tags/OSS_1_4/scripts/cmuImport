@@ -1,0 +1,206 @@
+#!/usr/bin/perl
+# $Id: cmuImport 922 2003-07-17 15:22:40Z will $
+# Cobalt Networks, Inc http://www.cobalt.com
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+use strict;
+
+use lib "/usr/cmu/perl";
+
+require CmuCfg;
+my $cfg = CmuCfg->new(type => 'import');
+$cfg->readConf();
+$cfg->parseOpts();
+
+$| = 1;
+
+use IPC::Open3;
+use Global;
+use TreeXml;
+
+my $build = Global::getBuild();
+if(defined $validImport->{$build}) {
+	$cfg->putGlb('currentOS', $build);	
+} else { die "Cannot import on a $build\n" }
+
+if(!$cfg->isSess) { $cfg->putSess($$) }
+
+if($cfg->isDestDir) {
+	$cfg->putDestDir(Global::parseD($cfg->destDir));
+} else { 
+	cmuLog("ERROR", "Cannot find directory: ".$cfg->destDir."\n");
+	exit 1;
+}
+chdir $cfg->destDir || 
+	die "Could not chdir to ", $cfg->destDir, ": $!\n";
+
+my $origXml = $cfg->cmuXml;
+my $sessXml = $cfg->sessXml;
+if(!-f $origXml && !-f $sessXml) {
+	die "Cannot find cmu.xml in ", $cfg->destDir, "\n";
+}
+
+print "LogFile location is ", $cfg->logFile, "\n";
+cmuLog("INFO", "$0 called\n");
+cmuLog("INFO", "$0 started on ".localtime()."\n");
+cmuLog("INFO", "$0 running version: $VERSION\n");
+cmuLog("INFO", "Session ID is ".$cfg->sess."\n");
+cmuLog("INFO", "Modified files will be renamed filename.".$cfg->sess."\n");
+cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
+
+# get the admin password if we need it
+my $password;
+if($build =~ /(RaQ550)/) {
+	$password = checkPass();
+	$cfg->putGlb('adminPassword', $password);	
+}
+
+
+# Start the import 
+
+if(-f $sessXml) {
+	$origXml = $sessXml;
+} else { qx/cp $origXml $sessXml/; }
+
+# unpack data here set $importXml
+my $migrate = TreeXml::readXml($origXml, 0);
+
+# make sure the version line up
+$cfg->checkVersion($migrate->{cmuVersion});
+
+if($migrate->{exportPlatform} eq 'RaQ550') {
+	print "We currently do not support RaQ550 to RaQ550 migrations\n";
+	exit 1;
+}
+
+# make sure to delete any extra sites earily
+# this is one ugly piece of code
+if($cfg->isGlb('subsetNames')) {
+	$cfg->parseNames('subsetNames');
+	$migrate = $cfg->removeNamesVsite($migrate);
+}
+
+if($cfg->isIpaddr) { $migrate = $cfg->convertIpaddr($migrate) }
+
+my $iTree = {};
+TreeXml::addNode('migrate', $migrate, $iTree);
+TreeXml::writeXml($iTree, $sessXml);
+
+my $cobaltBase = {};
+my $appConf = $cfg->{appConf};
+TreeXml::addNode('cobaltBase', $cfg->{glbConf}, $cobaltBase);
+
+my ($pid, $adjustCmd);
+# cobaltBase adjust
+if($cfg->skipAdjust eq 't') {
+	cmuLog("WARN","Skipping adjust script\n");
+} elsif($migrate->{adjustPlatform} eq 'RaQXTR' && $build eq 'RaQ4') {
+	# special case for the XTR thing back thing
+	$adjustCmd = "/usr/cmu/scripts/RaQXTR4adjust.pl";
+	if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
+   		print WR TreeXml::writeXml($cobaltBase);
+   		close(WR);
+   		close(RE);
+		while(my $line = <ER>) { cmuLog("Adjust", $line); }
+   		close(ER);
+		waitpid ($pid, 0);
+	}
+	$migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
+} elsif($migrate->{adjustPlatform} ne $build) {
+	while($migrate->{adjustPlatform} ne $build) {
+		$adjustCmd = "/usr/cmu/scripts/".
+			$adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
+		if(! -x $adjustCmd) {
+			cmuLog("ERROR", "Cannot adjust to this platform\n");
+			exit 1;
+		}
+		if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
+    		print WR TreeXml::writeXml($cobaltBase);
+    		close(WR);
+    		close(RE);
+			while(my $line = <ER>) { cmuLog("Adjust", $line); }
+    		close(ER);
+			waitpid ($pid, 0);
+		}
+		$migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
+	}
+}
+
+# get current data
+my $outTmpFile = $cfg->destDir."/cmuScanout.xml.".$cfg->sess;
+my $scanOutCmd = $cfg->lib('scanout')." -p -x -c -f $outTmpFile";
+if($pid = open3(*WR, *RE, *ER, $scanOutCmd)) {
+    print WR TreeXml::writeXml($cobaltBase);
+    close(WR);
+	close(RE);
+	while(my $line = <ER>) { cmuLog("Scanout", $line); }
+    close(ER);
+	waitpid($pid, 0);
+} 
+
+# conflict resolution
+if($cfg->skipConflict eq 't') {
+	cmuLog("WARN","Skipping conflict resolution\n");
+} else {
+	my $conflictCmd = $cfg->lib('conflict');
+	$conflictCmd .= " -g -i ".$sessXml." -e ".$outTmpFile." -f ".$sessXml
+		." -s ".$cfg->sess." -d ".$cfg->destDir;
+	$conflictCmd .= " -c " if($cfg->confOnly eq 't');
+	my $ret = system("$conflictCmd");
+	if($ret != 0) { die "Conflict phase did not succeed\n" }
+}
+
+if($cfg->conflictOnly eq 't') {
+	cmuLog("WARN","Skipping scanin\n");
+} else {
+	my $scanInCmd = $cfg->lib('scanin')." -f $sessXml";
+	cmuLog("ScanIn", "Calling $scanInCmd\n");
+	if($pid = open3(*WR, *RE, *ER, $scanInCmd)) {
+		print WR TreeXml::writeXml($cobaltBase);
+		close(WR);
+		while(my $line = <ER>) { cmuLog("ScanIn", $line); }
+		close(RE);
+		close(ER);
+		waitpid($pid, 0);
+	}
+
+	# thrid party scan out
+	foreach my $app (keys %{ $appConf }) {
+		$scanInCmd = $appConf->{$app}->{configData}->{libs}->{scanin};
+		if(-x $scanInCmd) {
+			$scanInCmd .= " ".$cfg->destDir;
+			qx/$scanInCmd/;
+		} else { warn "$app scanin command is not executable: $scanInCmd\n" }
+	}
+}
+
+cmuLog("INFO", "$0 ended at ".localtime()."\n");
+cmuLog("INFO","cmuImport complete\n");
+exit 0;
+
+
+sub checkPass
+{
+	require cmuCCE;
+
+	my $cce = new cmuCCE;
+	$cce->connectuds();
+	
+	my $password;
+	my $retry = 3;
+	for(my $i = 0; $i < $retry; $i++) {
+		print "Enter admin's password: ";
+		system "stty -echo";
+		chop($password = <STDIN>);
+		system "stty echo";
+		if($cce->auth('admin', $password)) { last; }
+		else { $password = 0 }
+		print "\nInvalid password\n";
+	}
+	if(!$password) { 
+		warn "Cannot import....exiting.\n";
+		exit 1;
+	} else {
+		print "\nPassword ok.\n";
+		return $password;
+	}
+}

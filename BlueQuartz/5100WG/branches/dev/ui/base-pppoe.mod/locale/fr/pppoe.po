@@ -1,0 +1,77 @@
+### This has the same problem the modem module has.  Once you enter data, you can't erase it, since the ui complains.  And also, you can't save changes as soon as you get to this page, without entering values, even if you aren't using this function...
+### PPPoE Account Password claims to be optional but it's lying.  You get an error from the Cobalt Configuration Engine if you try to save changes without data in this.
+### Also, this is not consistent with the behavior of the Password fields, which should let you save changes while blank, which assumes you don't want to change passwords.
+### Just try turning on this service and then turing it off again...  You will see the problems just trying to turn off the service...
+
+msgid "pppoeSetting"
+msgstr "PPPoE"
+
+msgid "pppoeSetting_help"
+msgstr "[[base-pppoe.pppoeSettingsHeader]] peut etre modifié ici."
+
+msgid "pppoeSettingsHeader"
+msgstr "Paramètres PPP sur Ethernet (PPPoE)"
+
+msgid "ethernetPort"
+msgstr "Interface réseau"
+
+msgid "ethernetPort_help"
+msgstr "Sélectionnez l'interface réseau qui est physiquement connecté au serveur PPPoE par le biais du quel vous vous connectez à l' Internet. Un configuration courante consiste à connecter votre Intranet à l'interface Ethernet primaire et le serveur PPPoE à l'interface Ethernet secondaire."
+
+msgid "eth0"
+msgstr "Interface Ethernet primaire" 
+ 
+msgid "eth1"
+msgstr " Interface Ethernet secondaire" 
+ 
+msgid "connMode"
+msgstr "Mode de connexion"
+
+msgid "connMode_help"
+msgstr "Choisissez si la connexion doit être toujours établie; uniquement sur demande lors d'une connexion sortante ou si elle ne doit jamais être établie."
+
+msgid "on"
+msgstr " Connexion toujours active" 
+
+msgid "demand"
+msgstr "Connection sur demand seulement" 
+ 
+msgid "off"
+msgstr " Connexion toujours inactive " 
+ 
+### I believe this is completely useless!  This should be extricated from here and the code if it exists...
+### msgid "on_help"
+### msgstr "Connection Always On"
+### msgid "demand_help"
+### msgstr "Connection On Demand Only"
+### msgid "off_help"
+### msgstr "Connection Always Off"
+
+msgid "userNameField"
+msgstr "Nom d'utilisateur du compte PPPoE" 
+ 
+msgid "userNameField_help"
+msgstr "Entrez le nom d'utilisateur du compte PPPoE utilisé pour vous connecter à voter fournisseur de service Internet. Il va vous falloir fournir un domaine @fournisseur.com, tel que mrutilisateur@monfournisseur.com"
+ 
+msgid "userNameField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-pppoe.userNameField]]. Veuillez entrer le nom d'utilisateur du compte PPPoE utilisé pour vous connecter au fournisseur de service Internet."
+
+msgid "userNameField_invalid"
+msgstr "Désolé, vous n'avez pas introduit une valeur correcte pour [[base-pppoe.userNameField]].  Le nom d'utilisateur ne peut contenir aucun espace."
+
+msgid "passwd"
+msgstr "Mot de passe du compte PPPOE."
+
+msgid "passwd_help"
+msgstr "Entrez le mot de passe du compte PPPoE utilisé pour vous connecter à votre fournisseur de service Internet."
+
+###  Check to make sure this works.  Last time i checked this it appeared that the ui was pulling the error message from somewhere other than this file...
+msgid "passwdField_invalid"
+msgstr "Vous n'avez pas entré le même mot de passe dans les deux champs. Le même mot de passe doit être entré dans les deux champs pour éliminer les erreurs de frappe. Veuillez recommencer."
+
+### I don't think this works right now...  I added it in anticipation of fixing the lack of error checking, though i doubt the variable is the right one.  I base this on the non-standardness of the invalid value variable...
+msgid "passwd_empty"
+msgstr "Vous n'avez pas entré une valeur pour [[base-pppoe.passwd]].Veuillez entrer le mot de passe du compte PPPoE utilisé pour vous connecter à votre fournisseur de service Internet."
+msgid "on_help"
+msgstr "Nom d'utilisateur du compte PPPoE"
+

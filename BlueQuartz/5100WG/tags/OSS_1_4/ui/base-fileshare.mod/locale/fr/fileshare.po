@@ -1,0 +1,81 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "Fichier et impression"
+
+msgid "fileSharing_help"
+msgstr "Cliquez ici pour configurer les services de fichiers."
+
+msgid "guestShare"
+msgstr "Partage invité "
+
+msgid "guestShare_help"
+msgstr "Cliquez ici pour configurer les [[base-fileshare.fileSharingSettings]] ."
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "Paramètres de partage invité"
+
+msgid "guestShareField"
+msgstr "Activer l'accès invité"
+
+msgid "guestShareField_help"
+msgstr "Active ou désactive le partage de fichier Apple, FTP et le Partage de fichiers Windows. La désactivation de l'accès invité ici ne désactive pas l'accès à ces services pour les utilisateurs qui détiennent des comptes sur ce serveur."
+
+msgid "incomingEnable"
+msgstr "Activer"
+
+msgid "incomingField"
+msgstr "Accès aux fichiers entrants"
+
+msgid "incomingField_help"
+msgstr "Active ou désactive l'accès aux fichiers entrants. Quand cette option est activée, les utilisateurs invités peuvent charger des fichiers vers le partage invité."
+
+msgid "maxDiskSpaceField"
+msgstr "Espace disque maximum permis (Mo)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Entrez un nombre entier compris entre 1 et 1024000. La valeur par défaut est 50 Mo."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Définit l'espace disque maximum disponible aux utilisateurs invités pour le téléchargement des fichiers entrants. [[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "Ce groupe de travail assure un partage de fichiers avec accès invité."
+
+
+# --- Handler messages
+
+	# -- guest.pl ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr "Erreur: L'utilisateur est déjà pris"
+
+msgid "groupDoesntExist"
+msgstr "Erreur: Le groupe n'existe pas"
+
+msgid "cantChangeGroup"
+msgstr "Erreur: Changement de groupe impossible"
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "Une erreur s'est produite. L'utilisateur invité n'est pas valide."
+
+msgid "invalidPath"
+msgstr "Une erreur s'est produite. L'utilisateur invité n'est pas valide."
+
+msgid "cantSetQuota"
+msgstr "Une erreur s'est produite lors de la définition du quota de partage invité. Les fichiers de configuration requis semblent être absents."
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "Gérer les paramètres de partage de fichiers"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "Ce droit administratif permet à un utilisateur de modifier les paramètres de partage de fichiers de l'invité"
+
+msgid "capgroup_adminFileShare"
+msgstr "Gérer le partage de fichiers"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "Ce droit administratif permet à un utilisateur de gérer tous les aspects du partage de fichiers"

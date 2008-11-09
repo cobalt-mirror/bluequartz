@@ -1,0 +1,21 @@
+<!-- 
+  $Id: memory.schema 3 2003-07-17 15:19:15Z will $
+  Copyright 2000, Cobalt Networks.
+  Author: Kevin K.M. Chiu
+-->
+
+<class name="System" namespace="Memory" version="1.0">
+  <!-- the amount of total physical memory -->
+  <!-- value in MB -->
+  <property name="physicalMemTotal" type="int" />
+  <!-- these values are what is in /proc/meminfo -->
+  <!-- all values in KB -->
+  <property name="memTotal" type="int" />
+  <property name="memFree" type="int" />
+  <property name="memShared" type="int" />
+  <property name="buffers" type="int" />
+  <property name="cached" type="int" />
+  <property name="swapTotal" type="int" />
+  <property name="swapFree" type="int" />
+  <property name="refresh" type="scalar" />
+</class>

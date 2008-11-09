@@ -1,0 +1,115 @@
+<!-- $Id: MailList.schema 201 2003-07-18 19:11:07Z will $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -->
+<!-------------------------------------------------------------------
+  MailList
+  
+  Represents a mailing list (majordomo, LISTSERV, etc.)
+--------------------------------------------------------------------->
+
+<!-- System.MailList is used to syncrhonize UI and email interfaces -->
+<class name="System" namespace="MailList" version="1.0"
+    createacl="ruleCapable(adminUser)"
+    destroyacl="ruleCapable(adminUser)">
+
+    <!-- epoch time, update trigger -->
+    <property 
+	name="commit" type="int" default="1"
+	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+
+    <!-- specific site, else all lists will be counted -->
+    <property 
+	name="site" type="word" default="" optional="true"
+	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+</class>
+
+
+<!-- FIXME: these should be enums eventually -->
+<typedef 
+    name="postPolicy" type="re" 
+    data="^((moderated)|(any)|(members))?$" 
+/>
+<typedef 
+    name="subPolicy" type="re"
+    data="^((closed)|(open)|(confirm))?$" 
+/>
+
+<typedef name="maillist_name" type="re" data="^[a-z0-9_\-][a-z0-9_\.\-]*$" />
+
+<class name="MailList" namespace="" version="1.0"
+    createacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    destroyacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )">
+    <!-- external name of list -->
+    <property 
+        name="name" type="maillist_name"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <!-- internal encoded name of list -->
+    <property 
+        name="internal_name" type="scalar" optional="true"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="apassword" type="scalar" 
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="postPolicy" type="postPolicy" default="members"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    /> 
+    <property 
+        name="subPolicy" type="subPolicy" default="confirm"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="local_recips" type="accountname" array="true" optional="true"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="remote_recips" type="scalar" array="true" optional="true"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="moderator" type="scalar" default="admin"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="group" type="accountname" optional="true"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="enabled" type="boolean"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    
+    <!-- write timestamp to update -->
+    <property 
+        name="update" type="int"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    /> 
+    <property 
+        name="maxlength" type="int" default="0"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="replyToList" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="description" type="scalar" default="" optional="true" 
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property 
+        name="desc_readonly" type="boolean" default="0" optional="true" 
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+
+    <!-- site ownership of this mailling list -->
+    <property
+        name="site" type="scalar" optional="yes"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+</class>
+
+<!-- end of file -->

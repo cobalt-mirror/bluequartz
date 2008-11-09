@@ -1,0 +1,32 @@
+#!/bin/sh
+
+DOMAIN=base-lcd
+
+# Setup the path so we find stuff...
+. /etc/rc.d/init.d/functions
+LOCKFILE="/etc/locks/.lcdlock"
+
+# clean up lockfile if no one is using it
+if [ -e $LOCKFILE ]; then 
+	PID=`cat $LOCKFILE`
+	if [ -z "`ps --no-heading -p $PID 2>/dev/null`" ]; then
+		rm -f $LOCKFILE
+	else
+		exit 1
+	fi
+fi
+
+WORDS=`hostname`
+if [ "$WORDS" = "localhost" ]; then
+          WORDS=`getmsg lcd_ipaddr`
+fi
+
+IPADDR=`ifconfig eth0 | grep "inet addr" | cut -f 2 -d":" | cut -f 1 -d" "`
+if [ "$IPADDR" = "" ]; then
+	IPADDR="IP Addr Not Set"
+fi
+
+/sbin/lcdstop
+/sbin/lcd-write "$WORDS" "$IPADDR"
+	
+exit 0

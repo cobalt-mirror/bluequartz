@@ -1,0 +1,71 @@
+# Global tech support strings
+
+	# NOTE: In Europe, the Middle East and Africa, call +31 71 565 7070 support-emea@cobalt.com.
+	# In Japan, send email to support-japan@cobalt.com.
+msgid "techSupportUSPhone"
+msgstr "() 702-6225"
+
+msgid "techSupportIntlPhone"
+msgstr "1 (650) 623-2679"
+
+msgid "techSupportEmail"
+msgstr "support@cobalt.com"
+	
+	# This should work for at least USA and Canada
+msgid "contactTechSupport"
+msgstr "美国之外请联系[[base-carmel.osVendor]]技术支持，电话是[[base-sauce-basic.techSupportUSPhone]] ([[base-sauce-basic.techSupportIntlPhone]]或发送电子邮件至[[base-sauce-basic.techSupportEmail]]。"
+
+
+msgid "kill_dhclient_failed"
+msgstr "无法确认 dhclient 是否已停止运行。"
+
+msgid "gateway-not-reachable"
+msgstr "无法到达指定的网关。请检查并确认您的网关位于可到达的子网络范围内。您可能还希望检查直接路由规则。"
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "对不起，无法将此路由添加到路由表中。网关 ([[VAR.gateway]]) 无法存在于目标子网 ([[VAR.target]]) 中。"
+
+msgid "invalid-route"
+msgstr "对不起，无法将此路由添加到路由表中。指定的网关可能无法到达。"
+
+msgid "disable-interface-first"
+msgstr "对不起，您无法删除已启用网络接口的设置。请禁用接口，然后尝试删除设置。"
+
+msgid "Invalid-object"
+msgstr "内部错误：尝试删除无效对象。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "对不起，出现错误。用户[[VAR.name]]已被删除。"
+
+msgid "failed-to-add-user"
+msgstr "内部错误：无法创建新用户名。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "对不起，指定的限值过大。所允许的最大磁盘限额是[[VAR.max]]。"
+
+msgid "hostname-too-long"
+msgstr "对不起，指定的主机名过长。主机名的最大长度是 40 个字符。"
+
+msgid "descReadOnly"
+msgstr "用户描述为只读。"
+
+# Capabilities
+msgid "capgroup_adminUser"
+msgstr "管理用户"
+
+msgid "capgroup_adminUser_help"
+msgstr "这个管理权限允许用户创建，销毁和修改这个机器上的其他用户。"
+
+msgid "capgroup_adminUserGroupMailingList"
+msgstr "管理用户和组"
+
+msgid "capgroup_adminUserGroupMailingList_help"
+msgstr "这个管理权限允许用户创建，销毁和修改这个机器上的其他用户和组。"
+
+# capabilities errors
+msgid "permsNotAvailable"
+msgstr "您必须具备在其他用户处设置它们的能力（您是否以管理员的身份登录了？）"
+
+msgid "needPermToRemovePerm"
+msgstr "您必须具备从另一个用户中删除它的能力。"
+

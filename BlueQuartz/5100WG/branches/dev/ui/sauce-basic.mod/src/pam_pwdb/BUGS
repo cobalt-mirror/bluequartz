@@ -1,0 +1,23 @@
+$Id: BUGS 201 2003-07-18 19:11:07Z will $
+
+$Log$
+Revision 1.1.1.1.2.1  2003/07/18 19:11:06  will
+dev "menlo" branch patch, it's huge
+
+Revision 1.1  2000/07/14 11:03:10  jmayer
+Drat, pam does more than a simple MD5 hash.  In fact, the MD5 algorithm
+implemented here doesn't even seem to be compatible with Perl's
+Digest::MD5 implementation.
+
+Seems the only way to get the md5 hash correct is to use PAM's own code,
+so here it is.  These source files can be used to build a "pw_to_md5"
+utility, which perl can invoke.
+
+Revision 1.1.1.1  1998/07/12 05:17:16  morgan
+Linux PAM sources pre-0.66
+
+Revision 1.2  1996/09/05 06:36:16  morgan
+revised for .52 to be released
+
+
+As of Linux-PAM-0.52 this is new. No known bugs yet.

@@ -1,0 +1,188 @@
+
+msgid "modPrinter"
+msgstr "修改打印机"
+
+msgid "printerNameExists"
+msgstr "名称为[[VAR.name]]的打印机已经存在。请选择一个新名称。"
+
+msgid "printing"
+msgstr "打印"
+
+msgid "spooling"
+msgstr "假脱机"
+
+msgid "jobs"
+msgstr "作业"
+
+msgid "enabled"
+msgstr "启用"
+
+msgid "disabled"
+msgstr "禁用"
+
+msgid "addPrinter_help"
+msgstr "单击此处在现有配置中添加一个打印机。"
+
+msgid "addNewPrinter" 
+msgstr "添加打印机"
+
+msgid "printerNameField"
+msgstr "名称"
+
+msgid "printerNameField_help"
+msgstr "输入一个打印机名称。如果可行，这也应是服务器上的打印假脱机名称。"
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "如果打印机经由 USB 连接则应选择该项。"
+
+msgid "network"
+msgstr "网络"
+
+msgid "network_help"
+msgstr "如果打印机经由网络连接则应选择该项。"
+
+msgid "printerHostNameField"
+msgstr "主机名称"
+
+msgid "printerHostNameField_help"
+msgstr "请输入远程打印机的主机名称或 IP 地址。"
+
+msgid "printerSpoolField"
+msgstr "队列名称"
+
+msgid "printerSpoolField_help"
+msgstr "请输入要在远程打印机上打印的队列的名称。如果不知道队列名称或打印机没有队列名称，请使该字段为空。"
+
+msgid "locationField"
+msgstr "连接类型"
+
+msgid "locationField_help"
+msgstr "选择服务器到打印机的连接类型。"
+
+msgid "ppdFileField"
+msgstr "PPD 文件"
+
+msgid "ppdFileField_help"
+msgstr "为使计算机使用 AppleShare 打印到打印机，PPD 文件必须上载到此服务器上。PPD 文件通常位于打印机随附的磁盘上。"
+
+msgid "printserver"
+msgstr "打印服务器"
+
+msgid "printserver_help"
+msgstr "打印服务器设置可在此处更改。"
+
+msgid "printserverSettings"
+msgstr "打印服务器设置"
+
+msgid "enableServersField"
+msgstr "启用"
+
+msgid "enableServersField_help"
+msgstr "打开或关闭打印服务器功能。打开此功能允许服务器设备作为自身及其客户机的打印服务器。"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "基本打印服务器设置可在此处配置。"
+
+msgid "advanced"
+msgstr "高级"
+
+msgid "advanced_help"
+msgstr "高级打印服务器设置（如启用和禁用特定平台的打印服务器支持）可在此处配置。"
+
+msgid "printerListButton"
+msgstr "管理打印机"
+
+msgid "printerListButton_help"
+msgstr "添加打印机，删除打印机和管理打印队列。"
+
+msgid "enableAppleshareField"
+msgstr "启用 Apple 打印"
+
+msgid "enableAppleshareField_help"
+msgstr "单击此处在基于 Appleshare 的网络上启用打印机共享。"
+
+msgid "enableSambaField"
+msgstr "启用 Windows 打印"
+
+msgid "enableSambaField_help"
+msgstr "单击此处在 Windows 网络上启用打印机共享。"
+
+msgid "printerList"
+msgstr "可用打印机"
+
+msgid "name"
+msgstr "名称"
+
+msgid "name_help"
+msgstr "打印机名称"
+
+msgid "status"
+msgstr "状态"
+
+msgid "status_help"
+msgstr "打印机状态"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "修改或删除一个打印机。"
+
+msgid "jobList"
+msgstr "当前打印作业—[[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "清除打印队列"
+
+msgid "clearQueue_help"
+msgstr "删除打印机上当前所有的打印作业。"
+
+msgid "suspendPrinter"
+msgstr "暂停打印"
+
+msgid "suspendPrinter_help"
+msgstr "暂停从这台打印机上打印。新作业可以排列，但是不会打印任何内容。"
+
+msgid "unsuspendPrinter"
+msgstr "继续打印"
+
+msgid "unsuspendPrinter_help"
+msgstr "继续从这台打印机上打印。"
+
+msgid "owner"
+msgstr "属主"
+
+msgid "owner_help"
+msgstr "提交此打印作业的用户。"
+
+msgid "size"
+msgstr "大小"
+
+msgid "size_help"
+msgstr "打印作业的大小。"
+
+msgid "date"
+msgstr "提交时间"
+
+msgid "date_help"
+msgstr "提交时间。"
+
+msgid "removePrinterConfirm"
+msgstr "是否确定要删除打印机“[[VAR.printerName]]”？"
+
+msgid "removeJobConfirm"
+msgstr "是否确定要删除“[[VAR.jobName]]”拥有的工作？"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "管理打印服务器"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "此管理权限允许用户根据“打印服务器”选项卡中的配置，管理网络和 USB 的所有方面。"
+

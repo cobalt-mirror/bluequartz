@@ -1,0 +1,10 @@
+# put any default packages here.
+RPM: base-import-locale-ja
+RPM: base-import-locale-fr
+RPM: base-import-locale-es
+RPM: base-import-locale-en
+RPM: base-import-locale-de
+RPM: base-import-ui
+RPM: base-import-glue
+RPM: base-import-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE

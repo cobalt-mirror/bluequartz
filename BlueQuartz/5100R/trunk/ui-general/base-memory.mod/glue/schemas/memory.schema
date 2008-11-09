@@ -1,0 +1,21 @@
+<!-- 
+  $Id: memory.schema 259 2004-01-03 06:28:40Z shibuya $
+  Copyright 2000, Cobalt Networks.
+  Author: Kevin K.M. Chiu
+-->
+
+<class name="System" namespace="Memory" version="1.0">
+  <!-- the amount of total physical memory -->
+  <!-- value in MB -->
+  <property name="physicalMemTotal" type="int" writeacl="ruleCapable(adminUser)"/>
+  <!-- these values are what is in /proc/meminfo -->
+  <!-- all values in KB -->
+  <property name="memTotal" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="memFree" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="memShared" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="buffers" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="cached" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="swapTotal" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="swapFree" type="int"  writeacl="ruleCapable(adminUser)"/>
+  <property name="refresh" type="scalar" writeacl="ruleCapable(adminUser)"/>
+</class>

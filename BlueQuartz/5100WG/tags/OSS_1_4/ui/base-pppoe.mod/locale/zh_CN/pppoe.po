@@ -1,0 +1,75 @@
+### This has the same problem the modem module has.  Once you enter data, you can't erase it, since the ui complains.  And also, you can't save changes as soon as you get to this page, without entering values, even if you aren't using this function...
+### PPPoE Account Password claims to be optional but it's lying.  You get an error from the Cobalt Configuration Engine if you try to save changes without data in this.
+### Also, this is not consistent with the behavior of the Password fields, which should let you save changes while blank, which assumes you don't want to change passwords.
+### Just try turning on this service and then turing it off again...  You will see the problems just trying to turn off the service...
+
+msgid "pppoeSetting"
+msgstr "PPPoE"
+
+msgid "pppoeSetting_help"
+msgstr "[[base-pppoe.pppoeSettingsHeader]] 在此处更改。"
+
+msgid "pppoeSettingsHeader"
+msgstr "PPP 通过以太网 (PPPoE) 的设置"
+
+msgid "ethernetPort"
+msgstr "网络接口"
+
+msgid "ethernetPort_help"
+msgstr "选择物理连接到 PPPoE 设备的网络接口，通过该接口获得与目标因特网的连接。一种常用配置是将内部网连接到主以太网接口和辅助以太网接口的 PPPoE 设备。"
+
+msgid "eth0"
+msgstr "主以太网接口"
+
+msgid "eth1"
+msgstr "辅助以太网接口"
+
+msgid "connMode"
+msgstr "连接模式"
+
+msgid "connMode_help"
+msgstr "选择是否始终建立连接、是否只在出局连接时建立连接，或者永远不建立连接。"
+
+msgid "on"
+msgstr "始终连接"
+
+msgid "demand"
+msgstr "仅要求时连接"
+
+msgid "off"
+msgstr "始终不连接"
+
+### I believe this is completely useless!  This should be extricated from here and the code if it exists...
+### msgid "on_help"
+### msgstr "始终连接"
+### msgid "demand_help"
+### msgstr "仅要求时连接"
+### msgid "off_help"
+### msgstr "始终不连接"
+
+msgid "userNameField"
+msgstr "PPPoE 帐户用户名"
+
+msgid "userNameField_help"
+msgstr "输入用于登录您的因特网服务供应商的 PPPoE 帐户用户名。您必须提供完整的电子邮件地址，如 user@myprovider.com"
+
+msgid "userNameField_empty"
+msgstr "对不起，您没有为[[base-pppoe.userNameField]]输入值。请输入用于登录到您的因特网服务供应商的 PPPoE 帐户用户名。"
+
+msgid "userNameField_invalid"
+msgstr "对不起，您没有为[[base-pppoe.userNameField]]输入值。用户名不能含有任何空格。"
+
+msgid "passwd"
+msgstr "PPPoE 帐户口令"
+
+msgid "passwd_help"
+msgstr "输入用于登录到您的因特网服务供应商 PPPoE 帐户的口令。"
+
+###  Check to make sure this works.  Last time i checked this it appeared that the ui was pulling the error message from somewhere other than this file...
+msgid "passwdField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+### I don't think this works right now...  I added it in anticipation of fixing the lack of error checking, though i doubt the variable is the right one.  I base this on the non-standardness of the invalid value variable...
+msgid "passwd_empty"
+msgstr "对不起，您没有为[[base-pppoe.passwd]]输入值。请输入用于登录到您的因特网服务供应商的 PPPoE 帐户口令。"
+

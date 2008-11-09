@@ -1,0 +1,23 @@
+<class name="System" namespace="UPS" version="1.0"
+	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+	<!-- This is either "" of off, "master" or "slave". -->
+	<property name="state" type="scalar" default=""
+	 writeacl="ruleCapable(adminUser)"/>
+
+	<!-- Whether or not to wave slaves (if a master). -->
+	<property name="wakeslaves" type="boolean" default="0"
+	 writeacl="ruleCapable(adminUser)"/>
+
+	<!-- Delay between waking each of the slaves. -->
+	<property name="wakedelay" type="int" optional="yes" default=""
+	 writeacl="ruleCapable(adminUser)"/>
+
+	<!-- IP Addr of the master (if a slave). -->
+	<property name="masterip" type="scalar"
+	 writeacl="ruleCapable(adminUser)"/>
+
+	<!-- List of slave mac addrs -->
+	<property name="macs" type="scalar" array="yes"
+	 writeacl="ruleCapable(adminUser)"/>
+</class>

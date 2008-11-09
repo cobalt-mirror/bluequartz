@@ -1,0 +1,31 @@
+the layout of a untarred package:
+
+packing_list
+package.tar.gz (may be encrypted)
+pkginfo/
+	splash/
+	       pre-install/
+			  index.php
+	       post-install/		(not currently used)
+	       pre-uninstall/		(not currently used)
+	       post-uninstall/		(not currently used)
+	locale/lang/blah.mo
+
+
+in package.tar.gz:
+RPMS/*
+SRPMS/*
+scripts/
+	pre-install/
+		    10_runmefirst
+		    20_runmesecond
+	post-install/
+	pre-uninstall/
+	post-uninstall/
+
+the packing_list format is very similar to the package part of the
+package_list format. you can use them interchangeably with the caveat
+that some fields are unused. Namely, the packing_list uses FileName, RPM,
+and SRPM while package_list uses Size (in bytes). If FileName is not 
+specified, the RPMS, SRPMS, and scripts directories will be in the main
+directory.

@@ -1,0 +1,157 @@
+3.2 The Inside-Out Object Model
+
+	One way to think about the CCE is to think of it as an "inside out"
+	version of the traditional object model.  Traditionally, objects
+	encapsulate data, and define a set of accessor methods to manipulate
+	that data.
+	
+	In the CCE model, the encapsulated data is the interface: the user
+	modifies the object data as the interface for messaging the object.
+	The object is then responsible for triggering whatever actions are
+	necessary to resolve it's new data state.
+
+	This may seem perverse at first, but makes sense in the context of
+	building a configuration system engine, in which the primary
+	manipulation method is the changing of configuration properties, and 
+	the user is to be insulated from the actuators that translate the 
+	property changes into system changes.
+
+
+4. The CCE ODB
+
+	The object database maintains three main pieces of information:
+		1. all of the class definitions in the system, and
+		2. all of the object instances and object properties that
+		   comprise the system configuration state.
+		3. the list of handlers currently registered with the event
+		   dispatcher.
+	
+	Implementation: The ODB is layered on top of an RDBMS, such as postgres.
+		   
+4.1 CCE ODB class definitions
+
+	A CCE class definition consists of: 
+		- a class name 
+		- a class version string (format: "1.0-Cobalt") 
+		- a parent class (ISA)
+		- a list of valid scalar property names and types.
+		- a list of valid reference property names and classes.
+
+	A derived class inherits all of the property names of its parent class.
+
+	A scalar property is represented as a string value within the ODB.  It
+	may have arbitrary meaning outside the DB.  Scalar properties can
+	have some additional type information associated with them to 
+	accelerate the rejection of invalid values.
+
+	A reference property is a collection of references to other objects
+	within the ODB.
+	
+4.2 CCE ODB instance data
+
+	All objects within the ODB are identified by a unique numeric object id.
+
+	The ODB keeps track of what objects have been created, what class each
+	object belongs to, and all of the property values for that object.
+
+4.3 CCE handler data
+
+	The ODB keeps track of the list of actuators registered on each 
+	class-property pair.  
+	
+	FIXME: not decided yet
+	Implementation: This list should be flushed and regenerated whenever the
+	actuator config files are changed (ie. a new package is installed).
+
+4.4 Object Properties
+
+	An object property is identified by a string name.  This name
+	may consist of any alphabetic character or underscore ('_'), 
+	followed by any combination of alphanumeric characters or
+	underscores.  E.g.:  It must match the regex
+	/[A-Za-z_][A-Za-z0-9_]*/.
+
+	An object property's value can either be a single scalar value, or can
+	be a collection of object references.
+
+	A scalar is just an binary string.  There is no limit defined on the
+	size of a scalar (except that of physical memory), but large scalars
+	may impact the overall system performance.
+	
+	An object reference is just an object_id.
+
+	It's natural to ask why all CCE doesn't support all four
+	permutations:
+	
+		singleton scalars		singleton references
+		arrays of scalars		arrays of references
+
+	The answer is: we don't need them.  Keep It Simple.  All we really
+	need for a configuration database is singleton scalars and
+	aggregate references.  Everything else can be constructed from
+	these two simple components.
+
+	Some property names are reserved (see the section in Classes below).
+
+4.5 Scalar property types
+
+	Scalar properties have additional type information associated with them.
+	This type information is only used to accelerate data validity
+	checks (to error out when a property is SET, rather than when a
+	change is COMMITed).
+	
+	CCE implements a number of built-in types, and also provides a hook
+	for an external data validator if necessary.
+	
+	Internally defined types include:
+
+		scalar		a string of arbitrary binary data
+		word			a string of non-whitespace data
+		alphanum		a string of alphanumeric data
+		int			an integer
+		float			a floating-point number
+		boolean		a boolean value
+		ipaddr		an ip address tuple
+		hostname		[A-Za-z][A-Za-z0-9\-\.]*
+		re:<regexp>		the regular expression 'regexp'
+		list:class		a reference list of class 'class'
+
+	External validators are defined as:
+		extern:/usr/bin/myvalidator
+
+	External validators are passed data on STDIN, and exit with the value 0
+	for success or non-zero for failure.
+
+4.6 Reserved Property Names
+
+	The following property names are reserved for internal use by the
+	CCE database implementation.  These are properties in the sense
+	that actuators can be attached to them, and some may have
+	meaningful data when read, but none may be written to.
+	
+		_NEW			whenever a new instance is created
+		_DESTROY		whenever an instance is destroyed
+		_CLASS		the name of the object's class
+		_CLASSVER		the current version of the object's class
+		_PARENTS		the list of objects referencing this object
+		_CHILDREN		the list of objects referenced by this object
+		_DEFER		(see Security.Model.txt for details)
+		_READ_ALLOW		(see Security.Model.txt for details)
+		_READ_DENY		(see Security.Model.txt for details)
+		_WRITE_ALLOW	(see Security.Model.txt for details)
+		_WRITE_DENY		(see Security.Model.txt for details)
+		_CHMOD_ALLOW	(see Security.Model.txt for details)
+		_CHMOD_DENY		(see Security.Model.txt for details)
+	
+
+4.7 Garbage Collection
+
+	All objects must at some point connect to object 0 (root).  Otherwise
+	they can get garbage collected.  Objects with a ref count of zero get 
+	garbage collected during the first GC run after they are unlinked.
+	Also collected by the GC are old transaction info/warning messages
+	(see CSCP.spec.txt, COMMIT command).
+	
+	The actual interval for GC runs is undefined, but is guaranteed to
+	be at least once per day.  This interval should not be relied upon 
+	by clients.

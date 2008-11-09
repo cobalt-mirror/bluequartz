@@ -1,0 +1,520 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "备份"
+
+msgid "backupMenu_help"
+msgstr "单击此处确定时间并查看文件备份。"
+
+msgid "restoreMenu"
+msgstr "恢复"
+
+msgid "restoreMenu_help"
+msgstr "单击此处选择并激活修复。"
+
+msgid "scheduleListHeader"
+msgstr "预定的备份列表"
+
+msgid "backupAddHeader"
+msgstr "添加预定的备份"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "备份名称"
+
+msgid "backupName_help"
+msgstr "这将显示备份作业的名称。"
+
+msgid "backupInterval"
+msgstr "备份间隔"
+
+msgid "backupInterval_help"
+msgstr "这将显示此备份作业的运行频率。"
+
+msgid "backupMethod"
+msgstr "备份方法"
+
+msgid "backupMethod_help"
+msgstr "这将显示存储备份所用的网络文件共享方法。"
+
+msgid "backupDestination"
+msgstr "目标位置"
+
+msgid "backupDestination_invalid"
+msgstr "备份位置字段没有以预期的格式显示或包含无效的字符。"
+
+msgid "backupDestination_help"
+msgstr "这显示保存备份的目标位置。"
+
+msgid "backupConfiguration"
+msgstr "配置数据的备份"
+
+msgid "backupConfiguration_help"
+msgstr "这将显示系统配置数据是否包含在备份中。"
+
+msgid "usersToBackup"
+msgstr "备份用户"
+
+msgid "usersToBackup_help"
+msgstr "这将显示哪些用户包含在备份中。"
+
+msgid "groupsToBackup"
+msgstr "备份组"
+
+msgid "groupsToBackup_help"
+msgstr "这显示哪些组包含在备份中。"
+
+msgid "backupFileSet"
+msgstr "备份的文件"
+
+msgid "backupFileSet_help"
+msgstr "这显示哪组文件包含在备份中。"
+
+msgid "removeBackup"
+msgstr "删除"
+
+msgid "removeBackup_help"
+msgstr "单击此处永久删除此备份作业。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "这些是查看预定备份的详细信息、删除预定备份或者恢复以前预定备份所用的按钮。"
+
+msgid "unknown"
+msgstr "未知"
+
+msgid "all"
+msgstr "全部"
+
+msgid "none"
+msgstr "无"
+
+msgid "yes"
+msgstr "是"
+
+msgid "no"
+msgstr "否"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "预定备份详细信息"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "请只输入字母数字字符。缺省值是预定备份的日期。"
+
+msgid "backupNameField_help"
+msgstr "输入备份作业的名称。[[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "对不起，您还没有为[[base-backup.backupNameField]]输入值。 [[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "对不起，您为[[base-backup.backupNameField]]输入的值无效。 [[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "备份配置数据"
+
+msgid "backupConfigurationField_help"
+msgstr "选择系统配置数据是否包含在备份中。"
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "选择哪些用户将包含在备份中。"
+
+msgid "backupUsersField_empty"
+msgstr "对不起，您还没有指定要备份的单独用户。使用箭头键指定要备份的用户。"
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "选择哪些组将包含在备份中。"
+
+msgid "backupGroupsField_empty"
+msgstr "对不起，您还没有指定要备份的单独组。使用箭头键指定要备份的组。"
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "选择要备份的文件。"
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "选择此备份运行的频率。"
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "选择存储备份所用的网络文件共享方法。"
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "用户名"
+
+msgid "backupUsername_help"
+msgstr "输入用于连接至目标服务器的用户名。"
+
+msgid "backupPassword"
+msgstr "口令"
+
+msgid "backupPassword_help"
+msgstr "输入用于连接至目标服务器的口令。"
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Windows 文件共享 (SMB)"
+
+msgid "backupSambaDestination"
+msgstr "位置"
+
+msgid "backupSambaDestination_rule"
+msgstr "例如， &#092;&#092;share&#092;sharedfolder 是有效入口。"
+
+msgid "backupSambaDestination_help"
+msgstr "输入用于存储此备份的[[base-backup.backupViaWinFile]]位置。 [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "对不起，您还没有为[[base-backup.backupViaWinFile]]位置输入值。[[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaUsername_empty"
+msgstr "对不起，您还没有为[[base-backup.backupViaWinFile]]用户名输入值，请输入用于连接至目标服务器的用户名。"
+
+
+msgid "backupViaFTP"
+msgstr "文件传输协议 (FTP)"
+
+msgid "backupFTPDestination"
+msgstr "位置"
+
+msgid "backupFTPDestination_rule"
+msgstr "例如，share.cobalt.com/sharedfolder/ 就是有效的输入。"
+
+msgid "backupFTPDestination_help"
+msgstr "输入用于存储此备份的 FTP 位置。[[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "对不起，您还没有为 FTP 位置输入值。[[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "对不起，您还没有为 FTP 用户名输入值。请输入用于连接至目标服务器的用户名。"
+
+
+msgid "backupViaNFS"
+msgstr "网络文件系统 (NFS)"
+
+msgid "backupNFSDestination"
+msgstr "位置"
+
+msgid "backupNFSDestination_rule"
+msgstr "例如，share.cobalt.com:/sharedfolder/ 就是有效的输入。"
+
+msgid "backupNFSDestination_help"
+msgstr "输入用于存储此备份的 NFS 位置。[[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "对不起，您还没有为 NFS 位置输入值。[[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "是否确定要删除预定的备份[[VAR.backupName]]？"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "备份文件列表"
+
+msgid "backupDate"
+msgstr "备份启动时间"
+
+msgid "backupDate_help"
+msgstr "这将显示备份开始的日期和时间。"
+
+msgid "backupRetval"
+msgstr "状态"
+
+msgid "backupRetval_help"
+msgstr "这指明备份是成功、失败还是待定。"
+
+msgid "statusSuccess"
+msgstr "成功"
+
+msgid "statusSuccess_help"
+msgstr "此备份完全成功。"
+
+msgid "statusPending"
+msgstr "正在运行"
+
+msgid "statusPending_help"
+msgstr "此备份正在运行。"
+
+msgid "statusFailure"
+msgstr "失败"
+
+msgid "statusFailure_help"
+msgstr "此备份没有完成。请检查您的设置并重试。"
+
+msgid "restoreBackup"
+msgstr "恢复"
+
+msgid "restoreBackup_help"
+msgstr "单击此处立即恢复此备份。"
+
+msgid "restoreFromDir"
+msgstr "手动恢复"
+
+msgid "restoreFromDir_help"
+msgstr "从已安装的目录或本地目录中恢复备份。"
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "备份完成时间"
+
+msgid "backupEnded_help"
+msgstr "这将显示备份完成的日期和时间。"
+
+msgid "backupLocation"
+msgstr "目标位置"
+
+msgid "backupLocation_help"
+msgstr "这显示备份保存的目标位置。"
+
+msgid "historyDetailHeader"
+msgstr "历史项目详细信息"
+
+msgid "usersInBackup"
+msgstr "用户"
+
+msgid "usersInBackup_help"
+msgstr "这显示哪些用户包含在备份中。"
+
+msgid "groupsInBackup"
+msgstr "组"
+
+msgid "groupsInBackup_help"
+msgstr "这显示哪些组包含在此备份中。"
+
+msgid "removeButton"
+msgstr "删除"
+
+msgid "removeButton_help"
+msgstr "单击此处立即删除此备份的历史记录。这将只删除备份记录，而不是备份集本身。"
+
+msgid "removeHistoryConfirm"
+msgstr "是否删除[[VAR.time]]时完成的备份 '[[VAR.name]]' 的历史记录？"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "恢复备份"
+
+msgid "restorePlace"
+msgstr "恢复文件的位置"
+
+msgid "restorePlace_help"
+msgstr "为恢复的文件选择一个位置。如果有一个文件同名，并且位置是文件将恢复的位置，则替换现有文件将覆盖硬盘上的文件。恢复文件至恢复文件共享将会把文件放在恢复组的目录 '/home/groups/restore' 中，这可使您手动只复制那些您希望恢复的文件。"	
+
+msgid "restoreOver"
+msgstr "替换现有文件"
+
+msgid "restoreTemp"
+msgstr "恢复至恢复文件共享"
+
+msgid "backupFileshareMissing"
+msgstr "对不起，无法找到恢复文件共享。请验证恢复组和恢复组目录是否存在。"
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "从目录中手动恢复"
+
+msgid "restoreDirField"
+msgstr "目录"
+
+msgid "restoreDirField_rule"
+msgstr "例如，/home/users/admin/20000910171607 就是有效的输入。"
+
+msgid "restoreDirField_help"
+msgstr "输入本地或所安装目录的名称，该目录包含您希望恢复的备份。[[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "不备份的用户"
+
+msgid "backupAllUsers"
+msgstr "备份所有用户"
+
+msgid "backupNoUsers"
+msgstr "不备份任何用户"
+
+msgid "backupUserSubset"
+msgstr "只备份指定用户"
+
+msgid "groupsNotToBackup"
+msgstr "不备份的组"
+
+msgid "backupAllGroups"
+msgstr "备份所有组"
+
+msgid "backupNoGroups"
+msgstr "不备份任何组"
+
+msgid "backupGroupSubset"
+msgstr "只备份指定组"
+
+msgid "backupModified31days"
+msgstr "最近 31 日修改的所有文件"
+
+msgid "backupModified14days"
+msgstr "最近 14 日修改的所有文件"
+
+msgid "backupModified7days"
+msgstr "最近 7 日修改的所有文件"
+
+msgid "backupModified2days"
+msgstr "最近 2 日修改的所有文件"
+
+msgid "backupModified1days"
+msgstr "最近 1 日修改的所有文件"
+
+msgid "backupAllFiles"
+msgstr "所有文件"
+
+msgid "backupImmediate"
+msgstr "立即备份一次"
+
+msgid "backupImmediate_help"
+msgstr "此备份将立即执行一次。"
+
+msgid "daily"
+msgstr "每天备份一次"
+
+msgid "daily_help"
+msgstr "此备份将每天执行一次。"
+
+msgid "weekly"
+msgstr "每周备份一次"
+
+msgid "weekly_help"
+msgstr "此备份将每周执行一次。"
+
+msgid "monthly"
+msgstr "每月备份一次"
+
+msgid "monthly_help"
+msgstr "此备份将每月执行一次。"
+
+msgid "backupCCEDmessage"
+msgstr "由于系统备份或恢复正在运行，一个关键系统组件 (CCE) 无法运行。请稍后再试。"
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "指定的备份共享、用户名或口令不正确，或当前无法访问。"
+
+    #  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "对不起，[[VAR.invalidValue]]是无效的[[base-backup.backupName]]值。[[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "对不起，您为[[base-backup.backupName]]输入的值已经在系统中存在。请为[[base-backup.backupName]]输入另一个值。"
+
+	# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "请检查设置"
+
+msgid "backupReason"
+msgstr "原因"
+
+	# backup.pl
+msgid "backupError"
+msgstr "对不起，试图运行[[VAR.prog]]时出现错误。"
+
+	# Constructor
+msgid "restoreDescription"
+msgstr "此工作组用于备份数据的恢复。"
+
+msgid "permission"
+msgstr "文件许可"
+
+msgid "fileowner"
+msgstr "文件所有人"
+
+msgid "filesize"
+msgstr "文件大小"
+
+msgid "date"
+msgstr "修改日期"
+
+msgid "File"
+msgstr "文件名"
+
+msgid "immediatePopup"
+msgstr "即时备份[[VAR.name]]开始。\n有关此备份和其他备份的详细信息，请选择“恢复”菜单。"
+
+msgid "restoreOverPopup"
+msgstr "恢复[[VAR.name]]开始。\n恢复完成时，系统将重新引导。"
+
+msgid "restoreTempPopup"
+msgstr "恢复[[VAR.name]]开始。\n恢复完成时，恢复文件共享中的文件将可用。"
+
+msgid "osversion_conflict"
+msgstr "此备份文件只能回存到一个共享文件因为它是由不同的 Sun Cobalt 操作系统生成"
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "管理备份"
+
+msgid "capgroup_adminBackup_help"
+msgstr "此管理权限允许用户备份并恢复整个系统。"
+

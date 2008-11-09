@@ -1,0 +1,100 @@
+#!/bin/bash
+#
+# postgresql	This is the init script for starting up the PostgreSQL
+#		server
+#
+# chkconfig: 345 74 15
+# description: Starts and stops the PostgreSQL backend daemon that handles \
+#	       all database requests.
+# processname: postmaster
+# pidfile: /var/run/postmaster.pid
+# 
+
+     # This script is slightly unusual in that the name of the
+     # daemon (postmaster) is not the same as the name of the
+     # subsystem (postgresql)
+
+     # postgreSQL environment variables
+PGDATA=/home/pgsql
+PGUSER=postgres
+PGPORT=5432
+PGPROG=/usr/bin/postmaster
+export PGDATA PGUSER PGPORT PGPROG
+
+     # random configuration files
+CONF_I18N=/etc/sysconfig/i18n
+CONF_FUNC=/etc/rc.d/init.d/functions
+CONF_NET=/etc/sysconfig/network
+
+     # Get locale configuration
+[ -s "$CONF_I18N" ] && . "$CONF_I18N"
+     # bind textdomain to initscripts
+DOMAIN=base-services
+     # explicitly set the LC_CTYPE and LC_COLLATE variables
+LC_CTYPE="${LANG:-en_US}"
+LC_COLLATE="${LANG:-en_US}"
+export LC_CTYPE LC_COLLATE
+
+     # Source common function library
+[ -s "$CONF_FUNC" ] && . "$CONF_FUNC"
+
+     # Get network config
+[ -s "$CONF_NET" ] && . "$CONF_NET"
+
+     # proper networking is essential to postgres
+[ "$NETWORKING" = "no" ] && exit 1
+
+     # these are vital to the operation of postgres
+[ -d "$PGDATA" ] || exit 1
+[ -s "$PGPROG" ] || exit 1
+
+# See how we were called.
+case "$1" in
+  start)
+	LINE1=`getmsg postgresql_start_1`
+	LINE2=`getmsg postgresql_start_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+	su -l "$PGUSER" -c "$PGPROG -S -D $PGDATA"
+	sleep 1
+	pid=`pidof postmaster`
+	echo -n " [$pid]"
+	touch /var/lock/subsys/postgresql
+	echo $pid > /var/run/postmaster.pid
+	echo
+	;;
+  stop)
+	LINE1=`getmsg postgresql_stop_1`
+	LINE2=`getmsg postgresql_stop_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+	killproc postmaster
+	sleep 2
+	rm -f /var/run/postmaster.pid
+	rm -f /var/lock/subsys/postgresql
+	echo
+	;;
+  status)
+	status postmaster
+	;;
+  hard-restart)
+	killproc postmaster
+	rm -f /var/run/postmaster.pid
+	sleep 2
+	su -l "$PGUSER" -c "$PGPROG -S -D $PGDATA"
+	sleep 1
+	pid=`pidof postmaster`
+	echo $pid > /var/run/postmaster.pid
+        ;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  *)
+	echo "Usage: postgresql {start|stop|status|restart}"
+	exit 1
+esac
+
+exit 0

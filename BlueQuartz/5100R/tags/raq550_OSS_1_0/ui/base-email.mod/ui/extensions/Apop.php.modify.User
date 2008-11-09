@@ -1,0 +1,48 @@
+<?php
+// $Id: Apop.php.modify.User,v 1.3 2001/08/11 23:10:02 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+// Apop.php.modify.User
+//
+// UI extension for user modify
+// Modify apop enabled property for a user.
+
+include_once('UIExtension.php');
+
+class APOPExtension extends UIExtension
+{
+	function display(&$helper, &$container, &$prams)
+	{
+		$factory = $helper->getHtmlComponentFactory("base-email");
+		$cce = $helper->getCceClient();
+
+		// don't show if not enabled for vsite
+		if ( isset($prams["VSITE_OID"]) ) {
+			$feature = $cce->get($prams["VSITE_OID"], "APOP");
+			if ( !$feature["enabled"] )
+				return;
+		}
+
+		// get user object to extract current value
+		$props = $cce->get($prams["CCE_OID"], "APOP");
+
+		$container->addFormField(
+				$factory->getBoolean("APOP_enabled", $props["enabled"]),
+				$factory->getLabel("enableApop"),
+				"email"
+			);
+	}
+
+	function handle(&$helper, &$errors, &$prams)
+	{
+		global $APOP_enabled;
+
+        if (!isset($APOP_enabled))
+            return;
+
+		$cce = $helper->getCceClient();
+		$cce->set($prams["CCE_OID"], "APOP", array("enabled" => $APOP_enabled));
+
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

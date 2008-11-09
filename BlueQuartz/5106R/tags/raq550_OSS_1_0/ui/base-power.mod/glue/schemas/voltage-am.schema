@@ -1,0 +1,42 @@
+<!--
+  For information on how Active Monitor works, see the documentation in the
+  config files.  For schema details look at am.schema.
+-->
+
+<!-- This is the AM Namespace for monitoring Fans -->
+<class name="ActiveMonitor" namespace="Voltage" version="1.0">
+    <property name="enabled"            type="boolean"  default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean"  default="1"/>
+    <property name="type"               type="scalar"   default="exec"/>
+    <property name="typeData"           type="scalar"   
+	default="/usr/sausalito/swatch/bin/am_voltage.pl" />
+
+    <property name="currentState"       type="amstate"  default="N"/>
+    <property name="lastChange"         type="uint"     default="0"/>
+    <property name="lastRun"            type="uint"     default="0"/>
+    <property name="currentMessage"     type="scalar"   default=""/>
+    <property name="greenMsg"		type="scalar"
+	default="[[base-power.powerOK]]" />
+    <property name="yellowMsg"		type="scalar"
+	default="[[base-power.powerLow]]" />
+    <property name="redMsg"		type="scalar"
+	default="[[base-power.powerCritical]]" />
+
+    <property name="interval"		type="uint"	default="86100" />
+    <property name="nameTag"   		type="scalar"  	
+	default="[[base-power.powerName]]"/>
+    <property name="URL"	    	type="scalar" 
+ 	default="/base/power/power_details.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+
+    <property name="hideUI"		type="boolean"	default="0" />
+    <property name="sysfault"		type="boolean"	default="0" />
+
+    <property name="rThreshold_vbat_high" type="scalar" default="2.2" />
+    <property name="rThreshold_vbat_low"  type="scalar" default="1.8" />
+    <property name="rThreshold_vtt_high"  type="scalar" default="1.38" />
+    <property name="rThreshold_vtt_low"	  type="scalar" default="1.12" />
+
+</class>
+

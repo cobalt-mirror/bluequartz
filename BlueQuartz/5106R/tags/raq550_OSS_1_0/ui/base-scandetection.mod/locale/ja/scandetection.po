@@ -1,0 +1,142 @@
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: scandetection.po,v 1.1.2.4 2002/03/15 10:19:40 aki Exp $
+
+# --- Menu
+
+msgid "menu"
+msgstr "スキャン検出"
+
+msgid "description"
+msgstr "ポートスキャン検出を設定できます。"
+
+# --- Labels
+
+msgid "scandetectionSettings"
+msgstr "スキャン検出の設定"
+
+msgid "confirmClearBlocked"
+msgstr "ブロックされている IP アドレスのリストをクリアしてもよろしいですか？"
+
+msgid "scandetectionShowBlocked"
+msgstr "ブロックされている IP アドレス"
+
+msgid "dosWarning"
+msgstr "警告 - ブロックオプションを有効にすると、「サービスの否定」アタックに対して脆弱になる可能性があります｡"
+
+# --- Buttons 
+
+msgid "viewlogButton"
+msgstr "ログを表示"
+
+msgid "showBlocked"
+msgstr "ブロックされている IP アドレスを表示"
+
+msgid "clearBlocked"
+msgstr "ブロックされている IP アドレスをクリア"
+
+msgid "refreshButton"
+msgstr "ログを更新"
+
+msgid "save"
+msgstr "保存"
+
+# --- Dropdowns
+
+msgid "scandetectionLevel0"
+msgstr "何もしない"
+
+msgid "scandetectionLevel1"
+msgstr "ログに記録するのみ"
+
+msgid "scandetectionLevel2"
+msgstr "ログに記録して IP をブロックする"
+
+# --- Settings
+
+msgid "scandetectionLevel"
+msgstr "スキャンが検出された場合の対応"
+
+msgid "timeout"
+msgstr "スキャン間隔 (秒)"
+
+msgid "setNumScans"
+msgstr "スキャンされたポート数"
+
+msgid "alertEmail"
+msgstr "警告メール送信先アドレス"
+
+msgid "permBlocked"
+msgstr "常にブロックする IP アドレス"
+
+msgid "permUnblocked"
+msgstr "常にブロックしない IP アドレス"
+
+msgid "alertMe"
+msgstr "警告メールを送信する"
+
+# --- help
+
+msgid "scandetectionLevel_help"
+msgstr "スキャンが検出されたときに実行すべき動作を指定してください｡デフォルトは「ログに記録するのみ」です。"
+
+msgid "timeout_help"
+msgstr "警告を維持するプローブ間の最長時間間隔です｡"
+
+msgid "setNumScans_help"
+msgstr "ここで指定する値を超える数のポートが IP によりプローブされると、警告メールが送信されます。また、「ログに記録して IP をブロックする」が指定されていると、その IP はブロックされます。"
+
+msgid "alertEmail_help"
+msgstr "警告メールの送信先のアドレスを指定してください｡デフォルトは admin@localhost です。"
+
+msgid "permBlocked_help"
+msgstr "このリストに指定されている IP アドレスがこのサーバ上の (またはこのサーバを介して) ポートにアクセスしようとすると必ず拒否されます｡"
+
+msgid "permUnblocked_help"
+msgstr "このリストに指定されている IP アドレスは、このサーバ上の (またはこのサーバを介して) ポートにアクセスしようとしても拒否されません｡"
+
+msgid "viewlogButton_help"
+msgstr "このボタンをクリックすると、スキャン検出ログファイルが表示されます｡"
+
+msgid "showBlocked_help"
+msgstr "このボタンをクリックすると、現在ブロックされている IP アドレスの一覧が表示されます｡"
+
+msgid "clearBlocked_help"
+msgstr "このボタンをクリックすると、ブロックされている IP アドレスがクリアされます｡"
+
+msgid "alertMe_help"
+msgstr "このボックスをチェックすると、スキャン検出時に警告メールが送信されます。送信先の電子メールアドレスは、「アクティブモニタの設定」で指定できます｡"
+
+# --- Active Monitor
+
+msgid "amStatusGreen"
+msgstr "スキャン検出デーモンは正常に動作しています｡"
+
+msgid "amStatusRed"
+msgstr "１つまたは複数のスキャン検出デーモンが正常に動作していません。"
+
+msgid "amScandetectionNameTag"
+msgstr "スキャン検出"
+
+msgid "amDetailsTitle"
+msgstr "スキャン検出の詳細"
+
+# --- LCD
+
+msgid "clear_scandetect"
+msgstr "ﾎﾟｰﾄｽｷｬﾝ ｦ ｸﾘｱ? "
+
+# --- EMAIL
+
+msgid "portscanSubject"
+msgstr "ポートスキャンを検出しました"
+
+msgid "alertEmailSubject"
+msgstr "[[VAR.subject]]"
+
+msgid "alertEmailBody"
+msgstr "これは、ホストで発生しているネットワークアクティビティについてお知らせする警告メールです｡\n\n         日時:  [[VAR.timestamp]]\n             警告の種類:  [[VAR.type]]\n       インターフェイス:  [[VAR.interface]]\n             プロトコル:  [[VAR.protocol]]\nパケットサイズ (バイト):  [[VAR.pktsize]]\n\n         発信元アドレス:  [[VAR.srcaddr]]\n           発信元ポート:  [[VAR.srcport]]\n         ディレクション:  [[VAR.direction]]\n         発信先アドレス:  [[VAR.dstaddr]]\n           発信先ポート:  [[VAR.dstport]]\n\n           ログエントリ:  [[VAR.logentry]]\n"
+
+# lcd strings
+
+msgid "CLEAR SCANDETECTION"
+msgstr "ｽｷｬﾝ ｹﾝｼｭﾂ ﾉ ｸﾘｱ"

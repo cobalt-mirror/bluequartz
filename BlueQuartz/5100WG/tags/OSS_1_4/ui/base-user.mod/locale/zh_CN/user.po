@@ -1,0 +1,284 @@
+msgid "userList"
+msgstr "用户列表"
+
+msgid "users_help"
+msgstr "用户可在此处管理。"
+ 
+msgid "fullName"
+msgstr "全名"
+
+msgid "fullName_help"
+msgstr "这是用户的全名。"
+
+msgid "userName"
+msgstr "用户名"
+
+msgid "userName_help"
+msgstr "这是系统用于识别用户的名称。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "这些是用于修改用户设置或删除用户的按钮。"
+
+msgid "addNewUser"
+msgstr "添加新用户"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "请输入除冒号外的任何字符。例如，John Doe 就是有效输入。"
+
+msgid "fullNameField_help"
+msgstr "输入用户的全名。 [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "sortNameField"
+msgstr "可分类名称"
+
+msgid "sortNameField_help"
+msgstr "输入用户名的可分类版本。"
+
+msgid "userNameField_rule"
+msgstr "请输入多于 12 个字符，其中只包括小写字母数字字符、句点、连字符和下划线。第一个字符必须是字母。例如，john.doe 就是有效的输入。"
+
+msgid "userNameField_help"
+msgstr "输入系统用于识别用户的名称。 [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "对不起，您为[[base-user.userNameField]]输入的值已被此系统中的另一人占用。请为[[base-user.userNameField]]输入另一个值。"
+
+msgid "passwordField"
+msgstr "口令"
+
+msgid "passwordField_rule"
+msgstr "口令长度应介于 3 和 16 个字符之间。正确的口令应包含至少 5 个大小写字母以及数字和标点符号组合的字符。口令不应是字典中的任何单词。口令区分大小写。"
+
+msgid "passwordField_help"
+msgstr "输入系统用于识别此用户的口令。 [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。在两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+msgid "error-invalid-password"
+msgstr "对不起，您输入的口令无效。 [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "允许的最大磁盘空间 (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "请输入 1 和 1024000 之间的整数。 "
+
+msgid "maxDiskSpaceField_help"
+msgstr "设置此用户的磁盘限额。这是此用户用于存储网页、电子邮件和所有其它用户文件可用的最大磁盘空间。[[base-user.maxDiskSpaceField_rule]]新用户的缺省值在“用户缺省值”部分设置。"
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "设置新用户的缺省最大磁盘空间。这是用户用于存储网页、电子邮件和所有其它用户文件可用的最大磁盘空间。[[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "组成员资格"
+
+msgid "memberGroupsField_help"
+msgstr "设置此用户的组成员资格。左栏显示此用户当前所属的组。右栏显示此用户可能所属的组。要将用户添加为组成员，将组从右栏移到左栏。"
+
+msgid "memberGroups"
+msgstr "关联的组"
+
+msgid "allGroups"
+msgstr "无关联的组"
+
+msgid "modifyUser"
+msgstr "修改用户设置 — [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "新口令"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "电子邮件设置 — [[VAR.userName]]"
+
+msgid "emailAliasesField"
+msgstr "电子邮件别名"
+
+msgid "emailAliasesField_rule"
+msgstr "请输入仅包括小写字母数字字符、句点、连字符和下划线的字符。缺省值是小写的第一个和最后一个用户名，中间用句点隔开，例如，john.doe 就是有效的输入。"
+
+msgid "emailAliasesField_help"
+msgstr "输入用户将接收的电子邮件的附加名称。 [[base-user.emailAliasesField_rule]]"
+
+
+msgid "forwardEnableField"
+msgstr "电子邮件转发"
+
+msgid "forwardEnableField_help"
+msgstr "启用电子邮件转发将导致将来接收到的电子邮件将自动转发到指定的电子邮件地址。"
+
+msgid "forwardEnable"
+msgstr "启用"
+
+msgid "forwardEmailField_rule"
+msgstr "输入的值必须是有效的电子邮件地址，例如 user@domain.com。要指定多个地址，请用逗号将地址隔开，或在每行输入一个地址。"
+
+msgid "forwardEmailField"
+msgstr "电子邮件地址"
+
+msgid "forwardEmailField_help"
+msgstr "输入您的电子邮件将转发的地址。[[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "休假消息"
+
+msgid "autoResponderField_help"
+msgstr "休假消息允许您自动向为您发送电子邮件的人发送定制的消息。如果您无法阅读电子邮件，或者希望发送人发送自动回复消息，这一点非常有用。"
+
+msgid "enableAutoResponderField"
+msgstr "启用"
+
+msgid "autoResponderMessageField"
+msgstr "自动回复"
+
+msgid "autoResponderMessageField_help"
+msgstr "输入将自动回复电子邮件发送人的消息。 "
+
+	# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+msgid "blank-vacation-msg"
+msgstr "对不起，您为[[base-user.autoResponderMessageField]]输入的值无效。"
+
+msgid "userDefaults"
+msgstr "编辑用户缺省值"
+
+msgid "userDefaults_help"
+msgstr "单击此处更改新用户的缺省设置。"
+
+msgid "userNameGenField"
+msgstr "用户名生成"
+
+msgid "userNameGenField_help"
+msgstr "设置输入全名后用户名自动生成的方法。例如，如果 John Doe 是全名，则 johnd、jdoe、john 或 doe 将是自动生成的用户名。"
+
+msgid "first"
+msgstr "仅名"
+
+msgid "last"
+msgstr "仅姓"
+
+msgid "firstInitLast"
+msgstr "名与姓的首字母缩写"
+
+msgid "firstLastInit"
+msgstr "名与姓首字母缩写"
+
+msgid "languageField"
+msgstr "语言偏好设置"
+
+msgid "languageField_help"
+msgstr "服务器将尝试以您此处选择的语言显示网页。如果您选择“从浏览器选项设置”，服务器将尝试根据您的 Web 浏览器语言偏好设置显示网页。如果您选择的语言不可用，服务器将使用您的服务器上可用的缺省语言显示网页。"
+
+msgid "account"
+msgstr "帐户"
+
+msgid "account_help"
+msgstr "基本帐户设置可在此处配置。"
+
+msgid "email"
+msgstr "电子邮件"
+
+msgid "email_help"
+msgstr "别名、转发和休假消息等电子邮件设置可在此处配置。"
+
+# Personal Profile Section
+
+msgid "personalEmail"
+msgstr "电子邮件"
+
+msgid "personalEmail_help"
+msgstr "在此处管理您的电子邮件转发和自动回复设置。"
+
+# --- Style settings are not currently used, but may be added some time in the future
+msgid "styleField"
+msgstr "风格"
+
+msgid "styleField_help"
+msgstr "更改用于显示菜单、按钮或其它项目的图像风格。"
+
+msgid "personalAccount"
+msgstr "帐户"
+
+msgid "personalAccount_help"
+msgstr "个人用户帐户信息可在此处管理。"
+
+msgid "accountSettings"
+msgstr "帐户设置 — [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "是否确定要删除用户[[VAR.userName]]？"
+
+msgid "reloadMessage"
+msgstr "您的 Web 浏览器现在将自动刷新，以应用所选择的风格。"
+
+msgid "forwardSaveField"
+msgstr "保存副本"
+
+msgid "forwardSaveField_help"
+msgstr "保存副本除了向指定的电子邮件地址转发一份副本外，还将所接收的每个电子邮件的副本保存到邮箱中。"
+
+msgid "userDesc"
+msgstr "备注"
+
+msgid "userDesc_help"
+msgstr "此栏将提供每一用户的附加信息。"
+
+msgid "userDescField"
+msgstr "备注"
+
+msgid "userDescField_help"
+msgstr "在此处输入用户的附加信息或备注。"
+
+msgid "uidAlreadyTaken"
+msgstr "对不起，出现错误。输入的 uid 已被使用。"
+
+msgid "aliasAlreadyTaken"
+msgstr "对不起，无法使用指定的名称创建用户，因为该名称的电子邮件别名已经存在。"
+
+msgid "aliasAlreadyTaken2"
+msgstr "对不起，无法设置此用户的电子邮件别名，因为一个或多个指定的别名已被使用。"
+
+msgid "add_user_help"
+msgstr "单击此处添加新用户。"
+
+msgid "administrator"
+msgstr "管理员"
+
+msgid "failed-to-add-user"
+msgstr "由于系统错误而无法创建用户帐户。"
+
+msgid "security"
+msgstr "功能"
+
+msgid "security_help"
+msgstr "为单一用户授予管理权限"
+
+msgid "capsAllowed"
+msgstr "允许"
+
+msgid "capsNotAllowed"
+msgstr "不允许"
+
+msgid "capabilities"
+msgstr "功能"
+
+msgid "capabilities_help"
+msgstr "创建一个该用户允许功能的列表"
+

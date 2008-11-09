@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyWinshare" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyWinshare)"/>
+	<property name="nameTag" type="scalar" default="[[base-winshare.cap_modifyWinshare]]"/>
+</class>

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+find . -name '*po' | grep $1 | xargs cat | grep msgstr | sed -e 's/msgstr[[:space:]]*"\(.*\)"/\1/' > test.$1

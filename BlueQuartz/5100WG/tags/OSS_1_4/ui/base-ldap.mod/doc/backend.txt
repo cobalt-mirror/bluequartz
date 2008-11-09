@@ -1,0 +1,90 @@
+LDAP Backend API.
+
+WARNING:
+	This idea will never work for a variety of reasons.
+	It was cute and is left here for future generations in case at some
+	point cce changes in such a way that this is feaible.
+
+CCE Schema and handler implementation.
+
+Disclaimer: Ldap still makes my head hurt, exactly what information is valid
+            and how necessary schemas are is still unknown.
+
+This is a living document, and may soon be a dead one.
+
+My current implementation for LDAP/CCE integration runs thusly,
+
+Any Objects that wish to link in with CCE will have and Ldap namesapce attached
+(And additional Ldap_<3pd> namespaces if wished.
+
+Objects of different classes may also register, such that if the Identity
+properties of the System object are changed, all O parameters may be changed.
+
+The ldap handlers will have handlers registered such that when User.name
+changes User.Ldap.cn gets updated as well. (Yes that does mean that we can't
+have multiple values for attributes unless they coexist in the same area.)
+
+Other handlers will be registered on User.Ldap.* attributes to map back the
+other way, so that wehn User.Ldap.cn changes, the handler will change
+User.username.
+
+This way by a few simple handlers we can map any Ldap attribute to an CCE attribute.
+
+Further problems arise when I try to work out how to map objectClass to CCE
+classes. I'm considering just making it like every other ldap attribute (As
+that's how it's sent.) but that doesn't seem entirely optimum.
+
+On the Ldap side this would be accomplished by translating search requests
+such as...
+
+At the moemnt my psuedo code (In somethign approximating python) goes
+something like this for a search operation.
+
+/* For every class in cce */
+for class ( cce_classlist() ):
+	namespace_list[]
+
+	/* Collect a list of Ldap* class names */
+	for namespace ( cce_names( class ) ):
+		if( namespace[:4] == 'ldap' ):
+			namespace_list[:-1] = namespace 
+
+	/* If no namesapces skip to next class */
+	if (! namespace_list ):
+		next;
+
+	/* For each object of this type we can find */
+	for oid ( cce_find( class ) ):
+		ldap_attrs[]
+
+		/* For each ldap namesapce */
+		for namespace( namesapce_list ):
+			for (var,val) ( cce_get(oid, namespace) ):
+				ldap_attrs[var] = val
+
+	/* openldap provides a function to check an ldap object we create
+	 * against a filter that it passes in to us. */
+	if( test_entry(ldap_attr, filter) ):
+		send_entry( ldap_attrs )
+
+Modify, Add and Delete operation are going to be trickier as reversing the
+objectClass ldap attribute to the CCE class attribute will just plain suck. 
+
+For turning an objectClass attribute into a CCE class ( Necessary for all
+non search operations and possibly seperated from CCE as it necessitate that
+there must be at least one of the object in the database to get it's ldap
+mapping.
+
+for class ( clssname_list() ):
+	oids = cce_find(class)
+	if( ! oids[0] ):
+		next
+	
+	for namespace( cce_names( oids[0] ) ):
+		if( namespace[0:4] == 'Ldap' ):
+			attrs = cce_get(oid[0], 'Ldap')
+			if( attrs['objectClass'] == searchingFor ):
+				return class
+
+
+

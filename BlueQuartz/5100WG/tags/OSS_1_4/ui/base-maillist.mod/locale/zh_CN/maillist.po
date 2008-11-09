@@ -1,0 +1,348 @@
+# --- Menu
+
+msgid "maillists"
+msgstr "邮件列表"
+
+msgid "maillistsHelp"
+msgstr "[[base-maillist.maillistList]]可在此处管理。"
+
+
+# --- Mailing Lists page
+
+msgid "maillistList"
+msgstr "邮件列表"
+
+msgid "maillistNameHeader"
+msgstr "名称"
+
+msgid "maillistNameHeader_help"
+msgstr "这是邮件列表的名称。"
+
+msgid "recipientsHeader"
+msgstr "订户"
+
+msgid "recipientsHeader_help"
+msgstr "这些是预订邮件列表的用户。"
+
+msgid "groupSubscriber"
+msgstr "[[VAR.group]]组的所有成员"
+
+msgid "maillistDescHeader"
+msgstr "备注"
+
+msgid "maillistDescHeader_help"
+msgstr "本栏包含每一邮件列表的附加信息。"
+
+msgid "maillistActionHeader"
+msgstr "操作"
+
+msgid "maillistActionHeader_help"
+msgstr "这些是用于修改或删除邮件列表的按钮。"
+
+msgid "confirm_removal_of_list"
+msgstr "是否确定要删除[[VAR.list]]邮件列表？"
+
+
+# ----- Add/modify a mailing list Basic
+
+msgid "createMailList"
+msgstr "添加邮件列表"
+
+msgid "modifyMailList"
+msgstr "修改邮件列表"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"
+msgstr "高级"
+
+msgid "basic_help"
+msgstr "基本邮件列表选项可在此处配置。"
+
+msgid "advanced_help"
+msgstr "如发布和预订策略等高级邮件列表选项可在此处配置。"
+
+msgid "listName"
+msgstr "列表名称"
+
+msgid "listName_rule"
+msgstr "请只输入小写的字母数字字符、连字符和下划线。例如，sales 是一个有效输入。"
+
+msgid "listName_help"
+msgstr "输入邮件列表的名称。 [[base-maillist.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-maillist.listName]]的无效值。 [[base-maillist.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "对不起，您没有为[[base-maillist.listName]]输入值。[[base-maillist.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "组成员"
+
+msgid "workgroupMembers_help"
+msgstr "该字段包含与此列表相关的组中当前成员的用户列表。该组所有成员始终预订此邮件列表。"
+
+msgid "group_field"
+msgstr "组列表名称"
+
+msgid "group_field_help"
+msgstr "这是组邮件列表的名称。该组所有成员自动预订此邮件列表。"
+
+msgid "save"
+msgstr "保存"
+
+msgid "save_help"
+msgstr "保存此邮件列表。"
+
+
+msgid "localSubscribers"
+msgstr "本地订户"
+
+msgid "localSubscribers_help"
+msgstr "选择预订此邮件列表的本地用户。要预定用户，将用户从“未预订”栏移动到“预订”栏。"
+
+msgid "subscribed"
+msgstr "用户已预订"
+
+msgid "unsubscribed"
+msgstr "用户未预订"
+
+msgid "remoteSubscribers"
+msgstr "远程订户"
+
+msgid "remoteSubscribers_rule"
+msgstr "请输入格式正确的电子邮件地址。例如，user@cobalt.com 就是有效的输入。"
+
+msgid "remoteSubscribers_help"
+msgstr "输入预订此邮件列表的远程用户。远程用户是在此服务器设备上没有帐户的用户。[[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-maillist.remoteSubscribers]]的无效值。 [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "description"
+msgstr "备注"
+
+msgid "description_help"
+msgstr "在此处输入邮件列表的附加信息或备注。"
+
+
+
+# ----- Add/modify a mailing list Advanced
+
+msgid "moderator"
+msgstr "所有人/仲裁人"
+
+msgid "moderator_rule"
+msgstr "请输入此服务器设备上有效用户格式正确的电子邮件地址或用户名。缺省值是 admin。例如，user@cobalt.com 和 admin 都是有效的输入。"
+
+msgid "moderator_help"
+msgstr "输入对邮件列表执行所有管理任务的用户的电子邮件地址。[[base-maillist.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "对不起，[[VAR.invalidValue]是[[base-maillist.moderator]]的无效值。 [[base-maillist.moderator_rule]]"
+
+	# handler version
+msgid "Moderator-does-not-exist"
+msgstr "无效仲裁人：用户[[VAR.moderator]]似乎不存在。"
+
+
+msgid "moderator_empty"
+msgstr "对不起，您没有为[[base-maillist.moderator]]输入值。即使没有指定邮件列表的仲裁策略，您也必须输入值。 [[base-maillist.moderator_rule]]"
+
+msgid "policies"
+msgstr "策略"
+
+msgid "password"
+msgstr "口令"
+
+msgid "password_help"
+msgstr "输入此邮件列表的管理口令。此口令在通过电子邮件执行特定的列表管理任务时使用（例如批准预订或仲裁消息）。如果不希望使用这些功能，则可将此自动留空。"
+
+msgid "postingPolicy"
+msgstr "发布策略"
+
+msgid "postingPolicy_help"
+msgstr "选择此邮件列表的发布策略。如果您选择“仲裁人确认所有消息”，每一消息都要求列表所有人/仲裁人的确认。 "
+
+msgid "postingPolicy-any"
+msgstr "所有用户可发布消息"
+
+msgid "postingPolicy-members"
+msgstr "只有订户可发布消息"
+
+msgid "postingPolicy-moderated"
+msgstr "仲裁人确认所有消息"
+
+msgid "subscriptionPolicy"
+msgstr "预订策略"
+
+msgid "subscriptionPolicy_help"
+msgstr "选择邮件列表的预订策略。"
+
+msgid "subscriptionPolicy-open"
+msgstr "开放：任何用户都可预订。"
+
+msgid "subscriptionPolicy-closed"
+msgstr "有限：预订要求列表所有人的确认。"
+
+msgid "subscriptionPolicy-confirm"
+msgstr "确认：预订要求电子邮件确认。"
+
+msgid "maxlength"
+msgstr "消息最大长度"
+
+msgid "maxlength_help"
+msgstr "选择向此邮件列表发送的消息所允许的以千字节或兆字节表示的最大大小。超过此大小的消息将被拒绝。"
+
+msgid "maxlength-5120"
+msgstr "5 kb"
+msgid "maxlength-51200"
+msgstr "50 kb"
+msgid "maxlength-512000"
+msgstr "500 kb"
+msgid "maxlength-1048576"
+msgstr "10 MB"
+msgid "maxlength-104857600"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "回复策略"
+
+msgid "replyToList_help"
+msgstr "设置此邮件列表的回复策略。如果选择“回复至列表”，则回复将转到列表。否则，回复将只转向消息的原作者。"
+
+msgid "replyToList-true"
+msgstr "回复至列表"
+
+msgid "replyToList-0"
+msgstr "回复至发送人"
+
+msgid "archiveSettings"
+msgstr "归档"
+
+msgid "archiveEnabled"
+msgstr "启用"
+
+msgid "archiveEnabled_help"
+msgstr "设置是否将发送至此邮件列表的消息归档。在此服务器设备上有帐户的用户可使用其 WebMail 帐户（如果已安装 WebMail）访问这些归档。"
+
+msgid "keepForDays"
+msgstr "保留期限（天）"
+
+msgid "keepForDays_help"
+msgstr "输入一个数字，表示消息在归档中保留的时间长度（天数）。输入零 (0) 则无限期保留归档的消息。"
+
+msgid "keepForDays_rule"
+msgstr "请输入一个数字，表示消息在归档中保留的时间长度（天数）。输入零 (0) 则无限期保留归档的消息。 "
+
+msgid "keepForDays_empty"
+msgstr "对不起，您没有为[[base-maillist.keepForDays]]指定值。[[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "对不起，字段[[base-maillist.keepForDays]]含有无效值。 [[base-maillist.keepForDays_rule]]"
+
+
+# ------ Handler messages
+
+msgid "name-already-taken"
+msgstr "对不起，具有指定名称的邮件列表已经存在。请输入不同的名称重试。"
+
+msgid "Mail-alias-already-taken"
+msgstr "对不起，无法创建邮件列表，因为列表所需的电子邮件别名已经存在。尝试为邮件列表指定不同的名称，或者删除具有相同名称的电子邮件别名。"
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "对不起，此服务器设备上用户组的邮件列表无法删除。"
+
+msgid "Could-not-create-maillist"
+msgstr "对不起，出现错误。无法创建邮件列表。 "
+
+
+
+# ----- Archives for users with accounts
+
+	#--- List view
+msgid "maillistArchive"
+msgstr "邮件列表归档—[[VAR.name]]"
+
+msgid "title"
+msgstr "主题"
+
+msgid "title_help"
+msgstr "这是邮件的主题。"
+
+msgid "author"
+msgstr "发送人"
+
+msgid "author_help"
+msgstr "这是邮件发送人的姓名或电子邮件地址。"
+
+msgid "date"
+msgstr "日期"
+
+msgid "date_help"
+msgstr "这是接收邮件的日期。"
+
+	#--- Read message view
+msgid "readMessage"
+msgstr "阅读邮件"
+
+msgid "readMessage_help"
+msgstr "阅读邮件"
+
+msgid "from"
+msgstr "发件人"
+
+msgid "from_help"
+msgstr "这是消息发送人的姓名和/或电子邮件地址。"
+
+msgid "subject"
+msgstr "主题"
+
+msgid "subject_help"
+msgstr "这是邮件的主题。"
+
+msgid "message"
+msgstr "邮件"
+
+msgid "message_help"
+msgstr "这是消息的正文。"
+
+msgid "replySender"
+msgstr "回复至发送人"
+
+msgid "replySender_help"
+msgstr "单击此处回复邮件作者。"
+
+msgid "replyAll"
+msgstr "回复全部"
+
+msgid "replyAll_help"
+msgstr "单击此处回复邮件作者及其他所有接收人。"
+
+# ------ Misc  (i.e. I have no idea)
+
+msgid "membership"
+msgstr "成员"
+
+msgid "membership_help"
+msgstr "“成员”定义与此邮件列表相关的用户。"
+
+
+# ------- Strings for email messages
+
+msgid "WelcomeMessageSubject"
+msgstr "归档已经启用"
+
+msgid "WelcomeMessageBody"
+msgstr "此电子邮件已向您发送，通知您邮件列表 '[[VAR.name]]' 的归档已经为那些在此服务器上拥有帐户的用户启用。这些用户将能够从 WebMail 内部访问此归档。无需回复此消息。"
+
+# Capabilities
+
+msgid "capgroup_adminMaillist"
+msgstr "管理邮件列表"
+
+msgid "capgroup_adminMaillist_help"
+msgstr "此管理权限允许用户创建，销毁和修改这个机器上驻留的邮件列表。"
+

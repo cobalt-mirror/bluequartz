@@ -1,0 +1,78 @@
+##CUSTOM-PREAMBLE##
+<?php
+  global $WizHostNameField;
+  global $WizDomainNameField;
+  global $WizDnsAddressesField;
+  global $WizConnectionTypeField;
+
+
+$sys=$cceClient->getObject("System");
+$gateway=$sys["gateway"];
+
+?>
+
+##WIZARD-FORM##
+	<!-- -----------------Beginning Of Form--------------- -->
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='5b'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<input type='hidden' name='WizPreviousPage' value='5'>
+		<input type='hidden' name='WizHostNameField' value='<?php print $WizHostNameField; ?>'>
+		<input type='hidden' name='WizDomainNameField' value='<?php print $WizDomainNameField; ?>'>
+		<input type='hidden' name='WizDnsAddressesField' value='<?php print $WizDnsAddressesField; ?>'>
+		<input type='hidden' name='WizConnectionTypeField' value='<?php print $WizConnectionTypeField; ?>'>
+		<div class="Setting-Description">
+Enter the gateway for this server appliance. If the gateway is on the network connected to the secondary interface, enter the information for the interface as well.</div>
+		<br>
+		<div class="Setting-Label">
+			<table width="507" border="0" cellspacing="0" cellpadding="2">
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							Gateway:</div>
+					</td>
+					<td valign="top"><INPUT TYPE="TEXT" NAME="WizGatewayField" VALUE= "<?php print $gateway; ?>" SIZE="20" MAXLENGTH="15"></td>
+				</tr>
+				<tr>
+					<td width="114"></td>
+					<td valign="top"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							
+			Secondary<br>
+							IP Address:</div>
+					</td>
+					<td valign="top"><INPUT TYPE="TEXT" NAME="WizSecIpAddressField" VALUE="" SIZE="20" MAXLENGTH="15">
+						<div class="Setting-Info-Text">
+							(optional)</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="114">
+						<div align="right" class="Setting-Label">
+							
+			Secondary<br>
+							IP Network Mask:</div>
+					</td>
+					<td valign="top"><INPUT TYPE="TEXT" NAME="WizSecNetMaskField" VALUE="" SIZE="20" MAXLENGTH="15">
+						<div class="Setting-Info-Text">
+							(optional)</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top" width="114"></td>
+					<td valign="top"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+				</tr>
+				<tr>
+					<td valign="top" width="114">
+						<div align="right" class="Setting-Label">
+							MAC Address:</div>
+					</td>
+					<td valign="top">DE:AD:BE:EF:00:00</td>
+				</tr>
+			</table>
+		</div>
+	</form>
+

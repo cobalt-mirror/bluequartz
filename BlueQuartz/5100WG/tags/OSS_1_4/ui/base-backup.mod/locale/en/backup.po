@@ -1,0 +1,519 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "Backup"
+
+msgid "backupMenu_help"
+msgstr "Click here to schedule and view backups."
+
+msgid "restoreMenu"
+msgstr "Restore"
+
+msgid "restoreMenu_help"
+msgstr "Click here to select and activate restores."
+
+msgid "scheduleListHeader"
+msgstr "Scheduled Backup List"
+
+msgid "backupAddHeader"
+msgstr "Add Scheduled Backup"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "Backup Name"
+
+msgid "backupName_help"
+msgstr "This shows the name of the backup job."
+
+msgid "backupInterval"
+msgstr "Backup Interval"
+
+msgid "backupInterval_help"
+msgstr "This shows how frequently this backup job will be run."
+
+msgid "backupMethod"
+msgstr "Method of Backup"
+
+msgid "backupMethod_help"
+msgstr "This shows the network file sharing method used to store the backup."
+
+msgid "backupDestination"
+msgstr "Destination"
+
+msgid "backupDestination_invalid"
+msgstr "The backup Location field is not in an expected format or contains invalid characters. "
+
+msgid "backupDestination_help"
+msgstr "This shows the destination to which the backup is saved."
+
+msgid "backupConfiguration"
+msgstr "Backup of Configuration Data"
+
+msgid "backupConfiguration_help"
+msgstr "This shows if system configuration data is included in the backup."
+
+msgid "usersToBackup"
+msgstr "Users to Backup"
+
+msgid "usersToBackup_help"
+msgstr "This shows which users are included in the backup."
+
+msgid "groupsToBackup"
+msgstr "Groups to Backup"
+
+msgid "groupsToBackup_help"
+msgstr "This shows which groups are included in the backup."
+
+msgid "backupFileSet"
+msgstr "Files to Backup"
+
+msgid "backupFileSet_help"
+msgstr "This shows which set of files are included in the backup."
+
+msgid "removeBackup"
+msgstr "Remove"
+
+msgid "removeBackup_help"
+msgstr "Click here to permanently remove this backup job."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "These are the buttons used to view the details of a scheduled backup, to remove a scheduled backup, or to restore a previously scheduled backup."
+
+msgid "unknown"
+msgstr "Unknown"
+
+msgid "all"
+msgstr "All"
+
+msgid "none"
+msgstr "None"
+
+msgid "yes"
+msgstr "Yes"
+
+msgid "no"
+msgstr "No"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "Scheduled Backup Details"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "Please enter only alphanumeric characters.  The default value is the date that the backup is scheduled."
+
+msgid "backupNameField_help"
+msgstr "Enter the name of the backup job. [[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "Sorry, you have not entered a value for [[base-backup.backupNameField]].  [[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "Sorry, you have entered an invalid value for [[base-backup.backupNameField]].  [[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "Backup Configuration Data"
+
+msgid "backupConfigurationField_help"
+msgstr "Choose whether system configuration data will be included in the backup."
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "Select which users will be included in the backup."
+
+msgid "backupUsersField_empty"
+msgstr "Sorry, you have not specified any individual users to backup.  Use the arrow buttons to specify the users to backup."
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "Select which groups will be included in the backup."
+
+msgid "backupGroupsField_empty"
+msgstr "Sorry, you have not specified any individual groups to backup. Use the arrow buttons to specify the groups to backup."
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "Select which files to backup."
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "Select how frequently this backup is to be run."
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "Select the network file sharing method used to store the backup."
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "User Name"
+
+msgid "backupUsername_help"
+msgstr "Enter the user name used to connect to the destination server."
+
+msgid "backupPassword"
+msgstr "Password"
+
+msgid "backupPassword_help"
+msgstr "Enter the password used to connect to the destination server."
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Windows File Sharing (SMB)"
+
+msgid "backupSambaDestination"
+msgstr "Location"
+
+msgid "backupSambaDestination_rule"
+msgstr "For example, &#092;&#092;share&#092;sharedfolder is a valid entry."
+
+msgid "backupSambaDestination_help"
+msgstr "Enter the [[base-backup.backupViaWinFile]] location used to store this backup.  [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "Sorry, you have not entered a value for the [[base-backup.backupViaWinFile]] location.  [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaUsername_empty"
+msgstr "Sorry, you have not entered a value for the [[base-backup.backupViaWinFile]] user name.  Please enter the user name used to connect to the destination server."
+
+
+msgid "backupViaFTP"
+msgstr "File Transfer Protocol (FTP)"
+
+msgid "backupFTPDestination"
+msgstr "Location"
+
+msgid "backupFTPDestination_rule"
+msgstr "For example, share.cobalt.com/sharedfolder/ is a valid entry."
+
+msgid "backupFTPDestination_help"
+msgstr "Enter the FTP location used to store this backup.  [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "Sorry, you have not entered a value for the FTP location.  [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "Sorry, you have not entered a value for the FTP user name.  Please enter the user name used to connect to the destination server."
+
+
+msgid "backupViaNFS"
+msgstr "Network File System (NFS)"
+
+msgid "backupNFSDestination"
+msgstr "Location"
+
+msgid "backupNFSDestination_rule"
+msgstr "For example, share.cobalt.com:/sharedfolder/ is a valid entry."
+
+msgid "backupNFSDestination_help"
+msgstr "Enter the NFS location used to store this backup.  [[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "Sorry, you have not entered a value for the NFS location.  [[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "Are you sure you want to remove the scheduled backup [[VAR.backupName]]?"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "Backup File List"
+
+msgid "backupDate"
+msgstr "Backup Started"
+
+msgid "backupDate_help"
+msgstr "This shows the date and time that the backup was started."
+
+msgid "backupRetval"
+msgstr "Status"
+
+msgid "backupRetval_help"
+msgstr "This indicates whether the backup succeeded, failed or is pending."
+
+msgid "statusSuccess"
+msgstr "Success"
+
+msgid "statusSuccess_help"
+msgstr "This backup completed successfully."
+
+msgid "statusPending"
+msgstr "Currently Running"
+
+msgid "statusPending_help"
+msgstr "This backup is currently running."
+
+msgid "statusFailure"
+msgstr "Failure"
+
+msgid "statusFailure_help"
+msgstr "This backup failed to complete. Please check your settings and try again."
+
+msgid "restoreBackup"
+msgstr "Restore"
+
+msgid "restoreBackup_help"
+msgstr "Click here to restore this backup now."
+
+msgid "restoreFromDir"
+msgstr "Restore Manually"
+
+msgid "restoreFromDir_help"
+msgstr "Restore a backup from a mounted or local directory."
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "Backup Finished"
+
+msgid "backupEnded_help"
+msgstr "This shows the date and time that the backup was finished."
+
+msgid "backupLocation"
+msgstr "Destination"
+
+msgid "backupLocation_help"
+msgstr "This shows the destination to which the backup was saved."
+
+msgid "historyDetailHeader"
+msgstr "History Item Details"
+
+msgid "usersInBackup"
+msgstr "Users"
+
+msgid "usersInBackup_help"
+msgstr "This shows which users are included in this backup."
+
+msgid "groupsInBackup"
+msgstr "Groups"
+
+msgid "groupsInBackup_help"
+msgstr "This shows which groups are included in this backup."
+
+msgid "removeButton"
+msgstr "Remove"
+
+msgid "removeButton_help"
+msgstr "Click here to remove the history of this backup now. This will only remove the history of the backup, not the backup set itself."
+
+msgid "removeHistoryConfirm"
+msgstr "Remove the history of backup '[[VAR.name]]' done on [[VAR.time]]?"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "Restore a Backup"
+
+msgid "restorePlace"
+msgstr "Location to Restore Files"
+
+msgid "restorePlace_help"
+msgstr "Choose a location for the restored files. Replacing existing files will overwrite files on your hard drive if there is a file with the same name and location as the file being restored.  Restoring files to the restore fileshare will place the files in the restore group's directory, '/home/groups/restore'. This allows you to manually copy only those files you wish to restore ."	
+
+msgid "restoreOver"
+msgstr "Replace existing files"
+
+msgid "restoreTemp"
+msgstr "Restore to restore fileshare"
+
+msgid "backupFileshareMissing"
+msgstr "Sorry, the restore fileshare could not be found. Please verify that the restore group and the restore group directory exist."
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "Manual Restore From Directory"
+
+msgid "restoreDirField"
+msgstr "Directory"
+
+msgid "restoreDirField_rule"
+msgstr "For example, /home/users/admin/20000910171607 is a valid entry."
+
+msgid "restoreDirField_help"
+msgstr "Enter the name of the local or mounted directory which contains the backup you wish to restore. [[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "Users Not to Backup"
+
+msgid "backupAllUsers"
+msgstr "Backup All Users"
+
+msgid "backupNoUsers"
+msgstr "Do Not Backup Any Users"
+
+msgid "backupUserSubset"
+msgstr "Backup Specified Users Only"
+
+msgid "groupsNotToBackup"
+msgstr "Groups Not to Backup"
+
+msgid "backupAllGroups"
+msgstr "Backup All Groups"
+
+msgid "backupNoGroups"
+msgstr "Do Not Backup Any Groups"
+
+msgid "backupGroupSubset"
+msgstr "Backup Specified Groups Only"
+
+msgid "backupModified31days"
+msgstr "All Files Modified in the Last 31 Days"
+
+msgid "backupModified14days"
+msgstr "All Files Modified in the Last 14 Days"
+
+msgid "backupModified7days"
+msgstr "All Files Modified in the Last 7 Days"
+
+msgid "backupModified2days"
+msgstr "All Files Modified in the Last 2 Days"
+
+msgid "backupModified1days"
+msgstr "All Files Modified in the Last Day"
+
+msgid "backupAllFiles"
+msgstr "All Files"
+
+msgid "backupImmediate"
+msgstr "Backup Immediately Only Once"
+
+msgid "backupImmediate_help"
+msgstr "This backup will be performed immediately and only once."
+
+msgid "daily"
+msgstr "Backup Once Per Day"
+
+msgid "daily_help"
+msgstr "This backup will be performed once every day."
+
+msgid "weekly"
+msgstr "Backup Once Per Week"
+
+msgid "weekly_help"
+msgstr "This backup will be performed once every week."
+
+msgid "monthly"
+msgstr "Backup Once Per Month"
+
+msgid "monthly_help"
+msgstr "This backup will be performed once every month."
+
+msgid "backupCCEDmessage"
+msgstr "A crucial system component (CCE) is currently out of operation because a system backup or restore is running. Please try again in a moment."
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "The specified backup share, username, or password is incorrect or inaccessible at this time."
+
+    #  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-backup.backupName]].  [[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "Sorry, you have entered a value for [[base-backup.backupName]] that already exists in the system.  Please enter another value for [[base-backup.backupName]]."
+
+	# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "Please check your settings"
+
+msgid "backupReason"
+msgstr "Reason"
+
+	# backup.pl
+msgid "backupError"
+msgstr "Sorry, an error occurred while attempting to run [[VAR.prog]]."
+
+	# Constructor
+msgid "restoreDescription"
+msgstr "This workgroup is used for the restoration of backup data."
+
+msgid "permission"
+msgstr "File Permission"
+
+msgid "fileowner"
+msgstr "File Owner"
+
+msgid "filesize"
+msgstr "File Size"
+
+msgid "date"
+msgstr "Modification Date"
+
+msgid "File"
+msgstr "File Name"
+
+msgid "immediatePopup"
+msgstr "Immediate backup [[VAR.name]] is starting.\nSelect the Restore menu for more information on this and other backups."
+
+msgid "restoreOverPopup"
+msgstr "Restore [[VAR.name]] is starting.\nThe system will reboot when the restore has finished."
+
+msgid "restoreTempPopup"
+msgstr "Restore [[VAR.name]] is starting.\nThe files will be available in the restore fileshare when the restore has completed."
+
+msgid "osversion_conflict"
+msgstr "This backup archive can only be restored to a fileshare because it was created with a different Sun Cobalt OS version."
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "Manage Backups"
+
+msgid "capgroup_adminBackup_help"
+msgstr "This administrative right allows a user to backup and restore the entire system"

@@ -1,0 +1,57 @@
+# The following are the strings used for the menu.
+
+msgid "pkgName"
+msgstr "Sun Cobaltウェブキャッシュ"
+
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgDescription"
+msgstr "[[base-cache.pkgName]] パッケージは、頻繁にリクエストされるページをキャッシュすることにより、ネットワークのパフォーマンスを向上できます。"
+
+msgid "cache"
+msgstr "ウェブキャッシュ"
+
+msgid "cache_description"
+msgstr "[[base-cache.modifyCache]]内容を変更できます。"
+
+# The following are the strings used for the modification screen.
+
+msgid "modifyCache"
+msgstr "ウェブキャッシュの設定"
+
+msgid "enabled"
+msgstr "ウェブキャッシュを有効にする"
+
+msgid "enabled_help"
+msgstr "このボックスをチェックすると、ウェブキャッシュが有効になり、このサーバはウェブクライアントのプロキシキャッシュサーバとして動作します。各ユーザには、各自のブラウザの設定に、このサーバを HTTP プロキシとし、プロキシポート番号として 3128 を指定するよう指示してください。それにより、ウェブリクエストがスピードアップし、帯域幅を有効利用できます。"
+
+# The following are used by the handler.
+
+msgid "no_system_object"
+msgstr "エラーが発生しました。システムオブジェクトが見つかりません。"
+
+msgid "no_prim_network_object"
+msgstr "エラーが発生しました。プライマリインターフェイスのネットワークオブジェクトが見つかりません。"
+
+# Active Monitor Strings
+
+msgid "amNameTag"
+msgstr "ウェブキャッシュサーバ"
+
+msgid "amStatusOK"
+msgstr "[[base-cache.amNameTag]]は正常に動作しています。"
+
+msgid "amNotRunning"
+msgstr "[[base-cache.amNameTag]]は動作していません。"
+
+msgid "amDetailsTitle"
+msgstr "ウェブキャッシュサーバの詳細"
+
+# Capabilities
+
+msgid "capgroup_adminWebCache"
+msgstr "ウェブキャッシュとアクセス制限の管理"
+
+msgid "capgroup_adminWebCache_help"
+msgstr "この管理権限を持つユーザは、ウェブキャッシュが使用する設定を変更できます。"

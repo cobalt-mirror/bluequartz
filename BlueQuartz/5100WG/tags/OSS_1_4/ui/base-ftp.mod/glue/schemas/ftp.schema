@@ -1,0 +1,12 @@
+<! --
+	$Id: ftp.schema 3 2003-07-17 15:19:15Z will $
+	Copyright(c) Cobalt Networks, Inc.
+	Author: asun@cobalt.com
+	
+	This provides the schema for ftp.
+-->
+
+<class name="System" namespace="Ftp" version="1.0">
+	<property name="enabled" type="boolean" default="true" writeacl="ruleCapable(modifyFtpServer)"/>
+	<property name="maxConnections" type="int" default="25" writeacl="ruleCapable(modifyFtpServer)"/>
+</class>

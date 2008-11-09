@@ -1,0 +1,23 @@
+Wishlist:
+--------
+
+Ability to force a scheduled backup to run now or a history item to run now
+Delete multiple history items
+Suspend a scheduled backup
+View backup log
+Anonymous restore (specify location etc...)
+Setlist file which lists filename/size/checksum for each file in backup set
+change "PendingBackup" behavior
+status bar on restores and immediate backup
+
+
+TODO before Carmel GM:
+----------------------
+test edge cases (extra slashes, etc)
+Fix Illegal Seek errors
+
+TODO 09.27
+----------
+o check sprintfs in remote backup directory creation
+o figure out 'restore list' behavior on restores ( history or no? )
+o put in remote backup validity test

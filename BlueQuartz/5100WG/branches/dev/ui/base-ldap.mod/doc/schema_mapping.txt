@@ -1,0 +1,58 @@
+Mapping of CCE <-> Ldap Attributes.
+
+Not everyone can be made happy - but if anyone has any tweaks tell me.
+
+Unfortunately this bears little remembelance to any known schemas as I've
+spent too much time trying to find one which will suit our needs.
+
+I have attempted to stay as close as possible to the standard described in
+rfc1274.
+
+The schema providesa all the attributes of inetOrgPerson and posixAccount
+posixGroup
+
+The schema is yet to be formally defined for cobaltAccount/ cobaltGroup.
+
+User..
+
+Cce					Ldap
+
+name				userName					
+password			userPassword
+fullName			commonName
+siteAdministrator	siteAdmingistrator
+localePreference	localepreference
+
+Disk.User			diskUsed
+Disk.Quota			diskQuota
+
+Email.forwardEmail	forwardEmail				forwardEmail
+Email.aliases		rfc822Mailbox (List of.)	emailAddr
+
+And the DN is made up of
+
+cn=username, group=groupname, <ldap_base>
+
+Workgroup..
+
+enabled				enabled
+name				cn
+Disk.quota			diskQuota
+Disk.used			diskUsed
+memberUid			list of members
+
+e.g
+
+User ldap object.
+
+dn: cn=sam, group=toocanm, o=Cobalt, ou=Software Engineering
+userName: Saw Berkowitz
+commonName: sam
+userPassword: dontknow
+siteAdministrator: false
+localePreference: en_AU
+diskUsed: 20
+diskQuota: 40
+forwardEmail: forwarder@somewhere.com
+emailAddr: sam@bar.com
+emailAddr: sue@bar.com

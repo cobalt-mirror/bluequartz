@@ -1,0 +1,519 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "Copias"
+
+msgid "backupMenu_help"
+msgstr "Programar y ver copias de seguridad."
+
+msgid "restoreMenu"
+msgstr "Restaurar"
+
+msgid "restoreMenu_help"
+msgstr "Seleccionar y activar restauraciones."
+
+msgid "scheduleListHeader"
+msgstr "Lista de copias de seguridad programadas"
+
+msgid "backupAddHeader"
+msgstr "Añadir copia de seguridad programada"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "Nombre de la copia de seguridad"
+
+msgid "backupName_help"
+msgstr "Nombre de la tarea de copia de seguridad."
+
+msgid "backupInterval"
+msgstr "Intervalo de copia de seguridad"
+
+msgid "backupInterval_help"
+msgstr "Frecuencia de ejecución de la tarea de copia de seguridad."
+
+msgid "backupMethod"
+msgstr "Método de copia de seguridad"
+
+msgid "backupMethod_help"
+msgstr "Método para guardar la copia de seguridad de los archivos compartidos de red."
+
+msgid "backupDestination"
+msgstr "Destino"
+
+msgid "backupDestination_invalid"
+msgstr "El campo de la  ubicación de  la copia de seguridad no esta en el formato apropiado o contiene caracteres inválidos."
+
+msgid "backupDestination_help"
+msgstr "Destino en el que se guarda la copia de seguridad."
+
+msgid "backupConfiguration"
+msgstr "Copia de seguridad de los datos de configuración"
+
+msgid "backupConfiguration_help"
+msgstr "La copia de seguridad incluye o no los datos de configuración del sistema."
+
+msgid "usersToBackup"
+msgstr "Usuarios para copia de seguridad"
+
+msgid "usersToBackup_help"
+msgstr "Usuarios que se incluyen en la copia de seguridad."
+
+msgid "groupsToBackup"
+msgstr "Grupos para copia de seguridad"
+
+msgid "groupsToBackup_help"
+msgstr "Grupos que se incluyen en la copia de seguridad."
+
+msgid "backupFileSet"
+msgstr "Archivos para copia de seguridad"
+
+msgid "backupFileSet_help"
+msgstr "Archivos que se incluyen en la copia de seguridad."
+
+msgid "removeBackup"
+msgstr "Eliminar"
+
+msgid "removeBackup_help"
+msgstr "Eliminar permanentemente esta tarea de copia de seguridad."
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Botones para ver detalles, eliminar o restaurar una copia de seguridad programada."
+
+msgid "unknown"
+msgstr "Desconocido"
+
+msgid "all"
+msgstr "Todos"
+
+msgid "none"
+msgstr "Ninguno"
+
+msgid "yes"
+msgstr "Sí"
+
+msgid "no"
+msgstr "No"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "Detalles de la copia de seguridad programada"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "Sólo caracteres alfanuméricos. El valor predeterminado: la fecha programada para la copia de seguridad."
+
+msgid "backupNameField_help"
+msgstr "Nombre de la tarea de copia de seguridad. [[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "No ha especificado un valor para [[base-backup.backupNameField]]. [[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "Ha especificado un valor inválido para [[base-backup.backupNameField]]. [[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "Copia de seguridad de los datos de configuración"
+
+msgid "backupConfigurationField_help"
+msgstr "La copia de seguridad incluye o no los datos de configuración del sistema."
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "Usuarios que se incluirán en la copia de seguridad."
+
+msgid "backupUsersField_empty"
+msgstr "No ha especificado ningún usuario para la copia de seguridad. Con los botones de flecha especifique los usuarios a incluir en la copia de seguridad."
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "Seleccione los grupos que se incluirá en la copia de seguridad."
+
+msgid "backupGroupsField_empty"
+msgstr "No ha especificado ningún grupo para la copia de seguridad. Con los botones de flecha especifique los grupos a incluir en la copia de seguridad."
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "Seleccione los archivos para la copia de seguridad."
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "Seleccione la frecuencia de ejecución de esta copia de seguridad."
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "Método para guardar la copia de seguridad de los archivos compartidos de red."
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "Nombre de usuario"
+
+msgid "backupUsername_help"
+msgstr "Escriba el nombre de usuario para conectarse al servidor de destino."
+
+msgid "backupPassword"
+msgstr "Contraseña"
+
+msgid "backupPassword_help"
+msgstr "Escriba la contraseña para conectarse al servidor de destino."
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Uso compartido de archivos de Windows (SMB)"
+
+msgid "backupSambaDestination"
+msgstr "Ubicación"
+
+msgid "backupSambaDestination_rule"
+msgstr "Por ejemplo, &#092;&#092;share&#092;sharedfolder es una entrada válida."
+
+msgid "backupSambaDestination_help"
+msgstr "Ubicación de [[base-backup.backupViaWinFile]] para guardar esta copia de seguridad. [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "No ha especificado un valor para la ubicación [[base-backup.backupViaWinFile]]. [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaUsername_empty"
+msgstr "No ha especificado un valor para el nombre de usuario [[base-backup.backupViaWinFile]]. Escriba el nombre de usuario para conectarse al servidor de destino."
+
+
+msgid "backupViaFTP"
+msgstr "Protocolo FTP (transferencia de archivos)"
+
+msgid "backupFTPDestination"
+msgstr "Ubicación"
+
+msgid "backupFTPDestination_rule"
+msgstr "Por ejemplo, share.cobalt.com/sharedfolder/."
+
+msgid "backupFTPDestination_help"
+msgstr "Ubicación FTP para guardar esta copia de seguridad. [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "No ha especificado un valor para la ubicación FTP. [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "No ha especificado un valor para el nombre de usuario FTP. Escriba el nombre de usuario para conectarse al servidor de destino."
+
+
+msgid "backupViaNFS"
+msgstr "Sistema de archivos de red (NFS)"
+
+msgid "backupNFSDestination"
+msgstr "Ubicación"
+
+msgid "backupNFSDestination_rule"
+msgstr "Por ejemplo, share.cobalt.com:/sharedfolder/."
+
+msgid "backupNFSDestination_help"
+msgstr "Escriba la ubicación NFS para guardar esta copia de seguridad. [[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "No ha especificado un valor para la ubicación NFS. [[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "¿Está seguro de que desea eliminar la copia de seguridad programada [[VAR.backupName]]?"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "Lista de archivos de la copia de seguridad"
+
+msgid "backupDate"
+msgstr "Inicio de la copia de seguridad"
+
+msgid "backupDate_help"
+msgstr "Fecha y la hora de inicio de la copia de seguridad."
+
+msgid "backupRetval"
+msgstr "Estado"
+
+msgid "backupRetval_help"
+msgstr "Se indica si la copia de seguridad fue satisfactoria, falló o está pendiente."
+
+msgid "statusSuccess"
+msgstr "Con éxito"
+
+msgid "statusSuccess_help"
+msgstr "Esta restauración ha tenido éxito."
+
+msgid "statusPending"
+msgstr "En ejecución"
+
+msgid "statusPending_help"
+msgstr "Esta restauración esta en processo."
+
+msgid "statusFailure"
+msgstr "Error"
+
+msgid "statusFailure_help"
+msgstr "Su copia de seguridad no pudo completarse, por favor revise sus registros e intentelo otra vez."
+
+msgid "restoreBackup"
+msgstr "Restaurar"
+
+msgid "restoreBackup_help"
+msgstr "Restaurar ahora esta copia de seguridad."
+
+msgid "restoreFromDir"
+msgstr "Restaurar manualmente"
+
+msgid "restoreFromDir_help"
+msgstr "Restaurar una copia de seguridad desde un directorio montado o local."
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "Terminación de la copia de seguridad"
+
+msgid "backupEnded_help"
+msgstr "Fecha y hora de terminación de la copia de seguridad."
+
+msgid "backupLocation"
+msgstr "Destino"
+
+msgid "backupLocation_help"
+msgstr "Destino de la copia de seguridad."
+
+msgid "historyDetailHeader"
+msgstr "Detalles del elemento del historial"
+
+msgid "usersInBackup"
+msgstr "Usuarios"
+
+msgid "usersInBackup_help"
+msgstr "Usuarios que se incluyen en esta copia de seguridad."
+
+msgid "groupsInBackup"
+msgstr "Grupos"
+
+msgid "groupsInBackup_help"
+msgstr "Grupos que se incluyen en esta copia de seguridad."
+
+msgid "removeButton"
+msgstr "Eliminar"
+
+msgid "removeButton_help"
+msgstr "Eliminar ahora el historial de esta copia de seguridad. Se elimina el historial y no la copia misma."
+
+msgid "removeHistoryConfirm"
+msgstr "¿Desea eliminar el historial de la copia de seguridad '[[VAR.name]]' realizada el [[VAR.time]]?"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "Restaurar una copia de seguridad"
+
+msgid "restorePlace"
+msgstr "Ubicación para restaurar archivos"
+
+msgid "restorePlace_help"
+msgstr "Ubicación para los archivos restaurados. Se sobrescribirán los archivos del disco duro que tengan el mismo nombre y ubicación que los restaurados. La restauración de estos archivos se encuentra en el directorio '/home/groups/restore', lo que le permite copiar manualmente sólo los archivos que desee restaurar."	
+
+msgid "restoreOver"
+msgstr "Sustituir archivos existentes"
+
+msgid "restoreTemp"
+msgstr "Restaurar en la ubicación de archivos compartidos restaurados"
+
+msgid "backupFileshareMissing"
+msgstr "La restauración de grupo compartido no se encontró. Por favor verifique el groupo y el directorio de restauración existan."
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "Restauración manual desde el directorio"
+
+msgid "restoreDirField"
+msgstr "Directorio"
+
+msgid "restoreDirField_rule"
+msgstr "Por ejemplo, /home/users/admin/20000910171607."
+
+msgid "restoreDirField_help"
+msgstr "Nombre del directorio local o montado con la copia de seguridad a restaurar. [[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "Usuarios no incluidos en la copia de seguridad"
+
+msgid "backupAllUsers"
+msgstr "Copia de seguridad de todos los usuarios"
+
+msgid "backupNoUsers"
+msgstr "No hacer copia de seguridad de ningún usuario"
+
+msgid "backupUserSubset"
+msgstr "Copia de seguridad sólo de los usuarios especificados"
+
+msgid "groupsNotToBackup"
+msgstr "Grupos no incluidos en la copia de seguridad"
+
+msgid "backupAllGroups"
+msgstr "Copia de seguridad de todos los grupos"
+
+msgid "backupNoGroups"
+msgstr "No hacer copia de seguridad de ningún grupo"
+
+msgid "backupGroupSubset"
+msgstr "Copia de seguridad sólo de los grupos especificados"
+
+msgid "backupModified31days"
+msgstr "Todos los archivos modificados en los últimos 31 días"
+
+msgid "backupModified14days"
+msgstr "Todos los archivos modificados en los últimos 14 días"
+
+msgid "backupModified7days"
+msgstr "Todos los archivos modificados en los últimos 7 días"
+
+msgid "backupModified2days"
+msgstr "Todos los archivos modificados en los últimos 2 días"
+
+msgid "backupModified1days"
+msgstr "Todos los archivos modificados el último día"
+
+msgid "backupAllFiles"
+msgstr "Todos los archivos"
+
+msgid "backupImmediate"
+msgstr "Copia de seguridad inmediata y única"
+
+msgid "backupImmediate_help"
+msgstr "Esta copia de seguridad se realizará inmediatamente y sólo una vez."
+
+msgid "daily"
+msgstr "Copia de seguridad diaria"
+
+msgid "daily_help"
+msgstr "Esta copia de seguridad se realizará una vez al día."
+
+msgid "weekly"
+msgstr "Copia de seguridad semanal"
+
+msgid "weekly_help"
+msgstr "Esta copia de seguridad se realizará una vez a la semana."
+
+msgid "monthly"
+msgstr "Copia de seguridad mensual"
+
+msgid "monthly_help"
+msgstr "Esta copia de seguridad se realizará una vez al mes."
+
+msgid "backupCCEDmessage"
+msgstr "Un componente fundamental del sistema (CCE) no está funcionando porque se está ejecutando una copia de seguridad o una restauración del sistema. Inténtelo en unos momentos."
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "El archivo compartido, el nombre de usuario o la contraseña de la copia de seguridad especificada no es valido(a) o no se puede tener acceso a él ahora."
+
+    #  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "[[VAR.invalidValue]] no es un valor válido para [[base-backup.backupName]]. [[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "Ha especificado un valor para [[base-backup.backupName]] ya existente en el sistema. Escriba otro valor."
+
+	# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "Compruebe su configuración"
+
+msgid "backupReason"
+msgstr "Motivo"
+
+	# backup.pl
+msgid "backupError"
+msgstr "Error al intentar ejecutar [[VAR.prog]]."
+
+	# Constructor
+msgid "restoreDescription"
+msgstr "Este grupo de trabajo se utiliza para restaurar datos de copia de seguridad."
+
+msgid "permission"
+msgstr "Permiso del archivo"
+
+msgid "fileowner"
+msgstr "Propietario del archivo"
+
+msgid "filesize"
+msgstr "Tamaño del archivo"
+
+msgid "date"
+msgstr "Fecha de modificación"
+
+msgid "File"
+msgstr "Nombre del archivo"
+
+msgid "immediatePopup"
+msgstr "El sistema de seguridad inmediata [[VAR.name]] está comenzando. Elija el menu restaurar para mas información en esta y otras opciónes de seguridad."
+
+msgid "restoreOverPopup"
+msgstr "La restauración de [[VAR.name]] está comenzando. El sistema se reiniciará cuando la restauración termine."
+
+msgid "restoreTempPopup"
+msgstr "El sistema de seguridad [[VAR.name]] está comenzando. Estos archivos estaran disponibles en la copia de seguridad de archivos compartidos, cuando la restauración haya terminado."
+
+msgid "osversion_conflict"
+msgstr "This backup archive can only be restored to a file share because it was created with a different Sun Cobalt OS version."
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "Administrar copias de seguridad"
+
+msgid "capgroup_adminBackup_help"
+msgstr "Este derecho administrativo permite que un usuario realice una copia de seguridad y restaure el sistema entero."

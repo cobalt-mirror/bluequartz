@@ -1,0 +1,7 @@
+#%PAM-1.0
+auth       requisite    /lib/security/pam_securetty.so
+auth       requisite    /lib/security/pam_nologin.so
+auth       requisite    /lib/security/pam_shells.so
+auth       required     /lib/security/pam_pwdb.so shadow nullok
+account    required     /lib/security/pam_pwdb.so
+session    required     /lib/security/pam_pwdb.so

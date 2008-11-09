@@ -1,0 +1,168 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: yum\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-27 05:52+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "yumgui_head"
+msgstr "YUM - Updates"
+
+msgid "autoupdate"
+msgstr "Automatisch aktualisieren:"
+
+msgid "autoupdate_help"
+msgstr "Sie können wählen, ob YUM automatisch Sicherheitsupdates herunterladen und installieren soll. Wenn Sie die Automatik aktivieren, können Sie auswählen, an welchen Wochentagen das passieren soll. Möchten Sie täglich nach Updates suchen, markieren Sie einfach alle Tage der Woche. Falls Sie dies nur einmal die Woche (z.B. Montags) machen wollen, so markieren Sie nur den Montag."
+
+msgid "yumlog"
+msgstr "yum.log"
+
+msgid "yumlog_help"
+msgstr "Auf dieser Seite können Sie das YUM logfile einsehen, in dem alle Transaktionen von YUM protokolliert werden. Das Logfile selbst finden Sie unter /var/log/yum.log auf diesem Server."
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Settings_help"
+msgstr "Sie können YUM so konfigurieren, dass es automatisch die Verfügbarkeit von Updates überprüft, vorhandene Updates herunterlädt und diese selbständig installiert. Wenn gewünscht, sogar täglich. "
+
+msgid "Logs"
+msgstr "Protokoll"
+
+msgid "Logs_help"
+msgstr "Auf dieser Seite können Sie das YUM logfile einsehen, in dem alle Transaktionen von YUM protokolliert werden. Das Logfile selbst finden Sie unter /var/log/yum.log auf diesem Server."
+
+msgid "yumguimenuentry"
+msgstr "YUM Updater"
+
+msgid "yumguimenuentrydesc"
+msgstr "YUM ist der primäre Mechanismus, den CentOS + BlueQuartz verwendet, um sowohl das Betriebssystem als auch die Administrations-Oberfläche auf dem neuesten Stand zu halten. Sie können YUM auch von der Kommandozeile her ausführen (Siehe: 'man yum'). Oder Sie können YUM automatisiert über einen Cronjob ausführen lassen. Diese Funktionalität kann hier eingerichtet werden."
+
+msgid "yumlog_empty"
+msgstr "Das Logfile scheint leer zu sein."
+
+msgid "yumTitle"
+msgstr "Verfügbare Updates"
+
+msgid "Available updates_help"
+msgstr "Zeigt das Datum und die Uhrzeit des letzten ausgeführten YUM Updates. Sie können YUM auch manuell starten, um nach verfügbaren Patchen zu schauen und diese manuell zu installieren."
+
+msgid "yumCheck"
+msgstr "Auf neue Updates prüfen"
+
+msgid "yumCheck_help"
+msgstr "Fragt die YUM-Repositories nach neu verfügbaren Updates ab. Dies kann einen Moment dauern."
+
+msgid "yumNOW"
+msgstr "Updates einspielen"
+
+msgid "yumNOW_help"
+msgstr "Führt ein sofortiges Update aus, bei dem alle verfügbaren Patches heruntergeladen und installiert werden."
+
+msgid "yum_last_updated"
+msgstr "Letzte Aktualisierung:"
+
+msgid "yum_last_updated_help"
+msgstr "Datum und Uhrzeit der letzten Aktualisierung."
+
+msgid "yum_is_pulling_updates"
+msgstr "Update wird ausgeführt:"
+
+msgid "yum_is_pulling_updates_help"
+msgstr "Das System wird gerade aktualisiert. Bitte warten Sie ein paar Minuten."
+
+msgid "yumguiEMAIL"
+msgstr "Email-Benachrichtigung:"
+
+msgid "yumguiEMAIL_help"
+msgstr "Falls aktiviert, verschickt YUM nach jedem Durchlauf das Ergebnis der ausgeführten Aktionen."
+
+msgid "yumguiEMAILADDY"
+msgstr "Email-Adresse:"
+
+msgid "yumguiEMAILADDY_help"
+msgstr "Email-Adresse, an die YUM seine Berichte über den Status der automatisierten Updates verschickt. Die Standard-Adresse ist 'admin', aber Sie können auch ein anderes Konto oder eine Email-Adresse eingeben."
+
+msgid "yumUpdateTime"
+msgstr "Uhrzeit:"
+
+msgid "yumUpdateTime_help"
+msgstr "Hier können Sie einstellen, zu welchen Zeiten YUM Updates ausgeführt werden sollen. Es läuft dann an den ausgewählten Tagen zu der hier spezifizierten Uhrzeit."
+
+msgid "yumUpdateSU"
+msgstr "Sonntags:"
+
+msgid "yumUpdateSU_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "yumUpdateMO"
+msgstr "Montags:"
+
+msgid "yumUpdateMO_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "yumUpdateTU"
+msgstr "Dienstags:"
+
+msgid "yumUpdateTU_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "yumUpdateWE"
+msgstr "Mittwochs:"
+
+msgid "yumUpdateWE_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "yumUpdateTH"
+msgstr "Donnerstags:"
+
+msgid "yumUpdateTH_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "yumUpdateFR"
+msgstr "Freitags:"
+
+msgid "yumUpdateFR_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "yumUpdateSA"
+msgstr "Samstags:"
+
+msgid "yumUpdateSA_help"
+msgstr "Markieren Sie dieses Feld, um an dem ausgewählten Tag nach Updates zu prüfen."
+
+msgid "name"
+msgstr "Name:"
+
+msgid "name_help"
+msgstr "Name des RPM"
+
+msgid "version"
+msgstr "Version:"
+
+msgid "version_help"
+msgstr "Version des RPM"
+
+msgid "status"
+msgstr "Repository:"
+
+msgid "status_help"
+msgstr "Das YUM-Repository, aus dem das RPM stammt."
+
+msgid "yumguiEXCLUDE"
+msgstr "Folgende RPMs nicht aktualisieren"
+
+msgid "yumguiEXCLUDE_help"
+msgstr "Geben Sie hier RPMs an, die von einem Update ausgeschlossen sind. Geben Sie nur den Namen des RPMs an und lassen Sie die Versionsinformationen weg. Pro Zeile bitte nur eine Eingabe."
+
+msgid "cantYUMCONF"
+msgstr "Die Datei '/etc/yum.conf' konnte nicht editiert werden."
+

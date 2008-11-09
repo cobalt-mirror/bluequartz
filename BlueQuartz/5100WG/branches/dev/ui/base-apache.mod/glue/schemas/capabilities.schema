@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifyApache" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyApache)"/>
+	<property name="nameTag" type="scalar" default="[[base-apache.cap_modifyApache]]"/>
+</class>

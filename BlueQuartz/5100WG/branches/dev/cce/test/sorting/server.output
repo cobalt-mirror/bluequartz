@@ -1,0 +1,16 @@
+Not sending anything to syslog.
+Verbose mode enabled.
+Cobalt Configuration Engine (CCE) version 0.81.0
+Copyright (c) 1999,2000 Cobalt Networks, Inc.
+client 0:PID: CREATE  t1 val2 = e val3 = 60 val1 = D 
+client 0:PID: CREATE succeeded
+client 0:PID: CREATE  t1 val2 = c val3 = 61 val1 = B 
+client 0:PID: CREATE succeeded
+client 0:PID: CREATE  t1 val2 = b val3 = "7.9" val1 = b 
+client 0:PID: CREATE succeeded
+client 0:PID: CREATE  t1 val2 = d val3 = "3.1" val1 = A 
+client 0:PID: CREATE succeeded
+client 0:PID: CREATE  t1 val2 = a val3 = "95.01" val1 = a 
+client 0:PID: CREATE succeeded
+caught SIGTERM: cleaning up
+exiting

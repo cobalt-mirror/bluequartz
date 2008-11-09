@@ -1,0 +1,74 @@
+# ----- Menu
+msgid "multidrop"
+msgstr "Remote Retrieval"
+
+msgid "multidropHelp"
+msgstr "Remote email retrieval settings can be configured here."
+
+# ----- Remote Retrieval (aka multidrop)page
+
+msgid "modifyMultidrop"
+msgstr "Remote Retrieval Settings"
+
+msgid "enableField"
+msgstr "Enable Remote Retrieval"
+
+msgid "enableField_help"
+msgstr "Turn Remote Retrieval on or off. Remote retrieval, or Multidrop, can be used to periodically retrieve email from a remote server. Please refer to your server appliance manual for more information."
+
+msgid "serverField"
+msgstr "Remote Email Server"
+
+msgid "serverField_eg"
+msgstr "For example, 192.168.1.100 and mail.cobalt.com are valid entries."
+
+msgid "serverField_rule"
+msgstr "Please enter a properly formatted network address or fully qualified domain name for the [[base-multidrop.serverField]]. [[base-multidrop.serverField_eg]]"
+
+msgid "serverField_help"
+msgstr "Enter the network address or fully qualified domain name of the remote email server from which to retrieve your entire domain's email messages.  [[base-multidrop.serverField_eg]]"
+
+msgid "userDomainField"
+msgstr "Email Domain Name"
+
+msgid "userDomainField_rule"
+msgstr "Please enter an [[base-multidrop.userDomainField]] that is a properly formatted network address or fully qualified domain name.  For example, 192.168.1.100 and mail.cobalt.com are valid entries"
+
+msgid "userDomainField_help"
+msgstr "Enter the domain name to which your email is sent.  For example, if one of the email addresses for which email is stored into the multidrop mailbox is joe@example.com, the domain name would be example.com"
+
+msgid "userNameField"
+msgstr "User Name"
+
+msgid "userNameField_help"
+msgstr "Enter the user name of the account on the remote email server from which to retrieve your entire domain's email messages."
+
+msgid "userNameField_rule"
+msgstr "Please enter a username of no more than 12 characters containing only lowercase alphanumeric characters, periods, hyphens and underscores."
+
+msgid "passwordField"
+msgstr "Password"
+
+msgid "passwordField_help"
+msgstr "Enter the password of the account on the remote email server from which to retrieve your entire domain's email messages."
+
+msgid "passwordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "intervalField"
+msgstr "Retrieval Frequency"
+
+msgid "intervalField_rule"
+msgstr "Please enter an interval that is an number greater than 0"
+
+msgid "intervalField_help"
+msgstr "Enter, in minutes, how frequently incoming email messages will be retrieved from the remote email server."
+
+msgid "protoField"
+msgstr "Message Retrieval Protocol"
+
+msgid "protoField_help"
+msgstr "Select a method of retrieving email messages from the remote email server.  The ETRN method should only be used if your remote email server is ESMTP-compliant.  The default setting, POP3, should work for most users."
+
+msgid "badInterval"
+msgstr "The [[base-multidrop.intervalField]] must be greater than 0."

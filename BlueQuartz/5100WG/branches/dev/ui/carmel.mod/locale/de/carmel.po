@@ -1,0 +1,122 @@
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "osName"
+msgstr "Sun Cobalt OS"
+
+msgid "osVendor"
+msgstr "Sun Cobalt"
+
+msgid "osDescription"
+msgstr "[[base-carmel.osName]] ist die grundlegende Software für den [[base-carmel.productName]]. Dieses Softwarepaket ist notwendig, damit Ihr Server funktioniert."
+
+msgid "loginPageTitle"
+msgstr "Anmelden - [[base-carmel.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "Anmelden - [[VAR.hostName]]"
+
+msgid "loginNoCssMessage"
+msgstr "Bevor Sie sich anmelden, überprüfen Sie, ob Ihr Browser die Cascading Style Sheets-Funktionalität unterstützt."
+
+msgid "loginNoJsMessage"
+msgstr "Bevor Sie sich anmelden, überprüfen Sie, ob Ihr Browser die JavaScript-Funktionalität unterstützt."
+
+msgid "loginOkMessage"
+msgstr "Geben Sie Ihren Benutzernamen und Ihr Passwort ein, um sich anzumelden."
+
+msgid "loginMissingCookies"
+msgstr "Bevor Sie sich anmelden, überprüfen Sie, ob Ihr Browser Cookies unterstützt."
+
+msgid "loginExpiredMessage"
+msgstr "Ihre Anmeldungssitzung ist abgelaufen. Um sich noch einmal anzumelden, geben Sie bitte Ihren Benutzernamen und Ihr Passwort ein."
+
+msgid "loginAuthFailed"
+msgstr "Sie haben keinen korrekten Benutzernamen bzw. kein korrektes Passwort eingegeben. Bitte versuchen Sie es noch einmal."
+
+msgid "loginByeMessage"
+msgstr "Vielen Dank für die Verwendung des [[base-carmel.productName]]."
+
+msgid "loginPageUsername"
+msgstr "Benutzername:"
+
+msgid "loginPagePassword"
+msgstr "Passwort:"
+
+msgid "loginPageSecurity"
+msgstr "Sichere Verbindung:"
+
+msgid "loginPageLogin"
+msgstr "Anmelden"
+
+msgid "splashAdminMessage"
+msgstr "Im Abschnitt Administration können Sie verschiedene administrative Aufgaben durchführen."
+
+msgid "splashProgramsMessage"
+msgstr "Im Abschnitt Programme können Sie auf momentan installierte Programme zugreifen."
+
+msgid "splashPersonalMessage"
+msgstr "Im Abschnitt Persönliches Profil können Sie Ihre Benutzerkonto-Informationen anzeigen."
+
+msgid "thankYouMessage"
+msgstr "Vielen Dank für die Verwendung des [[base-carmel.productName]]."
+
+msgid "base-administration"
+msgstr "Administration"
+
+msgid "base-administration_description"
+msgstr "[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr "Programme"
+
+msgid "base-programs_description"
+msgstr "[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr "Persönliches Profil"
+
+msgid "base-personalProfile_description"
+msgstr "[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr "Benutzer und Gruppen"
+
+msgid "base-usersandgroups_description"
+msgstr "Hier können Sie Benutzer und Gruppen konfigurieren."
+
+msgid "base-webServices"
+msgstr "Web"
+
+msgid "base-webServices_description"
+msgstr "Hier können Sie Web-Dienste konfigurieren."
+
+msgid "base-networkServices"
+msgstr "Netzwerk"
+
+msgid "base-networkServices_description"
+msgstr "Hier können Sie Netzwerk-Dienste konfigurieren."
+
+msgid "base-security"
+msgstr "Sicherheit"
+
+msgid "base-security_description"
+msgstr "Hier können Dienste konfiguriert werden, die die Sicherheit Ihrer Server Appliance betreffen."
+
+msgid "base-system"
+msgstr "System"
+
+msgid "base-system_help"
+msgstr "Hier können Sie Systemeinstellungen anzeigen und konfigurieren."
+
+msgid "base-maintenance"
+msgstr "Wartung"
+
+msgid "base-maintenance_description"
+msgstr "Hier können Sie System- und Benutzerdatenpflege-Aktivitäten konfigurieren."
+
+msgid "usageInformation"
+msgstr "Nutzungsdaten"
+
+msgid "usageInformation_description"
+msgstr "Hier können Sie Auslastungsstatistiken und -informationen anzeigen."

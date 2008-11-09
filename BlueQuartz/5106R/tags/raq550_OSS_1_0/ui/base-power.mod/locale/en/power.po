@@ -1,0 +1,176 @@
+msgid "power"
+msgstr "Power"
+
+msgid "powerHelp"
+msgstr "Click here to reboot the server appliance."
+
+msgid "shutdownMessage"
+msgstr "For security reasons, this server appliance cannot be shutdown through the web user interface.  <BR>Please use the LCD Panel on the server appliance to shutdown instead."
+
+msgid "shutdownInstructions"
+msgstr "To power down the server appliance:<OL><LI>On the LCD console, press and hold down the Select button for approximately 2 seconds.<BR>The LCD screen displays: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SETUP NETWORK</CODE><BR><BR><LI>Press the Select button until POWER DOWN appears in the LCD screen: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POWER DOWN</CODE><BR><BR><LI>Press the Enter button.<BR><BR><LI>Use the arrow buttons to toggle the cursor between [Y] and [N]. Select [Y] to power down the system. The LCD screen displays:<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>PLEASE SWITCH POWER OFF NOW</CODE><BR><BR><LI>Press the On/Off button on the back panel to turn off the server appliance.</OL>" 
+
+msgid "shutdownInstructions_softpower"
+msgstr "To power down the server appliance:<OL><LI>On the LCD console, press the Power button.<BR>The LCD screen displays: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>POWER DOWN?</CODE><BR><BR><LI>Use the arrow buttons to toggle the cursor between [Y] and [N]. Place the cursor on [Y] and press Enter to power down the system. The LCD screen displays:<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SYSTEM <BR>&nbsp;&nbsp;&nbsp;POWERING DOWN</CODE><BR><BR><LI>The server appliance will shutdown and turn off.</OL>" 
+
+msgid "acpi_power_subject"
+msgstr "Power Error Shutdown"
+
+msgid "acpi_power_shutdown"
+msgstr "The power supply voltage is out of range. For safety, the server appliance is being shut down.  If the problem persists, please call technical support."
+
+msgid "rebootMessage"
+msgstr "Click the button below to reboot the system. The system will be unavailable for several minutes, as it turns off and restarts all services. After the system has restarted, the Server Desktop will again be available."
+
+msgid "reboot_title"
+msgstr "Rebooting the System"
+
+msgid "shutdown_title"
+msgstr "Shutting down the System"
+
+msgid "reboot_menu"
+msgstr "Reboot/Shutdown"
+
+msgid "reboot_menu_help"
+msgstr "Click here for instructions on shutting down and restarting the server appliance."
+
+msgid "reboot"
+msgstr "Reboot Now"
+
+msgid "reboot_help"
+msgstr "Click here to reboot the server appliance."
+
+msgid "askRebootConfirmation"
+msgstr "Are you sure you want to reboot the server appliance?"
+
+msgid "rebooting"
+msgstr "The server appliance is now rebooting.  It should be available again in a few minutes."
+
+msgid "poweroptions_menu"
+msgstr "Power"
+
+msgid "poweroptions_menu_help"
+msgstr "Click here to configure remote booting (Wake On LAN) and power up options."
+
+msgid "powerOptions_block"
+msgstr "Power Options"
+
+msgid "powermode"
+msgstr "Action Taken When Power is Restored After a Power Failure"
+
+msgid "powermode_help"
+msgstr "This sets the behavior of the system when power is restored after a power failure."
+
+msgid "same"
+msgstr "Return the system to the same state as before power failure"
+
+msgid "on"
+msgstr "Turn the system on"
+
+msgid "off"
+msgstr "Leave the system off"
+
+msgid "controlPower"
+msgstr "Control Power"
+
+msgid "wakeOnlan"
+msgstr "Wake On LAN"
+
+msgid "wakeoptions_menu"
+msgstr "Wake Options"
+
+msgid "wakeoptions_menu_help"
+msgstr "Click here to set the Wake On LAN behavior of the system."
+
+msgid "wakeMode_block"
+msgstr "Wake Mode"
+
+msgid "wakemode"
+msgstr "Remotely Power Up The System (Wake On LAN)"
+
+msgid "wakemode_help"
+msgstr "This sets the system's Wake On LAN capability, which allows you to remotely power up the system over a network."
+
+msgid "none"
+msgstr "Never"
+
+msgid "magic"
+msgstr "On receipt of Magic Packet"
+
+msgid "activity"
+msgstr "Activity"
+
+msgid "wakenow_menu"
+msgstr "Wake Now"
+
+msgid "wakenow_menu_help"
+msgstr "Click here to wake other machines on the network."
+
+msgid "wakeNow_block"
+msgstr "Wake Now"
+
+msgid "mac_addresses"
+msgstr "MAC addresses to wake"
+
+msgid "mac_addresses_help"
+msgstr "Enter the MAC Addresses of the machines you want to wake up."
+
+msgid "wakenow_button"
+msgstr "Wake now"
+
+msgid "wakenow_button_help"
+msgstr "Click here to wake the machines with the listed MAC addresses."
+
+msgid "shutdown_menu"
+msgstr "Shutdown"
+
+msgid "shutdown_menu_help"
+msgstr "Click here for instructions on shutting down the machine."
+
+msgid "couldNotWakeMachine"
+msgstr "Could not wake up the machine with MAC address [[VAR.address]]."
+
+msgid "willPowerUp1"
+msgstr "Will Power On"
+
+msgid "willPowerUp2"
+msgstr "When Powered"
+
+msgid "remainOff1"
+msgstr "Will Remain Off"
+
+msgid "remainOff2"
+msgstr "When Powered"
+
+msgid "samePower1"
+msgstr "Will Power On If"
+
+msgid "samePower2"
+msgstr "On Before Loss"
+
+msgid "powerName"
+msgstr "System Power"
+
+msgid "powerOK"
+msgstr "The power supply and battery are operating normally."
+
+msgid "powerLow"
+msgstr "The power supply is running low."
+
+msgid "batteryCritical"
+msgstr "The battery voltage is running critically low. This may be a sign of a failing battery. Please refer to [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "batteryCriticalSubject"
+msgstr "System Battery Voltage Low"
+
+msgid "powerCritical"
+msgstr "The power supply is not running at its specified voltage. This may be a sign of a failing power supply. Please refer to [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "amPowerDetails"
+msgstr "System Power Details"
+
+msgid "errSettingWakeMode"
+msgstr "The system failed in setting your requested wake settings.  Please refer to [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "cant_get_power_info"
+msgstr "Couldn't get information on the system power values."

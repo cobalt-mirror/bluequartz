@@ -1,0 +1,176 @@
+# --- Menu
+
+msgid "winshare"
+msgstr "Windows"
+
+msgid "winshare_help"
+msgstr "[[base-winshare.winshareSettings]]."
+
+# --- Common
+msgid "winshareSettings"
+msgstr "Configuración de archivos compartidos Windows"
+
+msgid "basic"
+msgstr "Básica"
+
+msgid "basic_help"
+msgstr "La [[base-winshare.winshareSettings]] Básica."
+
+msgid "advanced_help"
+msgstr "Parámetros de la [[base-winshare.winshareSettings]] Avanzada, como la configuración del servidor WINS."
+
+msgid "advanced"
+msgstr "Avanzada"
+
+# ---- Basic page
+
+msgid "enableServerField"
+msgstr "Habilitar servidor"
+
+msgid "enableServerField_help"
+msgstr "Active o desactive acceso a los archivos compartidos Windows. El acceso de invitados a estos archivos puede configurarse en [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Número máximo de usuarios simultáneos"
+
+msgid "maxUserField_rule"
+msgstr "Escribir un número entero entre 1 y 1024. El valor predeterminado es 25."
+
+msgid "maxUserField_help"
+msgstr "Cambiar el máximo de usuarios simultáneos a los archivos compartidos Windows. [[base-winshare.maxUserField_rule]]"
+
+msgid "workgroupField"
+msgstr "Grupo de trabajo"
+
+msgid "workgroupField_rule"
+msgstr "El valor predeterminado es GRUPO DE TRABAJO."
+
+msgid "workgroupField_help"
+msgstr "Nombre del grupo de trabajo al que pertenecen los archivos compartidos Windows."
+
+
+# ---- Advanced
+
+msgid "networkLogonField"
+msgstr "Autenticación de inicio de sesión de red de Windows 95/98"
+
+msgid "networkLogonField_help"
+msgstr "Activar o desactivar la autenticación de inicio de sesión de red de Windows 95/98. Si se activa, este servidor podrá autenticar todos los inicios de sesión de red de Windows 95/98."
+
+msgid "winsServerField"
+msgstr "Servidor de Servicio de nombres de Internet de Windows (WINS)"
+
+msgid "winsServerField_help"
+msgstr "Habilite el servicio WINS en este servidor.  Un servidor WINS es necessario para encontrar equipos Windows por medio de NetBIOS a través de subredes múltiples."
+
+msgid "winsServerNone"
+msgstr "No utilizar como servidor WINS"
+
+msgid "winsServerSelf"
+msgstr "Utilizar como servidor WINS"
+
+msgid "winsServerOthers"
+msgstr "Utilizar la siguiente dirección como servidor WINS"
+
+msgid "winsServerIpAddressField"
+msgstr "Dirección IP"
+
+msgid "winsServerIpAddressField_rule"
+msgstr "Serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1."
+
+msgid "winsServerIpAddressField_help"
+msgstr "Serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1."
+
+
+# ---- Handler msgs
+
+msgid "badUser"
+msgstr "Si se han eliminado o modificado manualmente los archivos de configuración del servidor, restaure las versiones originales e inténtelo de nuevo."
+
+msgid "cantConfigFile"
+msgstr "Error al intentar modificar los archivos de configuración de los archivos compartidos Windows. [[base-winshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Error al intentar modificar los archivos de configuración de los archivos compartidos Windows. [[base-winshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Error al intentar modificar los archivos de configuración de los archivos compartidos Windows."
+
+msgid "cantModifyPassword"
+msgstr "Error al intentar modificar los archivos de configuración de los archivos compartidos Windows."
+
+
+# ---- Active Monitor
+
+msgid "amWinshareNameTag"
+msgstr "Servidor de archivos compartidos Windows"
+
+msgid "amDetailsTitle"
+msgstr "Detalles del servidor de archivos compartidos Windows"
+
+msgid "amNotRunning"
+msgstr "El servidor de archivos compartidos Windows no se está ejecutando."
+
+msgid "amStatusOk"
+msgstr "El servidor de archivos compartidos Windows funciona normalmente."
+
+# Capabilities
+
+msgid "capgroup_adminSamba"
+msgstr "Administrar el uso de archivos compartidos en Windows"
+
+msgid "capgroup_adminSamba_help"
+msgstr "Este derecho administrativo permite que un usuario modifique la configuración utilizada por el uso compartido de archivos en Windows."
+
+# Machine list 
+
+msgid "windowsMachineButton"
+msgstr "Miembros del dominio"
+
+msgid "windowsMachineButton_help"
+msgstr "Crea una lista de los equipos de Windows en la red antes de permitirles unirse al dominio."
+
+msgid "windowsMachinesList"
+msgstr "Miembros del dominio"
+
+msgid "wm_addMachine_help"
+msgstr "Haga clic aquí para agregar un equipo a esta lista de miembros del dominio."
+
+msgid "wm_name"
+msgstr "Nombre de máquina"
+
+msgid "wm_name_help"
+msgstr "Se trata de los nombres asignados a los equipos de la red"
+
+msgid "wm_remarks"
+msgstr "Observaciones"
+
+msgid "wm_remarks_help"
+msgstr "Esta columna ofrece información adicional sobre cada miembro del dominio"
+
+msgid "wm_actions"
+msgstr "Acción"
+
+msgid "wm_actions_help"
+msgstr "Se trata de los botones utilizados para modificar la configuración del miembro de un dominio o para eliminar un equipo de la red de Windows."
+
+msgid "modWindowsMachineBlock"
+msgstr "Modificar miembro de un dominio -- [[VAR.name]]"
+
+msgid "addWindowsMachineBlock"
+msgstr "Crear miembro de un dominio"
+
+msgid "machine_name"
+msgstr "Nombre de máquina"
+
+msgid "machine_name_help"
+msgstr "Se trata del nombre del equipo basado en Windows." 
+
+msgid "machine_description"
+msgstr "Observaciones"
+
+msgid "machine_description_help"
+msgstr "Se trata de una descripción definida por el usuario para el registro de este miembro del dominio"
+
+msgid "removeMachineConfirm"
+msgstr "¿Está seguro de que desea eliminar el equipo '[[VAR.machineName]]' de la lista de miembros del dominio?"

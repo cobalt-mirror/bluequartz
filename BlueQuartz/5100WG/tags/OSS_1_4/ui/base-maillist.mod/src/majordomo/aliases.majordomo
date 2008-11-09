@@ -1,0 +1,7 @@
+#	>>>>>>>>>>	The program "newaliases" must be run after
+#	>> NOTE >>	this file is updated for any changes to
+#	>>>>>>>>>>	show through to sendmail.
+#
+majordomo:	"|/usr/local/majordomo/wrapper majordomo"
+owner-majordomo:	admin
+majordomo-owner:	owner-majordomo

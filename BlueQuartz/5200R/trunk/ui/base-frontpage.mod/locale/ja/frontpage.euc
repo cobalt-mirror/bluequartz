@@ -1,0 +1,123 @@
+msgid "frontpage"
+msgstr "Frontpage サーバエクステンション"
+
+msgid "frontpage_help"
+msgstr "Frontpage サーバエクステンションを有効にすると、FrontPage クライアントソフトウェアを使って多彩なグラフィックスやフォームを含むウェブページを簡単に作成・編集してパブリッシュできるようになります。"
+
+msgid "frontpageSettings"
+msgstr "Frontpage サーバエクステンションの設定"
+
+msgid "systemEnabled"
+msgstr "ルートウェブを有効にする"
+
+msgid "systemEnabled_help"
+msgstr "このボックスをチェックすると、FrontPage を使って home グループのウェブサイトをパブリッシュできるようになります。"
+
+msgid "passwd"
+msgstr "Webmaster パスワード"
+
+msgid "passwd_help"
+msgstr "サイトウェブへアクセスするには、webmaster のパスワードを入力してください。"
+
+msgid "passwd_empty"
+msgstr "webmaster のパスワードを入力してください。"
+
+msgid "fpx_failed"
+msgstr "FrontPage ルートウェブを有効にできませんでした。"
+
+msgid "fpxEnabled"
+msgstr "FrontPage サーバエクステンション"
+
+msgid "fpxEnabled_help"
+msgstr "このユーザ向けの FrontPage サーバエクステンションは有効にされています。"
+
+# RaQ handlers
+
+msgid "noNamespace"
+msgstr "FrontPage ウェブサービスは利用できません。"
+
+msgid "couldNotAccessUser"
+msgstr "このサイトのユーザ向けの FrontPage ユーザウェブを生成できませんでした。"
+
+msgid "failInstallUserweb"
+msgstr "[[base-frontpage.couldNotAccessUser]]"
+
+msgid "failUninstallUserweb"
+msgstr "このサイトのユーザ向けの FrontPage ユーザウェブを削除できませんでした。"
+
+msgid "failInstallSite"
+msgstr "このサイト向けの FrontPage ウェブを生成できませんでした。既存のウェブサイトに FrontPage ウェブと衝突するファイル (.htaccess など）が含まれていると、FrontPage を有効にできなくなります。確認の上、再度お試しください。"
+
+msgid "failUninstallSite"
+msgstr "FrontPage サイトウェブを無効にできませんでした。"
+
+msgid "missingWebmasterPassword"
+msgstr "webmaster という名前のデフォルト FrontPage ユーザのパスワードを指定してください。"
+
+# RaQ UI
+
+msgid "fpxTabName"
+msgstr "FrontPage"
+
+msgid "fpxSettings"
+msgstr "[[base-frontpage.fpxTabName]] の設定 - [[VAR.fqdn]]"
+
+msgid "siteFpxHelp"
+msgstr "このサイトの FrontPage を有効にできます。"
+
+msgid "fpxTabName_help"
+msgstr "FrontPage サイトウェブとユーザウェブを有効にできます。"
+
+msgid "fpxFullText"
+msgstr "FrontPage サーバエクステンションを有効にする"
+
+msgid "fpxFullText_help"
+msgstr "このサイトの FrontPage ウェブを作成できるようになります。"
+
+msgid "enableFpxDefault"
+msgstr "FrontPage サーバエクステンションを有効にする"
+
+msgid "enableFpxDefault_help"
+msgstr "このボックスをチェックすると、今後作成される新規サイトにおいて FrontPage サーバエクステンションがデフォルトで有効にされます。"
+
+msgid "enableFpxUserDefault"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUserDefault_help"
+msgstr "このボックスをチェックすると、今後登録される新規ユーザにおいて FrontPage サーバエクステンションがデフォルトで有効にされます。"
+
+msgid "enableFpxUser"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUser_help"
+msgstr "このボックスをチェックすると、このユーザ向けの FrontPage サーバエクステンションが有効になります。"
+
+msgid "enable"
+msgstr "FrontPage を有効にする"
+
+msgid "fpxPassword"
+msgstr "webmaster パスワード"
+
+msgid "fpxPassword_help"
+msgstr "サイトウェブへアクセスするには、webmaster というログイン名と、ここに指定するパスワードが必要になります。ユーザウェブへは、登録ユーザのユーザ名と各自のパスワードでアクセスできます。どちらの場合も、アクセスには FrontPage クライアントが必要です。"
+
+msgid "Frontpage_passwordWebmaster_invalid"
+msgstr "webmaster パスワードが一致しません。入力ミスを防ぐため、同じパスワードを２回入力してください。"
+
+# MS/RTR end user license click-through handling
+
+msgid "eulaText"
+msgstr "ライセンス合意書"
+
+msgid "eulaText_help"
+msgstr "Microsoft Frontpage サーバエクステンション（バージョン 2002）を有効にするには、エンドユーザライセンス合意書を読み、その内容に同意する必要があります。"
+
+msgid "eulaAccept"
+msgstr "ライセンス合意書に同意します"
+
+msgid "eulaAccept_help"
+msgstr "Microsoft Frontpage サーバエクステンション（バージョン 2002）を有効にするには、このボックスをチェックして、エンドユーザライセンス合意書に同意する必要があります。"
+
+msgid "mustAcceptEULA"
+msgstr "このサイトで Microsoft Frontpage サーバエクステンション（バージョン 2002）を有効にするには、エンドユーザライセンス合意書に同意する必要があります。"
+

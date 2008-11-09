@@ -1,0 +1,99 @@
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "Click here to change [[legato-networker.networkerSettings]]."
+
+msgid "networkerSettings"
+msgstr "Legato NetWorker Backup Settings"
+
+msgid "enableServer"
+msgstr "Enable Client"
+
+msgid "badHostname"
+msgstr "Sorry, you have entered a hostname that is not running a Legato backup server. Please check that you have entered the correct hostname and that the server is properly configured."
+
+msgid "enableServer_help"
+msgstr "Turn the Legato NetWorker backup client on or off."
+
+msgid "enabledButNoData"
+msgstr "In order to enable the server, you must enter at least one Legato backup server."
+
+msgid "lgNetWorkerHostField"
+msgstr "Legato Server Hostnames"
+
+msgid "lgNetWorkerHostField_help"
+msgstr "Enter the fully-qualified domain names of Legato NetWorker backup servers.  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[legato-networker.lgNetWorkerHostField]].  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_empty"
+msgstr "Sorry, you have not entered a value for [[legato-networker.lgNetWorkerHostField]].  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "Hostnames of Legato servers are invalid."
+
+msgid "lgNetWorkerHostField_rule"
+msgstr "Legato servers must have valid hostnames."
+
+msgid "lgNetWorkerHostField_LookupFailed"
+msgstr "Failed to find one of the Legato servers. Please check that all hosts are accessible on the network, and that DNS entries are all valid."
+
+msgid "lgNetWorkerLocalHost_LookupFailed"
+msgstr "The DNS entries for this client machine are invalid. Please check that both forward and reverse DNS entries are valid."
+
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "Legato NetWorker backup system"
+
+msgid "networkerSettings"
+msgstr "Legato NetWorker Backup Settings"
+
+msgid "lgNetWorkerIPField_help"
+msgstr "Enter the IP address of the Legato NetWorker backup server.  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[legato-networker.lgNetWorkerIPField]].  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_empty"
+msgstr "Sorry, you have not entered a value for [[legato-networker.lgNetWorkerIPField]].  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "servPorts"
+msgstr "Service Port Range"
+
+msgid "servPorts_help"
+msgstr "Sets  the  system's  service ports range to the one specified."
+
+msgid "connPorts"
+msgstr "Connection Port Range"
+
+msgid "connPorts_help"
+msgstr "Sets the system's connection ports range to the one specified."
+
+msgid "cannotFork"
+msgstr "An error occurred while trying to fork."
+
+msgid "cannotCreateSymlink"
+msgstr "An error occurred while creating the init-script symlink."
+
+msgid "cannotStartLegatoServer"
+msgstr "An error occurred while trying to start the service."
+
+msgid "cannotStopLegatoServer"
+msgstr "An error occurred while trying to stop the service."
+
+msgid "cannotBreakLink"
+msgstr "An error occurred while trying to unlink the init-scripts."
+
+msgid "am_stopped"
+msgstr "The [[legato-networker.networker]] client daemon is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the [[legato-networker.networker]] client daemon off then on again to see if this corrects the problem. If the [[legato-networker.networker]] client daemon is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the [[legato-networker.networker]] client daemon is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
+ 
+msgid "am_running"
+msgstr "The [[legato-networker.networker]] client daemon is running."
+ 
+msgid "am_unknown"
+msgstr "The state of the [[legato-networker.networker]] client daemon is unknown."
+

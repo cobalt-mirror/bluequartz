@@ -1,0 +1,21 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: ftp_caps.schema 259 2004-01-03 06:28:40Z shibuya $
+
+    Capabilities namespaces associated with ftp.
+-->
+<class
+    name="Capabilities" namespace="modifyFtp" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyFtp)"
+    />
+</class>
+
+<!-- siteAnonFTP is used to control the ui menu for vsites -->
+<class
+    name="Capabilities" namespace="siteAnonFTP" version="1.0"
+>
+    <property name="capable" type="boolean" default="1"/>
+</class>

@@ -1,0 +1,122 @@
+# ifup
+
+msgid "detecting"
+msgstr "È¯ÄÜ°¸ ¦"
+
+msgid "network"
+msgstr "¹Ý¼­Â ¼Ã²Ï½"
+
+# network-functions
+
+msgid "looking_for"
+msgstr "DHCP »°ÊÞ¦"
+
+msgid "dhcp_server"
+msgstr "»¶Þ¼Ã²Ï½"
+
+msgid "no_net_found"
+msgstr "È¯ÄÜ°¸¶Þ ÐÂ¶ØÏ¾Ý"
+
+msgid "halt_or_connect"
+msgstr "[Ã]²¼ [¾]Â¿Þ¸"
+
+msgid "autoconfigure"
+msgstr "È¯ÄÜ°¸¦¼ÞÄÞ³¾¯Ã²"
+
+msgid "net_yes_no"
+msgstr "¼Ï½¶? [Ê]² [²]²´"
+
+msgid "failed"
+msgstr " ... ÃÞ·Ï¾ÝÃÞ¼À"
+
+msgid "halting"
+msgstr "¼½ÃÑ ¦"
+
+msgid "system"
+msgstr "¼¬¯ÄÀÞ³Ý ¼Ã²Ï½"
+
+# halt
+
+msgid "halt_1"
+msgstr "  ÃÞÝ¹ÞÝ ½²¯Á¦  "
+
+msgid "halt_2"
+msgstr "  µÌÆ ¼Ã¸ÀÞ»²   "
+
+msgid "reboot_1"
+msgstr "     ¼½ÃÑ ¦     "
+
+msgid "reboot_2"
+msgstr "  »²·ÄÞ³ ¼Ã²Ï½  "
+
+# network
+
+msgid "network_start_1"
+msgstr "È¯ÄÜ°¸ ¦"
+
+msgid "network_start_2"
+msgstr "¾¯Ã² ¼Ã²Ï½"
+
+msgid "network_stop_1"
+msgstr "È¯ÄÜ°¸ ¦"
+
+msgid "network_stop_2"
+msgstr "¼¬¯ÄÀÞ³Ý ¼Ã²Ï½"
+
+# rc.local
+
+msgid "lcd_ipaddr"
+msgstr "IP ±ÄÞÚ½:"
+
+# rc.raid
+
+msgid "raid_status"
+msgstr "RAID É ¼Þ®³À²:"
+
+msgid "raid_remove"
+msgstr "RAID É »¸¼Þ®"
+
+msgid "raid_add"
+msgstr "RAID É Â²¶"
+
+msgid "raid_device_invalid"
+msgstr "Ì¾²Å ÃÞÊÞ²½ ÃÞ½"
+
+msgid "raid_device_toosmall"
+msgstr "ÃÞÊÞ²½¶Þ Á²»½·ÞÏ½"
+
+msgid "raid_setting_up"
+msgstr "Êß°Ã¨¼®Ý ¦"
+
+msgid "raid_partitions"
+msgstr "¾¯Ã² ¼Ã²Ï½"
+
+msgid "raid_sync"
+msgstr "RAID É ÄÞ³·Á­³"
+
+msgid "raid_done_1"
+msgstr "RAID É ¾¯Ã²"
+
+msgid "raid_done_2"
+msgstr "¶ÝØ®³"
+
+# rc.sysinit
+
+msgid "checking_disk_1"
+msgstr "ÃÞ¨½¸ ¦ "
+
+msgid "checking_disk_2"
+msgstr "Áª¯¸ ¼Ã²Ï½..."
+
+msgid "raid_fail_1"
+msgstr "RAID ¦ ·ÄÞ³"
+
+msgid "raid_fail_2"
+msgstr "ÃÞ·Ï¾ÝÃÞ¼À"
+
+msgid "clock_start_1"
+msgstr "¸Û¯¸¦½À°Ä¼Ã²Ï½..."
+
+msgid "checkPointFailed"
+msgstr "¤³¤Î¥µ¡¼¥Ð¥¢¥×¥é¥¤¥¢¥ó¥¹¤ËÅÐÏ¿¤µ¤ì¤Æ¤¤¤ë¥æ¡¼¥¶¤È¥°¥ë¡¼¥×´ØÏ¢¤Î¾ðÊó¤Ë²¿¤é¤«¤ÎÌäÂê¤¬È¯À¸¤·¤¿¶²¤ì¤¬¤¢¤ê¤Þ¤¹¡£\n/var/log/dbrecover.log ¤È¤¤¤¦¥í¥°¥Õ¥¡¥¤¥ë¤Ë¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸¤¬´Þ¤Þ¤ì¤Æ¤¤¤Ê¤¤¤«¡¢¤Þ¤¿°ìÈÌ¥æ¡¼¥¶¡Êadmin °Ê³°¤Î¥æ¡¼¥¶¡Ë¤¬Àµ¾ï¤Ë¥í¥°¥¤¥ó¤Ç¤­¤ë¤«¤É¤¦¤«³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£\n¥¨¥é¡¼¥á¥Ã¥»¡¼¥¸¤¬¸«¤Ä¤«¤Ã¤¿¡¢¤Þ¤¿¤Ï°ìÈÌ¥æ¡¼¥¶¤¬¥í¥°¥¤¥ó¤Ç¤­¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢¥µ¡¼¥Ð¤òºÆµ¯Æ°¤¹¤ë¤³¤È¤Ë¤è¤ê¥æ¡¼¥¶¤ª¤è¤Ó¥°¥ë¡¼¥×¾ðÊó¤ÎÉü¸µ¤ò»î¤ß¤Æ¤¯¤À¤µ¤¤¡£"
+

@@ -1,0 +1,75 @@
+## NOTE: this is the Disk Usage section of Personal Profile + bits of Active Monitor 
+
+# --- Menu 
+msgid "userDiskUsage"
+msgstr "Festplattenbelegung"
+
+msgid "userDiskUsage_help"
+msgstr "Klicken Sie hierauf, um Informationen über die Belegung Ihrer Festplatte anzuzeigen."
+
+msgid "diskUsageFor"
+msgstr "Festplattenbelegung - [[VAR.userName]]"
+
+msgid "userDiskUsed"
+msgstr "Belegter Festplattenspeicher (MB)"
+
+msgid "userDiskUsed_help"
+msgstr "Dies ist der aktuell von Ihnen belegte Speicherplatz auf der Festplatte in Megabyte ( MB).   "
+
+msgid "userDiskFree"
+msgstr "Freier Festplattenspeicher (MB)"
+
+msgid "userDiskFree_help"
+msgstr "Die Gesamtmenge des Festplattenspeichers in Megabyte (MB), der zur Verwendung verfügbar ist."
+
+msgid "userDiskPercentage"
+msgstr "Belegt (Prozent)"
+
+msgid "userDiskPercentage_help"
+msgstr "Zeigt an, welcher Prozentsatz des gesamten verfügbaren Festplattenspeichers belegt ist."
+
+msgid "userOverQuota"
+msgstr "Quotenwarnung"
+
+msgid "userOverQuota_help"
+msgstr "Zeigt an, dass Sie momentan mehr Festplattenspeicher belegen, als auf diesem Server zulässig ist. Entfernen Sie nicht mehr benötigte E-Mails und Dateien, um das Problem zu beheben."
+
+msgid "overQuotaMsg"
+msgstr "Sie belegen momentan mehr Festplattenspeicher, als auf diesem Server zulässig ist. Entfernen Sie nicht mehr benötigte E-Mails und Dateien, um das Problem zu beheben."
+
+
+# ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
+
+msgid "amDiskNameTag"
+msgstr "Festplattenbelegung"
+
+msgid "amDetails"
+msgstr "Festplattenbelegungs-Details"
+
+	# also sent in email to admin if disk usage high
+msgid "amDiskWarning"
+msgstr "Eine Festplattenpartition ist fast voll. Der Speicherplatz auf der Partition [[VAR.fs]] ist zu [[VAR.pcnt]]% belegt. Auf der Partition sind noch [[VAR.free]] MB frei."
+
+msgid "amDiskOk"
+msgstr "Festplattenbelegung ist normal."
+
+
+# --- Handler messages, don't show in UI
+
+msgid "cantExecuteDf"
+msgstr "Kann df-Befehl nicht ausführen."
+
+msgid "cantExecuteRepquota"
+msgstr "Kann repquota-Befehl nicht ausführen."
+
+msgid "cantSetSystemObject"
+msgstr "Das Systemobjekt kann nicht eingestellt werden."
+
+msgid "cantSetUserObject"
+msgstr "Kann nicht auf Benutzerobjekt eingestellt werden."
+
+msgid "systemObjectNotFound"
+msgstr "Das Systemobjekt konnte nicht gefunden werden."
+
+msgid "couldNotGetId"
+msgstr "Die Einstellungen des Benutzerkontos konnten nicht in den Systemdateien gefunden werden. Dieser Benutzer könnte manuell aus den Server-Konfigurationsdateien gelöscht worden sein."

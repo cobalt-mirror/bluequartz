@@ -1,0 +1,76 @@
+## NOTE: this is the Disk Usage section of Personal Profile + bits of Active Monitor 
+
+# --- Menu 
+msgid "userDiskUsage"
+msgstr "磁盘利用率"
+
+msgid "userDiskUsage_help"
+msgstr "单击此处查看有关的磁盘利用率信息。"
+
+msgid "diskUsageFor"
+msgstr "磁盘利用率—[[VAR.userName]]"
+
+msgid "userDiskUsed"
+msgstr "已用磁盘空间 (MB)"
+
+msgid "userDiskUsed_help"
+msgstr "这是您当前已用的磁盘空间数量 (MB)。"
+
+msgid "userDiskFree"
+msgstr "可用磁盘空间 (MB)"
+
+msgid "userDiskFree_help"
+msgstr "这是您可用的磁盘空间总量 (MB)。"
+
+msgid "userDiskPercentage"
+msgstr "已用百分比"
+
+msgid "userDiskPercentage_help"
+msgstr "这表示总磁盘空间与您正在使用的磁盘空间的百分比。"
+
+msgid "userOverQuota"
+msgstr "限额报警"
+
+msgid "userOverQuota_help"
+msgstr "这表示您在此服务器上正在使用的磁盘空间多于允许您使用的数量。要改变这种状况，可删除不需要的电子邮件、附件和其他文件。"
+
+msgid "overQuotaMsg"
+msgstr "您在此服务器上正在使用的磁盘空间多于允许您使用的数量。要改变这种状况，可删除不需要的电子邮件、附件和其他文件。"
+
+
+# ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
+
+msgid "amDiskNameTag"
+msgstr "磁盘利用率"
+
+msgid "amDetails"
+msgstr "磁盘利用率详细信息"
+
+	# also sent in email to admin if disk usage high
+msgid "amDiskWarning"
+msgstr "磁盘分区近满。分区[[VAR.fs]]上的磁盘空间利用率为[[VAR.pcnt]]%。分区上的可用空间为[[VAR.free]]MB。"
+
+msgid "amDiskOk"
+msgstr "磁盘利用率正常。"
+
+
+# --- Handler messages, don't show in UI
+
+msgid "cantExecuteDf"
+msgstr "无法执行 df 命令"
+
+msgid "cantExecuteRepquota"
+msgstr "无法执行 repquota 命令"
+
+msgid "cantSetSystemObject"
+msgstr "无法设置系统对象"
+
+msgid "cantSetUserObject"
+msgstr "无法设置用户对象"
+
+msgid "systemObjectNotFound"
+msgstr "无法找到系统对象"
+
+msgid "couldNotGetId"
+msgstr "无法在系统文件中找到用户帐户设置。此用户可能已经从服务器配置文件中手动删除。"
+

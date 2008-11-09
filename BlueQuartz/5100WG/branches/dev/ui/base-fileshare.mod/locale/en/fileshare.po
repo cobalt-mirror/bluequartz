@@ -1,0 +1,81 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "File Sharing"
+
+msgid "fileSharing_help"
+msgstr "Click here to configure file sharing."
+
+msgid "guestShare"
+msgstr "Guest Share"
+
+msgid "guestShare_help"
+msgstr "Click here to configure [[base-fileshare.fileSharingSettings]]."
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "Guest Share Settings"
+
+msgid "guestShareField"
+msgstr "Enable Guest Access"
+
+msgid "guestShareField_help"
+msgstr "Turn guest access to Apple File Sharing, FTP, and Windows File Sharing on or off.  Disabling guest access here will not disable access to these services for users with accounts on this server appliance."
+
+msgid "incomingEnable"
+msgstr "Enable"
+
+msgid "incomingField"
+msgstr "Incoming File Access"
+
+msgid "incomingField_help"
+msgstr "Turn incoming file access on or off. When enabled, guest users can upload files to the guest share."
+
+msgid "maxDiskSpaceField"
+msgstr "Maximum Allowed Disk Space (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Please enter an integer value within the specified limits."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Set the maximum  disk space available to guest users for uploading incoming files.  [[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "This workgroup provides a file share with guest access."
+
+
+# --- Handler messages
+
+	# -- guest.pl  ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr "Error: User already taken"
+
+msgid "groupDoesntExist"
+msgstr "Error: Group doesn't exist"
+
+msgid "cantChangeGroup"
+msgstr "Error: Can't change group"
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "Sorry, an error occurred. The guest user is invalid."
+
+msgid "invalidPath"
+msgstr "Sorry, an error occurred. The guest share path is invalid."
+
+msgid "cantSetQuota"
+msgstr "Sorry, an error occurred while trying to set the guest share quota. The required configuration files may be missing."
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "Manage File Sharing Settings"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "This administrative right allows a user to modify the guest file sharing settings"
+
+msgid "capgroup_adminFileShare"
+msgstr "Manage File Sharing"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "This administrative right allows a user to manage all aspects of file sharing"

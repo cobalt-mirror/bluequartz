@@ -1,0 +1,68 @@
+# Global tech support strings
+
+	# NOTE: In Europe, the Middle East and Africa, call +31 71 565 7070 support-emea@cobalt.com.
+	# In Japan, send email to support-japan@cobalt.com.
+msgid "techSupportUSPhone"
+msgstr "(888) 702-6225"
+
+msgid "techSupportIntlPhone"
+msgstr "+1 (650) 623-2679"
+
+msgid "techSupportEmail"
+msgstr "support@cobalt.com"
+	
+	# This should work for at least USA and Canada
+msgid "contactTechSupport"
+msgstr "Bitte wenden Sie sich an den Technischen Kundendienst von [[base-carmel.osVendor]] unter der Rufnummer [[base-sauce-basic.techSupportUSPhone]] ([[base-sauce-basic.techSupportIntlPhone]] außerhalb der USA) oder per E-Mail unter [[base-sauce-basic.techSupportEmail]]."
+
+
+msgid "kill_dhclient_failed"
+msgstr "Es konnte nicht sichergestellt werden, dass dhclient nicht mehr ausgeführt wird."
+
+msgid "Invalid-object"
+msgstr "Interner Fehler: Versuch, ein ungültiges Objekt zu löschen. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Leider trat ein Fehler auf. Der Benutzer [[VAR.name]] wurde bereits gelöscht."
+
+msgid "failed-to-add-user"
+msgstr "Interner Fehler: Es konnte kein neuer Benutzer $name erstellt werden. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "Leider ist der angegebene Wert für die Quote zu groß. Die maximal zulässige Festplattenquote beträgt [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "Der angegebene Hostname ist zu lang. Ein Hostname darf maximal 40 Zeichen enthalten."
+
+msgid "descReadOnly"
+msgstr "Die Benutzerbeschreibung ist schreibgeschützt."
+msgid "disable-interface-first"
+msgstr "Sie können die Einstellungen für eine aktivierte Netzwerkschnittstelle nicht entfernen. Bitte deaktivieren Sie die Schnittstelle, bevor Sie versuchen, die Einstellungen zu entfernen."
+
+msgid "gateway-not-reachable"
+msgstr "Das angegebene Gateway konnte nicht erreicht werden. Bitte vergewissern Sie sich, dass Ihr Gateway innerhalb eines erreichbaren Subnetzwerks liegt. Überprüfen Sie auch die Direct Routing-Regeln."
+
+msgid "permsNotAvailable"
+msgstr "Sie müssen diese Rechte besitzen, um sie anderen Benutzern zuweisen zu können. (Sind Sie als 'admin' angemeldet?)"
+
+msgid "capgroup_adminUser_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, Konten anderer Benutzer auf diesem Rechner zu erstellen, zu löschen und zu ändern."
+
+msgid "invalid-route"
+msgstr "Diese Route konnte leider nicht zur Routing-Tabelle hinzugefügt werden. Das angegebene Gateway ist möglicherweise nicht erreichbar."
+
+msgid "needPermToRemovePerm"
+msgstr "Sie müssen diese Rechte besitzen, um sie für andere Benutzer sperren zu können."
+
+msgid "capgroup_adminUserGroupMailingList_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, Konten anderer Benutzer und Gruppen auf diesem Rechner zu erstellen, zu löschen und zu ändern."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Diese Route konnte leider nicht zur Routing-Tabelle hinzugefügt werden. Das Gateway ([[VAR.gateway]]) liegt möglicherweise nicht innerhalb des Zielsubnetzes ([[VAR.target]])."
+
+msgid "capgroup_adminUserGroupMailingList"
+msgstr "Verwaltung von Benutzern und Gruppen"
+
+msgid "capgroup_adminUser"
+msgstr "Verwaltung der Benutzer"
+

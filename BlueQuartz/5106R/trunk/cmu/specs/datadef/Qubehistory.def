@@ -1,0 +1,82 @@
+ # $Id: Qubehistory.def 922 2003-07-17 15:22:40Z will $
+ # Cobalt Networks, Inc http://www.cobalt.com/
+
+1. Intro
+--------
+ 
+This spec contains the history of data structure changes for the Qube. It 
+provides an easy way to identify the changes between two Qube products. Since 
+the the earilest export supported is for the Qube 2 that is the base.
+ 
+2. Migrate Level
+----------------
+Qube 2 base:
+
+         createOS                string
+         versionOS               float
+         buildDate               int (seconds from epoch)
+         children                array
+
+Qube 3:
+
+
+3. Mailing List Level
+---------------------
+Qube 2 base:
+         lstName                 string
+         extRecips               array   
+         localRecips             array 
+
+Qube 3:
++        lstPasswd               string
++        lstDescription          string
++        maxlength               int (kb)
++        moderator               string
++        replyToList             boolean
++        postPolicy              string
++        subPolicy               string
+
+ 
+4. Group Level
+--------------
+Qube 2 base:
+        grpName                  string
+        grpQuota                 int (MB)
+        grpMembers               array   
+
+Qube 3:
++	grpDescription           string
+
+5. User Level
+-------------
+Qube 2 base:
+         userName                string
+         fullName                string
+         altName                 string
+         passwd                  string
+         passwdType              string
+         uid                     int
+         userQuota               int (MB)
+         vacation                boolean
+         aliases                 array
+         forward                 string
+         vacationMsg             string
+
+Qube 3:
++        description             string
++        localePreference        string
++        stylePreference         string
++        userShell               boolean
++        siteAdmin               boolean
++        userApop                boolean
++        forwardEnable           boolean
++        forwardSave             boolean
+
+ 
+
+
+
+
+
+
+

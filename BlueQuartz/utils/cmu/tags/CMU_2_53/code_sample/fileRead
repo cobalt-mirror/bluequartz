@@ -1,0 +1,30 @@
+#!/usr/bin/perl -I../perl_modules
+# $Id: fileRead 922 2003-07-17 15:22:40Z will $
+
+use strict;
+use lib "../perl_modules";
+
+my $fileName = "/tmp/cmu.xml";
+
+
+#my $tree = treeXml($fileName);
+treeXml($fileName);
+warn "sleeping for 10\n";
+sleep 10;
+#passVal($tree);
+
+exit 0;
+
+sub treeXml {
+	my $file = shift;
+
+	my @data;
+	open(FH, "<$file") || die "Cannot open file $file:$!\n";
+	while(<FH>) {
+		push(@data, $_);
+	}
+	close(FH);
+
+	return @data;
+
+}

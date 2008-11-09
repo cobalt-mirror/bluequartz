@@ -1,0 +1,87 @@
+#!/bin/sh
+#
+# chkconfig: 235 74 74
+# description: Apache is a World Wide Web server.  It is used to serve \
+#	       HTML files and CGI.
+#
+# processname: ahttpd
+# pidfile: /var/run/admserv.pid
+# config: /etc/admserv/conf/access.conf
+# config: /etc/admserv/conf/httpd.conf
+# config: /etc/admserv/conf/srm.conf
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# hack to make sure apache has locale information set
+# i18n needs to be fixed
+. /etc/sysconfig/i18n
+export LANG LC_ALL LINGUAS
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 1
+
+# location of ahttpd binary
+ADMSERV="/usr/sbin/ahttpd"
+
+[ -f $ADMSERV ] || exit 1
+
+# generate self-signed certificate if it is missing.
+if [ ! -e /etc/admserv/certs/certificate ] ; then
+	/bin/sh /etc/admserv/gen_cert >& /etc/admserv/gen_cert.out
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	echo -n "Starting admin web server: "
+	export PHPRC="/etc/admserv"
+        export PERL5LIB="/usr/sausalito/perl"
+	$ADMSERV -f /etc/admserv/conf/httpd.conf
+	echo -n ahttpd
+	echo 
+	touch /var/lock/subsys/ahttpd
+	;;
+  stop)
+	echo -n "Stopping admin web server: "
+	[ -f /var/run/admserv.pid ] && {
+	    kill `cat /var/run/admserv.pid`
+	    echo -n ahttpd
+	}
+	echo
+	rm -f /var/lock/subsys/ahttpd
+	rm -f /var/run/admserv.pid
+	;;
+  status)
+	status ahttpd
+	;;
+  hard-restart)
+	[ -f /var/run/admserv.pid ] && {
+	    kill `cat /var/run/admserv.pid`
+	}
+	rm -f /var/run/admserv.pid
+	sleep 3
+	$ADMSERV -f /etc/admserv/conf/httpd.conf
+	;;
+  restart)
+	$0 stop
+	sleep 3
+	$0 start
+	;;
+  reload)
+	echo -n "Reloading admin web server: "
+	[ -f /var/run/admserv.pid ] && {
+	    kill -USR1 `cat /var/run/admserv.pid`
+	    echo -n ahttpd
+	}
+	echo
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|reload|status}"
+	exit 1
+esac
+
+exit 0

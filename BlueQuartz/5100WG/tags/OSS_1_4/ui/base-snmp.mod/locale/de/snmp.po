@@ -1,0 +1,91 @@
+msgid "snmpSettings"
+msgstr "Einfaches Netzverwaltungsprotokoll (SNMP)-Einstellungen"
+
+
+# --- Menu
+
+msgid "snmp"
+msgstr "SNMP"
+
+msgid "snmp_help"
+msgstr "Hier können Sie [[base-snmp.snmpSettings]] ändern."
+
+
+# --- SNMP page
+
+msgid "enableServer"
+msgstr "Server aktivieren"
+
+msgid "enableServer_help"
+msgstr "Aktivieren oder deaktivieren Sie den einfachen Netzverwaltungsprotokoll (SNMP)-Server. Bei SNMP handelt es sich um ein Netzwerkverwaltungsprotokoll, das die Möglichkeit bietet, Netzwerkgeräte zu überwachen und zu steuern sowie die Konfiguration, Statistikerfassung, Leistung und Sicherheit in einem Netzwerk zu verwalten."
+
+msgid "readSnmpCommunityField"
+msgstr "SNMP-Nur-Lese-Gemeinschaft"
+
+msgid "readSnmpCommunityField_rule"
+msgstr "Die eingegebene SNMP-Nur-Lese-Gemeinschaft darf nur alphanumerische Zeichen sowie - und _, jedoch keine Umlaute, ß oder sonstige Sonderzeichen enthalten."
+
+msgid "readSnmpCommunityField_help"
+msgstr "Geben Sie die SNMP-Nur-Lese-Gemeinschaft ein, der dieser Server angehört. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readSnmpCommunityField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-snmp.readSnmpCommunityField]]. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField"
+msgstr "SNMP-Lese-und-Schreib-Gemeinschaft"
+
+msgid "readWriteSnmpCommunityField_rule"
+msgstr "Die eingegebene SNMP-Lese-und-Schreib-Gemeinschaft darf nur alphanumerische Zeichen sowie - und _, jedoch keine Umlaute, ß oder sonstige Sonderzeichen enthalten."
+
+msgid "readWriteSnmpCommunityField_help"
+msgstr "Geben Sie die SNMP-Lese-und-Schreib-Gemeinschaft ein, der dieser Server angehört. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-snmp.readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+# --- Other handler messages
+
+msgid "readNorWriteSet"
+msgstr "Sie müssen eine Lese- bzw. Schreib-Gemeinschaft eingeben, um SNMP zu aktivieren."
+
+msgid "readEqualWrite"
+msgstr "Um eine Gemeinschaft zu erhalten, die sowohl Lese- als auch Schreibzugriff hat, brauchen Sie sie nur in das Lesen und Schreiben-Feld einzugeben. Ihre Lese-Gemeinschaft wurde geändert und gibt diese Anforderungen wieder."
+
+	# --- These won't be shown in UI
+msgid "cannotFork"
+msgstr "Fehler bei der Gabelung [[VAR.msg]]"
+
+msgid "cannotCreateSynlink"
+msgstr "Fehler bei der Erstellung von Symlink [[VAR.msg]]"
+
+msgid "cannotStartSnmpServer"
+msgstr "Fehler beim Starten von SNMP-Server [[VAR.msg]]"
+
+msgid "cannotStopSnmpService"
+msgstr "Fehler beim Stoppen des SNMP-Dienstes [[VAR.msg]]"
+
+msgid "cannotBreakLink"
+msgstr "Fehler beim Unterbrechen von Symlink [[VAR.msg]]"
+
+
+# --- Active Monitor
+
+msgid "amSNMPNameTag"
+msgstr " Einfaches Netzverwaltungsprotokoll (SNMP)-Server"
+
+msgid "amDetailsTitle"
+msgstr " Einfaches Netzverwaltungsprotokoll (SNMP)-Server-Details"
+
+msgid "amSNMPNotRunning"
+msgstr "Der SNMP-Server ist nicht in Betrieb."
+
+msgid "amSNMPStatusOK"
+msgstr "Der SNMP-Server arbeitet normal."
+
+# Capabilities
+
+msgid "capgroup_adminSnmp"
+msgstr "SNMP-Verwaltung"
+
+msgid "capgroup_adminSnmp_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, die SNMP-Einstellungen zu ändern."

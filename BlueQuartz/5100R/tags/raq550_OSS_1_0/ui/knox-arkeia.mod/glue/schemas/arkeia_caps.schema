@@ -1,0 +1,19 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: arkeia_caps.schema,v 1.1 2001/08/18 00:47:37 bservies Exp $
+
+    modifyArkeia capability used to limit access to to properties for
+    the Vsite(Services).Arkeia namespace and system wide Arkeia client
+-->
+
+<class
+    name="Capabilities" namespace="modifyArkeia" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyArkeia)"
+    />
+    <property
+        name="nameTag" type="scalar" default=""
+    />
+</class>

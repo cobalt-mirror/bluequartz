@@ -1,0 +1,49 @@
+##CUSTOM-PREAMBLE##
+<?php
+  global $WizHostNameField;
+  global $WizDomainNameField;
+  global $WizDnsAddressesField;
+  global $WizConnectionTypeField;
+?>
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='6'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<input type='hidden' name='WizHostNameField' value='<?php print $WizHostNameField; ?>'>
+		<input type='hidden' name='WizDomainNameField' value='<?php print $WizDomainNameField; ?>'>
+		<input type='hidden' name='WizDnsAddressesField' value='<?php print $WizDnsAddressesField; ?>'>
+		<input type='hidden' name='WizConnectionTypeField' value='<?php print $WizConnectionTypeField; ?>'>
+	<div class="Setting-Description">
+	If you would like to recieve technical support for your Qube, you must fill out the following fields. If you would like to register at a later time, feel free to visit us at <a href="http://www.sun.com/services/online">http://www.sun.com/services/online</a>.</div>
+	<br>
+	<table width="549" border="0" cellspacing="0" cellpadding="2">
+	<tr>
+		<td width="92">
+			<div align="right" class="Setting-Label">Full Name:</div>
+		</td>
+		<td width="177">
+				<INPUT TYPE="TEXT" NAME="WizFullNameField" VALUE="" SIZE="25" tabindex="1"></td>
+		<td width="92"><div align="right" class="Setting-Label">Email Address:</div></td>
+		<td width="172"><INPUT TYPE="TEXT" NAME="WizEmailAddressField" VALUE="" SIZE="25" tabindex="4"></td>
+	</tr>
+	<tr>
+		<td width="92"><div align="right" class="Setting-Label">
+			Company:</div></td>
+		<td width="177"><INPUT TYPE="TEXT" NAME="WizCompanyField" VALUE="" SIZE="25" tabindex="3"></td>
+		<td width="92"><div align="right" class="Setting-Label">Phone Number:</div></td>
+		<td width="172"><INPUT TYPE="TEXT" NAME="WizPhoneNumberField" VALUE="" SIZE="25" tabindex="5"></td>
+	</tr>
+	<tr>
+		<td width="92"></td>
+		<td colspan="3" width="449"><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+	</tr>
+	<tr>
+		<td valign="top" width="92"><div align="right" class="Setting-Label">Full Address:</div></td>
+		<td width="177"><TEXTAREA NAME="WizFullAddressField" ROWS="4" COLS="25" tabindex="6"  WRAP="off"></TEXTAREA>
+	</td>
+	<td valign="top" width="92"><div align="right" class="Setting-Label">Country:</div></td>
+	<td valign="top" width="172"><INPUT TYPE="TEXT" NAME="WizCountryField" VALUE="" SIZE="25" tabindex="7"></td>
+	</tr>
+	</table>
+	</form>

@@ -1,0 +1,519 @@
+# ------ Menu strings
+msgid "backupMenu"
+msgstr "Datensicherung"
+
+msgid "backupMenu_help"
+msgstr "Klicken Sie zur Zeitsteuerung und Anzeige von Datensicherungen hierauf."
+
+msgid "restoreMenu"
+msgstr "Wiederherstellen"
+
+msgid "restoreMenu_help"
+msgstr "Klicken Sie zur Auswahl und Aktivierung von Wiederherstellungen hierauf."
+
+msgid "scheduleListHeader"
+msgstr "Liste der zeitgesteuerten Datensicherungen"
+
+msgid "backupAddHeader"
+msgstr "Zeitgesteuerte Datensicherung hinzufügen"
+
+
+# ------ Column/list view headings (re-used)
+
+msgid "backupName"
+msgstr "Name der Datensicherung"
+
+msgid "backupName_help"
+msgstr "Zeigt den Namen des Datensicherungsauftrags an."
+
+msgid "backupInterval"
+msgstr "Datensicherungsintervall"
+
+msgid "backupInterval_help"
+msgstr "Zeigt an, wie oft dieser Datensicherungsauftrag ausgeführt wird."
+
+msgid "backupMethod"
+msgstr "Datensicherungsmethode"
+
+msgid "backupMethod_help"
+msgstr "Zeigt die Netzwerkdateifreigabe-Methode an, die zum Speichern der Datensicherung verwendet wird."
+
+msgid "backupDestination"
+msgstr "Ziel"
+
+msgid "backupDestination_invalid"
+msgstr "Das Feld Speicherziel für die Datensicherung wurde im falschen Format ausgefüllt oder enthält unzulässige Zeichen. "
+
+msgid "backupDestination_help"
+msgstr "Zeigt das Speicherziel für die Datensicherung an."
+
+msgid "backupConfiguration"
+msgstr "Sicherung der Konfigurationsdaten"
+
+msgid "backupConfiguration_help"
+msgstr "Zeigt an, ob Systemkonfigurationsdaten in die Datensicherung einbezogen werden."
+
+msgid "usersToBackup"
+msgstr "Zu sichernde Benutzer"
+
+msgid "usersToBackup_help"
+msgstr "Zeigt an, welche Benutzer in die Datensicherung einbezogen werden."
+
+msgid "groupsToBackup"
+msgstr "Zu sichernde Gruppen"
+
+msgid "groupsToBackup_help"
+msgstr "Zeigt an, welche Gruppen in die Datensicherung einbezogen werden."
+
+msgid "backupFileSet"
+msgstr "Zu sichernde Dateien"
+
+msgid "backupFileSet_help"
+msgstr "Zeigt an, welche Dateisätze in die Datensicherung einbezogen werden."
+
+msgid "removeBackup"
+msgstr "Entfernen"
+
+msgid "removeBackup_help"
+msgstr "Klicken Sie hier, um diesen Datensicherungsauftrag permanent zu entfernen."
+
+msgid "listAction"
+msgstr "Aktion"
+
+msgid "listAction_help"
+msgstr "Mit diesen Schaltflächen zeigen Sie die Details einer zeitgesteuerten Datensicherung an, entfernen eine zeitgesteuerte Datensicherung oder stellen eine vorherige zeitgesteuerte Datensicherung wieder her."
+
+msgid "unknown"
+msgstr "Unbekannt"
+
+msgid "all"
+msgstr "Alle"
+
+msgid "none"
+msgstr "Keine"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "no"
+msgstr "Nein"
+
+msgid "userList"
+msgstr " "
+
+msgid "groupList"
+msgstr " "
+
+
+
+# ------ Scheduled Backup Detail
+
+msgid "scheduleDetailHeader"
+msgstr "Details der zeitgesteuerten Datensicherung"
+
+
+
+# ------ Add a backup (enter versions of labels)
+
+msgid "backupNameField"
+msgstr "[[base-backup.backupName]]"
+
+msgid "backupNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen ein.  Als Standardvorgabewert wird das Datum verwendet, für das die Datensicherung geplant ist."
+
+msgid "backupNameField_help"
+msgstr "Geben Sie den Namen des Datensicherungsauftrags ein. [[base-backup.backupNameField_rule]]"
+
+msgid "backupNameField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-backup.backupNameField]] eingegeben. [[base-backup.backupNameField_rule]]"
+
+msgid "invalidBackupName"
+msgstr "Sie haben einen ungültigen Wert im Feld [[base-backup.backupNameField]] eingegeben. [[base-backup.backupNameField_rule]]"
+
+msgid "backupConfigurationField"
+msgstr "Sicherung der Konfigurationsdaten"
+
+msgid "backupConfigurationField_help"
+msgstr "Geben Sie an, ob Systemkonfigurationsdaten in die Datensicherung einbezogen werden."
+
+msgid "usersToBackupField"
+msgstr "[[base-backup.usersToBackup]]"
+
+msgid "usersToBackupField_help"
+msgstr "Geben Sie an, welche Benutzer in die Datensicherung einbezogen werden."
+
+msgid "backupUsersField_empty"
+msgstr "Sie haben keine Benutzer für die Datensicherung angegeben. Geben Sie mit Hilfe der Pfeile Benutzer für die Datensicherung an."
+
+msgid "groupsToBackupField"
+msgstr "[[base-backup.groupsToBackup]]"
+
+msgid "groupsToBackupField_help"
+msgstr "Geben Sie an, welche Gruppen in die Datensicherung einbezogen werden."
+
+msgid "backupGroupsField_empty"
+msgstr "Sie haben keine Gruppen für die Datensicherung angegeben. Geben Sie mit Hilfe der Pfeile Gruppen für die Datensicherung an."
+
+msgid "backupFileSetField"
+msgstr "[[base-backup.backupFileSet]]"
+
+msgid "backupFileSetField_help"
+msgstr "Geben Sie an, welche Dateien gesichert werden."
+
+msgid "backupIntervalField"
+msgstr "[[base-backup.backupInterval]]"
+
+msgid "backupIntervalField_help"
+msgstr "Geben Sie an, wie oft die Datensicherung ausgeführt wird."
+
+msgid "backupMethodField"
+msgstr "[[base-backup.backupMethod]]"
+
+msgid "backupMethodField_help"
+msgstr "Wählen Sie die Netzwerkdateifreigabe-Methode aus, die zum Speichern der Datensicherung verwendet wird."
+
+
+# ------ Generic Enter strings
+msgid "backupUsername"
+msgstr "Benutzername"
+
+msgid "backupUsername_help"
+msgstr "Geben Sie den Benutzernamen ein, der für die Verbindung mit dem Zielserver verwendet wird."
+
+msgid "backupPassword"
+msgstr "Passwort"
+
+msgid "backupPassword_help"
+msgstr "Geben Sie das Passwort ein, das für die Verbindung mit dem Zielserver verwendet wird."
+
+# ------- Backup Methods
+
+msgid "backupViaWinFile"
+msgstr "Windows-Dateifreigabe (SMB)"
+
+msgid "backupSambaDestination"
+msgstr "Speicherort"
+
+msgid "backupSambaDestination_rule"
+msgstr "&#092;&#092;share&#092;sharedfolder ist beispielsweise ein gültiger Eintrag."
+
+msgid "backupSambaDestination_help"
+msgstr "Geben Sie den [[base-backup.backupViaWinFile]]-Speicherort zum Speichern der Datensicherung ein. [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaDestination_empty"
+msgstr "Sie haben keinen Wert für den [[base-backup.backupViaWinFile]]-Speicherort eingegeben. [[base-backup.backupSambaDestination_rule]]"
+
+msgid "backupSambaUsername_empty"
+msgstr "Sie haben keinen Wert für den [[base-backup.backupViaWinFile]]-Benutzernamen eingegeben. Bitte geben Sie den Benutzernamen ein, der für die Verbindung mit dem Zielserver verwendet wird."
+
+
+msgid "backupViaFTP"
+msgstr "File Transfer Protocol (FTP)"
+
+msgid "backupFTPDestination"
+msgstr "Speicherort"
+
+msgid "backupFTPDestination_rule"
+msgstr "Eine gültige Eingabe ist z. B. share.cobalt.com/sharedfolder/."
+
+msgid "backupFTPDestination_help"
+msgstr "Geben Sie den FTP-Speicherort zum Speichern der Datensicherung ein. [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPDestination_empty"
+msgstr "Sie haben keinen Wert für den FTP-Speicherort eingegeben. [[base-backup.backupFTPDestination_rule]]"
+
+msgid "backupFTPUsername_empty"
+msgstr "Sie haben keinen Wert für den FTP-Benutzernamen eingegeben. Bitte geben Sie den Benutzernamen ein, der für die Verbindung mit dem Zielserver verwendet wird."
+
+
+msgid "backupViaNFS"
+msgstr "Network File System (NFS)"
+
+msgid "backupNFSDestination"
+msgstr "Speicherort"
+
+msgid "backupNFSDestination_rule"
+msgstr "Eine gültige Eingabe ist z. B. share.cobalt.com:/sharedfolder/."
+
+msgid "backupNFSDestination_help"
+msgstr "Geben Sie den NFS-Speicherort zum Speichern der Datensicherung ein. [[base-backup.backupNFSDestination_rule]]"
+
+msgid "backupNFSDestination_empty"
+msgstr "Sie haben keinen Wert für den NFS-Speicherort eingegeben. [[base-backup.backupNFSDestination_rule]]"
+
+
+# ------ Scheduled Backup List
+
+msgid "removeScheduleConfirm"
+msgstr "Wollen Sie die zeitgesteuerte Datensicherung [[VAR.backupName]] wirklich entfernen?"
+
+
+
+
+# ------ Restore Backup List
+
+msgid "restoreListHeader"
+msgstr "Datensicherungs-Dateiliste"
+
+msgid "backupDate"
+msgstr "Datensicherung gestartet"
+
+msgid "backupDate_help"
+msgstr "Hiermit werden das Datum und die Uhrzeit angezeigt, zu dem/der die Datensicherung gestartet wurde."
+
+msgid "backupRetval"
+msgstr "Status"
+
+msgid "backupRetval_help"
+msgstr "Gibt an, ob die Datensicherung erfolgreich war, fehlgeschlagen ist oder noch ansteht."
+
+msgid "statusSuccess"
+msgstr "Erfolg"
+
+msgid "statusSuccess_help"
+msgstr "Diese Datensicherung  wurde erfolgreich abgeschlossen." 
+
+msgid "statusPending"
+msgstr "Findet momentan statt"
+
+msgid "statusPending_help"
+msgstr "Diese Datensicherung findet momentan statt."
+
+msgid "statusFailure"
+msgstr "Fehlgeschlagen"
+
+msgid "statusFailure_help"
+msgstr "Diese Datensicherung konnte leider nicht abgeschlossen werden. Bitte überprüfen Sie Ihre Einstellungen und versuchen Sie es erneut."
+
+msgid "restoreBackup"
+msgstr "Wiederherstellen"
+
+msgid "restoreBackup_help"
+msgstr "Klicken Sie hier, um diese Datensicherung jetzt wiederherzustellen."
+
+msgid "restoreFromDir"
+msgstr "Manuell wiederherstellen"
+
+msgid "restoreFromDir_help"
+msgstr "Stellen Sie eine Datensicherung von einem bereitgestellten oder lokalen Verzeichnis aus wieder her."
+
+
+# ------ Restore Backup Details
+
+msgid "backupEnded"
+msgstr "Datensicherung abgeschlossen"
+
+msgid "backupEnded_help"
+msgstr "Hiermit werden das Datum und die Uhrzeit angezeigt, zu dem/der die Datensicherung beendet wurde."
+
+msgid "backupLocation"
+msgstr "Ziel"
+
+msgid "backupLocation_help"
+msgstr "Zeigt den Zielspeicherort für die Datensicherung an."
+
+msgid "historyDetailHeader"
+msgstr "Verlaufsobjektdetails"
+
+msgid "usersInBackup"
+msgstr "Benutzer"
+
+msgid "usersInBackup_help"
+msgstr "Zeigt an, welche Benutzer in diese Datensicherung einbezogen werden."
+
+msgid "groupsInBackup"
+msgstr "Gruppen"
+
+msgid "groupsInBackup_help"
+msgstr "Zeigt an, welche Gruppen in diese Datensicherung einbezogen werden."
+
+msgid "removeButton"
+msgstr "Entfernen"
+
+msgid "removeButton_help"
+msgstr "Klicken Sie hier, um den Verlauf dieser Datensicherung jetzt zu entfernen. Dadurch werden nur die Verlaufsdaten der Datensicherung entfernt, nicht die Datensicherung selbst."
+
+msgid "removeHistoryConfirm"
+msgstr "Verlauf der Datensicherung [[VAR.name]] vom [[VAR.time]] entfernen?"
+
+msgid "restoreButton"
+msgstr "[[base-backup.restoreBackup]]"
+
+msgid "restoreButton_help"
+msgstr "[[base-backup.restoreBackup_help]]"
+
+
+
+# ------ Restore a backup
+
+msgid "restoreHeader"
+msgstr "Datensicherung wiederherstellen"
+
+msgid "restorePlace"
+msgstr "Speicherort zur Wiederherstellung von Dateien"
+
+msgid "restorePlace_help"
+msgstr "Wählen Sie einen Speicherort für die wiederhergestellten Dateien aus. Durch das Ersetzen vorhandener Dateien werden Dateien auf Ihrer Festplatte überschrieben, wenn eine Datei den gleichen Namen und Speicherort hat wie die Datei, die wiederhergestellt wird. Durch das Wiederherstellen von Dateien in der Wiederherstellungs-Dateifreigabe werden die Dateien im Wiederherstellungsverzeichnis der Gruppe /home/groups/restore gespeichert. Dadurch können Sie manuell nur die Dateien kopieren, die Sie wiederherstellen möchten."	
+
+msgid "restoreOver"
+msgstr "Vorhandene Dateien ersetzen"
+
+msgid "restoreTemp"
+msgstr "In Wiederherstellungs-Dateifreigabe wiederherstellen"
+
+msgid "backupFileshareMissing"
+msgstr "Leider wurde die Wiederherstellungs-Dateifreigabe nicht gefunden. Bitte stellen Sie sicher, dass die Wiederherstellungsgruppe und das Verzeichnis der  Wiederherstellungsgruppe existieren."
+
+
+
+# ------ Manual Restore
+
+msgid "restoreFromDirHeader"
+msgstr "Manuelle Wiederherstellung aus Verzeichnis"
+
+msgid "restoreDirField"
+msgstr "Verzeichnis"
+
+msgid "restoreDirField_rule"
+msgstr "/home/users/admin/20000910171607 ist z. B. eine gültige Eingabe."
+
+msgid "restoreDirField_help"
+msgstr "Geben Sie den Namen des lokalen oder bereitgestellten Verzeichnisses an, das die Datensicherung enthält, die Sie wiederherstellen möchten. [[base-backup.restoreDirField_rule]]"
+
+
+
+# ------ labels with no help
+
+msgid "usersNotToBackup"
+msgstr "Nicht zu sichernde Benutzer"
+
+msgid "backupAllUsers"
+msgstr "Alle Benutzer sichern"
+
+msgid "backupNoUsers"
+msgstr "Keine Benutzer sichern"
+
+msgid "backupUserSubset"
+msgstr "Nur angegebene Benutzer sichern"
+
+msgid "groupsNotToBackup"
+msgstr "Nicht zu sichernde Gruppen"
+
+msgid "backupAllGroups"
+msgstr "Alle Gruppen sichern"
+
+msgid "backupNoGroups"
+msgstr "Keine Gruppen sichern"
+
+msgid "backupGroupSubset"
+msgstr "Nur angegebene Gruppen sichern"
+
+msgid "backupModified31days"
+msgstr "Alle in den letzten 31 Tagen geänderten Dateien"
+
+msgid "backupModified14days"
+msgstr "Alle in den letzten 14 Tagen geänderten Dateien"
+
+msgid "backupModified7days"
+msgstr "Alle in den letzten 7 Tagen geänderten Dateien"
+
+msgid "backupModified2days"
+msgstr "Alle in den letzten 2 Tagen geänderten Dateien"
+
+msgid "backupModified1days"
+msgstr "Alle am letzten Tag geänderten Dateien"
+
+msgid "backupAllFiles"
+msgstr "Alle Dateien"
+
+msgid "backupImmediate"
+msgstr "Nur einmal sofort sichern"
+
+msgid "backupImmediate_help"
+msgstr "Diese Datensicherung wird sofort und nur einmal durchgeführt."
+
+msgid "daily"
+msgstr "Einmal am Tag sichern"
+
+msgid "daily_help"
+msgstr "Diese Datensicherung wird einmal am Tag durchgeführt."
+
+msgid "weekly"
+msgstr "Einmal in der Woche sichern"
+
+msgid "weekly_help"
+msgstr "Diese Datensicherung wird einmal in der Woche durchgeführt."
+
+msgid "monthly"
+msgstr "Einmal im Monat sichern"
+
+msgid "monthly_help"
+msgstr "Diese Datensicherung wird einmal im Monat durchgeführt."
+
+msgid "backupCCEDmessage"
+msgstr "Eine kritische Systemkomponente (CCE) ist momentan nicht in Betrieb, weil gerade eine Datensicherung oder -wiederherstellung stattfindet. Bitte versuchen Sie es etwas später noch einmal."
+
+
+
+# ----- Handler and other errors
+
+msgid "testFailed"
+msgstr "Die angegebene Datensicherungs-Freigabe, der Benutzername oder das Passwort ist falsch oder derzeit nicht abrufbar."
+
+    #  checkTag.pl
+msgid "backupTagInvalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-backup.backupName]]. [[base-backup.backupName_rule]]"
+
+msgid "backupTagAlreadyTaken"
+msgstr "Sie haben einen Wert im Feld [[base-backup.backupName]] eingegeben, der im System bereits vorhanden ist. Bitte geben Sie hier einen anderen Wert ein."
+
+	# Backup.pm
+
+msgid "backupCheckSettings"
+msgstr "Bitte überprüfen Sie Ihre Einstellungen"
+
+msgid "backupReason"
+msgstr "Grund"
+
+	# backup.pl
+msgid "backupError"
+msgstr "Leider trat beim Versuch, [[VAR.prog] auszuführen, ein Fehler auf."
+
+	# Constructor
+msgid "restoreDescription"
+msgstr "Diese Workgroup wird für die Wiederherstellung von Sicherungsdaten verwendet."
+
+msgid "permission"
+msgstr "Dateiberechtigung"
+
+msgid "fileowner"
+msgstr "Dateieigentümer"
+
+msgid "filesize"
+msgstr "Dateigröße"
+
+msgid "date"
+msgstr "Änderungsdatum"
+
+msgid "File"
+msgstr "Dateiname"
+
+msgid "immediatePopup"
+msgstr "Sofortige Datensicherung [[VAR.name]] beginnt.\n Wählen Sie das Wiederherstellen-Menü aus, um mehr über diese und andere Datensicherungen zu erfahren."
+
+msgid "restoreOverPopup"
+msgstr "Wiederherstellung [[VAR.name]] beginnt.\n Das System wird nach Abschluss der Wiederherstellung neu gestartet."
+
+msgid "restoreTempPopup"
+msgstr "Wiederherstellung [[VAR.name]] beginnt.\n Die Dateien sind nach Abschluss der Wiederherstellung in der Wiederherstellungs-Dateifreigabe verfügbar."
+
+msgid "osversion_conflict"
+msgstr "This backup archive can only be restored to a fileshare because it was created with a different Sun Cobalt OS version."
+
+# Capabilities
+
+msgid "capgroup_adminBackup"
+msgstr "Verwaltung der Datensicherungen"
+
+msgid "capgroup_adminBackup_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, das gesamte System zu sichern und wiederherzustellen."

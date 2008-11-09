@@ -1,0 +1,301 @@
+#!/usr/bin/perl
+
+# some constants:
+my $iptables = 0;
+$iptables = 1 if (-x "/usr/bin/iptables");
+my $fw_conf = "/etc/ipchains.conf";
+$fw_conf = "/etc/iptables.conf" if ($iptables);
+my $fwbin = "/sbin/ipchains";
+$fwbin = "/usr/bin/iptables" if ($iptables);
+
+use lib qw( /usr/sausalito/perl );
+use Sauce::Util;
+use CCE;
+
+my $cce = new CCE;
+$cce->connectfd (\*STDIN, \*STDOUT);
+
+# Okay, let's regenerate /etc/ipchains
+my %chains = (); # ipchains rule array data goes here.
+my %chain_meta = (); # ipchain object data goes here.
+my @warnings = ();
+
+# get all chains
+my (@chain_oids) = $cce->find("FirewallChain");
+
+foreach $chain_oid (@chain_oids) {
+  load_chain($chain_oid);
+}
+
+validate_chains();
+
+rewrite_fw_conf();
+
+restart_firewall();
+
+{
+  my (@sysoids) = $cce->find("System");
+  $cce->set($sysoids[0], "Firewall", { 'dirty' => 0 });
+}
+
+$cce->bye("SUCCESS");
+exit(0);
+
+###############################################################3
+
+# load_chain - load chain of rule objects into memory.
+sub load_chain
+{
+  my $chain_oid = shift;
+  my $rules = [];
+  
+  my ($ok, $obj) = $cce->get($chain_oid);
+  
+  if (!$ok) {
+    push (@warnings, "[[base-firewall.Missing-chain]]");
+    die("Could not get object id $chain_oid");
+  }
+  
+  my $chain_name = $obj->{name};
+  $chain_meta{$chain_name} = $obj;
+  my (@rule_oids) = CCE->scalar_to_array($obj->{rules});
+  my $rule_oid;
+  foreach $rule_oid (@rule_oids) {
+    my $rule;
+    ($ok, $rule) = $cce->get($rule_oid);
+    if (!$ok) {
+      push (@warnings, 
+      	CCE->msg_create("base-firewall.Missing-rule-in-chain",
+	  { 'chain' => ${chain_name} }));
+    }
+    push (@$rules, $rule);
+  }
+  
+  $chains{$chain_name} = $rules;
+}
+
+# validate_chains: perform some integrity checking on rule chains.
+sub validate_chains
+{
+  my ($chain, $rule, $i);
+  foreach $chain (values %chains) {
+    for ($i = 0; $i <= $#{$chain}; $i++) {
+      $rule = $chain->[$i];
+      if ($rule->{policy} eq 'JUMP') {
+      	# verify that the jump_target chain exists:
+	if (!defined($chains{$rule->{jump_target}})) {
+	  push (@warnings, 
+	    $cce->msg_create( "base-firewall.Missing-subchain",
+	      { 'chain' => ${chain_name}, 
+	        'subchain' => $rule->{jump_target} 
+	      }));
+	  splice (@$chain, $i, 1); # delete rule
+	} # if bad target
+      } #if JUMP
+    } # for each rule
+  } # for each chain
+} # done.
+
+use Data::Dumper;
+
+# rewrite_fw_conf
+sub rewrite_fw_conf
+{
+  my @data = ( "\n$fwbin -F\n" );
+
+  my $sysobj;
+  {
+	my @oids = $cce->find("System");
+	my $ok;
+	($ok, $sysobj) = $cce->get($oids[0], "Firewall");
+  }
+
+  if (!$sysobj->{enabled}) {
+	$fwbin = "# " . $fwbin;
+	push (@data, "# Firewall currently not enabled.\n");
+  }
+
+  my ($name, $chain, $rule);
+  while (($name, $chain) = each %chains) {
+    # warn "dump $name: ",Dumper($chain_meta{$name}),"\n";
+    my $default_policy = $chain_meta{$name}->{default};
+    if ($iptables && ($default_policy eq 'DENY')) {
+	$default_policy = 'DROP';
+    }
+
+    push (@data, "# $name chain:\n");
+    if ( ($name =~ m/^((input)|(forward)|(output))$/) 
+      && $default_policy )
+    {
+      if ($iptables)
+      {
+        $name =~ tr/[a-z]/[A-Z]/;
+      }
+      # set the default policy:
+      push (@data, "$fwbin -P $name $default_policy\n");
+    }
+    foreach $rule (@$chain) {
+      push (@data, rule_to_ipchains_command($name, $rule));
+    }
+    push (@data, "\n");
+  }
+  
+  my $data = join("",@data);
+  Sauce::Util::replaceblock(
+    $fw_conf, 
+    "# start of auto-generated ipchains commands, do not edit below this line",
+    $data,
+    "# end of auto-generated ipchains commands, do not edit above this line",
+  );
+}
+
+sub restart_firewall
+{
+  if($iptables) 
+  {
+    system("/etc/rc.d/init.d/iptables restart >& /tmp/iptables.out");
+  } 
+  else 
+  {
+    system("/etc/rc.d/init.d/ipchains restart >& /tmp/ipchains.out");
+  }
+}
+
+sub rule_to_ipchains_command
+{
+  # /usr/bin/iptables -P INPUT ACCEPT
+  # /usr/bin/iptables -A INPUT -p tcp -s 10.9.0.0/16  -d 10.9.28.128/32 --source-port 80 -j ACCEPT
+  # /usr/bin/iptables -A INPUT -p tcp -s 10.9.0.0/16  -d 127.0.0.1/32 --source-port 80 -j ACCEPT
+  # /usr/bin/iptables -t nat -A PREROUTING -s 10.9.0.0/16 -p tcp --destination-port 80 -j DNAT --to-destination 127.0.0.1:3128
+
+  my ($chain,$rule) = (shift,shift);
+  $chain =~ tr/[a-z]/[A-Z]/ if ($iptables);
+
+  my @data = ();
+
+  my @source_nets = ips_to_nets (
+    $rule->{source_ip_start}, 
+    $rule->{source_ip_stop});
+  my @dest_nets = ips_to_nets (
+    $rule->{dest_ip_start}, 
+    $rule->{dest_ip_stop});
+
+  if ($rule->{source_ports} || $rule->{dest_ports}) {
+	if ($rule->{protocol} eq 'all') {
+		foreach my $proto ('tcp', 'udp', 'icmp') {
+			$rule->{protocol} = $proto;
+			push(@data, rule_to_ipchains_command($chain, $rule));
+		}
+		return @data;
+	}
+  }
+  
+  my ($srcnet, $destnet);
+  foreach $srcnet (@source_nets) {
+    foreach $destnet (@dest_nets) {
+      if ($iptables) {
+        push (@data, 
+  	"${fwbin} -A $chain",
+  	" -p ", $rule->{protocol},
+  	" -s ", $srcnet, 
+  	" -d ", $destnet);
+	if($rule->{source_ports}) {
+          # $rule->{source_ports} =~ s/\:/\-/g;
+          push(@data, " --source-port ".$rule->{source_ports});
+        }
+	if($rule->{dest_ports}) {
+          # $rule->{dest_ports} =~ s/\:/\-/g;
+          push(@data, " --destination-port ".$rule->{dest_ports});
+        }
+        if ($rule->{interface}) {
+          push (@data, " -i ", $rule->{interface});
+        }
+        if ($rule->{policy} eq "JUMP") {
+          push (@data, " -j ", $rule->{jump_target});
+        } else {
+          push (@data, " -j ", $rule->{policy});
+        }
+        if ($rule->{policy} eq "REDIRECT") {
+          push (@data, ' --destination-port ', $rule->{redir_target});
+        } 
+        push (@data,"\n");
+      } else {
+        push (@data, 
+  	"${fwbin} -A $chain",
+  	" -p ", $rule->{protocol},
+  	" -s ", $srcnet, " ", $rule->{source_ports},
+  	" -d ", $destnet, " ", $rule->{dest_ports});
+        if ($rule->{interface}) {
+          push (@data, " -i ", $rule->{interface});
+        }
+        if ($rule->{policy} eq "JUMP") {
+          push (@data, " -j ", $rule->{jump_target});
+        } else {
+          push (@data, " -j ", $rule->{policy});
+        }
+        if ($rule->{policy} eq "REDIRECT") {
+          push (@data, " ", $rule->{redir_target});
+        } 
+        push (@data,"\n");
+      }
+    }
+  }
+  return @data;
+}
+
+# ips_to_nets:
+# this is a very happy function that converts ranges of ips into
+# batches of netmasks.  I'm proud of my little algorithm here.
+#
+# params: a start ip and stop ip
+#
+# returns: a list of strings, each containing "ip/netmask".
+sub ips_to_nets
+{
+  my ($start, $stop) = (shift, shift);
+  
+  # convert to 32-bit integers:
+  my $start_bin = ip2bin($start);
+  my $stop_bin = ip2bin($stop);
+
+  # generate set of subnets that describes the ipspace  
+  my @nets = ();
+  while ($start_bin <= $stop_bin) {
+    my $mask = 0xFFFFFFFF;
+    my $last_mask = $mask;
+    while ( (($start_bin & (~$mask)) == 0)
+      &&    (($start_bin | (~$mask)) <= $stop_bin) 
+      &&    ($last_mask)
+    )
+    {
+      $last_mask = $mask;
+      $mask <<= 1;
+    }
+    my $ip = bin2ip($start_bin);
+    my $nm = sum(split(//,unpack("B32", pack("N",$last_mask))));
+    # my $nm = bin2ip($last_mask);
+    push (@nets, "$ip/$nm");
+    
+    $start_bin = ($start_bin | (~$last_mask)) + 1;
+  }
+  
+  return @nets;
+} 
+
+sub sum
+{
+  my $a = 0; my $b;
+  while (defined($b = shift)) { $a+=$b; }
+  return $a;
+}
+
+sub bin2ip
+{
+  return join(".",unpack("C4",pack("N",shift)));
+}
+
+sub ip2bin
+{
+  return unpack("N",pack("C4",split(/\./, shift)));
+}
+

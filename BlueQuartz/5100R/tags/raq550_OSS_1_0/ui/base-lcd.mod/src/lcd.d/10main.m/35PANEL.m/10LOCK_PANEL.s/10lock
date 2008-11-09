@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ `basename $0` = "10lock" ]; then
+  /usr/local/sbin/fppasswd.sh -l
+else
+  /usr/local/sbin/fppasswd.sh -u
+fi

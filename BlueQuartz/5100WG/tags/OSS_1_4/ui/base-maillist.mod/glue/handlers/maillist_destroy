@@ -1,0 +1,30 @@
+#!/usr/bin/perl -I. -I/usr/sausalito/handlers/base/maillist -I/usr/sausalito/perl
+
+use CCE;
+use Sauce::Util;
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $oid = $cce->event_oid();
+my $obj = $cce->event_old(); # the old values of the object 
+
+# delete aliases
+Sauce::Util::editfile('/etc/mail/aliases',
+  \&Sauce::Util::replace_unique_entries, $oid,
+  {});
+`/usr/bin/newaliases &> /dev/null &`;
+
+my @delete_me = (
+  "${Lists_dir}/${list}",
+  "${Lists_dir}/${list}~",
+  "${Lists_dir}/${list}.administrator",
+  "${Lists_dir}/${list}.administrator~",
+  "${Lists_dir}/${list}.config",
+  "${Lists_dir}/${list}.config~",
+);
+foreach $_ (@delete_me) {
+  unlink($_);
+}
+
+$cce->bye('SUCCESS');
+exit(0);  

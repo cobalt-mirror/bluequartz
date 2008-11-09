@@ -1,0 +1,55 @@
+<!-- 
+  This file describes the schema of the following class types:
+    ActiveMonitor
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+  
+-->
+
+<!-- a monitored subsystem can be in one of three states -->
+<typedef name="amstate" type="re" data="[NGYR]"/>
+
+<class name="ActiveMonitor" namespace="" version="1.2">
+  <property name="enabled" type="boolean" default="1" writeacl="ruleCapable(modifyActiveMonitor)"/>
+  <property name="alertEmailList" type="scalar" writeacl="ruleCapable(modifyActiveMonitor)"/>
+</class>
+
+<!-- 	
+  if we had inheritance, we'd define an ActiveMonitorable class 
+  as it is, we can show you the required fields for an AM namespace.
+
+  <class name="ActiveMonitor" 	namespace="CPU" 	version="1.0">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"    	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default=""/>
+    <property name="typeData"		type="scalar"	default=""/>
+
+    <property name="aggMember"		type="boolean"	default="0"/>
+    <property name="restart"		type="scalar"	default=""/>
+    <property name="retries"		type="int"	default="1"/>
+    <property name="greenMsg"		type="scalar"	default="greenMsg"/>
+    <property name="yellowMsg"		type="scalar"	default="yellowMsg"/>
+    <property name="redMsg"		type="scalar"	default="redMsg"/>
+
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	default="CPU"/>
+
+    <property name="URL"	     	type="scalar"  	default=""/>
+    <property name="hideUI"		type="boolean"  default="0"/>
+    <property name="UIGroup"		type="scalar"   default=""/>
+  </class>
+
+  enabled denotes whether the service associated with this item is enabled
+  monitor denotes whether the item is set to be monitored
+  URL is the location of the details page for this service.
+  hideUI is a flag telling the Active Monitor UI to not display this service
+
+-->
+
+<!-- end of am.schema -->

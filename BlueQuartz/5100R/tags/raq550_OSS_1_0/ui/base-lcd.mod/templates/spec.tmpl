@@ -1,0 +1,47 @@
+# vendor and service name
+%define Vendor [VENDOR]
+%define Service [SERVICE]
+%define RootDir [ROOTDIR]
+
+Summary: lcd spec template 
+Name: %{Vendor}-%{Service}
+Vendor: [VENDORNAME]
+Version: [VERSION]
+Release: [RELEASE]
+Copyright: Cobalt Networks, Inc.
+Group: CCE/%{Service}
+Source: %{Vendor}-%{Service}-[VERSION].tar.gz
+BuildRoot: /var/tmp/%{Vendor}-%{Service}
+
+%description
+This is a skeleton package. It builds the ui, locale, and glue rpms.
+
+[DESCRIPTION_SECTION]
+
+%prep
+[PREP_SECTION]
+
+%setup
+[SETUP_SECTION]
+
+%build
+make
+[BUILD_SECTION]
+
+%install
+rm -rf $RPM_BUILD_ROOT
+PREFIX=$RPM_BUILD_ROOT make install
+[INSTALL_SECTION]
+
+[POST-INSTALL_SECTION]
+
+[POST-UNINSTALL_SECTION]
+
+[FILES_SECTION]
+
+%changelog
+* Tue Apr 18 2000 Adrian Sun <asun@cobalt.com>
+- new, improved spec file template.
+
+* Thu Mar 30 2000 Adrian Sun <asun@cobalt.com>
+- sample spec file for skeleton package.

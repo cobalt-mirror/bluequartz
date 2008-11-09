@@ -1,0 +1,97 @@
+# Server Management Menu
+
+msgid "asp"
+msgstr "ASP"
+
+msgid "aspid"
+msgstr "¥¢¥¯¥Æ¥£¥Ö¥µ¡¼¥Ð¥Ú¡¼¥¸ (ASP)"
+
+msgid "asp_help"
+msgstr "[[base-asp.aspid]] ¤ÎÀßÄê¤òÊÑ¹¹¤Ç¤­¤Þ¤¹¡£"
+
+msgid "aspAdmin_menu"
+msgstr "ASP"
+
+msgid "aspAdmin_menu_help"
+msgstr "[[base-asp.aspid]] ¤ÎÀßÄê¤òÊÑ¹¹¤Ç¤­¤Þ¤¹¡£"
+
+msgid "aspAdmin"
+msgstr "ASP ´ÉÍý"
+
+msgid "aspAdmin_help"
+msgstr "[[base-asp.aspid]] ¤ÎÀßÄê¤òÊÑ¹¹¤Ç¤­¤Þ¤¹¡£"
+
+# ASP config pages
+
+msgid "aspSettings"
+msgstr "[[base-asp.aspid]] ¤ÎÀßÄê"
+
+msgid "enableServer_help"
+msgstr "Á´¥µ¡¼¥Ð¤Î [[base-asp.aspid]] ¥µ¡¼¥Ó¥¹¤Î ON/OFF ¤òÀÚ¤êÂØ¤¨¤Þ¤¹¡£ASP ¤Î¥µ¥Ý¡¼¥È¤Ï¡¢[¥µ¥¤¥È¤Î´ÉÍý] ²èÌÌ¤«¤é³Æ¥µ¥¤¥ÈÊÌ¤ËÍ­¸ú¤Ë¤Ç¤­¤Þ¤¹¡£"
+
+msgid "enableServer"
+msgstr "¥µ¡¼¥Ó¥¹¤òÍ­¸ú¤Ë¤¹¤ë"
+
+msgid "enableAdminServer"
+msgstr "´ÉÍý¥µ¡¼¥Ð¤òÍ­¸ú¤Ë¤¹¤ë"
+
+msgid "enableAdminServer_help"
+msgstr "[[base-asp.aspAdmin]]¥µ¡¼¥Ð¤òÍ­¸ú¤Ë¤Ç¤­¤Þ¤¹¡£[[base-asp.aspAdmin]]¥µ¡¼¥Ð¤Ø¥¢¥¯¥»¥¹¤¹¤ë¤Ë¤Ï¡¢¡Î[[base-asp.accessAdmin]]¡Ï¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£¤¤¤º¤ì¤«¤Î¥µ¥¤¥È¤Ç [[base-asp.asp]] ¥µ¡¼¥Ð¤¬»È¤ï¤ì¤Æ¤¤¤ë¾ì¹ç¤Ë¤Ï¡¢¥Ñ¥Ö¥ê¥Ã¥¯ ASP ¥µ¡¼¥Ó¥¹¤Ï¼«Æ°Åª¤ËÍ­¸ú¤Ë¤Ê¤ê¤Þ¤¹¡£"
+
+msgid "manageAdminServer"
+msgstr "´ÉÍý¥µ¡¼¥Ð¤Ø¥¢¥¯¥»¥¹"
+
+msgid "manageAdminServer_help"
+msgstr "¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢ASP ´ÉÍý¥µ¡¼¥Ð¤Ø¥¢¥¯¥»¥¹¤·¡¢¾ÜºÙÀßÄê¤È¥Ç¡¼¥¿¥Ù¡¼¥¹ÀÜÂ³¥µ¥Ý¡¼¥È¤Î´ÉÍý¤ò¹Ô¤¨¤Þ¤¹¡£"
+
+# ui extension
+msgid "enableAsp"
+msgstr "ASP ¤òÍ­¸ú¤Ë¤¹¤ë"
+
+msgid "enableAsp_help"
+msgstr "¥¢¥¯¥Æ¥£¥Ö¥µ¡¼¥Ð¥Ú¡¼¥¸ (ASP) ¥µ¡¼¥Ó¥¹¤òÍ­¸ú¤Ë¤Ç¤­¤Þ¤¹¡£"
+
+msgid ""
+msgstr " "
+
+# AM support
+
+msgid "amAspNameTag"
+msgstr "[[base-asp.aspid]]"
+
+msgid "amAspDetailsTitle"
+msgstr "[[base-asp.amAspNameTag]] ¤Î¾ÜºÙ"
+
+msgid "amAspNotRunning"
+msgstr "ASP ¥µ¡¼¥Ó¥¹¤ÏÆ°ºî¤·¤Æ¤ª¤é¤º¡¢µ¯Æ°¤¹¤ë¤³¤È¤â¤Ç¤­¤Þ¤»¤ó¤Ç¤·¤¿¡£[[base-apache.amAdmservNameTag]] ¤Ç¡¢ASP ¥µ¡¼¥Ó¥¹¤ò°ìÃ¶¥ª¥Õ¤Ë¤·¤Æ¡ÖÊÝÂ¸¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤«¤é¡¢¤â¤¦°ìÅÙ¥ª¥ó¤Ë¤·¤Æ¡ÖÊÝÂ¸¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¡¢ÌäÂê¤¬²ò·è¤¹¤ë¤«¤É¤¦¤«¤ª»î¤·¤¯¤À¤µ¤¤¡£ASP ¥µ¡¼¥Ó¥¹¤¬Àµ¤·¤¯µ¯Æ°¤·¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢[[base-alpine.serverconfig]] ¤Î [[base-power.power]] ¥á¥Ë¥å¡¼¤Ë¤¢¤ë¡Ö[[base-power.reboot]]¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¡¢¥µ¡¼¥ÐËÜÂÎ¤òºÆµ¯Æ°¤·¤Æ¤¯¤À¤µ¤¤¡£¤½¤ì¤Ç¤â ASP ¥µ¡¼¥Ó¥¹¤¬µ¯Æ°¤·¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢[[base-sauce-basic.techSupportURL]] ¤Ë¤¢¤ë¥Æ¥¯¥Ë¥«¥ë¥µ¥Ý¡¼¥È¥µ¡¼¥Ó¥¹¤ò¤´ÍøÍÑ¤¯¤À¤µ¤¤¡£"
+
+msgid "amAspStatusOK"
+msgstr "ASP ¥µ¡¼¥Ó¥¹¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Þ¤¹¡£"
+
+msgid "accessAdmin"
+msgstr "´ÉÍý¥µ¡¼¥Ð¤Ø¥¢¥¯¥»¥¹"
+
+msgid "accessAdmin_help"
+msgstr "[[base-asp.manageAdminServer_help]]"
+
+msgid "accessAdmin_disabled"
+msgstr "[[base-asp.accessAdmin]]"
+
+msgid "accessAdmin_disabledHelp"
+msgstr "[[base-asp.manageAdminServer_help]]ASP ´ÉÍý¥µ¡¼¥Ð¤Ø¥¢¥¯¥»¥¹¤¹¤ë¤Ë¤Ï¡¢´ÉÍý¥µ¡¼¥Ð¤òÍ­¸ú¤Ë¤·¤Æ¤ª¤¯É¬Í×¤¬¤¢¤ê¤Þ¤¹¡£"
+
+# initscript strings
+msgid "casp_start_1"
+msgstr "¾¯Ã² ¼Ã²Ï½:"
+
+msgid "casp_start_2"
+msgstr "ASP »°ÊÞ"
+
+msgid "casp_stop_1"
+msgstr "¼­³Ø®³ ¼Ã²Ï½:"
+
+msgid "casp_stop_2"
+msgstr "ASP »°ÊÞ"
+
+msgid ""
+msgstr ""

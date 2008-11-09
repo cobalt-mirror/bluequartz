@@ -1,0 +1,57 @@
+###
+### Is this file still necessary?  I don't think this module is even being used any more...
+###
+
+msgid "identity"
+msgstr "Organisation"
+
+msgid "modifyIdentity"
+msgstr "Ändern der Identität"
+
+msgid "identityHelp"
+msgstr "Legen Sie die Identitätsinformationen für diesen Rechner fest."
+
+msgid "country"
+msgstr "Land"
+
+msgid "country_empty"
+msgstr "Bei Land handelt es sich um ein obligatorisches Feld."
+
+msgid "country_help"
+msgstr "Das Land, in dem sich der Rechner befindet. Die Angabe erfolgt in Form eines Codes aus zwei Buchstaben, wie z.B. AU für Australien, PL für Polen."
+
+msgid "state"
+msgstr "Bundesland/Kanton"
+
+msgid "state_help"
+msgstr "Das Bundesland oder der Kanton, in dem sich der Rechner befindet. Die Angabe erfolgt in Form einer Abkürzung, z.B. CA für Kalifornien (USA) oder NSW für Neu Südwales (Australien)."
+
+msgid "state_empty"
+msgstr "Das Feld Bundesland/Kanton ist erforderlich."
+
+msgid "locality"
+msgstr "Ort"
+
+msgid "locality_help"
+msgstr "Der Ort, an dem sich dieser Rechner befindet. Die Angabe erfolgt in Form eines vollständigen Namens, z.B. Sydney oder 'San Fransisco'"
+
+msgid "locality_empty"
+msgstr "Das Feld Ort ist erforderlich."
+
+msgid "organisation"
+msgstr "Organisation"
+
+msgid "organisation_help"
+msgstr "Das Unternehmen, durch das dieser Rechner in erster Linie eingesetzt wird, z.B. 'Null Pointer Corp.'"
+
+msgid "organisation_empty"
+msgstr "[[base-identity.organisation]]-Name ist erforderlich"
+
+msgid "organisationUnit"
+msgstr "[[base-identity.organisation]]-Abteilung"
+
+msgid "organisationUnit_help"
+msgstr "Die Abteilung, durch die dieser Rechner in erster Linie verwendet wird, z.B. 'Web-Hosting', 'Entwicklung' oder 'Verkauf'"
+
+msgid "organisationUnit_empty"
+msgstr "Der Name der Abteilung ist erforderlich"

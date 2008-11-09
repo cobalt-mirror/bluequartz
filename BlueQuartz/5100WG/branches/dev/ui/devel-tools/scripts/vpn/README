@@ -1,0 +1,73 @@
+#
+# $Id: README 201 2003-07-18 19:11:07Z will $
+# by Duncan Laurie (void@sun.com)
+# 
+
+[ DESCRIPTION ]
+
+  This is a patch for the Cisco 5000 VPN client package.  It applies on
+  the 5.2.3 linux source available from iWork.  Is the essentially the
+  same as the Sun-provided one but adds a Makefile and decent initscript
+  for starting the vpn tunnel and fixes a few compile problems.
+
+  Provided in the patch are a vpn_config.in template and 'vpn' startup
+  script to simplify the tunnel process.  These are also provided in this
+  directory.
+
+
+[ INSTALL ]
+
+  If you already have the COMPvpn package installed you can use this
+  initscript by editing the vpn_config.in file first and changing
+  "________@vpn" to your Sun ID, i.e. "dl122956@vpn"
+
+  The startup script can be placed anywhere, but preferrably somewhere
+  in your PATH (default is /usr/sbin).  It is just a convienent wrapper
+  around the open_tunnel command that handles the password as open_tunnel
+  requires 3 passwords to be entered. (and mangles /etc/vpn_config)
+
+  If you do not already have COMPvpn installed, download the 5.2.3
+  linux source from iWork.  Then uncompress and change into the COMPvpn
+  directory and apply the patch:
+
+    patch -p1 -E < .../COMPvpn-5.2.3-duncan.patch
+
+  This will create the 'vpn' script and 'vpn_config.in' file as well
+  as a Makefile and fix a couple compile problems.  To build you will
+  need the exact kernel source installed, by default this is located
+  in /usr/src/linux, but can be changed by editing the Makefile.  You
+  will need to configure it for your kernel and run 'make dep' in the
+  kernel source dir before this can be compiled.  Then run 'make' from
+  the COMPvpn directory and it will build the kernel module.
+
+  To install, first edit the vpn_config.in file as described above,
+  then run 'make install' as root.
+
+
+[ USAGE ]
+
+  Most common/simple example (uses eth0 and default server):
+   /usr/sbin/vpn ffffffff
+
+  Example using PPP and alternate server:
+   /usr/sbin/vpn -i ppp0 -s central ffffffff
+
+  Complete list of options:
+   /usr/sbin/vpn -[hvnb] [-i dev] [-s host] [-u user] <password>
+
+       -h          print this help
+       -v          increase debug level
+       -n          do not connect (test config file generation)
+       -b          do not background tunnel process
+       -i dev      network interface
+       -s host     vpn gateway to connect to
+       -u user     username to connect with
+       password    8 character password from token card
+
+  To get the 8-digit pseudo-hex password from the DES card just enter
+  your pin then when it says EH enter 8 and it will spit one out for you.
+  Then just "/usr/sbin/vpn ffffffff" and it should hopefully come online.
+  The connection log is stored in /var/log/vpn.log and you can increase
+  the debug output by adding a few -v arguments to the command line.
+
+

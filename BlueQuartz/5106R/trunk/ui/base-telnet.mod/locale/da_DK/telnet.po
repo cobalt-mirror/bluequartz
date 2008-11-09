@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-26 10:35+0100\n"
+"PO-Revision-Date: 2007-11-26 10:45+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "access"
+msgstr "Adgang"
+
+msgid "access_help"
+msgstr ""
+"Vælg politik for telnetadgang.  Telnet bruges af avancerede brugere eller "
+"serveradministratoren til at køre shellscripts eller bruge shellkommandoer. "
+"Af sikkerhedsmæssige årsager tilrådes det at man deaktiverer, eller "
+"begrænser adgang til, telnet. "
+
+msgid "advanced"
+msgstr "Avanceret"
+
+msgid "advanced_help"
+msgstr "Serverindstillinger for Telnet kan administreres her."
+
+msgid "amDetailsTitle"
+msgstr "Detajler om Telnetserveren"
+
+msgid "amNotAccepting"
+msgstr ""
+"Telnetserveren kører ikke og kunne ikke genstartes. I [[base-"
+"apache.amAdmservNameTag]], kan du prøve at slå telnetserveren fra og til for "
+"at se om dette retter problemet. Hvis telnetserveren fortsat ikke starter, "
+"prøv da at genstarte selve serveren ved at klikke på knappen [[base-"
+"power.reboot]] i menuen [[base-power.power]] under [[base-"
+"alpine.serverconfig]]. Hvis telnetserveren stadig ikke starter, se da "
+"venligst [[base-sauce-basic.techSupportURL]] for teknisk support."
+
+msgid "amStatusOK"
+msgstr "Telnetserveren fungerer som den skal."
+
+msgid "amTelnetNameTag"
+msgstr "Telnetserver"
+
+msgid "basic"
+msgstr "Basal"
+
+msgid "basic_help"
+msgstr "Telnetserveren kan aktiveres og deaktiveres her."
+
+msgid "connectRateField"
+msgstr "Maksimal forbindelsesrate"
+
+msgid "connectRateField_help"
+msgstr ""
+"Indtast det maksimale antal tilladte forbindelser per minut.  Nye "
+"forbindelser vil blive nægtet hvis forbindelsesraten har nået denne grænse. "
+
+msgid "connectRateField_rule"
+msgstr ""
+"Indtast venligst en værdi indenfor den specificerede mængde.  "
+"Standardværdien er 40."
+
+msgid "enableServer"
+msgstr "Aktiver server"
+
+msgid "enableServer_help"
+msgstr ""
+"Sæt hak her for at aktivere telnetadgang til serveren. Udover dette kan "
+"server- og siteadministratorer sætte adgangsprivilegier for individuelle "
+"brugerkonti."
+
+msgid "enableTelnet"
+msgstr "Aktiver telnetserver"
+
+msgid "enableTelnet_help"
+msgstr ""
+"Ved at aktivere telnet tillades brugeres med shelladgang at forbinde til "
+"denne server med klientsoftware til telnet."
+
+msgid "none"
+msgstr "Deaktiveret - tillad ikke indlogning"
+
+msgid "reg"
+msgstr "Aktiveret - tillad alle brugere at logge ind"
+
+msgid "root"
+msgstr "Aktiveret - tillad kun administratorer at logge ind"
+
+msgid "telnetEnable"
+msgstr "Aktiver"
+
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Klik her for at konfigurere indstillinger for telnet."
+
+msgid "telnetSettings"
+msgstr "Telnetindstillinger"

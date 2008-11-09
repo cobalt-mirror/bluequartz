@@ -1,0 +1,30 @@
+msgid "capgroup_adminPower_help"
+msgstr "此管理权限允许用户通过 Web 接口重新启动这台机器。"
+
+msgid "shutdownMessage"
+msgstr "出于安全原因，此服务器设备无法通过 Web 用户接口关闭。<BR>请使用服务器设备上的 LCD 面板关闭。"
+
+msgid "capgroup_adminPower"
+msgstr "管理系统电源"
+
+msgid "powerHelp"
+msgstr "服务器设备无法在此处重新引导。"
+
+msgid "power"
+msgstr "电源"
+
+msgid "shutdownInstructions"
+msgstr "关闭服务器设备：<OL><LI>在 LCD 控制台，按住“选择”按钮大约 2 秒钟。<BR>LCD 屏幕显示：<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT: <<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SETUP NETWORK</CODE><BR><BR><LI>按“选择”按钮，直至 LCD 屏幕上出现 POWER DOWN: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECT:  <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POWER DOWN</CODE><BR><BR><LI>按“回车”按钮。<BR><BR><LI>使用箭头键在 [Y] 与 [N] 间切换光标。选择 [Y] 关闭系统。LCD 屏幕显示：<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>PLEASE SWITCH POWER OFF NOW</CODE><BR><BR><LI>按背部面板上的开/关按钮，关闭服务器设备。</OL>"
+
+msgid "rebooting"
+msgstr "服务器设备正在重新引导。几分钟后可用。"
+
+msgid "askRebootConfirmation"
+msgstr "是否确定要重新引导服务器设备？"
+
+msgid "reboot"
+msgstr "立即重新引导"
+
+msgid "reboot_help"
+msgstr "单击此处重新引导服务器设备。"
+

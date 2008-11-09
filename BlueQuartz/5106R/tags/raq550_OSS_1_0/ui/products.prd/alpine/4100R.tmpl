@@ -1,0 +1,122 @@
+# ID: $Id: 4100R.tmpl,v 1.39 2002/04/05 07:09:32 asun Exp $
+# Copyright (C) 2000 Cobalt Networks, Inc.
+# All rights reserved.
+#
+# Description: Release spec for the Pt. Lobos
+
+%begin Release
+7.0
+%end Release
+
+%begin Vendor
+Sun Microsystems
+%end Vendor
+
+%begin Codename
+Alpine
+%end Codename
+
+%begin Hardware_Gen
+III
+V
+%end Hardware_Gen
+
+# Please check with Erik before updating this
+%begin ROM
+2.9.34 - 
+%end ROM
+
+%begin Before_Scripts
+%end Before_Scripts
+
+%begin Timezone
+US/Pacific
+%end Timezone
+
+%begin Locale
+en_US
+%end Locale
+
+%begin Languages
+en_US
+%end Languages
+
+# This is the partition table for the product
+%begin Partition_Table
+0,4000,fd
+,1500,fd
+,512,fd
+,,fd
+%end Partition_Table
+
+# This is the /etc/fstab for the product
+%begin fstab
+/dev/md1              /         xfs	defaults			  1 1
+/dev/md2              /var      xfs	defaults,nosuid                   3 3
+/dev/md3              swap      swap    defaults                          0 0
+/dev/md4              /home     xfs     defaults,usrquota,grpquota,osyncisdsync 4 4
+none                  /proc     proc    defaults                          0 0
+none                  /dev/pts  devpts  gid=5,mode=0620                   0 0
+none                  /dev/shm  tmpfs   defaults                          0 0
+%end fstab
+
+# better performance for the filesystem
+%begin mkfs_opts
+%end mkfs_opts
+
+# This product has RAID
+# this is /etc/raidtab (sort of)
+%begin raidtab
+raiddev               /dev/md1
+raid-level            [MD1RAIDLEVEL] 
+nr-raid-disks         [MD1RAIDDISKS] 
+nr-spare-disks        0
+persistent-superblock 1
+[MD1DEVICES] 
+
+raiddev               /dev/md2
+raid-level            [MD2RAIDLEVEL]
+nr-raid-disks         [MD2RAIDDISKS]
+nr-spare-disks        0
+persistent-superblock 1
+[MD2DEVICES]
+
+raiddev               /dev/md3
+raid-level            [MD3RAIDLEVEL] 
+nr-raid-disks         [MD3RAIDDISKS] 
+nr-spare-disks        0
+persistent-superblock 1
+[MD3DEVICES]
+
+raiddev               /dev/md4
+raid-level            [MD4RAIDLEVEL] 
+nr-raid-disks         [MD4RAIDDISKS] 
+nr-spare-disks        0
+persistent-superblock 1
+[MD4DEVICES]
+%end raidtab
+
+%begin Core_RPMs
+[CORE_RPMS]
+%end Core_RPMs
+
+%begin After_Scripts
+stop_stuff
+mkmailspool
+mvweblogs
+mvmailqueue
+raqsysreset
+wipequota
+secure_stuff
+safetynet
+redhatdir
+crackdict
+set_nvram_bootdev
+set_nvram_sysfault
+set_services
+interbase.hack
+chiliasp.hack
+remove_broken_symlinks
+%end After_Scripts
+
+# release_spec.4100R ends here

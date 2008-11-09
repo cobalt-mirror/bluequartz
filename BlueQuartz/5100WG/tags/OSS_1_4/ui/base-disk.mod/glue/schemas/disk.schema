@@ -1,0 +1,39 @@
+<!-- 
+  $Id: disk.schema 3 2003-07-17 15:19:15Z will $
+  Copyright 2000, Cobalt Networks.
+  Author: Kevin K.M. Chiu
+-->
+
+<class name="System" namespace="Disk" version="1.0">
+  <!-- all values in KB -->
+  <!-- total of master disk -->
+  <property name="disk1Total" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <!-- total of slave disk -->
+  <property name="disk2Total" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <property name="homeTotal" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <property name="homeUsed" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <property name="rootTotal" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <property name="rootUsed" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <property name="varTotal" type="int" writeacl="ruleCapable(modifyDiskQuota)" />
+  <property name="varUsed" type="int"  writeacl="ruleCapable(modifyDiskQuota)"/>
+  <property name="refresh" type="scalar" writeacl="ruleCapable(modifyDiskQuota)"/>
+</class>
+
+<class name="User" namespace="Disk" version="1.0" createacl="ruleCapable(createUser)" destroyacl="ruleCapable(destroyUser)">
+  <!-- all values in KB -->
+  <property name="used" type="int" writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser),ruleCapable(modifyDiskQuota)"/>
+  <property name="quota" type="int" default="-1" writeacl="ruleCapable(modifyUser),ruleCapable(modifyDiskQuota)"/>
+  <property name="refresh" type="scalar" writeacl="ruleSelf,ruleAdmin,ruleCapable(modifyUser),ruleCapable(modifyDiskQuota),ruleCapable(modifyDiskQuota)" />
+</class>
+
+<class name="Workgroup" namespace="Disk" createacl="ruleCapable(createWorkgroup)" destroyacl="ruleCapable(destroyWorkgroup)" version="1.0">
+  <!-- all values in KB -->
+  <property name="used" writeacl="ruleCapable(modifyWorkgroup),ruleCapable(modifyDiskQuota)" type="int" />
+  <property name="quota" type="int" default="-1" writeacl="ruleCapable(modifyWorkgroup),ruleCapable(modifyDiskQuota)"/>
+  <property name="refresh" type="scalar" writeacl="ruleCapable(modifyWorkgroup),ruleCapable(modifyDiskQuota)"/>
+</class>
+
+<class name="Capabilities" namespace="modifyDiskQuota" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDiskQuota)"/>
+	<property name="nameTag" type="scalar" default="[[base-disk.cap_modifyDiskQuota]]"/>
+</class>

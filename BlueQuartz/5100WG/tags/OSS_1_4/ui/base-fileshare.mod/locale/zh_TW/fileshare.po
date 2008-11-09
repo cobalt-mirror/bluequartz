@@ -1,0 +1,82 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "檔案 & 列印"
+
+msgid "fileSharing_help"
+msgstr "按一下此處可配置檔案服務。"
+
+msgid "guestShare"
+msgstr "來賓共用"
+
+msgid "guestShare_help"
+msgstr "按一下此處可配置[[base-fileshare.fileSharingSettings]]。"
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "來賓共用設定"
+
+msgid "guestShareField"
+msgstr "啟用來賓存取"
+
+msgid "guestShareField_help"
+msgstr "開啟或關閉來賓對「Apple 檔案共享」、FTP 和「Windows 檔案共享」的存取權限。在此處停用來賓存取，並不會停用在此伺服器設備上具有帳戶之使用者對這些服務的存取權限。"
+
+msgid "incomingEnable"
+msgstr "啟用"
+
+msgid "incomingField"
+msgstr "存入的檔案存取"
+
+msgid "incomingField_help"
+msgstr "開啟或關閉檔案存取。當啟用時，來賓使用者可上載檔案至來賓共用目錄。"
+
+msgid "maxDiskSpaceField"
+msgstr "容許的最大磁碟空間 (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "請輸入一個介於 1 到  1024000 之間的整數；預設值為 50 MB。"
+
+msgid "maxDiskSpaceField_help"
+msgstr "請設定可供來賓使用者用於上載存入檔案的最大磁碟空間。  [[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "這個工作群組可供來賓存取共享的檔案。"
+
+
+# --- Handler messages
+
+	# -- guest.pl  ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr "錯誤：使用者重複"
+
+msgid "groupDoesntExist"
+msgstr "錯誤：群組不存在"
+
+msgid "cantChangeGroup"
+msgstr "錯誤：不可變更群組"
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "很抱歉，發生錯誤；來賓使用者無效。"
+
+msgid "invalidPath"
+msgstr "很抱歉，發生錯誤；來賓共用路徑無效。"
+
+msgid "cantSetQuota"
+msgstr "很抱歉，在嘗試設定來賓共用限額時發生錯誤；必要的配置檔可能已遺失。"
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "管理檔案分享設定"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "這個管理權限允許使用者更改來賓檔案分享設定。"
+
+msgid "capgroup_adminFileShare"
+msgstr "管理檔案共用"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "這個管理權限允許使用者管理檔案分享的所有方面。"
+

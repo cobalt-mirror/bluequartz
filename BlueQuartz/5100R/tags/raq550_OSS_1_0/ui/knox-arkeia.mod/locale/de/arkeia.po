@@ -1,0 +1,59 @@
+msgid "arkeia"
+msgstr "Knox Arkeia"
+
+msgid "arkeia_help"
+msgstr "Hier können Sie die [[knox-arkeia.arkeiaSettings]] ändern."
+
+msgid "arkeiaSettings"
+msgstr "Knox Arkeia Sicherungseinstellungen"
+
+msgid "enableServer"
+msgstr "Client aktivieren"
+
+msgid "enableServer_help"
+msgstr "Schalten Sie den Knox Arkeia Sicherungs-Client ein oder aus."
+
+msgid "enabledButNoData"
+msgstr "Um den Server zu aktivieren, müssen Sie mindestens einen Arkeia Sicherungsserver eingeben."
+
+msgid "arkeiaHostField"
+msgstr "Name des Sicherungsservers"
+
+msgid "arkeiaHostField_rule"
+msgstr "Ein vollqualifizierter Domänenname folgt dem Format server.domain.com, z. B. www.cobalt.com."
+
+msgid "arkeiaHostField_help"
+msgstr "Geben Sie den vollqualifizierten Domänennamen des Knox Arkeia Sicherungsservers ein.  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_invalid"
+msgstr "Leider ist [[VAR.invalidValue]] ein ungültiger Wert für das Feld [[knox-arkeia.arkeiaHostField]].  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_empty"
+msgstr "Sie haben keinen Wert für das Feld [[knox-arkeia.arkeiaHostField]] eingegeben.  [[knox-arkeia.arkeiaHostField_rule]]"
+
+msgid "arkeiaHostField_LookupFailed"
+msgstr "Der Arkeia-Server konnte nicht gefunden werden. Bitte stellen Sie sicher, dass der Host auf dem Netzwerk verfügbar ist und alle DNS-Eingaben gültig sind."
+
+msgid "arkeiaLocalHost_LookupFailed"
+msgstr "Die DNS-Eingaben für diesen Client-Rechner sind ungültig. Bitte stellen Sie sicher, dass die DNS-Weiterleitungs- und -Umkehreingaben gültig sind."
+
+msgid "port"
+msgstr "Portnummer"
+
+msgid "port_help"
+msgstr "Der Knox Arkeia Sicherungs-Client muss wissen, welcher Port zur Kommunikation mit anderen Hosts, die auch Knox-Dienste verwenden (einschließlich des Knox Arkeia Sicherungsservers), benutzt werden soll. Der Vorgabewert ist 617. Dieser Wert sollte nur im äußersten Notfall geändert werden. Falls Sie den Vorgabewert dennoch ändern, müssen Sie dafür sorgen, dass andere Hosts im Netzwerk, die ebenfalls Knox-Dienste verwenden, ebenfalls für den von Ihnen eingegeben Wert konfiguriert werden."
+
+msgid "cannotFork"
+msgstr "Leider trat beim Gabelungsversuch ein Fehler auf."
+
+msgid "cannotCreateSymlink"
+msgstr "Leider trat beim Versuch, das init-Skript Symlink zu erstellen, ein Fehler auf."
+
+msgid "cannotStartArkeiaServer"
+msgstr "Leider trat beim Versuch, den Dienst zu starten, ein Fehler auf."
+
+msgid "cannotStopArkeiaServer"
+msgstr "Leider trat beim Versuch, den Dienst zu stoppen, ein Fehler auf."
+
+msgid "cannotBreakLink"
+msgstr "Leider trat beim Versuch, die Verknüpfung der init-Skripts aufzuheben, ein Fehler auf."

@@ -1,0 +1,46 @@
+#!/usr/bin/perl -w
+#
+# $Id: cobalt_restoreowners,v 1.1.2.1 2002/03/26 09:21:49 pbaltz Exp $
+# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+#
+# restore ownerships of user symlinks
+#
+
+use lib qw(/usr/sausalito/perl);
+use strict;
+use CCE;
+
+my $cce = new CCE;
+$cce->connectuds();
+
+my @vsites = $cce->find('Vsite');
+for my $site_oid (@vsites) {
+	my ($ok, $site) = $cce->get($site_oid);
+	my $site_dir = $site->{basedir};
+	if ($site_dir eq '') {
+		next;
+	}
+
+	# find all symlinks in users directory
+	opendir(USERS, "$site_dir/users");
+	while (my $entry = readdir(USERS)) {
+		if (($entry =~ /^\.{1,2}$/) || !(-l "$site_dir/users/$entry")) {
+			next;
+		}
+
+		&local_lchown($entry, "$site_dir/users/$entry");
+	}
+
+	closedir(USERS);
+}
+
+exit(0);
+
+sub local_lchown
+{
+	my ($user, $symlink) = @_;
+
+	system('/bin/chown', '-h', $user, $symlink);
+
+	return($? == 0);
+}

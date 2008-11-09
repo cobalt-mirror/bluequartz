@@ -1,0 +1,260 @@
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "[[base-am.activeMonitor]] は、システムの動作を常に監視しています。ここをクリックすると、各システムコンポーネントの動作状況に関する情報が表示されます。深刻な問題が発生すると、このアイコンが赤で表示されます。"
+
+msgid "activeMonitor"
+msgstr "アクティブモニタ"
+
+msgid "activeMonitor_help"
+msgstr "ここをクリックすると、システムコンポーネントの動作状況を確認できます。"
+
+msgid "amStatusMenuName"
+msgstr "動作状況"
+
+msgid "amStatusMenuDesc"
+msgstr "ここをクリックすると、[[base-am.activeMonitor]] が監視しているシステムコンポーネントの動作状況に関する情報が表示されます。"
+
+msgid "amObjNotFound"
+msgstr "システムエラーが発生しました。ActiveMonitorオブジェクトが見つかりません。"
+
+msgid "amSysClients"
+msgstr "システムの動作状況 - 概要"
+
+msgid "amClientName"
+msgstr "コンポーネント名"
+
+msgid "amClientName_help"
+msgstr "監視されているコンポーネントの名前です。"
+
+msgid "action"
+msgstr "[[palette.detail]]"
+
+msgid "action_help"
+msgstr "ここをクリックすると、監視されているコンポーネントに関する詳細情報が表示されます。"
+
+msgid "amServClients"
+msgstr "サービスの動作状況 - 概要"
+
+msgid "amOtherClients"
+msgstr "その他の動作状況 - 概要"
+
+msgid "amClientStatus"
+msgstr "現在の動作状況"
+
+msgid "amClientStatus_help"
+msgstr "監視されているコンポーネントの現在の動作状況です。"
+
+msgid "amClientLastChange"
+msgstr "最後に動作状況が変化した時刻"
+
+msgid "amNever"
+msgstr "なし"
+
+msgid "amClientLastChange_help"
+msgstr "監視されているコンポーネントの動作状況が最後に変化した時刻です。"
+
+msgid "amSettingsMenuName"
+msgstr "設定"
+
+msgid "amSettingsMenuDesc"
+msgstr "ここをクリックすると、[[base-am.amSettings]] を設定できます。"
+
+msgid "amSettings"
+msgstr "アクティブモニタの設定"
+
+msgid "enableAMField"
+msgstr "監視する"
+
+msgid "enableAMField_help"
+msgstr "このボックスをチェックすると、[[base-am.activeMonitor]] の監視機能が有効になります。各システムコンポーネントが正しく動作しているかどうかを容易に確認できます。監視対象のシステムコンポーネントは、次のフィールドで指定できます。"
+
+msgid "alertEmailList"
+msgstr "警告メールの送信先"
+
+msgid "alertEmailList_help"
+msgstr "[[base-am.activeMonitor]] は、ここに指定されている電子メールアドレスへ警告メッセージを送信します。"
+
+msgid "itemsToMonitor"
+msgstr "監視対象のコンポーネント"
+
+msgid "itemsToMonitor_help"
+msgstr "[[base-am.activeMonitor]] が定期的に動作状況を確認するシステムコンポーネントを指定できます。左欄には、現在監視されているシステムコンポーネントの一覧が表示されています。右欄には、監視されていないシステムコンポーネントが表示されています。監視する必要のないシステムコンポーネントがあれば、右欄へ移動してください。"
+
+msgid "selected"
+msgstr "監視されているコンポーネント"
+
+msgid "notSelected"
+msgstr "監視されていないコンポーネント"
+
+msgid "amNoMessage"
+msgstr "現在、このコンポーネントに関する情報はありません。"
+
+msgid "amNotMonitored"
+msgstr "現在、このコンポーネントは監視されていません。"
+
+msgid "amNotEnabled"
+msgstr "このコンポーネントは有効にされていません。"
+
+msgid "alreadyMadeAM"
+msgstr "システムエラーが発生しました。ActiveMonitor オブジェクトはすでに存在します。"
+
+msgid "amCPUName"
+msgstr "CPU の使用状況"
+
+msgid "amCPUWarning"
+msgstr "現在、CPU の負荷は[[VAR.status]]です。"
+
+msgid "amUseLight"
+msgstr "軽度"
+
+msgid "amUseModerate"
+msgstr "中程度"
+
+msgid "amUseHeavy"
+msgstr "重度"
+
+msgid "amCPUDetails"
+msgstr "CPU 使用状況の詳細"
+
+msgid "amCPUStats"
+msgstr "CPU の統計情報"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] 分間の平均負荷"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] 分間の平均負荷"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "[[VAR.mins]] 分間に平均いくつのタスクがプロセッサの処理を待つかを示す統計数字です。  平常の平均負荷は 0.0 〜 3.0 です。"
+
+msgid "amCPULoadAvg_help"
+msgstr "[[VAR.mins]] 分間に平均いくつのタスクがプロセッサの処理を待つかを示す統計数字です。平常の平均負荷は 0.0 〜 3.0 です。"
+
+msgid "amCPUUptime"
+msgstr "連続稼動時間"
+
+msgid "amCPUUptime_help"
+msgstr "前回の起動時から数えて、サーバが何日何時間継続的に動作しているかを示します。"
+
+msgid "days"
+msgstr "[[VAR.val]] 日　"
+
+msgid "hours"
+msgstr "[[VAR.val]] 時間　"
+
+msgid "minutes"
+msgstr "[[VAR.val]] 分"
+
+msgid "day"
+msgstr "[[VAR.val]] 日　"
+
+msgid "hour"
+msgstr "[[VAR.val]] 時間　"
+
+msgid "minute"
+msgstr "[[VAR.val]] 分"
+
+msgid "amCPUTemp"
+msgstr "CPU の温度"
+
+msgid "amCPUTemp_help"
+msgstr "プロセッサの現在の温度（℃）です。平常では、プロセッサの温度は 30 〜 60℃ です。"
+
+msgid "degrees"
+msgstr "[[VAR.val]] ℃"
+
+msgid "amMemoryName"
+msgstr "メモリの使用状況"
+
+msgid "amMemDetails"
+msgstr "メモリ使用状況の詳細"
+
+msgid "amMemWarning"
+msgstr "現在、システムメモリの使用率は[[VAR.status]]です。"
+
+msgid "amMemStats"
+msgstr "メモリに関する統計情報"
+
+msgid "amMemTotal"
+msgstr "物理メモリ（総容量）"
+
+msgid "amMemTotal_help"
+msgstr "このシステムに組み込まれている実メモリの総容量です。"
+
+msgid "amMemFree"
+msgstr "物理メモリの空き容量"
+
+msgid "amMemFree_help"
+msgstr "現在使われていない実メモリの空き容量です。"
+
+msgid "amSwapTotal"
+msgstr "総スワップ容量"
+
+msgid "amSwapTotal_help"
+msgstr "このシステムで利用できるスワップ領域の総容量です。"
+
+msgid "amSwapFree"
+msgstr "スワップ領域の空き容量"
+
+msgid "amSwapFree_help"
+msgstr "現在使われていないスワップ領域の空き容量です。"
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "amMemUsed"
+msgstr "メモリの使用率"
+
+msgid "amMemUsed_help"
+msgstr "現在使われている物理メモリ （実メモリ） の容量です。実メモリの大部分が常に使用されていることもあります。"
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB（総メモリ容量の [[VAR.pcnt]] % を使用中）"
+
+msgid "amSwapUsed"
+msgstr "スワップの使用率"
+
+msgid "amSwapUsed_help"
+msgstr "このシステムで利用できるスワップメモリ （仮想メモリ） の容量です。実メモリに空きがあっても、スワップメモリの一部が常に使用されていることもあります。"
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] （総スワップ容量の [[VAR.pcnt]] % を使用中）"
+
+msgid "amKey"
+msgstr "色と意味:"
+
+msgid "amKeyGrey"
+msgstr "情報がないか、監視が無効に設定されています。"
+
+msgid "amKeyGreen"
+msgstr "正常に動作中"
+
+msgid "amKeyYellow"
+msgstr "問題発生"
+
+msgid "amKeyRed"
+msgstr "深刻な問題発生"
+
+msgid "amUpdateNow"
+msgstr "情報の更新"
+
+msgid "amUpdateNowConfirm"
+msgstr "現在の動作状況を確認して、表示されている情報を更新します。処理には数分かかりますが、続行してよろしいですか？"
+
+msgid "amUpdateNow_help"
+msgstr "このボタンをクリックすると、システムとサービスの動作状況に関する最新の情報が表示されます。  動作状況の確認には数分かかりますが、全てバックグラウンドで処理されます。"
+
+msgid "amUpdateNow_disabledHelp"
+msgstr "システムの動作状況は現在更新中です。"
+
+msgid "amDetailNoName"
+msgstr "このページの生成処理中に問題が発生しました。name という変数が定義されていません。"
+
+msgid "capgroup_adminActiveMonitor"
+msgstr "アクティブモニタの管理"
+
+msgid "capgroup_adminActiveMonitor_help"
+msgstr "この管理権限をもつユーザは、アクティブモニタの設定と動作状況を確認できます。  この権限を取得したユーザは「 '[[base-am.alertEmailList]]' 」リストに自動的には追加されませんが、手動で追加することは可能です。"

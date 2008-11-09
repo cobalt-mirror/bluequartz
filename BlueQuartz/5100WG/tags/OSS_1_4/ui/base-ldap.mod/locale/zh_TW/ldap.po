@@ -1,0 +1,226 @@
+#
+# This files is for LDAP Export and Import, but does not include File Import
+#
+
+# Base strings
+
+msgid "ldapName"
+msgstr "輕裝備目錄存取通信協定 (LDAP)"
+
+	#item for import method drop-down
+msgid "importChangerLdap"
+msgstr "[[base-ldap.ldapName]] 匯入"
+
+
+#----- Menu
+
+	# AKA Ldap Export :
+msgid "export"
+msgstr "LDAP 目錄"
+
+
+# ---- LDAP directory/export page
+
+msgid "ldapExport"
+msgstr "[[base-ldap.ldapName]] 目錄"
+
+msgid "ldapExportDescription"
+msgstr "此處可配置[[base-ldap.ldapName]] 服務所提供的使用者目錄。"
+
+msgid "exportEnabled"
+msgstr "啟用"
+
+msgid "exportEnabled_help"
+msgstr "開啟或關閉 [[base-ldap.ldapName]] 服務。開啟這項功能可讓使用者使用標準 LDAP 從屬站取得電子郵件位址，以及其他關於此伺服器設備上之使用者的資訊。"
+
+msgid "baseDn"
+msgstr "基本區別名稱 (Dn)"
+
+msgid "baseDn_rule"
+msgstr "例如，o=My Organization、c=US 就是有效的名稱。"
+
+msgid "baseDn_help"
+msgstr "請輸入您使用者目錄的基本區別名稱 (Dn)。  [[base-ldap.baseDn_rule]]"
+
+msgid "baseDn_empty"
+msgstr "很抱歉，您並未輸入[[base-ldap.baseDn]]的值。 [[base-ldap.baseDn_rule]]"
+
+msgid "emailBase"
+msgstr "電子郵件網域名稱"
+
+msgid "emailBase_help"
+msgstr "請輸入在您的目錄中匯出之電子郵件位址的替代網域名稱。如果此伺服器設備的主電腦名稱為 mail.company.com，但收到 @company.com 的郵件，您可能須將電子郵件網域名稱設成 company.com，如此將會使目錄中的所有電子郵件位址顯示為 user@company.com，而非 user@mail.company.com。"
+
+msgid "emailBase_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-ldap.emailBase]]值。請輸入經適當格式化的主電腦名稱或網域名稱。"
+
+
+# ------ LDAP Import section 
+
+msgid "ldapImport"
+msgstr "[[base-ldap.ldapName]] 匯入"
+
+msgid "import"
+msgstr "立即匯入"
+
+msgid "import_help"
+msgstr "按一下此處，可從指定的[[base-ldap.ldapName]] 伺服器匯入使用者。"
+
+msgid "server"
+msgstr "伺服器網址"
+
+msgid "server_help"
+msgstr "請輸入您要從中匯入使用者之伺服器的 IP 位址或主電腦名稱。 [[base-ldap.server_rule]]"
+
+msgid "server_rule"
+msgstr "例如，cobalt.com 或 192.168.10.23 就是有效的輸入項。" 
+
+msgid "server_empty"
+msgstr "很抱歉，您並未輸入[[base-ldap.server]]的值。"
+
+msgid "server_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]] 是無效的[[base-ldap.server]]值。請輸入有效的主電腦名稱或 IP 位址。 [[base-ldap.server_rule]]"
+
+msgid "base"
+msgstr "基本區別名稱 (Dn)"
+
+msgid "base_help"
+msgstr "請輸入要匯入之 LDAP 輸入項的基本名稱。"
+
+msgid "base_empty"
+msgstr "很抱歉，您並未輸入[[base-ldap.base]] 的值。"
+
+msgid "bindDn"
+msgstr "連結區別名稱 (Dn)"
+
+msgid "bindDn_help"
+msgstr "請輸入 LDAP 伺服器上之管理使用者的連結區別名稱 (Dn)。驗證及取得用於匯入使用者的資訊必須具備這個值及其個別的密碼。例如，cn=myname、C=US 就是有效的名稱。"
+
+msgid "bindDn_rule"
+msgstr "請輸入一個格式化的連結區別名稱 (Dn)。例如，cn=myname、C=US 就是有效的名稱。"
+
+msgid "bindDn_empty"
+msgstr "很抱歉，您並未輸入[[base-ldap.bindDn]] 的值。 [[base-ldap.bindDn_rule]]"
+
+msgid "passwordAuth"
+msgstr "密碼"
+
+msgid "passwordAuth_help"
+msgstr "請輸入連結區別名稱 (Dn) 的密碼"
+
+msgid "passwordAuth_empty"
+msgstr "很抱歉，您並未輸入[[base-ldap.passwordAuth]]的值。"
+
+msgid "passwordAuth_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。" 
+
+msgid "userFilter"
+msgstr "使用者過濾程式"
+
+msgid "userFilter_help"
+msgstr "請輸入過濾項目以決定要匯入那一個目標類別的使用者。如果左邊空白為 (|(objectClass=cobaltAccount)(objectClass=posixAccount))，則使用該值"
+
+msgid "groupFilter"
+msgstr "群組過濾程式"
+
+msgid "groupFilter_help"
+msgstr "請輸入過濾項目以決定要匯入那一個目標類別的群組。如果左邊空白為 (|(objectClass=cobaltGroup)(objectClass=posixGroup))，則使用該值"
+
+
+
+# ------ Import Error msgs
+
+msgid "couldnt_connect_to_ldap_server"
+msgstr "無法連接 LDAP 伺服器 '[[VAR.server]]'；請檢查您的設定，然後重試。"
+
+msgid "couldnt_bind_to_ldap_server"
+msgstr "很抱歉，連結到指定的 LDAP 伺服器時發生錯誤；請檢查您的設定，然後重試。"
+
+msgid "couldnt_search"
+msgstr "很抱歉，在搜尋時發生錯誤： [[VAR.error]]。"
+
+msgid "couldnt_fetch_system_object"
+msgstr "很抱歉，在嘗試提取系統物件時發生錯誤。"
+
+msgid "problems_occured_with_entry"
+msgstr "[[VAR.entry]]   在匯入時發生問題： [[VAR.err]]"
+
+
+
+msgid "importErrors"
+msgstr "匯入錯誤"
+
+msgid "errorMessage"
+msgstr "錯誤訊息"
+
+msgid "errorMessage_help"
+msgstr "這是在 LDAP 匯入時發生之錯誤的清單。"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] 錯誤"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] 錯誤"
+
+msgid "importStatus"
+msgstr "匯入狀態"
+
+msgid "statusField"
+msgstr "狀態"
+
+msgid "statusField_help"
+msgstr "這是匯入的狀態。"
+
+msgid "addingGroup"
+msgstr "新增群組"
+
+msgid "addingUser"
+msgstr "新增使用者"
+
+msgid "progressField"
+msgstr "進度"
+
+msgid "progressField_help"
+msgstr "這是匯入的進度。"
+
+msgid "importSucceeded"
+msgstr "匯入已完成"
+
+msgid "importSucceededMessage"
+msgstr "匯入順利完成"
+
+msgid "importSucceededMessage_help"
+msgstr "匯入順利完成，沒有任何錯誤。"
+
+msgid "queryingLdap"
+msgstr "查詢 LDAP 伺服器來取得明細。"
+
+
+msgid "cannotEditBlock"
+msgstr "很抱歉，在重新寫入配置檔時發生錯誤。"
+
+msgid "cannotLinkLdap"
+msgstr "很抱歉，在嘗試鏈結起始 script 時發生錯誤。"
+
+msgid "cannotStartLdap"
+msgstr "很抱歉，在嘗試啟動 LDAP 時發生錯誤。"
+
+msgid "cannotRestartLdap"
+msgstr "很抱歉，在重新啟動 LDAP 服務時發生錯誤。"
+
+msgid "cannotRemoveLink"
+msgstr "很抱歉，在嘗試解除鏈結起始 script 時發生錯誤。"
+
+msgid "cannotStopLdap"
+msgstr "很抱歉，在嘗試停止 LDAP 服務時發生錯誤。"
+
+msgid "logFilename"
+msgstr "[[VAR.filename]]"
+
+# Cpaabilities
+msgid "capgroup_adminLdapExport"
+msgstr "管理 LDAP 目錄"
+
+msgid "capgroup_adminLdapExport_help"
+msgstr "這個管理權限允許使用者更改 LDAP 目錄所使用的設定。"
+

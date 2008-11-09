@@ -1,0 +1,90 @@
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "Les [[legato-networker.networkerSettings]] peuvent être changés ici."
+
+msgid "networkerSettings"
+msgstr "Paramètres de sauvegarde de Legato NetWorker"
+
+msgid "enableServer"
+msgstr "Activer le client Legato"
+
+msgid "badHostname"
+msgstr "Vous avez entré un nom d'hôte qui ne correspond pas à un serveur de sauvegarde Legato. Veuillez vérifier que le nom d'hôte est correct et que le serveur est correctement configuré."
+
+msgid "enableServer_help"
+msgstr "Démarre et stoppe le client Legato NetWorker."
+
+msgid "enabledButNoData"
+msgstr "Afin d'activer le client, vous devez indiquer au moins un serveur de sauvegarde Legato."
+
+msgid "lgNetWorkerHostField"
+msgstr "Noms d'hôte des serveurs Legato"
+
+msgid "lgNetWorkerHostField_help"
+msgstr "Entrez les noms d'hôte complets des serveurs de sauvegarde Legato NetWorker.  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "[[VAR.invalidValue]] est une valeur incorrecte pour [[legato-networker.lgNetWorkerHostField]].  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[legato-networker.lgNetWorkerHostField]].  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "Les noms d'hôte des serveurs Legato sont incorrects"
+
+msgid "lgNetWorkerHostField_rule"
+msgstr "Les serveurs Legato doivent avoir des noms d'hôte valides "
+
+msgid "lgNetWorkerHostField_LookupFailed"
+msgstr "Impossible de trouver l'un des serveurs Legato. Veuillez vérifier que tous les serveurs sont accessibles sur le réseau et que les entrées DNS sont toutes valides"
+
+msgid "lgNetWorkerLocalHost_LookupFailed"
+msgstr "Les entrées DNS pour cet hôte sont incorrectes. Veuillez vérifier que les valeurs entrées ont une résolution DNS standard et inverse."
+
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "Système de sauvegarde Legato NetWorker"
+
+msgid "networkerSettings"
+msgstr "Paramètres de sauvegarde Legato NetWorker"
+
+msgid "lgNetWorkerIPField_help"
+msgstr "Entrez l'adresse IP du serveur de sauvegarde Legato NetWorker.  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte pour [[legato-networker.lgNetWorkerIPField]].  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[legato-networker.lgNetWorkerIPField]].  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "servPorts"
+msgstr "Plage de ports du service."
+
+msgid "servPorts_help"
+msgstr "Configure la plage de ports du service avec celle indiquée."
+
+msgid "connPorts"
+msgstr "Plage de ports de la connexion."
+
+msgid "connPorts_help"
+msgstr "Configure la plage de ports de connexion avec celle spécifiée."
+
+msgid "cannotFork"
+msgstr "Une erreur est survenue lors de la tentative de connexion."
+
+msgid "cannotCreateSymlink"
+msgstr "Une erreur est survenue lors de la création du symlink par script-init."
+
+msgid "cannotStartLegatoServer"
+msgstr "Une erreur est survenue lors de la tentative de démarrage du service"
+
+msgid "cannotStopLegatoServer"
+msgstr "Une erreur est survenue lors de la tentative d'arrêt du service"
+
+msgid "cannotBreakLink"
+msgstr "Une erreur est survenue lors de la suppression des script-init"
+

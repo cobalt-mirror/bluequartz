@@ -1,0 +1,111 @@
+Welcome to the skeleton module for Sausalito. By customizing the 
+skeleton module for your needs, you can integrate seemlessly into the 
+Cobalt Configuration environment. You should have the
+sausalito-devel-tools already installed. 
+
+Here's what you need to do to build a service module:
+
+1) create handlers to interact with the Cobalt Configuration Engine (CCE). 
+   a configuration file goes in glue/conf. the actual handlers go in
+   glue/handlers. 
+
+2) create any ui components if necessary. these go in the ui subdirectory. 
+	
+3) write any locale files. these go in the locale directory. 
+
+4) look at templates/spec.tmpl and templates/packing_list.tmpl. adjust
+   these to fit your needs.
+
+5) look at the toplevel Makefile. Adjust the variables to fit your
+   situation.
+
+6) make, make clean, make install, and make rpm are the default build
+   rules.
+
+As that was a little too skimpy on the detail side, here's some more
+information about the default make rules and expected filenames: 
+
+The toplevel Makefile variables --
+VENDOR        - the vendor field for your module
+VENDORNAME    - the actual vendor name (can be the same as vendor)
+SERVICE       - the name for the service
+VERSION       - version number
+RELEASE       - release number
+BUILDARCH     - set to 'noarch' if you don't want platform-specific
+	        rpms generated.
+XLOCALEPAT    - set to a space separated list of locale patterns to
+	        exclude. 
+
+BUILDUI
+BUILDGLUE
+BUILDLOCALE   - set to 'yes' to build these components, create rpms,
+	        and create a capstone rpm.
+BUILDSRC      - build whatever's in the src directory.
+
+The default make rules take the BUILD? variables and build up ui,
+glue, and locale rpms if requested. if any of these rpms are
+generated, a capstone rpm is created as well. 
+
+Directories --
+constructor   - capstone constructors
+destructor    - capstone destructors
+
+glue          - handler/configuration modification code.
+ui            - ui and ui menu code.
+locale        - locale information
+
+templates     - user-modifiable template files used in packing list
+	        and rpm generation
+src           - src directory (optional)
+RPMS          - rpm directory (optional)
+SRPMS         - source rpm directory (optional)
+
+The default make rules expect the following file layout --
+	1) glue/conf/*
+	   glue/handlers/*
+	2) locale/localeX/$(SERVICE).po
+	3) ui/menu/*
+	   ui/web/*
+	4) constructor/*
+	   destructor/*
+
+It will place these files in the following locations:
+	1) glue/conf/* -> SAUSALITO/conf/$(VENDOR)/$(SERVICE)/*
+	   glue/handlers/* -> SAUSALITO/handlers/$(VENDOR)/$(SERVICE)/*
+	2) locale/localeX/$(SERVICE).po -> 
+	   /usr/share/locale/localeX/LC_MESSAGES/$(VENDOR)-$(SERVICE).mo
+	3) ui/menu/* -> SAUSALITO/ui/menu/$(VENDOR)/$(SERVICE)/*
+	   ui/web/* -> SAUSALITO/ui/web/$(VENDOR)/$(SERVICE)/*
+	4) constructors/* SAUSALITO/constructor/$(VENDOR)/$(SERVICE)/*
+	   destructors/* SAUSALITO/destructor/$(VENDOR)/$(SERVICE)/*
+
+Assuming that you have no compiled code, this should be all that you
+need. Otherwise, you need to know about a couple additional make
+rules. Namely, make will look for Makefiles in the glue, src, and ui
+directories and use them if present. Just make sure that you prepend
+the PREFIX environment variable on the install phase of the Makefile
+so that rpms can get properly generated.
+
+In addition, the auto-rpm code does not touch the src directory, so
+you will have to create any rpms you desire there from separate spec
+files. templates/packing_list.tmpl should be updated to reflect any of
+these rpms (sans version numbers). You should create a file with the
+same name as the rpm in the RPMS directory to get the appropriate
+version included in the packing list.
+
+Finally, you may need to edit templates/rpmdefs.tmpl to add additional
+build, install, and file targets for any files that you have. The
+<begin [$%]VARIABLE> sections in the rpmdefs.tmpl file correspond to
+the same [VARIABLE_SECTION] sections in templates/spec.tmpl. If you
+wish to add something to the spec file that isn't dependent upon a
+single rpm, then you can directly add it to the spec template file.
+
+NOTE: if you have a VENDORNAME specified, make will search first in
+{glue, locale, ui, src}/$(VENDORNAME) for files before searching in
+the glue, locale, ui, and src directories.
+
+Other information --
+Modules expect the following auxiliary support from
+sausalito-devel-tools:
+	1) SAUSALITO/devel/module.mk for all the Makefile rules.
+	2) SAUSALITO/bin/mod_rpmize for the auto-rpm spec generator. 

@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# lcdsleep   This shell script takes care of starting and stopping
+#            the lcd background process that makes the menu system work
+#
+# chkconfig: - 95 05
+# description: upsd allows universal power supply control over safe shutdown \
+# of units connected
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# See how we were called.
+case "$1" in
+  start)
+	if [ `pidof lcdsleep` ]; then
+	   exit 1
+	else
+	    [ -e /etc/locks/.lcdlock ] && rm -f /etc/locks/.lcdlock
+	    /sbin/lcdsleep &>/dev/null &
+	    touch /var/lock/subsys/sleep
+	fi
+	;;
+  stop)
+	[ -e /etc/locks/.lcdlock ] && rm -f /etc/locks/.lcdlock
+	kill -9 `/sbin/pidof /sbin/lcdsleep`
+	rm -f /var/lock/subsys/sleep
+	;;
+  *)
+	echo "Usage: sleep.init{start|stop}"
+	exit 1
+esac
+

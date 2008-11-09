@@ -1,0 +1,128 @@
+# ----- Menu 
+msgid "groups"
+msgstr "グループ"
+
+msgid "groups_help"
+msgstr "[[base-workgroup.groups]]を管理できます。"
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr "グループのデフォルトを修正"
+
+msgid "groupDefaults_help"
+msgstr "ここをクリックすると、新規グループのデフォルト設定を変更できます。"
+
+msgid "groupList"
+msgstr "グループのリスト"
+
+msgid "groupName"
+msgstr "グループ名"
+
+msgid "groupName_help"
+msgstr "グループの識別名です。"
+
+msgid "groupMembers"
+msgstr "メンバー"
+
+msgid "groupMembers_help"
+msgstr "各グループに所属しているユーザです。"
+
+msgid "groupDesc"
+msgstr "備考"
+
+msgid "groupDesc_help"
+msgstr "この欄には、各グループについての説明やコメントが表示されます。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "鉛筆アイコンをクリックすると、グループの設定を変更できます。ゴミ箱アイコンをクリックすると、グループを削除できます。"
+
+msgid "addNewGroup"
+msgstr "新規グループの追加"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "新規グループに割り当てるデフォルトのディスク容量を設定してください。各グループは、ここで指定する量のサーバ空間をウェブページ用ファイル、電子メールメッセージなどのグループファイルの保存に使えます。[[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "グループ名"
+
+msgid "groupNameField_rule"
+msgstr "半角の英小文字、数字、ピリオド、ハイフン、アンダースコアのみを使い、12 文字以内で入力してください。（指定例： eigyo, coba-q, golf, karate）"
+
+msgid "groupNameField_help"
+msgstr "グループを識別するためにシステムが使う識別名です。[[base-workgroup.groupNameField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "最大許容ディスク容量 （MB）"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "1 〜 1024000 の整数を入力してください。単位は、メガバイトです。"
+
+msgid "maxDiskSpaceField_help"
+msgstr "このグループに割り当てるディスク容量を指定してください。このグループは、ここで指定する量のサーバ空間をウェブページ用ファイル、電子メールメッセージなどのグループファイルの保存に使えます。[[base-workgroup.maxDiskSpaceField_rule]]新規グループのデフォルト値は、「グループのデフォルトを修正」ページで設定できます。"
+
+msgid "groupMembersField"
+msgstr "所属メンバー"
+
+msgid "groupMembersField_help"
+msgstr "このグループに所属するユーザを指定してください。左欄にはこのグループに現在所属しているユーザが、右欄には所属していないユーザが、それぞれ表示されます。ユーザを追加するには右欄から左欄へ、所属を解除するには左欄から右欄へ移動してください。"
+
+msgid "groupUsers"
+msgstr "所属しているユーザ"
+
+msgid "allUsers"
+msgstr "所属していないユーザ"
+
+msgid "groupDescField"
+msgstr "備考"
+
+msgid "groupDescField_help"
+msgstr "このグループに関する説明やコメントなどを記入できます。"
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "グループ設定の修正 - [[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "[[VAR.groupName]]というグループを削除してよろしいですか？"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "[[base-workgroup.groupNameField]] に入力した値は、別のユーザがすでに使用しているか、システムによって予約されています。[[base-workgroup.groupNameField]]に別の値を入力して、再度お試しください。"
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "このグループのメンバーには、一般に公開されるウェブサイトの管理権限が与えられます。"
+
+msgid "add_group_help"
+msgstr "このボタンをクリックすると、新しいグループを追加できます。"
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "グループの管理"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "この管理権限を持つユーザは、グループを作成、破棄、変更できます。"

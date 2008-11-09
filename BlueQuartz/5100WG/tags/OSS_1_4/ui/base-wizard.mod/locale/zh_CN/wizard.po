@@ -1,0 +1,472 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "wizardLicense"
+msgstr "二进制代码许可协议"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "管理员设置"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "管理员设置"
+
+msgid "adminMessage"
+msgstr "[[base-wizard.productName]]要求管理员处理如添加用户和组以及配置设置等任务。管理员的用户名是 admin。为管理员输入一个不易猜测的口令。请记住此口令，以供日后使用。"
+
+msgid "adminNameField"
+msgstr "用户名"
+
+msgid "adminNameField_help"
+msgstr "这是系统用于识别管理员的名称，而且无法更改。"
+
+msgid "passwordField"
+msgstr "口令"
+
+msgid "passwordField_rule"
+msgstr "口令长度应介于 3 和 16 个字符之间。正确的口令应包含至少 5 个大小写字母以及数字和标点符号组合。口令不应是字典中的任何单词。口令区分大小写。"
+
+msgid "passwordField_help"
+msgstr "输入系统用于识别管理员的口令。 [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。在两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+msgid "passwordField_empty"
+msgstr "对不起，您没有为[[base-wizard.passwordField]]输入值。 [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "新口令"
+
+msgid "newPasswordField_help"
+msgstr "输入系统用于识别管理员的口令。 [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "时间设置"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "时间设置"
+
+msgid "timeMessage"
+msgstr "[[base-wizard.productName]]需要正确的日期和时间才能正常运行。请输入当前日期和时间以及正确的时区。"
+
+msgid "dateField"
+msgstr "日期和时间"
+
+msgid "dateField_help"
+msgstr "设置当前日期。"
+
+msgid "timeField"
+msgstr "时间"
+
+msgid "timeField_help"
+msgstr "设置当前时间。"
+
+msgid "timeZoneField"
+msgstr "时区"
+
+msgid "timeZoneField_help"
+msgstr "设置此服务器设备所处的时区。"
+
+msgid "wizardUsers"
+msgstr "用户设置"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "组设置"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "网络集成"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "网络设置"
+
+msgid "networkMessage"
+msgstr "[[base-wizard.productName]]可设置为在组织内的内部网上可访问，或在因特网上可访问。请输入此服务器设备的主机名和域名以及可达的域名服务器和网络连接方法。"
+
+msgid "hostNameField"
+msgstr "主机名"
+
+msgid "hostNameField_rule"
+msgstr "请只输入小写的字母数字字符、下划线或句点。例如，www 就是有效的输入。"
+
+msgid "hostNameField_help"
+msgstr "输入此服务器的主机名。结合在一起的主机名和域名应独特地标识此服务器设备。 [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "域名"
+
+msgid "domainNameField_rule"
+msgstr "请只输入小写的字母数字字符、破折号或句点。例如，cobalt.com 就是有效的输入。"
+
+msgid "domainNameField_help"
+msgstr "输入此服务器的域名。结合在一起的主机名和域名应独特地标识此服务器。 [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS 服务器"
+
+msgid "dnsAddressesField_rule"
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。将此字段留空将使此机器无法通过主机名或域名找到其它机器，或者导致联网困难。"
+
+msgid "dnsAddressesField_help"
+msgstr "输入您的本地域名服务器或服务器的 IP 地址或地址。域名服务器将主机名和域名转换为 IP 地址，也可将 IP 地址转为为主机名和域名。 [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-wizard.dnsAddressesField]]中的无效值。 [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "因特网连接"
+
+msgid "internetField_help"
+msgstr "选择此服务器设备将使用的因特网连接类型。"
+
+msgid "none"
+msgstr "不用或只用内部网"
+
+msgid "broadband"
+msgstr "电缆调制解调器或 DSL"
+
+msgid "lan"
+msgstr "局域网 (LAN) 上的网关"
+
+msgid "narrowband"
+msgstr "模拟调制解调器或 ISDN"
+
+msgid "wizardBroadband"
+msgstr "宽带设置"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "宽带设置"
+
+msgid "broadbandMessage"
+msgstr "您的电缆调制解调器或 DSL 连接应连接至[[base-wizard.productName]]的辅助接口。请输入您的因特网服务器供应商为您指定的正确配置设置。"
+
+msgid "networkField"
+msgstr "辅助接口"
+
+msgid "networkField_help"
+msgstr "为此服务器设备的辅助接口选择适当的联网配置。您的因特网服务供应商应为您提供完成这一步骤的信息。"
+
+msgid "dhcp"
+msgstr "使用动态主机配置协议 (DHCP) 自动获取"
+
+msgid "dhcpHostNameField"
+msgstr "客户机主机名"
+
+msgid "dhcpHostNameField_rule"
+msgstr "请只输入小写的字母数字字符、下划线或句点。例如，www 就是有效的输入。"
+
+msgid "dhcpHostNameField_help"
+msgstr "输入将此服务器识别为动态主机配置协议 (DHCP) 客户机的主机名。[[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "客户机标识符"
+
+msgid "dhcpClientIdField_help"
+msgstr "输入将此服务器识别为动态主机配置协议 (DHCP) 客户机的标识字符串。"
+
+msgid "pppoe"
+msgstr "使用通过以太网的点对点协议 (PPPoE) 自动获取"
+
+msgid "pppUserNameField"
+msgstr "用户名"
+
+msgid "pppUserNameField_help"
+msgstr "输入用于登录到您的因特网服务供应商的用户名。"
+
+msgid "pppPasswordField"
+msgstr "口令"
+
+msgid "pppPasswordField_help"
+msgstr "输入用于登录到您的因特网服务供应商的口令。"
+
+msgid "static"
+msgstr "手动指定"
+
+msgid "ipAddressField"
+msgstr "IP 地址"
+
+msgid "ipAddressField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "ipAddressField_help"
+msgstr "输入辅助接口的 IP 地址，该接口一般与因特网侧连接。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。[[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "子网掩码"
+
+msgid "netMaskField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，255.255.255.0 就是有效的输入。"
+
+msgid "netMaskField_help"
+msgstr "输入主接口的网络掩码。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。 [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "网关"
+
+msgid "gatewayField_rule"
+msgstr "请输入一组 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "gatewayField_help"
+msgstr "输入您的本地网络网关的 IP 地址。本地网关有时也称为路由器，可使您与本地网络区域外的世界连接。 [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "辅助接口"
+
+msgid "ipAddressField2"
+msgstr "IP 地址"
+
+msgid "ipAddressField2_help"
+msgstr "输入辅助接口的 IP 地址，该接口一般与因特网侧连接。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。[[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "IP 地址和 IP 网络掩码字段必须同时输入或同时留空。"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "输入辅助接口的网络掩码。如果您仅使用一个网络接口与服务器设备连接，使用主接口，并将辅助接口留空。 [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC 地址"
+
+msgid "macAddressField_help"
+msgstr "媒体访问控制 (MAC) 地址是网络接口卡的硬件地址。此硬件地址是唯一的标识符，并且在生产后无法更改。"
+
+msgid "wizardLan"
+msgstr "局域网 (LAN) 设置"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "输入此服务器设备的缺省网关。如果网关位于与辅助接口连接的网络中，也要输入接口信息。"
+
+msgid "lanSettings"
+msgstr "局域网 (LAN) 设置"
+
+msgid "wizardModem"
+msgstr "调制解调器设置"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "您的模拟调制解调器或 DSL 连接应连接至[[base-wizard.productName]]串行端口辅助接口。请输入您从因特网服务器供应商获得的正确配置设置。"
+
+msgid "modemSettings"
+msgstr "调制解调器设置"
+
+msgid "connModeField"
+msgstr "连接模式"
+
+msgid "connModeField_help"
+msgstr "选择是否只在出局连接时建立连接，是否一直建立调制解调器连接、或者永远不建立连接。"
+
+msgid "demand"
+msgstr "仅要求时连接"
+
+msgid "on"
+msgstr "始终连接"
+
+msgid "off"
+msgstr "始终不连接"
+
+msgid "userNameField"
+msgstr "拨号帐户用户名"
+
+msgid "userNameField_help"
+msgstr "输入用于登录到您的因特网服务供应商的拨号帐户用户名。"
+
+msgid "userNameField_empty"
+msgstr "对不起，您没有为[[base-wizard.userNameField]]输入值。 [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "拨号帐户口令"
+
+msgid "modemPasswordField_help"
+msgstr "输入用于登录到您的因特网服务供应商的拨号帐户口令。"
+
+msgid "modemPasswordField_empty"
+msgstr "对不起，您没有为[[base-wizard.modemPasswordField]]输入值。请输入用于登录到您的因特网服务供应商的拨号帐户口令。"
+
+msgid "modemPasswordField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。在两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+msgid "modemPhoneField"
+msgstr "拨号电话号码"
+
+msgid "modemPhoneField_help"
+msgstr "输入您的因特网服务供应商的电话号码。"
+
+msgid "initStringField"
+msgstr "调制解调器初始化字符串"
+
+msgid "initStringField_help"
+msgstr "输入在拨号前将传送至调制解调器的调制解调器初始化字符串。"
+
+msgid "initStringField_empty"
+msgstr "您没有为[[base-wizard.initStringField]]输入值。您必须输入初始化字符串，否则，您的服务器将无法使用调制解调器。如果您不知道调制解调器正确的初始化字符串，尝试输入 'ATZ' 或查询调制解调器文件。"
+
+msgid "localIpField"
+msgstr "本地 IP 地址"
+
+msgid "localIpField_help"
+msgstr "只有在您的因特网服务供应商已分配时，输入调制解调器连接这一端的本地 IP 地址。"
+
+msgid "pulseField"
+msgstr "启用脉冲拨号"
+
+msgid "pulseField_help"
+msgstr "打开或关闭脉冲拨号。启用此功能将使用脉冲拨号代替音频拨号。缺省值是关闭脉冲拨号。"
+
+msgid "wizardRegistration"
+msgstr "产品注册"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "产品注册"
+
+msgid "regRightArrow"
+msgstr "右箭头"
+
+msgid "regSubmit"
+msgstr "提交"
+
+msgid "regSubmit_help"
+msgstr "单击此处注册您的[[base-wizard.productName]]。"
+
+msgid "regCancel"
+msgstr "稍后注册"
+
+msgid "regCancel_help"
+msgstr "单击此处取消注册。如果您选择取消，稍后仍可注册您的[[base-wizard.productName]]。"
+
+msgid "regTextOffline"
+msgstr "为了得到技术支持，必须向 Sun Microsystems 注册 [[base-wizard.productName]]。您的网络大概不能配置用于电子注册。注册 [[base-wizard.productName]] 的方法应该是：先访问 <A HREF='http://www.sun.com/service/online'TARGET='_blank'>http://www.sun.com/service/online</A>，然后链接到 Sun Cobalt Support。 我们恪守承诺，尊重您的隐私并恰当地保护和管理您与我们共享的个人可识别信息。在注册您的产品之前，务请查看 Sun Microsystems 的隐私保护策略，了解我们在尊重您的隐私方面所采取的措施，地址是 <A HREF='http://www.sun.com/privacy'TARGET='_blank'>http://www.sun.com/privacy</A>。"
+
+msgid "fullNameField"
+msgstr "全名"
+
+msgid "fullNameField_help"
+msgstr "输入您的全名。"
+
+msgid "fullNameField_rule"
+msgstr "请输入除冒号外的任何字符。例如，John Doe 就是有效输入。"
+
+msgid "titleField"
+msgstr "职位"
+
+msgid "titleField_help"
+msgstr "输入您的职位。"
+
+msgid "companyField"
+msgstr "公司名称"
+
+msgid "companyField_help"
+msgstr "输入您的公司名称。"
+
+msgid "addressField"
+msgstr "详细地址"
+
+msgid "addressField_help"
+msgstr "输入您的详细地址。"
+
+msgid "countryField"
+msgstr "国家"
+
+msgid "countryField_help"
+msgstr "输入您的国家。"
+
+msgid "emailField"
+msgstr "电子邮件地址"
+
+msgid "emailField_help"
+msgstr "输入您的电子邮件地址。"
+
+msgid "emailField_rule"
+msgstr "请以 user@domain.com 形式输入有效的电子邮件地址。"
+
+msgid "phoneField"
+msgstr "电话号码"
+
+msgid "phoneField_help"
+msgstr "输入您的电话号码。"
+
+msgid "faxField"
+msgstr "传真号码"
+
+msgid "faxField_help"
+msgstr "输入您的传真号码。"
+
+msgid "licenseHeader"
+msgstr "<B>必须滚动到该文档的末尾，以便接受或拒绝下面二进制代码许可协议中的条款。</B>"
+
+msgid "licenseClick"
+msgstr "单击下面的箭头键，即表明您接受并同意[[base-wizard.productName]]中随附的保证/注册卡上所述的条款与条件，以及下面的许可协议。"
+
+msgid "regText"
+msgstr "为了得到技术支持，必须向 Sun Microsystems 注册 [[base-wizard.productName]]。 要进行电子注册，请提供下列信息并单击“Submit （提交）” 。您也可以采用如下方法来注册 [[base-wizard.productName]]，先访问 <A HREF='http://www.sun.com/service/online'TARGET='_blank'>http://www.sun.com/service/online</A>，然后链接到 Sun Cobalt Support。我们恪守承诺，尊重您的隐私并恰当地保护和管理您与我们共享的个人可识别信息。在对您的产品进行注册之前，务请查看 Sun Microsystems 的隐私保护策略，了解我们在尊重您的隐私方面所采取的措施，地址是 <A HREF='http://www.sun.com/privacy'TARGET='_blank'>http://www.sun.com/privacy</A>。"
+
+msgid "wizardLocale"
+msgstr "首选语言"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "选择用于服务器管理的首选语言。"
+
+msgid "localeField"
+msgstr "选择首选语言"
+
+msgid "localeField_help"
+msgstr "当未找到首选的浏览器语言时，首选语言供活动监视器在发送电子邮件通知、LCD 控制台显示菜单以及管理的 Web 界面使用。"
+
+msgid "localeSettings"
+msgstr "首选语言"
+
+msgid "accept"
+msgstr "接受"
+
+msgid "accept_help"
+msgstr "如果您已阅读并同意本许可协议的条款，且准备继续执行操作，请按下“接受”"
+
+msgid "decline"
+msgstr "拒绝"
+
+msgid "decline_help"
+msgstr "如果您拒绝接受本许可协议的条款，您将不能使用 SunCobalt Qube 3"
+
+msgid "declineError"
+msgstr "在您能够继续执行操作之前，您必须按下“接受”表示您已阅读过并接受本许可协议。"
+
+msgid ""
+msgstr ""
+
+msgid "license"
+msgstr "<center>Sun Microsystems, Inc.<br><b>二进制代码许可协议</b></center><p>请在打开本软件介质包之前，仔细阅读本协议条款以及所提供的所有补充许可条款（统称“协议”）。打开本软件介质包，即表明您已接受本协议的条款。如果您正在以电子方式访问本软件，则选择本协议结尾处的“接受”按钮，即表明您接受本文的条款。如果您不接受上述任何条款，请立即将未使用的本软件退回购买处要求退款；如果以电子方式访问该软件，则选择本协议结尾处的“拒绝”按钮。<p>1. 使用许可。按照已为之支付费用的用户数目及计算机硬件类型，Sun 向您授予非排他、不可转让的许可，仅允许内部使用由 Sun 提供的随附软件和文档以及任何错误纠正（统称“本软件”）。<p>2. 限制。软件具有保密性并受版权保护。Sun 和/或其许可方保留对本软件的所有权及所有相关的知识产权。除非经任何补充许可条款的明确认可，否则您除制作一个本软件备份供存档使用外，不得对本软件进行复制。除非适用法律禁止实施，否则您不得对本软件进行修改、反编译或反向工程。您同意本软件并非设计、许可或旨在用于任何核设施的设计、建造、操作或维护。Sun 不对此类应用的适用性作任何明示或默示的担保。对于 Sun 或其许可方的任何商标、服务标记、标识或商号的任何权利、所有权或利益，本协议均不作任何授权。<p>3. 有限担保。Sun 向您担保，自购买之日起九十 (90) 天内（以收据副本为凭证），本软件的存储介质（如果有的话）在正常使用的情况下无材料和工艺方面的缺陷。除上述内容外，本软件按“原样”提供。在本有限担保项下，您的所有补偿及 Sun 的全部责任为由 Sun 选择更换本软件介质或退还本软件的购买费用。<p>4. 担保的免责声明。除非在本协议中有明确规定，否则对于任何明示或默示的条件、陈述及担保，包括对适销性、对特定用途的适用性或非侵权性的任何默示的担保，均不予负责，但上述免责声明被认定为法律上无效的情况除外。<p>5. 责任限制。在法律允许范围内，无论在何种情况下，无论采用何种有关责任的理论，无论因何种方式导致，对于因使用或无法使用本软件引起的或与之相关的任何收益损失、利润或数据损失，或者对于特殊的、间接的、后果性的、偶发的或惩罚性的损害赔偿，SUN 或其许可方均不承担任何责任（即使 SUN 已被告知可能出现上述损害赔偿）。根据本协议，在任何情况下，无论是在合同、侵权行为（包括过失）方面，还是在其他方面，Sun 对您的责任将不超过您就本软件所支付的金额。即使上述担保未能达到其基本目的，上文所述的限制仍然适用。<p>6. 协议终止。本协议在终止之前有效。您可以随时终止本协议，但必须销毁本软件的全部正本和副本。如果您未遵守本协议的任何规定，则本协议将不经 Sun 发出通知立即终止。终止时，您必须销毁本软件的全部正本和副本。<p>7. 出口条例。所有根据本协议交付的本软件和技术数据，均受美国出口控制法律的约束，也可能受其他国家的进出口条例的约束。您同意严格遵守所有此类法律法规，并同意承担责任取得向您交货后可能需要的出口、转口或进口许可。<p>8. 美国政府的有限权利。如果本软件系由美国政府或代表美国政府购买或由美国政府的主承包商或分包商（任何级别）购买，则政府对本软件及随附文档的权利只限于本协议中所规定的部分，以上根据是 48 CFR 227.7201 到 227.7202-4 （对国防部采购而言）以及 48 CFR 2.101 和 12.212 （对于非国防部采购而言）。<p>9. 管辖法律。与本《协议》相关的任何诉讼，均受加利福尼亚州法律及美国联邦法律的管辖。任何国家或地区的选择法律的规则不予适用。<p>10. 可分割性。如果本协议中有任何规定被认定为无法执行，则删除相应规定，本协议仍然有效，除非删除妨碍各方愿望的实现（在这种情况下，本协议将立即终止）。<p>11. 完整性。本协议是您与 Sun 就其标的达成的完整协议。它取代此前或同期的所有口头或书面往来信息、建议、陈述和担保。在本协议期间，有关报价、订单、回执或各方之间就本协议标的进行的其他往来通信中的任何冲突条款或附加条款，均以本协议为准。对本协议的任何修改均无约束力，除非通过书面进行修改并由每一方的授权代表签字。<p>如有任何疑问，请联系：Sun Microsystems, Inc. 901 San Antonio Road, Palo Alto, California 94303<br>（表单 ID#011801）<p><center>Sun Microsystems, Inc.<br><b>Sun Cobalt Qube 补充条款</b></center><p>本“Sun Cobalt Qube 补充条款”对“二进制代码许可协议”（“BCL”）中的术语进行了补充。此处未定义的专用词语的含义同 BCL 中所定义的意义相同。本补充条款将取代 BCL 中任何不符或有冲突的术语。使用本软件即表明您接受 BCL 的补充条款。<p>1.  第三方许可条款。本软件的某些部分含有其他方的声明和/或许可，用于约束对这些部分的使用。<p>2.  其他使用情况。<p>A.  BlueLinQ 功能。BCL 条款和本补充条款应适用于 Sun Cobalt Qube BlueLinQ 功能的操作，包括但不限于：<p>(i)	您与 Sun 的联系；<br>(ii)	任何 Sun 网站上的下载软件和信息；以及<br>(iii)	您向受管设备分发软件和信息的选择。<p>3.  其他限制。未经 Sun 事先书面同意，您不得公布或向任何第三方提供涉及本软件的任何基准测试或比较测试的结果。<p>EULA-Web.806-2740-11DAA 	10/17/2001 	10:00 AM"

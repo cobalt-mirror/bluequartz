@@ -1,0 +1,80 @@
+msgid "arkeia"
+msgstr "Knox Arkeia"
+
+msgid "arkeia_help"
+msgstr "Click here to change [[knox-arkeia.settings]]."
+
+msgid "settings"
+msgstr "[[knox-arkeia.arkeia]] Backup Settings"
+
+msgid "enabled"
+msgstr "Enable Client"
+
+msgid "enabled_help"
+msgstr "Turn the [[knox-arkeia.arkeia]] backup client on or off."
+
+msgid "server_empty"
+msgstr "To enable [[knox-arkeia.arkeia]] backups you must enter a valid host name or IP address."
+
+msgid "server_invalid"
+msgstr "The host or IP address entered cannot be verified via DNS.  Backup server host names or IP addresses must be entered into DNS for the [[knox-arkeia.arkeia]] backup to function correctly."
+
+msgid "server"
+msgstr "[[knox-arkeia.arkeia]] Server Name"
+
+msgid "server_help"
+msgstr "A valid server is a fully qualified domain name or IP address.  A fully qualified domain name is of the form server.domain.com such as www.example.com."
+
+msgid "server_invalid"
+msgstr "[[VAR.invalidValue]] is an invalid value for [[knox-arkeia.server]].  [[knox-arkeia.server_help]]"
+
+msgid "server_dns_error"
+msgstr "Failed to find the Arkeia server. Please check that the host is accessible on the network, and that DNS entries are all valid."
+
+msgid "client_dns_erro"
+msgstr "The DNS entries for this client machine are invalid. Please check that both forward and reverse DNS entries are valid."
+
+msgid "port"
+msgstr "Port Number"
+
+msgid "port_help"
+msgstr "The [[knox-arkeia.arkeia]] Backup client uses a port to communicate with the [[knox-arkeia.arkeia]] server.  The default is 617 and the valid range is 0 through 65535.  Changing this value is not recommended unless absolutely necessary.  If you change this, make sure other hosts on the network that use [[knox-arkeia.arkeia]] services are also configured to use the port you specify."
+
+msgid "port_empty"
+msgstr "[[knox-arkeia.port_help]]"
+
+msgid "port_invalid"
+msgstr "[[knox-arkeia.port_help]]"
+
+msgid "start_daemon_failed"
+msgstr "An error occurred while trying to start the [[knox-arkeia.arkeia]] service."
+
+msgid "stop_daemon_failed"
+msgstr "An error occurred while trying to stop the [[knox-arkeia.arkeia]] service."
+
+msgid "am_stopped"
+msgstr "The [[knox-arkeia.arkeia]] client daemon is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the [[knox-arkeia.arkeia]] client daemon off then on again to see if this corrects the problem. If the [[knox-arkeia.arkeia]] client daemon is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the [[knox-arkeia.arkeia]] client daemon is still unable to start, please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "am_restarted"
+msgstr "The [[knox-arkeia.arkeia]] client daemon was restarted successfully."
+
+msgid "am_running"
+msgstr "The [[knox-arkeia.arkeia]] client daemon is running."
+
+msgid "am_unknown"
+msgstr "The state of the [[knox-arkeia.arkeia]] daemon is unknown."
+
+msgid "firewall"
+msgstr "Firewall Support"
+
+msgid "firewall_help"
+msgstr "[[knox.arkeia.port_help]]"
+
+msgid "set_server_failed"
+msgstr "Could not save the [[knox-arkeia.arkeia]] server name."
+
+msgid "set_port_failed"
+msgstr "Could not save the [[knox-arkeia.arkeia]] port number."
+
+msgid "bad_parameters"
+msgstr "Changes to the [[knox-arkeia.arkeia]] service were not saved."

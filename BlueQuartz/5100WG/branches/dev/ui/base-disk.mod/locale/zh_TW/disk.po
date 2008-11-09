@@ -1,0 +1,76 @@
+## NOTE: this is the Disk Usage section of Personal Profile + bits of Active Monitor 
+
+# --- Menu 
+msgid "userDiskUsage"
+msgstr "磁碟用量"
+
+msgid "userDiskUsage_help"
+msgstr "按一下此處，可檢視有關您磁碟用法的資訊。"
+
+msgid "diskUsageFor"
+msgstr "磁碟用量 - [[VAR.userName]]"
+
+msgid "userDiskUsed"
+msgstr "已使用的磁碟空間 (MB)"
+
+msgid "userDiskUsed_help"
+msgstr "這是您目前正在使用的磁碟空間數量（以百萬位元組 (MB) 為單位）。"
+
+msgid "userDiskFree"
+msgstr "可用磁碟空間 (MB)"
+
+msgid "userDiskFree_help"
+msgstr "這是您可使用的磁碟空間總計（以百萬位元組 (MB) 為單位）。"
+
+msgid "userDiskPercentage"
+msgstr "已使用的百分比"
+
+msgid "userDiskPercentage_help"
+msgstr "這顯示您可用的磁碟空間中共有多少百分比正在使用。"
+
+msgid "userOverQuota"
+msgstr "限額警告"
+
+msgid "userOverQuota_help"
+msgstr "這指出您目前正在使用的磁碟空間超過您被允許在此伺服器上使用的空間。請刪除不必要的電子郵件、附件及其他檔案，以解除此警告。"
+
+msgid "overQuotaMsg"
+msgstr "您目前正在使用的磁碟空間超過您被允許在此伺服器上使用的空間。請刪除不必要的電子郵件、附件及其他檔案，以解除此警告。"
+
+
+# ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
+
+msgid "amDiskNameTag"
+msgstr "磁碟用量"
+
+msgid "amDetails"
+msgstr "磁碟用量明細"
+
+	# also sent in email to admin if disk usage high
+msgid "amDiskWarning"
+msgstr "磁碟分割區將用盡。分割區 [[VAR.fs]] 上的磁碟空間使用率已達 [[VAR.pcnt]]%。該分割區的可用空間只剩下 [[VAR.free]] MB。"
+
+msgid "amDiskOk"
+msgstr "磁碟用量正常。"
+
+
+# --- Handler messages, don't show in UI
+
+msgid "cantExecuteDf"
+msgstr "無法執行 df 指令"
+
+msgid "cantExecuteRepquota"
+msgstr "無法執行 repquota 指令"
+
+msgid "cantSetSystemObject"
+msgstr "無法設成系統物件"
+
+msgid "cantSetUserObject"
+msgstr "無法設成使用者物件"
+
+msgid "systemObjectNotFound"
+msgstr "找不到系統物件"
+
+msgid "couldNotGetId"
+msgstr "使用者帳號設定在系統檔案中無法找到。此使用者可手動從伺服器配置檔案中刪除。"
+

@@ -1,0 +1,150 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0755, root, root) %{RootDir}/sbin/copy.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Tue Jul 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ21
+- Code overhaul for 5106, OpenVZ provisions added
+- Cracklib support for strong passwords added as well.
+
+* Wed Feb 13 2008 Brian Smith <brian@nuonce.net> 1.0.1-122BQ20
+- convert2passwd auto set to '1' during wizard for new installs
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ19
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ18
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-122BQ17
+- Fixed duplicate include issue.
+
+* Wed May 03 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ16
+- remove form for default virtual site.
+
+* Fri Apr 07 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ15
+- modify onepage.php to remove the link to base_wizardRaid page.
+
+* Thu Mar 02 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ14
+- add form for default virtual site at system settings.
+
+* Wed Feb 08 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ13
+- modify onepageHandler.php to set the system locale to admin's locale.
+
+* Sun Jan 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ12
+- modified constructor for sysreset.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ11
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ10
+- rebuild with devel-tools 0.5.1
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ9
+- clean up locale file.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ8
+- modified Group tag.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-122BQ7
+- clean up spec file.
+<end $CHANGELOG>

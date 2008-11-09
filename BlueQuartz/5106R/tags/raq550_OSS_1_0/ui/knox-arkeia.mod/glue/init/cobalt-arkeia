@@ -1,0 +1,61 @@
+#!/bin/sh
+# $Id: cobalt-arkeia,v 1.2 2001/12/04 22:25:09 bservies Exp $
+#
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# chkconfig: 2345 95 05
+# description:	This shell script takes care of starting and stopping
+#		Knox Arkeia clients for RedHat based Linux machines.
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+NLSERVD=/usr/knox/bin/NLSERVD
+
+[ -f ${NLSERVD} ] || exit 0
+
+# See how we were called.
+case "$1" in
+	start)
+		# Start daemons.
+		echo -n "Starting Knox Arkeia: "
+		${NLSERVD} start
+		echo
+		;;
+	stop)
+		# Stop daemons.
+		echo -n "Shutting down Knox Arkeia: "
+		${NLSERVD} stop
+
+		#
+		# Make sure it is really dead.  NLSERVD doesn't work if the port
+		# number was changed.  Sigh.
+		#
+		killproc nlservd
+
+		echo
+		;;
+
+	restart)
+		$0 stop
+		$0 start
+		;;
+
+ 	status)
+		status nlservd
+		;;
+ 
+	*)
+		echo "Usage: $0 {start|stop|restart|status}"
+		exit 1
+esac
+
+exit 0
+

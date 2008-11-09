@@ -1,0 +1,481 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "wizardLicense"
+msgstr "Acuerdo de licencia de código binario"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Configuración del administrador"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Configuración del administrador"
+
+msgid "adminMessage"
+msgstr "El [[base-wizard.productName]] requiere un administrador que realice tareas tales como añadir usuarios y grupos y definir configuraciones. El nombre de usuario del administrador es admin. Escriba una contraseña difícil de adivinar para el administrador. Recuerde la contraseña para su uso en el futuro."
+
+msgid "adminNameField"
+msgstr "Nombre de usuario"
+
+msgid "adminNameField_help"
+msgstr "Identificación del administrador en el sistema, no puede modificarse."
+
+msgid "passwordField"
+msgstr "Contraseña"
+
+msgid "passwordField_rule"
+msgstr "La contraseña debe tener entre 3 y 16 caracteres, al menos 5 caracteres con una mezcla de mayúsculas y minúsculas, números y signos de puntuación. No debe usar palabras del diccionario. Las contraseñas distinguen mayúsculas y minúsculas."
+
+msgid "passwordField_help"
+msgstr "Contraseña para identificar al administrador en el sistema. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "La contraseña no es la misma en ambos campos. Inténtelo de nuevo."
+
+msgid "passwordField_empty"
+msgstr "No ha especificado un valor para [[base-wizard.passwordField]]. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "Nueva contraseña"
+
+msgid "newPasswordField_help"
+msgstr "Contraseña para identificar al administrador en el sistema. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Configuración de fecha y hora"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Configuración de fecha y hora"
+
+msgid "timeMessage"
+msgstr "El [[base-wizard.productName]] requiere que la fecha y la hora sean correctas. Escribir fecha, hora y zona horaria correctas."
+
+msgid "dateField"
+msgstr "Fecha y hora"
+
+msgid "dateField_help"
+msgstr "Defina la fecha actual."
+
+msgid "timeField"
+msgstr "Hora"
+
+msgid "timeField_help"
+msgstr "Defina la hora actual."
+
+msgid "timeZoneField"
+msgstr "Zona horaria"
+
+msgid "timeZoneField_help"
+msgstr "Defina la zona horaria del servidor."
+
+msgid "wizardUsers"
+msgstr "Configuración de usuarios"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Configuración de grupos"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Integración de red"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "Configuración de red"
+
+msgid "networkMessage"
+msgstr "El [[base-wizard.productName]] puede configurarse para ser accesible en una Intranet e Internet. Escriba el nombre de servidor y el nombre de dominio de este servidor, así como un servidor de dominio accesible y un método de conectividad de red."
+
+msgid "hostNameField"
+msgstr "Nombre de ordenador"
+
+msgid "hostNameField_rule"
+msgstr "Sólo caracteres alfanuméricos en minúsculas, guiones o puntos. Por ejemplo, www."
+
+msgid "hostNameField_help"
+msgstr "Nombre del servidor. Éste y el de dominio combinados deben ser identificación única de este servidor. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Nombre de dominio"
+
+msgid "domainNameField_rule"
+msgstr "Sólo caracteres alfanuméricos en minúsculas, guiones o puntos. Por ejemplo, cobalt.com."
+
+msgid "domainNameField_help"
+msgstr "Nombre de dominio de este servidor. El nombre de ordenador y el de dominio combinados deben ser identificación única de este servidor. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Servidores DNS"
+
+msgid "dnsAddressesField_rule"
+msgstr "Serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1. Con este campo vacío este equipo no encontrará otros equipos por nombre de ordenador o de dominio y producirá dificultades en la red."
+
+msgid "dnsAddressesField_help"
+msgstr "Dirección o direcciones IP de su servidor/es DNS locales (una dirección por línea). Dicho servidor traduce nombres de ordenador y de dominio a direcciones IP, y viceversa. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "[[VAR.invalidValue]] no es un valor válido para [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Conexión a Internet"
+
+msgid "internetField_help"
+msgstr "Tipo de conexión a Internet que utilizará con este servidor."
+
+msgid "none"
+msgstr "Ninguna o sólo uso de Intranet"
+
+msgid "broadband"
+msgstr "Módem de cable o DSL"
+
+msgid "lan"
+msgstr "Puerta de enlace en red de área local (LAN)"
+
+msgid "narrowband"
+msgstr "Módem analógico o RDSI"
+
+msgid "wizardBroadband"
+msgstr "Configuración de banda ancha"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Configuración de banda ancha"
+
+msgid "broadbandMessage"
+msgstr "Su conexión de módem de cable o DSL debe estar conectada a la interfaz secundaria del [[base-wizard.productName]]. Especifique los valores de configuración apropiados que le haya facilitado su proveedor de Internet."
+
+msgid "networkField"
+msgstr "Interfaz secundaria"
+
+msgid "networkField_help"
+msgstr "Configuración de red apropiada para la interfaz secundaria de este servidor. Su proveedor de Internet debe proporcionarle la información para este paso."
+
+msgid "dhcp"
+msgstr "Obtener automáticamente utilizando el protocolo DHCP"
+
+msgid "dhcpHostNameField"
+msgstr "Nombre de host del cliente"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Sólo caracteres alfanuméricos en minúsculas, guiones o puntos. Por ejemplo, www."
+
+msgid "dhcpHostNameField_help"
+msgstr "Nombre del servidor como cliente DHCP. [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Identificador del cliente"
+
+msgid "dhcpClientIdField_help"
+msgstr "Cadena de identificación de este servidor como cliente DHCP."
+
+msgid "pppoe"
+msgstr "Asignación automática por protocolo PPPoE"
+
+msgid "pppUserNameField"
+msgstr "Nombre de usuario"
+
+msgid "pppUserNameField_help"
+msgstr "Nombre de usuario para iniciar una sesión en su proveedor de Internet."
+
+msgid "pppPasswordField"
+msgstr "Contraseña"
+
+msgid "pppPasswordField_help"
+msgstr "Contraseña para iniciar una sesión en su proveedor de Internet."
+
+msgid "pppPasswordField_help"
+msgstr "No ha especificado un valor para [[base-wizard.pppPasswordField]]."
+
+msgid "static"
+msgstr "Especificar manualmente"
+
+msgid "ipAddressField"
+msgstr "Dirección IP"
+
+msgid "ipAddressField_rule"
+msgstr "Serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1."
+
+msgid "ipAddressField_help"
+msgstr "Dirección IP de la interfaz secundaria, conectada al lado de Internet. Con una conexión de red al servidor, utilice la interfaz principal y deje vacía la secundaria. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Máscara de subred"
+
+msgid "netMaskField_rule"
+msgstr "Serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 255.255.255.0."
+
+msgid "netMaskField_help"
+msgstr "Máscara de red de la interfaz principal. Con una conexión de red al servidor, utilice la interfaz principal y deje vacía la secundaria. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Puerta de enlace"
+
+msgid "gatewayField_rule"
+msgstr "Serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1."
+
+msgid "gatewayField_help"
+msgstr "Dirección IP de su puerta de enlace de red local o encaminador, que permite conectarse fuera de su área de red local. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Interfaz secundaria"
+
+msgid "ipAddressField2"
+msgstr "Dirección IP"
+
+msgid "ipAddressField2_help"
+msgstr "Dirección IP de la interfaz secundaria, conectada al lado de Internet. Con una conexión de interfaz de red al servidor, utilice la interfaz principal y deje vacía la secundaria. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Ambos campos Dirección IP y Máscara de red IP deben completarse o dejarse en blanco."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "Máscara de red de la interfaz secundaria. Con una conexión de interfaz de red al servidor, utilice la interfaz principal y deje vacía la secundaria. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "Dirección MAC"
+
+msgid "macAddressField_help"
+msgstr "La dirección de control de acceso a medios (MAC) es la dirección de la tarjeta de red, esta identificación es única e inmodificable."
+
+msgid "wizardLan"
+msgstr "Configuración de la red de área local (LAN)"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Puerta de enlace predeterminada para este servidor. Si está en la red conectada a la interfaz secundaria, especifique también la información de la interfaz."
+
+msgid "lanSettings"
+msgstr "Configuración de la red de área local (LAN)"
+
+msgid "wizardModem"
+msgstr "Configuración del módem"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Su conexión de módem analógico o RDSI debe estar conectada a la interfaz de puerto serie del [[base-wizard.productName]]. Especifique los valores de configuración apropiados que le haya facilitado su proveedor de Internet."
+
+msgid "modemSettings"
+msgstr "Configuración del módem"
+
+msgid "connModeField"
+msgstr "Modo de conexión"
+
+msgid "connModeField_help"
+msgstr "Módem conectado siempre, nunca o sólo en caso necesario."
+
+msgid "demand"
+msgstr "Conexión sólo a petición"
+
+msgid "on"
+msgstr "Conexión siempre activada"
+
+msgid "off"
+msgstr "Conexión siempre desactivada"
+
+msgid "userNameField"
+msgstr "Nombre de usuario de la cuenta de acceso telefónico"
+
+msgid "userNameField_help"
+msgstr "Nombre de usuario de la cuenta de acceso telefónico para iniciar una sesión en su proveedor de Internet."
+
+msgid "userNameField_empty"
+msgstr "No ha especificado un valor para [[base-wizard.userNameField]]. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Contraseña de la cuenta de acceso telefónico"
+
+msgid "modemPasswordField_help"
+msgstr "Contraseña de la cuenta de acceso telefónico para iniciar una sesión en su proveedor de Internet."
+
+msgid "modemPasswordField_empty"
+msgstr "No ha especificado un valor para [[base-wizard.modemPasswordField]]. Escriba la contraseña de la cuenta de acceso telefónico para iniciar una sesión en su proveedor de Internet."
+
+msgid "modemPasswordField_invalid"
+msgstr "La contraseña no es la misma en ambos campos. Inténtelo de nuevo."
+
+msgid "modemPhoneField"
+msgstr "Número de teléfono de acceso telefónico"
+
+msgid "modemPhoneField_help"
+msgstr "Escriba el número de teléfono para el acceso telefónico a su proveedor de Internet."
+
+msgid "initStringField"
+msgstr "Cadena de inicialización del módem"
+
+msgid "initStringField_help"
+msgstr "Cadena de inicialización del módem que se pasará al módem antes de marcar."
+
+msgid "initStringField_empty"
+msgstr "No ha especificado un valor para [[base-wizard.initStringField]]. Debe especificar una cadena de inicialización para que su servidor utilice su módem. Si no sabe cuál es la cadena predeterminada, escriba 'ATZ' o consulte la documentación del módem."
+
+msgid "localIpField"
+msgstr "Dirección IP local"
+
+msgid "localIpField_help"
+msgstr "Dirección IP local sólo si su proveedor de Internet asignó una IP estática."
+
+msgid "pulseField"
+msgstr "Habilitar marcado por pulsos"
+
+msgid "pulseField_help"
+msgstr "Activar o desactivar el marcado por pulsos. Se deja el marcado por pulsos desactivado por defecto."
+
+msgid "wizardRegistration"
+msgstr "Registro del producto"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Registro del producto"
+
+msgid "regRightArrow"
+msgstr "la flecha hacia la derecha"
+
+msgid "regSubmit"
+msgstr "Enviar"
+
+msgid "regSubmit_help"
+msgstr "Pulse aquí para registrar su [[base-wizard.productName]]."
+
+msgid "regCancel"
+msgstr "Registrar más tarde"
+
+msgid "regCancel_help"
+msgstr "Pulse aquí para cancelar el registro. En ese caso, podrá registrar su [[base-wizard.productName]] más tarde."
+
+msgid "regTextOffline"
+msgstr "Debe registrar [[base-wizard.productName]] con Sun Microsystems para recibir asistencia técnica. Su red no parece estar configurada para registro electrónico. En su lugar, registre su [[base-wizard.productName]] visitando <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> y siguiendo los vínculos a Sun Cobalt Support.  Nuestro compromiso es respetar la privacidad y reconocer la necesidad de una gestión y protección apropiados de información de identificación personal que comparta con nosotros. Le instamos a que revise la política de privacidad de Sun Microsystems en <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A> antes de registrar el producto para comprender los pasos que seguimos para respetar su privacidad."
+
+msgid "fullNameField"
+msgstr "Nombre completo"
+
+msgid "fullNameField_help"
+msgstr "Escriba su nombre completo."
+
+msgid "fullNameField_rule"
+msgstr "Cualquier caracter excepto el signo de dos puntos. Por ejemplo, Juan García."
+
+msgid "titleField"
+msgstr "Cargo"
+
+msgid "titleField_help"
+msgstr "Especifique su cargo."
+
+msgid "companyField"
+msgstr "Nombre de la empresa"
+
+msgid "companyField_help"
+msgstr "Escriba el nombre de su empresa."
+
+msgid "addressField"
+msgstr "Dirección completa"
+
+msgid "addressField_help"
+msgstr "Escriba su dirección completa."
+
+msgid "countryField"
+msgstr "País"
+
+msgid "countryField_help"
+msgstr "Especifique su país."
+
+msgid "emailField"
+msgstr "Dirección de correo electrónico"
+
+msgid "emailField_help"
+msgstr "Escriba su dirección de correo electrónico."
+
+msgid "emailField_rule"
+msgstr "Escriba una dirección de correo electrónico válida con el formato usuario@dominio.com."
+
+msgid "phoneField"
+msgstr "Número de teléfono"
+
+msgid "phoneField_help"
+msgstr "Escriba su número de teléfono."
+
+msgid "faxField"
+msgstr "Número de fax"
+
+msgid "faxField_help"
+msgstr "Escriba su número de fax."
+
+msgid "licenseHeader"
+msgstr "<B>Para aceptar o rechazar los términos del acuerdo de licencia de código binario que se muestra a continuación, debe desplazarse hasta el final del documento.</B>"
+
+msgid "licenseClick"
+msgstr "Si pulsa el botón de flecha situado debajo, acusa recibo y acepta los términos y las condiciones expuestas en la Tarjeta de Garantía/Registro adjuntada con su [[base-wizard.productName]] y en el Acuerdo de la licencia expuesto a continuación."
+
+msgid "regText"
+msgstr "Debe registrar su [[base-wizard.productName]] con Sun Microsystems para recibir asistencia técnica. Para registrarse electrónicamente, proporcione la siguiente información y haga clic en el botón 'Enviar'. También puede registrar su [[base-wizard.productName]] visitando <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> y siguiendo los vínculos de Sun Cobalt Support.  Nuestro compromiso es respetar la privacidad y reconocer la necesidad de una gestión y protección apropiados de información de identificación personal que comparta con nosotros. Le instamos a que revise la política de privacidad de Sun Microsystems en <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A> antes de registrar el producto para comprender los pasos que seguimos para respetar su privacidad."
+
+msgid "wizardLocale"
+msgstr "Idioma preferído."
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr " Seleccióne el idioma preferído para administrar este servidor. "
+
+msgid "localeField"
+msgstr "Seleccione su idioma preferído."
+
+msgid "localeField_help"
+msgstr "El idioma preferído es usado por el Monitor Activo para la notificación por correo, por la pantalla LCD para mostrar las listas, y por el interfaz de web, si no contiene un idioma de interfaz preseleccionado."
+
+msgid "localeSettings"
+msgstr "Idioma preferido"
+
+msgid "accept"
+msgstr "Aceptar"
+
+msgid "accept_help"
+msgstr "Pulse Aceptar si ha leído y está de acuerdo con los términos del acuerdo de licencia, y está listo para continuar"
+
+msgid "decline"
+msgstr "Rechazar"
+
+msgid "decline_help"
+msgstr "Si rechaza los términos del acuerdo de licencia, no podrá usar Sun Cobalt Qube 3"
+
+msgid "declineError"
+msgstr "Debe pulsar Aceptar para reconocer que ha leído y aceptado el acuerdo de licencia antes de que pueda continuar."
+
+msgid ""
+msgstr ""
+
+msgid "license"
+msgstr "<center>Sun Microsystems, Inc.<br><b>Contrato de licencia de código binario</b></center><p>ANTES DE ABRIR EL PAQUETE DE SOFTWARE, LEA DETENIDAMENTE LOS TÉRMINOS DEL PRESENTE CONTRATO, ASÍ COMO CUALESQUIERA DE LOS TÉRMINOS ADICIONALES DE LICENCIA PROPORCIONADOS (DENOMINADOS CONJUNTAMENTE \"CONTRATO\"). ABRIR EL PAQUETE DE SOFTWARE IMPLICA LA ACEPTACIÓN DE LOS TÉRMINOS DEL PRESENTE CONTRATO. SI ACCEDE DE FORMA ELECTRÓNICA AL SOFTWARE, PULSE EL BOTÓN \"ACCEPT\" (ACEPTAR) QUE ENCONTRARÁ AL FINAL DEL PRESENTE CONTRATO PARA EXPRESAR SU CONFORMIDAD CON DICHOS TÉRMINOS. SI NO ESTÁ DE ACUERDO CON ALGUNO DE LOS TÉRMINOS DEL PRESENTE CONTRATO, DEVUELVA INMEDIATAMENTE EL SOFTWARE SIN UTILIZAR AL ESTABLECIMIENTO EN QUE LO ADQUIRIÓ PARA OBTENER UNA DEVOLUCIÓN DEL IMPORTE ABONADO O, SI ACCEDE AL SOFTWARE DE FORMA ELECTRÓNICA, PULSE EL BOTÓN \"DECLINE\" (RECHAZAR) QUE ENCONTRARÁ AL FINAL DEL PRESENTE CONTRATO.<p>1. LICENCIA DE USO. Sun concede al licenciatario una licencia no exclusiva e intransferible para el uso exclusivamente interno del presente software y la documentación proporcionados, así como de cualquier corrección de errores facilitada por Sun (denominados conjuntamente \"Software\"), por el número de usuarios y tipo de hardware informático para los que haya abonado la cuota correspondiente.<p>2. RESTRICCIONES. El software es confidencial y se encuentra protegido por las leyes de derechos de autor (Copyright). Sun o sus licenciantes mantienen la titularidad del Software, así como todos los derechos de propiedad industrial y derechos de autor asociados. Queda prohibido realizar copias del Software, salvo en los casos en que se autorice específicamente en los términos adicionales del Contrato. Sólo se permitirá la realización de una sola copia del Software siempre y cuando se destine al almacenamiento de éste. Queda prohibido modificar, descompilar o utilizar técnicas de ingeniería inversa en el Software. El licenciatario acepta que el Software no se ha diseñado ni dispone de licencia para ser utilizado en el diseño, construcción, funcionamiento o mantenimiento de cualquier instalación nuclear. Sun renuncia a cualquier garantía explícita o implícita de adecuación del Software para dichos fines. El presente Contrato no otorga ningún tipo de derecho, título o propiedad sobre o respecto a las marcas comerciales o de servicio, logotipos o designaciones de Sun o de sus licenciantes.<p>3. GARANTÍA LIMITADA. Sun garantiza que los medios en los que se proporciona el Software (si los hubiera) se encuentran libres de defectos en los materiales o de fabricación, siempre y cuando se den circunstancias normales de uso, durante un periodo de noventa (90) días a partir de la fecha de adquisición, que se demostrará con la presentación de una copia del recibo de compra. Excepto en los casos especificados anteriormente, el Software se suministra \"TAL CUAL\". El único recurso disponible y la responsabilidad total de Sun de conformidad con la presente garantía limitada radicarán en el derecho que Sun se reserva para determinar la sustitución de los medios del Software o la devolución del importe abonado por éste.<p>4. EXCLUSIÓN DE GARANTÍAS. A MENOS QUE EN EL PRESENTE CONTRATO SE ESTIPULE LO CONTRARIO, SE RENUNCIA A TODAS LAS CONDICIONES, MANIFESTACIONES Y GARANTÍAS EXPLÍCITAS O IMPLÍCITAS, INCLUIDA CUALQUIER GARANTÍA IMPLÍCITA DE COMERCIABILIDAD, IDONEIDAD PARA UN PROPÓSITO DETERMINADO O PARA LA CONTRAVENCIÓN DEL PRESENTE CONTRATO, SALVO EN AQUELLOS CASOS EN LOS QUE ESTAS EXCLUSIONES CAREZCAN DE VALIDEZ JURÍDICA.<p>5. LIMITACIÓN DE RESPONSABILIDAD. EN LA MEDIDA EN QUE LO PERMITA LA LEGISLACIÓN APLICABLE, EN NINGÚN CASO SUN O SUS LICENCIANTES ASUMIRÁN RESPONSABILIDAD ALGUNA POR LA PÉRDIDA DE INGRESOS, BENEFICIOS O INFORMACIÓN, ASÍ COMO POR CUALQUIER TIPO DE DAÑOS O PERJUICIOS, INDEPENDIENTEMENTE DEL MOTIVO QUE LOS ORIGINE Y DEL CONTENIDO DE SU RESPONSABILIDAD, O QUE SE DERIVEN O ESTÉN RELACIONADOS CON EL USO INADECUADO DEL SOFTWARE O CON LA IMPOSIBILIDAD DE UTILIZARLO, INCLUSO EN AQUELLOS CASOS EN LOS QUE SE HAYA ADVERTIDO A SUN DE LA POSIBILIDAD DE QUE SE PRODUZCAN TALES DAÑOS. En ningún caso Sun asumirá la responsabilidad, ya sea por motivos contractuales o ilícitos (incluida negligencia) o de cualquier otro tipo, de abonar una cantidad superior al pago realizado por el licenciatario, según lo estipulado en el presente Contrato. Las limitaciones anteriores se aplicarán incluso en aquellos casos en los que la antedicha garantía falte a su propósito fundamental.<p>6. RESCISIÓN. El presente Contrato se mantendrá vigente hasta que se produzca su rescisión. Se rescindirá el presente Contrato por medio de la destrucción de todas las copias del Software. Sun podrá rescindir el presente Contrato en cualquier momento y sin notificación previa cuando el licenciatario no haya cumplido alguna de las cláusulas en él incluidas. Una vez rescindido el Contrato, deberá destruir todas las copias del Software.<p>7. NORMATIVAS RELATIVAS A LA EXPORTACIÓN. El Software y toda la información técnica suministrada de conformidad con el presente Contrato se rigen por las leyes de control de exportaciones de los Estados Unidos, así como por las normativas relativas a la exportación o importación específicas de cada país en cuestión. El licenciatario se compromete a cumplir de forma estricta dichas leyes y normativas, y reconoce su responsabilidad en la obtención de las licencias correspondientes de exportación, reexportación o importación una vez efectuada la entrega.<p>8. DERECHOS RESTRINGIDOS DEL GOBIERNO DE LOS ESTADOS UNIDOS. Los derechos del Gobierno de los Estados Unidos sobre el Software y la documentación adjunta, en aquellos casos en que el Software se haya adquirido por o en nombre de dicho Gobierno, o bien por uno de sus contratistas o subcontratistas principales (a cualquier escala), quedarán limitados a lo establecido en el presente Contrato, conforme a lo estipulado en 48 CFR 227.7201 a través de 227.7202-4 (relativo a las adquisiciones del Departamento de defensa) y en 48 CFR 2.101 y 12.212 (sobre las adquisiciones que no sean por parte del Departamento de defensa).<p>9. LEGISLACIÓN APLICABLE. Toda acción judicial que pudiera emprenderse en relación con este Contrato se regirá según las leyes del estado de California,  así como según la legislación federal aplicable de los Estados Unidos. Por consiguiente, queda excluida toda posibilidad de interpretación en virtud de cualquier otra ley.<p>10. INDEPENDENCIA DE LAS CLÁUSULAS CONTRACTUALES. La imposibilidad de cumplir alguna de las cláusulas del presente Contrato no afectará al resto del Contrato, que seguirá siendo válido a menos que tal omisión de dicha cláusula pudiera perjudicar los propósitos de las partes, en cuyo caso se considerará rescindido de forma inmediata.<p>11. TOTALIDAD DEL CONTRATO. A todos los efectos el presente Contrato se considerará como el contrato único establecido entre el licenciatario y Sun en relación con el objeto descrito. Por consiguiente, el presente Contrato invalida todo contacto, propuesta, manifestación o garantía que se haya efectuado entre las partes, anterior o actual, oral o escrito, y prevalecerá en todo momento sobre los términos adicionales o contradictorios de cualquier texto, acuerdo, aceptación o contacto relativos al objeto del Contrato y que pudieran llevar a cabo las partes durante el periodo de vigencia de éste. Las modificaciones efectuadas sobre el presente Contrato no resultarán en modo alguno vinculantes si no se presentan por escrito y firmadas por un representante autorizado de cada parte.<p>Si tuviera alguna duda o si por cualquier motivo deseara ponerse en contacto con Sun, escriba a:  Sun Microsystems, Inc. 901 San Antonio Road, Palo Alto, California 94303, EE.UU.<br>(Form ID#011801)<p><center>Sun Microsystems, Inc.<br><b>Términos adicionales para Sun Cobalt Qube</b></center><p>Los presentes Términos adicionales para Sun Cobalt Qube complementan los términos del Contrato de licencia de código binario (en adelante denominado \"BCL\"). Los términos en mayúsculas que no se definan en el presente documento tendrán el mismo significado que se les haya atribuido en el BCL. Los presentes Términos adicionales sustituyen cualquier término incoherente o contradictorio del BCL. El uso del Software implica la aceptación del BCL y de los presentes Términos adicionales. <p>1.  TÉRMINOS DE LICENCIAS DE TERCEROS. Algunas partes del Software van acompañadas de avisos legales o licencias de terceros que rigen el uso de dichas partes. <p>2.  CONDICIONES DE USO ADICIONALES.<p>A. Función BlueLinQ. Los términos del BCL y los presentes Términos adicionales se aplicarán al funcionamiento de la función BlueLinQ de Sun Cobalt Qube, incluidos, pero sin limitarse a, los casos siguientes:<br>i contactos del cliente con Sun;<br>ii software e información descargada de cualquier sitio Web de Sun; y<br>iii decisión del cliente de distribuir software e información a los dispositivos gestionados.<p>3.  RESTRICCIONES ADICIONALES. Queda prohibido publicar los resultados de cualquier prueba de referencia o estudio comparativo del Software o proporcionarlos a terceros sin el consentimiento previo por escrito de Sun.<p>EULA-Web.806-2740-11DAA 	17/10/01 	10:00"
+
+
+
+
+
+

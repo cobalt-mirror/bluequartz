@@ -1,0 +1,97 @@
+#!/bin/bash
+#
+# rc            This file is responsible for starting/stopping
+#               services when the runlevel changes. It is also
+#               responsible for the very first setup of basic
+#               things, such as setting the hostname.
+#
+# Original Author:       
+#               Miquel van Smoorenburg, <miquels@drinkel.nl.mugnet.org>
+#
+# Munged for Cobalt by Duncan Laurie, <duncan@cobaltnet.com>
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Now find out what the current and what the previous runlevel are.
+argv1="$1"
+set `/sbin/runlevel`
+runlevel=$2
+previous=$1
+export runlevel previous
+
+# Get first argument. Set new runlevel to this argument.
+[ "$1" != "" ] && runlevel="$argv1"
+
+# Is there an rc directory for this new runlevel?
+if [ -d /etc/rc.d/rc$runlevel.d ]; then
+	# First, run the KILL scripts.
+	for i in /etc/rc.d/rc$runlevel.d/K*; do
+		# Check if the script is there.
+		[ ! -f $i ] && continue
+
+		# Don't run [KS]??foo.{rpmsave,rpmorig,master} scripts
+		[ "${i%.rpmsave}" != "${i}" ] && continue
+		[ "${i%.rpmorig}" != "${i}" ] && continue
+		[ "${i%.rpmnew}" != "${i}" ] && continue
+		[ "${i%.master}" != "${i}" ] && continue
+
+		# Check if the subsystem is already up.
+		subsys=${i#/etc/rc.d/rc$runlevel.d/K??}
+		[ ! -f /var/lock/subsys/$subsys ] && \
+		    [ ! -f /var/lock/subsys/${subsys}.init ] && continue
+
+		# Bring the subsystem down.
+		if egrep -q "(killproc |action )" $i ; then
+			$i stop
+		else
+			action "Stopping $subsys" $i stop
+		fi
+	done
+
+	# Now run the START scripts.
+	for i in /etc/rc.d/rc$runlevel.d/S*; do
+		# Check if the script is there.
+		[ ! -f $i ] && continue
+
+		# Don't run [KS]??foo.{rpmsave,rpmorig} scripts
+		[ "${i%.rpmsave}" != "${i}" ] && continue
+		[ "${i%.rpmorig}" != "${i}" ] && continue
+		[ "${i%.rpmnew}" != "${i}" ] && continue
+		[ "${i%.master}" != "${i}" ] && continue
+
+		# Check if the subsystem is already up.
+		subsys=${i#/etc/rc.d/rc$runlevel.d/S??}
+		[ -f /var/lock/subsys/$subsys ] || \
+		    [ -f /var/lock/subsys/${subsys}.init ] && continue
+		    
+		# If we're in confirmation mode, get user confirmation
+		[ -n "$CONFIRM" ]  && 
+		  { 
+		    confirm $subsys
+		    case $? in
+		      0)
+		        :
+		      ;;
+		      2)
+		        CONFIRM=
+		      ;;
+		      *)
+		        continue
+		      ;;
+		    esac 
+		  }
+
+		# Bring the subsystem up.
+		if egrep -q "(daemon |action )" $i ; then
+			$i start
+		else
+			if [ "$subsys" = "halt" -o "$subsys" = "reboot" -o "$subsys" = "single" ]; then
+			    $i start
+			else
+			    action "Starting $subsys" $i start
+			fi
+		fi
+	done
+fi

@@ -1,0 +1,10 @@
+plug parser in
+FIXMEs in cscp/
+proper HELP cmd
+CSCP_*_CMD in cscp.h 
+update CSCP spec for new parser
+cce_strdup(), cce_malloc(), cce_realloc() that call cce_oom themselves?
+
+recreate proper logging (especially password = xxx)
+test suite for grammar 
+

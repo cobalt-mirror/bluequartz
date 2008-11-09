@@ -1,0 +1,47 @@
+Backup.pm.spec
+
+Id: $Id: Backup.pm.specification 201 2003-07-18 19:11:07Z will $
+
+0.0 Contents
+1.0 Overview
+
+
+
+1.0 Overview
+
+This document covers the details of the Cobalt Backup Perl Library
+(Backup.pm).  The decision to create this library was made to allow
+for the abstratcion of the complex backup methods to make it easier
+for Cobalt developers and 3rd Party developers to backup the system.
+
+using Backup.pm
+	-Example
+		my $bu = Backup->new();
+		$bu->mount("nfs","server:/mountpt");
+		$bu->backup("full");
+		$bu->umount();
+
+mount method
+	- Example: $bu->mount("nfs","server:/mountpt");
+	- Arguments:
+		o Remote Filesystem Type
+			- Samba/Windows (smb)
+			- Network File System (nfs)
+			- File Transfer Protocol (ftp)
+		o Mount Point
+			- smb (user@\\server1\home\backup)
+			- nfs (server1:/home/backup)
+			- ftp (user@ftp://server1/home/backup)
+	- Notes:
+		o Filesystem type verification done at this level
+		o Mount Point verification needs to be handled in
+		  each filesystem specific mount method
+
+umount method
+	- Example $bu->umount();
+	- Arguments:
+		o None
+	- Notes:
+		o Only a single mount per object instance is allowed.
+		  The mount information is tracked internally in the
+		  object

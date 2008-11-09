@@ -1,0 +1,519 @@
+BlueQuartz 5106:
+=================
+
+This build of BlueQuartz is for CentOS5.1 only. 
+
+As of right now this build is considered Beta quality and should be treated as such. 
+
+Do not build and/or install it on CentOS4!
+------------------------------------------
+
+==============================================================================
+!!!!!!!!! DO NOT USE THE RPMs BUILT FROM THIS SOURCES ON CENTOS4 !!!!!!!!!!!!!
+==============================================================================
+
+I cannot stress that enough for now: 
+
+If you run a BlueQuartz on CentOS4 (5102), then do _NOT_ attempt to manually upgrade
+it with the RPMs generated from this sources. WAIT for us to get the bugs out of this
+code first and also wait until we provide an update mechanism that will work.
+
+For now:
+
+DO NOT (!) use this code to run productive websites or anything important. 
+Use it for testing purpose only and PLEASE report any bugs you find to the [cobra-e] 
+mailing list.
+
+Yes, there should still be some bugs left.
+
+
+NOT YET DONE:
+=============
+
+- Frontpage support:
+
+Frontpage support is NOT yet included. As of now I can't get FP compile against
+Apache-2.2.3, but I'll see what can be done about it later on.
+
+- nuonce-authExternal:
+
+Needs to be rebuild for Apache-2-2 with the latest sources from:
+http://www.unixpapa.com/mod_auth_external/
+and possibly http://www.unixpapa.com/pwauth/
+
+--
+
+With best regards,
+
+Michael Stauber
+Project BlueQuartz
+
+-------------------------------------------------------------------------
+
+New SRPMs outside the SVN tree:
+===============================
+
+analog-5.32-2BQ3.src.rpm
+bluequartz-yumconf-5-0BQ1.src.rpm
+cgiwrap-3.9-1BQ6.src.rpm
+mod_cband-0.9.7.2-4.centos5.src.rpm
+ms-sys-2.1.2-1.rf.src.rpm
+nuonce-mindterm-2.5-2.src.rpm
+poprelayd-2.1-0BQ5.src.rpm
+proftpd-1.3.1-1BQ1.src.rpm
+re2c-0.13.2-1.rf.src.rpm
+perl-Authen-PAM-0.15-BQ1.src.rpm
+
+- analog needed to be rebuild for CentOS5, but I still use the old BlueQuartz SRPM.
+
+- bluequartz-yumconf was updated for CentOS5, but for now I disabled the
+bluequartz.org mirrors and instead added a Solarspeed.net mirror out of
+which I host the RPMs during the beta phase. This needs to be changed
+at one time or another before the end of the beta phase.
+
+FWIW: The mirror is available here:
+
+[BQ-5106-Solarspeed]
+name=BlueQuartz 5106R on CentOS5 - $basearch
+baseurl=http://bq5106.solarspeed.net/pub/BlueQuartz/5106R/CentOS5/bluequartz/$basearch/
+gpgcheck=0
+enabled=1
+
+- cgiwrap needed to be rebuild against CentOS5
+
+- mod_cband uses the same SPEC file as before, but the latest sources. 
+
+- ms-sys could use an update, so it was rebuild on CentOS5 from a newer SRPM.
+
+- nuonce-mindterm needed a rebuild as two PHP pages were not showing the last 
+fields. Had to apply the work around to them and rebuild the RPM.
+
+- poprelayd is not available for CentOS5, so I rebuild the BlueQuartz SRPM.
+
+- proftpd was rebuild from the latest sources, the SPEC-file from Dag Wiers, 
+but needed a modified PAM config file, the old BlueQuartz logrotate file 
+and a quite modified proftpd.conf, as quite a bit changed between 1.2.X 
+and 1.3.X.
+
+- re2c was rebuild from an unmodified SRPM taken from Dag Wiers repository.
+I18n required a more modern re2c present during compilation that the one
+we used before.
+
+- perl-Authen-PAM is a dependency of nuonce-authExternal, which I have not yet
+fixed for Apache-2.2.X
+
+I'll upload these SRPMs to bluequartz.org later on.
+
+
+Modules NOT (yet) ported to 5106:
+=================================
+
+base-frontpage.mod:
+-------------------
+Frontpage doesn't compile against Apache-2.2.X, as the authentication
+mechanisms have changed between Apache-2.0.X and 2.2.X. I don't yet
+know if this can be fixed, but at this time I don't want to spend 
+that much time on it. Hence I'll leave that for later.
+
+base-bandwidth.mod:
+-------------------
+Was obsoleted by base-apache-bandwidth.mod anyway, which serves
+the same purpose. So this dead weight was removed from the codebase.
+
+base-firewall.mod:
+------------------
+The quality of this module leaves a lot to be desired. For this 
+reason it also is not included in the NuOnce CD builds, nor the
+Aventurin{e} OS templates. So I really see no reason to port it.
+
+base-storage.mod:
+-----------------
+Module for making external or additional disk storage available. 
+Not included on the NuOnce CD and it's buggy as hell anyway. No need 
+to port it until it is fixed anyway.
+
+
+Just for reference:
+===================
+
+To build 5106 from the sources on a CentOS5.1 you need to satisfy quite a few
+dependencies, which are not always very transparent. I lost my notes of what I
+had to install along the way, so for future reference here is a list of all 
+installed RPMs on my current CentOS5.1 development box (minus the obvious
+BlueQuartz RPMs built from the SVN).
+
+This list includes a LOT more than the bare minimum just needed for the build, 
+so you can of course make do with quite a bit less. Especially when fighting
+with getting Sausalito to compile I resorted to installing a lot of unneeded
+stuff - just to cover the odd chance that one of the RPMs was indeed needed. :p
+
+
+Installed RPMs:
+===============
+
+apr
+apr-devel
+apr-util
+apr-util-devel
+aspell
+aspell-devel
+aspell-en
+atk
+audit-libs
+audit-libs-devel
+audit-libs-python
+autoconf
+automake
+automake14
+automake15
+automake16
+automake17
+basesystem
+bash
+bc
+beecrypt
+beecrypt-devel
+bind
+bind-chroot
+bind-libs
+bind-utils
+binutils
+bison
+bzip2
+bzip2-devel
+bzip2-libs
+cairo
+centos-release
+centos-release-notes
+chkconfig
+compat-glibc
+compat-glibc-headers
+compat-openldap
+coreutils
+cpp
+cracklib
+cracklib-dicts
+crontabs
+cups-libs
+curl
+curl-devel
+cvs
+cyrus-sasl
+cyrus-sasl-devel
+cyrus-sasl-lib
+db4
+db4-devel
+db4-utils
+dbh
+dbh-devel
+dbus
+device-mapper
+diffstat
+diffutils
+distcache
+dmidecode
+dovecot
+e2fsprogs
+e2fsprogs-devel
+e2fsprogs-libs
+ed
+elfutils
+elfutils-devel
+elfutils-devel-static
+elfutils-libelf
+elfutils-libelf-devel
+elfutils-libelf-devel-static
+elfutils-libs
+expat
+expat-devel
+expect
+file
+filesystem
+findutils
+flex
+fontconfig
+freetype
+freetype-devel
+gawk
+gcc
+gcc-c++
+gcc-objc
+gd
+gdbm
+gdbm-devel
+gettext
+glib
+glib2
+glib2-devel
+glibc
+glibc-common
+glibc-devel
+glibc-headers
+glibc-utils
+glib-devel
+glib-ghash
+glib-java
+glib-java-devel
+gmp
+gmp-devel
+gnupg
+gnutls
+gperf
+gpg-pubkey
+gpg-pubkey
+gpg-pubkey
+gpg-pubkey
+grep
+groff
+gtk2
+gzip
+hesiod
+hicolor-icon-theme
+httpd
+httpd-devel
+imake
+info
+initscripts
+iproute
+iptables
+iputils
+kernel-headers
+keyutils-libs
+keyutils-libs-devel
+krb5-devel
+krb5-libs
+less
+libacl
+libacl-devel
+libart_lgpl
+libattr
+libattr-devel
+libcap
+libcap-devel
+libc-client
+libc-client-devel
+libgcc
+libgcj
+libgcrypt
+libgcrypt-devel
+libgomp
+libgpg-error
+libgpg-error-devel
+libICE
+libidn
+libidn-devel
+libjpeg
+libjpeg-devel
+libobjc
+libpng
+libpng-devel
+libselinux
+libselinux-devel
+libselinux-python
+libsemanage
+libsepol
+libsepol-devel
+libSM
+libstdc++
+libstdc++-devel
+libsysfs
+libtermcap
+libtiff
+libtool
+libtool-ltdl
+libusb
+libuser
+libX11
+libXau
+libXcursor
+libXdmcp
+libXext
+libXfixes
+libXft
+libXi
+libXinerama
+libxml2
+libxml2-devel
+libxml2-python
+libXpm
+libXrandr
+libXrender
+libxslt
+libxslt-devel
+libXtst
+lm_sensors
+logrotate
+lynx
+m2crypto
+m4
+mailcap
+majordomo
+make
+MAKEDEV
+mc
+mcstrans
+mhash
+mhash-devel
+mktemp
+mod_cband
+mod_nss
+mod_perl
+mod_ssl
+ms-sys
+mysql
+mysql-devel
+mysql-server
+nano
+ncurses
+ncurses-devel
+neon
+net-snmp
+net-snmp-devel
+net-snmp-libs
+net-snmp-utils
+net-tools
+nscd
+nspr
+nss
+nss_db
+nss_ldap
+nss-tools
+ntp
+openldap
+openldap-devel
+openssh
+openssh-clients
+openssh-server
+openssl
+openssl097a
+openssl-devel
+pam
+pam-devel
+pam_passwdqc
+pango
+passwd
+patch
+patchutils
+pcre
+pcre-devel
+perl
+perl-BSD-Resource
+perl-Compress-Zlib
+perl-Data-Flow
+perl-DBD-MySQL
+perl-DBI
+perl-GD
+perl-GDGraph
+perl-GDTextUtil
+perl-handler-utils
+perl-HTML-Parser
+perl-HTML-Tagset
+perl-Jcode
+perl-libwww-perl
+perl-Quota
+perl-URI
+perl-XML-Parser
+php
+php-cli
+php-common
+php-devel
+php-mbstring
+php-mysql
+php-pdo
+pkgconfig
+policycoreutils
+popt
+postgresql
+postgresql-devel
+postgresql-libs
+procmail
+procps
+proftpd
+psmisc
+pwdb
+python
+python-elementtree
+python-sqlite
+python-urlgrabber
+quota
+re2c
+readline
+rootfiles
+rpm
+rpm-build
+rpm-devel
+rpm-libs
+rpm-python
+sed
+sendmail
+sendmail-cf
+setup
+shadow-utils
+slang
+sqlite
+sqlite-devel
+subversion
+sudo
+sysklogd
+SysVinit
+tar
+tcl
+tcp_wrappers
+telnet
+telnet-server
+termcap
+tmpwatch
+tzdata
+unixODBC
+unixODBC-devel
+util-linux
+vim-minimal
+udev
+webalizer
+wget
+which
+xinetd
+xmlsec1
+xmlsec1-openssl
+xorg-x11-filesystem
+yum
+yum-metadata-parser
+zip
+zlib
+zlib-devel
+
+
+On a sidenote:
+==============
+
+When I picked up on this conversion project (5102 -> 5106) Brian Smith had already done 
+a lot of solid groundwork in the conversion of Sausalito and I18n from PHP4 to PHP5.
+Brian got it to compile and that was quite a tremendous feat, as the errors he has run
+into along the way were quite a tough nut to crack. His notes made it reproduceable
+to compile the code and that's where I eventually picked up and polished it further.
+
+I am 100% certain that when we finally release this code as updates (or new ISO) and
+consider it ready for productive usage, then there will still be a lot of screaming
+on the mailing lists, because some odd things here and there may still not work entirely
+right. That can only be avoided with a LOT of testing, carried out by willing helpers from
+the userbase.
+
+Which we will probably not get - aside from a handful of the usual helpful souls.
+
+Now some people will ask: Why did it take so long? Why the heck didn't we have this
+ready sooner?
+
+Answer: 
+						          _____
+			    Time          Money           |   |
+			------------ = -----------  =     o   |
+			 BlueQuartz       Hobby          /X\  |
+						         / \  |
+                                                              |
+						       -------------
+
+If this had been a billable coding job, the invoice so far would be in the lower five 
+figure range (EUR, not YEN or USD). So yes, it took time, will still need MORE time 
+to polish the code further. Unfortunately the number of people that'll really appreciate
+the voluntarily carried out work will probably be quite low ...
+

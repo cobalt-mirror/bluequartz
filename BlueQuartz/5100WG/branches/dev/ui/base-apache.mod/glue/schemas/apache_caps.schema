@@ -1,0 +1,14 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: apache_caps.schema 201 2003-07-18 19:11:07Z will $
+
+    Capabilities associated with apache and the like.
+-->
+<class
+    name="Capabilities" namespace="modifyHttpd" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyHttpd)"
+    />
+</class>

@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+# This script will be executed *after* all the other init scripts.
+# You can put your own initialization stuff in here if you don't
+# want to do the full Sys V style init stuff.
+
+# Source function library.
+DOMAIN=base-sys
+. /etc/rc.d/init.d/functions
+
+# $1 is the first line
+function make_issue
+{
+    arch=$(uname -m)
+    a="a"
+    case "_$arch" in
+	    _a*) a="an";;
+	    _i*) a="an";;
+    esac
+
+    # This will overwrite /etc/issue at every boot.  So, make any changes you
+    # want to make to /etc/issue here or you will lose them when you reboot.
+    echo "" > /etc/issue
+    echo "$1" >> /etc/issue
+    if [ "$2" != "no" ]; then
+	echo "Kernel $(uname -r) on $a $(uname -m)" >> /etc/issue;
+    fi
+
+    cp -f /etc/issue /etc/issue.net
+    echo >> /etc/issue
+}
+
+if [ -f /etc/generic-release ]; then
+	R=$(cat /etc/generic-release)
+	make_issue "$R" "no"
+elif [ -f /etc/cobalt-release ]; then
+    R=$(cat /etc/cobalt-release)
+    make_issue "$R"
+elif [ -f /etc/vendor-release ]; then
+    make_issue "`cat /etc/vendor-release`"
+fi
+
+# Put the hostname and IP address on the LCD
+if [ -f /etc/rc.d/init.d/lcd-showip ]; then
+	/etc/rc.d/init.d/lcd-showip
+else
+	DOMAIN=base-lcd
+        LINE1=`getmsg lcd_ipaddr`
+	LINE2=`ifconfig eth0 | grep "inet addr" | cut -f 2 -d":" | cut -f 1 -d" "`
+        $LCD_STOP
+        $LCD_WRITE "$LINE1" "$LINE2"
+fi
+
+/sbin/depmod -a
+KERNVER=`uname -r | sed 's/\.[^\.]*$//'`
+if [ "$KERNVER" = "2.4" ]; then
+        /sbin/modprobe ip_nat_ftp
+else
+        /sbin/modprobe ip_masq_ftp
+fi
+# install the pptp masq module if it's available
+if [ -f /lib/modules/`/bin/uname -r`/ipv4/ip_masq_pptp.o ]; then
+	/sbin/modprobe ip_masq_pptp
+fi

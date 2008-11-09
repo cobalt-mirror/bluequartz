@@ -1,0 +1,201 @@
+#!/bin/bash
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+# For messages, we need to be in the base-sys domain
+DOMAIN=base-sys
+
+cd /etc/sysconfig/network-scripts
+
+. network-functions
+. /etc/rc.d/init.d/functions
+
+CONFIG=$1
+
+[ -z "$CONFIG" ] && {
+    echo "usage: ifup <device name>" >&2
+    exit 1
+}
+
+[ -f "$CONFIG" ] || CONFIG=ifcfg-$CONFIG
+[ -f "$CONFIG" ] || {
+    echo "usage: ifup <device name>" >&2
+    exit 1
+}
+
+if [ $UID != 0 ]; then
+    if [ -x /usr/sbin/usernetctl ]; then
+	exec /usr/sbin/usernetctl $CONFIG up
+    fi
+    echo "Users cannot control this device." >&2
+    exit 1
+fi
+
+source_config
+
+if [ "foo$2" = "fooboot" -a "${ONBOOT}" = "no" ]
+then
+    if [ "${DEVICE}" != "eth0" -o -f /etc/NET-CONFIG ]; then 
+        exit
+    fi
+fi
+
+IPSETUP=no
+
+DEVICETYPE=`echo $DEVICE | sed "s/[0-9]*$//"`
+REALDEVICE=`echo $DEVICE | sed 's/:.*//g'`
+if echo $DEVICE | grep -q ':' ; then
+    ISALIAS=yes
+else
+    ISALIAS=no
+fi
+
+OTHERSCRIPT="/etc/sysconfig/network-scripts/ifup-${DEVICETYPE}"
+
+if [ -x $OTHERSCRIPT ]; then
+    exec $OTHERSCRIPT $CONFIG $2
+fi
+
+# is this device available? (this catches PCMCIA devices for us)
+
+/sbin/ifconfig ${REALDEVICE} 2>&1 | grep -s "unknown interface" > /dev/null
+if [ "$?" = "0" ]; then
+    echo "Delaying ${DEVICE} initialization."
+    exit 0
+fi
+
+if [ "$SLAVE" = yes -a "$ISALIAS" = no -a "$MASTER" != "" -a \
+     -x /sbin/ifenslave ]; then
+    RFLAG="" ; [ "$RECIEVE-ONLY" = yes ] && RFLAG="-r"
+
+    ifconfig ${DEVICE} down
+    echo "Enslaving $DEVICE to $MASTER"
+    ifenslave $RFLAG "$DEVICE" "$MASTER"
+
+    exit 0
+fi
+
+# Here's where the IP assignment flow control starts...
+
+# We'll assume this only applies for the cubes internal ethernet
+if [ "${DEVICE}" = "eth0" ]; then 
+
+  # Allow user to force to LCD...
+  /sbin/readbutton
+  BUTTON="$?"
+
+  if [ "$BUTTON" != "0" ] && [ "$BUTTON" != "62" ]; then
+	ONEBUTTON=1
+  else
+	ONEBUTTON=0
+  fi # [ "$BUTTON" != "0" ] && [ "$BUTTON" != "62" ]; then 
+
+  if [ "$ONEBUTTON" = "1" ]; then
+    rm -f /etc/NET-CONFIG
+    get_ip_from_lcd
+  else
+
+  # The /etc/NET-CONFIG file is a flag indicating if the eth0 interface
+  # has been set up. It's absence indicates that we want to boot up
+  # the machine as if it were the first time.  
+  #
+  # This next chunk of code attempts to bring up eth0 using DHCP,
+  # the Autoconfigure script, or manually.
+  if [ "$BOOTPROTO" = dhcp -o ! -f /etc/NET-CONFIG  ]  && \
+     [ "$BUTTON" != "62" ]; then
+	    # make sure we're connected to a network
+            check_for_link
+	    while [ "$LINKSTATUS" != "1" ]; do
+		if [ `halt_or_connect` = "1" ]; then
+		    do_halt
+		fi # otherwise try to connect
+
+                # Write message and pause, otherwise user
+                # can't tell anything is happening. 
+		LINE1=`getmsg detecting`
+		LINE2=`getmsg network`
+		$LCD_STOP
+		$LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+		sleep 2
+		check_for_link
+	    done
+
+	    # try to setup network with dhcp
+            send_dhcp_request
+
+            # Check if received IP info from dhcp server
+	    if [ -f /var/state/dhcp/LEASED ]; then
+              IPSETUP=yes
+            else
+              # DHCP request failed... setup with LCD
+		$LCD_STOP
+		/usr/sausalito/sbin/selectLanguage
+	      autoconfigure_yes_no
+	      if [ "$AUTOCONFIGURE" = "1" ]; then
+		LINE1=`getmsg network_start_1`
+		LINE2=`getmsg network_start_2`
+		$LCD_STOP
+		$LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	        autoconfigure_network
+                if [ "$IPSETUP" != yes ]; then
+		  LINE1=`getmsg autoconfigure`
+	 	  LINE2=`getmsg failed`
+		  $LCD_STOP
+		  $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+                  sleep 4
+                  get_ip_from_lcd
+                fi
+	      else
+              	get_ip_from_lcd
+	      fi
+            fi # -f /etc/dhcpc/hostinfo-eth0
+  fi # BOOTPROTO!=lcd and BUTTON != 62
+
+  if [ "$BUTTON" = "62" ]; then
+    echo "running /sbin/boothook"
+    # Run /sbin/boothook when Select & Enter are held down at boot time
+    test -x /sbin/boothook && /sbin/boothook
+  fi # BUTTON=62 run boothook
+
+ fi # If User forces to LCD
+
+  LINE1=`getmsg network_start_1`
+  LINE2=`getmsg network_start_2`
+  $LCD_STOP
+  $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+fi # eth0 interface
+
+if [ "$IPSETUP" != yes ]; then
+
+  if [ "${BOOTPROTO}" = "dhcp" ]; then 
+    send_dhcp_request
+    # Check if received IP info from dhcp server
+    if [ ! -f /var/state/dhcp/LEASED ]; then
+      DOMAIN="base-lcd"
+      LINE1=`getmsg dhcp_setup`
+      LINE2=`getmsg failed`
+      $LCD_STOP
+      $LCD_WRITE "$LINE1" "$LINE2" &>/dev/null &
+      $LCD_FLASH &
+      /bin/sleep 4
+      $LCD_STOP
+      DOMAIN=base-sys
+    fi
+  fi
+
+fi
+
+source_config
+
+echo "ifconfig  ${DEVICE} ${MACADDR:+hw ether $MACADDR} ${IPADDR} netmask ${NETMASK} broadcast ${BROADCAST}"
+
+ifconfig ${DEVICE} ${MACADDR:+hw ether $MACADDR} ${IPADDR} \
+         netmask ${NETMASK} broadcast ${BROADCAST} 2>/dev/null
+
+if [ "$ISALIAS" = yes ] ; then
+	route add -host ${IPADDR} ${DEVICE}
+fi
+
+/usr/sausalito/handlers/base/sauce-basic/change_route.pl -c 2>/dev/null
+
+exec /etc/sysconfig/network-scripts/ifup-post $CONFIG
+

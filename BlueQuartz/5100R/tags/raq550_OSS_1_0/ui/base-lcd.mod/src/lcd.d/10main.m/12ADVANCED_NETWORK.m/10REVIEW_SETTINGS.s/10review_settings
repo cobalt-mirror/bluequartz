@@ -1,0 +1,56 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+
+use I18n;
+use CCE;
+
+system("/sbin/lcdstop");
+$LCD_WRITE="/sbin/lcd-write -s";
+$WAIT=5;
+
+my $i18n = new I18n;
+my $cce = new CCE;
+
+$cce->connectuds();
+
+my (@sysoid) = $cce->find("System");
+my ($ok, $system) = $cce->get($sysoid[0]);
+if ($ok) {
+	if ( ${$system}{'gateway'} ) {
+		display($i18n->get("[[base-lcd.default_gateway]]"), ${$system}{'gateway'});
+	} else {
+		display($i18n->get("[[base-lcd.default_gateway]]"), $i18n->get("[[base-lcd.notconfigured]]"));
+	}
+}
+
+my (@netoid) = $cce->find("Network", { device => "eth0" } );
+($ok, my $network) = $cce->get($netoid[0]);
+if ($ok) {
+	if ( ${$network}{'enabled'} ) {
+		display($i18n->get("[[base-lcd.primary_ip]]"), ${$network}{'ipaddr'});
+		display($i18n->get("[[base-lcd.primary_nm]]"), ${$network}{'netmask'});
+	} else {
+		display($i18n->get("[[base-lcd.primary_ip]]"), $i18n->get("[[base-lcd.notconfigured]]"));
+		display($i18n->get("[[base-lcd.primary_nm]]"), $i18n->get("[[base-lcd.notconfigured]]"));
+	}
+}
+
+@netoid = $cce->find("Network", { device => "eth1" } );
+($ok, $network) = $cce->get($netoid[0]);
+if ($ok) {
+	if ( ${$network}{'enabled'}  ) {
+		display($i18n->get("[[base-lcd.secondary_ip]]"), ${$network}{'ipaddr'});
+		display($i18n->get("[[base-lcd.secondary_nm]]"), ${$network}{'netmask'});
+	} else {
+		display($i18n->get("[[base-lcd.secondary_ip]]"), $i18n->get("[[base-lcd.notconfigured]]"));
+		display($i18n->get("[[base-lcd.secondary_nm]]"), $i18n->get("[[base-lcd.notconfigured]]"));
+	}
+}
+
+$cce->bye("SUCCESS");
+
+sub display {
+  my ($LINE1, $LINE2) = @_;
+  system("$LCD_WRITE \"$LINE1\" \"$LINE2\"");
+  sleep $WAIT;
+}
+

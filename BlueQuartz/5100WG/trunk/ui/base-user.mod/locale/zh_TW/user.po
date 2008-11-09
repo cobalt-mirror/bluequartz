@@ -1,0 +1,284 @@
+msgid "userList"
+msgstr "使用者清單"
+
+msgid "users_help"
+msgstr "此處可管理使用者。"
+ 
+msgid "fullName"
+msgstr "完整名稱"
+
+msgid "fullName_help"
+msgstr "這是使用者的完整名稱。"
+
+msgid "userName"
+msgstr "使用者名稱"
+
+msgid "userName_help"
+msgstr "這是系統用來識別使用者的名稱。"
+
+msgid "listAction"
+msgstr "動作"
+
+msgid "listAction_help"
+msgstr "這些是用來修改使用者的設定或移除使用者的按鈕。"
+
+msgid "addNewUser"
+msgstr "新增使用者"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "請輸入冒號以外的任何字元。例如，John Doe 就是一個有效的字元。"
+
+msgid "fullNameField_help"
+msgstr "請輸入使用者的完整名稱。  [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "sortNameField"
+msgstr "可排序名稱"
+
+msgid "sortNameField_help"
+msgstr "輸入使用者名稱的可排序版本。"
+
+msgid "userNameField_rule"
+msgstr "請輸入 12 個（含）以下只包含小寫英數字元、句點、連字符號和底線的字元；第一個字元必須是一個字母。例如，john.doe 就是一個有效的名稱。"
+
+msgid "userNameField_help"
+msgstr "請輸入要由系統用來識別此使用者的名稱。  [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "很抱歉，您輸入的[[base-user.userNameField]]值已被此系統上另一位人士採用；請輸入另一個[[base-user.userNameField]]的值。"
+
+msgid "passwordField"
+msgstr "密碼"
+
+msgid "passwordField_rule"
+msgstr "密碼的長度須介於 3 到 16 個字元之間。一個好的密碼應至少包含 5 個混合大小寫字母以及數字和標點的字元。組成的密碼不應該是可以在字典中找到的任何單字。密碼區分大小寫。"
+
+msgid "passwordField_help"
+msgstr "請輸入要由系統用來識別此使用者的密碼。  [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "error-invalid-password"
+msgstr "很抱歉，您所輸入的密碼無效。  [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "允許的磁碟空間上限 (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "請輸入一個介於 1 到  1024000 之間的整數。"
+
+msgid "maxDiskSpaceField_help"
+msgstr "請設定此使用者的磁碟限額；這是可供此使用者用於儲存網頁、電子郵件訊息及其他所有的使用者檔案之磁碟空間上限。[[base-user.maxDiskSpaceField_rule]] 新使用者的預設值是設定於「使用者預設值」區段。"
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "請設定新使用者的預設磁碟空間上限；這是可供使用者用於儲存網頁、電子郵件訊息及其他所有的使用者檔案之磁碟空間上限。[[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "群組成員"
+
+msgid "memberGroupsField_help"
+msgstr "請設定此使用者的群組成員。左側直欄顯示此使用者目前所屬的群組。右側直欄顯示此使用者可能所屬的群組。若要新增此使用者成為群組的成員，請將右側直欄的群組移至左側直欄。"
+
+msgid "memberGroups"
+msgstr "關聯群組"
+
+msgid "allGroups"
+msgstr "非關聯群組"
+
+msgid "modifyUser"
+msgstr "修改使用者設定 - [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "新密碼"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "電子郵件設定 - [[VAR.userName]]"
+
+msgid "emailAliasesField"
+msgstr "電子郵件別名"
+
+msgid "emailAliasesField_rule"
+msgstr "請輸入只包含小寫英數字元、句點、連字符號和底線的字元；預設值為小寫的使用者名字和姓氏，以句點分隔。例如，john.doe 就是一個有效的名稱。"
+
+msgid "emailAliasesField_help"
+msgstr "請輸入使用者要用來接收電子郵件的其他名稱。  [[base-user.emailAliasesField_rule]]"
+
+
+msgid "forwardEnableField"
+msgstr "電子郵件轉寄"
+
+msgid "forwardEnableField_help"
+msgstr "啟用電子郵件轉寄，將會使以後收到的電子郵件自動轉寄到指定的電子郵件位址。"
+
+msgid "forwardEnable"
+msgstr "啟用"
+
+msgid "forwardEmailField_rule"
+msgstr "輸入的值必須是有效的電子郵件位址，如 user@domain.com。若要指定多個位址，請以逗點分隔位址，或是將各個位址置於不同一行。"
+
+msgid "forwardEmailField"
+msgstr "電子郵件位址"
+
+msgid "forwardEmailField_help"
+msgstr "請輸入您要轉寄電子郵件的電子郵件位址。 [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "休假訊息"
+
+msgid "autoResponderField_help"
+msgstr "「休假訊息」可讓您自動傳送自訂訊息給每一位對您傳送電子郵件的人。這在您無法閱讀電子郵件或想要傳送自動回應訊息給發信人時非常有用。"
+
+msgid "enableAutoResponderField"
+msgstr "啟用"
+
+msgid "autoResponderMessageField"
+msgstr "自動回應"
+
+msgid "autoResponderMessageField_help"
+msgstr "請輸入訊息，在有人傳送電子郵件給您時，該訊息就會自動回覆。"
+
+	# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+msgid "blank-vacation-msg"
+msgstr "很抱歉，您輸入了無效的[[base-user.autoResponderMessageField]]值。"
+
+msgid "userDefaults"
+msgstr "編輯使用者預設值"
+
+msgid "userDefaults_help"
+msgstr "按一下此處，可變更新使用者的預設設定。"
+
+msgid "userNameGenField"
+msgstr "使用者名稱產生"
+
+msgid "userNameGenField_help"
+msgstr "請設定使用者名稱自動產生的方法，在輸入完整名稱後系統即會自動產生使用者名稱。例如，如果 JohnDoe 是完整名稱，則 johnd、jdoe、john 或 doe 都可能是自動產生的使用者名稱。"
+
+msgid "first"
+msgstr "只用名字"
+
+msgid "last"
+msgstr "只用姓氏"
+
+msgid "firstInitLast"
+msgstr "名字和姓氏的起首字母"
+
+msgid "firstLastInit"
+msgstr "名字和姓氏的起首字母"
+
+msgid "languageField"
+msgstr "語言偏好設定"
+
+msgid "languageField_help"
+msgstr "伺服器將會嘗試以您在此處選取的偏好的語言來顯示頁面。如果您選取「從 Web 瀏覽器選項設定」，則伺服器會嘗試根據您 Web 瀏覽器的語言偏好設定顯示頁面。如果無法使用您選取的語言，伺服器將使用您的伺服器可用的預設語言來顯示頁面。"
+
+msgid "account"
+msgstr "帳戶"
+
+msgid "account_help"
+msgstr "此處可配置基本帳戶設定。"
+
+msgid "email"
+msgstr "電子郵件"
+
+msgid "email_help"
+msgstr "此處可配置電子郵件設定，如別名、轉寄和休假訊息。"
+
+# Personal Profile Section
+
+msgid "personalEmail"
+msgstr "電子郵件"
+
+msgid "personalEmail_help"
+msgstr "請在此處管理電子郵件的轉寄及自動回應設定。"
+
+# --- Style settings are not currently used, but may be added some time in the future
+msgid "styleField"
+msgstr "樣式"
+
+msgid "styleField_help"
+msgstr "變更用來顯示功能表、按鈕及其他項目的圖形樣式。"
+
+msgid "personalAccount"
+msgstr "帳戶"
+
+msgid "personalAccount_help"
+msgstr "此處可管理個人使用者帳戶資訊。"
+
+msgid "accountSettings"
+msgstr "帳戶設定 - [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "您確定要移除使用者 [[VAR.userName]] 嗎？"
+
+msgid "reloadMessage"
+msgstr "現在您的 Web 瀏覽器將自動更新以使用所選擇的樣式。"
+
+msgid "forwardSaveField"
+msgstr "儲存複本"
+
+msgid "forwardSaveField_help"
+msgstr "「儲存複本」除了轉寄電子郵件複本到指定的電子郵件位址之外，還會將信箱收到的每一封電子郵件的複本儲存起來。"
+
+msgid "userDesc"
+msgstr "備註"
+
+msgid "userDesc_help"
+msgstr "這個直欄提供有關每一位使用者的其他資訊。"
+
+msgid "userDescField"
+msgstr "備註"
+
+msgid "userDescField_help"
+msgstr "請輸入關於使用者的其餘資訊或說明。"
+
+msgid "uidAlreadyTaken"
+msgstr "很抱歉，發生錯誤；所輸入的 uid 已被採用。"
+
+msgid "aliasAlreadyTaken"
+msgstr "很抱歉，無法建立所指定名稱的使用者，因為已經有該名稱的電子郵件別名存在。"
+
+msgid "aliasAlreadyTaken2"
+msgstr "很抱歉，無法設定此使用者的電子郵件別名，因為所指定的一或多個別名已在使用中。"
+
+msgid "add_user_help"
+msgstr "按一下此處，可新增使用者。"
+
+msgid "administrator"
+msgstr "系統管理員"
+
+msgid "failed-to-add-user"
+msgstr "使用者帳號由於系統錯誤而無法建立。"
+
+msgid "security"
+msgstr "功能"
+
+msgid "security_help"
+msgstr "委派管理權限給個別使用者"
+
+msgid "capsAllowed"
+msgstr " 允許 "
+
+msgid "capsNotAllowed"
+msgstr " 不允許 "
+
+msgid "capabilities"
+msgstr "功能"
+
+msgid "capabilities_help"
+msgstr "建立這個使用者的允許功能清單"
+

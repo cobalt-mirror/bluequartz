@@ -1,0 +1,153 @@
+# handlers
+msgid "couldntDeletePppCfg"
+msgstr "Impossible de supprimer la configuration PPP"
+
+msgid "couldntStartPpp"
+msgstr "Impossible de démarrer le modem"
+
+msgid "couldntStopPpp"
+msgstr "Impossible d'arrêter le modem"
+
+msgid "cantGetModem"
+msgstr "Une erreur de serveur s'est produite. L'état du modem n'est pas disponible en ce moment."
+
+msgid "modemProblem"
+msgstr "Le modem connaît un problème. S'il s'agit d'un modem externe, vérifiez s'il est connecté solidement au port série du serveur et s'il est sous tension. S'il s'agit d'un modem interne, essayez de réinitialiser le serveur."
+
+msgid "offNow"
+msgstr "Non connecté"
+
+msgid "onNow"
+msgstr "Connecté"
+
+# strings for test of modem on demand
+msgid "saveTest"
+msgstr "Enregistrement et test des paramètres de modem"
+
+msgid "saveTest_help"
+msgstr "Cette action enregistre les paramètres actuels et tente de connecter le modem à votre fournisseur d'accès Internet pour vérifier ces paramètres."
+
+msgid "testModem"
+msgstr "Test des paramètres du modem..."
+
+msgid "testFail"
+msgstr "Erreur"
+
+msgid "testFailMsg"
+msgstr "Le test de modem n'a pas pu fonctionner en raison d'une erreur système. Vérifiez les paramètres du modem et réessayez. Si le test échoue de façon répétée, essayez de réamorcer votre serveur."
+
+msgid "initModem"
+msgstr "Initialisation"
+
+msgid "initModem_help"
+msgstr "Ceci affiche l'état d'initialisation du modem. Le test d'initialisation vérifie si le modem est connecté au serveur et s'il répond."
+
+msgid "initModemStage"
+msgstr "Initialisation en cours..."
+
+msgid "initModemSuccess"
+msgstr "Correct"
+
+msgid "initModemFail"
+msgstr "Echec de l'initialisation : S'il s'agit d'un modem externe, vérifiez sa connexion au serveur et s'il est sous tension. Vérifiez la documentation du modem pour vous assurer que la chaîne d'initialisation utilisée, '[[VAR.init]]', est la bonne."
+
+msgid "dialModem"
+msgstr "Connexion"
+
+msgid "dialModem_help"
+msgstr "Etat de connexion du modem. Le test de connexion vérifie si le modem peut assurer la numérotation et d'accéder au fournisseur d'accès Internet."
+
+msgid "dialModemStage"
+msgstr "Numérotation en cours [[VAR.phone]]..."
+
+msgid "dialModemSuccess"
+msgstr "Correct"
+
+msgid "dialModemFail"
+msgstr "Echec de la numérotation : [[VAR.errmsg]]"
+
+msgid "noDialtone"
+msgstr "Aucune tonalité."
+
+msgid "busy"
+msgstr "Le numéro de téléphone était occupé."
+
+msgid "noCarrier"
+msgstr "Il n'y a pas de porteuse."
+
+msgid "waiting"
+msgstr "L'ordinateur distant n'a pas répondu."
+
+msgid "unknownError"
+msgstr "Une erreur inconnue s'est produite."
+
+msgid "pppdAuth"
+msgstr "Authentification"
+
+msgid "pppdAuth_help"
+msgstr "Etat d'authentification. Le test d'authentification vérifie si le serveur peut se connecter au serveur distant."
+
+msgid "pppdAuthStage"
+msgstr "Envoi des informations de connexion..."
+
+msgid "pppdAuthFail"
+msgstr "Echec de l'authentification : [[VAR.errmsg]]"
+
+msgid "noResponse"
+msgstr "Le serveur distant n'a pas pu répondre."
+
+msgid "authFailure"
+msgstr "Le mot de passe et le nom d'utilisateur fournis ont été refusés par le serveur distant."
+
+msgid "remoteTerm"
+msgstr "La connexion a été interrompue par le serveur distant."
+
+msgid "pppdAuthSuccess"
+msgstr "Correct"
+
+msgid "dnsTest"
+msgstr "Résolution de nom"
+
+msgid "dnsTest_help"
+msgstr "Etat du test de résolution du nom de domaine. La résolution de nom de domaine convertit les noms de domaines et d'hôtes textuels en adresses IP numériques, et réciproquement."
+
+msgid "dnsTestStage"
+msgstr "Prise de contact du serveur de noms..."
+
+msgid "dnsTestFail"
+msgstr "Impossible de contacter le serveur DNS. Vérifiez dans vos paramètres TCP/IP si les serveurs DNS spécifiés sont corrects."
+
+msgid "dnsTestSuccess"
+msgstr "Correct"
+
+msgid "netTest"
+msgstr "Connexion réseau"
+
+msgid "netTest_help"
+msgstr "Etat du test de connexion réseau. Ce test essaye d'établir une connexion au site distant."
+
+msgid "netTestStage"
+msgstr "Prise de contact du site distant..."
+
+msgid "netTestFail"
+msgstr "Impossible de se connecter au site distant. Vérifiez les paramètres TCP/IP et le modem et réessayez."
+
+msgid "netTestSuccess"
+msgstr "Correct"
+
+msgid "back"
+msgstr "Précédent"
+
+msgid "back_help"
+msgstr "Retour à la page des paramètres du modem."
+
+msgid "ppp0_in_use"
+msgstr "La connexion du modem n'a pas pu être activée car l'interface est utilisée par un autre dispositif. Si vous utilisez DSL, vous devez désactiver PPPoE avant de pouvoir utiliser le modem pour vous connecter."
+
+# Capabilities
+
+msgid "capgroup_adminModem"
+msgstr "Gérer le modem"
+
+msgid "capgroup_adminModem_help"
+msgstr "Ce droit administratif permet à un utilisateur de modifier les paramètres du modem"

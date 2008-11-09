@@ -1,0 +1,109 @@
+<!-- 
+  $Id: backup.schema 3 2003-07-17 15:19:15Z will $ 
+  Copyright 2000, Cobalt Networks.
+  
+  This file describes the schema of the following class types:
+	Backup
+  
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+  
+-->
+
+<!-- local type definitions -->
+
+<typedef 
+	name="backupname" 
+	type="re" 
+	data="^[a-zA-Z0-9]{1,36}$"
+	errmsg="[[base-backup.invalidBackupName]]"
+/>
+
+<typedef
+	name="backuppath"
+	type="re"
+	data="^[\/\\a-zA-Z0-9_.:-]+$"
+/>
+
+
+<!-------------------------------------------------------------------------
+   Backup
+    Just a trigger for scheduling and executing backups.
+-------------------------------------------------------------------------->
+
+<class name="Backup" namespace="" version="1.0" createacl="ruleCapable(createBackup)" destroyacl="ruleCapable(destroyBackup)">
+  <property 
+        name="backupTag"
+	type="backupname" 
+  	default="unknown"
+	writeacl="ruleCapable(modifyBackup)"
+  />
+
+  <!-- backup : set to 1 to perform backup, leave at 0 for nothing -->
+  <property name="pendingBackup"        type="int" default="0" writeacl="ruleCapable(modifyBackup)"/>
+
+  <property name="backupConfiguration"  type="boolean" default="1" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupSchedule"       type="scalar" 
+	default="backupImmediate" writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupOwner"          type="scalar" default="admin" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+  <property name="backupType"           type="scalar" default="full" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupFileSet"        type="int"    default="0" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupMethod"         type="scalar" default="nfs" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+  <property name="backupUserScope"      type="scalar" default="all" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupUsers"          type="scalar" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+  <property name="backupGroupScope"     type="scalar" default="all" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupGroups"         type="scalar" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+  <!-- 
+       backup : Destination describes how to get to backup 
+       i.e lease156:/shares/md0/shares/2/mp3/ 
+  -->
+  <property name="backupDestination"    type="backuppath" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="backupUsername"       type="scalar" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+  <property name="password"             type="scalar" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+  <!-- 
+       backup : Location describes exact location 
+       i.e /tmp/file6fgnBg/20000615060640 
+  -->
+  <property name="backupLocation"       type="scalar" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+  <property name="backupCronFile"       type="scalar" default="" 
+	writeacl="ruleCapable(modifyBackup)"/>
+
+</class>
+
+<!-- end of backup.schema -->
+
+
+<!-- Associated capabilities  -->
+
+<class name="Capabilities" namespace="modifyBackup" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyBackup)"/>
+	<property name="nameTag" type="scalar" default="[[base-backup.cap_modifyBackup]]"/>
+</class>
+<class name="Capabilities" namespace="createBackup" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createBackup)"/>
+	<property name="nameTag" type="scalar" default="[[base-backup.cap_createBackup]]"/>
+</class>
+<class name="Capabilities" namespace="destroyBackup" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyBackup)"/>
+	<property name="nameTag" type="scalar" default="[[base-backup.cap_destroyBackup]]"/>
+</class>

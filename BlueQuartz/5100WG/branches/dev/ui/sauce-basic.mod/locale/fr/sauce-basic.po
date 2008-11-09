@@ -1,0 +1,70 @@
+
+
+# Global tech support strings
+
+	# NOTE: In Europe, the Middle East and Africa, call +31 71 565 7070 support-emea@cobalt.com.
+	# In Japan, send email to support-japan@cobalt.com.
+msgid "techSupportUSPhone"
+msgstr "(888) 702-6225"
+
+msgid "techSupportIntlPhone"
+msgstr "+1 (650) 623-2679"
+
+msgid "techSupportEmail"
+msgstr "support@cobalt.com"
+	
+	# This should work for at least USA and Canada
+msgid "contactTechSupport"
+msgstr "Contactez le support technique [[base-carmel.osVendor]] par téléphone au [[base-sauce-basic.techSupportUSPhone]] ([[base-sauce-basic.techSupportIntlPhone]] en dehors des Etats-Unis et du Canada) ou par courrier électronique à [[base-sauce-basic.techSupportEmail]]."
+
+
+msgid "kill_dhclient_failed"
+msgstr "Impossible de s'assurer que dhclient s'est arrêté de fonctionner."
+
+msgid "Invalid-object"
+msgstr "Erreur interne : Tentative de suppression d'objet non valide. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Une erreur s'est produite. L'utilisateur [[VAR.name]] a déjà été supprimé."
+
+msgid "failed-to-add-user"
+msgstr "Erreur interne : Impossible de créer le nouvel utilisateur $name. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "La valeur spécifiée pour le quota est trop grande. Le quota de disque maximum permis est [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "Le nom d'hôte spécifié est trop long. Un nom d'hôte est limité à 40 caractères."
+
+msgid "descReadOnly"
+msgstr "La description de l'utilisateur est en lecture seule."
+msgid "disable-interface-first"
+msgstr "Vous ne pouvez pas supprimer les paramètres si l'interface réseau est active. Désactivez l'interface avant d'essayer de supprimer les paramètres."
+
+msgid "gateway-not-reachable"
+msgstr "Impossible d'atteindre la passerelle spécifiée. Assurez-vous que la passerelle est bien dans un sous-réseau accessible. Vous pouvez également vérifier votre table de routage."
+
+msgid "permsNotAvailable"
+msgstr "Vous devez posséder ces capacités pour les attribuer à un autre utilisateur (être-vous connecté comme 'admin'?"
+
+msgid "capgroup_adminUser_help"
+msgstr "Ce droit administratif permet à un utilisateur de créer, supprimer et modifier d'autres utilisateurs sur cette machine"
+
+msgid "invalid-route"
+msgstr "Cette route n'a pas pu être ajoutée à la table de routage. Il se peut que la passerelle spécifiée soit inaccessible."
+
+msgid "needPermToRemovePerm"
+msgstr "Vous devez avoir cette capacité pour la retirer à un autre utilisateur"
+
+msgid "capgroup_adminUserGroupMailingList_help"
+msgstr "Ce droit administratif permet à un utilisateur de créer, supprimer et modifier d'autres utilisateurs et groupes sur cette machine"
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Cette route n'a pas pu être ajoutée à la table de routage. La passerelle ([[VAR.gateway]]) ne se trouve sans doute pas dans le sous-réseau ciblé ([[VAR.target]])."
+
+msgid "capgroup_adminUserGroupMailingList"
+msgstr "Gérer les utilisateurs et les groupes"
+
+msgid "capgroup_adminUser"
+msgstr "Gérer les utilisateurs"
+

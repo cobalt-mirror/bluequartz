@@ -1,0 +1,48 @@
+#!/usr/bin/perl
+#
+# $Id: fw_watchdog 3 2003-07-17 15:19:15Z will $
+
+use lib qw( /usr/sausalito/perl );
+use CCE;
+use POSIX;
+$cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $oid = $cce->event_oid();
+
+my ($ok, $obj, $old, $new) = $cce->get($oid, "Firewall");
+
+if ($new->{watchdog}) {
+  start_watchdog();
+}
+
+$cce->bye('SUCCESS');
+exit(0);
+
+sub start_watchdog()
+{
+  my $pid = fork();
+  return if ($pid); # parent returns
+  
+  # daemonic watchdog
+  $cce = undef;
+  close(STDIN);
+  close(STDOUT);
+  close(STDERR);
+  POSIX::setsid();
+  
+  # insert pun about sleeping watchdogs here
+  sleep(35);
+  
+  # woof!
+  $cce = new CCE;
+  $cce->connectuds();
+  
+  my ($ok, $obj) = $cce->get($oid, "Firewall");
+  if ($obj->{watchdog}) {
+    $cce->set($oid, "Firewall", { 'enabled' => 0 });
+  }
+  $cce->bye();
+  exit(0);
+}
+

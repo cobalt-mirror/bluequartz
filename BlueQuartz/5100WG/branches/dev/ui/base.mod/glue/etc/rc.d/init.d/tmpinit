@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# $Id: tmpinit 201 2003-07-18 19:11:07Z will $
+# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+#
+# chkconfig: 123 02 02
+# description:	This script sets up the tmp directories.
+#
+
+# Make sure we have a /home/tmp to symlink:
+if [ ! -d /home/tmp ]; then
+	mkdir /home/tmp
+fi 
+
+# ensure the correct permissions
+chmod 1777 /home/tmp
+
+# Symlink the two tmp dirs:
+if [ ! -L /tmp ]; then
+	rm -rf /tmp
+	ln -s /home/tmp /tmp
+fi
+
+if [ ! -L /usr/tmp ]; then
+	rm -rf /usr/tmp
+	ln -s /home/tmp /usr/tmp
+fi
+
+exit 0;

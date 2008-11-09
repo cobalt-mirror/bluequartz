@@ -1,0 +1,327 @@
+
+
+# ----- Menu items
+
+msgid "emailServices"
+msgstr "Services Email"
+
+msgid "emailServices_help"
+msgstr "Les [[base-email.emailServices]] peuvent être configurés ici."
+
+msgid "emailServers"
+msgstr "Serveurs"
+
+msgid "emailServers_help"
+msgstr "Les [[base-email.emailServers]] peuvent être configurés ici."
+
+
+# ----- Tabs
+
+msgid "advanced"
+msgstr "Avancé"
+
+msgid "basic"
+msgstr "De base"
+
+msgid "basic_help"
+msgstr "Les [[base-email.emailSettings]] de base peuvent être configurés ici."
+
+msgid "advanced_help"
+msgstr "Les [[base-email.emailSettings]] avancés, tels que les délais de livraison et la taille de message électronique maximale, peuvent être configurés ici."
+
+
+# ----- Basic Email page
+
+msgid "emailSettings"
+msgstr "Paramètres de messagerie"
+
+msgid "enableServersField"
+msgstr "Activer le serveur SMTP"
+
+msgid "enableServersField_help"
+msgstr "Active ou désactive le serveur de transfert de messages électroniques SMTP. L'activation du serveur SMTP permet l'émission et la réception des messages électroniques sur l'Internet avec d'autres serveurs. SMTP permet aussi aux utilisateurs d'envoyer leurs messages électroniques."
+
+msgid "enableImapField"
+msgstr "Activer le serveur IMAP"
+
+msgid "enableImapField_help"
+msgstr "Active ou désactive le serveur IMAP permettant de consulter les boîtes aux lettres électroniques sur ce serveur. La validation de ce service permet aux utilisateurs de récupérer et consulter des messages électroniques sur ce serveur en utilisant un logiciel client compatible IMAP. IMAP permet aux utilisateurs de stocker leurs messages électroniques sur le serveur mais exige une connexion continue au serveur pendant que l'utilisateur utilise son courrier électronique."
+
+msgid "enablePopField"
+msgstr "Activer le serveur POP"
+
+msgid "enablePopField_help"
+msgstr "Active ou désactive le service de récupération de courrier électronique POP (Post Office Protocol). La validation de ce service permet aux utilisateurs de télécharger les messages électroniques stockés sur ce serveur en utilisant un logiciel client email standard."
+
+
+# ----- Advanced Email page
+
+msgid "queueTimeField"
+msgstr "Distribution"
+
+msgid "queueTimeField_help"
+msgstr "Définit avec quelle fréquence ce serveur tente de d'émettre les messages électroniques stockés en file d'attente."
+
+msgid "queue0"
+msgstr "Immédiate"
+
+msgid "queue15"
+msgstr "Toutes les 15 minutes"
+
+msgid "queue30"
+msgstr "Toutes les 30 minutes"
+
+msgid "queue60"
+msgstr "Toutes les heures"
+
+msgid "queue360"
+msgstr "Toutes les 6 heures"
+
+msgid "queue1440"
+msgstr "Tous les jours"
+
+msgid "maxEmailSizeField"
+msgstr "Taille maximum de message (Mo)"
+
+msgid "maxEmailSizeField_rule"
+msgstr "Entrez un nombre entier supérieur à 0. La valeur par défaut consiste à laisser ce champ vide afin de permettre au serveur d'envoyer et de recevoir des messages électroniques de toutes tailles. L'unité est le Méga Octet (Mo)."
+
+msgid "maxEmailSizeField_help"
+msgstr "Définit la taille maximum des messages électroniques que le serveur acceptera d'envoyer ou de recevoir. [[base-email.maxEmailSizeField_rule]]"
+
+msgid "masqAddressField"
+msgstr "Forcer le domaine de l'expéditeur"
+
+msgid "masqAddressField_rule"
+msgstr "Entrez une adresse IP, un nom d'hôte ou un nom de domaine valide. La valeur par défaut consiste à laisser ce champ vierge. 192.168.1.100, www.cobalt.com et cobalt.com sont des exemples d'entrées valides."
+
+msgid "masqAddressField_help"
+msgstr "Entrez le nom de domaine ou l'adresse IP qui doit se substituer à l'adresse de l'expediteur dans les messages envoyés par les utilisateurs de ce serveur. Cette fonction est également connue sous le nom de Masque de domaine. [[base-email.masqAddressField_rule]]"
+
+msgid "smartRelayField"
+msgstr "Relais de messagerie"
+
+msgid "smartRelayField_rule"
+msgstr "Entrez un nom de serveur valide. La valeur par défaut est de laisser ce champ vierge. cobalt.com est un exemple d'entrée correcte."
+
+msgid "smartRelayField_help"
+msgstr "Entrez le nom complet du serveur de messagerie SMTP par lequel transiteront tous les messages électroniques sortants. "
+
+msgid "popRelayField"
+msgstr "Relais par authentification POP"
+
+msgid "popRelayField_help"
+msgstr "Activez cette option pour autoriser le relais SMTP après authentification POP. Une fois l'option cochée, tout utilisateur qui utilise POP avec succès pour recevoir son courrier sera également autorisé pendant 15 minutes à utiliser le service SMTP pour envoyer ses messages. Cette fonction est idéale pour les utilisateurs qui sont souvent en déplacement."
+
+msgid "relayField"
+msgstr "Relayer le courrier depuis ces adresses IP/domaines/hôtes"
+
+msgid "relayField_rule"
+msgstr "Entrez les adresses IP, noms de domaine ou noms d'hôte qui seront autorisés à utiliser le service SMTP de ce serveur pour envoyer des messages. On peut désigner des réseaux en utilisant des 0. Ainsi, pour autoriser le relais à un réseau 192.168.1.1 avec un masque de sous-réseau de 255.255.0.0, spécifiez l'adresse 192.168.0.0."
+
+msgid "relayField_help"
+msgstr "Entrez les adresses IP, les noms de domaine ou noms d'hôte autorisés à utiliser le service SMTP de ce serveur pour relayer leurs messages électroniques. Un utilisateur ne pourra pas envoyer de messages sortants par ce serveur si l'adresse IP, le nom de domaine ou le nom d'hôte de l'ordinateur qu'il utilise pour se connecter ne sont pas présents dans ce champ. [[base-email.relayField_rule]]"
+
+msgid "receiveField"
+msgstr "Recevoir le courrier adressé aux hôtes/domaines"
+
+msgid "receiveField_rule"
+msgstr "Entrez un nom d'hôte ou de domaine de format valide. La valeur par défaut est le nom complet (FQDN) de votre serveur. www.cobalt.com et cobalt.com sont des exemples d'entrées valides."
+
+msgid "receiveField_help"
+msgstr "Entrez les noms d'hôte et de domaine pour lesquels ce serveur va recevoir du courrier. [[base-email.receiveField_rule]]"
+
+msgid "blockHostField"
+msgstr "Bloquer le courrier provenant des hôtes/domaines"
+
+msgid "blockHostField_rule"
+msgstr "Entrez un nom d'hôte ou de domaine de format valide. La valeur par défaut consiste à laisser ce champ vierge. www.cobalt.com et cobalt.com sont des exemples d'entrées correctes."
+
+msgid "blockHostField_help"
+msgstr "Entrez les noms d'hôtes et de domaines qui ne sont pas autorisés à envoyer des messages vers ce serveur. [[base-email.blockHostField_rule]]"
+
+msgid "blockUserField"
+msgstr "Bloquer le courrier provenant des utilisateurs"
+
+msgid "blockUserField_rule"
+msgstr "Entrez des adresses email de format correct. La valeur par défaut consiste à de laisser ce champ vierge. utilisateur@cobalt.com est un exemple d'entrée valide."
+
+msgid "blockUserField_help"
+msgstr "Entrez les adresses email des utilisateurs qui ne sont pas autorisés à envoyer des messages vers ce serveur. [[base-email.blockUserField_rule]]"
+
+msgid "duplicateKeys"
+msgstr "Les valeurs saisies pour le blocage et le relais n'ont pas pu être mis à jour. Des hôtes ou des domaines sont cités à la fois pour le relais et pour le blocage. Le courrier d'un hôte ou d'un domaine ne peut pas être simultanément bloqué et relayé."
+
+
+
+# ----- Active Monitor strings 
+
+msgid "amEmailNameTag"
+msgstr "Serveurs de messagerie"
+
+msgid "amSMTPNameTag"
+msgstr "Serveur SMTP"
+
+msgid "amSMTPDetails"
+msgstr "Détails du serveur de transfert de messages SMTP"
+
+msgid "amPOP3NameTag"
+msgstr "Serveur POP"
+
+msgid "amPOP3Details"
+msgstr "Détails du serveur POP"
+
+msgid "amIMAPNameTag"
+msgstr "Serveur IMAP"
+
+msgid "amIMAPDetails"
+msgstr "Détails du serveur IMAP"
+
+msgid "amEmailGreen"
+msgstr "Le système de messagerie fonctionne normalement."
+
+msgid "amEmailYellow"
+msgstr "Le système de messagerie connaît un problème."
+
+msgid "amEmailRed"
+msgstr "Le système de messagerie connaît un problème grave."
+
+msgid "amSMTPNotRunning"
+msgstr "Le serveur SMTP ne fonctionne pas."
+
+msgid "amSMTPBadResponse"
+msgstr "Le serveur SMTP a donné une réponse non valide."
+
+msgid "amSMTPStatusOK"
+msgstr "Le serveur SMTP fonctionne normalement."
+
+msgid "amPOP3NotRunning"
+msgstr "Le serveur POP ne fonctionne pas."
+
+msgid "amPOP3BadResponse"
+msgstr "Le serveur POP a donné une réponse non valide."
+
+msgid "amPOP3StatusOK"
+msgstr "Le serveur POP fonctionne normalement."
+
+msgid "amIMAPNotRunning"
+msgstr "Le serveur IMAP ne fonctionne pas."
+
+msgid "amIMAPBadResponse"
+msgstr "Le serveur IMAP a donné une réponse non valide."
+
+msgid "amIMAPStatusOK"
+msgstr "Le serveur IMAP fonctionne normalement."
+
+msgid "amSMTPDetails"
+msgstr "Détails SMTP"
+
+msgid "amPOP3Details"
+msgstr "Détails POP3"
+
+msgid "amIMAPDetails"
+msgstr "Détails IMAP"
+
+
+# --- Handler error messages
+	# vacation message 
+msgid "vacationSubject"
+msgstr "Réponse automatique de"
+
+msgid "cantGetUserInfo"
+msgstr "Congés. Impossible d'obtenir des informations sur l'utilisateur depuis CCE."
+
+msgid "badUser"
+msgstr "Les fichiers de configuration du serveur de messagerie ont été supprimés ou modifiés manuellement, restaurez les versions initiales et recommencez."
+
+msgid "cantEditFile"
+msgstr "Une erreur s'est produite pendant la tentative de modification du fichier de configuration de messagerie. [[base-email.badUser]]"
+
+	# apop.pl -- call to GDBM_File perl module no workie
+msgid "could_not_tie_apop"
+msgstr "Une erreur système s'est produite. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "Une erreur s'est produite pendant la tentative de modification du fichier de configuration du serveur SMTP. [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "Le serveur SMTP n'a pas pu démarrer à ce stade en raison d'un échec de configuration du système. [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "Le serveur POP ou IMAP n'a pas pu être réinitialisé à ce stade en raison d'un échec de configuration du système. [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "Une erreur s'est produite pendant la tentative de création du fichier de mappage du serveur de messagerie. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "Une erreur s'est produite pendant la tentative de modification du fichier de configuration de messagerie. [[base-email.badUser]]"
+
+msgid "aliasInUse"
+msgstr "L'alias de messagerie [[VAR.name]] est déjà utilisé sur ce système. Choisissez un autre alias."
+
+msgid "nonExistentUser"
+msgstr "Le transfert n'a pas pu être effectué car les utilisateurs locaux suivants n'existent pas: [[VAR.users]]. Supprimez ces utilisateurs de la liste des adresses de destination ou créez les utilisateurs avant de valider le transfert."
+
+# sendmail.cf error messages
+
+msgid "CFrelayDeniedTemp"
+msgstr "Relais temporairement refusé. Impossible de résoudre l'enregistrement PTR pour l'adresse du client" 
+ 
+msgid "CFrelayDeniedForged"
+msgstr "Relais refusé. Nom IP probablement falsifié " 
+ 
+msgid "CFrelayDenied"
+msgstr "Relais refusé. Veuillez d'abord vérifier votre mail ou redémarrer  votre client mail." 
+ 
+msgid "CFaccessDenied"
+msgstr "Accès refusé" 
+ 
+msgid "CFsenderDomainNoexist"
+msgstr "Le domaine de l'adresse de l'expéditeur n'existe pas" 
+ 
+msgid "CFinvalidHostname"
+msgstr "Nom d'hôte invalide" 
+ 
+msgid "CFuserAddressRequired"
+msgstr "Adresse de l'utilisateur obligatoire" 
+ 
+msgid "CFinvalidListSyntax"
+msgstr "Liste. ; syntaxe illégale pour les adresses de destinataires" 
+ 
+msgid "CFnotAuthenticated"
+msgstr "non authentifié" 
+ 
+msgid "CFdomainRequired"
+msgstr "Nom de domaine obligatoire" 
+ 
+msgid "CFrelayDeniedFailed"
+msgstr "Relais refusé. Echec de requêtes de nom IP" 
+ 
+msgid "CFrealDomainRequired"
+msgstr " Nom de domaine réel obligatoire " 
+ 
+msgid "CFauthNotAllowed"
+msgstr "Non autorisé à agir comme tel" 
+ 
+msgid "CFcolonInHostname"
+msgstr "Deux-points illégaux dans le nom d'hôte" 
+ 
+
+msgid "catchAllEmail"
+msgstr "Capter tous les messages"
+
+msgid "catchAllEmail_rule"
+msgstr "Entrez une adresse électronique correcte de type nom@domaine ou uniquement le nom d'utilisateur pour livrer le courrier à un utilisateur, un alias ou une liste de diffusion locale."
+
+msgid "capgroup_adminEmailServers"
+msgstr "Gérer le courrier électronique"
+
+msgid "catchAllEmail_help"
+msgstr "Entrez l'adresse électronique de la personne dont vous souhaitez recevoir tout le courrier adressé à ce serveur dont le destinataire ne correspond pas à un utilisateur réel de ce serveur.  Vous devez introduire une adresse électronique pour pouvoir activer la fonction [[base-email.catchAllEmail]] de ce serveur.  [[base-email.catchAllEmail_rule]]"
+
+msgid "invalidCatchAll"
+msgstr "L'adresse [[base-email.catchAllEmail]] introduite est incorrecte.  L'utilisateur, l'alias ou la liste de diffusion locale introduite doit exister sur ce serveur.  [[base-email.catchAllEmail_rule]]"
+
+msgid "capgroup_adminEmailServers_help"
+msgstr "Ce droit administratif permet à un utilisateur de gérer les paramètres utilisés par les services de courrier électronique."
+

@@ -1,0 +1,148 @@
+#!/usr/bin/perl
+
+use strict;
+use lib '/usr/sausalito/perl/';
+use I18n;
+use LCD qw(lcd_lock lcd_unlock menu_console);
+
+my $i18n = new I18n;
+$i18n->setLocale(I18n::i18n_getSystemLocale());
+
+my $dir="/etc/lcd.d/10main.m/60SELECT_LANGUAGE.m";
+my @langs;
+#
+# these are actual button values multiplied by 256
+# the exit code when running programs via perl's system method is multiplied
+# by 256
+#
+my %buttons = (
+            Select => ["32256", "15616"],
+            Enter => ["48640", "15872"],
+            Right => ["56832", "14080"],
+            Up => ["62976", "12032"],
+            Left => ["64000", "15104"],
+            Down => ["60928", "7936"],
+            Reset => ["64512"],
+            );
+my $LCD_WRITE = "/sbin/lcd-write";
+my $LCD_READ  = "/sbin/readbutton";
+my $LCD_STOP  = "/sbin/lcdstop";
+
+my %console_menu = ();
+
+opendir D, $dir;
+foreach(readdir D) {
+	next unless /\d+(\w+)\.s/ && !/EXIT/i;
+	push @langs, [$1, [sort grep {!/^\./} <$dir/$_/*>]];
+	$console_menu{$#langs} = {
+					'index' => ($#langs + 1),
+					'name' => $langs[$#langs]->[0],
+					'string' => $langs[$#langs]->[0]
+				 };
+}
+
+# setup to handle signals
+$SIG{INT} = 'IGNORE';
+$SIG{USR2} = 'IGNORE';
+
+$SIG{TERM} = 'IGNORE';
+$SIG{QUIT} = 'IGNORE';
+$SIG{ABRT} = 'IGNORE';
+
+$SIG{USR1} = sub {
+		lcd_unlock();
+		exit(2);
+	};
+
+my $idx;
+my $pid = undef;
+# if there is only one language, just return that
+if (scalar(@langs) == 1) {
+	$idx = 0;
+} else {
+	# now fork off so they can do this on the console as well
+	$pid = fork();
+	if (defined($pid) && ($pid != 0)) {
+		# lcd mode
+		# try to get the lcd lock waiting up to 100 seconds 
+		for (my $i = 0; $i < 100; $i++) {
+			system($LCD_STOP);
+			system($LCD_WRITE, '-s', '', '');
+			if (!lcd_lock()) {
+				sleep(1);
+			} else {
+				last;
+			}
+		}
+		$idx = getSelection(@langs);
+		lcd_unlock();
+	} elsif (defined($pid) && ($pid == 0)) {
+		# child, console mode
+		$pid = getppid();
+		system("/usr/bin/clear");
+		print "\n\nSELECT LANGUAGE:\n";
+		$idx = menu_console(\%console_menu, "ENTER NUMBER (1 - " .
+					($#langs + 1) . ")");
+	} else {
+		# fork failed
+		print STDERR "Fork failed, console mode will not work!\n";
+	}
+}
+
+foreach (@{$langs[$idx]->[1]}) {
+	system($_);
+}
+
+if (defined($pid)) {
+	kill 10, $pid;
+}
+exit(0);
+
+# cleanup the other process
+sub getSelection
+{
+	my @langs = @_;
+	my $count = 0;
+	my $langstr = $i18n->get("[[base-lcd.SELECT LANGUAGE ]]");
+	$langstr = 'SELECT LANGUAGE:';
+
+	while (1) {
+		my $lang = $langs[$count]->[0];
+		$lang =~ s/_/ /g;
+
+		# stupid padding tricks...
+		my $plen = 16 - length($lang);
+		if ($plen % 2 == 0) {
+			my $pad = " " x ($plen/2);
+			$lang = $pad . $lang . $pad;
+		} else {
+			my $pad = " " x (int($plen/2));
+			$lang = $pad . $lang . $pad . " ";
+		}
+		my $option = $lang; # $i18n->get("[[base-lcd.$lang]]");
+
+		system("$LCD_WRITE -s \"$langstr\" \"$option\"");
+		while (system("$LCD_READ") != 0) {}
+
+		for (;;) {
+			my $b = 0;
+
+			while (($b = system("$LCD_READ")) == 0) {}
+			while (system("$LCD_READ") != 0) {};
+
+			if (scalar(grep(/^\Q$b\E$/, @{ $buttons{Enter} }))) {
+				return $count;
+			}
+			if (scalar(grep(/^\Q$b\E$/, @{ $buttons{Select} }))) {
+				last;
+			}
+		}
+
+		if ($count + 1 == scalar(@langs)) {
+			$count = 0;
+		} else {
+			$count++;
+		}
+	}
+}
+

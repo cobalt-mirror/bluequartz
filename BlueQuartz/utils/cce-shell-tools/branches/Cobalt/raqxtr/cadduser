@@ -1,0 +1,133 @@
+#!/usr/bin/perl
+# $Id: cadduser,v 1.2 2001/08/20 20:03:14 jeffb Exp $
+# Cobalt Networks, Inc. http://www.cobalt.com/
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# written by: Jeff Bilicki
+#   
+# vi users
+# :set tabstop=4
+#
+# For use on RaQ XTR
+#
+# Notes:
+# Take command line argument for adding a user by hand
+# If an options is not given , values are taken from the User Default section
+# If fully qualified domain name(fqdn) is not give, users are added to the base site
+# If full name is not given user name is used
+# 
+
+if ($< != 0) { die "You must run this script as root\n"; }
+
+$0 = "cadduser";
+use lib "/home/cce-shell-tools/perl";
+
+require Shell;
+require RaQUtil;
+use Getopt::Mixed "nextOption";
+
+my $shell = Shell->new($0);
+Getopt::Mixed::init($shell->stringOpts());
+while(my($opt, $val) = Getopt::Mixed::nextOption()) {
+	$shell->convertOpts($opt, $val);
+}
+Getopt::Mixed::cleanup();
+
+
+use strict;
+require Cobalt::User;
+require Cobalt::Meta;
+require Cobalt::Meta::vsite;
+require Cobalt::Netutil;
+require Cobalt::List;
+require Cobalt::Shell;
+require Cobalt::Group;
+
+my ($group,$quota,$siteAdmin,$fpx,$apop,$aliases);
+
+if(!defined $shell->{obj} || $shell->isObj('help')) {
+	$shell->usage();
+	exit 1;
+} elsif(!$shell->isObj('name')) {
+	$shell->usage();
+	print "You must provide the --name option\n";
+	exit 1;
+} elsif(!$shell->isObj('fqdn') && !$shell->isObj('group')) {
+	$shell->usage();
+	print "You must provide the --group or --fqdn option\n";
+	exit 1;
+}
+
+# sanity check 
+if (Cobalt::User::user_exist($shell->obj('name'))) {
+	print $shell->obj('name')." already exists\n\n";
+	exit 1;
+}
+
+#assign the full name to user name if it doesn't exist.
+if(!$shell->isObj('fullname')) {
+	$shell->putObj('fullname', $shell->obj('name'));
+}
+
+# pull the default password if one isn't provided.
+if(!$shell->isObj('password')) {
+	$shell->putObj('password', $shell->cfg('defaultPassword'));
+}
+
+if($shell->isObj('fqdn')) {
+	$group = RaQUtil::raqxtrGetGroup($shell->obj('fqdn'));
+} elsif($shell->isObj('group')) {
+	if (Cobalt::Group::group_exist($shell->obj('group'))) {
+		$group = $shell->obj('group');
+	} else { die "Group: ", $shell->obj('group'), "  not found\n"; }
+} else {
+	$shell->usage();
+	print "You must provide the --group or --fqdn option\n";
+	exit 1;
+}
+
+
+if (!$shell->isObj('forward')) { $shell->putObj('forward', 'f') }
+
+# Get the vsite defaults
+my $defaults = Cobalt::Meta->create("type" => "vsite");
+$defaults->retrieve($group);
+my $dflQuota = $defaults->get("user_quota");
+my $dflFpx = $defaults->get("user_fpx");
+my $dflShell = $defaults->get("user_shell");
+my $dflApop = $defaults->get("user_apop");
+
+$shell->isObj('quota') ? ($quota = $shell->obj('quota')) : ($quota = $dflQuota);
+$shell->isObj('shell') ? ($shell->putObj('shell','t')) : ($shell->putObj('shell',$dflShell));
+$shell->isObj('admin') ? ($siteAdmin = 't') : ($siteAdmin = 'f');
+$shell->isObj('fpx') ? ($fpx = 't') : ($fpx = $dflFpx);
+$shell->isObj('apop') ? ($apop = 't') : ($apop = $dflApop);
+$shell->isObj('aliases') ? ($aliases = $shell->obj('aliases')) : ($aliases = '');
+
+
+my $obj = Cobalt::Meta->new("type" => "users",
+	  "name" => $shell->obj('name'),
+	  "group" => $group,
+	  "fullname" => $shell->obj('fullname'),
+	  "password1" => $shell->obj('password'),
+	  "password2" => $shell->obj('password'),
+	  "quota" => $quota,
+	  "fpx" => $fpx,
+	  "apop" => $apop,
+	  "shell" => $shell->obj('shell'),
+	  "admin" => $siteAdmin,
+	  "suspend" => 'f',
+	  "aliases" => $aliases,
+	  "forward" => $shell->obj('forward'),
+	  "vacation" => 'f',
+);
+
+my $res =  Cobalt::User::site_user_add($obj);
+unless($shell->obj('forward') eq 'f') {
+  Cobalt::List::alias_set($shell->obj('name'), $shell->obj('forward'));
+}
+if ($res) { print "$res\n"; }
+else {
+    print $shell->obj('name')." sucessfully created\n";
+}
+exit 0;

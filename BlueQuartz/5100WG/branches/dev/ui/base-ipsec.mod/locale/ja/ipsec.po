@@ -1,0 +1,378 @@
+msgid "ipsec"
+msgstr "Point-to-Point VPN"
+
+msgid "ipsec_help"
+msgstr "ここで [[base-ipsec.ipsec]] トンネルを設定することができます。  [[base-ipsec.ipsec]] により 2 台のマシン接続時にデータを暗号化することができます。"
+
+msgid "tunnelList"
+msgstr "トンネル一覧"
+
+msgid "addTunnel_help"
+msgstr "新しいトンネルを追加します。"
+
+msgid "localInfo"
+msgstr "ローカル情報を参照"
+
+msgid "localInfo_help"
+msgstr "ローカルマシンについての情報を参照します。  このデータは、リモート管理者がこのマシンに [[base-ipsec.ipsec]] 接続をセットアップする際に必要になります。"
+
+msgid "manageProfile"
+msgstr "接続プロファイルの管理"
+
+msgid "manageProfile_help"
+msgstr "ここで様々な接続プロファイルを管理することができます。 接続プロファイルは、他の [[base-ipsec.ipsec]] 実装ポイントに接続するのに必要な設定を示します。"
+
+msgid "ipsecInfo"
+msgstr "ローカルホスト情報"
+
+msgid "leftIpAddressField"
+msgstr "ローカル IP アドレス"
+
+msgid "leftIpAddressField_help"
+msgstr "[[base-ipsec.ipsec]] インターフェイスの IP アドレス"
+
+msgid "leftSubnetField"
+msgstr "ローカルサブネット"
+
+msgid "leftSubnetField_help"
+msgstr "サブネット（またはローカルネットワーク上の IP アドレス）と Qube のプライマリインターフェイスがオンになっています。"
+
+msgid "leftNetmaskField"
+msgstr "ローカルサブネットネットマスク"
+
+msgid "leftNetmaskField_help"
+msgstr "ネットマスクは現在プライマリインターフェイスに設定されています。"
+
+msgid "leftRsaKeyField"
+msgstr "ローカルホスト RSA 公開鍵"
+
+msgid "leftRsaKeyField_help"
+msgstr "Qube の現在の RSA 公開鍵"
+
+msgid "profileList"
+msgstr "プロファイル一覧"
+
+msgid "addProfile_help"
+msgstr "新しいプロファイルを追加します。"
+
+msgid "tname"
+msgstr "名前"
+
+msgid "tname_help"
+msgstr "これはトンネルの名前です。"
+
+msgid "pname"
+msgstr "名前"
+
+msgid "pname_help"
+msgstr "これはプロファイルの名前です。"
+
+msgid "status"
+msgstr "状態"
+
+msgid "status_help"
+msgstr "これはトンネルの状態です。"
+
+msgid "comment"
+msgstr "コメント"
+
+msgid "comment_help"
+msgstr "これはプロファイルを説明する短い文です。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "可能な操作"
+
+msgid "addNewProfile"
+msgstr "プロファイルの追加"
+
+msgid "nameField"
+msgstr "名前"
+
+msgid "nameField_help"
+msgstr "このプロファイルの名前を入力してください。"
+
+msgid "esp"
+msgstr "ESP"
+
+msgid "ah"
+msgstr "AH"
+
+msgid "authField"
+msgstr "認証プロトコル"
+ 
+msgid "authField_help"
+msgstr "認証は ESP 暗号化の一部として、または AH プロトコルを使用して個別に行われます。"
+ 
+msgid "pfsField"
+msgstr "PFS（Perfect Forward Security）"
+ 
+msgid "pfsField_help"
+msgstr "接続のキーイングチャネルでキーにPFSを使用すべきかどうか(PFSを使用すると、鍵交換プロトコルが透過的に置かれ、以前にネゴシエートされた鍵を損なうことがない)。"
+ 
+msgid "keylifeField"
+msgstr "鍵の有効期間"
+ 
+msgid "keylifeField_help"
+msgstr "特定の接続（ユーザパケットの暗号化/認証鍵のセット）が正常にネゴシエーションから失効するまでの継続期間を分単位で表します。"
+ 
+msgid "rekeymarginField"
+msgstr "再キーイング遅延"
+ 
+msgid "rekeymarginField_help"
+msgstr "接続が失効してから、どのくらいの時間が経ってから交換のネゴシエーション試行を開始するかを分単位で表します。     "
+ 
+msgid "rekeyfuzzField"
+msgstr "ランダム再キーイング遅延率"
+ 
+msgid "rekeyfuzzField_help"
+msgstr "再キーイングの遅延をランダムに増加させる最大レート（パーセントで指定）。再キーイングの間隔はこの範囲でランダム化されます。この設定は、多くの接続を処理するホストの場合に重要です。"
+ 
+msgid "keyingtriesField"
+msgstr "キーイング試行"
+ 
+msgid "keyingtriesField_help"
+msgstr "接続または交換のネゴシエーションを中止するまでに何回試行を行うかを整数で表します。中止しない場合は、値は 「0」 になります。"
+ 
+msgid "ikelifetimeField"
+msgstr "キーイングチャネルの有効期間"
+ 
+msgid "ikelifetimeField_help"
+msgstr "接続のキーイングチャネルが再ネゴシエートされるまでにどのくらいの間継続するかを分単位で表します。"
+ 
+msgid "commentsField"
+msgstr "コメント"
+ 
+msgid "commentsField_help"
+msgstr "このプロファイルを説明するコメント"
+
+msgid "addNewTunnel"
+msgstr "トンネルの追加" 
+ 
+msgid "tunnelEnabledField"
+msgstr "接続"
+ 
+msgid "tunnelEnabledField_help"
+msgstr "いつトンネルを確立させるか、またはいつトンネルを無効にするかを選択します。"
+ 
+msgid "tunnelNameField"
+msgstr "名前"
+ 
+msgid "tunnelNameField_help"
+msgstr "トンネルの名前を入力してください。"
+ 
+msgid "rightProfileField"
+msgstr "接続プロファイル"
+ 
+msgid "rightProfileField_help"
+msgstr "接続プロファイルを選択します。"
+ 
+msgid "rightField"
+msgstr "リモート [[base-ipsec.ipsec]] ホスト"
+ 
+msgid "rightField_help"
+msgstr "[[base-ipsec.ipsec]] トンネルのもう一端にあるマシンの IP アドレスを入力してください。"
+
+msgid "rightNextField"
+msgstr "リモートホストのゲートウェイ"
+ 
+msgid "rightNextField_help"
+msgstr "リモートマシンで使用されるゲートウェイを入力してください。"
+ 
+msgid "rightSubnetField"
+msgstr "リモートサブネット"
+ 
+msgid "rightSubnetField_help"
+msgstr "リモートマシンのサブネットを入力してください。"
+ 
+msgid "rightNetmaskField"
+msgstr "リモートネットマスク"
+ 
+msgid "rightNetmaskField_help"
+msgstr "リモートマシンのネットワークのネットマスクを入力してください。"
+ 
+msgid "tunnelCommentField"
+msgstr "コメント"
+ 
+msgid "tunnelCommentField_help"
+msgstr "このトンネルを説明するコメントを入力してください。"
+
+msgid "modProfile"
+msgstr "プロファイルの変更 -- [[VAR.name]]"
+
+msgid "modTunnel"
+msgstr "トンネルの変更 -- [[VAR.name]]"
+
+msgid "autoRsa"
+msgstr "RSA 認証による自動キーイング"
+
+msgid "autoSecret"
+msgstr "共有シークレットによる自動キーイング"
+
+msgid "manual"
+msgstr "手動キーイング"
+
+msgid "keyingField"
+msgstr "キーイングの種類"
+
+msgid "authPubKeyField"
+msgstr "リモート RSA 鍵"
+
+msgid "authSecretKeyField"
+msgstr "共有シークレット"
+
+msgid "authKeyField"
+msgstr "認証鍵"
+
+msgid "encKeyField"
+msgstr "暗号化鍵"
+
+msgid "valueField"
+msgstr "暗号化/認証スキーム"
+
+msgid "ahReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "espReplayField"
+msgstr "[[base-ipsec.replay_windowField]]"
+
+msgid "replay_windowField"
+msgstr "リプレイウィンドウ"
+
+msgid "manualSettings"
+msgstr "手動キーイングパラメータ"
+
+msgid "autoSettings"
+msgstr "自動キーイングパラメータ"
+
+msgid "enableAutoRsaField"
+msgstr "RSA 認証による自動キーイングを許可する"
+
+msgid "enableAutoRsaField_help"
+msgstr "このプロファイルを使用してトンネルが RSA 認証による自動キーイングを使用できるようにする場合は、このボックスをチェックします。"
+
+msgid "enableAutoSecretField"
+msgstr "共有シークレットによる自動キーイングを許可する"
+
+msgid "enableAutoSecretField_help"
+msgstr "このプロファイルを使用してトンネルが共有シークレットによる自動キーイングを使用できるようにする場合は、このボックスをチェックします。"
+
+msgid "enableManualField"
+msgstr "手動キーイングを許可する"
+
+msgid "enableManualField_help"
+msgstr "このプロファイルを使用してトンネルが手動キーイングを使用できるようにする場合は、このボックスをチェックします。"
+
+msgid "valueField_help"
+msgstr "暗号化および認証に使用するアルゴリズムを選択します。"
+
+msgid "replay_windowField_help"
+msgstr "リプレイウィンドウの長さを 0 から 64 の間の整数で入力します。0 はリプレイ保護がないという意味です。"
+
+msgid "ignore"
+msgstr "このトンネルを無効にする"
+
+msgid "start"
+msgstr "こちら側の接続を開始します"
+
+msgid "add"
+msgstr "もう一端の接続を開始します"
+
+msgid "spi"
+msgstr "SPI"
+
+msgid "spi_help"
+msgstr "このトンネルの SPI 番号  接続が確立するためには、両端の SPI 番号が一致しなければなりません。"
+
+msgid "keyingField_help"
+msgstr "この接続に使用するキーイングの種類を選択します。"
+
+msgid "authPubKeyField_help"
+msgstr "トンネルのもう一端にあるマシンの公開鍵を「0x」につながる 16 進数で入力します。"
+
+msgid "authSecretKeyField_help"
+msgstr "このマシンとトンネルのもう一端のマシン間で共有するシークレットを入力します。"
+
+msgid "authKeyField_help"
+msgstr "認証に使用する鍵を入力します。"
+
+msgid "encKeyField_help"
+msgstr "暗号化に使用する鍵を入力します。  認証のみのトンネルでは、このフィールドは空白にします。"
+
+msgid "establishedTunnels"
+msgstr "確立したトンネル： "
+
+msgid "nn"
+msgstr "Network から Network"
+
+msgid "hh"
+msgstr "Host から Host"
+
+msgid "hn"
+msgstr "Host から Network"
+
+msgid "nh"
+msgstr "Network から Host"
+
+msgid "tunnelProblem"
+msgstr "すべてのトンネルがダウンしているか、開始できません。"
+
+msgid "noConnections"
+msgstr "トンネルは使用可能ですが、接続が開始されていません。"
+
+msgid "missingTunnel"
+msgstr "[[base-ipsec.ipsec]] はこの項目に関連して複数のトンネルをロードしません。\n 設定を確認してください。"
+
+msgid "disabled"
+msgstr "無効化"
+
+msgid "invalidKeying"
+msgstr "[[VAR.keying]] は [[VAR.profile]] 接続プロファイルと共に使用することはできません。  別の接続プロファイルか別の種類の鍵を選択してください。"
+
+msgid "spiInUse"
+msgstr "指定した SPI は使用中です。  別の SPI を選択してください。"
+
+msgid "openKey"
+msgstr "鍵ウィンドウを開ける"
+
+msgid "openKey_help"
+msgstr "ここをクリックしてこの Qube の公開鍵を含む新しいウィンドを開きます。"
+
+msgid "IpsecKey"
+msgstr "ローカル RSA 鍵"
+
+msgid "IpsecKeyDescription"
+msgstr " "
+
+msgid "qube3desc"
+msgstr "このプロファイルを使用して別の Qube3 に接続します。"
+
+msgid "removeProfileConfirm"
+msgstr "プロファイル [[VAR.profileName]] を削除してもよろしいですか？"
+
+msgid "removeTunnelConfirm"
+msgstr "トンネル [[VAR.tunnelName]] を削除してもよろしいですか？"
+
+msgid "mustSelectKeying"
+msgstr "このプロファイルに対応するキーイングの種類を少なくとも 1 つは有効にする必要があります。"
+
+msgid "profileInUse"
+msgstr "このプロファイルは以下の動作中のトンネルに使用されています: [[VAR.list]]。このプロファイルを削除する前にリストされたトンネルのすべてのプロファイルを無効にする、削除する、あるいは変更してください。"
+
+msgid "autoSettings_help"
+msgstr "このプロファイルを使って自動的にキーイングされる接続の設定です。"
+
+msgid "manualSettings_help"
+msgstr "このプロファイルを使って手動でキーイングされる接続の設定です。"
+
+# Capabilities
+msgid "capgroup_adminIPSec"
+msgstr "[[base-ipsec.ipsec]] の管理"
+
+msgid "capgroup_adminIPSec_help"
+msgstr "この管理者権限を持つユーザは、[[base-ipsec.ipsec]] の全ての要素を設定できます。  これには [[base-ipsec.ipsec]] トンネルの追加、編集、および削除が含まれます。"
+
+msgid "capgroup_modifyIPSecTunnel"
+msgstr "ここにメッセージ"

@@ -1,0 +1,16 @@
+[Package -- Version=1.0]
+Vendor:                Cobalt
+VendorTag:             [[vendorTag]]
+Name:                  Manual[LOCALE]
+NameTag:               [[nameTag]]
+Location:              http://updates.cobalt.com/updates/Qube3/Qube3-[LOCALE]-Manual-[VERSION].pkg
+Version:               [VERSION]
+Product:               4...WG
+Product:               51..WG
+PackageType:           complete
+LongDesc:              [[longDesc]]
+ShortDesc:             [[shortDesc-[LOCALE]]]
+Copyright:             [[copyright]]
+Depend:                Cobalt:OS >= 6.2
+RPM: manual-[LOCALE]-[VERSION]-1.noarch.rpm
+[/Package]

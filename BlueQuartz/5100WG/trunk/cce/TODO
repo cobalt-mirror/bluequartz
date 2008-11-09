@@ -1,0 +1,91 @@
+TODO:
+----
+generic mechanism for SORTTYPE
+	<SORTTYPE name="EUC" type="extern" data="/bin/sort"/>
+provide a cce-config, like glib-config
+branch 1.0 tree
+better -nf handling
+what if we GET an object of invalid class
+what if we GET and illegal properties exist
+what if we put magic props in a schema??
+mem leaks
+try efence
+FIXMEs
+txn uses a hex representation of OID internally
+Load cobalt schemas first
+protect ODB files (umask!)
+Logging/debugging cleanup
+	Don't log Passwords/Authkeys (generic answer)
+codb cleanup - e.g.: 15 calls to impl_obj_exists() on a GET
+UI namespace
+RollBack
+Log all handlers that do not get run when there is a failure
+configuration file
+	session_timeout
+be more stringent (and correct) about doing session cleanup 
+	(instead of blocking accept(), use select(), run cleanups at timeout)
+
+
+WISHLIST:
+---------
+CSCP extension to get a single property of an oid
+CSCP extension to destroy multiple oids in one cmd
+CSCP extension to do generic 'find Object'
+CSCP: STRUCTURE(GETSCHEMA?) command
+CSCP: CLASSVER <class> command
+CSCP: handle all properties as "(namespace.)*propname"
+Fix classver for namespaces
+SCHEMA property: NOSAVE properties of classes
+store the reason CCE failed into CCEMSGFILE
+replace syslog() with sauslog()
+	start cced and fork a log handler thread
+	opensauslog(logname, idstr, log_stderr);
+		open(LOGDIR "/" logname ".log");
+	closesauslog();
+	sauslog(syslog_style_params);
+stacked codb
+	object cache layer:
+		accessed objects are put into an opaque structure
+			stored in codb
+		pointer to structure is used everywhere
+			changes to objs stored in each codb_handle
+		when refcount drops, codb frees object 
+			(no more getting hashes multiple times)
+parentage relationships
+inheritance
+indexing
+per-class default acls
+extensible security
+arbitrarily deep sub-namespaces
+appendable schemas
+typedefs that can reference other typedefs in 'data'
+classconf stored IN codb
+multi-admin security delegation (levels)
+move security out of ODB
+Shell, Python, awk, and tcl bindings for CCE
+no i18n in CCE or all i18n in CCE
+new CSCP warnings: 
+	3xx UNKNOWN PROPERTY (set/create only)
+	3xx INVALID DATATYPE (set/create) - maybe just log this?
+	cover each error case with a specific message or unify as much as
+		possible to minimal set of msgs
+put leading underscores on magic properties
+CSCP header: say how many handlers remain
+make $ style variables in CCE conf files ($SAUSALITO, for example)
+new basetype: enum
+make an allowable type (for property) be anon:(type definition)
+	anon:re:^foo$
+	anon:exec:/tmp/bar
+Prepend all non-global datatypes with _
+provide true local datatypes
+
+
+ODB TODO:
+--------
+trim leading 0's in list storing
+codb should rely on codb.oids when doing find ?
+get rid of _LISTS propfile
+change lists fn()s to indexes
+schema importer tool
+rename _SCALARS -> _PROPS
+fix make test

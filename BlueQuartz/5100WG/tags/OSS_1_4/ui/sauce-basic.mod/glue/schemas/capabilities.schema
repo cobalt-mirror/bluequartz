@@ -1,0 +1,103 @@
+<!-- Root Capabilities -->
+<class name="Capabilities" namespace="" version="1.0"/>
+
+<!-- Workgroup Capabilities -->
+
+<class name="Capabilities" namespace="createWorkgroup" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createWorkgroup)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_createWorkgroup]]"/>
+</class>
+
+<class name="Capabilities" namespace="destroyWorkgroup" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyWorkgroup)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_destroyWorkgroup]]"/>
+</class>
+
+<class name="Capabilities" namespace="modifyWorkgroup" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyWorkgroup)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_modifyWorkgroup]]"/>
+</class>
+
+<class name="Capabilities" namespace="modifyWorkgroupDefaults" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyWorkgroupDefaults)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_modifyWorkgroupDefaults]]"/>
+</class>
+
+
+<!-- User capabilities -->
+
+<class name="Capabilities" namespace="createUser" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createUser)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_createUser]]"/>
+</class>
+<class name="Capabilities" namespace="destroyUser" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyUser)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_destroyUser]]"/>
+</class>
+<class name="Capabilities" namespace="modifyUser" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyUser)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_modifyUser]]"/>
+</class>
+
+<class name="Capabilities" namespace="modifyUserDefaults" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyUserDefaults)"/>
+	<property name="nameTag" type="scalar" default="[[base-sauce-basic.cap_modifyUserDefaults]]"/>
+</class>
+
+<!-- Network Capabilities -->
+
+<class name="Capabilities" namespace="modifySystemNetwork" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifySystemNetwork)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_modifySystemNetwork]]"/>
+</class>
+
+<class name="Capabilities" namespace="createNetwork" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createNetwork)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_createNetwork]]"/>
+</class>
+<class name="Capabilities" namespace="destroyNetwork" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyNetwork)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_destroyNetwork]]"/>
+</class>
+<class name="Capabilities" namespace="modifyNetwork" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyNetwork)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_modifyNetwork]]"/>
+</class>
+
+
+<class name="Capabilities" namespace="createRoute" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createRoute)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_createRoute]]"/>
+</class>
+<class name="Capabilities" namespace="destroyRoute" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyRoute)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_destroyRoute]]"/>
+</class>
+<class name="Capabilities" namespace="modifyRoute" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyRoute)"/>
+	<property name="nameTag" type="scalar" default="[[base-network.cap_modifyRoute]]"/>
+</class>
+
+<!-- Power stuff -->
+<class name="Capabilities" namespace="modifySystemPower" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifySystemPower)"/>
+	<property name="nameTag" type="scalar" default="[[base-power.cap_modifySystemPower]]"/>
+</class>
+
+

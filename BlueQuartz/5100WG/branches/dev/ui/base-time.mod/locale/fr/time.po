@@ -1,0 +1,43 @@
+
+
+msgid "time"
+msgstr "Heure"
+
+msgid "timeSetting"
+msgstr "Paramètres horaires"
+
+msgid "time_help"
+msgstr "Les [[base-time.timeSetting]] peut être modifié ici."
+
+msgid "systemDisplayedDate"
+msgstr "Date"
+
+msgid "systemDisplayedDate_help"
+msgstr "Permet de définir la date actuelle."
+
+msgid "systemDisplayedTime"
+msgstr "Heure"
+
+msgid "systemDisplayedTime_help"
+msgstr "Permet de définir l'heure actuelle."
+
+msgid "systemDisplayedTimeZone"
+msgstr "Zone horaire"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Permet de définir la zone horaire de ce serveur."
+
+msgid "ntpAddress"
+msgstr "Adresse du serveur NTP"
+
+msgid "ntpDefaultServer"
+msgstr "clock.isc.org"
+
+msgid "ntpAddress_help"
+msgstr "Entrez l'adresse réseau ou le nom complet (FQDN) d'un serveur NTP (Network Time Protocol) avec lequel la date et l'heure système seront périodiquement synchronisées. [[base-time.ntpDefaultServer]] est un exemple de serveur NTP disponible. Vous trouverez une liste d'autres serveurs NTP publiquement disponibles à http://www.eecis.udel.edu/~mills/ntp/servers.htm."
+msgid "capgroup_adminTime_help"
+msgstr "Ce droit administratif permet à un utilisateur de définir l'heure et le fuseau horaire du système"
+
+msgid "capgroup_adminTime"
+msgstr "Gérer l'heure système"
+

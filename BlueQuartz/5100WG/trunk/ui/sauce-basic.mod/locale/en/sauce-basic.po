@@ -1,0 +1,70 @@
+# Global tech support strings
+
+	# NOTE: In Europe, the Middle East and Africa, call +31 71 565 7070 support-emea@cobalt.com.
+	# In Japan, send email to support-japan@cobalt.com.
+msgid "techSupportUSPhone"
+msgstr "(888) 702-6225"
+
+msgid "techSupportIntlPhone"
+msgstr "1 (650) 623-2679"
+
+msgid "techSupportEmail"
+msgstr "support@cobalt.com"
+	
+	# This should work for at least USA and Canada
+msgid "contactTechSupport"
+msgstr "Please contact [[base-carmel.osVendor]] technical support by phone at [[base-sauce-basic.techSupportUSPhone]]  ([[base-sauce-basic.techSupportIntlPhone]] outside the U.S.A.) or by email at [[base-sauce-basic.techSupportEmail]]."
+
+
+msgid "kill_dhclient_failed"
+msgstr "Unable to make sure dhclient has stopped running."
+
+msgid "gateway-not-reachable"
+msgstr "The specified gateway could not be reached.  Please check to make certain that your gateway is within a reachable sub-network.  You might also want to check your Direct Routing rules."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Sorry, this route could not be added to the routing table.  The gateway ([[VAR.gateway]]) cannot lie within the target subnet ([[VAR.target]])."
+
+msgid "invalid-route"
+msgstr "Sorry, this route could not be added to the routing table.  It is possible that the specified gateway is unreachable."
+
+msgid "disable-interface-first"
+msgstr "Sorry, you can not remove settings for an enabled network interface.  Please disable the interface before you attempt to remove the settings."
+
+msgid "Invalid-object"
+msgstr "Internal error: Attempted to delete an invalid object.  [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Sorry, an error occured. The user [[VAR.name]] has already been deleted."
+
+msgid "failed-to-add-user"
+msgstr "Internal error: Could not create new user $name.  [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "Sorry, the specified value for quota is too large.  The maximum allowed disk quota is [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "Sorry, the specified host name is too long.  The maximum length of a host name is 40 characters."
+
+msgid "descReadOnly"
+msgstr "The user description is read-only."
+
+# Capabilities
+msgid "capgroup_adminUser"
+msgstr "Manage Users"
+
+msgid "capgroup_adminUser_help"
+msgstr "This administrative right allows a user to create, destroy and modify other users on this machine"
+
+msgid "capgroup_adminUserGroupMailingList"
+msgstr "Manage Users and Groups"
+
+msgid "capgroup_adminUserGroupMailingList_help"
+msgstr "This administrative right allows a user to create, destroy and modify other users and groups on this machine"
+
+# capabilities errors
+msgid "permsNotAvailable"
+msgstr "You must have these capabilities to set them on another user (are you logged in as 'admin'?"
+
+msgid "needPermToRemovePerm"
+msgstr "You must have this capability in order to remove it from another user"

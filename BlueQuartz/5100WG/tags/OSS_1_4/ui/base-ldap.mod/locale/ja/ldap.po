@@ -1,0 +1,225 @@
+#
+# This files is for LDAP Export and Import, but does not include File Import
+#
+
+# Base strings
+
+msgid "ldapName"
+msgstr "LDAP"
+
+#item for import method drop-down
+msgid "importChangerLdap"
+msgstr "[[base-ldap.ldapName]] によるインポート"
+
+
+#----- Menu
+
+# AKA Ldap Export :
+msgid "export"
+msgstr "LDAP ディレクトリ"
+
+
+# ---- LDAP directory/export page
+
+msgid "ldapExport"
+msgstr "[[base-ldap.ldapName]] ディレクトリ"
+
+msgid "ldapExportDescription"
+msgstr "[[base-ldap.ldapName]] サービスの提供するユーザディレクトリを設定できます。"
+
+msgid "exportEnabled"
+msgstr "LDAP サービスを有効にする"
+
+msgid "exportEnabled_help"
+msgstr "このボックスをチェックすると、[[base-ldap.ldapName]]（Lightweight Directory Access Protocol）サービスが有効になります。LDAP を利用すると、一般ユーザは標準的な LDAP クライアントを使って、このサーバ上のユーザの電子メールアドレスなどの情報を入手できます。"
+
+msgid "baseDn"
+msgstr "ベース DN"
+
+msgid "baseDn_rule"
+msgstr "（指定例： co=My Organization, c=US）"
+
+msgid "baseDn_help"
+msgstr "ユーザディレクトリのベース DN（Distinguished Name）を指定してください。[[base-ldap.baseDn_rule]]"
+
+msgid "baseDn_empty"
+msgstr "[[base-ldap.baseDn]] が指定されていません。[[base-ldap.baseDn_rule]]"
+
+msgid "emailBase"
+msgstr "電子メールのドメインネーム"
+
+msgid "emailBase_help"
+msgstr "ディレクトリにエクスポートする電子メールアドレスに使われるドメインネームの別名を入力してください。例えば、このサーバのホスト名が mail.company.com で、@company.com 宛のメールを受信している場合には、電子メールのドメインネームとして company.com を指定するようお勧めします。それにより、ディレクトリ中の電子メールアドレスを、user@mail.company.com ではなく、user@company.com の形式にできます。"
+
+msgid "emailBase_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-ldap.emailBase]] には指定できません。ホスト名またはドメインネームを正しい形式で入力してください。"
+
+
+# ------ LDAP Import section 
+
+msgid "ldapImport"
+msgstr "[[base-ldap.ldapName]] インポート"
+
+msgid "import"
+msgstr "インポートする"
+
+msgid "import_help"
+msgstr "[[base-ldap.ldapName]] サーバを指定してからこのボタンをクリックすると、ユーザのインポートが開始されます。"
+
+msgid "server"
+msgstr "サーバのネットワークアドレス"
+
+msgid "server_help"
+msgstr "ユーザをインポートするサーバの IP アドレスまたはホスト名を指定してください。[[base-ldap.server_rule]]"
+
+msgid "server_rule"
+msgstr "指定例： cobalt.com、192.168.10.23 など" 
+
+msgid "server_empty"
+msgstr "[[base-ldap.server]] を指定してください。"
+
+msgid "server_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-ldap.server]] には指定できません。ホスト名またはIPアドレスを正しい形式で入力してください。[[base-ldap.server_rule]]"
+
+msgid "base"
+msgstr "ベース DN"
+
+msgid "base_help"
+msgstr "インポートする LDAP エントリのベース DN（Distinguished Name）を指定してください。"
+
+msgid "base_empty"
+msgstr "[[base-ldap.base]] を指定してください。"
+
+msgid "bindDn"
+msgstr "バインド DN"
+
+msgid "bindDn_help"
+msgstr "LDAP サーバに含まれる admin ユーザのバインド DN (Distinguished Name) を入力してください。この値は、パスワードと共に、インポートするユーザ情報の認証と取得に必要です。（指定例： cn=myname, C=US）"
+
+msgid "bindDn_rule"
+msgstr "バインド DN を正しい形式で入力してください。（指定例： cn=myname, C=US）"
+
+msgid "bindDn_empty"
+msgstr "[[base-ldap.bindDn]]を指定してください。[[base-ldap.bindDn_rule]]"
+
+msgid "passwordAuth"
+msgstr "パスワード"
+
+msgid "passwordAuth_help"
+msgstr "バインド DN のパスワードを入力してください。"
+
+msgid "passwordAuth_empty"
+msgstr "[[base-ldap.passwordAuth]]を指定してください。"
+
+msgid "passwordAuth_invalid"
+msgstr "パスワードが一致しません。入力ミスを防ぐため、同じパスワードを２回入力してください。パスワードを入力し、[インポートする] ボタンを再度クリックしてください。"
+
+msgid "userFilter"
+msgstr "ユーザ用フィルタ"
+
+msgid "userFilter_help"
+msgstr "ユーザとしてインポートしたいオブジェクトクラスを選別するためのフィルタを指定できます。省略すると、(|(objectClass=cobaltAccount)(objectClass=posixAccount))  という値がデフォルトで使われます。"
+
+msgid "groupFilter"
+msgstr "グループ用フィルタ"
+
+msgid "groupFilter_help"
+msgstr "グループとしてインポートしたいオブジェクトクラスを選別するためのフィルタを指定できます。省略すると、(|(objectClass=cobaltGroup)(objectClass=posixGroup))  という値がデフォルトで使われます。"
+
+
+
+# ------ Import Error msgs
+
+msgid "couldnt_connect_to_ldap_server"
+msgstr "[[VAR.server]] というLDAPサーバに接続できませんでした。設定を確認して、もう一度お試しください。"
+
+msgid "couldnt_bind_to_ldap_server"
+msgstr "指定された LDAP サーバへのバインド中にエラーが発生しました。設定を確認して、もう一度お試しください。"
+
+msgid "couldnt_search"
+msgstr "検索中に次のエラーが発生しました： [[VAR.error]]"
+
+msgid "couldnt_fetch_system_object"
+msgstr "システムオブジェクトのフェッチ中にエラーが発生しました。"
+
+msgid "problems_occured_with_entry"
+msgstr "[[VAR.entry]] インポート中に次の問題が発生しました： [[VAR.err]]"
+
+
+
+msgid "importErrors"
+msgstr "インポートエラー"
+
+msgid "errorMessage"
+msgstr "エラーメッセージ"
+
+msgid "errorMessage_help"
+msgstr "LDAP インポート中に発生したエラーのリストです。"
+
+msgid "errorCountSingular"
+msgstr "エラー数: [[VAR.count]]"
+
+msgid "errorCountPlural"
+msgstr "エラー数: [[VAR.count]]"
+
+msgid "importStatus"
+msgstr "インポートの状態"
+
+msgid "statusField"
+msgstr "状態"
+
+msgid "statusField_help"
+msgstr "インポートの状態です。"
+
+msgid "addingGroup"
+msgstr "グループを追加しています"
+
+msgid "addingUser"
+msgstr "ユーザを追加しています"
+
+msgid "progressField"
+msgstr "進行状況"
+
+msgid "progressField_help"
+msgstr "インポートの進行状況です。"
+
+msgid "importSucceeded"
+msgstr "インポートが完了しました"
+
+msgid "importSucceededMessage"
+msgstr "インポートに成功しました"
+
+msgid "importSucceededMessage_help"
+msgstr "インポート中にエラーは発生しませんでした。"
+
+msgid "queryingLdap"
+msgstr "詳細について LDAP サーバに問い合わせ中です。"
+
+
+msgid "cannotEditBlock"
+msgstr "設定ファイルの再書込み中にエラーが発生しました。"
+
+msgid "cannotLinkLdap"
+msgstr "init-scripts のリンク時にエラーが発生しました。"
+
+msgid "cannotStartLdap"
+msgstr "LDAP の起動中にエラーが発生しました。"
+
+msgid "cannotRestartLdap"
+msgstr "LDAP サービスの再起動中にエラーが発生しました。"
+
+msgid "cannotRemoveLink"
+msgstr "init-scripts のリンク削除中にエラーが発生しました。"
+
+msgid "cannotStopLdap"
+msgstr "LDAP サービスの停止中にエラーが発生しました。"
+
+msgid "logFilename"
+msgstr "[[VAR.filename]]"
+
+# Cpaabilities
+msgid "capgroup_adminLdapExport"
+msgstr "LDAP ディレクトリの管理"
+
+msgid "capgroup_adminLdapExport_help"
+msgstr "この管理権限を持つユーザは、LDAP ディレクトリが使用する設定を変更できます。"

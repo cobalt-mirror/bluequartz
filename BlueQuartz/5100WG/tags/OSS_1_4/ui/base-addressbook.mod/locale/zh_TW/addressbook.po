@@ -1,0 +1,347 @@
+msgid "addressbook"
+msgstr "通訊錄"
+
+msgid "addressbookDescription"
+msgstr "[[base-addressbook.addressbook]]可讓您存取此伺服器上其他使用者的聯絡資訊，並可讓您維護您自己的私人通訊錄。"
+
+# -------- Public Address Book (aka common)
+
+msgid "addressbookcommon"
+msgstr "使用者"
+
+msgid "addressbookcommonDescription"
+msgstr "按一下此處，可存取此伺服器上其他使用者的聯絡資訊。"
+
+msgid "addressbookCommon"
+msgstr "使用者通訊錄"
+
+msgid "addressbookCommonView"
+msgstr "檢視聯絡資訊"
+
+
+# -------- Private Address Book
+
+msgid "addressbookprivate"
+msgstr "個人"
+
+msgid "addressbookprivateDescription"
+msgstr "按一下此處，可新增或編輯您[[base-addressbook.addressbookPrivate]]中的項目。"
+
+
+msgid "addressbookPrivate"
+msgstr "個人通訊錄"
+
+msgid "addressbookPrivateAdd"
+msgstr "新增聯絡人"
+
+msgid "addressbookPrivateModify"
+msgstr "修改聯絡人"
+
+
+# -------- Common Strings
+
+msgid "fullname"
+msgstr "完整名稱"
+
+msgid "fullname_rule"
+msgstr "請輸入冒號以外的任何字元。例如，John Doe 就是一個有效的字元。"
+
+msgid "fullname_help"
+msgstr "這裡顯示聯絡人的完整名稱。"
+
+msgid "username"
+msgstr "使用者名稱"
+
+msgid "username_help"
+msgstr "這裡顯示聯絡人的使用者名稱。"
+
+msgid "email"
+msgstr "電子郵件位址"
+
+msgid "email_rule"
+msgstr "請輸入一個格式化的電子郵件位址，例如，user@cobalt.com 就是一個有效的位址。"
+
+msgid "email_help"
+msgstr "這裡顯示聯絡人的電子郵件位址。"
+
+msgid "userdesc"
+msgstr "備註"
+
+msgid "userdesc_help"
+msgstr "這裡顯示關於聯絡人的其餘資訊。"
+
+# --------- Action icons
+msgid "view"
+msgstr "明細"
+
+msgid "view_help"
+msgstr "按一下此處，可檢視這位聯絡人的聯絡資訊。"
+
+msgid "mail"
+msgstr "郵件"
+
+msgid "mail_help"
+msgstr "按一下此處，可傳送電子郵件給這位聯絡人。"
+
+msgid "web"
+msgstr "Web"
+
+msgid "web_help"
+msgstr "按一下此處，可瀏覽這位使用者的網頁。"
+
+msgid "listAction"
+msgstr "動作"
+
+# re-used for action columns with different actions, so be generic
+msgid "listAction_help"
+msgstr "按一下此圖示，可對該項目執行動作。"
+
+
+# ------- View Contact Info (Public)
+
+msgid "phone"
+msgstr "電話號碼"
+
+msgid "phone_help"
+msgstr "這裡顯示聯絡人的電話號碼。"
+
+msgid "fax"
+msgstr "傳真號碼"
+
+msgid "fax_help"
+msgstr "這是聯絡人的傳真號碼。"
+
+msgid "homeUrl"
+msgstr "網頁位址"
+
+msgid "homeUrl_help"
+msgstr "這是聯絡人之網頁的 URL。"
+
+msgid "address"
+msgstr "住址"
+
+msgid "address_help"
+msgstr "這是聯絡人的住址。"
+
+
+# -------- Add/Modify Private Contact
+
+msgid "enterFullname"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "enterFullname_help"
+msgstr "請輸入這位聯絡人的完整名稱。 [[base-addressbook.fullname_rule]]"
+
+msgid "enterEmail"
+msgstr "[[base-addressbook.email]]"
+
+msgid "enterEmail_help"
+msgstr "請輸入這位聯絡人的電子郵件位址。 [[base-addressbook.email_rule]]"
+
+msgid "enterPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "enterPhone_help"
+msgstr "請輸入這位聯絡人的電話號碼。"
+
+msgid "enterFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "enterFax_help"
+msgstr "請輸入這位聯絡人的傳真號碼。"
+
+msgid "enterHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "enterHomeUrl_help"
+msgstr "請輸入這位聯絡人之網頁的 URL，例如，'http://www.myserver.com/~mycontact/' 就是一個有效的 URL。"
+
+msgid "enterAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "enterAddress_help"
+msgstr "請輸入這位聯絡人的住址。"
+
+msgid "enterRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "enterRemarks_help"
+msgstr "請輸入這位聯絡人的其餘資訊，如附註或說明。"
+
+msgid "removeAddressbookPrivateConfirm"
+msgstr "您確定要移除聯絡人 [[VAR.fullname]] 嗎。"
+
+
+
+# ------ Groups
+
+msgid "addressbookgroups"
+msgstr "群組"
+
+msgid "addressbookgroupsDescription"
+msgstr "按一下此處，可檢視此伺服器上之群組的列示。"
+
+msgid "addressbookgroupsScrollList"
+msgstr "群組列示"
+
+msgid "groupname"
+msgstr "名稱"
+
+msgid "groupname_help"
+msgstr "這裡顯示群組的名稱。"
+
+msgid "groupmembers"
+msgstr "成員"
+
+msgid "groupmembers_help"
+msgstr "這裡列出屬於該群組的成員。"
+
+msgid "groupactions"
+msgstr "動作"  
+
+msgid "groupactions_help"
+msgstr "這些是您可對這些群組執行的動作。"
+
+msgid "groupCountSingular"
+msgstr "[[VAR.count]] 群組"
+
+msgid "groupCountPlural"
+msgstr "[[VAR.count]] 群組"
+
+msgid "groupdesc"
+msgstr "備註"
+
+msgid "groupdesc_help"
+msgstr "這個選項提供每一個群組的其餘資訊。"
+
+msgid "groupMail"
+msgstr "郵件"
+
+msgid "groupMail_help"
+msgstr "按一下此處，可傳送電子郵件給這個群組。"
+
+msgid "groupWeb"
+msgstr "Web"
+
+msgid "groupWeb_help"
+msgstr "按一下此處，可瀏覽這個群組的網頁。"
+
+
+
+# -------- Get address from webmail
+
+msgid "addressbookimport"
+msgstr "通訊錄匯入"
+
+msgid "addressbookimportDescription"
+msgstr "選取位址"
+
+msgid "addressesSelect"
+msgstr "選取"
+
+msgid "addressesSelect_help"
+msgstr "請選取您要將這封電子郵件傳送到的聯絡人。"
+
+msgid "addressesSelectButton"
+msgstr "選取"
+
+msgid "addressesSelectButton_help"
+msgstr "按一下此處，可匯入目前選定之聯絡人的電子郵件位址。"
+
+msgid "addressesFullName"
+msgstr "完整名稱"
+
+msgid "addressesFullName_help"
+msgstr "[[base-addressbook.fullname]]"
+
+msgid "addressesEmail"
+msgstr "電子郵件位址"
+
+msgid "addressesEmail_help"
+msgstr "[[base-addressbook.email]]"
+
+msgid "singleEmailEmptyMessage"
+msgstr "很抱歉，聯絡人：'[[VAR.name]]' 沒有電子郵件位址。"
+
+msgid "pluralEmailEmptyMessage"
+msgstr "很抱歉，聯絡人：'[[VAR.names]]' 沒有電子郵件位址。"
+
+msgid "groupEmailFormat"
+msgstr "群組 '[[VAR.name]]' <[[VAR.email]]>"
+
+msgid "addressbookprivate_help"
+msgstr "按一下此處，可從您的個人通訊錄匯入電子郵件位址。"
+
+msgid "addressbookcommon_help"
+msgstr "按一下此處，可匯入此伺服器設備之其他使用者的電子郵件位址。"
+
+# -------- Internal, extra stuff
+
+msgid "ellipses"
+msgstr "..."
+
+msgid "errorPrivateGetAll"
+msgstr "很抱歉，在讀取您的私人通訊錄時發生錯誤。"
+
+msgid "errorPrivateModify"
+msgstr "很抱歉，在修改通訊錄項目時發生錯誤。"
+
+msgid "errorPrivateAdd"
+msgstr "很抱歉，在新增項目至您的私人通訊錄時發生錯誤。"
+
+msgid "errorPrivateDrop"
+msgstr "很抱歉，在從您的私人通訊錄中刪除項目時發生錯誤。"
+
+msgid "errorPersonalGet"
+msgstr "很抱歉，在嘗試取得您的個人資訊時發生錯誤。"
+
+
+
+# --------- Personal Profile stuff
+
+msgid "addressbookPersonal"
+msgstr "個人資訊"
+
+msgid "addressbookPersonalDescription"
+msgstr "按一下此處以管理您的個人聯絡資訊。"
+
+msgid "addressbookPersonalBlock"
+msgstr "個人資訊設定 - [[VAR.name]]"
+
+msgid "persHomeUrl"
+msgstr "[[base-addressbook.homeUrl]]"
+
+msgid "persHomeUrl_help"
+msgstr "請輸入您網頁的 URL，例如，http://www.myserver.com/~mycontact/ 就是一個有效的 URL。"
+
+msgid "persPhone"
+msgstr "[[base-addressbook.phone]]"
+
+msgid "persPhone_help"
+msgstr "請輸入您的電話號碼。"
+
+msgid "persFax"
+msgstr "[[base-addressbook.fax]]"
+
+msgid "persFax_help"
+msgstr "請輸入您的傳真號碼。"
+
+msgid "persAddress"
+msgstr "[[base-addressbook.address]]"
+
+msgid "persAddress_help"
+msgstr "請輸入您的住址。"
+
+msgid "persRemarks"
+msgstr "[[base-addressbook.userdesc]]"
+
+msgid "persRemarks_help"
+msgstr "請輸入其餘資訊，如附註或說明。"
+
+
+# ---------- POSSIBLY HOMELESS ----------
+
+msgid "addresses"
+msgstr "住址"
+
+

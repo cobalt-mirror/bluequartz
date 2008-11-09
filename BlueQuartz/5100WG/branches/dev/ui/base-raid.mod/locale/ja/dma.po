@@ -1,0 +1,20 @@
+msgid "DMAnameTag"
+msgstr "DMA (Direct Memory Access) ドライブの状態"
+
+msgid "dma_fixed_drives"
+msgstr "以下のドライブの DMA は無効にされていました: [[VAR.drives]]。アクティブモニタはこれらのドライブを有効にしました。引き続き DMA に問題が発生する場合には、DMA の問題が発生しているドライブのバックアップと交換について、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "dma_off_drives"
+msgstr "以下のドライブの DMA は無効にされています: [[VAR.drives]]。アクティブモニタはこれらのドライブを有効にできませんでした。DMA の障害が発生しているドライブのバックアップと交換について、[[base-sauce-basic.techSupportURL]] をご参照ください。" 
+
+msgid "dma_ok"
+msgstr "DMA は正常に動作しています。"
+msgid "dma_off"
+msgstr "このドライブの DMA は有効にされていません。DMA の障害が発生しているドライブのバックアップと交換について、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "disk_dma_fixed"
+msgstr "このドライブの DMA は無効にされていましたが、アクティブモニタが DMA を有効にしました。引き続き DMA に問題が発生する場合には、DMA の問題が発生しているドライブのバックアップと交換について、[[base-sauce-basic.techSupportURL]] をご参照ください。"
+
+msgid "disk_dma_off"
+msgstr "このドライブの DMA は有効にされておらず、アクティブモニタも DMA を有効にできませんでした。ドライブのバックアップと交換について、[[base-sauce-basic.techSupportURL]] をご参照ください。" 
+

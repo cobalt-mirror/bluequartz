@@ -1,0 +1,64 @@
+<?php
+// $Id: 5_ApacheBandwidth.php.modifyWeb.Vsite 752 2006-05-02 17:41:01Z shibuya $
+//
+
+include('UIExtension.php');
+
+class ApacheBandwidthExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$cce = $ServerScriptHelper->getCceClient();
+
+		// will assume the container is a PagedBlock for the time being
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-apache-bandwidth");
+
+		$feature = $cce->get($parameters['CCE_OID'], 'ApacheBandwidth');
+
+                $user =& $cce->get($cce->whoami());
+                $caps = $cce->scalar_to_array($user['capLevels']);
+                if ($user['systemAdministrator'] || in_array('adminUser', $caps)) {
+		    $bandSpeed =& $factory->getInteger("ApacheBandwidthSpeed",
+							$feature["speed"], 10, "", $parameters['FIELD_ACCESS']);
+
+		    $bandToggle =& $factory->getMultiChoice('ApacheBandwidth_enabled');
+		    $enable =& $factory->getOption('enable', $feature['enabled'], $parameters['FIELD_ACCESS']);
+		    $enable->setLabel($factory->getLabel('enable', false));
+		    $enable->addFormField($bandSpeed, $factory->getLabel("bandSpeed"), $page_id);
+		    $bandToggle->addOption($enable);
+
+		    $container->addFormField(
+				$bandToggle,
+				$factory->getLabel('ApacheBandwidth'),
+				$page_id
+		    );
+		} else {
+		    if (!$feature['enabled'])
+			return;
+		    $bandSpeed =& $factory->getInteger("ApacheBandwidthSpeed",
+							$feature["speed"], 10, "",  $parameters['FIELD_ACCESS']);
+
+		    $container->addFormField(
+				$bandSpeed,
+				$factory->getLabel('ApacheBandwidth'),
+				$page_id
+		    );
+		}
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+	    global $ApacheBandwidth_enabled, $ApacheBandwidthSpeed;
+
+	    if (isset($ApacheBandwidth_enabled))
+		$settings['enabled'] = ($ApacheBandwidth_enabled ? 1 : 0);
+
+	    $settings['speed'] = $ApacheBandwidthSpeed;
+	    $cce = $ServerScriptHelper->getCceClient();
+
+	    $cce->set($parameters['CCE_OID'], 'ApacheBandwidth', $settings);
+	    $errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

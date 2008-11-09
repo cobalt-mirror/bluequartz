@@ -1,0 +1,111 @@
+#!/usr/bin/perl
+# $Id: cmuExport 930 2004-04-13 22:28:12Z anders $
+# Cobalt Networks, Inc http://www.cobalt.com
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+use strict;
+
+use lib "/usr/cmu/perl";
+
+require CmuCfg;
+my $cfg = CmuCfg->new(type => 'export');
+$cfg->readConf();
+$cfg->parseOpts();
+
+$| = 1;
+
+use IPC::Open3;
+use Global;
+use TreeXml;
+
+my $fqdn = `uname -n`;
+chomp($fqdn);
+
+my $cobaltBase = {};
+my $appConf = $cfg->{appConf};
+TreeXml::addNode('cobaltBase', $cfg->{glbConf}, $cobaltBase);
+
+
+my $build = Global::getBuild();
+if(defined $validExport->{$build}) {
+	$cfg->putGlb('currentOS', $build);	
+} else { die "Cannot export on a $build\n" }
+
+
+print "LogFile location is ", $cfg->glb('logFile'), "\n";
+cmuLog("INFO", "$0 running on $fqdn\n");
+cmuLog("INFO", "$0 started on ".localtime()."\n");
+cmuLog("INFO", "$0 running version: $VERSION\n");
+
+# Parse the directory arg
+if($cfg->isDestDir) { 
+	$cfg->putDestDir(Global::parseD($cfg->destDir));
+} else {
+	$cfg->putDestDir(Global::parseD($cfg->glb('cmuDir')."/".$fqdn));
+}
+cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
+
+# parse the list, vsites or groups
+if($cfg->isGlb('subsetNames')) {
+	$cfg->parseNames('subsetNames');
+}
+
+#########################
+# Start the export 
+# Run the prebuild stuff
+preBuild($cfg);
+
+my $pid;
+my $scanOutCmd = $cfg->lib('scanout');
+if(! -x $scanOutCmd) {
+	cmuLog("ERROR", "scanout command is not executable $scanOutCmd\n");
+	exit 1;
+}
+# execute cobaltBase scanout function
+if($pid = open3(*WR, *RE, *ER, $scanOutCmd)) {
+    print WR TreeXml::writeXml($cobaltBase);
+    close(WR);
+    close(RE);
+	while(my $line = <ER>) { cmuLog("Scanout", $line); }
+    close(ER);
+	waitpid($pid,0);
+}
+
+# Run the third party exports
+foreach my $app (keys %{ $appConf }) {
+	$scanOutCmd = $appConf->{$app}->{configData}->{libs}->{scanout};
+	if(-x $scanOutCmd) {
+		my $cfg_pass = $cfg->destDir.'/config.xml.'.$$;
+		open(FH, ">$cfg_pass") || cmuLog("Could not open $cfg_pass\n");
+		print FH TreeXml::writeXml($cobaltBase);
+		close(FH);
+		$scanOutCmd .= " ".$cfg->destDir." ".$cfg_pass;
+		qx/$scanOutCmd/;
+	} else { warn "$app scanout command is not executable: $scanOutCmd\n" }
+}
+
+postBuild($cfg);
+exit 0;
+
+sub preBuild
+# removes and/or creates the dest directory
+{
+	my $cfg = shift;
+	my $destDir = $cfg->destDir;
+	if(-d $destDir) {
+		system("/bin/rm -rf $destDir");
+	}
+	system("/bin/mkdir -p $destDir");
+	chmod(0750, $destDir);
+	my $chownCmd = "/bin/chown -R ".$cfg->cmuUser.".".$cfg->cmuGroup." ".$destDir;
+	qx/$chownCmd/;
+	return;
+}
+
+sub postBuild
+{
+	my $cfg = shift;
+	my $chmodCmd = "/usr/bin/find ".$cfg->destDir." -type f | xargs chmod 640";
+	qx/$chmodCmd/;
+	cmuLog("INFO", "$0 completed at ".localtime()."\n");
+	return;
+}

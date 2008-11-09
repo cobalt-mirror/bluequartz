@@ -1,0 +1,150 @@
+# Menu
+
+msgid "diskUsage"
+msgstr "磁碟"
+
+msgid "diskUsageMenuDesc"
+msgstr "此處可檢視磁碟用量統計值。"
+
+# Disk Usage Summary
+
+msgid "diskQuotaStats"
+msgstr "磁碟用量"
+
+msgid "diskUsageSummary"
+msgstr "磁碟用量 - 摘要"
+
+msgid "userQuotas"
+msgstr "磁碟用量 - 使用者"
+
+msgid "groupQuotas"
+msgstr "磁碟用量 - 群組"
+
+msgid "selectUsage"
+msgstr "選取用量..."
+
+msgid "usageSummary"
+msgstr "摘要"
+
+msgid "usageUser"
+msgstr "使用者"
+
+msgid "usageGroup"
+msgstr "群組"
+
+msgid "lastCollectionDate"
+msgstr "前次檢查的用量"
+
+msgid "lastCollectionDate_help"
+msgstr "這是前次產生的磁碟用量統計值。"
+
+msgid "notRunYet"
+msgstr "尚未產生磁碟用量統計值。"
+
+msgid "updateNow"
+msgstr "立即檢查用量"
+
+msgid "updateNow_help"
+msgstr "按一下此處，可立即更新磁碟用量資訊；可能會費時數分鐘才能產生統計值。"
+
+msgid "askUpdateNowConfirmation"
+msgstr "您確定要立即檢查磁碟用量嗎？這項作業可能要花費數分鐘。"
+
+# Summary
+
+msgid "partition"
+msgstr "分割區"
+
+msgid "partition_help"
+msgstr "這裡顯示檔案系統分割區的名稱，以及該分割區的用途。"
+
+msgid "usedSpace"
+msgstr "已使用的 (MB)"
+
+msgid "usedSpace_help"
+msgstr "這是檔案系統分割區上已使用的空間量（以百萬位元組為單位）。"
+
+msgid "available"
+msgstr "可用的 (MB)"
+
+msgid "available_help"
+msgstr "這是檔案系統分割區上可用的空間量（以百萬位元組為單位）。"
+
+msgid "totalSpace"
+msgstr "總計 (MB)"
+
+msgid "totalSpace_help"
+msgstr "這是對檔案系統分割區所配置的空間量（以百萬位元組為單位）。"
+
+msgid "pct"
+msgstr "已使用的百分比"
+
+msgid "pct_help"
+msgstr "這是全部可用或已配置的磁碟空間中已使用的百分比。"
+
+msgid "rootFiles"
+msgstr "系統檔 - Root 分割區 (/)"
+
+msgid "varFiles"
+msgstr "系統檔 - Var 分割區 (/var)"
+
+msgid "userFiles"
+msgstr "使用者和群組檔案 - 起始分割區 (/home)"
+
+msgid "totals"
+msgstr "所有分割區"
+
+
+# Users
+
+msgid "user"
+msgstr "使用者名稱"
+
+msgid "user_help"
+msgstr "這是適用此一使用者的磁碟用量資訊。"
+
+msgid "blocks"
+msgstr "已使用的 (MB)"
+
+msgid "blocks_help"
+msgstr "這是目前正在使用的空間量（以百萬位元組為單位）。"
+
+msgid "quota"
+msgstr "允許的 (MB)"
+
+msgid "quota_help"
+msgstr "這是所容許的最大磁碟空間（以百萬位元組為單位）。"
+
+msgid "allUsers"
+msgstr "所有使用者"
+
+# Groups
+
+msgid "group"
+msgstr "群組名稱"
+
+msgid "group_help"
+msgstr "這是適用此一群組的磁碟用量資訊。"
+
+msgid "allGroups"
+msgstr "所有群組"
+
+msgid "mailQuotaUserSubject"
+msgstr "使用者磁碟用量警告"
+
+msgid "mailQuotaUserBody"
+msgstr "警告：\n\n[[VAR.host]] 主機上使用者 [[VAR.user]] 的磁碟使用量已\n超過分配限制的 [[VAR.pct]]%，可用空間已小於 [[VAR.free]] MB。\n請考慮刪除一些無用的檔案、將某些資料移至另一個位置，\n或是要求增加儲存空間的上限。\n\n  "
+
+msgid "mailQuotaGroupSubject"
+msgstr "群組磁碟用量警告"
+
+msgid "mailQuotaGroupBody"
+msgstr "警告：\n\n[[VAR.host]] 主機上群組 [[VAR.group]] 的磁碟使用量已\n超過分配限制的 [[VAR.pct]]%，可用空間已小於 [[VAR.free]] MB。\n請考慮刪除一些無用的檔案、將某些資料移至另一個位置，\n或是要求增加儲存空間的上限。\n\n  "
+
+msgid "unknownDiskUsage"
+msgstr "不明"
+
+msgid "unlimitedQuota"
+msgstr "無限制"
+
+

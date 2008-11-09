@@ -1,0 +1,12 @@
+# put any default packages here.
+RPM: base-disk-am-1.0.1-1.i386.rpm
+RPM: base-disk-locale-ja
+RPM: base-disk-locale-fr
+RPM: base-disk-locale-es
+RPM: base-disk-locale-en
+RPM: base-disk-locale-de
+RPM: base-disk-ui
+RPM: base-disk-glue
+RPM: base-disk-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE
+RPM: base-disk-am-1.0.1-2BQ1.i386.rpm

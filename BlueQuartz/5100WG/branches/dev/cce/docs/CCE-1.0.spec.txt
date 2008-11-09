@@ -1,0 +1,844 @@
+Cobalt Configuration Engine (CCE) Specification
+"The Road to One-Point-Oh"
+$Id: CCE-1.0.spec.txt 229 2003-07-18 20:22:20Z will $
+Tim Hockin, Michael Pashniak
+
+Episode I: Introduction and History
+
+  CCE was begun as a project to solve the "third-party developer" problem,
+  inherent in to the Cobalt "Special Sauce" architecture.  Designed and built
+  in tandem with the Qube 3, CCE is one piece of the "Sausalito Architecture".
+  Sausalito also encompasses the Cobalt UI toolkit, and the Cobalt
+  Internationalization (i18n) system.  These products are beyond the scope of
+  this document, and will be referenced only in passing.
+
+  In order to meet the project timeline for the Qube 3, CCE was scaled back
+  from it's original design, with the understanding that future enhancement
+  was necessary.  To denote this acknowledgement, CCE was labeled with the
+  version number 0.76 - a fair way from 1.0.
+
+Episode II: The Near Future
+
+  CCE on Qube 3 seems (from a relatively near distance) to be a success.  As
+  expected, several key features for the continuation of products are missing.
+  The short-term product roadmap holds two major items: "Alpine" (the
+  little brother of RaQ XTR, with full Sausalito), and "Mendocino" (the Qube 3
+  followup).  Alpine will be a major release of CCE.  Mendocino, being based
+  on Qube 3, will be only a minor revision of CCE, and will not be discussed
+  in this document.
+
+  This document hopes to address both the short-term (needed for Alpine)
+  future of CCE and the longer-term (version 1.0 and beyond).
+
+Episode III: The Not-So-Near Future
+
+  Like the Qube 3 schedule, the schedule for Alpine is tight.  Any time saved
+  in development is time gained in market. Ideally, the Alpine software load
+  would have CCE version 1.0.  Realistically, it won't.  More features are
+  necessary for 1.0 than the schedule will allow.  Throughout this document,
+  items will be identified as implementable for Alpine or for CCE 1.0.
+
+Episode IV: Enhancements
+
+  The following is a list of the features slated for implementation before CCE
+  1.0.  This list is segmented into two parts - the features requested or
+  needed by Alpine and other features needed for CCE 1.0.
+
+  Not listed as features, but impacting the schedule for CCE releases, is
+  infrastructure and code re-work.  Large sections of existing code need to be
+  re-worked to be more extensible or in some cases, just to be correct.  As
+  new features obsolete old mechanisms, certain functionality will be marked
+  as deprecated.  When a deprecated feature is used, CCE will issue a warning
+  message.
+
+      Syntax - CSCP notification of a deprecated feature
+      --------------------------------------------------
+      310 DEPRECATED "foo is deprecated - please use bar instead"
+
+  //FIXME: go thru this doc and mark deprecations
+
+  The following features have been requested explicitly or implicitly by the
+  Alpine project.
+
+   1) Enhanced scalability
+      - The ability to quickly create/destroy large numbers of objects
+      - The ability to quickly search and retrieve objects from large sets
+      - The ability to quickly and efficiently run handlers
+   2) CODB indexing
+      - The ability for the developer to speed up certain frequently
+        performed search options.
+      - Provide the ability for 3rd-party developers to utilize indexing in
+        an arbitrary way
+   3) Rollback
+      - The ability to safely handle and revert a failed transaction
+      - Provide a way for 3rd-party developers to write rollback-safe code
+   4) Multi-event transactions
+      - The ability to group CSCP commands into a transaction, and optimize
+        handler run-time
+   5) Logging overhaul
+      - Enhance the logging subsystem to log more completely, legibly, and
+        efficiently exactly what CCE is doing
+   6) Formal object ownership model
+      - The ability to know formal relationships between objects
+   7) Create and destroy ACLs
+      - The ability for non-admin users to create/destroy objects - needed for
+        virtual site administrators
+   8) Extensible security rules
+      - A method of defining arbitrary rules for the security of objects and
+        properties
+   9) Extensible capabilities
+      - The ability for 3rd-party modules to define new administrative
+        capabilities, which can be assigned to users
+  10) Enhance the FIND command to support sorting
+      - The ability to more flexibly and i18n-safely sort retreived objects
+  11) Enhance the FIND command to support regular expressions
+      - The ability to search on partial matches
+  12) Enhance the FIND command to support different matching algorithms
+      - The ability to match using other rules.
+  13) Enhance the FIND command to support ranges
+      - The ability to only retrieve some objects
+  14) Enhanced namespace/property syntax
+      - Provide more flexible search matches from multiple namespaces
+      - Enhance CSCP such that anywhere "property" is allowed
+        "Namespace.property" is allowed
+  15) Enhance the GET command to support partial gets
+      - Provide the ability to only retreive some properties
+  16) Enhance the GET command to support multiple OIDs
+      - Provide a simpler 1 CSCP command for multiple OIDs
+  17) Rewrite the CCE client library
+      - Fix lingering bugs, and major design flaws in the CCE library
+      - Add support for new features
+      - Provide a solid C base to link into other supported languages via the
+        "swig" tool
+  18) Formalize NOSAVE properties
+      - Formalize properties that do not get saved to disk
+  19) Add a TOUCH command
+      - Run handlers, with no change event happening
+  20) Add a "quiescent" mode
+      - Provide a way for CCE to be backed up and restored, while still
+        providing read-only access
+  21) Extensible sort types
+      - Provide an ability to define new sorting mechanisms
+  22) A CCE upgrade utility
+      - Provide a way to convert old CCE installations to the current version
+  23) Enhance the handler library (needed for rollback)
+      - Provide stable APIs that handlers can rely on
+      - Make these APIs more robust and flexible
+      - Make these APIs provide infrastructure for rollback
+
+  In addtion to the above list, the following features have been requested
+  for CCE to reach the 1.0 milestone.
+
+  24) Enforce a maximum message length
+      - Enforce a maximum buffer size on client->CCE CSCP messages, to prevent
+        denial-of-service attacks
+  25) XML configuration files
+      - Convert handler configuration files to XML for consistency and
+        flexibility
+  26) Class inheritance or interfaces
+      - Provide the ability for classes and namespaces to inherit interfaces
+      - Provide a CSCP mechanism to use inheritance
+      - Provide a way to register handlers on inheritance
+  27) Global CCE configuration file
+      - Provide a CCE config file to define currently hardcoded options
+  28) Enhance schemas to support local typedefs
+      - Allow a typedef that is local to a schema or class
+  29) Enhance schemas to support anonymous typedefs
+      - Allow typedefs that are defined inline
+  30) Class-global read and write ACLs
+      - Provide the ability to define default read and write ACLs per class
+  31) Security rule grammar support for boolean expressions
+      - Allow security rules to be expressed as boolean statements
+  32) Enhanced failure messages
+      - Make error messages better defined and documented
+  33) Store schemas in the database
+      - Parse and load schemas from XML exactly once, then store them in the
+        database
+      - Allow changes to the schemas without forcing CCE to restart.
+  34) Ability to query schema structures
+      - Provide a CSCP command to get the structure of a class or namespace
+  35) Datatype enhancement to support an enum datatype
+      - Allow an enumeration base datatype
+  36) Disconnected, reconnectable transactions
+      - Allocate each transaction an ID which can be used to later get status
+      - Allow transactions to proceed while the client is disconnected
+      - Disconnect slow transactions to allow the UI to provide feedback
+  37) Basic cluster support
+      - Provide basic infrastructure for atomic broadcasts
+      - This item gates on #36
+  38) A replayable transaction log
+      - Log transactions in a way that is meaningful to feature #37
+  39) Enhanced documentation
+      - Finish and update the Sausalito SDK
+  40) Formalized grammar for CSCP
+      - Define the formal CSCP grammar for better parsing
+  41) Generic argument syntax
+      - Defining how to pass arguments to the builtin and external functions
+
+  The feasability and details of each of these items is discussed further
+  below.
+
+Episode VI: Analysis of Enhancements
+
+  In order to meet the Alpine timeframes, some features must be postponed,
+  and others scaled back.  Below is a breakdown of each feature, the extent
+  of the proposed implementation for Alpine, and, if applicable, syntactic
+  and semantic details.  This document is subject to change.
+
+   1) Enhanced scalability
+      CCE must be able to instantiate thousands of objects very quickly.  This
+      will be achieved through careful profiling and analysis of behavior.
+      Attention must be paid throughout all future development to impact on
+      scalability.
+
+   2) CODB indexing
+      CODB must be indexed for faster lookups. Creating an index will
+      require one schema element to define the index.  Indexing is then
+      transparent to the CSCP protocol - CREATEd objects get added, DESTROYed
+      objects get removed, and FIND will use the index of the first specified
+      criterion.
+
+      Syntax - an index added to a simple class:
+      ------------------------------------------
+      <class name="Thing" version="1.0">
+          <property name="name" type="scalar"/>
+          <index name="name" property="name" sort="alphanum(args)"/>
+      </class>
+
+      name : a C-style symbol to uniquely identify the index within the class
+                      NB: may be a maximum of 255 characters in length
+      property : the name of the single property on which to index
+                 NB: the index may not be attached to an array property.
+      //$ NOTIMPL: sort property is not implemented yet
+      sort : the name of the sort to use (optional, defaults to ASCII)
+      args : optional arguments to the sort rule.  See feature #41
+
+      Arbitrary indexing and complex indices have been suspended.  See
+      "Episode VII: Future enhancements" below.
+
+   3) Rollback
+      Rollback is required to handle partial failures properly.  Handlers can
+      register a flag that alerts CCE to their desire to be run on rollback.
+      Successful handler implementation depends on the handler library
+      enhancements below.  For Alpine, only CLEANUP stage handlers will be
+      able to be rollback-enabled.  For CCE 1.0, all stages will be rollback
+      enabled.
+
+      Syntax - a handler that does cleanup and understands rollback
+      -------------------------------------------------------
+      Class.prop        exec:/path/to/handler        CLEANUP.rollback
+
+      Syntax - CSCP header extension denoting a rollback
+      --------------------------------------------------
+      111 ROLLBACK
+
+   4) Multi-event transactions
+      This feature will be partially implemented for Alpine. CCE will provide
+      the ability to group events and delay handler execution until the
+      transaction is committed.  This will also cause all the events
+      to succeed or fail together, with rollback occuring for all of them if
+      a failure occurs.  Handlers will not be optimized to run once for
+      multiple events.  The same number of handlers will be run in both
+      transaction and non-transaction modes. For CCE 1.0, handlers that
+      indicate their ability to handle multiple events will be run exactly
+      once.
+
+      Syntax - CSCP commands for transactions
+      ---------------------------------------
+      BEGIN
+      COMMIT
+
+      Example - a CSCP transaction transcript
+      ---------------------------------------
+      > begin
+      < 201 OK
+
+      > create Thing name="foo"
+      < 104 OBJECT 99
+      < 201 OK
+
+      > set 99 details="Foo Bar"
+      < 201 OK
+
+      > commit
+      < 201 OK
+
+   5) Logging overhaul
+      This feature will be partially implemented for Alpine.
+      Logging will be cleaned up, but the logging subsystem will remain the
+      same.  This feature is already partially complete.  For CCE 1.0 the
+      syslog() subsystem will be replaced with a CCE specific logging
+      subsytem.  Multiple levels of logging will be available with the option
+      for the admin to choose between them.  E.g.: logging only modification
+      operations such as SET, CREATE, etc vs. logging all operations including
+      GET, AUTHKEY, etc.
+
+   6) Formal object ownership model
+      This feature is merely a documentum.  The formal ownership model for CCE
+      is foreign-keys.  Maintenance of these keys is the responsibility of the
+      application code.  A suggested key value is the OID of the owner object.
+
+      Example - A schema for a class and owned class
+      --------------------------------------------
+      <class name = "Thing" version = 1.0>
+          <property name = "id" type = "int"/>
+      </class>
+      <class name = "ThingHelper" version = 1.0>
+          <property name = "thing_id" type = "int"/>
+          <property name = "name" type = "scalar"/>
+      </class>
+
+      Example - CSCP transcript of creating an owned object
+      -----------------------------------------------------
+      > create Thing id="31415"
+      < 104 OBJECT 99
+      < 201 OK
+
+      > create ThingHelper thing_id="99" name="helper thing"
+      < 104 OBJECT 100
+      < 201 OK
+
+   7) Create and destroy ACLs
+      This feature will be implemented for Alpine. When a CREATE or DESTROY
+      event is initiated, the security rules for all namespaces of the target
+      class are evaluated and executed.  If any rule in a namespace succeeds,
+      that namespace succeeds (logical OR).  The final result is logical AND
+      of all the ACLs for all the namespaces.  If a CREATE succeeds, all
+      the property write ACLs will also be evaluated.  If any write ACL fails,
+      the CREATE fails.  DESTROY events do not trigger write ACLs.
+
+      Syntax - CREATEACL and DESTROYACL properties
+      --------------------------------------------
+      <class name="Thing" version="1.0"
+       createacl="ruleAdmin" destroyacl="ruleAdmin"/>
+      </class>
+
+      The default for a create or destroy acl is ruleAdmin.
+      WARNING: If you create a new namespace of a class and do not
+      specify ruleAll, you are ensuring that the class can ONLY be
+      created by the admin.
+
+  8) Extensible security rules
+      To provide flexible rules, a new schema element is needed.
+
+      Syntax - the RULE element
+      -------------------------
+      <rule name="ruleThing" type="exec" data="/path/to/rule/binary(args)"/>
+
+      name : a C-style symbol to uniquely identify this rule globally
+      type : one of "builtin", "exec", or "perl"
+      data : for type=builtin, one of "rule_sysadmin", "rule_user",
+                      "rule_self", "rule_all", "rule_capable"
+      //$ FIXME: spec the builtins.  esp. rule_capable
+             for type=exec, the path to a rule binary
+             for type=perl, the path to a perl script
+      args : arguments for the handler.  See feature #41.
+      NB: args are currently valid only for type=builtin.
+
+      If the specified path for exec and perl types is not absolute, it is
+      assumed to be relative to /usr/sausalito.
+
+      Rules of type perl and exec run like system handlers, but can not
+      perform CREATE, DESTROY or SET commands.  A successful return (BYE
+      SUCCESS) indicates that the rule succeeded, and a failed return (BYE
+      FAIL) indicates a failure.  Rules that do not return will be treated
+      as a failed return.  Defered returns (BYE DEFER) are semantically an
+      error and will be treated as a failure.
+
+   9) Extensible capabilities
+      In order to provide truly extensible and configurable security, CCE will
+      implement capabilities.  Capabilites are provided by packages and used
+      in their read/write/create/destroy ACLs.  Capabilities are stored
+      per-user, and checked by a special new security rule.
+
+      Extension - capabilities stored per user
+      ----------------------------------------
+      <class name="User">
+          <property name="capabilities" type="word" array="1"/>
+      </class>
+
+      Sample - a capability protected property
+      ----------------------------------------
+      <property name="id" type="int" readacl="ruleCapable(Foo)"/>
+
+      In order to enumerate capabilities to the higher levels, and to present
+      an easy method for testing current capabilities, a new per-System object
+      will be defined.  On this object, namespaces are defined for each
+      capability.  By testing a property of these namespaces, a client can
+      determine current capabilities easily.
+
+      Sample - Capabilities namespaces
+      --------------------------------
+      <class name="Capabilities"/>
+      <class name="Capabilities" namespace="Foo">
+         <property name="capable" type="boolean" default="1"
+             readacl="ruleCapable(Foo)"/>
+         <property name="nameTag" type="scalar"/>
+      </class>
+
+      It is not required for new capabilities to be registered on the
+      Capabilities object, but is strongly reccomended.  If it is not
+      registered, the clients will require a priori knowledge of the
+      capability to assign it to a User.  Creation of "security levels" is
+      possible through the capability primitive, but is beyond the scope of
+      this document.  This model makes ruleCapable naothing more than a test
+      of whether a string is found in an array of strings.
+
+  10) Enhance the FIND command to support sorting
+      This is an extension to the FIND command that ties tightly with feature
+      #21.
+
+      Syntax - FIND sort extensions
+      -----------------------------
+      FIND Thing SORTTYPE "numeric(args)" SORTPROP "id"
+
+      NB: only one sorttype/sortprop pair may be given. If either keyword is
+      specified without the other no sorting will be done.
+      For the usage of args, see feature #41.
+      //$ NOTIMPL: args are not implemented yet.
+
+  11) Enhance the FIND command to support regular expressions
+      This feature is an extension to the FIND command, to allow searches on
+      regular expressions, rather than just exact matches.
+
+      Syntax - FIND regex extensions
+      ------------------------------
+      FIND Thing id~"1.*"
+
+      The regular expression comparator (~) replaces the exact comparator (=)
+      in the command.  If the comparison string is not a valid regular
+      expression, a CSCP warning will be emitted, followed by a failure for
+      the CSCP operation.
+
+      Syntax - CSCP transcript with invalid regular expressions
+      ---------------------------------------------------------
+      > find Thing id~"[A-Z"
+      < 308 BAD REGEX "[A-Z"
+      < 401 FAIL
+
+      Supported regular expression syntax is that of the C functions
+      regcomp() and regexec().  Options used for regcomp are REG_EXTENDED,
+      REG_NOSUB, and REG_NEWLINE.
+      //$ NOTIMPL.  Almost, but not quite yet.
+
+  12) Enhance the FIND command to support different matching algorithms
+      The same "matchtype" schema objects that are used for sorting can
+      be used for searching also.
+      The syntax is "FIND Thing MATCHTYPE sort prop=value"
+      If matchtype is not specified it defaults to "ascii".
+      How to specify this for multiple properties is TBD.
+      //$ FIXME: maybe matchtype is location specific?  ie, matchtype "sets"
+      the matchtype for anything that follows it on the line?
+      //$ NOTIMPL.
+      //FIXME: xref as appropriate
+
+  13) Enhance the FIND command to support ranges
+      This feature has been suspended until afetr CCE 1.0.  See "Episode VII:
+      Future Enhancements" below.
+
+  14) Enhanced namespace/property syntax
+      CSCP is currntly not consistent about where namespaces are allowed as
+      part of a property name, and where they are not.  This should be fixed.
+      To meet the Alpine schedule, only the FIND command will be modified to
+      support this syntax.  For CCE 1.0, the total grammar will be fixed.
+
+      Syntax - FIND grammar enhancement
+      ---------------------------------
+      FIND Thing ThingNSpace.ntitle="A Thing"
+      //$ NOTIMPL.  doh.
+
+  15) Enhance the GET command to support partial gets
+      This feature allows clients to only retrieve the properties in which
+      they are interested.  This feature will be ready for CCE 1.0, but
+      will not be in Alpine.
+
+      Syntax - CSCP transcript of a partial GET
+      -----------------------------------------
+      > get 12 id name
+      < 102 DATA id = "123"
+      < 102 DATA name = "A Thing"
+      < 201 OK
+
+  16) Enhance the GET command to support multiple OIDs
+      This feature has been determined to be unnecessary.  It will not be
+      implemented for the CCE 1.0 release.
+
+  17) Rewrite the CCE client library
+      The CCE client library, as it exists, has many flaws.  It suffers from
+      under-design, and needs to be replaced.  An alternate API will be
+      designed and implemented, and the old API will be deprecated.
+      Additionally, the implementation of the CCE library independently in
+      Perl will be deprecated, and swig (simple wrapper and interface
+      generator) will be used to build Perl language bindings.  The new
+      library will be in CCE 1.0, but will not be in Alpine.
+      //FIXME: we REALLY need this
+      //$ FIXME: but we're not going to get it for Alpine.
+      //FIXME: please?
+
+  18) Formalize NOSAVE properties
+      This feature is an extension of a temporary solution implemented early
+      in CCE development.  It is sometimes desirable to have a property that
+      gets passed to handlers, but is not saved to disk.  Currently, any
+      property beginning with "password" is treated as this.  This should
+      become a flag on the property schema element.  This will be implemented
+      for CCE 1.0.
+
+      Syntax - NOSAVE schema properties
+      ---------------------------------
+      <property name="passwd" type="scalar" nosave="1"/>
+
+  19) Add a TOUCH command
+      This feature is designed to trigger handlers without properties actually
+      changing. This feature is suspended until after CCE 1.0.  See
+      "Episode VII: Future Enhancements" below.
+
+  20) Add a "quiescent" mode
+      In order to safely back up CCE, it must be prevented from accepting
+      transactions during the backup.  This feature adds the ability for the
+      administrator to suspend CCE write operations for the duration of the
+      backup, then restore operations.  This feature will be supported for
+      Alpine.  Rather than create a pair of commands for this, a general
+      command will be provided for future administrative use.
+
+      Sample - CSCP suspend/restore transcript
+      ----------------------------------------
+      > admin suspend "Backup running"
+      < 201 OK
+
+      > admin resume
+      > 201 OK
+
+      Once a client has issued the ADMIN SUSPEND command, no write command
+      will be accepted until the ADMIN RESUME command is issued.  A client
+      disconnection will not issue an implicit ADMIN RESUME command - it must
+      be done explicitly by a user with administrative privileges.  Issuing
+      the ADMIN SUSPEND command more than once results in an error.
+      Issuing the ADMIN RESUME command when not in SUSPENDED mode results in
+      an error.  If the reason message is omitted, the empty
+      string ("") is used.
+
+      To complement the ADMIN SUSPEND and RESUME commands, a new warning
+      class message will be returned if a client attempts to initiate a write
+      transaction, while CCE is suspended, and will become part of the CSCP
+      header message if the system is suspended.
+
+      Sample - CSCP suspended failure transcript
+      ------------------------------------------
+      < 100 CSCP/0.80
+      < 309 SUSPENDED "Backup running"
+      < 200 READY
+
+      > create Thing
+      < 309 SUSPENDED "Backup running"
+      < 401 FAIL
+
+      Further extension of the ADMIN command may be defined later.
+
+  21) Extensible sort types
+      This feature is necessary to achieve feature #20.  Sort types
+      must become schema elements.
+
+      Syntax - the sort schema element
+      --------------------------------
+      <matchtype name="ThingId"
+        type="builtin"
+        data="locale(args)"
+
+      name : a C-style symbol to uniquely identify this sort globally
+      type : currently only "builtin", is supported
+      //FIXME: are these names right?
+      data : for type=builtin, one of "ascii_compare", "old_numeric_compare",
+                      "locale_compare"
+      //FIXME: spec these builtins
+      args : see feature #41
+      //$ NOTIMPL args are not implemented.
+
+      This feature will be in Alpine.  Additional types will be supported in
+      the future.  See "Episode VII: Future Enhacements" below.
+
+  22) A CCE upgrade utility
+      This feature is necessary for converting old (CCE 0.76) databases to the
+      current database form.  This feature will be done for CCE 1.0, but not
+      for Alpine.
+
+  23) Enhance the handler library (needed for rollback)
+      This feature is needed for feature #3.  The library (in perl) that
+      handlers use to perform common functions must be enhanced to support the
+      majority of operations, and to support tracking and reversing
+      operations, if needed.
+
+      For ease of development, a generic library mechanism that can be used
+      to edit files, and will automatically rollback/commit as necessary is
+      necessary for Alpine.  This will involve modification of the
+      Sauce::Util perl library, and a generic "cleanup" handler that will do
+      the rollback if necessary.
+
+      //FIXME: API and semantics
+
+  24) Enforce a maximum message length
+      To prevent potential denial-of-service attacks, CSCP needs to enforce a
+      maximum message length that it can recieve.  This limit will be set to
+      64 kB in CCE 1.0.
+
+      //FIXME: thoughts:
+      // It may be nice to assume that any message to or from CCE will be i
+      // subject to this maximum.  If CCE needs to send > 64k, do:
+      // 114 PDATA ".........."\n
+      // 114 PDATA ".........."\n
+      // 102 DATA ".........."\n
+      // What about when a client legitimately needs to send > 64k to CCE?
+      //FIXME: doc this in cscp spec.
+
+  25) XML configuration files
+      For consistency, it is desirable to move handler conf files to an XML
+      format.  This will be in CCE 1.0.
+
+      Syntax - XML conf files
+      -----------------------
+      <handlerconf>
+          <event name="Thing._CREATE" stage="CLEANUP"/>
+          <event name="Thing.id" stage="CLEANUP"/>
+          <handler type="perl" data="/path/to/perl/handler" rollback="1"/>
+          <handler type="exec" data="/path/to/exec/handler"/>
+      </handlerconf>
+
+      This configuration would register two handlers each on two events, each
+      in the cleanup stage.  One handler is rollback capable, the other is
+      not.
+      //FIXME: think this through some more..
+
+  26) Class inheritance
+      It is desireable to have the ability to inherit class information from a
+      common definition, and to register events on the base type.  This
+      feature will not be in CCE 1.0.  See "Episode VII: Future Enhancements"
+      below.
+
+  27) Global CCE configuration file
+      There are several parameters to CCE that must be passed on the
+      commandline, or are hardcoded.  It would be useful to have a config file
+      for CCE to read to assign default values.  The syntax for this file will
+      be plain key = value pairs.  This feature will be in CCE 1.0.
+
+  28) Enhance schemas to support local typedefs
+      In the CCE 0.76 version, all TYPEDEFs are global.  It is be desirable
+      to be able to denote TYPEDEFs as local to a schema.  A local
+      redefinition of a type with the same name as a global definition is
+      an error.  All TYPEDEFs are global unless otherwise specified, to
+      maintain compatibility.  Any redefinition of typedefs will cause the
+      schema to be rejected.  This feature will be in CCE 1.0.
+
+      Syntax - a local TYPEDEF
+      ------------------------
+      <typedef name="foo_t" type="re" data="foo.*" local="1"/>
+
+  29) Enhance schemas to support anonymous typedefs
+      The need for a typedef for every datatype is cumbersome to some
+      developers.  It would be useful to be able to specify a typedef inline
+      with the property definition.
+
+      This feature has been suspended until after CCE 1.0.  See "Episode VII:
+      Future Enhancements" below.
+
+  30) Class-global read and write ACLs
+      Often, all the properties for a class have the same read or write ACL.
+      It would be nice to specify a read/write ACL for a class that would
+      apply to all properties, unless overridden by a property ACL.  This
+      feature will be implemented for CCE 1.0.
+
+      Syntax - class read and write ACLs
+      ----------------------------------
+      <class name="Thing" readacl="ruleAdmin" writeacl="ruleAdmin">
+
+  31) Security rule grammar support for boolean expressions
+      Current ACL rules are boolean OR operations.  It is desireable to have
+      more flexibility in defining ACL rules.  Full support for boolean logic
+      will be implemented.  To retain compatibility, comma delimited lists
+      will be treated as logical ORs.
+
+      Syntax - boolean ACLs
+      ---------------------
+      <property
+          name="id"
+          type="int"
+          readacl="ruleAdmin OR (ruleFoo AND ruleBar)"
+      />
+
+      Syntax - boolean operators
+      --------------------------
+      AND : logical AND
+      OR  : logical OR
+      ,          : logical OR
+      NOT : logical NOT
+      !   : logical NOT
+      (   : begin complex expression (arbitrary nesting is allowed)
+      )   : end complex expression
+
+  32) Enhanced failure messages
+      Several error or warning conditions can happen while starting or running
+      CCE.  It is necessary to develop a common, flexible way to report these
+      conditions.  This feature will be in CCE 1.0.
+
+  33) Store schemas in the database
+      In order to provide better functionality when a schema changes, it is
+      desireable to have schema definitions not be directly editable.  Schemas
+      stored as XML files, as is currently done, can be changed without CCE's
+      knowledge leading to data inconsistancies.  For CCE 1.0, the addition of
+      a schema to CCE will require parsing by an import tool.  This tool can
+      then ensure that new schemas do not cause problems for existing schemas,
+      as is possible with the current method, and will provide
+      upgrade/uninstall functionality as well as the enhanced installation.
+
+      Details of this feature are TBD.
+      //FIXME: it is TBD
+
+  34) Ability to query schema structures
+      It is useful to be able to query the structure of a class in CCE.  This
+      feature will be in CCE 1.0.
+
+      Details of this feature are TBD.
+      //FIXME: it is TBD
+
+  35) Datatype enhancement to support an enum datatype
+      It is desireable to have a base datatype that is an enumeration.
+      This feature can be emulated completely with a regular expression, and
+      will not be implemented.
+
+  36) Disconnected, reconnectable transactions
+      Currently, an abnormal termination of a session during a transaction
+      results in the transaction finishing, and the results being lost.  It is
+      desired to allow a transaction to proceed in the background, while
+      gathering the results later.
+
+      This feature is suspended until after CCE 1.0.  See "Episode VII: Future
+      Enhancements" below.
+
+  37) Basic cluster support
+      This feature describes the basic ability for multiple CCEs on multiple
+      systems to remain synchronized.  This feature is suspended until after
+      CCE 1.0.  See "Episode VII: Future Enhancements" below.
+
+  38) A replayable transaction log
+      This feature is a requirement for #37, and is therefore also suspended
+      until after CCE 1.0.  See "Episode VII: Future Enhancements" below.
+
+  39) Enhanced documentation
+      Before CCE can be called 1.0, the Sausalito Developer's Guide must be in
+      a complete and robust form.
+
+  40) Formalized grammar for CSCP
+      The CSCP protocol does not have a formal grammar.  As part of the code
+      cleanup and documentation for CCE 1.0, a formal grammar must be
+      developed and implemented.  For example, all property names must be
+      ASCII, C-style tokens, and all property values must be properly escaped
+      strings.  This feature can be implemented in two stages.  Stage 1
+      involves defining the grammar.  Stage 2 involves enforcing it.
+
+  41) Generic argument syntax
+      It is useful to unify the syntax of various CCE subsystems handling of
+      arguments.  Arguments can be provided to handlers, sorting, matching,
+      indexing and security rules.
+
+      Functions and arguments are parsed from parenthesis and comma
+      delimited strings into a list (e.g.: "function(arg1,arg2)" becomes
+      "function", "arg1" and "arg2").  Whitespace is significant. For example
+      "func tio n ( ar g1 , arg2 )" is parsed as "func tio n ", " ar g1 ",
+      and " arg2 ".
+
+      This feature will be partially implemented for Alpine, and fully
+      implemented for CCE 1.0.
+
+      //FIXME: TBD a way for a rule/matchtype schema object to specify how many
+      // arguments it accepts.
+      // TBD: behaviour on argument "shadowing".  eg, args in rule,
+      // and args in acl.  args in matchtype, and args in sorttype in cscp.
+      //$ NOTIMPL.  indexing, sorting, matching.
+
+Episode VII: Future Enhancements
+
+  Several features have been requested that have been determined to not be
+  necessary or not be feasible.  These features are not expected to be in CCE
+  1.0.  A list of these features will be maintained, and they will be
+  implemented as time allows.
+
+   1) Arbitrary indexing
+      Developers should be able to specify via CSCP which index they
+      would like to use, rather than assuming the first criterion with an
+      index.
+
+   2) Arbitrary index expressions
+      Schema developers should be able to specify index expressions that are
+      more than single properties (e.g.: compound expressions).
+
+   3) Arguments to external RULE handlers
+      Builtin RULE elements can accept arguments.  Extern (perl and exec) RULE
+      elements should also be passed arguments.
+
+   4) Retrieve ranges from FIND
+      Developers should be able to request subsets of the whole list of
+      matching OIDs on a FIND command.
+
+   5) Add a CSCP 'TOUCH' command
+      Often a developer wants to effect the handlers for a property without
+      actually changing the property.  CCE currently optimizes this away.
+      Some mechanism should be provided to avoid the optimization.
+
+   6) Additional types for MATCHTYPE elements
+      In addition to builtin match types, CCE should support external (exec
+      style) match types.
+
+   7) Class inheritance
+      Classes should be able to derive from other classes.  This includes the
+      ability to register handlers on sub-classes and parent classes.
+
+   8) Anonymous datatypes
+      Developers should not need to define a typedef for every type they need.
+      Anonymous typedefs are typedefs defined inline.  Local typedefs would
+      greatly negate the need for this feature.
+
+      Syntax - an anonymous TYPEDEF
+      -----------------------------
+      <property name="id" type="re:00[0-9]"/>
+
+   9) Disconnectable transactions
+      A client should be able to disconnect and reclaim results at a later
+      time.  This would potentially improve UI latency on long operations.
+
+      Sample - CSCP transcript of a disconnected transaction
+      ------------------------------------------------------
+      > begin
+      < 201 OK
+
+      > create Thing id="123"
+      < 104 OBJECT 125
+      < 201 OK
+
+      > commitbg
+      < 112 TXN 7
+      < 201 OK
+
+      > status 7
+      < 106 INFO "Thing info"
+      < 113 STATUS 201 OK
+      < 201 OK
+
+      //FIXME: timeout is TBD
+      Results from disconnected transactions are stored for a TBD period of
+      time {{6 hours? across CCE restarts?}}, and then flushed.  This feature
+      may be in CCE 1.0 {{definate or maybe?}}. {{Do we need a FLUSH command?}}
+
+  10) Basic cluster support
+      CCE should be capable of synchronizing with other CCEs in a cluster.
+      This involves broadcasting transactions over a secured network channel
+      in an atomic fashion, and syncronizing the success of each system.  It
+      also includes thie ability for a new system to join a cluster and
+      syncronize itself with the current state.
+
+  11) Replayable transaction logs
+      In order to achieve feature clustering, a replayable log of transactions
+      must be kept, with which systems in a cluster can syncronize.
+
+
+//FIXME:
+        section on client lib
+        match short descriptions feature-for-feature in long descriptions
+        note: base datatype changes (like bool?)

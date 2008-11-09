@@ -1,0 +1,4 @@
+<class name="Capabilities" namespace="modifySystemSnmp" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemSnmp)"/>
+	<property name="nameTag" type="scalar" default="[[base-snmp.cap_modifySystemSnmp]]"/>
+</class>

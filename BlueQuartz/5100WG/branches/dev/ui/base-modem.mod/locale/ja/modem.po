@@ -1,0 +1,153 @@
+# handlers
+msgid "couldntDeletePppCfg"
+msgstr "PPP 設定を削除できませんでした。"
+
+msgid "couldntStartPpp"
+msgstr "モデムを起動できませんでした。"
+
+msgid "couldntStopPpp"
+msgstr "モデムを停止できませんでした。"
+
+msgid "cantGetModem"
+msgstr "サーバエラーが発生しました。モデムの動作状況は現在表示できません。"
+
+msgid "modemProblem"
+msgstr "モデムに問題があります。外付けモデムをご利用の場合には、モデムがサーバのシリアルポートに正しく接続されており、電源が入っていることをご確認ください。内蔵モデムをご利用の場合は、サーバを再起動してください。"
+
+msgid "offNow"
+msgstr "接続されていません"
+
+msgid "onNow"
+msgstr "接続されています"
+                                                                                 
+ 
+
+
+# strings for test of modem on demand
+msgid "saveTest"
+msgstr "モデムの設定を保存してテストする"
+
+msgid "saveTest_help"
+msgstr "現在の設定が保存され、設定を確認するためにご指定の ISP（インターネットサービスプロバイダ）へのテスト接続が行われます。"
+
+msgid "testModem"
+msgstr "モデムの設定をテスト中…"
+
+msgid "testFail"
+msgstr "エラー"
+
+msgid "testFailMsg"
+msgstr "システムエラーのためモデムのテストは実行できませんでした。モデムの設定を確認してから、もう一度お試しください。何度もテストに失敗する場合には、サーバを再起動して見てください。"
+
+msgid "initModem"
+msgstr "初期化"
+
+msgid "initModem_help"
+msgstr "モデムの初期化状態を示します。初期化テストでは、モデムがサーバに接続され、応答するかどうかをチェックします。"
+
+msgid "initModemStage"
+msgstr "初期化中… "
+
+msgid "initModemSuccess"
+msgstr "初期化に成功"
+
+msgid "initModemFail"
+msgstr "初期化に失敗しました。外付けモデムをお使いの場合は、モデムがサーバに正しく接続され、電源が入っていることをご確認ください。また、モデムのマニュアルを読み、初期化ストリング [[VAR.init]] が正しいことをご確認ください。"
+
+msgid "dialModem"
+msgstr "接続"
+
+msgid "dialModem_help"
+msgstr "モデムの接続状態を示します。接続テストでは、モデムを使って実際にダイヤルし、ご指定の ISP に接続できるかどうかをチェックします。"
+
+msgid "dialModemStage"
+msgstr "[[VAR.phone]] にダイヤル中..."
+
+msgid "dialModemSuccess"
+msgstr "接続に成功"
+
+msgid "dialModemFail"
+msgstr "接続に失敗しました。[[VAR.errmsg]]"
+
+msgid "noDialtone"
+msgstr "ダイヤルトーンが検出されませんでした。"
+
+msgid "busy"
+msgstr "ダイヤルした電話番号は話中でした。"
+
+msgid "noCarrier"
+msgstr "キャリアが検出されませんでした。"
+
+msgid "waiting"
+msgstr "リモートコンピュータが応答しませんでした。"
+
+msgid "unknownError"
+msgstr "原因不明のエラーが発生しました。"
+
+msgid "pppdAuth"
+msgstr "認証"
+
+msgid "pppdAuth_help"
+msgstr "認証の状態を示します。認証テストでは、サーバがリモートサーバにログインできるかどうかをチェックします。"
+
+msgid "pppdAuthStage"
+msgstr "ログイン情報を送信中..."
+
+msgid "pppdAuthFail"
+msgstr "認証に失敗しました。[[VAR.errmsg]]"
+
+msgid "noResponse"
+msgstr "リモートサーバが応答しませんでした。"
+
+msgid "authFailure"
+msgstr "ご指定のユーザ名とパスワードは、リモートサーバから拒否されました。"
+
+msgid "remoteTerm"
+msgstr "リモートサーバが接続を切断しました。"
+
+msgid "pppdAuthSuccess"
+msgstr "認証に成功"
+
+msgid "dnsTest"
+msgstr "DNSリゾリューション"
+
+msgid "dnsTest_help"
+msgstr "ドメインネームリゾリューションテストの状態を示します。ドメインネームリゾリューションは、テキスト文字で表記されるホスト名＋ドメインネームと、数値で表記される IP アドレスとの関連付け（正引き、逆引き）を行います。"
+
+msgid "dnsTestStage"
+msgstr "ネームサーバに接続中… "
+
+msgid "dnsTestFail"
+msgstr "DNS サーバに接続できません。TCP/IP 設定を確認し、DNS サーバが正しく指定されていることをご確認ください。"
+
+msgid "dnsTestSuccess"
+msgstr "DNSのテスト成功"
+
+msgid "netTest"
+msgstr "ネットワーク接続"
+
+msgid "netTest_help"
+msgstr "ネットワーク接続テストの状態を示します。このテストでは、リモートサイトへの接続が試されます。"
+
+msgid "netTestStage"
+msgstr "リモートサイトに接続中..."
+
+msgid "netTestFail"
+msgstr "リモートサイトに接続できません。モデムと TCP/IP の設定を確認してから、もう一度お試しください。"
+
+msgid "netTestSuccess"
+msgstr "成功"
+
+msgid "back"
+msgstr "戻る"
+
+msgid "back_help"
+msgstr "モデムの設定ページに戻ります。"
+
+msgid "ppp0_in_use"
+msgstr "別のデバイスがインターフェイスを使用しているため、モデム接続をオンにできません。DSL をご利用の場合は、モデムを使って接続する前に、PPPoE をオフにする必要があります。"msgid "capgroup_adminModem_help"
+msgstr "この管理権限を持つユーザは、モデムの設定を変更できます。"
+
+msgid "capgroup_adminModem"
+msgstr "モデムの管理"
+

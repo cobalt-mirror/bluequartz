@@ -1,0 +1,239 @@
+# $Id: Qube2.def 922 2003-07-17 15:22:40Z will $
+# Cobalt Networks, Inc http://www.cobalt.com/
+
+1. Intro
+--------
+
+This spec defines the data structure for the Qube 2. There are four types of 
+data to be considered: Migrate, Mailing List, Group, User. These form a simple
+tree of the form:
+
+                             Migrate
+                                |
+                    ---------------------------
+                    |           |             |
+              Mailing List    Group          User
+
+
+2. Migrate Level
+----------------
+
+Objective:
+	- Define the top level data structure in migrate data structure
+
+Genelogy:
+    Parent:		Parent of all
+	Children:	User, Group, Mailing List 
+
+For structures with type migrate, the following are valid
+scalar propnames:
+	createOS		string
+	versionOS		float
+	buildDate		int (seconds from epoch)
+	children		array
+
+Example:
+  <migrate>
+	<create value="Qube2"/>
+	<versionOS float=2.0/>
+	<buildDate int=5932034/>
+  </migrate>
+
+Export Notes:
+
+Import Notes:
+
+3. Mailing List Level
+---------------------
+
+Objective:
+	- an abstracted representation of a mailing list
+	- expressed in the general object XML format
+
+Genealogy:
+	Parent: Migrate
+	Children: none
+
+For structure with type mailingList, the following are valid
+scalar propnames:
+	lstName			string
+	extRecips		array	
+	localRecips		array	
+
+Example:
+  <mailingList>
+	<lstName value="cobalt-users"/>
+	<externRecips>
+		<xrecips value="joe@bob.com"/>
+		<xrecips value="buck@henry.com"/>
+		<xrecips value="peter@fonda.com"/>
+	</externRecip>
+	<localRecips>
+		<lrecips value="user401"/>
+		<lrecips value="user402"/>
+		<lrecips value="user405"/>
+		<lrecips value="user406"/>
+	</localRecip>
+  </mailingList>
+
+Export Notes:
+
+Import Notes:
+
+4. Group Level
+--------------
+
+Objective:
+	- an abstracted representation of a group
+	- expressed in the general object XML format
+
+Genealogy:
+	Parent: Migrate
+	Children: none
+
+For structure with type mailingList, the following are valid
+scalar propnames:
+	grpName			string
+	grpQuota		int (MB)
+	grpMembers		array	
+
+Example:
+  <group>
+	<grpName value="home"/>
+	<grpQuota int=300/>
+	<grpMembers>
+		<member value="joe"/>
+		<member value="buck"/>
+		<member value="peter"/>
+	</grpMembers>
+   </group>
+
+Export Notes:
+
+Import Notes:
+
+5. User Level
+-------------
+
+Objective:
+	- an abstracted representation of a user structure
+	- expressed in the general object XML format
+
+Genealogy:
+	Parent:	Migrate
+	Children: none
+
+For structure with type user, the following are valid
+scalar propnames:
+	userName		string
+	fullName		string
+	altName			string
+	passwd			string
+	passwdType		string
+	uid			int
+	userQuota		int (MB)
+	vacation		boolean
+	aliases			array
+	forward			string
+	vacationMsg		string
+
+	The following are valid ref names:
+    fileref         name="name of archive file"
+	
+Example:
+  <user>
+	<userName value="5in1"/>
+	<fullName value="Five in One"/>
+	<altName value="Japanese Only"/>
+	<passwd value="zp3z20r%2FJAPRE"/>
+	<passwdType value="crypt"/>
+	<uid int=50/>
+	<userQuota int=50/>
+	<aliases> 
+		<alias value="1in5"/>
+		<alias value="snake"/>
+	</aliases>
+	<forward value="collector@yahoo.com"/>
+	<fileref name="5in1.tgz"/>
+  </user>
+
+Export Notes:
+
+Import Notes: 
+
+
+6. XML Example
+--------------
+<migrate>
+        <create value="Qube2"/>
+        <versionOS float=2.0/>
+        <buildDate int=5932034/>
+	<mailingList>
+        	<lstName value="cobalt-users"/>
+        	<externRecips>
+                	<xrecips value="joe@bob.com"/>
+                	<xrecips value="buck@henry.com"/>
+                	<xrecips value="peter@fonda.com"/>
+        	</externRecip>
+        	<localRecips>
+                	<lrecips value="joe"/>
+                	<lrecips value="peter"/>
+                 </localRecip>
+  	</mailingList>
+	<group>
+        	<grpName value="home"/>
+        	<grpQuota int=300/>
+        	<grpMembers>
+                	<member value="joe"/>
+                	<member value="buck"/>
+                	<member value="peter"/>
+        	</grpMembers>
+   	</group>
+	<user>
+        	<userName value="joe"/>
+        	<fullName value="joe bob"/>
+        	<altName value="Japanese Only"/>
+        	<passwd value="zp3z20r%2FJAPRE"/>
+        	<passwdType value="crypt"/>
+        	<uid int=50/>
+        	<userQuota int=50/>
+        	<aliases> 
+                	<alias value="1in5"/>
+                	<alias value="snake"/>
+        	</aliases>
+        	<forward value="collector@yahoo.com"/>
+        	<fileref name="5in1.tgz"/>
+  	</user>
+	<user>
+              	<userName value="buck"/>
+		<fullName value="bucky dent"/>
+		<altName value=""/>
+		<passwd value="digfjuKUH238dS"/>
+		<passwdType value="crypt"/>
+		<uid int=50/>
+		<userQuota int=50/>
+		<aliases>
+                        <alias value="bucky"/>
+		</aliases>
+		<forward value="bucky@yahoo.com"/>
+		<fileref name="buck.tgz"/>
+	</user>
+	<user>
+              	<userName value="peter"/>
+		<fullName value="peter pan"/>
+		<altName value=""/>
+		<passwd value="JsdiSn38SAdm23"/>
+		<passwdType value="crypt"/>
+		<uid int=50/>
+		<userQuota int=50/>
+		<fileref name="peter.tgz"/>
+	</user>
+</migrate>
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+# put any default packages here.
+RPM: base-ftp-locale-en
+RPM: base-ftp-ui
+RPM: base-ftp-glue
+RPM: base-ftp-capstone
+# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE
+RPM: base-ftp-am-1.0.2-3BQ7.centos5.i386.rpm

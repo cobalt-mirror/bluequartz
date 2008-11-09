@@ -1,0 +1,72 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+#
+# Name: 10clear_portscan
+# Author: Jesse Throwe
+# Description: This script is called when the user selects Clear Scandetection 
+#  from the lcd panel. It reloads the firewalls if they are enabled
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: 10clear_portscan,v 1.2.2.1 2002/03/14 07:31:58 pbaltz Exp $
+
+use POSIX;
+use LCD;
+use Term::ReadLine;
+use Getopt::Std;
+use CCE;
+
+
+# set our vars
+$ldfirewall = "/usr/sbin/ldfirewall";
+$firewallfile = "/etc/scandetection/scandetection.fwall";
+
+use vars qw/ $opt_c $opt_s /;
+
+getopts("sc");
+$option = ($opt_s) ? "-s" : "";
+
+
+# Internationalization
+my $i18n = new I18n;
+
+$rebootstr = $i18n->get("[[base-scandetection.clear_scandetect]]");
+$yesnostr = $i18n->get("[[base-lcd.yes_no]]");
+
+# allow for command line checking, if not use the front panel as our input
+if ($opt_c) {
+  printf("\n$rebootstr\n\n");
+  $term = new Term::ReadLine 'select';
+  $choice = $term->readline("[Y]ES/[N]O > ");
+
+  exit 1 if ($choice !~ /^y/i);
+
+} else {
+  $result = system("/sbin/lcd-yesno $option -1 \"$rebootstr\" -2 \"$yesnostr\"");
+  exit 1 unless ($result == 256);
+}
+
+system("/bin/rm -f /etc/locks/.lcdlock") if (-e "/etc/locks/.lcdlock");
+
+# get our cce conenction
+my $cce = new CCE;
+$connect = eval { $cce->connectuds(); };
+if ( defined $connect ) {
+
+	# get scandetection, and see if its enabled
+	my (@systemid) = $cce->find("System");
+	my ($ok, $scandetection) = $cce->get($systemid[0], "Scandetection");
+	if (!$ok) { exit 0; }
+	$isEnabled = $cce->scalar_to_array($scandetection->{paranoiaLevel});
+	if (!$isEnabled) { exit 0; }
+
+	my (@oids) = $cce->find("Network");
+	foreach $networkoid (@oids) {
+		my ($ok, $networkobject) = $cce->get($networkoid);
+		if (!$ok) { exit 0; }
+		my ($interface) = $cce->scalar_to_array($networkobject->{device});
+		system("$ldfirewall -r $interface > /dev/null");
+		system("$ldfirewall $interface $firewallfile > /dev/null");
+	}
+	$cce->bye("SUCCESS");
+} else {
+	# something went very wrong, lets guesswork it
+	system("/etc/rc.d/init.d/scandetection restart");
+}

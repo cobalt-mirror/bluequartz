@@ -1,0 +1,46 @@
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Telnet アクセスを設定できます。"
+
+msgid "telnetSettings"
+msgstr "Telnet アクセスの設定"
+
+msgid "access"
+msgstr "アクセス許可"
+
+msgid "access_help"
+msgstr "ユーザによる Telnet アクセスを許可するかどうかを指定してください。一般に、Telnet は上級ユーザまたはサーバ管理者が shell スクリプトや shell コマンドを実行する必要のある場合に使われます。セキュリティを強化するため、通常は Telnet アクセスを OFF にするか、または管理者のみに許可しておくようお勧めします。"
+
+msgid "none"
+msgstr "OFF - Telnet アクセスを拒否する"
+
+msgid "root"
+msgstr "ON - 管理者のログインのみ許可する"
+
+msgid "reg"
+msgstr "ON - 全てのユーザのログインを許可する"
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Telnet サーバ"
+
+msgid "amDetailsTitle"
+msgstr "Telnet サーバの詳細"
+
+msgid "amNotAccepting"
+msgstr "Telnet サーバは動作していません。"
+
+msgid "amStatusOK"
+msgstr "Telnet サーバは正常に動作しています。"
+
+# Capabilities
+
+msgid "capgroup_adminTelnet"
+msgstr "Telnet の管理"
+
+msgid "capgroup_adminTelnet_help"
+msgstr "この管理権限を持つユーザは、このマシンへの Telnet アクセスを管理することができます。"
+

@@ -1,0 +1,75 @@
+### This has the same problem the modem module has.  Once you enter data, you can't erase it, since the ui complains.  And also, you can't save changes as soon as you get to this page, without entering values, even if you aren't using this function...
+### PPPoE Account Password claims to be optional but it's lying.  You get an error from the Cobalt Configuration Engine if you try to save changes without data in this.
+### Also, this is not consistent with the behavior of the Password fields, which should let you save changes while blank, which assumes you don't want to change passwords.
+### Just try turning on this service and then turing it off again...  You will see the problems just trying to turn off the service...
+
+msgid "pppoeSetting"
+msgstr "PPPoE"
+
+msgid "pppoeSetting_help"
+msgstr "此處可變更 [[base-pppoe.pppoeSettingsHeader]]。"
+
+msgid "pppoeSettingsHeader"
+msgstr "PPP Over Ethernet (PPPoE) 設定"
+
+msgid "ethernetPort"
+msgstr "網路介面"
+
+msgid "ethernetPort_help"
+msgstr "請選取實體連接 PPPoE 裝置的網路介面，即您要用來連通網際網路的介面。一種常用的配置是將您的企業網路連接到「主要乙太網路介面 (PrimaryEthernet Interface)」，並將 PPPoE 裝置連接到「次要乙太網路介面 (Secondary Ethernet Interface)」。"
+
+msgid "eth0"
+msgstr "主要乙太網路介面"
+
+msgid "eth1"
+msgstr "次要乙太網路介面"
+
+msgid "connMode"
+msgstr "連接模式"
+
+msgid "connMode_help"
+msgstr "請選取是否應一律建立連接、需要外傳資訊時才建立連接，或是永遠不建立連接。"
+
+msgid "on"
+msgstr "一律開啟連接"
+
+msgid "demand"
+msgstr "僅在必要時連接"
+
+msgid "off"
+msgstr "一律關閉連接"
+
+### I believe this is completely useless!  This should be extricated from here and the code if it exists...
+### msgid "on_help"
+### msgstr "一律開啟連接"
+### msgid "demand_help"
+### msgstr "僅在必要時連接"
+### msgid "off_help"
+### msgstr "一律關閉連接"
+
+msgid "userNameField"
+msgstr "PPPoE 帳戶使用者名稱"
+
+msgid "userNameField_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」之 PPPoE 帳戶的使用者名稱。您可能必須提供完整的電子郵件位址，如 user@myprovider.com"
+
+msgid "userNameField_empty"
+msgstr "很抱歉，您並未輸入 [[base-pppoe.userNameField]] 的值；請輸入登入您「網際網路服務供應商 (ISP)」之 PPPoE 帳戶的使用者名稱。"
+
+msgid "userNameField_invalid"
+msgstr "很抱歉，您並未輸入有效的 [[base-pppoe.userNameField]] 值；使用者名稱不可包含任何空格。"
+
+msgid "passwd"
+msgstr "PPPoE 帳戶密碼"
+
+msgid "passwd_help"
+msgstr "請輸入登入您「網際網路服務供應商 (ISP)」之 PPPoE 帳戶的密碼。"
+
+###  Check to make sure this works.  Last time i checked this it appeared that the ui was pulling the error message from somewhere other than this file...
+msgid "passwdField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+### I don't think this works right now...  I added it in anticipation of fixing the lack of error checking, though i doubt the variable is the right one.  I base this on the non-standardness of the invalid value variable...
+msgid "passwd_empty"
+msgstr "很抱歉，您並未輸入 [[base-pppoe.passwd]] 的值；請輸入登入您「網際網路服務供應商 (ISP)」之 PPPoE 帳戶的密碼。"
+

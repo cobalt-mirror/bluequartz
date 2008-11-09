@@ -1,0 +1,152 @@
+# handlers
+msgid "couldntDeletePppCfg"
+msgstr "Die PPP-Konfiguration konnte nicht gelöscht werden."
+
+msgid "couldntStartPpp"
+msgstr "Das Modem konnte nicht gestartet werden."
+
+msgid "couldntStopPpp"
+msgstr "Das Modem konnte nicht gestoppt werden."
+
+msgid "cantGetModem"
+msgstr "Leider trat ein Serverfehler auf. Der Modemstatus ist derzeit nicht verfügbar."
+
+msgid "modemProblem"
+msgstr "Mit dem Modem ist ein Problem aufgetreten. Wenn Sie ein externes Modem besitzen, vergewissern Sie sich, dass es sicher am seriellen Port Ihres Servers angeschlossen und eingeschaltet ist. Wenn Sie ein internes Modem besitzen, versuchen Sie, Ihren Server neu zu starten."
+
+msgid "offNow"
+msgstr "Nicht verbunden"
+
+msgid "onNow"
+msgstr "Verbunden"
+
+# strings for test of modem on demand
+msgid "saveTest"
+msgstr "Modemeinstellungen speichern und testen."
+
+msgid "saveTest_help"
+msgstr "Damit werden Ihre aktuellen Einstellungen gespeichert und es wird versucht, eine Testverbindung mit Ihrem Internet-Dienstanbieter herzustellen, um die Einstellungen zu überprüfen."
+
+msgid "testModem"
+msgstr "Modemeinstellungen werden getestet..."
+
+msgid "testFail"
+msgstr "Fehler"
+
+msgid "testFailMsg"
+msgstr "Der Modemtest konnte aufgrund eines Systemfehlers nicht ausgeführt werden. Bitte überprüfen Sie Ihre Modemeinstellungen und versuchen Sie es noch einmal. Wenn der Test wiederholt fehlschlägt, versuchen Sie, Ihren Server neu zu starten."
+
+msgid "initModem"
+msgstr "Initialisierung"
+
+msgid "initModem_help"
+msgstr "Zeigt den Modeminitialisierungsstatus an. Der Initialisierungstest überprüft, ob Ihr Modem mit dem Server verbunden ist und antwortet."
+
+msgid "initModemStage"
+msgstr "Initialisierung..."
+
+msgid "initModemSuccess"
+msgstr "Erfolg"
+
+msgid "initModemFail"
+msgstr "Initialisierung fehlgeschlagen:  Wenn Sie ein externes Modem besitzen, vergewissern Sie sich, dass es richtig an Ihrem Server angeschlossen und eingeschaltet ist. Schlagen Sie in Ihrer Modemdokumentation nach, um sicherzustellen, dass die verwendete Initialisierungs-Zeichenfolge [[VAR.init]] korrekt ist."
+
+msgid "dialModem"
+msgstr "Verbindung"
+
+msgid "dialModem_help"
+msgstr "Zeigt den Modemverbindungsstatus an. Der Verbindungstest prüft, ob Ihr Modem zum Wählen und Herstellen einer Verbindung mit Ihrem Internet-Dienstanbieter verwendet werden kann."
+
+msgid "dialModemStage"
+msgstr "[[VAR.phone]] wird gewählt..."
+
+msgid "dialModemSuccess"
+msgstr "Erfolg"
+
+msgid "dialModemFail"
+msgstr "Wählen fehlgeschlagen:  [[VAR.errmsg]]"
+
+msgid "noDialtone"
+msgstr "Kein Freizeichen."
+
+msgid "busy"
+msgstr "Die gewählte Telefonnummer war besetzt."
+
+msgid "noCarrier"
+msgstr "Kein Trägersignal."
+
+msgid "waiting"
+msgstr "Der Remote-Computer antwortete nicht."
+
+msgid "unknownError"
+msgstr "Ein unbekannter Fehler trat auf."
+
+msgid "pppdAuth"
+msgstr "Authentifizierung"
+
+msgid "pppdAuth_help"
+msgstr "Zeigt den Authentifizierungsstatus an. Der Authentifizierungstest prüft, ob der Server sich beim Remote-Server anmelden kann."
+
+msgid "pppdAuthStage"
+msgstr "Anmeldeinformationen werden gesendet..."
+
+msgid "pppdAuthFail"
+msgstr "Authentifizierung fehlgeschlagen:  [[VAR.errmsg]]"
+
+msgid "noResponse"
+msgstr "Der Remote-Server hat nicht geantwortet."
+
+msgid "authFailure"
+msgstr "Der angegebene Benutzername und das Passwort wurden vom Remote-Server abgelehnt."
+
+msgid "remoteTerm"
+msgstr "Die Verbindung wurde vom Remote-Server abgebrochen."
+
+msgid "pppdAuthSuccess"
+msgstr "Erfolg"
+
+msgid "dnsTest"
+msgstr "Namensauflösung"
+
+msgid "dnsTest_help"
+msgstr "Zeigt den Status des Domänennamensauflösungs-Tests an. Eine Domänennamensauflösung übersetzt Texthostnamen und -domänennamen in numerische IP-Adressen und umgekehrt."
+
+msgid "dnsTestStage"
+msgstr "Namen-Server wird kontaktiert..."
+
+msgid "dnsTestFail"
+msgstr "Ihr DNS-Server konnte nicht kontaktiert werden. Überprüfen Sie Ihre TCP/IP-Einstellungen, um sicherzustellen, dass die angegebenen DNS-Server korrekt sind."
+
+msgid "dnsTestSuccess"
+msgstr "Erfolg"
+
+msgid "netTest"
+msgstr "Netzwerkverbindung"
+
+msgid "netTest_help"
+msgstr "Zeigt den Status des Netzwerkverbindungs-Tests an. Dieser Test versucht, eine Verbindung mit einem Remote-Standort herzustellen."
+
+msgid "netTestStage"
+msgstr "Remote-Standort wird kontaktiert..."
+
+msgid "netTestFail"
+msgstr "Es konnte keine Verbindung mit einem Remote-Standort hergestellt werden. Bitte überprüfen Sie Ihr Modem und Ihre TCP/IP-Einstellungen und versuchen Sie es noch einmal."
+
+msgid "netTestSuccess"
+msgstr "Erfolg"
+
+msgid "back"
+msgstr "Zurück"
+
+msgid "back_help"
+msgstr "Damit kehren Sie zur Modemeinstellungsseite zurück."
+
+msgid "ppp0_in_use"
+msgstr "Die Modemverbindung konnte nicht aktiviert werden, weil die Schnittstelle von einem anderen Gerät verwendet wird. Wenn Sie DSL verwenden, müssen Sie PPPoE deaktivieren, bevor Sie das Modem für die Verbindung verwenden können."
+
+msgid "capgroup_adminModem_help"
+msgstr "Dieses Administrationsrecht ermöglicht dem Benutzer, die Modemeinstellungen zu ändern."
+
+msgid "capgroup_adminModem"
+msgstr "Modemverwaltung"
+

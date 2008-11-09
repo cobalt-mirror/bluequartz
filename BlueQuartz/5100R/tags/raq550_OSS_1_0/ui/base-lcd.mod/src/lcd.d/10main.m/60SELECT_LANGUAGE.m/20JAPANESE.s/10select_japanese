@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: 10select_japanese 259 2004-01-03 06:28:40Z shibuya $
+# Sets locale auto-negotiation order
+
+use POSIX;
+use I18n;
+
+my $ret = I18n::i18n_setSystemLocale('ja');
+exit $ret;
+

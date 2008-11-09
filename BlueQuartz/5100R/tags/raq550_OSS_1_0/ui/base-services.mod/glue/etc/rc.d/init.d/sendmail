@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# chkconfig: 235 80 30
+# description: Mail transfer agent
+#
+
+# Source function library.
+DOMAIN=base-services
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 1
+
+# location of sendmail binary
+SENDMAIL="/usr/sbin/sendmail"
+
+[ -f $SENDMAIL ] || exit 1
+
+if [ -f '/etc/mail/sendmail.args' ]; then
+	SENDMAIL_ARGS=`cat /etc/mail/sendmail.args 2> /dev/null`;
+else
+	SENDMAIL_ARGS='-bd -q1h';
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	LINE1=`getmsg mail_start_1`
+	LINE2=`getmsg mail_start_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+	daemon $SENDMAIL $SENDMAIL_ARGS
+	echo
+	touch /var/lock/subsys/sendmail
+	;;
+  stop)
+	# Stop daemons.
+	LINE1=`getmsg mail_stop_1`
+	LINE2=`getmsg mail_stop_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+	killproc sendmail
+	echo
+	rm -f /var/lock/subsys/sendmail
+	;;
+  status)
+	status sendmail
+	;;
+  hard-restart)
+	killproc sendmail
+	sleep 2
+	daemon $SENDMAIL $SENDMAIL_ARGS
+	;;
+  restart)
+	$0 stop
+	sleep 5
+	$0 start
+	;;
+  *)
+	echo "Usage: sendmail {start|stop}"
+	exit 1
+esac
+
+exit 0
+

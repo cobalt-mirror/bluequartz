@@ -1,0 +1,161 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-21 10:49+0100\n"
+"PO-Revision-Date: 2007-11-21 11:43+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "Frontpage_passwordWebmaster_invalid"
+msgstr ""
+"Beklager, men du har ikke indtastet den samme adgangskode for brugeren "
+"webmaster i begge felter.  Den samme adgangskode skal indtastes i begge "
+"felter for at sikre at der ikke tastes forkert.  Prøv venligst igen."
+
+msgid "couldNotAccessUser"
+msgstr ""
+"Et FrontPage-brugerwebsted kunne ikke oprettes for en bruger på dette site."
+
+msgid "enable"
+msgstr "Aktiver"
+
+msgid "enableFpxDefault"
+msgstr "Aktiver FrontPage Serverudvidelser"
+
+msgid "enableFpxDefault_help"
+msgstr ""
+"Sæt hak her for, som standard, at aktivere FrontPage Serverudvidelser ved "
+"oprettelse af et nyt site."
+
+msgid "enableFpxUser"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUserDefault"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUserDefault_help"
+msgstr ""
+"Sæt hak her for, som standard, at aktivere FrontPage Serverudvidelser når "
+"der oprettes en ny bruger."
+
+msgid "enableFpxUser_help"
+msgstr "Sæt hak her for at aktivere FrontPage Serverudvidelser for brugeren."
+
+msgid "eulaAccept"
+msgstr "Accepter licensaftalen"
+
+msgid "eulaAccept_help"
+msgstr ""
+"Du skal sætte hak i dette felt for at acceptere licensaftalen for "
+"slutbrugere for Microsoft FrontPage Serverudvidelser version 2002 for at "
+"kunne aktivere FrontPage Serverudvidelser for dette site."
+
+msgid "eulaText"
+msgstr "Licensaftale"
+
+msgid "eulaText_help"
+msgstr ""
+"Læs venligst licensaftalen for slutbrugere for Microsoft FrontPage "
+"Serverudvidelser version 2002.  Du skal acceptere denne umodificerede "
+"licensaftele for at kunne aktivere FrontPage Serverudvidelser."
+
+msgid "failInstallSite"
+msgstr ""
+"Et Frontpageweb kunne ikke oprettes på dette site.  FrontPage kan ikke "
+"aktiveres hvis det eksisterende websted indeholder filer som konflikter med "
+"FrontPage websteder, såsom .htaccess filer."
+
+msgid "failInstallUserweb"
+msgstr "[[base-frontpage.couldNotAccessUser]]"
+
+msgid "failUninstallSite"
+msgstr "FrontPage webstedet kunne ikke deaktiveres."
+
+msgid "failUninstallUserweb"
+msgstr ""
+"Et FrontPage-brugerwebsted kunne ikke fjernes for en bruger på dette site."
+
+msgid "fpxEnabled"
+msgstr "FrontPage Serverudvidelser"
+
+msgid "fpxEnabled_help"
+msgstr "FrontPage Serverudvidelser er aktiveret for denne bruger."
+
+msgid "fpxFullText"
+msgstr "Aktiver FrontPage Serverudvidelser"
+
+msgid "fpxFullText_help"
+msgstr "Aktiver for at oprette et FrontPage websted på dette site. "
+
+msgid "fpxPassword"
+msgstr "webmaster Adgangskode"
+
+msgid "fpxPassword_help"
+msgstr ""
+"Dette websted skal tilgåes med brugernavnet webmaster og denne adgangskode. "
+" Brugerwebsteder tilgåes med de respektive brugernavne og deres egen "
+"adgangskode.  FrontPageklienten bruges til at administrere disse websteder."
+
+msgid "fpxSettings"
+msgstr "[[base-frontpage.fpxTabName]] Indstillinger for [[VAR.fqdn]]"
+
+msgid "fpxTabName"
+msgstr "FrontPage"
+
+msgid "fpxTabName_help"
+msgstr "Aktiver eller deaktiver FrontPage site- eller brugerwebsteder."
+
+msgid "fpx_failed"
+msgstr "Et FrontPage-rodwebsted kunne ikke aktiveres."
+
+msgid "frontpage"
+msgstr "FrontPage Serverudvidelser"
+
+msgid "frontpageSettings"
+msgstr "Indstillinger for FrontPage Serverudvidelser"
+
+msgid "frontpage_help"
+msgstr ""
+"FrontPage Serverudvidelser bruges så websteder kan udgive ved hjælp af "
+"FrontPage-klienten.  FrontPage gør det nemt at designe og implementere "
+"grafiske hjemmesider og webformularer."
+
+msgid "missingWebmasterPassword"
+msgstr ""
+"Specificer venligst en adgangskode til standard FrontPage brugeren med "
+"navnet webmaster.  "
+
+msgid "mustAcceptEULA"
+msgstr ""
+"Du skal acceptere slutbrugerlicensaftalen for Microsoft FrontPage "
+"Serverudvidelser version 2002 for at kunne akrivere FrontPage "
+"Serverudvidelser på dette websted."
+
+msgid "noNamespace"
+msgstr "FrontPage webtjenester er ikke tilgængelige.  "
+
+msgid "passwd"
+msgstr "Webmaster-adgangskode"
+
+msgid "passwd_empty"
+msgstr "Indtast venligst adgangskoden for brugeren webmaster."
+
+msgid "passwd_help"
+msgstr ""
+"Åbn dette websted med FrontPage-brugeren webmaster og denne adgangskode."
+
+msgid "siteFpxHelp"
+msgstr "Aktiver FrontPage på dette websted."
+
+msgid "systemEnabled"
+msgstr "Aktiver rodwebstedet"
+
+msgid "systemEnabled_help"
+msgstr ""
+"Sæt hak her for at aktivere FrontPageudgivelse for serverens hovedwebsted."

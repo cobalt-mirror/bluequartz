@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+# $Id: gamma_handler 229 2003-07-18 20:22:20Z will $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+$| = 1;
+
+while(<>)
+{
+	print STDERR $_;
+	if (/^200 READY/)
+	{
+		last;
+	}
+}
+
+print STDERR "BADDATA 0 gamma bar\n";
+print "BADDATA 0 gamma bar\n";
+
+print STDERR "BYE FAIL\n";
+print "BYE FAIL\n";
+
+while (<>)
+{
+	print STDERR $_;
+}
+

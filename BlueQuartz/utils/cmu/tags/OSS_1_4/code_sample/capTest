@@ -1,0 +1,23 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
+use strict;
+use CCE;
+use Data::Dumper;
+
+my $cce = new CCE;
+$cce->connectuds();
+
+my $uRef = {};
+$uRef = {
+	name => 'luser',
+	stylePreference => 'trueBlue',
+	fullName => 'Mr. Luser',
+	capLevels => '&adminDns&',
+	password => 'abc123',
+};
+
+my ($ok, $bad, @info);
+($ok, $bad, @info) = $cce->create('User', $uRef);
+if($ok == 0) {
+	print Dumper($bad);
+	print Dumper(@info);
+} else { print "It worked\n"; }

@@ -1,0 +1,10 @@
+<!-- 
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: ssl_rules.schema,v 1.1 2001/06/29 06:25:02 pbaltz Exp $
+
+    security rules used to for acls for SSL namespaces and attributes
+-->
+<rule
+    name="ruleSiteSSL" type="perl"
+    data="rules/base/ssl/site_ssl.pl"
+/>

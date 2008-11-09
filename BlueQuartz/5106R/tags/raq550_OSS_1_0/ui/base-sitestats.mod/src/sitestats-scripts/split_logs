@@ -1,0 +1,529 @@
+#!/usr/bin/perl -I /usr/sausalito/perl
+# $Id: split_logs,v 1.22.2.6 2002/02/14 22:53:47 pbaltz Exp $
+# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# Consolidated log distribution by virtual site
+
+use strict;
+
+# Global Variables
+my $Analog_cmd = '/usr/local/sbin/analog';
+my $Htgroup_dir = '/home/.sites';
+my $Logdir = 'logs'; # site logs directory
+my %domains;         # hash of vsite fqdn's
+my $curbuf = 0;      # current number of lines buffered
+my $maxbuf = 25000;  # maximum number of lines to buffer
+my %vsite_dir;       # hash mapping all site fqdns to base directory
+my %vsite_fqdn;      # hash mapping all site groups to fqdn
+my %run_stats;       # hash mapping all site groups to Analog execution boolean
+my %cache_log;       # hash mapping active groups to log data string
+my %active_sites;    # hash mapping active groups to 1
+my %pids;            # hash mapping all fqdn to per-site file owner pids
+my %gids;            # hash mapping all fqdn to gids
+my $custom = 0;	     # global flag indicating a date override is used
+
+# Hardcode locale to be english, otherwise 'date' spits out japanese
+# strings and that messes up our parsing.
+$ENV{'LC_ALL'} = 'en_US';
+
+my $DEBUG = 0;
+$DEBUG && warn "\n".`date`."$0\n".join(':', @ARGV)."\n";
+
+use IO::File;
+use Base::HomeDir qw(homedir_get_group_dir);
+use POSIX qw(strftime mktime);
+use CCE;
+use File::Path;
+
+# set a sane umask
+umask(002);
+
+# make sure $Htgroup_dir exists before going on
+if (! -d $Htgroup_dir) {
+	mkpath($Htgroup_dir, 0, 0755);
+}
+
+my $cce = new CCE;
+$cce->connectuds();
+
+# Fetch "server" log pid and gid
+my $server_pid = (getpwnam('admin'))[2];
+my $server_gid = (getgrnam('users'))[2];
+$DEBUG && warn "Server log pid, gid: $server_pid, $server_gid\n";
+
+# Build a list of virtual site fully qualified domain names, 
+# excluding fqdn aliases
+my  $oid;
+my(@vsite_oids) = $cce->find('Vsite');
+foreach $oid (@vsite_oids)
+{
+	my($ok, $vsite) = $cce->get($oid);
+
+	$domains{$vsite->{hostname}} = 1 if ($vsite->{hostname});
+	$domains{$vsite->{fqdn}} = 1 if ($vsite->{fqdn});
+
+	$vsite_dir{$vsite->{fqdn}} = $vsite->{basedir};
+	$vsite_fqdn{$vsite->{name}} = $vsite->{fqdn};
+
+	my($aok, $sitestats) = $cce->get($oid, 'SiteStats');
+	$run_stats{$vsite->{fqdn}} = $sitestats->{enabled};
+	$pids{$vsite->{fqdn}} = 
+		(getpwnam($sitestats->{owner}))[2];
+	$gids{$vsite->{fqdn}} = 
+		(getgrnam($vsite->{name}))[2];
+	
+	$DEBUG && warn 'Found site: '.$vsite->{fqdn}.', group: '.
+		$vsite->{hostname}, 
+		', basedir: '.$vsite->{basedir}.
+		', sitestats: '.$sitestats->{enabled},
+		', pid/gid: '.$pids{$vsite->{fqdn}}.'/'.
+		$gids{$vsite->{fqdn}}."\n";
+}
+
+# used to convert month strings from logs to values to pass to mktime
+my %month_convert = ('Jan' => 0, 'Feb' => 1, 'Mar' => 2, 'Apr' => 3,
+		     'May' => 4, 'Jun' => 5, 'Jul' => 6, 'Aug' => 7,
+		     'Sep' => 8, 'Oct' => 9, 'Nov' => 10, 'Dec' => 11);
+
+# default is to run this for yesterday
+my (undef, undef, undef, $day, $month, $year) = localtime(time - 86400);
+
+# figure out the stop and start times that should be processed from the log
+
+# by default we start processing at midnight yesterday
+my $first_date = mktime(0, 0, 0, $day, $month, $year);
+
+# by default we stop processing at midnight today (12:00 am)
+my $stop_time = $first_date + (24 * 60 * 60);
+
+$DEBUG && print STDERR "current time - stop time is ", (time() - $stop_time), "\n";
+
+# adjust time to more human understandable
+$year += 1900; # gmtime returns ( year - 1900 )
+$month += 1;   # gmtime returns ( month - 1 )
+my $date_dir = $year . "/" . $month . "/" . $day . "/";
+
+if ($ARGV[1]) {
+	$custom = 1;
+	$date_dir = $ARGV[1];
+	if ($date_dir =~ /(\d+)\/(\d+)\/(\d+)/) {
+		($year, $month, $day) = ($1, $2, $3);
+		#
+		# if a custom date was passed, start time is 12:00 am of the
+		# custom date, and stop time is 12:00 am of the day immediately
+		# after the custom date
+		#
+		$first_date = mktime(0, 0, 0, $day, $month - 1, $year - 1900);
+		$stop_time = $first_date + (24 * 60 * 60);
+	}
+}
+
+$DEBUG && warn "date_dir: $date_dir ";
+
+my $log_type = $ARGV[0];
+$log_type =~ /(web|ftp|mail|net)/ ||
+	die "Invalid log type: $log_type. Most be web, ftp or mail.\n";
+
+## Begin SPLIT
+
+# Create the current server-level cache/stats directory
+&setup_dirs($Htgroup_dir.'/server', 
+	$Logdir, $date_dir, 00701, 
+	$server_pid, $server_gid);
+my $output_dir = $Htgroup_dir.'/server/'.$Logdir.'/'.$date_dir;
+
+# clear the existing cache file
+$DEBUG && warn 'Clearing '.$output_dir.'/'.$log_type.".cache\n";
+unlink($output_dir.'/'.$log_type.'.cache');
+
+my $analog_args = " -C'DEFAULTLOGFORMAT COMBINED' " . 
+                  "-C'CACHEOUTFILE $output_dir/$log_type.cache'";
+
+# Open up main report
+$DEBUG && warn "Attempting to invoke $Analog_cmd $analog_args -\n";
+open(MR, "| $Analog_cmd $analog_args - > /dev/null") ||
+                die "Could not execute $Analog_cmd for main site: $!";
+
+my $regexp = get_regexp($log_type);
+$DEBUG && warn "Using regex: $regexp\n";
+my $double_regexp = qq($regexp $regexp);
+my %daily_flush; # cache unlinking of per-site daily log files
+
+# this specifies how to process system log files for this log type
+my %log_process = (
+    'mail' => '/usr/local/sbin/maillog2commonlog.pl sendmail |',
+    'ftp' => '/usr/local/sbin/ftplog2commonlog |',
+    'net' => '',
+    'web' => '');
+
+my %old_logs = ();
+my $sample = '';
+if (!$custom) {
+	#
+	# filenames of logs from two days ago
+	# being run by logrotate
+	# logrotate renames the old log files before running even the
+	# prerotate command, so yesterday's log is in the .2.gz file
+	#
+	%old_logs = ('mail' => '/var/log/maillog.2.gz',
+		     'ftp' => '/var/log/xferlog.2.gz',
+		     'net' => '/var/log/ipacct.2.gz',
+		     'web' => '/var/log/httpd/access.2.gz');
+
+	#
+	# no date specified, so need to sample the current log file
+	# to see which day we should look for in the old log file.  This is
+	# done so stats information doesn't get lost if logrotate doesn't get
+	# run some days if the box is down.
+	#
+	$sample = <STDIN>;
+
+	# if this is a logrotate run, check the sample for the date to find
+	if ($sample ne '') {
+		$sample =~ m#\[([^/]+)/([^/]+)/([^\:]+)\:#;
+		# the start time needs to be bumped to 12:00 am of this day
+		$first_date = mktime(0, 0, 0, $1, $month_convert{$2},
+				     $3 - 1900);
+	}
+} else {
+	#
+	# running outside of the normal logrotate run
+	# use the logs that were rotated out this morning
+	# they end in .1.gz
+	#
+	%old_logs = ('mail' => '/var/log/maillog.1.gz',
+		     'ftp' => '/var/log/xferlog.1.gz',
+		     'net' => '/var/log/ipacct.1.gz',
+		     'web' => '/var/log/httpd/access.1.gz');
+}
+
+if ($DEBUG) {
+	print STDERR "start time: ", POSIX::ctime($first_date);
+	print STDERR "stop time: ", POSIX::ctime($stop_time);
+}
+
+# check the old log file if it exists
+if (-f $old_logs{$log_type}) {
+	$DEBUG && print STDERR "processing old log $old_logs{$log_type}\n";
+	my $pipe_cmd = "/bin/zcat " . $old_logs{$log_type} . " | " .
+	    $log_process{$log_type};
+	open(LOGFILE, $pipe_cmd) or die "$!\n";
+	while (my $line = <LOGFILE>) {
+		if (!&process_line($line, $log_type,
+				   *MR, $regexp, $double_regexp, $custom)) {
+			next;
+		}
+
+		if ($curbuf >= $maxbuf) {
+			&flush_buffers($log_type, $custom);
+			$curbuf = 0;
+		}
+	}
+}
+
+$DEBUG && print STDERR "about to process most recent log\n";
+# if we took a sample above, process that here
+my $i = 1;
+if ($sample ne '') {
+	($DEBUG > 1) && print STDERR "process line ", $i++, "\n";
+	&process_line($sample, $log_type, *MR, $regexp,
+		      $double_regexp, $custom);
+}
+
+while (my $line = <STDIN>) {	
+	($DEBUG > 1) && print STDERR "process line ", $i++, "\n";
+	if (!&process_line($line, $log_type, *MR, $regexp,
+			   $double_regexp, $custom)) {
+		next;
+	}
+
+	($DEBUG > 1) && print STDERR "$curbuf\t$maxbuf\n";
+
+	# Avoid overusing RAM
+	if ($curbuf >= $maxbuf) {
+		&flush_buffers($log_type, $custom);
+		$curbuf = 0;
+	}
+}
+
+# The following code looks is largely duplicate of that above
+if ($curbuf) {
+	&flush_buffers($log_type, $custom);
+}
+close(MR);
+
+chown($server_pid, $server_gid, "$output_dir/$log_type.cache");
+chmod(0600, "$output_dir/$log_type.cache");
+
+# Invoke analog over, and over, and over, and over
+foreach my $site (keys %active_sites)
+{
+	$DEBUG && warn "Analog for site $site: ".$run_stats{$site}."\n";
+	next unless ($run_stats{$site});
+
+	# Set up the environment
+ 	my $basedir = $vsite_dir{$site};
+
+	my $log_file = "$basedir/$Logdir/$log_type.log";
+	$log_file = "$basedir/$Logdir/$log_type.daily" if ($custom); 
+	
+	next unless (-e $log_file);
+
+ 	$DEBUG && warn "Analog setup: $site using logfile: ".
+		"$log_file\n";
+
+ 	my $output_dir = "$basedir/$Logdir/$date_dir";
+	&setup_dirs($basedir, $Logdir, $date_dir, 02770,
+		$pids{$site}, $gids{$site});
+
+	next unless (-d $output_dir);
+
+	my $cache_file = "$basedir/$Logdir/$date_dir$log_type.cache";
+
+	unlink($cache_file);
+ 	system("rm -f $cache_file") if (-e $cache_file);
+
+	#
+	# figure out which files to look in for data
+	# this is easy, because we know logrotate runs once daily
+	# so only need to look in at most two log files (current and
+	# most recently rotated)
+	#
+	my @log_files = ();
+
+	if ($custom) {
+		# same day generation, this already parses out dates above
+		push @log_files, $log_file;
+	} else {
+		push @log_files, "$log_file.1.gz", $log_file;
+	}
+
+	if ($DEBUG) {
+		my @start = (localtime($first_date))[3, 4, 5];
+		my @end = (localtime($stop_time))[3, 4, 5];
+		print STDERR "searching for lines beginning at midnight ",
+			join('/', $start[1] + 1, $start[0], $start[2] + 1900),
+			" and ending at midnight ",
+			join('/', $end[1] + 1, $end[0], $end[2] + 1900), "\n";
+	}
+
+	$DEBUG && warn "Running Analog for site $site, $output_dir\n";
+	open(ANALOG, "|-") || exec("$Analog_cmd -C'DEFAULTLOGFORMAT COMBINED' ".
+				   "-C'CACHEOUTFILE $cache_file' ".
+				   "- >/dev/null 2>&1");
+	
+	for my $file (@log_files) {
+		if (! -f $file) {
+			next;
+		}
+	
+		if ($file =~ /\.gz$/) {
+			# safe pipe read from gzipped file
+			open(LOGFILE, "-|") || exec('/bin/zcat', $file);
+		} else {
+			# regular file
+			open(LOGFILE, $file) or die "$!\n";
+		}
+
+		while (<LOGFILE>) {
+			($DEBUG > 2) && print STDERR $_;
+			m#\[([^/]+)/([^/]+)/([^\:]+):#;
+			my $log_time = mktime(0, 0, 0, $1, $month_convert{$2},
+					      $3 - 1900);
+
+			if (($first_date <= $log_time) &&
+			    ($log_time < $stop_time)) {
+				print ANALOG $_;
+			} elsif ($DEBUG) {
+				/(\[[^\]]+\])/;
+				print STDERR "Skipping out of range record: $1\n";
+			}
+		}
+
+		close(LOGFILE);
+	}
+
+	close(ANALOG);
+
+	chown($pids{$site}, $gids{$site}, $cache_file);
+	chmod(0660, $cache_file);
+}
+
+exit 0;
+
+## End SPLIT
+
+
+sub get_regexp
+{
+	my $type = shift;
+	my $regexp;
+
+	# We need differed regualr expressions to get which site 
+	# it's for depending on the log type.  
+
+	# Web logs just begin with the full domain name of the site..
+	return '^(\S+) (.*)$' if $type eq 'web';
+	
+	# Mail logs have the domain name as the referrer or the 
+	# browser in the log file..
+	return qq("http://([^/]+)/") if $type eq 'mail';
+	
+	# Ftp we see the full file name of the file it grabbed and work 
+	# it out from the site name there..
+	
+	return '/.sites/\d+/([^/]+)/' if $type eq 'ftp';
+
+	# there are no vsites to match for net... server wide only
+	return "/Dontmatchanythingnovsites/" if $type eq 'net';
+}
+
+sub setup_dirs
+{
+	my ($basedir, $log, $date_dir, $mode, $pid, $gid) = @_;
+	$mode ||= 02770;
+
+	my $chown = 0;
+	$chown = 1 if (($pid =~ /^\d+$/) && ($gid =~ /^\d+$/));
+
+	my @dirs = ($basedir, "$basedir/$log");
+
+	my(@dates) = split('/', $date_dir);
+
+	return 0 unless ($dates[2] =~ /./);
+
+	push (@dirs, "$basedir/$log/".$dates[0]);
+	push (@dirs, "$basedir/$log/".$dates[0].'/'.$dates[1]);
+	push (@dirs, "$basedir/$log/".$dates[0].'/'.$dates[1].'/'.$dates[2]);
+
+	foreach my $dir (@dirs)
+	{
+		$DEBUG && warn "Test/setup $dir perms $mode\n";
+		unless(-d $dir)
+		{
+			mkdir($dir, $mode) || next;
+			chown ($pid, $gid, $dir) if ($chown);
+			chmod ($mode, $dir);
+		}
+	}
+	return 1;
+}
+
+sub process_line
+{
+	my $data = shift;
+	my $type = shift;
+	my $analog_fh = shift;
+	my $regexp = shift;
+	my $double_regexp = shift;
+	my $custom = shift;
+
+	my $rawdata = $data;
+	my $current_domain;
+
+	# filtering lines out based on date
+	$rawdata =~ m#\[([^/]+)/([^/]+)/([^\:]+)\:#;
+	my $log_time = mktime(0, 0, 0, $1, $month_convert{$2}, $3 - 1900);
+	if ($log_time < $first_date) {
+		if ($DEBUG) {
+			$data =~ /(\[[^\]]+\])/;
+			print STDERR "Skipping old record dated: $1\n";
+		}
+		return(0);
+	}
+
+	# check if this line is after the stop time
+	if ($log_time >= $stop_time) {
+		if ($DEBUG) {
+			$rawdata =~ /(\[[^\]]+\])/;
+			print STDERR "Skipping new record dated: $1\n";
+		}
+		return(0);
+	}
+
+	# only include certain web requests
+	if ($type eq 'web' && $rawdata !~ /(GET|POST|PUT) \//o) {
+		if ($DEBUG > 2) {
+			$data =~ /\]\s*(.*)$/;
+			print STDERR "Skipping non-web log line: $1\n";
+		}
+		return(0);
+	}
+
+	if ($type eq 'web') {
+		($current_domain, $data) = ($data =~ /^(\S+) (.*$)/o);
+		$data .= "\n";   # add the newline back
+		$data =~ s:(GET|POST|PUT) /:$1 /$current_domain/:;
+		# $DEBUG && warn "Constructed Web data: $data\n";
+	}
+
+	if (($rawdata =~ m#$double_regexp#o) && ($type eq 'mail')) {
+		# if we don't know about the sending or receiving domain, just
+		# skip this one
+		unless ($domains{$1} || $domains{$2} || ($2 eq 'localhost')) {
+			$DEBUG && warn "Sending and Receiving domains unknown: $1, $2\n";
+			return(0);
+		}
+
+		($DEBUG > 1) && warn "Double: $data";
+		if ($domains{$1}) { 
+			$cache_log{$1} .= $data;
+			$curbuf++;
+		}
+		if ($domains{$2}) {
+			$cache_log{$2} .= $data; 
+			$curbuf++;
+		}
+	} elsif ($rawdata =~ m#$regexp#o) {
+		if (!$domains{$1} && ($type ne 'ftp')) {
+			$DEBUG && warn "Skipping unknown domain: $1\n";
+			return(0);
+		}
+		($DEBUG > 1) && warn "Single: $data";
+		if ($type eq 'ftp') {
+			$current_domain = $vsite_fqdn{$1};
+		}
+		$cache_log{$current_domain} .= $data;
+		$curbuf++;
+	}
+
+	if ($type eq 'web' || $type eq 'net') {
+		print $analog_fh $rawdata;
+		($DEBUG > 1) && warn "Writing: $rawdata\n";
+	} else {
+		print $analog_fh $data;
+		($DEBUG > 1) && warn "Writing: $data\n";
+	}
+
+	return(1);
+}
+
+sub flush_buffers
+{
+	my $type = shift;
+	my $daily = shift;
+
+	foreach my $site (keys %cache_log) {
+		if ($cache_log{$site}) {
+			my $basedir = $vsite_dir{$site};
+			my $file = "$basedir/$Logdir/$type.log";
+			my $daily_log = "$basedir/$Logdir/" . "$type.daily";
+			if ($daily) {
+				unlink($daily_log) unless 
+					($daily_flush{$daily_log});
+				$daily_flush{$daily_log} = 1;
+				$file = $daily_log;
+			}
+
+			open(SITELOG, ">> $file") || next;
+			print SITELOG $cache_log{$site};
+			close(SITELOG);
+				
+			$DEBUG && warn "pid, gid for $file: ".
+				$pids{$site}.', '. $gids{$site}."\n";
+			chown($pids{$site}, $gids{$site}, $file);
+			chmod(0660, $file);
+			$active_sites{$site} = 1;
+		}
+		delete($cache_log{$site});
+	}
+}

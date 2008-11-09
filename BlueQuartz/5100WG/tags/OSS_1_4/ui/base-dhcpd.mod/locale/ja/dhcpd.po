@@ -1,0 +1,316 @@
+msgid "dhcpd"
+msgstr "DHCP"
+
+msgid "dhcpd_help"
+msgstr "ここをクリックすると、[[base-dhcpd.dhcpdSettings]] を設定できます。"
+
+msgid "dhcpdSettings"
+msgstr "DHCP の設定"
+
+msgid "enableServerField"
+msgstr "DHCP サービスを有効にする"
+
+msgid "enableServerField_help"
+msgstr "ここをクリックすると、DHCP クライアント設定情報を設定できます。  ここで設定する情報が、クライアントの起動時に自動的に渡されるネットワーク設定情報になります。"
+
+msgid "settingsForClients"
+msgstr "DHCP クライアントの設定情報"
+
+msgid "settingsForClients_help"
+msgstr "クライアントマシンの設定に使う DHCP 情報を入力してください。クライアントマシン上で、このサーバの IP アドレスを DHCP サーバとして指定しておくと、ここで指定するネットワーク設定情報が自動的に渡されます。"
+
+msgid "domainNameField"
+msgstr "ドメインネーム"
+
+msgid "domainNameField_rule"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： sun.com）"
+
+msgid "domainNameField_help"
+msgstr "クライアントのドメインネームを入力してください。通常は、このサーバのドメインネームと同じです。[[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_invalid"
+msgstr "[VAR.invalidValue]] は、[[base-dhcpd.domainNameField]]には指定できません。  [[base-dhcpd.domainNameField_rule]]"
+
+msgid "domainNameField_empty"
+msgstr "[[base-dhcpd.domainNameField]]を指定してください。[[base-dhcpd.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS サーバのアドレス"
+
+msgid "dnsAddressesField_rule"
+msgstr "0 ～ 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "dnsAddressesField_help"
+msgstr "クライアントが参照すべきローカルドメインネームサーバの IP アドレスを入力してください。ドメインネームサーバは、テキスト文字列で表記されるホスト名＋ドメインネームと、数字で表記される IP アドレスとの関連付け（正引き、逆引き)を行います。[[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.dnsAddressesField]]には指定できません。[[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_empty"
+msgstr "[[base-dhcpd.dnsAddressesField]]を指定してください。[[base-dhcpd.dnsAddressesField_rule]]"
+
+msgid "subnetMaskField" 
+msgstr "サブネットマスク"
+
+msgid "subnetMaskField_rule" 
+msgstr "0 ～ 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 255.255.255.0）"
+
+msgid "subnetMaskField_help"
+msgstr "クライアントのサブネットマスクを入力してください。[[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.subnetMaskField]]には指定できません。[[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "subnetMaskField_empty"
+msgstr " [[base-dhcpd.subnetMaskField]]を指定してください。[[base-dhcpd.subnetMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "デフォルトゲートウェイ"
+
+msgid "gatewayField_rule"
+msgstr "0 ～ 255 の間の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
+
+msgid "gatewayField_help"
+msgstr "クライアントが使うべきローカルネットワークゲートウェイの IP アドレスを入力してください。ネットワークゲートウェイは、ローカルネットワークから外部への接続を提供するサーバ（ルータ）です。  [[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_invalid"
+msgstr " [[VAR.invalidValue]] は、[[base-dhcpd.gatewayField]]には指定できません。[[base-dhcpd.gatewayField_rule]]"
+
+msgid "gatewayField_empty"
+msgstr " [[base-dhcpd.gatewayField]]を指定してください。[[base-dhcpd.gatewayField_rule]]"
+
+msgid "maxLeaseField"
+msgstr "最大リース時間（秒）"
+
+msgid "maxLeaseField_rule"
+msgstr "秒を単位として、0 より大きい整数で指定してください。デフォルトは 86400（秒）です。"
+
+msgid "maxLeaseField_help"
+msgstr "DHCP サーバによって割り当てられたネットワーク情報は、一定時間を経過すると失効します。有効期間の最大値を、[[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.maxLeaseField]]には指定できません。[[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "maxLeaseField_empty"
+msgstr "[[base-dhcpd.maxLeaseField]]を指定してください。[[base-dhcpd.maxLeaseField_rule]]"
+
+msgid "addressAssignments"
+msgstr "割り当てるアドレスを設定"
+
+msgid "addressAssignments_help"
+msgstr "このボタンをクリックすると、DHCP サービスがクライアントに割り当てる IP アドレスの範囲を設定できます。"
+
+msgid "dynamicAssignmentList"
+msgstr "動的アドレスの割り当て範囲"
+
+msgid "ipAddressLow"
+msgstr "IP アドレスの下限"
+
+msgid "ipAddressLow_help"
+msgstr "動的に割り当てる IP アドレスの最小値です。"
+
+msgid "ipAddressHi"
+msgstr "IP アドレスの上限"
+
+msgid "ipAddressHi_help"
+msgstr "動的に割り当てる IP アドレスの最大値です。"
+
+msgid "listActionDyn"
+msgstr "操作"
+
+msgid "listActionDyn_help"
+msgstr "これらのボタンを使うと、動的に割り当てる IP アドレス範囲を修正または削除できます。"
+
+msgid "removeDynamicConfirm"
+msgstr "[[VAR.ipAddressLow]] から [[VAR.ipAddressHi]] までの IP アドレス割り当てを削除してよろしいですか？"
+
+msgid "addNewDynamic"
+msgstr "動的アドレス割り当て範囲の追加"
+
+msgid "ipAddressLowField"
+msgstr "IP アドレスの下限"
+
+msgid "ipAddressLowField_rule"
+msgstr "0 ～ 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.10.）"
+
+msgid "ipAddressLowField_help"
+msgstr "DHCP サービスがクライアントに動的に割り当てる IP アドレスの最小値を入力してください。[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.ipAddressLowField]]には指定できません。[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressLowField_empty"
+msgstr "[[base-dhcpd.ipAddressLowField]]を指定してください。[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressHiField"
+msgstr "IP アドレスの上限"
+
+msgid "ipAddressHiField_rule"
+msgstr "0 ～ 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.10.）"
+
+msgid "ipAddressHiField_help"
+msgstr "DHCP サービスがクライアントに動的に割り当てる IP アドレス範囲の最大値を入力してください。[[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.ipAddressHiField]]には指定できません。[[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "ipAddressHiField_empty"
+msgstr "[[base-dhcpd.ipAddressHiField]]を指定してください。[[base-dhcpd.ipAddressHiField_rule]]"
+
+msgid "staticAssignmentList"
+msgstr "静的アドレスの割り当て範囲"
+
+msgid "ipAddress"
+msgstr "IP アドレス"
+
+msgid "ipAddress_help"
+msgstr "DHCP サービスは、これらの IP アドレスを特定の MAC アドレスを持つコンピュータに対して静的（定常的）に割り当てます。"
+
+msgid "macAddress"
+msgstr "MAC アドレス"
+
+msgid "macAddress_help"
+msgstr "これらの MAC アドレス（ハードウェアアドレス)を持つコンピュータは、左記の IP アドレスの静的な割り当てを受けます。"
+
+msgid "listActionStatic"
+msgstr "操作"
+
+msgid "listActionStatic_help"
+msgstr "これらのボタンを使うと、静的に割り当てる IP アドレス範囲を修正または削除できます。"
+
+msgid "removeStaticConfirm"
+msgstr "[[VAR.macAddress]] という MAC アドレスを持つコンピュータに対する [[VAR.ipAddress]] という IP アドレスの割り当てを削除してよろしいですか？"
+
+msgid "addNewStatic" 
+msgstr "静的アドレス割り当て範囲の追加"
+
+msgid "ipAddressField"
+msgstr "IP アドレス"
+
+msgid "ipAddressField_rule"
+msgstr "[[base-dhcpd.ipAddressLowField_rule]]"
+
+msgid "ipAddressField_help"
+msgstr "DHCP サービスは、下欄の MAC （Media Access Control） アドレスを持つコンピュータに対しては、ここで指定する IP アドレスを静的（定常的）に割り当てます。[[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.ipAddressField]]には指定できません。[[base-dhcpd.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "[[base-dhcpd.ipAddressField]]を指定してください。[[base-dhcpd.ipAddressField_rule]]"
+
+msgid "macAddrAlreadySpecified"
+msgstr "指定された MAC アドレスには、既に割り当てる IP アドレスが設定されています。二重に割り当てることはできません。"
+
+msgid "macAddressField"
+msgstr "MAC アドレス"
+
+msgid "macAddressField_rule"
+msgstr " MAC アドレスは、12 桁の 16 進数を 2 桁ごとにコロンで区切って表記されます。（指定例： 00:10:E0:01:33:AB）"
+
+msgid "macAddressField_help"
+msgstr "上記の IP アドレスを静的に割り当てたいコンピュータの MAC （Media Access Control） アドレスを指定してください。MAC アドレスは、ネットワークインターフェイスカードのハードウェアアドレスで、各ハードウェアをネットワーク上で一意に識別する固有のアドレスです。出荷時に設定され、変更はできません。[[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-dhcpd.macAddressField]]には指定できません。[[base-dhcpd.macAddressField_rule]]"
+
+msgid "macAddressField_empty"
+msgstr "[[base-dhcpd.macAddressField]]を指定してください。[[base-dhcpd.macAddressField_rule]]"
+
+msgid "cantSetParam"
+msgstr "DHCP パラメータを設定できません。"
+
+msgid "noIPAddrRange"
+msgstr "IP アドレスの上限または下限が指定されていません。  ネットワーク上のクライアントに割り当てたい IP アドレス範囲の最小値と最大値を入力してください。"
+
+msgid "ipAddrRangeNotValid"
+msgstr "IP アドレス範囲が不正です。   ネットワーク上のクライアントに割り当てたい IP アドレス範囲の最小値を入力してください。 IP アドレスの下限が上限よりも小さい値であることをご確認ください。"
+
+msgid "modDynamicAddress"
+msgstr "動的アドレス割り当て範囲の修正"
+
+msgid "modStaticAddress"
+msgstr "静的アドレス割り当て範囲の修正"
+
+msgid "noDhcpConf"
+msgstr "DHCP サーバの設定ファイル /etc/dhcpd.conf が見つかりませんでした。DHCP 設定を指定し直して見てください。それでもこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "noSystemObj"
+msgstr "DHCP パラメータの設定時に、システムオブジェクトが見つかりませんでした。[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "noNetworkObj"
+msgstr "DHCP パラメータの設定時に、ネットワークオブジェクトが見つかりませんでした。[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "noParamObj"
+msgstr "DHCP パラメータの設定時に、DhcpParam オブジェクトが見つかりませんでした。[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "parameters"
+msgstr "パラメータ"
+
+msgid "noConfigFile"
+msgstr "DHCP サーバの設定ファイル /etc/dhcpd.conf が見つかりませんでした。DHCP 設定を指定し直して見てください。それでもこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "cannotLock"
+msgstr "設定ファイル /etc/dhcpd.confは現在使用中です。後でもう一度お試しください。引き続きこのメッセージが表示される場合は、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "cantUpdateConf"
+msgstr "システムが、設定ファイル /etc/dhcpd.conf を更新できませんでした。DHCP 設定を指定し直して見てください。引き続きこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "rangeMismatch"
+msgstr "ご指定の IP アドレスは、このサーバのプライマリインターフェイスの IP アドレスとは別のサブネット上にあります。DHCP クライアントへ割り当てるネットワークアドレスには、このサーバと同じサブネット上にあるものをお選びください。"
+
+msgid "gwMismatch"
+msgstr "ご指定のデフォルトゲートウェイは、このサーバのプライマリインターフェイスの IP アドレスとは別のサブネット上にあります。DHCP クライアントへ割り当てるデフォルトゲートウェイには、このサーバと同じサブネット上にあるものをお選びください。"
+
+msgid "ipMismatch"
+msgstr "静的アドレスとしてご指定の IP アドレスは、このサーバのプライマリインターフェイスの IP アドレスとは別のサブネット上にあります。DHCP クライアントへ割り当てる静的ネットワークアドレスには、このサーバと同じサブネット上にあるものをお選びください。"
+
+msgid "wrongOrder"
+msgstr "[[base-dhcpd.ipAddrRangeNotValid]]。"
+
+msgid "noLeaseFile"
+msgstr "設定ファイル /etc/dhcpd.leases を開けません。このファイルを削除し、DHCP 設定を指定し直してから、DHCP サーバを再起動して見てください。それでもこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "initScriptError"
+msgstr "DHCP サーバの初期化スクリプトを実行できませんでした。もう一度お試しください。スクリプトファイルが破損または紛失している可能性があります。引き続きこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "initLinkOnFail"
+msgstr "初期化スクリプトを設定できませんでした。この処理は、次回以降のサーバ起動時にも DHCP サーバを自動的に起動するために必要です。もう一度お試しください。引き続きこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "initLinkOffFail"
+msgstr "初期化スクリプトを削除できませんでした。この処理は、次回以降のサーバ起動時にも DHCP サービスを無効にするために必要です。もう一度お試しください。引き続きこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "offFail"
+msgstr "DHCP サービスを無効にできませんでした。もう一度 DHCP サービスを無効にして「保存」ボタンをクリックして見てください。それでもこのメッセージが表示される場合には、[[base-carmel.osVendor]]のテクニカルサポートまでご連絡ください。"
+
+msgid "cannotStartDhcp"
+msgstr "DHCP サービスを有効にできませんでした。DHCP クライアント設定情報が正しく指定され、少なくとも１つの動的または静的アドレス割り当てが指定されていることをご確認ください。また、デフォルトゲートウェイと割り当てる IP アドレスが、サーバのプライマリインターフェイスと同じサブネット上にあることをご確認ください。"
+
+msgid "amDHCPNameTag"
+msgstr "DHCP サーバ"
+
+msgid "amDetailsTitle"
+msgstr "DHCP サーバの詳細"
+
+msgid "amDHCPNotRunning"
+msgstr "DHCP サーバは動作していません。"
+
+msgid "amDHCPStatusOK"
+msgstr "DHCP サーバは正常に動作しています。"
+
+msgid "turnedOffDhcpdIpChange"
+msgstr "DHCP サービスは無効です。このシステムの新しい IP アドレスは、DHCP クライアントへ割り当てる IP アドレスとは別のサブネット上にあります。割り当てアドレスの範囲を修正し、このサーバと同じサブネット上に設定してください。"
+
+msgid "errorWhileDisablingDhcpdIpChange"
+msgstr "DHCP サービスを無効にする際にエラーが発生しました。DHCP アドレス割り当て情報を修正し、サーバのプライマリインターフェイスと同じサブネット上に設定してください。"
+
+# This is only for engineering debug.
+msgid "cceError"
+msgstr "DHCP オブジェクトをデータベースから抽出する際に設定エンジンエラーが発生しました。"
+
+# Capabilities
+msgid "capgroup_adminDhcpd"
+msgstr "DHCP の管理"
+
+msgid "capgroup_adminDhcpd_help"
+msgstr "この管理権限を持つユーザは、静的アドレスや動的アドレスの割り当てなど、DHCP 関連の全ての設定を管理できます。"

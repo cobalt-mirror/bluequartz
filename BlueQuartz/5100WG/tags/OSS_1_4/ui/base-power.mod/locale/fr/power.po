@@ -1,0 +1,31 @@
+msgid "power"
+msgstr "Arrêt"
+
+msgid "powerHelp"
+msgstr "Le serveur peut être redémarré ici."
+
+msgid "shutdownMessage"
+msgstr "Pour des raisons de sécurité, ce serveur ne peut pas être éteint depuis l'interface utilisateur Web. Utilisez le panneau LCD sur le serveur pour l'arrêter."
+
+msgid "shutdownInstructions"
+msgstr "Pour mettre le serveur hors tension :<OL><LI>Sur la console LCD, appuyez sur le bouton Sélection en le maintenant enfoncé pendant environ 2 secondes.<BR>L'écran LCD affiche :<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECTIONNER: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONFIG RESEAU</CODE><BR><BR><LI>Appuyez sur le bouton Sélection jusqu'à l'affichage de ETEINDRE   sur l'écran LCD :<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECTION : <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETEINDRE</CODE><BR><BR><LI>Appuyez sur le bouton Entrée.<BR><BR><LI>Utilisez les boutons fléchés pour basculer entre [O] et [N]. Sélectionnez [O] pour mettre le système hors tension. L'écran LCD affiche :<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>ETEINDRE MAINTENANT</CODE><BR><BR><LI>Appuyez sur le bouton marche/arrêt sur le panneau arrière pour arrêter le serveur.</OL>"
+
+msgid "reboot"
+msgstr "Redémarrer maintenant"
+
+msgid "reboot_help"
+msgstr "Cliquez ici pour réamorcer le serveur."
+
+msgid "askRebootConfirmation"
+msgstr "Voulez-vous vraiment redémarrer le serveur ?"
+
+msgid "rebooting"
+msgstr "Le serveur est en train de se réamorcer. Il sera disponible à nouveau dans quelques minutes."
+
+# Capabilities
+
+msgid "capgroup_adminPower"
+msgstr "Gérer l'alimentation système"
+
+msgid "capgroup_adminPower_help"
+msgstr "Ce droit administratif permet à un utilisateur de réinitialiser cette machine par le biais de l'interface Web"

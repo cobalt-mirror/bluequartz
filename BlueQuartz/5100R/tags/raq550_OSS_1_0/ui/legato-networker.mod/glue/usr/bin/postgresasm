@@ -1,0 +1,265 @@
+#!/bin/sh
+#
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#
+# This shell script implements a "PostgreSQL ASM". For each name
+# passed on the command line we invoke pgdump to generate a
+# data stream that is fed to nsrfile which turns it into
+# a save stream. On recover we do the reverse, invoke nsrfile
+# to read the save stream and turn it back into a data stream
+# that is fed to pgsql.
+#
+
+# Add basic path information to the environment
+PATH=${PATH}:/bin:/usr/bin:/usr/local/sbin
+export PATH
+
+#
+# Print on stderr
+#
+asm_echo() {
+	echo "$*" >&2
+}
+
+#
+# Print an error message
+#
+asm_error() {
+	asm_echo "$Myname: $*"
+}
+
+#
+# Print usage message
+#
+asm_usage() {
+	asm_echo "usage: $Myname -s[bdnv] [-ix] [-t time] [-f proto] [-p ppath] file..." >&2
+	asm_echo "       $Myname -r[dnv] [-i {nNyYrR}] [-z suffix] [file]..." >&2
+	exit 1
+}
+
+#
+# dirname function
+#
+# prints a non-NULL directory name for the given file
+#	SunOS made dirname optional!!!
+#
+dirname() {
+	expr X"${1}" : X'\(.*\)/.*' \| X"${1}" : X'\(/\)[^/]*$' \| '.'
+}
+
+#
+# Process arguments
+#
+# Sets the following shell variables:
+# Myname=	Name of this ASM
+# Exec_path= 	Path for ASM executables
+# Files=	List of files to operate on
+# Mode=		"SAVE", "RECOVER", or "COUNT"
+# BaseAsm_args=	ASM arguments (w/o Mode arg)
+# Asm_args=	ASM arguments ($BaseAsm_args w/ Mode)
+# Nsrfile_args=	ASM arguments to be passed to nsrfile
+# Asof=		Time to back-up "as of"
+# Verbose=	If true print info
+# VVerbose=	If true print all file names
+#
+asm_setup() {
+	PGUSER="admin"
+	PGPASSWORD=`/bin/cat /etc/cobalt/.meta.id`
+	export PGUSER
+	export PGPASSWORD
+
+	Myname=`/bin/basename $0`
+	Exec_path=`/usr/bin/dirname $0`
+	Files=
+	Mode=
+	Ppath=`pwd`
+	BaseAsm_args=
+	Asm_args=
+	Nsrfile_args=
+	Asof=0
+	Verbose=false
+	VVerbose=false
+	shift
+	while [ $# -gt 0 ]; do
+		case "$1" in
+		-i?*)
+			#
+			# In save or count mode the i flag is alone, in
+			# recover mode it is followed by another arg
+			#
+			first_opt="`expr substr "$1" 2 1`"
+			rest_args="`expr substr "$1" 3 255`"
+			shift
+			if [ X$Mode = XSAVE -o X$Mode = XCOUNT ]; then
+				set -- "-$first_opt" "-$rest_args" $*
+			elif [ X$Mode = XRECOVER ]; then
+				set -- "-$first_opt" "$rest_args" $*
+			fi
+			;;
+		-[fpzt]?*)
+			#
+			# These options are followed by an argument
+			# and cannot be followed by another flag
+			# rip apart the concatenated argument,
+			# reset 'em, and reloop.
+			#
+			first_opt="`expr substr "$1" 2 1`"
+			rest_args="`expr substr "$1" 3 255`"
+			shift
+			set -- "-$first_opt" "$rest_args" $*
+			;;
+		-??*)
+			#
+			# These args have no more arg following but can
+			# be followed by another flag
+			# rip apart the concatenated argument,
+			# reset 'em, and reloop.
+			#
+			first_opt="`expr substr "$1" 2 1`"
+			rest_args="`expr substr "$1" 3 255`"
+			shift
+			set -- "-$first_opt" "-$rest_args" $*
+			;;
+		-v)
+			if [ $Verbose = true ]; then
+				VVerbose=true
+				Asm_args="$Asm_args $1"
+			else
+				Verbose=true
+				Nsrfile_args="$Nsrfile_args $1"
+			fi
+			shift
+			;;
+		-b)
+			if [ X$Mode = XRECOVER ]; then
+				asm_usage
+			fi
+			Mode=COUNT
+			shift
+			;;
+		-r)
+			if [ X$Mode != X ]; then
+				asm_usage
+			fi
+			Mode=RECOVER
+			shift
+			;;
+		-s)
+			if [ X$Mode = XRECOVER ]; then
+				asm_usage
+			fi
+			if [ X$Mode = X ]; then
+				Mode=SAVE
+			fi
+			shift
+			;;
+		-i)
+			#
+			# In save or count mode the i flag is alone, in
+			# recover mode it is followed by another arg
+			#
+			if [ X$Mode = XSAVE -o X$Mode = XCOUNT ]; then
+				BaseAsm_args="$BaseAsm_args $1"
+			elif [ X$Mode = XRECOVER ]; then
+				BaseAsm_args="$BaseAsm_args $1 $2"
+				shift
+			else
+				asm_usage
+			fi
+			shift
+			;;
+		-t)
+			#
+			# Save the Asof time arg
+			# For tarasm, we don't use this
+			# arg and we always do a full
+			#
+			Asof="$2"
+			shift
+			shift
+			;;
+		-[dnvxe])
+			#
+			# These flags stand alone
+			#
+			BaseAsm_args="$BaseAsm_args $1"
+			shift
+			;;
+		-p)
+			Ppath="$2"
+			BaseAsm_args="$BaseAsm_args $1 $2"
+			shift
+			shift
+			;;
+		-[fz])
+			#
+			# These flags have an argument following
+			#
+			BaseAsm_args="$BaseAsm_args $1 $2"
+			shift
+			shift
+			;;
+		-*)
+			asm_error "Unknown flag $1"
+			asm_usage
+			;;
+		*)
+			Files="$Files $1"
+			shift
+			;;
+		esac
+	done
+	if [ X$Mode = X ]; then
+		asm_error "No mode specified, use -s or -r"
+		asm_usage
+	fi
+	if [ $Mode = SAVE -a "X$Files" = X ]; then
+		asm_error "Must specify at least one file with -s flag"
+		asm_usage
+	fi
+
+	if [ $Mode = SAVE ]; then
+		Asm_args="-s $BaseAsm_args $Asm_args"
+	elif [ $Mode = RECOVER ]; then
+		Asm_args="-r $BaseAsm_args $Asm_args"
+	else    # $Mode = COUNT
+		Asm_args="-b $BaseAsm_args $Asm_args"
+	fi
+	Nsrfile_args="-N $Myname $Asm_args $Nsrfile_args"
+
+	# Determine what databases will be backed up by this ASM run
+	Databases=
+	for file in $Files ; do
+		if [ "$file" = "." ]; then
+			db_name=`/bin/basename $Ppath`
+		else
+			if [ "X$file" != X ]; then
+				db_name=`/bin/basename $file`
+			else
+				db_name=""
+			fi
+		fi
+		Databases="$Databases $db_name"
+	done
+}
+
+#
+# Begining of main shell program
+#
+asm_setup $0 $*
+if [ $Mode = RECOVER ]; then
+	if [ $VVerbose = true ]; then
+		asm_echo $Exec_path/nsrfile -F -C "/usr/bin/psql -vc $Databases" $Nsrfile_args $Files
+		$Exec_path/nsrfile -C "$Exec_path/postgresasm_restore --verbose --file - %" $Nsrfile_args $Files
+	else
+		$Exec_path/nsrfile -C "$Exec_path/postgresasm_restore --file - %" $Nsrfile_args $Files
+	fi
+else # $Mode = SAVE or $Mode = COUNT
+	if [ $VVerbose = true ]; then
+		asm_echo $Exec_path/nsrfile -F -C "/usr/bin/pg_dump -vc $Databases" $Nsrfile_args $Files
+		$Exec_path/nsrfile -F -C "/usr/bin/pg_dump -vc $Databases" $Nsrfile_args $Files
+	else
+		$Exec_path/nsrfile -F -C "/usr/bin/pg_dump -c $Databases" $Nsrfile_args $Files
+	fi
+fi
+

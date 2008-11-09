@@ -1,0 +1,65 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgName"
+msgstr "Sun Cobalt DiskMirror"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] 透過一對硬碟自動進行的內容鏡映，來提供更高的可靠性。"
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "容錯式獨立磁碟陣列 (RAID) 狀態"
+
+msgid "raid_title"
+msgstr "容錯式獨立磁碟陣列 (RAID) 狀態明細"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "磁碟鏡映已停用。"
+
+msgid "raid_working"
+msgstr "磁碟鏡映已啟用，且目前在作用中。兩部硬碟機都正常運作中。"
+
+msgid "raid_sync_in_progress"
+msgstr "目前正在將伺服器資料從一部硬碟機複製到另一部硬碟機。在此同步化作業完成後，磁碟鏡映將會啟用並保持在作用狀態。"
+
+msgid "raid_completed"
+msgstr "已完成"
+
+msgid "raid_minutes_remaining"
+msgstr "分鐘完成"
+
+msgid "raid_failure_raq"
+msgstr "硬碟機失效。請關閉伺服器設備，然後更換硬碟機，新硬碟機的大小要與失效硬碟機的大小相同；資料將會自動復置到替代的硬碟機。"
+
+msgid "raid_failure_hdc_raq"
+msgstr "左側硬碟機已失效。請關閉伺服器設備，然後以相同大小的新硬碟機更換這部硬碟機。失效的硬碟機位於面對伺服器設備正面藍色塑膠座的左側。"
+
+msgid "raid_failure_hda_raq"
+msgstr "右側硬碟機已失效。請關閉伺服器設備，然後以相同大小的新硬碟機更換這部硬碟機。失效的硬碟機位於面對伺服器設備正面藍色塑膠座的右側。"
+
+msgid "raid_failure_qube"
+msgstr "硬碟機失效。請關閉伺服器設備，然後更換硬碟機，新硬碟機的大小要與失效硬碟機的大小相同；資料將會自動復置到替代的硬碟機。如需進一步資訊，請查看「作用中監視器 RAID」明細畫面。"
+
+msgid "raid_failure_hdc_qube"
+msgstr "輔助硬碟機已失效。請關閉伺服器設備，然後以相同大小的新硬碟機更換這部硬碟機。失效的硬碟機（標示 B）位於伺服器設備的中央附近；若面對伺服器設備正面，硬碟機是位於右側。"
+
+msgid "raid_failure_hda_qube"
+msgstr "主要硬碟機已失效。請關閉伺服器設備，然後以相同大小的新硬碟機更換這部硬碟機。失效的硬碟機（標示 A）位於伺服器設備的邊緣附近；若面對伺服器設備正面，硬碟機是位於左側。。"
+

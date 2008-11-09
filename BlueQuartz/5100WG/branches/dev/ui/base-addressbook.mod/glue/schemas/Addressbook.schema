@@ -1,0 +1,7 @@
+<class name="User" namespace="AddressbookEntry" version="1.0" createacl="ruleCapable(createUser)" destroyacl="ruleCapable(destroyUser)">
+	<property name="owner"            type="scalar"  writeacl="ruleSelf,ruleCapable(modifyUser)" default=""/>
+	<property name="phone"            type="scalar"  writeacl="ruleSelf,ruleCapable(modifyUser)" default=""/>
+	<property name="fax"              type="scalar"  writeacl="ruleSelf,ruleCapable(modifyUser)" default=""/>
+	<property name="address"          type="scalar"  writeacl="ruleSelf,ruleCapable(modifyUser)" default=""/>
+	<property name="homeUrl"          type="scalar"  writeacl="ruleSelf,ruleCapable(modifyUser)" default=""/>
+</class>

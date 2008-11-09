@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# Startup script for the Chili!Soft ASP Management Server
+#
+# chkconfig: 345 87 16
+# description: Chili!Soft ASP Administrative Server
+# probe: true
+
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+lockfile="/var/lock/subsys/asp-admin-5100"
+
+# See how we were called.
+case "$1" in
+  start)
+        echo -n "Starting asp administration server (/home/chiliasp): "
+                /home/chiliasp/admtool -s > /dev/null 2>&1
+        /home/chiliasp/admtool -q >/dev/null && success $1 || failed $1
+        echo
+        touch $lockfile
+        ;;
+  stop)
+        echo -n "Shutting down asp administration server (/home/chiliasp): "
+                /home/chiliasp/admtool -e > /dev/null 2>&1
+        /home/chiliasp/admtool -q >/dev/null && failed $1 || success $1
+        echo
+                rm -f $lockfile
+        ;;
+  status)
+        /home/chiliasp/admin/bin/caspctrl status
+        ;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart|status}"
+        exit 1
+esac
+
+exit 0
+

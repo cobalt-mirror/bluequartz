@@ -1,0 +1,103 @@
+# $Id: portforward.po 3 2003-07-17 15:19:15Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "Portweiterleitung"
+
+msgid "portforwarding_menu_help"
+msgstr "Mithilfe der Portweiterleitung kann dieser Rechner den Datenverkehr, der für einen seiner Anschlüsse bestimmt ist, an einen anderen Rechner weiterleiten.  Diese Funktion ist praktisch, wenn Sie den Zugriff auf einen Rechner Ihres Netzwerks durch externe Rechner zulassen möchten."
+
+msgid "portforward_list"
+msgstr "Portweiterleitungsregeln"
+
+msgid "form_port_rule"
+msgstr "Bitte geben Sie eine gültige Portnummer ein.  [[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "Eine Portnummer ist eine ganze Zahl zwischen 1 und 65535."
+
+msgid "form_ipaddr_rule"
+msgstr "Bitte geben Sie eine gültige IP-Adresse ein.  192.168.0.1 ist beispielsweise eine gültige IP-Adresse."
+
+msgid "sourcePort"
+msgstr "Quellport"
+
+msgid "sourcePort_help"
+msgstr "Der gesamte Datenverkehr, der für den Quellport dieses Rechners bestimmt ist, wird an den Zielport eines anderen Rechners umgeleitet."
+
+msgid "sourcePort_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-portforward.sourcePort]].  [[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "Quell-IP-Adresse"
+
+msgid "sourceIP_help"
+msgstr "Der gesamte Datenverkehr, der für den angegebenen Port unter dieser Quelladresse bestimmt ist, wird an den Zielrechner umgeleitet."
+
+msgid "sourceIP_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-portforward.sourceIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "Protokoll"
+
+msgid "protocol_help"
+msgstr "Dies ist das Protokoll, das umgeleitet wird."
+
+msgid "targetPort"
+msgstr "Zielport"
+
+msgid "targetPort_help"
+msgstr "Dies ist der Zielport des Rechners, an den der Datenverkehr weitergeleitet wird."
+
+msgid "targetPort_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-portforward.targetPort]].  [[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "Ziel-IP-Adresse"
+
+msgid "targetIP_help"
+msgstr "Dies ist die IP-Adresse des Rechners, an den der Datenverkehr weitergeleitet wird."
+
+msgid "targetIP_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-portforward.targetIP]].  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "Aktion"
+
+msgid "action_help"
+msgstr "Ein Portweiterleitungsdatensatz kann entweder geändert oder gelöscht werden."
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "Portweiterleitungsdatensatz - Erstellen"
+
+msgid "title_modify"
+msgstr "Portweiterleitungsdatensatz - Ändern"
+
+msgid "description"
+msgstr "Beschreibung"
+
+msgid "description_help"
+msgstr "Sie können im Feld [[base-portforward.description]] Anmerkungen zu Datensatzdetails festhalten."
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "Möchten Sie diese Portweiterleitungsregel wirklich löschen?"
+
+#errors
+msgid "collidingAddresses"
+msgstr "Es besteht bereits ein Datensatz für die Quelle [[VAR.ip]]:[[VAR.port]]."
+
+msgid "mustCrossInterfaces"
+msgstr "Bei der von Ihnen eingegebenen Kombination aus [[base-portforward.sourceIP]] und [[base-portforward.targetIP]] passiert der Datenverkehr keine Netzwerkschnittstellen.  Durch [[base-portforward.portforwarding_menu]] muss der Datenverkehr von einer Netzwerkschnittstelle zu einer anderen weitergeleitet werden."

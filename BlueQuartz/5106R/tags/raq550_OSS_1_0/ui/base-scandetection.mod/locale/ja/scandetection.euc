@@ -1,0 +1,142 @@
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: scandetection.po,v 1.1.2.4 2002/03/15 10:19:40 aki Exp $
+
+# --- Menu
+
+msgid "menu"
+msgstr "¥¹¥­¥ã¥ó¸¡½Ð"
+
+msgid "description"
+msgstr "¥Ý¡¼¥È¥¹¥­¥ã¥ó¸¡½Ð¤òÀßÄê¤Ç¤­¤Þ¤¹¡£"
+
+# --- Labels
+
+msgid "scandetectionSettings"
+msgstr "¥¹¥­¥ã¥ó¸¡½Ð¤ÎÀßÄê"
+
+msgid "confirmClearBlocked"
+msgstr "¥Ö¥í¥Ã¥¯¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤Î¥ê¥¹¥È¤ò¥¯¥ê¥¢¤·¤Æ¤â¤è¤í¤·¤¤¤Ç¤¹¤«¡©"
+
+msgid "scandetectionShowBlocked"
+msgstr "¥Ö¥í¥Ã¥¯¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹"
+
+msgid "dosWarning"
+msgstr "·Ù¹ð - ¥Ö¥í¥Ã¥¯¥ª¥×¥·¥ç¥ó¤òÍ­¸ú¤Ë¤¹¤ë¤È¡¢¡Ö¥µ¡¼¥Ó¥¹¤ÎÈÝÄê¡×¥¢¥¿¥Ã¥¯¤ËÂÐ¤·¤ÆÀÈ¼å¤Ë¤Ê¤ë²ÄÇ½À­¤¬¤¢¤ê¤Þ¤¹Ž¡"
+
+# --- Buttons 
+
+msgid "viewlogButton"
+msgstr "¥í¥°¤òÉ½¼¨"
+
+msgid "showBlocked"
+msgstr "¥Ö¥í¥Ã¥¯¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤òÉ½¼¨"
+
+msgid "clearBlocked"
+msgstr "¥Ö¥í¥Ã¥¯¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤ò¥¯¥ê¥¢"
+
+msgid "refreshButton"
+msgstr "¥í¥°¤ò¹¹¿·"
+
+msgid "save"
+msgstr "ÊÝÂ¸"
+
+# --- Dropdowns
+
+msgid "scandetectionLevel0"
+msgstr "²¿¤â¤·¤Ê¤¤"
+
+msgid "scandetectionLevel1"
+msgstr "¥í¥°¤Ëµ­Ï¿¤¹¤ë¤Î¤ß"
+
+msgid "scandetectionLevel2"
+msgstr "¥í¥°¤Ëµ­Ï¿¤·¤Æ IP ¤ò¥Ö¥í¥Ã¥¯¤¹¤ë"
+
+# --- Settings
+
+msgid "scandetectionLevel"
+msgstr "¥¹¥­¥ã¥ó¤¬¸¡½Ð¤µ¤ì¤¿¾ì¹ç¤ÎÂÐ±þ"
+
+msgid "timeout"
+msgstr "¥¹¥­¥ã¥ó´Ö³Ö (ÉÃ)"
+
+msgid "setNumScans"
+msgstr "¥¹¥­¥ã¥ó¤µ¤ì¤¿¥Ý¡¼¥È¿ô"
+
+msgid "alertEmail"
+msgstr "·Ù¹ð¥á¡¼¥ëÁ÷¿®Àè¥¢¥É¥ì¥¹"
+
+msgid "permBlocked"
+msgstr "¾ï¤Ë¥Ö¥í¥Ã¥¯¤¹¤ë IP ¥¢¥É¥ì¥¹"
+
+msgid "permUnblocked"
+msgstr "¾ï¤Ë¥Ö¥í¥Ã¥¯¤·¤Ê¤¤ IP ¥¢¥É¥ì¥¹"
+
+msgid "alertMe"
+msgstr "·Ù¹ð¥á¡¼¥ë¤òÁ÷¿®¤¹¤ë"
+
+# --- help
+
+msgid "scandetectionLevel_help"
+msgstr "¥¹¥­¥ã¥ó¤¬¸¡½Ð¤µ¤ì¤¿¤È¤­¤Ë¼Â¹Ô¤¹¤Ù¤­Æ°ºî¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤Ž¡¥Ç¥Õ¥©¥ë¥È¤Ï¡Ö¥í¥°¤Ëµ­Ï¿¤¹¤ë¤Î¤ß¡×¤Ç¤¹¡£"
+
+msgid "timeout_help"
+msgstr "·Ù¹ð¤ò°Ý»ý¤¹¤ë¥×¥í¡¼¥Ö´Ö¤ÎºÇÄ¹»þ´Ö´Ö³Ö¤Ç¤¹Ž¡"
+
+msgid "setNumScans_help"
+msgstr "¤³¤³¤Ç»ØÄê¤¹¤ëÃÍ¤òÄ¶¤¨¤ë¿ô¤Î¥Ý¡¼¥È¤¬ IP ¤Ë¤è¤ê¥×¥í¡¼¥Ö¤µ¤ì¤ë¤È¡¢·Ù¹ð¥á¡¼¥ë¤¬Á÷¿®¤µ¤ì¤Þ¤¹¡£¤Þ¤¿¡¢¡Ö¥í¥°¤Ëµ­Ï¿¤·¤Æ IP ¤ò¥Ö¥í¥Ã¥¯¤¹¤ë¡×¤¬»ØÄê¤µ¤ì¤Æ¤¤¤ë¤È¡¢¤½¤Î IP ¤Ï¥Ö¥í¥Ã¥¯¤µ¤ì¤Þ¤¹¡£"
+
+msgid "alertEmail_help"
+msgstr "·Ù¹ð¥á¡¼¥ë¤ÎÁ÷¿®Àè¤Î¥¢¥É¥ì¥¹¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤Ž¡¥Ç¥Õ¥©¥ë¥È¤Ï admin@localhost ¤Ç¤¹¡£"
+
+msgid "permBlocked_help"
+msgstr "¤³¤Î¥ê¥¹¥È¤Ë»ØÄê¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤¬¤³¤Î¥µ¡¼¥Ð¾å¤Î (¤Þ¤¿¤Ï¤³¤Î¥µ¡¼¥Ð¤ò²ð¤·¤Æ) ¥Ý¡¼¥È¤Ë¥¢¥¯¥»¥¹¤·¤è¤¦¤È¤¹¤ë¤ÈÉ¬¤ºµñÈÝ¤µ¤ì¤Þ¤¹Ž¡"
+
+msgid "permUnblocked_help"
+msgstr "¤³¤Î¥ê¥¹¥È¤Ë»ØÄê¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤Ï¡¢¤³¤Î¥µ¡¼¥Ð¾å¤Î (¤Þ¤¿¤Ï¤³¤Î¥µ¡¼¥Ð¤ò²ð¤·¤Æ) ¥Ý¡¼¥È¤Ë¥¢¥¯¥»¥¹¤·¤è¤¦¤È¤·¤Æ¤âµñÈÝ¤µ¤ì¤Þ¤»¤óŽ¡"
+
+msgid "viewlogButton_help"
+msgstr "¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥¹¥­¥ã¥ó¸¡½Ð¥í¥°¥Õ¥¡¥¤¥ë¤¬É½¼¨¤µ¤ì¤Þ¤¹Ž¡"
+
+msgid "showBlocked_help"
+msgstr "¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¸½ºß¥Ö¥í¥Ã¥¯¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤Î°ìÍ÷¤¬É½¼¨¤µ¤ì¤Þ¤¹Ž¡"
+
+msgid "clearBlocked_help"
+msgstr "¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥Ö¥í¥Ã¥¯¤µ¤ì¤Æ¤¤¤ë IP ¥¢¥É¥ì¥¹¤¬¥¯¥ê¥¢¤µ¤ì¤Þ¤¹Ž¡"
+
+msgid "alertMe_help"
+msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢¥¹¥­¥ã¥ó¸¡½Ð»þ¤Ë·Ù¹ð¥á¡¼¥ë¤¬Á÷¿®¤µ¤ì¤Þ¤¹¡£Á÷¿®Àè¤ÎÅÅ»Ò¥á¡¼¥ë¥¢¥É¥ì¥¹¤Ï¡¢¡Ö¥¢¥¯¥Æ¥£¥Ö¥â¥Ë¥¿¤ÎÀßÄê¡×¤Ç»ØÄê¤Ç¤­¤Þ¤¹Ž¡"
+
+# --- Active Monitor
+
+msgid "amStatusGreen"
+msgstr "¥¹¥­¥ã¥ó¸¡½Ð¥Ç¡¼¥â¥ó¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Þ¤¹Ž¡"
+
+msgid "amStatusRed"
+msgstr "£±¤Ä¤Þ¤¿¤ÏÊ£¿ô¤Î¥¹¥­¥ã¥ó¸¡½Ð¥Ç¡¼¥â¥ó¤¬Àµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Þ¤»¤ó¡£"
+
+msgid "amScandetectionNameTag"
+msgstr "¥¹¥­¥ã¥ó¸¡½Ð"
+
+msgid "amDetailsTitle"
+msgstr "¥¹¥­¥ã¥ó¸¡½Ð¤Î¾ÜºÙ"
+
+# --- LCD
+
+msgid "clear_scandetect"
+msgstr "Îß°Ä½·¬Ý ¦ ¸Ø±? "
+
+# --- EMAIL
+
+msgid "portscanSubject"
+msgstr "¥Ý¡¼¥È¥¹¥­¥ã¥ó¤ò¸¡½Ð¤·¤Þ¤·¤¿"
+
+msgid "alertEmailSubject"
+msgstr "[[VAR.subject]]"
+
+msgid "alertEmailBody"
+msgstr "¤³¤ì¤Ï¡¢¥Û¥¹¥È¤ÇÈ¯À¸¤·¤Æ¤¤¤ë¥Í¥Ã¥È¥ï¡¼¥¯¥¢¥¯¥Æ¥£¥Ó¥Æ¥£¤Ë¤Ä¤¤¤Æ¤ªÃÎ¤é¤»¤¹¤ë·Ù¹ð¥á¡¼¥ë¤Ç¤¹Ž¡\n\n         Æü»þ:  [[VAR.timestamp]]\n             ·Ù¹ð¤Î¼ïÎà:  [[VAR.type]]\n       ¥¤¥ó¥¿¡¼¥Õ¥§¥¤¥¹:  [[VAR.interface]]\n             ¥×¥í¥È¥³¥ë:  [[VAR.protocol]]\n¥Ñ¥±¥Ã¥È¥µ¥¤¥º (¥Ð¥¤¥È):  [[VAR.pktsize]]\n\n         È¯¿®¸µ¥¢¥É¥ì¥¹:  [[VAR.srcaddr]]\n           È¯¿®¸µ¥Ý¡¼¥È:  [[VAR.srcport]]\n         ¥Ç¥£¥ì¥¯¥·¥ç¥ó:  [[VAR.direction]]\n         È¯¿®Àè¥¢¥É¥ì¥¹:  [[VAR.dstaddr]]\n           È¯¿®Àè¥Ý¡¼¥È:  [[VAR.dstport]]\n\n           ¥í¥°¥¨¥ó¥È¥ê:  [[VAR.logentry]]\n"
+
+# lcd strings
+
+msgid "CLEAR SCANDETECTION"
+msgstr "½·¬Ý ¹Ý¼­Â É ¸Ø±"

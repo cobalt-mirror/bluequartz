@@ -1,0 +1,32 @@
+
+<typedef name="phone" type="re" data="^|[0-9\(\)\+\*\,\ \#\-]+$"/>
+<typedef name="initStr" type="re" 
+	data="^AT[A-Za-z0-9 \-\*\\\?\@\%\:\=\+\~&amp;]*$"
+/>
+<typedef name="connMode" type="re" data="^(on|off|demand)$"/>
+<typedef name="authMode" type="re" data="^(pap|chap)$"/>
+<typedef name="modemSpeed" type="re" data="^(115200|57600|38400|28800|19200|9600|4800|2400|1200|300)$"/>
+
+<typedef name="serialPort" type="re" data="^[A-Za-z]+[0-9]*$"/>
+
+<class name="System" namespace="Modem" version="1.0">
+	<!-- Basic properties -->
+	<property name="connMode" type="connMode" default="off" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="authMode" type="authMode" default="pap" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="serverName" type="domainname" default="" optional="true" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="userName" readacl="ruleSelf,ruleAdmin,ruleCapable(modifySystemModem)" type="scalar" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="password" readacl="ruleSelf,ruleAdmin,ruleCapable(modifySystemModem)" type="scalar" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="phone" type="phone" writeacl="ruleCapable(modifySystemModem)"/>
+
+	<!-- Advanced properties -->
+	<property name="speed" type="modemSpeed" default="115200" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="initStr" type="initStr" default="ATZ" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="localIp" type="ipaddr" default="0.0.0.0" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="idle" type="int" default="300" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="mru" type="int" default="576" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="mtu" type="int" default="576" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="dialhours" type="int" array="true" optional="true" default="&amp;0&amp;1&amp;2&amp;3&amp;4&amp;5&amp;6&amp;7&amp;8&amp;9&amp;10&amp;11&amp;12&amp;13&amp;14&amp;15&amp;16&amp;17&amp;18&amp;19&amp;20&amp;21&amp;22&amp;23&amp;" writeacl="ruleCapable(modifySystemModem)"/>
+
+	<property name="port"  type="serialPort" default="ttyS0" writeacl="ruleCapable(modifySystemModem)"/>
+	<property name="pulse" type="boolean"    default="" writeacl="ruleCapable(modifySystemModem)"/>
+</class>

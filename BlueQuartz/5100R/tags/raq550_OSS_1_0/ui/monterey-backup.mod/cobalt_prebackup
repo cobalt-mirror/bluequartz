@@ -1,0 +1,238 @@
+#!/usr/bin/perl -w -I. -I/usr/sausalito/perl
+
+# $Id: cobalt_prebackup,v 1.7.2.1 2002/01/05 00:26:08 bservies Exp $
+# 
+# Copyright 2001 Sun Microsystems, Inc., All Rights Reserved
+#
+
+use strict;
+use Getopt::Long;
+
+
+#
+# NOTE: has_ui_lock() is for XTR-version locks only!  Alpine and later locks
+# are handled in cce_dump
+#
+use vars qw (
+	$build
+	$opt_debug
+	$opt_verbose
+	$msg
+	$rc
+	$has_cce
+	$has_postgres
+	$has_ui_lock
+	$ui_locked
+);
+
+sub determine_features {
+	my ($version, $product, $locale);
+
+	#
+	# Determine which product we are running on for product-specific features
+	#
+	open (IFILE, "< /etc/build");
+	while (<IFILE>) {
+		chop;
+		next if (/^\s*$/o); # skip blank lines (there shouldn't be any)
+		next if (/^#.*$/o); # skip comments (there shouldn't be any)
+		$build = $_;
+	}
+	close (IFILE);
+
+	# Parse the information read from the build file
+	($product) = ($build =~ /([0-9]{4}[A-Z]{0,2})/);
+	($version) = ($build =~ /([\d]+\.[\d]+)/);
+	($locale) = ($build =~ /(\S+)$/);
+
+	if ($product =~ /35[09]{2}/) {
+		# RaQ XTR or equivalent build (monterey)
+		$has_ui_lock = 1;
+		$has_cce = 1;
+		$has_postgres = 1;
+
+	} elsif ($product =~ /^4[01][01]0/) {
+		# Qube3 (carmel)
+		$has_cce = 1;
+		$has_ui_lock = 0;
+		$has_postgres = 0;
+
+	} else {
+		# Unknown
+		if (-d "/usr/sausalito/codb") {
+			$has_cce = 1;
+		}
+		if (-d "/var/lib/pgsql/data/base/cobalt") {
+			$has_postgres = 1;
+		}
+		$has_ui_lock = 0;
+	}
+}
+
+
+#
+# Description: Debugging printf
+#
+sub dprintf {
+        my ($level, $format, @args) = @_;
+	my ($timestamp);
+        if (defined $opt_debug && $level <= $opt_debug) {
+		$timestamp = scalar localtime();
+                print STDERR "$timestamp $0: ";
+                print STDERR sprintf $format, @args;
+        }
+}
+
+
+sub execute_cmd {
+	my @cmd = @_;
+	my ($msg, $rc);
+
+	$rc = 0xffff & system(@cmd);
+	if ($rc == 0) {
+		$msg = "ran with normal exit.";
+	} elsif ($rc == 0xff00) {
+		$msg = "command failed: $!";
+	} elsif ($rc > 0x80) {
+		$rc >>= 8;
+		$msg = "ran with non-zero exit status $rc";
+	} else {
+		$msg = "ran with ";
+		if ($rc & 0x80) {
+			$rc &= ~0x80;
+			$msg .= "core dump from ";
+		}
+		$msg .= "signal $rc";
+	}
+	dprintf(3, "command \"%s\" exited with %d.  Reason: \"%s\"\n", join " ", @cmd, $msg, $rc);
+	return ($msg, $rc);
+}
+
+sub create_outputdir {
+	my @cmd;
+	my ($msg, $rc);
+
+	dprintf(1, "Creating output directory\n");
+	@cmd = ("mkdir", "-p", "/var/cobalt/backups");
+	($msg, $rc) = execute_cmd(@cmd);	
+}
+
+sub dump_cce {
+	my @cmd;
+	my ($msg, $rc);
+
+	if (-x "/usr/local/sbin/cce_dump") {
+		dprintf(1, "Dumping the CCE database\n");
+		@cmd = ("/usr/local/sbin/cce_dump",
+		    "--ccedir=/usr/sausalito/codb",
+		    "--file=/var/cobalt/backups/cce.tar"
+		);
+		($msg, $rc) = execute_cmd(@cmd);
+	} else {
+		dprintf(1, "No cce_dump script. Skipping CCE dump\n");
+		return (0);
+	}
+}
+
+
+sub dump_postgres {
+	my @cmd;
+	my ($cmd, $msg, $rc, $passwd);
+	dprintf(1, "Dumping the cobalt database\n");
+
+	# Determine the administrator password
+	open(PASSWD, "/etc/cobalt/.meta.id") or
+	    die "Could not determine postgres password\n";
+	$passwd = <PASSWD>;
+	close (PASSWD);
+
+	# Prepare the environment for dumping postgres
+	$ENV{"PGUSER"} = "admin";
+	$ENV{"PGPASSWORD"} = $passwd;
+
+	# And, finally, dump the database
+	@cmd = ("/usr/bin/pg_dump", "-c", "cobalt", ">",  "/var/cobalt/backups/cobalt.sql");
+	$cmd = join " ", @cmd;
+	($msg, $rc) = execute_cmd($cmd);
+	return ($msg, $rc);
+}
+
+
+#
+# Main
+#
+
+# Process any command line options
+&GetOptions("debug:i", "verbose:i");
+
+#
+# Open the log file to store output from sub-commands.  Backup
+# systems don't like extra stuff in the streams, normally.  If the
+# log file is not available, just throw the output to null so the
+# backup can continue.
+#
+open (LOG, ">> /var/cobalt/backup.log") || open (LOG, "> /dev/null");
+close STDOUT;
+open STDOUT, ">&LOG";
+close STDERR;
+open STDERR, ">&LOG";
+
+# Make sure the log output is unbuffered
+select STDOUT; $| = 1;
+select STDERR; $| = 1;
+select LOG; $| = 1;
+
+
+# Determine product features
+&determine_features();
+
+if ($has_ui_lock) {
+	#
+	# Use require here because some products don't have Cobalt::Util and use
+	# will try to load the package at compile time.
+	#
+	require Cobalt::Util;
+
+	# This product supports UI locking, so lock the UI
+	# before continuing.
+
+	# Determine if the UI is already locked
+	$ui_locked = &Cobalt::Util::lock_ui(2);
+
+	# Lock the UI, if it is not already locked
+	if ($ui_locked) {
+		dprintf(1, "Locking the cobalt UI\n");
+		&Cobalt::Util::lock_ui(1);
+	}
+}
+
+# Make sure the output directory exists
+($msg, $rc) = &create_outputdir();
+if ($rc) {
+	dprintf (0, "Output directory creation failed with \"%s\"\n", $msg);
+	exit $rc;
+}
+
+# Dump the postgres database
+($msg, $rc) = &dump_postgres() if ($has_postgres);
+if ($rc) {
+	dprintf (0, "Postgres dump failed with \"%s\"\n", $msg);
+	exit $rc;
+}
+
+# Dump CCE
+($msg, $rc) = &dump_cce() if ($has_cce);
+if ($rc) {
+	dprintf (0, "CCE dump failed with \"%s\"\n", $msg);
+	exit $rc;
+}
+
+# Unlock the UI only if it was locked above
+if ($has_ui_lock && $ui_locked) {
+	dprintf(1, "Unlocking the cobalt UI\n");
+	&Cobalt::Util::lock_ui(0);
+}
+
+
+# Exit with success
+0;

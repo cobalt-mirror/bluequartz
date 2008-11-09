@@ -1,0 +1,153 @@
+# handlers
+msgid "couldntDeletePppCfg"
+msgstr "No se pudo eliminar la configuración PPP"
+
+msgid "couldntStartPpp"
+msgstr "No se pudo iniciar el módem"
+
+msgid "couldntStopPpp"
+msgstr "No se pudo detener el módem"
+
+msgid "cantGetModem"
+msgstr "Error del servidor. El estado del módem no está disponible."
+
+msgid "modemProblem"
+msgstr "Hay un problema con el módem. Si tiene un módem externo, asegúrese de que esté encendido y conectado firmemente al puerto serie de su servidor. Si tiene un módem interno, reinicie el servidor."
+
+msgid "offNow"
+msgstr "No conectado"
+
+msgid "onNow"
+msgstr "Conectado"
+                                                                               
+# strings for test of modem on demand
+msgid "saveTest"
+msgstr "Guardar y probar configuración del módem"
+
+msgid "saveTest_help"
+msgstr "Se guardará la configuración actual y se intentará una conexión de prueba con su proveedor de Internet para comprobar la configuración."
+
+msgid "testModem"
+msgstr "Probando la configuración del módem..."
+
+msgid "testFail"
+msgstr "Error"
+
+msgid "testFailMsg"
+msgstr "No se pudo ejecutar la prueba del módem por un error del sistema. Verificar la configuración del módem e inténtar de nuevo. Si la prueba falla reiteradamente, reinicie el servidor."
+
+msgid "initModem"
+msgstr "Inicialización"
+
+msgid "initModem_help"
+msgstr "Estado de inicialización del módem. Se comprueba que el módem esté conectado al servidor y que responde."
+
+msgid "initModemStage"
+msgstr "Inicializando..."
+
+msgid "initModemSuccess"
+msgstr "Con éxito"
+
+msgid "initModemFail"
+msgstr "Error en la inicialización: si es un módem externo, debe encendido y conectado correctamente al servidor. Consultar la documentación del módem para asegurarse de que la cadena de inicialización, '[[VAR.init]]', es correcta."
+
+msgid "dialModem"
+msgstr "Conexión"
+
+msgid "dialModem_help"
+msgstr "Estado de conexión del módem. Se comprueba que el módem marca y se conecta a su proveedor de Internet."
+
+msgid "dialModemStage"
+msgstr "Marcando [[VAR.phone]]..."
+
+msgid "dialModemSuccess"
+msgstr "Con éxito"
+
+msgid "dialModemFail"
+msgstr "Error al marcar: [[VAR.errmsg]]"
+
+msgid "noDialtone"
+msgstr "No había tono de marcado."
+
+msgid "busy"
+msgstr "El número marcado estaba ocupado."
+
+msgid "noCarrier"
+msgstr "No había portadora."
+
+msgid "waiting"
+msgstr "El equipo remoto no respondió."
+
+msgid "unknownError"
+msgstr "Error desconocido."
+
+msgid "pppdAuth"
+msgstr "Autenticación"
+
+msgid "pppdAuth_help"
+msgstr "Estado de autenticación. Se comprueba que el servidor puede iniciar una sesión en el servidor remoto."
+
+msgid "pppdAuthStage"
+msgstr "Enviando información de inicio de sesión..."
+
+msgid "pppdAuthFail"
+msgstr "Error de autenticación: [[VAR.errmsg]]"
+
+msgid "noResponse"
+msgstr "El servidor remoto no respondió."
+
+msgid "authFailure"
+msgstr "El servidor remoto rechazó el nombre de usuario y la contraseña."
+
+msgid "remoteTerm"
+msgstr "El servidor remoto terminó la conexión."
+
+msgid "pppdAuthSuccess"
+msgstr "Con éxito"
+
+msgid "dnsTest"
+msgstr "Resolución del nombre"
+
+msgid "dnsTest_help"
+msgstr "Estado de la prueba de resolución del nombre de dominio, que traduce nombres de ordenador y de dominio textuales a direcciones IP numéricas, y viceversa."
+
+msgid "dnsTestStage"
+msgstr "Estableciendo conexión con el servidor de nombres..."
+
+msgid "dnsTestFail"
+msgstr "No se pudo conectar con su servidor DNS. Comprobar configuración TCP/IP y que los servidores DNS especificados son correctos."
+
+msgid "dnsTestSuccess"
+msgstr "Con éxito"
+
+msgid "netTest"
+msgstr "Conexión de red"
+
+msgid "netTest_help"
+msgstr "Estado de la prueba de conexión de red. Se intenta establecer conexión con un sitio remoto."
+
+msgid "netTestStage"
+msgstr "Estableciendo conexión con sitio remoto..."
+
+msgid "netTestFail"
+msgstr "No se pudo conectar con un sitio remoto. Comprobar módem y configuración TCP/IP."
+
+msgid "netTestSuccess"
+msgstr "Con éxito"
+
+msgid "back"
+msgstr "Atrás"
+
+msgid "back_help"
+msgstr "Volverá a la página de configuración del módem."
+
+msgid "ppp0_in_use"
+msgstr "No se pudo activar la conexión del módem porque otro dispositivo utiliza la interfaz. Si usa DSL, deshabilite PPPoE para conectarse con el módem."
+
+# Capabilities
+
+msgid "capgroup_adminModem"
+msgstr "Administrar módem"
+
+msgid "capgroup_adminModem_help"
+msgstr "Este derecho administrativo permite que un usuario modifique la configuración del módem."

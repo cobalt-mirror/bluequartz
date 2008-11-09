@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+DIR=`dirname $0`
+BASE=`basename $DIR`
+
+if [ "$BASE" = "10LOCK_PANEL.s" ]; then
+    /usr/sausalito/bin/i18n_get "[[base-lcd.LOCK PANEL]]"
+else
+    /usr/sausalito/bin/i18n_get "[[base-lcd.UNLOCK PANEL]]"
+fi

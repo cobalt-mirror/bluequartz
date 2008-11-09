@@ -1,0 +1,46 @@
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Configuración del servicio Telnet."
+
+msgid "telnetSettings"
+msgstr "Configuración del servicio Telnet."
+
+msgid "access"
+msgstr "Acceso"
+
+msgid "access_help"
+msgstr "Directriz para el acceso con telnet, que usuarios avanzados o el administrador utilizan para ejecutar secuencias de comandos shell o usar comandos shell. Para mayor seguridad se recomienda desactivar o limitar el acceso con telnet. "
+
+msgid "none"
+msgstr "Desactivado - No permitir inicios de sesión"
+
+msgid "root"
+msgstr "Activado - Permitir sólo inicios de sesión del administrador"
+
+msgid "reg"
+msgstr "Activado - Permitir inicios de sesión de todos los usuarios"
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Servidor telnet"
+
+msgid "amDetailsTitle"
+msgstr "Detalles del servidor telnet"
+
+msgid "amNotAccepting"
+msgstr "El servidor telnet no se está ejecutando."
+
+msgid "amStatusOK"
+msgstr "El servidor telnet funciona normalmente."
+
+# Capabilities
+
+msgid "capgroup_adminTelnet"
+msgstr "Administrar Telnet"
+
+msgid "capgroup_adminTelnet_help"
+msgstr "Este derecho administrativo permite que un usuario administre el acceso Telnet a esta máquina."
+

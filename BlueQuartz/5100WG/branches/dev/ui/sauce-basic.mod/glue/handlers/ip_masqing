@@ -1,0 +1,39 @@
+#!/usr/bin/perl
+
+use lib qw( /usr/sausalito/perl );
+use Sauce::Util;
+use CCE;
+use Data::Dumper;
+
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $sysoid = $cce->event_oid();
+my ($ok, $sys) = $cce->get($sysoid, "Network");
+
+if (!$ok) { 
+  print STDERR "$0: could not get system object $sysoid\n";
+  $cce->bye("FAIL");
+  exit(1);
+}
+
+my $enabled = $sys->{nat} || 0;
+
+my $rule = "";
+if ($enabled) {
+  $rule = "/sbin/ipchains -I forward 2 -j MASQ\n";
+} else {
+  $rule = "# ip forwarding disabled ($enabled).\n";
+}
+
+Sauce::Util::replaceblock(
+  "/etc/ipchains.conf",
+  "# start of ip_forwarding block",
+  $rule,
+  "# end of ip_forwarding block",
+);
+
+system("/etc/rc.d/init.d/ipchains", "restart");
+
+$cce->bye("SUCCESS");
+exit(0);

@@ -1,0 +1,64 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgName"
+msgstr "Sun Cobalt DiskMirror"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] provides enhanced reliability by actively mirroring content across a pair of hard drives."
+
+# --- Active Monitor
+
+msgid "amRAIDNameTag"
+msgstr "Redundant Array of Independent Disks (RAID) Status"
+
+msgid "raid_title"
+msgstr "Redundant Array of Independent Disks (RAID) Status Details"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Active Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "Disk mirroring is disabled."
+
+msgid "raid_working"
+msgstr "Disk mirroring is enabled and currently active.  Both hard drives are operating correctly."
+
+msgid "raid_sync_in_progress"
+msgstr "Server data is currently being duplicated from one hard drive to the other hard drive.  Disk mirroring will be enabled and active after this synchronization is complete."
+
+msgid "raid_completed"
+msgstr "completed"
+
+msgid "raid_minutes_remaining"
+msgstr "minute(s) remaining"
+
+msgid "raid_failure_raq"
+msgstr "A hard drive has failed.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Data will be restored to the replacement hard drive automatically."
+
+msgid "raid_failure_hdc_raq"
+msgstr "The left hard drive has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size.  The failed drive is located on the left side when facing the blue plastic bezel at the front of the server appliance."
+
+msgid "raid_failure_hda_raq"
+msgstr "The right hard drive has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size.  The failed drive is located on the right side when facing the blue plastic bezel at the front of the server appliance."
+
+msgid "raid_failure_qube"
+msgstr "A hard drive has failed.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Data will be restored to the replacement hard drive automatically.  Check the Active Monitor RAID details screen for more information."
+
+msgid "raid_failure_hdc_qube"
+msgstr "The secondary hard drive has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size.  The failed drive (labeled B) is located near the center of the server appliance.  It is the hard drive on the right side when facing the the front of the server appliance."
+
+msgid "raid_failure_hda_qube"
+msgstr "The primary hard drive has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size.  The failed drive (labeled A) is located near the edge of the server appliance.  It is the hard drive on the left side when facing the front of the server appliance."

@@ -1,0 +1,284 @@
+msgid "userList"
+msgstr "Benutzerliste"
+
+msgid "users_help"
+msgstr "Hier können Benutzer verwaltet werden."
+ 
+msgid "fullName"
+msgstr "Vollständiger Name"
+
+msgid "fullName_help"
+msgstr "Der vollständige Name des Benutzers."
+
+msgid "userName"
+msgstr "Benutzername"
+
+msgid "userName_help"
+msgstr "Der Name, den das System verwendet, um den Benutzer zu identifizieren."
+
+msgid "listAction"
+msgstr "Aktion"
+
+msgid "listAction_help"
+msgstr "Dies sind die Schaltflächen, mit denen die Einstellungen eines Benutzers geändert werden können oder ein Benutzer entfernt werden kann."
+
+msgid "addNewUser"
+msgstr "Neuen Benutzer hinzufügen"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "Bitte geben Sie beliebige Zeichen ein, nur keine Doppelpunkte. Eine gültige Eingabe ist z. B. Hans-Günter Großmann."
+
+msgid "fullNameField_help"
+msgstr "Geben Sie den vollständigen Namen des Benutzers ein.  [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.userName]]"
+
+msgid "userNameField_rule"
+msgstr "Der Name darf nicht mehr als 12 alphanumerische Zeichen in Kleinschreibung, Punkte, Binde- und Unterstriche, jedoch keine Umlaute, ß oder sonstige Sonderzeichen enthalten. Eine gültige Eingabe ist z. B. h.-g.grossma."
+
+msgid "userNameField_help"
+msgstr "Geben Sie den Namen ein, den das System verwendet, um den Benutzer zu identifizieren. [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "Sie haben einen Wert im Feld [[base-user.userNameField]] eingegeben, den ein anderer Benutzer im System bereits belegt hat. Bitte geben Sie hier einen anderen Wert ein."
+
+msgid "passwordField"
+msgstr "Passwort"
+
+msgid "passwordField_rule"
+msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie Zahlen und Satzzeichen bestehen. Es sollten keine in einem Wörterbuch zu findenden Wörter verwendet werden. Bei Passwörtern wird die Groß- und Kleinschreibung berücksichtigt."
+
+msgid "passwordField_help"
+msgstr "Geben Sie das Passwort ein, das das System verwendet, um diesen Benutzer zu identifizieren. [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "error-invalid-password"
+msgstr "Das eingegebene Passwort ist ungültig. [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Maximal zulässiger Festplattenspeicher (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl zwischen 1 und 1024000 ein."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Stellen Sie die Festplattenquote dieses Benutzers ein. Dabei handelt es sich um den maximal für diesen Benutzer verfügbaren Speicherplatz, in dem er Webseiten, E-Mail-Nachrichten und andere Benutzerdateien speichern kann.  [[base-user.maxDiskSpaceField_rule]]  Der Vorgabewert für neue Benutzer wird im Abschnitt Benutzervorgaben eingestellt."
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Stellen Sie den vorgegebenen maximalen Festplattenspeicher für neue Benutzer ein. Dabei handelt es sich um den maximal für Benutzer verfügbaren Speicherplatz, in dem sie Webseiten, E-Mail-Nachrichten und andere Benutzerdateien speichern können. [[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "Gruppenmitgliedschaft"
+
+msgid "memberGroupsField_help"
+msgstr "Stellen Sie die Gruppenmitgliedschaft für diesen Benutzer ein. Die linke Spalte enthält die Gruppen, denen dieser Benutzer momentan angehört. Die rechte Spalte enthält die Gruppen, denen dieser Benutzer angehören könnte. Um diesen Benutzer als Mitglied einer Gruppe hinzuzufügen, verschieben Sie die Gruppe aus der rechten Spalte in die linke."
+
+msgid "memberGroups"
+msgstr "Zugehörige Gruppen"
+
+msgid "allGroups"
+msgstr "Nicht zugehörige Gruppen"
+
+msgid "modifyUser"
+msgstr "Benutzereinstellungen ändern - [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "Neues Passwort"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "E-Mail-Einstellungen - [[VAR.userName]]"
+
+msgid "emailAliasesField"
+msgstr "E-Mail-Aliase"
+
+msgid "emailAliasesField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Der Vorgabewert ist der Vor- und Nachname des Benutzers in Kleinschreibung, durch einen Punkt getrennt. Eine gültige Eingabe ist z. B. hans-guenter_grossmann."
+
+msgid "emailAliasesField_help"
+msgstr "Geben Sie weitere Namen ein, unter denen der Benutzer E-Mail empfängt. [[base-user.emailAliasesField_rule]]"
+
+
+msgid "forwardEnableField"
+msgstr "E-Mail-Weiterleitung"
+
+msgid "forwardEnableField_help"
+msgstr "Wenn Sie die E-Mail-Weiterleitung aktivieren, werden in Zukunft empfangene E-Mail-Nachrichten automatisch an die angegebenen E-Mail-Adressen weitergeleitet."
+
+msgid "forwardEnable"
+msgstr "Aktivieren"
+
+msgid "forwardEmailField_rule"
+msgstr "Die eingegebenen Werte müssen gültige E-Mail-Adressen sein und dürfen keine Umlaute, ß oder sonstige Sonderzeichen enthalten, z. B. alois_hingerl@muenchen-hbf.de. Um mehrere Adressen anzugeben, trennen Sie die Adressen mit einem Komma oder setzen jede auf eine andere Zeile."
+
+msgid "forwardEmailField"
+msgstr "E-Mail-Adressen"
+
+msgid "forwardEmailField_help"
+msgstr "Geben Sie die E-Mail-Adressen ein, an die Sie Ihre E-Mail weiterleiten möchten. [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "Urlaubsnachricht"
+
+msgid "autoResponderField_help"
+msgstr "Mit der Urlaubsnachricht-Funktion können Sie automatisch eine benutzerdefinierte Nachricht senden, wenn Ihnen jemand E-Mail schickt. Dies ist nützlich, wenn Sie Ihre E-Mail nicht lesen können oder eine automatische Antwort an den Absender schicken möchten."
+
+msgid "enableAutoResponderField"
+msgstr "Aktivieren"
+
+msgid "autoResponderMessageField"
+msgstr "Automatische Antwort"
+
+msgid "autoResponderMessageField_help"
+msgstr "Geben Sie die Nachricht ein, die automatisch als Antwort an den Absender jeder E-Mail, die Sie erhalten, gesendet wird."
+
+	# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+msgid "blank-vacation-msg"
+msgstr "Sie haben einen ungültigen Wert im Feld [[base-user.autoResponderMessageField]] eingegeben."
+
+msgid "userDefaults"
+msgstr "Benutzervorgaben bearbeiten"
+
+msgid "userDefaults_help"
+msgstr "Klicken Sie hier, um die Vorgaben für neue Benutzer zu ändern."
+
+msgid "userNameGenField"
+msgstr "Erstellung von Benutzernamen"
+
+msgid "userNameGenField_help"
+msgstr "Legen Sie die Methode fest, mit der Benutzernamen nach der Eingabe des vollständigen Namens automatisch erstellt werden. Wenn Hans Muster z. B. der vollständige Name ist, lautet der automatisch erstellte Benutzername entweder hansm, hmuster, hans oder muster. "
+
+msgid "first"
+msgstr "Nur Vorname"
+
+msgid "last"
+msgstr "Nur Nachname"
+
+msgid "firstInitLast"
+msgstr "Anfangsbuchstabe des Vornamens und Nachname"
+
+msgid "firstLastInit"
+msgstr "Vorname und Anfangsbuchstabe des Nachnamens"
+
+msgid "languageField"
+msgstr "Spracheneinstellung"
+
+msgid "languageField_help"
+msgstr "Der Server versucht, Seiten in der hier ausgewählten bevorzugten Sprache anzuzeigen. Wenn Sie Über Browser-Optionen einstellen auswählen, versucht der Server, Seiten anhand der Spracheneinstellungen Ihres Web-Browsers anzuzeigen. Wenn die ausgewählte Sprache nicht verfügbar ist, zeigt der Server Seiten in der entsprechenden Vorgabesprache für Ihren Server an."
+
+msgid "account"
+msgstr "Konto"
+
+msgid "account_help"
+msgstr "Hier können Sie grundlegende Kontoeinstellungen konfigurieren."
+
+msgid "email"
+msgstr "E-Mail"
+
+msgid "email_help"
+msgstr "Hier können Sie E-Mail-Einstellungen wie Aliase, Weiterleitungen und Urlaubsnachrichten konfigurieren."
+
+# Personal Profile Section
+
+msgid "personalEmail"
+msgstr "E-Mail"
+
+msgid "personalEmail_help"
+msgstr "Verwalten Sie hier Ihre Einstellungen für die Weiterleitung und automatische Beantwortung von E-Mail-Nachrichten."
+
+# --- Style settings are not currently used, but may be added some time in the future
+msgid "styleField"
+msgstr "Stil"
+
+msgid "styleField_help"
+msgstr "Ändert den Grafikstil für die Anzeige von Menüs, Schaltflächen und anderen Objekten."
+
+msgid "personalAccount"
+msgstr "Konto"
+
+msgid "personalAccount_help"
+msgstr "Ihre persönlichen Benutzerkontoinformationen können hier verwaltet werden."
+
+msgid "accountSettings"
+msgstr "Kontoeinstellungen - [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "Wollen Sie den Benutzer [[VAR.userName]] wirklich entfernen?"
+
+msgid "reloadMessage"
+msgstr "Ihr Web-Browser wird jetzt automatisch aktualisiert, damit er den gewählten Stil verwendet."
+
+msgid "forwardSaveField"
+msgstr "Kopie speichern"
+
+msgid "forwardSaveField_help"
+msgstr "Diese Funktion speichert eine Kopie jeder E-Mail in der Mailbox. Außerdem wird eine Kopie an die angegebenen E-Mail-Adressen weitergeleitet."
+
+msgid "userDesc"
+msgstr "Anmerkungen"
+
+msgid "userDesc_help"
+msgstr "Diese Spalte enthält weitere Informationen über jeden Benutzer."
+
+msgid "userDescField"
+msgstr "Anmerkungen"
+
+msgid "userDescField_help"
+msgstr "Geben Sie weitere Informationen oder Anmerkungen über den Benutzer hier ein."
+
+msgid "uidAlreadyTaken"
+msgstr "Leider trat ein Fehler auf. Die eingegebene Benutzer-ID ist bereits belegt."
+
+msgid "aliasAlreadyTaken"
+msgstr "Leider konnte ein Benutzer mit dem angegebenen Namen nicht erstellt werden, weil für diesen Namen bereits ein E-Mail-Alias vorhanden ist."
+
+msgid "aliasAlreadyTaken2"
+msgstr "Leider konnten die E-Mail-Aliase dieses Benutzers nicht festgelegt werden, weil ein oder mehrere der Aliase bereits vorhanden sind."
+
+msgid "add_user_help"
+msgstr "Klicken Sie hier, um einen neuen Benutzer hinzuzufügen."
+
+msgid "administrator"
+msgstr "Administrator"
+
+msgid "sortNameField"
+msgstr "Sortierbarer Name"
+
+msgid "security_help"
+msgstr "Delegierung von Administrationsrechten an einzelne Benutzer"
+
+msgid "security"
+msgstr "Funktionen"
+
+msgid "failed-to-add-user"
+msgstr "Wegen eines Systemfehlers konnte ein Benutzerkonto leider nicht eingerichtet werden."
+
+msgid "capabilities_help"
+msgstr "Erstellen einer Liste der für diesen Benutzer aktivierten Funktionen"
+
+msgid "capabilities"
+msgstr "Funktionen"
+
+msgid "capsNotAllowed"
+msgstr "Deaktiviert"
+
+msgid "sortNameField_help"
+msgstr "Geben Sie die sortierbare Version des Benutzernamens ein."
+
+msgid "capsAllowed"
+msgstr "Aktiviert"
+

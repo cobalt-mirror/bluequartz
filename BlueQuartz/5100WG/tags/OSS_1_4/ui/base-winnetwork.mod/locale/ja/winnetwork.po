@@ -1,0 +1,18 @@
+# No UI
+msgid "cantConfigFile"
+msgstr "Samba 設定ファイルを修正できません。"
+
+msgid "dhcpUnsupported"
+msgstr "DHCP サーバから WINS サーバアドレスを取得する機能は、現在サポートされていません。"
+
+msgid "missingWinsIP"
+msgstr "ネットワーク上にある別のコンピュータを WINS サーバとして使用するには、[IP アドレス] フィールドにそのコンピュータ（WINS サーバ）の IP アドレスを入力してください。"
+
+msgid "windowsMachineAlreadyExists"
+msgstr "マシン名 [[VAR.name]] は、既に存在します。  別の名前を選択してください。"
+
+msgid "couldNotClearOldMachine"
+msgstr "[[VAR.name]] を削除できませんでした。"
+
+msgid "couldNotCreateNewMachine"
+msgstr "[[VAR.name]] を作成できませんでした。  名前を確認して、もう一度お試しください。"

@@ -1,0 +1,29 @@
+msgid "power"
+msgstr "Encendido"
+
+msgid "powerHelp"
+msgstr "Aquí puede reiniciarse el servidor."
+
+msgid "shutdownMessage"
+msgstr "Por seguridad, este servidor no puede apagarse por la interfaz de usuario de web. <BR>Utilice el panel LCD del servidor."
+
+msgid "shutdownInstructions"
+msgstr "Para apagar el servidor:<OL><LI>En la consola LCD, mantenga presionado el botón Seleccionar aproximadamente 2 segundos.<BR>Aparecerá la pantalla LCD: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECCIONAR: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CONFIGURAR RED</CODE><BR><BR><LI>Pulse Seleccionar hasta que aparezca en la pantalla LCD el mensaje APAGADO: <BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>SELECCIONAR: <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APAGADO</CODE><BR><BR><LI>Pulse Intro.<BR><BR><LI>Utilice los botones de flecha para desplazar el cursor a [S] y [N]. Con [S] apaga el sistema. La pantalla LCD muestra el siguiente mensaje:<BR>&nbsp;&nbsp;&nbsp;&nbsp;<CODE>APAGUE AHORA</CODE><BR><BR><LI>Pulse el botón de encendido/apagado en el panel posterior para apagar el servidor.</OL>" 
+
+msgid "reboot"
+msgstr "Reiniciar ahora"
+
+msgid "reboot_help"
+msgstr "Pulse aquí para reiniciar el servidor."
+
+msgid "askRebootConfirmation"
+msgstr "¿Está seguro de que desea reiniciar el servidor?"
+
+msgid "rebooting"
+msgstr "El servidor se está reiniciando. Debe estar disponible de nuevo en unos minutos."
+msgid "capgroup_adminPower_help"
+msgstr "Este derecho administrativo permite que un usuario reinicie la máquina a través de la interfaz Web."
+
+msgid "capgroup_adminPower"
+msgstr "Administrar energía del sistema"
+

@@ -1,0 +1,187 @@
+
+msgid "modPrinter"
+msgstr "プリンタの変更"
+
+msgid "printerNameExists"
+msgstr "プリンタ名 [[VAR.name]] は、既に存在します。  新しい名前を選択してください。"
+
+msgid "printing"
+msgstr "印刷"
+
+msgid "spooling"
+msgstr "スプーリング"
+
+msgid "jobs"
+msgstr "ジョブ"
+
+msgid "enabled"
+msgstr "有効化"
+
+msgid "disabled"
+msgstr "無効化"
+
+msgid "addPrinter_help"
+msgstr "ここをクリックすると、既存の設定にプリンタを追加できます。"
+
+msgid "addNewPrinter" 
+msgstr "プリンタの追加"
+
+msgid "printerNameField"
+msgstr "名前"
+
+msgid "printerNameField_help"
+msgstr "プリンタの名前を入力してください。これを適用すると、サーバの印刷スプールの名前にもなります。"
+
+msgid "usb"
+msgstr "USB"
+
+msgid "usb_help"
+msgstr "プリンタが USB 経由で接続されている場合、この項目を選択してください。"
+
+msgid "network"
+msgstr "ネットワーク"
+
+msgid "network_help"
+msgstr "プリンタがネットワーク経由で接続されている場合、この項目を選択してください。"
+
+msgid "printerHostNameField"
+msgstr "ホスト名"
+
+msgid "printerHostNameField_help"
+msgstr "リモートプリンタのホスト名または IP アドレスを入力してください。"
+
+msgid "printerSpoolField"
+msgstr "キュー名"
+
+msgid "printerSpoolField_help"
+msgstr "リモートプリンタの印刷されるキュー名を入力してください。 キュー名がわからない場合、またはお使いのプリンタにキュー名がない場合は、このフィールドは空白にしてください。"
+
+msgid "locationField"
+msgstr "接続の種類"
+
+msgid "locationField_help"
+msgstr "このプリンタへのサーバの接続の種類を選択してください。"
+
+msgid "ppdFileField"
+msgstr "PPD ファイル"
+
+msgid "ppdFileField_help"
+msgstr "AppleShare を使ってこのプリンタをコンピュータに接続するには、PPD ファイルをこのサーバにアップロードする必要があります。  PPD ファイルは、通常はプリンタに同梱されているディスクに含まれています。"
+
+msgid "printserver"
+msgstr "プリントサーバ"
+
+msgid "printserver_help"
+msgstr "プリントサーバ設定をここで変更できます。"
+
+msgid "printserverSettings"
+msgstr "プリントサーバ設定"
+
+msgid "enableServersField"
+msgstr "有効にする"
+
+msgid "enableServersField_help"
+msgstr "プリントサーバ機能のオンとオフを切り替えます。 この機能をオンにすると、このサーバはサーバ本体およびクライアントのプリントサーバとして機能します。"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "基本的なプリントサーバ設定をここで変更できます。"
+
+msgid "advanced"
+msgstr "詳細"
+
+msgid "advanced_help"
+msgstr "指定されたプラットフォームへのプリンタサーバのサポートを有効にしたり無効にするなど、詳細なプリントサーバ設定をここで変更できます。"
+
+msgid "printerListButton"
+msgstr "プリンタの管理"
+
+msgid "printerListButton_help"
+msgstr "プリンタの追加、プリンタの削除、および印刷キューの管理"
+
+msgid "enableAppleshareField"
+msgstr "Apple 印刷を有効化"
+
+msgid "enableAppleshareField_help"
+msgstr "ここをクリックすると、Appleshare ネットワークでプリンタを共有できます。"
+
+msgid "enableSambaField"
+msgstr "Windows 印刷を有効化"
+
+msgid "enableSambaField_help"
+msgstr "ここをクリックすると、Windows ネットワークでプリンタを共有できます。"
+
+msgid "printerList"
+msgstr "使用可能なプリンタ"
+
+msgid "name"
+msgstr "名前"
+
+msgid "name_help"
+msgstr "プリンタ名"
+
+msgid "status"
+msgstr "状態"
+
+msgid "status_help"
+msgstr "プリンタの状態"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "プリンタの変更、または削除"
+
+msgid "jobList"
+msgstr "現在の印刷ジョブ - [[VAR.name]]"
+
+msgid "clearQueue"
+msgstr "印刷キューをクリア"
+
+msgid "clearQueue_help"
+msgstr "このプリンタの現在の印刷ジョブを全て削除します。"
+
+msgid "suspendPrinter"
+msgstr "印刷を一時停止"
+
+msgid "suspendPrinter_help"
+msgstr "このプリンタの印刷を一時停止します。  新しいジョブをキューに入れることが可能ですが、印刷はされません。"
+
+msgid "unsuspendPrinter"
+msgstr "印刷の再開"
+
+msgid "unsuspendPrinter_help"
+msgstr "このプリンタの印刷を再開します。"
+
+msgid "owner"
+msgstr "オーナー"
+
+msgid "owner_help"
+msgstr "この印刷ジョブを送信したユーザです。"
+
+msgid "size"
+msgstr "サイズ"
+
+msgid "size_help"
+msgstr "印刷ジョブのサイズです。"
+
+msgid "date"
+msgstr "送信時刻"
+
+msgid "date_help"
+msgstr "印刷ジョブが送信された時刻です。"
+
+msgid "removePrinterConfirm"
+msgstr "プリンタ '[[VAR.printerName]]' を削除してよろしいですか？"
+
+msgid "removeJobConfirm"
+msgstr "'[[VAR.jobName]]'のジョブを削除してよろしいですか？"
+
+# Capabilities
+msgid "capgroup_adminPrintServer"
+msgstr "ブリントサーバの管理"
+
+msgid "capgroup_adminPrintServer_help"
+msgstr "この管理者権限を持つユーザは、[プリントサーバ] タブでネットワークおよび USB スプールの全ての設定を管理できます。"

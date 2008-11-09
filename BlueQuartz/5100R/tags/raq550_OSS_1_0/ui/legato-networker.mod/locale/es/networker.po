@@ -1,0 +1,81 @@
+msgid "networker"
+msgstr "Legato NetWorker"
+
+msgid "networker_help"
+msgstr "[[legato-networker.networkerSettings]]   puede modificarse aquí."
+
+msgid "networkerSettings"
+msgstr "Controles de la copia de seguridad de Legato NetWorker"
+
+msgid "enableServer"
+msgstr "Habilitar el cliente"
+
+msgid "badHostname"
+msgstr "Lo sentimos, usted ha escrito el nombre de un operador que no ejecuta una copia de seguridad Legato. Por favor compruebe que haya escrito el nombre correcto y que el servidor este correctamente configurado "
+
+msgid "enableServer_help"
+msgstr "Encender o apagar el cliente de seguridad Legato NetWorker"
+
+msgid "enabledButNoData"
+msgstr "Para habilitar el servidor, usted debe escribir por lo menos un servidor de seguridad Legato"
+
+msgid "lgNetWorkerHostField"
+msgstr "Nombres de los operadores Legato "
+
+msgid "lgNetWorkerHostField_help"
+msgstr "Escriba el nombre de dominio completamente calificado para el servidor de seguridad de Legato NetWorker.  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor inválido para  [[legato-networker.lgNetWorkerHostField]].  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_empty"
+msgstr "Lo sentimos, no ha escrito un valor para [[legato-networker.lgNetWorkerHostField]].  [[legato-networker.lgNetWorkerHostField_rule]]"
+
+msgid "lgNetWorkerHostField_invalid"
+msgstr "Los nombres de operador del servidor Legato son inválidos"
+
+msgid "lgNetWorkerHostField_rule"
+msgstr "Los servidores Legato deben tener nombres de operador válidos"
+
+msgid "lgNetWorkerHostField_LookupFailed"
+msgstr "No ha sido posible encontrar uno de los servidores Legato. Por favor compruebe que todos los operadores sean accesibles desde la red, y que su información del DNS sea válida."
+
+msgid "lgNetWorkerLocalHost_LookupFailed"
+msgstr "Los datos de DNS para el cliente de este operador no son válidos. Por favor compruebe que los datos de entrada y salida del DNS sean genuinos."
+
+msgid "lgNetWorkerIPField_help"
+msgstr "Escriba la dirección IP del servidor de seguridad de Legato NetWorker. [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor inválido para [[legato-networker.lgNetWorkerIPField]].  [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "lgNetWorkerIPField_empty"
+msgstr "Lo sentimos, usted no ha escrito un valor para [[legato-networker.lgNetWorkerIPField]].   [[legato-networker.lgNetWorkerIPField_rule]]"
+
+msgid "servPorts"
+msgstr "Rango de puertos de servicio"
+
+msgid "servPorts_help"
+msgstr "Coloca el rango de puertos de servicio del sistema al que ha especificado"
+
+msgid "connPorts"
+msgstr "Rango de conexión del puerto"
+
+msgid "connPorts_help"
+msgstr "Coloca el rango de puertos de conexión del sistema al que ha especificado"
+
+msgid "cannotFork"
+msgstr "Error al tratar de penetrar"
+
+msgid "cannotCreateSymlink"
+msgstr "Error al crear el init-script symlink"
+
+msgid "cannotStartLegatoServer"
+msgstr "Error al tratar de iniciar el servicio"
+
+msgid "cannotStopLegatoServer"
+msgstr "Error al tratar de detener el servicio"
+
+msgid "cannotBreakLink"
+msgstr "Error al tratar de separar los init-scripts"
+

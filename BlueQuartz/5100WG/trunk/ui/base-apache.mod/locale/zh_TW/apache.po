@@ -1,0 +1,105 @@
+# --- Menu
+
+msgid "apache"
+msgstr "Web 伺服器"
+
+msgid "apache_help"
+msgstr "此處可變更 [[base-apache.apacheSettings]]。"
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "Web 設定"
+
+msgid "frontpageField"
+msgstr "FrontPage 伺服器擴充"
+
+msgid "frontpageField_help"
+msgstr "開啟或關閉 FrontPage 伺服器擴充。"
+
+msgid "frontpageEnabled"
+msgstr "啟用"
+
+msgid "passwordWebmasterField"
+msgstr "webmaster 密碼"
+
+msgid "passwordWebmasterField_help"
+msgstr "請輸入 FrontPage 從屬站版主的密碼。在 FrontPage 從屬站中選取「開放式 Web」可存取本端群組網站。請使用您在此處指定的登入名稱版主和密碼登入。一經驗證，便會使用 FrontPage 從屬站管理附加的 FrontPage 使用者。"
+
+msgid "passwordWebmasterField_rule"
+msgstr "密碼的長度須介於 3 到 16 個字元之間。一個好的密碼應至少包含 5 個混合大小寫字母以及數字和標點的字元。拼成的密碼不應為字典中可找到的任何單字。密碼區分大小寫。"
+
+msgid "passwordWebmasterField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "cgiAccessField"
+msgstr "通用閘道器介面存取"
+
+msgid "cgiAccessField_help"
+msgstr "開啟或關閉「通用閘道器介面存取」。您可將通用閘道器介面存取權設成只限伺服器設備系統管理員可新增通用閘道器介面 Script 檔，或是設成系統管理員以及所有或選定的使用者都可新增通用閘道器介面 Script 檔。"
+
+msgid "cgiAll"
+msgstr "允許所有的使用者存取"
+
+msgid "cgiNone"
+msgstr "不允許任何使用者存取"
+
+msgid "cgiSubset"
+msgstr "只允許指定的使用者存取"
+
+msgid "cgiUsersAllowed"
+msgstr "允許使用者存取"
+
+msgid "cgiUsersDisallowed"
+msgstr "不允許使用者存取"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "很抱歉，您並未針對「通用閘道器介面存取」選取任何使用者；請新增可以進行「通用閘道器介面存取」的使用者或選擇不同的存取選項。"
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "很抱歉，目前無法正確配置「通用閘道器介面存取」。"
+
+msgid "systemObjectNotFound"
+msgstr "很抱歉，伺服器配置暫時無法使用；請稍候，然後重試。"
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "Web 伺服器"
+
+msgid "amApacheDetails"
+msgstr "Web 伺服器明細"
+
+msgid "amNotRunning"
+msgstr "此 web 伺服器不在執行中。"
+
+msgid "amStatusOK"
+msgstr "此 web 檔案正常運作中。"
+
+msgid "amAdmservNameTag"
+msgstr "伺服器桌上管理程式"
+
+msgid "amAdmservDetails"
+msgstr "伺服器桌上管理程式明細"
+
+msgid "amAdmservNotRunning"
+msgstr "此伺服器桌上管理程式不在執行中。"
+
+msgid "amAdmservStatusOK"
+msgstr "此伺服器桌上管理程式正常運作中。"
+
+# Capabilities
+
+msgid "capgroup_adminApache"
+msgstr "管理 Web 伺服器"
+
+msgid "capgroup_adminApache_help"
+msgstr "這個管理權限允許使用者更改公用站台的設定，包括個別使用者權限（例如：Front Page，通用閘道介面等等‧‧‧）"
+

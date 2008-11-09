@@ -1,0 +1,140 @@
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: overflow.po,v 1.8.2.1 2002/04/04 22:22:36 naroori Exp $
+
+# --- Menu
+
+msgid "menu"
+msgstr "Buffer Overflow"
+
+msgid "description"
+msgstr "Manage Buffer Overflow Protection settings"
+
+# --- Labels
+
+msgid "overflowSettings"
+msgstr "Buffer Overflow Protection settings"
+
+# --- Buttons
+
+msgid "testOverflowButton"
+msgstr "Test Buffer Overflow Protection"
+
+# --- Settings
+
+msgid "enabledBox"
+msgstr "Enable Buffer Overflow Protection alerts"
+
+msgid "alertEmail"
+msgstr "Email address for Buffer Overflow alert messages"
+
+# --- Help
+
+msgid "enabledBox_help"
+msgstr "Check here to be notified by email of Buffer Overflows.  If enabled, email will be sent to the addresses set in Active Monitor."
+
+msgid "alertEmail_help"
+msgstr "Enter the address to be notified of any alerts. Defaults to admin@localhost."
+
+msgid "testOverflowButton_help"
+msgstr "Clicking this button will generate a test buffer overflow.  If alerting is enabled, an email will be sent."
+
+# --- Active Monitor
+
+msgid "amStatusGreen"
+msgstr "The Buffer Overflow Protection daemon is functioning properly."
+
+msgid "amStatusRed"
+msgstr "The Buffer Overflow Protection daemon is not running."
+
+msgid "amOverflowNameTag"
+msgstr "Buffer Overflow Protection"
+
+msgid "amDetailsTitle"
+msgstr "Buffer Overflow Protection Details"
+
+# --- Buffer Overflow Protection Alert Daemon
+
+msgid "Buffer Overflow Protection Alert Daemon <root@localhost>"
+msgstr "Buffer Overflow Protection Alert Daemon <root@localhost>"
+
+msgid "Can't open file %s: %s"
+msgstr "Can't open file %s: %s"
+
+msgid "File %s does not contain a (valid) number"
+msgstr "File %s does not contain a (valid) number"
+
+msgid "Cannot delete message queue: %s"
+msgstr "Cannot delete message queue: %s"
+
+msgid "Can't delete file %s: %s"
+msgstr "Can't delete file %s: %s"
+
+msgid "Cannot create a new private message queue: %s"
+msgstr "Cannot create a new private message queue: %s"
+
+msgid "Can't create file %s: %s"
+msgstr "Can't create file %s: %s"
+
+msgid "Error queue was removed externally"
+msgstr "Error queue was removed externally"
+
+msgid "Receiving message failed: %s"
+msgstr "Receiving message failed: %s"
+
+msgid "Server terminated by signal %d"
+msgstr "Server terminated by signal %d"
+
+msgid ""
+"Buffer Overflow Protection terminated a program because of a buffer overflow."
+msgstr ""
+"Buffer Overflow Protection terminated a program because of a buffer overflow."
+
+msgid ""
+"The following information may help find the problem:"
+msgstr ""
+"The following information may help find the problem:"
+
+msgid "Could not start sendmail to deliver e-mail: %s"
+msgstr "Could not start sendmail to deliver e-mail: %s"
+
+msgid "Buffer Overflow Protection detected buffer overflow"
+msgstr "Buffer Overflow Protection detected buffer overflow"
+
+msgid "No resources available to run sendmail"
+msgstr "No resources available to run sendmail"
+
+msgid "Syntax error in mail address"
+msgstr "Syntax error in mail address"
+
+msgid "Internal software error in sendmail"
+msgstr "Internal software error in sendmail"
+
+msgid "Temporary OS error"
+msgstr "Temporary OS error"
+
+msgid "Host name not recognized"
+msgstr "Host name not recognized"
+
+msgid "Unrecognized return value from sendmail"
+msgstr "Unrecognized return value from sendmail"
+
+msgid "sendmail terminated by signal %d"
+msgstr "sendmail terminated by signal %d"
+
+msgid "sendmail terminated for unknown reason"
+msgstr "sendmail terminated for unknown reason"
+
+msgid "Tried %d times to deliver message, aborting"
+msgstr "Tried %d times to deliver message, aborting"
+
+msgid ""
+"Usage: %s [-d]"
+"  -d (debug) will run the program in the foreground and"
+"     send messages to standard error"
+"  -T <text> .....   send a Buffer Overflow Protection alert containing <text>"
+msgstr ""
+"Usage: %s [-d]\n"
+"  -d (debug) will run the program in the foreground and\n"
+"     send messages to standard error\n"
+"  -T <text> .....   send a Buffer Overflow Protection alert containing <text>\n"
+

@@ -1,0 +1,3 @@
+#!/bin/sh
+/sbin/ipnmgw -i eth0 $1 
+

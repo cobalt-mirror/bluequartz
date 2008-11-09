@@ -1,0 +1,122 @@
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "osName"
+msgstr "Sun Cobalt OS"
+
+msgid "osVendor"
+msgstr "Sun Cobalt"
+
+msgid "osDescription"
+msgstr "[[base-carmel.productName]] は、インターネットへの接続、ウェブページの出版、ファイルの転送、電子メールやメーリングリストの管理など、様々なネットワーク機能を提供するサーバアプライアンスです。"
+
+msgid "loginPageTitle"
+msgstr "[[base-carmel.productName]] - [[VAR.hostname]] へのログイン"
+
+msgid "login"
+msgstr "[[VAR.hostName]] へのログイン"
+
+msgid "loginNoCssMessage"
+msgstr "ログイン前に、お使いのブラウザが CSS（カスケーディングスタイルシート）をサポートしていることを確認してください。"
+
+msgid "loginNoJsMessage"
+msgstr "ログイン前に、お使いのブラウザが JavaScript をサポートしていることを確認してください。"
+
+msgid "loginOkMessage"
+msgstr "ログインするには、ユーザ名とパスワードを入力してください。"
+
+msgid "loginMissingCookies"
+msgstr "ログイン前に、お使いのブラウザが cookie をサポートしていることを確認してください。"
+
+msgid "loginExpiredMessage"
+msgstr "ログインセッションがタイムアウトしました。もう一度ログインするには、ユーザ名とパスワードを入力してください。"
+
+msgid "loginAuthFailed"
+msgstr "入力したユーザ名またはパスワードが間違っています。もう一度お試しください。"
+
+msgid "loginByeMessage"
+msgstr "[[base-carmel.productName]] をご利用頂き、誠にありがとうございます。"
+
+msgid "loginPageUsername"
+msgstr "ユーザ名："
+
+msgid "loginPagePassword"
+msgstr "パスワード："
+
+msgid "loginPageSecurity"
+msgstr "セキュア接続："
+
+msgid "loginPageLogin"
+msgstr "ログイン"
+
+msgid "splashAdminMessage"
+msgstr "「サーバの管理」セクションでは、各種のサーバ管理操作を行えます。"
+
+msgid "splashProgramsMessage"
+msgstr "「プログラム」セクションでは、このサーバにインストールされているプログラムを利用できます。"
+
+msgid "splashPersonalMessage"
+msgstr "「個人プロフィール」セクションでは、自分のアカウント情報、電子メール、個人情報を設定、表示できます。また、ディスクの使用状況を確認できます。"
+
+msgid "thankYouMessage"
+msgstr "[[base-carmel.productName]] をご利用頂き、誠にありがとうございます。"
+
+msgid "base-administration"
+msgstr "サーバの管理"
+
+msgid "base-administration_description"
+msgstr "[[base-carmel.splashAdminMessage]]"
+
+msgid "base-programs"
+msgstr "プログラム"
+
+msgid "base-programs_description"
+msgstr "[[base-carmel.splashProgramsMessage]]"
+
+msgid "base-personalProfile"
+msgstr "個人プロフィール"
+
+msgid "base-personalProfile_description"
+msgstr "[[base-carmel.splashPersonalMessage]]"
+
+msgid "base-usersandgroups"
+msgstr "ユーザとグループ"
+
+msgid "base-usersandgroups_description"
+msgstr "ユーザとグループを作成、変更、削除できます。"
+
+msgid "base-webServices"
+msgstr "ウェブ"
+
+msgid "base-webServices_description"
+msgstr "各種ウェブサービスを設定できます。"
+
+msgid "base-networkServices"
+msgstr "ネットワーク"
+
+msgid "base-networkServices_description"
+msgstr "各種ネットワークサービスを設定できます。"
+
+msgid "base-security"
+msgstr "セキュリティ"
+
+msgid "base-security_description"
+msgstr "サーバのセキュリティに関する各種サービスを設定できます。"
+
+msgid "base-system"
+msgstr "システム"
+
+msgid "base-system_help"
+msgstr "このサーバに関する各種システム設定を表示、変更できます。"
+
+msgid "base-maintenance"
+msgstr "保守"
+
+msgid "base-maintenance_description"
+msgstr "このサーバ上にあるシステムデータおよびユーザデータを維持管理できます。"
+
+msgid "usageInformation"
+msgstr "使用状況"
+
+msgid "usageInformation_description"
+msgstr "このサーバの使用状況に関する統計情報が表示されます。"

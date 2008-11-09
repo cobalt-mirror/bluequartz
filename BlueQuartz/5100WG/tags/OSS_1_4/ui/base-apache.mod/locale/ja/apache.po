@@ -1,0 +1,104 @@
+# --- Menu
+
+msgid "apache"
+msgstr "ウェブサーバ"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]]を変更できます。"
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "ウェブの設定"
+
+msgid "frontpageField"
+msgstr "FrontPage サーバエクステンション"
+
+msgid "frontpageField_help"
+msgstr "このボックスをチェックすると、FrontPage サーバエクステンションが有効になります。"
+
+msgid "frontpageEnabled"
+msgstr "FrontPageを有効にする"
+
+msgid "passwordWebmasterField"
+msgstr "Webmasterのパスワード"
+
+msgid "passwordWebmasterField_help"
+msgstr "FrontPage クライアントの Webmaster のパスワードを入力してください。 FrontPage クライアントで [ウェブを開く] を選択すると、home グループのウェブサイトにアクセスできます。webmaster というユーザ名とここで指定するパスワードを使ってログインすると、  FrontPage クライアントから他の FrontPage ユーザを管理できます。"
+
+msgid "passwordWebmasterField_rule"
+msgstr "パスワードには 3 ～ 16 文字を使用できます。少なくとも 5 文字以上で、大文字と小文字の両方を使い、数字や記号を含むパスワードをお勧めします。辞書にあるような一般的な語句は使用しないようにしてください。パスワード中の大文字と小文字は区別されます。"
+
+msgid "passwordWebmasterField_invalid"
+msgstr "パスワードが異なります。入力ミスを防ぐため、同じパスワード２回入力してください。もう一度お試しください。"
+
+msgid "cgiAccessField"
+msgstr "CGI アクセス"
+
+msgid "cgiAccessField_help"
+msgstr "CGI アクセスの許可レベルを指定してください。CGI アクセスを許可されたユーザは CGI スクリプトファイルを追加できます。CGI アクセスをサーバ管理者のみに許可することも、ユーザ全員または特定のユーザのみに許可することもできます。"
+
+msgid "cgiAll"
+msgstr "全てのユーザにCGIアクセスを許可する。"
+
+msgid "cgiNone"
+msgstr "ユーザにはCGIアクセスを許可しない。"
+
+msgid "cgiSubset"
+msgstr "次のユーザにのみCGIアクセスを許可する："
+
+msgid "cgiUsersAllowed"
+msgstr "許可するユーザ"
+
+msgid "cgiUsersDisallowed"
+msgstr "許可しないユーザ"
+
+# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "CGI アクセスを許可するユーザが選択されていません。 CGI アクセスを許可したいユーザを指定するか、別のオプションを選んでください。"
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "CGI アクセスを正しく設定できませんでした。"
+
+msgid "systemObjectNotFound"
+msgstr "サーバ設定は一時的に使用できません。しばらくしてから、もう一度お試しください。"
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "ウェブサーバ"
+
+msgid "amApacheDetails"
+msgstr "ウェブサーバの詳細"
+
+msgid "amNotRunning"
+msgstr "ウェブサーバは動作していません。"
+
+msgid "amStatusOK"
+msgstr "ウェブサーバは正常に動作しています。"
+
+msgid "amAdmservNameTag"
+msgstr "サーバデスクトップ"
+
+msgid "amAdmservDetails"
+msgstr "サーバデスクトップの詳細"
+
+msgid "amAdmservNotRunning"
+msgstr "サーバデスクトップは動作していません。"
+
+msgid "amAdmservStatusOK"
+msgstr "サーバデスクトップは正常に動作しています。"
+
+# Capabilities
+
+msgid "capgroup_adminApache"
+msgstr "ウェブサーバの管理"
+
+msgid "capgroup_adminApache_help"
+msgstr "この管理権限を持つユーザは、個人ユーザサイト権限（例: フロントページ、CGI）など、パブリックウェブサイトの設定を変更できます。"

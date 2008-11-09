@@ -1,0 +1,99 @@
+#!/bin/sh
+#
+# named           This shell script takes care of starting and stopping
+#                 named (BIND DNS server).
+#
+# chkconfig: 345 55 45
+# description: named (BIND) is a Domain Name Server (DNS) \
+# that is used to resolve host names to IP addresses.
+# probe: true
+
+DOMAIN=base-services
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 1
+
+# where does rndc live
+RNDC=/usr/sbin/rndc
+
+# See how we were called.
+case "$1" in
+  start)
+        # Start daemons.
+
+	# Initialize named configuration through CCE
+	if [ ! -f /var/lib/named/etc/named/pri.0.0.127.in-addr.arpa ]; then
+		echo "Initializing named through CCE"
+		/usr/sausalito/sbin/named_enable.pl
+		sleep 3
+	fi
+
+	LINE1=`getmsg named_start_1`
+	LINE2=`getmsg named_start_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+
+	touch /var/lib/named/named.log && \
+		chown named.named /var/lib/named/named.log
+
+	# Need to setup dev/null & libraries for sandbox 
+	daemon named -u named -t /var/lib/named -c /etc/named.conf
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/named
+       	echo
+	;;
+  stop)
+        # Stop daemons.
+	LINE1=`getmsg named_stop_1`
+	LINE2=`getmsg named_stop_2`
+	$LCD_STOP
+        $LCD_SWRITE "$LINE1" "$LINE2" &>/dev/null &
+	echo -n "$LINE1 $LINE2: "
+
+        killproc named
+        rm -f /var/lock/subsys/named
+        echo
+        ;;
+  status)
+	# rndc "status" not yet implemented
+        # $RNDC status
+        # exit $?
+	status named
+        ;;
+  hard-restart)
+        killproc named
+        sleep 2
+        $0 start
+        ;;
+  restart)
+	# rndc "restart" not yet implemented
+        # $RNDC restart
+        # exit $?
+	$0 stop
+	$0 start
+        ;;
+  reload)
+        # $RNDC reload
+        # exit $?
+	killproc named -HUP
+        ;; 
+  probe)
+        # named knows how to reload intelligently; we don't want linuxconf
+        # to offer to restart every time
+        # $RNDC reload >/dev/null 2>&1 || echo start
+        exit 0
+        ;;
+  
+  *)
+        echo "Usage: named {start|stop|status|reload|restart}"
+        exit 1
+esac
+
+exit 0

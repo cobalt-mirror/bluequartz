@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>MHonArc Resources: DEFINEVAR</title>
+</head>
+<body>
+
+<address>
+<a href="../resources.html#definevar">MHonArc Resource List</a>
+</address>
+
+<hr>
+<h1>DEFINEVAR</h1>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Syntax</h2>
+
+<dl>
+
+<dt><strong>Envariable</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+<dt><strong>Element</strong><dt>
+<dd><p><br>
+<code>&lt;DEFINEVAR&gt;<br></code>
+<var>variable-name</var><br>
+<var>value ...</var><br>
+<code>&lt;/DEFINEVAR&gt;<br></code>
+</p>
+</dd>
+
+<dt><strong>Command-line Option</strong><dt>
+<dd><p><br>
+<code>-definevar </code><var>variable-specification-list</var>
+</p>
+</dd>
+
+</dl>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Description</h2>
+
+<p>DEFINEVAR is used for creating user-defined resource variables.
+DEFINEVAR can be defined on the command-line or in the resource file.
+</p>
+
+<p>On the command-line, the option is called <code>-definevar</code>
+The following argument after <code>-definevar</code>
+is treated as a variable specification list.  The specification list
+is a string containing name/value pairs with the following format: </p>
+
+<p><var>NAME</var><code>=</code><var>VALUE</var></p>
+
+<p>Multiple name/value pairs are separated
+by whitespace.
+If <var>VALUE</var> contains whitespace, then it must be surrounded
+by quotes to prevent the command shell from treating the string
+as multiple arguments.
+Multiple <code>-definevar</code> options can be specified on the
+command-line.  This can help reduce the ugliness of specify mutliple
+variable definitions with a single option.
+</p>
+
+<table border=0 cellpadding=4>
+<tr valign=top>
+<td><strong>NOTE</strong></td>
+<td><p>If you intend to include resource variables as part of the
+<var>VALUE</var>, you may need to escape the '$' characters (and possible
+other characters) to
+prevent interpolation by the command shell.  See your command
+shell documentation for more information.
+</p>
+</td>
+</tr>
+</table>
+
+<p>In a resource file the &lt;DEFINEVAR&gt; element may occur mutliple times
+to define multiple variables.  The first line of the &lt;DEFINEVAR&gt;
+element is the name of the variables.  All subsequent lines represent
+the content of the variable.  If you do not want
+the last newline of a &lt;DEFINEVAR&gt; element content to be part of
+the defined
+variable content, then specify the <b><tt>chop</tt></b> attribute.
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Default Setting</h2>
+
+<p>N/A
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Resource Variables</h2>
+
+<p>N/A
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Examples</h2>
+
+<p>The following is a simple example of defining a variable to
+represent the base text for the title of an archive:
+</p>
+ 
+<pre>
+<b>&lt;DefineVar chop&gt;</b>
+MAIN-TITLE
+Comp.lang.perl.misc 
+<b>&lt;/DefineVar&gt;</b>
+</pre>
+
+<p>Now, the variable can be refernced as follows:
+</p>
+
+<pre>
+<b>&lt;<a href="ttitle.html">TTitle</a> chop&gt;</b>
+$MAIN-TITLE$ (thread)
+<b>&lt;/TTitle&gt;</b>
+</pre>
+
+<p>If you wanted to use the same resource file for multiple arcvhives
+it may better to define <code>$MAIN-TITLE$</code> on the command-line
+as follows:
+</p>
+
+<pre>
+    % <b>mhonarc -definevar MAIN-TITLE='mhonarc mailing list'</b> ...
+</pre>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Version</h2>
+
+<p>2.0
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>See Also</h2>
+
+<p>
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<address>
+99/10/01 01:19:20<br>
+<img align="top" src="../monicon.gif" alt="">
+<a href="http://www.pobox.com/~ehood/mhonarc.html"><strong>MHonArc</strong></a><br>
+Copyright &#169; 1997-1998, <a href="http://www.pobox.com/~ehood/">Earl Hood</a>, <a href="mailto:mhonarc@pobox.com">mhonarc@pobox.com</a><br>
+</address>
+
+</body>
+</html>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

@@ -1,0 +1,81 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "Archivo & Imprimir"
+
+msgid "fileSharing_help"
+msgstr "Haga clic aquí para configurar los servicios de archivos."
+
+msgid "guestShare"
+msgstr "Invitados"
+
+msgid "guestShare_help"
+msgstr "Haga clic aquí para configurar [[base-fileshare.fileSharingSettings]]."
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "Configuración de archivos compartidos para invitados"
+
+msgid "guestShareField"
+msgstr "Habilitar acceso de invitados"
+
+msgid "guestShareField_help"
+msgstr "Active o desactive el acceso de invitados a los archivos compartidos Apple, FTP y Windows. Aun si se deshabilita este acceso, los usuarios con cuentas en el servidor podrán acceder a estos servicios."
+
+msgid "incomingEnable"
+msgstr "Habilitar"
+
+msgid "incomingField"
+msgstr "Acceso de archivos entrantes"
+
+msgid "incomingField_help"
+msgstr "Active o desactive el acceso de archivos entrantes.  Cuando esta habilitado, los usuarios invitados pueden cargar archivos en la ubicación de invitados."
+ 
+msgid "maxDiskSpaceField"
+msgstr "Espacio de disco máximo permitido (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Número entero entre 1 y 1024000. El valor predeterminado es 50 MB."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Espacio de disco máximo disponible para los usuarios invitados para cargar archivos entrantes. [[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "Este grupo de trabajo proporciona archivos compartidos con acceso para invitados."
+
+
+# --- Handler messages
+
+	# -- guest.pl  ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr "Error: usuario ya elegido."
+
+msgid "groupDoesntExist"
+msgstr "Error: el grupo no existe."
+
+msgid "cantChangeGroup"
+msgstr "Error: no puede cambiar el grupo."
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "Error: el usuario invitado no es válido."
+
+msgid "invalidPath"
+msgstr "Error: la ruta de la ubicación de archivos compartidos para invitados no es válida."
+
+msgid "cantSetQuota"
+msgstr "Error al intentar definir la cuota de archivos compartidos para invitados. Tal vez falten los archivos de configuración necesarios."
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "Administrar la configuración de uso compartido de archivos"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "Este derecho administrativo permite que un usuario modifique las opciones de uso compartido de archivos para invitados."
+
+msgid "capgroup_adminFileShare"
+msgstr "Administrar el uso compartido de archivos"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "Este derecho administrativo permite que un usuario administre todos los aspectos del uso compartido de archivos."

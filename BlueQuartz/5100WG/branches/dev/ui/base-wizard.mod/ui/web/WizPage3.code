@@ -1,0 +1,66 @@
+##HEADER-CUSTOM-JAVASCRIPT##
+	<script language="JavaScript"><!--
+	function WizGetLocalTime()
+	{
+		var now = new Date();
+
+		result = "" + now.getFullYear() + ":" +
+						 (now.getMonth() + 1) + ":" +
+						 (now.getDate() + 1) + ":" +
+						 now.getHours() + ":" +
+						 now.getMinutes();
+
+		return result;
+	}
+	//-->
+	</script>
+
+##BODY-ATTRIBUTES##
+ onLoad="document.WizardForm.WizLocalTime.value = WizGetLocalTime(); document.WizardForm.WizPassword.focus(); MM_swapImgRestore(); MM_preloadImages('/libImage/Nav-Progress.gif');"
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='3'>
+		<input type='hidden' name='WizPrevious' value='0'>
+		<input type='hidden' name='WizLocalTime' value=''>
+		<div class="Setting-Description"><?php if ($WizError == "") print($i18n->getHtml("adminMessage")); ?></div>
+			<div class="Setting-Label">
+				<table width="469" border="0" cellspacing="0" cellpadding="2">
+					<tr>
+						<td width="92">
+							<div align="right" class="Setting-Label">&nbsp;</div>
+						</td>
+						<td>
+						</td>
+					</tr>
+					<tr>
+						<td width="92">
+							<div align="right" class="Setting-Label">Name:</div>
+						</td>
+						<td>
+							<div class="Setting-Static-Item">admin</div>
+						</td>
+					</tr>
+					<tr>
+						<td width="92">
+							<div align="center"></div>
+						</td>
+						<td><img src="/libImage/Divider.gif" alt="" width="385" height="17" border="0"></td>
+					</tr>
+					<tr>
+						<td width="92">
+							<div align="right" class="Setting-Label">
+				Password:</div>
+						</td>
+						<td valign="top"><input type="password" name="WizPassword" value="" size="32"  onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;"></td>
+					</tr>
+					<tr>
+						<td width="92">
+							<div align="right" class="Setting-Label">
+				Verify:</div>
+						</td>
+						<td valign="top"><input type="password" name="WizPasswordAgain" value="" size="32"  onChange=" if(this.changeHandler != null) return this.changeHandler(this); else return true;"></td>
+					</tr>
+				</table>
+			</div>
+		</form>

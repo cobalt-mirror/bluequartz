@@ -1,0 +1,381 @@
+# LCD-Panel Utilities
+# Copyright (C) 2000 Cobalt Networks, Inc.
+#
+# Lyle Sheer <lyle@cobalt.com>, 2000
+# Duncan Laurie <duncan@cobalt.com>, 2000
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: panel-utils 4.0\n"
+"POT-Creation-Date: 1999-06-10 01:25-0700\n"
+"PO-Revision-Date: 1999-07-07 11:32\n"
+"Last-Translator: Duncan Laurie <duncan@cobaltnet.com>\n"
+"Language-Team: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset= iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Date: 1999-07-07 11:32:00\n"
+"From: Duncan Laurie <duncan@cobaltnet.com>\n"
+
+#: lcd-flash.c:28 lcd-getip.c:39 lcd-write.c:27
+msgid "LCD in use... try again later\n"
+msgstr "LCD in use... try again later\n"
+
+#: lcd-flash.c:35 lcd-getip.c:45 lcd-swrite.c:54 lcd-write.c:54 lcd-yesno.c:37
+#: lcdsleep.c:30 lcdstart.c:92 link.c:23 netconfig.c:96 nonet.c:33
+#: readbutton.c:20
+msgid "LCD is not present\n"
+msgstr "LCD is not present\n "
+
+#: lcd-getip.c:33 messages.h:36
+msgid "PRIMARY IP ADDR:"
+msgstr "IP ±ÄÞÚ½ Æ­³Ø®¸:"
+
+msgid "enter_secondary_ip"
+msgstr "¾¶ÝÀÞØ IP:"
+
+#: lcd-getip.c:66 lcd-yesno.c:64
+#, c-format
+msgid "Unknown switch %s\n"
+msgstr "Unknown switch %s\n"
+
+#: lcd-getip.c:68
+#, c-format
+msgid "usage-getip"
+msgstr "Usage: %s [-1 <line text>] [-i <ip addr>]\n"
+
+#: lcd-swrite.c:87 lcd-write.c:64
+msgid "Please pass text to display\n"
+msgstr "Please pass text to display\n"
+
+#: lcd-yesno.c:27
+msgid "Is this Correct?"
+msgstr "Is this Correct?"
+
+#: lcd-yesno.c:29 messages.h:29
+msgid "yes_no"
+msgstr "  [Y]Ê²  [N]²²´ "
+
+#: lcd-yesno.c:66
+#, c-format
+msgid "usage-yesno"
+msgstr "Usage: %s [-y <pos>] [-n <pos>] [-1 <line text>] [-2 <line text>]\n"
+
+#: lcdsleep.c:37
+msgid "LCD Awake\n"
+msgstr "LCD Awake\n"
+
+#: lcdsleep.c:71
+msgid "LCD Sleeping\n"
+msgstr "LCD Sleeping\n"
+
+#: lcdstart.c:283 netconfig.c:268
+msgid "/sbin/swritelcd Verifying and Saving &>/dev/null &"
+msgstr "/sbin/swritelcd ¶¸ÆÝ ¼Ã Î¿ÞÝ ¼Ã²Ï½ &>/dev/null &"
+
+#: led-write.c:30
+msgid "LED Set Aborted - All LEDs on produces a hardware Reset\n"
+msgstr "LED Set Aborted - All LEDs on produces a hardware Reset\n"
+
+#: link.c:30
+msgid "No Link Detected\n"
+msgstr "No Link Detected\n"
+
+#: link.c:34
+msgid "Link Detected\n"
+msgstr "Link Detected\n"
+
+#: linkstatus.c:38
+#, c-format
+msgid "eth0: Link state is %d\n"
+msgstr "eth0: Link state is %d\n"
+
+#: linkstatus.c:46
+#, c-format
+msgid "eth1: Link state is %d\n"
+msgstr "eth1: Link state is %d\n"
+
+#: messages.h:52 nonet.c:46 nonet.c:47
+msgid "NO NETWORK FOUND"
+msgstr "È¯ÄÜ°¸¶Þ ÐÂ¶ØÏ¾Ý"
+
+#: messages.h:53 nonet.c:48 nonet.c:49
+msgid "halt_connect"
+msgstr "[H]Ã²¼ [C]¾Â¿Þ¸ "
+
+#: messages.h:16 nonet.c:103 nonet.c:104
+msgid "  POWER DOWN?   "
+msgstr " ÃÞÝ¹ÞÝ ¾ÂÀÞÝ?  "
+
+#: nonet.c:178
+msgid "/sbin/swritelcd Halting System &>/dev/null &"
+msgstr "/sbin/swritelcd ¼½ÃÑÉ Ã²¼Á­³ &>/dev/null &"
+
+#: messages.h:12
+msgid "SELECT:         "
+msgstr "¾ÝÀ¸:"
+
+#: messages.h:13
+msgid "  SYSTEM INFO   "
+msgstr " ¼½ÃÑ É ¼Þ®³Î³  "
+
+#: messages.h:14
+msgid " SETUP NETWORK  "
+msgstr " È¯ÄÜ°¸ É ¾¯Ã²  "
+
+msgid "ADVANCED NETWORK"
+msgstr " È¯ÄÜ°¸ É ¼®³»² "
+
+msgid "REVIEW SETTINGS "
+msgstr "  ¾¯Ã² É ¶¸ÆÝ   "
+
+msgid " SETUP PRIMARY  "
+msgstr " Ìß×²ÏØ É ¾¯Ã²  "
+
+msgid "  DHCP PRIMARY  "
+msgstr "  DHCP Ìß×²ÏØ   "
+
+msgid "SETUP SECONDARY "
+msgstr " ¾¶ÝÀÞØ É ¾¯Ã²  "
+
+msgid " DHCP SECONDARY "
+msgstr "  DHCP ¾¶ÝÀÞØ   "
+
+#: messages.h:15
+msgid "   POWER DOWN   "
+msgstr "  ÃÞÝ¹ÞÝ ¾ÂÀÞÝ  "
+
+#: messages.h:17
+msgid "     REBOOT     "
+msgstr "     »²·ÄÞ³     "
+
+#: messages.h:18
+msgid "    REBOOT?     "
+msgstr "  »²·ÄÞ³ ¼Ï½¶?  "
+
+#: messages.h:19
+msgid " RESET NETWORK  "
+msgstr " È¯ÄÜ°¸ É Ø¾¯Ä  "
+
+#: messages.h:20
+msgid " RESET NETWORK? "
+msgstr "Ø¾¯Ä¼Ã ÖÛ¼²ÃÞ½¶?"
+
+#: messages.h:21 messages.h:25
+msgid "   RESETTING    "
+msgstr "    È¯ÄÜ°¸ ¦    "
+
+#: messages.h:22
+msgid "    NETWORK     "
+msgstr "   Ø¾¯Ä ¼Ã²Ï½   "
+
+msgid  "    ROUTES      "
+msgstr "      Ù°Ä       "
+
+#: messages.h:23
+msgid " RESET FILTERS  "
+msgstr "  Ì¨ÙÀ É Ø¾¯Ä   "
+
+#: messages.h:24
+msgid " RESET FILTERS? "
+msgstr "Ì¨ÙÀ ¦ Ø¾¯Ä¼Ï½¶?"
+
+#: messages.h:26
+msgid "    FILTERS     "
+msgstr "      Ì¨ÙÀ      "
+
+msgid " RESET ROUTES? "
+msgstr "Ù°Ä ¦ Ø¾¯Ä¼Ï½¶? "
+
+#: messages.h:27
+msgid "      EXIT      "
+msgstr "     ·¬Ý¾Ù      "
+
+#: messages.h:28
+msgid "     EXIT?      "
+msgstr "  ·¬Ý¾Ù ¼Ï½¶?   "
+
+#: messages.h:30
+msgid "RESETTING ADMIN "
+msgstr " ADMIN Êß½Ü°ÄÞ¦ "
+
+#: messages.h:31
+msgid "   PASSWORD     "
+msgstr "   Ø¾¯Ä ¼Ã²Ï½   "
+
+#: messages.h:33
+msgid "SAVE/CANCEL"
+msgstr "[S]Î¿ÞÝ[C]·¬Ý¾Ù "
+
+#: messages.h:34
+msgid "      SAVE      "
+msgstr "      Î¿ÞÝ      "
+
+#: messages.h:35
+msgid "      EDIT      "
+msgstr "      ÍÝº³      "
+
+#: messages.h:37
+msgid "INVALID IP:     "
+msgstr "Ì¾²Å IP ±ÄÞÚ½:  "
+
+#: messages.h:38
+msgid "IP Address:     "
+msgstr "IP ±ÄÞÚ½:"
+
+msgid "lcd_ipaddr"
+msgstr "IP ±ÄÞÚ½:     "
+
+#: messages.h:39
+msgid " PLEASE SAVE IP "
+msgstr "   IP ±ÄÞÚ½ ¦   "
+
+#: messages.h:40
+msgid "    ADDRESS     "
+msgstr "  Î¿ÞÝ ¼Ã¸ÀÞ»²  "
+
+#: messages.h:41
+msgid "ENTER GATEWAY:  "
+msgstr "¹Þ°Ä³ª² Æ­³Ø®¸: "
+
+#: messages.h:42
+msgid "INVALID GATEWAY:"
+msgstr "Ì¾²Å ¹Þ°Ä³ª²ÃÞ½:"
+
+#: messages.h:43
+msgid "PRIMARY NETMASK:"
+msgstr "Ìß×²ÏØ È¯ÄÏ½¸:"
+
+msgid "enter_secondary_nm"
+msgstr "¾¶ÝÀÞØ È¯ÄÏ½¸:"
+
+#: messages.h:44
+msgid "INVALID NETMASK:"
+msgstr "Ì¾²Å È¯ÄÏ½¸ÃÞ½:"
+
+#: messages.h:45
+msgid "  PLEASE SAVE   "
+msgstr "    È¯ÄÏ½¸ ¦    "
+
+#: messages.h:46
+msgid "    NETMASK     "
+msgstr "  Î¿ÞÝ¼Ã¸ÀÞ»²   "
+
+#: messages.h:47
+msgid "ENTER DNS:      "
+msgstr "DNS Æ­³Ø®¸:     "
+
+#: messages.h:48
+msgid "INVALID DNS:    "
+msgstr "Ì¾²Å DNS ÃÞ½:   "
+
+#: messages.h:49
+msgid "VERIFYING:      "
+msgstr "¶¸ÆÝ ¼Ã²Ï½:     "
+
+#: messages.h:50
+msgid "     SAVING     "
+msgstr "   Î¿ÞÝ ¼Ã²Ï½   "
+
+#: messages.h:51
+msgid "SYSTEM REBOOTING"
+msgstr " ¼½ÃÑ »²·ÄÞ³Á­³ "
+
+msgid "default_gateway"
+msgstr "ÃÞÌ«ÙÄ ¹Þ°Ä³ª²: "
+
+msgid "primary_ip"
+msgstr "Ìß×²ÏØ IP:"
+
+msgid "primary_nm"
+msgstr "Ìß×²ÏØ È¯ÄÏ½¸:"
+
+msgid "secondary_ip"
+msgstr "¾¶ÝÀÞØ IP:"
+
+msgid "secondary_nm"
+msgstr "¾¶ÝÀÞØ È¯ÄÏ½¸:"
+
+msgid "notconfigured"
+msgstr "  ¾¯Ã² »ÚÃ²Ï¾Ý  "
+
+msgid "dhcp_setup"
+msgstr "DHCP ¶× È¯ÄÜ°¸ ¦"
+
+msgid "failed"
+msgstr "¾¯Ã² ÃÞ·Ï¾ÝÃÞ¼À "
+
+msgid "direct_reboot_1"
+msgstr "     ÀÀÞÁÆ      "
+
+msgid "direct_reboot_2"
+msgstr "  »²·ÄÞ³ ¼Ã²Ï½  "
+
+msgid "delayed_reboot_1"
+msgstr "    4 ÌÝ ºÞÆ    "
+
+msgid "delayed_reboot_2"
+msgstr "   »²·ÄÞ³ ¼Ï½   "
+
+msgid "direct_halt_1"
+msgstr "     ÀÀÞÁÆ      "
+
+msgid "direct_halt_2"
+msgstr "   Ã²¼ ¼Ã²Ï½    "
+
+msgid "delayed_halt_1"
+msgstr "    4 ÌÝ ºÞÆ    "
+
+msgid "delayed_halt_2"
+msgstr "    Ã²¼ ¼Ï½     "
+
+msgid "SELECT LANGUAGE "
+msgstr "    ¹ÞÝºÞ    "
+
+msgid "     FRENCH     "
+msgstr "    FRANCAIS    "
+
+msgid "    SPANISH     "
+msgstr "    ESPANOL     "
+
+msgid "     GERMAN     "
+msgstr "    DEUTSCH     "
+
+msgid "    JAPANESE    "
+msgstr "    ÆÎÝºÞ    "
+
+msgid " SIMPL CHINESE  "
+msgstr " SIMPL. CHINESE "
+
+msgid "  TRAD CHINESE  " 
+msgstr " TRAD. CHINESE  "
+ 
+msgid "   AUTOUPDATE   "
+msgstr " ¼ÞÄÞ³ ±¯ÌßÃÞ°Ä "
+
+msgid "autoupdate_server"
+msgstr "   »°ÊÞ IP:     "
+
+msgid "autoupdate_secure"
+msgstr "SSL Õ³º³Æ ¼Ï½¶? "
+
+msgid "autoupdate_proxy"
+msgstr "   ÌßÛ·¼ IP:    "
+
+msgid "autoupdate_proxy_question"
+msgstr "ÌßÛ·¼ ¾¯Ã² ¼Ï½¶?"
+
+msgid "autoupdate_auth"
+msgstr "  ÆÝ¼®³ Ä°¸Ý:   "
+
+msgid "autoupdate_auth_question"
+msgstr "ÆÝ¼®³ ¾¯Ã² ¼Ï½¶?"
+
+msgid "cant_contact_server_1"
+msgstr "     »°ÊÞ Æ     "
+
+msgid "cant_contact_server_2"
+msgstr "  ¾Â¿Þ¸ ÃÞ·Ï¾Ý  "
+
+msgid "reenter_data"
+msgstr "   »²¼º³ ¼Ï½¶?  "

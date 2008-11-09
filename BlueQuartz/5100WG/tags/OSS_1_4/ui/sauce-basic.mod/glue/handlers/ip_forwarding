@@ -1,0 +1,51 @@
+#!/usr/bin/perl
+
+use lib qw( /usr/sausalito/perl );
+use Sauce::Util;
+use CCE;
+use Data::Dumper;
+
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $sysoid = $cce->event_oid();
+my ($ok, $sys) = $cce->get($sysoid, "Network");
+
+if (!$ok) { 
+  print STDERR "$0: could not get system object $sysoid\n";
+  $cce->bye("FAIL");
+  exit(1);
+}
+
+my $enabled = $sys->{ipForwarding} || 0;
+
+# 1. update /etc/sysconfig/network: 
+
+sub edit_network_conf {
+  my ($fin, $fout) = (shift,shift);
+  while (defined($_ = <$fin>)) {
+    if (m/^\s*FORWARD_IPV4\s*=/) {
+      $_ = "FORWARD_IPV4=" . ($enabled ? "true" : "false") 
+      	. "   # changed on " . scalar(localtime())
+      	. "\n";
+    }
+    print $fout $_;
+  }
+}
+
+Sauce::Util::editfile( "/etc/sysconfig/network", \&edit_network_conf);
+chmod(0644,'/etc/sysconfig/network');
+
+# 2. write the appropriate value into the right proc subsystem.
+
+use FileHandle;
+my $fh = new FileHandle(">/proc/sys/net/ipv4/ip_forward");
+if (defined($fh)) {
+  print $fh ($enabled ? "1" : "0"),"\n";
+  $fh->close();
+} else {
+  print STDERR "$0: unable to write to /proc/sys/net/ipv4/ip_forward: $!\n";
+}
+
+$cce->bye("SUCCESS");
+exit(0);

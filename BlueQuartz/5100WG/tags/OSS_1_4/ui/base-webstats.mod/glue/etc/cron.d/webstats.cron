@@ -1,0 +1,2 @@
+# update the web stats every hour
+0 0-23 * * *    root    /usr/sausalito/sbin/parseWebLog.pl /var/log/httpd/home-access >/dev/null 2>/dev/null

@@ -1,0 +1,97 @@
+# Server Management Menu
+
+msgid "asp"
+msgstr "ASP"
+
+msgid "aspid"
+msgstr "Active Server Pages (ASP)"
+
+msgid "asp_help"
+msgstr "Click here to manage [[base-asp.aspid]] support."
+
+msgid "aspAdmin_menu"
+msgstr "ASP"
+
+msgid "aspAdmin_menu_help"
+msgstr "Click here to manage [[base-asp.aspid]] support."
+
+msgid "aspAdmin"
+msgstr "ASP Administration"
+
+msgid "aspAdmin_help"
+msgstr "Click here to manage [[base-asp.aspid]] support."
+
+# ASP config pages
+
+msgid "aspSettings"
+msgstr "[[base-asp.aspid]] Settings"
+
+msgid "enableServer_help"
+msgstr "Turn the [[base-asp.aspid]] service on or off for the entire server.  ASP support may be enabled by individual sites using the Site Management interface.  "
+
+msgid "enableServer"
+msgstr "Enable Service"
+
+msgid "enableAdminServer"
+msgstr "Enable Administration Server"
+
+msgid "enableAdminServer_help"
+msgstr "Enable the [[base-asp.aspAdmin]] Server.  To access the [[base-asp.aspAdmin]] Server, click the [[base-asp.accessAdmin]] button.  The public ASP service is automatically enabled if any site is using the [[base-asp.asp]] service."
+
+msgid "manageAdminServer"
+msgstr "Access Administration Server"
+
+msgid "manageAdminServer_help"
+msgstr "Access the ASP Administration Server for advanced control and database connectivity support."
+
+# ui extension
+msgid "enableAsp"
+msgstr "Enable ASP"
+
+msgid "enableAsp_help"
+msgstr "Enable the use of active server pages (ASP)."
+
+msgid ""
+msgstr ""
+
+# AM support
+
+msgid "amAspNameTag"
+msgstr "[[base-asp.aspid]]"
+
+msgid "amAspDetailsTitle"
+msgstr "[[base-asp.amAspNameTag]] Details"
+
+msgid "amAspNotRunning"
+msgstr "The ASP service is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the ASP service off then on again to see if this corrects the problem. If the ASP service is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the ASP service is still unable to start, please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "amAspStatusOK"
+msgstr "The ASP service is operating normally."
+
+msgid "accessAdmin"
+msgstr "Access Administration Server"
+
+msgid "accessAdmin_help"
+msgstr "[[base-asp.manageAdminServer_help]]"
+
+msgid "accessAdmin_disabled"
+msgstr "[[base-asp.accessAdmin]]"
+
+msgid "accessAdmin_disabledHelp"
+msgstr "[[base-asp.manageAdminServer_help]] The ASP Administration Server must be enabled prior to access."
+
+# initscript strings
+msgid "casp_start_1"
+msgstr "Setting up"
+
+msgid "casp_start_2"
+msgstr "ASP Server"
+
+msgid "casp_stop_1"
+msgstr "Shutting down"
+
+msgid "casp_stop_2"
+msgstr "ASP Server"
+
+msgid ""
+msgstr ""

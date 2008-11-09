@@ -1,0 +1,193 @@
+Navigation System
+
+Author: Kevin K.M. Chiu
+Copyright 2000, Cobalt Networks.  All rights reserved.
+$Id: navigation.txt 201 2003-07-18 19:11:07Z will $
+
+Overview
+========
+
+The navigation system is a sub-system within the user interface that manages
+the navigation through site maps. The system consist of site maps and
+navigation managers.
+
+Users can construct site maps by adding and removing nodes. These site maps
+are then interpreted by navigation managers.
+
+There are three navigation managers supported by the system currently. They
+are collapsible list navigation, flow navigation and single navigation. New
+navigation managers may be added in the future.
+
+Site Map
+========
+The site map is defined by XML files under /usr/sausalito/ui/menu/ (or
+whatever defined in ui.cfg) and its sub-directories. Each XML file represents
+a node on the site map. To add a node, create a new XML file under the
+directory. To remove a node, remove the file. The name and path of XML files
+within the sub-directories has no impact on site definition. Instead,
+sub-directories are means for grouping and packaging.
+
+Each XML file contains all the information the navigation system needs to
+know about node. Each of the files must contain one and only one "item"
+element. Each "item" element contains zero to many "parent" elements.
+
+Here is an example of a valid XML file:
+<item id="users" label="Users" description="Configure users here..." url="/userPage.html">
+  <parent id="someOtherPlace" order="30">
+  <parent id="administration" order="10"/>
+    <access require="administrator">
+  </parent>
+</item>
+
+These are attributes of the "item" element:
+
+id ::= [a-zA-Z0-9_\-]+
+
+  id must be unique among XML files. Therefore, it is advisible to prepend
+  package or vendor tag to the id.
+
+label ::= internationalizable string
+
+  label is a short readable string that labels the node. Navigation managers
+  can display a list of labels for users to navigate to. The interpolate
+  function of I18n module is used to internationalize this string.
+
+description ::= internationalizable string
+
+  Labels can sometimes be too short. A description is used complement the
+  label in describing what the node is about. The interpolate function of I18n
+  module is used to internationalize this string.
+
+type ::= string (optional)
+
+  type is used by navigation managers to distinguish items. They can then act
+  on the items differently.
+
+url ::= URL as described in RFC 1738, internationalizable (optional)
+
+  This URL points to the content page of this node. The interpolate function
+  of I18n module is used to internationalize this string.
+
+These are attributes of the "parent" element:
+
+id ::= [a-zA-Z0-9_\-]+
+
+  This is the id of the parent node which is described in the "item" element.
+
+order ::= integer (optional)
+
+  When there are several children nodes under a parent node, the navigation
+  managers may need to know which child to use first. The smaller the integer,
+  the more important the node is.
+
+The "parent" elements can be viewed as links from the children to the parent
+node. A collection of nodes and links together composes a site map.
+
+This is an example of a site map:
+Node A has no parent
+Node B's parent is A
+Node C's parent is A
+Node D's parent is C and E
+Node E has no parent
+Node F has no parent
+Node G's parent is F
+Node H's parent is G
+Node I's parent is G and J
+Node J has no parent
+
+The site map is therefore:
+  A           F
+ / \         /
+B   C   E   G   J
+     \ /   / \ /
+      D   H   I
+
+Each "parent" element can have zero or more "access" elements. "access"
+elements can have:
+
+require ::= string
+
+  This is the access required to traverse the parent link.
+
+With no "access" element, the parent link has no access control and anybody can
+traverse the link. With one "access" element, access is granted if and only if
+this requirement is met. With more than one "access" element, access is granted
+if any one of the multiple requirements is met. In other words, this is a "or"
+condition.
+
+Collapsible List Navigation
+===========================
+
+The collapsible list navigation manager presents a site map in a collapsible
+list format and lets users navigate by clicking on items on the list.
+Users can expand or collapse parents to show and hide the children nodes,
+respectively.
+
+To use the collapsible list, users needs to supply the root node of the site.
+For example, using the above site map as an example with A as root, the
+collapsible list will look like:
+Item B
+Item C
+  Item D
+
+Note that the node A and E are not being shown. This is because node A is the
+root and there is no path to decend down from the root to node E. The nodes
+F, G, H, I and J are not shown either because they are on a separate branch.
+
+The URL for collapsible list navigation manager is at /nav/cList.php. It
+needs a root parameter that specifies the id of the root. Therefore, use it
+like http://<ip>/nav/cList.php?root=<root>. There are also other supported
+parameters. For details, read the documentation in the PHP file.
+
+Flow Navigation
+===============
+
+The flow navigation manager allows users to navigate forward or backward
+through a site map. Conditional branches for forward is supported.
+
+The root node needs to be supplied to the flow navigation manager and that
+becomes the first step of the flow.
+
+Take the above site map as an example with F as the root. Navigation starts at
+F. Users can move forward to G. No moving backward is allowed on the root
+node. At G, users can move backward to F or forward to either H or I. Moving
+to H or I depends on a condition check at G. At H or I, users can move back to
+G or finish the navigation. Note that users at I cannot move backward to J.
+
+Conditional forward is supported by a Javascript interface. At the node where
+a conditional forward is necessary (i.e. G in the above example), a
+getNextItemId() Javascript function needs to be specified in the content page.
+This function should return the id of the next node when being called with no
+parameters.
+
+Error checking is supported. When an user wants to move forward, all the
+submitHandler()s of all the form elements of the content page are called with
+no parameters. The forward operation will only proceed if all the
+submitHandler()s return true. If you use UIFC to build your content page,
+submitHandler()s are automatically defined for you.
+
+During the forward operation, after error checking is done at the front end,
+the form on the content page is submitted. The handler of the form submit
+should tell flow navigation manager if submission is successful or not. If
+successful, navigation moves to the next node. Otherwise, it stays at the same
+node. To notify the navigation manager, the form handler should return a page
+which sets the Javascript variable "flow_success" to true or false with true
+indicating success. Note that this variable is automatically handled by the
+toHandlerHtml() method of the ServerScriptHelper class for you.
+
+The URL for flow navigation manager is at /nav/flow.php. The root parameter
+needs to be supplied, so use something like
+http://<ip>/nav/flow.php?root=<root>. There are also other supported
+parameters. For details, read the documentation in the PHP file.
+
+Single Navigation
+=================
+
+Single navigation manager only supports one single node and does not allow
+users to navigate into other nodes.
+
+The URL for single navigation manager is at /nav/single.php. The root parameter
+needs to be supplied, so use something like
+http://<ip>/nav/single.php?root=<root>. There are also other supported
+parameters. For details, read the documentation in the PHP file.
+

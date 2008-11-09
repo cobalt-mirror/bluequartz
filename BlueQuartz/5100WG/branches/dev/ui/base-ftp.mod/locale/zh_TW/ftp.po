@@ -1,0 +1,51 @@
+msgid "capgroup_adminFtpServer"
+msgstr "管理 FTP 伺服器設定"
+
+msgid "maxUserField"
+msgstr "同時使用的最大使用者人數"
+
+msgid "ftpSettings"
+msgstr "檔案轉送通信協定 (FTP) 設定"
+
+msgid "maxUserField_rule"
+msgstr "請輸入一個介於 1 到  1024 之間的整數；預設值為 25。"
+
+msgid "cantConfigFile"
+msgstr "很抱歉，在嘗試修改 FTP 配置檔時發生錯誤。 [[base-ftp.badUser]]"
+
+msgid "maxUserField_help"
+msgstr "設定同時可連接 FTP 伺服器的最大使用者數目。  [[base-ftp.maxUserField_rule]]"
+
+msgid "badUser"
+msgstr "如果已移除或手動修改伺服器配置檔，請復置原始配置檔，然後重試。"
+
+msgid "ftp_help"
+msgstr "此處可變更[[base-ftp.ftpSettings]]。"
+
+msgid "amStatusOK"
+msgstr "此 FTP 伺服器正常運作中。"
+
+msgid "amNotResponding"
+msgstr "此 FTP 伺服器不在執行中。"
+
+msgid "capgroup_adminFtpServer_help"
+msgstr "這個管理權限允許使用者更改這台機器上 FTP 伺服器所使用的設定。"
+
+msgid "base-ftp.amBadResponse"
+msgstr "此 FTP 伺服器發出無效的回應。"
+
+msgid "amDetailsTitle"
+msgstr "檔案轉送通信協定 (FTP) 伺服器明細"
+
+msgid "ftp"
+msgstr "FTP"
+
+msgid "amFTPNameTag"
+msgstr "檔案轉送通信協定 (FTP) 伺服器"
+
+msgid "enableServerField"
+msgstr "啟用伺服器"
+
+msgid "enableServerField_help"
+msgstr "開啟或關閉「檔案轉送通信協定 (FTP)」功能。移至 [[base-fileshare.guestShare]] 可配置匿名 FTP 存取。"
+

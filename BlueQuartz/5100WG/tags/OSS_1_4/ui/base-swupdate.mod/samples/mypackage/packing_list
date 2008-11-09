@@ -1,0 +1,17 @@
+[Package -- Version: 1.0]
+Vendor:	Cobalt
+VendorTag: [[vendor]]
+Name: sample
+NameTag: [[name]]
+Category: sample
+Location: http://adrian1.cobalt.com/qube3/sample.pkg
+Version: 1.0
+Size: 200
+Product: 4...WG
+PackageType: complete
+Options: uninstallable
+ShortDesc: [[shortDesc]]
+LongDesc: [[longDesc]]
+Splash: pkginfo/splash/pre-install/index.php
+Depend: Cobalt-OS >= 6.0
+[/Package]

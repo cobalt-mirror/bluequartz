@@ -1,0 +1,41 @@
+<!-- $Id: networker.schema,v 1.8.2.2 2002/02/21 20:42:30 bservies Exp $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved -->
+
+<class name="System" namespace="NetWorker" version="1.1">
+	<property name="enabled"
+	    type="boolean"
+	    default="0"
+	    writeacl="ruleCapable(modifyNetWorker)"
+	/>
+	<property name="lgNetWorkerHost"
+	    type="hostname"
+	    array="yes"
+	    optional="true"
+	    writeacl="ruleCapable(modifyNetWorker)"
+	/>
+	<!--
+		Ports 7937 and 7938 are required by NetWorker.  No
+		other service ports are required for a client.
+	-->
+	<property name="servicePortLow"
+	    type="int"
+	    default="7937"
+	    writeacl="ruleCapable(modifyNetWorker)"
+	/>
+	<property name="servicePortHigh"
+	    type="int"
+	    default="7938"
+	    writeacl="ruleCapable(modifyNetWorker)"
+	/>
+	<!-- NetWorker clients require at least 100 connection ports. -->
+	<property name="connPortLow"
+	    type="int"
+	    default="10001"
+	    writeacl="ruleCapable(modifyNetWorker)"
+	/>
+	<property name="connPortHigh"
+	    type="int"
+	    default="10200"
+	    writeacl="ruleCapable(modifyNetWorker)"
+	/>
+</class>

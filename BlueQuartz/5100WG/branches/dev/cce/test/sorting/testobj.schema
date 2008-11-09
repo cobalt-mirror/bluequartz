@@ -1,0 +1,11 @@
+<!--
+	$Id: testobj.schema 229 2003-07-18 20:22:20Z will $
+	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+-->
+
+<class name="t1" version="1.0" createacl="ruleAll" destroyacl="ruleAll">
+	<property name="val1" type="scalar" writeacl="ruleAll" readacl="ruleAll"/>
+	<property name="val2" type="scalar" writeacl="ruleAll" readacl="ruleAll"/>
+	<property name="val3" type="scalar" writeacl="ruleAll" readacl="ruleAll"/>
+</class>
+

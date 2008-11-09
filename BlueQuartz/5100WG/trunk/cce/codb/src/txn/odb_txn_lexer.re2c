@@ -1,0 +1,159 @@
+/* $Id: odb_txn_lexer.re2c 3 2003-07-17 15:19:15Z will $ */
+
+/* REMINDER: don't edit the .c version of this file, edit the
+ * .re2c version of this file instead, hey?
+ */
+
+#include "odb_txn_internal.h"
+#include <odb_txn_lexer.h>
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#define BLOCKSIZE   32
+
+struct txn_scanner_struct {
+  FILE * f;
+  char *buf;
+  char *bufend;
+  char *cursor;
+  char *token;
+  char *lasttoken;
+  size_t bufsize;
+};
+
+txn_scanner 
+txn_scanner_new(FILE *f)
+{
+  txn_scanner s;
+  s = malloc(sizeof(struct txn_scanner_struct));
+  if (!s) return NULL;
+  
+  s->f = f;
+  s->buf = NULL;
+  s->bufend = NULL;
+  s->cursor = NULL;
+  s->token = NULL;
+  s->lasttoken = NULL;
+  s->bufsize = 0;
+  
+  return s;
+}
+
+void
+txn_scanner_destroy(txn_scanner s)
+{
+  free(s->buf);
+  free(s);
+}
+
+char *
+txn_scanner_duptoken(txn_scanner s)
+{
+  char * str;
+  if (! s->lasttoken) { return NULL; }
+  str = malloc(s->cursor - s->lasttoken + 1);
+  memcpy(str, s->lasttoken, s->cursor - s->lasttoken);
+  str[s->cursor - s->lasttoken] = '\0';
+  return str;
+}
+
+unsigned long
+txn_scanner_toktoul(txn_scanner s, int base)
+{
+  char *str;
+  str = s->lasttoken;
+  if (*str == '\"') str++;
+  return strtoul(str, NULL, base);
+}
+
+static void
+tok_fill(txn_scanner s, int n)
+{
+  // if (s->buf) { printf ("initial: [%s]\n", s->buf); }
+  /* shift the buffer, preserving uneaten token chars */
+  {
+    unsigned int cnt = s->token - s->buf;
+    if (cnt) {
+      memcpy(s->buf, s->token, (s->bufend - s->token));
+      s->token = s->buf;
+      s->cursor -= cnt;
+      s->bufend -= cnt;
+    }
+    // if (s->buf) { printf ("shifted: [%s]\n", s->buf); }
+  }
+
+  /* resize buffer if necessary */  
+  {
+    size_t reqsize = s->bufend - s->token + n;
+    if ( s->bufsize < reqsize ) {
+      char *buf;
+      while (s->bufsize < reqsize) { s->bufsize += BLOCKSIZE; }
+      buf = (char*)malloc(s->bufsize + 1);
+      memcpy(buf, s->buf, s->bufend - s->buf);
+      s->token += buf - s->buf;
+      s->bufend += buf - s->buf;
+      s->cursor += buf - s->buf;
+      if (s->buf) free(s->buf);
+      s->buf = buf;
+      // if (s->buf) { printf ("resized: [%s]\n", s->buf); }
+    }
+  }
+  
+  /* fill buffer */
+  {
+    int cnt;
+    size_t avail = s->bufsize - (s->bufend - s->token);
+    
+    cnt = fread( s->bufend, sizeof(char), avail, s->f);
+    s->bufend += cnt;
+    *(s->bufend) = '\0';
+    // if (s->buf) { printf ("filled:  [%s]\n", s->buf); }
+  }
+  
+}    
+  
+txn_parser_token
+txn_scanner_scan(txn_scanner s)
+{  
+  char *q;
+#define YYCTYPE   char
+#define YYCURSOR  (s->cursor)
+#define YYLIMIT   s->bufend
+#define YYMARKER  q
+#define YYFILL(n) tok_fill(s, n)
+#define RET(i)    { s->lasttoken=s->token; s->token = s->cursor; return i; }
+/*!re2c
+  ANY       = [\000-\377];
+  WS        = [ \t\n]+;
+  QSTRING   = ["](ANY\[\n\\"])*["];
+  BINSTR    = "#"[0-9]+"#"[A-Za-z0-9+/=]+;
+
+  WS                { RET(TXN_TOK_WHITESPACE) }
+  BINSTR            { RET(TXN_TOK_BINSTR) }
+  QSTRING           { RET(TXN_TOK_QSTR) }
+  [<]               { RET(TXN_TOK_OPENTAG) }
+  "/>"              { RET(TXN_TOK_CLOSETAGEND) }
+  [>]               { RET(TXN_TOK_CLOSETAG) }
+  "="               { RET(TXN_TOK_EQUALS) }
+	"TRANSACTION"			{ RET(TXN_TOK_TRANSACTION) }
+	"/TRANSACTION"		{ RET(TXN_TOK_ETRANSACTION) }
+	"STATE"			      { RET(TXN_TOK_STATE) }
+	"OBJECT"				{ RET(TXN_TOK_OBJECT) }
+	"CLASS"					{ RET(TXN_TOK_CLASS) }
+	"SCALAR"			    { RET(TXN_TOK_SCALAR) }
+	"/SCALAR"			    { RET(TXN_TOK_ESCALAR) }
+	"OID"			        { RET(TXN_TOK_OID) }
+	"PROP"			      { RET(TXN_TOK_PROP) }
+	"LIST"			      { RET(TXN_TOK_LIST) }
+	"/LIST"			      { RET(TXN_TOK_ELIST) }
+	"ADD"			        { RET(TXN_TOK_ADD) }
+	"BEFORE"			    { RET(TXN_TOK_BEFORE) }
+	"AFTER"			      { RET(TXN_TOK_AFTER) }
+	"RM"			        { RET(TXN_TOK_RM) }
+  ANY               { RET(TXN_TOK_OTHER) }
+*/
+  return TXN_TOK_OTHER;
+}
+

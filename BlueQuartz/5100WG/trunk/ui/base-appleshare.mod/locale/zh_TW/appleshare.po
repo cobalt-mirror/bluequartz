@@ -1,0 +1,61 @@
+msgid "appleshare"
+msgstr "Apple"
+
+msgid "appleshare_help"
+msgstr "此處可變更 [[base-appleshare.appleshareSettings]]。"
+
+msgid "appleshareSettings"
+msgstr "Apple 檔案共享設定"
+
+msgid "enableServerField"
+msgstr "啟用伺服器"
+
+msgid "enableServerField_help"
+msgstr "開啟或關閉「Apple 檔案共享」。移至 [[base-fileshare.guestShare]] 可配置來賓對「Apple 檔案共享」的存取。"
+
+msgid "maxUserField"
+msgstr "同時使用的最大使用者人數"
+
+msgid "maxUserField_rule"
+msgstr "請輸入一個介於 1 到 1024 之間的整數；預設值為 25。"
+
+msgid "maxUserField_help"
+msgstr "變更同時可連接「Apple 檔案共享」的最大使用者數目。  [[base-appleshare.maxUserField_rule]]"
+
+
+# ---- Active Monitor
+
+msgid "amAppleshareNameTag"
+msgstr "Apple 檔案共享伺服器"
+
+msgid "amDetailsTitle"
+msgstr "Apple 檔案共享伺服器明細"
+
+msgid "amNotResponding"
+msgstr "此 Apple 檔案共享伺服器不在執行中。"
+
+msgid "amStatusOK"
+msgstr "此 Apple 檔案共享伺服器正常運作中。"
+
+# ---- Handlers
+
+msgid "badUser"
+msgstr "如果已移除或手動修改伺服器配置檔，請復置原始配置檔，然後重試。"
+
+msgid "cantConfigFile"
+msgstr "很抱歉，在嘗試修改「Apple 檔案共享」配置檔時發生錯誤。 [[base-appleshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "很抱歉，在嘗試修改「Apple 檔案共享」配置檔時發生錯誤。 [[base-appleshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "很抱歉，在嘗試修改「Apple 檔案共享」配置檔時發生錯誤。 [[base-appleshare.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminAppleShare"
+msgstr "管理「Apple 檔案共享」"
+
+msgid "capgroup_adminAppleShare_help"
+msgstr "這個管理權限允許使用者更改「Apple 檔案共享」所使用的設定。"
+

@@ -1,0 +1,153 @@
+# handlers
+msgid "couldntDeletePppCfg"
+msgstr "Could not delete PPP configuration"
+
+msgid "couldntStartPpp"
+msgstr "Could not start modem"
+
+msgid "couldntStopPpp"
+msgstr "Could not stop modem"
+
+msgid "cantGetModem"
+msgstr "Sorry, a server error occured. Modem status is not available at this time."
+
+msgid "modemProblem"
+msgstr "There is a problem with the modem.  If you have an external modem, make sure it is connected securely to the serial port on your server and that the modem's power is turned on.  If you have an internal modem, try rebooting your server."
+
+msgid "offNow"
+msgstr "Not Connected"
+
+msgid "onNow"
+msgstr "Connected"
+                                                                                 
+# strings for test of modem on demand
+msgid "saveTest"
+msgstr "Save and Test Modem Settings"
+
+msgid "saveTest_help"
+msgstr "This will save your current settings and attempt a test connection to your internet service provider to verify the settings."
+
+msgid "testModem"
+msgstr "Testing Modem Settings..."
+
+msgid "testFail"
+msgstr "Error"
+
+msgid "testFailMsg"
+msgstr "The modem test was unable to run due to a system error.  Make sure your modem settings are correct, and try again.  If the test fails repeatedly, try rebooting your server appliance."
+
+msgid "initModem"
+msgstr "Initialization"
+
+msgid "initModem_help"
+msgstr "This shows the modem initialization status.  The initialization test checks to see if your modem is connected to the server and responding."
+
+msgid "initModemStage"
+msgstr "Initializing..."
+
+msgid "initModemSuccess"
+msgstr "Success"
+
+msgid "initModemFail"
+msgstr "Initialization failed:  If you have an external modem, make sure your modem is properly connected to your server and that the modem's power is turned on.  Check your modem documentation to make sure that the initialization string being used, '[[VAR.init]]', is correct."
+
+msgid "dialModem"
+msgstr "Connection"
+
+msgid "dialModem_help"
+msgstr "This shows the modem connection status.  The connection test checks to see if your modem can be used to dial and connect to your internet service provider."
+
+msgid "dialModemStage"
+msgstr "Dialing [[VAR.phone]]..."
+
+msgid "dialModemSuccess"
+msgstr "Success"
+
+msgid "dialModemFail"
+msgstr "Dialing failed:  [[VAR.errmsg]]"
+
+msgid "noDialtone"
+msgstr "There was no dialtone."
+
+msgid "busy"
+msgstr "The phone number dialed was busy."
+
+msgid "noCarrier"
+msgstr "There was no carrier."
+
+msgid "waiting"
+msgstr "The remote computer did not answer."
+
+msgid "unknownError"
+msgstr "An unknown error occurred."
+
+msgid "pppdAuth"
+msgstr "Authentication"
+
+msgid "pppdAuth_help"
+msgstr "This shows the authentication status.  The authentication test checks to see if the server can login to the remote server."
+
+msgid "pppdAuthStage"
+msgstr "Sending login information..."
+
+msgid "pppdAuthFail"
+msgstr "Authentication failed:  [[VAR.errmsg]]"
+
+msgid "noResponse"
+msgstr "The remote server failed to respond."
+
+msgid "authFailure"
+msgstr "The provided username and password were rejected by the remote server."
+
+msgid "remoteTerm"
+msgstr "The connection was terminated by the remote server."
+
+msgid "pppdAuthSuccess"
+msgstr "Success"
+
+msgid "dnsTest"
+msgstr "Name Resolution"
+
+msgid "dnsTest_help"
+msgstr "This shows the status of the domain name resolution test.  Domain name resolution is used to translate textual host names and domain names into numerical IP addresses, and vice-versa."
+
+msgid "dnsTestStage"
+msgstr "Contacting Name Server..."
+
+msgid "dnsTestFail"
+msgstr "Unable to contact your DNS server.  Check your TCP/IP settings to make sure the DNS servers specified are correct."
+
+msgid "dnsTestSuccess"
+msgstr "Success"
+
+msgid "netTest"
+msgstr "Network Connection"
+
+msgid "netTest_help"
+msgstr "This shows the status of the network connection test.  This test attempts to connect to a remote site."
+
+msgid "netTestStage"
+msgstr "Contacting Remote Site..."
+
+msgid "netTestFail"
+msgstr "Unable to connect to a remote site.  Verify your modem and TCP/IP settings and try again."
+
+msgid "netTestSuccess"
+msgstr "Success"
+
+msgid "back"
+msgstr "Back"
+
+msgid "back_help"
+msgstr "This will return you to the modem settings page."
+
+msgid "ppp0_in_use"
+msgstr "The modem connection could not be turned on because the interface is in use by another device.  If you are using DSL, you need to disable PPPoE before you will be able to use the modem to connect."
+
+# Capabilities
+
+msgid "capgroup_adminModem"
+msgstr "Manage Modem"
+
+msgid "capgroup_adminModem_help"
+msgstr "This administrative right allows a user to modify the settings for the modem"

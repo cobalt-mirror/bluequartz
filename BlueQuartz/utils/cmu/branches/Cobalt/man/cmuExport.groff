@@ -1,0 +1,38 @@
+./" $Id: cmuExport.groff 922 2003-07-17 15:22:40Z will $ 
+./" Process file with
+./" groff -Tascii -man
+.TH cmuExport 8 "" "" ""
+.SH NAME
+cmuExport \- writes groups, users, and settings to data files 
+.SH SYNOPSIS
+cmuExport [ options... ]
+.SH DESCRIPTION
+cmuExport writes data files which contain the groups, users, and the associated settings of the current Cobalt appliance. After completion, the data files can be transfered to another Cobalt appliance and loaded with 
+.B cmuExport
+.SH OPTIONS
+-a export admin's files
+.LP
+-c export configuration only
+.LP
+-d build directory, this is where export will place all exported files, the default is /home/cmu/FQDN
+.LP
+-p Do NOT export passwords for users
+.LP
+-n export these virtual sites, ie "www.foo.com,www.bar.com" (RaQ only)
+.LP
+-v verbose, print all messages to stdout
+.LP
+-h help text
+.SH FILES
+.I /etc/cmu/cmuConfig.xml
+.RS
+The main configuration file. See
+.BR cmuConfig.xml(5)
+for futher details.
+.SH AUTHOR
+Cobalt Networks, Inc.
+Sun Microsystems, Inc.
+.SH SEE ALSO
+.BR cmuImport(8),
+.BR cmuConfig(8),
+.BR cmuConfig.xml(5)

@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# chkconfig: 2345 01 99
+# description: autoloads modules for pci devices. NOTE: this depends
+#              upon the format of lsmod, lspci, and modules.pcimap.
+#              as a result, this will need to be changed if modutils
+#              or pciutils changes the format.
+
+load_modules() {
+    conf="/lib/modules/`uname -r`/modules.pcimap"
+    [ -f $conf ] || return;
+
+    devices=`/sbin/lspci -n | cut -d' ' -f4 | uniq`
+    for device in $devices; do
+	dev=`echo $device | cut -d':' -f1`
+	id=`echo $device | cut -d':' -f2`
+	pattern=`printf "^\w+\W+%#.8x\W+%#.8x\W+" 0x$dev 0x$id`
+	list=`grep -E "$pattern" $conf 2> /dev/null`
+	if [ "$list" != "" ]; then
+	    module=`echo $list | cut -d' ' -f1`
+	    if ! /sbin/lsmod | grep -q $module 2> /dev/null; then
+		echo -n "$module "
+		/sbin/modprobe $module
+	    fi
+	fi
+    done
+}
+
+unload_modules() {
+    modules=`/sbin/lsmod | grep -v \(autoclean\) | grep -E '^\w+\W+\w+\W+0' | cut -d' ' -f1`
+    for module in $modules; do
+	echo -n "$module "
+	/sbin/modprobe -r $module
+    done
+}
+
+
+case "$1" in 
+    start)
+	echo -n "autoloading PCI modules: "
+	load_modules
+	echo "- done."
+	;;
+
+    stop)
+	echo -n "unloading PCI modules: "
+	unload_modules
+	echo "- done."
+	;;
+
+    restart)
+	$0 stop
+	$0 start
+	;;
+
+    *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit 0

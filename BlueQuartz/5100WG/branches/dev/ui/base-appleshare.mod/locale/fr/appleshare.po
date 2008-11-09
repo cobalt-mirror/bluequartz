@@ -1,0 +1,60 @@
+msgid "appleshare"
+msgstr "Apple"
+
+msgid "appleshare_help"
+msgstr "Les [[base-appleshare.appleshareSettings]] peuvent être modifiés ici."
+
+msgid "appleshareSettings"
+msgstr "Paramètres du partage de fichiers Apple"
+
+msgid "enableServerField"
+msgstr "Activer le serveur"
+
+msgid "enableServerField_help"
+msgstr "Active ou désactive le partage de fichiers Apple. L'accès invité au partage de fichiers Apple est configuré en allant à [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Utilisateurs simultanés maximum"
+
+msgid "maxUserField_rule"
+msgstr "Entrez un nombre entier compris entre 1 et 1024. La valeur par défaut est 25."
+
+msgid "maxUserField_help"
+msgstr "Changez le nombre maximum d'utilisateurs qui peuvent être connectés en même temps au Partage de fichiers Apple. [[base-appleshare.maxUserField_rule]]"
+
+
+# ---- Active Monitor
+
+msgid "amAppleshareNameTag"
+msgstr "Serveur du partage de fichiers Apple"
+
+msgid "amDetailsTitle"
+msgstr "Détails du serveur de partage de fichiers Apple"
+
+msgid "amNotResponding"
+msgstr "Le serveur de partage de fichiers Apple ne fonctionne pas."
+
+msgid "amStatusOK"
+msgstr "Le serveur de partage de fichiers Apple fonctionne normalement."
+
+# ---- Handlers
+
+msgid "badUser"
+msgstr "Les fichiers de configuration du serveur ont été supprimés ou modifiés manuellement, restaurez leur version initiale et recommencez."
+
+msgid "cantConfigFile"
+msgstr "Une erreur s'est produite lors de la tentative de modification des fichiers de configuration du partage de fichiers Apple. [[base-appleshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Une erreur s'est produite lors de la tentative de modification des fichiers de configuration du partage de fichiers Apple. [[base-appleshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Une erreur s'est produite lors de la tentative de modification des fichiers de configuration du partage de fichiers Apple. [[base-appleshare.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminAppleShare"
+msgstr "Gérer le partage de fichiers Apple"
+
+msgid "capgroup_adminAppleShare_help"
+msgstr "Ce droit administratif permet à un utilisateur de modifier le paramètre utilisé par le partage de fichiers Apple"

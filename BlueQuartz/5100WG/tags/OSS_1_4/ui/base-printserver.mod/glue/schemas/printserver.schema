@@ -1,0 +1,31 @@
+<class name="Printer" namespace="" version="1.0" createacl="ruleCapable(createPrinter)" destroyacl="ruleCapable(destroyPrinter)">
+	<property name="name" type="scalar" writeacl="ruleCapable(modifyPrinter)"/>
+	<property name="location" type="scalar" writeacl="ruleCapable(modifyPrinter)"/>
+	<property name="hostname" type="scalar" writeacl="ruleCapable(modifyPrinter)"/>
+	<property name="spool" type="scalar" writeacl="ruleCapable(modifyPrinter)"/>
+	<property name="PPD" type="scalar" default="" writeacl="ruleCapable(modifyPrinter)"/>
+	<property name="suspended" type="boolean" default="0" writeacl="ruleCapable(modifyPrinter)"/>
+</class>
+
+<class name="System" namespace="PrintServer" version="1.0">
+	<property name="enable" type="boolean" default="0" writeacl="ruleCapable(modifySystemPrinter)"/>
+	<property name="samba" type="boolean" default="1" writeacl="ruleCapable(modifySystemPrinter)"/>
+	<property name="appleshare" type="boolean" default="1" writeacl="ruleCapable(modifySystemPrinter)"/>
+</class>
+
+<class name="Capabilities" namespace="modifySystemPrinter" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemPrinter)"/>
+	<property name="nameTag" type="scalar" default="[[base-printserver.cap_modifySystemPrinter]]"/>
+</class>
+<class name="Capabilities" namespace="modifyPrinter" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyPrinter)"/>
+	<property name="nameTag" type="scalar" default="[[base-printserver.cap_modifyPrinter]]"/>
+</class>
+<class name="Capabilities" namespace="createPrinter" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createPrinter)"/>
+	<property name="nameTag" type="scalar" default="[[base-printserver.cap_createPrinter]]"/>
+</class>
+<class name="Capabilities" namespace="destroyPrinter" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyPrinter)"/>
+	<property name="nameTag" type="scalar" default="[[base-printserver.cap_destroyPrinter]]"/>
+</class>

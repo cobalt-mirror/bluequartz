@@ -1,0 +1,224 @@
+msgid "pptp"
+msgstr "Acceso remoto"
+
+msgid "pptp_menu"
+msgstr "VPN de acceso remoto"
+
+msgid "pptp_menu_help"
+msgstr "La configuración [[base-pptp.pptp]] puede cambiarse en este punto."
+
+msgid "pptp_settings_block"
+msgstr "Configuración de [[base-pptp.pptp]]"
+
+msgid "pptp_access"
+msgstr "Acceso"
+
+msgid "pptp_access_help"
+msgstr "Activa o desactiva el acceso PPTP Puede definir los derechos de acceso PPTP de modo que ninguno, algunos o todos los usuarios puedan acceder al servicio PPTP."
+
+msgid "pptp_access_disabled"
+msgstr "No permitir acceso a ningún usuario"
+
+msgid "pptp_access_allusers"
+msgstr "Permitir el acceso a todos los usuarios"
+
+msgid "pptp_access_someusers"
+msgstr "Permitir el acceso únicamente a usuarios concretos"
+
+msgid "pptp_access_someusers_selector_allowed"
+msgstr "Acceso permitido a usuarios"
+
+msgid "pptp_access_someusers_selector_disallowed"
+msgstr "Acceso no permitido a usuarios"
+
+msgid "pptp_access_someusers_selector_label"
+msgstr " "
+
+msgid "pptp_dns_addresses"
+msgstr "Direcciones DNS de cliente"
+
+msgid "pptp_dns_addresses_help"
+msgstr "Escriba la dirección IP o la dirección del servidor o servidores de nombres de dominios locales que se servirán automáticamente a estos clientes. Un servidor de nombres de dominios traduce nombres textuales de sistemas y nombres de dominios a direcciones IP, y viceversa. Escriba una serie de cuatro números entre 0 y 255, separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "pptp_wins_addresses"
+msgstr "Direcciones WINS de cliente"
+
+msgid "pptp_wins_addresses_help"
+msgstr "Escriba la dirección IP o la dirección del servidor o servidores WINS locales que se servirán automáticamente a estos clientes. Un servidor WINS traduce nombres de sistemas de Windows a direcciones IP numéricas, y viceversa, de modo que es posible explorar el Entorno de red por la red privada virtual. Escriba una serie de cuatro números entre 0 y 255, separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida. "
+
+# list page
+
+msgid "dynamic_ranges_button"
+msgstr "Modificar las asignaciones de direcciones remotas"
+
+msgid "dynamic_ranges_button_help"
+msgstr "Haga clic aquí para configurar las direcciones IP que este servidor asignará a los clientes que soliciten la conexión [[base-pptp.pptp]]."
+
+msgid "dynamic_ranges"
+msgstr "Lista de asignaciones de direcciones remotas"
+
+msgid "list_ipaddr_range_from"
+msgstr "Intervalo de direcciones IP (desde)"
+
+msgid "list_ipaddr_range_from_help"
+msgstr "Éste es el extremo inferior del intervalo de direcciones IP que se están asignando remotamente."
+
+msgid "list_ipaddr_range_to"
+msgstr "Intervalo de direcciones IP (hasta)"
+
+msgid "list_ipaddr_range_to_help"
+msgstr "Éste es el extremo superior del intervalo de direcciones IP que se están asignando remotamente."
+
+msgid "list_action"
+msgstr "Acción"
+
+msgid "list_action_help"
+msgstr "Estos son los botones que se utilizan para modificar o eliminar el intervalo de direcciones IP que se están asignando remotamente."
+
+msgid "removeDynamicConfirm"
+msgstr "¿Está seguro de que desea eliminar el intervalo [[VAR.ipaddrlo]] - [[VAR.ipaddrhi]] de la lista de IPs asignadas remotamente?"
+
+# Create/Modify range page
+
+msgid "modify_dynamic_block"
+msgstr "Modificar el intervalo de asignación de direcciones remotas"
+
+msgid "create_dynamic_block"
+msgstr "Crear el intervalo de asignación de direcciones remotas"
+
+msgid "block_ipaddr_range_from"
+msgstr "Intervalo de direcciones IP (desde)"
+
+msgid "ipaddrlo"
+msgstr "[[base-pptp.block_ipaddr_range_from]]"
+
+msgid "block_ipaddr_range_from_help"
+msgstr "Éste es el extremo inferior del intervalo de direcciones IP que se están asignando remotamente."
+
+msgid "block_ipaddr_range_to"
+msgstr "Intervalo de direcciones IP (hasta)"
+
+msgid "ipaddrhi"
+msgstr "[[base-pptp.block_ipaddr_range_to]]"
+
+msgid "block_ipaddr_range_to_help"
+msgstr "Éste es el extremo superior del intervalo de direcciones IP que se están asignando remotamente."
+
+msgid "ip_rule"
+msgstr "Escriba una serie de cuatro números entre 0 y 255, separados por puntos.  Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "pptp_secret_rule"
+msgstr "Esta contraseña secreta debe tener entre 3 y 16 caracteres de longitud y ser distinta de la del sistema."
+
+
+msgid "ipaddrlo_invalid"
+msgstr "[[VAR.invalidValue]] es un valor no válido para [[base-pptp.block_ipaddr_range_from]].  [[base-pptp.ip_rule]]"
+
+msgid "ipaddrhi_invalid"
+msgstr "[[VAR.invalidValue]] es un valor no válido para [[base-pptp.block_ipaddr_range_to]].  [[base-pptp.ip_rule]]"
+
+msgid "pptp_secret_invalid"
+msgstr "[[VAR.invalidValue]] es un valor no válido para la contraseña secreta.  [[base-pptp.pptp_secret_rule]]"
+
+# Notification 
+
+msgid "pptp_notify_block"
+msgstr "Notificar a los usuarios"
+
+msgid "pptp_notify_header"
+msgstr "Nota"
+
+msgid "pptp_notify_text"
+msgstr "La siguiente lista de usuarios no han activado aún sus cuentas de acceso remoto.  Para activar sus cuentas, éstos deben iniciar la sesión y escribir una contraseña secreta en la página de acceso remoto.  <p>[[VAR.users]]<p>¿Desea enviarles una notificación por correo electrónico relativa a este hecho?"
+
+msgid "pptp_notify_yes"
+msgstr "Sí"
+
+msgid "pptp_notify_yes_help"
+msgstr "Haga clic aquí para enviar un mensaje de correo electrónico a todos los usuarios que aún no han definido su contraseña secreta de acceso remoto."
+
+msgid "pptp_notify_no"
+msgstr "No"
+
+msgid "pptp_notify_no_help"
+msgstr "Haga clic aquí para continuar sin notificar a estos usuarios sobre la contraseña secreta de acceso remoto."
+
+# User side
+msgid "pptp_user_menu"
+msgstr "Acceso remoto"
+
+msgid "pptp_user_menu_help"
+msgstr "En este punto puede configurar su cuenta de acceso remoto."
+
+msgid "pptp_user_block"
+msgstr "Configuración de acceso remoto"
+
+msgid "pptp_user_secret"
+msgstr "Contraseña secreta"
+
+msgid "pptp_user_secret_help"
+msgstr "Ésta es la contraseña secreta que utilizará al crear una conexión de red privada virtual.  Su acceso remoto no se activará hasta que no seleccione una contraseña secreta.  [[base-pptp.pptp_secret_rule]]"
+
+msgid "pptp_user_secret_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "secret"
+msgstr "Contraseña secreta"
+
+msgid "pptp_user_setyoursecret"
+msgstr "Antes de activar la cuenta de acceso remoto, debe escribir una contraseña secreta para utilizarla durante el proceso de autenticación.  Escriba a continuación una contraseña secreta de entre 3 y 16 caracteres.  La contraseña secreta debe ser distinta de la del sistema y no debe hacerla pública."
+
+msgid "pptp_user_yoursecretisset"
+msgstr "Ha definido la contraseña secreta correctamente.  Su cuenta de acceso remoto está activada y lista para utilizarla.  Póngase en contacto con el administrador del sistema si necesita obtener ayuda sobre el funcionamiento de la nueva red privada virtual.  Si en el futuro desea cambiar la contraseña, regrese a esta página."
+
+
+msgid "returnToLogin"
+msgstr "Cierre de sesión"
+
+msgid "returnToLogin_help"
+msgstr "Haga clic aquí para cerrar la sesión."
+
+# Email notification
+
+msgid "pptp_notify_email_subject"
+msgstr "Tiene acceso remoto a la red"
+
+msgid "pptp_notify_email_body"
+msgstr "El administrador del sistema ha activado el acceso remoto a su \
+cuenta.  El acceso remoto le permite conectarse a la red a través de \
+Internet como si el ordenador remoto fuera realmente parte de la red. \
+Este tipo de acceso remoto recibe el nombre de protocolo de túnel punto a \
+punto (PPTP) y es compatible con la plataforma Windows.  Antes de \
+utilizar esta función, debe escribir una contraseña secreta que se utilizará en la \
+autenticación de la conexión.  Esto puede realizarse siguiendo este URL:\
+\n\
+http://[[VAR.hostname]]:444/nav/single.php?root=base_pptp_user\n\
+\n\
+Si tiene más preguntas, póngase en contacto con el administrador del sistema."
+
+
+msgid "passwordAlreadySecret"
+msgstr "No puede seleccionar una contraseña de sistema idéntica a la de acceso remoto."
+
+msgid "secretAlreadyPassword"
+msgstr "La contraseña secreta de acceso remoto y la de la cuenta del sistema deben ser distintas."
+
+
+# errors
+
+msgid "pptp_need_one_range"
+msgstr "Debe tener al menos un intervalo válido de IPs asignadas remotamente antes de activar el servicio PPTP."
+
+msgid "pptp_disabling_service_no_ranges"
+msgstr "El servicio PPTP se ha desactivado porque ya no hay intervalos IP asignados remotamente.  Para volver a activar el servicio, primero debe agregar un intervalo IP válido."
+
+# Capabilities
+
+msgid "capgroup_adminPptp"
+msgstr "Administrar [[base-pptp.pptp_menu]]"
+
+msgid "capgroup_adminPptp_help"
+msgstr "Este derecho administrativo permite que un usuario configure todos los aspectos de VPN de acceso remoto.  Esto incluye la especificación de los usuarios a los que se les ha asignado un acceso remoto y la configuración del servicio PPTP."
+
+msgid "ipAddrRangeLowHigherThanHigh"
+msgstr "El rango de dirección IP especificado no es válido.  El [[base-pptp.list_ipaddr_range_from]] debe ser inferior al de [[base-pptp.list_ipaddr_range_to]]."

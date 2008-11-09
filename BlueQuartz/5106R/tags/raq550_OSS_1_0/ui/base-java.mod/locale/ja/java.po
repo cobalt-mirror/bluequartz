@@ -1,0 +1,241 @@
+msgid "java"
+msgstr "Java"
+
+msgid "java_help"
+msgstr "JavaServer 設定と性能に関する設定を変更できます。"
+
+msgid "warName"
+msgstr "ウェブアーカイブ (.war)"
+
+msgid "warNames"
+msgstr "ウェブアーカイブ (.war) リスト - [[VAR.fqdn]]"
+
+msgid "warNames_menu"
+msgstr "ウェブアーカイブ (.war) リスト"
+
+msgid "warName_help"
+msgstr "インストールされている [[base-java.warName]] のアーカイブ名です。"
+
+msgid "enabledField"
+msgstr "サーバ (Tomcat) を有効にする"
+
+msgid "enabledField_help"
+msgstr "仮想マシンを有効にできます。"
+
+msgid "maxClientsField"
+msgstr "同時に接続を許すセッションの最大数"
+
+msgid "maxClientsField_help"
+msgstr "同時に接続できる Java アプリケーション接続の最大数を指定してください。"
+
+msgid "maxClientsField_invalid"
+msgstr "Java セッションの最大数が不正です。指定範囲内の整数を入力してください。"
+
+msgid "javaSettings"
+msgstr "Java 設定"
+
+msgid "javaApps"
+msgstr "ウェブ展開"
+
+msgid "javaApps_help"
+msgstr "[[base-java.warNames_menu]] をロード、管理できます。"
+
+msgid "warList"
+msgstr "[[base-java.warNames]]"
+
+msgid "warNameHeader"
+msgstr "名前"
+
+msgid "warNameHeader_help"
+msgstr "インストールされている [[base-java.warName]] のファイル名です。"
+
+msgid "warListPathHeader"
+msgstr "保存場所"
+
+msgid "warListPathHeader_help"
+msgstr "[[base-java.warName]] がインストールされているサイトウェブサブディレクトリです。"
+
+msgid "warListActionHeader"
+msgstr "詳細・削除"
+
+msgid "warListActionHeader_help"
+msgstr "[削除] アイコンをクリックすると、インストールディレクトリを再帰的に削除することによってウェブアーカイブをアンインストールできます。"
+
+msgid "addWar"
+msgstr "新規ウェブアーカイブを [[VAR.item]] に追加"
+
+msgid "modWar"
+msgstr "[[VAR.item]] の [[base-java.warName]] 設定の修正"
+
+msgid "locationFieldEnter"
+msgstr "ウェブアーカイブファイル"
+
+msgid "locationFieldEnter_help"
+msgstr ".war ファイルの入手元を指定してください。http:// または ftp:// で始まる URL を入力して、インターネット上からアーカイブをダウンロードするか、アップロードする .war ファイルのファイル保存場所を入力してください。[参照] をクリックして、ローカルハードドライブ上のファイルを指定してください。.war アーカイブをウェブルートにダウンロードした場合には、これらのファイルの中から１つを指定するオプションも利用できます。"
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "URL"
+
+msgid "urlField_empty"
+msgstr "URL を指定してください。[[locationFieldEnter_help]]"
+
+msgid "urlField_rule"
+msgstr "インターネットからパッケージをダウンロードするには、http:// または ftp:// で始まる URL を入力して、パッケージの保存場所を指定してください。"
+
+msgid "invalidUrl"
+msgstr "ご指定の URL は不正です。[[base-java.urlField_rule]]"
+
+msgid "upload"
+msgstr "アップロード"
+
+msgid "loaded"
+msgstr "ロード済み"
+
+msgid "targetName"
+msgstr "インストール場所"
+
+msgid "targetName_help"
+msgstr "[[base-java.warName]] のコンテンツがこのディレクトリに抽出されます。このディレクトリは、必要に応じて作成されます。"
+
+msgid "targetName_missing"
+msgstr "ターゲットディレクトリを指定してください。[[base-java.targetName_help]]"
+
+msgid "targetName_invalid"
+msgstr "指定された [[base-java.targetName]] には不正な文字が含まれています。このフィールドから不正な文字を削除してください。"
+
+msgid "targetField"
+msgstr "Iインストール場所"
+
+msgid "targetField_empty"
+msgstr "インストール場所を指定してください。[[base-java.targetName_help]]"
+
+
+msgid "confirm_archive_removal"
+msgstr "[[VAR.path]] ディレクトリとその全コンテンツを完全に削除してよろしいですか？"
+
+# Aktiver Monitor
+
+msgid "amJavaNameTag"
+msgstr "JSP と Servlets"
+
+msgid "amJavaDetails"
+msgstr "[[base-java.amJavaNameTag]] の詳細"
+
+msgid "amStatusOK"
+msgstr "JSP と Servlets は正常に動作しています。"
+
+msgid "amNotRunning"
+msgstr "JSP (JavaServer Pages) と Servlets は動作しておらず、起動することもできませんでした。「サイト管理」->「サービス」->「ウェブ」を選び、JSP と Servlets を一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。JSP と Servlets が正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでもJSP と Servlets サービスが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "javaName"
+msgstr "JSP と Servlets"
+
+msgid "enableJava"
+msgstr "JSP と Servlets を有効にする"
+
+msgid "enableJava_help"
+msgstr "JSP (JavaServer Pages) と Servlets の使用を許可できます。"
+
+msgid "installStatus"
+msgstr "[[VAR.fileName]] のインストール状態"
+
+msgid "statusField"
+msgstr "状態メッセージ"
+
+msgid "statusField_help"
+msgstr "[[base-java.warName]] の現在のインストール状態が表示されます。"
+
+msgid "progressField"
+msgstr "進行状況"
+
+msgid "progressField_help"
+msgstr "インストールの進行状況です。"
+
+msgid "dlPercent"
+msgstr "[[VAR.file]] ファイルのダウンロード : [[VAR.percent]]% 終了"
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "初期化中..."
+
+msgid "downloading"
+msgstr "[[base-java.warName]] のダウンロード中..."
+
+msgid "installing"
+msgstr "[[base-java.warName]] のインストール中..."
+
+msgid "fail"
+msgstr "失敗"
+
+msgid "success"
+msgstr "成功"
+
+# -- generic message for other strings
+msgid "notInstalled"
+msgstr "[[base-java.warName]] ソフトウェアをインストールできませんでした。"
+
+msgid "cannotDownloadUrl"
+msgstr "指定された URL から [[base-java.warName]] ファイルをダウンロードできませんでした。URL を確認してから、もう一度お試しください。[[base-java.notInstalled]]"
+
+msgid "badFileName"
+msgstr "[[base-java.warName]] ファイルのファイル名が不正です。ファイル名を確認してから、もう一度お試しください。[[base-java.notInstalled]]"
+
+msgid "verifyingPackage"
+msgstr "[[base-java.warName]]の確認中..."
+
+msgid "badPackage"
+msgstr "[[base-java.warName]] ファイルは不完全です。packing_list が不正か、見つかりません。[[base-swupdate.notInstalled]]"
+
+msgid "hostNotFound"
+msgstr "URL に指定されたホストに接続できませんでした。[[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "[[base-java.warName]] [[VAR.file]] は、指定された場所にありませんでした。"
+
+msgid "hostRefused"
+msgstr "URL で指定した [[VAR.file]] のホストは接続を拒否しました。"
+
+msgid "downloadFailure"
+msgstr "[[base-java.warName]] を正しくダウンロードできませんでした。アーカイブが保管されているサーバに問題が発生したか、このサイトに対する書き込み権限が許可されていない可能性があります。"
+
+msgid "noLocation"
+msgstr "[[base-java.warName]] を入手する場所が指定されていません。"
+
+msgid "errorWGET"
+msgstr "wget の実行中にエラーが発生しました。"
+
+msgid "unknownFileFormat"
+msgstr "アップロードされたファイルは、形式がサポートされていないか、ファイルが壊れています。"
+
+msgid "notToUserHome"
+msgstr "ユーザの home ディレクトリに、War をインストールできませんでした。"
+
+msgid "loadingWar"
+msgstr "[[base-java.warName]] をロードしています。しばらくお待ちください。"
+
+msgid "connectionRefused"
+msgstr "ダウンロードの試みは、リモートサーバに拒否されました。"
+
+msgid "installFailure"
+msgstr "[[base-java.warName]] をインストールできませんでした。"
+
+msgid "couldNotCreateTarget"
+msgstr "権限が許可されていないため、インストールターゲットディレクトリを作成できませんでした。"
+
+msgid "jarFailure"
+msgstr "[[base-java.warName]] を抽出できませんでした。アーカイブが壊れています。"
+
+msgid "installedWar"
+msgstr "[[base-java.warName]] のインストールが完了しました。"
+
+msgid ""
+msgstr " "
+
+msgid "javaNotEnabled"
+msgstr "JSP と Servlets のサポートは現在無効に設定されています。Web Archive (.war) ファイルを使うには、ウェブ設定から JSP と Servlets を有効にする必要があります。サイト管理者にご依頼ください。"
+
+

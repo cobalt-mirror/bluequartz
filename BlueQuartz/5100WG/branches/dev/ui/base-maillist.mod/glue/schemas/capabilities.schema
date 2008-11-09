@@ -1,0 +1,22 @@
+<!-- Mailling list capabilities -->
+
+<class name="Capabilities" namespace="createMaillist" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(createMaillist)"/>
+	<property name="nameTag" type="scalar" default="[[base-maillist.cap_createMaillist]]"/>
+</class>
+
+<class name="Capabilities" namespace="destroyMaillist" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(destroyMaillist)"/>
+	<property name="nameTag" type="scalar" default="[[base-maillist.cap_destroyMaillist]]"/>
+</class>
+
+<class name="Capabilities" namespace="modifyMaillist" version="0.1">
+	<property name="capable" type="boolean" default="1"
+		readacl="ruleCapable(modifyMaillist)"/>
+	<property name="nameTag" type="scalar" default="[[base-maillist.cap_modifyMaillist]]"/>
+</class>
+
+
+

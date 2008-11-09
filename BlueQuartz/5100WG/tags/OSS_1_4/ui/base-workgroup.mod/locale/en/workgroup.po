@@ -1,0 +1,128 @@
+# ----- Menu 
+msgid "groups"
+msgstr "Groups"
+
+msgid "groups_help"
+msgstr "[[base-workgroup.groups]] can be managed here."
+
+
+# ---- Group List page
+
+msgid "groupDefaults"
+msgstr "Edit Group Defaults"
+
+msgid "groupDefaults_help"
+msgstr "Click here to change default settings for new groups."
+
+msgid "groupList"
+msgstr "Group List"
+
+msgid "groupName"
+msgstr "Group Name"
+
+msgid "groupName_help"
+msgstr "This is the name of a group of users."
+
+msgid "groupMembers"
+msgstr "Group Members"
+
+msgid "groupMembers_help"
+msgstr "These are the users who belong to the group."
+
+msgid "groupDesc"
+msgstr "Remarks"
+
+msgid "groupDesc_help"
+msgstr "This column provides descriptive information about the group."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "These are the buttons used to modify settings of a group or to remove a group."
+
+msgid "addNewGroup"
+msgstr "Add New Group"
+
+# ---- Group Defaults
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-workgroup.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Set the default maximum disk space for new groups.  This is the maximum disk space available to groups for the storage of web pages, email messages and all other group files.  [[base-workgroup.maxDiskSpaceField_rule]]"
+
+
+# ----- Add Group
+
+msgid "groupNameField"
+msgstr "Group Name"
+
+msgid "groupNameField_rule"
+msgstr "Please enter no more than 12 characters containing only lowercase alphanumeric characters, periods, hyphens and underscores.  For example, engineering is a valid entry."
+
+msgid "groupNameField_help"
+msgstr "Enter the name to be used by the system to identify the group.  [[base-workgroup.groupNameField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Maximum Allowed Disk Space (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "Please enter an integer between 1 and 1024000. "
+
+msgid "maxDiskSpaceField_help"
+msgstr "Set the disk quota of this group.  This is the maximum disk space available to this group for the storage of web pages, email messages and all other group files.  [[base-workgroup.maxDiskSpaceField_rule]] The default value for new groups is set in the Group Defaults section."
+
+msgid "groupMembersField"
+msgstr "User Membership"
+
+msgid "groupMembersField_help"
+msgstr "Set the user membership of this group.  The left column shows the users who currently belong to this group.  The right column shows the users who could possibly belong to this group.  To add a user as a member of this group, move the user from the right column to the left column."
+
+msgid "groupUsers"
+msgstr "Users Affiliated"
+
+msgid "allUsers"
+msgstr "Users Not Affiliated"
+
+msgid "groupDescField"
+msgstr "Remarks"
+
+msgid "groupDescField_help"
+msgstr "Enter additional information about the group, such as a description or comments, here."
+
+
+# ----- Modify Group
+
+msgid "modifyGroup"
+msgstr "Modify Group Settings - [[VAR.groupName]]"
+
+
+# ----- Remove group JS message
+
+msgid "removeGroupConfirm"
+msgstr "Are you sure you want to remove the group [[VAR.groupName]]?"
+
+
+# ------ Handler error messages
+
+# use by sauce addgroup.pl and unique_group.pl
+msgid "groupNameAlreadyTaken"
+msgstr "Sorry, you have entered a value for [[base-workgroup.groupNameField]] that is taken by another person or is reserved by the system.  Please enter another value for [[base-workgroup.groupNameField]]."
+
+
+# ---- Misc
+
+msgid "homeDescription"
+msgstr "Members of this workgroup maintain the publicly accessible website."
+
+msgid "add_group_help"
+msgstr "Click here to add a new workgroup."
+
+# Capabilities
+
+msgid "capgroup_adminWorkgroup"
+msgstr "Manage Groups"
+
+msgid "capgroup_adminWorkgroup_help"
+msgstr "This administrative right allows a user to create, destroy and modify groups"

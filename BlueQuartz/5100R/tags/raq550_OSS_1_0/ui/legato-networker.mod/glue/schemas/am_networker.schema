@@ -1,0 +1,36 @@
+<!-- $Id: am_networker.schema,v 1.3 2001/09/05 04:24:23 jcheng Exp $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -- >
+<!--
+	This is the ActiveMonitor namespace for monitoring the Legato NetWorker
+	client daemon.
+-->
+
+<class name="ActiveMonitor" namespace="NetWorker" version="1.0">
+	<!-- Required attributes for the ActiveMonitor namespace -->
+	<property name="enabled"	type="boolean"	default="0"/>
+	<property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean"	default="1"/>
+
+	<!-- Determine that status of Legato NetWorker using an external script -->
+	<property name="type"		type="scalar"	default="exec"/>
+	<property name="typeData"	type="scalar"
+	    default="/usr/sausalito/swatch/bin/am_networker.sh"/>
+
+	<!-- This test is not a member of an aggregate test set -->
+	<property name="aggmember"	type="boolean"	default="0"/>
+
+	<!-- Information about the state of the service being monitored -->
+	<property name="currentState"	type="amstate"	default="N"/>
+	<property name="lastChange"	type="uint"	default="0"/>
+	<property name="lastRun"	type="uint"	default="0"/>
+	<property name="currentMessage"	type="scalar"	default=""/>
+	<property name="nameTag"	type="scalar"
+	    default="[[legato-networker.networker]]"/>
+
+	<!--
+	    The page to display when requesting details about the most recent
+	    ActiveMonitor run on this service.
+	-->
+	<property name="URL"		type="scalar"
+	    default="/legato/networker/networker_amdetails.php"/>
+</class>

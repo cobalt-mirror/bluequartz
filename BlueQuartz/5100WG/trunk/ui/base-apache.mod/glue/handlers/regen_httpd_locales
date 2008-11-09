@@ -1,0 +1,90 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: regen_httpd_locales 3 2003-07-17 15:19:15Z will $
+# Sets locale auto-negotiation order
+#
+# Depends on:
+#		System.LanguagePriority
+#
+# MPBug fixed.
+
+my $confdir = '/etc/httpd/conf';
+my $admconfdir = '/etc/admserv/conf';
+
+use strict;
+use Sauce::Config;
+use FileHandle;
+use File::Copy;
+use CCE;
+
+my $cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my ($oid) = $cce->find("System");
+my ($ok, $obj) = $cce->get($oid);
+
+my $locale = $obj->{productLanguage};
+my $greater_locale = $locale;
+$greater_locale =~ s/_.*$//;
+
+my $other_locales = $obj->{locales}; 
+$other_locales =~ s/\&/ /g;
+$other_locales =~ s/ $locale / /;
+
+umask(0077);
+
+# httpd public web server 
+my $stage = "$confdir/srm.conf~";
+open(HTTPD, "$confdir/srm.conf");
+unlink($stage);
+sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
+while(<HTTPD>) {
+  if(/^\s*<Directory / ... /^\s*<\/Directory>/)
+  {
+    next if (/^\s*DefaultLanguage\s+/);
+    print STAGE "DefaultLanguage $greater_locale\n" if(/^\s*<\/Directory>/);
+  }
+
+  s/^LanguagePriority\s+\w\w\s+.+$/LanguagePriority $locale$other_locales/;
+  print STAGE;
+}
+close(STAGE);
+close(HTTPD);
+
+chmod(0644, $stage);
+if(-s $stage) {
+  move($stage,"$confdir/srm.conf");
+  chmod(0644, "$confdir/srm.conf"); # paranoia
+  # ok so far, now try admserv
+} else {
+  $cce->bye("FAILURE");
+}
+
+# administrative web server
+$stage = "$admconfdir/srm.conf~";
+open(HTTPD, "$admconfdir/srm.conf");
+unlink($stage);
+sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
+while(<HTTPD>) {
+  if(/^\s*<Directory / ... /^\s*<\/Directory>/)
+  {
+    next if (/^\s*DefaultLanguage\s+/);
+    print STAGE "DefaultLanguage $greater_locale\n" if(/^\s*<\/Directory>/);
+  }
+
+  s/^LanguagePriority\s+\w\w\s+.+$/LanguagePriority $locale$other_locales/;
+  print STAGE;
+}
+close(STAGE);
+close(HTTPD);
+
+chmod(0644, $stage);
+if(-s $stage) {
+  move($stage,"$admconfdir/srm.conf"); 
+  chmod(0644, "$admconfdir/srm.conf"); # paranoia
+} else {
+  $cce->bye("FAILURE");
+}
+
+$cce->bye("SUCCESS");
+exit(0);
+

@@ -1,0 +1,224 @@
+msgid "pptp"
+msgstr "Fernzugriff"
+
+msgid "pptp_menu"
+msgstr "Fernzugriffs-VPN"
+
+msgid "pptp_menu_help"
+msgstr "Die [[base-pptp.pptp]]-Einstellungen können hier geändert werden."
+
+msgid "pptp_settings_block"
+msgstr "[[base-pptp.pptp]]-Einstellungen"
+
+msgid "pptp_access"
+msgstr "Zugriff"
+
+msgid "pptp_access_help"
+msgstr "Sie können den PPTP-Zugriff aktivieren oder deaktivieren. Sie können die PPTP-Zugriffsrechte so festlegen, dass entweder keine, alle oder nur bestimmte Benutzer auf den PPTP-Dienst zugreifen können."
+
+msgid "pptp_access_disabled"
+msgstr "Allen Benutzern den Zugriff verbieten"
+
+msgid "pptp_access_allusers"
+msgstr "Allen Benutzern den Zugriff erlauben"
+
+msgid "pptp_access_someusers"
+msgstr "Zugriff nur bestimmten Benutzern erlauben"
+
+msgid "pptp_access_someusers_selector_allowed"
+msgstr "Benutzer mit Zugriffrecht"
+
+msgid "pptp_access_someusers_selector_disallowed"
+msgstr "Benutzer ohne Zugriffrecht"
+
+msgid "pptp_access_someusers_selector_label"
+msgstr " "
+
+msgid "pptp_dns_addresses"
+msgstr "DNS-Adressen für Client-Rechner"
+
+msgid "pptp_dns_addresses_help"
+msgstr "Hier können Sie die IP-Adressen der lokalen Domänennamenserver eingeben, die den Client-Rechnern automatisch mitgeteilt werden. Ein Domänennamenserver wandelt in Textform vorliegende Hostnamen und Domänennamen in numerische IP-Adressen um und umgekehrt. Geben Sie vier Zahlen zwischen 0 und 255 ein, die durch Punkte voneinander getrennt sind. 192.168.1.1 ist beispielsweise eine gültige Eingabe."
+
+msgid "pptp_wins_addresses"
+msgstr "WINS-Adressen für Client-Rechner"
+
+msgid "pptp_wins_addresses_help"
+msgstr "Hier können Sie die IP-Adressen der lokalen WINS-Server eingeben, die den Client-Rechnern automatisch mitgeteilt werden. Ein WINS-Server wandelt Windows-Hostnamen in numerische IP-Adressen um und umgekehrt. Auf diese Weise kann die Netzwerkumgebung im gesamten VPN (Virtual Private Network) durchsucht werden. Geben Sie vier Zahlen zwischen 0 und 255 ein, die durch Punkte voneinander getrennt sind. 192.168.1.1 ist beispielsweise ein gültiger Eintrag." 
+
+# list page
+
+msgid "dynamic_ranges_button"
+msgstr "Fernadressenzuweisungen ändern"
+
+msgid "dynamic_ranges_button_help"
+msgstr "Klicken Sie hier, um die IP-Adressen einzurichten, die dieser Server Client-Rechnern zuweist, die eine [[base-pptp.pptp]]-Verbindung anfordern."
+
+msgid "dynamic_ranges"
+msgstr "Fernadressenzuweisungsliste"
+
+msgid "list_ipaddr_range_from"
+msgstr "IP-Adressenbereich (von)"
+
+msgid "list_ipaddr_range_from_help"
+msgstr "Hierbei handelt es sich um das untere Bereichsende der IP-Adressen, die über das Netzwerk zugewiesen werden."
+
+msgid "list_ipaddr_range_to"
+msgstr "IP-Adressbereich (bis)"
+
+msgid "list_ipaddr_range_to_help"
+msgstr "Hierbei handelt es sich um das obere Bereichsende der IP-Adressen, die über das Netzwerk zugewiesen werden."
+
+msgid "list_action"
+msgstr "Aktion"
+
+msgid "list_action_help"
+msgstr "Diese Schaltflächen werden verwendet, um einen Bereich von IP-Adressen zu ändern oder zu entfernen, die über das Netzwerk zugewiesen werden."
+
+msgid "removeDynamicConfirm"
+msgstr "Sind Sie sicher, dass der Bereich [[VAR.ipaddrlo]] - [[VAR.ipaddrhi]] aus der Liste der über das Netzwerk zugewiesenen IP-Adressen entfernt werden soll?"
+
+# Create/Modify range page
+
+msgid "modify_dynamic_block"
+msgstr "Fernadressenzuweisungsbereich ändern"
+
+msgid "create_dynamic_block"
+msgstr "Fernadressenzuweisungsbereich erstellen"
+
+msgid "block_ipaddr_range_from"
+msgstr "IP-Adressenbereich (von)"
+
+msgid "ipaddrlo"
+msgstr "[[base-pptp.block_ipaddr_range_from]]"
+
+msgid "block_ipaddr_range_from_help"
+msgstr "Hierbei handelt es sich um das untere Bereichsende der IP-Adressen, die über das Netzwerk zugewiesen werden."
+
+msgid "block_ipaddr_range_to"
+msgstr "IP-Adressenbereich (bis)"
+
+msgid "ipaddrhi"
+msgstr "[[base-pptp.block_ipaddr_range_to]]"
+
+msgid "block_ipaddr_range_to_help"
+msgstr "Hierbei handelt es sich um das obere Bereichsende der IP-Adressen, die über das Netzwerk zugewiesen werden."
+
+msgid "ip_rule"
+msgstr "Geben Sie vier Zahlen zwischen 0 und 255 ein, die durch Punkte voneinander getrennt sind.  192.168.1.1 ist beispielsweise eine gültige Eingabe."
+
+msgid "pptp_secret_rule"
+msgstr "Das geheime Passwort muss zwischen 3 und 16 Zeichen lang sein und sich vom Systempasswort unterscheiden."
+
+
+msgid "ipaddrlo_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-pptp.block_ipaddr_range_from]].  [[base-pptp.ip_rule]]"
+
+msgid "ipaddrhi_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für [[base-pptp.block_ipaddr_range_to]].  [[base-pptp.ip_rule]]"
+
+msgid "pptp_secret_invalid"
+msgstr "[[VAR.invalidValue]] ist ein ungültiger Wert für Ihr geheimes Passwort.  [[base-pptp.pptp_secret_rule]]"
+
+# Notification 
+
+msgid "pptp_notify_block"
+msgstr "Benutzer benachrichtigen"
+
+msgid "pptp_notify_header"
+msgstr "Hinweis"
+
+msgid "pptp_notify_text"
+msgstr "Die folgenden Benutzer haben ihre Fernzugriffskonten noch nicht freigegeben.  Zur Freigabe der Konten müssen sie sich anmelden und ein geheimes Passwort auf der Seite für den Fernzugriff eingeben.  <p>[[VAR.users]]<p>Möchten Sie alle Benutzer hierüber per E-Mail informieren?"
+
+msgid "pptp_notify_yes"
+msgstr "Ja"
+
+msgid "pptp_notify_yes_help"
+msgstr "Klicken Sie hier, um eine E-Mail-Nachricht an die Benutzer zu senden, die ihr geheimes Passwort für den Fernzugriff bislang noch nicht festgelegt haben."
+
+msgid "pptp_notify_no"
+msgstr "Nein"
+
+msgid "pptp_notify_no_help"
+msgstr "Klicken Sie hier, um den Vorgang fortzusetzen, ohne diese Benutzer über ihr geheimes Passwort für den Fernzugriff zu informieren."
+
+# User side
+msgid "pptp_user_menu"
+msgstr "Fernzugriff"
+
+msgid "pptp_user_menu_help"
+msgstr "Hier können Sie die Einstellungen für Ihr Fernzugriffskonto ändern."
+
+msgid "pptp_user_block"
+msgstr "Fernzugriffseinstellungen"
+
+msgid "pptp_user_secret"
+msgstr "Geheimes Passwort"
+
+msgid "pptp_user_secret_help"
+msgstr "Dies ist das geheime Passwort, das Sie zum Herstellen einer VPN-Verbindung verwenden.  Der Fernzugriff wird erst dann freigegeben, wenn Sie ein geheimes Passwort festgelegt haben.  [[base-pptp.pptp_secret_rule]]"
+
+msgid "pptp_user_secret_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "secret"
+msgstr "Geheimes Passwort"
+
+msgid "pptp_user_setyoursecret"
+msgstr "Bevor Ihr Fernzugriffskonto freigegeben wird, müssen Sie ein geheimes Passwort eingeben, das während des Echtheitsbestätigungsvorgangs verwendet wird.  Geben Sie unten ein geheimes Passwort ein, das 3 bis 16 Zeichen lang ist. Dieses geheime Passwort muss sich vom Systempasswort unterscheiden und von Ihnen geheimgehalten werden."
+
+msgid "pptp_user_yoursecretisset"
+msgstr "Das geheime Passwort wurde ordnungsgemäß festgelegt.  Ihr Fernzugriffskonto ist jetzt freigegeben und kann verwendet werden.  Setzen Sie sich mit dem Systemadministrator in Verbindung, wenn Sie Hilfe bei der VPN-Verbindungsherstellung benötigen.  Sie können das geheime Passwort jederzeit auf dieser Seite ändern."
+
+
+msgid "returnToLogin"
+msgstr "Abmelden"
+
+msgid "returnToLogin_help"
+msgstr "Klicken Sie hier, um sich abzumelden."
+
+# Email notification
+
+msgid "pptp_notify_email_subject"
+msgstr "Ihnen wurde das Fernzugriffsrecht für Ihr Netzwerk eingeräumt."
+
+msgid "pptp_notify_email_body"
+msgstr "Der Systemadministrator hat den Fernzugriff für Ihr \
+Konto freigegeben.  Mithilfe des Fernzugriffs können Sie eine Verbindung zum Netzwerk über das \
+Internet so herstellen, als sei Ihr privater Computer tatsächlich Teil des Netzwerks. \
+Diese Art des Fernzugriffs wird meist PPTP-Protokoll genannt \
+(Point-to-Point Tunneling Protocol) und wird von der Windows-Plattform unterstützt.  Bevor Sie \
+diese Funktion verwenden, müssen Sie ein geheimes Passwort eingeben, das für die \
+Echtheitsbestätigung der Verbindung verwendet wird.  Dieses Passwort können Sie unter der folgenden URL eingeben:\n\
+\n\
+http://[[VAR.hostname]]:444/nav/single.php?root=base_pptp_user\n\
+\n\
+Setzen Sie sich bei weiteren Fragen mit dem Systemadministrator in Verbindung."
+
+
+msgid "passwordAlreadySecret"
+msgstr "Sie dürfen für den Fernzugriff nicht dasselbe geheime Passwort verwenden, das bereits als Systempasswort festgelegt ist."
+
+msgid "secretAlreadyPassword"
+msgstr "Das geheime Passwort für den Fernzugriff muss sich vom Passwort für das Systemkonto unterscheiden."
+
+
+# errors
+
+msgid "pptp_need_one_range"
+msgstr "Es muss mindestens ein gültiger Bereich über das Netzwerk zuzuweisender IP-Adressen festgelegt werden, bevor der PPTP-Dienst aktiviert wird."
+
+msgid "pptp_disabling_service_no_ranges"
+msgstr "Der PPTP-Dienst wurde deaktiviert, weil keine gültigen Bereiche über das Netzwerk zuzuweisender IP-Adressen mehr vorhanden sind.  Wenn Sie den Dienst erneut aktivieren möchten, müssen Sie zunächst einen gültigen IP-Adressenbereich hinzufügen."
+
+# Capabilities
+
+msgid "capgroup_adminPptp"
+msgstr "[[base-pptp.pptp_menu]] verwalten"
+
+msgid "capgroup_adminPptp_help"
+msgstr "Mithilfe dieses Administratorrechts kann der Benutzer alle Aspekte des Fernzugriffs-VPN konfigurieren.  Hierzu gehört die Angabe, welchen Benutzern der Fernzugriff und die Konfiguration des PPTP-Dienstes gewährt wird."
+
+msgid "ipAddrRangeLowHigherThanHigh"
+msgstr "Der angegebene IP-Adressenbereich ist ungültig.  [[base-pptp.list_ipaddr_range_from]] muss unterhalb von [[base-pptp.list_ipaddr_range_to]] liegen."

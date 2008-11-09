@@ -1,0 +1,269 @@
+#!/bin/sh
+#
+# functions	This file contains functions to be used by most or all
+#		shell scripts in the /etc/init.d directory.
+#
+# Version:	@(#) /etc/init.d/functions 1.01 26-Oct-1993
+#
+# Author:	Miquel van Smoorenburg, <miquels@drinkel.nl.mugnet.org>
+# Hacked by:    Greg Galloway and Marc Ewing
+#
+
+# First set up a default search path.
+export PATH="/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin"
+LCD_WRITE="/sbin/lcd-write"
+LCD_SWRITE="/sbin/lcd-swrite"
+LCD_STOP="/sbin/lcdstop"
+LCD_SLEEP="/sbin/lcdsleep"
+LCD_SHOWIP="/etc/rc.d/init.d/lcd-showip"
+LCD_FLASH="/sbin/lcd-flash"
+I18N_GET="/usr/sausalito/bin/i18n_get"
+
+# Get a sane screen width
+[ -z "$COLUMNS" ] && COLUMNS=80
+
+# A function to get a message.
+getmsg() {
+	# Test syntax.
+	if [ $# = 0 ]; then
+		echo "Usage: getmsg {msgid}"
+		return 1
+	fi
+
+        if [ -f /usr/sausalito/locale ]; then
+                LANG=`cat /usr/sausalito/locale`
+        else
+                LANG="en"
+        fi
+
+	LANGUAGE=$LANG
+
+	export LANG LANGUAGE
+
+	# get the message
+	echo `$I18N_GET [[$DOMAIN.$1]]`
+}
+
+# A function to start a program.
+daemon() {
+	# Test syntax.
+	if [ $# = 0 ]; then
+	    echo '$0: Usage: daemon [+/-nicelevel] {program}'
+	    return 1
+	fi
+
+	case $1 in
+	    '')    echo '$0: Usage: daemon [+/-nicelevel] {program}'
+	           return 1;;
+	    -*|+*) nicelevel=$1
+	           shift;;
+	     *)    nicelevel=0;;
+	esac
+
+        # Save basename.
+        base=`basename $1`
+
+        # See if it's already running.
+	pid=`pidofproc $base`
+	[ -n "$pid" ] && ps h $pid >/dev/null 2>&1 && return
+
+	# make sure it doesn't core dump anywhere; while this could mask
+	# problems with the daemon, it also closes some security problems
+	ulimit -c 0
+	
+	# Echo daemon
+        echo -n " $base"
+
+	# And start it up.
+	nice -n $nicelevel $*
+	#$*
+}
+
+# A function to stop a program.
+killproc() {
+	# Test syntax.
+	if [ $# = 0 ]; then
+		echo "Usage: killproc {program} [signal]"
+		return 1
+	fi
+
+	notset=0
+	# check for second arg to be kill level
+	if [ "$2" != "" ] ; then
+		killlevel=$2
+	else
+		notset=1
+		killlevel="-9"
+	fi
+
+        # Save basename.
+        base=`basename $1`
+
+        # Find pid.
+        pid=`pidofproc $base`
+
+        # Kill it.
+        if [ "$pid" != "" ] ; then
+                echo -n "$base "
+		if [ "$notset" = "1" ] ; then
+		       if ps h $pid>/dev/null 2>&1; then
+			   # TERM first, then KILL if not dead
+			   kill -TERM $pid
+			   usleep 100000
+			   if ps h $pid >/dev/null 2>&1 ; then
+				sleep 1
+				if ps h $pid >/dev/null 2>&1 ; then
+				        sleep 3
+					if ps h $pid >/dev/null 2>&1 ; then
+					   kill -KILL $pid
+					fi
+				fi
+			   fi
+		        fi
+			ps h $pid >/dev/null 2>&1 && failure "$base shutdown" || success "$base shutdown"
+		# use specified level only
+		else
+		        if ps h $pid >/dev/null 2>&1; then
+	                	kill $killlevel $pid && success "$base $killlevel" || failure "$base $killlevel"
+			fi
+		fi
+	else
+	    failure "$base shutdown"
+	fi
+
+        # Remove pid file if any.
+	if [ "$notset" = "1" ]; then
+            rm -f /var/run/$base.pid
+	fi
+}
+
+
+# kills processes based on a pattern match of ps output
+# can kill multiple processes, will send KILL signal
+# if process doesn't die after being sent preferred signal
+# params: pattern to match on, signal
+kill_process_description() {
+
+  # check for second arg to be kill level
+  if [ "$2" != "" ] ; then
+    killlevel=$2
+  else
+    killlevel="-9"
+  fi
+
+  PIDS=`ps -axw | grep "$1" | sed s/"^[[:space:]]\+"/""/g| sed s/"[[:space:]]\+"/","/g | cut -d "," -f 1`
+  for i in $PIDS; do
+
+    kill $killlevel $i >& /dev/null
+    usleep 100000
+
+    if ps h $i >/dev/null 2>&1 ; then
+      sleep 1
+      if ps h $i >/dev/null 2>&1 ; then
+        sleep 3
+	if ps h $i >/dev/null 2>&1 ; then
+          kill -KILL $pid >& /dev/null
+	fi
+      fi
+    fi
+
+  done
+}
+
+# A function to find the pid of a program.
+pidofproc() {
+	# Test syntax.
+	if [ $# = 0 ] ; then
+		echo "Usage: pidofproc {program}"
+		return 1
+	fi
+
+	# First try "/var/run/*.pid" files
+	if [ -f /var/run/$1.pid ] ; then
+	        pid=`head -1 /var/run/$1.pid`
+	        if [ "$pid" != "" ] ; then
+	                echo $pid
+	                return 0
+	        fi
+	fi
+
+	# Next try "pidof"
+	pid=`pidof $1`
+	if [ "$pid" != "" ] ; then
+	        echo $pid
+	        return 0
+	fi
+
+	# Finally try to extract it from ps
+	ps ax | awk 'BEGIN { prog=ARGV[1]; ARGC=1 } 
+			   { if ((prog == $5) || (("(" prog ")") == $5) ||
+			     (("[" prog "]") == $5) ||
+			   ((prog ":") == $5)) { print $1 ; exit 0 } }' $1
+}
+
+status() {
+	# Test syntax.
+	if [ $# = 0 ] ; then
+		echo "Usage: status {program}"
+		return 1
+	fi
+
+	# First try "pidof"
+	pid=`pidof $1`
+	if [ "$pid" != "" ] ; then
+	        echo "$1 (pid $pid) is running..."
+	        return 0
+        else
+                pid=`ps ax | awk 'BEGIN { prog=ARGV[1]; ARGC=1 } 
+			   { if ((prog == $5) || (("(" prog ")") == $5) ||
+			     (("[" prog "]") == $5) ||
+			   ((prog ":") == $5)) { print $1 ; exit 0 } }' $1`
+                if [ "$pid" != "" ] ; then
+                        echo "$1 (pid $pid) is running..."
+                        return 0
+                fi
+	fi
+
+	# Next try "/var/run/*.pid" files
+	if [ -f /var/run/$1.pid ] ; then
+	        pid=`head -1 /var/run/$1.pid`
+	        if [ "$pid" != "" ] ; then
+	                echo "$1 dead but pid file exists"
+	                return 1
+	        fi
+	fi
+	# See if /var/lock/subsys/$1 exists
+	if [ -f /var/lock/subsys/$1 ]; then
+		echo "$1 dead but subsys locked"
+		return 2
+	fi
+	echo "$1 is stopped"
+	return 3
+}
+
+success() {
+  echo -n "ok"
+  return 0
+}
+
+failure() {
+  echo -n "ERROR!"
+  return 1
+}
+
+passed() {
+  echo -n "ok"
+  return 1
+}
+
+# Run some action. Log its output.
+action() {
+  STRING=$1
+  echo -n "$STRING "
+  shift
+  $*
+  rc=$?
+  echo
+  return $rc
+}
+

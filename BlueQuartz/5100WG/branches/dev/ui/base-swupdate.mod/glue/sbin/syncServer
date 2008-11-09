@@ -1,0 +1,35 @@
+#!/usr/bin/perl
+#
+# Author: Kevin K.M. Chiu
+# Copyright 2001, Cobalt Networks.  All rights reserved.
+# $Id: syncServer 201 2003-07-18 19:11:07Z will $
+
+# This is a script that refreshes this BlueLinQ server by synchronizing PKGs
+# from other BlueLinQ servers.
+# To use, make sure the variables below are correct, run it manually or drop
+# this file to a cron directory so that it can run periodically.
+
+use strict;
+
+# make sure this is a space separated list of upper level BlueLinQ servers
+my $serverUrls = 'http://10.9.25.66/packages';
+
+# make sure this is where the utilities are located
+my $utilDir = '/root/base-swupdate.mod/glue/sbin';
+
+# make sure this is where all PKG files and the package information file are
+# located. This must be a web accessible directory
+my $pkgDir = '/home/users/admin/web';
+
+# make sure this is the URL of the directory as defined in $pkgDir
+my $pkgUrl = 'http://10.9.25.66/~admin';
+
+# make sure this is the name of the package information file
+my $infoName = 'packages';
+
+# make sure these are the right proxies
+my $ftpProxy = '';
+my $httpProxy = '';
+
+system("$utilDir/downloadPkgs -d \"$pkgDir\" -f \"$ftpProxy\" -w \"$httpProxy\" $serverUrls");
+system("$utilDir/makeServer -d \"$pkgDir\" -o \"$pkgDir/$infoName\" -u \"$pkgUrl\" -f");

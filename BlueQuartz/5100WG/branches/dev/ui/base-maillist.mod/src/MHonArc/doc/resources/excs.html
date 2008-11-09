@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>MHonArc Resources: EXCS</title>
+</head>
+<body>
+
+<address>
+<a href="../resources.html#excs">MHonArc Resource List</a>
+</address>
+
+<hr>
+<h1>EXCS</h1>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Syntax</h2>
+
+<dl>
+
+<dt><strong>Envariable</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+<dt><strong>Element</strong><dt>
+<dd><p><br>
+<code>&lt;EXCS&gt;<br></code>
+<var>field-name</var><br>
+<var>field-name</var><br>
+<var>...</var><br>
+<code>&lt;/EXCS&gt;<br></code>
+</p>
+</dd>
+
+<dt><strong>Command-line Option</strong><dt>
+<dd><p>N/A
+</p>
+</dd>
+
+</dl>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Description</h2>
+
+<P>The EXCS resource allows you to specify what fields should be
+excluded in the HTML output.  </P>
+
+<P>Each line of the &lt;EXCS&gt; element specifies a mail header
+field to exclude in the converted HTML output. Each line is treated
+as a Perl regular expression (<STRONG>NOTE</STRONG>: <EM>the regular
+expression is already anchored to the begining of the line</EM>).  </P>
+
+<P>Any fields you specify for the EXCS resource will
+augment the default list, unless the "<CODE>Override</CODE>" attribute
+is specified. If "<CODE>Override</CODE>" is specified, the default
+list is discarded along with any other lists specified from previous
+&lt;EXCS&gt; elements; and only header fields specified in the
+&lt;EXCS&gt; element are excluded.  </P>
+
+<table border=0 cellpadding=4>
+<tr valign=top>
+<td><strong>NOTE</strong></td>
+<td><p>EXCS takes precedence over the
+<a href="fieldorder.html">FIELDORDER</a> resource.  Therefore,
+any field matched by EXCS will always be excluded regardless if the field is
+listed in FIELDORDER.
+</p>
+</td>
+</tr>
+</table>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Default Setting</h2>
+
+<PRE>
+<b>&lt;Excs&gt;</b>
+content-
+errors-to
+forward
+lines
+message-id
+mime-
+nntp-
+originator
+path
+precedence
+received
+replied
+return-path
+status
+via
+x-
+<b>&lt;/Excs&gt;</b>
+</PRE>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Resource Variables</h2>
+
+<p>N/A
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Examples</h2>
+
+<p>The following example shows how to exclude all message headers:
+</p>
+
+<PRE>
+<b>&lt;Excs Override&gt;</b>
+.
+<b>&lt;/Excs&gt;</b>
+</PRE>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>Version</h2>
+
+<p>1.0
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<h2>See Also</h2>
+
+<p>
+<a href="fieldorder.html">FIELDORDER</a>,
+<a href="fieldsbeg.html">FIELDSBEG</a>,
+<a href="fieldsend.html">FIELDSEND</a>,
+<a href="fieldstyles.html">FIELDSTYLES</a>,
+<a href="fldbeg.html">FLDBEG</a>,
+<a href="fldend.html">FLDEND</a>,
+<a href="labelbeg.html">LABELBEG</a>,
+<a href="labelend.html">LABELEND</a>,
+<a href="labelstyles.html">LABELSTYLES</a>
+</p>
+
+<!-- *************************************************************** -->
+<hr>
+<address>
+99/10/01 01:19:20<br>
+<img align="top" src="../monicon.gif" alt="">
+<a href="http://www.pobox.com/~ehood/mhonarc.html"><strong>MHonArc</strong></a><br>
+Copyright &#169; 1997-1998, <a href="http://www.pobox.com/~ehood/">Earl Hood</a>, <a href="mailto:mhonarc@pobox.com">mhonarc@pobox.com</a><br>
+</address>
+
+</body>
+</html>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

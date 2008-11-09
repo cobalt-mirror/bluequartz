@@ -1,0 +1,57 @@
+msgid "ftp"
+msgstr "FTP"
+
+msgid "ftp_help"
+msgstr "[[base-ftp.ftpSettings]] can be changed here."
+
+msgid "ftpSettings"
+msgstr "File Transfer Protocol (FTP) Settings"
+
+msgid "enableServerField"
+msgstr "Enable Server"
+
+msgid "enableServerField_help"
+msgstr "Turn File Transfer Protocol (FTP) functionality on or off.  Anonymous FTP access is configured by going to [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Maximum Simultaneous Users"
+
+msgid "maxUserField_rule"
+msgstr "Please enter an integer between 1 and 1024.  The default value is 25."
+
+msgid "maxUserField_help"
+msgstr "Set the maximum number of users that can be connected to the FTP Server at the same time.  [[base-ftp.maxUserField_rule]]"
+
+# ----- Active Monitor
+
+msgid "amFTPNameTag"
+msgstr "File Transfer Protocol (FTP) Server"
+
+msgid "amDetailsTitle"
+msgstr "File Transfer Protocol (FTP) Server Details"
+
+msgid "amNotResponding"
+msgstr "The FTP server is not running."
+
+msgid "base-ftp.amBadResponse"
+msgstr "The FTP server gave a bad response."
+
+msgid "amStatusOK"
+msgstr "The FTP server is operating normally."
+
+
+# ---- Handler messages
+
+msgid "badUser"
+msgstr "If server configuration files were removed or manually modified, please restore the original versions and try again."
+
+msgid "cantConfigFile"
+msgstr "Sorry, an error occurred while trying to modify the FTP configuration files. [[base-ftp.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminFtpServer"
+msgstr "Manage Ftp Server Settings"
+
+msgid "capgroup_adminFtpServer_help"
+msgstr "This administrative right allows a user to modify the settings used by the ftp server on this machine"

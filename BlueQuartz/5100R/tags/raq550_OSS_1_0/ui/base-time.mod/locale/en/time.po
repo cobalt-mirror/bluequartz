@@ -1,0 +1,43 @@
+msgid "time"
+msgstr "Time"
+
+msgid "timeSetting"
+msgstr "Time Settings"
+
+msgid "time_help"
+msgstr "Click here to change [[base-time.timeSetting]]."
+
+msgid "systemDisplayedDate"
+msgstr "Date and Time"
+
+msgid "systemDisplayedDate_help"
+msgstr "Set the current date."
+
+msgid "systemDisplayedTime"
+msgstr "Time"
+
+msgid "systemDisplayedTime_help"
+msgstr "Set the current time."
+
+msgid "systemDisplayedTimeZone"
+msgstr "Time Zone"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Set the current time zone of this server appliance."
+
+msgid "ntpAddress"
+msgstr "NTP Server Address"
+
+msgid "ntpDefaultServer"
+msgstr "clock.isc.org"
+
+msgid "ntpAddress_help"
+msgstr "Enter the network address or fully-qualified domain name of a Network Time Protocol (NTP) server to which your system date and time will be periodically synchronized. You can find a list of publicly available NTP servers at http://www.sun.com/service/suncobalt/external_resources.html under the link \"Public NTP (Time) Servers\"."
+
+# Capabilities
+
+msgid "capgroup_adminTime"
+msgstr "Manage System Time"
+
+msgid "capgroup_adminTime_help"
+msgstr "This administrative right allows a user to set the system time and timezone."

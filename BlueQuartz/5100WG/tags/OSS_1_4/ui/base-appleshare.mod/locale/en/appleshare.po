@@ -1,0 +1,60 @@
+msgid "appleshare"
+msgstr "Apple"
+
+msgid "appleshare_help"
+msgstr "[[base-appleshare.appleshareSettings]] can be changed here."
+
+msgid "appleshareSettings"
+msgstr "Apple File Sharing Settings"
+
+msgid "enableServerField"
+msgstr "Enable Server"
+
+msgid "enableServerField_help"
+msgstr "Turn Apple File Sharing on or off.  Guest access to Apple File Sharing is configured by going to [[base-fileshare.guestShare]]."
+
+msgid "maxUserField"
+msgstr "Maximum Simultaneous Users"
+
+msgid "maxUserField_rule"
+msgstr "Please enter an integer between 1 and 1024.  The default value is 25."
+
+msgid "maxUserField_help"
+msgstr "Change the maximum number of users that can be connected to the Apple File Share at the same time.  [[base-appleshare.maxUserField_rule]]"
+
+
+# ---- Active Monitor
+
+msgid "amAppleshareNameTag"
+msgstr "Apple File Sharing Server"
+
+msgid "amDetailsTitle"
+msgstr "Apple File Sharing Server Details"
+
+msgid "amNotResponding"
+msgstr "The Apple file sharing server is not running."
+
+msgid "amStatusOK"
+msgstr "The Apple file sharing server is operating normally."
+
+# ---- Handlers
+
+msgid "badUser"
+msgstr "If server configuration files were removed or manually modified, please restore the original versions and try again."
+
+msgid "cantConfigFile"
+msgstr "Sorry, an error occurred while trying to modify the Apple File Sharing configuration files. [[base-appleshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "Sorry, an error occurred while trying to modify the Apple File Sharing configuration files. [[base-appleshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "Sorry, an error occurred while trying to modify the Apple File Sharing configuration files. [[base-appleshare.badUser]]"
+
+# Capabilities
+
+msgid "capgroup_adminAppleShare"
+msgstr "Manage Apple Filesharing"
+
+msgid "capgroup_adminAppleShare_help"
+msgstr "This administrative right allows a user to modify the setting used by Apple Filesharing"

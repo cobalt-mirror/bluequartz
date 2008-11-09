@@ -1,0 +1,40 @@
+<class name="System" namespace="Asp" version="1.0">
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(modifyAsp)"
+    />
+	<property 
+        name="enabledAdmin" type="boolean" default="0"
+        writeacl="ruleCapable(modifyAsp)"
+    />
+</class>
+
+<!-- service registration namespace -->
+<class name="VsiteServices" namespace="Asp" version="1.0">
+    <property name="featureEnabled" type="boolean" default="1"/>
+
+    <property name="i18nName" type="scalar" default="[[base-asp.aspid]]"/>
+
+    <!-- the default properties for this service used in creating Vsites -->
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(modifyAsp)"
+    />
+</class>
+
+<!-- 
+    transparency layer for vsites, really just toggles an 
+    AspSite objects settings 
+-->
+<!-- namespace for the per site asp web service settings -->
+<class 
+    name="Vsite" namespace="Asp" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(modifyAsp)"
+    />
+</class>
+
+

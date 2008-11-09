@@ -1,0 +1,485 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "wizardLicense"
+msgstr "Binary Code License Agreement"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Administrator Settings"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Administrator Settings"
+
+msgid "adminMessage"
+msgstr "The [[base-wizard.productName]] requires an administrator to handle tasks such as adding users and groups as well as configuring settings.  The user name of the administrator is admin.  Enter a hard-to-guess password for the administrator.  Please remember the password for future use."
+
+msgid "adminNameField"
+msgstr "User Name"
+
+msgid "adminNameField_help"
+msgstr "This is the name used by the system to identify the administrator and is not changeable."
+
+msgid "passwordField"
+msgstr "Password"
+
+msgid "passwordField_rule"
+msgstr "The password should be between 3 and 16 characters long.  A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation.  It should not spell out any words found in the dictionary.  Passwords are case sensitive."
+
+msgid "passwordField_help"
+msgstr "Enter the password to be used by the system to identify the administrator.  [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "passwordField_empty"
+msgstr "Sorry, you have not entered a value for [[base-wizard.passwordField]].  [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "New Password"
+
+msgid "newPasswordField_help"
+msgstr "Enter the password to be used by the system to identify the administrator.  [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Time Settings"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Time Settings"
+
+msgid "timeMessage"
+msgstr "The [[base-wizard.productName]] requires the correct date and time to function properly.  Please enter the current date and time as well as the proper time zone."
+
+msgid "dateField"
+msgstr "Date and Time"
+
+msgid "dateField_help"
+msgstr "Set the current date."
+
+msgid "timeField"
+msgstr "Time"
+
+msgid "timeField_help"
+msgstr "Set the current time."
+
+msgid "timeZoneField"
+msgstr "Time Zone"
+
+msgid "timeZoneField_help"
+msgstr "Set the time zone where this server appliance is located."
+
+msgid "wizardUsers"
+msgstr "User Settings"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Group Settings"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Network Integration"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "Network Settings"
+
+msgid "networkMessage"
+msgstr "The [[base-wizard.productName]] can be set up to be accessible on an Intranet within your organization as well as on the Internet at large.  Please enter the host name and domain name of this server appliance as well as a reachable domain server and a method of network connectivity."
+
+msgid "hostNameField"
+msgstr "Host Name"
+
+msgid "hostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  For example, www is a valid entry."
+
+msgid "hostNameField_help"
+msgstr "Enter the host name of this server appliance.  The host name and the domain name combined together should uniquely identify this server appliance.  [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domain Name"
+
+msgid "domainNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  For example, cobalt.com is a valid entry."
+
+msgid "domainNameField_help"
+msgstr "Enter the domain name of this server appliance.  The host name and the domain name combined together should uniquely identify this server appliance.  [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS Servers"
+
+msgid "dnsAddressesField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods. For example, 192.168.1.1 is a valid entry.  Leaving this field empty will prevent this machine from finding other machines by hostname or domain name and will cause networking difficulties."
+
+msgid "dnsAddressesField_help"
+msgstr "Enter the IP address or addresses of your local domain name server or servers, one address per line.  A domain name server translates host names and domain names into IP addresses and vice-versa.  [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value in [[base-wizard.dnsAddressesField]].  [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Internet Connection"
+
+msgid "internetField_help"
+msgstr "Select the type of Internet connection which will be used with this server appliance."
+
+msgid "none"
+msgstr "None or Intranet Use Only"
+
+msgid "broadband"
+msgstr "Cable Modem or DSL"
+
+msgid "lan"
+msgstr "Gateway on Local Area Network (LAN)"
+
+msgid "narrowband"
+msgstr "Analog Modem or ISDN"
+
+msgid "wizardBroadband"
+msgstr "Broadband Settings"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Broadband Settings"
+
+msgid "broadbandMessage"
+msgstr "Your Cable Modem or DSL Connection should be connected to the secondary interface of the [[base-wizard.productName]].  Please enter the appropriate configuration settings given to you by your Internet Service Provider."
+
+msgid "networkField"
+msgstr "Secondary Interface"
+
+msgid "networkField_help"
+msgstr "Select the appropriate networking configuration for the secondary interface of this server appliance. Your Internet Service Provider should provide you with the information needed to complete this step."
+
+msgid "dhcp"
+msgstr "Obtain Automatically Using Dynamic Host Configuration Protocol (DHCP)"
+
+msgid "dhcpHostNameField"
+msgstr "Client Host Name"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods.  For example, www is a valid entry."
+
+msgid "dhcpHostNameField_help"
+msgstr "Enter the host name that identifies this server as a Dynamic Host Configuration Protocol (DHCP) client.  [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client Identifier"
+
+msgid "dhcpClientIdField_help"
+msgstr "Enter the identification string that identifies this server as a Dynamic Host Configuration Protocol (DHCP) client."
+
+msgid "pppoe"
+msgstr "Obtain Automatically Using Point-to-Point Protocol Over Ethernet (PPPoE)"
+
+msgid "pppUserNameField"
+msgstr "User Name"
+
+msgid "pppUserNameField_help"
+msgstr "Enter the user name used to login to your Internet Service Provider."
+
+msgid "pppPasswordField"
+msgstr "Password"
+
+msgid "pppPasswordField_help"
+msgstr "Enter the password used to login to your Internet Service Provider."
+
+msgid "static"
+msgstr "Specify Manually"
+
+msgid "ipAddressField"
+msgstr "IP Address"
+
+msgid "ipAddressField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "ipAddressField_help"
+msgstr "Enter the IP address of the secondary interface, which is typically connected to the Internet side.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Subnet Mask"
+
+msgid "netMaskField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 255.255.255.0 is a valid entry."
+
+msgid "netMaskField_help"
+msgstr "Enter the network mask of the primary interface.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "gatewayField_help"
+msgstr "Enter the IP address of your local network gateway.  A network gateway, sometimes referred to as a router, allows you to connect to the world outside of your local network area.  [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Secondary Interface"
+
+msgid "ipAddressField2"
+msgstr "IP Address"
+
+msgid "ipAddressField2_help"
+msgstr "Enter the IP address of the secondary interface, which is typically connected to the Internet side.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Both the IP Address and IP Network Mask fields must either be filled in together or left empty together."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "Enter the network mask of the secondary interface.  If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty.  [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC Address"
+
+msgid "macAddressField_help"
+msgstr "The Media Access Control (MAC) address is the hardware address of the network interface card.  This hardware address is a unique identifier and cannot be changed after manufacture."
+
+msgid "wizardLan"
+msgstr "Local Area Network (LAN) Settings"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Enter the default gateway for this server appliance. If the gateway is on the network connected to the secondary interface, enter the information of the interface as well."
+
+msgid "lanSettings"
+msgstr "Local Area Network (LAN) Settings"
+
+msgid "wizardModem"
+msgstr "Modem Settings"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Your Analog Modem or ISDN Connection should be connected the serial port interface of the [[base-wizard.productName]].  Please enter the appropriate configuration settings which you obtained from your Internet Service Provider."
+
+msgid "modemSettings"
+msgstr "Modem Settings"
+
+msgid "connModeField"
+msgstr "Connection Mode"
+
+msgid "connModeField_help"
+msgstr "Select whether the modem connection should be established only when necessary for an outgoing connection, should always be established,  or should never be established."
+
+msgid "demand"
+msgstr "Connection On Demand Only"
+
+msgid "on"
+msgstr "Connection Always On"
+
+msgid "off"
+msgstr "Connection Always Off"
+
+msgid "userNameField"
+msgstr "Dial-Up Account User Name"
+
+msgid "userNameField_help"
+msgstr "Enter the user name of the dial-up account used to login to your Internet Service Provider."
+
+msgid "userNameField_empty"
+msgstr "Sorry, you have not entered a value for [[base-wizard.userNameField]].  [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Dial-Up Account Password"
+
+msgid "modemPasswordField_help"
+msgstr "Enter the password of the dial-up account used to login to the your Internet Service Provider."
+
+msgid "modemPasswordField_empty"
+msgstr "Sorry, you have not entered a value for [[base-wizard.modemPasswordField]].  Please enter the password of the dial-up account used to login to the your Internet Service Provider."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "modemPhoneField"
+msgstr "Dial-Up Phone Number"
+
+msgid "modemPhoneField_help"
+msgstr "Enter the phone number used to dial-up your Internet Service Provider."
+
+msgid "initStringField"
+msgstr "Modem Initialization String"
+
+msgid "initStringField_help"
+msgstr "Enter the modem initialization string which will be passed to the modem before dialing."
+
+msgid "initStringField_empty"
+msgstr "You have not entered a value for [[base-wizard.initStringField]].  You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modem's default initialization string, try entering 'ATZ' or consult your modem documentation."
+
+msgid "localIpField"
+msgstr "Local IP Address"
+
+msgid "localIpField_help"
+msgstr "Enter the local IP address at this end of the modem connection only if one has been assigned by the your Internet Service Provider."
+
+msgid "pulseField"
+msgstr "Enable Pulse Dialing"
+
+msgid "pulseField_help"
+msgstr "Turn pulse dialing on or off.  Enabling this feature will use pulse dialing instead of tone dialing.  The default value is to leave pulse dialing off."
+
+msgid "wizardRegistration"
+msgstr "Product Registration"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Product Registration"
+
+msgid "regRightArrow"
+msgstr "the right arrow"
+
+msgid "regSubmit"
+msgstr "Submit"
+
+msgid "regSubmit_help"
+msgstr "Click here to register your [[base-wizard.productName]]."
+
+msgid "regCancel"
+msgstr "Register Later"
+
+msgid "regCancel_help"
+msgstr "Click here to cancel registration.  If you choose to cancel, you will still be able to register your [[base-wizard.productName]] later."
+
+msgid "regTextOffline"
+msgstr "You must register your [[base-wizard.productName]] with Sun Microsystems to receive technical support. Your network does not seem to be configured for electronic registration. Instead, please register your [[base-wizard.productName]] by visiting <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> and following the links to Sun Cobalt Support.  We are committed to respecting your privacy and recognize the need for appropriate protection and management of personally identifiable information you share with us. We urge you to review Sun Microsystems' privacy policy at <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A> prior to registration of your product to understand the steps we take to respect your privacy."
+
+msgid "fullNameField"
+msgstr "Full Name"
+
+msgid "fullNameField_help"
+msgstr "Enter your full name."
+
+msgid "fullNameField_rule"
+msgstr "Please enter any characters except colons.  For example, John Doe is a valid entry."
+
+msgid "titleField"
+msgstr "Job Title"
+
+msgid "titleField_help"
+msgstr "Enter your job title."
+
+msgid "companyField"
+msgstr "Company Name"
+
+msgid "companyField_help"
+msgstr "Enter your company name."
+
+msgid "addressField"
+msgstr "Full Address"
+
+msgid "addressField_help"
+msgstr "Enter your full address."
+
+msgid "countryField"
+msgstr "Country"
+
+msgid "countryField_help"
+msgstr "Enter your country."
+
+msgid "emailField"
+msgstr "Email Address"
+
+msgid "emailField_help"
+msgstr "Enter your email address."
+
+msgid "emailField_rule"
+msgstr "Please enter a valid email address in the form user@domain.com."
+
+msgid "phoneField"
+msgstr "Phone Number"
+
+msgid "phoneField_help"
+msgstr "Enter your phone number."
+
+msgid "faxField"
+msgstr "Fax Number"
+
+msgid "faxField_help"
+msgstr "Enter your fax number."
+
+msgid "licenseHeader"
+msgstr "<B>In order to Accept or Decline the terms of the Binary Code License Agreement located below, you must scroll to the end of the document.</B>"
+
+msgid "licenseClick"
+msgstr "By clicking on the arrow button below you acknowledge receipt of and agreement with the terms and conditions set forth on the Warranty/Registration Card enclosed with your [[base-wizard.productName]] and with the License Agreement below."
+
+msgid "regText"
+msgstr "You must register your [[base-wizard.productName]] with Sun Microsystems to receive technical support. To register electronically, please provide the following information and click Submit. You may also register your [[base-wizard.productName]] by visiting <A HREF='http://www.sun.com/service/online' TARGET='_blank'>http://www.sun.com/service/online</A> and following the links to Sun Cobalt Support.  We are committed to respecting your privacy and recognize the need for appropriate protection and management of personally identifiable information you share with us. We urge you to review Sun Microsystems' privacy policy at <A HREF='http://www.sun.com/privacy' TARGET='_blank'>http://www.sun.com/privacy</A> prior to registration of your product to understand the steps we take to respect your privacy."
+
+#msgid "license"
+#msgstr "<CENTER><BR>Sun Microsystems, Inc.<P>Binary Code License Agreement</center><P><P>READ THE TERMS OF THIS AGREEMENT AND ANY PROVIDED SUPPLEMENTAL LICENSE TERMS COLLECTIVELY 'AGREEMENT') CAREFULLY BEFORE OPENING THE SOFTWARE MEDIA PACKAGE. BY OPENING THE SOFTWARE MEDIA PACKAGE, YOU AGREE TO THE TERMS OF THIS AGREEMENT. IF YOU ARE ACCESSING THE SOFTWARE ELECTRONICALLY, INDICATE YOUR ACCEPTANCE OF THESE TERMS BY SELECTING THE 'ACCEPT' BUTTON AT THE END OF THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL THESE TERMS, PROMPTLY RETURN THE UNUSED SOFTWARE TO YOUR PLACE OF PURCHASE FOR A REFUND OR, IF THE SOFTWARE IS ACCESSED ELECTRONICALLY, SELECT THE 'DECLINE' BUTTON AT THE END OF THIS AGREEMENT.<P>1. LICENSE TO USE. Sun grants you a non-exclusive and non-transferable license for the internal use only of the accompanying software and documentation and any error corrections provided by Sun (collectively 'Software'), by the number of users and the class of computer hardware for which the corresponding fee has been paid.<P>2. RESTRICTIONS Software is confidential and copyrighted. Title to Software and all associated intellectual property rights is retained by Sun and/or its licensors. Except as specifically authorized in any Supplemental License Terms, you may not make copies of Software, other than a single copy of Software for archival purposes. Unless enforcement is prohibited by applicable law, you may not modify, decompile, or reverse engineer Software. You acknowledge that Software is not designed, licensed or intended for use in the design, construction, operation or maintenance of any nuclear facility. Sun disclaims any express or implied warranty of fitness for such uses. No right, title or interest in or to any trademark, service mark, logo or trade name of Sun or its licensors is granted under this Agreement.<P>3. LIMITED WARRANTY. Sun warrants to you that for a period of ninety (90) days from the date of purchase, as evidenced by a copy of the receipt, the media on which Software is furnished (if any) will be free of defects in materials and workmanship under normal use. Except for the foregoing, Software is provided 'AS IS'. Your exclusive remedy and Sun's entire liability under this limited warranty will be at Sun's option to replace Software media or refund the fee paid for Software.<P>4. DISCLAIMER OF WARRANTY. UNLESS SPECIFIED IN THIS AGREEMENT, ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT ARE DISCLAIMED, EXCEPT TO THE EXTENT THAT THESE DISCLAIMERS ARE HELD TO BE LEGALLY INVALID.<P>5. LIMITATION OF LIABILITY. TO THE EXTENT NOT PROHIBITED BY LAW, IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF OR RELATED TO THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  In no event will Sun's liability to you, whether in contract, tort (including negligence), or otherwise, exceed the amount paid by you for Software under this Agreement. The foregoing limitations will apply even if the above stated warranty fails of its essenons and acknowledge that you have the responsibility to obtain such licenses to export, re-export, or import as may be required after delivery to you.<P>8. U.S. GOVERNMENT RESTRICTED RIGHTS. If Software is being acquired by or on behalf of the U.S. Government or by a U.S. Government prime contractor or subcontractor (at any tier), then the Government's rights in Software and accompanying documentation will be only as set forth in this Agreement; this is in accordance with 48 CFR 227.7201 through 227.7202-4 (for Department of Defense (DOD) acquisitions) and with 48 CFR 2.101 and 12.212 (for non-DOD acquisitions).<P>9. GOVERNING LAW. Any action related to this Agreement will be governed by California law and controlling U.S. federal law. No choice of law rules of any jurisdiction will apply.<P>10. SEVERABILITY. If any provision of this Agreement is held to be unenforceable, this Agreement will remain in effect with the provision omitted, unless omission would frustrate the intent of the parties, in which case this Agreement will immediately terminate.<P>11. INTEGRATION. This Agreement is the entire agreement between you and Sun relating to its subject matter.  It supersedes all prior or contemporaneous oral or written communications, proposals, representations and warranties and prevails over any conflicting or additional terms of any quote, order, acknowledgment, or other communication between the parties relating to its subject matter during the term of this Agreement. No modification of this Agreement will be binding, unless in writing and signed by an authorized representative of each party.<P>For inquiries please contact: Sun Microsystems, Inc. 901 San Antonio Road, Palo Alto, California 94303(Form ID#011801)<P><P>Sun Microsystems, Inc.<P>Supplemental Terms for Sun Cobalt Qube<P><P>These Supplemental Terms for the Sun Cobalt Qube supplement the terms of the Binary Code License Agreement ('BCL').  Capitalized terms not defined herein shall have the meanings ascribed to them in the BCL. These Supplemental Terms will supersede any inconsistent or conflicting terms in the BCL.  Use of the Software constitutes acceptance of the BCL as supplemented hereby. <P>1.  THIRD PARTY LICENSE TERMS. Software that is not licensed by Sun as the original licensor is subject to the license terms of the original licensor accompanying the Software ('Additional License Terms') in the header files, which are incorporated herein by this reference. Additional License Terms shall govern in case of a conflict with the BCL or these Supplemental Terms.  <P>A.  BSD License.  For Software licensed to Sun under the BSD License, your sublicense is subject to the following Additional License Terms: <P>BSD Copyright<P><P>Copyright (c) 1991, 1992, 1993, 1994 The Regents of the University of California. All rights reserved.<P>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<P><P>1.   Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.<P>2.   Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.<P>3.   All advertising materials mentioning features or use of this software must display the following acknowledgment: This product includes software developed by the University of California, Berkeley and its contributors.<P>4. Neither the name of the University nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.<P><P>THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.<P>B.  GNU General Public License.  For Software licensed to Sun under the GNU General Public License, your sublicense is subject to the following Additional License Terms:  <P><P>GNU General Public License<P>Version 2, June 1991<P>Copyright (C) 1989, 1991 Free Software Foundation, Inc.<P>59 Temple Place - Suite 330, Boston, MA 02111-1307, USA<P><P>TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION <P>This License applies to any program or other work which contains a notice placed by the copyright holder saying it may be distributed under the terms of this General Public License. The 'Program,' below, refers to any such program or work, and a 'work based on the Program' means either the Program or any derivative work under copyright law: that is to say, a work containing the Program or a portion of it, either verbatim or with modifications and/or translated into another language. (Hereinafter, ranslation is included without limitation in the term 'modification.') Each licensee is addressed as 'you.'<P>Activities other than copying, distribution and modification are not covered by this License; they are outside its scope. The act of running the Program is not restricted, and the output from the Program is covered only if its contents constitute a work based on the Program (independent of having been made by running the Program). Whether that is true depends on what the Program does. <P>1. You may copy and distribute verbatim copies of the Program's source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice and disclaimer of warranty; keep intact all the notices that refer to this License and to the absence of any warranty; and give any other recipients of the Program a copy of this License along with the Program. <P>You may charge a fee for the physical act of transferring a copy, and you may at your option offer warranty protection in exchange for a fee. <P>2. You may modify your copy or copies of the Program or any portion of it, thus forming a work based on the Program, and copy and distribute such modifications or work under the terms of Section 1 above, provided that you also meet all of these conditions: <P>You must cause the modified files to carry prominent notices stating that you changed the files and the date of any change. <P>You must cause any work that you distribute or publish, that in whole or in part contains or is derived from the Program or any part thereof, to be licensed as a whole at no charge to all third parties under the terms of this License. <P>If the modified program normally reads commands interactively when run, you must cause it, when started running for such interactive use in the most ordinary way, to print or display an announcement including an appropriate copyright notice and a notice that there is no warranty (or else, saying that you provide a warranty) and that users may redistribute the program under these conditions, and telling the user how to view a copy of this License. (Exception: if the Program itself is interactive but does not normally print such an announcement, your work based on the Program is not required to print an announcement.) <P>These requirements apply to the modified work as a whole. If identifiable sections of that work are not derived from the Program, and can be reasonably considered independent and separate works in themselves, then this License, and its terms, do not apply to those sections when you distribute them as separate works. But when you distribute the same sections as part of a whole which is a work based on the Program, the distribution of the whole must be on the terms of this License, whose permissions for other licensees extend to the entire whole, and thus to each and every part regardless of who wrote it. <P>Thus, it is not the intent of this section to claim rights or contest your rights to work written entirely by you; rather, the intent is to exercise the right to control the distribution of derivative or collective works based on the Program. <P>In addition, mere aggregation of another work not based on the Program with the Program (or with a work based on the Program) on a volume of a storagtributed under the terms of Sections 1 and 2 above on a medium customarily used for software interchange; or, <P>Accompany it with a written offer, valid for at least three years, to give any third party, for a charge no more than your cost of physically performing source distribution, a complete machine-readable copy of the corresponding source code, to be distributed under the terms of Sections 1 and 2 above on a medium customarily used for software interchange; or, <P>Accompany it with the information you received as to the offer to distribute corresponding source code. (This alternative is allowed only for noncommercial distribution and only if you received the program in object code or executable form with such an offer, in accord with Subsection b above.) <P>The source code for a work means the preferred form of the work for making modifications to it. For an executable work, complete source code means all the source code for all modules it contains, plus any associated interface definition files, plus the scripts used to control compilation and installation of the executable. However, as a special exception, the source code distributed need not include anything that is normally distributed (in either source or binary form) with the major components (compiler, kernel, and so on) of the operating system on which the executable runs, unless that component itself accompanies the executable. <P>If distribution of executable or object code is made by offering access to copy from a designated place, then offering equivalent access to copy the source code from the same place counts as distribution of the source code, even though third parties are not compelled to copy the source along with the object code. <P>4.  You may not copy, modify, sublicense or distribute the Program except as expressly provided under this License. Any attempt otherwise to copy, modify, sublicense or distribute the Program is void, and will automatically terminate your rights under this License. However, parties who have received copies, or rights, from you under this License will not have their licenses terminated, so long as such parties remain in full compliance. <P>5.  You are not required to accept this License, since you have not signed it. However, nothing else grants you permission to modify or distribute the Program or its derivative works. These actions are prohibited by law if you do not accept this License. Therefore, by modifying or distributing the Program (or any work based on the Program), you indicate your acceptance of this License to do so, and all its terms and conditions for copying, distributing or modifying the Program or works based on it. <P>6.  Each time you redistribute the Program (or any work based on the Program), the recipient automatically receives a license from the original licensor to copy, distribute or modify the Program subject to these terms and conditions. You may not impose any further restrictions on the recipients' exercise of the rights granted herein. You are not responsible for enforcing compliance by third parties to this License. <P>7.  If, as a consequence of a court judgment or allegation of patent infringement or for any other reason (not limited to patent issues), conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot distribute so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not distribute the Program at all. For example, if a patent license would not permit royalty-free redistribution of the Program by all those who receive copies directly or indirectly through you, then the only way you could satisfy both it and this License would be to refrain entirely from distribution of the Program. <P>If any portion of this section is held invalid or unenforceable under any particular circumstance, the balance of the section is intended to apply and the section as a whole is intended to apply in other circumstances. <P>It is not the purpose of this section to induce you to infringe any patents or other property right claims or to contest validity of any such claims; this section has the sole purpose of protecting the integrity of the free software distribution system, which is implemented by public license practices. Many people have made generous contributions to the wide range of software distributed through that system in reliance on consistent application of that system; it is up to the author/ donor to decide if he or she is willing to distribute software through any other system and a licensee cannot impose that choice. <P>This section is intended to make thoroughly clear what is believed to be a consequence of the rest of this License. <P>8.  If the distribution and/or use of the Program is restricted in certain countries either by patents or by copyrighted interfaces, the original copyright holder who places the Program under this License may add an explicit geographical distribution limitation excluding those countries, so that distribution is p. <P>Each version is given a distinguishing version number. If the Program specifies a version number of this License which applies to it and 'any later version', you have the option of following the terms and conditions either of that version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of this License, you may choose any version ever published by the Free Software Foundation. <P>10.  If you wish to incorporate parts of the Program into other free programs whose distribution conditions are different, write to the author to ask for permission. For software which is copyrighted by the Free Software Foundation, write to the Free Software Foundation; we sometimes make exceptions for this. Our decision will be guided by the two goals of preserving the free status of all derivatives of our free software and of promoting the sharing and reuse of software generally. <P>NO WARRANTY 11.  BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING, THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM 'AS IS' WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. <P>12.  IN NO EVENT, UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING, WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. <P>C.  SSL License.  For Software licensed to Sun under the SSL License, your sublicense is subject to the following Additional License Terms: <P>Copyright (c) 1998-1999 Ralf S. Engelschall. All rights reserved.<P>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<P>1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.<P>2.  Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/ or other materials provided with the distribution.<P>3.  All advertising materials mentioning features or use of this software must display the following acknowledgment: <P>'This product includes software developed by Ralf S. Engelschall <rse@engelschall.com> for use in the mod_ssl project (http://www.engelschall.com/sw/mod_ssl/).'<P>4.  The name 'mod_ssl' must not be used to endorse or promote products derived from this software without prior written permission. For written permission, please contact rse@engelschall.com. <P>5. Products derived from this software may not be called 'mod_ssl' nor may 'mod_ssl' appear in their names without prior written permission of Ralf S. Engelschall.<P>6. Redistributions of any form whatsoever must retain the following acknowledgment:<P>'This product includes software developed by Ralf S. Engelschall <rse@engelschall.com> for use in the mod_ssl project ( http://www.engelschall.com/sw/mod_ssl/).'<P>THIS SOFTWARE IS PROVIDED BY RALF S. ENGELSCHALL 'AS IS' AND ANY EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL RALF S. ENGELSCHALL OR HIS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. <P>2.  ADDITIONAL USE CONDITIONS.<P>A. BlueLinQ Feature.  The terms of the BCL and these Supplemental Terms shall apply to operation of the Sun Cobalt Qube's BlueLinQ feature, including without limitation:<P>(i) your contacting Sun;<BR>(ii) software and information downloads from any Sun website; and<BR>(iii) your election to distribute software and information to managed devices.<BR><P>3.  ADDITIONAL RESTRICTIONS. You may not publish or provide the results of any benchmark or comparison tests run on the Software to any third party without the prior written consent of Sun.<P><P>EULA-Web.806-2740-11DAA  8/27/2001 2:30 PM<P>"
+
+#msgid "license"
+#msgstr "<BR>Sun Cobalt, Inc.<BR>LICENSE AGREEMENT<BR><BR>BY INSTALLING THIS PRODUCT, YOU (THE ENTITY TO WHICH THE ENCLOSED SOFTWARE PROGRAMS ARE SUPPLIED) ARE AGREEING TO BE BOUND BY ALL OF THE TERMS OF THE LICENSE AGREEMENT AND THE LIMITED WARRANTY SET FORTH BELOW.  IF YOU DO NOT AGREE TO BE SO BOUND, PROMPTLY RETURN THE FULL PRODUCT, AND ALL ACCOMPANYING MATERIALS, TO THE ENTITY FROM WHICH IT WAS PURCHASED.<BR><BR>This License Agreement (this Agreement) grants you a non-exclusive, non-transferable license to use the software (collectively, the Software) supplied to you by Sun Cobalt. (Sun Cobalt).  The Software includes the software supplied to you on disks, diskettes, CD-ROM disks and/or as part of the equipment enclosed with this package (the Hardware) and any modifications, enhancements to and/or replacements of such Software supplied to you by Sun Cobalt.  This Agreement also imposes certain restrictions on your use of the Software and Hardware.<BR><BR>You may not make any copy of any of the Software and you may not make any copy of any of the written materials accompanying the Software and/or the Hardware.  The software on the OS Restore CD is intended to be used only to restore the Sun Cobalt product to its initial factory functionality.<BR><BR>Sun Cobalt and its licensors retain ownership of the Software and no rights are granted to you other than a license to use the Software on the terms expressly set forth in this Agreement.  You acknowledge that the underlying structure, sequence, organization and source code of the Software and the design and structure of the Hardware are valuable trade secrets of Sun Cobalt and/or its licensors, and you agree not to decompile, disassemble, reverse engineer or modify, in any way, any of the Software or to reverse engineer the Hardware.<BR><BR>You may not transfer or assign your rights to use the Software except upon a transfer of any Hardware with which or for which it was supplied, and then only if Sun Cobalt receives the written agreement of the transferee to be bound by all of the terms of this Agreement.  You may not transfer or assign your rights to use the Software without the prior written consent of Sun Cobalt. Any attempted assignment without such consent shall be void.  You may not export the Software, Hardware and related materials in violation of the export control laws of the United States of America and other countries.<BR><BR>Upon any violation of any of the provisions of this Agreement, your rights to use the Software and related Hardware shall automatically terminate and you shall be obligated to return to Sun Cobalt or to destroy the Software, and to return to Sun Cobalt the Hardware.<BR><BR>This Agreement shall be governed by California law, other than its provisions concerning the applicability of laws of other jurisdictions.<BR><BR>You acknowledge that the export of the Software is governed by the export control laws of the United States of America and other countries.  You agree to comply with all such export control laws.<BR><BR>If you are an agency and/or instrumentality of the United States of America (the Government), all Software and the related documentation is provided subject to the restrictions applicable to other end users in accordance with the terms of this Agreement and as provided in DFARS 227.7202-1(a) and 227.7202-3(a) (1995), DFARS 252.227-7013(c)(1)(ii) (Oct. 1988), FAR 12.212(a)(1995), FAR 52.227-19, or FAR 52.227-14 (Alt III), as applicable."
+
+
+msgid "wizardLocale"
+msgstr "Preferred Language"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "Select the preferred language to be used for server administration."
+
+msgid "localeField"
+msgstr "Select Your Preferred Language"
+
+msgid "localeField_help"
+msgstr "The Preferred Language is used by Active Monitor when sending email notification, the LCD console display menus, and the administrative web interface if a preferred browser language is not found."
+
+msgid "localeSettings"
+msgstr "Preferred Language"
+
+msgid "accept"
+msgstr "Accept"
+
+msgid "accept_help"
+msgstr "Press Accept if you have read and agree to the terms of the license agreement and are ready to continue"
+
+msgid "decline"
+msgstr "Decline"
+
+msgid "decline_help"
+msgstr "If you decline the terms of the license agreement you will not be able to use the Sun Cobalt Qube 3"
+
+msgid "declineError"
+msgstr "You must press Accept to acknowledge you have read and accept the license agreement before you can continue."
+
+msgid ""
+msgstr ""
+
+msgid "license"
+msgstr "<center>Sun Microsystems, Inc.<br><b>Binary Code License Agreement</b></center><p>READ THE TERMS OF THIS AGREEMENT AND ANY PROVIDED SUPPLEMENTAL LICENSE TERMS COLLECTIVELY \"AGREEMENT\") CAREFULLY BEFORE OPENING THE SOFTWARE MEDIA PACKAGE. BY OPENING THE SOFTWARE MEDIA PACKAGE, YOU AGREE TO THE TERMS OF THIS AGREEMENT. IF YOU ARE ACCESSING THE SOFTWARE ELECTRONICALLY, INDICATE YOUR ACCEPTANCE OF THESE TERMS BY SELECTING THE \"ACCEPT\" BUTTON AT THE END OF THIS AGREEMENT. IF YOU DO NOT AGREE TO ALL THESE TERMS, PROMPTLY RETURN THE UNUSED SOFTWARE TO YOUR PLACE OF PURCHASE FOR A REFUND OR, IF THE SOFTWARE IS ACCESSED ELECTRONICALLY, SELECT THE \"DECLINE\" BUTTON AT THE END OF THIS AGREEMENT.<p>1. LICENSE TO USE. Sun grants you a non-exclusive and non-transferable license for the internal use only of the accompanying software and documentation and any error corrections provided by Sun (collectively \"Software\"), by the number of users and the class of computer hardware for which the corresponding fee has been paid.<p>2. RESTRICTIONS Software is confidential and copyrighted. Title to Software and all associated intellectual property rights is retained by Sun and/or its licensors. Except as specifically authorized in any Supplemental License Terms, you may not make copies of Software, other than a single copy of Software for archival purposes. Unless enforcement is prohibited by applicable law, you may not modify, decompile, or reverse engineer Software. You acknowledge that Software is not designed, licensed or intended for use in the design, construction, operation or maintenance of any nuclear facility. Sun disclaims any express or implied warranty of fitness for such uses. No right, title or interest in or to any trademark, service mark, logo or trade name of Sun or its licensors is granted under this Agreement.<p>3. LIMITED WARRANTY. Sun warrants to you that for a period of ninety (90) days from the date of purchase, as evidenced by a copy of the receipt, the media on which Software is furnished (if any) will be free of defects in materials and workmanship under normal use. Except for the foregoing, Software is provided \"AS IS\". Your exclusive remedy and Sun's entire liability under this limited warranty will be at Sun's option to replace Software media or refund the fee paid for Software.<p>4. DISCLAIMER OF WARRANTY. UNLESS SPECIFIED IN THIS AGREEMENT, ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT ARE DISCLAIMED, EXCEPT TO THE EXTENT THAT THESE DISCLAIMERS ARE HELD TO BE LEGALLY INVALID.<p>5. LIMITATION OF LIABILITY. TO THE EXTENT NOT PROHIBITED BY LAW, IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR SPECIAL, INDIRECT, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF OR RELATED TO THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  In no event will Sun's liability to you, whether in contract, tort (including negligence), or otherwise, exceed the amount paid by you for Software under this Agreement. The foregoing limitations will apply even if the above stated warranty fails of its essential purpose.<p>6. TERMINATION. This Agreement is effective until terminated. You may terminate this Agreement at any time by destroying all copies of Software. This Agreement will terminate immediately without notice from Sun if you fail to comply with any provision of this Agreement. Upon Termination, you must destroy all copies of Software.<p>7. EXPORT REGULATIONS. All Software and technical data delivered under this Agreement are subject to US export control laws and may be subject to export or import regulations in other countries. You agree to comply strictly with all such laws and regulations and acknowledge that you have the responsibility to obtain such licenses to export, re-export, or import as may be required after delivery to you.<p>8. U.S. GOVERNMENT RESTRICTED RIGHTS. If Software is being acquired by or on behalf of the U.S. Government or by a U.S. Government prime contractor or subcontractor (at any tier), then the Government's rights in Software and accompanying documentation will be only as set forth in this Agreement; this is in accordance with 48 CFR 227.7201 through 227.7202-4 (for Department of Defense (DOD) acquisitions) and with 48 CFR 2.101 and 12.212 (for non-DOD acquisitions).<p>9. GOVERNING LAW. Any action related to this Agreement will be governed by California law and controlling U.S. federal law. No choice of law rules of any jurisdiction will apply.<p>10. SEVERABILITY. If any provision of this Agreement is held to be unenforceable, this Agreement will remain in effect with the provision omitted, unless omission would frustrate the intent of the parties, in which case this Agreement will immediately terminate.<p>11. INTEGRATION. This Agreement is the entire agreement between you and Sun relating to its subject matter.  It supersedes all prior or contemporaneous oral or written communications, proposals, representations and warranties and prevails over any conflicting or additional terms of any quote, order, acknowledgment, or other communication between the parties relating to its subject matter during the term of this Agreement. No modification of this Agreement will be binding, unless in writing and signed by an authorized representative of each party.<p>For inquiries please contact: Sun Microsystems, Inc. 901 San Antonio Road, Palo Alto, California 94303<br>(Form ID#011801)<p><center>Sun Microsystems, Inc.<br><b>Supplemental Terms for Sun Cobalt Qube</b></center><p>These Supplemental Terms for the Sun Cobalt Qube supplement the terms of the Binary Code License Agreement (\"BCL\").  Capitalized terms not defined herein shall have the meanings ascribed to them in the BCL. These Supplemental Terms will supersede any inconsistent or conflicting terms in the BCL.  Use of the Software constitutes acceptance of the BCL as supplemented hereby. <p>1.  THIRD PARTY LICENSE TERMS.  Some portions of Software are provided with notices and/or licenses from other parties which govern the use of those portions.  <p>2.  ADDITIONAL USE CONDITIONS.<p>A.  BlueLinQ Feature.  The terms of the BCL and these Supplemental Terms shall apply to operation of the Sun Cobalt Qube's BlueLinQ feature, including without limitation:<br>i your contacting Sun;<br>ii software and information downloads from any Sun website; and<br>iii your election to distribute software and information to managed devices.<p>3.  ADDITIONAL RESTRICTIONS. You may not publish or provide the results of any benchmark or comparison tests run on the Software to any third party without the prior written consent of Sun.<p>EULA-Web.806-2740-11DAA 	10/17/2001 	10:00 AM"
+
+
+
+
+
+

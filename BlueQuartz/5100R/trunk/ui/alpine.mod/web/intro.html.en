@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<!-- locale-sensitive -->
+<STYLE TYPE="text/css">
+<!--
+BIG {font-family:sans-serif; font-size:14pt;}
+STRONG {color:#990000;font-family:sans-serif; font-size:14pt;}
+SMALL {background-color:#000099;color:#FFFFFF;font-family:sans-serif;font-size:10pt;font-weight:bold;text-decoration:none;}
+-->
+</STYLE>
+</HEAD>
+
+<body text="#000000" bgcolor="#FFFFFF">
+
+<!-- CSS check -->
+<DIV ID="checkCss" STYLE="position:absolute"></DIV>
+<SCRIPT LANGUAGE="javascript">
+cssEnabled = false;
+if(document.layers && document.checkCss != null)
+    cssEnabled = true;
+if(document.all && checkCss != null)
+    cssEnabled = true;
+if(document.getElementById && document.getElementById != null)
+    cssEnabled = true;
+</SCRIPT>
+
+<!-- cookie check -->
+<SCRIPT LANGUAGE="javascript">
+cookieEnabled = false;
+var cookie = "cookieSupport=true";
+document.cookie = cookie;
+if(document.cookie.indexOf(cookie) != -1)
+  cookieEnabled = true;
+</SCRIPT>
+
+<!-- SSL check -->
+<SCRIPT LANGUAGE="javascript">
+sslEnabled = false;
+/*
+sslEnabled = true;
+var name = navigator.appName;
+var version = navigator.appVersion;
+// no SSL for IE on Mac
+if(name.indexOf("Microsoft") != -1 && version.indexOf("Mac") != -1)
+  sslEnabled = false;
+*/
+</SCRIPT>
+
+
+
+<BR><BR>
+
+<CENTER>
+<table border="0" width="650" cellspacing="5" cellpadding="5">
+	<tr>
+		<td COLSPAN="2"><img src="/libImage/splash_G_top_left.gif" alt="BlueQuartz" width="374" height="49" border="0" align="middle"></td>
+	</tr>
+	<tr>
+		<td VALIGN="top">
+		<!-- locale-sensitive -->
+	 <SCRIPT LANGUAGE="javascript">	
+	if(!cssEnabled) {
+	  <!-- locale-sensitive -->
+	  document.write("<FONT SIZE=\"+1\" COLOR=\"#990000\" FACE=\"Arial, Helvetica, Sans-Serif\">Before trying to login, please verify that your browser supports Cascading Style Sheets functionality, then reload this page.</FONT>");
+	} else if(!cookieEnabled) {
+	  <!-- locale-sensitive -->
+	  document.write("<STRONG>Before trying to login, please verify that your browser supports Cookie functionality, then reload this page.</STRONG>");
+	} else {
+	  <!-- locale-sensitive -->
+ 	   document.write("<BIG>Welcome and thank you for installing BlueQuartz, the open source server appliance platform for web hosting. Within minutes, you will be able to host multiple domains, each with complete web, email, and FTP services - all easily administered from your browser.<P> Click the Start button below to begin the Setup Wizard, which will guide you through the process of setting up your new server interface.</BIG>");		
+	var action = sslEnabled ? "https://"+location.hostname+":81/loginHandler.php" : "http://"+location.hostname+":444/loginHandler.php";
+
+	  document.write("<FORM ACTION=\""+action+"\" ENCTYPE=\"application/x-www-form-urlencoded\" METHOD=\"POST\" NAME=\"form\" onSubmit=\"this.timeStamp.value = (new Date()).getTime(); return true;\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"timeStamp\">");
+
+	  // For multi-locale: 
+	  // document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"target\" VALUE=\"/nav/flow.php?root=base_wizardLocale\">");
+	  // document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"fallback\" VALUE=\"/login.php?target=/nav/flow.php?root=base_wizardLocale\">");
+
+	  // For single-locale: 
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"target\" VALUE=\"/nav/flow.php?root=base_wizardLicense\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"fallback\" VALUE=\"/login.php?target=/nav/flow.php?root=base_wizardLicense\">");
+
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginName\" VALUE=\"admin\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginPassword\" VALUE=\"bluequartz\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"reuseWindow\" VALUE=\"1\">");
+	  <!-- locale-sensitive -->
+	  document.write("<DIV ALIGN=\"right\"><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><IMG BORDER=\"0\" SRC=\"/libImage/buttonLeftDot.gif\"></A></TD><TD NOWRAP BGCOLOR=\"#000099\"><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><SMALL>Start</SMALL></A></TD><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit(); \"><IMG BORDER=\"0\" SRC=\"/libImage/buttonRight.gif\"></A></TD></TR></TABLE>&nbsp;&nbsp;&nbsp;&nbsp;</DIV>");
+	  document.write("</FORM>");
+		}
+      </SCRIPT>
+
+<NOSCRIPT>
+<!-- --><P>
+<!-- --><IMG SRC="/.cobalt/images/bang.gif"><!-- locale-sensitive -->
+<!-- -->The Setup Wizard requires that your browser support JavaScript. Please enable Javascript for your browser.
+<!-- --></P>
+</NOSCRIPT>
+
+		
+<BR><BR>
+
+</td>
+		<td VALIGN="top"><img src="/libImage/splashGeneral.jpg" alt="" width="350" height="175" border="0"></td>
+	</tr>
+</table>
+
+</CENTER>
+
+</BODY>
+</HTML>

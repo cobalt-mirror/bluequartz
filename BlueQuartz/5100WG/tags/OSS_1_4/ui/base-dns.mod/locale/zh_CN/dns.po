@@ -1,0 +1,887 @@
+# --- Menu
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "modifyDNS"
+msgstr "域名系统 (DNS) 设置"
+
+msgid "dns_help"	
+msgstr "[[base-dns.modifyDNS]]可在此处更改。"
+
+
+# --- Common
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"	
+msgstr "高级"
+
+msgid "basic_help"
+msgstr "单击此处配置基本的 DNS 服务器设置。"
+
+msgid "advanced_help"
+msgstr "单击此处配置高级 DNS 服务器设置，像数据格式、安全限制和服务器缺省值。"
+
+# --- Basic settings
+
+msgid "enabled"
+msgstr "启用服务器"
+
+msgid "enabled_help"
+msgstr "打开或关闭域名系统 (DNS) 服务器功能。打开此功能使此服务器设备用作自己及其客户机的本地域名服务器。域名服务器将文本的主机名和域名转换为数字式的 IP 地址，也可将数字式 IP 地址转为为文本的主机名和域名。"
+
+
+# --- Advanced settings
+
+msgid "soa_defaults"
+msgstr "权限启动 (SOA) 缺省值"
+
+msgid "soa_defaults_help"
+msgstr "这些是添加新域名记录时使用的缺省值。"
+
+msgid "admin_email"
+msgstr "缺省 DNS 管理员电子邮件地址"
+
+msgid "admin_email_rule"
+msgstr "请输入格式正确的电子邮件地址。例如，user@cobalt.com 就是有效的输入。"
+
+msgid "admin_email_help"
+msgstr "输入所有新添加域和网络的管理联系人电子邮件地址的缺省值。 [[base-dns.admin_email_rule]]"
+
+msgid "admin_email_invalid"
+msgstr "对不起，[[VAR.invalidValue]是[[base-dns.admin_email]]的无效值。 [[base-dns.admin_email_rule]]"
+
+msgid "default_refresh"
+msgstr "缺省刷新间隔（秒）"
+
+msgid "default_refresh_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值是 10800。"
+
+msgid "default_refresh_help"	
+msgstr "输入所有新添加域和网络的刷新间隔缺省值。此值是辅助域名服务器尝试使其记录与主域名服务器保持同步的时间间隔。[[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_invalid"
+msgstr "对不起，[[VAR.invalidValue]是对[[base-dns.default_refresh]]无效的值。[[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_empty"	
+msgstr "对不起，您没有为[[base-dns.default_refresh]]输入值。 [[base-dns.default_refresh_rule]]"
+
+msgid "default_retry"	
+msgstr "缺省重试间隔（秒）"
+
+msgid "default_retry_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值是 3600。"
+
+msgid "default_retry_help"
+msgstr "输入所有新添加域和网络的重试间隔缺省值。如果辅助域名服务器无法立刻通过与主域名服务器取得联系使记录同步，此值是辅助域名服务器反复尝试联系主域名服务器的时间间隔。[[base-dns.default_retry_rule]]"
+
+msgid "default_retry_invalid"
+msgstr "对不起，[[VAR.invalidValue]是对[[base-dns.default_retry]]无效的值。[[base-dns.default_retry_rule]]"
+
+msgid "default_retry_empty"	
+msgstr "对不起，您没有为[[base-dns.default_retry]]输入值。[[base-dns.default_retry_rule]]"
+
+msgid "default_expire"	
+msgstr "缺省到期间隔（秒）"
+
+msgid "default_expire_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值是 604800。"
+
+msgid "default_expire_help"
+msgstr "输入所有新添加域和网络的到期间隔缺省值。如果辅助域名服务器无法通过与主域名服务器取得联系来使记录同步，此值是辅助域名服务器不再认为其域名信息有效并停止提供域信息的间隔，直至主域名服务器能够重新连接。 [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_invalid"
+msgstr "对不起，[[VAR.invalidValue]是对[[base-dns.default_expire]]无效的值。[[base-dns.default_expire_rule]]"
+
+msgid "default_expire_empty"
+msgstr "对不起，您没有为[[base-dns.default_expire]]输入值。 [[base-dns.default_expire_rule]]"
+
+msgid "default_ttl"	
+msgstr "缺省生存时间间隔（秒）"
+
+msgid "default_ttl_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值是 86400。"
+
+msgid "default_ttl_help"	
+msgstr "输入所有新添加域和网络的生存时间间隔缺省值。此值是表示一个时段，在此时段内，其他域名服务器将高速缓存从此域名服务器检索的域信息，并且假定此信息有效，而不再与此域名服务器核对。[[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_invalid"
+msgstr "对不起，[[VAR.invalidValue]是对[[base-dns.default_ttl]]无效的值。[[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_empty"
+msgstr "对不起，您没有为[[base-dns.default_ttl]]输入值。 [[base-dns.default_ttl_rule]]"
+
+msgid "global_settings"
+msgstr "服务器设置"
+
+msgid "global_settings_help"
+msgstr "这些是域名服务器的缺省值。"
+
+msgid "forwarders"	
+msgstr "转发服务器"
+
+msgid "forwarders_help"
+msgstr "输入转发域名服务器的 IP 地址。在由于因特网连接受限制而无法直接访问根域名服务器时，将使用转发域名服务器。[[base-dns.forwarders_rule]]"
+
+msgid "forwarders_rule"
+msgstr "请输入 0 和 255 之间的四个数字，用句点隔开。例如，192.168.1.1 就是有效的输入。"
+
+msgid "forwarders_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dns.forwarders]]的无效值。 [[base-dns.forwarders_rule]]"
+
+msgid "zone_xfer_ipaddr"
+msgstr "按 IP 地址进行区域传输访问"
+
+msgid "zone_xfer_ipaddr_help"
+msgstr "输入允许通过区域传输下载此域名服务器维护的所有记录的 IP 地址。辅助域名服务器使用区域传输来使它们的记录与主域名服务器的同步。缺省值是将此字段留空，以实现不受限制的区域传输。"
+
+msgid "zone_xfer_ipaddr_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-dns.zone_xfer_ipaddr]]的无效值。"
+
+msgid "zone_format_tab"
+msgstr "区域格式"
+
+msgid "zone_format_tab_help"
+msgstr "单击此处可为 DNS 记录配置[[base-dns.zone_format_tab]]。这并不是必需的，除非系统管理员或 ISP 特别为您设置了[[base-dns.zone_format_tab]]。"
+
+msgid "zone_format_settings_divider"
+msgstr "[[base-dns.zone_format]]设置"
+
+msgid "zone_format_user_defined_divider"
+msgstr "用户定义的[[base-dns.zone_format]]设置"
+
+msgid "zone_format"	
+msgstr "区域文件格式"
+
+msgid "zone_format_help"	
+msgstr "选择一个区域文件格式，用于按与您本地反向代理方法兼容的非八位字节边界来建立子网。更改[[base-dns.zone_format]]对于无类别的域间路由非常有用。RFC2317 是标准格式。DION 和 OCN-JT 不常用。如果您希望在下面定义自己的格式，请选择[[base-dns.USER]]。"
+
+msgid "zone_format_required_warning"
+msgstr "如果您上面选择的[[base-dns.zone_format]]是[[base-dns.USER]]，则这个字段是必须填写的，但其他情况可以忽略此字段。"
+
+msgid "zone_format_24"
+msgstr "[[base-dns.zone_format]]用于大于 24 位的网络。"
+
+msgid "zone_format_24_help"
+msgstr "定义[[base-dns.zone_format]]，用于在此处创建大于 24 位的非八位字节边界网络。[[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_16"
+msgstr "[[base-dns.zone_format]]用于大于 16 位的网络。"
+
+msgid "zone_format_16_help"
+msgstr "定义[[base-dns.zone_format]]，用于在此处创建大于 16 位的非八位字节边界网络。[[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_8"
+msgstr "[[base-dns.zone_format]]用于大于 8 位的网络。"
+
+msgid "zone_format_8_help"
+msgstr "定义[[base-dns.zone_format]]，用于在此处创建大于 8 位的非八位字节边界网络。[[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_0"
+msgstr "[[base-dns.zone_format]]用于大于 0 位的网络。"
+
+msgid "zone_format_0_help"
+msgstr "定义[[base-dns.zone_format]]，用于在此处创建大于 0 位的非八位字节边界网络。[[base-dns.zone_format_required_warning]]"
+
+msgid "RFC2317"
+msgstr "RFC2317"
+
+msgid "DION"
+msgstr "DION"
+
+msgid "OCN-JT"
+msgstr "OCN-JT"
+
+msgid "USER"
+msgstr "用户定义"
+
+# --- Record types (reused)
+
+msgid "a_record"
+msgstr "正向地址 (A) 记录"
+
+msgid "ptr_record"
+msgstr "反向地址 (PTR) 记录"
+
+msgid "cname_record"
+msgstr "别名 (CNAME) 记录"
+
+msgid "mx_record"
+msgstr "邮件服务器 (MX) 记录"
+
+msgid "records_title"
+msgstr "域设置— "
+
+
+# --- Primary services
+
+msgid "primary_service_button"
+msgstr "编辑主服务"
+
+msgid "primary_service_button_help"
+msgstr "管理此服务器已注册要为其提供服务的域和网络的 DNS 记录。主 DNS 服务也称为“主要 DNS”服务。"
+
+msgid "dnsSetting"	
+msgstr "主服务列表"
+
+msgid "select_dom"
+msgstr "选择域..."
+
+msgid "select_net"	
+msgstr "选择网络..."
+
+	# drop down menu
+msgid "add_record"
+msgstr "添加记录..."
+
+msgid "edit_soa"
+msgstr "修改 SOA"
+
+msgid "edit_soa_help"
+msgstr "修改所选域或网络权限的权限记录开始。"
+
+msgid "confirm_delall"
+msgstr "是否确定要删除显示的这个域中全部 DNS 记录？"
+
+msgid "del_records"
+msgstr "删除记录"
+
+msgid "del_records_help"
+msgstr "单击后可删除这个域中所有 DNS 记录。这将删除现在区域中的所有记录，而且无法撤消。"
+
+msgid "source"
+msgstr "查询"
+
+msgid "source_help"
+msgstr "这是直接向域名服务器发出的查询或问题。"
+
+msgid "direction"
+msgstr "记录类型"
+
+msgid "direction_help"
+msgstr "这是使对此服务器的查询与来自此服务器的响应相关联的记录类型。"
+
+msgid "resolution"
+msgstr "响应"
+
+msgid "resolution_help"
+msgstr "这是直接从此域名服务器返回的响应或应答。"
+
+msgid "listAction"
+msgstr "操作"
+
+msgid "listAction_help"
+msgstr "这些是用于修改或删除域名记录的按钮。"
+
+msgid "confirm_removal"
+msgstr "是否确定要删除记录[[VAR.rec]]？"
+
+	# general IP address rule
+msgid "ipaddr_rule"
+msgstr "IP 地址是 0 和 255 之间用句点隔开的四个数字系列。例如，192.168.1.1 就是有效的输入。"
+
+
+
+
+
+# --- A record
+
+msgid "create_dns_recA"
+msgstr "添加新的[[base-dns.a_record]]"
+
+msgid "modify_dns_recA"
+msgstr "修改[[base-dns.a_record]]"
+
+msgid "a_record_explain"
+msgstr "[[base-dns.a_record]]将完全限定的域名转换为 IP 地址。完全限定的域名可包含一个主机名和一个域名，或只包含一个域名。"
+
+msgid "a_host_name"
+msgstr "主机名"
+
+msgid "a_host_name_help"
+msgstr "输入此记录的主机名。[[base-dns.a_record_explain]]"
+
+msgid "a_host_name_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "a_domain_name"
+msgstr "域名"
+
+msgid "a_domain_name_help"
+msgstr "输入此记录的域名。[[base-dns.a_record_explain]]"
+
+msgid "a_domain_name_invalid"
+msgstr "指定的域名包含无效字符。"
+
+msgid "a_domain_name_empty"
+msgstr "请指定此记录的域。"
+
+msgid "a_ip_address"
+msgstr "IP 地址"
+
+msgid "a_ip_address_help"
+msgstr "输入此记录的 IP 地址。[[base-dns.a_record_explain]]"
+
+msgid "a_ip_address_invalid"
+msgstr "指定的 IP 地址无效。[[base-dns.ipaddr_rule]]"
+
+msgid "a_ip_address_empty"
+msgstr "请指定主机名和域名将解析的 IP 地址。[[base-dns.ipaddr_rule]]"
+
+# --- PTR  record
+
+msgid "create_dns_recPTR"
+msgstr "添加新的[[base-dns.ptr_record]]"
+
+msgid "modify_dns_recPTR"
+msgstr "修改[[base-dns.ptr_record]]"
+
+msgid "ptr_explain"
+msgstr "[[base-dns.a_record]]将 IP 地址转换为完全限定的域名。完全限定的域名可包含一个主机名和一个域名，或只包含一个域名。"
+
+msgid "ptr_ip_address"
+msgstr "IP 地址"
+
+msgid "ptr_ip_address_help"
+msgstr "输入此记录的 IP 地址。[[base-dns.ptr_explain]]"
+
+msgid "ptr_subnet_mask"
+msgstr "子网掩码"
+
+msgid "ptr_subnet_mask_help"
+msgstr "输入此记录的 IP 地址子网掩码。[[base-dns.ptr_explain]]"
+
+msgid "ptr_host_name"
+msgstr "主机名"
+
+msgid "ptr_host_name_help"
+msgstr "输入此记录的主机名。[[base-dns.ptr_explain]]"
+
+msgid "ptr_domain_name"
+msgstr "域名"
+
+msgid "ptr_domain_name_help"
+msgstr "输入此记录的域名。[[base-dns.ptr_explain]]"
+
+msgid "a_generate_ptr"
+msgstr "生成反向地址 (PTR) 记录"
+
+msgid "ptr_generate_a"
+msgstr "生成正向地址 (A) 记录"
+
+msgid "ptr_generate_a_help"
+msgstr "自动添加正向地址记录，以从指定的 IP 地址解析指定的主机名和域名。"
+
+msgid "ptr_subnet_mask_invalid"
+msgstr "指定的子网掩码无效。输入的子网掩码必须由以点隔开的四个部分组成，即由以句点隔开的、0 和 255 之间的四个数组成的序列。例如，255.255.255.0 就是有效的输入。"
+
+msgid "ptr_ip_address_invalid"
+msgstr "指定的 IP 地址无效。[[base-dns.ipaddr_rule]]"
+
+msgid "ptr_host_name_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "ptr_domain_name_invalid"
+msgstr "指定的域名包含无效字符。"
+
+msgid "ptr_ip_address_empty"
+msgstr "请指定将解析为主机名和域名的 IP 地址。[[base-dns.ipaddr_rule]]"
+
+msgid "ptr_domain_name_empty"
+msgstr "请指定与 IP 地址对应的域名。"
+
+msgid "ptr_subnet_mask_empty"
+msgstr "请指定此记录的子网掩码。"
+
+# --- MX record
+
+msgid "create_dns_recMX"
+msgstr "添加新的[[base-dns.mx_record]]"
+
+msgid "modify_dns_recMX"
+msgstr "修改[[base-dns.mx_record]]"
+
+msgid "mx_host_name"
+msgstr "主机名"
+
+msgid "mx_explain"
+msgstr "[[base-dns.mx_record]]标识特定的邮件服务器，该服务器负责处理目标为指定的主机名和域名的电子邮件。"
+
+msgid "mx_host_name_help"
+msgstr "指定主机名，该主机将处理发送至[[base-dns.mx_target_server]]字段中指定邮件服务器的所有邮件。[[base-dns.mx_explain]]"
+
+msgid "mx_domain_name"
+msgstr "域名" 
+
+msgid "mx_domain_name_empty"
+msgstr "请指定此记录的域。"
+
+msgid "mx_domain_name_help"
+msgstr "指定计算机的域名，其电子邮件应转向[[base-dns.mx_target_server]]字段中指定的邮件服务器。[[base-dns.mx_explain]]"
+
+msgid "mx_target_server"
+msgstr "邮件服务器名称" 
+
+msgid "mx_target_server_help"
+msgstr "指定邮件服务器的完全限定的域名，该邮件服务器将接受指定主机名和域名的邮件。[[base-dns.mx_explain]]"
+
+msgid "mx_priority"
+msgstr "传递优先级" 
+
+msgid "mx_priority_help"
+msgstr "选择邮件传递至邮件服务器的优先级。传递优先级值指定尝试连接多个邮件服务器以进行邮件传递的顺序。传递优先级设置仅在为一个域或网络指定多个 MX 记录时有用。  "
+
+msgid "very_high"
+msgstr "极高 (20)"
+
+msgid "high"	
+msgstr "高 (30)"
+
+msgid "low"	
+msgstr "低 (40)"
+
+msgid "very_low"
+msgstr "极低 (50)"
+
+msgid "mx_host_name_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "mx_domain_name_invalid"
+msgstr "指定的域名包含无效字符。"
+
+msgid "mx_target_server_invalid"
+msgstr "指定的完全限定的域名包含无效字符。"
+
+msgid "mx_target_server_empty"
+msgstr "请指定邮件服务器完全限定的域名。"
+
+
+# --- CNAME record
+
+msgid "create_dns_recCNAME"
+msgstr "添加新的[[base-dns.cname_record]]"
+
+msgid "modify_dns_recCNAME"
+msgstr "修改[[base-dns.cname_record]]"
+
+msgid "cname_explain"
+msgstr "别名记录将一个完全限定的域名转换为另一个完全限定的域名。"
+
+msgid "cname_host_name"
+msgstr "别名主机名"
+
+msgid "cname_host_name_help"
+msgstr "输入将作为真正主机名和/或域名别名的主机名。[[base-dns.cname_explain]]"
+
+msgid "cname_domain_name"
+msgstr "别名域名"
+
+msgid "cname_domain_name_help"
+msgstr "输入将作为真正主机名和/或域名别名的域名。[[base-dns.cname_explain]]"
+
+msgid "cname_host_target"
+msgstr "真正主机名"
+
+msgid "cname_host_target_help"
+msgstr "输入真正或规范的主机名。[[base-dns.cname_explain]]"
+
+msgid "cname_domain_target"
+msgstr "真正域名"
+
+msgid "cname_domain_target_help"
+msgstr "输入真正或规范的域名。[[base-dns.cname_explain]]"
+
+
+
+# --- SOA
+
+msgid "create_soa"
+msgstr "添加权限启动 (SOA) 记录"
+
+msgid "modify_soa"
+msgstr "修改权限启动 (SOA) 记录"
+
+msgid "domain_soa"
+msgstr "域权限"
+
+msgid "domain_soa_help"
+msgstr "这是此“权限启动”记录适用的域权限。"
+
+msgid "network_soa"
+msgstr "网络权限"
+
+msgid "network_soa_help"
+msgstr "这是此“权限启动”记录适用的网络权限。"
+
+msgid "primary_dns"
+msgstr "主域名服务器 (NS)"
+
+msgid "primary_dns_help"
+msgstr "输入所选域或网络权限主域名服务器的完全限定域名。"
+
+msgid "secondary_dns"
+msgstr "辅助域名服务器 (NS)"
+
+msgid "secondary_dns_help"
+msgstr "输入所选域或网络权限辅助域名服务器的完全限定的域名列表，以空格隔开。"
+
+msgid "domain_admin"
+msgstr "DNS 管理员电子邮件地址"
+
+msgid "domain_admin_rule"
+msgstr "请输入格式正确的电子邮件地址。缺省值在[[base-dns.soa_defaults]]部分设置。例如，user@cobalt.com 就是有效的输入。"
+
+msgid "domain_admin_help"
+msgstr "输入所有新添加域和网络的管理联系人电子邮件地址的值。 [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_empty"
+msgstr "对不起，您没有为[[base-dns.domain_admin]]输入值。 [[base-dns.domain_admin_rule]]"
+
+msgid "refresh"
+msgstr "刷新间隔（秒）"
+
+msgid "refresh_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值在[[base-dns.soa_defaults]]部分设置。"
+
+msgid "refresh_help"
+msgstr "输入所有新添加域和网络的刷新间隔缺省值。此值是辅助域名服务器尝试使其记录与主域名服务器保持同步的时间间隔。 [[base-dns.refresh_rule]]"
+
+msgid "refresh_invalid"
+msgstr "对不起，[[VAR.invalidValue]是[[base-dns.refresh]]的无效值。 [[base-dns.refresh_rule]]"
+
+msgid "refresh_empty"
+msgstr "对不起，您没有为[[base-dns.refresh]]输入值。 [[base-dns.refresh_rule]]"
+
+msgid "retry"
+msgstr "重试间隔（秒）"
+
+msgid "retry_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值在[[base-dns.soa_defaults]]部分设置。"
+
+msgid "retry_help"
+msgstr "输入所有新添加域和网络的重试间隔缺省值。如果辅助域名服务器无法立刻通过与主域名服务器取得联系使记录同步，此值是辅助域名服务器反复尝试联系主域名服务器的时间间隔。[[base-dns.retry_rule]]"
+
+msgid "retry_invalid"
+msgstr "对不起，[[VAR.invalidValue]是[[base-dns.retry]]的无效值。 [[base-dns.retry_rule]]"
+
+msgid "retry_empty"
+msgstr "对不起，您没有为[[base-dns.retry]]输入值。 [[base-dns.retry_rule]]"
+
+
+msgid "expire"
+msgstr "到期间隔（秒）"
+
+msgid "expire_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值在[[base-dns.soa_defaults]]部分设置。"
+
+msgid "expire_help"
+msgstr "输入所有新添加域和网络的缺省到期间隔期限。如果辅助域名服务器反复尝试而无法通过与主域名服务器取得联系来使记录同步，则此值是辅助域名服务器不再认为其域名信息有效并停止提供域信息的间隔，直至主域名服务器能够重新连接。[[base-dns.expire_rule]]"
+
+msgid "expire_invalid"
+msgstr "对不起，[[VAR.invalidValue]是[[base-dns.expire]]的无效值。 [[base-dns.expire_rule]]"
+
+msgid "expire_empty"
+msgstr "对不起，您没有为[[base-dns.expire]]输入值。 [[base-dns.expire_rule]]"
+
+
+msgid "ttl"
+msgstr "生存时间间隔（秒）"
+
+msgid "ttl_rule"
+msgstr "请输入 1 和 4096000 之间的一个整数。缺省值在[[base-dns.soa_defaults]]部分设置。"
+
+msgid "ttl_help"
+msgstr "输入所有新添加域和网络的缺省生存时间间隔。此值是表示一个时段，在此时段内，其他域名服务器将高速缓存从此域名服务器检索的域信息，并且假定此消息有效，而不再与此域名服务器核对。 [[base-dns.ttl_rule]]"
+
+msgid "ttl_invalid"
+msgstr "对不起，[[VAR.invalidValue]是[[base-dns.ttl]]的无效值。 [[base-dns.ttl_rule]]"
+
+msgid "ttl_empty"
+msgstr "对不起，您没有为[[base-dns.ttl]]输入值。 [[base-dns.ttl_rule]]"
+
+
+
+# ---- Secondary Services
+
+msgid "secondary_service_button"
+msgstr "编辑辅助服务"
+
+msgid "secondary_service_button_help"
+msgstr "为域和网络管理辅助 DNS 服务。 "
+
+msgid "sec_list"
+msgstr "辅助服务列表"
+
+msgid "create_slave_rec"
+msgstr "添加辅助服务"
+
+msgid "modify_slave_rec"
+msgstr "修改辅助服务"
+
+msgid "slave_domain_but"
+msgstr "域的辅助域名服务器"
+
+msgid "slave_domain"
+msgstr "域名"
+
+msgid "slave_domain_help"
+msgstr "输入此机器将成为其辅助域名服务器的域名。"
+
+msgid "slave_dom_masters"
+msgstr "主 DNS 服务器 IP 地址"
+
+msgid "slave_dom_masters_help"
+msgstr "为此域输入主域名服务器的 IP 地址。"
+
+msgid "slave_network_but"
+msgstr "网络的辅助域名服务器"
+
+msgid "slave_ipaddr"
+msgstr "网络"
+
+msgid "slave_ipaddr_help"
+msgstr "输入此机器将成为其辅助域名服务器的网络 IP 地址。"
+
+msgid "slave_netmask"
+msgstr "网络子网掩码"
+
+msgid "slave_netmask_help"
+msgstr "输入此机器将成为其辅助域名服务器的网络子网掩码。"
+
+msgid "slave_net_masters"
+msgstr "主 DNS 服务器 IP 地址"
+
+msgid "slave_net_masters_help"
+msgstr "为此域输入主域名服务器的 IP 地址。"
+
+msgid "sec_authority"
+msgstr "辅助服务"
+
+msgid "sec_authority_help"
+msgstr "这是此机器将成为其辅助域名服务器的域或网络。"
+
+msgid "sec_primaries"
+msgstr "主 DNS 服务器"
+
+msgid "sec_primaries_help"
+msgstr "这是此域或网络主域名服务器的 IP 地址."
+
+msgid "recordlist_action"
+msgstr "操作"
+
+msgid "recordlist_action_help"
+msgstr "这些是用于修改或删除辅助域名服务记录的按钮。"
+
+	# end of sentence is completed
+msgid "confirm_removal_of_sec"
+msgstr "是否确定要删除[[VAR.rec]]的辅助域名服务记录？"
+
+msgid "slave_ipaddr_invalid"
+msgstr "指定的 IP 地址无效。 "
+
+msgid "slave_netmask_invalid"
+msgstr "指定的网络掩码无效。输入的网络掩码必须以点隔开。"
+
+msgid "slave_net_masters_invalid"
+msgstr "主 DNS 服务器 IP 地址无效。"
+
+msgid "slave_domain_invalid"
+msgstr "指定的域名无效。"
+
+msgid "slave_dom_masters_invalid"
+msgstr "主 DNS 服务器 IP 地址无效。"
+
+
+
+msgid "apply_changes"
+msgstr "立即应用更改"
+
+msgid "apply_changes_help"
+msgstr "单击此处立即激活对您的域名服务器记录所作的更改。对您的域名记录所作的任何修改将在通过单击此按钮直接用于域名服务器之后生效。"
+
+msgid "apply_changes_disabledHelp"
+msgstr "此按钮禁用，因为您还没有添加或修改域名服务器记录。添加或修改域名服务器记录后，单击此处立即激活对您的域名服务器记录所作的更改。 "
+
+# ---- Active monitor
+
+msgid "amDNSNameTag"
+msgstr "域名服务 (DNS) 服务器"
+
+msgid "amDetailsTitle"
+msgstr "域名服务 (DNS) 服务器详细信息"
+
+msgid "amNotRunning"
+msgstr "域名服务器没有运行。"
+
+msgid "amStatusOK"
+msgstr "域名服务器运行正常。"
+
+
+
+
+# --- Drop-down menu
+msgid "select_a_domain"	
+msgstr "选择域..."
+
+msgid "select_a_network"
+msgstr "选择网络..."
+
+msgid "no_records"	
+msgstr "无域或网络权限"
+
+msgid "subdom_host_name"
+msgstr "子域名" 
+
+msgid "subdom_host_name_help"
+msgstr "指定不合格的子域名。例如，要代理 <B>remote</B>.ourcompany.com，此服务器必须有 ourcompany.com 域的权限。只指定子域名 <B>remote</B>。" 
+
+msgid "subdom_domain_name"
+msgstr "母域名" 
+
+msgid "subdom_domain_name_help"
+msgstr "选择母域名。例如，要代理子域 remote.<B>ourcompany.com</B>，选择 <B>ourcompany.com</B>" 
+
+msgid "subdom_nameservers"
+msgstr "名称服务器" 
+
+msgid "subdom_nameservers_help"
+msgstr "指定对指定子域有合法权限的名称服务器 IP 地址列表，用逗号隔开。必须至少指定一个名称服务器。"
+
+msgid "subnet_ip_address"
+msgstr "子网 IP 地址" 
+
+msgid "subnet_ip_address_help"
+msgstr "指定将被代理给另一 DNS 服务器的子网内的 IP 地址。"  
+
+msgid "subnet_subnet_mask"
+msgstr "子网网络掩码" 
+
+msgid "subnet_subnet_mask_help"
+msgstr "指定由以点隔开的四个部分组成的子网网络掩码。" 
+
+msgid "subnet_nameservers"
+msgstr "名称服务器" 
+
+msgid "subnet_nameservers_help"
+msgstr "指定对指定子网有合法权限的名称服务器 IP 地址列表，用逗号隔开。必须指定至少一个名称服务器。"
+
+msgid "create_dns_rec"
+msgstr "添加 DNS 记录" 
+
+msgid "modify_dns_rec"	
+msgstr "修改 DNS 记录"
+
+msgid "authority"
+msgstr "权限"
+
+msgid "authority_help"
+msgstr "DNS 权限是域和网络。 "
+
+msgid "subnet"
+msgstr "子网代理"
+
+msgid "subdom"
+msgstr "子域代理"
+
+msgid "modify_dns_recSUBDOM"
+msgstr "修改子域代理。"
+
+msgid "create_dns_recSUBDOM"
+msgstr "添加子域代理"
+
+msgid "modify_dns_recSUBNET"
+msgstr "修改子网代理"
+
+msgid "create_dns_recSUBNET"
+msgstr "添加子网代理"
+
+
+
+msgid "add_secondary"
+msgstr "添加辅助服务..."
+
+
+msgid "add_secondary_forward"
+msgstr "域辅助服务"
+
+msgid "add_secondary_network"
+msgstr "网络辅助服务"
+
+# --- Lots of error messages
+
+msgid "cname_domain_name_invalid"
+msgstr "指定的域名包含无效字符。"
+
+msgid "cname_domain_target_invalid"
+msgstr "指定的域名包含无效字符。"
+
+msgid "cname_host_target_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "subdom_host_name_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "subdom_domain_name_invalid"
+msgstr "指定的域名包含无效字符。"
+
+msgid "subdom_namerservers_invalid"
+msgstr "指定的完全限定的主 DNS 服务器域名无效。"
+
+msgid "subnet_subnet_mask_invalid"
+msgstr "指定的子网掩码无效。子网掩码必须是由以点隔开的四个部分组成。"
+
+msgid "subnet_ip_address_invalid"
+msgstr "指定的 IP 地址无效。 "
+
+msgid "subnet_nameservers_invalid"
+msgstr "指定的完全限定的主 DNS 服务器域名无效。"
+
+msgid "primary_dns_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "secondary_dns_invalid"
+msgstr "辅助域名服务器主机名包含无效字符。"
+
+msgid "domain_admin_invalid"
+msgstr "指定的电子邮件地址无效。"
+
+msgid "cname_domain_name_empty"
+msgstr "请输入别名域名。"
+
+msgid "cname_domain_target_empty"
+msgstr "请指定别名主机和域名将解析为的实域名。"
+
+msgid "slave_domain_empty"
+msgstr "请指定此服务器将成为其辅助 DNS 服务器的域名。"
+
+msgid "slave_dom_masters_empty"
+msgstr "请为域名指定主 DNS 服务器的 IP 地址。"
+
+msgid "slave_ipaddr_empty"
+msgstr "请指定作为主 DNS 服务器服务的网络权限成员的 IP 地址。"
+
+msgid "slave_net_masters_empty"
+msgstr "请为网络权限指定主 DNS 服务器的 IP 地址。"
+
+msgid "slave_netmask_empty"
+msgstr "除指定的网络 IP 地址外，请指定由以点隔开的四个部分组成的子网掩码，它确定主 DNS 服务器授权的网络。"
+
+msgid "cname_host_name_empty"
+msgstr "请指定此记录的主机名。"
+
+msgid "cname_host_name_invalid"
+msgstr "指定的主机名包含无效字符。"
+
+msgid "named-did-not-start"
+msgstr "[[base-dns.dns]]服务器未能启动。请禁用后再启用该服务器。"
+
+# Capabilities
+
+msgid "capgroup_adminDns"
+msgstr "管理 DNS"
+
+msgid "capgroup_adminDns_help"
+msgstr "此管理权限允许用户管理 DNS 服务器的所有方面"
+

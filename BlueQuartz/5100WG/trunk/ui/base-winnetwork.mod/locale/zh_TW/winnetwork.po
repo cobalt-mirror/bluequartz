@@ -1,0 +1,19 @@
+# No UI
+msgid "cantConfigFile"
+msgstr "無法編輯 Samba 配置檔。"
+
+msgid "dhcpUnsupported"
+msgstr "很抱歉，目前不支援從 DHCP 伺服器取得 WINS 伺服器位址的功能。"
+
+msgid "missingWinsIP"
+msgstr "您必須在「IP 位址」欄位內輸入 WINS 伺服器的 IP 位址，才能使用您網路上的另一部電腦作為 WINS 伺服器。"
+
+msgid "windowsMachineAlreadyExists"
+msgstr "具有名稱 [[VAR.name]] 的機器已存在。請選擇不同的名稱。"
+
+msgid "couldNotClearOldMachine"
+msgstr "[[VAR.name]] 無法被刪除。"
+
+msgid "couldNotCreateNewMachine"
+msgstr "[[VAR.name]] 無法建立。請檢查該名稱並重試一次。"
+

@@ -1,0 +1,19 @@
+<!-- This is the AM Namespace for monitoring Samba -->
+<class name="ActiveMonitor" 	namespace="WinShare" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"    	type="boolean" 	default="1" writeacl="ruleCapable(modifyActiveMonitor)"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"	
+	default="/usr/sausalito/swatch/bin/am_winshare.sh"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-winshare.amWinshareNameTag]]"/>
+
+    <property name="URL"	     	type="scalar"  	
+	default="/base/winshare/winshare_amdetails.php"/>
+    <property name="UIGroup"		type="scalar"   default="service"/>
+</class>

@@ -1,0 +1,170 @@
+#error messages
+
+msgid "errorEmailBody"
+msgstr "Im AutoLoad-Prozess ist ein Fehler aufgetreten: "
+
+msgid "errorEmailSubject"
+msgstr "AutoLoad-Fehler"
+
+msgid "nosettings"
+msgstr "Die AutoLoad-Einstellungen konnten nicht gefunden werden."
+
+msgid "cantdownload"
+msgstr "Die Paketliste konnte vom angegebenen AutoLoad-Server nicht heruntergeladen werden."
+
+msgid "badpacakge"
+msgstr "Die Paketliste des AutoLoad-Servers konnte nicht dekomprimiert werden."
+
+msgid "badpkgfmt"
+msgstr "Die Paketliste des AutoLoad-Servers konnte nicht gelesen werden."
+
+msgid "badinstall"
+msgstr "Beim Installieren von [[VAR.name]] ist ein Fehler aufgetreten."
+
+#used by wizard stuff
+
+msgid "network"
+msgstr "Einrichten der sekundären Schnittstelle"
+
+msgid "network_help"
+msgstr " "
+
+msgid "servers"
+msgstr "Einrichten des AutoUpdate-Servers"
+
+msgid "servers_help"
+msgstr " "
+
+#used on network.php
+msgid "networkSettings"
+msgstr "Netzwerkeinstellungen"
+
+msgid "networkField"
+msgstr "Netzwerkeinstellungen"
+
+msgid "networkField_help"
+msgstr "Konfigurieren Ihrer sekundären Schnittstelle."
+
+msgid "dhcpHostNameField"
+msgstr "Client-Hostname"
+
+msgid "dhcpHostNameField_help"
+msgstr "Geben Sie den Hostnamen ein, mit dem dieser Server als Dynamic Host Configuration Protocol (DHCP)-Client identifiziert wird."
+
+msgid "dhcpClientIdField"
+msgstr "Client-Bezeichner"
+
+msgid "dhcpClientIdField_help"
+msgstr "Geben Sie die Identifikationszeichenkette ein, mit der dieser Server als Dynamic Host Configuration Protocol (DHCP)-Client identifiziert wird."
+
+msgid "pppoe"
+msgstr "Automatisch über PPPoE beziehen"
+
+msgid "dhcp"
+msgstr "Automatisch über DHCP beziehen"
+
+msgid "pppUserNameField"
+msgstr "Benutzername"
+
+msgid "pppUserNameField_help"
+msgstr "Geben Sie den Benutzernamen ein, der zum Anmelden bei Ihrem Internet-Dienstanbieter verwendet wird."
+
+msgid "pppPasswordField"
+msgstr "Passwort"
+
+msgid "pppPasswordField_help"
+msgstr "Geben Sie das Passwort ein, das zum Anmelden bei Ihrem Internet-Dienstanbieter verwendet wird."
+
+msgid "static"
+msgstr "Manuell angeben"
+
+msgid "ipAddressField"
+msgstr "IP-Adresse"
+
+msgid "ipAddressField_help"
+msgstr "Geben Sie die IP-Adresse der sekundären Schnittstelle ein, die normalerweise mit dem Internet verbunden ist."
+
+msgid "netMaskField"
+msgstr "Netzwerkmaske"
+
+msgid "netMaskField_help"
+msgstr "Geben Sie die Netzwerkmaske der sekundären Schnittstelle ein."
+
+msgid "gatewayField"
+msgstr "Gateway"
+
+msgid "gatewayField_help"
+msgstr "Geben Sie die IP-Adresse des lokalen Netzwerk-Gateways für diese Server Appliance ein. Hierbei handelt es sich um das Gateway für die primäre und die sekundäre Schnittstelle."
+
+msgid "dnsField"
+msgstr "DNS-Server"
+
+msgid "dnsField_help"
+msgstr "Geben Sie die IP-Adressen der lokalen Domänennamensystemserver ein."
+
+#used on server.php
+
+msgid "serverSettings"
+msgstr "Einstellungen des AutoUpdate-Servers"
+
+msgid "serverField"
+msgstr "AutoUpdate-Server"
+
+msgid "serverField_help"
+msgstr "Geben Sie den Hostnamen oder die IP-Adresse des AutoUpdate-Servers ein."
+
+msgid "proxyField"
+msgstr "HTTP-Proxy"
+
+msgid "proxyField_help"
+msgstr "Geben Sie den Hostnamen oder die IP-Adresse eines HTTP-Proxys ein, sofern ein HTTP-Proxy im Netzwerk vorhanden ist."
+
+msgid "authField"
+msgstr "Token zur Echtheitsbestätigung"
+
+msgid "authField_help"
+msgstr "Geben Sie alle Echtheitsbestätigungsinformationen ein, die für den Zugriff auf den AutoUpdate-Server erforderlich sind."
+
+msgid "invalidServer"
+msgstr "Der von Ihnen eingegebene Server ist kein AutoUpdate-Server.  Bitte überprüfen Sie Ihre Einstellungen, und wiederholen Sie den Vorgang."
+
+# used in the lcd script
+msgid "autoupdate_server"
+msgstr "   SERVER-IP:   "
+
+msgid "autoupdate_secure"
+msgstr " SSL AKTIVIEREN?"
+
+msgid "autoupdate_proxy"
+msgstr "   PROXY-IP:    "
+
+msgid "autoupdate_proxy_question"
+msgstr " PROXY KONFIG.? "
+
+msgid "autoupdate_auth"
+msgstr "  ECHTH.-TOKEN:  "
+
+msgid "autoupdate_auth_question"
+msgstr "ECHTH. KONFIG.?"
+
+msgid "checking_server_1"
+msgstr "SERVER WIRD UBERPRUFT "
+
+msgid "checking_server_2"
+msgstr "BITTE WARTEN... "
+
+msgid "cant_contact_server_1"
+msgstr "NO SERV-VERBIN."
+
+msgid "cant_contact_server_2"
+msgstr "     SERVER     "
+
+msgid "invalid_server_1"
+msgstr "UNGULTIG. SERVER"
+
+msgid "invalid_server_2"
+msgstr "EINGEGEBENE ADR  "
+
+msgid "reenter_data"
+msgstr "NEUER VERSUCH?"
+

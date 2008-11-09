@@ -1,0 +1,470 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+
+msgid "wizardLicense"
+msgstr "Lizenzvereinbarung"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Administrator-Einstellungen"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Administrator-Einstellungen"
+
+msgid "adminMessage"
+msgstr "[[base-wizard.productName]] erfordert einen Administrator, der Aufgaben wie das Hinzufügen von Benutzern und Gruppen sowie das Konfigurieren von Einstellungen übernimmt. Der Benutzername des Administrators lautet admin. Geben Sie für den Administrator ein schwer zu erratendes Passwort ein. Bitte merken Sie sich das Passwort."
+
+msgid "adminNameField"
+msgstr "Benutzername"
+
+msgid "adminNameField_help"
+msgstr "Der Name, den das System verwendet, um den Administrator zu identifizieren. Dieser Name kann nicht geändert werden."
+
+msgid "passwordField"
+msgstr "Passwort"
+
+msgid "passwordField_rule"
+msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie Zahlen und Satzzeichen bestehen. Es sollten keine in einem Wörterbuch zu findenden Wörter verwendet werden. Bei Passwörtern wird die Groß- und Kleinschreibung berücksichtigt."
+
+msgid "passwordField_help"
+msgstr "Geben Sie das Passwort ein, das das System verwendet, um den Administrator zu identifizieren. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "passwordField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.passwordField]] eingegeben. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "Neues Passwort"
+
+msgid "newPasswordField_help"
+msgstr "Geben Sie das Passwort ein, das das System verwendet, um den Administrator zu identifizieren. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Zeiteinstellungen"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Zeiteinstellungen"
+
+msgid "timeMessage"
+msgstr "[[base-wizard.productName]] erfordert das korrekte Datum und die Uhrzeit, um richtig zu funktionieren. Bitte geben Sie das aktuelle Datum und die Uhrzeit sowie die entsprechende Zeitzone ein."
+
+msgid "dateField"
+msgstr "Datum"
+
+msgid "dateField_help"
+msgstr "Stellen Sie das aktuelle Datum ein."
+
+msgid "timeField"
+msgstr "Uhrzeit"
+
+msgid "timeField_help"
+msgstr "Stellen Sie die aktuelle Uhrzeit ein."
+
+msgid "timeZoneField"
+msgstr "Zeitzone"
+
+msgid "timeZoneField_help"
+msgstr "Stellen Sie die Zeitzone ein, in der sich dieser Server befindet."
+
+msgid "wizardUsers"
+msgstr "Benutzereinstellungen"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Gruppeneinstellungen"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Netzwerkintegration"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "Netzwerkeinstellungen"
+
+msgid "networkMessage"
+msgstr "[[base-wizard.productName]] kann so eingerichtet werden, dass das Programm in einem Intranet innerhalb Ihrer Organisation sowie im ganzen Internet verfügbar ist. Bitte geben Sie den Host- und Domänennamen dieses Servers sowie einen erreichbaren Domänenserver und eine Methode für Netzwerkverbindungen ein."
+
+msgid "hostNameField"
+msgstr "Hostname"
+
+msgid "hostNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Eine gültige Eingabe ist z. B. www."
+
+msgid "hostNameField_help"
+msgstr "Geben Sie den Hostnamen dieses Servers ein. Der Host- und der Domänenname sollten diesen Server eindeutig identifizieren. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domänenname"
+
+msgid "domainNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Eine gültige Eingabe ist z. B. meinbuero.de."
+
+msgid "domainNameField_help"
+msgstr "Geben Sie den Domänennamen dieses Servers ein. Der Host- und der Domänenname sollten diesen Server eindeutig identifizieren. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS-Server"
+
+msgid "dnsAddressesField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1. Wenn Sie dieses Feld leer lassen, kann dieser Rechner keine anderen Rechner nach dem Host- oder Domänennamen finden und es kommt zu Netzwerkproblemen."
+
+msgid "dnsAddressesField_help"
+msgstr "Geben Sie die IP-Adresse oder -Adressen Ihres bzw. Ihrer lokalen Domänennamen-Servers/Server ein. Geben Sie jeweils eine Adresse pro Zeile ein. Ein Domänennamen-Server übersetzt Host- und Domänennamen in IP-Adressen und umgekehrt. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Internetverbindung"
+
+msgid "internetField_help"
+msgstr "Wählen Sie den Typ der Internetverbindung aus, der mit diesem Server verwendet wird."
+
+msgid "none"
+msgstr "Keine oder nur Intranetverwendung"
+
+msgid "broadband"
+msgstr "Kabelmodem oder DSL"
+
+msgid "lan"
+msgstr "Gateway im lokalen Netzwerk (LAN)"
+
+msgid "narrowband"
+msgstr "Analogmodem oder ISDN"
+
+msgid "wizardBroadband"
+msgstr "Broadband-Einstellungen"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Broadband-Einstellungen"
+
+msgid "broadbandMessage"
+msgstr "Ihr Kabelmodem oder Ihre DSL-Verbindung sollte mit der sekundären Schnittstelle des [[base-wizard.productName]] verbunden sein. Geben Sie die entsprechenden Konfigurationseinstellungen ein, die Sie von Ihrem Internet-Dienstanbieter erhalten haben."
+
+msgid "networkField"
+msgstr "Sekundäre Schnittstelle"
+
+msgid "networkField_help"
+msgstr "Wählen Sie die entsprechende Netzwerkkonfiguration für die sekundäre Schnittstelle dieses Servers aus. Ihr Internet-Dienstanbieter kann Ihnen die für diesen Schritt benötigten Informationen bereitstellen."
+
+msgid "dhcp"
+msgstr "Automatisch mit dynamischem Host-Konfigurationsprotokoll (DHCP) abrufen"
+
+msgid "dhcpHostNameField"
+msgstr "Client-Hostname"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Bitte geben Sie nur alphanumerische Zeichen in Kleinschreibung, Bindestriche oder Punkte, jedoch keine Umlaute, ß oder sonstige Sonderzeichen ein. Eine gültige Eingabe ist z. B. www.meinbuero.de."
+
+msgid "dhcpHostNameField_help"
+msgstr "Geben Sie den Hostnamen ein, der diesen Server als dynamischen Host-Konfigurationsprotokoll (DHCP)-Client identifiziert. [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client-Bezeichner"
+
+msgid "dhcpClientIdField_help"
+msgstr "Geben Sie die Identifikationszeichenfolge ein, die diesen Server als dynamischen Host-Konfigurationsprotokoll (DHCP)-Client identifiziert."
+
+msgid "pppoe"
+msgstr "Automatisch mit Point-to-Point-Protokoll über Ethernet (PPPoE) abrufen"
+
+msgid "pppUserNameField"
+msgstr "Benutzername"
+
+msgid "pppUserNameField_help"
+msgstr "Geben Sie den Benutzernamen ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "pppPasswordField"
+msgstr "Passwort"
+
+msgid "pppPasswordField_help"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.pppPasswordField]] eingegeben."
+
+msgid "static"
+msgstr "Manuell angeben"
+
+msgid "ipAddressField"
+msgstr "IP-Adresse"
+
+msgid "ipAddressField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "ipAddressField_help"
+msgstr "Geben Sie die IP-Adresse der sekundären Schnittstelle ein, die meist mit der Internet-Seite verbunden ist. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Subnetzmaske"
+
+msgid "netMaskField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 255.255.255.0."
+
+msgid "netMaskField_help"
+msgstr "Geben Sie die Netzwerkmaske der primären Schnittstelle ein. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. 192.168.1.1."
+
+msgid "gatewayField_help"
+msgstr "Geben Sie die IP-Adresse Ihres lokalen Netzwerk-Gateways ein. Über ein Netzwerk-Gateway (auch Router genannt) können Sie eine Verbindung mit Computern außerhalb Ihres lokalen Netzwerkbereichs herstellen. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Sekundäre Schnittstelle"
+
+msgid "ipAddressField2"
+msgstr "IP-Adresse"
+
+msgid "ipAddressField2_help"
+msgstr "Geben Sie die IP-Adresse der sekundären Schnittstelle ein, die meist mit der Internet-Seite verbunden ist. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Die Felder IP-Adresse und IP-Netzwerkmaske müssen entweder beide ausgefüllt oder beide leer sein."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "Geben Sie die Netzwerkmaske der sekundären Schnittstelle ein. Wenn Sie nur eine Netzwerkschnittstellen-Verbindung mit dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC-Adresse"
+
+msgid "macAddressField_help" 
+msgstr "Die Media Acess Control (MAC)-Adresse ist die Hardware-Adresse der Netzwerk-Schnittstellenkarte. Diese Hardware-Adresse kommt nur einmal vor und kann nach der Herstellung nicht geändert werden."
+
+msgid "wizardLan"
+msgstr "Lokale Netzwerkeinstellungen"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Geben Sie das Standard-Gateway für diesen Server ein. Wenn sich das Gateway im Netzwerk befindet, das mit der sekundären Schnittstelle verbunden ist, geben Sie die Schnittstellen-Informationen ebenfalls ein."
+
+msgid "lanSettings"
+msgstr "Lokale Netzwerkeinstellungen"
+
+msgid "wizardModem"
+msgstr "Modemeinstellungen"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Ihr Analogmodem oder Ihre ISDN-Verbindung sollte mit der seriellen Port-Schnittstelle des [[base-wizard.productName]] verbunden sein. Geben Sie die entsprechenden Konfigurationseinstellungen ein, die Sie von Ihrem Internet-Dienstanbieter erhalten haben."
+
+msgid "modemSettings"
+msgstr "Modemeinstellungen"
+
+msgid "connModeField"
+msgstr "Verbindungsmodus"
+
+msgid "connModeField_help"
+msgstr "Geben Sie an, ob die Modemverbindung nur hergestellt werden soll, wenn dies für eine ausgehende Verbindung notwendig ist, immer hergestellt werden soll oder nie hergestellt werden soll."
+
+msgid "demand"
+msgstr "Verbindung nur bei Bedarf"
+
+msgid "on"
+msgstr "Verbindung immer hergestellt"
+
+msgid "off"
+msgstr "Verbindung immer deaktiviert"
+
+msgid "userNameField"
+msgstr "Benutzername des Wählverbindungskontos"
+
+msgid "userNameField_help"
+msgstr "Geben Sie den Benutzernamen des Wählverbindungskontos ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "userNameField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.userNameField]] eingegeben. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Passwort des Wählverbindungskontos"
+
+msgid "modemPasswordField_help"
+msgstr "Geben Sie das Passwort des Wählverbindungskontos ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "modemPasswordField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.modemPasswordField]] eingegeben. Geben Sie das Passwort des Wählverbindungskontos ein, mit dem Sie sich bei Ihrem Internet-Dienstanbieter anmelden."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "modemPhoneField"
+msgstr "Telefonnummer für Wählverbindung"
+
+msgid "modemPhoneField_help"
+msgstr "Geben Sie die Telefonnummer für die Wählverbindung mit Ihrem Internet-Dienstanbieter ein."
+
+msgid "initStringField"
+msgstr "Modeminitialisierungs-Zeichenfolge"
+
+msgid "initStringField_help"
+msgstr "Geben Sie die Modeminitialisierungs-Zeichenfolge ein, die vor dem Wählen an das Modem weitergegeben wird."
+
+msgid "initStringField_empty"
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.initStringField]] eingegeben. Sie müssen eine Initialisierungs-Zeichenfolge eingeben, da der Server Ihr Modem sonst nicht verwenden kann. Wenn Sie die Standard-Initialisierungs-Zeichenfolge Ihres Modems nicht kennen, versuchen Sie es mit der Eingabe von ATZ oder schlagen Sie in Ihrer Modemdokumentation nach."
+
+msgid "localIpField"
+msgstr "Lokale IP-Adresse"
+
+msgid "localIpField_help"
+msgstr "Geben Sie die lokale IP-Adresse nur an diesem Ende der Modemverbindung ein, wenn Ihr Internet-Dienstanbieter eine lokale IP-Adresse zugewiesen hat."
+
+msgid "pulseField"
+msgstr "Impulswahl aktivieren"
+
+msgid "pulseField_help"
+msgstr "Aktivieren oder deaktivieren Sie die Impulswahl. Wenn Sie diese Funktion aktivieren, wird die Impulswahl anstelle der Tonwahl verwendet. Per Vorgabe bleibt die Impulswahl deaktiviert."
+
+msgid "wizardRegistration"
+msgstr "Produktregistrierung"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Produktregistrierung"
+
+msgid "regRightArrow"
+msgstr "Pfeil nach rechts"
+
+msgid "regSubmit"
+msgstr "Absenden"
+
+msgid "regSubmit_help"
+msgstr "Klicken Sie hier, um Ihren [[base-wizard.productName]] zu registrieren."
+
+msgid "regCancel"
+msgstr "Später registrieren"
+
+msgid "regCancel_help"
+msgstr "Klicken Sie hier, um die Registrierung abzubrechen. Wenn Sie die Registrierung abbrechen, können Sie Ihren [[base-wizard.productName]] später immer noch registrieren."
+
+msgid "regText"
+msgstr "Sie müssen den [[base-wizard.productName]] bei Cobalt Networks registrieren, um den Technischen Kundendienst in Anspruch nehmen zu können. Um das Produkt elektronisch zu registrieren, geben Sie bitte folgende Informationen an und klicken Sie auf [[VAR.button]]. Sie können den [[base-wizard.productName]] auch durch Ausfüllen der Garantie-/Registrierungskarte registrieren, die Sie im Lieferkarton finden. Die von Ihnen bereitgestellten Informationen werden in Übereinstimmung mit den Datenschutzrichtlinien von Cobalt Networks behandelt, die Sie auf unserer Website (<A HREF='http://www.cobalt.com/' TARGET='_blank'>www.cobalt.com</A>) finden."
+
+msgid "regTextOffline"
+msgstr "Sie müssen den [[base-wizard.productName]] bei Cobalt Networks registrieren, um Anspruch auf den Technischen Kundendienst zu haben. Ihr Netzwerk scheint nicht richtig konfiguriert zu sein, um die elektronische Registrierung vorzunehmen. Registrieren Sie den [[base-wizard.productName]] stattdessen bitte durch Ausfüllen der Garantie-/Registrierungskarte, die Sie im Lieferkarton finden. Die von Ihnen bereitgestellten Informationen werden in Übereinstimmung mit den Datenschutzrichtlinien von Cobalt Networks behandelt, die Sie auf unserer Website (<A HREF='http://www.cobalt.com/' TARGET='_blank'>www.cobalt.com</a>) finden."
+
+msgid "fullNameField"
+msgstr "Vollständiger Name"
+
+msgid "fullNameField_help"
+msgstr "Geben Sie Ihren vollständigen Namen ein."
+
+msgid "fullNameField_rule"
+msgstr "Bitte geben Sie beliebige Zeichen ein, nur keine Doppelpunkte. Eine gültige Eingabe ist z. B. Hans-Günter Großmann."
+msgid "titleField"
+msgstr "Position"
+
+msgid "titleField_help"
+msgstr "Geben Sie Ihre Position ein."
+
+msgid "companyField"
+msgstr "Firmenname"
+
+msgid "companyField_help"
+msgstr "Geben Sie den Namen Ihrer Firma ein."
+
+msgid "addressField"
+msgstr "Vollständige Adresse"
+
+msgid "addressField_help"
+msgstr "Geben Sie Ihre vollständige Adresse ein."
+
+msgid "countryField"
+msgstr "Land"
+
+msgid "countryField_help"
+msgstr "Geben Sie Ihr Land ein."
+
+msgid "emailField"
+msgstr "E-Mail-Adresse"
+
+msgid "emailField_help"
+msgstr "Geben Sie Ihre E-Mail-Adresse ein."
+
+msgid "emailField_rule"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse im Format benutzer@domaene.de ein."
+
+msgid "phoneField"
+msgstr "Telefonnummer"
+
+msgid "phoneField_help"
+msgstr "Geben Sie Ihre Telefonnummer ein."
+
+msgid "faxField"
+msgstr "Faxnummer"
+
+msgid "faxField_help"
+msgstr "Geben Sie Ihre Faxnummer ein."
+
+msgid "licenseClick"
+msgstr "Durch Klicken auf den Pfeil unten bestätigen Sie den Erhalt und die Akzeptierung der Bedingungen, die auf der im Lieferumfang Ihres [[base-wizard.productName]] befindlichen Garantie-/Registrierungskarte aufgeführt werden. Sie bestätigen auch, dass Sie die folgende Lizenzvereinbarung akzeptieren."
+
+msgid "license"
+msgstr "<BR>Cobalt Networks, Inc.<BR>LIZENZVEREINBARUNG<BR><BR>DURCH INSTALLATION DIESES PRODUKTS STIMMEN SIE (DIE RECHTSEINHEIT, AN DIE DIE IM LIEFERUMFANG ENTHALTENEN SOFTWAREPROGRAMME GELIEFERT WERDEN) ZU, DASS ALLE BEDINGUNGEN DER UNTEN AUFGEFÜHRTEN LIZENZVEREINBARUNG UND EINGESCHRÄNKTEN GARANTIE FÜR SIE GELTEN. WENN SIE DER VEREINBARUNG NICHT ZUSTIMMEN, SENDEN SIE DAS VOLLSTÄNDIGE PRODUKT UND ALLE BEGLEITMATERIALIEN UMGEHEND AN DIE VERKAUFSSTELLE ZURÜCK, BEI DER SIE ES ERWORBEN HABEN.<BR><BR>Diese Lizenzvereinbarung (diese Vereinbarung) erteilt Ihnen eine einfache, nicht übertragbare Lizenz zur Verwendung der Software (nachstehend als Software bezeichnet), die Sie von Cobalt Networks, Inc. (Cobalt Networks) erhalten haben. Die Software umfasst die Ihnen auf Datenträgern, Disketten, CD-ROMs bzw. als Teil der in diesem Paket enthaltenen Ausrüstung (der Hardware) bereitgestellte Software sowie alle Modifizierungen, Erweiterungen bzw. Ersatzprodukte dieser Software, die Sie von Cobalt Networks erhalten haben. Diese Vereinbarung beschränkt außerdem Ihre Verwendung der Software und Hardware.<BR><BR>Sie dürfen keine Kopie der Software und der schriftlichen Materialien erstellen, die sich im Lieferumfang der Software bzw. der Hardware befinden. Die Software auf der OS-Wiederherstellungs-CD ist nur zur Wiederherstellung der ursprünglichen Standardfunktionalität des Cobalt-Produkts vorgesehen.<BR><BR>Cobalt Networks und deren Lizenzgeber bleiben Eigentümer der Software. Außer einer Lizenz zur Verwendung der Software im Rahmen der ausdrücklich in dieser Vereinbarung enthaltenen Bedingungen werden Ihnen keinerlei Rechte gewährt. Sie bestätigen, dass die zu Grunde liegende Struktur, Sequenz, Organisation und der Quellcode der Software sowie das Design und die Struktur der Hardware wertvolle Handelsgeheimnisse von Cobalt Networks bzw. deren Lizenzgebern darstellen und stimmen zu, jegliche Bestandteile der Software nicht auf irgendeine Art und Weise zu dekompilieren, zurück zu übersetzen, rückzuentwickeln bzw. zu modifizieren oder die Hardware rückzuentwickeln.<BR><BR>Sie dürfen Ihre Rechte zur Verwendung der Software nur bei der Übertragung von Hardware, mit der oder für die die Software geliefert wurde, übertragen oder abtreten und nur dann, wenn Cobalt Networks die schriftliche Zusage des neuen Lizenznehmers erhält, dass er/sie allen Bedingungen dieser Vereinbarung zustimmt. Sie dürfen Ihre Rechte zur Verwendung der Software nicht ohne vorherige schriftliche Genehmigung durch Cobalt Networks übertragen oder abtreten. Jeder Versuch, die Rechte ohne eine solche Zustimmung zu übertragen, ist null und nichtig. Die Software, Hardware und zugehörigen Materialien dürfen nicht in Verletzung der Exportkontrollgesetze der Vereinigten Staaten von Amerika bzw. anderer Länder ausgeführt werden.<BR><BR>Bei Verletzung jeglicher Bestimmungen dieser Vereinbarung erlischt Ihr Recht zur Verwendung der Software und zugehörigen Hardware automatisch. Sie sind in diesem Fall verpflichtet, die Software an Cobalt Networks zurückzusenden oder zu vernichten und die Hardware an Cobalt Networks zurückzusenden.<BR><BR>Diese Vereinbarung unterliegt den Gesetzen des US-Bundesstaates Kalifornien, außer den Bestimmungen bezüglich der Geltung anderer Rechtsprechungen.<BR><BR>Sie bestätigen, dass der Export der Software den Exportkontrollgesetzen der Vereinigten Staaten von Amerika und anderer Länder unterliegt. Sie stimmen zu, allen solchen Exportkontrollgesetzen Folge zu leisten.<BR><BR>Wenn das Produkt für eine Regierungsstelle oder Behörde der USA erworben wird (hierin Regierung genannt), werden die Software und die zugehörige Dokumentation gemäß den Beschränkungen bereitgestellt, die für andere Endbenutzer gelten, wie in den Bedingungen dieser Vereinbarung und unter DFARS 227.7202-1(a) und 227.7202-3(a) (1995), DFARS 252.227-7013(c)(1)(ii) (Okt. 1988), FAR 12.212(a)(1995), FAR 52.227-19 oder FAR 52.227-14 (Alt III) dargelegt."
+
+msgid "wizardLocale"
+msgstr "Bevorzugte Sprache"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "Wählen Sie die bevorzugte Sprache zur Verwaltung dieses Servers aus.  Die Webschnittstelle kann zwar mit jeder Spracheinstellung benutzt werden, vom Aktiven Monitor erzeugte Nachrichten sowie die Menüs auf dem LCD-Bildschirm verwenden jedoch die bevorzugte Sprache."
+
+msgid "localeField"
+msgstr "Wählen Sie Ihre bevorzugte Sprache."
+
+msgid "localeField_help"
+msgstr "Die bevorzugte Sprache dient dem Aktiven Monitor zum Erstellen von Nachrichten, dem LCD-Bildschirm zur Anzeige von Menüs sowie der administrativen Webschnittstelle, falls keine bevorzugte Browser-Sprache gefunden werden kann."
+
+msgid "localeSettings"
+msgstr "Bevorzugte Srache"
+
+msgid "accept_help"
+msgstr "Klicken Sie auf 'Ich stimme zu', wenn Sie die Bestimmungen der Lizenz-Vereinbarung gelesen haben, diesen zustimmen und bereit zum Fortfahren sind."
+
+msgid "productName"
+msgstr "Sun Cobalt Qube 3"
+
+msgid "accept"
+msgstr "Ich stimme zu"
+
+msgid "decline"
+msgstr "Ich stimme nicht zu"
+
+msgid "licenseHeader"
+msgstr "<B>Um die Bedingungen der folgenden Binärcode-Lizenzvereinbarung zu akzeptieren oder abzulehnen, müssen Sie bis zum Ende des Dokuments blättern.</B>"
+
+msgid "decline_help"
+msgstr "Wenn Sie die Bestimmungen der Lizenz-Vereinbarung ablehnen, können Sie den Sun Cobalt Qube 3 nicht verwenden."
+
+msgid "declineError"
+msgstr "Vor dem Fortfahren müssen Sie auf Ich stimme zu klicken, um zu bestätigen, dass Sie die Lizenz-Vereinbarung gelesen haben und dieser zustimmen."
+

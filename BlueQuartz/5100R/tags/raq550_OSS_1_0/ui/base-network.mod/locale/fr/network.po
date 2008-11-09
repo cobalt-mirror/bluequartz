@@ -1,0 +1,662 @@
+# --- Menu
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "Les paramètres TCP/IP sont modifiables ici."
+
+msgid "tcpIpSettings"
+msgstr "Paramètres TCP/IP"
+
+msgid "wan"
+msgstr "Internet"
+
+msgid "wan_help"
+msgstr "Les paramètres Internet sont modifiables ici."
+
+
+# --- TCP/IP Page
+
+msgid "hostNameField"
+msgstr "Nom d'hôte"
+
+msgid "hostNameField_rule"
+msgstr "N'entrez que des caractères alphanumériques en minuscules, des tirets ou des points. www est un exemple d'entrée correcte."
+
+msgid "hostNameField_help"
+msgstr "Entrez le nom d'hôte de ce serveur. La combinaison du nom d'hôte avec le nom de domaine doit identifier ce serveur de manière unique. [[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Nom de domaine"
+
+msgid "domainNameField_rule"
+msgstr "N'entrez que des caractères alphanumériques en minuscules, des tirets ou des points. cobalt.com est un exemple d'entrée correcte."
+
+msgid "domainNameField_help"
+msgstr "Entrez le nom de domaine de ce serveur. La combinaison du nom d'hôte avec le nom de domaine doit identifier ce serveur de manière unique. [[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "Serveurs DNS"
+
+msgid "dnsAddressesField_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte. Si vous n'inscrivez rien dans ce champ, ce serveur ne peut pas identifier les autres ordinateurs par leur nom d'hôte ou de domaine ce qui entraînera des problèmes sur le réseau."
+
+msgid "dnsAddressesField_help"
+msgstr "Entrez les adresses (ou l'adresse) IP de vos serveurs (ou de votre serveur) de nom de domaine locaux (local). Un serveur de nom de domaine convertit les noms de domaines et d'hôtes textuels en adresses IP numériques, et réciproquement. [[base-network.dnsAddressesField_rule]]"
+
+msgid "primaryInterface"
+msgstr "Interface primaire"
+
+msgid "ipAddressField1"
+msgstr "Adresse IP"
+
+msgid "ipAddressField1_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte."
+
+msgid "ipAddressField1_help"
+msgstr "Entrez l'adresse IP de l'interface primaire, celle qui est normalement connectée à votre réseau local (Intranet). Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.ipAddressField1_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Interface secondaire"
+
+msgid "ipAddressField2"
+msgstr "Adresse IP"
+
+msgid "ipAddressField2_rule"
+msgstr "[[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressField2_help"
+msgstr "Entrez l'adresse IP de l'interface secondaire, celle qui est normalement connectée à l'Internet. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez cette interface secondaire vide. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Le Masque réseau IP est exigé si le champ d'adresse IP a été rempli. [[base-network.netMaskField1_rule]]"
+
+msgid "netMaskField1"
+msgstr "Masque réseau IP"
+
+msgid "netMaskField1_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 255.255.255.0 est un exemple d'entrée correcte."
+
+msgid "netMaskField1_help"
+msgstr "Entrez le Masque réseau de l'interface primaire. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.netMaskField1_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 255.255.255.0 est un exemple d'entrée correcte."
+
+msgid "netMaskField2_help"
+msgstr "Entrez le Masque réseau de l'interface secondaire. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez cette interface secondaire vide. [[base-network.netMaskField2_rule]]"
+
+msgid "macAddressField"
+msgstr "Adresse MAC"
+
+msgid "macAddressField_help"
+msgstr "L'adresse MAC (Media Access Control) est l'adresse matériel de la carte réseau. Cette adresse matériel est un identificateur unique qui n'est pas modifiable après la sortie d'usine."
+
+
+# Add static Routes
+
+msgid "routes"
+msgstr "Modifier routage IP statique"
+
+msgid "routes_help"
+msgstr "Cliquez ici pour créer des routes IP statiques depuis ce serveur vers d'autres sous-réseaux."
+
+	# list
+msgid "routeList-list-title"
+msgstr "Liste des routes IP statiques"
+
+msgid "createRoute"
+msgstr "Ajouter une route IP statique"
+
+msgid "route-target"
+msgstr "Adresse IP du réseau destination"
+
+msgid "route-target_help"
+msgstr "L'Adresse IP du réseau vers lequel pointe la nouvelle route statique."
+
+msgid "route-netmask"
+msgstr "Masque du réseau destination"
+
+msgid "route-netmask_help"
+msgstr "Masque réseau du réseau vers lequel passe la route statique."
+
+msgid "route-gateway"
+msgstr "Passerelle"
+
+msgid "route-gateway_help"
+msgstr " passerelle réseau (Gateway) par laquelle sera acheminé tout trafic destiné au réseau vers lequel pointe la nouvelle route statique."
+
+msgid "route-device"
+msgstr "Interface"
+
+msgid "route-device_help"
+msgstr "Interface réseau de ce serveur par laquelle tout trafic destiné au réseau vers lequel passe la route statique sera acheminé."
+
+msgid "modifyRoute"
+msgstr "Modifier route statique"
+
+	# Add a route form
+msgid "route_form_target"
+msgstr "Réseau destination"
+
+msgid "route_form_target_help"
+msgstr "Entrez l'adresse IP du réseau pour lequel le trafic est réacheminé. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte."
+
+msgid "route_form_target_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "Masque réseau destination"
+
+msgid "route_form_netmask_help"
+msgstr "Entrez le masque du réseau pour lequel le trafic est réacheminé. [[base-network.route_form_netmask_rule]]"
+
+
+msgid "route_form_netmask_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 255.255.255.0 est un exemple d'entrée correcte."
+
+msgid "route_form_netmask_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "Passerelle"
+
+msgid "route_form_gateway_help"
+msgstr "Entrez l'adresse IP de la passerelle réseau (Gateway) locale par laquelle le trafic destiné au réseau destination sera re-routé. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte."
+
+msgid "route_form_gateway_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "Interface réseau"
+
+msgid "route_form_device_help"
+msgstr "Sélectionnez l'interface réseau de ce serveur par laquelle le trafic destiné au réseau destination sera re-routé. Si aucun équipement n'est spécifié, l'interface sera automatiquement sélectionnée en fonction de l'adresse IP de la passerelle réseau."
+
+msgid "route_form_device-eth0"
+msgstr "Interface Ethernet primaire (eth0)"
+
+msgid "route_form_device-eth1"
+msgstr "Interface Ethernet secondaire (eth1)"
+
+msgid "route_form_device-ppp0"
+msgstr "Interface PPP (Point-to-Point Protocol) (ppp0)"
+
+msgid "routeList_action_header"
+msgstr "Actions"
+
+msgid "routeList_action_header_help"
+msgstr "Cliquez sur l'icône de modification pour changer les paramètres d'une route ou sur l'icône de suppression pour la supprimer."
+
+
+
+# --- Internet Page
+
+	# change type drop-down
+
+msgid "changeMode"
+msgstr "Définir la connexion Internet vers..."
+
+msgid "none"
+msgstr "Aucune ou utilisation Intranet locale"
+
+msgid "broadband"
+msgstr "Modem câble ou DSL"
+
+msgid "lan"
+msgstr "Passerelle sur réseau local (LAN)"
+
+msgid "narrowband"
+msgstr "Modem analogique ou RNIS"
+
+
+	# - Gateway on LAN
+	
+msgid "lanSettings"
+msgstr "Paramètres Internet - Passerelle sur réseau local (LAN)"
+
+msgid "gatewayField"
+msgstr "Passerelle du serveur"
+
+msgid "gatewayField_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte."
+
+msgid "gatewayField_help"
+msgstr "Entrez l'adresse IP de la passerelle sur le réseau local que doit utiliser ce serveur. Il s'agit de la passerelle (Gateway) qui sera utilisée par les interfaces primaire et secondaire de ce serveur pour se connecter à l'extérieur du réseau local (généralement l'Internet). [[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "Masquage et transfert IP"
+
+msgid "forwardField_help"
+msgstr "Sélectionnez la méthode de transfert des paquets passant par ce serveur. La sélection du transfert avec masquage permet de convertir les adresses du réseau local. Cela permet à votre société de partager l'accès Internet an convertissant l'intégralité du trafic réseau entre une adresse IP publique et de nombreuses adresses privées IP passant par ce serveur. La sélection de transfert de paquets sans masquage autorise le trafic d'une interface réseau vers l'autre sans masquer les adresses IP du réseau local. Quand on ne sélectionne pas de transfert de paquets, le passage du trafic d'une interface réseau à l'autre n'est pas autorisé."
+
+msgid "forward"
+msgstr "Transfer des paquets IP"
+
+msgid "forwardNat"
+msgstr "Transfert des paquets IP avec masquage"
+
+msgid "forwardOff"
+msgstr "Pas de transfert des paquets IP"
+
+
+
+# --- Cable Modem/DSL
+
+msgid "broadbandSettings"
+msgstr "Paramètres Internet - Modem câble ou DSL"
+
+msgid "networkField"
+msgstr "Interface secondaire"
+
+msgid "networkField_help"
+msgstr "Sélectionnez la configuration réseau appropriée pour l'interface secondaire de ce serveur."
+
+msgid "dhcp"
+msgstr "Obtenir les paramètres réseau automatiquement en utilisant le protocole DHCP"
+
+msgid "dhcpHostNameField"
+msgstr "Nom d'hôte client"
+
+msgid "dhcpHostNameField_rule"
+msgstr "N'entrez que des caractères alphanumériques en minuscules, des tirets ou des points. www est un exemple d'entrée correcte."
+
+msgid "dhcpHostNameField_help"
+msgstr "Entrez le nom identifiant ce serveur auprès du serveur DHCP. [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur valide pour [[base-network.dhcpHostNameField]]. [[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Identificateur client"
+
+msgid "dhcpClientIdField_help"
+msgstr "Entrez la chaîne d'identification identifiant ce serveur auprès du serveur DHCP."
+
+msgid "pppoe"
+msgstr "Obtenir les paramètres réseau automatiquement en utilisant le protocole PPPoE"
+
+msgid "pppUserNameField"
+msgstr "Nom d'utilisateur"
+
+msgid "pppUserNameField_help"
+msgstr "Entrez le nom d'utilisateur utilisé pour se connecter au fournisseur d'accès Internet."
+
+msgid "pppUserNameField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.pppUserNameField]]."
+
+msgid "pppPasswordField"
+msgstr "Mot de passe"
+
+msgid "pppPasswordField_help"
+msgstr "Entrez le mot de passe utilisé pour se connecter au fournisseur d'accès Internet."
+
+msgid "pppPasswordField_invalid"
+msgstr "Vous n'avez pas entré le même mot de passe dans les deux champs. Le même mot de passe est entré dans les deux champs pour éliminer les erreurs de frappe. Veuillez recommencer."
+
+msgid "static"
+msgstr "Spécifier manuellement"
+
+msgid "ipAddressField"
+msgstr "Adresse IP"
+
+msgid "ipAddressField_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 192.168.1.1 est un exemple d'entrée correcte."
+
+msgid "ipAddressField_help"
+msgstr "Entrez l'adresse IP de l'interface secondaire de ce serveur, celle connectée normalement au côté Internet. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Masque réseau"
+
+msgid "netMaskField_rule"
+msgstr "Entrez une série de quatre nombres entre 0 et 255 séparés par des points. 255.255.255.0 est un exemple d'entrée correcte."
+
+msgid "netMaskField_help"
+msgstr "Entrez le masque réseau de l'interface secondaire. Si vous ne reliez qu'une interface réseau au serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.netMaskField_rule]]"
+
+msgid "natField"
+msgstr "Masquage IP"
+
+msgid "natField_help"
+msgstr "Choisissez si ce serveur doit masquer les adresses IP du réseau interne (IP Masquerading). Le masquage IP converti les adresses du réseau local en les dissimulant avec l'adresse IP publique de ce serveur (celle de l'interface secondaire). Ceci permet à votre entreprise de partager l'accès Internet tout en pouvant utiliser des adresses IP privées non routable sur le réseau interne et en assurant sa confidentialité."
+
+
+# No internet connection
+
+msgid "wanNoneMessage"
+msgstr "Il n'y a pas de connexion Internet."
+
+msgid "wanNoneConfirm"
+msgstr "Voulez-vous vraiment spécifier un type de connexion Internet ?"
+
+
+
+
+
+# Modem/ISDN	 NOTE: These strings are also in the file wizard.po in the module base-wizard.mod. They need to be in both places
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthModeField_help"                                                               
+msgstr "Il existe deux modes d'authentification couramment utilisés avec des connexions de réseau commutées. Consultez votre fournisseur de service pour savoir lequel utiliser."
+  
+msgid "modemAuthModeField"                                                          
+msgstr " Mode d'authentification" 
+
+msgid "modemAuthHostField"                                                                  
+msgstr "Nom d'hôte du serveur"
+
+msgid "modemAuthHostField_help"
+msgstr "Le nom d'hôte du serveur à la demande est nécessaire à l'authentification commutée CHAP. Consultez votre fournisseur de service pour obtenir le nom d'hôte du serveur si l'authentification CHAP est utilisée."
+
+msgid "modemAuthHostField_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.modemAuthHostField]]."
+
+msgid "modemConnStatus"
+msgstr "Etat de connexion"
+
+msgid "modemConnStatus_help"
+msgstr "Ceci affiche l'état actuel de la connexion et indique si le modem est actuellement connecté au fournisseur d'accès Internet."
+
+msgid "modemSettings"
+msgstr "Paramètres Internet - Modem analogique ou RNIS"
+
+msgid "modemConnModeField"
+msgstr "Mode de connexion"
+
+msgid "modemConnModeField_help"
+msgstr "Sélectionnez si la connexion du modem doit être établie de manière permanente, doit être établie automatiquement en cas de trafic sortant, ou ne doit jamais être établie."
+
+msgid "demand"
+msgstr "Connexion uniquement sur demande"
+
+msgid "on"
+msgstr "Connexion toujours active"
+
+msgid "off"
+msgstr "Connexion toujours inactive"
+
+
+msgid "modemUserNameField"
+msgstr "Nom d'utilisateur du compte d'accès Internet"
+
+msgid "modemUserNameField_help"
+msgstr "Entrez le nom d'utilisateur du compte d'accès Internet qui permet de se connecter au fournisseur d'accès Internet."
+
+msgid "modemUserNameField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.modemUserNameField]]. Entrez le nom d'utilisateur du compte de numérotation qui permet de se connecter au fournisseur d'accès Internet."
+
+msgid "modemPasswordField"
+msgstr "Mot de passe du compte d'accès Internet"
+
+msgid "modemPasswordField_help"
+msgstr "Entrez le mot de passe du compte d'accès Internet qui permet de se connecter au fournisseur d'accès Internet. Le mot de passe est saisi à l'identique dans les deux champs pour éliminer les erreurs de frappe."
+
+msgid "modemPasswordField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.modemPasswordField]]. Entrez le mot de passe du compte d'accès Internet qui permet de se connecter au fournisseur d'accès Internet."
+
+msgid "modemPasswordField_invalid"
+msgstr "Vous n'avez pas entré le même mot de passe dans les deux champs. Le mot de passe est saisi à l'identique dans les deux champs pour éliminer les erreurs de frappe. Veuillez recommencer."
+
+msgid "modemPhoneField"
+msgstr "Téléphone"
+
+msgid "modemPhoneField_help"
+msgstr "Entrez le numéro de téléphone de votre fournisseur d'accès Internet."
+
+msgid "modemPhoneField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.modemPhoneField]]. Entrez le numéro de téléphone de votre fournisseur d'accès Internet."
+
+msgid "modemInitStrField"
+msgstr "Chaîne d'initialisation du modem"
+
+msgid "modemInitStrField_help"
+msgstr "Entrez la chaîne d'initialisation du modem qui sera transmise au modem avant la numérotation. Vous devez entrer une chaîne d'initialisation ou le serveur ne pourra pas utiliser votre modem. Si vous ne connaissez pas la chaîne d'initialisation correcte pour votre modem, essayez 'ATZ' ou consultez la documentation du modem."
+
+msgid "modemInitStrField_empty"
+msgstr "Vous n'avez pas entré de valeur pour [[base-network.modemInitStrField]]. Vous devez entrer une chaîne d'initialisation ou le serveur ne pourra pas utiliser votre modem. Si vous ne connaissez pas la chaîne d'initialisation correcte pour votre modem, essayez 'ATZ' ou consultez la documentation du modem."
+
+msgid "modemIpField"
+msgstr "Adresse IP locale"
+
+msgid "modemIpField_help"
+msgstr "N'entrez l'adresse IP locale à utiliser de ce côté de la connexion du modem que si une adresse IP statique vous a été attribuée par votre fournisseur d'accès Internet."
+
+msgid "modemIpField_invalid"
+msgstr "[[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.modemIPField]]."
+
+msgid "modemSpeedField"
+msgstr "Vitesse du modem (Bauds)"
+
+msgid "modemSpeedField_help"
+msgstr "Sélectionnez la vitesse de connexion du port série de votre modem. La valeur par défaut est 115200."
+
+msgid "modemPulseField"
+msgstr "Activer la numérotation par impulsions"
+
+msgid "modemPulseField_help"
+msgstr "Active ou désactive les impulsions. Cette fonction permet de sélectionner la numérotation par impulsions au lieu de la numérotation par fréquence vocale. Par défaut, la numérotation par impulsions est désactivée."
+
+msgid "saveTest"
+msgstr "Enregistrer et tester"
+
+msgid "saveTest_help"
+msgstr "Cette action enregistre les paramètres actuels et tente de connecter le modem à votre fournisseur d'accès Internet afin de vérifier les paramètres fournis."
+
+
+# --- IP Address change confirm notice
+msgid "confirmNoDhcp"
+msgstr "Vos paramètres réseau [[VAR.interface]] ont été obtenus à partir d'un serveur DHCP.\nLa modification de ces paramètres désactive les requêtes DHCP sur [[VAR.interface]]. Voulez-vous continuer ?"
+
+msgid "ethernetChanged"
+msgstr "Vos paramètres réseau ont changé. Dans quelques instants le système essaiera de se connecter avec votre nouvelle adresse IP. \nSi la page de connexion n'apparaît pas, connectez-vous à ce serveur en tapant la nouvelle adresse dans votre navigateur."
+
+
+
+# --- Network Usage Info
+
+msgid "netUsage"
+msgstr "Réseau"
+
+msgid "netUsage_help"
+msgstr "Les statistiques d'utilisation du réseau se trouvent ici."
+
+msgid "amNetUsage"
+msgstr "Utilisation réseau"
+
+msgid "eth0"
+msgstr "Interface primaire (eth0)"
+
+msgid "eth1"
+msgstr "Interface secondaire (eth1)"
+
+msgid "ppp0"
+msgstr "Interface PPP (Point-to-Point Protocol) (ppp0)"
+
+# --- Active Monitor
+msgid "amIface"
+msgstr "Interface réseau"
+
+msgid "amIface_help"
+msgstr "Identificateur de l'interface réseau."
+
+msgid "amSentB"
+msgstr "Envoyés (Octets)"
+
+msgid "amSentB_help"
+msgstr "Nombre total d'octets envoyés sur cette interface réseau."
+
+msgid "amRcvdB"
+msgstr "Reçus (Octets)"
+
+msgid "amRcvdB_help"
+msgstr "Nombre total d'octets reçus sur cette interface réseau."
+
+msgid "amErrors"
+msgstr "Erreurs"
+
+msgid "amErrors_help"
+msgstr "Nombre total d'erreurs envoyées ou reçues sur cette interface réseau."
+
+msgid "amColls"
+msgstr "Collisions"
+
+msgid "amColls_help"
+msgstr "Nombre total de collisions détectées sur cette interface réseau."
+
+msgid "amNetworkNameTag"
+msgstr "Etat du réseau"
+
+msgid "amNetDetails"
+msgstr "Détails d'état du réseau"
+
+msgid "amIfaceIsDown"
+msgstr "L'interface réseau [[VAR.iface]] est inactive."
+
+msgid "amGatewayIsUnreachable"
+msgstr "La passerelle réseau n'est pas accessible."
+
+msgid "amNetworkOK"
+msgstr "Le réseau fonctionne normalement."
+
+msgid "dialoutWindowing_help"
+msgstr "L'utilisation du modem peut être limitée à certaines heures de la journée. Par défaut, le modem peut être utilisé à toute heure de la journée."
+
+msgid "dialTimes"
+msgstr "Connexion"
+
+msgid "noDialTimes"
+msgstr "Pas de connexion"
+
+
+msgid "dialoutWindowing"
+msgstr "Fenêtre de connexion"
+
+msgid "dialoutWindowing_help"
+msgstr "L'utilisation du modem peut être limitée à certaines heures de la journée. Par défaut, le modem peut etre connecté à toute heure de la journée."
+
+# Strings for Connection Period time labels
+
+msgid "modem_hour_0"
+msgstr "00h00 - 00h59"
+
+msgid "modem_hour_1"
+msgstr "01h00 - 01h59"
+
+msgid "modem_hour_2"
+msgstr "02h00 - 02h59"
+
+msgid "modem_hour_3"
+msgstr "03h00 - 03h59"
+
+msgid "modem_hour_4"
+msgstr "04h00 - 04h59"
+
+msgid "modem_hour_5"
+msgstr "05h00 - 05h59"
+
+msgid "modem_hour_6"
+msgstr "06h00 - 06h59"
+
+msgid "modem_hour_7"
+msgstr "07h00 - 07h59"
+
+msgid "modem_hour_8"
+msgstr "08h00 - 08h59"
+
+msgid "modem_hour_9"
+msgstr "09h00 - 09h59"
+
+msgid "modem_hour_10"
+msgstr "10h00 - 10h59"
+
+msgid "modem_hour_11"
+msgstr "11h00 - 11h59"
+
+msgid "modem_hour_12"
+msgstr "12h00 - 12h59"
+
+msgid "modem_hour_13"
+msgstr "13h00 - 13h59"
+
+msgid "modem_hour_14"
+msgstr "14h00 - 14h59"
+
+msgid "modem_hour_15"
+msgstr "15h00 - 15h59"
+
+msgid "modem_hour_16"
+msgstr "16h00 - 16h59"
+
+msgid "modem_hour_17"
+msgstr "17h00 - 17h59"
+
+msgid "modem_hour_18"
+msgstr "18h00 - 18h59"
+
+msgid "modem_hour_19"
+msgstr "19h00 - 19h59"
+
+msgid "modem_hour_20"
+msgstr "20h00 - 20h59"
+
+msgid "modem_hour_21"
+msgstr "21h00 - 21h59"
+
+msgid "modem_hour_22"
+msgstr "22h00 - 22h59"
+
+msgid "modem_hour_23"
+msgstr "23h00 - 23h59"
+
+# for modem_status.pl invoked directly from modem.php
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+# stuff from sauce basic
+msgid "gateway-not-reachable"
+msgstr "Impossible d'atteindre la passerelle spécifiée. Assurez-vous que la passerelle est bien dans un sous-réseau accessible. Vous pouvez également vérifier votre table de routage."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "Cette route n'a pas pu être ajoutée à la table de routage. La passerelle ([[VAR.gateway]]) ne se trouve sans doute pas dans le sous-réseau ciblé ([[VAR.target]])."
+
+msgid "invalid-route"
+msgstr "Cette route n'a pas pu être ajoutée à la table de routage. Il se peut que la passerelle spécifiée soit inaccessible."
+
+msgid "disable-interface-first"
+msgstr "Vous ne pouvez pas supprimer les paramètres si l'interface réseau est active. Désactivez l'interface avant d'essayer de supprimer les paramètres."
+
+

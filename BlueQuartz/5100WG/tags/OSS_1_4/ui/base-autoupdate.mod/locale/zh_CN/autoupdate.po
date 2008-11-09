@@ -1,0 +1,174 @@
+#error messages
+
+msgid "errorEmailBody"
+msgstr "在自动装入过程中发生错误："
+
+msgid "errorEmailSubject"
+msgstr "自动装入错误"
+
+msgid "nosettings"
+msgstr "找不到自动装入设置。"
+
+msgid "cantdownload"
+msgstr "不能从指定的自动装入服务器下载这一组软件包。\n\n[[VAR.badHost]]"
+
+msgid "badpacakge"
+msgstr "不能解包从自动装入服务器下载的这一组软件包。"
+
+msgid "badpkgfmt"
+msgstr "不能读取从自动装入服务器下载的这一组软件包。"
+
+msgid "badinstall"
+msgstr "在安装[[VAR.name]]时发生错误"
+
+#used by wizard stuff
+
+msgid "network"
+msgstr "辅助接口设置"
+
+msgid "network_help"
+msgstr " "
+
+msgid "servers"
+msgstr "自动更新服务器设置"
+
+msgid "servers_help"
+msgstr " "
+
+#used on network.php
+msgid "networkSettings"
+msgstr "网络设置"
+
+msgid "networkField"
+msgstr "网络设置"
+
+msgid "networkField_help"
+msgstr "配置辅助接口"
+
+msgid "dhcpHostNameField"
+msgstr "客户机主机名"
+
+msgid "dhcpHostNameField_help"
+msgstr "输入将此服务器识别为动态主机配置协议 (DHCP) 客户机的主机名。"
+
+msgid "dhcpClientIdField"
+msgstr "客户机标识符"
+
+msgid "dhcpClientIdField_help"
+msgstr "输入将此服务器识别为动态主机配置协议 (DHCP) 客户机的标识字符串。"
+
+msgid "pppoe"
+msgstr "使用 PPPoE 自动获取"
+
+msgid "dhcp"
+msgstr "使用 DHCP 自动获取"
+
+msgid "pppUserNameField"
+msgstr "用户名"
+
+msgid "pppUserNameField_help"
+msgstr "输入用于登录到您的因特网服务供应商的用户名。"
+
+msgid "pppPasswordField"
+msgstr "口令"
+
+msgid "pppPasswordField_help"
+msgstr "输入用于登录到您的因特网服务供应商的口令。"
+
+msgid "static"
+msgstr "手动指定"
+
+msgid "ipAddressField"
+msgstr "IP 地址"
+
+msgid "ipAddressField_help"
+msgstr "输入辅助接口的 IP 地址，该接口一般与因特网端连接。"
+
+msgid "netMaskField"
+msgstr "网络屏蔽"
+
+msgid "netMaskField_help"
+msgstr "输入辅助接口的网络屏蔽。"
+
+msgid "gatewayField"
+msgstr "网关"
+
+msgid "gatewayField_help"
+msgstr "输入此服务器设备本地网络网关的 IP 地址。这是主接口和辅助接口的网关。"
+
+msgid "dnsField"
+msgstr "DNS 服务器"
+
+msgid "dnsField_help"
+msgstr "输入您的本地域名服务器的 IP 地址。"
+
+#used on server.php
+
+msgid "serverSettings"
+msgstr "自动更新服务器设置"
+
+msgid "serverField"
+msgstr "自动更新服务器"
+
+msgid "serverField_help"
+msgstr "输入自动更新服务器的主机名或 IP 地址。"
+
+msgid "proxyField"
+msgstr "HTTP 代理"
+
+msgid "proxyField_help"
+msgstr "如果网络上存在一个 HTTP 代理，请输入 HTTP 代理的主机名和 IP 地址。"
+
+msgid "authField"
+msgstr "认证令牌"
+
+msgid "authField_help"
+msgstr "输入访问自动更新服务器所需的任何认证信息。"
+
+msgid "invalidServer"
+msgstr "您输入的服务器不以“自动更新”服务器的身份出现。请检查您的设置，然后重试。"
+
+# used in the lcd script
+msgid "autoupdate_server"
+msgstr "   SERVER IP:   "
+
+msgid "autoupdate_secure"
+msgstr "  ENABLE SSL?   "
+
+msgid "autoupdate_proxy"
+msgstr "   PROXY IP:    "
+
+msgid "autoupdate_proxy_question"
+msgstr " CONFIG. PROXY? "
+
+msgid "autoupdate_auth"
+msgstr "  AUTH. TOKEN:  "
+
+msgid "autoupdate_auth_question"
+msgstr "CONFIGURE AUTH.?"
+
+msgid "checking_server_1"
+msgstr "CHECKING SERVER "
+
+msgid "checking_server_2"
+msgstr "PLEASE WAIT ... "
+
+msgid "cant_contact_server_1"
+msgstr " CAN'T CONTACT  "
+
+msgid "cant_contact_server_2"
+msgstr "     SERVER     "
+
+msgid "invalid_server_1"
+msgstr " INVALID SERVER "
+
+msgid "invalid_server_2"
+msgstr "  ADDR ENTERED  "
+
+msgid "reenter_data"
+msgstr "   TRY AGAIN?   "
+msgid "statusEmailSubject"
+msgstr "AutoLoad Status"
+
+msgid "statusEmailBody"
+msgstr "The following packages were installed by AutoUpdate:\n"

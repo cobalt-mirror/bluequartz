@@ -1,0 +1,74 @@
+#!/usr/bin/perl -I../perl_modules
+# $Id: fileTwig 922 2003-07-17 15:22:40Z will $
+
+use strict;
+require XML::Twig;
+#use Devel::Leak;
+#use Data::Dumper;
+
+
+my $fileName = "/tmp/cmu2.xml";
+
+my $ret = readXml($fileName);
+
+sub readXml {
+	my $file = shift;
+
+	my $p = new XML::Twig(PrettyPrint => 'indented');
+#	my $p = new XML::Twig(TwigHandlers => { vsite => \&vsite });
+
+	$p->parsefile($file);
+	#$p->print;
+	my $root = $p->root();
+
+	warn "ok: ", $root->first_child('vsite')->att('id'), "\n";
+	my @m = $root->children('vsite');
+
+	foreach my $site (@m) {
+		warn "ok: ", $site->first_child('ipaddr')->att('value'), "\n";
+	}
+
+	#my @f = $u->children('file');
+	#my $file = $f[0];
+	#warn "file is: ", $file, "\n";
+	#warn "user att is: ", $file->{att}->{name}, "\n";
+
+	#my @c = $file->children();
+	#warn "c: ", @c, "\n";
+	#warn "c2: ", $c[0]->{att}->{value}, "\n";
+	#my $d = $u->first_child;
+	#warn "child is: ", $d, "\n";
+	#warn Dumper($d);
+	
+	
+	
+
+
+	#foreach my $d (keys %$u ) {
+	#	warn "$d => ", $u->{$d}, "\n";
+	#	warn "child: ", $u->{$d}->first_child, "\n";
+	#}
+
+	#warn `ps auxwwww | grep $$ |grep fileTwig`;
+
+	return $p; 
+}
+
+sub vsite
+{
+	my ($t, $vsite) = @_;
+	
+	my $fqdn = $vsite->first_child('fqdn');
+	warn "fqdn: ", $fqdn, "\n";
+	warn "text is: ", $fqdn->text, "\n";
+	my @children = $vsite->children;
+	warn "we have: ", scalar @children, " children\n";
+	#foreach my $child (@children) {
+	#warn "child: ", $child->text, " => \n";
+	#$vsite->first_child($child)->text, "\n";
+
+	#}
+	
+	
+
+}

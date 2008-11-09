@@ -1,0 +1,226 @@
+#
+# This files is for LDAP Export and Import, but does not include File Import
+#
+
+# Base strings
+
+msgid "ldapName"
+msgstr "轻量目录访问协议 (LDAP)"
+
+	#item for import method drop-down
+msgid "importChangerLdap"
+msgstr "[[base-ldap.ldapName]] 导入"
+
+
+#----- Menu
+
+	# AKA Ldap Export :
+msgid "export"
+msgstr "LDAP 目录"
+
+
+# ---- LDAP directory/export page
+
+msgid "ldapExport"
+msgstr "[[base-ldap.ldapName]] 目录"
+
+msgid "ldapExportDescription"
+msgstr "[[base-ldap.ldapName]] 服务提供的用户目录可在此处配置。"
+
+msgid "exportEnabled"
+msgstr "启用"
+
+msgid "exportEnabled_help"
+msgstr "打开或关闭[[base-ldap.ldapName]] 服务。打开此功能可使用户使用标准的 LDAP 客户机获得此服务器设备上用户的电子邮件地址和其他信息。"
+
+msgid "baseDn"
+msgstr "基本区别名称 (Dn)"
+
+msgid "baseDn_rule"
+msgstr "例如，o=My Organization, c=US 就是有效的输入。"
+
+msgid "baseDn_help"
+msgstr "请输入您的用户目录的基本区别名称 (Dn)。[[base-ldap.baseDn_rule]]"
+
+msgid "baseDn_empty"
+msgstr "对不起，您没有为[[base-ldap.baseDn]]输入值。[[base-ldap.baseDn_rule]]"
+
+msgid "emailBase"
+msgstr "电子邮件域名"
+
+msgid "emailBase_help"
+msgstr "输入导出到您的目录中的电子邮件地址的替代域名。如果此服务器设备的主机名是 mail.company.com，但接收 @company.com 的邮件，您可能希望将电子邮件域名设置为 company.com。这将导致目录中的所有电子邮件地址都显示为 user@company.com，而非 user@mail.company.com。"
+
+msgid "emailBase_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-ldap.emailBase]]的无效值。请输入格式正确的主机名或域名。"
+
+
+# ------ LDAP Import section 
+
+msgid "ldapImport"
+msgstr "[[base-ldap.ldapName]] 导入"
+
+msgid "import"
+msgstr "立即导入"
+
+msgid "import_help"
+msgstr "单击此处从指定的[[base-ldap.ldapName]] 服务器导入用户。"
+
+msgid "server"
+msgstr "服务器网络地址"
+
+msgid "server_help"
+msgstr "输入您希望从中导入用户的服务器的 IP 地址或主机名。[[base-ldap.server_rule]]"
+
+msgid "server_rule"
+msgstr "例如，cobalt.com 或 192.168.10.23 就是有效的输入。" 
+
+msgid "server_empty"
+msgstr "对不起，您没有为[[base-ldap.server]]输入值。"
+
+msgid "server_invalid"
+msgstr "对不起，[[VAR.invalidValue]]是[[base-ldap.server]]的无效值。请输入有效的主机名或 IP 地址。[[base-ldap.server_rule]]"
+
+msgid "base"
+msgstr "基本区别名称 (Dn)"
+
+msgid "base_help"
+msgstr "输入要导入的 LDAP 输入的基础。"
+
+msgid "base_empty"
+msgstr "对不起，您没有为[[base-ldap.base]]输入值。"
+
+msgid "bindDn"
+msgstr "绑定区别名称 (Dn)"
+
+msgid "bindDn_help"
+msgstr "输入 LDAP 服务器上管理用户的绑定区别名称 (Dn)。此值与其各自的口令均需经过认证，并需获得导入用户的适当信息。例如，cn=myname，C=US 就是有效的输入。"
+
+msgid "bindDn_rule"
+msgstr "请输入格式正确的绑定区别名称 (Dn)。例如，cn=myname，C=US 就是有效的输入。"
+
+msgid "bindDn_empty"
+msgstr "对不起，您没有为[[base-ldap.bindDn]]输入值。[[base-ldap.bindDn_rule]]"
+
+msgid "passwordAuth"
+msgstr "口令"
+
+msgid "passwordAuth_help"
+msgstr "为绑定区别名称 (Dn) 输入口令"
+
+msgid "passwordAuth_empty"
+msgstr "对不起，您没有为[[base-ldap.passwordAuth]]输入值。"
+
+msgid "passwordAuth_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。两个字段中输入相同口令是为了防止键入错误。请重试。" 
+
+msgid "userFilter"
+msgstr "用户过滤器"
+
+msgid "userFilter_help"
+msgstr "输入用于确定哪些对象类作为用户导入的过滤器。如果留空，使用的值是 (|(objectClass=cobaltAccount)(objectClass=posixAccount))"
+
+msgid "groupFilter"
+msgstr "组过滤器"
+
+msgid "groupFilter_help"
+msgstr "输入用于确定哪些对象类作为组导入的过滤器。如果留空，使用的值是 (|(objectClass=cobaltGroup)(objectClass=posixGroup))"
+
+
+
+# ------ Import Error msgs
+
+msgid "couldnt_connect_to_ldap_server"
+msgstr "无法连接至 LDAP 服务器 '[[VAR.server]]'。请检查您的设置并重试。"
+
+msgid "couldnt_bind_to_ldap_server"
+msgstr "对不起，绑定到指定的 LDAP 服务器时出现错误。请检查您的设置并重试。"
+
+msgid "couldnt_search"
+msgstr "对不起，在搜索[[VAR.error]]时出现错误。"
+
+msgid "couldnt_fetch_system_object"
+msgstr "对不起，在尝试获取系统对象时出现错误。"
+
+msgid "problems_occured_with_entry"
+msgstr "[[VAR.entry]]  在导入时出现错误：[[VAR.err]]"
+
+
+
+msgid "importErrors"
+msgstr "导入错误"
+
+msgid "errorMessage"
+msgstr "错误消息"
+
+msgid "errorMessage_help"
+msgstr "这是 LDAP 导入时出现的错误列表。"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]]个错误"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]]个错误"
+
+msgid "importStatus"
+msgstr "导入状态"
+
+msgid "statusField"
+msgstr "状态"
+
+msgid "statusField_help"
+msgstr "这是导入的状态。"
+
+msgid "addingGroup"
+msgstr "添加组"
+
+msgid "addingUser"
+msgstr "添加用户"
+
+msgid "progressField"
+msgstr "进度"
+
+msgid "progressField_help"
+msgstr "这是导入的进度。"
+
+msgid "importSucceeded"
+msgstr "导入完成"
+
+msgid "importSucceededMessage"
+msgstr "导入成功"
+
+msgid "importSucceededMessage_help"
+msgstr "导入成功，未出现任何错误。"
+
+msgid "queryingLdap"
+msgstr "查询 LDAP 服务器的详细信息。"
+
+
+msgid "cannotEditBlock"
+msgstr "对不起，在重写配置文件时出现错误。"
+
+msgid "cannotLinkLdap"
+msgstr "对不起，在尝试链接 init 脚本时出现错误。"
+
+msgid "cannotStartLdap"
+msgstr "对不起，在尝试启动 LDAP 时出现错误。"
+
+msgid "cannotRestartLdap"
+msgstr "对不起，在重新启动 LDAP 服务时出现错误。"
+
+msgid "cannotRemoveLink"
+msgstr "对不起，在尝试取消链接 init 脚本时出现错误。"
+
+msgid "cannotStopLdap"
+msgstr "对不起，在尝试停止 LDAP 服务时出现错误。"
+
+msgid "logFilename"
+msgstr "[[VAR.filename]]"
+
+# Cpaabilities
+msgid "capgroup_adminLdapExport"
+msgstr "管理 LDAP 目录"
+
+msgid "capgroup_adminLdapExport_help"
+msgstr "此管理权限允许用户修改用于 LDAP 目录的设置。"
+

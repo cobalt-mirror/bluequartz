@@ -1,0 +1,154 @@
+#!/usr/bin/perl -w -I. -I/usr/sausalito/perl
+
+# $Id: cce_dump,v 1.5.2.1 2002/01/05 00:26:08 bservies Exp $
+# 
+# Copyright 2000 Cobalt Networks, Inc., All Rights Reserved
+#
+
+use strict;
+use Getopt::Long;
+
+use vars qw ($opt_ccedir $opt_debug $opt_file $opt_verbose);
+my ($rc);
+
+sub dprintf {
+        my ($level, $format, @args) = @_;
+        if (defined $opt_debug && $level <= $opt_debug) {
+                print STDERR "$0: ";
+                print STDERR sprintf $format, @args;
+        }
+}
+
+
+
+sub execute_cmd {
+	my @cmd = @_;
+	my ($msg, $rc);
+
+	$rc = 0xffff & system(@cmd);
+	if ($rc == 0) {
+		$msg = "ran with normal exit.";
+	} elsif ($rc == 0xff00) {
+		$msg = "command failed: $!";
+	} elsif ($rc > 0x80) {
+		$rc >>= 8;
+		$msg = "ran with non-zero exit status $rc";
+	} else {
+		$msg = "ran with ";
+		if ($rc & 0x80) {
+			$rc &= ~0x80;
+			$msg .= "core dump from ";
+		}
+		$msg .= "signal $rc";
+	}
+	dprintf(3, "command \"%s\" exited with %d.  Reason: \"%s\"\n", join " ", @cmd, $msg, $rc);
+	return ($msg, $rc);
+}
+
+
+sub save_fds {
+	# Save the current stderr and stdout fds
+	open SAVEERR, ">&STDERR";
+	open SAVEOUT, ">&STDOUT";
+
+	# Unless opt_verbose is specified, send output to /dev/null
+	unless (defined $opt_verbose) {
+		close STDERR;
+		open STDERR, ">&/dev/null";
+	}
+
+	# Redirect stdout to stderr
+	close STDOUT;
+	open STDOUT, ">&STDERR";
+}
+
+sub restore_fds {
+	# Restore stdout to its original setting
+	close STDOUT;
+	open STDOUT, ">&SAVEOUT";
+
+	# Restore stderr to its original setting
+	close STDERR;
+	open STDERR, ">&SAVEERR";
+
+	# Close the storage handles
+	close SAVEOUT;
+	close SAVEERR;
+}
+
+
+sub cce_lock {
+	my @cmd;
+	my ($msg, $rc);
+
+	# Set up stdout and stderr
+	&save_fds;
+
+	# Make CCE read-only
+	@cmd = ('/usr/sausalito/sbin/cce_lock.pl', '--lock', '--reason="Backup"');
+	if ($opt_debug || $opt_verbose) {
+		push @cmd, '--verbose';
+	}
+	($msg, $rc) = execute_cmd(@cmd);
+
+	# Restore stdout and stderr
+	&restore_fds;
+}
+
+
+sub cce_unlock {
+	my @cmd;
+	my ($msg, $rc);
+
+	# Set up stdout and stderr
+	&save_fds;
+
+	# Sync the CCE state with CCE itself.
+	@cmd = ('/usr/sausalito/sbin/cce_lock.pl', '--sync');
+	($msg, $rc) = execute_cmd(@cmd);
+
+	# Restore stdout and stderr
+	&restore_fds;
+}
+
+
+sub dump_cce {
+	my ($ofile, $idir) = @_;
+	my ($msg, $rc);
+
+        # Files to ignore
+        my @ignorefiles = qw(
+                /usr/sausalito/pperl.socket
+        );
+
+	my @cmd = ("tar", "--preserve-permissions");
+
+	for (@ignorefiles) {
+		# Add files to ignore list
+		push @cmd, ("--exclude=$_");
+	}
+	push @cmd, ("--create");
+	push @cmd, ("--file");
+	push @cmd, ("$ofile");
+	push @cmd, ("$idir");
+
+	($msg, $rc) = execute_cmd(@cmd); 
+}
+
+
+#
+# Main
+#
+
+select STDERR; $| = 1;
+select STDOUT; $| = 1;
+
+# Process any command line options
+&GetOptions("ccedir=s", "debug:i", "file=s", "verbose:i");
+$opt_file = "-" unless (defined $opt_file);
+$opt_ccedir = "/usr/sausalito/codb" unless (defined $opt_ccedir);
+
+&cce_lock;
+&dump_cce($opt_file, $opt_ccedir);
+&cce_unlock;
+

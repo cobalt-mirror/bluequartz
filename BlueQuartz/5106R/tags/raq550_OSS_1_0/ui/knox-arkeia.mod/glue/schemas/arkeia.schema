@@ -1,0 +1,21 @@
+<!-- $Id: arkeia.schema,v 1.8 2001/10/27 01:55:27 bservies Exp $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved -->
+
+<class name="System" namespace="Arkeia" version="1.2">
+	<property name="enabled"
+	    type="boolean"
+	    default="0"
+	    writeacl="ruleCapable(modifyArkeia)"
+	/>
+	<property name="server"
+	    type="hostname"
+	    optional="false"
+	    writeacl="ruleCapable(modifyArkeia)"
+	/>
+	<property name="port"
+	    type="int"
+	    default="617"
+	    writeacl="ruleCapable(modifyArkeia)"
+	    readacl="ruleCapable(modifyArkeia)"
+	/>
+</class>

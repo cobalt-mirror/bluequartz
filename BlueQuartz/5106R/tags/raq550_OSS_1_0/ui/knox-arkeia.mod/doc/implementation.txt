@@ -1,0 +1,77 @@
+1.0 Overview
+
+This document describes how the requirements for integrating the Knox Arkeia
+client are implemented.
+
+2.0 Arkeia
+
+The attributes of the Arkeia set are converted into CCE properties as follows:
+
+	Attribute	Property
+	---------------	----------------
+	Enabled		enabled
+	Server		server
+	Port		port
+
+Events are implemented as CCE events.  They are:
+
+        Event           CCE Event       Handler
+        --------------  --------------  ---------------------
+        Create          CREATE          create
+        Modify          *               modify, am_arkeia.pl
+        Delete          DESTROY         delete
+
+am_arkeia.pl is used to syncronize the enabled property with the associated
+Arkeia Active Monitor object (see below).
+
+2.1 Create Event
+
+When an Arkeia object is created, the create handler ensures that there is not
+existing object in the system already and that the parameters given are valid.
+If an object exists or the parameters are not valid, the handler sets CCE baddata
+and exits with failure.
+
+When the parameters are correct, the necessary Arkeia client configuation files
+are updated.  They are:
+
+	Property	File
+	---------------	-------------------------------
+	enabled		/usr/knox/bin/NLSERVD start
+			/etc/rc.d/init.d/cobalt-arkeia
+
+			Values: if enabled is 0, then state is 'stop', otherwise
+			the state is 'start'.  cobalt-arkeia is used to integrate
+			with chkconfig and the state set accordingly.
+
+			Note: Arkeia ships a init script that is not chkconfig
+			compliant.  This script is removed during the post-install
+			state of this package.
+
+	server		/usr/knox/nlp/admin.cfg
+
+			The first line of the file must contain the server
+			name.  No comments are allowed in the file (not even
+			shell-style '#' comments).
+
+	port		/usr/knox/nlp/nlp.cfg
+
+			The file must be scanned for the line beginning with
+			'PORT_NUMBER'.  The form of the line must be:
+			'^PORT_NUMBER %d' where ^ indicates the beginning of
+			the line and %d is replaced with the port number.
+
+2.2  Modify Event
+
+When the Arkeia object is modified, the parameters are checked for validity. If
+they are valid, the client daemon is stopped, the configuration files indicated
+above are updated, and the client daemon restarted (if enabled is true).
+
+2.3  Delete Event
+
+When the Arkeia object is deleted, no special action is taken.
+
+
+3.0 Arkeia Active Monitor
+
+
+the client configuration files indicated in 

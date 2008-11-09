@@ -1,0 +1,78 @@
+Majordomo has been removed from the Sun Cobalt Qube3 Open Source distribution
+due to license issues.  
+
+The following files and their md5 checksums have been stripped.
+
+These file may be obtained from a Sun or Cobalt manufactured Qube3 Operating System.  
+
+0a8554f39d0f2f64f7cfd7d102101284  ./Doc/README
+5ed94f1f7179352840d2361a0a0f4686  ./Doc/FAQ
+168ab9f8719c20f3ca4d9239b20c31ee  ./Doc/man/approve.man
+de9336c97af07a0d88bd4ced53f7d660  ./Doc/man/bounce-remind.1
+813aa4cea1c0675c8f6365c81d533907  ./Doc/man/bounce-remind.man
+2a4f1b2c0c576888048a97595abbcef5  ./Doc/man/bounce.1
+813aa4cea1c0675c8f6365c81d533907  ./Doc/man/bounce.man
+8a1d78df894daf662460f1c7b33301b1  ./Doc/man/digest.1
+a62f7a4a4ba734a07ac571e9cda5a940  ./Doc/man/digest.man
+eaba022dc45120e93dd47bccbca77fd4  ./Doc/man/majordomo.8
+ac3f8e0460a027cbe5332f57e3d10de3  ./Doc/man/majordomo.man
+eb8cacf3a43db8d7b0915407c1e2d680  ./Doc/man/resend.1
+2af7a46b7827af27531d3be590c67e14  ./Doc/man/resend.man
+2dff5d22e08a759453b707a78c886e66  ./Doc/README.digest
+648e3db7e5215af617accc1c64ab546a  ./Doc/README.sequencer
+e5e5de4cb569e699b83a77b4c40f78a8  ./Doc/digest.aliases
+a5e5c0614f28f8f652b94faa0fd55cd1  ./Doc/firewalls-digest.cf
+f72db992a48702cec6b88cfc118483a7  ./Doc/firewalls-digest.header
+aa6ed9e0f26a6eba784aae8267df1951  ./Doc/firewalls-digest.num
+940649238c53da7749f8698b173ba1d7  ./Doc/firewalls-digest.trailer
+b026324c6904b2a9cb4b88d6d61c81d1  ./Doc/firewalls-digest.vol
+9317b4e4e2855243b15378e77fc688ad  ./Doc/list-owner-info
+230b97edcb7cc8e69064fc1f7e943479  ./Doc/majordomo-faq.html
+a6dcff08088a3d5242f6ec6c866b6387  ./Doc/majordomo-faq.txt
+f1854f425db18deae5b6c3a2cf14158c  ./Doc/majordomo.lisa6.ps
+f7d25b235d1ac667c510c8770a0d8461  ./Doc/majordomo.ora
+30e35d0e2659ae536d966dff30552670  ./Doc/quick-digest-setup
+f46b6a02b5a171aa434b97f0c1f19432  ./Changelog
+e02338c928e558169c3c79dadcd08280  ./FUTURE
+5f7a772a319244e67cfd0395aadb592d  ./INSTALL
+b1e72fca2e68bf0cd4ebbae3c05b31b5  ./LICENSE
+92ab1e41fcedf52100231fcfce8fae77  ./Makefile
+3cea04e9e3d729fd9f7f33993d757b98  ./NEWLIST
+b7ce83d31bab3431903baab7ba5f2723  ./NEWS
+44955a8e3f66059770f9024615e938a5  ./README
+3cf050c6b3fb73796f2f90a935b2c6ee  ./aliases.majordomo
+5c891d9e133812f0b0c5dde85a554e4b  ./approve
+51fc6388cf918ebfb157cc46e6b01f28  ./archive2.pl
+01cddf3e97339d7a15097b1a8418e9a9  ./bounce
+4d889d6d3544dcf50a83951dbd5361fe  ./bounce-remind
+5434031fbf98a76ebdccb4e8b3299555  ./config-test
+e0c7b2d61d4e6692ae4bfeff57447019  ./config_parse.pl
+5d2c39f86a61910b12381118b302a371  ./digest
+d643f4349d8aed75c8fada198d36f163  ./install.sh
+243d6a0f890ee77c17cae1258c545078  ./majordomo
+d06d90b9b5e702b7aac224f2047cf097  ./majordomo.aliases
+b4982313c4a5b618da8cfea1f6968a3f  ./majordomo.cf
+f459680c12d7d3e4315633c603b93226  ./majordomo.cf.template
+27fb172804eac1870773a387767c9aba  ./majordomo.edits
+cfe13f4ce2467046489e096947c93939  ./majordomo.pl
+07ef145ba34aaaa0264fa8fa6b8a82bc  ./majordomo.spec
+2c2262434f54f8981b1e503908421733  ./majordomo_version.pl
+de00a20091d0f14cebdf90e76e12e6dc  ./medit
+bf011c92403135ea6e3aa776b871b6ad  ./request-answer
+deb0492747796d78da334f5774703334  ./resend
+c9fb6b150c72dc0254c88a3f2c878a38  ./sample.cf
+63c05d073ede68a4ef6fb67f67d3d060  ./shlock.pl
+630cc85ee4e7a617eb5ab1308b815365  ./todo.local
+584266707f860c58dc51be968fed87d7  ./wrapper.c
+ce646babb5e1fcb125cce14c845c5a56  ./wrapper.sh
+eca41be2170a9b4aab3155ef7c69496e  ./contrib/archive_mh.pl
+6e5cbb206fbabae1a6831cb1bc586f8d  ./contrib/digest.diff
+a6ca5b11bb740018365dfd1089add9de  ./contrib/digest.num
+8344fee48f1bee698621fb7adffc95c7  ./contrib/digest.send
+1a17f6d6dd353082d219f8fd5d1613d9  ./contrib/logsummary.pl
+3057eda0240325e5e4b97bad1012b325  ./contrib/makeindex.pl
+89bfdb51f0d4f855606695337983b0f1  ./contrib/new-list
+c23797bd0edb073660f33501e05a762f  ./contrib/sequencer
+b522ec2a85b6b270a0cb14cd67322014  ./md-sub/catdb
+b22058180687264aebe302c27fc67c45  ./md-sub/md-sub.cgi
+b7c5a8968cab4f8286bd66a623f2798e  ./md-sub/ml-init.sample

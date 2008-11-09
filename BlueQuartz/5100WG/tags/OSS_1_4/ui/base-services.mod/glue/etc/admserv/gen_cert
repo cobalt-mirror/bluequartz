@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+# generate simple self-signed certificate
+
+OPENSSL=/usr/sbin/openssl
+CERTDIR=/etc/admserv/certs
+
+SERIAL=`cat /proc/serialnumber`
+COUNTRY=CN
+STATE=CN
+LOCALITY=Generic
+ORGANIZATION=Cobalt
+ORGUNIT=Qube3
+HOSTNAME=${SERIAL}.Qube3.Cobalt.com
+
+NOW=`date +%s`
+
+mkdir -p $CERTDIR
+chmod 0700 $CERTDIR
+
+# move old keys/certs out of the way, if they exist
+if [ -e $CERTDIR/key ]; then mv $CERTDIR/key $CERTDIR/key.$NOW ; fi
+if [ -e $CERTDIR/certificate ]; then mv $CERTDIR/certificate $CERTDIR/certificate.$NOW ; fi
+if [ -e $CERTDIR/request ]; then mv $CERTDIR/request $CERTDIR/request.$NOW ; fi
+
+$OPENSSL genrsa -out $CERTDIR/key 1024 &> /dev/null
+
+cat <<EOT | $OPENSSL req -new -config /usr/lib/openssl.cnf -key $CERTDIR/key -days 99999 -out $CERTDIR/request &> /dev/null
+$COUNTRY
+$STATE
+$LOCALITY
+$ORGANIZATION
+$ORGUNIT
+$HOSTNAME
+admin@$HOSTNAME
+EOT
+
+$OPENSSL x509 -days 99999 -req -signkey $CERTDIR/key -in $CERTDIR/request -out $CERTDIR/certificate &> /dev/null
+
+chmod 0660 $CERTDIR/key $CERTDIR/certificate $CERTDIR/request
+
+echo "Made admin certificate for $HOSTNAME"
+
+# done.

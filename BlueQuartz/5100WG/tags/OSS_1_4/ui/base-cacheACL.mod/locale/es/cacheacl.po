@@ -1,0 +1,36 @@
+msgid "cacheACLSettings"
+msgstr "Acceso restringido Web"
+
+msgid "cacheACL"
+msgstr "Acceso Web"
+
+msgid "cacheACL_help"
+msgstr "El acceso Web puede controlarse aquí, si el servidor esta siendo usado como puerta de enlace o proxy."
+
+msgid "whitelist"
+msgstr "Sitios autorizados"
+
+msgid "blacklist"
+msgstr "Sitios restringidos"
+
+msgid "all"
+msgstr "Sin restricción"
+
+msgid "mode"
+msgstr "Directríz de restricción"
+
+msgid "mode_help"
+msgstr "Seleccióne la clase de restricción: Lista blanca permite acceso solo a las páginas web especificadas; la lista Negra no permite acceso a las páginas especificadas; Sin Restricción permite acceso libre. NOTA: esta directríz solo afecta al acceso web. FTP y otros protocolos no seran afectados."
+
+msgid "domains"
+msgstr "Nombres de operador / dominio"
+
+msgid "domains_help"
+msgstr "Escriba los nombres de operador y de dominio con acceso Web restringido. Los nombres de dominio común pueden utilizarse, incluyendo un punto antes del nombre de dominio. Por ejemplo a la dirección  www.sun.com le sera aplicada únicamente a este operador; pero la entrada .sun.com afectará a todas las paginas web  que comparten el dominio común, por ejemplo, www.sun.com, cobalt.sun.com, etc.sun.com."
+
+msgid "ipaddr"
+msgstr "Dirección IP"
+
+msgid "ipaddr_help"
+msgstr "Escriba una lista de direcciónes IP para esta directríz."
+

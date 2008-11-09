@@ -1,0 +1,35 @@
+cce shell-tools changes
+
+2.0  (04-11-2001)
+- original version for Qube3
+
+#######################################################################
+
+2.01 (06-20-2002)
+- Initial version for alpine
+
+2.02 (07-02-2002) [changes reconstructed from diff]
+- Addition of clist commands
+- changes in option handling
+
+2.03 (07-31-2002) [changes reconstructed from diff]
+- Addition of adminPassword
+
+2.04 (04-04-2003)
+- Added help text for --help option
+- Fixed problem with auto dns always being enabled
+
+2.05 (04-21-2003)
+-  cmodvsite --group site1  --catchallOff would set the catch all to NULL, which isn't good. Fixed.
+(reported by Jared Herbohn of 90blue.com)
+
+2.06 (05-01-2003)
+/usr/sbin/cmoduser -n username --set-aliases=""
+Adds an alias of "1" (1@domainname.com)
+
+This now sets it to empty.  
+(reported by Jared Herbohn of 90blue.com)
+
+2.07 (09-29-2003)
+/usr/sbin/cmoduser -n test --forwardOff="" does not work.
+(reported and fixed by Jared Herbohn of 90blue.com)

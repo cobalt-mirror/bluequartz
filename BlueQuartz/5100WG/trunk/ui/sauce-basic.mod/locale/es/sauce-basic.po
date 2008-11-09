@@ -1,0 +1,70 @@
+# Global tech support strings
+
+	# NOTE: In Europe, the Middle East and Africa, call +31 71 565 7070 support-emea@cobalt.com.
+	# In Japan, send email to support-japan@cobalt.com.
+msgid "techSupportUSPhone"
+msgstr "(888) 702-6225"
+
+msgid "techSupportIntlPhone"
+msgstr "+1 (650) 623-2679"
+
+msgid "techSupportEmail"
+msgstr "support@cobalt.com"
+	
+	# This should work for at least USA and Canada
+msgid "contactTechSupport"
+msgstr "Comuníquese con el servicio técnico de [[base-carmel.osVendor]] al número [[base-sauce-basic.techSupportUSPhone]] ([[base-sauce-basic.techSupportIntlPhone]] fuera de Estados Unidos) o por correo electrónico a la dirección [[base-sauce-basic.techSupportEmail]]."
+
+
+msgid "kill_dhclient_failed"
+msgstr "No se pudo comprobar que el cliente DHCP se ha detenido."
+
+msgid "gateway-not-reachable"
+msgstr "No se pudo acceder a la puerta de enlace especificada. Compruebe que esté en una subred accesible y que se usen reglas de encaminamiento directo."
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "No se pudo añadir esta ruta a la tabla de encaminamiento. La puerta de enlace ([[VAR.gateway]]) podría no estar en la subred de destino ([[VAR.target]])."
+
+msgid "invalid-route"
+msgstr "No se pudo añadir esta ruta a la tabla de encaminamiento. Es posible que la puerta de enlace especificada no esté accesible."
+
+msgid "disable-interface-first"
+msgstr "No se puede eliminar la configuración de una interfaz de red habilitada. Deshabilite la interfaz antes de eliminar la configuración."
+
+msgid "Invalid-object"
+msgstr "Error interno: se ha intentado eliminar un objeto inválido. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Error: usuario [[VAR.name]] ya eliminado."
+
+msgid "failed-to-add-user"
+msgstr "Error interno: no se pudo crear el nuevo usuario $name. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "El valor para la cuota es demasiado grande. La máxima permitida es [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "El nombre del servidor es demasiado largo. La longitud máxima es de 40 caracteres."
+
+msgid "descReadOnly"
+msgstr "La descripción del usuario es de sólo lectura."
+
+# Capabilities
+msgid "capgroup_adminUser"
+msgstr "Administrar usuarios"
+
+msgid "capgroup_adminUser_help"
+msgstr "Este derecho administrativo permite que un usuario cree, suprima y modifique otros usuarios de esta máquina."
+
+msgid "capgroup_adminUserGroupMailingList"
+msgstr "Administrar usuarios y grupos"
+
+msgid "capgroup_adminUserGroupMailingList_help"
+msgstr "Este derecho administrativo permite que un usuario cree, suprima y modifique otros usuarios y grupos de esta máquina."
+
+# capabilities errors
+msgid "permsNotAvailable"
+msgstr "Debe tener estos derechos pare definirlos en otro usuario (ha iniciado la sesión como 'admin'?)"
+
+msgid "needPermToRemovePerm"
+msgstr "Debe tener este derecho para eliminarlo de otro usuario"

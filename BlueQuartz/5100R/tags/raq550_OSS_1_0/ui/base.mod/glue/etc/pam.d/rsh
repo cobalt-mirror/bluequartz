@@ -1,0 +1,7 @@
+#%PAM-1.0
+auth       required     /lib/security/pam_securetty.so
+auth       required     /lib/security/pam_rhosts_auth.so no_warn
+auth       required     /lib/security/pam_nologin.so
+account    required     /lib/security/pam_pwdb.so
+session    required     /lib/security/pam_pwdb.so
+#session   required     /lib/security/pam_limits.so

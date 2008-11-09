@@ -1,0 +1,221 @@
+Requests for enhancement
+$Id: RFE.txt 229 2003-07-18 20:22:20Z will $
+------------------------
+
+1) Per-class defaults for readacl and writeacl
+  who: 	Tim Hockin <thockin@sun.com>  
+  when:	Dec. 2000
+  priority:	low
+  explain:
+	Frequently, all the properties of a class have the same readacl or
+	writeacl.  It would simplify schemas if a class could specify a
+	readacl/writeacl that would apply to all properties, unless overridden
+	by that property explicitly.
+   comments:	
+
+
+2) Arbitrarily deep sub-namespaces
+  who:		Adrian Sun <asun@sun.com>
+  when:		Dec. 2000
+  priority:	low
+  explain:	
+	It would be nice to nest namespaces deeper than one level.
+  comments:
+
+
+3) Typedefs that can reference other typedefs
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Dec 2000
+  priority:	low
+  explain:	
+  	We have some complex base types (such as IP address).  It would be
+	nice to be able to re-use those well-defined types.  For example, an
+	IP/mask pair might be "{ip_address}/[0-9]+".  The {} notation is what
+	'lex' uses.
+  comments:	
+	- This requires '{' and '}' to become special, and requires that we
+	  parse all typedefs (at import only).  '{' and '}' may already be
+	  special to the regex lib for "repeat last token" semantics.  
+	  -- TPH
+
+
+4) Parameters to typedefs
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 05, 2002
+  priority:	low
+  explain:
+	Some typedefs could do additional domain validation, if the data was
+	presented to them.  For example, integers usually have a valid domain,
+	which could be verfied by something like "int(0,3)".  This, combined
+	with RFE #3 could simplify the IP address regex to 
+	"{int(0,255)}.{int(0,255)}.{int(0,255)}.{int(0,255)}"
+  comments:
+
+5) Inheritance
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	It would be useful to have classes/namespaces inherit from others.
+	Registering a handler on a base class should trigger for sub-classes.
+	FIND should be able to find sub-classes.
+  comments:
+
+6) NOSAVE properties
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	Some properties, like passwords, need to be passed to handlers, but
+	not saved in cleartext.
+  comments:
+
+7) CSCP TOUCH command
+  who:		Adrian Sun <asun@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	CCE optimizes away writes which do not change values.  Sometimes we
+	want to circumvent that.
+  comments:
+
+8) Register handlers without HUP
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	It would be nice to be able to register a conf file without needing to
+	restart CCE.
+  comments:
+
+9) Disconnected/Reconnectable transactions
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	The UI could be much enhanced if a transaction could proceed in the
+	background and status could be queried.
+  comments:
+	How long to keep results/messages around?  Need to store state across
+	reboots/restarts.  Requires a TXN log that is replayable.
+
+10) XML conf files
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	Schemas are XML - why not conf files?  It would make multiple
+	handlers->event and handler->multiple event registrations easier.
+  comments:
+
+11) CCE config file
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 19, 2002
+  priority:	low
+  explain:
+	The CCE base dir, debugging, session-time, and more should be
+	configurable in a config file for CCE.
+  comments:
+
+12) Local typedefs
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 20, 2002
+  priority:	med
+  explain:
+	It should be possible to mark a typedef as local to a schema.  This
+	should not be the default (for compat) but should be used heavily.
+  comments:
+
+13) Explicit index to FIND
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 20, 2002
+  priority:	low
+  explain:
+	The FIND command should be able to take an INDEX parameter, which
+	would determine the index to use when finding.
+  comments:
+
+14) Complex indexing
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 20, 2002
+  priority:	low
+  explain:
+	Index elements should be able to use complex expressions
+	(concatenation at minimum) to index on.  Indexes should be able to
+	specify a matchtype for index insertion (and possibly for lookups).
+  comments:
+
+15) Explicit matchtypes to FIND
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 20, 2002
+  priority:	low
+  explain:
+	The FIND command could have MATCHTYPE parameters alter the matching of
+	criteria.
+  comments:
+	This only applies to exact match criteria.
+
+16) ADMIN LOG command
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 20, 2002
+  priority:	low
+  explain:
+	There should be a way to change the CCE logging level via CSCP.
+  comments:
+	This involves locking a piece of shared memory, which holds logging
+	information.
+
+17) Handler coallescing
+
+  who:		Michael Pashniak <michael.pashniak@sun.com>
+  when:		Mar 22, 2002
+  priority:	high
+  explain:
+	Handlers should be coallesced, if possible.  Handler registrations
+	will have to indicate the ability to be coallesced.  If any handler
+	can not be coallesced, the transaction can not be coallesced.
+  comments:
+
+18) External matchtypes
+
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 25, 2002
+  priority:	med
+  explain:
+	There should be "perl" and "exec" matchtypes.  Semantics TBD.
+  comments:
+
+19) Per-property matchtypes
+
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 26, 2002
+  priority:	low
+  explain:
+	If a property could specify a MATCHTYPE (default to ascii), then FIND
+	could always do the right thing for compares.
+  comments:
+
+20) SCHEMA VIEW command
+
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 27, 2002
+  priority:	med
+  explain:
+	CCE 1.0 will be able to add/remove schemas.  It would be nice to be
+	able to retrieve schemas and sub-elements of schemas.
+  comments:
+	SCHEMA VIEW CLASS "Class"
+	SCHEMA VIEW SCHEMA "Schema"
+	SCHEMA VIEW CLASS "Class" NAMEPSACE "Nspace"
+	SCHEMA VIEW {TYPEDEF,RULE,MATCHTYPE} "Foo"
+
+21) Flexible args to RULE/MATCHTYPE
+
+  who:		Tim Hockin <thockin@sun.com>
+  when:		Mar 28, 2002
+  priority:	med
+  explain:
+	It is possible to specify arguments to rules at both the caller and
+	the rule level.  The RULE element should be able to reference 
+	passed-in arguments as $1, $2, etc.
+  comments:

@@ -1,0 +1,179 @@
+# --- Menu
+
+msgid "winshare"
+msgstr "Windows"
+
+msgid "winshare_help"
+msgstr "此處可變更 [[base-winshare.winshareSettings]]。"
+
+# --- Common
+msgid "winshareSettings"
+msgstr "Windows 檔案共享設定"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "此處可配置基本 [[base-winshare.winshareSettings]]。"
+
+msgid "advanced_help"
+msgstr "此處可配置進階 [[base-winshare.winshareSettings]]，如 WINS 伺服器設定。"
+
+msgid "advanced"
+msgstr "進階"
+
+# ---- Basic page
+
+msgid "enableServerField"
+msgstr "啟用伺服器"
+
+msgid "enableServerField_help"
+msgstr "開啟或關閉「Windows 檔案共享」。移至 [[base-fileshare.guestShare]] 可配置來賓對「Windows 檔案共享」的存取。"
+
+msgid "maxUserField"
+msgstr "使用者人數上限"
+
+msgid "maxUserField_rule"
+msgstr "請輸入一個介於 1 到  1024 之間的整數；預設值為 25。"
+
+msgid "maxUserField_help"
+msgstr "變更同時可連接「Windows 檔案共享」的使用者人數上限。  [[base-winshare.maxUserField_rule]]"
+
+msgid "workgroupField"
+msgstr "工作群組"
+
+msgid "workgroupField_rule"
+msgstr "預設值為 WORKGROUP。"
+
+msgid "workgroupField_help"
+msgstr "請輸入您「Windows 檔案共享」所屬的工作群組名稱。"
+
+
+# ---- Advanced
+
+msgid "networkLogonField"
+msgstr "Windows 網域控制器"
+
+msgid "networkLogonField_help"
+msgstr "開啟或關閉 Windows 網域控制器。開啟這個功能可讓這個伺服器設\
+備扮演 Windows 網路的網域控制器。這樣將可讓 Windows 95/98/NT4/2000 對這\
+個裝置進行認證並使用漫遊設定檔。"
+
+msgid "winsServerField"
+msgstr "視窗網際網路名稱服務 (WINS) 伺服器"
+
+msgid "winsServerField_help"
+msgstr "請選取此伺服器設備在提供「視窗網際網路名稱服務 (WINS)」上的角色。必須有一部執行「視窗網際網路名稱服務 (WINS)」的伺服器，才能在多個子網路間依其 NetBIOS 名稱尋找 Windows 機器。"
+
+msgid "winsServerNone"
+msgstr "不要用來作為 WINS 伺服器"
+
+msgid "winsServerSelf"
+msgstr "用來作為 WINS 伺服器"
+
+msgid "winsServerOthers"
+msgstr "使用下列位址作為 WINS 伺服器"
+
+msgid "winsServerIpAddressField"
+msgstr "IP 位址"
+
+msgid "winsServerIpAddressField_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "winsServerIpAddressField_help"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以句點分隔。例如，192.168.1.1 就是有效的數字。"
+
+
+# ---- Handler msgs
+
+msgid "badUser"
+msgstr "如果已移除或手動修改伺服器配置檔，請復置原始配置檔，然後重試。"
+
+msgid "cantConfigFile"
+msgstr "很抱歉，在嘗試修改「Windows 檔案共享」配置檔時發生錯誤。 [[base-winshare.badUser]]"
+
+msgid "cantToggleSetting"
+msgstr "很抱歉，在嘗試修改「Windows 檔案共享」配置檔時發生錯誤。 [[base-winshare.badUser]]"
+
+msgid "cantModifyGroup"
+msgstr "很抱歉，在嘗試修改「Windows 檔案共享」配置檔時發生錯誤。"
+
+msgid "cantModifyPassword"
+msgstr "很抱歉，在嘗試修改「Windows 檔案共享」配置檔時發生錯誤。"
+
+
+# ---- Active Monitor
+
+msgid "amWinshareNameTag"
+msgstr "Windows 檔案共享伺服器"
+
+msgid "amDetailsTitle"
+msgstr "Windows 檔案共享伺服器明細"
+
+msgid "amNotRunning"
+msgstr "此 Windows 檔案共享伺服器不在執行中。"
+
+msgid "amStatusOk"
+msgstr "此 Windows 檔案共享伺服器正常運作中。"
+
+# Capabilities
+
+msgid "capgroup_adminSamba"
+msgstr "管理 Windows 檔案分享"
+
+msgid "capgroup_adminSamba_help"
+msgstr "這個管理權限可讓使用者更改 Windows 檔案分享使用的設定"
+
+# Machine list 
+
+msgid "windowsMachineButton"
+msgstr "網域成員"
+
+msgid "windowsMachineButton_help"
+msgstr "在網路建立 Windows 電腦清單之後才允許它們加入網域"
+
+msgid "windowsMachinesList"
+msgstr "網域成員"
+
+msgid "wm_addMachine_help"
+msgstr "按一下此處新增電腦到這個網域成員清單"
+
+msgid "wm_name"
+msgstr "機器名稱"
+
+msgid "wm_name_help"
+msgstr "這些是網路上的電腦指定名稱"
+
+msgid "wm_remarks"
+msgstr "備註"
+
+msgid "wm_remarks_help"
+msgstr "這個欄位提供有關每一個網域成員的其餘資訊"
+
+msgid "wm_actions"
+msgstr "動作"
+
+msgid "wm_actions_help"
+msgstr "這些是用來更改網域成員的設定或從 Windows 網路移除電腦的按鈕"
+
+msgid "modWindowsMachineBlock"
+msgstr "更改網域成員 - [[var.name]]"
+
+msgid "addWindowsMachineBlock"
+msgstr "建立網域成員"
+
+msgid "machine_name"
+msgstr "機器名稱"
+
+msgid "machine_name_help"
+msgstr "這是 Windows 電腦的名稱" 
+
+msgid "machine_description"
+msgstr "備註"
+
+msgid "machine_description_help"
+msgstr "這是這個網域成員記錄的使用者定義說明"
+
+msgid "removeMachineConfirm"
+msgstr "您確定要從網域成員清單移除電腦 '[[VAR.machineName]]' 嗎？"
+

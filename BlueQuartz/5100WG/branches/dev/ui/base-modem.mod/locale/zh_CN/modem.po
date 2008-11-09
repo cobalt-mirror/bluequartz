@@ -1,0 +1,150 @@
+msgid "busy"
+msgstr "所拨叫的电话号码占线。"
+
+msgid "dnsTestFail"
+msgstr "无法连接 DNS 服务器。检查 TCP/IP 设置以确认指定的 DNS 服务器正确。"
+
+msgid "back"
+msgstr "返回"
+
+msgid "dialModemFail"
+msgstr "拨号失败：[[VAR.errmsg]]"
+
+msgid "dnsTestSuccess"
+msgstr "成功"
+
+msgid "couldntDeletePppCfg"
+msgstr "无法删除 PPP 设置"
+
+msgid "couldntStartPpp"
+msgstr "无法打开调制解调器"
+
+msgid "pppdAuthSuccess"
+msgstr "成功"
+
+msgid "capgroup_adminModem_help"
+msgstr "此管理权限允许用户修改调制解调器的设置"
+
+msgid "dialModemSuccess"
+msgstr "成功"
+
+msgid "onNow"
+msgstr "连接"
+
+msgid "remoteTerm"
+msgstr "与远程服务器连接终止。"
+
+msgid "netTestSuccess"
+msgstr "成功"
+
+msgid "testFail"
+msgstr "错误"
+
+msgid "initModem"
+msgstr "初始化"
+
+msgid "dnsTestStage"
+msgstr "正在连接域名服务器..."
+
+msgid "saveTest"
+msgstr "保存并测试调制解调器设置"
+
+msgid "netTestFail"
+msgstr "无法连接到远程站点。核实调制解调器和 TCP/IP 设置并重试。"
+
+msgid "back_help"
+msgstr "这将返回调制解调器设置页。"
+
+msgid "pppdAuth"
+msgstr "认证"
+
+msgid "dnsTest_help"
+msgstr "这里显示域名称解析测试状态。 域名解析将文本主机名和域名转换为数字 IP 地址，也可将数字 IP 地址转换为文本主机名和域名。"
+
+msgid "testFailMsg"
+msgstr "由于系统错误而无法运行调制解调器测试。确认调制解调器设置正确，并重试。如果测试再次失败，尝试重新启动服务器设备。"
+
+msgid "pppdAuthStage"
+msgstr "正在发送登录信息..."
+
+msgid "netTestStage"
+msgstr "正在连接远程站点..."
+
+msgid "noDialtone"
+msgstr "没有拨号音。"
+
+msgid "dnsTest"
+msgstr "名称解析"
+
+msgid "noCarrier"
+msgstr "没有载波信号。"
+
+msgid "initModemStage"
+msgstr "正在初始化..."
+
+msgid "initModemFail"
+msgstr "初始化失败：如果是外置调制解调器，请确认与服务器正确连接且调制解调器电源已经打开。检查调制解调器文档以确认使用了初始化字符串，且'[[VAR.init]]'正确无误。"
+
+msgid "testModem"
+msgstr "正在测试调制解调器设置..."
+
+msgid "saveTest_help"
+msgstr "这将保存您当前的设置，并尝试与您的因特网服务供应商进行测试连接，以验证设置。"
+
+msgid "ppp0_in_use"
+msgstr "调制解调器连接不能被开启，因为接口正被其它设备使用。如果使用 DSL, 需在使用调制解调器连接之前，先禁用 PPPoE。"
+
+msgid "unknownError"
+msgstr "发生未知错误。"
+
+msgid "dialModemStage"
+msgstr "正在拨号 [[VAR.phone]]..."
+
+msgid "pppdAuth_help"
+msgstr "这里显示认证状态。用认证测试检查服务器是否能够登录远程服务器。"
+
+msgid "netTest_help"
+msgstr "这里显示网络连接测试状态。此测试试图连接到远程站点。"
+
+msgid "initModem_help"
+msgstr "这里显示调制解调器处于初始化状态。初始化测试检查调制解调器是否与服务器连接并作出回应。"
+
+msgid "waiting"
+msgstr "远端计算机没有响应。"
+
+msgid "initModemSuccess"
+msgstr "成功"
+
+msgid "couldntStopPpp"
+msgstr "无法停止调制解调器"
+
+msgid "pppdAuthFail"
+msgstr "认证失败：[[VAR.errmsg]]"
+
+msgid "dialModem_help"
+msgstr "这里显示调制解调器的连接状态。用连接测试来检查使用了您的调制解调器进行拨号并连接到因特网服务供应商。"
+
+msgid "capgroup_adminModem"
+msgstr "管理调制解调器"
+
+msgid "noResponse"
+msgstr "远程服务器响应失败。"
+
+msgid "offNow"
+msgstr "没有连接"
+
+msgid "cantGetModem"
+msgstr "对不起，服务器发生错误。调制解调器状态在此时不可用"
+
+msgid "authFailure"
+msgstr "提供的用户名和口令被远程服务器拒绝。"
+
+msgid "modemProblem"
+msgstr "调制解调器存在一个问题。如果您有一个外置调制解调器，确认其安全的连结到服务器连结端口并且电源已经打开。如果是内置调制解调器, 尝试从新启动服务器。"
+
+msgid "netTest"
+msgstr "网络连接"
+
+msgid "dialModem"
+msgstr "连接"
+

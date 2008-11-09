@@ -1,0 +1,105 @@
+# --- Menu
+
+msgid "apache"
+msgstr "Web 服务器"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]]可在此处更改。"
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "Web 设置"
+
+msgid "frontpageField"
+msgstr "FrontPage 服务器扩展"
+
+msgid "frontpageField_help"
+msgstr "打开或关闭 FrontPage 服务器扩展。"
+
+msgid "frontpageEnabled"
+msgstr "启用"
+
+msgid "passwordWebmasterField"
+msgstr "webmaster 口令"
+
+msgid "passwordWebmasterField_help"
+msgstr "输入 FrontPage 客户机 webmaster 的口令。主组网站可通过选择 FrontPage 客户机中的“打开 Web”访问。使用登录名称 webmaster 和您在此处指定的口令登录。经过认证后，其他 FrontPage 用户使用 FrontPage 客户机进行管理。"
+
+msgid "passwordWebmasterField_rule"
+msgstr "口令长度应介于 3 和 16 个字符之间。正确的口令应包含至少 5 个大小写字母以及数字和标点符号组合的字符。口令不应是字典中的任何单词。口令区分大小写。"
+
+msgid "passwordWebmasterField_invalid"
+msgstr "对不起，您没有在两个字段中输入相同的口令。两个字段中输入相同口令是为了防止键入错误。请重试。"
+
+msgid "cgiAccessField"
+msgstr "CGI 访问"
+
+msgid "cgiAccessField_help"
+msgstr "打开或关闭 CGI 访问。您可设置 CGI 访问权限，仅使服务器设备管理员能够添加 CGI 脚本文件，或者管理员和所有或所选用户能够添加 CGI 脚本文件。"
+
+msgid "cgiAll"
+msgstr "允许访问所有用户"
+
+msgid "cgiNone"
+msgstr "不允许访问任何用户"
+
+msgid "cgiSubset"
+msgstr "只允许访问指定用户"
+
+msgid "cgiUsersAllowed"
+msgstr "允许访问的用户"
+
+msgid "cgiUsersDisallowed"
+msgstr "不允许访问的用户"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "对不起，您没有选择任何 CGI 访问用户。请添加允许 CGI 访问的用户，或者选择不同的访问选项。"
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "对不起，现在无法正确地配置 CGI 访问。"
+
+msgid "systemObjectNotFound"
+msgstr "对不起，暂时无法进行服务器配置。请等待并重试。"
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "Web 服务器"
+
+msgid "amApacheDetails"
+msgstr "Web 服务器详细信息"
+
+msgid "amNotRunning"
+msgstr "web 服务器没有运行。"
+
+msgid "amStatusOK"
+msgstr "web 服务器运行正常。"
+
+msgid "amAdmservNameTag"
+msgstr "服务器桌面"
+
+msgid "amAdmservDetails"
+msgstr "服务器桌面详细信息"
+
+msgid "amAdmservNotRunning"
+msgstr "服务器桌面没有运行。"
+
+msgid "amAdmservStatusOK"
+msgstr "服务器桌面运行正常。"
+
+# Capabilities
+
+msgid "capgroup_adminApache"
+msgstr "管理 web 服务器"
+
+msgid "capgroup_adminApache_help"
+msgstr "此管理权限允许用户修改公共网站设置，包括个人用户站点的权限 （例如： frontpage, cgi...）"
+

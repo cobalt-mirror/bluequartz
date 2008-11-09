@@ -1,0 +1,253 @@
+
+
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "Cliquez ici pour afficher l'état d'[[base-am.activeMonitor]]. Cette icône devient rouge si l'un des composants surveillés par [[base-am.activeMonitor]] présente de graves problèmes."
+
+msgid "activeMonitor"
+msgstr "Active Monitor"
+
+msgid "activeMonitor_help"
+msgstr "Le fonctionnement des composants du système peut être vérifié ici."
+
+msgid "amStatusMenuName"
+msgstr "Etat"
+
+msgid "amStatusMenuDesc"
+msgstr "Les informations sur l'état d'[[base-am.activeMonitor]] peuvent être affichées ici."
+
+msgid "amObjNotFound"
+msgstr "Une erreur système s'est produite. L'objet Active Monitor est introuvable."
+
+msgid "amSysClients"
+msgstr "Etat du système - Vue générale"
+
+msgid "amClientName"
+msgstr "Nom du composant"
+
+msgid "amClientName_help"
+msgstr "Nom du composant surveillé."
+
+msgid "action"
+msgstr "Action"
+
+msgid "action_help"
+msgstr "Détails supplémentaires sur le composant surveillé."
+
+msgid "amServClients"
+msgstr "Etat du service - Vue générale"
+
+msgid "amOtherClients"
+msgstr "Autre état - Vue générale"
+
+msgid "amClientStatus"
+msgstr "Etat actuel"
+
+msgid "amClientStatus_help"
+msgstr "Etat actuel du composant surveillé."
+
+msgid "amClientLastChange"
+msgstr "Dernier changement d'état"
+
+msgid "amNever"
+msgstr "Jamais"
+
+msgid "amClientLastChange_help"
+msgstr "Ceci correspond au dernier changement d'état du composant surveillé."
+
+msgid "amSettingsMenuName"
+msgstr "Paramètres"
+
+msgid "amSettingsMenuDesc"
+msgstr "Les [[base-am.amSettings]] peuvent être configurés ici."
+
+msgid "amSettings"
+msgstr "Paramètres d'[[base-am.activeMonitor]]"
+
+msgid "enableAMField"
+msgstr "Activer la surveillance"
+
+msgid "enableAMField_help"
+msgstr "Active ou désactive [[base-am.activeMonitor]]. Une fois validée, cette fonction vérifie régulièrement le bon fonctionnement des composants du système. Ces composants système peuvent être sélectionnés ci-dessous."
+
+msgid "alertEmailList"
+msgstr "Emails d'alerte"
+
+msgid "alertEmailList_help"
+msgstr "Entrez la liste des adresses email auxquelles [[base-am.activeMonitor]] doit envoyer des messages d'alerte."
+
+msgid "itemsToMonitor"
+msgstr "Composants surveillés"
+
+msgid "itemsToMonitor_help"
+msgstr "Sélectionnez les composants système spécifiques que doit vérifier régulièrement [[base-am.activeMonitor]]. La colonne de gauche montre les composants système actuellement surveillés. La colonne de droite montre les composants système susceptibles d'être surveillés. Pour ajouter un composant système à surveiller, faites le passer de la colonne de droite à la colonne de gauche."
+
+msgid "selected"
+msgstr "Composants surveillés"
+
+msgid "notSelected"
+msgstr "Composants non surveillés"
+
+msgid "amNoMessage"
+msgstr "Aucune information n'est disponible actuellement pour ce composant."
+
+msgid "amNotMonitored"
+msgstr "Ce composant n'est pas surveillé actuellement."
+
+msgid "amNotEnabled"
+msgstr "Ce composant n'est pas activé."
+
+msgid "alreadyMadeAM"
+msgstr "Une erreur système s'est produite. Un objet [[base-am.activeMonitor]] existe déjà."
+
+msgid "amCPUName"
+msgstr "Utilisation du processeur"
+
+msgid "amCPUWarning"
+msgstr "Le processeur est utilisée [[VAR.status]]."
+
+msgid "amUseLight"
+msgstr "légèrement"
+
+msgid "amUseModerate"
+msgstr "modérément"
+
+msgid "amUseHeavy"
+msgstr "intensivement"
+
+msgid "amCPUDetails"
+msgstr "Détails d'utilisation du processeur"
+
+msgid "amCPUStats"
+msgstr "Statistiques du processeur"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] minute de charge moyenne"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] minutes de charge moyenne"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "Nombre moyen de tâches attendant d'être exécutées par le processeur pendant une période de [[VAR.mins]] minute(s). La charge moyenne normale est comprise entre 0,0 et 3,0."
+
+msgid "amCPULoadAvg_help"
+msgstr "Nombre moyen de tâches attendant d'être exécutées par le processeur pendant une période de [[VAR.mins]] minute(s). La charge moyenne normale est comprise entre 0,0 et 3,0."
+
+msgid "amCPUUptime"
+msgstr "Temps de disponibilité du système"
+
+msgid "amCPUUptime_help"
+msgstr "Durée de fonctionement du serveur depuis sa mise sous tension et son démarrage."
+
+msgid "days"
+msgstr "[[VAR.val]] jours,"
+
+msgid "hours"
+msgstr "[[VAR.val]] heures,"
+
+msgid "minutes"
+msgstr "[[VAR.val]] minutes"
+
+msgid "day"
+msgstr "[[VAR.val]] jour,"
+
+msgid "hour"
+msgstr "[[VAR.val]] heure,"
+
+msgid "minute"
+msgstr "[[VAR.val]] minute"
+
+msgid "amCPUTemp"
+msgstr "Température du processeur"
+
+msgid "amCPUTemp_help"
+msgstr "Température actuelle du processeur en °C. La température normale du processeur est comprise entre 30 et 60 °C."
+
+msgid "degrees"
+msgstr "[[VAR.val]] °C"
+
+msgid "amMemoryName"
+msgstr "Utilisation mémoire"
+
+msgid "amMemDetails"
+msgstr "Détails d'utilisation de la mémoire"
+
+msgid "amMemWarning"
+msgstr "La mémoire du système est utilisée [[VAR.status]]."
+
+msgid "amMemStats"
+msgstr "Statistiques d'utilisation de la mémoire"
+
+msgid "amMemTotal"
+msgstr "Mémoire physique totale"
+
+msgid "amMemTotal_help"
+msgstr "Quantité totale de mémoire réelle disponible sur le système."
+
+msgid "amMemFree"
+msgstr "Mémoire physique disponible"
+
+msgid "amMemFree_help"
+msgstr "Quantité de mémoire réelle disponible sur le système."
+
+msgid "amSwapTotal"
+msgstr "Espace mémoire d'échange total"
+
+msgid "amSwapTotal_help"
+msgstr "Quantité totale d'espace mémoire d'échange (Swap) disponible sur le système."
+
+msgid "amSwapFree"
+msgstr "Espace mémoire d'échange disponible"
+
+msgid "amSwapFree_help"
+msgstr "Quantité d'espace mémoire d'échange (Swap) disponible sur le système."
+
+msgid "MemKB"
+msgstr "[[VAR.val]] Ko"
+
+msgid "amMemUsed"
+msgstr "Utilisation mémoire"
+
+msgid "amMemUsed_help"
+msgstr "Quantité de mémoire physique ou réelle utilisée sur le système. Il est normal qu'une grande partie de la mémoire réelle soit constamment utilisée."
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] Ko ([[VAR.pcnt]] % du total)"
+
+msgid "amSwapUsed"
+msgstr "Utilisation de la mémoire d'échange"
+
+msgid "amSwapUsed_help"
+msgstr " quantité de mémoire d'échange ou virtuelle utilisée sur le système. Il est normal qu'une partie de la mémoire d'échange soit constamment utilisée, même si de la mémoire réelle est disponible."
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] ([[VAR.pcnt]] % du total)"
+
+msgid "amKey"
+msgstr "Touche :"
+
+msgid "amKeyGrey"
+msgstr "Aucune d'information disponible ou Surveillance inactive"
+
+msgid "amKeyGreen"
+msgstr "Normal"
+
+msgid "amKeyYellow"
+msgstr "Problème"
+
+msgid "amKeyRed"
+msgstr "Problème grave"
+
+msgid "amUpdateNow"
+msgstr "Vérifier l'état maintenant"
+
+msgid "amUpdateNowConfirm"
+msgstr "Voulez-vous vraiment vérifier l'état maintenant ? Cette opération peut prendre plusieurs minutes."
+
+msgid "amUpdateNow_help"
+msgstr "Cliquez ici pour lancer immédiatement la mise à jour de l'état des services et du système. Cette opération peut prendre plusieurs minutes et s'effectue en arrière-plan."
+
+msgid "amDetailNoName"
+msgstr "Un problème s'est produit lors de la création de cette page. La variable 'nom' n'est pas définie."

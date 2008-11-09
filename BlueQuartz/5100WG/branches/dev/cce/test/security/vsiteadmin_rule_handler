@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+# $Id: vsiteadmin_rule_handler 229 2003-07-18 20:22:20Z will $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+# we run in test/security/tmp/handlers
+use lib qw( ../../../../client/perl );
+use CCE;
+
+my $whoobj, $whooid, $obj;
+my $ok;
+my $errs;
+
+my $cce = new CCE;
+$cce->connectfd();
+
+$obj = $cce->event_object();
+($ok, $whooid) = $cce->whoami();
+if ($ok && $whooid > 0) {
+	($ok, $whoobj, $errs) = $cce->get($whooid);
+}
+
+if ($ok
+	&& $obj->{'vsite'} eq $whoobj->{'vsite'}
+	&& $whoobj->{'vsiteadmin'} ne "")
+{
+	$cce->bye('SUCCESS');
+}
+else
+{
+	$cce->bye('FAIL');
+}
+

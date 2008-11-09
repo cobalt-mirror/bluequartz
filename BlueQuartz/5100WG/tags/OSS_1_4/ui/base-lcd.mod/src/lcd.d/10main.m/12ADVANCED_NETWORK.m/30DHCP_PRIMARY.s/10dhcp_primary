@@ -1,0 +1,23 @@
+#!/bin/bash
+
+. /etc/sysconfig/network-scripts/network-functions
+
+DEVICE="eth0"
+
+# try to setup network with dhcp
+send_dhcp_request
+
+# Check if received IP info from dhcp server
+if [ ! -f /var/state/dhcp/LEASED ]; then
+  DOMAIN="base-lcd"
+  LINE1=`getmsg dhcp_setup`
+  LINE2=`getmsg failed`
+  $LCD_STOP
+  $LCD_WRITE -s "$LINE1" "$LINE2" &>/dev/null &
+  $LCD_FLASH &
+  /bin/sleep 4
+fi
+
+$LCD_STOP
+$LCD_SHOWIP
+

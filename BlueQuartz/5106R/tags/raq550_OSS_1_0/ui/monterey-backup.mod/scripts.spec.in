@@ -1,0 +1,57 @@
+Summary: Perl modules that contain glue backup functionality for third party backup solutions
+Name: monterey-backup
+Version: XX_VER_XX
+Release: XX_REL_XX
+Copyright: Cobalt Networks 2000
+Group: Silly
+Source: scripts.tar.gz
+BuildRoot: /tmp/backup-scripts
+
+%prep
+%setup -n monterey-backup.mod
+
+%build
+make all
+
+%install
+make PREFIX=$RPM_BUILD_ROOT install
+
+%post
+# only run on install, not upgrade
+if [ "$1" = "1" ]; then
+	/sbin/chkconfig --add cobalt_restore
+fi
+
+if [ ! -d /var/cobalt/backups ]; then
+	mkdir -p /var/cobalt/backups
+fi
+
+%preun
+# only run if this is the last instance to be removed
+if [ "$1" = "0" ]; then
+	/sbin/chkconfig --del cobalt_restore
+fi
+
+
+%files
+/usr/local/sbin/cce_dump
+/usr/local/sbin/cce_restore
+/usr/local/sbin/cobalt_postbackup
+/usr/local/sbin/cobalt_prebackup
+/usr/local/sbin/cobalt_restorequotas
+/usr/local/sbin/cobalt_restoreowners
+/etc/rc.d/init.d/cobalt_restore
+
+%description
+This package contains a number of scripts and perl modules that
+contain vital functionality for backups.
+
+%changelog
+* Tue Dec 12 2000 Byron Servies <bservies@cobalt.com>
+- Added cobalt_restorequotas program
+
+* Fri Dec 01 2000 Byron Servies <bservies@cobalt.com>
+- Modified spec file to work with Cobalt's BTO server.
+
+* Fri Nov 03 2000 Byron Servies <bservies@cobalt.com>
+- initial spec file.

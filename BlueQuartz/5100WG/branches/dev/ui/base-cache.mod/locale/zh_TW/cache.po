@@ -1,0 +1,58 @@
+# The following are the strings used for the menu.
+
+msgid "pkgName"
+msgstr "Sun Cobalt Web 快取"
+
+msgid "pkgVendor"
+msgstr "Sun Cobalt"
+
+msgid "pkgDescription"
+msgstr "[[base-cache.pkgName]]套件可快取經常要求檢視的網頁來增進網路效能。"
+
+msgid "cache"
+msgstr "Web 快取"
+
+msgid "cache_description"
+msgstr "此處可變更 [[base-cache.modifyCache]]。"
+
+# The following are the strings used for the modification screen.
+
+msgid "modifyCache"
+msgstr "Web 快取設定"
+
+msgid "enabled"
+msgstr "啟用伺服器"
+
+msgid "enabled_help"
+msgstr "開啟或關閉「Web 快取」。當啟用時，這部伺服器設備將充當 web 從屬站的 proxy 快取伺服器。如此可增加 web 要求的速度，並減少頻寬需求。若要利用這項功能，必須將 Web 瀏覽器設定為使用這部伺服器設備作為 HTTP proxy，並將 proxy 埠號設成 3128。"
+
+# The following are used by the handler.
+
+msgid "no_system_object"
+msgstr "很抱歉，發生錯誤。找不到系統物件。"
+
+msgid "no_prim_network_object"
+msgstr "很抱歉，發生錯誤。找不到主要介面的網路物件。"
+
+# Active Monitor Strings
+
+msgid "amNameTag"
+msgstr "Web 快取伺服器"
+
+msgid "amStatusOK"
+msgstr "[[base-cache.amNameTag]]正常運作中。"
+
+msgid "amNotRunning"
+msgstr "[[base-cache.amNameTag]]不在執行中。"
+
+msgid "amDetailsTitle"
+msgstr "Web 快取伺服器明細"
+
+# Capabilities
+
+msgid "capgroup_adminWebCache"
+msgstr "管理 Web 快取及 Web 存取"
+
+msgid "capgroup_adminWebCache_help"
+msgstr "這個管理權限允許使用者更改 Web 快取所使用的設定。"
+

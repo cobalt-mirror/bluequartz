@@ -1,0 +1,192 @@
+$Id: ClassDefs.txt 3 2003-07-17 15:19:15Z will $
+Class Definitions Document
+author: jmayer@cobalt.com
+Hint: set tabstop to 2.
+
+Convention:
+- All class names have the first character is capitalized. For example,
+  "System". If they have more than one word, the first character of all
+  words are capitalized. For example, "MailList".
+- Namespace names follows the same rule as class names.
+- All property names start with an all lowercase first word. If a
+  property name has more than one word, the first characters of the
+  second word onwards are capitalized. For example, "gateway" and
+  "stylePreference" are valid property names.
+
+-------------------------------------------------------------------------
+System 
+  stores all system-wide configuration settings.  There should be exactly
+  one System object in every functional system.
+-------------------------------------------------------------------------
+  hostname      the name of the host (first half of the FQDN)
+  domainname    the domain name of the host (second half of the FQDN)
+  gateway       IP address of the default gateway
+  dns           ':' delimited list of DNS server IP addresses.
+  notify_email  Address to email emergency reports to.
+  time_region   Just used by UI to help select timezones.
+  time_country  Just used by UI to help select timezones.
+  time_zone     Time zone to use.
+  reboot        Set to true to enable rebooting the machine.  Cleared
+                whenever cce is restarted.  Maybe we shouldn't do reboot
+                this way.
+  halt          Set to true to halt the machine. Cleared when restarted.
+
+-------------------------------------------------------------------------
+Network
+  stores settings relevant to the basic (non-virtual) TCP/IP network
+  interfaces.
+-------------------------------------------------------------------------
+  device        Usually either eth0 or eth1
+  ipaddr        IP address for this interface
+  netmask       netmask for this interface
+  mac           mac address of this interface, ie. B:B:B:B:B:B  READ ONLY.
+  enabled       True to bring the interface up, false to take it down.
+  bootproto     Either dhcp, none, or lcd
+
+-------------------------------------------------------------------------
+Route
+  used to add additional gateways for some routes.  
+-------------------------------------------------------------------------
+  target        the destination subnet or host to perform routing for
+  netmask       netmask of target subnet
+  gateway       IP address of gateway for this subnet
+  device        device (defaults to the device gateway is within).
+
+-------------------------------------------------------------------------
+Workgroup
+  stores all workgroup-specific settings.
+-------------------------------------------------------------------------
+  enabled       Is the workgroup enabled?  boolean
+  members       ':' delimited list of usernames who are members of this
+                group
+  name          the unique name of this workgroup, alphanumeric
+  quota         disk space quota for this workgroup, integer
+
+-------------------------------------------------------------------------
+WorkgroupDefaults
+  stores workgroup defaults
+-------------------------------------------------------------------------
+  quota              allowed disk space (MB)
+
+-------------------------------------------------------------------------
+User
+  stores all user-specific settings.
+-------------------------------------------------------------------------
+  enabled                  Used to enable/disable the users account
+  fullName                 The full "comment" name of the user
+  localePreference         Used exclusively by the UI.
+  name                     The unique name of this user, alphanumeric
+  password                 The user's plaintext password
+  sortName                 The string to use when sorting users
+  shell                    Path to the user's shell
+  site                     The name of the site the user belongs to.
+  siteAdministrator        flag: is the user a siteadmin
+  stylePreference          Used exclusively by the UI.
+  systemAdministrator      flag: is the user a sysadmin?
+
+-------------------------------------------------------------------------
+UserDefaults
+  stores user defaults
+-------------------------------------------------------------------------
+  quota              allowed disk space (MB)
+  userNameGenMode    The mode for user name generation
+                     It can be "firstInitLast", "first" or "last"
+
+-------------------------------------------------------------------------
+MailList
+  represents a mailing list
+-------------------------------------------------------------------------
+  name          alphanumeric name of the mailing list
+  password      password for authenticating mail-admin commands
+  postPolicy		Rules to restrict who can post to the list
+  	"moderated" -- indicates that only moderators can post
+  	"any" -- anybody can post
+    "members" -- only members can post
+  subPolicy			Rules to restrict who can subscribe to the list
+  	"closed" -- only the admin/moderates can subscribe users
+    "open" -- anybody can subscribe
+    "confirm" -- anybody can sub, confirmation required for subscriptions
+  local_recips  "," delimited list of local usernames to receive mail
+  remote_recips "," delimited list of remote usernames
+  moderator		  The list moderator.
+  group         What group is this mailing list associated with (for quota
+                purposes)
+  site          should always be empty for Qube3
+  enabled		bool: Is list active? (default: true)
+
+-------------------------------------------------------------------------
+User.Email
+  email-specific properties
+-------------------------------------------------------------------------
+  enabled       not sure what this means in context of email
+  aliases       List of email aliases for this user
+  forward       Address to forward this user's email to
+  vacation      Is user on vacation?  what's the message?
+  url           url of UI for configuring email properties
+	apop					Whether APOP is active for this user.
+
+-------------------------------------------------------------------------
+System.Email
+	System specific email properties
+-------------------------------------------------------------------------
+  acceptFor		Array[Host|Domain] for which to accept mail.
+  denied		Array[Host|Domain] for which to deny mail.
+  relayFor		Array[Host|Domain] to relay for.
+  routes		Hash[Domain:Domain] redirection.
+
+  masqDomain		Domain to masaquerade as.
+  smartRelay		Host to forward mail to.
+
+  deliveryMode		Alter('interactive','background','queue')
+			Controls how email is delivered.
+  privacy		Boolean representing high email security (Expn/Vrfy).
+  maxMessagesSize	Integer (In MB) largest size email to accept/send.
+			0 to disable.
+
+  queueTime		Alter('daily','half-daily'... etc)
+			Controls how often mail is queued
+			(As per cron intervals.)
+
+-------------------------------------------------------------------------
+System.FTP
+-------------------------------------------------------------------------
+  enabled       is ftp enabled?
+  anon_en       is anonymous ftp enabled?
+  maxusers      number of simultaneous users who can be logged in
+  quota         quota for anonymous files
+  url           url of UI for configuring FTP properties
+
+-------------------------------------------------------------------------
+System.Snmp
+  SNMP settings
+-------------------------------------------------------------------------
+  enabled		is SNMP server enabled?
+  readCommunity		read-only SNMP community
+  readWriteCommunity	the read and write SNMP community
+
+-------------------------------------------------------------------------
+DhcpParam
+  parameters for DHCP clients
+-------------------------------------------------------------------------
+  enabled	DHCPd on/off flag
+  domainname    the domain name of the host (second half of the FQDN)
+  gateway       IP address of the default gateway
+  dns           ':' delimited list of DNS server IP addresses.
+  netmask       netmask for this network 
+  lease         the maximum lease time in seconds
+
+-------------------------------------------------------------------------
+DhcpStatic
+  config for static address assignments
+-------------------------------------------------------------------------
+  ipaddr        IP address to assign to this mac address 
+  mac           mac address to get the above IP Addr, ie. B:B:B:B:B:B   
+
+-------------------------------------------------------------------------
+DhcpDynamic
+  config for dynamic address range assignments
+-------------------------------------------------------------------------
+  ipaddrlo      the beginning of the range
+  ipaddrhi      the end of the range
+
+

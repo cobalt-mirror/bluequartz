@@ -1,0 +1,10 @@
+<!-- $Id: test_alphabeta.schema 3 2003-07-17 15:19:15Z will $ -->
+
+<class name="Alpha" namespace="" version="1.0">
+  <property name="name" type="scalar"/>
+</class>
+
+<class name="Beta" namespace="" version="1.0">
+  <property name="name" type="scalar"/>
+  <property name="foo" type="scalar"/>
+</class>

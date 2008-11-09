@@ -1,0 +1,36 @@
+#!/usr/bin/perl 
+# $Id: magic_test,v 1.1.2.1 2002/03/01 01:37:13 thockin Exp $
+# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+#
+# This is a simple test that ensures that all magic properties show up
+
+my $errors = 0;
+
+use lib qw( ../../client/perl );
+use CCE;
+my $cce = new CCE;
+
+if ($#ARGV >= 0) {
+  $cce->connectuds($ARGV[0]);
+} else {
+  $cce->connectuds("cced.socket");
+}
+
+$cce->create("Blank");
+
+my @oids = $cce->find("Blank");
+
+if ($#oids != 0) {
+  $errors++; print STDERR "Blank: was not created\n";
+}
+
+print "obj:\n";
+my ($ok, $obj) = $cce->get($oids[0]); 
+foreach $key (keys(%$obj)) {
+	print "'$key' -> '$obj->{$key}'\n";
+}
+print "ns:\n";
+($ok, $obj) = $cce->get($oids[0], "NS"); 
+foreach $key (keys(%$obj)) {
+	print "'$key' -> '$obj->{$key}'\n";
+}

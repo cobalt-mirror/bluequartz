@@ -1,0 +1,139 @@
+# Copyright 2001 Sun Microsystems, Inc. All rights reserved.
+# $Id: overflow.po,v 1.1.2.3 2002/04/04 22:22:36 naroori Exp $
+
+# --- Menu
+
+msgid "menu"
+msgstr "バッファオーバーフロー"
+
+msgid "description"
+msgstr "バッファオーバーフロー保護を設定できます。"
+
+# --- Labels
+
+msgid "overflowSettings"
+msgstr "バッファオーバーフロー保護の設定"
+
+# --- Buttons
+
+msgid "testOverflowButton"
+msgstr "バッファオーバーフロー保護のテスト"
+
+# --- Settings
+
+msgid "enabledBox"
+msgstr "バッファオーバーフロー警告メールを送信する"
+
+msgid "alertEmail"
+msgstr "バッファオーバーフロー警告メッセージの送信先電子メールアドレス"
+
+# --- Help
+
+msgid "enabledBox_help"
+msgstr "このボックスをチェックすると、バッファオーバーフローが発生した場合に電子メールで警告メッセージが送信されます。送信先の電子メールアドレスは、「アクティブモニタの設定」で指定できます。"
+
+msgid "alertEmail_help"
+msgstr "警告メールの送信先アドレスを入力してください。デフォルトは admin@localhost です。"
+
+msgid "testOverflowButton_help"
+msgstr "このボタンをクリックすると、バッファオーバーフローをテストできます。警告メールが有効であれば、指定アドレスに警告メッセージが送信されます。"
+
+# --- Active Monitor
+
+msgid "amStatusGreen"
+msgstr "バッファオーバーフロー保護デーモンは正常に動作しています。"
+
+msgid "amStatusRed"
+msgstr "バッファオーバーフロー保護デーモンは動作していません。"
+
+msgid "amOverflowNameTag"
+msgstr "バッファオーバーフロー保護"
+
+msgid "amDetailsTitle"
+msgstr "バッファオーバーフロー保護の詳細"
+
+# --- Buffer Overflow Protection Alert Daemon
+
+msgid "Buffer Overflow Protection Alert Daemon <root@localhost>"
+msgstr "バッファオーバーフロー保護警告デーモン <root@localhost>"
+
+msgid "Can't open file %s: %s"
+msgstr "%s ファイルを開けません: %s"
+
+msgid "File %s does not contain a (valid) number"
+msgstr "%s ファイルには (有効な) 数字が含まれていません"
+
+msgid "Cannot delete message queue: %s"
+msgstr "メッセージキューを削除できません: %s"
+
+msgid "Can't delete file %s: %s"
+msgstr "%s ファイルを削除できません: %s"
+
+msgid "Cannot create a new private message queue: %s"
+msgstr "新規のプライベートメッセージキューを作成できません: %s"
+
+msgid "Can't create file %s: %s"
+msgstr "%s ファイルを作成できません: %s"
+
+msgid "Error queue was removed externally"
+msgstr "エラーキューは外部で削除されました"
+
+msgid "Receiving message failed: %s"
+msgstr "メッセージを受信できませんでした: %s"
+
+msgid "Server terminated by signal %d"
+msgstr "信号 %d によってサーバが停止されました"
+
+msgid ""
+"Buffer Overflow Protection terminated a program because of a buffer overflow."
+msgstr ""
+"バッファオーバーフロー保護デーモンは、バッファのオーバーフローのためプログラムを中止しました。"
+
+msgid ""
+"The following information may help find the problem:"
+msgstr ""
+"原因の究明に際しては以下の情報をご利用ください:"
+
+msgid "Could not start sendmail to deliver e-mail: %s"
+msgstr "電子メールを送信する sendmail を起動できませんでした: %s"
+
+msgid "Buffer Overflow Protection detected buffer overflow"
+msgstr "バッファオーバーフロー保護デーモンは、バッファのオーバーフローを検出しました"
+
+msgid "No resources available to run sendmail"
+msgstr "sendmail の実行に利用できるリソースがありません"
+
+msgid "Syntax error in mail address"
+msgstr "電子メールアドレスの文法エラー"
+
+msgid "Internal software error in sendmail"
+msgstr "sendmail の内部ソフトウェアエラー"
+
+msgid "Temporary OS error"
+msgstr "一時的 OS エラー"
+
+msgid "Host name not recognized"
+msgstr "認識できないホスト名"
+
+msgid "Unrecognized return value from sendmail"
+msgstr "認識できない戻り値が sendmail から戻されました"
+
+msgid "sendmail terminated by signal %d"
+msgstr "信号 %d によって sendmail が中止されました"
+
+msgid "sendmail terminated for unknown reason"
+msgstr "原因不明の理由によって sendmail が中止されました"
+
+msgid "Tried %d times to deliver message, aborting"
+msgstr "メッセージの送信を %d 回試みましたが失敗しました。送信を中止します。"
+
+msgid ""
+"Usage: %s [-d]"
+"  -d (debug) will run the program in the foreground and"
+"     send messages to standard error"
+"  -T <text> .....   send a Buffer Overflow Protection alert containing <text>"
+msgstr ""
+"使用法: %s [-d]\n"
+"  -d (debug) はフォアグラウンドでプログラムを実行し、\n"
+"     標準エラーにメッセージを送信します\n"
+"  -T <text> .....   <text> を含むバッファオーバーフロー保護警告を送信します\n"

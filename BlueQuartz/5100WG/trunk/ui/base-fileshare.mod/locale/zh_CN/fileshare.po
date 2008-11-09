@@ -1,0 +1,82 @@
+# --- Menu
+msgid "fileSharing"
+msgstr "文件和打印"
+
+msgid "fileSharing_help"
+msgstr "单击此处配置文件服务。"
+
+msgid "guestShare"
+msgstr "来宾共享"
+
+msgid "guestShare_help"
+msgstr "单击此处配置[[base-fileshare.fileSharingSettings]]。"
+
+# --- Guest share settings
+
+msgid "fileSharingSettings"
+msgstr "来宾共享设置"
+
+msgid "guestShareField"
+msgstr "启用来宾访问"
+
+msgid "guestShareField_help"
+msgstr "打开或关闭来宾访问 Apple 文件共享、FTP 和 Windows 文件共享。此处禁用来宾访问将不禁用在此服务器设备上有帐户的用户访问这些服务。"
+
+msgid "incomingEnable"
+msgstr "启用"
+
+msgid "incomingField"
+msgstr "输入文件访问"
+
+msgid "incomingField_help"
+msgstr "打开或关闭输入文件访问。当启用时，来宾用户可将文件上载到来宾共享。"
+
+msgid "maxDiskSpaceField"
+msgstr "允许的最大磁盘空间 (MB)"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "请输入 1 和 1024000 之间的整数。缺省值是 50 MB。"
+
+msgid "maxDiskSpaceField_help"
+msgstr "设置来宾用户上载输入文件可用的最大磁盘空间。[[base-fileshare.maxDiskSpaceField_rule]]"
+
+msgid "guestDescription"
+msgstr "此工作组向来宾访问提供文件共享。"
+
+
+# --- Handler messages
+
+	# -- guest.pl  ==> These will _never_ be shown in the UI
+msgid "userAlreadyTaken"
+msgstr "错误：用户已经获得"
+
+msgid "groupDoesntExist"
+msgstr "错误：组不存在"
+
+msgid "cantChangeGroup"
+msgstr "错误：不能更改组"
+
+	# quota.pl
+msgid "invalidUser"
+msgstr "对不起，出现错误。来宾用户无效。"
+
+msgid "invalidPath"
+msgstr "对不起，出现错误。来宾共享路径无效。"
+
+msgid "cantSetQuota"
+msgstr "对不起，在尝试设置来宾共享限额时出现错误。所要求的配置文件可能缺失。"
+
+# Capabilities
+
+msgid "capgroup_adminFileShareSettings"
+msgstr "管理文件共享设置"
+
+msgid "capgroup_adminFileShareSettings_help"
+msgstr "此管理权限允许用户修改来宾用户文件共享设置"
+
+msgid "capgroup_adminFileShare"
+msgstr "管理文件共享"
+
+msgid "capgroup_adminFileShare_help"
+msgstr "此管理权限允许用户管理文件共享的所有方面"
+

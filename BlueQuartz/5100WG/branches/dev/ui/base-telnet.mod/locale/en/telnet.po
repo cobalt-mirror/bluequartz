@@ -1,0 +1,80 @@
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Click here to configure Telnet Settings."
+
+msgid "enableServer"
+msgstr "Enable Server"
+
+msgid "enableServer_help"
+msgstr "Check this box to enable telnet access to the server. In addition, the server and site administrators can set access privileges for each individual user account."
+
+msgid "telnetSettings"
+msgstr "Telnet Settings"
+
+msgid "access"
+msgstr "Access"
+
+msgid "access_help"
+msgstr "Choose the policy for telnet access.  Telnet is used by advanced users or the server administrator to run shell scripts or use shell commands. Turning off or restricting telnet access is suggested for increased security. "
+
+msgid "none"
+msgstr "Off - Do Not Allow Logins"
+
+msgid "root"
+msgstr "On - Allow Only Administrator Logins"
+
+msgid "reg"
+msgstr "On - Allow All User Logins"
+
+msgid "connectRateField"
+msgstr "Maximum Connection Rate"
+
+msgid "connectRateField_help"
+msgstr "Enter the maximum number of allowed connections per minute.  New connection requests will be denied if the connection rate has reached this limit. "
+
+msgid "connectRateField_rule"
+msgstr "Please enter an integer within the specified range.  The default value is 40."
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "basic_help"
+msgstr "The Telnet server may be enabled or disabled here."
+
+msgid "advanced_help"
+msgstr "Telnet server parameters may be managed here."
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Telnet Server"
+
+msgid "amDetailsTitle"
+msgstr "Telnet Server Details"
+
+msgid "amNotAccepting"
+msgstr "The telnet server is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the telnet server off then on again to see if this corrects the problem. If the telnet server is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the telnet server is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "amStatusOK"
+msgstr "The telnet server is operating normally."
+
+# ui extension strings for the shell.System domain
+msgid "enableTelnet"
+msgstr "Enable Telnet Server"
+
+msgid "enableTelnet_help"
+msgstr "Enabling telnet allows users with shell access to connect to this server using telnet client software."
+
+msgid "telnetEnable"
+msgstr "Enable"
+msgid "capgroup_adminTelnet"
+msgstr "Manage Telnet"
+
+msgid "capgroup_adminTelnet_help"
+msgstr "This administrative right allows a user to manage telnet access to this machine"
+

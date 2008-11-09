@@ -1,0 +1,199 @@
+#!/usr/bin/perl -w -I. -I/usr/sausalito/perl
+
+# $Id: cce_restore,v 1.3.2.1 2002/01/05 00:26:08 bservies Exp $
+# 
+# Copyright 2000 Cobalt Networks, Inc., All Rights Reserved
+#
+
+use strict;
+use Getopt::Long;
+use Cwd;
+
+use vars qw ($arg $opt_ccedir $opt_debug $opt_file $opt_verbose);
+
+my ($rc);
+
+sub dprintf {
+        my ($level, $format, @args) = @_;
+        if (defined $opt_debug && $level <= $opt_debug) {
+                print STDERR "$0: ";
+                print STDERR sprintf $format, @args;
+        }
+}
+
+
+
+sub execute_cmd {
+	my @cmd = @_;
+	my ($msg, $rc);
+
+	$rc = 0xffff & system(@cmd);
+	if ($rc == 0) {
+		$msg = "ran with normal exit.";
+	} elsif ($rc == 0xff00) {
+		$msg = "command failed: $!";
+	} elsif ($rc > 0x80) {
+		$rc >>= 8;
+		$msg = "ran with non-zero exit status $rc";
+	} else {
+		$msg = "ran with ";
+		if ($rc & 0x80) {
+			$rc &= ~0x80;
+			$msg .= "core dump from ";
+		}
+		$msg .= "signal $rc";
+	}
+	dprintf(3, "command \"%s\" exited with %d.  Reason: \"%s\"\n", join " ", @cmd, $msg, $rc);
+	return ($msg, $rc);
+}
+
+
+
+sub save_fds {
+	# Save the current stderr and stdout fds
+	open SAVEERR, ">&STDERR";
+	open SAVEOUT, ">&STDOUT";
+
+	# Unless opt_verbose is specified, send output to /dev/null
+	unless (defined $opt_verbose) {
+		close STDERR;
+		open STDERR, ">&/dev/null";
+	}
+
+	# Redirect stdout to stderr
+	close STDOUT;
+	open STDOUT, ">&STDERR";
+}
+
+sub restore_fds {
+	# Restore stdout to its original setting
+	close STDOUT;
+	open STDOUT, ">&SAVEOUT";
+
+	# Restore stderr to its original setting
+	close STDERR;
+	open STDERR, ">&SAVEERR";
+
+	# Close the storage handles
+	close SAVEOUT;
+	close SAVEERR;
+}
+
+
+sub cce_stop {
+	my @cmd;
+	my ($msg, $rc);
+
+	# Set up stdout and stderr
+	&save_fds;
+
+	# Stop CCE
+	@cmd = ("/etc/rc.d/init.d/cced.init", "stop");
+	($msg, $rc) = execute_cmd(@cmd);
+
+	# Restore stdout and stderr
+	&restore_fds;
+}
+
+
+sub cce_start {
+	my @cmd;
+	my ($msg, $rc);
+
+	# Set up stdout and stderr
+	&save_fds;
+
+	# Start CCE
+	@cmd = ("/etc/rc.d/init.d/cced.init", "start");
+	($msg, $rc) = execute_cmd(@cmd);
+
+	# Restore stdout and stderr
+	&restore_fds;
+}
+
+sub cce_sync_lock {
+	my @cmd;
+	my ($msg, $rc);
+
+	# Set up stdout and stderr
+	&save_fds;
+
+	# Start CCE
+	@cmd = ('/usr/sausalito/sbin/cce_lock.pl', '--sync');
+	if ($opt_debug || $opt_verbose) {
+		push @cmd, '--verbose';
+	}
+	($msg, $rc) = execute_cmd(@cmd);
+
+	# Restore stdout and stderr
+	&restore_fds;
+}
+
+
+sub delete_dir {
+	my ($odir) = @_;
+	my ($msg, $rc);
+	my @cmd = ("rm", "-fr", "$odir");
+	($msg, $rc) = execute_cmd(@cmd);
+}
+
+sub restore_cce {
+	my ($ifile, $odir) = @_;
+	my ($msg, $rc);
+
+        # Files to ignore
+        my @ignorefiles = qw();
+	my @cmd = ("tar");
+	if (defined $opt_verbose || defined $opt_debug) {
+		push @cmd, ("--verbose");
+	}
+
+	for (@ignorefiles) {
+		# Add files to ignore list
+		push @cmd, ("--exclude=$_");
+	}
+	push @cmd, ("--extract");
+	if (defined $odir) {
+		push @cmd, ("-C");
+		push @cmd, ("$odir");
+	}
+		push @cmd, ("--file");
+	push @cmd, ("$ifile");
+	($msg, $rc) = execute_cmd(@cmd); 
+}
+
+
+sub myarg {
+	my ($arg) = @_;
+	dprintf(3, "argument: %s\n", $arg);
+}
+
+
+#
+# Main
+#
+
+select STDERR; $| = 1;
+select STDOUT; $| = 1;
+
+# Process any command line options
+&GetOptions("debug:i", "file=s", "verbose:i", "<>", \&myarg);
+$opt_file = "-" unless (defined $opt_file);
+dprintf(3, "current directory: %s\n", cwd());
+# Stop the CCE to prepare for the restore
+&cce_stop;
+
+# Remove the standard CCE database directory
+&delete_dir("/usr/sausalito/codb");
+
+# Restore the file, starting from the root directory
+&restore_cce($opt_file, "/");
+
+# Restart CCE
+&cce_start;
+
+# Syncronize the lock state with CCE
+&cce_sync_lock;
+
+exit 0;
+

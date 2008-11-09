@@ -1,0 +1,792 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-12-05 12:47+0100\n"
+"PO-Revision-Date: 2007-12-14 09:58+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "="
+msgstr "er"
+
+msgid "actions"
+msgstr "Handlinger"
+
+msgid "actions_help"
+msgstr ""
+"Klik på blyanten for at redigere brugeren.  Klik på skraldespanden for at "
+"slette denne bruger."
+
+msgid "addAdminHelp"
+msgstr "Opret en ny serveradministrator."
+
+msgid "adminOptions"
+msgstr "Valgmuligheder for administrator"
+
+msgid "adminPowers"
+msgstr "Yderligere adgangsrettigheder"
+
+msgid "adminPowers_help"
+msgstr ""
+"Dette giver mulighed for tildeling af bestemte rettigheder til en "
+"serveradministrator, som normalt er reserveret til brugeren 'admin'.  Flyt "
+"rettigheder som denne serveradministrator skal have fra kolonnen [[base-"
+"vsite.disallowedAbilities]] til kolonnen [[base-vsite.allowedAbilities]]."
+
+msgid "adminUsersList"
+msgstr "Liste over serveradministratorer"
+
+msgid "advancedSearch"
+msgstr "Avanceret søgning"
+
+msgid "advancedSearch_help"
+msgstr "Søg efter websteder med andre kriterier."
+
+msgid "allowedAbilities"
+msgstr "Ekstra rettigheder"
+
+msgid "basicSettingsTab"
+msgstr "Basale indstillinger"
+
+msgid "basicSettingsTab_help"
+msgstr "Konfigurer de mest almindeligt brugte indstillinger."
+
+msgid "begins"
+msgstr "Begynder med"
+
+msgid "cantAddAdminToGroup"
+msgstr "Kunne ikke føje [[VAR.user]] til webstedets gruppe [[VAR.group]]."
+
+msgid "cantAddFtpVhost"
+msgstr "Kunne ikke oprette dette websteds FTP-serverindstillinger."
+
+msgid "cantAddSystemAlias"
+msgstr ""
+"Kunne ikke oprette system-emailaliasset [[VAR.alias]], for dette websted.  "
+"Sørg for at ingen bruger på systemet bruger dette alias og prøv igen."
+
+msgid "cantAddSystemGroup"
+msgstr ""
+"Webstedet kunne ikke oprettes, fordi systemet ikke kunne oprette webstedets "
+"systemgruppe."
+
+msgid "cantAddUserToServerAdminGroup"
+msgstr ""
+"Kunne ikke føje brugeren [[VAR.user]] til serveradministratorens gruppe."
+
+msgid "cantAddUserToSiteAdminGroup"
+msgstr "Kunne ikke føje [[VAR.user]] til siteadministratorens gruppe."
+
+msgid "cantAddVirtualHost"
+msgstr ""
+"Dette websted kunne ikke oprettes fordi dets tilknyttede webserver ikke "
+"kunne oprettes."
+
+msgid "cantChangeSitePreview"
+msgstr "Kan ikke ændre indstillinger for forhåndsvisning af websted"
+
+msgid "cantCreateAtypeRecord"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette DNS for [[VAR.fqdn]]."
+
+msgid "cantCreateAtypeRecordForMail"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette A record i DNS for "
+"mailserveraliasset [[VAR.alias]], på for [[VAR.fqdn]]."
+
+msgid "cantCreateMXRecordForMailAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette MX record i DNS for "
+"mailserveraliasset [[VAR.alias]], på for [[VAR.fqdn]]."
+
+msgid "cantCreateMailAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Mailaliasset [[VAR.alias]], kunne ikke "
+"oprettes."
+
+msgid "cantCreateNetwork"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette netværksinterface "
+"associeret med dette websteds IP-adresse."
+
+msgid "cantCreateSiteAdminGroup"
+msgstr "Kunne ikke oprette siteadministratorens gruppe."
+
+msgid "cantCreateWebAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette DNS for webserveraliasset "
+"[[VAR.alias]], på [[VAR.fqdn]]."
+
+msgid "cantDestroyNetwork"
+msgstr ""
+"Kunne ikke deaktivere det netværksinterface som er associeret med webstedets "
+"IP-adresse.  Dette forhindrede dog ikke webstedet i at blive slettet."
+
+msgid "cantDisableVhost"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke deaktivere webstedets webserver."
+
+msgid "cantMigrateDnsRecords"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke opdatere DNS for [[VAR.fqdn]] så "
+"det matcher de nye informationer om webstedet."
+
+msgid "cantReadVsite"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke hente webstedets informationer "
+"fra CCE."
+
+msgid "cantRemoveAdminFromGroup"
+msgstr "Kunne ikke fjerne [[VAR.user]] fra webstedets gruppe [[VAR.group]]."
+
+msgid "cantRemoveUserFromServerAdminGroup"
+msgstr "Kunne ikke fjerne [[VAR.user]] fra serveradministratorens gruppe."
+
+msgid "cantRemoveUserFromSiteAdminGroup"
+msgstr "Kunne ikke fjerne [[VAR.user]] fra siteadministratorens gruppe."
+
+msgid "cantRestartDns"
+msgstr "[[base-vsite.operationFailed]]  Kunne ikke genstarte DNS serveren."
+
+msgid "cantSetSiteGroup"
+msgstr ""
+"Webstedet kunne ikke oprettes, fordi webstedets information ikke kunne "
+"opdateres med dets korresponderende systemgruppenavn."
+
+msgid "cantSuspendUsers"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke suspendere alle webstedets "
+"brugere."
+
+msgid "cantUpdateMailAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Emailaliasset, [[VAR.alias]], kunne ikke "
+"opdateres."
+
+msgid "cantUpdateSiteAdminCaps"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke opdatere rettighederne for "
+"siteadministratorer."
+
+msgid "cantUpdateUserMailAliases"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke opdatere emailinformationerne for "
+"de brugere der hører til dette websted."
+
+msgid "cantUpdateVhost"
+msgstr ""
+"[[base-vsite.operationFailed]] Kunne ikke opdatere webserverinformationen "
+"for dette websted."
+
+msgid "contains"
+msgstr "Indeholder"
+
+msgid "couldNotAddAdminAccount"
+msgstr ""
+"[[base-vsite.operationFailed]]  Adminbrugerkonto for [[VAR.fqdn]] kunne ikke "
+"oprettes."
+
+msgid "createAdminUser"
+msgstr "Opret ny serveradministrator"
+
+msgid "defaultDomain"
+msgstr "[[base-vsite.domain]]"
+
+msgid "defaultDomain_help"
+msgstr "Standard domæne til hvilket nye websteder vil høre."
+
+msgid "defaultHome"
+msgstr "Standardbibliotek (/home)"
+
+msgid "defaultIpAddr"
+msgstr "[[base-vsite.ipAddr]]"
+
+msgid "defaultIpAddr_help"
+msgstr "Standardadresse der vil blive indsat når et nyt websted oprettes."
+
+msgid "deleteQuestion"
+msgstr "Er du sikker på at du vel slette administratoren, [[VAR.name]]?"
+
+msgid "deletingSite"
+msgstr "Sletter websted, vent venligst..."
+
+msgid "deletingUser"
+msgstr "Sletter bruger, vent venligst..."
+
+msgid "disallowedAbilities"
+msgstr "Tilgængelige rettigheder"
+
+msgid "diskQuota_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-vsite.userDiskQuota]] er enten "
+"for lav eller ikke et tal.  [[base-vsite.diskQuota_rule]]"
+
+msgid "diskQuota_rule"
+msgstr ""
+"Indtast et tal større end eller lig med en for at begrænse brugerens "
+"diskplads.  Lad feltet være tomt for at give brugeren adgang til alt ledig "
+"plads på den enhed hvor brugerens hjemmebibliotek er placeret."
+
+msgid "diskUsedBySites"
+msgstr ""
+"Enheden kan ikke ændres, fordi følgende webstedet er placeret på den:  "
+"[[VAR.sites]].  Slet venligst disse websteder for denne enhed deaktiveres "
+"eller gøres utilgængeligt til brug som et hjemmebibliotek."
+
+msgid "displayOptions"
+msgstr "Vis valgmuligheder"
+
+msgid "dns_auto"
+msgstr "Automatisk opsætning af DNS"
+
+msgid "dns_auto_help"
+msgstr ""
+"Automatisk opsætning af DNS administrerer DNS for dette websted.  Web og "
+"emailserveraliasser er kun understøttede hvis de deler webstedets "
+"domænenavn.  Denne tjeneste registrerer ikke automatisk domænenavnet med en "
+"Top-Level registrar."
+
+msgid "domain"
+msgstr "Domænenavn"
+
+msgid "domain_help"
+msgstr ""
+"Dette er webstedets domænenavn. Et domænenavn er den anden del af et fuldt "
+"kvalificeret domænenavn.  eksempel.dk og bluequartz.dk er, for eksempel, "
+"gyldige domænenavne."
+
+msgid "emailDisabled"
+msgstr "Deaktiver email på domænet"
+
+msgid "emailDisabled_help"
+msgstr "Dette vil deaktivere domænets mulighed for at modtage email."
+
+msgid "ends"
+msgstr "Slutter med"
+
+msgid "enterFqdn"
+msgstr "Vært eller domænenavn"
+
+msgid "enterFqdn_help"
+msgstr ""
+"Indtast webstedets værtsnavn i det første felt og domænenavnet i det andet "
+"felt.  Domænet kan f.eks. være eksempel.dk, bluequartz.dk, o.s.v."
+
+msgid "exitSitemgmt"
+msgstr "Forlad administration af websted"
+
+msgid "exitSitemgmtHelp"
+msgstr "Luk dette vindue."
+
+msgid "fqdn"
+msgstr "Fuldt værtsnavn"
+
+msgid "fqdnInUse"
+msgstr ""
+"Kombinationen af det specificerede værtsnavn og domænenavn, [[VAR.fqdn]], er "
+"i brug af et andet virtuelt websted."
+
+msgid "fqdnTooLong"
+msgstr ""
+"Beklager, men værts- og domænenavn er for langt.  Den kombinerede længde af "
+"værtsnavn og domænenavn skal være mindre end 255 karakterer."
+
+msgid "fqdn_help"
+msgstr ""
+"Dette er webstedets komplette navn, og kendes også som det fuldt "
+"kvalificerede domænenavn.  Det fulde værtsnavn sorteres efter domæne og "
+"derefter efter værtsnavn."
+
+msgid "fullName"
+msgstr "Fuldt navn"
+
+msgid "fullName_help"
+msgstr "Brugerens fulde navn."
+
+msgid "generalSettings"
+msgstr "Generelle indstillinger"
+
+msgid "generalSettings_help"
+msgstr "Rediger indstillinger for dette websted og konfigurer tjenester."
+
+msgid "homePartition"
+msgstr "Placering af webstedets bibliotek"
+
+msgid "homePartition_help"
+msgstr ""
+"Vælg det bibliotek hvor dette websteds hjemmebibliotek skal placeres.  /home "
+"biblioteket er standardplacering og er placeret på serverens interne "
+"harddiske.  De andre biblioteker er placeret på andre lagerenheder.  Hvis et "
+"websteds hjemmebibliotek er placeret på en anden lagerenhed, vil "
+"deaktivering eller bortfjernelse af enheden medføre at webstedet ophører med "
+"at fungere."
+
+msgid "hostName"
+msgstr "Værtsnavn"
+
+msgid "hostName_help"
+msgstr ""
+"Dette er webstedets værtsnavn.  Værtsnavnet er den første del af et fuldt "
+"kvalificeret domænenavn.  mail og www er, for eksempel, gyldige værtsnavne."
+
+msgid "inSubnet"
+msgstr "er på subnettet"
+
+msgid "ipAddr"
+msgstr "IP-adresse"
+
+msgid "ipAddr_help"
+msgstr "Dette er webstedets IP-adresse."
+
+msgid "listSuspended"
+msgstr "Suspenderet"
+
+msgid "listSuspended_help"
+msgstr ""
+"Dette indikerer om webstedet er suspenderet eller ej. Hvis et websted er "
+"suspenderet, så deaktiveres adgang for brugere til web og FTP på webstedet."
+
+msgid "localhostNotAllowed"
+msgstr ""
+"Værtsnavnet localhost er reserveret og kan ikke specificeres som værtnavn på "
+"et virtuelt websted."
+
+msgid "mailAliases"
+msgstr "Emailserveraliasser"
+
+msgid "mailAliases_help"
+msgstr ""
+"Indtast yderligere vært- eller domænenavne for hvilke dette virtuelle "
+"websted skal acceptere email [SMTP port 25] forbindelser.  Separer flere "
+"indtastninger med komma eller mellemrum.  Eksempel: mail2.eksempel.dk, "
+"mail.eksempel.dk"
+
+msgid "mailAliases_invalid"
+msgstr "Emailserveraliasset [[VAR.invalidValue]] er ugyldigt."
+
+msgid "mailCatchAll"
+msgstr "\"Fang-alt\" emailadresse"
+
+msgid "mailCatchAll_help"
+msgstr ""
+"Specificer en emailadresse som skal modtage meddelelser sendt til ukendte "
+"brugere og postlister.  Hvis denne efterlades tom, vil email sendt til "
+"ukendte brugere eller postlister ikke blive accepteret.  Hvis den "
+"specificerede adresse ikke findes, vil mail til ukendte brugere og "
+"postlister muligvis blive afvist, som hvis der ingen adresse var "
+"specificeret."
+
+msgid "manageAdmin"
+msgstr "Rediger serveradministratorindstillinger for [[VAR.name]]"
+
+msgid "manageAdminDescription"
+msgstr ""
+"Opret og administrer serveradministratorkonti.  [[base-"
+"vsite.manageAdminUsersBlurb]]"
+
+msgid "manageAdminUsers"
+msgstr "Administratorer"
+
+msgid "manageAdminUsersBlurb"
+msgstr ""
+"Oprettelse af separate serveradministratorkonti, udover 'admin' kontoen, "
+"giver serveradministratoren mulighed for at tillade betroede tjedjeparter at "
+"administrere serveren.  Administratorkonti kan oprettes så de har alle de "
+"samme rettigheder, udover administration ad administratorkonti, som 'admin' "
+"kontoen har.  Administratorkonti kan også oprettes med flere begrænsinger af "
+"hvilke aspekter af serveren de har lov til at kontrollere."
+
+msgid "maxUsers"
+msgstr "Maksimalt antal tilladte brugere"
+
+msgid "maxUsers_help"
+msgstr "Det maksimale antal brugere som webstedet kan have."
+
+msgid "modVsiteSettings"
+msgstr "Indstillinger for virtuelt websted [[VAR.site]]"
+
+msgid "mod_name"
+msgstr "Modulnavn"
+
+msgid "modifySearch"
+msgstr "Rediger søgning"
+
+msgid "modifySearch_help"
+msgstr ""
+"Rediger de søgekriterier der benyttes til at generere den aktuelle liste."
+
+msgid "newSearch"
+msgstr "Ny søgning"
+
+msgid "newSearch_help"
+msgstr "Opret en ny søgning."
+
+msgid "newVsiteSettings"
+msgstr "Tilføj et nyt virtuelt websted."
+
+msgid "no"
+msgstr "Nej"
+
+msgid "noSuchSite"
+msgstr "Det specificerede websted, [[VAR.site]], blev ikke fundet."
+
+msgid "notInSubnet"
+msgstr "er ikke i subnettet"
+
+msgid "not_contains"
+msgstr "Indeholder ikke"
+
+msgid "numResultsPerPage"
+msgstr "Websteder per side"
+
+msgid "numResultsPerPage_help"
+msgstr ""
+"Indstil det antal websteder per side som skal vises på samme tid.  De "
+"resterende websteder vil kunne findes ved at vælge det ønskede sidetal fra "
+"menuen i toppen af listen."
+
+msgid "numResultsPerPage_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-vsite.numResultsPerPage]] er "
+"enten for lav eller ikke et tal.  Indtast venligst et tal der er større end "
+"eller lig med et."
+
+msgid "operationFailed"
+msgstr "Operationen slog fejl."
+
+msgid "otherServices"
+msgstr "Tjenester og funktioner"
+
+msgid "otherServices_help"
+msgstr "Aktiver eller deaktiver forskellige tjenester."
+
+msgid "overUserLimit"
+msgstr ""
+"[[base-vsite.operationFailed]]  Webstedet, [[VAR.fqdn]] har overskredet det "
+"maksimale antal brugere det tillades at have."
+
+msgid "quota"
+msgstr "Maksimalt tilladt diskplads (MB)"
+
+msgid "quota_help"
+msgstr ""
+"Den maksimale diskplads i megabyte (MB) som webstedet har tilgængeligt til "
+"filer."
+
+msgid "removeFailed"
+msgstr "Sletning af websted slog fejl"
+
+msgid "removingSite"
+msgstr "Sletter websted"
+
+msgid "removingUsers"
+msgstr "Fjerner brugere"
+
+msgid "rootAccess"
+msgstr "Rodadgang"
+
+msgid "rootAccess_help"
+msgstr ""
+"Aktivering af rodadgang giver adminbrugeren mulighed for, når vedkommende er "
+"logget ind med SSH, at bruge 'su' for at udføre kommandoer med root "
+"rettigheder.  Hvis dette er aktiveret, oprettes en ny root konto med navnet "
+"'root-&lt;brugernavn&gt;', hvor &lt;brugernavn&gt; er navnet på den bruger "
+"med rodadgang som vil blive oprettet.  Den nye konto vil have samme "
+"adgangskode som brugerens normale adgangskode.  For en administrator med "
+"brugernavnet 'peter', vil brugeren 'peter' kunne køre kommandoen 'su - root-"
+"peter' og indtaste sin kontos adgangskode for at blive rodbruger."
+
+msgid "searchBy"
+msgstr "Søg"
+
+msgid "searchBy_help"
+msgstr ""
+"Vælg felt at søge efter.  Webstedet som indeholder den indtastede tekst i "
+"det valgte felt vil blive vist."
+
+msgid "searchCriteria"
+msgstr "Søgekriterier"
+
+msgid "searchCriteria_help"
+msgstr ""
+"Vælg hvordan den specificerede attribut skal gennemsøges.  Rullemenuen kan "
+"bruges til at begrænse hvor nøjagtigt søgeteksten skal matches.  Indtast "
+"søgeteksten i feltet."
+
+msgid "searchOptions"
+msgstr "Valgmuligheder for søgning"
+
+msgid "searchResults"
+msgstr "Søgeresultater for virtuelle websteder"
+
+msgid "search_vsite_nonefound"
+msgstr ""
+"Ingen virtuelle websteder blev fundet med denne søgning. Prøv at begrænse "
+"dine søgekriterier."
+
+msgid "search_vsite_results"
+msgstr "Søgeresultater ([[VAR.num]] virtuelle websteder fundet)"
+
+msgid "search_vsite_results_1"
+msgstr "Søgeresultat (1 virtuelt websted fundet)"
+
+msgid "searchbut"
+msgstr "Søg"
+
+msgid "searchbut_help"
+msgstr "Søg efter virtuelle websteder der passer til det valgte."
+
+msgid "services"
+msgstr "Tjenester"
+
+msgid "siteDefaultsTab"
+msgstr "Basale indstillinger"
+
+msgid "siteDefaultsTab_help"
+msgstr ""
+"Rediger standardværdier for netværk, brugere og diskbegrænsninger, samt "
+"emailindstillinger for nye virtuelle websteder."
+
+msgid "siteEmailSettings"
+msgstr "Emailindstillinger for [[VAR.fqdn]]"
+
+msgid "siteMembersFound"
+msgstr ""
+"Webstedet kan ikke slettes, fordi nogle af webstedets brugerkonti ikke er "
+"slettet.  Undersøg venligst webstedets brugerliste for at se hvilke brugere "
+"der er tilbage."
+
+msgid "siteRemoveConfirm"
+msgstr "Er du sikker på at du vil slette webstedet, [[VAR.fqdn]]?"
+
+msgid "siteUses"
+msgstr "Brugere på webstedet"
+
+msgid "siteUses_help"
+msgstr ""
+"Vælg de ønskede tjenester for at finde websteder der bruger de specificerede "
+"tjenester."
+
+msgid "siteWebSettings"
+msgstr "Webindstillinger for [[VAR.fqdn]]"
+
+msgid "site_preview"
+msgstr "Konfiguration af forhåndsvisning"
+
+msgid "site_preview_help"
+msgstr ""
+"Hvis valgt vil forhåndsvisning af webstedet blive oprettet. Du kan derefter "
+"gennemse webstedet på adressen http://ServerNavn/WebstedsNavn/."
+
+msgid "siteaddbut"
+msgstr "Tilføj websted"
+
+msgid "siteaddbut_help"
+msgstr "Føj et nyt websted til denne server."
+
+msgid "sitedefaultsbut"
+msgstr "Rediger skabelon for virtuelle websteder"
+
+msgid "sitedefaultsbut_help"
+msgstr ""
+"Rediger de indstillinger der automatisk udfyldes når et virtuelt websted "
+"oprettes."
+
+msgid "sitemail"
+msgstr "Email"
+
+msgid "sitemail_help"
+msgstr ""
+"Klik her for at konfigurere emailindstillinger såsom aliasser for websteder."
+
+msgid "sitemaintenance"
+msgstr "Vedligeholdelse"
+
+msgid "sitemaintenanceDescription"
+msgstr ""
+"Klik her for at udføre vedligeholdelse af websteder, såsom backup og "
+"restore."
+
+msgid "sitemanage"
+msgstr "Webstedsadministration"
+
+msgid "sitemanageDescription"
+msgstr "Klik her for at administrere virtuelle websteder og brugerkonti."
+
+msgid "siteservices"
+msgstr "Tjenester"
+
+msgid "siteservicesDescription"
+msgstr "Klik her for at konfigurere tilgængelige tjenester for dette websted."
+
+msgid "sitesettings"
+msgstr "Indstillinger for websted"
+
+msgid "sitesettingsDescription"
+msgstr "Klik her for at ændre generelle websteds- og tjenesteindstillinger."
+
+msgid "sitetabDescription"
+msgstr ""
+"Administrere webstedsindstillinger såsom brugerkonti, postlister, FTP og "
+"backup."
+
+msgid "sitetabDescription_menu"
+msgstr ""
+"Vælg fra menuen nedenfor for at administrere indstillinger for "
+"[[VAR.hostname]], såsom brugerkonti, postlister, FTP og backup."
+
+msgid "siteusage"
+msgstr "Forbrugsinformation"
+
+msgid "siteusageDescription"
+msgstr "Vis informationer om ressourceforbrug på dette websted."
+
+msgid "siteweb"
+msgstr "Web"
+
+msgid "siteweb_help"
+msgstr "Klik her for at konfigurere webindstillinger som f.eks. scriptsprog."
+
+msgid "suspend"
+msgstr "Suspender"
+
+msgid "suspendUser"
+msgstr "Suspender bruger"
+
+msgid "suspendUser_help"
+msgstr ""
+"Suspendering af en bruger vil forhindre denne i at tilgå serveren.  Brugere "
+"vil ikke kunne forbinde til serveren så længe de er suspenderede."
+
+msgid "suspend_help"
+msgstr ""
+"Hvis dette er valgt vil webstedet være suspenderet. Suspendering af et "
+"websted vil fuldstændigt deaktivere adgang for brugere på webstedet, ligesom "
+"web og FTP adgangen også vil være deaktiveret."
+
+msgid "suspended"
+msgstr "Suspenderet"
+
+msgid "suspended_help"
+msgstr "Vælg for at finde websteder der i øjeblikket er suspenderede."
+
+msgid "systemFqdnNotAllowed"
+msgstr ""
+"Det specificerede værtsnavn og domænenavn, [[VAR.fqdn]], er i brug af "
+"systemet."
+
+msgid "usedMailAliases"
+msgstr ""
+"Følgende mailserveraliasser er i brug og kan ikke indstilles:  "
+"[[VAR.aliases]]"
+
+msgid "usedWebAliases"
+msgstr ""
+"Følgende webserveraliasser er i brug og kan ikke indstilles:  "
+"[[VAR.aliases]]"
+
+msgid "userDiskQuota"
+msgstr "Maksimalt tilladt diskplads (MB)"
+
+msgid "userDiskQuota_help"
+msgstr ""
+"Indtast den maksimale mængde diskplads i megabyte (MB) som denne bruger skal "
+"tillades at optage på serveren.  Lad feltet være tomt for at give denne "
+"bruger ubegrænset adgang til diskplads."
+
+msgid "userInformation"
+msgstr "Brugerinformation"
+
+msgid "userName"
+msgstr "Brugernavn"
+
+msgid "userNameCreate"
+msgstr "[[base-vsite.userName]]"
+
+msgid "userNameCreate_help"
+msgstr "Indtast brugernavn på den nye serveradministrator."
+
+msgid "userName_help"
+msgstr "Brugerens brugernavn."
+
+msgid "userOwnsAlias"
+msgstr ""
+"Kunne ikke oprette systememailaliasset, [[VAR.alias]], for dette websted.  "
+"Brugeren, [[VAR.user]], som ikke er medlem af noget websted (muligvis en "
+"serveradministrator), lader til at bruge aliasset-  Fjern aliasset fra "
+"[[VAR.user]] og prøv igen."
+
+msgid "userPassword"
+msgstr "Adgangskode"
+
+msgid "userPassword_help"
+msgstr "Indtast brugerens adgangskode."
+
+msgid "userSuspended"
+msgstr "Suspenderet"
+
+msgid "userSuspended_help"
+msgstr "Viser hvorvidt en serveradministrators konto er suspenderet."
+
+msgid "version"
+msgstr "version 1.0"
+
+msgid "virtualSiteList"
+msgstr "Virtuelle websteder"
+
+msgid "virtualSiteList_help"
+msgstr "Lik her for at oprette eller redigere virtuelle websteder på serveren."
+
+msgid "vsiteDefaults"
+msgstr "Skabelon for virtuelle websteder"
+
+msgid "vsiteSearch"
+msgstr "Søg i virtuelle websteder"
+
+msgid "vsiteUserOwnsAlias"
+msgstr ""
+"Kunne ikke oprette systememailaliasset, [[VAR.alias]], på dette websted.  "
+"Brugeren, [[VAR.user]], som er medlem af webstedet, [[VAR.site]], lader til "
+"at benytte aliasset.  Fjern aliasset fra [[VAR.user]] og prøv igen."
+
+msgid "vsiteUsingChangingIP"
+msgstr ""
+"IP-adressen kan ikke ændres, fordi et eller flere websteder har den aktuelle "
+"IP-adresse tildelt dette interface."
+
+msgid "vsiteUsingIpAddress"
+msgstr ""
+"Netværksinterfacet kan ikke deaktiveres fordi et eller flere websteder "
+"bruger den IP-adresse der er tildelt interfacet."
+
+msgid "webAliases"
+msgstr "Webserveralias"
+
+msgid "webAliases_help"
+msgstr ""
+"Indtast yderligere værts- eller domænenavne for hvilke dette virtuelle "
+"websted skal acceptere forespørgsler via web.  Separer indtastninger med "
+"komma eller mellemrum. Eksempel: www2.eksempel.dk, www.eksempel.dk.  Vær "
+"opmærksom på at DNS skal konfigureres til at opløse aliasserne foruden selve "
+"webstedets navn."
+
+msgid "webAliases_invalid"
+msgstr "Webserveraliasset [[VAR.invalidValue]] er ugyldigt."
+
+msgid "windowTitle"
+msgstr "Administrerer virtuelt websted [[VAR.vsite]] som [[VAR.user]]"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "userwebs"
+msgstr "Enable user owned webs"
+
+msgid "userwebs_help"
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."

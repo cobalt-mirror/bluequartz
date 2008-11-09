@@ -1,0 +1,14 @@
+##BODY-ATTRIBUTES##
+	onLoad="MM_swapImgRestore(); MM_preloadImages('/libImage/Nav-Progress.gif');"
+
+##PAGE-TITLE##
+	wizardWelcome
+
+##PAGE-BODY##
+	regText
+
+##WIZARD-FORM##
+	<form action="/base/wizard/index" method="post" name="WizardForm">
+		<input type='hidden' name='WizPage' value='7'>
+		<input type='hidden' name='WizPrevious' value='0'>
+	</form>

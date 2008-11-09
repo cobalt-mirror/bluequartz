@@ -1,0 +1,225 @@
+#!/bin/sh
+#
+# Copyright (c) 2001 by Sun Microsystems, Inc.
+# All rights Reserved
+#
+# chkconfig: 2345 99 99
+# description:	This shell script looks for restored Cobalt configuration
+# 		databases and restores them before booting if they exist.
+#		After restoring the databases, quotas are updated and Active
+#		Monitor is run to syncronize with the running system.
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Location of the archives to be restored
+DUMPDIR=/var/cobalt/backups
+
+#
+# Location of the file that controls quota re-scans.  See the quota init
+# script.
+#
+DONTCHECK=/etc/cobalt/dont_check_quotas
+QUOTACHECK=/etc/rc.d/init.d/quota
+UPDATE_QUOTAS=0
+CCE_QUOTAS=0
+POSTGRES_QUOTAS=0
+
+# ActiveMonitor settings
+SWATCH_CCE=/usr/sbin/swatch
+SWATCH_SAUCE=/usr/local/sbin/swatch
+UPDATE_AM=0
+
+# Log files used by this script
+LOGFILE=/var/cobalt/restore.log
+ERRFILE=/tmp/restore_errs.log
+
+
+function cce_restore_quotas() {
+	echo "Restoring quotas from CCE"
+
+	# Restore the OS quotas from the database
+	/usr/sausalito/sbin/disk_restorequotas.pl 2>> ${LOGFILE} > ${ERRFILE}
+	RESULT=$?
+	if [ ${RESULT} -ne 0 ] ; then
+		/bin/mail -s "Error restoring quotas" admin < ${ERRFILE}
+	else
+		#
+		# A restore has been performed, so make sure
+		# the quotas get updated.
+		#
+		UPDATE_QUOTAS=1
+		UPDATE_AM=1
+	fi
+	if [ -f ${ERRFILE} ] ; then
+		#
+		# Clear up any error log file.  The messages
+		# are in the general log file as well.
+		#
+		rm -f ${ERRFILE}
+	fi
+}
+
+
+function postgres_restore_quotas() {
+	echo "Restoring disk quotas from database"
+	#
+	# Move the restore file out of the way so the database
+	# does not get restored again at the next reboot.
+	#
+	rm -f ${DUMPDIR}/restored.cobalt.sql
+	mv ${DUMPDIR}/cobalt.sql ${DUMPDIR}/restored.cobalt.sql
+
+	# Restore the OS quotas from the database
+	/usr/local/sbin/cobalt_restorequotas 2>> ${LOGFILE} > ${ERRFILE}
+	RESULT=$?
+	if [ ${RESULT} -ne 0 ] ; then
+		/bin/mail -s "Error restoring quotas" admin < ${ERRFILE}
+	else
+		#
+		# A restore has been performed, so make sure
+		# the quotas get updated.
+		#
+		UPDATE_QUOTAS=1
+		UPDATE_AM=1
+	fi
+	if [ -f ${ERRFILE} ] ; then
+		#
+		# Clear up any error log file.  The messages
+		# are in the general log file as well.
+		#
+		rm -f ${ERRFILE}
+	fi
+}
+
+function update_quotas() {
+
+	if [ ${CCE_QUOTAS} -eq 1 ] ; then
+		cce_restore_quotas
+	fi
+	if [ ${POSTGRES_QUOTAS} -eq 1 ] ; then
+		postgres_restore_quotas
+	fi
+
+	# Rebuild the quota database for the entire system
+	/bin/rm -f ${DONTCHECK}
+	if [ -x ${QUOTACHECK} ]; then
+		${QUOTACHECK} stop >> ${LOGFILE} 2>&1
+		${QUOTACHECK} start >> ${LOGFILE} 2>&1
+	elif [ -x /sbin/quotacheck ]; then
+		/sbin/quotacheck >> ${LOGFILE} 2>&1
+	else
+		echo "Quota's not updated" >> ${LOGFILE}
+	fi
+}
+
+function update_am() {
+	if [ -x ${SWATCH_CCE} ]; then
+		# We have a swatch+cce ActiveMonitor on this machine
+		${SWATCH_CCE} >> ${LOGFILE} 2>&1
+
+	elif [ -x ${SWATCH_SAUCE} ]; then
+		# Sauce style ActiveMonitor is available on this machine 
+		${SWATCH_SAUCE} >> ${LOGFILE} 2>&1
+	fi
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        # Restore the cobalt configuration databases
+	if [ -f ${DUMPDIR}/cce.tar ] ; then
+		echo "Restoring CCE"
+		/usr/local/sbin/cce_restore --file=${DUMPDIR}/cce.tar >> $LOGFILE 2>&1
+		RESULT=$?
+		if [ ${RESULT} -eq 0 ] ; then
+			#
+			# Move the tar file out of the way so that CCE does not
+			# get restored again at the next reboot.
+			#
+			rm -f ${DUMPDIR}/restored.cce.tar
+			mv ${DUMPDIR}/cce.tar ${DUMPDIR}/restored.cce.tar
+		fi
+
+		#
+		# A restore has been performed, so make sure the quotas get
+		# updated.
+		#
+		UPDATE_QUOTAS=1
+		CCE_QUOTAS=1
+		UPDATE_AM=1
+	fi
+	if [ -f ${DUMPDIR}/cobalt.sql ] ; then
+		# Make sure Postgres is running
+		pid=`pidof postmaster`
+		if [ ! $pid ]; then
+			echo "PostgreSQL is not running!" >> ${LOGFILE}
+			exit -1
+		fi
+
+
+		# Login data for Postgres
+		PGUSER="admin"
+		PGPASSWORD=`cat /etc/cobalt/.meta.id`
+		export PGUSER
+		export PGPASSWORD
+
+		echo "Restoring Cobalt Database"
+
+		/usr/bin/psql -e cobalt < ${DUMPDIR}/cobalt.sql >> ${LOGFILE} 2>&1
+		RESULT=$?
+
+		#
+		# A restore has been performed, so make sure the quotas get
+		# updated.
+		#
+		UPDATE_QUOTAS=1
+		POSTGRES_QUOTAS=1
+		UPDATE_AM=1
+	fi
+
+	#
+	# Check to see if the quota subsystem needs to be updated.  This will
+	# allow ActiveMonitor to collect the proper data during it's next
+	# scheduled run.
+	#
+	if [ ! -f ${DONTCHECK} ]; then
+		#
+		# The dont_check_quotas file was removed by something (possibly
+		# NetWorker).  Update quotas now.
+		#
+		update_quotas
+
+		# Turn off quota updates to avoid a double check
+		UPDATE_QUOTAS=0
+	fi
+	if [ ${UPDATE_QUOTAS} -eq 1 ]; then
+		#
+		# One of the actions above was executed.  Update the quota
+		# information now.
+		#
+		update_quotas
+	fi
+
+	if [ ${UPDATE_AM} -eq 1 ]; then
+		#
+		# Update the ActiveMonitor information so the UI will display
+		# everything correctly without waiting for the next automatic
+		# update.
+		#
+		update_am
+	fi
+
+	exit ${RESULT}
+        ;;
+  stop)
+        echo
+        ;;
+  *)
+        echo "Usage: cobalt_restore {start|stop}"
+        exit 1
+esac
+
+exit 0
+

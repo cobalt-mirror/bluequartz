@@ -1,0 +1,103 @@
+# $Id: portforward.po 201 2003-07-18 19:11:07Z will $
+
+# Menu item
+msgid "portforwarding_menu"
+msgstr "ポート転送"
+
+msgid "portforwarding_menu_help"
+msgstr "ポート転送を利用すると、このマシンが受け取るポート上の任意のトラフィックを別のマシンへ転送できます。  この機能は、外部と接続しているネットワーク内のマシンにアクセスする場合に便利です。"
+
+msgid "portforward_list"
+msgstr "ポート転送ルール"
+
+msgid "form_port_rule"
+msgstr "有効なポート番号を入力してください。  [[base-portforward.form_port_definition]]"
+
+msgid "form_port_definition"
+msgstr "ポート番号は、1 から 65535 の間の整数です。"
+
+msgid "form_ipaddr_rule"
+msgstr "有効な IP アドレスを入力してください。  （指定例： 192.168.0.1）"
+
+msgid "sourcePort"
+msgstr "ソースポート"
+
+msgid "sourcePort_help"
+msgstr "このマシンのソースポート宛ての任意のトラフィックは、別のマシンのターゲットポートにリダイレクトされます。"
+
+msgid "sourcePort_invalid"
+msgstr "[[VAR.invalidValue]] は [[base-portforward.sourcePort]] に対して不正な値です。  [[base-portforward.form_port_rule]]"
+
+msgid "sourceIP"
+msgstr "ソース IP"
+
+msgid "sourceIP_help"
+msgstr "このソースアドレスの指定されたポート宛ての任意のトラフィックは、ターゲットのマシンにリダイレクトされます。"
+
+msgid "sourceIP_invalid"
+msgstr "[[VAR.invalidValue]] は [[base-portforward.sourceIP]] に対して不正な値です。  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "protocol"
+msgstr "プロトコル"
+
+msgid "protocol_help"
+msgstr "これはリダイレクトされるプロトコルです。"
+
+msgid "targetPort"
+msgstr "ターゲットポート"
+
+msgid "targetPort_help"
+msgstr "これはトラフィックを受け取るマシンのポートです。"
+
+msgid "targetPort_invalid"
+msgstr "[[VAR.invalidValue]] は [[base-portforward.targetPort]] に対して不正な値です。  [[base-portforward.form_port_rule]]"
+
+msgid "targetIP"
+msgstr "ターゲット IP"
+
+msgid "targetIP_help"
+msgstr "これはトラフィックを受け取るマシンの IP アドレスです。"
+
+msgid "targetIP_invalid"
+msgstr "[[VAR.invalidValue]] は [[base-portforward.targetIP]] に対して不正な値です。  [[base-portforward.form_ipaddr_rule]]"
+
+msgid "action"
+msgstr "操作"
+
+msgid "action_help"
+msgstr "ポート転送レコードを変更または削除できます。"
+
+msgid "iface"
+msgstr "[[VAR.ifacename]] - [[VAR.ipaddr]]"
+
+# PagedBlock (detail.php)
+msgid "title_create"
+msgstr "ポート転送レコード - 作成"
+
+msgid "title_modify"
+msgstr "ポート転送レコード - 変更"
+
+msgid "description"
+msgstr "コメント"
+
+msgid "description_help"
+msgstr "[[base-portforward.description]] フィールドを使用して各レコードの詳細記録を保存できます。"
+
+msgid "SourceIP"
+msgstr "[[VAR.devtag]] ([[VAR.iface]]) - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth0"
+msgstr "[[base-network.eth0]] - [[VAR.ipaddr]]"
+
+msgid "SourceIP_eth1"
+msgstr "[[base-network.eth1]] - [[VAR.ipaddr]]"
+
+msgid "confirmRemoveMessage"
+msgstr "このポート転送ルールを削除してよろしいですか？"
+
+#errors
+msgid "collidingAddresses"
+msgstr "ソース [[VAR.ip]]:[[VAR.port]] に関するレコードは既に存在します。"
+
+msgid "mustCrossInterfaces"
+msgstr "入力した [[base-portforward.sourceIP]] および [[base-portforward.targetIP]] の組み合わせは、ネットワークインターフェイス間を行き来できません。  [[base-portforward.portforwarding_menu]] では、トラフィックをあるネットワークインターフェイスから別のインターフェイスにルートする必要があります。"
