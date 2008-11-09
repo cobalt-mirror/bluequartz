@@ -1,0 +1,203 @@
+msgid "import"
+msgstr "Import"
+
+msgid "import_help"
+msgstr "Click here to Import users onto the server."
+
+msgid "importTitle"
+msgstr "Import User List to [[VAR.fqdn]]"
+
+msgid "dataUpload"
+msgstr "Source File"
+
+msgid "dataUpload_help"
+msgstr "Enter the location from which to obtain the TSV (Tab Separated Value) format file containing a list of users to be uploaded to the system. Enter a URL beginning with either http:// or ftp:// to download the file from a location on the Internet, or enter the full path to a file to upload. Click Browse to choose a file on your local hard drive.  Please refer to the server appliance manual for the complete file format description."
+
+msgid "dataUpload_empty"
+msgstr "Sorry, you have not selected a file to be uploaded to the server for import."
+
+msgid "urlField_empty"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "url"
+msgstr "URL"
+
+msgid "upload"
+msgstr "Upload"
+
+msgid "fileImport"
+msgstr "Import From File"
+
+msgid "attempt"
+msgstr "Not attempted."
+
+msgid "creating"
+msgstr "Adding [[VAR.class]] named [[VAR.name]]"
+
+msgid "modifying"
+msgstr "Modifying [[VAR.class]] named [[VAR.name]]"
+
+msgid "importResults"
+msgstr "Import Result"
+
+msgid "result"
+msgstr "Result"
+
+msgid "action"
+msgstr "Action"
+
+msgid "reason"
+msgstr "Reason"
+
+msgid "noFileSpecified"
+msgstr "Error receiving file"
+
+msgid "fileWasNoGood"
+msgstr "Sorry, an error occurred while receiving the file specified. Please try uploading the file again."
+
+msgid "badFileButtonCancel"
+msgstr "Back"
+
+msgid "badFileButtonCancel_help"
+msgstr "Click here to go back."
+
+msgid "importResult"
+msgstr "Import Result"
+
+msgid "couldNotOpenFile"
+msgstr "Sorry, an error occurred while trying to open the uploaded file. Please check the location and try again.  If using the URL method and you need to login, try a URL with a format like http://user:password@server.address/file or ftp://user:password@server.address/file."
+
+msgid "success"
+msgstr "Success"
+
+msgid "fail"
+msgstr "Fail"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (line [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Import Now"
+
+msgid "importNow_help"
+msgstr "Click here to import the users from the selected file."
+
+msgid "importErrors"
+msgstr "Import Errors"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] errors"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] error"
+
+msgid "fullName"
+msgstr "Full Name"
+
+msgid "fullName_help"
+msgstr "These are full names of the entries supplied by the import file."
+
+msgid "name"
+msgstr "User Name"
+
+msgid "name_help"
+msgstr "These are user names of the entries supplied by the import file."
+
+msgid "errorMessageHeader"
+msgstr "Message"
+
+msgid "errorMessageHeader_help"
+msgstr "These are detailed messages for errors which occurred during import."
+
+msgid "importSucceeded"
+msgstr "Import Succeeded"
+
+msgid "importSucceededMessage"
+msgstr "No errors occurred while importing."
+
+msgid "importSucceededMessage_help"
+msgstr "No errors occurred while importing."
+
+msgid "importStatus"
+msgstr "Import Status"
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "This is the progress of the import. If you leave this section the user import will continue to run in the background but the progress bar will no longer be visible."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "This is the current Status of Import."
+
+msgid "creatingUsers"
+msgstr "Adding Users ([[VAR.pos]]/[[VAR.max]])"
+
+msgid "intname"
+msgstr "username"
+
+msgid "intfullName"
+msgstr "fullname"
+
+msgid "intpassword"
+msgstr "password"
+
+msgid "intaliases"
+msgstr "email aliases"
+
+msgid "importChanger"
+msgstr "Select Import Method..."
+
+msgid "importChangerFile"
+msgstr "File Import"
+
+# --- Export strings ---
+# ----------------------
+
+msgid "exportUsers"
+msgstr "Export"
+
+msgid "exportUsers_help"
+msgstr "Click here to export users from the server. The export function returns a TSV (Tab Separated Value) format file that is compatible with the user import function."
+
+msgid "userExport"
+msgstr "Export User List"
+
+msgid "exportTitle"
+msgstr "Export User List from [[VAR.fqdn]]"
+
+msgid "pwFormat"
+msgstr "Password Format"
+
+msgid "pwFormat_help"
+msgstr "Due to the encryption algorithm used to store user passwords, the user's actual password cannot be exported. If you choose to use User Names, users will be able to use their login name as their password.  Choosing Random Strings prevents other users from being able to easily guess another user's password."
+
+msgid "namePw"
+msgstr "Use User Names as Passwords"
+
+msgid "randomPw"
+msgstr "Use Random Strings as Passwords"
+
+msgid "downloadList"
+msgstr "Export Now"
+
+msgid "downloadList_help"
+msgstr "Click here to export users from the server. The export function returns a TSV (Tab Separated Value) format file that is compatible with the user import function."
+
+msgid "usersForExport"
+msgstr "[[VAR.number]] users are available for export."
+
+msgid "oneUserForExport"
+msgstr "One user is available for export."
+
+msgid "noUsersForExport"
+msgstr "There are no users available for export.  Users must be added before they can be exported."
+
+# --- End of Export strings --- 
+

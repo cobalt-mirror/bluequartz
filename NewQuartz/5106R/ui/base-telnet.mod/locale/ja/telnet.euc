@@ -1,0 +1,75 @@
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Telnet アクセスを設定できます。"
+
+msgid "enableServer"
+msgstr "Telnet アクセスを有効にする"
+
+msgid "enableServer_help"
+msgstr "このチェックボックスをチェックするとサーバへの Telnet アクセスが有効になります。また、サーバおよびサイトの管理者は、各ユーザアカウントのアクセス権を設定できます。"
+
+msgid "telnetSettings"
+msgstr "Telnet アクセスの設定"
+
+msgid "access"
+msgstr "アクセス許可"
+
+msgid "access_help"
+msgstr "ユーザによる Telnet アクセスを許可するかどうかを指定してください。一般に、Telnet は上級ユーザまたはサーバ管理者が shell スクリプトや shell コマンドを実行する必要のある場合に使われます。セキュリティを強化するため、通常は Telnet アクセスを OFF にするか、または管理者のみに許可しておくようお勧めします。"
+
+msgid "none"
+msgstr "OFF - Telnet アクセスを拒否する"
+
+msgid "root"
+msgstr "ON - 管理者のログインのみ許可する"
+
+msgid "reg"
+msgstr "ON - 全てのユーザのログインを許可する"
+
+msgid "connectRateField"
+msgstr "最大接続数"
+
+msgid "connectRateField_help"
+msgstr "１分あたりに接続を許可する最大数を入力してください。接続数がこの上限に達した場合には、新規の接続リクエストは拒否されます。"
+
+msgid "connectRateField_rule"
+msgstr "指定された範囲内の整数を入力してください。デフォルト値は 40 です。"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"
+msgstr "詳細"
+
+msgid "basic_help"
+msgstr "Telnet サーバを有効または無効に設定できます。"
+
+msgid "advanced_help"
+msgstr "Telnet サーバのパラメータを管理できます。"
+
+# --- Active monitor
+
+msgid "amTelnetNameTag"
+msgstr "Telnet サーバ"
+
+msgid "amDetailsTitle"
+msgstr "Telnet サーバの詳細"
+
+msgid "amNotAccepting"
+msgstr "Telnet サーバは動作しておらず、起動することもできませんでした。[[base-apache.amAdmservNameTag]] で、Telnet サーバを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。Telnet サーバが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも Telnet サーバが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amStatusOK"
+msgstr "Telnet サーバは正常に動作しています。"
+
+# ui extension strings for the shell.System domain
+msgid "enableTelnet"
+msgstr "Telnet サーバを有効にする"
+
+msgid "enableTelnet_help"
+msgstr "Telnet を有効にすると、シェルアクセスを許可されているユーザは、Telnet クライアントソフトウェアを使ってこのサーバに接続できるようになります｡"
+
+msgid "telnetEnable"
+msgstr "有効にする"
+

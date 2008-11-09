@@ -1,0 +1,39 @@
+<!--
+  For information on how Active Monitor works, see the documentation in the
+  config files.  For schema details look at am.schema.
+-->
+
+<!-- This is the AM Namespace for monitoring Fans -->
+<class name="ActiveMonitor" namespace="Fans" version="1.0">
+    <property name="enabled"            type="boolean"  default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean"  default="1"/>
+    <property name="type"               type="scalar"   default="exec"/>
+    <property name="typeData"           type="scalar"   
+	default="/usr/sausalito/swatch/bin/am_fans.pl" />
+
+    <property name="currentState"       type="amstate"  default="N"/>
+    <property name="lastChange"         type="uint"     default="0"/>
+    <property name="lastRun"            type="uint"     default="0"/>
+    <property name="currentMessage"     type="scalar"   default=""/>
+    <property name="greenMsg"		type="scalar"
+	default="[[base-am.amFansOK]]" />
+    <property name="yellowMsg"		type="scalar"
+	default="[[base-am.amFansSlow]]" />
+    <property name="redMsg"		type="scalar"
+	default="[[base-am.amFansDangerouslySlow]]" />
+
+    <property name="nameTag"   		type="scalar"  	
+	default="[[base-am.amFanName]]"/>
+    <property name="URL"	    	type="scalar" 
+ 	default="/base/am/fans_details.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+
+    <property name="hideUI"		type="boolean"	default="0" />
+    <property name="sysfault"		type="boolean"	default="0" />
+
+    <property name="rThreshold"		type="uint"	default="2000" />
+    <property name="yThreshold"		type="uint"	default="4000" />
+
+</class>
+

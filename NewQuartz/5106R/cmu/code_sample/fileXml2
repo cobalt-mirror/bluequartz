@@ -1,0 +1,182 @@
+#!/usr/bin/perl -w -i../perl-modules
+#  $id: parsexml2,v 1.1 2000/08/24 02:01:34 jeffb exp $
+#
+
+my $nodes = {
+	vsite => 1,
+	user => 1,
+	migrate => 1,
+	file => 1,
+	archive => 1,
+	public => 1,
+	private => 1,
+	webdomain => 1,
+	aliases => 1,
+};	
+my $DEBUG = 1;
+use vars qw($nodes $DEBUG);
+use Data::Dumper;
+use strict;
+my $fileName = "/tmp/cmu2.xml";
+my $ret = readXML($fileName);
+
+open(FH, "> /tmp/datadumper");
+print FH Dumper($ret);
+close(FH);
+#sleep 20;
+warn "ret: ", $ret, "\n";
+warn "id: ", $ret->{id}, "\n";
+#warn "private: ", scalar @{ $ret->{private}->{file} }, "\n";
+
+use lib "../perl_modules";
+require TreeXml;
+TreeXml::writeXml($ret, "/tmp/out.xml");
+
+#use Data::Dumper;
+#warn Dumper($ret);
+
+#warn "v: ", $ret->{vsite}, "\n";
+
+#############
+# readXML() #
+# syntax:	$obj->readXML($fileName);
+# 
+sub readXML
+{
+	require XML::Parser;
+
+	my $fileName = shift; 
+	die "XML::readXML Cannot find import file $fileName\n" unless(-f $fileName);
+
+	my $parse = new XML::Parser(
+			ErrorContext => 2
+	);
+	$parse->setHandlers(Init => \&xmlInit,
+		Start => \&xmlStart,
+		Char => \&xmlChar,
+		Default => \&xmlDefault,
+		End  => \&xmlEnd,
+		Final => \&xmlFinal
+	);
+
+
+	return $parse->parsefile($fileName);
+}
+
+sub xmlInit
+{
+	my $xp = shift;
+
+	$xp->{Curlist} = $xp->{Tree} = [];
+	$xp->{Lists} = [];
+	$xp->{parent} = ();
+	$xp->{current} = ();
+	$xp->{pass} = 0 if ($DEBUG);	
+}
+
+sub xmlStart
+{
+	my $xp = shift;
+	my $el = shift;
+	my $attr = {};
+
+	$xp->{pass}++ if ($DEBUG);;
+	# parse the attrs
+	while(@_) {
+		my $dType = shift;
+		my $value = shift;
+		# Add a datatype value checks here
+		if($dType eq "name") {
+			$attr->{"name"} = $value;
+		} elsif ($dType =~ /(int|bool|float|value|array)/) {
+			$attr->{$el} = $value;
+		} else {
+			$attr->{$dType} = $value;
+		}
+	}
+
+	#if($el eq "migrate") {
+		# do nothing the CMU will contain 
+		# Migration, Modify, Mgmt, etc objects in time
+		# it might be called ccu then :)
+	if(defined($nodes->{$el})) {
+		# create the new object
+		my $newObj = {};
+		$newObj->{id} = $el;
+		if($attr) {
+			foreach my $a (keys %{ $attr }) {
+				#warn "$a => ", $attr->{$a}, "\n";	
+				warn "going to set att\n";
+			}
+		}
+		push @{ $xp->{objects} }, $newObj;
+		$xp->{current} = $newObj;
+	} else {
+		if($xp->{current}->{$el}) {
+			warn "ERROR: duplicate entry for: ".$el.", Replacing...";
+		}
+		foreach my $a (keys %{ $attr }) {
+			$xp->{current}->{$a} = $attr->{$a};
+		}
+	}
+}
+
+sub xmlDefault
+{
+	my $xp = shift;
+	my $data = shift;
+
+	# comment
+	if ($data =~ /^<!--/) {
+		return;
+	}
+}
+
+sub xmlChar
+{
+	my $xp = shift;
+	my $data = shift;
+
+	if ($data =~ /\S/) {
+		my $obj = @{ $xp->{objects} }[-1];
+		my $element = $xp->current_element;
+
+		$data =~ s/\n//g;
+		$obj->{$element} = $data;
+	}
+}
+
+sub xmlEnd
+{
+	my $xp = shift;
+	my $el = shift;
+
+	if(defined($nodes->{$el})) {
+		my $cObj = $xp->{current} = pop @{ $xp->{objects} };
+		my $pObj = $xp->{parent} = @{ $xp->{objects} }[-1];
+		#warn "End:el is: ", $el, "\n";
+		#warn "cObj is: ", $cObj, "\n";
+		#warn "pObj is: ", $pObj, "\n";
+		if(ref($pObj)) {
+			push(@{ $pObj->{$el} }, $cObj);
+			#$pObj->addChild($cObj);
+		} 
+	}
+}
+
+sub xmlFinal
+{
+	my $xp = shift;
+	my $iObj = $xp->{current};
+
+	delete $xp->{objects};
+	delete $xp->{current};
+	delete $xp->{parent};
+	delete $xp->{pass} if ($DEBUG);
+	
+	return $iObj;
+}
+
+1;
+
+__END__

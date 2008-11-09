@@ -1,0 +1,42 @@
+msgid "menu"
+msgstr "User Database"
+
+msgid "menu_help"
+msgstr "Converts the user database from DB style to flat files (/etc/passwd) instead."
+
+msgid "header"
+msgstr "User Database Convertor"
+
+msgid "header_help"
+msgstr "Converts the user database from DB style to flat files (/etc/passwd) instead."
+
+msgid "convert_button"
+msgstr "Convert DB => Flat Files"
+
+msgid "convert_button_help"
+msgstr "Converts the user database from DB style to flat files (/etc/passwd) instead."
+
+msgid "failure"
+msgstr "Failure during conversion, check /tmp/convert2passwd.log"
+
+msgid "warning"
+msgstr ""
+"If this is a new installation, you do NOT have to run the convert script,\n"
+"simply ignore this information.\n\n"
+"The Password database can become corrupted.  When it gets corrupted, your\n"
+"users will not be able to login to email, ftp or ssh.  Running this convertor\n"
+"will move your system back to using the /etc/passwd file, instead of storing\n"
+"user information in the database.\n\n"
+"If you are not having any issues with people being unable to login, you can\n"
+"simply ignore this option.  In the future, if you do have issues, simply\n"
+"reboot, come back here, and click on the convert button below.\n\n"
+"The following process will be stopped during this conversion\n"
+"  httpd\n"
+"  sendmail\n"
+"  xinetd\n"
+"  dovecot\n"
+"  crond\n\n"
+"They will be restarted after the script is complete\n "
+
+msgid "finished"
+msgstr "You have already ran the conversion tool.  Nothing to do"

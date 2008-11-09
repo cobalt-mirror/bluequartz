@@ -1,0 +1,246 @@
+<!-- 
+  $Id: disk.schema 259 2004-01-03 06:28:40Z shibuya $
+  Copyright 2001, Sun Microsystems, Inc.
+-->
+
+<!-- typedef for acceptable filesystem types -->
+<typedef name="knownFs" type="re" 
+    data="^(ext2|xfs|reiserfs|smbfs|nfs|iso9660)$"/>
+
+<!-- 
+    typedef for valid disk devices includes /dev and nfs type disks 
+    in addition, allow full paths like /home to, so we can munge
+    on the handler side if needed
+-->
+<typedef name="diskDevice" type="re"
+    data="^(\/dev\/[A-Za-z0-9]+|[A-Za-z0-9][A-Za-z0-9\-]*(\.[A-Za-z0-9][A-Za-z0-9\-]*)*:\/.*|\/.*)$"/>
+
+<!-- new disk interface, each partition gets it's own disk object -->
+<class 
+    name="Disk" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <!-- values in KB -->
+    <property 
+        name="device" type="diskDevice" 
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- filesystem information -->
+    <property 
+        name="fsType" type="knownFs" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="mountPoint" type="scalar" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="quota" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="isHomePartition" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- whether or not the disk should be checked before mounting, sort of -->
+    <property
+        name="check" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+   
+    <!-- 
+        the Universally Unique Identifier for this partition
+        really only used for additional storage devices, so it is easier
+        to see if we've seen this disk before
+    -->
+    <property
+        name="uuid" type="scalar"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!--
+        another add storage only property.  mark new disks that haven't
+        been touched by a cobalt server for easier mgmt of new devices
+        in the UI
+    -->
+    <property
+        name="new" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!--
+        changing the value of eraseDisk will destroy all partitions
+        and recreate one partition.  THIS WILL DESTROY ALL DATA
+        you cannot erase mounted disks
+    -->
+    <property
+        name="eraseDisk" type="scalar" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- disk usage info -->
+    <property 
+        name="total" type="int" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="used" type="int" 
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- user friendly label for the partition -->
+    <property 
+        name="label" type="scalar" 
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- whether this disk should be mounted -->
+    <property 
+        name="mount" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- whether this disk is mounted -->
+    <property 
+        name="mounted" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- don't want people monkeying with the internal drives -->
+    <property 
+        name="internal" type="boolean" default="0"
+        writeacl="ruleAdmin"
+    />
+
+    <!-- to reload disk information on demand -->
+    <property 
+        name="refresh" type="scalar" 
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<class 
+    name="User" namespace="Disk" version="1.0"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+    <!-- used in KB -->
+    <property 
+        name="used" type="int" 
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+    <!-- quota in MB -->
+    <property 
+        name="quota" type="int" default="-1" 
+        writeacl="ruleModifyUser"
+    />
+    <property 
+        name="refresh" type="scalar"
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+
+    <property
+	name="lastmailed" 	type="int" default="0"
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+    <property 
+        name="over_quota" type="boolean"
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+</class>
+
+<class 
+    name="Workgroup" namespace="Disk" version="1.0"
+    createacl="ruleAll" destroyacl="rullAll"
+>
+    <!-- used in KB -->
+    <property 
+        name="used" type="int" 
+        writeacl="ruleCapable(modifyGroup)"
+    />
+    <!-- quota in MB -->
+    <property 
+        name="quota" type="int" default="-1" 
+        writeacl="ruleCapable(modifyGroup)"
+    />
+    <property 
+        name="refresh" type="scalar"
+        writeacl="ruleCapable(modifyGroup)"
+    />
+</class>
+
+<!-- Virtual Site core disk quota --> 
+<class 
+    name="Vsite" namespace="Disk" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <!-- used in KB -->
+    <property 
+        name="used" type="int" 
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+    <!-- quota in MB -->
+    <property 
+        name="quota" type="int" default="-1" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="refresh" type="scalar"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+    <property
+	name="user_over_quota" 	type="boolean" default="0"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+    <property
+	name="lastmailed" 	type="int" default="0"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+</class>
+
+<!-- Virtual Site service quotas --> 
+<class 
+    name="ServiceQuota" version="1.0"
+    createacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    destroyacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+>
+
+    <!-- The label, for groupDiskUsage.php, ie [[base-service.quota]] --> 
+    <property
+	name="label" type="scalar" default=""
+	optional="yes"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+    <!-- The site group parent, 'server' for all-sites -->
+    <property
+	name="site" type="scalar" default="server"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+
+    <!-- The quota to watch.  An account name and a boolean for group or 
+	 non-group (user) -->
+    <property
+	name="account" type="scalar"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+    <property 
+	name="isgroup" type="int" default="0"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+
+    <!-- used in KB -->
+    <property 
+        name="used" type="int" 
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+    <!-- quota in MB -->
+    <property 
+        name="quota" type="int" default="-1" 
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property 
+        name="refresh" type="scalar"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleModifySite )"
+    />
+</class>

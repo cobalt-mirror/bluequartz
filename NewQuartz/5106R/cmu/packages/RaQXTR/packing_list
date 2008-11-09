@@ -1,0 +1,17 @@
+[Package -- Version=1.0]
+Vendor:                Sun Cobalt 
+VendorTag:             [[Sun Cobalt]]
+Name:                  CMU
+NameTag:               [[CMU]]
+Location:              RaQXTR-All-CMU-[VERSION].pkg
+Version:               [VERSION]
+Product:               35..R
+Product:               35..R-ja
+PackageType:           update
+LongDesc:              [[longDesc]]
+ShortDesc:             [[shortDesc]]
+Copyright:             [[copyright]]
+Depend:                Cobalt:OS >= 6.0
+RPM: RaQXTR-cmu-[VERSION]-0.noarch.rpm
+RPM: perl-Compress-Zlib-1.11-1.i386.rpm
+[/Package]

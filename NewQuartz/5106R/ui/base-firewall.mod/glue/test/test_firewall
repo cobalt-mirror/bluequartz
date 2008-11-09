@@ -1,0 +1,49 @@
+#!/usr/bin/perl
+
+use lib qw( /usr/sausalito/perl );
+
+use CCE;
+$CCE::DEBUG = 1;
+my $cce = new CCE;
+$cce->connectuds();
+
+destroy_all($cce, "FirewallChain");
+destroy_all($cce, "FirewallRule");
+my ($sysoid) = $cce->find("System");
+
+my @rules = ();
+
+$cce->create("FirewallRule", {
+  'policy' => 'ACCEPT',
+  'source_ip_start' => '10.9.25.0',
+  'source_ip_stop' => '10.9.26.255',
+  'source_ports' => '80:88',
+  'dest_ip_start' => '0.0.0.0',
+  'dest_ip_stop' => '255.255.255.255',
+} );
+push (@rules, $cce->oid());
+
+$cce->create("FirewallChain", {
+  'name' => 'forward',
+  'rules' => CCE->array_to_scalar(@rules) });
+my $chain = $cce->oid();
+
+$cce->set($sysoid, "Firewall", { "commit" => time() });
+
+# destroy all monsters!
+sub destroy_all
+{
+  my $cce = shift;
+  my $class = shift;
+  my @oids = $cce->find($class);
+  print STDERR "$class: ";
+  print STDERR ($#oids+1);
+  print STDERR ": ";
+  foreach $_ (@oids) { 
+    print STDERR $_," ";
+    $cce->destroy($_); 
+  }
+  print STDERR "destroyed.\n";
+}
+  
+  

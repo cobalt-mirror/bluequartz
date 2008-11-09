@@ -1,0 +1,67 @@
+Starter Kit
+
+Author: Kevin K.M. Chiu
+Copyright 2000, Cobalt Networks.  All rights reserved.
+$Id: starterKit.txt 3 2003-07-17 15:19:15Z will $
+
+Overview
+========
+
+This is a document about things you need to know to get the user interface to
+work.
+
+UI Tree
+=======
+
+The whole user interface is stored under /usr/sausalito/ui. To install the UI
+tree from CVS, check out the palette module, then do "make install".
+
+PHP
+===
+
+PHP version 4 is required. It must be compiled with XML.
+
+PHP needs to know the path to find PHP libraries. PHP libraries are located
+under /usr/sausalito/ui/libPhp.
+
+Edit the "include_path" setting within php.ini to the above directory.
+
+Apache
+======
+
+Besides loading in PHP for Apache, the DocumentRoot needs to point to
+/usr/sausalito/ui/web.
+
+Configuration File
+==================
+
+/usr/sausalito/ui/conf/ui.cfg is the configuration file for the user interface.
+This path is hard-coded into /usr/sausalito/ui/libPhp/System.php. Use
+System.php to access the configurations. It includes paths and other settings.
+
+The syntax of the file is, on each line:
+name=value
+
+name has a format of [a-zA-Z_\-]+
+value can be of any ascii characters.
+
+Within values, there can be other values embedded using a "[[]]" tag. For
+example, with the following settings:
+
+baseDir=/usr
+subDir=[[baseDir]]/sub
+
+subDir would be /usr/sub.
+
+There can be comments in the file. They start with "#".
+
+Convention
+==========
+
+Source code in palette is written to follow a convention.
+
+Class names follow "ClassName".
+Method names follow "methodName".
+Variable names follow "variableName".
+Static variable names follow "STATIC_VARIABLE_NAME".
+Hidden names starts with a "_".

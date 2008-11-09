@@ -1,0 +1,16 @@
+Foo create begin
+Foo alpha modify begin
+*** test handler: test:alphaCONFIGURE in context CTXT_HANDLER: 1..alpha
+alphabeta.sh running: set 1 beta=b
+client 0:test4.handlers/alpha_beta.sh: set  1 beta = b 
+*** test handler: test:betaCONFIGURE in context CTXT_HANDLER: 1..beta
+beta_gamma.sh running: set 1 gamma=b
+client 0:test4.handlers/beta_gamma.sh: set  1 gamma = b 
+*** test handler: test:gammaCONFIGURE in context CTXT_HANDLER: 1..gamma
+*** test handler: test:gammaEXECUTE in context CTXT_HANDLER: 1..gamma
+client 0:test4.handlers/beta_gamma.sh: SET succeeded
+client 0:test4.handlers/alpha_beta.sh: SET succeeded
+handler test4.handlers/alpha_beta.sh failed
+*** test handler: test:alphaCLEANUProllback in context CTXT_ROLLBACK: 1..alpha
+*** test handler: test:gammaCLEANUProllback in context CTXT_ROLLBACK: 1..gamma
+*** test handler: test:betaCLEANUProllback in context CTXT_ROLLBACK: 1..beta

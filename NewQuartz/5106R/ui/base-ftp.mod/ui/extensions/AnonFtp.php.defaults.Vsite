@@ -1,0 +1,83 @@
+<?php
+// $Id: AnonFtp.php.defaults.Vsite,v 1.7 2001/10/25 01:24:24 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+// AnonFtp.php.defaults.Vsite
+
+include_once('UIExtension.php');
+
+//class AnonFtpExtension extends UIExtension
+class AnonFtpExtension extends UIExtension
+{
+    function display(&$ServerScriptHelper, &$container, $parameters)
+    {
+        $factory = $ServerScriptHelper->getHtmlComponentFactory("base-ftp");
+        $cce = $ServerScriptHelper->getCceClient();
+
+        $defaults =& $cce->get($parameters["CCE_SERVICES_OID"], "AnonFtp");
+        
+        // construct all the form fields needed, note that only simple
+        // form fields are allowd.  no composite form fields
+        $ftpQuota =& $factory->getInteger("AnonFtp_quota", $defaults["quota"], 1);
+        
+        $ftpUsers =& $factory->getInteger("AnonFtp_maxConnections", 
+                            $defaults["maxConnections"], 1);
+
+        $ftpField =& $factory->getMultiChoice("AnonFtp_enabled");
+        $enable =& $factory->getOption('anonEnable', $defaults["enabled"]);
+        $enable->setLabel($factory->getLabel('anonEnable', false));
+
+        $enable->addFormField(
+                $ftpQuota, $factory->getLabel("ftpQuota"), $pageId);
+        $enable->addFormField(
+                $ftpUsers, $factory->getLabel("ftpUsers"), $pageId);
+  
+        $ftpField->addOption($enable);
+
+        // More PGP5 conversion bugs! In tabbed environments the values from composite form fields don't
+        // get posted if you're not right on the tab where the input box is. This work around adds it as
+        // hidden field on all tabs:
+
+        $hidden_block_one = $factory->getTextBlock("AnonFtp_quota", $defaults["quota"]);
+        $hidden_block_one->setOptional(true);
+        $container->addFormField(
+            $hidden_block_one,
+            $factory->getLabel("AnonFtp_quota"),
+            "Hidden"
+        );
+
+        $hidden_block_two = $factory->getTextBlock("AnonFtp_maxConnections", $defaults["maxConnections"]);
+        $hidden_block_two->setOptional(true);
+        $container->addFormField(
+            $hidden_block_two,
+            $factory->getLabel("AnonFtp_maxConnections"),
+            "Hidden"
+        );
+
+        // now add the form fields to the block, assume PagedBlock
+        $pageId = "siteFtp";
+        $container->addPage($pageId, $factory->getLabel("siteFtp"));
+        $container->addFormField(
+                $ftpField, 
+                $factory->getLabel("anonFtp"), 
+                $pageId);
+    }
+
+    function handle(&$ServerScriptHelper, &$errors, $parameters)
+    {
+        // have to claim all the globals needed or this function won't be able to see them
+        global $AnonFtp_enabled, $AnonFtp_quota, $AnonFtp_maxConnections;
+        $cce = $ServerScriptHelper->getCceClient();
+    
+        // simply set the values in CCE
+        $cce->set($parameters["CCE_SERVICES_OID"], "AnonFtp",
+            array(
+                "enabled" => ($AnonFtp_enabled ? 1 : 0), 
+                "quota" => $AnonFtp_quota, 
+                "maxConnections" => $AnonFtp_maxConnections
+            ));
+    
+        // add any errors that occured so they can get back to the UI
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

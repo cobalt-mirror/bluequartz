@@ -1,0 +1,611 @@
+# ----- SW Updates Tab
+msgid "software"
+msgstr "Software Updates"
+
+msgid "software_help"
+msgstr "The [[base-swupdate.software]] section allows you to check for and install new or updated software packages."
+
+
+# ----- Menu items
+
+msgid "softwareNew"
+msgstr "Third Party Software"
+
+msgid "softwareNew_help"
+msgstr "Click here to check for and install available new software from third parties."
+
+msgid "softwareNewSun"
+msgstr "[[base-alpine.osName]] Software"
+
+msgid "softwareNewSun_help"
+msgstr "Click here to check for and install available new software from [[base-alpine.osVendor]]."
+
+msgid "softwareUpdate"
+msgstr "Third Party Updates"
+
+msgid "softwareUpdate_help"
+msgstr "Click here to check for and install available software updates from third parties."
+
+msgid "softwareUpdateSun"
+msgstr "[[base-alpine.osName]] Updates"
+ 
+msgid "softwareUpdateSun_help"
+msgstr "Click here to check for and install available software updates from [[base-alpine.osVendor]]."
+
+
+msgid "softwareInstalled"
+msgstr "Installed Software"
+
+msgid "softwareInstalled_help"
+msgstr "Click here to view a listing of software packages that are currently installed on the system."
+
+msgid "softwareSettings"
+msgstr "Settings"
+
+msgid "softwareSettings_help"
+msgstr "Click here to change [[base-swupdate.software]] Settings."
+
+
+# ----- Splash screen message
+
+msgid "splashSoftwareMessage"
+msgstr "The [[base-swupdate.software]] section allows you to manage software applications installed on the system."
+
+
+# --- Common strings
+
+msgid "install"
+msgstr "Install"
+
+msgid "install_help"
+msgstr "Click here to install the specified software package."
+
+msgid "installField"
+msgstr "Install Details"
+
+msgid "installField_help"
+msgstr "Click on the icon to show more information about obtaining and installing this package."
+
+msgid "prepare"
+msgstr "Prepare"
+
+msgid "prepare_help"
+msgstr "Click here to prepare the software package for installation."
+
+	# package info
+msgid "nameField"
+msgstr "Name"
+
+msgid "nameField_help"
+msgstr "This shows the name of the software package."
+
+msgid "versionField"
+msgstr "Version"
+
+msgid "versionField_help"
+msgstr "This shows the version of the software package."
+
+msgid "vendorField"
+msgstr "Vendor"
+
+msgid "vendorField_help"
+msgstr "This shows the vendor of the software package."
+
+msgid "copyrightField"
+msgstr "Copyright"
+
+msgid "copyrightField_help"
+msgstr "This shows the copyright associated with the software package."
+
+msgid "descriptionField"
+msgstr "Description"
+
+msgid "descriptionField_help"
+msgstr "This shows a description of the software package."
+
+msgid "licenseField"
+msgstr "License"
+
+msgid "licenseField_help"
+msgstr "This shows the license agreement for the package."
+
+msgid "accept"
+msgstr "Accept"
+
+msgid "accept_help"
+msgstr "Click here to accept the terms of the license agreement."
+
+msgid "decline"
+msgstr "Decline"
+
+msgid "decline_help"
+msgstr "Click here to decline the license agreement."
+
+msgid "typeField"
+msgstr "Type"
+
+msgid "typeField_help"
+msgstr "This shows the type of package."
+
+msgid "New"
+msgstr "New"
+
+msgid "Update"
+msgstr "Update"
+
+msgid "complete"
+msgstr "complete"
+
+msgid "locationField"
+msgstr "Location"
+
+msgid "locationField_help"
+msgstr "This is the location from which the software package will be downloaded during installation."
+
+msgid "locationLocal"
+msgstr "This server appliance"
+
+msgid "sizeField"
+msgstr "Size (MB)"
+
+msgid "sizeField_help"
+msgstr "This is the size of the package."
+
+msgid "uninstallableField"
+msgstr "Uninstallable"
+
+msgid "uninstallableField_help"
+msgstr "This field indicates if the package can be uninstalled after it has been installed."
+
+msgid "yes"
+msgstr "Yes"
+
+msgid "no"
+msgstr "No"
+
+msgid "none"
+msgstr "None"
+
+msgid "packagesNeededField"
+msgstr "Dependent Packages"
+
+msgid "packagesNeededField_help"
+msgstr "The packages listed here must be installed on the system before this package can be safely installed."
+
+
+# --- general user input strings
+
+msgid "locationFieldEnter"
+msgstr "Location"
+
+msgid "locationFieldEnter_help"
+msgstr "Enter the location from which the software package should be obtained. Enter a URL beginning with either http:// or ftp:// to download the package from a location on the Internet, or enter the file location of a package to upload. Click Browse to choose a file on your local hard drive. If you have downloaded packages to the /home/packages directory on your server appliance, an option to choose one of these packages will also be available."
+
+msgid "invalidUrl"
+msgstr "The specified URL is invalid. [[base-swupdate.urlField_rule]]"
+
+
+# ----- New Software List Page
+
+msgid "availableListNew"
+msgstr "Available New Software List"
+
+msgid "checkNow"
+msgstr "Check Availability Now"
+
+msgid "checkNow_help"
+msgstr "Click here to check if new software packages are available."
+
+msgid "manualInstall"
+msgstr "Install Manually"
+
+msgid "manualInstall_help"
+msgstr "Click here to perform a manual installation of software packages."
+
+msgid "removePackage"
+msgstr "Do you really wish to remove the '[[VAR.packageName]]' package from the system? This package has not yet been installed."
+
+# ----- Software Updates
+
+msgid "checkNowUpdate"
+msgstr "[[base-swupdate.checkNow]]"
+
+msgid "checkNowUpdate_help"
+msgstr "Click here to check if software updates are available."
+
+msgid "manualInstallUpdate"
+msgstr "Install Manually"
+
+msgid "manualInstallUpdate_help"
+msgstr "Click here to perform a manual installation of software updates."
+
+
+msgid "availableListUpdates"
+msgstr "Available Software Updates List"
+
+
+# ----- View software details & install page
+
+msgid "downloadSoftware"
+msgstr "Install Software"
+
+msgid "unknownSize"
+msgstr "Unknown"
+
+msgid "rebootpopup"
+msgstr "Your server appliance will need to reboot after installing this package. Do you wish to continue?"
+
+# ----- Manual install
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "[[base-swupdate.url]]"
+
+msgid "urlField_rule"
+msgstr "Enter a URL beginning with either http:// or ftp:// to download the package from a location on the Internet."
+
+msgid "upload"
+msgstr "Upload"
+
+msgid "loaded"
+msgstr "Packages in /home/packages"
+
+msgid "fileField"
+msgstr "Upload file location"
+
+	# empty/invalid the same, specify both to be safe
+msgid "fileField_empty"
+msgstr "Sorry, you have not entered a file location of a package to upload. Click Browse to choose a file on your local hard drive."
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "invalidUpload"
+msgstr "The specified file could not be uploaded successfully."
+
+# ---- Status page
+
+msgid "installStatus"
+msgstr "Status - [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Status Message"
+
+msgid "statusField_help"
+msgstr "This field shows the current status of the package being installed or removed."
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "This is the progress of the installation or removal."
+
+msgid "dlPercent"
+msgstr "Downloading file [[VAR.file]] : [[VAR.percent]]% done"
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "Initializing..."
+
+msgid "downloading"
+msgstr "Downloading package..."
+
+msgid "installing"
+msgstr "Installing package..."
+
+msgid "executingPreInstallScript"
+msgstr "Executing pre-install script(s)..."
+
+msgid "executingPostInstallScript"
+msgstr "Executing post-install script(s)..."
+
+msgid "installingRpm"
+msgstr "Installing component [[VAR.rpm]]..."
+
+msgid "fail"
+msgstr "Failed"
+
+msgid "success"
+msgstr "Success"
+
+msgid "currentlyUninstalling"
+msgstr "Package is currently being uninstalled."
+
+msgid "cantUninstall"
+msgstr "The package cannot be removed because it is not marked as uninstallable."
+
+msgid "dependent"
+msgstr "The package cannot be removed because the following software packages require that it be installed: [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "Removing package RPMs."
+
+msgid "runningUninstallScript"
+msgstr "Running Uninstall Script."
+
+msgid "uninstalled"
+msgstr "Uninstall complete."
+
+msgid "notUninstalled"
+msgstr "The uninstall failed because there was nothing that could be removed."
+
+msgid "packageInstallSuccess"
+msgstr "Package installation successful."
+
+
+	# -- generic message for other strings
+msgid "notInstalled"
+msgstr "The software package was not installed."
+
+msgid "cannotDownloadUrl"
+msgstr "Sorry, the package file could not be downloaded from the specified URL. Please check the URL and try again. [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Sorry, the file name of the package file is invalid. Please check the name and try again. [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "The software package is already installed."
+
+msgid "verifyingPackage"
+msgstr "Verifying package..."
+
+msgid "badPackage"
+msgstr "The package file is incomplete. The packing_list is invalid or missing. [[base-swupdate.notInstalled]]"
+
+msgid "badFormat"
+msgstr "There was an error verifying the package file. It may be corrupted, or it may not have the correct authentication information. [[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "There was an error in adding the package to the CCE database.  The package packing_list may be invalid. [[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "The software package needs other software package(s) to be installed first. Please install the following package(s): [[VAR.dep]]."
+
+msgid "installLock"
+msgstr "Another package is currently being installed or uninstalled. Please try again later."
+
+msgid "obsoletePkg"
+msgstr "The [[VAR.name]] package was not installed because it is no longer current."
+
+msgid "badProduct"
+msgstr "The [[VAR.name]] package was not installed because it was not created for this server appliance."
+
+msgid "hostNotFound"
+msgstr "The host specified in the URL for [[VAR.file]] was not found. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "The package [[VAR.file]] was not found at the specified location."
+
+msgid "hostRefused"
+msgstr "The host specified in the URL for [[VAR.file]] refused the connection."
+
+msgid "notDownloaded"
+msgstr "The package [[VAR.file]] failed to download properly, possibly because the server where the package is located is experiencing problems."
+
+msgid "noLocation"
+msgstr "No location specified to get package."
+
+msgid "missingRPM"
+msgstr "The package file is incomplete. One or more RPM(s) are missing."
+
+msgid "missingSRPM"
+msgstr "The package file is incomplete. One or more SRPM(s) are missing."
+
+msgid "preInstallFailed"
+msgstr "There was a problem with the package file. The pre-install script failed."
+
+msgid "postInstallFailed"
+msgstr "There was a problem with the package file. The post-install script failed."
+
+msgid "rpmInstallError"
+msgstr "There was a problem with the package file. An error occurred while installing the RPM [[VAR.rpm]]."
+
+msgid "errorWGET"
+msgstr "Sorry, an error occurred while trying to run wget."
+
+msgid "rebooting"
+msgstr "The server appliance is now rebooting. It should be available again in a few minutes."
+
+msgid "uninstallrefresh"
+msgstr "The package uninstalled successfully. In a moment, the user interface will refresh in order to remove the services provided by the package."
+
+msgid "installrefresh"
+msgstr "The package installed successfully. In a moment, the user interface will refresh in order to provide you with access to new services."
+
+# ------ Installed Software List
+
+msgid "installedList"
+msgstr "Installed Software List"
+
+msgid "uninstall"
+msgstr "Uninstall"
+
+msgid "uninstall_help"
+msgstr "If the software package can be uninstalled, clicking on the Uninstall button for the package will remove it from the system."
+
+msgid "uninstallConfirm"
+msgstr "Are you sure you want to uninstall '[[VAR.packageName]]'?"
+
+
+
+# ------ Settings page
+
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]] Settings"
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "basic_help"
+msgstr "The most commonly used settings can be found here."
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "advanced_help"
+msgstr "Less commonly used settings can be found here."
+
+msgid "scheduleField"
+msgstr "Query Schedule"
+
+msgid "scheduleField_help"
+msgstr "Change how frequently the [[base-swupdate.software]] server is checked for new or updated software packages."
+
+msgid "hourly"
+msgstr "Hourly"
+
+msgid "daily"
+msgstr "Daily"
+
+msgid "weekly"
+msgstr "Weekly"
+
+msgid "monthly"
+msgstr "Monthly"
+
+msgid "never"
+msgstr "Never"
+
+msgid "emailField"
+msgstr "Notification Emails"
+
+msgid "emailField_help"
+msgstr "Enter the email address(es) to which notification of new or updated software packages or errors in Software Update queries are to be sent. The option you select for Software Notification Light determines when email notifications are sent. Leave this field blank if you do not wish to receive these notifications."
+
+msgid "pkgOIDmissing"
+msgstr "There was a problem retrieving information about the package. The package may have already been deleted. If this is not the case, please try again. If the problem persists, please contact technical support ([[base-sauce-basic.techSupportEmail]])."
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]] Servers"
+
+msgid "defaultServer"
+msgstr "http://updates.bluequartz.org/packages/"
+
+msgid "serverField_help"
+msgstr "Enter the URLs of server locations to query for new software and updates.  The URL of the default server location is [[base-swupdate.defaultServer]]."
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] was unable to contact the server specified. Please makes sure that it is accessible from your server appliance."
+
+msgid "httpProxyField"
+msgstr "HTTP proxy:Port"
+
+msgid "httpProxyField_help"
+msgstr "Enter the proxy server and port for HTTP queries if a proxy server is needed to reach outside your firewall.  Example: proxy.example.com:8080."
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] was unable to contact the HTTP proxy server. Please make sure that it is accessible from your server appliance."
+
+msgid "ftpProxyField"
+msgstr "FTP proxy:Port"
+
+msgid "ftpProxyField_help"
+msgstr "Enter the proxy server and port for FTP queries if a proxy server is needed to reach outside your firewall.  Example: proxy.example.com:8080."
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] was unable to contact the FTP proxy server. Please make sure that it is accessible from your server appliance."
+
+msgid "autoField"
+msgstr "Install Updates Automatically"
+
+msgid "autoField_help"
+msgstr "If enabled, [[base-swupdate.software]] will automatically install authenticated packages."
+
+msgid "requireSignatureField"
+msgstr "Packages Must Be Authenticated"
+
+msgid "requireSignatureField_help"
+msgstr "If enabled, [[base-swupdate.software]] will only install packages that have passed an authentication check."
+
+msgid "checkSetField"
+msgstr "Software To Check"
+
+msgid "checkSetField_help"
+msgstr "Choose the type of software that will be checked for on each Software Update query."
+
+msgid "all"
+msgstr "All software"
+
+msgid "updates"
+msgstr "Updates only"
+
+msgid "notificationLightField"
+msgstr "Software Notification Light"
+
+msgid "notificationLightField_help"
+msgstr "Change what type of new software will activate the Software Notification Light, and if applicable, what type of new software will appear in notification emails."
+
+
+# --- software update icon
+
+msgid "update"
+msgstr "Update"
+
+msgid "update_help"
+msgstr "Click here to check for and install new or updated software packages. This icon changes color when new or updated software packages are available."
+
+
+# ----- Strings for emails
+
+msgid "QueryErrorSubject"
+msgstr "There was a problem querying the [[base-swupdate.software]] server."
+
+msgid "NoProductInfoBody"
+msgstr "The [[base-swupdate.software]] server did not recognize your product.\n\
+[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "No URL specified for the [[base-swupdate.software]] server."
+
+msgid "NoSWUpdateServerBody"
+msgstr "The location for the [[base-swupdate.software]] server could not be\n\
+determined. Please go to the [[base-swupdate.software]] Settings page and\n\
+specify a URL for the [[base-swupdate.software]] server."
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] is unable to determine system information."
+
+msgid "NoSystemInfoBody"
+msgstr "The server was unable to determine system information needed by the\n\
+[[base-swupdate.software]] server. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] was unable to retrieve a list of packages\n\
+from the [[base-swupdate.software]] server located at [[VAR.location]].\n\
+Please check to make sure that [[VAR.location]]\n\
+is a valid [[base-swupdate.software]] server and that you can query \n\
+it from your web browser."
+
+msgid "BadPackageFmtBody"
+msgstr "The server returned package information that\n\
+[[base-swupdate.software]] did not understand. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "There are no new packages available for download."
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] received an unknown error ([[VAR.error]])\n\
+when attempting to contact the server located at [[VAR.location]]."
+
+msgid "NewUpdatesSubject"
+msgstr "New software is available for your server appliance"
+
+msgid "NewUpdatesBody"
+msgstr "Please check the [[base-swupdate.software]] menu if you wish to\n\
+install any of the following packages:"
+
+# Capabilities
+msgid "capgroup_adminBlueLinq"
+msgstr "Manage BlueLinQ"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "This administrative right allows a user to manage BlueLinQ.  This allows a user to install new software and to update existing software."
+
+msgid "3rdpartypkg_warning"
+msgstr "By using 3rd party updates, you assume all responsbility associated with your choice.  Please do not use public packages, unless you trust the party that issued them.  If you install their package(s), and they have bad intensions, they can easily take control of your server"
+
+msgid "warning_header"
+msgstr "Warning!!!"

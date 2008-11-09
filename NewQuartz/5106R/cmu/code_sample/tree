@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+
+#use lib "/usr/cmu/perl";
+my $fqdn = "test.test-test-test.luser.com.com";
+
+if($fqdn =~ /([0-9a-zA-Z]+)\.(.*)/) {
+	warn "1: $1 2: $2\n";
+} else {
+	warn "wtf?\n";
+}
+
+
+
+
+
+#use lib "/cvs/cpr/perl_modules";
+#require RaQConflict;
+#import RaQConflict qw($IM $EX);
+
+#warn "im: ", $IM, "\n";
+#warn "ex: ", $EX, "\n";
+
+#my $tree = new Tree;
+#warn "tree: ", $tree, "\n";
+
+#my $test = "now";
+#warn "ref: ", ref($test), "\n";

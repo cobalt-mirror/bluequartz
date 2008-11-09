@@ -1,0 +1,59 @@
+#!/usr/bin/perl -I. -I/usr/sausalito/handlers/base/maillist -I/usr/sausalito/perl
+# $Id: maillist_destroy 441 2004-12-24 15:41:18Z shibuya $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# Majordomo deconfigurator
+
+my $DEBUG = 0;
+$DEBUG && warn `date`;
+
+my $Lists_base = '/usr/local/majordomo';
+my $Lists_dir = $Lists_base.'/lists';
+
+use CCE;
+use Sauce::Util;
+my $cce = new CCE;
+$cce->connectfd();
+
+my $oid = $cce->event_oid();
+$DEBUG && warn "Event oid: $oid";
+my $obj = $cce->event_old(); # the old values of the object 
+
+if($cce->event_is_destroy()) {
+  # delete aliases
+  $DEBUG && warn "purging aliaess, event_is_destroy";
+  Sauce::Util::editfile('/etc/mail/aliases.majordomo',
+    \&Sauce::Util::replace_unique_entries, $oid,
+    {});
+  Sauce::Util::modifyfile('/etc/mail/aliases.db');
+  $DEBUG && warn "Running newaliases";
+  system('/usr/bin/newaliases > /dev/null 2>&1');
+}
+
+if($obj->{name}) {
+  my $name = $obj->{name};
+
+  my $parent = $Lists_dir;
+  if($obj->{site}) # We're virtualized 
+  {
+    $parent = $Lists_base.'/sites/'.$obj->{site}.'/lists';
+  }
+  $DEBUG && warn "Deletion base dir: $parent\n";
+
+  my @delete_me = (
+    "$parent/".$name,
+    "$parent/".$name.'~',
+    "$parent/".$name.'.administrator',
+    "$parent/".$name.'.administrator~',
+    "$parent/".$name.'.config',
+    "$parent/".$name.'.config~',
+  );
+  foreach $_ (@delete_me) {
+    Sauce::Util::unlinkfile($_);
+    $DEBUG && warn "unlink $_\n";
+  }
+}
+
+$DEBUG && close(STDERR);
+
+$cce->bye('SUCCESS');
+exit(0);  

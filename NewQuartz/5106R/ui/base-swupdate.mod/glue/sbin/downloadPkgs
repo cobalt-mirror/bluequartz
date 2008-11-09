@@ -1,0 +1,110 @@
+#!/usr/bin/perl -I. -I/usr/sausalito/perl
+#
+# Author: Kevin K.M. Chiu
+# Copyright 2001, Cobalt Networks.  All rights reserved.
+# $Id: downloadPkgs 3 2003-07-17 15:19:15Z will $
+
+use strict;
+use Cwd;
+use File::Basename;
+use Getopt::Std;
+use SWUpdate;
+
+# get options
+getopts('d:f:hw:');
+use vars qw($opt_d $opt_f $opt_h $opt_w);
+
+# commands
+my $mv = '/bin/mv';
+my $rm = '/bin/rm';
+my $wget = '/usr/bin/wget';
+
+# for all temporary files
+my $tmpDir = '/tmp';
+
+my $helpText = <<END;
+Usage: $0 [-d <directory to download to>] [-f <FTP proxy>] [-h] [-w <HTTP proxy>] <BlueLinQ server URL>...
+
+This utility downloads all the PKGs available on the BlueLinQ servers specified
+as command-line argument.
+
+  -d  The path of the directory to download to. If not specified, current
+      working directory is assumed.
+  -f  Optional FTP proxy.
+  -h  Print this text.
+  -w  Optional HTTP proxy.
+END
+
+# no server URL specified?
+if($#ARGV < 0) {
+   print $helpText;
+   exit;
+}
+
+# help?
+if($opt_h) {
+   print $helpText;
+   exit;
+}
+
+# get all server URLs
+my (@serverUrls) = @ARGV;
+
+# get directory to download to
+my $downloadDir = $opt_d;
+if($downloadDir eq '') {
+    $downloadDir = cwd();
+}
+
+# setup proxies if defined
+if($opt_f) {
+    $ENV{ftp_proxy} = $opt_f;
+}
+if($opt_w) {
+    $ENV{http_proxy} = $opt_w;
+}
+
+my @pkgUrls = ();
+my $serverUrl;
+foreach $serverUrl (@serverUrls) {
+    my $packageInfo = "$tmpDir/package$$";
+    my $packageInfoDir = "$tmpDir/packageInfo$$";
+    my $packageList = "$packageInfoDir/package_list";
+
+    # download the package information file
+    system("$wget -t 2 -T 60 \"$serverUrl\" -O \"$packageInfo\" 2>/dev/null");
+
+    # unpack the file
+    swupdate_verifyuntar($packageInfo, $packageInfoDir);
+
+    open(FILE, $packageList);
+    my $line;
+    while($line = <FILE>) {
+	# save every Location in the package_list
+	if($line =~ /^\s*Location:\s+(.*)$/) {
+	    push @pkgUrls, $1;
+	}
+    }
+    close(FILE);
+
+    # clean up
+    # $packageInfo is removed by swupdate_verifyuntar() already
+    system("$rm -rf $packageInfoDir");
+}
+
+system("cd $downloadDir; $wget -t 2 -T 60 ".join(' ', @pkgUrls). " 2>/dev/null");
+
+# wget do not overwrite files if they exist already. Instead, it creates
+# file.1, file.2 and so forth. We need to clean them up
+my $pkgUrl;
+foreach $pkgUrl (@pkgUrls) {
+    my $pkgFile = basename($pkgUrl);
+    my $downloadedFile = "$downloadDir/$pkgFile.1";
+
+    # make sure the files remain are the most updated ones
+    if(-f $downloadedFile) {
+	system("$mv $downloadedFile $downloadDir/$pkgFile");
+    }
+}
+
+exit;

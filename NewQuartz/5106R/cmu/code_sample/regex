@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+use lib "/cvs/cpr/perl_modules";
+use Resolve;
+
+my $obj = new Resolve;
+warn "get: ", $obj->class(), "\n";
+warn "set: ", $obj->class('test'), "\n";
+warn "get: ", $obj->class(), "\n";
+

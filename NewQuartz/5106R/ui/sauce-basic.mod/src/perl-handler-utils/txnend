@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ "$DIR" = "" ]; then
+	DIR=/usr/sausalito/codb/txn
+fi
+
+grep '^C ' $DIR/current.handlerlog | tac | cut -c3- | /bin/sh
+mv $DIR/current.handlerlog $DIR/cleaned

@@ -1,0 +1,183 @@
+# COnfiguration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+Obsoletes: nuonce-solarspeed-yumgui
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0700,root,root)%{RootDir}/sbin/grab_updates.pl
+%attr(0700,root,root)%{RootDir}/sbin/pkg_install.pl
+%attr(0700,root,root)%{RootDir}/sbin/pkg_prepare.pl
+%attr(0700,root,root)%{RootDir}/sbin/pkg_uninstall.pl
+%attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
+%attr(0700,root,root)%dir /root/.gnupg
+%attr(0644,root,root)%config /root/.gnupg/pubring.gpg
+%attr(0600,root,root)%config /root/.gnupg/secring.gpg
+%attr(0644,root,root)%config /root/.gnupg/trustdb.gpg
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+if [ ! -e /home/.pkg_install_tmp ]; then
+  /bin/mkdir -p /home/.pkg_install_tmp
+  /bin/chmod 755 /home/.pkg_install_tmp
+fi
+#if [ -e /usr/sausalito/ui/web/nuonce-solarspeed/yum/yumgui.php ]; then
+#  /bin/rpm -e nuonce-solarspeed-yumgui >/dev/null 2>&1
+#fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Fri Jul 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ7
+- Removed softwareUpdateSun.xml softwareNewSun.xml entirely as comment only blocks in menu xml files now throws errors
+
+* Wed Jul 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ6
+- Updated yum.php for PHP5 usage (more explicit checking if files are present and readable)
+- Reworked yum-checker.sh yum-update.sh once more for enforcing 644 permissions on /var/log/yum.log
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ5
+- German locales added.
+- Danish locales updated. Thanks to Jes Klittum!
+- Fixed a menu entry in yum.php so it gets localized
+
+* Thu Jan 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ4
+- Modified updateLight.xml so that it now points to yum_gui
+
+* Wed Jan 23 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ3
+- Different procedure to remove (obsolete) nuonce-solarspeed-yumgui
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ2
+- Danish locales added. Thanks to Jes Klittum!
+
+* Fri Dec 21 2007 Brian Smith <brian@nuonce.net> 1.2.0-1BQ1
+- Changed version number to reflect new features.
+
+* Fri Dec 21 2007 Brian Smith <brian@nuonce.net> 1.1.0-120BQ16
+- RPM Removal of nuonce-solarspeed-yumgui didn't work
+- wrong path to the RPM tool
+
+* Thu Dec 20 2007 Brian Smith <brian@nuonce.net> 1.1.0-120BQ15
+- Changed BlueLinQ to Sofware Updates
+- Removed BlueQuartz BlueLinQ menu
+- Added 3rd party warning message
+- Integrated YUM GUI written by; Michael Stauber & Brian Smith
+- Added ability to exclude RPMs during yum update.
+
+* Thu Sep 21 2006 Brian Smith <brian@nuonce.net> 1.1.0-120BQ14
+- Modified the Manual*.php files to allow larger size package installs
+
+* Mon Apr 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ13
+- change temp directory on /home instead of /tmp by Brian.
+
+* Sun Dec 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ12
+- allow the BlueLinQ server is empty by Anders, BlackSun, Inc.
+- adds the extra option of doing Hourly package (PKG) updates by Anders, BlackSun, Inc.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ11
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ10
+- rebuild with devel-tools 0.5.1
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ9
+- clean up locale file.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ8
+- modified Group tag.
+
+* Sun Aug 14 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-120BQ7
+- fix security problem that can be accessed unauthorized function.
+- clean up spec file.
+<end $CHANGELOG>

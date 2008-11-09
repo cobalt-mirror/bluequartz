@@ -1,0 +1,32 @@
+<?php
+// $Id: Frontpage.php.list.User,v 1.1 2001/07/11 23:07:35 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+// UI extension to show icon if Frontpage is enabled for the user
+
+include('UIExtension.php');
+
+class FrontpageExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$cce = $ServerScriptHelper->getCceClient();
+
+		// don't show if the feature is not enabled for vsite
+		if ( isset($parameters["VSITE_OID"]) ) {
+			$feature = $cce->get($parameters["VSITE_OID"], "Frontpage");
+			if ( !$feature["enabled"] )
+				return;	
+		}
+
+		$props = $cce->get($parameters["CCE_OID"], "Frontpage");
+
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-frontpage");
+		$container[] = ($props["enabled"]) ? $factory->getImageLabel("fpxEnabled", "/libImage/counter_icon_small.gif") : $factory->getImageLabel("blank", "/libImage/blankIcon.gif", false);
+	}
+
+	// this is a display only extension
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+	}
+}
+?>

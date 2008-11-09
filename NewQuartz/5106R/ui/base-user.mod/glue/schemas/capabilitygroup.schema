@@ -1,0 +1,18 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: capabilitygroup.schema 259 2004-01-03 06:28:40Z shibuya $
+    
+    Definition of the CapabilityGroup class used to group capabilites
+    so the ui menus can be grouped rather than having individual capabilities
+    for every menu item.  Also used to assign groups of capabilities to
+    a User easily.
+-->    
+<class name="CapabilityGroup" version="0.1">
+    <property name="name" type="word"/>
+    <property name="capabilities" type="word" optional="true"/>
+    <property name="nameTag" type="scalar"/>
+    <property name="nameTagHelp" type="scalar"/>
+    <property name="shown" type="boolean" default="1"/>
+</class>
+
+
