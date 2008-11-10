@@ -65,8 +65,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %dir /etc/locks
 %config /etc/rc.d/init.d/*
-%config /etc/logrotate.d/*
-%config /etc/cron.d/*
+%config /etc/sysconfig/bluequartz
 %attr(0755,root,root) /usr/sausalito/sbin/*
 %attr(0755,root,root) /usr/sausalito/scripts/*
 %dir /usr/sausalito/runonce
@@ -143,8 +142,6 @@ else
 fi
 /usr/sausalito/constructor/base/email/syncEmailService.pl
 
-# Register the dbrecover service
-/sbin/chkconfig --add dbrecover
 /sbin/chkconfig --add bluequartz
 
 # install pgp key
@@ -162,9 +159,16 @@ fi
 %if "%centos" == "4"
 perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
 %endif
-%if "%centos" == "5"
-perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
-%endif
+
+# pwdb2shadow
+if [ -f /etc/sysconfig/bluequartz ]; then
+  . /etc/sysconfig/bluequartz
+fi
+
+if [ $AUTH == 'pwdb' ]; then
+  ln -sf /usr/sausalito/scripts/pwdb2shadow.sh /usr/sausalito/runonce/pwdb2shadow.sh
+  /usr/sausalito/scripts/pwdb2shadow.sh
+fi
 
 <end glue>
 <begin ui>
@@ -221,7 +225,11 @@ if [ ! -f /etc/mail/aliases ]; then
   if [ -f /etc/mail/aliases.rpmsave ]; then
     /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
   else
-    /bin/cp /usr/sausalito/configs/sendmail/aliases /etc/mail/aliases
+    /bin/ln -s /etc/aliases /etc/mail/aliases
+  fi
+  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'root:		admin' >> /etc/mail/aliases
   fi
   /etc/init.d/sendmail condrestart
 fi
@@ -229,12 +237,19 @@ if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
   /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
     /usr/share/sendmail-cf/hack/popauth.m4
 fi
-/bin/cp /usr/sausalito/triggers/sendmail/smtp.sendmail /etc/pam.d/smtp.sendmail
 
 %triggerin glue -- glibc
 /usr/sausalito/constructor/base/time/syncTimeZone.pl
 
 # for distributions
+%if "%centos" == "5"
+/CentOS-Base.repo%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptab
+les
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
+%endif
+
 %if "%centos" == "4"
 %triggerin glue -- centos-yumconf
 /bin/cp /usr/sausalito/triggers/centos-yumconf/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
@@ -276,19 +291,29 @@ if [ ! -f /etc/mail/aliases ]; then
   if [ -f /etc/mail/aliases.rpmsave ]; then
     /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
   else
-    /bin/cp /usr/sausalito/configs/sendmail/aliases /etc/mail/aliases
+    /bin/ln -s /etc/aliases /etc/mail/aliases
+  fi
+  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'root:		admin' >> /etc/mail/aliases
   fi
   /etc/init.d/sendmail condrestart
 fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
-* Sun Jun 07 2008 Brian Smith <brian@nuonce.net> 1.20080607BQ82
-- Removed initPam.sh
-- Removed enablePwdb.pl
+* Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ84
+- Merged 5100R changes to 5106R codebase.
+ 
+* Thu Oct 23 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 2.20080820BQ83
+- Fixed triggerun for sendmail. Missing 'then' on line 8
 
-* Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.20080128BQ81
-- Provisions for 5106 added (CentOS5)
+* Tue Aug 26 2008 Brian Smith <brian@nuonce.net> 2.20080820BQ82
+- Fixed initSendmail.sh file.  Missing 'then' on line 9
+
+* Wed Aug 20 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 2.20080820BQ81
+- modified configration files for pwdb to shadow.
+- migrate from pwdb to shadow.
 
 * Mon Jan 28 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20080128BQ80
 - requires base-time-capstone >= 1.0.1-62BQ11 for triggerin.
