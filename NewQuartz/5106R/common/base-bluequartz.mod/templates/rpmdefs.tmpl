@@ -1,0 +1,499 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin %DESCRIPTION>
+<begin glue>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end glue>
+
+<begin capstone>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+%if "%fedora" == "1"
+Requires: pwdb >= 0.61.1-9BQ7 nss_db >= 2.2-22BQ3
+%endif
+%if "%centos" == "3"
+Requires: pwdb >= 0.61.1-9BQ8 nss_db >= 2.2-20.4BQ1
+%endif
+%if "%centos" == "4"
+Requires: pwdb >= 0.61.1-9BQ8 nss_db >= 2.2-29BQ1 php-mbstring
+%endif
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end capstone>
+<end %DESCRIPTION>
+
+<begin %INSTALL>
+<begin glue>
+<end glue>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%dir /etc/locks
+%config /etc/rc.d/init.d/*
+%config /etc/sysconfig/bluequartz
+%attr(0755,root,root) /usr/sausalito/sbin/*
+%attr(0755,root,root) /usr/sausalito/scripts/*
+%dir /usr/sausalito/runonce
+%dir /usr/sausalito/configs
+/usr/sausalito/configs/*
+%dir /usr/sausalito/triggers
+/usr/sausalito/triggers/*
+/etc/build
+/var/www/html/*
+%dir /usr/share/doc/bluequartz-release-5100R
+/usr/share/doc/bluequartz-release-5100R/*
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ $1 = 1 ]; then
+  mkdir -p /usr/sausalito/runonce
+  cd /usr/sausalito/scripts
+  for FILE in *; do
+    if [ -f $FILE ]; then
+      ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
+    fi
+  done
+fi
+
+# update product information
+if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
+  /usr/sausalito/sbin/updateSystem.pl
+fi
+
+# update sendmail.cf
+/bin/grep 'setup for Blue Quartz' /etc/mail/sendmail.mc > /dev/null 2>&1
+if [ $? = 0 ]; then
+  /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bqold
+  /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bqold
+  /usr/sausalito/scripts/initSendmail.sh
+fi
+
+# update procmailrc
+if [ ! -f /etc/procmailrc ]; then
+  /usr/sausalito/scripts/initProcmail.sh
+else
+  grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
+  fi
+  grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
+  fi
+fi
+
+if [ -f /etc/sysconfig/saslauthd ]; then
+  /usr/bin/perl -pi -e 's|^MECH=shadow|MECH=pam|g'  /etc/sysconfig/saslauthd
+else
+  echo 'MECH=pam' > /etc/sysconfig/saslauthd
+fi
+/usr/sausalito/constructor/base/email/syncEmailService.pl
+
+/sbin/chkconfig --add bluequartz
+
+# install pgp key
+/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
+if [ $? = 1 ]; then
+  /bin/rpm --import /usr/share/doc/bluequartz-release-5100R/RPM-GPG-KEY-BlueQuartz-5100R
+fi
+
+%if "%fedora" == "1"
+/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
+%endif
+%if "%centos" == "3"
+/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
+%endif
+%if "%centos" == "4"
+perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
+%endif
+%if "%centos" == "5" 
+perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo 
+%endif 
+
+# pwdb2shadow
+if [ -f /etc/sysconfig/bluequartz ]; then
+  . /etc/sysconfig/bluequartz
+fi
+
+if [ $AUTH == 'pwdb' ]; then
+  ln -sf /usr/sausalito/scripts/pwdb2shadow.sh /usr/sausalito/runonce/pwdb2shadow.sh
+  /usr/sausalito/scripts/pwdb2shadow.sh
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $TRIGGERIN>
+%triggerin glue -- sysklogd
+/bin/cp /usr/sausalito/triggers/sysklogd/syslog.logrotate /etc/logrotate.d/syslog
+
+%triggerin glue -- webalizer
+%if "%fedora" == "1"
+/bin/cp /usr/sausalito/triggers/webalizer/webalizer-fc1.conf /etc/webalizer.conf
+%else
+/bin/cp /usr/sausalito/triggers/webalizer/webalizer.conf /etc/webalizer.conf
+%endif
+
+%triggerin glue -- httpd
+if [ -f /etc/logrotate.d/httpd ]; then
+  /bin/rm /etc/logrotate.d/httpd
+fi
+/usr/sausalito/scripts/initHttpd.sh
+
+%triggerin glue -- mod_ssl
+/usr/sausalito/scripts/initSSL.sh
+
+%triggerin glue -- sendmail
+if [ ! -f /etc/mail/aliases ]; then
+  if [ -f /etc/mail/aliases.rpmsave ]; then
+    /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
+  else
+    /bin/ln -s /etc/aliases /etc/mail/aliases
+  fi
+  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'root:		admin' >> /etc/mail/aliases
+  fi
+  /etc/init.d/sendmail condrestart
+fi
+if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
+  /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
+    /usr/share/sendmail-cf/hack/popauth.m4
+fi
+
+%triggerin glue -- glibc
+/usr/sausalito/constructor/base/time/syncTimeZone.pl
+
+# for distributions
+%if "%centos" == "5"
+/CentOS-Base.repo%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptab
+les
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
+%endif
+
+%if "%centos" == "4"
+%triggerin glue -- centos-yumconf
+/bin/cp /usr/sausalito/triggers/centos-yumconf/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS4.init /etc/init.d/iptables
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS4 /sbin/ifup
+%endif
+
+%triggerin glue -- dovecot
+/bin/cat /etc/dovecot.conf | \
+/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
+-e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
+> /etc/dovecot.conf.new
+/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
+
+%if "%centos" == "3"
+%triggerin glue -- yum
+/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
+%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS3.init /etc/init.d/iptables
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS3 /sbin/ifup
+%endif
+
+%if "%fedora" == "1"
+%triggerin glue -- yum
+/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
+%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-FC1.init /etc/init.d/iptables
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-FC1 /sbin/ifup
+%endif
+<end $TRIGGERIN>
+
+<begin $TRIGGERUN>
+%triggerpostun glue -- sendmail
+if [ ! -f /etc/mail/aliases ]; then
+  if [ -f /etc/mail/aliases.rpmsave ]; then
+    /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
+  else
+    /bin/ln -s /etc/aliases /etc/mail/aliases
+  fi
+  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'root:		admin' >> /etc/mail/aliases
+  fi
+  /etc/init.d/sendmail condrestart
+fi
+<end $TRIGGERUN>
+
+<begin $CHANGELOG>
+* Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ84
+- Merged 5100R changes to 5106R codebase.
+ 
+* Thu Oct 23 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 2.20080820BQ83
+- Fixed triggerun for sendmail. Missing 'then' on line 8
+
+* Tue Aug 26 2008 Brian Smith <brian@nuonce.net> 2.20080820BQ82
+- Fixed initSendmail.sh file.  Missing 'then' on line 9
+
+* Wed Aug 20 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 2.20080820BQ81
+- modified configration files for pwdb to shadow.
+- migrate from pwdb to shadow.
+
+* Mon Jan 28 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20080128BQ80
+- requires base-time-capstone >= 1.0.1-62BQ11 for triggerin.
+
+* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20081227BQ79
+- add triggerin to sync TimeZone.
+
+* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20080127BQ78
+- add GPL and Sun BSD license files.
+
+* Mon Dec 10 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20071210BQ77
+- fix to import multiple key file.
+
+* Mon Dec 10 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20071210BQ76
+- add pgp key file and install
+
+* Thu Oct 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20061012BQ75
+- fixed capability issue on dnsAdmin.
+
+* Mon Sep 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060918BQ74
+- move trigger settings to glue package instead of capstone.
+
+* Sat Sep 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060909BQ73
+- change date for release.
+
+* Mon Aug 28 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060828BQ72
+- modified sendmail.mc to be commented out some settings.
+
+* Thu Aug 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060815BQ71
+- glue package requires base-email-capstone.
+
+* Mon Aug 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060815BQ70
+- Added trigger for sendmail to copy popauth.m4.
+
+* Thu Aug 10 2006 Brian N. Smith <brian@nuonce.net> 1.20060618BQ69
+- Removed "-t" from sendmail.mc line: FEATURE(local_procmail.  Would leave emails stranded in Mail Queue.
+- Added blackwholes into sendmail.mc.  They are commented out, but have directions on how to set them up
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060618BQ68
+- add smtp.sendmail for pam configuration file for trigger.
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060618BQ67
+- add trigger for dovecot to initialize dovecot.conf.
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060618BQ66
+- modify trigger scripts to restart sendmail after copying aliases file.
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060618BQ65
+- modify trigger scripts to make db file after copying aliases file.
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060618BQ64
+- modify initSendmail.sh to make db file after copying aliases file.
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060618BQ63
+- modify initSendmail.sh to use aliases.rpmsave, if it is exist.
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060617BQ62
+- add triggerin for sendmail to check /etc/mail/aliases
+
+* Sat Jun 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060617BQ61
+- add triggerpostun for sendmail to check /etc/mail/aliases
+
+* Thu Jun 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060615BQ60
+- add initProcmail.sh and initialize procmail and sendmail, if updating is not finished for update.
+- modify yum config to remove sendmail, procmail and imap from exclude list.
+
+* Mon Jun 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060612BQ59
+- clean up gtriggerin section.
+
+* Mon Jun 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060612BQ58
+- to make /etc/sysconfig/saslauthd, if it is not exist.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060611BQ57
+- add trigger for ifup to support static route.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060611BQ56
+- modify sendmail.mc to remove uncorrect strings.
+- use pam for saslauthd instead of shadow.
+
+* Sat Jun 10 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060610BQ55
+- modify sendmail.mc to support SMTP Auth.
+
+* Tue May 30 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060530BQ54
+- modify sendmail.mc to support SMTP Auth, submission port and smtps.
+
+* Fri May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060505BQ53
+- add triggers for iptables.
+
+* Sun Mar 26 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060401BQ52
+- modify yum settings to add sendmail and procmail in exclude option.
+
+* Sat Mar 25 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060401BQ51
+- modify updateSystem.pl to change version numver to 1.
+
+* Sat Mar 25 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060401BQ50
+- modify addPkg.pl for constructor to change version numver to 1.
+
+* Sat Mar 25 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20060401BQ49
+- remove run once scripts for sendmail and procmail.
+- modify sendmail.mc to change place of status file in /var/log/mail.
+- change version number to 1 for 1.0 release.
+
+* Tue Mar 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060314BQ48
+- modify triggerin for mod_ssl.
+
+* Tue Mar 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060314BQ47
+- modify triggerin for httpd to execute initHttpd.sh.
+
+* Tue Mar 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060314BQ46
+- add initNamed.sh to fix permission and add symlink by Brian.
+- make /etc/locks directory for CMU by Brian.
+- add initPam.sh to allow passwords to be changed by 'passwd' command by Brian.
+- modify initSendmail.sh to touch /etc/mail/statistics by Brian.
+
+* Mon Mar 13 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060313BQ45
+- modify initSendmail.sh to touch /etc/mail/virthosts.
+
+* Mon Mar 06 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060306BQ44
+- add webalizer config for fc1.
+
+* Sun Mar 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060305BQ43
+- modify triggers CentOS-Base.rep for CentOS4.
+- add yum.conf for CentOS3 and FC1.
+
+* Sat Mar 04 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060304BQ42
+- add triggerin for httpd to remove logrotate config.
+
+* Sat Mar 04 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060304BQ41
+- add triggerins for centos-yumconf, sysklogd and wenalizer.
+- add initProamail.sh and initSendmail.sh for run once.
+
+* Thu Mar 02 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060302BQ40
+- add runonce script and directory.
+- move scripts in post to run once.
+
+* Sun Jan 15 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20060115BQ39
+- build for new release.
+
+* Sat Dec 24 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051216BQ38
+- modified index.html to redirect admserv page.
+
+* Fri Dec 16 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051216BQ37
+- fixed Makefile typo.
+
+* Fri Dec 16 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051216BQ36
+- support CentOS4 alpha as 5105R.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051130BQ35
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Wed Nov 02 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051101BQ34
+- add swatch to Requires.
+
+* Tue Nov 01 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051101BQ33
+- remove error pages.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051031BQ32
+- add error pages for Server document root.
+
+* Thu Oct 20 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051020BQ31
+- modified enableQuota.sh
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20051018BQ30
+- rebuild with devel-tools 0.5.1
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20050818BQ29
+- modified updateSystem.pl to update 'productName'.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20050815BQ28
+- modified Group tag.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20050812BQ27
+- modified Group tag in rpmdefs.tmpl.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20050812BQ26
+- add serial number.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.20050812BQ25
+- clean up spec file.
+<end $CHANGELOG>
