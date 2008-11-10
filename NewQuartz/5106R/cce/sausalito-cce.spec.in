@@ -178,6 +178,13 @@ fi
 %changelog
 
 %changelog 
+* Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.2-1BQ39
+- Merged changes from 5100R
+
+* Wed Sep 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.2-1BQ38
+- Modified basetypes.schema again to change minimum password length back to six characters.
+- New defaults: min: 6, max: 24.
+
 * Sat Jun 28 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.2-1BQ38
 - Added 'Requires: httpd' to make sure that RPM install order will install CCE after Apache. Otherwise we get UID/GID issues.
 

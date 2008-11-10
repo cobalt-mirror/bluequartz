@@ -69,7 +69,7 @@
 <typedef
 	name="password"
 	type="re"
-	data="^[^\001-\037\177]{7,24}$"
+	data="^[^\001-\037\177]{6,24}$"
 />
 </SCHEMA>
 
