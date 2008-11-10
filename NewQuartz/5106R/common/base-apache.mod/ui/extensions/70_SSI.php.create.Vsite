@@ -1,0 +1,59 @@
+<?php
+// $Id: 70_SSI.php.create.Vsite,v 1.3 2001/11/15 02:53:50 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+// ui extension to set settings for ssi Vsite creation
+
+if(defined("SSI_EXTENSION_CREATE_VSITE"))
+{
+    return 1;
+}
+define("SSI_EXTENSION_CREATE_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class SSIExtension extends UIExtension
+{
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-apache");
+        $cce =& $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], 'SSI');
+        
+        if ($cce_info['CAN_ADD_PAGE'])
+        {
+            $pageId = 'webScripting';
+            // only add page if not already there
+            if (!in_array('webScripting', $container->getPageIds()))
+            {
+                $container->addPage("webScripting", 
+                    $factory->getLabel("webScripting"));
+            }
+        }
+        else
+        {
+            $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
+        }
+        
+	    $container->addFormField(
+			$factory->getBoolean('SSI_enabled', $defaults['enabled']),
+		    $factory->getLabel('ssi'),
+		    $pageId
+            );
+    }
+
+    function handle(&$helper, &$errors, &$cce_info)
+    {
+        global $SSI_enabled;
+
+        $cce =& $helper->getCceClient();
+
+        $cce->set($cce_info["CCE_OID"], 'SSI', 
+                array('enabled' => $SSI_enabled));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+
+
