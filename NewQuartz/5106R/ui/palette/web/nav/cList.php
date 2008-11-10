@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: cList.php 1153 2008-06-10 09:07:33Z mstauber $
+// $Id: cList.php 1151 2008-06-08 14:31:11Z shibuya $
 
 // description:
 // This is the base page of the collapsible list navigation system.
@@ -77,7 +77,7 @@ function init() {
   if("<?php print($isTabbed); ?>" == "false")
     isTabbed = false;
 
-  // fix for Safari 3.0 missing menus: 
+  // fix for Safari 3.0 missing menus:
   if (!top.code) top.code = frames[4];
 
   // build site map

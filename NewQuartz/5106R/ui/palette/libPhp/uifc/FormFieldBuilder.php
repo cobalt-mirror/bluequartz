@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: FormFieldBuilder.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: FormFieldBuilder.php 1184 2008-09-10 21:23:19Z mstauber $
 
 // description:
 // This class helps to build form field components.
@@ -184,7 +184,10 @@ element.isOptional = $isOptional;
     // HTML safe
     $value = htmlspecialchars($value);
 
-    return "<INPUT TYPE=\"PASSWORD\" NAME=\"$id\" VALUE=\"$value\" $size $onChange>\n";
+    // Secure Password stuff - activated on onKeyUp:    
+    $onKeyUp = 'onKeyUp="validate_password(this.value)"';
+
+    return "<INPUT id=\"pass\" TYPE=\"PASSWORD\" NAME=\"$id\" VALUE=\"$value\" $size $onKeyUp $onChange>\n";
   }
 
   // description: make a radio field

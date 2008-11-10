@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ11%{?dist}
+Release: 0BQ13%{?dist}
 Vendor: Project BlueQuartz
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -56,12 +56,27 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
-* Tue Jun 10 2008 Brian N. Smith <brian@nuonce.net> 0.5.1-0BQ11
-- fixed small bug in; ClassicList.inc .. php5 doesn't like how a variable was escaped line: 182 
-- fixed small bug in; ScrollList.php .. php5 doesn't like how a variable was escaped line: 769
+* Wed Sep 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ13
+- Ajax and JS based password strength checker implemented directly through uifc calls.
+- Newly added files for that:
+- web/libJs/ajax_lib.js
+- web/uifc/check_password.php
+- Modified the following pages for that:
+- libPhp/uifc/FormFieldBuilder.php
+- libPhp/uifc/Password.php
+- libPhp/uifc/Page.php
 
-* Tue Jun 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ10
-- Ported over from 5102R: fix for Safari 3.0 missing menus by Anders, BlackSun Inc.
+* Tue Sep 09 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ12
+- Tab positions in navigation menu (tab.js) fixed for Chrome and Safari. 
+- Contributed by Jeremy Knope from rainstormconsulting.com
+
+* Tue Sep 09 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ11
+- fixes #10
+- fix for Safari 3.0 missing menu for wizard by Anders, BlackSun Inc.
+
+* Sun Jun 08 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ10
+- fixes #10
+- fix for Safari 3.0 missing menus by Anders, BlackSun Inc.
 
 * Mon May 26 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ9
 - Fix in de_DE/palette.po

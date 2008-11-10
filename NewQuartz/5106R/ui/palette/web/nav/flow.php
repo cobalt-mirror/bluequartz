@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: flow.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: flow.php 1180 2008-09-09 07:31:26Z shibuya $
 
 // description:
 // This is the base page of the flow navigation system.
@@ -55,6 +55,9 @@ var siteMap;
 function init() {
   // get root from parameter
   var root = "<?php print($root); ?>";
+
+  // fix for Safari 3.0 missing menus:
+  if (!top.code) top.code = frames[4];
 
   // build site map
   siteMap = new Object();

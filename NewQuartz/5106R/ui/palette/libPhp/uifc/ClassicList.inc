@@ -1,7 +1,7 @@
 <?php
 // Author: Patrick Bose
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: ClassicList.inc 1154 2008-06-10 14:21:38Z brian $
+// $Id: ClassicList.inc 3 2003-07-17 15:19:15Z will $
 
 // description:
 // ClassicList is an implementation of ScrollList->toHtml() which
@@ -179,7 +179,7 @@ $isClassicListDefined = true;
     $label = $labelObj->toHtml($style->getSubstyle("titleLabel"));
     $result .= "
 <STYLE TYPE=\"text/css\">
-.formField-$widgetid { $formFieldStyleStr }
+.formField-$widgetid \{$formFieldStyleStr}
 </STYLE>
 <TABLE BORDER=\"1\" CELLPADDING=\"0\" CELLSPACING=\"0\" BGCOLOR=\"$borderColor\" WIDTH=\"$width\">
   <TR>

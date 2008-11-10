@@ -1,6 +1,6 @@
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: tab.js 706 2006-03-09 08:31:25Z shibuya $
+// $Id: tab.js 1181 2008-09-09 18:18:21Z mstauber $
 
 //
 // private variables
@@ -67,7 +67,10 @@ function tab_repaint() {
 
   doc.open();
   doc.write("<HTML><BODY ALINK=\""+_tab_style["aLinkColor"]+"\" STYLE=\""+_tab_style["backgroundStyle"]+"\">\n");
-  doc.write("<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\" WIDTH=\"100%\"><TR>\n");
+
+  // Chrome and Java fix - Contributed by Jeremy Knope from rainstormconsulting.com:
+  //doc.write("<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\" WIDTH=\"100%\"><TR>\n");
+  doc.write("<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\" WIDTH=\"100%\" style=\"position: absolute; top: 0px;\"><TR>\n");
   doc.write("<TD VALIGN=\"TOP\">"+logo+"</TD>\n");
 
   var typedItems = new Array();

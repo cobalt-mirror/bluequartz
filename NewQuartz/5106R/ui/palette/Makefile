@@ -13,7 +13,7 @@ CCEMODULE = sausalito-palette
 CCERPMSPEC = sausalito-palette.spec
 
 VERSION=0.5.1
-RELEASE=0BQ10
+RELEASE=0BQ13
 
 LOCALES=$(shell dir=locale; \
                 if [ -d $$dir ]; then \
@@ -48,6 +48,8 @@ install: install_locale
 #	make -C locale/ja install
 
 clean:
+	rm -rf rpms srpms 
+	find locale/ -name *.mo | xargs rm -f 
 
 ifneq ($(SLK_BUILD), yes)
 ifdef CCETOPDIR
@@ -75,5 +77,3 @@ install_locale:
 	@$(MAKE) -f $(LOC_FILE) install_locale BUILDLOCALE=yes LOCALES="$(LOCALES)" SERVICE="palette"
 
 
-clean local_clean:
-	rm -rf rpms srpms

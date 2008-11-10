@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: Password.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: Password.php 1186 2008-09-10 21:37:51Z mstauber $
 
 global $isPasswordDefined;
 if($isPasswordDefined)
@@ -81,10 +81,35 @@ class Password extends FormField {
 
     $i18n =& $page->getI18n();
     $repeatStr = $i18n->get("repeat", "palette");
+    $pwCheckStr = $i18n->get("pwCheckStr", "palette");
 
     $formField = "
+  <script language=\"Javascript\" type=\"text/javascript\" src=\"/libJs/ajax_lib.js\"></script>
+  <script language=\"Javascript\">
+    <!--
+      checkpassOBJ = function() {
+        this.onFailure = function() {
+          alert(\"Unable to validate password\");
+        }
+        this.OnSuccess = function() {
+          var response = this.GetResponseText();
+          document.getElementById(\"results\").innerHTML = response;
+        }
+      }
+
+
+      function validate_password ( word ) {
+        checkpassOBJ.prototype = new ajax_lib();
+        checkpass = new checkpassOBJ();
+        var URL = \"/uifc/check_password.php\";
+        var PARAM = \"password=\" + word;
+        checkpass.post(URL, PARAM);
+      }
+
+    //-->
+  </script>
 <TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\">
-  <TR><TD>$field1</TD></TR>
+  <TR><div><TD NOWRAP>$field1 <FONT STYLE=\"$subscriptStyleStr\"><div id=\"results\">$pwCheckStr</div></FONT></TD></div></TR>
   <TR><TD NOWRAP>$field2 <FONT STYLE=\"$subscriptStyleStr\">($repeatStr)</FONT></TD></TR>
 </TABLE>
 ";
