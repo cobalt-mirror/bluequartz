@@ -159,6 +159,9 @@ fi
 %if "%centos" == "4"
 perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
 %endif
+%if "%centos" == "5" 
+perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo 
+%endif 
 
 # pwdb2shadow
 if [ -f /etc/sysconfig/bluequartz ]; then
