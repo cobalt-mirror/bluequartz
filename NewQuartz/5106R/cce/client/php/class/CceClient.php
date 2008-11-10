@@ -1,5 +1,5 @@
 <?php
-// $Id: CceClient.php 1148 2008-06-08 13:51:55Z shibuya $
+// $Id: CceClient.php 1136 2008-06-05 01:48:04Z mstauber $
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 
 global $isCceClientDefined;
@@ -311,19 +311,18 @@ class CceClient {
 
   // description: converts a array into a CCE-encoded scalar
   function array_to_scalar( $array ) {
-    $result = "&";
-    foreach($array as $value)
-    {
-      $value = preg_replace("/([^A-Za-z0-9_\. -])/e",
+	if (is_array($array)) {
+    		$result = "&";
+    		foreach($array as $value) {
+      			$value = preg_replace("/([^A-Za-z0-9_\. -])/e",
                             "sprintf('%%%02X', ord('\\1'))", $value);
-      $value = preg_replace("/ /", "+", $value);
+      			$value = preg_replace("/ /", "+", $value);
 
-      $result .= $value . "&";
-    }
-
-    if ($result == "&") $result = "";
-
-    return $result;
+      			$result .= $value . "&";
+    		}
+	}
+   	if ($result == "&") $result = "";
+    	return $result;
   }
 
   // description: converts a CCE-encoded scalar into an array
