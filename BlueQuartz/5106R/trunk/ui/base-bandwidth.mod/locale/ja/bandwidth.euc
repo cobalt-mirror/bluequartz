@@ -1,0 +1,74 @@
+msgid "cpbandwidth"
+msgstr "帯域幅の上限"
+
+msgid "cpbandwidthDescription"
+msgstr "サイトから転送できる最大データ転送速度の上限です。各上限は、IP アドレスが制限されているすべてのサイトに影響します。"
+
+msgid "version"	
+msgstr "バージョン 1.0"
+
+msgid "bwList"
+msgstr "帯域幅の上限"
+
+msgid "bwIpaddr"
+msgstr "IP アドレス"
+
+msgid "bwIpaddr_help"
+msgstr "上限が適用されている IP アドレス"
+
+msgid "bwVsites"
+msgstr "影響を受ける仮想サイト"
+
+msgid "bwVsites_help"
+msgstr "この IP アドレスに設定されている帯域幅の上限の影響を受ける仮想サイトです。"
+
+msgid "bwLimit"
+msgstr "上限 (kbps)"
+
+msgid "bwLimit_help"
+msgstr "この IP アドレスに適用される帯域幅の上限 (キロビット／秒) です。"
+
+msgid "bwAction"
+msgstr "操作・削除"
+
+msgid "bwAction_help"
+msgstr "鉛筆アイコンをクリックすると、帯域幅の上限値を変更でき、ゴミ箱アイコンをクリックすると、設定されている上限値を削除できます。"
+
+msgid "bandwidthSettings"
+msgstr "帯域幅の上限の設定"
+
+msgid "ipAddressField"
+msgstr "IP アドレス"
+
+msgid "ipAddressField_help"
+msgstr "適用されている帯域幅の上限が修正された IP アドレスです。"
+
+msgid "bwLimitField"
+msgstr "帯域幅の上限 (kbps)"
+
+msgid "bwLimitField_help"
+msgstr "このIP アドレスに適用する帯域幅の上限 (キロビット／秒) です。"
+
+msgid "cantsetipfile"
+msgstr "/etc/sysconfig/bwmgmt ディレクトリにファイルを作成できませんでした。"
+
+msgid "setlimitfail"
+msgstr "帯域幅の上限を設定できませんでした。"
+
+msgid "dellimitfail"
+msgstr "帯域幅の上限を削除できませんでした。"
+
+msgid "valuelow"
+msgstr "入力した値は小さすぎます。最低帯域幅は 10kbps です。"
+
+msgid "allLimited"
+msgstr "既に全ての IP アドレスに帯域幅の上限が設定されています。"
+
+msgid "nolimits"
+msgstr "帯域幅の上限は設定されていません。"
+
+msgid "none"
+msgstr "なし"
+
+msgid "removecheck"
+msgstr "[[VAR.ipaddr]] の帯域制限を取り消してよろしいですか？"

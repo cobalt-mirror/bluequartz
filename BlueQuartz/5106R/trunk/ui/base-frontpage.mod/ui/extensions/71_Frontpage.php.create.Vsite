@@ -1,0 +1,97 @@
+<?php
+// $Id: 71_Frontpage.php.create.Vsite,v 1.1.2.1 2002/08/23 23:09:00 will Exp $
+//
+// Frontpage.php.create.Vsite
+// this is the UI extension class for frontpage for vsites
+
+include_once('UIExtension.php');
+
+class FrontpageExtension extends UIExtension
+{
+    function display(&$helper, &$container, $parameters)
+    {
+        $cce = $helper->getCceClient();
+        $defaults = $cce->get($parameters['CCE_SERVICES_OID'], 'Frontpage');
+
+	// Test EULA agreement	
+	list($sysoid) = $cce->find('System');
+	$sys_fpx = $cce->get($sysoid, 'Frontpage');
+
+        $factory = $helper->getHtmlComponentFactory('base-frontpage');
+
+        // will assume the container is a PagedBlock for the time being
+        if ($parameters['CAN_ADD_PAGE'])
+        {
+            $pageId = 'Frontpage';
+            $container->addPage($pageId, 
+                    $factory->getLabel('[[base-frontpage.fpxTabName]]'));
+        }
+        else
+        {
+            $pageId = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+        }
+
+       	$fpxToggle =& $factory->getMultiChoice('Frontpage_enabled');
+       	$enable =& $factory->getOption('frontpageEnable', $defaults['enabled']);
+       	$enable->setLabel($factory->getLabel('enable', false));
+       	$fpxPassword = $factory->getPassword('Frontpage_passwordWebmaster');
+       	$fpxPassword->setOptional('silent');
+
+        $enable->addFormField(
+		$fpxPassword,
+		$factory->getLabel('fpxPassword'),
+		$pageId);
+
+	// insert fpx eula textarea and checkbox
+	if ($sys_fpx['eula'] == 0) {
+
+		$eulafp = file("/usr/local/frontpage/currentversion/LICENSE.TXT");
+
+		$eulaText = $factory->getTextBlock('eulaText', 
+			implode("", $eulafp), "rw");
+		$eulaText->setHeight(10);
+		$eulaText->setWidth(40);
+		$enable->addFormField(
+		 	$eulaText, 
+		 	$factory->getLabel('eulaText'),
+		 	$pageId);
+
+		$eulaAccept = $factory->getBoolean('eulaAccept', 
+			$sys_fpx['eula']);
+		$enable->addFormField(
+			$eulaAccept, 
+			$factory->getLabel('eulaAccept'),
+			$pageId);
+	}
+        
+	$fpxToggle->addOption($enable);
+
+        $container->addFormField($fpxToggle, 
+                $factory->getLabel('fpxFullText'), $pageId);
+    }
+
+    function handle(&$helper, &$errors, $parameters)
+    {
+        global $eulaAccept, $Frontpage_enabled, $Frontpage_passwordWebmaster;
+        
+	$cce = $helper->getCceClient();
+
+	if ($eulaAccept) {
+		list($sys_oid) = $cce->find('System');
+		$cce->set($sys_oid, 'Frontpage', array('eula' => 1));
+	}
+	
+        // don't try to set the password unless it's there
+        $settings = array(
+		'enabled' => ($Frontpage_enabled ? 1 : 0),
+		);
+
+        if ($Frontpage_passwordWebmaster != '')
+            $settings['passwordWebmaster'] = $Frontpage_passwordWebmaster;
+    
+        $cce->set($parameters['CCE_OID'], 'Frontpage', $settings);
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>

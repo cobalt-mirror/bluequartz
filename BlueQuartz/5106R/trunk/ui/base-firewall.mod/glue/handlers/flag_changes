@@ -1,0 +1,39 @@
+#!/usr/bin/perl
+#
+# $Id: flag_changes 764 2006-05-05 09:59:26Z shibuya $
+
+use lib qw( /usr/sausalito/perl );
+use CCE;
+$cce = new CCE;
+$cce->connectfd(\*STDIN,\*STDOUT);
+
+my $oid = $cce->event_oid();
+my $obj = $cce->event_object();
+if ($obj->{'CLASS'} eq 'FirewallRule') {
+  if ( $obj->{'source_ports'} || $obj->{'dest_ports'} ) {
+    if ( ($obj->{'protocol'} eq "ipip") ) {
+      $cce->warn("[[base-firewall.ipip-rule-cannot-have-ports]]");
+      $cce->bye("FAIL");
+      exit(1);
+    }
+    if ( ($obj->{'protocol'} eq 'encap') ) {
+	$cce->warn("[[base-firewall.encap-rule-cannot-have-ports]]");
+	$cce->bye("FAIL");
+	exit(1);
+    }
+    if ( ($obj->{'protocol'} eq 'gre') || ($obj->{'protocol'} eq 'esp') || ($obj->{'protocol'} eq 'ah') ||($obj->{'protocol'} eq 'all') ) {
+        $cce->warn("[[base-firewall." . $obj->{'protocol'} . "-rule-cannot-have-ports]]");
+        $cce->bye("FAIL");
+        exit(1);
+    }
+
+  }
+}
+
+{
+  my (@oids) = $cce->find("System");
+  $cce->set($oids[0], "Firewall", { 'dirty' => 1 });
+}
+
+$cce->bye('SUCCESS');
+exit(0);

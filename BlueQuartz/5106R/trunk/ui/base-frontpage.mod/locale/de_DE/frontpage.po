@@ -1,0 +1,135 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: base-frontpage\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-25 05:00+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "frontpage"
+msgstr "Frontpage Server Extensions"
+
+msgid "frontpage_help"
+msgstr "Frontpage Server Extensions ermöglichen es Benutzern, Webseiten mit der Anwendung Microsoft Frontpage zu publizieren. "
+
+msgid "frontpageSettings"
+msgstr "Frontpage Server Extensions Einstellungen"
+
+msgid "systemEnabled"
+msgstr "Root Web aktivieren"
+
+msgid "systemEnabled_help"
+msgstr "Klicken Sie hier um Frontpage-Unterstützung für diese Site zu aktivieren."
+
+msgid "passwd"
+msgstr "Webmaster Passwort"
+
+msgid "passwd_help"
+msgstr "Zugriff auf diese Site per Frontpage ist möglich, indem man sich als Benutzer 'webmaster' und dem hier angegebenem Passwort anmeldet."
+
+msgid "passwd_empty"
+msgstr "Geben Sie das webmaster Passwort ein."
+
+msgid "fpx_failed"
+msgstr "Frontpage-Unterstützung für diese Site konnte nicht aktiviert werden."
+
+msgid "fpxEnabled"
+msgstr "FrontPage Server Extensions"
+
+msgid "fpxEnabled_help"
+msgstr "FrontPage Server Extensions sind für diesen Benutzer aktiviert."
+
+# RaQ handlers
+msgid "noNamespace"
+msgstr "FrontPage Dienste sind nicht verfügbar."
+
+msgid "couldNotAccessUser"
+msgstr "Für einen Benutzer dieser Site konnte keine Frontpage Site angelegt werden."
+
+msgid "failInstallUserweb"
+msgstr "[[base-frontpage.couldNotAccessUser]]"
+
+msgid "failUninstallUserweb"
+msgstr "Für einen Benutzer dieser Site konnte keine Frontpage Site gelöscht werden."
+
+msgid "failInstallSite"
+msgstr "Für diese Site konnte keine Frontpage Webpräsenz angelegt werden. Entweder ist Frontpage nicht installiert, oder die vorhandene Webpräsenz beinhaltet Dateien, deren Namen sich nicht mit Frontpage vertragen. Wie zu, Beispiel '.htaccess'-Dateien."
+
+msgid "failUninstallSite"
+msgstr "Die Frontpage Webpräsenz konnte nicht deaktiviert werden."
+
+msgid "missingWebmasterPassword"
+msgstr "Bitte geben Sie ein Passwort für den Frontpage-Benutzer 'webmaster' ein."
+
+# RaQ UI
+msgid "fpxTabName"
+msgstr "FrontPage"
+
+msgid "fpxSettings"
+msgstr "[[base-frontpage.fpxTabName]] Einstellungen für [[VAR.fqdn]]"
+
+msgid "siteFpxHelp"
+msgstr "FrontPage für diese Site aktivieren."
+
+msgid "fpxTabName_help"
+msgstr "Erlaubt das Aktivieren oder Deaktivieren der Frontpage Unterstützung dieser Site."
+
+msgid "fpxFullText"
+msgstr "Aktiviere FrontPage Server Extensions"
+
+msgid "fpxFullText_help"
+msgstr "Aktivieren, um Frontpage Webpräsenzen für diese Site zu erlauben."
+
+msgid "enableFpxDefault"
+msgstr "FrontPage aktivieren."
+
+msgid "enableFpxDefault_help"
+msgstr "Klicken Sie hier, um Frontpage Server Extensions standardmäßig für alle neuen Sites zu aktivieren."
+
+msgid "enableFpxUserDefault"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUserDefault_help"
+msgstr "Klicken Sie hier, um Frontpage Server Extensions für Benutzereigene Webpräsenzen standardmäßig für alle neuen Benutzer zu aktivieren."
+
+msgid "enableFpxUser"
+msgstr "[[base-frontpage.enableFpxDefault]]"
+
+msgid "enableFpxUser_help"
+msgstr "Klicken Sie hier, um Frontpage Server Extensions für Benutzer zu aktivieren."
+
+msgid "enable"
+msgstr "Aktivieren"
+
+msgid "fpxPassword"
+msgstr "webmaster Password"
+
+msgid "fpxPassword_help"
+msgstr "Die primäre Webpräsenz erreicht man per Benutzername 'webmaster' und dem hier angegebenen Passwort. Webpräsenzen einzelner Benutzer erreicht man über deren Benutzernamen und Passwort. Per Frontpage Client kann man den Zugriff der Benutzer auf diese Präsenzen verwalten."
+
+msgid "Frontpage_passwordWebmaster_invalid"
+msgstr "Das in beide Felder eingebenene 'webmaster' Passwort ist nicht identisch. Bitte versuchen Sie es noch einmal."
+
+# MS/RTR end user license click-through handling
+msgid "eulaText"
+msgstr "Nutzungsbestimmungen"
+
+msgid "eulaText_help"
+msgstr "Bitte lesen Sie die Nutzungsbestimmungen (EULA) der Microsoft Frontpage Server Extensions Version 2002 genau durch. Sie müssen die unmodifizierte EULA akzeptieren, bevor Sie die Frontpage Server Extensions auf diesem Server nutzen können."
+
+msgid "eulaAccept"
+msgstr "EULA akzeptieren"
+
+msgid "eulaAccept_help"
+msgstr "Sie müssen die unmodifizierte EULA akzeptieren, bevor Sie die Frontpage Server Extensions auf diesem Server nutzen können. Klicken Sie dazu auf diesen Knopf."
+
+msgid "mustAcceptEULA"
+msgstr "Sie müssen die unmodifizierte EULA akzeptieren, bevor Sie die Frontpage Server Extensions auf diesem Server nutzen können."
+
