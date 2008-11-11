@@ -1,0 +1,654 @@
+msgid "basicSettingsTab_help"
+msgstr "頻繁に使う設定を指定できます。"
+
+msgid "ipAddr"
+msgstr "IP アドレス"
+
+msgid "ipAddr_help"
+msgstr "このサイトの IP アドレスです。"
+
+msgid "domain"
+msgstr "ドメインネーム"
+
+msgid "domain_help"
+msgstr "このサイトのドメインネームです。ドメインネームは、完全ドメイン名 (ホスト名＋ドメインネーム) の後半部分です。 (example.bluequartz.org、bluequartz.org など)"
+
+msgid "fqdn"
+msgstr "サイト名"
+
+msgid "fqdn_help"
+msgstr "このサイトを一意に識別する名前です。サイト名は、「完全ドメイン名 (ホスト名＋ドメインネーム)」とも呼ばれます。サイト名でソートを実行すると、まずドメインネームの昇順または降順、次にホスト名の昇順または降順でソートされます。"
+
+msgid "enterFqdn"
+msgstr "ホスト名とドメインネーム"
+
+msgid "enterFqdn_help"
+msgstr "左のフィールドにはこのサイトのホスト名を、右のフィールドにはドメインネームをそれぞれ入力してください。 (ホスト名の例: www、mail、eigyo-13； ドメインネームの例: cobaltqube.org、bluequartz.org など)"
+
+msgid "hostName"
+msgstr "ホスト名"
+
+msgid "hostName_help"
+msgstr "このサイトのホスト名です。ホスト名は、完全ドメイン名 (ホスト名＋ドメインネーム) の前半部分です。 (指定例: mail、www)"
+
+msgid "generalSettings"
+msgstr "一般設定"
+
+msgid "generalSettings_help"
+msgstr "このサイトの設定を修正したり、一部のサービスを設定できます。"
+
+msgid "services"
+msgstr "サービス"
+
+msgid "quota"
+msgstr "最大許容ディスク容量 (MB)"
+
+msgid "quota_help"
+msgstr "サイトがファイルの保存に使えるディスク容量の最大値を指定してください。 (単位： メガバイト (MB))"
+
+msgid "maxUsers"
+msgstr "ユーザの最大数"
+
+msgid "maxUsers_help"
+msgstr "サイトで作成できるユーザアカウントの最大数を指定してください。"
+
+msgid "dns_auto"
+msgstr "自動 DNS 設定"
+
+msgid "dns_auto_help"
+msgstr "自動 DNS 設定は、このサイトの DNS レコードを管理します。サイトのドメインネームを共有する場合に限り、ウェブサーバと電子メールサーバの別名がサポートされます。このサービスでは、トップレベルのレジストラでドメインネームを登録しません。"
+
+msgid "webAliases"
+msgstr "ウェブサーバの別名"
+
+msgid "webAliases_help"
+msgstr "この仮想サイトがウェブリクエストを受け付けるホスト名またはドメインネームの別名を指定してください。複数の別名を指定する場合は、コンマまたはスペースで区切って入力してください。指定例: www2.example.com, www.example.com。サイト名のほか、別名のアドレスを参照するには DNS を設定する必要があります。"
+
+msgid "mailAliases"
+msgstr "電子メールサーバの別名"
+
+msgid "mailAliases_help"
+msgstr "この仮想サイトが電子メール [SMTP port 25] 接続を受け付けるホスト名またはドメインネームの別名を指定してください。複数の別名を指定する場合は、コンマまたはスペースで区切って入力してください。指定例: mail2.example.com, mail.example.com。"
+
+msgid "otherServices"
+msgstr "サービスと機能"
+
+msgid "otherServices_help"
+msgstr "各種サービスを有効または無効にできます。"
+
+# various menu items
+msgid "exitSitemgmt"
+msgstr "サイトの管理を終了"
+
+msgid "exitSitemgmtHelp"
+msgstr "このウィンドウが閉じます。"
+
+msgid "sitesettings"
+msgstr "サイトの設定"
+
+msgid "sitesettingsDescription"
+msgstr "一般設定とサービスの設定を修正できます。"
+
+# Site List Page
+msgid "windowTitle"
+msgstr "[[VAR.vsite]] 仮想サイトを [[VAR.user]] として管理する"
+
+msgid "virtualSiteList"
+msgstr "仮想サイトのリスト"
+
+msgid "virtualSiteList_help"
+msgstr "このサーバ上の仮想サイトを作成または修正できます。"
+
+msgid "listSuspended"
+msgstr "サスペンド"
+
+msgid "listSuspended_help"
+msgstr "サイトがサスペンドされていることを示します。サイトがサスペンドされていると、登録ユーザによるサイトへのアクセス、および一般ユーザによるサイト関連のウェブサイトや ftp サイトへのアクセスが無効になります。"
+
+msgid "searchBy"
+msgstr "検索"
+
+msgid "searchBy_help"
+msgstr "検索するサイトのプロパティを指定してください。指定したプロパティに関して、フィールドに入力したテキストを含むサイトが一覧表示されます。"
+
+msgid "searchCriteria"
+msgstr "検索基準"
+
+msgid "searchCriteria_help"
+msgstr "指定された属性を検索する方法をお選びください。ドロップダウンリストから、検索するテキストの一致条件を指定できます。検索するテキストをフィールドに入力してください。"
+
+msgid "vsiteSearch"
+msgstr "仮想サイトを検索"
+
+# site list buttons
+msgid "searchbut"
+msgstr "検索"
+
+msgid "searchbut_help"
+msgstr "指定したプロパティに一致する仮想サイトを検索できます。"
+
+msgid "advancedSearch"
+msgstr "詳細検索"
+
+msgid "advancedSearch_help"
+msgstr "その他の基準を使ってサイトを検索できます。"
+
+msgid "sitedefaultsbut"
+msgstr "仮想サイトのテンプレートを編集"
+
+msgid "sitedefaultsbut_help"
+msgstr "仮想サイトを追加したときに自動的に記入される設定を編集できます。"
+
+msgid "siteaddbut"
+msgstr "サイトの追加"
+
+msgid "siteaddbut_help"
+msgstr "このサーバに新規の仮想サイトを追加できます。"
+
+msgid "suspend"
+msgstr "サスペンド"
+
+msgid "suspend_help"
+msgstr "ボックスをチェックすると、サイトがサスペンドされます。サイトをサスペンドすると、サイトのユーザや、サイトに関連するウェブサイトや ftp サイトへのアクセスが無効になります。"
+
+# site list search options
+msgid "siteUses"
+msgstr "サイトの利用"
+
+msgid "="
+msgstr "が、次と一致するサイトを表示"
+
+msgid "begins"
+msgstr "が、次の文字で始まるサイトを表示"
+
+msgid "ends"
+msgstr "が、次の文字で終わるサイトを表示"
+
+msgid "contains"
+msgstr "に、次の文字を含むサイトを表示"
+
+msgid "not_contains"
+msgstr "に、次の文字を含まないサイトを表示"
+
+msgid "inSubnet"
+msgstr "が、次のサブネットにあるサイトを表示"
+
+msgid "notInSubnet"
+msgstr "が、次のサブネットにないサイトを表示"
+
+# site list search results strings
+msgid "search_vsite_results_1"
+msgstr "検索結果 (<1> つの仮想サイトを見つけました)"
+
+msgid "search_vsite_results"
+msgstr "検索結果 (<[[VAR.num]]> つの仮想サイトを見つけました)"
+
+msgid "search_vsite_nonefound"
+msgstr "この検索では仮想サイトは見つかりませんでした。検索基準を狭くしてもう一度検索してください。"
+
+# common search strings
+msgid "numResultsPerPage"
+msgstr "1 ページに表示するサイト数"
+
+msgid "numResultsPerPage_help"
+msgstr "1 ページに表示するサイト数を設定してください。残りのサイトは、リストの上部にあるメニューからお好きなページを選んで表示できます。"
+
+msgid "numResultsPerPage_invalid"
+msgstr "[[base-vsite.numResultsPerPage]] に指定された値は、小さすぎるか数字ではありません。1 以上の整数を入力してください。"
+
+msgid "searchOptions"
+msgstr "検索オプション"
+
+msgid "displayOptions"
+msgstr "表示オプション"
+
+# advanced search page
+msgid "siteUses_help"
+msgstr "特定のサービスを指定すると、そのサービスが有効になっているサイトを検索できます。"
+
+msgid "suspended"
+msgstr "サスペンド"
+
+msgid "suspended_help"
+msgstr "現在サスペンドされているサイトを検索できます。"
+
+msgid "searchResults"
+msgstr "仮想サイトの検索結果"
+
+msgid "modifySearch"
+msgstr "検索を修正"
+
+msgid "modifySearch_help"
+msgstr "現在のリストの作成に使った検索基準を修正できます。"
+
+msgid "newSearch"
+msgstr "新規検索"
+
+msgid "newSearch_help"
+msgstr "新規の検索を行えます。"
+
+# delete site button
+msgid "siteRemoveConfirm"
+msgstr "[[VAR.fqdn]] というサイトを削除してよろしいですか？"
+
+msgid "deletingSite"
+msgstr "サイトを削除しています。しばらくお待ちください..."
+
+msgid "removingUsers"
+msgstr "ユーザを削除"
+
+msgid "removingSite"
+msgstr "サイトを削除"
+
+msgid "noSuchSite"
+msgstr "指定された [[VAR.site]] というサイトが見つかりませんでした。"
+
+msgid "removeFailed"
+msgstr "サイトを削除できませんでした。"
+
+# Site Defaults Page
+msgid "vsiteDefaults"
+msgstr "仮想サイトのテンプレート"
+
+msgid "siteDefaultsTab"
+msgstr "基本設定"
+
+msgid "siteDefaultsTab_help"
+msgstr "新規仮想サイトのネットワーク、ユーザとディスクの上限、電子メールのデフォルト設定を修正できます。"
+
+msgid "defaultIpAddr"
+msgstr "[[base-vsite.ipAddr]]"
+
+msgid "defaultIpAddr_help"
+msgstr "サイトを追加したときに記入されるデフォルトの IP アドレスを指定してください。"
+
+msgid "defaultDomain"
+msgstr "[[base-vsite.domain]]"
+
+msgid "defaultDomain_help"
+msgstr "新規サイトが属するデフォルトのドメインを指定してください。"
+
+# site add page
+msgid "defaultHome"
+msgstr "デフォルトディレクトリ (/home)"
+
+msgid "homePartition"
+msgstr "サイトディレクトリの保存場所"
+
+msgid "homePartition_help"
+msgstr "サイトのホームディレクトリの保存場所を指定してください。デフォルトの保存場所は、サーバの内蔵ハードディスク上にある /home ディレクトリです。その他の保存場所を指定する場合には、別のストレージ上のディレクトリを指定しても構いませんが、その外部ストレージを取り外したり削除したりすると、サイトが正しく機能しなくなりますのでご注意ください。"
+
+msgid "newVsiteSettings"
+msgstr "新規仮想サイトを追加"
+
+# site mod page
+msgid "modVsiteSettings"
+msgstr "仮想サイトの設定 - [[VAR.site]]"
+
+# site add/mod error messages
+msgid "webAliases_invalid"
+msgstr "[[VAR.invalidValue]] というウェブサーバ別名は不正です。"
+
+msgid "mailAliases_invalid"
+msgstr "[[VAR.invalidValue]] という電子メールサーバ別名は不正です。"
+
+# usage statitics menu
+msgid "siteusage"
+msgstr "利用状況"
+
+msgid "siteusageDescription"
+msgstr "サイトの利用状況に関する情報を表示できます。"
+
+# manageAdmin screen
+msgid "manageAdminUsersBlurb"
+msgstr "admin 以外のサーバ管理者アカウントを作成することにより、システム管理者は、第三者にサーバの管理権限を委託できます。サーバ管理者には、admin アカウントの管理能力を除く全ての管理権限を与えることも、必要に応じて制限を設けることもできます。"
+
+msgid "manageAdminUsers"
+msgstr "サーバの管理者"
+
+msgid "addAdminHelp"
+msgstr "新規のサーバ管理者アカウントを作成できます。"
+
+msgid "manageAdmin"
+msgstr "サーバ管理者の設定を修正 - [[VAR.name]]"
+
+msgid "manageAdminDescription"
+msgstr "サーバ管理者アカウントを作成、管理できます。[[base-vsite.manageAdminUsersBlurb]]"
+
+msgid "rootAccess"
+msgstr "ルートアクセス"
+
+msgid "rootAccess_help"
+msgstr "ルートアクセスを有効にすると、サーバ管理権限を委託されているユーザは、Telnet または SSH を使ってサーバにログインしたときに、su コマンドを使ってルートユーザになることができます。このオプションを有効にすると、'root-&lt;username&gt;' (&lt;username&gt; はルートアクセスの許可されている管理者ユーザのユーザ名) というユーザ名を持つ新規のルートアカウントが作成されます。このルートアカウントのパスワードは、ユーザの通常のアカウントのパスワードと同じです。例えば、nishida というユーザ名を持つ管理者ユーザであれば、nishida としてサーバにログインしてから、'su - root-nishida' というコマンドを実行し、自分のパスワードを再度入力することにより、ルートユーザになることができます。"
+
+msgid "adminPowers"
+msgstr "追加的アクセス権"
+
+msgid "adminPowers_help"
+msgstr "通常は admin ユーザにしか許可されていない一部の権限をサーバ管理者に委託することもできます。このサーバ管理者アカウントに許可したい追加的な権限を「[[base-vsite.disallowedAbilities]]」欄から「[[base-vsite.allowedAbilities]]」欄へ移動してください。"
+
+msgid "allowedAbilities"
+msgstr "許可する追加的権限"
+
+msgid "disallowedAbilities"
+msgstr "許可しない権限"
+
+msgid "userSuspended"
+msgstr "サスペンド"
+
+msgid "userSuspended_help"
+msgstr "サーバ管理者アカウントがサスペンドされているかどうかを示します。"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "no"
+msgstr "いいえ"
+
+msgid "suspendUser"
+msgstr "このユーザをサスペンドする"
+
+msgid "suspendUser_help"
+msgstr "このボックスをチェックすると、このユーザはサスペンドされます。サスペンドされているユーザは、サスペンドが解除されるまでサーバに接続できません。"
+
+msgid "mailCatchAll"
+msgstr "キャッチオール電子メールアドレス"
+
+msgid "mailCatchAll_help"
+msgstr "ここには、存在しないユーザやメーリングリスト宛のメッセージを全て受信するための電子メールアドレスを指定してください。空欄のままにすると、存在しないユーザやメーリングリスト宛のメッセージは受信されません。ここに指定する電子メールアドレスが実在しない場合には、空欄にした場合と同様に、存在しないユーザやメーリングリスト宛のメッセージは拒絶されます。(指定例: admin、eigyo13@bluequartz.org)"
+
+# administrator accounts list
+msgid "adminUsersList"
+msgstr "サーバ管理者のリスト"
+
+msgid "fullName"
+msgstr "氏名"
+
+msgid "fullName_help"
+msgstr "ユーザの氏名を入力してください。"
+
+msgid "userName"
+msgstr "ユーザ名"
+
+msgid "userName_help"
+msgstr "ユーザのユーザ名を指定してください。"
+
+msgid "actions"
+msgstr "操作・削除"
+
+msgid "actions_help"
+msgstr "鉛筆アイコンをクリックするとユーザを修正でき、ゴミ箱アイコンをクリックするとユーザが削除されます。"
+
+msgid "deleteQuestion"
+msgstr "[[VAR.name]] という管理者を削除してもよろしいですか？"
+
+msgid "deletingUser"
+msgstr "ユーザを削除しています。しばらくお待ちください..."
+
+# create/modify admin user page
+msgid "createAdminUser"
+msgstr "新規サーバ管理者を追加"
+
+msgid "userNameCreate"
+msgstr "[[base-vsite.userName]]"
+
+msgid "userNameCreate_help"
+msgstr "新規サーバ管理者のユーザ名を指定してください。"
+
+msgid "userPassword"
+msgstr "パスワード"
+
+msgid "userPassword_help"
+msgstr "ユーザのパスワードを指定してください。"
+
+msgid "userDiskQuota"
+msgstr "最大許容ディスク容量 (MB)"
+
+msgid "userDiskQuota_help"
+msgstr "ユーザがこのサーバ上で使えるディスク容量の最大値をメガバイト (MB) で指定してください。このフィールドを空欄のままにすると、このユーザがアクセスできるディスク容量に制限は設定されません。"
+
+msgid "userInformation"
+msgstr "ユーザの情報"
+
+msgid "adminOptions"
+msgstr "管理者オプション"
+
+# general handler error messages
+msgid "cantReadVsite"
+msgstr "[[base-vsite.operationFailed]]このサイトに関する情報を CCE から入手できません。"
+
+# unique.pl
+msgid "fqdnTooLong"
+msgstr "ホスト名とドメインネームが長すぎます。ホスト名とドメインネームを合わせた長さが 255 未満である必要があります。"
+
+msgid "localhostNotAllowed"
+msgstr "localhost というホスト名は予約されているため、仮想サイトのホスト名として指定できません。"
+
+msgid "fqdnInUse"
+msgstr "指定されたホスト名とドメインネームの組み合わせ [[VAR.fqdn]] は、別の仮想サイトに使われています。"
+
+msgid "usedWebAliases"
+msgstr "次のウェブサーバ別名は使われているため、設定できません: [[VAR.aliases]]"
+
+msgid "usedMailAliases"
+msgstr "次の電子メールサーバ別名は使われているため、設定できません: [[VAR.aliases]]"
+
+# aliases.pl
+msgid "cantCreateMailAlias"
+msgstr "[[base-vsite.operationFailed]][[VAR.alias]] という電子メールエイリアスを作成できませんでした。"
+
+msgid "cantUpdateMailAlias"
+msgstr "[[base-vsite.operationFailed]][[VAR.alias]] という電子メールエイリアスを更新できませんでした。"
+
+msgid "cantUpdateUserMailAliases"
+msgstr "[[base-vsite.operationFailed]]このサイトに属するユーザの電子メール情報を更新できません。"
+
+# auto_dns.pl
+msgid "cantCreateAtypeRecord"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の DNS エントリを作成できません。"
+
+msgid "cantCreateWebAlias"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] のウェブサーバ別名 [[VAR.alias]] の DNS エントリを作成できません。"
+
+msgid "cantCreateAtypeRecordForMail"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の電子メールサーバ別名 [[VAR.alias]] の A タイプ DNS エントリを作成できません。"
+
+msgid "cantCreateMXRecordForMailAlias"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の電子メールサーバ別名 [[VAR.alias]] の MX タイプ DNS エントリを作成できません。"
+
+msgid "cantRestartDns"
+msgstr "[[base-vsite.operationFailed]]DNS サーバを再起動できません。"
+
+msgid "cantMigrateDnsRecords"
+msgstr "[[base-vsite.operationFailed]]新規サイト情報に一致する [[VAR.fqdn]] の DNS エントリを更新できません。"
+
+# change_net_info.pl
+msgid "cantUpdateVhost"
+msgstr "[[base-vsite.operationFailed]]このサイトのウェブサーバ情報を更新できません。"
+
+# maxuser.pl
+msgid "overUserLimit"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] というサイトには、許可されている最大数を超えるユーザが存在しています。"
+
+# network_destroy.pl
+msgid "vsiteUsingIpAddress"
+msgstr "1 つまたは複数のサイトがこのネットワークインターフェイスに割り当てられた IP アドレスを使っているため、このインターフェイスは無効にできません。"
+
+msgid "vsiteUsingChangingIP"
+msgstr "1 つまたは複数のサイトがこのインターフェイスに割り当てられた IP アドレスを使っているため、この IP アドレスは変更できません。"
+
+# suspend.pl
+msgid "cantDisableVhost"
+msgstr "[[base-vsite.operationFailed]]このサイトのウェブサーバを無効にできません。"
+
+msgid "cantSuspendUsers"
+msgstr "[[base-vsite.operationFailed]]サイトのユーザをすべてサスペンドすることはできません。"
+
+# update_site_admins.pl
+msgid "cantUpdateSiteAdminCaps"
+msgstr "[[base-vsite.operationFailed]]サイト管理者の権限を更新できません。"
+
+# vsite_adminusers.pl
+msgid "couldNotAddAdminAccount"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の admin ユーザアカウントを作成できませんでした。"
+
+# vsite_create.pl
+msgid "cantAddSystemGroup"
+msgstr "このサイトは、システムがサイトシステムグループを作成できなかったために作成できませんでした。"
+
+msgid "cantSetSiteGroup"
+msgstr "このサイトは、サイトの情報を対応するシステムグループ名で更新できなかったために作成できませんでした。"
+
+msgid "cantAddVirtualHost"
+msgstr "このサイトは、関連するウェブサーバを作成できなかったために作成できませんでした。"
+
+msgid "cantAddFtpVhost"
+msgstr "このサイトの FTP サーバエントリを作成できません。"
+
+msgid "cantAddSystemAlias"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。システム上にこのエイリアスを使っているユーザがいないことを確認し、もう一度お試しください。"
+
+msgid "vsiteUserOwnsAlias"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。このサイトのメンバーである [[VAR.user]] というユーザが、このエイリアスを使っています。[[VAR.user]] ユーザからこのエイリアスを削除し、もう一度お試しください。"
+
+msgid "userOwnsAlias"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。どのサイトのメンバーでもない [[VAR.user]] というユーザ (恐らくサーバ管理者) が、このエイリアスを使っています。[[VAR.user]] ユーザからこのエイリアスを削除し、もう一度お試しください。"
+
+# vsite_destroy.pl
+msgid "cantDestroyNetwork"
+msgstr "このサイトの IP アドレスに関係するネットワークインターフェイスを無効にできません。これにより、サイトの削除が妨げられることはありませんでした。"
+
+msgid "siteMembersFound"
+msgstr "サイトのユーザアカウントの一部を削除できないため、サイトを削除できません。サイトのユーザのリストを調べて、残っているユーザアカウントを確認してください。"
+
+# Vsite.pm
+msgid "cantCreateNetwork"
+msgstr "[[base-vsite.operationFailed]]このサイトの IP アドレスに関係するネットワークインターフェイスを作成できません。"
+
+# watch_disk.pl
+msgid "diskUsedBySites"
+msgstr "次のサイトが存在しているため、このデバイスを修正できません: [[VAR.sites]]。このデバイスを無効にしたり、ホームディレクトリとして使用できないようにする前に、これらのサイトを削除してください。"
+
+# system_adminuser.pl
+msgid "cantRemoveAdminFromGroup"
+msgstr "[[VAR.group]] というサイトグループから [[VAR.user]] を削除できません。"
+
+msgid "cantAddAdminToGroup"
+msgstr "[[VAR.group]] というサイトグループから [[VAR.user]] を追加できません。"
+
+msgid "cantCreateSiteAdminGroup"
+msgstr "サイト管理者グループを作成できません。"
+
+msgid "cantRemoveUserFromSiteAdminGroup"
+msgstr "サイト管理者グループから [[VAR.user]] を削除できません。"
+
+msgid "cantAddUserToSiteAdminGroup"
+msgstr "サイト管理者グループへ [[VAR.user]] を追加できません。"
+
+msgid "cantRemoveUserFromServerAdminGroup"
+msgstr "サーバ管理者グループから [[VAR.user]] を削除できません。"
+
+msgid "sitemanage"
+msgstr "サイトの管理"
+
+msgid "sitemanageDescription"
+msgstr "仮想サイトとユーザアカウントを管理できます。"
+
+msgid "sitetabDescription"
+msgstr "ユーザアカウント、メーリングリスト、ftp、バックアップなどのサイトの設定を管理できます。"
+
+msgid "sitetabDescription_menu"
+msgstr "ユーザアカウント、メーリングリスト、ftp、バックアップなど、[[VAR.hostname]] の設定を管理するメニューを以下から指定してください。"
+
+msgid "mod_name"
+msgstr "モジュール名"
+
+msgid "version"
+msgstr "バージョン 1.0"
+
+# general use strings
+msgid "operationFailed"
+msgstr "操作に失敗しました。"
+
+msgid "basicSettingsTab"
+msgstr "基本設定"
+
+msgid "sitemaintenance"
+msgstr "保守"
+
+msgid "sitemaintenanceDescription"
+msgstr "バックアップや復元など、サイトの保守機能を実行できます。"
+
+msgid "siteservices"
+msgstr "サービス"
+
+msgid "siteservicesDescription"
+msgstr "このサイトで利用するサービスを設定できます。"
+
+msgid "siteweb"
+msgstr "ウェブ"
+
+msgid "siteweb_help"
+msgstr "スクリプト言語などのウェブオプションを設定できます。"
+
+msgid "siteWebSettings"
+msgstr "ウェブ設定 - [[VAR.fqdn]]"
+
+msgid "siteEmailSettings"
+msgstr "電子メール設定 - [[VAR.fqdn]]"
+
+msgid "sitemail"
+msgstr "電子メール"
+
+msgid "sitemail_help"
+msgstr "サイトのエイリアスなどの電子メールオプションを設定できます。"
+
+msgid "diskQuota_invalid"
+msgstr "[[base-vsite.userDiskQuota]] に指定された値は、小さすぎるか数字ではありません。[[base-vsite.diskQuota_rule]]"
+
+msgid "diskQuota_rule"
+msgstr "このユーザのディスク容量を制限する 1 より大きな数字を指定してください。このフィールドを空欄のままにすると、このユーザのホームディレクトリが存在するデバイス上の空きディスク容量をすべてこのユーザが使えるようになります。"
+
+msgid "cantAddUserToServerAdminGroup"
+msgstr "サーバ管理者グループに [[VAR.user]] を追加できません。"
+
+# sort name for server administrator add/modify
+msgid "sortName"
+msgstr "よみがな"
+
+msgid "sortName_help"
+msgstr "氏名の読み仮名です。"
+
+msgid "sortNameField"
+msgstr "[[base-vsite.sortName]]"
+
+msgid "sortNameField_rule"
+msgstr "この情報に基づいて、ユーザの表示順序（よみがなの昇順または降順）が決まります。"
+
+msgid "sortNameField_help"
+msgstr "ユーザの氏名をひらがなで記入してください（例： たなべじゅんこ)。[[base-vsite.sortNameField_rule]]"
+
+msgid "systemFqdnNotAllowed"
+msgstr "指定されたホスト名とドメインネームの組み合わせ [[VAR.fqdn]] は、システムで使われています。"
+
+# preview site
+msgid "site_preview"
+msgstr "プレビューサイト設定"
+
+msgid "site_preview_help"
+msgstr "ボックスをチェックすると、http://サーバ名/仮想サイト名/でウェブサイトへのアクセスができます。"
+
+msgid "cantChangeSitePreview"
+msgstr "このサイトのプレビューサイトを作成できません。"
+
+msgid "emailDisabled"
+msgstr "電子メールを無効にする"
+
+msgid "emailDisabled_help"
+msgstr "このドメインの電子メールが無効になります。"
+
+msgid "userwebs"
+msgstr "Enable user owned webs"
+
+msgid "userwebs_help"
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."

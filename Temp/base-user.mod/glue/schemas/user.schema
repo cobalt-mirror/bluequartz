@@ -1,0 +1,259 @@
+<!--
+$Id: user.schema 1117 2008-05-14 16:18:22Z mstauber $
+Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+
+This is the schema for the basic User object.  Moved from
+sauce-basic.mod to base-user.mod.
+-->
+
+<typedef name="fullName" type="re"
+  data = "^[^:\n\r]*$"
+/>
+
+<!-------------------------------------------------------------------------
+  User
+    all user specific settings.
+-------------------------------------------------------------------------->
+<class 
+    name="User" namespace="" version="1.0" 
+    createacl="ruleModifyUser"
+    destroyacl="ruleModifyUser"
+>
+    <!--
+	Whether the user should appear as enabled in the UI or not.
+	This allows disassociation of site suspension from user suspension.
+    -->
+    <property
+	name="ui_enabled" type="boolean" default="1"
+	readacl="ruleAll"
+	writeacl="ruleModifyUser"
+    />
+
+    <!--
+	the enabled property that actually matters as far as the system is
+	concerned.  Setting this to false (0) suspends the user.
+    -->
+    <property 
+        name="enabled" type="boolean" default="1"
+          readacl="ruleAll" 
+        writeacl="ruleModifyUser"
+    />
+    <property
+        name="emailDisabled" type="boolean" default="0" optional="true"
+          readacl="ruleAll" 
+        writeacl="ruleModifyUser"
+    />
+    <property
+        name="ftpDisabled" type="boolean" default="0" optional="true"
+          readacl="ruleAll" 
+        writeacl="ruleModifyUser"
+    />
+    <property 
+        name="name" type="accountname"
+          readacl="ruleAll" 
+        writeacl="ruleModifyUser"
+    />
+    <property 
+        name="password" 
+        type="password" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        optional="true"
+    />
+
+    <!-- 
+        these two properties should only be written to by the
+        User.password handler 
+    -->
+    <property 
+        name="md5_password" type="scalar" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        optional="true"
+    />
+    <property 
+        name="crypt_password" type="scalar" 
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleSelf OR ruleModifyUser"
+        optional="true"
+    />
+
+    <property 
+        name="fullName" type="fullName" 
+        readacl="ruleAll" 
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+    <property 
+        name="sortName" type="scalar" 
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+
+    <!-- shell is DEPRECATED and should not be used -->
+    <property 
+        name="shell" type="scalar"
+        readacl="ruleSelf" 
+        writeacl="ruleModifyUser"
+    />
+    <property 
+        name="site" type="accountname" optional="1"
+        writeacl="ruleModifyUser" readacl="ruleAll"
+    />
+
+    <!-- the mount point where the user's home directory lives -->
+    <property
+        name="volume" type="scalar" optional="1" default="/home"
+        writeacl="ruleModifyUser"
+    />
+
+    <property 
+        name="localePreference" 
+        type="scalar" 
+        writeacl="ruleSelf OR ruleModifyUser"
+        readacl="ruleAll"
+        default="browser"
+    />
+    <property 
+        name="stylePreference" type="scalar" 
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+    <property 
+        name="description" type="scalar" optional="true" 
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+    <property 
+        name="desc_readonly" type="boolean" default="0"
+        writeacl="ruleModifyUser"
+    />
+
+
+    <!-- 
+        All properties below pertain to a users rights to create, modify
+        and destroy objects.  They also apply to what they can actually
+        see in the UI.
+    -->
+    <!-- 
+        systemAdministrator is the GOD property.  Any user with this property
+        set basically has the ability to trash the CCE database to their heart's
+        content through cceclient or the UI.
+    -->
+    <property 
+        name="systemAdministrator" type="boolean" default="0"
+        readacl="ruleSelf" 
+    />
+     
+    <!--
+        DEPRECATED!?!? uiRights is legacy.  capLevels will more than likely
+        be a complete and more flexible replacement for this
+    -->
+    <property 
+        name="uiRights" type="word" array="yes" 
+        readacl="ruleSelf" 
+        writeacl="ruleAdmin OR ruleModifyUser"
+    />
+    
+    <!-- 
+        this is the list of the CapabilityGroups of which a user is a member.
+        this is the field you want to add or remove things from to control
+        a user's abilities in CCE
+    -->
+    <property 
+        name="capLevels" type="word" array="1" optional="yes"
+        writeacl="ruleModifyUser"
+    /> 
+
+    <!-- 
+        capabilities is actually looked at by CCE for any property that
+        has ruleCapable(blah) as an ACL.  This should probably never be written
+        to directly.  Instead use the capLevels property array
+    -->
+    <property 
+        name="capabilities" type="word" array="1" 
+        writeacl="ruleModifyUser"
+    />
+
+    <!-- whether to override the check for files owned on user destroy or not -->
+    <property
+	name="noFileCheck" type="boolean" default="0"
+	writeacl="ruleModifyUser"
+    />
+</class>
+
+<!--
+    RootAccess
+    enabling this will allow the user it is associated with to su to root
+    if they know the root password
+
+    only a User with the systemAdministrator field set can change the enabled
+    field for this namespace, and they are also the only one who can view
+    the value of this property
+-->
+<class
+    name="User" namespace="RootAccess" version="1.0"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+    <property
+        name="enabled" type="boolean" default="0"
+        readacl="ruleAdmin"
+    />
+</class>
+
+<!-------------------------------------------------------------------------
+  System.UserDefaults
+    system-wide default settings for newly created Users
+  -------------------------------------------------------------------------->
+<typedef 
+    name="userNameGenMode" type="re" 
+    data="^(firstInitLast|firstLastInit|first|last)$"
+/>
+
+<class name="System" namespace="UserDefaults" version="1.0">
+    <property 
+        name="quota" type="int" default="100" 
+        writeacl="ruleCapable(modifyUserDefaults)"
+    />
+    <property
+        name="emailDisabled" type="boolean" default="0" optional="true"
+        writeacl="ruleCapable(modifyUserDefaults)"
+    />
+    <property 
+        name="description" type="scalar" default="" 
+        writeacl="ruleCapable(modifyUserDefaults)" 
+    />
+
+    <!-- UI use only -->
+    <property 
+        name="userNameGenMode" type="userNameGenMode" 
+        default="firstInitLast" 
+        writeacl="ruleCapable(modifyUserDefaults)"
+    />
+</class>
+
+
+<!--
+    The UserServices object is used to register 
+    services that may be configured on a per User
+    basis.  Services add namespaces to the object
+    to register themselves.  Each namespace
+    should contain an enabled property and
+    any attributes used for defaults for that service.
+
+    There should only be one UserServices object per
+    virtual site when virtual sites are used.  These objects
+    are distinguished by the site property in the
+    default namespace.
+
+    Otherwise, there will only be one UserServices object
+    with the site field left blank.
+-->
+<class 
+    name="UserServices" version="1.0"
+    createacl="ruleAdmin,ruleCreateVsite" 
+    destroyacl="ruleAdmin,ruleDestroyVsite"
+>
+    <property 
+        name="site" type="alphanum" optional="yes"
+        writeacl="ruleAdmin,ruleCreateVsite"
+    />    
+</class>
+
+
