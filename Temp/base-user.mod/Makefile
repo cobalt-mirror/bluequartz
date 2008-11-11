@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=user
 
-VERSION=1.1.0
-RELEASE=111BQ33
+VERSION=1.2.0
+RELEASE=0BQ7
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,11 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES= base-email-capstone >= 1.3.0-0BQ16
-REQUIRES= sausalito-cce-server >= 0.80.3-1BQ34
-REQUIRES= base-admserv-capstone >= 1.0.1-0BQ11
-REQUIRES= sausalito-i18n >= 0.70.2-86BQ16
-REQUIRES= authconfig >= 5.3.12-2.el5
+REQUIRES= base-email-capstone >= 1.3.0-0BQ16 base-bluequartz-capstone >= 2.20080501 sausalito-cce-server >= 0.80.2-1BQ34 base-admserv-capstone >= 1.0.1-0BQ11 sausalito-i18n >= 0.70.2-86BQ16
 
 #########
 # some useful defines

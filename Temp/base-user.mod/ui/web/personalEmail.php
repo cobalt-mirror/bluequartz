@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalEmail.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: personalEmail.php 1166 2008-08-20 13:55:11Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/PagedBlock.php");

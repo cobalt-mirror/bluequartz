@@ -11,7 +11,7 @@ use CCE;
 use Base::Group qw(system_groupadd group_add_members group_rem_members);
 use Base::Vsite;
 
-my $DEBUG = 0;
+my $DEBUG = 1;
 
 my $cce = new CCE('Domain' => 'base-vsite');
 $cce->connectfd();
@@ -44,11 +44,20 @@ if ($result eq 'adminUser')
     # groups
     setgrent();
     my $group;
-    while($group = getgrent())
+    my @groups;
+    my $i = 0;
+    while($groups[$i] = getgrent())
     {
+        $i++;
+    }
+
+    for (@groups)
+    {
+        $group = $_;
+
         # make sure we skip all non-site groups
         if ($group !~ /^site\d+$/) { next; }
-    
+
         if ($remove)
         {
             if (!group_rem_members($group, $user->{name}))

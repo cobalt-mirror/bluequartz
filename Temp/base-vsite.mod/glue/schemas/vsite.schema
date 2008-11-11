@@ -61,7 +61,7 @@
 
     <!-- Turns off the ability to run user owned websites -->
     <property
-        name="userwebsDisabled" type="boolean" default="1"
+        name="userwebsDisabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
 

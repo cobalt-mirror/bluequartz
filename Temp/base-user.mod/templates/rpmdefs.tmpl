@@ -108,25 +108,28 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
-* Sun Jun 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ33
-- Fixed an array_merge issue in personalEmailHandler.php
+* Wed Sep 10 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ7
+- Updated locale in regards to new password minumum length of six characters.
 
-* Thu Jun 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ32
-- Fix in personalAccount.php array_merge complaining about 'argument is not an array'
+* Fri Sep 05 2008 Brian Smith <brian@nuonce.net> 1.2.0-0BQ6
+- Fixed it so that the skel .bash* files are copied to user's home directories
 
-* Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ31
-- Fixed convert2passwd.sh to no longer copy system-auth to /etc/pam.d/, because it's OS dependent. 
-- Created system-auth-centos4 system-auth-centos5. convert2passwd.sh now copies system-auth-centos5 to /etc/pam.d/
-- Added requirement for authconfig-5.3.12-2.el5. convert2passwd.sh now uses it as part of the conversion.
+* Fri Sep 05 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ5
+- fixed the issue that fail to add user and vsite with get_free_uid/gid.
 
-- Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ30
-- personalAccount.php fixed
+* Wed Aug 28 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ4
+- fixed the issue that admin and root-admin password isn't able to be sync.
 
-* Wed Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ29
-- personalAccountHandler.php fixed
+* Tue Aug 26 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ3
+- Small update in personalAccountHandler.php, userModHandler.php and userAddHandler.php
+- Now uses strcasecmp() to check if password equals username in upper and lower case.
 
-* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ28
-- Modified convert2passwd.php fixed for PHP5
+* Sat Aug 23 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ2
+- fixed the issue that handler is in infinite loop when admin user is added.
+
+* Wed Aug 20 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ1
+- it stores user information in shadow instead of pwdb.
+- remove all pwdb stuff.
 
 * Wed May 14 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ27
 - Added provisions to disallow FTP access for not-siteAdmin users.

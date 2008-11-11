@@ -28,40 +28,8 @@ if (isset($_oid))
     $user = $cce->get($_oid);
 
 // handle setting stuff if this is the submit phase
-if ($_save) {
-
-    // Username = Password? Baaaad idea!
-    if ($userName == $password) {
-        $errors[] = new Error("[[base-user.error-password-equals-username]]");
-        $errors = array_merge($errors, $cce->errors());
-        print $helper->toHandlerHtml("/base/vsite/manageAdmin.php", 
-                                $errors, false);
-        exit;
-    }
-
-    // Open CrackLib Dictionary for usage:
-    $dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
-
-    // Perform password check with cracklib:
-    $check = crack_check($dictionary, $password);
-
-    // Retrieve messages from cracklib:
-    $diag = crack_getlastmessage();
-
-    if ($diag == 'strong password') {
-        // Nothing to do. Cracklib thinks it's a good password.
-    }
-    else {
-        $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag);
-        $errors = array_merge($errors, $cce->errors());
-        print $helper->toHandlerHtml("/base/vsite/manageAdmin.php", 
-                                $errors, false);
-        exit;
-    }
-
-    // Close cracklib dictionary:
-    crack_closedict($dictionary);
-
+if ($submitted)
+{
     list($ok, $errors) = handle_admin_settings($helper, $cce, 
                                             $user, $possible_caps);
     if ($ok)
@@ -226,6 +194,39 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
 
     $errors = array();
    
+    // Check password
+    // Username = Password? Baaaad idea!
+    if (strcasecmp($userName, $password) == 0) {
+        $attributes["password"] = "1";
+        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+        $errors[] = new Error($error_msg);
+        return array(0, $errors);
+    }
+
+    // Only run cracklib checks if something was entered into the password field:
+    if ($password) {
+
+        // Open CrackLib Dictionary for usage:
+        $dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
+
+        // Perform password check with cracklib:
+        $check = crack_check($dictionary, $password);
+
+        // Retrieve messages from cracklib:
+        $diag = crack_getlastmessage();
+
+        if ($diag == 'strong password') {
+            // Nothing to do. Cracklib thinks it's a good password.
+        } else {
+            $attributes["password"] = "1";
+            $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag . " . " . "[[base-user.error-invalid-password]]");
+            return array(0, $errors);
+        }
+
+        // Close cracklib dictionary:
+        crack_closedict($dictionary);
+    }
+
     $current_caps = $cce->scalar_to_array($user['capLevels']);
     
     // remove the special capabilities from the user's current ones

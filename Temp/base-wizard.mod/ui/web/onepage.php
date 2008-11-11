@@ -1,7 +1,7 @@
 <?php
 // Author: Patrick Bose
 // Copyright 2001, Cobalt Networks.  All rights reserved.
-// $Id: onepage.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: onepage.php 1050 2008-01-23 11:45:43Z mstauber $
 //
 // This page duplicates some stuff from a qube setup, but
 // the idea is that for raqs we want an express, one-page setup...
@@ -63,24 +63,22 @@ $block->addFormField(
   $factory->getLabel("dnsAddressesField")
 );
 
-if (!file_exists("/proc/user_beancounters")) {
-    // Regular Network Interfaces
-
-    $gw = $factory->getIpAddress("gatewayField", $systemObj["gateway"]);
-    $gw->setOptional(true);
-    $block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
+$gw = $factory->getIpAddress("gatewayField", $systemObj["gateway"]);
+$gw->setOptional(true);
+$block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
 
 
-    // real interfaces
-    // ascii sorted, this may be a problem if there are more than 10 interfaces
-    $interfaces = $cceClient->findx('Network', array('real' => 1), array(),
+// real interfaces
+// ascii sorted, this may be a problem if there are more than 10 interfaces
+$interfaces = $cceClient->findx('Network', array('real' => 1), array(),
 				'ascii', 'device');
-    $devices = array();
-    $deviceList = array();
-    $devnames = array();
-    $i18n = $factory->getI18n();
-    $admin_if = '';
-    for ($i = 0; $i < 1; $i++) {
+$devices = array();
+$deviceList = array();
+$devnames = array();
+$i18n = $factory->getI18n();
+$admin_if = '';
+for ($i = 0; $i < 1; $i++)
+{
 	$is_admin_if = false;
 	$iface = $cceClient->get($interfaces[$i]);
 	$device = $iface['device'];
@@ -240,8 +238,6 @@ if (!file_exists("/proc/user_beancounters")) {
 	    "",
 	    $default_page
 	    );
-    }
-
 }
 
 //////////////// Admin settings
@@ -303,25 +299,11 @@ $time = $cceClient->getObject("System", array(), "Time");
 $block->addDivider($factory->getLabel("timeSettings", false));
 
 $t = time();
-if (!file_exists("/proc/user_beancounters")) {
-    // Regular Network Interfaces
-    // On OpenVZ we want to hide this form field:
-
-    $block->addFormField($factory->getTimeStamp("oldTime", $t, "date", ""));
-    $block->addFormField(
-    $factory->getTimeStamp("dateField", $t, "datetime"),
-    $factory->getLabel("dateField")
-    );
-}
-else {
-    // On OpenVZ we want to hide this form field:
-
-    $block->addFormField($factory->getTimeStamp("oldTime", $t, "date", ""));
-    $block->addFormField(
-    $factory->getTimeStamp("dateField", $t, "datetime"),
-    $factory->getLabel("dateField"),hidden
-    );
-}
+$block->addFormField($factory->getTimeStamp("oldTime", $t, "date", ""));
+$block->addFormField(
+  $factory->getTimeStamp("dateField", $t, "datetime"),
+  $factory->getLabel("dateField")
+);
 
 $block->addFormField($factory->getTimeZone("oldTimeZone", $time["timeZone"], ""));
 $block->addFormField(

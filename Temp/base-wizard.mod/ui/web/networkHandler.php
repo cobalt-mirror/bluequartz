@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: networkHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: networkHandler.php 1050 2008-01-23 11:45:43Z mstauber $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
@@ -10,18 +10,8 @@ $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product($cceClient);
 
-if (! -f "/proc/user_beancounters") {
-    // Regular Network Interfaces
-    if ($product->isRaq()) {
+if ($product->isRaq())
 	$eth0 = $cceClient->getObject("Network", array("device" => "eth0"));
-    }
-}
-else {
-    // OpenVZ Network Interfaces:
-    if ($product->isRaq()) {
-	$eth0 = $cceClient->getObject("Network", array("device" => "venet0"));
-    }
-}
 
 $oid = $cceClient->find("System");
 
@@ -37,16 +27,8 @@ if (!$product->isRaq())
 		$cceClient->set($oid, "Modem", array("connMode" => "off"));
 		$cceClient->set($oid, "Pppoe", array("connMode" => "off"));
 		$cceClient->set($oid, "", array("gateway" => ""));
-		if (! -f "/proc/user_beancounters") {
-		    // Regular Network Interfaces
-		    $cceClient->setObject("Network", array("enabled" => 0), "", 
+		$cceClient->setObject("Network", array("enabled" => 0), "", 
 					array("device" => "eth1"));
-		}
-		else {
-		    // OpenVZ Network Interfaces:
-		    $cceClient->setObject("Network", array("enabled" => 0), "", 
-					array("device" => "venet1"));
-		}
 	}
 }
 else

@@ -71,23 +71,17 @@ use vars qw(@ISA @EXPORT_OK);
                 group_add_members group_rem_members
                 );
 
-use PWDB;
-use DB_File;
-use Fcntl qw(:flock);
 use FileHandle;
 use Sauce::Util;
 
 use vars qw($DEBUG $GIDS_LOCKFILE $GIDS_CACHE $MIN_GID $MAX_GID);
 $DEBUG = 0;
-$GIDS_CACHE = '/var/db/freegids.db';
 $MIN_GID = 500;  # min gid to assign to new groups
 $MAX_GID = 2 ** 16;  # max gid to assign to new groups
 
 # some private variables that are global to reduce the number of open
 # and close system calls
-my $db_handle = undef;
 my %gids;
-my $lock_handle = undef;
 
 =pod
 
@@ -176,7 +170,7 @@ to the list of names of groups that could not be added.
 # to a list containing names of groups whose add failed
 sub groupadd
 {
-    return _internal_groupadd([PWDB_UNIX, PWDB_SHADOW], @_);
+    return _internal_groupadd([PWDB_UNIXDB, PWDB_SHADOWDB], @_);
 }
 
 =pod
@@ -254,33 +248,26 @@ sub groupmod
     # set umask and save old value
     my $old_umask = umask(022);
 
-    PWDB::pwdb_start();
-    
     for my $group (@$internal_list)
     {
         my $old_gid = 0;
         my $group_name = $group->{oldname} ? $group->{oldname} : $group->{name};
 
-        my $gpwdb = PWDB::pwdb_locate('group', [], $group_name, PWDB_ID_UNKNOWN);
-       
-        if (!$gpwdb)
-        {
-            $DEBUG && warn("$group_name not found skipping");
-            $success = 0;
-            push @$bad_groups, $group_name;
-            next;
-        }
+        my $opt = "";
+
+        # get information for rollback
+        my @group_info = getgrnam($group);
 
         # store old settings for rollback
         my $old_group = {
-                            'name' => $gpwdb->get_entry('group'),
-                            'gid' => $gpwdb->get_entry('gid'),
-                            'password' => $gpwdb->get_entry('passwd'),
-                            'members' => $gpwdb->get_entry('users')
+                            'name' => $group_info[0],
+                            'gid' => $group_info[2],
+                            'password' => $group_info[1],
+                            'members' => $group_info[3]
                         };
 
         # parse new group settings
-        $old_gid = $gpwdb->get_entry('gid');
+        $old_gid = $group_info[2];
         if (exists($group->{gid}))
         {
             my @foo = getgrgid($group->{gid});
@@ -292,31 +279,31 @@ sub groupmod
                 next;
             }
 
-            $gpwdb->set_entry('gid', $group->{gid} + 0);
+            $opt .= "-g $group->{gid} ";
         }
 
         if ($group->{oldname})
         {
-            $gpwdb->set_entry('group', $group->{name});
+            $opt .= "-n $group->{name} ";
         }
 
         if ($group->{password})
         {
-            $gpwdb->set_entry('passwd', $group->{password});
+            $opt .= "-p '$group->{password}' ";
         }
 
-        if ($group->{members})
-        {
-            $gpwdb->set_entry('users', $group->{members});
-        }
-
-        if (!PWDB::pwdb_replace($gpwdb, $group_name, $old_gid))
+        if (!system("/usr/sbin/groupmod $opt $group_name"))
         {
             $success = 0;
             push @$bad_groups, $group_name;
         }
         else
         {
+            if ($group->{members})
+            {
+                my $ok = system("/usr/bin/gpasswd -M \"$group->{members}\" $group->{name}");
+            }
+
             # handle a group name change
             my $oldgroup_name = '';
             if ($group->{oldname})
@@ -338,8 +325,6 @@ sub groupmod
             Sauce::Util::addrollbackcommand($rollback_cmd);
         }
     }
-
-    PWDB::pwdb_end();
 
     # restore old umask
     umask($old_umask);
@@ -373,8 +358,6 @@ sub groupdel
     # save old umask and set to a known value
     my $old_umask = umask(022);
     
-    PWDB::pwdb_start();
-
     for my $group (@groups)
     {
         # get information for rollback
@@ -394,19 +377,15 @@ sub groupdel
                             'members' => join(',', @members)
                         };
 
-        my $ret = PWDB::pwdb_remove('group', [], $group, $group_info[2]);
-        if ($ret != PWDB_SUCCESS)
+        my $ret = system("/usr/sbin/groupdel $group_info[0]");
+        if ($ret != 0)
         {
-            $DEBUG && warn("removing $group failed, " 
-                            . PWDB::pwdb_strerror($ret));
+            $DEBUG && warn("removing $group failed");
             $success = 0;
             push @$bad_groups, $group;
         }
         else
         {
-            # free the gid in the db
-            put_free_gid($group_info[2]);
-
 #ROLLBACK GROUPDEL
             my $rollback_cmd = '/usr/bin/perl -I/usr/sausalito/perl -e '
                     . "\"use Base::Group qw(groupadd); "
@@ -421,8 +400,6 @@ sub groupdel
             Sauce::Util::addrollbackcommand($rollback_cmd);
         }
     } # done deleting groups
-
-    PWDB::pwdb_end();
 
     # restore umask
     umask(022);
@@ -519,25 +496,16 @@ sub _modify_members
     # save umask and set to a known value
     my $old_umask = umask(022);
 
-    PWDB::pwdb_start();
-    
-    my $gpwdb = PWDB::pwdb_locate('group', [], $group, PWDB_ID_UNKNOWN);
-    
-    # group must exist
-    if (!$gpwdb)
-    {
-        # restore umask
-        umask($old_umask);
-        $DEBUG && warn("group, $group, does not exist");
-        return 0;
-    }
+    # get information for rollback
+    my @group_info = getgrnam($group);
 
     # use this for rollback too
-    my $cur_mem = $gpwdb->get_entry('users');
-    
+    my @mem = split(' ', $group_info[3]);
+    my $cur_mem = join(',', @mem);
+
     if ($cur_mem)
     {
-        $DEBUG && warn("current members $cur_mem");
+        $DEBUG && warn("current members $cur_mem in $group group");
         # generate hash of members for easy searching
         my %cur_users = map { $_ => 1 } split(',', $cur_mem);
         for my $member (@members)
@@ -563,13 +531,17 @@ sub _modify_members
         # a member
         @members = ();
     }
-    
-    $gpwdb->set_entry('users', join(',', @members));
-    
-    my $ret = PWDB::pwdb_replace($gpwdb, $group, $gpwdb->get_entry('gid'));
-    
-    PWDB::pwdb_end();
-    
+
+    # succeed by default
+    my $success = 1;
+    my $list = join(',', @members);
+    my $ret = system("/usr/bin/gpasswd -M \"$list\" $group");
+    if ($ret != 0)
+    {
+        $DEBUG && warn('gpasswd failed');
+        $success = 0;
+    }
+
     # handle rollback for group add/rem members
     my $rollback_cmd = "/usr/bin/perl -I/usr/sausalito/perl -e \""
             . 'use Base::Group qw(groupmod); '
@@ -581,7 +553,7 @@ sub _modify_members
     # restore umask
     umask($old_umask);
 
-    return $ret;
+    return $success;
 }
 
 sub sel
@@ -603,179 +575,25 @@ sub cryptpw
     return ($crypt_pw, $md5_pw);
 }
 
-# always make sure the lockfile exists
-BEGIN
-{
-    # need to set this here or the BEGIN method can't see it
-    $GIDS_LOCKFILE = '/var/db/freegids.lock';
-    if (!-f $GIDS_LOCKFILE)
-    {
-        open(LOCK, ">$GIDS_LOCKFILE") or die "$!\n";
-        close(LOCK);
-    }
-}
-
-END
-{
-    # always try to close the database before
-    # shutting down.  don't care if it fails, because things may not be open.
-    undef($db_handle);
-    untie(%gids);
-
-    # only unlock and close if defined
-    if (defined($lock_handle))
-    {
-        unlock($lock_handle);
-        $lock_handle->close();
-    }
-}
-
 sub get_free_gid
 {
-    my ($key, $value, $status);
-
-    # open the lock file, but only once
-    if (!$lock_handle)
-    {
-        $DEBUG && warn($GIDS_LOCKFILE);
-        $lock_handle = new FileHandle("<$GIDS_LOCKFILE");
-        if (!defined($lock_handle))
-        {
-            die "open $GIDS_LOCKFILE failed: $!\n";
-        }
+    # fetch all gids
+    my @gids;
+    while (my ($gid) = (getgrent())[2]) {
+        push(@gids, $gid);
     }
-    if (!lock($lock_handle))
-    {
-        $DEBUG && warn("error: couldn't lock $GIDS_LOCKFILE");
-        exit(1);
-    }
-
-    # mark key as unset first
-    $key = -1;
-
-    # only open the db once per process
-    if (!$db_handle)
-    {
-        $db_handle = tie %gids, 'DB_File', $GIDS_CACHE, 
-                            O_RDWR, 0600, $DB_BTREE;
-    }
-
-    # fallback to linear search if the db is missing or something
-    if ($db_handle)
-    {
-        while(1)
-        {
-            $status = $db_handle->seq($key, $value, R_NEXT);
-            if ($status != 0)
-            {
-                $key = -1;
-                last;
-            }
-            else
-            {
-                # always delete $key cause it is going to be used
-                # or is already in use
-                delete($gids{$key});
-
-                if (!scalar(getgrgid($key)))
-                {
-                    # make sure perl thinks $key is a number
-                    $key += 0;
-                    last;
-                }
-            }
-        }
-    }
-   
-    unlock($lock_handle);
-
-    # fallback to linear search
-    if ($key == -1)
-    {
-        for (my $i = $MIN_GID; $i < $MAX_GID; $i++)
-        {
-            # FIXME: methinks this is a really nasty race condition
-            if (not scalar(getgrgid($i)))
-            {
-                $key = $i;
-                last;
-            }
-        }
-    }
-
-    return $key;
+    return _last_free_id(@gids);
 }
 
-sub put_free_gid
-{
-    my $gid = shift;
+sub _last_free_id {
+    my ($class, @ids) = @_;
 
-    # try to protect the cache from invalid data
-    # groups with gids < $MIN_GID should always specify the
-    # gid when creating the group
-    # also don't allow gids that are still in use to be cached
-    if ($gid < $MIN_GID || $gid > $MAX_GID || scalar(getgrgid($gid)))
-    {
-        return;
-    }
- 
-    # open the lock file, but only once
-    if (!$lock_handle)
-    {
-        $DEBUG && warn($GIDS_LOCKFILE);
-        $lock_handle = new FileHandle("<$GIDS_LOCKFILE");
-        if (!defined($lock_handle))
-        {
-            die "open $GIDS_LOCKFILE failed: $!\n";
-        }
-    }
-    if (!lock($lock_handle))
-    {
-        $DEBUG && warn("error: couldn't lock $GIDS_LOCKFILE");
-        exit(1);
-    }
-    
-    # only open the db once per process
-    if (!$db_handle)
-    {
-        $db_handle = tie %gids, 'DB_File', $GIDS_CACHE, 
-                        O_CREAT|O_RDWR, 0600, $DB_BTREE;
-    }
-
-    if ($db_handle)
-    {
-        $gids{$gid} = 1;
-    }
-
-    unlock($lock_handle);
-}
-
-sub lock
-{
-    my $fh = shift;
-
-    my $ret = 0;
-    
-    # try 10 times to get the lock or fail
-    for (my $i = 0; $i < 10; $i++)
-    {
-        if (flock($fh, LOCK_EX|LOCK_NB))
-        {
-            $ret = 1;
-            last;
-        }
-        
-        sleep(1);
-    }
-    
-    return $ret;
-}
-
-sub unlock
-{
-    my $fh = shift;
-
-    flock($fh, LOCK_UN);
+    # sort them
+    @ids = sort { $a <=> $b } @ids;
+    # del nobody
+    pop @ids;
+    # return free available uid
+    return $ids[-1] + 1;
 }
 
 sub _internal_groupadd
@@ -807,33 +625,13 @@ sub _internal_groupadd
 
     # save old umask and set to a known value
     my $old_umask = umask(022);
-    
-    PWDB::pwdb_start();
-    
+
     for my $group (@$internal_list)
     {
-        if (not exists($group->{gid}))
-        {
-            $group->{gid} = get_free_gid();
-        }
-        
-        my $gpwdb = PWDB::pwdb_new('group', $src, 1000);
-        if (!$gpwdb)
-        {
-            $DEBUG && warn("pwdb_new failed!");
-        }
+        my $gid_opt = exists($user->{gid}) ? "-g $user->{gid}" : "";
 
-        $gpwdb->set_entry('create_group', 1);
-        $gpwdb->set_entry('group', $group->{name});
-        $gpwdb->set_entry('passwd', 
-                (defined($group->{password}) ? $group->{password} : '*'));
-        $gpwdb->set_entry('gid', $group->{gid} + 0);
-        if ($group->{members})
-        {
-            $gpwdb->set_entry('users', $group->{members});
-        }
-
-        if (!PWDB::pwdb_add($gpwdb, $group->{name}, $group->{gid}))
+        my $ret = system("/usr/sbin/groupadd $group->{name} $gid_opt");
+        if ($ret != 0)
         {
             $DEBUG && warn('pwdb_add failed');
             $success = 0;
@@ -841,6 +639,10 @@ sub _internal_groupadd
         }
         else
         {
+            if ($group->{members}) {
+                my $ok = system("/usr/bin/gpasswd -M \"$group->{members}\" $group->{name}");
+            }
+
 # ROLLBACK GROUPADD
             my $rollback_cmd = "/usr/bin/perl -I/usr/sausalito/perl -e \""
                     . 'use Base::Group qw(groupdel); '
@@ -850,8 +652,6 @@ sub _internal_groupadd
             Sauce::Util::addrollbackcommand($rollback_cmd);
         }
     } # done adding current group
-
-    PWDB::pwdb_end();
 
     # restore old umask
     umask($old_umask);

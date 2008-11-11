@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAdd.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: userAdd.php 1117 2008-05-14 16:18:22Z mstauber $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -183,16 +183,6 @@ $block->addFormField(
     $textblock,
     $factory->getLabel("userDescField")
 );
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
-
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $block->addButton($factory->getCancelButton("/base/user/userList.php?group=$group"));

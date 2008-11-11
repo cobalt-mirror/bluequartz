@@ -1,7 +1,7 @@
 <?php
 // Author: Patrick Bose
 // Copyright 2001, Cobalt Networks.  All rights reserved.
-// $Id: onepageHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: onepageHandler.php 758 2006-05-03 05:02:37Z shibuya $
 //
 // the onepage handler... trying to maintain similarities to
 // the individual handlers used on qube for ease of maintenance...
@@ -20,17 +20,15 @@ list($admin_oid) = $cceClient->find('User', array('name' => 'admin'));
 
 $adminIf = "eth1";
 
-if (!file_exists("/proc/user_beancounters")) {
-    // Regular Network Interfaces
-
-    // handle all devices
-    $devices = array('eth0', 'eth1');
-    if (isset($deviceList))
+// handle all devices
+$devices = array('eth0', 'eth1');
+if (isset($deviceList))
 	$devices = $cceClient->scalar_to_array($deviceList);
 
-    // special array for admin if errors
-    $admin_if_errors = array();
-    for ($i = 0; $i < 1; $i ++) {
+// special array for admin if errors
+$admin_if_errors = array();
+for ($i = 0; $i < 1; $i ++)
+{
 	$var_name = "ipAddressField" . $devices[$i];
 	$ip_field = $$var_name;
 	$var_name = "ipAddressOrig" . $devices[$i];
@@ -43,7 +41,8 @@ if (!file_exists("/proc/user_beancounters")) {
 	$boot_field = $$var_name;
    
 	// setup or set disabled
-	if ($ip_field == '') {
+	if ($ip_field == '')
+	{
 		// first migrate any aliases to eth0 (possibly do this better)
 		$aliases = $cceClient->findx('Network', array(), 
 					array('device' => "^$devices[$i]:"));
@@ -114,20 +113,9 @@ if (!file_exists("/proc/user_beancounters")) {
 		else
 			$errors = array_merge($errors, $cceClient->errors());
 	}
-    }
 }
 
-// mstauber
-
-if (!file_exists("/proc/user_beancounters")) {
-    // Regular Network Interfaces
-    $ok = $cceClient->set($soid, "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField, "gateway" => $gatewayField));
-}
-else {
-    // OpenVZ Network Interfaces
-    $ok = $cceClient->set($soid, "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField));
-}
-
+$ok = $cceClient->set($soid, "", array("hostname" => $hostNameField, "domainname" => $domainNameField, "dns" => $dnsAddressesField, "gateway" => $gatewayField));
 $errors = $cceClient->errors();
 
 // Enable the DNS server if we self-reference by IP address
@@ -163,32 +151,7 @@ $errors = array_merge($errors, $cceClient->errors());
 
 //////////// handle admin settings
 
-// Open CrackLib Dictionary for usage:
-$dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
-
-// Perform password check with cracklib:
-$check = crack_check($dictionary, $passwordField);
-
-// Retrieve messages from cracklib:
-$diag = crack_getlastmessage();
-
-// Check if user wants to keep default password (bad idea!)
-if ($passwordField == "bluequartz") {
-    $diag = "You must change the password! Do not keep the default 'bluequartz' password!";
-}
-
-if ($diag == 'strong password') {
-    // Nothing to do. Cracklib thinks it's a good password, so set it to CCE:
-    $ok = $cceClient->set($admin_oid, '', array("password" => $passwordField));
-}
-else {
-    $attributes["password"] = "1";
-    $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag);
-}
-
-// Close cracklib dictionary:
-crack_closedict($dictionary);
-
+$ok = $cceClient->set($admin_oid, '', array("password" => $passwordField));
 $errors = array_merge($errors, $cceClient->errors());
 
 //////////// handle locale settings

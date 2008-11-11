@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAddHandler.php 1117 2008-05-14 16:18:22Z mstauber $
+// $Id: userAddHandler.php 1173 2008-08-26 03:35:35Z mstauber $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -123,7 +123,7 @@ if (isset($dnsAdministrator))
 $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
 
 // Username = Password? Baaaad idea!
-if ($userNameField == $passwordField) {
+if (strcasecmp($userNameField, $passwordField) == 0) {
         $attributes["password"] = "1";
         $errors[] = new Error("[[base-user.error-password-equals-username]]");
 }

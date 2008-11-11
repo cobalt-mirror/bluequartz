@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalAccountHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: personalAccountHandler.php 1173 2008-08-26 03:35:35Z mstauber $
 
 include_once("ServerScriptHelper.php");
 
@@ -9,9 +9,6 @@ $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 $i18n = $serverScriptHelper->getI18n("base-user");
 $loginName = $serverScriptHelper->getLoginName();
-
-// Start sane:
-$errors = array();
 
 // get old settings
 $user = $cceClient->getObject("User", array("name" => $loginName));
@@ -23,7 +20,7 @@ if($styleField)
   $attributes["stylePreference"] = $styleField;
 
 // Username = Password? Baaaad idea!
-if ($loginName == $newPasswordField) {
+if (strcasecmp($loginName, $newPasswordField) == 0) {
         $attributes["password"] = "1";
         $errors[] = new Error("[[base-user.error-password-equals-username]]");
 }

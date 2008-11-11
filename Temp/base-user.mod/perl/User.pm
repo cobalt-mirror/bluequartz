@@ -63,10 +63,6 @@ use vars qw(@ISA @EXPORT_OK);
                 system_useradd
                 );
 
-use PWDB;
-use DB_File;
-use Fcntl qw(:flock);
-use FileHandle;
 use File::Path;
 use Sauce::Config;
 use Sauce::Util;
@@ -74,14 +70,11 @@ use Base::HomeDir qw(homedir_get_user_dir);
 
 use vars qw($DEBUG $UIDS_LOCKFILE $UIDS_CACHE $MIN_UID $MAX_UID);
 $DEBUG = 0;
-$UIDS_CACHE = '/var/db/freeuids.db';
 $MIN_UID = 500;  # the minimum uid to assign to users created with useradd
 $MAX_UID = 2 ** 16;  # the max uid to assign to users created with useradd
 
 # private vars to minimize open and close system calls
-my $db_handle = undef;
 my %uids;
-my $lock_handle = undef;
 
 if ($DEBUG)
 {
@@ -201,7 +194,7 @@ reference returned will be undefined.
 
 sub useradd
 {
-    return _internal_useradd([PWDB_UNIX, PWDB_SHADOW], @_);
+    return _internal_useradd([PWDB_UNIXDB, PWDB_SHADOWDB], @_);
 }
 
 =pod
@@ -277,32 +270,17 @@ sub usermod
     # save umask and set to a known value while editing files
     my $old_umask = umask(022);
 
-    $DEBUG && warn('pwdb_start');
-    PWDB::pwdb_start();
-    
     for my $user (@$internal_list)
     {
         my $old_uid;
         my $username = $user->{oldname} ? $user->{oldname} : $user->{name};
+        my $opt = "";
 
-        # don't specify a src to search since useradd only adds to one
-        # db anyways
-        my $pwdb = PWDB::pwdb_locate('user', [],
-                                    $username, PWDB_ID_UNKNOWN);
-
-        if (!$pwdb)
-        { # not found?
-            $DEBUG && warn("$user->{name} not found skipping");
-            $success = 0;
-            push @$bad_users, $username;
-            next;
-        }
-       
         # save old settings for rollback
-        my $old_user = _get_current_settings($pwdb);
+        my $old_user = _get_current_settings($username);
 
         # parse new user settings
-        $old_uid = $pwdb->get_entry('uid');
+        $old_uid = $old_user->{uid};
         if (exists($user->{uid}))
         {
             # make sure the specified uid isn't being used
@@ -315,44 +293,45 @@ sub usermod
                 next;
             }
 
-            $pwdb->set_entry('uid', $user->{uid} + 0);
+            $opt .= "-u $user->{uid} ";
         }
 
         if (exists($user->{homedir}))
         {
-            $pwdb->set_entry('dir', $user->{homedir});
+            $opt .= "-d $user->{homedir} -m ";
         }
         
         if (exists($user->{comment}))
         {
-            $pwdb->set_entry('gecos', $user->{comment});
+            $opt .= "-c \"$user->{comment}\" ";
         }
         if (exists($user->{shell}))
         {
-            $pwdb->set_entry('shell', $user->{shell});
+            $opt .= "-s $user->{shell} ";
         }
         if (exists($user->{group}))
         {
-            $pwdb->set_entry('gid', scalar(getgrnam($user->{group})));
+            $opt .= "-g $user->{group} ";
         }
         if ($user->{oldname})
         {
-            $pwdb->set_entry('user', $user->{name});
+            $opt .= "-l $user->{name} ";
         }
 
         if (defined($user->{password}))
         {
-            $pwdb->set_entry('defer_pass', 'x');
-            $pwdb->set_entry('passwd', $user->{password});
+            $opt .= "-p '$user->{password}' ";
         }
 
         # make sure directories above the user's directory exist
         # FIXME:  this shouldn't be here, but I don't want to pull
 	# 	  it at this point for fear of breaking anything
-	mkpath($pwdb->get_entry('dir'));
+        if (defined($user->{homedir})) {
+            mkpath($user->{homedir});
+        }
 
         $DEBUG && warn("replacing $username with $user->{name}");
-        if (!PWDB::pwdb_replace($pwdb, $username, $old_uid))
+        if (system("/usr/sbin/usermod $opt $username"))
         {
             $success = 0;
             push @$bad_users, $username;
@@ -384,8 +363,6 @@ sub usermod
             Sauce::Util::addrollbackcommand($rollback_cmd);
         }
     }
-
-    PWDB::pwdb_end();
 
     # restore umask
     umask($old_umask);
@@ -439,10 +416,6 @@ sub userdel
     # save umask and set to a known value
     my $old_umask = umask(022);
 
-    $DEBUG && warn('calling PWDB::pwdb_start');
-    my $ret = PWDB::pwdb_start();
-    $DEBUG && warn(PWDB::pwdb_strerror($ret));
-
     for my $user (@users)
     {
         $DEBUG && warn("deleting $user");
@@ -465,28 +438,20 @@ sub userdel
                         'comment' => $user_info[6]
                     };
         
-        $DEBUG && warn('about to do PWDB::pwdb_remove');
-        $ret = PWDB::pwdb_remove('user', [], $user, $user_info[2]);
-        $DEBUG && warn(PWDB::pwdb_strerror($ret));
-        if ($ret != PWDB::PWDB_SUCCESS)
+        $DEBUG && warn('about to do userdel');
+        if ($remove) {
+            $ret = system("/usr/sbin/userdel -r $user");
+        } else {
+            $ret = system("/usr/sbin/userdel $user");
+        }
+        if ($ret != 0)
         {
             $DEBUG && warn("Base::User::userdel deleting $user failed.");
-            $DEBUG && warn(PWDB::pwdb_strerror($ret) . "\n");
             $success = 0;
             push @$bad_users, $user;
         }
         else
         {
-            # free the uid for this user
-            put_free_uid($user_info[2]);
-
-            # be sure the homedir isn't /
-            if ($remove && $user_info[7] =~ /^\/.+/)
-            {
-                # FIXME this could take a while
-                system('/bin/rm', '-rf', $user_info[7]);
-            }
-
 #ROLLBACK USERDEL
 
             # don't have rollback recreate and chown the home directory
@@ -516,9 +481,6 @@ sub userdel
             Sauce::Util::addrollbackcommand($rollback_cmd);
         }
     } # done deleting users
-
-    $ret = PWDB::pwdb_end();
-    $DEBUG && warn(PWDB::pwdb_strerror($ret));
 
     # restore umask
     umask($old_umask);
@@ -598,16 +560,20 @@ perl(1), useradd(8), usermod(8), userdel(9), PWDB, File::Path
 # private functions
 sub _get_current_settings
 {
-    my $pwdb = shift;
+    my $username = shift;
+
+    my @user_info = getpwnam($user);
+
+    my ($name,$passwd,$uid,$gid,$quota,$comment,$gcos,$dir,$shell) = getpwnam $username;
 
     return {
-            'name' => $pwdb->get_entry('user'),
-            'uid' => $pwdb->get_entry('uid'),
-            'group' => scalar(getgrgid($pwdb->get_entry('gid'))),
-            'password' => $pwdb->get_entry('passwd'),
-            'comment' => $pwdb->get_entry('gecos'),
-            'homedir' => $pwdb->get_entry('dir'),
-            'shell' => $pwdb->get_entry('shell')
+            'name' => $user_info[0],
+            'uid' => $user_info[2],
+            'group' => $user_info[3],
+            'password' => $user_info[1],
+            'comment' => $user_info[6],
+            'homedir' => $user_info[7],
+            'shell' => $user_info[8]
             };
 }
 
@@ -630,192 +596,25 @@ sub cryptpw
     return ($crypt_pw, $md5_pw);
 }
 
-# always make sure lockfile exists
-BEGIN
-{
-    # need to set this here or the BEGIN method can't see it
-    $UIDS_LOCKFILE = '/var/db/freeuids.lock';
-    if (!-f $UIDS_LOCKFILE)
-    {
-        open(LOCK, ">$UIDS_LOCKFILE") or die "$!\n";
-        close(LOCK);
-    }
-}
-
-END
-{
-    # always try to close the database, so that things aren't stale
-    undef($db_handle);
-    untie(%uids);
-
-    if (defined($lock_handle))
-    {
-        unlock($lock_handle);
-        $lock_handle->close();
-    }
-}
-
 sub get_free_uid
 {
-    my ($key, $value, $status);
-
-    # lock down
-    if (!$lock_handle)
-    {
-        $lock_handle = new FileHandle("<$UIDS_LOCKFILE");
-        if (!defined($lock_handle))
-        {
-            die "can't open $UIDS_LOCKFILE: $!\n";
-        }
+    # fetch all uids
+    my @uids;
+    while (my ($uid) = (getpwent())[2]) {
+       push(@uids, $uid); 
     }
-
-    if (!lock($lock_handle))
-    {
-        $DEBUG && warn("error: couldn't lock $UIDS_LOCKFILE");
-        exit(1);
-    }
-   
-    # only open the db once
-    if (!$db_handle)
-    {
-        $db_handle = tie %uids, 'DB_File', $UIDS_CACHE, O_RDWR, 0600, $DB_BTREE;
-    }
-
-    # set key to nothing
-    $key = -1;
-    
-    # fallback to linear search if the db is missing or something
-    if ($db_handle)
-    {
-        $DEBUG && warn('getting uid from DB');
-
-        # to be safe loop and check if the specified uid is being used
-        # before returning
-        while(1)
-        {
-            # get first/next entry
-            $status = $db_handle->seq($key, $value, R_NEXT);
-            $DEBUG && warn("got $key from DB");
-            
-            # check for errors and act accordingly
-            if ($status != 0)
-            {
-                $DEBUG && warn("failure, status = $status");
-                $key = -1;
-                last;
-            }
-            else
-            {
-                # delete the entry and check if it is in use already
-                delete($uids{$key});
-                if (!scalar(getpwuid($key)))
-                {
-                    # make sure perl knows $key should be a number
-                    $key = $key + 0;
-                    last;
-                }
-                else
-                {
-                    $DEBUG && warn("uid $key is already in use");
-                }
-            }
-        }
-
-        $DEBUG && warn("done searching DB, got uid = $key");
-    }
-
-    # unlock
-    unlock($lock_handle);
-
-    # fallback to linear search (How can we make this not suck?)
-    if ($key == -1)
-    {
-        $DEBUG && warn('getting uid via linear search');
-        for (my $i = $MIN_UID; $i < $MAX_UID; $i++)
-        {
-            # FIXME: methinks this is a really nasty race condition
-            if (not scalar(getpwuid($i)))
-            {
-                $key = $i;
-                last;
-            }
-        }
-    }
-
-    return $key;
+    return _last_free_id(@uids);
 }
 
-# put_free_uid must be called AFTER a uid is no longer in use 
-# due to user deletion
-sub put_free_uid
-{
-    my $uid = shift;
+sub _last_free_id {
+    my ($class, @ids) = @_;
 
-    # try to protect the cache from invalid data
-    # users with uids < $MIN_UID should always specify the 
-    # uid when creating the user
-    # also don't allow uids that are in use to be placed in the cache
-    if ($uid < $MIN_UID || $uid > $MAX_UID || scalar(getpwuid($uid)))
-    {
-        return;
-    }
-
-    # lock down
-    if (!$lock_handle)
-    {
-        $lock_handle = new FileHandle("<$UIDS_LOCKFILE");
-        if (!defined($lock_handle))
-        {
-            die "can't open $UIDS_LOCKFILE: $!\n";
-        }
-    }
-    if (!lock($lock_handle))
-    {
-        $DEBUG && warn("error: couldn't lock $UIDS_LOCKFILE");
-        exit(1);
-    }
-   
-    # only open the db once
-    if (!$db_handle)
-    {
-        $db_handle = tie %uids, 'DB_File', $UIDS_CACHE, 
-                        O_CREAT|O_RDWR, 0600, $DB_BTREE;
-    }
-
-    if ($db_handle)
-    {
-        $uids{$uid} = 1;
-    }
-
-    unlock($lock_handle);
-}
-
-sub lock
-{
-    my $fh = shift;
-
-    my $ret = 0;
-    
-    # try 10 times to get the lock or fail
-    for (my $i = 0; $i < 10; $i++)
-    {
-        if (flock($fh, LOCK_EX|LOCK_NB))
-        {
-            $ret = 1;
-            last;
-        }
-        
-        sleep(1);
-    }
-    
-    return $ret;
-}
-
-sub unlock
-{
-    my $fh = shift;
-
-    flock($fh, LOCK_UN);
+    # sort them
+    @ids = sort { $a <=> $b } @ids;
+    # del nobody
+    pop @ids;
+    # return free available uid
+    return $ids[-1] + 1;
 }
 
 sub _internal_useradd
@@ -848,54 +647,33 @@ sub _internal_useradd
     # set the umask to a known value so files get created correctly
     my $old_umask = umask(022);
 
-    PWDB::pwdb_start();
-    
     for my $user (@$internal_list)
     {
         # make sure user doesn't exist already
-        if (getpwnam($user->{name}))
+        if (getpwnam($user->{name}) || $user->{name} eq "")
         {
             $success = 0;
             push @$bad_users, $user->{name};
             next;
         }
 
-        my $pwdb = PWDB::pwdb_new('user', $src, 1000);
-
-        if (!$pwdb)
-        {
-            # fatal error
-            print STDERR "useradd failed due to problems with pwdb_new!\n";
-            PWDB::pwdb_end();
-            exit(1);
-        }
-
-        if (not exists($user->{uid}))
-        {
-            # get the next available uid
-            $user->{uid} = get_free_uid();
-            $DEBUG && print STDERR "uid is $user->{uid}", "\n";
-        }
-       
         # because the password is crypted elsewhere, don't do it
         # here to be consistent
         # crypt the password
         # my $crypt_pw = (cryptpw($user->{password}))[1];
         # $DEBUG && print STDERR "crypt password $crypt_pw\n";
 
-        $pwdb->set_entry('create_user', 1);
-        $pwdb->set_entry('user', $user->{name});
-        $pwdb->set_entry('defer_pass', 'x');  # force passwd into shadow
-       if (defined($user->{password})) {
-               $pwdb->set_entry('passwd', $user->{password});
-       }
-        $pwdb->set_entry('uid', $user->{uid} + 0);
-        $pwdb->set_entry('gid', scalar(getgrnam($user->{group})));
-        $pwdb->set_entry('gecos', $user->{comment});
-        $pwdb->set_entry('dir', $user->{homedir});
-        $pwdb->set_entry('shell', $user->{shell});
+        my $uid_opt = exists($user->{uid}) ? "-u $user->{uid}" : "";
+        my $shell = defined($user->{shell}) ? "-s $user->{shell}" : "";
+        my $passwd = defined($user->{password}) ? "$user->{password}" : "*";
+        my $alterroot = (($user->{uid} == 0) && exists($user->{uid})) ? "-o" : "";
 
-        if (!PWDB::pwdb_add($pwdb, $user->{name}, $user->{uid}))
+        # since were hashing need to create directories first
+        mkpath($user->{homedir});
+
+        my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
+
+        if ($ret != 0)
         {
             $success = 0;
             push @$bad_users, $user->{name};
@@ -905,8 +683,6 @@ sub _internal_useradd
             if (!$user->{dont_create_home})
             {
                 $DEBUG && warn("creating user's home directory");
-                # since were hashing need to create directories first
-                mkpath($user->{homedir});
                 if (exists($user->{skel}) && $user->{skel})
                 {
                     # copy user skel to correct location
@@ -914,7 +690,7 @@ sub _internal_useradd
                     # rollback command will call userdel with the flag
                     # to rm the user's directory
                     system("/bin/cp -r $user->{skel}/* $user->{homedir}");
-                    system("/bin/cp /etc/skel/.bash* $user->{homedir}");
+                    system("/bin/cp -r /etc/skel/.bash* $user->{homedir}");
                 }
     
                 Sauce::Util::chmodfile(Sauce::Config::perm_UserDir, $user->{homedir});
@@ -926,7 +702,7 @@ sub _internal_useradd
 
                 # this doesn't need to be rollback safe either since the
                 # whole directory just gets blown away on rollback
-                system('/bin/chown', '-R', "$uid:$gid", $user->{homedir});
+                system('/bin/chown', '-R', "$user->{name}:$user->{group}", $user->{homedir});
             } # end if !$user->{dont_create_home}
 
 # ROLLBACK USERADD
@@ -947,11 +723,6 @@ sub _internal_useradd
             Sauce::Util::addrollbackcommand($rollback_cmd);
         }
     } # done adding current user
-
-    PWDB::pwdb_end();
-
-    # restore umask
-    umask($old_umask);
 
     return ($success, $bad_users);
 }

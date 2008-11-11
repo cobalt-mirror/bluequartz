@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalEmailHandler.php 1163 2008-06-29 19:00:27Z mstauber $
+// $Id: personalEmailHandler.php 1166 2008-08-20 13:55:11Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
@@ -19,8 +19,6 @@ if($forwardEnableField) {
 } else {
 	$forwardEnableField = "0";
 }
-
-$errors = array();
 
 $cceClient->setObject("User", array(
 	"forwardEnable" => $forwardEnableField, 

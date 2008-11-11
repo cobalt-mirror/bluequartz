@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userMod.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: userMod.php 1166 2008-08-20 13:55:11Z shibuya $
  */
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");

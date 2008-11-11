@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userModHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: userModHandler.php 1173 2008-08-26 03:35:35Z mstauber $
  */
 
 include_once("ArrayPacker.php");
@@ -17,9 +17,6 @@ if (!$serverScriptHelper->getAllowed('adminUser') &&
   header("location: /error/forbidden.html");
   return;
 }
-
-// Start sane:
-$errors = array();
 
 $autoFeatures = new AutoFeatures($serverScriptHelper);
 $cceClient = $serverScriptHelper->getCceClient();
@@ -64,7 +61,7 @@ if ($siteAdministrator == "1") {
 }
 
 // Username = Password? Baaaad idea!
-if ($userNameField == $passwordField) {
+if (strcasecmp($userNameField, $passwordField) == 0) {
         $attributes["password"] = "1";
 	$error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
         $errors[] = new Error($error_msg);
