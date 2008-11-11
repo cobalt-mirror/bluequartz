@@ -44,7 +44,7 @@ if($time["deferTimeZone"])
 	$tz = $time["deferTimeZone"];
 
 $cce->set($soid, 'Time', array('deferCommit'=>0, 'timeZone'=>$tz, 'deferTimeZone'=>''));
-$cce->set($soid, 'convert2passwd', array('convert' => '1'));
+//$cce->set($soid, 'convert2passwd', array('convert' => '1'));
 
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
