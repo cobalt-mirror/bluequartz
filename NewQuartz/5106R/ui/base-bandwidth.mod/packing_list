@@ -1,5 +1,0 @@
-# don't include the bwmgmt rpm here, because it is kernel specific
-# put bwmgmt in the packing_list in products.prd for each sku
-# that is where the kernel is too
-# RPM: bwmgmt-2.2.16.C23_V_1.0-1.i386.rpm
-# [AUTORPMS] DO NOT REMOVE THIS LINE OR EDIT ANYTHING BELOW IT, BY ORDER OF THE BUILD PEOPLE
