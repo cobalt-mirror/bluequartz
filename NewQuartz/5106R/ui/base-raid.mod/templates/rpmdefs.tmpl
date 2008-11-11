@@ -48,6 +48,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 /etc/init.d/mdchk
+/etc/init.d/fix_grub
 [AUTOFILL]
 
 <end glue>
@@ -76,6 +77,8 @@ information for [VENDOR]-[SERVICE].
 if [ "$1" = 1 ]; then
 	/sbin/chkconfig --add mdchk
 	/sbin/chkconfig mdchk on
+	/sbin/chkconfig --add fix_grub
+	/sbin/chkconfig fix_grub on
 fi
 
 <end glue>
@@ -124,6 +127,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Tue Sep 16 2008 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ11
+- Added /etc/init.d/fix_grub - contributed by Rickard Osser.
+- Extended fix_grub with more checks for presence of Grub and RAID in general.
+
 * Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ10
 - German locales added.
 

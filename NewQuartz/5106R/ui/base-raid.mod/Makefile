@@ -7,7 +7,7 @@ VENDORNAME=cobalt
 SERVICE=raid
 
 VERSION=0.1.2
-RELEASE=87BQ10
+RELEASE=87BQ11
 
 # add a buildarch if desired
 BUILDARCH=noarch
