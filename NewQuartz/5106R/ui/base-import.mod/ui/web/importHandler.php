@@ -7,7 +7,7 @@
 // status page is shown to the user during the import.
 //
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: importHandler.php 490 2005-08-09 14:04:51Z shibuya $
+// $Id: importHandler.php 1190 2008-10-22 05:20:07Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("ArrayPacker.php");
@@ -84,13 +84,10 @@ if (!$logfile)
 						array('name' => $group), 'UserDefaults');
 		$userShellDef = $cce->getObject('UserServices', array('site' => $group), 'Shell');
 		$userFpxDef = $cce->getObject('UserServices', array('site' => $group), 'Frontpage');
-		$userAPOPDef = $cce->getObject('UserServices', array('site' => $group), 'APOP');
 		$vsiteShell = $cce->getObject('Vsite', array('name' => $group), 'Shell');
 		$vsiteFpx = $cce->getObject('Vsite', array('name' => $group), 'Frontpage');
-		$vsiteAPOP = $cce->getObject('Vsite', array('name' => $group), 'APOP');
 		$defaultShell = ($userShellDef['enabled'] && $vsiteShell['enabled']) ? 1 : 0;
 		$defaultFpx = ($userFpxDef['enabled'] && $vsiteFpx['enabled']) ? 1 : 0;
-		$defaultAPOP = ($userAPOPDef['enabled'] && $vsiteAPOP['enabled']) ? 1 : 0;
 	} else
 		$userDefaults = $cce->getObject("System", array(), "UserDefaults");
 
@@ -100,7 +97,7 @@ if (!$logfile)
 
 	if ( $group )
 	{
-		$Piped .= "\tsite\tvolume\tAPOP.enabled\tShell.enabled";
+		$Piped .= "\tsite\tvolume\tShell.enabled";
 		$vsite = $cce->getObject('Vsite', array('name' => $group));
 	}
 
@@ -147,7 +144,7 @@ if (!$logfile)
 				$Piped .= "\t" . $defaultQuota;
 			#Vsite group
 			if ($group)
-				$Piped .= "\t$group\t$vsite[volume]\t$defaultAPOP\t$defaultShell";
+				$Piped .= "\t$group\t$vsite[volume]\t$defaultShell";
 			$i++;
 		}
 	}
