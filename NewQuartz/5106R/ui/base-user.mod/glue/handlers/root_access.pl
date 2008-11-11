@@ -87,7 +87,8 @@ elsif ($root_access->{enabled})
     }
 
     # create the alterroot account if necessary
-    if (!getpwnam($root_prefix . $user->{name}))
+    my (@pwent) = getpwnam($root_prefix . $user->{name});
+    if ($pwent[0] ne $root_prefix . $user->{name})
     {
         my $alterroot = {
                             'name' => ($root_prefix . $user->{name}),
@@ -113,7 +114,7 @@ elsif ($root_access->{enabled})
     {   # update user password
         my ($ret) = usermod({
                             'name' => ($root_prefix . $user->{name}),
-                            'md5_password' => $user->{md5_password}
+                            'password' => $user->{md5_password}
                         });
 
         if (!$ret)
