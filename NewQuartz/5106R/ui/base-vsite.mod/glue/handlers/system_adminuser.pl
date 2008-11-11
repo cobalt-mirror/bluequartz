@@ -44,8 +44,15 @@ if ($result eq 'adminUser')
     # groups
     setgrent();
     my $group;
-    while($group = getgrent())
-    {
+    my @groups; 
+    my $i = 0; 
+    while($groups[$i] = getgrent()) { 
+	$i++; 
+    } 
+ 	 
+    for (@groups) { 
+ 	$group = $_; 
+
         # make sure we skip all non-site groups
         if ($group !~ /^site\d+$/) { next; }
     

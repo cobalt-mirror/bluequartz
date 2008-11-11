@@ -293,7 +293,7 @@ sub create_system_group
 	my $gid = getgrnam($name);
 	# this chown doesn't need to be rolled back because if the 
 	# Vsite create fails the entire $base dir will just get blown away
-	system('chown', '-R', "nobody.$gid", $base);
+	system('chown', '-R', "nobody.$name", $base);
 
 	return $name;
 }

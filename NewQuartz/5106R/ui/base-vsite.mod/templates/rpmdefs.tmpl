@@ -122,6 +122,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ38
+- Merged the following changes in from 5100R:
+- fixed the version for requires sausalito-cce-server. 
+- Small update in manageAdmin.php 
+- Now uses strcasecmp() to check if password equals username in upper and lower case. 
+- use cracklib to check password. 
+- fixed the issue that siteadmin permission isn't able to be added. 
+- Did NOT merge in Hisao's ui/web/manageAdmin.php as I had that already covered in 5106R.
+
 * Sun May 18 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-132BQ32
 - Updated glue/handlers/network_destroy.pl
 
