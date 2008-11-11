@@ -178,8 +178,9 @@ fi
 %changelog
 
 %changelog 
-* Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.2-1BQ39
-- Merged changes from 5100R
+* Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.3-1BQ39
+- Merged changes from 5100R. 
+- Needed to bump version number to 0.80.3 or virtual BlueQuartz cannot be updated.
 
 * Wed Sep 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.2-1BQ38
 - Modified basetypes.schema again to change minimum password length back to six characters.
