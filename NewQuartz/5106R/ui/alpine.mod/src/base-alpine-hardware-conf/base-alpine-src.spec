@@ -21,7 +21,7 @@ make PREFIX=$RPM_BUILD_ROOT install
 This package contains a number of scripts and config files used by Alpine.
 
 %changelog
-* Wed Niv 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-14BQ2
+* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-14BQ2
 - Replaced copyright tag with vendor tag.
 - Added License field.
 
