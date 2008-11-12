@@ -6,10 +6,10 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=bluequartz
 
-BUILD=20081110
+BUILD=20081113
 
 VERSION=5106R
-RELEASE=2.$(BUILD)BQ85
+RELEASE=2.$(BUILD)BQ86
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -39,4 +39,7 @@ fi
 # modify sysconfig for BlueQuartz to use shadow
 perl -pi -e 's|AUTH=pwdb|AUTH=shadow|g' /etc/sysconfig/bluequartz
 
+# Convert SASLAUTHd:
+/bin/sed -i -e 's@MECH=pam@MECH=shadow@' /etc/sysconfig/saslauthd
+
 exit 0;

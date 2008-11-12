@@ -1,4 +1,4 @@
-BUILD=20080601
+BUILD=20081113
 PRODUCT=$(shell \
 if [ -f /etc/fedora-release ] && [ "`rpm -q --qf=%{version} fedora-release`" = "1" ]; then echo '5100'; fi; \
 if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "3" ]; then echo '5101'; fi; \

@@ -178,6 +178,9 @@ fi
 if [ $AUTH == 'pwdb' ]; then
   ln -sf /usr/sausalito/scripts/pwdb2shadow.sh /usr/sausalito/runonce/pwdb2shadow.sh
   /usr/sausalito/scripts/pwdb2shadow.sh
+else 
+  /bin/sed -i -e 's@MECH=pam@MECH=shadow@' /etc/sysconfig/saslauthd
+  /bin/sed -i -e "s@'db files'@files@" /etc/nsswitch.conf
 fi
 
 <end glue>
@@ -253,16 +256,15 @@ fi
 
 # for distributions
 %if "%centos" == "5"
-/CentOS-Base.repo%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptab
-les
+%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
 %triggerin glue -- initscripts
 /bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
 %endif
 
 %if "%centos" == "4"
 %triggerin glue -- centos-yumconf
-/bin/cp /usr/sausalito/triggers/centos-yumconf/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
+/bin/cp /usr/sausalito/triggers/centos-yumconf/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo 
 %triggerin glue -- iptables
 /bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS4.init /etc/init.d/iptables
 %triggerin glue -- initscripts
@@ -312,6 +314,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ86
+- Fixed Triggers for CentOS5
+- Updated glue/scripts/pwdb2shadow.sh to fix SASLAUTHd config upon conversion.
+
 * Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ85
 - Added NUSOL GPG pubkey. Does not yet fully replace the BlueQuartz key.
 
