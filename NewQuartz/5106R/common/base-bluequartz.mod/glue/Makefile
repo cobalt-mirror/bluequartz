@@ -23,7 +23,7 @@ install:
 	mkdir -p $(PREFIX)/usr/sausalito/sbin
 	mkdir -p $(PREFIX)/usr/sausalito/scripts
 	mkdir -p $(PREFIX)/usr/sausalito/runonce
-	mkdir -p $(PREFIX)/usr/share/doc/bluequartz-release-5100R
+	mkdir -p $(PREFIX)/usr/share/doc/bluequartz-release-5106R
 	tar cBf - --exclude '*CVS*' etc | (cd $(PREFIX)/ ; tar xBf -)
 	cat etc/build | sed -e 's/XX_BUILD_XX/$(BUILD)/' | \
 			sed -e 's/XX_PRODUCT_XX/$(PRODUCT)/g' > $(PREFIX)/etc/build
@@ -33,4 +33,4 @@ install:
 	tar cBf - --exclude '*CVS*' sbin | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
 	tar cBf - --exclude '*CVS*' scripts | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
 	tar cBf - --exclude '*CVS*' configs | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
-	install -m 0644 doc/* $(PREFIX)/usr/share/doc/bluequartz-release-5100R
+	install -m 0644 doc/* $(PREFIX)/usr/share/doc/bluequartz-release-5106R

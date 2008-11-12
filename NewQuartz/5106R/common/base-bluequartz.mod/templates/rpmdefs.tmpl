@@ -75,8 +75,8 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/triggers/*
 /etc/build
 /var/www/html/*
-%dir /usr/share/doc/bluequartz-release-5100R
-/usr/share/doc/bluequartz-release-5100R/*
+%dir /usr/share/doc/bluequartz-release-5106R
+/usr/share/doc/bluequartz-release-5106R/*
 <end glue>
 
 <begin ui>
@@ -147,8 +147,15 @@ fi
 # install pgp key
 /bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
 if [ $? = 1 ]; then
-  /bin/rpm --import /usr/share/doc/bluequartz-release-5100R/RPM-GPG-KEY-BlueQuartz-5100R
+  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
 fi
+
+# install NUSOL pgp key
+/bin/rpm -q gpg-pubkey-5202f88b-491b00bc > /dev/null 2>&1
+if [ $? = 1 ]; then
+  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-NUSOL-5106R
+fi
+
 
 %if "%fedora" == "1"
 /bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
@@ -305,6 +312,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ85
+- Added NUSOL GPG pubkey. Does not yet fully replace the BlueQuartz key.
+
 * Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ84
 - Merged 5100R changes to 5106R codebase.
  

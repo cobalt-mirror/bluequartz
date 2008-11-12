@@ -9,7 +9,7 @@ SERVICE=bluequartz
 BUILD=20081110
 
 VERSION=5106R
-RELEASE=2.$(BUILD)BQ84
+RELEASE=2.$(BUILD)BQ85
 
 # add a buildarch if desired
 BUILDARCH=noarch
