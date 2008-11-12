@@ -1,14 +1,13 @@
-msgid "emailSubject"
-msgstr "Active Monitor state changes"
-
-msgid "emailBody"
-msgstr "Active Monitor has detected recent changes in the state of your server appliance.\nFor more details, please see the Active Monitor section of the Server Desktop.\n\nSummary of changes:"
+msgid "cceDown"
+msgstr ""
+"The Cobalt Configuration Engine (CCE) is not running. Active Monitor cannot "
+"run without the Cobalt Configuration Engine. Try shutting down and rebooting "
+"ther server by pressing the Power button on the LCD panel. If Active Monitor "
+"still does not work, please refer to [[base-sauce-basic.techSupportURL]] for "
+"technical support."
 
 msgid "defGreenMsg"
 msgstr "This component is normal"
-
-msgid "defYellowMsg"
-msgstr "There is a problem with this component"
 
 msgid "defRedMsg"
 msgstr "There is a severe problem with this component"
@@ -16,5 +15,17 @@ msgstr "There is a severe problem with this component"
 msgid "defUnknownMsg"
 msgstr "The status is unknown for this component"
 
-msgid "cceDown"
-msgstr "The Cobalt Configuration Engine (CCE) is not running. Active Monitor cannot run without the Cobalt Configuration Engine. Try shutting down and rebooting ther server by pressing the Power button on the LCD panel. If Active Monitor still does not work, please refer to [[base-sauce-basic.techSupportURL]] for technical support."
+msgid "defYellowMsg"
+msgstr "There is a problem with this component"
+
+msgid "emailBody"
+msgstr ""
+"Active Monitor has detected recent changes in the state of your server "
+"appliance.\n"
+"For more details, please see the Active Monitor section of the Server "
+"Desktop.\n"
+"\n"
+"Summary of changes:"
+
+msgid "emailSubject"
+msgstr "Active Monitor state changes"

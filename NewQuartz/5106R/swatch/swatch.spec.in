@@ -1,10 +1,10 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BQ13%{?dist}
-Vendor: %{vendor}
+Release: NUSOL1%{?dist}
+Vendor: Solarspeed.net
 License: BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/Aventurine
 Source: swatch.tar.gz
 BuildRoot: /tmp/swatch
 BuildArchitectures: noarch
@@ -49,8 +49,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %dir /usr/sausalito/swatch
 
 %changelog
-* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 3.0.0-0BQ13
-- remove .svn directory from the archive.
+* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.1-NUSOL1
+- Ported over from 6105R to 5106R
+
+* Mon Jun 09 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.1-2008AV05
+- Updated for 6105R
+
+* Sat Oct 27 2007 Michael Stauber <mstauber@solarspeed.net> 3.0.1-2007AV04
+- Fixed /usr/sbin/swatch for usage on Aventurin{e}
+- Emails now show hostname in Subject
 
 * Mon Dec 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 3.0.0-0BQ12
 - modifies swatch code like doing same as Cobalt one on aggregate type.

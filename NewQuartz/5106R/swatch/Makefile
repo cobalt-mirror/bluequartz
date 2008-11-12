@@ -1,5 +1,5 @@
 # Makefile for swatch
-# $Id: Makefile 1136 2008-06-05 01:48:04Z mstauber $
+# $Id$
 
 include /usr/sausalito/devel/defines.mk
 
@@ -9,7 +9,7 @@ TOPDIR := $(shell pwd)
 
 V_MAJ=3
 V_MIN=0
-V_PATCH=0
+V_PATCH=1
 SWATCH_VERSION=$(V_MAJ).$(V_MIN).$(V_PATCH)
 
 CC = gcc
@@ -59,7 +59,7 @@ rpm: clean
 	CUR=`pwd`; \
 	DIR=`basename $$CUR`; \
 	cd ..; \
-	tar --exclude=CVS --exclude=.svn -zcvf /tmp/swatch.tar.gz $$DIR; \
+	tar --exclude=CVS -zcvf /tmp/swatch.tar.gz $$DIR; \
 	unset TOPDIR; \
 	rpmbuild -ta /tmp/swatch.tar.gz
 	mkdir -p rpms
