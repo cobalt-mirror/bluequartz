@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.1
-Release: 0BQ16%{?dist}
+Release: 0BQ19%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -52,6 +52,9 @@ done
 /etc/rpm/macros.bluequartz
 
 %changelog
+* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ19
+- Removed changelog entries from templates/spec.tmpl 
+
 * Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ17
 - rules/defines.mk updated for 51006R
 
