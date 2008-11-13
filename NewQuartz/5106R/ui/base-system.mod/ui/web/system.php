@@ -103,6 +103,13 @@ if($systemMemory["physicalMemTotal"] != "") {
   );
 }
 
+// PHP5 related fix:
+$block->addFormField(
+    $factory->getTextField("debug_1", "", 'r'),
+    $factory->getLabel("debug_1"),
+    Hidden
+);
+
 $serverScriptHelper->destructor();
 ?>
 <?php print($page->toHeaderHtml()); ?>
