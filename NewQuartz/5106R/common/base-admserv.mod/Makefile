@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=admserv
 
 VERSION=1.0.1
-RELEASE=0BQ12
+RELEASE=0BQ13
 
 # add a buildarch if desired
 BUILDARCH=noarch
