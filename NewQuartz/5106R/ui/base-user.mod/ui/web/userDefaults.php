@@ -115,6 +115,12 @@ if (isset($group) && $group != "") {
             ));
 }
 
+// PHP5 related fix:
+$block->addFormField(
+    $factory->getTextField("debug_1", "", 'r'),
+    $factory->getLabel("debug_1"),
+    Hidden
+);
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $block->addButton($factory->getCancelButton("/base/user/userList.php?group=$group"));
