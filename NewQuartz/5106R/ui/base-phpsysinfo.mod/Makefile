@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=phpsysinfo
 
 VERSION=1.0.1
-RELEASE=0BQ04
+RELEASE=0BQ05
 
 # add a buildarch if desired
 BUILDARCH=noarch

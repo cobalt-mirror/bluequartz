@@ -369,7 +369,9 @@ function rfts( $strFileName, $intLines = 0, $intBytes = 4096, $booErrorRep = tru
 		}
 	} else {
 		if( $booErrorRep ) {
-			$error->addError( 'file_exists(' . $strFileName . ')', 'the file does not exist on your machine', __LINE__, __FILE__ );
+			if (! is_file('/proc/user_beancounters')) {
+			    $error->addError( 'file_exists(' . $strFileName . ')', 'the file does not exist on your machine', __LINE__, __FILE__ );
+			}
 		}
 		return "ERROR";
 	}
