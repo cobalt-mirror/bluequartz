@@ -14,6 +14,14 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
   return;
 }
 
+// Protect certain form fields read-only inside VPS's:
+if (is_file("/proc/user_beancounters")) {
+    $fieldprot = "r";
+}
+else {
+    $fieldprot = "r";
+}
+
 $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product( $cceClient );
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-network", "/base/network/ethernetHandler.php");
@@ -37,10 +45,10 @@ if (isset($view))
 
 // host and domain names
 $hostfield = $factory->getVerticalCompositeFormField(array(
-			   $factory->getDomainName("hostNameField", $system["hostname"]),
+			   $factory->getDomainName("hostNameField", $system["hostname"], $fieldprot),
 			   $factory->getLabel("hostNameField")));
 $domainfield = $factory->getVerticalCompositeFormField(array(
-				 $factory->getDomainName("domainNameField", $system["domainname"]),
+				 $factory->getDomainName("domainNameField", $system["domainname"], $fieldprot),
 				 $factory->getLabel("domainNameField")));
 
 
@@ -48,11 +56,11 @@ $fqdn = $factory->getCompositeFormField(array($hostfield, $domainfield), '&nbsp;
 
 $block->addFormField(
 	$fqdn,
-	$factory->getLabel("enterFqdn"),
+	$factory->getLabel("enterFqdn"), 
 	$default_page
 );
 
-$dns = $factory->getIpAddressList("dnsAddressesField", $system["dns"]);
+$dns = $factory->getIpAddressList("dnsAddressesField", $system["dns"], $fieldprot);
 $dns->setOptional(true);
 $block->addFormField(
   $dns,
@@ -61,7 +69,7 @@ $block->addFormField(
 );
 
 if ($product->isRaq()) {
-	$gw = $factory->getIpAddress("gatewayField", $system["gateway"]);
+	$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
 	$gw->setOptional(true);
 	$block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
 }
@@ -84,7 +92,7 @@ for ($i = 0; $i < count($interfaces); $i++) {
 	// save the devices and strings for javascript fun
 	$deviceList[] = $device;
 	$devices[] = "'$device'";    
-	$devnames[] = "'" . $i18n->getJs("[[vz-network.interface$device]]") . "'";
+	$devnames[] = "'" . $i18n->getJs("[[base-network.interface$device]]") . "'";
 	
 	// PHP5 Fix
 	$dev[$device] = array (
@@ -119,7 +127,7 @@ if ($dev['eth0']) {
     $block->addFormField(
             $ip_field0,
             $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
@@ -132,7 +140,7 @@ if ($dev['eth0']) {
     $block->addFormField(
             $netmask_field0,
             $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
@@ -196,20 +204,20 @@ if ($dev['eth1']) {
     $block->addFormField(
             $ip_field1,
             $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
     $netmask_field1 = $factory->getIpAddress("netMaskField$device", $netmask);
     $netmask_field1->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'vz-network', array('interface' => "[[vz-network.interface$device]]")));
+    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 
     $netmask_field1->setOptional(true);
     
     $block->addFormField(
             $netmask_field1,
             $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
@@ -272,20 +280,20 @@ if ($dev['eth2']) {
     $block->addFormField(
             $ip_field1,
             $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
     $netmask_field1 = $factory->getIpAddress("netMaskField$device", $netmask);
     $netmask_field1->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'vz-network', array('interface' => "[[vz-network.interface$device]]")));
+    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 
     $netmask_field1->setOptional(true);
     
     $block->addFormField(
             $netmask_field1,
             $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
@@ -348,20 +356,20 @@ if ($dev['eth3']) {
     $block->addFormField(
             $ip_field1,
             $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
     $netmask_field1 = $factory->getIpAddress("netMaskField$device", $netmask);
     $netmask_field1->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'vz-network', array('interface' => "[[vz-network.interface$device]]")));
+    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 
     $netmask_field1->setOptional(true);
     
     $block->addFormField(
             $netmask_field1,
             $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[vz-network.help$device]]")),
+                        array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
@@ -402,9 +410,10 @@ $block->addFormField(
 	    $factory->getTextField('deviceList', 
 	                    $cceClient->array_to_scalar($deviceList), ''));
 
-// only add the save button if looking at primary settings
-if (!isset($alias_list))
+// only add the save button if looking at primary settings AND we're not inside a VPS:
+if ((!isset($alias_list) && ($fieldprot == "rw"))) {
 	$block->addButton($factory->getSaveButton($page->getSubmitAction()));
+}
 
 $routeButton = $factory->getButton("/base/network/routes.php", "routes");
 
@@ -417,7 +426,6 @@ $serverScriptHelper->destructor();
 
 <?php 
 
-print($wiz_warn->toHtml());
 print $block->toHtml();
 
 ?>
