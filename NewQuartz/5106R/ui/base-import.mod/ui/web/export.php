@@ -68,6 +68,13 @@ if ( $number > 0 ) {
 	// use our own submit handler so that spinny clock doesn't show
 	// otherwise, it never disappears
 	$block->addButton($factory->getButton("javascript: if (document.$formId.onsubmit()) { document.$formId.submit(); }", "downloadList"));
+
+	// PHP5 related fix:
+	$block->addFormField(
+	    $factory->getTextField("debug_1", "", 'r'),
+	    $factory->getLabel("debug_1"),
+	    Hidden
+	);
 }
 
 $helper->destructor();

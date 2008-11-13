@@ -43,6 +43,13 @@ $block->addFormField(
 	$factory->getLabel('dataUpload')
 );
 
+// PHP5 related fix:
+$block->addFormField(
+    $factory->getTextField("debug_1", "", 'r'),
+    $factory->getLabel("debug_1"),
+    Hidden
+);
+
 $mypage = $factory->getPage();
 $myform = $mypage->getForm();
 $myformId = $myform->getId();
