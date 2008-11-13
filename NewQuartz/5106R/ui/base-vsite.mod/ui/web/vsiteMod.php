@@ -164,6 +164,13 @@ if (!$is_site_admin)
     );
 }
 
+// PHP5 related fix:
+$settings->addFormField(
+    $factory->getTextField("debug_1", "", 'r'),
+    $factory->getLabel("debug_1"),
+    Hidden
+);
+
 // add auto-detected features
 $autoFeatures = new AutoFeatures($helper);
 $cce_info = array('CCE_OID' => $vsite['OID']);
