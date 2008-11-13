@@ -281,6 +281,13 @@ else if ($disk_usage->getSelectedId() == 'settings') {
 
   $disk_usage->addFormField($site_exceeds_field, $factory->getLabel('site_exceeds'), 'settings');
 
+  // PHP5 related fix:
+  $disk_usage->addFormField(
+      $factory->getTextField("debug_1", "", 'r'),
+      $factory->getLabel("debug_1"),
+      Hidden
+  );
+
   $disk_usage->addButton($factory->getSaveButton($page->getSubmitAction())); 
   $disk_usage->processErrors($errors);
 
@@ -452,6 +459,7 @@ else // handle groups
       $choose_group_message =& $factory->getSimpleText($i18n->get('choose_site'));
     }
 }
+
 
 print $page->toHeaderHtml();
 print $disk_usage->toHtml();
