@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=email
 
 VERSION=1.3.1
-RELEASE=0BQ32
+RELEASE=0BQ34
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -41,8 +41,15 @@ if ($pop || $imap) {
 
 
 # make certs file
+if (! -d "/usr/share/ssl") {
+	system("mkdir /usr/share/ssl");
+}
+if (! -d "/usr/share/ssl/certs") {
+	system("mkdir /usr/share/ssl/certs");
+}
+system("/bin/cp /etc/pki/tls/certs/ca-bundle.crt /usr/share/ssl/certs/");
 system("cat /etc/admserv/certs/key /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
-chmod 0600, "/usr/share/ssl/certs/sendmail.pem";
+system("chmod 0600 /usr/share/ssl/certs/sendmail.pem");
 
 system("/bin/cp /etc/admserv/certs/key /etc/pki/dovecot/private/dovecot.pem");
 system("/bin/cp /etc/admserv/certs/certificate /etc/pki/dovecot/certs/dovecot.pem");
