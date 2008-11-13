@@ -32,9 +32,19 @@ $oldTimeZone = $factory->getTimeZone("oldTimeZone", $defaults["timeZone"], "");
 $block->addFormField($systemDisplayedTimeZone, $factory->getLabel("systemDisplayedTimeZone"));
 $block->addFormField($oldTimeZone);
 
-$ntpAddress = $factory->getNetAddress("ntpAddress",$defaults["ntpAddress"]);
-$ntpAddress->setOptional(true);
-$block->addFormField($ntpAddress, $factory->getLabel("ntpAddress"));
+// NTP server may only be set on stand alone servers, not in a VPS:
+if (! is_file("/proc/user_beancounters")) {
+    $ntpAddress = $factory->getNetAddress("ntpAddress",$defaults["ntpAddress"]);
+    $ntpAddress->setOptional(true);
+    $block->addFormField($ntpAddress, $factory->getLabel("ntpAddress"));
+}
+
+// PHP5 related fix:
+$block->addFormField(
+    $factory->getTextField("debug_1", "", 'r'),
+    $factory->getLabel("debug_1"),
+    Hidden
+);
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $serverScriptHelper->destructor();
