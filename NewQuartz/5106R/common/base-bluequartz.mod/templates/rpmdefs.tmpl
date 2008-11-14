@@ -141,7 +141,6 @@ else
   echo 'MECH=pam' > /etc/sysconfig/saslauthd
 fi
 /usr/sausalito/constructor/base/email/syncEmailService.pl
-
 /sbin/chkconfig --add bluequartz
 
 # install pgp key
@@ -164,10 +163,12 @@ fi
 /bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
 %endif
 %if "%centos" == "4"
-perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
+/usr/bin/perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
 %endif
 %if "%centos" == "5" 
-perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo 
+#perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo 
+# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
+/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
 %endif 
 
 # pwdb2shadow
@@ -261,6 +262,9 @@ fi
 %triggerin glue -- initscripts
 /bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
 %endif
+%triggerin glue -- httpd
+/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
+%endif
 
 %if "%centos" == "4"
 %triggerin glue -- centos-yumconf
@@ -314,6 +318,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Fri Nov 14 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ88
+- Added provisions to set ServerTokens in httpd.conf to ProductOnly.
+
 * Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ87
 - Added missing glue/triggers/iptables/iptables-CentOS5.init 
 - Added missing glue/triggers/initscripts/ifup-CentOS5
