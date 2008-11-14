@@ -261,7 +261,6 @@ fi
 /bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
 %triggerin glue -- initscripts
 /bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
-%endif
 %triggerin glue -- httpd
 /usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
 %endif
