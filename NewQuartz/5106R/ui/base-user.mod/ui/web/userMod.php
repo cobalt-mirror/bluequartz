@@ -45,6 +45,14 @@ $ftpnonadmin = $ftpPermsObj['enabled'];
 $page = $factory->getPage();
 
 $block = new PagedBlock($page, "modifyUser", $factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
+//$block = $factory->getPagedBlock($page, "modifyUser", $factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
+
+//$block = $factory->getPagedBlock("modifyUser", array("account", "email"));
+
+//$factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
+
+//$block = $factory->getPagedBlock("yumgui_head", array("yumTitle", "Settings", "Logs"));
+
 $block->addPage("account", $factory->getLabel("account"));
 $block->addPage("email", $factory->getLabel("email"));
 
@@ -172,37 +180,81 @@ $block->addFormField(
   "email"
 );
 
-$forwardEnable = $factory->getOption("forwardEnable", $userEmail["forwardEnable"]);
+// Start: PHP5 work around against data loss in composite form fields:
 
-$forward_emails =& $factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"]);
-$forward_emails->setOptional('silent');
+if ($_PagedBlock_selectedId_modifyUser == "email") {
 
-$forwardEnable->addFormField(
-  $forward_emails,
-  $factory->getLabel("forwardEmailField")
-);
-$forwardEnable->addFormField(
-  $factory->getBoolean("forwardSaveField", $userEmail["forwardSave"]),
-  $factory->getLabel("forwardSaveField")
-);
+    // This displays when we're on the "Email" tab:
+
+    $forwardEnable = $factory->getOption("forwardEnable", $userEmail["forwardEnable"]);
+    $forward_emails =& $factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"]);
+    $forward_emails->setOptional('silent');
+
+    $forwardEnable->addFormField(
+	$forward_emails,
+	$factory->getLabel("forwardEmailField")
+    );
+    $forwardEnable->addFormField(
+        $factory->getBoolean("forwardSaveField", $userEmail["forwardSave"]),
+        $factory->getLabel("forwardSaveField")
+    );
   
-$forward = $factory->getMultiChoice("forwardEnableField");
-$forward->addOption($forwardEnable);
-$block->addFormField(
-  $forward,
-  $factory->getLabel("forwardEnableField"),
-  "email"
-);
+    $forward = $factory->getMultiChoice("forwardEnableField");
+    $forward->addOption($forwardEnable);
+    $block->addFormField(
+	$forward,
+	$factory->getLabel("forwardEnableField"),
+	"email"
+    );
 
-$enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
-$enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
-$autoResponder = $factory->getMultiChoice("autoResponderField");
-$autoResponder->addOption($enableAutoResponder);
-$block->addFormField(
-  $autoResponder,
-  $factory->getLabel("autoResponderField"),
-  "email"
-);
+    $enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
+    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
+    $autoResponder = $factory->getMultiChoice("autoResponderField");
+    $autoResponder->addOption($enableAutoResponder);
+    $block->addFormField(
+	$autoResponder,
+	$factory->getLabel("autoResponderField"),
+	"email"
+    );
+
+}
+else {
+
+    // When we're on the "Account" tab we instead input hidden fields with our data:
+
+    $block->addFormField(
+	$factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"], 'r'),
+	$factory->getLabel("forwardEmailField"),
+	"Hidden"
+    );
+
+    $block->addFormField(
+	$factory->getBoolean("forwardSaveField", $userEmail["forwardSave"], 'r'),
+	$factory->getLabel("forwardSaveField"),
+	"Hidden"
+    );
+
+    $block->addFormField(
+	$factory->getBoolean("forwardEnableField", $userEmail["forwardEnable"], 'r'),
+	$factory->getLabel("forwardEnableField"),
+	"Hidden"
+    );
+
+    $block->addFormField(
+	$factory->getBoolean("enableAutoResponderField", $userEmail["vacationOn"], 'r'),
+	$factory->getLabel("enableAutoResponderField"),
+	"Hidden"
+    );
+
+    $block->addFormField(
+	$factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"], 'r'),
+	$factory->getLabel("autoResponderMessageField"),
+	"Hidden"
+    );
+
+}
+
+// End: PHP5 related work around
 
 $block->addFormField(
   $factory->getBoolean("suspendUser", !$user["ui_enabled"]),
