@@ -30,6 +30,7 @@ $validExport = {
 	RaQXTR	=>	1,
 	RaQ550	=>	1,
 	'5100R'	=>	1,
+	'5106R' =>	1,
 	'5200R' =>	1,
 	TLAS1HE	=>	1,
 	TLAS2	=>	1,
@@ -41,6 +42,7 @@ $validImport = {
 	RaQXTR	=>	1,
 	RaQ550	=>	1,
 	'5100R'	=>	1,
+	'5106R' =>	1,
 	'5200R' =>	1,
 	TLAS1HE	=>	1,
 	TLAS2	=>	1,
@@ -55,7 +57,7 @@ $validImport = {
 	RaQ550 => 'TLAS1HE',
 	TLAS1HE => '5100R',
 	'5100R' => 'TLAS2',
-	'TLAS2' => '5200R',
+	'TLAS2' => '5106R',
 );
 
 1;
@@ -116,6 +118,7 @@ sub getBuild
 		"5103R",			"5100R",
 		"5104R",			"5100R",
 		"5105R",			"5100R",
+		"5106R",			"5100R",
 		"5200R",			"5200R",
 		# TLAS
 		"TLAS1HE",			"TLAS1HE",
