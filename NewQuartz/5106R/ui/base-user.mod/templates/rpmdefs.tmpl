@@ -108,6 +108,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ12
+- Further fix to ui/web/userMod.php:
+- Had to check for all iterations of _PagedBlock_selectedId_modifyUser or checkbox for forwardEmailField would always show as unticked upon first visit.
+
 * Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ11
 - Fixed nasty PHP5 issue in ui/web/userMod.php with an even more nasty work around.
 - Discovered data loss of input from composite form fields on non-active tabs of pages using pagedBlock.

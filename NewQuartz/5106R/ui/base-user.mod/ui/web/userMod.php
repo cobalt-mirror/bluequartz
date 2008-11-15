@@ -181,8 +181,7 @@ $block->addFormField(
 );
 
 // Start: PHP5 work around against data loss in composite form fields:
-
-if ($_PagedBlock_selectedId_modifyUser == "email") {
+if (($_PagedBlock_selectedId_modifyUser == "email") || ($_PagedBlock_selectedId_modifyUser != "account")) {
 
     // This displays when we're on the "Email" tab:
 
