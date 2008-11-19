@@ -41,6 +41,10 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ8
+- Updated images for BlueOnyx
+- Added BlueOnyx Skin
+
 * Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ7
 - Moved leading comments in /usr/sausalito/ui/style/Merlot.xml to end of file
 - Wouldn't compile the /usr/sausalito/ui/style/Merlot.xml.compiled... otherwise.
