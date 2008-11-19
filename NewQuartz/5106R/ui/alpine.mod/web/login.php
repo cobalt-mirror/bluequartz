@@ -3,6 +3,14 @@
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 // $Id: login.php,v 1.3 2001/10/29 09:03:18 pbose Exp $
 
+// Prevent cross site scripting attacks (suggested by Ken Marcus):
+if (eregi('iframe', $target)) {
+    exit;
+}
+if (eregi('alert', $target)) {
+    exit;
+}
+
 include_once("I18n.php");
 include_once("uifc/Stylist.php");
 
