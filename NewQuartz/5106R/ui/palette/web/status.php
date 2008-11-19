@@ -179,6 +179,13 @@ if($subprogress != "") {
   );
 }
 
+// PHP5 related fix:
+$block->addFormField(
+    $factory->getTextField("debug_1", "", 'r'),
+    $factory->getLabel("debug_1"),
+    Hidden
+);
+
 if($backUrl != "")
   $block->addButton($factory->getBackButton($backUrl));
 
