@@ -64,9 +64,9 @@ if ($siteAdministrator == "1") {
 }
 
 // Username = Password? Baaaad idea!
-if ($userNameField == $passwordField) {
+if (strcasecmp($userNameField, $passwordField) == 0) {
         $attributes["password"] = "1";
-	$error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
         $errors[] = new Error($error_msg);
 }
 

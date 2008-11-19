@@ -23,9 +23,10 @@ if($styleField)
   $attributes["stylePreference"] = $styleField;
 
 // Username = Password? Baaaad idea!
-if ($loginName == $newPasswordField) {
+if (strcasecmp($loginName, $newPasswordField) == 0) {
         $attributes["password"] = "1";
-        $errors[] = new Error("[[base-user.error-password-equals-username]]");
+        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+        $errors[] = new Error($error_msg);
 }
 
 // Only use cracklib if someting was entered into the $newPasswordField:

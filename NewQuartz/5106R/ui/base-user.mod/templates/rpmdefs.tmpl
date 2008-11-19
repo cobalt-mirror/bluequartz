@@ -108,6 +108,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ13
+- Changes in ui/web/personalAccountHandler.php
+- Changes in ui/web/userModHandler.php
+- Changes in ui/web/userAddHandler.php
+- Somehow the strcasecomp for username = password as suggested by Stephanie Sullivan never made it in here.
+
 * Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ12
 - Further fix to ui/web/userMod.php:
 - Had to check for all iterations of _PagedBlock_selectedId_modifyUser or checkbox for forwardEmailField would always show as unticked upon first visit.

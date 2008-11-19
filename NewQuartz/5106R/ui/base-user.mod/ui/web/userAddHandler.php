@@ -123,9 +123,10 @@ if (isset($dnsAdministrator))
 $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
 
 // Username = Password? Baaaad idea!
-if ($userNameField == $passwordField) {
+if (strcasecmp($userNameField, $passwordField) == 0) {
         $attributes["password"] = "1";
-        $errors[] = new Error("[[base-user.error-password-equals-username]]");
+        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+        $errors[] = new Error($error_msg);
 }
 
 // Open CrackLib Dictionary for usage:
