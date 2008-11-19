@@ -50,7 +50,7 @@ $i18n = new I18n("base-alpine", $locale);
 
 $stylist = new Stylist();
 
-$stylist->setResource("trueBlue",$locale);
+$stylist->setResource("BlueOnyx",$locale);
 
 $myStyle = $stylist->getStyle("Login");
 
