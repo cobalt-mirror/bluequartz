@@ -38,9 +38,9 @@ $styleIdToName = $stylist->getAllResources("en");
 // get IDs of all available styles
 $styleIds = array_keys($styleIdToName);
 
-// style preference is the "trueBlue" if it is available, the first available
+// style preference is the "BlueOnyx" if it is available, the first available
 // style of nothing if no styles are available
-$firstChoice = "trueBlue";
+$firstChoice = "BlueOnyx";
 $stylePreference = "";
 if(count($styleIds) > 0)
 {

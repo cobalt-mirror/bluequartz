@@ -71,7 +71,7 @@ else
                 localePreference => $locale,
                 name => 'admin',
                 password => 'bluequartz',
-                stylePreference => 'trueBlue',
+                stylePreference => 'BlueOnyx',
                 systemAdministrator => 1,
                 volume => $Base::HomeDir::HOME_ROOT
             });
