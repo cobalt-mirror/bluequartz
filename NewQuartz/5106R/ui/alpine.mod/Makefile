@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=alpine
 
 VERSION=0.1
-RELEASE=85BQ25
+RELEASE=85BQ26
 
 # add a buildarch if desired
 BUILDARCH=noarch
