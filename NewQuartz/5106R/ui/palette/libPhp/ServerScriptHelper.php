@@ -577,8 +577,8 @@ class ServerScriptHelper {
       return $preference;
     } else if ($this->isMonterey && in_array("classic", $styleIds)) {
       return "classic";
-    } else if (in_array("trueBlue", $styleIds)) {
-      return "trueBlue";
+    } else if (in_array("BlueOnyx", $styleIds)) {
+      return "BlueOnyx";
     } else {
       return $styleIds[0];
     }

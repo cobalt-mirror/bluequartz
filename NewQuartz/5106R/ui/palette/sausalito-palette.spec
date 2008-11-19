@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ14%{?dist}
+Release: 0BQ15%{?dist}
 Vendor: Project BlueQuartz
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ15
+- Changed default skin to BlueOnyx
+
 * Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ14
 - Fixed PHP5 related issue in web/status.php
 
