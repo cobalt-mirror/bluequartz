@@ -5,10 +5,10 @@
 
 // Prevent cross site scripting attacks (suggested by Ken Marcus):
 if (eregi('iframe', $target)) {
-    exit;
+    $target = "";
 }
 if (eregi('alert', $target)) {
-    exit;
+    $target = "";
 }
 
 include_once("I18n.php");
