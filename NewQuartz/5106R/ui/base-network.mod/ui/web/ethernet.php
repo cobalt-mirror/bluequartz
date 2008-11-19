@@ -19,7 +19,7 @@ if (is_file("/proc/user_beancounters")) {
     $fieldprot = "r";
 }
 else {
-    $fieldprot = "r";
+    $fieldprot = "rw";
 }
 
 $cceClient = $serverScriptHelper->getCceClient();
