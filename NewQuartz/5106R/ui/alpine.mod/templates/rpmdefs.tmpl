@@ -53,6 +53,7 @@ information for [VENDOR]-[SERVICE].
 <begin ui>
 [AUTOFILL]
 %{RootDir}/ui/web/*.php
+%{RootDir}/ui/web/robots.txt
 %{RootDir}/ui/web/*.html*
 %{RootDir}/ui/web/error
 %{RootDir}/ui/web/libImage/*
@@ -107,6 +108,9 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ23
+- Added web/robots.txt to prevent search engines from indexing AdmServ pages.
+
 * Thu May 28 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ22
 - New default admin password 'bluequartz' needed to be added to the intro.html pages.
 
