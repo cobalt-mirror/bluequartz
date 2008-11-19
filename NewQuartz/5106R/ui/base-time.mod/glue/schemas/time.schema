@@ -41,3 +41,24 @@
 		default="[[base-time.capgroup_modifySystemTime]]"
 	/>
 </class>
+
+<class name="System" namespace="TempTime" version="1.0">
+        <!-- system time in seconds -->
+        <property
+                name="epochTime" type="int" optional="yes"
+                writeacl="ruleCapable(modifySystemTime)"
+        />
+        <property
+                name="timeZone" type="scalar"
+                writeacl="ruleCapable(modifySystemTime)"
+        />
+        <property
+                name="ntpAddress" type="scalar" optional="yes"
+                writeacl="ruleCapable(modifySystemTime)"
+        />
+        <property
+                name="trigger" type="int"
+                writeacl="ruleCapable(modifySystemTime)"
+        />
+</class>
+

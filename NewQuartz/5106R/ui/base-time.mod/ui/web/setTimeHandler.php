@@ -38,15 +38,37 @@ if ($systemTimeZone != $oldTimeZone) {
 	putenv("TZ=$timeZone");
 }
 
+if (!$timeZone) {
+        $timeZone = $systemTimeZone;
+        putenv("TZ=$timeZone");
+}
+
 if (preg_match('/(\d+):(\d+):(\d+):(\d+):(\d+):(\d+)/', $systemDate, $matches)) {
 	$date = mktime($matches[4], $matches[5], $matches[6], $matches[2], 
 		       $matches[3], $matches[1]);
 }
-if ($date and ($date != $oldTime))
-	$time = $date;
+if ($date and ($date != $oldTime)) {
+        $time = $date;
+}
+if (!$time) {
+    $time = time();
+}
 
 # "deferCommit" is used by the setup wizard, not here... clean up just in case
-$cce->setObject('System', array('deferCommit' => '0'), 'Time');
+$cce->setObject('System', array(
+                            'deferCommit' => '0',
+                            'epochTime' => $time,
+                            'timeZone' => $timeZone,
+                            'ntpAddress' => $ntpAddress,
+                            ), 'Time');
+
+# Work around for 5106R oddity. We use the extra handler to set the timezone instead:
+$cce->setObject('System', array(
+                            'epochTime' => $time,
+                            'timeZone' => $timeZone,
+                            'ntpAddress' => $ntpAddress,
+                            'trigger' => time()
+                            ), 'TempTime');
 
 $serverScriptHelper->shell("/usr/sausalito/sbin/setTime \"$time\" \"$timeZone\" \"$ntpAddress\" \"true\"", $output, "root");
 print $output;
