@@ -31,7 +31,7 @@ if (isset($_oid))
 if ($_save) {
 
     // Username = Password? Baaaad idea!
-    if ($userName == $password) {
+    if (strcasecmp($userName, $password) == 0) {
         $errors[] = new Error("[[base-user.error-password-equals-username]]");
         $errors = array_merge($errors, $cce->errors());
         print $helper->toHandlerHtml("/base/vsite/manageAdmin.php", 
