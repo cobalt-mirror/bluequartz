@@ -53,13 +53,6 @@ if (!strlen($mttl) || !strlen($mfree) || !strlen($sttl) ||
 
 	print("<br>");
 
-	// PHP5:
-    	$block->addFormField(
-        	$factory->getTextField("debug_1", "", 'r'),
-        	$factory->getLabel("debug_1"),
-        	"Hidden"
-    	);
-
 	print $block->toHtml();
 
 	am_back($factory);
