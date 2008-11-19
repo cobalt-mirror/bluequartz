@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=sitestats
 
 VERSION=1.0
-RELEASE=124BQ16
+RELEASE=124BQ17
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -20,6 +20,8 @@ if (!$serverScriptHelper->getAllowed('adminUser') &&
 $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product($cceClient);
 
+$errors = $cceClient->errors();
+
 // check if cce is suspended, so reports don't get generated.  
 // there is most likely a backup going on
 if ($cceClient->suspended() !== false)
