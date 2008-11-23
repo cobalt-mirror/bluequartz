@@ -499,7 +499,8 @@ class PagedBlock extends Block {
         else 
         {
             // form fields not on the selected page
-            $formFieldsOutPage[] =& $formField;
+            //$formFieldsOutPage[] =& $formField; <-- Another baaad idea!
+            $formFieldsOutPage[] = $formField;
             $formFieldIdsOutPage[] = $formFieldId;
         }
     }

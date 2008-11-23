@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sun Nov 23 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ17
+- Found another piece of faulty code that cause missing pagedBlock elements:
+- Updated libPhp/uifc/PagedBlock.php to change reference to a straight pointer.
+
 * Sun Nov 23 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ16
 - Brian found the faulty code that cause missing pagedBlock elements:
 - Updated libPhp/uifc/PagedBlock.php to change reference to a straight pointer.
