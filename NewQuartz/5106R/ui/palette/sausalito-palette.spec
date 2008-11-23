@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ16%{?dist}
+Release: 0BQ17%{?dist}
 Vendor: Project BlueQuartz
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
