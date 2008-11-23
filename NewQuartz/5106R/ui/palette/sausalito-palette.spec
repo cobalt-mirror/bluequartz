@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ15%{?dist}
+Release: 0BQ16%{?dist}
 Vendor: Project BlueQuartz
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sun Nov 23 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ16
+- Brian found the faulty code that cause missing pagedBlock elements:
+- Updated libPhp/uifc/PagedBlock.php to change reference to a straight pointer.
+
 * Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ15
 - Changed default skin to BlueOnyx
 

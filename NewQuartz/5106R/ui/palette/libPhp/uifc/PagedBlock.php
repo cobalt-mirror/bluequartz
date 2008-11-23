@@ -492,7 +492,8 @@ class PagedBlock extends Block {
         {
             // form fields on the selected page
             // this should be a reference assignment, but php sucks
-            $formFieldsInPage[] =& $formField;
+            // $formFieldsInPage[] =& $formField; <-- Baaad idea!
+            $formFieldsInPage[] = $formField;
             $formFieldIdsInPage[] = $formFieldId;
         }
         else 
