@@ -690,15 +690,21 @@ sub _internal_useradd
 	$grp = new Unix::GroupFile "/etc/group";
 	$numerical_gid_of_user = $grp->gid($groupworkaround[4]);
 	undef $grp;
-	
-	# Compare if $user->{group} equals $groupworkaround[4]
+
+	# If $groupworkaround[2] ne ".users", then this is a regular user 
+	# and not an extra admin. 
+	# 
+	# Next compare if $user->{group} equals $groupworkaround[4]
 	# If that is NOT the case - or if $user->{group} equals "users", 
 	# or $numerical_gid_of_user doesn't exist, then we set it to 
 	# $numerical_gid_of_user as that should be the correct GID anyway:
-	if (($user->{group} ne $groupworkaround[4]) || ($user->{group} == "users") || (!$numerical_gid_of_user)) {
+
+	if ((($user->{group} ne $groupworkaround[4]) || ($user->{group} == "users") || (!$numerical_gid_of_user)) && ($groupworkaround[2] ne ".users")) {
+	    # Handle normal users:
 	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $groupworkaround[4] -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
 	}
 	else {
+	    # Handle extra admins:
     	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
     	}
 
