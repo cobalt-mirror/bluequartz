@@ -691,21 +691,23 @@ sub _internal_useradd
 	$numerical_gid_of_user = $grp->gid($groupworkaround[4]);
 	undef $grp;
 
-	# If $groupworkaround[2] ne ".users", then this is a regular user 
-	# and not an extra admin. 
+	# Work around during user creation for incorrect group in 
+	# /etc/passwd for regular users and siteAdmins:
+	#
+	# If the user is a regular user or siteAdmin, then handle_user.pl set his 
+	# new group to "users". But we need it to be siteXX to which he really belongs.
 	# 
-	# Next compare if $user->{group} equals $groupworkaround[4]
-	# If that is NOT the case - or if $user->{group} equals "users", 
-	# or $numerical_gid_of_user doesn't exist, then we set it to 
-	# $numerical_gid_of_user as that should be the correct GID anyway:
+	# So we set his real group to $groupworkaround[4] which we extrapolated from
+	# the path of his home directory.
 
-	if ((($user->{group} ne $groupworkaround[4]) || ($user->{group} == "users") || (!$numerical_gid_of_user)) && ($groupworkaround[2] ne ".users")) {
-	    # Handle normal users:
-	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $groupworkaround[4] -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
-	}
-	else {
+	if (($groupworkaround[1] == "root") && ($groupworkaround[2] ne ".sites")) {
 	    # Handle extra admins:
     	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
+
+	}
+	else {
+	    # Handle normal users:
+	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $groupworkaround[4] -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
     	}
 
         if ($ret != 0)
