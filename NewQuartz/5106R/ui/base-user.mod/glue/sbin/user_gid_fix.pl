@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# $Id: user_gid_fix.pl, v 1.0.0.1 Mon 24 Nov 2008 04:17:28 AM CET mstauber Exp $
+# $Id: user_gid_fix.pl, v 1.0.0.2 Mon 24 Nov 2008 04:17:28 AM CET mstauber Exp $
 # Copyright 2006-2008 Solarspeed Ltd. and NuOnce Networks, Inc. All rights reserved.
 #
 # During the mandatory PAM to shadow conversion we discovered that there were cases
@@ -28,7 +28,12 @@ use Unix::GroupFile;
 # Make backup copy of /etc/passwd - just in case:
 system("/bin/cp /etc/passwd /etc/.passwd.pre-uid-fix");
 
+# Give brief startup info:
+print "Checking for users with incorrect gid.\n";
+
 $pw = new Unix::PasswdFile "/etc/passwd";
+$found_one = "0";
+
 foreach $user ($pw->users) {
     undef(@groupworkaround);
     undef $home;
@@ -49,11 +54,18 @@ foreach $user ($pw->users) {
 	print "Fixing GID of $user ($uid), GID is: $gid, GID should be: $real_gid_of_user \n";
 	$pw->gid($user, $real_gid_of_user);
 	$pw->commit();
-	
+
+	$found_one++;
     }
 }
+
 undef $pw;
 
-print "Everything done. All users are fixed.\n";
+if ($found_one gt "0") {
+    print "Everything done. All users are fixed.\n";
+}
+else {
+    print "Nothing to do.\n";
+}
 
 exit(0);
