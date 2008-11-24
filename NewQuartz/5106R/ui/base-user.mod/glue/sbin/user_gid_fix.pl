@@ -55,6 +55,11 @@ foreach $user ($pw->users) {
 	$pw->gid($user, $real_gid_of_user);
 	$pw->commit();
 
+	# Fixing GID of everything in the users home directory:
+	if (-d "$home") {
+		system("/bin/chown -R $uid:$real_gid_of_user $home");
+	}
+
 	$found_one++;
     }
 }
