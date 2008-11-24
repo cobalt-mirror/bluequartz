@@ -122,6 +122,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ41
+- Modified ui/web/manageAdmin.php to remove cracklib stuff. Cannot use it here w/o too much hassles. 
+- Fixed relocation URL on errors while editing admins to point back to right page.
+- Fixed editing page to show the username even on edit, but read only. Needed for username = passwd check.
+
 * Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ40
 - Modified ui/web/manageAdmin.php 
 - Somehow the strcasecomp for username = password as suggested by Stephanie Sullivan never made it in here.

@@ -34,33 +34,10 @@ if ($_save) {
     if (strcasecmp($userName, $password) == 0) {
         $errors[] = new Error("[[base-user.error-password-equals-username]]");
         $errors = array_merge($errors, $cce->errors());
-        print $helper->toHandlerHtml("/base/vsite/manageAdmin.php", 
+        print $helper->toHandlerHtml("/base/vsite/manageAdmin.php?oid=$_oid", 
                                 $errors, false);
         exit;
     }
-
-    // Open CrackLib Dictionary for usage:
-    $dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
-
-    // Perform password check with cracklib:
-    $check = crack_check($dictionary, $password);
-
-    // Retrieve messages from cracklib:
-    $diag = crack_getlastmessage();
-
-    if ($diag == 'strong password') {
-        // Nothing to do. Cracklib thinks it's a good password.
-    }
-    else {
-        $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag);
-        $errors = array_merge($errors, $cce->errors());
-        print $helper->toHandlerHtml("/base/vsite/manageAdmin.php", 
-                                $errors, false);
-        exit;
-    }
-
-    // Close cracklib dictionary:
-    crack_closedict($dictionary);
 
     list($ok, $errors) = handle_admin_settings($helper, $cce, 
                                             $user, $possible_caps);
@@ -106,12 +83,18 @@ if ($i18n->getProperty('needSortName') == 'yes') {
 }
 
 // if this is a create, add the username field
-if (!isset($_oid))
-{
+if (!isset($_oid)) {
     $admin_settings->addFormField(
         $factory->getUserName('userName'),
         $factory->getLabel('userNameCreate')
         );
+}
+else {
+    $uname_field = $factory->getUserName('userName', $user['name'], "r");
+    $admin_settings->addFormField(
+	$uname_field,
+        $factory->getLabel('userName')
+	);
 }
 
 // don't pass back data for password fields
