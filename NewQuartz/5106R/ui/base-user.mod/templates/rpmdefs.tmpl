@@ -51,6 +51,7 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/user/es/web/
 /etc/skel/user/fr/web/
 /etc/skel/user/de/web/
+/usr/sausalito/sbin/user_gid_fix.pl
 [AUTOFILL]
 <end glue>
 
@@ -75,6 +76,11 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
+fi
+
+# If user_gid_fix.pl has never run, then run it now:
+if [ ! -f /etc/.passwd.pre-uid-fix ]; then
+	/usr/sausalito/sbin/user_gid_fix.pl
 fi
 
 <end glue>
@@ -108,6 +114,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ15
+- Fixed a nasty bug:
+- During user creation or cmuImport all users would be added to group "users" instead of "siteXX".
+- This required a fix in perl/User.pm
+- Also added script glue/sbin/user_gid_fix.pl to check for already incorrectly created users and to fix them.
+- New dependency: perl-Unix-ConfigFile >= 0.06-SOL1 - which is used for this fix.
 
 * Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ14
 - Changed default skin to BlueOnxy.

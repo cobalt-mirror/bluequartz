@@ -12,6 +12,8 @@ LOCALES=$(shell dir=etc/skel; \
 # include defines.mk here before checking to see which target make is doing
 include $(CCETOPDIR)/devel/defines.mk
 
+SCRIPTS=sbin/user_gid_fix.pl
+
 # check PREFIX, because if it is defined we are 'make rpm' and CCETOPDIR
 # needs to be redefined appropriately
 ifdef PREFIX
@@ -25,14 +27,7 @@ install:
 		$(INSTALL) -d -o root -m 0755 $(PREFIX)/etc/skel/user/$$locale/web; \
 		$(INSTALL) -o root etc/skel/$$locale/user-homedir/web/*.html -m 0644 $(PREFIX)/etc/skel/user/$$locale/web/; \
 	done
-	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/lib/php4; \
-	$(INSTALL) -o root lib/php4/crack.so -m 0755 $(PREFIX)/usr/lib/php4/; \
-
-	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/share/dict; \
-	$(INSTALL) -o root share/dict/cracklib-words -m 0644 $(PREFIX)/usr/share/dict/; \
-	$(INSTALL) -o root share/dict/pw_dict.hwm -m 0644 $(PREFIX)/usr/share/dict/; \
-	$(INSTALL) -o root share/dict/pw_dict.pwd -m 0644 $(PREFIX)/usr/share/dict/; \
-	$(INSTALL) -o root share/dict/pw_dict.pwi -m 0644 $(PREFIX)/usr/share/dict/; \
+	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/sausalito/sbin; \
+	$(INSTALL) -o root -m 0755 $(SCRIPTS) $(PREFIX)//usr/sausalito/sbin/; \
 
 rpm:
-
