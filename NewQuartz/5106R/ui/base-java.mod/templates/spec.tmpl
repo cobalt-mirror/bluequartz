@@ -8,7 +8,8 @@ Name: %{Vendor}-%{Service}
 Vendor: [VENDORNAME]
 Version: [VERSION]
 Release: [RELEASE]
-Copyright: Cobalt Networks, Inc.
+#Copyright: Cobalt Networks, Inc.
+License: Sun Microsystems modified BSD
 Group: CCE/%{Service}
 Source: %{Vendor}-%{Service}-[VERSION].tar.gz
 BuildRoot: /var/tmp/%{Vendor}-%{Service}
@@ -40,6 +41,13 @@ PREFIX=$RPM_BUILD_ROOT make install
 [FILES_SECTION]
 
 %changelog
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-2
+- Added German locales.
+- Commented out obsolete Copyright tags in Specfiles
+- Added new mandatory License tags in Specfiles
+- Bumped version number to three digits
+- Added base-java-am to the required list
+
 * Tue Nov 25 2008 Brian Smith <brian@nuonce.net> 2.0.6
 - Removed a jkmount that affects non jsp files.
 - thanks michael.

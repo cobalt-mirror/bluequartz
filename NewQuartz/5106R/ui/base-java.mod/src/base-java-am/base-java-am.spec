@@ -1,8 +1,9 @@
 Summary: Active Monitor support for base-java-am
 Name: base-java-am
-Version: 2.0
-Release: 4
-Copyright: 2002 Sun Microsystems, Inc.
+Version: 2.0.4
+Release: 1
+#Copyright: 2002 Sun Microsystems, Inc.
+License: Sun Microsystems modified BSD
 Group: Utils
 Source: base-java-am.tar.gz
 BuildRoot: /tmp/base-java-am
@@ -30,6 +31,11 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-java-am.  
 
 %changelog
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net>
+- Commented out Copyright tag as it's no longer supported.
+- Added new mandatory License tag.
+- Bumped version number to three digits.
+
 * Tue Nov 25 2008 Brian N. Smith <brian.smith@nuonce.net>
 - Modified logrotate file, per Michael's request
 

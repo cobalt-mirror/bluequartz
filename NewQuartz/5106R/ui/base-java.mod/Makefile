@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME=cobalt
 SERVICE=java
 
-VERSION=2.0
-RELEASE=6
+VERSION=2.0.6
+RELEASE=2
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,8 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
+
+REQUIRES= base-java-am
 
 #########
 # some useful defines
