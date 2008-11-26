@@ -41,6 +41,10 @@ PREFIX=$RPM_BUILD_ROOT make install
 [FILES_SECTION]
 
 %changelog
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-3
+- Added long list of dependencies to install JDK, Tomcat5 and so on.
+- Added requirement for base-java-filler work around RPM to satisfy one of Java's dependencies.
+
 * Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-2
 - Added German locales.
 - Commented out obsolete Copyright tags in Specfiles
