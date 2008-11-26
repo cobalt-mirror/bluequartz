@@ -18,13 +18,9 @@ make all
 make PREFIX=$RPM_BUILD_ROOT install
 
 %pre
-if [ -e /etc/logrotate.d/tomcat5 ]; then
-  /bin/rm -f /etc/logrotate.d/tomcat5
-fi
 
 %files
 /usr/sausalito/swatch/bin/am_java.exp
-/etc/logrotate.d/tomcat5
 
 %description
 This package contains binaries and scripts used by the Active Monitor 
@@ -35,6 +31,7 @@ subsystem for base-java-am.
 - Commented out Copyright tag as it's no longer supported.
 - Added new mandatory License tag.
 - Bumped version number to three digits.
+- Moved tomcat5 logrotate to base-java-capstone to avoid RPM conflicts
 
 * Tue Nov 25 2008 Brian N. Smith <brian.smith@nuonce.net>
 - Modified logrotate file, per Michael's request

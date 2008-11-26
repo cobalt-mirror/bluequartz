@@ -49,8 +49,10 @@ information for [VENDOR]-[SERVICE].
 %config /etc/profile.d/java.sh
 %config /etc/httpd/conf.d/mod_jk.conf
 %config /etc/tomcat5/jk/workers.properties
-%config(noreplace)/etc/tomcat5/tomcat-users.xml
+%config(noreplace)/etc/tomcat5/tomcat-users.xml.dist
+%config(noreplace)/etc/tomcat5/tomcat5.logrotate.dist
 %attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
+
 [AUTOFILL]
 <end glue>
 
@@ -73,6 +75,8 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+/bin/cat /etc/tomcat5/tomcat-users.xml.dist > /etc/tomcat5/tomcat-users.xml
+/bin/cat /etc/tomcat5/tomcat5.logrotate.dist > /etc/logrotate.d/tomcat5
 /bin/chmod 0660 /etc/tomcat5/tomcat-users.xml
 /bin/chown tomcat:tomcat /etc/tomcat5/tomcat-users.xml
 

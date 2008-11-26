@@ -19,4 +19,3 @@ install: $(BINS)
 	mkdir -p $(BINDIR)
 	mkdir -p $(PREFIX)/etc/logrotate.d
 	install -m 750 -o root -g root $(BINS) $(BINDIR)
-	install -m 644 -o root -g root tomcat5 $(PREFIX)/etc/logrotate.d

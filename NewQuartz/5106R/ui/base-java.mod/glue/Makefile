@@ -21,7 +21,7 @@ WORKERSDIR = $(PREFIX)/etc/tomcat5/jk
 WORKERS=workers.properties
 
 USERSDIR = $(PREFIX)/etc/tomcat5
-USERS=tomcat-users.xml
+USERS=tomcat-users.xml.dist tomcat5.logrotate.dist
 
 SCRIPTS=java_load_war.pl
 
