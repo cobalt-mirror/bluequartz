@@ -1,0 +1,9 @@
+<item id="base_java_manager" label="Tomcat Manager"
+    description="Manager your Tomcat Installation"
+    url="/base/java/tomcat-manager.php"
+>
+    <parent id="base_controlpanel" order="20"> 
+        <access require="admin"/>             
+    </parent>
+</item>
+

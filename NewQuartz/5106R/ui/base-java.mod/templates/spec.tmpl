@@ -1,0 +1,68 @@
+# vendor and service name
+%define Vendor [VENDOR]
+%define Service [SERVICE]
+%define RootDir [ROOTDIR]
+
+Summary: skeleton spec template 
+Name: %{Vendor}-%{Service}
+Vendor: [VENDORNAME]
+Version: [VERSION]
+Release: [RELEASE]
+Copyright: Cobalt Networks, Inc.
+Group: CCE/%{Service}
+Source: %{Vendor}-%{Service}-[VERSION].tar.gz
+BuildRoot: /var/tmp/%{Vendor}-%{Service}
+
+%description
+This is a skeleton package. It builds the ui, locale, and glue rpms.
+
+[DESCRIPTION_SECTION]
+
+%prep
+[PREP_SECTION]
+
+%setup
+[SETUP_SECTION]
+
+%build
+make
+[BUILD_SECTION]
+
+%install
+rm -rf $RPM_BUILD_ROOT
+PREFIX=$RPM_BUILD_ROOT make install
+[INSTALL_SECTION]
+
+[POST-INSTALL_SECTION]
+
+[POST-UNINSTALL_SECTION]
+
+[FILES_SECTION]
+
+%changelog
+* Tue Nov 25 2008 Brian Smith <brian@nuonce.net> 2.0.6
+- Removed a jkmount that affects non jsp files.
+- thanks michael.
+
+* Sun Nov 18 2007 Brian Smith <brian@nuonce.net> 2.0.5
+- Patch to stop user file from being over written
+
+* Sun Nov 18 2007 Brian Smith <brian@nuonce.net> 2.0.4
+- Forgot to include images.  Whoops!
+
+* Sun Nov 18 2007 Brian Smith <brian@nuonce.net> 2.0.3
+- Added more management options in the GUI
+- Fixed issue with creating new sites
+
+* Sat Nov 17 2007 Brian Smith <brian@nuonce.net> 2.0.2
+- Fixed problems with .war deployment
+- fixed permission problems, and various settings
+
+* Sat Apr 29 2006 Brian Smith <brian@nuonce.net>
+- Updated to work with CentOS v4 & BlueQuartz
+
+* Tue Apr 18 2000 Adrian Sun <asun@cobalt.com>
+- new, improved spec file template.
+
+* Thu Mar 30 2000 Adrian Sun <asun@cobalt.com>
+- sample spec file for skeleton package.
