@@ -2,8 +2,8 @@
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 // $Id: warList.php,v 1.8 2001/12/08 00:58:05 pbaltz Exp $
 
-include("ServerScriptHelper.php");
-include("ArrayPacker.php");
+include_once("ServerScriptHelper.php");
+include_once("ArrayPacker.php");
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no SSH");
 $cceClient = $serverScriptHelper->getCceClient() or die ("no CCE");

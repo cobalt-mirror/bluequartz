@@ -3,7 +3,7 @@
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // Java.php.defaults.Vsite
 
-include('UIExtension.php');
+include_once('UIExtension.php');
 
 class JavaExtension extends UIExtension
 {

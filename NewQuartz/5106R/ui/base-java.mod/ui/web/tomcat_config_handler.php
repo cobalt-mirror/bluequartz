@@ -2,9 +2,9 @@
 // Copyright 2001, Sun Microsystems, Inc.
 // $Id: tomcat_config_handler.php,v 1.3 2001/06/15 22:24:40 will Exp $
 
-include("ArrayPacker.php");
-include("ServerScriptHelper.php");
-include("Product.php");
+include_once("ArrayPacker.php");
+include_once("ServerScriptHelper.php");
+include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();

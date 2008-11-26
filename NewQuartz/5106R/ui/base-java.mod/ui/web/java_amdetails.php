@@ -2,8 +2,8 @@
 // Author: Tim Hockin
 // Copyright 2000, Cobalt Networks.  All rights reserved.
 
-include("ServerScriptHelper.php");
-include("base/am/am_detail.inc");
+include_once("ServerScriptHelper.php");
+include_once("base/am/am_detail.inc");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cce = $serverScriptHelper->getCceClient();

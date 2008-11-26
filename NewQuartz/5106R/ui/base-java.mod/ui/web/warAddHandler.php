@@ -2,8 +2,8 @@
 // Copyright 2001, Sun Microsystems, Inc.
 // $Id: warAddHandler.php,v 1.9.2.1 2002/02/08 23:41:02 naroori Exp $
 
-include("ServerScriptHelper.php");
-include("Error.php");
+include_once("ServerScriptHelper.php");
+include_once("Error.php");
 
 // declare some constants
 $prepare_cmd = "/usr/sausalito/sbin/java_load_war.pl";

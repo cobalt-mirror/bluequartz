@@ -3,8 +3,8 @@
 // Copyright 2000, Cobalt Networks.  All rights reserved.
 // $Id: status.php,v 1.1 2001/06/06 21:13:36 will Exp $
 
-include("ServerScriptHelper.php");
-include("uifc/PagedBlock.php");
+include_once("ServerScriptHelper.php");
+include_once("uifc/PagedBlock.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();

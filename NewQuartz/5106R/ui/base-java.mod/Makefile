@@ -7,7 +7,7 @@ VENDORNAME=cobalt
 SERVICE=java
 
 VERSION=2.0.6
-RELEASE=3
+RELEASE=5
 
 # add a buildarch if desired
 BUILDARCH=noarch
