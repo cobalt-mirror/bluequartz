@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=network
 
 VERSION=1.1.0
-RELEASE=82BQ21
+RELEASE=82BQ22
 
 # add a buildarch if desired
 BUILDARCH=noarch

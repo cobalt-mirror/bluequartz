@@ -22,7 +22,7 @@ msgid "primarySettings"
 msgstr "Primary Settings"
 
 msgid "primarySettings_help"
-msgstr "Settings for the real Ethernet ports of the server in addition to the server's DNS settings and host and domain names."
+msgstr "Settings for the real Ethernet ports of the server in addition to the servers DNS settings and host and domain names."
 
 msgid "aliasSettings"
 msgstr "Interface Aliases"
@@ -649,10 +649,10 @@ msgid "modemInitStrField"
 msgstr "Modem Initialization String"
 
 msgid "modemInitStrField_help"
-msgstr "Enter the modem initialization string which will be passed to the modem before dialing. You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modem's proper initialization string, try entering 'ATZ' or consult your modem documentation."
+msgstr "Enter the modem initialization string which will be passed to the modem before dialing. You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modems proper initialization string, try entering 'ATZ' or consult your modem documentation."
 
 msgid "modemInitStrField_empty"
-msgstr "Sorry, you have not entered a value for [[base-network.modemInitStrField]].  You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modem's proper initialization string, try entering 'ATZ' or consult your modem documentation."
+msgstr "Sorry, you have not entered a value for [[base-network.modemInitStrField]].  You must enter an initialization string or your server will not be able to use your modem.  If you do not know your modems proper initialization string, try entering 'ATZ' or consult your modem documentation."
 
 msgid "modemIpField"
 msgstr "Local IP Address"
@@ -693,19 +693,19 @@ msgid "confirmMigrateAliases"
 msgstr "The [[VAR.interface]] has interface aliases that depend upon it.  Disabling the interface will cause those interface aliases to be moved to the primary interface.  The aliases can be moved to another interface after the change by modifying each alias.\n\nAre you sure you want to disable the [[VAR.interface]]?"
 
 msgid "adminRedirect"
-msgstr "In a few seconds, you should be redirected to the new IP address.  If you are not redirected, please click the [[base-network.reconnect]] button below to attempt to connect to the new IP address.  If that fails, changing the IP address may have failed, and you should click the [[base-network.oldIPReconnect]] button to attempt to reconnect to the server's previous IP address."
+msgstr "In a few seconds, you should be redirected to the new IP address.  If you are not redirected, please click the [[base-network.reconnect]] button below to attempt to connect to the new IP address.  If that fails, changing the IP address may have failed, and you should click the [[base-network.oldIPReconnect]] button to attempt to reconnect to the servers previous IP address."
 
 msgid "reconnect"
 msgstr "Connect To New Address"
 
 msgid "reconnect_help"
-msgstr "Click here to connect to the server's new IP address."
+msgstr "Click here to connect to the servers new IP address."
 
 msgid "oldIPReconnect"
 msgstr "Connect To Old Address"
 
 msgid "oldIPReconnect_help"
-msgstr "Click here to attempt to reconnect to the server's old IP address.  This should only be used if connecting to the new IP address with the [[base-network.reconnect]] button has failed."
+msgstr "Click here to attempt to reconnect to the servers old IP address.  This should only be used if connecting to the new IP address with the [[base-network.reconnect]] button has failed."
 
 # --- Network Usage Info
 
@@ -1007,13 +1007,13 @@ msgid "ip_not_in_range"
 msgstr "The IP address [[VAR.ipaddr]] is not within any of the valid ranges. Please choose another IP address."
 
 msgid "cant_change_range"
-msgstr "Sorry, I can't change the specified range. The following IP address(es) are within that range: [[VAR.affected_ips]]."
+msgstr "Sorry, I cannot change the specified range. The following IP address(es) are within that range: [[VAR.affected_ips]]."
 
 msgid "ip_restricted"
 msgstr "The IP address [[VAR.ipaddr]] is not allowed. Please choose another IP address."
 
 msgid "cant_delete_range"
-msgstr "Sorry, I can't delete the specified range. The following IP address(es) are within that range: [[VAR.affected_ips]]."
+msgstr "Sorry, I cannot delete the specified range. The following IP address(es) are within that range: [[VAR.affected_ips]]."
 
 msgid "cancel"
 msgstr "Cancel"
