@@ -45,13 +45,6 @@ $ftpnonadmin = $ftpPermsObj['enabled'];
 $page = $factory->getPage();
 
 $block = new PagedBlock($page, "modifyUser", $factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
-//$block = $factory->getPagedBlock($page, "modifyUser", $factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
-
-//$block = $factory->getPagedBlock("modifyUser", array("account", "email"));
-
-//$factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
-
-//$block = $factory->getPagedBlock("yumgui_head", array("yumTitle", "Settings", "Logs"));
 
 $block->addPage("account", $factory->getLabel("account"));
 $block->addPage("email", $factory->getLabel("email"));
@@ -181,7 +174,7 @@ $block->addFormField(
 );
 
 // Start: PHP5 work around against data loss in composite form fields:
-if (($_PagedBlock_selectedId_modifyUser == "email") || ($_PagedBlock_selectedId_modifyUser != "account")) {
+if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_modifyUser != "account")) {
 
     // This displays when we're on the "Email" tab:
 
@@ -220,6 +213,10 @@ if (($_PagedBlock_selectedId_modifyUser == "email") || ($_PagedBlock_selectedId_
 else {
 
     // When we're on the "Account" tab we instead input hidden fields with our data:
+
+    if ($userEmail["forwardEnable"] == "1") {
+	$userEmail["forwardEnable"] = "forwardEnable";
+    }
 
     $block->addFormField(
 	$factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"], 'r'),
