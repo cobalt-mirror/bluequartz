@@ -1,12 +1,13 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
-Version: 1.0.1
-Release: 15BQ14%{?dist}
+Version: 1.1.0
+Release: 15BQ15%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
 Source: base-disk-am.tar.gz
 BuildRoot: /tmp/%{name}
+Requires: perl-Unix-ConfigFile >= 0.06-SOL1
 
 %prep
 %setup -n %{name}
@@ -26,6 +27,13 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BQ15
+- Since all users are no longer in the 'users' group, quota info couldn't be obtained for sites AND users.
+- Updated get_quota.pl to now use UnixConfigFile Perl Module to determine group on demand.
+- Streamlined user and group parsing routines in get_quota using Unix::PasswdFile.
+- Added requirement for perl-Unix-ConfigFile >= 0.06-SOL1 to specfile.
+- Major version bump to 1.1.0 to make clear that this is a radical modify, although 100% compatible to the outside.
+
 * Tue Mar 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-15BQ14
 - Fixed am_disk.pl again. Set safe defaul for $dev if its undefined.
 

@@ -1,4 +1,7 @@
 #!/usr/bin/perl
+# get_quotas.pl, v 1.1.0-15BQ15 Thu Nov 27 12:33:05 2008 mstauber Exp $
+# Copyright (c) 2003 Sun Microsystems, Inc. All Rights Reserved.
+# Copyright (c) 2008 Solarspeed Ltd, All Rights Reserved.
 
 use lib qw(/usr/sausalito/perl);
 use Base::HomeDir qw(homedir_get_group_dir);
@@ -7,6 +10,7 @@ use Getopt::Long;
 use strict;
 use CCE;
 use Quota;
+use Unix::PasswdFile;
 
 my $site = '';
 my $sort = '';
@@ -14,6 +18,7 @@ my $descending = '';
 my $help = '';
 my $users_only = 1;
 my $sites_only = '';
+my $pw = new Unix::PasswdFile "/etc/passwd";
 
 GetOptions('site=s' => \$site, 'sort=s' => \$sort, 
 	   'descending' => \$descending, 'ascending' => sub { $descending = 0 },
@@ -102,27 +107,25 @@ sub site_users {
 
 # find all CCE users
 sub all_users {
+
+    # Rewritten from scratch by mstauber
+
     my ($name, $null, $all_gid, $user_gid, $dir);
 
-    # all CCE users are in the "users" group
-    ($name, $null, $all_gid) = getgrnam('users');
-    # now we do getpwent() and only save users who are in the "users" group
-    my @all_users = ();
-    setpwent();
-    while (($name, $null, $null, $user_gid, $null, $null, $null, $dir) = getpwent()) {
-	if ($user_gid != $all_gid) {
-	    next;
-	}
+    # all CCE users are NO LONGER in the "users" group - so we have do do it differently:
+	my @all_users = ();
 
-	if ($name eq 'games') {
-	    next;
+    foreach $name ($pw->users) {
+        my $uid = $pw->uid($name);
+        my $user_gid = $pw->gid($name);
+        my $dir = $pw->home($name);
+
+        if ($uid >= 500) {
+    	    push @all_users, $name;
 	}
-	push @all_users, $name;
     }
-    endpwent();
     return @all_users;
 }
-
 sub sites {
     my @sites = ();
 
@@ -218,16 +221,21 @@ sub siteusage {
 }
 
 sub userusage {
+    
+    # Rewritten by mstauber
+
     my %hash = ();
     my ($name, $null, $uid, $user_gid, $all_gid, $dir);
 
-    # all CCE users are in the "users" group
-    ($name, $null, $all_gid) = getgrnam('users');
+    # all CCE users are NO LONGER in the "users" group - so we have to do it differently:
 
-    # now we do getpwent() and only lookup users who are in the "users" group
-    setpwent();
-    while (($name, $null, $uid, $user_gid, $null, $null, $null, $dir) = getpwent()) {
-	if ($user_gid != $all_gid) {
+    foreach $name ($pw->users) {
+        my $uid = $pw->uid($name);
+        my $user_gid = $pw->gid($name);
+        my $dir = $pw->home($name);
+
+	# Ignore all users with an UID below 500:
+	if ($uid lt 500) {
 	    next;
 	}
 
@@ -237,10 +245,8 @@ sub userusage {
 	$hash{$name}{used} = $used;
 	$hash{$name}{quota} = $quota;
     }
-    endpwent();
     return %hash;
 }
-
  
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
