@@ -50,7 +50,7 @@ msgid "javaSettings"
 msgstr "Java-Einstellungen"
 
 msgid "javaApps"
-msgstr "Veröffentlichte Java-Applikationen"
+msgstr "Java-Applikationen"
 
 msgid "javaApps_help"
 msgstr "Verwaltung der [[base-java.warNames_menu]]."
@@ -284,4 +284,5 @@ msgid "TomcatAdminPassField"
 msgstr "Passwort:"
 
 msgid "TomcatAdminPassField_help"
-msgstr "To login to the administrative backend of Tomcat you need to login as user 'admin' with the password specified here. This password can (and should!) be different from the server password."
+msgstr "Um in die Administrationsoberfläche von Tomcat einzuloggen, verwenden Sie den Benutzernamen 'admin' und das hier eingegebene Passwort. Dieses Passwort sollte nicht identisch mit dem Server-Passwort sein."
+
