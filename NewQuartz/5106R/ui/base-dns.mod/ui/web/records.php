@@ -338,7 +338,10 @@ print($block->toHtml());
 $commit_time = time();
 $commitButton = $factory->getButton("/base/dns/dns.php?commit=$commit_time", "apply_changes");
 if($sys_dns['dirty'] == 0) {
-	$commitButton->setDisabled(true);
+	// I fully understand the prurpose of greying this button out.
+	// However, it's REALLY more grief than it's worth. Hence
+	// screw it, no more greying out here!
+	//$commitButton->setDisabled(true);
 }
 
 $backButton = $factory->getBackButton("/base/dns/dns.php");
