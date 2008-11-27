@@ -1,5 +1,5 @@
 <?php
-// Author: Brian N. Smith
+// Authors: Brian N. Smith & Michael Stauber
 // Copyright 2007-2008, Solarspeed Ltd. and NuOnce Networks, Inc.  All rights reserved.
 // $Id: tomcat-managerHandler.php,v 2.0 Wed Nov 26 17:02:08 2008 mstauber Exp $
 
