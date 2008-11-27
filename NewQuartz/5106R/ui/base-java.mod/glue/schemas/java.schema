@@ -21,6 +21,10 @@
         name="maxClientsAdvised" type="int" default="100"
         writeacl="ruleCapable(modifyJava)"
     />
+	<property 
+        name="JavaAdminPass" type="password" default="password"
+        writeacl="ruleCapable(modifyJava)"
+    />
 </class>
 
 <!-- The UI feature checkbox hook -->

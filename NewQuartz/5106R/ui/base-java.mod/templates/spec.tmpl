@@ -41,6 +41,18 @@ PREFIX=$RPM_BUILD_ROOT make install
 [FILES_SECTION]
 
 %changelog
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-7
+- Extended constructor/java-initialize.pl to set a default random admin pass on first initialize of Tomcat.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-6
+- Extended ui/web/tomcat-manager.php with a field to change the Tomcat admin password.
+- Added ui/web/tomcat-managerHandler.php to handle the form data.
+- Extended glue/schemas/java.schema with the password field
+- Extended glue/conf/java.conf with provisions to run separate handler on password changes.
+- Added glue/handlers/config_pass.pl handler to deal with password changes.
+- Updated English and German locales to reflect the new changes.
+
 * Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-5
 - Updated ui/web/tomcat-manager.php again. Small fix to i18n implementation.
 

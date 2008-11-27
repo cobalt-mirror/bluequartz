@@ -12,7 +12,8 @@ include_once("System.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $i18n = $serverScriptHelper->getI18n("base-java");
-$factory = $serverScriptHelper->getHtmlComponentFactory("base-java");
+$factory = $serverScriptHelper->getHtmlComponentFactory("base-java",
+                                '/base/java/tomcat-managerHandler.php');
 
 if (!$serverScriptHelper->getAllowed('adminUser')) {
     header("location: /error/forbidden.html");
@@ -65,8 +66,29 @@ $namefield = $i18n->interpolate("[[base-java.TomcatManagerStatus]]");
 $desc_html = $factory->getTextField("", $namefield, "r");
 $scrollList->addEntry( array($desc_html, $linkButton), "", false );
 
+// Admin Password Settings:
+$admin_settings =& $factory->getPagedBlock('TomcatAdminPassHeader');
+$admin_settings->processErrors($errors);
+
+$admin_settings->addDivider($factory->getLabel('AdminPassInformation', false));
+
+$pass_field = $factory->getPassword('password');
+$pass_field->setPreserveData(false);
+
+$admin_settings->addFormField(
+    $pass_field,
+    $factory->getLabel('TomcatAdminPassField')
+    );
+
+$page =& $factory->getPage();
+$form =& $page->getForm();
+
+$admin_settings->addButton($factory->getSaveButton($form->getSubmitAction()));
+$admin_settings->addButton($factory->getCancelButton('/base/java/tomcat-manager.php'));
+
 print($page->toHeaderHtml());
 
+print($admin_settings->toHtml());
 print($scrollList->toHtml());
 
 ?>

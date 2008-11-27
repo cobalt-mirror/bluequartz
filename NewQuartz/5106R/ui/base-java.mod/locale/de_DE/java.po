@@ -274,3 +274,14 @@ msgstr "Verwalten Sie hier die Einstellungen Ihres Tomcat Servers."
 msgid "TomcatManager_help"
 msgstr "[[base-java.TomcatManager_desc]]"
 
+msgid "TomcatAdminPassHeader"
+msgstr "Tomcat Admin Passwort"
+
+msgid "AdminPassInformation"
+msgstr "Setzen Sie ein Passwort für den Tomcat Admin:"
+
+msgid "TomcatAdminPassField"
+msgstr "Passwort:"
+
+msgid "TomcatAdminPassField_help"
+msgstr "To login to the administrative backend of Tomcat you need to login as user 'admin' with the password specified here. This password can (and should!) be different from the server password."
