@@ -19,7 +19,7 @@ $smallFontTag = "<FONT STYLE=\"font-family:Arial,Helvetica,sans-serif;font-size:
 
 <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="5" WIDTH="530">
   <TR>
-    <TD COLSPAN="2"><IMG SRC="/libImage/splashPersonal.jpg" ALT=""></TD>
+    <TD COLSPAN="2"><IMG SRC="/libImage/splashPersonal.jpg" ALT="" BORDER="1"></TD>
   </TR>
   <TR>
     <TD VALIGN="TOP" ALIGN="CENTER" WIDTH="*"><H1><?php printf($fontTag, $i18n->get("support")); ?></H1></TD>
