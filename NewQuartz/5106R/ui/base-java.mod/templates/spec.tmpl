@@ -42,6 +42,15 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
+* Fri Nov 28 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-9
+- Didn't like that the links to the Tomcat backend pages in ui/web/tomcat-manager.php were dead if Tomcat was stopped.
+- Extended glue/schemas/java.schema with a new JavaStatus Namespace.
+- Extended ui/web/tomcat-manager.php with a trigger to call glue/handlers/tomcat_ui_status.pl
+- Handler glue/handlers/tomcat_ui_status.pl reads Tomcat status and writes it to JavaStatus Namespace.
+- Extended ui/web/tomcat-manager.php with an info box that shows when Tomcat is not running.
+- Updated English and German locales for text shown in that info box.
+- Greyed out ImageButtons in ui/web/tomcat-manager.php when Tomcat is not running.
+
 * Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-8
 - Shortened a menu entry in German locale to make it fit in better.
 

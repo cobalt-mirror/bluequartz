@@ -286,3 +286,8 @@ msgstr "Passwort:"
 msgid "TomcatAdminPassField_help"
 msgstr "Um in die Administrationsoberfläche von Tomcat einzuloggen, verwenden Sie den Benutzernamen 'admin' und das hier eingegebene Passwort. Dieses Passwort sollte nicht identisch mit dem Server-Passwort sein."
 
+msgid "TomcatStausBox_header"
+msgstr "Please note: Tomcat is stopped"
+
+msgid "TomCatStatusBox_info"
+msgstr "As long as Tomcat is stopped, you will be unable to klick on any of the administrative buttons in the menu below. Tomcat will automatically start as soon as at least one virtual site has the service JSP enabled."

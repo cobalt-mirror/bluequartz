@@ -9,7 +9,6 @@ include_once("ArrayPacker.php");
 include_once("uifc/ImageButton.php");
 include_once("System.php");
 
-
 $serverScriptHelper = new ServerScriptHelper();
 $i18n = $serverScriptHelper->getI18n("base-java");
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-java",
@@ -21,8 +20,18 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 }
 
 $page = $factory->getPage();
+$errors = array();
 
+// Set trigger in CCE to update CODB with status info about Tomcat:
+$serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
+$sysOID = $cceClient->find("System");
+$java_status = array(
+    'TomcatUITrigger' => time()
+);
+$cceClient->set($sysOID[0], "JavaStatus", $java_status);
+$errors = array_merge($errors, $cceClient->errors());
+
 $sysConfig = $cceClient->getObject("System", array());
 
 $page = $factory->getPage();
@@ -37,6 +46,9 @@ $scrollList->setAlignments(array("left", "center"));
 
 $scrollList->setSortEnabled(false);
 
+// Get Status of Tomcat out of CCE:
+$javaStatus = $cceClient->getObject("System", array(), "JavaStatus");
+
 $adminURL = "http://" . $sysConfig["hostname"] . "." . $sysConfig["domainname"] . ":8080/admin";
 $managerURL = "http://" . $sysConfig["hostname"] . "." . $sysConfig["domainname"] . ":8080/manager/html";
 $hostManagerURL = "http://" . $sysConfig["hostname"] . "." . $sysConfig["domainname"] . ":8080/host-manager/html";
@@ -44,24 +56,36 @@ $managerStatusURL = "http://" . $sysConfig["hostname"] . "." . $sysConfig["domai
 
 // Admin URL:
 $linkButton = $factory->getDetailButton($adminURL);
+if ($javaStatus["TomcatStatus"] == "0") {
+    $linkButton->setDisabled(true);
+}
 $namefield = $i18n->interpolate("[[base-java.TomcatAdminInterface]]");
 $desc_html = $factory->getTextField("", $namefield, "r");
 $scrollList->addEntry( array($desc_html, $linkButton), "", false );
 
 // Manager URL:
 $linkButton = $factory->getDetailButton($managerURL);
+if ($javaStatus["TomcatStatus"] == "0") {
+    $linkButton->setDisabled(true);
+}
 $namefield = $i18n->interpolate("[[base-java.TomcatManagerInterface]]");
 $desc_html = $factory->getTextField("", $namefield, "r");
 $scrollList->addEntry( array($desc_html, $linkButton), "", false );
 
 // Tomcat Host Manager Interface:
 $linkButton = $factory->getDetailButton($hostManagerURL);
+if ($javaStatus["TomcatStatus"] == "0") {
+    $linkButton->setDisabled(true);
+}
 $namefield = $i18n->interpolate("[[base-java.TomcatHostManagerInterface]]");
 $desc_html = $factory->getTextField("", $namefield, "r");
 $scrollList->addEntry( array($desc_html, $linkButton), "", false );
 
 // Tomcat Manager Status:
 $linkButton = $factory->getDetailButton($managerStatusURL);
+if ($javaStatus["TomcatStatus"] == "0") {
+    $linkButton->setDisabled(true);
+}
 $namefield = $i18n->interpolate("[[base-java.TomcatManagerStatus]]");
 $desc_html = $factory->getTextField("", $namefield, "r");
 $scrollList->addEntry( array($desc_html, $linkButton), "", false );
@@ -80,6 +104,18 @@ $admin_settings->addFormField(
     $factory->getLabel('TomcatAdminPassField')
     );
 
+// Info about Tomcat-Status:
+$tomcat_statusbox = $factory->getPagedBlock("TomcatStausBox_header", array("Default"));
+$tomcat_statusbox->processErrors($serverScriptHelper->getErrors());
+
+$warning = $i18n->get("TomCatStatusBox_info");
+$tomcat_statusbox->addFormField(
+    $factory->getTextList("_", $warning, 'r'),
+    $factory->getLabel(" "),
+    "Default"
+    );
+
+
 $page =& $factory->getPage();
 $form =& $page->getForm();
 
@@ -89,6 +125,11 @@ $admin_settings->addButton($factory->getCancelButton('/base/java/tomcat-manager.
 print($page->toHeaderHtml());
 
 print($admin_settings->toHtml());
+
+if ($javaStatus["TomcatStatus"] == "0") {
+    print($tomcat_statusbox->toHtml());
+}
+
 print($scrollList->toHtml());
 
 ?>

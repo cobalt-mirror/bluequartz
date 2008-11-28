@@ -27,6 +27,18 @@
     />
 </class>
 
+<!-- Status of Tomcat - used by tomcat-manager.php -->
+<class name="System" namespace="JavaStatus" version="1.0">
+        <property
+        name="TomcatStatus" type="boolean" default="0"
+        writeacl="ruleCapable(modifyJava)"
+    />
+        <property
+        name="TomcatUITrigger" type="int" default="0"
+        writeacl="ruleCapable(modifyJava)"
+    />
+</class>
+
 <!-- The UI feature checkbox hook -->
 <class name="VsiteServices" namespace="Java" version="1.0">
     <property name="featureEnabled" type="boolean" default="0"/>

@@ -275,3 +275,10 @@ msgstr "Password:"
 
 msgid "TomcatAdminPassField_help"
 msgstr "To login to the administrative backend of Tomcat you need to login as user 'admin' with the password specified here. This password can (and should!) be different from the server password."
+
+msgid "TomcatStausBox_header"
+msgstr "Please note: Tomcat is stopped"
+
+msgid "TomCatStatusBox_info"
+msgstr "As long as Tomcat is stopped, you will be unable to klick on any of the administrative buttons in the menu below. Tomcat will automatically start as soon as at least one virtual site has the service JSP enabled."
+
