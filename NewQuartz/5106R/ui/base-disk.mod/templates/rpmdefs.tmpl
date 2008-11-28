@@ -103,6 +103,10 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri Nov 28 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ15
+- Updated ui/web/serverDiskUsage.php to to hide /home partition if this is a VPS.
+- It is necessary for compatability to have a "Disk" named /home, but we don't want to confuse users.
+
 * Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ14
 - Fixed PHP5 related display issue in ui/web/serverDiskUsage.php
 

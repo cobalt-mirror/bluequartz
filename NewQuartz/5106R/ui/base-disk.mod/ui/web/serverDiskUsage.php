@@ -94,7 +94,17 @@ if ($disk_usage->getSelectedId() == 'summary'
         $partitions = array_reverse($partitions);
 
     $start = $usage_list->getPageIndex() * $page_length;
-    $usage_list->setEntryNum(count($partitions));
+
+    // On a VPS we only have one partition, although for sake of compatability we 
+    // also have "/home" as Object "Disk". But this is not a real partition. Hence
+    // We want to hide it here:
+    if (is_file("/proc/user_beancounters")) {
+	$partitionsvps = "1";
+        $usage_list->setEntryNum($partitionsvps);
+    }
+    else {
+	$usage_list->setEntryNum(count($partitions));
+    }
 
     // get AM object for quota percents and stuff
     $am_obj = $cce->getObject('ActiveMonitor', array(), 'Disk');
@@ -126,7 +136,14 @@ if ($disk_usage->getSelectedId() == 'summary'
 	  $status =& $factory->getStatusSignal('normal');
 	} 
 
-        $usage_list->addEntry(
+	// On a VPS we only have one partition, although for sake of compatability we 
+	// also have "/home" as Object "Disk". But this is not a real partition. Hence
+	// We want to hide it here:
+	if ((is_file("/proc/user_beancounters")) && ($disk['mountPoint'] == '/home')) {
+	    next;
+	}
+	else {
+    	    $usage_list->addEntry(
                 array(
   		    $status,
                     $label,
@@ -135,6 +152,7 @@ if ($disk_usage->getSelectedId() == 'summary'
                     $factory->getBar("bar$i", $percent)
                 ),
                 '', false, $i);
+        }
     }
 }
 else if ($disk_usage->getSelectedId() == 'users') 
