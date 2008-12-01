@@ -86,7 +86,7 @@ if ($whatami eq "handler") {
 	# the right place, chown it and restart Apache:
 	# Function disabled for now!
 	$edisabled = "1";
-	if ((-f "/tmp/php.ini") ($edisabled eq "1")) {
+	if ((-f "/tmp/php.ini") && ($edisabled ne "1")) {
 		system("/bin/chown root:root /tmp/php.ini");
 		system("/bin/cp /tmp/php.ini $php_ini");
 		system("/bin/rm -f /tmp/php.ini");
