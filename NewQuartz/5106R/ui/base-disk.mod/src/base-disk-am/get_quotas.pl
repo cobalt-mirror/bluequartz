@@ -119,13 +119,15 @@ sub all_users {
         my $uid = $pw->uid($name);
         my $user_gid = $pw->gid($name);
         my $dir = $pw->home($name);
+	my @groupworkaround = split(/\//, $dir);
 
-        if ($uid >= 500) {
+        if (($uid >= 500) && ($groupworkaround[5] ne "logs")) {
     	    push @all_users, $name;
 	}
     }
     return @all_users;
 }
+
 sub sites {
     my @sites = ();
 
@@ -233,17 +235,22 @@ sub userusage {
         my $uid = $pw->uid($name);
         my $user_gid = $pw->gid($name);
         my $dir = $pw->home($name);
+	my @groupworkaround = split(/\//, $dir);
 
-	# Ignore all users with an UID below 500:
+	# Ignore all users with an UID below 500 and also the SITEXX-logs users:
 	if ($uid < 500) {
 	    next;
 	}
+	elsif ($groupworkaround[5] eq "logs") {
+	    next;
+	}
+	else {
+	    my $dev = Quota::getqcarg($dir);
+	    my ($used, $quota) = Quota::query($dev, $uid);
 
-	my $dev = Quota::getqcarg($dir);
-	my ($used, $quota) = Quota::query($dev, $uid);
-
-	$hash{$name}{used} = $used;
-	$hash{$name}{quota} = $quota;
+	    $hash{$name}{used} = $used;
+	    $hash{$name}{quota} = $quota;
+	}
     }
     return %hash;
 }
