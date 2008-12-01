@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.3.0
-Release: 11BQ11%{?dist}
+Release: 11BQ12%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -33,10 +33,13 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
-* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org< 1.3.0-11BQ11
+* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.0-11BQ12
+- Modified hash_edit_function in Sauce/Util.pm to ignore php.ini style section headers.
+
+* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-11BQ11
 - change option -l for tar 1.15 again.
 
-* Thu May 03 2007 Hisao SHIBUYA <shibuya@bluequartz.org< 1.3.0-11BQ10
+* Thu May 03 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-11BQ10
 - change option -l for tar 1.15.
 
 * Fri Nov 25 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-11BQ9

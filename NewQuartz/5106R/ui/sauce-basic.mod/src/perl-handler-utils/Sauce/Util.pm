@@ -399,6 +399,12 @@ sub hash_edit_function
 			print $out $_;
 			next;
 		}
+		# skip section blocks like [Main Config File]
+		if (/^\s*\[(.*)\]/) 
+		{
+			print $out $_;
+			next;
+		}
 
 		# need to split up the line, so we can know exactly what to look for
 		my @parts = split(' ');
