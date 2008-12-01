@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.1.0
-Release: 15BQ15%{?dist}
+Release: 15BQ16%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -27,6 +27,9 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BQ16
+- Small fix in get_quota.pl. Replaced 'lt' with '<'. One day I'll learn to avoid this kind of mistake.
+
 * Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BQ15
 - Since all users are no longer in the 'users' group, quota info couldn't be obtained for sites AND users.
 - Updated get_quota.pl to now use UnixConfigFile Perl Module to determine group on demand.

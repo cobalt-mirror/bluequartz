@@ -235,7 +235,7 @@ sub userusage {
         my $dir = $pw->home($name);
 
 	# Ignore all users with an UID below 500:
-	if ($uid lt 500) {
+	if ($uid < 500) {
 	    next;
 	}
 
