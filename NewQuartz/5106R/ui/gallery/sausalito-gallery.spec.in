@@ -41,7 +41,12 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ8
+* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ10
+- Changed colors of libImage/BlueOnyx/Merlot_title_background.gif
+- Changed colors of libImage/BlueOnyx/controlBackground.gif
+- Both are used in Wizard and looked godawfully ugly now with the new template.
+
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ9
 - Updated libImage/BlueOnyx/SunCobaltLogo.gif with the right image this time.
 
 * Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ8
