@@ -62,6 +62,23 @@ foreach $user ($pw->users) {
 
 	$found_one++;
     }
+
+    # Fix UID / GID of logfiles:
+    if (($uid >= "500") && ($groupworkaround[5] eq "logs")) {
+        # This is a SITExx-logs user
+        if (-d "$home") {
+
+            # Get GID:
+            $grp = new Unix::GroupFile "/etc/group";
+            $real_gid_of_user = $grp->gid($groupworkaround[4]);
+            undef $grp;
+
+            # Do the chown:
+            print "Setting UID and GID of $home to $user ($uid) and GID $groupworkaround[4] ($real_gid_of_user) \n";
+            system("/bin/chown -R $user:$groupworkaround[4] $home");
+            $found_one++;
+        }
+    }
 }
 
 undef $pw;
