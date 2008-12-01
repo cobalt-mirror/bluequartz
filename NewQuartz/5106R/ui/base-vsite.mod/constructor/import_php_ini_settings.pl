@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: import_php_ini_settings.pl, v1.1.0.0 Sat 29 Nov 2008 04:16:25 AM CET mstauber Exp $
+# $Id: import_php_ini_settings.pl, v1.1.0.2 Mon 01 Dec 2008 05:10:17 PM CET mstauber Exp $
 # Copyright 2006-2008 Solarspeed Ltd. All rights reserved.
 
 # This script parses php.ini and brings CODB up to date on how PHP is configured.
@@ -133,9 +133,6 @@ sub verify {
     }
 
     # Go through list of config switches we're interested in:
-
-    
-    
     foreach $entry (@whatweneed) {
 	if (!$CONFIG{"$entry"}) {
 	    # Found key without value - setting defaults for those that need it:
@@ -185,6 +182,9 @@ sub feedthemonster {
 	    'open_basedir' => $CONFIG{"open_basedir"},   
 	    'post_max_size' => $CONFIG{"post_max_size"},   
 	    'upload_max_filesize'  => $CONFIG{"upload_max_filesize"},  
+	    'max_execution_time' => $CONFIG{"max_execution_time"},   
+	    'max_input_time' => $CONFIG{"max_input_time"},   
+	    'memory_limit' => $CONFIG{"memory_limit"},   
 	    'php_ini_location' => $php_ini,  
 	    'force_update' => time()  
         });
@@ -208,6 +208,9 @@ sub feedthemonster {
 	    'open_basedir' => $CONFIG{"open_basedir"},   
 	    'post_max_size' => $CONFIG{"post_max_size"},   
 	    'upload_max_filesize' => $CONFIG{"upload_max_filesize"},  
+	    'max_execution_time' => $CONFIG{"max_execution_time"},   
+	    'max_input_time' => $CONFIG{"max_input_time"},   
+	    'memory_limit' => $CONFIG{"memory_limit"},   
 	    'php_ini_location' => $php_ini  
         });
     }
@@ -229,7 +232,10 @@ sub items_of_interest {
 	'disable_functions', 
 	'open_basedir', 
 	'post_max_size', 
-	'upload_max_filesize'
+	'upload_max_filesize',
+	'max_execution_time',
+	'max_input_time',
+	'memory_limit'
 	);
 }
 

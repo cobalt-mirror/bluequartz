@@ -122,6 +122,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ43
+- Still work in progress and not yet finished.
+- Added ability to modify max_execution_time, max_input_time and memory_limit in php.ini
+- Extended glue/schemas/php.schema for that.
+- Extended ui/web/php_server.php and ui/web/php_serverHandler.php for that.
+- Extended constructor/import_php_ini_settings.pl and glue/handlers/php_handler.pl for that.
+
 * Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ42
 - Unfinished (!) first integration of better PHP security.
 - Added constructor/import_php_ini_settings.pl to parse the php.ini and to shove its settings into CODB.

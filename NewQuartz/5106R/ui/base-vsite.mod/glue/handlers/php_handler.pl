@@ -198,22 +198,25 @@ sub restart_apache {
 
 sub items_of_interest {
     # List of config switches that we're interested in:
-    @whatweneed = ( 
-	'safe_mode', 
-	'safe_mode_allowed_env_vars', 
-	'safe_mode_exec_dir', 
-	'safe_mode_gid', 
-	'safe_mode_include_dir', 
-	'safe_mode_protected_env_vars',	
-	'register_globals', 
-	'allow_url_fopen', 
-	'allow_url_include', 
-	'disable_classes', 
-	'disable_functions', 
-	'open_basedir', 
-	'post_max_size', 
-	'upload_max_filesize'
-	);
+    @whatweneed = (
+        'safe_mode',
+        'safe_mode_allowed_env_vars',
+        'safe_mode_exec_dir',
+        'safe_mode_gid',
+        'safe_mode_include_dir',
+        'safe_mode_protected_env_vars',
+        'register_globals',
+        'allow_url_fopen',
+        'allow_url_include',
+        'disable_classes',
+        'disable_functions',
+        'open_basedir',
+        'post_max_size',
+        'upload_max_filesize',
+        'max_execution_time',
+        'max_input_time',
+        'memory_limit'
+        );
 }
 
 sub edit_php_ini {
@@ -233,7 +236,10 @@ sub edit_php_ini {
 	'disable_functions' => $server_php_settings->{"disable_functions"}, 
 	'open_basedir' => $server_php_settings->{"open_basedir"}, 
 	'post_max_size' => $server_php_settings->{"post_max_size"}, 
-	'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"}
+	'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"},
+	'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
+	'max_input_time' => $server_php_settings->{"max_input_time"}, 
+	'memory_limit' => $server_php_settings->{"memory_limit"} 
 	};
 
     # Write changes to php.ini using Sauce::Util::hash_edit_function. The really GREAT thing

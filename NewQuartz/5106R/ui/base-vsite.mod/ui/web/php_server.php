@@ -237,9 +237,85 @@ $post_max_size_choices_select = $factory->getMultiChoice("post_max_size",array_v
 $post_max_size_choices_select->setSelected($systemObj['post_max_size'], true);
 $block->addFormField($post_max_size_choices_select,$factory->getLabel("post_max_size"), "php_ini_security_settings");
 
+// max_execution_time:
+if ($systemObj['max_execution_time']) {
+    $max_execution_time_choices=array
+            (
+                "me_01" => "30",
+                "me_02" => "60",
+                "me_03" => "90",
+                "me_04" => "120",
+                "me_05" => "150",
+                "me_06" => "180",
+                "me_07" => "210",
+                "me_08" => "240",
+                "me_09" => "270",
+                "me_10" => "300",
+                "me_11" => "500",
+                "me_12" => "600",
+                "me_13" => "900"
+            );
+}
+
+// max_execution_time Input:
+$max_execution_time_choices_select = $factory->getMultiChoice("max_execution_time",array_values($max_execution_time_choices));
+$max_execution_time_choices_select->setSelected($systemObj['max_execution_time'], true);
+$block->addFormField($max_execution_time_choices_select,$factory->getLabel("max_execution_time"), "php_ini_security_settings");
+
+// max_input_time:
+if ($systemObj['max_input_time']) {
+    $max_input_time_choices=array
+            (
+                "mit_01" => "30",
+                "mit_02" => "60",
+                "mit_03" => "90",
+                "mit_04" => "120",
+                "mit_05" => "150",
+                "mit_06" => "180",
+                "mit_07" => "210",
+                "mit_08" => "240",
+                "mit_09" => "270",
+                "mit_10" => "300",
+                "mit_11" => "500",
+                "mit_12" => "600",
+                "mit_13" => "900"
+            );
+}
+
+// max_input_time Input:
+$max_input_time_choices_select = $factory->getMultiChoice("max_input_time",array_values($max_input_time_choices));
+$max_input_time_choices_select->setSelected($systemObj['max_input_time'], true);
+$block->addFormField($max_input_time_choices_select,$factory->getLabel("max_input_time"), "php_ini_security_settings");
+
+// memory_limit:
+if ($systemObj['memory_limit']) {
+    $memory_limit_choices=array
+            (
+                "mlc_01" => "16M",
+                "mlc_02" => "18M",
+                "mlc_03" => "20M",
+                "mlc_04" => "25M",
+                "mlc_05" => "30M",
+                "mlc_06" => "35M",
+                "mlc_07" => "40M",
+                "mlc_08" => "45M",
+                "mlc_09" => "50M",
+                "mlc_10" => "55M",
+                "mlc_11" => "60M",
+                "mlc_12" => "65M",
+                "mlc_13" => "70M",
+                "mlc_14" => "80M",
+                "mlc_15" => "90M",
+                "mlc_16" => "100M"
+            );
+}
+
+// memory_limit Input:
+$memory_limit_choices_select = $factory->getMultiChoice("memory_limit",array_values($memory_limit_choices));
+$memory_limit_choices_select->setSelected($systemObj['memory_limit'], true);
+$block->addFormField($memory_limit_choices_select,$factory->getLabel("memory_limit"), "php_ini_security_settings");
 
 // Review php.ini:
-
 $datei_zwo = $systemObj["php_ini_location"];
 $array_zwo = file($datei_zwo);
 for($x=0;$x<count($array_zwo);$x++){
@@ -263,37 +339,27 @@ for($x=0;$x<count($array_zwo);$x++){
                 $array_zwo[$x] = eregi_replace('safe_mode_gid=Off', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
         }
         if(eregi('^safe_mode_include_dir',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace('safe_mode_include_dir=(.*)', 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'\s', $array_zwo[$x]);
 		$array_zwo[$x] = 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'<br>';
         }
         if(eregi('^safe_mode_exec_dir',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace('safe_mode_exec_dir=(.*)', 'safe_mode_exec_dir = '.$systemObj["safe_mode_exec_dir"].'\s', $array_zwo[$x]);
 		$array_zwo[$x] = 'safe_mode_exec_dir = '.$systemObj["safe_mode_exec_dir"].'<br>';
         }
         if(eregi('^safe_mode_allowed_env_vars',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace('safe_mode_allowed_env_vars=(.*)', 'safe_mode_allowed_env_vars = '.$systemObj["safe_mode_allowed_env_vars"].'\s', $array_zwo[$x]);
 		$array_zwo[$x] = 'safe_mode_allowed_env_vars = '.$systemObj["safe_mode_allowed_env_vars"].'<br>';
         }
         if(eregi('^safe_mode_protected_env_vars',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace('safe_mode_protected_env_vars=(.*)', 'safe_mode_protected_env_vars = '.$systemObj["safe_mode_protected_env_vars"].'\s', $array_zwo[$x]);
 		$array_zwo[$x] = 'safe_mode_protected_env_vars = '.$systemObj["safe_mode_protected_env_vars"].'<br>';
         }
-        if(eregi('^;open_basedir',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace(';open_basedir=', 'open_basedir = '.$systemObj["open_basedir"].'\s', $array_zwo[$x]);
-		$array_zwo[$x] = 'open_basedir = '.$systemObj["open_basedir"].'<br>';
-	}
         if(eregi('^open_basedir',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace('open_basedir=(.*)', 'open_basedir = '.$systemObj["open_basedir"].'\s', $array_zwo[$x]);
 		$array_zwo[$x] = 'open_basedir = '.$systemObj["open_basedir"].'<br>';
         }
         if(eregi('^disable_functions',$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'disable_functions = '.$systemObj["disable_functions"].'<br>';
         }
         if(eregi('^disable_classes',$array_zwo[$x], $regs)) {
-		//$array_zwo[$x] = eregi_replace('disable_classes=(.*)', 'disable_classes = '.$systemObj["disable_classes"].'\s', $array_zwo[$x]);
 		$array_zwo[$x] = 'disable_classes = '.$systemObj["disable_classes"].'<br>';
         }
-	### Replace end
+	// Replace end
 	$array_zwo[$x] = br2nl($array_zwo[$x]);
 	$the_file_data = $the_file_data.$array_zwo[$x];
 }

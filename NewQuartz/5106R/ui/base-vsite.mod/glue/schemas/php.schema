@@ -91,6 +91,24 @@
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
+       <property name="max_execution_time"
+            type="scalar"
+            default="30"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="max_input_time"
+            type="scalar"
+            default="60"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+       <property name="memory_limit"
+            type="scalar"
+            default="16M"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
        <property name="force_update"
             type="scalar"
             default=""
