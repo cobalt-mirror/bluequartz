@@ -3,7 +3,7 @@
 // Author: Michael Stauber <mstauber@solarspeed.net>
 // Copyright 2006-2008, Stauber Multimedia Design. All rights reserved.
 
-include("ServerScriptHelper.php");
+include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 

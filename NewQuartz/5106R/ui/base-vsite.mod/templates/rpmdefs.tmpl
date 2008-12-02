@@ -122,6 +122,19 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Tue Dec 02 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ44
+- Still work in progress and not yet finished.
+- Added provisions to edit Apache vsite containers to insert php_admin flags, etc.
+- Modified glue/conf/vsite.conf to call new glue/handlers/php_vsite_handler.pl
+- Added glue/handlers/php_vsite_handler.pl to edit vhost containers.
+- Added ui/web/vsite_php.php and ui/web/vsite_phpHandler.php to edit a site's PHP settings.
+- Added ui/menu/vsite_php.xml to link to ui/web/vsite_php.php (under services for a site)
+- Updated glue/schemas/php_vsite.schema to reflect changes
+- Updated constructor/import_php_ini_settings.pl
+- Removed debugging provisions from glue/handlers/php_handler.pl
+- Updated ui/web/php_serverHandler.php
+- Still need to do the locales for the new changes. Rest seems to work.
+
 * Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ43
 - Still work in progress and not yet finished.
 - Added ability to modify max_execution_time, max_input_time and memory_limit in php.ini

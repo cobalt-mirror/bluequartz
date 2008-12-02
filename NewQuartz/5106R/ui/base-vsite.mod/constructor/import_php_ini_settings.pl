@@ -137,7 +137,7 @@ sub verify {
 	if (!$CONFIG{"$entry"}) {
 	    # Found key without value - setting defaults for those that need it:
 	    if ($entry eq "allow_url_include") {
-		$CONFIG{"$entry"} = "No";
+		$CONFIG{"$entry"} = "Off";
 	    }
 	    if (($entry eq "disable_functions") && ($first_run eq "1")) {
 		$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,popen,escapeshellcmd,proc_open,proc_nice,ini_restore";

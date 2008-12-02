@@ -7,17 +7,6 @@
 #
 # If the "PHP" Object with "applicable" => "server" is created or modified, it 
 # updates php.ini with those changes and Apache is restarted.
-#
-# Class Vsite can have the namespace Object "PHP" in it. This is for PHP settings of
-# a site. If this is created or modified, then /etc/http/conf/vhosts/site1 is modified 
-# with those changes and Apache is restarted. (Not yet implemented!)
-#
-# If a site is created, the PHP Object for it doesn't exist yet. Then it is the job of 
-# this handler to create it and THEN to make the changes to the sites config file. 
-# Finally it also restarts Apache when done. (Not yet implemented!)
-#
-# Lastly, if a site is deleted, the corresponding sites PHP Object is deleted from CODB
-# automatically when that Vsite object is deleted anyway.
 
 # Debugging switch:
 $DEBUG = "0";
@@ -52,10 +41,6 @@ my $conf = '/var/lib/cobalt';
 if ($whatami eq "handler") {
     $cce->connectfd();
 
-    if ($DEBUG eq "1") {
-	system("rm -f /tmp/php.debug");
-    }
-
     # Get our events from the event handler stack:
     $oid = $cce->event_oid();
     $obj = $cce->event_object();
@@ -68,20 +53,12 @@ if ($whatami eq "handler") {
     ($ok, $server_php_settings) = $cce->get($oids[0]);
     $PHP_server_OID = $oids[0];
 
-    if ($DEBUG eq "1") {
-	system("echo oid $oid >> /tmp/php.debug");
-        system("echo obj $obj >> /tmp/php.debug");
-        system("echo out $out >> /tmp/php.debug");
-    }
-    
     # Check for presence of third party config file:
     &thirdparty_check;
 
     # We're creating or modifying the main server PHP object:
     if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($PHP_server_OID eq $oid)) {
-	if ($DEBUG eq "1") {
-	    system("echo 'server create event' >> /tmp/php.debug");
-	}
+
 	# If someone used the "expert mode", move the temporary php.ini to 
 	# the right place, chown it and restart Apache:
 	# Function disabled for now!
@@ -160,18 +137,6 @@ sub ini_read {
 
     # At this point we have all switches from php.ini cleanly in a hash, split in key / value pairs.
     # To read how "safe_mode" is set we query $CONFIG{'safe_mode'} for example. 
-
-    # For debugging only:
-    if ($DEBUG > "1") {
-	while (my($k,$v) = each %CONFIG) {
-    	    print "$k => $v\n";
-	}
-    }
-
-    # For debugging only:
-    if ($DEBUG == "1") {
-	print "safe mode: " . $CONFIG{'safe_mode'} . "\n";
-    }
 
 }
 
