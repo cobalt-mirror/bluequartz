@@ -10,7 +10,7 @@
 # correct php_admin_flag's to that site's include file and Apache is restarted.
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 
 $whatami = "handler";
 
