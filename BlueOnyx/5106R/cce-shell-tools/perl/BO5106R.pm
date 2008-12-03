@@ -1,8 +1,8 @@
-# $Id: BQ5100R.pm 1095 2008-02-11 15:00:26Z mstauber $
+# $Id: BQ5106R.pm 1095 2008-02-11 15:00:26Z mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 
-package BO5100R;
+package BQ5106R;
 
 use Configurator;
 use vars qw(@ISA);

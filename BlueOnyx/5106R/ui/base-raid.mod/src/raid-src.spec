@@ -1,8 +1,8 @@
 Summary: Binaries and scripts used by the RAID module
 Name: raid-bins
 Version: 1.0.3
-Release: 12BQ2%{dist}
-Vendor: Sun Microsystems, Inc.  2000-2002
+Release: 12BQ3%{dist}
+Vendor: Project BlueOnyx
 License: Sun BSD
 Group: Utils
 Source: raid-bins.tar.gz
@@ -34,6 +34,9 @@ Currently, this rpm contains the scripts used to
 determine the status of RAID.
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BQ3
+- Rebuilt for BlueOnyx.
+
 * Tue Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BQ2
 - Changed Copyright tag to Vendor in specfile
 

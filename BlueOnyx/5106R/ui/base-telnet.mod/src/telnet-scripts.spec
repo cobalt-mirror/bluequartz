@@ -1,10 +1,10 @@
 Summary: Perl modules that contain vital telnet access functionality
 Name: telnet-scripts
 Version: 1.1.2
-Release: 6BQ6%{?dist}
+Release: 6BQ7%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: telnet-scripts.tar.gz
 BuildRoot: /tmp/telnet-scripts
 
@@ -28,6 +28,10 @@ This package contains a number of scripts and perl modules that
 contain vital functionality for telnet access.
 
 %changelog
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.2-6BQ7
+- Rebuilt for BlueOnyx.
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bleuquartz.org> 1.1.2-6BQ6
 - add sign to the package.
 

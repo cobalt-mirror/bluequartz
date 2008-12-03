@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
 # $Id$
-# Copyright 2007 Project BlueQuartz.  All rights reserved.
+# Copyright 2007 Project BlueOnyx. All rights reserved.
 
 use strict;
 use CCE;

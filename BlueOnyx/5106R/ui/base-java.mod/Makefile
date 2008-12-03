@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME=cobalt
+VENDORNAME='Team BlueOnyx'
 SERVICE=java
 
 VERSION=2.0.6
-RELEASE=9
+RELEASE=10
 
 # add a buildarch if desired
 BUILDARCH=noarch

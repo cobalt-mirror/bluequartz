@@ -132,7 +132,7 @@ msgid "enterFqdn"
 msgstr "Host- und Domänennamen"
 
 msgid "enterFqdn_help"
-msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, während ein gültiger Domänen-Name z.B. 'bluequartz.org' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
+msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, während ein gültiger Domänen-Name z.B. 'blueonyx.it' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
 
 msgid "hostNameField"
 msgstr "Hostname"
@@ -147,7 +147,7 @@ msgid "domainNameField"
 msgstr "Domänenname"
 
 msgid "domainNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'bluequartz.org' oder 'meinefirma.de' sein."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'blueonyx.it' oder 'meinefirma.de' sein."
 
 msgid "domainNameField_help"
 msgstr "Geben Sie bitte den Domänennamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können. [[base-wizard.domainNameField_rule]]"
@@ -557,7 +557,7 @@ msgid "enterVsiteFqdn"
 msgstr "Host- und Domänennamen"
 
 msgid "enterVsiteFqdn_help"
-msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, während ein gültiger Domänen-Name z.B. 'bluequartz.org' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
+msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, während ein gültiger Domänen-Name z.B. 'blueonyx.it' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
 
 msgid "vsite_hostNameField"
 msgstr "Hostname"
@@ -572,7 +572,7 @@ msgid "vsite_domainNameField"
 msgstr "Domänen-Name"
 
 msgid "vsite_domainNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'bluequartz.org' oder 'meinefirma.de' sein."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'blueonyx.it' oder 'meinefirma.de' sein."
 
 msgid "vsite_domainNameField_help"
 msgstr "Geben Sie bitte den Domänennamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können.  [[base-wizard.vsite_domainNameField_rule]]"

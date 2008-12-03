@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME=cobalt
+VENDORNAME='Team BlueOnyx'
 SERVICE=raid
 
 VERSION=0.1.2
-RELEASE=87BQ11
+RELEASE=87BQ12
 
 # add a buildarch if desired
 BUILDARCH=noarch

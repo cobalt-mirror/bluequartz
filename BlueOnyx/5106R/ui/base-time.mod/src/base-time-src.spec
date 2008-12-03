@@ -1,10 +1,10 @@
 Summary: Miscellaneous parts of base-time.mod.
 Name: base-time-src
 Version: 1.0.1
-Release: 3BQ8%{?dist}
+Release: 3BQ9%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-time-src.tar.gz
 BuildRoot: /var/tmp/base-time-src
 
@@ -27,6 +27,10 @@ PREFIX=$RPM_BUILD_ROOT make install
 %attr(0700,root,root)/usr/sausalito/sbin/epochdate
 
 %changelog
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-3BQ9
+- Rebuilt for BlueOnyx.
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-3BQ8
 - add sign to the package.
 

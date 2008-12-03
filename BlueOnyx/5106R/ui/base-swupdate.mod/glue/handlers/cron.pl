@@ -14,7 +14,7 @@ my $CRON_WEEKLY_DIR  = "/etc/cron.weekly";
 my $CRON_MONTHLY_DIR = "/etc/cron.monthly";
 my $CRONFILE         = "SWUpdate";
 my $SWUPDATE_BIN     = "/usr/sausalito/sbin/grab_updates.pl -c";
-my $SWUPDATE_HDR     = "#!/bin/sh\n# BlueQuartz SWUpdate\n# (Copyright Cobalt Networks 2000)";
+my $SWUPDATE_HDR     = "#!/bin/sh\n# BlueOnyx SWUpdate\n# (Copyright Cobalt Networks 2000)";
 
 my $cce = new CCE;
 

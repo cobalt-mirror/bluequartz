@@ -1,10 +1,10 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: NUSOL1%{?dist}
-Vendor: Solarspeed.net
+Release: NUSOL2%{?dist}
+Vendor: Project BlueOnyx
 License: Sun modified BSD
-Group: System Environment/Aventurine
+Group: System Environment/BlueOnyx
 Source: base-swatch.tar.gz
 BuildRoot: /tmp/base-swatch
 BuildArchitectures: noarch
@@ -53,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/sausalito/conf/base/swatch
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.1-NUSOL2
+- Rebuilt for BlueOnyx.
+
 * Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.1-NUSOL1
 - Ported over from 6105R to 5106R
 

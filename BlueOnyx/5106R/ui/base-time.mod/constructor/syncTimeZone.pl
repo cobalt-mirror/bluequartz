@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
 # $Id: setTimeZone.pl 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2008 Project BlueQuartz., All rights reserved.
+# Copyright 2008 Project BlueOnyx., All rights reserved.
 
 use Sauce::Util;
 use CCE;

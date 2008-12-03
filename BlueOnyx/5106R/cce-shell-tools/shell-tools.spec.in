@@ -3,7 +3,7 @@
 Summary: Sun Cobalt Shell Tools
 Name: [PRODUCT]-shell-tools
 Version: [VERSION]
-Release: 0BQ8%{?dist}
+Release: 0BQ9%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/System
@@ -50,6 +50,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net>
+- Extended for BlueOnyx.
+
 * Wed Jun 03 2008 Michael Stauber <mstauber@solarspeed.net>
 - Added 5106R
 

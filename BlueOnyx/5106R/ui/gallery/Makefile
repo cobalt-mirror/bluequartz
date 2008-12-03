@@ -15,10 +15,10 @@ CCETMPL=$(CCEDEVEL)/templates
 
 # for mod_rpmize
 VENDOR = sausalito
-VENDORNAME = 'Project BlueQuartz'
+VENDORNAME = 'Project BlueOnyx'
 SERVICE = gallery
 VERSION = 0.3.2
-RELEASE = 0BQ10
+RELEASE = 0BQ11
 UIMENUS = none
 BUILDARCH=noarch
 BUILDUI = no

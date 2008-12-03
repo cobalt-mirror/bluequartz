@@ -1,10 +1,10 @@
 Summary: Active Monitor support for base-email-am
 Name: base-email-am
 Version: 1.3.1
-Release: 0BQ3%{?dist}
+Release: 0BQ4%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-email-am.tar.gz
 BuildRoot: /tmp/base-email-am
 
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-email-am.  
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ4
+- Rebuilt for BlueOnyx.
+
 * Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ3
 - Fixed /usr/sausalito/swatch/bin/check-popb4smtp.sh *again*
 

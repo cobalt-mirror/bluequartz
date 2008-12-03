@@ -1,10 +1,10 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 25BQ19%{?dist}
-Vendor: Project BlueQuartz
+Release: 25BQ20%{?dist}
+Vendor: Project BlueOnax
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnax
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
@@ -16,6 +16,9 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-25BQ20
+- Rebuilt for BlueOnyx.
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-25BQ19
 - add sign to the package.
 

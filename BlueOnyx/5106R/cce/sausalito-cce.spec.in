@@ -9,7 +9,7 @@ Version: XX_VER_XX
 Release: XX_REL_XX%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: sausalito-cce.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
@@ -38,7 +38,7 @@ Requires: httpd
 sausalito-cce has both the server and client parts of cce.
 
 %package server
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
 Requires: glib, glib-ghash, pam
 %if "%centos" == "4"
@@ -50,7 +50,7 @@ The cce-server package contains the server-side parts of the Cobalt
 Configuration Engine.
 
 %package client
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Summary: The CCE client libraries
 Requires: glib, glib-ghash, pam, httpd
 
@@ -178,6 +178,9 @@ fi
 %changelog
 
 %changelog 
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.3-1BQ40
+- Renamed for BlueOnyx.
+
 * Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.3-1BQ39
 - Merged changes from 5100R. 
 - Needed to bump version number to 0.80.3 or virtual BlueQuartz cannot be updated.

@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-java-am
 Name: base-java-am
 Version: 2.0.4
-Release: 1
+Release: 2
 #Copyright: 2002 Sun Microsystems, Inc.
 License: Sun Microsystems modified BSD
 Group: Utils
@@ -27,6 +27,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-java-am.  
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net>
+- Rebuilt for BlueOnyx.
+
 * Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net>
 - Commented out Copyright tag as it's no longer supported.
 - Added new mandatory License tag.

@@ -9,7 +9,7 @@ Version: [VERSION]
 Release: [RELEASE]%{?dist}
 Vendor: [VENDORNAME]
 License: [COPYRIGHT]
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: %{Vendor}-%{Service}-[VERSION].tar.gz
 BuildRoot: /var/tmp/%{Vendor}-%{Service}
 Requires: httpd
@@ -41,6 +41,9 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+* Mon Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ11
+- Rebuilt for BlueOnyx.
+
 * Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ10
 - Changed colors of libImage/BlueOnyx/Merlot_title_background.gif
 - Changed colors of libImage/BlueOnyx/controlBackground.gif

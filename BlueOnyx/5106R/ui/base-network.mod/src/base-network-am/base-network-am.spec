@@ -1,10 +1,10 @@
 Summary: Binaries and scripts used by Active Monitor for base-network
 Name: base-network-am
 Version: 1.0.1
-Release: 3BQ6%{?dist}
+Release: 3BQ7%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-network-am.tar.gz
 BuildRoot: /tmp/%{name}
 
@@ -25,6 +25,10 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-network module.  
 
 %changelog
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-3BQ7
+- Rebuilt for BlueOnyx.
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-3BQ6
 - add sign to the package.
 

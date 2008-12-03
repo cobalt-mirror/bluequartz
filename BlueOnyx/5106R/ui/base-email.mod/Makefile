@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueQuartz'
+VENDORNAME='Project BlueOnyx'
 SERVICE=email
 
 VERSION=1.3.1
-RELEASE=0BQ34
+RELEASE=0BQ35
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES = dovecot base-bluequartz-glue >= 1.20060618
+REQUIRES = dovecot base-blueonyx-glue >= 1.20081203
 
 #########
 # some useful defines

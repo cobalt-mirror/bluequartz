@@ -173,8 +173,8 @@ $check = crack_check($dictionary, $passwordField);
 $diag = crack_getlastmessage();
 
 // Check if user wants to keep default password (bad idea!)
-if ($passwordField == "bluequartz") {
-    $diag = "You must change the password! Do not keep the default 'bluequartz' password!";
+if ($passwordField == "blueonyx") {
+    $diag = "You must change the password! Do not keep the default 'blueonyx' password!";
 }
 
 if ($diag == 'strong password') {

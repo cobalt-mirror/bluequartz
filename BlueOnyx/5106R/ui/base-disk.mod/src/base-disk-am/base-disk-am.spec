@@ -1,10 +1,10 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.1.0
-Release: 15BQ17%{?dist}
+Release: 15BQ18%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-disk-am.tar.gz
 BuildRoot: /tmp/%{name}
 Requires: perl-Unix-ConfigFile >= 0.06-SOL1
@@ -27,6 +27,9 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BQ18
+- Rebuilt for BlueOnyx.
+
 * Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BQ17
 - Another small fix in get_quota.pl: SITExx-logs users are no longer reported.
 

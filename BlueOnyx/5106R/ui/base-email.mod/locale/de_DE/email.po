@@ -164,7 +164,7 @@ msgid "blockHostField_help"
 msgstr "Geben Sie die Host- oder Domänennamen ein, denen es nicht gestattet wird, E-Mail an diesen Server zu senden. [[base-email.blockHostField_rule]]"
 
 msgid "blockHostField_rule"
-msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Dieses Feld ist normalerweise leer. Gültige Eingaben sind z. B. 'www.bluequartz.org' oder 'bluequartz.org'."
+msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Dieses Feld ist normalerweise leer. Gültige Eingaben sind z. B. 'www.BlueOnyx.org' oder 'BlueOnyx.org'."
 
 msgid "blockUserField"
 msgstr "E-Mail von Benutzern blockieren"
@@ -299,7 +299,7 @@ msgid "masqAddressField_help"
 msgstr "Geben Sie einen Domänen-Namen oder IP-Adresse ein, welche die Absende-Adresse aller Emails, die durch diesen Server laufen, ersetzt. Diese Funktion nennt man auch 'Domain Masquerading'. [[base-email.masqAddressField_rule]]"
 
 msgid "masqAddressField_rule"
-msgstr "Bitte geben Sie eine richtig formatierte IP-Adresse, einen Host- oder einen Domänennamen ein. Per Vorgabe wird dieses Feld leer gelassen. Gültige Eingaben sind z. B. '192.168.1.100', 'www.bluequartz.org' oder 'bluequartz.org'."
+msgstr "Bitte geben Sie eine richtig formatierte IP-Adresse, einen Host- oder einen Domänennamen ein. Per Vorgabe wird dieses Feld leer gelassen. Gültige Eingaben sind z. B. '192.168.1.100', 'www.BlueOnyx.org' oder 'BlueOnyx.org'."
 
 msgid "maxEmailSizeField"
 msgstr "Maximale E-Mail-Größe (MB)"
@@ -362,7 +362,7 @@ msgid "receiveField_help"
 msgstr "Geben Sie die Host- oder Domänennamen ein, für die dieser Server E-Mails empfangen soll. [[base-email.receiveField_rule]]"
 
 msgid "receiveField_rule"
-msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Der Vorgabewert ist der vollqualifizierte Domänenname Ihres Servers. Gültige Eingaben sind z. B. 'www.bluequartz.org' oder 'bluequartz.org'."
+msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Der Vorgabewert ist der vollqualifizierte Domänenname Ihres Servers. Gültige Eingaben sind z. B. 'www.BlueOnyx.org' oder 'BlueOnyx.org'."
 
 msgid "relayField"
 msgstr "E-Mail von Hosts/Domänen/IP-Adressen weiterleiten"
@@ -380,7 +380,7 @@ msgid "smartRelayField_help"
 msgstr "Geben Sie den vollqualifizierten Domänennamen eines Mailservers ein, über den alle ausgehenden E-Mail-Nachrichten geleitet werden."
 
 msgid "smartRelayField_rule"
-msgstr "Bitte geben Sie einen vollqualifizierten Domänennamen im richtigen Format ein. Per Vorgabe wird dieses Feld leer gelassen. Eine gültige Eingabe ist z. B. 'bluequartz.org'."
+msgstr "Bitte geben Sie einen vollqualifizierten Domänennamen im richtigen Format ein. Per Vorgabe wird dieses Feld leer gelassen. Eine gültige Eingabe ist z. B. 'BlueOnyx.org'."
 
 msgid "userEmail"
 msgstr "Email-Einstellungen für Benutzer"

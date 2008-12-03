@@ -118,7 +118,7 @@ msgid "masqAddressField"
 msgstr "送信者ドメインの強制使用"
 
 msgid "masqAddressField_rule"
-msgstr "IPアドレス、ホスト名、またはドメインネームを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例： 192.168.1.100、www.bluequartz.org、bluequartz.org など）"
+msgstr "IPアドレス、ホスト名、またはドメインネームを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例： 192.168.1.100、www.BlueOnyx.org、BlueOnyx.org など）"
 
 msgid "masqAddressField_help"
 msgstr "このサーバのユーザが送信する電子メールの差出人アドレスを上書きするドメインネームまたはIPアドレスを入力してください。この機能は「ドメインマスカレード」とも呼ばれます。[[base-email.masqAddressField_rule]]"
@@ -151,7 +151,7 @@ msgid "receiveField"
 msgstr "これらのホスト／ドメイン宛の電子メールを受信する："
 
 msgid "receiveField_rule"
-msgstr "ホスト名またはドメインネームを正しい形式で入力してください。このサーバのホスト名＋ドメインネームはデフォルトで設定されます（表示はされません）。（指定例： www.bluequartz.org、bluequartz.org など）"
+msgstr "ホスト名またはドメインネームを正しい形式で入力してください。このサーバのホスト名＋ドメインネームはデフォルトで設定されます（表示はされません）。（指定例： www.BlueOnyx.org、BlueOnyx.org など）"
 
 msgid "receiveField_help"
 msgstr "このサーバは、ここで指定するホスト名またはドメインネーム宛ての電子メールを受信します。[[base-email.receiveField_rule]]"

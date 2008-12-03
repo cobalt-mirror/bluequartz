@@ -1,10 +1,10 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ17%{?dist}
-Vendor: Project BlueQuartz
+Release: 0BQ18%{?dist}
+Vendor: Project BlueOnyx
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: sausalito-palette.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-palette-root
@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ18
+- Rebuilt for BlueOnyx.
+
 * Sun Nov 23 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ17
 - Found another piece of faulty code that cause missing pagedBlock elements:
 - Updated libPhp/uifc/PagedBlock.php to change reference to a straight pointer.

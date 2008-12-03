@@ -1,10 +1,10 @@
 Summary: Binaries and scripts used to monitor Power subsystems
 Name: base-power-am
 Version: 1.1.1
-Release: 7BQ4
+Release: 7BQ5
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: am-bins.tar.gz
 BuildRoot: /tmp/am-bins
 
@@ -26,6 +26,9 @@ Monitor to monitor the power subsystem.  These include programs to
 check the state of the power supply and the cmos battery usage.
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.1-7BQ5
+- Rebuilt for BlueOnyx.
+
 * Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.1-7BQ4
 - use vendor macro for Vendor tag.
 

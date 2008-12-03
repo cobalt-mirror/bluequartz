@@ -1,10 +1,10 @@
 Summary: Active Monitor support for base-telnet-am
 Name: base-telnet-am
 Version: 1.0.2
-Release: 4BQ7%{dist}
+Release: 4BQ8%{dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-telnet-am.tar.gz
 BuildRoot: /tmp/base-telnet-am
 
@@ -25,6 +25,10 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-telnet-am.  
 
 %changelog
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.2-4BQ8
+- Rebuilt for BlueOnyx
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ7
 - add dist macro for release.
 

@@ -1,10 +1,10 @@
 Summary: Scripts used to integrate SNMP into ActiveMonitor
 Name: base-snmp-am
 Version: 1.0.1
-Release: 5BQ8%{?dist}
+Release: 5BQ9%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-snmp-am.tar.gz
 BuildRoot: /tmp/base-snmp-am
 Requires: net-snmp-utils
@@ -26,6 +26,9 @@ The scripts necessary to check the current status of the SNMP daemon.
 This is called by swatch+cce as part of the ActiveMonitor subsystem.
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-5BQ9
+- Rebuilt for BlueOnyx.
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-5BQ8
 - add sign to the package.
 

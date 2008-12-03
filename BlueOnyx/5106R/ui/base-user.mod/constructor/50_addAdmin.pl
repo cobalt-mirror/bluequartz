@@ -70,7 +70,7 @@ else
                 fullName => $i18n->get('administrator', {}, 'base-user'),
                 localePreference => $locale,
                 name => 'admin',
-                password => 'bluequartz',
+                password => 'blueonyx',
                 stylePreference => 'BlueOnyx',
                 systemAdministrator => 1,
                 volume => $Base::HomeDir::HOME_ROOT

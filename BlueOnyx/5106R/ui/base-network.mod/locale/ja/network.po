@@ -34,7 +34,7 @@ msgid "enterFqdn"
 msgstr "ホスト名とドメインネーム"
 
 msgid "enterFqdn_help"
-msgstr "左欄にはこのサーバのホスト名 (例： www、mail、shomu_2、eigyo13 など) を、右欄にはドメインネーム (例： bluequartz.org、cobaltqube.org) をそれぞれ入力してください。ホスト名とドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
+msgstr "左欄にはこのサーバのホスト名 (例： www、mail、shomu_2、eigyo13 など) を、右欄にはドメインネーム (例： BlueOnyx.org、cobaltqube.org) をそれぞれ入力してください。ホスト名とドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
 
 msgid "hostNameField"
 msgstr "ホスト名"
@@ -50,7 +50,7 @@ msgstr "ドメインネーム"
 
 # make consistent with rfc 1035
 msgid "domainNameField_rule"
-msgstr "ドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。最初の文字には半角の英小文字をお使いください。（指定例： bluequartz.org、cobaltqube.org）"
+msgstr "ドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。最初の文字には半角の英小文字をお使いください。（指定例： BlueOnyx.org、cobaltqube.org）"
 
 msgid "domainNameField_help"
 msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組合せにより、このサーバを一意に識別できる名前を付けてください。[[base-network.domainNameField_rule]]"

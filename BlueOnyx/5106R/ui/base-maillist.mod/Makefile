@@ -1,12 +1,12 @@
 # Makefile
 
 VENDOR=base
-VENDORNAME='Project BlueQuartz'
+VENDORNAME='Project BlueOnyx'
 SERVICE=maillist
 
 # MAJVERSION is 0 until alpha release.
 VERSION=1.4.0
-RELEASE=68BQ14
+RELEASE=68BQ15
 
 INSTALL=install
 

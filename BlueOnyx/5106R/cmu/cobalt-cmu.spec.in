@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BQ19%{?dist}
+Release: 0BQ20%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net>
+- version 2.66-0BQ20
+- Rebuilt for BlueOnyx.
+
 * Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net>
 - version 2.66-0BQ19
 - Added 5106R to perl_modules/Global.pm again.
