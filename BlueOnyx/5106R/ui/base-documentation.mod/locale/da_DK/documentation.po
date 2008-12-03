@@ -91,22 +91,16 @@ msgstr ""
 "hurtigeste gentagne adgang til dokumenterne, bør du øge din browsers "
 "diskcache til minimum 20 MB."
 
-msgid "support"
-msgstr "Onlinehjælp"
+# -------------- Online support page  -----------------------
 
 msgid "supportLink"
-msgstr "Onlinehjælp"
+msgstr "Technical Support"
 
-# Jeg er ikke sikker på at det er det der menes her.
 msgid "supportLink_help"
-msgstr ""
-"Klik her for at se informationerne om [[base-alpine.osName]]informationen."
+msgstr "Click here to find support information about [[base-alpine.osName]]."
+
+msgid "support"
+msgstr "Technical Support"
 
 msgid "supportText"
-msgstr ""
-"<b>Teknisk support for [[base-alpine.osName]]</b> <br>[[base-"
-"alpine.osName]]support er baseret på frivillighed. Gå til adressen <a href"
-"=\"[[base-alpine.vendorSite]]\" target=\"support\">[[base-"
-"alpine.vendorSite]]</a>.  Lad os bygge og kultivere dit system. Al support "
-"kommer uden garanti for serverfunktionerne. Så [[base-alpine.osVendor]] har "
-"intet ansvar."
+msgstr "<b>Technical Support for [[base-alpine.osName]]</b> <br>[[base-alpine.osName]] is available on voluntarily work by users and contributors. Go to the URL <a href=\"[[base-alpine.vendorSite]]\" target=\"support\">[[base-alpine.vendorSite]]</a> if you want to participate. Let us build and cultivate this system together. As this system is based on vuluntarily work provided free of charge, we do not make any guarantee that everything will always work flawlessly. So [[base-alpine.osVendor]] does not take any responsibility for features that do not work as intended, nor do we guarantee that the software is error free or fit for a particular purpose. However, commercial support for [[base-alpine.osName]] is available from <a href=\"http://www.nuonce.net\" target=\"_blank\">NuOnce Networks, Inc.</a> and <a href=\"http://www.solarspeed.net\" target=\"_blank\">Solarspeed Ltd.</a>"
