@@ -24,6 +24,14 @@ if (!$group) {
   return;
 }
 
+// Determine if we're admin or siteAdmin to set access:
+if (($helper->getAllowed('siteAdmin')) && (!$helper->getAllowed('adminUser'))) {
+    $access = "r";
+}
+else {
+    $access = "rw";
+}
+
 $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/base/vsite/vsite_phpHandler.php?group=$group");
 $transMethodOn="off";
@@ -48,7 +56,7 @@ if ($vsite_php["enabled"] == "0") {
     $page = $factory->getPage();
 
     // Info about PHP-Status:
-    $phpvsite_statusbox = $factory->getPagedBlock("TomcatStausBox_header", array("Default"));
+    $phpvsite_statusbox = $factory->getPagedBlock("PHPVsiteStatusBox_header", array("Default"));
     $phpvsite_statusbox->processErrors($serverScriptHelper->getErrors());
 
     $warning = $i18n->get("phpVsiteNotEnabled");
@@ -71,6 +79,7 @@ else {
 $page = $factory->getPage();
 
 $block = $factory->getPagedBlock("php_vsite_head", array("Default"));
+$block->setLabel($factory->getLabel('php_vsite_head', false, array('vsite' => $vsite['fqdn'])));
 $block->processErrors($serverScriptHelper->getErrors());
 
 // Force Update of CODB:
@@ -137,7 +146,7 @@ $block->addFormField(
 );
 
 // safe_mode_exec_dir =
-$safe_mode_exec_dir_Field = $factory->getTextField("safe_mode_exec_dir", $systemObj['safe_mode_exec_dir']);
+$safe_mode_exec_dir_Field = $factory->getTextField("safe_mode_exec_dir", $systemObj['safe_mode_exec_dir'], $access);
 $safe_mode_exec_dir_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_exec_dir_Field,
@@ -146,7 +155,7 @@ $block->addFormField(
 );
 
 // safe_mode_allowed_env_vars = PHP_
-$safe_mode_allowed_env_vars_Field = $factory->getTextField("safe_mode_allowed_env_vars", $systemObj['safe_mode_allowed_env_vars']);
+$safe_mode_allowed_env_vars_Field = $factory->getTextField("safe_mode_allowed_env_vars", $systemObj['safe_mode_allowed_env_vars'], $access);
 $safe_mode_allowed_env_vars_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_allowed_env_vars_Field,
@@ -155,7 +164,7 @@ $block->addFormField(
 );
 
 // safe_mode_protected_env_vars = LD_LIBRARY_PATH
-$safe_mode_protected_env_vars_Field = $factory->getTextField("safe_mode_protected_env_vars", $systemObj['safe_mode_protected_env_vars']);
+$safe_mode_protected_env_vars_Field = $factory->getTextField("safe_mode_protected_env_vars", $systemObj['safe_mode_protected_env_vars'], $access);
 $safe_mode_protected_env_vars_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_protected_env_vars_Field,
@@ -170,7 +179,7 @@ if(!eregi($vsite['basedir'], $systemObj['open_basedir'], $regs)) {
     $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
 }
 
-$open_basedir_Field = $factory->getTextField("open_basedir", $systemObj['open_basedir']);
+$open_basedir_Field = $factory->getTextField("open_basedir", $systemObj['open_basedir'], $access);
 $open_basedir_Field->setOptional ('silent');
 $block->addFormField(
     $open_basedir_Field,
@@ -341,8 +350,10 @@ $memory_limit_choices_select->setSelected($systemObj['memory_limit'], true);
 $block->addFormField($memory_limit_choices_select,$factory->getLabel("memory_limit"), "Default");
 
 
-// Show "save" button
-$block->addButton($factory->getSaveButton($page->getSubmitAction()));
+if ($access == "rw") {
+    // Show "save" button
+    $block->addButton($factory->getSaveButton($page->getSubmitAction()));
+}
 
 $serverScriptHelper->destructor();
 

@@ -38,7 +38,7 @@ if ($vsite_php["enabled"] == "0") {
     $page = $factory->getPage();
 
     // Info about PHP-Status:
-    $phpvsite_statusbox = $factory->getPagedBlock("TomcatStausBox_header", array("Default"));
+    $phpvsite_statusbox = $factory->getPagedBlock("PHPVsiteStatusBox_header", array("Default"));
     $phpvsite_statusbox->processErrors($serverScriptHelper->getErrors());
 
     $warning = $i18n->get("phpVsiteNotEnabled");

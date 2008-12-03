@@ -790,3 +790,155 @@ msgstr "Enable user owned webs"
 
 msgid "userwebs_help"
 msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
+
+### PHP Security Additions below:
+
+msgid "php_server"
+msgstr "PHP Settings"
+
+msgid "php_serverDescription"
+msgstr "This page allows you to configure security and performance related settings of PHP. These changes are applied to your php.ini config file of PHP. Please keep in mind that PHP is very powerful and can often be used to exploit a server. Hence we configure it in a very restrictive and secure fashion. You can loosen these restrictions on a per site basis."
+
+msgid "php_server_head"
+msgstr "Server wide PHP Settings"
+
+msgid "php_ini_security_settings"
+msgstr "Main PHP Settings"
+
+msgid "php_ini_security_settings_help"
+msgstr "Main security and performance settings applicable on a server wide level. These changes are directly applied to your php.ini file."
+
+msgid "php_ini_expert_mode"
+msgstr "Review php.ini"
+
+msgid "php_ini_expert_mode_help"
+msgstr "This page allows you to review the entire php.ini file and shows all options - not just the few editable ones. Please note: Saving changes on this page is not possible."
+
+msgid "php_ini_location"
+msgstr "Location:"
+
+msgid "php_ini_location_help"
+msgstr "This shows where your php.ini file is located."
+
+msgid "register_globals"
+msgstr "Register Globals:"
+
+msgid "register_globals_help"
+msgstr "For maximum security you must set 'register_globals' to 'Off'. Otherwise it is easily possible that unsecurely programmed PHP scripts can be used to hack your server."
+
+msgid "safe_mode"
+msgstr "Safe Mode:"
+
+msgid "safe_mode_help"
+msgstr "The PHP safe mode is an attempt to solve the shared-server security problem. If enabled PHP scripts will only be allowed to open files which are owned by the *same* user (UID) and group (GID). SECURITY WARNING: You *SHOULD NOT* turn off Safe Mode. Turning off Safe Mode is an invitation to get hacked."
+
+msgid "safe_mode_gid"
+msgstr "Safe Mode GID:"
+
+msgid "safe_mode_gid_help"
+msgstr "By default, Safe Mode does an UID/GID compare check when opening files and only allows to open files owned by the same UID/GID. If you want to relax this to just a GID compare, then turn on safe_mode_gid."
+
+msgid "safe_mode_include_dir"
+msgstr "Safe Mode include directory:"
+
+msgid "safe_mode_include_dir_help"
+msgstr "UID/GID checks are bypassed when including files from this directory and its subdirectories. This directive can take a colon (semi-colon on Windows) separated path, rather than just a single directory. The restriction specified is actually a prefix, not a directory name. This means that 'safe_mode_include_dir = /dir/incl' also allows access to '/dir/include' and '/dir/incls' if they exist. When you want to restrict access to only the specified directory, end with a slash. For example: 'safe_mode_include_dir = /dir/incl/'. If the value of this directive is empty, no files with different UID/GID can be included."
+
+msgid "safe_mode_exec_dir"
+msgstr "Safe Mode exec directory:"
+
+msgid "safe_mode_exec_dir_help"
+msgstr "If PHP is used in safe mode, system() and the other functions executing system programs refuse to start programs that are not in this directory."
+
+msgid "safe_mode_allowed_env_vars"
+msgstr "Safe Mode allowed evelope variables:"
+
+msgid "safe_mode_allowed_env_vars_help"
+msgstr "Setting certain environment variables may be a potential security breach. This directive contains a comma-delimited list of prefixes. In Safe Mode, the user may only alter environment variables whose names begin with the prefixes supplied here. By default, users will only be able to set environment variables that begin with PHP_ (e.g. PHP_FOO=BAR). Note: If this directive is empty, PHP will let the user modify ANY environment variable!"
+
+msgid "safe_mode_protected_env_vars"
+msgstr "Safe Mode protected envelope variables:"
+
+msgid "safe_mode_protected_env_vars_help"
+msgstr "This directive contains a comma-delimited list of environment variables that the end user won't be able to change using putenv(). These variables will be protected even if safe_mode_allowed_env_vars is set to allow to change them."
+
+msgid "open_basedir"
+msgstr "Open basedir:"
+
+msgid "open_basedir_help"
+msgstr "Limit the files that can be opened by PHP to the specified directory-tree, including the file itself. This directive is NOT affected by whether Safe Mode is turned On or Off. When a script tries to open a file with, for example, fopen() or gzopen(), the location of the file is checked. When the file is outside the specified directory-tree, PHP will refuse to open it. All symbolic links are resolved, so it's not possible to avoid this restriction with a symlink. The special value '.' indicates that the working directory of the script will be used as the base-directory. This is, however, a little dangerous as the working directory of the script can easily be changed with chdir(). By default virtual sites only have access to /home, /tmp, /var/lib/php/session/ and the root directory of the virtual site in question."
+
+msgid "disable_functions"
+msgstr "Disable functions:"
+
+msgid "disable_functions_help"
+msgstr "This directive allows you to disable certain functions for security reasons. It takes on a comma-delimited list of function names. disable_functions is not affected by Safe Mode."
+
+msgid "disable_classes"
+msgstr "Disable classes:"
+
+msgid "disable_classes_help"
+msgstr "This directive allows you to disable certain classes for security reasons. It takes on a comma-delimited list of class names. disable_classes is not affected by Safe Mode."
+
+msgid "allow_url_fopen"
+msgstr "Allow URL fopen:"
+
+msgid "allow_url_fopen_help"
+msgstr "If enabled, allow_url_fopen allows PHP's file functions - such as file_get_contents() and the include and require statements - can retrieve data from remote locations, like an FTP or web site. Programmers frequently forget this and don't do proper input filtering when passing user-provided data to these functions, opening them up to code injection vulnerabilities. A large number of code injection vulnerabilities and hacks reported in PHP-based web applications are caused by the combination of enabling allow_url_fopen and bad input filtering. Off by default."
+
+msgid "allow_url_include"
+msgstr "Allow URL include:"
+
+msgid "allow_url_include_help"
+msgstr "(Only applicable for PHP >= 5.2.0) If disabled, allow_url_include bars remote file access via the include and require statements, but leaves it available for other file functions like fopen() and file_get_contents. Please note: include and require are the most common attack points for code injection attempts, so this setting plugs that particular hole without affecting the remote file access capabilities of the standard file functions. By default, allow_url_include is disabled."
+
+msgid "upload_max_filesize"
+msgstr "Upload max filesize:"
+
+msgid "upload_max_filesize_help"
+msgstr "upload_max_filesize limits the maximum size of files that PHP will accept through uploads. Attackers may attempt to send grossly oversized files to exhaust your system resources; by setting a realistic value here you can mitigate some of the damage by those attacks. By default, PHP sets this value to 2MB."
+
+msgid "post_max_size"
+msgstr "Post max size:"
+
+msgid "post_max_size_help"
+msgstr "This protection allows you to limit the maximum size POST request that PHP will process. Attackers may attempt to send grossly oversized POST requests to exhaust your system resources; by setting a realistic value here you can mitigate some of the damage by those attacks."
+
+msgid "max_execution_time"
+msgstr "Max execution time:"
+
+msgid "max_execution_time_help"
+msgstr "Maximum amount of time each script may run."
+
+msgid "max_input_time"
+msgstr "Max input time:"
+
+msgid "max_input_time_help"
+msgstr "Maximum amount of time each script may spend parsing request data."
+
+msgid "memory_limit"
+msgstr "Memory limit:"
+
+msgid "memory_limit_help"
+msgstr "Defines how much memory a script may use. Settings this to a high value leaves the server vulnerable to attacks that attempt to exhaust resources and creates an environment where poor programming practices can propagate unchecked."
+
+msgid "vsitephpMenu"
+msgstr "PHP"
+
+msgid "vsitephpMenuDesc"
+msgstr "PHP related security and ressource settings for this virtual site. Allows you to individually adjust the PHP related security and resource settings on a per site basis."
+
+msgid "php_vsite_head"
+msgstr "PHP Settings for [[VAR.vsite]]"
+
+msgid "PHPVsiteStatusBox_header"
+msgstr "Please note:"
+
+msgid "phpVsiteNotEnabled"
+msgstr "PHP is not enabled for this virtual site. Before PHP is not enabled in general, no further PHP related options may be configured."
+
+msgid "php_ini"
+msgstr "php.ini"
+
+msgid "php_ini_help"
+msgstr "Raw contends of your php.ini file. For review only. Changes cannot be saved on this page."

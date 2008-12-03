@@ -122,6 +122,15 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ46
+- Modified ui/web/vsite_php.php to remove the save button when siteAdmin's view the page.
+- That is somewhat hackish, as MultiChoice don't take read only switches, which would be nicer.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ45
+- Fixed two minor issues in ui/web/vsite_php.php and ui/web/vsite_phpHandler.php
+- Added English and German locales for the PHP related additions.
+- Copied new English locale strings to the Japanese and Danish locales for now until someone can translate it.
+
 * Tue Dec 02 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ44
 - Still work in progress and not yet finished.
 - Added provisions to edit Apache vsite containers to insert php_admin flags, etc.

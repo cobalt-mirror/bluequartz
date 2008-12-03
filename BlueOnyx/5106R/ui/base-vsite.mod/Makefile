@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=vsite
 
 VERSION=3.0
-RELEASE=132BQ44
+RELEASE=132BQ46
 
 # add a buildarch if desired
 BUILDARCH=noarch
