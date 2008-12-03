@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # $Id: $
-# Copyright 2008 Project BlueQuartz, All rights reserved.
+# Copyright 2008 Project BlueOnyx, All rights reserved.
 
 use Sauce::Util;
 use Fcntl;

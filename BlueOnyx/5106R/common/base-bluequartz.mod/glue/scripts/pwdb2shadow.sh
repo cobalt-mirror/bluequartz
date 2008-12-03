@@ -1,11 +1,11 @@
 #!/bin/sh
 # $Id: $
-# Copyright 2008 Project BlueQuartz, All rights reserved.
+# Copyright 2008 Project BlueOnyx, All rights reserved.
 # Author : Hisao SHIBUYA <shibuya@bluequartz.org>
 
 # Source sysconfig
-if [ -f /etc/sysconfig/bluequartz ]; then
-	. /etc/sysconfig/bluequartz
+if [ -f /etc/sysconfig/blueonyx ]; then
+	. /etc/sysconfig/blueonyx
 fi
 
 if [ $AUTH == 'shadow' ]; then
@@ -36,8 +36,8 @@ fi
 # remove db settings from /etc/nsswitch.conf
 /usr/sausalito/sbin/disablePwdb.pl
 
-# modify sysconfig for BlueQuartz to use shadow
-perl -pi -e 's|AUTH=pwdb|AUTH=shadow|g' /etc/sysconfig/bluequartz
+# modify sysconfig for BlueOnyx to use shadow
+perl -pi -e 's|AUTH=pwdb|AUTH=shadow|g' /etc/sysconfig/blueonyx
 
 # Convert SASLAUTHd:
 /bin/sed -i -e 's@MECH=pam@MECH=shadow@' /etc/sysconfig/saslauthd

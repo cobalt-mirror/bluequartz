@@ -3,10 +3,10 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BQ17%{?dist}
+Release: 86BQ18%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: sausalito-i18n.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-i18n-root
@@ -27,7 +27,7 @@ sausalito-i18n is a wrapper library for i18n functions.
 
 %package devel
 Summary: The Sausalito i18n development libraries.
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 
 %description devel
 sausalito-i18n-devel includes the include files and static libraries for the 
@@ -93,6 +93,8 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BQ18
+- Rebuilt for BlueOnyx.
 
 * Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BQ17
 - Merged 5200R and 5100R code for 5106R

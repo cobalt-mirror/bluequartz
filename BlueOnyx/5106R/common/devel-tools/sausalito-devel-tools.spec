@@ -1,10 +1,10 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.1
-Release: 0BQ19%{?dist}
+Release: 0BQ20%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: %{name}.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
@@ -27,18 +27,18 @@ make install PREFIX=$RPM_BUILD_ROOT
 %postun
 if [ $1 -eq 0 ]; then
   for i in /usr/lib/rpm/rpmrc /usr/lib/rpm/redhat/rpmrc; do
-    if test -f "$i" && egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.bluequartz' "$i"; then
+    if test -f "$i" && egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.blueonyx' "$i"; then
       perl -pi -e \
-        's,^(macrofiles:.*):%{_sysconfdir}/rpm/macros\.bluequartz,$1,' "$i"
+        's,^(macrofiles:.*):%{_sysconfdir}/rpm/macros\.blueonyx,$1,' "$i"
     fi
   done
 fi
 
 %triggerin -- rpm, redhat-rpm-config, /usr/lib/rpm/rpmrc, /usr/lib/rpm/redhat/rpmrc
 for i in /usr/lib/rpm/rpmrc /usr/lib/rpm/redhat/rpmrc; do
-  if test -f "$i" && ! egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.bluequartz' "$i"; then
+  if test -f "$i" && ! egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.blueonyx' "$i"; then
     perl -pi -e \
-      's,^(macrofiles:.*?)(:~/.*)?$,$1:%{_sysconfdir}/rpm/macros\.bluequartz$2,' "$i"
+      's,^(macrofiles:.*?)(:~/.*)?$,$1:%{_sysconfdir}/rpm/macros\.blueonyx$2,' "$i"
   fi
 done
 
@@ -49,9 +49,12 @@ done
 /usr/sausalito/include/*
 /usr/sausalito/bin/*
 /usr/sausalito/perl/*
-/etc/rpm/macros.bluequartz
+/etc/rpm/macros.blueonyx
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ20
+- Updated for name change to BlueOnyx.
+
 * Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ19
 - Removed changelog entries from templates/spec.tmpl 
 

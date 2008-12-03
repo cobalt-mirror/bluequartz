@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: preview.pl 1133 2008-05-29 10:13:24Z mstauber $
-# Copyright 2005 Project BlueQuartz, All rights reserved.
+# Copyright 2005 Project BlueOnyx, All rights reserved.
 # handle the preview for server virtualhost
 #
 

@@ -1,10 +1,10 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
 Version: 1.0.2
-Release: 4BQ10%{?dist}
+Release: 4BQ11%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-apache-am.tar.gz
 BuildRoot: /tmp/base-apache-am
 
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.2-4BQ11
+- Rebuilt for BlueOnyx
+
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ10
 - add sign to the package.
 

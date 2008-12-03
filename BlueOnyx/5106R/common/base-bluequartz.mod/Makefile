@@ -3,13 +3,13 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueQuartz'
-SERVICE=bluequartz
+VENDORNAME='Project BlueOnyx'
+SERVICE=blueonyx
 
-BUILD=20081113
+BUILD=20081203
 
 VERSION=5106R
-RELEASE=2.$(BUILD)BQ88
+RELEASE=2.$(BUILD)BQ89
 
 # add a buildarch if desired
 BUILDARCH=noarch

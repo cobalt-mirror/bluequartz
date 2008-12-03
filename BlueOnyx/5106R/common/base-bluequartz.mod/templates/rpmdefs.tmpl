@@ -12,11 +12,11 @@
 <begin %DESCRIPTION>
 <begin glue>
 %package [LABEL]
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
+
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
 information for [VENDOR]-[SERVICE].
@@ -25,7 +25,8 @@ information for [VENDOR]-[SERVICE].
 
 <begin capstone>
 %package [LABEL]
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
+Obsoletes: base-bluequartz-capstone
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -65,7 +66,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %dir /etc/locks
 %config /etc/rc.d/init.d/*
-%config /etc/sysconfig/bluequartz
+%config /etc/sysconfig/blueonyx
 %attr(0755,root,root) /usr/sausalito/sbin/*
 %attr(0755,root,root) /usr/sausalito/scripts/*
 %dir /usr/sausalito/runonce
@@ -75,8 +76,8 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/triggers/*
 /etc/build
 /var/www/html/*
-%dir /usr/share/doc/bluequartz-release-5106R
-/usr/share/doc/bluequartz-release-5106R/*
+%dir /usr/share/doc/blueonyx-release-5106R
+/usr/share/doc/blueonyx-release-5106R/*
 <end glue>
 
 <begin ui>
@@ -141,18 +142,18 @@ else
   echo 'MECH=pam' > /etc/sysconfig/saslauthd
 fi
 /usr/sausalito/constructor/base/email/syncEmailService.pl
-/sbin/chkconfig --add bluequartz
+/sbin/chkconfig --add blueonyx
 
 # install pgp key
 /bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
-if [ $? = 1 ]; then
-  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
-fi
+#if [ $? = 1 ]; then
+#  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
+#fi
 
-# install NUSOL pgp key
+# install BlueOnyx pgp key
 /bin/rpm -q gpg-pubkey-5202f88b-491b00bc > /dev/null 2>&1
 if [ $? = 1 ]; then
-  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-NUSOL-5106R
+  /bin/rpm --import /usr/share/doc/blueonyx-release-5106R/RPM-GPG-KEY-NUSOL-5106R
 fi
 
 
@@ -172,8 +173,8 @@ fi
 %endif 
 
 # pwdb2shadow
-if [ -f /etc/sysconfig/bluequartz ]; then
-  . /etc/sysconfig/bluequartz
+if [ -f /etc/sysconfig/blueonyx ]; then
+  . /etc/sysconfig/blueonyx
 fi
 
 if [ $AUTH == 'pwdb' ]; then
@@ -317,6 +318,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ89
+. Rebuilt for BlueOnyx.
+
 * Fri Nov 14 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ88
 - Added provisions to set ServerTokens in httpd.conf to ProductOnly.
 

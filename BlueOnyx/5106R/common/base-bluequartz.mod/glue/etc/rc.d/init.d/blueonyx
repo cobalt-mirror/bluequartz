@@ -1,11 +1,11 @@
 #!/bin/sh
-# $Id: bluequartz 697 2006-03-02 10:34:53Z shibuya $
-# Copyright 2005 Project BlueQuartz.  All rights reserved.
+# $Id: blueonyx Tue Dec  2 21:56:31 2008 mstauber $
+# Copyright 2005-2008 Project BlueOnyx.  All rights reserved.
 #
-# bluequartz    initianlize BlueQuartz system at first boot.
+# blueonyx - initializes BlueOnyx system at first boot.
 #
 # chkconfig: 2345 0 0
-# description: initialize BlueQuartz settings.
+# description: initialize BlueOnyx settings.
 #
 
 # Source function library.

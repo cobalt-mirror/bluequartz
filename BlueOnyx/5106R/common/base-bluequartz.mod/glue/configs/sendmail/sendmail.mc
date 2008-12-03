@@ -8,7 +8,7 @@ dnl #
 dnl #     make -C /etc/mail
 dnl #
 include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
-VERSIONID(`setup for BlueQuartz')dnl
+VERSIONID(`setup for BlueOnyx')dnl
 OSTYPE(`linux')dnl
 dnl #
 dnl # Uncomment and edit the following line if your outgoing mail needs to
