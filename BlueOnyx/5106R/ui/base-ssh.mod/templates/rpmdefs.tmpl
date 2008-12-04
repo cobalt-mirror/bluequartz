@@ -117,6 +117,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Dec 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ9
+- Ability to set SSH to different ports, to allow root access, modify protocols and to edit /root/.bashrc.
+- Extended glue/schemas/ssh.schema with new entries.
+- Added constructor/import_sshd_settings.pl to determine current sshd config.
+- Extended glue/conf/ssh.conf to handle new events.
+- Extended ui/extensions/20_SSH.php.shell.System to provide UI for new switches.
+- Added glue/handlers/sshd_handler.pl to modify /etc/ssh/sshd_config and /root/.bashrc.
+- Modified English, German, Danish and Japanese locales for new strings.
+- German translation complete. Danish and Japanese have the new strings in English for now.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ8
 - Rebuilt for BlueOnyx.
 

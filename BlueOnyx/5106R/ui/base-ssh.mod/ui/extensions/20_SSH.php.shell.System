@@ -1,19 +1,18 @@
 <?php
-// $Id: 20_SSH.php.shell.System,v 1.1.1.1 2001/10/19 19:43:04 pbaltz Exp $
-// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+// $Id: 20_SSH.php.shell.System,v 1.1.1.2 Thu Dec  4 05:27:42 2008 mstauber Exp $
+// Copyright 2006-2008 Solarspeed Ltd. and NuOnce Networks, Inc. All rights reserved.
 //
 
 include_once('UIExtension.php');
 
-class SSHExtension extends UIExtension
-{
-    function display(&$helper, &$container, $prams)
-    {
+class SSHExtension extends UIExtension {
+    function display(&$helper, &$container, $prams) {
         $factory = $helper->getHtmlComponentFactory('base-ssh');
         $cce = $helper->getCceClient();
 
         $settings = $cce->get($prams['CCE_OID'], 'SSH');
 
+	// SSH enabled or not:
         $sshField =& $factory->getBoolean('SSH_enabled', $settings['enabled']);
 
         $container->addFormField(
@@ -21,16 +20,77 @@ class SSHExtension extends UIExtension
             $factory->getLabel('enableSSH'),
             $prams['PAGED_BLOCK_DEFAULT_PAGE']
             );
+
+	// Port:
+        // List of ports that we allow SSHd to run on:
+	$portlist = array (
+            '22',
+            '222',
+            '303',
+            '333',
+            '691',
+            '768',
+            '769',
+            '900',
+            '901',
+            '902',
+            '903',
+            '904',
+            '905',
+            '906',
+            '907',
+            '908',
+            '909',
+            '909',
+            '2002'
+    	);
+	sort($portlist);
+
+	$SSHPort = $factory->getMultiChoice("SSH_Port", array_values($portlist));
+	$SSHPort->setSelected($settings['Port'], true);
+	$SSHPort->setOptional(false);
+	$container->addFormField($SSHPort, $factory->getLabel("SSH_Port"), $prams['PAGED_BLOCK_DEFAULT_PAGE']);
+	
+	// Protocols:
+	$protolist = array (
+            '2',
+            '2,1',
+            '1,2',
+            '1'
+    	);
+
+	$SSHProto = $factory->getMultiChoice("SSH_Proto", array_values($protolist));
+	$SSHProto->setSelected($settings['Protocols'], true);
+	$SSHProto->setOptional(false);
+	$container->addFormField($SSHProto, $factory->getLabel("SSH_Proto"), $prams['PAGED_BLOCK_DEFAULT_PAGE']);
+
+	// Root Access enabled or not:
+        $sshRoot =& $factory->getBoolean('SSH_Root', $settings['PermitRootLogin']);
+
+        $container->addFormField(
+            $sshRoot,
+            $factory->getLabel('SSHrootLogin'),
+            $prams['PAGED_BLOCK_DEFAULT_PAGE']
+            );
+
     }
 
-    function handle(&$helper, &$errors, $prams)
-    {
+    function handle(&$helper, &$errors, $prams) {
         global $SSH_enabled;
-    
+	global $SSH_Port;    
+	global $SSH_Proto;    
+	global $SSH_Root;
+	    
         $cce = $helper->getCceClient();
 
         $cce->set($prams['CCE_OID'], 'SSH',
-                    array('enabled' => ($SSH_enabled ? 1 : 0)));
+                    array(
+                	'enabled' => ($SSH_enabled ? 1 : 0),
+                	'Port' => $SSH_Port,
+                	'Protocol' => $SSH_Proto,
+                	'PermitRootLogin' => ($SSH_Root ? 1 : 0),
+                	'force_update' => time()
+                	));
 
         $errors = array_merge($errors, $cce->errors());
     }
