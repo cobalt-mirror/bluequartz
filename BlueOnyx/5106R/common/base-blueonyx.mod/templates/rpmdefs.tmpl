@@ -17,6 +17,14 @@ Group: System Environment/BlueOnyx
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
+Obsoletes: base-bluequartz-capstone 
+Obsoletes: base-bluequartz-ui 
+Obsoletes: base-bluequartz-glue 
+Obsoletes: base-bluequartz-locale-en 
+Obsoletes: base-bluequartz-locale-de_DE
+Obsoletes: base-bluequartz-locale-da_DK
+Obsoletes: base-bluequartz-locale-ja
+
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
 information for [VENDOR]-[SERVICE].
@@ -26,7 +34,6 @@ information for [VENDOR]-[SERVICE].
 <begin capstone>
 %package [LABEL]
 Group: System Environment/BlueOnyx
-Obsoletes: base-bluequartz-capstone
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -318,7 +325,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ89
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081205BQ90
+- Moved and extended the Obsolete tag for more seamless upgrades.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081203BQ89
 . Rebuilt for BlueOnyx.
 
 * Fri Nov 14 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ88
