@@ -8,18 +8,18 @@
 	default="/usr/sausalito/swatch/bin/am_mysql.exp"/>
 
     <property name="greenMsg"		type="scalar"	
-	default="[[nuonce-mysql.amStatusOK]]"/>
+	default="[[base-mysql.amStatusOK]]"/>
     <property name="redMsg"		type="scalar"	
-	default="[[nuonce-mysql.amNotAccepting]]"/>
+	default="[[base-mysql.amNotAccepting]]"/>
 
     <property name="currentState" 	type="amstate" 	default="N"/>
     <property name="lastChange"   	type="uint"     default="0"/>
     <property name="lastRun"      	type="uint"     default="0"/>
     <property name="currentMessage" 	type="scalar" 	default=""/>
     <property name="nameTag"      	type="scalar"  	
-	default="[[nuonce-mysql.amMysqlNameTag]]"/>
+	default="[[base-mysql.amMysqlNameTag]]"/>
 
     <property name="URL"	     	type="scalar"  	
-	default="/nuonce/mysql/mysql_amdetails.php"/>
+	default="/base/mysql/mysql_amdetails.php"/>
     <property name="UIGroup"		type="scalar"   default="service"/>
 </class>
