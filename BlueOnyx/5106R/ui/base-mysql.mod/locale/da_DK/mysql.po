@@ -1,0 +1,168 @@
+msgid "amDetailsTitle"
+msgstr "MySQL Server Details"
+
+msgid "amMysqlNameTag"
+msgstr "MySQL Server"
+
+msgid "amNotAccepting"
+msgstr ""
+"The MySQL server is NOT operating normally.  Please try to manually restart "
+"it"
+
+msgid "amStatusOK"
+msgstr "The MySQL server is operating normally."
+
+msgid "current_pass"
+msgstr "Current Password:"
+
+msgid "current_pass_help"
+msgstr "Please enter in your current password"
+
+msgid "delete_backup"
+msgstr "Delete Backup"
+
+msgid "delete_backup_help"
+msgstr "Delete your MySQL backup file"
+
+msgid "download_backup"
+msgstr "Download DB Backup"
+
+msgid "download_backup_help"
+msgstr "Download the current snap shot of your database"
+
+msgid "dump"
+msgstr "Run SQL Dump"
+
+msgid "dump_help"
+msgstr "Execute MySQL Dump"
+
+msgid "filesize"
+msgstr "File Size:"
+
+msgid "filesize_help"
+msgstr "The size of your MySQL dump file"
+
+msgid "last_backup"
+msgstr "Last Backed Up:"
+
+msgid "last_backup_help"
+msgstr "Look at when the backup last happened"
+
+msgid "mysql_enabled"
+msgstr "Enable MySQL Server:"
+
+msgid "mysql_enabled_help"
+msgstr "Click to enable MySQL Server"
+
+msgid "mysql_header"
+msgstr "MySQL Server"
+
+msgid "mysqldump"
+msgstr "Create Database Snap Shot"
+
+msgid "mysqldump_help"
+msgstr "Back up all of your databases"
+
+msgid "mysqlpass"
+msgstr "New Password:"
+
+msgid "mysqlpass_help"
+msgstr "Allows you to change your MySQL password, as long as you know the current password."
+
+msgid "password"
+msgstr "MySQL Password"
+
+msgid "password_help"
+msgstr "The password for the main user of MySQL"
+
+msgid "server"
+msgstr "Server"
+
+msgid "server_help"
+msgstr "Enable & Disable MySQL Server"
+
+msgid "sqldump"
+msgstr "SQL DB Dump"
+
+msgid "sqldump_help"
+msgstr "Dump all of the databases to a text file"
+
+msgid "sqlpass"
+msgstr "Change Password"
+
+msgid "sqlpass_help"
+msgstr "Allows you to change your MySQL password. Can also be used to clear a MySQL password, provided you know the current password. To do so simply leave the 'New Password' field empty."
+
+msgid "username"
+msgstr "MySQL Username"
+
+msgid "username_help"
+msgstr "The main user user for MySQL"
+
+# Solarspeed additions:
+
+msgid "MySQL_Settings_head"
+msgstr "MySQL Settings"
+
+msgid "MySQL_Settings_divider"
+msgstr "Configure your MySQL related settings:"
+
+msgid "sql_host"
+msgstr "MySQL Host:"
+
+msgid "sql_host_help"
+msgstr "Host on which the MySQL server is located. Needs to be specified so that applications can connect to MySQL. By default this should be 'localhost'."
+
+msgid "sql_port"
+msgstr "MySQL Port:"
+
+msgid "sql_port_help"
+msgstr "TCP/IP port on which MySQL is reachable on the specified host. By default this should be '3306'."
+
+msgid "MYSQL_ROOT_Settings_divider"
+msgstr "MySQL root user settings - needed for database initialisation, setup and maintenance:"
+
+msgid "sql_root"
+msgstr "MySQL User:"
+
+msgid "sql_root_help"
+msgstr "Username of the MySQL user with 'root' privileges. By default this should be 'root'."
+
+msgid "sql_rootpassword"
+msgstr "MySQL Password:"
+
+msgid "sql_rootpassword_help"
+msgstr "Password of the MySQL 'root' user."
+
+msgid "sql_status"
+msgstr "MySQL Status:"
+
+msgid "sql_status_help"
+msgstr "Shows the status of your MySQL connection and if it is possible to connect to the MySQL server with the login details that you specified above."
+
+msgid "mysql_status_unconfigured"
+msgstr "Please configure the settings."
+
+msgid "mysql_status_incorrect"
+msgstr "MySQL connection cannot be established. Check settings."
+
+msgid "mysql_status_ok"
+msgstr "MySQL connection possible with this settings."
+
+msgid "MySQL_menu"
+msgstr "MySQL"
+
+msgid "MySQL_menu_help"
+msgstr "Configure the MySQL related settings, so that applications can communicate with MySQL."
+
+msgid "MySQL_Local_divider"
+msgstr "Local MySQL server:"
+
+msgid "MySQL_Remote_divider"
+msgstr "MySQL Server Details:"
+
+msgid "MySQL_Login_divider"
+msgstr "MySQL 'root' user details:"
+
+msgid "MySQL_Status_divider"
+msgstr "MySQL Connection Status:"
