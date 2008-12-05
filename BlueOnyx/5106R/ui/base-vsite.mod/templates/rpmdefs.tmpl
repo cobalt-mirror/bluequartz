@@ -15,6 +15,9 @@ Group: System Environment/BlueOnyx
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
+Obsoletes: solarspeed-mod_php  <= 5.2.6
+Obsoletes: solarspeed-mod_php-gui <= 5.2.6
+
 [PROVIDES]
 
 %description [LABEL]
@@ -122,6 +125,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ48
+- Added obsolete tag for CentOS4 based Solarspeed PHP GUIs.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ47
 - Rebuilt for BlueOnyx.
 
