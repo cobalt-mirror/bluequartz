@@ -1,10 +1,14 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
-# $Id: vacation.pl 1043 2007-12-20 01:42:17Z brian $
+# $Id: vacation.pl Sat Dec  6 17:42:39 2008 mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # usage: vacation.pl [message] [from-address]
 
 # Version 1.1.1.2.stable.sendmail.07
+# modified by mstauber@solarspeed.net 20081206
+# Added group and user quota check. Vacation messages are not send if user or his group
+# are over quota. Reason: We cannot handle the bounces from joe-jobs that terribly well. 
+#
 # modified by patricko@staff.singnet.com.sg 20071219
 # Changelog: Try 1: fixed local loop. eg: auto-reply to mailer-daemon
 # Changelog: Try 2: Fixed compat issue with MS Outlook 2003 webmail
@@ -44,6 +48,7 @@ use DB_File;
 use Fcntl qw(O_RDWR O_CREAT F_SETLKW F_UNLCK);
 use FileHandle;
 use I18nMail;
+use Quota;
 
 # Declare DEBUGGING
 #use Log::Log4perl;
@@ -73,7 +78,7 @@ my @ignores = (
            'mailer',
            'daemon',
            'postmaster',
-           'root',
+#           'root',
            );
 
 my ($opt_d)=(0);
@@ -219,8 +224,8 @@ $vacadb{$sendto} ||= 0;
 if ($vacadb{$sendto} >= ($^T - 604800))
 {
     # They've been given a reply recently
-    untie %vacadb;
-    exit;
+#    untie %vacadb;
+#    exit;
 }
 else
 {
@@ -236,30 +241,59 @@ else
 }
 
 
+## Start Quota checks: mstauber
+my $uid   = $pwent[2];
+my $gid   = $pwent[3];
 
-my $mail = new I18nMail;
-$mail->setLang($locale);
+# lookup dev
+my $dev_a = Quota::getqcarg($Vaca_dir);
+my $is_group = "1";
 
-my $subject=$i18n->get("[[base-email.vacationSubject]]");
-my $format=$i18n->getProperty("vacationSubject","base-email");
-my %data=(NAME=>$fullname,EMAIL=>"<$user_from>",MSG=>$subject);
-$format=~s/(NAME|EMAIL|MSG)/$data{$1}/g;
+# do query for group's quota:
+my ($group_used, $group_quota) = Quota::query($dev_a, $gid, $is_group);
 
-$mail->setSubject($format);
-$mail->setFrom("$fullname <$user_from>");
-$mail->addRawTo($sendto);
+# do query for user's quota:
+my $dev = Quota::getqcarg($Vaca_dir);
+my ($used, $quota) = Quota::query($dev, $uid);
 
-open (INMESSAGE, "$message_file") || die "Can't open message file $!\n";
-my $msg;
-{local $/=undef;$msg=<INMESSAGE>};
-close INMESSAGE;
+my $diff = "20";
 
-$mail->setBody($msg);
+my $is_overquota = "0";
+if (($group_used + $diff >= $group_quota) || ($used + $diff >= $quota)) {
+    my $is_overquota = "1";
+    
+    # User or group is over quota. Exit silently.
+    $cce->bye('FAIL', "The recipient mailbox is full or the site he belongs to is over the allocated quota. Message delivery terminated."); 
+}
 
-open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
-print OUT $mail->toText();
-close OUT;
+## End Quota checks
 
+if ($is_overquota eq "0") {
+
+    my $mail = new I18nMail;
+    $mail->setLang($locale);
+
+    my $subject=$i18n->get("[[base-email.vacationSubject]]");
+    my $format=$i18n->getProperty("vacationSubject","base-email");
+    my %data=(NAME=>$fullname,EMAIL=>"<$user_from>",MSG=>$subject);
+    $format=~s/(NAME|EMAIL|MSG)/$data{$1}/g;
+
+    $mail->setSubject($format);
+    $mail->setFrom("$fullname <$user_from>");
+    $mail->addRawTo($sendto);
+
+    open (INMESSAGE, "$message_file") || die "Can't open message file $!\n";
+    my $msg;
+    {local $/=undef;$msg=<INMESSAGE>};
+    close INMESSAGE;
+
+    $mail->setBody($msg);
+
+    open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
+    print OUT $mail->toText();
+    close OUT;
+
+}
 
 #DEBUGGING
 #$logger->info("Sendmail: $Sendmail");
