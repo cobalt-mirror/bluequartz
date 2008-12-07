@@ -75,8 +75,8 @@ else {
 $fqdn = $vsite->{fqdn};
 $fqdn = $new->{fqdn} if ($new->{fqdn});
 
-# Get main MySQL access settings out of 'Solarspeed_MySQL':
-@mysql_main = $cce->find('Solarspeed_MySQL');
+# Get main MySQL access settings out of 'MySQL':
+@mysql_main = $cce->find('MySQL');
 if (!defined($mysql_main[0])) {
         print STDERR "Sorry, no 'Solarspeed_MySQL' object found in CCE!\n";
         print STDERR "Unable to fetch MySQL 'root' access details for MySQL.\n";
@@ -134,10 +134,34 @@ sub remove_db_and_user {
 	#
 	## Delete the sites MySQL database: 
 	#
-	$dbh = DBI->connect("DBI:mysql:$db;host=$new_sql_host", $sql_root, $root_pass) || die "Database connection not possible: $DBI::errstr";
-	eval { $dbh->do("DROP DATABASE IF EXISTS $db") };
+	# Now caveat emptor! If we try to drop a database that (no longer?) exists (for whatever reasons!),
+	# then DBI connect will bitch six days til Sunday. Now if it fails during site deletion, then site
+	# deletion fails as well! We don't want that at all! Hence we wrap it into an eval and then figure 
+	# out if it went through or not:
+	$we_failed = "0";
+	eval { 
+	    $dbh = DBI->connect(
+	    "DBI:mysql:$db;host=$new_sql_host",
+	    $sql_root, $root_pass,
+    	    {
+        	RaiseError => 1,
+    		PrintError => 0
+    		}
+	    ); 
+	};
+	if ($@) {
+	    $we_failed = "1";
+	}
+        print STDERR "Retval: " . $we_failed . "\n";
 	print STDERR "Dropping $db failed: $@\n" if $@;
-	$dbh->disconnect();
+
+	# And of course we only disconnect from the database if the connection was successful. Otherwise it
+	# bitches again. The eval in there for 'drop database' could be outside, as we already made it
+	# fool proof with the 'if exists' addition. But meh! That's fine:
+	if ($we_failed eq "0") {
+	    eval { $dbh->do("DROP DATABASE IF EXISTS $db") };
+	    $dbh->disconnect();
+	}
 
 	#
         ## Revoke privileges (Step #1):

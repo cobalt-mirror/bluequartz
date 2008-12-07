@@ -82,6 +82,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $solmysqlField->addOption($enable);
 			
                         $solmysqlUsername = $factory->getTextField('solmysql_username', $featureMYSQL_Vsite['username'], 'r');
+                        $solmysqlUsername->setMaxLength("15");
                         $solmysqlUsername->setOptional(false);
                         $solmysqlUsername->setPreserveData(false);
                         $enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
@@ -92,6 +93,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
                         $solmysqlDB = $factory->getTextField('solmysql_DB', $featureMYSQL_Vsite['DB'], 'r');
+                        $solmysqlDB->setMaxLength("15");
                         $solmysqlDB->setOptional(false);
                         $solmysqlDB->setPreserveData(false);
                         $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
@@ -134,8 +136,10 @@ if ($db_rights['solsitemysql'] == "1") {
 			    // Resolve which site this is for:
 			    $vsite = $cce->getObject('Vsite', array('name' => $group));
 			    $vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
-			    $my_username = ereg_replace ( '\.', '_', $vs_site );
-			    $my_dbname = $my_username . '_db';
+//			    $my_username = ereg_replace ( '\.', '_', $vs_site );
+//			    $my_dbname = $my_username . '_db';
+                            $my_username = $group;
+                            $my_dbname = $group . '_db';
 			    $my_random_password = createRandomPassword();
 			    if (!$group) {
 				$my_username = "";
@@ -155,6 +159,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $solmysqlField->addOption($enable);
 
                         $solmysqlUsername = $factory->getTextField('solmysql_username', $my_username, $prot);
+                        $solmysqlUsername->setMaxLength("15");
                         $solmysqlUsername->setOptional(false);
                         $solmysqlUsername->setPreserveData(false);
                         $enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
@@ -165,6 +170,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
                         $solmysqlDB = $factory->getTextField('solmysql_DB', $my_dbname, $prot);
+                        $solmysqlDB->setMaxLength("15");
                         $solmysqlDB->setOptional(false);
                         $solmysqlDB->setPreserveData(false);
                         $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));

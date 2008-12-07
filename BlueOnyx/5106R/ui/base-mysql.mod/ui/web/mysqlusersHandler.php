@@ -13,7 +13,8 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 }
 $cceClient = $serverScriptHelper->getCceClient();
 
-if ($MySQL_TAB_TWO == "true") {
+if ($_PagedBlock_selectedId_mysql_head == "MySQL_TAB_TWO") {
+//if ($MySQL_TAB_TWO == "true") {
     $whichtab = "two";
     $quelle_zwo = $my_cnf;
     $cfg_file_zwo = "/tmp/my.cnf";

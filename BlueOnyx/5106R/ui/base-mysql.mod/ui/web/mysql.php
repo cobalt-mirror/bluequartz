@@ -23,6 +23,7 @@
 	include_once("ServerScriptHelper.php");
 
 	$serverScriptHelper = new ServerScriptHelper();
+	$i18n = $serverScriptHelper->getI18n("base-mysql");
 	$cceClient = $serverScriptHelper->getCceClient();
 
 	if (!$serverScriptHelper->getAllowed('adminUser')) {
@@ -96,7 +97,7 @@
 	}
 
 	if (($mysql_settings_exists == 0) && ($pid)) {
-	    $mysql_status = "MySQL password for user '". $sql_root . "' apparently not set yet! Please set a password for MySQL-user '". $sql_root . "'!";
+		$mysql_status = $i18n->interpolate("[[base-mysql.root_has_no_pwd]]");
 	}
 	elseif ($pid) {
 	    // Test MySQL connection:
@@ -108,14 +109,15 @@
 		mysql_close($mysql_link);
 	    }
 	    if ($mysql_error) {
-    		$mysql_status = "MySQL connection cannot be established. Check settings and see if MySQLd is running.";
+		$mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
+
 	    }
 	    else {
-    		$mysql_status = "MySQL connection possible with this settings.";
+		$mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_ok]]");
 	    }
 	}
 	else {
-	    $mysql_status = "MySQL status could not be determined. Please check your settings.";
+	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
 	}
 
 	$page = $factory->getPage();

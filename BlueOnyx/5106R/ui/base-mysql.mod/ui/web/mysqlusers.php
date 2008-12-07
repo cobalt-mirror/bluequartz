@@ -6,6 +6,7 @@
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
+$i18n = $serverScriptHelper->getI18n("base-mysql");
 
 //Only users with adminUser capability should be here
 if (!$serverScriptHelper->getAllowed('adminUser')) {
@@ -47,10 +48,10 @@ $block->addFormField(
 // Add divider:
 $block->addDivider($factory->getLabel("DIVIDER_ZERO", false), 'MySQL_TAB_ONE');
 
-$my_TEXT = 'New MySQL users will be created with the following default privileges for their own database as shown below.';
+$my_TEXT = $i18n->interpolate("[[base-mysql.MySQL_Info_Text]]");
 $block->addFormField(
   $factory->getTextField("mysql_default_privileges", $my_TEXT, 'r'),
-  $factory->getLabel(""), 
+  $factory->getLabel(" "), 
   'MySQL_TAB_ONE' 
 );
 

@@ -403,3 +403,12 @@ msgstr "MAX CONNECTIONS PER HOUR"
 msgid "MAX_CONNECTIONS_PER_HOUR_help"
 msgstr "Limits the number of connections the user may open per hour. '0' means no limit."
 
+msgid "MySQL_Info_Text"
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
+
+#
+
+msgid "root_has_no_pwd"
+msgstr "MySQL password for MySQL-root user apparently not yet set! Please set a password for MySQL-user 'root'!"
+
+
