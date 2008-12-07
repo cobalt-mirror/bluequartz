@@ -78,7 +78,7 @@ my @ignores = (
            'mailer',
            'daemon',
            'postmaster',
-#           'root',
+           'root',
            );
 
 my ($opt_d)=(0);
