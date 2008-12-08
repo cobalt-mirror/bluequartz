@@ -16,6 +16,9 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+* Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-25BQ21
+- Fixed sitestats-scripts/split_logs by adding a more thorough chown once a sites logs have been done.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-25BQ20
 - Rebuilt for BlueOnyx.
 
