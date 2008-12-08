@@ -181,7 +181,14 @@ sub dhcpd_set_range
 	# Get the network parameters for the primary interface
 	# get network object id
 	my $cce = new CCE;
-	my ($network_oid) = $cce->find("Network", { 'device' => "eth0" });
+
+	my $network_oid = "";
+	if ( -e "/proc/user_beancounters") {
+	    ($network_oid) = $cce->find("Network", { 'device' => 'venet0:0' });
+	}
+	else {
+	    ($network_oid) = $cce->find("Network", { 'device' => "eth0" });
+	}
 
 	# get network object:
 	my ($okn, $netobj) = $cce->get($network_oid);
@@ -409,7 +416,12 @@ sub dhcpd_create_conf
 	my $gateway = $obj->{gateway};
 	my $dns = $obj->{dns};
 
-        my ($network_oid) = $cce->find("Network", { 'device' => "eth0" });
+	if ( -e "/proc/user_beancounters") {
+	    ($network_oid) = $cce->find("Network", { 'device' => 'venet0:0' });
+	}
+	else {
+	    ($network_oid) = $cce->find("Network", { 'device' => "eth0" });
+	}
 
         # get network object:
         my ($okn, $netobj) = $cce->get($network_oid);

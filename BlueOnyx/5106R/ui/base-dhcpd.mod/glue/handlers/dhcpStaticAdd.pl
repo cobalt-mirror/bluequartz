@@ -35,7 +35,12 @@ $mac=uc( $mac );
 
 
 # get network object id
-my ($network_oid) = $cce->find("Network", {device => "eth0"});
+if ( -e "/proc/user_beancounters") {
+    my ($network_oid) = $cce->find("Network", {device => "venet0:0"});
+}
+else {
+    my ($network_oid) = $cce->find("Network", {device => "eth0"});
+}
 # get network object:
 my ($okn, $netobj) = $cce->get($network_oid);
 if (!$okn) {

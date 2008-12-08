@@ -17,7 +17,13 @@ $cce->connectfd();
 # some setup
 my @oids = $cce->find('System');
 
-my @netoids = $cce->find('Network', { 'device' => 'eth0' });
+my @netoids = ();
+if ( -e "/proc/user_beancounters") {
+     @netoids = $cce->find('Network', { 'device' => 'venet0:0' });
+}
+else {
+    @netoids = $cce->find('Network', { 'device' => 'eth0' });
+}
 my ($ok, $net) = $cce->get($netoids[0], '');
 my $ipaddr = $net->{ipaddr};
 

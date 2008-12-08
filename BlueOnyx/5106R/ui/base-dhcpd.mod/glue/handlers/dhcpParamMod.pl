@@ -27,7 +27,13 @@ if (!$ok) {
 }
 
 # get network object id
-my ($network_oid) = $cce->find("Network", {device => "eth0"});
+my $network_oid = "";
+if ( -e "/proc/user_beancounters") {
+    ($network_oid) = $cce->find("Network", { 'device' => 'venet0:0' });
+}
+else {
+    ($network_oid) = $cce->find("Network", { 'device' => "eth0" });
+}
 # get network object:
 my ($okn, $netobj) = $cce->get($network_oid);
 if (!$okn) {
@@ -71,13 +77,14 @@ $dns = "" unless $dns;
 my @dns = $cce->scalar_to_array($dns);
 
 
-# Make sure the Gateway is on the same subnet as the Primary Interface
-unless (Dhcpd::net_network_ismember($gw,$netobj->{ipaddr},$nm)) {
+if ( ! -e "/proc/user_beancounters") {
+    # Make sure the Gateway is on the same subnet as the Primary Interface
+    unless (Dhcpd::net_network_ismember($gw,$netobj->{ipaddr},$nm)) {
             $cce->warn("[[base-dhcpd.gwMismatch]]");
 	    $cce->bye('FAIL');
 	    exit 1;
+    }
 }
-
 
 my $err=Dhcpd::dhcpd_set_parameters( $domain, $gw, $nm, $maxlease, $broadcast, @dns );
 

@@ -13,7 +13,7 @@ my $obj = $cce->event_object;
 
 print STDERR "$0: Checking Device name..\n";
 # check to see if we are on eth0
-if ($obj->{device} ne "eth0") {
+if (($obj->{device} ne "eth0") || ($obj->{device} ne "venet0:0")) {
 	$cce->bye("SUCCESS");
 	exit();
 }
