@@ -137,7 +137,7 @@ $safe_mode_gid_select->setSelected($safe_mode_gid_choices[$safe_mode_gid], true)
 $block->addFormField($safe_mode_gid_select,$factory->getLabel("safe_mode_gid"), "Default");
 
 // safe_mode_include_dir =
-$safe_mode_include_dir_Field = $factory->getTextField("safe_mode_include_dir", $systemObj['safe_mode_include_dir']);
+$safe_mode_include_dir_Field = $factory->getTextField("safe_mode_include_dir", $systemObj['safe_mode_include_dir'], $access);
 $safe_mode_include_dir_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_include_dir_Field,
