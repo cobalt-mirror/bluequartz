@@ -271,6 +271,12 @@ fi
 /bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
 %triggerin glue -- httpd
 /usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
+# Fix /etc/logrotate.conf, because we want to rotate daily and we want to compress the logs:
+/usr/bin/perl -pi -e 's|^# rotate log files weekly|# rotate log files daily|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^weekly|daily|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
 %endif
 
 %if "%centos" == "4"
@@ -325,6 +331,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081208BQ91
+- Set more sensible defaults for /etc/logrotate.conf
+
 * Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081205BQ90
 - Moved and extended the Obsolete tag for more seamless upgrades.
 
