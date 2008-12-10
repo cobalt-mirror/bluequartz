@@ -13,6 +13,7 @@ $cceHelper =& $helper->getCceClient();
 $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
 if ($db_rights['solsitemysql'] == "1") {
 
+    $ret = ini_set("display_errors", "Off");
     class MYSQL_VsiteExtension extends UIExtension {
 	function display(&$ServerScriptHelper, &$container, $parameters) {
 		global $group;
@@ -202,7 +203,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $enable->setLabel($factory->getLabel('enable', false));
                         $solmysqlField->addOption($enable);
 			
-			$sql_Status = "Unable to set up MYSQL_Vsite. MySQL connection cannot be established. Please check the settings under 'Solarspeed GUI' / 'MySQL Settings' first.";
+                        $sql_Status = "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running.";
 
                         $solmysqlStatus = $factory->getTextField('solmysql_Status', $sql_Status, 'r');
                         $solmysqlStatus->setOptional(false);
@@ -468,6 +469,7 @@ if ($db_rights['solsitemysql'] == "1") {
 	    }
 	}
     }
+    $ret = ini_set("display_errors", "On");
 }
 
 function createRandomPassword() {

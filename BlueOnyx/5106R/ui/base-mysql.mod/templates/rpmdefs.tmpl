@@ -115,6 +115,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-7
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite
+- Changed error message when MySQL connection cannot be established.
+- Set display_errors to Off during MySQL connect to hide nasty in-line error messages on connect issues.
+
 * Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-6
 - Modified glue/handlers/modify_mysql_data.pl
 - Fixed a potential issue during site deletion, which would fail if MySQL db was missing already.
