@@ -192,6 +192,11 @@ else
   /bin/sed -i -e "s@'db files'@files@" /etc/nsswitch.conf
 fi
 
+# Fix php.ini:
+if [ -f /etc/php.ini ]; then
+    /usr/bin/perl -pi -e 's|^error_reporting  =  E_ALL|error_reporting  =  E_ALL & ~E_NOTICE|g' /etc/php.ini
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -331,6 +336,11 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081208BQ92
+- /etc/php.ini was set to error_report notice. Bad idea!
+- If you use Perl for search and replace, Perl must be a required dependency!
+
 * Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081208BQ91
 - Set more sensible defaults for /etc/logrotate.conf
 
