@@ -22,6 +22,7 @@ if ($db_rights['solsitemysql'] == "1") {
     class MYSQL_VsiteExtension extends UIExtension {
 	function display(&$ServerScriptHelper, &$container, $parameters) {
 		global $group;
+		$ret = ini_set("display_errors", "Off");
 
 		$cce = $ServerScriptHelper->getCceClient();
 
