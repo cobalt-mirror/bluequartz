@@ -19,7 +19,6 @@ $cceHelper =& $helper->getCceClient();
 $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
 if ($db_rights['solsitemysql'] == "1") {
 
-    $ret = ini_set("display_errors", "Off");
     class MYSQL_VsiteExtension extends UIExtension {
 	function display(&$ServerScriptHelper, &$container, $parameters) {
 		global $group;
@@ -472,10 +471,10 @@ if ($db_rights['solsitemysql'] == "1") {
 						    'hidden' => time()
 						    ));
 		}
+		$ret = ini_set("display_errors", "On");
 	    }
 	}
     }
-    $ret = ini_set("display_errors", "On");
 }
 
 function createRandomPassword() {
