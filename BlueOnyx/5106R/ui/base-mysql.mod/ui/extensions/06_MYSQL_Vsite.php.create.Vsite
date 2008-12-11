@@ -211,10 +211,10 @@ if ($db_rights['solsitemysql'] == "1") {
 			
 			$sql_Status = "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running.";
 
-                        $solmysqlStatus = $factory->getTextField('solmysql_Status', $sql_Status, 'r');
+                        $solmysqlStatus = $factory->getTextField('sql_status', $sql_Status, 'r');
                         $solmysqlStatus->setOptional(false);
                         $solmysqlStatus->setPreserveData(false);
-                        $enable->addFormField($solmysqlStatus, $factory->getLabel('solmysqlStatus'));
+                        $enable->addFormField($solmysqlStatus, $factory->getLabel('sql_status'));
 
 			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
 		    }
