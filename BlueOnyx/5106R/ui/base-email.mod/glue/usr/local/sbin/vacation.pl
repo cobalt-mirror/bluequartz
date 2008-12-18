@@ -1,9 +1,17 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
-# $Id: vacation.pl Sat Dec  6 17:42:39 2008 mstauber $
+# $Id: vacation.pl Thu Dec 18 11:00:02 2008 mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # usage: vacation.pl [message] [from-address]
 
+# Version 1.1.1.2.stable.sendmail.08
+# modified by mstauber@solarspeed.net 20081218
+# The internal mailer as provided by Sauce::I18nMail is (and always has been!) a piece
+# of garbage that's fubare'ed beyond believe. That bloody mailer doesn't even know how
+# to build email headers right. This interfered with vacation messages in a quite messy
+# way. Patricko tried to solve this in 2005 with a work around, but I just went in
+# and switched to something that works instead. So we now mail through MIME::Lite
+#
 # Version 1.1.1.2.stable.sendmail.07
 # modified by mstauber@solarspeed.net 20081206
 # Added group and user quota check. Vacation messages are not send if user or his group
@@ -49,6 +57,7 @@ use Fcntl qw(O_RDWR O_CREAT F_SETLKW F_UNLCK);
 use FileHandle;
 use I18nMail;
 use Quota;
+use MIME::Lite;
 
 # Declare DEBUGGING
 #use Log::Log4perl;
@@ -90,6 +99,7 @@ my $Sendmail = Sauce::Config::bin_sendmail;
 
 my @pwent = getpwnam($user_from);
 my $Vaca_dir = $pwent[7];
+my $uname = $pwent[0];
 
 my $i18n=new I18n;
 
@@ -287,11 +297,26 @@ if ($is_overquota eq "0") {
     {local $/=undef;$msg=<INMESSAGE>};
     close INMESSAGE;
 
-    $mail->setBody($msg);
+#    No, thanks. The internal email function is (and always has been!) fubar.
+#    $mail->setBody($msg);
+#    open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
+#    print OUT $mail->toText();
+#    close OUT;
 
-    open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
-    print OUT $mail->toText();
-    close OUT;
+    # Build the message using MIME::Lite instead:
+    my $send_msg = MIME::Lite->new(
+        From     => "$fullname <$user_from>",
+        To       => $sendto,
+        Subject  => $format,
+        Data     => $msg
+    );
+
+    # Set content type:
+    $send_msg->attr("content-type"         => "text/plain");
+    $send_msg->attr("content-type.charset" => "ISO-8859-1");
+
+    # Out with the email:
+    $send_msg->send;
 
 }
 
