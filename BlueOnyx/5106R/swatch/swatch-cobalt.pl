@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright (c) Turbolinux, inc.
-# Modified by Michael Stauber <mstauber@solarspeed.net> for usage on Aventurin{e}
-# Sat 27 Oct 2007 03:28:51 AM CEST
+# Modified by Michael Stauber <mstauber@solarspeed.net> 
+# Thu 18 Dec 2008 06:46:24 AM EST
 
 use strict;
 use CCE;
@@ -10,6 +10,7 @@ use I18n;
 use SendEmail;
 use Sys::Hostname;
 use POSIX qw(isalpha);
+use MIME::Lite;
 
 my $host = hostname();
 my $now = localtime time;
@@ -150,7 +151,24 @@ if ($body) {
   my $subject = $host . ": " . $i18n->get("[[swatch.emailSubject]]");
   my $to;
   foreach $to (@email_list) {
-    SendEmail::sendEmail($to, "root <root>", $subject, $body);
+  
+    # No, we don't want to use Sauce::SendEmail:
+    #SendEmail::sendEmail($to, "root <root>", $subject, $body);
+
+    # Build the message using MIME::Lite instead:
+    my $send_msg = MIME::Lite->new(
+        From     => "root <root>",
+        To       => $to,
+        Subject  => $subject,
+        Data     => $body
+    );
+
+    # Set content type:
+    $send_msg->attr("content-type"         => "text/plain");
+    $send_msg->attr("content-type.charset" => "ISO-8859-1");
+
+    # Out with the email:
+    $send_msg->send;
   }
 }
 
