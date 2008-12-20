@@ -234,8 +234,8 @@ $vacadb{$sendto} ||= 0;
 if ($vacadb{$sendto} >= ($^T - 604800))
 {
     # They've been given a reply recently
-#    untie %vacadb;
-#    exit;
+    untie %vacadb;
+    exit;
 }
 else
 {
