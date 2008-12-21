@@ -45,7 +45,7 @@ test:
 
 install_httpdconf:
 	mkdir -p $(PREFIX)/etc/httpd/conf.d
-	install -o root -g root -m 644 httpd/bluequartz.conf $(PREFIX)/etc/httpd/conf.d
+	install -o root -g root -m 644 httpd/blueonyx.conf $(PREFIX)/etc/httpd/conf.d
 
 perl_inst: $(PERLSRCS)
 	mkdir -p $(CCE_PERLDIR) || /bin/true

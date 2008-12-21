@@ -133,7 +133,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /usr/sausalito/perl/*
 %{extension_dir}/*
 /usr/share/locale/*
-%config(noreplace) /etc/httpd/conf.d/bluequartz.conf
+%config(noreplace) /etc/httpd/conf.d/blueonyx.conf
 
 %post server
 # only run on install, not upgrade 
@@ -178,6 +178,10 @@ fi
 %changelog
 
 %changelog 
+
+* Sun Dec 21 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.3-1BQ41
+- Renamed /etc/httpd/conf.d/bluequartz.conf to blueonyx.conf
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.3-1BQ40
 - Renamed for BlueOnyx.
 
