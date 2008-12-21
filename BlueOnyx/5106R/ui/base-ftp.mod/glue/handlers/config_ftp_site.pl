@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/ftp
-# $Id: config_ftp_site.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: config_ftp_site.pl 259 Sun 21 Dec 2008 12:01:08 AM EST mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # config_ftp_site.pl
 # largely based on siteMode.pm and siteAdd.pm in turbo_ui
@@ -52,6 +52,7 @@ sub edit_ftpconfig
 	DefaultRoot		~/../../.. $Base::Vsite::SITE_ADMIN_GROUP
 	DefaultRoot		~ !$Base::Vsite::SITE_ADMIN_GROUP
 	AllowOverwrite	on
+        DefaultChdir		/web
 	DisplayLogin	.ftphelp
 END
 
