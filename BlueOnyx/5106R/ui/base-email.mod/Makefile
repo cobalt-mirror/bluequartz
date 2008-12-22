@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=email
 
 VERSION=1.3.1
-RELEASE=0BQ42
+RELEASE=0BQ43
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES = dovecot base-blueonyx-glue >= 1.20081203 perl-MIME-Lite >= 3.023-2 perl-Email-Date-Format >= 1.002-1 base-email-am base-squirrelmail-capstone base-squirrelmail-locale-da_DK base-squirrelmail-locale-de_DE
+REQUIRES = dovecot base-blueonyx-glue >= 1.20081203 perl-MIME-Lite >= 3.023-2 perl-Email-Date-Format >= 1.002-1 base-email-am 
 
 #########
 # some useful defines
