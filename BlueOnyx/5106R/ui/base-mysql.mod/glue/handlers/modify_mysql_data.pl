@@ -104,8 +104,12 @@ else {
 if($cce->event_is_destroy() && $old->{fqdn}) {
 	# Site deletion, not to be confused with MySQL disable
 	&checkalldetails;
-	&remove_db_and_user;
-	&remove_extra;
+	if ($mysql_vsite_enabled == "1") {
+	    # Only perform action if this site 
+	    # has a MySQL database or user:
+	    &remove_db_and_user;
+	    &remove_extra;
+	}
 }
 elsif ($mysqlsite == "1") {
     # Enable MySQL for the site
@@ -216,11 +220,14 @@ sub remove_db_and_user {
 }
 
 sub checkalldetails {
-# Make sure we know what user and DB to delete:
+    # Make sure we know what user and DB to delete:
     if (($site_mysql_user eq "") || ($db eq "")) {
-	$DEBUG && warn "Could not determine the name of the MySQL user and MySQL database for this Vsite. $dudu \n";
-	$cce->bye('FAIL', "Could not determine the MySQL username and database name for this virtual site.");
-        exit(1);
+	# OK, this site doesn't have a MySQL database or user:
+	$mysql_vsite_enabled = "0";
+    }
+    else {
+	# OK, this site has a MySQL database or user:
+	$mysql_vsite_enabled = "1";
     }
 }
 
