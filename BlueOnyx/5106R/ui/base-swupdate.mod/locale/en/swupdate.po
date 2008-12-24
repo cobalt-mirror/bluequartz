@@ -605,7 +605,7 @@ msgid "capgroup_adminBlueLinq_help"
 msgstr "This administrative right allows a user to manage BlueLinQ.  This allows a user to install new software and to update existing software."
 
 msgid "3rdpartypkg_warning"
-msgstr "By using 3rd party updates, you assume all responsbility associated with your choice.  Please do not use public packages, unless you trust the party that issued them.  If you install their package(s), and they have bad intensions, they can easily take control of your server"
+msgstr "PLEASE NOTE: Installation of a third-party package or update may cause the server to malfunction, crash, or become unstable. In addition, packages from un-trusted sources may allow a malicious publisher or user to take control of the server. Please only install packages from a trusted third party source." 
 
 msgid "warning_header"
 msgstr "Warning!!!"
