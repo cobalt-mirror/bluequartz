@@ -1,0 +1,12 @@
+<!-- Author: Brian N. Smith -->
+<!-- Copyright 2006, NuOnce Networks.All rights reserved. -->
+<!-- $Id: subdomainsUser.schema,v 2.0 2006/01/22 10:45:00 Exp $ -->
+
+<CLASS name="User" namespace="subdomains" version="2.0">
+  <PROPERTY name="enabled" type="boolean" default="0" writeacl="ruleAll"/>
+</CLASS>
+
+<CLASS name="UserServices" namespace="subdomains" version="2.0">
+  <property name="featureEnabled" type="boolean" default="1"/>
+  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(adminUser)"/>
+</CLASS>

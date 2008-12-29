@@ -1,0 +1,13 @@
+<!--
+Author: Brian N. Smith
+Copyright 2006, NuOnce Networks.All rights reserved.
+$Id: sd_system.xml,v 1.0 2006/01/26 10:41:00 Exp $
+-->
+
+<item
+  id="nuonce_subdomains"
+  label="Sub Domains"
+  description="Allow Virtual Sites to create subdomains."
+  url="/base/subdomains/system.php">
+  <parent id="base_controlpanel" order="11"/>
+</item>

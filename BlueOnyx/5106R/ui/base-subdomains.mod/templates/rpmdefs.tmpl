@@ -1,0 +1,138 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueQuartz
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+%attr(0644,root,root)/etc/httpd/conf/subdomains.conf
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+/bin/echo "Include /etc/httpd/conf/subdomains.conf" >> /etc/httpd/conf/httpd.conf
+/etc/rc.d/init.d/httpd restart >/dev/null 2>&1
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+/bin/rm -f /etc/httpd/conf/subdomains.conf
+/usr/bin/perl -pi -e "s#Include /etc/httpd/conf/subdomains.conf.*##" /etc/httpd/conf/httpd.conf
+/etc/rc.d/init.d/httpd restart >/dev/null 2>&1
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+* Mon Dec 29 2008 Brian N. Smith <brian@nuonce.net> 2.0.0-1
+- Lots of changes, but new v2 to be brought into BlueOnyx
+
+* Tue Aug 08 2006 Brian N. Smith <brian@nuonce.net> 1.0.0-1
+- Rebuilt using "BQ" style of RPMS
+
+* Sun Jul 16 2006 Brian N. Smith <brian@nuonce.net>
+- Fixed problem with showing more then 25 on scroll.  Will scroll through
+- all virtual sites now!
+
+* Sat Jul 8 2006 Brian N. Smith <brian@nuonce.net>
+- Inital Installer Build
+
+<end $CHANGELOG>
