@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/network
 #
-# $Id: rewrite-ifcfg.pl 1146 2008-06-06 23:57:38Z mstauber $
+# $Id: rewrite-ifcfg.pl Tue 30 Dec 2008 01:29:40 AM EST  mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # rewrite the ifcfg file for the interface being modified with the new settings
@@ -28,9 +28,8 @@ my $bootproto = $obj->{'bootproto'};
 my ($network, $broadcast) = calcnetwork($ipaddr, $netmask);
 my $onboot = $enabled ? 'yes' : 'no';
 
-# If the device is simply 'venet0', then we must NOT change it:
-if ($device == "venet0")
-{
+# If the device is 'venet0', then we must NOT change it, as the network scripts are handled by OpenVZ:
+if ($device =~ /venet0/) {
         $cce->bye('SUCCESS');
         exit(0);
 }
@@ -39,10 +38,9 @@ if ($device == "venet0")
 # and there is never a need to write an ifcfg file until
 # the ipaddr field for a Network object is filled in
 # this handler doesn't run on Network._DESTROY
-if (not $obj->{ipaddr})
-{
-	$cce->bye('SUCCESS');
-	exit(0);
+if (not $obj->{ipaddr}) {
+        $cce->bye('SUCCESS');
+        exit(0);
 }
 
 # edit ifcfg file
