@@ -75,22 +75,19 @@
 
 	$count = count($subdomainOIDs);
 
-	if ( $vsite["vsite_enabled"] ) {
-		foreach ( $subdomainOIDs as $OID ) {
-			$subdomain = $cceClient->get($OID);
-			$actions = $factory->getCompositeFormField();
-			$fqdn = $subdomain["hostname"] . "." . $domain;
-			$delButton = $factory->getRemoveButton("javascript:confirmVsiteDel($OID, '$fqdn')");
-			if ( ! $subdomain["isUser"] ) {
-				$actions->addFormField($delButton);
-			}
-
-			$subs->addEntry(array(
-				$factory->getTextField("", $subdomain["hostname"], "r"),
-				$factory->getTextField("", $subdomain["webpath"] , "r"),
-				$actions
-			));
+	foreach ( $subdomainOIDs as $OID ) {
+		$subdomain = $cceClient->get($OID);
+		$actions = $factory->getCompositeFormField();
+		$fqdn = $subdomain["hostname"] . "." . $domain;
+		$delButton = $factory->getRemoveButton("javascript:confirmVsiteDel($OID, '$fqdn')");
+		if ( ! $subdomain["isUser"] ) {
+			$actions->addFormField($delButton);
 		}
+		$subs->addEntry(array(
+			$factory->getTextField("", $subdomain["hostname"], "r"),
+			$factory->getTextField("", $subdomain["webpath"] , "r"),
+			$actions
+		));
 	}
 
 	if ( $vsite["vsite_enabled"] ) {
