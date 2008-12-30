@@ -50,11 +50,7 @@
 		$factory->getBoolean("vsite_enabled", $vsite["vsite_enabled"], $access),
 		$factory->getLabel("vsite_enabled"));
 
-	$block->addFormField(
-		$factory->getTextField("vsite_name", $site_info["fqdn"], "r"),
-		$factory->getLabel("vsite_name"));
-
-	$max_subdomains = $factory->getInteger("max_subdomains", $vsite["max_subdomains"], 1, 1000, $access);
+	$max_subdomains = $factory->getInteger("max_subdomains", $vsite["max_subdomains"], 1, 10000, $access);
 	$max_subdomains->showBounds(1);
 	$max_subdomains->setWidth(4);
 
