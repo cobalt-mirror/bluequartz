@@ -57,6 +57,13 @@
 
 	$hostdomain = $factory->getCompositeFormField(array($host, $domain), '&nbsp;&nbsp;');
 
+	$block->addFormField(
+		$hostdomain,
+		$factory->getLabel('enterFqdn'));
+
+	$block1 = $factory->getPagedBlock("vsite_add_header_two");
+
+
 	$webpath = $factory->getMultiChoice("rootpath");
 	$webpath->addOption($factory->getOption($site_info["basedir"] . "/vhosts/"));
 	$webpath->addOption($factory->getOption($site_info["basedir"] . "/web/"));
@@ -72,19 +79,9 @@
 
 	$rootweb = $factory->getCompositeFormField(array($rootpath, $webdir), '&nbsp;&nbsp;');
 
-
-	$block->addFormField(
-		$hostdomain,
-		$factory->getLabel("enterFqdn"));
-
-	$block->addFormField(
+	$block1->addFormField(
 		$rootweb,
-		$factory->getLabel("webpath")); 
-
-
-
-
-
+		$factory->getLabel('webpath')); 
 
 /*
 	$block->addFormField(
@@ -103,12 +100,13 @@
 		$factory->getBoolean("ssi", "", $ssi_access),
 		$factory->getLabel("ssi"));
 */
-	$block->addButton($factory->getSaveButton($page->getSubmitAction()));
-	$block->addButton($factory->getButton("/base/subdomains/vsite.php?group=$group","button_cancel"));
+	$block1->addButton($factory->getSaveButton($page->getSubmitAction()));
+	$block1->addButton($factory->getButton("/base/subdomains/vsite.php?group=$group","button_cancel"));
 	
 
 	echo $page->toHeaderHtml();
 	echo $block->toHtml();
+	echo $block1->toHtml();
 ?>
 <script language="javascript">
  <!--   

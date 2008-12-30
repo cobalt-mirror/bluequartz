@@ -11,9 +11,16 @@ ifdef PREFIX
 CCETOPDIR = $(PREFIX)/usr/sausalito
 endif
 
+MODAPACHEDIR = $(PREFIX)/etc/httpd/conf.d
+MODAPACHEFILE=subdomains.conf
+
 all:
 
 install:
+	echo "making dir:"
+	echo $(CCESBINDIR)
+	mkdir -p $(MODAPACHEDIR)
+	(cd etc/httpd/conf.d; $(INSTALL) $(MODAPACHEFILE) $(MODAPACHEDIR); )
 
 rpm:
 	

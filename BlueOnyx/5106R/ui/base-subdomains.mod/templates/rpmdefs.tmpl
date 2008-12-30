@@ -47,7 +47,7 @@ information for [VENDOR]-[SERVICE].
 <end locale>
 
 <begin glue>
-%attr(0644,root,root)/etc/httpd/conf/subdomains.conf
+%attr(0644,root,root)/etc/httpd/conf.d/subdomains.conf
 [AUTOFILL]
 <end glue>
 
@@ -70,7 +70,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-/bin/echo "Include /etc/httpd/conf/subdomains.conf" >> /etc/httpd/conf/httpd.conf
+#/bin/echo "Include /etc/httpd/conf/subdomains.conf" >> /etc/httpd/conf/httpd.conf
 /etc/rc.d/init.d/httpd restart >/dev/null 2>&1
 
 <end glue>
@@ -106,8 +106,8 @@ fi
 
 <begin glue>
 # glue post-uninstall
-/bin/rm -f /etc/httpd/conf/subdomains.conf
-/usr/bin/perl -pi -e "s#Include /etc/httpd/conf/subdomains.conf.*##" /etc/httpd/conf/httpd.conf
+/bin/rm -f /etc/httpd/conf.d/subdomains.conf
+#/usr/bin/perl -pi -e "s#Include /etc/httpd/conf/subdomains.conf.*##" /etc/httpd/conf/httpd.conf
 /etc/rc.d/init.d/httpd restart >/dev/null 2>&1
 
 <end glue>
@@ -122,6 +122,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-3
+- Added work around for display bug in ui/web/vsiteAddSub.php
+- Not nice, but don't know how I solved it last time around. :o/
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-2
+- Deleted glue/etc/httpd/conf/subdomains.conf
+- Recreated as glue/etc/httpd/conf.d/subdomains.conf
+- Modified rpmdefs to no longer modify httpd.conf
+- Modified glue/Makefile to include glue/etc/httpd/conf.d/subdomains.conf in the RPM (build fails otherwise)
+
 * Mon Dec 29 2008 Brian N. Smith <brian@nuonce.net> 2.0.0-1
 - Lots of changes, but new v2 to be brought into BlueOnyx
 
