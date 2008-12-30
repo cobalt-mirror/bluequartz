@@ -106,13 +106,16 @@
 	    mysql_close($mysql_link);
 	}
 	if ($mysql_error) {
+	    // MySQL connection not possible:	    
 	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
 	}
 	else {
+	    // MySQL connection can be established:
 	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_ok]]");
-	}
-	if ($sql_rootpassword == "") {
-	    $mysql_status .= $i18n->interpolate("[[base-mysql.root_has_no_pwd]]");
+	    // Connection is OK, but no root password configured. Append suggestion to set password:
+	    if ($sql_rootpassword == "") {
+		$mysql_status .= $i18n->interpolate("[[base-mysql.root_has_no_pwd]]");
+	    }
 	}
 
 	$page = $factory->getPage();
