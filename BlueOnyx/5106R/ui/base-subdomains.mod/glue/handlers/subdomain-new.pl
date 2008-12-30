@@ -77,7 +77,7 @@ foreach $service (@services) {
       if ( $$service->{'enabled'} ) {
         $serviceCFG .= "  AddHandler cgi-wrapper .pl\n";
         $serviceCFG .= "  AddHandler cgi-wrapper .cgi\n";
-        $serviceCFG .= "  ScriptAlias /cgi-bin/ /home/nuonce/cgiwrap/cgiwrap/\n";
+        $serviceCFG .= "  ScriptAlias /cgi-bin/ /usr/local/blueonyx/cgiwrap/cgiwrap/\n";
         $serviceCFG .= "  Action cgi-wrapper /cgi-bin\n";
       }
     }
