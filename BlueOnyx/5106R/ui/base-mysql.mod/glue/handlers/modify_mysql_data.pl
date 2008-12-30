@@ -13,9 +13,6 @@ use lib qw(/usr/sausalito/perl);
 use DBI;
 use CCE;
 use Sauce::Util;
-#use File::Copy;
-#use Base::Vsite qw(vsite_update_site_admin_caps);
-#umask(002); # group write
 
 # Debug, Will-style
 $DEBUG = 0;
@@ -80,7 +77,7 @@ $fqdn = $new->{fqdn} if ($new->{fqdn});
 if (!defined($mysql_main[0])) {
         print STDERR "Sorry, no 'Solarspeed_MySQL' object found in CCE!\n";
         print STDERR "Unable to fetch MySQL 'root' access details for MySQL.\n";
-	$cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Solarspeed GUI', 'MySQL Settings'.");
+	$cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
         exit(1);
 }
 else {
@@ -91,10 +88,10 @@ else {
 	$sql_port = $mysql_main->{'sql_port'};
 }
 
-# Make sure we have all MySQL access details that we need:
-unless (($sql_root ne "") && ($root_pass ne "") && ($sql_host ne "") && ($sql_port ne "")) {
+# Make sure we have all MySQL access details that we need (password is optional here):
+unless (($sql_root ne "") && ($sql_host ne "") && ($sql_port ne "")) {
         print STDERR "Unable to fetch MySQL 'root' access details for MySQL from CCE.\n";
-	$cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Solarspeed GUI', 'MySQL Settings'.");
+	$cce->bye('FAIL', "Unable to fetch MySQL 'root' access details for MySQL from CCE. Please configure them under 'Network Settings', 'MySQL'.");
         exit(1);
 }
 else {

@@ -4,7 +4,7 @@
 	// This is a quick and very dirty merge of the NuOnce MySQL and the Solarspeed MySQL modules.
 	// There are quite a few redundancies here. Wonder if a rewrite from scratch might have been 
 	// better instead. :o/ But for now it works.
-	// $Id: mysql.php,v 2.0 Thu Dec  4 14:34:51 2008 Exp $
+	// $Id: mysql.php,v 2.0 Mon 29 Dec 2008 11:45:54 PM CET mstauber Exp $
 
 	function format_bytes ( $size ) {
 		switch ( $size ) {
@@ -89,35 +89,30 @@
 	if (!$sql_port) { $sql_port = "3306"; }
 
 	if (($sql_host != "localhost") || ($sql_host != "127.0.0.1")) {
+	    $mysql_is_local = "1";
     	    $my_sql_host = $sql_host . ":" . $sql_port;
     	    $con_sql_host = $my_sql_host;
 	}
 	else {
-	    $mysql_is_local = "1";
+	    $mysql_is_local = "0";
 	}
-
-	if (($mysql_settings_exists == 0) && ($pid)) {
-		$mysql_status = $i18n->interpolate("[[base-mysql.root_has_no_pwd]]");
+	
+	// Test MySQL connection:
+	$ret = ini_set("display_errors", "Off");
+	$mysql_link = mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+	$ret = ini_set("display_errors", "On");
+	if (!$mysql_error) {
+	    mysql_select_db("mysql") or $mysql_error = mysql_error();
+	    mysql_close($mysql_link);
 	}
-	elseif ($pid) {
-	    // Test MySQL connection:
-	    $ret = ini_set("display_errors", "Off");
-	    $mysql_link = mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
-	    $ret = ini_set("display_errors", "On");
-	    if (!$mysql_error) {
-		mysql_select_db("mysql") or $mysql_error = mysql_error();
-		mysql_close($mysql_link);
-	    }
-	    if ($mysql_error) {
-		$mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
-
-	    }
-	    else {
-		$mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_ok]]");
-	    }
+	if ($mysql_error) {
+	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
 	}
 	else {
-	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
+	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_ok]]");
+	}
+	if ($sql_rootpassword == "") {
+	    $mysql_status .= $i18n->interpolate("[[base-mysql.root_has_no_pwd]]");
 	}
 
 	$page = $factory->getPage();
