@@ -1,0 +1,26 @@
+<!-- Author: Brian N. Smith -->
+<!-- Copyright 2006, NuOnce Networks.All rights reserved. -->
+<!-- $Id: subdomainsVsite.schema,v 1.0 2006/01/22 10:45:00 Exp $ -->
+
+<CLASS name="Vsite" namespace="subdomains" version="1.0" createacl="ruleModifyUser" destroyacl="ruleModifyUser">
+  <PROPERTY name="vsite_enabled" type="boolean" default="0" writeacl="ruleAll"/>
+  <PROPERTY name="max_subdomains" type="int" default="0" writeacl="ruleAll"/>
+</CLASS>
+
+<CLASS name="VsiteServices" namespace="subdomains" version="1.0">
+  <property name="featureEnabled" type="boolean" default="1"/>
+  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(adminUser)"/>
+</CLASS>
+
+<CLASS name="Subdomains" version="1.0" createacl="ruleModifyUser" destroyacl="ruleModifyUser">
+  <PROPERTY name="hostname" type="alphanum" default=""
+    writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
+  <PROPERTY name="webpath" type="scalar" default=""
+    writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
+  <PROPERTY name="props" type="alphanum" default=""
+    writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
+  <PROPERTY name="group" type="word"default=""
+    writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
+  <PROPERTY name="isUser" type="boolean" default="0"
+    writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
+</CLASS>
