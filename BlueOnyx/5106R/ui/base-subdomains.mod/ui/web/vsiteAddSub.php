@@ -34,28 +34,18 @@
 
 	$site = $cceClient->getObject('Vsite', array('name' => $group));
 
-	$featurePHP = $cceClient->get($site["OID"], "PHP");
-	$featureCGI = $cceClient->get($site["OID"], "CGI");
-	$featureSSI = $cceClient->get($site["OID"], "SSI");
-
-	if ( $featurePHP["enabled"] ) { $php_access = "rw"; } else { $php_access = "r"; }
-	if ( $featureCGI["enabled"] ) { $cgi_access = "rw"; } else { $cgi_access = "r"; }
-	if ( $featureSSI["enabled"] ) { $ssi_access = "rw"; } else { $ssi_access = "r"; }
-
 	$page = $factory->getPage();
 
 	$block = $factory->getPagedBlock("vsite_add_header");
 
 
-	$host = $factory->getVerticalCompositeFormField(array(
+	$block->addFormField(
 		$factory->getDomainName("hostname"),
-		$factory->getLabel("hostname")));
+		$factory->getLabel("hostname"));
 
-	$domain = $factory->getVerticalCompositeFormField(array(
+	$block->addFormField(
 		$factory->getTextField("fqdn", $site_info["domain"], "r"),
-		$factory->getLabel("domainname")));
-
-	$hostdomain = $factory->getCompositeFormField(array($host, $domain), '&nbsp;&nbsp;');
+		$factory->getLabel("domainname"));
 
 	$webpath = $factory->getMultiChoice("rootpath");
 	$webpath->addOption($factory->getOption($site_info["basedir"] . "/vhosts/"));
@@ -70,39 +60,10 @@
 		$factory->getTextField("webdir", ""),
 		$factory->getLabel("webdir")));
 
-	$rootweb = $factory->getCompositeFormField(array($rootpath, $webdir), '&nbsp;&nbsp;');
-
-
 	$block->addFormField(
-		$hostdomain,
-		$factory->getLabel("enterFqdn"));
-
-	$block->addFormField(
-		$rootweb,
+		$factory->getCompositeFormField(array($rootpath, $webdir), '&nbsp;&nbsp;'),
 		$factory->getLabel("webpath")); 
 
-
-
-
-
-
-/*
-	$block->addFormField(
-		$factory->getTextfield("groupname", $site_info["name"], ""),
-		$factory->getLabel("group"));
-
-	$block->addFormField(
-		$factory->getBoolean("php", "", $php_access),
-		$factory->getLabel("php"));
-
-	$block->addFormField(
-		$factory->getBoolean("cgi", "", $cgi_access),
-		$factory->getLabel("cgi"));
-
-	$block->addFormField(
-		$factory->getBoolean("ssi", "", $ssi_access),
-		$factory->getLabel("ssi"));
-*/
 	$block->addButton($factory->getSaveButton($page->getSubmitAction()));
 	$block->addButton($factory->getButton("/base/subdomains/vsite.php?group=$group","button_cancel"));
 	

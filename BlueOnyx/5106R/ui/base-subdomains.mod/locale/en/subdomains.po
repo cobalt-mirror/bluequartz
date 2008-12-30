@@ -144,3 +144,21 @@ msgstr "User Sub Domain"
 
 msgid "enabled_help"
 msgstr "Create a subdomain for the user like: user . domain . tld"
+
+msgid "webpath"
+msgstr "Web Path"
+
+msgid "webpath_help"
+msgstr "The path to the content of the subdomain.  This will NOT automatically be deleted should you remove this entry later"
+
+msgid "webdir"
+msgstr "Web Directory"
+
+msgid "webdir_help"
+msgstr "The directory that holds the web content for the subdomain"
+
+msgid "rootpath"
+msgstr "Root Base Directory"
+
+msgid "rootpath_help"
+msgstr "The path, either to the vsite's webdirectory, or the subdomain subdirectory"
