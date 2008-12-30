@@ -4,6 +4,7 @@
 # $Id: subdomain-delete.pl, v2.0 2008/12/30 13:16:00 Exp $
 
 use CCE;
+use Sauce::Service;
 
 $cce = new CCE;
 $cce->connectfd();
@@ -14,6 +15,8 @@ $subdomain_config_dir = "/etc/httpd/conf.d/subdomains";
 $subdomain_config_file = $subdomain_config_dir . "/" . $old->{'group'} . "." . $old->{'hostname'} . ".conf";
 
 system("/bin/rm -f $subdomain_config_file");
+
+service_run_init('httpd', 'reload');
 
 $cce->bye('SUCCESS');
 exit(0);

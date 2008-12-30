@@ -10,7 +10,7 @@ $cce->connectfd();
 
 my $old = $cce->event_old();
 
-@oids = $cce->find('Subdomains', { 'group' => $old->{'site'} });
+@oids = $cce->find('Subdomains', { 'group' => $old->{'name'} });
 foreach $oid (@oids) {
   $cce->destroy($oid); 
 }

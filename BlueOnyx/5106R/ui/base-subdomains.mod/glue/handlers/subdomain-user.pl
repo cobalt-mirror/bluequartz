@@ -46,6 +46,8 @@ if ( $subdomains->{'enabled'} eq "1" ) {
   }
 }
 
+service_run_init('httpd', 'reload');
+
 $cce->bye('SUCCESS');
 exit(0);
 

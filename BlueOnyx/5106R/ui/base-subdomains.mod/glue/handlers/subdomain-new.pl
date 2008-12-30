@@ -6,6 +6,7 @@
 use CCE;
 use Sauce::Util;
 use Switch;
+use Sauce::Service;
 
 umask(002);
 
@@ -120,6 +121,8 @@ close(FI);
 open(FO,">$index_file");
 print FO $index;
 close(FO);
+
+service_run_init('httpd', 'reload');
 
 $cce->bye('SUCCESS');
 exit(0);
