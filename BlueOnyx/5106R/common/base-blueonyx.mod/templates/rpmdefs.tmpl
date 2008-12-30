@@ -152,7 +152,7 @@ fi
 /sbin/chkconfig --add blueonyx
 
 # install pgp key
-/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
+#/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
 #if [ $? = 1 ]; then
 #  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
 #fi
@@ -195,6 +195,16 @@ fi
 # Fix php.ini:
 if [ -f /etc/php.ini ]; then
     /usr/bin/perl -pi -e 's|^error_reporting  =  E_ALL|error_reporting  =  E_ALL & ~E_NOTICE|g' /etc/php.ini
+fi
+
+# Fix /etc/logwatch/conf/ignore.conf if we're running in a VPS:
+if [ -f /proc/user_beancounters ]; then
+    if [ -f /etc/logwatch/conf/ignore.conf ]; then
+        echo "###### REGULAR EXPRESSIONS IN THIS FILE WILL BE TRIMMED FROM REPORT OUTPUT #####" > /etc/logwatch/conf/ignore.conf
+        echo "ERROR: failed to open PAM security session" >> /etc/logwatch/conf/ignore.conf
+        echo "ERROR: cannot set security context" >> /etc/logwatch/conf/ignore.conf
+        echo "crond.*: System error" >> /etc/logwatch/conf/ignore.conf
+    fi
 fi
 
 <end glue>
@@ -336,6 +346,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081230BQ93
+- Pre-release version number bump to 20083012
+- Updated rpmdefs.tmpl to fix /etc/logwatch/conf/ignore.conf inside VPS's.
 
 * Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081208BQ92
 - /etc/php.ini was set to error_report notice. Bad idea!
