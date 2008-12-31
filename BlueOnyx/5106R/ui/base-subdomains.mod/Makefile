@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=subdomains
 
 VERSION=2.0.0
-RELEASE=1
+RELEASE=4
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,8 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
+
+REQUIRES= blueonyx-cgiwrap
 
 #########
 # some useful defines
