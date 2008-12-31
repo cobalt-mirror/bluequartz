@@ -14,22 +14,22 @@ msgstr ""
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid "subdomain_header"
-msgstr "Subdomänen"
+msgstr "Subdom?en"
 
 msgid "vsite_enabled"
-msgstr "Subdomänen aktivieren"
+msgstr "Subdom?en aktivieren"
 
 msgid "vsite_enabled_help"
-msgstr "Erlaubt es Ihnen Subdomänen für diesen virtuellen Host zu aktivieren."
+msgstr "Erlaubt es Ihnen Subdom?en f? diesen virtuellen Host zu aktivieren."
 
 msgid "default_max_subdomains"
-msgstr "Maximale Anzahl von Subdomänen"
+msgstr "Maximale Anzahl von Subdom?en"
 
 msgid "default_max_subdomains_help"
-msgstr "Erlaubt es Ihnen, gewisse Standard-Subdomänen zu definieren."
+msgstr "Erlaubt es Ihnen, gewisse Standard-Subdom?en zu definieren."
 
 msgid "vlist_header"
-msgstr "Alle verfügbaren virtuellen Sites"
+msgstr "Alle verf?baren virtuellen Sites"
 
 msgid "v_name"
 msgstr "Name"
@@ -38,10 +38,10 @@ msgid "v_name_help"
 msgstr "Name der virtuellen Site"
 
 msgid "v_subdomain"
-msgstr "# der Subdomänen"
+msgstr "# der Subdom?en"
 
 msgid "v_subdomain_help"
-msgstr "Zeigt an, wieviele Subdomänen angelegt werden dürfen."
+msgstr "Zeigt an, wieviele Subdom?en angelegt werden d?fen."
 
 msgid "v_subdomain_enabled"
 msgstr "Status"
@@ -50,7 +50,7 @@ msgid "v_subdomain_enabled_help"
 msgstr "Zeigt den Status der Sites an. Aktiviert oder nicht."
 
 msgid "vsite_header"
-msgstr "Subdomänenverwaltung"
+msgstr "Subdom?enverwaltung"
 
 msgid "vsite_name"
 msgstr "Name des virtuellen Hosts"
@@ -59,46 +59,46 @@ msgid "vsite_name_help"
 msgstr "Der Name der virtuellen Site."
 
 msgid "max_subdomains"
-msgstr "Maximale # von Subdomänen"
+msgstr "Maximale # von Subdom?en"
 
 msgid "max_subdomains_help"
-msgstr "Die maximale Anzahl von Subdomänen, die diese virtuell Site haben darf."
+msgstr "Die maximale Anzahl von Subdom?en, die diese virtuell Site haben darf."
 
 msgid "sub_title"
-msgstr "Subdomänen-Konfiguration"
+msgstr "Subdom?en-Konfiguration"
 
 msgid "sub_domain"
-msgstr "Subdomäne"
+msgstr "Subdom?e"
 
 msgid "sub_domain_help"
-msgstr "Name Ihrer Subdomäne"
+msgstr "Name Ihrer Subdom?e"
 
 msgid "sub_path"
-msgstr "Verzeichnis der Subdomäne"
+msgstr "Verzeichnis der Subdom?e"
 
 msgid "sub_path_help"
-msgstr "Pfad zum Webverzeichnis Ihrer Subdomäne."
+msgstr "Pfad zum Webverzeichnis Ihrer Subdom?e."
 
 msgid "vsite_add_header"
-msgstr "Subdomäne anlegen"
+msgstr "Subdom?e anlegen"
 
 msgid "enterFqdn"
-msgstr "Name der Subdomäne"
+msgstr "Name der Subdom?e"
 
 msgid "enterFqdn_help"
-msgstr "Geben Sie hier den Namen der Subdomäne an."
+msgstr "Geben Sie hier den Namen der Subdom?e an."
 
 msgid "hostname"
 msgstr "Hostname"
 
 msgid "hostname_help"
-msgstr "Name der neuen Subdomäne."
+msgstr "Name der neuen Subdom?e."
 
 msgid "domainname"
-msgstr "Domänenname"
+msgstr "Dom?enname"
 
 msgid "domainname_help"
-msgstr "Name der Domäne."
+msgstr "Name der Dom?e."
 
 msgid "button_cancel"
 msgstr "Abbrechen"
@@ -110,83 +110,86 @@ msgid "php"
 msgstr "PHP aktivieren"
 
 msgid "php_help"
-msgstr "Aktiviert PHP für diese Subdomäne."
+msgstr "Aktiviert PHP f? diese Subdom?e."
 
 msgid "cgi"
 msgstr "CGI aktivieren"
 
 msgid "cgi_help"
-msgstr "Aktiviert CGI für diese Domäne."
+msgstr "Aktiviert CGI f? diese Dom?e."
 
 msgid "ssi"
 msgstr "SSI aktivieren."
 
 msgid "ssi_help"
-msgstr "Aktiviert Server Side Includes für diese Subdomäne."
+msgstr "Aktiviert Server Side Includes f? diese Subdom?e."
 
 msgid "vsite_mod_header"
-msgstr "Subdomäne modifizieren"
+msgstr "Subdom?e modifizieren"
 
 msgid "new_sub"
-msgstr "Subdomäne hinzufügen"
+msgstr "Subdom?e hinzuf?en"
+
+msgid "new_sub_help"
+msgstr "Subdom?e hinzuf?en"
 
 msgid "php_head"
 msgstr "PHP"
 
 msgid "php_head_help"
-msgstr "Zeigt, ob PHP für die virtuelle Site aktiviert wurde."
+msgstr "Zeigt, ob PHP f? die virtuelle Site aktiviert wurde."
 
 msgid "cgi_head"
 msgstr "CGI"
 
 msgid "cgi_head_help"
-msgstr "Zeigt, ob CGI für die virtuelle Site aktiviert wurde."
+msgstr "Zeigt, ob CGI f? die virtuelle Site aktiviert wurde."
 
 msgid "ssi_head"
 msgstr "SSI"
 
 msgid "ssi_head_help"
-msgstr "Zeigt, ob SSI für die virtuelle Site aktiviert wurde."
+msgstr "Zeigt, ob SSI f? die virtuelle Site aktiviert wurde."
 
 msgid "default_settings"
 msgstr "Standardeinstellungen"
 
 msgid "divider_subdomains"
-msgstr "Konfiguration der Subdomänen"
+msgstr "Konfiguration der Subdom?en"
 
 msgid "enabled"
-msgstr "Benutzer-Subdomäne"
+msgstr "Benutzer-Subdom?e"
 
 msgid "enabled_help"
-msgstr "Erlaubt es, Subdomänen nach dem Schema benutzer . domäne . tld anzulegen."
+msgstr "Erlaubt es, Subdom?en nach dem Schema benutzer . dom?e . tld anzulegen."
 
 msgid "webpath"
 msgstr "Web-Pfad"
 
 msgid "webpath_help"
-msgstr "Der Pfad zum Webinhalt dieser Subdomäne. Kann nach dem Anlegen NICHT automatisch gelöscht werden."
+msgstr "Der Pfad zum Webinhalt dieser Subdom?e. Kann nach dem Anlegen NICHT automatisch gel?cht werden."
 
 msgid "webdir"
 msgstr "Webverzeichnis"
 
 msgid "webdir_help"
-msgstr "Verzeichnis, in welchem der Webinhalt der Subdomäne zu finden ist."
+msgstr "Verzeichnis, in welchem der Webinhalt der Subdom?e zu finden ist."
 
 msgid "rootpath"
 msgstr "Oberstes Wurzelverzeichnis"
 
 msgid "rootpath_help"
-msgstr "Der Pfad zum Wurzelverzeichnis der übergeordneten virtuellen Site. Oder des Subdomänen-Verzeichnisses."
+msgstr "Der Pfad zum Wurzelverzeichnis der ?ergeordneten virtuellen Site. Oder des Subdom?en-Verzeichnisses."
 
 msgid "menu_vsite_subdomains"
-msgstr "Subdomänen"
+msgstr "Subdom?en"
 
 msgid "menu_vsite_subdomains_help"
-msgstr "Verwalten Sie hier Ihre Subdomänen."
+msgstr "Verwalten Sie hier Ihre Subdom?en."
 
 msgid "menu_system_subdomains"
-msgstr "Subdomänen"
+msgstr "Subdom?en"
 
 msgid "menu_system_subdomains_help"
-msgstr "Erlaubt es, virtuellen Sites Subdomänen anzulegen."
+msgstr "Erlaubt es, virtuellen Sites Subdom?en anzulegen."
 

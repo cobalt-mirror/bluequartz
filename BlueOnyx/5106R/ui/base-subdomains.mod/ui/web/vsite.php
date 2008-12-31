@@ -93,7 +93,7 @@
 
 	if ( $vsite["vsite_enabled"] ) {
 		if ( $count < $vsite["max_subdomains"] ) {
-			$subs->addButton($factory->getAddButton("/base/subdomains/vsiteAddSub.php?group=$group", "new_sub"));
+			$subs->addButton($factory->getButton("/base/subdomains/vsiteAddSub.php?group=$group", "new_sub"));
 		}
 	}
 
