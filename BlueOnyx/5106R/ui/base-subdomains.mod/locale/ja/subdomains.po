@@ -101,7 +101,7 @@ msgid "cgi"
 msgstr "Enable Common Gateway Interface (CGI)"
 
 msgid "cgi_help"
-msgstr "Enables PHP for your Sub Domain"
+msgstr "Enables CGI for your Sub Domain"
 
 msgid "ssi"
 msgstr "Enable Server Side Includes (SSI)"
@@ -144,3 +144,34 @@ msgstr "User Sub Domain"
 
 msgid "enabled_help"
 msgstr "Create a subdomain for the user like: user . domain . tld"
+
+msgid "webpath"
+msgstr "Web Path"
+
+msgid "webpath_help"
+msgstr "The path to the content of the subdomain.  This will NOT automatically be deleted should you remove this entry later"
+
+msgid "webdir"
+msgstr "Web Directory"
+
+msgid "webdir_help"
+msgstr "The directory that holds the web content for the subdomain"
+
+msgid "rootpath"
+msgstr "Root Base Directory"
+
+msgid "rootpath_help"
+msgstr "The path, either to the vsite's webdirectory, or the subdomain subdirectory"
+
+msgid "menu_vsite_subdomains"
+msgstr "Sub Domains"
+
+msgid "menu_vsite_subdomains_help"
+msgstr "Manage your sub domains"
+
+msgid "menu_system_subdomains"
+msgstr "Sub Domains"
+
+msgid "menu_system_subdomains_help"
+msgstr "Allow Virtual Sites to create subdomains."
+

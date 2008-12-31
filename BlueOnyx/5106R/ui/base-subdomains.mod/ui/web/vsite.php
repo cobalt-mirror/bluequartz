@@ -3,7 +3,7 @@
 	// Copyright 2006, NuOnce Networks, Inc. All rights reserved.
 	// $Id: vsite.php,v 2.0 2006/08/10 15:33:00 Exp $
 
-	include("ServerScriptHelper.php");
+	include_once("ServerScriptHelper.php");
 
 	$serverScriptHelper =& new ServerScriptHelper();
 	$cceClient = $serverScriptHelper->getCceClient();
@@ -66,7 +66,8 @@
 	$subdomainOIDs = $cceClient->find("Subdomains", array("group" => $group));
 
 	$subs = $factory->getScrollList("sub_title",
-		array("sub_domain", "sub_path", ""));
+		//                               //--- this space here is bloody important!! Or non English locales go fubar! 
+		array("sub_domain", "sub_path", " "));
 	$subs->setDefaultSortedIndex(0);
 	$subs->setAlignments(array("left", "left", "center"));
 	$subs->setLength(1000);

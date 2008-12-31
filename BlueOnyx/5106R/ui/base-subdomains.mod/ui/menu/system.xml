@@ -6,8 +6,8 @@ $Id: sd_system.xml,v 1.0 2006/01/26 10:41:00 Exp $
 
 <item
   id="nuonce_subdomains"
-  label="Sub Domains"
-  description="Allow Virtual Sites to create subdomains."
+  label="[[base-subdomains.menu_system_subdomains]]"
+  description="[[base-subdomains.menu_system_subdomains_help]]"
   url="/base/subdomains/system.php">
   <parent id="base_controlpanel" order="11"/>
 </item>

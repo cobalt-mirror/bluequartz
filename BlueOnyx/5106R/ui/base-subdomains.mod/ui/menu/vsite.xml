@@ -6,8 +6,8 @@ $Id: sd_vsite.xml,v 1.0 2006/01/26 10:41:00 Exp $
 
 <item
   id="nuonce_subdomain_vsite"
-  label="Sub Domains"
-  description="Manage your sub domains"
+  label="[[base-subdomains.menu_vsite_subdomains]]"
+  description="[[base-subdomains.menu_vsite_subdomains_help]]"
   url="/base/subdomains/vsite.php?group=[[VAR.group]]">
   <parent id="base_siteservices" order="11">
     <access require="siteAdmin"/>
