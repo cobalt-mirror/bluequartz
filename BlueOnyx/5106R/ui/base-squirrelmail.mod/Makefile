@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=squirrelmail
 
 VERSION=1.0.0
-RELEASE=0BO04
+RELEASE=0BO05
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES = squirrelmail
+REQUIRES = squirrelmail base-squirrelmail-locale-ja
 
 #########
 # some useful defines
