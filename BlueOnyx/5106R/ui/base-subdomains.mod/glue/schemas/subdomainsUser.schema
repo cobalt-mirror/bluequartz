@@ -3,7 +3,13 @@
 <!-- $Id: subdomainsUser.schema,v 2.0 2006/01/22 10:45:00 Exp $ -->
 
 <CLASS name="User" namespace="subdomains" version="2.0">
-  <PROPERTY name="enabled" type="boolean" default="0" writeacl="ruleAll"/>
+  <PROPERTY name="enabled"
+        type="boolean"
+        default="0"
+        writeacl="ruleAll"
+        createacl="ruleModifyUser"
+        destroyacl="ruleModifyUser"
+  />
 </CLASS>
 
 <CLASS name="UserServices" namespace="subdomains" version="2.0">
