@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userList.php 476 2005-06-12 06:16:11Z shibuya $
+ * $Id: userList.php Sat 03 Jan 2009 01:37:28 PM CET mstauber $
  */
 include_once("ServerScriptHelper.php");
 include_once("uifc/Button.php");
@@ -136,6 +136,9 @@ for ($i = 0; $i < count($oids); $i++) {
 	}
 }
 
+// Find out who's looking at this page:
+$i_am = $serverScriptHelper->loginUser['name'];
+
 for ($i = $start; $i < count($oids) && $i < $start + $pageLength; $i++) {
 	$user = $cceClient->get($oids[$i]);
 	$fullName = $user["fullName"];
@@ -159,7 +162,7 @@ for ($i = $start; $i < count($oids) && $i < $start + $pageLength; $i++) {
 		$siteAdmin = ($capabilities->getAllowed('siteAdmin', $oids[$i]) ) ? $factory->getImageLabel("siteAdminEnabled", "/libImage/administrator.gif") : $factory->getImageLabel("blank", "/libImage/blankIcon.gif", false);
 
 		$rights = array($siteAdmin);
-  
+		
 		if ($group) {
 			$autoFeatures->display($rights, "list.User", array("VSITE_OID" => $vsite, "CCE_SERVICES_OID" => $userServices, "CCE_OID" => $oids[$i]));
     		} else {
@@ -167,15 +170,25 @@ for ($i = $start; $i < count($oids) && $i < $start + $pageLength; $i++) {
 		}
 	}
 
+	// A user should NOT be able to delete himself! So we grey out the delete icon for the user that's looking at the list:
+	if ($userName == $i_am) {
+	    $delButton = $factory->getRemoveButton("");
+	    $delButton->setDisabled(true);
+	}
+	else {
+	    $delButton = $factory->getRemoveButton("javascript: confirmRemove('$userName')");
+	}
+
 	$scrollList->addEntry(
-		array($factory->getFullName("", $fullName, "r"),
-		      $factory->getUserName("", $userName, "r"),
-		      $aliases,
-		      $factory->getCompositeFormField($rights),
-		      $factory->getCompositeFormField(
-				array($factory->getModifyButton("javascript: location='/base/user/userMod.php?userNameField=$userName&group=$group'; top.code.flow_showNavigation(false)"),
-      					$factory->getRemoveButton("javascript: confirmRemove('$userName')")
-		))), "", false, $i);
+	    array($factory->getFullName("", $fullName, "r"),
+	      $factory->getUserName("", $userName, "r"),
+	      $aliases,
+	      $factory->getCompositeFormField($rights),
+	      $factory->getCompositeFormField(
+		array($factory->getModifyButton("javascript: location='/base/user/userMod.php?userNameField=$userName&group=$group'; top.code.flow_showNavigation(false)"),
+      					$delButton)
+		    )), "", false, $i);
+		
 }
 
 $scrollList->setEntryNum(count($oids) - $adminCount);
