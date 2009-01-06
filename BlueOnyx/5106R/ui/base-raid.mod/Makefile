@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=raid
 
 VERSION=0.1.2
-RELEASE=87BQ12
+RELEASE=87BQ13
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=ms-sys
+REQUIRES=ms-sys raid-bins
 
 #########
 # some useful defines
