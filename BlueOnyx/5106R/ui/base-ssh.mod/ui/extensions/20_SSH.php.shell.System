@@ -46,6 +46,11 @@ class SSHExtension extends UIExtension {
         );
         sort($portlist);
 
+	// If we're currently using a port that's not in that array, we add it to the array:
+	if (!in_array($settings['Port'], $portlist)) {
+		$portlist[] = $settings['Port'];
+	}
+
         $SSHPort = $factory->getMultiChoice("SSH_Port", array_values($portlist));
         $SSHPort->setSelected($settings['Port'], true);
         $SSHPort->setOptional(false);

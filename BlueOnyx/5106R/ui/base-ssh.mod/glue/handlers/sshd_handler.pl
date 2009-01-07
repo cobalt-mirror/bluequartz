@@ -45,6 +45,7 @@ if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($SSH_server_OID
     # the existing config and restart the daemon:
     if (-f $sshd_config) {
 	# Edit config:
+	&ini_read;
 	&edit_sshd_config;
 
 
@@ -98,8 +99,12 @@ sub edit_sshd_config {
 	}
     }
     if ($portfound ne "1") {
-	$sshd_settings->{"Port"} = "22";
-    }
+	if ($CONFIG{'Port'}) {
+	    $sshd_settings->{"Port"} = $CONFIG{'Port'};
+	}
+	else {
+	    $sshd_settings->{"Port"} = "22";
+	}
 
     # Build output hash:
     $server_sshd_settings_writeoff = { 
@@ -201,6 +206,29 @@ EOF
 	    print $out $codeBase;
 	}
         return 1;
+}
+
+# Read and parse config:
+sub ini_read {
+    open (F, $sshd_config) || die "Could not open $sshd_config: $!";
+
+    while ($line = <F>) {
+        chomp($line);
+        next if $line =~ /^\s*$/;                       # skip blank lines
+        next if $line =~ /^\#*$/;                       # skip comment lines
+        if ($line =~ /^([A-Za-z_\.]\w*)/) {
+            $line =~s/\#(.*)$//g;                       # Remove trailing comments in lines
+            $line =~s/\"//g;                            # Remove double quotation marks
+
+            @row = split (/ /, $line);                  # Split row at the delimiter
+            $CONFIG{$row[0]} = $row[1];                 # Hash the splitted row elements
+        }
+    }
+    close(F);
+
+    # At this point we have all switches from the config cleanly in a hash, split in key / value pairs.
+    # To read to which value "key" is set we query $CONFIG{'key'} for example.
+
 }
 
 $cce->bye('SUCCESS');
