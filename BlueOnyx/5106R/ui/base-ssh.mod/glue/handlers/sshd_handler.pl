@@ -105,6 +105,7 @@ sub edit_sshd_config {
 	else {
 	    $sshd_settings->{"Port"} = "22";
 	}
+    }
 
     # Build output hash:
     $server_sshd_settings_writeoff = { 
