@@ -88,6 +88,11 @@ fi
 #  /bin/rpm -e nuonce-solarspeed-yumgui >/dev/null 2>&1
 #fi
 
+# Restart CCEd:
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -119,6 +124,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jan 13 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ12
+- Page ui/web/yum.php sometimes has issues accessing our tempfiles on aborted YUM updates.
+- Added glue/handlers/yum-skiplock.pl to fix permissions on those tempfiles.
+- Added trigger 'skiplock' to glue/conf/yum.conf to force calls of glue/handlers/yum-skiplock.pl on access of ui/web/yum.php
+- Extended glue/schemas/yum.schema with the new trigger 'skiplock'.
 
 * Wed Dec 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ11
 - Rephrased third party software warning based on Chris Gebhardt's suggestion.

@@ -46,6 +46,18 @@ if ( $_save == "1" ) {
   $cceClient->setObject("System", $config, "yum");
   $errors = $cceClient->errors();
 }
+else {
+    // We're not saving changes. So we set 'skiplock' to call a handler that runs a
+    // chmod 444 over our files in /tmp so that this PHP page can access them:
+
+    mt_srand((double)microtime() * 1000000);
+    $skiplock = mt_rand();
+    $config = array(
+	"skiplock" => $skiplock
+    );
+    $cceClient->setObject("System", $config, "yum");
+    $errors = $cceClient->errors();
+}
 
 // get settings
 $systemObj = $cceClient->getObject("System",array(), "yum");
