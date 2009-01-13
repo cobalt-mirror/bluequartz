@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/ftp
-# $Id: syncFTP.pl 772 2006-06-10 15:56:42Z shibuya $
+# $Id: syncFTP.pl Tue 13 Jan 2009 08:15:26 PM CET mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use Sauce::Util;
@@ -49,6 +49,11 @@ my $err = Sauce::Util::editblock(ftp::ftp_getconf, *ftp::edit_anon,
 my $old = Sauce::Service::service_get_xinetd('proftpd') ? 'on' : 'off';
 my $new = $obj->{enabled} ? 'on' : 'off';
 Sauce::Service::service_set_xinetd('proftpd', $new, $connectRate);
+
+# See: "[BlueOnyx:00144] SLOW FTP  -- a partial solution"
+# Or: http://www.wains.be/index.php/2006/01/24/slow-logins-under-proftpd-using-xinetd/
+system("/usr/bin/perl -pi -e 's|DURATION USERID|DURATION|g' /etc/xinetd.d/proftpd");
+
 Sauce::Service::service_send_signal('xinetd', 'HUP');
 system('rm -f /etc/xinetd.d/proftpd.backup.*');
 system('rm -f /etc/proftpd.conf.backup.*');
