@@ -21,6 +21,4 @@ else {
     header ("Location: http://$dn:444/webmail/src/login.php?loginname=$loginName");
 }
 
-xadyadsdasd
-
 ?>
