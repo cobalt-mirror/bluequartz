@@ -40,16 +40,16 @@ if ($_POST['user'] != "") {
  } else {
 
   $page = $factory->getPage();
-  $block = $factory->getPagedBlock("phpmyadmin_logon");
+  $block = $factory->getPagedBlock("PMA_logon");
   $block->addFormField(
-		       $factory->getTextField("user", ""),
+		       $factory->getTextField("PMA_user", ""),
 		       $factory->getLabel("user")
 		       );
   $passwordField = $factory->getPassword("password");
   $passwordField->setConfirm(false);
   $block->addFormField(
 		       $passwordField,
-		       $factory->getLabel("password")
+		       $factory->getLabel("PMA_password")
 		       );
   $hidden = $builder->makeHiddenField("hostname", "localhost");
 
