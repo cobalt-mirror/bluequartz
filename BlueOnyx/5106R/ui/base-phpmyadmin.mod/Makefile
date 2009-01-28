@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=phpmyadmin
 
 VERSION=1.0.0
-RELEASE=0BO05
+RELEASE=0BO06
 
 # add a buildarch if desired
 BUILDARCH=noarch
