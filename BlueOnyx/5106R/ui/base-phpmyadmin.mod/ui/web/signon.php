@@ -18,7 +18,6 @@ $builder = new FormFieldBuilder();
 
 
 /* Was data posted? */
-
 if ($_POST['user'] != "") {
   if (isset($_POST['user'])) {
     /* Need to have cookie visible from parent directory */
