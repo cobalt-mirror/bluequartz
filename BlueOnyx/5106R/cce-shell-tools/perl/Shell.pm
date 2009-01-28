@@ -12,8 +12,8 @@ use Getopt::Mixed "nextOption";
 use strict;
 
 use vars qw($confDir);
-#my $confDir = '/home/cce-shell-tools/conf';
-my $confDir = '/cvs/cce-shell-tools/conf';
+my $confDir = '/usr/shell-tools/conf';
+#my $confDir = '/cvs/cce-shell-tools/conf';
 
 sub new
 {
@@ -143,7 +143,7 @@ sub convertOpts
 	if($self->{opts}->isLabelValue($opt)) {
 		$val = $self->{opts}->labelValue($opt);
 	}
-	if($val == 1 && $self->build !~ /^(RaQ550|BQ5100R|TLAS2|Qube3)$/) {
+	if($val == 1 && $self->build !~ /^(RaQ550|BQ5100R|TLAS2|Qube3|BO5106R)$/) {
 		$val = $self->convertBool($val);
 	}
 	
@@ -398,6 +398,7 @@ sub getBuild
 		"5103R",			"BQ5100R",
 		"5104R",			"BQ5100R",
 		"5105R",			"BQ5100R",
+		"5106R",			"BO5106R",
 		# TLAS
 		"TLAS2",			"TLAS2",
 	);

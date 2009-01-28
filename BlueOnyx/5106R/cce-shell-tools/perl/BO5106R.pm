@@ -2,7 +2,7 @@
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 
-package BQ5106R;
+package BO5106R;
 
 use Configurator;
 use vars qw(@ISA);

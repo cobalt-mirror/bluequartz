@@ -36,7 +36,7 @@ sub init
 	if(defined $params{build}) { $build = $params{build} }
 	else { die "ShellOpts::init no build name\n" }
 
-	my @xmlFiles = qx($findCmd $confDir -type f -name "*.xml" -maxdepth 1);
+        my @xmlFiles = qx($findCmd $confDir -nowarn -type f -maxdepth 1 -name "*.xml");
 	my ($confData, $baseName);
 	# should read base.xml in first
 	foreach my $file (@xmlFiles) {
