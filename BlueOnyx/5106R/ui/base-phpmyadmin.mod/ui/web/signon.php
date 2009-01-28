@@ -42,8 +42,8 @@ if ($_POST['user'] != "") {
   $page = $factory->getPage();
   $block = $factory->getPagedBlock("PMA_logon");
   $block->addFormField(
-		       $factory->getTextField("PMA_user", ""),
-		       $factory->getLabel("user")
+		       $factory->getTextField("user", ""),
+		       $factory->getLabel("PMA_user")
 		       );
   $passwordField = $factory->getPassword("password");
   $passwordField->setConfirm(false);
