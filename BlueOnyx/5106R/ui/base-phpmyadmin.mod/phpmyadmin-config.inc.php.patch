@@ -1,0 +1,15 @@
+--- config.inc.php.org	2009-01-28 14:17:16.000000000 +0100
++++ config.inc.php	2009-01-27 17:15:13.000000000 +0100
+@@ -25,7 +25,11 @@
+                                                     // used for all relational
+                                                     // features (pmadb)
+ $cfg['Servers'][$i]['extension']     = 'mysql';
+-$cfg['Servers'][$i]['auth_type']     = 'http';    // Authentication method (config, http or cookie based)?
++$cfg['Servers'][$i]['auth_type']     = 'signon';
++$cfg['Servers'][$i]['SignonSession'] = 'SignonSession';
++$cfg['Servers'][$i]['SignonURL']     = '/base/phpmyadmin/index.php';
++
++//$cfg['Servers'][$i]['auth_type']     = 'http';    // Authentication method (config, http or cookie based)?
+ $cfg['Servers'][$i]['user']          = '';      // MySQL user
+ $cfg['Servers'][$i]['password']      = '';          // MySQL password (only needed
+                                                     // with 'config' auth_type)
