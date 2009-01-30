@@ -13,6 +13,9 @@ include_once('Capabilities.php');
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 
+// special array if errors
+$errors = array();
+
 /////////// handle network settings
 
 list($soid) = $cceClient->find("System");
