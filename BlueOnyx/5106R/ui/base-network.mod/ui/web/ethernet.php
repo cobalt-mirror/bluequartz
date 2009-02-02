@@ -31,7 +31,7 @@ $i18n = $serverScriptHelper->getI18n("base-network");
 $system = $cceClient->getObject("System");
 
 $default_page = 'primarySettings';
-$pages = array($default_page);
+$pages = array($default_page, 'aliasSettings');
 
 $page = $factory->getPage();
 $form = $page->getForm();
@@ -409,6 +409,80 @@ $block->addFormField($factory->getTextField('adminIf', 'eth0', ''));
 $block->addFormField(
 	    $factory->getTextField('deviceList', 
 	                    $cceClient->array_to_scalar($deviceList), ''));
+// only do this when the user wants to view it since it could take a while
+
+if ($block->getSelectedId() == 'aliasSettings')
+  {
+    // add scrollist of aliases
+    $alias_list = $factory->getScrollList(
+					  ' ',
+					  array(
+						'aliasName',
+						'aliasIpaddr',
+						'aliasNetmask',
+						'aliasActions'
+						),
+					  array(0, 1, 2)
+					  );
+    
+    $sort_map = array('device', 'ipaddr', 'netmask');
+    $networks = $cceClient->findx(
+				  'Network', array('real' => 0), array(),
+				  'ascii', $sort_map[$alias_list->getSortedIndex()]);
+    
+    if ($alias_list->getSortOrder() == 'descending')
+      $networks = array_reverse($networks);
+    
+    $alias_list->setSortEnabled(false);
+    $alias_list->setAlignments(array('left', 'right', 'right', 'center'));
+    $alias_list->setColumnWidths(array('', '', '', '20'));
+    $num_entries = count($networks);
+    $alias_list->setEntryNum($num_entries);
+    
+    $page_length = 15;
+    $alias_list->setLength($page_length);
+    $start = $alias_list->getPageIndex() * $page_length;
+    for ($i = $start, $j = $start; 
+	 $j < $num_entries && $j < ($start + $page_length); $i++, $j++)
+      {
+	// must be an alias
+	$alias = $cceClient->get($networks[$i]);
+	$device_info = split(':', $alias['device']);
+	$alias_name = $i18n->interpolateHtml('[[base-network.alias' .
+					     $device_info[0] . ']]',
+					     array('num' => $device_info[1]));
+	
+	$device = $factory->getTextField("dev$i", $alias_name, 'r');
+	$dev_ipaddr = $factory->getTextField("ip$i", $alias['ipaddr'], 'r');
+	$dev_netmask = $factory->getTextField("nm$i", $alias['netmask'], 'r');
+	
+	$device->setPreserveData(false);
+	$dev_ipaddr->setPreserveData(false);
+	$dev_netmask->setPreserveData(false);
+	
+	$alias_list->addEntry(
+			      array(
+				    $device,
+				    $dev_ipaddr,
+				    $dev_netmask,
+				    $factory->getCompositeFormField(
+								    array(
+									  $factory->getModifyButton(
+												    "/base/network/aliasModify.php?_oid=$networks[$i]"
+												    ),
+									  $factory->getRemoveButton(
+												    "/base/network/aliasRemove.php?_oid=$networks[$i]"
+												    )
+									  )
+								    )
+				    ),
+			      '', false, $j);
+      }
+    
+    $alias_list->addButton(
+			   $factory->getButton('/base/network/aliasModify.php', 'addAliasButton'));
+    
+  }
 
 // only add the save button if looking at primary settings AND we're not inside a VPS:
 if ((!isset($alias_list) && ($fieldprot == "rw"))) {
@@ -425,9 +499,12 @@ $serverScriptHelper->destructor();
 <BR>
 
 <?php 
-
 print $block->toHtml();
 
+if (isset($alias_list))
+{
+	print $alias_list->toHtml();
+}
 ?>
 <SCRIPT  LANGUAGE="javascript">
 	var devices = new Array(<? print(implode(', ', $devices)); ?>);
