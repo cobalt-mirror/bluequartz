@@ -31,7 +31,14 @@ $i18n = $serverScriptHelper->getI18n("base-network");
 $system = $cceClient->getObject("System");
 
 $default_page = 'primarySettings';
-$pages = array($default_page, 'aliasSettings');
+if ($fieldprot == "rw") {
+    // Show "Interface Aliasses" if not inside a VPS:
+    $pages = array($default_page, 'aliasSettings');
+}
+else {
+    // Hide "Interface Aliasses" inside a VPS:
+    $pages = array($default_page);
+}
 
 $page = $factory->getPage();
 $form = $page->getForm();
