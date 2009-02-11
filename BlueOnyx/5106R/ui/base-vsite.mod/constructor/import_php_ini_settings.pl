@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: import_php_ini_settings.pl, v1.1.0.2 Mon 01 Dec 2008 05:10:17 PM CET mstauber Exp $
-# Copyright 2006-2008 Solarspeed Ltd. All rights reserved.
+# $Id: import_php_ini_settings.pl, v1.1.0.3 Tue 10 Feb 2009 08:06:25 PM EST mstauber Exp $
+# Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 
 # This script parses php.ini and brings CODB up to date on how PHP is configured.
 # Can easily be extended to parse third party php.ini's through an optional config file.
@@ -140,7 +140,8 @@ sub verify {
 		$CONFIG{"$entry"} = "Off";
 	    }
 	    if (($entry eq "disable_functions") && ($first_run eq "1")) {
-		$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,popen,escapeshellcmd,proc_open,proc_nice,ini_restore";
+		#$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,popen,escapeshellcmd,proc_open,proc_nice,ini_restore";
+		$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,proc_open,proc_nice,ini_restore";
 	    }
 	    if (($entry eq "open_basedir") && ($first_run eq "1")) {
 		$CONFIG{"$entry"} = "/home/:/tmp/:/var/lib/php/session/";
@@ -158,6 +159,22 @@ sub verify {
         if ($DEBUG == "1") {
 	    print $entry . " = " . $CONFIG{"$entry"} . "\n";
 	}
+    }
+
+    # If we have base-squirrelmail.mod installed, we make sure that 'popen' and 'escapeshellcmd' are not present in 'disable_functions':
+    if (-f "/etc/httpd/conf.d/squirrelmail.conf") {
+	@old_disable_functions = split(/,/, $CONFIG{"disable_functions"});
+	foreach $value (@old_disable_functions) {
+	    # Transform to lower case:
+	    $value =~ tr/A-Z/a-z/;
+	    # Weed out undersired options:
+	    unless (($value eq "popen") || ($value eq "escapeshellcmd") || ($value eq "")) {
+		# Push the rest to new array:
+    		push(@new_disable_functions, $value);
+	    }
+	}
+	# Turn the cleaned array back to a string:
+	$CONFIG{"disable_functions"} = join(",", @new_disable_functions);
     }
 }
 
