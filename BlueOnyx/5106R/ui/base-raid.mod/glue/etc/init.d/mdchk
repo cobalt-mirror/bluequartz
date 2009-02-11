@@ -24,6 +24,17 @@ kver=$(uname -r | cut -f1,2 -d.)
 # global source/target variables
 unset GSOURCE GTARGET
 
+# Check if RAID was enabled:
+MD=`/bin/cat /proc/mdstat | /bin/grep ^md | /usr/bin/wc -l`
+if [ "$MD" != "0" ]; then
+    # Check if /etc/raidtab is empty:
+    FTL=`/bin/cat /etc/raidtab | /usr/bin/wc -l`
+    if [ "$FTL" > "10" ]; then
+	# Fix /etc/raidtab:
+	/sbin/lsraid -R -p | sed "/^$/d" | grep -v "#" |grep -v failed-disk | grep -v spare-disk |grep -v /dev/null > /etc/raidtab
+    fi
+fi
+
 function raid_status
 # purpose: check a raid-device for active disks
 #          this tries to re-add partitions on the fly if necessary.
@@ -262,16 +273,16 @@ function raid_status
 	    if (failcount > 0) {
 		for (part in faulty) {
 		    printf("-- Fixing failed partition: %s\n", faulty[part]) >"/dev/stderr"
-		    hot_remove=sprintf("raidhotremove %s %s",
+		    hot_remove=sprintf("mdadm %s %s",
  				       part, faulty[part])
-		    hot_add=sprintf("raidhotadd %s %s",
+		    hot_add=sprintf("mdadm %s %s",
 				    part, faulty[part])
                     system(hot_remove)				    
                     system(hot_add)
 		}
 		for (part in blank) {
 		    printf("-- Adding missing partition: %s\n", blank[part]) >"/dev/stderr"
-		    hot_add=sprintf("raidhotadd %s %s",
+		    hot_add=sprintf("mdadm %s %s",
 				    part, blank[part])
                     system(hot_add)
 		}
@@ -315,8 +326,8 @@ function raid_remove
 
     echo "-- Remove RAID disk: [$md] $hdev "
 
-    raidsetfaulty -c $raidtab $mdev $hdev &>/dev/null
-    raidhotremove -c $raidtab $mdev $hdev &>/dev/null
+    mdadm --manage --set-faulty $mdev $hdev &>/dev/null
+    mdadm --manage $mdev -r $hdev &>/dev/null
 
     grep $md $mdstat | grep -q _ && return 0 || return 1
 }
@@ -341,7 +352,8 @@ function raid_add
 
     echo "-- Add RAID disk: [$md] $hdev "
 
-    raidhotadd -c $raidtab $mdev $hdev &>/dev/null
+    mdadm --manage $mdev -r $hdev &>/dev/null
+    mdadm --manage $mdev -a $hdev &>/dev/null
 
     grep $md $mdstat | grep -q _ && return 0 || return 1
 }

@@ -49,6 +49,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 /etc/init.d/mdchk
 /etc/init.d/fix_grub
+/sbin/lsraid
 [AUTOFILL]
 
 <end glue>
@@ -127,6 +128,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ14
+- RAID rebuilds were not working, as we are no longer using raidtools, but mdadm.
+- See ticket http://devel.blueonyx.it/trac/ticket/30
+- As a work around added glue/sbin/lsraid from raidtools RPM to be able to rebuild /etc/raidtab
+- Modified glue/etc/init.d/mdchk to rebuild failed RAID arrays using mdadm
+
 * Tue Jan 06 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ13
 - Added requirement for raid-bins to Makefile, as it's needed for active monitor.
 

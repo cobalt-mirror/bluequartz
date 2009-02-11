@@ -12,6 +12,8 @@ clean:
 
 install:
 	mkdir -p $(PREFIX)/etc/init.d
+	mkdir -p $(PREFIX)/sbin
 	$(INSTALL) etc/init.d/mdchk $(PREFIX)/etc/init.d
 	$(INSTALL) etc/init.d/fix_grub $(PREFIX)/etc/init.d
+	$(INSTALL) sbin/lsraid $(PREFIX)/sbin
 
