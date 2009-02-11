@@ -81,7 +81,7 @@ $scrollList->setEntryCountHidden(true);
 for ($i = 0; $i < count($myData); $i++) {
 	switch ($type) {
 	case "web":
-		$site = "http:/" . $myData[$i][5]; 
+		$site = "http://" . $i18nvars['fqdn'] . $myData[$i][5]; 
 		$site_label = $site;
 		break;
 		
