@@ -41,6 +41,10 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+* Thu Feb 12 2009 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ12
+- Fixed missing gif extension for MerlotBlueLight in style/Merlot.xml and style/BlueOnyx.xml
+- Ticket http://devel.blueonyx.it/trac/ticket/44
+
 * Mon Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ11
 - Rebuilt for BlueOnyx.
 
