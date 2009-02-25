@@ -29,7 +29,7 @@ MD=`/bin/cat /proc/mdstat | /bin/grep ^md | /usr/bin/wc -l`
 if [ "$MD" != "0" ]; then
     # Check if /etc/raidtab is empty:
     FTL=`/bin/cat /etc/raidtab | /usr/bin/wc -l`
-    if [ "$FTL" > "10" ]; then
+    if [ "$FTL" < "10" ]; then
 	# Fix /etc/raidtab:
 	/sbin/lsraid -R -p | sed "/^$/d" | grep -v "#" |grep -v failed-disk | grep -v spare-disk |grep -v /dev/null > /etc/raidtab
     fi
