@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BQ20%{?dist}
+Release: 0BQ21%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+* Wed Feb 25 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.66-0BQ21
+- Modified several Perl modules for better support of BX -> BX migrations:
+- perl_modules/Global.pm
+- perl_modules/TreeXml.pm
+- perl_modules/Archive.pm
+- perl_modules/Conflict.pm
+- This also gets rid of the "unknown platform" error message.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net>
 - version 2.66-0BQ20
 - Rebuilt for BlueOnyx.
