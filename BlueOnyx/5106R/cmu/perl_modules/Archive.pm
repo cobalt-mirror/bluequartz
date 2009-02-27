@@ -158,7 +158,7 @@ sub buildTar
 	} elsif($self->type eq "groups") {
 		if($self->build =~ /^Qube/) {
 			$homeDir = "/home/groups/".$self->name;
-		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^51060R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
+		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^5106R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
 			$homeDir = $self->{baseDir};
 		} elsif($self->build =~ /^RaQ/) {
 			$homeDir = "/home/sites/".$self->name;
