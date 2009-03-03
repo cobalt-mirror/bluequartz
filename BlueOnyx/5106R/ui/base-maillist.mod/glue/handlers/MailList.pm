@@ -138,15 +138,31 @@ sub rewrite_config
   # configure posting policy
   $_ = $obj->{postPolicy};
   if (m/moderated/) {
-    my $mod = $obj->{moderator} || 'admin';
-    push (@data,
-      "moderate = yes",
-      "moderator = $mod",
-      );
+      my @mod = CCE->scalar_to_array($obj->{moderator});
+      my $moderators = "";
+      for(my $i = 0; $i < scalar(@mod); $i++) {
+	  if($i eq 0) {
+	      $moderators = $mod[$i];
+	  } else {
+	      $moderators = "$moderators," . $mod[$i];
+	  }
+      }
+      push (@data,
+	    "moderate = yes",
+	    "moderator = $moderators",
+	    );
   }
   elsif (m/any/) {
   	# do nothing
 	push (@data, "restrict_post = "); # majordomo needs this. :-b
+  }  
+  elsif (m/admin/) {
+  	# policy = Only admins can post
+	my $str = "restrict_post = $obj->{name}.administrator";
+	if ($obj->{group}) {
+	  $str .= ':/etc/group.d/' . $obj->{group};
+	}
+    	push (@data, $str);
   }  
   else {
   	# policy = members
@@ -195,17 +211,20 @@ sub rewrite_config
 
   # update the admin file
   {
-  	my $fn = $listfile.".administrator";
-	my $mod = $obj->{moderator} || "";
-	Sauce::Util::editfile( $fn, 
-		sub { 
-			my ($fin, $fout) = (shift, shift);
-			print $fout $mod,"\n"; 
-		} );
-	Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $fn);
-	Sauce::Util::chmodfile(0640, $fn);
+      my $fn = $listfile.".administrator";
+      my @mod = CCE->scalar_to_array($obj->{moderator});
+      for(my $i = 0; $i < scalar(@mod)-1; $i++) {
+	  $moderators = $moderators . $mod[$i]."\n";
+      }
+      Sauce::Util::editfile( $fn, 
+			     sub { 
+				 my ($fin, $fout) = (shift, shift);
+				 print $fout $moderators;
+			     } );
+      Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $fn);
+      Sauce::Util::chmodfile(0640, $fn);
   };
-
+  
   return $ret;
 }
 

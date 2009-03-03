@@ -28,7 +28,7 @@
 <!-- FIXME: these should be enums eventually -->
 <typedef 
     name="postPolicy" type="re" 
-    data="^((moderated)|(any)|(members))?$" 
+    data="^((moderated)|(any)|(members)|(admin))?$" 
 />
 <typedef 
     name="subPolicy" type="re"
@@ -71,7 +71,7 @@
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
     <property 
-        name="moderator" type="scalar" default="admin"
+        name="moderator" type="scalar" array="true" default="admin"
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
     <property 

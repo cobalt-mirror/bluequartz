@@ -71,7 +71,6 @@ foreach ($localSubs as $temp) {
   $temp_array[$temp] = 1;
 }
 
-
 //find all items
 $postids = array();
 while (list($key, $val) = each($HTTP_POST_VARS)) {
@@ -132,7 +131,16 @@ if (isset($mode) && $mode == 'save') {
     
     $remote_recips = arrayToString($a);
   }
-
+  if ($moderator) {
+    $a = stringToArray($moderator);
+    //uniqify
+    $b = array_flip($a);
+    $a = array_keys($b);
+    
+    $moderator = arrayToString($a);
+  }
+  $remote_recips = str_replace("%40", "@", $remote_recips);
+  $moderator = str_replace("%40", "@", $moderator);
   $vals = array('name' => $listName,
 		'apassword' => $apassword,
 		'local_recips' => $local_recips,
@@ -265,11 +273,16 @@ if ($mode != 'locals' && $mode != 'locals_new') {
 
   //advanced page
   if (!$moderator) {
-    $moderator = "admin";
+    $moderators = $factory->getEmailAddress("moderator", "admin");
+  } else {
+    $moderator = str_replace("%40", "@", $moderator);
+    $moderators = $factory->getEmailAddressList("moderator", $moderator);
   }
-  $block->addFormField($factory->getEmailAddress("moderator", $moderator),
+  $moderators->setOptional("silent");
+  $block->addFormField($moderators,
 		       $factory->getLabel("moderator"),
 		       $advancedId);
+
   $pass = $factory->getPassword("apassword", $apassword, false);
   $pass->setOptional("silent");
   $block->addFormField($pass,
@@ -285,6 +298,7 @@ if ($mode != 'locals' && $mode != 'locals_new') {
   $posting->addOption($factory->getOption("members"));
   $posting->addOption($factory->getOption("any"));
   $posting->addOption($factory->getOption("moderated"));
+  $posting->addOption($factory->getOption("admin"));
   $posting->setSelected($postPolicy, true);
   $block->addFormField($posting,
 		       $factory->getLabel("postingPolicy"),

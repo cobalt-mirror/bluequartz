@@ -35,14 +35,22 @@ my $Majordomo_real = '/usr/local/majordomo';
 my $Majordomo_dir = $Majordomo_real.'/sites/'.$vsite_obj->{name};
 $Majordomo_dir ||= $Majordomo_real;
 
-my $mod = $obj->{moderator};
-if ($mod !~ m/\@/) {
-	if (!getpwnam($mod)) {
-		$cce->baddata(0, 'moderator', 'Moderator-does-not-exist', { 'moderator' => $mod });
-		$cce->warn('Could-not-create-maillist');
-		$cce->bye('FAIL');
-		exit(1);
-	}
+my @mod = CCE->scalar_to_array($obj->{moderator});
+
+my $moderators = "";
+for(my $i = 0; $i < scalar(@mod); $i++) {
+    if ($mod[$i] !~ m/\@/) {
+	if (!getpwnam($mod[$i])) {
+	    $cce->baddata(0, 'moderator', 'Moderator-does-not-exist', { 'moderator' => $mod[$i] });
+	    $cce->warn('Could-not-create-maillist');
+	    $cce->bye('FAIL');
+	    exit(1);
+	} 
+    }
+    if($i > 0) {
+	$moderators = $moderators . ",";
+    }
+    $moderators = $moderators . $mod[$i];
 }
 
 # create aliases:
@@ -54,7 +62,7 @@ $list ||= $list_external;
 my $enabled = $obj->{enabled}; 
 if (!defined($enabled) || $enabled =~ m/^\s*$/) { $enabled = 1; }
 
-my $owner = $obj->{moderator}; # FIXME: can we do better than this?
+my $owner = $moderators; # FIXME: can we do better than this?
 
 # configure resend options:
 my @resend_opts = (

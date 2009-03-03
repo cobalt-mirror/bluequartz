@@ -5,8 +5,8 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=maillist
 
 # MAJVERSION is 0 until alpha release.
-VERSION=1.4.0
-RELEASE=68BQ15
+VERSION=1.4.1
+RELEASE=1BQ1
 
 INSTALL=install
 
