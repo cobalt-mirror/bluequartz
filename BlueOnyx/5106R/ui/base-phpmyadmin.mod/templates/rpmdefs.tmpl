@@ -65,6 +65,19 @@ information for [VENDOR]-[SERVICE].
 <begin HEADER>
 %post [LABEL]
 <end HEADER>
+<begin capstone>
+# capstone post-install
+
+ADMINCONFIG="/etc/phpMyAdmin/config.inc.php"
+
+AUTH_TYPE=`grep auth_type $ADMINCONFIG | grep signon`
+if [ "$AUTH_TYPE" ] ; then
+    exit 0
+else
+    cat /etc/phpMyAdmin/config.inc.php|	sed "s/\['auth_type'\]     = 'http';/\['auth_type'\]     = 'signon';\n\$cfg\['Servers'\]\[\$i\]\['SignonSession'\] = 'SignonSession';\n\$cfg\['Servers'\]\[\$i\]\['SignonURL'\]     = '\/base\/phpmyadmin\/index.php';\n\/\/ \$cfg\['Servers'\]\[\$i\]\['auth_type'\]     = 'http';/g" > $ADMINCONFIG.new
+    mv $ADMINCONFIG.new $ADMINCONFIG
+fi
+<end capstone>
 <begin glue>
 # glue post-install
 
@@ -103,6 +116,11 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Mar 04 2009 Rickard Osser <rickard.osser@bluapp.com> 1.0.0-0BO07
+- Added script to patch /etc/phpMyAdmin/config.inc.php to support signon.
+  It's implemented as a post-install script in the capstone package. It also
+  checks if the auth_type is already set to signon.
 
 * Wed Jan 28 2009 Rickard Osser <rickard.osser@bluapp.com> 1.0.0-0BO06
 - Re-added automated logins for admin user, correctly implemented with single signon.
