@@ -76,6 +76,7 @@ if [ "$AUTH_TYPE" ] ; then
 else
     cat /etc/phpMyAdmin/config.inc.php|	sed "s/\['auth_type'\]     = 'http';/\['auth_type'\]     = 'signon';\n\$cfg\['Servers'\]\[\$i\]\['SignonSession'\] = 'SignonSession';\n\$cfg\['Servers'\]\[\$i\]\['SignonURL'\]     = '\/base\/phpmyadmin\/index.php';\n\/\/ \$cfg\['Servers'\]\[\$i\]\['auth_type'\]     = 'http';/g" > $ADMINCONFIG.new
     mv $ADMINCONFIG.new $ADMINCONFIG
+    chmod 644 $ADMINCONFIG
 fi
 <end capstone>
 <begin glue>
