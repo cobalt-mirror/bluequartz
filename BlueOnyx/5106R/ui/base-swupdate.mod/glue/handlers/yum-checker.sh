@@ -12,6 +12,6 @@ if [ -f /tmp/yum.updating ]; then
 fi
 
 /usr/bin/yum check-update > /tmp/yum.check-update
-/bin/chmod 444 /tmp/yum.check-update
+/bin/chmod 644 /tmp/yum.check-update
 
 exit 0
