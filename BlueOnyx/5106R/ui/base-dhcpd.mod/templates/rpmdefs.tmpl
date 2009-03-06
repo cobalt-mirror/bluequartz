@@ -101,6 +101,16 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 <begin $CHANGELOG>
 
+* Fri Dec 07 2009 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-1BQ4
+- Changed the constructor to check if there is a local DHCP-server on
+  the local network, if yes, take the provisioned adress and set it
+  static, if not, setup a local DHCP-server so the server admin just
+  can connect a client machine to begin setup. This is all for doing
+  the software true appliance like, no screen or console keyboard is
+  now needed for installing a new machine. This works really well on
+  Tyan GT14 where the LCD-display can be used to display the current
+  IP-address.
+
 * Mon Dec 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-1BQ3
 - Fixed include() to include_once() in all PHP UI pages.
 - Added OpenVZ provisions. Although this mod will NOT run in a VPS anyway.

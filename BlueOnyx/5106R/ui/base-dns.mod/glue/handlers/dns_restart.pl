@@ -11,7 +11,7 @@
 my $SERVICE = "named";	# name of initd script for this daemon
 my $CMDLINE = "named";  # contents of /proc/nnn/cmdline for this daemon
 my $RESTART = "reload"; # restart action
-my $DEBUG   = 0;
+my $DEBUG   = 1;
 
 $DEBUG && warn `date` .' '. $0;
 

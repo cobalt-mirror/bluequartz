@@ -72,6 +72,7 @@ ADMINCONFIG="/etc/phpMyAdmin/config.inc.php"
 
 AUTH_TYPE=`grep auth_type $ADMINCONFIG | grep signon`
 if [ "$AUTH_TYPE" ] ; then
+    chmod 644 $ADMINCONFIG
     exit 0
 else
     cat /etc/phpMyAdmin/config.inc.php|	sed "s/\['auth_type'\]     = 'http';/\['auth_type'\]     = 'signon';\n\$cfg\['Servers'\]\[\$i\]\['SignonSession'\] = 'SignonSession';\n\$cfg\['Servers'\]\[\$i\]\['SignonURL'\]     = '\/base\/phpmyadmin\/index.php';\n\/\/ \$cfg\['Servers'\]\[\$i\]\['auth_type'\]     = 'http';/g" > $ADMINCONFIG.new
