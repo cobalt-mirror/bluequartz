@@ -21,8 +21,8 @@ use Sauce::Config;
 use CCE;
 
 # constants
-my $appName = 'BlueLinQ/1.0';
-my $wgetBin = "/usr/bin/wget -A $appName";
+my $appName = 'BlueLinQ/1.0-5106R';
+my $wgetBin = "/usr/bin/wget -U $appName";
 my $tar_cmd = '/bin/tar';
 
 my $pkgprefix = '.swupdate';
