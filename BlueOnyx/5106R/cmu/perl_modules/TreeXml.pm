@@ -225,7 +225,7 @@ sub getStats
     my $data = shift;
     my @attrs = [];
 
-    if ($data->{exportPlatform} =~ /RaQ/ || $data->{exportPlatform} =~ /5106R/ || $data->{exportPlatform} =~ /516[0-1]R/ || $data->{exportPlatform} =~ /5100R/ || $data->{exportPlatform} =~ /TLAS[0-9]+HE/) {
+    if ($data->{exportPlatform} =~ /RaQ/ || $data->{exportPlatform} =~ /5106R/ || $data->{exportPlatform} =~ /5100R/ || $data->{exportPlatform} =~ /TLAS[0-9]+HE/) {
 	@attrs = qw(vsite user list);
     }
     elsif ($data->{exportPlatform} =~ /Qube/) {
