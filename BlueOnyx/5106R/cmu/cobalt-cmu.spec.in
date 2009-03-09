@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BQ24%{?dist}
+Release: 0BQ25%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+* Mon Mar 09 2009 
+- version 2.66-0BQ25 Rickard Osser <rickard.osser@bluapp.com>
+- Added the missing files for Bluapp Bluapp 5160R and 5161R
+
 * Sun Mar 08 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.66-0BQ24
 - Rolled back Bluapp 5160R and 5161R changes as they caused conflicts.

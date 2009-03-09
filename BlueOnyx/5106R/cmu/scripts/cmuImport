@@ -49,7 +49,7 @@ cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
 
 # get the admin password if we need it
 my $password;
-if($build =~ /(RaQ550)/ || $build =~ /(5100R)/ || $build =~ /(5106R)/ ||$build =~ /(TLAS1HE)/ || $build =~ /(TLAS2)/) {
+if($build =~ /(RaQ550)/ || $build =~ /(5100R)/ || $build =~ /(5106R)/ || $build =~ /(516[0-1])/ || $build =~ /(TLAS1HE)/ || $build =~ /(TLAS2)/) {
 	$password = checkPass();
 	$cfg->putGlb('adminPassword', $password);	
 }
