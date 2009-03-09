@@ -67,8 +67,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
-* Mon Mar 09 2009 
-- version 2.66-0BQ25 Rickard Osser <rickard.osser@bluapp.com>
+* Mon Mar 09 2009 Rickard Osser <rickard.osser@bluapp.com>
+- version 2.66-0BQ25 
 - Added the missing files for Bluapp Bluapp 5160R and 5161R
 
 * Sun Mar 08 2009 Michael Stauber <mstauber@solarspeed.net>
