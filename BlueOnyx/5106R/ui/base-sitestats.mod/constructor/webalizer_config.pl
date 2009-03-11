@@ -11,7 +11,7 @@ use CCE;
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
 
-$cce->connectfd();
+$cce->connectuds();
 
 # Check for presence of /etc/webalizer.conf:
 if (-f "/etc/webalizer.conf") {
