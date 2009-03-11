@@ -75,6 +75,9 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 
 <begin glue>
 # glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
 
 <end glue>
 <begin ui>
@@ -123,6 +126,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ22
+- Added constructor/webalizer_config.pl to reconfigure /etc/webalizer.conf
+- Purpose is to set the switch "ReallyQuiet" to "yes".
+
 * Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ21
 - Updated ui/web/request.php to fix ticket http://devel.blueonyx.it/trac/ticket/9
 - FQDN was missing from web statistics of "Top files requested".
