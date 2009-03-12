@@ -35,7 +35,7 @@ if (@oids == 1) {
 	    $raid = 0;
 	    $level = 0;
 	}
-    } elsif (home_partition =~ /\/dev\/md/ ) {
+    } elsif ($home_partition =~ /\/dev\/md/ ) {
 	$home_device = $home_partition;
 	$lvm = 0;
 	$raid = 1;
