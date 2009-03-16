@@ -36,6 +36,11 @@ class subdomainsExtension extends UIExtension
 		$cce = $ServerScriptHelper->getCceClient();
 		$user = $cce->get($parameters["CCE_OID"]);
 
+		// Set sane default
+		if (!$subEnabled) { 
+			$subEnabled = "0"; 
+		}
+
 		$cfg = array(
 			"enabled" => $subEnabled,
 		);
