@@ -493,6 +493,50 @@ msgstr ""
 "value is to leave this field empty.  For example example.com is a valid "
 "entry."
 
+msgid "mx"
+msgstr "Secondary Mail-server"
+
+msgid "mx_help"
+msgstr "Click here to configure secondary mail-services."
+
+msgid "mx2List"
+msgstr "Secondary Mail-server List"
+
+msgid "addmx"
+msgstr "Add"
+
+msgid "addmx_help"
+msgstr "Add new secondary mail-domains here."
+
+msgid "secondaryDomain"
+msgstr "Secondary Service"
+
+msgid "secondaryDomain_help"
+msgstr "This is a list of domains which have secondary mail-services on this server."
+
+msgid "secondarySettings"
+msgstr "Secondary Settings"
+
+msgid "domainField"
+msgstr "Domain Name"
+
+msgid "domainField_help"
+msgstr "Enter the domain name you want to which you want to add a secondary mailservice."
+
+msgid "maptoField"
+msgstr "Mail Server"
+
+msgid "maptoField_help"
+msgstr "Enter the main mail server for the domain."
+
+msgid "domainExists_in_relay_error"
+msgstr "The Domain Name is already in use in the relay email field."
+
+msgid "domainExists_in_site_error"
+msgstr "The Domain Name is already in use in a site on the server."
+
+msgid "domainExists_error"
+msgstr "The Domain Name is already in use in the Secondary Mail server section."
 msgid "userEmail"
 msgstr "Email options for users"
 
@@ -542,3 +586,5 @@ msgstr ""
 
 msgid "ampopRelayStatusOK"
 msgstr "The POP Authenticated Relaying service is operating normally."
+
+

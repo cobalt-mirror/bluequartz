@@ -18,12 +18,18 @@ $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/emailHandler.php");
 $product = new Product($cceClient);
 
+
 // get object
 $email = $cceClient->getObject("System", array(), "Email");
 
 $page = $factory->getPage();
 
-$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced"));
+$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx"));
+
+if (isset($view)) {
+  $block->setSelectedId($view);
+  $_PagedBlock_selectedId_emailSettings = "$view";
+}
 
 // think about what we've done wrong
 $errors = $serverScriptHelper->getErrors(); 
@@ -163,13 +169,59 @@ $block->addFormField(
   "advanced"
 );
 
-$block->addButton($factory->getSaveButton($page->getSubmitAction()));
+if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
+  $addmod = '/base/email/mx2_add.php';
+  $confirm_removal = "Are you sure you want to delete this secondary MX server-record?";
+  
+  $oids = $cceClient->findx("mx2",array(),array(), 'ascii', 'domain');
+
+  $mxList = $factory->getScrollList("mx2List",
+					array("secondaryDomain", ""),
+					array(0));
+  $mxList->setAlignments(array("left", "center"));
+  $mxList->addButton($factory->getButton("$addmod", "addmx"));
+  while(list($key, $oid) = each($oids)) {
+
+    $domains = $cceClient->get($oid);
+    $domain = $domains['domain'];
+    $mapto = $domains['mapto'];
+    
+    $mxList->addEntry(array(
+			    $factory->getTextField("", $domain, "r"),
+			    $factory->getCompositeFormField(array(
+								  $factory->getModifyButton( "$addmod?_TARGET=$oid"),
+								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid');" )))));
+  }
+  
+ }
+
+
+if( $_PagedBlock_selectedId_emailSettings != "mx" && $view != "mx") {
+  $block->addButton($factory->getSaveButton($page->getSubmitAction()));
+ }
 
 $serverScriptHelper->destructor();
 ?>
 <?php print($page->toHeaderHtml()); ?>
 
-<?php print($block->toHtml()); ?>
+<?php print($block->toHtml());
+if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
+  print($mxList->toHtml()); 
+ }
+ ?>
+
+<SCRIPT LANGUAGE="javascript">
+// these need to be defined seperately or Japanese gets corrupted
+var strConfirmRemoval = '<?php print $confirm_removal; ?>';
+</SCRIPT>
+<SCRIPT LANGUAGE="javascript">
+function confirmRemove(msg, oid, label, domauth, netauth) {
+	msg = top.code.string_substitute(msg, "[[VAR.rec]]", label);
+	 
+	if(confirm(msg))
+		location = "/base/email/mx2_deleteHandler.php?_REMOVE=" + oid;
+}
+</SCRIPT>
 
 <?php print($page->toFooterHtml());
 /*

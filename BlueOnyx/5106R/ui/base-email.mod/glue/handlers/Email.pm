@@ -6,6 +6,7 @@ use vars qw($VIRTUSER $ACCESS);
 
 $VIRTUSER = '/etc/mail/virtusertable';
 $ACCESS = '/etc/mail/access';
+$MAILERTABLE = '/etc/mail/mailertable';
 
 # FIXME: rest of these should also be scalars instead of functions
 sub Aliases { return '/etc/mail/aliases'; }
