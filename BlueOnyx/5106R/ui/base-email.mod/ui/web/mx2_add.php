@@ -44,15 +44,6 @@ $block->addFormField(
 		     ""
 		     );
 
-$hidden_block = $factory->getTextBlock("Nothing", "hidden");
-//$hidden_block->setOptional(true);
-$block->addFormField(
-		     $hidden_block,
-		     $factory->getLabel("Nothing"),
-		     ""
-		     );
-
-
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $block->addButton(
 	$factory->getCancelButton('/base/email/email.php?view=mx'));

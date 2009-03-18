@@ -15,7 +15,7 @@ my $Sendmail_mailertable = $Email::MAILERTABLE;
 my $sys_obj;
 my $sys_oid;
 my $mx_oids;
-my $DEBUG = 1;
+my $DEBUG = 0;
 $DEBUG && open(STDERR, ">>/tmp/email.mailertable");
 
 my @mx_oids = $cce->find("mx2");
