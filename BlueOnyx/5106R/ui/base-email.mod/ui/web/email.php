@@ -2,7 +2,7 @@
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
 // $Id: email.php 1136 2008-06-05 01:48:04Z mstauber $
-
+  //phpinfo();
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
@@ -14,8 +14,17 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
   return;
 }
 
+if (isset($view)) {
+  $_PagedBlock_selectedId_emailSettings = "$view";
+}
+
 $cceClient = $serverScriptHelper->getCceClient();
-$factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/emailHandler.php");
+if($_PagedBlock_selectedId_emailSettings == "mx") {
+  $factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/email.php");
+ } else {
+  $factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/emailHandler.php");
+ }
+$i18n = $serverScriptHelper->getI18n("base-email");
 $product = new Product($cceClient);
 
 
@@ -25,6 +34,7 @@ $email = $cceClient->getObject("System", array(), "Email");
 $page = $factory->getPage();
 
 $block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx"));
+$block->processErrors($serverScriptHelper->getErrors());
 
 if (isset($view)) {
   $block->setSelectedId($view);
@@ -174,14 +184,30 @@ if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
   $confirm_removal = "Are you sure you want to delete this secondary MX server-record?";
   
   $oids = $cceClient->findx("mx2",array(),array(), 'ascii', 'domain');
+  $oidsNum = count($oids);
 
-  $mxList = $factory->getScrollList("mx2List",
-					array("secondaryDomain", ""),
-					array(0));
+
+  $mxList = "";
+  $mxList = $factory->getScrollList("mx2List", array("secondaryDomain", " "), array(0));
+  $mxList->setDefaultSortedIndex(0);
   $mxList->setAlignments(array("left", "center"));
-  $mxList->addButton($factory->getButton("$addmod", "addmx"));
-  while(list($key, $oid) = each($oids)) {
+  $mxList->addButton($factory->getAddButton("javascript: location='$addmod';"
+					    . " top.code.flow_showNavigation(false)", "addmx"));
+  $mxList->setLength(25);
+  $maxLength = $oidsNum;
+  $currentPage = $mxList->getPageIndex();
+  $startIndex = 25 * $currentPage;
+  $mxList->processErrors($serverScriptHelper->getErrors());
+  $mxList->setEntryNum($oidsNum);
+  
+  if ($mxList->getSortOrder() == "descending") {
+    $oids = array_reverse($oids);
+  }
 
+  for($i = $startIndex; 
+      $i < count($oids) || $i < $startIndex + $maxLength; 
+      $i++) {
+    $oid = $oids[$i];
     $domains = $cceClient->get($oid);
     $domain = $domains['domain'];
     $mapto = $domains['mapto'];
@@ -192,24 +218,18 @@ if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
 								  $factory->getModifyButton( "$addmod?_TARGET=$oid"),
 								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid');" )))));
   }
-  
  }
 
 
-if( $_PagedBlock_selectedId_emailSettings != "mx" && $view != "mx") {
+if( $_PagedBlock_selectedId_emailSettings != "mx") {
   $block->addButton($factory->getSaveButton($page->getSubmitAction()));
+  //$factory->getSaveButton($page->getSubmitAction("/base/email/emailHandler.php")));
  }
-
 $serverScriptHelper->destructor();
+
+
+print($page->toHeaderHtml());
 ?>
-<?php print($page->toHeaderHtml()); ?>
-
-<?php print($block->toHtml());
-if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
-  print($mxList->toHtml()); 
- }
- ?>
-
 <SCRIPT LANGUAGE="javascript">
 // these need to be defined seperately or Japanese gets corrupted
 var strConfirmRemoval = '<?php print $confirm_removal; ?>';
@@ -223,7 +243,16 @@ function confirmRemove(msg, oid, label, domauth, netauth) {
 }
 </SCRIPT>
 
-<?php print($page->toFooterHtml());
+
+<?php 
+
+print($block->toHtml());
+
+if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
+  print($mxList->toHtml()); 
+ }
+
+print($page->toFooterHtml());
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

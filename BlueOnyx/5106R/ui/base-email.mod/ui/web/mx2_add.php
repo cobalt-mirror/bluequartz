@@ -37,7 +37,6 @@ $block->addFormField(
 		     );
 
 $mapto_field = $factory->getTextField("maptoField", $mapto);
-$mapto_field->setOptional('silent');
 $block->addFormField(
 		     $mapto_field,
 		     $factory->getLabel("maptoField"),

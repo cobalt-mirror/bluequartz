@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=email
 
 VERSION=1.3.2
-RELEASE=0BQ45
+RELEASE=0BQ46
 
 # add a buildarch if desired
 BUILDARCH=noarch
