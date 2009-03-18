@@ -4,7 +4,7 @@
 # Author: Michael Stauber
 # (c) Team BlueOnyx 2009
 # http://www.blueonyx.it
-# Date: Fri 27 Feb 2009 09:04:33 PM CET
+# Date: Tue 17 Mar 2009 09:36:10 PM EDT
 #######################################
 
 ## Check permission
@@ -13,6 +13,134 @@ if [ $UID -ne 0 ]; then
   exit 1
 fi
 
+# Check for SELinux status:
+if [ -f /etc/selinux/config ]; then
+        SEL=`/bin/cat /etc/selinux/config | /bin/grep "^SELINUX=" | /bin/cut -d = -f2`
+        if [ "$SEL" = "disabled" ] ; then
+                /bin/echo ""
+                /bin/echo "SELinux is disabled. Perfect!"
+                /bin/echo ""
+        else
+                /bin/echo "***********"
+                /bin/echo "** ERROR **"
+                /bin/echo "***********"
+                /bin/echo "SELinux is NOT disabled!"
+                /bin/echo ""
+                /bin/echo "Please note: This CentOS5 currently has SELinux set to 'targeted' or 'enabled'."
+                /bin/echo "But BlueOnyx requires it to be 'disabled'. Before you can install BlueOnyx, "
+                /bin/echo "you must edit /etc/selinux/config and in there find this line:"
+                /bin/echo ""
+                /bin/echo "SELINUX=enabled"
+                /bin/echo "...or..."
+                /bin/echo "SELINUX=targeted"
+                /bin/echo ""
+                /bin/echo "Change it to this:"
+                /bin/echo ""
+                /bin/echo "SELINUX=disabled"
+                /bin/echo ""
+                /bin/echo "Then save the changes and REBOOT. A reboot IS required. Do not skip this!"
+                /bin/echo ""
+                /bin/echo "Afterwards run this installer again to continue the installation."
+		/bin/echo ""
+                exit 1
+        fi
+fi
+
+# Quotachecks for both VPS and stand alone installs:
+if [ -e "/proc/user_beancounters" ];then
+	# This is for OpenVZ VPS's:
+	VPSQUOTA=`/bin/ls -k1 /aquota.group /aquota.user | /usr/bin/wc -l`
+	if [ "$VPSQUOTA" != "2" ] ; then
+                /bin/echo "***********"                              
+                /bin/echo "** ERROR **"                              
+                /bin/echo "***********"                              
+                /bin/echo ""                                         
+                /bin/echo "This OpenVZ container does NOT have 2nd level disk quota enabled!"
+                /bin/echo ""                                         
+                /bin/echo "Please enable 2nd level disk quota and run this installer again!"                                         
+                /bin/echo ""                                         
+		exit 1
+	fi
+else
+    # Stand alone installs: Check if /home exists and has quota is enabled:
+    if [ -d /home ];then                             
+
+        # Check if /home is a separate partition:
+        PART=`/bin/cat /etc/fstab | /bin/grep /home | /usr/bin/wc -l`
+        if [ "$PART" = "1" ] ; then                                  
+                /bin/echo ""                                         
+                /bin/echo "Partition /home exists. Good."            
+                /bin/echo ""                                         
+        else                                                         
+                /bin/echo "***********"                              
+                /bin/echo "** ERROR **"                              
+                /bin/echo "***********"                              
+                /bin/echo ""                                         
+                /bin/echo "Partition /home does NOT exists!"
+                /bin/echo ""
+                /bin/echo "Please note: BlueOnyx requires that /home exists and is a separate partition!"
+                /bin/echo ""
+                /bin/echo "Apparently this is not the case on this system. Please reinstall the OS and"
+                /bin/echo "make sure during partitioning that /home exists, has quota enabled and is"
+                /bin/echo "large enough to hold all your sites and users."
+                /bin/echo ""
+                exit 1
+        fi
+
+        # Check if quota is enabled:
+        USERQUOTA=`/bin/cat /etc/fstab | /bin/grep /home | /bin/grep "usrquota" | /usr/bin/wc -l`
+        GROUPQUOTA=`/bin/cat /etc/fstab | /bin/grep /home | /bin/grep "grpquota" | /usr/bin/wc -l`
+        if [ "$USERQUOTA" != "1" ] || [ "$GROUPQUOTA" != "1" ] ; then
+                /bin/echo "***********"
+                /bin/echo "** ERROR **"
+                /bin/echo "***********"
+                /bin/echo ""
+                /bin/echo "Partition /home does NOT have userquota OR groupquota (or both) enabled!"
+                /bin/echo ""
+                /bin/echo "BlueOnyx requires that /home has file system quotas for users and groups enabled!"
+                /bin/echo ""
+                /bin/echo "Apparently this is not the case on this system. To enable quota, please do this:"
+                /bin/echo ""
+                /bin/echo "Edit /etc/fstab and find the line where your /home partition is configured."
+                /bin/echo ""
+                /bin/echo "It could look similar (but not identical!) to this:"
+                /bin/echo ""
+                /bin/echo "/dev/VolGroup00/LogVol04 /home  ext3    defaults  1 2"
+                /bin/echo ""
+                /bin/echo "Change the entry 'defaults' for your /home partition and add ',usrquota,grpquota'"
+                /bin/echo "to it, so that it looks similar to this:"
+                /bin/echo ""
+                /bin/echo "/dev/VolGroup00/LogVol04 /home  ext3    defaults,usrquota,grpquota  1 2"
+                /bin/echo ""
+                /bin/echo "Afterwards you need to run the following commands as shown:"
+                /bin/echo ""
+                /bin/echo "/bin/mount -o remount /home"
+                /bin/echo "/sbin/quotacheck -cuga"
+                /bin/echo "/sbin/quotaon -aug"
+                /bin/echo ""
+                /bin/echo "Once that is done, run this installer again."
+                /bin/echo ""
+                exit 1
+        else
+                /bin/echo "Partition /home has user and group quota enabled. Good."
+                /bin/echo ""
+        fi
+    else
+        /bin/echo "***********"
+        /bin/echo "** ERROR **"
+        /bin/echo "***********"
+        /bin/echo ""
+        /bin/echo "Directory /home does not exist!"
+        /bin/echo ""
+        /bin/echo "Please note: BlueOnyx requires that /home exists and is a separate partition!"
+        /bin/echo ""
+        /bin/echo "Apparently this is not the case on this system. Please reinstall the OS and"
+        /bin/echo "make sure during partitioning that /home exists, has quota enabled and is"
+        /bin/echo "large enough to hold all your sites and users."
+        /bin/echo ""
+        exit 1
+    fi
+fi
 
 ## Check installed RPMS
 echo
@@ -20,16 +148,19 @@ echo "[Phase 1 : Checking intalled RPMS ...]"
 echo
 
 if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" != "5" ]; then
-  echo "** ERROR **"
-  echo "This installer is for CentOS 5 only!"
+  /bin/echo "***********"
+  /bin/echo "** ERROR **"
+  /bin/echo "***********"
+  /bin/echo "This installer is for CentOS 5 only!"
   exit 1;
 fi
 
 rpm -q base-blueonyx-capstone > /dev/null
 if [ $? -eq 0 ]; then
-  echo
-  echo "** ERROR **"
-  echo "BlueOnyx-5106R is already installed."
+  /bin/echo "***********"
+  /bin/echo "** ERROR **"
+  /bin/echo "***********"
+  /bin/echo "BlueOnyx-5106R is already installed."
   exit 1
 fi
 
