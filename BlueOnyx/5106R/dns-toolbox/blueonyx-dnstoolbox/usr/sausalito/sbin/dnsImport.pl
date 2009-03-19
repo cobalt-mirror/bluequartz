@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Author: Brian N. Smith
 # Copyright 2006, NuOnce Networks, Inc.  All rights reserved.
-# $Id: dnsImport.pl,v 2.1-2 Fri 29 Feb 2008 10:46:06 PM EST mstauber
+# $Id: dnsImport.pl,v 2.1-3 Fri 29 Feb 2008 10:46:06 PM EST mstauber
 
 # This file is based off of Jeff Bilicki's dnsImport.  It has been modified in order
 # to allow you to import files from a RaQ550 / TLAS or even CentOS.
@@ -288,8 +288,12 @@ sub add_NS {
 }
 
 sub get_netmask {
-        #my $netmask = `ifconfig eth0 | grep "inet addr" | cut -f 4 -d":" | cut -f 1 -d" "`;
-        my $netmask = `ifconfig venet0:0 | grep "inet addr" | cut -f 5 -d":" | cut -f 1 -d" "`;
+	if (-e "/proc/user_beancounters") {
+        	my $netmask = `ifconfig venet0:0 | grep "inet addr" | cut -f 5 -d":" | cut -f 1 -d" "`;
+	}
+	else {
+        	my $netmask = `ifconfig eth0 | grep "inet addr" | cut -f 4 -d":" | cut -f 1 -d" "`;
+	}
         chomp($netmask);
         return $netmask;
 }

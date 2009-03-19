@@ -1,6 +1,6 @@
-Name:           blueonyx-dnsImport
-Version: 	2.1
-Release: 	3%{?dist}
+Name:           blueonyx-dnstoolbox
+Version: 	1.0
+Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
 URL:            http://www.blueonyx.it
@@ -10,14 +10,16 @@ BuildRoot:      %{_tmppath}/%{name}-root
 BuildArch:      i386
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
-Summary:        nuonce-dnsImport repackaged for BlueOnyx
+Summary:        Shell tools for importing, deleting and modyfing DNS.
 Requires:       perl
 Obsoletes:	nuonce-dnsImport
+Obsoletes:	blueonyx-dnsImport
 AutoReq         : yes
 AutoProv        : yes
 
 %description
-nuonce-dnsImport repackaged and modified for BlueOnyx
+nuonce-dnsImport repackaged and modified for BlueOnyx and extended with
+functionality to delete and modify DNS records.
 
 %prep
 %setup -q -n %{name}
@@ -69,10 +71,5 @@ rm -R -f $RPM_BUILD_ROOT
 %changelog
 
 * Thu Mar 19 2009 Michael Stauber <mstauber@solarspeed.net>
-- [2.1-3:] New package name
-- Added obsoletion of nuonce-dnsImport
-
-
-* Sat Mar 01 2008 Michael Stauber <mstauber@solarspeed.net>
-- [2.1-2:] Added venet support for virtual BlueQuartz
+- [1.0.0-1:] New build
 
