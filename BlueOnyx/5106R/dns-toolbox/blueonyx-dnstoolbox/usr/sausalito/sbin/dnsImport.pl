@@ -1,10 +1,13 @@
 #!/usr/bin/perl
 # Author: Brian N. Smith
 # Copyright 2006, NuOnce Networks, Inc.  All rights reserved.
-# $Id: dnsImport.pl,v 2.1-3 Fri 29 Feb 2008 10:46:06 PM EST mstauber
+# $Id: dnsImport.pl,v 2.1 2006/08/07 14:07:00 bsmith Exp $  
 
 # This file is based off of Jeff Bilicki's dnsImport.  It has been modified in order
 # to allow you to import files from a RaQ550 / TLAS or even CentOS.
+#
+# Secondary domain import re-implemented by Rickard Osser <rickard.osser@bluapp.com>
+#
 
 use lib "/usr/cmu/perl";
 use Global;
@@ -23,7 +26,8 @@ if ( $path eq "" ) {
         print "\t\tCobalt RaQ 550\n";
         print "\t\tTurbo Linux Appliance Server (TLAS)\n";
         print "\t\tArgon Appliance Server\n";
-        print "\t\tBlue Quartz Server\n\n";
+        print "\t\tBlueQuartz Server\n";
+        print "\t\tBlueOnyx Server\n\n";
         print "To Import records, you must copy Bind's zone files from your old server\n";
         print "and put them into a directory on this server.  Then run dnsImport.pl\n";
         print "against that directory\n\n";
@@ -62,35 +66,87 @@ sub import_record {
         my $dir = shift;
         my $file = shift;
         $domainname = $file;
-        if ( $domainname =~ /^db/ ) {
-                $domainname =~ s/db\.//;
-        } else {
-                $domainname =~ s/pri\.//;
-        }
+	switch ( $domainname ) {
+	    case /^sec/ {
+		$domainname =~ s/sec\.//;
+		$recType = "sec";
+		$netmask = "255.255.255.0";
+		break;
+	    }
+	    case /in-addr.arpa/ {
+		$domainname =~ s/\.in-addr.arpa//;
+		$domainname =~ s/^db//;
+		$recType = "sec";
+		my @domainname = split (/\./, $domainname);
+		my ($padding);
+		switch ( @domainname ) {
+		    case "1" { $padding = "0.0.0"; $netmask = "255.0.0.0"; }
+		    case "2" { $padding = "0.0"; $netmask = "255.255.0.0"; }
+		    case "3" { $padding = "0"; $netmask = "255.255.255.0"; }
+		}
+		$domainname = "";
+		for ( my $i = @domainname; $i > 0; $i--) {
+		    $domainname .= $domainname[$i-1].".";
+		}
+		$domainname .= $padding;
+		break;
+	    }
+	    case /^db/ {
+		$domainname =~ s/db\.//;
+		break;
+	    }
+	    case /^db/ {
+		$domainname =~ s/pri\.//;
+		break;
+	    }
+	}
         $records_file = $dir . $file;
         my @records = read_records($records_file);
         my $soa = "";
-        foreach my $rec (@records) {
+	if ( $recType eq "sec") {
+#	    print "We need to do some funky stuff\n";
+	    $done = 0;
+	    foreach my $rec (@records) {
+                chomp $rec;
+                $rec =~ s/\s+/ /g;
+                $rec =~ tr/[A-Z]/[a-z]/;
+		if ( $rec =~ / ns / && !$done) {
+		    my @line = split(/ /, $rec);
+		    $primaryNS = $line[4];
+		    $primaryIP = `dig +short $primaryNS`;
+		    chomp $primaryIP;
+		    $done = 1;
+		}
+	    }
+	    if ($done) { 
+		print "Importing $domainname from $primaryIP as secondary\n";
+		$line[2] = $domainname;
+		$line[3] = $primaryIP;
+		add_SECONDARY(@line);
+	    }
+	} else {
+	    foreach my $rec (@records) {
                 chomp $rec;
                 $rec =~ s/\s+/ /g;
                 $rec =~ tr/[A-Z]/[a-z]/;
                 my @line = split(/ /, $rec);
                 if ( $line[2] eq "ptr" ) { add_PTR(@line); }
                 switch ( $line[2] ) {
-                        case "a" { add_A(@line); }
-                        case "ns" { add_NS(@line); }
-                        case "mx" { add_MX(@line); }
-                        case "cname" { add_CNAME(@line); }
+		    case "a" { add_A(@line); }
+		    case "ns" { add_NS(@line); }
+		    case "mx" { add_MX(@line); }
+		    case "cname" { add_CNAME(@line); }
                 }
                 if ( $rec =~ m/in soa/ ) { $start = "1"; }
                 if ( ($rec eq "" and $start) or ( $rec =~/end soa header/ and $start) ) { $start = "0"; }
                 if ( $start ) { $soa .= $rec . "\n"; }
-        }
-        ($s, $n) = split(/\)/, $soa);
-        $s =~ s/;.*//g; $s =~ s/\n//g; $s =~ s/\s+/ /g;
-        mod_SOA($s, $n);
-        @records = ""; $n = $s = "";
-}
+	    }
+	    ($s, $n) = split(/\)/, $soa);
+	    $s =~ s/;.*//g; $s =~ s/\n//g; $s =~ s/\s+/ /g;
+	    mod_SOA($s, $n);
+	    @records = ""; $n = $s = "";
+	}
+    }
 
 sub mod_SOA {
         my $sa = shift;
@@ -288,14 +344,36 @@ sub add_NS {
 }
 
 sub get_netmask {
-	if (-e "/proc/user_beancounters") {
-        	my $netmask = `ifconfig venet0:0 | grep "inet addr" | cut -f 5 -d":" | cut -f 1 -d" "`;
-	}
-	else {
-        	my $netmask = `ifconfig eth0 | grep "inet addr" | cut -f 4 -d":" | cut -f 1 -d" "`;
-	}
+        if (-e "/proc/user_beancounters") {
+                my $netmask = `ifconfig venet0:0 | grep "inet addr" | cut -f 5 -d":" | cut -f 1 -d" "`;
+        }
+        else {
+                my $netmask = `ifconfig eth0 | grep "inet addr" | cut -f 4 -d":" | cut -f 1 -d" "`;
+        }
         chomp($netmask);
         return $netmask;
+}
+
+sub add_SECONDARY
+{
+    my @record = @_;
+    my $hash = {};
+
+    if($record[2] =~ /\d+\.\d+\.\d+\.\d+/) {
+	$hash->{ipaddr} = $record[2];
+	$hash->{netmask} = get_netmask();
+    } else {
+	$hash->{domain} = $record[2];
+    }
+    $hash->{masters} = $record[3];
+    
+    my ($ok, $bad, @info) = $cce->create('DnsSlaveZone', $hash);
+    if($ok == 0) {
+	$cce->printReturn($ok, $bad, @info);
+    } else { 
+	print "Secondary record ", $hash->{domain}, $hash->{ipaddr}, 
+	" => ", $hash->{masters}, " has been created sucessfully\n";
+    }
 }
 
 sub read_records { 
@@ -310,12 +388,13 @@ sub read_records {
 }
 
 sub commit_changes {
-        my $time = time();
-        my ($oid) = $cce->find('System');
-        if(!$oid) {
-                print "Could not find System OID, cannot commit changes\n";
-                return;
-        }
-        $cce->set($oid, 'DNS', { commit => $time });
-        $cce->commit();
+    my $time = time();
+    my ($oid) = $cce->find('System');
+    if(!$oid) {
+	print "Could not find System OID, cannot commit changes\n";
+	return;
+    }
+    $cce->set($oid, 'DNS', { commit => $time });
+    $cce->commit();
 }
+

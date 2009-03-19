@@ -1,5 +1,5 @@
 Name:           blueonyx-dnstoolbox
-Version: 	1.0
+Version: 	1.0.1
 Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
@@ -70,6 +70,10 @@ rm -R -f $RPM_BUILD_ROOT
 
 %changelog
 
-* Thu Mar 19 2009 Michael Stauber <mstauber@solarspeed.net>
-- [1.0.0-1:] New build
+* Thu Mar 19 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.1-1] 
+- Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsImport.pl
+- Added Rickard Osser's 2ndary DNS modifications.
+
+* Thu Mar 19 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.0-1] 
+- New build
 
