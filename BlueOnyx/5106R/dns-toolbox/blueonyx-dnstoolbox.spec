@@ -1,5 +1,5 @@
 Name:           blueonyx-dnstoolbox
-Version: 	1.0.1
+Version: 	1.0.2
 Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
@@ -69,6 +69,10 @@ rm -R -f $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+
+* Thu Mar 19 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.2-1] 
+- Added blueonyx-dnstoolbox/usr/sausalito/sbin/dnsMassChange.pl
+- Added blueonyx-dnstoolbox/usr/sausalito/sbin/dnsMXmassChange.pl
 
 * Thu Mar 19 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.1-1] 
 - Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsImport.pl
