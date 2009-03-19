@@ -11,7 +11,7 @@ echo -n "Taring Up "
 /bin/rm -f *.rpm
 rm -f /usr/src/redhat/RPMS/i386/blueonyx-dnsImport-*.rpm
 rm -f /usr/src/redhat/SRPMS/blueonyx-dnsImport-*.src.rpm 
-/bin/tar cfpz blueonyx-dnsImport.tar.gz blueonyx-dnsImport/ blueonyx-dnsImport.spec 
+/bin/tar cfpz blueonyx-dnsImport.tar.gz blueonyx-dnsImport/ blueonyx-dnsImport.spec --exclude=.svn
 
 echo -n "[ "; echo -en "\\033[1;36mOK\\033[0;39m"; echo " ]"
 
