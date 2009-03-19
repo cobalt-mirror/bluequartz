@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: email.po\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-27 09:18+0100\n"
+"PO-Revision-Date: 2009-03-19 19:50+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
 "MIME-Version: 1.0\n"
@@ -417,4 +417,49 @@ msgstr "Der POP Authenticated Relaying Dienst läuft nicht und konnte nicht neu 
 
 msgid "ampopRelayStatusOK"
 msgstr "Der POP Authenticated Relaying Server funktioniert einwandfrei."
+
+msgid "mx"
+msgstr "Sekundärer Mailserver"
+
+msgid "mx_help"
+msgstr "Klicken Sie hier um einen sekundären Mailserver zu konfigurieren."
+
+msgid "mx2List"
+msgstr "Liste sekundärer Mailserver"
+
+msgid "addmx"
+msgstr "Hinzufügen"
+
+msgid "addmx_help"
+msgstr "Hier können neue sekundäre Maildomänen hinzugefügt werden."
+
+msgid "secondaryDomain"
+msgstr "Sekundäre Dienste"
+
+msgid "secondaryDomain_help"
+msgstr "Dies ist eine Liste von Domänen, welche sekundäre Mail-Dienste aktiviert haben."
+
+msgid "secondarySettings"
+msgstr "Sekundäre Einstellungen"
+
+msgid "domainField"
+msgstr "Domänen-Name"
+
+msgid "domainField_help"
+msgstr "Geben Sie den Domänen-Namen ein, welcher sekundäre Mail-Dienste bekommen soll."
+
+msgid "maptoField"
+msgstr "Mail-Server"
+
+msgid "maptoField_help"
+msgstr "Geben Sie den primären Namen des Mailservers für diese Domäne ein."
+
+msgid "domainExists_in_relay_error"
+msgstr "Dieser Domänen-Name wird bereits im Email-Weiterleitungsfeld verwendet."
+
+msgid "domainExists_in_site_error"
+msgstr "Dieser Domänen-Name wird bereits von einer Domäne auf dem Server verwendet."
+
+msgid "domainExists_error"
+msgstr "Dieser Domänen-Name ist bereits in der Rubrik sekundärer Mailserver in Verwendung."
 
