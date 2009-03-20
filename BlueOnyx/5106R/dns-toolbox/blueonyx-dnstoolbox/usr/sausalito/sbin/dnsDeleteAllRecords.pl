@@ -179,7 +179,7 @@ sub checkPass
                 print "\nInvalid password\n";
         }
         if(!$password) {
-                warn "Cannot import....exiting.\n";
+                warn "Cannot delete ... exiting.\n";
                 exit 1;
         } else {
                 print "\nPassword ok.\n";
