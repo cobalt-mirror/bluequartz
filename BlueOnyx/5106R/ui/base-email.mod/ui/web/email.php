@@ -192,7 +192,7 @@ if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
   $mxList->setDefaultSortedIndex(0);
   $mxList->setAlignments(array("left", "center"));
   $mxList->addButton($factory->getAddButton("javascript: location='$addmod';"
-					    . " top.code.flow_showNavigation(false)", "addmx"));
+					    . " top.code.flow_showNavigation(false)", "[[base-email.addmx_help]]"));
   $mxList->setLength(25);
   $maxLength = $oidsNum;
   $currentPage = $mxList->getPageIndex();
