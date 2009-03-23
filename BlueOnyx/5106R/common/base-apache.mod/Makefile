@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=apache
 
 VERSION=1.1.0
-RELEASE=79BQ36
+RELEASE=79BQ37
 
 # add a buildarch if desired
 BUILDARCH=noarch

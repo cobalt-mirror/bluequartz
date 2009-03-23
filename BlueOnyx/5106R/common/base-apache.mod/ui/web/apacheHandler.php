@@ -20,6 +20,7 @@ $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product($cceClient);
 
 $oids = $cceClient->find("System");
+$errors = array();
 
 if(!$product->isRaq())
 {
@@ -32,19 +33,19 @@ if(!$product->isRaq())
 		$attributes["passwordWebmaster"] = $passwordWebmasterField;
 
 	$cceClient->set($oids[0], "Frontpage", $attributes);
-	$errors = $cceClient->errors();
+	$errors[] = $cceClient->errors();
 
 	// set System.Web settings
 	$cgiAccessMap = array("cgiAll" => "all", "cgiNone" => "subset", "cgiSubset" => "subset");
 	$cgiUsers = ($cgiAccessField == "cgiNone") ? "" : $cgiUsersField;
 	$cceClient->setObject("System", array("cgiAccess" => $cgiAccessMap[$cgiAccessField], "cgiUsers" => $cgiUsers), "Web");
-	$errors = array_merge($errors, $cceClient->errors());
+	$errors[] = array_merge($errors, $cceClient->errors());
 } else {
 	// Apache server parameters only
 
 	// min spares needs to be less than or equal to max spares
 	if ($minSpareField > $maxSpareField) {
-		$errors = array(new Error('[[base-apache.MinMaxError]]'));
+		$errors[] = array(new Error('[[base-apache.MinMaxError]]'));
 	} else {
 		$apache_config = array(
 			"minSpare" => $minSpareField, 
@@ -53,7 +54,7 @@ if(!$product->isRaq())
 			"hostnameLookups" => $hostnameLookupsField);
 
 		$ok = $cceClient->set($oids[0], "Web", $apache_config);
-		$errors = array_merge($errors, $cceClient->errors());
+		$errors[] = array_merge($errors, $cceClient->errors());
 		if ($ok && ($maxClientsField < $maxSpareField)) {
 			array_push($errors,
 				   new Error('[[base-apache.ClientMaxError]]'));
