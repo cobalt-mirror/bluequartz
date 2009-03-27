@@ -46,7 +46,7 @@ $cceClient->setObject("System",
   
 $errors = $cceClient->errors();
 
-print($serverScriptHelper->toHandlerHtml("/base/email/email.php=view=$_PagedBlock_selectedId_emailSettings", 
+print($serverScriptHelper->toHandlerHtml("/base/email/email.php?view=$_PagedBlock_selectedId_emailSettings", 
 	$errors, "base-email"));
 
 # disable activeMonitor for these items
