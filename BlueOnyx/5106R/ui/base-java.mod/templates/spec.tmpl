@@ -42,6 +42,10 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
+* Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-14
+- Brilliant. If we remove the dependency for mod_jk now, it gets uninstalled by YUM.
+- Added requirement for mod_jk.so to toplevel Makefile.
+
 * Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-13
 - Entirely removed the dependency for mod_jk-ap20 / mod_jk from the toplevel Makefile.
 - NOTE: The installer MUST now make sure that mod_jk-ap20 gets installed.
