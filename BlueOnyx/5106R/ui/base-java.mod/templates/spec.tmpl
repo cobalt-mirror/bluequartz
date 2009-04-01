@@ -42,6 +42,11 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
+* Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-13
+- Entirely removed the dependency for mod_jk-ap20 / mod_jk from the toplevel Makefile.
+- NOTE: The installer MUST now make sure that mod_jk-ap20 gets installed.
+- CD already does that, TAR-ball installer is updated (20080401), too. 
+
 * Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-12
 - Changed dependency from mod_jk-ap20 to mod_jk for CentOS-5.3 release.
 
