@@ -23,6 +23,9 @@ WORKERS=workers.properties
 USERSDIR = $(PREFIX)/etc/tomcat5
 USERS=tomcat-users.xml.dist tomcat5.logrotate.dist
 
+MODULES = $(PREFIX)/usr/lib/httpd/modules
+MODULEJK=mod_jk.so
+
 SCRIPTS=java_load_war.pl
 
 all:
@@ -35,10 +38,12 @@ install:
 	mkdir -p $(MODJKDIR)
 	mkdir -p $(WORKERSDIR)
 	mkdir -p $(USERSDIR)
+	mkdir -p $(MODULES)
 	(cd sbin; $(INSTALL) $(INSTALL_BINFLAGS) $(SCRIPTS) $(CCESBINDIR); )
 	(cd etc/profile.d; $(INSTALL) $(PROFILES) $(PROFILEDIR); )
 	(cd etc/httpd/conf.d; $(INSTALL) $(MODJK) $(MODJKDIR); )
 	(cd etc/tomcat5/jk; $(INSTALL) $(WORKERS) $(WORKERSDIR); )
 	(cd etc/tomcat5; $(INSTALL) $(USERS) $(USERSDIR); )
+	(cd modules; $(INSTALL) $(INSTALL_BINFLAGS) $(MODULEJK) $(MODULES); )
 
 rpm:

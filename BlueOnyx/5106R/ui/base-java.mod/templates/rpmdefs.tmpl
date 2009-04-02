@@ -15,6 +15,8 @@ Group: CCE/[VENDOR]
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
+OBSOLETES: mod_jk
+OBSOLETES: mod_jk-ap20
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -52,6 +54,7 @@ information for [VENDOR]-[SERVICE].
 %config(noreplace)/etc/tomcat5/tomcat-users.xml.dist
 %config(noreplace)/etc/tomcat5/tomcat5.logrotate.dist
 %attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
+%attr(0755,root,root)/usr/lib/httpd/modules/mod_jk.so
 
 [AUTOFILL]
 <end glue>
