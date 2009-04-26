@@ -74,6 +74,7 @@ if ($vsite_php["enabled"] == "0") {
               "upload_max_filesize" => $upload_max_filesize,
               "post_max_size" => $post_max_size,
               "allow_url_fopen" => $allow_url_fopen,
+              "allow_url_include" => $allow_url_include,
               "max_execution_time" => $max_execution_time,
               "max_input_time" => $max_input_time,
               "memory_limit" => $memory_limit,

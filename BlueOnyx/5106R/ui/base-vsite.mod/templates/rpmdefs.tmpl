@@ -125,6 +125,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Mon Apr 27 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ51
+- Modified ui/web/vsite_phpHandler.php
+- Was missing provisions to set allow_url_include into CCE. 
+
 * Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ50
 - Modified constructor/import_php_ini_settings.pl to remove popen and escapeshellcmd from stock php.ini options for disable_functions.
 - Enhanced constructor/import_php_ini_settings.pl further to remove those undesired options on CCE restart if Squirrelmail is installed.
