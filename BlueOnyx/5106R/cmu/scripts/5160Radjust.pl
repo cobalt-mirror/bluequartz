@@ -22,7 +22,7 @@ if($cfg->isSess) {
 
 my $tree = TreeXml::readXml($cmuXml, 0);
 
-$tree->{adjustPlatform} = "5106R";
+$tree->{adjustPlatform} = "5160R";
 
 my $migrate = {};
 TreeXml::addNode('migrate', $tree, $migrate);

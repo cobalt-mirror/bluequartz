@@ -28,15 +28,15 @@ carp "Symbolic links not available"
 my $compression = eval { 
     local $SIG{__DIE__};
     require Compress::Zlib; 
-    sub Compress::Zlib::gzFile::gzseek {
-	my $tmp;
-
-	$_[0]->gzread ($tmp, 4096), $_[1] -= 4096
-	    while ($_[1] > 4096);
-
-	$_[0]->gzread ($tmp, $_[1])
-	  if $_[1];
-    }
+#    sub Compress::Zlib::gzFile::gzseek {
+#	my $tmp;
+#
+#	$_[0]->gzread ($tmp, 4096), $_[1] -= 4096
+#	    while ($_[1] > 4096);
+#
+#	$_[0]->gzread ($tmp, $_[1])
+#	  if $_[1];
+#    }
     1;
 };
 carp "Compression not available"
@@ -245,10 +245,10 @@ sub _get_handle {
 	$mode = $#_ ? (int($_[1]) > 1 ?
 			  "wb".int($_[1]) : "wb") : "rb";
 
-#	$fh = Compress::Zlib::gzopen ($_[0], $mode)
-#	    or &_drat;
-	$fh = Compress::Zlib::gzdopen_ ($fh, $mode, 0)
+	$fh = Compress::Zlib::gzopen ($_[0], $mode)
 	    or &_drat;
+#	$fh = Compress::Zlib::gzdopen_ ($fh, $mode, 0)
+#	    or &_drat;
     }
     else {
 	$flags = fcntl ($_[0], F_GETFL, 0) & (O_RDONLY | O_WRONLY | O_RDWR);

@@ -134,6 +134,8 @@ default::
 
 clean::
 	@echo "Clean up before building"
+	-find . -type f \( -name \*~ -o -name \*.o -o \
+			   -name \#\* -o -name \*.mo \) | xargs rm -f
 	/bin/rm -rf $(BUILD_DIR)
 	/bin/mkdir -p $(PERLDIR)
 	/bin/mkdir -p $(TMP_DIR)/scripts

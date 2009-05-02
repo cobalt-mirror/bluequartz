@@ -193,7 +193,7 @@ sub buildTar
 		$self->setBaseDir($homeDir."/private");
 	} else { 
 		$self->addIgnore("web");
-		if(($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) && $self->type eq "groups") {
+		if(($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) && $self->type eq "groups") {
 			$self->addIgnore("users");
 			$self->addIgnore(".users");
 		}	
@@ -354,7 +354,7 @@ sub extractTar
 	} elsif($self->type eq "groups") {
 		if($self->build =~ /^Qube/) {
 			$homeDir = "/home/groups/".$self->name;
-		} elsif($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
+		} elsif($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
 			$homeDir = "/home/sites/".$self->name;
 		} else {
 			warn "ERROR extractTar: Cannot find build type: ", $self->build, "\n";
