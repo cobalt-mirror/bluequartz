@@ -32,14 +32,14 @@ print STDERR Dumper($paramobj),"\n";
 my $ipAddr = $paramobj->{ipaddr};
 my $mac = $paramobj->{mac};
 $mac=uc( $mac );
-
+my ($network_oid);
 
 # get network object id
 if ( -e "/proc/user_beancounters") {
-    my ($network_oid) = $cce->find("Network", {device => "venet0:0"});
+    ($network_oid) = $cce->find("Network", {device => "venet0:0"});
 }
 else {
-    my ($network_oid) = $cce->find("Network", {device => "eth0"});
+    ($network_oid) = $cce->find("Network", {device => "eth0"});
 }
 # get network object:
 my ($okn, $netobj) = $cce->get($network_oid);

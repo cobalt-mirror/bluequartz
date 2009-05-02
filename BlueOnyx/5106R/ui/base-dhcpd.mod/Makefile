@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=dhcpd
 
 VERSION=1.1.0
-RELEASE=55BQ4
+RELEASE=55BQ5
 
 # add a buildarch if desired
 BUILDARCH=noarch
