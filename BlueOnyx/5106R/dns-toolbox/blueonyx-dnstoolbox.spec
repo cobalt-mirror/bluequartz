@@ -1,5 +1,5 @@
 Name:           blueonyx-dnstoolbox
-Version: 	1.0.3
+Version: 	1.0.4
 Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
@@ -69,6 +69,13 @@ rm -R -f $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+
+* Tue May 12 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.4-1] 
+- Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsImport.pl
+- Added changes submitted by Stephanie Sullivan. Purposes:
+- 1) to correctly import txt records (not previously handled)
+- 2) to try to open the include files and import any records it understands
+- 3) Fixed cut and paste error pri was not stripped off correctly from imported zone files
 
 * Fri Mar 20 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.3-1] 
 - Small modification to text output from blueonyx-dnstoolbox/usr/sausalito/sbin/dnsDeleteAllRecords.pl
