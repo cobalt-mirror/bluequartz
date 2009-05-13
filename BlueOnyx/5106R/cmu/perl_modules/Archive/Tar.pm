@@ -28,15 +28,22 @@ carp "Symbolic links not available"
 my $compression = eval { 
     local $SIG{__DIE__};
     require Compress::Zlib; 
-#    sub Compress::Zlib::gzFile::gzseek {
-#	my $tmp;
-#
-#	$_[0]->gzread ($tmp, 4096), $_[1] -= 4096
-#	    while ($_[1] > 4096);
-#
-#	$_[0]->gzread ($tmp, $_[1])
-#	  if $_[1];
-#    }
+    
+    if ( $Compress::Zlib::VERSION > 2.0) {
+	# By Rickard Osser <rickard.osser@bluapp.com>
+	# We don't need to define Compress::Zlib::gzFile::gzseek as it's 
+	# included in version 2.0 and later. CentOS 6 will include this version as standard
+    } else {
+	sub Compress::Zlib::gzFile::gzseek {
+	    my $tmp;
+	    
+	    $_[0]->gzread ($tmp, 4096), $_[1] -= 4096
+		while ($_[1] > 4096);
+	    
+	    $_[0]->gzread ($tmp, $_[1])
+		if $_[1];
+	}
+    }
     1;
 };
 carp "Compression not available"
