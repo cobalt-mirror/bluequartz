@@ -4,7 +4,7 @@
 	// This is a quick and very dirty merge of the NuOnce MySQL and the Solarspeed MySQL modules.
 	// There are quite a few redundancies here. Wonder if a rewrite from scratch might have been 
 	// better instead. :o/ But for now it works.
-	// $Id: mysql.php,v 2.0 Mon 29 Dec 2008 11:45:54 PM CET mstauber Exp $
+	// $Id: mysql.php,v 2.1 Sun 24 May 2009 12:21:29 PM EDT mstauber Exp $
 
 	function format_bytes ( $size ) {
 		switch ( $size ) {
@@ -105,16 +105,20 @@
 	    mysql_select_db("mysql") or $mysql_error = mysql_error();
 	    mysql_close($mysql_link);
 	}
+	$mysql_no_connect = "0";
 	if ($mysql_error) {
 	    // MySQL connection not possible:	    
 	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
+	    $mysql_no_connect = "1";
 	}
 	else {
 	    // MySQL connection can be established:
 	    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_ok]]");
+	    $mysql_no_connect = "0";
 	    // Connection is OK, but no root password configured. Append suggestion to set password:
 	    if ($sql_rootpassword == "") {
 		$mysql_status .= $i18n->interpolate("[[base-mysql.root_has_no_pwd]]");
+		$mysql_no_connect = "2";
 	    }
 	}
 
@@ -142,18 +146,30 @@
 	$line_sql_port->setMaxLength(30);
 	$block->addFormField($line_sql_port, $factory->getLabel("sql_port"), "server");
 
+	// People apparently get confused by the username / password dialogue on the first tab
+	// and attempt to change the password there - not on the 2nd tab instead.
+	// So we now hide the login details for MySQL user "root" and only show it if a 
+	// MySQL-connection cannot be established:
+	
+	if (($mysql_no_connect == "1") || ($mysql_no_connect == "2")) {
+	    $db_details_visibility = "hidden";
+	}
+	else {
+	    $db_details_visibility = "server";
+	}
+	
     	////// Login Details:
-    	$block->addDivider($factory->getLabel("MySQL_Login_divider", false), "server");
+    	$block->addDivider($factory->getLabel("MySQL_Login_divider", false), "$db_details_visibility");
 
 	// sql_root:
 	$line_sql_root = $factory->getTextField("sql_root", $sql_root);
 	$line_sql_root->setMaxLength(30);
-	$block->addFormField($line_sql_root, $factory->getLabel("sql_root"), "server");
+	$block->addFormField($line_sql_root, $factory->getLabel("sql_root"), $db_details_visibility);
 
 	// sql_rootpassword:
 	$line_sql_rootpassword = $factory->getPassword("sql_rootpassword", $sql_rootpassword);
 	$line_sql_rootpassword->setOptional(silent);
-	$block->addFormField($line_sql_rootpassword, $factory->getLabel("sql_rootpassword"), "server");
+	$block->addFormField($line_sql_rootpassword, $factory->getLabel("sql_rootpassword"), $db_details_visibility);
 
     	////// Status:
     	$block->addDivider($factory->getLabel("MySQL_Status_divider", false), "server");

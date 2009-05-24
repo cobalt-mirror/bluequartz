@@ -115,6 +115,10 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sun May 24 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-16
+- Updated ui/web/mysql.php to hide the MySQL user and password field if a connection to MySQL can be established.
+- Otherwise people tend to get confused and attempt to change the MySQL root password from the wrong tab.
+
 * Wed Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-15
 - Added requirements for base-subdomains to Makefile.
 - Dirty little trick to force it's install on all BlueOnyx boxes that are already up without this late arrival mod.
