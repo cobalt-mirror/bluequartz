@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BQ29%{?dist}
+Release: 0BQ30%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Mon May 25 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.66-0BQ30
+- Updated perl_modules/Archive/Archive.pm
+- Added missing pre-declaration of variable.
 
 * Mon May 25 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.66-0BQ29

@@ -465,13 +465,14 @@ sub extractTar
 				# mstauber Sun May 24 17:20:37 2009
 				# Check the size of the file 'cmu-mailspool' that's included in the user's 'private' tarball.
 				# It contains a copy of his 'mbox' file. Store the size in $cmu_mailspool_size
+				my $cmu_mailspool_size = "";
 				if (-f $mailFile) {
 				    my $cmu_mailspool_size = stat("$mailFile")->size;
 				}
 				else {
 				    my $cmu_mailspool_size = "0";
 				}
-				warn "INFO: Spool ", $mailFile, " is ", $cmu_mailspool_size, " bytes large.\n";
+				warn "INFO: Spool ", $mailFile, " is ", $cmu_mailspool_size, " bytes large.\n" if($self->cfg('debug'));
 
 				# We only copy 'cmu-mailspool' over 'mbox' if 'cmu-mailspool' is NOT 0 bytes.
 				# We especially don't copy over if 'mbox' exists, because that would be plain stupid:
