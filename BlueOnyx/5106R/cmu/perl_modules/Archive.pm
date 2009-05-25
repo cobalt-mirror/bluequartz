@@ -1,6 +1,7 @@
-# $Id: Archive.pm 1065 2008-01-27 09:19:54Z shibuya $
+# $Id: Archive.pm Sun May 24 17:31:36 2009 mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
 
 package Archive;
 use strict;
@@ -25,6 +26,7 @@ require MIME::Base64;
 import MIME::Base64 qw(decode_base64 encode_base64);
 	
 use vars qw($archConf $archBuild);
+use File::stat;
 
 $archConf = {
 	findBin		=>	'/usr/bin/find',	
@@ -200,13 +202,29 @@ sub buildTar
 		$self->setBaseDir($homeDir);
 	}
 		
-	# dirty hack to get the mail file
-	if($self->type eq "users") {
-		my $mailFile = $self->cfg('mailSpool')."/".$self->name;
+	# Not so dirty hack to get the mail file
+	# mstauber Sun May 24 18:31:25 2009
+	# Whoever coded the initial version of this didn't take into account that the spools do not always reside under /var/spool/mail/<username>
+	# I can't use a platform check here or Perl goes mad at me. So I instead check if we have an ~<username>/mbox file first and use that one.
+	# If we don't find one there, then we use /var/spool/mail/<username> instead. This should still cover all platforms.
+	if($self->type eq "users" && -f $self->baseDir."/mbox") {
+	    my $mailFile = $self->baseDir."/mbox";
+		warn "INFO: Using ", $mailFile, " as mailspool.\n" if($self->cfg('debug'));
 		if(-f $mailFile) {
 			my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
 				$self->baseDir."/cmu-mailspool";
 			qx/$cpCmd/;
+			warn "INFO: Using command ", $cpCmd, " to create copy of mailspool.\n" if($self->cfg('debug'));
+		}
+	}
+	elsif($self->type eq "users" && -f $self->cfg('mailSpool')."/".$self->name) {
+		my $mailFile = $self->cfg('mailSpool')."/".$self->name;
+		warn "INFO: Using", $mailFile, " as mailspool.\n" if($self->cfg('debug'));
+		if(-f $mailFile) {
+			my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
+				$self->baseDir."/cmu-mailspool";
+			qx/$cpCmd/;
+			warn "INFO: Using command ", $cpCmd, " to create copy of mailspool.\n" if($self->cfg('debug'));
 		}
 	}
 	# get the private stuff
@@ -441,13 +459,29 @@ sub extractTar
 				
 			} elsif($self->build =~ /^RaQ550/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R/) {
 				if(-l $homeDir."/mbox") {
-					warn "WARN $homeDir/mbox is a symlink\n";
+					warn "WARN $homeDir/mbox is a symlink - removing it.\n";
 					unlink($homeDir.'/mbox');
 				}
-				my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
+				# mstauber Sun May 24 17:20:37 2009
+				# Check the size of the file 'cmu-mailspool' that's included in the user's 'private' tarball.
+				# It contains a copy of his 'mbox' file. Store the size in $cmu_mailspool_size
+				if (-f $mailFile) {
+				    my $cmu_mailspool_size = stat("$mailFile")->size;
+				}
+				else {
+				    my $cmu_mailspool_size = "0";
+				}
+				warn "INFO: Spool ", $mailFile, " is ", $cmu_mailspool_size, " bytes large.\n";
+
+				# We only copy 'cmu-mailspool' over 'mbox' if 'cmu-mailspool' is NOT 0 bytes.
+				# We especially don't copy over if 'mbox' exists, because that would be plain stupid:
+				unless ((-f $homeDir."/mbox") && ($cmu_mailspool_size == "0")) {
+				    my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
 					$homeDir."/mbox";
-				qx/$cpCmd/;
-				chmod 0600, 'mbox';
+				    qx/$cpCmd/;
+				    warn "INFO: Using command ", $cpCmd, " to restore mailspool.\n" if($self->cfg('debug'));
+				    chmod 0600, 'mbox';
+				}
 			} else {
 				my $catCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
 					$self->cfg('mailSpool')."/".$self->name;

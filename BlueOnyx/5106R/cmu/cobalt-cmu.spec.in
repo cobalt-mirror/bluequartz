@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BQ28%{?dist}
+Release: 0BQ29%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -68,7 +68,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
+* Mon May 25 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.66-0BQ29
+- Updated perl_modules/Archive/Archive.pm
+- Fixes long standing issues of not correctly exporting or importing mail-spools of users.
+- This problem existed since BlueQuartz times due to an incorrect way of creating cmu-mailspool for the private tarball.
+
 * Thu May 14 2009 Rickard Osser <rickard.osser@bluapp.com>
+- version 2.66-0BQ28
 - Reversed the changes in Tar.pm and changed name of the subroutine instead. This works with
   both newer and older Compress::Zlib. Tested on BlueOnyx.
 
