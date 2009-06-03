@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BQ30%{?dist}
+Release: 0BQ31%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Wed Jun 3 2009 Rickard Osser <rickard.osser@bluapp.com>
+- version 2.66-0BQ31
+- Backed out changes made to adjustMapping and fixed Global.pm to really
+  follow migration-path.
 
 * Mon May 25 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.66-0BQ30

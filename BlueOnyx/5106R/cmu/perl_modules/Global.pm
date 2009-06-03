@@ -52,35 +52,19 @@ $validImport = {
 	TLAS2	=>	1,
 }; 
 
-my @adjustMapping = (
-		     'Qube2' => 'Qube3',
-		     'RaQ2' => 'RaQ3',
-		     'RaQ3' => 'RaQ4',
-		     'RaQ4' => 'RaQXTR',
-		     'RaQXTR' => 'RaQ550',
-		     'RaQ550' => 'TLAS1HE',
-		     'TLAS1HE' => '5100R',
-		     '5100R' => '5106R',
-		     '5100R' => '5160R',
-		     '5100R' => '5161R',
-		     '5100R' => 'TLAS2',
-		     '5102R' => '5160R',
-		     '5102R' => '5161R',
-		     '5106R' => '5160R',
-		     '5106R' => '5161R',
-		     'TLAS2' => '5106R',
-		     'TLAS2' => '5160R',
-		     'TLAS2' => '5161R',
-		     '5160R' => '5106R',
-		     '5161R' => '5106R',
-		     '5160R' => '5161R',
-		     '5161R' => '5160R'
-		     );
-
-for (my $count=0; $count <= @adjustMapping-1; $count = $count + 2) {
-    push( @{$adjustPath{$adjustMapping[$count]}},$adjustMapping[$count+1]);
-}
-
+%adjustPath = (
+	       Qube2 => 'Qube3',
+	       RaQ2 => 'RaQ3',
+	       RaQ3 => 'RaQ4',
+	       RaQ4 => 'RaQXTR',
+	       RaQXTR => 'RaQ550',
+	       RaQ550 => 'TLAS1HE',
+	       TLAS1HE => '5100R',
+	       '5100R' => 'TLAS2',
+	       'TLAS2' => '5106R',
+	       '5106R' => '5160R',
+	       '5160R' => '5161R',
+	       );
 
 1;
 

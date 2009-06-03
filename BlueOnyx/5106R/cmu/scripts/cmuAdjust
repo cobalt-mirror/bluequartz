@@ -70,20 +70,19 @@ if($migrate->{adjustPlatform} eq 'RaQXTR' && $build eq 'RaQ4') {
     $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
 } elsif($migrate->{adjustPlatform} ne $build) {
     while($migrate->{adjustPlatform} ne $build) {
-	my $migrationPlatforms = "@{$adjustPath{ $migrate->{adjustPlatform}}}";
-	if ( $migrationPlatforms =~ /$build/ ) {
-	    $adjustCmd = "/usr/cmu/scripts/".$build."adjust.pl";
-	    if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
-		print WR TreeXml::writeXml($cobaltBase);
-		close(WR);
-		close(RE);
-		while(my $line = <ER>) { cmuLog("Adjust", $line); }
-		close(ER);
-		waitpid($pid, 0);
-	    }
-	    $migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
+	$adjustCmd = "/usr/cmu/scripts/".
+	    $adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
+	if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
+	    print WR TreeXml::writeXml($cobaltBase);
+	    close(WR);
+	    close(RE);
+	    while(my $line = <ER>) { cmuLog("Adjust", $line); }
+	    close(ER);
+	    waitpid($pid, 0);
 	}
+	$migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
     }
 }
+
 exit 0;
 
