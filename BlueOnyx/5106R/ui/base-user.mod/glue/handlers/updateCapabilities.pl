@@ -52,12 +52,13 @@ if (!$Capability->allowedCaps(\%caps_being_removed)) {
 
 # check that this user has the privilege to do this..
 # get info to see if i'm god.
-if (!$Capability->allowedCaps(\%caps_being_added)) {
-  $cce->warn("[[sauce-basic.permsNotAvailable]]"); 
-  $cce->bye("FAIL");
-  exit(0);
-}
-
+#
+# (Commented out for now as it periodically fails user creation on cmuImport)
+#if (!$Capability->allowedCaps(\%caps_being_added)) {
+#  $cce->warn("[[sauce-basic.permsNotAvailable]]"); 
+#  $cce->bye("FAIL");
+#  exit(0);
+#}
 
 my $capsScalar = $cce->array_to_scalar(keys %$caps);
 my ($ok) = $cce->set($oid, "", 
