@@ -1,4 +1,4 @@
-# $Id: Archive.pm Sun May 24 17:31:36 2009 mstauber $
+# $Id: Archive.pm Wed Jun 10 05:45:36 2009 mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
@@ -330,7 +330,18 @@ sub getFileList
 		next if($f eq "..");
 		$f =~ s/^\.\///o;		
 		unless(grep {$f =~ /^$_/} @{ $self->{ignore} }) {
-			($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7];
+			# The function below does no longer work under Perl-5.8.X for whatever weird reason.
+			#($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7]; 
+
+			# So we use this instead - which should work pretty much anywhere:
+			my $sb = stat($dir."/".$f);
+			my $uid = $sb->uid;
+			my $gid = $sb->gid;
+			my $size = $sb->size;
+
+			# Uncomment the next line to log debug output to cmu.log:
+			#warn "File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
+
 			my $fHash;
 			$fHash->{name} = $f;
 			$fHash->{size} = $size;

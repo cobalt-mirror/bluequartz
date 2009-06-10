@@ -47,13 +47,24 @@ cmuLog("INFO", "Session ID is ".$cfg->sess."\n");
 cmuLog("INFO", "Modified files will be renamed filename.".$cfg->sess."\n");
 cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
 
+# Password prompting cmuImport is not really needed. I have no idea why that ever
+# made it into the code. So we remove it for all but RaQ550 and TLAS and instead
+# check if the user who runs cmuImport is 'root'.
+#
 # get the admin password if we need it
 my $password;
-if($build =~ /(RaQ550)/ || $build =~ /(5100R)/ || $build =~ /(5106R)/ || $build =~ /(516[0-1])/ || $build =~ /(TLAS1HE)/ || $build =~ /(TLAS2)/) {
+if ($build =~ /(5106R)/) {
+    # Root check
+    my $id = get_uid('root');
+    if ($id ne "0") {
+	print "$0 must be run by a user with root capability.\n";
+	exit 1
+    }
+}
+elsif($build =~ /(RaQ550)/ || $build =~ /(TLAS1HE)/ || $build =~ /(TLAS2)/) {
 	$password = checkPass();
 	$cfg->putGlb('adminPassword', $password);	
 }
-
 
 # Start the import 
 
@@ -202,4 +213,25 @@ sub checkPass
 		print "\nPassword ok.\n";
 		return $password;
 	}
+}
+
+sub is_root_user () {
+  my $id = get_uid('root');
+  return ( ! defined($id) || $< == $id || $> == $id );
+}
+
+### get the uid for the passed user
+sub get_uid ($) {
+  my $user = shift;
+  my $uid  = undef;
+
+  if( $user =~ /^\d+$/ ){
+    $uid = $user;
+  }else{
+    $uid = getpwnam($user);
+  }
+
+  die "No such user \"$user\"\n" unless defined $uid;
+
+  return $uid;
 }

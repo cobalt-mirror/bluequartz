@@ -10,7 +10,7 @@ CWD = `pwd`
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.66
+VERSION   =   2.80
 
 BUILD_DIR =   /tmp/cmu
 TMP_DIR   =   $(BUILD_DIR)/cpr

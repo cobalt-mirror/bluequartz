@@ -17,6 +17,15 @@ use IPC::Open3;
 use Global;
 use TreeXml;
 
+# Root check:
+my $id = get_uid('root');
+
+# Root check
+if ($id ne "0") {
+    print "$0 must be run by a user with root capability.\n";
+    exit 1
+}
+
 my $fqdn = `uname -n`;
 chomp($fqdn);
 
@@ -109,3 +118,25 @@ sub postBuild
 	cmuLog("INFO", "$0 completed at ".localtime()."\n");
 	return;
 }
+
+sub is_root_user () {
+  my $id = get_uid('root');
+  return ( ! defined($id) || $< == $id || $> == $id );
+}
+
+### get the uid for the passed user
+sub get_uid ($) {
+  my $user = shift;
+  my $uid  = undef;
+
+  if( $user =~ /^\d+$/ ){
+    $uid = $user;
+  }else{
+    $uid = getpwnam($user);
+  }
+
+  die "No such user \"$user\"\n" unless defined $uid;
+
+  return $uid;
+}
+
