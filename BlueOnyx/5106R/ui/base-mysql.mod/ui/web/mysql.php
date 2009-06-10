@@ -4,7 +4,7 @@
 	// This is a quick and very dirty merge of the NuOnce MySQL and the Solarspeed MySQL modules.
 	// There are quite a few redundancies here. Wonder if a rewrite from scratch might have been 
 	// better instead. :o/ But for now it works.
-	// $Id: mysql.php,v 2.1 Sun 24 May 2009 12:21:29 PM EDT mstauber Exp $
+	// $Id: mysql.php,v 2.2 Sun Tue 09 Jun 2009 08:56:28 PM EDT mstauber Exp $
 
 	function format_bytes ( $size ) {
 		switch ( $size ) {
@@ -150,14 +150,22 @@
 	// and attempt to change the password there - not on the 2nd tab instead.
 	// So we now hide the login details for MySQL user "root" and only show it if a 
 	// MySQL-connection cannot be established:
-	
-	if (($mysql_no_connect == "1") || ($mysql_no_connect == "2")) {
-	    $db_details_visibility = "hidden";
-	}
-	else {
-	    $db_details_visibility = "server";
-	}
-	
+	//
+	// Possible $mysql_no_connect values:
+	//
+	// 0 = MySQL connection OK
+	// 1 = MySQL connection not OK
+	// 2 = MySQL connection OK, but "root" has no password set.
+
+        if ($mysql_no_connect == "1") {
+	    // Show 'enter password' dialogue in first tab:
+            $db_details_visibility = "server";
+        }
+        else {
+	    // Hide 'enter password' dialogue in first tab:
+            $db_details_visibility = "hidden";
+        }
+
     	////// Login Details:
     	$block->addDivider($factory->getLabel("MySQL_Login_divider", false), "$db_details_visibility");
 
