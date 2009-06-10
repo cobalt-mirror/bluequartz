@@ -1,4 +1,4 @@
-# $Id: Archive.pm Wed Jun 10 05:45:36 2009 mstauber $
+# $Id: Archive.pm Wed 10 Jun 2009 05:12:00 PM EDT mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
@@ -562,6 +562,13 @@ sub setAttr
 			warn "ERROR Could not find file: $dir/", $file->{name}, "\n";
 			next;
 		}
+
+                my $gid; 
+                if (defined $self->{gid}) { 
+                        $gid = $self->{gid}; 
+                } else { 
+                        $gid = 'users'; 
+                } 
 
 		# escape problem chars
 		if($file->{name} =~ /\$/) { $file->{name} =~ s/\$/\\\$/g; }

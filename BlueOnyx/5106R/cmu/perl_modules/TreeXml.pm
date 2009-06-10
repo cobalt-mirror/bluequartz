@@ -384,7 +384,7 @@ sub asXml {
 		if (ref($val)) {
 		    push @nested, @{ TreeXml::asXml($val, $key, "$indent  ") };
 		}
-		elsif ($val) {
+		elsif (defined($val)) {
 		    $val = escText($val);
 		    push @result, $indent, qq(   <$key value = "$val"/>\n);
 		}

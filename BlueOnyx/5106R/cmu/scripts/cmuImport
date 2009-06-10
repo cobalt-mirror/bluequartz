@@ -97,11 +97,13 @@ TreeXml::addNode('cobaltBase', $cfg->{glbConf}, $cobaltBase);
 
 my ($pid, $adjustCmd);
 # cobaltBase adjust
+cmuLog("INFO", "Adjustment : Platform = " . $migrate->{adjustPlatform} . " build = $build\n"); 
 if($cfg->skipAdjust eq 't') {
     cmuLog("WARN","Skipping adjust script\n");
 } elsif($migrate->{adjustPlatform} eq 'RaQXTR' && $build eq 'RaQ4') {
     # special case for the XTR thing back thing
     $adjustCmd = "/usr/cmu/scripts/RaQXTR4adjust.pl";
+    cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
     if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
 	print WR TreeXml::writeXml($cobaltBase);
 	close(WR);
@@ -115,6 +117,7 @@ if($cfg->skipAdjust eq 't') {
     while($migrate->{adjustPlatform} ne $build) {
 	$adjustCmd = "/usr/cmu/scripts/".
 	    $adjustPath{ $migrate->{adjustPlatform} }."adjust.pl";
+	cmuLog("INFO", "AdjustCommand = $adjustCmd\n");
 	if(! -x $adjustCmd) {
 	    cmuLog("ERROR", "Cannot adjust to this platform\n");
 	    exit 1;

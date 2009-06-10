@@ -1,4 +1,4 @@
-# $Id: cmuCCE.pm 930 2004-04-13 22:28:12Z anders $
+# $Id: cmuCCE.pm Wed 10 Jun 2009 05:07:07 PM EDT mstauber $
 # Copyright (c) 1999,2000,2001 Cobalt Networks, Inc. 
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # written by: Jeff Bilicki
@@ -169,7 +169,7 @@ sub loadHash
 	my $hash = {};
 
 	foreach my $attr (keys %{ $curObj }) {
-		next unless($curObj->{$attr});
+		next unless($curObj->{$attr} ne '');
 		if(exists($self->{_arrayVal}->{$attr})) {
 			# to make more this readable
 			my $iVal = $self->{_arrayVal}->{$attr};

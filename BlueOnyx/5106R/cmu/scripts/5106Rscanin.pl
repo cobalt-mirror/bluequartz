@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5106Rscanin.pl 957 2006-05-05 09:55:26Z shibuya $
+# $Id: 5106Rscanin.pl 1202 2009-04-07 08:49:22Z shibuya $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -161,6 +161,19 @@ foreach my $user (@keys) {
 	my $uRef = $cce->unLoadHash($uTree);
 	# convert into fqdn into site
 	my $vsites;
+
+	# check adminUser
+	my $admin;
+	if (defined $uTree->{capLevels}) {
+		my @arr = @{ $uTree->{capLevels}->{cap} };
+
+		for(my $i = 0; $i < @arr; $i++) {
+			if($uTree->{capLevels}->{cap}->[$i] eq 'adminUser') {
+				$admin = 1;
+			}
+		}
+	}
+
 	if(defined $uRef->{fqdn}) {
 		($uRef->{site}) = $cce->findMember("Vsite", 
 			{ fqdn => $uRef->{fqdn} }, undef, 'name');
@@ -177,7 +190,7 @@ foreach my $user (@keys) {
 			delete $tree->{user}->{$user};
 			next;
 		}
-	} else {	
+	} elsif ($admin != 1) {
 		warn "INFO: ERROR: Cannot add user $uRef->{name} with out site fqdn\n";
 		delete $tree->{user}->{$user};
 		next;
@@ -327,10 +340,9 @@ if($cfg->dns eq 't') {
 	warn "INFO: Importing DNS records\n";
 	if($tree->{exportPlatform} eq 'RaQ550' ||
 	   $tree->{exportPlatform} eq '5100R' ||
-	   $tree->{exportPlatform} eq '5106R' ||
 	   $tree->{exportPlatform} eq 'TLAS1HE' ||
 	   $tree->{exportPlatform} eq 'TLAS2') {
-		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5106R series or TLAS HE DNS migration not done yet\n"
+		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R series or TLAS HE DNS migration not done yet\n"
 	} elsif(-f $cfg->destDir.'/records') {
 		$cmd = '/usr/cmu/scripts/dnsImport '.$cfg->destDir.'/records';
 		system($cmd);

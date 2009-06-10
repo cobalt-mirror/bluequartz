@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5100Rscanout.pl 945 2005-10-09 12:26:12Z shibuya $
+# $Id: 5100Rscanout.pl 1161 2008-06-21 10:31:02Z shibuya $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 use strict;
@@ -107,6 +107,10 @@ foreach my $oid (@oids) {
 		$arch->buildTar();
 		$vobj->{archives} = $arch->archives;
 	}
+	if(defined $vobj->{SSL}->{importCert}) {
+		delete $vobj->{SSL}->{importCert};
+	}
+
 	push @{ $tree->{migrate}->{vsite} }, $vobj;
 }
 
@@ -118,13 +122,19 @@ foreach my $oid (@oids) {
 	if($cceRef->{name} eq 'admin') { next; }
 
     my $key = $cceRef->{name};
+	# check adminUser
+	my $admin;
+	if ($cceRef->{capLevels} =~ /&adminUser&/) {
+		$admin = 1;
+	}
+
 	warn "INFO: exporting user $key\n";
 	($fqdn) = $cce->findMember("Vsite", 
 		{ name => $cceRef->{site} }, 
 		undef, 
 		'fqdn'
 	);
-	if(!$fqdn) {
+	if(!$fqdn && !$admin) {
 		warn "ERROR: cannot retrieve virtual site for user ",
 			$cceRef->{name}, "\n";
 	}
