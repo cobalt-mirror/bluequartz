@@ -125,6 +125,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ52
+- During cmuImport the old paths for a sites home directory were retained for open_basedir and the new path where the site
+  now resides at just got appended. This was of course highly undesireable. 
+- Modified ui/web/vsite_php.php and ui/web/vsite_phpHandler.php to strip all /home/.sites/ references from open_basedir and 
+  added provisions to add only the correct path to a sites home directory.
+- Modified glue/handlers/php_vsite_handler.pl to do the same thing.
+
 * Mon Apr 27 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ51
 - Modified ui/web/vsite_phpHandler.php
 - Was missing provisions to set allow_url_include into CCE. 

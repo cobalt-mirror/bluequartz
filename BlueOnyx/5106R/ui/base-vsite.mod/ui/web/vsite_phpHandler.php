@@ -1,7 +1,7 @@
 <?php
 
 // Author: Michael Stauber <mstauber@solarspeed.net>
-// Copyright 2006-2008, Stauber Multimedia Design. All rights reserved.
+// Copyright 2006-2009, Stauber Multimedia Design. All rights reserved.
 
 include_once('ServerScriptHelper.php');
 include_once('AutoFeatures.php');
@@ -59,7 +59,18 @@ if ($vsite_php["enabled"] == "0") {
   if ($oids[0] == '') {
     exit();
   }
- // $phpVsite = $cceClient->get($oids[0], 'PHPVsite');
+
+  // Remove any superfluxus /home/.sites/ paths from $open_basedir:
+  $this_vsite_open_basedir = split (":", $open_basedir);
+  $this_vsite_open_basedir_new = array();
+  foreach ($this_vsite_open_basedir as $entry) {
+        if(!eregi("/home/.sites/", $entry, $regs)) {
+            array_push($this_vsite_open_basedir_new, $entry);
+        }
+  }
+  $open_basedir = implode(":",$this_vsite_open_basedir_new);
+
+  // $phpVsite = $cceClient->get($oids[0], 'PHPVsite');
   $cceClient->set($oids[0], 'PHPVsite',
         array(
               "force_update" => $force_update,

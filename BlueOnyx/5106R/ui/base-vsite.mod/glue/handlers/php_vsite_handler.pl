@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: php_vsite_handler.pl, v1.2.0.0 Tue Dec  2 02:59:05 2008 mstauber Exp $
-# Copyright 2006-2008 Solarspeed Ltd. All rights reserved.
+# $Id: php_vsite_handler.pl, v1.2.0.1 Wed Jun 10 13:25:17 2009 mstauber Exp $
+# Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 
 # This handler is run whenever a CODB Object called "Vsite" with namespace 
 # "PHPVsite" is created, destroyed or modified. 
@@ -103,12 +103,25 @@ sub edit_vhost {
 	    $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
 	    $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
 
+	    # We need to remove any site path references from open_basedir, because they could be from the wrong site,
+	    # like during a cmuImport, when it inherited the path it had on the server it was exported from.
+	    @vsite_php_settings_temp = split(":", $vsite_php_settings->{"open_basedir"});
+	    foreach $entry (@vsite_php_settings_temp) {
+		system("echo $entry >> /tmp/debug.ms");
+		$entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
+		if ($entry ne "") {
+		    push(@vsite_php_settings_new, $entry);
+		}
+	    }
+	    $vsite_php_settings->{"open_basedir"} = join(":", @vsite_php_settings_new);
+
+	    # Decide if we need to add the sites homedir to open_basedir or not:
 	    if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
-		# If the site's basedir path is already present, we use whatever paths open_basedire currently has:
+		# If the site's basedir path is already present, we use whatever paths open_basedir currently has:
 		$script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n"; 
 	    }
 	    else {
-		# On create the schema doesn't have the site's basedir added to the paths. If it's missing, we add it here:
+		# If the sites path to it's homedir is missing, we add it here:
 		$script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/' . "\n"; 
 	    }
 

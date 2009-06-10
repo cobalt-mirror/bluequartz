@@ -1,7 +1,7 @@
 <?php
 
 // Author: Michael Stauber <mstauber@solarspeed.net>
-// Copyright 2006-2008, Stauber Multimedia Design. All rights reserved.
+// Copyright 2006-2009, Stauber Multimedia Design. All rights reserved.
 
 include_once('ServerScriptHelper.php');
 include_once('AutoFeatures.php');
@@ -173,9 +173,18 @@ $block->addFormField(
 );
 
 // open_basedir
+// Remove any superfluxus /home/.sites/ paths from $systemObj['open_basedir']:
+$this_vsite_open_basedir = split (":", $systemObj['open_basedir']);
+$this_vsite_open_basedir_new = array();
+foreach ($this_vsite_open_basedir as $entry) {
+	if(!eregi("/home/.sites/", $entry, $regs)) {
+	    array_push($this_vsite_open_basedir_new, $entry);
+	}
+}
+$systemObj['open_basedir'] = implode(":",$this_vsite_open_basedir_new);
 
 if(!eregi($vsite['basedir'], $systemObj['open_basedir'], $regs)) {
-    // If 'open_basedir' doesn't have the vsite's basedir in it, then we need to append it here:
+    // If 'open_basedir' doesn't have this vsite's basedir in it, then we need to append it here:
     $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
 }
 
