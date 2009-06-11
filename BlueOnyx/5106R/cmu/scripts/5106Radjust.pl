@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5100Radjust.pl 1161 2008-06-21 10:31:02Z shibuya $
+# $Id: 5106Radjust.pl 1161 2008-06-21 10:31:02Z shibuya $
 use strict;
 
 # If you are not toor, go away :)
@@ -22,7 +22,7 @@ if($cfg->isSess) {
 
 my $tree = TreeXml::readXml($cmuXml, 0);
 
-$tree->{adjustPlatform} = "5100R";
+$tree->{adjustPlatform} = "5106R";
 
 if(defined $tree->{user}) {
 my($uTree, $fqdn, @arr);

@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX04%{?dist}
+Release: 0BX05%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Thu Jun 11 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.80-0BX05
+- Scanin/Scanout/Adjust scripts updated for model number. Was slightly off in some.
 
 * Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.80-0BX04

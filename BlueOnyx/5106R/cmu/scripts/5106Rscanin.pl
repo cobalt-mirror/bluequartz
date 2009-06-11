@@ -344,9 +344,10 @@ if($cfg->dns eq 't') {
 	warn "INFO: Importing DNS records\n";
 	if($tree->{exportPlatform} eq 'RaQ550' ||
 	   $tree->{exportPlatform} eq '5100R' ||
+	   $tree->{exportPlatform} eq '5106R' ||
 	   $tree->{exportPlatform} eq 'TLAS1HE' ||
 	   $tree->{exportPlatform} eq 'TLAS2') {
-		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R series or TLAS HE DNS migration not done yet\n"
+		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R, BlueOnyx 5106R or TLAS HE DNS migration not done yet\n"
 	} elsif(-f $cfg->destDir.'/records') {
 		$cmd = '/usr/cmu/scripts/dnsImport '.$cfg->destDir.'/records';
 		system($cmd);

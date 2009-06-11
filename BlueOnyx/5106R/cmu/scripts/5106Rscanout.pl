@@ -72,8 +72,8 @@ $i18n->setLocale(I18n::i18n_getSystemLocale($cce));
 my $tree = {}; 
 my ($ok, @oids, $cceRef, $fqdn);
 
-$tree->{migrate}->{exportPlatform} = "5100R";
-$tree->{migrate}->{adjustPlatform} = "5100R";
+$tree->{migrate}->{exportPlatform} = "5106R";
+$tree->{migrate}->{adjustPlatform} = "5106R";
 $tree->{migrate}->{cmuVersion} = $VERSION;
 $tree->{migrate}->{cmuDate} = time();
 
