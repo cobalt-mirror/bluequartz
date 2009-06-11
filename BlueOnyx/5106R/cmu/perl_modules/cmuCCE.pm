@@ -388,11 +388,12 @@ sub importCerts
 	foreach my $vsite (keys %{ $tree->{vsite} }) {
 		$vTree = $tree->{vsite}->{$vsite};
 		if(!defined $vTree->{SSL}->{enabled}) { next; }
+		if($vTree->{SSL}->{enabled} eq "0") { next; }
 		
 		my $certFile = '/home/sites/'.$vTree->{fqdn}.'/certs/certificate';
 		if(! -f $certFile) {
 			warn "ERROR SSL enabled for ", $vTree->{fqdn}, 
-				" but not certificate was found at $certFile\n";
+				" but no certificate was found at $certFile\n";
 			next;
 		}
 

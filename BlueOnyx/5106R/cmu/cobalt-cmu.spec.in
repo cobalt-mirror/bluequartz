@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -69,7 +69,12 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 
 * Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX03
+- version 2.80-0BX04
+- Modified perl_modules/cmuCCE.pm to fix a typo.
+- Updated perl_modules/cmuCCE.pm to prevent activation of SSL if site had no certificate, as this generated an error message.
+- Updated perl_modules/Archive.pm to fix issue where the first extracted file from a user's public tarball couldn't be chowned correctly.
+- Updated scripts/5100Rscanin.pl and scripts/5106Rscanin.pl for better error messages when someone imports a Vsite on Aventurin{e} to an IP that's not yet assigned to a VPS.
+
 - Imported several changes from BlueQuartz CMU 2.66-0BQ18 [SVN: 1066:1161]
 - fixed exportPlatform check routine.
 - fixed the issue that doesn't import admin user without root access.

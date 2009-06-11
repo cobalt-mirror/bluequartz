@@ -1,4 +1,4 @@
-# $Id: Archive.pm Wed 10 Jun 2009 05:12:00 PM EDT mstauber $
+# $Id: Archive.pm Wed Jun 10 16:17:27 2009 mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
@@ -549,7 +549,8 @@ sub setAttr
 	foreach my $file (@{ $fData->{file} }) {
 		if(!defined $file->{uid}) {
 			next;
-		} elsif(!defined $uidHash->{ $file->{uid} }) {
+		} 
+		elsif(!defined $uidHash->{ $file->{uid} }) {
 			my $uid = getpwnam($file->{uid});
 			if($uid) {
 				$uidHash->{ $file->{uid} } = $uid;
@@ -584,7 +585,16 @@ sub setAttr
 			$ret = ($ret > 0)? 0: 1;
 		}
 		if($ret != 0) {
-			warn "ERROR Cannot set ownership for file: $dir/", $file->{name}, "\n"
+			#warn "ERROR Cannot set ownership for file: $dir/", $file->{name}, " - Debug: UID: $file->{uid} - GID: $self->{gid} \n";
+
+			# During the first try we couldn't set the UID and GID of this file. So we try it again using a system call before we really fail:
+
+			#warn "ERROR Performing command: chown $file->{uid}:$self->{gid} $dir/$file->{name} \n";
+			my $ret_second_attempt = system("chown $file->{uid}:$self->{gid} $dir/$file->{name}");
+
+			if ($ret_second_attempt != 0) {
+			    warn "ERROR Cannot set ownership for file: $dir/", $file->{name}, " - Tried to chown with: UID: $file->{uid} - GID: $self->{gid} and failed.\n";
+			}
 		}
 	
 	}

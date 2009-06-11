@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5106Rscanin.pl 1202 2009-04-07 08:49:22Z shibuya $
+# $Id: 5106Rscanin.pl Wed Jun 10 17:54:31 2009 mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -115,7 +115,11 @@ foreach my $fqdn (@vsiteNames) {
 		($ok, $bad, @info) = $cce->create('Vsite', $vRef);
 		if($ok == 0) {
 			$cce->printReturn($ok, $bad, @info);
-			warn "INFO: ERROR: Vsite $fqdn was not created properly\n";
+			warn "INFO: ERROR: Vsite $fqdn was not created properly. \n";
+			if (-e "/proc/user_beancounters") {
+			    warn "INFO: ERROR: You may have attempted to import a site with an IP address which has not been assigned to this OpenVZ VPS. \n";
+			    warn "INFO: ERROR: Please assign that Vsites IP to this VPS first, or import to a different IP using the '-i <IP-Address>' switch. \n";
+			}
 			delete $tree->{vsite}->{$fqdn};
 			next;
 		} else { warn "Virtual site $vRef->{fqdn} OK=$ok \n" }
