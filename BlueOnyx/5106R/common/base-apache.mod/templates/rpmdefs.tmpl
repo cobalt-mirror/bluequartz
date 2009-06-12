@@ -113,6 +113,19 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Jun 12 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Fixed bug in glue/handlers/regen_httpd_figlet which wouldn't update the hostname in our httpd.conf
+- Added constructor/set_apache_hostname.pl which updates the hostname in httpd.conf of both Apache and Admserv.
+- Added provisions to modify 'AllowOverride' and 'Options' settings in /etc/httpd/conf.d/blueonyx.conf through the GUI.
+- The changes for that are as follows:
+- Extended glue/schemas/apache.schema with database fields for the new settings.
+- Added constructor/import_apache_settings.pl to import existing settings from /etc/httpd/conf.d/blueonyx.conf into CODB.
+- Modified ui/web/apache.php with new UI for modifying the settings.
+- Modified ui/web/apacheHandler.php to add ability to store the new switches into CODB.
+- Added glue/handlers/writeback_blueOnyx_conf.pl to write the new CODB changes to /etc/httpd/conf.d/blueonyx.conf
+- Updated glue/conf/Apache.conf with a call to the new handler glue/handlers/writeback_blueOnyx_conf.pl
+- Updated locales for new UI lables. English and German locales are complete, rest are a copy of the English version.
+
 * Wed Apr 08 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ38
 - Fixed small typo in debugging section of glue/httpd/ssl_perl.conf
 

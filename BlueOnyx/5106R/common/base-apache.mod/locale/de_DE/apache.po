@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Projet BlueOnyx\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-10-31 20:32+0200\n"
-"PO-Revision-Date: 2008-05-13 17:15+0100\n"
+"PO-Revision-Date: 2009-06-12 19:37+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -234,3 +234,94 @@ msgstr "Benutzern FTP erlauben"
 
 msgid "userwebsI18nName"
 msgstr "Benutzer-Webs aktiviert"
+
+#
+## BlueOnyx.conf editing additions:
+#
+msgid "Options_AllField"
+msgstr "All"
+
+msgid "Options_AllField_help"
+msgstr "Alle Optionen außer MultiViews. (Standard: Aus)"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinks"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "Der Server folgt symbolischen Links in diesem Verzeichnis.  (Standard: An)"
+
+msgid "Options_IncludesField"
+msgstr "Includes"
+
+msgid "Options_IncludesField_help"
+msgstr "Server Side Includes, die von mod_include bereitgestellt werden, sind erlaubt. (Standard: An)"
+
+msgid "Options_IndexesField"
+msgstr "Indexes"
+
+msgid "Options_IndexesField_help"
+msgstr "Wenn eine URL, die auf ein Verzeichnis zeigt, in dem sich keine durch DirectoryIndex definierte Indexdatei (z.B. index.html) befindet, dann liefert mod_autoindex eine formatierte Auflistung des Verzeichnisses zurück. (Standard: An)"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViews"
+
+msgid "Options_MultiViewsField_help"
+msgstr "'MultiViews' sind bei der Verwendung von mod_negotiation erlaubt (siehe Content-Negotiation). (Standard: An)"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatch"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "Der Server folgt nur symbolischen Links, bei denen die Zieldatei bzw. das Zielverzeichnis der gleichen Benutzerkennung gehört, wie der Link. (Standard: Aus)"
+
+msgid "AllowOverride_AllField"
+msgstr "All"
+
+msgid "AllowOverride_AllField_help"
+msgstr "Wenn Apache ein .htaccess file im Webspace findet, muss es wissen, welche Voreinstellungen von Apache durch die .htaccess Datei überschrieben werden dürfen. Markiert man diesen Schalter, darf per .htaccess JEDE Einstellung überschrieben werden. (ACHTUNG! Potentiell gefährlich! Standard: Aus)"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "AuthConfig"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "Erlaubt die Verwendung von Autorisierungs-Anweisungen (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthType, AuthUserFile, Require usw.). (Standard: An)"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "FileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "Erlaubt die Verwendung von Direktiven zur Steuerung der Dokumenttypen (DefaultType, ErrorDocument, ForceType, LanguagePriority, SetHandler, SetInputFilter, SetOutputFilter, und mod_mime-Direktiven Add* und Remove* usw.). (Standard: Aus)"
+
+msgid "AllowOverride_IndexesField"
+msgstr "Indexes"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "Erlaubt die Verwendung von Direktiven zur Steuerung von Verzeichnisindizes (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName  usw.). (Standard: An)"
+
+msgid "AllowOverride_LimitField"
+msgstr "Limit"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "Erlaubt die Verwendung von Direktiven zur Steuerung des Zugriffs von Hosts (Allow, Deny und Order). (Standard: An)"
+
+msgid "AllowOverride_OptionsField"
+msgstr "Options"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "Erlaubt die Verwendung von Direktiven zur Steuerung spezieller Verzeichniseigenschaften (Options  und XBitHack). (Standard: Aus)"
+
+msgid "DIVIDER_TOP"
+msgstr "Generelle Apache-Konfiguration:"
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "Apache-Einstellungen für Verzeichnisse virtueller Sites:"
+
+msgid "BlueOnyx_Info_Text"
+msgstr "Eine Sektion in /etc/httpd/conf.d/blueonyx.conf definiert, welche 'Options' und 'AllowOverride' Funktionen für das Verzeichnis gilt, in dem alle virtuellen Sites liegen (/home/.sites/). Dies schränkt die Nutzung von .htaccess Files in virtuellen Sites ein. Jene Einstellungen können im Nachfolgenden editiert werden."
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Options:"
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverride:"
+

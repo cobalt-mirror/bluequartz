@@ -203,3 +203,95 @@ msgstr "FTP for non-Site admins enabled"
 msgid "userwebsI18nName"
 msgstr "User owned webs enabled"
 
+
+#
+## BlueOnyx.conf editing additions:
+#
+
+msgid "Options_AllField"
+msgstr "All"
+
+msgid "Options_AllField_help"
+msgstr "All options except for MultiViews. (Default: Off)"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinks"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "The server will follow symbolic links. (Default: On)"
+
+msgid "Options_IncludesField"
+msgstr "Includes"
+
+msgid "Options_IncludesField_help"
+msgstr "Server-side includes are permitted. (Default: On)"
+
+msgid "Options_IndexesField"
+msgstr "Indexes"
+
+msgid "Options_IndexesField_help"
+msgstr "If a URL which maps to a directory is requested, and the there is no DirectoryIndex (e.g., index.html) in that directory, then the server will return a formatted listing of the directory. (Default: On)"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViews"
+
+msgid "Options_MultiViewsField_help"
+msgstr "Content negotiated MultiViews are allowed. Used for displaying pages in different languages based on browser locales. (Default: On)"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatch"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link. (Default: Off)"
+
+msgid "AllowOverride_AllField"
+msgstr "All"
+
+msgid "AllowOverride_AllField_help"
+msgstr "When the server finds an .htaccess file it needs to know which directives declared in that file can override earlier access information. Ticking this box will allow to override ALL Apache settings (Dangerous! Default: Off)"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "AuthConfig"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "Allow use of the authorization directives (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require, etc.). (Default: On)"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "FileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "Allow use of the directives controlling document types (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.). (Default: Off)"
+
+msgid "AllowOverride_IndexesField"
+msgstr "Indexes"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "Allow use of the directives controlling directory indexing (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.). (Default: On)"
+
+msgid "AllowOverride_LimitField"
+msgstr "Limit"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "Allow use of the directives controlling host access (Allow, Deny  and Order). (Default: On)"
+
+msgid "AllowOverride_OptionsField"
+msgstr "Options"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "Allow use of the directives controlling specific directory features (Options and XBitHack). (Default: Off)"
+
+msgid "DIVIDER_TOP"
+msgstr "General Apache configuration:"
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "Apache features for virtual site directories:"
+
+msgid "BlueOnyx_Info_Text"
+msgstr "A section in /etc/httpd/conf.d/blueonyx.conf defines which 'Options' and 'AllowOverride' features are allowed for the directory (/home/.sites/) in which all virtual sites reside. This restricts usage of .htaccess files and other things. These can be changed below."
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Options:"
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverride:"
+

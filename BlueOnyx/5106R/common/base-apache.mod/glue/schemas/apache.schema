@@ -52,6 +52,67 @@
         name="reload" type="uint" optional="yes"
         writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin) OR ruleCapable(modifyHttpd)"
     />
+
+    <!-- Switches for Apache configuration of /home/.sites/ in /etc/httpd/conf.d/blueonyx.conf -->
+
+    <property 
+        name="Options_All" type="boolean" default="0"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="Options_FollowSymLinks" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="Options_Includes" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="Options_Indexes" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="Options_MultiViews" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="Options_SymLinksIfOwnerMatch" type="boolean" default="0"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+
+
+    <property 
+        name="AllowOverride_All" type="boolean" default="0"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="AllowOverride_AuthConfig" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="AllowOverride_FileInfo" type="boolean" default="0"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="AllowOverride_Indexes" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="AllowOverride_Limit" type="boolean" default="1"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="AllowOverride_Options" type="boolean" default="0"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+
+
+    <!-- Switche that toggles rewriting of /etc/httpd/conf.d/blueonyx.conf -->
+    <property 
+        name="Writeback_BlueOnyx_Conf" type="int" default="0"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+
 </class>
 
 <!-- 

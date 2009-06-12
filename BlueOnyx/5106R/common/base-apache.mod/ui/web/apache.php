@@ -1,13 +1,15 @@
 <?php
-// Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: apache.php 1136 2008-06-05 01:48:04Z mstauber $
+// Authors: Kevin K.M. Chiu & Michael Stauber
+// Copyright 2000, Cobalt Networks. All rights reserved.
+// Copyright 2009, Team BlueOnyx. All rights reserved.
+// $Id: apache.php Fri 12 Jun 2009 09:28:20 AM CEST mstauber $
 
 include_once("ArrayPacker.php");
 include_once("Product.php");
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
+$i18n = $serverScriptHelper->getI18n("base-apache");
 
 // Only adminUser should be here
 if (!$serverScriptHelper->getAllowed('adminUser')) {
@@ -28,8 +30,8 @@ $page = $factory->getPage();
 $block = $factory->getPagedBlock("apacheSettings");
 $block->processErrors($serverScriptHelper->getErrors());
 
-if(!$product->isRaq())
-{
+if(!$product->isRaq()) {
+
 	// get frontpage
 	$frontpage = $cceClient->getObject("System", array(), "Frontpage");
 
@@ -43,8 +45,7 @@ if(!$product->isRaq())
 
 	// make frontpage field
 	// password only needed to enable frontpage
-	if(!$frontpage["enabled"]) 
-	{
+	if(!$frontpage["enabled"]) {
   
 		$enable = $factory->getOption("frontpageEnabled", $frontpage["enabled"]);
   
@@ -57,8 +58,7 @@ if(!$product->isRaq())
   		$frontpageEnabled = $factory->getMultiChoice("frontpageField");
   		$frontpageEnabled->addOption($enable);
 	}
-	else
-	{
+	else {
   		$frontpageEnabled = $factory->getBoolean("frontpageField", $frontpage["enabled"]);
 	}
 
@@ -86,8 +86,9 @@ if(!$product->isRaq())
 		$factory->getLabel("cgiAccessField")
 	);
 }
-else
-{
+else {
+	// Add divider:
+	$block->addDivider($factory->getLabel("DIVIDER_TOP", false));
 
 	$block->addFormField(
 		$factory->getBoolean("hostnameLookupsField", $web["hostnameLookups"]),
@@ -113,8 +114,6 @@ else
 		$min,
 		$factory->getLabel("minSpareField")
 	);
-		// $factory->getInteger("minSpareField", $web["minSpare"], 1, $web["minSpareAdvised"]),
-
 
 	$max_spare = $factory->getInteger("maxSpareField", $web["maxSpare"], 1, $web["maxSpareAdvised"]);
 	$max_spare->setWidth(5);
@@ -125,14 +124,72 @@ else
 		$factory->getLabel("maxSpareField")
 	);
 
-	// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-	$hidden_block = $factory->getTextBlock("Nothing", "");
-	$hidden_block->setOptional(true);
+	// BlueOnyx.conf modification stuff:
+
+	// Add divider:
+	$block->addDivider($factory->getLabel("DIVIDER_EXPLANATION", false));
+
+	$my_TEXT = $i18n->interpolate("[[base-apache.BlueOnyx_Info_Text]]");
 	$block->addFormField(
-	    $hidden_block,
-	    $factory->getLabel("Nothing"),
-	    "Hidden"
-	    );
+	  $factory->getTextField("BlueOnyx_Info_Text", $my_TEXT, 'r'),
+	  $factory->getLabel(" ")
+	);
+
+	// Add divider:
+	$block->addDivider($factory->getLabel("DIVIDER_OPTIONS", false));
+
+	$block->addFormField(
+		$factory->getBoolean("Options_All", $web["Options_All"]),
+		$factory->getLabel("Options_AllField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("Options_FollowSymLinks", $web["Options_FollowSymLinks"]),
+		$factory->getLabel("Options_FollowSymLinksField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("Options_Includes", $web["Options_Includes"]),
+		$factory->getLabel("Options_IncludesField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("Options_Indexes", $web["Options_Indexes"]),
+		$factory->getLabel("Options_IndexesField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("Options_MultiViews", $web["Options_MultiViews"]),
+		$factory->getLabel("Options_MultiViewsField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("Options_SymLinksIfOwnerMatch", $web["Options_SymLinksIfOwnerMatch"]),
+		$factory->getLabel("Options_SymLinksIfOwnerMatchField")
+	);
+
+	// Add divider:
+	$block->addDivider($factory->getLabel("DIVIDER_ALLOWOVERRIDE", false));
+
+	$block->addFormField(
+		$factory->getBoolean("AllowOverride_All", $web["AllowOverride_All"]),
+		$factory->getLabel("AllowOverride_AllField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("AllowOverride_AuthConfig", $web["AllowOverride_AuthConfig"]),
+		$factory->getLabel("AllowOverride_AuthConfigField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("AllowOverride_FileInfo", $web["AllowOverride_FileInfo"]),
+		$factory->getLabel("AllowOverride_FileInfoField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("AllowOverride_Indexes", $web["AllowOverride_Indexes"]),
+		$factory->getLabel("AllowOverride_IndexesField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("AllowOverride_Limit", $web["AllowOverride_Limit"]),
+		$factory->getLabel("AllowOverride_LimitField")
+	);
+	$block->addFormField(
+		$factory->getBoolean("AllowOverride_Options", $web["AllowOverride_Options"]),
+		$factory->getLabel("AllowOverride_OptionsField")
+	);
 }
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));

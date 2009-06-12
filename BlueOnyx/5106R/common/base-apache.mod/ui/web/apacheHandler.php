@@ -1,7 +1,8 @@
 <?php
 /*
- * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: apacheHandler.php 490 2005-08-09 14:04:51Z shibuya $
+ * Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
+ * Copyright 2009, Team BlueOnyx. All rights reserved.
+ * $Id: apacheHandler.php Fri 12 Jun 2009 11:22:17 AM CEST mstauber $
  */
 
 include_once("ArrayPacker.php");
@@ -22,8 +23,7 @@ $product = new Product($cceClient);
 $oids = $cceClient->find("System");
 $errors = array();
 
-if(!$product->isRaq())
-{
+if(!$product->isRaq()) {
 	// set System.Frontpage settings
 	$frontpage = $cceClient->get($oids[0], "Frontpage");
 
@@ -40,24 +40,45 @@ if(!$product->isRaq())
 	$cgiUsers = ($cgiAccessField == "cgiNone") ? "" : $cgiUsersField;
 	$cceClient->setObject("System", array("cgiAccess" => $cgiAccessMap[$cgiAccessField], "cgiUsers" => $cgiUsers), "Web");
 	$errors[] = array_merge($errors, $cceClient->errors());
-} else {
+} 
+else {
 	// Apache server parameters only
 
 	// min spares needs to be less than or equal to max spares
 	if ($minSpareField > $maxSpareField) {
-		$errors[] = array(new Error('[[base-apache.MinMaxError]]'));
-	} else {
+		array_push($errors, new Error('[[base-apache.MinMaxError]]'));
+	} 
+	else {
 		$apache_config = array(
 			"minSpare" => $minSpareField, 
 			"maxSpare" => $maxSpareField, 
 			"maxClients" => $maxClientsField, 
-			"hostnameLookups" => $hostnameLookupsField);
+			"hostnameLookups" => $hostnameLookupsField,
+			
+			"Options_All" => $Options_All,
+			"Options_FollowSymLinks" => $Options_FollowSymLinks,			
+			"Options_Includes" => $Options_Includes,
+			"Options_Indexes" => $Options_Indexes,			
+			"Options_MultiViews" => $Options_MultiViews,
+			"Options_SymLinksIfOwnerMatch" => $Options_SymLinksIfOwnerMatch,			
 
-		$ok = $cceClient->set($oids[0], "Web", $apache_config);
-		$errors[] = array_merge($errors, $cceClient->errors());
-		if ($ok && ($maxClientsField < $maxSpareField)) {
-			array_push($errors,
-				   new Error('[[base-apache.ClientMaxError]]'));
+			"AllowOverride_All" => $AllowOverride_All,
+			"AllowOverride_AuthConfig" => $AllowOverride_AuthConfig,			
+			"AllowOverride_FileInfo" => $AllowOverride_FileInfo,
+			"AllowOverride_Indexes" => $AllowOverride_Indexes,			
+			"AllowOverride_Limit" => $AllowOverride_Limit,
+			"AllowOverride_Options" => $AllowOverride_Options,			
+
+			"Writeback_BlueOnyx_Conf" => time()
+
+			);
+
+		if ($maxClientsField < $maxSpareField) {
+		    array_push($errors, new Error('[[base-apache.ClientMaxError]]'));
+		}
+		else {
+		    $ok = $cceClient->set($oids[0], "Web", $apache_config);
+		    array_push($errors, $cceClient->errors());
 		}
 	}
 }
