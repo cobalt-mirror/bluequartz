@@ -71,6 +71,9 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
 
 if [ $1 = 2 ]; then
   /usr/sausalito/handlers/base/apache/preview.pl -c
@@ -112,6 +115,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sat Jun 13 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
+- Added cced.init restart to post-install in templates/rpmdefs.tmpl
 
 * Fri Jun 12 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
 - Fixed bug in glue/handlers/regen_httpd_figlet which wouldn't update the hostname in our httpd.conf
