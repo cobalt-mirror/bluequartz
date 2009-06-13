@@ -1,4 +1,4 @@
-# $Id: Archive.pm Wed Jun 10 16:17:27 2009 mstauber $
+# $Id: Archive.pm Sat Jun 13 15:13:39 2009 mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
@@ -334,7 +334,7 @@ sub getFileList
 			#($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7]; 
 
 			# So we use this instead - which should work pretty much anywhere:
-			my $sb = stat($dir."/".$f);
+			my $sb = lstat($dir."/".$f);
 			my $uid = $sb->uid;
 			my $gid = $sb->gid;
 			my $size = $sb->size;

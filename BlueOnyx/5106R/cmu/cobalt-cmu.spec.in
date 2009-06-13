@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX05%{?dist}
+Release: 0BX06%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Sun Jun 14 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.80-0BX06
+- Updated scripts/cmuExport because on errors it would run a 'chmod 640' via an xargs command on an empty file list, causing an undescriptive error.
+- Updated perl_modules/Archive.pm *again* to switch from stat() to lstat() for gathering file information. This catches symbolic links as well.
 
 * Thu Jun 11 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.80-0BX05

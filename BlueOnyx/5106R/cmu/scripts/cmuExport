@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: cmuExport 930 2004-04-13 22:28:12Z anders $
+# $Id: cmuExport Sat Jun 13 15:13:58 2009 mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 use strict;
@@ -113,7 +113,7 @@ sub preBuild
 sub postBuild
 {
 	my $cfg = shift;
-	my $chmodCmd = "/usr/bin/find ".$cfg->destDir." -type f | xargs chmod 640";
+	my $chmodCmd = "/usr/bin/find ".$cfg->destDir." -type f | xargs -r chmod 640";
 	qx/$chmodCmd/;
 	cmuLog("INFO", "$0 completed at ".localtime()."\n");
 	return;
