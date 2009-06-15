@@ -1,4 +1,4 @@
-# $Id: Archive.pm Sun 14 Jun 2009 09:54:08 PM EDT mstauber $
+# $Id: Archive.pm Mon 15 Jun 2009 07:54:09 AM CEST mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
@@ -335,45 +335,67 @@ sub getFileList
 			# but there we have to make sure to not run it on sockets, special devices and what not.
 			#($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7]; 
 
-                        # Only run lstat on files, directories or symlinks:
+			# Run lstat() on files, directories and symlinks only:
                         if ((-f $dir."/".$f) || (-d $dir."/".$f) || (-l $dir."/".$f)) {
                                 my $sb = lstat($dir."/".$f);
                                 my $uid = $sb->uid;
                                 my $gid = $sb->gid;
                                 my $size = $sb->size;
-                                # Uncomment the next line to log debug output to cmu.log:
-                                #warn "IN-IF File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
+				# Uncomment the next line to log debug output to cmu.log:
+				#warn "IN-IF File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
+
+				my $fHash;
+				$fHash->{name} = $f;
+				$fHash->{size} = $size;
+				if(defined($uidHash->{$uid})) {
+					$fHash->{uid} =  $uidHash->{$uid};
+				} else {
+					$name = (getpwuid($uid))[0];
+					if($name) { $fHash->{uid}= $uidHash->{$uid} = $name; } 
+					else { $fHash->{uid} = $self->cfg('dflUser') }
+				}
+				if($build =~ /^Qube/) {
+					if(defined $gidHash->{$gid}) { 
+						$fHash->{gid} = $gidHash->{$gid}; 
+					} else {
+						$name = (getgrgid($gid))[0];
+						if($name) { $fHash->{gid} = $gidHash->{$gid} = $name; } 
+						else { $fHash->{gid} = $self->cfg('dflGroup') }
+					}
+				}
+				push(@{ $xmlData->{file} }, $fHash);
+				$total += $size;				
                         }
+			# On anything else we assume safe defaults:
                         else {
-                                # Assume safe defaults:
                                 my $uid = "nobody";
                                 my $gid = "users";
                                 my $size = "0";
-                                # Uncomment the next line to log debug output to cmu.log:
-                                #warn "IN-ELSE File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
-                        }
+				# Uncomment the next line to log debug output to cmu.log:
+				#warn "IN-ELSE File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
 
-			my $fHash;
-			$fHash->{name} = $f;
-			$fHash->{size} = $size;
-			if(defined($uidHash->{$uid})) {
-				$fHash->{uid} =  $uidHash->{$uid};
-			} else {
-				$name = (getpwuid($uid))[0];
-				if($name) { $fHash->{uid}= $uidHash->{$uid} = $name; } 
-				else { $fHash->{uid} = $self->cfg('dflUser') }
-			}
-			if($build =~ /^Qube/) {
-				if(defined $gidHash->{$gid}) { 
-					$fHash->{gid} = $gidHash->{$gid}; 
+				my $fHash;
+				$fHash->{name} = $f;
+				$fHash->{size} = $size;
+				if(defined($uidHash->{$uid})) {
+					$fHash->{uid} =  $uidHash->{$uid};
 				} else {
-					$name = (getgrgid($gid))[0];
-					if($name) { $fHash->{gid} = $gidHash->{$gid} = $name; } 
-					else { $fHash->{gid} = $self->cfg('dflGroup') }
+					$name = (getpwuid($uid))[0];
+					if($name) { $fHash->{uid}= $uidHash->{$uid} = $name; } 
+					else { $fHash->{uid} = $self->cfg('dflUser') }
 				}
-			}
-			push(@{ $xmlData->{file} }, $fHash);
-			$total += $size;
+				if($build =~ /^Qube/) {
+					if(defined $gidHash->{$gid}) { 
+						$fHash->{gid} = $gidHash->{$gid}; 
+					} else {
+						$name = (getgrgid($gid))[0];
+						if($name) { $fHash->{gid} = $gidHash->{$gid} = $name; } 
+						else { $fHash->{gid} = $self->cfg('dflGroup') }
+					}
+				}
+				push(@{ $xmlData->{file} }, $fHash);
+				$total += $size;
+                        }
 		}
 
 	}
