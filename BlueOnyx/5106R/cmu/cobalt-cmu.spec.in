@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Jun 15 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.80-0BX07
 - Updated perl_modules/Archive.pm *again* to restrict lstat() usage on files, directories and symlinks. Else assume safe defaults für UID, GID and file size.
+- Moved debugging output lines into the if/else sections.
 
 * Sun Jun 14 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.80-0BX06

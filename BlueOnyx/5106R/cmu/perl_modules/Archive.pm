@@ -335,22 +335,23 @@ sub getFileList
 			# but there we have to make sure to not run it on sockets, special devices and what not.
 			#($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7]; 
 
-			# Only run lstat on files, directories or symlinks:
+                        # Only run lstat on files, directories or symlinks:
                         if ((-f $dir."/".$f) || (-d $dir."/".$f) || (-l $dir."/".$f)) {
                                 my $sb = lstat($dir."/".$f);
                                 my $uid = $sb->uid;
                                 my $gid = $sb->gid;
                                 my $size = $sb->size;
+                                # Uncomment the next line to log debug output to cmu.log:
+                                #warn "IN-IF File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
                         }
                         else {
-				# Assume safe defaults:
+                                # Assume safe defaults:
                                 my $uid = "nobody";
                                 my $gid = "users";
                                 my $size = "0";
+                                # Uncomment the next line to log debug output to cmu.log:
+                                #warn "IN-ELSE File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
                         }
-
-			# Uncomment the next line to log debug output to cmu.log:
-			#warn "File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
 
 			my $fHash;
 			$fHash->{name} = $f;
