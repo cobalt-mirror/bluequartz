@@ -129,6 +129,9 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Mar 18 2009 Rickard Osser <rickard.osser@bluapp.com> 0.1.2-87BQ19
+- Changed "<" in glue/etc/init.d/mdchk to use -lt instead as it throws an error when run.
+
 * Wed Mar 18 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ18
 - Switched glue/sbin/lsraid from compiled binary to a shell script supplied by Rickard Osser.
 - Modified the /sbin/lsraid line in glue/etc/init.d/mdchk to use the new script to re-create a missing /etc/raidtab
