@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX06%{?dist}
+Release: 0BX07%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Mon Jun 15 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.80-0BX07
+- Updated perl_modules/Archive.pm *again* to restrict lstat() usage on files, directories and symlinks. Else assume safe defaults für UID, GID and file size.
 
 * Sun Jun 14 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.80-0BX06

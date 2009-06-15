@@ -1,4 +1,4 @@
-# $Id: Archive.pm Sat Jun 13 15:13:39 2009 mstauber $
+# $Id: Archive.pm Sun 14 Jun 2009 09:54:08 PM EDT mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
@@ -331,13 +331,23 @@ sub getFileList
 		$f =~ s/^\.\///o;		
 		unless(grep {$f =~ /^$_/} @{ $self->{ignore} }) {
 			# The function below does no longer work under Perl-5.8.X for whatever weird reason.
+			# Part of the problem is that it barfs on symlinks. Using lstat instead gets around that,
+			# but there we have to make sure to not run it on sockets, special devices and what not.
 			#($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7]; 
 
-			# So we use this instead - which should work pretty much anywhere:
-			my $sb = lstat($dir."/".$f);
-			my $uid = $sb->uid;
-			my $gid = $sb->gid;
-			my $size = $sb->size;
+			# Only run lstat on files, directories or symlinks:
+                        if ((-f $dir."/".$f) || (-d $dir."/".$f) || (-l $dir."/".$f)) {
+                                my $sb = lstat($dir."/".$f);
+                                my $uid = $sb->uid;
+                                my $gid = $sb->gid;
+                                my $size = $sb->size;
+                        }
+                        else {
+				# Assume safe defaults:
+                                my $uid = "nobody";
+                                my $gid = "users";
+                                my $size = "0";
+                        }
 
 			# Uncomment the next line to log debug output to cmu.log:
 			#warn "File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
