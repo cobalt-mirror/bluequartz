@@ -1,7 +1,7 @@
 <!-- Author: Michael Stauber mstauber@solarspeed.net -->
 <!-- Copyright 2006-2008, Solarspeed Ltd. All rights reserved. -->
 
-<class name="PHP" version="3.1" createacl="ruleCapable(adminUser">
+<class name="PHP" version="3.2" createacl="ruleCapable(adminUser">
        <property name="applicable"
             type="scalar"
             default=""
@@ -45,7 +45,7 @@
         />
        <property name="open_basedir"
             type="scalar"
-            default="/home/:/tmp/:/var/lib/php/session/"
+            default="/tmp/:/var/lib/php/session/"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />

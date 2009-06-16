@@ -126,6 +126,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jun 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ53
+- By default we added the /home/ directory to open_basedir. This may no longer be a good idea.
+- Modified glue/schemas/php.schema to remove /home/ directory from open_basedir.
+- Modified glue/schemas/php_vsite.schema to remove /home/ directory from open_basedir.
+- Modified constructor/import_php_ini_settings.pl to remove /home/ directory from open_basedir.
+
 * Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ52
 - During cmuImport the old paths for a sites home directory were retained for open_basedir and the new path where the site
   now resides at just got appended. This was of course highly undesireable. 

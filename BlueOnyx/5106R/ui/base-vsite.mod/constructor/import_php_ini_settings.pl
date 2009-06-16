@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: import_php_ini_settings.pl, v1.1.0.3 Tue 10 Feb 2009 08:06:25 PM EST mstauber Exp $
+# $Id: import_php_ini_settings.pl, v1.1.0.4 Tue 16 Jun 2009 09:08:46 AM EDT mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 
 # This script parses php.ini and brings CODB up to date on how PHP is configured.
@@ -144,7 +144,7 @@ sub verify {
 		$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,proc_open,proc_nice,ini_restore";
 	    }
 	    if (($entry eq "open_basedir") && ($first_run eq "1")) {
-		$CONFIG{"$entry"} = "/home/:/tmp/:/var/lib/php/session/";
+		$CONFIG{"$entry"} = "/tmp/:/var/lib/php/session/";
 	    }
 	}
 	if ($first_run eq "1") {
