@@ -153,7 +153,12 @@ class sysinfo {
 	sscanf($buf, "%*s %Ld %Ld %Ld %Ld", $ab, $ac, $ad, $ae);
 	$load2 = $ab + $ac + $ad;
 	$total2 = $ab + $ac + $ad + $ae;
-	$results['cpupercent'] = (100*($load2 - $load)) / ($total2 - $total);
+ 	// Added by mstauber - to prevent division by zero: 
+ 	$ms_divider = ($total2 - $total); 
+ 	if ($ms_divider == 0) { 
+ 	    $ms_divider = 1; 
+ 	} 
+ 	$results['cpupercent'] = (100*($load2 - $load)) / ($ms_divider); 
       }
     }
     return $results;
