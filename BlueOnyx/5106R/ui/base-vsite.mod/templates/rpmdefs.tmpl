@@ -53,6 +53,7 @@ information for [VENDOR]-[SERVICE].
 [AUTOFILL]
 /etc/skel/vsite/*
 %attr(0755,-,-) /usr/sausalito/sbin/vsite_destroy.pl
+%attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
 
 <end glue>
 
@@ -125,6 +126,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jun 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ54
+- Modified glue/handlers/suspend.pl to use 'usermod' to lock / unlock suspended accounts.
+- This is an important security update, because without locking accounts of a suspended site those users can still use SMTP-Auth to send emails - even when the whole site is suspended.
+- Added glue/sbin/fix_user_suspension.pl as command line utility to manually sync locking and unlocking of suspended users.
 
 * Tue Jun 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ53
 - By default we added the /home/ directory to open_basedir. This may no longer be a good idea.

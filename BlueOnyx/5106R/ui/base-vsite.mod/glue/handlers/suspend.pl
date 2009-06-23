@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# $Id: suspend.pl,v 1.3.2.1 2002/01/31 02:53:23 pbaltz Exp $
+# Copyright 2008-2009 Team BlueOnyx. All rights reserved.
+# $Id: suspend.pl,v 1.3.2.2 Tue Jun 23 12:44:35 2009 mstauber Exp $
 #
 # Handle most of the site related stuff that needs to happen when a site 
 # is suspended.
@@ -24,8 +25,7 @@ my ($vhost) = $cce->findx('VirtualHost', { 'name' => $vsite->{name} });
 my ($ok) = $cce->set($vhost, '', 
         { 'enabled' => ($vsite->{suspend} ? 0 : 1) });
 
-if (not $ok)
-{
+if (not $ok) {
     $cce->bye('FAIL', '[[base-vsite.cantDisableVhost]]');
     exit(1);
 }
@@ -39,7 +39,8 @@ if ($vsite->{suspend}) {
 	#
 	@users = $cce->findx('User',
 			{ 'site' => $vsite->{name}, 'enabled' => 1 });
-} else {
+} 
+else {
 	#
 	# site being unsuspended, so find all site members who
 	# should be reenabled
@@ -51,8 +52,23 @@ if ($vsite->{suspend}) {
 for my $user (@users) {
     ($ok) = $cce->set($user, '', { 'enabled' => ($vsite->{suspend} ? 0 : 1) });
 
-    if (not $ok)
-    {
+    #
+    ### User accounts MUST be locked or unlocked. Otherwise suspended users can still use SMTP-Auth:
+    #
+
+    # Get the username:
+    ($ok, my $myuser) = $cce->get($user);
+
+    if ($vsite->{suspend} == "0") {
+        # Unlock account:
+        system("/usr/sbin/usermod -U $myuser->{name}");
+        }
+    else {
+        # Lock account:
+        system("/usr/sbin/usermod -L $myuser->{name}");
+    }
+
+    if (not $ok) {
         $cce->bye('FAIL', '[[base-vsite.cantSuspendUsers]]');
         exit(1);
     }
