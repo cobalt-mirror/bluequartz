@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=user
 
 VERSION=1.2.0
-RELEASE=0BQ24
+RELEASE=0BQ25
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -115,6 +115,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jun 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ25
+- Modified glue/handlers/suspend_user.pl to use 'usermod' to lock / unlock suspended accounts.
+- This is an important security update, because without locking suspended accounts they can still use SMTP-Auth to send emails - even when suspended!
+
 * Sat Jun 06 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ24
 - Updated glue/handlers/updateCapabilities.pl with cmuImport work around.
 

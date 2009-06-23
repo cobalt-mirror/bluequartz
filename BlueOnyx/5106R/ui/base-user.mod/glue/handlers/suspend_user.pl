@@ -1,7 +1,8 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 #
-# $Id: suspend_user.pl,v 1.1.2.1 2002/01/31 02:45:16 pbaltz Exp $
+# $Id: suspend_user.pl,v 1.1.2.2 Tue 23 Jun 2009 03:15:33 PM EDT mstauber Exp $
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+# Copyright 2008-2009 Team BlueOnyx. All rights reserved.
 #
 # Watch the ui_enabled property and toggle the enabled property provided
 # that the Vsite (if any) the User belongs to is not suspended.
@@ -29,6 +30,17 @@ my ($ok) = $cce->set($cce->event_oid(), '', { 'enabled' => $enabled });
 if (!$ok) {
 	$cce->bye('FAIL');
 	exit(1);
+}
+else {
+    # User accounts MUST be locked or unlocked. Otherwise suspended users can still use SMTP-Auth:
+    if ($enabled == "0") {
+	# Lock account:
+	system("/usr/sbin/usermod -L $user->{name}");
+    }
+    else {
+	# Unlock account:
+	system("/usr/sbin/usermod -U $user->{name}");
+    }
 }
 
 $cce->bye('SUCCESS');
