@@ -52,6 +52,7 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/user/fr/web/
 /etc/skel/user/de/web/
 /usr/sausalito/sbin/user_gid_fix.pl
+/usr/sausalito/sbin/fix_user_UID_and_GID.pl
 [AUTOFILL]
 <end glue>
 
@@ -114,6 +115,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jun 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ26
+- Added glue/sbin/fix_user_UID_and_GID.pl to allow manual fixing of UID and GID of user directories and logfile directories.
+- Modified glue/sbin/user_gid_fix.pl and added a root only check.
 
 * Tue Jun 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ25
 - Modified glue/handlers/suspend_user.pl to use 'usermod' to lock / unlock suspended accounts.
