@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Thu Jun 25 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.81-0BX02
+- Modified scripts/5106Rscanin.pl to lock accounts of suspended users on import.
+- Modified scripts/5106Rscanin.pl to run /usr/sausalito/sbin/fix_user_UID_and_GID.pl at the end of an cmuImport.
 
 * Mon Jun 15 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.81-0BX01

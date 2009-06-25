@@ -259,6 +259,11 @@ foreach my $user (@keys) {
 		} 
 	}
 
+        # Check if user is suspended. If so, lock the account:
+        if (($uTree->{enabled} eq "0") || ($uTree->{ui_enabled} eq "0")) {
+                system("/usr/sbin/usermod -L $uTree->{name}");
+                warn "User $uTree->{name} is suspended. Locking the account.\n";
+        }
 
 	# do file stuff
 	if($cfg->confOnly eq 'f') {
@@ -358,6 +363,11 @@ if($cfg->dns eq 't') {
 
 $cce->suspendAll($tree);
 $cce->importCerts($tree);
+
+if (-f "/usr/sausalito/sbin/fix_user_UID_and_GID.pl") {
+        warn "INFO: Fixing UIDs and GIDs of all users by running /usr/sausalito/sbin/fix_user_UID_and_GID.pl.\n";
+        system("/usr/sausalito/sbin/fix_user_UID_and_GID.pl >/dev/null 2>&1");
+}
 
 warn "INFO: We imported", TreeXml::getStats($tree);
 $cce->bye("bye");
