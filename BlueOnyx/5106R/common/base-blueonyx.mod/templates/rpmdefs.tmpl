@@ -292,6 +292,15 @@ fi
 /usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
 /usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
 /usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
+%triggerin glue -- logrotate
+/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
+# Fix Logwatch's ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups:
+if [ -f /etc/logwatch/conf/ignore.conf ]; then
+  grep '^warning: "ProFTPD" address/port' /etc/logwatch/conf/ignore.conf > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'warning: "ProFTPD" address/port' >> /etc/logwatch/conf/ignore.conf
+  fi
+fi
 %endif
 
 %if "%centos" == "4"
@@ -346,6 +355,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Sun Jul 12 2009 Michael Stauber <mstauber@solarspeed.net> 2.20090712BQ96
+- Added trigger for logrotate to switch logrotate.conf to compressed logs. Otherwise CentOS updates may throw it out again.
+- Added fix for Logwatchs ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups.
 
 * Mon Apr 06 2009 Michael Stauber <mstauber@solarspeed.net> 2.20090405BQ95
 - Forgot to bump version number in glue/Makefile to 20090405
