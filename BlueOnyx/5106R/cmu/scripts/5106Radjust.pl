@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5106Radjust.pl 1161 2008-06-21 10:31:02Z shibuya $
+# $Id: 5106Radjust.pl Sat Jul 11 17:24:57 2009 mstauber $
 use strict;
 
 # If you are not toor, go away :)
@@ -30,12 +30,20 @@ my @keys = keys %{ $tree->{user} };
 foreach my $user (@keys) {
 	$uTree = $tree->{user}->{$user};
 
-	# Check suspend user
-	if (!defined($uTree->{enabled})) {
-		$uTree->{enabled} = 0;
+	if (($tree->{exportPlatform} =~ /(RaQ)/) || ($tree->{exportPlatform} =~ /(Qube)/)) {
+		# Assume the users are NOT suspended, because we can't yet get the suspend 
+		# status on older platforms carried over:
+		$uTree->{enabled} = 1;
+		$uTree->{ui_enabled} = 1;
 	}
-	if (!defined($uTree->{ui_enabled})) {
-		$uTree->{ui_enabled} = 0;
+	else {
+		# Check suspend user
+		if (!defined($uTree->{enabled})) {
+			$uTree->{enabled} = 0;
+		}
+		if (!defined($uTree->{ui_enabled})) {
+			$uTree->{ui_enabled} = 0;
+		}
 	}
 }
 }

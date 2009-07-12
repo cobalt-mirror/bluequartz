@@ -68,6 +68,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
+* Sun Jul 12 2009 Michael Stauber <mstauber@solarspeed.net>
+- version 2.81-0BX03
+- On cmuImport from platforms older than RaQ550 all users would be suspended, because the suspend state doesn't yet carry over correctly.
+- Modified scripts/5106Rscanin.pl and scripts/5106Radjust.pl to ignore setting of default (un)suspend and account lock states on imports from older platforms.
+
 * Thu Jun 25 2009 Michael Stauber <mstauber@solarspeed.net>
 - version 2.81-0BX02
 - Modified scripts/5106Rscanin.pl to lock accounts of suspended users on import.

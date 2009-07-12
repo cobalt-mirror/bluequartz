@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5106Rscanin.pl Wed Jun 10 17:54:31 2009 mstauber $
+# $Id: 5106Rscanin.pl Sat Jul 11 17:25:17 2009 mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -259,11 +259,17 @@ foreach my $user (@keys) {
 		} 
 	}
 
-        # Check if user is suspended. If so, lock the account:
-        if (($uTree->{enabled} eq "0") || ($uTree->{ui_enabled} eq "0")) {
-                system("/usr/sbin/usermod -L $uTree->{name}");
-                warn "User $uTree->{name} is suspended. Locking the account.\n";
+        if (($tree->{exportPlatform} =~ /(RaQ)/) || ($tree->{exportPlatform} =~ /(Qube)/)) {
+                # Skip locking of accounts if we import from a RaQ or Qube. The suspend status
+		# doesn't get translated correctly - yet.
         }
+        else {
+	        # Check if user is suspended. If so, lock the account:
+        	if (($uTree->{enabled} eq "0") || ($uTree->{ui_enabled} eq "0")) {
+                	system("/usr/sbin/usermod -L $uTree->{name}");
+                	warn "User $uTree->{name} is suspended. Locking the account.\n";
+        	}
+	}
 
 	# do file stuff
 	if($cfg->confOnly eq 'f') {
