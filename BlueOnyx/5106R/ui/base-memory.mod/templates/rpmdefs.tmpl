@@ -17,6 +17,14 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [BUILDARCH]
 [PROVIDES]
 
+Requires: base-console-locale-ja
+Requires: base-console-locale-en
+Requires: base-console-locale-de_DE
+Requires: base-console-locale-da_DK
+Requires: base-console-glue
+Requires: base-console-ui
+Requires: base-console-capstone
+
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
 information for [VENDOR]-[SERVICE].
@@ -117,6 +125,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Tue Jul 14 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BQ8
+- Added dependency for base-console to force install of that new module.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BQ7
 - Rebuilt for BlueOnyx.
 

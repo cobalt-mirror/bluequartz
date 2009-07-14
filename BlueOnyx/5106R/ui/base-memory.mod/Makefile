@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=memory
 
 VERSION=1.1.0
-RELEASE=25BQ7
+RELEASE=25BQ8
 
 # add a buildarch if desired
 BUILDARCH=noarch
