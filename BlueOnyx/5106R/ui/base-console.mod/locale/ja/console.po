@@ -1,0 +1,115 @@
+
+msgid "procsMenu"
+msgstr "Processes"
+
+msgid "procsMenu_help"
+msgstr "Allows you to see which processes are running on your server. Replicates the output of 'ps auxwf'. Also allows you to kill processes."
+
+msgid "vserver_processlist"
+msgstr "Server Process List"
+
+msgid "PID_help"
+msgstr "Process ID."
+
+msgid "USER_help"
+msgstr "User name of the process owner."
+
+msgid "CPU_help"
+msgstr "CPU utilization of the process in '##.#' format. It is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage. It will not add up to 100% unless you are lucky."
+
+msgid "MEM_help"
+msgstr "Memory utilization. Ratio of the process's resident set size to the physical memory on the machine, expressed as a percentage."
+
+msgid "VSZ_help"
+msgstr "Virtual memory usage of entire process."
+
+msgid "RSS_help"
+msgstr "Resident set size, the non-swapped physical memory that a task has used (in kiloBytes)."
+
+msgid "TTY_help"
+msgstr "Controlling tty (terminal)."
+
+msgid "STAT_help"
+msgstr "Multi-character process state."
+
+msgid "START_help"
+msgstr "Starting time or date of the process. Only the year will be displayed if the process was not started the same year ps was invoked, or 'mmmdd' if it was not started the same day, or 'HH:MM' otherwise."
+
+msgid "TIME_help"
+msgstr "Cumulative CPU time, '[dd-]hh:mm:ss' format."
+
+msgid "COMMAND_help"
+msgstr "Command with all its arguments as a string. May chop as desired. Modifications to the arguments are not shown. The output in this column may contain spaces."
+
+msgid "KILL_help"
+msgstr "Click the icon next to the process in question to kill it with 'kill -9 PID'. BE CAREFUL NOT TO KILL IMPORTANT PROCESSES!"
+
+msgid "loginsMenu"
+msgstr "Logins"
+
+msgid "loginsMenu_help"
+msgstr "Allows you to see the last logins to your server and reproduces the output of the Linux command 'last'."
+
+msgid "vserver_loginlist"
+msgstr "Logins to this server"
+
+msgid "LUSER"
+msgstr "Username"
+
+msgid "LUSER_help"
+msgstr "Shows the username of the user in question."
+
+msgid "CONSOLE"
+msgstr "Console"
+
+msgid "CONSOLE_help"
+msgstr "This column shows which console or network service the user was using to login."
+
+msgid "HOST"
+msgstr "Host"
+
+msgid "HOST_help"
+msgstr "Hostname or IP of the user that logged in."
+
+msgid "START_DATE"
+msgstr "Login start date"
+
+msgid "START_DATE_help"
+msgstr "Shows the date on which the login in question started."
+
+msgid "STIME"
+msgstr "S-Time"
+
+msgid "STIME_help"
+msgstr "Shows the time on which the login in question started."
+
+msgid "ETIME"
+msgstr "E-Time"
+
+msgid "ETIME_help"
+msgstr "Shows the time on which the login in question ended."
+
+msgid "DURATION"
+msgstr "Duration"
+
+msgid "DURATION_help"
+msgstr "Shows how long the login lasted - or if it's still going on."
+
+msgid "UKILL"
+msgstr "Kill"
+
+msgid "UKILL_help"
+msgstr "Allows you to boot the user from the system (if he is still logged in!). That alone doesn't prevent him from logging in again, though. For that you may have to suspend the site or user in question, too."
+
+msgid "logfilesMenu"
+msgstr "Logfiles"
+
+msgid "logfilesMenu_help"
+msgstr "Allows you to examine the server logfiles."
+
+msgid "sol_view"
+msgstr "Logfile:"
+
+msgid "sol_view_help"
+msgstr "Choose the logfile that you want to examine."
+
