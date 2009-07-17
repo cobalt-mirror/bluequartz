@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ18%{?dist}
+Release: 0BQ19%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ19
+- Modified libPhp/uifc/ScrollList.php to fix CSS issue with formField-1.
+- This finally applies the correct font size and styles to text in ScrlollLists again.
 
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ18
 - Rebuilt for BlueOnyx.

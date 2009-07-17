@@ -766,7 +766,7 @@ class ScrollList extends HtmlComponent {
     $label = $labelObj->toHtml($style->getSubstyle("titleLabel"));
     $result .= "
 <STYLE TYPE=\"text/css\">
-.formField-$widgetid \{$formFieldStyleStr}
+.formField-$widgetid {" . $formFieldStyleStr . "}
 </STYLE>
 $shadowFrameStart
 <TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\" BGCOLOR=\"$borderColor\" WIDTH=\"$width\"><TR><TD>
