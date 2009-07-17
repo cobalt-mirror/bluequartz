@@ -1,5 +1,5 @@
 Name:           blueonyx-dnstoolbox
-Version: 	1.0.4
+Version: 	1.0.5
 Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
@@ -69,6 +69,10 @@ rm -R -f $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+
+* Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.5-1]
+- Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsDeleteAllRecords.pl
+- Removed erronous exit statements.
 
 * Tue May 12 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.4-1] 
 - Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsImport.pl

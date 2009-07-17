@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl                                                                                                                                                                                                                                 
 #                                                                                                                                                                                                                                                                     
-# $Id: dnsDeleteAllRecords.pl, Thu 19 Mar 2009 10:24:41 AM EDT mstauber Exp $                                                                                                                                                                                            
+# $Id: dnsDeleteAllRecords.pl, Fri 17 Jul 2009 09:06:17 AM EDT mstauber Exp $                                                                                                                                                                                            
 # Copyright 2007-2009 Solarspeed Ltd.                                                                                                                                                                                                                                      
 #                                                                                                                                                                                                                                                                     
 # Script which removes all DNS records from CCE                                                                                                                                                                                                                      
@@ -47,7 +47,6 @@ sub do_the_dirty_deeds {
     @oids = $cce->find('DnsRecord', '');
     if ($#oids == 0) {                  
 	print "No DNS records of type 'DnsRecord' found in CCE. (Good!)\n";       
-	exit(1);                        
     }                                   
     else {                              
 	# DNSID found in CCE.           
@@ -78,7 +77,6 @@ sub do_the_dirty_deeds {
     @oids = $cce->find('DnsSOA', '');
     if ($#oids == 0) {
         print "No DNS records of type 'DnsSOA' found in CCE. (Good!)\n";
-	exit(1);
     }
     else {
 	# DNSID found in CCE.
@@ -110,7 +108,6 @@ sub do_the_dirty_deeds {
     @oids = $cce->find('DnsSlaveZone', '');
     if ($#oids == 0) {
 	print "No DNS records of type 'DnsSlaveZone' found in CCE. (Good!)\n";
-	exit(1);
     }
     else {
 	# DNSID found in CCE.
