@@ -10,7 +10,8 @@ use Sauce::Util;
 use Sauce::Config;
 
 # Globals.
-my $Sendmail_cf = Email::SendmailCF;
+my $Sendmail_mc = Email::SendmailMC;
+my $Bgui_mc = Email::BguiMC;
 my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
 my $Sendmail_sysconfig_file = "/etc/sysconfig/sendmail";
 
@@ -36,7 +37,7 @@ if ($obj->{masqAddress} =~ /^localhost$/i)
 
 my $sys_obj = ( $cce->get( ($cce->find("System"))[0] ) )[1];
 
-Sauce::Util::editfile($Sendmail_cf, *make_sendmail_cf,     $obj );
+Sauce::Util::editfile($Bgui_mc, *make_sendmail_mc,     $obj );
 
 # add rollback to recreate virtusertable.db
 Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Email::VIRTUSER < " .
@@ -59,9 +60,11 @@ if(! $ret ) {
 	$cce->bye("SUCCESS");
 }
 
+utime(time(), time(), $Sendmail_mc);
+
 exit 0;
 
-sub make_sendmail_cf
+sub make_sendmail_mc
 {
 	my $in  = shift;
 	my $out = shift;
@@ -76,73 +79,73 @@ sub make_sendmail_cf
 
 	my %Printed_line = ( privacy => 0,
 	                     maxMessageSize => 0,
-						 smartRelay => 0,
-						 masqDomain => 0 );
-
+			     smartRelay => 0,
+			     masqDomain => 0 );
+	
 	if( $obj->{privacy} ) {
-		$privacy_line = "O PrivacyOptions=authwarnings,noexpn,novrfy\n";
+	    $privacy_line = "define(`confPRIVACY_FLAGS', `noexpn noexpn authwarnings')\n";
+	    
 	} else {
-		$privacy_line = "O PrivacyOptions=authwarnings\n";
+	    $privacy_line = "define(`confPRIVACY_FLAGS', `authwarnings')\n";
 	}
-
 
 	if ($obj->{queueTime} eq 'immediate') {
-	    $deliveryMode_line = "O DeliveryMode=background\n";
+	    $deliveryMode_line = "define(`confDELIVERY_MODE', `background')\n";
 	} else {
-	    $deliveryMode_line = "O DeliveryMode=deferred\n";
+	    $deliveryMode_line = "define(`confDELIVERY_MODE', `deferred')\n";
 	}
-
+	
 	if( $obj->{maxMessageSize} ) {
-		# Max message size is in kilos. Sendmail needs kilos.
-		$maxMessageSize_line = "O MaxMessageSize=" . $obj->{maxMessageSize}*1024 ."\n";
+	    # Max message size is in kilos. Sendmail needs bytes.
+	    $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',". $obj->{maxMessageSize}*1024 .")\n";
 	} else {
-		$maxMessageSize_line = "#O MaxMessageSize=0\n";
+	    $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',0)\n";
 	}
 
 	if( $obj->{smartRelay} ) {
-		$smartRelay_line = "DS" . $obj->{smartRelay} . "\n";
+	    $smartRelay_line = "define(`SMART_HOST',`". $obj->{smartRelay} ."')\n";
 	} else {
-		$smartRelay_line = "DS\n";
+	    $smartRelay_line = "define(`SMART_HOST',`')\n";
 	}
 
 	if( $obj->{masqAddress} ) {
-		$masqDomain_line = "DM" . $obj->{masqAddress} . "\n";
+		$masqDomain_line = "MASQUERADE_AS(`". $obj->{masqAddress} ."')\n"
 	} else {
-		$masqDomain_line = "DM\n";
+		$masqDomain_line = "MASQUERADE_AS(`')\n";
 	}
 
 	if( $obj->{smartRelay} ) {
-		$smartRelay_line = "DS" . $obj->{smartRelay} . "\n";
+	    $smartRelay_line = "define(`SMART_HOST', `". $obj->{smartRelay} . "')\n";
 	} else {
-		$smartRelay_line = "DS\n";
+	    $smartRelay_line = "define(`SMART_HOST', `')\n";
 	}
 
 	select $out;
 	while( <$in> ) {
-		if( /^O PrivacyOptions=/o ) {
+	    if( /^define\(`confPRIVACY_FLAGS'/o ) {
 			$Printed_line{'privacy'}++;
 			print $privacy_line;
-		} elsif ( /O MaxMessageSize/o || /\#O MaxMessageSize/o ) {
-			$Printed_line{'maxMessageSize'}++;
-			print $maxMessageSize_line;
-		} elsif ( /^DS/o ) {
-			$Printed_line{'smartRelay'}++;
-			print $smartRelay_line;
-		} elsif ( /^DM/o ) {
-			$Printed_line{'masqDomain'}++;
-			print $masqDomain_line;
-		} elsif ( /^O DeliveryMode=/ ) {
-			$Printed_line{'DeliveryMode'}++;
-			print $deliveryMode_line;
-		} else {
-			print $_;
-		}
+		} elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o ) {
+		$Printed_line{'maxMessageSize'}++;
+		print $maxMessageSize_line;
+	    } elsif ( /^define\(`SMART_HOST'/o ) {
+		$Printed_line{'smartRelay'}++;
+		print $smartRelay_line;
+	    } elsif ( /^MASQUERADE_AS/o ) {
+		$Printed_line{'masqDomain'}++;
+		print $masqDomain_line;
+	    } elsif ( /^define\(`confDELIVERY_MODE'/o ) {
+		$Printed_line{'DeliveryMode'}++;
+		print $deliveryMode_line;
+	    } else {
+		print $_;
+	    }
 	}
-
+	
 	foreach my $key ( keys %Printed_line ) {
 		if ($Printed_line{$key} != 1) {
-			$cce->warn("error_writing_sendmail_cf");
-			print STDERR "Writing sendmail_cf found $Printed_line{$key} occurences of $key\n";
+			$cce->warn("error_writing_sendmail_mc");
+			print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
 		}
 	}
 

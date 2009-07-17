@@ -24,7 +24,8 @@ Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
 Sauce::Service::service_toggle_init('dovecot', 1);
 
 # settings smtp, smtps and submission port
-Sauce::Util::editfile(Email::SendmailCF, *make_sendmail_cf, $obj );
+Sauce::Util::editfile(Email::BguiMC, *make_bgui_cf, $obj );
+utime(time(), time(), Email::SendmailMC);
 
 # need to start sendmail?
 my $run = 0;
@@ -100,7 +101,7 @@ sub make_dovecot_conf
     return 1;
 }
 
-sub make_sendmail_cf
+sub make_bgui_cf
 {
     my $in  = shift;
     my $out = shift;
@@ -109,32 +110,32 @@ sub make_sendmail_cf
 
     # smtp port
     if ($obj->{enableSMTP}) {
-        $smtpPort = "O DaemonPortOptions=Port=smtp, Name=MTA\n";
+        $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
     } else {
-        $smtpPort = "#O DaemonPortOptions=Port=smtp, Name=MTA\n";
+        $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
     }
 
     # smtps port
     if ($obj->{enableSMTPS}) {
-        $smtpsPort = "O DaemonPortOptions=Port=smtps, Name=TLSMTA, M=s\n";
+        $smtpsPort = "DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
     } else {
-        $smtpsPort = "#O DaemonPortOptions=Port=smtps, Name=TLSMTA, M=s\n";
+        $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
     }
 
     # submission(587) port
     if ($obj->{enableSubmissionPort}) {
-        $submissionPort = "O DaemonPortOptions=Port=submission, Name=MSA, M=Ea\n";
+        $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
     } else {
-        $submissionPort = "#O DaemonPortOptions=Port=submission, Name=MSA, M=Ea\n";
+        $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
     }
 
     select $out;
     while (<$in>) {
-        if (/O DaemonPortOptions=Port=smtp,/o) {
+        if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
             print $smtpPort;
-        } elsif (/O DaemonPortOptions=Port=smtps,/o) {
+        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o ) {
             print $smtpsPort;
-        } elsif (/O DaemonPortOptions=Port=submission,/o) {
+        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o ) {
             print $submissionPort;
         } else {
             print $_;

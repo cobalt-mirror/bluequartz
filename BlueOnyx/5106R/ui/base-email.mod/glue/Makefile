@@ -32,4 +32,3 @@ install:
 	$(INSTALL) \
 	etc/cron.d/break-smrsh-loop.cron $(PREFIX)/etc/cron.d
 rpm:
-	
