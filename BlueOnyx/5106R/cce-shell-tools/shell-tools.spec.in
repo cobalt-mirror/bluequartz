@@ -50,6 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
 
 %changelog
+* Tue Jul 21 2009 Taco Scargo <taco@scargo.nl>
+- 2.10
+- Fixed forwardCCE.conf, as the forward switch was exactly the same as the aliases switch (changed -e to -w)
+
 * Wed Jan 28 2009 Michael Stauber <mstauber@solarspeed.net>
 - Fixed Shell.pm - was broken before. Badly.
 - Fixed ShellOpts.pm - Our 'find' version on CentOS5 is buggy, needs -nowarn switch at the right place to suppress stupid warning.

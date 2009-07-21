@@ -8,7 +8,7 @@
   <product value = "RaQ550"/>
   <version value = "[VERSION]"/>
   <cadduser>
-	<forward opts = "forward=s e>forward" 
+	<forward opts = "forward=s w>forward" 
 		label = "forwardEmail"
 		nameSpace = "Email"
 		type = "array"
@@ -17,7 +17,7 @@
 	</forward>
   </cadduser>
   <cmoduser>
-	<forward opts = "forward=s e>forward set-forward>forward" 
+	<forward opts = "forward=s w>forward set-forward>forward" 
 		label = "forwardEmail"
 		nameSpace = "Email"
 		type = "array"
