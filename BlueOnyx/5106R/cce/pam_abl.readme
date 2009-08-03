@@ -31,15 +31,21 @@ root and/or admin can also have 10000 failed logins per hour, but anyone else on
 # /etc/security/pam_abl.conf
 # debug
 host_db=/var/lib/abl/hosts.db
-host_purge=4h
+host_purge=2d
 host_rule=*=30/1h
 user_db=/var/lib/abl/users.db
-user_purge=4h
-user_rule=!root|admin=10000/1h,30/1h
+user_purge=2d
+user_rule=!admin/cced=10000/1h,30/1h
 --- distributed pam_abl.conf ---
 
 That's the one included in our CCE. 
 
+It blocks 
+
 It blocks after 30 failed logins per hour from ANY host.
 
-root and/or admin can have 10000 failed logins per hour, but anyone else only 30/h.
+It blocks even admin/root users after 30 failed logins per hour - UNLESS user 'admin' logs in through the GUI.
+So even if our 'admin' manages to block himself out from SSH, Telnet, email and such, the GUI still lets him in.
+
+That way - if an 'admin' manages to block himself, he can still login to the GUI and remove all blocks to restore
+his access.
