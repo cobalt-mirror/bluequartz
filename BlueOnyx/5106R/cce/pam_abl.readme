@@ -49,3 +49,8 @@ So even if our 'admin' manages to block himself out from SSH, Telnet, email and 
 
 That way - if an 'admin' manages to block himself, he can still login to the GUI and remove all blocks to restore
 his access.
+
+As further security precaution the user and host databases are wiped out whenever the RC script for cced.ini is 
+called for startup ("/etc/init.d/cced.init start"). This usually happens when entering runlevel 3, like when the
+server reboots. So at the worst: If someone manages to lock himself out despite the above first security measure
+('admin' never blocked for cced services of the GUI), he can simply reboot the server and remove all locks that way.
