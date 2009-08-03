@@ -88,6 +88,8 @@ mkdir -p $RPM_BUILD_ROOT/usr/sausalito/include
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/perl
 mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
 mkdir -p $RPM_BUILD_ROOT/etc/pam.d
+mkdir -p $RPM_BUILD_ROOT/etc/security
+mkdir -p $RPM_BUILD_ROOT/var/lib/abl
 mkdir -p $RPM_BUILD_ROOT/lib/security
 mkdir -p $RPM_BUILD_ROOT/etc/php.d
 make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
@@ -118,6 +120,9 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /etc/rc.d/init.d/*
 /etc/pam.d/*
 /lib/security/*
+/var/lib/abl
+/usr/bin/pam_abl
+%config(noreplace) /etc/security/pam_abl.conf
 
 %files client
 %attr(-,root,XX_USER_HTTPD_XX)/usr/sausalito/bin/ccewrap
@@ -178,6 +183,11 @@ fi
 %changelog
 
 %changelog 
+
+* Mon Aug 03 2009 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ42
+- Added pam_abl directory to include pam_abl by default
+- Modified server/system-auth-cce.pam to add pam_abl related rules
+- Added pam_abl.readme with some extra info into the build directory
 
 * Sun Dec 21 2008 Michael Stauber <mstauber@solarspeed.net> 0.80.3-1BQ41
 - Renamed /etc/httpd/conf.d/bluequartz.conf to blueonyx.conf

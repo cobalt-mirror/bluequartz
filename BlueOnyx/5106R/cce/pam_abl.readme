@@ -1,0 +1,45 @@
+Source: http://www.hexten.net/wiki/index.php/Pam_abl
+Patch:  http://www.jikos.cz/~jbohac/goodies/pam_abl.patch
+
+German info:
+http://www.noefer.org/cms/linux-mainmenu-50/einsatz-von-pam-abl.html
+
+Our pam_abl in the BlueOnyx/5106R/cce/pam_abl directory is already patched with
+the patch mentioned above.
+
+The Makefiles of pam_abl has been modified so that it can be tied into the CCE build
+process. That's both pam_abl/Makefile and pam_abl/tools/Makefile. Additionally our 
+pam_abl/conf/pam_abl.conf is already modified with some sane and sensible defaults 
+that aren't too over sensitive.
+
+--- mstauber's sample pam_abl.conf ---
+# /etc/security/pam_abl.conf
+# debug
+host_db=/var/lib/abl/hosts.db
+host_purge=4h
+host_rule=!10.1.254.1=10000/1h,30/1h
+user_db=/var/lib/abl/users.db
+user_purge=4h
+user_rule=!root|admin=10000/1h,30/1h
+--- end sample pam_abl.conf ---
+
+The above sample allows up to 10000 failed logins per hour from 10.1.254.1, but only 30/h from anyone else.
+
+root and/or admin can also have 10000 failed logins per hour, but anyone else only 30/h.
+
+--- distributed pam_abl.conf ---
+# /etc/security/pam_abl.conf
+# debug
+host_db=/var/lib/abl/hosts.db
+host_purge=4h
+host_rule=*=30/1h
+user_db=/var/lib/abl/users.db
+user_purge=4h
+user_rule=!root|admin=10000/1h,30/1h
+--- distributed pam_abl.conf ---
+
+That's the one included in our CCE. 
+
+It blocks after 30 failed logins per hour from ANY host.
+
+root and/or admin can have 10000 failed logins per hour, but anyone else only 30/h.

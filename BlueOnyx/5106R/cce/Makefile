@@ -13,11 +13,11 @@ CCERPMSPEC = $(CCEMODULE).spec
 
 CCE_V_MAJ=0
 CCE_V_MIN=80
-CCE_V_PATCH=3
+CCE_V_PATCH=4
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BQ41
+RPMRELEASE=1BQ42
 
-DIRS = common scalar conf codb ed cscp sessionmgr server client pam \
+DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
 	ccewrap pperl
 
 COMMONLIB = libcce_common.a
@@ -88,9 +88,12 @@ server client: dynamic.mk $(COMMONLIB) FORCE
 	@echo
 	@$(MAKE) -C $@ all
 
-tools: pam ccewrap pperl
+tools: pam pam_abl ccewrap pperl
 
 pam: dynamic.mk $(COMMONLIB) FORCE
+	$(MAKE) -C $@ all
+
+pam_abl: dynamic.mk $(COMMONLIB) FORCE
 	$(MAKE) -C $@ all
 
 pperl: dynamic.mk $(COMMONLIB) FORCE
@@ -162,9 +165,9 @@ mod_locale:
 install_locale:
 	$(MAKE) -C client install_locale
 
-install: all server-inst client-inst pam-inst ccewrap-inst pperl-inst
+install: all server-inst client-inst pam-inst pam_abl-inst ccewrap-inst pperl-inst
 
-server-inst client-inst pam-inst ccewrap-inst pperl-inst: %-inst: %
+server-inst client-inst pam-inst pam_abl-inst ccewrap-inst pperl-inst: %-inst: %
 	$(MAKE) -C $< install
 
 uninstall junk:
