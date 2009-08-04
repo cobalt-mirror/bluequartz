@@ -122,6 +122,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /lib/security/*
 /var/lib/abl
 /usr/bin/pam_abl
+/usr/sausalito/bin/pam_abl_gui
 %config(noreplace) /etc/security/pam_abl.conf
 
 %files client
@@ -183,6 +184,12 @@ fi
 %changelog
 
 %changelog 
+
+* Tue Aug 04 2009 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ43
+- Output of /usr/bin/pam_abl is very difficult to parse for GUI usage.
+- Created modified pam_abl CLI named /usr/sausalito/bin/pam_abl_gui with carriage return and verbosity ripped out.
+- New supplemental CLI sources reside in pam_abl/gui-tools
+- Updated toplevel Makefile to also build the new pam_abl/gui-tools
 
 * Mon Aug 03 2009 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ42
 - Added pam_abl directory to include pam_abl by default
