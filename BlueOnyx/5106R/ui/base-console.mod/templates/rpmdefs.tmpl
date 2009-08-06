@@ -158,6 +158,17 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Aug 05 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX01] Expanded module with pam_abl management functions.
+- Modified glue/conf/console.conf with new calls to pam_abl related handlers.
+- Added glue/schemas/console_pam_abl.schema with new CODB database fields for pam_abl
+- Added ui/menu/console_pam_abl.xml for general pam_abl settings management
+- Added ui/web/pam_abl.php ui/web/pam_ablHandler.php to allow configuration of pam_abl
+- Added glue/handlers/import_pam_abl_settings.pl glue/handlers/update_pam_abl_settings.pl to import and modify pam_abl configuration
+- Added constructor/import_pam_abl_settings.pl to import pam_abl settings on cced restart
+- Modified constructor/create_sol_console_services.pl to auto-generated pam_abl_settings CODB object
+- Added first draft of glue/handlers/pam_abl_import.pl to import user and IP blocks into CODB.
+
 * Tue Jul 14 2009 Michael Stauber <mstauber@solarspeed.net>
 - [1.0.4-0BX01] Donation of module to BlueOnyx.
 - Changed all paths from 'solarspeed' to 'base'.

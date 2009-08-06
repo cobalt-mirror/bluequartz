@@ -15,9 +15,17 @@ $cce->connectuds();
 # make sure the SOL_Console object exists
 if (not scalar($cce->find('SOL_Console'))) {
 	my ($ok) = $cce->create('SOL_Console');
-
 	if (not $ok) {
 		$cce->bye('FAIL', 'System object SOL_Console does not exist!');
+		exit(1);
+	}
+}
+
+# make sure the pam_abl_settings object exists
+if (not scalar($cce->find('pam_abl_settings'))) {
+	my ($ok) = $cce->create('pam_abl_settings');
+	if (not $ok) {
+		$cce->bye('FAIL', 'System object pam_abl_settings does not exist!');
 		exit(1);
 	}
 }
