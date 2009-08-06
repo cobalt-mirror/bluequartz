@@ -18,6 +18,9 @@
 	<!-- Activity: -->
 	<property name="activity" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
+	<!-- user_remove: -->
+	<property name="user_remove" type="int" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
 </class>
 
 <class name="fail_hosts" namespace="" version="1.0" createACL="ruleCapable(adminUser)" destroyACL="ruleCapable(adminUser)">
@@ -33,6 +36,9 @@
 
         <!-- Activity: -->
         <property name="activity" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- host_remove: -->
+	<property name="host_remove" type="int" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
 </class>
 

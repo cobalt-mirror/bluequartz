@@ -6,7 +6,7 @@
 # This handler is run whenever the GUI needs to know the contends of the pam_abl user and host database.
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 
 #
 #### No configureable options below!
@@ -58,6 +58,9 @@ while ($line = <F>) {
 	}
 	if ($line =~ /^Failed hosts/) {
 		$matrix_name = 'HOSTS';				# While passing through "Failed hosts" set matrix name to 'HOSTS'.
+		next;
+	}
+	if ($line =~ /^   <none>/) {
 		next;
 	}
         my (@row) = split (/\s+/, $line); 			# Splits at spaces. Not really desireable.

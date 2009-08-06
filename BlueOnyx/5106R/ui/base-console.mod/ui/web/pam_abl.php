@@ -16,12 +16,19 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 }
 
 $cceClient = $serverScriptHelper->getCceClient();
-$factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/base/console/pam_ablHandler.php");
-$transMethodOn="off";
+
+// Update CODB with the latest info gathered from our config file:
+$helper =& new ServerScriptHelper($sessionId);
+$cceHelper =& $helper->getCceClient();
+$ourOID = $cceHelper->find("pam_abl_settings");
+$cceHelper->set($ourOID[0], "", array('reload_config' => time()));
+$errors = $cceHelper->errors();
 
 // get settings
 $systemObj = $cceClient->getObject("pam_abl_settings");
 
+$factory = $serverScriptHelper->getHtmlComponentFactory("base-console", "/base/console/pam_ablHandler.php");
+$transMethodOn="off";
 $page = $factory->getPage();
 
 $block = $factory->getPagedBlock("pam_abl_head", array("pam_abl_config_location"));
@@ -37,14 +44,6 @@ $block->addFormField(
     $factory->getLabel("force_update"),
     "hidden"
 );
-
-// Update CODB with the latest info gathered from our config file:
-$helper =& new ServerScriptHelper($sessionId);
-$cceHelper =& $helper->getCceClient();
-$ourOID = $cceHelper->find("pam_abl_settings");
-
-$cceHelper->set($ourOID[0], "", array('reload_config' => time()));
-$errors = $cceHelper->errors();
 
 // pam_abl.conf location:
 $pam_abl_location_Field = $factory->getTextField("pam_abl_location", "/etc/security/pam_abl.conf", "r");

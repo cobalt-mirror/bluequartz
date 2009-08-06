@@ -113,3 +113,118 @@ msgstr "Logfile:"
 msgid "sol_view_help"
 msgstr "Choose the logfile that you want to examine."
 
+### pam_abl strings:
+
+msgid "pam_ablMenu"
+msgstr "Login Manager"
+
+msgid "pam_ablMenu_help"
+msgstr "The 'Login Manager' allows you to configure the protection against brute force password guessing attempts. You can configure after how many failed logins the account or the attacking hosts will be prevented from logging in at all. Even if he finally uses a valid username and password. If you ever block yourself: You will always be able to login to the GUI as 'admin' to reset the blockade."
+
+msgid "pam_abl_head"
+msgstr "Login Manager"
+
+msgid "pam_abl_location"
+msgstr "Config File:"
+
+msgid "pam_abl_location_help"
+msgstr "Location of the pam_abl config file."
+
+msgid "user_purge"
+msgstr "User purge:"
+
+msgid "user_purge_help"
+msgstr "Defines how long failed logins for users are retained in the user database. Failed logins are still stored in the database even after the temporary blocking has expired."
+
+msgid "host_purge"
+msgstr "Host purge:"
+
+msgid "host_purge_help"
+msgstr "Defines how long failed logins for hosts are retained in the host database. Failed logins are still stored in the database even after the temporary blocking has expired."
+
+msgid "user_rule"
+msgstr "User rule:"
+
+msgid "user_rule_help"
+msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password."
+
+msgid "host_rule"
+msgstr "Host rule:"
+
+msgid "host_rule_help"
+msgstr "Amount of failed logins per hour until the originating host will be blackisted. Even logins with correct usernames and password from the offending IP will then be blocked. Exception: User 'admin' can still login to the GUI from that IP - if he knows the correct password."
+
+msgid "pam_abl_statusMenu"
+msgstr "Failed Logins"
+
+msgid "pam_abl_statusMenu_help"
+msgstr "Shows you a list of IP addresses from which failed login attempts were registered. Also shows which user names were used. This page also allows you to reset autentication blockades. A red status light next to an IP or username means that the host (or user!) is not allowed to login anymore."
+
+msgid "pam_abl_blocked_users_and_hosts"
+msgstr "Failed Login History"
+
+msgid "blocked_hosts"
+msgstr "Blocked hosts"
+
+msgid "blocked_users"
+msgstr "Blocked users"
+
+msgid "pam_abl_blocked_hosts"
+msgstr "Hosts with failed login activity:"
+
+msgid "host"
+msgstr "IP address"
+
+msgid "host_help"
+msgstr "IP address from which failed login attempts were recorded."
+
+msgid "failcnt"
+msgstr "Fail"
+
+msgid "failcnt_help"
+msgstr "Shows how many failed logins were recorded."
+
+msgid "access"
+msgstr "Access"
+
+msgid "access_help"
+msgstr "Shows if access is still allowed or if it is blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+
+msgid "Action"	
+msgstr "Unblock"
+
+msgid "Action_help"	
+msgstr "Clicking on the button allows you to remove an active blocking of the host or account in question. If the button is greyed out, then this host or account is currently not blocked."
+
+msgid "reset_hosts_button"
+msgstr "Reset all host blocks"
+
+msgid "reset_hosts_button_help"
+msgstr "Allows you to reset all host blocks and also removes all host event activity from the host database."
+
+msgid "reset_users_button"
+msgstr "Reset all user blocks"
+
+msgid "reset_user_button_help"
+msgstr "Allows you to reset all user blocks and also removes all user event activity from the user database."
+
+msgid "reset_all_button"
+msgstr "Reset all blocks"
+
+msgid "reset_all_button_help"
+msgstr "Allows you to reset all host and user blocks. Also removes all failed login event activity from the databases."
+
+msgid "purge_button"
+msgstr "Purge events"
+
+msgid "purge_button_help"
+msgstr "Allows you to manually expire events from the user and host database which are past their expiry date."
+
+msgid "pam_abl_blocked_users"
+msgstr "Accounts with failed login activity:"
+
+msgid "username"
+msgstr "Account"
+
+msgid "username_help"
+msgstr "User name for which failed login activity was registered. These usernames may not not be valid accounts on this server, but someone tried to login with them nonetheless."
