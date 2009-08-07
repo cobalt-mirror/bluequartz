@@ -51,6 +51,7 @@ information for [VENDOR]-[SERVICE].
 [AUTOFILL]
 /usr/sausalito/bin/addIdentLookups.pl
 %attr(0755,-,-) /usr/sausalito/sbin/ftpaccess.pl
+%attr(0755,-,-) /usr/sausalito/sbin/fixproftpd_conf.pl
 
 <end glue>
 
@@ -128,6 +129,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ23
+- Added glue/sbin/fixproftpd_conf.pl
+
 * Tue Jan 13 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ22
 - Updated constructor/syncFTP.pl to address slow FTP logins behind firewalls.
 - See: "[BlueOnyx:00144] SLOW FTP  -- a partial solution"

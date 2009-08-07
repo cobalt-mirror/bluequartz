@@ -4,7 +4,7 @@ endif
 
 include $(CCEBASE)/devel/defines.mk
 
-SCRIPTS=sbin/ftpaccess.pl
+SCRIPTS=sbin/ftpaccess.pl sbin/fixproftpd_conf.pl
 
 all:
 
