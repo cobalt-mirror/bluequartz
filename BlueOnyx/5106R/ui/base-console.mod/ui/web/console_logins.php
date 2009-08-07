@@ -136,7 +136,7 @@ $node_beans->setDefaultSortedIndex(0);
 
 // Print out when wtmp begins:
 // Slight - but imaginative - misuse of the SimpleBlock function:
-$block = $factory->getSimpleBlock("");
+$block = $factory->getSimpleBlock(" ");
 $block->addHtmlComponent($factory->getTextField("nix", $i18n->interpolate($header), "rw"));
 print("<br>");
 print $block->toHtml();

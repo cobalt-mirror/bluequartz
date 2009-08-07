@@ -149,7 +149,7 @@ foreach ($pieces as $line) {
 
 $cmd = "/usr/bin/w";
 exec("$cmd 2>&1", $output);
-$block = $factory->getSimpleBlock("");
+$block = $factory->getSimpleBlock(" ");
 $block->addHtmlComponent($factory->getTextField("nix", $i18n->interpolate($output[2]), "rw"));
 print("<br>");
 print $block->toHtml();
