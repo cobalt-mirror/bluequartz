@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: pam_abl_unblock_host.pl, v1.0.0-0 Thu 06 Aug 2009 05:34:12 AM CEST mstauber Exp $
+# $Id: pam_abl_unblock_host.pl, v1.0.0-1 Fri 07 Aug 2009 08:47:06 AM CEST mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 # Copyright 2009 Team BlueOnyx. All rights reserved.
 
@@ -23,6 +23,9 @@ if ($cce->event_is_modify()) {
     if (($fail_host->{"host_remove"}) && ($fail_host->{"host"})) {
 	$hostname = $fail_host->{"host"};
 	system("/usr/bin/pam_abl --okhost=$hostname");
+    	system("/etc/init.d/xinetd stop");
+    	system("/bin/rm -f /var/log/proftpd/ban.tab");
+    	system("/etc/init.d/xinetd start");
     }
 }
 

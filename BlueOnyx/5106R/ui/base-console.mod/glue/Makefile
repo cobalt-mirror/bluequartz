@@ -5,6 +5,7 @@ endif
 include $(CCEBASE)/devel/defines.mk
 
 SCRIPTS=logtail/adm_a.js logtail/adm_a.php logtail/adm_a.pl logtail/adm_e.js logtail/adm_e.php logtail/adm_e.pl logtail/ajax.js logtail/cron.js logtail/cron.php logtail/cron.pl logtail/index.html logtail/logtail.js logtail/maillog.js logtail/maillog.php logtail/maillog.pl logtail/messages.js logtail/messages.php logtail/messages.pl logtail/pa.js logtail/pa.php logtail/pa.pl logtail/pe.js logtail/pe.php logtail/pe.pl logtail/secure.js logtail/secure.php logtail/secure.pl
+CRONS=cron.d/pam_abl_purge.cron
 
 all:
 
@@ -20,5 +21,9 @@ install:
 	mkdir -p $(PREFIX)/$(CCEWEB)/base/console/.logtail
 	for file in $(SCRIPTS); do \
 		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/$(CCEWEB)/base/console/.logtail/; \
+	done
+	mkdir -p $(PREFIX)/etc/cron.d
+	for file in $(CRONS); do \
+		$(INSTALL) $(INSTALL_DEFAULT) $$file $(PREFIX)/etc/cron.d/; \
 	done
 rpm:

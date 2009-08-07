@@ -146,7 +146,7 @@ msgid "user_rule"
 msgstr "User rule:"
 
 msgid "user_rule_help"
-msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password."
+msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password. PLEASE NOTE: You should leave this at 'disabled', because otherwise someone could run a 'Denial of Service' attack against you that (temporarily) blocks even legitimate users from using their accounts."
 
 msgid "host_rule"
 msgstr "Host rule:"
@@ -228,3 +228,9 @@ msgstr "Account"
 
 msgid "username_help"
 msgstr "User name for which failed login activity was registered. These usernames may not not be valid accounts on this server, but someone tried to login with them nonetheless."
+
+msgid "blocked_hosts_help"
+msgstr "Shows a list of hosts from which failed login activity was registered, how often they failed to authenticate correctly and if they're still blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+
+msgid "blocked_users_help"
+msgstr "Shows a list of user accounts for which failed login activity was registered, how often the authentication failed and if the account is still blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."

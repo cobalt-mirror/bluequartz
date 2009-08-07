@@ -18,6 +18,14 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $phpOID = $cceClient->find("pam_abl_settings");
 
+// Convert "disabled" back to the right format:
+if ($user_rule == "disabled") {
+    $user_rule = "50000/1m";
+}
+if ($host_rule == "disabled") {
+    $host_rule = "50000/1m";
+}
+
 // Build rules:
 $user_rule_new = "!admin/cced=10000/1h," . $user_rule;
 $host_rule_new = "*=" . $host_rule;

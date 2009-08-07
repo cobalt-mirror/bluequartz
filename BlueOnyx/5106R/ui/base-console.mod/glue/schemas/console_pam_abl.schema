@@ -48,13 +48,13 @@
         <property name="user_purge" type="scalar" default="2d" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
         <!-- user_rule: -->
-        <property name="host_rule" type="scalar" default="!admin/cced=10000/1h,30/1h" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+        <property name="host_rule" type="scalar" default="!admin/cced=10000/1h,50000/1m" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
         <!-- host_purge: -->
         <property name="host_purge" type="scalar" default="2d" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
         <!-- host_rule: -->
-        <property name="user_rule" type="scalar" default="*=6/1h" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+        <property name="user_rule" type="scalar" default="*=30/1h" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
         <!-- purge: -->
 	<!-- Is called when we purge the database -->

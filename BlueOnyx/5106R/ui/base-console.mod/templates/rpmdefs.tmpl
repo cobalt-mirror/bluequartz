@@ -55,7 +55,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 [AUTOFILL]
-
+%attr(0644,-,-) /etc/cron.d/pam_abl_purge.cron
 <end glue>
 
 <begin ui>
@@ -111,6 +111,9 @@ if [ ! -f /tmp/yum.updating ]; then
     /etc/init.d/cced.init restart
 fi
 
+# Restart CRONd:
+/etc/init.d/crond restart > /dev/null 2>&1
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -157,6 +160,15 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX02] Last post release errands addressed.
+- Added Cronjob glue/cron.d/pam_abl_purge.cron to auto-purge databases every 15 minutes.
+- Added two missing strings to all locales.
+- Added ability to (more or less) disable user- and host-rules in ui/web/pam_abl.php and ui/web/pam_ablHandler.php
+- Modified glue/schemas/console_pam_abl.schema to set user rule to disabled by default.
+- Extended host related unblock/reset handlers with ability to erase ProFTPd bans and to restart xinetd.
+- Added German translation.
 
 * Thu Aug 06 2009 Michael Stauber <mstauber@solarspeed.net>
 - [1.1.0-0BX01] Expanded module with pam_abl management functions.

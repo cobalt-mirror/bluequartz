@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: pam_abl_reset_all.pl, v1.0.0-0 Thu 06 Aug 2009 06:24:22 AM CEST mstauber Exp $
+# $Id: pam_abl_reset_all.pl, v1.0.0-1 Fri 07 Aug 2009 08:45:07 AM CEST mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 # Copyright 2009 Team BlueOnyx. All rights reserved.
 
@@ -21,6 +21,9 @@ $oid = $cce->event_oid();
 # Make sure to only trigger on modify:
 if ($cce->event_is_modify()) {
     system('/usr/bin/pam_abl --okuser=* --okhost=*');
+    system("/etc/init.d/xinetd stop");
+    system("/bin/rm -f /var/log/proftpd/ban.tab");
+    system("/etc/init.d/xinetd start");
 }
 
 $cce->bye('SUCCESS');

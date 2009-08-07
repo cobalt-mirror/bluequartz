@@ -1,0 +1,2 @@
+# base-console.mod - Cronjob that purges the pam_abl databases.
+*/15 * * * * root /usr/bin/pam_abl --purge > /dev/null 2>&1 &

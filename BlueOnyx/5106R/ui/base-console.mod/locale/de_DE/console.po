@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: email.po\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-07-14 14:51+0100\n"
+"PO-Revision-Date: 2009-08-07 09:21+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@blueonyx.it>\n"
 "MIME-Version: 1.0\n"
@@ -127,117 +127,123 @@ msgid "sol_view_help"
 msgstr "Wählen Sie bitte ein Logfile aus."
 
 ### pam_abl strings:
-
 msgid "pam_ablMenu"
 msgstr "Login Manager"
 
 msgid "pam_ablMenu_help"
-msgstr "The 'Login Manager' allows you to configure the protection against brute force password guessing attempts. You can configure after how many failed logins the account or the attacking hosts will be prevented from logging in at all. Even if he finally uses a valid username and password. If you ever block yourself: You will always be able to login to the GUI as 'admin' to reset the blockade."                                                                                                                                                                                               
+msgstr "Der 'Login Manager' erlaubt es, den Schutz gegen gewaltsames Erraten von Passwörtern (Brute Force Login Attempts) zu konfigurieren. Sie können einstellen, ab wievielen falschen Logins das Benutzerkonto oder der verursachende Host temporär gesperrt wird. Temporär gesperrte Hosts und/oder Benutzerkonten können sich NICHT einloggen, selbst wenn sie korrekte Zugangsdaten verwenden. Falls Sie sich jemals selbst aussperren: Benutzer 'admin' wird es immer möglich sein, sich über die BlueOnyx Administrationsoberfläche einzuloggen und dort die Blockaden aufzuheben."
 
 msgid "pam_abl_head"
 msgstr "Login Manager"
 
 msgid "pam_abl_location"
-msgstr "Config File:"   
+msgstr "Konfigurationsdatei:"
 
 msgid "pam_abl_location_help"
-msgstr "Location of the pam_abl config file."
+msgstr "Die pam_abl Konfigurationsdatei befindet sich an dieser Stelle."
 
 msgid "user_purge"
-msgstr "User purge:"
+msgstr "Pflege der Benutzerdatenbank:"
 
 msgid "user_purge_help"
-msgstr "Defines how long failed logins for users are retained in the user database. Failed logins are still stored in the database even after the temporary blocking has expired."
+msgstr "Hier kann man festlegen, wie lange Aktivitäten über fehlerhafte Logins in der Benutzerdatenbank gespeichert werden. Konten, für die fehlerhafte Logins registriert wurden, bleiben auch dann noch in der Datenbank sichtbar, wenn der Schwellwert für eine Blockade nicht erreicht wurde, oder die temporäre Blockade bereits abgelaufen ist. Erst nach der hier eingestellten Zeit werden alte Einträge aus der Datenbank entfernt."
 
 msgid "host_purge"
-msgstr "Host purge:"
+msgstr "Pflege der Hostdatenbank:"
 
 msgid "host_purge_help"
-msgstr "Defines how long failed logins for hosts are retained in the host database. Failed logins are still stored in the database even after the temporary blocking has expired."
+msgstr "Hier kann man festlegen, wie lange Aktivitäten über fehlerhafte Logins in der Host-Datenbank gespeichert werden. Hosts, von denen fehlerhafte Logins registriert wurden, bleiben auch dann noch in der Datenbank sichtbar, wenn der Schwellwert für eine Blockade nicht erreicht wurde, oder die temporäre Blockade bereits abgelaufen ist. Erst nach der hier eingestellten Zeit werden alte Einträge aus der Datenbank entfernt."
 
 msgid "user_rule"
-msgstr "User rule:"
+msgstr "Benutzer-Regel:"
 
 msgid "user_rule_help"
-msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password."
+msgstr "Legt fest, wie viele fehlerhafte Logins pro Stunde nötig sind, bis ein Konto temporär gesperrt wird. Dies verhindert dann, dass irgend jemand (egal woher) sich in dieses Konto einloggen kann. Um Denial of Service Attacken zu verhindern, sollte man dies auf 'disabled' (deaktiviert) stehen lassen."
 
 msgid "host_rule"
-msgstr "Host rule:"
+msgstr "Host-Regel:"
 
 msgid "host_rule_help"
-msgstr "Amount of failed logins per hour until the originating host will be blackisted. Even logins with correct usernames and password from the offending IP will then be blocked. Exception: User 'admin' can still login to the GUI from that IP - if he knows the correct password."                                                                                                                  
+msgstr "Anzahl der fehlerhaften Logins pro Stunde, bis der verursachende Host temporär gebannt wird. Selbst mit gültigen Benutzernamen und Passwörtern kann man sich dann von dort aus nicht mehr einloggen. Ausnahme: Benutzer 'admin' kann sich dann dennoch per GUI einloggen um die Blockade(n) aufzuheben."
 
 msgid "pam_abl_statusMenu"
-msgstr "Failed Logins"    
+msgstr "Loginfehler"
 
 msgid "pam_abl_statusMenu_help"
-msgstr "Shows you a list of IP addresses from which failed login attempts were registered. Also shows which user names were used. This page also allows you to reset autentication blockades. A red status light next to an IP or username means that the host (or user!) is not allowed to login anymore."                                                                                               
+msgstr "Zeigt die IP Adressen an, von denen aus Loginfehler ausgingen. Zeigt ebenfalls an, welche Benutzernamen verwendet wurden. Auf dieser Seite können Sie ebenfalls bestehende teporäre Blockaden aufheben. Ein rotes Status-Signal bedeutet, dass der betreffende Host (oder das betreffende Konto) gerade gesperrt sind."
 
 msgid "pam_abl_blocked_users_and_hosts"
-msgstr "Failed Login History"          
+msgstr "Historie der Loginfehler"
 
 msgid "blocked_hosts"
-msgstr "Blocked hosts"
+msgstr "Gesperrte Hosts"
 
 msgid "blocked_users"
-msgstr "Blocked users"
+msgstr "Gesperrte Konten"
 
 msgid "pam_abl_blocked_hosts"
-msgstr "Hosts with failed login activity:"
+msgstr "Hosts mit Loginfehlern:"
 
 msgid "host"
-msgstr "IP address"
+msgstr "IP Adresse"
 
 msgid "host_help"
-msgstr "IP address from which failed login attempts were recorded."
+msgstr "IP-Adresse(n), von denen Loginfehler registriert wurden."
 
 msgid "failcnt"
-msgstr "Fail"
+msgstr "Fehler"
 
 msgid "failcnt_help"
-msgstr "Shows how many failed logins were recorded."
+msgstr "Zeigt an, wie viele Loginfehler registriert wurden."
 
 msgid "access"
-msgstr "Access"
+msgstr "Zugang"
 
 msgid "access_help"
-msgstr "Shows if access is still allowed or if it is blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+msgstr "Zeigt an, ob Zugang noch erlaubt ist, oder temporär gesperrt wurde. Ein rotes Status-Signal bedeutet, dass der betreffende Host (oder das betreffende Konto) gerade gesperrt sind."
 
 msgid "Action"
-msgstr "Unblock"
+msgstr "Entsperren"
 
 msgid "Action_help"
-msgstr "Clicking on the button allows you to remove an active blocking of the host or account in question. If the button is greyed out, then this host or account is currently not blocked."
+msgstr "Durch klicken auf diesen Knopf kann man eine aktive temporäre Blockade aufheben. Falls das Icon grau hinterlegt ist, so ist der fragliche Host oder das betreffende Konto gerade nicht gesperrt und braucht nicht entsperrt zu werden."
 
 msgid "reset_hosts_button"
-msgstr "Reset all host blocks"
+msgstr "Alle Host-Blockaden zurücksetzen"
 
 msgid "reset_hosts_button_help"
-msgstr "Allows you to reset all host blocks and also removes all host event activity from the host database."
+msgstr "Erlaubt es, alle temporären Host-Blockaden und auch die Host-Historie zu löschen."
 
 msgid "reset_users_button"
-msgstr "Reset all user blocks"
+msgstr "Alle Benutzer-Blockaden zurücksetzen"
 
 msgid "reset_user_button_help"
-msgstr "Allows you to reset all user blocks and also removes all user event activity from the user database."
+msgstr "Erlaubt es, alle temporären Benutzer-Blockaden und auch die Benutzer-Historie zu löschen."
 
 msgid "reset_all_button"
-msgstr "Reset all blocks"
+msgstr "Alle Blockaden zurücksetzen"
 
 msgid "reset_all_button_help"
-msgstr "Allows you to reset all host and user blocks. Also removes all failed login event activity from the databases."
+msgstr "Erlaubt es, alle Blockaden (Hosts und Benutzer) zurückzusetzen."
 
 msgid "purge_button"
-msgstr "Purge events"
+msgstr "Datenbank pflegen"
 
 msgid "purge_button_help"
-msgstr "Allows you to manually expire events from the user and host database which are past their expiry date."
+msgstr "Erlaubt es, manuell die Datenbank zu 'entrümpeln'. Hosts oder Konten, von denen längere Zeit keine Aktivität mehr registriert wurden, werden dann aus den Datenbanken entfernt."
 
 msgid "pam_abl_blocked_users"
-msgstr "Accounts with failed login activity:"
+msgstr "Konten mit Loginfehlern:"
 
 msgid "username"
-msgstr "Account"
+msgstr "Konten"
 
 msgid "username_help"
-msgstr "User name for which failed login activity was registered. These usernames may not not be valid accounts on this server, but someone tried to login with them nonetheless."
+msgstr "Benutzernamen, für die Loginfehler registriert wurden. Diese Benutzernamen müssen nicht zwangsläufig als Konten auf diesem System existieren."
+
+msgid "blocked_hosts_help"
+msgstr "Zeigt eine Liste aller Hosts, von denen aus Loginfehler auf diesem System verursacht wurden. Zeigt ebenfalls an, wie oft das passierte und ob diese Hosts temporär gesperrt sind, oder noch zugreifen können. Ein grünes Status-Signal bedeutet, dass der Host noch zugreifen kann. Ein rotest Signal bedeutet, dass der Host temporär gesperrt ist."
+
+msgid "blocked_users_help"
+msgstr "Zeigt eine Liste aller Benutzernamen an, für die Loginfehler gemeldet wurden. Zeigt ebenfalls an, ob das Konto deswegen temporär gesperrt wurde, oder ob Zugriff noch erlaubt ist. Ein grünes Status-Signal bedeutet, dass das Konto noch für Zugriffe offen ist. Ein rotest Signal bedeutet, dass das Konto temporär gesperrt ist."
+
