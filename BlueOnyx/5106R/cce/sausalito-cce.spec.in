@@ -145,17 +145,21 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 # only run on install, not upgrade 
 if [ "$1" = "1" ]; then
 	/sbin/chkconfig --add cced.init
+	/sbin/chkconfig --add pam_abl
 fi
 
 %postun server
 # only run if this is the last instance to be removed
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del cced.init
+	/sbin/chkconfig --del pam_abl
 fi
 
 # restart cced.init on upgrade
 if [ "$1" -ge "1" ]; then
 	service cced.init restart >/dev/null 2>&1
+	/sbin/chkconfig --add pam_abl
+	service pam_abl restart >/dev/null 2>&1
 fi
 
 %post client
@@ -184,6 +188,11 @@ fi
 %changelog
 
 %changelog 
+
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ44
+- Removed pam_abl database clearing from cced.init
+- Added RC script for pam_abl that clears blocks and databases on server reboot and allows to unblock and purge from the command line.
+- Modified pam_abl/conf/pam_abl.conf to disable user_rule blocks by default to prevent Denial of Service attacks.
 
 * Tue Aug 04 2009 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ43
 - Output of /usr/bin/pam_abl is very difficult to parse for GUI usage.

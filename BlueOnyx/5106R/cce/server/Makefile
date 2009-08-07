@@ -58,7 +58,9 @@ install: all
 	@$(INSTALL) $(INST_FILEFLAGS) basetypes.schema $(CCE_SCHEMADIR)
 	@echo Installed basetypes.schema in $(CCE_SCHEMADIR)
 	@$(INSTALL) $(INST_BINFLAGS) cced.init $(SYS_INITDIR)
+	@$(INSTALL) $(INST_BINFLAGS) pam_abl $(SYS_INITDIR)
 	@echo Installed cced.init in $(SYS_INITDIR)
+	@echo Installed pam_abl in $(SYS_INITDIR)
 	@$(INSTALL) $(INST_FILEFLAGS) cced.pam $(SYS_PAMDIR)/cced
 	@echo Installed cced.pam in $(SYS_PAMDIR)
 	@$(INSTALL) $(INST_FILEFLAGS) system-auth-cce.pam $(SYS_PAMDIR)/system-auth-cce
