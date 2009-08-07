@@ -133,7 +133,7 @@ sub verify {
 		$CONFIG{"$entry"} = "*=30/1h";
 	    }
 	    if ($entry eq "user_rule") {
-		$CONFIG{"$entry"} = "!admin/cced=10000/1h,30/1h";
+		$CONFIG{"$entry"} = "!admin/cced=10000/1h,50000/1m";
 	    }
 	}
 
