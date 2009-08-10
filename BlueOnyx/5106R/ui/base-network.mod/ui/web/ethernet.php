@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernet.php,v 1.1.1.2.2.2 Sat 13 Sep 2008 09:11:03 AM CEST mstauber Exp $
+// $Id: ethernet.php,v 1.1.1.2.2.3 Mon 10 Aug 2009 11:02:43 AM CEST mstauber Exp $
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
@@ -100,16 +100,16 @@ for ($i = 0; $i < count($interfaces); $i++) {
 	$deviceList[] = $device;
 	$devices[] = "'$device'";    
 	$devnames[] = "'" . $i18n->getJs("[[base-network.interface$device]]") . "'";
-	
-	// PHP5 Fix
-	$dev[$device] = array (
-			'ipaddr' => $iface["ipaddr"],
-			'netmask' => $iface["netmask"],
-			'mac' => $iface["mac"],
-			'device' => $device,
-			'bootproto' => $iface["bootproto"],
-			'enabled' => $iface["enabled"]
-			);
+
+        // Devices:
+        $dev[$device] = array (
+                        'ipaddr' => $iface["ipaddr"],
+                        'netmask' => $iface["netmask"],
+                        'mac' => $iface["mac"],
+                        'device' => $device,
+                        'bootproto' => $iface["bootproto"],
+                        'enabled' => $iface["enabled"]
+                        );
 
 }
 
@@ -196,8 +196,8 @@ if ($dev['eth1']) {
 	$netmask = "";
     }
     
-    $ip_label = 'ipAddressField2';
-    $nm_label = 'netMaskField2';
+    $ip_label = 'ipAddressField1';
+    $nm_label = 'netMaskField1';
 
     $block->addDivider(
             $factory->getLabel("interface$device", false),
@@ -279,26 +279,26 @@ if ($dev['eth2']) {
             $factory->getLabel("interface$device", false),
             $default_page);
 
-    $ip_field1 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
-    $ip_field1->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
+    $ip_field2 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
+    $ip_field2->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 
-    $ip_field1->setOptional(true);
+    $ip_field2->setOptional(true);
 
     $block->addFormField(
-            $ip_field1,
+            $ip_field2,
             $factory->getLabel($ip_label, true,
                         array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
-    $netmask_field1 = $factory->getIpAddress("netMaskField$device", $netmask);
-    $netmask_field1->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+    $netmask_field2 = $factory->getIpAddress("netMaskField$device", $netmask);
+    $netmask_field2->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
+    $netmask_field2->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 
-    $netmask_field1->setOptional(true);
+    $netmask_field2->setOptional(true);
     
     $block->addFormField(
-            $netmask_field1,
+            $netmask_field2,
             $factory->getLabel($nm_label, true,
                         array(), array('name' => "[[base-network.help$device]]")),
             $default_page
@@ -355,26 +355,26 @@ if ($dev['eth3']) {
             $factory->getLabel("interface$device", false),
             $default_page);
 
-    $ip_field1 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
-    $ip_field1->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
+    $ip_field3 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
+    $ip_field3->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 
-    $ip_field1->setOptional(true);
+    $ip_field3->setOptional(true);
 
     $block->addFormField(
-            $ip_field1,
+            $ip_field3,
             $factory->getLabel($ip_label, true,
                         array(), array('name' => "[[base-network.help$device]]")),
             $default_page
         );
 
-    $netmask_field1 = $factory->getIpAddress("netMaskField$device", $netmask);
-    $netmask_field1->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+    $netmask_field3 = $factory->getIpAddress("netMaskField$device", $netmask);
+    $netmask_field3->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
+    $netmask_field3->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 
-    $netmask_field1->setOptional(true);
+    $netmask_field3->setOptional(true);
     
     $block->addFormField(
-            $netmask_field1,
+            $netmask_field3,
             $factory->getLabel($nm_label, true,
                         array(), array('name' => "[[base-network.help$device]]")),
             $default_page
