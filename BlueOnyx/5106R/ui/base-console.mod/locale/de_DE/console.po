@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: email.po\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-08-07 09:21+0100\n"
+"PO-Revision-Date: 2009-08-10 10:20+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@blueonyx.it>\n"
 "MIME-Version: 1.0\n"
@@ -246,4 +246,10 @@ msgstr "Zeigt eine Liste aller Hosts, von denen aus Loginfehler auf diesem Syste
 
 msgid "blocked_users_help"
 msgstr "Zeigt eine Liste aller Benutzernamen an, für die Loginfehler gemeldet wurden. Zeigt ebenfalls an, ob das Konto deswegen temporär gesperrt wurde, oder ob Zugriff noch erlaubt ist. Ein grünes Status-Signal bedeutet, dass das Konto noch für Zugriffe offen ist. Ein rotest Signal bedeutet, dass das Konto temporär gesperrt ist."
+
+msgid "whois"
+msgstr "Whois"
+
+msgid "whois_help"
+msgstr "Zeigt die 'whois' Informationen über die betreffende IP-Adresse."
 

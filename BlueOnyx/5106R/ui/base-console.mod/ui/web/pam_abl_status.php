@@ -83,7 +83,7 @@ if ($ps) {
 if ($page_selector->getSelectedId() == 'blocked_hosts' || $page_selector->getSelectedId() == '') {
 
     // Host table:
-    $hblock = $factory->getScrollList("pam_abl_blocked_hosts", array("host", "failcnt", "access", "Action"), array(0,1,2,$hactions));
+    $hblock = $factory->getScrollList("pam_abl_blocked_hosts", array("host", "whois", "failcnt", "access", "Action"), array(0,$whois,2,3,$hactions));
     $hblock->setDefaultSortedIndex(0);
 
     // Get 'fail_hosts' information out of CCE:
@@ -107,6 +107,11 @@ if ($page_selector->getSelectedId() == 'blocked_hosts' || $page_selector->getSel
 	$nowtime = time();
         if ($HOSTSLIST[$hostnum]['host']) {
 
+	    // Whois button:
+	    $whois_url = "/base/console/pam_abl_whois.php?whois=" . $HOSTSLIST[$hostnum]['host'];
+	    $whois_js_line = "\"javascript: void 0\" onClick=\"var we_winOpts = '';if (window.screen) {var w = 750;var h = 550;var screen_height = screen.availHeight - 70;var screen_width = screen.availWidth-10;var w = Math.min(screen_width,w);var h = Math.min(screen_height,h);var x = (screen_width - w) / 2;var y = (screen_height - h) / 2;we_winOpts = 'left='+x+',top='+y;}else{we_winOpts='';};we_winOpts += (we_winOpts ? ',' : '')+'width=750';we_winOpts += (we_winOpts ? ',' : '')+'height=550';we_winOpts += (we_winOpts ? ',' : '')+'status=no';we_winOpts += (we_winOpts ? ',' : '')+'scrollbars=yes';we_winOpts += (we_winOpts ? ',' : '')+'menubar=no';we_winOpts += (we_winOpts ? ',' : '')+'resizable=yes';we_winOpts += (we_winOpts ? ',' : '')+'location=no';var we_win = window.open('" . $whois_url . "','we_Doku',we_winOpts);\";";
+	    $whois = $factory->getDetailButton($whois_js_line);
+
 	    if ($HOSTSLIST[$hostnum]['blocking'] == "0") {
 		$status =& $factory->getStatusSignal('normal');
 	    }
@@ -120,6 +125,7 @@ if ($page_selector->getSelectedId() == 'blocked_hosts' || $page_selector->getSel
     	    }
             $hblock->addEntry(array(
                 $factory->getTextField("", $HOSTSLIST[$hostnum]['host'], "r"),
+                $whois,
                 $factory->getTextField("", $HOSTSLIST[$hostnum]['failcnt'], "r"),
 		$status,
                 $actions
@@ -178,8 +184,6 @@ if ($page_selector->getSelectedId() == 'blocked_users') {
 	$usernum--;
     }
 }
-
-//$block->addButton($factory->getSaveButton($page->getSubmitAction()));
 
 $serverScriptHelper->destructor();
 

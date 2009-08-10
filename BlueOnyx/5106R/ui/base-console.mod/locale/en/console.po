@@ -234,3 +234,10 @@ msgstr "Shows a list of hosts from which failed login activity was registered, h
 
 msgid "blocked_users_help"
 msgstr "Shows a list of user accounts for which failed login activity was registered, how often the authentication failed and if the account is still blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+
+msgid "whois"
+msgstr "Whois"
+
+msgid "whois_help"
+msgstr "Shows the 'whois' information about the IP in question."
+

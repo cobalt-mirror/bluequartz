@@ -5,7 +5,7 @@
     url="/base/console/pam_abl_status.php"
 >
 
-    <parent id="base_security" order="12">
+    <parent id="base_security" order="1">
         <access require="serverConfig"/>
     </parent>
 </item>
