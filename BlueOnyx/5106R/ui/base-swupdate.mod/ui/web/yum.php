@@ -1,8 +1,9 @@
 <?php
 // Author: Brian N. Smith, Michael Stauber
 // Copyright 2006-2007, NuOnce Networks, Inc.  All rights reserved.
-// Copyright 2006-2007, Stauber Multimedia Design  All rights reserved.
-// $Id: yum.php,v 1.0 2007/12/20 9:02:00 Exp $ 
+// Copyright 2006-2007, Stauber Multimedia Design.  All rights reserved.
+// Copyright 2008-2009, Team BlueOnyx. All rights reserved.
+// $Id: yum.php,v 1.1 Tue 11 Aug 2009 02:24:43 AM EDT Exp $ 
 
 include_once("ServerScriptHelper.php");
 
@@ -239,11 +240,13 @@ if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || (!$_PagedBlock_selec
       $yum_update = 1;
       $entry = preg_replace("/\s+/", " ", $entry);
       $a_entry = split(" ", $entry);
-      $yum->addEntry(array(
-        $factory->getTextField("", $a_entry[0], "r"),
-        $factory->getTextField("", $a_entry[1], "r"),
-        $factory->getTextField("", $a_entry[2], "r")
-      ));
+      if ($a_entry[0] != "") {
+    	    $yum->addEntry(array(
+    	    $factory->getTextField("", $a_entry[0], "r"),
+    	    $factory->getTextField("", $a_entry[1], "r"),
+    	    $factory->getTextField("", $a_entry[2], "r")
+    	    ));
+      }
     }
   }
 
