@@ -33,7 +33,7 @@ print $i18n->get("rebooting") . '<br>';
 print($page->toFooterHtml());
 
 $sysoid = $cceClient->find("System");
-$cceClient->set($sysoid, "Power", array("reboot" => time()));
+$cceClient->set($sysoid[0], "Power", array("reboot" => time()));
 
 $serverScriptHelper->destructor();
 /*

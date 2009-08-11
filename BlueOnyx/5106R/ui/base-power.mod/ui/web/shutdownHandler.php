@@ -33,7 +33,7 @@ print $i18n->get("shutting-down") . '<br>';
 print($page->toFooterHtml());
 
 $sysoid = $cceClient->find("System");
-$cceClient->set($sysoid, "Power", array("halt" => time()));
+$cceClient->set($sysoid[0], "Power", array("halt" => time()));
 
 $serverScriptHelper->destructor();
 /*

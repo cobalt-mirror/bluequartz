@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=power
 
 VERSION=1.1.0
-RELEASE=65BQ14
+RELEASE=65BQ15
 
 # add a buildarch if desired
 BUILDARCH=noarch
