@@ -127,7 +127,7 @@ $cert_info->processErrors($errors);
 
 if ($type == 'csr')
     $cert_info->addFormField(
-        $factory->getBoolean('genCert', 1),
+        $factory->getBoolean('genCert', 0),
         $factory->getLabel('genSSCert'));
 
 $cert_info->addDivider($factory->getLabel('location', false));
