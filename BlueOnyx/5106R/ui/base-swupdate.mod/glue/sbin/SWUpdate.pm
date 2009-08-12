@@ -787,9 +787,10 @@ sub swupdate_checkdepend
     if ($pkg->{product}) {
 	my @product_array = $cce->scalar_to_array($pkg->{product});
 	my ($product) = get_product();
-	# note: we accept perl regexes for the product field
+	# note: we NO LONGER accept perl regexes for the product field!
 	foreach $i (@product_array) {
-	    next unless $product =~ /^$i$/;
+	    #next unless $product =~ /^$i$/; # No longer accepting wildcards!
+	    next unless $product eq $i;
 	    $ok = 1;
 	    last;
 	}
