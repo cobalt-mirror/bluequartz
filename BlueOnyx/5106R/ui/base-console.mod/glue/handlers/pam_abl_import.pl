@@ -62,6 +62,9 @@ while ($line = <F>) {
 	$matrix_name = 'HOSTS';				# While passing through "Failed hosts" set matrix name to 'HOSTS'.
 	next;
     }
+    if ($line =~ /^   <none>/) { 
+	next; 
+    }
     my (@row) = split (/\s+/, $line); 			# Splits at spaces. Not really desireable.
     shift(@row);					# Delete first entry from array, as it's garbage.
     $txn[0] = shift(@row);				# Get username or Host/IP.
