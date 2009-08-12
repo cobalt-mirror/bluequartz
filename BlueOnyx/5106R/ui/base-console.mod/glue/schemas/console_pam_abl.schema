@@ -1,5 +1,5 @@
 <!--
- $Id: console_pam_abl.schema, v1.0.0-1 Wed 05 Aug 2009 02:17:01 AM CEST mstauber Exp $
+ $Id: console_pam_abl.schema, v1.1.0-1 Wed 12 Aug 2009 02:56:46 PM CEST mstauber Exp $
  Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
  Copyright 2009 Team BlueOnyx. All rights reserved.
 -->
@@ -25,8 +25,14 @@
 
 <class name="fail_hosts" namespace="" version="1.0" createACL="ruleCapable(adminUser)" destroyACL="ruleCapable(adminUser)">
 
-        <!-- Offending IP: -->
+        <!-- Old host field. Contains IP. No longer used, but must stay in for compatability. -->
         <property name="host" type="ipaddr" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Offending FQDN: -->
+        <property name="host_fqdn" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Offending IP: -->
+        <property name="host_ip" type="ipaddr" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
         <!-- Failcount: -->
         <property name="failcnt" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>

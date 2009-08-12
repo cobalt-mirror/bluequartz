@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: email.po\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-08-10 10:20+0100\n"
+"PO-Revision-Date: 2009-08-12 17:23+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@blueonyx.it>\n"
 "MIME-Version: 1.0\n"
@@ -184,12 +184,6 @@ msgstr "Gesperrte Konten"
 msgid "pam_abl_blocked_hosts"
 msgstr "Hosts mit Loginfehlern:"
 
-msgid "host"
-msgstr "IP Adresse"
-
-msgid "host_help"
-msgstr "IP-Adresse(n), von denen Loginfehler registriert wurden."
-
 msgid "failcnt"
 msgstr "Fehler"
 
@@ -252,4 +246,16 @@ msgstr "Whois"
 
 msgid "whois_help"
 msgstr "Zeigt die 'whois' Informationen über die betreffende IP-Adresse."
+
+msgid "host_ip"
+msgstr "IP-Adresse"
+
+msgid "host_ip_help"
+msgstr "IP-Adresse(n), von denen die Loginfehler ausgingen."
+
+msgid "host_fqdn"
+msgstr "Hostnamen"
+
+msgid "host_fqdn_help"
+msgstr "Hostnamen, von denen die Loginfehler ausgingen. Falls '-n/a-' angezeigt wird, so hatte de betreffende IP keine Reverse-DNS. Achtung: Wird 'localhost' angezeigt, so bedeutet das nicht zwangsläufig, dass die Loginfehler von Ihrem eigenen System ausgingen. Viele Provider in Asien setzen ihre kompletten Netzwerke auf die Reverse-DNS 'localhost'."
 

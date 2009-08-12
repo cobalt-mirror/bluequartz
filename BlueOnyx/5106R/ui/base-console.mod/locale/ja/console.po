@@ -119,13 +119,13 @@ msgid "pam_ablMenu"
 msgstr "Login Manager"
 
 msgid "pam_ablMenu_help"
-msgstr "The 'Login Manager' allows you to configure the protection against brute force password guessing attempts. You can configure after how many failed logins the account or the attacking hosts will be prevented from logging in at all. Even if he finally uses a valid username and password. If you ever block yourself: You will always be able to login to the GUI as 'admin' to reset the blockade."                                                                                                                                                                                               
+msgstr "The 'Login Manager' allows you to configure the protection against brute force password guessing attempts. You can configure after how many failed logins the account or the attacking hosts will be prevented from logging in at all. Even if he finally uses a valid username and password. If you ever block yourself: You will always be able to login to the GUI as 'admin' to reset the blockade."
 
 msgid "pam_abl_head"
 msgstr "Login Manager"
 
 msgid "pam_abl_location"
-msgstr "Config File:"   
+msgstr "Config File:"
 
 msgid "pam_abl_location_help"
 msgstr "Location of the pam_abl config file."
@@ -146,22 +146,22 @@ msgid "user_rule"
 msgstr "User rule:"
 
 msgid "user_rule_help"
-msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password."
+msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password. PLEASE NOTE: You should leave this at 'disabled', because otherwise someone could run a 'Denial of Service' attack against you that (temporarily) blocks even legitimate users from using their accounts."
 
 msgid "host_rule"
 msgstr "Host rule:"
 
 msgid "host_rule_help"
-msgstr "Amount of failed logins per hour until the originating host will be blackisted. Even logins with correct usernames and password from the offending IP will then be blocked. Exception: User 'admin' can still login to the GUI from that IP - if he knows the correct password."                                                                                                                  
+msgstr "Amount of failed logins per hour until the originating host will be blackisted. Even logins with correct usernames and password from the offending IP will then be blocked. Exception: User 'admin' can still login to the GUI from that IP - if he knows the correct password."
 
 msgid "pam_abl_statusMenu"
-msgstr "Failed Logins"    
+msgstr "Failed Logins"
 
 msgid "pam_abl_statusMenu_help"
-msgstr "Shows you a list of IP addresses from which failed login attempts were registered. Also shows which user names were used. This page also allows you to reset autentication blockades. A red status light next to an IP or username means that the host (or user!) is not allowed to login anymore."                                                                                               
+msgstr "Shows you a list of IP addresses from which failed login attempts were registered. Also shows which user names were used. This page also allows you to reset autentication blockades. A red status light next to an IP or username means that the host (or user!) is not allowed to login anymore."
 
 msgid "pam_abl_blocked_users_and_hosts"
-msgstr "Failed Login History"          
+msgstr "Failed Login History"
 
 msgid "blocked_hosts"
 msgstr "Blocked hosts"
@@ -172,10 +172,10 @@ msgstr "Blocked users"
 msgid "pam_abl_blocked_hosts"
 msgstr "Hosts with failed login activity:"
 
-msgid "host"
+msgid "host_ip"
 msgstr "IP address"
 
-msgid "host_help"
+msgid "host_ip_help"
 msgstr "IP address from which failed login attempts were recorded."
 
 msgid "failcnt"
@@ -190,10 +190,10 @@ msgstr "Access"
 msgid "access_help"
 msgstr "Shows if access is still allowed or if it is blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
 
-msgid "Action"
+msgid "Action"	
 msgstr "Unblock"
 
-msgid "Action_help"
+msgid "Action_help"	
 msgstr "Clicking on the button allows you to remove an active blocking of the host or account in question. If the button is greyed out, then this host or account is currently not blocked."
 
 msgid "reset_hosts_button"
@@ -240,4 +240,11 @@ msgstr "Whois"
 
 msgid "whois_help"
 msgstr "Shows the 'whois' information about the IP in question."
+
+msgid "host_fqdn"
+msgstr "Hostname"
+
+msgid "host_fqdn_help"
+msgstr "Hostname from which failed login attempts were recorded. If it shows '-n/a-' it means that the host didn't have a valid reverse DNS. If it shows 'localhost', it doesn't necessarily mean that the attack came from your server. There are a lot of (predominantly Asian) ISP's which set the reverse DNS for their network to 'localhost'."
+
 
