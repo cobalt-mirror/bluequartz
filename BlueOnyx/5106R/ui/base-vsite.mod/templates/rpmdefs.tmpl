@@ -127,6 +127,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Aug 12 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ55
+- When a Vsite has preview enabled, the preview was still working even if the site is suspended. Security risk!
+- Bug found and reported by Steve Howes. Many thanks!
+- Modified ui/web/vsiteModSave.php to set preview to disabled when a Vsite is suspended.
+- Modified glue/handlers/suspend.pl to disable preview for the site when a site is suspended.
+
 * Tue Jun 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ54
 - Modified glue/handlers/suspend.pl to use 'usermod' to lock / unlock suspended accounts.
 - This is an important security update, because without locking accounts of a suspended site those users can still use SMTP-Auth to send emails - even when the whole site is suspended.

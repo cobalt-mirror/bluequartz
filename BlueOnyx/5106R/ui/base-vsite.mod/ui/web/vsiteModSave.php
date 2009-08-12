@@ -21,6 +21,11 @@ $cce =& $helper->getCceClient();
 
 $vsiteOID = $cce->find("Vsite", array("name" => $group));
 
+// Suspended sites must NOT have site_preview enabled:
+if ($suspend == "1") { 
+    $site_preview = "0"; 
+}
+
 $cce->set($vsiteOID[0], "", 
 	  array(
 		"hostname" => $hostname,

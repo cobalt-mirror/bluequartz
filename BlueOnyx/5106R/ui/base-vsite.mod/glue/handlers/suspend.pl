@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Copyright 2008-2009 Team BlueOnyx. All rights reserved.
-# $Id: suspend.pl,v 1.3.2.2 Tue Jun 23 12:44:35 2009 mstauber Exp $
+# $Id: suspend.pl,v 1.3.2.3 Wed 12 Aug 2009 05:38:13 PM CEST mstauber Exp $
 #
 # Handle most of the site related stuff that needs to happen when a site 
 # is suspended.
@@ -14,16 +14,19 @@ $cce->connectfd();
 # things to do on site suspend
 # 1. (maybe) disable mailing lists or maybe just maillist server.
 # 2. disable VirtualHost
-# 3. suspend all site users
+# 3. suspend all site users - and lock their accounts.
+# 4. disable the site preview (if it was enabled), because otherwise it's still
+#    possible to see (and use!) it through the site preview. 
 
 my $vsite = $cce->event_object();
 
 # deal with mailing lists when they actually somewhat work
 
-# disable my VirtualHost
+# disable my VirtualHost and reset site_preview:
 my ($vhost) = $cce->findx('VirtualHost', { 'name' => $vsite->{name} });
-my ($ok) = $cce->set($vhost, '', 
-        { 'enabled' => ($vsite->{suspend} ? 0 : 1) });
+my ($ok) = $cce->set($vhost, '', { 
+		'enabled' => ($vsite->{suspend} ? 0 : 1)
+	});
 
 if (not $ok) {
     $cce->bye('FAIL', '[[base-vsite.cantDisableVhost]]');
@@ -39,6 +42,9 @@ if ($vsite->{suspend}) {
 	#
 	@users = $cce->findx('User',
 			{ 'site' => $vsite->{name}, 'enabled' => 1 });
+
+	# Disable site_preview:
+	my ($ok) = $cce->set($vhost, '', { 'site_preview' => '0' });
 } 
 else {
 	#
@@ -47,6 +53,11 @@ else {
 	#
 	@users = $cce->findx('User',
 			{ 'site' => $vsite->{name}, 'ui_enabled' => 1 });
+
+	# Enable site_preview again if it was active for the site:
+	if ($vsite->{site_preview} == "1") {
+	    my ($ok) = $cce->set($vhost, '', { 'site_preview' => '1' });
+	}
 }
 
 for my $user (@users) {
