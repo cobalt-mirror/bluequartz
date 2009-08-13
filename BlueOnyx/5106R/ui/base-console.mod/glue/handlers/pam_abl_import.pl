@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: pam_abl_import.pl, v1.0.0-3 Wed 12 Aug 2009 05:04:49 PM CEST mstauber Exp $
+# $Id: pam_abl_import.pl, v1.0.0-4 Thu 13 Aug 2009 02:51:16 AM EDT mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 # Copyright 2009 Team BlueOnyx. All rights reserved.
 
@@ -121,11 +121,9 @@ while ($line = <F>) {
 		# Valid IP obtained.
 		$ip = $host_or_ip;
 		# Now get the matching hostname for it:
-		$host = convert_to_ip($ip);
-		# Check if it's still an IP:
-		$host_valid = silent_is_ip($host);
-		if ($host_valid = "-1") {
-		    # It's still an IP. Forget it then and set a default:
+		$host = convert_to_fqdn($ip);
+		if ($host == "-1") {
+		    # Hostname couldn't be resolved. Forget it then and set a default:
 		    $host = " -n/a- ";
 		}
 	    }
@@ -162,6 +160,24 @@ sub convert_to_ip {
 	$addr  = gethostbyname($convert_ip);
 	$ip_of_hostname = inet_ntoa($addr);
         return $ip_of_hostname;
+    }
+}
+
+# Test to determine if the input is a valid IP-address:
+sub convert_to_fqdn {
+    my $convert_ip = $_[0];
+    undef $peer_host;
+    if ($convert_ip =~ /^(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])$/) {
+	$addr = inet_aton($convert_ip);
+	$peer_host = gethostbyaddr($addr, AF_INET);
+    }
+    if (!$peer_host) {
+	# FQDN couldn't be resolved, return -1 instead:
+	return "-1"
+    }
+    else {
+        # Return FQDN:
+        return $peer_host;
     }
 }
 
