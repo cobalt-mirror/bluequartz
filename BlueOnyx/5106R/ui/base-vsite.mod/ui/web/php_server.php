@@ -2,6 +2,7 @@
 
 // Author: Michael Stauber <mstauber@solarspeed.net>
 // Copyright 2006-2008, Stauber Multimedia Design. All rights reserved.
+// Copyright 2008-2009, Team BlueOnyx. All rights reserved.
 
 include_once("ServerScriptHelper.php");
 
@@ -228,7 +229,15 @@ if ($systemObj['post_max_size']) {
                 "pm_13" => "70M",
                 "pm_14" => "80M",
                 "pm_15" => "90M",
-                "pm_16" => "100M"
+                "pm_16" => "100M",
+                "pm_17" => "110M",
+                "pm_18" => "128M",
+                "pm_19" => "136M",
+                "pm_20" => "148M",
+                "pm_21" => "156M",
+                "pm_22" => "164M",
+                "pm_23" => "172M",
+                "pm_24" => "180M"
             );
 }
 
@@ -306,7 +315,15 @@ if ($systemObj['memory_limit']) {
                 "mlc_13" => "70M",
                 "mlc_14" => "80M",
                 "mlc_15" => "90M",
-                "mlc_16" => "100M"
+                "mlc_16" => "100M",
+                "mlc_17" => "110M",
+                "mlc_18" => "128M",
+                "mlc_19" => "136M",
+                "mlc_20" => "148M",
+                "mlc_21" => "156M",
+                "mlc_22" => "164M",
+                "mlc_23" => "172M",
+                "mlc_24" => "180M"
             );
 }
 
