@@ -1,7 +1,7 @@
 IMPORTANT INFO FOR PKG MAKERS:
 ==============================
 
-In the past it was possible to install PKGs with wildcards in the product field.
+In the past it was possible to install PKGs with really broad wildcards in the product field.
 
 Examples from packing_list:
 
@@ -23,3 +23,9 @@ To cover the BlueApp as well, use this:
 Product:               5106R
 Product:	       5160R
 Product:               5161R
+
+At the worst, use smaller wildcards which are not that broad. 
+
+Example:
+
+Product:	      516.R

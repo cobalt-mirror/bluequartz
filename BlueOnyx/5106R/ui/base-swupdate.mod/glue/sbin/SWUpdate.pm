@@ -785,20 +785,23 @@ sub swupdate_checkdepend
     # first, check against the product field if it's there.
     # we don't show up if the product field doesn't match. 
     if ($pkg->{product}) {
-	my @product_array = $cce->scalar_to_array($pkg->{product});
-	my ($product) = get_product();
-	# note: we NO LONGER accept perl regexes for the product field!
-	foreach $i (@product_array) {
-	    #next unless $product =~ /^$i$/; # No longer accepting wildcards!
-	    next unless $product eq $i;
-	    $ok = 1;
-	    last;
-	}
-	
-	unless ($ok) {
-	    $cce->bye('SUCCESS') unless $cceref;
-	    return -3;
-	}
+        my @product_array = $cce->scalar_to_array($pkg->{product});
+        my ($product) = get_product();
+        # note: we still accept perl regexes in the product field, but we block some wildcards to prevent
+        # older bluequartz packages from causing problems if users insist installing them.
+        foreach $i (@product_array) {
+            if ($i =~ /\.\./) { # Block mega wildcards, but still allow regexes
+              next;
+            }
+            next unless $product =~ /^$i$/; # Accept limited wildcards only
+            $ok = 1;
+            last;
+        }
+
+        unless ($ok) {
+            $cce->bye('SUCCESS') unless $cceref;
+            return -3;
+        }
     }
 
     my @oids = $cce->find('Package', {installState => 'Installed'});
