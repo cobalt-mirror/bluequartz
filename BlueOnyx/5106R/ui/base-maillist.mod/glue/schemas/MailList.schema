@@ -28,7 +28,7 @@
 <!-- FIXME: these should be enums eventually -->
 <typedef 
     name="postPolicy" type="re" 
-    data="^((moderated)|(any)|(members)|(admin))?$" 
+    data="^((moderated)|(any)|(members)|(admin)|(domain))?$" 
 />
 <typedef 
     name="subPolicy" type="re"

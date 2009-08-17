@@ -164,6 +164,23 @@ sub rewrite_config
 	}
     	push (@data, $str);
   }  
+  elsif (m/domain/) {
+	#policy = Only domain can post
+	my $mailaliases = '';
+	if ($obj->{site}) {
+	  my ($vs_oid) = $cce->find('Vsite', { 'name' => $obj->{site} });
+	  my ($ok, $vsite) = $cce->get($vs_oid);
+	  if (!$ok) {
+	    $cce->bye('FAIL', '[[base-maillist.systemError]]');
+	    exit(1);
+	  }
+	  $mailaliases = $vsite->{mailAliases};
+	}
+
+	$mailaliases =~ s/&/ /g;
+	my $str = "restrict_post = \@$fqdn$mailaliases";
+	push (@data, $str);
+  }
   else {
   	# policy = members
 	my $str = "restrict_post = $obj->{name}:$obj->{name}.administrator";

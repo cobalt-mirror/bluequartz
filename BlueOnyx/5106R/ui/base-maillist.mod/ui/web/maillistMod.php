@@ -299,6 +299,7 @@ if ($mode != 'locals' && $mode != 'locals_new') {
   $posting->addOption($factory->getOption("any"));
   $posting->addOption($factory->getOption("moderated"));
   $posting->addOption($factory->getOption("admin"));
+  $posting->addOption($factory->getOption("domain"));
   $posting->setSelected($postPolicy, true);
   $block->addFormField($posting,
 		       $factory->getLabel("postingPolicy"),
