@@ -52,7 +52,7 @@ if (isset($group)) {
 //course, no changes are applied until you click "save" for the
 //mailing list.
 
-session_register("localSubs");
+$_SESSION['localSubs']=$localSubs;
 if (!isset($localSubs)) {
   $localSubs = array();
 }
@@ -91,7 +91,6 @@ while (list ($key, $val) = each($postids)) {
 }
 
 //put new selection back into local subscriber temp list
-unset($localSubs);
 $localSubs = array();
 //special case, "All", copy all into local subscriber temp list
 if ($selectAll) {
