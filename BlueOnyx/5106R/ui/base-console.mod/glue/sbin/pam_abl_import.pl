@@ -3,10 +3,10 @@
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 # Copyright 2009 Team BlueOnyx. All rights reserved.
 
-# This handler is run whenever the GUI needs to know the contends of the pam_abl user and host database.
+# This constructor is run whenever the GUI needs to know the contends of the pam_abl user and host database.
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
 
 #
 #### No configureable options below!

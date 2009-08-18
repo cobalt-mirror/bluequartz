@@ -56,6 +56,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 [AUTOFILL]
 %attr(0644,-,-) /etc/cron.d/pam_abl_purge.cron
+%attr(0755,-,-) /usr/sausalito/sbin/pam_abl_import.pl
 <end glue>
 
 <begin ui>
@@ -160,6 +161,17 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Aug 18 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX11] Further speed improvement measures.
+- Added glue/sbin/pam_abl_import.pl to pre-load CODB with ip / host data.
+- Modified glue/cron.d/pam_abl_purge.cron to also run glue/sbin/pam_abl_import.pl
+
+* Mon Aug 17 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX10] All those forward and reverse lookups are too slow on large host/ip lists.
+- Updated glue/schemas/console_pam_abl.schema with timestamp field for fail_host's.
+- Modified glue/handlers/pam_abl_import.pl to only lookup host or IP once and when needed.
+- Removed general rebuild of fail_host database and replaced it with selective delete of entries past their purge timer.
 
 * Thu Aug 13 2009 Michael Stauber <mstauber@solarspeed.net>
 - [1.1.0-0BX09] Small fix to glue/handlers/pam_abl_import.pl

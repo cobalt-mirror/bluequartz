@@ -1,2 +1,3 @@
-# base-console.mod - Cronjob that purges the pam_abl databases.
+# base-console.mod - Cronjob that purges the pam_abl databases and imports current blocks into CODB:
 */15 * * * * root /usr/bin/pam_abl --purge > /dev/null 2>&1 &
+*/30 * * * * root /usr/sausalito/sbin/pam_abl_import.pl > /dev/null 2>&1 &

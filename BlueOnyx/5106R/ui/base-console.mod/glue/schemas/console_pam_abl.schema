@@ -1,5 +1,5 @@
 <!--
- $Id: console_pam_abl.schema, v1.1.0-1 Wed 12 Aug 2009 02:56:46 PM CEST mstauber Exp $
+ $Id: console_pam_abl.schema, v1.1.0-2 Mon 17 Aug 2009 11:54:03 PM CEST mstauber Exp $
  Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
  Copyright 2009 Team BlueOnyx. All rights reserved.
 -->
@@ -45,6 +45,10 @@
 
 	<!-- host_remove: -->
 	<property name="host_remove" type="int" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- timestamp: -->
+	<!-- Used to determine age of entry and if DNS lookup (forward or reverse) needs to be done. -->
+	<property name="timestamp" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
 
 </class>
 
