@@ -1,6 +1,6 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl
-# $Id: setTimeZone.pl Mon 29 Dec 2008 05:08:47 AM CET mstauber $
-# Copyright 2008 Project BlueOnyx., All rights reserved.
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: setTimeZone.pl Sat 22 Aug 2009 06:35:13 AM EDT mstauber $
+# Copyright 2008-2009 Project BlueOnyx., All rights reserved.
 
 use Sauce::Util;
 use CCE;
