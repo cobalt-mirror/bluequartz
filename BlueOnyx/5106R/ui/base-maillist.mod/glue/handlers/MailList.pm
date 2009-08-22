@@ -75,6 +75,89 @@ sub rewrite_members
   Sauce::Util::unlockfile($listfile);
 }
 
+# my ($ok) = rewrite_membersaliases($cce,$obj)
+# create subscriber aliases list from the MailList object
+sub rewrite_membersaliases
+{
+  my ($cce, $obj) = @_;
+
+  # extract information about the list...
+  my $list = $obj->{name};
+
+  # sorry about the ugly perl code here, it's efficient:
+  my @local_recips = CCE->scalar_to_array($obj->{local_recips});
+
+  my $listfile = &get_listfile($obj).".aliases";
+
+  # fetch user emailaliases
+  my ($uoid,$ok,$userEmail,@useremailalias,@localuseremailaliases,$vs_oid,$vsite,@mailaliases,@alllocal_recips,$useremailalias,$local_recip,$mailalias);
+
+  # fetch email domainaliases
+  ($vs_oid) = $cce->find('Vsite', { 'name' => $obj->{site} });
+  ($ok, $vsite) = $cce->get($vs_oid);
+  if (!$ok) {
+     $cce->bye('FAIL', '[[base-maillist.systemError]]');
+     exit(1);
+  }
+  @mailaliases = CCE->scalar_to_array($vsite->{mailAliases});
+
+  foreach $local_recip (@local_recips) {
+    $local_recip =~ s/@.*//;
+    ($uoid) = $cce->find('User', { 'name' => "$local_recip" });
+    ($ok, $userEmail) = $cce->get($uoid, 'Email');
+    @useremailaliases = CCE->scalar_to_array($userEmail->{aliases});
+    push(@localuseremailaliases,@useremailaliases);
+  }
+
+  # useralias + fqdn
+  foreach $useremailalias (@localuseremailaliases) {
+    push(@alllocal_recips,"$useremailalias"."@".$vsite->{fqdn});
+  }
+  # user + domainalias
+  foreach $mailalias (@mailaliases) {
+    foreach $local_recip (@local_recips) {
+      $local_recip =~ s/@.*//;
+      push(@alllocal_recips,"$local_recip"."@"."$mailalias");
+    }
+  }
+  # useralias + domainalias
+  foreach $mailalias (@mailaliases) {
+    foreach $useremailalias (@localuseremailaliases) {
+      $local_recip =~ s/@.*//;
+      push(@alllocal_recips,"$useremailalias"."@"."$mailalias");
+    }
+  }
+
+  # lock the members list:
+  Sauce::Util::lockfile($listfile);
+
+  # rewrite the members list:
+  Sauce::Util::modifyfile("$listfile");
+  unlink($listfile);
+  system('rm', '-rf', $listfile) if (-e $listfile);
+  open(LIST, ">$listfile");
+
+  my %members = map { $_ => 1 } (
+        @alllocal_recips
+  );
+  my @members = sort keys %members;
+  if ($obj->{group}) {
+	push (@members, $obj->{group} . "_alias");
+  }
+  if ($#members >= 0) {
+	print LIST join("\n",@members),"\n";
+  } else {
+	print LIST "nobody\n"; # every club needs a member even nobody
+  }
+  close(LIST);
+
+  Sauce::Util::chmodfile(0640, $listfile);
+  Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $listfile);
+
+  # unlock the members list:
+  Sauce::Util::unlockfile($listfile);
+}
+
 # my ($ok) = rewrite_config($cce, $obj)
 # create subscriber list from the MailList object
 sub rewrite_config
@@ -177,13 +260,14 @@ sub rewrite_config
 	  $mailaliases = $vsite->{mailAliases};
 	}
 
-	$mailaliases =~ s/&/ /g;
+	$mailaliases =~ s/&$//;
+	$mailaliases =~ s/&/ @/g;
 	my $str = "restrict_post = \@$fqdn$mailaliases";
 	push (@data, $str);
   }
   else {
   	# policy = members
-	my $str = "restrict_post = $obj->{name}:$obj->{name}.administrator";
+	my $str = "restrict_post = $obj->{name}:$obj->{name}.aliases:$obj->{name}.administrator";
 	if ($obj->{group}) {
 	  $str .= ':/etc/group.d/' . $obj->{group};
 	}
@@ -277,9 +361,20 @@ sub munge_members
 	}
 	
 	my @locals = $cce->scalar_to_array($mail_list->{local_recips});
-	# munge the moderator too
-	push @locals, $mail_list->{moderator};
+	for (my $i = 0; $i < scalar(@locals); $i++)
+	{
+		# skip blank entries
+		if ($locals[$i] =~ /^\s*$/) { next; }
 
+		# check to see if it is already correct
+		if ($locals[$i] =~ /\@/) { next; }
+
+		$locals[$i] .= "\@$fqdn";
+	}
+        $mail_list->{local_recips} = $cce->array_to_scalar(@locals);
+
+	# munge the moderators too
+	@locals = $cce->scalar_to_array($mail_list->{moderator});
 	for (my $i = 0; $i < scalar(@locals); $i++)
 	{
 		# skip blank entries
@@ -290,9 +385,7 @@ sub munge_members
 	
 		$locals[$i] .= "\@$fqdn";
 	}
-	
-	$mail_list->{moderator} = pop(@locals);
-	$mail_list->{local_recips} = $cce->array_to_scalar(@locals);
+	$mail_list->{moderator} = $cce->array_to_scalar(@locals);
 }
 
 1;

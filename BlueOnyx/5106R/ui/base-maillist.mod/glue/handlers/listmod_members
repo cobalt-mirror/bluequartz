@@ -26,6 +26,9 @@ MailList::munge_members($cce, $obj);
 # create subscriber list:
 MailList::rewrite_members($obj);
 
+# create subscriber aliases list
+MailList::rewrite_membersaliases($cce, $obj);
+
 $cce->bye('SUCCESS');
 exit(0);
 

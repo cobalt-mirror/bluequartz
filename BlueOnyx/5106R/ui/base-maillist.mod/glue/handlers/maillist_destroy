@@ -46,6 +46,8 @@ if($obj->{name}) {
     "$parent/".$name.'.administrator~',
     "$parent/".$name.'.config',
     "$parent/".$name.'.config~',
+    "$parent/".$name.'.aliases',
+    "$parent/".$name.'.aliases~',
   );
   foreach $_ (@delete_me) {
     Sauce::Util::unlinkfile($_);
