@@ -6,10 +6,10 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=blueonyx
 
-BUILD=20090717
+BUILD=20090825
 
 VERSION=5106R
-RELEASE=2.$(BUILD)BQ97
+RELEASE=2.$(BUILD)BQ98
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -14,7 +14,6 @@ if [ ! -f /etc/mail/aliases ]; then
   /usr/sbin/makemap hash /etc/mail/aliases.db < /etc/mail/aliases
 fi
 cp -p $CONFDIR/sendmail.mc /etc/mail/sendmail.mc
-cp -p $CONFDIR/bgui.mc /etc/mail/bgui.mc
 cp -p $CONFDIR/popauth.m4 /usr/share/sendmail-cf/hack/popauth.m4
 
 m4 /usr/share/sendmail-cf/m4/cf.m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
