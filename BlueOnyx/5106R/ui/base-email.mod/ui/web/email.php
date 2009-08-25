@@ -33,7 +33,7 @@ $email = $cceClient->getObject("System", array(), "Email");
 
 $page = $factory->getPage();
 
-$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx"));
+$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx", "blacklist"));
 $block->processErrors($serverScriptHelper->getErrors());
 
 if (isset($view)) {
@@ -181,8 +181,8 @@ $block->addFormField(
 
 if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
   $addmod = '/base/email/mx2_add.php';
-  $confirm_removal = "Are you sure you want to delete this secondary MX server-record?";
-  
+  $confirm_removal = $i18n->get("mxRemoveEntry");
+ 
   $oids = $cceClient->findx("mx2",array(),array(), 'ascii', 'domain');
   $oidsNum = count($oids);
 
@@ -192,7 +192,7 @@ if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
   $mxList->setDefaultSortedIndex(0);
   $mxList->setAlignments(array("left", "center"));
   $mxList->addButton($factory->getAddButton("javascript: location='$addmod';"
-					    . " top.code.flow_showNavigation(false)", "[[base-email.addmx_help]]"));
+					    . " top.code.flow_showNavigation(false)", "addmx"));
   $mxList->setLength(25);
   $maxLength = $oidsNum;
   $currentPage = $mxList->getPageIndex();
@@ -205,7 +205,7 @@ if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
   }
 
   for($i = $startIndex; 
-      $i < count($oids) || $i < $startIndex + $maxLength; 
+      $i < count($oids) || $i < $startIndex + $maxLength;
       $i++) {
     $oid = $oids[$i];
     $domains = $cceClient->get($oid);
@@ -216,12 +216,58 @@ if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
 			    $factory->getTextField("", $domain, "r"),
 			    $factory->getCompositeFormField(array(
 								  $factory->getModifyButton( "$addmod?_TARGET=$oid"),
-								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid');" )))));
+								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$domain', 'mx');" )))));
   }
  }
 
+if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist") {
+  $addmod = '/base/email/blacklist_add.php';
+  $confirm_removal = $i18n->get("blacklistRemoveEntry");
+  
+  $oids = $cceClient->findx("dnsbl",array(),array(), 'ascii', 'blacklistHost');
+  $oidsNum = count($oids);
+  
+  
+  $blackList = "";
+  $blackList = $factory->getScrollList("blackList", array("blackList", "activated", ""), array(0));
+  $blackList->setDefaultSortedIndex(0);
+  $blackList->setAlignments(array("left", "left", "center"));
+  $blackList->addButton($factory->getAddButton("javascript: location='$addmod';"
+					    . " top.code.flow_showNavigation(false)", "addBlacklist"));
+  $blackList->setLength(25);
+  $maxLength = $oidsNum;
+  $currentPage = $blackList->getPageIndex();
+  $startIndex = 25 * $currentPage;
+  $blackList->processErrors($serverScriptHelper->getErrors());
+  $blackList->setEntryNum($oidsNum);
+  
+  if ($blackList->getSortOrder() == "descending") {
+    $oids = array_reverse($oids);
+  }
 
-if( $_PagedBlock_selectedId_emailSettings != "mx") {
+  for($i = $startIndex; 
+      $i < count($oids) || $i < $startIndex + $maxLength; 
+      $i++) {
+    $oid = $oids[$i];
+    $hosts = $cceClient->get($oid);
+    $host = $hosts['blacklistHost'];
+    $active = $hosts['active'];
+    if( $active) {
+      $activeStatus = $factory->getImageLabel("blacklist", "/libImage/greenCheck.gif");
+    } else {
+      $activeStatus = $factory->getImageLabel("blacklist", "/libImage/redX.gif");
+    }
+    
+    $blackList->addEntry(array(
+			    $factory->getTextField("", $host, "r"),
+			    $activeStatus,
+			    $factory->getCompositeFormField(array(
+								  $factory->getModifyButton( "$addmod?_TARGET=$oid"),
+								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$host', 'blacklist');" )))));
+  }
+ }
+
+if( $_PagedBlock_selectedId_emailSettings != "mx" && $_PagedBlock_selectedId_emailSettings != "blacklist") {
   $block->addButton($factory->getSaveButton($page->getSubmitAction()));
   //$factory->getSaveButton($page->getSubmitAction("/base/email/emailHandler.php")));
  }
@@ -235,11 +281,12 @@ print($page->toHeaderHtml());
 var strConfirmRemoval = '<?php print $confirm_removal; ?>';
 </SCRIPT>
 <SCRIPT LANGUAGE="javascript">
-function confirmRemove(msg, oid, label, domauth, netauth) {
-	msg = top.code.string_substitute(msg, "[[VAR.rec]]", label);
-	 
-	if(confirm(msg))
-		location = "/base/email/mx2_deleteHandler.php?_REMOVE=" + oid;
+function confirmRemove(msg, oid, label, view, netauth) {
+  msg = top.code.string_substitute(msg, "[[VAR.mxHost]]", label);
+  msg = top.code.string_substitute(msg, "[[VAR.blacklistHost]]", label);
+  
+  if(confirm(msg))
+    location = "/base/email/oid_deleteHandler.php?_REMOVE=" + oid + "&_VIEW=" + view;
 }
 </SCRIPT>
 
@@ -250,6 +297,10 @@ print($block->toHtml());
 
 if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
   print($mxList->toHtml()); 
+ }
+
+if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist") {
+  print($blackList->toHtml()); 
  }
 
 print($page->toFooterHtml());

@@ -13,7 +13,6 @@ sub Aliases { return '/etc/mail/aliases'; }
 sub MajordomoAliases { return '/etc/mail/aliases.majordomo'; }
 sub SendmailCF { return '/etc/mail/sendmail.cf'; }
 sub SendmailMC { return '/etc/mail/sendmail.mc'; }
-sub BguiMC { return '/etc/mail/bgui.mc'; }
 sub SendmailCW { return '/etc/mail/local-host-names'; }
 
 return 1;

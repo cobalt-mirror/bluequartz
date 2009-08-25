@@ -5,6 +5,8 @@
 
 include_once("ServerScriptHelper.php");
 
+$errors = array();
+
 $serverScriptHelper = new ServerScriptHelper();
 
 // Only adminUser should be here
@@ -14,27 +16,48 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 }
 
 $cceClient = $serverScriptHelper->getCceClient();
+$sysOid = $cceClient->getObject("System", array(), "Email");
+$oids = $cceClient->findx("dnsbl", array('blacklistHost' => "$blacklistHostField"), array(),"","");
+if($_TARGET) {
+  $old = $cceClient->get($_TARGET);
+  $oldHost = $old["blacklistHost"];
+ }
 
-if(isset($_REMOVE)) {
-  $oid = $_REMOVE;
-
-  $secondaryOid = $cceClient->get($oid);
-  $sysOid = $cceClient->getObject("System", array(), "Email");
-  $relayFor = $sysOid["relayFor"];
-  $domain = $secondaryOid["domain"];
-  if(strstr($relayFor, "&$domain&")) {
-    $relayFor = str_replace("&$domain&", "&", $relayFor);
-    if($relayFor == "&") {
-      $relayFor = "";
+if(!$activeField) {
+  $activeField = 0;
+ }
+if(!$errors) {
+  if((count($oids) < 1) || (count($oids) == 1 && $_TARGET == $oids[0] )) {
+    if($_TARGET) {
+      $oid = $_TARGET;
+      $vals = array(
+		    "blacklistHost" => $blacklistHostField, 
+		    "deferTemporary" => $deferField,
+		    "active" => $activeField);
+      
+      $cceClient->set($oid, "", $vals);
+    } else {
+      $cceClient->create("dnsbl", 
+			 array(
+			       "blacklistHost" => $blacklistHostField, 
+			       "deferTemporary" => $deferField,
+			       "active" => $activeField));
     }
-    $cceClient->setObject("System", array( 'relayFor' => $relayFor), "Email");
+  } else {
+    $msg = "[[base-email.blacklistHostExists_error]]";
+    $errors = array_merge($errors, array((new Error($msg))));
   }
-  $cceClient->destroy($oid, "");
- } 
-$errors = $cceClient->errors();
+ }
 
-print($serverScriptHelper->toHandlerHtml("/base/email/email.php?view=mx", 
-	$errors, "base-email"));
+if($cceClient->errors()) {
+  $errors = array_merge($errors, $cceClient->errors());
+ }
+
+if($errors) {
+  print($serverScriptHelper->toHandlerHtml("/base/email/blacklist_add.php?_TARGET=$_TARGET", $errors, "base-email"));
+ } else {
+  print($serverScriptHelper->toHandlerHtml("/base/email/email.php?view=blacklist", $errors, "base-email"));
+ }
 
 # disable activeMonitor for these items
 $serverScriptHelper->destructor();

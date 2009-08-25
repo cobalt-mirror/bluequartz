@@ -24,8 +24,7 @@ Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
 Sauce::Service::service_toggle_init('dovecot', 1);
 
 # settings smtp, smtps and submission port
-Sauce::Util::editfile(Email::BguiMC, *make_bgui_cf, $obj );
-utime(time(), time(), Email::SendmailMC);
+Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
 
 # need to start sendmail?
 my $run = 0;
@@ -101,7 +100,7 @@ sub make_dovecot_conf
     return 1;
 }
 
-sub make_bgui_cf
+sub make_sendmail_mc
 {
     my $in  = shift;
     my $out = shift;

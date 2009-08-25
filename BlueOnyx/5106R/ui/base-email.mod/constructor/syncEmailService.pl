@@ -68,17 +68,12 @@ if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
 }
 
 # settings smtp, smtps and submission port
-if(! -f "/etc/mail/bgui.mc") {
-    system("/bin/cp /usr/sausalito/configs/sendmail/sendmail.mc /etc/mail/sendmail.mc");
-    system("/bin/cp /usr/sausalito/configs/sendmail/bgui.mc /etc/mail/bgui.mc");
-    my $maxMessageSize = $obj->{maxMessageSize};
-    $success = $cce->set($oids[0], "Email", { "maxMessageSize" => "0" });
-    $success = $cce->set($oids[0], "Email", { "maxMessageSize" => "$maxMessageSize" });
-}
+my $maxMessageSize = $obj->{maxMessageSize};
+$success = $cce->set($oids[0], "Email", { "maxMessageSize" => "0" });
+$success = $cce->set($oids[0], "Email", { "maxMessageSize" => "$maxMessageSize" });
 
-Sauce::Util::editfile(Email::BguiMC, *make_bgui_cf, $obj );
-utime(time(), time(), Email::SendmailMC);
-system('rm -f /etc/mail/sendmail.cf.backup.*');
+Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
+system('rm -f /etc/mail/sendmail.mc.backup.*');
 
 # need to start sendmail?
 if ($run) {
@@ -129,7 +124,7 @@ sub make_dovecot_conf
     return 1;
 }
 
-sub make_bgui_cf
+sub make_sendmail_mc
 {
     my $in  = shift;
     my $out = shift;

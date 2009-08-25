@@ -11,7 +11,6 @@ use Sauce::Config;
 
 # Globals.
 my $Sendmail_mc = Email::SendmailMC;
-my $Bgui_mc = Email::BguiMC;
 my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
 my $Sendmail_sysconfig_file = "/etc/sysconfig/sendmail";
 
@@ -29,38 +28,36 @@ my $new = $cce->event_new();
 # make sure masqAddress is not set to localhost
 if ($obj->{masqAddress} =~ /^localhost$/i)
 {
-	$cce->baddata($cce->event_oid(), 
-			'masqAddress', 'masqAddressCantBeLocalhost');
-	$cce->bye('FAIL');
-	exit(1);
+    $cce->baddata($cce->event_oid(), 
+		  'masqAddress', 'masqAddressCantBeLocalhost');
+    $cce->bye('FAIL');
+    exit(1);
 }
 
 my $sys_obj = ( $cce->get( ($cce->find("System"))[0] ) )[1];
 
-Sauce::Util::editfile($Bgui_mc, *make_sendmail_mc,     $obj );
+Sauce::Util::editfile($Sendmail_mc, *make_sendmail_mc, $obj );
 
 # add rollback to recreate virtusertable.db
 Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Email::VIRTUSER < " .
 				"$Email::VIRTUSER >/dev/null 2>&1");
 
 if (!Sauce::Util::replaceblock($Email::VIRTUSER,
-	'# Cobalt System Section Begin',
-	&make_virtuser_system($obj),
-	'# Cobalt System Section End')
-	) {
-	$cce->warn('[[base-email.cantEditFile]]', { 'file' => $Email::VIRTUSER });
-	$cce->bye('FAIL');
+			       '# Cobalt System Section Begin',
+			       &make_virtuser_system($obj),
+			       '# Cobalt System Section End')
+    ) {
+    $cce->warn('[[base-email.cantEditFile]]', { 'file' => $Email::VIRTUSER });
+    $cce->bye('FAIL');
 }
 
 my $ret = Sauce::Util::editfile($Sendmail_sysconfig_file, *set_queue_time,
 				$obj, $cce);
 if(! $ret ) {
-	$cce->bye('FAIL', 'cantEditFile', {'file' => $Sendmail_sysconfig_file});
+    $cce->bye('FAIL', 'cantEditFile', {'file' => $Sendmail_sysconfig_file});
 } else {
-	$cce->bye("SUCCESS");
+    $cce->bye("SUCCESS");
 }
-
-utime(time(), time(), $Sendmail_mc);
 
 exit 0;
 
@@ -81,6 +78,7 @@ sub make_sendmail_mc
 	                     maxMessageSize => 0,
 			     smartRelay => 0,
 			     masqDomain => 0 );
+	my @Mailer_line = ();
 	
 	if( $obj->{privacy} ) {
 	    $privacy_line = "define(`confPRIVACY_FLAGS', `noexpn noexpn authwarnings')\n";
@@ -120,28 +118,38 @@ sub make_sendmail_mc
 	    $smartRelay_line = "define(`SMART_HOST', `')\n";
 	}
 
+	my $mailer_lines = 0;
 	select $out;
 	while( <$in> ) {
-	    if( /^define\(`confPRIVACY_FLAGS'/o ) {
-			$Printed_line{'privacy'}++;
-			print $privacy_line;
-		} elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o ) {
+	    if( ( /^define\(`confPRIVACY_FLAGS'/o ||/^dnl define\(`confPRIVACY_FLAGS'/o ) && ! $Printed_line{'privacy'} ) {
+                 $Printed_line{'privacy'}++;
+		 print $privacy_line;
+	    } elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) {
 		$Printed_line{'maxMessageSize'}++;
 		print $maxMessageSize_line;
-	    } elsif ( /^define\(`SMART_HOST'/o ) {
+	    } elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) {
 		$Printed_line{'smartRelay'}++;
 		print $smartRelay_line;
-	    } elsif ( /^MASQUERADE_AS/o ) {
+	    } elsif ( /^MASQUERADE_AS/o || /^dnl MASQUERADE_AS/o ) {
 		$Printed_line{'masqDomain'}++;
 		print $masqDomain_line;
-	    } elsif ( /^define\(`confDELIVERY_MODE'/o ) {
+	    } elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) {
 		$Printed_line{'DeliveryMode'}++;
 		print $deliveryMode_line;
+	    } elsif ( /^MAILER\(/o ) {
+                $Mailer_line[$mailer_lines] = $_;
+                $mailer_lines++;
 	    } else {
 		print $_;
 	    }
 	}
-	
+
+        if( $mailer_lines ) {
+            foreach my $line (@Mailer_line) {
+	        print $line;
+            }
+        }
+
 	foreach my $key ( keys %Printed_line ) {
 		if ($Printed_line{$key} != 1) {
 			$cce->warn("error_writing_sendmail_mc");

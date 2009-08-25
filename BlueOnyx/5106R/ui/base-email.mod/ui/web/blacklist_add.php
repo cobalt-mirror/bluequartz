@@ -15,15 +15,18 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 }
 
 $cceClient = $serverScriptHelper->getCceClient();
-$factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/mx2_addHandler.php");
+$factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/blacklist_addHandler.php");
 $i18n = $serverScriptHelper->getI18n("base-email");
 
 $page = $factory->getPage();
 
 if(isset($_TARGET)) {
   $oid = $cceClient->get($_TARGET);
-  $domain = $oid["domain"];
-  $mapto = $oid["mapto"];
+  $blacklistHost = $oid["blacklistHost"];
+  $deferTemporary = $oid["deferTemporary"];
+  $active = $oid["active"];
+ } else {
+  $deferTemporary = 1;
  }
 
 
@@ -31,22 +34,26 @@ $block = $factory->getPagedBlock("secondarySettings");
 $block->processErrors($serverScriptHelper->getErrors());
 
 $block->addFormField(
-		     $factory->getDomainName("domainField", $domain),
-		     $factory->getLabel("domainField"),
+		     $factory->getTextField("blacklistHostField", $blacklistHost),
+		     $factory->getLabel("blacklistHostField"),
 		     ""
 		     );
 
-$mapto_field = $factory->getTextField("maptoField", $mapto);
+$block->addFormField(
+		     $factory->getBoolean("deferField", $deferTemporary),
+		     $factory->getLabel("deferField"),
+		     ""
+		     );
 
 $block->addFormField(
-		     $mapto_field,
-		     $factory->getLabel("maptoField"),
+		     $factory->getBoolean("activeField", $active),
+		     $factory->getLabel("activeField"),
 		     ""
 		     );
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $block->addButton(
-	$factory->getCancelButton('/base/email/email.php?view=mx'));
+	$factory->getCancelButton('/base/email/email.php?view=blacklist'));
 
 $serverScriptHelper->destructor();
 

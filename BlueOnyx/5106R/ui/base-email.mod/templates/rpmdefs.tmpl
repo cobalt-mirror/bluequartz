@@ -123,6 +123,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Aug 25 2009 Rickard Osser <rickard.osser@bluapp.com> 1.5.0-0BQ1
+- Reverted back to use sendmail.mc only.
+- Fixed so that all MAILER() records always gets added last.
+- Added support for using DNSBL blacklisting in the GUI.
+
 * Fri Jul 17 2009 Rickard Osser <rickard.osser@bluapp.com> 1.4.0-0BQ1
 - Major rewrite in sendmail configuration.
 - We don't hack sendmail.cf directly, all GUI changes are done in bgui.mc.
