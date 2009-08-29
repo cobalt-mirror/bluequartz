@@ -1,10 +1,10 @@
-#!/usr/bin/perl -I/usr/sausalito/perl                                                                                                                                                                                                                                 
-#                                                                                                                                                                                                                                                                     
-# $Id: dnsDeleteAllRecords.pl, Fri 17 Jul 2009 09:06:17 AM EDT mstauber Exp $                                                                                                                                                                                            
-# Copyright 2007-2009 Solarspeed Ltd.                                                                                                                                                                                                                                      
-#                                                                                                                                                                                                                                                                     
-# Script which removes all DNS records from CCE                                                                                                                                                                                                                      
-#                                                                                                                                                                                                                                                                     
+#!/usr/bin/perl -I/usr/sausalito/perl
+#
+# $Id: dnsDeleteAllRecords.pl, Sun Aug 30 01:25:18 2009 mstauber Exp $
+# Copyright 2007-2009 Solarspeed Ltd.
+#
+# Script which removes all DNS records from CCE
+#
 
 use lib "/usr/cmu/perl";
 use CCE;
@@ -106,14 +106,15 @@ sub do_the_dirty_deeds {
     }
 
     @oids = $cce->find('DnsSlaveZone', '');
-    if ($#oids == 0) {
+
+    if ($#oids == -1) {
 	print "No DNS records of type 'DnsSlaveZone' found in CCE. (Good!)\n";
     }
     else {
 	# DNSID found in CCE.
 	foreach $line (@oids) {
             ($ok, $system) = $cce->get($line);
-            #print "Found: $line \n";
+            #print "Found DnsSlaveZone: $line \n";
             $func = push(@ips, $line);
 	}
 	# How many IP's we got?

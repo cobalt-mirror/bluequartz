@@ -1,5 +1,5 @@
 Name:           blueonyx-dnstoolbox
-Version: 	1.0.5
+Version: 	1.0.6
 Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
@@ -69,6 +69,12 @@ rm -R -f $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+
+* Sun Aug 30 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.6-1]
+- Modified /usr/sausalito/sbin/dnsDeleteAllRecords.pl as it wasn't deleting all DnsSlaveZone's
+- Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsImport.pl to working state.
+- Now prevents import of localhost zone and root.hint
+- Commented out case 'in-addr.arpa' for secondaries because it ain't working as intended.
 
 * Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.5-1]
 - Modified blueonyx-dnstoolbox/usr/sausalito/sbin/dnsDeleteAllRecords.pl

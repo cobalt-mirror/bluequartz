@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 # Author: Brian N. Smith
 # Copyright 2006, NuOnce Networks, Inc.  All rights reserved.
-# $Id: dnsImport.pl,v 2.2 Mon 11 May 2009 09:44:57 PM EDT mstauber Exp $
+# $Id: dnsImport.pl,v 2.2 Sun Aug 30 01:36:20 2009 mstauber Exp $
 
 # This file is based off of Jeff Bilicki's dnsImport.  It has been modified in order
 # to allow you to import files from a RaQ550 / TLAS or even CentOS.
@@ -53,8 +53,8 @@ sub read_dir {
     my @f = readdir(D);
     closedir(D);
     foreach my $file (@f) {
-	if ( $file ne "." and $file ne ".." ) {
-	    if ( !($file =~ m/\.include$/) and !($file =~ m/~$/) ) {
+	if ( $file ne "." and $file ne ".." and file ne 'pri.0.0.127.in-addr.arpa' and file ne 'root.hint') {
+	    if ( !($file =~ m/\.include$/) and !($file =~ m/~$/) and !($file =~ m/root\.hint/)) {
 		my $filename = $dir . $file;
 		import_record($dir, $file);
 	    }
@@ -73,24 +73,27 @@ sub import_record {
 	    $netmask = "255.255.255.0";
 	    break;
 	}
-	case /in-addr.arpa/ {
-	    $domainname =~ s/\.in-addr.arpa//;
-	    $domainname =~ s/^db//;
-	    $recType = "sec";
-	    my @domainname = split (/\./, $domainname);
-	    my ($padding);
-	    switch ( @domainname ) {
-		case "1" { $padding = "0.0.0"; $netmask = "255.0.0.0"; }
-		case "2" { $padding = "0.0"; $netmask = "255.255.0.0"; }
-		case "3" { $padding = "0"; $netmask = "255.255.255.0"; }
-	    }
-	    $domainname = "";
-	    for ( my $i = @domainname; $i > 0; $i--) {
-		$domainname .= $domainname[$i-1].".";
-	    }
-	    $domainname .= $padding;
-	    break;
-	}
+#
+# Sorry, but this ain't working. I like the idea, but it doesn't cover all bases yet.
+#
+#	case /in-addr.arpa/ {
+#	    $domainname =~ s/\.in-addr.arpa//;
+#	    $domainname =~ s/^db//;
+#	    $recType = "sec";
+#	    my @domainname = split (/\./, $domainname);
+#	    my ($padding);
+#	    switch ( @domainname ) {
+#		case "1" { $padding = "0.0.0"; $netmask = "255.0.0.0"; }
+#		case "2" { $padding = "0.0"; $netmask = "255.255.0.0"; }
+#		case "3" { $padding = "0"; $netmask = "255.255.255.0"; }
+#	    }
+#	    $domainname = "";
+#	    for ( my $i = @domainname; $i > 0; $i--) {
+#		$domainname .= $domainname[$i-1].".";
+#	    }
+#	    $domainname .= $padding;
+#	    break;
+#	}
 	case /^db/ {
 	    $domainname =~ s/db\.//;
 	    break;
@@ -398,6 +401,12 @@ sub add_SECONDARY
 	$hash->{domain} = $record[2];
     }
     $hash->{masters} = $record[3];
+
+    # If the dig returned one of the root servers as master, then
+    # discard that info and proceed:
+    if ($hash->{masters} =~ /ROOT-SERVERS\.NET/) {
+	$hash->{masters} = "";
+    }
     
     my ($ok, $bad, @info) = $cce->create('DnsSlaveZone', $hash);
     if($ok == 0) {
