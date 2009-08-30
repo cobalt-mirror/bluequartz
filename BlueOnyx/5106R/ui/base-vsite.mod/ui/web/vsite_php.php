@@ -181,11 +181,13 @@ foreach ($this_vsite_open_basedir as $entry) {
 	    array_push($this_vsite_open_basedir_new, $entry);
 	}
 }
-$systemObj['open_basedir'] = implode(":",$this_vsite_open_basedir_new);
-
-if(!eregi($vsite['basedir'], $systemObj['open_basedir'], $regs)) {
-    // If 'open_basedir' doesn't have this vsite's basedir in it, then we need to append it here:
-    $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
+# Unless someone intentionally runs with an empty 'open_basedir' we need to fix the site root:
+if ($systemObj['open_basedir'] != "") {
+	$systemObj['open_basedir'] = implode(":",$this_vsite_open_basedir_new);
+	// If 'open_basedir' doesn't have this vsite's basedir in it, then we need to append it here:
+	if(!eregi($vsite['basedir'], $systemObj['open_basedir'], $regs)) {
+	    $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
+	}
 }
 
 $open_basedir_Field = $factory->getTextField("open_basedir", $systemObj['open_basedir'], $access);

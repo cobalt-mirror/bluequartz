@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: php_vsite_handler.pl, v1.2.0.1 Wed Jun 10 13:25:17 2009 mstauber Exp $
+# $Id: php_vsite_handler.pl, v1.2.0.2 Sun 30 Aug 2009 02:42:08 AM CEST mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
 
 # This handler is run whenever a CODB Object called "Vsite" with namespace 
@@ -84,9 +84,12 @@ sub edit_vhost {
 
         if ($vsite_php->{"enabled"} eq "1") {
 
-	    $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
-	    $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-	    
+	    if ($vsite_php_settings->{"safe_mode"} ne "") {
+		$script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+		$script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+	    }
 	    if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
 		$script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
 	    }
@@ -99,37 +102,68 @@ sub edit_vhost {
 	    if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
 		$script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
 	    }
-	    $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
-	    $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
-	    $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+	    if ($vsite_php_settings->{"register_globals"} ne "") {
+		$script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+	        $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"allow_url_include"} ne "") {
+		$script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+	    }
+
+	    # Some BX users apparently want open_basedir to be empty. Security wise this is a bad idea,
+	    # but if they really want to let their pants down that far ... <sigh>. New provision to check
+	    # if 'open_basedir' is empty in the GUI. We act a bit later on based on this switch:
+	    $empty_open_basedir = "0";
+	    if ($vsite_php_settings->{"open_basedir"} eq "") {
+		$empty_open_basedir = "1";
+	    }
 
 	    # We need to remove any site path references from open_basedir, because they could be from the wrong site,
 	    # like during a cmuImport, when it inherited the path it had on the server it was exported from.
+
 	    @vsite_php_settings_temp = split(":", $vsite_php_settings->{"open_basedir"});
 	    foreach $entry (@vsite_php_settings_temp) {
-		system("echo $entry >> /tmp/debug.ms");
+		#system("echo $entry >> /tmp/debug.ms");
 		$entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
 		if ($entry ne "") {
 		    push(@vsite_php_settings_new, $entry);
 		}
 	    }
-	    $vsite_php_settings->{"open_basedir"} = join(":", @vsite_php_settings_new);
-
-	    # Decide if we need to add the sites homedir to open_basedir or not:
-	    if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
-		# If the site's basedir path is already present, we use whatever paths open_basedir currently has:
-		$script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n"; 
-	    }
-	    else {
-		# If the sites path to it's homedir is missing, we add it here:
-		$script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/' . "\n"; 
+	    if ($vsite_php_settings->{"open_basedir"} ne "") {
+		$vsite_php_settings->{"open_basedir"} = join(":", @vsite_php_settings_new);
 	    }
 
-	    $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
-	    $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
-	    $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
-	    $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
-	    $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+	    # Decision if we write 'open_basedir' to the site include file or not. We do NOT
+	    # write an empty open_basedir. So if it is empty, we simply skip this step:
+	    if ($empty_open_basedir != "1") {
+		# Decide if we need to add the sites homedir to open_basedir or not:
+		if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
+		    # If the site's basedir path is already present, we use whatever paths open_basedir currently has:
+		    $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n"; 
+		}
+		else {
+		    # If the sites path to it's homedir is missing, we add it here:
+		    $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/' . "\n"; 
+		}
+	    }
+
+	    if ($vsite_php_settings->{"post_max_size"} ne "") {
+		$script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+		$script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"max_execution_time"} ne "") {
+		$script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"max_input_time"} ne "") {
+		$script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+	    }
+	    if ($vsite_php_settings->{"memory_limit"} ne "") {
+		$script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+	    }
         }
 
     my $last;

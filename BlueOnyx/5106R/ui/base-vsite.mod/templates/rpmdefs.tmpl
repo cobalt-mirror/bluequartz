@@ -127,6 +127,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Aug 30 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ57
+- Modified glue/handlers/php_vsite_handler.pl to be more resilent about not permitting empty PHP related switches to be written to the site include files.
+- Now allows to use empty open_basedir directives. In which case the config line open_basedir will simply be left out in the site include file.
+- Also modified ui/web/vsite_php.php to allow empty open_basedir directives.
+
 * Sun Aug 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ56
 - Added ability to set PHP memory limit to valued higher than 100M.
 - Also raised possible post max size upper value.
