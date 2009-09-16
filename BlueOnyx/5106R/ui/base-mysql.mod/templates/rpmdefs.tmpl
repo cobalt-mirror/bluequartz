@@ -115,6 +115,9 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Wed Sep 16 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-18
+- Updated glue/handlers/modify_mysql_data.pl to check if MySQLd is running. If not skip all MySQL related transactions before they generate errors that interfere with site deletions.
+
 * Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-17
 - Updated ui/web/mysql.php again as the switchology for hiding the MySQL user and password field was not entirely right.
 

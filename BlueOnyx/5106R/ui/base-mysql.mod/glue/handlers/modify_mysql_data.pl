@@ -48,6 +48,14 @@ else {
     $my_fqdn = $my_host . "." . $my_domain; 
 }
 
+# Check if MySQLd is running. If not, we can stop right here and now:
+&check_mysqld_status;
+$DEBUG && warn "MySQLd status: $sts_mysqld \n";
+if ($sts_mysqld ne "RUNNING") {
+    $cce->bye('SUCCESS');
+    exit(0);
+}
+
 # Get Vsite's MySQL data out of 'MYSQL_DBs':
 @mysql_vsite_extra = $cce->find('MYSQL_DBs', { 'fqdn' => $vsite_name} );
 if (!defined($mysql_vsite_extra[0])) {
@@ -230,4 +238,24 @@ sub checkalldetails {
 
 sub remove_extra {
     ($ok) = $cce->destroy($mysql_vsite_extra[0]);
+}
+
+sub check_mysqld_status {
+    # Check if MySQLd is running:
+    $cmd_mysqld = '/etc/init.d/mysqld';
+    $sts_mysqld = "UNKNOWN";
+    $status_tempfile = '/tmp/.ststmp';
+
+    # MySQLd:
+    $rtn_mysqld = system("$cmd_mysqld status > $status_tempfile");
+    open (F, $status_tempfile) || die "Could not open $status_tempfile: $!";
+    while ($line = <F>) {
+        chomp($line);
+        next if $line =~ /^\s*$/;
+        if ($line =~ /[0-9]/) {
+                $sts_mysqld = "RUNNING";
+        }
+    }
+    close(F);
+    system("/bin/rm -f $status_tempfile");
 }
