@@ -36,7 +36,6 @@ if (!-d "/tmp/vhosts") {
 }
 system("cp /etc/httpd/conf/vhosts/site* /tmp/vhosts/");
 system("find /etc/httpd/conf/vhosts/site*|grep -v .include|xargs perl -pi -e 's/\\[L,R\\]/\\[L,R=301\\]/g'");
-#print "find /etc/httpd/conf/vhosts/site*|grep -v .include|xargs perl -pi -e 's/\\[L,R\\]/\\[L,R=301\\]/g'";
 
 #
 # now wait a while and then restart httpd
