@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: virtual_host.pl 354 2004-05-28 11:13:44Z shibuya $
+# $Id: virtual_host.pl 2009-10-15 mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # handle the creation of configuration files for individual vhosts
 #
@@ -85,7 +85,7 @@ ErrorDocument 500 /error/500-internal-server-error.html
 RewriteEngine on
 RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:80)?\$
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:80)?\$ [NC]
-RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
+RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
 RewriteOptions inherit
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file

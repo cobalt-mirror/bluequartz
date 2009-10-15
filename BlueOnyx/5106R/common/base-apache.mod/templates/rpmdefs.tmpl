@@ -48,6 +48,9 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 /etc/suexec.conf
 /etc/httpd/conf.d/ssl_perl.conf
+/usr/sausalito/sbin/fix_302_httpd_redirects.pl 
+/usr/sausalito/sbin/fix_web-and-email-server-aliasses.pl 
+/usr/sausalito/sbin/set_default_php_settings.pl
 [AUTOFILL]
 
 <end glue>
@@ -115,6 +118,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
+- Modified glue/handlers/virtual_host.pl to change vhost redirects from 302 to 301 for better search engine support.
+- Added helper scripts sbin/fix_302_httpd_redirects.pl sbin/fix_web-and-email-server-aliasses.pl sbin/set_default_php_settings.pl
 
 * Mon Aug 31 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
 - Modified glue/httpd/ssl_perl.conf to add Godaddy support through separate ca-chain fine in Vsite certs directory.
