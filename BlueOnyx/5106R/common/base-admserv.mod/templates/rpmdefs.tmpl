@@ -102,6 +102,11 @@ perl -pi -e 's|extension_dir = /usr/lib/php4|extension_dir = /usr/lib64/php4|g' 
 # Increase memory_limit in /etc/admserv/php.ini:
 perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 80M      ; Maximum amount of memory a script may consume \(80MB\)|g' /etc/admserv/php.ini
 
+# Set ServerName in /etc/admserv/conf/httpd.conf:
+if [ -f /usr/sausalito/constructor/base/apache/set_apache_hostname.pl ] ; then
+    /usr/sausalito/constructor/base/apache/set_apache_hostname.pl
+fi
+
 if [ $1 = 2 ]; then
     /etc/init.d/admserv condrestart
 fi
@@ -139,6 +144,7 @@ fi
 * Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ16
 - Modified glue/etc/admserv/conf.d/ssl.conf
 - Disabled SSLv2, so that the more secure SSLv3 or TLSv1 are used for AdmServ-SSL instead.
+- Added post-install exec of /usr/sausalito/constructor/base/apache/set_apache_hostname.pl to set ServerName in AdmServ config.
 
 * Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ15
 - Edited glue/etc/admserv/php.ini to raise memory_limit from 8M to 80M.
