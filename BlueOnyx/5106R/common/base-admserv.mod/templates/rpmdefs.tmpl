@@ -136,6 +136,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ16
+- Modified glue/etc/admserv/conf.d/ssl.conf
+- Disabled SSLv2, so that the more secure SSLv3 or TLSv1 are used for AdmServ-SSL instead.
+
 * Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ15
 - Edited glue/etc/admserv/php.ini to raise memory_limit from 8M to 80M.
 - Module base-console.mod needs a higher memory limit for processing large ScrollLists.
