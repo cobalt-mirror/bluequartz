@@ -53,6 +53,8 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/user/de/web/
 /usr/sausalito/sbin/user_gid_fix.pl
 /usr/sausalito/sbin/fix_user_UID_and_GID.pl
+/usr/sausalito/sbin/remove_passwd_lock.sh
+/etc/cron.d/passwd_lock.cron
 [AUTOFILL]
 <end glue>
 
@@ -77,6 +79,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
+    /etc/init.d/crond restart
 fi
 
 # If user_gid_fix.pl has never run, then run it now:
@@ -115,6 +118,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ27
+- Added /usr/sausalito/sbin/remove_passwd_lock.sh to remove stale /etc/passwd.lock files.
+- Added /etc/cron.d/passwd_lock.cron to automatically run above script every 15 minutes.
 
 * Tue Jun 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ26
 - Added glue/sbin/fix_user_UID_and_GID.pl to allow manual fixing of UID and GID of user directories and logfile directories.
