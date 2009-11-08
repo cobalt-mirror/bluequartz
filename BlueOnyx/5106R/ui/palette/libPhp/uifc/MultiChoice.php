@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: MultiChoice.php 259 2004-01-03 06:28:40Z shibuya $
+// $Id: MultiChoice.php Sun 08 Nov 2009 09:31:50 AM CET mstauber $
 
 // description:
 // This class represents a widget that allows users to choose one to many
@@ -223,6 +223,10 @@ class MultiChoice extends FormField {
         $choiceLabelStyle = $style->getSubstyle("choiceLabel");
         $fieldGrouperStyleStr = $style->toBackgroundStyle("fieldGrouper");
         $formFieldLabelStyle = $style->getSubstyle("formFieldLabel");
+
+	// mstauber
+    	$formFieldStyleStr = $style->toBackgroundStyle("choiceLabel").$style->toTextStyle("choiceLabel");
+
         $subscriptStyleStr = $style->toTextStyle("subscript");
 
         $builder = new FormFieldBuilder();
@@ -344,13 +348,13 @@ $childFieldJavascript
                         // it isn't used again below
                         $optional = "";
                     }
-                    
+        		// mstauber:
 	                $result .= "
       <TR>
 	<TD STYLE=\"$fieldGrouperStyleStr\"><IMG SRC=\"/libImage/spaceHolder.gif\" WIDTH=\"1\"></TD>
 	<TD><IMG SRC=\"/libImage/spaceHolder.gif\" WIDTH=\"5\" HEIGHT=\"5\"></TD>
 $childLabelHtml
-	<TD>$childFieldHtml $optional</TD>
+	<TD STYLE=\"$formFieldStyleStr\">$childFieldHtml $optional</TD>
       </TR>
 <SCRIPT LANGUAGE=\"javascript\">
 var element = document.$formId.$fieldId;

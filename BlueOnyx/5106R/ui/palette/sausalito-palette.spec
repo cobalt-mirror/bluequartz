@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sun Nov 08 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ20
+- Added missing TD style for TextLists in libPhp/uifc/MultiChoice.php 
+- This fixes a display problem that - so far - only exists on Aventurin{e}.
+
 * Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ19
 - Modified libPhp/uifc/ScrollList.php to fix CSS issue with formField-1.
 - This finally applies the correct font size and styles to text in ScrlollLists again.
