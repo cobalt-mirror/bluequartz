@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ20%{?dist}
+Release: 0BQ21%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Mon Nov 09 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ21
+- Updated libPhp/uifc/VerticalCompositeFormField.php to add 12px font size to style.
+- This fixes a display problem that - so far - only exists on Aventurin{e}.
+
 * Sun Nov 08 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ20
 - Added missing TD style for TextLists in libPhp/uifc/MultiChoice.php 
 - This fixes a display problem that - so far - only exists on Aventurin{e}.

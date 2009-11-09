@@ -40,10 +40,11 @@ class VerticalCompositeFormField extends CompositeFormField {
     $result .= "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\">";
     $delimiter .= $this->getDelimiter();
     $formFields = $this->getFormFields();
+
     for($i = 0; $i < count($formFields); $i++) {
       if($i > 0 )
 	$result .= "<TR>$delimiter</TR>";
-      $result .= "<TR><TD $align_text>".$formFields[$i]->toHtml($style)."</TD></TR>";
+      $result .= "<TR><TD $align_text STYLE=\"font-size:12px\">".$formFields[$i]->toHtml($style)."</TD></TR>";
     }
 
     $result .= "</TABLE>";
@@ -72,3 +73,4 @@ This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS O
 You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 */
 ?>
+
