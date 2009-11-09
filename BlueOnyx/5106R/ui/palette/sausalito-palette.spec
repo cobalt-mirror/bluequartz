@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ21%{?dist}
+Release: 0BQ22%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Mon Nov 09 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ22
+- Updated libPhp/uifc/VerticalCompositeFormField.php to remove blank lines at end of file. They cause display errors.
+
 * Mon Nov 09 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ21
 - Updated libPhp/uifc/VerticalCompositeFormField.php to add 12px font size to style.
 - This fixes a display problem that - so far - only exists on Aventurin{e}.
