@@ -1,0 +1,40 @@
+#!/bin/bash
+# Copyright 2001 Sun Microsystems, Inc., All rights reserved.
+#
+# Wake the slaves of a UPS master machine.
+
+CONFIG='/etc/sysconfig/ups'
+MACFILE="/etc/ups/wol-macs"
+WAKEFILE="/etc/ups/WAKESLAVES"
+
+WOL="/sbin/ether-wake"
+
+. $CONFIG
+
+if [ "$WAKEDELAY" = "" ]; then
+	WAKEDELAY="30"	# Set a default sleep value if we have none set.
+fi
+
+# If we don't have the macfile, then there's nothing to wake.
+if [ ! -f $MACFILE ]; then
+	exit 0
+fi
+
+# If we don't have the wakefile, then don't wake anything.
+if [ ! -f $WAKEFILE ]; then
+	exit 0
+fi
+
+# We're here, so we had one... delete it.
+rm -f $WAKEFILE
+
+# Get the list of mac addrs, stripping blank and comment lines
+macs=`cat $MACFILE |egrep -v '^#' |egrep -v '^[ \t]*$' | xargs`
+
+# With a stagger-start, wake the slaves of the machine in the background.
+echo "I'm the UPS master with slaves after a power failure.  Waking them..."
+( for mac in $macs; do
+	sleep $WAKEDELAY		# Delay so as not to do all in at once.
+	$WOL $mac 2>&1 > /dev/null	# Wake each machine by the MAC addr
+done ) &
+
