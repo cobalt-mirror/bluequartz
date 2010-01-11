@@ -286,3 +286,16 @@ msgstr "An error has occurred saving Notification Settings."
 msgid "suspended_cce"
 msgstr "The root partition is low on disk space. To prevent possible data corruption, the Server Desktop has been locked. No changes in the Server Desktop will be saved. Please telnet or ftp into the server appliance and delete unnecessary files. Active Monitor will unlock the Server Desktop when at least 500 megabytes of disk space is available on the root partition. To force Active Monitor to examine the disk usage, click the button labeled Check Status Now in the Active Monitor status screen."
 
+msgid "OverQuota_Users"
+msgstr "Over quota users:"
+
+msgid "All_Users"
+msgstr "All users:"
+
+msgid "OverQuota_Sites"
+msgstr "Over quota sites:"
+
+msgid "All_Sites"
+msgstr "All sites:"
+
+
