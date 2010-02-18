@@ -111,6 +111,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Feb 18 2010 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-93BQ32
+- Added a constructor to add ENABLE_ZONE_WRITE=yes to /etc/sysconfig/named. This
+- is needed as BO/Bluapp doesn't use SE-Linux as default. Without this AXFR zone-transfers
+- don't work.
+
 * Tue Feb 03 2009 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-93BQ31
 - Always reload named when doing Network.* changes. It might not be needed but seems to work better.
 
