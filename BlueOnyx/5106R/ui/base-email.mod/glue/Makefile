@@ -20,6 +20,7 @@ install:
 	mkdir -p $(PREFIX)/usr/local/sbin/
 	mkdir -p $(PREFIX)/etc/smrsh/
 	mkdir -p $(PREFIX)/etc/cron.d
+	mkdir -p $(PREFIX)/etc/cron.daily
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) \
 	usr/local/sbin/vacation.pl $(PREFIX)/usr/local/sbin/
 	cd $(PREFIX)/etc/smrsh; \
@@ -31,4 +32,6 @@ install:
 	usr/local/sbin/break-smrsh-loop.pl $(PREFIX)/usr/local/sbin/
 	$(INSTALL) \
 	etc/cron.d/break-smrsh-loop.cron $(PREFIX)/etc/cron.d
+	$(INSTALL) \
+	etc/cron.daily/mboxfix.pl $(PREFIX)/etc/cron.daily
 rpm:

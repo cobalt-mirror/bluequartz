@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/email/
-# $Id: system.pl 805 2006-06-25 11:32:18Z shibuya $
+# $Id: system.pl Mon 01 Mar 2010 08:41:56 PM CET mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# Copyright 2010 Team BlueOnyx, All rights reserved.
 
 use CCE;
 
@@ -70,12 +71,14 @@ sub make_sendmail_mc
 
 	my $privacy_line;
 	my $maxMessageSize_line;
+	my $maxRecipientsPerMessage_line;
 	my $smartRelay_line;
 	my $masqDomain_line;
 	my $deliveryMode_line;
 
 	my %Printed_line = ( privacy => 0,
 	                     maxMessageSize => 0,
+			     maxRecipientsPerMessage => 0,
 			     smartRelay => 0,
 			     masqDomain => 0 );
 	my @Mailer_line = ();
@@ -98,6 +101,13 @@ sub make_sendmail_mc
 	    $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',". $obj->{maxMessageSize}*1024 .")\n";
 	} else {
 	    $maxMessageSize_line = "define(`confMAX_MESSAGE_SIZE',0)\n";
+	}
+
+	if( $obj->{maxRecipientsPerMessage} ) {
+	    # Maximum number of recipients per SMTP envelope:
+	    $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
+	} else {
+	    $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
 	}
 
 	if( $obj->{smartRelay} ) {
@@ -124,16 +134,19 @@ sub make_sendmail_mc
 	    if( ( /^define\(`confPRIVACY_FLAGS'/o ||/^dnl define\(`confPRIVACY_FLAGS'/o ) && ! $Printed_line{'privacy'} ) {
                  $Printed_line{'privacy'}++;
 		 print $privacy_line;
-	    } elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) {
+	    } elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) { #`
 		$Printed_line{'maxMessageSize'}++;
 		print $maxMessageSize_line;
-	    } elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) {
+	    } elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) {
+		$Printed_line{'maxRecipientsPerMessage'}++;
+		print $maxRecipientsPerMessage_line;
+	    } elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) { #`
 		$Printed_line{'smartRelay'}++;
 		print $smartRelay_line;
 	    } elsif ( /^MASQUERADE_AS/o || /^dnl MASQUERADE_AS/o ) {
 		$Printed_line{'masqDomain'}++;
 		print $masqDomain_line;
-	    } elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) {
+	    } elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) { #`
 		$Printed_line{'DeliveryMode'}++;
 		print $deliveryMode_line;
 	    } elsif ( /^MAILER\(/o ) {

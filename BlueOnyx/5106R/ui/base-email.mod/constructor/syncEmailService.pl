@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
-# $Id: syncEmailService.pl 825 2006-07-14 15:34:08Z shibuya $
+# $Id: syncEmailService.pl Tue 02 Mar 2010 12:16:28 AM CET mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# Copyright 2008, 2010 Team BlueOnyx, All rights reserved.
 
 use Sauce::Util;
 use Sauce::Config;
@@ -69,8 +70,7 @@ if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
 
 # settings smtp, smtps and submission port
 my $maxMessageSize = $obj->{maxMessageSize};
-$success = $cce->set($oids[0], "Email", { "maxMessageSize" => "0" });
-$success = $cce->set($oids[0], "Email", { "maxMessageSize" => "$maxMessageSize" });
+my $maxRecipientsPerMessage = $obj->{maxRecipientsPerMessage};
 
 Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
 system('rm -f /etc/mail/sendmail.mc.backup.*');
@@ -128,44 +128,71 @@ sub make_sendmail_mc
 {
     my $in  = shift;
     my $out = shift;
-
     my $obj = shift;
 
     # smtp port
     if ($obj->{enableSMTP}) {
         $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
-    } else {
+    }
+    else {
         $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
     }
 
     # smtps port
     if ($obj->{enableSMTPS}) {
         $smtpsPort = "DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
-    } else {
+    }
+    else {
         $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
     }
 
     # submission(587) port
     if ($obj->{enableSubmissionPort}) {
         $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
-    } else {
+    }
+     else {
         $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
     }
+
+    # MaxMessageSize
+    if ($obj->{maxMessageSize}) {
+        $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE'," . $obj->{maxMessageSize}*1024 . ")dnl\n";
+    }
+    else {
+        $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE',0)dnl\n";
+    }
+
+	# MaxRecipientsPerMessage
+        if( $obj->{maxRecipientsPerMessage} ) {
+            # Maximum number of recipients per SMTP envelope:
+            $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
+        } else {
+            $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
+        }
+
 
     select $out;
     while (<$in>) {
         if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
             print $smtpPort;
-        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o ) {
+        }
+        elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o ) {
             print $smtpsPort;
-        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o ) {
+        }
+        elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o ) {
             print $submissionPort;
-        } else {
+        }
+        elsif (/^define\(\`confMAX_MESSAGE_SIZE/o ) { # `
+            print $maxMessageSize_out;
+        }
+        elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) {
+            print $maxRecipientsPerMessage_line;
+	}
+        else {
             print $_;
         }
     }
-    return 1;
-}
+    return 1;}
 
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 

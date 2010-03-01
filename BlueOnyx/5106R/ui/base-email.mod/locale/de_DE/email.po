@@ -460,3 +460,63 @@ msgstr "Dieser Domänen-Name wird bereits von einer Domäne auf dem Server verwe
 msgid "domainExists_error"
 msgstr "Dieser Domänen-Name ist bereits in der Rubrik sekundärer Mailserver in Verwendung."
 
+
+msgid "error_writing_sendmail_mc"
+msgstr "Could not write an updated /etc/mail/sendmail.mc. Please check your sendmail.mc for corruptions. To restore a safe default, copy /usr/sausalito/configs/sendmail/sendmail.mc to /etc/mail/sendmail.mc and try again."
+
+msgid "maxRecipientsPerMessageField"
+msgstr "Maximum Recipients per Message:"
+
+msgid "maxRecipientsPerMessageField_help"
+msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
+
+
+
+msgid "addmx" 
+msgstr "Add"
+
+msgid "mxRemoveEntry" 
+msgstr "Are you sure you want to delete the [[VAR.mxHost]] MX server-record?" 
+
+msgid "blacklist" 
+msgstr "Blacklisting" 
+
+msgid "blacklist_help" 
+msgstr "Click here to add DNSBLs Blacklisting to the e-mail service." 
+
+msgid "blackList" 
+msgstr "Blacklist Services" 
+
+msgid "blackList_help" 
+msgstr "This is the list of different hosts that provide Blacklist services. ie 'zen.spamhaus.org'." 
+
+msgid "activated" 
+msgstr "Status" 
+
+msgid "activated_help" 
+msgstr "Here you can see if the Blacklist entry is active or not." 
+
+msgid "blacklistHostExists_error" 
+msgstr "The Blacklist service has already been added, change the hostname to something else." 
+
+msgid "blacklistRemoveEntry" 
+msgstr "Are you sure you want to delete the [[VAR.blacklistHost]] Blacklist service entry?" 
+
+msgid "blacklistHostField" 
+msgstr "Blacklist service" 
+
+msgid "blacklistHostField_help" 
+msgstr "Enter the <FQDN> of the Blacklist service you want to use, ie. 'zen.spamhaus.org'." 
+
+msgid "deferField" 
+msgstr "Defer Temporary" 
+
+msgid "deferField_help" 
+msgstr "If you click this field, the mail-server, if there is a problem reaching the Blacklist service, will return a temporary error to the incoming mail-server and thus temporary defer the message. The default behaviour of the mail-server is to accept the mail if it can't reach the Blacklist-service." 
+
+msgid "activeField" 
+msgstr "Activate service" 
+
+msgid "activeField_help" 
+msgstr "Select this option if you want to activate this Blacklist service." 
+

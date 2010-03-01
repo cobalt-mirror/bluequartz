@@ -17,6 +17,23 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $queueTimeMap = array("queue0" => "immediate", "queue15" => "quarter-hourly", "queue30" => "half-hourly", "queue60" => "hourly", "queue360" => "quarter-daily", "queue1440" => "daily");
 
+$maxRecipientsPerMessageMap = 
+    array(
+	"unlimited" => "0", 
+        "5" => "5", 
+        "10" => "10", 
+        "15" => "15", 
+        "20" => "20", 
+        "25" => "25", 
+        "50" => "50", 
+        "75" => "75", 
+        "100" => "100", 
+        "125" => "125", 
+        "150" => "150", 
+        "175" => "175", 
+        "200" => "200"
+    );
+
 // empty maximum message size means no limits
 // convert MB to KB
 $max = $maxEmailSizeField ? $maxEmailSizeField*1024 : "";
@@ -36,6 +53,7 @@ $cceClient->setObject("System",
     "enablepopRelay" => $popRelayField, 
     "queueTime" => $queueTimeMap[$queueTimeField], 
     "maxMessageSize" => $max, 
+    "maxRecipientsPerMessage" => $maxRecipientsPerMessageMap[$maxRecipientsPerMessageField], 
     "relayFor" => $relayField, 
     "acceptFor" => $receiveField, 
     "deniedUsers" => $blockUserField, 

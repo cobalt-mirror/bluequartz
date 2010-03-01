@@ -49,6 +49,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,root,root)/usr/local/sbin/vacation.pl
 %attr(0755,root,root)/usr/local/sbin/break-smrsh-loop.pl
 %attr(0644,root,root)/etc/cron.d/break-smrsh-loop.cron
+%attr(0755,root,root)/etc/cron.daily/mboxfix.pl
 %attr(0755,root,root)/usr/sausalito/bin/remove_domain.pl
 %attr(0755,root,root)/usr/sausalito/bin/findalias.pl
 /etc/smrsh/vacation.pl
@@ -122,6 +123,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Mar 01 2010 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BQ2
+- constructor/syncEmailService.pl didn't update maxMessageSize correctly and by factor 1024 too small
+- Added provisions for maxRecipientsPerMessage to module
+- Added cronjob /etc/cron.daily/mboxfix.pl work around to fix issue with UID 0 owned mbox files
+- Fixed display problem in non-English versions of "blackist" in ui/web/email.php
+- Added missing blacklist strings to da_DK, de_DE and ja locales. In English for now
+- Added missing 'error_writing_sendmail_mc' string to all locales
 
 * Tue Aug 25 2009 Rickard Osser <rickard.osser@bluapp.com> 1.5.0-0BQ1
 - Reverted back to use sendmail.mc only.

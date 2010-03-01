@@ -1,7 +1,8 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: email.php 1136 2008-06-05 01:48:04Z mstauber $
+// Copyright 2010, Team BlueOnyx.  All rights reserved.
+// $Id: email.php Mon 01 Mar 2010 08:44:21 PM CET mstauber $
   //phpinfo();
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
@@ -104,6 +105,23 @@ $block->addFormField(
 // advanced page
 $queueTimeMap = array("immediate" => "queue0", "quarter-hourly" => "queue15", "half-hourly" => "queue30", "hourly" => "queue60", "quarter-daily" => "queue360", "daily" => "queue1440");
 $queueSelectedMap = array("immediate" => 0, "quarter-hourly" => 1, "half-hourly" => 2, "hourly" => 3, "quarter-daily" => 4, "daily" => 5);
+
+$maxRecipientsPerMessageMap = 
+    array(
+	"0" => "unlimited", 
+        "5" => "5", 
+        "10" => "10", 
+        "15" => "15", 
+        "20" => "20", 
+        "25" => "25", 
+	"50" => "50", 
+        "75" => "75", 
+        "100" => "100", 
+        "125" => "125", 
+        "150" => "150", 
+        "175" => "175", 
+        "200" => "200" 
+    );
   
 $queue_select = $factory->getMultiChoice("queueTimeField", array_values($queueTimeMap));
 $queue_select->setSelected($queueSelectedMap[$email['queueTime']], true);
@@ -122,6 +140,11 @@ $block->addFormField(
   $factory->getLabel("maxEmailSizeField"),
   "advanced"
 );
+
+// maxRecipientsPerMessage
+$maxRecipientsPerMessage_select = $factory->getMultiChoice("maxRecipientsPerMessageField", array_values($maxRecipientsPerMessageMap));
+$maxRecipientsPerMessage_select->setSelected($maxRecipientsPerMessageMap[$email['maxRecipientsPerMessage']], true);
+$block->addFormField($maxRecipientsPerMessage_select, $factory->getLabel("maxRecipientsPerMessageField"), 'advanced');
 
 $masqAddress = $factory->getNetAddress("masqAddressField", $email["masqAddress"]);
 $masqAddress->setOptional(true);
@@ -229,7 +252,7 @@ if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist")
   
   
   $blackList = "";
-  $blackList = $factory->getScrollList("blackList", array("blackList", "activated", ""), array(0));
+  $blackList = $factory->getScrollList("blackList", array("blackList", "activated", " "), array(0));
   $blackList->setDefaultSortedIndex(0);
   $blackList->setAlignments(array("left", "left", "center"));
   $blackList->addButton($factory->getAddButton("javascript: location='$addmod';"
