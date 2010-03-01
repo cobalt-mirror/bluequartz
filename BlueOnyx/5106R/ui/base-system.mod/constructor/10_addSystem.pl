@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: 10_addSystem.pl,v 1.5.2.2 2002/03/12 00:44:45 pbaltz Exp $
-# Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
+# $Id: 10_addSystem.pl,v 1.5.2.3 Mon 01 Mar 2010 11:15:18 PM CET mstauber Exp $
+# Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
+# Copyright 2008-2010 Team BlueOnyx. All rights reserved.
 
 #use strict;
 use CCE;
@@ -10,6 +11,8 @@ my $errors = 0;
 
 my %locales = (  
 	"en_US" => "&en&",
+	"da_DK" => "&da_DK&",
+	"de_DE" => "&de_DE&",
 	"ja" => "&ja&"
 );
 
@@ -23,12 +26,23 @@ chomp($fullbuild);
 my ($product, $build, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
 
 my ($i18n) = `grep LANG /etc/sysconfig/i18n`;
-if ($i18n =~ m/^LANG="(\S+)"/) {
+if ($i18n =~ m/^LANG="(.*)"/) {
         $lang = $1;
 }
+if ($i18n =~ m/^LANG=(.*)/) {
+        $lang = $1;
+}
+
 if ($lang =~ /^ja/) {
         $lang = 'ja';
-} else {
+}
+elsif ($lang =~ /^da_DK/) { 
+	$lang = 'da_DK';
+}
+elsif ($lang =~ /^de_DE/) { 
+	$lang = 'de_DE';
+}
+else {
         $lang = 'en';
 }
 

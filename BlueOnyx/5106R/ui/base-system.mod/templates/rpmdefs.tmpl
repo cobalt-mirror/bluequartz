@@ -118,6 +118,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Mar 01 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ21
+- On CCEd restart locale would always be reset to English, even if the user had chosen a different one.
+- Fixed by modifying constructor/10_addSystem.pl which was missing provisions for de_DE and da_DK
+- These had already been added during beta, but somehow got dropped along the way.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ20
 - Rebuilt for BlueOnyx.
 
