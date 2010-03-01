@@ -122,7 +122,15 @@ if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
 fi
 
 # update sendmail.cf
-/bin/grep 'setup for Blue Quartz' /etc/mail/sendmail.mc > /dev/null 2>&1
+/bin/grep 'setup for BlueOnyx' /etc/mail/sendmail.mc > /dev/null 2>&1
+if [ $? = 0 ]; then
+  /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bqold
+  /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bqold
+  /usr/sausalito/scripts/initSendmail.sh
+fi
+
+# Make sure sendmail.mc has confMAX_RCPTS_PER_MESSAGE:
+/bin/grep 'confMAX_RCPTS_PER_MESSAGE' /etc/mail/sendmail.mc > /dev/null 2>&1
 if [ $? = 0 ]; then
   /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bqold
   /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bqold
@@ -355,6 +363,12 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Mon Mar 01 2010 Michael Stauber <mstauber@solarspeed.net> 2.20100301BQ99
+- Included new sendmail.mc with provisions for maxRecipientsPerMessage and correct DontBlameSendmail lines
+- Left a copy of the old sendmail.mc as glue/configs/sendmail/sendmail.mc.bxold in the SVN tree
+- Updated glue/scripts/initSendmail.sh with provisions for the Solarspeed AV-SPAM
+- Updated Sendmail trigger in templates/rpmdefs.tmpl
 
 * Fri Jul 17 2009 Rickard Osser <rickard.osser@bluapp.com> 2.20090825BQ98
 - Backed out bgui.mc.

@@ -16,6 +16,10 @@ fi
 cp -p $CONFDIR/sendmail.mc /etc/mail/sendmail.mc
 cp -p $CONFDIR/popauth.m4 /usr/share/sendmail-cf/hack/popauth.m4
 
+if [ -f /usr/sausalito/constructor/solarspeed/av_spam/aa_initial_inst.pl ];then
+	/usr/sausalito/constructor/solarspeed/av_spam/aa_initial_inst.pl
+fi
+
 m4 /usr/share/sendmail-cf/m4/cf.m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
 
 touch /etc/mail/virthosts
