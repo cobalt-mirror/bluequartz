@@ -157,18 +157,22 @@ sub make_sendmail_mc
 	    }
 	}
 
+	foreach my $key ( keys %Printed_line ) {
+		if ($Printed_line{$key} != 1) {
+                        if ($key == 'maxRecipientsPerMessage') {
+                            print $maxRecipientsPerMessage_line;
+                        } else {
+			    $cce->warn("error_writing_sendmail_mc");
+			    print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
+                       }
+		}
+ 	}
+
         if( $mailer_lines ) {
             foreach my $line (@Mailer_line) {
 	        print $line;
             }
         }
-
-	foreach my $key ( keys %Printed_line ) {
-		if ($Printed_line{$key} != 1) {
-			$cce->warn("error_writing_sendmail_mc");
-			print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
-		}
-	}
 
 	return 1;
 }
