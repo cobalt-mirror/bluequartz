@@ -37,6 +37,21 @@ Sauce::Util::editblock('/etc/proftpd.conf',
 		       '# end global -- do not delete',
 		       '#', ' ', undef, %settings);
 
+# Force IdentLookups off to be included in the Global section.
+my $data = "AllowOverwrite		yes
+  <Limit ALL SITE_CHMOD>
+    AllowAll
+  </Limit>
+  # Restrict the range of ports from which the server will select when sent the
+  # PASV command from a client. Use IANA-registered ephemeral port range of
+  # 49152-65534
+  PassivePorts 49152 65534
+  IdentLookups 			off";
+Sauce::Util::replaceblock('/etc/proftpd.conf',
+			  '<Global>',
+			  $data,
+			  '</Global>');
+
 # handle guest
 my $err = Sauce::Util::editblock(ftp::ftp_getconf, *ftp::edit_anon,
 				 '# begin anonymous -- do not delete',
@@ -44,6 +59,7 @@ my $err = Sauce::Util::editblock(ftp::ftp_getconf, *ftp::edit_anon,
 				 $fobj->{guestEnabled}, 
 				 $fobj->{guestUser}, $fobj->{guestGroup},
 				 $fobj->{guestWorkGroup});
+
 
 # handle enabled
 my $old = Sauce::Service::service_get_xinetd('proftpd') ? 'on' : 'off';
