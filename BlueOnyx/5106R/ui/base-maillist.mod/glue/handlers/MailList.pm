@@ -53,11 +53,30 @@ sub rewrite_members
   system('rm', '-rf', $listfile) if (-e $listfile);
   open(LIST, ">$listfile");
 
-  my %members = map { $_ => 1 } (
+  my %members = map { $_ => $_ } (
 	@local_recips, 
 	@remote_recips,
   );
-  my @members = sort keys %members;
+
+  my %newMembers;
+  my %sortedMembers;
+  foreach $key (keys %members) {
+      my $value = $members{$key};
+      my ($name, $domain) = split("@", $key);
+      $newKey = "$domain-$name";
+      
+      $newMembers{$newKey}  = $value;
+  }
+  
+  $i=0;
+  my @members;
+  foreach $key (sort keys %newMembers) {
+      my $value = $newMembers{$key};
+      $newKey = $value;
+      
+      $members[$i++] = $value;
+  }
+
   if ($obj->{group}) {
 	push (@members, $obj->{group} . "_alias");
   }
