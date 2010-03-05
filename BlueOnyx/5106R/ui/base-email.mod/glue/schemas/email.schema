@@ -100,6 +100,10 @@
         name="popRelay" type="boolean" default="0"
         writeacl="ruleCapable(modifyEmail)"
     />
+	<property
+	name="delayChecks" type="boolean" default="0"
+	writeacl="ruleCapable(modifyEmail)"
+    />
 	<property 
         name="relayFor" type="hostname" array="yes" 
         writeacl="ruleCapable(modifyEmail)"
@@ -147,9 +151,9 @@
         writeacl="ruleCapable(modifyEmail)"
     />
 	<property 
-        name="maxRecipientsPerMessage" type="int" optional="true"
+	name="maxRecipientsPerMessage" type="int" optional="true"
 	default="0"
-        writeacl="ruleCapable(modifyEmail)"
+	writeacl="ruleCapable(modifyEmail)"
     />
 </class>
 

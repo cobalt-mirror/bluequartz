@@ -470,7 +470,11 @@ msgstr "Maximum Recipients per Message:"
 msgid "maxRecipientsPerMessageField_help"
 msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
 
-
+msgid "delayChecksField"
+msgstr "Enable delay_checks"
+  
+msgid "delayChecksField_help"
+msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
 
 msgid "addmx" 
 msgstr "Add"

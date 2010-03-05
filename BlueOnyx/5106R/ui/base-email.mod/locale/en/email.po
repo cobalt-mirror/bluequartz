@@ -1,6 +1,3 @@
-msgid ""
-msgstr ""
-
 msgid "CFaccessDenied"
 msgstr "Access denied"
 
@@ -640,8 +637,13 @@ msgid "error_writing_sendmail_mc"
 msgstr "Could not write an updated /etc/mail/sendmail.mc. Please check your sendmail.mc for corruptions. To restore a safe default, copy /usr/sausalito/configs/sendmail/sendmail.mc to /etc/mail/sendmail.mc and try again."
 
 msgid "maxRecipientsPerMessageField"
-msgstr "Maximum Recipients per Message:"
+msgstr "Maximum Recipients per Message"
 
 msgid "maxRecipientsPerMessageField_help"
 msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
 
+msgid "delayChecksField"
+msgstr "Enable delay_checks"
+
+msgid "delayChecksField_help"
+msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."

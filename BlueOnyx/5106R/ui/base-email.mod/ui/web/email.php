@@ -146,6 +146,14 @@ $maxRecipientsPerMessage_select = $factory->getMultiChoice("maxRecipientsPerMess
 $maxRecipientsPerMessage_select->setSelected($maxRecipientsPerMessageMap[$email['maxRecipientsPerMessage']], true);
 $block->addFormField($maxRecipientsPerMessage_select, $factory->getLabel("maxRecipientsPerMessageField"), 'advanced');
 
+// Enable delay_checks
+$block->addFormField(
+  $factory->getBoolean("delayChecksField", $email["delayChecks"]),
+  $factory->getLabel("delayChecksField"),
+  "advanced"
+);
+
+
 $masqAddress = $factory->getNetAddress("masqAddressField", $email["masqAddress"]);
 $masqAddress->setOptional(true);
 $block->addFormField(

@@ -24,7 +24,7 @@ install:
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) \
 	usr/local/sbin/vacation.pl $(PREFIX)/usr/local/sbin/
 	cd $(PREFIX)/etc/smrsh; \
-	ln -s /usr/local/sbin/vacation.pl vacation.pl
+	ln -sfn /usr/local/sbin/vacation.pl vacation.pl
 	mkdir -p $(PREFIX)/usr/sausalito/bin
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) bin/remove_domain.pl $(PREFIX)/usr/sausalito/bin/remove_domain.pl
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) bin/findalias.pl $(PREFIX)/usr/sausalito/bin/findalias.pl

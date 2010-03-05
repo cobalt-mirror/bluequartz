@@ -75,12 +75,14 @@ sub make_sendmail_mc
 	my $smartRelay_line;
 	my $masqDomain_line;
 	my $deliveryMode_line;
+	my $delayChecks_line;
 
 	my %Printed_line = ( privacy => 0,
 	                     maxMessageSize => 0,
 			     maxRecipientsPerMessage => 0,
 			     smartRelay => 0,
-			     masqDomain => 0 );
+			     masqDomain => 0,
+			     delayChecks => 0 );
 	my @Mailer_line = ();
 	
 	if( $obj->{privacy} ) {
@@ -110,12 +112,6 @@ sub make_sendmail_mc
 	    $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',0)\n";
 	}
 
-	if( $obj->{smartRelay} ) {
-	    $smartRelay_line = "define(`SMART_HOST',`". $obj->{smartRelay} ."')\n";
-	} else {
-	    $smartRelay_line = "define(`SMART_HOST',`')\n";
-	}
-
 	if( $obj->{masqAddress} ) {
 		$masqDomain_line = "MASQUERADE_AS(`". $obj->{masqAddress} ."')\n"
 	} else {
@@ -126,6 +122,12 @@ sub make_sendmail_mc
 	    $smartRelay_line = "define(`SMART_HOST', `". $obj->{smartRelay} . "')\n";
 	} else {
 	    $smartRelay_line = "define(`SMART_HOST', `')\n";
+	}
+
+	if( $obj->{delayChecks} ) {
+	    $delayChecks_line = "FEATURE(delay_checks)dnl\n";
+	} else {
+	    $delayChecks_line = "dnl FEATURE(delay_checks)dnl\n";
 	}
 
 	my $mailer_lines = 0;
@@ -149,6 +151,9 @@ sub make_sendmail_mc
 	    } elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) { #`
 		$Printed_line{'DeliveryMode'}++;
 		print $deliveryMode_line;
+	    } elsif ( /^FEATURE\(delay_checks/o || /^dnl FEATURE\(delay_checks/o ) {
+		$Printed_line{'delayChecks'}++;
+		print $delayChecks_line;
 	    } elsif ( /^MAILER\(/o ) {
                 $Mailer_line[$mailer_lines] = $_;
                 $mailer_lines++;
@@ -161,6 +166,8 @@ sub make_sendmail_mc
 		if ($Printed_line{$key} != 1) {
                         if ($key == 'maxRecipientsPerMessage') {
                             print $maxRecipientsPerMessage_line;
+                        } elsif ($key == 'delayChecks') {
+                            print $delayChecks_line;
                         } else {
 			    $cce->warn("error_writing_sendmail_mc");
 			    print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
