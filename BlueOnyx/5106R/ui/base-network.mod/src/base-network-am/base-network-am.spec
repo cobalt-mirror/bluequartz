@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-network
 Name: base-network-am
 Version: 1.0.1
-Release: 3BQ7%{?dist}
+Release: 3BQ8%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,10 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-network module.  
 
 %changelog
+
+* Sun Apr 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-3BQ8
+- Added better OpenVZ support as suggested by Greg Kuhnert:
+- If we're a VPS, then am_network.sh cannot ping the Gateway. So we ping the masternode instead.
 
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-3BQ7
 - Rebuilt for BlueOnyx.
