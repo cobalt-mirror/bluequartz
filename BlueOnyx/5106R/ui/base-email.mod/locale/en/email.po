@@ -647,3 +647,9 @@ msgstr "Enable delay_checks"
 
 msgid "delayChecksField_help"
 msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
+
+msgid "enableZpushField"
+msgstr "Enable Z-Push"
+
+msgid "enableZpushField_help"
+msgstr "Z-push is an open-source application to synchronize ActiveSync compatible PDAs and mobile phones, which allows them access to emails. For more information about how to use Z-Push see: http://www.blueonyx.it/index.php?page=z-push"

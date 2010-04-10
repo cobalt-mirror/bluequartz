@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: emailHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: emailHandler.php Sat 10 Apr 2010 07:00:27 AM CEST mstauber $
 
 include_once("ServerScriptHelper.php");
 
@@ -48,6 +48,7 @@ $cceClient->setObject("System",
     "enableImap" => $enableImapField, 
     "enableImaps" => $enableImapsField,
     "enablePop" => $enablePopField, 
+    "enableZpush" => $enableZpushField, 
     "enablePops" => $enablePopsField,
     "popRelay" => $popRelayField, 
     "delayChecks" => $delayChecksField, 

@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
-# $Id: syncEmailService.pl Tue 02 Mar 2010 12:16:28 AM CET mstauber $
+# $Id: syncEmailService.pl Sat 10 Apr 2010 07:30:55 AM CEST mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2008, 2010 Team BlueOnyx, All rights reserved.
+# Copyright 2008-2010 Team BlueOnyx, All rights reserved.
 
 use Sauce::Util;
 use Sauce::Config;
@@ -82,6 +82,14 @@ if ($run) {
 } else {
     Sauce::Service::service_toggle_init('sendmail', 0);
     Sauce::Service::service_toggle_init('saslauthd', 0);
+}
+
+# Handle activation / deactivation of Z-Push:
+if ($obj->{enableZpush}) {
+    system("/bin/rm -f /usr/sausalito/ui/web/z-push/.disabled");
+}
+else {
+    system("/bin/touch /usr/sausalito/ui/web/z-push/.disabled");
 }
 
 $cce->bye('SUCCESS');

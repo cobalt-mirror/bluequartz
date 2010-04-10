@@ -2,8 +2,8 @@
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
 // Copyright 2010, Team BlueOnyx.  All rights reserved.
-// $Id: email.php Mon 01 Mar 2010 08:44:21 PM CET mstauber $
-  //phpinfo();
+// $Id: email.php Sat 10 Apr 2010 06:59:37 AM CEST mstauber $
+  
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
@@ -98,6 +98,14 @@ $block->addFormField(
 $block->addFormField(
   $factory->getBoolean("enablePopsField", $email["enablePops"]),
   $factory->getLabel("enablePopsField"),
+  "basic"
+);
+
+// Z-Push
+$block->addDivider($factory->getLabel('Z-Push ActiveSync', false), 'basic');
+$block->addFormField(
+  $factory->getBoolean("enableZpushField", $email["enableZpush"]),
+  $factory->getLabel("enableZpushField"),
   "basic"
 );
 

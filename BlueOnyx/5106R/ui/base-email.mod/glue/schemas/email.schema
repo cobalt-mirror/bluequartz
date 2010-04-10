@@ -57,7 +57,7 @@
 		default=""/>
 </class>
 
-<class name="System" namespace="Email" version="1.1"
+<class name="System" namespace="Email" version="1.2"
 	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
 
 	<property 
@@ -94,6 +94,10 @@
     />
         <property
         name="enablePops" type="boolean" default="0"
+        writeacl="ruleCapable(modifyEmail)"
+    />
+        <property
+        name="enableZpush" type="boolean" default="0"
         writeacl="ruleCapable(modifyEmail)"
     />
 	<property 
