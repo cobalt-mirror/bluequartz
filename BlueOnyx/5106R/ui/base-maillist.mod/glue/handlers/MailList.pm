@@ -333,8 +333,8 @@ sub rewrite_config
   {
       my $fn = $listfile.".administrator";
       my @mod = CCE->scalar_to_array($obj->{moderator});
-      for(my $i = 0; $i < scalar(@mod)-1; $i++) {
-	  $moderators = $moderators . $mod[$i]."\n";
+      foreach my $mod ( @mod ) {
+	  $moderators = $moderators . $mod."\n";
       }
       Sauce::Util::editfile( $fn, 
 			     sub { 
