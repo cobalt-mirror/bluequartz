@@ -16,20 +16,23 @@
 void
 flock_wait(int fd)
 {
-	int i;
-	for (i = 0; i < 10; i++)
-	{
-		if (flock(fd, LOCK_EX | LOCK_NB) == 0)
-		{
-			/* file locked successfully */
-			return;
-		}
-		usleep(1E6 / 10);	/* a tenth of a second */
-	}
-	/* break the lock */
-	return;
-}
+     int i;
 
+     for (i = 0; i < 360; i++)
+     {
+         if (flock(fd, LOCK_EX | LOCK_NB) == 0)
+         {
+             /* file locked successfully */
+     	     CCE_SYSLOG("LOCKDEBUG: Locked file %s: %m");
+             return;
+         }
+         usleep(i * 1E6 / 100);    /* a tenth of a second */
+     	 CCE_SYSLOG("LOCKDEBUG: Unable to lock file %s: %m - sleeping");
+     }
+     /* Could not lock - return nonetheless, which is suboptimal */
+     CCE_SYSLOG("LOCKDEBUG: Unable to lock file %s: %m - returning");
+     return;    /* failure, but continue */
+}
 
 codb_ret
 impl_grab_an_oid(odb_impl_handle * h, odb_oid * oid)

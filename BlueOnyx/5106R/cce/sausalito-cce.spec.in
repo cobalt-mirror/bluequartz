@@ -189,6 +189,11 @@ fi
 
 %changelog 
 
+* Sun Apr 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ45
+- Modified codb/src/impl/oid.c as per [Devel:00390] posted by Greg Kuhnert and [Devel:00385] as per Taco Scargo
+- This isn't perfect, but may help to mitigate CODB corruption problems as it improves the existing abyssmal file locking procedure somewhat.
+- More permanent fix needs to be worked out.
+
 * Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ44
 - Removed pam_abl database clearing from cced.init
 - Added RC script for pam_abl that clears blocks and databases on server reboot and allows to unblock and purge from the command line.
