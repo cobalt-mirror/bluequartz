@@ -81,7 +81,7 @@ clean:
 	-if [ -f ui/Makefile ]; then \
 		make -C glue clean; \
 	fi
-	-rm -rf rpms srpms as_rpms as_srpms
+	-rm -rf rpms srpms as_rpms as_srpms packing_list
 
 src_rpms: FORCE
 	touch $(TIMEFILE)
@@ -104,6 +104,7 @@ src_rpms: FORCE
 
 rpm: clean src_rpms mod_packing_list mod_specfile FORCE
 	touch $(TIMEFILE)
+	sleep 1
 	#
 	# now bundle up the rpm
 	-rm -rf $(TMPDIR)/$(VENDOR)-$(SERVICE)-$(VERSION)
@@ -150,6 +151,7 @@ mod_specfile:
 	REQUIRES_UI="${REQUIRES_UI}" \
 	$(CCEBIN)/mod_rpmize $$rpmdefs $$spec \
 	  $(VENDOR)-$(SERVICE).spec &> /tmp/rpmize.log
+	/usr/bin/perl -pi -e "s/^Requires:\ +\n//" $(VENDOR)-$(SERVICE).spec  
 
 # don't upload srpms, because we don't release these and the source is in cvs
 # this is to keep glazed from getting filled up quite as quickly
@@ -537,8 +539,8 @@ install_capstone:
 
 pkg: install rpm
 	-@echo "making package..."; \
-	$(CCEBIN)/makePkg -l "$(LOCALES)" -v "$(VENDOR)" -s "$(SERVICE)" \
-		-n "$(VERSION)" -r "$(RELEASE)" -a "$(BUILDARCH)";
+	$(CCEBIN)/makePkg -v "$(VENDOR)" -s "$(SERVICE)" -n "$(VERSION)" \
+		-r "$(RELEASE)" -a "$(BUILDARCH)" -l "$(LOCALES)" ;
 
 package: 
 # Variables needed in Makefile
