@@ -1,0 +1,854 @@
+# --- Menu
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "modifyDNS"
+msgstr "網域名稱系統 (DNS) 設定"
+
+msgid "dns_help"	
+msgstr "此處可變更[[base-dns.modifyDNS]]。"
+
+
+# --- Common
+
+msgid "basic"
+msgstr "基本"
+
+msgid "advanced"	
+msgstr "進階"
+
+msgid "basic_help"
+msgstr "此處可配置基本 DNS 伺服器設定值。"
+
+msgid "advanced_help"
+msgstr "此處可配置進階 DNS 伺服器設定值，例如資料格式、安全限制和伺服器預設值。"
+
+
+# --- Basic settings
+
+msgid "enabled"
+msgstr "啟用伺服器"
+
+msgid "enabled_help"
+msgstr "開啟或關閉「網域名稱系統 (DNS)」伺服器功能。開啟此功能將可讓此伺服器設備充當其本身及從屬站的區域網域名稱伺服器。網域名稱伺服器會將文字型式的主機名稱和網域名稱轉換成數字型 IP 位址，反之亦然。"
+
+
+# --- Advanced settings
+
+msgid "soa_defaults"
+msgstr "授權開始 (SOA) 預設值"
+
+msgid "soa_defaults_help"
+msgstr "這些值是新增網域名稱記錄時使用的預設值。"
+
+msgid "admin_email"
+msgstr "預設 DNS 系統管理員電子郵件位址"
+
+msgid "admin_email_rule"
+msgstr "請輸入一個格式化的電子郵件位址，例如，user@cobalt.com 就是一個有效的位址。"
+
+msgid "admin_email_help"
+msgstr "請針對所有新增的網域和網路，輸入管理聯絡人之電子郵件位址的預設值。 [[base-dns.admin_email_rule]]"
+
+msgid "admin_email_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.admin_email]]值。 [[base-dns.admin_email_rule]]"
+
+msgid "default_refresh"
+msgstr "預設更新間隔（秒）"
+
+msgid "default_refresh_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值為 10800。"
+
+msgid "default_refresh_help"	
+msgstr "請針對所有新增的網域和網路，輸入更新間隔的預設值。這個值是次要網域名稱伺服器嘗試與主要網域名稱伺服器同步化其記錄的間隔。 [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_refresh]]值。 [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_empty"	
+msgstr "很抱歉，您並未輸入[[base-dns.default_refresh]]的值。 [[base-dns.default_refresh_rule]]"
+
+msgid "default_retry"	
+msgstr "預設重試間隔（秒）"
+
+msgid "default_retry_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值為 3600。"
+
+msgid "default_retry_help"
+msgstr "請針對所有新增的網域和網路，輸入重試間隔的預設值。如果次要網域名稱伺服器因某些原因而無法連繫主要網域名稱伺服器，以同步化其記錄，則這個值就是次要網域名稱伺服器將重複嘗試連繫主要網域名稱伺服器的間隔。 [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_retry]]值。 [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_empty"	
+msgstr "很抱歉，您並未輸入[[base-dns.default_retry]]的值。 [[base-dns.default_retry_rule]]"
+
+msgid "default_expire"	
+msgstr "預設逾期間隔（秒）"
+
+msgid "default_expire_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值為 604800。"
+
+msgid "default_expire_help"
+msgstr "請針對所有新增的網域和網路，輸入逾期間隔的預設值。如果次要網域名稱伺服器因某些原因而無法連繫主要網域名稱伺服器，且無法同步化其記錄，則這個值就是次要網域名稱伺服器停止伺服網域資訊，不再視其網域資訊有效，直到可再度連繫主要網域名稱伺服器之後的間隔。 [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_expire]]值。 [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.default_expire]]的值。 [[base-dns.default_expire_rule]]"
+
+msgid "default_ttl"	
+msgstr "預設有效時間間隔（秒）"
+
+msgid "default_ttl_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值為 86400。"
+
+msgid "default_ttl_help"	
+msgstr "請針對所有新增的網域和網路，輸入有效間隔的預設值。這個時間長度的值是其他網域名稱伺服器將快取此網域名稱伺服器中所擷取的網域資訊、且不再重新檢查此網域名稱伺服器、並假設其為有效的時間長度。 [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_ttl]]值。 [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.default_ttl]]的值。 [[base-dns.default_ttl_rule]]"
+
+msgid "global_settings"
+msgstr "伺服器設定"
+
+msgid "global_settings_help"
+msgstr "這些是網域名稱伺服器的預設值。"
+
+msgid "forwarders"	
+msgstr "轉接伺服器"
+
+msgid "forwarders_help"
+msgstr "請輸入轉接網域名稱伺服器的 IP 位址。若因有限或限制的網際網路連接而無法直接存取 Root 網域名稱伺服器時，會使用轉接網域名稱伺服器。[[base-dns.forwarders_rule]]"
+
+msgid "forwarders_rule"
+msgstr "請輸入四個介於 0 到 255 之間的數字序列，以點號區隔。例如，192.168.1.1 就是有效的數字。"
+
+msgid "forwarders_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]]是無效的[[base-dns.forwarders]]值。 [[base-dns.forwarders_rule]]"
+
+msgid "zone_xfer_ipaddr"
+msgstr "依 IP 位址進行分區轉送"
+
+msgid "zone_xfer_ipaddr_help"
+msgstr "請輸入被允許透過分區轉送下載此網域名稱伺服器所維護的所有記錄之 IP 位址。次要網域名稱伺服器使用分區轉送，與主要網域名稱伺服器來同步其記錄。預設值為保留此欄位空白，允許無限制的分區轉送。"
+
+msgid "zone_xfer_ipaddr_invalid"
+msgstr "很抱歉，[[VAR.invalidValue]]是無效的[[base-dns.zone_xfer_ipaddr]]值。"
+
+msgid "zone_format"	
+msgstr "分區檔案格式"
+
+msgid "zone_format_help"	
+msgstr "請選擇一種與您的區域反向授權方法相容的分區檔案格式，用於進行非八進位界限分域作業。RFC2317 為標準格式。DION 和 OCN-JT 為最不常用的格式。"
+
+msgid "rfc2317"
+msgstr "RFC2317"
+
+msgid "dion"
+msgstr "DION"
+
+msgid "ocn-jt"
+msgstr "OCN-JT"
+
+# --- Record types (reused)
+
+msgid "a_record"
+msgstr "正解位址 (A) 記錄"
+
+msgid "ptr_record"
+msgstr "反查位址 (PTR) 記錄"
+
+msgid "cname_record"
+msgstr "別名 (CNAME) 記錄"
+
+msgid "mx_record"
+msgstr "郵件伺服器 (MX) 記錄"
+
+msgid "records_title"
+msgstr "網域設定針對 "
+
+
+# --- Primary services
+
+msgid "primary_service_button"
+msgstr "編輯主要服務"
+
+msgid "primary_service_button_help"
+msgstr "管理網域和網路的 DNS 記錄，此網路是指此伺服器登錄要伺服的網路。「主要 DNS (Primary DNS)」服務又稱為「主要 DNS」服務。"
+
+msgid "dnsSetting"	
+msgstr "主要服務清單"
+
+msgid "select_dom"
+msgstr "選取網域..."
+
+msgid "select_net"	
+msgstr "選取網路..."
+
+	# drop down menu
+msgid "add_record"
+msgstr "新增記錄..."
+
+msgid "edit_soa"
+msgstr "修改 SOA"
+
+msgid "edit_soa_help"
+msgstr "修改選定之網域或網路授權之授權記錄的起始處。"
+
+msgid "confirm_delall"
+msgstr "您確定要移除所有顯示的 DNS 記錄嗎？"
+
+msgid "del_records"
+msgstr "除去記錄"
+
+msgid "del_records_help"
+msgstr "按一下來移除所有顯示的 DNS 記錄。這將會移除此頁面上顯示的所有記錄，且無法還原。"
+
+msgid "source"
+msgstr "查詢"
+
+msgid "source_help"
+msgstr "這是直接向此網域名稱伺服器所提出的查詢或問題。"
+
+msgid "direction"
+msgstr "記錄類型"
+
+msgid "direction_help"
+msgstr "這是有關對此伺服器的查詢與來自此伺服器之回應關聯的記錄類型。"
+
+msgid "resolution"
+msgstr "回應"
+
+msgid "resolution_help"
+msgstr "這是直接由此網域名稱伺服器傳回的回應或回答。"
+
+msgid "listAction"
+msgstr "動作"
+
+msgid "listAction_help"
+msgstr "這些是用來修改或移除網域名稱記錄的按鈕。"
+
+msgid "confirm_removal"
+msgstr "您確定要移除記錄[[VAR.rec]]嗎？"
+
+	# general IP address rule
+msgid "ipaddr_rule"
+msgstr "IP 位址是四個介於 0 到 255 之間、以點號區隔的數字序列。例如，192.168.1.1 就是有效的位址。"
+
+
+
+
+
+# --- A record
+
+msgid "create_dns_recA"
+msgstr "新增[[base-dns.a_record]]"
+
+msgid "modify_dns_recA"
+msgstr "修改[[base-dns.a_record]]"
+
+msgid "a_record_explain"
+msgstr "[[base-dns.a_record]]可將完整的網域名稱轉換成 IP 位址。完整的網域名稱可由主機名稱和網域名稱組成或僅由網域名稱所組成。"
+
+msgid "a_host_name"
+msgstr "主機名稱"
+
+msgid "a_host_name_help"
+msgstr "請輸入此記錄的主機名稱。[[base-dns.a_record_explain]]"
+
+msgid "a_host_name_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+
+msgid "a_domain_name"
+msgstr "網域名稱"
+
+msgid "a_domain_name_help"
+msgstr "請輸入此記錄的網域名稱。[[base-dns.a_record_explain]]"
+
+msgid "a_domain_name_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+msgid "a_domain_name_empty"
+msgstr "請指定此記錄的網域。"
+
+msgid "a_ip_address"
+msgstr "IP 位址"
+
+msgid "a_ip_address_help"
+msgstr "請輸入此記錄的 IP 位址。[[base-dns.a_record_explain]]"
+
+msgid "a_ip_address_invalid"
+msgstr "指定的 IP 位址無效。[[base-dns.ipaddr_rule]]"
+
+msgid "a_ip_address_empty"
+msgstr "請指定 IP 位址，此 IP 位址是由主機名稱和網域名稱所解析而成。[[base-dns.ipaddr_rule]]"
+
+
+# --- PTR  record
+
+msgid "create_dns_recPTR"
+msgstr "新增[[base-dns.ptr_record]]"
+
+msgid "modify_dns_recPTR"
+msgstr "修改[[base-dns.ptr_record]]"
+
+msgid "ptr_explain"
+msgstr "[[base-dns.ptr_record]]可將 IP 位址轉換成完整的網域名稱。完整的網域名稱可由主機名稱和網域名稱組成或僅由網域名稱所組成。"
+
+msgid "ptr_ip_address"
+msgstr "IP 位址"
+
+msgid "ptr_ip_address_help"
+msgstr "請輸入此記錄的 IP 位址。[[base-dns.ptr_explain]]"
+
+msgid "ptr_subnet_mask"
+msgstr "子網路遮罩"
+
+msgid "ptr_subnet_mask_help"
+msgstr "請輸入此記錄之 IP 位址的網路遮罩。[[base-dns.ptr_explain]]"
+
+msgid "ptr_host_name"
+msgstr "主機名稱"
+
+msgid "ptr_host_name_help"
+msgstr "請輸入此記錄的主機名稱。[[base-dns.ptr_explain]]"
+
+msgid "ptr_domain_name"
+msgstr "網域名稱"
+
+msgid "ptr_domain_name_help"
+msgstr "請輸入此記錄的網域名稱。[[base-dns.ptr_explain]]"
+
+msgid "a_generate_ptr"
+msgstr "產生反查位址 (PTR) 記錄"
+
+msgid "ptr_generate_a"
+msgstr "產生正解位址 (A) 記錄"
+
+msgid "ptr_generate_a_help"
+msgstr "自動新增正解位址記錄，以從指定的 IP 位址解析成指定的主機名稱和網域名稱。"
+
+msgid "ptr_subnet_mask_invalid"
+msgstr "指定的子網路遮罩無效。子網路遮罩必須以點號及四個數字表示法輸入，其為四個介於 0 到 255 之間的數字序列（以點號區隔）。例如，255.255.255.0 就是有效的數字。"
+
+msgid "ptr_ip_address_invalid"
+msgstr "指定的 IP 位址無效。[[base-dns.ipaddr_rule]]"
+
+msgid "ptr_host_name_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+
+msgid "ptr_domain_name_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+msgid "ptr_ip_address_empty"
+msgstr "請指定 IP 位址，此 IP 位址是由主機名稱和網域名稱所解析而成的。[[base-dns.ipaddr_rule]]"
+
+msgid "ptr_domain_name_empty"
+msgstr "請指定與 IP 位址對應的網域名稱。"
+
+
+# --- MX record
+
+msgid "create_dns_recMX"
+msgstr "新增[[base-dns.mx_record]]"
+
+msgid "modify_dns_recMX"
+msgstr "修改[[base-dns.mx_record]]"
+
+msgid "mx_host_name"
+msgstr "主機名稱"
+
+msgid "mx_explain"
+msgstr "[[base-dns.mx_record]]識別負責將電子郵件送至指定主機和網域名稱的郵件伺服器。"
+
+msgid "mx_host_name_help"
+msgstr "請指定主機名稱，該主機將負責處理所有傳送到[[base-dns.mx_target_server]]欄位中指定的郵件伺服器之電子郵件。[[base-dns.mx_explain]]"
+
+msgid "mx_domain_name"
+msgstr "網域名稱" 
+
+msgid "mx_domain_name_empty"
+msgstr "請指定此記錄的網域。"
+
+msgid "mx_domain_name_help"
+msgstr "請指定電腦的網域名稱，該電腦的電子郵件應導向至[[base-dns.mx_target_server]]欄位中指定的郵件伺服器之電子郵件。[[base-dns.mx_explain]]"
+
+msgid "mx_target_server"
+msgstr "郵件伺服器名稱" 
+
+msgid "mx_target_server_help"
+msgstr "請指定郵件伺服器的完整網域名稱，該郵件伺服器將接受指定的主機和網域名稱的郵件。[[base-dns.mx_explain]]"
+
+msgid "mx_priority"
+msgstr "郵遞優先權" 
+
+msgid "mx_priority_help"
+msgstr "請選取郵件郵遞至郵件伺服器的優先權；郵遞優先權指定嘗試聯繫一系列多個郵件伺服器機器以進行郵件郵遞應有的順序。只有在已對網域或網路指定了多個 MX 記錄時，「郵遞優先權」指定才有用。"
+
+msgid "very_high"
+msgstr "極高 (20)"
+
+msgid "high"	
+msgstr "高 (30)"
+
+msgid "low"	
+msgstr "低 (40)"
+
+msgid "very_low"
+msgstr "極低 (50)"
+
+msgid "mx_host_name_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+
+msgid "mx_domain_name_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+msgid "mx_target_server_invalid"
+msgstr "指定的完整網域名稱含有無效的字元。"
+
+msgid "mx_target_server_empty"
+msgstr "請指定郵件伺服器的完整網域名稱。"
+
+
+# --- CNAME record
+
+msgid "create_dns_recCNAME"
+msgstr "新增[[base-dns.cname_record]]"
+
+msgid "modify_dns_recCNAME"
+msgstr "修改[[base-dns.cname_record]]"
+
+msgid "cname_explain"
+msgstr "別名記錄可將一個完整網域名稱轉換成另一個完整網域名稱。"
+
+msgid "cname_host_name"
+msgstr "別名主機名稱"
+
+msgid "cname_host_name_help"
+msgstr "請輸入將充當實際主機名稱及（或）網域名稱之別名的主機名稱。[[base-dns.cname_explain]]"
+
+msgid "cname_domain_name"
+msgstr "別名網域名稱"
+
+msgid "cname_domain_name_help"
+msgstr "請輸入將充當實際主機名稱及（或）網域名稱之別名的網域名稱。[[base-dns.cname_explain]]"
+
+msgid "cname_host_target"
+msgstr "實際主機名稱"
+
+msgid "cname_host_target_help"
+msgstr "請輸入一個實際的或合乎標準的主機名稱。[[base-dns.cname_explain]]"
+
+msgid "cname_domain_target"
+msgstr "實際網域名稱"
+
+msgid "cname_domain_target_help"
+msgstr "請輸入一個實際的或合乎標準的網域名稱。[[base-dns.cname_explain]]"
+
+
+
+# --- SOA
+
+msgid "create_soa"
+msgstr "新增授權開始 (SOA) 記錄"
+
+msgid "modify_soa"
+msgstr "修改授權開始 (SOA) 記錄"
+
+msgid "domain_soa"
+msgstr "網域權限"
+
+msgid "domain_soa_help"
+msgstr "這是套用此「授權開始 (SOA)」記錄的網域權限。"
+
+msgid "network_soa"
+msgstr "網路權限"
+
+msgid "network_soa_help"
+msgstr "這是套用此「授權開始 (SOA)」記錄的網路權限。"
+
+msgid "primary_dns"
+msgstr "主要名稱伺服器 (NS)"
+
+msgid "primary_dns_help"
+msgstr "請輸入選定網域或網路權限之主要名稱伺服器的完整網域名稱。"
+
+msgid "secondary_dns"
+msgstr "次要名稱伺服器 (NS)"
+
+msgid "secondary_dns_help"
+msgstr "請輸入選定網域或網路權限之次要名稱伺服器的完整網域名稱（以空格區隔）清單。"
+
+msgid "domain_admin"
+msgstr "DNS 系統管理員電子郵件位址"
+
+msgid "domain_admin_rule"
+msgstr "請輸入一個格式化的電子郵件位址。預設值設定於[[base-dns.soa_defaults]]區段中。例如，user@cobalt.com 就是一個有效的位址。"
+
+msgid "domain_admin_help"
+msgstr "請針對所有新增的網域和網路，輸入管理聯絡人的電子郵件位址。 [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.domain_admin]]值。 [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.domain_admin]]的值。 [[base-dns.domain_admin_rule]]"
+
+msgid "refresh"
+msgstr "更新間隔（秒）"
+
+msgid "refresh_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值設定於[[base-dns.soa_defaults]]區段中。"
+
+msgid "refresh_help"
+msgstr "請針對所有新增的網域和網路，輸入更新間隔的預設值。這個值是次要網域名稱伺服器將嘗試與主要網域名稱伺服器同步化其記錄的間隔。 [[base-dns.refresh_rule]]"
+
+msgid "refresh_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.refresh]]值。 [[base-dns.refresh_rule]]"
+
+msgid "refresh_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.refresh]]的值。 [[base-dns.refresh_rule]]"
+
+msgid "retry"
+msgstr "重試間隔（秒）"
+
+msgid "retry_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值設定於[[base-dns.soa_defaults]]區段中。"
+
+msgid "retry_help"
+msgstr "請針對所有新增的網域和網路，輸入重試間隔的預設值。如果次要網域名稱伺服器因某些原因而無法連繫主要網域名稱伺服器，以同步化其記錄，則這個值是次要網域名稱伺服器將重複嘗試連繫主要網域名稱伺服器的間隔。[[base-dns.retry_rule]]"
+
+msgid "retry_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.retry]]值。 [[base-dns.retry_rule]]"
+
+msgid "retry_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.retry]]的值。 [[base-dns.retry_rule]]"
+
+
+msgid "expire"
+msgstr "逾期間隔（秒）"
+
+msgid "expire_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值設定於[[base-dns.soa_defaults]]區段中。"
+
+msgid "expire_help"
+msgstr "請針對所有新增的網域和網路，輸入預設逾期間隔。如果次要網域名稱伺服器因某些原因而無法連繫主要網域名稱伺服器，以同步化其記錄，則這個值是次要網域名稱伺服器將不再視主要網域名稱伺服器的網域資訊為有效資訊、並將停止伺服網域資訊，直到可再度連繫主要網域名稱伺服器之後的間隔。 [[base-dns.expire_rule]]"
+
+msgid "expire_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.expire]]值。 [[base-dns.expire_rule]]"
+
+msgid "expire_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.expire]]的值。 [[base-dns.expire_rule]]"
+
+
+msgid "ttl"
+msgstr "有效時間間隔（秒）"
+
+msgid "ttl_rule"
+msgstr "請輸入一個介於 1 到 4096000 之間的整數。預設值設定於[[base-dns.soa_defaults]]區段中。"
+
+msgid "ttl_help"
+msgstr "請針對所有新增的網域和網路，輸入逾期時間隔的預設值。這個時間長度的值是其他網域名稱伺服器將快取此網域名稱伺服器中所擷取的網域資訊、且不再重新檢查此網域名稱伺服器、並假設其為有效的時間長度。 [[base-dns.ttl_rule]]"
+
+msgid "ttl_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.ttl]]值。 [[base-dns.ttl_rule]]"
+
+msgid "ttl_empty"
+msgstr "很抱歉，您並未輸入[[base-dns.ttl]]的值。 [[base-dns.ttl_rule]]"
+
+
+
+# ---- Secondary Services
+
+msgid "secondary_service_button"
+msgstr "編輯次要服務"
+
+msgid "secondary_service_button_help"
+msgstr "管理網域和網路的次要 DNS 服務。"
+
+msgid "sec_list"
+msgstr "次要服務清單"
+
+msgid "create_slave_rec"
+msgstr "新增次要服務"
+
+msgid "modify_slave_rec"
+msgstr "修改次要服務"
+
+msgid "slave_domain_but"
+msgstr "網域的次要網域名稱伺服器"
+
+msgid "slave_domain"
+msgstr "網域名稱"
+
+msgid "slave_domain_help"
+msgstr "請輸入此機器次要網域名稱伺服器的網域名稱。"
+
+msgid "slave_dom_masters"
+msgstr "主要 DNS 伺服器 IP 位址"
+
+msgid "slave_dom_masters_help"
+msgstr "請輸入此網域之主要網域名稱伺服器的 IP 位址。"
+
+msgid "slave_network_but"
+msgstr "伺服器的次要網域名稱伺服器"
+
+msgid "slave_ipaddr"
+msgstr "網路"
+
+msgid "slave_ipaddr_help"
+msgstr "請輸入此機器次要網域名稱伺服器的網路 IP 位址。"
+
+msgid "slave_netmask"
+msgstr "網路子網路遮罩"
+
+msgid "slave_netmask_help"
+msgstr "這是此機器次要網域名稱伺服器的子網路遮罩。"
+
+msgid "slave_net_masters"
+msgstr "主要 DNS 伺服器 IP 位址"
+
+msgid "slave_net_masters_help"
+msgstr "請輸入此網域之主要網域名稱伺服器的 IP 位址。"
+
+msgid "create_slave_rec"
+msgstr "新增次要服務"
+
+msgid "sec_authority"
+msgstr "次要服務"
+
+msgid "sec_authority_help"
+msgstr "這是此機器次要網域名稱伺服器的網域或網路。"
+
+msgid "sec_primaries"
+msgstr "主要 DNS 伺服器"
+
+msgid "sec_primaries_help"
+msgstr "這是此網域或網路之主要網域名稱伺服器的 IP 位址。"
+
+msgid "recordlist_action"
+msgstr "動作"
+
+msgid "recordlist_action_help"
+msgstr "這些是用來修改或移除次要網域名稱服務記錄的按鈕。"
+
+	# end of sentence is completed
+msgid "confirm_removal_of_sec"
+msgstr "您確定要移除[[VAR.rec]]的次要網域名稱服務記錄？"
+
+msgid "slave_ipaddr_invalid"
+msgstr "指定的 IP 位址無效。 "
+
+msgid "slave_netmask_invalid"
+msgstr "指定的網路遮罩無效。網路遮罩必須以點號及四個數字表示法輸入。"
+
+msgid "slave_net_masters_invalid"
+msgstr "主要 DNS 伺服器 IP 位址無效。"
+
+msgid "slave_domain_invalid"
+msgstr "指定的網域名稱無效。"
+
+msgid "slave_dom_masters_invalid"
+msgstr "主要 DNS 伺服器 IP 位址無效。"
+
+
+
+msgid "apply_changes"
+msgstr "立即套用變更"
+
+msgid "apply_changes_help"
+msgstr "按一下此處，可立即啟動您的網域名稱伺服器記錄所作的任何變更。在對您的網域名稱伺服器記錄所作的變更明確地套用（其方法為按此一按鈕）到網域名稱伺服器後，該變更才會生效。"
+
+msgid "apply_changes_disabledHelp"
+msgstr "這個按鈕已關閉，因為您尚未新增或修改網域名稱伺服器記錄。在新增或修改網域名稱伺服器記錄後，按一下此處可立即啟動對網域名稱伺服器記錄所作的任何變更。"
+
+# ---- Active monitor
+
+msgid "amDNSNameTag"
+msgstr "網域名稱服務 (DNS) 伺服器"
+
+msgid "amDetailsTitle"
+msgstr "網域名稱服務 (DNS) 伺服器明細"
+
+msgid "amNotRunning"
+msgstr "此網域名稱伺服器不在執行中。"
+
+msgid "amStatusOK"
+msgstr "此網域名稱伺服器正常運作中。"
+
+
+
+
+# --- Drop-down menu
+msgid "select_a_domain"	
+msgstr "選取網域..."
+
+msgid "select_a_network"
+msgstr "選取網路..."
+
+msgid "no_records"	
+msgstr "無網域或網路權限"
+
+msgid "subdom_host_name"
+msgstr "次網域名稱" 
+
+msgid "subdom_host_name_help"
+msgstr "請指定不完整的次網域名稱。例如，若要授權次網域 remote.ourcompany.com，此伺服器必須授權網域 ourcompany.com。僅指定次網域名稱 remote。" 
+
+msgid "subdom_domain_name"
+msgstr "父網域名稱" 
+
+msgid "subdom_domain_name_help"
+msgstr "請選取父網域名稱。例如，若要授權次網域 remote.ourcompany.com，請選取 ourcompany.com" 
+
+msgid "subdom_nameservers"
+msgstr "名稱伺服器" 
+
+msgid "subdom_nameservers_help"
+msgstr "請用清單（以逗點區隔）列出代表指定次網域的名稱伺服器的 IP 位址。至少必須指定一個名稱伺服器。" 
+
+msgid "subnet_ip_address"
+msgstr "子網路 IP 位址" 
+
+msgid "subnet_ip_address_help"
+msgstr "請指定被授權給另一個 DNS 伺服器之子網路內的 IP 位址。"  
+
+msgid "subnet_subnet_mask"
+msgstr "子網路網路遮罩" 
+
+msgid "subnet_subnet_mask_help"
+msgstr "請以點號及四個數字表示法指定子網路的網路遮罩。" 
+
+msgid "subnet_nameservers"
+msgstr "名稱伺服器" 
+
+msgid "subnet_nameservers_help"
+msgstr "請用清單（以逗點區隔）列出代表指定次網域名稱伺服器的 IP 位址。至少必須指定一個名稱伺服器。 " 
+
+msgid "create_dns_rec"
+msgstr "新增 DNS 記錄" 
+
+msgid "modify_dns_rec"	
+msgstr "修改 DNS 記錄"
+
+msgid "authority"
+msgstr "權限"
+
+msgid "authority_help"
+msgstr "DNS 權限為網域和網路。"
+
+msgid "subnet"
+msgstr "子網路授權"
+
+msgid "subdom"
+msgstr "次網域授權"
+
+msgid "modify_dns_recSUBDOM"
+msgstr "修改次網域授權。"
+
+msgid "create_dns_recSUBDOM"
+msgstr "新增次網域授權"
+
+msgid "modify_dns_recSUBNET"
+msgstr "修改子網路授權"
+
+msgid "create_dns_recSUBNET"
+msgstr "新增子網路授權"
+
+
+
+msgid "add_secondary"
+msgstr "新增次要服務..."
+
+
+msgid "add_secondary_forward"
+msgstr "網域次要服務"
+
+msgid "add_secondary_network"
+msgstr "網路次要服務"
+
+# --- Lots of error messages
+
+msgid "cname_domain_name_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+msgid "cname_domain_target_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+msgid "cname_host_target_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+
+msgid "cname_domain_target_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+
+msgid "subdom_host_name_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+
+msgid "subdom_domain_name_invalid"
+msgstr "指定的網域名稱含有無效的字元。"
+
+msgid "subdom_namerservers_invalid"
+msgstr "對主要 DNS 伺服器所指定的完整網域名稱無效。"
+
+msgid "subnet_subnet_mask_invalid"
+msgstr "指定的子網路遮罩無效。子網路遮罩必須以點號及四個數字表示法輸入。"
+
+msgid "subnet_ip_address_invalid"
+msgstr "指定的 IP 位址無效。 "
+
+msgid "subnet_nameservers_invalid"
+msgstr "對主要 DNS 伺服器所指定的完整網域名稱無效。"
+
+
+msgid "primary_dns_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+
+msgid "secondary_dns_invalid"
+msgstr "次要名稱伺服器主機名稱含有無效的字元。"
+
+msgid "domain_admin_invalid"
+msgstr "指定的電子郵件位址無效。"
+
+msgid "refresh_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_refresh]]值。 [[base-dns.default_refresh_rule]]"
+
+msgid "retry_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_retry]]值。 [[base-dns.default_retry_rule]]"
+
+msgid "expire_invalid"
+msgstr "很抱歉，[[VAR.invalidValue] 是無效的[[base-dns.default_expire]]值。 [[base-dns.default_expire_rule]]"
+
+msgid "cname_domain_name_empty"
+msgstr "請輸入「別名網域名稱」。"
+
+msgid "cname_domain_target_empty"
+msgstr "請指定由「別名主機名稱」和「別名網域名稱」解析成的「實際網域名稱」。"
+
+msgid "slave_domain_empty"
+msgstr "請指定此伺服器次要 DNS 伺服器的網域名稱。"
+
+msgid "slave_dom_masters_empty"
+msgstr "請對此「網域名稱」指定主要 DNS 伺服器的 IP 位址。"
+
+msgid "slave_ipaddr_empty"
+msgstr "請指定一個 IP 位址，其為主要 DNS 伺服器所伺服之網路權限的組員。"
+
+msgid "slave_net_masters_empty"
+msgstr "請對此「網路權限」指定主要 DNS 伺服器的 IP 位址。"
+
+msgid "slave_netmask_empty"
+msgstr "除了指定的網路 IP 位址之外，請以點號及四個數字表示法指定網路遮罩，該網路遮罩定義主要 DNS 伺服器代表的網路。"
+
+msgid "cname_host_name_empty"
+msgstr "請指定此記錄的主機名稱。"
+
+msgid "cname_host_name_invalid"
+msgstr "指定的主機名稱含有無效的字元。"
+

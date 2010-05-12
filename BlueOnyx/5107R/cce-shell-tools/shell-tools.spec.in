@@ -1,0 +1,180 @@
+# $Id$
+
+Summary: Sun Cobalt Shell Tools
+Name: [PRODUCT]-shell-tools
+Version: [VERSION]
+Release: 0BQ11%{?dist}
+Vendor: %{vendor}
+License: Sun modified BSD
+Group: Applications/System
+Source: shell-tools.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildArchitectures: noarch
+
+Requires: perl(XML::Parser)
+
+%description
+This is a collection of perl scripts and modules to perform UI functions
+from the command line
+
+%prep
+%setup -n shell-tools
+
+%install
+rm -rf $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT
+mkdir -p $RPM_BUILD_ROOT/usr/sbin
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/scripts
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/conf
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/perl
+mkdir -p $RPM_BUILD_ROOT/usr/shell-tools/perl/Getopt
+make install
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+# Directories
+%attr(755,root,root) %dir /usr/shell-tools
+%attr(755,root,root) %dir /usr/shell-tools/conf
+%attr(755,root,root) %dir /usr/shell-tools/scripts
+%attr(755,root,root) %dir /usr/shell-tools/perl
+%attr(755,root,root) %dir /usr/shell-tools/perl/Getopt
+
+%attr(755,root,root) /usr/sbin/*
+
+# Files in /usr/shell-tools
+%attr(644,root,root) /usr/shell-tools/conf/*
+%attr(755,root,root) /usr/shell-tools/scripts/*
+%attr(644,root,root) /usr/shell-tools/perl/*.pm
+%attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
+
+%changelog
+* Tue Jul 21 2009 Taco Scargo <taco@scargo.nl>
+- 2.10
+- Fixed forwardCCE.conf, as the forward switch was exactly the same as the aliases switch (changed -e to -w)
+
+* Wed Jan 28 2009 Michael Stauber <mstauber@solarspeed.net>
+- Fixed Shell.pm - was broken before. Badly.
+- Fixed ShellOpts.pm - Our 'find' version on CentOS5 is buggy, needs -nowarn switch at the right place to suppress stupid warning.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net>
+- Extended for BlueOnyx.
+
+* Wed Jun 03 2008 Michael Stauber <mstauber@solarspeed.net>
+- Added 5106R
+
+* Mon Feb 11 2008 Michael Stauber <mstauber@solarspeed.net>
+- Fixed 5100R.pm to work with cases where System Object is not OID #1.
+
+* Fri Dec 14 2007 Brian N. Smith <brian@nuonce.net>
+- Enabled FPX import again
+
+* Mon Mar 06 2006 Hisao SHIBUYA <shibuya@turbolinux.co.jp>
+- 2.08-0BQ6
+- support TLAS2.
+- modify spec file to use ?dist for Release instead of dist.
+
+* Fri Dec 16 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- 2.08-0BQ5
+- support 5105R.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- 2.08-0BQ4
+- add dist macro for release.
+
+* Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- 2.08-0BQ3
+- use vendor macro for Vendor tag.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- 2.08-0BQ2
+- rebuild with devel-tools 0.5.1
+
+* Tue Aug 30 2005 Hisao SHIBUYA <shibuya@alpha.or.jp>
+- 2.08
+- support 5100R series.
+- clean up spec file.
+
+* Mon Sep 29 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.07
+- /usr/sbin/cmoduser -n test --forwardOff="" does not work.
+  (reported and fixed by Jared Herbohn of 90blue.com)
+
+* Thu May  1 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.06
+- /usr/sbin/cmoduser -n username --set-aliases=""
+  Adds an alias of "1" (1@domainname.com)
+  This now sets it to empty.  
+  (reported by Jared Herbohn of 90blue.com)
+
+* Mon Apr 21 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.05
+- cmodvsite --group site1 --catchallOff would set
+  the catch all to NULL, which isn't good. Fixed.
+  (reported by Jared Herbohn of 90blue.com)
+
+* Fri Apr  4 2003 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.04
+- Added help text for --help option
+- Fixed problem with auto dns always being enabled
+
+* Wed Jul 31 2002 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.03
+- Addition of adminPassword
+
+* Tue Jul  2 2002 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.02
+- Addition of clist commands
+- changes in option handling
+
+* Thu Jun 20 2002 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.01
+- Initial version for alpine
+
+* Mon May 21 2001 Jeff Bilicki <jeff.bilicki@sun.com>
+- 1.1-3
+- added the cservices module: man cservices
+- changed all Cobalt stuff to Sun stuff
+- updated the SEE ALSO sections of the man pages to reflect the new prog names
+
+* Wed Apr 11 2001 Jeff Bilicki <jeff.bilicki@sun.com>
+- 2.0
+- original version for Qube3
+
+* Tue Nov 28 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.1-2
+- change everything to c-program name including the name pages
+
+* Thu Sep 7 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.1-1 
+- added man pages
+- added suspend and unsuspend commands
+
+* Tue Sep 5 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.1-0
+- added -g [group] flag to useradd, use inplace of -d [fqdn]
+- fixed a problem with ASP not enabling on RaQ 4
+- changed syntax on delvsite from -f [fqdn] to -d [fqdn] for comformity
+- changed all the use Cobalt::* to require Cobalt::*
+
+* Fri Aug 25 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-5
+- added -w to adduser for email forward.
+
+* Wed Aug 16 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-4
+- minor fixes to adduser
+
+* Thu Jun 22 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-3
+- minor bug fixes
+
+* Tue Jun 13 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-2
+- added email alias field to adduser. 
+- create deluser and delvsitre for RaQ 3
+
+* Tue Jun 06 2000 Jeff Bilicki <jeffb@cobalt.com>
+- 1.0-1
+- Initial creatation of the rpm for RaQ3 and RaQ4

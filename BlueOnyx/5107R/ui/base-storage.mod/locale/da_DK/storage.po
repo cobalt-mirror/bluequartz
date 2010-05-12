@@ -1,0 +1,251 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-28 16:27+0100\n"
+"PO-Revision-Date: 2007-12-14 13:05+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "actions"
+msgstr "Rediger/Fjern"
+
+msgid "actions_help"
+msgstr ""
+"Klik på knappen Rediger for at sætte nye enheder op eller for at ændre "
+"allerede eksisterende enheder.  Klik på knappen Fjern for at gøre en enhed "
+"utilgængelig, så den kan fjernes fra serveren."
+
+msgid "appendDisk"
+msgstr "Slet disk og føj til eksisterende /home partition."
+
+msgid "appendDiskQuestion"
+msgstr ""
+"ADVARSEL:  Ved at tilføje denne disk til /home partitionen vil alle data på "
+"disken blive slettet.  Derudover vil det ikke længere være muligt at fjerne "
+"denne disk fra serveren.  Gøres dette vil serveren blive ubrugelig på grund "
+"af tab af data.\n"
+"Serveren vil blive ubrugelig medens tilføjelsen gennemføres.  Dette kan tage "
+"flere minutter.\n"
+"Er du sikker på at du vil tilføje denne disk til /home partitionen?"
+
+msgid "appendDisk_help"
+msgstr ""
+"Sæt hak for at tilføje disken til den eksisterende /home partition.  "
+"ADVARSEL:  Dette vil slette alle data på disken.  Derudover vil det ikke "
+"længere være muligt at fjerne denne disk fra serveren når den først er føjet "
+"til /home partitionen.  Hvis disken fjernes vil data gå tabt, og serveren "
+"vil højst sandsynligt blive ubrugelig."
+
+msgid "cantDisableQuotas"
+msgstr "Kunne ikke slå diskkvoter fra på denne disk."
+
+msgid "cantEnableQuotas"
+msgstr "Kunne ikke slå diskkvoter til på denne disk."
+
+msgid "cantFormat"
+msgstr "Kunne ikke formatere disken, [[VAR.device]]."
+
+msgid "cantMount"
+msgstr "Kunne ikke montere disken, [[VAR.device]]."
+
+msgid "cantPartition"
+msgstr "Kunne ikke partitionere disken, [[VAR.device]]."
+
+msgid "cantUmount"
+msgstr "Kunne ikke afmontere disken, [[VAR.device]]."
+
+msgid "cantUpdateDiskInfo"
+msgstr "Kunne ikke opdatere information på disken."
+
+msgid "cantUpdateMountInfo"
+msgstr "Kunne ikke opdatere diskens monteringsinformation."
+
+msgid "changeLabelFailed"
+msgstr "Kunne ikke opdatere diskens mærkat."
+
+msgid "checkDisk"
+msgstr "Check disk"
+
+msgid "checkDisk_help"
+msgstr "Sæt hak for at undersøge disken for fejl før den gøres tilgængelig."
+
+msgid "deviceName"
+msgstr "Disknavn"
+
+msgid "deviceName_help"
+msgstr ""
+"Dette er navnene på de ekstra tilgængelige lagerenheder.  Nyligt tilføjede "
+"enheder får standardnavne."
+
+msgid "diskList"
+msgstr "Lisrte over ekstra lagerenheder."
+
+msgid "eraseDisk"
+msgstr "Slet disk og efterlad som separat disk."
+
+msgid "eraseDiskQuestion"
+msgstr ""
+"ADVARSEL:  Sletning vil ødelægge alle data der i øjeblikket lagres på "
+"disken.\n"
+"Er du sikker på at du vil slette disken fuldstændigt?"
+
+msgid "eraseDisk_help"
+msgstr ""
+"Sæt hak for at slette disken fuldstændigt.  ADVARSEL:  Dette vil slette alle "
+"data på disken."
+
+msgid "formatDisk"
+msgstr "Slet disk"
+
+msgid "formatDisk_help"
+msgstr ""
+"Dette vil genformatere disken, hvilket vil ødelægge alle data på disken."
+
+msgid "formatQuestion"
+msgstr ""
+"ADVARSEL:  Sletning af disken vil ødelægge alle data der lagres på den.\n"
+"Er du sikker på at du vil slette [[VAR.device]]?"
+
+msgid "isHomePartition"
+msgstr "Brug som hjemmebibliotek"
+
+msgid "isHomePartition_help"
+msgstr ""
+"Sæt hak her hvis disken skal gøres tilgængelig som hjemmebibliotek for nye "
+"brugere og websteder."
+
+msgid "label"
+msgstr "Mærkat"
+
+msgid "labelInUse"
+msgstr ""
+"Den specificerede mærkat, [[VAR.label]], bruges allerede som mærkat for en "
+"anden disk."
+
+msgid "label_help"
+msgstr "Dette er den menneskeligt-læselige mærkat for disken."
+
+msgid "mirrorDisk"
+msgstr "Spejl /home partitionen"
+
+msgid "mirrorDiskQuestion"
+msgstr ""
+"ADVARSEL:  Tilføjelse af disken til diskspejlingen af /home partitionen vil "
+"ødelægge alle data på disken, fordi den nuværende /home partition vil blive "
+"kopieret til denne disk.\n"
+"Dette kan tage flere minutter.\n"
+"Er du sikker på at du vil føje disken til diskspejlingen af /home "
+"partitionen?"
+
+msgid "modifyDisk"
+msgstr "Modificer disk - [[VAR.device]]"
+
+msgid "mount"
+msgstr "Aktiver"
+
+msgid "mount_help"
+msgstr ""
+"Sæt hak her for at gøre disken tilgængelig for brug.  Dette vil også medføre "
+"at serveren automatisk forsøger at gøre denne disk tilgængelig hvis "
+"serveren genstartes."
+
+msgid "mounted"
+msgstr "Aktiveret"
+
+msgid "mounted_help"
+msgstr "Dette viser hvorvidt enheden i øjeblikket er aktiv eller ej."
+
+msgid "newDiskList"
+msgstr "Liste over nye lagerenheder"
+
+# No kan både betyde Nej eller Ingen alt efter om det er No, you may not, eller No devices found. Jeg kan ikke bestemme hvilken betydning der her skal være gældende.
+msgid "no"
+msgstr "Nej"
+
+msgid "noFsType"
+msgstr ""
+"Disken [[VAR.device]] har ikke et filsystemstype specificeret.  Disken kan "
+"ikke opsættes før filsystemtypen er specificeret."
+
+msgid "parts"
+msgstr "Diskpartitioner"
+
+msgid "parts_help"
+msgstr "Antal partitioner der allerede eksisterer på disken."
+
+msgid "quotaUnsupported"
+msgstr "Filsystemet [[VAR.fstype]], på denne disk understøtter ikke kvoter."
+
+msgid "selectDiskOption"
+msgstr "Vælg metode for opsætning af disk..."
+
+msgid "selectOptionError"
+msgstr ""
+"Vælg venligst en metode fra menuen [[base-storage.setupOptions]] før du "
+"klikker"
+
+msgid "setup"
+msgstr "Opsætning"
+
+msgid "setupDisk"
+msgstr "Opsæt disk - [[VAR.device]]"
+
+msgid "setupNewDisks"
+msgstr "Opsæt ny lagerenhed"
+
+msgid "setupNewDisks_disabledHelp"
+msgstr ""
+"Der er ingen nye lagerenheder at sætte op.  [[base-"
+"storage.storageInstructions]]"
+
+msgid "setupNewDisks_help"
+msgstr "Opsæt diske som er føjet til serveren."
+
+msgid "setupOptions"
+msgstr "Diskopsætningsindstillinger"
+
+msgid "setupOptions_help"
+msgstr "Vælg hvordan disken skal sættes op."
+
+msgid "setup_help"
+msgstr "Klik på ikonet for den disk der skal sættes op."
+
+msgid "size"
+msgstr "Størrelse (GB)"
+
+msgid "size_help"
+msgstr "Størrelse på disken i gigabyte (GB)."
+
+msgid "spareMirrorDisk"
+msgstr "Føj som reservedisk til spejling af /home partitionen."
+
+msgid "storage"
+msgstr "Yderligere lagerplads"
+
+msgid "storageAdd1"
+msgstr "Søger efter"
+
+msgid "storageAdd2"
+msgstr "ny lagerplads..."
+
+msgid "storageDescription"
+msgstr ""
+"Tilføj, fjern eller rediger yderligere lagerenheder.  [[base-"
+"storage.storageInstructions]]"
+
+msgid "storageInstructions"
+msgstr ""
+"Nye lagerenheder skal være forbundet til serveren medens den lukker ned, før "
+"de vil blive vist som ny lagerplads."
+
+msgid "useExistingParts"
+msgstr "Brug eksisterende partitioner"
+
+msgid "yes"
+msgstr "Ja"

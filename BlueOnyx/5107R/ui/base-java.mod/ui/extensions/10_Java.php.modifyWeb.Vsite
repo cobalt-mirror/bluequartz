@@ -1,0 +1,43 @@
+<?php
+// $Id: 10_Java.php.modifyWeb.Vsite,v 1.1 2001/11/05 08:14:18 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+// Java.php.modify.Vsite
+
+include_once('UIExtension.php');
+
+class JavaExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-java");
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$defaults = $cce->get($parameters["CCE_OID"], "Java");
+
+        $allowed = $ServerScriptHelper->getAllowed('modifyJava');
+
+        // don't show the field if they aren't allowed to modify
+        // and it's not enabled
+        if (!$allowed && !$defaults['enabled'])
+            return;
+
+		$javaEnable = $factory->getBoolean("Java_enabled", $defaults["enabled"],
+                                        ($allowed ? 'rw' : 'r'));
+		
+		// assume PagedBlock because that is most likely going to be it
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$container->addFormField($javaEnable, $factory->getLabel("enableJava"),
+                    $page_id);
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+		global $Java_enabled;
+
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$cce->set($parameters["CCE_OID"], "Java", array("enabled" => $Java_enabled));
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

@@ -1,0 +1,64 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: capabilities.schema 259 2004-01-03 06:28:40Z shibuya $
+
+    This contains the definition of the Capabilities class and the Capabilities
+    namespaces for creating and modifying users (these really only apply to
+    qubes, see user_rules.schema for raqs).  The Capabilities namespaces
+    are used when assigning Capabilities to users and for the UI when 
+    determining if the currently logged in user satisfies the access
+    requirement to view a particular menu item.  They could also be used
+    for individual fields on a UI page via Capabilities.php in palette.
+-->
+
+<!-- Root of the Capabilities Object -->
+<class name="Capabilities" namespace="" version="1.0"/>
+
+<!-- User create/modify/destroy capabilities -->
+<class 
+    name="Capabilities" namespace="createUser" version="0.1"
+>
+    <property 
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(createUser)"
+    />
+    <property 
+        name="nameTag" type="scalar" default="[[base-user.cap_createUser]]"
+    />
+</class>
+<class 
+    name="Capabilities" namespace="destroyUser" version="0.1"
+>
+    <property 
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(destroyUser)"
+    />
+    <property 
+        name="nameTag" type="scalar" default="[[base-user.cap_destroyUser]]"
+    />
+</class>
+<class 
+    name="Capabilities" namespace="modifyUser" version="0.1"
+>
+    <property 
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyUser)"
+    />
+    <property 
+        name="nameTag" type="scalar" default="[[base-user.cap_modifyUser]]"
+    />
+</class>
+
+<class 
+    name="Capabilities" namespace="modifyUserDefaults" version="0.1"
+>
+    <property 
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyUserDefaults)"
+    />
+    <property 
+        name="nameTag" type="scalar" 
+        default="[[base-user.cap_modifyUserDefaults]]"
+    />
+</class>
+

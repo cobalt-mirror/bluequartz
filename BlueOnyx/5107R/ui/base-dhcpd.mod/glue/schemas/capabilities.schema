@@ -1,0 +1,42 @@
+<!-- DhcpParam -->
+<class name="Capabilities" namespace="createDhcpParam" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createDhcpParam)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_createDhcpParam]]"/>
+</class>
+<class name="Capabilities" namespace="destroyDhcpParam" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyDhcpParam)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_destroyDhcpParam]]"/>
+</class>
+<class name="Capabilities" namespace="modifyDhcpParam" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDhcpParam)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_modifyDhcpParam]]"/>
+</class>
+
+<!-- DhcpStatic -->
+<class name="Capabilities" namespace="createDhcpStatic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createDhcpStatic)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_createDhcpStatic]]"/>
+</class>
+<class name="Capabilities" namespace="destroyDhcpStatic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyDhcpStatic)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_destroyDhcpStatic]]"/>
+</class>
+<class name="Capabilities" namespace="modifyDhcpStatic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDhcpStatic)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_modifyDhcpStatic]]"/>
+</class>
+
+<!-- DhcpDynamic -->
+<class name="Capabilities" namespace="createDhcpDynamic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(createDhcpDynamic)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_createDhcpDynamic]]"/>
+</class>
+<class name="Capabilities" namespace="destroyDhcpDynamic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyDhcpDynamic)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_destroyDhcpDynamic]]"/>
+</class>
+<class name="Capabilities" namespace="modifyDhcpDynamic" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyDhcpDynamic)"/>
+	<property name="nameTag" type="scalar" default="[[base-dhcpd.cap_modifyDhcpDynamic]]"/>
+</class>
+

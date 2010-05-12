@@ -1,0 +1,2 @@
+# exec db_checkpoint.pl
+03,18,33,48 * * * *	root	/usr/sausalito/sbin/db_checkpoint.pl

@@ -1,0 +1,89 @@
+<!-- This is the AM Namespace for monitoring Tomcat/JVM(s)
+
+     Stock tomcat runs on two ports, 8007 for intercepted Apache 
+     requests and 8080 for native html service.  Cobalt Linux
+     runs only the ajp_12 (8007) service although this AM may be
+     set to monitor both. 
+ --> 
+
+<class name="ActiveMonitor" namespace="Java" version="1.1">
+    <property name="enabled"    	type="boolean" 	default="0"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="aggregate"/>
+    <property name="typeData"		type="scalar"	default="Java_ajp12"/>
+                                                   <!-- default="Java_http Java_ajp12"/> -->
+
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-java.amStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-java.amNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-java.amJavaNameTag]]"/>
+
+    <property name="URL"	    	type="scalar" 
+ 	default="/base/java/java_amdetails.php"/>
+    <property name="UIGroup"            type="scalar"   default="service"/>
+</class>
+
+<!-- direct http service, not used by Cobalt Linux -->
+<class name="ActiveMonitor" namespace="Java_http" version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="tcp"/>
+    <property name="typeData"		type="scalar"	default="8080"/>
+
+    <property name="aggMember"		type="boolean"	default="1"/>
+    <property name="restart"		type="scalar"	
+	default="/etc/rc.d/init.d/tomcat.init restart >/dev/null 2>&amp;1; sleep 10"/>
+    <!-- need to sleep 10 seconds because the java process takes that long until
+	the ports are ready -->
+    <property name="retries"		type="int"	default="2"/>
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-java.amStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-java.amNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-java.amJavaNameTag]]"/>
+
+    <property name="hideUI"             type="boolean"  default="1"/>
+</class>
+
+<!-- accepts service from the Apache DSO mod_jk -->
+<class name="ActiveMonitor" namespace="Java_ajp12" version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property 
+	name="typeData"		type="scalar"	
+	default="/usr/sausalito/swatch/bin/am_java.exp"
+    />
+
+    <property name="aggMember"		type="boolean"	default="1"/>
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-java.amStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-java.amNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-java.amJavaNameTag]]"/>
+
+    <property name="hideUI"             type="boolean"  default="1"/>
+</class>
+

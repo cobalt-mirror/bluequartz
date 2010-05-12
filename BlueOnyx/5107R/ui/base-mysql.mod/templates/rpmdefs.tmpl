@@ -1,0 +1,195 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+Obsoletes: nuonce-mysql-ui <= 1.0.0
+Obsoletes: nuonce-mysql-locale-en  <= 1.0.0
+Obsoletes: nuonce-mysql-glue <= 1.0.0
+Obsoletes: nuonce-mysql-locale-ja <= 1.0.0
+Obsoletes: nuonce-mysql-capstone <= 1.0.0
+Obsoletes: solarspeed-mod_mysql-glue <= 1.0.1
+Obsoletes: solarspeed-mod_mysql-capstone <= 1.0.1
+Obsoletes: solarspeed-mod_mysql-locale-en <= 1.0.1
+Obsoletes: solarspeed-mod_mysql-ui <= 1.0.1
+Obsoletes: solarspeed-mysql-locale-en <= 1.0.0
+Obsoletes: solarspeed-mysql-ui <= 1.0.0
+Obsoletes: solarspeed-mysql-capstone <= 1.0.0
+Obsoletes: solarspeed-mysql-glue <= 1.0.0
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+
+[AUTOFILL]
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Wed Sep 16 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-18
+- Updated glue/handlers/modify_mysql_data.pl to check if MySQLd is running. If not skip all MySQL related transactions before they generate errors that interfere with site deletions.
+
+* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-17
+- Updated ui/web/mysql.php again as the switchology for hiding the MySQL user and password field was not entirely right.
+
+* Sun May 24 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-16
+- Updated ui/web/mysql.php to hide the MySQL user and password field if a connection to MySQL can be established.
+- Otherwise people tend to get confused and attempt to change the MySQL root password from the wrong tab.
+
+* Wed Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-15
+- Added requirements for base-subdomains to Makefile.
+- Dirty little trick to force it's install on all BlueOnyx boxes that are already up without this late arrival mod.
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-14
+- Small code cleanup in ui/web/mysql.php 
+
+* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-13
+- Modified connectivity checks in ui/web/mysql.php 
+- Added constructor/setup_mysql_data.pl to create initial MySQL object.
+- Updated glue/handlers/modify_mysql_data.pl to remove check for password presence.
+
+* Mon Dec 22 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-12
+- Updated glue/handlers/modify_mysql_data.pl to fix bug ticket #1
+
+* Sun Dec 21 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-11
+- Added requirement for base-phpmyadmin-capstone
+
+* Thu Dec 11 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-10
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite yet again.
+- Corrected a localization string no longer used in the locales to one still present.
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-9
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite yet again.
+- Modified 06_MYSQL_Vsite.php.create.Vsite yet again, as I had entirely removed one display_errors = Off.
+- Note to self: Committs while being dead tired are bad.
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-8
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite again.
+- Had to move display_errors to Off into the function in order for it to work as intended.
+
+* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-7
+- Modified 06_MYSQL_Vsite.php.create.Vsite and 06_MYSQL_Vsite.php.modifyWeb.Vsite
+- Changed error message when MySQL connection cannot be established.
+- Set display_errors to Off during MySQL connect to hide nasty in-line error messages on connect issues.
+
+* Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-6
+- Modified glue/handlers/modify_mysql_data.pl
+- Fixed a potential issue during site deletion, which would fail if MySQL db was missing already.
+
+* Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-5
+- i18-nized some previously hardwired error and status messages.
+- Minor touch up in German locales. 
+- Changed algorythm for user- and dbname creation from FQDN to group names.
+- Limited username and dbname input fields to 15 characters of length.
+
+* Sun Dec 07 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-4
+- German locales added.
+- Post merge snafu in glue/conf/mysql.conf and ui/web/mysqlusersHandler.php fixed.
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-3
+- Fixed a post merge snafu in glue/schemas/mysql-am.schema
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-2
+- Fixes some issues during merge.
+- Moved Obsoletes to Makefile where they belong.
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1
+- Merged in Solarspeed Mod_MySQL.
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1
+- Rebuilt for BlueOnyx.
+- Merged NuOnce MySQL and Solarspeed MySQL GUI's.
+- Added obsolete tags to auto-replace corresponding NuOnce and Solarspeed RPMs.
+- English locales are merged.
+- German, Danish and Japanese locales are using the English texts for now.
+
+<end $CHANGELOG>

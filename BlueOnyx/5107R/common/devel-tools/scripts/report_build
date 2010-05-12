@@ -1,0 +1,107 @@
+#!/usr/bin/perl -w
+
+use strict;
+use FileHandle;
+
+my $BUILD_DIR = "/home/build";
+my $PRODUCT = "carmel";
+my $RPM_DIR = "/fargo/carmel/rpms";
+my $INDENT = 0;
+my $now = localtime(time);
+
+if (!-d $BUILD_DIR) {
+  mkdir($BUILD_DIR, 0700);
+}
+chdir($BUILD_DIR) || die;
+system("cvs co products.prd &> products.prd.co");
+if ($?) { print STDERR "failed: cvs co products.prd\n"; die; }
+
+print "*** BUILD REPORT\n*** $now\n\n";
+
+scan_packing_list("products.prd/$PRODUCT/devel_list");
+scan_packing_list("products.prd/$PRODUCT/packing_list");
+
+
+sub dump_module
+{
+  my $module = shift;
+  
+  if (! -e $module) {
+    return 0;
+  }
+  
+  my $indent = ".  " x $INDENT;
+  print "${indent}${module}:\n";
+
+  # parse makefile:
+  my ($release, $version) = ("?","?");  
+  my $fh =new FileHandle("$module/Makefile");
+  if (defined($fh)) {
+    while (defined($_ = <$fh>)) {
+      if (m/^\s*RELEASE\s*=\s*(\S+)/) {
+      	$release = $1;
+	next;
+      }
+      if (m/^\s*VERSION\s*=\s*(\S+)/) {
+      	$version = $1;
+	next;
+      }
+    }
+    $fh->close();
+  }
+  print $indent,"== Version: ${version}-${release}\n";
+
+  my $packlist_file = "${module}/packing_list";
+  if (! -e $packlist_file) {
+    print $indent, "!! Error: $packlist_file missing!\n";
+    return 0;
+  }
+  
+  return scan_packing_list ( $packlist_file, $version, $release );
+}
+
+sub scan_packing_list
+{
+  my ($packlist_file, $version, $release) = (shift,shift,shift);
+
+  my $indent = ".  " x $INDENT;
+
+  my $fh = new FileHandle("< $packlist_file") || die;
+  while (defined($_ = <$fh>)) {
+    if (m/^module: (\S+)/i) {
+      my $module = $1;
+      if (-d $module) {
+	system("cvs update -PAd $module &> $module.co");
+      } else {
+  	system("cvs co $module &> $module.co");
+      }
+      if ($?) { print $indent, "!! Error: could not checkout $module\n"; }
+      else { 
+      	$INDENT++;
+      	dump_module(${module});
+	$INDENT--;
+      }
+      next;
+    }
+    if (m/^rpm: (\S+)/i) {
+      my $rpm = $1;
+      my $base = $rpm;
+      if ($rpm !~ m/\.rpm$/) {
+      	my $arch;
+	foreach $arch ("i386", "i686", "noarch") {
+	  $rpm = "${base}-${version}-${release}.${arch}.rpm";
+	  last if (-e "${RPM_DIR}/${rpm}");
+	}
+      }
+      if (! -e "${RPM_DIR}/${rpm}") {
+      	print $indent,"!! Error: missing $base !\n";
+      } else {
+      	my @stat = stat("${RPM_DIR}/${rpm}");
+      	print $indent,"   $rpm (",scalar(localtime($stat[9])),")\n";
+      }
+    }
+  }
+  $fh->close();
+  
+  return 1;
+}

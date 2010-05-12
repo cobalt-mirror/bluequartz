@@ -1,0 +1,61 @@
+<!-- 
+  $Id: power.schema,v 1.9 2001/12/06 19:25:24 jcheng Exp $ 
+  Copyright 2000, Cobalt Networks.
+  author: jycheng@sun.com
+  
+  This file describes the schema of the following class types:
+    System.Power
+-->
+
+<!-- local type definitions -->
+
+<typedef name="wakemode"  type="re"
+  data = "^(none|magic)$"
+  errmsg = "[[base-power.wakemodeInvalidData]]"
+/>
+
+<typedef name="powermode" type="re" data="^(on|off|same)$"
+  errmsg = "[[base-power.powermodeInvalidData]]"
+/>
+
+
+<!-------------------------------------------------------------------------
+  System.Power
+    system-wide default settings
+-------------------------------------------------------------------------->
+
+<class name="System" namespace="Power" version="1.0">
+    <!-- controls wake on lan options -->
+    <property 
+        name="wakemode" type="wakemode" default="none"
+        writeacl="ruleCapable(controlPower)"
+    />
+
+    <!-- controls behavior of system when power is applied. 
+	(i.e. in a UPS situation) -->
+    <property 
+        name="powermode" type="powermode" default="off"
+        writeacl="ruleCapable(controlPower)"
+    />
+  
+    <!-- set to current time to reboot the machine. -->
+    <property 
+        name="reboot" type="int" default="0"
+        writeacl="ruleCapable(controlPower)"
+    />
+  
+    <!-- set to current time to halt the machine. -->
+    <property 
+        name="halt" type="int" default="0"
+        writeacl="ruleCapable(controlPower)"
+    />
+
+    <!-- set to current time to push wakemode and powermode into kernel and eeprom -->
+    <property 
+        name="set_modes_now"	type="int"	default="0" 
+        writeacl="ruleCapable(controlPower)"
+    />
+</class>
+
+
+<!-- end of power.schema -->

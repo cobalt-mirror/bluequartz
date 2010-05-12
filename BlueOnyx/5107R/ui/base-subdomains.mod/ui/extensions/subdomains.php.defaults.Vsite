@@ -1,0 +1,52 @@
+<?php
+	// Author: Brian N. Smith
+	// Copyright 2006, NuOnce Networks, Inc. All rights reserved.
+	// $Id: subdomains.php,v 1.0 2006/08/10 15:57:00 Exp $
+	// ui extension to set settings for subdomain Vsite creation
+
+	include_once("UIExtension.php");
+
+	define("subdomains_EXTENSION_DEFAULTS_VSITE", 1);
+
+	class subdomainsExtension extends UIExtension {
+
+		function display(&$ServerScriptHelper, &$container, &$parameters) {
+			$factory = $ServerScriptHelper->getHtmlComponentFactory("base-subdomains");
+			$cceClient = $ServerScriptHelper->getCceClient();
+
+			$pageId = "subDomains";
+			$container->addPage($pageId, $factory->getLabel("subdomain_header"));
+
+			$site = $cceClient->getObject("System", array(), "subdomains");
+
+			$container->addFormField(
+				$factory->getBoolean('subdomains_enabled', $site["vsite_enabled"]),
+				$factory->getLabel('vsite_enabled'),
+				$pageId);
+
+			$default_max_subdomains = $factory->getInteger("subdomains_default_max_subdomains", $site["default_max_subdomains"], 1, 1000);
+			$default_max_subdomains->showBounds(1);
+			$default_max_subdomains->setWidth(4);
+			
+			$container->addFormField(
+				$default_max_subdomains,
+				$factory->getLabel("max_subdomains"),
+				$pageId);
+		}
+
+		function handle(&$ServerScriptHelper, &$errors, &$parameters) {
+			global $subdomains_enabled, $subdomains_default_max_subdomains;
+
+			$cceClient =& $ServerScriptHelper->getCceClient();
+
+			if ( $subdomains_enabled != 1 ) { $subdomains_enabled = 0; }
+
+			$cfg = array(
+				"vsite_enabled" => $subdomains_enabled,
+				"default_max_subdomains" => $subdomains_default_max_subdomains);
+
+			$cceClient->setObject("System", $cfg, "subdomains");
+			$errors = array_merge($errors, $cceClient->errors());
+		}
+	}
+?>

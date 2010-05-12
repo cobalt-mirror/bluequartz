@@ -1,0 +1,3334 @@
+#
+# These strings are used throughout the UI and are necessarily general in nature.
+#
+
+msgid "sort"
+msgstr "ソート"
+
+msgid "sort_help"
+msgstr "ここをクリックすると、このカラムの昇順または降順にリストがソート（並び替え）されます。"
+
+msgid "add"
+msgstr "追加"
+
+msgid "add_help"
+msgstr "ここをクリックすると、項目を追加できます。"
+
+msgid "modify"
+msgstr "修正"
+
+msgid "modify_help"
+msgstr "ここをクリックすると、この項目を修正できます。"
+
+msgid "modify_disabled_help"
+msgstr "この項目は修正できません。"
+
+msgid "remove"
+msgstr "削除"
+
+msgid "remove_help"
+msgstr "ここをクリックすると、この項目を削除できます。"
+
+msgid "remove_disabled_help"
+msgstr "この項目は削除できません。"
+
+msgid "back"
+msgstr "戻る"
+
+msgid "back_help"
+msgstr "ここをクリックすると、前のページに戻ります。"
+
+msgid "forward"
+msgstr "進む"
+
+msgid "forward_help"
+msgstr "ここをクリックすると、次のページに進みます。"
+
+msgid "save"
+msgstr "保存"
+
+msgid "save_help"
+msgstr "ここをクリックすると、このページに加えた変更が保存されます。"
+
+msgid "cancel"
+msgstr "キャンセル"
+
+msgid "cancel_help"
+msgstr "ここをクリックすると、このページに加えた変更がキャンセルされます。"
+
+msgid "detail"
+msgstr "詳細"
+
+msgid "detail_help"
+msgstr "ここをクリックすると、この項目の詳細が表示されます。"
+
+msgid "defaultEmptyMessage"
+msgstr "[[VAR.name]]を指定してください。[[VAR.rule]]"
+
+msgid "defaultInvalidMessage"
+msgstr "[[VAR.invalidValue]] は、[[VAR.name]]には指定できません。[[VAR.rule]]"
+
+msgid "cceDown"
+msgstr "CCE（crucial system component）は現在動作していません。しばらくしてからもう一度お試しください。"
+
+msgid "emptyList"
+msgstr "このリストには、現在のところ何も含まれていません。"
+
+msgid "entryCountPlural"
+msgstr "[[VAR.count]] エントリ"
+
+msgid "entryCountSingular"
+msgstr "[[VAR.count]] エントリ"
+
+msgid "entryRange"
+msgstr "エントリ [[VAR.from]] 〜 [[VAR.to]]"
+
+msgid "logout"
+msgstr "ログアウト"
+
+msgid "logoutHelp"
+msgstr "ここをクリックすると、システムからログアウトできます。"
+
+msgid "logoutConfirm"
+msgstr "システムからログアウトしてよろしいですか？"
+
+msgid "browser"
+msgstr "<ブラウザのオプションから設定>"
+
+msgid "localeLanguage"
+msgstr "[[VAR.language]]"
+
+msgid "localeLanguageCountry"
+msgstr "[[VAR.language]]([[VAR.country]])"
+
+msgid "import"
+msgstr "インポート"
+
+msgid "import_help"
+msgstr "ここをクリックするとアドレス帳が開き、このフィールドに入力する電子メールアドレスを選択できます。"
+
+msgid "navigationTitle"
+msgstr "[[VAR.hostName]]; ユーザ名 - [[VAR.userName]]"
+
+msgid "noItems"
+msgstr "_______ 空欄 _______"
+
+msgid "optional"
+msgstr "省略可"
+
+msgid "repeat"
+msgstr "再度入力"
+
+msgid "statusSignalFailure"
+msgstr "失敗"
+
+msgid "statusSignalFailure_help"
+msgstr "この項目は失敗しました。"
+
+msgid "statusSignalNew"
+msgstr "新規"
+
+msgid "statusSignalNew_help"
+msgstr "これは新しい項目です。"
+
+msgid "statusSignalOld"
+msgstr "既存"
+
+msgid "statusSignalOld_help"
+msgstr "これは既存の項目です。"
+
+msgid "statusSignalReplied"
+msgstr "応答済み"
+
+msgid "statusSignalReplied_help"
+msgstr "この項目は応答済みです。"
+
+msgid "statusSignalNone"
+msgstr "動作状況は収集されていません"
+
+msgid "statusSignalNone_help"
+msgstr "この項目には指標はありません。"
+
+msgid "statusSignalDisabled"
+msgstr "無効にされている項目"
+
+msgid "statusSignalDisabled_help"
+msgstr "この項目は無効にされています。"
+
+msgid "statusSignalNoMonitor"
+msgstr "監視されていない項目"
+
+msgid "statusSignalNoMonitor_help"
+msgstr "この項目は監視されていません。"
+
+msgid "statusSignalPending"
+msgstr "現在動作中"
+
+msgid "statusSignalPending_help"
+msgstr "この項目は現在動作していません。"
+
+msgid "statusSignalNormal"
+msgstr "正常に動作中"
+
+msgid "statusSignalNormal_help"
+msgstr "この項目は正常に動作しています。"
+
+msgid "statusSignalProblem"
+msgstr "問題発生"
+
+msgid "statusSignalProblem_help"
+msgstr "この項目に問題が発生しました。"
+
+msgid "statusSignalSevereProblem"
+msgstr "深刻な問題発生"
+
+msgid "statusSignalSevereProblem_help"
+msgstr "この項目に深刻な問題が発生しました。"
+
+msgid "statusSignalSuccess"
+msgstr "成功"
+
+msgid "statusSignalSuccess_help"
+msgstr "この項目は成功しました。"
+
+msgid "noInstances"
+msgstr "操作を完了できませんでした。修正する[[VAR.class]]クラスのインスタンスが見つかりませんでした。"
+
+msgid "tooManyInstances"
+msgstr "操作を完了できませんでした。修正する[[VAR.class]]クラスのインスタンスが複数見つかりました。"
+
+msgid "uninstall"
+msgstr "アンインストール"
+
+msgid "uninstall_help"
+msgstr "ここをクリックすると、アイテムをアンインストールできます。"
+
+msgid "uninstall_disabled_help"
+msgstr "このアイテムはアンインストールできません。"
+
+
+msgid "wait"
+msgstr "変更が完了するまで、しばらくお待ちください。"
+
+#
+# status page stuff
+#
+
+msgid "messageField"
+msgstr "タスクの状態"
+
+msgid "messageField_help"
+msgstr "実行中のタスクの現在の状態が表示されます。"
+
+msgid "progressField"
+msgstr "タスクの進行状況"
+
+msgid "progressField_help"
+msgstr "実行中のタスクの進行状況です。"
+
+msgid "submessageField"
+msgstr "サブタスクの状態"
+msgid "submessageField_help"
+msgstr "実行中のサブタスクの現在の状態が表示されます。"
+
+msgid "subprogressField"
+msgstr "サブタスクの進行状況"
+
+msgid "subprogressField_help"
+msgstr "サブ実行中のタスクの進行状況です。"
+#
+# MultiFileUpload Stuff
+#
+
+msgid "noFiles"
+msgstr "_______ ファイルなし _______"
+
+msgid "addAttachment"
+msgstr "追加"
+
+msgid "addAttachment_help"
+msgstr "ファイルをリストに追加します。"
+
+msgid "removeAttachment"
+msgstr "削除"
+
+msgid "removeAttachment_help"
+msgstr "ファイルをリストから削除します。"
+
+msgid "MultiFileUploadWindow"
+msgstr "アップロードするファイルを追加"
+
+msgid "MultiFileUploadWindow_description"
+msgstr " "
+
+msgid "addAttachment"
+msgstr "アップロードするファイルを選択"
+
+msgid "fileToAttach"
+msgstr "ファイル"
+
+msgid "fileToAttach_help"
+msgstr "アップロードするファイルを選んで［添付］ボタンをクリックして操作を続けるか、［キャンセル］ボタンをクリックしてこのウィンドウを閉じます。"
+
+msgid "fileUpload_invalid"
+msgstr "アップロードするファイルが選択されていません。"
+
+msgid "addAttachmentButton"
+msgstr "添付"
+
+msgid "addAttachmentButton_help"
+msgstr "アップロードしたいファイルを選んでから、ここをクリックしてください。"
+
+msgid "errorGettingFile"
+msgstr "アップロードエラー"
+
+msgid "errorOccuredWhilereceivingFile"
+msgstr "ファイルの受信中にエラーが発生しました。もう一度お試しください。"
+
+#
+# Numerics
+#
+msgid "integerBounds"
+msgstr "([[VAR.minBound]] - [[VAR.maxBound]])"
+#
+# Time Stuff
+#
+msgid "yearLabel"
+msgstr "年"
+
+msgid "monthLabel"
+msgstr "月"
+
+msgid "dayLabel"
+msgstr "日"
+
+msgid "hourLabel"
+msgstr "時"
+
+msgid "minuteLabel"
+msgstr "分"
+
+# possible VARs: date
+msgid "date"
+msgstr "[[VAR.date]]"
+
+# possible VARs: hour, amPm
+msgid "hour"
+msgstr "[[VAR.hour]]"
+
+# possible VARs: minute
+msgid "minute"
+msgstr "[[VAR.minute]]"
+
+# possible VARs: year
+msgid "year"
+msgstr "[[VAR.year]]"
+
+# possible VARs: month, date, year, hour, minute, amPm
+msgid "dateTimeFormat"
+msgstr "[[VAR.year]]/[[VAR.month]]/[[VAR.date]]  [[VAR.24hour]]:[[VAR.minute]]"
+
+# possible VARs: month, date, year
+msgid "dateFormat"
+msgstr "[[VAR.year]] [[palette.yearLabel]] [[VAR.month]] [[palette.monthLabel]] [[VAR.date]] [[palette.dayLabel]]"
+
+# possible VARs: hour, minute, amPm
+msgid "timeFormat"
+msgstr "[[VAR.amPm]] [[VAR.hour]] [[palette.hourLabel]] [[VAR.minute]] [[palette.minuteLabel]]"
+
+msgid "am"
+msgstr "午前"
+
+msgid "pm"
+msgstr "午後"
+
+msgid "01month"
+msgstr "1"
+
+msgid "02month"
+msgstr "2"
+
+msgid "03month"
+msgstr "3"
+
+msgid "04month"
+msgstr "4"
+
+msgid "05month"
+msgstr "5"
+
+msgid "06month"
+msgstr "6"
+
+msgid "07month"
+msgstr "7"
+
+msgid "08month"
+msgstr "8"
+
+msgid "09month"
+msgstr "9"
+
+msgid "10month"
+msgstr "10"
+
+msgid "11month"
+msgstr "11"
+
+msgid "12month"
+msgstr "12"
+
+msgid "0000Hour"
+msgstr "12"
+
+msgid "0100Hour"
+msgstr "1"
+ 
+msgid "0200Hour"
+msgstr "2"
+
+msgid "0300Hour"
+msgstr "3"
+
+msgid "0400Hour"
+msgstr "4"
+
+msgid "0500Hour"
+msgstr "5"
+
+msgid "0600Hour"
+msgstr "6"
+
+msgid "0700Hour"
+msgstr "7"
+
+msgid "0800Hour"
+msgstr "8"
+
+msgid "0900Hour"
+msgstr "9"
+
+msgid "1000Hour"
+msgstr "10"
+
+msgid "1100Hour"
+msgstr "11"
+
+msgid "1200Hour"
+msgstr "12"
+
+msgid "1300Hour"
+msgstr "13"
+
+msgid "1400Hour"
+msgstr "14"
+
+msgid "1500Hour"
+msgstr "15"
+
+msgid "1600Hour"
+msgstr "16"
+
+msgid "1700Hour" 
+msgstr "17"
+
+msgid "1800Hour" 
+msgstr "18"
+
+msgid "1900Hour"
+msgstr "19"
+
+msgid "2000Hour"
+msgstr "20"
+
+msgid "2100Hour"
+msgstr "21"
+
+msgid "2200Hour"
+msgstr "22"
+
+msgid "2300Hour"  
+msgstr "23"
+
+
+#
+# Time Zone Stuff
+#
+
+msgid "Africa"
+msgstr "アフリカ"
+
+msgid "Antarctica"
+msgstr "南極"
+
+msgid "Asia"
+msgstr "アジア"
+
+msgid "Atlantic"
+msgstr "大西洋"
+
+msgid "Europe"
+msgstr "ヨーロッパ"
+
+msgid "Indian"
+msgstr "インド洋"
+
+msgid "NorthAmerica"
+msgstr "北米"
+
+msgid "Oceania"
+msgstr "オセアニア／オーストラリア"
+
+msgid "SouthAmerica"
+msgstr "南米"
+
+msgid "UTC"
+msgstr "UTC オフセット"
+
+msgid "NorthAmerica/AG"
+msgstr "アンティグア−バーブーダ"
+
+msgid "America/St_Johns"
+msgstr "セントジョンズ"
+
+msgid "NorthAmerica/BS"
+msgstr "バハマ"
+
+msgid "America/Nassau"
+msgstr "ナッソー"
+
+msgid "NorthAmerica/BB"
+msgstr "バルバドス"
+
+msgid "America/Barbados"
+msgstr "バルバドス"
+
+msgid "NorthAmerica/BZ"
+msgstr "ベリーズ"
+
+msgid "America/Belize"
+msgstr "ベリーズ"
+
+msgid "NorthAmerica/CR"
+msgstr "コスタリカ"
+
+msgid "America/Costa_Rica"
+msgstr "コスタリカ"
+
+msgid "NorthAmerica/CU"
+msgstr "キューバ"
+
+msgid "America/Havana"
+msgstr "ハバナ"
+
+msgid "NorthAmerica/DM"
+msgstr "ドミニカ"
+
+msgid "America/Dominica"
+msgstr "ドミニカ"
+
+msgid "NorthAmerica/DO"
+msgstr "ドミニカ共和国"
+
+msgid "America/Santo_Domingo"
+msgstr "サントドミンゴ"
+
+msgid "NorthAmerica/SV"
+msgstr "エルサルバドル"
+
+msgid "America/El_Salvador"
+msgstr "エルサルバドル"
+
+msgid "NorthAmerica/GL"
+msgstr "グリーンランド"
+
+msgid "America/Godthab"
+msgstr "ゴットホープ"
+
+msgid "NorthAmerica/GD"
+msgstr "グレナダ"
+
+msgid "America/Grenada"
+msgstr "グレナダ"
+
+msgid "NorthAmerica/GT"
+msgstr "ガテマラ"
+
+msgid "America/Guatemala"
+msgstr "ガテマラ"
+
+msgid "NorthAmerica/HT"
+msgstr "ハイチ"
+
+msgid "America/Port-au-Prince"
+msgstr "ポルト−プランス"
+
+msgid "NorthAmerica/HN"
+msgstr "ホンジュラス"
+
+msgid "America/Tegucigalpa"
+msgstr "テグシガルパ"
+
+msgid "NorthAmerica/JM"
+msgstr "ジャマイカ"
+
+msgid "America/Jamaica"
+msgstr "ジャマイカ"
+
+msgid "Navajo"
+msgstr "ナバホ自治区"
+
+msgid "NorthAmerica/NI"
+msgstr "ニカラグア"
+
+msgid "America/Managua"
+msgstr "マナグア"
+
+msgid "NorthAmerica/MX"
+msgstr "メキシコ"
+
+msgid "NorthAmerica/PA"
+msgstr "パナマ"
+
+msgid "America/Panama"
+msgstr "パナマ"
+
+msgid "NorthAmerica/PR"
+msgstr "プエルトリコ"
+
+msgid "America/Puerto_Rico"
+msgstr "プエルトリコ"
+
+msgid "NorthAmerica/KN"
+msgstr "セントキッツ・ネイビス"
+
+msgid "America/St_Kitts"
+msgstr "セントキッツ島"
+
+msgid "NorthAmerica/LC"
+msgstr "セントルシア"
+
+msgid "America/St_Lucia"
+msgstr "セントルシア"
+
+msgid "NorthAmerica/PM"
+msgstr "サンピエール・エ・ミクロン島"
+
+msgid "America/Miquelon"
+msgstr "ミクロン"
+
+msgid "NorthAmerica/VC"
+msgstr "セントビンセント／グレナディーン諸島"
+
+msgid "America/St_Vincent"
+msgstr "セントビンセント"
+
+msgid "NorthAmerica/TT"
+msgstr "トリニダード・トバゴ"
+
+msgid "America/Port_of_Spain"
+msgstr "ポートオブスペイン"
+
+msgid "NorthAmerica/TC"
+msgstr "タークス／カイコス諸島"
+
+msgid "America/Grand_Turk"
+msgstr "グランドターク"
+
+msgid "Europe/AL"
+msgstr "アルバニア"
+
+msgid "Europe/Tirane"
+msgstr "チラナ"
+
+msgid "Europe/AD"
+msgstr "アンドラ"
+
+msgid "Europe/Andorra"
+msgstr "アンドラ"
+
+msgid "Europe/AT"
+msgstr "オーストリア"
+
+msgid "Europe/Vienna"
+msgstr "ウィーン"
+
+msgid "Europe/BY"
+msgstr "ベラルーシ"
+
+msgid "Europe/Minsk"
+msgstr "ミンスク"
+
+msgid "Europe/BE"
+msgstr "ベルギ―"
+
+msgid "Europe/Brussels"
+msgstr "ブリュッセル"
+
+msgid "Europe/BA"
+msgstr "ボスニア・ヘルツェゴビナ"
+
+msgid "Europe/Sarajevo"
+msgstr "サラエボ"
+
+msgid "Europe/BG"
+msgstr "ブルガリア"
+
+msgid "Europe/Sofia"
+msgstr "ソフィア"
+
+msgid "Europe/HR"
+msgstr "クロアチア"
+
+msgid "Europe/Zagreb"
+msgstr "ザグレブ"
+
+msgid "Europe/CZ"
+msgstr "チェコ共和国"
+
+msgid "Europe/Prague"
+msgstr "プラハ"
+
+msgid "Europe/DK"
+msgstr "デンマーク"
+
+msgid "Europe/Copenhagen"
+msgstr "コペンハーゲン"
+
+msgid "Europe/EE"
+msgstr "エストニア"
+
+msgid "Europe/Tallinn"
+msgstr "タリン"
+
+msgid "Europe/FI"
+msgstr "フィンランド"
+
+msgid "Europe/Helsinki"
+msgstr "ヘルシンキ"
+
+msgid "Europe/FR"
+msgstr "フランス"
+
+msgid "Europe/Paris"
+msgstr "パリ"
+
+msgid "Europe/DE"
+msgstr "ドイツ"
+
+msgid "Europe/Berlin"
+msgstr "ベルリン"
+
+msgid "Europe/GR"
+msgstr "ギリシャ"
+
+msgid "Europe/Athens"
+msgstr "アテネ"
+
+msgid "Europe/HU"
+msgstr "ハンガリー"
+
+msgid "Europe/Budapest"
+msgstr "ブダペスト"
+
+msgid "Europe/IS"
+msgstr "アイスランド"
+
+msgid "Atlantic/Reykjavik"
+msgstr "レイキャビーク"
+
+msgid "Europe/IE"
+msgstr "アイルランド"
+
+msgid "Europe/Dublin"
+msgstr "ダブリン"
+
+msgid "Europe/IT"
+msgstr "イタリア"
+
+msgid "Europe/Rome"
+msgstr "ローマ"
+
+msgid "Europe/LV"
+msgstr "ラトビア"
+
+msgid "Europe/Riga"
+msgstr "リガ"
+
+msgid "Europe/LI"
+msgstr "リヒテンシュタイン"
+
+msgid "Europe/Vaduz"
+msgstr "ファドゥーツ"
+
+msgid "Europe/LT"
+msgstr "リトアニア"
+
+msgid "Europe/Vilnius"
+msgstr "ビリニュス"
+
+msgid "Europe/LU"
+msgstr "ルクセンブルク"
+
+msgid "Europe/Luxembourg"
+msgstr "ルクセンブルク"
+
+msgid "Europe/MK"
+msgstr "マケドニア"
+
+msgid "Europe/Skopje"
+msgstr "スコピエ"
+
+msgid "Europe/MT"
+msgstr "マルタ"
+
+msgid "Europe/Malta"
+msgstr "マルタ"
+
+msgid "Europe/MD"
+msgstr "モルドバ"
+
+msgid "Europe/Chisinau"
+msgstr "キシニョフ"
+
+msgid "Europe/MC"
+msgstr "モナコ"
+
+msgid "Europe/Monaco"
+msgstr "モナコ"
+
+msgid "Europe/NL"
+msgstr "オランダ"
+
+msgid "Europe/Amsterdam"
+msgstr "アムステルダム"
+
+msgid "Europe/NO"
+msgstr "ノルウェー"
+
+msgid "Europe/Oslo"
+msgstr "オスロ"
+
+msgid "Europe/PL"
+msgstr "ポーランド"
+
+msgid "Europe/Warsaw"
+msgstr "ワルシャワ"
+
+msgid "Europe/PT"
+msgstr "ポルトガル"
+
+msgid "Europe/Lisbon"
+msgstr "リスボン"
+
+msgid "Europe/RO"
+msgstr "ルーマニア"
+
+msgid "Europe/Bucharest"
+msgstr "ブカレスト"
+
+msgid "Europe/SM"
+msgstr "サンマリノ"
+
+msgid "Europe/San_Marino"
+msgstr "サンマリノ"
+
+msgid "Europe/YU"
+msgstr "セルビア／モンテネグロ"
+
+msgid "Europe/Belgrade"
+msgstr "ベオグラード"
+
+msgid "Europe/SK"
+msgstr "スロバキア"
+
+msgid "Europe/Bratislava"
+msgstr "ブラティスラバ"
+
+msgid "Europe/SI"
+msgstr "スロベニア"
+
+msgid "Europe/Ljubljana"
+msgstr "リュブリャナ"
+
+msgid "Europe/ES"
+msgstr "スペイン"
+
+msgid "Europe/Madrid"
+msgstr "マドリード"
+
+msgid "Europe/SE"
+msgstr "スウェーデン"
+
+msgid "Europe/Stockholm"
+msgstr "ストックホルム"
+
+msgid "Europe/CH"
+msgstr "スイス"
+
+msgid "Europe/Zurich"
+msgstr "チューリッヒ"
+
+msgid "Europe/VA"
+msgstr "バチカン市国"
+
+msgid "Europe/Vatican"
+msgstr "バチカン"
+
+msgid "Asia/AF"
+msgstr "アフガニスタン"
+
+msgid "Asia/Kabul"
+msgstr "カーブル"
+
+msgid "Asia/AM"
+msgstr "アルメニア"
+
+msgid "Asia/Yerevan"
+msgstr "イエレバン"
+
+msgid "Asia/AZ"
+msgstr "アゼルバイジャン"
+
+msgid "Asia/Baku"
+msgstr "バクー"
+
+msgid "Asia/BH"
+msgstr "バーレーン"
+
+msgid "Asia/Bahrain"
+msgstr "バーレーン"
+
+msgid "Asia/BD"
+msgstr "バングラデシュ"
+
+msgid "Asia/Dacca"
+msgstr "ダッカ"
+
+msgid "Asia/BT"
+msgstr "ブータン"
+
+msgid "Asia/Thimbu"
+msgstr "ティンブー"
+
+msgid "Asia/BN"
+msgstr "ブルネイ"
+
+msgid "Asia/Brunei"
+msgstr "ブルネイ"
+
+msgid "Asia/KH"
+msgstr "カンボジア"
+
+msgid "Asia/Phnom_Penh"
+msgstr "プノンペン"
+
+msgid "Asia/CY"
+msgstr "キプロス"
+
+msgid "Asia/Nicosia"
+msgstr "ニコシア"
+
+msgid "Asia/GE"
+msgstr "グルジア"
+
+msgid "Asia/Tbilisi"
+msgstr "トビリシ"
+
+msgid "Asia/IN"
+msgstr "インド"
+
+msgid "Asia/Calcutta"
+msgstr "カルカッタ"
+
+msgid "Asia/IR"
+msgstr "イラン"
+
+msgid "Asia/Tehran"
+msgstr "テヘラン"
+
+msgid "Asia/RQ"
+msgstr "イラク"
+
+msgid "Asia/Baghdad"
+msgstr "バグダッド"
+
+msgid "Asia/JO"
+msgstr "ヨルダン"
+
+msgid "Asia/Amman"
+msgstr "アンマン"
+
+msgid "Asia/KP"
+msgstr "北朝鮮"
+
+msgid "Asia/Pyongyang"
+msgstr "平壌"
+
+msgid "Asia/KR"
+msgstr "韓国"
+
+msgid "Asia/Seoul"
+msgstr "ソウル"
+
+msgid "Asia/KW"
+msgstr "クウェート"
+
+msgid "Asia/Kuwait"
+msgstr "クウェート"
+
+msgid "Asia/KG"
+msgstr "キルギスタン"
+
+msgid "Asia/Bishkek"
+msgstr "ビシケク"
+
+msgid "Asia/LA"
+msgstr "ラオス"
+
+msgid "Asia/Vientiane"
+msgstr "ビエンチャン"
+
+msgid "Asia/LB"
+msgstr "レバノン"
+
+msgid "Asia/Beirut"
+msgstr "ベイルート"
+
+msgid "Asia/MO"
+msgstr "マカオ"
+
+msgid "Asia/Macao"
+msgstr "マカオ"
+
+msgid "Asia/MN"
+msgstr "モンゴル"
+
+msgid "Asia/Ulan_Bator"
+msgstr "ウランバートル"
+
+msgid "Asia/MM"
+msgstr "ミャンマー"
+
+msgid "Asia/Rangoon"
+msgstr "ラングーン"
+
+msgid "Asia/NP"
+msgstr "ネパール"
+
+msgid "Asia/Katmandu"
+msgstr "カトマンズ"
+
+msgid "Asia/OM"
+msgstr "オマーン"
+
+msgid "Asia/Muscat"
+msgstr "マスカット"
+
+msgid "Asia/PK"
+msgstr "パキスタン"
+
+msgid "Asia/Karachi"
+msgstr "カラチ"
+
+msgid "Asia/PH"
+msgstr "フィリピン"
+
+msgid "Asia/Manila"
+msgstr "マニラ"
+
+msgid "Asia/QA"
+msgstr "カタール"
+
+msgid "Asia/Qatar"
+msgstr "カタール"
+
+msgid "Asia/SA"
+msgstr "サウジアラビア"
+
+msgid "Asia/Riyadh"
+msgstr "リヤド"
+
+msgid "Asia/SG"
+msgstr "シンガポール"
+
+msgid "Asia/Singapore"
+msgstr "シンガポール"
+
+msgid "Asia/LK"
+msgstr "スリランカ"
+
+msgid "Asia/Colombo"
+msgstr "コロンボ"
+
+msgid "Asia/SY"
+msgstr "シリア"
+
+msgid "Asia/Damascus"
+msgstr "ダマスカス"
+
+msgid "Asia/TW"
+msgstr "台湾"
+
+msgid "Asia/Taipei"
+msgstr "台北"
+
+msgid "Asia/TJ"
+msgstr "タジキスタン"
+
+msgid "Asia/Dushanbe"
+msgstr "ドゥシャンベ"
+
+msgid "Asia/TH"
+msgstr "タイ"
+
+msgid "Asia/Bangkok"
+msgstr "バンコク"
+
+msgid "Asia/TR"
+msgstr "トルコ"
+
+msgid "Asia/Istanbul"
+msgstr "イスタンブール"
+
+msgid "Asia/TM"
+msgstr "トルクメニスタン"
+
+msgid "Asia/Ashkhabad"
+msgstr "アシハバード"
+
+msgid "Asia/AE"
+msgstr "アラブ首長国連邦"
+
+msgid "Asia/Dubai"
+msgstr "ドバイ"
+
+msgid "Asia/UZ"
+msgstr "ウズベキスタン"
+
+msgid "Asia/Tashkent"
+msgstr "タシケント"
+
+msgid "Asia/VN"
+msgstr "ベトナム"
+
+msgid "Asia/Saigon"
+msgstr "ホーチミン市"
+
+msgid "Asia/YE"
+msgstr "イエメン"
+
+msgid "Asia/Aden"
+msgstr "アデン"
+
+msgid "Africa/DZ"
+msgstr "アルジェリア"
+
+msgid "Africa/Algiers"
+msgstr "アルジェー"
+
+msgid "Africa/AO"
+msgstr "アンゴラ"
+
+msgid "Africa/Luanda"
+msgstr "ルアンダ"
+
+msgid "Africa/BF"
+msgstr "ブルキナファソ "
+
+msgid "Africa/Ouagadougou"
+msgstr "ワガドゥーグー"
+
+msgid "Africa/BJ"
+msgstr "ベニン"
+
+msgid "Africa/Porto-Novo"
+msgstr "ポルトノボ"
+
+msgid "Africa/BW"
+msgstr "ボツワナ"
+
+msgid "Africa/Gaborone"
+msgstr "ガバローン"
+
+msgid "Africa/BI"
+msgstr "ブルンジ"
+
+msgid "Africa/Bujumbura"
+msgstr "ブジュンブラ"
+
+msgid "Africa/CM"
+msgstr "カメルーン"
+
+msgid "Africa/Douala"
+msgstr "ドゥアーラ"
+
+msgid "Africa/CV"
+msgstr "カーボベルデ"
+
+msgid "Atlantic/Cape_Verde"
+msgstr "カーボベルデ"
+
+msgid "Africa/CF"
+msgstr "中央アフリカ共和国"
+
+msgid "Africa/Bangui"
+msgstr "バンギ"
+
+msgid "Africa/ES"
+msgstr "セウタ／メリヤ (スペイン)"
+
+msgid "Africa/Ceuta"
+msgstr "セウタ"
+
+msgid "Africa/TD"
+msgstr "チャド"
+
+msgid "Africa/Ndjamena"
+msgstr "ヌジャメナ"
+
+msgid "Africa/CG"
+msgstr "コンゴ共和国"
+
+msgid "Africa/Brazzaville"
+msgstr "ブラザビル"
+
+msgid "Africa/CI"
+msgstr "コートジボアール"
+
+msgid "Africa/Abidjan"
+msgstr "アビジャン"
+
+msgid "Africa/DJ"
+msgstr "ジブチ"
+
+msgid "Africa/Djibouti"
+msgstr "ジブチ"
+
+msgid "Africa/EG"
+msgstr "エジプト"
+
+msgid "Africa/Cairo"
+msgstr "カイロ"
+
+msgid "Africa/GQ"
+msgstr "赤道ギニア"
+
+msgid "Africa/Malabo"
+msgstr "マラボ"
+
+msgid "Africa/ER"
+msgstr "エリトリア"
+
+msgid "Africa/Asmera"
+msgstr "アスマラ"
+
+msgid "Africa/ET"
+msgstr "エチオピア"
+
+msgid "Africa/Addis_Ababa"
+msgstr "アディスアベバ"
+
+msgid "Africa/GA"
+msgstr "ガボン"
+
+msgid "Africa/Libreville"
+msgstr "リーブルビル"
+
+msgid "Africa/GM"
+msgstr "ガンビア"
+
+msgid "Africa/Banjul"
+msgstr "バンジュル"
+
+msgid "Africa/GH"
+msgstr "ガーナ"
+
+msgid "Africa/Accra"
+msgstr "アクラ"
+
+msgid "Africa/GN"
+msgstr "ギニア"
+
+msgid "Africa/Conakry"
+msgstr "コナクリ"
+
+msgid "Africa/GW"
+msgstr "ギニア・ビサウ"
+
+msgid "Africa/Bissau"
+msgstr "ビサウ"
+
+msgid "Africa/KE"
+msgstr "ケニア"
+
+msgid "Africa/Nairobi"
+msgstr "ナイロビ"
+
+msgid "Africa/LS"
+msgstr "レソート"
+
+msgid "Africa/Maseru"
+msgstr "マセル"
+
+msgid "Africa/LR"
+msgstr "リベリア"
+
+msgid "Africa/Monrovia"
+msgstr "モンロビア"
+
+msgid "Africa/LY"
+msgstr "リビア"
+
+msgid "Africa/Tripoli"
+msgstr "トリポリ"
+
+msgid "Africa/ML"
+msgstr "マリ"
+
+msgid "Africa/Bamako"
+msgstr "バマコ"
+
+msgid "Africa/MR"
+msgstr "モーリタニア"
+
+msgid "Africa/Nouakchott"
+msgstr "ヌアクショット"
+
+msgid "Africa/MA"
+msgstr "モロッコ"
+
+msgid "Africa/Casablanca"
+msgstr "カサブランカ"
+
+msgid "Africa/MZ"
+msgstr "モザンビーク"
+
+msgid "Africa/Maputo"
+msgstr "マプト"
+
+msgid "Africa/NA"
+msgstr "ナミビア"
+
+msgid "Africa/Windhoek"
+msgstr "ウィントフーク"
+
+msgid "Africa/NE"
+msgstr "ニジェール"
+
+msgid "Africa/Niamey"
+msgstr "ニアメー"
+
+msgid "Africa/NG"
+msgstr "ナイジェリア"
+
+msgid "Africa/Lagos"
+msgstr "ラゴス"
+
+msgid "Africa/RW"
+msgstr "ルワンダ"
+
+msgid "Africa/Kigali"
+msgstr "キガリ"
+
+msgid "Africa/ST"
+msgstr "サントーメ・プリンシペ"
+
+msgid "Africa/Sao_Tome"
+msgstr "サントーメ"
+
+msgid "Africa/SN"
+msgstr "セネガル"
+
+msgid "Africa/Dakar"
+msgstr "ダカール"
+
+msgid "Africa/SL"
+msgstr "シエラレオーネ"
+
+msgid "Africa/Freetown"
+msgstr "フリータウン"
+
+msgid "Africa/SO"
+msgstr "ソマリア"
+
+msgid "Africa/Mogadishu"
+msgstr "モガディシオ"
+
+msgid "Africa/ZA"
+msgstr "南アフリカ共和国"
+
+msgid "Africa/Johannesburg"
+msgstr "ヨハネスバーグ"
+
+msgid "Africa/SD"
+msgstr "スーダン"
+
+msgid "Africa/Khartoum"
+msgstr "ハルツーム"
+
+msgid "Africa/SZ"
+msgstr "スワジランド"
+
+msgid "Africa/Mbabane"
+msgstr "ムババネ"
+
+msgid "Africa/TZ"
+msgstr "タンザニア"
+
+msgid "Africa/Dar_es_Salaam"
+msgstr "ダルエスサラーム"
+
+msgid "Africa/TG"
+msgstr "トーゴ"
+
+msgid "Africa/Lome"
+msgstr "ロメ"
+
+msgid "Africa/TN"
+msgstr "チュニジア"
+
+msgid "Africa/Tunis"
+msgstr "チュニス"
+
+msgid "Africa/UG"
+msgstr "ウガンダ"
+
+msgid "Africa/Kampala"
+msgstr "カンパラ"
+
+msgid "Africa/EH"
+msgstr "西サハラ"
+
+msgid "Africa/El_Aaiun"
+msgstr "エルアイウン"
+
+msgid "Africa/ZM"
+msgstr "ザンビア"
+
+msgid "Africa/Lusaka"
+msgstr "ルサカ"
+
+msgid "Africa/ZW"
+msgstr "ジンバブエ"
+
+msgid "Africa/Harare"
+msgstr "ハラーレ"
+
+msgid "SouthAmerica/AR"
+msgstr "アルゼンチン"
+
+msgid "America/Buenos_Aires"
+msgstr "ブエノスアイレス"
+
+msgid "SouthAmerica/BO"
+msgstr "ボリビア"
+
+msgid "America/La_Paz"
+msgstr "ラパス"
+
+msgid "SouthAmerica/CO"
+msgstr "コロンビア"
+
+msgid "America/Bogota"
+msgstr "ボゴタ"
+
+msgid "SouthAmerica/EC"
+msgstr "エクアドル"
+
+msgid "America/Guayaquil"
+msgstr "グアヤキル"
+
+msgid "SouthAmerica/GF"
+msgstr "仏領ギアナ"
+
+msgid "America/Cayenne"
+msgstr "カイエンヌ"
+
+msgid "SouthAmerica/GY"
+msgstr "ガイアナ"
+
+msgid "America/Guyana"
+msgstr "ガイアナ"
+
+msgid "SouthAmerica/PY"
+msgstr "パラグアイ"
+
+msgid "America/Asuncion"
+msgstr "アスンシオン"
+
+msgid "SouthAmerica/PE"
+msgstr "ペルー"
+
+msgid "America/Lima"
+msgstr "リマ"
+
+msgid "SouthAmerica/SR"
+msgstr "スリナム"
+
+msgid "America/Paramaribo"
+msgstr "パラマリボ"
+
+msgid "SouthAmerica/UY"
+msgstr "ウルグアイ"
+
+msgid "America/Montevideo"
+msgstr "モンテビデオ"
+
+msgid "SouthAmerica/VE"
+msgstr "ベネズエラ"
+
+msgid "America/Caracas"
+msgstr "カラカス"
+
+msgid "Oceania/AS"
+msgstr "アメリカ領サモア"
+
+msgid "Pacific/Pago_Pago"
+msgstr "パゴパゴ"
+
+msgid "Oceania/FJ"
+msgstr "フィージー"
+
+msgid "Pacific/Fiji"
+msgstr "フィージー"
+
+msgid "Oceania/CL"
+msgstr "イースター島 (チリ)"
+
+msgid "Pacific/Easter"
+msgstr "イースター"
+
+msgid "Oceania/CK"
+msgstr "クック諸島"
+
+msgid "Pacific/Rarotonga"
+msgstr "ラロトンガ"
+
+msgid "Oceania/EC"
+msgstr "ガラパゴス (エクアドル)"
+
+msgid "Pacific/Galapagos"
+msgstr "ガラパゴス"
+
+msgid "Oceania/GU"
+msgstr "グアム"
+
+msgid "Pacific/Guam"
+msgstr "グアム"
+
+msgid "Oceania/NR"
+msgstr "ナウル"
+
+msgid "Pacific/Nauru"
+msgstr "ナウル"
+
+msgid "Oceania/NC"
+msgstr "ニューカレドニア"
+
+msgid "Pacific/Noumea"
+msgstr "ヌメア"
+
+msgid "Oceania/NU"
+msgstr "ニウエ"
+
+msgid "Pacific/Niue"
+msgstr "ニウエ"
+
+msgid "Oceania/NF"
+msgstr "ノーフォーク"
+
+msgid "Pacific/Norfolk"
+msgstr "ノーフォーク"
+
+msgid "Oceania/MP"
+msgstr "北マリアナ諸島"
+
+msgid "Pacific/Saipan"
+msgstr "サイパン"
+
+msgid "Oceania/PW"
+msgstr "パラウ"
+
+msgid "Pacific/Palau"
+msgstr "パラウ"
+
+msgid "Oceania/PG"
+msgstr "パプアニューギニア"
+
+msgid "Pacific/Port_Moresby"
+msgstr "ポートモレスビー"
+
+msgid "Oceania/PN"
+msgstr "ピトケアン"
+
+msgid "Pacific/Pitcairn"
+msgstr "ピトケアン"
+
+msgid "Oceania/SB"
+msgstr "ソロモン諸島"
+
+msgid "Pacific/Guadalcanal"
+msgstr "グアダルカナル"
+
+msgid "Oceania/TK"
+msgstr "トケラウ"
+
+msgid "Pacific/Fakaofo"
+msgstr "ファカオフォ"
+
+msgid "Oceania/TO"
+msgstr "トンガ"
+
+msgid "Pacific/Tongatapu"
+msgstr "トンガタプ"
+
+msgid "Oceania/TV"
+msgstr "ツバル"
+
+msgid "Pacific/Funafuti"
+msgstr "フナフティ"
+
+msgid "Oceania/VU"
+msgstr "バヌアツ"
+
+msgid "Pacific/Efate"
+msgstr "エファーテ"
+
+msgid "Oceania/EH"
+msgstr "西サモア"
+
+msgid "Pacific/Apia"
+msgstr "アピア"
+
+msgid "Oceania/WF"
+msgstr "ウォリス・フトゥーナ諸島"
+
+msgid "Pacific/Wallis"
+msgstr "ウォリス"
+
+msgid "Atlantic/BM"
+msgstr "バミューダ"
+
+msgid "Atlantic/Bermuda"
+msgstr "バミューダ"
+
+msgid "Atlantic/ES"
+msgstr "カナリア諸島 (スペイン)"
+
+msgid "Atlantic/Canary"
+msgstr "カナリア"
+
+msgid "Atlantic/FO"
+msgstr "フェロー諸島"
+
+msgid "Atlantic/Faeroe"
+msgstr "フェロー"
+
+msgid "Atlantic/FK"
+msgstr "フォークランド諸島 (マルビナス)"
+
+msgid "Atlantic/Stanley"
+msgstr "スタンリー"
+
+msgid "Atlantic/CV"
+msgstr "カーボベルデ"
+
+msgid "Atlantic/Cape_Verde"
+msgstr "カーボベルデ"
+
+msgid "Atlantic/IS"
+msgstr "アイスランド"
+
+msgid "Atlantic/Reykjavik"
+msgstr "レイキャビーク"
+
+msgid "Atlantic/SH"
+msgstr "セントヘレナ"
+
+msgid "Atlantic/St_Helena"
+msgstr "セントヘレナ"
+
+msgid "Atlantic/SJ"
+msgstr "スバールバル／ヤンマイエン諸島"
+
+msgid "Atlantic/Jan_Mayen"
+msgstr "ヤンマイエン"
+
+msgid "Indian/UK"
+msgstr "チャゴス諸島 (英国)"
+
+msgid "Indian/Chagos"
+msgstr "チャゴス"
+
+msgid "Indian/CX"
+msgstr "クリスマス島"
+
+msgid "Indian/Christmas"
+msgstr "クリスマス"
+
+msgid "Indian/KM"
+msgstr "コモロ"
+
+msgid "Indian/CC"
+msgstr "ココス (キーリング) 諸島"
+
+msgid "Indian/Cocos"
+msgstr "ココス"
+
+msgid "Indian/Comoro"
+msgstr "コモロ"
+
+msgid "Indian/FR"
+msgstr "インド洋南部フランス領"
+
+msgid "Indian/Kerguelen"
+msgstr "ケルゲレン"
+
+msgid "Indian/MG"
+msgstr "マダガスカル"
+
+msgid "Indian/Antananarivo"
+msgstr "アンタナナリボ"
+
+msgid "Indian/MV"
+msgstr "モルジブ"
+
+msgid "Indian/Maldives"
+msgstr "モルジブ"
+
+msgid "Indian/MU"
+msgstr "モーリシャス"
+
+msgid "Indian/Mauritius"
+msgstr "モーリシャス"
+
+msgid "Indian/RE"
+msgstr "レユニオン"
+
+msgid "Indian/Reunion"
+msgstr "レユニオン"
+
+msgid "Indian/SC"
+msgstr "セーシェル"
+
+msgid "Indian/Mahe"
+msgstr "マヘー"
+
+msgid "NorthAmerica/US"
+msgstr "米国"
+
+msgid "US/Samoa"
+msgstr "アメリカ領サモア"
+
+msgid "US/Aleutian"
+msgstr "アリューシャン標準時"
+
+msgid "US/Hawaii"
+msgstr "ハワイ"
+
+msgid "US/Alaska"
+msgstr "アラスカ標準時"
+
+msgid "US/Pacific"
+msgstr "太平洋標準時"
+
+msgid "US/Arizona"
+msgstr "アリゾナ州"
+
+msgid "US/Mountain"
+msgstr "山地標準時"
+
+msgid "US/Central"
+msgstr "中部標準時"
+
+msgid "US/East-Indiana"
+msgstr "インディアナ州東部"
+
+msgid "US/Eastern"
+msgstr "東部標準時"
+
+msgid "NorthAmerica/CA"
+msgstr "カナダ"
+
+msgid "Canada/Pacific"
+msgstr "太平洋標準時"
+
+msgid "Canada/Yukon"
+msgstr "ユーコン標準時"
+
+msgid "Canada/Central"
+msgstr "中部標準時"
+
+msgid "Canada/Eastern"
+msgstr "東部標準時"
+
+msgid "Canada/Mountain"
+msgstr "山地標準時"
+
+msgid "Canada/Newfoundland"
+msgstr "ニューファンドランド"
+
+msgid "Canada/Saskatchewan"
+msgstr "サスカチェワン"
+
+msgid "Canada/East-Saskatchewan"
+msgstr "東サスカチェワン"
+
+msgid "Canada/Atlantic"
+msgstr "大西洋"
+
+msgid "Mexico/BajaNorte"
+msgstr "バハノルテ"
+
+msgid "Mexico/BajaSur"
+msgstr "バハサー"
+
+msgid "Mexico/General"
+msgstr "メキシコ"
+
+msgid "Europe/RU"
+msgstr "ロシア (ヨーロッパ時間帯)"
+
+msgid "Europe/Kaliningrad"
+msgstr "カリーニングラード"
+
+msgid "Europe/Moscow"
+msgstr "モスクワ"
+
+msgid "Europe/Samara"
+msgstr "サマラ"
+
+msgid "Europe/UA"
+msgstr "ウクライナ"
+
+msgid "Europe/Kiev"
+msgstr "キエフ"
+
+msgid "Europe/Simferopol"
+msgstr "シムフェロポリ"
+
+msgid "Europe/UK"
+msgstr "英国"
+
+msgid "Europe/Belfast"
+msgstr "ベルファースト"
+
+msgid "Europe/London"
+msgstr "ロンドン"
+
+msgid "Asia/RU"
+msgstr "ロシア (アジア時間帯)"
+
+msgid "Asia/Yekaterinburg"
+msgstr "エカテリンブルク"
+
+msgid "Asia/Novosibirsk"
+msgstr "ノボシビルスク"
+
+msgid "Asia/Omsk"
+msgstr "オムスク"
+
+msgid "Asia/Krasnoyarsk"
+msgstr "クラスノヤルスク"
+
+msgid "Asia/Irkutsk"
+msgstr "イルクーツク"
+
+msgid "Asia/Yakutsk"
+msgstr "ヤクーツク"
+
+msgid "Asia/Vladivostok"
+msgstr "ウラジオストク"
+
+msgid "Asia/Magadan"
+msgstr "マガダン"
+
+msgid "Asia/Kamchatka"
+msgstr "カムチャッカ"
+
+msgid "Asia/Anadyr"
+msgstr "アナディリ"
+
+msgid "Asia/ID"
+msgstr "インドネシア"
+
+msgid "Asia/Jakarta"
+msgstr "ジャカルタ"
+
+msgid "Asia/Jayapura"
+msgstr "ジャヤプラ"
+
+msgid "Asia/Ujung_Pandang"
+msgstr "ウジュンパンダン"
+
+msgid "Asia/CN"
+msgstr "中国"
+
+msgid "Asia/Chungking"
+msgstr "重慶"
+
+msgid "Asia/Harbin"
+msgstr "ハルビン"
+
+msgid "Asia/Hong_Kong"
+msgstr "香港"
+
+msgid "Asia/Kashgar"
+msgstr "カシュガル"
+
+msgid "Asia/Shanghai"
+msgstr "上海"
+
+msgid "Asia/Urumqi"
+msgstr "ウルムチ"
+
+msgid "Asia/IL"
+msgstr "イスラエル"
+
+msgid "Asia/Gaza"
+msgstr "ガザ"
+
+msgid "Asia/Jerusalem"
+msgstr "エルサレム"
+
+msgid "Asia/JP"
+msgstr "日本"
+
+msgid "Asia/Ishigaki"
+msgstr "石垣島"
+
+msgid "Asia/Tokyo"
+msgstr "日本標準時"
+
+msgid "Asia/MY"
+msgstr "マレーシア"
+
+msgid "Asia/Kuala_Lumpur"
+msgstr "クアラルンプール"
+
+msgid "Asia/Kuching"
+msgstr "クチン"
+
+msgid "Asia/KZ"
+msgstr "カザフスタン"
+
+msgid "Asia/Almaty"
+msgstr "アルマトゥイ"
+
+msgid "Asia/Aqtau"
+msgstr "アクタウ"
+
+msgid "Asia/Aqtobe"
+msgstr "アクトベ"
+
+msgid "Africa/CD"
+msgstr "コンゴ民主共和国"
+
+msgid "Africa/Kinshasa"
+msgstr "キンシャサ"
+
+msgid "Africa/Lubumbashi"
+msgstr "ルブンバシ"
+
+msgid "SouthAmerica/BR"
+msgstr "ブラジル"
+
+msgid "Brazil/Acre"
+msgstr "アクレ"
+
+msgid "Brazil/DeNoronha"
+msgstr "デノロンハ"
+
+msgid "Brazil/East"
+msgstr "東ブラジル"
+
+msgid "Brazil/West"
+msgstr "西ブラジル" 
+
+msgid "SouthAmerica/CH"
+msgstr "チリ"
+
+msgid "Chile/Continental"
+msgstr "チリ"
+
+msgid "Chile/Continental"
+msgstr "イースター島"
+
+msgid "Oceania/AU"
+msgstr "オーストラリア"
+
+msgid "Australia/Perth"
+msgstr "パース"
+
+msgid "Australia/Darwin"
+msgstr "ダーウィン"
+
+msgid "Australia/Adelaide"
+msgstr "アデレード"
+
+msgid "Australia/Brisbane"
+msgstr "ブリズベン"
+
+msgid "Australia/Sydney"
+msgstr "シドニー"
+
+msgid "Australia/Broken_Hill"
+msgstr "ブロークンヒル"
+
+msgid "Australia/Queensland"
+msgstr "クイーンズランド"
+
+msgid "Australia/Lindeman"
+msgstr "リンデマン"
+
+msgid "Australia/Lord_Howe"
+msgstr "ロードハウ"
+
+msgid "Australia/Canberra"
+msgstr "キャンベラ"
+
+msgid "Australia/Melbourne"
+msgstr "メルボルン"
+
+msgid "Australia/Hobart"
+msgstr "ホーバート"
+
+msgid "Oceania/US"
+msgstr "南太平洋の米領諸島"
+
+msgid "Pacific/Johnston"
+msgstr "ジョンストン"
+
+msgid "Pacific/Midway"
+msgstr "ミッドウェー"
+
+msgid "Pacific/Wake"
+msgstr "ウエーク"
+
+msgid "Oceania/MH"
+msgstr "マーシャル諸島"
+
+msgid "Pacific/Kwajalein"
+msgstr "クアジャリン"
+
+msgid "Pacific/Majuro"
+msgstr "マジュロ"
+
+msgid "Oceania/NZ"
+msgstr "ニュージーランド"
+
+msgid "Pacific/Auckland"
+msgstr "オークランド"
+
+msgid "Pacific/Chatham"
+msgstr "チャタム"
+
+msgid "Oceania/FM"
+msgstr "ミクロネシア"
+
+msgid "Pacific/Kosrae"
+msgstr "コスラエ"
+
+msgid "Pacific/Ponape"
+msgstr "ポナペ"
+
+msgid "Pacific/Truk"
+msgstr "トラック"
+
+msgid "Pacific/Yap"
+msgstr "ヤップ"
+
+msgid "Oceania/KI"
+msgstr "キリバス"
+
+msgid "Pacific/Enderbury"
+msgstr "エンダーベリー"
+
+msgid "Pacific/Kiritimati"
+msgstr "キリティマティ"
+
+msgid "Pacific/Tarawa"
+msgstr "タラワ"
+
+msgid "Oceania/PF"
+msgstr "フランス領ポリネシア"
+
+msgid "Pacific/Gambier"
+msgstr "ガンビア"
+
+msgid "Pacific/Marquesas"
+msgstr "マルケサス"
+
+msgid "Pacific/Tahiti"
+msgstr "タヒチ"
+
+msgid "Antarctica/AQ"
+msgstr "南極"
+
+msgid "Antarctica/Casey"
+msgstr "ケーシー"
+
+msgid "Antarctica/DumontDUrville"
+msgstr "デュモン・ドゥビル"
+
+msgid "Antarctica/Mawson"
+msgstr "モーソン"
+
+msgid "Antarctica/McMurdo"
+msgstr "マクマード"
+
+msgid "Antarctica/Palmer"
+msgstr "パーマー"
+
+msgid "Antarctica/South_Pole"
+msgstr "南極点"
+
+msgid "Atlantic/PT"
+msgstr "大西洋のポルトガル領諸島"
+
+msgid "Atlantic/Azores"
+msgstr "アゾレス"
+
+msgid "Atlantic/Madeira"
+msgstr "マディラ"
+
+msgid "UTC/UTC"
+msgstr "UTC オフセット"
+
+msgid "Etc/UTC"
+msgstr "UTC"
+
+msgid "Etc/GMT+1"
+msgstr "UTC+1:00"
+
+msgid "Etc/GMT+2"
+msgstr "UTC+2:00"
+
+msgid "Etc/GMT+3"
+msgstr "UTC+3:00"
+
+msgid "Etc/GMT+4"
+msgstr "UTC+4:00"
+
+msgid "Etc/GMT+5"
+msgstr "UTC+5:00"
+
+msgid "Etc/GMT+6"
+msgstr "UTC+6:00"
+
+msgid "Etc/GMT+7"
+msgstr "UTC+7:00"
+
+msgid "Etc/GMT+8"
+msgstr "UTC+8:00"
+
+msgid "Etc/GMT+9"
+msgstr "UTC+9:00"
+
+msgid "Etc/GMT+10"
+msgstr "UTC+10:00"
+
+msgid "Etc/GMT+11"
+msgstr "UTC+11:00"
+
+msgid "Etc/GMT+12"
+msgstr "UTC+12:00"
+
+msgid "Etc/GMT-1"
+msgstr "UTC-1:00"
+
+msgid "Etc/GMT-2"
+msgstr "UTC-2:00"
+
+msgid "Etc/GMT-3"
+msgstr "UTC-3:00"
+
+msgid "Etc/GMT-4"
+msgstr "UTC-4:00"
+
+msgid "Etc/GMT-5"
+msgstr "UTC-5:00"
+
+msgid "Etc/GMT-6"
+msgstr "UTC-6:00"
+
+msgid "Etc/GMT-7"
+msgstr "UTC-7:00"
+
+msgid "Etc/GMT-8"
+msgstr "UTC-8:00"
+
+msgid "Etc/GMT-9"
+msgstr "UTC-9:00"
+
+msgid "Etc/GMT-10"
+msgstr "UTC-10:00"
+
+msgid "Etc/GMT-11"
+msgstr "UTC-11:00"
+
+msgid "Etc/GMT-12"
+msgstr "UTC-12:00"
+
+msgid "Etc/GMT-13"
+msgstr "UTC-13:00"
+
+msgid "Etc/GMT-14"
+msgstr "UTC-14:00"
+
+#
+# ISO 3166 Country Code
+#
+
+msgid "ad"  
+msgstr "アンドラ"
+
+msgid "ae"  
+msgstr "アラブ首長国連邦"
+
+msgid "af"
+msgstr "アフガニスタン"
+
+msgid "ag"  
+msgstr "アンティグア−バーブーダ"
+
+msgid "ai"  
+msgstr "アングィラ"
+
+msgid "al"  
+msgstr "アルバニア"
+
+msgid "AM"
+msgstr "アルメニア"
+
+msgid "an"  
+msgstr "オランダ領アンチル諸島"
+
+msgid "ao"  
+msgstr "アンゴラ"
+
+msgid "aq"  
+msgstr "南極"
+
+msgid "ar"  
+msgstr "アルゼンチン"
+
+msgid "as"  
+msgstr "アメリカ領サモア"
+
+msgid "at"  
+msgstr "オーストリア"
+
+msgid "au" 
+msgstr "オーストラリア"
+
+msgid "aw" 
+msgstr "アルーバ"
+
+msgid "az"  
+msgstr "アゼルバイジャン"
+
+msgid "ba"  
+msgstr "ボスニア・ヘルツェゴビナ"
+
+msgid "bb"  
+msgstr "バルバドス"
+
+msgid "bd"  
+msgstr "バングラデシュ"
+
+msgid "be"  
+msgstr "ベルギー"
+
+msgid "bf"  
+msgstr "ブルキナファソ "
+
+msgid "bg" 
+msgstr "ブルガリア"
+
+msgid "bh"  
+msgstr "バーレーン"
+
+msgid "bi"  
+msgstr "ブルンジ"
+
+msgid "bj"  
+msgstr "ベニン"
+
+msgid "bm"  
+msgstr "バミューダ"
+
+msgid "bn"  
+msgstr "ブルネイ・ダルサラーム"
+
+msgid "bo"  
+msgstr "ボリビア"
+
+msgid "br"  
+msgstr "ブラジル"
+
+msgid "bs"  
+msgstr "バハマ"
+
+msgid "bt"  
+msgstr "ブータン"
+
+msgid "bv"  
+msgstr "ブーベ島"
+
+msgid "bw"  
+msgstr "ボツワナ"
+
+msgid "by"  
+msgstr "ベラルーシ"
+
+msgid "bz"  
+msgstr "ベリーズ"
+
+msgid "ca"  
+msgstr "カナダ"
+
+msgid "cc"
+msgstr "ココス (キーリング) 諸島"
+
+msgid "cf"  
+msgstr "中央アフリカ共和国"
+
+msgid "cg" 
+msgstr "コンゴ"
+
+msgid "ch" 
+msgstr "スイス"
+
+msgid "ci"  
+msgstr "象牙海岸共和国 (コートジボアール)"
+
+msgid "ck" 
+msgstr "クック諸島"
+
+msgid "cl"  
+msgstr "チリ"
+
+msgid "cm"  
+msgstr "カメルーン"
+
+msgid "cn"  
+msgstr "中国"
+
+msgid "co"  
+msgstr "コロンビア"
+
+msgid "cr"  
+msgstr "コスタリカ"
+
+msgid "cs"  
+msgstr "旧チェコスロバキア"
+
+msgid "cu"  
+msgstr "キューバ"
+
+msgid "cv"  
+msgstr "カーボベルデ"
+
+msgid "cx"  
+msgstr "クリスマス島"
+
+msgid "cy"  
+msgstr "キプロス"
+
+msgid "cz"  
+msgstr "チェコ共和国"
+
+msgid "de"  
+msgstr "ドイツ"
+
+msgid "dj"  
+msgstr "ジブチ"
+
+msgid "dk" 
+msgstr "デンマーク"
+
+msgid "dm"  
+msgstr "ドミニカ"
+
+msgid "do"  
+msgstr "ドミニカ共和国"
+
+msgid "dz"  
+msgstr "アルジェリア"
+
+msgid "ec"  
+msgstr "エクアドル"
+
+msgid "ee"  
+msgstr "エストニア"
+
+msgid "eg"  
+msgstr "エジプト"
+
+msgid "eh"  
+msgstr "西サハラ"
+
+msgid "er"  
+msgstr "エリトリア"
+
+msgid "es"  
+msgstr "スペイン"
+
+msgid "et"  
+msgstr "エチオピア"
+
+msgid "fi"  
+msgstr "フィンランド"
+
+msgid "fj" 
+msgstr "フィージー"
+
+msgid "fk"  
+msgstr "フォークランド諸島"
+
+msgid "fm"  
+msgstr "ミクロネシア"
+
+msgid "fo"  
+msgstr "フェロー諸島"
+
+msgid "fr"  
+msgstr "フランス"
+
+msgid "fx"  
+msgstr "フランス (ヨーロッパ領)"
+
+msgid "ga"  
+msgstr "ガボン"
+
+msgid "gb"  
+msgstr "英国"
+
+msgid "gd"  
+msgstr "グレナダ"
+
+msgid "ge"  
+msgstr "グルジア"
+
+msgid "gf"  
+msgstr "仏領ギアナ"
+
+msgid "gh"  
+msgstr "ガーナ"
+
+msgid "gi"  
+msgstr "ジブラルタル"
+
+msgid "gl" 
+msgstr "グリーンランド"
+
+msgid "gm"  
+msgstr "ガンビア"
+
+msgid "gn"  
+msgstr "ギニア"
+
+msgid "gp"  
+msgstr "グアドループ島 (フランス)"
+
+msgid "gq"  
+msgstr "赤道ギニア"
+
+msgid "gr"  
+msgstr "ギリシャ"
+
+msgid "gs"  
+msgstr "サウスジョージア島およびサウスサンドイッチ諸島"
+
+msgid "gt"  
+msgstr "グアテマラ"
+
+msgid "gu" 
+msgstr "グアム (米国)"
+
+msgid "gw"  
+msgstr "ギニア・ビサウ"
+
+msgid "gy"  
+msgstr "ガイアナ"
+
+msgid "hk"  
+msgstr "香構`"
+
+msgid "hm" 
+msgstr "ハード・マクドナルド諸島"
+
+msgid "hn"  
+msgstr "ホンジュラス"
+
+msgid "hr"  
+msgstr "クロアチア"
+
+msgid "ht"  
+msgstr "ハイチ"
+
+msgid "hu"  
+msgstr "ハンガリー"
+
+msgid "id"  
+msgstr "インドネシア"
+
+msgid "ie"  
+msgstr "アイルランド"
+
+msgid "il"  
+msgstr "イスラエル"
+
+msgid "in"  
+msgstr "インド"
+
+msgid "io"  
+msgstr "インド洋英国領"
+
+msgid "iq"  
+msgstr "イラク"
+
+msgid "ir"  
+msgstr "イラン"
+
+msgid "is"  
+msgstr "アイスランド"
+
+msgid "it"  
+msgstr "イタリア"
+
+msgid "jm" 
+msgstr "ジャマイカ"
+
+msgid "jo"  
+msgstr "ヨルダン"
+
+msgid "jp"  
+msgstr "日本"
+
+msgid "ke"  
+msgstr "ケニア"
+
+msgid "kg"  
+msgstr "キルギスタン"
+
+msgid "kh"  
+msgstr "カンボジア"
+
+msgid "ki"  
+msgstr "キリバス"
+
+msgid "km" 
+msgstr "コモロ"
+
+msgid "kn"  
+msgstr "セントキッツ・ネイビスアンギラ"
+
+msgid "kp"  
+msgstr "北朝鮮"
+
+msgid "kr"  
+msgstr "韓国"
+
+msgid "kw" 
+msgstr "クウェート"
+
+msgid "ky"  
+msgstr "ケイマン諸島"
+
+msgid "kz"  
+msgstr "カザフスタン"
+
+msgid "la"  
+msgstr "ラオス"
+
+msgid "lb"  
+msgstr "レバノン"
+
+msgid "lc"  
+msgstr "セントルシア"
+
+msgid "li"  
+msgstr "リヒテンシュタイン"
+
+msgid "lk" 
+msgstr "スリランカ"
+
+msgid "lr"  
+msgstr "リベリア"
+
+msgid "ls"  
+msgstr "レソト"
+
+msgid "lt"  
+msgstr "リトアニア"
+
+msgid "lu" 
+msgstr "ルクセンブルク"
+
+msgid "lv" 
+msgstr "ラトビア"
+
+msgid "ly"  
+msgstr "リビア"
+
+msgid "ma"  
+msgstr "モロッコ"
+
+msgid "mc"  
+msgstr "モナコ"
+
+msgid "md"  
+msgstr "モルダビア"
+
+msgid "mg"  
+msgstr "マダガスカル"
+
+msgid "mh"  
+msgstr "マーシャル諸島"
+
+msgid "mk"  
+msgstr "マケドニア"
+
+msgid "ml"  
+msgstr "マリ"
+
+msgid "mm"
+msgstr "ミャンマー"
+
+msgid "mn" 
+msgstr "モンゴル"
+
+msgid "mo" 
+msgstr "マカオ"
+
+msgid "mp" 
+msgstr "北マリアナ諸島"
+
+msgid "mq" 
+msgstr "マルチニーク島 (フランス)"
+
+msgid "mr"  
+msgstr "モーリタニア"
+
+msgid "ms"  
+msgstr "モンセラット"
+
+msgid "mt"  
+msgstr "マルタ"
+
+msgid "mu" 
+msgstr "モーリシャス"
+
+msgid "mv" 
+msgstr "モルジブ"
+
+msgid "mw"  
+msgstr "マラウイ"
+
+msgid "mx"  
+msgstr "メキシコ"
+
+msgid "my"  
+msgstr "マレーシア"
+
+msgid "mz"  
+msgstr "モザンビーク"
+
+msgid "na"  
+msgstr "ナミビア"
+
+msgid "nc"  
+msgstr "ニューカレドニア (フランス)"
+
+msgid "ne"  
+msgstr "ニジェール"
+
+msgid "nf"  
+msgstr "ノーフォーク島"
+
+msgid "ng" 
+msgstr "ナイジェリア"
+
+msgid "ni"  
+msgstr "ニカラグア"
+
+msgid "nl"  
+msgstr "オランダ"
+
+msgid "no"  
+msgstr "ノルウェー"
+
+msgid "np"  
+msgstr "ネパール"
+
+msgid "nr"  
+msgstr "ナウル"
+
+msgid "nt"  
+msgstr "中立地帯"
+
+msgid "nu" 
+msgstr "ニウエ"
+
+msgid "nz"  
+msgstr "ニュージーランド"
+
+msgid "om" 
+msgstr "オマーン"
+
+msgid "pa"  
+msgstr "パナマ"
+
+msgid "pe"  
+msgstr "ペルー"
+
+msgid "pf"  
+msgstr "フランス領ポリネシア"
+
+msgid "pg" 
+msgstr "パプアニューギニア"
+
+msgid "ph"  
+msgstr "フィリピン"
+
+msgid "pk"  
+msgstr "パキスタン"
+
+msgid "pl"  
+msgstr "ポーランド"
+
+msgid "PM"
+msgstr "サンピエール・エ・ミクロン島"
+
+msgid "pn"  
+msgstr "ピトケアン島"
+
+msgid "pr"  
+msgstr "プエルトリコ"
+
+msgid "pt"  
+msgstr "ポルトガル"
+
+msgid "pw"  
+msgstr "パラウ"
+
+msgid "py"  
+msgstr "パラグアイ"
+
+msgid "qa"  
+msgstr "カタール"
+
+msgid "re"  
+msgstr "レユニオン島 (フランス)"
+
+msgid "ro"  
+msgstr "ルーマニア"
+
+msgid "ru"  
+msgstr "ロシア連邦"
+
+msgid "rw"  
+msgstr "ルワンダ"
+
+msgid "sa"  
+msgstr "サウジアラビア"
+
+msgid "sb"  
+msgstr "ソロモン諸島"
+
+msgid "sc"  
+msgstr "セーシェル"
+
+msgid "sd"  
+msgstr "スーダン"
+
+msgid "se"  
+msgstr "スウェーデン"
+
+msgid "sg"  
+msgstr "シンガポール"
+
+msgid "sh"  
+msgstr "セントヘレナ"
+
+msgid "si"  
+msgstr "スロベニア"
+
+msgid "sj"  
+msgstr "スバールバル／ヤンマイエン諸島"
+
+msgid "sk" 
+msgstr "スロバキア共和国"
+
+msgid "sl"  
+msgstr "シエラレオーネ"
+
+msgid "sm"
+msgstr "サンマリノ"
+
+msgid "sn" 
+msgstr "セネガル"
+
+msgid "so"  
+msgstr "ソマリア"
+
+msgid "sr"  
+msgstr "スリナム"
+
+msgid "st"  
+msgstr "サントーメ・プリンシペ"
+
+msgid "su"  
+msgstr "旧ソ連"
+
+msgid "sv"  
+msgstr "エルサルバドル"
+
+msgid "sy"  
+msgstr "シリア"
+
+msgid "sz"  
+msgstr "スワジランド"
+
+msgid "tc"  
+msgstr "タークス／カイコス諸島"
+
+msgid "td"  
+msgstr "チャド"
+
+msgid "tf"  
+msgstr "インド洋南部フランス領"
+
+msgid "tg" 
+msgstr "トーゴ"
+
+msgid "th" 
+msgstr "タイ"
+
+msgid "tj"  
+msgstr "タジキスタン"
+
+msgid "tk" 
+msgstr "トケラウ"
+
+msgid "tm"  
+msgstr "トルクメニスタン"
+
+msgid "tn"  
+msgstr "チュニジア"
+
+msgid "to"  
+msgstr "トンガ"
+
+msgid "tp"  
+msgstr "東ティモール"
+
+msgid "tr"  
+msgstr "トルコ"
+
+msgid "tt"  
+msgstr "トリニダード・トバゴ"
+
+msgid "tv" 
+msgstr "ツバル"
+
+msgid "tw"  
+msgstr "台湾"
+
+msgid "tz"  
+msgstr "タンザニア"
+
+msgid "ua"  
+msgstr "ウクライナ"
+
+msgid "ug"  
+msgstr "ウガンダ"
+
+msgid "uk"  
+msgstr "英国"
+
+msgid "um" 
+msgstr "米国領のその他の諸島"
+
+msgid "us"  
+msgstr "米国"
+
+msgid "uy"  
+msgstr "ウルグアイ"
+
+msgid "uz"  
+msgstr "ウズベキスタン"
+
+msgid "va"  
+msgstr "バチカン市国"
+
+msgid "vc"  
+msgstr "セントビンセント／グレナディーン諸島"
+
+msgid "ve"  
+msgstr "ベネズエラ"
+
+msgid "vg"  
+msgstr "ヴァージン諸島 (英領)"
+
+msgid "vi"  
+msgstr "ヴァージン諸島 (米領)"
+
+msgid "vn"  
+msgstr "ベトナム"
+
+msgid "vu"  
+msgstr "バヌアツ"
+
+msgid "wf"  
+msgstr "ウォリス・フトゥーナ諸島"
+
+msgid "ws"  
+msgstr "サモア"
+
+msgid "ye"  
+msgstr "イエメン"
+
+msgid "yt"  
+msgstr "マヨット島"
+
+msgid "yu"  
+msgstr "ユーゴスラビア"
+
+msgid "za"  
+msgstr "南アフリカ共和国"
+
+msgid "zm" 
+msgstr "ザンビア"
+
+msgid "zr"  
+msgstr "コンゴ民主共和国"
+
+msgid "zw"  
+msgstr "ジンバブエ"
+
+
+#
+# ISO 639 Language Code
+#
+
+msgid "lang_aa"
+msgstr "アファー語"
+
+msgid "lang_ab"
+msgstr "アプハズ語"
+
+msgid "lang_af"
+msgstr "アフリカーンス語"
+
+msgid "lang_am"
+msgstr "アムハラ語"
+
+msgid "lang_ar"
+msgstr "アラビア語"
+
+msgid "lang_as"
+msgstr "アッサム語"
+
+msgid "lang_ay"
+msgstr "アイマラ語"
+
+msgid "lang_az"
+msgstr "アゼルバイジャン語"
+
+msgid "lang_ba"
+msgstr "バシキール語"
+
+msgid "lang_be"
+msgstr "白ロシア語"
+
+msgid "lang_bg"
+msgstr "ブルガリア語"
+
+msgid "lang_bh"
+msgstr "ビハール語"
+
+msgid "lang_bi"
+msgstr "ビスラマ語"
+
+msgid "lang_bn"
+msgstr "ベンガル語"
+
+msgid "lang_bo"
+msgstr "チベット語"
+
+msgid "lang_br"
+msgstr "ブルトン語"
+
+msgid "lang_ca"
+msgstr "カタロニア語"
+
+msgid "lang_co"
+msgstr "コルシカ島方言"
+
+msgid "lang_cs"
+msgstr "チェコ語"
+
+msgid "lang_cy"
+msgstr "ウェールズ語"
+
+msgid "lang_da"
+msgstr "デンマーク語"
+
+msgid "lang_de"
+msgstr "ドイツ語"
+
+msgid "lang_dz"
+msgstr "ブータン語"
+
+msgid "lang_el"
+msgstr "ギリシア語"
+
+msgid "lang_en"
+msgstr "英語"
+
+msgid "lang_eo"
+msgstr "エスペラント"
+
+msgid "lang_es"
+msgstr "スペイン語"
+
+msgid "lang_et"
+msgstr "エストニア語"
+
+msgid "lang_eu"
+msgstr "バスク語"
+
+msgid "lang_fa"
+msgstr "ペルシャ語"
+
+msgid "lang_fi"
+msgstr "フィンランド語"
+
+msgid "lang_fj"
+msgstr "フィージー語"
+
+msgid "lang_fo"
+msgstr "フェロー語"
+
+msgid "lang_fr"
+msgstr "フランス語"
+
+msgid "lang_fy"
+msgstr "フリジア語"
+
+msgid "lang_ga"
+msgstr "アイルランド語; ゲール語"
+
+msgid "lang_gd"
+msgstr "スコットランド語; ゲール語"
+
+msgid "lang_gl"
+msgstr "ガリチア語"
+
+msgid "lang_gn"
+msgstr "グアラニー語"
+
+msgid "lang_gu"
+msgstr "グジャラーティー語"
+
+msgid "lang_ha"
+msgstr "ハウサ語"
+
+msgid "lang_he"
+msgstr "ヘブライ語"
+
+msgid "lang_hi"
+msgstr "ヒンディー語"
+
+msgid "lang_hr"
+msgstr "クロアチア語"
+
+msgid "lang_hu"
+msgstr "ハンガリー語"
+
+msgid "lang_hy"
+msgstr "アメリカ英語"
+
+msgid "lang_ia"
+msgstr "インターリングァ"
+
+msgid "lang_ie"
+msgstr "インターリングァ"
+
+msgid "lang_ik"
+msgstr "イヌピアック語"
+
+msgid "lang_in"
+msgstr "インドネシア語"
+
+msgid "lang_is"
+msgstr "アイスランド語"
+
+msgid "lang_it"
+msgstr "イタリア語"
+
+msgid "lang_ja"
+msgstr "日本語"
+
+msgid "lang_ji"
+msgstr "イディッシュ語"
+
+msgid "lang_jv"
+msgstr "ジャワ語"
+
+msgid "lang_ka"
+msgstr "グルジア語"
+
+msgid "lang_kk"
+msgstr "カザーフ語"
+
+msgid "lang_kl"
+msgstr "グリーンランド語"
+
+msgid "lang_km"
+msgstr "カンボジア語"
+
+msgid "lang_kn"
+msgstr "カンナダ語"
+
+msgid "lang_ko"
+msgstr "韓国語"
+
+msgid "lang_ks"
+msgstr "カシミール語"
+
+msgid "lang_ku"
+msgstr "クルド語"
+
+msgid "lang_ky"
+msgstr "キルギス語"
+
+msgid "lang_la"
+msgstr "ラテン語"
+
+msgid "lang_ln"
+msgstr "リンガラ語"
+
+msgid "lang_lo"
+msgstr "ラオ語"
+
+msgid "lang_lt"
+msgstr "リトアニア語"
+
+msgid "lang_lv"
+msgstr "ラトヴィア語; レット語"
+
+msgid "lang_mg"
+msgstr "マラガシ語"
+
+msgid "lang_mi"
+msgstr "マオリ語"
+
+msgid "lang_mk"
+msgstr "マケドニア語"
+
+msgid "lang_ml"
+msgstr "マラヤーラム語"
+
+msgid "lang_mn"
+msgstr "蒙古語"
+
+msgid "lang_mo"
+msgstr "モルダヴィア語"
+
+msgid "lang_mr"
+msgstr "マラーティー語"
+
+msgid "lang_ms"
+msgstr "マライ語"
+
+msgid "lang_mt"
+msgstr "マルタ語"
+
+msgid "lang_my"
+msgstr "ビルマ語"
+
+msgid "lang_na"
+msgstr "ナウル語"
+
+msgid "lang_ne"
+msgstr "ネパール語"
+
+msgid "lang_nl"
+msgstr "オランダ語"
+
+msgid "lang_no"
+msgstr "ノルウェー語"
+
+msgid "lang_oc"
+msgstr "オック語"
+
+msgid "lang_om"
+msgstr "アファン語 (オロモ語)"
+
+msgid "lang_or"
+msgstr "オリヤー語"
+
+msgid "lang_pa"
+msgstr "パンジャービー語"
+
+msgid "lang_pl"
+msgstr "ポーランド語"
+
+msgid "lang_ps"
+msgstr "パシュトー語; プシュトゥー語"
+
+msgid "lang_pt"
+msgstr "ポルトガル語"
+
+msgid "lang_qu"
+msgstr "キチュワ語"
+
+msgid "lang_rm"
+msgstr "レトロマン語"
+
+msgid "lang_rn"
+msgstr "クルンディー語"
+
+msgid "lang_ro"
+msgstr "ルーマニア語"
+
+msgid "lang_ru"
+msgstr "ロシア語"
+
+msgid "lang_rw"
+msgstr "キンヤルワンダ語"
+
+msgid "lang_sa"
+msgstr "梵語"
+
+msgid "lang_sd"
+msgstr "シンディー語"
+
+msgid "lang_sg"
+msgstr "サンゴ語"
+
+msgid "lang_sh"
+msgstr "セルボ・クロアチア語"
+
+msgid "lang_si"
+msgstr "シンハラ語"
+
+msgid "lang_sk"
+msgstr "スロヴァキア語"
+
+msgid "lang_sl"
+msgstr "スロヴェニア語"
+
+msgid "lang_sm"
+msgstr "サモア語"
+
+msgid "lang_sn"
+msgstr "ショナ語"
+
+msgid "lang_so"
+msgstr "ソマリ語"
+
+msgid "lang_sq"
+msgstr "アルバニア語"
+
+msgid "lang_sr"
+msgstr "セルビア語"
+
+msgid "lang_ss"
+msgstr "シスワティ語"
+
+msgid "lang_st"
+msgstr "セソト語"
+
+msgid "lang_su"
+msgstr "スンダ語"
+
+msgid "lang_sv"
+msgstr "スウェーデン語"
+
+msgid "lang_sw"
+msgstr "スワヒリ語"
+
+msgid "lang_ta"
+msgstr "タミル語"
+
+msgid "lang_te"
+msgstr "テルグ語"
+
+msgid "lang_tg"
+msgstr "タジク語"
+
+msgid "lang_th"
+msgstr "タイ語"
+
+msgid "lang_ti"
+msgstr "ティグリニア語"
+
+msgid "lang_tk"
+msgstr "トゥルクメン語"
+
+msgid "lang_tl"
+msgstr "タガログ語"
+
+msgid "lang_tn"
+msgstr "セツワナ語"
+
+msgid "lang_to"
+msgstr "トンガ語"
+
+msgid "lang_tr"
+msgstr "トルコ語"
+
+msgid "lang_ts"
+msgstr "トソンガ語"
+
+msgid "lang_tt"
+msgstr "タタール語"
+
+msgid "lang_tw"
+msgstr "トウィ語"
+
+msgid "lang_uk"
+msgstr "ウクライナ語"
+
+msgid "lang_ur"
+msgstr "ウルドゥー語"
+
+msgid "lang_uz"
+msgstr "ウズベク語"
+
+msgid "lang_vi"
+msgstr "ベトナム語"
+
+msgid "lang_vo"
+msgstr "ボラピュック語"
+
+msgid "lang_wo"
+msgstr "ウォロフ語"
+
+msgid "lang_xh"
+msgstr "ホサ語"
+
+msgid "lang_yo"
+msgstr "ヨルバ語"
+
+msgid "lang_zh"
+msgstr "中国語"
+
+msgid "lang_zu"
+msgstr "ズールー語"
+
+#
+#Translation for specific locales
+#
+
+msgid "locale_zh_CN"
+msgstr "簡体字中国語"
+
+msgid "locale_zh_TW"
+msgstr "繁体字中国語"

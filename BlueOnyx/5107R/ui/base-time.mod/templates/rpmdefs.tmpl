@@ -1,0 +1,154 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Sat Aug 22 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ19
+- Removed strict from constructor/syncTimeZone.pl
+
+* Mon Dec 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ18
+- Fixed constructor/syncTimeZone.pl to correctly write /etc/sysconfig/clocks
+- No need to use Sauce's integrated write functions for something that simple.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ17
+- Rebuilt for BlueOnyx.
+
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ16
+- Ported work around from 6105R over to allow setting of NTP server and TimeZone.
+
+* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ15
+- Removed ability to set NTP server for VPS's in ui/web/setTime.php
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ14
+- German locales added.
+
+* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bleuquartz.org> 1.0.1-62BQ13
+- add syncTimeZone.pl for constructor.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ12
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-62BQ11
+- Fixed duplicate include issue.
+
+* Sat Dec 2 2006 Brian Smith <brian@nuonce.net> 1.0.1-62BQ10
+- Added Taco's Patch
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-62BQ9
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-62BQ8
+- remove post-install script for glue.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-62BQ7
+- rebuild with devel-tools 0.5.1
+
+* Thu Sep 09 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-62BQ6
+- add Require sausalito-cce-client.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-62BQ5
+- modified Group tag.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-62BQ4
+- fix security problem that can be accessed unauthorized function.
+- clean up spec file.
+<end $CHANGELOG>

@@ -1,0 +1,49 @@
+<!-- Author: Michael Stauber mstauber@solarspeed.net -->
+<!-- Copyright 2006-2008, Stauber Multimedia Design. All rights reserved. -->
+
+<class 
+    name="MYSQL_DBs" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property 
+        name="fqdn" type="fqdn" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="username" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="pass" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="DB" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="host" type="scalar" default="localhost"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="port" type="scalar" default="3306"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="hidden" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+</class>
+

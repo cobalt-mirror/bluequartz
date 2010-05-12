@@ -1,0 +1,34 @@
+#!/bin/bash
+# Copyright 2001 Sun Microsystems, Inc., All rights reserved.
+#
+# Author: Joshua Uziel
+# Check if we set the master for wake-on-lan before it shuts down.
+# Touch a file to signal waking slaves if it is and then reboot.
+
+WOLFILE="/etc/ups/WAKESLAVES"
+CONFIG="/etc/sysconfig/ups"
+
+# Get the $STATE and $WAKESLAVES settings
+. $CONFIG
+
+if [ "$STATE" = "master" ] && [ "$WAKESLAVES" = "true" ]; then
+	echo "# Wake the slaves on the next reboot." > $WOLFILE
+fi
+
+# Send an email to all active monitor recipients letting them know
+# about the situation.
+/usr/bin/ups-emailstatus "This system is being shut down."
+
+# Stop the model-specific driver from running and restart it giving
+# the kill command.
+if [ "$STATE" = "master" ]; then
+	killall $MODEL
+	/usr/bin/$MODEL -k $DEVICE 2>&1 /dev/null &
+
+	# Just in case, sleep for a few seconds to let the kill proceed.
+	sleep 8
+fi
+
+# Exit the script executing what the UPS stuff would have run anyways.
+exec /sbin/shutdown -h +0
+

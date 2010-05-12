@@ -1,0 +1,244 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+/etc/suexec.conf
+/etc/httpd/conf.d/ssl_perl.conf
+/usr/sausalito/sbin/fix_302_httpd_redirects.pl 
+/usr/sausalito/sbin/fix_web-and-email-server-aliasses.pl 
+/usr/sausalito/sbin/set_default_php_settings.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+
+if [ $1 = 2 ]; then
+  /usr/sausalito/handlers/base/apache/preview.pl -c
+fi
+
+# remove server.conf
+if [ -f /etc/httpd/conf.d/server.conf ]; then
+  /bin/rm -f /etc/httpd/conf.d/server.conf
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Mon Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
+- Modified glue/handlers/virtual_host.pl to change vhost redirects from 302 to 301 for better search engine support.
+- Added helper scripts sbin/fix_302_httpd_redirects.pl sbin/fix_web-and-email-server-aliasses.pl sbin/set_default_php_settings.pl
+
+* Mon Aug 31 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
+- Modified glue/httpd/ssl_perl.conf to add Godaddy support through separate ca-chain fine in Vsite certs directory.
+
+* Sat Jun 13 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
+- Added cced.init restart to post-install in templates/rpmdefs.tmpl
+
+* Fri Jun 12 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Fixed bug in glue/handlers/regen_httpd_figlet which wouldn't update the hostname in our httpd.conf
+- Added constructor/set_apache_hostname.pl which updates the hostname in httpd.conf of both Apache and Admserv.
+- Added provisions to modify 'AllowOverride' and 'Options' settings in /etc/httpd/conf.d/blueonyx.conf through the GUI.
+- The changes for that are as follows:
+- Extended glue/schemas/apache.schema with database fields for the new settings.
+- Added constructor/import_apache_settings.pl to import existing settings from /etc/httpd/conf.d/blueonyx.conf into CODB.
+- Modified ui/web/apache.php with new UI for modifying the settings.
+- Modified ui/web/apacheHandler.php to add ability to store the new switches into CODB.
+- Added glue/handlers/writeback_blueOnyx_conf.pl to write the new CODB changes to /etc/httpd/conf.d/blueonyx.conf
+- Updated glue/conf/Apache.conf with a call to the new handler glue/handlers/writeback_blueOnyx_conf.pl
+- Updated locales for new UI lables. English and German locales are complete, rest are a copy of the English version.
+
+* Wed Apr 08 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ38
+- Fixed small typo in debugging section of glue/httpd/ssl_perl.conf
+
+* Mon Mar 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ37
+- Modified ui/web/apacheHandler.php. Array 'error' needed to be pre-declared and wasn't (PHP5 issue).
+- Ticket http://devel.blueonyx.it/trac/ticket/54
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ36
+- Rebuilt for BlueOnyx.
+
+* Wed Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ35
+- USERWEBS set to 0 by default
+
+* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ34
+- Changed "Apache::PerlSections()" to "Apache2::PerlSections()" in ssl_perl.conf 
+
+* Thu May 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ33
+- preview.pl updated to address cases where param->{ipaddr} is empty
+
+* Mon May 26 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ32
+- Locales updated
+
+* Tue May 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ31
+- Ability added to disable user owned websites.
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ30
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-79-BQ29
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-79BQ28
+- Fixed duplicate include issue.
+
+* Fri Jul 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ27
+- remove .backup.? file after update the package.
+
+* Sun Mar 26 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ26
+- fix typo at post script.
+
+* Sun Mar 26 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ25
+- modify preview.pl to write httpd.conf settings for comand line.
+
+* Sun Mar 26 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ24
+- execute preview.pl when update package.
+- remove server.conf.
+
+* Tue Mar 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ23
+- to make vhosts directory at preview handler, if directory isn't exist.
+
+* Mon Mar 13 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ22
+- fix preview site function.
+
+* Mon Mar 13 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ21
+- fix vhost_addre.pl when preview settings is not exit..
+- remove siteX.include after rollback.
+
+* Sun Mar 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ20
+- add preview site function again.
+
+* Thu Mar 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ19
+- remove preview site function.
+
+* Thu Mar 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ18
+- allow to access perview site with IP address.
+- set php, cgi and ssi settings for preview site same as virtual site.
+
+* Mon Dec 06 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ17
+- modified server.pl about missing in the ModRewrite section.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ16
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Wed Nov 23 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ15
+- clean up ssl_perl.conf.
+
+* Tue Nov 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ14
+- modifies ssl_perl.conf to fix the issue cgi doesn't work with SSL.
+
+* Fri Nov 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ13
+- change config name to server.conf instead of preview.conf.
+
+* Fri Nov 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ12
+- remove preview schemas from vsite_services that isn't needed.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ11
+- add preview site function.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ10
+- rebuild with devel-tools 0.5.1
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ9
+- modified Group tag in rpmdefs.tmpl.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ8
+- add serial number.
+
+* Thu Aug 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-79BQ7
+- clean up spec file.
+<end $CHANGELOG>

@@ -1,0 +1,54 @@
+#!/usr/bin/expect
+# $Id: am_pop.exp 770 2006-06-10 14:28:15Z shibuya $
+
+source /usr/sausalito/swatch/statecodes.tcl
+
+# don't echo the dialog
+log_user 0
+
+# we use telnet to connect
+spawn telnet localhost 110
+expect {
+    "Connected to" {}
+    default { # we don't connect properly
+	# try to restart
+	# use catch so we don't report errors on the exec,
+	# only on the dialog itself
+	catch {exec /etc/rc.d/init.d/dovecot restart >&/dev/null} result
+	sleep 3
+	# redo test, fail if get an error again
+	spawn telnet localhost 110
+	expect {
+	    "Connected to" {}
+	    default {
+		puts -nonewline $env(redMsg);
+		flush stdout;
+		exit $AM_STATE_RED;
+	    }
+	}
+    }
+}
+
+expect {
+    "+OK " {}
+    default { # fail if we're not greeted properly
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+
+send "QUIT\r"
+expect {
+    "+OK " {}
+    default { # fail if we're not ack-ed properly
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+
+puts -nonewline $env(greenMsg)
+flush stdout;
+exit $AM_STATE_GREEN
+

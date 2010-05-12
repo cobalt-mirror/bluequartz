@@ -1,0 +1,9 @@
+<item id="base_java_manager" label="[[base-java.TomcatManager]]"
+    description="[[base-java.TomcatManager_desc]]"
+    url="/base/java/tomcat-manager.php"
+>
+    <parent id="base_controlpanel" order="20"> 
+        <access require="admin"/>             
+    </parent>
+</item>
+
