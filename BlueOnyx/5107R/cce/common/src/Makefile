@@ -12,6 +12,7 @@ SRCS = \
 	stresc.c \
 	xml_parse.c \
 	cce_debug_mask.c \
+	glib-ghash.c \
 	intspan.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 DIRLIB = ../common.a

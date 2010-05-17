@@ -5,6 +5,8 @@
 #
 include ../../../dynamic.mk
 
+LIBARCH=$(shell if [ `uname -m` = "x86_64" ]; then  echo "lib64"; else  echo "lib"; fi)
+
 PHP_BASE = `php-config --prefix`
 
 LIBNAME = cce
@@ -12,7 +14,8 @@ SHARED_LIB = $(LIBNAME).so
 CCEPHPLIBDIR=$(PREFIX)$(shell php-config --extension-dir)
 CCEPHPCLASSDIR=$(CCE_INSTALLDIR)/ui/libPhp
 
-CFLAGS += -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT 
+#CFLAGS += -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT 
+CFLAGS = -ggdb -Werror  -D_GNU_SOURCE -I/usr/include/glib-2.0/ -I/usr/$(LIBARCH)/glib-2.0/include -I/root/cce/include -I../include -I../../include -I../../../include `php-config --includes` -fPIC -Dbool=char -DHAS_BOOL -fPIC -D_REENTRANT
 SHCFLAGS = -shared -rdynamic  -Wl,-rpath,$(CCE_LIBDIR)
 INCLUDES += -I../include -I../../include \
 	`php-config --includes`
@@ -30,7 +33,7 @@ all: $(SHARED_LIB)
 
 $(SHARED_LIB): $(OBJS)
 	$(CC) $(SHCFLAGS) $^ -o cce.so $(LIBS)
-	
+
 install: $(SHARED_LIB)
 	$(INSTALL) -d $(CCEPHPLIBDIR)
 	$(INSTALL) $(INST_BINFLAGS) cce.so $(CCEPHPLIBDIR)

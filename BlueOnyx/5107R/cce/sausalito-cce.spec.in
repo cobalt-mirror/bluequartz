@@ -15,9 +15,6 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel
 BuildRequires: flex, bison
-%if "%tlas" != "2"
-BuildRequires: glib-ghash
-%endif
 
 %if "%sles" == "9"
 BuildRequires: php4-devel
@@ -40,7 +37,7 @@ sausalito-cce has both the server and client parts of cce.
 %package server
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
-Requires: glib, glib-ghash, pam
+Requires: glib, pam
 %if "%centos" == "4"
 Requires: audit-libs
 %endif
@@ -52,7 +49,7 @@ Configuration Engine.
 %package client
 Group: System Environment/BlueOnyx
 Summary: The CCE client libraries
-Requires: glib, glib-ghash, pam, httpd
+Requires: glib, pam, httpd
 
 %description client
 The cce-client package contains the client-side parts of the Cobalt 
@@ -63,9 +60,6 @@ Configuration Engine.
 
 %build
 make all \
-%if "%tlas" != "2"
-	GLIB_GHASH=true \
-%endif
 	CCETOPDIR=/usr/sausalito
 
 %install
@@ -188,6 +182,9 @@ fi
 %changelog
 
 %changelog 
+* Mon May 10 2010 Rickard Osser <rickard.osser@bluapp.com> 0.81.1-1BO1
+- Made portable between 32-bit and 64-bit.
+- Included glib-ghash in source to reduce external dependency.
 
 * Sun Apr 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.80.4-1BQ45
 - Modified codb/src/impl/oid.c as per [Devel:00390] posted by Greg Kuhnert and [Devel:00385] as per Taco Scargo
