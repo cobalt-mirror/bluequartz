@@ -26,3 +26,7 @@
 
 %dist %{?Build_FC1:%{Build_FC1}}%{?Build_CentOS3:%{Build_CentOS3}}%{?Build_CentOS4:%{Build_CentOS4}}%{?Build_CentOS5:%{Build_CentOS5}}
 
+%debug_package %{nil}
+%_unpackaged_files_terminate_build 0
+%__perl_requires %{!?nil}
+%__arch_install_post %{nil}

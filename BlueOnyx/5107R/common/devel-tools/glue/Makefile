@@ -9,6 +9,7 @@ if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "
   if [ "`rpm -q --qf=%{arch} centos-release`" = "alpha" ]; then echo '5104'; fi; \
 fi; \
 if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "5" ]; then echo '5106'; fi; \
+if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "6" ]; then echo '5107'; fi; \
 )
 
 all:
