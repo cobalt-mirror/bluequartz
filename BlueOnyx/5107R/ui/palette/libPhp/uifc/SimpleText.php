@@ -46,7 +46,8 @@ class SimpleText {
 
 
 	function toHtml() {
-		return("<FONT" . (is_object($this->style) ? " STYLE=\"" . $this->style->toTextStyle() . "\"" : "") . ">" . $this->text . "</FONT>");
+		//return("<FONT" . (is_object($this->style) ? " STYLE=\"" . $this->style->toTextStyle() . "\"" : "") . ">" . $this->text . "</FONT>");
+		return("<FONT" . " STYLE=\"font-size:12px\"" . ">" . $this->text . "</FONT>");
 
 	}
 }
