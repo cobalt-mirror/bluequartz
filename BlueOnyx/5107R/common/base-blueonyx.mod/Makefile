@@ -9,7 +9,7 @@ SERVICE=blueonyx
 BUILD=20100601
 
 VERSION=5107R
-RELEASE=3.$(BUILD)BX01
+RELEASE=3.$(BUILD)BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -22,7 +22,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch sendmail-cf m4 cyrus-sasl perl
+REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl perl postfix vixie-cron
 REQUIRES_GLUE=base-email-capstone base-time-capstone >= 1.0.1-62BQ11 base-user-capstone >= 1.2.0-0BQ1 base-user-glue >= 1.2.0-0BQ1 at
 
 include /usr/sausalito/devel/module.mk
