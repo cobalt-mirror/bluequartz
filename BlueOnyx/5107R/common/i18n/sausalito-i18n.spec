@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BQ19%{?dist}
+Release: 86BX20%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
+- Change of minor version number to BX
+
 * Mon Jun 22 2009 Rickard osser <rickard.osser@bluapp.com> 0.70.2-86BQ19
 - Fixed bug which added characters to mime-encoded headers in I18nMail.pm.
 
