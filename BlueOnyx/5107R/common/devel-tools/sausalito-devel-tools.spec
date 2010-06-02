@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.2
-Release: 1BO2%{?dist}
+Release: 1BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -52,6 +52,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO3
+- Updated rpm-macros
+
 * Wed May 19 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BO2
 - Added 5108R version number for 64-bit build
 - Bumped version number
