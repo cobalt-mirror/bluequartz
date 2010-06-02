@@ -37,9 +37,6 @@ Group: System Environment/BlueOnyx
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-%if "%fedora" == "1"
-Requires: pwdb >= 0.61.1-9BQ7 nss_db >= 2.2-22BQ3
-%endif
 %if "%centos" == "3"
 Requires: pwdb >= 0.61.1-9BQ8 nss_db >= 2.2-20.4BQ1
 %endif
@@ -83,8 +80,8 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/triggers/*
 /etc/build
 /var/www/html/*
-%dir /usr/share/doc/blueonyx-release-5106R
-/usr/share/doc/blueonyx-release-5106R/*
+%dir /usr/share/doc/blueonyx-release-*
+/usr/share/doc/blueonyx-release-*/*
 <end glue>
 
 <begin ui>
@@ -159,30 +156,17 @@ fi
 /usr/sausalito/constructor/base/email/syncEmailService.pl
 /sbin/chkconfig --add blueonyx
 
-# install pgp key
-#/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
-#if [ $? = 1 ]; then
-#  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
-#fi
-
 # install BlueOnyx pgp key
 /bin/rpm -q gpg-pubkey-5202f88b-491b00bc > /dev/null 2>&1
 if [ $? = 1 ]; then
-  /bin/rpm --import /usr/share/doc/blueonyx-release-5106R/RPM-GPG-KEY-NUSOL-5106R
+  /bin/rpm --import /usr/share/doc/blueonyx-release-*/RPM-GPG-KEY-NUSOL-5106R
 fi
 
-
-%if "%fedora" == "1"
-/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
-%endif
-%if "%centos" == "3"
-/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
-%endif
-%if "%centos" == "4"
-/usr/bin/perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
-%endif
 %if "%centos" == "5" 
-#perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo 
+# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
+/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
+%endif 
+%if "%centos" == "6" 
 # Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
 /usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
 %endif 
@@ -265,28 +249,53 @@ fi
 %triggerin glue -- mod_ssl
 /usr/sausalito/scripts/initSSL.sh
 
-%triggerin glue -- sendmail
-if [ ! -f /etc/mail/aliases ]; then
-  if [ -f /etc/mail/aliases.rpmsave ]; then
-    /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
-  else
-    /bin/ln -s /etc/aliases /etc/mail/aliases
-  fi
-  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'root:		admin' >> /etc/mail/aliases
-  fi
-  /etc/init.d/sendmail condrestart
-fi
-if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
-  /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
-    /usr/share/sendmail-cf/hack/popauth.m4
-fi
+#%triggerin glue -- sendmail
+#if [ ! -f /etc/mail/aliases ]; then
+#  if [ -f /etc/mail/aliases.rpmsave ]; then
+#    /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
+#  else
+#    /bin/ln -s /etc/aliases /etc/mail/aliases
+#  fi
+#  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
+#  if [ $? = 1 ]; then
+#    echo 'root:		admin' >> /etc/mail/aliases
+#  fi
+#  /etc/init.d/sendmail condrestart
+#fi
+#if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
+#  /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
+#    /usr/share/sendmail-cf/hack/popauth.m4
+#fi
 
 %triggerin glue -- glibc
 /usr/sausalito/constructor/base/time/syncTimeZone.pl
 
-# for distributions
+# for distributions:
+
+%if "%centos" == "6"
+%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS6.init /etc/init.d/iptables
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS6 /sbin/ifup
+%triggerin glue -- httpd
+/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
+# Fix /etc/logrotate.conf, because we want to rotate daily and we want to compress the logs:
+/usr/bin/perl -pi -e 's|^# rotate log files weekly|# rotate log files daily|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^weekly|daily|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
+%triggerin glue -- logrotate
+/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
+# Fix Logwatch's ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups:
+if [ -f /etc/logwatch/conf/ignore.conf ]; then
+  grep '^warning: "ProFTPD" address/port' /etc/logwatch/conf/ignore.conf > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'warning: "ProFTPD" address/port' >> /etc/logwatch/conf/ignore.conf
+  fi
+fi
+%endif
+
 %if "%centos" == "5"
 %triggerin glue -- iptables
 /bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
@@ -327,23 +336,6 @@ fi
 > /etc/dovecot.conf.new
 /bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
 
-%if "%centos" == "3"
-%triggerin glue -- yum
-/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS3.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS3 /sbin/ifup
-%endif
-
-%if "%fedora" == "1"
-%triggerin glue -- yum
-/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-FC1.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-FC1 /sbin/ifup
-%endif
 <end $TRIGGERIN>
 
 <begin $TRIGGERUN>
@@ -363,6 +355,11 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 3.20100601BX01
+- New Version number 3 for BX on CentOS6
+- New build numbers 5107R (32bit) and 5108R (64bit)
+- Postfix support
 
 * Mon Mar 01 2010 Michael Stauber <mstauber@solarspeed.net> 2.20100301BQ99
 - Included new sendmail.mc with provisions for maxRecipientsPerMessage and correct DontBlameSendmail lines
