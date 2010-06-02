@@ -182,6 +182,9 @@ fi
 %changelog
 
 %changelog 
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX02
+- Version number changed for better consistency.
+
 * Mon May 10 2010 Rickard Osser <rickard.osser@bluapp.com> 0.81.1-1BO1
 - Made portable between 32-bit and 64-bit.
 - Included glib-ghash in source to reduce external dependency.
