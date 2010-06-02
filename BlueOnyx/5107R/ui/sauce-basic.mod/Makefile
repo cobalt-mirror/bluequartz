@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=sauce-basic
 
 VERSION=1.1.0
-RELEASE=49BQ11
+RELEASE=49BX12
 
 # add a buildarch if desired
 BUILDARCH=noarch
