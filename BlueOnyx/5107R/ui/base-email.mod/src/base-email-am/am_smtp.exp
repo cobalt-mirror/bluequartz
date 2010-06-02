@@ -13,7 +13,7 @@ expect {
 	# try to restart
 	# use catch so we don't report errors on the exec,
 	# only on the dialog itself
-	catch {exec /etc/rc.d/init.d/sendmail restart >&/dev/null} result
+	catch {exec /etc/rc.d/init.d/postfix restart >&/dev/null} result
 	sleep 5
 	# redo test, fail if get an error again
 	spawn telnet localhost 25

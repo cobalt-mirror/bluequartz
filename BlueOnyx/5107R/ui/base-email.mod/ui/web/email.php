@@ -49,55 +49,43 @@ $block->processErrors($errors);
 // basic page
 // smtp
 $block->addDivider($factory->getLabel('SMTP', false), 'basic');
-$block->addFormField(
-  $factory->getBoolean("enableServersField", $email["enableSMTP"]),
-  $factory->getLabel("enableServersField"),
-  "basic"
+
+$smtpEnable = $factory->getOption("enableSMTPField", $email["enableSMTP"]);
+$smtpEnable->addFormField(
+  $factory->getBoolean("enableSMTP_Auth", $email["enableSMTP_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSMTPSField", $email["enableSMTPS"]),
-  $factory->getLabel("enableSMTPSField"),
-  "basic"
+$smtp = $factory->getMultiChoice("enableSMTPField");
+$smtp->addOption($smtpEnable);
+$block->addFormField($smtp, $factory->getLabel("enableSMTPField"), "basic");
+
+// smtps
+$smtpsEnable = $factory->getOption("enableSMTPSField", $email["enableSMTPS"]);
+$smtpsEnable->addFormField(
+  $factory->getBoolean("enableSMTPS_Auth", $email["enableSMTPS_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSMTPAuthField", $email["enableSMTPAuth"]),
-  $factory->getLabel("enableSMTPAuthField"),
-  "basic"
+$smtps = $factory->getMultiChoice("enableSMTPSField");
+$smtps->addOption($smtpsEnable);  
+$block->addFormField($smtps, $factory->getLabel("enableSMTPSField"), "basic");
+
+// submission
+$submissionEnable = $factory->getOption("enableSubmissionPortField", $email["enableSubmissionPort"]);
+$submissionEnable->addFormField(
+  $factory->getBoolean("enableSubmission_Auth", $email["enableSubmission_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSubmissionPortField", $email["enableSubmissionPort"]),
-  $factory->getLabel("enableSubmissionPortField"),
-  "basic"
-);
+$submission = $factory->getMultiChoice("enableSubmissionPortField");
+$submission->addOption($submissionEnable);
+$block->addFormField($submission, $factory->getLabel("enableSubmissionPortField"), "basic");
 
-// imap
-$block->addDivider($factory->getLabel('IMAP', false), 'basic');
+// TLS
 $block->addFormField(
-  $factory->getBoolean("enableImapField", $email["enableImap"]),
-  $factory->getLabel("enableImapField"),
-  "basic"
-);
-
-$block->addFormField(
-  $factory->getBoolean("enableImapsField", $email["enableImaps"]),
-  $factory->getLabel("enableImapsField"),
-  "basic"
-);
-
-// pop
-$block->addDivider($factory->getLabel('POP', false), 'basic');
-$block->addFormField(
-  $factory->getBoolean("enablePopField", $email["enablePop"]),
-  $factory->getLabel("enablePopField"),
-  "basic"
-);
-
-$block->addFormField(
-  $factory->getBoolean("enablePopsField", $email["enablePops"]),
-  $factory->getLabel("enablePopsField"),
+  $factory->getBoolean("enableTLSField", $email["enableTLS"]),
+  $factory->getLabel("enableTLSField"),
   "basic"
 );
 
@@ -170,11 +158,20 @@ $block->addFormField(
   "advanced"
 );
 
-$smartRelay = $factory->getDomainName("smartRelayField", $email["smartRelay"]);
+// $smartRelay = $factory->getDomainName("smartRelayField", $email["smartRelay"]);
+$smartRelay = $factory->getTextField("smartRelayField", $email["smartRelay"]); 
 $smartRelay->setOptional(true);
 $block->addFormField(
   $smartRelay, 
   $factory->getLabel("smartRelayField"),
+  "advanced"
+);
+
+$fallbackRelay = $factory->getTextField("fallbackRelayField", $email["fallbackRelay"]);
+$fallbackRelay->setOptional(true);
+$block->addFormField(
+  $fallbackRelay,
+  $factory->getLabel("fallbackRelayField"),
   "advanced"
 );
 
@@ -309,11 +306,14 @@ if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist")
 if( $_PagedBlock_selectedId_emailSettings != "mx" && $_PagedBlock_selectedId_emailSettings != "blacklist") {
   $block->addButton($factory->getSaveButton($page->getSubmitAction()));
   //$factory->getSaveButton($page->getSubmitAction("/base/email/emailHandler.php")));
- }
+}
+
+$routeButton = $factory->getButton("/base/email/routes.php", "routes");
+
 $serverScriptHelper->destructor();
 
-
 print($page->toHeaderHtml());
+
 ?>
 <SCRIPT LANGUAGE="javascript">
 // these need to be defined seperately or Japanese gets corrupted
@@ -329,8 +329,11 @@ function confirmRemove(msg, oid, label, view, netauth) {
 }
 </SCRIPT>
 
-
 <?php 
+
+print($routeButton->toHtml());
+
+print("<BR>");
 
 print($block->toHtml());
 

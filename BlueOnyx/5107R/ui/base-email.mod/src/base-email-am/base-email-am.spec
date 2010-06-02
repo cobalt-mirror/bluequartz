@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-email-am
 Name: base-email-am
-Version: 1.3.1
-Release: 0BQ4%{?dist}
+Version: 1.4.0
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,10 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-email-am.  
 
 %changelog
+
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX01
+- Supports Postfix instead of Sendmail
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BQ4
 - Rebuilt for BlueOnyx.
 

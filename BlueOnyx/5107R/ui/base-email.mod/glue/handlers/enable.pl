@@ -23,22 +23,27 @@ Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
 
 Sauce::Service::service_toggle_init('dovecot', 1);
 
-# settings smtp, smtps and submission port
-Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
-
-# need to start sendmail?
+# sync postfix settings 
 my $run = 0;
 if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
     $run = 1;
 }
+
+# Update settings for smtp, smtps and submission port:
+Sauce::Util::editfile(Email::PostfixMainCF, *make_main_cf, $obj ); 
+Sauce::Util::editfile(Email::PostfixMasterCF, *make_master_cf, $obj ); 
+ 
 if ($run) {
-    Sauce::Service::service_toggle_init('sendmail', 1);
-    Sauce::Service::service_toggle_init('saslauthd', $obj->{enableSMTPAuth});
-} else {
-    Sauce::Service::service_toggle_init('sendmail', 0);
+    Sauce::Service::service_toggle_init('postfix', 1); 
+    my $enableAuth = ($obj->{enableSMTP} && $obj->{enableSMTP_Auth}) || 
+        ($obj->{enableSMTPS} && $obj->{enableSMTPS_Auth}) || 
+        ($obj->{enableSubmissionPort} && $obj->{enableSubmission_Auth}); 
+    Sauce::Service::service_toggle_init('saslauthd', $enableAuth); 
+}
+else {
+    Sauce::Service::service_toggle_init('postfix', 0); 
     Sauce::Service::service_toggle_init('saslauthd', 0);
 }
-
 
 # pop-before-smtp relaying
 my $popRelay = Sauce::Service::service_get_init('poprelayd') ? 'on' : 'off';
@@ -100,41 +105,154 @@ sub make_dovecot_conf
     return 1;
 }
 
-sub make_sendmail_mc
-{
+sub make_main_cf {
+
     my $in  = shift;
     my $out = shift;
 
     my $obj = shift;
 
-    # smtp port
-    if ($obj->{enableSMTP}) {
-        $smtpPort = "DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
-    } else {
-        $smtpPort = "dnl DAEMON_OPTIONS(`Port=smtp, Name=MTA')\n";
+    my $interface; 
+    my $tls; 
+    my $smtpsPort; 
+    my $checkClient; 
+    my $recipient; 
+    my $smtpauth; 
+ 
+    # local delivery only 
+    if (!$obj->{enableSMTP} && !$obj->{enableSMTPS} && 
+        !$obj->{enableSubmissionPort}) { 
+        $interface = "inet_interfaces = localhost\n"; 
+    } else { 
+        $interface = "inet_interfaces = all\n"; 
+    } 
+ 
+    # TLS 
+    if ($obj->{enableTLS}) { 
+        $tls =<<END; 
+smtpd_tls_security_level = may 
+END 
+    } else { 
+        $tls =<<END; 
+#smtpd_tls_security_level = may 
+END 
     }
 
     # smtps port
     if ($obj->{enableSMTPS}) {
-        $smtpsPort = "DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+        $smtpsPort =<<END;
+smtpd_tls_cert_file = /etc/pki/tls/certs/postfix.pem
+smtpd_tls_key_file = /etc/pki/tls/certs/postfix.pem
+smtpd_tls_session_cache_database = btree:/etc/postfix/smtpd_scache
+END
     } else {
-        $smtpsPort = "dnl DAEMON_OPTIONS(`Port=smtps, Name=TLSMTA, M=s')\n";
+        $smtpsPort =<<END;
+#smtpd_tls_cert_file = /etc/pki/tls/certs/postfix.pem
+#smtpd_tls_key_file = /etc/pki/tls/certs/postfix.pem
+#smtpd_tls_session_cache_database = btree:/etc/postfix/smtpd_scache
+END
+    }
+    # poprelay
+    if ($obj->{popRelay}) {
+        $checkClient = "check_client_access hash:/etc/poprelay/popip,";
     }
 
-    # submission(587) port
-    if ($obj->{enableSubmissionPort}) {
-        $submissionPort = "DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+    # recipient
+    $recipient = "smtpd_recipient_restrictions = check_recipient_access hash:/etc/postfix/access, $checkClient permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination\n";
+
+    # smtpauth
+    if (($obj->{enableSMTP} && $obj->{enableSMTP_Auth}) ||
+        ($obj->{enableSMTPS} && $obj->{enableSMTPS_Auth}) ||
+        ($obj->{enableSubmissionPort} && $obj->{enableSubmission_Auth})) {
+        $smtpauth =<<END;
+broken_sasl_auth_clients = yes
+END
     } else {
-        $submissionPort = "dnl DAEMON_OPTIONS(`Port=submission, Name=MSA, M=Ea')\n";
+        $smtpauth =<<END;  
+#broken_sasl_auth_clients = yes
+END
     }
 
     select $out;
     while (<$in>) {
-        if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
+        if (/^# Add configuration for BlueQuartz by init script./o) {
+            $found = 1;
+        } elsif (!$found) {
+            print $_;
+        }
+
+        if ($found) {
+            if (/smtpd_tls_cert_file = /o) {
+                print $smtpsPort;
+            } elsif (/smtpd_recipient_restrictions = /o) {
+                print $recipient;
+            } elsif (/broken_sasl_auth_clients = /o) {
+                print $smtpauth;
+            } elsif (/inet_interfaces = /o) {
+                print $interface;
+            } elsif (/smtpd_tls_security_level = /o) {
+                print $tls;
+            } elsif (/smtpd_tls_key_file = /o ||
+                /smtpd_tls_session_cache_database = /o) {
+                next;
+            } else {
+                print $_;
+            }
+        }
+    }
+    return 1;
+}
+
+sub make_master_cf {
+
+    my $in  = shift;
+    my $out = shift;
+
+    my $obj = shift;
+
+    if (!$obj->{enableSMTP}) {
+        # smtp port : always running
+        $smtpPort = "smtp inet n - n - - smtpd\n";
+    } else {
+        my $option;
+        # Check Auth
+        if ($obj->{enableSMTP_Auth}) {
+            $option .= "-o smtpd_sasl_auth_enable=yes ";
+        }
+        $smtpPort = "smtp inet n - n - - smtpd $option\n";
+    }
+
+    # smtps port
+    if ($obj->{enableSMTPS}) {
+        my $option;
+        # Check Auth
+        if ($obj->{enableSMTPS_Auth}) {
+            $option .= "-o smtpd_sasl_auth_enable=yes ";
+        }
+        $smtpsPort = "smtps inet n - n - - smtpd -o smtpd_tls_wrappermode=yes $option\n";
+    } else {
+        $smtpsPort = "#smtps inet n - n - - smtpd -o smtpd_tls_wrappermode=yes\n";
+    }
+
+    # submission(587) port
+    if ($obj->{enableSubmissionPort}) {
+        my $option;
+        # Check Auth
+        if ($obj->{enableSubmission_Auth}) {
+            $option .= "-o smtpd_sasl_auth_enable=yes ";
+        }
+        $submissionPort = "submission inet n - n - - smtpd $option\n";
+    } else {
+        $submissionPort = "#submission inet n - n - - smtpd\n";
+    }
+
+    select $out;
+    while (<$in>) {
+        if (/smtp (.*)inet /o) {
             print $smtpPort;
-        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o || /^DAEMON_OPTIONS\(\`Port=smtps, Name=TLSMTA/o ) {
+        } elsif (/smtps(.*)inet /o) {
             print $smtpsPort;
-        } elsif (/^dnl DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o || /^DAEMON_OPTIONS\(\`Port=submission, Name=MSA/o ) {
+        } elsif (/submission(.*)inet /o) {
             print $submissionPort;
         } else {
             print $_;

@@ -55,7 +55,7 @@ sub makemap
 	# shell return values in perl always makes me do a double take so I
 	# took the clearest path, ratehr than the shortest.
 
-	if( system("/usr/sbin/makemap hash $map < $map >>/dev/null 2>&1") == 0 ) {
+        if( system("/usr/sbin/postmap hash:$map >/dev/null 2>&1") == 0 ) { 
 		return 1;
 	} else {
 		return 0;

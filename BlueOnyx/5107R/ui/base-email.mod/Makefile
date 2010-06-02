@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx and Bluapp AB'
 SERVICE=email
 
-VERSION=1.5.1
-RELEASE=0BX3
+VERSION=1.6.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES = dovecot base-blueonyx-glue >= 1.200911717 perl-MIME-Lite >= 3.023-2 perl-Email-Date-Format >= 1.002-1 base-email-am blueonyx-z-push >= 1.3 php-pear-Mail >= 1.1.4
+REQUIRES = dovecot base-blueonyx-glue >= 1.200911717 perl-MIME-Lite >= 3.023-2 perl-Email-Date-Format >= 1.002-1 base-email-am blueonyx-z-push >= 1.3 php-pear-Mail >= 1.1.4 postfix poprelayd >= 2.1-0BQ6
 
 #########
 # some useful defines

@@ -25,9 +25,9 @@ if ($obj->{NAMESPACE} ne 'Email')
     }
 }
 
-Sauce::Service::service_run_init('sendmail', 'stop') if $obj->{enableSMTP};
-Sauce::Service::service_send_signal('sendmail', '9') if $obj->{enableSMTP};
-Sauce::Service::service_run_init('sendmail', 'start') if $obj->{enableSMTP};
+Sauce::Service::service_run_init('postfix', 'stop') if $obj->{enableSMTP}; 
+#Sauce::Service::service_send_signal('postfix', '9') if $obj->{enableSMTP}; 
+Sauce::Service::service_run_init('postfix', 'start') if $obj->{enableSMTP}; 
 
 $cce->bye("SUCCESS");
 exit 0;
