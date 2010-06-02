@@ -4,10 +4,10 @@
 // $Id: login.php,v 1.3 2001/10/29 09:03:18 pbose Exp $
 
 // Prevent cross site scripting attacks (suggested by Ken Marcus):
-if (eregi('iframe', $target)) {
+if (preg_match('/iframe/', $target)) {
     $target = "";
 }
-if (eregi('alert', $target)) {
+if (preg_match('/alert/', $target)) {
     $target = "";
 }
 
@@ -28,7 +28,7 @@ if(!$cceClient->connect()) {
 
   $cceDown = "<CENTER><BR><BR><BR><BR><FONT COLOR=\"#990000\">"
                . $i18n->get("cceDown") . "</FONT></CENTER>";
-  printPage("",$cceDown);
+  echo "$cceDown";
   error_log("loginHandler.php: $cceDown");
   exit;
 }
@@ -57,7 +57,7 @@ $myStyle = $stylist->getStyle("Login");
 $secure = "CHECKED";
 if ($HTTP_GET_VARS['secure']) { $secure = "CHECKED"; }
 
-ereg("^([^:]+)", $HTTP_SERVER_VARS['HTTP_HOST'], $matches);
+preg_match("/^([^:]+/)", $HTTP_SERVER_VARS['HTTP_HOST'], $matches);
 $hostname = $matches[0];
 
 if(($charset=$i18n->getProperty("encoding","palette"))!="none")
