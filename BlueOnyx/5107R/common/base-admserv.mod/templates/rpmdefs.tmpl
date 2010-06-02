@@ -96,7 +96,7 @@ fi
 
 # change php.ini for x86_64 environment
 %ifarch x86_64
-perl -pi -e 's|extension_dir = /usr/lib/php4|extension_dir = /usr/lib64/php4|g' /etc/admserv/php.ini
+perl -pi -e 's|extension_dir = /usr/lib/php|extension_dir = /usr/lib64/php|g' /etc/admserv/php.ini
 %endif
 
 # Increase memory_limit in /etc/admserv/php.ini:
@@ -141,6 +141,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Nun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX17
+- Commented out mod_file_cache.so in httpd.conf
+- Commented out mod_mem_cache.so in httpd.conf
+- Changed lenght of AdmServ SSL cert from 1024 bit to 2048 bit
+- Added mod_ssl to required packages
+
 * Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ16
 - Modified glue/etc/admserv/conf.d/ssl.conf
 - Disabled SSLv2, so that the more secure SSLv3 or TLSv1 are used for AdmServ-SSL instead.
