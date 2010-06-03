@@ -1,13 +1,13 @@
 Summary: Binaries and scripts used by the RAID module
 Name: raid-bins
 Version: 1.0.3
-Release: 12BQ3%{dist}
+Release: 12BX04%{dist}
 Vendor: Project BlueOnyx
 License: Sun BSD
 Group: Utils
 Source: raid-bins.tar.gz
 BuildRoot: /tmp/raid-bins
-BuildArchitectures: noarch
+#BuildArchitectures: noarch
 
 %prep
 rm -rf $RPM_BUILD_ROOT
@@ -34,6 +34,9 @@ Currently, this rpm contains the scripts used to
 determine the status of RAID.
 
 %changelog
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BX04
+- Removed noarch architecture tag from specfile
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BQ3
 - Rebuilt for BlueOnyx.
 
