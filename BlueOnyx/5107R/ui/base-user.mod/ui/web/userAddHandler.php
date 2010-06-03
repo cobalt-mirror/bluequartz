@@ -170,7 +170,7 @@ if($oid == 0 || count($errors) > 0)
 	}
 
 	// check for username collision, add rejected value to email aliases
-	if (($errors[$i]->code == 5) && (ereg('userNameSuggest', $errors[$i]->message)))
+	if (($errors[$i]->code == 5) && (preg_match('/userNameSuggest/', $errors[$i]->message)))
 	{
 	    if($i18n->getProperty("suggestUsername") == "yes") 
 	    {
@@ -185,7 +185,7 @@ if($oid == 0 || count($errors) > 0)
                     global $HTTP_POST_VARS;
 
 	    	    // The following regex tests for identical use of the username in the alias field:
-	    	    if(!ereg('[^a-zA-Z0-9\-\_]'.$userNameField.'[^a-zA-Z0-9\-\_]',$emailAliasesField)) 
+	    	    if(!preg_match('/[^a-zA-Z0-9\-\_]'.$userNameField.'[^a-zA-Z0-9\-\_]/',$emailAliasesField)) 
 	   	    {
 	  	        $HTTP_POST_VARS['emailAliasesField'] = $userNameField.$emailAliasesField;
 	            }
