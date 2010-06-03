@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=phpsysinfo
 
 VERSION=1.0.1
-RELEASE=0BQ07
+RELEASE=0BX08
 
 # add a buildarch if desired
 BUILDARCH=noarch
