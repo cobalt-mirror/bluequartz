@@ -52,6 +52,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO4
+- Modified rules/defines.mk: Added 'en' to excluded locales, as we now use 'en_US' as default.
+
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO3
 - Updated rpm-macros
 

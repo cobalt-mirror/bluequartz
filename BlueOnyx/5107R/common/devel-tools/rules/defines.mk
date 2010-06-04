@@ -58,7 +58,7 @@ PACKAGE_DIR=$(shell if [ -d /usr/src/redhat ]; then \
 		fi)
 RPM_TOPDIR=$(shell rpm --eval='%{_topdir}')
 
-XLOCALEPAT=de es fr zh_CN zh_TW
+XLOCALEPAT=en de es fr zh_CN zh_TW
 RPMBUILD=$(shell which rpmbuild>/dev/null 2>&1&&echo rpmbuild||echo rpmbuild)
 USER_HTTPD=$(shell id httpd>/dev/null 2>&1&&echo httpd||echo apache)
 
