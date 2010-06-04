@@ -89,9 +89,6 @@ if ($run) {
 
 ###
 
-Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
-system('rm -f /etc/mail/sendmail.mc.backup.*');
-
 # need to start sendmail?
 if ($run) {
     Sauce::Service::service_toggle_init('sendmail', 1);
