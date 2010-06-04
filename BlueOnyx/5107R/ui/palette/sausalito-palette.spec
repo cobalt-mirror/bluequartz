@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX03
+- libPhp/CobaltUI.php: Assigning the return value of new by reference is deprecated
+
 * Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX02
 - web/uifc/MultiFileUploadHandler.php: ereg() replaced by preg_match() for PHP-5.3
 - web/uifc/MultiFileUpload.php: ereg() replaced by preg_match() for PHP-5.3

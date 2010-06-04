@@ -47,7 +47,7 @@ class CobaltUI
 
     function CobaltUI ($sessionId , $domain = "none") 
     {
-        $Helper =& new ServerScriptHelper($sessionId);
+        $Helper = new ServerScriptHelper($sessionId);
         $this->Helper =& $Helper;
         $this->Cce =& $Helper->getCceClient();
         $this->Domain = $domain;
@@ -68,7 +68,7 @@ class CobaltUI
         $this->BadData = array();
 
         $this->_getUIFC("Page");
-        $this->Page =& new Page($this->Stylist, $this->I18nPalette, getenv("REQUEST_URI"));
+        $this->Page = new Page($this->Stylist, $this->I18nPalette, getenv("REQUEST_URI"));
         $this->CurrentView = false;
     }
 
@@ -310,7 +310,7 @@ class CobaltUI
     function StartBlock($label = "" , $vars = array()) 
     {
         $this->_getUIFC("PagedBlock");
-        $this->Block =& new PagedBlock(
+        $this->Block = new PagedBlock(
                                 $this->Page, 
                                 "blockid" . count($this->Blocks),
                                 new Label($this->Page,
@@ -323,7 +323,7 @@ class CobaltUI
     function InvisiBlock() 
     {
         $this->_getUIFC("PagedBlock");
-        $this->Block =& new PagedBlock(
+        $this->Block = new PagedBlock(
                             $this->Page, 
                             'blockid99', 
                             '');
@@ -331,7 +331,7 @@ class CobaltUI
   
     function SetBlockView($pagename) 
     {
-        $label =& new Label(
+        $label = new Label(
                     $this->Page,
                     $this->_transTag($pagename, "html"),
                     $this->_transTag($pagename."_help"),"html");
@@ -391,7 +391,7 @@ class CobaltUI
     {
         $this->_getUIFC("Button");
 
-        $label =& new Label(
+        $label = new Label(
                     $this->Page,
                     $this->_transTag($text_label,"html"),
                     $this->_transTag($text_label . "_help")
@@ -458,7 +458,7 @@ class CobaltUI
 
     function Divider($labelText) 
     {
-        $label =& new Label(
+        $label = new Label(
                     $this->Page,
                     $this->_transTag($labelText),
                     "","html");
@@ -480,7 +480,7 @@ class CobaltUI
         {
             print "<hr><b>_ObjAdd: bad i18n object</b><hr>\n";
         }
-        $label =& new Label( 
+        $label = new Label( 
                     $this->Page,
                     $this->_transTag($obj->getId(),"html"),
                     $this->_transTag($obj->getId()."_help"),"html");
@@ -546,7 +546,7 @@ class CobaltUI
     {
         $this->_getUIFC($classname);
         
-        $obj =& new $classname(
+        $obj = new $classname(
                     $this->Page,
                     $tag,
                     $this->Data[$tag],
@@ -730,15 +730,15 @@ class CobaltUI
         $this->_getUIFC("Option");
         # danger: silly code ensues.
 
-        $widget =& new MultiChoice($this->Page, $tag);
+        $widget = new MultiChoice($this->Page, $tag);
         $anyselected = false;
         for ($i = 0; $i < count($choices); $i++) 
         {
-            $label =& new Label(
+            $label = new Label(
                         $this->Page,
                         $this->_transTag($tag . "-" . $choices[$i], "html"),
                         "");
-            $option =& new Option($label, $choices[$i]);
+            $option = new Option($label, $choices[$i]);
             $widget->addOption($option);
             if ($data == $choices[$i]) 
             {
@@ -769,7 +769,7 @@ class CobaltUI
         $unsel_elems = arrayToString($elements);
 
         $this->_getUIFC("SetSelector");    
-        $sel =& new SetSelector(
+        $sel = new SetSelector(
                     $this->Page,
                     $tag,
                     $sel_elems, $unsel_elems,
@@ -805,7 +805,7 @@ class CobaltUI
     
         $this->_getUIFC("MultiChoice");
         $this->_getUIFC("Option");
-        $obj =& new MultiChoice($this->Page, $tag);
+        $obj = new MultiChoice($this->Page, $tag);
     
         $anyselected = false;
         while ($val =& current($data)) 
@@ -820,14 +820,14 @@ class CobaltUI
                 $label =& $val;
             }
             
-            $labelObj =& new Label(
+            $labelObj = new Label(
                             $this->Page, 
                             $this->_transTag(
                                 $label, 
                                 "html", 
                                 array("opt_val" => $val))
                         );
-            $option =& new Option($labelObj, $val);
+            $option = new Option($labelObj, $val);
             $obj->addOption($option);
    
             if ($this->Data[$tag] == $val) 
