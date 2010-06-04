@@ -7,7 +7,7 @@
 Summary: Network UPS Tools
 Name: nut
 Version: 2.4.1
-Release: 1BLU
+Release: 2BX01
 License: GPL
 Group: System/Applications
 Packager: Rickard Osser <rickard.osser@bluapp.com>
@@ -219,6 +219,9 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-ups module.
 
 %changelog
+* Fri Jun 04 2010 Michael Stauber <mstauber@blueonyx.it> 2.1-2BX01
+- Version number bump
+
 * Mon Apr 30 2001 Joshua Uziel <uzi@sun.com>
 - initial spec file
 

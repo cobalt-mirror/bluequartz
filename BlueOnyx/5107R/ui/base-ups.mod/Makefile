@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Bluapp'
+VENDORNAME='Team BlueOnyx'
 SERVICE=ups
 
 VERSION=2.1
-RELEASE=1BLU
+RELEASE=2BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
