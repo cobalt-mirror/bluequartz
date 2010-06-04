@@ -77,6 +77,7 @@ class TimeStamp extends FormField {
     $builder = new FormFieldBuilder();
 
     // get selected values
+    date_default_timezone_set('UTC');
     $selectedMonth = date("m", $value)-1;
     $selectedDay = date("d", $value)-1;
     $selectedYear = date("Y", $value);
