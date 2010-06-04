@@ -41,7 +41,7 @@ class I18n {
 		if($GLOBALS["_I18n_isStub"]) return;
 
 		if($langs == "" && getenv("LANG") == "") {
-			$langs = "en";
+			$langs = "en_US";
 		}
 
 		$this->handle = i18n_new($domain, $langs);
