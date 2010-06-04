@@ -274,7 +274,7 @@ $possibleLocales = stringToArray($systemObj["locales"]);
 // $possibleLocales = array_merge("browser", $possibleLocales);
 
 $broser_locales = array();
-$browser_locales = split(',', $serverScriptHelper->getLocalePreference($HTTP_ACCEPT_LANGUAGE));
+$browser_locales = preg_split("/,/", $serverScriptHelper->getLocalePreference($HTTP_ACCEPT_LANGUAGE));
 for($i = 0; $i < count($browser_locales); $i++) {
 
   for($j = 0; $j < count($possibleLocales); $j++) {

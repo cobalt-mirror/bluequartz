@@ -139,10 +139,11 @@ $net_oids = $cceClient->find("Network");
 foreach ($net_oids as $net)
 {
 	$network = $cceClient->get($net);
-	if (ereg("&".$network["ipaddr"]."&", $dnsAddressesField))
+	$compare = join("&".$network["ipaddr"]."&");
+	if (preg_match("/$compare/", $dnsAddressesField))
 		$enable_dns = 1;
 }
-if (ereg('&127.0.0.1&', $dnsAddressesField))
+if (preg_match("/&127.0.0.1&/", $dnsAddressesField))
 {
 	$enable_dns = 1;
 }
