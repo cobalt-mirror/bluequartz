@@ -57,7 +57,7 @@ $myStyle = $stylist->getStyle("Login");
 $secure = "CHECKED";
 if ($HTTP_GET_VARS['secure']) { $secure = "CHECKED"; }
 
-preg_match("/^([^:]+/)", $HTTP_SERVER_VARS['HTTP_HOST'], $matches);
+preg_match("/^([^:]+)/", $HTTP_SERVER_VARS['HTTP_HOST'], $matches);
 $hostname = $matches[0];
 
 if(($charset=$i18n->getProperty("encoding","palette"))!="none")
