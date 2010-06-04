@@ -7,7 +7,7 @@ include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
 $product = $serverScriptHelper->getProductCode();
-$isMonterey = ereg("35[0-9][0-9]R", $product);
+$isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
 // find form action depending on product
 if ((!$isMonterey) && $serverScriptHelper->hasCCE())

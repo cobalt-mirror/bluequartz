@@ -56,6 +56,11 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX02
+- web/uifc/MultiFileUploadHandler.php: ereg() replaced by preg_match() for PHP-5.3
+- web/uifc/MultiFileUpload.php: ereg() replaced by preg_match() for PHP-5.3
+- libPhp/uifc/PagedBlock.php: ereg() replaced by preg_match() for PHP-5.3
+
 * Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX01
 - libPhp/ServerScriptHelper.php: ereg() replaced by preg_match() for PHP-5.3
 - libPhp/uifc/EmailAddressList.php: ereg() replaced by preg_match() for PHP-5.3

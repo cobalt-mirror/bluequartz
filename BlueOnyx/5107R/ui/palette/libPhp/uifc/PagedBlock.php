@@ -164,7 +164,7 @@ class PagedBlock extends Block {
             {
                 $key = $mapping[$key];
             }
-           if (false && $key) // if ( $error->getKey() && !ereg("^\[\[", $error->vars["key"])) 
+           if (false && $key) // if ( $error->getKey() && !preg_match("/^\[\[/", $error->vars["key"])) 
             {
                 $this->setFormFieldError($key, $error);
             } 
