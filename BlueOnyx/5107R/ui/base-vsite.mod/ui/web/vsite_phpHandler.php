@@ -9,7 +9,7 @@ include_once('Capabilities.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 $i18n = $serverScriptHelper->getI18n("base-vsite");
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser and siteAdmin should be here
 if (!$helper->getAllowed('adminUser') &&
@@ -64,7 +64,7 @@ if ($vsite_php["enabled"] == "0") {
   $this_vsite_open_basedir = split (":", $open_basedir);
   $this_vsite_open_basedir_new = array();
   foreach ($this_vsite_open_basedir as $entry) {
-        if(!eregi("/home/.sites/", $entry, $regs)) {
+        if(!preg_match("/\/home\/.sites\//i", $entry, $regs)) {
             array_push($this_vsite_open_basedir_new, $entry);
         }
   }

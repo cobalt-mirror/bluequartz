@@ -9,7 +9,7 @@
 include_once('ServerScriptHelper.php');
 include_once('base/vsite/vsite_common.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser should be here
 if (!$helper->getAllowed('adminUser')) {
@@ -157,7 +157,7 @@ function &generate_search_fields(&$factory, &$cce)
 	$possible_services =& $cce->names('VsiteServices');
 	foreach ($possible_services as $service) {
 		$ns = $cce->get($services_oid, $service);
-		$selected = ereg("&$service&", $services);
+		$selected = preg_replace("/&$service&/", $services);
 		$option =& $factory->getOption($service, $selected);
 		$option->setLabel($factory->getLabel($ns['i18nName'], false));
 		$services_select->addOption($option);

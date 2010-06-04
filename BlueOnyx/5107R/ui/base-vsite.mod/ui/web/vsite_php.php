@@ -9,7 +9,7 @@ include_once('Capabilities.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 $i18n = $serverScriptHelper->getI18n("base-vsite");
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser and siteAdmin should be here
 if (!$helper->getAllowed('adminUser') &&
@@ -177,7 +177,7 @@ $block->addFormField(
 $this_vsite_open_basedir = split (":", $systemObj['open_basedir']);
 $this_vsite_open_basedir_new = array();
 foreach ($this_vsite_open_basedir as $entry) {
-	if(!eregi("/home/.sites/", $entry, $regs)) {
+	if(!preg_match("/\/home\/.sites\//i", $entry, $regs)) {
 	    array_push($this_vsite_open_basedir_new, $entry);
 	}
 }
@@ -185,7 +185,7 @@ foreach ($this_vsite_open_basedir as $entry) {
 if ($systemObj['open_basedir'] != "") {
 	$systemObj['open_basedir'] = implode(":",$this_vsite_open_basedir_new);
 	// If 'open_basedir' doesn't have this vsite's basedir in it, then we need to append it here:
-	if(!eregi($vsite['basedir'], $systemObj['open_basedir'], $regs)) {
+	if(!preg_match("/$vsite['basedir']/i", $systemObj['open_basedir'], $regs)) {
 	    $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
 	}
 }
