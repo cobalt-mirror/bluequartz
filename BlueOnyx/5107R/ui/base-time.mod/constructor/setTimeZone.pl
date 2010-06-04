@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl
+#!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: setTimeZone.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
@@ -15,7 +15,14 @@ if (-l '/etc/localtime') {
 	$tz=~s#.*/([^/]+)/([^/]+)$#$1/$2#;
 	$cce->set($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
 }
-# else we're screwed, since that link is made by one of the scripts on the BTOS.
+else {
+	system("/bin/rm -f /etc/localtime");
+	system("/bin/ln -s /usr/share/zoneinfo/America/New_York /etc/localtime");
+        my $tz=readlink('/etc/localtime');
+        $tz=~s#.*/([^/]+)/([^/]+)$#$1/$2#;
+        $cce->set($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
+}
+# If that doesn't work we're screwed, since that link is usually made by one of the scripts on the BTOS.
 # if it isn't there then knowing the correct time zone is likely to be the 
 # least of our worries
 
