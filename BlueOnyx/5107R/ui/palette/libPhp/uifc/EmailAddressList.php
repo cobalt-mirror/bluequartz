@@ -82,7 +82,7 @@ class EmailAddressList extends FormField {
     } else {
       $oldId = $this->getId();
       $this->setId("_".$oldId."_TextField");
-      if (!ereg("^\&(.*)\&$", $this->getValue(), $regs)) {
+      if (!preg_match("/^\&(.*)\&$/", $this->getValue(), $regs)) {
         $value = implode(", ", stringToArray($this->getValue()));
       } else {
         $value = $this->getValue();

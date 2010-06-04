@@ -76,7 +76,7 @@ class ServerScriptHelper {
     $system = new System();
 
     $product = $this->getProductCode();
-    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
+    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
     if ($this->hasCCE()) 
     {
@@ -224,7 +224,7 @@ class ServerScriptHelper {
   function getFile($filename) {
     $rv = $this->shell("/bin/ls -s --block-size=1 $filename", $ls);
     if (!$rv) {
-      ereg("^([0-9]+)[[:space:]]", $ls, $regs);
+      preg_match("/^([0-9]+)[[:space:]]/", $ls, $regs);
       $size = $regs[1];
       $fh = $this->popen("/bin/cat $filename");
       // Removed by: Brian Smith
@@ -323,7 +323,7 @@ class ServerScriptHelper {
   {
     global $sessionId;
     $product = $this->getProductCode();
-    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
+    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
     putenv("CCE_SESSIONID=" . $sessionId);
     putenv("CCE_USERNAME=" . $this->loginName);
@@ -353,7 +353,7 @@ class ServerScriptHelper {
   function shell($cmd, &$output, $runas="") {
     global $sessionId;
     $product = $this->getProductCode();
-    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
+    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
     // call ccewrap
     //$cmd = escapeShellCmd($cmd);	
@@ -396,7 +396,7 @@ class ServerScriptHelper {
   // returns: an array of access rights in strings
   function getAccessRights() {
     $product = $this->getProductCode();
-    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
+    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
     // include rights specified in uiRights property
     $accessRights = stringToArray($this->loginUser["uiRights"]);
@@ -568,7 +568,7 @@ class ServerScriptHelper {
     }
 
     $product = $this->getProductCode();
-    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
+    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
     // use preference if it is available
     // then use trueBlue if it is available
@@ -883,7 +883,7 @@ $post_vars_html
         $BUILD_FILE = fopen($build_file, "r");
         $buildtext = fread($BUILD_FILE,filesize($build_file)); 
         fclose($BUILD_FILE);
-        if (ereg("for a ([A-Za-z0-9\-]+) in", $buildtext, $regs)) 
+        if (preg_match("/for a ([A-Za-z0-9\-]+) in/", $buildtext, $regs)) 
         {
             $product = $regs[1];
         }

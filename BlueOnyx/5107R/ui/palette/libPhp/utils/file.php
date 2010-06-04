@@ -25,7 +25,7 @@
   function file_get($filename) {
     $rv = file_shell("/bin/ls -s --block-size=1 $filename", $ls);
     if (!$rv) {
-      ereg("^([0-9]+)[[:space:]]", $ls, $regs);
+      preg_match("/^([0-9]+)[[:space:]]/", $ls, $regs);
       $size = $regs[1];
       $fh = file_popen("/bin/cat $filename");
       $ret = fread($fh, $size);

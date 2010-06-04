@@ -50,7 +50,7 @@ class IntRange extends FormField {
     $value = $this->getValue();
     
     $regs = array();
-    if (ereg("^([^:]+):(.+)", $value, $regs)) {
+    if (preg_match("/^([^:]+):(.+)/", $value, $regs)) {
       $low = $regs[1]; $high = $regs[2];
     } else {
       $low = $value; $high = $value;

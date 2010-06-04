@@ -44,7 +44,7 @@ class Capabilities {
       $this->cceClient =& $cce;  
     else {
       include_once("CceClient.php");
-      $this->cceClient =& new CceClient();
+      $this->cceClient = new CceClient();
       // FIXME check connect and authkey for failure
       $this->cceClient->connect();
       $this->cceClient->authkey($loginName, $sessionId);
