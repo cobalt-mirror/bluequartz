@@ -200,6 +200,10 @@ class ServerScriptHelper {
     
         // initialize
         $this->i18n = array();
+	// initialize timezone
+	$timeObj = $cceClient->getObject("System", array(), "Time");
+	$systemTimeZone = $timeObj["timeZone"];
+	date_default_timezone_set($systemTimeZone);
     }
   }
 
