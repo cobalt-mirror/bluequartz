@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=console
 
 VERSION=1.1.0
-RELEASE=0BX11
+RELEASE=0BX12
 
 # add a buildarch if desired
 BUILDARCH=noarch
