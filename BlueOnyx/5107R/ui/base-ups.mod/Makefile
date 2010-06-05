@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=ups
 
 VERSION=2.1
-RELEASE=2BX01
+RELEASE=2BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch

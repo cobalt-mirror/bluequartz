@@ -1,0 +1,243 @@
+msgid "ups"
+msgstr "UPS"
+
+msgid "upsSettings"
+msgstr "UPS Settings"
+
+msgid "version"	
+msgstr "version 1.0"
+
+msgid "upsDescription"
+msgstr "Click here to configure Uninterruptible Power Supply"
+
+msgid "stateField"
+msgstr "UPS Options"
+
+msgid "stateField_help"
+msgstr "Choose to disable, or enable as a master or slave.  A master will have the UPS directly connected to the second serial port.  A slave will communicate with a master for information on the UPS."
+
+msgid "macsField"
+msgstr "Slave MAC Addresses"
+
+msgid "macsField_help"
+msgstr "List of MAC addresses that will receive Wake On LAN magic packets.  Note that you'll need to enable this in the \"[[base-power.poweroptions_menu]]\" menu for each of the slave machines."
+
+msgid "masteripField"
+msgstr "Master's IP Address"
+
+msgid "masteripField_help"
+msgstr "This is the IP address of the master that this slave will use."
+
+msgid "selectModel"
+msgstr "Select Model"
+
+msgid "selectModel_help"
+msgstr "Select the model of UPS you will use."
+
+msgid "selectDevice"
+msgstr "Select Device"
+
+msgid "selectDevice_help"
+msgstr "Select the device your UPS is connected to."
+
+msgid "wakeSlavesField"
+msgstr "Wake Slaves"
+
+msgid "wakeSlavesField_help"
+msgstr "Have this master attempt to send Wake On LAN magic packets to each of the slaves when it is powered up.  Note that you'll need to enable this in the \"[[base-power.poweroptions_menu]]\" menu for each of the slave machines."
+
+msgid "wakeDelayField"
+msgstr "Delay (seconds)"
+
+msgid "wakeDelayField_help"
+msgstr "Amount of time to wait between each slave machine to be woken up.  Values of 0 to 300 seconds are acceptable, with 30 seconds being the default."
+
+msgid "disabled"
+msgstr "Disabled"
+
+msgid "master"
+msgstr "Configure as Master"
+
+msgid "slave"
+msgstr "Configure as Slave"
+
+msgid "cantSysconf"
+msgstr "Attempt to edit /etc/sysconfig/ups failed."
+
+msgid "cantUPSMONconf"
+msgstr "Attempt to edit /etc/ups/upsmon.conf failed."
+
+msgid "cantUpsconf"
+msgstr "Attempt to edit /etc/ups/ups.conf failed."
+
+msgid "cantUpsdconf"
+msgstr "Attempt to edit /etc/ups/upsd.conf failed."
+
+msgid "cantmacfile"
+msgstr "Attempt to edit MAC file /etc/ups/wol-macs failed."
+
+msgid "masterisinvalid"
+msgstr "You've entered an address for the master that is invalid."
+
+msgid "masterislocal"
+msgstr "You've entered an address for the master that is local to the machine.  This system cannot be both a master and a slave."
+
+msgid "masterisempty"
+msgstr "You've selected to be a slave but with no machine set as the master.  Please enter the master's IP address."
+
+# For Active Monitor
+msgid "amUPSNameTag"
+msgstr "UPS"
+
+msgid "amUPSStats"
+msgstr "UPS Stats"
+
+msgid "amUPSDetails"
+msgstr "UPS Details"
+
+msgid "amUPSBattPct"
+msgstr "[[VAR.val]]%"
+
+msgid "amUPSBattLevel"
+msgstr "Battery Level"
+
+msgid "amUPSBattLevel_help"
+msgstr "Percent of the battery's charge."
+
+msgid "amUPSStatusOFF"
+msgstr "Off."
+
+msgid "amUPSStatusOL"
+msgstr "Online."
+
+msgid "amUPSStatusOB"
+msgstr "On Battery."
+
+msgid "amUPSStatusDISCHRG"
+msgstr "Discharging."
+
+msgid "amUPSStatusLB"
+msgstr "Low Battery."
+
+msgid "amUPSStatusCAL"
+msgstr "Performing Calibration."
+
+msgid "amUPSStatusTRIM"
+msgstr "Trimming Incoming Voltage."
+
+msgid "amUPSStatusBOOST"
+msgstr "Boosting Incoming Voltage."
+
+msgid "amUPSStatusOVER"
+msgstr "Overloaded."
+
+msgid "amUPSStatusRB"
+msgstr "Battery Needs Replacement."
+
+msgid "amUPSStatusFSD"
+msgstr "Forced Shutdown State."
+
+msgid "amUPSStatus"
+msgstr "UPS Status"
+
+msgid "amUPSStatus_help"
+msgstr "Status of the UPS, whether it is On-line (and drawing current), On Battery power, or in an unknown state."
+
+msgid "amCantConnect"
+msgstr "Cannot connect to the UPS daemon."
+
+msgid "amOnBattery"
+msgstr "The UPS has lost power and is running on the battery. Please check that the UPS is connected properly to an electrical outlet and that you are not experiencing electrical problems."
+
+msgid "amBatteryLow"
+msgstr "The UPS battery level has dropped below [[VAR.level]] percent."
+
+msgid "amAllOK"
+msgstr "The UPS is operating normally."
+
+# LCD
+msgid "lcdenable1"
+msgstr "UPS:"
+
+msgid "lcdenable2"
+msgstr " [ ]ON  [ ]OFF"
+
+msgid "lcdstate1"
+msgstr "CONFIGURE UPS AS"
+
+msgid "lcdstate2"
+msgstr "[M]ASTER [S]LAVE"
+
+msgid "lcdmasterip"
+msgstr "ENTER MASTER IP:"
+
+msgid "lcdbadset1"
+msgstr "INVALID IP"
+
+msgid "lcdbadset2"
+msgstr "ADDRESS ENTERED"
+
+msgid "lcdsavecancel1"
+msgstr "[S]AVE/[C]ANCEL"
+
+msgid "lcdsavecancel2"
+msgstr " "
+
+msgid "lcdtryagain"
+msgstr "TRY AGAIN?"
+
+msgid "lcdyesno"
+msgstr "  [Y]ES  [N]O"
+
+msgid "lcdsaving1"
+msgstr "SAVING SETTINGS "
+
+msgid "lcdsaving2"
+msgstr "PLEASE WAIT ... "
+
+msgid "UPS"
+msgstr "UPS"
+
+msgid "Setting up"
+msgstr "Setting up"
+
+msgid "Shutting down"
+msgstr "Shutting down"
+
+# Email
+msgid "emailSTATUSCHANGE"
+msgstr "UPS status has changed:"
+
+msgid "emailSUBJECT"
+msgstr "UPS State Change"
+
+msgid "emailONLINE"
+msgstr "UPS is back online."
+
+msgid "emailONBATT"
+msgstr "UPS is on battery."
+
+msgid "emailLOWBATT"
+msgstr "UPS is on battery and has a low battery."
+
+msgid "emailFSD"
+msgstr "UPS is being shutdown by the master."
+
+msgid "emailCOMMOK"
+msgstr "Communications established with the UPS."
+
+msgid "emailCOMMBAD"
+msgstr "Communications lost to the UPS."
+
+msgid "emailSHUTDOWN"
+msgstr "The system is being shutdown."
+
+msgid "emailREPLBATT"
+msgstr "The UPS battery is bad and needs to be replaced."
+
+msgid "emailNOCOMM"
+msgstr "A UPS cannot be contacted for monitoring."
+
+msgid "emailGOINGDOWN"
+msgstr "This system is being shut down."
+
