@@ -135,18 +135,18 @@ if [ $? = 0 ]; then
 fi
 
 # update procmailrc
-if [ ! -f /etc/procmailrc ]; then
-  /usr/sausalito/scripts/initProcmail.sh
-else
-  grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
-  fi
-  grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
-  fi
-fi
+#if [ ! -f /etc/procmailrc ]; then
+#  /usr/sausalito/scripts/initProcmail.sh
+#else
+#  grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
+#  if [ $? = 1 ]; then
+#    echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
+#  fi
+#  grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
+#  if [ $? = 1 ]; then
+#    echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
+#  fi
+#fi
 
 if [ -f /etc/sysconfig/saslauthd ]; then
   /usr/bin/perl -pi -e 's|^MECH=shadow|MECH=pam|g'  /etc/sysconfig/saslauthd
@@ -355,6 +355,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 3.20100601BX04
+- Removed procmail related post script
 
 * Thu Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.20100601BX03
 - Added missing glue/configs/procmail/procmailrc again
