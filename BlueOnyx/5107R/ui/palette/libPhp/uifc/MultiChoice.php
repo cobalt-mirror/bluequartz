@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: MultiChoice.php Sun 08 Nov 2009 09:31:50 AM CET mstauber $
+// $Id$
 
 // description:
 // This class represents a widget that allows users to choose one to many
@@ -39,6 +39,8 @@ class MultiChoice extends FormField {
 
   var $fullSize;
   var $multiple;
+  var $scroll;
+  var $row;
   var $options;
 
   //
@@ -54,6 +56,8 @@ class MultiChoice extends FormField {
 
     $this->fullSize = false;
     $this->multiple = false;
+    $this->scroll = false;
+    $this->row = 1;
     $this->options = array();
   }
 
@@ -128,6 +132,21 @@ class MultiChoice extends FormField {
   // see: isMultiple()
   function setMultiple($multiple) {
     $this->multiple = $multiple;
+  }
+
+  // description: get the scroll mode
+  // returns: scroll mode in boolean
+  // see: setScroll() 
+  function isScroll() { 
+    return $this->scroll;
+  }
+
+  // description: set the scroll mode
+  // param: scroll: true if scroll choices can be selected at the same
+  //     time. False otherwise
+  // see: isScroll()
+  function setScroll($scroll) {
+    $this->scroll = $scroll;
   }
 
   // description: select a option
@@ -206,8 +225,10 @@ class MultiChoice extends FormField {
         }
     }
 
-    if(!$this->isFullSize() && !$this->isMultiple() && $noComposite)
+    if(!$this->isFullSize() && !$this->isMultiple() && !$this->isScroll() && $noComposite)
         return $this->_toPullDown();
+    else if($this->isScroll())
+        return $this->_toScroll();
     else if($this->isMultiple() || count($options) == 1)
         return $this->_toRows("checkbox", $style);
     else
@@ -223,10 +244,6 @@ class MultiChoice extends FormField {
         $choiceLabelStyle = $style->getSubstyle("choiceLabel");
         $fieldGrouperStyleStr = $style->toBackgroundStyle("fieldGrouper");
         $formFieldLabelStyle = $style->getSubstyle("formFieldLabel");
-
-	// mstauber
-    	$formFieldStyleStr = $style->toBackgroundStyle("choiceLabel").$style->toTextStyle("choiceLabel");
-
         $subscriptStyleStr = $style->toTextStyle("subscript");
 
         $builder = new FormFieldBuilder();
@@ -348,13 +365,13 @@ $childFieldJavascript
                         // it isn't used again below
                         $optional = "";
                     }
-        		// mstauber:
+                    
 	                $result .= "
       <TR>
 	<TD STYLE=\"$fieldGrouperStyleStr\"><IMG SRC=\"/libImage/spaceHolder.gif\" WIDTH=\"1\"></TD>
 	<TD><IMG SRC=\"/libImage/spaceHolder.gif\" WIDTH=\"5\" HEIGHT=\"5\"></TD>
 $childLabelHtml
-	<TD STYLE=\"$formFieldStyleStr\">$childFieldHtml $optional</TD>
+	<TD>$childFieldHtml $optional</TD>
       </TR>
 <SCRIPT LANGUAGE=\"javascript\">
 var element = document.$formId.$fieldId;
@@ -439,7 +456,51 @@ element.submitHandler = top.code.MultiChoice_submitHandler;
         if (count($selectedIndexes) == 0)
             $selectedIndexes[0] = 0;
             
-        return $builder->makeSelectField($this->getId().'[]', $access, 1, $GLOBALS["_FormField_width"], false, $formId, "", $labels, $values, $selectedIndexes);
+        return $builder->makeSelectField($this->getId(), $access, 1, $GLOBALS["_FormField_width"], false, $formId, "", $labels, $values, $selectedIndexes);
+    }
+
+    function _toScroll()
+    {   
+        $page =& $this->getPage();
+        $form =& $page->getForm();
+        $formId = $form->getId();
+        $options = $this->getOptions();
+
+        $num = count($options);
+        // Make read only if there's only one option
+        $access = $num > 1 ? $this->getAccess() : 'r';
+
+        // get all option labels, values and see which one is selected
+        $labels = array();
+        $values = array();
+        $selectedIndexes = array();
+        for($i = 0; $i < $num; $i++)
+        {   
+            $option =& $options[$i];
+
+            $labelObj =& $option->getLabel();
+            $labels[] = $labelObj->getLabel();
+            $values[] = $option->getValue();
+
+            // check for pre-exisiting user selection
+            $id = $this->getId();
+            global $HTTP_POST_VARS;
+            if($this->isDataPreserved() && isset($HTTP_POST_VARS[$id]) && ($values[$i] == $HTTP_POST_VARS[$id]))
+            {   
+                $selectedIndexes[] = $i;
+            }
+            else if($option->isSelected())
+            {   
+                $selectedIndexes[] = $i;
+            }
+        }
+
+        $builder = new FormFieldBuilder();
+        if (count($selectedIndexes) == 0)
+            $selectedIndexes[0] = 0;
+
+        return $builder->makeSelectField($this->getId().'[]', $access, $this->row, $GLOBALS["_FormField_width"], true, $formId, "", $labels, $values, $selectedIndexes);
+//        return $builder->makeSelectField($this->getId(), $access, $this->row, $GLOBALS["_FormField_width"], true, $formId, "", $labels, $values, $selectedIndexes);
     }
 }
 /*

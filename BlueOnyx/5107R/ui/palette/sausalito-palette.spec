@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX07%{?dist}
+Release: 0BX08%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,11 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX08
+- Replaced ours libPhp/uifc/MultiChoice.php with the one from BQ, which is longer.
+- Extended libPhp/uifc/FormFieldBuilder.php with an experimental subroutine
+- deals with oddities of htmlspecialchars() in PHP-5.3. Currently disabled.
+
 * Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX07
 - Added Hisao's fix for the MultiSelect function
 
