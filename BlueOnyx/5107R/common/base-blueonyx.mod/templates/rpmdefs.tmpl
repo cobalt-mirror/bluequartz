@@ -343,6 +343,7 @@ fi
 <end $TRIGGERIN>
 
 <begin $TRIGGERUN>
+%if "%centos" == "5"
 %triggerpostun glue -- sendmail
 if [ ! -f /etc/mail/aliases ]; then
   if [ -f /etc/mail/aliases.rpmsave ]; then
@@ -356,6 +357,7 @@ if [ ! -f /etc/mail/aliases ]; then
   fi
   /etc/init.d/sendmail condrestart
 fi
+%endif
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
