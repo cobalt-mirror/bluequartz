@@ -244,6 +244,10 @@ class MultiChoice extends FormField {
         $choiceLabelStyle = $style->getSubstyle("choiceLabel");
         $fieldGrouperStyleStr = $style->toBackgroundStyle("fieldGrouper");
         $formFieldLabelStyle = $style->getSubstyle("formFieldLabel");
+
+        // mstauber 
+        $formFieldStyleStr = $style->toBackgroundStyle("choiceLabel").$style->toTextStyle("choiceLabel"); 
+
         $subscriptStyleStr = $style->toTextStyle("subscript");
 
         $builder = new FormFieldBuilder();
@@ -371,7 +375,7 @@ $childFieldJavascript
 	<TD STYLE=\"$fieldGrouperStyleStr\"><IMG SRC=\"/libImage/spaceHolder.gif\" WIDTH=\"1\"></TD>
 	<TD><IMG SRC=\"/libImage/spaceHolder.gif\" WIDTH=\"5\" HEIGHT=\"5\"></TD>
 $childLabelHtml
-	<TD>$childFieldHtml $optional</TD>
+	<TD STYLE=\"$formFieldStyleStr\">$childFieldHtml $optional</TD>
       </TR>
 <SCRIPT LANGUAGE=\"javascript\">
 var element = document.$formId.$fieldId;
@@ -500,7 +504,6 @@ element.submitHandler = top.code.MultiChoice_submitHandler;
             $selectedIndexes[0] = 0;
 
         return $builder->makeSelectField($this->getId().'[]', $access, $this->row, $GLOBALS["_FormField_width"], true, $formId, "", $labels, $values, $selectedIndexes);
-//        return $builder->makeSelectField($this->getId(), $access, $this->row, $GLOBALS["_FormField_width"], true, $formId, "", $labels, $values, $selectedIndexes);
     }
 }
 /*
