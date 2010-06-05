@@ -764,3 +764,26 @@ msgstr "Click the Modify icon to change settings for a delivery route, or click 
 msgid "cap_serverEmail"
 msgstr "Email Service Settings"
 
+##
+
+msgid "SMTP_Auth"
+msgstr "SMTP Authentication"
+
+msgid "enableSMTP_AuthField"
+msgstr "Enable SMTP Auth"
+
+msgid "enableSMTP_AuthField_help"
+msgstr "Turn SMTP authentication service on or off."
+
+msgid "enableSMTPS_AuthField"
+msgstr "Enable SMTPS Auth"
+
+msgid "enableSMTPS_AuthField_help"
+msgstr "Turn SMTPS authentication service on or off."
+
+msgid "enableSubmission_AuthField"
+msgstr "Enable Submission Auth"
+
+msgid "enableSubmission_AuthField_help"
+msgstr "Turn Submission port (587) Authentication on or off."
+

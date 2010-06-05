@@ -46,11 +46,11 @@ $enableSubmissionPortField = $enableSubmissionPortField ? 1 : 0;
 $cceClient->setObject("System", 
   array(
     "enableSMTP" => $enableSMTPField, 
-    "enableSMTP_Auth" => $enableSMTP_Auth,
     "enableSMTPS" => $enableSMTPSField,
-    "enableSMTPS_Auth" => $enableSMTPS_Auth,
     "enableSubmissionPort" => $enableSubmissionPortField,
-    "enableSubmission_Auth" => $enableSubmission_Auth,
+    "enableSMTP_Auth" => $enableSMTP_AuthField,
+    "enableSMTPS_Auth" => $enableSMTPS_AuthField,
+    "enableSubmission_Auth" => $enableSubmission_AuthField,
     "enableTLS" => $enableTLSField,
     "enableImap" => $enableImapField, 
     "enableImaps" => $enableImapsField,
@@ -66,10 +66,10 @@ $cceClient->setObject("System",
     "masqAddress" => $masqAddressField,
     "smartRelay" => $smartRelayField,
     "fallbackRelay" => $fallbackRelayField,
-    "deniedHosts" => $blockHostField),
+    "deniedHosts" => $blockHostField,
     "enableZpush" => $enableZpushField, 
     "delayChecks" => $delayChecksField, 
-    "maxRecipientsPerMessage" => $maxRecipientsPerMessageMap[$maxRecipientsPerMessageField], 
+    "maxRecipientsPerMessage" => $maxRecipientsPerMessageMap[$maxRecipientsPerMessageField]), 
   "Email");
   
 $errors = $cceClient->errors();

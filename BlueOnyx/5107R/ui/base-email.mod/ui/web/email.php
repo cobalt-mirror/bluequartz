@@ -34,7 +34,9 @@ $email = $cceClient->getObject("System", array(), "Email");
 
 $page = $factory->getPage();
 
-$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx", "blacklist"));
+// For now (Postfix) "Add Secondary MX" and "Blacklist" tabs are removed until they're compatible with Postfix again:
+// $block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx", "blacklist"));
+$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced"));
 $block->processErrors($serverScriptHelper->getErrors());
 
 if (isset($view)) {
@@ -50,43 +52,83 @@ $block->processErrors($errors);
 // smtp
 $block->addDivider($factory->getLabel('SMTP', false), 'basic');
 
-$smtpEnable = $factory->getOption("enableSMTPField", $email["enableSMTP"]);
-$smtpEnable->addFormField(
-  $factory->getBoolean("enableSMTP_Auth", $email["enableSMTP_Auth"]),
-  $factory->getLabel("enableAuth")
+//
+$block->addFormField(
+  $factory->getBoolean("enableSMTPField", $email["enableSMTP"]),
+  $factory->getLabel("enableSMTPField"),
+  "basic"
 );
 
-$smtp = $factory->getMultiChoice("enableSMTPField");
-$smtp->addOption($smtpEnable);
-$block->addFormField($smtp, $factory->getLabel("enableSMTPField"), "basic");
-
-// smtps
-$smtpsEnable = $factory->getOption("enableSMTPSField", $email["enableSMTPS"]);
-$smtpsEnable->addFormField(
-  $factory->getBoolean("enableSMTPS_Auth", $email["enableSMTPS_Auth"]),
-  $factory->getLabel("enableAuth")
+$block->addFormField(
+  $factory->getBoolean("enableSMTPSField", $email["enableSMTPS"]),
+  $factory->getLabel("enableSMTPSField"),
+  "basic"
 );
 
-$smtps = $factory->getMultiChoice("enableSMTPSField");
-$smtps->addOption($smtpsEnable);  
-$block->addFormField($smtps, $factory->getLabel("enableSMTPSField"), "basic");
-
-// submission
-$submissionEnable = $factory->getOption("enableSubmissionPortField", $email["enableSubmissionPort"]);
-$submissionEnable->addFormField(
-  $factory->getBoolean("enableSubmission_Auth", $email["enableSubmission_Auth"]),
-  $factory->getLabel("enableAuth")
+// Submission Port 587:
+$block->addFormField(
+  $factory->getBoolean("enableSubmissionPortField", $email["enableSubmissionPort"]),
+  $factory->getLabel("enableSubmissionPortField"),
+  "basic"
 );
-
-$submission = $factory->getMultiChoice("enableSubmissionPortField");
-$submission->addOption($submissionEnable);
-$block->addFormField($submission, $factory->getLabel("enableSubmissionPortField"), "basic");
 
 // TLS
 $block->addFormField(
   $factory->getBoolean("enableTLSField", $email["enableTLS"]),
   $factory->getLabel("enableTLSField"),
   "basic"
+);
+
+// Divider for SMTP-Auth
+$block->addDivider($factory->getLabel('SMTP_Auth', false), 'basic');
+
+// New enableSMTP_Auth:
+$block->addFormField(
+  $factory->getBoolean("enableSMTP_AuthField", $email["enableSMTP_Auth"]),
+  $factory->getLabel("enableSMTP_AuthField"),
+  "basic"
+);
+
+// New enableSMTPS_Auth:
+$block->addFormField(
+  $factory->getBoolean("enableSMTPS_AuthField", $email["enableSMTPS_Auth"]),
+  $factory->getLabel("enableSMTPS_AuthField"),
+  "basic"
+);
+
+// New enableSubmission_Auth:
+$block->addFormField(
+  $factory->getBoolean("enableSubmission_AuthField", $email["enableSubmission_Auth"]),
+  $factory->getLabel("enableSubmission_AuthField"),
+  "basic"
+);
+
+// imap
+$block->addDivider($factory->getLabel('IMAP', false), 'basic');
+$block->addFormField(
+  $factory->getBoolean("enableImapField", $email["enableImap"]),
+  $factory->getLabel("enableImapField"),
+  "basic"
+);
+
+$block->addFormField(
+  $factory->getBoolean("enableImapsField", $email["enableImaps"]),
+  $factory->getLabel("enableImapsField"),
+  "basic"
+);
+
+// pop
+$block->addDivider($factory->getLabel('POP', false), 'basic');
+$block->addFormField(
+  $factory->getBoolean("enablePopField", $email["enablePop"]),
+  $factory->getLabel("enablePopField"),
+  "basic"
+);
+
+$block->addFormField(
+  $factory->getBoolean("enablePopsField", $email["enablePops"]),
+	  $factory->getLabel("enablePopsField"),
+	  "basic"
 );
 
 // Z-Push
