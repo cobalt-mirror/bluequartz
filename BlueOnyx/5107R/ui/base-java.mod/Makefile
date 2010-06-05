@@ -10,7 +10,7 @@ VERSION=2.0.6
 RELEASE=16
 
 # add a buildarch if desired
-BUILDARCH=noarch
+#BUILDARCH=noarch
 
 # locale exclude pattern
 #XLOCALEPAT=
