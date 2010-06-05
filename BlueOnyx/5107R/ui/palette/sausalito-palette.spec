@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX05%{?dist}
+Release: 0BX06%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX06
+- Copied 'en' locales to 'en_US'
+
 * Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX05
 - libPhp/ServerScriptHelper.php: date_default_timezone_set added as per Rickard's suggestion in [Devel:00444]
 
