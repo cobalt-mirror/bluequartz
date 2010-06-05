@@ -109,11 +109,10 @@ class FormFieldBuilder {
   // returns: HTML that represents the field
   function makeHiddenField($id, $value = "") {
 
-// Debug mstauber:
-
     // HTML safe
-    $value = htmlspecialchars($value);
-//    $value = formspecialchars($value);
+    //$value = htmlspecialchars($value); // Doesn't work anymore, as htmlspecialchars can no longer work on arrays, only strings.
+					 // So we do the job in a special function called formspecialchars:
+    $value = formspecialchars($value);
 
     return "<INPUT TYPE=\"HIDDEN\" NAME=\"$id\" VALUE=\"$value\">\n";
   }
@@ -484,24 +483,24 @@ document.$formId.$id.textArea = document.$formId.$textId;
 function formspecialchars($var)
     {
         $pattern = '/&(#)?[a-zA-Z0-9]{0,};/';
-       
+
         if (is_array($var)) {    // If variable is an array
-            $out = array();      // Set output as an array
+            $out = array();      // Set output as an array - for now
             foreach ($var as $key => $v) {     
                 $out[$key] = formspecialchars($v);         // Run formspecialchars on every element of the array and return the result. Also maintains the keys.
             }
+	    // Now that we're done with the array, we turn it back into a string:
+            $out = implode("", $out);
         } else {
             $out = $var;
             while (preg_match($pattern,$out) > 0) {
-                $out = htmlspecialchars_decode($out,ENT_QUOTES);      
-            }                            
+                $out = htmlspecialchars_decode($out,ENT_QUOTES);
+            }
             $out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES,'UTF-8',true);     // Trim the variable, strip all slashes, and encode it
-           
-        }
-       
-        return $out;
-    } 
 
+        }
+        return $out;
+    }
 
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.

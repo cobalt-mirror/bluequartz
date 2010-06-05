@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX09%{?dist}
+Release: 0BX10%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,12 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX10
+- Multitabbed pages loose the contends of MultiChoice unless you click through all tabs first
+- htmlspecialchars() no longer works on Arrays in PHP5
+- Activated experimental subroutine in libPhp/uifc/FormFieldBuilder.php to compensate that.
+- I think the Id field also needed that modification in libPhp/uifc/MultiChoice.php. Added it.
+
 * Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX09
 - Re-added missing TD style for TextLists to libPhp/uifc/MultiChoice.php
 
