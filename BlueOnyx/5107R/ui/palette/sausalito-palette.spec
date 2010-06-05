@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX07
+- Added Hisao's fix for the MultiSelect function
+
 * Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX06
 - Copied 'en' locales to 'en_US'
 
