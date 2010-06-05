@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=storage
 
 VERSION=0.1.0
-RELEASE=58BQ7
+RELEASE=58BX08
 
 # add a buildarch if desired
 BUILDARCH=noarch
