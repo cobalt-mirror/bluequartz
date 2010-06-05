@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=sitestats
 
 VERSION=1.0
-RELEASE=124BX24
+RELEASE=124BX25
 
 # add a buildarch if desired
 BUILDARCH=noarch
