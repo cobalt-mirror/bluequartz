@@ -10,7 +10,7 @@ use I18n;
 my $errors = 0;
 
 my %locales = (  
-	"en_US" => "&en&",
+	"en_US" => "&en_US&",
 	"da_DK" => "&da_DK&",
 	"de_DE" => "&de_DE&",
 	"ja" => "&ja&"
@@ -43,7 +43,7 @@ elsif ($lang =~ /^de_DE/) {
 	$lang = 'de_DE';
 }
 else {
-        $lang = 'en';
+        $lang = 'en_US';
 }
 
 my $myhost = `/bin/hostname -s`;

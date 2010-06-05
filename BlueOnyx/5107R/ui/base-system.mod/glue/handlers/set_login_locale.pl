@@ -51,6 +51,10 @@ sub update_i18n
 	#get the current lang code from "en_US" format
 	my $curlangcode = substr($sys->{productLanguage}, 0, 2);
 
+	if ($curlangcode == "en") {
+	    $curlangcode = "en_US";
+	}
+
 	#we need to move the current lang code to ahead of the rest
 	my $linguas = $curlangcode;
 	foreach my $tmp (@langlist) {
