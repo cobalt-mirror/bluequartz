@@ -41,6 +41,9 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX15
+- Copied 'en' locales to 'en_US'
+
 * Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX14
 - Removed comments from Style XML files as they are unneeded baggage.
 - Copied 'en' locales over to 'en_US'
