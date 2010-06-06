@@ -6,7 +6,7 @@
 include_once('ServerScriptHelper.php');
 include_once('ArrayPacker.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser should be here
 if (!$helper->getAllowed('adminUser')) {

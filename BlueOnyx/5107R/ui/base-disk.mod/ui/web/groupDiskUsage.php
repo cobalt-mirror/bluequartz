@@ -5,7 +5,7 @@
 include_once('ServerScriptHelper.php');
 include_once('uifc/PagedBlock.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 $cce =& $helper->getCceClient();
 $factory =& $helper->getHtmlComponentFactory('base-disk', 
                 "/base/disk/groupDiskUsage.php?group=$group");
