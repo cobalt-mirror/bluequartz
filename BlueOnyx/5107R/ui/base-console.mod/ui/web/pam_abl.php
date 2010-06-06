@@ -18,7 +18,7 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 $cceClient = $serverScriptHelper->getCceClient();
 
 // Update CODB with the latest info gathered from our config file:
-$helper =& new ServerScriptHelper($sessionId);
+$helper = new ServerScriptHelper($sessionId);
 $cceHelper =& $helper->getCceClient();
 $ourOID = $cceHelper->find("pam_abl_settings");
 $cceHelper->set($ourOID[0], "", array('reload_config' => time()));
@@ -105,7 +105,7 @@ $block->addFormField($host_purge_select,$factory->getLabel("host_purge"), "pam_a
 
 // user_rule:
 $user_rule_raw = $systemObj['user_rule'];
-if (eregi('!admin/cced', $user_rule_raw)) {
+if (preg_match('/!admin\/cced/', $user_rule_raw)) {
     $ur_diss = explode(',', $user_rule_raw);
     $user_rule = $ur_diss[1];
 }
@@ -137,7 +137,7 @@ $block->addFormField($user_rule_select,$factory->getLabel("user_rule"), "pam_abl
 
 // host_rule:
 $host_rule_raw = $systemObj['host_rule'];
-if (eregi('\*=(.*)', $host_rule_raw)) {
+if (preg_match('/\*=\(.*\)/', $host_rule_raw)) {
     $hr_diss = explode('=', $host_rule_raw);
     $host_rule = $hr_diss[1];
 }

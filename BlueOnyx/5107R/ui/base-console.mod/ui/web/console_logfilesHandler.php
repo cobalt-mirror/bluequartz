@@ -24,6 +24,9 @@ $transMethodOn="off";
 
 $errors = array();
 
+$var_sol_view = $_POST['sol_view'];
+$sol_view = $var_sol_view[0];
+
         if ($sol_view == "/var/log/cron") {
                 $my_sol_view = "console_logs_cron.php";
         }

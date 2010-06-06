@@ -22,7 +22,7 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 // For that purpose we write something into CCE and henceforth
 // trigger a handler that will update the info in CCE:
 
-        $helper =& new ServerScriptHelper($sessionId);
+        $helper = new ServerScriptHelper($sessionId);
         $cceHelper =& $helper->getCceClient();
         $masterOID = $cceHelper->find("SOL_Console");
 

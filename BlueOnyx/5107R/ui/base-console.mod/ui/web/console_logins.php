@@ -22,7 +22,7 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 // For that purpose we write something into CCE and henceforth
 // trigger a handler that will update the info in CCE:
 
-        $helper =& new ServerScriptHelper($sessionId);
+        $helper = new ServerScriptHelper($sessionId);
         $cceHelper =& $helper->getCceClient();
         $masterOID = $cceHelper->find("SOL_Console");
 
@@ -93,7 +93,7 @@ foreach ($pieces as $line) {
 	$duration = rtrim($my_duration[0]);
 
     	if (($serverScriptHelper->getAllowed('adminUser')) && ($endtime == "still")) {
-    	    if (eregi("ftpd", $console)) {
+    	    if (preg_match("/ftpd/i", $console)) {
     	        $killer = "ftpd";
 		$my_ftpd_pid = str_split_php4($console, "4", "75");
 		$ftpd_pid = rtrim($my_ftpd_pid[0]);
@@ -106,7 +106,7 @@ foreach ($pieces as $line) {
     	    $action->addFormField($removeButton);
     	}
 
-        if (eregi("wtmp begins", $line)) {
+        if (preg_match("/wtmp begins/i", $line)) {
 	    $my_header = str_split_php4($line, "0", "42");
 	    $header = rtrim($my_header[0]);
 	}

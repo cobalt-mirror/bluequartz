@@ -4,7 +4,7 @@
 include_once("ServerScriptHelper.php");
 include_once("AutoFeatures.php");
 
-$helper =& new ServerScriptHelper($sessionId);
+$helper = new ServerScriptHelper($sessionId);
 
 // Only adminUser should be here
 if (!$helper->getAllowed('adminUser')) {

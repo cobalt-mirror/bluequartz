@@ -43,7 +43,7 @@ if ($action) {
 }
 
 // Update CODB with the latest info gathered from our config file:
-$helper =& new ServerScriptHelper($sessionId);
+$helper = new ServerScriptHelper($sessionId);
 $cceHelper =& $helper->getCceClient();
 $ourOID = $cceHelper->find("pam_abl_settings");
 $cceHelper->set($ourOID[0], "", array('import_history' => time()));
