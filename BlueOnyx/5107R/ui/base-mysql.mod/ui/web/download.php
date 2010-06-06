@@ -21,8 +21,8 @@
 
 	$filename = 'mysql-dump-' . date(YmdHis) . '.sql'; 
 
-	if (ereg('Opera(/| )([0-9].[0-9]{1,2})', $_SERVER['HTTP_USER_AGENT'])) $UserBrowser = "Opera"; 
-		elseif  (ereg('MSIE ([0-9].[0-9]{1,2})', $_SERVER['HTTP_USER_AGENT'])) $UserBrowser = "IE"; 
+	if (preg_match('/Opera(\/| )([0-9].[0-9]{1,2})/', $_SERVER['HTTP_USER_AGENT'])) $UserBrowser = "Opera"; 
+		elseif  (preg_match('/MSIE ([0-9].[0-9]{1,2})/', $_SERVER['HTTP_USER_AGENT'])) $UserBrowser = "IE"; 
 		else 	$UserBrowser = ''; 
  
 	// important for download im most browser 

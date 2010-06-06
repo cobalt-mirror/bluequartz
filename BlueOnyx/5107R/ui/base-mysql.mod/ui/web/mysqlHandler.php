@@ -51,7 +51,7 @@
 	$errors[] = $cceClient->errors();
 
 	// Find and validate presence of 'MySQL':
-	$helper =& new ServerScriptHelper($sessionId);
+	$helper = new ServerScriptHelper($sessionId);
 	$cceHelper =& $helper->getCceClient();
 	$getthisOID = $cceHelper->find("MySQL");
 	$mysql_settings_exists = 0;
