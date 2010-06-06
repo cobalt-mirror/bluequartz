@@ -13,7 +13,7 @@ CCEMODULE = sausalito-palette
 CCERPMSPEC = sausalito-palette.spec
 
 VERSION=0.5.2
-RELEASE=0BX10
+RELEASE=0BX11
 
 LOCALES=$(shell dir=locale; \
                 if [ -d $$dir ]; then \

@@ -460,7 +460,7 @@ element.submitHandler = top.code.MultiChoice_submitHandler;
         if (count($selectedIndexes) == 0)
             $selectedIndexes[0] = 0;
             
-        return $builder->makeSelectField($this->getId().'[]', $access, 1, $GLOBALS["_FormField_width"], false, $formId, "", $labels, $values, $selectedIndexes);
+        return $builder->makeSelectField($this->getId(), $access, 1, $GLOBALS["_FormField_width"], false, $formId, "", $labels, $values, $selectedIndexes);
     }
 
     function _toScroll()
