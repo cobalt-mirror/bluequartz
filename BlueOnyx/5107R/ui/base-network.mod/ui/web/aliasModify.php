@@ -8,7 +8,7 @@ include_once('ServerScriptHelper.php');
 include_once('uifc/Option.php');
 include_once('base/network/network_common.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 $cce = $helper->getCceClient();
 
 // Only adminUser should be here
@@ -100,8 +100,8 @@ if (!$add)
 foreach ($real_ifs as $oid)
 {
 	$eth =& $cce->get($oid);
-	ereg('([0-9]+)', $eth['device'], $matches);
-	$option =& new Option(
+	preg_match('/([0-9]+)/', $eth['device'], $matches);
+	$option = new Option(
 					$factory->getLabel($eth['device']),
 					$eth['device']
 					);

@@ -454,7 +454,7 @@ if ($block->getSelectedId() == 'aliasSettings')
       {
 	// must be an alias
 	$alias = $cceClient->get($networks[$i]);
-	$device_info = split(':', $alias['device']);
+	$device_info = preg_split('/:/', $alias['device']);
 	$alias_name = $i18n->interpolateHtml('[[base-network.alias' .
 					     $device_info[0] . ']]',
 					     array('num' => $device_info[1]));

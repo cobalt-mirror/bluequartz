@@ -57,7 +57,7 @@ if ($eth0_obj['enabled']) {
 		$eth0 = `grep eth0 /proc/net/dev`;
 	}
   $eth0 = chop(ltrim($eth0));
-  $eth0 = split("[^[:alnum:]]+", $eth0);
+  $eth0 = preg_split("/[^[:alnum:]]+/", $eth0);
   $eth0['recv_bytes'] = $eth0[1];
   $eth0['recv_packets'] = $eth0[2];
   $eth0['sent_bytes'] = $eth0[9];
@@ -73,7 +73,7 @@ if ($eth0_obj['enabled']) {
 if ($eth1_obj['enabled']) {
   $eth1 = `grep eth1 /proc/net/dev`;
   $eth1 = chop(ltrim($eth1));
-  $eth1 = split("[^[:alnum:]]+", $eth1);
+  $eth1 = preg_split("/[^[:alnum:]]+/", $eth1);
   $eth1['recv_bytes'] = $eth1[1];
   $eth1['recv_packets'] = $eth1[2];
   $eth1['sent_bytes'] = $eth1[9];

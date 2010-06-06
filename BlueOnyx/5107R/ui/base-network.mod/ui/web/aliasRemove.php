@@ -6,7 +6,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 $cce =& $helper->getCceClient();
 
 // Only adminUser should be here

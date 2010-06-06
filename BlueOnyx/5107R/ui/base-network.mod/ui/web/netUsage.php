@@ -23,7 +23,7 @@ $line = fgets($ifFile, 256);  // more headers
 $line = fgets($ifFile, 256);
 while (!feof($ifFile))
 {
-	$fields = split('[: ]+', $line);
+	$fields = preg_split('/[: ]+/', $line);
 	$if = $fields[1];
 	if ($if == "lo")
 	{
