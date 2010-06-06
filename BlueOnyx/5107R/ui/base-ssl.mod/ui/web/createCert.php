@@ -34,13 +34,13 @@ if ($save)
     }
 
     $settings = array(
-                'country' => $country[0],
+                'country' => $country,
                 'state' => $state,
                 'city' => $city,
                 'orgName' => $orgName,
                 'orgUnit' => $orgUnit,
                 'email' => $email,
-                'daysValid' => ($daysValid * $multiplier[0])
+                'daysValid' => ($daysValid * $multiplier)
                 );
 
     if ($type != 'csr' || $genCert)
