@@ -4,7 +4,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 $factory =& $helper->getHtmlComponentFactory('base-shell', '/base/shell/vsiteShell.php');
 $cce =& $helper->getCceClient();
 
