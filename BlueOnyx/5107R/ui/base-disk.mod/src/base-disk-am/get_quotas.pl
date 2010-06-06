@@ -121,7 +121,7 @@ sub all_users {
         my $dir = $pw->home($name);
 	my @groupworkaround = split(/\//, $dir);
 
-        if (($uid >= 500) && ($groupworkaround[5] ne "logs")) {
+        if ((($uid >= 500)&&($uid != 65534)) && ($groupworkaround[5] ne "logs")) {
     	    push @all_users, $name;
 	}
     }
@@ -238,10 +238,13 @@ sub userusage {
 	my @groupworkaround = split(/\//, $dir);
 
 	# Ignore all users with an UID below 500 and also the SITEXX-logs users:
-	if ($uid < 500) {
+	if (($uid < 500)||($uid == 65534)) {
 	    next;
 	}
 	elsif ($groupworkaround[5] eq "logs") {
+	    next;
+	}
+	elsif ($name eq "nfsnobody") {
 	    next;
 	}
 	else {
