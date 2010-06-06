@@ -44,7 +44,7 @@ if(is_dir($dirName)) {
 	if ($file[0] == '.')
 		continue;
 	$serverScriptHelper->shell("$magic_cmd $dirName/$file", $output, 'root');
-	if (ereg("(tar|compressed|PGP\s+armored|\sdata$)", $output)) {
+	if (preg_match("/(tar|compressed|PGP\s+armored|\sdata$)/", $output)) {
 		$packages[] = $file;
 	}
   }

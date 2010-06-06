@@ -76,7 +76,7 @@ $block->addFormField(
   $factory->getLabel("descriptionField")
 );
 
-$location = ereg('^file:', $package['location']) ? $i18n->interpolate('[[base-swupdate.locationLocal]]') : $package['location'];
+$location = preg_match('/^file:/', $package['location']) ? $i18n->interpolate('[[base-swupdate.locationLocal]]') : $package['location'];
 $block->addFormField(
   $factory->getTextField("locationField", $location, "r"),
   $factory->getLabel("locationField")

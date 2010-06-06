@@ -226,7 +226,7 @@ if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || (!$_PagedBlock_selec
   else {
     $yum_output = "";
   }
-  $a_yum = split("\n", $yum_output);
+  $a_yum = preg_split("/\n/", $yum_output);
   $count = count($a_yum);
   $start = 0;
   for ( $i = 0; $i < $count; $i++ ) {
@@ -239,7 +239,7 @@ if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || (!$_PagedBlock_selec
     foreach ( $updates as $entry ) {
       $yum_update = 1;
       $entry = preg_replace("/\s+/", " ", $entry);
-      $a_entry = split(" ", $entry);
+      $a_entry = preg_split("/ /", $entry);
       if ($a_entry[0] != "") {
     	    $yum->addEntry(array(
     	    $factory->getTextField("", $a_entry[0], "r"),

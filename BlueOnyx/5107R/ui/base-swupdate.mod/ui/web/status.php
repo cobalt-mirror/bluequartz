@@ -16,7 +16,7 @@ $swupdate["progress"] = round( $swupdate["progress"] );
 $cmd = &$swupdate["uiCMD"];
 
 // check to see if we need to redirect to the download page
-if (eregi("packageOID=([0-9]+)", $cmd, $reg)) {
+if (preg_match("/packageOID=([0-9]+)/i", $cmd, $reg)) {
 	$oid = &$reg[1];
 header("location: /base/swupdate/download.php?packageOID=$oid&backUrl=$backbackUrl");
 	$cceClient->setObject("System", array("uiCMD" => '', 'progress' => '100'), "SWUpdate");
