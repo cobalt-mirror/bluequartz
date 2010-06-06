@@ -22,9 +22,9 @@ print($page->toHeaderHtml());
 am_detail_block($factory, $cce, "Memory", "[[base-am.amMemDetails]]");
 
 $kernelver = `uname -r`;
-if (ereg('^2.4', $kernelver)) {
+if (preg_match('/^2.4/', $kernelver)) {
     $kernel = 2.4;
-} elseif (ereg('^2.6', $kernelver)) {
+} elseif (preg_match('/^2.6/', $kernelver)) {
     $kernel = 2.6;
 }
 $mttl = `cat /proc/meminfo | grep MemTotal`;
@@ -66,7 +66,7 @@ $subblock = $factory->getPagedBlock(
 	$i18n->interpolate("[[base-am.amMemStats]]"));
 
 // total mem
-$mttl = eregi_replace("[^0-9]*", "", $mttl);
+$mttl = preg_replace("/[^0-9]*/i", "", $mttl);
 $subblock->addFormField(
 	$factory->getTextField("mttlField", 
 		$i18n->interpolate("[[base-am.MemKB,val=\"$mttl\"]]"), "r"),
@@ -74,7 +74,7 @@ $subblock->addFormField(
 );
 
 // free mem
-$mfree = eregi_replace("[^0-9]*", "", $mfree);
+$mfree = preg_replace("/[^0-9]*/i", "", $mfree);
 $subblock->addFormField(
 	$factory->getTextField("mfreeField",
 		$i18n->interpolate("[[base-am.MemKB,val=\"$mfree\"]]"), "r"),
@@ -92,14 +92,14 @@ $subblock->addFormField(
 	$factory->getLabel("amMemUsed")
 );
 	
-$sttl = eregi_replace("[^0-9]*", "", $sttl);
+$sttl = preg_replace("/[^0-9]*/i", "", $sttl);
 $subblock->addFormField(
 	$factory->getTextField("sttlField", 
 		$i18n->interpolate("[[base-am.MemKB,val=\"$sttl\"]]"), "r"),
 	$factory->getLabel("amSwapTotal")
 );
 
-$sfree = eregi_replace("[^0-9]*", "", $sfree);
+$sfree = preg_replace("/[^0-9]*/i", "", $sfree);
 $subblock->addFormField(
 	$factory->getTextField("sfreeField",
 		$i18n->interpolate("[[base-am.MemKB,val=\"$sfree\"]]"), "r"),
@@ -108,16 +108,16 @@ $subblock->addFormField(
 
 switch($kernel){
 case 2.4:
-    list($tmp, $pagesin, $pagesout) = split("[[:space:]]+", $mempages);
-    list($tmp, $swapin, $swapout) = split("[[:space:]]+", $memswaps);
+    list($tmp, $pagesin, $pagesout) = preg_split("/[[:space:]]+/", $mempages);
+    list($tmp, $swapin, $swapout) = preg_split("/[[:space:]]+/", $memswaps);
     break;
 case 2.6:
-    list($tmp, $pagesin, $tmp, $pagesout) = split("[[:space:]]+", $mempages);
-    list($tmp, $tmp, $size, $swaps) = split("[[:space:]]+", $memswaps);
+    list($tmp, $pagesin, $tmp, $pagesout) = preg_split("/[[:space:]]+/", $mempages);
+    list($tmp, $tmp, $size, $swaps) = preg_split("/[[:space:]]+/", $memswaps);
     break;
 }
 
-list($uptime, $tmp) = split("[[:space:]]+", $uptime);
+list($uptime, $tmp) = preg_split("/[[:space:]]+/", $uptime);
 
 $pages = round(($pagesin + $pagesout) / $uptime);
 $string = $i18n->interpolate("[[base-am.amPagesSec,pages=\"$pages\"]]");

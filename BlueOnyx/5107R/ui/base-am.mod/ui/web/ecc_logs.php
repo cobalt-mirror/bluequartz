@@ -29,7 +29,7 @@ while (!feof($log)) {
   // that related to kernel logging and reboots
 
   if (strpos($line, "NMI:") || strpos($line, "klogd") || 
-      ereg("Kernel.*log", $line)) {
+      preg_match("/Kernel.*log/", $line)) {
     $output .= $line;
   }
 }

@@ -72,7 +72,7 @@ $subblock->addFormField(
 
 // cpu temperature
 $temp = `cat /proc/cpuinfo | grep temperature`;
-if ($temp = eregi_replace("[^0-9\.]*", "", $temp)) {
+if ($temp = preg_replace("/[^0-9\.]*/i", "", $temp)) {
 	$itemp = $i18n->interpolate("[[base-am.degrees,val=\"$temp\"]]");
 	$subblock->addFormField(
 		$factory->getTextField("tempField", $itemp, "r"),
