@@ -4,7 +4,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser and siteAdmin should be here
 if (!$helper->getAllowed('adminUser') &&
@@ -21,7 +21,7 @@ if ($save)
     if ($cert == "none") 
     {
 	//no file supplied
-	$error =& new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+	$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
 	$errors = array($error);
     }
     else 
@@ -32,7 +32,7 @@ if ($save)
 	    if (!$fh) 
 	    {
 		//file opening problems
-		$error =& new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+		$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
 		$errors = array($error);
 	    }
 	    else
@@ -55,7 +55,7 @@ if ($save)
 		    if ($ret != 0)
 		    {
 		        // deal with error
-		        $error =& new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
+		        $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
 		        $errors = array($error);
 		    }
 		    else

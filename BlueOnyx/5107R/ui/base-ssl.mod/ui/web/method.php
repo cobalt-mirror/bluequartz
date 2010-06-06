@@ -4,7 +4,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser and siteAdmin should be here
 if (!$helper->getAllowed('adminUser') &&

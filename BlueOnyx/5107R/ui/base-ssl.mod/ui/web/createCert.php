@@ -4,7 +4,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser and siteAdmin should be here
 if (!$helper->getAllowed('adminUser') &&
@@ -34,13 +34,13 @@ if ($save)
     }
 
     $settings = array(
-                'country' => $country,
+                'country' => $country[0],
                 'state' => $state,
                 'city' => $city,
                 'orgName' => $orgName,
                 'orgUnit' => $orgUnit,
                 'email' => $email,
-                'daysValid' => ($daysValid * $multiplier)
+                'daysValid' => ($daysValid * $multiplier[0])
                 );
 
     if ($type != 'csr' || $genCert)
