@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX11%{?dist}
+Release: 0BX12%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX12
+- Fixed missing font size in libPhp/uifc/CompositeFormField.php
+
 * Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX11
 - Fixed libPhp/uifc/MultiChoice.php again.
 

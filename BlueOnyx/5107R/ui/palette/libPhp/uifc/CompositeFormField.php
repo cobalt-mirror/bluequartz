@@ -89,8 +89,8 @@ class CompositeFormField extends FormField {
     $formFields = $this->getFormFields();
     for($i = 0; $i < count($formFields); $i++) {
       if($i > 0)
-	$result .= "<TD>$delimiter</TD>";
-      $result .= "<TD>".$formFields[$i]->toHtml($style)."</TD>";
+	$result .= "<TD><FONT STYLE=\"font-size:12px\">$delimiter</FONT></TD>";
+      $result .= "<TD><FONT STYLE=\"font-size:12px\">".$formFields[$i]->toHtml($style)."</FONT></TD>";
     }
 
     $result .= "</TR></TABLE>";
