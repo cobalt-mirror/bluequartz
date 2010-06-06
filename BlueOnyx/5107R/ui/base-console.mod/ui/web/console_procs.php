@@ -112,9 +112,9 @@ foreach ($pieces as $line) {
         	$action->addFormField($removeButton);
     	    }
 
-	    if ((eregi("handlers/base/console/generate_process_list.pl", $the_proc)) || 
-		(eregi("/bin/ps auxwf > /tmp/console.process-list", $the_proc)) || 
-		(eregi("\_ /bin/ps auxwf", $the_proc))) {
+	    if ((preg_match("/handlers\/base\/console\/generate_process_list.pl/", $the_proc)) || 
+		(preg_match("/\/bin\/ps auxwf > \/tmp\/console.process-list/", $the_proc)) || 
+		(preg_match("/\_ \/bin\/ps auxwf/", $the_proc))) {
 		
 		// Ignore
 		
