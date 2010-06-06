@@ -37,10 +37,10 @@ if ($cceClient->suspended() !== false)
 $oids = $cceClient->find("System");
 
 // Cheesily strip leading zeroes.  
-$_endDate_month  = ereg_replace('^0', '', $_endDate_month);
-$_startDate_month  = ereg_replace('^0', '', $_startDate_month);
-$_endDate_day  = ereg_replace('^0', '', $_endDate_day);
-$_startDate_day  = ereg_replace('^0', '', $_startDate_day);
+$_endDate_month  = preg_replace('/^0/', '', $_endDate_month);
+$_startDate_month  = preg_replace('/^0/', '', $_startDate_month);
+$_endDate_day  = preg_replace('/^0/', '', $_endDate_day);
+$_startDate_day  = preg_replace('/^0/', '', $_startDate_day);
 
 $config = array(
 	"startDay" => $_startDate_day,
