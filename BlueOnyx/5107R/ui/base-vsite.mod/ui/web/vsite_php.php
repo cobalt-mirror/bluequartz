@@ -174,7 +174,7 @@ $block->addFormField(
 
 // open_basedir
 // Remove any superfluxus /home/.sites/ paths from $systemObj['open_basedir']:
-$this_vsite_open_basedir = split (":", $systemObj['open_basedir']);
+$this_vsite_open_basedir = preg_split ("/:/", $systemObj['open_basedir']);
 $this_vsite_open_basedir_new = array();
 foreach ($this_vsite_open_basedir as $entry) {
 	if(!preg_match("/\/home\/.sites\//i", $entry, $regs)) {
@@ -185,7 +185,8 @@ foreach ($this_vsite_open_basedir as $entry) {
 if ($systemObj['open_basedir'] != "") {
 	$systemObj['open_basedir'] = implode(":",$this_vsite_open_basedir_new);
 	// If 'open_basedir' doesn't have this vsite's basedir in it, then we need to append it here:
-	if(!preg_match("/$vsite['basedir']/i", $systemObj['open_basedir'], $regs)) {
+	$vs_bdir = $vsite['basedir'];
+	if(!preg_match('/$vs_bdir/i', $systemObj['open_basedir'])) {
 	    $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
 	}
 }

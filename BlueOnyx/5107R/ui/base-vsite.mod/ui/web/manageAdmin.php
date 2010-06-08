@@ -223,7 +223,7 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
     else
         $rootAccess = 0;
 
-    $adminPowers = ereg_replace('&(rootAccess)&', '&', $adminPowers);
+    $adminPowers = preg_replace('/&(rootAccess)&/', '&', $adminPowers);
     $current_caps = array_merge($current_caps, 
                         $cce->scalar_to_array($adminPowers));
 
@@ -231,7 +231,7 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
     if (preg_replace("/^&+$/", $cap_string))
         $cap_string = '';
     else
-        $cap_string = ereg_replace('&&', '&', $cap_string);
+        $cap_string = preg_replace('/&&/', '&', $cap_string);
 
     // handle create if necessary
     if (!isset($_oid))

@@ -342,18 +342,18 @@ for($x=0;$x<count($array_zwo);$x++){
 
         if(preg_replace("/^register_globals/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
-                $array_zwo[$x] = eregi_replace('register_globals=Off', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
-                $array_zwo[$x] = eregi_replace('register_globals=On', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/register_globals=Off/i', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/register_globals=On/i', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
         }
         if(preg_replace("/^safe_mode/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
-                $array_zwo[$x] = eregi_replace('safe_mode=Off', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
-                $array_zwo[$x] = eregi_replace('safe_mode=On', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode=Off/', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode=On/', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
         }
         if(preg_replace("/^safe_mode_gid/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
-                $array_zwo[$x] = eregi_replace('safe_mode_gid=On', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
-                $array_zwo[$x] = eregi_replace('safe_mode_gid=Off', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode_gid=On/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode_gid=Off/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
         }
         if(preg_replace("/^safe_mode_include_dir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'<br>';

@@ -61,7 +61,7 @@ if ($vsite_php["enabled"] == "0") {
   }
 
   // Remove any superfluxus /home/.sites/ paths from $open_basedir:
-  $this_vsite_open_basedir = split (":", $open_basedir);
+  $this_vsite_open_basedir = preg_split ("/:/", $open_basedir);
   $this_vsite_open_basedir_new = array();
   foreach ($this_vsite_open_basedir as $entry) {
         if(!preg_match("/\/home\/.sites\//i", $entry, $regs)) {
