@@ -1,7 +1,7 @@
 Summary: Perl modules that contain vital telnet access functionality
 Name: telnet-scripts
-Version: 1.1.2
-Release: 6BQ7%{?dist}
+Version: 1.1.3
+Release: 7BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -27,7 +27,15 @@ rm -rf $RPM_BUILD_ROOT/usr/sausalito/swatch
 This package contains a number of scripts and perl modules that
 contain vital functionality for telnet access.
 
+%post
+if [ -e /usr/sausalito/sbin/initTelnet.sh ];then
+    /usr/sausalito/sbin/initTelnet.sh > /dev/null 2>&1
+fi
+
 %changelog
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.3-7BX01
+- initTelnet.sh used to get run by BTO? Makes no sense, we can do it on post install.
 
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.2-6BQ7
 - Rebuilt for BlueOnyx.
