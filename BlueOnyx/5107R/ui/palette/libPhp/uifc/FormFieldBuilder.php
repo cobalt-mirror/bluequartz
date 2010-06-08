@@ -411,7 +411,7 @@ document.$formId.$id.options.length = $optionNum;
 
 	// if no wrap
 	if($wrap == "off")
-	  $value = "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD NOWRAP>$value</TD></TR></TABLE>";
+	  $value = "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD NOWRAP><FONT STYLE=\"font-size:12px\">$value</FONT></TD></TR></TABLE>";
 
 	return $value;
 
