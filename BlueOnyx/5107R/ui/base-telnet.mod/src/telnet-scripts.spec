@@ -34,7 +34,7 @@ fi
 
 %changelog
 
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.3-7BX01
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.3-7BX01
 - initTelnet.sh used to get run by BTO? Makes no sense, we can do it on post install.
 
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.2-6BQ7
