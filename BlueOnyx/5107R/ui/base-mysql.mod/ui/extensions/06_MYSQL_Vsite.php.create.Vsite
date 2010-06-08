@@ -14,7 +14,7 @@ define("MYSQL_Vsite_EXTENSION_CREATE_VSITE", 1);
 // Get Module status from 'System' object 'MYSQLUSERS_DEFAULTS':
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
-$helper =& new ServerScriptHelper($sessionId);
+$helper = new ServerScriptHelper($sessionId);
 $cceHelper =& $helper->getCceClient();
 $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
 if ($db_rights['solsitemysql'] == "1") {
@@ -35,7 +35,7 @@ if ($db_rights['solsitemysql'] == "1") {
 		// Find and validate presence of 'MySQL' and pull the data:
 		$serverScriptHelper = new ServerScriptHelper();
 		$cceClient = $serverScriptHelper->getCceClient();
-		$helper =& new ServerScriptHelper($sessionId);
+		$helper = new ServerScriptHelper($sessionId);
 		$cceHelper =& $helper->getCceClient();
 		$getthisOID = $cce->find("MySQL");
 		$mysql_settings_exists = 0;
@@ -137,7 +137,7 @@ if ($db_rights['solsitemysql'] == "1") {
 			    // Resolve which site this is for:
 			    $vsite = $cce->getObject('Vsite', array('name' => $group));
 			    $vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
-//			    $my_username = ereg_replace ( '\.', '_', $vs_site );
+//			    $my_username = preg_replace ( '/\./', '_', $vs_site );
 //			    $my_dbname = $my_username . '_db';
                             $my_username = $group;
                             $my_dbname = $group . '_db';
@@ -271,7 +271,7 @@ if ($db_rights['solsitemysql'] == "1") {
 	    $cce = $ServerScriptHelper->getCceClient();
 	    $serverScriptHelper = new ServerScriptHelper();
 	    $cceClient = $serverScriptHelper->getCceClient();
-    	    $helper =& new ServerScriptHelper($sessionId);
+    	    $helper = new ServerScriptHelper($sessionId);
             $cceHelper =& $helper->getCceClient();
             $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
 
@@ -357,7 +357,7 @@ if ($db_rights['solsitemysql'] == "1") {
 		    $cce = $ServerScriptHelper->getCceClient();
 		    $serverScriptHelper = new ServerScriptHelper();
 		    $cceClient = $serverScriptHelper->getCceClient();
-		    $helper =& new ServerScriptHelper($sessionId);
+		    $helper = new ServerScriptHelper($sessionId);
 		    $cceHelper =& $helper->getCceClient();
 		    $getthisOID = $cce->find("MySQL");
 		    $mysql_settings_exists = 0;
