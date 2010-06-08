@@ -1,0 +1,7 @@
+<item id="nuonce_base_ssh" label="SSH" 
+    description="Use SSH To access your server" 
+    url="/base/remote/ssh.php"
+>
+    <parent id="nuonce_remoteProfile" order="80">
+    </parent>
+</item>
