@@ -340,40 +340,40 @@ for($x=0;$x<count($array_zwo);$x++){
         $array_zwo[$x] = nl2br($array_zwo[$x]); //#newline conversion
         $array_zwo[$x] = preg_replace('/\s\s+/', '', $array_zwo[$x]); //#strip spaces
 
-        if(preg_replace("/^register_globals/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^register_globals/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
                 $array_zwo[$x] = preg_replace('/register_globals=Off/i', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
                 $array_zwo[$x] = preg_replace('/register_globals=On/i', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
         }
-        if(preg_replace("/^safe_mode/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
                 $array_zwo[$x] = preg_replace('/safe_mode=Off/', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
                 $array_zwo[$x] = preg_replace('/safe_mode=On/', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
         }
-        if(preg_replace("/^safe_mode_gid/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_gid/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
                 $array_zwo[$x] = preg_replace('/safe_mode_gid=On/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
                 $array_zwo[$x] = preg_replace('/safe_mode_gid=Off/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
         }
-        if(preg_replace("/^safe_mode_include_dir/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_include_dir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'<br>';
         }
-        if(preg_replace("/^safe_mode_exec_dir/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_exec_dir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_exec_dir = '.$systemObj["safe_mode_exec_dir"].'<br>';
         }
-        if(preg_replace("/^safe_mode_allowed_env_vars/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_allowed_env_vars/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_allowed_env_vars = '.$systemObj["safe_mode_allowed_env_vars"].'<br>';
         }
-        if(preg_replace("/^safe_mode_protected_env_vars/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_protected_env_vars/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_protected_env_vars = '.$systemObj["safe_mode_protected_env_vars"].'<br>';
         }
-        if(preg_replace("/^open_basedir/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^open_basedir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'open_basedir = '.$systemObj["open_basedir"].'<br>';
         }
-        if(preg_replace("/^disable_functions/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^disable_functions/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'disable_functions = '.$systemObj["disable_functions"].'<br>';
         }
-        if(preg_replace("/^disable_classes/i",$array_zwo[$x], $regs)) {
+        if(preg_match("/^disable_classes/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'disable_classes = '.$systemObj["disable_classes"].'<br>';
         }
 	// Replace end

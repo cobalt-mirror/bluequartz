@@ -59,6 +59,7 @@ function &parse_search_criteria()
 	$searchProperty = session_get_var('searchProperty');
 	$searchLimit = session_get_var('searchLimit');
 	$searchText = session_get_var('searchText');
+
 	if ($searchText != '') {
 		parse_text_search($searchProperty, $searchText, $searchLimit,
 				  $return);
@@ -157,7 +158,7 @@ function &generate_search_fields(&$factory, &$cce)
 	$possible_services =& $cce->names('VsiteServices');
 	foreach ($possible_services as $service) {
 		$ns = $cce->get($services_oid, $service);
-		$selected = preg_replace("/&$service&/", $services);
+		$selected = preg_match("/&$service&/", $services);
 		$option =& $factory->getOption($service, $selected);
 		$option->setLabel($factory->getLabel($ns['i18nName'], false));
 		$services_select->addOption($option);

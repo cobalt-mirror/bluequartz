@@ -218,7 +218,7 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
         $current_caps[] = 'adminUser';
 
     // hack root access back out
-    if (preg_replace("/&rootAccess&/", $adminPowers))
+    if (preg_match("/&rootAccess&/", $adminPowers))
         $rootAccess = 1;
     else
         $rootAccess = 0;
@@ -228,7 +228,7 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
                         $cce->scalar_to_array($adminPowers));
 
     $cap_string = $cce->array_to_scalar($current_caps);
-    if (preg_replace("/^&+$/", $cap_string))
+    if (preg_match("/^&+$/", $cap_string))
         $cap_string = '';
     else
         $cap_string = preg_replace('/&&/', '&', $cap_string);
