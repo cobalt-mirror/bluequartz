@@ -370,9 +370,9 @@ if ( $vsite_dns["domains"] ) {
 	// print "Sys oid: $sys_oid, sys_dirty: ".$sys_dns['dirty'];
 	$commit_time = time();
 	$commitButton = $factory->getButton("/base/dns/vsite_records.php?group=$group&commit=$commit_time", "apply_changes");
-	if($sys_dns['dirty'] == 0) {
-	        $commitButton->setDisabled(true);
-	}
+//	if($sys_dns['dirty'] == 0) {
+//	        $commitButton->setDisabled(true);
+//	}
 ?>
 
 <SCRIPT LANGUAGE="javascript">
