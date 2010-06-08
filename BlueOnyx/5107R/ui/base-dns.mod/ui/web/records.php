@@ -270,9 +270,9 @@ if(count($rec_oids)) {
 					$resolution = $rec['delegate_dns_servers'];
 					$label = $rec['hostname'].'.'.$rec['domainname'];
 				}
-				$resolution = ereg_replace('^&', '', $resolution);
-				$resolution = ereg_replace('&$', '', $resolution);
-				$resolution = ereg_replace('&', ' ', $resolution);
+				$resolution = preg_replace('/^&/', '', $resolution);
+				$resolution = preg_replace('/&$/', '', $resolution);
+				$resolution = preg_replace('/&/', ' ', $resolution);
 			} else {
 				next;
 				echo "unkown type: ".$rec['type']."\n";

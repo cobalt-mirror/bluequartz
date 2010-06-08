@@ -58,7 +58,7 @@ if ($_REMOVE) {
 } 
 
 if ($_DELMANY) {
-	$death_row = split('x', $_DELMANY);
+	$death_row = preg_split('/x/', $_DELMANY);
 
 	rsort($death_row);
 	for ($i = 0; $i < $death_row[0]; $i++) {
@@ -151,7 +151,7 @@ if (($domauth == '') && ($netauth == '')) {
 	} 
 } 
 if ($title_authority != '') {
-	$title_members = split('/', $title_authority);
+	$title_members = preg_split('/\//', $title_authority);
 	$title_authority = $records_title_separator . $title_members[0];
 	if ($title_members[1] != '') {
 		$title_authority .= '/' . $dec_to_nm[$title_members[1]];
@@ -292,7 +292,7 @@ if(count($rec_oids)) {
 					$rec['type'] = 'SUBNET';
 					$direction = $i18n->get('subnet_dir');
 
-					$smallnet = split('/', $rec['network_delegate']);
+					$smallnet = preg_split('/\//', $rec['network_delegate']);
 					$source = $smallnet[0] . '/' .
 						$dec_to_nm[$smallnet[1]];
 					$resolution = $rec['delegate_dns_servers'];
@@ -306,9 +306,9 @@ if(count($rec_oids)) {
 					$resolution = $rec['delegate_dns_servers'];
 					$label = $rec['hostname'].'.'.$rec['domainname'];
 				}
-				$resolution = ereg_replace('^&', '', $resolution);
-				$resolution = ereg_replace('&$', '', $resolution);
-				$resolution = ereg_replace('&', ' ', $resolution);
+				$resolution = preg_replace('/^&/', '', $resolution);
+				$resolution = preg_replace('/&$/', '', $resolution);
+				$resolution = preg_replace('/&/', ' ', $resolution);
 			} else {
 				next;
 				echo "unkown type: ".$rec['type']."\n";

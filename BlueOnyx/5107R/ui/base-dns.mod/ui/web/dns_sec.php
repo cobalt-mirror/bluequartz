@@ -23,8 +23,8 @@ $Ui = new CobaltUI($sessionId, "base-dns");
 // return the base ip address of a network
 // as defined by dot-quad member ip and netmask
 function get_network($ip = "127.0.0.1", $nm = "255.255.255.255") {
-  $ip = split('[.]',$ip);
-  $nm = split('[.]',$nm);
+  $ip = preg_split('/[.]/',$ip);
+  $nm = preg_split('/[.]/',$nm);
   for ($i=0; $i<4; $i++):
     $ip[$i] = (int) $ip[$i]; $nm[$i] = (int) $nm[$i];
     $nu[$i] .= $ip[$i] & $nm[$i];

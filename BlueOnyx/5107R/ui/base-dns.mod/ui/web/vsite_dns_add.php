@@ -40,8 +40,8 @@ $Ui = new CobaltUI($sessionId, "base-dns");
 // return the base ip address of a network
 // as defined by dot-quad member ip and netmask
 function get_network($ip = "127.0.0.1", $nm = "255.255.255.255") {
-	$ip = split('[.]',$ip);
-	$nm = split('[.]',$nm);
+	$ip = preg_split('/[.]/',$ip);
+	$nm = preg_split('/[.]/',$nm);
 	for ($i=0; $i<4; $i++):
 		$ip[$i] = (int) $ip[$i]; $nm[$i] = (int) $nm[$i];
 		$nu[$i] .= $ip[$i] & $nm[$i];
@@ -131,7 +131,7 @@ if ($done) {
 
 // prep default values
 if($HTTP_GET_VARS['netauth'] != '') {
-	$net_defaults = split('/', urldecode($HTTP_GET_VARS['netauth']));
+	$net_defaults = preg_split('/\//', urldecode($HTTP_GET_VARS['netauth']));
 }
 $dom_default = $HTTP_GET_VARS['domauth'];
 
@@ -306,7 +306,7 @@ function handle_load(&$Ui, $oid, &$dec_to_nm)
 			$HTTP_GET_VARS{'netauth'} = $rec['network']; 
 			$Ui->Data['subnet_parent_ip_address'] = $rec['ipaddr'];
 			$Ui->Data['subnet_parent_mask'] = $rec['netmask'];
-			$smallnet = split('/', $rec['network_delegate']);
+			$smallnet = preg_split('/\//', $rec['network_delegate']);
 			$Ui->Data['subnet_ip_address']  = $smallnet[0];
 			$Ui->Data['subnet_mask'] = $dec_to_nm[ $smallnet[1] ];
 			$Ui->Data['subnet_nameservers'] = $rec['delegate_dns_servers'];
