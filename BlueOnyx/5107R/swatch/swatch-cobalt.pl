@@ -60,6 +60,10 @@ my ($ok, $sysobj) = $cce->get($sysoid[0]);
 my $system_lang = $sysobj->{productLanguage};
 $i18n->setLocale($system_lang);
 
+system("export LANGUAGE=en_US.UTF-8");
+system("export LANG=en_US.UTF-8");
+system("export LC_ALL=en_US.UTF-8");
+
 my $body_head = $i18n->get('[[swatch.emailBody]]') . "\n\n";
 
 my @oid = $cce->find ('ActiveMonitor');

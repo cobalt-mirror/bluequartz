@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: NUSOL3%{?dist}
+Release: 0BX01%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -55,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 /usr/sausalito/conf/base/swatch
 
 %changelog
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX01
+- Locale hotfix added
+
 * Thu Dec 18 2008 Michael Stauber <mstauber@solarspeed.net> 3.0.1-NUSOL3
 - Switched Email function in swatch-cobalt.pl to MIME::Lite
 - Added requirements for MIME::Lite and perl-Email-Date-Format

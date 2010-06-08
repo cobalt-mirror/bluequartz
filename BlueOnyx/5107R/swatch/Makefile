@@ -9,7 +9,7 @@ TOPDIR := $(shell pwd)
 
 V_MAJ=3
 V_MIN=0
-V_PATCH=1
+V_PATCH=2
 SWATCH_VERSION=$(V_MAJ).$(V_MIN).$(V_PATCH)
 
 CC = gcc
