@@ -126,8 +126,9 @@ $block->addFormField(
 // Add divider:
 $block->addDivider($factory->getLabel("DIVIDER_THREE", false), 'MySQL_TAB_ONE');
 
-$mysql_so = '/usr/lib/mysql/libmysqlclient.so.15.0.0';
-if (file_exists($mysql_so)) {
+$mysql_so_15 = '/usr/lib/mysql/libmysqlclient.so.15.0.0';
+$mysql_so_16 = '/usr/lib/mysql/libmysqlclient.so.16.0.0';
+if ((file_exists($mysql_so_15)||($mysql_so_16))) {
 	$access = 'rw';
 }
 else {
