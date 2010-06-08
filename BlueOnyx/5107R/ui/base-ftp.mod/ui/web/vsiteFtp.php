@@ -8,7 +8,7 @@ include_once('ServerScriptHelper.php');
 include_once('AutoFeatures.php');
 include_once('Capabilities.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 $factory =& $helper->getHtmlComponentFactory('base-ftp', 
                     '/base/ftp/vsiteFtp.php');
 $cce =& $helper->getCceClient();
