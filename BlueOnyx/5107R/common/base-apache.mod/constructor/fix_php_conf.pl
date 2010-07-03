@@ -10,7 +10,6 @@
 #		System.domainname
 
 my $confdir = '/etc/httpd/conf.d';
-my $aconfdir = '/etc/admserv/conf';
 
 use Sauce::Config;
 use FileHandle;
