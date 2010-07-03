@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
+- Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
+
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
 - Change of minor version number to BX
 

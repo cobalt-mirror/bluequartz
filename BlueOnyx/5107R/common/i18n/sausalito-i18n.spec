@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX21%{?dist}
+Release: 86BX22%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,8 +93,8 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX21
-- Modified perl/I18n.pm and php/I18n.php to switch default locale from 'en' to 'en_US'
+* Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
+- Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
 
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
 - Change of minor version number to BX
