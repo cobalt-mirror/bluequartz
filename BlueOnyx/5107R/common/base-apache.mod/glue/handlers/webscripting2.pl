@@ -63,9 +63,9 @@ sub edit_vhost
                 if ($php->{suPHP_enabled}) { 
                         $script_conf .= <<EOT
 suPHP_Engine on
-suPHP_ConfigPath /home/sites/$fqdn
-suPHP_AddHandler php5-script
-AddHandler php5-script .php
+suPHP_ConfigPath /home/sites/$fqdn/web
+suPHP_AddHandler x-httpd-suphp
+AddHandler x-httpd-suphp .php
 EOT
                 } else { 
                         $script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n"; 
