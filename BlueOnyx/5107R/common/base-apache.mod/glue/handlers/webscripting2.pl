@@ -29,7 +29,7 @@ if(not $success)
 }
 
 if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{name}), 
-                            *edit_vhost, $php, $cgi, $ssi))
+                            *edit_vhost, $php, $cgi, $ssi, $vsite->{fqdn}))
 {
     $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
     exit(1);
@@ -40,7 +40,7 @@ exit(0);
 
 sub edit_vhost
 {
-    my ($in, $out, $php, $cgi, $ssi) = @_;
+    my ($in, $out, $php, $cgi, $ssi, $fqdn) = @_;
 
     my $script_conf = '';
 
@@ -59,7 +59,17 @@ sub edit_vhost
 
 	if ($php->{enabled})
 	{
-		$script_conf .= "AddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n";
+
+                if ($php->{suPHP_enabled}) { 
+                        $script_conf .= <<EOT 
+suPHP_Engine on 
+suPHP_ConfigPath /home/sites/$fqdn 
+suPHP_AddHandler php5-script 
+AddHandler php5-script .php 
+EOT 
+                } else { 
+                        $script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n"; 
+                } 
 	}
 
     my $last;
