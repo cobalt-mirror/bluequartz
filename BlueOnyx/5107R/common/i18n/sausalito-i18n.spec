@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX22%{?dist}
+Release: 86BX21%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
