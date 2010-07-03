@@ -168,6 +168,12 @@ elsif($new->{fqdn})
 			$obj->{name},
 			\@majordomo_aliases
 			);
+                my($bok) = Sauce::Util::editfile(
+                        $aliasfile,
+                        *edit_fqdn,
+                        $old->{fqdn},
+                        $new->{fqdn}
+                        );
 	}
 }
 
@@ -248,6 +254,20 @@ sub edit_list_members
 
 	return 1;
 }
+
+sub edit_fqdn
+{
+        my ($in, $out, $old_fqdn, $new_fqdn) = @_;
+
+        while (<$in>) {
+                s/$old_fqdn/$new_fqdn/;
+                print $out $_;
+        }
+
+
+        return 1;
+}
+
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 
