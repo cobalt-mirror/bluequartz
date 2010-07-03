@@ -37,7 +37,20 @@ if ($whatami eq "handler") {
 
     $old = $cce->event_old();
     $new = $cce->event_new();
-    
+
+    # Get Object System from CODB to find out which platform type this is:
+    @sysoids = $cce->find('System');
+    ($ok, $mySystem) = $cce->get($sysoids[0]);
+    $platform = $mySystem->{'productBuild'};
+    if ($platform == "5106R") {
+	# CentOS5 related PHP found:
+	$legacy_php = "1";
+    }
+    else {
+	# More modern PHP found:
+	$legacy_php = "0";
+    }
+
     # Get Object PHP from CODB to find out how php.ini is configured:
     @oids = $cce->find('PHP', { 'applicable' => 'server' });
     ($ok, $server_php_settings) = $cce->get($oids[0]);
@@ -52,8 +65,8 @@ if ($whatami eq "handler") {
     # Get PHP:
     ($ok, $vsite_php) = $cce->get($oid, "PHP");
 
-    # Event is create or modify and we were able to poll 'Vsite' . 'PHPVsite' for meaningful data:
-    if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($vsite_php_settings->{'safe_mode'})) {
+    # Event is create or modify:
+    if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
 	# Edit the vhost container or die!:
 	if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
@@ -84,24 +97,28 @@ sub edit_vhost {
 
         if ($vsite_php->{"enabled"} eq "1") {
 
-	    if ($vsite_php_settings->{"safe_mode"} ne "") {
-		$script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+	    if ($legacy_php == "1") {
+		    # These options only apply to PHP versions prior to PHP-5.3:
+		    if ($vsite_php_settings->{"safe_mode"} ne "") {
+			$script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+			$script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+		    }
+		    if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+		    }
 	    }
-	    if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-		$script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-	    }
-	    if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
-	    }
+
 	    if ($vsite_php_settings->{"register_globals"} ne "") {
 		$script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
 	    }

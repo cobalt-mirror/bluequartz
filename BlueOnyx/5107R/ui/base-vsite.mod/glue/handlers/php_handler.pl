@@ -34,6 +34,9 @@ use CCE;
 use Data::Dumper;
 use Sauce::Service;
 use Sauce::Util;
+use Sauce::Config;
+use FileHandle;
+use File::Copy;
 
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
@@ -47,6 +50,19 @@ if ($whatami eq "handler") {
 
     $old = $cce->event_old();
     $new = $cce->event_new();
+
+    # Get Object System from CODB to find out which platform type this is:
+    @sysoids = $cce->find('System');
+    ($ok, $mySystem) = $cce->get($sysoids[0]);
+    $platform = $mySystem->{'productBuild'};
+    if ($platform == "5106R") {
+        # CentOS5 related PHP found:
+        $legacy_php = "1";
+    }
+    else {
+        # More modern PHP found:
+        $legacy_php = "0";
+    }
 
     # Get Object PHP for php.ini:
     @oids = $cce->find('PHP', { 'applicable' => 'server' });
@@ -94,6 +110,19 @@ else {
 
     # Check for presence of third party config file:
     &thirdparty_check;
+
+    # Get Object System from CODB to find out which platform type this is:
+    @sysoids = $cce->find('System');
+    ($ok, $mySystem) = $cce->get($sysoids[0]);
+    $platform = $mySystem->{'productBuild'};
+    if ($platform == "5106R") {
+        # CentOS5 related PHP found:
+        $legacy_php = "1";
+    }
+    else {
+        # More modern PHP found:
+        $legacy_php = "0";
+    }
 
     # Get Object PHP for php.ini:
     @oids = $cce->find('PHP', { 'applicable' => 'server' });
@@ -186,26 +215,44 @@ sub items_of_interest {
 
 sub edit_php_ini {
 
-    # Build output hash:
-    $server_php_settings_writeoff = { 
-	'safe_mode' => $server_php_settings->{"safe_mode"}, 
-	'safe_mode_allowed_env_vars' => $server_php_settings->{"safe_mode_allowed_env_vars"}, 
-	'safe_mode_exec_dir' => $server_php_settings->{"safe_mode_exec_dir"}, 
-	'safe_mode_gid' => $server_php_settings->{"safe_mode_gid"}, 
-	'safe_mode_include_dir' => $server_php_settings->{"safe_mode_include_dir"}, 
-	'safe_mode_protected_env_vars' => $server_php_settings->{"safe_mode_protected_env_vars"},	
-	'register_globals' => $server_php_settings->{"register_globals"}, 
-	'allow_url_fopen' => $server_php_settings->{"allow_url_fopen"}, 
-	'allow_url_include' => $server_php_settings->{"allow_url_include"}, 
-	'disable_classes' => $server_php_settings->{"disable_classes"}, 
-	'disable_functions' => $server_php_settings->{"disable_functions"}, 
-	'open_basedir' => $server_php_settings->{"open_basedir"}, 
-	'post_max_size' => $server_php_settings->{"post_max_size"}, 
-	'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"},
-	'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
-	'max_input_time' => $server_php_settings->{"max_input_time"}, 
-	'memory_limit' => $server_php_settings->{"memory_limit"} 
+    if ($legacy_php == "0") {
+	# Build output hash for PHP-5.3 or newer:
+	$server_php_settings_writeoff = { 
+		'register_globals' => $server_php_settings->{"register_globals"}, 
+		'allow_url_fopen' => $server_php_settings->{"allow_url_fopen"}, 
+		'allow_url_include' => $server_php_settings->{"allow_url_include"}, 
+		'disable_classes' => $server_php_settings->{"disable_classes"}, 
+		'disable_functions' => $server_php_settings->{"disable_functions"}, 
+		'open_basedir' => $server_php_settings->{"open_basedir"}, 
+		'post_max_size' => $server_php_settings->{"post_max_size"}, 
+		'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"},
+		'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
+		'max_input_time' => $server_php_settings->{"max_input_time"}, 
+		'memory_limit' => $server_php_settings->{"memory_limit"} 
 	};
+    }
+    else {
+	# Build output hash for and older PHP:
+	$server_php_settings_writeoff = { 
+		'safe_mode' => $server_php_settings->{"safe_mode"}, 
+		'safe_mode_allowed_env_vars' => $server_php_settings->{"safe_mode_allowed_env_vars"}, 
+		'safe_mode_exec_dir' => $server_php_settings->{"safe_mode_exec_dir"}, 
+		'safe_mode_gid' => $server_php_settings->{"safe_mode_gid"}, 
+		'safe_mode_include_dir' => $server_php_settings->{"safe_mode_include_dir"}, 
+		'safe_mode_protected_env_vars' => $server_php_settings->{"safe_mode_protected_env_vars"},	
+		'register_globals' => $server_php_settings->{"register_globals"}, 
+		'allow_url_fopen' => $server_php_settings->{"allow_url_fopen"}, 
+		'allow_url_include' => $server_php_settings->{"allow_url_include"}, 
+		'disable_classes' => $server_php_settings->{"disable_classes"}, 
+		'disable_functions' => $server_php_settings->{"disable_functions"}, 
+		'open_basedir' => $server_php_settings->{"open_basedir"}, 
+		'post_max_size' => $server_php_settings->{"post_max_size"}, 
+		'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"},
+		'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
+		'max_input_time' => $server_php_settings->{"max_input_time"}, 
+		'memory_limit' => $server_php_settings->{"memory_limit"} 
+	};
+    }
 
     # Write changes to php.ini using Sauce::Util::hash_edit_function. The really GREAT thing
     # about this function is that it replaces existing values and appends those new ones that 
@@ -222,6 +269,34 @@ sub edit_php_ini {
     unless ($ok) {
         $cce->bye('FAIL', "Error while editing $php_ini!");
         exit(1);
+    }
+
+    # Now this is a bit dirty: 
+    # On Systems with newer PHP than 5.3 we need to comment out 'Safe_Mode'
+    # or else we get error messages:
+
+    if ($xlegacy_php == "0") {
+
+        my $confdir = '/etc';
+        umask(0077);
+        my $stage = "$confdir/php.ini~";
+        open(HTTPD, "$confdir/php.ini");
+        unlink($stage);
+        sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
+        while(<HTTPD>) {
+          s/^safe_mode\s/;safe_mode /;
+          s/^Safe_Mode\s/;safe_mode /;
+
+          print STAGE;
+        }
+        close(STAGE);
+        close(HTTPD);
+
+        chmod(0644, $stage);
+        if(-s $stage) {
+          move($stage,"$confdir/php.ini");
+          chmod(0644, "$confdir/php.ini"); # paranoia
+        }
     }
 }
 

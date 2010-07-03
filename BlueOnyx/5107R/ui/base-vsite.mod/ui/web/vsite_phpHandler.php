@@ -71,6 +71,32 @@ if ($vsite_php["enabled"] == "0") {
   $open_basedir = implode(":",$this_vsite_open_basedir_new);
 
   // $phpVsite = $cceClient->get($oids[0], 'PHPVsite');
+
+
+// Find out what platform this is:
+list($myplatform) = $cceClient->find('System');
+$mysystem = $cceClient->get($myplatform);
+$platform = $mysystem["productBuild"];
+if (($platform == "5107R") || ($platform == "5108R")) {
+  // We need to skip updating some legacy PHP settings that no longer work in PHP-5.3 or better:
+  $cceClient->set($oids[0], 'PHPVsite',
+        array(
+              "force_update" => $force_update,
+              "register_globals" => $register_globals,
+              "open_basedir" => $open_basedir,
+              "upload_max_filesize" => $upload_max_filesize,
+              "post_max_size" => $post_max_size,
+              "allow_url_fopen" => $allow_url_fopen,
+              "allow_url_include" => $allow_url_include,
+              "max_execution_time" => $max_execution_time,
+              "max_input_time" => $max_input_time,
+              "memory_limit" => $memory_limit,
+              "force_update" => time())
+	      );
+
+}
+else {
+  // Update all settings for PHP older than 5.3:
   $cceClient->set($oids[0], 'PHPVsite',
         array(
               "force_update" => $force_update,
@@ -91,6 +117,7 @@ if ($vsite_php["enabled"] == "0") {
               "memory_limit" => $memory_limit,
               "force_update" => time())
 	      );
+}
 
 $errors = $cceClient->errors();
 
