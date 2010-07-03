@@ -36,12 +36,15 @@ my $sys_obj = ( $cce->get( ($cce->find("System"))[0] ) )[1];
 Sauce::Util::editfile($Postfix_cf, *make_main_cf, $obj ); 
 
 # add rollback to recreate virtusertable.db
-Sauce::Util::addrollbackcommand("/usr/bin/postmap hash $Email::VIRTUSER >/dev/null 2>&1");
+Sauce::Util::addrollbackcommand("/usr/bin/postmap hash:$Email::VIRTUSER >/dev/null 2>&1");
 
 if (!Sauce::Util::replaceblock($Email::VIRTUSER,'# Cobalt System Section Begin', &make_virtuser_system($obj), '# Cobalt System Section End')) { 
 	$cce->warn('[[base-email.cantEditFile]]', { 'file' => $Email::VIRTUSER }); 
 	$cce->bye('FAIL'); 
-} 
+}
+
+system("/usr/sbin/postmap hash:$Email::VIRTUSER >/dev/null 2>&1");
+ 
 $cce->bye("SUCCESS"); 
 
 exit 0;
