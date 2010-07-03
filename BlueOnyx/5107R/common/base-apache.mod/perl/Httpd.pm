@@ -848,28 +848,18 @@ sub _set_server_aliases
 
     while (<$in>)
     {
-	print $out $_;
 	if (/^ServerName/)
 	{
-	    last;
-	}
-    }
-
-    if (scalar(@{$aliases}))
-    {
-	print $out "ServerAlias $line_to_add\n";
-    }
-
-    # found ServerName, spew the rest of the file, skipping additional
-    # ServerAlias lines
-    while (<$in>)
-    {
-	if (/^ServerAlias/)
-	{
+	    print $out $_;
+	    if (scalar(@{$aliases}))
+	    {   
+		print $out "ServerAlias $line_to_add\n";
+	    }
+	} elsif (/^ServerAlias/) {
 	    next;
+	} else {
+	    print $out $_;
 	}
-
-	print $out $_;
     }
 
     return 1;

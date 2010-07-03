@@ -119,6 +119,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
+- Merged some 5200R mods over from BlueQuartz - all originally coded by Hisao:
+- perl/Httpd.pm: Resolved the issue that the ServerAlias was lost when SSL got enabled.
+- glue/handlers/virtual_host.pl: Write SSL configuration to /etc/httpd/conf/vhosts/siteX, do not use mod_perl instead
+- Added RewriteCond for webAliases to glue/conf/Apache.conf, glue/handlers/virtual_host.pl and glue/schemas/apache.schema
+
 * Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
 - Copied 'en' locales to 'en_US'
 

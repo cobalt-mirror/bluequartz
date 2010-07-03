@@ -166,4 +166,8 @@
         name="site_preview" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
+    <property
+        name="webAliases" type="fqdn" array="yes" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
 </class>
