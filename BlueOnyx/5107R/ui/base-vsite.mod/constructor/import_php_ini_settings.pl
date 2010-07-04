@@ -49,7 +49,7 @@ else {
     $cce->connectuds();
 }
 
-# Check for presence of third party config file:
+# Check for presence of third party PHP config file:
 if (-f $thirdparty) {
     open (F, $thirdparty) || die "Could not open $thirdparty: $!";
     while ($line = <F>) {
@@ -60,22 +60,26 @@ if (-f $thirdparty) {
 		$php_ini = $line;
 	}
         if ($line =~ /^\/(.*)\/etc\/php\.ini$/) {
-		$thirdpartydir = "/" . $1;
+		$thirdpartydir = "/" . $1 . "/bin";
 	}
     }
     close(F);
 }
+else {
+    # In this case the variable is actually misnamed and we use the path to the onboard PHP:
+    $thirdpartydir = "/usr/bin";
+}
 
 # Fix third party php-cgi location in /etc/suphp.conf:
-if ((-f "$thirdpartydir/bin/php-cgi") && (-f "/etc/suphp.conf")) {
+if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
     umask(0077);
     my $stage = "/etc/suphp.conf~";
     open(HTTPD, "/etc/suphp.conf");
     unlink($stage);
     sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
     while(<HTTPD>) {
-	s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/bin\/php-cgi"/g;
-	s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir\/bin\/php-cgi"/g;
+	s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/php-cgi"/g;
+	s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir/php-cgi"/g;
 	print STAGE;
     }
     close(STAGE);
