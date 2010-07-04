@@ -19,6 +19,18 @@ $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/base/vsite/php_serverHandler.php");
 $transMethodOn="off";
 
+// Find out what platform this is:
+list($myplatform) = $cceClient->find('System');
+$mysystem = $cceClient->get($myplatform);
+$platform = $mysystem["productBuild"];
+if (($platform == "5107R") || ($platform == "5108R")) {
+    // We need to hide some legacy PHP settings that no longer work in PHP-5.3 or better:
+    $pageID = "Hidden";
+}
+else {
+    $pageID = "php_ini_security_settings";
+}
+
 // get settings
 $systemObj = $cceClient->getObject("PHP",array('applicable' => 'server'));
 
@@ -75,7 +87,7 @@ else {
 // Safe Mode Input:
 $safe_mode_select = $factory->getMultiChoice("safe_mode",array_values($safe_mode_choices));
 $safe_mode_select->setSelected($safe_mode_choices[$safe_mode], true);
-$block->addFormField($safe_mode_select,$factory->getLabel("safe_mode"), "php_ini_security_settings");
+$block->addFormField($safe_mode_select,$factory->getLabel("safe_mode"), $pageID);
 
 // safe_mode_gid = Off
 if ($systemObj["safe_mode_gid"] == 'On') {
@@ -89,7 +101,7 @@ else {
 // Safe Mode GID Input:
 $safe_mode_gid_select = $factory->getMultiChoice("safe_mode_gid",array_values($safe_mode_gid_choices));
 $safe_mode_gid_select->setSelected($safe_mode_gid_choices[$safe_mode_gid], true);
-$block->addFormField($safe_mode_gid_select,$factory->getLabel("safe_mode_gid"), "php_ini_security_settings");
+$block->addFormField($safe_mode_gid_select,$factory->getLabel("safe_mode_gid"), $pageID);
 
 // safe_mode_include_dir =
 $safe_mode_include_dir_Field = $factory->getTextField("safe_mode_include_dir", $systemObj['safe_mode_include_dir']);
@@ -97,7 +109,7 @@ $safe_mode_include_dir_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_include_dir_Field,
     $factory->getLabel("safe_mode_include_dir"),
-    "php_ini_security_settings"
+    $pageID
 );
 
 // safe_mode_exec_dir =
@@ -106,7 +118,7 @@ $safe_mode_exec_dir_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_exec_dir_Field,
     $factory->getLabel("safe_mode_exec_dir"),
-    "php_ini_security_settings"
+    $pageID
 );
 
 // safe_mode_allowed_env_vars = PHP_
@@ -115,7 +127,7 @@ $safe_mode_allowed_env_vars_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_allowed_env_vars_Field,
     $factory->getLabel("safe_mode_allowed_env_vars"),
-    "php_ini_security_settings"
+    $pageID
 );
 
 // safe_mode_protected_env_vars = LD_LIBRARY_PATH
@@ -124,7 +136,7 @@ $safe_mode_protected_env_vars_Field->setOptional ('silent');
 $block->addFormField(
     $safe_mode_protected_env_vars_Field,
     $factory->getLabel("safe_mode_protected_env_vars"),
-    "php_ini_security_settings"
+    $pageID
 );
 
 // open_basedir
@@ -340,40 +352,40 @@ for($x=0;$x<count($array_zwo);$x++){
         $array_zwo[$x] = nl2br($array_zwo[$x]); //#newline conversion
         $array_zwo[$x] = preg_replace('/\s\s+/', '', $array_zwo[$x]); //#strip spaces
 
-        if(eregi('^register_globals',$array_zwo[$x], $regs)) {
+        if(preg_match("/^register_globals/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
-                $array_zwo[$x] = eregi_replace('register_globals=Off', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
-                $array_zwo[$x] = eregi_replace('register_globals=On', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/register_globals=Off/i', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/register_globals=On/i', 'register_globals = '.$systemObj["register_globals"].' ', $array_zwo[$x]);
         }
-        if(eregi('^safe_mode',$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
-                $array_zwo[$x] = eregi_replace('safe_mode=Off', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
-                $array_zwo[$x] = eregi_replace('safe_mode=On', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode=Off/', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode=On/', 'safe_mode = '.$systemObj["safe_mode"].' ', $array_zwo[$x]);
         }
-        if(eregi('^safe_mode_gid',$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_gid/i",$array_zwo[$x], $regs)) {
                 $array_zwo[$x] = preg_replace('/\s+/', '', $array_zwo[$x]); //#strip spaces
-                $array_zwo[$x] = eregi_replace('safe_mode_gid=On', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
-                $array_zwo[$x] = eregi_replace('safe_mode_gid=Off', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode_gid=On/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
+                $array_zwo[$x] = preg_replace('/safe_mode_gid=Off/', 'safe_mode_gid = '.$systemObj["safe_mode_gid"].' ', $array_zwo[$x]);
         }
-        if(eregi('^safe_mode_include_dir',$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_include_dir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_include_dir = '.$systemObj["safe_mode_include_dir"].'<br>';
         }
-        if(eregi('^safe_mode_exec_dir',$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_exec_dir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_exec_dir = '.$systemObj["safe_mode_exec_dir"].'<br>';
         }
-        if(eregi('^safe_mode_allowed_env_vars',$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_allowed_env_vars/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_allowed_env_vars = '.$systemObj["safe_mode_allowed_env_vars"].'<br>';
         }
-        if(eregi('^safe_mode_protected_env_vars',$array_zwo[$x], $regs)) {
+        if(preg_match("/^safe_mode_protected_env_vars/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'safe_mode_protected_env_vars = '.$systemObj["safe_mode_protected_env_vars"].'<br>';
         }
-        if(eregi('^open_basedir',$array_zwo[$x], $regs)) {
+        if(preg_match("/^open_basedir/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'open_basedir = '.$systemObj["open_basedir"].'<br>';
         }
-        if(eregi('^disable_functions',$array_zwo[$x], $regs)) {
+        if(preg_match("/^disable_functions/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'disable_functions = '.$systemObj["disable_functions"].'<br>';
         }
-        if(eregi('^disable_classes',$array_zwo[$x], $regs)) {
+        if(preg_match("/^disable_classes/i",$array_zwo[$x], $regs)) {
 		$array_zwo[$x] = 'disable_classes = '.$systemObj["disable_classes"].'<br>';
         }
 	// Replace end

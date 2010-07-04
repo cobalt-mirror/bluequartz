@@ -46,7 +46,30 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $phpOID = $cceClient->find("PHP", array("applicable" => "server"));
 
-$cceClient->set($phpOID[0], "",
+// Find out what platform this is:
+list($myplatform) = $cceClient->find('System');
+$mysystem = $cceClient->get($myplatform);
+$platform = $mysystem["productBuild"];
+if (($platform == "5107R") || ($platform == "5108R")) {
+    // We need to skip updating some legacy PHP settings that no longer work in PHP-5.3 or better:
+    $cceClient->set($phpOID[0], "",
+        array(
+              "force_update" => $force_update,
+              "register_globals" => $register_globals,
+              "open_basedir" => $open_basedir,
+              "disable_functions" => $disable_functions,
+              "disable_classes" => $disable_classes,
+              "upload_max_filesize" => $upload_max_filesize,
+              "post_max_size" => $post_max_size,
+              "allow_url_fopen" => $allow_url_fopen,
+              "max_execution_time" => $max_execution_time,
+              "max_input_time" => $max_input_time,
+              "memory_limit" => $memory_limit,
+              "force_update" => time())
+	      );
+    }
+else {
+    $cceClient->set($phpOID[0], "",
         array(
               "force_update" => $force_update,
               "register_globals" => $register_globals,
@@ -67,6 +90,7 @@ $cceClient->set($phpOID[0], "",
               "memory_limit" => $memory_limit,
               "force_update" => time())
 	      );
+}
 
 $errors = $cceClient->errors();
 

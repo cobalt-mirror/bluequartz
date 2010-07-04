@@ -127,6 +127,54 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX71
+- Modified constructor/import_php_ini_settings.pl again to add a missing backslash. Doh!
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX70
+- Modified constructor/import_php_ini_settings.pl again to handle uninstall of third party PHP case as well.
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX69
+- Modified constructor/import_php_ini_settings.pl to detect third party PHP installs
+- If detected, php-cgi location will be updated in /etc/suphp.conf
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX68
+- Fixed typo in glue/handlers/php_handler.pl
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX67
+- Updated glue/handlers/php_vsite_handler.pl to also chown /vhosts subdir if present.
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX66
+- Shorted a locale string
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX65
+- Added ui/menu/fileOwner.xml ui/web/fileOwner.php and ui/web/fileOwnerHandler.php
+- They allow to select the siteAdmin that owns the site root and particularly /web of a vsite
+- Extended glue/handlers/php_vsite_handler.pl to chown the siteroot and /web accordingly
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX64
+- Safe_Mode related PHP settings for server and vsites needed to be removed from the GUI for PHP >= 5.3
+- To retain downward compatability we now do a platform check and hide these switches on 5107R and 5108R
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX63
+- Add RewriteCond for webAliases.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX62
+- Bugfixes to some PHP-5.3 related fixes. Had used the wrong replacement functions.
+- Disabled 'Advanced Search' for Vsites in /base/vsite/vsiteList.php for now as it's horribly broken.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX61
+- PHP-5.3 related compat fixes
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX60
+- Copied 'en locales to 'en_US'
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX59
+- Plenty of PHP-5.3 related compatabiliy fixes all over the place.
+- ui/web/vsite_php.php still uses POSIX style eregi_replace(), but cba to fix that now.
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX58
+- Version number bump
+
 * Sun Aug 30 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ57
 - Modified glue/handlers/php_vsite_handler.pl to be more resilent about not permitting empty PHP related switches to be written to the site include files.
 - Now allows to use empty open_basedir directives. In which case the config line open_basedir will simply be left out in the site include file.

@@ -6,7 +6,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only admin should be here
 if ($loginName != "admin") {
@@ -218,20 +218,20 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
         $current_caps[] = 'adminUser';
 
     // hack root access back out
-    if (ereg('&rootAccess&', $adminPowers))
+    if (preg_match("/&rootAccess&/", $adminPowers))
         $rootAccess = 1;
     else
         $rootAccess = 0;
 
-    $adminPowers = ereg_replace('&(rootAccess)&', '&', $adminPowers);
+    $adminPowers = preg_replace('/&(rootAccess)&/', '&', $adminPowers);
     $current_caps = array_merge($current_caps, 
                         $cce->scalar_to_array($adminPowers));
 
     $cap_string = $cce->array_to_scalar($current_caps);
-    if (ereg("^&+$", $cap_string))
+    if (preg_match("/^&+$/", $cap_string))
         $cap_string = '';
     else
-        $cap_string = ereg_replace('&&', '&', $cap_string);
+        $cap_string = preg_replace('/&&/', '&', $cap_string);
 
     // handle create if necessary
     if (!isset($_oid))

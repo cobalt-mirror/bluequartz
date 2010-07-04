@@ -9,7 +9,7 @@
 include_once("ServerScriptHelper.php");
 include_once("base/vsite/vsite_common.php");
 
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser should be here
 if (!$helper->getAllowed('adminUser')) {
@@ -52,12 +52,20 @@ $advSearch =& $factory->getButton(
 			'/base/vsite/advancedSearch.php?new_search=yes', 
 			'advancedSearch');
 
+// 'Advanced Search' disabled for now
+//$searchField =& $factory->getCompositeFormField(
+//			array(
+//				$searchby_field, 
+//				$searchTextField, 
+//				$searchButton, 
+//				$advSearch
+//			));
+
 $searchField =& $factory->getCompositeFormField(
 			array(
 				$searchby_field, 
 				$searchTextField, 
-				$searchButton, 
-				$advSearch
+				$searchButton 
 			));
 
 $searchBlock->addFormField($searchField, $factory->getLabel("searchBy"));

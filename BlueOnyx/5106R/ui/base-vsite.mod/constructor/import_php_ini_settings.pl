@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: import_php_ini_settings.pl, v1.1.0.4 Tue 16 Jun 2009 09:08:46 AM EDT mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
+# Copyright 2006-2010 Team BlueOnyx. All rights reserved.
 
 # This script parses php.ini and brings CODB up to date on how PHP is configured.
 # Can easily be extended to parse third party php.ini's through an optional config file.
@@ -34,6 +35,9 @@ $thirdparty = "/etc/thirdparty_php";
 
 use CCE;
 use Data::Dumper;
+use Sauce::Config;
+use FileHandle;
+use File::Copy;
 
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
@@ -45,7 +49,7 @@ else {
     $cce->connectuds();
 }
 
-# Check for presence of third party config file:
+# Check for presence of third party PHP config file:
 if (-f $thirdparty) {
     open (F, $thirdparty) || die "Could not open $thirdparty: $!";
     while ($line = <F>) {
@@ -55,8 +59,36 @@ if (-f $thirdparty) {
         if ($line =~ /^\/(.*)\/php\.ini$/) {
 		$php_ini = $line;
 	}
+        if ($line =~ /^\/(.*)\/etc\/php\.ini$/) {
+		$thirdpartydir = "/" . $1 . "/bin";
+	}
     }
     close(F);
+}
+else {
+    # In this case the variable is actually misnamed and we use the path to the onboard PHP:
+    $thirdpartydir = "/usr/bin";
+}
+
+# Fix third party php-cgi location in /etc/suphp.conf:
+if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
+    umask(0077);
+    my $stage = "/etc/suphp.conf~";
+    open(HTTPD, "/etc/suphp.conf");
+    unlink($stage);
+    sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
+    while(<HTTPD>) {
+	s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/php-cgi"/g;
+	s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir\/php-cgi"/g;
+	print STAGE;
+    }
+    close(STAGE);
+    close(HTTPD);
+    chmod(0644, $stage);
+    if(-s $stage) {
+	move($stage,"/etc/suphp.conf");
+	chmod(0644, "/etc/suphp.conf"); # paranoia
+    }
 }
 
 # Config file present?

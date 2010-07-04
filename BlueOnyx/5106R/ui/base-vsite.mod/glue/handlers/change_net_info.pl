@@ -23,12 +23,12 @@ my $vsite_old = $cce->event_old();
 my $msg;
 
 # stuff to do if either the ip or fqdn has changed
-if ($vsite_new->{ipaddr} || $vsite_new->{fqdn})
+if ($vsite_new->{ipaddr} || $vsite_new->{fqdn} || $vsite_new->{webAliases})
 {
     # modify VirtualHost entry for this site
     my ($vhost) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
 
-    my ($ok) = $cce->set($vhost, '', { 'ipaddr' => $vsite->{ipaddr}, 'fqdn' => $vsite->{fqdn} });
+    my ($ok) = $cce->set($vhost, '', { 'ipaddr' => $vsite->{ipaddr}, 'fqdn' => $vsite->{fqdn}, 'webAliases' => $vsite->{webAliases} });
 
     if (not $ok)
     {

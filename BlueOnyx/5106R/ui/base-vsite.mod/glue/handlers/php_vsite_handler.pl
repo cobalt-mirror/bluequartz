@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: php_vsite_handler.pl, v1.2.0.2 Sun 30 Aug 2009 02:42:08 AM CEST mstauber Exp $
-# Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
+# Copyright 2006-2010 Team BlueOnyx. All rights reserved.
 
 # This handler is run whenever a CODB Object called "Vsite" with namespace 
 # "PHPVsite" is created, destroyed or modified. 
@@ -37,7 +37,20 @@ if ($whatami eq "handler") {
 
     $old = $cce->event_old();
     $new = $cce->event_new();
-    
+
+    # Get Object System from CODB to find out which platform type this is:
+    @sysoids = $cce->find('System');
+    ($ok, $mySystem) = $cce->get($sysoids[0]);
+    $platform = $mySystem->{'productBuild'};
+    if ($platform == "5106R") {
+	# CentOS5 related PHP found:
+	$legacy_php = "1";
+    }
+    else {
+	# More modern PHP found:
+	$legacy_php = "0";
+    }
+
     # Get Object PHP from CODB to find out how php.ini is configured:
     @oids = $cce->find('PHP', { 'applicable' => 'server' });
     ($ok, $server_php_settings) = $cce->get($oids[0]);
@@ -52,14 +65,17 @@ if ($whatami eq "handler") {
     # Get PHP:
     ($ok, $vsite_php) = $cce->get($oid, "PHP");
 
-    # Event is create or modify and we were able to poll 'Vsite' . 'PHPVsite' for meaningful data:
-    if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($vsite_php_settings->{'safe_mode'})) {
+    # Event is create or modify:
+    if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
 	# Edit the vhost container or die!:
 	if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
 	    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
 	    exit(1);
 	}
+
+	# prefered_siteAdmin toggles chowning of /web ownership:
+	&change_owner;
 	
 	# Restart Apache:
 	&restart_apache;
@@ -84,24 +100,28 @@ sub edit_vhost {
 
         if ($vsite_php->{"enabled"} eq "1") {
 
-	    if ($vsite_php_settings->{"safe_mode"} ne "") {
-		$script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+	    if ($legacy_php == "1") {
+		    # These options only apply to PHP versions prior to PHP-5.3:
+		    if ($vsite_php_settings->{"safe_mode"} ne "") {
+			$script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+			$script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+		    }
+		    if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+		    }
+		    if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+			$script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+		    }
 	    }
-	    if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-		$script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-	    }
-	    if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-		$script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
-	    }
+
 	    if ($vsite_php_settings->{"register_globals"} ne "") {
 		$script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
 	    }
@@ -196,6 +216,30 @@ sub edit_vhost {
     return 1;
 }
 
+sub change_owner {
+    # Get new prefered owner:
+    $new_owner = $vsite_php->{'prefered_siteAdmin'};
+
+    # Get sites basedir:
+    $vsite_basedir = $vsite->{"basedir"};
+
+    # Get /web directory of the site in question:
+    $webdir = $vsite->{"basedir"} . "/web";
+
+    # Get GID just to be sure:
+    $new_GID = $vsite->{"name"};
+
+    if (($new_owner ne "") && ($webdir ne "") && ($vsite_basedir ne "")) {
+	# Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
+	system("/bin/chown -R $new_owner:$new_GID $webdir");
+	# Also chown the basedir of the site to this users UID, but don't do it recursively:
+	system("/bin/chown $new_owner:$new_GID $vsite_basedir");
+	# If we have subdomains under /vhosts, we need to chown them as well:
+	if (-d "$vsite_basedir/vhosts") {
+	    system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
+	}
+    }
+}
 
 $cce->bye('SUCCESS');
 exit(0);
