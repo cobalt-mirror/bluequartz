@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Author: Brian N. Smith
 # Copyright 2008, NuOnce Networks, Inc.  All rights reserved.
+# Copyright 2010, Team BlueOnyx. All rights reserved.
 # $Id: subdomain-services.pl, v2.0 2008/12/30 13:14:00 Exp $
 
 use CCE;
@@ -14,14 +15,137 @@ my $vsite = $cce->event_object();
 
 $serviceCFG = "  ## Web Services\n";
 
+@oids = $cce->find('Vsite', { 'name' => $subdomain->{'group'} });
+($ok, $vsite) = $cce->get($oids[0]);
+$vsiteOID = $oids[0];
+$web_dir = $subdomain->{'webpath'};
+
 my @services = ("PHP", "SSI", "CGI");
 foreach $service (@services) {
   ($ok, $$service) = $cce->get($cce->event_oid(), $service);
   switch ($service) {
     case "PHP" {
       if ( $$service->{'enabled'} ) {
-        $serviceCFG .= "  AddType application/x-httpd-php .php\n";
-        $serviceCFG .= "  AddType application/x-httpd-php .php4\n";
+
+##
+            # Get Object System from CODB to find out which platform type this is:
+            @sysoids = $cce->find('System');
+            ($ok, $mySystem) = $cce->get($sysoids[0]);
+            $platform = $mySystem->{'productBuild'};
+            if ($platform == "5106R") {
+                # CentOS5 related PHP found:
+                $legacy_php = "1";
+            }
+            else {
+                # More modern PHP found:
+                $legacy_php = "0";
+            }
+
+            # Get PHP:
+            $vgroup = $subdomain->{'group'};
+            @vsiteoid = $cce->find('Vsite', { 'name' => $vgroup });
+            ($ok, $vsite_php) = $cce->get($vsiteoid[0], "PHP");
+
+            # Get PHPVsite:
+            ($ok, $vsite_php_settings) = $cce->get($vsiteoid[0], "PHPVsite");
+
+            $serviceCFG .= "# created by subdomain-services.pl\n";
+
+            if ( $$service->{'suPHP_enabled'} ) {
+                $serviceCFG .= "  suPHP_Engine on\n";
+                $serviceCFG .= "  suPHP_ConfigPath $web_dir\n";
+                $serviceCFG .= "  suPHP_AddHandler x-httpd-suphp\n";
+                $serviceCFG .= "  AddHandler x-httpd-suphp .php\n";
+            }
+            else {
+                $serviceCFG .= "  AddType application/x-httpd-php .php\n";
+                $serviceCFG .= "  AddType application/x-httpd-php .php4\n";
+                $serviceCFG .= "  AddType application/x-httpd-php .php5\n";
+            }
+
+            if ($legacy_php == "1") {
+                # These options only apply to PHP versions prior to PHP-5.3:
+                if ($vsite_php_settings->{"safe_mode"} ne "") {
+                    $serviceCFG .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n";
+                }
+                if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+                    $serviceCFG .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+                }
+                if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+                    $serviceCFG .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n";
+                }
+                if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+                    $serviceCFG .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n";
+                }
+                if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+                    $serviceCFG .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n";
+                }
+                if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+                    $serviceCFG .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n";
+                }
+            }
+            if ($vsite_php_settings->{"register_globals"} ne "") {
+                $serviceCFG .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n";
+            }
+            if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+                $serviceCFG .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n";
+            }
+            if ($vsite_php_settings->{"allow_url_include"} ne "") {
+                $serviceCFG .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n";
+            }
+
+            # Some BX users apparently want open_basedir to be empty. Security wise this is a bad idea,
+            # but if they really want to let their pants down that far ... <sigh>. New provision to check
+            # if 'open_basedir' is empty in the GUI. We act a bit later on based on this switch:
+            $empty_open_basedir = "0";
+            if ($vsite_php_settings->{"open_basedir"} eq "") {
+                $empty_open_basedir = "1";
+            }
+
+            # We need to remove any site path references from open_basedir, because they could be from the wrong site,
+            # like during a cmuImport, when it inherited the path it had on the server it was exported from.
+
+            @vsite_php_settings_temp = split(":", $vsite_php_settings->{"open_basedir"});
+            foreach $entry (@vsite_php_settings_temp) {
+                #system("echo $entry >> /tmp/debug.ms");
+                $entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
+                if ($entry ne "") {
+                    push(@vsite_php_settings_new, $entry);
+                }
+            }
+            if ($vsite_php_settings->{"open_basedir"} ne "") {
+                $vsite_php_settings->{"open_basedir"} = join(":", @vsite_php_settings_new);
+            }
+            # Decision if we write 'open_basedir' to the site include file or not. We do NOT
+            # write an empty open_basedir. So if it is empty, we simply skip this step:
+            if ($empty_open_basedir != "1") {
+                # Decide if we need to add the sites homedir to open_basedir or not:
+                if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
+                    # If the site's basedir path is already present, we use whatever paths open_basedir currently has:
+                    $serviceCFG .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
+                }
+                else {
+                    # If the sites path to it's homedir is missing, we add it here:
+                    $serviceCFG .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/' . "\n";
+                }
+            }
+
+            if ($vsite_php_settings->{"post_max_size"} ne "") {
+                $serviceCFG .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n";
+            }
+            if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+                $serviceCFG .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n";
+            }
+            if ($vsite_php_settings->{"max_execution_time"} ne "") {
+                $serviceCFG .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n";
+            }
+            if ($vsite_php_settings->{"max_input_time"} ne "") {
+                $serviceCFG .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n";
+            }
+            if ($vsite_php_settings->{"memory_limit"} ne "") {
+                $serviceCFG .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n";
+            }
+##
       }
     }
 

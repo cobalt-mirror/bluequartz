@@ -4,7 +4,7 @@
 	// $Id: vsiteAddSub.php,v 2.0 2006/08/10 15:30:00 Exp $
 
 	include("ServerScriptHelper.php");
-	$serverScriptHelper =& new ServerScriptHelper();
+	$serverScriptHelper = new ServerScriptHelper();
 
 	$cceClient = $serverScriptHelper->getCceClient();
 
@@ -23,7 +23,7 @@
 	$vsite     = $cceClient->getObject('Vsite', array('name' => $group), "subdomains");
 
 	$hosts = $vsite["entry"];
-	$a_hosts = split(",", $hosts);
+	$a_hosts = preg_split("/,/", $hosts);
 	$domain = $site_info["domain"];
 	$count = count($a_hosts);
 

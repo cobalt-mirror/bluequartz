@@ -116,6 +116,23 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jul 04 2010 Michael Stauber <mstauber@blueonyx.it> 2.1.0-14
+- Updated glue/handlers/subdomain-new.pl and glue/handlers/subdomain-services.pl
+- They didn't set the PHP flags in a way compatible with the PHP security settings.
+- While at it, also added the suPHP support to it.
+- Remaining bug: On change of Vsite PHP settings subdomain-services.pl ought to run, but it doesn't.
+- Hence PHP settings are never updated after subdomain creation.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.0-13
+- Various PHP-5.3 related fixes
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.0-12
+- Copied 'en' locales to 'en_US'
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.0-11
+- Changed requirement from blueonyx-cgiwrap to cgiwrap
+- Not sure why we had a separate instance of the same cgiwrap around.
+
 * Wed Feb 25 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.0-10
 - Updated ui/extensions/subdomains.php.modify.User
 - Needed to set sane default for subdomain enabled. Otherwise user modification through GUI may throw errors.

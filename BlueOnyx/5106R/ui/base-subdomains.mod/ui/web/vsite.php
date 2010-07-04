@@ -5,7 +5,7 @@
 
 	include_once("ServerScriptHelper.php");
 
-	$serverScriptHelper =& new ServerScriptHelper();
+	$serverScriptHelper = new ServerScriptHelper();
 	$cceClient = $serverScriptHelper->getCceClient();
 
 	if ( $serverScriptHelper->getAllowed('adminUser') ) {
