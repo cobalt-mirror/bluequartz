@@ -275,7 +275,7 @@ sub edit_php_ini {
     # On Systems with newer PHP than 5.3 we need to comment out 'Safe_Mode'
     # or else we get error messages:
 
-    if ($xlegacy_php == "0") {
+    if ($legacy_php == "0") {
 
         my $confdir = '/etc';
         umask(0077);
