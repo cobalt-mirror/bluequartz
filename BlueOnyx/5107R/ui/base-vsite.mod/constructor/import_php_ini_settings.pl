@@ -79,7 +79,7 @@ if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
     sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
     while(<HTTPD>) {
 	s/^x-httpd-suphp="(.*)"/x-httpd-suphp="php:$thirdpartydir\/php-cgi"/g;
-	s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir/php-cgi"/g;
+	s/^x-httpd-suphpthirdparty="(.*)"/x-httpd-suphpthirdparty="php:$thirdpartydir\/php-cgi"/g;
 	print STAGE;
     }
     close(STAGE);
