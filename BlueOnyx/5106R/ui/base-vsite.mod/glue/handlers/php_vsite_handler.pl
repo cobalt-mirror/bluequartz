@@ -38,17 +38,17 @@ if ($whatami eq "handler") {
     $old = $cce->event_old();
     $new = $cce->event_new();
 
-    # Get Object System from CODB to find out which platform type this is:
-    @sysoids = $cce->find('System');
+    # Get Object PHP from CODB to find out which PHP version we use:
+    @sysoids = $cce->find('PHP');
     ($ok, $mySystem) = $cce->get($sysoids[0]);
-    $platform = $mySystem->{'productBuild'};
-    if ($platform == "5106R") {
-	# CentOS5 related PHP found:
-	$legacy_php = "1";
+    $platform = $mySystem->{'PHP_version'};
+    if ($platform >= "5.3") {
+        # More modern PHP found:
+        $legacy_php = "0";
     }
     else {
-	# More modern PHP found:
-	$legacy_php = "0";
+        # Older PHP found:
+        $legacy_php = "1";
     }
 
     # Get Object PHP from CODB to find out how php.ini is configured:

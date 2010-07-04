@@ -70,6 +70,10 @@ else {
     $thirdpartydir = "/usr/bin";
 }
 
+# Find out which version of PHP we are running and store it in CCE:
+$PHP_version = `$thirdpartydir/php -v|/bin/grep ^PHP | /bin/awk '\{print \$2\}'`;
+chomp($PHP_version);
+
 # Fix third party php-cgi location in /etc/suphp.conf:
 if ((-f "$thirdpartydir/php-cgi") && (-f "/etc/suphp.conf")) {
     umask(0077);
@@ -217,6 +221,7 @@ sub feedthemonster {
         # Object not yet in CCE. Creating new one and forcing re-write of php.ini by setting "force_update":
 	($ok) = $cce->create('PHP', {
 	    'applicable' => 'server',
+	    'PHP_version' => $PHP_version,
 	    'safe_mode' => $CONFIG{"safe_mode"},  
 	    'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
 	    'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   
@@ -243,6 +248,7 @@ sub feedthemonster {
         ($sys_oid) = $cce->find('PHP', {'applicable' => 'server'});
         ($ok, $sys) = $cce->get($sys_oid);
         ($ok) = $cce->set($sys_oid, '',{
+	    'PHP_version' => $PHP_version,  
 	    'safe_mode' => $CONFIG{"safe_mode"},  
 	    'safe_mode_allowed_env_vars' => $CONFIG{"safe_mode_allowed_env_vars"},   
 	    'safe_mode_exec_dir' => $CONFIG{"safe_mode_exec_dir"},   

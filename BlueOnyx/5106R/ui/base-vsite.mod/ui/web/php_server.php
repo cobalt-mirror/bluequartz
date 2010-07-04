@@ -19,11 +19,11 @@ $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-vsite", "/base/vsite/php_serverHandler.php");
 $transMethodOn="off";
 
-// Find out what platform this is:
-list($myplatform) = $cceClient->find('System');
+// Find out which PHP version we use:
+list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);
-$platform = $mysystem["productBuild"];
-if (($platform == "5107R") || ($platform == "5108R")) {
+$platform = $mysystem["PHP_version"];
+if ($platform >= "5.3") {
     // We need to hide some legacy PHP settings that no longer work in PHP-5.3 or better:
     $pageID = "Hidden";
 }

@@ -127,6 +127,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Jul 05 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX72
+- Added field 'PHP_version' to Class 'PHP' to store version of used PHP.
+- Updated constructor/import_php_ini_settings.pl to fetch that info and to store it in CODB
+- Updated handlers to use the new PHP_version checks instead of platform related checks:
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl
+- Updated GUI pages to use the new PHP_version checks instead of platform related checks:
+- Updated ui/web/fileOwner.php ui/web/vsite_phpHandler.php ui/web/vsite_php.php ui/web/php_serverHandler.php and ui/web/php_server.php
+
 * Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX71
 - Modified constructor/import_php_ini_settings.pl again to add a missing backslash. Doh!
 
