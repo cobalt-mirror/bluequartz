@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=apache
 
-VERSION=1.2.0
-RELEASE=0BX04
+VERSION=1.3.0
+RELEASE=0BX07
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,7 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
+REQUIRES= mod_suphp
 
 #########
 # some useful defines

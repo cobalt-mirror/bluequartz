@@ -35,23 +35,29 @@ class PHPExtension extends UIExtension
         {
             $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
         }
-        
-	    $container->addFormField(
-			$factory->getBoolean('PHP_enabled', $defaults['enabled']),
-		    $factory->getLabel('php'),
-		    $pageId
-            );
+
+        $phpEnable = $factory->getOption("PHP_enabled", $defaults['enabled']); 
+        $phpEnable->addFormField( 
+          $factory->getBoolean("suPHP_enabled", $defaults['suPHP_enabled']), 
+          $factory->getLabel("enableSuPHP") 
+        ); 
+        $php = $factory->getMultiChoice("PHP_enabled"); 
+        $php->addOption($phpEnable); 
+        $container->addFormField($php, $factory->getLabel("php"), $pageId);         
+
     }
 
     function handle(&$helper, &$errors, &$cce_info)
     {
-        global $PHP_enabled;
+        global $PHP_enabled, $suPHP_enabled;
 
         $cce =& $helper->getCceClient();
 
         $cce->set($cce_info["CCE_OID"], 'PHP', 
-                array('enabled' => $PHP_enabled));
-
+                array( 
+                    'enabled' => ($PHP_enabled ? 1 : 0), 
+                    'suPHP_enabled' => $suPHP_enabled 
+                )); 
         $errors = array_merge($errors, $cce->errors());
     }
 }

@@ -119,6 +119,39 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX07
+- Updated glue/handlers/webscripting2.pl and glue/handlers/webscripting.pl
+- Removed /web from the suPHP path to allow storing files out of sight.
+- As we now chown the site directory to the siteAdmin we no longer need to be that restrictive.
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX06
+- Extended glue/schemas/vsite_services.schema with 'prefered_siteAdmin' field
+- Extended the locales for suPHP with some more explanations.
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX05
+- Small cleanup in constructor/fix_php_conf.pl
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX04
+- Added constructor/fix_php_conf.pl to set defaults in /etc/httpd/conf.d/php.conf
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX03
+- Changed suPHP_AddHandler in web scripting handlers to something more unique
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX02
+- Small fixes in web scripting handlers
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX01
+- suPHP support merged in from 5200R as coded by Hisao
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
+- Merged some 5200R mods over from BlueQuartz - all originally coded by Hisao:
+- perl/Httpd.pm: Resolved the issue that the ServerAlias was lost when SSL got enabled.
+- glue/handlers/virtual_host.pl: Write SSL configuration to /etc/httpd/conf/vhosts/siteX, do not use mod_perl instead
+- Added RewriteCond for webAliases to glue/conf/Apache.conf, glue/handlers/virtual_host.pl and glue/schemas/apache.schema
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
+- Copied 'en' locales to 'en_US'
+
 * Mon Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
 - Modified glue/handlers/virtual_host.pl to change vhost redirects from 302 to 301 for better search engine support.
 - Added helper scripts sbin/fix_302_httpd_redirects.pl sbin/fix_web-and-email-server-aliasses.pl sbin/set_default_php_settings.pl
