@@ -63,7 +63,7 @@ sub edit_vhost
                 if ($php->{suPHP_enabled}) { 
                         $script_conf .= <<EOT
 suPHP_Engine on
-suPHP_ConfigPath /home/sites/$fqdn/web
+suPHP_ConfigPath /home/sites/$fqdn
 suPHP_AddHandler x-httpd-suphp
 AddHandler x-httpd-suphp .php
 EOT
