@@ -234,6 +234,10 @@ sub change_owner {
 	system("/bin/chown -R $new_owner:$new_GID $webdir");
 	# Also chown the basedir of the site to this users UID, but don't do it recursively:
 	system("/bin/chown $new_owner:$new_GID $vsite_basedir");
+	# If we have subdomains under /vhosts, we need to chown them as well:
+	if (-d "$vsite_basedir/vhosts") {
+	    system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
+	}
     }
 }
 
