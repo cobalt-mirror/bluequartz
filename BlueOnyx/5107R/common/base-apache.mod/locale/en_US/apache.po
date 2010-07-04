@@ -305,5 +305,5 @@ msgid "enableSuPHP"
 msgstr "Enable suPHP" 
 
 msgid "enableSuPHP_help" 
-msgstr "Enable the use of suPHP." 
+msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu!" 
 
