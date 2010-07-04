@@ -47,10 +47,10 @@ $cceClient = $serverScriptHelper->getCceClient();
 $phpOID = $cceClient->find("PHP", array("applicable" => "server"));
 
 // Find out what platform this is:
-list($myplatform) = $cceClient->find('System');
+list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);
-$platform = $mysystem["productBuild"];
-if (($platform == "5107R") || ($platform == "5108R")) {
+$platform = $mysystem["PHP_version"];
+if ($platform >= "5.3") {
     // We need to skip updating some legacy PHP settings that no longer work in PHP-5.3 or better:
     $cceClient->set($phpOID[0], "",
         array(
