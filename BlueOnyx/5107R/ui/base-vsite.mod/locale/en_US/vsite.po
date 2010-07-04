@@ -788,3 +788,20 @@ msgstr "php.ini"
 
 msgid "php_ini_help"
 msgstr "Raw contends of your php.ini file. For review only. Changes cannot be saved on this page."
+
+### fileOwner additions:
+
+msgid "fileOwner_head"
+msgstr "SiteAdmin which owns all /web content for [[VAR.vsite]]"
+
+msgid "prefered_siteAdmin"
+msgstr "SiteAdmin that owns /web:"
+
+msgid "prefered_siteAdmin_help"
+msgstr "If suPHP is enabled, then this field must be set to an existing siteAdmin of this site, or your PHP scripts won't run. Even if you don't have suPHP enabled: If you choose an owner from the list of siteAdmins, then the /web directory of your site will be chown'ed recursively to the UID of the selected user. Means: All files and folders in /web will afterwards be owned by the selected user."
+
+msgid "fileOwnerMenu"
+msgstr "Web Ownership"
+
+msgid "fileOwnerDesc"
+msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have suPHP enabled. If suPHP is enabled and you don't have a siteAdmin as owner of your /web folder, then PHP scripts of your site will not run."

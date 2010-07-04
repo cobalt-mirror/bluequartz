@@ -127,6 +127,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX65
+- Added ui/menu/fileOwner.xml ui/web/fileOwner.php and ui/web/fileOwnerHandler.php
+- They allow to select the siteAdmin that owns the site root and particularly /web of a vsite
+- Extended glue/handlers/php_vsite_handler.pl to chown the siteroot and /web accordingly
+
 * Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX64
 - Safe_Mode related PHP settings for server and vsites needed to be removed from the GUI for PHP >= 5.3
 - To retain downward compatability we now do a platform check and hide these switches on 5107R and 5108R

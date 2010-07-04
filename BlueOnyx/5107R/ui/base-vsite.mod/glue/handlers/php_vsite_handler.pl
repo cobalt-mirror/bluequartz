@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: php_vsite_handler.pl, v1.2.0.2 Sun 30 Aug 2009 02:42:08 AM CEST mstauber Exp $
-# Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
+# Copyright 2006-2010 Team BlueOnyx. All rights reserved.
 
 # This handler is run whenever a CODB Object called "Vsite" with namespace 
 # "PHPVsite" is created, destroyed or modified. 
@@ -73,6 +73,9 @@ if ($whatami eq "handler") {
 	    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
 	    exit(1);
 	}
+
+	# prefered_siteAdmin toggles chowning of /web ownership:
+	&change_owner;
 	
 	# Restart Apache:
 	&restart_apache;
@@ -213,6 +216,26 @@ sub edit_vhost {
     return 1;
 }
 
+sub change_owner {
+    # Get new prefered owner:
+    $new_owner = $vsite_php->{'prefered_siteAdmin'};
+
+    # Get sites basedir:
+    $vsite_basedir = $vsite->{"basedir"};
+
+    # Get /web directory of the site in question:
+    $webdir = $vsite->{"basedir"} . "/web";
+
+    # Get GID just to be sure:
+    $new_GID = $vsite->{"name"};
+
+    if (($new_owner ne "") && ($webdir ne "") && ($vsite_basedir ne "")) {
+	# Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
+	system("/bin/chown -R $new_owner:$new_GID $webdir");
+	# Also chown the basedir of the site to this users UID, but don't do it recursively:
+	system("/bin/chown $new_owner:$new_GID $vsite_basedir");
+    }
+}
 
 $cce->bye('SUCCESS');
 exit(0);
