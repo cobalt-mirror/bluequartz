@@ -77,7 +77,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $solmysqlField->addOption($enable);
 			
                         $solmysqlUsername = $factory->getTextField('solmysql_username', $featureMYSQL_Vsite['username'], 'r');
-                        $solmysqlUsername->setMaxLength("15");                        
+                        $solmysqlUsername->setMaxLength("16");                        
                         $solmysqlUsername->setOptional(false);
                         $solmysqlUsername->setPreserveData(false);
                         $enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
@@ -88,7 +88,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
                         $solmysqlDB = $factory->getTextField('solmysql_DB', $featureMYSQL_Vsite['DB'], 'r');
-                        $solmysqlDB->setMaxLength("15");
+                        $solmysqlDB->setMaxLength("16");
                         $solmysqlDB->setOptional(false);
                         $solmysqlDB->setPreserveData(false);
                         $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
@@ -154,7 +154,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $solmysqlField->addOption($enable);
 
                         $solmysqlUsername = $factory->getTextField('solmysql_username', $my_username, $prot);
-                        $solmysqlUsername->setMaxLength("15");
+                        $solmysqlUsername->setMaxLength("16");
                         $solmysqlUsername->setOptional(false);
                         $solmysqlUsername->setPreserveData(false);
                         $enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
@@ -165,7 +165,7 @@ if ($db_rights['solsitemysql'] == "1") {
                         $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
                         $solmysqlDB = $factory->getTextField('solmysql_DB', $my_dbname, $prot);
-                        $solmysqlDB->setMaxLength("15");
+                        $solmysqlDB->setMaxLength("16");
                         $solmysqlDB->setOptional(false);
                         $solmysqlDB->setPreserveData(false);
                         $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
