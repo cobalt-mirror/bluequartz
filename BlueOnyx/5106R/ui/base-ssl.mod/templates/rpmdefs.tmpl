@@ -120,6 +120,9 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Sep 13 2010 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-68BQ13
+- Changed the way adm_certs are generated in the constructor, use y2038 bug - todays date to calculate a valid expiration. If this is more than 9995 use 9995 days.
+
 * Tue Aug 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ13
 - Updated ui/web/createCert.php to set the switch 'Generate Self-Signed Certificate' to off by default.
 
