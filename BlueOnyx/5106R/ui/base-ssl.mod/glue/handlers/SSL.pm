@@ -592,7 +592,8 @@ sub ssl_check_days_valid
     my $days = shift;
 
     # actually check for the cutoff minus a day to be safe
-    my $time_diff = (2 ** 31 - 86401) - time();
+    my $time_diff = (2 ** 31 - 100) - time();
+    my $days_valid = int($time_diff / 86400)- 20;
     if ($DEBUG)
     {
         my @time = gmtime(time());
@@ -611,12 +612,11 @@ sub ssl_check_days_valid
         print STDERR "seconds until rollover is (minus one day) $time_diff\n";
     }
 
-    if (($days * 86400) > $time_diff)
-    {
-        return 0;
-    }
-
-    return 1;
+    if ($days > $days_valid) 
+    { 
+	return $days_valid; 
+    } 
+    return $days; 
 }
 
 # private functions below

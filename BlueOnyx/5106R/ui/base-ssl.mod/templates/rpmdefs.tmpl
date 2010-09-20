@@ -119,6 +119,8 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Mon Sep 20 2010 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-68BQ14
+- Changed the way the ssl_check_days_valid function works. Returns valid days now.
 
 * Mon Sep 13 2010 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-68BQ13
 - Changed the way adm_certs are generated in the constructor, use y2038 bug - todays date to calculate a valid expiration. If this is more than 9995 use 9995 days.
