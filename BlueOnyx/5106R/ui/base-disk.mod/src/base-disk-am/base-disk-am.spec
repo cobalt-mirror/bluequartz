@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.1.0
-Release: 15BQ18%{?dist}
+Release: 15BQ19%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -27,6 +27,9 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Mon Nov 15 2010 Taco Scargo <taco@scargo.nl> 1.1.0-15BQ19
+- Fixed am_disk.pl as users did not receive quota warning e-mails
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BQ18
 - Rebuilt for BlueOnyx.
 

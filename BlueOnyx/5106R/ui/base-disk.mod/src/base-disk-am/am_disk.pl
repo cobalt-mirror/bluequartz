@@ -333,14 +333,24 @@ exit $server_status;
 sub users_over_quota {
     my ($name, $null, $uid, $user_gid, $all_gid, $dir);
     my (@users_over_quota) = ();
+    my @cceusers;
 
-    # all CCE users are in the "users" group
-    ($name, $null, $all_gid) = getgrnam('users');
+    # fetch all CCE users
+    my @alluseroids = $cce->find('User', '');
+    foreach my $entry (@alluseroids) {
+        (my $ok, my $user) = $cce->get($entry);
+        push(@cceusers,$user->{name});
+    }
 
-    # now we do getpwent() and only lookup users who are in the "users" group
+    # now we do getpwent() and only lookup users who are CCE users
     setpwent();
     while (($name, $null, $uid, $user_gid, $null, $null, $null, $dir) = getpwent()) {
-	if ($user_gid != $all_gid) {
+	my $userfound = 0;
+	if (grep {$_ eq $name} @cceusers) {
+	    $userfound = 1;
+	}
+
+	if($userfound==0) {
 	    next;
 	}
 
