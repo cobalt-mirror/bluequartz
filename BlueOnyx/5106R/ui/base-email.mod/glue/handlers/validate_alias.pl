@@ -19,7 +19,6 @@ my %reserved = map { $_ => 1 } qw(
 mailer-daemon
 bin
 daemon
-games
 ingres
 system
 toor
