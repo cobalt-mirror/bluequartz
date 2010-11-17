@@ -28,7 +28,6 @@ mail
 news
 uucp
 operator
-games
 gopher
 ftp
 nobody
