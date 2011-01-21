@@ -29,11 +29,7 @@ if (! -d $cert_dir)
 }
 
 # make sure we don't hit 2038 rollover
-if (!ssl_check_days_valid($ssl->{daysValid}))
-{
-    $cce->bye('FAIL', '[[base-ssl.2038bug]]');
-    exit(1);
-}
+$ssl->{daysValid} = ssl_check_days_valid($ssl->{daysValid}); 
 
 # setup the certificate
 my $ret = ssl_set_identity(
