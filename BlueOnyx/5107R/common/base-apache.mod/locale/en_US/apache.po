@@ -195,7 +195,7 @@ msgid "userwebs"
 msgstr "Enable user owned webs"
 
 msgid "userwebs_help"
-msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory. PLEASE NOTE: If suPHP is enabled, user owned webs are no longer supported and this feature will be turned off."
 
 msgid "ftpnonadminI18nName"
 msgstr "FTP for non-Site admins enabled"
@@ -305,5 +305,5 @@ msgid "enableSuPHP"
 msgstr "Enable suPHP" 
 
 msgid "enableSuPHP_help" 
-msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu!" 
+msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu! PLEASE NOTE: If suPHP is enabled, user owned webs are no longer supported and that feature will get turned off." 
 

@@ -48,7 +48,12 @@ class USERWEBSExtension extends UIExtension
 
         $cce =& $helper->getCceClient();
 
-        $cce->set($cce_info["CCE_OID"], 'USERWEBS', 
+	$featurePHP = $cce->get($cce_info['CCE_OID'], 'PHP');
+	if ($featurePHP['suPHP_enabled'] == "1") {
+    	    $USERWEBS_enabled = "0";
+	}
+
+	$cce->set($cce_info["CCE_OID"], 'USERWEBS', 
                 array('enabled' => $USERWEBS_enabled));
 
         $errors = array_merge($errors, $cce->errors());
