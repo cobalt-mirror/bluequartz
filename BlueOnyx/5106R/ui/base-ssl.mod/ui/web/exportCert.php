@@ -8,7 +8,7 @@ include_once('ServerScriptHelper.php');
 include_once("utils/browser.php");
 
 // make sure the pipe to read from can be opened first
-$helper =& new ServerScriptHelper();
+$helper = new ServerScriptHelper();
 
 // Only adminUser and siteAdmin should be here
 if (!$helper->getAllowed('adminUser') &&

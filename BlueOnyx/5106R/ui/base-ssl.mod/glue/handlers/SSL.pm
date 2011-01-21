@@ -659,7 +659,7 @@ sub _gen_private_key
     my $cert_dir = shift;
 
     Sauce::Util::modifyfile("$cert_dir/key");
-    system($OPENSSL, 'genrsa', '-out', "$cert_dir/key", '1024');
+    system($OPENSSL, 'genrsa', '-out', "$cert_dir/key", '2048');
     Sauce::Util::chmodfile(0640, "$cert_dir/key");
     
     return ($? ? 0 : 1);
