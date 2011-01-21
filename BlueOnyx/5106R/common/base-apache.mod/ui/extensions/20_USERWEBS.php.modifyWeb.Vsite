@@ -15,25 +15,49 @@ class USERWEBSExtension extends UIExtension
 		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-apache");
 
 		$featureUSERWEBS = $cce->get($parameters['CCE_OID'], 'USERWEBS');
+		$featurePHP = $cce->get($parameters['CCE_OID'], 'PHP');
+
+		if ($featurePHP['suPHP_enabled'] == "1") {
+		    $featureUSERWEBS['enabled'] = "0";
+		}
 
 		if ($parameters['IS_SITE_ADMIN']) {
-			if ( $featureUSERWEBS['enabled'] )
-				$container->addFormField(
-					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'r'),
-					$factory->getLabel('userwebs'), $page_id
-					);
-		} else {
+			if (!$featurePHP['suPHP_enabled']) {
 				$container->addFormField(
 					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'rw'),
 					$factory->getLabel('userwebs'), $page_id
 					);
+			}
+			elseif ($featurePHP['suPHP_enabled'] == "1") {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'r'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
+		} else {
+			if ($featurePHP['suPHP_enabled'] == "0") {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'rw'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
+			elseif ($featurePHP['suPHP_enabled'] == "1") {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'r'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
 		}
 	}
 
 	function handle(&$ServerScriptHelper, &$errors, $parameters)
 	{
     global $userwebs;
-		$cce = $ServerScriptHelper->getCceClient();
+	$cce = $ServerScriptHelper->getCceClient();
+	$featurePHP = $cce->get($parameters['CCE_OID'], 'PHP');
+	if ($featurePHP['suPHP_enabled'] == "1") {
+	    $userwebs = "0";
+	}
 
     $cce->set($parameters['CCE_OID'], 'USERWEBS', array('enabled' => $userwebs));
     $errors = array_merge($errors, $cce->errors());

@@ -58,6 +58,13 @@ class PHPExtension extends UIExtension
                     'enabled' => ($PHP_enabled ? 1 : 0), 
                     'suPHP_enabled' => $suPHP_enabled 
                 )); 
+
+	if ($suPHP_enabled == "1") {
+	    // disable UserWebs if suPHP is activated
+            $cce->set($cce_info["CCE_OID"], 'USERWEBS',
+                array('enabled' => "0"));
+	}
+
         $errors = array_merge($errors, $cce->errors());
     }
 }
