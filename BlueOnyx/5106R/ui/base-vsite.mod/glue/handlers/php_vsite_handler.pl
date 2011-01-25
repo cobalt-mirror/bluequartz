@@ -187,9 +187,11 @@ sub edit_vhost {
         }
 
     my $last;
+	my $include = "";
     while(<$in>) {
         if(/^<\/VirtualHost>/i) { $last = $_; last; }
-
+        if(/^Include \/etc\/httpd\/conf\/vhosts\/site.*include/i) { $include = $_; next; }
+		
         if(/^$begin$/)
         {
             while(<$in>)
@@ -206,6 +208,7 @@ sub edit_vhost {
     print $out $begin, "\n";
     print $out $script_conf;
     print $out $end, "\n";
+	print $out $include, "\n";
     print $out $last;
 
     # preserve the remainder of the config file
