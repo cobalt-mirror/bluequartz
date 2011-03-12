@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: php_vsite_handler.pl, v1.2.0.2 Sun 30 Aug 2009 02:42:08 AM CEST mstauber Exp $
-# Copyright 2006-2010 Team BlueOnyx. All rights reserved.
+# $Id: php_vsite_handler.pl, v1.2.0.3 Fri 11 Mar 2011 07:18:01 PM EST mstauber Exp $
+# Copyright 2006-2011 Team BlueOnyx. All rights reserved.
 
 # This handler is run whenever a CODB Object called "Vsite" with namespace 
 # "PHPVsite" is created, destroyed or modified. 
@@ -187,10 +187,8 @@ sub edit_vhost {
         }
 
     my $last;
-	my $include = "";
     while(<$in>) {
         if(/^<\/VirtualHost>/i) { $last = $_; last; }
-        if(/^Include \/etc\/httpd\/conf\/vhosts\/site.*include/i) { $include = $_; next; }
 
         if(/^$begin$/)
         {
@@ -208,7 +206,6 @@ sub edit_vhost {
     print $out $begin, "\n";
     print $out $script_conf;
     print $out $end, "\n";
-	print $out $include, "\n";
     print $out $last;
 
     # preserve the remainder of the config file
