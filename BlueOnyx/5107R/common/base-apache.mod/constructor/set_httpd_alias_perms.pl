@@ -5,8 +5,10 @@
 # to the new requested standards as required by the mod_nss introduced by CentOS-5.6:
 
 # Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
-system('/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
-system('/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+if (-e "/etc/httpd/alias/cert8.db") {
+        system('/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
+        system('/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');   
+}
 
 exit(0);
 
