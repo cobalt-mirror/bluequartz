@@ -98,6 +98,11 @@ if [ -f /etc/httpd/conf.d/welcome.conf ]; then
   /bin/rm -f /etc/httpd/conf.d/welcome.conf
 fi
 
+# The manual page needs to go as well:
+if [ -f /etc/httpd/conf.d/manual.conf ]; then
+  /bin/rm -f /etc/httpd/conf.d/manual.conf
+fi
+
 # A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
 # This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
 if [ -f /etc/init.d/avahi-daemon ]; then
@@ -136,6 +141,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Apr 19 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX14
+- Updated constructor/set_httpd_alias_perms.pl to handle the CentOS Apache manual page.
 
 * Mon Apr 18 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX13
 - Updated constructor/set_httpd_alias_perms.pl to handle the CentOS welcome page for Apache and to stop and disable the unneeded avahi-daemon if present.

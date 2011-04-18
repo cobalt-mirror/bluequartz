@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: set_httpd_alias_perms.pl Mon 18 Apr 2011 12:32:28 AM EDT mstauber $
+# $Id: set_httpd_alias_perms.pl Mon 18 Apr 2011 07:31:18 PM EDT mstauber $
 #
 # This constructor sets the GID and permissions on the databases in /etc/httpd/alias/
 # to the new requested standards as required by the mod_nss introduced by CentOS-5.6:
@@ -13,6 +13,11 @@ if (-e "/etc/httpd/alias/cert8.db") {
 # While we are at it, delete the default CentOS welcome page:
 if (-e "/etc/httpd/conf.d/welcome.conf") {
 	system('/bin/rm -f /etc/httpd/conf.d/welcome.conf');
+}
+
+# Also delete /etc/httpd/conf.d/manual.conf:
+if (-e "/etc/httpd/conf.d/manual.conf") {
+	system('/bin/rm -f /etc/httpd/conf.d/manual.conf');
 }
 
 # A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
