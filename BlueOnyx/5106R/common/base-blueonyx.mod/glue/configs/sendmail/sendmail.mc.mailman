@@ -8,7 +8,7 @@ dnl #
 dnl #     make -C /etc/mail
 dnl #
 include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
-VERSIONID(`setup for BlueOnyx w/o lists')dnl
+VERSIONID(`setup for BlueOnyx with Mailman')dnl
 OSTYPE(`linux')dnl
 dnl #
 dnl # Uncomment and edit the following line if your outgoing mail needs to
@@ -23,8 +23,8 @@ define(`confTO_CONNECT', `1m')dnl
 define(`confTRY_NULL_MX_LIST',true)dnl
 define(`confDONT_PROBE_INTERFACES',true)dnl
 define(`PROCMAIL_MAILER_PATH',`/usr/bin/procmail')dnl
-dnl # removed /etc/mail/aliases.majordomo
-define(`ALIAS_FILE', `/etc/mail/aliases')dnl
+dnl # removed /etc/mail/aliases.mailman
+define(`ALIAS_FILE', `/etc/mail/aliases, /etc/mail/aliases.mailman')dnl
 define(`STATUS_FILE', `/var/log/mail/statistics')dnl
 define(`UUCP_MAILER_MAX', `2000000')dnl
 define(`confUSERDB_SPEC', `/etc/mail/userdb.db')dnl

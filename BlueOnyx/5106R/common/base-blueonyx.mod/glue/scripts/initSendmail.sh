@@ -13,7 +13,29 @@ if [ ! -f /etc/mail/aliases ]; then
   fi
   /usr/sbin/makemap hash /etc/mail/aliases.db < /etc/mail/aliases
 fi
-cp -p $CONFDIR/sendmail.mc /etc/mail/sendmail.mc
+
+# Handle Mailman presence:
+if [ -f /etc/rc.d/init.d/mailman ]; then
+	cp -p $CONFDIR/sendmail.mc.mailman /etc/mail/sendmail.mc
+else
+	touch /tmp/nolist.mailmain
+fi
+
+# Handle Majordomo presence:
+if [ -f /usr/local/majordomo/bin/approve ]; then
+	cp -p $CONFDIR/sendmail.mc.majordomo /etc/mail/sendmail.mc
+else
+	touch /tmp/nolist.majordomo
+fi
+
+# Handle case where we have neither and a stock Sendmail config:
+/bin/grep 'setup for BlueOnyx' /etc/mail/sendmail.mc > /dev/null 2>&1
+if [ $? = 0 ]; then 
+	if [ ! -f /tmp/nolist.mailmain ] && [ ! -f /tmp/nolist.majordomo ];then
+		cp -p $CONFDIR/sendmail.mc /etc/mail/sendmail.mc
+	fi
+fi
+
 cp -p $CONFDIR/popauth.m4 /usr/share/sendmail-cf/hack/popauth.m4
 
 if [ -f /usr/sausalito/constructor/solarspeed/av_spam/aa_initial_inst.pl ];then
