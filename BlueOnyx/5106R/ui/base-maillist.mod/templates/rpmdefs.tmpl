@@ -69,12 +69,10 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-# check aliases.majordomo
-grep -e '^O AliasFile.*/etc/mail/aliases.majordomo' /etc/mail/sendmail.cf > /dev/null
-if [ $? -eq 1 ]; then
-	perl -pi -e 's|O AliasFile=/etc/mail/aliases|O AliasFile=/etc/mail/aliases, /etc/mail/aliases.majordomo|g' /etc/mail/sendmail.cf
-	/etc/init.d/sendmail condrestart
-fi
+
+# Fix sendmail.cf and sendmail.mc:
+/usr/sausalito/scripts/initSendmail.sh
+/etc/init.d/sendmail condrestart
 
 <end glue>
 <begin ui>
@@ -113,6 +111,9 @@ fi;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG
+* Sun Apr 24 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX10
+- Modified templates/rpmdefs.tmpl to to rely on /usr/sausalito/scripts/initSendmail.sh instead for changes to Sendmail config changes
+
 * Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX09
 - Resolved issue involving site name change
 
