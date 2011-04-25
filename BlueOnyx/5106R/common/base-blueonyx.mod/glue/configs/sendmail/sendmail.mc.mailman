@@ -116,7 +116,7 @@ dnl # We strongly recommend not accepting unresolvable domains if you want to
 dnl # protect yourself from spam. However, the laptop and users on computers
 dnl # that do not have 24x7 DNS do need this.
 dnl #
-FEATURE(`accept_unresolvable_domains')dnl
+dnl FEATURE(`accept_unresolvable_domains')dnl
 dnl #
 dnl FEATURE(`relay_based_on_MX')dnl
 dnl # 
