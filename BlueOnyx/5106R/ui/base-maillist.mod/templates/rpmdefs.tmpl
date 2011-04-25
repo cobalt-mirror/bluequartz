@@ -16,6 +16,11 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 
+Obsoletes: mailman
+Obsoletes: base-mailman-capstone
+Obsoletes: base-mailman-ui
+Obsoletes: base-mailman-glue
+
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
 information for [VENDOR]-[SERVICE].
@@ -74,6 +79,11 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/scripts/initSendmail.sh
 /etc/init.d/sendmail condrestart
 
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -113,6 +123,7 @@ fi;
 <begin $CHANGELOG
 * Sun Apr 24 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX10
 - Modified templates/rpmdefs.tmpl to to rely on /usr/sausalito/scripts/initSendmail.sh instead for changes to Sendmail config changes
+- Added the right obsoletes to templates/rpmdefs.tmpl to remove conflicting mailman RPMs
 
 * Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX09
 - Resolved issue involving site name change
