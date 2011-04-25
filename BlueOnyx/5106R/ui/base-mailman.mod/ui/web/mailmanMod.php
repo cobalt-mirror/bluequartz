@@ -174,7 +174,7 @@ if (isset($mode) && $mode == 'save') {
     $cce->set($oid, '', $vals);
   } else {
     //creating new mailing list
-    $cce->create('MailMan', $vals);
+    $cce->create('MailList', $vals);
   }
   $errors = $cce->errors();
   if (!$errors) {
@@ -229,17 +229,17 @@ $ids[] = $advancedId = "advanced";
 
 if ($mode != 'locals' && $mode != 'locals_new') {
   //displaying normal mailing list settings
-  //we use modifyMailMan as the block id in BOTH cases below, but something else as the label
+  //we use modifyMailList as the block id in BOTH cases below, but something else as the label
   //we do this so that we can do nasty hacks 
   //involving the internal variables involved with PagedBlock paging.
   if (isset($_TARGET) && intval($_TARGET) > 0) {
     //different title for modify list
-    $block = $factory->getPagedBlock("modifyMailMan", $ids);
+    $block = $factory->getPagedBlock("modifyMailList", $ids);
     $list = $cce->get($_TARGET);
-    $block->setLabel($factory->getLabel('modifyMailMan', false, array('listName' => $list['name'])));
+    $block->setLabel($factory->getLabel('modifyMailList', false, array('listName' => $list['name'])));
   } else {
-    $block = $factory->getPagedBlock("modifyMailMan", $ids);
-    $block->setLabel($factory->getLabel('createMailMan', false, array('fqdn' => $vsiteObj['fqdn'])));
+    $block = $factory->getPagedBlock("modifyMailList", $ids);
+    $block->setLabel($factory->getLabel('createMailList', false, array('fqdn' => $vsiteObj['fqdn'])));
   }
   $block->processErrors($errors);
 
@@ -428,7 +428,7 @@ if ($mode != 'locals' && $mode != 'locals_new') {
   // so we post back to the local subscriber list page
   print $builder->makeHiddenField("mode", "locals"); 
   //so when we go back, we return to the subscriber tab
-  print $builder->makeHiddenField("_PagedBlock_selectedId_modifyMailMan", $subsId); 
+  print $builder->makeHiddenField("_PagedBlock_selectedId_modifyMailList", $subsId); 
   // show all? show selected?
   print $builder->makeHiddenField("show", $show); 
   //do we select all?

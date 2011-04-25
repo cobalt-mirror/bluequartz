@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/lib/perl5/5.10.0 -I/usr/lib64/perl5/5.10.0/x86_64-linux-thread-multi -I/usr/lib/perl5/5.10.0/i686-linux-thread-multi -I. -I/usr/sausalito/handlers/base/mailman
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/mailman
 # $Id: listmod_members,v 1.0.0-1 Sun 24 Apr 2011 07:03:22 PM CEST
 # Copyright 2011 Team BlueOnyx. All rights reserved.
 #

@@ -3,7 +3,7 @@
 # Copyright 2011 Team BlueOnyx. All rights reserved.
 #
 # Counts subscribers for mailing lists GUI
-# System.MailMan .site .commit
+# System.MailList .site .commit
 
 my $DEBUG = 0;
 $DEBUG && warn `date`."$0\n";
@@ -14,7 +14,7 @@ my $cce = new CCE;
 $cce->connectfd();
 
 my $oid = $cce->event_oid();
-my($ok, $obj) = $cce->get($oid, 'MailMan');
+my($ok, $obj) = $cce->get($oid, 'MailList');
 
 my %crit;
 $crit{'site'} = $obj->{site} if ($obj->{site});
@@ -41,7 +41,7 @@ if ($obj->{site}) {
 
 $DEBUG && warn "Site: $obj->{site}\n";
 
-my (@lists) = $cce->find('MailMan', { 'site' => $obj->{site} });
+my (@lists) = $cce->find('MailList', { 'site' => $obj->{site} });
 foreach my $oid (@lists) {
 	$DEBUG && warn "Fetching oid: $oid\n";
 

@@ -13,7 +13,7 @@ $cce->connectuds();
 # sync up system with cce
 @OIDS = $cce->find('System');
 if (@OIDS) {
-    my ($ok, $obj) = $cce->get($OIDS[0], 'MailManStatus');
+    my ($ok, $obj) = $cce->get($OIDS[0], 'MailListStatus');
     my $force_update = $obj->{force_update};
     my $enabled = $obj->{enabled};
     my $configured = $obj->{configured};
@@ -75,7 +75,7 @@ if (@OIDS) {
 	    system("/usr/bin/newaliases >/dev/null 2>&1");
 
 	    # Update CCE with the new info so that this snippet only runs once:
-	    $cce->set($OIDS[0], 'MailManStatus', { 
+	    $cce->set($OIDS[0], 'MailListStatus', { 
 		'configured' => "1",
 		'enabled' => "1", 
 		'admin_pw' => $admin_pw, 

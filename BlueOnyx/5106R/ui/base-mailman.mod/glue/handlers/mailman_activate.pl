@@ -14,7 +14,7 @@ my $obj = $cce->event_object();
 
 my @oids = $cce->find('System');
 if (@oids) {
-    my ($ok, $obj) = $cce->get($oids[0], 'MailManStatus');
+    my ($ok, $obj) = $cce->get($oids[0], 'MailListStatus');
     my $enabled = $obj->{enabled};
 
     # If MailMan is enabled, start the service:

@@ -12,10 +12,10 @@ use Sauce::Util;
 use CCE;
 
 # configuration stuff:
-my $MailMan_user = 'mailman';
-my $MailMan_group = 'mailman';
-my $MailMan_uid = scalar (getpwnam($MailMan_user));
-my $MailMan_gid = scalar (getgrnam($MailMan_group));
+my $MailList_user = 'mailman';
+my $MailList_group = 'mailman';
+my $MailList_uid = scalar (getpwnam($MailList_user));
+my $MailList_gid = scalar (getgrnam($MailList_group));
 
 sub get_listfile {
   my $obj = shift;
@@ -27,7 +27,7 @@ sub get_listfile {
 }
 
 # my ($ok) = rewrite_members($obj)
-# create subscriber list from the MailMan object
+# create subscriber list from the MailList object
 sub rewrite_members
 {
   my $obj = shift;
@@ -106,7 +106,7 @@ sub rewrite_members
 }
 
 # my ($ok) = rewrite_config($cce, $obj)
-# create subscriber list from the MailMan object
+# create subscriber list from the MailList object
 sub rewrite_config
 {
   my ($cce, $obj) = @_;

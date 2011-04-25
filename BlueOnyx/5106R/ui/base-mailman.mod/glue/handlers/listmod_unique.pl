@@ -22,7 +22,7 @@ if ($obj->{site} ne '') {
 		       $obj->{name};
 
 	# Check for mailman->{name} usage in this site
-	my(@ml_oids) = $cce->find('MailMan', { 'name' => $obj->{name}, 'site' => $obj->{site} });
+	my(@ml_oids) = $cce->find('MailList', { 'name' => $obj->{name}, 'site' => $obj->{site} });
 	&bail() if ($ml_oids[1]);
 
 	# make sure there is no alias
@@ -53,7 +53,7 @@ if ($obj->{site} ne '') {
 } else { # Qube-style server-level mailling list
 
   # make sure list names are unique:
-  my @matches = $cce->find('MailMan', { 'name' => $obj->{name} } );
+  my @matches = $cce->find('MailList', { 'name' => $obj->{name} } );
   if ($#matches > 0) {
     $cce->baddata($oid, 'name', '[[base-mailman.name-already-taken]]');
     &bail();

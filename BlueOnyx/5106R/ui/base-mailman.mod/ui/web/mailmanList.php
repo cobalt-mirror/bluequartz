@@ -13,7 +13,7 @@ $cce = $serverScriptHelper->getCceClient() or die ("no CCE");
 if(!$nosync) {
 	$time = time();
 	$sysoid = $cce->find('System');
-	$ret = $cce->set($sysoid, 'MailMan', 
+	$ret = $cce->set($sysoid, 'MailList', 
 		array('site'=>$group, 'commit'=>$time));
 }
 
@@ -64,7 +64,7 @@ $pageLength = $scrollList->getLength();
 // find start point
 $start = $scrollList->getPageIndex()*$pageLength;
 
-$oids = $cce->findSorted("MailMan", "name", array('site' => $group));
+$oids = $cce->findSorted("MailList", "name", array('site' => $group));
 
 // sort in the right direction
 if($scrollList->getSortOrder() == "descending")

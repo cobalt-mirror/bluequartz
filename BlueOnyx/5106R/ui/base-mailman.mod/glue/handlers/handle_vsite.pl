@@ -37,7 +37,7 @@ if ($cce->event_is_create() && ($obj->{name} eq ''))
 if($cce->event_is_destroy())
 {
 	foreach my $oid (
-		$cce->find("MailMan", {'site' => $old->{name}}) )
+		$cce->find("MailList", {'site' => $old->{name}}) )
 	{
 		$cce->destroy($oid); # ignore return on destructive ops
 	}

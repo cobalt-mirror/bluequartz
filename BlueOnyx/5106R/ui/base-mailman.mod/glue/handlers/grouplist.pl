@@ -17,7 +17,7 @@ my $new = $cce->event_new();
 my $old = $cce->event_old();
 
 my $oldname = $old->{name} || $new->{name};
-my ($mloid) = $cce->find("MailMan", { 'group' => $oldname });
+my ($mloid) = $cce->find("MailList", { 'group' => $oldname });
 
 if ($mloid && $cce->event_is_destroy()) {
   $cce->set($mloid, "", { 'group' => '' }); # clear group association
@@ -37,7 +37,7 @@ if ($mloid && $new->{name}) {
 }
 
 if (!$mloid) {
-  $cce->create("MailMan", {
+  $cce->create("MailList", {
     'name' => $obj->{name},
     'group' => $listname,
     'enabled' => '1',
