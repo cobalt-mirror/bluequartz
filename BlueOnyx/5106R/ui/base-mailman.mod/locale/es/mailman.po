@@ -1,0 +1,434 @@
+# --- Menu
+
+msgid "mailmans"
+msgstr "Lista de Envío"
+
+msgid "mailmansHelp"
+msgstr "[[base-mailman.mailmanList_menu]] puede ser manejado aquí."
+
+
+# --- Mailing Lists page
+
+msgid "mailmanList_menu"
+msgstr "Listas de Envío"
+
+msgid "mailmanList"
+msgstr "Listas de Envío en [[VAR.group]]"
+
+msgid "mailmanNameHeader"
+msgstr "Nombre"
+
+msgid "mailmanNameHeader_help"
+msgstr "Esto es el nombre de la lista de envío."
+
+msgid "recipientsHeader"
+msgstr "Numero de Abonados"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Anonado[[VAR.plural]]"
+
+msgid "recipientsHeader_help"
+msgstr "Estos solos números de usuarios quien abonaren a la lista de envió."
+
+msgid "groupSubscriber"
+msgstr "Todos Miembros del Grupo [[VAR.group]] "
+
+msgid "mailmanDescHeader"
+msgstr "Comentarios"
+
+msgid "mailmanDescHeader_help"
+msgstr "Este columna contiene información adicional sobre cada lista de envío."
+
+msgid "mailmanActionHeader"
+msgstr "Accion"
+
+msgid "mailmanActionHeader_help"
+msgstr "Estos son los botones utilizados para modificar o borrar una lista de envíos."
+
+msgid "confirm_removal_of_list"
+msgstr "Esta seguro que quiere borrar la lista de envío [[VAR.list]] ?"
+
+msgid "subscribers"
+msgstr "Abonado"
+
+msgid "subscribers_help"
+msgstr "La lista de miembros de la lista de envío puede ser configurado aquí."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] Abonado local [[VAR.plural]]"
+
+msgid "edit_locals"
+msgstr "Editar"
+
+msgid "edit_locals_help"
+msgstr "Haga clic aquí para elegir usuarios locales que son abonados a este lista de envío."
+
+msgid "localsSearch"
+msgstr "Buscar Lista Usuario"
+
+msgid "search"
+msgstr "Buscar"
+
+msgid "search_help"
+msgstr "Haga clic aquí para mostrar usuarios que están igual al los criterios entrados."
+
+msgid "showall"
+msgstr "Mostar Todos Usuarios"
+
+msgid "showall_help"
+msgstr "Haga clic aquí para mostrar todos usuarios en este sitio."
+
+msgid "showselected"
+msgstr "Mostrar Solamente Usuarios Elegidos"
+
+msgid "showselected_help"
+msgstr "Haga clic aquí  para mostrar solamente usuarios elegidos actualmente."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] en [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Usuarios igualados [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Usuarios Elegidos"
+
+msgid "all"
+msgstr "Todos Usuarios"
+
+msgid "selectAll"
+msgstr "Elige Todos Usuarios"
+
+msgid "selectAll_help"
+msgstr "Haga clic aquí para todos usuarios en este sitio. La selección va incluir todos usuarios en este pagina y todos usuarios en otras paginas también."
+
+msgid "selectPage"
+msgstr "Elige Este Pagina"
+
+msgid "selectPage_help"
+msgstr "Haga clic aquí para elegir todos usuarios en este pagina."
+
+msgid "use_these"
+msgstr "Utiliza Selección Actual"
+
+msgid "use_these_help"
+msgstr "Haga clic aquí  para utilizar la selección actual como la lista [[base-mailman.localSubscribers]]."
+
+msgid "cancel"
+msgstr "Borrar"
+
+msgid "cancel_help"
+msgstr "Haga clic aquí  para retornar al sitio de los puestas e ignorar su selección actual."
+
+msgid "name"
+msgstr "Nombre Usuario"
+
+msgid "name_help"
+msgstr "El nombre de los usuarios en este sitio virtual . Elige los campos para añadir usuarios a este lista de envío."
+
+# ----- Add/modify a mailing list Basic
+
+msgid "createMailMan"
+msgstr "Anade Lista de Envío a [[VAR.fqdn]]"
+
+msgid "modifyMailMan"
+msgstr "Modifique puestas lista de envío para [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "advanced"
+msgstr "Avanzado"
+
+msgid "basic_help"
+msgstr "Haga clic aquí para configurar los opciones básicos de la lista de envío."
+
+msgid "advanced_help"
+msgstr "Haga clic aquí  para configurar opciones de la lista de envío avanzada como políticas de destino y abonado."
+
+msgid "listName"
+msgstr "Lista Nombre"
+
+msgid "listName_rule"
+msgstr "Por favor ingrese solamente caracteres caso bajo, alfanuméricos, hípennos, periodos y subrayas. Por ejemplo, sales es un entrada valida."
+ 
+msgid "listName_help"
+msgstr "Ingrese el nombre de la lista de envío.  [[base-mailman.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Disculpe, [[VAR.invalidValue]] es un valor invalido para [[base-mailman.listName]].  [[base-mailman.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Disculpe, no ingreso un valor para [[base-mailman.listName]].   [[base-mailman.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Miembros grupo"
+
+msgid "workgroupMembers_help"
+msgstr "Este campo contiene una lista de usuarios quien son actualmente miembros del grupo asociado con esta lista. Todos miembros de este grupo estan siempre inscritos a esta lista de envío."
+
+msgid "group_field"
+msgstr "Nombre grupo lista"
+
+msgid "group_field_help"
+msgstr "Esto es el nombre de la lista grupal de envío. Todos miembros de este grupo son inscrito automáticamente a esta lista de envío."
+
+msgid "save"
+msgstr "Guardar"
+
+msgid "save_help"
+msgstr "Guarda este lista de envío."
+
+
+msgid "localSubscribers"
+msgstr "Abonados Locales"
+
+msgid "localSubscribers_help"
+msgstr "Haga clic al botón de editar para elegir usuarios locales que están inscritos a la lista de envío."
+
+msgid "subscribed"
+msgstr "Usuarios Inscritos"
+
+msgid "unsubscribed"
+msgstr "Usuarios no Inscritos."
+
+msgid "remoteSubscribers"
+msgstr "Abonados Remotes"
+
+msgid "remoteSubscribers_rule"
+msgstr "Por favor ingrese un correo electrónico formato Por ejemplo, user@example.com es un entrada valida."
+
+msgid "remoteSubscribers_help"
+msgstr "Ingrese los usuarios remotes que son abonados a este lista envió. Usuarios remotes son usuarios que no tienen cuentas en este servidor [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Disculpe, [[VAR.invalidValue]] es un valor invalido para [[base-mailman.remoteSubscribers]].  [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribersDigest"
+msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
+
+msgid "remoteSubscribersDigest_rule"
+msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)" 
+
+msgid "remoteSubscribersDigest_help"
+msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"   
+
+msgid "remoteSubscribersDigest_invalid"
+msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
+
+msgid "description"
+msgstr "Comentarios"
+
+msgid "description_help"
+msgstr "Ingrese información adicional o comentarios sobre la lista de envío aquí."
+
+
+
+# ----- Add/modify a mailing list Advanced
+
+msgid "moderator"
+msgstr "Propietario/Moderador"
+
+msgid "moderator_rule"
+msgstr "Por favor ingrese un correo electrónico formato justamente o el nombre usuario de un usuario valido e este servidor. El valor estándar es admin. Por ejemplo user@example.com y  admin son entradas validas."
+
+msgid "moderator_help"
+msgstr "Ingrese la dirección electrónica del usuario que esta haciendo todos deberes de la lista de envío.  [[base-mailman.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "Disculpe, [[VAR.invalidValue] es un valor invalido para [[base-mailman.moderator]].  [[base-mailman.moderator_rule]]"
+
+	# handler version
+msgid "Moderator-does-not-exist"
+msgstr "Moderador invalido: El usuario [[VAR.moderator]] no existe."
+
+
+msgid "moderator_empty"
+msgstr "Disculpe, no ingreso un valor para [[base-mailman.moderator]]. Debe ingresar un valor también so políticas de moderación no han sido especificados para esta lista de envío.  [[base-mailman.moderator_rule]]"
+
+msgid "policies"
+msgstr "Politicas"
+
+msgid "apassword"
+msgstr "Contraseña"
+
+msgid "apassword_help"
+msgstr "Ingrese una contraseña administrativa para esta lista de envío. Esta contraseña es utilizada cuando haciendo ciertas tareas administrativas vía correo (por ejemplo confirmando inscripciones o moderando mensajes). Si no quiere utilizar este funciones, puede dejar vacío este campo."
+
+msgid "postingPolicy"
+msgstr "Politica de Destino"
+
+msgid "postingPolicy_help"
+msgstr "Elige una política de destino para esta lista de envío. Si elige Moderador Confirms All Messages, cada mensaje va necesitar la autorización del propietario/moderador de la lista. "
+
+msgid "any"
+msgstr "Todos Usuarios Pueden Añadir Mensajes"
+
+msgid "members"
+msgstr "Solamente Abonados Pueden Añadir Mensajes"
+
+msgid "moderated"
+msgstr "Moderador Confirma Todos Mensajes"
+
+msgid "subscriptionPolicy"
+msgstr "Politica de Inscripción"
+
+msgid "subscriptionPolicy_help"
+msgstr "Elige la política de inscripción de la lista. Usuarios pueden inscribirse enviando un correo a mailman@[[VAR.fqdn]] con las parablas 'inscribe a lista' o 'finaizar inscripción lista' (liste el nombre de la lista) in el mensaje. Si la política es 'Cerrada', el mensaje es enviado al propietario de la lista  para confirmación antes que la inscripción es permitida."
+
+msgid "open"
+msgstr "Abre: Cada Usuario Puede Inscribirse."
+
+msgid "closed"
+msgstr "Cerrado: Propietario de la Lista es Necesario para Inscripción."
+
+msgid "confirm"
+msgstr "Confirmar: Confirmación de Email es Necesario para Inscripción."
+
+msgid "maxlength"
+msgstr "Longitud Máxima del Mensaje"
+
+msgid "maxlength_help"
+msgstr "Elije la tamaño máxima el kilobytes o megabytes permitidos para este mensaje. Mensajes mas grande que este valor no son aceptados."
+
+msgid "5"
+msgstr "5 KB"
+msgid "50"
+msgstr "50 KB"
+msgid "500"
+msgstr "500 KB"
+msgid "10000"
+msgstr "10 MB"
+msgid "100000"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "Política de Respuesta"
+
+msgid "replyToList_help"
+msgstr "Elige la política de respuesta para esta lista de envío. Si elige Respuesta a Lista, respuestas van ir a la lista. Sino respuestas van ir solamente al autor original del mensaje. "
+
+msgid "replyList"
+msgstr "Respuesta a Lista"
+
+msgid "archiveSettings"
+msgstr "Archivar"
+
+msgid "archiveEnabled"
+msgstr "Permite"
+
+msgid "archiveEnabled_help"
+msgstr "Elige cual mensajes enviados a este lista de envío van ser archivados. Cuentas de usuarios en este servidor van ser capaz de acceder estos archivos utilizando su cuenta WebMail si WebMail esta instalado."
+
+msgid "keepForDays"
+msgstr "Guarda periodo (días)"
+
+msgid "keepForDays_help"
+msgstr "Ingrese un numero especificando la longitud de tiempo en días que mensajes van ser en el archivo. Ingrese (0) para guardar mensajes para siempre. "
+
+msgid "keepForDays_rule"
+msgstr "Por favor ingrese un numero especificando la longitud de tiempo en días que mensajes van ser en el archivo. Ingrese (0) para guardar mensajes para siempre"
+
+msgid "keepForDays_empty"
+msgstr "Disculpe, no especifico un valor para [[base-mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Disculpe, el campo [[base-mailman.keepForDays]] contiene un valor invalido.  [[base-mailman.keepForDays_rule]]"
+
+
+# ------ Handler messages
+
+msgid "name-already-taken"
+msgstr "Disculpe, la lista de envío no pudo ser creada porque el nombre ya es utilizado por un usuario. Por favor ingrese otro nombre e intente de nuevo."
+
+msgid "name-already-taken-by-user"
+msgstr "Disculpe, la lista de envío no pudo ser creada porque el nombre ya es utilizado por un usuario. Por favor ingrese otro nombre e intente de nuevo. "
+
+msgid "Mail-alias-already-taken"
+msgstr "Disculpe, la lista de envío no pudo ser creada porque los aliases de correo ya existen. Intente dar otro nombre a la lista o borrar correos con nombres similares. "
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Disculpe, listas de envío para grupos en este servidor no pueden ser borradas."
+
+msgid "Could-not-create-mailman"
+msgstr "Disculpe, un error ocurro. La lista de envío no pudo ser creada. "
+
+
+
+# ----- Archives for users with accounts
+
+	#--- List view
+msgid "mailmanArchive"
+msgstr "Archivo lista de envío - [[VAR.name]]"
+
+msgid "title"
+msgstr "Sujeto"
+
+msgid "title_help"
+msgstr "Esto es el sujeto del mensaje."
+
+msgid "author"
+msgstr "Enviador"
+
+msgid "author_help"
+msgstr "Esto es el nombre o correo de la persona que envió el mensaje."
+
+msgid "date"
+msgstr "Fecha"
+
+msgid "date_help"
+msgstr "Esto es la fecha que el mensaje fue recibida."
+
+	#--- Read message view
+msgid "readMessage"
+msgstr "Leer mensaje"
+
+msgid "readMessage_help"
+msgstr "Leer mensaje"
+
+msgid "from"
+msgstr "De"
+
+msgid "from_help"
+msgstr "Esto es el nombre y/o correo de la persona que envió el mensaje. "
+
+msgid "subject"
+msgstr "Sujeto"
+
+msgid "subject_help"
+msgstr "Esto es el sujeto del mensaje."
+
+msgid "message"
+msgstr "Mensaje"
+
+msgid "message_help"
+msgstr "Esto es el texto del mensaje."
+
+msgid "replySender"
+msgstr "Responde a Enviado"
+
+msgid "replySender_help"
+msgstr "Haga clic aquí para responder al autor del mensaje. "
+
+msgid "replyAll"
+msgstr "Responde todos"
+
+msgid "replyAll_help"
+msgstr "Haga clic aquí para responder al auto y todos otros recipientes del mensaje. "
+
+# ------ Misc  (i.e. I have no idea)
+
+msgid "membership"
+msgstr "Mienmbro"
+
+msgid "membership_help"
+msgstr "Miembro define los usuarios asociados con esta lista de envío"
+
+
+# ------- Strings for email messages
+
+msgid "WelcomeMessageSubject"
+msgstr "Archivar fue permitido"
+
+msgid "WelcomeMessageBody"
+msgstr "Este correo fue enviado a usted para notificarle que archivar de la lista '[[VAR.name]]' fue permitido para usuarios con cuentas en este servidor. Estos usuarios van ser capaz de acceder este archivo en WebMail.  No necesite responder a este mensaje. "
