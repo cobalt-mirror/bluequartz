@@ -6,7 +6,7 @@ SERVICE=mailman
 
 # MAJVERSION is 0 until alpha release.
 VERSION=1.0.0
-RELEASE=1BX02
+RELEASE=1BX03
 
 INSTALL=install
 

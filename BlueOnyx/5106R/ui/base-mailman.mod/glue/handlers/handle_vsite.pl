@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: handle_vsite.pl,v 1.0.0-1 Sun 24 Apr 2011 07:03:22 PM CEST
+# $Id: handle_vsite.pl,v 1.0.0-3 Tue 26 Apr 2011 12:12:20 AM CEST
 # Copyright 2011 Team BlueOnyx. All rights reserved.
 #
 # handles the creation of a virtual site's mailman infrastructure
@@ -67,24 +67,23 @@ if($cce->event_is_destroy())
 }
 elsif($new->{fqdn})
 {
-		unless(-d $dir)
-		{
-			$fqdn = $vsite->{fqdn};
-			$sitenum = $obj->{site};
-			mkdir("/home/sites/$fqdn/mailman", 0750);
-			chown("mailman", "$sitenum", "/home/sites/$fqdn/mailman");
+		# Get the name of the list we need to rename
+		my (@oidsx) = $cce->find("MailList", {'site' => $old->{name}});
+		my ($okx, $objx) = $cce->get($oidsx[0]);
+		$internal_name = $objx->{internal_name};
+
+		# New FQDN:
+		$new_fqdn = $new->{fqdn};
+
+		if ($new_fqdn ne "") {
+		    # Rename a list on FQDN change:
+		    system("/usr/lib/mailman/bin/withlist -q -l -r fix_url $internal_name --urlhost=$new_fqdn");
 		}
+
 }
 
 if($cce->event_is_create())
 {
-                unless(-d $dir)
-                {
-                        $fqdn = $vsite->{fqdn};
-                        $sitenum = $obj->{site};
-                        mkdir("/home/sites/$fqdn/mailman", 0750);
-                        chown("mailman", "$sitenum", "/home/sites/$fqdn/mailman");
-                }
 	foreach my $alias (@mailman_aliases)
 	{
 		my $action = 
