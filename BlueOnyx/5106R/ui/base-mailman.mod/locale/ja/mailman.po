@@ -433,3 +433,33 @@ msgstr "Archiving has been enabled"
 msgid "WelcomeMessageBody"
 msgstr "This email has been sent to you to notify you that archiving of the mailing list '[[VAR.name]]' has been enabled for users with accounts on this server.  These users will be able to access this archive from within WebMail.  There is no need to reply to this message."
 
+
+# ------- Strings for System tab of Mailman
+
+msgid "MailMan_header"
+msgstr "MailMan"
+
+msgid "mailman_enabled"
+msgstr "Enable Mailman:"
+
+msgid "mailman_enabled_help"
+msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart MailMan is: /etc/init.d/mailman stop|start|restart"
+
+msgid "oldpass"
+msgstr "Password:"
+
+msgid "oldpass_help"
+msgstr "The administrative functions of MailMan are protected with an automatically generated password. This textfield shows the password that was generated for this server upon initial setup."
+
+msgid "MailMan_Admin"
+msgstr "MailMan Admin Interface"
+
+msgid "MailMan_Admin_help"
+msgstr "This button allows you to access the MailMan admin interface. This link has been added for your convinience, but in practical terms you should never use it unless you really know what you are doing there. Please use the BlueOnyx GUI to add or delete mailing lists instead."
+
+msgid "menu_system_mailman"
+msgstr "MailMan"
+
+msgid "menu_system_mailman_help"
+msgstr "Click here to manage the mailing list service MailMan."
+
