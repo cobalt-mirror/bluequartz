@@ -187,6 +187,7 @@ if (isset($mode) && $mode == 'save') {
   $obj = $cce->get($_TARGET);
   $listName = $obj['name'];
   $apassword = $obj['apassword'];
+  $internal_name = $obj['internal_name'];
   // we're at the top of a post to a non-locals mode
   // if we're in locals_save mode, we've already copied localsubs into local_recips (see above)
   // if we're not in a mode, we're at first load, so get from obj
@@ -238,6 +239,7 @@ if ($mode != 'locals' && $mode != 'locals_new') {
     $list = $cce->get($_TARGET);
     $block->setLabel($factory->getLabel('modifyMailList', false, array('listName' => $list['name'])));
   } else {
+    $createMailList = "1";
     $block = $factory->getPagedBlock("modifyMailList", $ids);
     $block->setLabel($factory->getLabel('createMailList', false, array('fqdn' => $vsiteObj['fqdn'])));
   }
@@ -362,6 +364,13 @@ if ($mode != 'locals' && $mode != 'locals_new') {
   $block->addButton($factory->getSaveButton("javascript: if (document.$formId.onsubmit()) { document.$formId.mode.value='save'; document.$formId.submit(); }"));
   $block->addButton($factory->getCancelButton("/base/mailman/mailmanList.php?group=$group"));
 
+  // MailMan redirect buttons (only visible if we're modifying an existing list:
+  if ( $createMailList != "1" ) {
+    $list_admin_button = "http://" . $display_fqdn . "/mailman/admin/$internal_name";
+    $list_archive_button = "http://" . $display_fqdn . "/pipermail/$internal_name/";
+    $block->addButton($factory->getButton("$list_admin_button", "vsiteMailMan_Admin"));
+    $block->addButton($factory->getButton("$list_archive_button", "MailMan_Archive"));
+  }
 
   // print page
   print $page->toHeaderHtml();

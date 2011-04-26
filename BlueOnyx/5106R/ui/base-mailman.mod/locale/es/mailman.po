@@ -128,7 +128,7 @@ msgstr "El nombre de los usuarios en este sitio virtual . Elige los campos para 
 
 # ----- Add/modify a mailing list Basic
 
-msgid "createMailMan"
+msgid "createMailList"
 msgstr "Anade Lista de Envío a [[VAR.fqdn]]"
 
 msgid "modifyMailList"
@@ -461,4 +461,19 @@ msgstr "MailMan"
 
 msgid "menu_system_mailman_help"
 msgstr "Click here to manage the mailing list service MailMan."
+
+
+# ------- Extra strings for vsite management of MailMan:
+
+msgid "vsiteMailMan_Admin"
+msgstr "MailMan Admin Interface"
+
+msgid "vsiteMailMan_Admin_help"
+msgstr "This button allows you to access the MailMan admin interface for some of the more advanced configuration options of MailMan."
+
+msgid "MailMan_Archive"
+msgstr "MailMan Archive"
+
+msgid "MailMan_Archive_help"
+msgstr "This button allows you to access the public MailMan archive of your mailing list." 
 

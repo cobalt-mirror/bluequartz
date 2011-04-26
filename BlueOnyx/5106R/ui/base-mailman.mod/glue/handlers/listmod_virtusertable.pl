@@ -146,10 +146,16 @@ sub edit_alii
 			if (!$alias) {
 				next;
 			}
+
+
+			unless ($cce->event_is_destroy()) { # on event destroy we don't rebuild the individual objects,
+							# because by the time that mapmaker gets there, the objects
+							# are already gone.
 			
-			# turn off build_maps for every one but the last
-			if ($i < $#these_alii) {
+			    # turn off build_maps for every one but the last
+			    if ($i < $#these_alii) {
 				$cce->set($alias, '', { 'build_maps' => 0 });
+			    }
 			}
 			my ($ok) = $cce->destroy($alias);
 			if (!$ok) {
@@ -218,8 +224,12 @@ sub edit_alii_internal
 			}
 			
 			# turn off build_maps for every one but the last
-			if ($i < $#these_alii) {
+			unless ($cce->event_is_destroy()) { # on event destroy we don't rebuild the individual objects,
+							# because by the time that mapmaker gets there, the objects
+							# are already gone.
+			    if ($i < $#these_alii) {
 				$cce->set($alias, '', { 'build_maps' => 0 });
+			    }
 			}
 			my ($ok) = $cce->destroy($alias);
 			if (!$ok) {
