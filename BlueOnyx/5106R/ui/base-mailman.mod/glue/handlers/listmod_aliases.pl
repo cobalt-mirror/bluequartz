@@ -77,6 +77,8 @@ my %aliases = (
 # my $ok = modify_aliases(\%aliases, $old->{name}, $obj->{name});
 my $ok = Sauce::Util::editfile('/etc/mail/aliases.mailman', 
   \&Sauce::Util::replace_unique_entries, $oid, \%aliases);
+
+system('rm -f /etc/mail/aliases.mailman.backup.*');
   
 if (!$ok || ($ok eq 'FAIL')) {
   $cce->warn("Mail-alias-already-taken");

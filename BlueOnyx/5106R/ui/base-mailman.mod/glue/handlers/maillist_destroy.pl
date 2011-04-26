@@ -23,6 +23,7 @@ if($cce->event_is_destroy()) {
     \&Sauce::Util::replace_unique_entries, $oid,
     {});
   Sauce::Util::modifyfile('/etc/mail/aliases.db');
+  system('/bin/rm -f /etc/mail/aliases.mailman.backup.*');
   $DEBUG && warn "Running newaliases";
   system('/usr/bin/newaliases > /dev/null 2>&1');
 }

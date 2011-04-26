@@ -63,6 +63,7 @@ if($cce->event_is_destroy())
 		$old->{name},
 		\@mailman_aliases
 		);
+	system('/bin/rm -f /etc/mail/aliases.mailman.backup.*');
 
 }
 elsif($new->{fqdn})
