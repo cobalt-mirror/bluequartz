@@ -10,10 +10,16 @@ $MAILERTABLE = '/etc/mail/mailertable';
 
 # FIXME: rest of these should also be scalars instead of functions
 sub Aliases { return '/etc/mail/aliases'; }
-sub MajordomoAliases { return '/etc/mail/aliases.majordomo'; }
 sub SendmailCF { return '/etc/mail/sendmail.cf'; }
 sub SendmailMC { return '/etc/mail/sendmail.mc'; }
 sub SendmailCW { return '/etc/mail/local-host-names'; }
+
+if (-f "/etc/rc.d/init.d/mailman") {
+        sub MajordomoAliases { return '/etc/mail/aliases.mailman'; }
+}
+if (-f "/usr/local/majordomo/bin/approve") {
+        sub MajordomoAliases { return '/etc/mail/aliases.majordomo'; }
+}
 
 return 1;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
