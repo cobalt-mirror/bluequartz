@@ -122,6 +122,16 @@ fi;
 
 <begin $CHANGELOG
 
+* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.0-1BX07
+- As MailMan requires a running daemon, we better add an ActiveMonitor component to monitor it:
+- Added base-mailman-am to SRC tree. Added requirement for it to Makefile.
+- Added glue/schemas/mailman-am.schema
+- Added ui/web/mailman_amdetails.php
+- Added glue/schemas/mailman-am.schema
+- Added ui/web/mailman_amdetails.php
+- Updated locales with new AM related keys.
+- Modified constructor/configure_mailman.pl and glue/handlers/mailman_activate.pl to enable/disable AM monitoring of this component.
+
 * Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.0-1BX06
 - Modified ui/web/mailmanMod.php: Added buttons to access MailMans native admin interface for lists and the archives.
 - Modified glue/handlers/listmod_virtusertable.pl to get rid of build_maps error on list deletion.

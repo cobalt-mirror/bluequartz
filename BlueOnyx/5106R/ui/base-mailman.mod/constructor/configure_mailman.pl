@@ -81,6 +81,15 @@ if (@OIDS) {
 		'admin_pw' => $admin_pw, 
 		'force_update' => time()
 		});
+
+	    # While we're turning MailMan on, we also tell ActiveMonitor
+	    # to start monitoring this component:		
+	    @amOIDS = $cce->find('ActiveMonitor');
+	    if (@amOIDS) {
+		$cce->set($amOIDS[0], 'MAILMAN', { 
+		'enabled' => "1" 
+		});
+	    }
 	}
 }
 

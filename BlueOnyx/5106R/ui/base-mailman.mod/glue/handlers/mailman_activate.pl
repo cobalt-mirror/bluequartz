@@ -26,6 +26,15 @@ if (@oids) {
 	system("/sbin/chkconfig --level 2345 mailman off");
 	system("/etc/init.d/mailman stop > /dev/null 2>&1");
     }
+
+    # While we're switching MailMan on or off, we also tell ActiveMonitor
+    # if it should  monitor this component:
+    @amOIDS = $cce->find('ActiveMonitor');
+    if (@amOIDS) {
+        $cce->set($amOIDS[0], 'MAILMAN', {
+        'enabled' => $enabled
+        });
+    }
 }
 else {
   # we have major problems if the System object doesn't exist,
