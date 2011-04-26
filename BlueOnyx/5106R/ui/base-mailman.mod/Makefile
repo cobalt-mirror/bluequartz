@@ -6,7 +6,7 @@ SERVICE=mailman
 
 # MAJVERSION is 0 until alpha release.
 VERSION=1.0.0
-RELEASE=1BX08
+RELEASE=1BX09
 
 INSTALL=install
 
@@ -18,7 +18,7 @@ BUILDLOCALE=yes
 BUILDSRC=yes
 
 REQUIRES=mailman base-blueonyx-capstone base-blueonyx-glue base-mailman-am
-OBSOLETES=majordomo base-maillist-capstone base-maillist-ui base-maillist-glue 
+#OBSOLETES=majordomo base-maillist-capstone base-maillist-ui base-maillist-glue 
 
 include /usr/sausalito/devel/module.mk
 

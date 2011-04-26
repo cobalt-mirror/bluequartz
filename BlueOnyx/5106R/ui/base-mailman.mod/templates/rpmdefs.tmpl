@@ -16,10 +16,10 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 
-Obsoletes: majordomo
-Obsoletes: base-maillist-capstone
-Obsoletes: base-maillist-ui
-Obsoletes: base-maillist-glue
+Conflicts: majordomo
+Conflicts: base-maillist-capstone
+Conflicts: base-maillist-ui
+Conflicts: base-maillist-glue
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -121,6 +121,10 @@ fi;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG
+
+* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.0-1BX09
+- Changed the 'Obsoltes' for the Majordomo related stuff to 'Conflicts', which ought to work a hell of a lot better.
+- No need to have YUM play flip-flop between the two modules.
 
 * Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.0-1BX08
 - Updated glue/handlers/handle_vsite.pl, glue/handlers/listmod_aliases.pl and glue/handlers/maillist_destroy.pl
