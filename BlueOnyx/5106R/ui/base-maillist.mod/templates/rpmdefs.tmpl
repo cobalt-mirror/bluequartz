@@ -16,10 +16,10 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 
-Obsoletes: mailman
-Obsoletes: base-mailman-capstone
-Obsoletes: base-mailman-ui
-Obsoletes: base-mailman-glue
+Conflicts: mailman
+Conflicts: base-mailman-capstone
+Conflicts: base-mailman-ui
+Conflicts: base-mailman-glue
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -121,6 +121,9 @@ fi;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG
+* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX12
+- Changed the 'Obsoltes' for the Mailman related stuff to 'Conflicts', which ought to work a hell of a lot better.
+
 * Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX11
 - Added constructor/add_module.pl to make it easier in the future to distinguish between Majordomo and MailMan installs on BX.
 
