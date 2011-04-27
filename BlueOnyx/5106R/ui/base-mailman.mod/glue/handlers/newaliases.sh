@@ -1,5 +1,7 @@
 #!/bin/sh
-/usr/bin/newaliases >/dev/null 2>&1
+
+/usr/bin/newaliases 
+/etc/init.d/sendmail condrestart 
 
 echo "BYE SUCCESS"
 exit 0
