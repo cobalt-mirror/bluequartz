@@ -122,6 +122,10 @@ fi;
 
 <begin $CHANGELOG
 
+* Sun May 01 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.0-1BX11
+- Fixed glue/handlers/handle_vsite.pl to only run alias edits on destroy if there are lists for that site.
+- Added missing 'use Sauce::Util' reference.
+
 * Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.0-1BX10
 - Updated glue/handlers/newaliases.sh to condrestart Sendmail after alias rebuilds.
 
