@@ -493,3 +493,12 @@ msgstr "The MailMan service is NOT operating normally. Please try to manually re
 msgid "amMAILMANStatusOK"
 msgstr "The MailMan service is operating normally."
 
+
+# ------- Extra strings for showing mailing list address:
+
+msgid "listAddress"  
+msgstr "List Address:"
+
+msgid "listAddress_help"
+msgstr "This is the email address that this mailing list is reachable at. To post messages to this list, send your emails to this address."
+

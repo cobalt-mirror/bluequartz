@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: mailmanMod.php, v 1.0.0-1 Sun 24 Apr 2011 07:03:22 PM CEST
+ * $Id: mailmanMod.php, v 1.0.0-2 Sun 01 May 2011 02:22:45 AM CEST
  * Copyright 2011 Team BlueOnyx. All rights reserved.
  */
 
@@ -261,6 +261,15 @@ if ($mode != 'locals' && $mode != 'locals_new') {
 		       $factory->getLabel("listName"),
 		       $simpleId);
 
+  // Show List Email Address:
+  if ($internal_name) {
+    $listAddress = $internal_name . '@' . $display_fqdn;
+    $block->addFormField(
+		       $factory->getMailListname("listAddress", $listAddress, 'r'), 
+		       $factory->getLabel("listAddress"),
+		       $simpleId);
+  }
+  
   $desc = $factory->getTextBlock("description", $description);
   $desc->setOptional("silent");
   $desc->setWidth(40);
