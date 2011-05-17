@@ -16,7 +16,9 @@ BlueOnyx, then we had to swing the ugly nerf bat and dump the wildcard support.
 
 To indicate that your PKG is for BlueOnyx, use the correct and full product number instead:
 
-Product:               5106R
+Product:               5106R 	- BX on CentOS5 32-bit
+Product:               5107R 	- BX on CentOS6 32-bit
+Product:               5108R 	- BX on CentOS6 64-bit
 
 To cover the BlueApp as well, use this:
 
