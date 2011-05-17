@@ -100,6 +100,8 @@ $thirdparty->addFormField(
     "Default"
     );
 
+system("/bin/touch /tmp/.guipkginstall");
+
 print($page->toHeaderHtml());
 
 print($thirdparty->toHtml());

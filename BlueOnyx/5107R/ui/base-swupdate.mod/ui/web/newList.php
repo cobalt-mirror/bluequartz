@@ -97,7 +97,8 @@ $thirdparty->addFormField(
     $factory->getLabel(" "),
     "Default"
     );
-    
+
+system("/bin/touch /tmp/.guipkginstall");    
 
 print($page->toHeaderHtml()); 
 
