@@ -51,7 +51,9 @@ information for [VENDOR]-[SERVICE].
 %attr(0700,root,root)%{RootDir}/sbin/pkg_install.pl
 %attr(0700,root,root)%{RootDir}/sbin/pkg_prepare.pl
 %attr(0700,root,root)%{RootDir}/sbin/pkg_uninstall.pl
+%attr(0700,root,root)%{RootDir}/sbin/swupdate_tmp_clean.pl
 %attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
+%attr(0644,root,root)%config /etc/cron.d/swupdate_tmp_clean.cron
 %attr(0700,root,root)%dir /root/.gnupg
 %attr(0644,root,root)%config /root/.gnupg/pubring.gpg
 %attr(0600,root,root)%config /root/.gnupg/secring.gpg
@@ -93,6 +95,9 @@ if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
 fi
 
+# Restart Crond:
+/etc/init.d/crond restart
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -124,6 +129,20 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue May 17 2011 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX20
+- Added glue/etc/cron.d/swupdate_tmp_clean.cron
+- Added glue/sbin/swupdate_tmp_clean.pl
+- These cronjob and script help us with restarting CCEd conditionally if PKGs were installed through the GUI.
+
+* Mon Jun 07 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX19
+- Various PHP-5.3 related fixes all over the place.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX18
+- Copied 'en' locales to 'en_US'
+
+* Thu Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BX17
+- Version number bump
 
 * Sun Aug 16 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-1BQ16
 - Allowed limited wildcards in 'Product' fields again, but still blocking broad ones like '5...R'.

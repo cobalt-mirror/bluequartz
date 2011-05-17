@@ -70,7 +70,7 @@ for($i = 0; $i < count($oids); $i++) {
 
   $detailUrl = ($url != "") ? "javascript: window.open('$url$options', 'softwareDetails'); void 0;" : "javascript: location='/base/swupdate/download.php?backUrl=/base/swupdate/sunUpdatesList.php&packageOID=$oid'; void 0;";
 
-  $removeButton = ereg("^file:", $package["location"]) ? "javascript: confirmRemove('$oid', '$packageName');" : '';
+  $removeButton = preg_match("/^file:/", $package["location"]) ? "javascript: confirmRemove('$oid', '$packageName');" : '';
 
   $composite = $removeButton ? array($factory->getDetailButton($detailUrl),
         $factory->getRemoveButton($removeButton)) : array($factory->getDetailButton($detailUrl));
