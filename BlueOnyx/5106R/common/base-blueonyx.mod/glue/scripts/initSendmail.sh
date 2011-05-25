@@ -49,3 +49,13 @@ chmod 0600 /etc/mail/virthosts
 chown root.root /etc/mail/virthosts
 
 touch /var/log/mail/statistics
+
+# remove unwanted aliases that keep users from using these as mail-adresses:
+_UWALIASES='support marketing news sales webmaster'
+for _UWALIAS in $_UWALIASES; do
+	/bin/sed -i -e "/^${_UWALIAS}:/d" /etc/mail/aliases
+done
+
+# route nobody to /dev/null so that admin does not receive a copy of every ml msg
+/bin/sed -i -e s"/^nobody:.*$/nobody:\t\t\/dev\/null/" /etc/mail/aliases
+

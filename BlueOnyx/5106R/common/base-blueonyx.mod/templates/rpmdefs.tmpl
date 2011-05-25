@@ -276,6 +276,13 @@ if [ ! -f /etc/mail/aliases ]; then
   if [ $? = 1 ]; then
     echo 'root:		admin' >> /etc/mail/aliases
   fi
+  # list of unwanted aliases to remove:
+  _UWALIASES='support marketing news sales webmaster'
+  for _UWALIAS in $_UWALIASES; do
+        sed -i -e "/^${_UWALIAS}:/d" /etc/mail/aliases
+  done
+  # route nobody to /dev/null so that admin does not receive a copy of every ml msg
+  /bin/sed -i -e s"/^nobody:.*$/nobody:\t\t\/dev\/null/" /etc/mail/aliases
   /etc/init.d/sendmail condrestart
 fi
 if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
@@ -363,6 +370,11 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Wed May 25 2011 Christoph Schneeberger <cschnee@telemedia.ch> 2.20110512BX100
+- Added fix for unwanted aliases to base-blueonyx.mod/templates/rpmdefs.tmpl in sendmail trigger. 
+- Added same fix to base-blueonyx.mod/glue/scripts/initSendmail.sh
+- Both remove news, marketing, sales, webmaster and support as alias for root and change nobody to /dev/null (Majordomo rewrite hack)
 
 * Sun Apr 24 2011 Michael Stauber <mstauber@solarspeed.net> 2.20110424BX100
 - Added new sendmail.mc.mailman with provisions for Mailman
