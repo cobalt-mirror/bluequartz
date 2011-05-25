@@ -214,7 +214,8 @@ sub rewrite_config
     "administrivia = no",  # all majordomo commands must be sent to majordomo
     "advertise << END\n/.*/\nEND", # always advertise
     "noadvertise << END\nEND", # never don't advertise
-    "who_access = list", # only list members may run 'who'
+    "who_access = closed", # nobody may run 'who'
+    "which_access = closed", # nobody may run 'which'
     "subject_prefix = [\$LIST] ", # prefix listname to subject
     "message_headers << END\nX-Majordomo-Version: \$VERSION\nEND",
   );
