@@ -1,0 +1,25 @@
+<!-- This is the AM Namespace for monitoring MAILMAN -->
+<class name="ActiveMonitor" 	namespace="MAILMAN" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="0"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"
+	default="/usr/sausalito/swatch/bin/am_mailman.exp"/>
+
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-mailman.amMAILMANStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-mailman.amMAILMANNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-mailman.amMAILMANNameTag]]"/>
+
+    <property name="URL"	     	type="scalar"  	
+	default="/base/mailman/mailman_amdetails.php"/>
+    <property name="UIGroup"		type="scalar"   default="service"/>
+</class>
