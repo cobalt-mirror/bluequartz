@@ -35,6 +35,7 @@ $cce->set($vsiteOID[0], "",
 		"maxusers" => $maxusers,
 		"dns_auto" => $dns_auto,
 		"site_preview" => $site_preview,
+		"prefix" => $prefix,
 		"suspend" => $suspend
 	  )
 	 );

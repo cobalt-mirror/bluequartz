@@ -59,6 +59,40 @@ if ((length($vsite->{fqdn}) > 255) ||
     exit(1);
 }
 
+# prefix must be no longer than five characters:
+if (length($vsite_new->{prefix}) > 5) {
+    $cce->bye('FAIL', '[[base-vsite.prefixTooLong]]');
+    exit(1);
+}
+
+# Make sure our prefix (if given) isn't used by any other vsite:
+if ($vsite_new->{prefix}) {
+    if (length($vsite_new->{prefix}) > 0) {
+	# Prefix given. Now verify that no other site is using this prefix:
+	my @oids = $cce->findx("Vsite", {},
+			       { 
+			       	'prefix' => &build_scalar_regi($vsite_new->{prefix})
+			       });
+
+	# there should be no oids found
+	if (scalar(@oids) > 1) {
+		$cce->bye('FAIL', 
+			  "[[base-vsite.prefixInUse,fqdn='$vsite_new->{prefix}']]");
+		exit(1);
+	}
+    }
+}
+
+# Make sure prefix is alphanumerical:
+if (length($vsite_new->{prefix}) > 0) {
+    if ($vsite_new->{prefix} =~ /^[a-zA-Z0-9]+$/) {
+	# OK
+    }
+    else {
+	$cce->bye('FAIL', '[[base-vsite.prefixInvalidChars]]');
+    }
+}
+
 #
 # should we even verify uniqueness of aliases?  this only really matters for
 # auto dns, and that will verify uniqueness when creating dns records provided

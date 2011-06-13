@@ -115,6 +115,12 @@
         writeacl="ruleCapable(adminUser)"
     />
 
+    <!-- Vsite prefix -->
+    <property
+        name="prefix" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
     <!-- 
         capabilities that should be added on to anyone with the siteAdmin
         capability
