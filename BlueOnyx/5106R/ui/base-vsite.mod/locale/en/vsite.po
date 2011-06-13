@@ -805,3 +805,23 @@ msgstr "Web Ownership"
 
 msgid "fileOwnerDesc"
 msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have suPHP enabled. If suPHP is enabled and you don't have a siteAdmin as owner of your /web folder, then PHP scripts of your site will not run."
+
+# ---- start Prefix
+
+msgid "prefix"
+msgstr "Site Prefix:"
+
+msgid "prefix_help"
+msgstr "The 'Site Prefix' is an optional prefix that allows you to identify users or services related to a site. If set, all (newly created) usernames will be prefixed with this string. A prefix must be alphanumeric (numbers and/or letters only) and may not be longer than five characters. Please note: A prefix can be added or changed at a later time. But doing so will NOT affect any usernames that are already present."
+
+msgid "prefixTooLong"
+msgstr "The 'Site Prefix' you specified is longer than 5 characters."
+
+msgid "prefixInUse"
+msgstr "The 'Site Prefix' you specified is already in use by another site: [[VAR.fqdn]]"
+
+msgid "prefixInvalidChars"
+msgstr "The 'Site Prefix' you specified contains unsupported characters. Only alphanumerical characters are allowed, which means letters and numbers, but no more than five in total."
+
+# ---- end Prefix
+

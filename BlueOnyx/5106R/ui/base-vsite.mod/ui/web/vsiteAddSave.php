@@ -32,6 +32,7 @@ $vsiteOID = $cce->create("Vsite",
 				'volume' => $volume,
 				'maxusers' => $maxusers,
 				'dns_auto' => $dns_auto,
+				'prefix' => $prefix,
 				'site_preview' => $site_preview
 			 )
 			);

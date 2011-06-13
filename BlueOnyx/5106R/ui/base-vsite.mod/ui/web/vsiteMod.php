@@ -108,6 +108,17 @@ $settings->addFormField(
         $pageId
         );
 
+// site prefix
+$vsite_prefix = $factory->getTextField("prefix", $vsite['prefix'], $access);
+$vsite_prefix->setOptional(true);
+$vsite_prefix->setWidth(5);
+ 
+$settings->addFormField(
+        $vsite_prefix,
+        $factory->getLabel("prefix"),
+        $pageId
+        );
+
 
 // vsite disk info
 $disk = $cce->get($vsite['OID'], 'Disk');

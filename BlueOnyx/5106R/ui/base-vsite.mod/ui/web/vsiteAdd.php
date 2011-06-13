@@ -145,6 +145,17 @@ $settings->addFormField(
         $defaultPage
         );
 
+// site prefix
+$vsite_prefix = $factory->getTextField("prefix", $vsiteDefaults['prefix']);
+$vsite_prefix->setOptional(true);
+$vsite_prefix->setWidth(5);
+
+$settings->addFormField(
+	$vsite_prefix,
+	$factory->getLabel("prefix"),
+	$defaultPage
+        );
+
 // web server aliases
 $webAliasesField = $factory->getDomainNameList("webAliases", $vsiteDefaults["webAliases"]);
 $webAliasesField->setOptional(true);
@@ -154,6 +165,7 @@ $settings->addFormField(
         $factory->getLabel("webAliases"),
         $defaultPage
         );
+
 
 // enable & disable Email
 $settings->addFormField(
