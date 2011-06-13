@@ -90,9 +90,26 @@ if ($siteAdministrator == "1") {
     $hasNoFTPaccess = "0";
 }
 
+// If a prefix is given, prepend it to the userName:
+if ($prefix) {
+    $UserNameArray = array($prefix, $userNameField);
+    $newUserName = implode("_", $UserNameArray);
+    
+    // If someone uses a really long username, then a prefix may make it too long.
+    // So we need to check how long the username now is and if need be, we need to shorten it:
+    $unameLength = strlen($newUserName);
+    if ($unameLength > '31') {
+	// Ok, the name is too long. We need to shorten it back down to 32 characters:
+	$newUserNameShort = (mb_substr($newUserName, '0', '31'));
+	$newUserName = $newUserNameShort;
+    }
+}
+else {
+    $newUserName = $userNameField;
+}
 
 $attributes = array(
-                "name" => $userNameField, 
+                "name" => $newUserName, 
                 "sortName" => $sortby, 
                 "fullName" =>$fullNameField, 
                 "password" => $passwordField, 
@@ -170,7 +187,7 @@ if($oid == 0 || count($errors) > 0)
 	}
 
 	// check for username collision, add rejected value to email aliases
-	if (($errors[$i]->code == 5) && (ereg('userNameSuggest', $errors[$i]->message)))
+	if (($errors[$i]->code == 5) && (preg_match('/userNameSuggest/', $errors[$i]->message)))
 	{
 	    if($i18n->getProperty("suggestUsername") == "yes") 
 	    {
@@ -185,7 +202,7 @@ if($oid == 0 || count($errors) > 0)
                     global $HTTP_POST_VARS;
 
 	    	    // The following regex tests for identical use of the username in the alias field:
-	    	    if(!ereg('[^a-zA-Z0-9\-\_]'.$userNameField.'[^a-zA-Z0-9\-\_]',$emailAliasesField)) 
+	    	    if(!preg_match('/[^a-zA-Z0-9\-\_]'.$userNameField.'[^a-zA-Z0-9\-\_]/',$emailAliasesField)) 
 	   	    {
 	  	        $HTTP_POST_VARS['emailAliasesField'] = $userNameField.$emailAliasesField;
 	            }

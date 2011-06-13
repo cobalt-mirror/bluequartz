@@ -119,6 +119,17 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Jun 13 2011 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX01
+- Added Vsite prefix support to ui/web/userAdd.php and ui/web/userAddHandler.php
+- Only needed to add it there, as usernames of existing users cannot be changed.
+- Also removed 'admin' from reserved usernames in ui/web/user.inc if we're using a prefix.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX29
+- Copied 'en' locales to 'en_US'
+
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX28
+- Updated ui/web/userAddHandler.php - ereg() replacement
+
 * Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ27
 - Added /usr/sausalito/sbin/remove_passwd_lock.sh to remove stale /etc/passwd.lock files.
 - Added /etc/cron.d/passwd_lock.cron to automatically run above script every 15 minutes.
