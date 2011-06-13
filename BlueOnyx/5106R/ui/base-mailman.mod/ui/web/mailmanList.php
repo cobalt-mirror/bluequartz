@@ -39,14 +39,9 @@ if ($_REMOVE) {
 
 // build scroll list of mailing lists
 $scrollList = $factory->getScrollList("mailmanList", array("mailmanNameHeader", "recipientsHeader", "mailmanDescHeader" ,"mailmanActionHeader"), array(0));
-//if ($product->isWhitebox()) {
-  list($vsite) = $cce->find('Vsite', array('name' => $group));
-  $vsiteObj = $cce->get($vsite);
-  $groupName = $vsiteObj['fqdn'];
-//} else {
-  // find the workgroup name
-//  $groupName = "something";
-//}
+list($vsite) = $cce->find('Vsite', array('name' => $group));
+$vsiteObj = $cce->get($vsite);
+$groupName = $vsiteObj['fqdn'];
 
 $scrollList->setLabel($factory->getLabel('mailmanList', false, array('group' => $groupName)));
 $scrollList->setAlignments(array("left", "left", "left", "center"));
@@ -56,7 +51,6 @@ $scrollList->addButton($factory->getAddButton("/base/mailman/mailmanMod.php?grou
 
 // disable sorting
 $scrollList->setSortEnabled(false);
-// $scrollList->setArrowVisible(true);
 
 // find page length
 $pageLength = $scrollList->getLength();

@@ -17,6 +17,7 @@ my $oid = $cce->event_oid();
 my $obj = $cce->event_object();
 
 if ($obj->{site} ne '') {
+
 	# RaQ site-level mailling list
   	$DEBUG && warn "per-site list detected, site: " . $obj->{site} . ', ' .
 		       $obj->{name};
@@ -28,6 +29,9 @@ if ($obj->{site} ne '') {
 	# make sure there is no alias
 	my ($vs_oid) = $cce->find('Vsite', { 'name' => $obj->{site} });
 	my ($ok, $vsite) = $cce->get($vs_oid);
+
+	# Get Vsite prefix:
+	my $prefix = $vsite->{prefix};
 	
 	# check for aliases that would conflict with this MailMan
 	my @conflicts = $cce->find('EmailAlias',
@@ -45,8 +49,11 @@ if ($obj->{site} ne '') {
 	}
 
 	# Generate internal encoded name, mailman->{internal_name}
-	# prepended oid, oids are unique, how convenient
-	my $internal_name = $oid . '-' . $obj->{name};
+	$internal_name = $oid . '-' . $obj->{name};
+	# Check if we have a Vsite prefix. If so, use it instead:
+	if ($prefix) {
+		$internal_name = $prefix . '-' . $obj->{name};
+	}
 	$ok = $cce->set($oid, '', { 'internal_name' => $internal_name });
 	$DEBUG && warn "Set internal_name to ".$internal_name;
 
