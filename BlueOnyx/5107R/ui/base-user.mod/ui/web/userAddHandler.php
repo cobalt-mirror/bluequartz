@@ -90,9 +90,26 @@ if ($siteAdministrator == "1") {
     $hasNoFTPaccess = "0";
 }
 
+// If a prefix is given, prepend it to the userName:
+if ($prefix) {
+    $UserNameArray = array($prefix, $userNameField);
+    $newUserName = implode("_", $UserNameArray);
+    
+    // If someone uses a really long username, then a prefix may make it too long.
+    // So we need to check how long the username now is and if need be, we need to shorten it:
+    $unameLength = strlen($newUserName);
+    if ($unameLength > '31') {
+	// Ok, the name is too long. We need to shorten it back down to 32 characters:
+	$newUserNameShort = (mb_substr($newUserName, '0', '31'));
+	$newUserName = $newUserNameShort;
+    }
+}
+else {
+    $newUserName = $userNameField;
+}
 
 $attributes = array(
-                "name" => $userNameField, 
+                "name" => $newUserName, 
                 "sortName" => $sortby, 
                 "fullName" =>$fullNameField, 
                 "password" => $passwordField, 

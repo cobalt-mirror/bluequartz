@@ -79,10 +79,34 @@ if($prop=="yes"){
 	);
 }
 
-$block->addFormField(
-    $factory->getUserName("userNameField", $userNameField),
-    $factory->getLabel("userNameField")
-);
+// # Username - start
+if ($vsiteObj['prefix']) {
+    // If we have a Vsite prefix defined, we need to prefix all (new) usernames:
+    $prefixField = $factory->getVerticalCompositeFormField(array($factory->getTextField("prefix", $vsiteObj['prefix'], 'r')));  
+    $shortUserNameField = $factory->getVerticalCompositeFormField(array($factory->getUserName("userNameField", $userNameField, 'rw')));
+    $userNameCombined =& $factory->getCompositeFormField(array($prefixField, $shortUserNameField), '_');
+ 
+    // Set Java Script Variable name:
+    $js_prefix = 'userNameField';
+ 
+    $block->addFormField(
+        $userNameCombined,
+        $factory->getLabel('userNameField')
+        );
+
+}
+else {
+    // If no Vsite prefix is defined, then we don't prefix (new) usernames:
+
+    // Set Java Script Variable name:
+    $js_prefix = 'userNameField';
+
+    $block->addFormField(
+	$factory->getUserName("userNameField", $userNameField),
+	$factory->getLabel("userNameField")
+    );
+}
+// # Username - end
 
 $block->addFormField(
     $factory->getPassword("passwordField", $passwordField),
@@ -229,13 +253,13 @@ function fullNameChangeHandler() {
   var form = document.<?php print($formId)?>;
 
   // generate user name
-  if(form.userNameField.value == "")
-    form.userNameField.value = userNameGenerator_generate(form.fullNameField.value, "<?php print($defaults["userNameGenMode"]) ?>");
+  if(form.<?php print($js_prefix)?>.value == "")
+    form.<?php print($js_prefix)?>.value = userNameGenerator_generate(form.fullNameField.value, "<?php print($defaults["userNameGenMode"]) ?>");
 
   // generate email alias
   if(form.emailAliasesField.textArea.value == "") {
     var alias = emailAliasGenerator_generate(form.fullNameField.value);
-    if(alias != form.userNameField.value)
+    if(alias != form.<?php print($js_prefix)?>.value)
       form.emailAliasesField.textArea.value = alias;
   }
 }
