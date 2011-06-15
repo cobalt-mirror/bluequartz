@@ -106,18 +106,22 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ $1 = 1 ]; then
-  mkdir -p /usr/sausalito/runonce
+if [ $1 -eq 1 ]; then
+  if [ !-d /usr/sausalito/runonce ];then
+    mkdir -p /usr/sausalito/runonce
+  fi
   cd /usr/sausalito/scripts
   for FILE in *; do
     if [ -f $FILE ]; then
-      ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
+	if [ !-n  /usr/sausalito/runonce/$FILE ]; then
+    	    ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
+    	fi
     fi
   done
 fi
 
 # update product information
-if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
+if [ $1 -gt 1 ] && [ -S /usr/sausalito/cced.socket ]; then
   /usr/sausalito/sbin/updateSystem.pl
 fi
 
@@ -366,6 +370,7 @@ fi
 
 * Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 2.20110615BX101
 - Removed alias removal from sendmail trigger in templates/rpmdefs.tmpl again. Not needed there as scripts/initSendmail.sh will take care of it anyway.
+- Cleaned up glue post-install scripts as they were throwing errors on RPM updates.
 
 * Wed May 25 2011 Christoph Schneeberger <cschnee@telemedia.ch> 2.20110512BX100
 - Added fix for unwanted aliases to base-blueonyx.mod/templates/rpmdefs.tmpl in sendmail trigger. 
