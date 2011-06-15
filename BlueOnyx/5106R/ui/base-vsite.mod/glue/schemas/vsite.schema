@@ -121,12 +121,6 @@
         writeacl="ruleCapable(adminUser)"
     />
 
-    <!-- Web Alias Redirects (to main site name)-->
-    <property
-        name="webAliasRedirects" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
-    />
-
     <!-- 
         capabilities that should be added on to anyone with the siteAdmin
         capability
@@ -218,13 +212,6 @@
         name="dns_auto" type="boolean" default="1"
         writeacl="ruleCapable(adminUser)"
     />
-
-    <!-- Web Alias Redirects (to main site name)-->
-    <property
-        name="webAliasRedirects" type="boolean" default="1"
-        writeacl="ruleCapable(adminUser)"
-    />
-
     <property
         name="site_preview" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"

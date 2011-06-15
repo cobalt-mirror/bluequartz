@@ -54,7 +54,6 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/vsite/*
 %attr(0755,-,-) /usr/sausalito/sbin/vsite_destroy.pl
 %attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
-%attr(0755,-,-) /usr/sausalito/sbin/web_alias_redirects.pl
 
 <end glue>
 
@@ -128,6 +127,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX79
+- Emergency rollback to 3.0-132BX77
+- Due to an unknown snafu 3.0-132BX78 looses the PHP settings on all boxes but the test server.
+
 * Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX78
 - Added the new functionality 'Web Alias Redirects' (to main site), which allows us to configure if a web alias is treated as own URL, or redirects to the main site.
 - Extended glue/schemas/vsite.schema with new switch 'webAliasRedirects' in 'Vsite' and 'VsiteDefaults'.
@@ -139,6 +142,7 @@ fi
 - This updated functionality also required changes in base-apache.mod, as we need to mess with 'VirtualHost' and 'Vsite' objects. Otherwise we loose the PHP directives from our Apache containers.
 - Modified the locale files to add locales for the new GUI switch.
 - Added /usr/sausalito/sbin/web_alias_redirects.pl to allow changing the behaviour of all sites in one go from the CLI
+
 
 * Mon Jun 13 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX77
 - Copied 'en' locales to 'en_US' for compatability with 5107R.

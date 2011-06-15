@@ -980,14 +980,3 @@ msgstr "The 'Site Prefix' you specified contains unsupported characters. Only al
 
 # ---- end Prefix
 
-
-# --- Start webAliasRedirects
-
-msgid "webAliasRedirects"
-msgstr "Web Alias Redirects"
-
-msgid "webAliasRedirects_help"
-msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems."  
-
-# --- End webAliasRedirects
-
