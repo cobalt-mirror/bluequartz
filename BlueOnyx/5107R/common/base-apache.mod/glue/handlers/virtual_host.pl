@@ -74,7 +74,7 @@ sub edit_vhost
     my $include_file = httpd_get_vhost_conf_file($vhost->{name}) . '.include';
 
     my $aliasRewrite, $aliasRewriteSSL;
-    if ($vhost->{webAliases}) {
+    if (($vhost->{webAliases}) && ($vhost->{webAliasRedirects} == "0")) {
         my @webAliases = $cce->scalar_to_array($vhost->{webAliases});
         foreach my $alias (@webAliases) {
            $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:80)?\$ [NC]\n";

@@ -142,6 +142,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jun 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX15
+- Updated glue/handlers/virtual_host.pl to make webAliasRedirects configureable.
+- For this glue/handlers/virtual_host.pl needed to be made aware of the new switch 'webAliasRedirects' in 'VirtualHosts'
+- Additionally glue/schemas/apache.schema got updated with the new 'webAliasRedirects' switch.
+
 * Tue Apr 19 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX14
 - Updated constructor/set_httpd_alias_perms.pl to handle the CentOS Apache manual page.
 

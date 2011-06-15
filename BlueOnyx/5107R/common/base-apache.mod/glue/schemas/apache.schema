@@ -170,4 +170,9 @@
         name="webAliases" type="fqdn" array="yes" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
+    <!-- Web Alias Redirects (to main site name)-->
+    <property
+        name="webAliasRedirects" type="boolean" default="1"  
+        writeacl="ruleCapable(adminUser)"
+    />
 </class>
