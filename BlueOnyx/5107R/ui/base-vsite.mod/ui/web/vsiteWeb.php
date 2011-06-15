@@ -41,8 +41,20 @@ if ( $save ) {
 	list($cce_info['CCE_SERVICES_OID']) = $cce->find('VsiteServices');
 	$errors = $autoFeaturesSave->handle('modifyWeb.Vsite', $cce_info);
 
-	$cce->set($site['OID'], '', array("webAliases" => $webAliases));
+	// Oh boy, is this ugly. We need to set webAliasRedirects in 'VirtualHosts' as well.
+	// But we need to set empty information first and then shove in the data that we really need:
+	$vsiteOID = $cce->find("VirtualHost", array("name" => $group));
+	$cce->set($vsiteOID[0], "", array("webAliases" => '', "webAliasRedirects" => $webAliasRedirects));
 	$errors = array_merge($errors, $cce->errors());
+	$cce->set($vsiteOID[0], "", array("webAliases" => $webAliases, "webAliasRedirects" => $webAliasRedirects));
+	$errors = array_merge($errors, $cce->errors());
+
+	// Then we need to do the same for webAliases & webAliasRedirects in 'Vsite':
+	$cce->set($site['OID'], '', array("webAliases" => '', "webAliasRedirects" => $webAliasRedirects));
+	$errors = array_merge($errors, $cce->errors());
+	$cce->set($site['OID'], '', array("webAliases" => $webAliases, "webAliasRedirects" => $webAliasRedirects));
+	$errors = array_merge($errors, $cce->errors());
+
 }
 
 $site = $cce->getObject('Vsite', array('name' => $group));
@@ -71,6 +83,19 @@ $settings->addFormField(
        $webAliasesField,
        $factory->getLabel("webAliases"), $pageId
        );
+
+# webAliasRedirects:
+if ( $site['webAliasRedirects'] ) {
+	$settings->addFormField(
+		$factory->getBoolean('webAliasRedirects', $site['webAliasRedirects'], $access),
+		$factory->getLabel('webAliasRedirects'), $pageId
+		);
+} else {
+	$settings->addFormField(
+		$factory->getBoolean('webAliasRedirects', $site['webAliasRedirects'], $access),
+		$factory->getLabel('webAliasRedirects'), $pageId
+		);
+}
 
 $settings->addFormField($factory->getTextField('group', $group, ''));
 $settings->addFormField($factory->getTextField('save', '1', ''));

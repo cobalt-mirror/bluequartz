@@ -26,6 +26,7 @@ $cce->setObject("System",
 			"emailDisabled" => $emailDisabled,
                         "mailCatchAll" => $mailCatchAll,
 			"dns_auto" => $dns_auto,
+			"webAliasRedirects" => $webAliasRedirects,
 			"site_preview" => $site_preview
 		),
 		"VsiteDefaults"
