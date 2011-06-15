@@ -4,7 +4,7 @@ endif
 
 include $(CCEBASE)/devel/defines.mk
 
-SCRIPTS=sbin/vsite_destroy.pl sbin/fix_user_suspension.pl
+SCRIPTS=sbin/vsite_destroy.pl sbin/fix_user_suspension.pl sbin/web_alias_redirects.pl
 
 all:
 

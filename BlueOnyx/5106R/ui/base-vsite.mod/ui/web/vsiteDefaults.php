@@ -92,6 +92,13 @@ $defaultsBlock->addFormField(
         $pageId
         );
 
+// webAliasRedirects (to main site) option
+$defaultsBlock->addFormField(
+        $factory->getBoolean("webAliasRedirects", $vsiteDefaults["webAliasRedirects"]),
+        $factory->getLabel("webAliasRedirects"),
+        $pageId
+        );
+
 // add automatically detected features
 $autoFeatures = new AutoFeatures($helper);
 

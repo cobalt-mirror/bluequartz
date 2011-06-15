@@ -166,6 +166,11 @@ $settings->addFormField(
         $defaultPage
         );
 
+# webAliasRedirect:
+$settings->addFormField(
+	$factory->getBoolean('webAliasRedirects', $vsiteDefaults['webAliasRedirects'], 'rw'),
+	$factory->getLabel('webAliasRedirects'), $defaultPage
+	);
 
 // enable & disable Email
 $settings->addFormField(
