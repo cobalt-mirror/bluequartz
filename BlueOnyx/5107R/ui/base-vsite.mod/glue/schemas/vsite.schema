@@ -123,7 +123,7 @@
 
     <!-- Web Alias Redirects (to main site name)-->
     <property
-        name="webAliasRedirects" type="boolean" default="1"
+        name="webAliasRedirects" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
 

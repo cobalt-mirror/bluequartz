@@ -68,14 +68,8 @@ for my $vsite (@vhosts) {
 
     print "\n$switch_desc redirects for Site $my_vsite->{fqdn}\n";
 
-    # Set 'VirtualHost':
-    my ($VirtualHost) = $cce->find('VirtualHost', { 'name' => $my_vsite->{name} });
-    ($ok) = $cce->set($VirtualHost, '', { 'webAliases' => '', 'webAliasRedirects' => $switch});
-    ($ok) = $cce->set($VirtualHost, '', { 'webAliases' => $my_vsite->{webAliases}, 'webAliasRedirects' => $switch});
-
     # Set 'Vsite':
-    ($ok) = $cce->set($vsite, '', { 'webAliases' => '', 'webAliasRedirects' => $switch}); 
-    ($ok) = $cce->set($vsite, '', { 'webAliases' => $my_vsite->{webAliases}, 'webAliasRedirects' => $switch});
+    ($ok) = $cce->set($vsite, '', {'webAliasRedirects' => $switch});
 
 }
 

@@ -41,17 +41,7 @@ if ( $save ) {
 	list($cce_info['CCE_SERVICES_OID']) = $cce->find('VsiteServices');
 	$errors = $autoFeaturesSave->handle('modifyWeb.Vsite', $cce_info);
 
-	// Oh boy, is this ugly. We need to set webAliasRedirects in 'VirtualHosts' as well.
-	// But we need to set empty information first and then shove in the data that we really need:
-	$vsiteOID = $cce->find("VirtualHost", array("name" => $group));
-	$cce->set($vsiteOID[0], "", array("webAliases" => '', "webAliasRedirects" => $webAliasRedirects));
-	$errors = array_merge($errors, $cce->errors());
-	$cce->set($vsiteOID[0], "", array("webAliases" => $webAliases, "webAliasRedirects" => $webAliasRedirects));
-	$errors = array_merge($errors, $cce->errors());
-
-	// Then we need to do the same for webAliases & webAliasRedirects in 'Vsite':
-	$cce->set($site['OID'], '', array("webAliases" => '', "webAliasRedirects" => $webAliasRedirects));
-	$errors = array_merge($errors, $cce->errors());
+	// Set webAliases & webAliasRedirects in 'Vsite':
 	$cce->set($site['OID'], '', array("webAliases" => $webAliases, "webAliasRedirects" => $webAliasRedirects));
 	$errors = array_merge($errors, $cce->errors());
 
