@@ -41,8 +41,10 @@ if ( $save ) {
 	list($cce_info['CCE_SERVICES_OID']) = $cce->find('VsiteServices');
 	$errors = $autoFeaturesSave->handle('modifyWeb.Vsite', $cce_info);
 
-	$cce->set($site['OID'], '', array("webAliases" => $webAliases));
+	// Set webAliases & webAliasRedirects in 'Vsite':
+	$cce->set($site['OID'], '', array("webAliases" => $webAliases, "webAliasRedirects" => $webAliasRedirects));
 	$errors = array_merge($errors, $cce->errors());
+
 }
 
 $site = $cce->getObject('Vsite', array('name' => $group));
@@ -71,6 +73,19 @@ $settings->addFormField(
        $webAliasesField,
        $factory->getLabel("webAliases"), $pageId
        );
+
+# webAliasRedirects:
+if ( $site['webAliasRedirects'] ) {
+	$settings->addFormField(
+		$factory->getBoolean('webAliasRedirects', $site['webAliasRedirects'], $access),
+		$factory->getLabel('webAliasRedirects'), $pageId
+		);
+} else {
+	$settings->addFormField(
+		$factory->getBoolean('webAliasRedirects', $site['webAliasRedirects'], $access),
+		$factory->getLabel('webAliasRedirects'), $pageId
+		);
+}
 
 $settings->addFormField($factory->getTextField('group', $group, ''));
 $settings->addFormField($factory->getTextField('save', '1', ''));
