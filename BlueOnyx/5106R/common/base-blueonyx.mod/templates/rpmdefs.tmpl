@@ -107,15 +107,15 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 if [ $1 -eq 1 ]; then
-  if [ !-d /usr/sausalito/runonce ];then
+  if [ ! -d "/usr/sausalito/runonce" ];then
     mkdir -p /usr/sausalito/runonce
   fi
   cd /usr/sausalito/scripts
   for FILE in *; do
     if [ -f $FILE ]; then
-	if [ !-n  /usr/sausalito/runonce/$FILE ]; then
-    	    ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
-    	fi
+        if [ ! -L "/usr/sausalito/runonce/$FILE" ]; then
+            ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
+        fi
     fi
   done
 fi
