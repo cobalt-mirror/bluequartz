@@ -50,14 +50,17 @@ if (-f $conf) {
     }
 }
 
-if (!$gateway) {
-    $DEBUG && print STDERR "Gateway setting isn't found\n";
+# Test network connection:
+$test1 = &pingtest("8.8.8.8");
+
+if (($test1 eq "1") || (!$gateway)) {
     # Attempt to determine Gateway through other means:
     if ( ! -f "/proc/user_beancounters" ) {
 	# Not running on OpenVZ, so check the route to find the Gateway:
     	my $data = `$Network::ROUTE -n|grep '^0\.0\.0\.0'`;
     	if ($data =~ /0\.0\.0\.0\s+((\d+).(\d+).(\d+).(\d+))/) {
 		$gateway = $1;
+		
     	}
     }
     else {
@@ -75,3 +78,12 @@ if (!$gateway) {
 $cce->set($oids[0], '', {'gateway' => $gateway});
 $cce->bye();
 exit 0;
+
+sub pingtest($$) {
+  my ($ping) = @_;
+  system(sprintf("ping -q -c 1 %s>/dev/null", $ping));
+  $retcode = $? >> 8;
+  # ping returns 1 if unable to connect
+  return $retcode;
+
+ }
