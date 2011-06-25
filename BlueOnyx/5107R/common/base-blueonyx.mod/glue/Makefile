@@ -13,9 +13,9 @@ if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "
   if [ "`rpm -q --qf=%{arch} centos-release`" = "i686" ]; then echo '5107'; fi; \
   if [ "`rpm -q --qf=%{arch} centos-release`" = "x86_64" ]; then echo '5108'; fi; \
 fi; \
-if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} sl-release`" = "6" ]; then \
-  if [ "`rpm -q --qf=%{arch} redhat-release`" = "i686" ]; then echo '5107'; fi; \
-  if [ "`rpm -q --qf=%{arch} redhat-release`" = "x86_64" ]; then echo '5108'; fi; \
+if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} sl-release|cut -d \. -f1`" = "6" ]; then \
+  if [ "`rpm -q --qf=%{arch} sl-release`" = "i686" ]; then echo '5107'; fi; \
+  if [ "`rpm -q --qf=%{arch} sl-release`" = "x86_64" ]; then echo '5108'; fi; \
 fi; \
 )
 

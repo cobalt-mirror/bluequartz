@@ -9,7 +9,7 @@ SERVICE=blueonyx
 BUILD=20110625
 
 VERSION=5107R
-RELEASE=3.$(BUILD)BX102
+RELEASE=3.$(BUILD)BX104
 
 # add a buildarch if desired
 BUILDARCH=noarch
