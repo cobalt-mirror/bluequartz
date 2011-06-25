@@ -75,6 +75,20 @@ raq550: cmu
 	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
 	$(RPMBUILD) -ta $(TMPTAR)
 
+5107r: cmu
+	sed -e 's/\[PRODUCT\]/5107R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5107R/' < $(MAKE_IN) > $(MAKE_FILE)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
+	$(RPMBUILD) -ta $(TMPTAR)
+
+5108r: cmu
+	sed -e 's/\[PRODUCT\]/5108R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5108R/' < $(MAKE_IN) > $(MAKE_FILE)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
+	$(RPMBUILD) -ta $(TMPTAR)
+
 tlas2: cmu
 	sed -e 's/\[PRODUCT\]/TLAS2/' < $(SPEC_IN) > $(SPEC_FILE)
 	sed -e 's/\[PRODUCT\]/TLAS2/' < $(MAKE_IN) > $(MAKE_FILE)
