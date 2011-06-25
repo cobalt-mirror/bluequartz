@@ -1,4 +1,4 @@
-BUILD=20110615
+BUILD=20110625
 PRODUCT=$(shell \
 if [ -f /etc/fedora-release ] && [ "`rpm -q --qf=%{version} fedora-release`" = "1" ]; then echo '5100'; fi; \
 if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "3" ]; then echo '5101'; fi; \
@@ -9,6 +9,14 @@ if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "
   if [ "`rpm -q --qf=%{arch} centos-release`" = "alpha" ]; then echo '5105'; fi; \
 fi; \
 if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "5" ]; then echo '5106'; fi; \
+if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "6" ]; then \
+  if [ "`rpm -q --qf=%{arch} centos-release`" = "i686" ]; then echo '5107'; fi; \
+  if [ "`rpm -q --qf=%{arch} centos-release`" = "x86_64" ]; then echo '5108'; fi; \
+fi; \
+if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} sl-release`" = "6" ]; then \
+  if [ "`rpm -q --qf=%{arch} redhat-release`" = "i686" ]; then echo '5107'; fi; \
+  if [ "`rpm -q --qf=%{arch} redhat-release`" = "x86_64" ]; then echo '5108'; fi; \
+fi; \
 )
 
 all:

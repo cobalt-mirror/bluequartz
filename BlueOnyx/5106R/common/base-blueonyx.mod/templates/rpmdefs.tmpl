@@ -186,7 +186,10 @@ fi
 /usr/bin/perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
 %endif
 %if "%centos" == "5" 
-#perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo 
+# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
+/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
+%endif 
+%if "%centos" == "6" 
 # Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
 /usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
 %endif 
@@ -291,6 +294,30 @@ fi
 /usr/sausalito/constructor/base/time/syncTimeZone.pl
 
 # for distributions
+%if "%centos" == "6"
+%triggerin glue -- iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
+%triggerin glue -- initscripts
+/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
+%triggerin glue -- httpd
+/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
+# Fix /etc/logrotate.conf, because we want to rotate daily and we want to compress the logs:
+/usr/bin/perl -pi -e 's|^# rotate log files weekly|# rotate log files daily|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^weekly|daily|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
+/usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
+%triggerin glue -- logrotate
+/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
+# Fix Logwatch's ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups:
+if [ -f /etc/logwatch/conf/ignore.conf ]; then
+  grep '^warning: "ProFTPD" address/port' /etc/logwatch/conf/ignore.conf > /dev/null 2>&1
+  if [ $? = 1 ]; then
+    echo 'warning: "ProFTPD" address/port' >> /etc/logwatch/conf/ignore.conf
+  fi
+fi
+%endif
+
 %if "%centos" == "5"
 %triggerin glue -- iptables
 /bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
@@ -367,6 +394,8 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110625BX102
+- Updated build for 5107R
 
 * Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 2.20110615BX101
 - Removed alias removal from sendmail trigger in templates/rpmdefs.tmpl again. Not needed there as scripts/initSendmail.sh will take care of it anyway.
