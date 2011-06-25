@@ -51,8 +51,18 @@ sub update_i18n
 	#get the current lang code from "en_US" format
 	my $curlangcode = substr($sys->{productLanguage}, 0, 2);
 
-	if ($curlangcode == "en") {
-	    $curlangcode = "en_US";
+	# Find out which platform we're on:
+	my ($fullbuild) = `cat /etc/build`;
+	chomp($fullbuild);
+
+	# figure out our product
+	my ($product, $build, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
+
+	# On 5107R and 5108R we need to switch from 'en' to 'en_US':
+	if (($build eq "5107R") || ($build eq "5108R")) {
+	    if ($curlangcode == "en") {
+		$curlangcode = "en_US";
+	    }
 	}
 
 	#we need to move the current lang code to ahead of the rest

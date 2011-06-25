@@ -9,13 +9,6 @@ use I18n;
 
 my $errors = 0;
 
-my %locales = (  
-	"en_US" => "&en_US&",
-	"da_DK" => "&da_DK&",
-	"de_DE" => "&de_DE&",
-	"ja" => "&ja&"
-);
-
 my $cce = new CCE;
 $cce->connectuds();
 
@@ -24,6 +17,25 @@ chomp($fullbuild);
 
 # figure out our product
 my ($product, $build, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
+
+if ($build eq "5106R") {
+    my %locales = (  
+	"en_US" => "&en",
+	"da_DK" => "&da_DK&",
+	"de_DE" => "&de_DE&",
+	"ja" => "&ja&"
+    );
+}
+else {
+    # 5107R or 5108R:
+    my %locales = (  
+	"en_US" => "&en_US&",
+	"da_DK" => "&da_DK&",
+	"de_DE" => "&de_DE&",
+	"ja" => "&ja&"
+    );
+}
+
 
 my ($i18n) = `grep LANG /etc/sysconfig/i18n`;
 if ($i18n =~ m/^LANG="(.*)"/) {
@@ -43,7 +55,13 @@ elsif ($lang =~ /^de_DE/) {
 	$lang = 'de_DE';
 }
 else {
+    if ($build eq "5106R") {
+        $lang = 'en';
+    }
+    else {
+	# 5107R or 5108R:
         $lang = 'en_US';
+    }
 }
 
 my $myhost = `/bin/hostname -s`;

@@ -118,6 +118,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX24
+- Added constructor to force memory update in CODB from Rickards 5106R's 1.1.0-40BQ22
+- Updated constructor/10_addSystem.pl and glue/handlers/set_login_locale.pl with platform checks.
+  This allows us to use the same modules on 5106R, 5107R and 5108R.
+
 * Thu Jun 03 2010  Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX23
 - Copied locale/en to locale/en_US
 - Modified constructor/10_addSystem.pl to use 'en_US' instead of 'en'
