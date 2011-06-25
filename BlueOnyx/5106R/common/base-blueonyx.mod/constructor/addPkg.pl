@@ -33,7 +33,7 @@ if ($#oids < 0) {
 
     $rpmlist = $cce->array_to_scalar(keys %rpms);
     $cce->create('Package', { 'name' => 'OS',
-			      'version' => "v3.$build",
+			      'version' => "v2.$build",
 			      'vendor' => 'BlueOnyx',
 			      'nameTag' => '[[base-alpine.osName]]',
 			      'vendorTag' => '[[base-alpine.osVendor]]',
@@ -51,7 +51,7 @@ if ($#oids == 0) {
         ($sys_oid) = $cce->find('Package', {'name' => 'OS' });
         ($ok, $sys) = $cce->get($sys_oid);
         ($ok) = $cce->set($sys_oid, '',{
-				'version' => "v3.$build"
+				'version' => "v2.$build"
                           });
 }
 
