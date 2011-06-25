@@ -3,7 +3,7 @@
 # $Id: virtual_server.pl 259 2004-01-03 06:28:40Z shibuya $
 #
 # handles email server virtualization for Vsites
-# add hostname, ip address, and mail aliases to appropriate postfix config
+# add hostname, ip address, and mail aliases to appropriate sendmail config
 # files
 
 use CCE;
@@ -80,7 +80,7 @@ if (!$vsite->{suspend} && $vsite->{mailAliases})
 }
 
 # edit the file
-if (!Sauce::Util::editfile(&Email::PostfixLocalHost,
+if (!Sauce::Util::editfile(&Email::SendmailCW, 
         *edit_local_hosts, \%local_hosts))
 {
     $cce->bye('FAIL', '[[base-email.cantEditLocalHosts]]');

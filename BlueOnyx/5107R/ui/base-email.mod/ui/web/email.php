@@ -34,9 +34,7 @@ $email = $cceClient->getObject("System", array(), "Email");
 
 $page = $factory->getPage();
 
-// For now (Postfix) "Add Secondary MX" and "Blacklist" tabs are removed until they're compatible with Postfix again:
-// $block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx", "blacklist"));
-$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced"));
+$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx", "blacklist"));
 $block->processErrors($serverScriptHelper->getErrors());
 
 if (isset($view)) {
@@ -51,11 +49,9 @@ $block->processErrors($errors);
 // basic page
 // smtp
 $block->addDivider($factory->getLabel('SMTP', false), 'basic');
-
-//
 $block->addFormField(
-  $factory->getBoolean("enableSMTPField", $email["enableSMTP"]),
-  $factory->getLabel("enableSMTPField"),
+  $factory->getBoolean("enableServersField", $email["enableSMTP"]),
+  $factory->getLabel("enableServersField"),
   "basic"
 );
 
@@ -65,41 +61,15 @@ $block->addFormField(
   "basic"
 );
 
-// Submission Port 587:
+$block->addFormField(
+  $factory->getBoolean("enableSMTPAuthField", $email["enableSMTPAuth"]),
+  $factory->getLabel("enableSMTPAuthField"),
+  "basic"
+);
+
 $block->addFormField(
   $factory->getBoolean("enableSubmissionPortField", $email["enableSubmissionPort"]),
   $factory->getLabel("enableSubmissionPortField"),
-  "basic"
-);
-
-// TLS
-$block->addFormField(
-  $factory->getBoolean("enableTLSField", $email["enableTLS"]),
-  $factory->getLabel("enableTLSField"),
-  "basic"
-);
-
-// Divider for SMTP-Auth
-$block->addDivider($factory->getLabel('SMTP_Auth', false), 'basic');
-
-// New enableSMTP_Auth:
-$block->addFormField(
-  $factory->getBoolean("enableSMTP_AuthField", $email["enableSMTP_Auth"]),
-  $factory->getLabel("enableSMTP_AuthField"),
-  "basic"
-);
-
-// New enableSMTPS_Auth:
-$block->addFormField(
-  $factory->getBoolean("enableSMTPS_AuthField", $email["enableSMTPS_Auth"]),
-  $factory->getLabel("enableSMTPS_AuthField"),
-  "basic"
-);
-
-// New enableSubmission_Auth:
-$block->addFormField(
-  $factory->getBoolean("enableSubmission_AuthField", $email["enableSubmission_Auth"]),
-  $factory->getLabel("enableSubmission_AuthField"),
   "basic"
 );
 
@@ -127,8 +97,8 @@ $block->addFormField(
 
 $block->addFormField(
   $factory->getBoolean("enablePopsField", $email["enablePops"]),
-	  $factory->getLabel("enablePopsField"),
-	  "basic"
+  $factory->getLabel("enablePopsField"),
+  "basic"
 );
 
 // Z-Push
@@ -200,20 +170,11 @@ $block->addFormField(
   "advanced"
 );
 
-// $smartRelay = $factory->getDomainName("smartRelayField", $email["smartRelay"]);
-$smartRelay = $factory->getTextField("smartRelayField", $email["smartRelay"]); 
+$smartRelay = $factory->getDomainName("smartRelayField", $email["smartRelay"]);
 $smartRelay->setOptional(true);
 $block->addFormField(
   $smartRelay, 
   $factory->getLabel("smartRelayField"),
-  "advanced"
-);
-
-$fallbackRelay = $factory->getTextField("fallbackRelayField", $email["fallbackRelay"]);
-$fallbackRelay->setOptional(true);
-$block->addFormField(
-  $fallbackRelay,
-  $factory->getLabel("fallbackRelayField"),
   "advanced"
 );
 
@@ -348,14 +309,11 @@ if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist")
 if( $_PagedBlock_selectedId_emailSettings != "mx" && $_PagedBlock_selectedId_emailSettings != "blacklist") {
   $block->addButton($factory->getSaveButton($page->getSubmitAction()));
   //$factory->getSaveButton($page->getSubmitAction("/base/email/emailHandler.php")));
-}
-
-$routeButton = $factory->getButton("/base/email/routes.php", "routes");
-
+ }
 $serverScriptHelper->destructor();
 
-print($page->toHeaderHtml());
 
+print($page->toHeaderHtml());
 ?>
 <SCRIPT LANGUAGE="javascript">
 // these need to be defined seperately or Japanese gets corrupted
@@ -371,11 +329,8 @@ function confirmRemove(msg, oid, label, view, netauth) {
 }
 </SCRIPT>
 
+
 <?php 
-
-print($routeButton->toHtml());
-
-print("<BR>");
 
 print($block->toHtml());
 

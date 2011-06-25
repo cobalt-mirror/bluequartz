@@ -44,7 +44,7 @@ if ( $domain->{'emailDisabled'} eq "1" ) {
 
 @emailList = nonDuplicatedArray(@emailList);
 foreach my $entry(@emailList) {
-  $access_list .= $entry . "\t\t550 User unknown\n";
+  $access_list .= $entry . "\t\tERROR:5.1.1:550 User unknown\n";
 }
 
 if (!Sauce::Util::replaceblock($Access,
@@ -54,8 +54,6 @@ if (!Sauce::Util::replaceblock($Access,
     $cce->bye('FAIL');
     exit(1);
 }
-
-system("/usr/sbin/postmap hash:$Access > /dev/null 2>&1"); 
 
 $cce->bye("SUCCESS");
 exit(0);

@@ -57,23 +57,19 @@
 		default=""/>
 </class>
 
-<class name="System" namespace="Email" version="1.3"
+<class name="System" namespace="Email" version="1.2"
 	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
 
 	<property 
         name="enableSMTP" type="boolean" default="1"
         writeacl="ruleCapable(modifyEmail)"
     />
-       <property 
-       name="enableSMTP_Auth" type="boolean" default="1" 
-       writeacl="ruleCapable(modifyEmail)" 
-    /> 
         <property
         name="enableSMTPS" type="boolean" default="0"
         writeacl="ruleCapable(modifyEmail)"
     />
         <property
-        name="enableSMTPS_Auth" type="boolean" default="0"
+        name="enableSMTPAuth" type="boolean" default="0"
         writeacl="ruleCapable(modifyEmail)"
     />
         <property
@@ -82,14 +78,6 @@
     />
         <property
         name="enableSubmissionPort" type="boolean" default="0"
-        writeacl="ruleCapable(modifyEmail)"
-    />
-        <property
-        name="enableSubmission_Auth" type="boolean" default="0"
-        writeacl="ruleCapable(modifyEmail)"
-    />
-        <property
-        name="enableTLS" type="boolean" default="1"
         writeacl="ruleCapable(modifyEmail)"
     />
 	<property 
@@ -159,10 +147,6 @@
         writeacl="ruleCapable(modifyEmail)"
     />
 	<property 
-        name="fallbackRelay" type="hostname" optional="true"
-        writeacl="ruleCapable(modifyEmail)"
-    />
-	<property 
         name="privacy" type="boolean" default="1"
         writeacl="ruleCapable(modifyEmail)"
     />
@@ -177,16 +161,3 @@
     />
 </class>
 
-<class 
-    name="EmailRoute" namespace="" version="1.0" 
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"> 
-> 
-        <property 
-        name="target" type="domainname" 
-        writeacl="ruleCapable(modifyEmail)" 
-    /> 
-        <property 
-        name="server" type="hostname" 
-        writeacl="ruleCapable(modifyEmail)" 
-    /> 
-</class> 

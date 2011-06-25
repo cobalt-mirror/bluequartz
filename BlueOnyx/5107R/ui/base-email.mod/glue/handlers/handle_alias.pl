@@ -91,7 +91,8 @@ elsif (exists($new->{action}))
 $DEBUG && print STDERR 'BIG FAT MARKER', Dumper($alias);
 
 # rollback to recreate db to avoid having to copy the db file at all
-Sauce::Util::addrollbackcommand("/usr/bin/postmap hash:$Email::VIRTUSER >/dev/null 2>&1");
+Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Email::VIRTUSER < " .
+				"$Email::VIRTUSER >/dev/null 2>&1");
 my $ok = Sauce::Util::editfile(
             $Email::VIRTUSER,
             *Sauce::Util::hash_edit_function,

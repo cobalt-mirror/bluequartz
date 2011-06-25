@@ -16,6 +16,11 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 
+Conflicts: mailman
+Conflicts: base-mailman-capstone
+Conflicts: base-mailman-ui
+Conflicts: base-mailman-glue
+
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
 information for [VENDOR]-[SERVICE].
@@ -69,11 +74,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-# check aliases.majordomo
-grep -e '^O AliasFile.*/etc/mail/aliases.majordomo' /etc/mail/sendmail.cf > /dev/null
-if [ $? -eq 1 ]; then
-	perl -pi -e 's|O AliasFile=/etc/mail/aliases|O AliasFile=/etc/mail/aliases, /etc/mail/aliases.majordomo|g' /etc/mail/sendmail.cf
-	/etc/init.d/sendmail condrestart
+
+# Fix sendmail.cf and sendmail.mc:
+/usr/sausalito/scripts/initSendmail.sh
+/etc/init.d/sendmail condrestart
+
+# glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
 fi
 
 <end glue>
@@ -115,6 +123,16 @@ fi;
 <begin $CHANGELOG
 * Wed May 25 2011 Christoph Schneeberger <cschnee@telemedia.ch> 1.4.1-BX13
 - Changed to default access to who and which commands to closed
+
+* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX12
+- Changed the 'Obsoltes' for the Mailman related stuff to 'Conflicts', which ought to work a hell of a lot better.
+
+* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX11
+- Added constructor/add_module.pl to make it easier in the future to distinguish between Majordomo and MailMan installs on BX.
+
+* Sun Apr 24 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX10
+- Modified templates/rpmdefs.tmpl to to rely on /usr/sausalito/scripts/initSendmail.sh instead for changes to Sendmail config changes
+- Added the right obsoletes to templates/rpmdefs.tmpl to remove conflicting mailman RPMs
 
 * Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX09
 - Resolved issue involving site name change

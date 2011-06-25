@@ -11,7 +11,7 @@ my $cce = new CCE( Domain => 'base-email' );
 
 $cce->connectfd();
 
-my $Postfix_access = $Email::ACCESS;
+my $Sendmail_access = $Email::ACCESS;
 my $sys_obj;
 my $sys_oid;
 
@@ -61,9 +61,10 @@ if ( $obj->{relayFor} && $obj->{deniedHosts} ) {
 }
 
 # add rollback so there is no need to copy access.db for rollback
-Sauce::Util::addrollbackcommand("/usr/bin/postmap hash:$Postfix_access >/dev/nul l2>&1"); 
+Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Sendmail_access < ".
+				"$Sendmail_access >/dev/null 2>&1");
 
-if (!Sauce::Util::replaceblock($Postfix_access, 
+if (!Sauce::Util::replaceblock($Sendmail_access, 
 	'# Cobalt Access Section Begin', $access_list, 
 	'# Cobalt Access Section End')
    	) {
@@ -71,8 +72,6 @@ if (!Sauce::Util::replaceblock($Postfix_access,
 	$cce->bye('FAIL');
 	exit(1);
 }
-
-system("/usr/sbin/postmap hash:$Postfix_access > /dev/null 2>&1"); 
 
 $cce->bye('SUCCESS');
 exit(0);

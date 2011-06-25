@@ -39,37 +39,29 @@ $maxRecipientsPerMessageMap =
 $max = $maxEmailSizeField ? $maxEmailSizeField*1024 : "";
 //echo "<li> max = $max";
 
-$enableSMTPField = $enableSMTPField ? 1 : 0; 
-$enableSMTPSField = $enableSMTPSField ? 1 : 0; 
-$enableSubmissionPortField = $enableSubmissionPortField ? 1 : 0; 
-
 $cceClient->setObject("System", 
   array(
-    "enableSMTP" => $enableSMTPField, 
+    "enableSMTP" => $enableServersField, 
     "enableSMTPS" => $enableSMTPSField,
+    "enableSMTPAuth" => $enableSMTPAuthField,
     "enableSubmissionPort" => $enableSubmissionPortField,
-    "enableSMTP_Auth" => $enableSMTP_AuthField,
-    "enableSMTPS_Auth" => $enableSMTPS_AuthField,
-    "enableSubmission_Auth" => $enableSubmission_AuthField,
-    "enableTLS" => $enableTLSField,
     "enableImap" => $enableImapField, 
     "enableImaps" => $enableImapsField,
     "enablePop" => $enablePopField, 
+    "enableZpush" => $enableZpushField, 
     "enablePops" => $enablePopsField,
     "popRelay" => $popRelayField, 
+    "delayChecks" => $delayChecksField, 
     "enablepopRelay" => $popRelayField, 
     "queueTime" => $queueTimeMap[$queueTimeField], 
     "maxMessageSize" => $max, 
+    "maxRecipientsPerMessage" => $maxRecipientsPerMessageMap[$maxRecipientsPerMessageField], 
     "relayFor" => $relayField, 
     "acceptFor" => $receiveField, 
     "deniedUsers" => $blockUserField, 
     "masqAddress" => $masqAddressField,
     "smartRelay" => $smartRelayField,
-    "fallbackRelay" => $fallbackRelayField,
-    "deniedHosts" => $blockHostField,
-    "enableZpush" => $enableZpushField, 
-    "delayChecks" => $delayChecksField, 
-    "maxRecipientsPerMessage" => $maxRecipientsPerMessageMap[$maxRecipientsPerMessageField]), 
+    "deniedHosts" => $blockHostField), 
   "Email");
   
 $errors = $cceClient->errors();

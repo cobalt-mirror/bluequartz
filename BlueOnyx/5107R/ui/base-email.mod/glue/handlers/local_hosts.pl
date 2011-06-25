@@ -7,7 +7,7 @@ use CCE;
 use Email;
 use Sauce::Util;
 
-my $Postfix_localhost = Email::PostfixLocalHost; 
+my $Sendmail_cw = Email::SendmailCW;
 
 my $cce = new CCE( Domain => 'base-email' );
 
@@ -24,13 +24,13 @@ if (not $ok) {
 
 if ($new_sys->{hostname} || $new_sys->{domainname} || 
 	($cce->event_property() eq 'acceptFor')) {
-        if(!Sauce::Util::replaceblock($Postfix_localhost, 
+	if(!Sauce::Util::replaceblock($Sendmail_cw,
 		'# Cobalt System Section Begin',
-                &make_postfix_localhost($email, $sys_obj), 
+		&make_sendmail_cw($email, $sys_obj),
 		'# Cobalt System Section End')
 		) {
 		$cce->warn('[[base-email.cantEditFile]]', 
-                                { 'file' => Email::PostfixLocalHost }); 
+				{ 'file' => Email::SendmailCW });
 		$cce->bye('FAIL');
 		exit(1);
 	}
@@ -39,7 +39,8 @@ if ($new_sys->{hostname} || $new_sys->{domainname} ||
 $cce->bye('SUCCESS');
 exit(0);
 
-sub make_postfix_localhost {
+sub make_sendmail_cw
+{
 	my $obj = shift;
 	my $sys = shift;
 

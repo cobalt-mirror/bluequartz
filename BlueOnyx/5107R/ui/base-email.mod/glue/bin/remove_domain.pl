@@ -24,8 +24,8 @@ my %relayAllow;
 map { $relayAllow{$_} = 1; } $cce->scalar_to_array($obj->{relayFor});
 if ($sys_obj->{domainname} ne '' && !$relayAllow{$sys_obj->{domainname}}) {
 	# remove domainname from access
-	system("perl -pi -e 's|^$sys_obj->{domainname}\tRELAY||g' /etc/postfix/access"); 
- 	system("/usr/sbin/postmap hash:/etc/postfix/access"); 
+	system("perl -pi -e 's|^$sys_obj->{domainname}\tRELAY||g' /etc/mail/access");
+	system("/usr/sbin/makemap hash /etc/mail/access.db < /etc/mail/access");
 }
 
 $cce->bye('SUCCESS');
