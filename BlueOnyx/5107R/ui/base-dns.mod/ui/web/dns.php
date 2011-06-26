@@ -54,12 +54,13 @@ $Ui->InetAddressList( "recursion_inetaddr", array( "Optional" => 'laud') );
 // Zone File Format tab
 $Ui->SetBlockView( "zone_format_tab" );
 $Ui->Divider( "zone_format_settings_divider" );
-$Ui->Alters( "zone_format", array('RFC2317','DION','OCN-JT','USER'));
-$Ui->Divider( "zone_format_user_defined_divider" );
-$Ui->TextField( "zone_format_24", array( "Optional" => 'loud' ) );
-$Ui->TextField( "zone_format_16", array( "Optional" => 'loud' ) );
-$Ui->TextField( "zone_format_8", array( "Optional" => 'loud' ) );
-$Ui->TextField( "zone_format_0", array( "Optional" => 'loud' ) );
+//$Ui->Alters( "zone_format", array('RFC2317','DION','OCN-JT','USER'));
+$Ui->Alters( "zone_format", array('RFC2317'));
+//$Ui->Divider( "zone_format_user_defined_divider" );
+//$Ui->TextField( "zone_format_24", array( "Optional" => 'loud' ) );
+//$Ui->TextField( "zone_format_16", array( "Optional" => 'loud' ) );
+//$Ui->TextField( "zone_format_8", array( "Optional" => 'loud' ) );
+//$Ui->TextField( "zone_format_0", array( "Optional" => 'loud' ) );
 
 $Ui->SetBlockView("auto_dns");
 $Ui->ListField( "auto_a", array( "Optional" => 'loud' ) );
