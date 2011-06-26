@@ -1,0 +1,14 @@
+/var/log/tomcat6/* {
+    rotate 52
+    compress
+    missingok
+    notifempty
+    size 5M
+    sharedscripts
+    prerotate
+        service tomcat6 stop
+    endscript
+    postrotate
+        service tomcat6 start
+    endscript
+}
