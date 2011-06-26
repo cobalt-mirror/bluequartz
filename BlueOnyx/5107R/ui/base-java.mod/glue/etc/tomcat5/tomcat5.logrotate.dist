@@ -1,4 +1,4 @@
-/var/log/tomcat5/* {
+/var/log/tomcat6/* {
     rotate 52
     compress
     missingok
@@ -6,9 +6,9 @@
     size 5M
     sharedscripts
     prerotate
-        service tomcat5 stop
+        service tomcat6 stop
     endscript
     postrotate
-        service tomcat5 start
+        service tomcat6 start
     endscript
 }

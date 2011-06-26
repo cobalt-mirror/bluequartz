@@ -17,11 +17,11 @@ PROFILES=java.sh
 MODJKDIR = $(PREFIX)/etc/httpd/conf.d
 MODJK=mod_jk.conf
 
-WORKERSDIR = $(PREFIX)/etc/tomcat5/jk
+WORKERSDIR = $(PREFIX)/etc/tomcat6/jk
 WORKERS=workers.properties
 
-USERSDIR = $(PREFIX)/etc/tomcat5
-USERS=tomcat-users.xml.dist tomcat5.logrotate.dist
+USERSDIR = $(PREFIX)/etc/tomcat6
+USERS=tomcat-users.xml.dist tomcat6.logrotate.dist
 
 MODULES = $(PREFIX)/usr/lib/httpd/modules
 MODULEJK=mod_jk.so
@@ -42,8 +42,8 @@ install:
 	(cd sbin; $(INSTALL) $(INSTALL_BINFLAGS) $(SCRIPTS) $(CCESBINDIR); )
 	(cd etc/profile.d; $(INSTALL) $(PROFILES) $(PROFILEDIR); )
 	(cd etc/httpd/conf.d; $(INSTALL) $(MODJK) $(MODJKDIR); )
-	(cd etc/tomcat5/jk; $(INSTALL) $(WORKERS) $(WORKERSDIR); )
-	(cd etc/tomcat5; $(INSTALL) $(USERS) $(USERSDIR); )
+	(cd etc/tomcat6/jk; $(INSTALL) $(WORKERS) $(WORKERSDIR); )
+	(cd etc/tomcat6; $(INSTALL) $(USERS) $(USERSDIR); )
 	(cd modules; $(INSTALL) $(INSTALL_BINFLAGS) $(MODULEJK) $(MODULES); )
 
 rpm:

@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Team BlueOnyx'
 SERVICE=java
 
-VERSION=2.0.6
-RELEASE=16
+VERSION=3.0.0
+RELEASE=1
 
 # add a buildarch if desired
 #BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES= base-java-am base-java-filler jpackage-utils ant axis bcel chkfontpath classpathx-jaf classpathx-mail cryptix cryptix-asn1 jakarta-commons-beanutils jakarta-commons-collections jakarta-commons-dbcp jakarta-commons-digester jakarta-commons-discovery jakarta-commons-el jakarta-commons-fileupload jakarta-commons-httpclient3 jakarta-commons-launcher jakarta-commons-logging jakarta-commons-modeler jakarta-commons-pool jakarta-commons-validator jakarta-taglibs-standard jta log4j mx4j oro puretls regexp saxon struts tomcat5 tomcat5-admin-webapps tomcat5-jasper tomcat5-servlet-2.4-api tomcat5-webapps unixODBC unixODBC-devel wsdl4j xerces-j2 xml-commons xml-commons-apis xml-commons-resolver xorg-x11-deprecated-libs xorg-x11-font-utils xorg-x11-xfs java-1.6.0-sun java-1.6.0-sun-devel java-1.6.0-sun-fonts java-1.6.0-sun-jdbc
+REQUIRES= base-java-am tomcat6-admin-webapps.noarch tomcat6-docs-webapp.noarch tomcat6-javadoc.noarch tomcat6-jsp-2.1-api.noarch tomcat6-lib.noarch tomcat6-servlet-2.5-api.noarch tomcat6-webapps.noarch jakarta-commons-collections-tomcat5.noarch tomcat6.noarch tomcat6-log4j.noarch jakarta-commons-dbcp-tomcat5.noarch jakarta-commons-pool-tomcat5.i686 tomcat6-el-2.1-api.noarch apache-jasper.noarch apache-jasper-javadoc.noarch apache-tomcat-apis.noarch
 OBSOLETES= mod_jk mod_jk-ap20
 
 #########
