@@ -60,7 +60,8 @@ if (isset($group)) {
 //course, no changes are applied until you click "save" for the
 //mailing list.
 
-session_register("localSubs");
+//session_register("localSubs");
+$_SESSION["localSubs"] = $localSubs;
 if (!isset($localSubs)) {
   $localSubs = array();
 }
@@ -83,7 +84,8 @@ foreach ($localSubs as $temp) {
 //find all items
 $postids = array();
 while (list($key, $val) = each($HTTP_POST_VARS)) {
-  if (ereg("^name_(.*)$", $key, $regs)) {
+  //if (ereg("^name_(.*)$", $key, $regs)) {
+  if (preg_match('/^name_(.*)$/', $key, $regs)) {
     $postids[$regs[1]] = $val;
   }
 }
