@@ -4,6 +4,7 @@
 // $Id: setTime.php 1050 2008-01-23 11:45:43Z mstauber $
 set_time_limit(0);
 include_once("ServerScriptHelper.php");
+include_once("tzoffset.php");
 $serverScriptHelper = new ServerScriptHelper();
 
 // Only adminUser should be here
@@ -21,7 +22,13 @@ $page = $factory->getPage();
 $block = $factory->getPagedBlock("timeSetting");
 $block->processErrors($serverScriptHelper->getErrors());
 
-$t = time();
+// To get the current time according to our timezone settings, we nowadays
+// must jump through burning loops. We now have to calculate the timezone offset
+// between GMT and our local time and then have to add it to time(). For this we 
+// use the function getServerTimeZoneOffset() out of the included tzoffset.php:
+$TZOffset = getServerTimeZoneOffset(); 
+$t = time() + $TZOffset;
+
 $systemDisplayedDate = $factory->getTimeStamp("systemDate", $t, "datetime");
 $block->addFormField($factory->getTimeStamp("oldTime", $t, "time", ""));
 $block->addFormField($systemDisplayedDate, $factory->getLabel("systemDisplayedDate"));
