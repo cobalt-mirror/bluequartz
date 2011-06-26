@@ -23,6 +23,7 @@ my $DEBUG = 0;
 if ($DEBUG) 
 { 
 	use Data::Dumper; 
+	use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 # set umask, otherwise directories get created with the wrong permissions
@@ -41,6 +42,7 @@ my $group_name = &create_system_group($vsite);
 
 if (not $group_name) 
 {
+	&debug_msg("Cannot add System Group for $group_name \n");
 	$cce->bye('FAIL', '[[base-vsite.cantAddSystemGroup]]');
 	exit(1);
 }
@@ -75,16 +77,17 @@ my ($site_link, $link_target) = homedir_create_group_link($group_name,
 if (! -d "$vsite->{volume}/sites")
 {
 	Sauce::Util::makedirectory("$vsite->{volume}/sites", 0755);
+	&debug_msg("Created $vsite->{volume}/sites as it didn't exist yet.\n");
 }
 Sauce::Util::linkfile($link_target, $site_link);
 
 # group has been added to the system
 # Define name and basedir to Vsite object
-($ok) = $cce->set($cce->event_oid(), '', 
-				{ 'name' => $group_name, 'basedir' => $site_dir });
+($ok) = $cce->set($cce->event_oid(), '', { 'name' => $group_name, 'basedir' => $site_dir });
 if (not $ok) 
 {
 	$DEBUG && print STDERR "ok was $ok\n";
+	&debug_msg("Cannot set site group for $group_name ($site_dir) in event_oid.\n");
 	$cce->bye('FAIL', '[[base-vsite.cantSetSiteGroup]]');
 	exit(1);
 }
@@ -298,10 +301,17 @@ sub create_system_group
 	return $name;
 }
 
-sub debug_msg
-{
+sub debug_msg {
+    if ($DEBUG) {
 	my $msg = shift;
 	$DEBUG && print STDERR "$ARGV[0]: ", $msg, "\n";
+
+	$user = $ENV{'USER'};
+	setlogsock('unix');
+	openlog($0,'','user');
+	syslog('info', "$ARGV[0]: $msg");
+	closelog;
+    }
 }
 
 sub edit_webindex {

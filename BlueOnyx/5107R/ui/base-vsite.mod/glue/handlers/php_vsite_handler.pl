@@ -11,6 +11,10 @@
 
 # Debugging switch:
 $DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 $whatami = "handler";
 
@@ -69,6 +73,7 @@ if ($whatami eq "handler") {
     if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
 	# Edit the vhost container or die!:
+	&debug_msg("Editing Vhost $vsite->{'name'} through php_vsite_handler.pl \n");
 	if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
 	    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
 	    exit(1);
@@ -240,6 +245,18 @@ sub change_owner {
 	}
     }
 }
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 
 $cce->bye('SUCCESS');
 exit(0);
