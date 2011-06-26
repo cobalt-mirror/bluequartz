@@ -17,7 +17,9 @@ if (-l '/etc/localtime') {
 }
 else {
 	system("/bin/rm -f /etc/localtime");
-	system("/bin/ln -s /usr/share/zoneinfo/America/New_York /etc/localtime");
+	#system("/bin/ln -s /usr/share/zoneinfo/America/New_York /etc/localtime");
+	# This seems to work better these days (SL6):
+	system("/bin/ln -s /usr/share/zoneinfo/US/Eastern /etc/localtime");
         my $tz=readlink('/etc/localtime');
         $tz=~s#.*/([^/]+)/([^/]+)$#$1/$2#;
         $cce->set($oid,"Time",{timeZone=>$tz}) if $sys->{timeZone} ne $tz;
