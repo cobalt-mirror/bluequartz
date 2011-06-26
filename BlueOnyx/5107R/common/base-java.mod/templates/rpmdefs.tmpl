@@ -50,9 +50,9 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %config /etc/profile.d/java.sh
 %config /etc/httpd/conf.d/mod_jk.conf
-%config /etc/tomcat5/jk/workers.properties
-%config(noreplace)/etc/tomcat5/tomcat-users.xml.dist
-%config(noreplace)/etc/tomcat5/tomcat5.logrotate.dist
+%config /etc/tomcat6/jk/workers.properties
+%config(noreplace)/etc/tomcat6/tomcat-users.xml.dist
+%config(noreplace)/etc/tomcat6/tomcat6.logrotate.dist
 %attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
 %attr(0755,root,root)/usr/lib/httpd/modules/mod_jk.so
 
