@@ -56,6 +56,8 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 [AUTOFILL]
 %attr(0644,-,-) /etc/cron.d/pam_abl_purge.cron
+%attr(0644,-,-) /etc/pam.d/password-auth-ac.5107R
+%attr(0644,-,-) /etc/pam.d/system-auth.5106R
 %attr(0755,-,-) /usr/sausalito/sbin/pam_abl_import.pl
 <end glue>
 
@@ -161,6 +163,17 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jun 28 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX01
+- Updated build for 5106R, 5107R and 5108R
+- To implement pam_abl support into PAM, we usually modified the upstream PAM, which is undesireable.
+  This new build of base-console.mod auto-detects the platform and rotates the right PAM config in,
+  which overwrites one of the stock vendor supplied PAM config files.
+- Added glue/pam.d/system-auth.5106R for 5106R on CentOS5
+- Added glue/pam.d/password-auth-ac.5107R for 5107R and 5108R on CentOS6 and SL6
+- Modified constructor/import_pam_abl_settings.pl to rotate the respective config in.
+- Updated ui/web/pam_abl.php with a better default assuming 'user rule' import.
+
 * Sun Jun 05 2013 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX15
 - ui/web/console_procs.php: ereg() and eregi() replaced with preg_match()
 

@@ -1,8 +1,8 @@
 <?php
 
 // Author: Michael Stauber <mstauber@solarspeed.net>
-// Copyright 2006-2009, Stauber Multimedia Design. All rights reserved.
-// Copyright Team BlueOnyx 2009. All rights reserved.
+// Copyright 2006-2011, Stauber Multimedia Design. All rights reserved.
+// Copyright Team BlueOnyx 2009-2011. All rights reserved.
 
 include_once("ServerScriptHelper.php");
 
@@ -137,14 +137,8 @@ $block->addFormField($user_rule_select,$factory->getLabel("user_rule"), "pam_abl
 
 // host_rule:
 $host_rule_raw = $systemObj['host_rule'];
-if (preg_match('/\*=\(.*\)/', $host_rule_raw)) {
-    $hr_diss = explode('=', $host_rule_raw);
-    $host_rule = $hr_diss[1];
-}
-else {
-    // assume default:
-    $host_rule = "30/1h";
-}
+$hr_diss = explode('=', $host_rule_raw);
+$host_rule = $hr_diss[1];
 
 // build array:
 $host_rule_choices=array(
@@ -160,6 +154,12 @@ $host_rule_choices=array(
     "100/1h" => "100/1h",
     "50000/1m"=> "disabled"
     );
+
+// Check if our returned result is one of the available choices:
+if (!in_array($host_rule, $host_rule_choices)) {
+    // It is not, so assume a safe default:
+    $host_rule = "30/1h";
+}
 
 // host_rule Input:
 $host_rule_select = $factory->getMultiChoice("host_rule",array_values($host_rule_choices));

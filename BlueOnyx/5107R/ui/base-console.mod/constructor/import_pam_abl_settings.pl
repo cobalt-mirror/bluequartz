@@ -1,9 +1,10 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: import_pam_abl_settings.pl, v1.0.0-1 Wed 05 Aug 2009 02:43:09 AM CEST mstauber Exp $
+# $Id: import_pam_abl_settings.pl, v1.0.0-2 Thu 28 Jun 2011 11:24:369 AM CEST mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
-# Copyright 2009 Team BlueOnyx. All rights reserved.
+# Copyright 2009-2011 Team BlueOnyx. All rights reserved.
 
 # This script parses /etc/security/pam_abl.conf and brings CODB up to date on how pam_abl is configured.
+# It also sets up PAM to use PAM_ABL by copying the right PAM config files in place.
 
 # Debugging switch:
 $DEBUG = "0";
@@ -30,6 +31,26 @@ if ($whatami eq "handler") {
 }
 else {
     $cce->connectuds();
+}
+
+#
+## Set up PAM:
+#
+# Figure out platform:
+my ($fullbuild) = `cat /etc/build`;
+chomp($fullbuild);
+my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
+
+# Copy the right config file in place:
+if (($model eq "5107R") || ($model eq "5108R")) {
+    if (-e "/etc/pam.d/password-auth-ac.5107R") {
+	system("/bin/cp /etc/pam.d/password-auth-ac.5107R /etc/pam.d/password-auth-ac");
+    }
+}
+if ($model eq "5106R") {
+    if (-e "/etc/pam.d/system-auth.5106R") {
+	system("/bin/cp /etc/pam.d/system-auth.5106R /etc/pam.d/system-auth");
+    }
 }
 
 # Config file present?
