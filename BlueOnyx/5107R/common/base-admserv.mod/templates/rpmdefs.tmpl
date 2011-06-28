@@ -141,6 +141,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jun 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX18
+- Updated glue/etc/admserv/php.ini to set register_globals and register_long_globals to 'on'.
+  I know this is ugly and just a dirty work around. But that's the fastest way to get the GUI
+  working with PHP-5.3 until the time that we can get it to work without this messy fix.
+
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX17
 - Commented out mod_file_cache.so in httpd.conf
 - Commented out mod_mem_cache.so in httpd.conf
