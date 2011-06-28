@@ -63,6 +63,12 @@ sub update_i18n
 	    if ($curlangcode == "en") {
 		$curlangcode = "en_US";
 	    }
+	    # LC_ALL on SL6 must be a bit more specific:
+	    $locale_LC_ALL = "en_US.UTF-8";
+	}
+	else {
+	    # LC_ALL on CentOS5 can be a bit more simplicistic:
+	    $locale_LC_ALL = $locale;
 	}
 
 	#we need to move the current lang code to ahead of the rest
@@ -75,7 +81,7 @@ sub update_i18n
 
 	print $out <<LOCALE;
 LANG=$locale
-LC_ALL=$locale
+LC_ALL=$locale_LC_ALL
 LINGUAS="$linguas"
 LOCALE
 
