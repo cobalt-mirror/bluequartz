@@ -164,6 +164,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jun 29 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX02
+- Fixed two problems: 
+- Inability to unblock a single blocked host. Always had to unblock them all.
+- New check for valid 'Host rule' didn't take case 'disabled' into account. Fixed.
+
 * Tue Jun 28 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX01
 - Updated build for 5106R, 5107R and 5108R
 - To implement pam_abl support into PAM, we usually modified the upstream PAM, which is undesireable.

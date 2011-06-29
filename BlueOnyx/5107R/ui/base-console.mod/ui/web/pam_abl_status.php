@@ -20,7 +20,7 @@ $cceClient = $serverScriptHelper->getCceClient();
 // Unblocking action taking place:
 if ($host || $user) {
     if ($host) {
-	$OID = $cceClient->find("fail_hosts", array("host" => $host));
+	$OID = $cceClient->find("fail_hosts", array("host_ip" => $host));
 	$cceClient->set($OID[0], "",
     	    array(
             "host_remove" => time())

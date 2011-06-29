@@ -156,7 +156,9 @@ $host_rule_choices=array(
     );
 
 // Check if our returned result is one of the available choices:
-if (!in_array($host_rule, $host_rule_choices)) {
+$host_rule_choices_check = $host_rule_choices;
+array_push($host_rule_choices_check, "50000/1m");
+if ((!in_array($host_rule, $host_rule_choices_check))) {
     // It is not, so assume a safe default:
     $host_rule = "30/1h";
 }
