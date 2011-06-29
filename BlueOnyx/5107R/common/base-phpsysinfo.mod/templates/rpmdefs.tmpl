@@ -49,8 +49,10 @@ information for [VENDOR]-[SERVICE].
 [AUTOFILL]
 <end glue>
 
+
 <begin ui>
 [AUTOFILL]
+%attr(0644,root,root)/usr/sausalito/ui/web/base/phpsysinfo/.phpsysinfo/config.php
 
 <end ui>
 
@@ -103,6 +105,17 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Jun 30 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX11
+- Updated to phpSysInfo-3.0.11
+- Due to limitations of the build engine, directory ui/web/.phpsysinfo 
+  got externalized into separate RPM 'phpsysinfo'. This also allows us 
+  to have an older phpsysinfo on 5106R, which doesn't require PHP-5.2 
+  or better.
+- Added requirement for 'phpsysinfo' to Makefile
+- Added ui/web/index.php to prevent directory browsing
+- Added glue/phpsysinfo/config.php with phpsysinfo config file
+- Updated glue/Makefile to get config file installed properly
 
 * Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX10
 - New version for PHP > 5.2
