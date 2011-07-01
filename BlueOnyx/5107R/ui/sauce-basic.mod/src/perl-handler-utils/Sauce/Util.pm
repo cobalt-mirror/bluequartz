@@ -12,6 +12,10 @@ $DEFAULT_MODE = 0640;
 my $TXNFILE = '/usr/sausalito/codb/txn/current.handlerlog';
 
 my $DEBUG = 0;
+if ($DEBUG)
+{   
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 sub SAFEMODE { O_WRONLY | O_CREAT | O_EXCL };
 
@@ -548,6 +552,10 @@ sub editfile
   # process file
   my $oldfh = select(); # save stdout file handle
   my $ret = &$function($fin, $fout, @_);
+  
+  my $commz = join(' ', @_);
+  
+  &debug_msg("Util.pm:editfile editing $filename - function: $function payload: $commz");
   select($oldfh); # restore stdout file handle
   
   # close file handles
@@ -1104,7 +1112,16 @@ sub replace_unique_entries
   return 1;
 }
 
-
+sub debug_msg { 
+    if ($DEBUG) { 
+        my $msg = shift;
+        my $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
 
 1;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
