@@ -7,7 +7,12 @@
 use lib qw( /usr/sausalito/perl );
 use CCE;
 
-my $DEBUG = 0;
+# Debugging switch:
+my $DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 $DEBUG && warn `date`." $0\n";
 
 my $aliasfile = '/etc/mail/aliases.majordomo';
@@ -168,12 +173,18 @@ elsif($new->{fqdn})
 			$obj->{name},
 			\@majordomo_aliases
 			);
-                my($bok) = Sauce::Util::editfile(
-                        $aliasfile,
-                        *edit_fqdn,
-                        $old->{fqdn},
-                        $new->{fqdn}
-                        );
+
+# I don't know why the hell this is in here. It fucks up /etc/mail/alias.majordomo by 
+# prefixing the FQDN to ANY output line. See 'sub edit_fqdn' for more info.
+# I comitted these lines in http://devel.blueonyx.it/trac/changeset/528/BlueOnyx/5107R/ui/base-maillist.mod
+# back in 2010, but dunno why, because /etc/mail/alias.majordomo has no FQDN related stuff in it!
+#
+#                my($bok) = Sauce::Util::editfile(
+#                        $aliasfile,
+#                        *edit_fqdn,
+#                        $old->{fqdn},
+#                        $new->{fqdn}
+#                        );
 	}
 }
 
@@ -209,7 +220,7 @@ exit 0;
 sub edit_majoralias
 {
 	my($in, $out, $enable, $site, $aliasref) = @_;
-	$DEBUG && warn "edit_majoralias invoked: ".join(@_)."\n";
+	&debug_msg("edit_majoralias invoked: in: $in - out: $out - enable: $enable - site: $site");
 	my ($config, %public_alii);
 	foreach my $alias (@{$aliasref})
 	{
@@ -224,7 +235,7 @@ sub edit_majoralias
 			"\n";
 		}
 	}
-	$DEBUG && warn "aliases config:\n$config";
+	&debug_msg("aliases config: $config\n");
 
 	while(<$in>)
 	{
@@ -232,7 +243,7 @@ sub edit_majoralias
 		{
 			if ($public_alii{$1}) 
 			{
-				$DEBUG && warn "Skipping: $_";
+				&debug_msg("Skipping: $_");
 				next;
 			}
 		}
@@ -246,10 +257,13 @@ sub edit_list_members
 {
 	my ($in, $out, $old_fqdn, $new_fqdn) = @_;
 
+	&debug_msg("edit_list_members: in: $in - out: $out - old_fqdn: $old_fqdn - new_fqdn: $new_fqdn");
+
 	while (<$in>)
 	{
 		s/^([^\@]+)\@$old_fqdn$/$1\@$new_fqdn/;
 		print $out $_;
+		&debug_msg("edit_list_members: printed: $_");
 	}
 
 	return 1;
@@ -259,14 +273,29 @@ sub edit_fqdn
 {
         my ($in, $out, $old_fqdn, $new_fqdn) = @_;
 
+	&debug_msg("edit_fqdn invoked: in: $in - out: $out - old_fqdn: $old_fqdn - new_fqdn: $new_fqdn");
+
         while (<$in>) {
-                s/$old_fqdn/$new_fqdn/;
+                s/$old_fqdn/$new_fqdn/; # <-- This is the culprit that prefixes any line with the FQDN!
                 print $out $_;
+		&debug_msg("edit_fqdn: printed: $_");
         }
 
 
         return 1;
 }
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+} 
+
 
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
