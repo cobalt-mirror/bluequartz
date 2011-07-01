@@ -121,6 +121,13 @@ fi;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG
+* Fri Jul 01 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX14
+- Modified glue/handlers/handle_vsite.pl
+- Major bugfix. All lines in the majordomo alias file were getting prefixed
+  with the FQDN - even comment lines. This sneaked in during commit 528.
+  The reason for the code change in 528 is unclear, so I commented the
+  troublesome lines out for now. Mea culpa.
+
 * Wed May 25 2011 Christoph Schneeberger <cschnee@telemedia.ch> 1.4.1-BX13
 - Changed to default access to who and which commands to closed
 
