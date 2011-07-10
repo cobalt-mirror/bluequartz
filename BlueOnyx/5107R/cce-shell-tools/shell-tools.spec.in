@@ -3,7 +3,7 @@
 Summary: Sun Cobalt Shell Tools
 Name: [PRODUCT]-shell-tools
 Version: [VERSION]
-Release: 0BX12%{?dist}
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/System
@@ -50,6 +50,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
 
 %changelog
+* Sun Jul 10 2011 Michael Stauber <mstauber@blueonyx.it>
+- 2.20-0BX01
+- Bump for CentOS6 / SL6 release.
+- Added the missing XML files.
+- Added missing product lines.
+
 * Sat Jun 25 2011 Michael Stauber <mstauber@blueonyx.it>
 - 0BX12
 - Added 5107R and 5108R support

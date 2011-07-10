@@ -9,7 +9,7 @@ CWD = `pwd`
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.10
+VERSION   =   2.20
 
 BUILD_DIR =   /tmp/shell-tools
 TMP_DIR   =   $(BUILD_DIR)/shell-tools
