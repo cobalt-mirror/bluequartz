@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5100Rscanin.pl Wed Jun 10 17:54:31 2009 mstauber $
+# $Id: 5107Rscanin.pl Sat Jul 11 17:25:17 2009 mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -117,7 +117,7 @@ foreach my $fqdn (@vsiteNames) {
 			$cce->printReturn($ok, $bad, @info);
 			warn "INFO: ERROR: Vsite $fqdn was not created properly. \n";
 			if (-e "/proc/user_beancounters") {
-			    warn "INFO: ERROR: You may have attempted to import a site with an IP address which has not been assigned to this VPS. \n";
+			    warn "INFO: ERROR: You may have attempted to import a site with an IP address which has not been assigned to this OpenVZ VPS. \n";
 			    warn "INFO: ERROR: Please assign that Vsites IP to this VPS first, or import to a different IP using the '-i <IP-Address>' switch. \n";
 			}
 			delete $tree->{vsite}->{$fqdn};
@@ -259,6 +259,17 @@ foreach my $user (@keys) {
 		} 
 	}
 
+        if (($tree->{exportPlatform} =~ /(RaQ)/) || ($tree->{exportPlatform} =~ /(Qube)/)) {
+                # Skip locking of accounts if we import from a RaQ or Qube. The suspend status
+		# doesn't get translated correctly - yet.
+        }
+        else {
+	        # Check if user is suspended. If so, lock the account:
+        	if (($uTree->{enabled} eq "0") || ($uTree->{ui_enabled} eq "0")) {
+                	system("/usr/sbin/usermod -L $uTree->{name}");
+                	warn "User $uTree->{name} is suspended. Locking the account.\n";
+        	}
+	}
 
 	# do file stuff
 	if($cfg->confOnly eq 'f') {
@@ -349,7 +360,7 @@ if($cfg->dns eq 't') {
 	   $tree->{exportPlatform} eq '5108R' ||
 	   $tree->{exportPlatform} eq 'TLAS1HE' ||
 	   $tree->{exportPlatform} eq 'TLAS2') {
-		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R, BlueOnyx 5106R, 5107R 5108R or TLAS HE DNS migration not done yet\n"
+		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R, BlueOnyx (5106R, 5107R or 5108R) or TLAS HE DNS migration not done yet\n"
 	} elsif(-f $cfg->destDir.'/records') {
 		$cmd = '/usr/cmu/scripts/dnsImport '.$cfg->destDir.'/records';
 		system($cmd);
@@ -360,6 +371,11 @@ if($cfg->dns eq 't') {
 
 $cce->suspendAll($tree);
 $cce->importCerts($tree);
+
+if (-f "/usr/sausalito/sbin/fix_user_UID_and_GID.pl") {
+        warn "INFO: Fixing UIDs and GIDs of all users by running /usr/sausalito/sbin/fix_user_UID_and_GID.pl.\n";
+        system("/usr/sausalito/sbin/fix_user_UID_and_GID.pl >/dev/null 2>&1");
+}
 
 warn "INFO: We imported", TreeXml::getStats($tree);
 $cce->bye("bye");
