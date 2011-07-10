@@ -69,6 +69,11 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 
 * Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
+- version 2.82-0BX05
+- Fixed missing plattform stuff in perl_modules/Global.pm and perl_modules/TreeXml.pm
+- Also bumped version number in perl_modules/TreeXml.pm to 2.82
+
+* Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
 - version 2.82-0BX04
 - Added scripts for 5107R and 5108R and modified existing scripts to recognize the new platforms.
 
