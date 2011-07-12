@@ -83,7 +83,7 @@ LOCALE
 
 system("export LANG=$locale");
 system("export LC_ALL=$locale_LC_ALL");
-
+system("/bin/rm -f /etc/sysconfig/i18n.backup.*");
 	return 1;
 }
 
