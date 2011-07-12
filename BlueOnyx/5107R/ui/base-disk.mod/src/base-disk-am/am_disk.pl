@@ -402,10 +402,12 @@ sub sites_over_quota {
     # find all numeric hashes
     my @hashdirs = ();
     foreach my $mount (@mounts) {
-	opendir(SITEDIR, "$mount/.sites");
-	my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
-	push @hashdirs, @dirs;
-	close(SITEDIR);
+	if (-d "$mount/.sites") {
+		opendir(SITEDIR, "$mount/.sites");
+		my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+		push @hashdirs, @dirs;
+		close(SITEDIR);
+	}
     }
 
     # find all dirs in all hashes
