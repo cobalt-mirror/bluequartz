@@ -210,7 +210,10 @@ fi
 # Fix php.ini:
 if [ -f /etc/php.ini ]; then
     /usr/bin/perl -pi -e 's|^error_reporting  =  E_ALL|error_reporting  =  E_ALL & ~E_NOTICE|g' /etc/php.ini
+    /usr/bin/perl -pi -e 's|^short_open_tag = Off|short_open_tag = On|g' /etc/php.ini
 fi
+
+short_open_tag = Off
 
 # Fix /etc/logwatch/conf/ignore.conf if we're running in a VPS:
 if [ -f /proc/user_beancounters ]; then
@@ -394,6 +397,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Wed Jul 13 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110713BX105
+- templates/rpmdefs.tmpl updated to set shot_open_tag = On in /etc/php.ini
+- Updated version info in glue/Makefile and added support for RHEL6 as well.
+
 * Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110625BX104
 - Small buxfix in glue/Makefile to better catch OS version number on SL
 
