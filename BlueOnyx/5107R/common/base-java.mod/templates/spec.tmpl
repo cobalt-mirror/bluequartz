@@ -42,6 +42,11 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
+* Fri Jul 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-7
+- Modified ui/web/tomcat-manager.php to remove the 'Tomcat Admin
+  Interface' button. The '/admin' URL is no longer working, as that
+  part has been dropped from Tomcat6.
+
 * Fri Jul 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-6
 - Somewhere along the lines a few earlier SVN commits got lost.
 - Manually added them again by merging bits and pieces.
