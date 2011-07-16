@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX04%{?dist}
+Release: 0BX06%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
+- version 2.82-0BX06
+- Fixed missing plattform stuff in perl_modules/Archive.pm
+
+* Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
+- version 2.82-0BX05
+- Fixed missing plattform stuff in perl_modules/Global.pm and perl_modules/TreeXml.pm
+- Also bumped version number in perl_modules/TreeXml.pm to 2.82
 
 * Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
 - version 2.82-0BX04

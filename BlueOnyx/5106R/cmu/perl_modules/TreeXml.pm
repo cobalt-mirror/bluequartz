@@ -23,7 +23,7 @@ use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 		$XMLPROLOG
 		$XMLHEADER
 );      
-$VERSION = "2.81";
+$VERSION = "2.82";
 
 use vars qw($XMLPROLOG $XMLHEADER $KEYATTR);
 $XMLPROLOG = '<?xml version="1.0" encoding="iso-8859-1"?>';
@@ -225,7 +225,7 @@ sub getStats
     my $data = shift;
     my @attrs = [];
 
-    if ($data->{exportPlatform} =~ /RaQ/ || $data->{exportPlatform} =~ /5106R/ || $data->{exportPlatform} =~ /516[0-1]R/ || $data->{exportPlatform} =~ /5100R/ || $data->{exportPlatform} =~ /TLAS[0-9]+HE/) {
+    if ($data->{exportPlatform} =~ /RaQ/ || $data->{exportPlatform} =~ /5106R/ || $data->{exportPlatform} =~ /5107R/ || $data->{exportPlatform} =~ /5108R/ || $data->{exportPlatform} =~ /516[0-1]R/ || $data->{exportPlatform} =~ /5100R/ || $data->{exportPlatform} =~ /TLAS[0-9]+HE/) {
 	@attrs = qw(vsite user list);
     }
     elsif ($data->{exportPlatform} =~ /Qube/) {
