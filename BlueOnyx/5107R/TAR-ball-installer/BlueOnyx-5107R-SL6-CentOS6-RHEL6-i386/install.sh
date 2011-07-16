@@ -229,6 +229,7 @@ if [ -e "/proc/user_beancounters" ];then
 	rpm -hUv --force --nodeps $VZRPM_PATH/vzdev-1.0-7.swsoft.noarch.rpm
 	rpm -hUv --force --nodeps $VZRPM_PATH/vzdummy-init-fc13-1.0-1.noarch.rpm
 	rpm -hUv --force --nodeps $VZRPM_PATH/vzdummy-kernel-el6-2.6.32-SOL1.i386.rpm
+	/bin/rm -f /etc/rc3.d/S80fix_grub
 fi
 
 echo
@@ -257,7 +258,8 @@ if [ "$MD" == "0" ]; then
 	echo
 	echo "[RAID-Phase : No RAID detected, removing RAID support ...]"
 	echo
-  	/usr/bin/yum remove -y base-raid-capstone base-raid-glue base-raid-locale-en_US base-raid-locale-ja base-raid-ui
+  	/usr/bin/yum remove -y base-raid-capstone base-raid-glue base-raid-locale-en_US base-raid-ui
+	/bin/rm -f /etc/rc3.d/S20mdchk
 fi
 
 # Turn unneeded services off
@@ -275,7 +277,7 @@ done
 echo
 echo "[Phase 6 : restarting daemons...]"
 echo
-ON_SERVICES="syslog httpd iptables xinetd blueonyx cced.init admserv sendmail named"
+ON_SERVICES="syslog iptables xinetd blueonyx cced.init admserv sendmail named httpd"
 for S in $ON_SERVICES; do
         if [ -f /etc/init.d/$S ];then
                 /sbin/chkconfig $S on
@@ -324,6 +326,6 @@ echo "username 'admin' and password 'blueonyx'"
 echo ""
 echo "** Your root password is same as admin password.        **"
 echo "** SSH root logins are disabled by default now!         **"
-echo "** Use user 'admin" instead for SSH and 'su -' to root! **"
+echo "** Use user 'admin' instead for SSH and 'su -' to root! **"
 echo
 
