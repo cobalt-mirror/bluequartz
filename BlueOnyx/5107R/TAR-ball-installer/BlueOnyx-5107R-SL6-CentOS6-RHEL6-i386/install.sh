@@ -315,6 +315,10 @@ fi
 ## post scripts
 /usr/sausalito/constructor/base/wizard/\:sysreset\:linkToWizard.pl
 
+# Yum logfile fix:
+touch /var/log/yum.log
+chmod 644 /var/log/yum.log
+
 /usr/bin/yum clean all
 
 ## finished
