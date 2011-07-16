@@ -200,7 +200,7 @@ if [ $? -eq 0 ]; then
 fi
 
 ## delete package
-removes="vsftp compat-pwdb"
+removes="vsftp compat-pwdb postfix"
 for rpm in $removes; do
   rpm -q $rpm > /dev/null
   if [ $? -eq 0 ]; then
