@@ -195,3 +195,120 @@ msgstr ""
 
 msgid "cantYUMCONF"
 msgstr "Kunne ikke redigere: /etc/yum.conf"
+
+## Added for "Repository" tab:
+
+msgid "repos"
+msgstr "Repositories"
+
+msgid "repos_help"
+msgstr "You administer the YUM repositories here."
+
+msgid "addRepo"
+msgstr "Add repository"
+
+msgid "addRepo_help"
+msgstr "Click here to add additional YUM repositories."
+
+msgid "viewRepo"
+msgstr "View repository"
+
+msgid "viewRepo_help"
+msgstr "View repository settings (This is a system repository, this repository is read-only)."
+
+msgid "modRepo"
+msgstr "Modify repository"
+
+msgid "modRepo_help"
+msgstr "Modify repository settings."
+
+msgid "repoName"
+msgstr "Name"
+
+msgid "repoName_help"
+msgstr "Name of the repository."
+
+msgid "repoDescription"
+msgstr "Description"
+
+msgid "repoDescription_help"
+msgstr "Description of the repository."
+
+msgid "enabledField"
+msgstr "Enabled"
+
+msgid "enabledField_help"
+msgstr "This enables this repo to be included in updates."
+
+msgid "repoNameField"
+msgstr "Name"
+
+msgid "repoNameField_help"
+msgstr "This is the name of the repository."
+
+msgid "descriptionField"
+msgstr "Description"
+
+msgid "descriptionField_help"
+msgstr "This field describes the repository."
+
+msgid "baseurlField"
+msgstr "BaseURL"
+
+msgid "baseurlField_help"
+msgstr "This field contains the BaseURL of the repository. (This field should be empty if you use Mirrorlist instead.)"
+
+msgid "mirrorlistField"
+msgstr "Mirrorlist"
+
+msgid "mirrorlistField_help"
+msgstr "This field contains the Mirrorlist of the repository. (This field should be empty if you use BaseURL instead.)"
+
+msgid "gpgkeyField"
+msgstr "GPG Key URL"
+
+msgid "gpgkeyField_help"
+msgstr "A URL pointing to the ASCII-armored GPG key file for the repository. This option is used if yum needs a public key to verify a package and the required key hasn't been imported into the RPM database. If this option is set, yum  will  automatically import the key from the specified URL. Can be http:// or https://, ftp:// or a local file://."
+
+msgid "gpgcheckField"
+msgstr "Check GPG Signature"
+
+msgid "gpgcheckField_help"
+msgstr "This tells yum whether or not it should perform a GPG signature check on the packages gotten from this repository."
+
+msgid "excludeField"
+msgstr "Exclude"
+
+msgid "excludeField_help"
+msgstr "List of packages to exclude from updates or installs. This should be a space separated list. Shell globs using wildcards (eg. * and ?) are allowed."
+
+msgid "includepkgsField"
+msgstr "Include packages"
+
+msgid "includepkgsField_help"
+msgstr "Inverse of exclude. This is a list of packages you want to use from a repository. If this option lists only  one  package then that is all yum will ever see from the repository. Defaults to an empty list.  Substitution variables, described in the manpage yum.conf(5), are honored here."
+
+msgid "invalidUrlBase"
+msgstr "The specified URL for [[base-yum.baseurl]] is invalid. [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlMirror"
+msgstr "The specified URL for [[base-yum.mirrolist]] is invalid. [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlPki"
+msgstr "The specified URL for [[base-yum.pki]] is invalid. [[base-swupdate.urlField_rule]]"
+
+msgid "repoNotUnique"
+msgstr "The repository name specified is not unique, choose another name."
+
+msgid "chooseBaseOrMirror"
+msgstr "You have to choose to use either BaseURL or MirrorList, you can't use both at the same time."
+
+msgid "repoFilePreExist"
+msgstr "The specified file for the repository already exists in '/etc/yum.repos.d', choose another name for your repository"
+
+msgid "repoFileCreationFailed"
+msgstr "The specified repository-file could not be created."
+
+msgid "cantRepoConf"
+msgstr "There was a problem editing the repository-file."
+

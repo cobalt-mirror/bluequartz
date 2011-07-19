@@ -13,6 +13,9 @@ $cce->connectuds();
 
 my $package_dir = '/home/packages';
 
+# Fix perms on /var/log/yum.log:
+system("/bin/chmod 644 /var/log/yum.log");
+
 my @OIDS = $cce->find('SWUpdateServer');
 # create a default SWUpdateServer object if none exists, use default
 # properties in update.schema file
