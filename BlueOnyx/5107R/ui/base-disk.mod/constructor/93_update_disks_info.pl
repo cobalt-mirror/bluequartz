@@ -59,6 +59,29 @@ for my $partition (keys %$mounts)
     }
 }
 
+# Find /home in CCE and if it is not there, create a simulated /home instead.
+# We really need one (at least simulated) or we cannot create Vsites:
+
+my @oids = $cce->find('Disk', { 'mountPoint' => '/home' });
+if ($#oids < 0) {  
+
+            # Populate CCE:   
+            my ($ok) = $cce->create('Disk', {
+                'isHomePartition' => '1',
+                'mounted' => '1',
+                'fsType' => '',
+                'mountPoint' => '/home', 
+                'CLASS' => 'Disk',
+                'quota' => '0',
+                'uuid' => '',
+                'device' => '/dev/simfs',
+                'label' => '',
+                'check' => '0',
+                'internal' => '1',
+                'mount' => '0'
+                    });
+}
+
 $cce->bye('SUCCESS');
 exit(0);
 

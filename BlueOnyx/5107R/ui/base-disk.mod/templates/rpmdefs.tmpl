@@ -103,6 +103,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Tue Jul 19 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX04
+- Modified constructor/93_update_disks_info.pl to add a simulated /home partition 
+  in case there is no real one. We need a /home 'Disk' object or Vsite creation
+  fails.
+
 * Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX03
 - Various PHP-5.3 related fixes
 
