@@ -102,6 +102,10 @@ perl -pi -e 's|extension_dir = /usr/lib/php|extension_dir = /usr/lib64/php|g' /e
 # Increase memory_limit in /etc/admserv/php.ini:
 perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 80M      ; Maximum amount of memory a script may consume \(80MB\)|g' /etc/admserv/php.ini
 
+# Increase upload_max_filesize to 300MB, as some Java WAR files can be rather large on uploads:
+perl -pi -e 's|^upload_max_filesize = (.*)|upload_max_filesize = 300M|g' /etc/admserv/php.ini
+
+
 # Set ServerName in /etc/admserv/conf/httpd.conf:
 if [ -f /usr/sausalito/constructor/base/apache/set_apache_hostname.pl ] ; then
     /usr/sausalito/constructor/base/apache/set_apache_hostname.pl
@@ -141,6 +145,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jul 19 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX20
+- Modified AdmServ's php.ini to set upload_max_filesize to 300MB for Java WAR uploads.
+- Modified templates/rpmdefs.tmpl to run a replace on php.ini as well in case the RPM 
+  doesn't replace it due to user modifications.
 
 * Thu Jul 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX19
 - AdmServ was generating 1024-bit SSL certs again. Fixed.
