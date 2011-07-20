@@ -1,9 +1,8 @@
 <?php
-// Author: Brian N. Smith, Michael Stauber, Rickard Osser
+// Author: Brian N. Smith, Michael Stauber
 // Copyright 2006-2007, NuOnce Networks, Inc.  All rights reserved.
 // Copyright 2006-2007, Stauber Multimedia Design.  All rights reserved.
 // Copyright 2008-2009, Team BlueOnyx. All rights reserved.
-// Copyright 2011, Bluapp AB, All rights reserved.
 // $Id: yum.php,v 1.1 Tue 11 Aug 2009 02:24:43 AM EDT Exp $ 
 
 include_once("ServerScriptHelper.php");
@@ -14,7 +13,6 @@ function br2nl($str) {
 }
 
 $serverScriptHelper = new ServerScriptHelper();
-$i18n = $serverScriptHelper->getI18n("base-yum");
 
 //Only users with adminUser capability should be here
 if (!$serverScriptHelper->getAllowed('adminUser')) {
@@ -67,13 +65,8 @@ $systemObj = $cceClient->getObject("System",array(), "yum");
 
 $page = $factory->getPage();
 
-$block = $factory->getPagedBlock("yumgui_head", array("yumTitle", "Settings", "repos", "Logs"));
+$block = $factory->getPagedBlock("yumgui_head", array("yumTitle", "Settings", "Logs"));
 $block->processErrors($serverScriptHelper->getErrors());
-
-if($_PagedBlock_selectedId_yumgui_head) {
-  $block->setSelectedId($_PagedBlock_selectedId_yumgui_head);
- }
-
 
 // Settings:
 if($systemObj["autoupdate"] == "On") {
@@ -265,62 +258,6 @@ if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || (!$_PagedBlock_selec
     echo $button->toHtml();
   }
 }
-
-if ($_PagedBlock_selectedId_yumgui_head == "repos" && !$yum_is_pulling_updates) { 
-  $confirm_removal = $i18n->getHtml("confirmDelRepo");
-
-  // Create repo-list from CODB
-  $yumRepoOids = $cceClient->findx("yumRepo", array(), array(), "locale", "systemRepo");
-  $repoList = $factory->getScrollList("repos",
-					array("repoName", "repoDescription", " "),
-					array(0));
-  $repoList->setAlignments(array("left", "left", "center"));
-
-  $repoList->addButton($factory->getButton("javascript: location='/base/swupdate/yum-modRepo.php'; top.code.flow_showNavigation(false)", "addRepo"));
-  
-  while(list($key, $oid) = each($yumRepoOids)) {
-    $yumRepoObj = $cceClient->get($oid);
-    
-    if ( $yumRepoObj["systemRepo"]) {
-      $removeButton = $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid');");
-      $removeButton->setDisabled(true);
-      $modifyButton = $factory->getDetailButton( "/base/swupdate/yum-modRepo.php?oid=$oid");
-    } else {
-      $removeButton = $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid');" );
-      $modifyButton = $factory->getModifyButton( "/base/swupdate/yum-modRepo.php?oid=$oid");
-    }
-    
-    
-    $repoList->addEntry(array(
-				$factory->getTextField("", $yumRepoObj["repoName"], "r"),
-				$factory->getTextField("", $yumRepoObj["name"], "r"),
-				$factory->getCompositeFormField(array($modifyButton,
-								      $removeButton))));
-   }
-  
-  echo $repoList->toHtml();
-  echo "<br>";
- } else if ($_PagedBlock_selectedId_yumgui_head == "repos" && $yum_is_pulling_updates) {
-  print "Updates are running, this function is blocked until finished!";
- }
- 
-?>
-<SCRIPT LANGUAGE="javascript">
-// these need to be defined seperately or Japanese gets corrupted
-var strConfirmRemoval = '<?php print $confirm_removal; ?>';
-</SCRIPT>
-<SCRIPT LANGUAGE="javascript">
-function confirmRemove(msg, oid, label, domauth, netauth) {
-	// var msg = "<?php print($i18n->get("confirmDelRepo"))?>";
-	msg = top.code.string_substitute(msg, "[[VAR.rec]]", label);
-	 
-	if(confirm(msg))
-		location = "/base/swupdate/yum-removeRepo.php?_REMOVE=" + oid;
- }
-</SCRIPT>
-<?
-
-
 
 $serverScriptHelper->destructor();
 echo $page->toFooterHtml();
