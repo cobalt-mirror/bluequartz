@@ -213,8 +213,6 @@ if [ -f /etc/php.ini ]; then
     /usr/bin/perl -pi -e 's|^short_open_tag = Off|short_open_tag = On|g' /etc/php.ini
 fi
 
-short_open_tag = Off
-
 # Fix /etc/logwatch/conf/ignore.conf if we're running in a VPS:
 if [ -f /proc/user_beancounters ]; then
     if [ -f /etc/logwatch/conf/ignore.conf ]; then
@@ -223,6 +221,14 @@ if [ -f /proc/user_beancounters ]; then
         echo "ERROR: cannot set security context" >> /etc/logwatch/conf/ignore.conf
         echo "crond.*: System error" >> /etc/logwatch/conf/ignore.conf
     fi
+fi
+
+# Fix Dovecot v2.0 configs:
+if [ -f /etc/dovecot/conf.d/10-auth.conf ]; then
+	perl -pi -e 's|^#disable_plaintext_auth = (.*)|disable_plaintext_auth = no|g' /etc/dovecot/conf.d/10-auth.conf
+fi
+if [ -f /etc/dovecot/conf.d/10-mail.conf ]; then
+	perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
 fi
 
 <end glue>
@@ -354,12 +360,29 @@ fi
 /bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS4 /sbin/ifup
 %endif
 
+%if "%centos" == "4"
 %triggerin glue -- dovecot
 /bin/cat /etc/dovecot.conf | \
 /bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
 -e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
 > /etc/dovecot.conf.new
 /bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
+%endif
+
+%if "%centos" == "5"
+%triggerin glue -- dovecot
+/bin/cat /etc/dovecot.conf | \
+/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
+-e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
+> /etc/dovecot.conf.new
+/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
+%endif
+
+%if "%centos" == "6"
+%triggerin glue -- dovecot
+perl -pi -e 's|^#disable_plaintext_auth = (.*)|disable_plaintext_auth = no|g' /etc/dovecot/conf.d/10-auth.conf
+perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
+%endif
 
 %if "%centos" == "3"
 %triggerin glue -- yum
@@ -397,6 +420,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Thu Jul 21 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110721BX106
+- Updated triggerin for Dovecot v2.0 handling on CentOS6
+- Post install now also fixes Dovecot v2.0 configs
+
 * Wed Jul 13 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110713BX105
 - templates/rpmdefs.tmpl updated to set shot_open_tag = On in /etc/php.ini
 - Updated version info in glue/Makefile and added support for RHEL6 as well.

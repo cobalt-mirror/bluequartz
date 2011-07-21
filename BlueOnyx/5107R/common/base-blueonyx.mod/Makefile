@@ -6,10 +6,10 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=blueonyx
 
-BUILD=20110713
+BUILD=20110721
 
 VERSION=5107R
-RELEASE=3.$(BUILD)BX105
+RELEASE=3.$(BUILD)BX106
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -23,6 +23,6 @@ BUILDLOCALE=no
 BUILDSRC=no
 
 REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch sendmail-cf m4 cyrus-sasl perl
-REQUIRES_GLUE=base-email-capstone base-time-capstone >= 1.0.1-62BQ11 base-user-capstone >= 1.2.0-0BQ1 base-user-glue >= 1.2.0-0BQ1 at
+REQUIRES_GLUE=base-email-capstone base-time-capstone >= 1.0.1-62BQ11 base-user-capstone >= 1.2.0-0BQ1 base-user-glue >= 1.2.0-0BQ1 at dovecot php base-admserv-capstone
 
 include /usr/sausalito/devel/module.mk
