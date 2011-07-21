@@ -19,6 +19,16 @@ my ($file, @files, $dir, $repoName, $key, $value, $owned, $ok, $found, $repoData
 my %repos;
 my $systemRepo = 0;
 
+# Check for BlueOnyx and quit if TRUE
+open(BUILD, "<", "/etc/build");
+while(<BUILD>) {
+    if ( /5106R/ || /5107R/ ) {
+        print "BlueOnyx shouldn't be touched!\n";
+        $cce->bye('SUCCESS');
+        exit 0;
+    }
+}
+
 #### Add all present repos to codb
 opendir(DIR, $repoDir) || die "can't opendir $dir: $!";
 @files = readdir(DIR);
@@ -60,7 +70,9 @@ foreach $file (@files) {
 	    if ($file =~ /^Blu(.*)\.repo/) {
 		$systemRepo = 1;
 	    }
-
+            if ( $repos{$repoName}{enabled} ne 0) {
+                $repos{$repoName}{enabled} = "1";
+            }
 	    if (! $repos{$repoName}{mirrorlist}) {
 		$repos{$repoName}{mirrorlist} = "";
 	    } else {
