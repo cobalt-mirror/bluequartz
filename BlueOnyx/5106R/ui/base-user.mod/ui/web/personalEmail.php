@@ -35,6 +35,32 @@ $block->addFormField($forward, $factory->getLabel("forwardEnableField"));
 
 $autoResponder = $factory->getMultiChoice("autoResponderField");
 $enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
+
+if(!$userEmail["vacationMsgStart"]) { 
+  $start = time(); 
+  $oldStart = time(); 
+ } else { 
+  $start = $userEmail["vacationMsgStart"]; 
+  $oldStart = $userEmail["vacationMsgStop"]; 
+ } 
+
+if(!$userEmail["vacationMsgStop"]) { 
+  $stop = time(); 
+  $oldStop = time(); 
+ } else { 
+  $stop = $userEmail["vacationMsgStop"]; 
+  $oldStop = $userEmail["vacationMsgStop"]; 
+ } 
+
+$autoRespondStartDate = $factory->getTimeStamp("autoRespondStartDate", $start, "datetime"); 
+$enableAutoResponder->addFormField($factory->getTimeStamp("oldStart", $oldStart, "time", "")); 
+	 
+$autoRespondStopDate = $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime"); 
+$enableAutoResponder->addFormField($factory->getTimeStamp("oldStop", $oldStop, "time", "")); 
+
+$enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
+$enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
+
 $enableAutoResponder->addFormField(
   $factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]),
   $factory->getLabel("autoResponderMessageField")
