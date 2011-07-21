@@ -23,7 +23,6 @@ my $systemRepo = 0;
 open(BUILD, "<", "/etc/build");
 while(<BUILD>) {
     if ( /5106R/ || /5107R/ ) {
-        print "BlueOnyx shouldn't be touched!\n";
         $cce->bye('SUCCESS');
         exit 0;
     }
