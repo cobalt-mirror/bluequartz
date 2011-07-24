@@ -4,6 +4,10 @@
 
 # usage: vacation.pl [message] [from-address]
 
+# Version 1.1.1.3.stable.sendmail.09
+# modified by rickard.osser@bluapp.com 20110718
+# Added functionality for setting start/stop date for messages.
+#
 # Version 1.1.1.2.stable.sendmail.08
 # modified by mstauber@solarspeed.net 20081218
 # The internal mailer as provided by Sauce::I18nMail is (and always has been!) a piece
@@ -88,6 +92,7 @@ my @ignores = (
            'daemon',
            'postmaster',
            'root',
+
            );
 
 my ($opt_d)=(0);
@@ -192,6 +197,8 @@ if( not $ok ) {
 	exit(255);
 }
 
+($ok, my $userEmailObj) = $cce->get($oid, 'Email');
+
 #### See 1.0
 if ($for) {$user_from = $for;}
 else
@@ -211,7 +218,23 @@ if( not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$local
 	$locale = I18n::i18n_getSystemLocale($cce);
 }
 
+
+# Check start/stop date
+
+my $startDate = $userEmailObj->{vacationMsgStart};
+my $stopDate = $userEmailObj->{vacationMsgStop};
+
+if ($startDate ne $stopDate) {
+    if ( ! ($startDate < time() && $stopDate > time())) {
+	# We will not use vacation!
+	$cce->bye('SUCCESS');
+	exit;
+    }
+}
+
+
 my $fullname = $user->{fullName};
+
 $fullname ||= $user_from;
 
 $cce->bye('SUCCESS');

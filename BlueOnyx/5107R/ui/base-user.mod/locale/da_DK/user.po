@@ -406,3 +406,18 @@ msgstr ""
 
 msgid "error-password-invalid"
 msgstr "Ugyldig adgangskode: "
+
+# Vacation Message start/stop additions:
+
+msgid "autoRespondStartDate"
+msgstr "Start date:"
+
+msgid "autoRespondStartDate_help"
+msgstr "Date and time when the auto responder (if enabled) starts to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
+
+msgid "autoRespondStopDate"
+msgstr "End date:"
+
+msgid "autoRespondStopDate_help"
+msgstr "Date and time when the auto responder (if enabled) stops to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
+

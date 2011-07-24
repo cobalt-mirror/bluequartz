@@ -200,6 +200,31 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
     );
 
     $enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
+    if(!$userEmail["vacationMsgStart"]) { 
+      $start = time(); 
+      $oldStart = time(); 
+    } else { 
+      $start = $userEmail["vacationMsgStart"]; 
+      $oldStart = $userEmail["vacationMsgStop"]; 
+    } 
+    
+    if(!$userEmail["vacationMsgStop"]) { 
+      $stop = time(); 
+      $oldStop = time(); 
+    } else { 
+      $stop = $userEmail["vacationMsgStop"]; 
+      $oldStop = $userEmail["vacationMsgStop"]; 
+    } 
+    
+    $autoRespondStartDate = $factory->getTimeStamp("autoRespondStartDate", $start, "datetime"); 
+    $enableAutoResponder->addFormField($factory->getTimeStamp("oldStart", $oldStart, "time", "")); 
+    
+    $autoRespondStopDate = $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime"); 
+    $enableAutoResponder->addFormField($factory->getTimeStamp("oldStop", $oldStop, "time", "")); 
+    
+    $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
+    $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
+  
     $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
     $autoResponder = $factory->getMultiChoice("autoResponderField");
     $autoResponder->addOption($enableAutoResponder);
@@ -213,6 +238,22 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
 else {
 
     // When we're on the "Account" tab we instead input hidden fields with our data:
+
+    if(!$userEmail["vacationMsgStart"]) { 
+      $start = time(); 
+      $oldStart = time(); 
+    } else { 
+      $start = $userEmail["vacationMsgStart"]; 
+      $oldStart = $userEmail["vacationMsgStop"]; 
+    } 
+    
+    if(!$userEmail["vacationMsgStop"]) { 
+      $stop = time(); 
+      $oldStop = time(); 
+    } else { 
+      $stop = $userEmail["vacationMsgStop"]; 
+      $oldStop = $userEmail["vacationMsgStop"]; 
+    } 
 
     if ($userEmail["forwardEnable"] == "1") {
 	$userEmail["forwardEnable"] = "forwardEnable";
@@ -241,7 +282,19 @@ else {
 	$factory->getLabel("enableAutoResponderField"),
 	"Hidden"
     );
-
+    
+    $block->addFormField( 
+	 $factory->getTimeStamp("autoRespondStartDate", $start, "datetime", "r"), 
+	 $factory->getLabel("autoRespondStartDate"), 
+	 "Hidden" 
+    ); 
+    
+    $block->addFormField( 
+	 $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime", "r"), 
+	 $factory->getLabel("autoRespondStopDate"), 
+	 "Hidden" 
+    );
+    
     $block->addFormField(
 	$factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"], 'r'),
 	$factory->getLabel("autoResponderMessageField"),

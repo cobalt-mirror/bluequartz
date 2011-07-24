@@ -55,6 +55,18 @@
 		readacl="ruleSelf OR ruleModifyUser"
 		writeacl="ruleSelf OR ruleModifyUser"
 		default=""/>
+	<property 
+		name="vacationMsgStart" 
+		type="int" 
+		readacl="ruleAll"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default=""/>
+	<property 
+		name="vacationMsgStop" 
+		type="int" 
+		readacl="ruleAll"
+		writeacl="ruleSelf OR ruleModifyUser"
+		default=""/>
 </class>
 
 <class name="System" namespace="Email" version="1.2"
