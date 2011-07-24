@@ -399,6 +399,8 @@ sub getBuild
 		"5104R",			"BQ5100R",
 		"5105R",			"BQ5100R",
 		"5106R",			"BO5106R",
+		"5107R",			"BX5107R",
+		"5108R",			"BX5108R",
 		# TLAS
 		"TLAS2",			"TLAS2",
 	);

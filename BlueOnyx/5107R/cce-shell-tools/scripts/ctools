@@ -14,9 +14,15 @@ use lib "/usr/shell-tools/perl";
 require Shell;
 
 # before anything check to see if we are reading to stdin
-if(@ARGV) { &checkStdin }
-elsif($0 =~ /clist/) { push @ARGV, "--list" } 
-else { push @ARGV, "--quick" }
+if(@ARGV) { 
+	&checkStdin;
+}
+elsif ($0 =~ /clist/) { 
+	push @ARGV, "--list";
+} 
+else { 
+	push @ARGV, "--quick"; 
+}
 
 my $shell = Shell->new();
 #warn "build: ", $shell->build, " prog: ", $shell->prog, "\n";
