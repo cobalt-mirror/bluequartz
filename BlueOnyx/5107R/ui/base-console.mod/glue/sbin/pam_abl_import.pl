@@ -1,12 +1,9 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: pam_abl_import.pl, v1.0.0-5 Mon 17 Aug 2009 11:53:24 PM CEST mstauber Exp $
 # Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
-# Copyright 2009 Team BlueOnyx. All rights reserved.
+# Copyright 2009-2011 Team BlueOnyx. All rights reserved.
 
 # This constructor is run whenever the GUI needs to know the contends of the pam_abl user and host database.
-
-# Debugging switch:
-$DEBUG = "1";
 
 #
 #### No configureable options below!
@@ -19,12 +16,20 @@ use Sys::Hostname;
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
 
-if ($DEBUG == "0") {
-    $cce->connectfd();
+# Handle locking: Remove stale lockfile if it is older than 180 minutes:
+if (-f "/tmp/pam_abl_import.lock") {
+        system("find /tmp/pam_abl_import.lock -type f -cmin +180 -print | xargs rm >/dev/null 2>&1");
 }
-else {
-    $cce->connectuds();
+
+# Abort silently if a lockfile is present:
+if (-f "/tmp/pam_abl_import.lock") {
+	exit 0;
 }
+
+# Create lockfile:
+system("/bin/touch /tmp/pam_abl_import.lock");
+
+$cce->connectuds();
 
 # Dumpfile:
 $dumpfile = "/tmp/.pamablstats";
@@ -188,6 +193,9 @@ while ($line = <F>) {
 }
 close(F);
 system("/bin/rm -f $dumpfile");
+
+# Delete lockfile:
+system("/bin/rm -f /tmp/pam_abl_import.lock");
 
 # Destroy all fail_hosts' objects which we didn't create or update during this run.
 # Because if we didn't, then they're no longer of interest:
