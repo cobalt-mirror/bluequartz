@@ -61,8 +61,7 @@ function rectifyTag($tag) {
     if(!empty($i18nDomain)) {
         $domainPiece = $i18nDomain . ".";
     }
-    
-    return("[[$domainPiece" . ereg_replace("(\[\[)*([_a-zA-Z0-9-]*)(\]\])?$", "\\2", $tag) . "]]");                
+    return("[[$domainPiece" . preg_replace("/\[\[[_a-zA-Z0-9-]\]\]$/", "\\2", $tag) . "]]");
 }
 
 /*
