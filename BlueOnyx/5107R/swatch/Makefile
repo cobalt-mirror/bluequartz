@@ -26,6 +26,8 @@ CONFDIR=$(PREFIX)/etc
 INITDIR=$(PREFIX)/etc/rc.d/init.d
 CRONDIR=$(PREFIX)/etc/cron.d
 SWATCHDIR=$(PREFIX)/usr/sausalito/swatch
+SAUSBINDIR=$(PREFIX)/usr/sausalito/sbin
+
 
 all: 
 	make -C locale
@@ -42,6 +44,7 @@ install: all
 	install $(INSTFLAGS) -m 0644 conf/statecodes $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 conf/statecodes.tcl $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 swatch.cron $(CRONDIR)
+	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
 
 	make -C locale install
 
@@ -51,6 +54,7 @@ uninstall:
 	rm -f $(CRONDIR)/swatch.cron
 	rm -f $(SWATCHDIR)/statecodes
 	rm -f $(SWATCHDIR)/statecodes.tcl
+	rm -f $(SAUSBINDIR)/swatch.sh
 	make -C locale uninstall
 
 rpm: clean

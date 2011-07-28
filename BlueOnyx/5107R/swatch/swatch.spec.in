@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -30,8 +30,10 @@ mkdir -p $RPM_BUILD_ROOT/etc
 mkdir -p $RPM_BUILD_ROOT/etc/cron.d
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/swatch/
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/swatch/bin
+mkdir -p $RPM_BUILD_ROOT/usr/sausalito/sbin/
 #mkdir -p $RPM_BUILD_ROOT/usr/share/locale/de/LC_MESSAGES
 mkdir -p $RPM_BUILD_ROOT/usr/share/locale/en/LC_MESSAGES
+mkdir -p $RPM_BUILD_ROOT/usr/share/locale/en_US/LC_MESSAGES
 #mkdir -p $RPM_BUILD_ROOT/usr/share/locale/es/LC_MESSAGES
 #mkdir -p $RPM_BUILD_ROOT/usr/share/locale/fr/LC_MESSAGES
 mkdir -p $RPM_BUILD_ROOT/usr/share/locale/ja/LC_MESSAGES
@@ -49,8 +51,26 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/sausalito/swatch/statecodes.tcl
 %attr(755,root,root) %dir /usr/sausalito/swatch/bin
 %attr(755,root,root) %dir /usr/sausalito/swatch
+%attr(755,root,root) /usr/sausalito/sbin/swatch.sh
+
+%pre
+if [ -f /etc/swatch.conf.rpmnew ]; then
+        rm -f /etc/swatch.conf.rpmnew
+fi
+
+%post
+if [ -f /etc/swatch.conf.rpmnew ]; then
+        mv /etc/swatch.conf.rpmnew /etc/swatch.conf
+fi 
 
 %changelog
+* Thu Jul 28 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX02
+- Copied 'en' locale to 'en_US'
+- Changed lang in conf/swatch.conf from 'en' to 'en_US'
+- Added /usr/sausalito/sbin/swatch.sh with hotwired exports for locales
+- Modified /etc/cron.d/swatch.cron to call /usr/sausalito/sbin/swatch.sh instead
+- Added pre and post scripts to deal with config file updates
+
 * Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX01
 - Locale hotfix added
 
