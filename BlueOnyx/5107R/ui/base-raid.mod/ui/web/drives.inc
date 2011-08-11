@@ -17,7 +17,7 @@ function drive_status($cce, $helper) {
   if ($severity[$state] > $severity['G']) { 
     foreach ($lines as $line) {
       if (preg_match('/drives=\"(.+?)\"/', $dmaobj['currentMessage'], $regs)) {
-	$drives = split("([[:space:]]|,)+", $regs[1]);
+	$drives = preg_split("/([[:space:]]|,)+/", $regs[1]);
 	foreach ($drives as $drive) {
 	  if (eregi("off", $line)) {
 	    $msg = '[[base-dma.disk_dma_off]]';
@@ -53,7 +53,7 @@ function drive_status($cce, $helper) {
   if ($severity[$state] > $severity['G']) {
     foreach ($lines as $line) {
       if (preg_match('/drives=\"(.+?)\"/', $line, $regs)) {
-	$drives = split("([[:space:]]|,)+", $regs[1]);
+	$drives = preg_split("/([[:space:]]|,)+/", $regs[1]);
 	foreach ($drives as $drive) {
 	  if (eregi("turned_off", $line)) {
 	    $msg = '[[base-smart.drive_off]]';
@@ -95,7 +95,7 @@ function drive_status($cce, $helper) {
   $state = $raidobj['currentState'];
   if ($severity[$state] > $severity['G']) {
     if (preg_match('/drives=\"(.+?)\"/', $raidobj['currentMessage'], $regs)) {
-      $drives = split("([[:space:]]|,)+", $regs[1]);
+      $drives = preg_split("/([[:space:]]|,)+/", $regs[1]);
       foreach ($drives as $drive) {
 	if (eregi("raid_failure", $raidobj['currentMessage'])) {
 	  $msg = '[[base-raid.drive_failed]]';
@@ -104,7 +104,7 @@ function drive_status($cce, $helper) {
 	} else if (eregi("sync", $raidobj['currentMessage'])) {
 	  $msg = '[[base-raid.drive_syncing]]';
 	}
-	$drive = ereg_replace("[[:digit:]]+$", '', $drive);
+	$drive = preg_replace("/[[:digit:]]+$/", '', $drive);
 
 	// get worst state
 	$laststate = $baddrives[$drive]['state'];
@@ -133,7 +133,7 @@ function drive_status($cce, $helper) {
   }
   while (!feof($raidtabfile)) {
     $line = trim(fgets($raidtabfile, 1024));
-    list($header, $data) = split("[[:space:]]+", $line);
+    list($header, $data) = preg_split("/[[:space:]]+/", $line);
     if ($header == "raiddev") {
       $device = $data;
       $raid[$device] = array();
@@ -153,18 +153,18 @@ function drive_status($cce, $helper) {
     $disk = $cce->get($oid);
     if ($raid[$disk['device']]) {
       foreach ($raid[$disk['device']] as $device) {
-	$device = ereg_replace("[[:digit:]]+$", '', $device);
+	$device = preg_replace("/[[:digit:]]+$/", '', $device);
 	$alldrives[$device] = 1;
       }
     } else {
-      $device = ereg_replace("[[:digit:]]+$", '', $disk['device']);
+      $device = preg_replace("/[[:digit:]]+$/", '', $disk['device']);
       $alldrives[$device] = 1;
     }
   }
   } else {
     foreach (array_keys($raid) as $mddev) {
       foreach ($raid[$mddev] as $dev) {
-	$storage = ereg_replace("[[:digit:]]+$", '', $dev);
+	$storage = preg_replace("/[[:digit:]]+$/", '', $dev);
         $alldrives[$storage] = 1;
       }
     }
