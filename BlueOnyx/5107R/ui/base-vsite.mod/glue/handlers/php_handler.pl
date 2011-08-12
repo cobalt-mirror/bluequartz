@@ -187,7 +187,7 @@ sub thirdparty_check {
 
 sub restart_apache {
     # Restarts Apache - hard restart:
-    service_run_init('httpd', 'restart');
+    system("/etc/init.d/httpd restart");
 }
 
 sub items_of_interest {
