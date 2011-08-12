@@ -47,9 +47,6 @@ function init() {
 }
 </SCRIPT>
 </BODY>
-<HEAD>
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-</HEAD>
 </HTML>
 <?php
 /*

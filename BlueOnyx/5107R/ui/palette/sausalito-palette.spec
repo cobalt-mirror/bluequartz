@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX13%{?dist}
+Release: 0BX14%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,12 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Fri Aug 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX14
+- Modified web/nav/cList.php web/nav/single.php web/nav/flow.php web/loginHandler.php and web/logoutHandler.php
+- Removed trailing and redundant <head></head> block from all pages.
+- Removed Netscape onresize reload from all pages that had it, as it's interfering with newer mobile devices.
+
 * Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX13
 - libPhp/uifc/FormFieldBuilder.php: Function makeTextAreaField had no font set.
 

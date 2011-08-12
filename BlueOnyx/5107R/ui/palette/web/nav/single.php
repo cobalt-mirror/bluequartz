@@ -88,9 +88,10 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   code.scheduler_doJob();
 }
 </SCRIPT>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 </HEAD>
 
-<FRAMESET ROWS="<?php print($style->getProperty("titleHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()" onResize="if(navigator.appName == 'Netscape') location.reload()">
+<FRAMESET ROWS="<?php print($style->getProperty("titleHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()">
   <FRAME SRC="blank.html" NAME="titleFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
   <FRAME SRC="blank.php" NAME="mainFrame" FRAMEBORDER="no">
   <FRAME SRC="blank.html" NAME="infoFrame" FRAMEBORDER="no" MARGINWIDTH="0">
@@ -98,9 +99,6 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   <FRAME SRC="<?php print($commFrame ? $commFrame : "blank.html"); ?>" NAME="commFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
 </FRAMESET>
 
-<HEAD>
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-</HEAD>
 </HTML>
 <?php
 /*

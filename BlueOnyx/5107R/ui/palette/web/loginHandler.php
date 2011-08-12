@@ -129,9 +129,6 @@ function printPage($onLoad="", $body="", $head="") {
         <BODY <?php print($onLoad); ?>>
            <?php print($body); ?>
         </BODY>
-        <HEAD> <!-- convince IE really not to cache -->
-            <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-        </HEAD>
     </HTML>
     <?php
 }
