@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.2
-Release: 1BX03%{?dist}
+Release: 1BX05%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -10,6 +10,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
+Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
@@ -52,6 +53,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO5
+- Updated Requires to make it easier to get a build system set up.
+
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO4
 - Modified rules/defines.mk: Added 'en' to excluded locales, as we now use 'en_US' as default.
 
