@@ -52,6 +52,12 @@ else
     $cce->connectfd();
 }
 
+# Handle bootproto=dhcp on AWS, where we do NOT change ifcfg-eth0:
+if (-f "/etc/is_aws") {
+        $cce->bye('SUCCESS');
+        exit(0);
+} 
+
 $DEBUG && print STDERR "event oid is ", $cce->event_oid(), "\n";
 
 # 1. extract list of current routes:

@@ -102,6 +102,17 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX32
+- Added rudimentary AWS support to cope with single IP and DHCP obtained network settings:
+- Added constructor/31_handle_aws_dhcp.pl to automatically update the stored IP of sites 
+  with the IP obtained from DHCP. Also updates DNS (within reasons) and ProFTPd.
+- Modified constructor/30_addNetwork.pl to not drop DHCP settings from ifcfg files
+- Modified glue/handlers/rewrite-ifcfg.pl to support bootproto=DHCP in ifcfg files
+- Modified glue/handlers/change_route.pl to not create eth0:X files as AWS supports
+  only a single IP per instance anyway. Makes our live a bit easier here.
+- Modified ui/web/ethernet.php to disallow change of network settings if AWS support 
+  is enabled.
+
 * Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX31
 - Modified constructor/40_addGateway.pl. Restart Network under OpenVZ if unreachable
 

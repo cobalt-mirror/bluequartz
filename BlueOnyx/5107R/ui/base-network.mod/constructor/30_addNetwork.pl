@@ -26,6 +26,11 @@ if (!scalar(@devices))
     exit(1);
 }
 
+# Handle bootproto=dhcp on AWS, where we do NOT change ifcfg-eth0:
+if (-f "/etc/is_aws") {
+    $is_aws = "1";
+}
+
 # for each inteface or alias
 # get information from ifconfig
 # make sure a Network object exists in CCE
@@ -76,6 +81,12 @@ for my $device (@devices)
             $obj->{ipaddr} = $ip;
             $obj->{netmask} = $nm;
             $obj->{enabled} = 1;
+
+	    # If we're on AWS, set bootproto=dhcp:
+            if ($is_aws == "1") {
+        	$obj->{bootproto} = 'dhcp';
+            }
+
         } 
         else 
         {
@@ -119,7 +130,7 @@ for my $device (@devices)
             }
         }
     }
-   
+
     # make sure the real flag is properly set
     if (! -f "/proc/user_beancounters") { 
 	# Handle standard ethX setups:

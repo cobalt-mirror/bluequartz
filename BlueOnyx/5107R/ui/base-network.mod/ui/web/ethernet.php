@@ -22,6 +22,14 @@ else {
     $fieldprot = "rw";
 }
 
+// Are we running on AWS?
+if (is_file("/etc/is_aws")) {
+    $is_aws = "1";
+}
+else {
+    $is_aws = "0";
+}
+
 $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product( $cceClient );
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-network", "/base/network/ethernetHandler.php");
@@ -31,7 +39,7 @@ $i18n = $serverScriptHelper->getI18n("base-network");
 $system = $cceClient->getObject("System");
 
 $default_page = 'primarySettings';
-if ($fieldprot == "rw") {
+if (($fieldprot == "rw") && ($is_aws == "0")) {
     // Show "Interface Aliasses" if not inside a VPS:
     $pages = array($default_page, 'aliasSettings');
 }
@@ -75,7 +83,7 @@ $block->addFormField(
   $default_page
 );
 
-if ($product->isRaq()) {
+if (($product->isRaq()) && ($is_aws == "0")) {
 	$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
 	$gw->setOptional(true);
 	$block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
@@ -128,7 +136,14 @@ if ($dev['eth0']) {
             $factory->getLabel("interface$device", false),
             $default_page);
 
-    $ip_field0 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
+    if ($is_aws == "0") {
+	$devprot = "rw";
+    }
+    else {
+	$devprot = "r";
+    }
+
+    $ip_field0 = $factory->getIpAddress("ipAddressField$device", $ipaddr, $devprot);
     $ip_field0->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 
     $block->addFormField(
@@ -138,7 +153,7 @@ if ($dev['eth0']) {
             $default_page
         );
 
-    $netmask_field0 = $factory->getIpAddress("netMaskField$device", $netmask);
+    $netmask_field0 = $factory->getIpAddress("netMaskField$device", $netmask, $devprot);
     $netmask_field0->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
 
     // Netmask is not optional for the admin iface and for eth0
