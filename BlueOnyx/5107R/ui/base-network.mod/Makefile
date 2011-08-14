@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=network
 
 VERSION=1.1.0
-RELEASE=82BX32
+RELEASE=82BX33
 
 # add a buildarch if desired
 BUILDARCH=noarch
