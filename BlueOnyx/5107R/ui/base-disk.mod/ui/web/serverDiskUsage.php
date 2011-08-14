@@ -99,7 +99,7 @@ if ($disk_usage->getSelectedId() == 'summary'
     // On a VPS we only have one partition, although for sake of compatability we 
     // also have "/home" as Object "Disk". But this is not a real partition. Hence
     // We want to hide it here:
-    if (is_file("/proc/user_beancounters")) {
+    if ((is_file("/proc/user_beancounters")) || (is_file("/etc/is_aws"))) {
 	$partitionsvps = "1";
         $usage_list->setEntryNum($partitionsvps);
     }
@@ -141,6 +141,9 @@ if ($disk_usage->getSelectedId() == 'summary'
 	// also have "/home" as Object "Disk". But this is not a real partition. Hence
 	// We want to hide it here:
 	if ((is_file("/proc/user_beancounters")) && ($disk['mountPoint'] == '/home')) {
+	    next;
+	}
+	elseif ((is_file("/etc/is_aws")) && ($disk['mountPoint'] == '/home')) {
 	    next;
 	}
 	else {
