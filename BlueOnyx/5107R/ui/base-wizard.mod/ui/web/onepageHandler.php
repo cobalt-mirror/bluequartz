@@ -23,7 +23,7 @@ list($admin_oid) = $cceClient->find('User', array('name' => 'admin'));
 
 $adminIf = "eth1";
 
-if (!file_exists("/proc/user_beancounters")) {
+if ((!file_exists("/proc/user_beancounters")) && (!file_exists("/etc/is_aws"))) {
     // Regular Network Interfaces
 
     // handle all devices

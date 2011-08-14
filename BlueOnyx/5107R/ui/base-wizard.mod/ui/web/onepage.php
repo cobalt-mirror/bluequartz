@@ -63,7 +63,7 @@ $block->addFormField(
   $factory->getLabel("dnsAddressesField")
 );
 
-if (!file_exists("/proc/user_beancounters")) {
+if ((!file_exists("/proc/user_beancounters")) && (!file_exists("/etc/is_aws"))) {
     // Regular Network Interfaces
 
     $gw = $factory->getIpAddress("gatewayField", $systemObj["gateway"]);
