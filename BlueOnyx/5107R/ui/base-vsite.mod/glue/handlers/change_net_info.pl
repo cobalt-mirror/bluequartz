@@ -61,8 +61,10 @@ if ($vsite_new->{fqdn})
 # handle ip address change
 if ($vsite_new->{ipaddr})
 {
-    # make sure that there is a network interface for the new ip
-    vsite_add_network_interface($cce, $vsite_new->{ipaddr});
+    # make sure that there is a network interface for the new ip - but not on AWS:
+    if (!-f "/etc/is_aws") {
+	vsite_add_network_interface($cce, $vsite_new->{ipaddr});
+    }
 
     # delete the old interface, this is a no op if another site is using the old ip still
     vsite_del_network_interface($cce, $vsite_old->{ipaddr});

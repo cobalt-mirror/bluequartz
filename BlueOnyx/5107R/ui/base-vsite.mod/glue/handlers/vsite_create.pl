@@ -92,8 +92,11 @@ if (not $ok)
 	exit(1);
 }
 
-# make sure there is a network interface for this ip
-vsite_add_network_interface($cce, $vsite->{ipaddr});
+# make sure there is a network interface for this ip. We skip this on AWS as anything
+# there runs on a single IP anyway:
+if (!-f "/etc/is_aws") {
+    vsite_add_network_interface($cce, $vsite->{ipaddr});
+}
 
 my $locale = I18n::i18n_getSystemLocale($cce);
 # make the locale sane
