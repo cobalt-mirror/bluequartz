@@ -164,6 +164,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Aug 15 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX04
+- Updated ui/web/console_logs_*.php to fix array_walk_recursive() line. 
+  Otherwise PHP-5.3.3 now segfaults on us. Great.
+
 * Wed Jul 25 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX03
 - Updated glue/sbin/pam_abl_import.pl with locking mechanism
 

@@ -32,7 +32,7 @@ print("</HEAD>\n");
 
 $stylist = $serverScriptHelper->getStylist();
 $objTmp = (object) array('aFlat' => array());
-array_walk_recursive($stylist, create_function('&$v, $k, &$t', '$t->aFlat[] = $v;'), $objTmp);
+array_walk_recursive($stylist, create_function('$v, $k, $t', '$t->aFlat[] = $v;'), $objTmp);
 $stuff = $objTmp->aFlat;
 
 // Include stylehack.php
