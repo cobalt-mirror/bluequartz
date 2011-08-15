@@ -50,7 +50,7 @@
         />
        <property name="open_basedir"
             type="scalar"
-            default="/tmp/:/var/lib/php/session/"
+            default="/tmp/:/var/lib/php/session/:/home/"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />

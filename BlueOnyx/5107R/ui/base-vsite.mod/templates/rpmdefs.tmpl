@@ -128,6 +128,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Aug 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX84
+- Modified glue/schemas/php.schema to add /home/ to global open_basedir settings of PHP again.
+  This is needed or suPHP will not work right for us.
+
 * Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX83
 - Modified glue/handlers/change_net_info.pl and glue/handlers/vsite_create.pl to
   add rudimentary AWS support.
