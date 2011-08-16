@@ -1,8 +1,0 @@
-<item id="base_vsite_fileOwner" label="[[base-vsite.fileOwnerMenu]]" 
-	description="[[base-vsite.fileOwnerDesc]]" 
-	url="/base/vsite/fileOwner.php?group=[[VAR.group]]"
->
-    <parent id="base_siteservices" order="13">
-        <access require="siteAdmin"/>
-    </parent>
-</item>
