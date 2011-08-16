@@ -1,0 +1,133 @@
+# vendor and service name
+%define Vendor [VENDOR]
+%define Service [SERVICE]
+%define RootDir [ROOTDIR]
+
+Summary: skeleton spec template 
+Name: %{Vendor}-%{Service}
+Vendor: [VENDORNAME]
+Version: [VERSION]
+Release: [RELEASE]
+#Copyright: Cobalt Networks, Inc.
+License: Sun Microsystems modified BSD
+Group: CCE/%{Service}
+Source: %{Vendor}-%{Service}-[VERSION].tar.gz
+BuildRoot: /var/tmp/%{Vendor}-%{Service}
+
+%description
+This is a skeleton package. It builds the ui, locale, and glue rpms.
+
+[DESCRIPTION_SECTION]
+
+%prep
+[PREP_SECTION]
+
+%setup
+[SETUP_SECTION]
+
+%build
+make
+[BUILD_SECTION]
+
+%install
+rm -rf $RPM_BUILD_ROOT
+PREFIX=$RPM_BUILD_ROOT make install
+[INSTALL_SECTION]
+
+[POST-INSTALL_SECTION]
+
+[POST-UNINSTALL_SECTION]
+
+[FILES_SECTION]
+
+%changelog
+
+* Thu Apr 2 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-15
+- Was still not working. Pulling mod_jk.so into base-java-glue as a dirty work around.
+
+* Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-14
+- Brilliant. If we remove the dependency for mod_jk now, it gets uninstalled by YUM.
+- Added requirement for mod_jk.so to toplevel Makefile.
+
+* Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-13
+- Entirely removed the dependency for mod_jk-ap20 / mod_jk from the toplevel Makefile.
+- NOTE: The installer MUST now make sure that mod_jk-ap20 gets installed.
+- CD already does that, TAR-ball installer is updated (20080401), too. 
+
+* Wed Apr 1 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-12
+- Changed dependency from mod_jk-ap20 to mod_jk for CentOS-5.3 release.
+
+* Thu Dec 25 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-11
+- Very minor fix English locale.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-10
+- Rebuilt for BlueOnyx.
+
+* Fri Nov 28 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-9
+- Didn't like that the links to the Tomcat backend pages in ui/web/tomcat-manager.php were dead if Tomcat was stopped.
+- Extended glue/schemas/java.schema with a new JavaStatus Namespace.
+- Extended ui/web/tomcat-manager.php with a trigger to call glue/handlers/tomcat_ui_status.pl
+- Handler glue/handlers/tomcat_ui_status.pl reads Tomcat status and writes it to JavaStatus Namespace.
+- Extended ui/web/tomcat-manager.php with an info box that shows when Tomcat is not running.
+- Updated English and German locales for text shown in that info box.
+- Greyed out ImageButtons in ui/web/tomcat-manager.php when Tomcat is not running.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-8
+- Shortened a menu entry in German locale to make it fit in better.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-7
+- Extended constructor/java-initialize.pl to set a default random admin pass on first initialize of Tomcat.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-6
+- Extended ui/web/tomcat-manager.php with a field to change the Tomcat admin password.
+- Added ui/web/tomcat-managerHandler.php to handle the form data.
+- Extended glue/schemas/java.schema with the password field
+- Extended glue/conf/java.conf with provisions to run separate handler on password changes.
+- Added glue/handlers/config_pass.pl handler to deal with password changes.
+- Updated English and German locales to reflect the new changes.
+
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-5
+- Updated ui/web/tomcat-manager.php again. Small fix to i18n implementation.
+
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-4
+- Added constructor/java-initialize.pl to copy replacement files over on first restart of CCE.
+- Fixed some PHP5 issues in UI, like include() vs. include_once().
+- Rewrote ui/web/tomcat-manager.php to make it more in line with rest of GUI.
+
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-3
+- Added long list of dependencies to install JDK, Tomcat5 and so on.
+- Added requirement for base-java-filler work around RPM to satisfy one of Java's dependencies.
+
+* Wed Nov 26 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.6-2
+- Added German locales.
+- Commented out obsolete Copyright tags in Specfiles
+- Added new mandatory License tags in Specfiles
+- Bumped version number to three digits
+- Added base-java-am to the required list
+
+* Tue Nov 25 2008 Brian Smith <brian@nuonce.net> 2.0.6
+- Removed a jkmount that affects non jsp files.
+- thanks michael.
+
+* Sun Nov 18 2007 Brian Smith <brian@nuonce.net> 2.0.5
+- Patch to stop user file from being over written
+
+* Sun Nov 18 2007 Brian Smith <brian@nuonce.net> 2.0.4
+- Forgot to include images.  Whoops!
+
+* Sun Nov 18 2007 Brian Smith <brian@nuonce.net> 2.0.3
+- Added more management options in the GUI
+- Fixed issue with creating new sites
+
+* Sat Nov 17 2007 Brian Smith <brian@nuonce.net> 2.0.2
+- Fixed problems with .war deployment
+- fixed permission problems, and various settings
+
+* Sat Apr 29 2006 Brian Smith <brian@nuonce.net>
+- Updated to work with CentOS v4 & BlueQuartz
+
+* Tue Apr 18 2000 Adrian Sun <asun@cobalt.com>
+- new, improved spec file template.
+
+* Thu Mar 30 2000 Adrian Sun <asun@cobalt.com>
+- sample spec file for skeleton package.
