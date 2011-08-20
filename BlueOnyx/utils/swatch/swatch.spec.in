@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -64,6 +64,9 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
 fi 
 
 %changelog
+* Sat Aug 20 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX03
+- Modified /usr/sausalito/sbin/swatch.sh to prevent multiple execution of /usr/sbin/swatch
+
 * Thu Jul 28 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX02
 - Copied 'en' locale to 'en_US'
 - Changed lang in conf/swatch.conf from 'en' to 'en_US'
