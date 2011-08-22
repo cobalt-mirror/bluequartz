@@ -19,6 +19,8 @@ $factory =& $helper->getHtmlComponentFactory('base-ssl',
                                             '/base/ssl/caManager.php');
 $cce = $helper->getCceClient();
 
+$errors = array();
+
 if ($group)
 {
     list($oid) = $cce->find('Vsite', array('name' => $group));

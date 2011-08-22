@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=ssl
 
 VERSION=1.1.0
-RELEASE=70BX02
+RELEASE=70BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch
