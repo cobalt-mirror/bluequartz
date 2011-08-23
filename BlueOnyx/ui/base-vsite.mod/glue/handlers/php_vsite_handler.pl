@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: php_vsite_handler.pl, v1.2.0.3 Fri 11 Mar 2011 07:18:01 PM EST mstauber Exp $
+# $Id: php_vsite_handler.pl, v1.2.0.4 Mon 22 Aug 2011 10:26:07 PM EDT mstauber Exp $
 # Copyright 2006-2011 Team BlueOnyx. All rights reserved.
 
 # This handler is run whenever a CODB Object called "Vsite" with namespace 
@@ -8,6 +8,11 @@
 # If the "Vsite" Object of namespace "PHPVsite" Object with "applicable" => "siteXX" 
 # is created or modified, it edits /etc/httpd/conf/vhosts/siteXX to write the 
 # correct php_admin_flag's to that site's include file and Apache is restarted.
+#
+# If suPHP is enabled, it will also create a copy of php.ini in the basedir of the
+# Vsite and will modify it with the PHP settings configured for the site in question.
+# If suPHP is disabled, that custom php.ini file will be deleted. It is protected
+# against modifications through chattrib, although that may be a bit excessive.
 
 # Debugging switch:
 $DEBUG = "0";
@@ -32,6 +37,17 @@ use Base::Httpd qw(httpd_get_vhost_conf_file);
 my $cce = new CCE;
 my $conf = '/var/lib/cobalt';
 
+# Location of config file in which 3rd party vendors can
+# specify where their 3rd party PHP's php.ini is located:
+#
+# IMPORTANT: Do NOT modify the line below, as this script WILL
+# be updated through YUM from time to time. Which overwrites
+# any changes you make in here!
+$thirdparty = "/etc/thirdparty_php";
+
+# Location of php.ini - may get overridden by thirdparty_check():
+$php_ini = "/etc/php.ini";
+
 if ($whatami eq "handler") {
     $cce->connectfd();
 
@@ -55,13 +71,15 @@ if ($whatami eq "handler") {
         $legacy_php = "1";
     }
 
+    # Check for presence of third party config file:
+    &thirdparty_check;
+
     # Get Object PHP from CODB to find out how php.ini is configured:
     @oids = $cce->find('PHP', { 'applicable' => 'server' });
     ($ok, $server_php_settings) = $cce->get($oids[0]);
 
     # Poll info about the Vsite in question:
     ($ok, $vsite) = $cce->get($oid);
-    #$vsite->{"basedir"}
 
     # Get PHPVsite:
     ($ok, $vsite_php_settings) = $cce->get($oid, "PHPVsite");
@@ -75,8 +93,47 @@ if ($whatami eq "handler") {
 	# Edit the vhost container or die!:
 	&debug_msg("Editing Vhost $vsite->{'name'} through php_vsite_handler.pl \n");
 	if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
+	    &debug_msg("Failed to edit Vhost $vsite->{'name'}  through php_vsite_handler.pl \n");
 	    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
 	    exit(1);
+	}
+
+	# Handle custom php.ini for suPHP enabled sites:
+	$basedir_vsite = $vsite->{"basedir"};
+	$custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
+	
+	if ($vsite_php->{'suPHP_enabled'} == "1") {
+
+		# If there is already a custom php.ini, delete it first:
+		if (-f $custom_php_ini_path) {
+		    &debug_msg("Deleting old $custom_php_ini_path through php_vsite_handler.pl \n");
+		    system("/usr/bin/chattr -i $custom_php_ini_path");
+		    system("/bin/rm -f $custom_php_ini_path");
+		}
+
+		# Copy main php.ini (thirdparty one or from distribution) to vsite's basedir:
+		system("/bin/cp $php_ini $custom_php_ini_path");
+		system("/bin/chmod 644 $custom_php_ini_path");
+		system("/bin/chown root:root $custom_php_ini_path");
+
+		# Run a search and replace through Vsite php.ini to update it with the PHP
+		# settings configured for this site:
+		&debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl \n");
+                &edit_php_ini;
+
+		# Protect Vsite php.ini against modification.
+		# As it's root owned and 644, this may be a bit redundant:
+		system("/usr/bin/chattr +i $custom_php_ini_path");
+	    
+	}
+	else {
+	    # suPHP disabled. Delete custom php.ini:
+	    $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
+	    if (-f $custom_php_ini_path) {
+		system("/usr/bin/chattr -i $custom_php_ini_path");
+		system("/bin/rm -f $custom_php_ini_path");
+		&debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
+	    }
 	}
 
 	# prefered_siteAdmin toggles chowning of /web ownership:
@@ -257,6 +314,92 @@ sub debug_msg {
     }
 }
 
+sub thirdparty_check {
+    # Check for presence of third party config file:
+    if (-f $thirdparty) {
+        open (F, $thirdparty) || die "Could not open $thirdparty: $!";
+        while ($line = <F>) {
+            chomp($line);
+            next if $line =~ /^\s*$/;                   # skip blank lines
+            next if $line =~ /^#$/;                     # skip comments
+            if ($line =~ /^\/(.*)\/php\.ini$/) {
+                $php_ini = $line;
+            }  
+        }
+        close(F); 
+    }
+}
+
+sub edit_php_ini {
+
+    if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
+        # If the site's basedir path is already present, we use whatever paths open_basedir currently has:
+        $out_open_basedir = $vsite_php_settings->{"open_basedir"};
+    }
+    else {
+	# If the sites path to it's homedir is missing, we add it here:
+	$out_open_basedir = $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/';
+    }
+
+    &debug_msg("Server wide Open Basedir is set to: $server_php_settings->{'open_basedir'} \n");
+    &debug_msg("Open Basedir was set to: $vsite_php_settings->{'open_basedir'} \n");
+    &debug_msg("Open Basedir is now set to: $out_open_basedir \n");
+
+    if ($legacy_php == "0") {
+        # Build output hash for PHP-5.3 or newer:
+        $vsite_php_settings_writeoff = { 
+                'register_globals' => $vsite_php_settings->{"register_globals"}, 
+                'allow_url_fopen' => $vsite_php_settings->{"allow_url_fopen"}, 
+                'allow_url_include' => $vsite_php_settings->{"allow_url_include"}, 
+                'disable_classes' => $vsite_php_settings->{"disable_classes"}, 
+                'disable_functions' => $vsite_php_settings->{"disable_functions"}, 
+                'open_basedir' => $out_open_basedir, 
+                'post_max_size' => $vsite_php_settings->{"post_max_size"}, 
+                'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
+                'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
+                'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
+                'memory_limit' => $vsite_php_settings->{"memory_limit"} 
+        };
+    }
+    else {
+        # Build output hash for and older PHP:
+        $vsite_php_settings_writeoff = { 
+                'safe_mode' => $vsite_php_settings->{"safe_mode"}, 
+                'safe_mode_allowed_env_vars' => $vsite_php_settings->{"safe_mode_allowed_env_vars"}, 
+                'safe_mode_exec_dir' => $vsite_php_settings->{"safe_mode_exec_dir"}, 
+                'safe_mode_gid' => $vsite_php_settings->{"safe_mode_gid"}, 
+                'safe_mode_include_dir' => $vsite_php_settings->{"safe_mode_include_dir"}, 
+                'safe_mode_protected_env_vars' => $vsite_php_settings->{"safe_mode_protected_env_vars"},
+                'register_globals' => $vsite_php_settings->{"register_globals"}, 
+                'allow_url_fopen' => $vsite_php_settings->{"allow_url_fopen"}, 
+                'allow_url_include' => $vsite_php_settings->{"allow_url_include"}, 
+                'open_basedir' => $out_open_basedir, 
+                'post_max_size' => $vsite_php_settings->{"post_max_size"}, 
+                'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
+                'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
+                'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
+                'memory_limit' => $vsite_php_settings->{"memory_limit"} 
+        };
+    }
+
+    # Write changes to php.ini using Sauce::Util::hash_edit_function. The really GREAT thing
+    # about this function is that it replaces existing values and appends those new ones that 
+    # are missing in the output file. And it does it for ALL values in our hash in one go.
+
+    $ok = Sauce::Util::editfile(
+        $custom_php_ini_path,
+        *Sauce::Util::hash_edit_function,
+        ';',
+        { 're' => '=', 'val' => ' = ' },
+        $vsite_php_settings_writeoff);
+
+    # Error handling:
+    unless ($ok) {
+	&debug_msg("Error while editing $custom_php_ini_path through php_vsite_handler.pl \n");
+        $cce->bye('FAIL', "Error while editing $custom_php_ini_path!");
+        exit(1);
+    }
+}
 
 $cce->bye('SUCCESS');
 exit(0);

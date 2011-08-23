@@ -55,6 +55,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,-,-) /usr/sausalito/sbin/vsite_destroy.pl
 %attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
 %attr(0755,-,-) /usr/sausalito/sbin/web_alias_redirects.pl
+%attr(0755,-,-) /usr/sausalito/sbin/suPHP_fixer.pl
 
 <end glue>
 
@@ -79,6 +80,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
+    /usr/sausalito/sbin/suPHP_fixer.pl
 fi
 
 <end glue>
@@ -127,6 +129,15 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Aug 23 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX85
+- New feature: Our suPHP integration now supports (and creates) custom php.ini configs in the Vsite basedir.
+- Extended glue/handlers/php_vsite_handler.pl to create, modify and remove custom php.ini files on an
+  as needed basis.
+- Added /usr/sausalito/sbin/suPHP_fixer.pl to automatically generate missing custom php.ini files.
+  This constructor is executed upon glue installation after the CCEd restart. It runs silently if there
+  is nothing to do, but if suPHP is enabled on sites and the custom php.ini is missing, suPHP will be 
+  briefly turned off and back on to create the missing custom php.ini file.
 
 * Mon Aug 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX84
 - Modified glue/schemas/php.schema to add /home/ to global open_basedir settings of PHP again.
