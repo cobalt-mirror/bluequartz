@@ -6,15 +6,19 @@
 # disables AM on non-RAID system
 
 use CCE;
-my $cce = new CCE;
+$cce = new CCE;
 
-my $ret = `grep -q raid /proc/mdstat`;
-my $on = $? >> 8;
+if (! -e '/proc/mdstat') {
+    $on = "0";
+}
+else {
+    $on = "1";
+}
 
 $cce->connectuds();
 my @oids = $cce->find ('ActiveMonitor');
 if ($#oids > -1) {
-  $cce->set($oids[0], 'DiskIntegrity', {"monitor" => (($on == 1) ? 0 : 1)});
+  $cce->set($oids[0], 'DiskIntegrity', { "monitor" => $on });
 }
 $cce->bye();
 exit 0;
