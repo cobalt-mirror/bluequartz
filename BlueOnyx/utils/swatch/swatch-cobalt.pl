@@ -58,11 +58,19 @@ $cce->connectuds();
 my @sysoid = $cce->find ('System');
 my ($ok, $sysobj) = $cce->get($sysoid[0]);
 my $system_lang = $sysobj->{productLanguage};
-$i18n->setLocale($system_lang);
 
-system("export LANGUAGE=en_US.UTF-8");
-system("export LANG=en_US.UTF-8");
-system("export LC_ALL=en_US.UTF-8");
+# The Japanese locales for AM are somewhat fishy. For now we hard code them to en_US:
+
+if ($system_lang eq "ja") {
+    $i18n->setLocale("en_US");
+}
+else {
+    $i18n->setLocale($system_lang);
+}
+
+#system("export LANGUAGE=$system_lang.UTF-8");
+#system("export LANG=$system_lang.UTF-8");
+#system("export LC_ALL=$system_lang.UTF-8");
 
 my $body_head = $i18n->get('[[swatch.emailBody]]') . "\n\n";
 
@@ -109,6 +117,7 @@ while ( defined (my $name = <@names>) ) {
       my $oldState = $object->{currentState};
       my @aggregates = split / +/, $object->{typeData};
       foreach my $aggregate (@aggregates) {
+ 
         my ($ok, $obj, $old, $new) = $cce->get ($oid[0], $aggregate);
         if ($obj->{enabled} && $obj->{monitor}) {
           ($stats{"$aggregate"}, my $ret, $agg_msg) = do_monitor($obj);
@@ -220,7 +229,7 @@ sub do_monitor
       }
   } elsif ( -x $am ) {
     print "running $am\n" if ($DEBUG_ME);
-    $ret = `PATH=/bin:/sbin:/usr/sbin:/usr/bin LANG=$lang $am`;
+    $ret = `PATH=/bin:/sbin:/usr/sbin:/usr/bin LANG=$system_lang $am`;
     $state = $? >> 8;
   }
   if ($state >= 0) {

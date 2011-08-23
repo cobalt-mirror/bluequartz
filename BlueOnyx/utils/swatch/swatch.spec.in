@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -63,7 +63,18 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
         mv /etc/swatch.conf.rpmnew /etc/swatch.conf
 fi 
 
+if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
+        # We're on 5106R - Switch lang in /etc/swatch.conf fron en_US to en:
+        sed -i -e 's@^lang = en_US@lang = en@' /etc/swatch.conf
+fi   
+
 %changelog
+* Tue Aug 23 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX04
+- Modified /usr/sausalito/sbin/swatch.sh again to prevent multiple execution of /usr/sbin/swatch
+- Removed CCEd restart and some other things that didn't work.
+- Added post install 5106R locale fix for /etc/swatch.conf to set it back to 'en'.
+- Modified swatch-cobalt.pl yet again to try to keep it at honouring the set locales.
+
 * Sat Aug 20 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX03
 - Modified /usr/sausalito/sbin/swatch.sh to prevent multiple execution of /usr/sbin/swatch
 
