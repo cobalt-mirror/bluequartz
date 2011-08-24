@@ -137,7 +137,7 @@ if(@modules_failed_build){
 	-d "package" && system("/bin/rm -rf package");
 	mkdir("package", 0700);
 	mkdir("package/RPMS", 0755);
-#	push @rpm_list, (split/\n/, `/usr/bin/find . ! -path '*package*' -name '*.rpm' ! -name '*capstone*' ! -name '*.src.rpm'  -print`);
+#	push @rpm_list, (split/\n/, `find . ! -path '*package*' -name '*.rpm' ! -name '*capstone*' ! -name '*.src.rpm'  -print`);
 
 if (scalar @misc_rpms || -d "products.prd/$PRODUCT/misc") {
 	mkdir("package/MISC", 0755);

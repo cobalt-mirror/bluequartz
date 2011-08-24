@@ -80,8 +80,8 @@ fi
 
 # Make sure that the Apache alias database ownership is setup properly.
 if [ -f /etc/httpd/alias/cert8.db ]; then
-	/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;
-	/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;
+	find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;
+	find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;
 fi
 
 if [ $1 = 2 ]; then
