@@ -10,7 +10,7 @@ use strict;
 
 use vars qw($confDir $findCmd $baseName);
 my $confDir = '/usr/shell-tools/conf';
-my $findCmd = '/usr/bin/find';
+my $findCmd = 'find';
 my $baseName = '/bin/basename';
 
 sub new

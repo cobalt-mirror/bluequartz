@@ -3,7 +3,7 @@
 Summary: Sun Cobalt Shell Tools
 Name: [PRODUCT]-shell-tools
 Version: [VERSION]
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/System
@@ -50,6 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
 
 %changelog
+* Wed Aug 24 2011 Michael Stauber <mstauber@blueonyx.it>
+- 2.20-0BX03
+- Modified perl/ShellOpts.pm to remove path to find binary as it's different between EL5 and EL6
+
 * Sun Jul 25 2011 Michael Stauber <mstauber@blueonyx.it>
 - 2.20-0BX02
 - Forgot to add product identifiers to perl/Shell.pm
