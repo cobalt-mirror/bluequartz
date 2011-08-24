@@ -73,6 +73,9 @@ if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
 fi
 
 %changelog
+* Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX05
+- Updated swatch.sh to use which to locate the binaries we need. Paths differ between OS's.
+
 * Tue Aug 23 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX04
 - Modified /usr/sausalito/sbin/swatch.sh again to prevent multiple execution of /usr/sbin/swatch
 - Removed CCEd restart and some other things that didn't work.
