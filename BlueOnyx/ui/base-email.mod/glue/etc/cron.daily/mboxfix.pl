@@ -8,7 +8,7 @@
 # If it finds an mbox file that's owned by "root", it will chown it to the
 # UID of the user who should own it.
 
-$USERLIST=`/usr/bin/find /home/.sites -name mbox -user root -exec ls -la \\{} \\; | /bin/grep -v "/logs/" | /bin/awk \'{print \$9}\'`;
+$USERLIST=`find /home/.sites -name mbox -user root -exec ls -la \\{} \\; | /bin/grep -v "/logs/" | /bin/awk \'{print \$9}\'`;
 @mboxes = split(/\n/, $USERLIST);
 foreach $user_mbox (@mboxes) {
     @owner_list = split(/\//, $user_mbox);
