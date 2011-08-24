@@ -86,8 +86,8 @@ else {
 }
 
 # Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
-system('/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
-system('/usr/bin/find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
+system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
 
 exit(0);
 
