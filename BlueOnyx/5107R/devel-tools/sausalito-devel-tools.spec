@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.2
-Release: 1BX05%{?dist}
+Release: 1BX06%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO6
+- Updated scripts/mendocino_package to remove path from find command as it is different between EL5 and EL6
+
 * Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO5
 - Updated Requires to make it easier to get a build system set up.
 
