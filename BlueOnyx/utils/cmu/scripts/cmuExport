@@ -113,7 +113,7 @@ sub preBuild
 sub postBuild
 {
 	my $cfg = shift;
-	my $chmodCmd = "/usr/bin/find ".$cfg->destDir." -type f | xargs -r chmod 640";
+	my $chmodCmd = "find ".$cfg->destDir." -type f | xargs -r chmod 640";
 	qx/$chmodCmd/;
 	cmuLog("INFO", "$0 completed at ".localtime()."\n");
 	return;

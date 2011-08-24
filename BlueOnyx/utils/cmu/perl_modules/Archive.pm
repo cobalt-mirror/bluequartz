@@ -29,7 +29,7 @@ use vars qw($archConf $archBuild);
 use File::stat;
 
 $archConf = {
-	findBin		=>	'/usr/bin/find',	
+	findBin		=>	'find',	
 	tarBin		=>	'/bin/tar',
 	gzipBin		=>	'/bin/gzip',
 	cpBin		=>	'/bin/cp',
