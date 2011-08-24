@@ -58,6 +58,10 @@ else
 {
     $i18n->setLocale(I18n::i18n_getSystemLocale($cce));
 
+    # If no 'admin' account exists, then it is likely that the group 'site-adm'
+    # doesn't exist either. So we create it here:
+    system("/usr/sbin/groupadd -f site-adm");
+
     # get system locale
     my ($sysoid) = $cce->find('System');
     my ($ok, $sysobj) = $cce->get($sysoid);
