@@ -7,6 +7,7 @@ include_once("ServerScriptHelper.php");
 
 $iam = '/base/dns/records.php';
 $addmod = '/base/dns/dns_add.php';
+$addmod_mx = '/base/dns/dns_add_mx.php';
 $soamod = '/base/dns/dns_soa.php';
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
@@ -161,7 +162,7 @@ if (count($rec_oids) == 0) {
 //  Array of labels => actions for "add a record" menu
 $addRecordsList = array("a_record" => "dns_add.php?TYPE=A" . $auth_link,
 			"ptr_record" => "dns_add.php?TYPE=PTR" . $auth_link,
-			"mx_record" => "dns_add.php?TYPE=MX" . $auth_link,
+			"mx_record" => "dns_add_mx.php?TYPE=MX" . $auth_link,
 			"cname_record" => "dns_add.php?TYPE=CNAME" . $auth_link,
 			"txt_record" => "dns_add.php?TYPE=TXT" . $auth_link);
 
@@ -277,8 +278,23 @@ if(count($rec_oids)) {
 				next;
 				echo "unkown type: ".$rec['type']."\n";
 			}
+
+			if ($rec['type'] == 'MX') {
+
+			    $block->addEntry(array(
+				$factory->getTextField("", $source, "r"),
+				$factory->getTextField("", $direction, "r"),
+				$factory->getTextField("", $resolution, "r"),
+				$factory->getCompositeFormField(array(
+					$factory->getModifyButton( "$addmod_mx?_PagedBlock_selectedId_blockid0=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link ),
+					$factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$label', '$domauth', '$netauth')" )
 	
-			$block->addEntry(array(
+				))
+			    ));
+			}
+			else {
+
+			    $block->addEntry(array(
 				$factory->getTextField("", $source, "r"),
 				$factory->getTextField("", $direction, "r"),
 				$factory->getTextField("", $resolution, "r"),
@@ -287,7 +303,9 @@ if(count($rec_oids)) {
 					$factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$label', '$domauth', '$netauth')" )
 	
 				))
-			));
+			    ));
+
+			}
 		}
 	}
 }

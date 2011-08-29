@@ -112,6 +112,23 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Aug 29 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-93BX38
+- Work around for more CobaltUI.php madness regarding the inability of 
+  of the 'Alters' function to render correct MultiChoice pulldown menus.
+  In the end we will eventually have to rewrite most of the base-dns to 
+  move away from CobaltUI.php. In this case the MX priority pulldown was 
+  freaking out as well and showed the same key/value pairs all over. 
+  To fix this, a separate ui/web/dns_add_mx.php was created using the 
+  regular UI instead. It deals with adding and modifying MX records only.
+- Added ui/web/dns_add_mx.php to add / modify MX records. SUBMIT action is
+  still handled by the old ui/web/dns_add.php.
+- Modified ui/web/dns_add.php to redirect to ui/web/dns_add_mx.php when MX
+  records are added or modified.
+- Modified ui/web/records.php to redirect to ui/web/dns_add_mx.php upon
+  modify events of MX records.
+- Added toplevel README.txt to discourage people from using CobaltUI.php
+  to code new GUI pages. Use pure UIFC instead.
+
 * Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-93BX37
 - Modified ui/web/dns.php. Oh boy, is this ugly: This page (like the rest
  of the module) uses CobaltUI.php to render HTML code. The function to

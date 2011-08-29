@@ -157,14 +157,19 @@ if ($HTTP_GET_VARS{'TYPE'} == 'PTR') {
 
 } elseif ($HTTP_GET_VARS{'TYPE'} == 'MX') {
 
-	if ($Ui->Data['mx_domain_name'] == '') { 
-		$Ui->Data['mx_domain_name'] = $dom_default; 
-	}
-	$Ui->DomainName( "mx_host_name", array( "Optional" => 'loud' ) ); 
-	$Ui->DomainName( "mx_domain_name" ); 
-	$Ui->DomainName( "mx_target_server" );
-	// $Ui->DomainName( "mx_target_server", array( "Optional" => "silent" ) );
-	$Ui->Alters( "mx_priority", array('very_high', 'high', 'low', 'very_low') ); 
+	// Redirect to new dedicated dns_add_mx.php page:
+	header("location: /base/dns/dns_add_mx.php");
+	return;
+
+	//if ($Ui->Data['mx_domain_name'] == '') { 
+	//	$Ui->Data['mx_domain_name'] = $dom_default; 
+	//}
+	//$Ui->DomainName( "mx_host_name", array( "Optional" => 'loud' ) ); 
+	//$Ui->DomainName( "mx_domain_name" ); 
+	//$Ui->DomainName( "mx_target_server" );
+	////$Ui->DomainName( "mx_target_server", array( "Optional" => "silent" ) );
+	//$Ui->Alters( "mx_priority", array('very_high', 'high', 'low', 'very_low') ); 
+
 } elseif ($HTTP_GET_VARS{'TYPE'} == 'SUBDOM') {
 
 	if ( ! $Ui->Data['subdom_domain_name'] ) { 
@@ -226,7 +231,7 @@ $Ui->AddButtons($ret_url);
 $Ui->EndBlock();
 $Ui->EndPage();
 
-function handle(&$Ui, $target, &$mapping, &$post_vars, &$get_vars, &$nm_to_dec, &$dec_to_nm)
+function handle($Ui, $target, $mapping, $post_vars, $get_vars, $nm_to_dec, $dec_to_nm)
 {
 	// echo "<b>handle $target</b><br>";
 	
@@ -257,7 +262,7 @@ function handle(&$Ui, $target, &$mapping, &$post_vars, &$get_vars, &$nm_to_dec, 
 	return 0;
 }
 	
-function handle_load(&$Ui, $oid, &$dec_to_nm)
+function handle_load($Ui, $oid, $dec_to_nm)
 {
 	// load object attributes
 	$rec = $Ui->Cce->get($oid);
@@ -323,7 +328,7 @@ function handle_load(&$Ui, $oid, &$dec_to_nm)
 	}
 }
 
-function handle_post(&$ui, $target, &$mapping, &$post_vars)
+function handle_post($ui, $target, $mapping, $post_vars)
 {
 	while (list($key,$val) = each($mapping))
 	{
@@ -348,7 +353,7 @@ function map_vars($mapping, $post_vars)
 	return $obj;
 }
 
-function update_cce(&$Ui, $target, $mapping, $http_vars, $nm_to_dec)
+function update_cce($Ui, $target, $mapping, $http_vars, $nm_to_dec)
 {
 	$oid = 0;
 	// create record; first determine type
