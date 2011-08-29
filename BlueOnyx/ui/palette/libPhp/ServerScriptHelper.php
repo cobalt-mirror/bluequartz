@@ -120,9 +120,6 @@ class ServerScriptHelper {
     </TR></TABLE>
     </CENTER>
   </BODY>
-  <HEAD>
-    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-  </HEAD>
 </HTML>");
             exit;
         }
@@ -156,9 +153,6 @@ class ServerScriptHelper {
     }
     </SCRIPT>
   </BODY>
-  <HEAD>
-    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-  </HEAD>
 </HTML>");
 	            exit;
             }
@@ -187,9 +181,6 @@ class ServerScriptHelper {
     }
     </SCRIPT>
   </BODY>
-  <HEAD>
-    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-  </HEAD>
 </HTML>");
 	            exit;
             }
@@ -679,9 +670,6 @@ class ServerScriptHelper {
 $errorJavascript
 $post_vars_html
   </BODY>
-  <HEAD>
-    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-  </HEAD>
 </HTML>
 ";
   }

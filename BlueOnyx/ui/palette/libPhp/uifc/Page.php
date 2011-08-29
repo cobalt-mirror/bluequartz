@@ -218,14 +218,12 @@ $formHeader
 
     // Pragma: no-cache again because IE is buggy.
     // See http://support.microsoft.com/support/kb/articles/Q222/0/64.ASP
+    // No longer needed. Removing trailing head section - mstauber
     return "
 $formFooter
 $center
 </FONT>
 </BODY>
-<HEAD>
-<META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-</HEAD>
 </HTML>
 ";
   }

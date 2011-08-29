@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX15%{?dist}
+Release: 0BX16%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,13 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Mon Aug 29 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX16
+- Modified libPhp/ServerScriptHelper.php libPhp/uifc/Page.php libPhp/utils/page.php
+  to remove trailing head block from all pages to make pages more compliant with 
+  proper HTML standards. The trailing head block with a pragma to not cache GUI
+  pages was once added as a work around for a really ancient version of Internet
+  Explorer, which since long has been retired. So we do not need this anymore.
 
 * Tue Aug 16 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX15
 - Modified libPhp/uifc/FormFieldBuilder.php as there may only be three parameters instead of four to htmlspecialchars.
