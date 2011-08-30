@@ -17,6 +17,7 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [BUILDARCH]
 Obsoletes: solarspeed-mod_php  <= 5.2.6
 Obsoletes: solarspeed-mod_php-gui <= 5.2.6
+Obsoletes: nuonce-hostsfix
 
 [PROVIDES]
 
@@ -129,6 +130,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Aug 30 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX86
+- Incorporated a modified version of nuonce-hostfix. This module now obsoletes nuonce-hostfix.
+- Modified glue/conf/vsite.conf to get the hostfixing going.
+- Added constructor/fixhosts.
+- Added glue/handlers/fixhosts.pl to call the constructor shell script. Which is a bit dirty, but OK in this case.
 
 * Tue Aug 23 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX85
 - New feature: Our suPHP integration now supports (and creates) custom php.ini configs in the Vsite basedir.

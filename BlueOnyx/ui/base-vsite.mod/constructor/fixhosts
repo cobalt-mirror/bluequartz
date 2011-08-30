@@ -1,0 +1,17 @@
+#!/bin/bash
+# Author: Brian N. Smith
+# Copyright 2005, NuOnce Networks.  All rights reserved.
+# $Id: fixhosts,v 1.00 2005/11/11 0:01:56 bsmith Exp $
+
+/bin/mv /etc/hosts /etc/.hosts
+/bin/sed ':start; /### Begin - Nuonce hosts Fix.*/{; :loop; N; /###  End  - Nuonce hosts Fix.*/!{; s/.*//; b loop; }; d; b start; };' /etc/.hosts > /etc/hosts
+/bin/rm -f /etc/.hosts
+/bin/echo "### Begin - Nuonce hosts Fix" >> /etc/hosts
+ips=`ifconfig | grep inet | cut -d: -f2 | cut -d' ' -f1`
+for ip in $ips; do 
+  cat /etc/hosts | grep $ip >/dev/null
+  /usr/bin/printf "$ip\t`hostname`\n" >> /etc/hosts
+done
+/bin/echo "###  End  - Nuonce hosts Fix" >> /etc/hosts
+/bin/chmod 644 /etc/hosts
+exit 0
