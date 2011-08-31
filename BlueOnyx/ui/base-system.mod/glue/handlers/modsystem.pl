@@ -39,7 +39,7 @@ if ($obj->{domainname} && $obj->{hostname} !~ m/\.$obj->{domainname}$/) {
   $name = join(".",($obj->{hostname},$obj->{domainname}));
 }
 $name =~ s/\.+/\./g;
-if (length($name) > 40) {
+if (length($name) > 70) {
   $cce->baddata(0, 'hostname', 'hostname-too-long');
   $cce->bye('FAIL');
   exit 1;
