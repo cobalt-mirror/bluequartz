@@ -37,6 +37,26 @@ expect {
     }
 }
 
+send "HELO localhost\r"
+expect {
+    "250 " {}
+    default { # fail if we're not ack-ed properly
+      puts -nonewline $env(redMsg);
+      flush stdout;
+      exit $AM_STATE_RED
+    }
+}
+
+send "MAIL FROM:<>\r"
+expect {
+    "250 " {}
+    default { # fail if we're not ack-ed properly
+      puts -nonewline $env(redMsg);
+      flush stdout;
+      exit $AM_STATE_RED
+    }
+}
+
 send "QUIT\r"
 expect {
     "221 " {}
