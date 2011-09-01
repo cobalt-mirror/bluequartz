@@ -63,6 +63,14 @@ if(($encoding=$i18n->getProperty("encoding","palette"))!="none")
 <META HTTP-EQUIV="expires" CONTENT="-1">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <TITLE><?php print($title);?></TITLE>
+<script language="javascript" type="text/javascript">
+if (self != top) {
+    if (document.images)
+        top.location.replace(window.location.href);
+    else
+        top.location.href = window.location.href;
+}
+</script>
 <SCRIPT LANGUAGE="javascript">
 // global
 var siteMap;
