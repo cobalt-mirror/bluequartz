@@ -67,27 +67,30 @@ if (defined($new->{hostname}) || defined($new->{domainname}))
   system('/bin/hostname', $name);
 }
 
-if (defined($new->{hostname}) 
-  || defined($new->{domainname})
-  || defined($new->{gateway}) )
-{
+if (defined($new->{hostname}) || defined($new->{domainname}) || defined($new->{gateway}) ) {
   # update /etc/sysconfig/network
   {
-    my $fn = sub {
+      my $fn = sub {
       my ($fin, $fout) = (shift,shift);
       my ($name, $gateway) = (shift, shift);
       my %hash = ();
       while ($_ = <$fin>) {
-      	chomp($_);
-      	if (m/^\s*([A-Za-z0-9_]+)\s*\=\s*(.*)/) { $hash{$1} = $2; }
+        chomp($_);
+        if (m/^\s*([A-Za-z0-9_]+)\s*\=\s*(.*)/) { 
+	    $hash{$1} = $2; 
+	}
       }
       $hash{HOSTNAME} = $name;
       $hash{NETWORKING} = "yes";
       $hash{FORWARD_IPV4} = $hash{FORWARD_IPV4} || "false";
-      $hash{GATEWAY} = $gateway || $hash{GATEWAY} || "";
-      if (defined($gateway)) { $hash{GATEWAY} = $gateway; };
+
+      if (!-e "/etc/is_aws") {
+	  $hash{GATEWAY} = $gateway || $hash{GATEWAY} || "";
+	  if (defined($gateway)) { $hash{GATEWAY} = $gateway; };
+      }
+
       foreach $_ ( sort keys %hash ) {
-      	print $fout $_,"=",$hash{$_},"\n";
+        print $fout $_,"=",$hash{$_},"\n";
       }
       return 1;
     };
