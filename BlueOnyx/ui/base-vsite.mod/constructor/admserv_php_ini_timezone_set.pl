@@ -51,31 +51,6 @@ if ($whatami eq "constructor") {
 $cce->bye('SUCCESS');
 exit(0);
 
-# Read and parse php.ini:
-sub ini_read {
-    open (F, $php_ini) || die "Could not open $php_ini: $!";
-
-    while ($line = <F>) {
-        chomp($line);
-        next if $line =~ /^\s*$/;               	# skip blank lines
-        next if $line =~ /^\;*$/;               	# skip comment lines
-        next if $line =~ /^url_rewriter(.*)$/;    	# skip line starting with url_rewriter.tags
-        if ($line =~ /^([A-Za-z_\.]\w*)/) {		
-	    $line =~s/\s//g; 				# Remove spaces
-	    $line =~s/;(.*)$//g; 			# Remove trailing comments in lines
-	    $line =~s/\"//g; 				# Remove double quotation marks
-
-            @row = split (/=/, $line);			# Split row at the equal sign
-    	    $CONFIG{$row[0]} = $row[1];			# Hash the splitted row elements
-        }
-    }
-    close(F);
-
-    # At this point we have all switches from php.ini cleanly in a hash, split in key / value pairs.
-    # To read how "safe_mode" is set we query $CONFIG{'safe_mode'} for example. 
-
-}
-
 sub edit_php_ini {
 
     # Build output hash:
