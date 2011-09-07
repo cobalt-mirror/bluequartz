@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX17%{?dist}
+Release: 0BX18%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,11 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX18
+- Updated libPhp/uifc/TimeStamp.php used to set the TimeZone to UTC, which is a bad idea.
+  We want our date and time form fields to show the server time instead. For this we now
+  depend on 'date.timezone' in /etc/admserv/php.ini being set to the servers timezone.
 
 * Thu Sep 01 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX17
 - Modified web/nav/cList.php to make it break out of a frameset if it has been loaded into one.

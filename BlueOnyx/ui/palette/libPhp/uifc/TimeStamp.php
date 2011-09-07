@@ -77,7 +77,11 @@ class TimeStamp extends FormField {
     $builder = new FormFieldBuilder();
 
     // get selected values
-    date_default_timezone_set('UTC');
+    //date_default_timezone_set('UTC');
+    // ^ Hell no! We don't set the TimeZone to UTC!
+    //
+    // We use the TZ as defined in php.ini, which is now set to the system
+    // TZ through the GUI and corresponding handlers and constructors! 
     $selectedMonth = date("m", $value)-1;
     $selectedDay = date("d", $value)-1;
     $selectedYear = date("Y", $value);
