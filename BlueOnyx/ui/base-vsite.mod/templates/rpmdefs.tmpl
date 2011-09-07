@@ -131,6 +131,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX87
+- PHP-5.3 requires us to set 'date.timezone' somewhere. Either in php.ini or in our scripts. So we now set it
+  globally in /etc/admserv/php.ini and /etc/php.ini (or the corresponding third party php.ini - if applicable).
+  For this we read the configured system TZ data and write it off into our php.ini's.
+- Added constructor/admserv_php_ini_timezone_set.pl to set TZ in our php.ini's.
+- Modified glue/conf/vsite.conf to call glue/handlers/php_tz_handler.pl on TZ changes.
+- Added glue/handlers/php_tz_handler.pl to set TZ in our php.ini's on TZ changes.
+- Modified glue/handlers/php_handler.pl to also write TZ changes into Apache's php.ini.
+
 * Tue Aug 30 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX86
 - Incorporated a modified version of nuonce-hostfix. This module now obsoletes nuonce-hostfix.
 - Modified glue/conf/vsite.conf to get the hostfixing going.

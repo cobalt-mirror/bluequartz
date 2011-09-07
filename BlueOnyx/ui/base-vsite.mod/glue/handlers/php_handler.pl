@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: php_handler.pl, v1.2.0.0 Mon 01 Dec 2008 05:36:01 AM CET mstauber Exp $
-# Copyright 2006-2008 Solarspeed Ltd. All rights reserved.
+# Copyright 2006-2008 Solarspeed.net. All rights reserved.
+# Copyright 2008-2011 Team BlueOnyx. All rights reserved.
 
 # This handler is run whenever a CODB Object called "PHP" is created, destroyed or 
 # modified. 
@@ -68,6 +69,11 @@ if ($whatami eq "handler") {
     @oids = $cce->find('PHP', { 'applicable' => 'server' });
     ($ok, $server_php_settings) = $cce->get($oids[0]);
     $PHP_server_OID = $oids[0];
+
+    # Get system Timezone out of CODB:
+    @system_oid = $cce->find('System');
+    ($ok, $tzdata) = $cce->get($system_oid[0], "Time");
+    $timezone = $tzdata->{'timeZone'};
 
     # Check for presence of third party config file:
     &thirdparty_check;
@@ -209,7 +215,8 @@ sub items_of_interest {
         'upload_max_filesize',
         'max_execution_time',
         'max_input_time',
-        'memory_limit'
+        'memory_limit',
+        'date.timezone'
         );
 }
 
@@ -228,7 +235,8 @@ sub edit_php_ini {
 		'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"},
 		'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
 		'max_input_time' => $server_php_settings->{"max_input_time"}, 
-		'memory_limit' => $server_php_settings->{"memory_limit"} 
+		'memory_limit' => $server_php_settings->{"memory_limit"}, 
+		'date.timezone' => "'" . $timezone . "'"
 	};
     }
     else {
@@ -250,7 +258,8 @@ sub edit_php_ini {
 		'upload_max_filesize' => $server_php_settings->{"upload_max_filesize"},
 		'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
 		'max_input_time' => $server_php_settings->{"max_input_time"}, 
-		'memory_limit' => $server_php_settings->{"memory_limit"} 
+		'memory_limit' => $server_php_settings->{"memory_limit"},
+		'date.timezone' => "'" . $timezone . "'"
 	};
     }
 
