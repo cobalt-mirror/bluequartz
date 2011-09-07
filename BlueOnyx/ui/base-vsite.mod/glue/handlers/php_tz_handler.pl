@@ -8,6 +8,9 @@
 
 # Debugging switch:
 $DEBUG = "0";
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 # Uncomment correct type:
 #$whatami = "constructor";
@@ -68,7 +71,6 @@ if ($whatami eq "handler") {
     @system_oid = $cce->find('System');
     ($ok, $tzdata) = $cce->get($system_oid[0], "Time");
     $timezone = $tzdata->{'timeZone'};
-
 
     # Check for presence of third party config file:
     &thirdparty_check;
@@ -152,6 +154,17 @@ sub edit_php_ini {
         exit(1);
     }
 
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 $cce->bye('SUCCESS');

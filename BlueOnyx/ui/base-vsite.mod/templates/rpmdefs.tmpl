@@ -131,6 +131,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX88
+- Updated glue/handlers/php_vsite_handler.pl to add 'date.timezone' to suPHP Vsite's php.ini's as well.
+- Updated glue/handlers/php_tz_handler.pl again. Ideally it should update the TZ data of suPHP Vsite's php.ini's
+  as well. But this apparently cannot be done in an easy fashions via CCE set commands. Put it off for now.
+
 * Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX87
 - PHP-5.3 requires us to set 'date.timezone' somewhere. Either in php.ini or in our scripts. So we now set it
   globally in /etc/admserv/php.ini and /etc/php.ini (or the corresponding third party php.ini - if applicable).

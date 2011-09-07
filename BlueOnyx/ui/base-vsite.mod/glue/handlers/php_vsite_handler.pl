@@ -48,6 +48,7 @@ $thirdparty = "/etc/thirdparty_php";
 # Location of php.ini - may get overridden by thirdparty_check():
 $php_ini = "/etc/php.ini";
 
+
 if ($whatami eq "handler") {
     $cce->connectfd();
 
@@ -70,6 +71,11 @@ if ($whatami eq "handler") {
         # Older PHP found:
         $legacy_php = "1";
     }
+
+    # Get system Timezone out of CODB:
+    @system_oid = $cce->find('System');
+    ($ok, $tzdata) = $cce->get($system_oid[0], "Time");
+    $timezone = $tzdata->{'timeZone'};
 
     # Check for presence of third party config file:
     &thirdparty_check;
@@ -358,7 +364,9 @@ sub edit_php_ini {
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
-                'memory_limit' => $vsite_php_settings->{"memory_limit"} 
+                'memory_limit' => $vsite_php_settings->{"memory_limit"},
+		'date.timezone' => "'" . $timezone . "'"
+
         };
     }
     else {
@@ -378,7 +386,8 @@ sub edit_php_ini {
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
-                'memory_limit' => $vsite_php_settings->{"memory_limit"} 
+                'memory_limit' => $vsite_php_settings->{"memory_limit"},
+		'date.timezone' => "'" . $timezone . "'" 
         };
     }
 
