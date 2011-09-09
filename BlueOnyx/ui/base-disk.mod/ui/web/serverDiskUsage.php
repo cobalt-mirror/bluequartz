@@ -116,9 +116,12 @@ if ($disk_usage->getSelectedId() == 'summary'
       //refresh partition info first
 	$cce->set($partitions[$i], '', array('refresh' => time()));
         $disk = $cce->get($partitions[$i]);
-        $used = sprintf("%.2f", round(100 * ($disk['used'] / 1024)) / 100);
-        $total = sprintf("%.2f", round(100 * ($disk['total'] / 1024)) / 100);
-        $percent = round(100 * ($disk['used'] / $disk['total']));
+        
+        if ($disk['used'] && $disk['total']) {
+    	    $used = sprintf("%.2f", round(100 * ($disk['used'] / 1024)) / 100);
+    	    $total = sprintf("%.2f", round(100 * ($disk['total'] / 1024)) / 100);
+    	    $percent = round(100 * ($disk['used'] / $disk['total']));
+    	}
 
         $label =& $factory->getTextField($i, 
                     ($disk['label'] ? $disk['label'] : $disk['mountPoint']),
@@ -726,35 +729,37 @@ else // handle groups
             $percent = 0;
 
 	$url = "/base/disk/groupDiskUsage.php?group=" . urlencode($name) . ($activeMonitor == 1 ? '&activeMonitor=1' : '&serverDiskUsage=1');
-        $label =& $factory->getUrl($i, $url, $fqdn, '', 'r');
-        $label->setPreserveData(false);
-        $used_field =& $factory->getInteger("used$i", $used, '', '', 'r');
-        $used_field->setPreserveData(false);
+	
+	if ($fqdn != "") { 
+	
+    	    $label =& $factory->getUrl($i, $url, $fqdn, '', 'r');
+    	    $label->setPreserveData(false);
+    	    $used_field =& $factory->getInteger("used$i", $used, '', '', 'r');
+    	    $used_field->setPreserveData(false);
+    
 
-        if ($total > 0)
-        {
+    	    if ($total > 0) {
             $total_field =& $factory->getInteger("total$i", $total, 
                                     '', '', 'r');
-        }
-        else
-        {
-            $total_field =& $factory->getTextField("total$i", 
+    	    }
+    	    else  {
+        	$total_field =& $factory->getTextField("total$i", 
                             $i18n->interpolateHtml('[[base-disk.unlimited]]'),
                             'r');
-        }
+    	    }
         
-        $total_field->setPreserveData(false);
+    	    $total_field->setPreserveData(false);
 
-	if ($percent > $am_obj['red_pcnt']) {
-	  $status =& $factory->getStatusSignal('severeProblem');
-	} else if ($user_over_quota || 
+	    if ($percent > $am_obj['red_pcnt']) {
+		$status =& $factory->getStatusSignal('severeProblem');
+	    } else if ($user_over_quota || 
 		   ($percent > $am_obj['yellow_pcnt'])) {
-	  $status =& $factory->getStatusSignal('problem');
-	} else {
-	  $status =& $factory->getStatusSignal('normal');
-	}
+	    $status =& $factory->getStatusSignal('problem');
+	    } else {
+		$status =& $factory->getStatusSignal('normal');
+	    }
 
-        $usage_list->addEntry(
+    	    $usage_list->addEntry(
                 array(
 		    $status,
                     $label,
@@ -763,6 +768,7 @@ else // handle groups
                     $factory->getBar("bar$i", $percent)
                 ),
                 '', false, $i);
+	}
     }
 
     if ($hasWorkgroups) {
