@@ -33,6 +33,14 @@ if (not $ok) {
     exit(1);
 }
 
+# Change permissions on Vsite homedir on suspend/unsuspend:
+if ($vsite->{suspend} == "1") {
+    vsite_disable($cce, $vsite->{name});
+}
+else {
+    vsite_enable($cce, $vsite->{name});
+}
+
 # suspend/unsuspend all site users
 my @users = ();
 if ($vsite->{suspend}) {
