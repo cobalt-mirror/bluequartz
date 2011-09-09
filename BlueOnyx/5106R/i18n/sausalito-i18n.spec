@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BQ19%{?dist}
+Release: 86BQ23%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,15 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Fri Sep 09 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX23
+- On 5107R the GUI defaulted to something non English (mostly German) if the
+  browser locale wasn't one of our supported locales. I tried to fix this
+  through work arounds both in perl/I18n.pm and php/I18n.php
+- Modified perl/I18n.pm to make sure 'en' comes first in the list of
+  supported locales.
+- Modified php/I18n.php to make sure that if no supported locale is detected,
+  then 'en' will be used instead.
+
 * Mon Jun 22 2009 Rickard osser <rickard.osser@bluapp.com> 0.70.2-86BQ19
 - Fixed bug which added characters to mime-encoded headers in I18nMail.pm.
 

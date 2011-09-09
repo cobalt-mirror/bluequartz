@@ -106,14 +106,16 @@ sub getAvailableLocales
 	my $lang_defined = 0;
 	if (!defined($ENV{LANG})) {
 		$lang_defined = 1;
-		$ENV{LANG} = 'en';
+		$ENV{LANG} = 'en_US';
 	}
 
 	# safe pipe read to prevent running via the shell
 	open(LOCALES, "-|") || exec(@cmd);
 	while (my $locale = <LOCALES>) {
 		chomp($locale);
-		push @locales, $locale;
+		if ($locale ne "en") { # we use 'en_US' instead!
+		    push @locales, $locale;
+		}
 	}
 	close(LOCALES);
 
@@ -121,7 +123,14 @@ sub getAvailableLocales
 		$ENV{LANG} = undef;
 	}
 
-	return @locales;
+	# Sort in a way that 'en_US' or 'en' always comes first:
+	@sorted_locales = sort {
+	    if (($a eq 'en') || ($a eq 'en_US')) { return -1; }
+	    elsif (($b eq 'en') || ($b eq 'en_US')) { return 1; }
+	    else { return $a cmp $b; }
+	} @locales;
+
+	return @sorted_locales;
 }
 		
 sub get
