@@ -7,6 +7,7 @@
 # is suspended.
 
 use CCE;
+use Vsite;
 
 my $cce = new CCE;
 $cce->connectfd();
