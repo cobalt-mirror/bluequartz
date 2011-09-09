@@ -123,7 +123,14 @@ sub getAvailableLocales
 		$ENV{LANG} = undef;
 	}
 
-	return @locales;
+	# Sort in a way that 'en_US' or 'en' always comes first:
+	@sorted_locales = sort {
+	    if (($a eq 'en') || ($a eq 'en_US')) { return -1; }
+	    elsif (($b eq 'en') || ($b eq 'en_US')) { return 1; }
+	    else { return $a cmp $b; }
+	} @locales;
+
+	return @sorted_locales;
 }
 		
 sub get

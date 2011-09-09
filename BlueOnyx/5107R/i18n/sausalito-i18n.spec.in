@@ -93,6 +93,15 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Fri Sep 09 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX23
+- On 5107R the GUI defaulted to something non English (mostly German) if the
+  browser locale wasn't one of our supported locales. I tried to fix this
+  through work arounds both in perl/I18n.pm and php/I18n.php
+- Modified perl/I18n.pm to make sure 'en_US' comes first in the list of
+  supported locales.
+- Modified php/I18n.php to make sure that if no supported locale is detected,
+  then 'en_US' will be used instead.
+
 * Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
 - Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
 
