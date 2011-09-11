@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX23%{?dist}
+Release: 86BX24%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Sun Sep 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX24
+- Modified perl/I18n.pm again as it was now dropping 'en' support entirely. Doh.
+
 * Fri Sep 09 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX23
 - On 5107R the GUI defaulted to something non English (mostly German) if the
   browser locale wasn't one of our supported locales. I tried to fix this
