@@ -19,6 +19,7 @@ $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-yum");
 $i18n = $serverScriptHelper->getI18n("base-yum");
 
+// Start Output generation:
 $page = $factory->getPage();
 print($page->toHeaderHtml());
 
@@ -36,10 +37,10 @@ else {
 if ($online == "1") {
 
     // General parameters for the scroll list:
-    $scrollList = $factory->getScrollList("[[base-yum.RSSnewsTitle]]", array("title", "desc", "date", "link"));
-    $scrollList->setAlignments(array("left", "left", "center", "center"));
+    $scrollList = $factory->getScrollList("[[base-yum.RSSnewsTitle]]", array("title", "desc", "date", "internal", "link"));
+    $scrollList->setAlignments(array("left", "left", "center", "center", "center"));
     $scrollList->setSortEnabled(false);
-    $scrollList->setColumnWidths(array("250", "*", "120", "25"));
+    $scrollList->setColumnWidths(array("250", "*", "120", "25", "25"));
     $scrollList->setWidth("100%");
 
     // Process the RSS feed:
@@ -62,16 +63,26 @@ if ($online == "1") {
     $num = "0";
     while ($num < $bx_num) {
 
-	// Create the image link button for the news article URL:
-	$linkButton = new ImageButton($page, $news[3][$num], "/libImage/visitWebsite.gif", "openPdf", "openURL_help");
-	$linkButton->setTarget('_self');
+	// Create the image link button for the external news article URL:
+	preg_match_all("/articleid=(.*)&(.*)/Uism", $news[3][$num], $article_id);
+	$article = $article_id[1][0];
+
+	$linkInternal = $factory->getDetailButton("javascript: location='/base/swupdate/rss-article.php?id=$article'; top.code.flow_showNavigation(false)");
+
+	//$linkInternal = new ImageButton($page, $news[3][$num], "/libImage/visitWebsite.gif", "openPdf", "openURL_help");
+	$linkInternal->setTarget('_self');
+
+	// Create the image link button for the external news article URL:
+	$linkExternal = new ImageButton($page, $news[3][$num], "/libImage/visitWebsite.gif", "openPdf", "openURL_help");
+	$linkExternal->setTarget('_self');
 
 	// Populate the scroll list rows:
 	$scrollList->addEntry(array(
 	    $factory->getTextField("", $news[0][$num], "r"),
 	    $factory->getTextField("", $news[1][$num], "r"),
 	    $factory->getTextField("", $news[2][$num], "r"),
-	    $linkButton
+	    $linkInternal,
+	    $linkExternal
         ));
 	$num++;
     }
@@ -95,7 +106,9 @@ else {
 
 }
 
+// Finish the rest of the page generation:
 print($page->toFooterHtml());
+$serverScriptHelper->destructor();
 
 function getRssfeed($rssfeed, $cssclass="", $encode="auto", $howmany=10, $mode=0) {
 	// $encode e[".*"; "no"; "auto"]
@@ -199,6 +212,11 @@ function getRssfeed($rssfeed, $cssclass="", $encode="auto", $howmany=10, $mode=0
 function areWeOnline($domain) {
     // Check to see if we're online and if the desired URL is reachable.
     // Returns true, if URL is reachable, false if not
+
+    // Check if a valid url is provided:
+    if(!filter_var($domain, FILTER_VALIDATE_URL)) {
+	return false;
+    }
 
    // Initialize curl:
    $curlInit = curl_init($domain);
