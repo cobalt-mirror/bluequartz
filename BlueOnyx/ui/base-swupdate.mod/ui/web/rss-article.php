@@ -148,12 +148,7 @@ function get_data($url) {
 function areWeOnline($domain) {
     // Check to see if we're online and if the desired URL is reachable.
     // Returns true, if URL is reachable, false if not
-                 
-    // Check if a valid url is provided:
-    if(!filter_var($domain, FILTER_VALIDATE_URL)) {
-        return false;   
-    }            
-        
+
    // Initialize curl:
    $curlInit = curl_init($domain);
    curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
