@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX24%{?dist}
+Release: 86BX25%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,13 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25
+- Ok, last time around we broke Japanese. I wonder what we break this time.
+- Modified php/I18n.php again. On 5106R we use 'ja' and ignore and hide 
+  'ja_JP' from the list of available languages. Somehow the last change 
+  rendered the locale switch to 'ja' ineffective and it stuck on 'en'
+  instead.
+
 * Sun Sep 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX24
 - Modified perl/I18n.pm again as it was now dropping 'en' support entirely. Doh.
 
