@@ -113,7 +113,10 @@ sub getAvailableLocales
 	open(LOCALES, "-|") || exec(@cmd);
 	while (my $locale = <LOCALES>) {
 		chomp($locale);
-		if ($locale ne "en") { # we use 'en_US' instead!
+		if (($locale ne "en") && ($locale ne "ja_JP")) { 
+		    # We use 'en_US' instead of 'en'. At the same time we use 'jp' instead of 'jp_JP'.
+		    # This if clause essentially makes the GUI hide the language options for 'en' and
+		    # 'ja_JP' and instead shows 'en_US' and 'ja' instead. Yes, this is confusing.
 		    push @locales, $locale;
 		}
 	}
