@@ -114,6 +114,11 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /etc/rc.d/init.d/*
 /etc/pam.d/*
 /lib/security/*
+# For 64-bit pam_abl if this is a 64-bit system:
+%ifarch x86_64 
+/lib64/security/*
+%endif
+
 /var/lib/abl
 /usr/bin/pam_abl
 /usr/sausalito/bin/pam_abl_gui
@@ -182,6 +187,10 @@ fi
 %changelog
 
 %changelog 
+
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX04
+- Updated pam_abl/Makefile and file-list in sausalito-cce.spec.in to make pam_abl build correctly on 32-bit and 64-bit.
+
 * Fri Aug 19 2011 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX03
 - Removed LOCKDEBUG strings from codb/src/impl/oid.c again.
 

@@ -4,7 +4,8 @@
 include ../dynamic.mk
 
 CFLAGS=-Wall -fPIC
-PAMDIR=$(PREFIX)/lib/security
+MODULESLIBDIR=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "lib64"; else  echo -n "lib"; fi)
+PAMDIR=$(PREFIX)/$(MODULESLIBDIR)/security
 CONFDIR=$(PREFIX)/etc/security
 DBDIR=$(PREFIX)/var/lib/abl
 LIBS=-ldb -lpthread
@@ -26,6 +27,7 @@ clean :
 	for d in $(SUBXDIRS) ; do cd $$d && make $@ && cd .. ; done
 
 install : $(MODULE)
+	mkdir -p $(PAMDIR)
 	install --mode=755 --strip $(MODULE) $(PAMDIR)
 	install --mode=644 conf/pam_abl.conf $(CONFDIR)
 	install -d --mode=755 $(DBDIR)
