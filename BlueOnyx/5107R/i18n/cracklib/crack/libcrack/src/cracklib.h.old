@@ -24,45 +24,29 @@
 #endif
 
 #ifdef HAVE_CONFIG_H
-# include "../../config.h"
+# include "config.h"
 #endif
 
-#ifdef HAVE_SYS_TYPES_H
-# include <sys/types.h>
-#endif
-
-#ifdef IN_CRACKLIB
-# define MALLOC(x)                          (malloc(x))
-# define FREE(x)                            (free(x))
-#else
+#if HAVE_CRACK_BUNDLED || defined(WIN32)
 # include "php.h"
 # include "php_ini.h"
 # include "ext/standard/info.h"
 # include "../../php_crack.h"
 # define MALLOC(x)                          (emalloc(x))
 # define FREE(x)                            (efree(x))
-#endif
-
-#ifdef HAVE_U_INT8_T
-typedef u_int8_t int8;
+#elif defined(IN_CRACKLIB)
+# define MALLOC(x)                          (malloc(x))
+# define FREE(x)                            (free(x))
 #else
-typedef unsigned char int8;
-#endif
-
-#ifdef HAVE_U_INT16_T
-typedef u_int16_t int16;
-#else
-typedef unsigned short int int16;
-#endif
-
-#ifdef HAVE_U_INT32_T
-typedef u_int32_t int32;
-#else
-typedef unsigned int int32;
+# error not available yet
 #endif
 
 #define STRINGSIZE                          1024
 #define TRUNCSTRINGSIZE                     (STRINGSIZE/4)
+
+typedef unsigned char int8;
+typedef unsigned short int int16;
+typedef unsigned long int int32;
 
 #ifndef NUMWORDS
 # define NUMWORDS                           16

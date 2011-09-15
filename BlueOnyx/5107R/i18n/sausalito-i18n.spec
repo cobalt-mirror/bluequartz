@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX24%{?dist}
+Release: 86BX25%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,11 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25
+- Crackling failed on 64-bit due to this error: http://pecl.php.net/bugs/bug.php?id=9710
+- Fetched updated cracklib/crack/libcrack/src/cracklib.h from PECL SVN.
+- Previous version of it added to our SVN as cracklib/crack/libcrack/src/cracklib.h.old
+
 * Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX24
 - Ok, last time around we broke Japanese. I wonder what we break this time.
 - Modified perl/I18n.pm and php/I18n.php again. On 5107R we use 'ja' and 
