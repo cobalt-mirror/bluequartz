@@ -23,10 +23,12 @@ WORKERS=workers.properties
 USERSDIR = $(PREFIX)/etc/tomcat6
 USERS=tomcat-users.xml.dist tomcat6.logrotate.dist
 
-MODULES = $(PREFIX)/usr/lib/httpd/modules
+# Specify the right lib dir for 32-bit and 64-bit:
+MODULESLIBDIR=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "lib64"; else  echo -n "lib"; fi)
+MODULES = $(PREFIX)/usr/$(MODULESLIBDIR)/httpd/modules
 
-# Use the right mod_jk.so based on the architecture
-MODULEJK=$(shell if [ `uname -m` = "x86_64" ]; then  echo "64-bit.el6/mod_jk.so"; else  echo "32-bit.el6/mod_jk.so"; fi) 
+# Use the right mod_jk.so based on the architecture:
+MODULEJK=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "64-bit.el6/mod_jk.so"; else  echo -n "32-bit.el6/mod_jk.so"; fi)
 #MODULEJK=mod_jk.so
 
 SCRIPTS=java_load_war.pl

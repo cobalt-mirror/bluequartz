@@ -54,7 +54,13 @@ information for [VENDOR]-[SERVICE].
 %config(noreplace)/etc/tomcat6/tomcat-users.xml.dist
 %config(noreplace)/etc/tomcat6/tomcat6.logrotate.dist
 %attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
+
+%ifarch %ix86
 %attr(0755,root,root)/usr/lib/httpd/modules/mod_jk.so
+%endif
+%ifarch x86_64
+%attr(0755,root,root)/usr/lib64/httpd/modules/mod_jk.so
+%endif
 
 [AUTOFILL]
 <end glue>

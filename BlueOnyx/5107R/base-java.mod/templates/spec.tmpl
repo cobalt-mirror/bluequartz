@@ -42,6 +42,10 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-11
+- Updated glue/Makefile to remove some trailing spaces.
+- Added architecture-specific if-clause to specfile file-list
+
 * Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-10
 - Readied for 5108R. Pre-compiled mod_jk.so's moved to glue/modules/32-bit.el6/mod_jk.so
   and glue/modules/64-bit.el6/mod_jk.so
