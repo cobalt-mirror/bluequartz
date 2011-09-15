@@ -42,6 +42,12 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-10
+- Readied for 5108R. Pre-compiled mod_jk.so's moved to glue/modules/32-bit.el6/mod_jk.so
+  and glue/modules/64-bit.el6/mod_jk.so
+- Updated glue/Makefile to pick the right one.
+- Yes, ideally we'd need to compile mod_jk.so on 'make', but this will do for now.
+
 * Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-9
 - Copied the 'en_US' locales to 'ja' and 'da_DK', as we don't have 
   Japanese or Danish locales for this module yet.
