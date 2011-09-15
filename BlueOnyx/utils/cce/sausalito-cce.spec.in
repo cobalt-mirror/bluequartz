@@ -182,6 +182,9 @@ fi
 %changelog
 
 %changelog 
+* Fri Aug 19 2011 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX03
+- Removed LOCKDEBUG strings from codb/src/impl/oid.c again.
+
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX02
 - Version number changed for better consistency.
 

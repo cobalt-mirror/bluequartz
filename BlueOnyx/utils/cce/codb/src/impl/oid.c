@@ -23,14 +23,14 @@ flock_wait(int fd)
          if (flock(fd, LOCK_EX | LOCK_NB) == 0)
          {
              /* file locked successfully */
-     	     CCE_SYSLOG("LOCKDEBUG: Locked file %s: %m");
+     	     /* CCE_SYSLOG("LOCKDEBUG: Locked file %s: %m"); */
              return;
          }
          usleep(i * 1E6 / 100);    /* a tenth of a second */
-     	 CCE_SYSLOG("LOCKDEBUG: Unable to lock file %s: %m - sleeping");
+     	 /* CCE_SYSLOG("LOCKDEBUG: Unable to lock file %s: %m - sleeping"); */
      }
      /* Could not lock - return nonetheless, which is suboptimal */
-     CCE_SYSLOG("LOCKDEBUG: Unable to lock file %s: %m - returning");
+     /* CCE_SYSLOG("LOCKDEBUG: Unable to lock file %s: %m - returning"); */
      return;    /* failure, but continue */
 }
 
