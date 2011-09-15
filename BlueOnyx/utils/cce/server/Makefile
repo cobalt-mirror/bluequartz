@@ -14,6 +14,8 @@ OBJS = $(patsubst %.c,%.o,$(SRCS))
 DAEMON = cced
 CLIENT = cceclient
 
+SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "system-auth-cce.pam.64-bit"; else  echo -n "system-auth-cce.pam"; fi)
+
 all: $(DAEMON) $(CLIENT)
 	
 $(DAEMON): $(OBJS) ../libcce_common.a
@@ -63,7 +65,7 @@ install: all
 	@echo Installed pam_abl in $(SYS_INITDIR)
 	@$(INSTALL) $(INST_FILEFLAGS) cced.pam $(SYS_PAMDIR)/cced
 	@echo Installed cced.pam in $(SYS_PAMDIR)
-	@$(INSTALL) $(INST_FILEFLAGS) system-auth-cce.pam $(SYS_PAMDIR)/system-auth-cce
+	@$(INSTALL) $(INST_FILEFLAGS) $(SACPAM)  $(SYS_PAMDIR)/system-auth-cce
 	@echo Installed system-auth-cce.pam in $(SYS_PAMDIR)
 
 uninstall:
