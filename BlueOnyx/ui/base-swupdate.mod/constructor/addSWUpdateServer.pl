@@ -16,6 +16,11 @@ my $package_dir = '/home/packages';
 # Fix perms on /var/log/yum.log:
 system("/bin/chmod 644 /var/log/yum.log");
 
+# Disable RHEL6 yum-autoupdater if present:
+if (-e "/etc/sysconfig/yum-autoupdate") {
+	system("/usr/bin/perl -pi -e 's|^ENABLED=\"true\"|ENABLED=\"false\"|g' /etc/sysconfig/yum-autoupdate");
+}
+
 my @OIDS = $cce->find('SWUpdateServer');
 # create a default SWUpdateServer object if none exists, use default
 # properties in update.schema file
