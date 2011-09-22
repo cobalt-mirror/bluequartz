@@ -35,6 +35,7 @@ open(HTTPD, "$confdir/httpd.conf");
 unlink($stage);
 sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
 while(<HTTPD>) {
+  s|^ServerTokens OS|ServerTokens ProductOnly|g;
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
   s/^#ServerName\s.+$/ServerName $fqdn/;
@@ -60,10 +61,11 @@ open(HTTPD, "$aconfdir/httpd.conf");
 unlink($astage);
 sysopen(STAGE, $astage, 1|O_CREAT|O_EXCL, 0600) || die;
 while(<HTTPD>) {
+  s|^ServerTokens OS|ServerTokens ProductOnly|g;
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
   s/^#ServerName\s.+$/ServerName $fqdn/;
-  
+
   print STAGE;
 }
 close(STAGE);
@@ -91,3 +93,5 @@ system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;
 
 exit(0);
 
+# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
+#/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf

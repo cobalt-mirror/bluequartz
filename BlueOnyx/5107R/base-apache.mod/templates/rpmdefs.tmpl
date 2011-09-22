@@ -142,6 +142,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX20
+- Updated constructor/set_apache_hostname.pl to set ServerTokens to ProductOnly for AdmServ and HTTPd.
+  This was previously done in base-blueonyx.mod, but too platform dependent.
+
 * Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX19
 - Modified constructor/set_apache_hostname.pl and constructor/set_httpd_alias_perms.pl to remove path from find command as 
   it is different betwen EL5 and EL6
