@@ -92,6 +92,3 @@ system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {}
 system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
 
 exit(0);
-
-# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
-#/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
