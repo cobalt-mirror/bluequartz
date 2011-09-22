@@ -37,15 +37,6 @@ Group: System Environment/BlueOnyx
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-%if "%fedora" == "1"
-Requires: pwdb >= 0.61.1-9BQ7 nss_db >= 2.2-22BQ3
-%endif
-%if "%centos" == "3"
-Requires: pwdb >= 0.61.1-9BQ8 nss_db >= 2.2-20.4BQ1
-%endif
-%if "%centos" == "4"
-Requires: pwdb >= 0.61.1-9BQ8 nss_db >= 2.2-29BQ1 php-mbstring
-%endif
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -174,25 +165,6 @@ fi
 if [ $? = 1 ]; then
   /bin/rpm --import /usr/share/doc/blueonyx-release-5106R/RPM-GPG-KEY-NUSOL-5106R
 fi
-
-
-%if "%fedora" == "1"
-/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
-%endif
-%if "%centos" == "3"
-/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
-%endif
-%if "%centos" == "4"
-/usr/bin/perl -pi -e 's|gpgcheck=0|gpgcheck=1|g' /etc/yum.repos.d/BlueQuartz-Base.repo
-%endif
-%if "%centos" == "5" 
-# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
-/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
-%endif 
-%if "%centos" == "6" 
-# Set ServerTokens in httpd.conf to reveal very little info (i.e.: just 'Apache'):
-/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
-%endif 
 
 # pwdb2shadow
 if [ -f /etc/sysconfig/blueonyx ]; then
@@ -420,6 +392,11 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Thu Sep 22 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110922BX108
+- Removed some legacy if-clauses dealing with ancient OS's from templates/rpmdefs.tmpl
+- Change of Apache's 'ServerTokens' moved to relevant constructor of base-apache.mod instead.
+- Modified glue/Makefile to insert 5107R or 5108R model number depending on architecture of the build box.
+
 * Thu Jul 21 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110721BX107
 - Version number bump for the release of the updates backported from 5107R
 
