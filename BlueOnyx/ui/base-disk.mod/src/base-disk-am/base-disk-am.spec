@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.1.0
-Release: 15BX22%{?dist}
+Release: 15BX23%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -29,6 +29,12 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Fri Sep 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BX23
+- Updated am_disk.pl again to hard code Japanese emails to 'en' or 'en_US' but with
+  some more respect to the platform specific locales.
+- Added am_disk.pl-japanese-test outside the source tree. Contains a not yet working
+  test-version which uses perl-MIME-Lite-TT-Japanese instead of MIME:Lite.
+
 * Fri Sep 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BX22
 - Updated am_disk.pl to use MIME::Lite for mailings to admin and users.
 - Updated am_disk.pl to prepend hostname if it emails admin on over-quota users. 

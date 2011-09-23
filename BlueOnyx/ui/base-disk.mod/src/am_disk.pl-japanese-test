@@ -8,6 +8,16 @@
 # at most once a day.
 #
 
+# This is an incomplete and not yet working version of am_disk.pl to support mails in Japanese language.
+# The following new requirements are needed:
+#
+# Requires: perl-DateTime
+# Requires: perl-MIME-Lite-TT
+# Requires: perl-DateTime-Format-Mail
+# Requires: perl-MIME-Lite-TT-Japanese
+#
+# -- mstauber
+
 use lib qw( /usr/sausalito/perl /usr/sausalito/perl/Base);
 use AM::Util;
 use I18n;
@@ -32,19 +42,11 @@ $cce->connectuds();
 my @sysoid = $cce->find ('System');
 my ($ok, $sysobj) = $cce->get($sysoid[0]);
 my $system_lang = $sysobj->{productLanguage};
-my $platform = $sysobj->{productBuild};
   
-# We can't email in Japanese yet, as MIME:Lite alone doesn't support it. We'd need MIME::Lite:TT:Japanese 
-# and a hell of a lot of dependencies to sort that out. So for now we hard code them to 'en_US' or 'en'
-# for emailing purpose from within this script:
+# The Japanese locales for AM are somewhat fishy. For now we hard code them to en_US:
   
 if ($system_lang eq "ja") {
-    if ($platform eq "5106R") {
-    	$i18n->setLocale("en");
-    }
-    else {
-    	$i18n->setLocale("en_US");
-    }
+    $i18n->setLocale("en_US");
 }
 else {
     $i18n->setLocale($system_lang);
