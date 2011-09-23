@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: 0BX05%{?dist}
+Release: 0BX06%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -73,6 +73,10 @@ if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
 fi
 
 %changelog
+* Fri Sep 23 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX06
+- Updated swatch-cobalt.pl for a more platform specific check on the forced locale change
+  from 'ja' to 'en_US' or 'en' for MIME::Lite emails of Swatch.
+
 * Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX05
 - Updated swatch.sh to use which to locate the binaries we need. Paths differ between OS's.
 
