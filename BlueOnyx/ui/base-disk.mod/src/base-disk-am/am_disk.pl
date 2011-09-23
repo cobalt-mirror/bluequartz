@@ -10,12 +10,39 @@
 
 use lib qw( /usr/sausalito/perl /usr/sausalito/perl/Base);
 use AM::Util;
+use I18n;
 use strict;
 use Disk;
 use CCE;
 use SendEmail;
+use MIME::Lite;
 use Quota;
+use Sys::Hostname;
 use warnings;
+
+# Get hostname:
+my $host = hostname();
+
+my $object;
+my $i18n = new I18n();
+
+my $cce = new CCE;
+$cce->connectuds();
+
+my @sysoid = $cce->find ('System');
+my ($ok, $sysobj) = $cce->get($sysoid[0]);
+my $system_lang = $sysobj->{productLanguage};
+  
+# The Japanese locales for AM are somewhat fishy. For now we hard code them to en_US:
+  
+if ($system_lang eq "ja") {
+    $i18n->setLocale("en_US");
+}
+else {
+    $i18n->setLocale($system_lang);
+} 
+
+###
 
 my $DEBUG = 0;
 
@@ -108,11 +135,8 @@ close(DF);
 
 $server_status = $worst_dev_status;
 
-my $cce = new CCE;
-$cce->connectuds();
-
 my ($am_oid) = $cce->findx('ActiveMonitor');
-my ($ok, $am) = $cce->get($am_oid, 'Disk');
+my ($okx, $am) = $cce->get($am_oid, 'Disk');
 
 my $now = time;
 
@@ -177,7 +201,15 @@ foreach my $username (@users_over_quota) {
 	$time_to_send_admin_mail) { #it's 4 am
 	$DEBUG && print "notifying the admin about $username about quota\n";
 	$lastmailed_users{$username} = 1;
-	push @user_warnings, $username;
+
+	# Get FQDN of the site that this overquota-user belongs to:
+	my ($oidvsite) = $cce->find('Vsite', {'name' => "$user->{site}"});
+	my $uservsite_ok = "";
+	my $user_vsite = "";
+	($uservsite_ok, $user_vsite) = $cce->get($oidvsite);
+
+	push @user_warnings, $username . '@' . $user_vsite->{fqdn};
+
     }	
     
     $DEBUG && print "done processing $username\n";
@@ -264,10 +296,14 @@ my @am_output = ();
 my @mail_output = ();
 
 if (@site_warnings) {
-    push @mail_output, "[[base-disk.sites_over_quota,sites=\"" . join(',', @site_warnings) . "\"]]";
+    #push @mail_output, "[[base-disk.sites_over_quota,sites=\"" . join(',', @site_warnings) . "\"]]";
+    my $adm_msg_site_bdy = $i18n->get("[[base-disk.sites_over_quota,sites=\"" . join(',', @site_warnings) . "\"]]");
+    push @mail_output, $adm_msg_site_bdy;
 }
 if (@user_warnings) {
-    push @mail_output, "[[base-disk.users_over_quota,users=\"" . join(',', @user_warnings) . "\"]]";
+    #push @mail_output, "[[base-disk.users_over_quota,users=\"" . join(',', @user_warnings) . "\"]]";
+    my $adm_msg_bdy = $i18n->get("[[base-disk.users_over_quota,users=\"" . join(',', @user_warnings) . "\"]]");
+    push @mail_output, $adm_msg_bdy;
 }
 
 # mail to admin
@@ -277,8 +313,28 @@ if (@mail_output) {
     my ($ok, $am) = $cce->get($am_oid);
     my @am_recips = $cce->scalar_to_array($am->{alertEmailList});
     my $recips = join(',', @am_recips);
-  SendEmail::sendEmail($recips, 'admin', 
-		       '[[base-disk.userOverQuota]]', join("\n", @mail_output));
+
+    # We don't want to use the crappy SendEmail::sendEmail:
+    # SendEmail::sendEmail($recips, 'admin', '[[base-disk.userOverQuota]]', join("\n", @mail_output));
+
+    # Build the message using MIME::Lite instead:
+    my $a_subject = $host . ": " . $i18n->get('[[base-disk.userOverQuota]]');
+    my $a_body = join("\n", @mail_output);
+
+    my $send_msg = MIME::Lite->new(
+        From     => "root <root>",
+        To       => $recips,
+        Subject  => $a_subject,
+        Data     => $a_body
+    );
+    
+    # Set content type:
+    $send_msg->attr("content-type"         => "text/plain");
+    $send_msg->attr("content-type.charset" => "ISO-8859-1");
+ 
+    # Out with the email:
+    $send_msg->send;
+
 }
 
 
@@ -297,8 +353,27 @@ while (my ($user, $site) = each(%users_to_warn)) {
 	$email = $user . '@' . $site->{fqdn};
     }
 
-  SendEmail::sendEmail($email, 'admin', '[[base-disk.userOverQuota]]', 
-		       '[[base-disk.overQuotaMsg]]');
+    # SendEmail::sendEmail($email, 'admin', '[[base-disk.userOverQuota]]', '[[base-disk.overQuotaMsg]]');
+
+    # Build the message using MIME::Lite instead:
+    my $u_subject = $i18n->get('[[base-disk.userOverQuota]]');
+    my $u_body = $i18n->get('[[base-disk.overQuotaMsg]]') . "\n\n";
+
+    my $send_msg = MIME::Lite->new(
+        From     => "root <root>", 
+        To       => $email,
+        Subject  => $u_subject,
+        Data     => $u_body
+    );
+      
+    # Set content type:
+    $send_msg->attr("content-type"         => "text/plain");
+    $send_msg->attr("content-type.charset" => "ISO-8859-1");
+    
+    # Out with the email:
+    $send_msg->send;
+
+
 }
 
 # update lastmailed flags

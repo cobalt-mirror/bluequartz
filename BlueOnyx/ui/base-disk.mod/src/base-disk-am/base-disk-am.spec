@@ -1,13 +1,15 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.1.0
-Release: 15BX21%{?dist}
+Release: 15BX22%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
 Source: base-disk-am.tar.gz
 BuildRoot: /tmp/%{name}
 Requires: perl-Unix-ConfigFile >= 0.06-SOL1
+Requires: perl-MIME-Lite >= 3.023-2
+Requires: perl-Email-Date-Format >= 1.002-1
 
 %prep
 %setup -n %{name}
@@ -27,6 +29,13 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Fri Sep 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BX22
+- Updated am_disk.pl to use MIME::Lite for mailings to admin and users.
+- Updated am_disk.pl to prepend hostname if it emails admin on over-quota users. 
+  It also adds the FQDN of the user to the mail, so that it is easier to see which 
+  site the user belongs to. Because without that the info is often useless.
+- Updated requirements to add perl-MIME-Lite and perl-Email-Date-Format
+
 * Mon Nov 15 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BX21
 - Updated am_disk.pl to check if /home/.sites/ exists before it tries to open it blindly.
 - Otherwise Swatch throws errors on fresh installed systems until the 1st site gets added.
