@@ -332,6 +332,15 @@ msgstr ""
 "もし貴方がこのフィールドをクリックすると、"
 "そのエラーメッセージが一時的に延期されます。"
 
+msgid "delayChecksField"
+msgstr "delay_checks の有効"
+
+msgid "delayChecksField_help"
+msgstr ""
+"delay_checks は Sendmail の 接続確認処理の順番を変更（後回"
+"しに）します。 これは もし貴方が RBLブラックリスト機能を オン"
+" にしている場合、非常に良いレスポンスを生むでしょう。"
+
 msgid	"domainExists_error"
 msgstr ""
 "そのドメイン名は第2メールサーバーの項目で"
@@ -470,6 +479,17 @@ msgstr	"サブミッションポートを有効にする"
 
 msgid	"enableSubmissionPortField_help"
 msgstr	"サブミッションポートでのメール送受信を有効にします。"
+
+msgid "enableZpushField"
+msgstr "Z-Push を有効"
+
+msgid "enableZpushField_help"
+msgstr ""
+"Z-push は ActiveSync互換性をもつ PDA や SmartPhone に対して "
+"電子メールを同期させるオープン・ソース・アプリケーションです "
+"詳しい情報や 設定方法は : "
+" http://www.blueonyx.it/index.php?page=z-push"
+"にアクセスして、内容をブラウザー翻訳などでお読み下さい。"
 
 msgid	"error_writing_sendmail_mc"
 msgstr ""
@@ -689,9 +709,3 @@ msgstr	"ユーザの電子メール設定"
 
 msgid	"vacationSubject"
 msgstr	"からの自動応答"
-
-msgid "delayChecksField"
-msgstr "Enable delay_checks"
-
-msgid "delayChecksField_help"
-msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
