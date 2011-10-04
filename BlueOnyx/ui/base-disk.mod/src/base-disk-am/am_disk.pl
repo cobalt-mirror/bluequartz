@@ -309,9 +309,13 @@ if (@site_warnings) {
     push @mail_output, $adm_msg_site_bdy;
 }
 if (@user_warnings) {
-    #push @mail_output, "[[base-disk.users_over_quota,users=\"" . join(',', @user_warnings) . "\"]]";
-    my $adm_msg_bdy = $i18n->get("[[base-disk.users_over_quota,users=\"" . join(',', @user_warnings) . "\"]]");
+    my $adm_msg_bdy = $i18n->get("[[base-disk.users_over_quota,users=\"\"]]"); # Can't entirely remove 'users' parameter w/o editing all locales, too.
     push @mail_output, $adm_msg_bdy;
+    # Moved generation of list of usernames outside the i18n call for better readability:
+    my $adm_msg_bdy_extra = join(' \n', @user_warnings);
+    foreach my $user_single (@user_warnings) {
+	push @mail_output, $user_single;
+    }
 }
 
 # mail to admin
