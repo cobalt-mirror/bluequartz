@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=snmp
 
 VERSION=1.0.2
-RELEASE=1BX01
+RELEASE=1BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,7 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
+REQUIRES = net-snmp-libs net-snmp net-snmp-utils
 
 #########
 # some useful defines
