@@ -27,6 +27,10 @@ IPCHAINS="/sbin/ipchains"
 IPTABLES="/sbin/iptables"
 IFCONFIG="/sbin/ifconfig"
 
+                
+if [ -d "/etc/apf" ];then
+	exit
+fi
 
 if [ -x $IPTABLES ]; then
 	export TABLES=1

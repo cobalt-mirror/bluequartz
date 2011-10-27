@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX22%{?dist}
+Release: 26BX23%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -16,6 +16,9 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+* Thu Oct 27 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX23
+- Updated log_traffic again to allow it to exit early on if APF is installed.
+
 * Thu Oct 27 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX22
 - Fixes for log_traffic. Should prevent the sporadic corrupt logline mails from Analog.
 - Also added check for presence of /etc/apf directory to prevent log_traffic reappearance
