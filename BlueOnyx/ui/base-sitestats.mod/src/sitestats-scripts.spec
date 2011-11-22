@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX23%{?dist}
+Release: 26BX24%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -16,6 +16,9 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+* Tue Nov 22 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX24
+- Updated sitestats-scripts/apache.logrotate as the PID file for Apache is locate elsewhere on RHEL6 than on RHEL5.
+
 * Thu Oct 27 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX23
 - Updated log_traffic again to allow it to exit early on if APF is installed.
 
