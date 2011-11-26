@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=subdomains
 
 VERSION=2.1.0
-RELEASE=15
+RELEASE=16
 
 # add a buildarch if desired
 BUILDARCH=noarch

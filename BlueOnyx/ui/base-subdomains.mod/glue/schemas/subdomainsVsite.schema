@@ -12,7 +12,13 @@
   <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(adminUser)"/>
 </CLASS>
 
-<CLASS name="Subdomains" version="1.0" createacl="ruleModifyUser" destroyacl="ruleModifyUser" writeacl="ruleModifyUser" readacl="ruleAll">
+<CLASS name="Subdomains" version="1.0" 
+
+    createacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    destroyacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    readacl="ruleAll" > 
+
   <PROPERTY name="hostname" type="alphanum" default=""
     writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
   <PROPERTY name="webpath" type="scalar" default=""
@@ -24,4 +30,5 @@
   <PROPERTY name="isUser" type="boolean" default="0"
     writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
 </CLASS>
+
 
