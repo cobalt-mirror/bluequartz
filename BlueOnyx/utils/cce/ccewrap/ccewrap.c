@@ -34,6 +34,7 @@ int isSystemAdministrator(cce_handle_t *cce, char *user);
 int validateCommand(cce_handle_t *cce, char *, char *username, GList **validUsers);
 char **setup_environment(char *user, char *pass, struct passwd *passwd);
 int checkValidUser(cce_handle_t *cce, char **pseudoUser, GList *validUsers);
+long    i, max = sysconf(_SC_OPEN_MAX);
 
 int 
 main (int argc, char *argv[]) 
@@ -145,6 +146,10 @@ main (int argc, char *argv[])
 	cce_bye_cmnd(cce);
 	cce_handle_destroy(cce);
 
+	/* Close down all sockets except stdout/stderr */
+	close(0);
+	for (i=3; i < max; i++) close(i);
+	
 	/* call the app */
 	if (execve(argv[1], &argv[1], environment)) {
 		fprintf(stderr, "execv(%s): %s", argv[1], strerror(errno));

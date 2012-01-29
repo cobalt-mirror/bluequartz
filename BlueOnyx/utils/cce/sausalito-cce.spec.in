@@ -186,7 +186,10 @@ fi
 
 %changelog
 
-%changelog 
+%changelog
+
+* Sun Jan 29 2012 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 0.81.1-1BX06
+- Updated ccewrap to close open files/sockets except stdin/stdout before executing child tasks.
 
 * Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX05
 - Added server/system-auth-cce.pam.64-bit
