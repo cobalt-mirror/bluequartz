@@ -34,11 +34,11 @@ int isSystemAdministrator(cce_handle_t *cce, char *user);
 int validateCommand(cce_handle_t *cce, char *, char *username, GList **validUsers);
 char **setup_environment(char *user, char *pass, struct passwd *passwd);
 int checkValidUser(cce_handle_t *cce, char **pseudoUser, GList *validUsers);
-long    i, max = sysconf(_SC_OPEN_MAX);
 
 int 
 main (int argc, char *argv[]) 
 {
+	long i, max = sysconf(_SC_OPEN_MAX);
 	int newUid, newGid;
 	cce_handle_t *cce;
 	char *pseudoUser;
