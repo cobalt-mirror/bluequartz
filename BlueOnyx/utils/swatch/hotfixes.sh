@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Fix PHP Session dir UID if needed:
+# Fix PHP Session dir GID if needed:
 if [ -d "/var/lib/php/session" ];then
 	SESSPERMS=`ls -la /var/lib/php|grep session|awk '{print $1}'`
 	if [ $SESSPERMS != "drwxrwxrwx" ];then
