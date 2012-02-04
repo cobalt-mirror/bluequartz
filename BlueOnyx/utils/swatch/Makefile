@@ -45,6 +45,7 @@ install: all
 	install $(INSTFLAGS) -m 0644 conf/statecodes.tcl $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 swatch.cron $(CRONDIR)
 	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
+	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/hotfixes.sh
 
 	make -C locale install
 
@@ -55,6 +56,7 @@ uninstall:
 	rm -f $(SWATCHDIR)/statecodes
 	rm -f $(SWATCHDIR)/statecodes.tcl
 	rm -f $(SAUSBINDIR)/swatch.sh
+	rm -f $(SAUSBINDIR)/hotfixes.sh
 	make -C locale uninstall
 
 rpm: clean

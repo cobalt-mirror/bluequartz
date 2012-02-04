@@ -28,6 +28,9 @@ else
         $REM -f /tmp/.swatch.lock
 fi
 
+# Run hotfix script:
+/usr/sausalito/swatch/bin/hotfixes.sh
+
 $REM -f $lockfile
 exit
 
