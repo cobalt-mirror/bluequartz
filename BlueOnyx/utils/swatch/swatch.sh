@@ -29,7 +29,7 @@ else
 fi
 
 # Run hotfix script:
-/usr/sausalito/swatch/bin/hotfixes.sh
+/usr/sausalito/sbin/hotfixes.sh
 
 $REM -f $lockfile
 exit
