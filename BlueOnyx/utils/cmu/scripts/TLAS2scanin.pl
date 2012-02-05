@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: TLAS2scanin.pl 957 2006-05-05 09:55:26Z shibuya $
+# $Id: 5108Rscanin.pl Sun 05 Feb 2012 04:58:56 AM CET mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -26,6 +26,7 @@ if(!$cfg->isDestDir) {
 if(!-f $cfg->glb('inFile')) { die "$0: You must pass a valid file name\n" }
 
 my $tree = readXml($cfg->glb('inFile'), 0);
+my $puretree = readXml($cfg->glb('inFile'), 0);
 if($cfg->isGlb('readConfig')) {
 	if($cfg->isGlb('subsetNames')) { $tree = $cfg->removeNamesVsite($tree) }
 	if($cfg->isIpaddr) { $tree = $cfg->convertIpaddr($tree) }
@@ -87,7 +88,7 @@ foreach my $fqdn (@vsiteNames) {
 
 	my $vRef = $cce->unLoadHash($vTree);
 	$vRef->{fqdn} = $fqdn;
-	
+
 	# delete unwanted stuff;
 	delete $vRef->{type} if(defined $vRef->{type});
 	delete $vRef->{name} if(defined $vRef->{name});
@@ -111,11 +112,21 @@ foreach my $fqdn (@vsiteNames) {
 		$vRef->{dns_auto} = 0;
 	}
 
+	####################
+	## We set the quota to an insanely high value during this stage and later 
+	# on reset it to the desired quota amount:
+	$vTree->{Disk}->{quota} = "500000000";
+	####################
+
 	if(!defined($vTree->{merge})) {
 		($ok, $bad, @info) = $cce->create('Vsite', $vRef);
 		if($ok == 0) {
 			$cce->printReturn($ok, $bad, @info);
-			warn "INFO: ERROR: Vsite $fqdn was not created properly\n";
+			warn "INFO: ERROR: Vsite $fqdn was not created properly. \n";
+			if (-e "/proc/user_beancounters") {
+			    warn "INFO: ERROR: You may have attempted to import a site with an IP address which has not been assigned to this OpenVZ VPS. \n";
+			    warn "INFO: ERROR: Please assign that Vsites IP to this VPS first, or import to a different IP using the '-i <IP-Address>' switch. \n";
+			}
 			delete $tree->{vsite}->{$fqdn};
 			next;
 		} else { warn "Virtual site $vRef->{fqdn} OK=$ok \n" }
@@ -123,7 +134,7 @@ foreach my $fqdn (@vsiteNames) {
 	} else {
 		($oid) = $cce->find("Vsite", { fqdn => $fqdn });
 	}
-	
+
 	($ok, $cceRef) = $cce->get($oid);
 	if($ok == 1) {
 		$tree->{vsite}->{$fqdn}->{newGroup} = $cceRef->{name};
@@ -135,17 +146,18 @@ foreach my $fqdn (@vsiteNames) {
 	}
 	$cce->unLoadNamespace($vTree, $oid);
 
-	if($vTree->{Frontpage}->{enabled} && $cfg->noPasswd eq 'f' && 
-		defined $vTree->{Frontpage}->{passwordWebmaster}
-	) { 
-		RaQUtil::setFpxPass("/home/sites/".$fqdn, 
-			$vTree->{Frontpage}->{passwordWebmaster}) 
-	}
+#	if($vTree->{Frontpage}->{enabled} && $cfg->noPasswd eq 'f' && 
+#		defined $vTree->{Frontpage}->{passwordWebmaster}
+#	) { 
+#		RaQUtil::setFpxPass("/home/sites/".$fqdn, 
+#			$vTree->{Frontpage}->{passwordWebmaster}) 
+#	}
 
 	# remove the default page
 	if(-f "/home/sites/".$fqdn."/web/index.html") {
 		unlink("/home/sites/".$fqdn."/web/index.html")
 	}
+
 } # end of vsite 
 
 if(defined $tree->{user}) {
@@ -161,6 +173,19 @@ foreach my $user (@keys) {
 	my $uRef = $cce->unLoadHash($uTree);
 	# convert into fqdn into site
 	my $vsites;
+
+	# check adminUser
+	my $admin;
+	if (defined $uTree->{capLevels}) {
+		my @arr = @{ $uTree->{capLevels}->{cap} };
+
+		for(my $i = 0; $i < @arr; $i++) {
+			if($uTree->{capLevels}->{cap}->[$i] eq 'adminUser') {
+				$admin = 1;
+			}
+		}
+	}
+
 	if(defined $uRef->{fqdn}) {
 		($uRef->{site}) = $cce->findMember("Vsite", 
 			{ fqdn => $uRef->{fqdn} }, undef, 'name');
@@ -177,7 +202,7 @@ foreach my $user (@keys) {
 			delete $tree->{user}->{$user};
 			next;
 		}
-	} else {	
+	} elsif ($admin != 1) {
 		warn "INFO: ERROR: Cannot add user $uRef->{name} with out site fqdn\n";
 		delete $tree->{user}->{$user};
 		next;
@@ -194,6 +219,12 @@ foreach my $user (@keys) {
 	if(!defined $uRef->{stylePreference}) {
 		$uRef->{stylePreference} = 'trueBlue';
 	}
+
+	#########
+	# We set the user's disk quota to unlimited during this stage and later on reset it to
+	# the desired quota amount:
+	$uTree->{Disk}->{quota} = "-1";
+	#########
 
 	($ok, $bad, @info) = $cce->create('User', $uRef);
 	if($ok == 0) {
@@ -242,6 +273,17 @@ foreach my $user (@keys) {
 		} 
 	}
 
+        if (($tree->{exportPlatform} =~ /(RaQ)/) || ($tree->{exportPlatform} =~ /(Qube)/)) {
+                # Skip locking of accounts if we import from a RaQ or Qube. The suspend status
+		# doesn't get translated correctly - yet.
+        }
+        else {
+	        # Check if user is suspended. If so, lock the account:
+        	if (($uTree->{enabled} eq "0") || ($uTree->{ui_enabled} eq "0")) {
+                	system("/usr/sbin/usermod -L $uTree->{name}");
+                	warn "User $uTree->{name} is suspended. Locking the account.\n";
+        	}
+	}
 
 	# do file stuff
 	if($cfg->confOnly eq 'f') {
@@ -327,9 +369,15 @@ if($cfg->dns eq 't') {
 	warn "INFO: Importing DNS records\n";
 	if($tree->{exportPlatform} eq 'RaQ550' ||
 	   $tree->{exportPlatform} eq '5100R' ||
+	   $tree->{exportPlatform} eq '5106R' ||
+	   $tree->{exportPlatform} eq '5107R' ||
+	   $tree->{exportPlatform} eq '5108R' ||
+           $tree->{exportPlatform} eq '5160R' ||
+           $tree->{exportPlatform} eq '5161R' ||
+	   $tree->{exportPlatform} eq '5200R' ||
 	   $tree->{exportPlatform} eq 'TLAS1HE' ||
 	   $tree->{exportPlatform} eq 'TLAS2') {
-		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R series or TLAS HE DNS migration not done yet\n"
+		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R, BlueOnyx (5106R, 5107R or 5108R) or TLAS HE DNS migration not done yet\n"
 	} elsif(-f $cfg->destDir.'/records') {
 		$cmd = '/usr/cmu/scripts/dnsImport '.$cfg->destDir.'/records';
 		system($cmd);
@@ -340,6 +388,56 @@ if($cfg->dns eq 't') {
 
 $cce->suspendAll($tree);
 $cce->importCerts($tree);
+
+if (-f "/usr/sausalito/sbin/fix_user_UID_and_GID.pl") {
+        warn "INFO: Fixing UIDs and GIDs of all users by running /usr/sausalito/sbin/fix_user_UID_and_GID.pl.\n";
+        system("/usr/sausalito/sbin/fix_user_UID_and_GID.pl >/dev/null 2>&1");
+}
+
+#################
+
+# Set quota for the vsites:
+my ($ok, $bad, @info, $oid, @keys, $cceRef);
+my @vsiteNames = RaQUtil::orderVsites($puretree);
+foreach my $fqdn (@vsiteNames) {
+	my $qTree =  $puretree->{vsite}->{$fqdn};
+	my $qtree_quota = $qTree->{Disk}->{quota};
+
+	warn "INFO: Setting disk quota of $qtree_quota MB for virtual site: $fqdn\n";
+
+	($oid) = $cce->find("Vsite", { fqdn => $fqdn });
+        ($ok) = $cce->set($oid, 'Disk',{
+            'quota' => $qtree_quota
+        });
+
+	delete $puretree->{vsite}->{$fqdn};
+	next;
+} # end of vsite quota 
+
+# Set quota for the users:
+if(defined $puretree->{user}) {
+    @keys = keys %{ $puretree->{user} };
+    foreach my $user (@keys) {
+	next if($user eq 'admin');
+	my $quTree = $puretree->{user}->{$user};
+	if(!defined $quTree->{name}) {
+		$quTree->{name} = $user;
+	}
+	my $user_quota = $quTree->{Disk}->{quota};
+
+	warn "INFO: Setting disk quota of $user_quota MB for user: $user\n";
+
+	($oid) = $cce->find("User", { name => $user });
+        ($ok) = $cce->set($oid, 'Disk',{
+            'quota' => $user_quota
+        });
+
+	delete $puretree->{user}->{$user};
+	next;
+    }
+} # end of user quota 
+
+#################
 
 warn "INFO: We imported", TreeXml::getStats($tree);
 $cce->bye("bye");

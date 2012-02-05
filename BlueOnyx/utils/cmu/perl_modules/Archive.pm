@@ -1,7 +1,7 @@
-# $Id: Archive.pm Mon 15 Jun 2009 07:54:09 AM CEST mstauber $
+# $Id: Archive.pm Sun 05 Feb 2012 04:02:23 AM CET mstauber $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
-# Copyright 2009 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
+# Copyright 2012 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
 
 package Archive;
 use strict;
@@ -154,7 +154,10 @@ sub buildTar
 	my $self = shift;
 	my ($ret, $homeDir); 
 
-	$self->setIgnore(qw(.bash_history _vti .forward .vacation_msg));
+	# Sun 05 Feb 2012 04:02:51 AM CET (mstauber): Added php.ini to the ignore list. On cmuImport when the site is created,
+	# CCE will create a php.ini already if suPHP is enabled. Extracting the php.ini from the site's private tarball will
+	# then fail, as the CCE created php.ini is protected with chattrib anyway. Otherwise we'd run into an ugly error.
+	$self->setIgnore(qw(.bash_history _vti .forward .vacation_msg php.ini));
 	if($self->type eq "users") {
 		$homeDir = (getpwnam($self->name))[7];
 	} elsif($self->type eq "groups") {
@@ -464,6 +467,7 @@ sub extractTar
 	$self->setSet("private");
 	$self->setBaseDir($homeDir);
 	foreach my $xml (@{ $self->{archives}->{private} }) {
+
 		if(-f $self->destDir."/".$xml.".".$self->sessID) {
 			$self->setXmlName($self->destDir."/".$xml.".".$self->sessID);
 		} else { $self->setXmlName($self->destDir."/".$xml) }
@@ -606,7 +610,8 @@ sub setAttr
 
 		# escape problem chars
 		if($file->{name} =~ /\$/) { $file->{name} =~ s/\$/\\\$/g; }
-		if($file->{name} =~ /\`/) { $file->{name} =~ s/\`/\\\`/g; }
+#		if($file->{name} =~ /\%/) { $file->{name} =~ s/\%/\\\%/g; }
+		if($file->{name} =~ /\`/) { $file->{name} =~ s/\`/\\\`/g; } #`
 
 		if($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
 			$ret = chown((getpwnam($file->{uid}))[2],

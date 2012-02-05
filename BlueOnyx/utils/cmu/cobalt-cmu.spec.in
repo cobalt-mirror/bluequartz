@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX07%{?dist}
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Sun Feb 05 2012 Michael Stauber <mstauber@solarspeed.net>
+- version 2.90-0BX01
+- Modified perl_modules/Archive.pm to add php.ini to the ignore list of files not to pack into tarballs.
+- Modified all relevant *scanin.pl scripts to handle setting of quotas differently. On vsite and user creation
+  we set the quota to unlimited (for users) or very high for vsites (unlimited is not possible there). After
+  importing the tarballs the quota for sites and users is then set to the correct values. That finally allows
+  to import even sites and users without errors even if the sites or users are using more diskspace than 
+  allowed. 
 
 * Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net>
 - version 2.82-0BX07
