@@ -54,6 +54,10 @@ for my $device (@devices)
         {
             $nm = $1;
         }
+        if ($data =~ m/HWaddr\s*(\S+)/s)
+        {
+            $mac = $1;
+        }
     }
 
     my @oids = $cce->find('Network', { 'device' => $device } );
@@ -80,6 +84,7 @@ for my $device (@devices)
             $DEBUG && print STDERR "Using old config: $ip/$nm\n";
             $obj->{ipaddr} = $ip;
             $obj->{netmask} = $nm;
+            $obj->{mac} = $mac;
             $obj->{enabled} = 1;
 
 	    # If we're on AWS, set bootproto=dhcp:
@@ -149,6 +154,7 @@ for my $device (@devices)
     	elsif ($oid) {
         	$cce->set($oid, '', { 'real' => 0 });
     	}
+    $cce->set($oid, '', { 'mac' => $mac });
     }
 }
 
