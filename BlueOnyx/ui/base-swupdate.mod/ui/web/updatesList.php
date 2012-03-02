@@ -89,22 +89,9 @@ for($i = 0; $i < count($oids); $i++) {
   $cceClient->set($oids[$i], "", array("new" => 0));
 }
 
-// 3rd party software warning:
-$thirdparty = $factory->getPagedBlock("warning_header", array("Default"));
-$thirdparty->processErrors($serverScriptHelper->getErrors());
-
-$warning = $i18n->get("3rdpartypkg_warning");
-$thirdparty->addFormField(
-    $factory->getTextList("_", $warning, 'r'),
-    $factory->getLabel(" "),
-    "Default"
-    );
-
 system("/bin/touch /tmp/.guipkginstall");
 
 print($page->toHeaderHtml());
-
-print($thirdparty->toHtml());
 
 $hasUpdates = updates_check($cceClient);	
 if ($hasUpdates == "false") 

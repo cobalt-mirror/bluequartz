@@ -30,7 +30,7 @@ if ($#OIDS < 0) {
   $cce->create('SWUpdateServer', {
 	'name'        => 'default',
 	'enabled'     => 1,
-	'location'    => '',
+	'location'    => 'http://newlinq.compassnetworks.com.au/',
     });
 }
 

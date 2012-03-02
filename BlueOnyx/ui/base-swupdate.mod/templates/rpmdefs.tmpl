@@ -130,6 +130,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Mar 02 2012 Greg Kuhnert 1.3.0-1BX28
+- Moved 3rd party warning from ui/web/newList.php and ui/web/updatesList.php  to ui/web/manual.php
+- Modified glue/schemas/update.schema to notify on all files at swupdate server by default
+- Modified constructor/addSWUpdateServer.pl to set default newlinq server
+
 * Fri Sep 23 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX27
 - Updated locale/ja/swupdate.po with Japanese translation provided by Eiji Hamano. Many thanks.
 - Modified constructor/addSWUpdateServer.pl to disable RHEL6 yum-autoupdate in /etc/sysconfig/yum-autoupdate.

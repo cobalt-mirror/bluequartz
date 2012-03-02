@@ -22,6 +22,7 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
 
 $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/base/swupdate/manualHandler.php");
+$i18n = $serverScriptHelper->getI18n("base-swupdate");
 
 // check to see if cce is suspended, because it doesn't make any sense
 // to let them continue when cce is locked
@@ -81,10 +82,21 @@ $block->addButton($factory->getButton($page->getSubmitAction(), "prepare"));
 $block->addButton($factory->getCancelButton($backUrl));
 
 $serverScriptHelper->destructor();
-?>
-<?php print($page->toHeaderHtml()); ?>
-<?php print($block->toHtml()); ?>
-<?php print($page->toFooterHtml());
+print($page->toHeaderHtml()); 
+
+// 3rd party software warning:
+$thirdparty = $factory->getPagedBlock("warning_header", array("Default"));
+$thirdparty->processErrors($serverScriptHelper->getErrors());
+
+$warning = $i18n->get("3rdpartypkg_warning");
+$thirdparty->addFormField(
+    $factory->getTextList("_", $warning, 'r'),
+    $factory->getLabel(" "),
+    "Default"
+    );
+print($thirdparty->toHtml());
+print($block->toHtml());
+print($page->toFooterHtml());
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

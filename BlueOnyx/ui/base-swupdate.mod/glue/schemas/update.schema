@@ -135,7 +135,7 @@
 		writeacl="ruleCapable(modifySWUpdateServer)"/>
 	<property name="autoUpdate" type="boolean" default="0" 
 		writeacl="ruleCapable(modifySWUpdateServer)"/>
-	<property name="notificationMode" type="notifyType" default="UpdatesOnly" 
+	<property name="notificationMode" type="notifyType" default="AllNew" 
 		writeacl="ruleCapable(modifySWUpdateServer)"/>
 	<property name="status" type="status" default="up" 
 		writeacl="ruleCapable(modifySWUpdateServer)"/>
