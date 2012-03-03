@@ -126,6 +126,8 @@ endif
 	cp `find $(RPM_TOPDIR)/RPMS -follow -type f -newer $(TIMEFILE)` as_rpms
 	-@mkdir as_srpms || /bin/true
 	cp `find $(RPM_TOPDIR)/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms
+	if [ `ls rpms/* |wc -l` -gt 0 ]; then   cp rpms/*  as_rpms; fi 
+	if [ `ls srpms/*|wc -l` -gt 0 ]; then  cp srpms/* as_srpms; fi
 	-@/bin/rm -f $(TIMEFILE)
 
 mod_specfile:
@@ -658,7 +660,7 @@ package:
 #	Results
 #	Create pkg file
 	-mkdir package_results
-	cd package_tmp; tar -cBIf ../package_results/$(VENDOR)-$(SERVICE).pkg .
+	cd package_tmp; tar cBf ../package_results/$(VENDOR)-$(SERVICE).pkg .
 
 #	add Size entry onto packing_list
 	SIZE=`perl -e '@stats = stat("package_results/$(VENDOR)-$(SERVICE).pkg"); print @stats[7];'`; echo Size: $$SIZE >> package_tmp/packing_list

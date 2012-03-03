@@ -4,7 +4,7 @@ CCEMODULE = sausalito-devel-tools
 CCERPMSPEC = sausalito-devel-tools.spec
 
 VERSION=0.5.2
-RELEASE=1BX06
+RELEASE=1BX07
 
 DIRS = scripts libdebug rules templates glue
 
