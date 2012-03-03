@@ -54,6 +54,7 @@ done
 %changelog
 * Sat Mar 03 2012 Greg Kuhnerg 0.5.1-0BQ21
 - Updated module.mk to fix a few problems for building PKG files
+- updated makePkg to copy scripts directory
 
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ20
 - Updated for name change to BlueOnyx.

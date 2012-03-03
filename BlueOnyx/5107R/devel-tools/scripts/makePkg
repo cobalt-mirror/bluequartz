@@ -60,6 +60,11 @@ if(-d "$moduleDir/scripts") {
     `$cp -r $moduleDir/scripts $tmpTarDir`;
 }
 
+# copy the whole scripts directory if it exists
+if(-d "$moduleDir/scripts") {
+    `$cp -r $moduleDir/scripts $tmpTarDir`;
+}
+
 # copy the whole pkginfo directory if it exists
 if(-d "$moduleDir/pkginfo") {
     `$cp -r $moduleDir/pkginfo $tmpTarDir`;
