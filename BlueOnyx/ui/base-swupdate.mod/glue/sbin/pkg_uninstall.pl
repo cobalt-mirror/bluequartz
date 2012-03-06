@@ -159,10 +159,24 @@ if ($obj->{options} =~ /\brefreshui\b/) { # refresh ui
 # now, destroy the object
 $cce->destroy($packageOID);
 
-# restart cce if necessary 
-my $restart = ($obj->{options} =~ /\brefreshcce\b/) ? 'restart' : 0;
-print LOG "Uninstall of $obj->{vendor}->$obj->{name}-$obj->{version} complete\n";
-exitScript($cce, "Uninstall successful.", $restart);
+# restart cce if necessary || Tue 06 Mar 2012 01:18:54 PM EST (mstauber) This is now deprecated:
+#my $restart = ($obj->{options} =~ /\brefreshcce\b/) ? 'restart' : 0;
+#print LOG "Uninstall of $obj->{vendor}->$obj->{name}-$obj->{version} complete\n";
+#exitScript($cce, "Uninstall successful.", $restart);
+
+# || Tue 06 Mar 2012 01:18:54 PM EST (mstauber) This is the replacement for it:
+# Restart or reload CCE if necessary:
+if ($obj->{options} =~ /\brefreshcce\b/) {
+	my $restart = ($obj->{options} =~ /\brefreshcce\b/) ? 'restart' : 0;
+	print LOG "Uninstall of $obj->{vendor}->$obj->{name}-$obj->{version} complete\n";
+	exitScript($cce, "Uninstall successful.", $restart);
+}
+else {
+	my $restart = ($obj->{options} =~ /\brehashcce\b/) ? 'rehash' : 0;
+	print LOG "Uninstall of $obj->{vendor}->$obj->{name}-$obj->{version} complete\n";
+	exitScript($cce, "Uninstall successful.", $restart);
+}
+###
 
 
 sub setState {
@@ -195,6 +209,13 @@ sub exitScript {
 	sleep 4;
   	Sauce::Service::service_run_init('cced.init', 'restart'); 
 	$value = 0;
+  }
+  elsif ($value =~ /\brehash\b/) {
+        sleep 4; # this needs to happen before a browser refresh
+        Sauce::Service::service_run_init('cced.init', 'reload'); # Please note: We 'reload' instead of using 'rehash'!
+    								 # 'rehash' chokes on the 'stop' command. And if we're not
+    								 # using 'stop' we can as well use the 'HUP' that 'stop' uses.
+        $value = 0;
   }
   close(LOG);
   exit $value ? -1 : 0;

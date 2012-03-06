@@ -130,6 +130,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX29
+- Modified glue/schemas/update.schema and glue/sbin/SWUpdate.pm to add 'Autoinstall' and 
+  'Autoupdate' flags to PKG 'packing_list'. Key is either 'Yes' or 'No', defaults to 'No'.
+  In CODB this is stored as boolean (1|0).
+- Modified glue/sbin/pkg_install.pl and glue/sbin/pkg_uninstall.pl to support the flag 
+  'rehashcce', which reloads CCEd instead of restartung it. This restarts CCEd without
+  forcing it to run through the constructors, although it will still recognize new or 
+  modified schema files.
+
 * Fri Mar 02 2012 Greg Kuhnert 1.3.0-1BX28
 - Moved 3rd party warning from ui/web/newList.php and ui/web/updatesList.php  to ui/web/manual.php
 - Modified glue/schemas/update.schema to notify on all files at swupdate server by default

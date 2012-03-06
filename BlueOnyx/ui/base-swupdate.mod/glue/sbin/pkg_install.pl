@@ -356,6 +356,9 @@ if ($ARGV[1] =~ /r/i) {
     sleep 4;
     $cce->set($sysOID, 'Power', { reboot => $systime });
     exitScript($cce, 'reboot', "Installation successful.");
+} elsif ($obj->{options} =~ /\brehashcce\b/) {
+    $refreshcce = 'rehash' if ($obj->{options} =~ /\brehashcce\b/);
+	$cce->set($sysOID, 'SWUpdate', { 'uiCMD' => 'install,rehashcce' });
 } else {
     $refreshcce = 'refresh' if ($obj->{options} =~ /\brefreshcce\b/);
     if ($obj->{options} =~ /\brefreshui\b/) { # refresh requested
@@ -386,6 +389,10 @@ sub exitScript {
   if ($value =~ /\brefresh\b/) {
   	sleep 4; # this needs to happen before a browser refresh
   	Sauce::Service::service_run_init('cced.init', 'restart'); 
+	$value = 0;
+  } elsif ($value =~ /\brehash\b/) {
+  	sleep 4; # this needs to happen before a browser refresh
+  	Sauce::Service::service_run_init('cced.init', 'reload'); # We 'reload' instead of using 'rehash' as CCEd chokes on the 'stop'
 	$value = 0;
   } elsif ($value =~ /\breboot\b/) {
 	sleep 30;

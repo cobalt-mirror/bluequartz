@@ -563,6 +563,17 @@ sub read_pkgheader
 	    $settings{options} = $1;
 	    next;
 	}
+
+	if (/^Autoupdate:\s*(.+)\n/i) {
+	    $settings{autoupdate} = $1;
+	    next;
+	}
+
+	if (/^Autoinstall:\s*(.+)\n/i) {
+	    $settings{autoinstall} = $1;
+	    next;
+	}
+
 	
 	if (/^Size:\s*(\d+)/i) {
 	    $settings{size} = $1;
@@ -645,6 +656,21 @@ sub read_pkgheader
     $settings{obsoleteList} = CCE->array_to_scalar(@obsolete) if @obsolete;
     $settings{RPMList} = CCE->array_to_scalar(@rpms) if @rpms;
     $settings{SRPMList} = CCE->array_to_scalar(@srpms) if @srpms;
+
+    if ($settings{autoupdate} =~ /Yes/i) { 
+	$settings{autoupdate} = "1"; 
+    } 
+    else { 
+	$settings{autoupdate} = "0"; 
+    }
+
+    if ($settings{autoinstall} =~ /Yes/i) { 
+	$settings{autoinstall} = "1"; 
+    } 
+    else { 
+	$settings{autoinstall} = "0"; 
+    }
+
     return %settings;
 }
 
