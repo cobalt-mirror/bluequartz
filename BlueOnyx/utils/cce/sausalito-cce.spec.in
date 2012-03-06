@@ -188,6 +188,15 @@ fi
 
 %changelog
 
+* Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX07
+- Modified server/cced.init to add 'hash' and 'rehash' options to the RC script.
+  'hash' equals a 'cced.init start', but doesn't run the constructors.
+  'rehash' equals a 'cced.init restart' and also doesn't run the constructors.
+  Both will still reload the schema files, so new schemas can be added without
+  being forced to re-run all the constructors. Please not that 'cced.init reload'
+  also restarts cced without run of constructors. But it uses a 'killall -HUP cced'
+  which will barf if pperld is currently executing handlers.
+
 * Sun Jan 29 2012 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 0.81.1-1BX06
 - Updated ccewrap to close open files/sockets except stdin/stdout before executing child tasks.
 
