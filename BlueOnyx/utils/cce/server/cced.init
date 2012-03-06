@@ -85,7 +85,7 @@ case "$1" in
 	$0 hash
 	;;
   *)
-	echo "Usage: cced {start|stop|restart|reload|status}"
+	echo "Usage: cced {start|stop|restart|reload|status|hash|rehash}"
 	exit 1
 esac
 
