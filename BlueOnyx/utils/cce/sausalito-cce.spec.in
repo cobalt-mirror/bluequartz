@@ -188,6 +188,9 @@ fi
 
 %changelog
 
+* Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX08
+- Updated server/cced.init again to throw another kill into the stop command.
+
 * Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX07
 - Modified server/cced.init to add 'hash' and 'rehash' options to the RC script.
   'hash' equals a 'cced.init start', but doesn't run the constructors.

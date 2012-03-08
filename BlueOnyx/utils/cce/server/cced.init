@@ -54,6 +54,7 @@ case "$1" in
 	R=$?
 	while [ "$R" != "1" -a "$I" -gt 0 ]; do
 		sleep 1;
+		killall -TERM cced >/dev/null 2>&1
 		I=$((I-1))
 		ps --no-headers -C cced > /dev/null 2>&1
 		R=$?
