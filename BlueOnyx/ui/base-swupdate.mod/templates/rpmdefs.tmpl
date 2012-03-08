@@ -130,6 +130,17 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Mar 08 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX30
+- Added requirement for perl-Sort-Versions to Makefile. We use it to compare version and release numbers.
+- Modified glue/schemas/update.schema to change typedef 'versionType' to a better regular expression to
+  handle 'versionType' with and without release. The new regular expresssion isn't perfect, as it also
+  catches things like 'v1.000.1'. But it'll do as multiple leading zeros are caught later on in our 
+  version number checks.
+- Modified glue/sbin/SWUpdate.pm to use the Perl module 'Sort::Versions' for version number checking in
+  sub 'compareVersion'. With the new and much simpler way it now also handles version numbers with and
+  without release information. With this change 'Version' lines in PKG 'packing_list' may now use
+  version numbers with release information.
+
 * Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-1BX29
 - Modified glue/schemas/update.schema and glue/sbin/SWUpdate.pm to add 'Autoinstall' and 
   'Autoupdate' flags to PKG 'packing_list'. Key is either 'Yes' or 'No', defaults to 'No'.

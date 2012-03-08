@@ -19,6 +19,13 @@ use URI::Escape;
 use SendEmail;
 use Sauce::Config;
 use CCE;
+use Sort::Versions;
+
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 # constants
 my $appName = 'BlueLinQ/1.0-5106R';
@@ -1077,31 +1084,21 @@ sub compareVersion {
   my($firstVer, $secondVer) = @_;
   $firstVer = swupdate_fromccevers($firstVer);
   $secondVer = swupdate_fromccevers($secondVer);
-  
-  my @firstVerArray = split(/\./, $firstVer);
-  my @secondVerArray = split(/\./, $secondVer);
-  my $index = 0;
-  my ($size, $pad);
 
-  # get largest size of array
-  if ($#firstVerArray > $#secondVerArray) {
-    $size = $#firstVerArray;
-  } else {
-    $size = $#secondVerArray;
-  }
-  
-  while ($index <= $size) {
-    # pad with 0's to catch compares with 2.0 & 2.0.0 (same) or 2.0 & 2.0.1 (2nd greater)
-    if ($#firstVerArray < $index) {
-      $firstVerArray[$index] = "0";
-    } elsif ($#secondVerArray < $index) {
-      $secondVerArray[$index] = "0";
+    &debug_msg("$version first: $firstVer - version second: $secondVer \n");
+
+    if (versioncmp($firstVer, $secondVer) == -1) {
+	&debug_msg("Return -1 \n");
+	return -1;
     }
-    return 1 if ($firstVerArray[$index] > $secondVerArray[$index]);
-    return -1 if ($firstVerArray[$index] < $secondVerArray[$index]);
-    $index++;
-  }
-  return 0;
+    elsif (versioncmp($firstVer, $secondVer) == 1) {
+	&debug_msg("Return 1 \n");
+	return 1;
+    }
+    else {
+	&debug_msg("Return 0 \n");
+	return 0;
+    }
 }
   
 sub prepend_domain 
@@ -1111,6 +1108,18 @@ sub prepend_domain
     $string =~ s/\[\[([^\s\.]+)\]\]/\[\[${domain}\.$1\]\]/g;
     return $string;
 }
+
+sub debug_msg {
+    if ($DEBUG) {    
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }           
+}
+
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

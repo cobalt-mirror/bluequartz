@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=swupdate
 
 VERSION=1.3.0
-RELEASE=1BX29
+RELEASE=1BX30
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,8 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
+
+REQUIRES = perl-Sort-Versions
 
 #########
 # some useful defines
