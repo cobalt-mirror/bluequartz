@@ -196,26 +196,39 @@ $block->addFormField($allow_url_include_select,$factory->getLabel("allow_url_inc
 
 // upload_max_filesize:
 if ($systemObj['upload_max_filesize']) {
-    $upload_max_filesize_choices=array
-            (
-                "ul_01" => "2M",
-                "ul_02" => "5M",
-                "ul_03" => "8M",
-                "ul_04" => "10M",
-                "ul_05" => "12M",
-                "ul_06" => "15M",
-                "ul_07" => "20M",
-                "ul_08" => "25M",
-                "ul_09" => "30M",
-                "ul_10" => "40M",
-                "ul_11" => "50M",
-                "ul_12" => "60M",
-                "ul_13" => "70M",
-                "ul_14" => "80M",
-                "ul_15" => "90M",
-                "ul_16" => "100M"
-            );
-}
+        $upload_max_filesize_choices = array (
+            '2M',
+            '4M',
+            '8M',
+            '16M',
+            '24M',
+            '32M',
+            '40M',
+            '48M',
+            '56M',
+            '64M',
+            '72M',
+            '80M',   
+            '88M',
+            '96M',
+            '104M',
+            '112M',
+            '120M',
+            '128M',
+            '132M',
+            '140M',
+            '148M',
+            '156M',
+            '164M',
+            '172M',
+            '180M'
+        );
+
+        // If we're currently using something that's not in that array, we add it to it:
+        if (!in_array($systemObj['upload_max_filesize'], $upload_max_filesize_choices)) {
+                $upload_max_filesize_choices[] = $systemObj['upload_max_filesize'];
+        }
+        sort($upload_max_filesize_choices, SORT_NUMERIC);}
 
 // upload_max_filesize Input:
 $upload_max_filesize_choices_select = $factory->getMultiChoice("upload_max_filesize",array_values($upload_max_filesize_choices));
@@ -224,33 +237,39 @@ $block->addFormField($upload_max_filesize_choices_select,$factory->getLabel("upl
 
 // post_max_size:
 if ($systemObj['post_max_size']) {
-    $post_max_size_choices=array
-            (
-                "pm_01" => "2M",
-                "pm_02" => "5M",
-                "pm_03" => "8M",
-                "pm_04" => "10M",
-                "pm_05" => "12M",
-                "pm_06" => "15M",
-                "pm_07" => "20M",
-                "pm_08" => "25M",
-                "pm_09" => "30M",
-                "pm_10" => "40M",
-                "pm_11" => "50M",
-                "pm_12" => "60M",
-                "pm_13" => "70M",
-                "pm_14" => "80M",
-                "pm_15" => "90M",
-                "pm_16" => "100M",
-                "pm_17" => "110M",
-                "pm_18" => "128M",
-                "pm_19" => "136M",
-                "pm_20" => "148M",
-                "pm_21" => "156M",
-                "pm_22" => "164M",
-                "pm_23" => "172M",
-                "pm_24" => "180M"
-            );
+        $post_max_size_choices = array (
+            '2M',  
+            '4M',  
+            '8M',  
+            '16M', 
+            '24M', 
+            '32M', 
+            '40M', 
+            '48M', 
+            '56M', 
+            '64M', 
+            '72M',
+            '80M',
+            '88M',
+            '96M',
+            '104M',
+            '112M',
+            '120M',
+            '128M',
+            '132M',
+            '140M',
+            '148M',
+            '156M',
+            '164M',
+            '172M',
+            '180M'
+        );
+
+        // If we're currently using something that's not in that array, we add it to it:
+        if (!in_array($systemObj['post_max_size'], $post_max_size_choices)) {
+                $post_max_size_choices[] = $systemObj['post_max_size'];
+        }
+        sort($post_max_size_choices, SORT_NUMERIC);
 }
 
 // post_max_size Input:
@@ -260,22 +279,27 @@ $block->addFormField($post_max_size_choices_select,$factory->getLabel("post_max_
 
 // max_execution_time:
 if ($systemObj['max_execution_time']) {
-    $max_execution_time_choices=array
-            (
-                "me_01" => "30",
-                "me_02" => "60",
-                "me_03" => "90",
-                "me_04" => "120",
-                "me_05" => "150",
-                "me_06" => "180",
-                "me_07" => "210",
-                "me_08" => "240",
-                "me_09" => "270",
-                "me_10" => "300",
-                "me_11" => "500",
-                "me_12" => "600",
-                "me_13" => "900"
-            );
+        $max_execution_time_choices = array (
+            '30',  
+            '60',  
+            '90',  
+            '120', 
+            '150', 
+            '180', 
+            '210', 
+            '240', 
+            '270', 
+            '300', 
+            '500',
+            '600',
+            '900'
+        );
+        
+        // If we're currently using something that's not in that array, we add it to it:
+        if (!in_array($systemObj['max_execution_time'], $max_execution_time_choices)) {
+                $max_execution_time_choices[] = $systemObj['max_execution_time'];
+        }
+        sort($max_execution_time_choices, SORT_NUMERIC);
 }
 
 // max_execution_time Input:
@@ -285,22 +309,27 @@ $block->addFormField($max_execution_time_choices_select,$factory->getLabel("max_
 
 // max_input_time:
 if ($systemObj['max_input_time']) {
-    $max_input_time_choices=array
-            (
-                "mit_01" => "30",
-                "mit_02" => "60",
-                "mit_03" => "90",
-                "mit_04" => "120",
-                "mit_05" => "150",
-                "mit_06" => "180",
-                "mit_07" => "210",
-                "mit_08" => "240",
-                "mit_09" => "270",
-                "mit_10" => "300",
-                "mit_11" => "500",
-                "mit_12" => "600",
-                "mit_13" => "900"
-            );
+        $max_input_time_choices = array (
+            '30',  
+            '60',  
+            '90',  
+            '120', 
+            '150', 
+            '180', 
+            '210', 
+            '240', 
+            '270',
+            '300',
+            '500',
+            '600',
+            '900'
+        );
+        
+        // If we're currently using something that's not in that array, we add it to it:
+        if (!in_array($systemObj['max_input_time'], $max_input_time_choices)) {
+                $max_input_time_choices[] = $systemObj['max_input_time'];
+        }
+        sort($max_input_time_choices, SORT_NUMERIC);
 }
 
 // max_input_time Input:
@@ -310,33 +339,36 @@ $block->addFormField($max_input_time_choices_select,$factory->getLabel("max_inpu
 
 // memory_limit:
 if ($systemObj['memory_limit']) {
-    $memory_limit_choices=array
-            (
-                "mlc_01" => "16M",
-                "mlc_02" => "18M",
-                "mlc_03" => "20M",
-                "mlc_04" => "25M",
-                "mlc_05" => "30M",
-                "mlc_06" => "35M",
-                "mlc_07" => "40M",
-                "mlc_08" => "45M",
-                "mlc_09" => "50M",
-                "mlc_10" => "55M",
-                "mlc_11" => "60M",
-                "mlc_12" => "65M",
-                "mlc_13" => "70M",
-                "mlc_14" => "80M",
-                "mlc_15" => "90M",
-                "mlc_16" => "100M",
-                "mlc_17" => "110M",
-                "mlc_18" => "128M",
-                "mlc_19" => "136M",
-                "mlc_20" => "148M",
-                "mlc_21" => "156M",
-                "mlc_22" => "164M",
-                "mlc_23" => "172M",
-                "mlc_24" => "180M"
-            );
+        $memory_limit_choices = array (
+            '16M', 
+            '24M', 
+            '32M', 
+            '40M', 
+            '48M', 
+            '56M',
+            '64M',
+            '72M',
+            '80M',
+            '88M',
+            '96M',
+            '104M',
+            '112M',
+            '120M',
+            '128M',
+            '132M',
+            '140M',
+            '148M',
+            '156M',
+            '164M',
+            '172M',
+            '180M'
+        );
+
+        // If we're currently using something that's not in that array, we add it to it:
+        if (!in_array($systemObj['memory_limit'], $memory_limit_choices)) {
+                $memory_limit_choices[] = $systemObj['memory_limit'];
+        }
+        sort($memory_limit_choices, SORT_NUMERIC);
 }
 
 // memory_limit Input:
