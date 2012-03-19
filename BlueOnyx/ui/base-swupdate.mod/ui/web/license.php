@@ -64,7 +64,7 @@ $page = $factory->getPage();
 // otherwise, we generate a standard license page
 
 $block0 = $factory->getPagedBlock("licenseField");
-$block = $factory->getPagedBlock('');
+$block = $factory->getPagedBlock(' ');
 $block->addFormField($factory->getTextField("nameField", $nameField, ""));
 $block->addFormField($factory->getTextField("backUrl", $backUrl, ""));
 $block->addFormField($factory->getTextField("packageOID", $packageOID, ""));
