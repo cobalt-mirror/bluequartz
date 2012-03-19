@@ -213,7 +213,9 @@ if(!$noLocale) {
 if(!is_array($url)){
     $url = array($url);
 }    
-    
+
+$files = array();
+$names = array();
 for($a = 0; $a < count($url); $a++) {
     $base = $docDir . $url[$a] . $insertLocale . $ext;
     
@@ -222,8 +224,6 @@ for($a = 0; $a < count($url); $a++) {
     // so getLocales will just return
     
     $localedFiles = getLocales($base);
-    
-    $files = array();
     $files = array_merge($files, $localedFiles);
 
     // Deal with displayed name(s)
@@ -261,7 +261,6 @@ for($a = 0; $a < count($url); $a++) {
         
         // get locales as appropriate, do i18n depends on noi18n flag
         $localedNames = getLocales($base, $noi18n ? false : true);
-	$names = array();
         $names = array_merge($names, $localedNames);
     }
 }  
