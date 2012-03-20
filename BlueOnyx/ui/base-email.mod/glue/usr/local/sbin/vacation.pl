@@ -336,7 +336,7 @@ if ($is_overquota eq "0") {
 
     # Set content type:
     $send_msg->attr("content-type"         => "text/plain");
-    $send_msg->attr("content-type.charset" => "ISO-8859-1");
+    $send_msg->attr("content-type.charset" => "UTF-8");
 
     # Out with the email:
     $send_msg->send;

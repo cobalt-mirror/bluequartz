@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=snmp
 
 VERSION=1.0.2
-RELEASE=1BX02
+RELEASE=1BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch

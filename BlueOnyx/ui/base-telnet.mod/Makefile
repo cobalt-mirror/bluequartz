@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=telnet
 
 VERSION=1.1.0
-RELEASE=57BX14
+RELEASE=57BX15
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -21,7 +21,8 @@ $DEBUG = 0;
 # only has entries for locales that require conversion
 #
 my $encodings = {
-			'ja' => 'euc'
+			'ja' => 'euc',
+			'ja_JP' => 'euc'
 		};
 
 #
@@ -113,10 +114,10 @@ sub getAvailableLocales
 	open(LOCALES, "-|") || exec(@cmd);
 	while (my $locale = <LOCALES>) {
 		chomp($locale);
-		if (($locale ne "en") && ($locale ne "ja_JP")) { 
-		    # We use 'en_US' instead of 'en'. At the same time we use 'jp' instead of 'jp_JP'.
+		if (($locale ne "en") && ($locale ne "ja")) { 
+		    # We use 'en_US' instead of 'en'. At the same time we use 'jp_JP' instead of 'jp'.
 		    # This if clause essentially makes the GUI hide the language options for 'en' and
-		    # 'ja_JP' and instead shows 'en_US' and 'ja' instead. Yes, this is confusing.
+		    # 'ja' and instead shows 'en_US' and 'ja_JP' instead. Yes, this is confusing.
 		    push @locales, $locale;
 		}
 	}

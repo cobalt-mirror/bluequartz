@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=alpine
 
 VERSION=0.1
-RELEASE=85BX39
+RELEASE=85BX40
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=import
 
 VERSION=1.2.0
-RELEASE=45BX13
+RELEASE=45BX14
 
 # add a buildarch if desired
 BUILDARCH=noarch

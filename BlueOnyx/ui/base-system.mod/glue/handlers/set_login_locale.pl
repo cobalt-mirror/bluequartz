@@ -66,6 +66,14 @@ sub update_i18n
 	    # LC_ALL on SL6 must be a bit more specific:
 	    $locale_LC_ALL = "en_US.UTF-8";
 	}
+	# Same for Japanese:
+	elsif (($build eq "5107R") || ($build eq "5108R")) {
+	    if ($curlangcode == "ja") {
+		$curlangcode = "ja_JP";
+	    }
+	    # LC_ALL on SL6 must be a bit more specific:
+	    $locale_LC_ALL = "en_US.UTF-8";
+	}
 	else {
 	    # LC_ALL on CentOS5 can be a bit more simplicistic:
 	    $locale_LC_ALL = $locale;

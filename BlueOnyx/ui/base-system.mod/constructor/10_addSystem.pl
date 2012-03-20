@@ -32,7 +32,7 @@ else {
 	"en_US" => "&en_US&",
 	"da_DK" => "&da_DK&",
 	"de_DE" => "&de_DE&",
-	"ja" => "&ja&"
+	"ja_JP" => "&ja_JP&"
     );
 }
 
@@ -46,7 +46,13 @@ if ($i18n =~ m/^LANG=(.*)/) {
 }
 
 if ($lang =~ /^ja/) {
+    if ($build eq "5106R") {
         $lang = 'ja';
+    }
+    else {
+	# 5107R or 5108R:
+        $lang = 'ja_JP';
+    }
 }
 elsif ($lang =~ /^da_DK/) { 
 	$lang = 'da_DK';

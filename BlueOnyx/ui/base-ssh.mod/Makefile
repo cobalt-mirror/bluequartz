@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=ssh
 
 VERSION=1.0
-RELEASE=11BX14
+RELEASE=11BX15
 
 # add a buildarch if desired
 BUILDARCH=noarch

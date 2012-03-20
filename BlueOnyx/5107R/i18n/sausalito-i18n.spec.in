@@ -93,8 +93,11 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
+- Small locale related fixes to perl/I18n.pm
+
 * Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25
-- Crackling failed on 64-bit due to this error: http://pecl.php.net/bugs/bug.php?id=9710
+- Cracklib failed on 64-bit due to this error: http://pecl.php.net/bugs/bug.php?id=9710
 - Fetched updated cracklib/crack/libcrack/src/cracklib.h from PECL SVN.
 - Previous version of it added to our SVN as cracklib/crack/libcrack/src/cracklib.h.old
 

@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=schedule
 
 VERSION=1.0.0
-RELEASE=82BX09
+RELEASE=82BX10
 
 # add a buildarch if desired
 BUILDARCH=noarch

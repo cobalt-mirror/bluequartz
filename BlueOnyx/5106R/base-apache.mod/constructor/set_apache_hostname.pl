@@ -35,6 +35,7 @@ open(HTTPD, "$confdir/httpd.conf");
 unlink($stage);
 sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
 while(<HTTPD>) {
+  s|^ServerTokens OS|ServerTokens ProductOnly|g;
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
   s/^#ServerName\s.+$/ServerName $fqdn/;
@@ -60,10 +61,12 @@ open(HTTPD, "$aconfdir/httpd.conf");
 unlink($astage);
 sysopen(STAGE, $astage, 1|O_CREAT|O_EXCL, 0600) || die;
 while(<HTTPD>) {
+  s|^ServerTokens OS|ServerTokens ProductOnly|g;
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
   s/^#ServerName\s.+$/ServerName $fqdn/;
-  
+  s|^AddDefaultCharset\s.+$|AddDefaultCharset UTF-8|g;
+
   print STAGE;
 }
 close(STAGE);
@@ -86,8 +89,9 @@ else {
 }
 
 # Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
-system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
-system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+if ( -d "/etc/httpd/alias" ) {
+	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
+	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+}
 
 exit(0);
-

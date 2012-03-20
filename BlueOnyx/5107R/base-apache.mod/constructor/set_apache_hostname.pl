@@ -65,6 +65,7 @@ while(<HTTPD>) {
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
   s/^#ServerName\s.+$/ServerName $fqdn/;
+  s|^AddDefaultCharset\s.+$|AddDefaultCharset UTF-8|g;
 
   print STAGE;
 }
@@ -88,7 +89,9 @@ else {
 }
 
 # Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
-system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
-system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+if ( -d "/etc/httpd/alias" ) {
+	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
+	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
+}
 
 exit(0);
