@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX25%{?dist}
+Release: 86BX26%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -94,7 +94,6 @@ fi
 
 %changelog
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
-- Copied 'ja' to 'ja_JP'. 
 - Small locale related fixes to perl/I18n.pm
 
 * Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25

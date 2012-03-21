@@ -20,6 +20,8 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 #BUILDSRC=yes
 
+REQUIRES = base-alpine-locale-ja_JP, base-am-locale-ja_JP, base-apache-bandwidth-locale-ja_JP, base-apache-locale-ja_JP, base-backupcontrol-locale-ja_JP, base-console-locale-ja_JP, base-disk-locale-ja_JP, base-dns-locale-ja_JP, base-documentation-locale-ja_JP, base-email-locale-ja_JP, base-ftp-locale-ja_JP, base-import-locale-ja_JP, base-java-locale-ja_JP, base-subdomains-locale-ja_JP, base-mailman-locale-ja_JP, base-memory-locale-ja_JP, base-mysql-locale-ja_JP, base-network-locale-ja_JP, base-phpmyadmin-locale-ja_JP, base-power-locale-ja_JP, base-sauce-basic-locale-ja_JP, base-schedule-locale-ja_JP, base-services-locale-ja_JP, base-shell-locale-ja_JP, base-sitestats-locale-ja_JP, base-snmp-locale-ja_JP, base-ssh-locale-ja_JP, base-ssl-locale-ja_JP, base-swupdate-locale-ja_JP, base-system-locale-ja_JP, base-telnet-locale-ja_JP, base-time-locale-ja_JP, base-user-locale-ja_JP, base-vsite-locale-ja_JP, base-wizard-locale-ja_JP, base-remote-locale-ja_JP, sausalito-gallery-locale-ja_JP, base-raid-locale-ja_JP
+
 #########
 # some useful defines
 INSTALL=install
