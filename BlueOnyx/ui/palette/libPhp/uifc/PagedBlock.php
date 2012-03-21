@@ -188,6 +188,7 @@ class PagedBlock extends Block {
   //     Optional if there is only one page
   // see: getDividers()
   function addDivider($label = "", $pageId = "") {
+
     $this->dividers[] = $label;
     $this->dividerPageIds[] = $pageId;
 

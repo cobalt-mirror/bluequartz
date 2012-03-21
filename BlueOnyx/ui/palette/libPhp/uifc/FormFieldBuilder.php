@@ -493,9 +493,9 @@ function formspecialchars($var)
             $out = implode("", $out);
         } else {
             $out = $var;
-            while (preg_match($pattern,$out) > 0) {
-                $out = htmlspecialchars_decode($out,ENT_QUOTES);
-            }
+//            while (preg_match($pattern,$out) > 0) { // preg_match over unicode = bad idea. /u in pattern helps a little, but it still sucks. Works w/o, too, so scew it.
+//                $out = htmlspecialchars_decode($out,ENT_QUOTES);
+//            }
             //($out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES,'UTF-8',true);     // Trim the variable, strip all slashes, and encode it
             $out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES,'UTF-8');     // Trim the variable, strip all slashes, and encode it
 
