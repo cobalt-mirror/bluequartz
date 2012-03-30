@@ -13,6 +13,7 @@ my $langs = {
 		'en' => 'en_US',
 		'de' => 'de_DE@euro',
 		'ja' => 'ja_JP.eucJP',
+		'ja_JP' => 'ja_JP.eucJP',
 		'es' => 'es_ES@euro',
 		'fr' => 'fr_FR@euro',
 		# these may be wrong, but I don't know chinese
@@ -73,6 +74,8 @@ sub update_i18n
             }
             # LC_ALL on SL6 must be a bit more specific:
             $locale_LC_ALL = "en_US.UTF-8";
+            $locale = "ja_JP.eucJP";
+
         }
 	else {
 	    # LC_ALL on CentOS5 can be a bit more simplicistic:
