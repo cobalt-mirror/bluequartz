@@ -123,6 +123,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Sat Mar 31 2012 Michael Stauber <mstauber@solarspeed.net> 1.5.1-0BX12
+- Modified glue/usr/local/sbin/vacation.pl to switch 'content-type.charset' to 'EUC-JP' for Japanese messages.
+  This is far from being perfect, as the subject encoding is now a bit illegal. But it'll have to do for now.
+
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.5.1-0BX11
 - Converted locale encoding from UTF-8 to ISO-8859-1.
 

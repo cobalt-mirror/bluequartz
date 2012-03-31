@@ -336,7 +336,14 @@ if ($is_overquota eq "0") {
 
     # Set content type:
     $send_msg->attr("content-type"         => "text/plain");
-    $send_msg->attr("content-type.charset" => "UTF-8");
+
+    # Set charset based on locale:
+    if (($locale eq "ja_JP") || ($locale eq "ja")) {
+	$send_msg->attr("content-type.charset" => "EUC-JP");
+    }
+    else {
+	$send_msg->attr("content-type.charset" => "UTF-8");
+    }
 
     # Out with the email:
     $send_msg->send;
