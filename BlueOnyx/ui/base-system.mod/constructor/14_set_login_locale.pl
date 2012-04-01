@@ -57,7 +57,7 @@ sub update_i18n
 
 	# On 5107R and 5108R we need to switch from 'en' to 'en_US':
 	if (($build eq "5107R") || ($build eq "5108R")) {
-	    if ($curlangcode == "en") {
+	    if ($curlangcode eq "en") {
 		$curlangcode = "en_US";
 	    }
 	    # LC_ALL on SL6 must be a bit more specific:
@@ -69,17 +69,19 @@ sub update_i18n
 	}
         # Same for Japanese:
         if (($build eq "5107R") || ($build eq "5108R")) {
-            if ($curlangcode == "ja") {
+            if (($curlangcode eq "ja") || ($curlangcode eq "ja_JP")) {
                 $curlangcode = "ja_JP";
+        	# LC_ALL on SL6 must be a bit more specific:
+        	$locale_LC_ALL = "en_US.UTF-8";
             }
-            # LC_ALL on SL6 must be a bit more specific:
-            $locale_LC_ALL = "en_US.UTF-8";
-            $locale = "ja_JP.eucJP";
-
         }
 	else {
 	    # LC_ALL on CentOS5 can be a bit more simplicistic:
 	    $locale_LC_ALL = $locale;
+	}
+
+	if ($locale eq "ja_JP") {
+        	$locale = "ja_JP.eucJP";
 	}
 
 	#we need to move the current lang code to ahead of the rest
