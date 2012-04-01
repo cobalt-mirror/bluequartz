@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX27
+- Another fix to perl/I18n.pm to change 'en' to 'en_US' automatically.
+
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
 - Small locale related fixes to perl/I18n.pm
 

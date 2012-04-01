@@ -103,25 +103,31 @@ sub getAvailableLocales
 	my @locales = ();
 	my @cmd = ('/usr/sausalito/bin/i18n_locales', $domain);
 
-	# need to make sure the lang is defined or the i18n library bombs
-	my $lang_defined = 0;
-	if (!defined($ENV{LANG})) {
-		$lang_defined = 1;
-		$ENV{LANG} = 'en_US';
-	}
+        # need to make sure the lang is defined or the i18n library bombs
+        my $lang_defined = 0;
+        if (!defined($ENV{LANG})) {
+                $lang_defined = 1;  
+                $ENV{LANG} = 'en_US';
+        }
+        if ($ENV{LANG} eq "en") {
+                $lang_defined = 1;
+                $ENV{LANG} = 'en_US';
+        }
 
-	# safe pipe read to prevent running via the shell
-	open(LOCALES, "-|") || exec(@cmd);
-	while (my $locale = <LOCALES>) {
-		chomp($locale);
-		if (($locale ne "en") && ($locale ne "ja")) { 
-		    # We use 'en_US' instead of 'en'. At the same time we use 'jp_JP' instead of 'jp'.
-		    # This if clause essentially makes the GUI hide the language options for 'en' and
-		    # 'ja' and instead shows 'en_US' and 'ja_JP' instead. Yes, this is confusing.
-		    push @locales, $locale;
-		}
-	}
-	close(LOCALES);
+        # safe pipe read to prevent running via the shell
+        open(LOCALES, "-|") || exec(@cmd);
+        while (my $locale = <LOCALES>) {
+                chomp($locale);
+                print "Locale: $locale \n";
+                if ($locale eq "en") { next; }
+                if ($locale eq "ja") { next; }
+                    # We use 'en_US' instead of 'en'. At the same time we use 'jp_JP' instead of 'jp'.
+                    # This if clause essentially makes the GUI hide the language options for 'en' and
+                    # 'ja' and instead shows 'en_US' and 'ja_JP' instead. Yes, this is confusing.
+                    push @locales, $locale;
+ 
+        }
+        close(LOCALES);
 
 	if ($lang_defined) {
 		$ENV{LANG} = undef;
