@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX25%{?dist}
+Release: 86BX26%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,24 +93,33 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
-* Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25
-- Ok, last time around we broke Japanese. I wonder what we break this time.
-- Modified php/I18n.php again. On 5106R we use 'ja' and ignore and hide 
-  'ja_JP' from the list of available languages. Somehow the last change 
-  rendered the locale switch to 'ja' ineffective and it stuck on 'en'
-  instead.
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
+- Small locale related fixes to perl/I18n.pm
 
-* Sun Sep 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX24
-- Modified perl/I18n.pm again as it was now dropping 'en' support entirely. Doh.
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25
+- Cracklib failed on 64-bit due to this error: http://pecl.php.net/bugs/bug.php?id=9710
+- Fetched updated cracklib/crack/libcrack/src/cracklib.h from PECL SVN.
+- Previous version of it added to our SVN as cracklib/crack/libcrack/src/cracklib.h.old
+
+* Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX24
+- Ok, last time around we broke Japanese. I wonder what we break this time.
+- Modified perl/I18n.pm and php/I18n.php again. On 5107R we use 'ja' and 
+  ignore and hide 'ja_JP' from the list of available languages.
 
 * Fri Sep 09 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX23
 - On 5107R the GUI defaulted to something non English (mostly German) if the
   browser locale wasn't one of our supported locales. I tried to fix this
   through work arounds both in perl/I18n.pm and php/I18n.php
-- Modified perl/I18n.pm to make sure 'en' comes first in the list of
+- Modified perl/I18n.pm to make sure 'en_US' comes first in the list of
   supported locales.
 - Modified php/I18n.php to make sure that if no supported locale is detected,
-  then 'en' will be used instead.
+  then 'en_US' will be used instead.
+
+* Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
+- Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
+
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
+- Change of minor version number to BX
 
 * Mon Jun 22 2009 Rickard osser <rickard.osser@bluapp.com> 0.70.2-86BQ19
 - Fixed bug which added characters to mime-encoded headers in I18nMail.pm.

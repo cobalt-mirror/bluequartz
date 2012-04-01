@@ -21,7 +21,8 @@ $DEBUG = 0;
 # only has entries for locales that require conversion
 #
 my $encodings = {
-			'ja' => 'euc'
+			'ja' => 'euc',
+			'ja_JP' => 'euc'
 		};
 
 #
@@ -106,14 +107,17 @@ sub getAvailableLocales
 	my $lang_defined = 0;
 	if (!defined($ENV{LANG})) {
 		$lang_defined = 1;
-		$ENV{LANG} = 'en';
+		$ENV{LANG} = 'en_US';
 	}
 
 	# safe pipe read to prevent running via the shell
 	open(LOCALES, "-|") || exec(@cmd);
 	while (my $locale = <LOCALES>) {
 		chomp($locale);
-		if ($locale ne "en_US") { # On 5106R we use 'en' instead of 'en_US'!
+		if (($locale ne "en") && ($locale ne "ja")) { 
+		    # We use 'en_US' instead of 'en'. At the same time we use 'jp_JP' instead of 'jp'.
+		    # This if clause essentially makes the GUI hide the language options for 'en' and
+		    # 'ja' and instead shows 'en_US' and 'ja_JP' instead. Yes, this is confusing.
 		    push @locales, $locale;
 		}
 	}
