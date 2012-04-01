@@ -118,7 +118,6 @@ sub getAvailableLocales
         open(LOCALES, "-|") || exec(@cmd);
         while (my $locale = <LOCALES>) {
                 chomp($locale);
-                print "Locale: $locale \n";
                 if ($locale eq "en") { next; }
                 if ($locale eq "ja") { next; }
                     # We use 'en_US' instead of 'en'. At the same time we use 'jp_JP' instead of 'jp'.
