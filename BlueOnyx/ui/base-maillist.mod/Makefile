@@ -18,7 +18,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 #BUILDSRC=yes
 
-REQUIRES=majordomo
+REQUIRES=majordomo base-maillist-locale-ja_JP
 REQUIRES_UI=base-admserv-glue
 
 include /usr/sausalito/devel/module.mk
