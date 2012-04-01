@@ -56,7 +56,7 @@ sub update_i18n
         my $curlangcode = substr($sys->{productLanguage}, 0, 2);
 
 	# On 5107R and 5108R we need to switch from 'en' to 'en_US':
-	if (($build eq "5107R") || ($build eq "5108R")) {
+	if (($build eq "5106R") || ($build eq "5107R") || ($build eq "5108R")) {
 	    if ($curlangcode eq "en") {
 		$curlangcode = "en_US";
 	    }
@@ -68,7 +68,7 @@ sub update_i18n
 	    $locale_LC_ALL = $locale;
 	}
         # Same for Japanese:
-        if (($build eq "5107R") || ($build eq "5108R")) {
+        if (($build eq "5106R") || ($build eq "5107R") || ($build eq "5108R")) {
             if (($curlangcode eq "ja") || ($curlangcode eq "ja_JP")) {
                 $curlangcode = "ja_JP";
         	# LC_ALL on SL6 must be a bit more specific:
