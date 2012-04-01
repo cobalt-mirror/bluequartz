@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=phpmyadmin
 
 VERSION=1.1.0
-RELEASE=0BX10
+RELEASE=0BX12
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES = phpMyAdmin base-phpmyadmin-locale-ja
+REQUIRES = phpMyAdmin
 
 #########
 # some useful defines
