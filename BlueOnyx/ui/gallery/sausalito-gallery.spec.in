@@ -41,6 +41,9 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX17
+- Copied 'ja' locales to 'ja_JP'.
+
 * Fri Mar 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX16
 - Added the FireSmoke theme created by Rod Morgan (from PortMorgan LLC) to BlueOnyx. Thank you, Rod!
 
