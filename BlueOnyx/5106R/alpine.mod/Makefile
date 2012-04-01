@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=alpine
 
 VERSION=0.1
-RELEASE=85BX34
+RELEASE=85BX36
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 #BUILDSRC=yes
 
-REQUIRES = base-alpine-locale-ja_JP, base-am-locale-ja_JP, base-apache-bandwidth-locale-ja_JP, base-apache-locale-ja_JP, base-backupcontrol-locale-ja_JP, base-console-locale-ja_JP, base-disk-locale-ja_JP, base-dns-locale-ja_JP, base-documentation-locale-ja_JP, base-email-locale-ja_JP, base-ftp-locale-ja_JP, base-import-locale-ja_JP, base-java-locale-ja_JP, base-subdomains-locale-ja_JP, base-mailman-locale-ja_JP, base-memory-locale-ja_JP, base-mysql-locale-ja_JP, base-network-locale-ja_JP, base-phpmyadmin-locale-ja_JP, base-power-locale-ja_JP, base-sauce-basic-locale-ja_JP, base-schedule-locale-ja_JP, base-services-locale-ja_JP, base-shell-locale-ja_JP, base-sitestats-locale-ja_JP, base-snmp-locale-ja_JP, base-ssh-locale-ja_JP, base-ssl-locale-ja_JP, base-swupdate-locale-ja_JP, base-system-locale-ja_JP, base-telnet-locale-ja_JP, base-time-locale-ja_JP, base-user-locale-ja_JP, base-vsite-locale-ja_JP, base-wizard-locale-ja_JP, base-remote-locale-ja_JP, sausalito-gallery-locale-ja_JP, base-raid-locale-ja_JP, anthy, fonts-japanese, kcc, lv, man-pages-ja, nkf, perl-NKF
+REQUIRES = base-alpine-locale-ja_JP, base-am-locale-ja_JP, base-apache-bandwidth-locale-ja_JP, base-apache-locale-ja_JP, base-backupcontrol-locale-ja_JP, base-console-locale-ja_JP, base-disk-locale-ja_JP, base-dns-locale-ja_JP, base-documentation-locale-ja_JP, base-email-locale-ja_JP, base-ftp-locale-ja_JP, base-import-locale-ja_JP, base-java-locale-ja_JP, base-subdomains-locale-ja_JP, base-memory-locale-ja_JP, base-mysql-locale-ja_JP, base-network-locale-ja_JP, base-phpmyadmin-locale-ja_JP, base-power-locale-ja_JP, base-sauce-basic-locale-ja_JP, base-schedule-locale-ja_JP, base-services-locale-ja_JP, base-shell-locale-ja_JP, base-sitestats-locale-ja_JP, base-snmp-locale-ja_JP, base-ssh-locale-ja_JP, base-ssl-locale-ja_JP, base-swupdate-locale-ja_JP, base-system-locale-ja_JP, base-telnet-locale-ja_JP, base-time-locale-ja_JP, base-user-locale-ja_JP, base-vsite-locale-ja_JP, base-wizard-locale-ja_JP, base-remote-locale-ja_JP, sausalito-gallery-locale-ja_JP, base-raid-locale-ja_JP, anthy, fonts-japanese, kcc, lv, man-pages-ja, nkf, perl-NKF, base-alpine-locale-en_US, base-am-locale-en_US, base-apache-bandwidth-locale-en_US, base-apache-locale-en_US, base-backupcontrol-locale-en_US, base-console-locale-en_US, base-disk-locale-en_US, base-dns-locale-en_US, base-documentation-locale-en_US, base-email-locale-en_US, base-ftp-locale-en_US, base-import-locale-en_US, base-java-locale-en_US, base-memory-locale-en_US, base-mysql-locale-en_US, base-network-locale-en_US, base-phpmyadmin-locale-en_US, base-phpsysinfo-locale-en_US, base-power-locale-en_US, base-remote-locale-en_US, base-sauce-basic-locale-en_US, base-schedule-locale-en_US, base-services-locale-en_US, base-shell-locale-en_US, base-sitestats-locale-en_US, base-snmp-locale-en_US, base-ssh-locale-en_US, base-ssl-locale-en_US, base-subdomains-locale-en_US, base-swupdate-locale-en_US, base-system-locale-en_US, base-telnet-locale-en_US, base-time-locale-en_US, base-user-locale-en_US, base-vsite-locale-en_US, base-wizard-locale-en_US
 
 #########
 # some useful defines
