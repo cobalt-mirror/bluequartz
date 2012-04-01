@@ -76,6 +76,9 @@ sub update_i18n
         if ($locale eq "ja_JP") {
                 $locale = "ja_JP.eucJP";
         }
+        if ($locale eq "en") {
+                $locale = "en_US";
+        }
 
         #we need to move the current lang code to ahead of the rest
         my $linguas = $curlangcode;
