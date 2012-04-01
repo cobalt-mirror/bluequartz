@@ -17,7 +17,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=mailman base-blueonyx-capstone base-blueonyx-glue base-mailman-am
+REQUIRES=mailman base-blueonyx-capstone base-blueonyx-glue base-mailman-am base-mailman-locale-ja_JP
 #OBSOLETES=majordomo base-maillist-capstone base-maillist-ui base-maillist-glue 
 
 include /usr/sausalito/devel/module.mk
