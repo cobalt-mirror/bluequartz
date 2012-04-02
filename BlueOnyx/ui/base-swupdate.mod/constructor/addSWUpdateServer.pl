@@ -25,14 +25,16 @@ my @OIDS = $cce->find('SWUpdateServer');
 # create a default SWUpdateServer object if none exists, use default
 # properties in update.schema file
 
-if ($#OIDS < 0) {
-  # create SWUpdateServer object
-  $cce->create('SWUpdateServer', {
+foreach $oid (@OIDS) {
+	my ($ok, $obj) = $cce->destroy($oid);
+}
+
+# create SWUpdateServer object
+$cce->create('SWUpdateServer', {
 	'name'        => 'default',
 	'enabled'     => 1,
-	'location'    => 'http://newlinq.compassnetworks.com.au/',
-    });
-}
+	'location'    => 'newlinq.blueonyx.it',
+});
 
 mkdir($package_dir, 0755) unless -d ($package_dir);
 chown((getpwnam(Sauce::Config::groupdir_owner))[2,3], $package_dir);
