@@ -4,7 +4,7 @@ endif
 
 include $(CCEBASE)/devel/defines.mk
 
-CONF=phpsysinfo/config.php
+CONF=phpsysinfo/config.php phpsysinfo/config.php.5106R
 all:
 
 install:
