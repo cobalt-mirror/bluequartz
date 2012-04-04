@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX28
+- Fix to php/I18n.php as fallback language was still defined as 'en', while it must be 'en_US' now.
+
 * Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX27
 - Another fix to perl/I18n.pm to change 'en' to 'en_US' automatically.
 

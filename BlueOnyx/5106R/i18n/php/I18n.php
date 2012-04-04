@@ -41,14 +41,14 @@ class I18n {
 		if($GLOBALS["_I18n_isStub"]) return;
 
 		if($langs == "" && getenv("LANG") == "") {
-			$langs = "en";
+			$langs = "en_US";
 		}
 
 		// If the detected language is not 'de_DE', 'da_DK' or 'ja_JP', we fall back to 'en_US'.
 		// This was added particularly for 5107R/5108R as it would default to German otherwise:
 		$my_lang = explode(',', $langs);
 		if ((($my_lang[0] != "de-DE") && ($my_lang[0] != "de_DE")) && (($my_lang[0] != "da-DK") && ($my_lang[0] != "da_DK")) && (($my_lang[0] != "ja") && ($my_lang[0] != "ja-JP") && ($my_lang[0] != "ja_JP"))) {
-			$langs = "en";
+			$langs = "en_US";
 		}
 
 		$this->handle = i18n_new($domain, $langs);
