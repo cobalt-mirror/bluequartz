@@ -243,7 +243,7 @@ sub i18n_getSystemLocale {
 	}
 	close(FILE);
     }
-    return $locale ? $locale : 'en';
+    return $locale ? $locale : 'en_US';
 }
 
 ####################################
