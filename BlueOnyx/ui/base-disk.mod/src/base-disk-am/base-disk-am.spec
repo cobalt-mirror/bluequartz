@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.1.0
-Release: 15BX24%{?dist}
+Release: 15BX25%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -29,6 +29,10 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Thu Apr 05 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BX25
+- Modified am_disk.pl to set correct locale for Emails that it generates. Required changes
+  after massive UTF-8 update, as it was still sending in 'ISO-8859-1' format.
+
 * Tue Oct 04 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-15BX24
 - Updated am_disk.pl again to make output generation of user-over-quota-mails more readable.
 

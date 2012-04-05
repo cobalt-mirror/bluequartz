@@ -33,14 +33,17 @@ my @sysoid = $cce->find ('System');
 my ($ok, $sysobj) = $cce->get($sysoid[0]);
 my $system_lang = $sysobj->{productLanguage};
 my $platform = $sysobj->{productBuild};
-  
+my $locale = "";
+my $l1_oid = "";
+my $l2_oid = "";
+
 # We can't email in Japanese yet, as MIME:Lite alone doesn't support it. We'd need MIME::Lite:TT:Japanese 
 # and a hell of a lot of dependencies to sort that out. So for now we hard code them to 'en_US' or 'en'
 # for emailing purpose from within this script:
   
 if ($system_lang eq "ja") {
     if ($platform eq "5106R") {
-    	$i18n->setLocale("en");
+    	$i18n->setLocale("en_US");
     }
     else {
     	$i18n->setLocale("en_US");
@@ -80,6 +83,9 @@ my $time_to_send_admin_mail = 0;
 if ($hour == 4 && $minutes < 15) {
     $time_to_send_admin_mail = 1;
 }
+
+# mstauber
+if ($DEBUG == "1") { $time_to_send_admin_mail = 1; }
 
 my %am_states = am_get_statecodes();
 
@@ -194,7 +200,10 @@ foreach my $username (@users_over_quota) {
     # so it shows if we were over quota LAST TIME
     ($user_ok, $disk) = $cce->get($oid, 'Disk');
     my $newly_over = !$disk->{over_quota};
-    
+
+    # mstauber
+    if ($DEBUG == "1") { $newly_over = "1"; }
+
     # has it been over a day since we last mailed them?
     $send_mail = $disk->{lastmailed} < time - 3600*24; 
 
@@ -329,7 +338,19 @@ if (@mail_output) {
     # We don't want to use the crappy SendEmail::sendEmail:
     # SendEmail::sendEmail($recips, 'admin', '[[base-disk.userOverQuota]]', join("\n", @mail_output));
 
+    # Set locale for i18n
+    my @l1_oid = ();
+    ($l1_oid) = $cce->find('User', {'name' => 'admin'});
+    my ($l1_ok, $user_locale) = $cce->get($l1_oid);
+
+    my $locale = $user_locale->{localePreference};
+
+    if (not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$locale") {
+    	$locale = I18n::i18n_getSystemLocale($cce);
+    }
+
     # Build the message using MIME::Lite instead:
+    $i18n->setLocale($locale);
     my $a_subject = $host . ": " . $i18n->get('[[base-disk.userOverQuota]]');
     my $a_body = join("\n", @mail_output);
 
@@ -339,11 +360,17 @@ if (@mail_output) {
         Subject  => $a_subject,
         Data     => $a_body
     );
-    
-    # Set content type:
+
     $send_msg->attr("content-type"         => "text/plain");
-    $send_msg->attr("content-type.charset" => "ISO-8859-1");
- 
+
+    # Set charset based on locale: 
+    if (($locale eq "ja_JP") || ($locale eq "ja")) { 
+        $send_msg->attr("content-type.charset" => "EUC-JP"); 
+    } 
+    else { 
+        $send_msg->attr("content-type.charset" => "UTF-8"); 
+    } 
+
     # Out with the email:
     $send_msg->send;
 
@@ -367,7 +394,19 @@ while (my ($user, $site) = each(%users_to_warn)) {
 
     # SendEmail::sendEmail($email, 'admin', '[[base-disk.userOverQuota]]', '[[base-disk.overQuotaMsg]]');
 
+    # Set locale for i18n
+    my @l2_oid = ();
+
+    ($l2_oid) = $cce->find('User', {'name' => $user});
+    my ($l2_ok, $user_locale) = $cce->get($l2_oid);
+
+    my $locale = $user_locale->{localePreference};
+    if (not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$locale") {
+    	$locale = I18n::i18n_getSystemLocale($cce);
+    }
+
     # Build the message using MIME::Lite instead:
+    $i18n->setLocale($locale);
     my $u_subject = $i18n->get('[[base-disk.userOverQuota]]');
     my $u_body = $i18n->get('[[base-disk.overQuotaMsg]]') . "\n\n";
 
@@ -377,15 +416,20 @@ while (my ($user, $site) = each(%users_to_warn)) {
         Subject  => $u_subject,
         Data     => $u_body
     );
-      
+
     # Set content type:
     $send_msg->attr("content-type"         => "text/plain");
-    $send_msg->attr("content-type.charset" => "ISO-8859-1");
-    
+
+    # Set charset based on locale: 
+    if (($locale eq "ja_JP") || ($locale eq "ja")) { 
+        $send_msg->attr("content-type.charset" => "EUC-JP"); 
+    } 
+    else { 
+        $send_msg->attr("content-type.charset" => "UTF-8"); 
+    } 
+
     # Out with the email:
     $send_msg->send;
-
-
 }
 
 # update lastmailed flags
