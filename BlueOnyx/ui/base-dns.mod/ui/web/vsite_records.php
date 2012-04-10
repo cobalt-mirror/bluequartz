@@ -319,7 +319,7 @@ if(count($rec_oids)) {
 				$factory->getTextField("", $direction, "r"),
 				$factory->getTextField("", $resolution, "r"),
 				$factory->getCompositeFormField(array(
-					$factory->getModifyButton( "$addmod?_PagedBlock_selectedId_blockid0=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link ),
+					$factory->getModifyButton( "$addmod?_PagedBlock_selectedId_blockid0=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link . "&group=$group"),
 					$factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$label', '$domauth', '$netauth')" )
 	
 				))

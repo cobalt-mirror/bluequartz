@@ -154,14 +154,24 @@ if ($HTTP_GET_VARS{'TYPE'} == 'PTR') {
 
 } elseif ($HTTP_GET_VARS{'TYPE'} == 'MX') {
 
-	if ($Ui->Data['mx_domain_name'] == '') { 
-		$Ui->Data['mx_domain_name'] = $dom_default; 
+        // Redirect to new dedicated dns_add_mx.php page:
+        if ($_TARGET == '') {
+    	    header("location: /base/dns/vsite_dns_add_mx.php?domauth=$dom_default&group=$group");
+    	    return;
+    	}
+	else {
+    	    header("location: /base/dns/vsite_dns_add_mx.php?domauth=$dom_default&group=$group&_TARGET=$_TARGET");
+    	    return;
 	}
-	$Ui->DomainName( "mx_host_name", array( "Optional" => 'loud' )); 
-	$Ui->DomainName( "mx_domain_name", array( "Access" => "r") ); 
-	$Ui->DomainName( "mx_target_server" );
-	// $Ui->DomainName( "mx_target_server", array( "Optional" => "silent" ) );
-	$Ui->Alters( "mx_priority", array('very_high', 'high', 'low', 'very_low') ); 
+
+	//if ($Ui->Data['mx_domain_name'] == '') { 
+	//	$Ui->Data['mx_domain_name'] = $dom_default; 
+	//}
+	//$Ui->DomainName( "mx_host_name", array( "Optional" => 'loud' )); 
+	//$Ui->DomainName( "mx_domain_name", array( "Access" => "r") ); 
+	//$Ui->DomainName( "mx_target_server" );
+	//// $Ui->DomainName( "mx_target_server", array( "Optional" => "silent" ) );
+	//$Ui->Alters( "mx_priority", array('very_high', 'high', 'low', 'very_low') ); 
 } elseif ($HTTP_GET_VARS{'TYPE'} == 'SUBDOM') {
 
 	if ( ! $Ui->Data['subdom_domain_name'] ) { 
