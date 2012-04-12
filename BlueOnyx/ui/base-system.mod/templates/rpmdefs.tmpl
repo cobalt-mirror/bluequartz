@@ -118,6 +118,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX35
+- Updated constructor/14_set_login_locale.pl to remove substr() from lang detection
+  We really NEED the full curlangcode and not the shortened 2 letter designation.
+
 * Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX34
 - Updated constructor/14_set_login_locale.pl and glue/handlers/set_login_locale.pl again to
   set 'en_US' in case we still run on 'en' only.
