@@ -25,13 +25,13 @@ msgid "current_pass"
 msgstr "Momentanes Passwort:"
 
 msgid "current_pass_help"
-msgstr "Bitte geben Sie ihr momentanes Passwort ein."
+msgstr "Bitte geben Sie Ihr momentanes Passwort ein."
 
 msgid "delete_backup"
-msgstr "Backup löschen"
+msgstr "Backup lÃ¶schen"
 
 msgid "delete_backup_help"
-msgstr "Erlaubt Ihnen, das vorhandene MySQL-Backup zu löschen."
+msgstr "Erlaubt Ihnen, das vorhandene MySQL-Backup zu lÃ¶schen."
 
 msgid "download_backup"
 msgstr "Backup herunterladen"
@@ -43,13 +43,13 @@ msgid "dump"
 msgstr "SQL-Dump anlegen"
 
 msgid "dump_help"
-msgstr "Führt einen MySQL-Dump durch"
+msgstr "FÃ¼hrt einen MySQL-Dump durch"
 
 msgid "filesize"
-msgstr "Filegröße:"
+msgstr "FilegrÃ¶ÃŸe:"
 
 msgid "filesize_help"
-msgstr "Zeigt die Größe des vorhandenen MySQL-Dumps an."
+msgstr "Zeigt die GrÃ¶ÃŸe des vorhandenen MySQL-Dumps an."
 
 msgid "last_backup"
 msgstr "Zuletzt gesichert:"
@@ -76,13 +76,13 @@ msgid "mysqlpass"
 msgstr "Neues Passwort:"
 
 msgid "mysqlpass_help"
-msgstr "Erlaubt Ihnen die Änderung des MySQL Passworts - vorausgesetzt Sie kennen das momentane Passwort."
+msgstr "Erlaubt Ihnen die Ã„nderung des MySQL Passworts - vorausgesetzt Sie kennen das momentane Passwort."
 
 msgid "password"
 msgstr "MySQL Passwort"
 
 msgid "password_help"
-msgstr "Das Passwort für den MySQL 'root'-Nutzer."
+msgstr "Das Passwort fÃ¼r den MySQL 'root'-Nutzer."
 
 msgid "server"
 msgstr "Server"
@@ -94,32 +94,32 @@ msgid "sqldump"
 msgstr "SQL-Dump"
 
 msgid "sqldump_help"
-msgstr "Datensicherung der SQL-Datenbanken ausführen."
+msgstr "Datensicherung der SQL-Datenbanken ausfÃ¼hren."
 
 msgid "sqlpass"
-msgstr "Passwort ändern"
+msgstr "Passwort Ã¤ndern"
 
 msgid "sqlpass_help"
-msgstr "Erlaubt es Ihnen, das MySQL 'root'-Passwort zu ändern. Kann auch genutzt werden, um das MySQL-Passwort komplett zu entfernen. Immer vorausgesetzt, Sie kennen das momentane Passwort."
+msgstr "Erlaubt es Ihnen, das MySQL 'root'-Passwort zu Ã¤ndern. Kann auch genutzt werden, um das MySQL-Passwort komplett zu entfernen. Immer vorausgesetzt, Sie kennen das momentane Passwort."
 
 msgid "username"
 msgstr "MySQL Benutzername"
 
 msgid "username_help"
-msgstr "Der primäre Benutzer von MySQL. Typischerweise 'root'."
+msgstr "Der primÃ¤re Benutzer von MySQL. Typischerweise 'root'."
 
 # Solarspeed additions:
 msgid "MySQL_Settings_head"
 msgstr "MySQL Einstellungen"
 
 msgid "MySQL_Settings_divider"
-msgstr "Erlaubt es, die Einstellungen für das automatische Anlegen von Benutzern und Datenbanken zu konfigurieren."
+msgstr "Erlaubt es, die Einstellungen fÃ¼r das automatische Anlegen von Benutzern und Datenbanken zu konfigurieren."
 
 msgid "sql_host"
 msgstr "MySQL Host:"
 
 msgid "sql_host_help"
-msgstr "Hier gibt man den Host an, auf dem der MySQL-Server läuft (in der Regel 'localhost'). Dies ist nötig, damit Anwendungen sich zum MySQL-Server verbinden können."
+msgstr "Hier gibt man den Host an, auf dem der MySQL-Server lÃ¤uft (in der Regel 'localhost'). Dies ist nÃ¶tig, damit Anwendungen sich zum MySQL-Server verbinden kÃ¶nnen."
 
 msgid "sql_port"
 msgstr "MySQL Port:"
@@ -128,7 +128,7 @@ msgid "sql_port_help"
 msgstr "TCP/IP Port an welchen MySQL gebunden ist. In der Regel '3306'."
 
 msgid "MYSQL_ROOT_Settings_divider"
-msgstr "Zugangsdaten für MySQL-Nutzer 'root':"
+msgstr "Zugangsdaten fÃ¼r MySQL-Nutzer 'root':"
 
 msgid "sql_root"
 msgstr "MySQL Nutzer:"
@@ -146,13 +146,13 @@ msgid "sql_status"
 msgstr "MySQL Status:"
 
 msgid "sql_status_help"
-msgstr "Zeigt den Status der Verbindung zum MySQL-Server an und ob ein Verbindungsaufbau mit obigen Zugangsdaten möglich ist."
+msgstr "Zeigt den Status der Verbindung zum MySQL-Server an und ob ein Verbindungsaufbau mit obigen Zugangsdaten mÃ¶glich ist."
 
 msgid "mysql_status_unconfigured"
-msgstr "Bitte konfigurieren Sie die Zugangsdaten für MySQL."
+msgstr "Bitte konfigurieren Sie die Zugangsdaten fÃ¼r MySQL."
 
 msgid "mysql_status_incorrect"
-msgstr "Verbindung zum MySQL-Server kann mit diesen Zugangsdaten nicht aufgebaut werden. Bitte prüfen Sie die Einstellungen."
+msgstr "Verbindung zum MySQL-Server kann mit diesen Zugangsdaten nicht aufgebaut werden. Bitte prÃ¼fen Sie die Einstellungen."
 
 msgid "mysql_status_ok"
 msgstr "MySQL-Verbindung erfolgreich aufgebaut."
@@ -161,7 +161,7 @@ msgid "MySQL_menu"
 msgstr "MySQL"
 
 msgid "MySQL_menu_help"
-msgstr "Konfiguriert die MySQL-Einstellungen, damit Applikationen auf MySQL zugreifen können."
+msgstr "Konfiguriert die MySQL-Einstellungen, damit Applikationen auf MySQL zugreifen kÃ¶nnen."
 
 msgid "MySQL_Local_divider"
 msgstr "Lokaler MySQL Server:"
@@ -183,7 +183,7 @@ msgid "my_cnf"
 msgstr "/etc/my.cnf Editor:"
 
 msgid "my_cnf_help"
-msgstr "Hier können Sie die Datei /etc/my.cnf direkt einsehen und bearbeiten. Bitte beachten Sie, dass dieser Editor keine Sytaxprüfung durchführt! Daher sollten Sie alle Eingaben mit besonderer Vorsicht durchführen."
+msgstr "Hier kÃ¶nnen Sie die Datei /etc/my.cnf direkt einsehen und bearbeiten. Bitte beachten Sie, dass dieser Editor keine SytaxprÃ¼fung durchfÃ¼hrt! Daher sollten Sie alle Eingaben mit besonderer Vorsicht durchfÃ¼hren."
 
 msgid "mysql_license"
 msgstr "License management:"
@@ -255,13 +255,13 @@ msgid "MySQL_TAB_ONE"
 msgstr "MySQL-Benutzer und Datenbanken automatisch anlegen"
 
 msgid "MySQL_TAB_ONE_help"
-msgstr "Erlaubt es, MySQL-Benutzer und Datenbanken für virtuelle Sites automatisch anzulegen."
+msgstr "Erlaubt es, MySQL-Benutzer und Datenbanken fÃ¼r virtuelle Sites automatisch anzulegen."
 
 msgid "MySQL_TAB_TWO"
 msgstr "/etc/my.cnf Editor"
 
 msgid "MySQL_TAB_TWO_help"
-msgstr "Erlaubt es, die Datei /etc/my.cnf direkt einzusehen und zu ändern."
+msgstr "Erlaubt es, die Datei /etc/my.cnf direkt einzusehen und zu Ã¤ndern."
 
 msgid "udb_switch"
 msgstr "MySQL automatisieren"
@@ -273,49 +273,49 @@ msgid "solmysqlFullText"
 msgstr "MySQL Nutzer und Datenbank"
 
 msgid "solmysqlFullText_help"
-msgstr "Erlaubt es, automatisch eine MySQL-Datenbank und einen dazugehörigen MySQL-Nutzer anzulegen. ACHTUNG: Falls diese Checkbox bereits markiert ist und man diese Markierung entfernt, wird sowohl die Datenbank als auch der dazugehörige Nutzer gelöscht!"
+msgstr "Erlaubt es, automatisch eine MySQL-Datenbank und einen dazugehÃ¶rigen MySQL-Nutzer anzulegen. ACHTUNG: Falls diese Checkbox bereits markiert ist und man diese Markierung entfernt, wird sowohl die Datenbank als auch der dazugehÃ¶rige Nutzer gelÃ¶scht!"
 
 msgid "solmysqlUsername"
 msgstr "Benutzername"
 
 msgid "solmysqlUsername_help"
-msgstr "Benutzername des MySQL-Nutzers. Hat administrative Rechter nur für die angegebene Datenbank."
+msgstr "Benutzername des MySQL-Nutzers. Hat administrative Rechter nur fÃ¼r die angegebene Datenbank."
 
 msgid "solmysqlPass"
 msgstr "Passwort"
 
 msgid "solmysqlPass_help"
-msgstr "MySQL-Passwort für den fraglichen MySQL-Nutzer."
+msgstr "MySQL-Passwort fÃ¼r den fraglichen MySQL-Nutzer."
 
 msgid "solmysqlDB"
 msgstr "Datenbank Name"
 
 msgid "solmysqlDB_help"
-msgstr "Der Name der MySQL Datenbank für diese Site."
+msgstr "Der Name der MySQL Datenbank fÃ¼r diese Site."
 
 msgid "solmysqlHost"
 msgstr "Datenbank Host"
 
 msgid "solmysqlHost_help"
-msgstr "Host auf dem der MySQL-Server läuft. In der Regel 'localhost'."
+msgstr "Host auf dem der MySQL-Server lÃ¤uft. In der Regel 'localhost'."
 
 msgid "solmysqlPort"
 msgstr "Port"
 
 msgid "solmysqlPort_help"
-msgstr "Port auf dem MySQL läuft. In der Regel '3306'."
+msgstr "Port auf dem MySQL lÃ¤uft. In der Regel '3306'."
 
 msgid "MySQL_DIVIDER_ONE"
-msgstr "Standard-Rechte für automatisch erzeugte Benutzer:"
+msgstr "Standard-Rechte fÃ¼r automatisch erzeugte Benutzer:"
 
 msgid "mysql_default_privileges"
 msgstr "Standard-Rechte:"
 
 msgid "mysql_default_privileges_help"
-msgstr "Neue MySQL-Benutzer werden mit den hier aufgelisteten Standardprivilegien für ihre eigene Datenbank erzeugt."
+msgstr "Neue MySQL-Benutzer werden mit den hier aufgelisteten Standardprivilegien fÃ¼r ihre eigene Datenbank erzeugt."
 
 msgid "EXPLAIN_RIGHTS"
-msgstr "Neue MySQL-Benutzer werden mit den hier aufgelisteten Standardprivilegien für ihre eigene Datenbank erzeugt."
+msgstr "Neue MySQL-Benutzer werden mit den hier aufgelisteten Standardprivilegien fÃ¼r ihre eigene Datenbank erzeugt."
 
 msgid "DIVIDER_ZERO"
 msgstr "Standard Datenbank-Privilegien:"
@@ -330,19 +330,19 @@ msgid "DIVIDER_THREE"
 msgstr "Struktur-Privilegien (normalerweise diese nicht vergeben):"
 
 msgid "DIVIDER_FOUR"
-msgstr "Resourcenbeschränkungen:"
+msgstr "ResourcenbeschrÃ¤nkungen:"
 
 msgid "SELECT_help"
 msgstr "Erlaubt das Lesen von Daten."
 
 msgid "INSERT_help"
-msgstr "Erlaubt es, Daten einzufügen und zu ersetzen."
+msgstr "Erlaubt es, Daten einzufÃ¼gen und zu ersetzen."
 
 msgid "UPDATE_help"
-msgstr "Erlaubt es, Daten zu ändern."
+msgstr "Erlaubt es, Daten zu Ã¤ndern."
 
 msgid "DELETE_help"
-msgstr "Erlaubt es, Daten zu löschen."
+msgstr "Erlaubt es, Daten zu lÃ¶schen."
 
 msgid "FILE_help"
 msgstr "Erlaubt es, Daten in oder aus Dateien zu exportieren oder zu importieren. Wird normalerweise nicht vergeben."
@@ -351,31 +351,31 @@ msgid "CREATE_help"
 msgstr "Erlaubt das anlegen von Datenbanken und Tabellen."
 
 msgid "ALTER_help"
-msgstr "Erlaubt das ändern von Strukturen existierender Tabellen."
+msgstr "Erlaubt das Ã„ndern von Strukturen existierender Tabellen."
 
 msgid "INDEX_help"
 msgstr "Erlaubt es, Indexes zu erzeugen und diese zu entfernen."
 
 msgid "DROP_help"
-msgstr "Erlaubt es, Datenbanken und Tabellen zu löschen."
+msgstr "Erlaubt es, Datenbanken und Tabellen zu lÃ¶schen."
 
 msgid "TEMPORARY"
 msgstr "CREATE TEMPORARY TABLES"
 
 msgid "TEMPORARY_help"
-msgstr "Erlaubt das Anlegen temporärer Tabellen."
+msgstr "Erlaubt das Anlegen temporÃ¤rer Tabellen."
 
 msgid "CREATE_VIEW"
 msgstr "CREATE VIEW"
 
 msgid "CREATE_VIEW_help"
-msgstr "Erlaubt es, neue 'views' anzulegen. (Wird nur unter MySQL5 oder neuer unterstützt.)"
+msgstr "Erlaubt es, neue 'views' anzulegen. (Wird nur unter MySQL5 oder neuer unterstÃ¼tzt.)"
 
 msgid "SHOW_VIEW"
 msgstr "SHOW VIEW"
 
 msgid "SHOW_VIEW_help"
-msgstr "Erlaubte es, Anfragen vom Typ 'SHOW CREATE VIEW' auszuführen. (Erfordert MySQL5 oder neuer.)"
+msgstr "Erlaubte es, Anfragen vom Typ 'SHOW CREATE VIEW' auszufÃ¼hren. (Erfordert MySQL5 oder neuer.)"
 
 msgid "CREATE_ROUTINE"
 msgstr "CREATE ROUTINE"
@@ -387,33 +387,33 @@ msgid "ALTER_ROUTINE"
 msgstr "ALTER ROUTINE"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "Erlaubt es, vordefinierte Routinen zu ändern.  (Erfordert MySQL5 oder neuer.)"
+msgstr "Erlaubt es, vordefinierte Routinen zu Ã¤ndern.  (Erfordert MySQL5 oder neuer.)"
 
 msgid "EXECUTE_help"
-msgstr "Erlaubt das Auführen gespeicherter Routinen. (Erfordert MySQL5 oder neuer.)"
+msgstr "Erlaubt das AufÃ¼hren gespeicherter Routinen. (Erfordert MySQL5 oder neuer.)"
 
 msgid "MAX_QUERIES_PER_HOUR"
 msgstr "MAX QUERIES PER HOUR"
 
 msgid "MAX_QUERIES_PER_HOUR_help"
-msgstr "Erlaubt es, die Anzahl der MySQL-Anfragen zu limitieren, die dieser Benutzer pro Stunde ausführen darf. '0' bedeutet: Keine Einschränkung."
+msgstr "Erlaubt es, die Anzahl der MySQL-Anfragen zu limitieren, die dieser Benutzer pro Stunde ausfÃ¼hren darf. '0' bedeutet: Keine EinschrÃ¤nkung."
 
 msgid "MAX_UPDATES_PER_HOUR"
 msgstr "MAX UPDATES PER HOUR"
 
 msgid "MAX_UPDATES_PER_HOUR_help"
-msgstr "Erlaubt es, die Anzahl der MySQL-Änderungen zu limitieren, die dieser Benutzer pro Stunde ausführen darf. '0' bedeutet: Keine Einschränkung."
+msgstr "Erlaubt es, die Anzahl der MySQL-Ã„nderungen zu limitieren, die dieser Benutzer pro Stunde ausfÃ¼hren darf. '0' bedeutet: Keine EinschrÃ¤nkung."
 
 msgid "MAX_CONNECTIONS_PER_HOUR"
 msgstr "MAX CONNECTIONS PER HOUR"
 
 msgid "MAX_CONNECTIONS_PER_HOUR_help"
-msgstr "Erlaubt es, die Anzahl der MySQL-Verbindungen zu limitieren, die dieser Benutzer pro Stunde ausführen darf. '0' bedeutet: Keine Einschränkung."
+msgstr "Erlaubt es, die Anzahl der MySQL-Verbindungen zu limitieren, die dieser Benutzer pro Stunde ausfÃ¼hren darf. '0' bedeutet: Keine EinschrÃ¤nkung."
 
 msgid "MySQL_Info_Text"
 msgstr "Neue MySQL-Benutzer und Datenbanken werden mit den hier konfigurierten Standard-Privilegien angelegt."
 
 #
 msgid "root_has_no_pwd"
-msgstr "Für den MySQL-Benutzer 'root' wurde noch kein Passwort vergeben! Bitte vergeben Sie für MySQL-Benutzer 'root' unbedingt ein Passwort!"
+msgstr "FÃ¼r den MySQL-Benutzer 'root' wurde noch kein Passwort vergeben! Bitte vergeben Sie fÃ¼r MySQL-Benutzer 'root' unbedingt ein Passwort!"
 
