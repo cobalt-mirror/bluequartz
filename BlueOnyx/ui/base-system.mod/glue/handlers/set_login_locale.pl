@@ -46,7 +46,7 @@ sub update_i18n
         my @langlist = split('&', $locales);
 
         #get the current lang code from "en_US" format
-        my $curlangcode = substr($sys->{productLanguage}, 0, 2);
+        my $curlangcode = $sys->{productLanguage};
 
         # On 5107R and 5108R we need to switch from 'en' to 'en_US':
         if (($build eq "5106R") || ($build eq "5107R") || ($build eq "5108R")) {
