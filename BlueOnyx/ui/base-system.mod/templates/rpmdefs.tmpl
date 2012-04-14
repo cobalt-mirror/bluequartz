@@ -118,6 +118,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Apr 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX37
+- Updated constructor/14_set_login_locale.pl and glue/handlers/set_login_locale.pl again.
+  We need to sort LINGUAS in a way that 'en_US' always comes first. This leaves the Linux
+  console at 'en_US' which some may find undesireable. But if we don't, we get plenty of
+  follow up errors both in the GUI as well as in some handlers or constructors.
+
 * Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX36
 - Also modified glue/handlers/set_login_locale.pl to remove the substr() from lang detection
 

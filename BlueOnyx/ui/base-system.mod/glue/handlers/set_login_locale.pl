@@ -81,12 +81,25 @@ sub update_i18n
         }
 
         #we need to move the current lang code to ahead of the rest
-        my $linguas = $curlangcode;
-        foreach my $tmp (@langlist) {
-                if ($tmp ne $curlangcode) {
-                        $linguas = $linguas . " " . $tmp;
-                }
-        }
+#       my $linguas = $curlangcode;
+#       foreach my $tmp (@langlist) {
+#               if ($tmp ne $curlangcode) {
+#                       $linguas = $linguas . " " . $tmp;
+#               }
+#       }
+         
+        # Sort in a way that 'en_US' always comes first:
+        @sorted_linguas = sort {
+            if ($a eq 'en_US') {
+                return -1;
+            } elsif ($b eq 'en_US') {
+                return 1;
+            } 
+            else {
+                return $a cmp $b;
+            }
+        } @langlist;
+        $linguas = join(" ",@sorted_linguas);
 
         print $out <<LOCALE;
 LANG=$locale
