@@ -288,6 +288,9 @@ for($i = 0; $i < count($browser_locales); $i++) {
 } 
 
 // $locale = $factory->getLocale("languageField", $localePreference);
+if (!$locale_match) {
+    $locale_match = "en_US";
+}
 $locale = $factory->getLocale("languageField", $locale_match);
 
 $locale->setPossibleLocales($possibleLocales);
@@ -295,6 +298,7 @@ $block->addFormField(
   $locale,
   $factory->getLabel("localeField")
 );
+
 
 //////////////// Time settings
 

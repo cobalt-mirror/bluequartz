@@ -103,6 +103,13 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sat Apr 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX32
+- Fixed wrecked characters in German translation.
+- Added constructor/set_default_services.pl to set certain email services
+  to on and to enable YUM autoupdate if system is not yet configured.
+- Modified ui/web/onepage.php to hard wire locale_match to 'en_US' if it
+  is undefined yet.
+
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX31
 - Converted locale encoding from UTF-8 to ISO-8859-1.
 

@@ -7,13 +7,13 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=wizard
 
 VERSION=1.0.1
-RELEASE=122BX31
+RELEASE=122BX32
 
 # add a buildarch if desired
 BUILDARCH=noarch
 
 # default locale for static content
-DEFLOCALE=en
+DEFLOCALE=en_US
 
 # locale exclude pattern
 #XLOCALEPAT=
