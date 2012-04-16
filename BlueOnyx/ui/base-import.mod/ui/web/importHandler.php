@@ -123,8 +123,8 @@ if (!$logfile)
 			# break up the Email.aliases
 			if ($peices[3]) 
 			{
-				$peices[3] = ereg_replace(" ", ",", trim($peices[3]));
-				$peices[3] = ereg_replace(",,", ",", $peices[3]);
+				$peices[3] = preg_replace('/ /', ",", trim($peices[3]));
+				$peices[3] = preg_replace('/,,/', ",", $peices[3]);
 				$aliases = explode(",", $peices[3]);
 				$Piped .= "\t" . arrayToString($aliases);		
 			} 
@@ -189,9 +189,9 @@ else
 	# show status
 
 	# sanitize logfile name
-	$logfile = ereg_replace("[^a-zA-Z0-9]", "_", $logfile);
+	$logfile = preg_replace('/[^a-zA-Z0-9]/', "_", $logfile);
 	$fhData = $serverScriptHelper->getFile("/tmp/$logfile");
-	$fhData = ereg_replace("\r", "", $fhData);
+	$fhData = preg_replace('/\r/', "", $fhData);
 	$fhData = explode("\n", $fhData);
 	array_pop($fhData); //get rid of blenk terminator
 	$doneCount = trim(array_shift($fhData));
@@ -224,13 +224,13 @@ else
 				# get the hash data
 				$table = array();
 				while (($line = array_shift($fhData))!="--") {
-					ereg("^(.*)=(.*)$", $line, $regs);
+					preg_match('/^(.*)=(.*)$/', $line, $regs);
 					$table[$regs[1]] = $regs[2];
 				}
 				# get the messages
 				$msg = "";
 				while (($line = array_shift($fhData))!="--") {
-					ereg("^(.*)$", $line, $regs);
+					preg_match('/^(.*)$/', $line, $regs);
 					if($msg != "")
 						$msg .= "\n";
 					$msg .= trim($regs[1]);
