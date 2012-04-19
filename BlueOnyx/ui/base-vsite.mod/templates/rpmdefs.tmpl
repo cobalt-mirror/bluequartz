@@ -57,6 +57,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
 %attr(0755,-,-) /usr/sausalito/sbin/web_alias_redirects.pl
 %attr(0755,-,-) /usr/sausalito/sbin/suPHP_fixer.pl
+%attr(0755,-,-) /usr/sausalito/sbin/php_settings_convert.pl
 %attr(0755,-,-) /usr/sausalito/sbin/phpsendmail
 %attr(0755,-,-) /usr/sausalito/configs/php/set_php_headers.php
 
@@ -84,6 +85,7 @@ information for [VENDOR]-[SERVICE].
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
     /usr/sausalito/sbin/suPHP_fixer.pl
+    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
 fi
 
 <end glue>
@@ -132,6 +134,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX95
+- Added /usr/sausalito/sbin/php_settings_convert.pl to allow us to activate the new PHP
+  features introduced in 3.0-132BX94.
 
 * Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX94
 - Extended base-vsite with wrapper mechanisms to log PHP's mail() usage to /var/log/maillog:
