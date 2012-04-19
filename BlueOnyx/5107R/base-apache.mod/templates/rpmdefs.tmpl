@@ -110,6 +110,12 @@ if [ -f /etc/init.d/avahi-daemon ]; then
         /sbin/chkconfig --level 2345 avahi-daemon off
 fi
 
+# Walk through /etc/httpd/conf/vhosts/site* and comment out the RewriteRule line that breaks SSL:
+if [ -f "/etc/httpd/conf/vhosts/site1" ]; then
+        echo "Found!"
+        sed -i -e 's/^RewriteRule ^\/(.*)/#RewriteRule ^\/(.*)/' /etc/httpd/conf/vhosts/site*
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -141,6 +147,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX22
+- Modified glue/handlers/virtual_host.pl to comment out 'RewriteRule ^/(.*) ...'
+  from Vhost container. This line appears to interfere with SSL certs on 5107R 
+  and 5108R if not commented out. Weird, as it works on 5106R and has been there
+  for ages.
+- Modified post-install to sed through all siteX files to comment out existing
+  'RewriteRule ^/(.*) ...' lines. We don't force an Apache restart, though.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX21
 - Converted locale encoding from UTF-8 to ISO-8859-1.

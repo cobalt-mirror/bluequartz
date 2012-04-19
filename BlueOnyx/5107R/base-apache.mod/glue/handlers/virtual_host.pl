@@ -103,7 +103,7 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:80)?\$
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:80)?\$ [NC]
 $aliasRewrite
-RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
+#RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
 RewriteOptions inherit
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
@@ -137,7 +137,7 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:443)?\$
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:443)?\$ [NC]
 $aliasRewriteSSL
-RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
+#RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
 RewriteOptions inherit
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
