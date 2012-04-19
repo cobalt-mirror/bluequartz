@@ -50,7 +50,7 @@ if ($helper->getAllowed('adminUser')){
 list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);
 $platform = $mysystem["PHP_version"];
-if ($platform >= "5.3") {
+if (($platform >= "5.3") && ($mysystem["show_safemode"] == "0")) {
     // We need to hide some legacy PHP settings that no longer work in PHP-5.3 or better:
     $pageID = "Hidden";
 }

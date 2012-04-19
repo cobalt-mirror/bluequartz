@@ -86,7 +86,7 @@ END
     # Do the actual editing:
     my $last;
     while(<$in>) {
-        if (/^RewriteRule/i) { 
+        if ((/^RewriteRule/i) || (/^RewriteOptions/i)) { 
     	    # If we get to this point, we're past the area of interest.
     	    # We store it in the string $last and end the charade.
     	    $last = $_; 

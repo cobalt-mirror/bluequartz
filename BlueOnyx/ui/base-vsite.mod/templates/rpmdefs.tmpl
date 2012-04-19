@@ -135,6 +135,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX96
+- For better third party PKG support the extra database field 'show_safemode' was added to
+  the Class 'PHP'. It defaults to '0'. If PHP >= 5.3 is installed and 'show_safemode' is
+  manually set to '1', the safe mode related GUI form fields will be shown. Otherwise
+  they will be hidden.
+- Updated ui/web/vsite_php.php and ui/web/php_server.php for that, too.
+
 * Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX95
 - Added /usr/sausalito/sbin/php_settings_convert.pl to allow us to activate the new PHP
   features introduced in 3.0-132BX94.

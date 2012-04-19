@@ -120,5 +120,13 @@
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />
+
+       <property name="show_safemode"
+            type="scalar"
+            default="0"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+
 </class>
 
