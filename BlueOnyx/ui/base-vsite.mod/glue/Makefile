@@ -4,7 +4,8 @@ endif
 
 include $(CCEBASE)/devel/defines.mk
 
-SCRIPTS=sbin/vsite_destroy.pl sbin/fix_user_suspension.pl sbin/web_alias_redirects.pl sbin/suPHP_fixer.pl
+SCRIPTS=sbin/vsite_destroy.pl sbin/fix_user_suspension.pl sbin/web_alias_redirects.pl sbin/suPHP_fixer.pl sbin/phpsendmail
+CONFIGS=php/set_php_headers.php
 
 all:
 
@@ -20,5 +21,9 @@ install:
 	mkdir -p $(CCESBINDIR)
 	for file in $(SCRIPTS); do \
 		$(INSTALL) $(INSTALL_BINFLAGS) $$file $(CCESBINDIR); \
+	done
+	mkdir -p $(PREFIX)/$(CCEBASE)/configs/php
+	for file in $(CONFIGS); do \
+		$(INSTALL) $(INSTALL_BINFLAGS) $$file $(PREFIX)/$(CCEBASE)/configs/php/; \
 	done
 rpm:

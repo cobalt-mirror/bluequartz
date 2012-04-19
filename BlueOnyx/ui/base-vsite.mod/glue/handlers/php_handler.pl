@@ -216,6 +216,9 @@ sub items_of_interest {
         'max_execution_time',
         'max_input_time',
         'memory_limit',
+        'mail.add_x_header',
+        'sendmail_path',
+        'auto_prepend_file',
         'date.timezone'
         );
 }
@@ -236,6 +239,9 @@ sub edit_php_ini {
 		'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
 		'max_input_time' => $server_php_settings->{"max_input_time"}, 
 		'memory_limit' => $server_php_settings->{"memory_limit"}, 
+		'mail.add_x_header' => 'On',
+		'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
+		'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
 		'date.timezone' => "'" . $timezone . "'"
 	};
     }
@@ -259,6 +265,9 @@ sub edit_php_ini {
 		'max_execution_time' => $server_php_settings->{"max_execution_time"}, 
 		'max_input_time' => $server_php_settings->{"max_input_time"}, 
 		'memory_limit' => $server_php_settings->{"memory_limit"},
+		'mail.add_x_header' => 'On',
+		'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
+		'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
 		'date.timezone' => "'" . $timezone . "'"
 	};
     }

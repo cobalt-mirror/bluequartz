@@ -252,6 +252,12 @@ sub edit_vhost {
 	    if ($vsite_php_settings->{"memory_limit"} ne "") {
 		$script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
 	    }
+
+	    # Email related:
+	    $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
+	    $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+	    $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+
         }
 
     my $last;
@@ -365,6 +371,9 @@ sub edit_php_ini {
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
                 'memory_limit' => $vsite_php_settings->{"memory_limit"},
+                'mail.add_x_header' => 'On',
+                'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
+                'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
 		'date.timezone' => "'" . $timezone . "'"
 
         };
@@ -387,6 +396,9 @@ sub edit_php_ini {
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
                 'max_input_time' => $vsite_php_settings->{"max_input_time"}, 
                 'memory_limit' => $vsite_php_settings->{"memory_limit"},
+                'mail.add_x_header' => 'On',
+                'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
+                'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
 		'date.timezone' => "'" . $timezone . "'" 
         };
     }
