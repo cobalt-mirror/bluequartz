@@ -8,15 +8,31 @@ use CCE;
 use Switch;
 use Sauce::Util;
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectfd();
 
 my $vsite = $cce->event_object();
 
-$serviceCFG = "  ## Web Services\n";
+&debug_msg("Vsite1: $vsite->{'fqdn'} \n");
 
+$serviceCFG = "  ## Web Services\n";
+if (!$subdomain->{'group'}) {
+    #$subdomain->{'group'} = $vsite->{'name'};
+    @oids = $cce->find('Subdomains', { 'group' => $vsite->{'name'} });
+    ($ok, $subdomain) = $cce->get($oids[0]);
+}
+&debug_msg("Group: $subdomain->{'group'} \n");
 @oids = $cce->find('Vsite', { 'name' => $subdomain->{'group'} });
 ($ok, $vsite) = $cce->get($oids[0]);
+&debug_msg("Vsite2: $vsite->{'fqdn'} \n");
+
 $vsiteOID = $oids[0];
 $web_dir = $subdomain->{'webpath'};
 
@@ -25,9 +41,8 @@ foreach $service (@services) {
   ($ok, $$service) = $cce->get($cce->event_oid(), $service);
   switch ($service) {
     case "PHP" {
-      if ( $$service->{'enabled'} ) {
-
-##
+      if (( $$service->{'enabled'} ) || ( $$service->{'force_update'} )) {
+	    &debug_msg("Case: PHP \n");
 
             # Get Object PHP from CODB to find out which PHP version we use:
             @sysoids = $cce->find('PHP');
@@ -46,13 +61,18 @@ foreach $service (@services) {
             $vgroup = $subdomain->{'group'};
             @vsiteoid = $cce->find('Vsite', { 'name' => $vgroup });
             ($ok, $vsite_php) = $cce->get($vsiteoid[0], "PHP");
+	    &debug_msg("1: vsiteoid[0]: $vsiteoid[0] \n");
 
             # Get PHPVsite:
             ($ok, $vsite_php_settings) = $cce->get($vsiteoid[0], "PHPVsite");
 
+	    &debug_msg("2: vsiteoid[0]: $vsiteoid[0] \n");
+
             $serviceCFG .= "# created by subdomain-services.pl\n";
 
-            if ( $$service->{'suPHP_enabled'} ) {
+	    &debug_msg("suPHP_enabled: $vsite_php->{'suPHP_enabled'} \n");
+
+            if ($vsite_php->{'suPHP_enabled'} == "1") {
                 $serviceCFG .= "  suPHP_Engine on\n";
                 $serviceCFG .= "  suPHP_ConfigPath $web_dir\n";
                 $serviceCFG .= "  suPHP_AddHandler x-httpd-suphp\n";
@@ -62,6 +82,37 @@ foreach $service (@services) {
                 $serviceCFG .= "  AddType application/x-httpd-php .php\n";
                 $serviceCFG .= "  AddType application/x-httpd-php .php4\n";
                 $serviceCFG .= "  AddType application/x-httpd-php .php5\n";
+            }
+
+            # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+            @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+            @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+            @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+        
+            # Remove duplicates:
+            foreach my $var ( @smi_temp_joined ){
+                if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+                    push(@safe_mode_include_dir, $var );
+                }
+            }
+            $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+ 
+            # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+            @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+            @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+            @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+
+            # Remove duplicates:
+            foreach my $var ( @smaev_temp_joined ){
+                if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+                    push(@safe_mode_allowed_env_vars, $var );
+                }
+            }
+            $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+
+            # Make sure that the path to the prepend file directory is allowed, too:
+            unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
+                $vsite_php_settings->{"open_basedir"} .= $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
             }
 
             if ($legacy_php == "1") {
@@ -146,7 +197,12 @@ foreach $service (@services) {
             if ($vsite_php_settings->{"memory_limit"} ne "") {
                 $serviceCFG .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n";
             }
-##
+
+            # Email related:
+            $serviceCFG .= 'php_admin_flag mail.add_x_header On' . "\n";
+            $serviceCFG .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+            $serviceCFG .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+
       }
     }
 
@@ -171,13 +227,27 @@ foreach $service (@services) {
 $subdomain_config_dir = "/etc/httpd/conf.d/subdomains";
 @oids = $cce->find('Subdomains', { 'group' => $vsite->{'name'} });
 
+&debug_msg("Debug-OID: $oids[0] \n");
+
 $open  = "  # BEGIN WebScripting SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.";
 $close = "  # END WebScripting SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.";
 
 foreach $oid (@oids) {
   my ($ok, $subdomain) = $cce->get($oid);
   $config_file = $subdomain_config_dir . "/" . $subdomain->{'group'} . "." . $subdomain->{'hostname'} . ".conf";
+  &debug_msg("Editing $config_file \n");
   Sauce::Util::replaceblock($config_file, $open, $serviceCFG, $close);
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 $cce->bye('SUCCESS');

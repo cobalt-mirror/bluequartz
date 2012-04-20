@@ -70,6 +70,10 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
+if [ -S /usr/sausalito/cced.socket ]; then
+    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -115,6 +119,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.1.0-18
+- Updated glue/conf/subdomains.conf to trigger glue/handlers/subdomain-services.pl on 'PHPVsite' changes.
+- Modified glue/handlers/subdomain-new.pl to add new PHP flags.
+- Modified glue/handlers/subdomain-services.pl a lot to make it also trigger the right stuff on PHPVsite' changes.
+- Modified glue post-install to also trigger /usr/sausalito/sbin/php_settings_convert.pl for conversions.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.1.0-17
 - Converted locale encoding from UTF-8 to ISO-8859-1.

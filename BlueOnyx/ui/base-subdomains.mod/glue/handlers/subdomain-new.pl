@@ -107,6 +107,37 @@ foreach $service (@services) {
                 $serviceCFG .= "  AddType application/x-httpd-php .php5\n";
             }
 
+            # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+            @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+            @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+            @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+             
+            # Remove duplicates:
+            foreach my $var ( @smi_temp_joined ){
+                if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+                    push(@safe_mode_include_dir, $var );
+                }
+            }
+            $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+            
+            # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+            @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+            @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+            @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+                
+            # Remove duplicates:
+            foreach my $var ( @smaev_temp_joined ){
+                if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+                    push(@safe_mode_allowed_env_vars, $var );
+                } 
+            }
+            $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+                
+            # Make sure that the path to the prepend file directory is allowed, too:
+            unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
+                $vsite_php_settings->{"open_basedir"} .= $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
+            }
+
     	    if ($legacy_php == "1") {
                 # These options only apply to PHP versions prior to PHP-5.3:
                 if ($vsite_php_settings->{"safe_mode"} ne "") {
@@ -189,6 +220,12 @@ foreach $service (@services) {
             if ($vsite_php_settings->{"memory_limit"} ne "") {
                 $serviceCFG .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n";
             }
+
+            # Email related:
+            $serviceCFG .= 'php_admin_flag mail.add_x_header On' . "\n";
+            $serviceCFG .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+            $serviceCFG .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+
 ##
       }
     }
