@@ -36,8 +36,6 @@ if ( -f $sample_conf )  {
         }
     }
 
-print "1: $CHECK_CONFIG - $CHECK_CONFIG_AGAIN \n";
-
     # On bad results copy the "good" squirrelmail.conf from AdmServ over to the public Apache:
     unless (($CHECK_CONFIG == "1") && ($CHECK_CONFIG_AGAIN == "1")) {
         if ( -e $admserv_conf ) {
