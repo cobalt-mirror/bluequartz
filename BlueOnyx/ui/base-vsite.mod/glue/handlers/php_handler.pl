@@ -10,7 +10,7 @@
 # updates php.ini with those changes and Apache is restarted.
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
