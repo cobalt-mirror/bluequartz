@@ -242,6 +242,19 @@ sub edit_php_ini {
     }
     $server_php_settings->{"open_basedir"} = join(":", @open_basedir);
 
+    # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+    @smi_temporary = split(":", $server_php_settings->{"safe_mode_include_dir"});
+    @smi_baremetal_minimums = ('/usr/sausalito/configs/php/');
+    @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+        
+    # Remove duplicates:
+    foreach my $var ( @smi_temp_joined ){
+        if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+            push(@safe_mode_include_dir, $var );
+        }
+    }
+    $server_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+
     # Just to be really sure:
     unless (($server_php_settings->{"open_basedir"} =~ m#/usr/sausalito/configs/php/#) && ($server_php_settings->{"open_basedir"} =~ m#/tmp/#) && ($server_php_settings->{"open_basedir"} =~ m#/var/lib/php/session/#)) {
 	&debug_msg("Fixing 'open_basedir': It is missing our 'must have' entries. Restoring it to the defaults. \n");

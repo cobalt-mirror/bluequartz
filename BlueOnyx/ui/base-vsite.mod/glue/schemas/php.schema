@@ -29,7 +29,7 @@
         />
         <property name="safe_mode_include_dir"
             type="scalar"
-            default=""
+            default="/usr/sausalito/configs/php/"
             writeacl="ruleCapable(adminUser)"
         />
        <property name="safe_mode_exec_dir"

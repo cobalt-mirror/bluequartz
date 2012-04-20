@@ -168,6 +168,19 @@ sub edit_vhost {
 
         if ($vsite_php->{"enabled"} eq "1") {
 
+	    # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+	    @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+	    @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+	    @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+        
+	    # Remove duplicates:
+	    foreach my $var ( @smi_temp_joined ){
+    		if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+        	    push(@safe_mode_include_dir, $var );
+    		}
+	    }
+	    $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+
 	    if ($legacy_php == "1") {
 		    # These options only apply to PHP versions prior to PHP-5.3:
 		    if ($vsite_php_settings->{"safe_mode"} ne "") {
@@ -182,6 +195,7 @@ sub edit_vhost {
 		    if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
 			$script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
 		    }
+
 		    if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
 			$script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
 		    }

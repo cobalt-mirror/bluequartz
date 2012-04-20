@@ -175,6 +175,9 @@ sub verify {
 	    if ($entry eq "allow_url_include") {
 		$CONFIG{"$entry"} = "Off";
 	    }
+	    if ($entry eq "safe_mode_include_dir") {
+		$CONFIG{"$entry"} = "/usr/sausalito/configs/php/";
+	    }
 	    if (($entry eq "disable_functions") && ($first_run eq "1")) {
 		#$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,popen,escapeshellcmd,proc_open,proc_nice,ini_restore";
 		$CONFIG{"$entry"} = "exec,system,passthru,shell_exec,proc_open,proc_nice,ini_restore";

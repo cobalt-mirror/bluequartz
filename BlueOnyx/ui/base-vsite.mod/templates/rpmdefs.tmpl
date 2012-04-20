@@ -135,6 +135,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX98
+- More fixes: If 'safe_mode' is enabled, /usr/sausalito/configs/php/ is outside the 
+  'safe_mode_include_dir'.
+- Modified glue/schemas/php_vsite.schema and glue/schemas/php.schema again.
+- Modified constructor/import_php_ini_settings.pl to add /usr/sausalito/configs/php/ to 
+  'safe_mode_include_dir'.
+- Modified glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl to
+  add /usr/sausalito/configs/php/ to 'safe_mode_include_dir'.
+
 * Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX97
 - OK, I screwed up. If suPHP is enabled, the prepend file is outside the allowed path.
   We have to add /usr/sausalito/configs/php/ to 'open_basedir'. For this purpose the 
