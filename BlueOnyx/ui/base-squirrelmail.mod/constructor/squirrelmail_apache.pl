@@ -22,11 +22,13 @@ $cce->connectuds();
 # Parse squirrelmail.conf to see if it still has the open_basedir directive in it:
 if ( -f $apache_conf )  {
     $CHECK_CONFIG = `/bin/cat /etc/httpd/conf.d/squirrelmail.conf | /bin/grep open_basedir | /usr/bin/wc -l`; 
-    chomp($CHECK_CONFIG);
+    chomp($CHECK_CONFIG_AGAIN);
+    $CHECK_CONFIG_AGAIN = `/bin/cat /etc/httpd/conf.d/squirrelmail.conf | /bin/grep safe_mode_include_dir | /usr/bin/wc -l`; 
+    chomp($CHECK_CONFIG_AGAIN);
 }
 
 # On bad results copy the "good" squirrelmail.conf from AdmServ over to the public Apache:
-unless ($CHECK_CONFIG == "2") {
+unless (($CHECK_CONFIG == "2") && ($CHECK_CONFIG_AGAIN == "2")) {
     if ( -e $admserv_conf ) {
 	# Copy config over:
 	system("/bin/cp $admserv_conf $apache_conf");
