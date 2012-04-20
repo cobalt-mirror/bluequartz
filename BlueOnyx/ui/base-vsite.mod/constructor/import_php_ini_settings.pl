@@ -185,6 +185,9 @@ sub verify {
 	    if (($entry eq "open_basedir") && ($first_run eq "1")) {
 		$CONFIG{"$entry"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
 	    }
+	    if (($entry eq "safe_mode_allowed_env_vars") && ($first_run eq "1")) {
+		$CONFIG{"$entry"} = "PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER";
+	    }
 	}
 	if ($first_run eq "1") {
 	    # If we're indeed running for the first time, make sure safe defaults
@@ -237,6 +240,19 @@ sub feedthemonster {
         &debug_msg("Fixing 'open_basedir': It is missing our 'must have' entries. Restoring it to the defaults. \n");
         $CONFIG{"open_basedir"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
     }
+
+    # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+    @smaev_temporary = split(":", $CONFIG{"safe_mode_allowed_env_vars"});
+    @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+    @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+        
+    # Remove duplicates:
+    foreach my $var ( @smaev_temp_joined ){
+        if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+            push(@safe_mode_allowed_env_vars, $var );
+        }
+    }
+    $CONFIG{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
     @oids = $cce->find('PHP', {'applicable' => 'server'});
     if ($#oids < 0) {

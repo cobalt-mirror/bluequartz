@@ -135,6 +135,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX99
+- More fixes: If 'safe_mode' is enabled, 'safe_mode_allowed_env_vars' needs to be populated
+  with the variables we use in /usr/sausalito/configs/php/set_php_headers.php.
+- Updated constructor/import_php_ini_settings.pl to set these.
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_handler.pl
+- Updated glue/schemas/php_vsite.schema and glue/schemas/php.schema
+- Updated ui/web/vsite_phpHandler.php and ui/web/php_serverHandler.php
+
 * Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX98
 - More fixes: If 'safe_mode' is enabled, /usr/sausalito/configs/php/ is outside the 
   'safe_mode_include_dir'.

@@ -56,6 +56,16 @@ $open_basedir_merged = array_merge($open_basedir_pieces, $open_basedir_minimal);
 $new_open_basedir = array_unique($open_basedir_merged);
 $open_basedir = implode(":", $new_open_basedir);
 
+// Make sure our 'safe_mode_allowed_env_vars' has the bare metal minimums in it:
+$safe_mode_allowed_env_vars_pieces = explode (',', $safe_mode_allowed_env_vars);
+if ($safe_mode_allowed_env_vars_pieces[0] == "") {
+    $safe_mode_allowed_env_vars_pieces = array();
+}
+$safe_mode_allowed_env_vars_minimal = array('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+$safe_mode_allowed_env_vars_merged = array_merge($safe_mode_allowed_env_vars_pieces, $safe_mode_allowed_env_vars_minimal);
+$new_safe_mode_allowed_env_vars = array_unique($safe_mode_allowed_env_vars_merged);
+$safe_mode_allowed_env_vars = implode(',', $new_safe_mode_allowed_env_vars);
+
 // Find out what platform this is:
 list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);

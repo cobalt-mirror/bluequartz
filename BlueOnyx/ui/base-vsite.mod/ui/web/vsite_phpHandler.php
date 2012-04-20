@@ -80,6 +80,16 @@ if ($vsite_php["enabled"] == "0") {
   }
   $open_basedir = implode(":",$this_vsite_open_basedir_new);
 
+// Make sure our 'safe_mode_allowed_env_vars' has the bare metal minimums in it:
+$safe_mode_allowed_env_vars_pieces = explode (',', $safe_mode_allowed_env_vars);
+if ($safe_mode_allowed_env_vars_pieces[0] == "") {
+    $safe_mode_allowed_env_vars_pieces = array();
+}
+$safe_mode_allowed_env_vars_minimal = array('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+$safe_mode_allowed_env_vars_merged = array_merge($safe_mode_allowed_env_vars_pieces, $safe_mode_allowed_env_vars_minimal);
+$new_safe_mode_allowed_env_vars = array_unique($safe_mode_allowed_env_vars_merged);
+$safe_mode_allowed_env_vars = implode(',', $new_safe_mode_allowed_env_vars);
+
 // Find out which PHP version we use:
 list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);

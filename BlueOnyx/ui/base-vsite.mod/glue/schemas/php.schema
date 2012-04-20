@@ -40,7 +40,7 @@
         />
        <property name="safe_mode_allowed_env_vars"
             type="scalar"
-            default="PHP_"
+            default="PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER"
             writeacl="ruleCapable(adminUser)"
         />
        <property name="safe_mode_protected_env_vars"

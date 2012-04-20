@@ -261,6 +261,19 @@ sub edit_php_ini {
         $server_php_settings->{"open_basedir"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
     }
 
+    # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+    @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+    @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+    @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+        
+    # Remove duplicates:
+    foreach my $var ( @smaev_temp_joined ){
+        if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+            push(@safe_mode_allowed_env_vars, $var );
+        }
+    }
+    $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+
     if ($legacy_php == "0") {
 	# Build output hash for PHP-5.3 or newer:
 	$server_php_settings_writeoff = { 
