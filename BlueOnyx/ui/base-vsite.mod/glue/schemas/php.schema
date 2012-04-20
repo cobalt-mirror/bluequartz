@@ -50,7 +50,7 @@
         />
        <property name="open_basedir"
             type="scalar"
-            default="/tmp/:/var/lib/php/session/:/home/"
+            default="/tmp/:/var/lib/php/session/:/home/:/usr/sausalito/configs/php/"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />

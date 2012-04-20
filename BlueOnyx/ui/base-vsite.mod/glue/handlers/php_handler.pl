@@ -10,7 +10,11 @@
 # updates php.ini with those changes and Apache is restarted.
 
 # Debugging switch:
-$DEBUG = "0";
+$DEBUG = "1";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 # Uncomment correct type:
 #$whatami = "constructor";
@@ -225,6 +229,25 @@ sub items_of_interest {
 
 sub edit_php_ini {
 
+    # Making sure 'open_basedir' has the bare minimum defaults:
+    @php_settings_temporary = split(":", $server_php_settings->{"open_basedir"});
+    @my_baremetal_minimums = ('/usr/sausalito/configs/php/', '/tmp/', '/var/lib/php/session/');
+    @php_settings_temp_joined = (@php_settings_temporary, @my_baremetal_minimums);
+
+    # Remove duplicates:
+    foreach my $var ( @php_settings_temp_joined ){
+        if ( ! grep( /$var/, @open_basedir ) ){
+            push(@open_basedir, $var );
+        }
+    }
+    $server_php_settings->{"open_basedir"} = join(":", @open_basedir);
+
+    # Just to be really sure:
+    unless (($server_php_settings->{"open_basedir"} =~ m#/usr/sausalito/configs/php/#) && ($server_php_settings->{"open_basedir"} =~ m#/tmp/#) && ($server_php_settings->{"open_basedir"} =~ m#/var/lib/php/session/#)) {
+	&debug_msg("Fixing 'open_basedir': It is missing our 'must have' entries. Restoring it to the defaults. \n");
+        $server_php_settings->{"open_basedir"} = "/tmp/:/var/lib/php/session/:/usr/sausalito/configs/php/";
+    }
+
     if ($legacy_php == "0") {
 	# Build output hash for PHP-5.3 or newer:
 	$server_php_settings_writeoff = { 
@@ -315,6 +338,17 @@ sub edit_php_ini {
           move($stage,"$confdir/php.ini");
           chmod(0644, "$confdir/php.ini"); # paranoia
         }
+    }
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
     }
 }
 

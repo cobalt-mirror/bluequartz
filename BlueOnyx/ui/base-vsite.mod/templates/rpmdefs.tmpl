@@ -135,6 +135,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX97
+- OK, I screwed up. If suPHP is enabled, the prepend file is outside the allowed path.
+  We have to add /usr/sausalito/configs/php/ to 'open_basedir'. For this purpose the 
+  following files were updated or modified:
+- Updated constructor/import_php_ini_settings.pl
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl
+- Updated Schemas glue/schemas/php_vsite.schema and glue/schemas/php.schema
+- Updated UI ui/web/vsite_phpHandler.php and ui/web/php_serverHandler.php
+
 * Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX96
 - For better third party PKG support the extra database field 'show_safemode' was added to
   the Class 'PHP'. It defaults to '0'. If PHP >= 5.3 is installed and 'show_safemode' is

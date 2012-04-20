@@ -60,6 +60,16 @@ if ($vsite_php["enabled"] == "0") {
     exit();
   }
 
+   // Make sure our 'open_basedir' has the bare metal minimums in it:
+   $open_basedir_pieces = explode (':', $open_basedir);
+   if ($open_basedir_pieces[0] == "") {
+	$open_basedir_pieces = array();
+   }
+   $open_basedir_minimal = array('/tmp/', '/var/lib/php/session/', '/usr/sausalito/configs/php/');
+   $open_basedir_merged = array_merge($open_basedir_pieces, $open_basedir_minimal);
+   $new_open_basedir = array_unique($open_basedir_merged);
+   $open_basedir = implode(":", $new_open_basedir);
+
   // Remove any superfluxus /home/.sites/ paths from $open_basedir:
   $this_vsite_open_basedir = preg_split ("/:/", $open_basedir);
   $this_vsite_open_basedir_new = array();
@@ -69,9 +79,6 @@ if ($vsite_php["enabled"] == "0") {
         }
   }
   $open_basedir = implode(":",$this_vsite_open_basedir_new);
-
-  // $phpVsite = $cceClient->get($oids[0], 'PHPVsite');
-
 
 // Find out which PHP version we use:
 list($myplatform) = $cceClient->find('PHP');

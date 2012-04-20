@@ -46,6 +46,16 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $phpOID = $cceClient->find("PHP", array("applicable" => "server"));
 
+// Make sure our 'open_basedir' has the bare metal minimums in it:
+$open_basedir_pieces = explode (':', $open_basedir);
+if ($open_basedir_pieces[0] == "") {
+    $open_basedir_pieces = array();
+}
+$open_basedir_minimal = array('/tmp/', '/var/lib/php/session/', '/usr/sausalito/configs/php/');
+$open_basedir_merged = array_merge($open_basedir_pieces, $open_basedir_minimal);
+$new_open_basedir = array_unique($open_basedir_merged);
+$open_basedir = implode(":", $new_open_basedir);
+
 // Find out what platform this is:
 list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);
