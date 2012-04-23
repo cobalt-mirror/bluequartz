@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Mon Apr 23 2012 Michael Stauber <mstauber@solarspeed.net>
+- version 2.90-0BX02
+- perl_modules/TreeXml.pm still had the old version number 2.82 in it. Fixed.
+- Modified 'adjustPath' in perl_modules/Global.pm to allow migrations from 5108R or 5107R downwards to 5106R.
 
 * Sun Feb 05 2012 Michael Stauber <mstauber@solarspeed.net>
 - version 2.90-0BX01
