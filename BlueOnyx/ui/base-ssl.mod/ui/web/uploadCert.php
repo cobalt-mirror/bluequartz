@@ -14,22 +14,30 @@ if (!$helper->getAllowed('adminUser') &&
   return;
 }
 
-$factory =& $helper->getHtmlComponentFactory('base-ssl', '/base/ssl/uploadCert.php');
+$factory = $helper->getHtmlComponentFactory('base-ssl', '/base/ssl/uploadCert.php');
 
 if ($save)
 {
     if ($cert == "none") 
     {
 	//no file supplied
-	$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+	$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4a]]");
 	$errors = array($error);
     }
     else 
     {
-	    // import the uploaded information for the specified site
-	    $fh = fopen($cert, 'r');
-	    
-	    if (!$fh) 
+
+    if (is_uploaded_file($cert)) {
+	$tmp_cert = tempnam('/tmp', 'file');
+	move_uploaded_file($cert, $tmp_cert);
+    }
+    else {
+	//file opening problems
+        $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+	$errors = array($error);
+
+    }
+	    if (!is_file($tmp_cert)) 
 	    {
 		//file opening problems
 		$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
@@ -37,31 +45,19 @@ if ($save)
 	    }
 	    else
 	    {
-		    $lines = '';
-		    while (!feof($fh))
-		    {
-		        $lines .= fread($fh, 4096);
-		    }
-		    fclose($fh);
-
-		    $tmp_cert = tempnam('/tmp', 'file');
-		    unlink($tmp_cert);
-		    $helper->putFile($tmp_cert, $lines);
-
-		    $runas = ($helper->getAllowed('adminUser') ? 
-		                            'root' : $helper->getLoginName());
-		    $ret = $helper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=serverCert", 
-		                $output, $runas);
+		    $runas = ($helper->getAllowed('adminUser') ? 'root' : $helper->getLoginName());
+		    $ret = $helper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=serverCert", $output, $runas);
 		    if ($ret != 0)
 		    {
 		        // deal with error
 		        $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
 		        $errors = array($error);
+			unlink($tmp_cert);
 		    }
 		    else
 		    {
 		        header("Location: /base/ssl/siteSSL.php?group=$group");
-        
+        		unlink($tmp_cert);
 		        $helper->destructor();
 		        exit;
 		    }
@@ -70,7 +66,7 @@ if ($save)
     }
 }
 
-$upload =& $factory->getPagedBlock('importCert');
+$upload = $factory->getPagedBlock('importCert');
 $cce = $helper->getCceClient();
 
 if ($group)
@@ -98,8 +94,8 @@ $upload->addFormField(
 
 $upload->addFormField($factory->getTextField('group', $group, ''));
 
-$page =& $factory->getPage();
-$form =& $page->getForm();
+$page = $factory->getPage();
+$form = $page->getForm();
 $formId = $form->getId();
 
 // use our own submit handler so that spinny clock doesn't show

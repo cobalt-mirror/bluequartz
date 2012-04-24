@@ -120,7 +120,16 @@ fi
 
 <begin $CHANGELOG>
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net>1.1.0-70BX04
+* Tue Mar 24 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX05
+- Modified glue/sbin/ssl_import.pl to hard wire Country to 'US' and State to 'Other' if
+  the SSL certificate in question doesn't have this mandatory information.
+- Modified ui/web/uploadCert.php to use is_uploaded_file() and move_uploaded_file() to
+  handle the uploaded SSL certificate. There is no need to chuck it around with fopen()
+  and fputs(), especially considering that the previously employed method apparently
+  no longer works on PHP >= 5.3.
+- This should fix the SSL import issues on 5107R and 5108R.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX04
 - Converted locale encoding from UTF-8 to ISO-8859-1.
 
 * Mon Aug 22 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX03

@@ -1,3 +1,4 @@
+#!/usr/bin/perl -I/usr/sausalito/perl
 #!/usr/bin/perl -w
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # $Id: ssl_import.pl,v 1.8.2.1 2002/02/05 21:47:18 pbaltz Exp $
@@ -10,7 +11,7 @@ use CCE;
 use Base::HomeDir qw(homedir_get_group_dir);
 use SSL qw(ssl_get_cert_info ssl_create_directory);
 
-my $DEBUG = 0;
+my $DEBUG = 1;
 
 my $group = '';
 my $type = '';
@@ -59,6 +60,7 @@ if ($group)
     if ($vsite->{basedir})
     {
         $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
+	$DEBUG && print STDERR "$vsite->{basedir}/$SSL::CERT_DIR \n";
     }
     else
     {
@@ -83,6 +85,8 @@ else
         exit(13);
     }
 }
+
+#        $DEBUG && print STDERR "Vsite Basedir: " . $vsite->{basedir} . "\n";
 
 # now read in uploaded file
 my $cert = '';
@@ -252,7 +256,12 @@ if ($type ne 'caCert')
     
     # munge date because they changed the strtotime function in php
     $expires =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
-    
+
+    # Some certificates don't have the Country or State in the 'Subject',
+    # so we set some defaults here if they're empty:
+    if (!$subject->{C}) { $subject->{C} = "US";}
+    if (!$subject->{ST}) { $subject->{ST} = "Other";}
+
     $cert_info = {
                         'country' => $subject->{C},
                         'state' => $subject->{ST},
