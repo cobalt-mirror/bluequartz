@@ -21,7 +21,7 @@ if ($save)
     if ($cert == "none") 
     {
 	//no file supplied
-	$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4a]]");
+	$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
 	$errors = array($error);
     }
     else 
