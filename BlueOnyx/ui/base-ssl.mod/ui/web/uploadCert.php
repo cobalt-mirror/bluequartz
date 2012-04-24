@@ -52,12 +52,16 @@ if ($save)
 		        // deal with error
 		        $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
 		        $errors = array($error);
-			unlink($tmp_cert);
+			if (is_file($temp_cert)) {
+			    unlink($tmp_cert);
+			}
 		    }
 		    else
 		    {
 		        header("Location: /base/ssl/siteSSL.php?group=$group");
-        		unlink($tmp_cert);
+			if (is_file($temp_cert)) {
+			    unlink($tmp_cert);
+			}
 		        $helper->destructor();
 		        exit;
 		    }
