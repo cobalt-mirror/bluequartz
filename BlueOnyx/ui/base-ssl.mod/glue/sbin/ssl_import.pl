@@ -1,5 +1,4 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-#!/usr/bin/perl -w
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # $Id: ssl_import.pl,v 1.8.2.1 2002/02/05 21:47:18 pbaltz Exp $
 # import an uploaded signed certificate and optionally a private key
@@ -11,7 +10,7 @@ use CCE;
 use Base::HomeDir qw(homedir_get_group_dir);
 use SSL qw(ssl_get_cert_info ssl_create_directory);
 
-my $DEBUG = 1;
+my $DEBUG = 0;
 
 my $group = '';
 my $type = '';
