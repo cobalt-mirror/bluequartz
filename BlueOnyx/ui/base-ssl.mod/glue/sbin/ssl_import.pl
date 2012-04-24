@@ -59,7 +59,7 @@ if ($group)
     if ($vsite->{basedir})
     {
         $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
-	$DEBUG && print STDERR "$vsite->{basedir}/$SSL::CERT_DIR \n";
+	$DEBUG && print STDERR "Cert-Directory: $vsite->{basedir}/$SSL::CERT_DIR \n";
     }
     else
     {
@@ -84,8 +84,6 @@ else
         exit(13);
     }
 }
-
-#        $DEBUG && print STDERR "Vsite Basedir: " . $vsite->{basedir} . "\n";
 
 # now read in uploaded file
 my $cert = '';
