@@ -135,6 +135,20 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue May 01 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX100
+- The 'open_basedir' handling is a bit of a mess. It works, but the presentation in the GUI
+  and the underlying code are not really pretty. This code change is an attempt to nice it up.
+  For starters this introduces a cleaner separation between server wide 'open_basedir' 
+  settings and site wide 'open_basedir' settings. From now on the PHPVsite objects only
+  store 'open_basedir' paths that are not already covered server wide.
+- Modified ui/web/vsite_php.php to show the server wide 'open_basedir' settings in a read-
+  only textarea. A second textarea allows to enter additional paths.
+- Modified ui/web/vsite_phpHandler.php to be a hell of a lot smarter and to run extra 
+  checks for validating our new input.
+- Modified glue/handlers/php_vsite_handler.pl to piece together the full 'open_basedir'
+  path as it needs to be: Mandatory server wide 'open_basedir' settings plus Vsite root
+  plus whatever optional 'open_basedir' paths are specified.
+
 * Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX99
 - More fixes: If 'safe_mode' is enabled, 'safe_mode_allowed_env_vars' needs to be populated
   with the variables we use in /usr/sausalito/configs/php/set_php_headers.php.

@@ -93,6 +93,9 @@ if ($whatami eq "handler") {
     # Get PHP:
     ($ok, $vsite_php) = $cce->get($oid, "PHP");
 
+    # Find out what 'open_basedir' needs to be set to:
+    &open_basedir_handling;
+
     # Event is create or modify:
     if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
@@ -227,66 +230,9 @@ sub edit_vhost {
 		$script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
 	    }
 
-	    # Some BX users apparently want open_basedir to be empty. Security wise this is a bad idea,
-	    # but if they really want to let their pants down that far ... <sigh>. New provision to check
-	    # if 'open_basedir' is empty in the GUI. We act a bit later on based on this switch:
-	    $empty_open_basedir = "0";
-	    if ($vsite_php_settings->{"open_basedir"} eq "") {
-		$empty_open_basedir = "1";
-	    }
-
-	    # We need to remove any site path references from open_basedir, because they could be from the wrong site,
-	    # like during a cmuImport, when it inherited the path it had on the server it was exported from.
-
-	    @vsite_php_settings_temporary = split(":", $vsite_php_settings->{"open_basedir"});
-	    @my_server_php_settings_temp = split(":", $mySystem->{'open_basedir'});
-	    @vsite_php_settings_temp_joined = (@vsite_php_settings_temporary, @my_server_php_settings_temp);
-
-	    # Remove duplicates:
-	    foreach my $var ( @vsite_php_settings_temp_joined ){
-   		if ( ! grep( /$var/, @vsite_php_settings_temp ) ){
-      		    push( @vsite_php_settings_temp, $var );
-      		}
-   	    }
-
-	    # Remove Vsite home directory from 'open_basedir' for now. We add it again later:
-	    foreach $entry (@vsite_php_settings_temp) {
-		$entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
-		if ($entry ne "") {
-		    push(@vsite_php_settings_new, $entry);
-		}
-	    }
 	    if ($vsite_php_settings->{"open_basedir"} ne "") {
-		$vsite_php_settings->{"open_basedir"} = join(":", @vsite_php_settings_new);
+		$script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
 	    }
-
-	    # Make sure that the path to the prepend file directory is allowed, too:
-	    unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
-	        &debug_msg("1. Adding prepend file directory to open_basedir through php_vsite_handler.pl \n");
-    	        $vsite_php_settings->{"open_basedir"} .= $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
-	    }
-
-	    # Decision if we write 'open_basedir' to the site include file or not. We do NOT
-	    # write an empty open_basedir. So if it is empty, we simply skip this step:
-	    if ($empty_open_basedir != "1") {
-
-		# Make sure that the path to the prepend file directory is allowed, too:
-		unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
-		    &debug_msg("2. Adding prepend file directory to open_basedir through php_vsite_handler.pl \n");
-    	    	    $vsite_php_settings->{"open_basedir"} .= $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
-		}
-
-		# Decide if we need to add the sites homedir to open_basedir or not:
-		if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
-		    # If the site's basedir path is already present, we use whatever paths open_basedir currently has:
-		    $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n"; 
-		}
-		else {
-		    # If the sites path to it's homedir is missing, we add it here:
-		    $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/' . "\n"; 
-		}
-	    }
-
 
 	    if ($vsite_php_settings->{"post_max_size"} ne "") {
 		$script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
@@ -395,24 +341,6 @@ sub thirdparty_check {
 
 sub edit_php_ini {
 
-    if ($vsite_php_settings->{"open_basedir"} =~ m/$vsite->{"basedir"}\//) {
-        # If the site's basedir path is already present, we use whatever paths open_basedir currently has:
-        $out_open_basedir = $vsite_php_settings->{"open_basedir"};
-    }
-    else {
-	# If the sites path to it's homedir is missing, we add it here:
-	$out_open_basedir = $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/';
-    }
-
-    unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
-	&debug_msg("Adding prepend file directory to Vsite's php.ini's open_basedir through php_vsite_handler.pl \n");
-	$out_open_basedir = $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
-    }
-
-    &debug_msg("Server wide Open Basedir is set to: $server_php_settings->{'open_basedir'} \n");
-    &debug_msg("Open Basedir was set to: $vsite_php_settings->{'open_basedir'} \n");
-    &debug_msg("Open Basedir is now set to: $out_open_basedir \n");
-
     if ($legacy_php == "0") {
         # Build output hash for PHP-5.3 or newer:
         $vsite_php_settings_writeoff = { 
@@ -421,7 +349,7 @@ sub edit_php_ini {
                 'allow_url_include' => $vsite_php_settings->{"allow_url_include"}, 
                 'disable_classes' => $vsite_php_settings->{"disable_classes"}, 
                 'disable_functions' => $vsite_php_settings->{"disable_functions"}, 
-                'open_basedir' => $out_open_basedir, 
+                'open_basedir' => $vsite_php_settings->{"open_basedir"}, 
                 'post_max_size' => $vsite_php_settings->{"post_max_size"}, 
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
@@ -476,6 +404,52 @@ sub edit_php_ini {
         $cce->bye('FAIL', "Error while editing $custom_php_ini_path!");
         exit(1);
     }
+}
+
+sub open_basedir_handling {
+
+    # Get 'open_basedir' settings for this Vsite:
+    @vsite_php_settings_temporary = split(":", $vsite_php_settings->{"open_basedir"});
+    # Get 'open_basedir' settings for the entire server:
+    @my_server_php_settings_temp = split(":", $mySystem->{'open_basedir'});
+    # Merge them:
+    @vsite_php_settings_temp_joined = (@vsite_php_settings_temporary, @my_server_php_settings_temp);
+
+    # For debugging:
+    &debug_msg("Server settings for 'open_basedir': $mySystem->{'open_basedir'} \n");
+    &debug_msg("User additions for 'open_basedir' : $vsite_php_settings->{'open_basedir'} \n");
+
+    # Remove duplicates from merged array:
+    %obd_helper = map { $_ => 1 } @vsite_php_settings_temp_joined;
+    @vsite_php_settings_temp = keys %obd_helper;
+
+    # We need to remove any site path references from open_basedir, because they could be from the wrong site,
+    # like during a cmuImport, when it inherited the path it had on the server it was exported from.
+    foreach $entry (@vsite_php_settings_temp) {
+	$entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
+	if ($entry) {
+	    push(@vsite_php_settings_new, $entry);
+	    &debug_msg("Pushing $entry \n");
+	}
+	else {
+	    &debug_msg("Not pushing $entry \n");
+	}
+    }
+
+    # Assemble the output:
+    $vsite_php_settings->{"open_basedir"} = join(":", @vsite_php_settings_new);
+
+    # At this point we add the Vsite's basedir:
+    $vsite_php_settings->{"open_basedir"} = $vsite_php_settings->{"open_basedir"} . ':' . $vsite->{"basedir"} . '/'; 
+
+    # Make sure that the path to the prepend file directory is allowed, too:
+    unless ($vsite_php_settings->{"open_basedir"} =~ m/\/usr\/sausalito\/configs\/php\//) {
+        &debug_msg("Adding prepend file directory to open_basedir through php_vsite_handler.pl \n");
+        $vsite_php_settings->{"open_basedir"} = $vsite_php_settings->{"open_basedir"} . ':/usr/sausalito/configs/php/';
+    }
+
+    # More debugging output:
+    &debug_msg("Open Basedir is now set to: $vsite_php_settings->{'open_basedir'} \n");
 }
 
 $cce->bye('SUCCESS');

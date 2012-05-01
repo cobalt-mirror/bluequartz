@@ -185,25 +185,79 @@ $block->addFormField(
 );
 
 // open_basedir
-// Remove any superfluxus /home/.sites/ paths from $systemObj['open_basedir']:
+/*
+
+    OK, this gets a little complicated looking, so some explanations may be in order:
+
+    The new handling for 'open_basedir' splits the form field into two separate text blocks. One is read only
+    and contains the server wide PHP settings defined for 'open_basedir' plus the Vsite's root directory
+    added to it. That is the read only one.
+
+    The second one is editable and contains optional paths which a serverAdmin or siteAdmin may have chosen
+    to add manually.
+
+    To achieve this we read in the current server wide PHP settings to get our mandatory 'open_basedir' paths.
+    We add the Vsite basedir to that and store this in one array. 
+
+    THEN we read in the Vsite's 'open_basedir' settings and remove anything from it that starts with 
+    '/home/.sites/' just to be really damn sure that no path to the wrong Vsite's root directory has been added.
+    Anything that is not yet covered in the mandatory section is then pushed into a second array.
+
+    Lastly we use array_diff() to compare both arrays and to extract anything that's different. This may be 
+    redundant, but let us really be sure here. The differences are then stored in a third array, which we 
+    present in the second editable 'open_basedir' text block.
+
+    But take note here: This is just for showing off. In fact the only thing that vsite_phpHandler.php will really
+    care about are the bits and pices from the user editeable form. The mandatory bits and pices and the Vsite
+    root will be added by the underlying constructor. That way we remain compatible with CMU.
+
+*/
+
+// Make sure our 'open_basedir' has the bare metal minimums in it as defined for this server:
+// We add the Vsite basedir to the 'open_basedir' settings defined for the server:
+$open_basedir_mandatory_pieces = explode (':', $mysystem['open_basedir'] . ":" . $vsite['basedir']);
+
+// Now we walk through this Vsite's 'open_basedir' settings and remove all the bits and pieces
+// that we already have covered, so that only user added additions remain:
 $this_vsite_open_basedir = preg_split ("/:/", $systemObj['open_basedir']);
 $this_vsite_open_basedir_new = array();
 foreach ($this_vsite_open_basedir as $entry) {
-	if(!preg_match("/\/home\/.sites\//i", $entry, $regs)) {
-	    array_push($this_vsite_open_basedir_new, $entry);
-	}
-}
-# Unless someone intentionally runs with an empty 'open_basedir' we need to fix the site root:
-if ($systemObj['open_basedir'] != "") {
-	$systemObj['open_basedir'] = implode(":",$this_vsite_open_basedir_new);
-	// If 'open_basedir' doesn't have this vsite's basedir in it, then we need to append it here:
-	$vs_bdir = $vsite['basedir'];
-	if(!preg_match('/$vs_bdir/i', $systemObj['open_basedir'])) {
-	    $systemObj['open_basedir'] = $systemObj['open_basedir'] . ":" . $vsite['basedir'] . "/";
-	}
+    // Only push pieces if they're not already covered by mandatory entries and also don't push if path starts with '/home/.sites/':
+    if ((!in_array($entry, $open_basedir_mandatory_pieces)) && (!preg_match("/\/home\/.sites\//i", $entry, $regs))) {
+	array_push($this_vsite_open_basedir_new, $entry);
+    }
 }
 
-$open_basedir_Field = $factory->getTextField("open_basedir", $systemObj['open_basedir'], $access);
+// Now remove anything that we have already covered in the mandatory section. That leaves us with the user additions:
+$result = array_diff($this_vsite_open_basedir_new, $open_basedir_mandatory_pieces);
+$open_basedir_additions = $result;
+
+// Sort the arrays before we implode them later on:
+array_multisort($open_basedir_mandatory_pieces, SORT_ASC);
+array_multisort($open_basedir_additions, SORT_ASC);
+
+// Print out the block with the mandatory 'open_basedir' stuff. Please note: This is for display only. The contends here cannot
+// be processed via form handlers:
+$open_basedir_mandatory_Field = $factory->getTextBlock("open_basedir_mandatory", implode("\n",$open_basedir_mandatory_pieces), 'r');
+$open_basedir_mandatory_Field->setOptional ('silent');
+$block->addFormField(
+    $open_basedir_mandatory_Field,
+    $factory->getLabel("open_basedir_mandatory"),
+    "Default"
+);
+
+// Print out a hidden block with the same mandatory 'open_basedir' stuff in it, but hide it from view. This can be processed
+// as form data:
+$open_basedir_mandatory_hidden_Field = $factory->getTextField("open_basedir_mandatory_hidden", implode(":",$open_basedir_mandatory_pieces), 'rw');
+$open_basedir_mandatory_hidden_Field->setOptional ('silent');
+$block->addFormField(
+    $open_basedir_mandatory_hidden_Field,
+    $factory->getLabel("open_basedir_mandatory_hidden"),
+    "hidden"
+);
+
+// Print out the block with the custom additions for 'open_basedir':
+$open_basedir_Field = $factory->getTextBlock("open_basedir", implode("\n",$open_basedir_additions), $access);
 $open_basedir_Field->setOptional ('silent');
 $block->addFormField(
     $open_basedir_Field,

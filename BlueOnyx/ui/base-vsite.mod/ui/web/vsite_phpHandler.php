@@ -55,30 +55,35 @@ if ($vsite_php["enabled"] == "0") {
     exit;
 }
 
-  $oids = $cceClient->find('Vsite', array('name' => $group));
-  if ($oids[0] == '') {
+$oids = $cceClient->find('Vsite', array('name' => $group));
+if ($oids[0] == '') {
     exit();
-  }
+}
 
-   // Make sure our 'open_basedir' has the bare metal minimums in it:
-   $open_basedir_pieces = explode (':', $open_basedir);
-   if ($open_basedir_pieces[0] == "") {
-	$open_basedir_pieces = array();
-   }
-   $open_basedir_minimal = array('/tmp/', '/var/lib/php/session/', '/usr/sausalito/configs/php/');
-   $open_basedir_merged = array_merge($open_basedir_pieces, $open_basedir_minimal);
-   $new_open_basedir = array_unique($open_basedir_merged);
-   $open_basedir = implode(":", $new_open_basedir);
+// Clean up 'open_basedir' user additions - and just the user additions:
+$open_basedir_cleaned = str_replace(array("\r\n", "\r", "\n"), ':', $open_basedir);
 
-  // Remove any superfluxus /home/.sites/ paths from $open_basedir:
-  $this_vsite_open_basedir = preg_split ("/:/", $open_basedir);
-  $this_vsite_open_basedir_new = array();
-  foreach ($this_vsite_open_basedir as $entry) {
-        if(!preg_match("/\/home\/.sites\//i", $entry, $regs)) {
-            array_push($this_vsite_open_basedir_new, $entry);
-        }
-  }
-  $open_basedir = implode(":",$this_vsite_open_basedir_new);
+// Turn it into an array:
+$open_basedir_temp = explode(":", $open_basedir_cleaned);
+
+// Walk through the array to filter out anything that doesn't look like a valid path:
+$open_basedir_nocrap = array();
+foreach ($open_basedir_temp as $entry) {
+    // Valid paths must start with a slash and end with a slash and certainly not with two slashes at the beginning:
+    if (preg_match("/^\/(.*)\/?$/", $entry, $regs) && (!preg_match("/^\/\/(.*)$/", $entry, $regs))) {
+	// Only push if the user added addition isn't already covered in the mandatory section:
+	if (!in_array($entry, explode(":", $open_basedir_mandatory_hidden))) {
+    	    array_push($open_basedir_nocrap, $entry);
+    	}
+    }
+}
+
+// Remove duplicates:
+$open_basedir_unique = array_unique($open_basedir_nocrap);
+
+// Assemble the results into a workable format:
+array_multisort($open_basedir_unique, SORT_ASC);
+$open_basedir = implode(":", $open_basedir_unique);
 
 // Make sure our 'safe_mode_allowed_env_vars' has the bare metal minimums in it:
 $safe_mode_allowed_env_vars_pieces = explode (',', $safe_mode_allowed_env_vars);
