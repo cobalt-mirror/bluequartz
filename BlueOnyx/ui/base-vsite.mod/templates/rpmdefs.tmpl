@@ -148,6 +148,11 @@ fi
 - Modified glue/handlers/php_vsite_handler.pl to piece together the full 'open_basedir'
   path as it needs to be: Mandatory server wide 'open_basedir' settings plus Vsite root
   plus whatever optional 'open_basedir' paths are specified.
+- Modified ui/web/php_server.php and ui/web/php_serverHandler.php as well to turn the 
+  textField into a textArea. Added some more logic to make sure the bare metal minimums
+  are retained even through saving incorrect or partial saves.
+- Modified glue/handlers/php_handler.pl to force an update of the PHPVsite settings of
+  Vsites whenever the server wide PHP settings are saved.
 
 * Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX99
 - More fixes: If 'safe_mode' is enabled, 'safe_mode_allowed_env_vars' needs to be populated

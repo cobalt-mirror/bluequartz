@@ -139,14 +139,37 @@ $block->addFormField(
     $pageID
 );
 
-// open_basedir
-$open_basedir_Field = $factory->getTextField("open_basedir", $systemObj['open_basedir']);
-$open_basedir_Field->setOptional ('silent');
+//------ open_basedir:
+
+// Make sure our 'open_basedir' has all the mandatory stuff in it:
+$open_basedir_mandatory_pieces = array("/tmp/", "/var/lib/php/session/", "/usr/sausalito/configs/php/");
+
+// Now we walk through $systemObj['open_basedir'] and make sure nobody added '/home/.sites/' here:
+$this_open_basedir = preg_split ("/:/", $systemObj['open_basedir']);
+// Pre-populate our new output array with the mandatory fields (we remove duplicates later on):
+$this_open_basedir_new = $open_basedir_mandatory_pieces;
+foreach ($this_open_basedir as $entry) {
+    // Only push pieces if '/home/.sites/' or '/home/sites/' has not been added:
+    if ((!preg_match("/^\/home\/.sites\//i", $entry, $regs)) && (!preg_match("/^\/home\/sites\//i", $entry, $regs))) {
+        array_push($this_open_basedir_new, $entry);
+    }
+}
+
+// Remove duplicates:
+$open_basedir_cleaned = array_unique($this_open_basedir_new);
+
+// Sort the array before we implode them later on:
+array_multisort($open_basedir_cleaned, SORT_ASC);
+
+// Print out the block with the mandatory 'open_basedir' stuff. Please note: This is for display only. The contends here cannot
+// be processed via form handlers:
+$open_basedir_mandatory_Field = $factory->getTextBlock("open_basedir_mandatory", implode("\n",$open_basedir_cleaned));
+$open_basedir_mandatory_Field->setOptional ('silent');
 $block->addFormField(
-    $open_basedir_Field,
-    $factory->getLabel("open_basedir"),
+    $open_basedir_mandatory_Field,
+    $factory->getLabel("open_basedir_mandatory"),
     "php_ini_security_settings"
-);
+); 
 
 // disable_functions
 $disable_functions_Field = $factory->getTextField("disable_functions", $systemObj['disable_functions']);

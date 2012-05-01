@@ -102,7 +102,10 @@ if ($whatami eq "handler") {
 		# Edit php.ini:
 		&edit_php_ini;
 
-		# Restart Apache:	
+		# Update PHP settings for Vsites:
+		&update_vsites;
+
+		# Restart Apache:
 		&restart_apache;
 	    }
 	    else {
@@ -141,6 +144,7 @@ else {
 
     if (-f $php_ini) {
 	&edit_php_ini;
+	&update_vsites;
 	&restart_apache;
     }
     else {
@@ -364,6 +368,24 @@ sub edit_php_ini {
           move($stage,"$confdir/php.ini");
           chmod(0644, "$confdir/php.ini"); # paranoia
         }
+    }
+}
+
+sub update_vsites {
+
+    # Find all Vsites:
+    my @vhosts = ();
+    my (@vhosts) = $cce->findx('Vsite');
+
+    # Walk through all Vsites:
+    for my $vsite (@vhosts) {
+	($ok, my $my_vsite) = $cce->get($vsite);
+
+	&debug_msg("Updating PHP settings for Vsite $my_vsite->{fqdn} \n");
+
+	($ok) = $cce->set($vsite, 'PHPVsite',{
+    	    'force_update' => time()
+        });
     }
 }
 

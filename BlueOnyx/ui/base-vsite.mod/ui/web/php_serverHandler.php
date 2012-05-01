@@ -46,15 +46,29 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $phpOID = $cceClient->find("PHP", array("applicable" => "server"));
 
-// Make sure our 'open_basedir' has the bare metal minimums in it:
-$open_basedir_pieces = explode (':', $open_basedir);
-if ($open_basedir_pieces[0] == "") {
-    $open_basedir_pieces = array();
-}
+// Clean up 'open_basedir' user additions - and just the user additions:
+$open_basedir_cleaned = str_replace(array("\r\n", "\r", "\n"), ':', $open_basedir_mandatory);
+
+// Bare metal minimals for 'open_basedir':
 $open_basedir_minimal = array('/tmp/', '/var/lib/php/session/', '/usr/sausalito/configs/php/');
-$open_basedir_merged = array_merge($open_basedir_pieces, $open_basedir_minimal);
-$new_open_basedir = array_unique($open_basedir_merged);
-$open_basedir = implode(":", $new_open_basedir);
+
+// Turn it into an array:
+$open_basedir_temp = explode(":", $open_basedir_cleaned);
+
+// Walk through the array to filter out anything that doesn't look like a valid path:
+foreach ($open_basedir_temp as $entry) {
+    // Valid paths must start with a slash and end with a slash and certainly not with two slashes at the beginning:
+    if ((preg_match("/^\/(.*)\/?$/", $entry, $regs)) && (!preg_match("/^\/\/(.*)$/", $entry, $regs))) {
+        array_push($open_basedir_minimal, $entry);
+    }
+}
+
+// Remove duplicates:
+$open_basedir_unique = array_unique($open_basedir_minimal);
+
+// Assemble the results into a workable format:
+array_multisort($open_basedir_unique, SORT_ASC);
+$open_basedir = implode(":", $open_basedir_unique);
 
 // Make sure our 'safe_mode_allowed_env_vars' has the bare metal minimums in it:
 $safe_mode_allowed_env_vars_pieces = explode (',', $safe_mode_allowed_env_vars);
