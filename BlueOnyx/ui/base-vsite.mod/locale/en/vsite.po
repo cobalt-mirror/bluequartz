@@ -708,12 +708,6 @@ msgstr "Safe Mode protected envelope variables:"
 msgid "safe_mode_protected_env_vars_help"
 msgstr "This directive contains a comma-delimited list of environment variables that the end user won't be able to change using putenv(). These variables will be protected even if safe_mode_allowed_env_vars is set to allow to change them."
 
-msgid "open_basedir"
-msgstr "Open basedir:"
-
-msgid "open_basedir_help"
-msgstr "Limit the files that can be opened by PHP to the specified directory-tree, including the file itself. This directive is NOT affected by whether Safe Mode is turned On or Off. When a script tries to open a file with, for example, fopen() or gzopen(), the location of the file is checked. When the file is outside the specified directory-tree, PHP will refuse to open it. All symbolic links are resolved, so it's not possible to avoid this restriction with a symlink. The special value '.' indicates that the working directory of the script will be used as the base-directory. This is, however, a little dangerous as the working directory of the script can easily be changed with chdir(). By default virtual sites only have access to /home, /tmp, /var/lib/php/session/ and the root directory of the virtual site in question."
-
 msgid "disable_functions"
 msgstr "Disable functions:"
 
@@ -825,7 +819,6 @@ msgstr "The 'Site Prefix' you specified contains unsupported characters. Only al
 
 # ---- end Prefix
 
-
 # --- Start webAliasRedirects
 
 msgid "webAliasRedirects"
@@ -835,4 +828,20 @@ msgid "webAliasRedirects_help"
 msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems."  
 
 # --- End webAliasRedirects
+
+# --- Start 'open_basedir'
+
+msgid "open_basedir_mandatory"
+msgstr "Open Basedir (Server):"
+
+msgid "open_basedir_mandatory_help"
+msgstr "These are the 'open_basedir' settings as defined for the whole server under 'Server Management' / 'Security' / 'PHP'. They are mandatory for every virtual site. In the field below you can specify additional directories that should be added to the 'open_basedir' directive."
+
+msgid "open_basedir"
+msgstr "Open Basedir (Vsite):"
+
+msgid "open_basedir_help"
+msgstr "The 'open_basedir' directive limits the file access of PHP scripts to certain directories. The 'Open Basedir (Server)' field above shows you to which directories PHP scripts already have access to on this server. If the PHP scripts of this site need additional access to further directories, then you can specify these directories here. When the file is outside the specified directory-tree, PHP will refuse to open it."
+
+# --- End 'open_basedir'
 
