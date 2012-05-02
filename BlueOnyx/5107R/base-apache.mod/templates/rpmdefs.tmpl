@@ -148,6 +148,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX25
+- Modified glue/httpd/ssl_perl.conf again to only create SSL containers if cert and key are present.
+  As user experience just showed us, there may be sites with CODB database artifacts.
+
 * Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX24
 - More SSL fixes. The underlying problem of the whole SSL stuff is our glue/httpd/ssl_perl.conf.
   It uses 'Apache2::PerlSections', which on its own doesn't keep the sort order of Rewrite rules 
