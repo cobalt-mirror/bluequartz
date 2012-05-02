@@ -44,39 +44,37 @@ if ($save)
 	}
 	else 
 	{
-        	// import the uploaded information for the specified site
-        	$fh = fopen($caCert, 'r');
-		if (!$fh) 
-		{
-			//file opening problems
-			$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
-			$errors = array($error);
-		}
-                else 
-                {
 
-        	        $lines = '';
-        	        while (!feof($fh))
-        	        {
-        	            $lines .= fread($fh, 4096);
-        	        }
-        	        fclose($fh);
-    
-        	        $tmp_cert = tempnam('/tmp', 'file');
-        	        unlink($tmp_cert);
-        	        $helper->putFile($tmp_cert, $lines);
-    
-        	        $runas = ($helper->getAllowed('adminUser') ? 
-                                        'root' : $helper->getLoginName());
-        	        $ret = $helper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=caCert --ca-ident='$addCaIdent'", 
-        	                    $output, $runas);
-        	        if ($ret != 0)
-        	        {
-        	            // deal with error
-        	            $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
-        	            $errors = array($error);
-        	        }
+	    if (is_uploaded_file($caCert)) {
+    		$tmp_cert = tempnam('/tmp', 'file');
+    		move_uploaded_file($caCert, $tmp_cert);
+	    }
+	    else {
+    		//file opening problems
+    		$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+    		$errors = array($error);
 
+	    }
+            if (!is_file($tmp_cert))
+            {
+                //file opening problems
+                $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+                $errors = array($error);
+            }
+            else
+            {
+
+                    $runas = ($helper->getAllowed('adminUser') ? 'root' : $helper->getLoginName());
+                    $ret = $helper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=caCert --ca-ident='$addCaIdent'", $output, $runas);
+                    if ($ret != 0)
+                    {
+                        // deal with error
+                        $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
+                        $errors = array($error);
+                        if (is_file($temp_cert)) {
+                            unlink($tmp_cert);
+                        }
+                    }
                 }
 	}
     }

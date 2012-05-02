@@ -120,6 +120,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX07
+- Modified ui/web/caManager.php to use is_uploaded_file() and move_uploaded_file() to
+  handle the uploaded SSL certificate, too. Tested with GoDaddy intermediate certs.
+
 * Tue Mar 24 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX06
 - Modified ui/web/uploadCert.php to check if the temp file exists before we unlink it.
 
