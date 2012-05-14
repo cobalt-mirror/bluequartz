@@ -35,7 +35,7 @@ for my $vsite (@vhosts) {
 }
 
 foreach $ip (@unique_ips) {
-	if ($ip) {
+	if (($ip) && ($ip ne "127.0.0.1")) {
 	    print "<VirtualHost $ip>\n";
 	    print "    DefaultRoot     / wheel\n";
 	    print "        DefaultRoot             / admin-users\n";
