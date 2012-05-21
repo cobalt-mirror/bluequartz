@@ -114,13 +114,13 @@ if (!$logfile)
 			$line = rtrim($line);
 			$peices = explode("\t", $line);
 			$Piped .= "\nADD";
-			# username
+			// username
 			$Piped .= "\t" . trim($peices[0]);	
-			# full name
+			// full name
 			$Piped .= "\t" . trim($peices[1]);	
-			# password
+			// password
 			$Piped .= "\t" . trim($peices[2]);	
-			# break up the Email.aliases
+			// break up the Email.aliases
 			if ($peices[3]) 
 			{
 				$peices[3] = preg_replace('/ /', ",", trim($peices[3]));
@@ -132,17 +132,17 @@ if (!$logfile)
 			{
 				$Piped .= "\t";
 			}
-			#sortName
+			// sortName
 			if ($peices[4])
 				$Piped .= "\t" . trim($peices[4]);
 			else
 				$Piped .= "\t" . "";
-			#quota
+			// quota
 			if ($peices[5])
 				$Piped .= "\t" . trim($peices[5]);
 			else
 				$Piped .= "\t" . $defaultQuota;
-			#Vsite group
+			// Vsite group
 			if ($group)
 				$Piped .= "\t$group\t$vsite[volume]\t$defaultShell";
 			$i++;
@@ -185,10 +185,10 @@ location = \"/base/import/importHandler.php?count=$i&logfile=$fileName&group=$gr
 } 
 else 
 {
-	# we have a log file.
-	# show status
+	// we have a log file.
+	// show status
 
-	# sanitize logfile name
+	// sanitize logfile name
 	$logfile = preg_replace('/[^a-zA-Z0-9]/', "_", $logfile);
 	$fhData = $serverScriptHelper->getFile("/tmp/$logfile");
 	$fhData = preg_replace('/\r/', "", $fhData);
@@ -199,7 +199,7 @@ else
 	$percent = ($count == 0) ? 100 : ( $doneCount / $count ) * 100;
 	if ($percent < 100) {
 		$block = new PagedBlock($page, "ImportStatus", $factory->getLabel("importStatus", false));
-		#TODO: add message
+		//TODO: add message
 		$block->addFormField(
 			$factory->getTextField("none", $i18n->interpolate("[[base-import.creatingUsers]]", array("pos" => ($doneCount?$doneCount:"0"), "max" => $count)), "r"),
 			$factory->getLabel("status")
@@ -221,13 +221,13 @@ else
 			$scrollList = $factory->getScrollList("importErrors", array("fullName", "name", "errorMessageHeader"), array(0,1));
 			$scrollList->setEntryCountTags("[[base-import.errorCountSingular]]", "[[base-import.errorCountPlural]]");
 			for ($i=0;$i<$errorCount;$i++) {
-				# get the hash data
+				// get the hash data
 				$table = array();
 				while (($line = array_shift($fhData))!="--") {
 					preg_match('/^(.*)=(.*)$/', $line, $regs);
 					$table[$regs[1]] = $regs[2];
 				}
-				# get the messages
+				// get the messages
 				$msg = "";
 				while (($line = array_shift($fhData))!="--") {
 					preg_match('/^(.*)$/', $line, $regs);
