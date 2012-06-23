@@ -188,7 +188,7 @@ my $installed = 0;
 my $totalfiles = scalar(@rpmFiles) + scalar(@srpmFiles);
 my @installedrpms;
 foreach $rpm (@rpmFiles) {
-    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", (10)*$filesCount/($totalfiles+1) + 85);
+    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", int((10)*$filesCount/($totalfiles+1) + 85));
     $error = install_rpm('RPMS', $path, $rpm);
     unless ($error) {
 	print LOG "$rpm successfully installed.\n";
@@ -213,7 +213,7 @@ foreach $rpm (@rpmFiles) {
 
 # screwing up here isn't as fatal
 foreach $rpm (@srpmFiles) {
-    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", (10)*$filesCount/($totalfiles+1) + 85);
+    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", int((10)*$filesCount/($totalfiles+1) + 85));
     $error = install_rpm('SRPMS', $path, $rpm);
     unless ($error) {
 	print LOG "$rpm successfully installed.\n";
