@@ -15,18 +15,20 @@ my $old = $cce->event_old();
 my $object = $cce->event_object();
 my $new = $cce->event_new();
 
-if ($new->{powermode} || $new->{set_modes_now}) {
-    print LOG "new powermode is " . $object->{powermode} . "\n";
-
-    open(FILE, ">/proc/sys/cobalt/powermode");
-    $success = print FILE "$object->{powermode}\n";
-    close(FILE);
-
-    if (!$success) {
-	$cce->warn("[[base-power.errSettingPowerMode]]");
-	$cce->bye('FAIL');
-	exit 1;
-    }
+if (-e "/proc/sys/cobalt/powermode") {
+    if ($new->{powermode} || $new->{set_modes_now}) {
+        print LOG "new powermode is " . $object->{powermode} . "\n";
+    
+        open(FILE, ">/proc/sys/cobalt/powermode");
+        $success = print FILE "$object->{powermode}\n";
+        close(FILE);
+    
+        if (!$success) {
+    	$cce->warn("[[base-power.errSettingPowerMode]]");
+    	$cce->bye('FAIL');
+    	exit 1;
+        }
+	}
 }
 
 close LOG;

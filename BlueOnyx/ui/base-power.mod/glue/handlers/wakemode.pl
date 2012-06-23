@@ -18,39 +18,41 @@ my $old = $cce->event_old();
 my $object = $cce->event_object();
 my $new = $cce->event_new();
 
-# find out what IO port the ethernet controller uses.
-open PCI, '</proc/pci';
-while (<PCI>) {
-    if (/Ethernet/) {
-	$flag = 1;
-    } elsif ($flag && /I\/O/) {
-	/at (\w+)/;
-	$port = $1;
-	last;
-    }
-}
-close(PCI);
+if (-e $kernel_wakeutil && -e $eeprom_wakeutil ) {
+	# find out what IO port the ethernet controller uses.
+	open PCI, '</proc/pci';
+	while (<PCI>) {
+		if (/Ethernet/) {
+		$flag = 1;
+		} elsif ($flag && /I\/O/) {
+		/at (\w+)/;
+		$port = $1;
+		last;
+		}
+	}
+	close(PCI);
 
-my @eeprom_args = ($eeprom_wakeutil, '-p', $port, '-d', 'natsemi', '-w', 'wol');
-my @kernel_args = ($kernel_wakeutil, '-s', 'eth0', 'wol');
+	my @eeprom_args = ($eeprom_wakeutil, '-p', $port, '-d', 'natsemi', '-w', 'wol');
+	my @kernel_args = ($kernel_wakeutil, '-s', 'eth0', 'wol');
 
-if ($new->{wakemode} || $new->{set_modes_now}) {
-    if ($object->{wakemode} eq 'none') {
-	push @kernel_args, ('d');
-	push @eeprom_args, ('d');
-    } elsif ($object->{wakemode} eq 'magic') {
-	push @kernel_args, ('g');
-	push @eeprom_args, ('g');
-    }
+	if ($new->{wakemode} || $new->{set_modes_now}) {
+		if ($object->{wakemode} eq 'none') {
+		push @kernel_args, ('d');
+		push @eeprom_args, ('d');
+		} elsif ($object->{wakemode} eq 'magic') {
+		push @kernel_args, ('g');
+		push @eeprom_args, ('g');
+		}
     
-    $return1 = system(@kernel_args);
-    $return2 = system(@eeprom_args);
+		$return1 = system(@kernel_args);
+		$return2 = system(@eeprom_args);
 
-    if (($return1 != 0) || ($return2 != 0)) {
-	$cce->warn("[[base-power.errSettingWakeMode]]");
-	$cce->bye('FAIL');
-	exit 1;
-    }
+		if (($return1 != 0) || ($return2 != 0)) {
+		$cce->warn("[[base-power.errSettingWakeMode]]");
+		$cce->bye('FAIL');
+		exit 1;
+		}
+	}
 }
 
 $cce->bye('SUCCESS');
