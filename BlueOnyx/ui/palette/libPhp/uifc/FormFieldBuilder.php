@@ -376,6 +376,66 @@ document.$formId.$id.options.length = $optionNum;
     return "<INPUT TYPE=\"TEXT\" NAME=\"$id\" $value $size $maxLength $onChange>\n";
   }
 
+  // description: make a HTML field
+  // param: id: the identifier of the field
+  // param: value: the value of the HTML input field
+  // param: access: "" for hidden, "r" for read-only, "w" for write-only
+  //     and "rw" for read and write
+  // param: size: the length of the field
+  // param: maxLength: maximum number of characters
+  //     that can be entered into the field
+  // param: onChange: the onChange attribute of the field
+  // returns: HTML that represents the field
+  function makeHtmlField($id, $value, $access, $size, $maxLength, $onChange) {
+    $shortval = $value;
+    if (($maxLength > 0) && (strlen($value) > $maxLength)) {
+	//$shortval = substr($value, 0, $maxLength) . ' ...';
+    }
+
+    switch($access) {
+      case "":
+	return $this->makeHiddenField($id, $value);
+
+      case "r":
+	// HTML safe
+	//$shortval = htmlspecialchars($shortval);
+
+	return $shortval . $this->makeHiddenField($id, $value);
+
+      case "R":
+	// assume $shortval is already html-safe
+	return $shortval . $this->makeHiddenField($id, $value);
+
+      case "w":
+	$value = "";
+	break;
+
+      case "rw":
+	// HTML safe
+	//$value = htmlspecialchars($value);
+
+	$value = "VALUE=\"$value\"";
+	break;
+    }
+
+    // log activity if necessary
+    $system = new System();
+    $logChange = ($system->getConfig("logPath") != "") ? "top.code.uiLog_log('change', 'FormField', '$id', this.value);" : "";
+
+    // find size
+    $size = ($size > 0) ? "SIZE=\"$size\"" : "";
+
+    // find max size
+    $maxLength = ($maxLength > 0) ? "MAXLENGTH=\"$maxLength\"" : "";
+
+    // find onChange handler
+    if($onChange != "" || $logChange != "")
+      $onChange = "onChange=\"$logChange $onChange\"";
+
+    return "<INPUT TYPE=\"TEXT\" NAME=\"$id\" $value $size $maxLength $onChange>\n";
+  }
+
+
   // description: make a text area field
   // param: id: the identifier of the field
   // param: value: the value of the HTML input field

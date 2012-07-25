@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX20%{?dist}
+Release: 0BX21%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,14 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Wed Jul 25 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX21
+- Added libPhp/uifc/HtmlField.php to add UIFC function getHtmlField(), which works similar
+  to getTextField(), but allows HTML code.
+- Modified libPhp/uifc/FormFieldBuilder.php and libPhp/uifc/HtmlComponentFactory.php to
+  allow usage of getHtmlField().
+
+- Fix to libPhp/uifc/FormFieldBuilder.php to get it from timing out on conversion issues.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX20
 - Fix to libPhp/uifc/FormFieldBuilder.php to get it from timing out on conversion issues.
