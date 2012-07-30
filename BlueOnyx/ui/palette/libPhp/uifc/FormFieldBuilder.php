@@ -397,23 +397,16 @@ document.$formId.$id.options.length = $optionNum;
 	return $this->makeHiddenField($id, $value);
 
       case "r":
-	// HTML safe
-	//$shortval = htmlspecialchars($shortval);
-
-	return $shortval . $this->makeHiddenField($id, $value);
+	return $shortval;
 
       case "R":
-	// assume $shortval is already html-safe
-	return $shortval . $this->makeHiddenField($id, $value);
+	return $shortval;
 
       case "w":
 	$value = "";
 	break;
 
       case "rw":
-	// HTML safe
-	//$value = htmlspecialchars($value);
-
 	$value = "VALUE=\"$value\"";
 	break;
     }
