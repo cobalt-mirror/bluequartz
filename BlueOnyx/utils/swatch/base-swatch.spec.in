@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: 0BX09%{?dist}
+Release: 0BX10%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -74,6 +74,9 @@ if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
 fi
 
 %changelog
+
+* Tue Jul 31 2012 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX10
+- Updates Swatch to display the output from 'top' in CPU warning emails.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX09
 - Converted locale encoding from UTF-8 to ISO-8859-1.

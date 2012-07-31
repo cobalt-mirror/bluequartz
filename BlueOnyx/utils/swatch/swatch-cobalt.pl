@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright (c) Turbolinux, inc.
 # Modified by Michael Stauber <mstauber@solarspeed.net> 
-# Thu 18 Dec 2008 06:46:24 AM EST
+# Di 31 Jul 2012 10:11:41 CEST
 
 use strict;
 use CCE;
@@ -151,23 +151,27 @@ while ( defined (my $name = <@names>) ) {
                  });
         if (($oldState ne $statecodes[$state]) &&
             !($oldState eq "N" && $statecodes[$state] eq "G")) {
+          print "Got MSG start \n" if ($DEBUG_ME);
           $msg = $i18n->get($msgs[$state]) . $msg;
+
         } else {
           $msg = "";
         }
         print "[$name] state : $statecodes[$state]\n" if ($DEBUG_ME);
       }
+
     } elsif (!$object->{aggMember}) {
       ($stats{"$name"}, my $ret, $msg) = do_monitor($object);
     }
+
     if ($msg) {
       $body .= "* " . $msg . "\n\n";
     }
   }
 }
 
-
 if ($body) {
+
   $body = $body_head . $body;
   my $subject = $host . ": " . $i18n->get("[[swatch.emailSubject]]");
   my $to;
@@ -190,6 +194,7 @@ if ($body) {
 
     # Out with the email:
     $send_msg->send;
+    print "Sending mail \n" if ($DEBUG_ME);
   }
 }
 
@@ -255,8 +260,27 @@ sub do_monitor
       !($oldState eq "N" && $statecodes[$state] eq "G")) {
     print "Status changed\n" if ($DEBUG_ME);
     $msg = $i18n->get($ret);
-  }
 
+    ### Start: Append 'top' output if CPU is in moderate or heavy useage:
+    if (($object->{nameTag} eq "[[base-am.amCPUName]]") && ($object->{monitor} == "1")) {
+	if (($object->{currentMessage} eq "[[base-am.amCPUWarning_heavy]]") || ($object->{currentMessage} eq "[[base-am.amCPUWarning_moderate]]")) {
+		print "CPU is in moderate or heavy useage - generating 'top' report\n" if ($DEBUG_ME);
+		my $TOP = `top -b -n 1`;
+		my @procs = split(/\n/, $TOP);
+		$msg .= "\n\n-------------------------------------------\n";
+		$msg .= "System snapshot:\n";
+		$msg .= "-------------------------------------------\n";
+		foreach my $top (@procs) {
+			$top =~ s/ *$//g;
+			$msg .= $top . "\n";
+		}
+		$msg .= "\n\n";
+		print "TOP: \n $TOP \n" if ($DEBUG_ME);
+	}
+    }
+    ### End: Append 'top' output if CPU is in moderate or heavy useage:
+
+  }
 
   return ($state, $ret, $msg);
 }
