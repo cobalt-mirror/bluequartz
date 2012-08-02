@@ -71,12 +71,13 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 
 cat /etc/httpd/conf.d/squirrelmail.conf.bx > /etc/httpd/conf.d/squirrelmail.conf
-/etc/init.d/httpd stop
-sleep 2
-killall -9 httpd
-sleep 2
-/etc/init.d/httpd start
-/etc/init.d/admserv reload
+# Disabled AdmServ and httpd restart for now. Too dangerous to use them here if all we fix is the crappy Squirrelmail:
+#/etc/init.d/httpd stop
+#sleep 2
+#killall -9 httpd
+#sleep 2
+#/etc/init.d/httpd start
+#/etc/init.d/admserv reload
 
 <end glue>
 <begin ui>
@@ -109,6 +110,10 @@ sleep 2
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Aug 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX14
+- Removed AdmServ reload and Httpd restart for now, as there is a very high
+  possibility that these cause more grief than good.
 
 * Thu Aug 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX13
 - Added separate /etc/httpd/conf.d/squirrelmail.conf and removed suPHP remover
