@@ -5,18 +5,26 @@
 Alias /webmail /usr/share/squirrelmail
 
 <Directory /usr/share/squirrelmail/>
+suPHP_RemoveHandler x-httpd-suphp
+AddHandler php5-script .php
+AddType text/html .php
 php_admin_value safe_mode off
 php_admin_value open_basedir /home/:/tmp/:/var/lib/php/session/:/usr/share/squirrelmail/:/etc/squirrelmail/:/var/spool/squirrelmail/:/var/lib/squirrelmail/prefs/:/usr/sausalito/configs/php/
 php_admin_value safe_mode_allowed_env_vars PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER
 php_admin_value safe_mode_include_dir /usr/sausalito/configs/php/
+php_value error_reporting 6143
 Options FollowSymLinks
 AllowOverride All
 </Directory>
 <Directory /var/lib/squirrelmail/prefs/>
+suPHP_RemoveHandler x-httpd-suphp
+AddHandler php5-script .php
+AddType text/html .php
 php_admin_value safe_mode off
 php_admin_value open_basedir /home/:/tmp/:/var/lib/php/session/:/usr/share/squirrelmail/:/etc/squirrelmail/:/var/spool/squirrelmail/:/var/lib/squirrelmail/prefs/:/usr/sausalito/configs/php/
 php_admin_value safe_mode_allowed_env_vars PHP_,_HTTP_HOST,_SCRIPT_NAME,_SCRIPT_FILENAME,_DOCUMENT_ROOT,_REMOTE_ADDR,_SOWNER
 php_admin_value safe_mode_include_dir /usr/sausalito/configs/php/
+php_value error_reporting 6143
 Options FollowSymLinks
 AllowOverride All
 </Directory>

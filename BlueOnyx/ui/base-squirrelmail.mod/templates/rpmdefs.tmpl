@@ -47,6 +47,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 %config /etc/admserv/conf.d/squirrelmail.conf
+%config /etc/httpd/conf.d/squirrelmail.conf.bx
 [AUTOFILL]
 <end glue>
 
@@ -69,14 +70,13 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-/bin/cat /etc/admserv/conf.d/squirrelmail.conf > /etc/httpd/conf.d/squirrelmail.conf
-
-/etc/init.d/httpd reload
+cat /etc/httpd/conf.d/squirrelmail.conf.bx > /etc/httpd/conf.d/squirrelmail.conf
+/etc/init.d/httpd stop
+sleep 2
+killall -9 httpd
+sleep 2
+/etc/init.d/httpd start
 /etc/init.d/admserv reload
-
-#if [ -S /usr/sausalito/cced.socket ]; then
-#    /etc/init.d/cced.init restart
-#fi
 
 <end glue>
 <begin ui>
@@ -109,6 +109,11 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Aug 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX13
+- Added separate /etc/httpd/conf.d/squirrelmail.conf and removed suPHP remover
+  from glue/etc/admserv/conf.d/squirrelmail.conf as AdmServ doesn't like it.
+- Fixed post-install scripts and improved httpd restart routine a little.
 
 * Thu Aug 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX12
 - Updated glue/etc/admserv/conf.d/squirrelmail.conf with suPHP disabling provisions.

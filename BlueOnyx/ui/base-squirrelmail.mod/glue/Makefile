@@ -13,6 +13,8 @@ endif
 
 MODADMSERVDIR = $(PREFIX)/etc/admserv/conf.d
 MODADMSERVFILE=squirrelmail.conf
+MODHTTPDDIR = $(PREFIX)/etc/httpd/conf.d
+MODHTTPDFILE=squirrelmail.conf.bx
 
 all:
 
@@ -21,5 +23,7 @@ install:
 	echo $(CCESBINDIR)
 	mkdir -p $(MODADMSERVDIR)
 	(cd etc/admserv/conf.d; $(INSTALL) $(MODADMSERVFILE) $(MODADMSERVDIR); )
+	mkdir -p $(MODHTTPDDIR)
+	(cd etc/httpd/conf.d; $(INSTALL) $(MODHTTPDFILE) $(MODHTTPDDIR); )
 
 rpm:
