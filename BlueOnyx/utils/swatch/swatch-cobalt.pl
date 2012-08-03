@@ -261,10 +261,10 @@ sub do_monitor
     print "Status changed\n" if ($DEBUG_ME);
     $msg = $i18n->get($ret);
 
-    ### Start: Append 'top' output if CPU is in moderate or heavy useage:
+    ### Start: Append 'top' output if CPU is/was in moderate or heavy useage:
     if (($object->{nameTag} eq "[[base-am.amCPUName]]") && ($object->{monitor} == "1")) {
-	if (($object->{currentMessage} eq "[[base-am.amCPUWarning_heavy]]") || ($object->{currentMessage} eq "[[base-am.amCPUWarning_moderate]]")) {
-		print "CPU is in moderate or heavy useage - generating 'top' report\n" if ($DEBUG_ME);
+	if ($object->{currentMessage}) {
+		print "CPU is/was in moderate or heavy useage - generating 'top' report\n" if ($DEBUG_ME);
 		my $TOP = `top -b -n 1`;
 		my @procs = split(/\n/, $TOP);
 		$msg .= "\n\n-------------------------------------------\n";
@@ -278,7 +278,7 @@ sub do_monitor
 		print "TOP: \n $TOP \n" if ($DEBUG_ME);
 	}
     }
-    ### End: Append 'top' output if CPU is in moderate or heavy useage:
+    ### End: Append 'top' output if CPU is/was in moderate or heavy useage:
 
   }
 
