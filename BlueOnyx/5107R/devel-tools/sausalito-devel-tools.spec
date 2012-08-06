@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.2
-Release: 1BX08%{?dist}
+Release: 1BX09%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,12 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Mon Aug 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX09
+- Added scripts/packsort.pl, a parser for packing_list. It processes a packing_list and dumps a version
+  with semi-correct RPM sort order to STDOUT
+- Modified scripts/makePkg to create a packing_list with semi-correct RPM sort order, provided the file
+  /usr/sausalito/devel/.pkgsort exists (may be empty).
+
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX08
 - Updated dependencies.
 
