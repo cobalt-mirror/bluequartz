@@ -48,6 +48,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 /etc/suexec.conf
 /etc/httpd/conf.d/ssl_perl.conf
+/etc/httpd/conf.d/security.conf
 /usr/sausalito/sbin/fix_302_httpd_redirects.pl 
 /usr/sausalito/sbin/fix_web-and-email-server-aliasses.pl 
 /usr/sausalito/sbin/set_default_php_settings.pl
@@ -141,6 +142,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Aug 08 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX18
+- Added glue/httpd/security.conf to disable directory listing of /var/www/icons/ and to disable TRACK/TRACE.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX17
 - Converted locale encoding from UTF-8 to ISO-8859-1.
