@@ -74,8 +74,12 @@ information for [VENDOR]-[SERVICE].
 %post [LABEL]
 <end HEADER>
 
+<begin capstone>
+# capstone post-install
+/usr/sausalito/constructor/base/alpine/12_handle_sl_repos.pl
+<end capstone>
+
 <begin glue>
-# glue post-install
 
 <end glue>
 <begin ui>
@@ -108,6 +112,11 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Aug 13 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX42
+- Added 12_handle_sl_repos.pl to switch sl-release YUM repository files from hard
+  coded versions to 6x, which is the actual release. This is for more seamless 
+  automated updates to the latest versions.
 
 * Sat Mar 31 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX41
 - Added dependencies for RPMs from YUM Group 'Japanese Support' to Makefile
