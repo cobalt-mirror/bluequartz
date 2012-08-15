@@ -83,7 +83,24 @@ class SetSelector extends FormField {
     $this->setValueLabel();
 
     // default
-    $this->rows = 6;
+    if ($id == "make_fifty") {
+	$this->rows = "50";
+    }
+    elseif ($id == "make_fourty") {
+	$this->rows = "40";
+    }
+    elseif ($id == "make_thirty") {
+	$this->rows = "30";
+    }
+    elseif ($id == "make_twenty") {
+	$this->rows = "20";
+    }
+    elseif ($id == "make_ten") {
+	$this->rows = "10";
+    }
+    else {
+	$this->rows = "6";
+    }
 
     // internationalize
     $i18n =& $page->getI18n();

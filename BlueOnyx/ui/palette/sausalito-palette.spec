@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX22%{?dist}
+Release: 0BX23%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Wed Aug 15 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX23
+- Extended libPhp/uifc/SetSelector.php with the ability to generate longer selectors.
 
 * Mon Jul 30 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX22
 - Updated libPhp/uifc/FormFieldBuilder.php again to remove the hidden field output of 
