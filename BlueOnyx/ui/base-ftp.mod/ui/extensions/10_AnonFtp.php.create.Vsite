@@ -3,7 +3,7 @@
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // AnonFtp.php.create.Vsite
 
-include('UIExtension.php');
+include_once('UIExtension.php');
 
 class AnonFtpExtension extends UIExtension
 {

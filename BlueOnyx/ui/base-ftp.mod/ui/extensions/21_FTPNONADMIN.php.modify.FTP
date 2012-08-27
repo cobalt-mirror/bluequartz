@@ -2,7 +2,7 @@
 // $Id: 21_FTPNONADMIN.php.modifyWeb.Vsite,v 1.1 Mon 12 May 2008 10:30:59 PM EDT mstauber Exp $
 //
 
-include('UIExtension.php');
+include_once('UIExtension.php');
 
 class FTPNONADMINExtension extends UIExtension
 {

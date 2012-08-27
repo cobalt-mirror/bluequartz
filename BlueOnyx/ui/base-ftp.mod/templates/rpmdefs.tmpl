@@ -130,6 +130,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Aug 27 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BX29
+- Fixed ui/extensions/21_FTPNONADMIN.php.modify.FTP and ui/extensions/10_AnonFtp.php.create.Vsite
+  Both still had include() statements instead of include_once()
+
 * Mon May 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BX28
 - Modified glue/sbin/fixproftpd_conf.pl to exclude localhost from container creation.
 
