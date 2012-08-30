@@ -135,6 +135,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Aug 30 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX103
+- Updated ui/web/vsite_php.php to move the array choices for the PHP settings outside of the
+  if statement. There are some rare cases where we need it to fallback to sane defaults.
+
 * Fri Aug 03 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX102
 - Updated Makefile to add dependency for mod_authnz_external
 

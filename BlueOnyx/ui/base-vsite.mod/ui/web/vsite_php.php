@@ -294,8 +294,7 @@ $allow_url_include_select->setSelected($allow_url_include_choices[$allow_url_inc
 $block->addFormField($allow_url_include_select,$factory->getLabel("allow_url_include"), "Default");
 
 // upload_max_filesize:
-if ($systemObj['upload_max_filesize']) {
-        $upload_max_filesize_choices = array (
+$upload_max_filesize_choices = array (
             '2M',
             '4M',
             '8M',
@@ -323,6 +322,7 @@ if ($systemObj['upload_max_filesize']) {
             '180M'
         );
 
+if ($systemObj['upload_max_filesize']) {
         // If we're currently using something that's not in that array, we add it to it:
         if (!in_array($systemObj['upload_max_filesize'], $upload_max_filesize_choices)) {
                 $upload_max_filesize_choices[] = $systemObj['upload_max_filesize'];
@@ -336,8 +336,7 @@ $upload_max_filesize_choices_select->setSelected($systemObj['upload_max_filesize
 $block->addFormField($upload_max_filesize_choices_select,$factory->getLabel("upload_max_filesize"), "Default");
 
 // post_max_size:
-if ($systemObj['post_max_size']) {
-        $post_max_size_choices = array (
+$post_max_size_choices = array (
             '2M',
             '4M',
             '8M',
@@ -365,6 +364,7 @@ if ($systemObj['post_max_size']) {
             '180M'
         );
 
+if ($systemObj['post_max_size']) {
         // If we're currently using something that's not in that array, we add it to it:
         if (!in_array($systemObj['post_max_size'], $post_max_size_choices)) {
                 $post_max_size_choices[] = $systemObj['post_max_size'];
@@ -378,8 +378,7 @@ $post_max_size_choices_select->setSelected($systemObj['post_max_size'], true);
 $block->addFormField($post_max_size_choices_select,$factory->getLabel("post_max_size"), "Default");
 
 // max_execution_time:
-if ($systemObj['max_execution_time']) {
-        $max_execution_time_choices = array (
+$max_execution_time_choices = array (
             '30',
             '60',
             '90',
@@ -395,6 +394,7 @@ if ($systemObj['max_execution_time']) {
             '900'
         );
 
+if ($systemObj['max_execution_time']) {
         // If we're currently using something that's not in that array, we add it to it:
         if (!in_array($systemObj['max_execution_time'], $max_execution_time_choices)) {
                 $max_execution_time_choices[] = $systemObj['max_execution_time'];
@@ -408,8 +408,7 @@ $max_execution_time_choices_select->setSelected($systemObj['max_execution_time']
 $block->addFormField($max_execution_time_choices_select,$factory->getLabel("max_execution_time"), "Default");
 
 // max_input_time:
-if ($systemObj['max_input_time']) {
-        $max_input_time_choices = array (
+$max_input_time_choices = array (
             '30',
             '60',
             '90',
@@ -425,6 +424,7 @@ if ($systemObj['max_input_time']) {
             '900'
         );
 
+if ($systemObj['max_input_time']) {
         // If we're currently using something that's not in that array, we add it to it:
         if (!in_array($systemObj['max_input_time'], $max_input_time_choices)) {
                 $max_input_time_choices[] = $systemObj['max_input_time'];
@@ -438,8 +438,7 @@ $max_input_time_choices_select->setSelected($systemObj['max_input_time'], true);
 $block->addFormField($max_input_time_choices_select,$factory->getLabel("max_input_time"), "Default");
 
 // memory_limit:
-if ($systemObj['memory_limit']) {
-        $memory_limit_choices = array (
+$memory_limit_choices = array (
             '16M',
             '24M',
             '32M',
@@ -464,6 +463,7 @@ if ($systemObj['memory_limit']) {
             '180M'
         );
 
+if ($systemObj['memory_limit']) {
         // If we're currently using something that's not in that array, we add it to it:
         if (!in_array($systemObj['memory_limit'], $memory_limit_choices)) {
                 $memory_limit_choices[] = $systemObj['memory_limit'];
