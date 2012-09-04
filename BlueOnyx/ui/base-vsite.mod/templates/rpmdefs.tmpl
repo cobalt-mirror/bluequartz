@@ -135,6 +135,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Sep 04 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX104
+- Added constructor/z_create_dummy_site.pl to create a dummy site when wizard has not yet
+  been finished to create and delete a dummy site. This helps to overcome the initial site 
+  creation error on 5107R and 5108R on freshly installed boxes.
+
 * Thu Aug 30 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX103
 - Updated ui/web/vsite_php.php to move the array choices for the PHP settings outside of the
   if statement. There are some rare cases where we need it to fallback to sane defaults.
