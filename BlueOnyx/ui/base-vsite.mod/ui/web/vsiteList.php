@@ -7,6 +7,7 @@
  */
 
 include_once("ServerScriptHelper.php");
+include_once("uifc/ImageButton.php");
 include_once("base/vsite/vsite_common.php");
 
 $helper = new ServerScriptHelper();
@@ -163,7 +164,7 @@ if ($searchtext !== '') {
 			      $sortField);
 }
 
-generate_site_list($siteList, $cce, $factory, $vsites, $sites_per_page);
+generate_site_list($siteList, $cce, $factory, $vsites, $sites_per_page, $page);
 
 print $page->toHeaderHtml();
 ?>
