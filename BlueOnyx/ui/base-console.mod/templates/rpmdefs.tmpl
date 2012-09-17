@@ -164,6 +164,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Sep 17 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX07
+- Added ui/web/index.php because IE has some issues with the magnifying glass
+  icon's WHOIS lookup button. It truncates the URL and doesn't redirect back 
+  to /base/console/pam_abl_status.php, but back to /base/console/ instead.
+  Adding an index.php with a redirect to /base/console/pam_abl_status.php
+  now serves as a work around. Not nice, but people who use IE are resistant
+  to pain anyway.
+
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
 - Converted locale encoding from UTF-8 to ISO-8859-1.
 
