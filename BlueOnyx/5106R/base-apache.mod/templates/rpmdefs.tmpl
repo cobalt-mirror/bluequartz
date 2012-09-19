@@ -143,6 +143,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Sep 19 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX19
+- Modified glue/conf/Apache.conf to call base/apache/webscripting.pl in CLEANUP stage whenever
+  Vsite.webAliases.* is called. This should fix the issue that a change of WebServer Aliases
+  disables PHP or suPHP support in the vhost container.
+
 * Wed Aug 08 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX18
 - Added glue/httpd/security.conf to disable directory listing of /var/www/icons/ and to disable TRACK/TRACE.
 
