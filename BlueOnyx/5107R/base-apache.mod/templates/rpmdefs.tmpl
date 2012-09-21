@@ -149,6 +149,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Sep 21 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX28
+- Modified glue/conf/Apache.conf again to fix the webscripting issue on WebServer Alias changes.
+- Copied glue/handlers/webscripting.pl to glue/handlers/webscripting3.pl which runs in the CLEANUP stage, too.
+- Extended both webscripting handlers with debugging code.
+
 * Wed Sep 19 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX27
 - Modified glue/conf/Apache.conf to call base/apache/webscripting.pl in CLEANUP stage whenever
   Vsite.webAliases.* is called. This should fix the issue that a change of WebServer Aliases
