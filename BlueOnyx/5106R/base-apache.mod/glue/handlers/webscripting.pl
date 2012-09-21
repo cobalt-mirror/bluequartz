@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl -I/usr/sausalito/perl -I.
 # $Id: webscripting.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
@@ -8,10 +8,19 @@
 use CCE;
 use Base::Httpd qw(httpd_get_vhost_conf_file);
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectfd();
 
 my $vsite = $cce->event_object();
+
+&debug_msg("Init of webscripting.pl\n");
 
 my($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
 ($ok, my $cgi) = $cce->get($cce->event_oid(), 'CGI');
@@ -20,6 +29,7 @@ my($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
 if(not $ok)
 {
     $cce->bye('FAIL', '[[base-apache.cantReadWebScripting]]');
+    &debug_msg("Fail1: [[base-apache.cantReadWebScripting]]\n");
     exit(1);
 }
 
@@ -27,6 +37,7 @@ if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{name}),
                             *edit_vhost, $php, $cgi, $ssi, $vsite->{fqdn}))
 {
     $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
+    &debug_msg("Fail2: [[base-apache.cantEditVhost]]\n");
     exit(1);
 }
 
@@ -97,6 +108,19 @@ EOT
 
     return 1;
 }
+
+# For debugging:
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 
