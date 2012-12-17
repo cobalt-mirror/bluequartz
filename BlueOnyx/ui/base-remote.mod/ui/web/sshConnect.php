@@ -3,7 +3,7 @@
 	// Copyright 2006, NuOnce Networks, Inc. All rights reserved.
 	// $Id: ssh.php,v 1.0 2006/07/15 14:35:00 Exp $
 
-	include("ServerScriptHelper.php");
+	include_once("ServerScriptHelper.php");
 
 	$serverScriptHelper = new ServerScriptHelper();
 	$cceClient = $serverScriptHelper->getCceClient();
