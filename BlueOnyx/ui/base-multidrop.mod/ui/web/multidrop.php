@@ -1,6 +1,6 @@
 <?php 
 
-include("ServerScriptHelper.php");
+include_once("ServerScriptHelper.php");
  
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
