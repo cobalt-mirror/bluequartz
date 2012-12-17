@@ -3,7 +3,7 @@
 	// Copyright 2006, NuOnce Networks, Inc. All rights reserved.
 	// $Id: system.php,v 2.0 2006/08/10 15:29:00 Exp $
 
-	include("ServerScriptHelper.php");
+	include_once("ServerScriptHelper.php");
 
 	$serverScriptHelper = new ServerScriptHelper();
 	$cceClient = $serverScriptHelper->getCceClient();

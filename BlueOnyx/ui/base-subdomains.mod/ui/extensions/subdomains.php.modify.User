@@ -3,7 +3,7 @@
 // Copyright 2006, NuOnce Networks, Inc. All rights reserved
 // $Id: subdomains.php, v1.0 2006/08/10 15:54:00 Exp $
 
-include('UIExtension.php');
+include_once('UIExtension.php');
 class subdomainsExtension extends UIExtension
 {
 	function display(&$ServerScriptHelper, &$container, $parameters) {
