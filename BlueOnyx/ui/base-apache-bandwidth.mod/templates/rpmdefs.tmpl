@@ -118,6 +118,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Dec 17 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX10
+- Fixed ui/extensions/5_ApacheBandwidth.php.modifyWeb.Vsite which still 
+  somehow had a include() in it and not an include_once()
+
 * Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX09
 - Modified glue/schemas/bandwidth.schema to add speedlimit default to Vsite object.
 

@@ -2,7 +2,7 @@
 // $Id: 5_ApacheBandwidth.php.modifyWeb.Vsite 752 2006-05-02 17:41:01Z shibuya $
 //
 
-include('UIExtension.php');
+include_once('UIExtension.php');
 
 class ApacheBandwidthExtension extends UIExtension
 {
