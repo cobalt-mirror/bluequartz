@@ -58,6 +58,14 @@ else {
     $pageID = "Default";
 }
 
+if (($platform >= "5.4") && ($mysystem["show_safemode"] == "0")) {
+    // We need to hide some legacy PHP settings that no longer work in PHP-5.3 or better:
+    $pageID54 = "Hidden";
+}
+else {
+    $pageID54 = "Default";
+}
+
 // Which site are we editing?
 list($myvsite) = $cceClient->find('Vsite', array('name' => $group));
 $vsite = $cceClient->get($myvsite);
@@ -117,7 +125,7 @@ else {
 // Register Globals Input:
 $register_globals_select = $factory->getMultiChoice("register_globals",array_values($register_globals_choices));
 $register_globals_select->setSelected($register_globals_choices[$register_globals], true);
-$block->addFormField($register_globals_select,$factory->getLabel("register_globals"), "Default");
+$block->addFormField($register_globals_select,$factory->getLabel("register_globals"), $pageID54);
 
 
 // Safe Mode:

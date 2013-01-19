@@ -341,6 +341,10 @@ sub thirdparty_check {
 
 sub edit_php_ini {
 
+    if ($platform >= "5.4") {
+        $vsite_php_settings->{"register_globals"} = "Off";
+    }
+
     if ($legacy_php == "0") {
         # Build output hash for PHP-5.3 or newer:
         $vsite_php_settings_writeoff = { 

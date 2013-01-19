@@ -278,6 +278,10 @@ sub edit_php_ini {
     }
     $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
+    if ($platform >= "5.4") {
+        $server_php_settings->{"register_globals"} = "Off";
+    }
+
     if ($legacy_php == "0") {
 	# Build output hash for PHP-5.3 or newer:
 	$server_php_settings_writeoff = { 

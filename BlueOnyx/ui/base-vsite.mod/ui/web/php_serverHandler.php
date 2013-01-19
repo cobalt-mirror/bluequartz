@@ -84,6 +84,11 @@ $safe_mode_allowed_env_vars = implode(',', $new_safe_mode_allowed_env_vars);
 list($myplatform) = $cceClient->find('PHP');
 $mysystem = $cceClient->get($myplatform);
 $platform = $mysystem["PHP_version"];
+
+if ($platform >= "5.4") {
+    $register_globals = "Off";
+}
+
 if ($platform >= "5.3") {
     // We need to skip updating some legacy PHP settings that no longer work in PHP-5.3 or better:
     $cceClient->set($phpOID[0], "",
