@@ -67,7 +67,7 @@ $networkInfo
 
   // send email
   // mail($registrationAddress, $subject, $message, $header);
-  imap_mail($registrationAddress, $subject, $message, $header);
+  //imap_mail($registrationAddress, $subject, $message, $header);
 }
 
 if($notWizard=="true"){
