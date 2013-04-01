@@ -310,10 +310,10 @@ sub generate_named_conf()
   }
 
   # Set up DNS Sec:
-  my $dns_sec = "// dns_sec disabled\n"; 
-  if ($obj->{enable_dns_sec}) {
-    $dns_sec = "\n  dnssec-enable yes;\n  dnssec-validation yes;\n  dnssec-lookaside auto;\n\n  /* Path to ISC DLV key */\n  bindkeys-file \"/etc/named.iscdlv.key\";\n\n  managed-keys-directory \"/var/named/dynamic\";\n";
-  }
+  #my $dns_sec = "// dns_sec disabled\n"; 
+  #if ($obj->{enable_dns_sec}) {
+    #$dns_sec = "\n  dnssec-enable yes;\n  dnssec-validation yes;\n  dnssec-lookaside auto;\n\n  /* Path to ISC DLV key */\n  bindkeys-file \"/etc/named.iscdlv.key\";\n\n  managed-keys-directory \"/var/named/dynamic\";\n";
+  #}
 
   # Set up DNS logging:
   my $dns_log = "// logging disabled\n";
