@@ -53,12 +53,6 @@ msgid "enabled_help"
 msgstr "Erlaubt Ihnen, den DNS-Server zu aktivieren oder zu deaktivieren. Falls Sie den DNS-Server aktivieren, kann dieser Server als lokaler DNS server für sich selbst und andere dienen. Ein DNS-Server übersetzt numerische IP-Addressen in Host und Domänen-Namen und umgekehrt."
 
 # --- Advanced settings
-msgid "caching"
-msgstr "Caching ('Rekursion') aktivieren"
-
-msgid "caching_help"
-msgstr "Erlaubt es, 'caching' (auch 'Rekursion' genannt) zu aktivieren. Ist Rekursion aktiviert, so kann dieser DNS-Server auch Domänen-Namen auflösen, für die er selbst nicht zuständig ist. Rekursion sollte man nur ausschalten, wenn der Server in einem privaten Netzwerk läuft."
-
 msgid "soa_defaults"
 msgstr "Start of Authority (SOA)-Vorgabewerte"
 
@@ -163,12 +157,6 @@ msgstr "Geben Sie die Host- oder Domänennamen ein, die alle von diesem DNS-Serv
 
 msgid "zone_xfer_ipaddr_invalid"
 msgstr "[[VAR.invalidValue]] ist leider ein ungültiger Wert für das Feld [[base-dns.zone_xfer_ipaddr]]."
-
-msgid "recursion_inetaddr"
-msgstr "Rekursiver Abfragezugang pro IP-Addresse"
-
-msgid "recursion_inetaddr_help"
-msgstr "Geben Sie die IP-Adresse(n) ein, von denen aus rekursiver Abfragezugriff auf den DNS-Server zugelassen wird.  [[base-dns.inetaddr_rule]]"
 
 msgid "recursion_inetaddr_invalid"
 msgstr " [[VAR.invalidValue]] ist kein gültiger Wert für [[base-dns.recursion_inetaddr]]."
@@ -1040,3 +1028,72 @@ msgstr "Domänen-Manager nicht aktiv"
 msgid "dnsempty"
 msgstr "<br>Der Administrator dieses Servers hat noch keine Domänen unter <br>Ihre Verfügungsgewalt gestellt. Wenden Sie sich bitte an Ihren<br>Systemadministrator, falls das nicht korrekt ist.<br><br>"
 
+#------- New Advanced Settings: ---------------
+
+msgid "query"
+msgstr "Allow DNS Query Access"
+
+msgid "query_help"
+msgstr "This is enabled by default. Allows selected IP address ranges to query your DNS server for DNS information. You can specify which address ranges can query your server a bit further below in the field 'Allow Queries from these Networks'."
+
+msgid "query_all_allowed"
+msgstr "Allow Queries from Everyone"
+
+msgid "query_all_allowed_help"
+msgstr "Allow query access from the entire internet. If you run an authoritative nameserver for domains, then you should turn this on. If your nameserver is supposed to be private, you can turn it off."
+
+msgid "query_inetaddr"
+msgstr "Allow Queries from these Networks"
+
+msgid "query_inetaddr_help"
+msgstr "In this box you can specify which IP address ranges are allowed to query your DNS server. By default only localhost ('127.0.0.1/32') is allowed. If you tick the checkbox for 'Allow Queries from Everyone', then it will override whatever extra address ranges you put in here and will allow anyone query access."
+
+msgid "caching"
+msgstr "Allow DNS Cache Access"
+
+msgid "caching_help"
+msgstr "Enabling caching, also called recursion, allows resolution of domains and network zones that other name servers are authoritative for. However, running such an 'open' DNS server exposes yourself and others to the risks of DDoS attacks. So if you need a DNS server to resolve domains which you are not authoritative for, then you should either use the DNS server of your provider, or (if you still want to use your own DNS server for that!) you should only allow query access for localhost ('127.0.0.1/32') on this DNS server, or selected and trustworthy network address ranges."
+
+msgid "caching_all_allowed"
+msgstr "Open DNS Server (Not recommended!)"
+
+msgid "caching_all_allowed_help"
+msgstr "If you tick this box, your DNS server will be entirely open and will resolve DNS for anyone and everyone. That is a really bad idea. This exposes yourself and others to the risks of DDoS attacks. So if you need a DNS server to resolve domains which you are not authoritative for, then you should either use the DNS server of your provider, or (if you still want to use your own DNS server for that!) you should only allow query access for localhost ('127.0.0.1/32') on this DNS server, or selected and trustworthy network address ranges."
+
+msgid "recursion_inetaddr"
+msgstr "Allow Cache access from these Networks"
+
+msgid "recursion_inetaddr_help"
+msgstr "Enter the IP addresses (with netmask!) of address ranges that are allowed to request recursion query to the cache server. [[base-dns.inetaddr_rule]]"
+
+msgid "rate_limits"
+msgstr "DNS Rate Limits:"
+
+msgid "rate_limits_enabled"
+msgstr "Rate Limits Enabled"
+
+msgid "rate_limits_enabled_help"
+msgstr "DNS Response Rate Limiting (DNS RRL) is an experimental protection feature for domain name servers. This mechanism keeps BIND 9 from being used in amplifying reflection denial of service attacks as well as partially protecting BIND 9 itself from some denial of service attacks. By default it should be enabled."
+
+msgid "responses_per_second"
+msgstr "Responses per Second"
+
+msgid "responses_per_second_help"
+msgstr "Responses-per-second is a limit on identical responses instead of a limit on all responses or even all responses to a single client. 10 identical responses per second is a generous limit except perhaps when many clients are using a single IP address via network address translation (NAT). The default limit of zero specifies an unbounded limit to turn off rate-limiting in a view or to only rate-limit NXDOMAIN or other errors."
+
+msgid "window"
+msgstr "Window"
+
+msgid "window_help"
+msgstr "Rate limiting uses a credit or token bucket scheme.  Each identical response has a conceptual account that is given RESPONSES-PER-SECOND and ERRORS-PER-SECOND credits every second. A DNS request triggering some desired response debits the account by one. Responses are not sent while the account is negative. The account cannot become more positive than the per-second limit or more negative than window times the per-second limit. A DNS client that sends requests that are not answered can therefore penalized for up to window seconds even after the abusive query flow stops."
+
+msgid "dns_logging"
+msgstr "Extended DNS logging:"
+
+msgid "enable_dns_logging"
+msgstr "Enable extended DNS logging"
+
+msgid "enable_dns_logging_help"
+msgstr "WARNING: This should only be used for debugging, as it will log any query to your DNS server to /var/log/messages. Even on a lightly used DNS server this creates a lot of log entries. But you might want to briefly (!) enable extended DNS logging to see if your 'DNS Rate Limits' are working correctly."
+
+#------- New Advanced Settings: ---------------

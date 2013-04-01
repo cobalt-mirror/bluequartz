@@ -46,10 +46,30 @@ $Ui->Integer( "default_expire", 1, 4096000);
 $Ui->Integer( "default_ttl", 1, 4096000);
 
 $Ui->Divider( "global_settings" );
+
+$Ui->Boolean( "query" );
+$Ui->Boolean( "query_all_allowed" );
+$Ui->InetAddressList( "query_inetaddr", array( "Optional" => 'laud') );
+
 $Ui->Boolean( "caching" );
+$Ui->Boolean( "caching_all_allowed" );
+$Ui->InetAddressList( "recursion_inetaddr", array( "Optional" => 'laud') );
+
+
 $Ui->IpAddressList( "forwarders", array( "Optional" => 'loud' ) );
 $Ui->IpAddressList( "zone_xfer_ipaddr", array( "Optional" => 'loud') );
-$Ui->InetAddressList( "recursion_inetaddr", array( "Optional" => 'laud') );
+
+$Ui->Divider( "rate_limits" );
+$Ui->Boolean( "rate_limits_enabled" );
+$Ui->Integer( "responses_per_second", 1, 1024);
+$Ui->Integer( "window", 1, 128);
+
+$Ui->Divider( "dns_logging" );
+$Ui->Boolean( "enable_dns_logging" );
+
+//$Ui->Divider( "dns_sec" );
+//$Ui->Boolean( "enable_dns_sec" );
+
 
 // Zone File Format tab
 $Ui->SetBlockView( "zone_format_tab" );

@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=dns
 
 VERSION=1.1.0
-RELEASE=93BX40
+RELEASE=94BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=bind-chroot sausalito-palette >= 0.5.1-0BQ2
+REQUIRES=bind-chroot sausalito-palette >= 0.5.1-0BQ2 bind >= 9.8.2-0.17
 
 #########
 # some useful defines

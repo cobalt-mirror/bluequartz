@@ -8,7 +8,7 @@ else
 include /usr/sausalito/devel/defines.mk
 endif
 
-SCRIPTS=named_enable.pl
+SCRIPTS=named_enable.pl named_trigger_update.pl
 
 INSTALL = /usr/bin/install -m 0644 -o root
 PWD = $(shell pwd)

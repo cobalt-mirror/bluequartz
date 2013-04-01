@@ -1,4 +1,4 @@
-<!-- $Id: dns.schema 859 2006-08-14 20:24:03Z bsmith $ -->
+<!-- $Id: dns.schema Mo 01 Apr 2013 00:53:45 CEST mstauber $ -->
 
 <typedef name="dns_record_type" type="re"
   data="^(A|PTR|CNAME|MX|TXT|NS|SN)$"/>
@@ -16,10 +16,30 @@
     writeacl="ruleCapable(adminUser)"/>
   <property name="caching" type="boolean" default="1"
     writeacl="ruleCapable(adminUser)"/>
+
+  <property name="caching_all_allowed" type="boolean"
+    optional="true" default="0"
+    writeacl="ruleCapable(adminUser)"/>
+
+  <property name="query" type="boolean" default="1"
+    writeacl="ruleCapable(adminUser)"/>
+
+  <property name="query_all_allowed" type="boolean"
+    optional="true" default="1"
+    writeacl="ruleCapable(adminUser)"/>
+
+  <property name="rate_limits_enabled" type="boolean" default="1"
+    writeacl="ruleCapable(adminUser)"/>
   <property name="commit" type="int" default="1974"
     writeacl="ruleCapable(dnsAdmin)"/>
   <property name="auto_config" type="boolean" default="0"
     writeacl="ruleCapable(adminUser)"/>
+
+  <property name="enable_dns_logging" type="boolean" default="0"
+    writeacl="ruleCapable(adminUser)"/>
+  <property name="enable_dns_sec" type="boolean" default="1"
+    writeacl="ruleCapable(adminUser)"/>
+
 
   <property name="dirty" type="int" default="0"
     writeacl="ruleCapable(adminUser)"/>
@@ -32,7 +52,18 @@
     array="yes" optional="true" default=""
     writeacl="ruleCapable(adminUser)"/>
   <property name="recursion_inetaddr" type="network"
+    array="yes" optional="true" default="127.0.0.1/32"
+    writeacl="ruleCapable(adminUser)"/>
+  <property name="recursion_inetaddr" type="network"
+    array="yes" optional="true" default="127.0.0.1/32"
+    writeacl="ruleCapable(adminUser)"/>
+  <property name="query_inetaddr" type="network"
     array="yes" optional="true" default=""
+    writeacl="ruleCapable(adminUser)"/>
+
+  <property name="responses_per_second" type="int" default="5"
+    writeacl="ruleCapable(adminUser)"/>
+  <property name="window" type="int" default="5"
     writeacl="ruleCapable(adminUser)"/>
 
   <!-- Zone Format Tab -->

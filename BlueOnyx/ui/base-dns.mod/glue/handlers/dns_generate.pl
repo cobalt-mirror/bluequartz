@@ -1,5 +1,5 @@
-#!/usr/bin/perl -w
-# $Id: dns_generate.pl 871 2006-09-08 16:08:28Z shibuya $
+#!/usr/bin/perl
+# $Id: dns_generate.pl Mo 01 Apr 2013 01:42:15 CEST mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # Rewriting the code to generate the DNS db files 
@@ -8,7 +8,7 @@
 # is not separate.
 # C. Hemsing: Addition for custom include named.conf file
 #
-use strict;
+#use strict;
 
 my $TTL = 86400; # default failed lookup, delegation
 
@@ -272,16 +272,53 @@ sub generate_named_conf()
   if ($obj->{zone_xfer_ipaddr}) {
     $zoneTransferIps = "allow-transfer { "
       . join("; ", $main::cce->scalar_to_array($obj->{zone_xfer_ipaddr}))
-      . "; };";
+      . "; };\n"
+      . "  also-notify { "
+      . join("; ", $main::cce->scalar_to_array($obj->{zone_xfer_ipaddr}))
+      . "; };\n";
   }
   
   # set up recursion access
   my $recursionInet = "// recursion access denied\n";
   # $recursionInet .= " allow-recursion { none; };";
   if ($obj->{recursion_inetaddr}) {
-    $recursionInet = "allow-recursion { "
-      . join("; ", $main::cce->scalar_to_array($obj->{recursion_inetaddr}))
-      . "; };";
+	if ($obj->{caching_all_allowed}) {
+	    $caching_all_allowed = "0.0.0.0/0;"
+	}
+	$recursionInet = "allow-recursion { $caching_all_allowed "
+          . join("; ", $main::cce->scalar_to_array($obj->{recursion_inetaddr}))
+          . "; };";
+  }
+
+  # set up query access
+  my $queryInet = "// query access denied\n";
+  # $queryInet .= " allow-query { none; };";
+    if ($obj->{query_inetaddr}) {
+	if ($obj->{query_all_allowed}) {
+	    $query_all_allowed = "0.0.0.0/0;"
+	}
+        $queryInet = "allow-query { $query_all_allowed "
+          . join("; ", $main::cce->scalar_to_array($obj->{query_inetaddr}))
+          . "; };";
+  }
+
+  # set up rate-limit
+  my $rateLimit = "// rate-limits disabled\n";
+  # $rateLimit .= " rate-limit { responses-per-second 5; window 5 };";
+  if ($obj->{rate_limits_enabled}) {
+    $rateLimit = "rate-limit { responses-per-second " . $obj->{responses_per_second} . "; window " .  $obj->{window} . ";};";
+  }
+
+  # Set up DNS Sec:
+  my $dns_sec = "// dns_sec disabled\n"; 
+  if ($obj->{enable_dns_sec}) {
+    $dns_sec = "\n  dnssec-enable yes;\n  dnssec-validation yes;\n  dnssec-lookaside auto;\n\n  /* Path to ISC DLV key */\n  bindkeys-file \"/etc/named.iscdlv.key\";\n\n  managed-keys-directory \"/var/named/dynamic\";\n";
+  }
+
+  # Set up DNS logging:
+  my $dns_log = "// logging disabled\n";
+  if ($obj->{enable_dns_logging}) {
+    $dns_log = "\nlogging {\n        channel default_debug {\n                file \"data/named.run\";\n                severity dynamic;\n        };\n};\n";
   }
 
   # set up caching
@@ -311,9 +348,15 @@ options {
   version "100.100.100";
   $forwarders
   $zoneTransferIps
+  $queryInet
   $recursionInet
   $cache
+  $rateLimit
+  $dns_sec
+
 };
+
+$dns_log
 
 // key rndc_key {
 //   algorithm "hmac-md5";

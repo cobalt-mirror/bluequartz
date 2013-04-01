@@ -50,6 +50,7 @@ information for [VENDOR]-[SERVICE].
 /etc/cobaltdns.OCN-JT
 /etc/cobaltdns.RFC2317
 %attr(0700,root,root)%{RootDir}/sbin/named_enable.pl
+%attr(0700,root,root)%{RootDir}/sbin/named_trigger_update.pl
 [AUTOFILL]
 
 <end glue>
@@ -74,11 +75,12 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    /etc/init.d/cced.init rehash
 fi
 if [ -d /var/named/chroot/var/named ]; then
   chmod 0770 /var/named/chroot/var/named
 fi
+/usr/sausalito/sbin/named_trigger_update.pl
 
 <end glue>
 <begin ui>
@@ -111,6 +113,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Apr 01 2013 Michael Stauber <mstauber@solarspeed.net> 1.1.0-94BX01
+- Extended 'DNS' / 'Advanced' with a lot more options to combat DNS-DDoS.
+- Added requirement for bind >= 9.8.2-0.17
+- Added support for 'rate limits', split query and recurison access. Set
+  recursion to off by default ('127.0.0.1/32' only), changed texts for
+  recursion in GUI. Added ability to enable more verbose logging.
+- Added glue/sbin/named_trigger_update.pl to trigger named.conf update
+  on install of this RPM.
+- Changed 'cced.init restart' in glue POST-install to 'cced.init rehash'.
 
 * Tue Apr 10 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-93BX40
 - The Vsite GUI to edit MX records for delegated domains had issues with 
