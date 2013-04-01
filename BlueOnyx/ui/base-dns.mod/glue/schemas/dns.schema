@@ -51,7 +51,7 @@
   <property name="forwarders" type="ipaddr" 
     array="yes" optional="true" default=""
     writeacl="ruleCapable(adminUser)"/>
-  <property name="recursion_inetaddr" type="network"
+  <property name="query_inetaddr" type="network"
     array="yes" optional="true" default="127.0.0.1/32"
     writeacl="ruleCapable(adminUser)"/>
   <property name="recursion_inetaddr" type="network"
