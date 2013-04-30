@@ -11,6 +11,7 @@ use SendEmail;
 use Sys::Hostname;
 use POSIX qw(isalpha);
 use MIME::Lite;
+use Encode::Encoder;
 
 my $host = hostname();
 my $now = localtime time;
@@ -184,7 +185,7 @@ while ( defined (my $name = <@names>) ) {
 if ($body) {
 
   $body = $body_head . $body;
-  my $subject = $host . ": " . $i18n->get("[[swatch.emailSubject]]");
+  my $subject = $host . ": " . Encode::encode("MIME-B", $i18n->get("[[swatch.emailSubject]]"));
   my $to;
   foreach $to (@email_list) {
   
@@ -202,7 +203,6 @@ if ($body) {
 
     # Set content type:
     $send_msg->attr("content-type"         => "text/plain");
-#    $send_msg->attr("content-type.charset" => "ISO-8859-1");
     $send_msg->attr("content-type.charset" => "UTF-8");
 
     # Out with the email:
