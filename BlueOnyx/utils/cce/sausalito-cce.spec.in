@@ -188,6 +188,9 @@ fi
 
 %changelog
 
+* Tue May 07 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX09
+- Added msgfmt and msgunfmt to ccewrap/ccewrap.conf for BlueOnyx NG.
+
 * Tue Mar 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX08
 - Updated server/cced.init again to throw another kill into the stop command.
 
