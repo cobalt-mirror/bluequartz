@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: 0BX14%{?dist}
+Release: 0BX15%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -74,6 +74,9 @@ if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
 fi
 
 %changelog
+
+* Wed May 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX15
+- Added French and Spanish locales.
 
 * Mon Apr 30 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX14
 - Updated swatch-cobalt.pl for better subject encoding in non-English.
