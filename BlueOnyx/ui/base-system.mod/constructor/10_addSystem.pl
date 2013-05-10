@@ -38,8 +38,6 @@ else {
 	"en_US" => "&en_US&",
 	"da_DK" => "&da_DK&",
 	"de_DE" => "&de_DE&",
-	"es_ES" => "&es_ES&",
-	"fr_FR" => "&fr_FR&",
 	"ja_JP" => "&ja_JP&"
     );
 }
@@ -67,12 +65,6 @@ elsif ($lang =~ /^da_DK/) {
 }
 elsif ($lang =~ /^de_DE/) { 
 	$lang = 'de_DE';
-}
-elsif ($lang =~ /^es_ES/) { 
-	$lang = 'es_ES';
-}
-elsif ($lang =~ /^fr_FR/) { 
-	$lang = 'fr_FR';
 }
 else {
     if ($build eq "5106R") {
