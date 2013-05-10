@@ -1,11 +1,17 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
 # $Id: 10_addSystem.pl,v 1.5.2.3 Mon 01 Mar 2010 11:15:18 PM CET mstauber Exp $
 # Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
-# Copyright 2008-2010 Team BlueOnyx. All rights reserved.
+# Copyright 2008-2013 Team BlueOnyx. All rights reserved.
 
 #use strict;
 use CCE;
 use I18n;
+use Sys::Hostname::FQDN qw(
+        asciihostinfo
+        gethostinfo
+        fqdn
+        short
+  );
 
 my $errors = 0;
 
@@ -27,11 +33,13 @@ if ($build eq "5106R") {
     );
 }
 else {
-    # 5107R or 5108R:
+    # 5X07R or 5X08R:
     my %locales = (  
 	"en_US" => "&en_US&",
 	"da_DK" => "&da_DK&",
 	"de_DE" => "&de_DE&",
+	"es_ES" => "&es_ES&",
+	"fr_FR" => "&fr_FR&",
 	"ja_JP" => "&ja_JP&"
     );
 }
@@ -50,7 +58,7 @@ if ($lang =~ /^ja/) {
         $lang = 'ja';
     }
     else {
-	# 5107R or 5108R:
+	# 5X07R or 5X08R:
         $lang = 'ja_JP';
     }
 }
@@ -60,23 +68,39 @@ elsif ($lang =~ /^da_DK/) {
 elsif ($lang =~ /^de_DE/) { 
 	$lang = 'de_DE';
 }
+elsif ($lang =~ /^es_ES/) { 
+	$lang = 'es_ES';
+}
+elsif ($lang =~ /^fr_FR/) { 
+	$lang = 'fr_FR';
+}
 else {
     if ($build eq "5106R") {
         $lang = 'en';
     }
     else {
-	# 5107R or 5108R:
+	# 5X07R or 5X08R:
         $lang = 'en_US';
     }
 }
 
-my $myhost = `/bin/hostname -s`;
-chomp ($myhost);
+($name,$aliases,$addrtype,$length,@addrs)=gethostinfo();
+$myhost = short();
+$fqdn = fqdn();
+@hlist = split(/\s/, $aliases) ;
+foreach $line (@hlist) {
+    if ($line =~ m/^$myhost\.(.*)$/ig ) {
+        unless (($line =~ m/localhost/ig) || ($line =~ m/localdomain/ig)) {
+            $fqdn = $line;
+        }
+    }
+}
+$mydomain = $fqdn;
+$mydomain =~ s/^$myhost\.//;
+
 if ( $myhost eq "" ) {
 	$myhost = "localhost";
 }
-my $mydomain = `/bin/hostname -d`;
-chomp ($mydomain);
 if ( $mydomain eq "" ) {
 	$mydomain = "localdomain";
 }

@@ -118,6 +118,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri May 10 2013 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX38
+- Modified constructor/10_addSystem.pl to properly set host and domain via
+  perl-Sys-Hostname-FQDN instead of using hostname()
+- Added perl-Sys-Hostname-FQDN as dependency.
+
 * Sat Apr 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX37
 - Updated constructor/14_set_login_locale.pl and glue/handlers/set_login_locale.pl again.
   We need to sort LINGUAS in a way that 'en_US' always comes first. This leaves the Linux
