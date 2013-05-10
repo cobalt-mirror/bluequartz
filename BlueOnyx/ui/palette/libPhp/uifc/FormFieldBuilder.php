@@ -549,8 +549,9 @@ function formspecialchars($var)
 //            while (preg_match($pattern,$out) > 0) { // preg_match over unicode = bad idea. /u in pattern helps a little, but it still sucks. Works w/o, too, so scew it.
 //                $out = htmlspecialchars_decode($out,ENT_QUOTES);
 //            }
-            //($out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES,'UTF-8',true);     // Trim the variable, strip all slashes, and encode it
-            $out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES,'UTF-8');     // Trim the variable, strip all slashes, and encode it
+	    // Detect the original encoding of the string:
+	    $oldEncoding = mb_detect_encoding($out, "EUC-JP, UTF-8");
+            $out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES, $oldEncoding);     // Trim the variable, strip all slashes, and encode it
 
         }
         return $out;

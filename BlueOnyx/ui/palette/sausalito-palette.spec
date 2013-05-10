@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX23%{?dist}
+Release: 0BX24%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Thu May 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX24
+- Modified libPhp/uifc/FormFieldBuilder.php to change a hard coded 'UTF-8' transition
+  into something that detects and uses the proper charset.
 
 * Wed Aug 15 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX23
 - Extended libPhp/uifc/SetSelector.php with the ability to generate longer selectors.
