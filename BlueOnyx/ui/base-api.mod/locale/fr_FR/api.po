@@ -1,0 +1,31 @@
+
+msgid "APImenu"
+msgstr "API"
+
+msgid "APImenu_help"
+msgstr "Configurez l'API BlueOnyx. Il permet l'approvisionnement à distance et la gestion à distance de ce serveur. Par exemple avec WHMCS (http://www.whmcs.com/) ou par vos propres appels d'API."
+
+msgid "apiSettings"
+msgstr "Paramètres API"
+
+msgid "API_info"
+msgstr "L'API permet BlueOnyx pour l'approvisionnement à distance de Vsites et Utilisateurs et certaines fonctions de gestion de serveurs connexes. Appels à l'API se font via HTTP (s) à la admserv du BlueOnyx. Un module WHMCS est disponible. Pour plus d'informations s'il vous plaît voir la documentation de l'API: http://www.blueonyx.it/api/"
+
+msgid "enableServerField"
+msgstr "Activer API"
+
+msgid "enableServerField_help"
+msgstr "Permet d'activer ou de désactiver l'API."
+
+msgid "forceHTTPSField"
+msgstr "Vigueur HTTPS"
+
+msgid "forceHTTPSField_help"
+msgstr "Autoriser uniquement l'accès crypté SSL à l'API en acceptant uniquement les connexions HTTPS. Pour des raisons de sécurité, cela doit être allumé."
+
+msgid "apiHosts"
+msgstr "API hôte (s)"
+
+msgid "apiHosts_help"
+msgstr "Adresses IP des hôtes qui sont autorisés à effectuer des appels API pour ce serveur. Pour des raisons de sécurité, vous ne devez autoriser les appels API provenant de sources fiables."
+

@@ -1,0 +1,7 @@
+<item id="base_api" label="[[base-api.APImenu]]" 
+    description="[[base-api.APImenu_help]]" 
+    url="/base/api/manage.php"
+>
+    <parent id="base_sysmaintenance" order="1">
+    </parent>
+</item>
