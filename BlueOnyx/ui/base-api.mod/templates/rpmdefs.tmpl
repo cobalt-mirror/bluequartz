@@ -122,6 +122,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Sat Jul 13 2013 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX02
+- Updated ui/web/index.php with various fixes. WHMCS may not hand us
+  a FQDN, so we have to so some haggling and run some checks and
+  plain dead asumptions to determine if we are dealing with a FQDN
+  or hostname. Additionally the Auto-DNS is now correctly handled
+  during package upgrades/downgrades.
+
 * Sat Jul 13 2013 Michael Stauber <mstauber@blueonyx.it> 1.0.0-0BX01
 - Initial Build
 

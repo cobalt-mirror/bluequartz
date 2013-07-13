@@ -232,7 +232,9 @@ elseif ($_POST['action'] == "suspend") {
       (isset($clientsdetails->lastname)) &&  
       (isset($clientsdetails->email))) 
     {
-      $cceClient->setObject("Vsite", array("suspend" => "1"), "", array("fqdn" => $payload->domain));
+
+      $host_details = get_fqdn_details($payload->domain);
+      $cceClient->setObject("Vsite", array("suspend" => "1"), "", array("fqdn" => $host_details['fqdn']));
       $errors = $cceClient->errors();
 
       // nice people say aufwiedersehen
@@ -257,7 +259,8 @@ elseif ($_POST['action'] == "unsuspend") {
       (isset($clientsdetails->lastname)) &&  
       (isset($clientsdetails->email))) 
     {
-      $cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $payload->domain));
+      $host_details = get_fqdn_details($payload->domain);
+      $cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
       $errors = $cceClient->errors();
 
       // nice people say aufwiedersehen
@@ -283,7 +286,8 @@ elseif ($_POST['action'] == "destroy") {
       (isset($clientsdetails->email))) 
     {
       // Get Vsite OID:
-      $vsiteOID = $cceClient->find("Vsite", array("fqdn" => $payload->domain));
+      $host_details = get_fqdn_details($payload->domain);
+      $vsiteOID = $cceClient->find("Vsite", array("fqdn" => $host_details['fqdn']));
 
       // Get Vsite Settings:
       $VsiteSettings = $cceClient->get($vsiteOID[0], '');
@@ -315,11 +319,12 @@ elseif ($_POST['action'] == "destroy") {
 
       // Find out if the site is suspended. In that case we unsuspend it first:
       if ($VsiteSettings['suspend'] == "1") {
-	$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $payload->domain));
+	$host_details = get_fqdn_details($payload->domain);
+	$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
 	$errors = $cceClient->errors();
       }
 
-      // Destroy all Users of the Vsite:
+      // Destroy the Vsite and all its Users and data:
       if (isset($VsiteSettings['name'])) {
 	$cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
 	$helper->fork($cmd, 'root');
@@ -535,36 +540,33 @@ elseif ($_POST['action'] == "status") {
 
 function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
-  // Get Host and Domain name:
-  if ($payload->domain) {
-    // Get Host from FQDN:
-    $matches = preg_split("/\./", $payload->domain);
-    $hostname = $matches[0];
+  // FQDN or domain? That is the question. WHMCS might have passed
+  // us just a domain name like "company.com". BlueOnyx needs FQDN's
+  // and so we might be missing the hostname part. If that's the case,
+  // we will prefix $payload->domain with "www." just to be safe.
+  // We use the function get_fqdn_details() for that:
 
-    // Get Domain from FQDN:
-    array_shift($matches);
-    $domain = implode(".", $matches);
-  }
+  $host_details = get_fqdn_details($payload->domain);
 
   // Get the vsiteDefaults:
   $cceClient = $helper->getCceClient();
   $vsiteDefaults = $cceClient->getObject("System", array(), "VsiteDefaults");
 
   // Get Vsite OID:
-  $vsiteOIDHelper = $cceClient->find("Vsite", array("fqdn" => $payload->domain));
+  $vsiteOIDHelper = $cceClient->find("Vsite", array("fqdn" => $host_details['fqdn']));
   $vsiteOID = $vsiteOIDHelper[0];
 
   // Do the Vsite create CCE transaction:
   $cceClient->set($vsiteOID,  "",
 			  array(
-				  'hostname' => $hostname,
-				  'domain' => $domain,
-				  'fqdn' => ($hostname . '.' . $domain),
+				  'hostname' => $host_details['hostname'],
+				  'domain' => $host_details['domain'],
+				  'fqdn' => ($host_details['hostname'] . '.' . $host_details['domain']),
 				  'ipaddr' => $payload->ipaddr,
-				  'webAliases' => $domain,
+				  'webAliases' => $host_details['domain'],
 				  'webAliasRedirects' => $vsiteDefaults['webAliasRedirects'],
 				  'emailDisabled' => $vsiteDefaults['emailDisabled'],
-				  'mailAliases' => $domain,
+				  'mailAliases' => $host_details['domain'],
 				  "mailCatchAll" => "",
 				  'volume' => "/home",
 				  'maxusers' => $payload->users,
@@ -613,9 +615,27 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
       if ($payload->auto_dns == "1") {
 	  $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
 	  $errors = array_merge($errors, $cceClient->errors());
+
+	  // But beyond that we also need to add the domain name to the list of Domains under his DNS control:
+	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
+	  $errors = array_merge($errors, $cceClient->errors());
+
+	  // Update the DNS server with the new DNS zones:
+	  list($sysoid) = $cceClient->find("System");
+	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
+	  $errors = array_merge($errors, $cceClient->errors());
       }
       else {
 	  $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&"));
+	  $errors = array_merge($errors, $cceClient->errors());
+
+	  // But beyond that we also need to remove the domain name to the list of Domains under his DNS control:
+	  $cceClient->set($vsiteOID, 'DNS', array('domains' => ""));
+	  $errors = array_merge($errors, $cceClient->errors());
+
+	  // Update the DNS server with the new DNS zones:
+	  list($sysoid) = $cceClient->find("System");
+	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
 	  $errors = array_merge($errors, $cceClient->errors());
       }
   }
@@ -879,7 +899,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
   // Auto-DNS:
   if (isset($payload->auto_dns)) {
       if ($payload->auto_dns == "1") {
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $domain . "&"));
+	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
 	  list($sysoid) = $cceClient->find("System");
 	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
 	  $errors = array_merge($errors, $cceClient->errors());
@@ -922,16 +942,13 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
 function do_create_vsite ($payload, $clientsdetails, $helper) {
 
-  // Get Host and Domain name:
-  if ($payload->domain) {
-    // Get Host from FQDN:
-    $matches = preg_split("/\./", $payload->domain);
-    $hostname = $matches[0];
+  // FQDN or domain? That is the question. WHMCS might have passed
+  // us just a domain name like "company.com". BlueOnyx needs FQDN's
+  // and so we might be missing the hostname part. If that's the case,
+  // we will prefix $payload->domain with "www." just to be safe.
+  // We use the function get_fqdn_details() for that:
 
-    // Get Domain from FQDN:
-    array_shift($matches);
-    $domain = implode(".", $matches);
-  }
+  $host_details = get_fqdn_details($payload->domain);
 
   // Get the vsiteDefaults:
   $cceClient = $helper->getCceClient();
@@ -940,14 +957,14 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
   // Do the Vsite create CCE transaction:
   $vsiteOID = $cceClient->create("Vsite", 
 			  array(
-				  'hostname' => $hostname,
-				  'domain' => $domain,
-				  'fqdn' => ($hostname . '.' . $domain),
+				  'hostname' => $host_details['hostname'],
+				  'domain' => $host_details['domain'],
+				  'fqdn' => ($host_details['hostname'] . '.' . $host_details['domain']),
 				  'ipaddr' => $payload->ipaddr,
-				  'webAliases' => $domain,
+				  'webAliases' => $host_details['domain'],
 				  'webAliasRedirects' => $vsiteDefaults['webAliasRedirects'],
 				  'emailDisabled' => $vsiteDefaults['emailDisabled'],
-				  'mailAliases' => $domain,
+				  'mailAliases' => $host_details['domain'],
 				  "mailCatchAll" => "",
 				  'volume' => "/home",
 				  'maxusers' => $payload->users,
@@ -1187,7 +1204,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
   // Auto-DNS:
   if (isset($payload->auto_dns)) {
       if ($payload->auto_dns == "1") {
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $domain . "&"));
+	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
 	  list($sysoid) = $cceClient->find("System");
 	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
 	  $errors = array_merge($errors, $cceClient->errors());
@@ -1229,17 +1246,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
 function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
 
-  // Get Host and Domain name:
-  if ($payload->domain) {
-    // Get Host from FQDN:
-    $matches = preg_split("/\./", $payload->domain);
-    $hostname = $matches[0];
-
-    // Get Domain from FQDN:
-    array_shift($matches);
-    $domain = implode(".", $matches);
-  }
-
+  // Build comments:
   $comments = $clientsdetails->firstname . " " . $clientsdetails->lastname . "\n" . $clientsdetails->email . "\n" . $clientsdetails->companyname . "\n";
 
   // Do the User create CCE transaction:
@@ -1405,6 +1412,46 @@ function delete_mysql_stuff ($VsiteSettings, $cceClient) {
     // Set MySQL_Vsite to disabled, too:
     $cceClient->set($VsiteSettings['OID'], 'MYSQL_Vsite', array("enabled" => "0"));
     $errors = $cceClient->errors();
+
+}
+
+function get_fqdn_details($domain_to_check) {
+
+  // FQDN or domain? That is the question. WHMCS might have passed
+  // us just a domain name like "company.com". BlueOnyx needs FQDN's
+  // and so we might be missing the hostname part. If that's the case,
+  // we will prefix $payload->domain with "www." just to be safe.
+
+  // Array with sample hostnames that we might see:
+  $sample_hostnames = array("www", "mail", "ftp", "smtp", "imap", "pop", "pop3", "ns", "ns0", "ns1", "ns2", "ns3", "ns4");
+
+  // Get Host and Domain name:
+  if ($domain_to_check) {
+    // Get Host from FQDN:
+    $matches = preg_split("/\./", $domain_to_check);
+    // Is the extracted Hostname in the array of known hostnames?
+    if (in_array($matches[0], $sample_hostnames)) {
+      // It is:
+      $hostname = $matches[0];
+      // Get Domain from FQDN:
+      array_shift($matches);
+      $domain = implode(".", $matches);
+      // Build FQDN:
+      $fqdn = $hostname . "." . $domain;
+    }
+    else {
+      // We don't appear to have a hostname. So we set the hostname to "www":
+      $hostname = "www";
+      $domain = $domain_to_check;
+      $fqdn = $hostname . "." . $domain;
+    }
+  }
+
+  // Build output array:
+  $result = array("hostname" => $hostname, "domain" => $domain, "fqdn" => $fqdn);
+
+  // Return result:
+  return $result;
 
 }
 
