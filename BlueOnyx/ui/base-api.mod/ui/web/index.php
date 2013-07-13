@@ -97,10 +97,6 @@ if (($APISettings['forceHTTPS'] == "1") && ($secure_connection == FALSE)) {
 
 if (($APISettings['apiHosts'] != "") && (isset($ip))) {
   $api_hosts = stringToArray($APISettings['apiHosts']);
-  echo "BlueOnyx API: Debug";
-  foreach ($api_hosts as $key => $value) {
-    error_log("BlueOnyx API: $key - $value");
-  }
   // Check if the IP of the visitor is in the array of allowed hosts:
   if (!in_array($ip, $api_hosts)) {
     echo "BlueOnyx API: You are not allowed to access this API.";
@@ -131,6 +127,8 @@ else {
   // No payload? Something went wrong!
   echo "BlueOnyx API: You're not doing this right.";
   error_log("BlueOnyx API: You're not doing this right.");
+  // nice people say aufwiedersehen
+  $helper->destructor();
   exit;
 }
 
@@ -141,6 +139,8 @@ else {
 if (($_POST['action'] == "create") && ($payload->producttype != "hostingaccount")) {
   echo "BlueOnyx API: At this time only producttype 'hostingaccount' is supported.";
   error_log("BlueOnyx API: At this time only producttype 'hostingaccount' is supported.");
+  // nice people say aufwiedersehen
+  $helper->destructor();
   exit;
 }
 
