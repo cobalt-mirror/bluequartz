@@ -123,6 +123,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Fri Aug 23 2013 Michael Stauber <mstauber@solarspeed.net> 1.5.1-0BX13
+- Modified constructor/syncEmailService.pl with provisions for 5106R only that allow us to bypass the problem with
+  'TLS message: tlsv1 alert insufficient security:s3_pkt.c:1092:SSL alert number 71' as per 
+  http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=461802. Fix suggeste by Tobias Gablunsky in [BlueOnyx:13533].
+
 * Sat Mar 31 2012 Michael Stauber <mstauber@solarspeed.net> 1.5.1-0BX12
 - Modified glue/usr/local/sbin/vacation.pl to switch 'content-type.charset' to 'EUC-JP' for Japanese messages.
   This is far from being perfect, as the subject encoding is now a bit illegal. But it'll have to do for now.

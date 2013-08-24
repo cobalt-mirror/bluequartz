@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # $Id: syncEmailService.pl Sat 10 Apr 2010 07:30:55 AM CEST mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2008-2010 Team BlueOnyx, All rights reserved.
+# Copyright 2008-2013 Team BlueOnyx, All rights reserved.
 
 use Sauce::Util;
 use Sauce::Config;
@@ -55,6 +55,23 @@ system("chmod 0600 /usr/share/ssl/certs/sendmail.pem");
 system("/bin/cp /etc/admserv/certs/key /etc/pki/dovecot/private/dovecot.pem");
 system("/bin/cp /etc/admserv/certs/certificate /etc/pki/dovecot/certs/dovecot.pem");
 
+#
+## Handle TLS oddity on 5106R:
+#
+# read build date
+my ($fullbuild) = `cat /etc/build`;
+chomp($fullbuild);
+
+# figure out our product
+my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
+
+if ($model eq "5106R") {
+    # Create Diffie-Hellman file:
+    if (! -e "/usr/share/ssl/certs/sendmail.dh") {
+	system("/usr/bin/openssl dhparam -out /usr/share/ssl/certs/sendmail.dh 1024");
+	system("chmod 0600 /usr/share/ssl/certs/sendmail.dh");
+    }
+}
 
 # dovecot settings first
 Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
@@ -170,6 +187,14 @@ sub make_sendmail_mc
         $maxMessageSize_out = "define(`confMAX_MESSAGE_SIZE',0)dnl\n";
     }
 
+    # 5106R Diffie-Hellmann File:
+    if ($model eq "5106R") {
+	$DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
+    }
+    else {
+	$DiffieHellmann = "";
+    }
+
 	# MaxRecipientsPerMessage
         if( $obj->{maxRecipientsPerMessage} ) {
             # Maximum number of recipients per SMTP envelope:
@@ -180,6 +205,7 @@ sub make_sendmail_mc
 
 
     select $out;
+    $Dh_found = "0";
     while (<$in>) {
         if (/^dnl DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o || /^DAEMON_OPTIONS\(\`Port=smtp, Name=MTA/o ) {
             print $smtpPort;
@@ -195,6 +221,18 @@ sub make_sendmail_mc
         }
         elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) {
             print $maxRecipientsPerMessage_line;
+	}
+	elsif ( /^define\(\`confDH_PARAMETERS/o ) {
+		$Dh_found = "1";
+    		if ($model eq "5106R") {
+			print $DiffieHellmann;
+		}
+	}
+	elsif ( /^MAILER\(procmail\)dnl/o ) {
+	    if (($model eq "5106R") && ($Dh_found == "0")) {
+		print $DiffieHellmann;
+		$Dh_found = "1";
+	    }
 	}
         else {
             print $_;
