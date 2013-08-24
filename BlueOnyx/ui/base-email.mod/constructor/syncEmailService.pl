@@ -219,17 +219,16 @@ sub make_sendmail_mc
         elsif (/^define\(\`confMAX_MESSAGE_SIZE/o ) { # `
             print $maxMessageSize_out;
         }
-        elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) {
+        elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) { 
             print $maxRecipientsPerMessage_line;
 	}
-	elsif ( /^define\(\`confDH_PARAMETERS/o ) {
-		$Dh_found = "1";
-    		if ($model eq "5106R") {
-			print $DiffieHellmann;
-		}
+	elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
+		# Do nothing and remove this line.
 	}
 	elsif ( /^MAILER\(procmail\)dnl/o ) {
+            print $_;
 	    if (($model eq "5106R") && ($Dh_found == "0")) {
+		# Add the Diffie-Hellmann line:
 		print $DiffieHellmann;
 		$Dh_found = "1";
 	    }
