@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: 0BX16%{?dist}
+Release: 0BX17%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -74,6 +74,10 @@ if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
 fi
 
 %changelog
+
+* Thu Sep 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX17
+- Extended hotfixes.sh to remove default Apache pages if present.
+- Also extended it to update nss.conf with 'NSSEnforceValidCerts off' if needed.
 
 * Thu Jun 27 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX16
 - Added Italian and Portuguese locales.
