@@ -20,19 +20,19 @@ if [ -f /usr/bin/fix-httpd-log-dir ]; then
 fi
 
 # While we are at it, delete the default CentOS welcome page:
-if [ -f /etc/httpd/conf.d/welcome.conf ]; then ) {
+if [ -f /etc/httpd/conf.d/welcome.conf ]; then
         /bin/rm -f /etc/httpd/conf.d/welcome.conf
 fi
 
 # Also delete /etc/httpd/conf.d/manual.conf:
 if [ -f /etc/httpd/conf.d/manual.conf ]; then
         /bin/rm -f /etc/httpd/conf.d/manual.conf
-}
+fi
 
 # Also remove server.conf
 if [ -f /etc/httpd/conf.d/server.conf ]; then
         /bin/rm -f /etc/httpd/conf.d/server.conf
-}
+fi
 
 # Fix nss.conf if present:
 if [ -f /etc/httpd/conf.d/nss.conf ]; then
