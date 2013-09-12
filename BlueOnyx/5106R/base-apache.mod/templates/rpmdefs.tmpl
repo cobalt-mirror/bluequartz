@@ -143,6 +143,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Sep 11 2013 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX21
+- Modified glue/httpd/ssl_perl.conf to force safer protocols and ciphers for SSL.
+- Modified constructor/set_httpd_alias_perms.pl to remove the server.conf page as well.
+
 * Fri Sep 21 2012 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX20
 - Modified glue/conf/Apache.conf again to fix the webscripting issue on WebServer Alias changes.
 - Copied glue/handlers/webscripting.pl to glue/handlers/webscripting3.pl which runs in the CLEANUP stage, too.
