@@ -11,7 +11,7 @@ $isLocaleDefined = true;
 include_once("uifc/FormField.php");
 include_once("uifc/FormFieldBuilder.php");
 
-class Locale extends FormField {
+class BXLocale extends FormField {
   //
   // private variables
   //

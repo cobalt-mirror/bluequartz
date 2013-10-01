@@ -423,8 +423,8 @@ class HtmlComponentFactory {
   // param: access: access of the object. Optional
   // returns: an Locale object
   function getLocale($id, $value = "", $access = "rw") {
-    include_once("uifc/Locale.php");
-    $ipAddress = new Locale($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
+    include_once("uifc/BXLocale.php");
+    $ipAddress = new BXLocale($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
     $ipAddress->setAccess($access);
     return $ipAddress;
   }

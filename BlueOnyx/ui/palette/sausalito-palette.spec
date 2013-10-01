@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX24%{?dist}
+Release: 0BX25%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,16 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Tue Oct 01 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX25
+- Weird non-reproduceable conflict with Classes Locale and Collator conflicting with
+  native PHP functions. Solved by renaming the Classes.
+- Removed libPhp/uifc/Locale.php
+- Added libPhp/uifc/BXLocale.php
+- Removed libPhp/Collator.php
+- Added libPhp/BXCollator.php
+- Modified libPhp/uifc/ScrollList.php
+- Modified libPhp/uifc/HtmlComponentFactory.php
 
 * Thu May 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX24
 - Modified libPhp/uifc/FormFieldBuilder.php to change a hard coded 'UTF-8' transition

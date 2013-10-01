@@ -504,8 +504,8 @@ class ScrollList extends HtmlComponent {
     for($i = 0; $i < $entryNum; $i++)
       $keys[] = $entries[$i][$sortedIndex];
 
-    include_once('Collator.php');
-    $collator = new Collator();
+    include_once('BXCollator.php');
+    $collator = new BXCollator();
     $collator->sort($keys, $entries);
 
     if($sortOrder == "descending")

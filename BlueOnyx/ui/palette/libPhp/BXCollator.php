@@ -1,14 +1,14 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: Collator.php 259 2004-01-03 06:28:40Z shibuya $
+// $Id: BXCollator.php 259 2004-01-03 06:28:40Z shibuya $
 
 global $isCollatorDefined;
 if($isCollatorDefined)
   return;
 $isCollatorDefined = true;
 
-class Collator {
+class BXCollator {
   //
   // public methods
   //
