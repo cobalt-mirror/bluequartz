@@ -1019,3 +1019,11 @@ msgstr "Bundesland "
 msgid "state_help"
 msgstr "Der Staat, Bundesland oder Region, in der sich die oben genannte Stadt befindet.  [[base-ssl.importantNote]]"
 
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "Der Befehl '/usr/sausalito/sbin/ssl_get.pl' lieferte ein nicht erwarteten Ergebnis zurück. Ist ein Zertifikat vorhanden?"

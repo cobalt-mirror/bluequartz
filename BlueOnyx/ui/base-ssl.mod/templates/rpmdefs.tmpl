@@ -120,6 +120,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX08
+- Added locales for Portuguese, Itallian, Spanish and French.
+- Updated existing locales with a missing string for an error message.
+- Fixed a probably 12 year old bug in glue/sbin/ssl_import.pl which dropped
+  the email address of an imported SSL certificate.
+
 * Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX07
 - Modified ui/web/caManager.php to use is_uploaded_file() and move_uploaded_file() to
   handle the uploaded SSL certificate, too. Tested with GoDaddy intermediate certs.

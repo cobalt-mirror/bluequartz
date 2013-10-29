@@ -1,6 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# $Id: ssl_import.pl,v 1.8.2.1 2002/02/05 21:47:18 pbaltz Exp $
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+# $Id: ssl_import.pl
 # import an uploaded signed certificate and optionally a private key
 
 use strict;
@@ -265,7 +266,7 @@ if ($type ne 'caCert')
                         'city' => $subject->{L},
                         'orgName' => $subject->{O},
                         'orgUnit' => $subject->{OU},
-                        'email' => $subject->{Email},
+                        'email' => $subject->{emailAddress},
                         'expires' => $expires
                     };
 } # end if ($type)
@@ -286,17 +287,19 @@ elsif (not $ok)
 }
 
 exit(0);
+
+# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
 # 
 # -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# this list of conditions and the following disclaimer in the documentation and/or 
+# other materials provided with the distribution.
 # 
 # Neither the name of Sun Microsystems, Inc. or the names of contributors may 
 # be used to endorse or promote products derived from this software without 

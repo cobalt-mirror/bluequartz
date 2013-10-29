@@ -3,1032 +3,1041 @@ msgid "ssl"
 msgstr "SSL"
 
 msgid "sslDescription"
-msgstr "�ݡ��� 443 �� https ��Ȥäƥ����ȤؤΥ����奢�ʥ����������󶡤��� SSL ������˴ؤ��륢����������Ǥ������Ȥ��С�SSL ��Ȥ��ȡ��桼���� https://www.example.com:443 �عԤ����Ȥˤ�ꥵ���Ȥ˥��������Ǥ���褦�ˤʤ�ޤ���"
+msgstr "ポート 443 で https を使ってサイトへのセキュアなアクセスを提供する SSL 証明書に関するアクセス情報です。たとえば、SSL を使うと、ユーザは https://www.example.com:443 へ行くことによりサイトにアクセスできるようになります。"
 
 msgid "adminSslDescription"
-msgstr "�����Хǥ����ȥåפؤΥ����奢���������˻Ȥ� SSL ������˴ؤ��륢����������Ǥ���"
+msgstr "サーバデスクトップへのセキュアアクセスに使う SSL 証明書に関するアクセス情報です。"
 
 # siteSSL button strings
 msgid "createCert"
-msgstr "���ʽ�̾�ǥ������������κ���"
+msgstr "自己署名ディジタル証明書の作成"
 
 msgid "createCert_help"
-msgstr "�����μ��ʽ�̾ SSL �����������Ǥ��ޤ���"
+msgstr "新規の自己署名 SSL 証明書を作成できます。"
 
 msgid "request"
-msgstr "��̾�ꥯ�����Ȥκ���"
+msgstr "署名リクエストの作成"
 
 msgid "request_help"
-msgstr "�������̾�ꥯ�����Ȥ�����Ǥ��ޤ����������̾�ꥯ�����Ȥ�ǧ�ڵ��ؤ���Ф���ȡ������֥֥饦���ˤ�ä�ǧ�Τ�����̾�ǥ�����������������Ǥ��ޤ���"
+msgstr "証明書署名リクエストを作成できます。証明書署名リクエストを認証機関に提出すると、ウェブブラウザによって認知される署名ディジタル証明書を作成できます。"
 
 msgid "request_disabledHelp"
-msgstr "��̾�ꥯ�����Ȥ��������ˤϡ��������˾�������������ɬ�פ�����ޤ���"
+msgstr "署名リクエストを作成するには、その前に証明書を作成する必要があります。"
 
 msgid "manageCAs"
-msgstr "ǧ�ڵ��ؤδ���"
+msgstr "認証機関の管理"
 
 msgid "manageCAs_help"
-msgstr "���Υ����Ȥ��裲��ǧ�ڵ��ؤ��ɲäޤ��Ϻ���Ǥ��ޤ����裲��ǧ�ڵ��ؤ��̾��ɬ�פ���ޤ��󤬡������ε��ؤǤϡ��ۤȤ�ɤ�ǧ�ڵ��ؤ�ȯ�Ԥ����̾�Υ����о�����˲ä��ơ����饤�����ǧ�ڤ˻Ȥ��̤ξ������ȯ�Ԥ��ޤ���"
+msgstr "このサイトの第２の認証機関を追加または削除できます。第２の認証機関は通常は必要ありませんが、一部の機関では、ほとんどの認証機関が発行する通常のサーバ証明書に加えて、クライアント認証に使う別の証明書を発行します。"
 
 msgid "import"
-msgstr "����ݡ���"
+msgstr "インポート"
 
 msgid "import_help"
-msgstr "��̾�ǥ������������򥤥�ݡ��ȤǤ��ޤ���"
+msgstr "署名ディジタル証明書をインポートできます。"
 
 msgid "cert_empty"
-msgstr "����ݡ��Ȥ���ե����뤬���ꤵ��Ƥ��ޤ��󡣥���ݡ��Ȥ��� SSL �����񤬴ޤޤ�Ƥ���ե��������ꤷ�Ƥ���������"
+msgstr "インポートするファイルが指定されていません。インポートする SSL 証明書が含まれているファイルを指定してください。"
 
 msgid "export"
-msgstr "�������ݡ���"
+msgstr "エクスポート"
 
 msgid "export_help"
-msgstr "���ߤΥץ饤�١��ȥ����Ⱦ���������������ɤ�����������̤Υ����Ф�ž���Ǥ���褦�ˤ��ޤ���"
+msgstr "現在のプライベートキーと証明書をダウンロードし、証明書を別のサーバへ転送できるようにします。"
 
 msgid "export_disabledHelp"
-msgstr "�������ݡ��Ȥ������ˡ������������ޤ��ϥ���ݡ��Ȥ���ɬ�פ�����ޤ���"
+msgstr "エクスポートする前に、証明書を作成またはインポートする必要があります。"
 
 # siteSSL page information strings
 msgid "serverDesktop"
-msgstr "�����Хǥ����ȥå�"
+msgstr "サーバデスクトップ"
 
 msgid "sslCertInfo"
-msgstr "��������� - [[VAR.fqdn]]"
+msgstr "証明書情報 - [[VAR.fqdn]]"
 
 # doesn't show up for the admin server
 msgid "enabled"
-msgstr "SSL ��ͭ���ˤ���"
+msgstr "SSL を有効にする"
 
 msgid "enabled_help"
-msgstr "���Υ����ȤΥ����֥����ФؤΥ����奢�����������ǽ�ˤ��� SSL  ��ͭ���ˤʤ�ޤ���"
+msgstr "このサイトのウェブサーバへのセキュアアクセスを可能にする SSL  が有効になります。"
 
 msgid "importantNote"
-msgstr "���ξ���ϡ����Τǡ����Ĺ�����������Τޤ��������ʵ��ؤ�ǧ�ΤǤ���ɬ�פ�����ޤ���"
+msgstr "この情報は、正確で、かつ国や地方自治体または正式な機関が認知できる必要があります。"
 
 msgid "location"
-msgstr "�����"
+msgstr "所在地"
 
 msgid "city"
-msgstr "��Į¼��"
+msgstr "市町村区"
 
 msgid "city_help"
-msgstr "��ҡ����Τ�¸�ߤޤ�����Ͽ���Ƥ����Į¼������Ϥ��Ƥ���������[[base-ssl.importantNote]]"
+msgstr "会社／団体が存在または登録している市町村区を入力してください。[[base-ssl.importantNote]]"
 
 msgid "state"
-msgstr "��ƻ�ܸ�"
+msgstr "都道府県"
 
 msgid "state_help"
-msgstr "��ҡ����Τ�¸�ߤޤ�����Ͽ���Ƥ�����ƻ�ܸ������Ϥ��Ƥ���������[[base-ssl.importantNote]]"
+msgstr "会社／団体が存在または登録している都道府県を入力してください。[[base-ssl.importantNote]]"
 
 msgid "country"
-msgstr "��"
+msgstr "国"
 
 msgid "country_help"
-msgstr "���ξ��������Ѥ����ҡ����Τ�¸�ߤޤ�����Ͽ���Ƥ�������ꤷ�Ƥ���������[[base-ssl.importantNote]]"
+msgstr "この証明書を使用する会社／団体が存在または登録している国を指定してください。[[base-ssl.importantNote]]"
 
 msgid "country_invalid"
-msgstr "�񤬻��ꤵ��Ƥ��ޤ��󡣲�ҡ����Τ�¸�ߤޤ�����Ͽ���Ƥ�������ꤷ�Ƥ���������"
+msgstr "国が指定されていません。会社／団体が存在または登録している国を指定してください。"
 
 msgid "orgInfo"
-msgstr "��������оݤ˴ؤ������"
+msgstr "証明書の対象に関する情報"
 
 msgid "orgInfo_help"
-msgstr "���ξ�������ͭ�����ҡ����Τ˴ؤ������Ǥ���"
+msgstr "この証明書を所有する会社／団体に関する情報です。"
 
 msgid "orgName"
-msgstr "��ҡ�����"
+msgstr "会社／団体"
 
 msgid "orgName_help"
-msgstr "���ξ�������ͭ�����ҡ����Τ�����̾�Τ����Ϥ��Ƥ���������ǧ�ڵ��ؤ����̾�ǥ����������������ꤹ��ˤϡ�������������Τޤ��������ʵ��ؤ���ҡ����Τ�̾�Τޤ��Ͻ���Ϥ��ǧ����ɬ�פ�����ޤ����ޤ���������ȯ�Ե��ؤϡ��������ꥯ�����Ȥ��Ƥ������ͤ����оݤβ�ҡ����Τν�ͭ�Ԥޤ��Ͻ��Ȱ��Ǥ��뤳�Ȥ��ǧ����ɬ�פ⤢��ޤ���"
+msgstr "この証明書を所有する会社／団体の正式名称を入力してください。認証機関から署名ディジタル証明書を入手するには、国や地方自治体または正式な機関が会社／団体の名称または所在地を確認する必要があります。また、証明書発行機関は、証明書をリクエストしている当人が、対象の会社／団体の所有者または従業員であることを確認する必要もあります。"
 
 msgid "orgUnit"
-msgstr "����̾"
+msgstr "部署名"
 
 msgid "orgUnit_help"
-msgstr "���ξ��������Ѥ����ҡ����Τ�����̾�����Ϥ��Ƥ�������������Ͼ�ά��ǽ�Ǥ�������̾�ǥ�������������ꥯ�����Ȥ��Ƥ������ͤ����礭�ʲ�ҡ����ΤλҲ�Ҥν��Ȱ��Ǥ�����ˤϡ�ͭ�Ѥʾ���ˤʤ�ޤ���"
+msgstr "この証明書を使用する会社／団体の部署名を入力してください。これは省略可能ですが、署名ディジタル証明書をリクエストしている当人が、大きな会社／団体の子会社の従業員である場合には、有用な情報になります。"
 
 msgid "otherInfo"
-msgstr "����¾�ξ���"
+msgstr "その他の情報"
 
 msgid "otherInfo_help"
-msgstr "���ξ�����˴ؤ��뤽��¾�ξ���Ǥ���"
+msgstr "この証明書に関するその他の情報です。"
 
 msgid "email"
-msgstr "Ϣ�����Żҥ᡼��"
+msgstr "連絡先電子メール"
 
 msgid "email_help"
-msgstr "���ξ�����˴ؤ����������������Żҥ᡼�륢�ɥ쥹�����Ϥ��Ƥ���������"
+msgstr "この証明書に関する情報を送信する電子メールアドレスを入力してください。"
 
 msgid "expires"
-msgstr "�������ͭ������"
+msgstr "証明書の有効期限"
 
 msgid "expires_help"
-msgstr "���ξ����񤬡����Υ����Ф���³���褦�Ȥ��륯�饤����ȥ��եȥ��������Ф���ͭ�����򼺤����դǤ���"
+msgstr "この証明書が、このサーバに接続しようとするクライアントソフトウェアに対して有効性を失う日付です。"
 
 # show this if they haven't created or imported a cert
 msgid "noCertInfo"
-msgstr "���Υ����Ȥˤϸ��߾�����Ϥ���ޤ��󡣾����������ޤ��ϥ���ݡ��Ȥ��ơ�������˴ؤ�������ɽ�����Ƥ���������"
+msgstr "このサイトには現在証明書はありません。証明書を作成またはインポートして、証明書に関する情報を表示してください。"
 
 msgid "daysValid"
-msgstr "ͭ���ʴ���"
+msgstr "有効な期間"
 
 msgid "daysValid_help"
-msgstr "���������������ͭ�����֤���ꤷ�Ƥ���������ͭ�����֤ϡ�2038 ǯ�� 1 �������˽�λ����褦���ꤷ�ʤ��ȡ������������Ǥ��ޤ���"
+msgstr "作成した証明書の有効期間を指定してください。有効期間は、2038 年の 1 月より前に終了するよう設定しないと、証明書を作成できません。"
 
 msgid "365"
-msgstr "ǯ"
+msgstr "年"
 
 msgid "30"
-msgstr "��"
+msgstr "月"
 
 msgid "7"
-msgstr "��"
+msgstr "週"
 
 msgid "1"
-msgstr "��"
+msgstr "日"
 
 msgid "requestInformation"
-msgstr "��̾�ꥯ�����Ⱦ��� - [[VAR.fqdn]]"
+msgstr "署名リクエスト情報 - [[VAR.fqdn]]"
 
 msgid "enterCertInformation"
-msgstr "��������� - [[VAR.fqdn]]"
+msgstr "証明書情報 - [[VAR.fqdn]]"
 
 msgid "certInstructions"
-msgstr "[[base-ssl.createCert]] �򥯥�å�����ȡ����Υ����֥����Ȥμ��ʽ�̾�ǥ�����������񤬺�������ޤ����֥饦�������Υ����Ȥ˥�����������ȡ����ʽ�̾�ǥ�����������񤫤�ٹ��å���������������ޤ������ηٹ��������ˤϡ�������ǧ�ڵ��ؤ˽�̾�ꥯ�����Ȥ���Ф��ơ���̾�ǥ����������������ꤷ�Ƥ���������"
+msgstr "[[base-ssl.createCert]] をクリックすると、このウェブサイトの自己署名ディジタル証明書が作成されます。ブラウザがこのサイトにアクセスすると、自己署名ディジタル証明書から警告メッセージが送信されます。この警告を削除するには、証明書認証機関に署名リクエストを提出して、署名ディジタル証明書を入手してください。"
 
 msgid "genSSCert"
-msgstr "�����μ��ʽ�̾�ǥ�������������ȯ��"
+msgstr "新規の自己署名ディジタル証明書を発行"
 
 msgid "genSSCert_help"
-msgstr "��̾�ꥯ�����Ȥȶ��˼��ʽ�̾�ǥ�����������񤬺�������ޤ������ʽ�̾�ǥ������������ϡ���Ф�����̾�ꥯ�����Ȥ������ǧ�ڵ��ؤ��������Ƥ���֡����Ū�˻��Ѥ��뤿��Τ�ΤǤ���"
+msgstr "署名リクエストと共に自己署名ディジタル証明書が作成されます。自己署名ディジタル証明書は、提出した署名リクエストを証明書認証機関が処理している間、一時的に使用するためのものです。"
 
 msgid "certReqInstructions"
-msgstr "����Ϥ��оݤ˴ؤ������ϡ����Τǡ����Ĺ�����������Τޤ��������ʵ��ؤ�ǧ�ΤǤ���ɬ�פ�����ޤ���������ǧ�ڵ��ؤ����ξ�����ǧ�Ǥ��ʤ��ȡ���̾�ꥯ�����Ȥ��٤줿�ꡢ���ݤ�����ǽ��������ޤ���"
+msgstr "所在地と対象に関する情報は、正確で、かつ国や地方自治体または正式な機関が認知できる必要があります。証明書認証機関がこの情報を確認できないと、署名リクエストが遅れたり、拒否される可能性があります。"
 
 # strings for uploadCert page
 msgid "importCert"
-msgstr "������Υ���ݡ��� - [[VAR.fqdn]]"
+msgstr "証明書のインポート - [[VAR.fqdn]]"
 
 msgid "certUpload"
-msgstr "������"
+msgstr "証明書"
 
 msgid "certUpload_help"
-msgstr "[����] �򥯥�å����ơ�����ݡ��Ȥ���������ޤ�ƥ����ȥե���������Ӥ���������������ե�������̤Υ����Ф���ž�����Ƥ�����ˤϡ��ץ饤�١��ȥ����Ⱦ����񥻥�������ξ�����ޤޤ�Ƥ���ɬ�פ�����ޤ������Υ����Фκ��������������̾�ꥯ�����Ȥ���Ф���ǧ�ڵ��ؤ���ľ�ܾ��������������ˤϡ�����������ǽ�ʬ�Ǥ�������̾�ǥ������������˥ץ饤�١��ȥ������ޤޤ�Ƥ��Ƥ⹽���ޤ���"
+msgstr "[参照] をクリックして、インポートする証明書を含むテキストファイルをお選びください。証明書ファイルを別のサーバから転送している場合には、プライベートキーと証明書セクションの両方が含まれている必要があります。このサーバの作成した証明書署名リクエストを提出した認証機関から直接証明書を受け取る場合には、証明書だけで十分ですが、署名ディジタル証明書にプライベートキーが含まれていても構いません。"
 
 # helper script error messages
 # ssl_import.pl
 msgid "sslImportError1"
-msgstr "����������򥢥åץ����ɤǤ��ޤ���."
+msgstr "新規証明書をアップロードできません。."
 
 msgid "sslImportError2"
-msgstr "���ꤵ�줿�����Ȥ�¸�ߤ��ޤ���"
+msgstr "指定されたサイトは存在しません。"
 
 msgid "sslImportError3"
-msgstr "�����Ⱦ��������Ǥ��ޤ���Ǥ������⤦���٤������������"
+msgstr "サイト情報を入手できませんでした。もう一度お試しください。"
 
 msgid "sslImportError4"
-msgstr "���åץ����ɤ�����������ɤߤ���ޤ���Ǥ������⤦���٤������������"
+msgstr "アップロードした証明書を読みこめませんでした。もう一度お試しください。"
 
 msgid "sslImportError5"
-msgstr "���ξ������ͭ���� SSL ������ǤϤ���ޤ���"
+msgstr "この証明書は有効な SSL 証明書ではありません。"
 
 msgid "sslImportError6"
-msgstr "����ݡ��Ȥ��줿������˴ؤ���������̾�ꥯ�����Ȥ�����Ǥ��ޤ���"
+msgstr "インポートされた証明書に関する証明書署名リクエストを作成できません。"
 
 msgid "sslImportError7"
-msgstr "ɽ��������������򥢥åץǡ��ȤǤ��ޤ���"
+msgstr "表示する証明書情報をアップデートできません。"
 
 msgid "sslImportError8"
-msgstr "����ݡ��Ȥ��줿������ˤϡ����ξ�����Υץ饤�١��ȥ������ޤޤ�Ƥ��ޤ��󡣤ޤ������Υ����Ф˸���¸�ߤ���ץ饤�١��ȥ����ϡ����ξ�����ˤϰ��פ��ޤ��󡣤��Υ����аʳ��Ǻ������줿������򥤥�ݡ��Ȥ�����ˤϡ�����ݡ��Ȥ���������ե������ RSA �ץ饤�١��ȥ������ޤޤ�Ƥ���ɬ�פ�����ޤ���"
+msgstr "インポートされた証明書には、この証明書のプライベートキーが含まれていません。また、このサーバに現在存在するプライベートキーは、この証明書には一致しません。このサーバ以外で作成された証明書をインポートする場合には、インポートした証明書ファイルに RSA プライベートキーが含まれている必要があります。"
 
 msgid "sslImportError10"
-msgstr "[[base-ssl.caIdent]] �˻��ꤵ�줿�ͤϰ�դǤϤ���ޤ���"
+msgstr "[[base-ssl.caIdent]] に指定された値は一意ではありません。"
 
 msgid "sslImportError11"
-msgstr "����ݡ��Ȥ��줿�ե�����ˤϡ�SSL �����񤬴ޤޤ�Ƥ��ޤ���Ǥ������ե�������ǧ���Ƥ��顢�⤦���٥���ݡ��Ȥ��Ƥ���������"
+msgstr "インポートされたファイルには、SSL 証明書が含まれていませんでした。ファイルを確認してから、もう一度インポートしてください。"
 
 msgid "sslImportError12"
-msgstr "����ݡ��Ȥ��줿�ե�����ˤ�ʣ���ξ����񤬴ޤޤ�Ƥ��ޤ�������ݡ��ȥե�����ˤϡ�SSL ������ 1 �Ĥȥץ饤�١��ȥ����� 1 �ġʤʤ��Ƥ⹽���ޤ���ˤ������ޤޤ�Ƥ���ɬ�פ�����ޤ���"
+msgstr "インポートされたファイルには複数の証明書が含まれています。インポートファイルには、SSL 証明書が 1 つとプライベートキーが 1 つ（なくても構いません）だけが含まれている必要があります。"
 
 msgid "sslImportError13"
-msgstr "������ǧ�ڵ��إե�����˾�����ǧ�ڵ��ؤ��ɲäǤ��ޤ���Ǥ�����"
+msgstr "証明書認証機関ファイルに証明書認証機関を追加できませんでした。"
 
 # handler error messages
 # common see ssl.pl, gen_cert.pl, and SSL.pm
 msgid "cantSetExpires"
-msgstr "������Ϻ�������ޤ�������ͭ�����¾���򹹿��Ǥ��ޤ���Ǥ�����"
+msgstr "証明書は作成されましたが、有効期限情報を更新できませんでした。"
 
 msgid "nonExistentCertDir"
-msgstr "���ꤵ�줿������ǥ��쥯�ȥ� [[VAR.dir]] ��¸�ߤ��ޤ���"
+msgstr "指定された証明書ディレクトリ [[VAR.dir]] は存在しません。"
 
 msgid "cantGenerateKey"
-msgstr "Openssl �ϡ����Υ����ФΥץ饤�١��ȥ���������Ǥ��ޤ���Ǥ�����"
+msgstr "Openssl は、このサーバのプライベートキーを作成できませんでした。"
 
 msgid "cantGenerateSigningRequest"
-msgstr "Openssl �ϡ���̾�ꥯ�����Ȥ�����Ǥ��ޤ���Ǥ�����"
+msgstr "Openssl は、署名リクエストを作成できませんでした。"
 
 msgid "cantGenerateCert"
-msgstr "Openssl �ϡ������������Ǥ��ޤ���Ǥ�����"
+msgstr "Openssl は、証明書を作成できませんでした。"
 
 msgid "generatedCertInvalid"
-msgstr "Openssl �κ��������������ͭ���ǤϤ���ޤ���"
+msgstr "Openssl の作成した証明書は有効ではありません。"
 
 msgid "2038bug"
-msgstr "[[base-ssl.daysValid]] �����Ϥ����ͤϡ�ͭ�����¤� 2038 ǯ 1 ��ˤʤ뤿�ᡢ�������ͭ�����¤����������դ�����Ǥ��ޤ���SSL �����ġ���ϡ�2038 ǯ 1 ��Ⱦ�аʹߤ�ͭ�����¤�����դ����ޤ���2038 ǯ 1 ������˽�λ�����ͤ����Ϥ��Ƥ���������"
+msgstr "[[base-ssl.daysValid]] に入力した値は、有効期限が 2038 年 1 月になるため、証明書の有効期限を正しい日付に設定できません。SSL 作成ツールは、2038 年 1 月半ば以降の有効期限を受け付けられません。2038 年 1 月以前に終了する値を入力してください。"
 
 msgid "fqdnTooLongForCsr"
-msgstr "[[VAR.fqdn]] �Ȥ����ۥ���̾��Ĺ�����뤿�ᡢ�������̾�ꥯ�����Ȥ������˻Ȥ��ޤ��󡣾������̾�ꥯ�����Ȥ������˻Ȥ��ۥ���̾�ˤϡ�64 ʸ�������̾������ꤷ�Ƥ�������������̾���Ǥ⼫�ʽ�̾�ǥ�������������������뤳�ȤϤǤ��ޤ�����64 ʸ���ʹߤ�������줿�ۥ���̾����Ľ�̾�����񤬺�������ޤ���"
+msgstr "[[VAR.fqdn]] というホスト名は長すぎるため、証明書署名リクエストの生成に使えません。証明書署名リクエストの生成に使うホスト名には、64 文字以内の名前を指定してください。この名前でも自己署名ディジタル証明書を作成することはできますが、64 文字以降が削除されたホスト名を持つ署名証明書が作成されます。"
 
 msgid "fqdnTooLongOkay"
-msgstr "���ʽ�̾�ǥ�����������������˺�������ޤ�������[[VAR.fqdn]] �Ȥ����ۥ���̾�ϡ�SSL ������Υۥ���̾�ξ�¤Ǥ��� 64 ʸ�����Ĺ�����ᡢ�ۥ���̾�κǸ����ʬ�Ϻ������ޤ�����"
+msgstr "自己署名ディジタル証明書は正常に作成されましたが、[[VAR.fqdn]] というホスト名は、SSL 証明書のホスト名の上限である 64 文字より長いため、ホスト名の最後の部分は削除されました。"
 
 # vsite_ssl.pl
 msgid "sslAlreadyUsedByIP"
-msgstr "SSL �ϡ����Υ����Ȥ�Ʊ�� IP ���ɥ쥹��[[VAR.ipaddr]] ����� [[VAR.fqdn]] �����Ǥ˻��Ѥ��Ƥ��ޤ���SSL �ϡ�Ʊ�� IP ���ɥ쥹�����ʣ���Υ����ȤΤ����줫 1 �ĤΥ����ȤǤ���ͭ���ˤǤ��ޤ��󡣤��Υ����Ȥ� SSL ��ͭ���ˤ���ˤϡ����Υ����Ȥ� IP ���ɥ쥹���ѹ����뤫��[[VAR.fqdn]] �� SSL ��̵���ˤ��Ƥ���������"
+msgstr "SSL は、このサイトと同じ IP アドレス、[[VAR.ipaddr]] を持つ [[VAR.fqdn]] がすでに使用しています。SSL は、同じ IP アドレスを持つ複数のサイトのいずれか 1 つのサイトでしか有効にできません。このサイトの SSL を有効にするには、このサイトの IP アドレスを変更するか、[[VAR.fqdn]] の SSL を無効にしてください。"
 
 msgid "noCertificateOrKey"
-msgstr "���Υ����Фξ�����ޤ��ϥץ饤�١��ȥ������ʤ����ᡢSSL ��ͭ���ˤǤ��ޤ���Ǥ�����"
+msgstr "このサーバの証明書またはプライベートキーがないため、SSL を有効にできませんでした。"
 
 msgid "cantEditSslConf"
-msgstr "�����Ф� SSL ����ե�����򹹿��Ǥ��ޤ���"
+msgstr "サーバの SSL 設定ファイルを更新できません。"
 
 msgid "cantUpdateApacheConf"
-msgstr "���Υ����Ȥ� SSL ����򥵡��Ф�����˴ޤ�뤳�Ȥ��Ǥ��ޤ���"
+msgstr "このサイトの SSL 設定をサーバの設定に含めることができません。"
 
 # gen_cert.pl
 msgid "cantMakeDirectory"
-msgstr "[[VAR.dir]] �ǥ��쥯�ȥ������Ǥ��ޤ���"
+msgstr "[[VAR.dir]] ディレクトリを作成できません。"
 
 # these messages not shown in UI
 msgid "couldntRunOpenssl"
-msgstr "openssl ���ޥ�ɤ�¹ԤǤ��ޤ���"
+msgstr "openssl コマンドを実行できません。"
 
 msgid "certDirMissing"
-msgstr "������ǥ��쥯�ȥ꤬���Ĥ���ʤ����ᡢ������������Ǥ��ޤ���"
+msgstr "証明書ディレクトリが見つからないため、証明書を生成できません。"
 
 # vsite_change_ip.pl
 msgid "sslMigrationConflict"
-msgstr "IP ���ɥ쥹�� [[VAR.ipaddr]] ���ѹ��Ǥ��ޤ��󡣤��Υ����Ȥ� SSL ��ͭ���ˤʤäƤ��ޤ��������ꤵ�줿 IP ���ɥ쥹������̤Υ����ȤǤ� SSL ��ͭ���ˤʤäƤ��ޤ����ɤ��餫�Υ����Ȥ� SSL ��̵���ˤ��Ƥ���������"
+msgstr "IP アドレスを [[VAR.ipaddr]] に変更できません。このサイトの SSL は有効になっていますが、指定された IP アドレスを持つ別のサイトでも SSL が有効になっています。どちらかのサイトの SSL を無効にしてください。"
 
 # list of available countries for SSL, in other words all ISO codes for any
 # country that has one
 msgid "foocountry"
-msgstr "�����ꤷ�Ƥ�������..."
+msgstr "国を指定してください..."
 
 msgid "AF"
-msgstr "���ե��˥�����"
+msgstr "アフガニスタン"
 
 msgid "AL"
-msgstr "����Х˥�"
+msgstr "アルバニア"
 
 msgid "DZ"
-msgstr "���른���ꥢ"
+msgstr "アルジェリア"
 
 msgid "AS"
-msgstr "����ꥫ�Υ��⥢"
+msgstr "アメリカ領サモア"
 
 msgid "AD"
-msgstr "����ɥ�"
+msgstr "アンドラ"
 
 msgid "AO"
-msgstr "���󥴥�"
+msgstr "アンゴラ"
 
 msgid "AI"
-msgstr "���󥮥�"
+msgstr "アンギラ"
 
 msgid "AQ"
-msgstr "���"
+msgstr "南極"
 
 msgid "AG"
-msgstr "����ƥ������ݥС��֡���"
+msgstr "アンティグア‐バーブーダ"
 
 msgid "AR"
-msgstr "���를�����"
+msgstr "アルゼンチン"
 
 msgid "AM"
-msgstr "�����˥�"
+msgstr "アルメニア"
 
 msgid "AW"
-msgstr "���롼��"
+msgstr "アルーバ"
 
 msgid "AU"
-msgstr "�������ȥ�ꥢ"
+msgstr "オーストラリア"
 
 msgid "AT"
-msgstr "�������ȥꥢ"
+msgstr "オーストリア"
 
 msgid "AZ"
-msgstr "������Х������"
+msgstr "アゼルバイジャン"
 
 msgid "BS"
-msgstr "�Хϥ�"
+msgstr "バハマ"
 
 msgid "BH"
-msgstr "�С��졼��"
+msgstr "バーレーン"
 
 msgid "BD"
-msgstr "�Х󥰥�ǥ���"
+msgstr "バングラデシュ"
 
 msgid "BB"
-msgstr "�Х�Хɥ�"
+msgstr "バルバドス"
 
 msgid "BY"
-msgstr "�٥�롼��"
+msgstr "ベラルーシ"
 
 msgid "BE"
-msgstr "�٥륮��"
+msgstr "ベルギー"
 
 msgid "BZ"
-msgstr "�٥꡼��"
+msgstr "ベリーズ"
 
 msgid "BJ"
-msgstr "�٥˥�"
+msgstr "ベニン"
 
 msgid "BM"
-msgstr "�Хߥ塼��"
+msgstr "バミューダ"
 
 msgid "BT"
-msgstr "�֡�����"
+msgstr "ブータン"
 
 msgid "BO"
-msgstr "�ܥ�ӥ�"
+msgstr "ボリビア"
 
 msgid "BA"
-msgstr "�ܥ��˥����إ�ĥ����ӥ�"
+msgstr "ボスニア・ヘルツェゴビナ"
 
 msgid "BW"
-msgstr "�ܥĥ��"
+msgstr "ボツワナ"
 
 msgid "BV"
-msgstr "�֡�����"
+msgstr "ブーベ島"
 
 msgid "BR"
-msgstr "�֥饸��"
+msgstr "ブラジル"
 
 msgid "IO"
-msgstr "������αѹ���"
+msgstr "インド洋英国領"
 
 msgid "BN"
-msgstr "�֥�ͥ������륵�顼��"
+msgstr "ブルネイ・ダルサラーム"
 
 msgid "BG"
-msgstr "�֥륬�ꥢ"
+msgstr "ブルガリア"
 
 msgid "BF"
-msgstr "�֥륭�ʥե���"
+msgstr "ブルキナファソ"
 
 msgid "BI"
-msgstr "�֥��"
+msgstr "ブルンジ"
 
 msgid "KH"
-msgstr "����ܥ���"
+msgstr "カンボジア"
 
 msgid "CM"
-msgstr "����롼��"
+msgstr "カメルーン"
 
 msgid "CA"
-msgstr "���ʥ�"
+msgstr "カナダ"
 
 msgid "CV"
-msgstr "�����ܥ٥��"
+msgstr "カーボベルデ"
 
 msgid "KY"
-msgstr "�����ޥ����"
+msgstr "ケイマン諸島"
 
 msgid "CF"
-msgstr "������եꥫ���¹�"
+msgstr "中央アフリカ共和国"
 
 msgid "TD"
-msgstr "�����"
+msgstr "チャド"
 
 msgid "CL"
-msgstr "����"
+msgstr "チリ"
 
 msgid "CN"
-msgstr "���"
+msgstr "中国"
 
 msgid "CX"
-msgstr "���ꥹ�ޥ���"
+msgstr "クリスマス島"
 
 msgid "CC"
-msgstr "������ (�������) ����"
+msgstr "ココス (キーリング) 諸島"
 
 msgid "CO"
-msgstr "������ӥ�"
+msgstr "コロンビア"
 
 msgid "KM"
-msgstr "�����"
+msgstr "コモロ"
 
 msgid "CG"
-msgstr "����̱�綦�¹�"
+msgstr "コンゴ民主共和国"
 
 msgid "CK"
-msgstr "���å�����"
+msgstr "クック諸島"
 
 msgid "CR"
-msgstr "�������ꥫ"
+msgstr "コスタリカ"
 
 msgid "CI"
-msgstr "�����ȥ��ܥ�����"
+msgstr "コートジボアール"
 
 msgid "HR"
-msgstr "����������"
+msgstr "クロアチア"
 
 msgid "CU"
-msgstr "���塼��"
+msgstr "キューバ"
 
 msgid "CY"
-msgstr "���ץ���"
+msgstr "キプロス"
 
 msgid "CZ"
-msgstr "���������¹�"
+msgstr "チェコ共和国"
 
 msgid "DK"
-msgstr "�ǥ�ޡ���"
+msgstr "デンマーク"
 
 msgid "DJ"
-msgstr "���֥�"
+msgstr "ジブチ"
 
 msgid "DM"
-msgstr "�ɥߥ˥�"
+msgstr "ドミニカ"
 
 msgid "DO"
-msgstr "�ɥߥ˥����¹�"
+msgstr "ドミニカ共和国"
 
 msgid "TP"
-msgstr "��ƥ��⡼��"
+msgstr "東ティモール"
 
 msgid "EC"
-msgstr "�������ɥ�"
+msgstr "エクアドル"
 
 msgid "EG"
-msgstr "�����ץ�"
+msgstr "エジプト"
 
 msgid "SV"
-msgstr "���륵��Хɥ�"
+msgstr "エルサルバドル"
 
 msgid "GQ"
-msgstr "��ƻ���˥�"
+msgstr "赤道ギニア"
 
 msgid "ER"
-msgstr "����ȥꥢ"
+msgstr "エリトリア"
 
 msgid "EE"
-msgstr "�����ȥ˥�"
+msgstr "エストニア"
 
 msgid "ET"
-msgstr "�������ԥ�"
+msgstr "エチオピア"
 
 msgid "FK"
-msgstr "�ե��������ɽ��� (�ޥ�ӥʥ�)"
+msgstr "フォークランド諸島 (マルビナス)"
 
 msgid "FO"
-msgstr "�ե���������"
+msgstr "フェロー諸島"
 
 msgid "FJ"
-msgstr "�ե�����"
+msgstr "フィジー"
 
 msgid "FI"
-msgstr "�ե������"
+msgstr "フィンランド"
 
 msgid "FR"
-msgstr "�ե��"
+msgstr "フランス"
 
 msgid "GF"
-msgstr "�ե���Υ�����"
+msgstr "フランス領ギアナ"
 
 msgid "PF"
-msgstr "�ե���Υݥ�ͥ���"
+msgstr "フランス領ポリネシア"
 
 msgid "TF"
-msgstr "������������ե����"
+msgstr "インド洋南部フランス領"
 
 msgid "GA"
-msgstr "���ܥ�"
+msgstr "ガボン"
 
 msgid "GM"
-msgstr "����ӥ�"
+msgstr "ガンビア"
 
 msgid "GE"
-msgstr "���른��"
+msgstr "グルジア"
 
 msgid "DE"
-msgstr "�ɥ���"
+msgstr "ドイツ"
 
 msgid "GH"
-msgstr "������"
+msgstr "ガーナ"
 
 msgid "GI"
-msgstr "���֥�륿��"
+msgstr "ジブラルタル"
 
 msgid "GR"
-msgstr "���ꥷ��"
+msgstr "ギリシャ"
 
 msgid "GL"
-msgstr "���꡼�����"
+msgstr "グリーンランド"
 
 msgid "GD"
-msgstr "����ʥ�"
+msgstr "グレナダ"
 
 msgid "GP"
-msgstr "�����ɥ롼����"
+msgstr "グアドループ島"
 
 msgid "GU"
-msgstr "������"
+msgstr "グアム"
 
 msgid "GT"
-msgstr "�����ƥޥ�"
+msgstr "グアテマラ"
 
 msgid "GN"
-msgstr "���˥�"
+msgstr "ギニア"
 
 msgid "GW"
-msgstr "���˥����ӥ���"
+msgstr "ギニア・ビサウ"
 
 msgid "GY"
-msgstr "������"
+msgstr "ギアナ"
 
 msgid "HT"
-msgstr "�ϥ���"
+msgstr "ハイチ"
 
 msgid "HM"
-msgstr "�ϡ��ɡ��ޥ��ɥʥ�ɽ���"
+msgstr "ハード・マクドナルド諸島"
 
 msgid "HN"
-msgstr "�ۥ󥸥�饹"
+msgstr "ホンジュラス"
 
 msgid "HK"
-msgstr "���"
+msgstr "香港"
 
 msgid "HU"
-msgstr "�ϥ󥬥꡼"
+msgstr "ハンガリー"
 
 msgid "IS"
-msgstr "����������"
+msgstr "アイスランド"
 
 msgid "IN"
-msgstr "�����"
+msgstr "インド"
 
 msgid "ID"
-msgstr "����ɥͥ���"
+msgstr "インドネシア"
 
 msgid "IR"
-msgstr "����󥤥���ඦ�¹�"
+msgstr "イランイスラム共和国"
 
 msgid "IQ"
-msgstr "���饯"
+msgstr "イラク"
 
 msgid "IE"
-msgstr "���������"
+msgstr "アイルランド"
 
 msgid "IL"
-msgstr "�����饨��"
+msgstr "イスラエル"
 
 msgid "IT"
-msgstr "�����ꥢ"
+msgstr "イタリア"
 
 msgid "JM"
-msgstr "����ޥ���"
+msgstr "ジャマイカ"
 
 msgid "JP"
-msgstr "����"
+msgstr "日本"
 
 msgid "JO"
-msgstr "������"
+msgstr "ヨルダン"
 
 msgid "KZ"
-msgstr "�����ե�����"
+msgstr "カザフスタン"
 
 msgid "KE"
-msgstr "���˥�"
+msgstr "ケニア"
 
 msgid "KI"
-msgstr "����Х�"
+msgstr "キリバス"
 
 msgid "KP"
-msgstr "ī��̱������̱���¹�"
+msgstr "朝鮮民主主義人民共和国"
 
 msgid "KR"
-msgstr "���̱��"
+msgstr "大韓民国"
 
 msgid "KW"
-msgstr "����������"
+msgstr "クウェート"
 
 msgid "KG"
-msgstr "���륮������"
+msgstr "キルギスタン"
 
 msgid "LA"
-msgstr "�饪����̱̱�綦�¹�"
+msgstr "ラオス人民民主共和国"
 
 msgid "LV"
-msgstr "��ȥӥ�"
+msgstr "ラトビア"
 
 msgid "LB"
-msgstr "��ХΥ�"
+msgstr "レバノン"
 
 msgid "LS"
-msgstr "�쥽��"
+msgstr "レソト"
 
 msgid "LR"
-msgstr "��٥ꥢ"
+msgstr "リベリア"
 
 msgid "LY"
-msgstr "��ӥ�������ֹ�"
+msgstr "リビア・アラブ国"
 
 msgid "LI"
-msgstr "��ҥƥ󥷥奿����"
+msgstr "リヒテンシュタイン"
 
 msgid "LT"
-msgstr "��ȥ��˥�"
+msgstr "リトアニア"
 
 msgid "LU"
-msgstr "�륯����֥륯"
+msgstr "ルクセンブルク"
 
 msgid "MO"
-msgstr "�ޥ���"
+msgstr "マカオ"
 
 msgid "MK"
-msgstr "�ޥ��ɥ˥� (��桼������ӥ����¹�)"
+msgstr "マケドニア (旧ユーゴスラビア共和国)"
 
 msgid "MG"
-msgstr "�ޥ���������"
+msgstr "マダガスカル"
 
 msgid "MW"
-msgstr "�ޥ饦��"
+msgstr "マラウイ"
 
 msgid "MY"
-msgstr "�ޥ졼����"
+msgstr "マレーシア"
 
 msgid "MV"
-msgstr "��른��"
+msgstr "モルジブ"
 
 msgid "ML"
-msgstr "�ޥ�"
+msgstr "マリ"
 
 msgid "MT"
-msgstr "�ޥ륿"
+msgstr "マルタ"
 
 msgid "MH"
-msgstr "�ޡ���������"
+msgstr "マーシャル諸島"
 
 msgid "MQ"
-msgstr "�ޥ���ˡ�����"
+msgstr "マルチニーク島"
 
 msgid "MR"
-msgstr "�⡼�꥿�˥�"
+msgstr "モーリタニア"
 
 msgid "MU"
-msgstr "�⡼�ꥷ�㥹"
+msgstr "モーリシャス"
 
 msgid "YT"
-msgstr "�ޥ�å���"
+msgstr "マヨット島"
 
 msgid "MX"
-msgstr "�ᥭ����"
+msgstr "メキシコ"
 
 msgid "FM"
-msgstr "�ߥ����ͥ���Ϣˮ"
+msgstr "ミクロネシア連邦"
 
 msgid "MD"
-msgstr "���ɥж��¹�"
+msgstr "モルドバ共和国"
 
 msgid "MC"
-msgstr "��ʥ�"
+msgstr "モナコ"
 
 msgid "MN"
-msgstr "��󥴥�"
+msgstr "モンゴル"
 
 msgid "MS"
-msgstr "��󥻥�å�"
+msgstr "モンセラット"
 
 msgid "MA"
-msgstr "����å�"
+msgstr "モロッコ"
 
 msgid "MZ"
-msgstr "�⥶��ӡ���"
+msgstr "モザンビーク"
 
 msgid "MM"
-msgstr "�ߥ��ޡ�"
+msgstr "ミャンマー"
 
 msgid "NA"
-msgstr "�ʥߥӥ�"
+msgstr "ナミビア"
 
 msgid "NR"
-msgstr "�ʥ���"
+msgstr "ナウル"
 
 msgid "NP"
-msgstr "�ͥѡ���"
+msgstr "ネパール"
 
 msgid "NL"
-msgstr "������"
+msgstr "オランダ"
 
 msgid "AN"
-msgstr "�������Υ���������"
+msgstr "オランダ領アンチル諸島"
 
 msgid "NC"
-msgstr "�˥塼����ɥ˥�"
+msgstr "ニューカレドニア"
 
 msgid "NZ"
-msgstr "�˥塼��������"
+msgstr "ニュージーランド"
 
 msgid "NI"
-msgstr "�˥��饰��"
+msgstr "ニカラグア"
 
 msgid "NE"
-msgstr "�˥�������"
+msgstr "ニジェール"
 
 msgid "NG"
-msgstr "�ʥ������ꥢ"
+msgstr "ナイジェリア"
 
 msgid "NU"
-msgstr "�˥���"
+msgstr "ニウエ"
 
 msgid "NF"
-msgstr "�Ρ��ե�������"
+msgstr "ノーフォーク島"
 
 msgid "MP"
-msgstr "�̥ޥꥢ�ʽ���"
+msgstr "北マリアナ諸島"
 
 msgid "NO"
-msgstr "�Υ륦����"
+msgstr "ノルウェー"
 
 msgid "OM"
-msgstr "���ޡ���"
+msgstr "オマーン"
 
 msgid "PK"
-msgstr "�ѥ�������"
+msgstr "パキスタン"
 
 msgid "PW"
-msgstr "�ѥ饦"
+msgstr "パラウ"
 
 msgid "PS"
-msgstr "�ѥ쥹������"
+msgstr "パレスチナ領"
 
 msgid "PA"
-msgstr "�ѥʥ�"
+msgstr "パナマ"
 
 msgid "PG"
-msgstr "�ѥץ��˥塼���˥�"
+msgstr "パプアニューギニア"
 
 msgid "PY"
-msgstr "�ѥ饰����"
+msgstr "パラグアイ"
 
 msgid "PE"
-msgstr "�ڥ롼"
+msgstr "ペルー"
 
 msgid "PH"
-msgstr "�ե���ԥ�"
+msgstr "フィリピン"
 
 msgid "PN"
-msgstr "�ԥȥ�����"
+msgstr "ピトケアン"
 
 msgid "PL"
-msgstr "�ݡ�����"
+msgstr "ポーランド"
 
 msgid "PT"
-msgstr "�ݥ�ȥ���"
+msgstr "ポルトガル"
 
 msgid "PR"
-msgstr "�ץ���ȥꥳ"
+msgstr "プエルトリコ"
 
 msgid "QA"
-msgstr "��������"
+msgstr "カタール"
 
 msgid "RE"
-msgstr "��˥楪����"
+msgstr "レニユオン島"
 
 msgid "RO"
-msgstr "�롼�ޥ˥�"
+msgstr "ルーマニア"
 
 msgid "RU"
-msgstr "������Ϣˮ"
+msgstr "ロシア連邦"
 
 msgid "RW"
-msgstr "�����"
+msgstr "ルワンダ"
 
 msgid "SH"
-msgstr "����ȥإ��"
+msgstr "セントヘレナ"
 
 msgid "KN"
-msgstr "����ȥ��åġ��ͥ��ӥ�"
+msgstr "セントキッツ・ネイビス"
 
 msgid "LC"
-msgstr "����ȥ륷��"
+msgstr "セントルシア"
 
 msgid "PM"
-msgstr "����ԥ����롦�����ߥ�������"
+msgstr "サンピエール・エ・ミクロン島"
 
 msgid "VC"
-msgstr "����ȥӥ󥻥�ȡ�����ʥǥ��������"
+msgstr "セントビンセント／グレナディーン諸島"
 
 msgid "WS"
-msgstr "���⥢"
+msgstr "サモア"
 
 msgid "SM"
-msgstr "����ޥ��"
+msgstr "サンマリノ"
 
 msgid "ST"
-msgstr "����ȡ��ᡦ�ץ�󥷥�"
+msgstr "サントーメ・プリンシペ"
 
 msgid "SA"
-msgstr "����������ӥ�"
+msgstr "サウジアラビア"
 
 msgid "SN"
-msgstr "���ͥ���"
+msgstr "セネガル"
 
 msgid "SC"
-msgstr "����������"
+msgstr "セーシェル"
 
 msgid "SL"
-msgstr "������쥪����"
+msgstr "シエラレオーネ"
 
 msgid "SG"
-msgstr "���󥬥ݡ���"
+msgstr "シンガポール"
 
 msgid "SK"
-msgstr "�����Х���"
+msgstr "スロバキア"
 
 msgid "SI"
-msgstr "�����٥˥�"
+msgstr "スロベニア"
 
 msgid "SB"
-msgstr "����������"
+msgstr "ソロモン諸島"
 
 msgid "SO"
-msgstr "���ޥꥢ"
+msgstr "ソマリア"
 
 msgid "ZA"
-msgstr "��եꥫ���¹�"
+msgstr "南アフリカ共和国"
 
 msgid "GS"
-msgstr "��硼�����硦���ɥ��å�����"
+msgstr "南ジョージア島・南サンドイッチ諸島"
 
 msgid "ES"
-msgstr "���ڥ���"
+msgstr "スペイン"
 
 msgid "LK"
-msgstr "������"
+msgstr "スリランカ"
 
 msgid "SD"
-msgstr "��������"
+msgstr "スーダン"
 
 msgid "SR"
-msgstr "����ʥ�"
+msgstr "スリナム"
 
 msgid "SJ"
-msgstr "���С���Х롿���ޥ��������"
+msgstr "スバールバル／ヤンマイエン諸島"
 
 msgid "SZ"
-msgstr "���兩����"
+msgstr "スワジランド"
 
 msgid "SE"
-msgstr "���������ǥ�"
+msgstr "スウェーデン"
 
 msgid "CH"
-msgstr "������"
+msgstr "スイス"
 
 msgid "SY"
-msgstr "���ꥢ������ֶ��¹�"
+msgstr "シリア・アラブ共和国"
 
 msgid "TW"
-msgstr "����"
+msgstr "台湾"
 
 msgid "TJ"
-msgstr "������������"
+msgstr "タジキスタン"
 
 msgid "TZ"
-msgstr "���󥶥˥�Ϣ�綦�¹�"
+msgstr "タンザニア連合共和国"
 
 msgid "TH"
-msgstr "����"
+msgstr "タイ"
 
 msgid "TG"
-msgstr "�ȡ���"
+msgstr "トーゴ"
 
 msgid "TK"
-msgstr "�ȥ��饦"
+msgstr "トケラウ"
 
 msgid "TO"
-msgstr "�ȥ�"
+msgstr "トンガ"
 
 msgid "TT"
-msgstr "�ȥ�˥����ɡ��ȥХ�"
+msgstr "トリニダード・トバゴ"
 
 msgid "TN"
-msgstr "����˥���"
+msgstr "チュニジア"
 
 msgid "TR"
-msgstr "�ȥ륳"
+msgstr "トルコ"
 
 msgid "TM"
-msgstr "�ȥ륯��˥�����"
+msgstr "トルクメニスタン"
 
 msgid "TC"
-msgstr "����������������������"
+msgstr "タークス／カイコス諸島"
 
 msgid "TV"
-msgstr "�ĥХ�"
+msgstr "ツバル"
 
 msgid "UG"
-msgstr "�������"
+msgstr "ウガンダ"
 
 msgid "UA"
-msgstr "�����饤��"
+msgstr "ウクライナ"
 
 msgid "AE"
-msgstr "����ּ�Ĺ��Ϣˮ"
+msgstr "アラブ首長国連邦"
 
 msgid "GB"
-msgstr "�ѹ�"
+msgstr "英国"
 
 msgid "US"
-msgstr "�ƹ�"
+msgstr "米国"
 
 msgid "UM"
-msgstr "�ƹ��ΤΤ���¾�ν���"
+msgstr "米国領のその他の諸島"
 
 msgid "UY"
-msgstr "���륰����"
+msgstr "ウルグアイ"
 
 msgid "UZ"
-msgstr "�����٥�������"
+msgstr "ウズベキスタン"
 
 msgid "VU"
-msgstr "�Х̥���"
+msgstr "バヌアツ"
 
 msgid "VA"
-msgstr "�Х�����Թ� (����)"
+msgstr "バチカン市国 (聖座)"
 
 msgid "VE"
-msgstr "�٥ͥ�����"
+msgstr "ベネズエラ"
 
 msgid "VN"
-msgstr "�٥ȥʥ�"
+msgstr "ベトナム"
 
 msgid "VG"
-msgstr "�С�������� (����)"
+msgstr "バージン諸島 (英領)"
 
 msgid "VI"
-msgstr "�С�������� (����)"
+msgstr "バージン諸島 (米領)"
 
 msgid "WF"
-msgstr "�����ꥹ���եȥ����ʽ���"
+msgstr "ウォリス・フトゥーナ諸島"
 
 msgid "EH"
-msgstr "�����ϥ�"
+msgstr "西サハラ"
 
 msgid "YE"
-msgstr "�������"
+msgstr "イエメン"
 
 msgid "YU"
-msgstr "�桼������ӥ�"
+msgstr "ユーゴスラビア"
 
 msgid "ZM"
-msgstr "����ӥ�"
+msgstr "ザンビア"
 
 msgid "ZW"
-msgstr "����Х֥�"
+msgstr "ジンバブエ"
 
 # cert authority management page
 msgid "caManager"
-msgstr "������ǧ�ڵ��ؤδ��� - [[VAR.fqdn]]"
+msgstr "証明書認証機関の管理 - [[VAR.fqdn]]"
 
 msgid "caAction"
-msgstr "�������"
+msgstr "管理操作"
 
 msgid "caAction_help"
-msgstr "���Υ����Ȥ��裲��ǧ�ڵ��ؤ˼¹Ԥ���������ꤷ�Ƥ���������"
+msgstr "このサイトの第２の認証機関に実行する操作を指定してください。"
 
 msgid "addCA"
-msgstr "�ɲ�"
+msgstr "追加"
 
 msgid "caIdent"
-msgstr "������ǧ�ڵ��ؤ�̾��"
+msgstr "証明書認証機関の名称"
 
 msgid "caIdent_help"
-msgstr "�裲��ǧ�ڵ��ؤ��̤����դ�̾�Τ����Ϥ��Ƥ���������"
+msgstr "第２の認証機関を識別する一意の名称を入力してください。"
 
 msgid "addCaIdent_empty"
-msgstr "������ǧ�ڵ��ؤ��ɲä���ˤϡ�[[base-ssl.caIdent]] ��̾�Τ����Ϥ��Ƥ���������"
+msgstr "新規の認証機関を追加するには、[[base-ssl.caIdent]] に名称を入力してください。"
 
 msgid "caCert"
-msgstr "�����������"
+msgstr "証明書を選択"
 
 msgid "caCert_help"
-msgstr "[����] �򥯥�å����ơ�������ǧ�ڵ��ؤξ������ޤ�ե��������ꤷ�Ƥ��������������� 1 �Ĥ����ޤޤ�Ƥ���ե��������ꤹ��ɬ�פ�����ޤ���"
+msgstr "[参照] をクリックして、証明書認証機関の証明書を含むファイルを指定してください。証明書が 1 つだけ含まれているファイルを指定する必要があります。"
 
 msgid "caCert_empty"
-msgstr "���åץ����ɤ�������񤬻��ꤵ��Ƥ��ޤ��󡣿�����ǧ�ڵ��ؤ��ɲä���ˤϡ����åץ����ɤ�����������ꤷ�Ƥ���������"
+msgstr "アップロードする証明書が指定されていません。新規の認証機関を追加するには、アップロードする証明書を指定してください。"
 
 msgid "removeCA"
-msgstr "���"
+msgstr "削除"
 
 msgid "removeCAIdent"
-msgstr "���ߤξ�����ǧ�ڵ���"
+msgstr "現在の証明書認証機関"
 
 msgid "removeCAIdent_help"
-msgstr "���Υ����Ȥ�����������������ȯ�Ԥ����裲��ǧ�ڵ��ؤ���ꤷ�Ƥ���������"
+msgstr "このサイトから削除したい証明を発行した第２の認証機関を指定してください。"
 
 # ia5string_check.pl
 msgid "nonAsciiCharacter"
-msgstr "[[VAR.property]] �ե�����ɤˤϡ�Ⱦ�ѱѿ����������ϤǤ��ޤ���"
+msgstr "[[VAR.property]] フィールドには、半角英数字しか入力できません。"
+
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "コマンド '/usr/sausalito/sbin/ssl_get.pl' が期待される結果を返しませんでした。多分ない証明書が存在がありません？"

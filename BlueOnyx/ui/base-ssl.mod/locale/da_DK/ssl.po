@@ -1151,3 +1151,12 @@ msgid "state_help"
 msgstr ""
 "Den stat, provins eller region hvor den ovenfor nævnte by findes.  [[base-"
 "ssl.importantNote]]"
+
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "Kommandoen '/usr/sausalito/sbin/ssl_get.pl' ikke tilbage forventede resultater. Måske er der ikke nogen attest til stede?"
