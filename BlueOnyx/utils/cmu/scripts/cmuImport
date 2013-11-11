@@ -53,7 +53,7 @@ cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
 #
 # get the admin password if we need it
 my $password;
-if (($build =~ /(5106R)/) || ($build =~ /(5107R)/) || ($build =~ /(5108R)/)) {
+if (($build =~ /(5106R)/) || ($build =~ /(5107R)/) || ($build =~ /(5108R)/) || ($build =~ /(5207R)/) || ($build =~ /(5208R)/)) {
     # Root check
     my $id = get_uid('root');
     if ($id ne "0") {
