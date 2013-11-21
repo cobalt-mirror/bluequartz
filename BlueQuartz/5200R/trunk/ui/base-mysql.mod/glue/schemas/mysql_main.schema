@@ -1,0 +1,39 @@
+<class
+    name="MySQL" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+        <property name="sql_root"
+            type="alphanum_plus"
+            default="root"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="sql_rootpassword"
+            type="password"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="sql_host"
+            type="word"
+            default="localhost"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="sql_port"
+            type="uint"
+            default="3306"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="savechanges"
+            type="scalar"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+        <property name="timestamp"
+            type="scalar"
+            optional="true"
+            writeacl="ruleCapable(adminUser)"
+        />
+
+</class>

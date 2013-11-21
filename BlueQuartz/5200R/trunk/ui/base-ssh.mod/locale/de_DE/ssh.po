@@ -1,0 +1,35 @@
+# Header entry was created by KBabel!
+#
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-ssh\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-01 07:01+0200\n"
+"PO-Revision-Date: 2008-01-26 05:05+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "enableSSH"
+msgstr "SSH Server einschalten"
+
+msgid "enableSSH_help"
+msgstr "Ist SSH eingeschaltet, so können Benutzer, für die Shellzugang aktiviert ist, sich mit SSH-Clients auf dem Server einloggen. Die Nutzung von SSH wird grundsätzlich als sicherer angesehen als die Benutzung von Telnet, da SSH alle Daten (auch Passwörter) verschlüsselt, die zwischen dem Client und dem Server gesendet werden."
+
+msgid "amNotAccepting"
+msgstr "Der SSH Server akzeptiert keine Verbindungen."
+
+msgid "amSSHDetails"
+msgstr "SSH Server"
+
+msgid "amStatusOK"
+msgstr "Der SSH Server funktioniert normal."
+

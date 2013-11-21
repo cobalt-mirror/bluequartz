@@ -1,0 +1,163 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "yumgui_head"
+msgstr "yum - アップデート"
+
+msgid "autoupdate"
+msgstr "自動アップデート:"
+
+msgid "autoupdate_help"
+msgstr "yum の自動アップデートを有効にすることで、指定した曜日にダウンロードとインストールを実行することができます。"
+
+msgid "yumlog"
+msgstr "yum.log"
+
+msgid "yumlog_help"
+msgstr "すべての yum の結果が書かれたログファイルを表示します。ログファルは、/var/log/yum.logです。"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Settings_help"
+msgstr "yum の自動アップデートに関わる設定が可能です。"
+
+msgid "Logs"
+msgstr "ログ"
+
+msgid "Logs_help"
+msgstr "yum のログを表示できます。"
+
+msgid "yumguimenuentry"
+msgstr "yum アップデート"
+
+msgid "yumguimenuentrydesc"
+msgstr "yum は、CentOS と BlueQuartz で利用するアップデートの仕組みです。yum をコマンドラインで実行することもできます。自動的に実行する設定をここで設定することができます。"
+
+msgid "yumlog_empty"
+msgstr "ログファイルは空です。"
+
+msgid "yumTitle"
+msgstr "入手可能なアップデート"
+
+msgid "yumTitle_help"
+msgstr "最後にアップデートした時間を確認できます。入手可能なアップデートの確認とインストールが可能です。"
+
+msgid "yumCheck"
+msgstr "アップデートの確認"
+
+msgid "yumCheck_help"
+msgstr "yum のレポジトリをチェックします。実行には少し時間がかかります。"
+
+msgid "yumNOW"
+msgstr "システムのアップデート"
+
+msgid "yumNOW_help"
+msgstr "yum アップデートを直ちに実行します。"
+
+msgid "yum_last_updated"
+msgstr "最終アップデート:"
+
+msgid "yum_last_updated_help"
+msgstr "最終 yum アップデートの時間"
+
+msgid "yum_is_pulling_updates"
+msgstr "アップデートの実行中:"
+
+msgid "yum_is_pulling_updates_help"
+msgstr "このシステムはアップデートを実行中です。数分待って再度アクセスしてください。"
+
+msgid "yumguiEMAIL"
+msgstr "メール通知:"
+
+msgid "yumguiEMAIL_help"
+msgstr "有効にすると、メールアドレス宛に yum の実行結果を送ります。"
+
+msgid "yumguiEMAILADDY"
+msgstr "メールアドレス:"
+
+msgid "yumguiEMAILADDY_help"
+msgstr "標準で設定されているメールアドレスは、'admin' です。必要に応じて違うメールアドレスを設定できます。"
+
+msgid "yumUpdateTime"
+msgstr "アップデート時間:"
+
+msgid "yumUpdateTime_help"
+msgstr "yum アップデートを実行する時間を設定します。"
+
+msgid "yumUpdateSU"
+msgstr "日曜日に実行:"
+
+msgid "yumUpdateSU_help"
+msgstr "毎日曜日に実行します。"
+
+msgid "yumUpdateMO"
+msgstr "月曜日に実行:"
+
+msgid "yumUpdateMO_help"
+msgstr "毎月曜日に実行します。"
+
+msgid "yumUpdateTU"
+msgstr "火曜日に実行:"
+
+msgid "yumUpdateTU_help"
+msgstr "毎火曜日に実行します。"
+
+msgid "yumUpdateWE"
+msgstr "水曜日に実行:"
+
+msgid "yumUpdateWE_help"
+msgstr "毎水曜日に実行します。"
+
+msgid "yumUpdateTH"
+msgstr "木曜日に実行:"
+
+msgid "yumUpdateTH_help"
+msgstr "毎木曜日に実行します。"
+
+msgid "yumUpdateFR"
+msgstr "金曜日に実行:"
+
+msgid "yumUpdateFR_help"
+msgstr "毎金曜日に実行します。"
+
+msgid "yumUpdateSA"
+msgstr "土曜日に実行:"
+
+msgid "yumUpdateSA_help"
+msgstr "毎土曜日に実行します。"
+
+msgid "name"
+msgstr "名前:"
+
+msgid "name_help"
+msgstr "RPM 名"
+
+msgid "version"
+msgstr "バージョン:"
+
+msgid "version_help"
+msgstr "RPM のバージョン"
+
+msgid "status"
+msgstr "リポジトリ:"
+
+msgid "status_help"
+msgstr "RPM が存在する yum リポジトリ"
+
+msgid "yumguiEXCLUDE"
+msgstr "除外するRPM"
+
+msgid "yumguiEXCLUDE_help"
+msgstr "アップデートを除外する RPM を記述します。RPM 名を 1 行に 1 つづつ記述します。"
+
+msgid "cantYUMCONF"
+msgstr "/etc/yum.conf が編集できません。"
+

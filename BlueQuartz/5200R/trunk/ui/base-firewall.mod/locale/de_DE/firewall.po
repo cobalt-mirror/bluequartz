@@ -1,0 +1,428 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-02-05 03:48+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "firewall_menu"
+msgstr "Simple Firewall"
+
+msgid "firewall_menu_help"
+msgstr "Die [[base-firewall.FirewallTop]] können hier konfiguriert werden. Die Firewall erlaubt es Ihnen, Filter-Regeln zum Einschränken des Netzwerk-Verkehrs anzulegen und damit den Zugang zum Server zu restriktieren."
+
+msgid "FirewallTop"
+msgstr "Paket-Filter Firewall Einstellungen"
+
+msgid "FirewallTop_help"
+msgstr "Die Firewall erlaubt es Ihnen, Filter-Regeln zum Einschränken des Netzwerk-Verkehrs anzulegen und damit den Zugang zum Server zu restriktieren. Das ist eine fortgeschrittene Sicherheitsfunktion. Bitte konsultieren Sie die Dokumentation, bevor Sie fortfahren."
+
+msgid "EditRuleChain"
+msgstr "Regelwerk"
+
+msgid "EditRuleChain_help"
+msgstr "Wählen Sie einen Regelsatz aus, den Sie konfigurieren möchten. Die Firewall besitzt generell drei Regelsätze. Die Eingangskette wird auf Pakete angewandt, die zum Server gesendet werden. Die Weiterleitungskette betrifft Pakete, die für andere Server bestimmt sind und von Ihrem Server nur weitergeleitet werden. Die Ausgangskette betrifft ausgehende Pakete, die auf Ihrem Server den Ursprung haben."
+
+msgid "enableFirewall"
+msgstr "Firewall aktivieren"
+
+msgid "enableFirewall_help"
+msgstr "Erlaubt das aktivieren oder deaktivieren der Firewall."
+
+msgid "firewall-not-dirty_help"
+msgstr "Mit dieser Schaltfläche werden die Konfigurationsänderungen übernommen."
+
+msgid "firewall-not-enabled_help"
+msgstr "Mit dieser Schaltfläche werden die Konfigurationsänderungen übernommen."
+
+msgid "Selectchain"
+msgstr "Auswahl..."
+
+msgid "general_settings"
+msgstr "Firewall Einstellungen"
+
+msgid "chain_input"
+msgstr "Eingangskette"
+
+msgid "chain_output"
+msgstr "Ausgangskette"
+
+msgid "chain_forward"
+msgstr "Weiterleitungskette"
+
+msgid "commit-changes-button"
+msgstr "Änderungen anwenden"
+
+msgid "commit-changes-button_help"
+msgstr "Sie haben die Regeln Ihrer Firewall verändert, aber die "
+
+msgid "enable-firewall-button"
+msgstr "Firewall aktivieren"
+
+msgid "disable-firewall-button"
+msgstr "Firewall deaktivieren"
+
+msgid "FirewallRulesinput"
+msgstr "Eingangskette"
+
+msgid "header_order"
+msgstr "Reihenfolge"
+
+msgid "header_order_help"
+msgstr "Hier wird die Reihenfolge der Regeln bestimmt. Jedes Paket wird analysiert, indem es der Reihe nach gegen alle vorhandenen Regeln auf Übereinstimmung verglichen wird. Die erste Regel, auf die das Paket zutrifft, wird ausgeführt."
+
+msgid "header_source"
+msgstr "Quellkriterien"
+
+msgid "header_source_help"
+msgstr "Dies bestimmt das Quellkriterium, nachdem die Pakete gefiltert werden. Die Quellparameter des Pakets werden gegen die Kriterien der Regel verglichen. Die Regeln werden auf das Paket angewandt, wenn alle Kriterien übereinstimmen."
+
+msgid "header_dest"
+msgstr "Zielkriterien"
+
+msgid "header_dest_help"
+msgstr "Dies bestimmt das Ziellkriterium, nachdem die Pakete gefiltert werden. Die Zielparameter des Pakets werden gegen die Kriterien der Regel verglichen. Die Regeln werden auf das Paket angewandt, wenn alle Kriterien übereinstimmen."
+
+msgid "header_policy"
+msgstr "Regel"
+
+msgid "header_policy_help"
+msgstr "Dies ist die Regel, welche bestimmt, was mit dem Paket passiert, wenn die alle Kriterien (Quelle, Ziel, Schnittstelle, Protokoll) übereinstimmen. Die Regel wird dann auf das Paket angewandt."
+
+msgid "header_action"
+msgstr "Aktion"
+
+msgid "header_action_help"
+msgstr "Mit diesen Schaltflächen werden Regeln modifiziert oder entfernt."
+
+msgid "defaultPolicyField"
+msgstr "Standard-Regel"
+
+msgid "defaultPolicyField_help"
+msgstr "Wählen Sie die Standard-Regel dieses Regelsatzes. Damit wird bestimmt, was mit Paketen passiert, die mit keiner der hier aufgeführten Regeln übereinstimmen."
+
+msgid "CreateFirewallRule"
+msgstr "Neue Firewall Regel anlegen"
+
+# Source
+msgid "SourceCriteriaSection"
+msgstr "Quell-Kriterien"
+
+msgid "SourceCriteriaSection_help"
+msgstr "Dies bestimmt das Quellkriterium, nachdem die Pakete gefiltert werden. Die Quellparameter des Pakets werden gegen die Kriterien der Regel verglichen. Die Regeln werden auf das Paket angewandt, wenn alle Kriterien übereinstimmen."
+
+msgid "source_ip_start_field"
+msgstr "Quell IP-Adresse (Niedrig)"
+
+msgid "source_ip_start_field_help"
+msgstr "Geben Sie die erste oder niedrigste Quell IP-Adresse eines Bereiches ein, der von dieser Regel getroffen werden soll. Um jede IP-Adresse zu treffen, lassen Sie das Feld Quell IP-Adresse leer."
+
+msgid "source_ip_stop_field"
+msgstr "Quell IP-Adresse (Hoch)"
+
+msgid "source_ip_stop_field_help"
+msgstr "Geben Sie die höchste Quell IP-Adresse im Bereich ein, der von dieser Regel getroffen werden soll. Um jede IP-Adresse zu treffen, lassen Sie das Feld Quell IP-Adresse leer."
+
+msgid "source_ports_field"
+msgstr "Quell Port-Nummer(n)"
+
+msgid "source_ports_field_help"
+msgstr "Geben Sie die erste und letzte Quellen Port-Nummer im Bereich der Quell IP-Adresse ein, welche von dieser Regel getroffen werden soll. Um jede Port Nummer zu treffen, lassen Sie die Quell Port-Nummer leer."
+
+# error messages:
+msgid "source_ip_start_invalid"
+msgstr "Es wurde eine ungültige IP-Adresse für die Quell IP-Adresse (Niedrig) eingegeben. Geben Sie bitte eine gültige IP-Adresse ein."
+
+msgid "source_ip_stop_invalid"
+msgstr "Es wurde eine ungültige IP-Adresse für die Quell IP-Adresse (Hoch) eingegeben. Geben Sie bitte eine gültige IP-Adresse ein."
+
+msgid "dest_ip_start_invalid"
+msgstr "Es wurde eine ungültige IP-Adresse für die Ziel IP-Adresse (Niedrig) eingegeben. Geben Sie bitte eine gültige IP-Adresse ein."
+
+msgid "dest_ip_stop_invalid"
+msgstr "Es wurde eine ungültige IP-Adresse für die Ziel IP-Adresse (Hoch) eingegeben. Geben Sie bitte eine gültige IP-Adresse ein."
+
+msgid "source_ports_invalid"
+msgstr "Der eingegebene Port für den Quell-Port ist ungültig. Quell Port-Nummer(n) müssen positive Ganzzahlen sein. Um eine Regel zu gegerieren, die nur einen Port betrifft, gegeben Sie diese als Bereich ein. Z.B.: 23-23"
+
+msgid "dest_ports_invalid"
+msgstr "Der eingegebene Port für den Ziel-Port ist ungültig. Ziell Port-Nummer(n) müssen positive Ganzzahlen sein. Um eine Regel zu gegerieren, die nur einen Port betrifft, gegeben Sie diese als Bereich ein. Z.B.: 23-23"
+
+msgid "redir_target_invalid"
+msgstr "Die Umleitung zu einer lokalen Port-Nummer muss bestehen aus einem "
+
+# Destination
+msgid "DestCriteriaSection"
+msgstr "Ziel-Kriterien"
+
+msgid "DestCriteriaSection_help"
+msgstr "Kriterien werden benutzt, um festzulegen, auf welche Pakete einer Firewall-Regel angewandt werden. Ziel-Kriterien können angewandt werden, um Pakete zu treffen, die zu einem bestimmten Ziel unterwegs sind."
+
+msgid "dest_ip_start_field"
+msgstr "Ziel IP-Adresse (Niedrig)"
+
+msgid "dest_ip_start_field_help"
+msgstr "Geben Sie die erste oder niedrigste Ziel IP-Adresse in dem Bereich ein, der von dieser Regel getroffen werden soll. Um jede IP-Adresse zu treffen, lassen Sie das Ziel IP-Adress Feld leer."
+
+msgid "dest_ip_stop_field"
+msgstr "Ziel IP-Adresse (Hoch)"
+
+msgid "dest_ip_stop_field_help"
+msgstr "Geben Sie die letzte oder höchste Ziel IP-Adresse in dem Bereich ein, der von dieser Regel getroffen werden soll. Um jede IP-Adresse zu treffen, lassen Sie das Ziel IP-Adress Feld leer."
+
+msgid "dest_ports_field"
+msgstr "Ziel Port-Nummer(n)"
+
+msgid "dest_ports_field_help"
+msgstr "Geben Sie die erste und letzte Ziel Port-Nummer im Bereich der Ziel IP-Adresse(n) ein, auf welche diese Regel zutreffen soll. Um jeden Port zu treffen, lassen Sie das Feld Ziel Port-Nummer(n) leer."
+
+# Other
+msgid "GeneralCriteriaSection"
+msgstr "Andere Kriterien"
+
+msgid "GeneralCriteriaSection_help"
+msgstr "Kriterien werden verwendet, um zu bestimmen, auf welche Pakete die Firewall-Regeln angewandt werden sollen. Andere Kriteren wie das Protokoll und das Netzwerk-Interface können ebenfalls genutzt werden, um die Regeln genauer einzugrenzen."
+
+msgid "protocol_field"
+msgstr "Netzwerk-Protokoll"
+
+msgid "protocol_field_help"
+msgstr "Geben Sie an, welches Netzwerk-Protolkoll die Pakete verwenden müssen, um von der Regel betroffen zu werden."
+
+msgid "all"
+msgstr "Jedes Protokoll"
+
+msgid "tcp"
+msgstr "TCP"
+
+msgid "udp"
+msgstr "UDP"
+
+msgid "icmp"
+msgstr "ICMP"
+
+msgid "ipip"
+msgstr "IPIP"
+
+msgid "encap"
+msgstr "Encap"
+
+msgid "interface_field"
+msgstr "Netzwerk-Interface"
+
+msgid "interface_field_help"
+msgstr "Geben Sie das Netzwerk-Interface der Pakete an, welche von dieser Regel betroffen werden."
+
+msgid "any"
+msgstr "Any Network Interface"
+
+msgid "lo"
+msgstr "Loopback Interface"
+
+msgid "eth0"
+msgstr "Primäres Ethernet Interface"
+
+msgid "eth1"
+msgstr "Sekundäres Ethernet Interface"
+
+msgid "ppp0"
+msgstr "PPP Dialup Interface"
+
+# Policy
+msgid "DescribePolicy"
+msgstr "Ketten-Resultat"
+
+msgid "DescribePolicy_help"
+msgstr "Das Resultat einer Regel bestimmt, was mit einem Paket passiert, welches "
+
+msgid "policy_field"
+msgstr "Resultat"
+
+msgid "policy_field_help"
+msgstr "Das Resultat bestimmt, was mit dem Paket passiert, wenn es einer Regel entspricht. Wird das Paket akzeptiert, so darf es passieren. Wird es abgelehnt, so wird das Paket verworfen und der Absender erhält eine Rückmeldung, dass sein Paket nicht akzeptiert wurde. Wird es blockiert, so wird das Paket ohne Rückmeldung an den Absender verworfen. Wird es maskiert, so wird das Paket neu geschrieben, während es die Firewall passiert. Es sieht dann so aus, als ob das Paket von der Firewall selbst stammt. Dieses 'Resultat' sollte nur verwendet werden, wenn Sie Weiterleitungs-Regeln verwenden möchten. Mit 'Umleiten' werden Pakete ebenfalls neu geschrieben, so dass es aussieht, als wenn Sie von der Firewall selbst stammen und an einen lokalen Port gehen. Dieses 'Resultat' kann nur verwendet werden, wenn Sie Eingangs-Regeln definieren."
+
+msgid "redir_target_field"
+msgstr "Zu lokalem Port umleiten"
+
+msgid "redir_target_field_help"
+msgstr "Falls eine Umleitung definiert wurde, geben Sie den lolaken Port für Pakete ein, auf welche diese Regel zutrifft. Zu diesem Port werden die Pakete dann umgeleitet. Ansonsten lassen Sie dieses Feld leer."
+
+msgid "EditFirewallRule"
+msgstr "Firewall-Regel editieren"
+
+msgid "FirewallRulesforward"
+msgstr "Weiterleitungs-Regeln"
+
+msgid "FirewallRulesoutput"
+msgstr "Ausgangs-Regeln"
+
+msgid "Select_chain"
+msgstr "Zu editierende Regel wählen..."
+
+msgid "defaultPolicy"
+msgstr "Standard-Resultat"
+
+msgid "defaultPolicy_help"
+msgstr "Das Standard-Resultat für diese Regelkette bestimmt, was mit Paketen passiert, welche von keiner der vorhandenen Regeln betroffen sind."
+
+msgid "criteria_ip"
+msgstr "IP=[[VAR.low]]-[[VAR.high]];"
+
+msgid "criteria_ports"
+msgstr "Port=[[VAR.ports]];"
+
+msgid "criteria_proto"
+msgstr "Protokoll=[[VAR.proto]];"
+
+msgid "criteria_interface"
+msgstr "Interface=[[VAR.iface]];"
+
+msgid "policy_ACCEPT"
+msgstr "Annehmen"
+
+msgid "policy_DENY"
+msgstr "Blockieren"
+
+msgid "policy_REJECT"
+msgstr "Zurückweisen"
+
+msgid "policy_MASQ"
+msgstr "Maskieren"
+
+msgid "policy_REDIRECT"
+msgstr "Zu Port umleiten"
+
+msgid "policy_RETURN"
+msgstr "Zurück"
+
+msgid "policy_JUMP"
+msgstr "Jump to Chain [[VAR.jump]]"
+
+msgid "ACCEPT"
+msgstr "Annehmen"
+
+msgid "DENY"
+msgstr "Blockieren"
+
+msgid "REJECT"
+msgstr "Zurückweisen"
+
+msgid "MASQ"
+msgstr "Maskieren"
+
+msgid "REDIRECT"
+msgstr "Zu Port umleiten"
+
+msgid "RETURN"
+msgstr "Zurück"
+
+msgid "JUMP"
+msgstr "Zu Kette springen"
+
+msgid "no_rules_defined"
+msgstr "Diese Regel-Kette beinhaltet bislang keine Regeln. "
+
+msgid "FirewallEnable1"
+msgstr "Firewall aktivieren"
+
+msgid "FirewallEnable1_help"
+msgstr "Bitte warten Sie, während die Firewall-Einstellungen übernommen werden."
+
+msgid "explain-firewall-enable1-page"
+msgstr "Bitte warten Sie, während die Firewall-Einstellungen übernommen werden."
+
+msgid "explain-firewall-enable1-page_help"
+msgstr "Klicken Sie auf 'Einstellungen anwenden', um die Einstellungen zu übernehmen, oder auf 'Abbrechen', um zurück zur Konfigurations-Seite zu gelangen."
+
+msgid "proceed-button"
+msgstr "Einstellungen anwenden"
+
+msgid "proceed-button_help"
+msgstr "Wenn Sie auf diese Schaltfläche klicken, werden die Firewall-Einstellungen übernommen."
+
+msgid "FirewallEnable2"
+msgstr "Konfiguration der Firewall abgeschlossen."
+
+msgid "FirewallEnable2_help"
+msgstr "Dies ist der zweite von zwei Schritten, die nötig sind, um die Firewall zu aktivieren."
+
+msgid "firewall-congrat-page"
+msgstr "Gratulation! Wenn Sie das hier lesen können, wurden Ihre Firewall-Einstellungen übernommen. Klicken Sie bitte auf 'Einstellung bestätigen' um die Einstellungen permanent zu behalten."
+
+msgid "firewall-congrat-page_help"
+msgstr "Gratulation!"
+
+msgid "confirm-firewall-button"
+msgstr "Einstellung bestätigen"
+
+msgid "confirm-firewall-button_help"
+msgstr "Klicken Sie hier, um die Einstellungen permanent zu behalten."
+
+msgid "reorder-button"
+msgstr "Neu sortieren"
+
+msgid "reorder-button_help"
+msgstr "Klicken Sie hier, um die Firewall-Regeln neu zu sortieren."
+
+msgid "Order_help"
+msgstr "Editieren Sie die numerischen Felder, um die Reihenfolge der Firewall-Regeln zu beeinflussen. Klicken Sie danach auf den 'Neu sortieren' Knopf, um die Einstellung anzuwenden."
+
+msgid "firewall-is-dirty-message"
+msgstr "Ihre Firewall-Konfiguration beinhaltet nicht gespeicherte Änderungen."
+
+msgid "firewall-is-dirty-message_help"
+msgstr "Diese Nachricht erinnert Sie daran, dass Ihre Firewall-Konfiguration Änderungen beinhaltet, die noch nicht gespeichert wurden. Klicken Sie auf 'Änderungen anwenden' um diese jetzt zu speichern."
+
+msgid "apply-changes-popup"
+msgstr ""
+
+msgid "confirm-enabling-popup"
+msgstr ""
+
+msgid "FirewallConfiguration"
+msgstr "Firewall-Einstellungen"
+
+msgid "FirewallConfiguration_help"
+msgstr "Mittels der Firewall können Sie Regeln aufstellen, um den Netzwerk-Verkehr zu beeinflussen, der durch Ihren Server fließt, oder an diesen gerichtet ist. Dies ist eine Sicherheitsfunktion und vor deren Verwendung sollten Sie ausreichend mit dem Thema Firewalls vertraut sein."
+
+msgid "ipip-rule-cannot-have-ports"
+msgstr "Das IPIP-Protokoll unerstützt keine Port Nummern. Als Resultat können Sie "
+
+msgid "encap-rule-cannot-have-ports"
+msgstr "Das Encap-Protokoll unerstützt keine Port Nummern. Als Resultat können Sie "
+
+msgid "Any"
+msgstr "Jede"
+
+msgid "capgroup_adminFirewall_help"
+msgstr "Diese administrativen Rechte erlauben es Benutzern, alle Aspekte der Firewall zu konfigurieren."
+
+msgid "capgroup_adminFirewall"
+msgstr "Firewall-Rechte"
+
+msgid "eth2"
+msgstr "Externes Netzwerk-Interface"
+
+msgid "all-rule-cannot-have-ports"
+msgstr "Diese Netzwerk-Protokoll unterstützt keine Port-Nummern."
+
+msgid "gre-rule-cannot-have-ports"
+msgstr "Das GRE-Protokoll unerstützt keine Port Nummern. Als Resultat können Sie "
+
+msgid "esp-rule-cannot-have-ports"
+msgstr "Das ESP-Protokoll unerstützt keine Port Nummern. Als Resultat können Sie "
+
+msgid "ah-rule-cannot-have-ports"
+msgstr "Das AH-Protokoll unerstützt keine Port Nummern. Als Resultat können Sie "
+
+msgid "cap_serverSystemFirewall"
+msgstr "Einfache Firewall"
+
