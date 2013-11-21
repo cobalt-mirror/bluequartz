@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=network
 
-VERSION=1.1.0
-RELEASE=82BQ11
+VERSION=1.2.0
+RELEASE=82BQ20
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,8 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
+
+REQUIRES=base-bluequartz-glue
 
 #########
 # some useful defines

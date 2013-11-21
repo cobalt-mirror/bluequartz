@@ -1044,3 +1044,15 @@ msgstr "Sorry, the value entered for netmask, [[VAR.netmask]], is not a usable n
 
 msgid "validNetmaskHelp"
 msgstr "Usable netmasks must consist of a series of four numbers between 0 and 255 separated by periods.  If you wish to specify a sub-network, the leading numbers must be 255 and the sub-network number must be 128, 192, 224, 240, 248, 252, or 254.  For example, 255.255.0.0 and 255.128.0.0 are usable netmasks."
+
+msgid "cap_serverIpPooling"
+msgstr "IP Address Allocation Settings"
+
+msgid "cap_serverNetwork"
+msgstr "TCP/IP Settings" 
+
+msgid "admin"
+msgstr "Server Administrators"
+
+msgid "admin_help"
+msgstr "This is the server administrators of the range."

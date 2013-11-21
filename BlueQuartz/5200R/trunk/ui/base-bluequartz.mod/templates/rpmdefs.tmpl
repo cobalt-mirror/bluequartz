@@ -57,7 +57,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %dir /etc/locks
 %config /etc/rc.d/init.d/*
-%config /etc/cron.d/*
+%config(noreplace) /etc/sysconfig/bluequartz
 %attr(0755,root,root) /usr/sausalito/sbin/*
 %attr(0755,root,root) /usr/sausalito/scripts/*
 %dir /usr/sausalito/runonce
@@ -67,6 +67,8 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/triggers/*
 /etc/build
 /var/www/html/*
+%dir /usr/share/doc/bluequartz-release-5200R
+/usr/share/doc/bluequartz-release-5200R/*
 <end glue>
 
 <begin ui>
@@ -103,11 +105,30 @@ if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
   /usr/sausalito/sbin/updateSystem.pl
 fi
 
+# update saslauthd
+if [ -f /etc/sysconfig/saslauthd ]; then
+  /usr/bin/perl -pi -e 's|^MECH=shadow|MECH=pam|g'  /etc/sysconfig/saslauthd
+else
+  echo 'MECH=pam' > /etc/sysconfig/saslauthd
+fi
+
 # sync email services
-/usr/sausalito/constructor/base/email/syncEmailService.pl
+if [ -f /usr/sausalito/constructor/base/email/syncEmailService.pl ]; then
+  /usr/sausalito/constructor/base/email/syncEmailService.pl
+fi
 
 # Register the bluequartz service
 /sbin/chkconfig --add bluequartz
+
+# install pgp key
+/bin/rpm -q gpg-pubkey-dbeec7cc-4aa39876 > /dev/null 2>&1
+if [ $? = 1 ]; then
+  /bin/rpm --import /usr/share/doc/bluequartz-release-5200R/RPM-GPG-KEY-BlueQuartz-5200R
+fi
+
+if [ -f /etc/sysconfig/bluequartz ]; then 
+  . /etc/sysconfig/bluequartz 
+fi 
 
 <end glue>
 <begin ui>
@@ -155,37 +176,157 @@ fi
 %triggerin glue -- mod_ssl
 /usr/sausalito/scripts/initSSL.sh
 
-%triggerin glue -- sendmail
-if [ ! -f /etc/aliases ]; then
-  /etc/init.d/sendmail condrestart
-fi
-if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
-  /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
-    /usr/share/sendmail-cf/hack/popauth.m4
+%triggerin glue -- glibc
+if [ -f /usr/sausalito/constructor/base/time/syncTimeZone.pl ]; then
+  /usr/sausalito/constructor/base/time/syncTimeZone.pl
 fi
 
-# for distributions
 %triggerin glue -- iptables
 /bin/cp /usr/sausalito/triggers/iptables/iptables.init /etc/init.d/iptables
 %triggerin glue -- initscripts
 /bin/cp /usr/sausalito/triggers/initscripts/ifup /sbin/ifup
 
 %triggerin glue -- dovecot
-#/bin/cat /etc/dovecot.conf | \
-#/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
-#-e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
-#> /etc/dovecot.conf.new
-#/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
+/bin/cat /etc/dovecot.conf | \
+/bin/sed -e 's|#mail_location =|mail_location = mbox:~/mail/:INBOX=/var/spool/mail/%u|' \
+-e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
+> /etc/dovecot.conf.new
+/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
+
+%triggerin glue -- majordomo
+/bin/cp /usr/sausalito/triggers/majordomo/majordomo.cf.template /usr/lib/majordomo
 <end $TRIGGERIN>
 
 <begin $TRIGGERUN>
-%triggerpostun glue -- sendmail
-if [ ! -f /etc/aliases ]; then
-  /etc/init.d/sendmail condrestart
-fi
+
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+* Tue May 03 2011 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20110503BQ39
+- release 20110503.
+- add new build number.
+
+* Wed Dec 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20101208BQ38
+- release 2010120801.
+- add relay_domains configuration to /etc/postfix/main.cf to resolve mail route feature.
+
+* Sun Sep 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20100919BQ37
+- release 2010091901.
+- add mysql module.
+
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20100808BQ36
+- add -4 option for named to work only for IPv4.
+- release 20100808.
+
+* Thu Jul 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20100722BQ35
+- general release 2010072201.
+
+* Mon Jun 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100621BQ34
+- release 2010062101.
+
+* Tue Jun 02 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100602BQ33
+- remove the post script to execute initProcmail.sh.
+
+* Tue Jun 02 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100602BQ32
+- change mail_location to /var/spool/mail/%u.
+
+* Mon May 31 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100531BQ31
+- change mail spool to /var/spool/mail.
+
+* Sat May 29 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100529BQ30
+- resolved the issue that the administrator can su to root user without root access permission.
+
+* Mon Apr 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100419BQ29
+- modified the initial script for postfix.
+
+* Sun Mar 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100321BQ28
+- support Virtual environment and remove php configuration for all sites.
+
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100310BQ27
+- new Capabilities for admin.
+
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100222BQ26
+- add new platform for test as Fedora 12.
+
+* Sun Jan 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100117BQ25
+- modified initPostfix.pl to use always smtpd_recipient_restrictions.
+
+* Fri Jan 01 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100101BQ24
+- mofidy init script for postfix to add configuration for sender canonical.
+
+* Wed Dec 23 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091223BQ23
+- add init script to copy sequencer for majordomo.
+
+* Wed Dec 23 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091223BQ22
+- add majordomo.cf.template for majordomo trigger.
+
+* Tue Dec 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091215BQ21
+- remove initialize .db with postmap from runonce script.
+
+* Sun Dec 13 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091213BQ20
+- fix the issue that the virtual alias doesn't work.
+
+* Thu Dec 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091210BQ19
+- fix the issue that webalizer doesn't work for virtual site.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091206BQ18
+- modify initPostfix.sh to configure /usr/lib/sasl2/smtpd.conf.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091206BQ17
+- modify init scripts for postfix and aliases to make db files.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091206BQ16
+- modify init scripts for postfix not to display warning messages.
+
+* Sun Nov 29 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091129BQ15
+- modify initPostfix.pl to add space for broken_sasl_auth_clients.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ14
+- modify initPostfix.pl to configure home_mailbox and mailbox_size_limit.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ13
+- add trigger for dovecot to configure dovecot.conf.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ12
+- modify logrotate configuration for syslog to use postfix.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ11
+- modify initPostfix.pl and initPostfix.sh to support transport_maps.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ10
+- modify inintPostfix.pl to support fallback_relay.
+
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091018BQ9
+- modify initPostfix.pl to use /etc/sysconfig/network for setting myhostname.
+
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091018BQ8
+- check the script that is installed before execting for trigger.
+
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091018BQ7
+- remove trigger for sendmail.
+- remove init script for sendmail.
+- modify initAliases.sh for postfix.
+
+* Sat Oct 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091017BQ6
+- add vixie-cron to requries.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091012BQ5
+- use hash type for access.db for init script.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091012BQ4
+- add require to postfix
+- make access.db in init script, if it isn't exit.
+
+* Tue Oct 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091006BQ3
+- add init script for postfix.
+
+* Sun Oct 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091004BQ2
+- remove db_checkpoint.cron.
+- add init script for postfix.
+
+* Sun Sep 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20090906BQ1
+- merge from 5100R between r970 with r1218.
+
 * Tue Jan 01 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20080101BQ1
 - build for 5200R on CentOS5.
 

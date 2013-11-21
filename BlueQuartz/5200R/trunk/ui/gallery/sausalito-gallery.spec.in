@@ -41,6 +41,19 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+* Tue Feb 09 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ9
+- fixed the issut that style is broken with Merlot style.
+
+* Thu Sep 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ7
+- use admserv for user.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ6
+- remove de locale message.
+
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ5
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
+
 * Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ4
 - replace corrupted images on libImages.
 

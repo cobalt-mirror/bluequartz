@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-email-am
 Name: base-email-am
-Version: 1.1.0
-Release: 0BQ1%{?dist}
+Version: 1.4.0
+Release: 0BQ2%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -25,6 +25,15 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-email-am.  
 
 %changelog
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ2
+- remove .svn directory from rpm package.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ1
+- support postfix instead of sendmail.
+
+* Sun Sep 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ1
+- merge from 5100R between r970 with r1218.
+
 * Sat Jun 10 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-0BQ1
 - change scripts for dovecot.
 

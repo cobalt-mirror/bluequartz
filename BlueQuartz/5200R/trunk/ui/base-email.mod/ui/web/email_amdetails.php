@@ -1,9 +1,10 @@
 <?php
 // Author: Tim Hockin
 // Copyright 2000, Cobalt Networks.  All rights reserved.
+// $Id: email_amdetails.php 1233 2009-09-06 09:58:50Z shibuya $
 
-include_once("ServerScriptHelper.php");
-include_once("base/am/am_detail.inc");
+include("ServerScriptHelper.php");
+include("base/am/am_detail.inc");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cce = $serverScriptHelper->getCceClient();
@@ -17,6 +18,11 @@ print("<br>");
 am_detail_block($factory, $cce, "POP3", "[[base-email.amPOP3Details]]");
 print("<br>");
 am_detail_block($factory, $cce, "IMAP", "[[base-email.amIMAPDetails]]");
+print("<br>");
+am_detail_block($factory, $cce, "SMTPAuth", "[[base-email.amSMTPAuthDetails]]");
+print("<br>");
+am_detail_block($factory, $cce, "popRelay", "[[base-email.ampopRelayDetails]]");
+print("<br>");
 am_back($factory);
 
 print($page->toFooterHtml());

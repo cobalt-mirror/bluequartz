@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: ScrollList.php 995 2007-05-05 07:44:27Z shibuya $
+// $Id: ScrollList.php 1271 2009-09-16 09:21:24Z shibuya $
 
 // description:
 // The class represents a list of elements. Elements are being put into pages.
@@ -766,7 +766,7 @@ class ScrollList extends HtmlComponent {
     $label = $labelObj->toHtml($style->getSubstyle("titleLabel"));
     $result .= "
 <STYLE TYPE=\"text/css\">
-.formField-$widgetid \{$formFieldStyleStr}
+.formField-$widgetid { $formFieldStyleStr }
 </STYLE>
 $shadowFrameStart
 <TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\" BGCOLOR=\"$borderColor\" WIDTH=\"$width\"><TR><TD>

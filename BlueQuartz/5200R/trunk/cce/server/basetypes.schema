@@ -1,5 +1,5 @@
 <!--
-	$Id: basetypes.schema 259 2004-01-03 06:28:40Z shibuya $
+	$Id: basetypes.schema 1196 2008-11-25 08:23:54Z shibuya $
 	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 -->
 <SCHEMA NAME =		"Base Datatypes"
@@ -69,7 +69,7 @@
 <typedef
 	name="password"
 	type="re"
-	data="^[^\001-\037\177]{3,16}$"
+	data="^[^\001-\037\177]{6,24}$"
 />
 </SCHEMA>
 

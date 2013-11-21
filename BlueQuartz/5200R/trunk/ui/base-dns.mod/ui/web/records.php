@@ -1,13 +1,14 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: records.php 829 2006-07-19 16:26:34Z shibuya $
+ * $Id: records.php 1375 2010-02-02 16:05:22Z shibuya $
  */
 include_once("ServerScriptHelper.php");
 
 $iam = '/base/dns/records.php';
 $addmod = '/base/dns/dns_add.php';
 $soamod = '/base/dns/dns_soa.php';
+$zonemod = '/base/dns/dns_zone.php';
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
@@ -148,6 +149,7 @@ if($domauth != '') {
 	$rec_oids = $cceClient->find("DnsRecord", array('network' => $netauth));
 	$auth_link = '&netauth=' . urlencode($netauth);
 	$block->addButton($factory->getButton("$soamod?_LOAD=" . $auth_oids[$netauth] . $auth_link,"edit_soa"));
+	$block->addButton($factory->getButton("$zonemod?_LOAD=" . $auth_oids[$netauth] . $auth_link,"edit_zone"));
 	$many_oids = join('x', $rec_oids);
 	$block->addButton($factory->getButton("javascript: confirmDelAll(strConfirmDelAll, '_DELMANY=$many_oids');", 'del_records'));
 

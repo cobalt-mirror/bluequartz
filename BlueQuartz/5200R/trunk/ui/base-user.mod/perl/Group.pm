@@ -628,12 +628,9 @@ sub _internal_groupadd
 
     for my $group (@$internal_list)
     {
-        if (not exists($group->{gid}))
-        {
-            $group->{gid} = get_free_gid();
-        }
+        my $gid_opt = exists($user->{gid}) ? "-g $user->{gid}" : "";
 
-        my $ret = system("/usr/sbin/groupadd $group->{name} -g $group->{gid}");
+        my $ret = system("/usr/sbin/groupadd $group->{name} $gid_opt");
         if ($ret != 0)
         {
             $DEBUG && warn('pwdb_add failed');

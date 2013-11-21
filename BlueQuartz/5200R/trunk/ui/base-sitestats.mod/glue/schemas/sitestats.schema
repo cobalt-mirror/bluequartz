@@ -12,7 +12,7 @@
 	<!-- Vsite defaults -->
 	<property name="enabled" type="boolean" default="1"/>
 	<property name="consolidate" type="boolean" default="0"/>
-	<property name="purge" type="int" default="1801"/>
+	<property name="purge" type="int" default="93"/>
 
 	<!-- epoch trigger, just like System.Power.reboot -->
 	<!-- FIXME: we probably want to restrict this to site admins and better -->
@@ -56,7 +56,7 @@
 	 writeacl="ruleCapable(siteAdmin)"/>
 
 	<!-- Stats purge age, in days.  0 == never -->
-	<property name="purge" type="int" default="1801"
+	<property name="purge" type="int" default="93"
 	 writeacl="ruleCapable(siteAdmin)"/>
 
 	<!-- Logfile owner, username -->
@@ -72,12 +72,16 @@
 	<property name="enabled" type="boolean" default="1"
 	 writeacl="ruleCapable(siteAdmin)"/>
 
+	<!-- generate per-site stats -->
+	<property name="rotate" type="int" default="4"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
 	<!-- consolidate daily stats to monthly-only reports -->
 	<property name="consolidate" type="boolean" default="0"
 	 writeacl="ruleCapable(siteAdmin)"/>
 
 	<!-- Stats purge age, in days.  0 == never -->
-	<property name="purge" type="int" default="1801"
+	<property name="purge" type="int" default="93"
 	 writeacl="ruleCapable(siteAdmin)"/>
 
 	<!-- Logfile owner, username -->

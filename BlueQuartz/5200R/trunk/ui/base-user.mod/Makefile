@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=user
 
 VERSION=1.2.0
-RELEASE=0BQ2
+RELEASE=0BQ13
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES= base-email-capstone >= 1.3.0-0BQ16
+REQUIRES= base-email-capstone >= 1.3.0-0BQ17
 
 #########
 # some useful defines

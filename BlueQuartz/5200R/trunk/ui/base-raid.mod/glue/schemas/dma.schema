@@ -1,6 +1,6 @@
 <class name="ActiveMonitor"	namespace="DMA"		version="1.0">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"	

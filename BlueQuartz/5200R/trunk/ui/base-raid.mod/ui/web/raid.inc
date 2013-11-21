@@ -73,7 +73,7 @@ function raid_table($factory, $cce, $helper)
 		$refresh = 45;
 		break;
     	default:
-	  	$stateMessage = "";
+	  	$stateMessage = " ";
 		$stateBall = "none";
 		$refresh = 60;
 		break;

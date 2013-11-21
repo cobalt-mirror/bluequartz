@@ -1,3 +1,9 @@
+ifdef CCETOPDIR
+include $(CCETOPDIR)/devel/defines.mk
+else
+include /usr/sausalito/devel/defines.mk
+endif
+
 all:
 
 clean:

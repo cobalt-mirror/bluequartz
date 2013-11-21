@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=swupdate
 
-VERSION=1.1.0
-RELEASE=120BQ15
+VERSION=1.2.0
+RELEASE=120BQ19
 
 # add a buildarch if desired
 BUILDARCH=noarch

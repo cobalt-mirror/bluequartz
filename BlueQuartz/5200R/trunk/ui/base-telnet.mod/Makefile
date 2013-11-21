@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=telnet
 
-VERSION=1.1.0
-RELEASE=57BQ9
+VERSION=1.2.0
+RELEASE=57BQ11
 
 # add a buildarch if desired
 BUILDARCH=noarch

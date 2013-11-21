@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernetHandler.php 533 2005-08-12 09:40:56Z shibuya $
+// $Id: ethernetHandler.php 1418 2010-03-10 14:38:14Z shibuya $
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
@@ -8,8 +8,8 @@ include_once('base/network/network_common.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverNetwork should be here
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }

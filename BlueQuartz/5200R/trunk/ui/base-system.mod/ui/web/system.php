@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: system.php 1020 2007-06-25 15:30:09Z shibuya $
+// $Id: system.php 1428 2010-03-10 14:50:55Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverInformation should be here
+if (!$serverScriptHelper->getAllowed('serverInformation')) {
   header("location: /error/forbidden.html");
   return;
 }

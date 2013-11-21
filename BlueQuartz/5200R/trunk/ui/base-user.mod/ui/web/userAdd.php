@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAdd.php 857 2006-08-14 11:15:34Z shibuya $
+// $Id: userAdd.php 1499 2010-07-22 08:07:44Z shibuya $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -69,8 +69,39 @@ if($prop=="yes"){
 	);
 }
 
+// UserName Prefix add
+if($vsiteObj['userPrefixEnabled'])
+{
+    $userPrefixField = $vsiteObj['userPrefixField'];
+    
+    if(!$userPrefixField)
+    {
+       $octets = explode(".", $vsiteObj['fqdn']);
+       $userPrefixField = "";
+       foreach($octets as $octet)
+       {
+           $userPrefixField .= substr($octet, 0, 1);
+       }
+       $userPrefixField .= time();
+       $userPrefixField .= "_";
+       
+    }
+    
+    $userPrefix = $factory->getUserName("userPrefixField",  $userPrefixField, "r");
+    $userSuffix = $factory->getTextField("userSuffixField", $userSuffixField);
+    
+    $userNameField =& $factory->getCompositeFormField(array($userPrefix, $userSuffix), '');
+}
+else
+{
+    $userPrefix = $factory->getUserName("userPrefixField",  "", "r");
+    $userSuffix = $factory->getTextField("userSuffixField", $userSuffixField);
+    
+    $userNameField =& $factory->getCompositeFormField(array($userPrefix, $userSuffix), '');
+}
+
 $block->addFormField(
-    $factory->getUserName("userNameField", $userNameField),
+    $userNameField,
     $factory->getLabel("userNameField")
 );
 

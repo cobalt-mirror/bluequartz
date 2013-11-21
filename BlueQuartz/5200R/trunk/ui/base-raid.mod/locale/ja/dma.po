@@ -1,20 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "DMAnameTag"
-msgstr "DMA (Direct Memory Access) �h���C�u�̏��"
+msgstr "DMA (Direct Memory Access) ドライブの状態"
 
 msgid "dma_fixed_drives"
-msgstr "[[VAR.drives]] �h���C�u�� DMA �͖����ɂ���Ă��܂������A�A�N�e�B�u���j�^�͂����̃h���C�u��L���ɂ��܂����B�������� DMA ��Q����������ꍇ�ɂ́A[[base-sauce-basic.techSupportURL]] �����Q�Ƃ̂����A���̃h���C�u�̃o�b�N�A�b�v�ƌ��������l�����������B"
+msgstr "[[VAR.drives]] ドライブの DMA は無効にされていましたが、アクティブモニタはこれらのドライブを有効にしました。引き続き DMA 障害が発生する場合には、[[base-sauce-basic.techSupportURL]] をご参照のうえ、問題のドライブのバックアップと交換をご考慮ください。"
 
 msgid "dma_off_drives"
-msgstr "�ȉ��̃h���C�u�� DMA �͖����ɂ���Ă��܂�: [[VAR.drives]]�B�A�N�e�B�u���j�^�͂����̃h���C�u��L���ɂł��܂���ł����B[[base-sauce-basic.techSupportURL]] �����Q�Ƃ̂����A���̃h���C�u�̃o�b�N�A�b�v�ƌ��������l�����������B" 
+msgstr "以下のドライブの DMA は無効にされています: [[VAR.drives]]。アクティブモニタはこれらのドライブを有効にできませんでした。[[base-sauce-basic.techSupportURL]] をご参照のうえ、問題のドライブのバックアップと交換をご考慮ください。"
 
 msgid "dma_ok"
-msgstr "DMA �͐���ɓ��삵�Ă��܂��B"
+msgstr "DMA は正常に動作しています。"
 
 msgid "dma_off"
-msgstr "���̃h���C�u�� DMA �͗L���ɂ���Ă��܂���B�h���C�u�̃o�b�N�A�b�v�ƌ����ɂ��ẮA[[base-sauce-basic.techSupportURL]] �����Q�Ƃ��������B"
+msgstr "このドライブの DMA は有効にされていません。ドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] をご参照ください。"
 
 msgid "disk_dma_fixed"
-msgstr "���̃h���C�u�� DMA �͖����ɂ���Ă��܂������A�A�N�e�B�u���j�^�� DMA ��L���ɂ��܂����B�������� DMA ��Q����������ꍇ�ɂ́A[[base-sauce-basic.techSupportURL]] �����Q�Ƃ̂����A���̃h���C�u�̃o�b�N�A�b�v�ƌ��������l�����������B"
+msgstr "このドライブの DMA は無効にされていましたが、アクティブモニタが DMA を有効にしました。引き続き DMA 障害が発生する場合には、[[base-sauce-basic.techSupportURL]] をご参照のうえ、問題のドライブのバックアップと交換をご考慮ください。"
 
 msgid "disk_dma_off"
-msgstr "���̃h���C�u�� DMA �͗L���ɂ���Ă��炸�A�A�N�e�B�u���j�^�� DMA ��L���ɂł��܂���ł����B[[base-sauce-basic.techSupportURL]] �����Q�Ƃ̂����A���̃h���C�u�̃o�b�N�A�b�v�ƌ��������l�����������B"
+msgstr "このドライブの DMA は有効にされておらず、アクティブモニタも DMA を有効にできませんでした。[[base-sauce-basic.techSupportURL]] をご参照のうえ、問題のドライブのバックアップと交換をご考慮ください。"

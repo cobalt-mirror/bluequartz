@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=admserv
 
-VERSION=1.1.0
-RELEASE=0BQ2
+VERSION=1.2.0
+RELEASE=0BQ8
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -21,6 +21,6 @@ BUILDLOCALE=no
 BUILDSRC=no
 
 REQUIRES=httpd
-REQUIRES_GLUE=openssl httpd
+REQUIRES_GLUE=openssl httpd mod_ssl
 
 include /usr/sausalito/devel/module.mk

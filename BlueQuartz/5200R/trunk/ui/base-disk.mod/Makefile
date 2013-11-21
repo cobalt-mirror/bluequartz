@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=disk
 
-VERSION=2.0.0
-RELEASE=88BQ11
+VERSION=2.1.0
+RELEASE=88BQ15
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -1,11 +1,11 @@
 <!-- This is the AM Namespace for monitoring email -->
 <class name="ActiveMonitor" 	namespace="Email" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="aggregate"/>
     <property name="typeData"		type="scalar"	
-	default="SMTP POP3 IMAP"/>
+	default="SMTP POP3 IMAP SMTPAuth popRelay"/>
 
     <property name="greenMsg"		type="scalar"	
 	default="[[base-email.amEmailGreen]]"/>
@@ -29,7 +29,7 @@
 <!-- This is the AM Namespace for monitoring POP3 -->
 <class name="ActiveMonitor" 	namespace="POP3" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -54,7 +54,7 @@
 <!-- This is the AM Namespace for monitoring SMTP -->
 <class name="ActiveMonitor" 	namespace="SMTP" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -79,7 +79,7 @@
 <!-- This is the AM Namespace for monitoring IMAP -->
 <class name="ActiveMonitor" 	namespace="IMAP" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -97,6 +97,56 @@
     <property name="currentMessage" 	type="scalar" 	default=""/>
     <property name="nameTag"      	type="scalar"  	
 	default="[[base-email.amIMAPNameTag]]"/>
+
+    <property name="hideUI"		type="boolean"  default="1"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring SMTP-AUTH -->
+<class name="ActiveMonitor" 	namespace="SMTPAuth" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"
+	default="/usr/sausalito/swatch/bin/am_sasl.exp"/>
+
+    <property name="aggMember"		type="boolean"	default="1"/>
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-email.amSMTPAuthStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-email.amSMTPAuthNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="G"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-email.amSMTPAuthNameTag]]"/>
+
+    <property name="hideUI"		type="boolean"  default="1"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring POP before SMTP -->
+<class name="ActiveMonitor" 	namespace="popRelay" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="0"/>
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
+	type="boolean" 	default="0"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"
+	default="/usr/sausalito/swatch/bin/am_pb4s.exp"/>
+
+    <property name="aggMember"		type="boolean"	default="1"/>
+    <property name="greenMsg"		type="scalar"	
+	default="[[base-email.ampopRelayStatusOK]]"/>
+    <property name="redMsg"		type="scalar"	
+	default="[[base-email.ampopRelayNotRunning]]"/>
+
+    <property name="currentState" 	type="amstate" 	default="G"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-email.ampopRelayNameTag]]"/>
 
     <property name="hideUI"		type="boolean"  default="1"/>
 </class>

@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=memory
 
 VERSION=1.1.0
-RELEASE=25BQ4
+RELEASE=25BQ5
 
 # add a buildarch if desired
 BUILDARCH=noarch

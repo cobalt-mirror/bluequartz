@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: 50_addAdmin.pl 689 2006-02-08 02:22:23Z shibuya $
+# $Id: 50_addAdmin.pl 1227 2009-09-04 16:51:25Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # Author: Kevin K.M. Chiu
@@ -70,7 +70,7 @@ else
                 fullName => $i18n->get('administrator', {}, 'base-user'),
                 localePreference => $locale,
                 name => 'admin',
-                password => 'admin',
+                password => 'bluequartz',
                 stylePreference => 'trueBlue',
                 systemAdministrator => 1,
                 volume => $Base::HomeDir::HOME_ROOT

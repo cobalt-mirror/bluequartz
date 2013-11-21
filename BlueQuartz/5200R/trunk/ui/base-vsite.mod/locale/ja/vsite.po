@@ -1,648 +1,747 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "basicSettingsTab_help"
-msgstr "���ˤ˻Ȥ���������Ǥ��ޤ���"
+msgstr "頻繁に使う設定を指定できます。"
 
 msgid "ipAddr"
-msgstr "IP ���ɥ쥹"
+msgstr "IP アドレス"
 
 msgid "ipAddr_help"
-msgstr "���Υ����Ȥ� IP ���ɥ쥹�Ǥ���"
+msgstr "このサイトの IP アドレスです。"
 
 msgid "domain"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "domain_help"
-msgstr "���Υ����ȤΥɥᥤ��͡���Ǥ����ɥᥤ��͡���ϡ������ɥᥤ��̾ (�ۥ���̾�ܥɥᥤ��͡���) �θ�Ⱦ��ʬ�Ǥ��� (example.bluequartz.org��bluequartz.org �ʤ�)"
+msgstr "このサイトのドメインネームです。ドメインネームは、完全ドメイン名 (ホスト名＋ドメインネーム) の後半部分です。 (example.bluequartz.org、bluequartz.org など)"
 
 msgid "fqdn"
-msgstr "������̾"
+msgstr "サイト名"
 
 msgid "fqdn_help"
-msgstr "���Υ����Ȥ��դ˼��̤���̾���Ǥ���������̾�ϡ��ִ����ɥᥤ��̾ (�ۥ���̾�ܥɥᥤ��͡���)�פȤ�ƤФ�ޤ���������̾�ǥ����Ȥ�¹Ԥ���ȡ��ޤ��ɥᥤ��͡���ξ���ޤ��Ϲ߽硢���˥ۥ���̾�ξ���ޤ��Ϲ߽�ǥ����Ȥ���ޤ���"
+msgstr "このサイトを一意に識別する名前です。サイト名は、「完全ドメイン名 (ホスト名＋ドメインネーム)」とも呼ばれます。サイト名でソートを実行すると、まずドメインネームの昇順または降順、次にホスト名の昇順または降順でソートされます。"
 
 msgid "enterFqdn"
-msgstr "�ۥ���̾�ȥɥᥤ��͡���"
+msgstr "ホスト名とドメインネーム"
 
 msgid "enterFqdn_help"
-msgstr "���Υե�����ɤˤϤ��Υ����ȤΥۥ���̾�򡢱��Υե�����ɤˤϥɥᥤ��͡���򤽤줾�����Ϥ��Ƥ��������� (�ۥ���̾����: www��mail��eigyo-13�� �ɥᥤ��͡������: cobaltqube.org��bluequartz.org �ʤ�)"
+msgstr "左のフィールドにはこのサイトのホスト名を、右のフィールドにはドメインネームをそれぞれ入力してください。 (ホスト名の例: www、mail、eigyo-13； ドメインネームの例: cobaltqube.org、bluequartz.org など)"
 
 msgid "hostName"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "hostName_help"
-msgstr "���Υ����ȤΥۥ���̾�Ǥ����ۥ���̾�ϡ������ɥᥤ��̾ (�ۥ���̾�ܥɥᥤ��͡���) ����Ⱦ��ʬ�Ǥ��� (������: mail��www)"
+msgstr "このサイトのホスト名です。ホスト名は、完全ドメイン名 (ホスト名＋ドメインネーム) の前半部分です。 (指定例: mail、www)"
 
 msgid "generalSettings"
-msgstr "��������"
+msgstr "一般設定"
 
 msgid "generalSettings_help"
-msgstr "���Υ����Ȥ�������������ꡢ�����Υ����ӥ�������Ǥ��ޤ���"
+msgstr "このサイトの設定を修正したり、一部のサービスを設定できます。"
 
 msgid "services"
-msgstr "�����ӥ�"
+msgstr "サービス"
 
 msgid "quota"
-msgstr "������ƥǥ��������� (MB)"
+msgstr "最大許容ディスク容量 (MB)"
 
 msgid "quota_help"
-msgstr "�����Ȥ��ե��������¸�˻Ȥ���ǥ��������̤κ����ͤ���ꤷ�Ƥ��������� (ñ�̡� �ᥬ�Х��� (MB))"
+msgstr "サイトがファイルの保存に使えるディスク容量の最大値を指定してください。 (単位： メガバイト (MB))"
 
 msgid "maxUsers"
-msgstr "�桼���κ����"
+msgstr "ユーザの最大数"
 
 msgid "maxUsers_help"
-msgstr "�����ȤǺ����Ǥ���桼����������Ȥκ��������ꤷ�Ƥ���������"
+msgstr "サイトで作成できるユーザアカウントの最大数を指定してください。"
 
 msgid "dns_auto"
-msgstr "��ư DNS ����"
+msgstr "自動 DNS 設定"
 
 msgid "dns_auto_help"
-msgstr "��ư DNS ����ϡ����Υ����Ȥ� DNS �쥳���ɤ�������ޤ��������ȤΥɥᥤ��͡����ͭ������˸¤ꡢ�����֥����Ф��Żҥ᡼�륵���Ф���̾�����ݡ��Ȥ���ޤ������Υ����ӥ��Ǥϡ��ȥåץ�٥�Υ쥸���ȥ�ǥɥᥤ��͡������Ͽ���ޤ���"
+msgstr "自動 DNS 設定は、このサイトの DNS レコードを管理します。サイトのドメインネームを共有する場合に限り、ウェブサーバと電子メールサーバの別名がサポートされます。このサービスでは、トップレベルのレジストラでドメインネームを登録しません。"
 
 msgid "webAliases"
-msgstr "�����֥����Ф���̾"
+msgstr "ウェブサーバの別名"
 
 msgid "webAliases_help"
-msgstr "���β��ۥ����Ȥ������֥ꥯ�����Ȥ�����դ���ۥ���̾�ޤ��ϥɥᥤ��͡������̾����ꤷ�Ƥ���������ʣ������̾����ꤹ����ϡ�����ޤޤ��ϥ��ڡ����Ƕ��ڤä����Ϥ��Ƥ���������������: www2.example.com, www.example.com��������̾�Τۤ�����̾�Υ��ɥ쥹�򻲾Ȥ���ˤ� DNS �����ꤹ��ɬ�פ�����ޤ���"
+msgstr "この仮想サイトがウェブリクエストを受け付けるホスト名またはドメインネームの別名を指定してください。複数の別名を指定する場合は、コンマまたはスペースで区切って入力してください。指定例: www2.example.com, www.example.com。サイト名のほか、別名のアドレスを参照するには DNS を設定する必要があります。"
 
 msgid "mailAliases"
-msgstr "�Żҥ᡼�륵���Ф���̾"
+msgstr "電子メールサーバの別名"
 
 msgid "mailAliases_help"
-msgstr "���β��ۥ����Ȥ��Żҥ᡼�� [SMTP port 25] ��³������դ���ۥ���̾�ޤ��ϥɥᥤ��͡������̾����ꤷ�Ƥ���������ʣ������̾����ꤹ����ϡ�����ޤޤ��ϥ��ڡ����Ƕ��ڤä����Ϥ��Ƥ���������������: mail2.example.com, mail.example.com��"
+msgstr "この仮想サイトが電子メール [SMTP port 25] 接続を受け付けるホスト名またはドメインネームの別名を指定してください。複数の別名を指定する場合は、コンマまたはスペースで区切って入力してください。指定例: mail2.example.com, mail.example.com。"
 
 msgid "otherServices"
-msgstr "�����ӥ��ȵ�ǽ"
+msgstr "サービスと機能"
 
 msgid "otherServices_help"
-msgstr "�Ƽ掠���ӥ���ͭ���ޤ���̵���ˤǤ��ޤ���"
+msgstr "各種サービスを有効または無効にできます。"
 
 # various menu items
 msgid "exitSitemgmt"
-msgstr "�����Ȥδ�����λ"
+msgstr "サイトの管理を終了"
 
 msgid "exitSitemgmtHelp"
-msgstr "���Υ�����ɥ����Ĥ��ޤ���"
+msgstr "このウィンドウが閉じます。"
 
 msgid "sitesettings"
-msgstr "�����Ȥ�����"
+msgstr "サイトの設定"
 
 msgid "sitesettingsDescription"
-msgstr "��������ȥ����ӥ�����������Ǥ��ޤ���"
+msgstr "一般設定とサービスの設定を修正できます。"
 
 # Site List Page
 msgid "windowTitle"
-msgstr "[[VAR.vsite]] ���ۥ����Ȥ� [[VAR.user]] �Ȥ��ƴ�������"
+msgstr "[[VAR.vsite]] 仮想サイトを [[VAR.user]] として管理する"
 
 msgid "virtualSiteList"
-msgstr "���ۥ����ȤΥꥹ��"
+msgstr "仮想サイトのリスト"
 
 msgid "virtualSiteList_help"
-msgstr "���Υ����о�β��ۥ����Ȥ�����ޤ��Ͻ����Ǥ��ޤ���"
+msgstr "このサーバ上の仮想サイトを作成または修正できます。"
 
 msgid "listSuspended"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "listSuspended_help"
-msgstr "�����Ȥ������ڥ�ɤ���Ƥ��뤳�Ȥ򼨤��ޤ��������Ȥ������ڥ�ɤ���Ƥ���ȡ���Ͽ�桼���ˤ�륵���ȤؤΥ�������������Ӱ��̥桼���ˤ�륵���ȴ�Ϣ�Υ����֥����Ȥ� ftp �����ȤؤΥ���������̵���ˤʤ�ޤ���"
+msgstr "サイトがサスペンドされていることを示します。サイトがサスペンドされていると、登録ユーザによるサイトへのアクセス、および一般ユーザによるサイト関連のウェブサイトや ftp サイトへのアクセスが無効になります。"
 
 msgid "searchBy"
-msgstr "����"
+msgstr "検索"
 
 msgid "searchBy_help"
-msgstr "�������륵���ȤΥץ��ѥƥ�����ꤷ�Ƥ������������ꤷ���ץ��ѥƥ��˴ؤ��ơ��ե�����ɤ����Ϥ����ƥ����Ȥ�ޤॵ���Ȥ�����ɽ������ޤ���"
+msgstr "検索するサイトのプロパティを指定してください。指定したプロパティに関して、フィールドに入力したテキストを含むサイトが一覧表示されます。"
 
 msgid "searchCriteria"
-msgstr "�������"
+msgstr "検索基準"
 
 msgid "searchCriteria_help"
-msgstr "���ꤵ�줿°���򸡺�������ˡ�����Ӥ����������ɥ��åץ�����ꥹ�Ȥ��顢��������ƥ����Ȥΰ��׾������Ǥ��ޤ�����������ƥ����Ȥ�ե�����ɤ����Ϥ��Ƥ���������"
+msgstr "指定された属性を検索する方法をお選びください。ドロップダウンリストから、検索するテキストの一致条件を指定できます。検索するテキストをフィールドに入力してください。"
 
 msgid "vsiteSearch"
-msgstr "���ۥ����Ȥ򸡺�"
+msgstr "仮想サイトを検索"
 
 # site list buttons
 msgid "searchbut"
-msgstr "����"
+msgstr "検索"
 
 msgid "searchbut_help"
-msgstr "���ꤷ���ץ��ѥƥ��˰��פ��벾�ۥ����Ȥ򸡺��Ǥ��ޤ���"
+msgstr "指定したプロパティに一致する仮想サイトを検索できます。"
 
 msgid "advancedSearch"
-msgstr "�ܺٸ���"
+msgstr "詳細検索"
 
 msgid "advancedSearch_help"
-msgstr "����¾�δ���Ȥäƥ����Ȥ򸡺��Ǥ��ޤ���"
+msgstr "その他の基準を使ってサイトを検索できます。"
 
 msgid "sitedefaultsbut"
-msgstr "���ۥ����ȤΥƥ�ץ졼�Ȥ��Խ�"
+msgstr "仮想サイトのテンプレートを編集"
 
 msgid "sitedefaultsbut_help"
-msgstr "���ۥ����Ȥ��ɲä����Ȥ��˼�ưŪ�˵��������������Խ��Ǥ��ޤ���"
+msgstr "仮想サイトを追加したときに自動的に記入される設定を編集できます。"
 
 msgid "siteaddbut"
-msgstr "�����Ȥ��ɲ�"
+msgstr "サイトの追加"
 
 msgid "siteaddbut_help"
-msgstr "���Υ����Ф˿����β��ۥ����Ȥ��ɲäǤ��ޤ���"
+msgstr "このサーバに新規の仮想サイトを追加できます。"
 
 msgid "suspend"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "suspend_help"
-msgstr "�ܥå���������å�����ȡ������Ȥ������ڥ�ɤ���ޤ��������Ȥ򥵥��ڥ�ɤ���ȡ������ȤΥ桼���䡢�����Ȥ˴�Ϣ���륦���֥����Ȥ� ftp �����ȤؤΥ���������̵���ˤʤ�ޤ���"
+msgstr "ボックスをチェックすると、サイトがサスペンドされます。サイトをサスペンドすると、サイトのユーザや、サイトに関連するウェブサイトや ftp サイトへのアクセスが無効になります。"
 
 # site list search options
 msgid "siteUses"
-msgstr "�����Ȥ�����"
+msgstr "サイトの利用"
 
 msgid "="
-msgstr "�������Ȱ��פ��륵���Ȥ�ɽ��"
+msgstr "が、次と一致するサイトを表示"
 
 msgid "begins"
-msgstr "��������ʸ���ǻϤޤ륵���Ȥ�ɽ��"
+msgstr "が、次の文字で始まるサイトを表示"
 
 msgid "ends"
-msgstr "��������ʸ���ǽ���륵���Ȥ�ɽ��"
+msgstr "が、次の文字で終わるサイトを表示"
 
 msgid "contains"
-msgstr "�ˡ�����ʸ����ޤॵ���Ȥ�ɽ��"
+msgstr "に、次の文字を含むサイトを表示"
 
 msgid "not_contains"
-msgstr "�ˡ�����ʸ����ޤޤʤ������Ȥ�ɽ��"
+msgstr "に、次の文字を含まないサイトを表示"
 
 msgid "inSubnet"
-msgstr "�������Υ��֥ͥåȤˤ��륵���Ȥ�ɽ��"
+msgstr "が、次のサブネットにあるサイトを表示"
 
 msgid "notInSubnet"
-msgstr "�������Υ��֥ͥåȤˤʤ������Ȥ�ɽ��"
+msgstr "が、次のサブネットにないサイトを表示"
 
 # site list search results strings
 msgid "search_vsite_results_1"
-msgstr "������� (<1> �Ĥβ��ۥ����Ȥ򸫤Ĥ��ޤ���)"
+msgstr "検索結果 (<1> つの仮想サイトを見つけました)"
 
 msgid "search_vsite_results"
-msgstr "������� (<[[VAR.num]]> �Ĥβ��ۥ����Ȥ򸫤Ĥ��ޤ���)"
+msgstr "検索結果 (<[[VAR.num]]> つの仮想サイトを見つけました)"
 
 msgid "search_vsite_nonefound"
-msgstr "���θ����Ǥϲ��ۥ����Ȥϸ��Ĥ���ޤ���Ǥ������������򶹤����Ƥ⤦���ٸ������Ƥ���������"
+msgstr "この検索では仮想サイトは見つかりませんでした。検索基準を狭くしてもう一度検索してください。"
 
 # common search strings
 msgid "numResultsPerPage"
-msgstr "1 �ڡ�����ɽ�����륵���ȿ�"
+msgstr "1 ページに表示するサイト数"
 
 msgid "numResultsPerPage_help"
-msgstr "1 �ڡ�����ɽ�����륵���ȿ������ꤷ�Ƥ����������Ĥ�Υ����Ȥϡ��ꥹ�Ȥξ����ˤ����˥塼���餪�����ʥڡ����������ɽ���Ǥ��ޤ���"
+msgstr "1 ページに表示するサイト数を設定してください。残りのサイトは、リストの上部にあるメニューからお好きなページを選んで表示できます。"
 
 msgid "numResultsPerPage_invalid"
-msgstr "[[base-vsite.numResultsPerPage]] �˻��ꤵ�줿�ͤϡ����������뤫�����ǤϤ���ޤ���1 �ʾ�����������Ϥ��Ƥ���������"
+msgstr "[[base-vsite.numResultsPerPage]] に指定された値は、小さすぎるか数字ではありません。1 以上の整数を入力してください。"
 
 msgid "searchOptions"
-msgstr "�������ץ����"
+msgstr "検索オプション"
 
 msgid "displayOptions"
-msgstr "ɽ�����ץ����"
+msgstr "表示オプション"
 
 # advanced search page
 msgid "siteUses_help"
-msgstr "����Υ����ӥ�����ꤹ��ȡ����Υ����ӥ���ͭ���ˤʤäƤ��륵���Ȥ򸡺��Ǥ��ޤ���"
+msgstr "特定のサービスを指定すると、そのサービスが有効になっているサイトを検索できます。"
 
 msgid "suspended"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "suspended_help"
-msgstr "���ߥ����ڥ�ɤ���Ƥ��륵���Ȥ򸡺��Ǥ��ޤ���"
+msgstr "現在サスペンドされているサイトを検索できます。"
 
 msgid "searchResults"
-msgstr "���ۥ����Ȥθ������"
+msgstr "仮想サイトの検索結果"
 
 msgid "modifySearch"
-msgstr "��������"
+msgstr "検索を修正"
 
 msgid "modifySearch_help"
-msgstr "���ߤΥꥹ�Ȥκ����˻Ȥä������������Ǥ��ޤ���"
+msgstr "現在のリストの作成に使った検索基準を修正できます。"
 
 msgid "newSearch"
-msgstr "��������"
+msgstr "新規検索"
 
 msgid "newSearch_help"
-msgstr "�����θ�����Ԥ��ޤ���"
+msgstr "新規の検索を行えます。"
 
 # delete site button
 msgid "siteRemoveConfirm"
-msgstr "[[VAR.fqdn]] �Ȥ��������Ȥ������Ƥ�������Ǥ�����"
+msgstr "[[VAR.fqdn]] というサイトを削除してよろしいですか？"
 
 msgid "deletingSite"
-msgstr "�����Ȥ������Ƥ��ޤ������Ф餯���Ԥ���������..."
+msgstr "サイトを削除しています。しばらくお待ちください..."
 
 msgid "removingUsers"
-msgstr "�桼������"
+msgstr "ユーザを削除"
 
 msgid "removingSite"
-msgstr "�����Ȥ���"
+msgstr "サイトを削除"
 
 msgid "noSuchSite"
-msgstr "���ꤵ�줿 [[VAR.site]] �Ȥ��������Ȥ����Ĥ���ޤ���Ǥ�����"
+msgstr "指定された [[VAR.site]] というサイトが見つかりませんでした。"
 
 msgid "removeFailed"
-msgstr "�����Ȥ����Ǥ��ޤ���Ǥ�����"
+msgstr "サイトを削除できませんでした。"
 
 # Site Defaults Page
 msgid "vsiteDefaults"
-msgstr "���ۥ����ȤΥƥ�ץ졼��"
+msgstr "仮想サイトのテンプレート"
 
 msgid "siteDefaultsTab"
-msgstr "��������"
+msgstr "基本設定"
 
 msgid "siteDefaultsTab_help"
-msgstr "�������ۥ����ȤΥͥåȥ�����桼���ȥǥ������ξ�¡��Żҥ᡼��Υǥե������������Ǥ��ޤ���"
+msgstr "新規仮想サイトのネットワーク、ユーザとディスクの上限、電子メールのデフォルト設定を修正できます。"
 
 msgid "defaultIpAddr"
 msgstr "[[base-vsite.ipAddr]]"
 
 msgid "defaultIpAddr_help"
-msgstr "�����Ȥ��ɲä����Ȥ��˵��������ǥե���Ȥ� IP ���ɥ쥹����ꤷ�Ƥ���������"
+msgstr "サイトを追加したときに記入されるデフォルトの IP アドレスを指定してください。"
 
 msgid "defaultDomain"
 msgstr "[[base-vsite.domain]]"
 
 msgid "defaultDomain_help"
-msgstr "���������Ȥ�°����ǥե���ȤΥɥᥤ�����ꤷ�Ƥ���������"
+msgstr "新規サイトが属するデフォルトのドメインを指定してください。"
 
 # site add page
 msgid "defaultHome"
-msgstr "�ǥե���ȥǥ��쥯�ȥ� (/home)"
+msgstr "デフォルトディレクトリ (/home)"
 
 msgid "homePartition"
-msgstr "�����ȥǥ��쥯�ȥ����¸���"
+msgstr "サイトディレクトリの保存場所"
 
 msgid "homePartition_help"
-msgstr "�����ȤΥۡ���ǥ��쥯�ȥ����¸������ꤷ�Ƥ����������ǥե���Ȥ���¸���ϡ������Ф���¢�ϡ��ɥǥ�������ˤ��� /home �ǥ��쥯�ȥ�Ǥ�������¾����¸������ꤹ����ˤϡ��̤Υ��ȥ졼����Υǥ��쥯�ȥ����ꤷ�Ƥ⹽���ޤ��󤬡����γ������ȥ졼�����곰�������������ꤹ��ȡ������Ȥ���������ǽ���ʤ��ʤ�ޤ��ΤǤ����դ���������"
+msgstr "サイトのホームディレクトリの保存場所を指定してください。デフォルトの保存場所は、サーバの内蔵ハードディスク上にある /home ディレクトリです。その他の保存場所を指定する場合には、別のストレージ上のディレクトリを指定しても構いませんが、その外部ストレージを取り外したり削除したりすると、サイトが正しく機能しなくなりますのでご注意ください。"
 
 msgid "newVsiteSettings"
-msgstr "�������ۥ����Ȥ��ɲ�"
+msgstr "新規仮想サイトを追加"
 
 # site mod page
 msgid "modVsiteSettings"
-msgstr "���ۥ����Ȥ����� - [[VAR.site]]"
+msgstr "仮想サイトの設定 - [[VAR.site]]"
 
 # site add/mod error messages
 msgid "webAliases_invalid"
-msgstr "[[VAR.invalidValue]] �Ȥ��������֥�������̾�������Ǥ���"
+msgstr "[[VAR.invalidValue]] というウェブサーバ別名は不正です。"
 
 msgid "mailAliases_invalid"
-msgstr "[[VAR.invalidValue]] �Ȥ����Żҥ᡼�륵������̾�������Ǥ���"
+msgstr "[[VAR.invalidValue]] という電子メールサーバ別名は不正です。"
 
 # usage statitics menu
 msgid "siteusage"
-msgstr "���Ѿ���"
+msgstr "利用状況"
 
 msgid "siteusageDescription"
-msgstr "�����Ȥ����Ѿ����˴ؤ�������ɽ���Ǥ��ޤ���"
+msgstr "サイトの利用状況に関する情報を表示できます。"
 
 # manageAdmin screen
 msgid "manageAdminUsersBlurb"
-msgstr "admin �ʳ��Υ����д����ԥ�������Ȥ�������뤳�Ȥˤ�ꡢ�����ƥ�����Ԥϡ��軰�Ԥ˥����Фδ������¤�����Ǥ��ޤ��������д����Ԥˤϡ�admin ��������Ȥδ���ǽ�Ϥ�������Ƥδ������¤�Ϳ���뤳�Ȥ⡢ɬ�פ˱��������¤��ߤ��뤳�Ȥ�Ǥ��ޤ���"
+msgstr "admin 以外のサーバ管理者アカウントを作成することにより、システム管理者は、第三者にサーバの管理権限を委託できます。サーバ管理者には、admin アカウントの管理能力を除く全ての管理権限を与えることも、必要に応じて制限を設けることもできます。"
 
 msgid "manageAdminUsers"
-msgstr "�����Фδ�����"
+msgstr "サーバの管理者"
 
 msgid "addAdminHelp"
-msgstr "�����Υ����д����ԥ�������Ȥ�����Ǥ��ޤ���"
+msgstr "新規のサーバ管理者アカウントを作成できます。"
 
 msgid "manageAdmin"
-msgstr "�����д����Ԥ�������� - [[VAR.name]]"
+msgstr "サーバ管理者の設定を修正 - [[VAR.name]]"
 
 msgid "manageAdminDescription"
-msgstr "�����д����ԥ�������Ȥ�����������Ǥ��ޤ���[[base-vsite.manageAdminUsersBlurb]]"
+msgstr "サーバ管理者アカウントを作成、管理できます。[[base-vsite.manageAdminUsersBlurb]]"
 
 msgid "rootAccess"
-msgstr "�롼�ȥ�������"
+msgstr "ルートアクセス"
 
 msgid "rootAccess_help"
-msgstr "�롼�ȥ���������ͭ���ˤ���ȡ������д������¤��������Ƥ���桼���ϡ�Telnet �ޤ��� SSH ��Ȥäƥ����Ф˥������󤷤��Ȥ��ˡ�su ���ޥ�ɤ�Ȥäƥ롼�ȥ桼���ˤʤ뤳�Ȥ��Ǥ��ޤ������Υ��ץ�����ͭ���ˤ���ȡ�'root-&lt;username&gt;' (&lt;username&gt; �ϥ롼�ȥ��������ε��Ĥ���Ƥ�������ԥ桼���Υ桼��̾) �Ȥ����桼��̾����Ŀ����Υ롼�ȥ�������Ȥ���������ޤ������Υ롼�ȥ�������ȤΥѥ���ɤϡ��桼�����̾�Υ�������ȤΥѥ���ɤ�Ʊ���Ǥ����㤨�С�nishida �Ȥ����桼��̾����Ĵ����ԥ桼���Ǥ���С�nishida �Ȥ��ƥ����Ф˥������󤷤Ƥ��顢'su - root-nishida' �Ȥ������ޥ�ɤ�¹Ԥ�����ʬ�Υѥ���ɤ�������Ϥ��뤳�Ȥˤ�ꡢ�롼�ȥ桼���ˤʤ뤳�Ȥ��Ǥ��ޤ���"
+msgstr "ルートアクセスを有効にすると、サーバ管理権限を委託されているユーザは、Telnet または SSH を使ってサーバにログインしたときに、su コマンドを使ってルートユーザになることができます。このオプションを有効にすると、'root-&lt;username&gt;' (&lt;username&gt; はルートアクセスの許可されている管理者ユーザのユーザ名) というユーザ名を持つ新規のルートアカウントが作成されます。このルートアカウントのパスワードは、ユーザの通常のアカウントのパスワードと同じです。例えば、nishida というユーザ名を持つ管理者ユーザであれば、nishida としてサーバにログインしてから、'su - root-nishida' というコマンドを実行し、自分のパスワードを再度入力することにより、ルートユーザになることができます。"
 
 msgid "adminPowers"
-msgstr "�ɲ�Ū����������"
+msgstr "追加的アクセス権"
 
 msgid "adminPowers_help"
-msgstr "�̾�� admin �桼���ˤ������Ĥ���Ƥ��ʤ������θ��¤򥵡��д����Ԥ˰������뤳�Ȥ�Ǥ��ޤ������Υ����д����ԥ�������Ȥ˵��Ĥ������ɲ�Ū�ʸ��¤��[[base-vsite.disallowedAbilities]]���󤫤��[[base-vsite.allowedAbilities]]����ذ�ư���Ƥ���������"
+msgstr "通常は admin ユーザにしか許可されていない一部の権限をサーバ管理者に委託することもできます。このサーバ管理者アカウントに許可したい追加的な権限を「[[base-vsite.disallowedAbilities]]」欄から「[[base-vsite.allowedAbilities]]」欄へ移動してください。"
 
 msgid "allowedAbilities"
-msgstr "���Ĥ����ɲ�Ū����"
+msgstr "許可する追加的権限"
 
 msgid "disallowedAbilities"
-msgstr "���Ĥ��ʤ�����"
+msgstr "許可しない権限"
 
 msgid "userSuspended"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "userSuspended_help"
-msgstr "�����д����ԥ�������Ȥ������ڥ�ɤ���Ƥ��뤫�ɤ����򼨤��ޤ���"
+msgstr "サーバ管理者アカウントがサスペンドされているかどうかを示します。"
 
 msgid "yes"
-msgstr "�Ϥ�"
+msgstr "はい"
 
 msgid "no"
-msgstr "������"
+msgstr "いいえ"
 
 msgid "suspendUser"
-msgstr "���Υ桼���򥵥��ڥ�ɤ���"
+msgstr "このユーザをサスペンドする"
 
 msgid "suspendUser_help"
-msgstr "���Υܥå���������å�����ȡ����Υ桼���ϥ����ڥ�ɤ���ޤ��������ڥ�ɤ���Ƥ���桼���ϡ������ڥ�ɤ���������ޤǥ����Ф���³�Ǥ��ޤ���"
+msgstr "このボックスをチェックすると、このユーザはサスペンドされます。サスペンドされているユーザは、サスペンドが解除されるまでサーバに接続できません。"
 
 msgid "mailCatchAll"
-msgstr "����å��������Żҥ᡼�륢�ɥ쥹"
+msgstr "キャッチオール電子メールアドレス"
 
 msgid "mailCatchAll_help"
-msgstr "�����ˤϡ�¸�ߤ��ʤ��桼����᡼��󥰥ꥹ�Ȱ��Υ�å����������Ƽ������뤿����Żҥ᡼�륢�ɥ쥹����ꤷ�Ƥ�������������Τޤޤˤ���ȡ�¸�ߤ��ʤ��桼����᡼��󥰥ꥹ�Ȱ��Υ�å������ϼ�������ޤ��󡣤����˻��ꤹ���Żҥ᡼�륢�ɥ쥹���ºߤ��ʤ����ˤϡ�����ˤ�������Ʊ�ͤˡ�¸�ߤ��ʤ��桼����᡼��󥰥ꥹ�Ȱ��Υ�å������ϵ��䤵��ޤ���(������: admin��eigyo13@bluequartz.org)"
+msgstr "ここには、存在しないユーザやメーリングリスト宛のメッセージを全て受信するための電子メールアドレスを指定してください。空欄のままにすると、存在しないユーザやメーリングリスト宛のメッセージは受信されません。ここに指定する電子メールアドレスが実在しない場合には、空欄にした場合と同様に、存在しないユーザやメーリングリスト宛のメッセージは拒絶されます。(指定例: admin、eigyo13@bluequartz.org)"
 
 # administrator accounts list
 msgid "adminUsersList"
-msgstr "�����д����ԤΥꥹ��"
+msgstr "サーバ管理者のリスト"
 
 msgid "fullName"
-msgstr "��̾"
+msgstr "氏名"
 
 msgid "fullName_help"
-msgstr "�桼���λ�̾�����Ϥ��Ƥ���������"
+msgstr "ユーザの氏名を入力してください。"
 
 msgid "userName"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "userName_help"
-msgstr "�桼���Υ桼��̾����ꤷ�Ƥ���������"
+msgstr "ユーザのユーザ名を指定してください。"
 
 msgid "actions"
-msgstr "�����"
+msgstr "操作・削除"
 
 msgid "actions_help"
-msgstr "��ɮ��������򥯥�å�����ȥ桼�������Ǥ�������Ȣ��������򥯥�å�����ȥ桼�����������ޤ���"
+msgstr "鉛筆アイコンをクリックするとユーザを修正でき、ゴミ箱アイコンをクリックするとユーザが削除されます。"
 
 msgid "deleteQuestion"
-msgstr "[[VAR.name]] �Ȥ��������Ԥ������Ƥ��������Ǥ�����"
+msgstr "[[VAR.name]] という管理者を削除してもよろしいですか？"
 
 msgid "deletingUser"
-msgstr "�桼���������Ƥ��ޤ������Ф餯���Ԥ���������..."
+msgstr "ユーザを削除しています。しばらくお待ちください..."
 
 # create/modify admin user page
 msgid "createAdminUser"
-msgstr "���������д����Ԥ��ɲ�"
+msgstr "新規サーバ管理者を追加"
 
 msgid "userNameCreate"
 msgstr "[[base-vsite.userName]]"
 
 msgid "userNameCreate_help"
-msgstr "���������д����ԤΥ桼��̾����ꤷ�Ƥ���������"
+msgstr "新規サーバ管理者のユーザ名を指定してください。"
 
 msgid "userPassword"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
 msgid "userPassword_help"
-msgstr "�桼���Υѥ���ɤ���ꤷ�Ƥ���������"
+msgstr "ユーザのパスワードを指定してください。"
 
 msgid "userDiskQuota"
-msgstr "������ƥǥ��������� (MB)"
+msgstr "最大許容ディスク容量 (MB)"
 
 msgid "userDiskQuota_help"
-msgstr "�桼�������Υ����о�ǻȤ���ǥ��������̤κ����ͤ�ᥬ�Х��� (MB) �ǻ��ꤷ�Ƥ������������Υե�����ɤ����Τޤޤˤ���ȡ����Υ桼�������������Ǥ���ǥ��������̤����¤����ꤵ��ޤ���"
+msgstr "ユーザがこのサーバ上で使えるディスク容量の最大値をメガバイト (MB) で指定してください。このフィールドを空欄のままにすると、このユーザがアクセスできるディスク容量に制限は設定されません。"
 
 msgid "userInformation"
-msgstr "�桼���ξ���"
+msgstr "ユーザの情報"
 
 msgid "adminOptions"
-msgstr "�����ԥ��ץ����"
+msgstr "管理者オプション"
 
 # general handler error messages
 msgid "cantReadVsite"
-msgstr "[[base-vsite.operationFailed]]���Υ����Ȥ˴ؤ������� CCE ��������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトに関する情報を CCE から入手できません。"
 
 # unique.pl
 msgid "fqdnTooLong"
-msgstr "�ۥ���̾�ȥɥᥤ��͡��बĹ�����ޤ����ۥ���̾�ȥɥᥤ��͡�����碌��Ĺ���� 255 ̤���Ǥ���ɬ�פ�����ޤ���"
+msgstr "ホスト名とドメインネームが長すぎます。ホスト名とドメインネームを合わせた長さが 255 未満である必要があります。"
 
 msgid "localhostNotAllowed"
-msgstr "localhost �Ȥ����ۥ���̾��ͽ�󤵤�Ƥ��뤿�ᡢ���ۥ����ȤΥۥ���̾�Ȥ��ƻ���Ǥ��ޤ���"
+msgstr "localhost というホスト名は予約されているため、仮想サイトのホスト名として指定できません。"
 
 msgid "fqdnInUse"
-msgstr "���ꤵ�줿�ۥ���̾�ȥɥᥤ��͡�����Ȥ߹�碌 [[VAR.fqdn]] �ϡ��̤β��ۥ����Ȥ˻Ȥ��Ƥ��ޤ���"
+msgstr "指定されたホスト名とドメインネームの組み合わせ [[VAR.fqdn]] は、別の仮想サイトに使われています。"
 
 msgid "usedWebAliases"
-msgstr "���Υ����֥�������̾�ϻȤ��Ƥ��뤿�ᡢ����Ǥ��ޤ���: [[VAR.aliases]]"
+msgstr "次のウェブサーバ別名は使われているため、設定できません: [[VAR.aliases]]"
 
 msgid "usedMailAliases"
-msgstr "�����Żҥ᡼�륵������̾�ϻȤ��Ƥ��뤿�ᡢ����Ǥ��ޤ���: [[VAR.aliases]]"
+msgstr "次の電子メールサーバ別名は使われているため、設定できません: [[VAR.aliases]]"
 
 # aliases.pl
 msgid "cantCreateMailAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.alias]] �Ȥ����Żҥ᡼�륨���ꥢ��������Ǥ��ޤ���Ǥ�����"
+msgstr "[[base-vsite.operationFailed]][[VAR.alias]] という電子メールエイリアスを作成できませんでした。"
 
 msgid "cantUpdateMailAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.alias]] �Ȥ����Żҥ᡼�륨���ꥢ���򹹿��Ǥ��ޤ���Ǥ�����"
+msgstr "[[base-vsite.operationFailed]][[VAR.alias]] という電子メールエイリアスを更新できませんでした。"
 
 msgid "cantUpdateUserMailAliases"
-msgstr "[[base-vsite.operationFailed]]���Υ����Ȥ�°����桼�����Żҥ᡼�����򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトに属するユーザの電子メール情報を更新できません。"
 
 # auto_dns.pl
 msgid "cantCreateAtypeRecord"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �� DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の DNS エントリを作成できません。"
 
 msgid "cantCreateWebAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �Υ����֥�������̾ [[VAR.alias]] �� DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] のウェブサーバ別名 [[VAR.alias]] の DNS エントリを作成できません。"
 
 msgid "cantCreateAtypeRecordForMail"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] ���Żҥ᡼�륵������̾ [[VAR.alias]] �� A ������ DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の電子メールサーバ別名 [[VAR.alias]] の A タイプ DNS エントリを作成できません。"
 
 msgid "cantCreateMXRecordForMailAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] ���Żҥ᡼�륵������̾ [[VAR.alias]] �� MX ������ DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の電子メールサーバ別名 [[VAR.alias]] の MX タイプ DNS エントリを作成できません。"
 
 msgid "cantRestartDns"
-msgstr "[[base-vsite.operationFailed]]DNS �����Ф�Ƶ�ư�Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]DNS サーバを再起動できません。"
 
 msgid "cantMigrateDnsRecords"
-msgstr "[[base-vsite.operationFailed]]���������Ⱦ���˰��פ��� [[VAR.fqdn]] �� DNS ����ȥ�򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]新規サイト情報に一致する [[VAR.fqdn]] の DNS エントリを更新できません。"
 
 # change_net_info.pl
 msgid "cantUpdateVhost"
-msgstr "[[base-vsite.operationFailed]]���Υ����ȤΥ����֥����о���򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトのウェブサーバ情報を更新できません。"
 
 # maxuser.pl
 msgid "overUserLimit"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �Ȥ��������Ȥˤϡ����Ĥ���Ƥ���������Ķ����桼����¸�ߤ��Ƥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] というサイトには、許可されている最大数を超えるユーザが存在しています。"
 
 # network_destroy.pl
 msgid "vsiteUsingIpAddress"
-msgstr "1 �Ĥޤ���ʣ���Υ����Ȥ����Υͥåȥ�����󥿡��ե������˳�����Ƥ�줿 IP ���ɥ쥹��ȤäƤ��뤿�ᡢ���Υ��󥿡��ե�������̵���ˤǤ��ޤ���"
+msgstr "1 つまたは複数のサイトがこのネットワークインターフェイスに割り当てられた IP アドレスを使っているため、このインターフェイスは無効にできません。"
 
 msgid "vsiteUsingChangingIP"
-msgstr "1 �Ĥޤ���ʣ���Υ����Ȥ����Υ��󥿡��ե������˳�����Ƥ�줿 IP ���ɥ쥹��ȤäƤ��뤿�ᡢ���� IP ���ɥ쥹���ѹ��Ǥ��ޤ���"
+msgstr "1 つまたは複数のサイトがこのインターフェイスに割り当てられた IP アドレスを使っているため、この IP アドレスは変更できません。"
 
 # suspend.pl
 msgid "cantDisableVhost"
-msgstr "[[base-vsite.operationFailed]]���Υ����ȤΥ����֥����Ф�̵���ˤǤ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトのウェブサーバを無効にできません。"
 
 msgid "cantSuspendUsers"
-msgstr "[[base-vsite.operationFailed]]�����ȤΥ桼���򤹤٤ƥ����ڥ�ɤ��뤳�ȤϤǤ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]サイトのユーザをすべてサスペンドすることはできません。"
 
 # update_site_admins.pl
 msgid "cantUpdateSiteAdminCaps"
-msgstr "[[base-vsite.operationFailed]]�����ȴ����Ԥθ��¤򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]サイト管理者の権限を更新できません。"
 
 # vsite_adminusers.pl
 msgid "couldNotAddAdminAccount"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �� admin �桼����������Ȥ�����Ǥ��ޤ���Ǥ�����"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の admin ユーザアカウントを作成できませんでした。"
 
 # vsite_create.pl
 msgid "cantAddSystemGroup"
-msgstr "���Υ����Ȥϡ������ƥब�����ȥ����ƥ॰�롼�פ�����Ǥ��ʤ��ä�����˺����Ǥ��ޤ���Ǥ�����"
+msgstr "このサイトは、システムがサイトシステムグループを作成できなかったために作成できませんでした。"
 
 msgid "cantSetSiteGroup"
-msgstr "���Υ����Ȥϡ������Ȥξ�����б����륷���ƥ॰�롼��̾�ǹ����Ǥ��ʤ��ä�����˺����Ǥ��ޤ���Ǥ�����"
+msgstr "このサイトは、サイトの情報を対応するシステムグループ名で更新できなかったために作成できませんでした。"
 
 msgid "cantAddVirtualHost"
-msgstr "���Υ����Ȥϡ���Ϣ���륦���֥����Ф�����Ǥ��ʤ��ä�����˺����Ǥ��ޤ���Ǥ�����"
+msgstr "このサイトは、関連するウェブサーバを作成できなかったために作成できませんでした。"
 
 msgid "cantAddFtpVhost"
-msgstr "���Υ����Ȥ� FTP �����Х���ȥ������Ǥ��ޤ���"
+msgstr "このサイトの FTP サーバエントリを作成できません。"
 
 msgid "cantAddSystemAlias"
-msgstr "���Υ����ȤΥ����ƥ��Żҥ᡼�륨���ꥢ�� [[VAR.alias]] ������Ǥ��ޤ���Ǥ����������ƥ��ˤ��Υ����ꥢ����ȤäƤ���桼�������ʤ����Ȥ��ǧ�����⤦���٤������������"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。システム上にこのエイリアスを使っているユーザがいないことを確認し、もう一度お試しください。"
 
 msgid "vsiteUserOwnsAlias"
-msgstr "���Υ����ȤΥ����ƥ��Żҥ᡼�륨���ꥢ�� [[VAR.alias]] ������Ǥ��ޤ���Ǥ��������Υ����ȤΥ��С��Ǥ��� [[VAR.user]] �Ȥ����桼���������Υ����ꥢ����ȤäƤ��ޤ���[[VAR.user]] �桼�����餳�Υ����ꥢ�����������⤦���٤������������"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。このサイトのメンバーである [[VAR.user]] というユーザが、このエイリアスを使っています。[[VAR.user]] ユーザからこのエイリアスを削除し、もう一度お試しください。"
 
 msgid "userOwnsAlias"
-msgstr "���Υ����ȤΥ����ƥ��Żҥ᡼�륨���ꥢ�� [[VAR.alias]] ������Ǥ��ޤ���Ǥ������ɤΥ����ȤΥ��С��Ǥ�ʤ� [[VAR.user]] �Ȥ����桼�� (���餯�����д�����) �������Υ����ꥢ����ȤäƤ��ޤ���[[VAR.user]] �桼�����餳�Υ����ꥢ�����������⤦���٤������������"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。どのサイトのメンバーでもない [[VAR.user]] というユーザ (恐らくサーバ管理者) が、このエイリアスを使っています。[[VAR.user]] ユーザからこのエイリアスを削除し、もう一度お試しください。"
 
 # vsite_destroy.pl
 msgid "cantDestroyNetwork"
-msgstr "���Υ����Ȥ� IP ���ɥ쥹�˴ط�����ͥåȥ�����󥿡��ե�������̵���ˤǤ��ޤ��󡣤���ˤ�ꡢ�����Ȥκ����˸�����뤳�ȤϤ���ޤ���Ǥ�����"
+msgstr "このサイトの IP アドレスに関係するネットワークインターフェイスを無効にできません。これにより、サイトの削除が妨げられることはありませんでした。"
 
 msgid "siteMembersFound"
-msgstr "�����ȤΥ桼����������Ȥΰ��������Ǥ��ʤ����ᡢ�����Ȥ����Ǥ��ޤ��󡣥����ȤΥ桼���Υꥹ�Ȥ�Ĵ�٤ơ��ĤäƤ���桼����������Ȥ��ǧ���Ƥ���������"
+msgstr "サイトのユーザアカウントの一部を削除できないため、サイトを削除できません。サイトのユーザのリストを調べて、残っているユーザアカウントを確認してください。"
 
 # Vsite.pm
 msgid "cantCreateNetwork"
-msgstr "[[base-vsite.operationFailed]]���Υ����Ȥ� IP ���ɥ쥹�˴ط�����ͥåȥ�����󥿡��ե�����������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトの IP アドレスに関係するネットワークインターフェイスを作成できません。"
 
 # watch_disk.pl
 msgid "diskUsedBySites"
-msgstr "���Υ����Ȥ�¸�ߤ��Ƥ��뤿�ᡢ���ΥǥХ��������Ǥ��ޤ���: [[VAR.sites]]�����ΥǥХ�����̵���ˤ����ꡢ�ۡ���ǥ��쥯�ȥ�Ȥ��ƻ��ѤǤ��ʤ��褦�ˤ������ˡ������Υ����Ȥ������Ƥ���������"
+msgstr "次のサイトが存在しているため、このデバイスを修正できません: [[VAR.sites]]。このデバイスを無効にしたり、ホームディレクトリとして使用できないようにする前に、これらのサイトを削除してください。"
 
 # system_adminuser.pl
 msgid "cantRemoveAdminFromGroup"
-msgstr "[[VAR.group]] �Ȥ��������ȥ��롼�פ��� [[VAR.user]] �����Ǥ��ޤ���"
+msgstr "[[VAR.group]] というサイトグループから [[VAR.user]] を削除できません。"
 
 msgid "cantAddAdminToGroup"
-msgstr "[[VAR.group]] �Ȥ��������ȥ��롼�פ��� [[VAR.user]] ���ɲäǤ��ޤ���"
+msgstr "[[VAR.group]] というサイトグループから [[VAR.user]] を追加できません。"
 
 msgid "cantCreateSiteAdminGroup"
-msgstr "�����ȴ����ԥ��롼�פ�����Ǥ��ޤ���"
+msgstr "サイト管理者グループを作成できません。"
 
 msgid "cantRemoveUserFromSiteAdminGroup"
-msgstr "�����ȴ����ԥ��롼�פ��� [[VAR.user]] �����Ǥ��ޤ���"
+msgstr "サイト管理者グループから [[VAR.user]] を削除できません。"
 
 msgid "cantAddUserToSiteAdminGroup"
-msgstr "�����ȴ����ԥ��롼�פ� [[VAR.user]] ���ɲäǤ��ޤ���"
+msgstr "サイト管理者グループへ [[VAR.user]] を追加できません。"
 
 msgid "cantRemoveUserFromServerAdminGroup"
-msgstr "�����д����ԥ��롼�פ��� [[VAR.user]] �����Ǥ��ޤ���"
+msgstr "サーバ管理者グループから [[VAR.user]] を削除できません。"
 
 msgid "sitemanage"
-msgstr "�����Ȥδ���"
+msgstr "サイトの管理"
 
 msgid "sitemanageDescription"
-msgstr "���ۥ����Ȥȥ桼����������Ȥ�����Ǥ��ޤ���"
+msgstr "仮想サイトとユーザアカウントを管理できます。"
 
 msgid "sitetabDescription"
-msgstr "�桼����������ȡ��᡼��󥰥ꥹ�ȡ�ftp���Хå����åפʤɤΥ����Ȥ����������Ǥ��ޤ���"
+msgstr "ユーザアカウント、メーリングリスト、ftp、バックアップなどのサイトの設定を管理できます。"
 
 msgid "sitetabDescription_menu"
-msgstr "�桼����������ȡ��᡼��󥰥ꥹ�ȡ�ftp���Хå����åפʤɡ�[[VAR.hostname]] ���������������˥塼��ʲ�������ꤷ�Ƥ���������"
+msgstr "ユーザアカウント、メーリングリスト、ftp、バックアップなど、[[VAR.hostname]] の設定を管理するメニューを以下から指定してください。"
 
 msgid "mod_name"
-msgstr "�⥸�塼��̾"
+msgstr "モジュール名"
 
 msgid "version"
-msgstr "�С������ 1.0"
+msgstr "バージョン 1.0"
 
 # general use strings
 msgid "operationFailed"
-msgstr "���˼��Ԥ��ޤ�����"
+msgstr "操作に失敗しました。"
 
 msgid "basicSettingsTab"
-msgstr "��������"
+msgstr "基本設定"
 
 msgid "sitemaintenance"
-msgstr "�ݼ�"
+msgstr "保守"
 
 msgid "sitemaintenanceDescription"
-msgstr "�Хå����åפ������ʤɡ������Ȥ��ݼ鵡ǽ��¹ԤǤ��ޤ���"
+msgstr "バックアップや復元など、サイトの保守機能を実行できます。"
 
 msgid "siteservices"
-msgstr "�����ӥ�"
+msgstr "サービス"
 
 msgid "siteservicesDescription"
-msgstr "���Υ����Ȥ����Ѥ��륵���ӥ�������Ǥ��ޤ���"
+msgstr "このサイトで利用するサービスを設定できます。"
 
 msgid "siteweb"
-msgstr "������"
+msgstr "ウェブ"
 
 msgid "siteweb_help"
-msgstr "������ץȸ���ʤɤΥ����֥��ץ���������Ǥ��ޤ���"
+msgstr "スクリプト言語などのウェブオプションを設定できます。"
 
 msgid "siteWebSettings"
-msgstr "���������� - [[VAR.fqdn]]"
+msgstr "ウェブ設定 - [[VAR.fqdn]]"
 
 msgid "siteEmailSettings"
-msgstr "�Żҥ᡼������ - [[VAR.fqdn]]"
+msgstr "電子メール設定 - [[VAR.fqdn]]"
 
 msgid "sitemail"
-msgstr "�Żҥ᡼��"
+msgstr "電子メール"
 
 msgid "sitemail_help"
-msgstr "�����ȤΥ����ꥢ���ʤɤ��Żҥ᡼�륪�ץ���������Ǥ��ޤ���"
+msgstr "サイトのエイリアスなどの電子メールオプションを設定できます。"
 
 msgid "diskQuota_invalid"
-msgstr "[[base-vsite.userDiskQuota]] �˻��ꤵ�줿�ͤϡ����������뤫�����ǤϤ���ޤ���[[base-vsite.diskQuota_rule]]"
+msgstr "[[base-vsite.userDiskQuota]] に指定された値は、小さすぎるか数字ではありません。[[base-vsite.diskQuota_rule]]"
 
 msgid "diskQuota_rule"
-msgstr "���Υ桼���Υǥ��������̤����¤��� 1 ����礭�ʿ�������ꤷ�Ƥ������������Υե�����ɤ����Τޤޤˤ���ȡ����Υ桼���Υۡ���ǥ��쥯�ȥ꤬¸�ߤ���ǥХ�����ζ����ǥ��������̤򤹤٤Ƥ��Υ桼�����Ȥ���褦�ˤʤ�ޤ���"
+msgstr "このユーザのディスク容量を制限する 1 より大きな数字を指定してください。このフィールドを空欄のままにすると、このユーザのホームディレクトリが存在するデバイス上の空きディスク容量をすべてこのユーザが使えるようになります。"
 
 msgid "cantAddUserToServerAdminGroup"
-msgstr "�����д����ԥ��롼�פ� [[VAR.user]] ���ɲäǤ��ޤ���"
+msgstr "サーバ管理者グループに [[VAR.user]] を追加できません。"
 
 # sort name for server administrator add/modify
 msgid "sortName"
-msgstr "��ߤ���"
+msgstr "よみがな"
 
 msgid "sortName_help"
-msgstr "��̾���ɤ߲�̾�Ǥ���"
+msgstr "氏名の読み仮名です。"
 
 msgid "sortNameField"
 msgstr "[[base-vsite.sortName]]"
 
 msgid "sortNameField_rule"
-msgstr "���ξ���˴�Ť��ơ��桼����ɽ������ʤ�ߤ��ʤξ���ޤ��Ϲ߽�ˤ���ޤ�ޤ���"
+msgstr "この情報に基づいて、ユーザの表示順序（よみがなの昇順または降順）が決まります。"
 
 msgid "sortNameField_help"
-msgstr "�桼���λ�̾��Ҥ餬�ʤǵ������Ƥ����������㡧 ���ʤ٤����)��[[base-vsite.sortNameField_rule]]"
+msgstr "ユーザの氏名をひらがなで記入してください（例： たなべじゅんこ)。[[base-vsite.sortNameField_rule]]"
 
 msgid "systemFqdnNotAllowed"
-msgstr "���ꤵ�줿�ۥ���̾�ȥɥᥤ��͡�����Ȥ߹�碌 [[VAR.fqdn]] �ϡ������ƥ�ǻȤ��Ƥ��ޤ���"
+msgstr "指定されたホスト名とドメインネームの組み合わせ [[VAR.fqdn]] は、システムで使われています。"
 
 # preview site
 msgid "site_preview"
-msgstr "�ץ�ӥ塼����������"
+msgstr "プレビューサイト設定"
 
 msgid "site_preview_help"
-msgstr "�ܥå���������å�����ȡ�http://������̾/���ۥ�����̾/�ǥ����֥����ȤؤΥ����������Ǥ��ޤ���"
+msgstr "ボックスをチェックすると、http://サーバ名/仮想サイト名/でウェブサイトへのアクセスができます。"
 
 msgid "cantChangeSitePreview"
-msgstr "���Υ����ȤΥץ�ӥ塼�����Ȥ�����Ǥ��ޤ���"
+msgstr "このサイトのプレビューサイトを作成できません。"
 
 msgid "emailDisabled"
-msgstr "�Żҥ᡼���̵���ˤ���"
+msgstr "電子メールを無効にする"
 
 msgid "emailDisabled_help"
-msgstr "���Υɥᥤ����Żҥ᡼�뤬̵���ˤʤ�ޤ���"
+msgstr "このドメインの電子メールが無効になります。"
+
+msgid "userwebs"
+msgstr "ユーザのウェブ公開の有効" 
+ 
+msgid "userwebs_help"
+msgstr "ボックスをチェックすると、http://www.example.com/~username/ でユーザウェブページを公開することができます。" 
+
+# Capabilities
+msgid "cap_serverVsite"
+msgstr "仮想サイトの設定"
+
+msgid "cap_manageSite"
+msgstr "サイトの管理"
+
+# Vsite Settings
+msgid "vsite"
+msgstr "仮想サイト"
+
+msgid "vsite_help"
+msgstr "仮想サイト設定を変更できます。"
+
+msgid "vsiteSettings"
+msgstr "仮想サイト設定"
+
+msgid "maxVsiteField"
+msgstr "最大仮想サイト数"
+
+msgid "maxVsiteField_help"
+msgstr "登録可能な仮想サイト数を設定できます。"
+
+msgid "maxVsiteAdvised"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "「[[base-vsite.maxVsiteField]]」には、「[[base-vsite.maxVsiteAdvised]]」以下の値を指定してください。"
+
+msgid "maxVsiteAlreadyMade"
+msgstr "仮想サイトの総数が [[base-vsite.maxVsiteField]] に達しています。"
+
+msgid "adminSites"
+msgstr "サイトオプション"
+
+msgid "userSitesQuota"
+msgstr "最大許容ディスク容量 (MB)"
+
+msgid "userSitesQuota_help"
+msgstr "ユーザが仮想サイトに割り当てることができるディスク容量の最大値をメガバイト (MB) で指定してください。このフィールドを空欄のままにすると、このユーザが割り当てることができるディスク容量に制限は設定されません。"
+
+msgid "userSitesMax"
+msgstr "最大仮想サイト数"
+
+msgid "userSitesMax_help"
+msgstr "登録可能な仮想サイト数を設定できます。"
+
+msgid "createdUser"
+msgstr "作成者"
+
+msgid "createdUser_help"
+msgstr "このサイトの作成者です。"
+
+msgid "userPrefixField"
+msgstr "ユーザプレフィックス"
+
+msgid "userPrefixField_help"
+msgstr "ユーザ名の頭に付加する語句を設定します。例) bq5200r_, site1_"
+
+msgid "userPrefixEnabled"
+msgstr "有効にする"
+
+msgid "userPrefixEnabled_help"
+msgstr ""
+
+msgid "userShell"
+msgstr "シェルアクセスを有効にする"
+
+msgid "userShell_help"
+msgstr "このユーザのシェルアクセスを有効にします"
+
+msgid "userSitesUser"
+msgstr "最大ユーザ数"
+
+msgid "userSitesUser_help"
+msgstr "このサーバ管理者が作成できるユーザ数の上限を設定します"
+
+msgid "maxDiskAlreadyMade"
+msgstr "割当可能なディスク容量の上限に達しているために作成できません。"
+
+msgid "maxUsersAlreadyMade"
+msgstr "割当可能なユーザ数の上限に達しているために作成できません。"

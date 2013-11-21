@@ -1,5 +1,14 @@
-# Global tech support strings
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
+# Global tech support strings
 msgid "techSupportUSPhone"
 msgstr "(Not available)"
 
@@ -10,28 +19,28 @@ msgid "techSupportEmail"
 msgstr "(Not available)"
 
 msgid "contactTechSupport"
-msgstr "¥Æ¥¯¥Ë¥«¥ë¥µ¥İ¡¼¥È¤Ï¤¢¤ê¤Ş¤»¤ó¤Î¤Ç¡¢ [[base-sauce-basic.techSupportURL]] ¤Ê¤É¤ò¤´Í÷²¼¤µ¤¤¡£"
+msgstr "ãƒ†ã‚¯ãƒ‹ã‚«ãƒ«ã‚µãƒãƒ¼ãƒˆã¯ã‚ã‚Šã¾ã›ã‚“ã®ã§ã€ [[base-sauce-basic.techSupportURL]] ãªã©ã‚’ã”è¦§ä¸‹ã•ã„ã€‚"
 
 msgid "techSupportURL"
 msgstr "[[base-alpine.vendorSite]]index-j.html"
 
 msgid "kill_dhclient_failed"
-msgstr "dhclient ¤ÎÆ°ºîÄä»ß¤ò³ÎÇ§¤Ç¤­¤Ş¤»¤ó¡£"
+msgstr "dhclient ã®å‹•ä½œåœæ­¢ã‚’ç¢ºèªã§ãã¾ã›ã‚“ã€‚"
 
 msgid "Invalid-object"
-msgstr "ÆâÉô¥¨¥é¡¼: ÉÔÀµ¤Ê¥ª¥Ö¥¸¥§¥¯¥È¤òºï½ü¤·¤è¤¦¤È¤·¤Ş¤·¤¿¡£[[base-sauce-basic.contactTechSupport]]"
+msgstr "å†…éƒ¨ã‚¨ãƒ©ãƒ¼: ä¸æ­£ãªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤ã—ã‚ˆã†ã¨ã—ã¾ã—ãŸã€‚[[base-sauce-basic.contactTechSupport]]"
 
 msgid "Already-Destroyed"
-msgstr "¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£[[VAR.name]] ¤È¤¤¤¦¥æ¡¼¥¶¤Ï¤¹¤Ç¤Ëºï½ü¤µ¤ì¤Æ¤¤¤Ş¤¹¡£"
+msgstr "ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚[[VAR.name]] ã¨ã„ã†ãƒ¦ãƒ¼ã‚¶ã¯ã™ã§ã«å‰Šé™¤ã•ã‚Œã¦ã„ã¾ã™ã€‚"
 
 msgid "failed-to-add-user"
-msgstr "ÆâÉô¥¨¥é¡¼¡§ ¿·µ¬¥æ¡¼¥¶ $name ¤òºîÀ®¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[base-sauce-basic.contactTechSupport]]"
+msgstr "å†…éƒ¨ã‚¨ãƒ©ãƒ¼ï¼š æ–°è¦ãƒ¦ãƒ¼ã‚¶ $name ã‚’ä½œæˆã§ãã¾ã›ã‚“ã§ã—ãŸã€‚[[base-sauce-basic.contactTechSupport]]"
 
 msgid "excessivelyLargeQuota"
-msgstr "³äÅöÍÆÎÌ¤È¤·¤Æ»ØÄê¤·¤¿ÃÍ¤¬Âç¤­¤¹¤®¤Ş¤¹¡£ºÇÂçµöÍÆ¥Ç¥£¥¹¥¯³äÅöÍÆÎÌ¤Ï¡¢[[VAR.max]] ¤Ç¤¹¡£"
+msgstr "å‰²å½“å®¹é‡ã¨ã—ã¦æŒ‡å®šã—ãŸå€¤ãŒå¤§ãã™ãã¾ã™ã€‚æœ€å¤§è¨±å®¹ãƒ‡ã‚£ã‚¹ã‚¯å‰²å½“å®¹é‡ã¯ã€[[VAR.max]] ã§ã™ã€‚"
 
 msgid "hostname-too-long"
-msgstr "»ØÄê¤µ¤ì¤¿¥Û¥¹¥ÈÌ¾¤¬Ä¹¤¹¤®¤Ş¤¹¡£¥Û¥¹¥ÈÌ¾¤Ï 40 Ê¸»ú°Ê²¼¤Ç»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "æŒ‡å®šã•ã‚ŒãŸãƒ›ã‚¹ãƒˆåãŒé•·ã™ãã¾ã™ã€‚ãƒ›ã‚¹ãƒˆåã¯ 40 æ–‡å­—ä»¥ä¸‹ã§æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "descReadOnly"
-msgstr "¥æ¡¼¥¶¤ÎÀâÌÀ¤ÏÆÉ¤ß½Ğ¤·ÀìÍÑ¤Ç¤¹¡£"
+msgstr "ãƒ¦ãƒ¼ã‚¶ã®èª¬æ˜ã¯èª­ã¿å‡ºã—å°‚ç”¨ã§ã™ã€‚"

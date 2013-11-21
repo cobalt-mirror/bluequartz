@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAddHandler.php 857 2006-08-14 11:15:34Z shibuya $
+// $Id: userAddHandler.php 1534 2010-09-28 08:36:52Z oride $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -76,6 +76,8 @@ else
     $volume = "/home";
 }
 
+$userNameField = $userPrefixField.$userSuffixField;
+
 $attributes = array(
                 "name" => $userNameField, 
                 "sortName" => $sortby, 
@@ -100,12 +102,37 @@ if (isset($siteAdministrator))
 
 if (isset($dnsAdministrator))
 {
-    $attributes["capLevels"] .= ($dnsAdministrator ? '&dnsAdmin&' : '');
+    $attributes["capLevels"] .= ($dnsAdministrator ? '&siteDNS&' : '');
 }
 
 // dirty trick
 $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
 
+// Username = Password? Baaaad idea!
+if (strcasecmp($userNameField, $passwordField) == 0) {
+        $attributes["password"] = "1";
+        $errors[] = new Error("[[base-user.error-password-equals-username]]");
+}
+
+// Open CrackLib Dictionary for usage:
+$dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
+
+// Perform password check with cracklib:
+$check = crack_check($dictionary, $passwordField);
+
+// Retrieve messages from cracklib:
+$diag = crack_getlastmessage();
+
+if ($diag == 'strong password') {
+        // Nothing to do. Cracklib thinks it's a good password.
+}
+else {
+        $attributes["password"] = "1";
+        $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag);
+}
+
+// Close cracklib dictionary:
+crack_closedict($dictionary);
 
 if (!isReservedUsername($userNameField)) {
 	$oid = $cceClient->create("User", $attributes);
@@ -113,7 +140,6 @@ if (!isReservedUsername($userNameField)) {
 } else {
 	$errors[] = new Error('[[base-user.userNameAlreadyTaken]]');
 }
-
 
 // if user was created without errors, setup the rest of their information
 // everything from now on is non-fatal, so go back to the user list unless

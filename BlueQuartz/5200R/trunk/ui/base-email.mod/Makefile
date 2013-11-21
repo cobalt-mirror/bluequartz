@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=email
 
-VERSION=1.3.0
-RELEASE=0BQ26
+VERSION=1.5.0
+RELEASE=0BQ31
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES = dovecot base-bluequartz-glue
+REQUIRES = postfix procmail dovecot base-bluequartz-glue poprelayd >= 2.1-0BQ6
 
 #########
 # some useful defines

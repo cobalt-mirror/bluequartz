@@ -55,7 +55,7 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 <end glue>
 
 <begin ui>
-%defattr(-,apache,root)
+%defattr(-,admserv,root)
 %dir /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 [AUTOFILL]
 
@@ -94,7 +94,7 @@ if [ x"[DEFLOCALE]" != x ]; then
 		fi)
 	done
 fi
-/bin/chown apache.root /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
+/bin/chown admserv.root /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 
 <end ui>
 <begin locale>
@@ -123,6 +123,25 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Mon Sep 06 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-124BQ19
+- change default value for sitestat to be set 3 months by Oride-san.
+
+* Mon Jun 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-124BQ18
+- add logrotate configuration.
+
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-124BQ17
+- new Capabilities for admin.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ16
+- add require to analog.
+
+* Fri Sep 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ15
+- use admserv user instead of apache.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ14
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ13
 - Fixed duplicate include issue.
 

@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalAccount.php 1005 2007-06-25 15:21:40Z shibuya $
+// $Id: personalAccount.php 1398 2010-03-10 10:41:57Z shibuya $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -47,7 +47,7 @@ $possibleLocales = stringToArray($system["locales"]);
  * what the system locale is.
  */
 if ($serverScriptHelper->getLoginName() != "admin") {
-	$possibleLocales = array_merge("browser", $possibleLocales);
+	$possibleLocales = array_merge(array("browser"), $possibleLocales);
 }
 
 $locale = $factory->getLocale("languageField", $localePreference);

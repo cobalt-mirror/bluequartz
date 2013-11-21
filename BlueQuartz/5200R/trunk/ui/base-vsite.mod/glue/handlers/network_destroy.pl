@@ -56,8 +56,12 @@ exit(0);
 
 sub get_candidate_iface
 {
-	# keep it simple for now
-	return 'eth0';
+	if (! -f "/proc/user_beancounters") { 
+	        $DEFAULT_INTERFACE = 'eth0'; 
+	} 
+	else { 
+	        $DEFAULT_INTERFACE = 'venet0'; 
+	} 
 }
 
 sub fail

@@ -1,22 +1,23 @@
 #!/usr/bin/perl
-# $Id: handle_vsite.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: handle_vsite.pl 1497 2010-07-22 00:51:39Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # handles the creation of a virtual site's majordomo infrastructure
 
 use lib qw( /usr/sausalito/perl );
+use MailList;
 use CCE;
 
 my $DEBUG = 0;
 $DEBUG && warn `date`." $0\n";
 
-my $aliasfile = '/etc/mail/aliases.majordomo';
-my $majortemplate = '/usr/local/majordomo/majordomo.cf.template';
-my $majordomo_sites = '/usr/local/majordomo/sites';
+my $aliasfile = '/etc/aliases.majordomo';
+my $majortemplate = '/usr/lib/majordomo/majordomo.cf.template';
+my $majordomo_sites = '/var/lib/majordomo/sites';
 my @majordomo_aliases = ('majordomo', 'majordomo-owner', 'owner-majordomo');
 
-my($UID, $GID) = ( (getpwnam('mail'))[2], (getgrnam('daemon'))[2] );
-my($filemod, $dirmod) = (0640, 0700);
+my($UID, $GID) = MailList::getugid();
+my($filemod, $dirmod) = (0670, 0771);
 
 my $cce = new CCE; 
 $cce->connectfd();
@@ -39,7 +40,7 @@ if ($cce->event_is_create() && ($obj->{name} eq ''))
 
 my $sitelists = $majordomo_sites.'/'.$obj->{name}.'/lists';
 my $sitedigest = $majordomo_sites.'/'.$obj->{name}.'/digests';
-my $logfile = '/usr/local/majordomo/logs';
+my $logfile = '/var/lib/majordomo/log';
 
 if($cce->event_is_destroy())
 {
@@ -168,6 +169,14 @@ elsif($new->{fqdn})
 			$obj->{name},
 			\@majordomo_aliases
 			);
+		if ($old->{fqdn} ne '') {
+			my($bok) = Sauce::Util::editfile(
+				$aliasfile,
+				*edit_fqdn,
+				$old->{fqdn},
+				$new->{fqdn}
+				);
+		}
 	}
 }
 
@@ -213,8 +222,8 @@ sub edit_majoralias
 			$config .= $site.'-'.$alias.":\tadmin\n";
 		} else {
 			$config .= $site.'-'.$alias.":\t".
-			'"|/usr/local/majordomo/wrapper majordomo -C '.
-			'/usr/local/majordomo/sites/'.$site.'/majordomo.cf"'.
+			'"|/usr/lib/majordomo/wrapper majordomo -C '.
+			'/usr/lib/majordomo/sites/'.$site.'/majordomo.cf"'.
 			"\n";
 		}
 	}
@@ -224,6 +233,7 @@ sub edit_majoralias
 	{
 		if(/^(\S+):\s/)
 		{
+			
 			if ($public_alii{$1}) 
 			{
 				$DEBUG && warn "Skipping: $_";
@@ -245,6 +255,19 @@ sub edit_list_members
 		s/^([^\@]+)\@$old_fqdn$/$1\@$new_fqdn/;
 		print $out $_;
 	}
+
+	return 1;
+}
+
+sub edit_fqdn
+{
+	my ($in, $out, $old_fqdn, $new_fqdn) = @_;
+
+	while (<$in>) {
+		s/$old_fqdn/$new_fqdn/;
+		print $out $_;
+	}
+
 
 	return 1;
 }

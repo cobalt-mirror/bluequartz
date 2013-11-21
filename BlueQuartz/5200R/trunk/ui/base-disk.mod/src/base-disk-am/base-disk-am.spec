@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.0.1
-Release: 15BQ11%{?dist}
+Release: 15BQ15%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -26,6 +26,18 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-15BQ15
+- remove .svn directory from rpm package.
+
+* Wed Feb 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-15BQ14
+- fixed the issue that the mail isn't sent to admin when the site is over quota.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-15BQ13
+- support no /home partition for siteusage.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-15BQ12
+- merge from 5100R between r970 with r1218.
+
 * Thu Apr 13 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-15BQ11
 - modify am_disk.pl to fix the issue when gid is NULL by Brian.
 

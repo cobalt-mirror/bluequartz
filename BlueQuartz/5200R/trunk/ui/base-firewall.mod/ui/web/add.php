@@ -11,8 +11,8 @@ if ($HTTP_GET_VARS['oid'] || $HTTP_POST_VARS['OID']) {
 include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only modifySystemFirewall should be here
-if (!$serverScriptHelper->getAllowed('modifySystemFirewall')) {
+// Only serverSystemFirewall should be here
+if (!$serverScriptHelper->getAllowed('serverSystemFirewall')) {
   header("location: /error/forbidden.html");
   return;
 }

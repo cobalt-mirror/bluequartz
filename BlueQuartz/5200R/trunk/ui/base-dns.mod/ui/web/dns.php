@@ -56,10 +56,7 @@ $Ui->SetBlockView( "zone_format_tab" );
 $Ui->Divider( "zone_format_settings_divider" );
 $Ui->Alters( "zone_format", array('RFC2317','DION','OCN-JT','USER'));
 $Ui->Divider( "zone_format_user_defined_divider" );
-$Ui->TextField( "zone_format_24", array( "Optional" => 'loud' ) );
-$Ui->TextField( "zone_format_16", array( "Optional" => 'loud' ) );
-$Ui->TextField( "zone_format_8", array( "Optional" => 'loud' ) );
-$Ui->TextField( "zone_format_0", array( "Optional" => 'loud' ) );
+$Ui->TextField( "zone_format_24", array( "Optional" => 'loud', 'Width' => '25' ) );
 
 $Ui->SetBlockView("auto_dns");
 $Ui->ListField( "auto_a", array( "Optional" => 'loud' ) );

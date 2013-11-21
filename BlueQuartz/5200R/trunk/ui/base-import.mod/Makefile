@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=import
 
 VERSION=1.2.0
-RELEASE=45BQ7
+RELEASE=45BQ8
 
 # add a buildarch if desired
 BUILDARCH=noarch

@@ -18,7 +18,7 @@ VENDOR = sausalito
 VENDORNAME = 'Project BlueQuartz'
 SERVICE = gallery
 VERSION = 0.3.2
-RELEASE = 0BQ4
+RELEASE = 0BQ9
 UIMENUS = none
 BUILDARCH=noarch
 BUILDUI = no
@@ -104,4 +104,4 @@ rpm: clean specfile
 	find rpms -type f -printf "RPM: %P\n" > packing_list
 
 specfile: $(CCERPMSPEC).in
-	sed -e 's/XX_USER_HTTPD_XX/$(USER_HTTPD)/' sausalito-gallery.spec.in > sausalito-gallery.spec
+	sed -e 's/XX_USER_HTTPD_XX/admserv/' sausalito-gallery.spec.in > sausalito-gallery.spec

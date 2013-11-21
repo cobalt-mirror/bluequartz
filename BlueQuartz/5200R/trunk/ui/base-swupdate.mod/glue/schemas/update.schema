@@ -1,5 +1,5 @@
 <!-- 
-  $Id: update.schema 673 2005-12-18 12:09:40Z shibuya $
+  $Id: update.schema 1427 2010-03-10 14:49:50Z shibuya $
   Copyright 2000, Cobalt Networks.
   author: asun@cobalt.com
   
@@ -13,107 +13,107 @@
 	createacl="ruleCapable(createPackage)" destroyacl="ruleCapable(destroyPackage)">
 	<!-- information on the package -->
 	<property name="name" type="swidType"
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
         <property name="version" type="versionType" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="vendor" type="swidType" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- stuff that can be i18n'ized -->
 	<property name="nameTag" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="vendorTag" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
         <property name="versionTag" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- if true, this package is not yet seen by users -->
 	<property name="new" type="boolean" default="1" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="isVisible" type="boolean" default="1" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- swupdate server for this package -->
 	<property name="updateServer" type="scalar" default="default" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- url for the file. this is only used for automated installs -->
 	<property name="location" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<! -- size is in bytes -->
 	<property name="size" type="uint" default="0" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
         <property name="packageType" type="pType" default="complete" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="category" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="copyright" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
         <property name="longDesc" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
         <property name="shortDesc" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
         <property name="licenseDesc" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- list of RPM's in package.  Used for the uninstall -->
 	<property name="RPMList" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="SRPMList" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
         <!-- package dependencies. the package doesn't show up in the
 	     ui unless these dependencies are met: -->
 	<property name="product" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="dependencyList" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- the package will show up even if the following dependencies
 	     aren't met: -->
 	<property name="visibleList" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- obsoletes the following packages -->
 	<property name="obsoleteList" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	
 	<!-- various options -->
 	<property name="splashPages" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="options" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<property name="build" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- the url of the page that describes what the package is -->
 	<property name="url" type="scalar" optional="true" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="urloptions" type="scalar" optional="true" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<property name="installState" type="installStateMode" default="Available" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 
 	<!-- deal with encryption stuff -->
 	<property name="encryptionFormat" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="fileName" type="scalar" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 </class>
 
 <class name="Package" namespace="License" version="1.0" createacl="ruleCapable(createPackage)" destroyacl="ruleCapable(destroyPackage)">
 	<property name="startDate" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="stopDate" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="keyType" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 	<property name="keyValue" type="scalar" default="" 
-		 writeacl="ruleCapable(modifyPackage)"/>
+		 writeacl="ruleCapable(managePackage)"/>
 </class>
 
 <!-----

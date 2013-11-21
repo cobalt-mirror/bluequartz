@@ -1,7 +1,7 @@
 <?php
 // Author: Patrick Bose
 // Copyright 2001, Cobalt Networks.  All rights reserved.
-// $Id: onepage.php 1028 2007-06-25 16:57:31Z shibuya $
+// $Id: onepage.php 1444 2010-03-23 15:45:11Z shibuya $
 //
 // This page duplicates some stuff from a qube setup, but
 // the idea is that for raqs we want an express, one-page setup...
@@ -113,6 +113,7 @@ for ($i = 0; $i < 1; $i++)
 	// range of possible choices
 	list($sysoid) = $cceClient->find("System");
 	$net_opts = $cceClient->get($sysoid, "Network");
+	$access = $net_opts['interfaceConfigure'] ? 'rw' : 'r';
 	if ($net_opts["pooling"]) {
 		$range_strings = array();
 		$oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
@@ -121,7 +122,7 @@ for ($i = 0; $i < 1; $i++)
 			$range_strings[] = $range['min'] . ' - ' . $range['max'];
 		}
 		$string = arrayToString($range_strings);
-		$ip = $factory->getIpAddress("ipAddressField$device", $ipaddr);
+		$ip = $factory->getIpAddress("ipAddressField$device", $ipaddr, $access);
 		$ip->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 
 		if ($device != 'eth0') {
@@ -147,7 +148,7 @@ for ($i = 0; $i < 1; $i++)
 
 	} else {
 	  
-		$ip_field =& $factory->getIpAddress("ipAddressField$device", $ipaddr);
+		$ip_field =& $factory->getIpAddress("ipAddressField$device", $ipaddr, $access);
 		$ip_field->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 		if ($device != 'eth0') {
 			$ip_field->setEmptyMessage($i18n->getJs('ipAddressField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
@@ -179,7 +180,7 @@ for ($i = 0; $i < 1; $i++)
 	    $default_page
 	);
 
-	$netmask_field =& $factory->getIpAddress("netMaskField$device", $netmask);
+	$netmask_field =& $factory->getIpAddress("netMaskField$device", $netmask, $access);
 	$netmask_field->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
 	if ($device != 'eth0') {
 		$netmask_field->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));

@@ -22,13 +22,13 @@
 <!-- global settings -->
 
 <class name="System" namespace="Firewall" version="1.0">
-  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(modifySystemFirewall)"/>
-  <property name="commit" type="int" default="" writeacl="ruleCapable(modifySystemFirewall)"/>
-  <property name="dirty" type="int" default="" writeacl="ruleCapable(modifySystemFirewall)"/>
-  <property name="watchdog" type="int" default="0" writeacl="ruleCapable(modifySystemFirewall)"/>
+  <property name="enabled" type="boolean" default="0" writeacl="ruleCapable(serverSystemFirewall)"/>
+  <property name="commit" type="int" default="" writeacl="ruleCapable(serverSystemFirewall)"/>
+  <property name="dirty" type="int" default="" writeacl="ruleCapable(serverSystemFirewall)"/>
+  <property name="watchdog" type="int" default="0" writeacl="ruleCapable(serverSystemFirewall)"/>
 
   <!-- initialized sets default good-practice rules via a constructor -->
-  <property name="initialized" type="int" default="0" writeacl="ruleCapable(modifySystemFirewall)"/>
+  <property name="initialized" type="int" default="0" writeacl="ruleCapable(serverSystemFirewall)"/>
 
 </class>
 

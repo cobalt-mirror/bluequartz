@@ -5,10 +5,10 @@
     url="/base/power/shutdown.php"
 >
     <parent id="base_notused" order="60">
-        <access require="controlPower"/>
+        <access require="serverPower"/>
     </parent>
     <parent id="base_notused" order="60">
-        <access require="controlPower"/>
+        <access require="serverPower"/>
     </parent>
 </item>
 <!--

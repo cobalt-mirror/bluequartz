@@ -1,561 +1,571 @@
-# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
 msgid "wizardLicense"
-msgstr "�Х��ʥꥳ���ɥ饤���󥹤ˤĤ���"
+msgstr "バイナリコードライセンスについて"
 
 msgid "wizardLicense_help"
 msgstr " "
 
 msgid "wizardAdmin"
-msgstr "�����Ԥ�����"
+msgstr "管理者の設定"
 
 msgid "wizardAdmin_help"
 msgstr " "
 
 msgid "adminSettings"
-msgstr "�����Ԥ�����"
+msgstr "管理者の設定"
 
 msgid "adminMessage"
-msgstr "[[base-product.productName]] �ˤϡ��桼���䥰�롼�פ��ɲá��Ƽﵡǽ������ʤɤ�Ԥ��ִ����ԡפ�ɬ�פǤ��������Ԥˤϡ�admin�פȤ����桼��̾��Ϳ�����ޤ��������ԤΥ桼��̾���ѹ��Ǥ��ޤ��󡣤����Ǥϡ������ԤȤ��ƥ������󤹤뤿���ɬ�פʥѥ���ɤ���ꤷ�Ƥ��������������ԥѥ���ɤϡ����������ɬ�פǤ��Τ�˺��ʤ��褦�ˤ��Ƥ����������ޤ���¾�ͤ˿�¬����ˤ����ѥ���ɤ����Ӥ���������"
+msgstr "[[base-product.productName]] には、ユーザやグループの追加、各種機能の設定などを行う「管理者」が必要です。管理者には「admin」というユーザ名が与えられます。管理者のユーザ名は変更できません。ここでは、管理者としてログインするために必要なパスワードを指定してください。管理者パスワードは、今後の操作に必要ですので忘れないようにしてください。また、他人に推測されにくいパスワードをお選びください。"
 
 msgid "adminNameField"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "adminNameField_help"
-msgstr "�����Ԥ��̤��뤿��˥����ƥब�Ȥ�̾���ǡ��ѹ��ϤǤ��ޤ���"
+msgstr "管理者を識別するためにシステムが使う名前で、変更はできません。"
 
 msgid "alteradminField"
-msgstr "Alteradmin���������"
+msgstr "Alteradminアカウント"
 
 msgid "alteradminField_help"
-msgstr "���������ԡ�alteradmin�˥�������Ȥ����Ѥ���ȡ����ĤΥѥ���ɤ�Ȥä�ʣ���οͤ��������¤�ͭ���뤳�Ȥ��Ǥ��ޤ������ε�ǽ��ͭ���ˤ���ȡ�admin �� alteradmin ��ξ�������������̤˥��������Ǥ���褦�ˤʤ�ޤ�����ö alteradmin ��ͭ���ˤ����ȡ�alteradmin ��������ȤΥѥ���ɤ��ѹ���̵������ alteradmin �����Ԥ��ޤ���"
+msgstr "代理管理者（alteradmin）アカウントを利用すると、１つのパスワードを使って複数の人が管理権限を共有することができます。この機能を有効にすると、admin と alteradmin の両方が、管理画面にアクセスできるようになります。一旦 alteradmin が有効にされると、alteradmin アカウントのパスワードの変更や無効化は alteradmin しか行えません。"
 
 msgid "alteradminEnabled"
-msgstr "ͭ���ˤ���"
+msgstr "有効にする"
 
 msgid "alteradminPassword"
-msgstr "alteradmin �ѥ����"
+msgstr "alteradmin パスワード"
 
 msgid "alteradminPassword_help"
-msgstr "alteradmin �桼����ǧ�ڤ˻Ȥ��ѥ���ɤǤ���alteradmin ��������Ȥ�ͭ���ˤ����硢���Υѥ���ɤˤϡ�admin �Υѥ���ɤȤϰ㤦�ѥ���ɤ���ꤷ�Ƥ���������"
+msgstr "alteradmin ユーザの認証に使うパスワードです。alteradmin アカウントを有効にする場合、このパスワードには、admin のパスワードとは違うパスワードを指定してください。"
 
 msgid "passwordField"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
 msgid "passwordField_rule"
-msgstr "�ѥ���ɤˤ� 3 �� 16 ʸ����������ʸ���󤬻��ѤǤ��ޤ���5 ʸ���ʾ�ǡ���ʸ���Ⱦ�ʸ����ξ����Ȥ����������ü쵭���ޤ�ѥ���ɤλ��Ѥ򤪴��ᤷ�ޤ�������˵��ܤ���Ƥ���褦��ñ��ϻ��Ѥ��ʤ��褦�ˤ��Ƥ����������ѥ���������ʸ���Ⱦ�ʸ���϶��̤���ޤ���"
+msgstr "パスワードには 3 〜 16 文字から成る文字列が使用できます。5 文字以上で、大文字と小文字の両方を使い、数字や特殊記号を含むパスワードの使用をお勧めします。辞書に記載されているような単語は使用しないようにしてください。パスワード中の大文字と小文字は区別されます。"
 
 msgid "passwordField_help"
-msgstr "�����ԤǤ��뤳�Ȥ�������뤿��Υѥ���ɤ����Ϥ��Ƥ��������� [[base-wizard.passwordField_rule]]"
+msgstr "管理者であることを証明するためのパスワードを入力してください。 [[base-wizard.passwordField_rule]]"
 
 msgid "passwordField_invalid"
-msgstr "�ѥ���ɤ����פ��ޤ������ϥߥ����ɤ����ᡢƱ���ѥ���ɤ򣲲����Ϥ��Ƥ���������"
+msgstr "パスワードが一致しません。入力ミスを防ぐため、同じパスワードを２回入力してください。"
 
 msgid "passwordField_empty"
-msgstr "�����Ԥ�[[base-wizard.passwordField]]����ꤷ�Ƥ���������  [[base-wizard.passwordField_rule]]"
+msgstr "管理者の[[base-wizard.passwordField]]を指定してください。  [[base-wizard.passwordField_rule]]"
 
 msgid "newPasswordField"
-msgstr "�������ѥ����"
+msgstr "新しいパスワード"
 
 msgid "newPasswordField_help"
-msgstr "�����ԤǤ��뤳�Ȥ�������뤿��Υѥ���ɤ���ꤷ�Ƥ���������  [[base-wizard.passwordField_rule]]"
+msgstr "管理者であることを証明するためのパスワードを指定してください。  [[base-wizard.passwordField_rule]]"
 
 msgid "wizardTime"
-msgstr "���դȻ��������"
+msgstr "日付と時刻の設定"
 
 msgid "wizardTime_help"
 msgstr " "
 
 msgid "timeSettings"
-msgstr "���դȻ��������"
+msgstr "日付と時刻の設定"
 
 msgid "timeMessage"
-msgstr "[[base-product.productName]]����������ǽ���뤿��ˤϡ����Τ����������ꤷ�Ƥ���ɬ�פ�����ޤ��������Ǥϡ����ߤ������Ȼ����Ӥ���ꤷ�ޤ���"
+msgstr "[[base-product.productName]]が正しく機能するためには、正確な日時を設定しておく必要があります。ここでは、現在の日時と時間帯を指定します。"
 
 msgid "dateField"
-msgstr "���դȻ���"
+msgstr "日付と時刻"
 
 msgid "dateField_help"
-msgstr "���ߤ����դȻ������ꤷ�Ƥ���������"
+msgstr "現在の日付と時刻を指定してください。"
 
 msgid "timeField"
-msgstr "����"
+msgstr "時刻"
 
 msgid "timeField_help"
-msgstr "���ߤλ������ꤷ�Ƥ���������"
+msgstr "現在の時刻を指定してください。"
 
 msgid "timeZoneField"
-msgstr "������"
+msgstr "時間帯"
 
 msgid "timeZoneField_help"
-msgstr "�����Ϥλ����Ӥ���ꤷ�Ƥ���������"
+msgstr "現在地の時間帯を指定してください。"
 
 msgid "wizardUsers"
-msgstr "�桼��������"
+msgstr "ユーザの設定"
 
 msgid "wizardUsers_help"
 msgstr " "
 
 msgid "wizardWorkgroups"
-msgstr "���롼�פ�����"
+msgstr "グループの設定"
 
 msgid "wizardWorkgroups_help"
 msgstr " "
 
 msgid "wizardNetwork"
-msgstr "�ͥåȥ��������"
+msgstr "ネットワークの設定"
 
 msgid "wizardNetwork_help"
 msgstr " "
 
 msgid "networkSettings"
-msgstr "�ͥåȥ��������"
+msgstr "ネットワークの設定"
 
 msgid "networkMessage"
-msgstr "[[base-product.productName]] �ϡ�����ȥ�ͥåȤΤߤǻȤ����Ȥ⡢���󥿡��ͥåȤؤΥ����������󶡤���褦�����ꤹ�뤳�Ȥ�Ǥ��ޤ��������Ǥϡ����Υ����ФΥۥ���̾���ɥᥤ��͡��ࡢ�ɥᥤ��͡��ॵ���С����󥿡��ͥåȤؤ���³��ˡ����ꤷ�ޤ���"
+msgstr "[[base-product.productName]] は、イントラネットのみで使うことも、インターネットへのアクセスを提供するように設定することもできます。ここでは、このサーバのホスト名、ドメインネーム、ドメインネームサーバ、インターネットへの接続方法を指定します。"
 
 msgid "enterFqdn"
-msgstr "�ۥ���̾�ȥɥᥤ��͡���"
+msgstr "ホスト名とドメインネーム"
 
 msgid "enterFqdn_help"
-msgstr "�ǽ�Υե�����ɤˤ��Υ����ФΥۥ���̾�������ܤΥե�����ɤ˥ɥᥤ��͡������ꤷ�Ƥ���������(������: �ۥ���̾�� www���ɥᥤ��͡���� kaishamei.co.jp�ʤ�)  Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ���"
+msgstr "最初のフィールドにこのサーバのホスト名、２番目のフィールドにドメインネームを指定してください。(指定例: ホスト名に www、ドメインネームに kaishamei.co.jpなど)  半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
 
 msgid "hostNameField"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "hostNameField_rule"
-msgstr "Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ����ʻ����㡧 www��mail��shomu-2��eigyo13 �ʤɡ�"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： www、mail、shomu-2、eigyo13 など）"
 
 msgid "hostNameField_help"
-msgstr "���Υ����ФΥۥ���̾����ꤷ�Ƥ����������ۥ���̾�ȥɥᥤ��͡�����Ȥ߹礻�ˤ�ꡢ���Υ����Ф��դ˼��̤���̾�����դ��Ƥ���������[[base-wizard.hostNameField_rule]]"
+msgstr "このサーバのホスト名を指定してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.hostNameField_rule]]"
 
 msgid "domainNameField"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "domainNameField_rule"
-msgstr "Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ����ʻ����㡧 bluequartz.org��cobaltqube.org�ʤɡ�"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： bluequartz.org、cobaltqube.orgなど）"
 
 msgid "domainNameField_help"
-msgstr "���Υ����ФΥɥᥤ��͡�������Ϥ��Ƥ����������ۥ���̾�ȥɥᥤ��͡�����Ȥ߹礻�ˤ�ꡢ���Υ����Ф��դ˼��̤���̾�����դ��Ƥ���������[[base-wizard.domainNameField_rule]]"
+msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.domainNameField_rule]]"
 
 msgid "dnsAddressesField"
-msgstr "DNS ������"
+msgstr "DNS サーバ"
 
 msgid "dnsAddressesField_rule"
-msgstr "0 �� 255 �� 4 �Ȥο��ͤ򡢥ԥꥪ�ɤǶ��ڤä����Ϥ��Ƥ����������ʻ����㡧 192.168.1.1��  ���Υե�����ɤؤ����Ϥ��ά����ȡ��ۥ���̾�ȥɥᥤ��͡����Ȥä�¾�Υ���ԥ塼���䥵���Ф�����Ǥ��ʤ��ʤꡢIP ���ɥ쥹�Τߤ�Ȥ�ɬ�פ������ޤ���"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）  このフィールドへの入力を省略すると、ホスト名とドメインネームを使って他のコンピュータやサーバを特定できなくなり、IP アドレスのみを使う必要が生じます。"
 
 msgid "dnsAddressesField_help"
-msgstr "��������ͥåȥ����ˤ���Υɥᥤ��͡��ॵ���Ф� IP ���ɥ쥹�����Ϥ��Ƥ���������ʣ��������ˤϡ����Ԥ��Ƥ����������ɥᥤ��͡��ॵ���Фϡ�ʸ���ǵ��Ҥ����֥ۥ���̾�ܥɥᥤ��͡���פȡ������ǵ��Ҥ�����IP ���ɥ쥹�פȤδ�Ϣ�դ������������հ����ˤ�Ԥ��ޤ��� [[base-wizard.dnsAddressesField_rule]]"
+msgstr "ローカルネットワーク上にあるのドメインネームサーバの IP アドレスを入力してください。複数ある場合には、改行してください。ドメインネームサーバは、文字で記述される「ホスト名＋ドメインネーム」と、数字で記述される「IP アドレス」との関連付け（正引き、逆引き）を行います。 [[base-wizard.dnsAddressesField_rule]]"
 
 msgid "dnsAddressesField_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-wizard.dnsAddressesField]] �ˤϻ���Ǥ��ޤ���[[base-wizard.dnsAddressesField_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-wizard.dnsAddressesField]] には指定できません。[[base-wizard.dnsAddressesField_rule]]"
 
 msgid "internetField"
-msgstr "���󥿡��ͥåȤؤ���³��ˡ"
+msgstr "インターネットへの接続方法"
 
 msgid "internetField_help"
-msgstr "���Υ����Ф򥤥󥿡��ͥåȤ���³�����硢������³��ˡ�����򤷤Ƥ���������"
+msgstr "このサーバをインターネットに接続する場合、その接続方法を選択してください。"
 
 msgid "none"
-msgstr "��³���ʤ��ʥ���ȥ�ͥåȤΤߡ�"
+msgstr "接続しない（イントラネットのみ）"
 
 msgid "broadband"
-msgstr "�����֥��ǥ�ޤ��� DSL"
+msgstr "ケーブルモデムまたは DSL"
 
 msgid "lan"
-msgstr "LAN �Υ����ȥ�����"
+msgstr "LAN のゲートウェイ"
 
 msgid "narrowband"
-msgstr "���ʥ�����ǥ�ޤ��� ISDN"
+msgstr "アナログモデムまたは ISDN"
 
 msgid "wizardBroadband"
-msgstr "�֥����ɥХ�ɤ�����"
+msgstr "ブロードバンドの設定"
 
 msgid "wizardBroadband_help"
 msgstr " "
 
 msgid "broadbandSettings"
-msgstr "�֥����ɥХ�ɤ�����"
+msgstr "ブロードバンドの設定"
 
 msgid "broadbandMessage"
-msgstr "�����֥��ǥ�ޤ��� DSL ��ǥ�ϡ�[[base-product.productName]]�Υ�������ꥤ�󥿡��ե���������³���Ƥ����������ʲ��Υե�����ɤˤϡ����󥿡��ͥåȥ����ӥ��ץ��Х����������ꤷ���ͥåȥ�������������Ϥ��Ƥ���������"
+msgstr "ケーブルモデムまたは DSL モデムは、[[base-product.productName]]のセカンダリインターフェイスに接続してください。以下のフィールドには、インターネットサービスプロバイダから入手したネットワーク設定情報を入力してください。"
 
 msgid "networkField"
-msgstr "��������ꥤ�󥿡��ե�����������"
+msgstr "セカンダリインターフェイスの設定"
 
 msgid "networkField_help"
-msgstr "�����ǻ��ꤹ�����˴�Ť������Υ����ФΥ�������ꥤ�󥿡��ե����������ꤵ��ޤ������Ϥ������ϡ������ѤΥ��󥿡��ͥåȥ����ӥ��ץ��Х��� ��ISP�� �������ꤷ�Ƥ���������"
+msgstr "ここで指定する情報に基づき、このサーバのセカンダリインターフェイスが設定されます。入力する情報は、ご利用のインターネットサービスプロバイダ （ISP） から入手してください。"
 
 msgid "dhcp"
-msgstr "DHCP �򻲾�"
+msgstr "DHCP を参照"
 
 msgid "dhcpHostNameField"
-msgstr "���饤����ȤΥۥ���̾"
+msgstr "クライアントのホスト名"
 
 msgid "dhcpHostNameField_rule"
-msgstr "Ⱦ�ѤαѾ�ʸ�����ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ����ʻ����㡧 www��"
+msgstr "半角の英小文字、ハイフン、ピリオドだけが使用できます。（指定例： www）"
 
 msgid "dhcpHostNameField_help"
-msgstr "���Υ����Ф� DHCP ��Dynamic Host Configuration Protocol�� ���饤����ȤȤ��Ƽ��̤��뤿��Υۥ���̾�����Ϥ��Ƥ���������[[base-wizard.dhcpHostNameField_rule]]"
+msgstr "このサーバを DHCP （Dynamic Host Configuration Protocol） クライアントとして識別するためのホスト名を入力してください。[[base-wizard.dhcpHostNameField_rule]]"
 
 msgid "dhcpClientIdField"
-msgstr "���饤����Ȥμ��̻�"
+msgstr "クライアントの識別子"
 
 msgid "dhcpClientIdField_help"
-msgstr "���Υ����Ф� DHCP ��Dynamic Host Configuration Protocol�� ���饤����ȤȤ��Ƽ��̤��뤿��μ��̥��ȥ�󥰤����Ϥ��Ƥ���������"
+msgstr "このサーバを DHCP （Dynamic Host Configuration Protocol） クライアントとして識別するための識別ストリングを入力してください。"
 
 msgid "pppoe"
-msgstr "PPPoE �򻲾� "
+msgstr "PPPoE を参照 "
 
 msgid "pppUserNameField"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "pppUserNameField_help"
-msgstr "���󥿡��ͥåȥ����ӥ��ץ��Х��� ��ISP�� �Υ�������Ȥإ������󤹤뤿���ɬ�פʥ桼��̾�����Ϥ��Ƥ���������"
+msgstr "インターネットサービスプロバイダ （ISP） のアカウントへログインするために必要なユーザ名を入力してください。"
 
 msgid "pppPasswordField"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
-#msgid "pppPasswordField_help"
-#msgstr "���󥿡��ͥåȥ����ӥ��ץ��Х��� ��ISP�� �Υ�������Ȥإ������󤹤뤿���ɬ�פʥѥ���ɤ����Ϥ��Ƥ���������"
-
+# msgid "pppPasswordField_help"
+# msgstr "インターネットサービスプロバイダ （ISP） のアカウントへログインするために必要なパスワードを入力してください。"
 msgid "pppPasswordField_help"
-msgstr "[[base-wizard.pppPasswordField]]����ꤷ�Ƥ���������"
+msgstr "[[base-wizard.pppPasswordField]]を指定してください。"
 
 msgid "static"
-msgstr "��ư������"
+msgstr "手動で設定"
 
 msgid "ipAddressField"
-msgstr "IP ���ɥ쥹"
+msgstr "IP アドレス"
 
 msgid "ipAddressField_rule"
-msgstr "0 �� 255 �� 4 �Ȥο��ͤ򡢥ԥꥪ�ɤǶ��ڤä����Ϥ��Ƥ����������ʻ����㡧 192.168.1.1��"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
 
 msgid "ipAddressField_help"
-msgstr "�̾�ϡ���������ꥤ�󥿡��ե������򥤥󥿡��ͥåȤˡ��ץ饤�ޥꥤ�󥿡��ե������򥤥�ȥ�ͥåȤ���³���ޤ������ξ�硢�����˥�������ꥤ�󥿡��ե������� IP ���ɥ쥹�����Ϥ��Ƥ����������ͥåȥ�����󥿡��ե������� 1 �Ĥ����ʤ����ˤϡ��ץ饤�ޥꥤ�󥿡��ե���������³������������ꥤ�󥿡��ե������϶������ޤ޻Ĥ��Ƥ���������[[base-wizard.ipAddressField_rule]]"
+msgstr "通常は、セカンダリインターフェイスをインターネットに、プライマリインターフェイスをイントラネットに接続します。その場合、ここにセカンダリインターフェイスの IP アドレスを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-wizard.ipAddressField_rule]]"
 
 msgid "netMaskField"
-msgstr "���֥ͥåȥޥ���"
+msgstr "サブネットマスク"
 
 msgid "netMaskField_rule"
-msgstr "0 �� 255 �� 4 �Ȥο��ͤ򡢥ԥꥪ�ɤǶ��ڤä����Ϥ��Ƥ����������ʻ����㡧 255.255.255.0��"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 255.255.255.0）"
+
 msgid "netMaskField_help"
-msgstr "�ץ饤�ޥꥤ�󥿡��ե������Υͥåȥ���ޥ��������Ϥ��Ƥ����������ͥåȥ�����󥿡��ե������� 1 �Ĥ����ʤ����ˤϡ��ץ饤�ޥꥤ�󥿡��ե���������³������������ꥤ�󥿡��ե������϶������ޤ޻Ĥ��Ƥ���������[[base-wizard.netMaskField_rule]]"
+msgstr "プライマリインターフェイスのネットワークマスクを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-wizard.netMaskField_rule]]"
 
 msgid "gatewayField"
-msgstr "�����ȥ�����"
+msgstr "ゲートウェイ"
+
 msgid "gatewayField_rule"
-msgstr "0 �� 255 �� 4 �Ȥο��ͤ򡢥ԥꥪ�ɤǶ��ڤä����Ϥ��Ƥ����������ʻ����㡧 192.168.1.1��"
+msgstr "0 〜 255 の 4 組の数値を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
 
 msgid "gatewayField_help"
-msgstr "��������ͥåȥ����Υ����ȥ������� IP ���ɥ쥹�����Ϥ��Ƥ��������������ȥ������ʡ֥롼���פȤ�ƤФ��ˤȤϡ���������ͥåȥ���γ����ؤΥ����������󶡤���ޥ���Ǥ���[[base-wizard.gatewayField_rule]]"
+msgstr "ローカルネットワーク上のゲートウェイの IP アドレスを入力してください。ゲートウェイ（「ルータ」とも呼ばれる）とは、ローカルネットワークの外部へのアクセスを提供するマシンです。[[base-wizard.gatewayField_rule]]"
 
 msgid "secondaryInterface"
-msgstr "��������ꥤ�󥿡��ե�����"
+msgstr "セカンダリインターフェイス"
 
 msgid "ipAddressField2"
-msgstr "IP ���ɥ쥹"
+msgstr "IP アドレス"
 
 msgid "ipAddressField2_help"
-msgstr "�̾�ϡ���������ꥤ�󥿡��ե������򥤥󥿡��ͥåȤˡ��ץ饤�ޥꥤ�󥿡��ե������򥤥�ȥ�ͥåȤ���³���ޤ������ξ�硢�����˥�������ꥤ�󥿡��ե������� IP ���ɥ쥹�����Ϥ��Ƥ����������ͥåȥ�����󥿡��ե������� 1 �Ĥ����ʤ����ˤϡ��ץ饤�ޥꥤ�󥿡��ե���������³������������ꥤ�󥿡��ե������϶������ޤ޻Ĥ��Ƥ���������[[base-network.ipAddressField1_rule]]"
+msgstr "通常は、セカンダリインターフェイスをインターネットに、プライマリインターフェイスをイントラネットに接続します。その場合、ここにセカンダリインターフェイスの IP アドレスを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-network.ipAddressField1_rule]]"
 
 msgid "ipAddressNetMaskMismatch"
-msgstr "��IP ���ɥ쥹�ץե�����ɤȡ֥��֥ͥåȥޥ����ץե�����ɤϡ�ξ���Ȥ����Ϥ��뤫��ξ���Ȥ����Τޤ޻Ĥ������Τɤ��餫�ˤ���ɬ�פ�����ޤ���"
+msgstr "「IP アドレス」フィールドと「サブネットマスク」フィールドは、両方とも入力するか、両方とも空欄のまま残すか、のどちらかにする必要があります。"
 
 msgid "netMaskField2"
 msgstr "[[base-network.netMaskField1]]"
 
 msgid "netMaskField2_help"
-msgstr "��������ꥤ�󥿡��ե������Υͥåȥ���ޥ��������Ϥ��Ƥ����������ͥåȥ�����󥿡��ե������� 1 �Ĥ����ʤ����ˤϡ��ץ饤�ޥꥤ�󥿡��ե���������³������������ꥤ�󥿡��ե������϶������ޤ޻Ĥ��Ƥ���������[[base-network.netMaskField1_rule]]"
+msgstr "セカンダリインターフェイスのネットワークマスクを入力してください。ネットワークインターフェイスが 1 つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-network.netMaskField1_rule]]"
 
 msgid "macAddressField"
-msgstr "MAC ���ɥ쥹"
+msgstr "MAC アドレス"
 
 msgid "macAddressField_help"
-msgstr "MAC (Media Access Control) ���ɥ쥹�ϡ��ƥͥåȥ�����󥿡��ե����������ɤ˸�ͭ�Υϡ��ɥ��������ɥ쥹�ǡ����Υϡ��ɥ��������դ˼��̤��ޤ����вٻ������ꤵ�졢�ѹ��ϤǤ��ޤ���"
+msgstr "MAC (Media Access Control) アドレスは、各ネットワークインターフェイスカードに固有のハードウェアアドレスで、このハードウェアを一意に識別します。出荷時に設定され、変更はできません。"
 
 msgid "wizardLan"
-msgstr "LAN �ʥ������륨�ꥢ�ͥåȥ���ˤ�����"
+msgstr "LAN （ローカルエリアネットワーク）の設定"
 
 msgid "wizardLan_help"
 msgstr " "
 
 msgid "lanMessage"
-msgstr "���Υ����Ф��ǥե���ȤǻȤ������ȥ���������ꤷ�Ƥ��������������ȥ���������������ꥤ�󥿡��ե���������³����Ƥ���ͥåȥ����ˤ�����ˤϡ���������ꥤ�󥿡��ե������� IP ���ɥ쥹�ȥͥåȥޥ��������Ϥ��Ƥ���������"
+msgstr "このサーバがデフォルトで使うゲートウェイを指定してください。ゲートウェイがセカンダリインターフェイスに接続されているネットワーク上にある場合には、セカンダリインターフェイスの IP アドレスとネットマスクも入力してください。"
 
 msgid "lanSettings"
-msgstr "LAN �ʥ������륨�ꥢ�ͥåȥ���ˤ�����"
+msgstr "LAN （ローカルエリアネットワーク）の設定"
 
 msgid "wizardModem"
-msgstr "���ʥ�����ISDN ��ǥ������"
+msgstr "アナログ／ISDN モデムの設定"
 
 msgid "wizardModem_help"
 msgstr " "
 
 msgid "modemMessage"
-msgstr "���ʥ�����ǥ�ޤ��� ISDN ��ǥ�ϡ�[[base-product.productName]]�Υ��ꥢ��ݡ��Ȥ���³���Ƥ����������ʲ��Υե�����ɤˤϡ����󥿡��ͥåȥ����ӥ��ץ��Х����������ꤷ���ͥåȥ�������������Ϥ��Ƥ���������"
+msgstr "アナログモデムまたは ISDN モデムは、[[base-product.productName]]のシリアルポートに接続してください。以下のフィールドには、インターネットサービスプロバイダから入手したネットワーク設定情報を入力してください。"
 
 msgid "modemSettings"
-msgstr "��ǥ������"
+msgstr "モデムの設定"
 
 msgid "connModeField"
-msgstr "��³�⡼��"
+msgstr "接続モード"
 
 msgid "connModeField_help"
-msgstr "��ǥ����³�����򡢳����ؤ���³��ɬ�פʤȤ��ˤ���������륢�å���³��Ԥ��������³��ݻ����롢������³���ʤ������椫������Ǥ���������"
+msgstr "モデムの接続形式を、外部への接続が必要なときにだけダイヤルアップ接続を行う、常時接続を維持する、全く接続しない、の中から選んでください。"
 
 msgid "demand"
-msgstr "ɬ�׻��Τ���³"
+msgstr "必要時のみ接続"
 
 msgid "on"
-msgstr "�����³"
+msgstr "常時接続"
 
 msgid "off"
-msgstr "��³���ʤ�"
+msgstr "接続しない"
 
 msgid "userNameField"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "userNameField_help"
-msgstr "���󥿡��ͥåȥ����ӥ��ץ��Х�����ISP�ˤΥ�����륢�åץ�������Ȥإ������󤹤뤿���ɬ�פʥ桼��̾�����Ϥ��Ƥ���������"
+msgstr "インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なユーザ名を入力してください。"
 
 msgid "userNameField_empty"
-msgstr "[[base-wizard.userNameField]]����ꤷ�Ƥ���������[[base-wizard.userNameField_help]]"
+msgstr "[[base-wizard.userNameField]]を指定してください。[[base-wizard.userNameField_help]]"
 
 msgid "modemPasswordField"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
 msgid "modemPasswordField_help"
-msgstr "���󥿡��ͥåȥ����ӥ��ץ��Х�����ISP�ˤΥ�����륢�åץ�������Ȥإ������󤹤뤿���ɬ�פʥѥ���ɤ����Ϥ��Ƥ���������"
+msgstr "インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なパスワードを入力してください。"
 
 msgid "modemPasswordField_empty"
-msgstr "[[base-wizard.modemPasswordField]]�Ͼ�ά�Ǥ��ޤ��󡣥��󥿡��ͥåȥ����ӥ��ץ��Х�����ISP�ˤΥ�����륢�åץ�������Ȥإ������󤹤뤿���ɬ�פʥѥ���ɤ����Ϥ��Ƥ���������"
+msgstr "[[base-wizard.modemPasswordField]]は省略できません。インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なパスワードを入力してください。"
 
 msgid "modemPasswordField_invalid"
-msgstr "�ۤʤ�ѥ���ɤ����Ϥ���ޤ��������ϥߥ����ɤ����ᡢƱ���ѥ���ɤ򣲲����Ϥ��Ƥ����������⤦���٤������������"
+msgstr "異なるパスワードが入力されました。入力ミスを防ぐため、同じパスワードを２回入力してください。もう一度お試しください。"
 
 msgid "modemPhoneField"
-msgstr "������륢�å���³��������ֹ�"
+msgstr "ダイヤルアップ接続先の電話番号"
 
 msgid "modemPhoneField_help"
-msgstr "���󥿡��ͥåȥ����ӥ��ץ��Х�����ISP�ˤؤΥ�����륢�å���³�˻Ȥ������ֹ�����Ϥ��Ƥ���������"
+msgstr "インターネットサービスプロバイダ（ISP）へのダイヤルアップ接続に使う電話番号を入力してください。"
 
 msgid "initStringField"
-msgstr "��ǥ��������ȥ��"
+msgstr "モデム初期化ストリング"
 
 msgid "initStringField_help"
-msgstr "��ǥ��������ȥ�󥰤����Ϥ��Ƥ�����������ǥ��������ȥ�󥰤ϡ�������볫�����˥�ǥ���Ϥ���ޤ���"
+msgstr "モデム初期化ストリングを入力してください。モデム初期化ストリングは、ダイヤル開始前にモデムに渡されます。"
 
 msgid "initStringField_empty"
-msgstr "[[base-wizard.initStringField]]�Ͼ�ά�Ǥ��ޤ��󡣥�ǥ��������ȥ�󥰤���ꤷ�ʤ��ȡ������Ф���ǥ����ѤǤ��ޤ��󡣥ǥե���ȤΥ�ǥ��������ȥ�󥰤������ξ��ˤϡ���ATZ�פ����Ϥ��뤫�������ѤΥ�ǥ����°�Υޥ˥奢��򤴻��Ȥ���������"
+msgstr "[[base-wizard.initStringField]]は省略できません。モデム初期化ストリングを指定しないと、サーバがモデムを使用できません。デフォルトのモデム初期化ストリングが不明の場合には、「ATZ」と入力するか、ご使用のモデムに付属のマニュアルをご参照ください。"
 
 msgid "localIpField"
-msgstr "�������� IP ���ɥ쥹"
+msgstr "ローカル IP アドレス"
 
 msgid "localIpField_help"
-msgstr "���󥿡��ͥåȥ����ӥ��ץ��Х�����ISP�ˤ����ǥ���³�Τ���Υ������� IP ���ɥ쥹��������Ƥ��Ƥ�����ˤϡ����������Ϥ��Ƥ���������"
+msgstr "インターネットサービスプロバイダ（ISP）からモデム接続のためのローカル IP アドレスが割り当てられている場合には、ここに入力してください。"
 
 msgid "pulseField"
-msgstr "�ѥ륹��������Ȥ�"
+msgstr "パルスダイヤルを使う"
 
 msgid "pulseField_help"
-msgstr "���Υܥå���������å�����ȡ��ȡ���ʥץå���ܥ��󼰡˥�����������˥ѥ륹�ʥ������꡼���˥�����뤬�Ȥ��ޤ����ǥե���ȤǤϡ��ȡ��������뤬�Ȥ��ޤ���"
+msgstr "このボックスをチェックすると、トーン（プッシュボタン式）ダイヤルの代わりにパルス（ロータリー式）ダイヤルが使われます。デフォルトでは、トーンダイヤルが使われます。"
 
 msgid "wizardRegistration"
-msgstr "���ʤ�̵�ݾ���"
+msgstr "製品の無保証性"
 
 msgid "wizardRegistration_help"
 msgstr " "
 
 msgid "registration"
-msgstr "���ʤ�̵�ݾ���"
+msgstr "製品の無保証性"
 
 msgid "regRightArrow"
-msgstr "�����"
+msgstr "右矢印"
 
 msgid "regSubmit"
-msgstr "����"
+msgstr "送信"
 
 msgid "regSubmit_help"
-msgstr "[[base-product.productName]]�ϡ������ץ󥽡����饤���󥹤Τ�Ȥ�̵�ݾڤ����ۤ���Ƥ��ޤ���"
+msgstr "[[base-product.productName]]は、オープンソースライセンスのもとに無保証で配布されています。"
 
 msgid "regCancel"
-msgstr "���Ѽ���Ͽ�ʤɤϤ���ޤ���"
+msgstr "利用者登録などはありません"
 
 msgid "regCancel_help"
-msgstr "[[base-product.productName]]�ϡ������ץ󥽡����饤���󥹤Τ�Ȥ�̵�ݾڤ����ۤ���Ƥ��ޤ���"
+msgstr "[[base-product.productName]]は、オープンソースライセンスのもとに無保証で配布されています。"
 
 msgid "regText"
-msgstr "�ʲ��Υե������Ȥä�������Ͽ�ϸ��ߤ�̵���Ǥ���"
+msgstr "以下のフォームを使った製品登録は現在は無効です。"
 
 msgid "regTextOffline"
-msgstr "[[base-product.productName]]��̵�ݾڤΥ��եȥ������Ǥ��ꡢ�ƥ��˥��륵�ݡ��ȤʤɤϤ���ޤ��󡣤��Τ��ᡢ������Ͽ�����Ѽ���Ͽ�ʤɤϤ���ޤ���"
+msgstr "[[base-product.productName]]は無保証のソフトウェアであり、テクニカルサポートなどはありません。そのため、製品登録、利用者登録などはありません。"
 
 msgid "empty_reg"
-msgstr "�ʤ����ν�����;�פǤ���̵�뤷�Ƥ�������������ؿʤ�Ǥ�������Ǥ�����"
+msgstr "（ここの処理は余計です。無視してください。）先へ進んでよろしいですか？"
 
 msgid "fullNameField"
-msgstr "����̾ (��ʸ)"
+msgstr "ご氏名 (英文)"
 
 msgid "fullNameField_help"
-msgstr "����̾��Ⱦ�ѱѻ��Ǥ����������������ʻ����㡧 Yutaka Yasuda��"
+msgstr "ご氏名を、半角英字でご記入ください。（指定例： Yutaka Yasuda）"
 
 msgid "fullNameField_rule"
-msgstr "������ϻȤ��ޤ���"
+msgstr "コロンは使えません。"
 
 msgid "titleField"
-msgstr "�� (��ʸ)"
+msgstr "役職 (英文)"
 
 msgid "titleField_help"
-msgstr "�򿦤�Ⱦ�ѱѻ��Ǥ������������������㡧 Engineer��Network Administrator��School Teacher�ʤɡ�"
+msgstr "役職を、半角英字でご記入ください。（例： Engineer、Network Administrator、School Teacherなど）"
 
 msgid "companyField"
-msgstr "��ҡ�����̾ (��ʸ)"
+msgstr "会社・団体名 (英文)"
 
 msgid "companyField_help"
-msgstr "���̾��Ⱦ�ѱѻ��Ǥ������������������㡧 Yasu System Individual��[[base-alpine.osVendor]] �ʤɡ�"
+msgstr "会社名、半角英字でご記入ください。（例： Yasu System Individual、[[base-alpine.osVendor]] など）"
 
 msgid "addressField"
-msgstr "���� (��ʸ)"
+msgstr "住所 (英文)"
 
 msgid "addressField_help"
-msgstr "�������Ⱦ�ѱѻ��Ǥ���������������"
+msgstr "ご住所を、半角英字でご記入ください。"
 
 msgid "countryField"
-msgstr "�� (��ʸ)"
+msgstr "国 (英文)"
 
 msgid "countryField_help"
-msgstr "���ܹ���ˤ��߽��ξ��ˤϡ�Japan �Ȥ���������������"
+msgstr "日本国内にご在住の場合には、Japan とご記入ください。"
 
 msgid "emailField"
-msgstr "�Żҥ᡼�륢�ɥ쥹"
+msgstr "電子メールアドレス"
 
 msgid "emailField_help"
-msgstr "�Żҥ᡼�륢�ɥ쥹�򤴵����������������㡧 yasuda@bluequartz.org��"
+msgstr "電子メールアドレスをご記入ください。（例： yasuda@bluequartz.org）"
 
 msgid "emailField_rule"
-msgstr "�Żҥ᡼�륢�ɥ쥹�����������������Ϥ��Ƥ������������㡧 yasuda@bluequartz.org��"
+msgstr "電子メールアドレスを正しい形式で入力してください。（例： yasuda@bluequartz.org）"
 
 msgid "phoneField"
-msgstr "�����ֹ�"
+msgstr "電話番号"
 
 msgid "phoneField_help"
-msgstr "�����ֹ�򤴵����������������㡧 075-705-1673��"
+msgstr "電話番号をご記入ください。（例： 075-705-1673）"
 
 msgid "faxField"
-msgstr "�ե��å����ֹ�"
+msgstr "ファックス番号"
 
 msgid "faxField_help"
-msgstr "�ե��å����ֹ�򤴵����������������㡧 075-705-1674��"
+msgstr "ファックス番号をご記入ください。（例： 075-705-1674）"
 
 msgid "wizardLocale"
-msgstr "����"
+msgstr "言語"
 
 msgid "wizardLocale_help"
 msgstr " "
 
 msgid "localeMessage"
-msgstr "���Υ����Фδ����˻��Ѥ����������Ӥ����������֥饦�����ɽ������Ϥ��Ȥ��ѹ��Ǥ��ޤ����������ƥ��֥�˥������������Żҥ᡼��ˤϡ����������ꤷ�����줬�Ȥ��ޤ���"
+msgstr "このサーバの管理に使用する言語をお選びください。ブラウザ上の表示言語はあとで変更できますが、アクティブモニタの生成する電子メールには、ここで設定した言語が使われます。"
 
 msgid "localeField"
-msgstr "�����Ѥˤʤꤿ����������򤷤Ƥ�������"
+msgstr "ご使用になりたい言語を選択してください"
 
 msgid "localeField_help"
-msgstr "�����ǻ��ꤷ������ϡ������ƥ��֥�˥����������������Żҥ᡼��˻Ȥ��ޤ����ޤ����֥饦����������줬���Ĥ���ʤ����ˤϡ��������̤ˤ�Ȥ��ޤ���"
+msgstr "ここで指定した言語は、アクティブモニタの生成する通知電子メールに使われます。また、ブラウザの設定言語が見つからない場合には、管理画面にも使われます。"
 
 msgid "localeSettings"
-msgstr "����"
+msgstr "言語"
 
 msgid "wizardRaid"
-msgstr "RAID ������"
+msgstr "RAID の設定"
 
 msgid "wizardRaid_help"
 msgstr " "
 
 msgid "raidMessage"
-msgstr "[[base-alpine.osName]] �����Х��ץ饤���󥹤Ǥ� RAID ��ǽ������Ǥ��ޤ����������ʤˤϡ�[[VAR.numdisk]] ��Υǥ���������¢����Ƥ��ޤ���RAID �����ˤϣ����ढ�ꡢ�ˡ����˹�碌�Ƥ�����ĺ���ޤ������Ĥϥǥ��������̤��礭�ʥ���塼�������󶡤����⤦���Ĥ����̤��⿮�����˽������֤��Ƥ��ޤ����ʲ��Υ��ץ���󤫤餴��˾�� RAID ��������Ӥ����������ٹ�: ��������ϡ������Ф�вٻ��ξ��֤��ᤵ�ʤ��¤��ѹ��Ǥ��ޤ��󡣳ƥ��ץ�����ʬ�����򤷤���ǡ������������ԤäƤ���������"
+msgstr "[[base-alpine.osName]] サーバアプライアンスでは RAID 機能を実装できます。この製品には、[[VAR.numdisk]] 台のディスクが内蔵されています。RAID 方式には２種類あり、ニーズに合わせてお選び頂けます。１つはディスク容量の大きなソリューションを提供し、もう１つは容量よりも信頼性に重点を置いています。以下のオプションからご希望の RAID 設定をお選びください。警告: この設定は、サーバを出荷時の状態に戻さない限り変更できません。各オプションを十分に理解した上で、正しい選択を行ってください。"
 
 msgid "raidAlreadyConfigured"
-msgstr "RAID �Ϥ��Ǥ�����ѤߤΤ��ᡢ�ѹ��Ǥ��ޤ���"
+msgstr "RAID はすでに設定済みのため、変更できません。"
 
 msgid "raidOption"
-msgstr "RAID �Υ�٥�"
+msgstr "RAID のレベル"
 
 msgid "raidOption_help"
-msgstr "RAID �μ����ˤ�ꡢʣ���Υǥ���������Υǥ������Ȥ��ƻ��ѤǤ��ޤ����ƥ��ץ����ˤĤ��Ƥ褯�ɤ�Ǥ��顢�ǥ�������������ˡ�����Ӥ���������"
+msgstr "RAID の実装により、複数のディスクを１台のディスクとして使用できます。各オプションについてよく読んでから、ディスクの設定方法をお選びください。"
 
 msgid "raidSettings"
-msgstr "RAID ������"
+msgstr "RAID の設定"
 
 msgid "raid0"
-msgstr "RAID 0 �⡼�� - �֥��ȥ饤�ԥ󥰡פȤ�ƤФ�� RAID 0 �Ǥϡ�ʣ���������ǥ���������������ǥ������˸�Ω�Ƥƻ��Ѥ��ޤ������٤Ƥ����̤�ǡ�������¸�˻Ȥ��ޤ����������줫�Υǥ����������꤬ȯ������Ⱦ���ϼ����ޤ���"
+msgstr "RAID 0 モード - 「ストライピング」とも呼ばれる RAID 0 では、複数の内部ディスクを１台の論理ディスクに見立てて使用します。すべての容量をデータの保存に使えますが、いずれかのディスクに問題が発生すると情報は失われます。"
 
 msgid "raid1"
-msgstr "RAID 1 �⡼�� - �֥ߥ顼��󥰡פȤ�ƤФ�� RAID 1 �Ǥϡ�����Ʊ��Υǡ���������������ǥ���������¸����ޤ����ɤ��餫�Υǥ����������꤬ȯ�����Ƥ⡢�ǡ����Ϥ⤦����Υǥ������������ѤǤ��ޤ�������Ĺ���ϼ����ޤ��Τ��Ѿ㳲�����㲼���ޤ���"
+msgstr "RAID 1 モード - 「ミラーリング」とも呼ばれる RAID 1 では、全く同一のデータが２台の内部ディスクに保存されます。どちらかのディスクに問題が発生しても、データはもう１台のディスクから利用できますが、冗長性は失われますので耐障害性は低下します。"
 
 msgid "raid5"
-msgstr "RAID 5 �⡼�� - �֥ѥ�ƥ��դ����ȥ饤�ԥ󥰡פȤ�ƤФ�� RAID 5 �Ǥϡ��ǥ������˽񤭹��ޤ줿�ǡ����Υѥ�ƥ�������¸����ޤ�������Υǥ����������꤬ȯ�����Ƥ⡢¾�Υǥ�������Υѥ�ƥ����󤫤�ǡ�����ƹ��ۤǤ��ޤ����ѥ�ƥ��ǡ�������¸���뤿�ᡢ���Ѳ�ǽ�ʥǥ��������̤�¾���������ޤ����ޤ���ʣ���Υǥ�������Ʊ�������꤬ȯ������ȥǡ����ϼ����ޤ���"
+msgstr "RAID 5 モード - 「パリティ付きストライピング」とも呼ばれる RAID 5 では、ディスクに書き込まれたデータのパリティ情報が保存されます。１台のディスクに問題が発生しても、他のディスク上のパリティ情報からデータを再構築できます。パリティデータを保存するため、利用可能なディスク容量は他少減少します。また、複数のディスクに同時に問題が発生するとデータは失われます。"
 
 msgid "onepageSettings"
-msgstr "�����ƥ������"
+msgstr "システムの設定"
 
 msgid "wizardOnepage"
-msgstr "�����ƥ������"
+msgstr "システムの設定"
 
 msgid "wizardOnepage_help"
 msgstr " "
 
 msgid "onepageMessage"
-msgstr "�����Ф�����ˤϰʲ��ξ���ɬ�פǤ����ե�����κ�¦�Υƥ����Ȥξ�˥ޥ������֤��ȡ��ƥե�����ɤΥإ�פ�ɽ������ޤ������Ϥ�������¸�Τʤ����ˤϡ������ƥ�����Ԥˤ��䤤��碌����������"
+msgstr "サーバの設定には以下の情報が必要です。フォームの左側のテキストの上にマウスを置くと、各フィールドのヘルプが表示されます。入力する情報をご存知ない場合には、システム管理者にお問い合わせください。"
 
 msgid "mustSelectLicense"
-msgstr "�ܥ饤���󥹷���ΰ��ֲ��ˤ����Ʊ�դ���פޤ��ϡ�Ʊ�դ��ʤ��פΤɤ��餫�����Ӥ�����������Ʊ�դ���פޤ��ϡ�Ʊ�դ��ʤ��ץ��ץ���󤬲��̾��ɽ������Ƥ��ʤ����ˤϡ����ֲ��ޤǥ��������뤷�Ƥ���������"
+msgstr "本ライセンス契約の一番下にある「同意する」または「同意しない」のどちらかをお選びください。「同意する」または「同意しない」オプションが画面上に表示されていない場合には、一番下までスクロールしてください。"
 
 msgid "accept"
-msgstr "Ʊ�դ���"
+msgstr "同意する"
 
 msgid "accept_help"
-msgstr "���եȥ��������Ѥξ����ɤߤˤʤꡢƱ�դ�����������ˤϡ���Ʊ�դ���פ򥯥�å�������ˤ��ʤߤ���������"
+msgstr "ソフトウェア利用の条件をお読みになり、同意いただける場合には、「同意する」をクリックして先にお進みください。"
 
 msgid "decline"
-msgstr "Ʊ�դ��ʤ�"
+msgstr "同意しない"
 
 msgid "decline_help"
-msgstr "���եȥ��������Ѥξ���Ʊ�դ��������ʤ����ˤϡ�[[base-product.productName]] �򤴻���ĺ���ޤ���"
+msgstr "ソフトウェア利用の条件に同意いただけない場合には、[[base-product.productName]] をご使用頂けません。"
 
 msgid "licenseClick"
-msgstr "��ʸ��κǸ�ޤǥ��������뤷�ơ����եȥ��������Ѿ��ˡ�Ʊ�դ���פޤ��ϡ�Ʊ�դ��ʤ��פ����򤷤Ƥ���������"
+msgstr "本文書の最後までスクロールして、ソフトウェア利用条件に「同意する」または「同意しない」か選択してください。"
 
 msgid "mustAcceptToUse"
-msgstr "[[base-alpine.osName]] �����Ѥ���ˤϡ����եȥ��������Ѿ���Ʊ�դ��Ƥ�������ɬ�פ�����ޤ���"
+msgstr "[[base-alpine.osName]] を利用するには、ソフトウェア利用条件に同意していただく必要があります。"
 
 msgid "license"
 msgstr "[[base-product.productLicense]]"
 
 # default virtual site settings
 msgid "addVirtualsiteSettings"
-msgstr "�ɲò��ۥ����Ȥ�����"
+msgstr "追加仮想サイトの設定"
 
 msgid "enterVsiteFqdn"
-msgstr "�ۥ���̾�ȥɥᥤ��͡���"
+msgstr "ホスト名とドメインネーム"
 
 msgid "enterVsiteFqdn_help"
-msgstr "�ǽ�Υե�����ɤ��ɲä��벾�ۥ����ȤΥۥ���̾�������ܤΥե�����ɤ˥ɥᥤ��͡������ꤷ�Ƥ���������(������: �ۥ���̾�� www���ɥᥤ��͡���� example.com>�ʤ�)  Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ���"
+msgstr "最初のフィールドに追加する仮想サイトのホスト名、２番目のフィールドにドメインネームを指定してください。(指定例: ホスト名に www、ドメインネームに example.com>など)  半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
 
 msgid "vsite_hostNameField"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "vsite_hostNameField_rule"
-msgstr "Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ����ʻ����㡧 www��mail��shomu-2��eigyo13 �ʤɡ�"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： www、mail、shomu-2、eigyo13 など）"
 
 msgid "vsite_hostNameField_help"
-msgstr "���Υ����ФΥۥ���̾����ꤷ�Ƥ����������ۥ���̾�ȥɥᥤ��͡�����Ȥ߹礻�ˤ�ꡢ���Υ����Ф��դ˼��̤���̾�����դ��Ƥ���������[[base-wizard.vsite_hostNameField_rule]]"
+msgstr "このサーバのホスト名を指定してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.vsite_hostNameField_rule]]"
 
 msgid "vsite_domainNameField"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "vsite_domainNameField_rule"
-msgstr "Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɤ��������ѤǤ��ޤ����ʻ����㡧 bluequartz.org��cobaltqube.org�ʤɡ�"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： bluequartz.org、cobaltqube.orgなど）"
 
 msgid "vsite_domainNameField_help"
-msgstr "���Υ����ФΥɥᥤ��͡�������Ϥ��Ƥ����������ۥ���̾�ȥɥᥤ��͡�����Ȥ߹礻�ˤ�ꡢ���Υ����Ф��դ˼��̤���̾�����դ��Ƥ���������[[base-wizard.vsite_domainNameField_rule]]"
+msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.vsite_domainNameField_rule]]"

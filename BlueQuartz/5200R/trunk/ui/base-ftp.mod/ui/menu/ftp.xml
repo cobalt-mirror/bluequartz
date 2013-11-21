@@ -6,7 +6,7 @@
         <access require="adminUser"/>
     </parent>
     <parent id="base_controlpanel" order="20">
-        <access require="networkServices"/>
+        <access require="serverFTP"/>
     </parent>
 </item>
 <!--

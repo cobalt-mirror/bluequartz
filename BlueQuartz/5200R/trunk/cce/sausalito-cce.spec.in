@@ -1,4 +1,4 @@
-# $Id: sausalito-cce.spec.in 991 2007-05-05 05:40:00Z shibuya $
+# $Id: sausalito-cce.spec.in 1544 2011-05-01 09:27:18Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 
 %define extension_dir %(php-config --extension-dir)
@@ -15,16 +15,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel
 BuildRequires: flex, bison
-%if "%tlas" != "2"
-BuildRequires: glib-ghash
-%endif
 
-%if "%sles" == "9"
-BuildRequires: php4-devel
-%endif
-%if "%tlas" == "2"
-BuildRequires: php4
-%endif
 %if 0%{?fedora}%{?centos}
 BuildRequires: php-devel
 %endif
@@ -40,7 +31,7 @@ sausalito-cce has both the server and client parts of cce.
 Group: System Environment/BlueQuartz
 Summary: The CCE server daemon
 Requires: glib, glib-ghash, pam
-%if "%centos" == "4"
+%if "%centos" == "5"
 Requires: audit-libs
 %endif
 
@@ -51,7 +42,7 @@ Configuration Engine.
 %package client
 Group: System Environment/BlueQuartz
 Summary: The CCE client libraries
-Requires: glib, glib-ghash, pam, httpd
+Requires: glib, glib-ghash, pam, httpd, base-admserv-glue
 
 %description client
 The cce-client package contains the client-side parts of the Cobalt 
@@ -62,9 +53,6 @@ Configuration Engine.
 
 %build
 make all \
-%if "%tlas" != "2"
-	GLIB_GHASH=true \
-%endif
 	CCETOPDIR=/usr/sausalito
 
 %install
@@ -132,7 +120,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /usr/sausalito/perl/*
 %{extension_dir}/*
 /usr/share/locale/*
-/etc/httpd/conf.d/bluequartz.conf
+%config(noreplace) /etc/httpd/conf.d/bluequartz.conf
 
 
 %post server
@@ -164,7 +152,7 @@ fi
 
 # resetup the owner of ccewrap
 if [ $1 = 2 ]; then
- 	/bin/chgrp apache /usr/sausalito/bin/ccewrap
+ 	/bin/chgrp admserv /usr/sausalito/bin/ccewrap
 	/bin/chmod u+s /usr/sausalito/bin/ccewrap
 fi
 
@@ -176,6 +164,42 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+* Sun May 02 2011 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.4-0BQ11
+- disable swig build.
+
+* Sun May 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.4-0BQ10
+- disable Indexes for httpd.
+
+* Sun May 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.4-0BQ9
+- disable exec for ssi.
+
+* Mon Mar 05 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.4-0BQ8
+- change version number for release.
+
+* Sun Feb 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ7
+- modified Makefile to build on FC12.
+
+* Sun Feb 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ6
+- replace corrupted db.1.85.tar.gz.
+
+* Thu Dec 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ5
+- add base-admserv-glue to requires for client package.
+
+* Tue Dec 08 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ4
+- fixed the issue that ccewrap group is changed after upgrade.
+
+* Fri Sep 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ3
+- user admserv group for ccewrap.
+
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ2
+- convert po file to utf-8.
+
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ2
+- modify spec.in file for CentOS5.
+
+* Tue Nov 25 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.3-0BQ1
+- merge from 5100R between r970 with r1195 for 5200R.
+
 * Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.80.2-1BQ33
 - use include_once instead of include for php file.
 

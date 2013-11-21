@@ -59,9 +59,27 @@
         writeacl="ruleCapable(adminUser)"
     />
 
+    <!-- Turns off the ability to run user owned websites --> 
+    <property 
+        name="userwebsDisabled" type="boolean" default="0" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
     <!-- email catch-all -->
     <property 
         name="mailCatchAll" type="scalar" optional="yes"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- is user Prefix? -->
+    <property
+        name="userPrefixEnabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- User Prefix -->
+    <property
+        name="userPrefixField" type="accountname" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
 
@@ -118,6 +136,10 @@
         optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
+    <property
+        name="createdUser" type="accountname" default="admin"
+        writeacl="ruleCapable(adminUser)"
+    />
 </class>
 
 <!-- 
@@ -146,6 +168,10 @@
         name="emailDisabled" type="boolean" default="0" optional="true"
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteUserDefaults )"
     />
+    <property 
+        name="userwebsDisabled" type="boolean" default="0" optional="true" 
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteUserDefaults )" 
+    /> 
     <property 
         name="userlist_range" type="int" default="15"
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleSiteUserDefaults )"
@@ -185,7 +211,22 @@
         writeacl="ruleCapable(adminUser)"
     />
     <property 
+        name="userwebsDisabled" type="boolean" default="0" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+    <property 
         name="mailCatchAll" type="scalar" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- is user Prefix? -->
+    <property
+        name="userPrefixEnabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- User Prefix -->
+    <property
+        name="userPrefixField" type="accountname" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
     <property 
@@ -205,3 +246,40 @@
         writeacl="ruleCapable(adminUser)"
     />
 </class>
+
+<!-- this is the system vsite settings -->
+<class name="System" namespace="Vsite" version="1.0">
+    <property
+        name="maxVsite" type="int" default="100"
+        writeacl="ruleCapable(serverVsite)"
+    />
+    <property
+        name="maxVsiteUpper" type="int" default="512"
+        writeacl="ruleCapable(serverVsite)"
+    />
+</class>
+
+<class 
+    name="User" namespace="Sites" version="1.0"
+    createacl="ruleAll" destroyacl="ruleAll"
+>
+    <!-- used in KB -->
+    <property 
+        name="used" type="int" 
+        writeacl="ruleSelf OR ruleModifyUser"
+    />
+    <!-- quota in MB -->
+    <property 
+        name="quota" type="int" default="-1" 
+        writeacl="ruleModifyUser"
+    />
+    <property
+        name="max" type="int" default="-1"
+        writeacl="ruleModifyUser"
+    />
+    <property
+        name="user" type="int" default="-1"
+        writeacl="ruleModifyUser"
+    />
+</class>
+

@@ -9,8 +9,9 @@ include_once('Error.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$serverScriptHelper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$serverScriptHelper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($serverScriptHelper->getAllowed('siteAdmin') &&
       $group == $serverScriptHelper->loginUser['site'])) {
   header("location: /error/forbidden.html");

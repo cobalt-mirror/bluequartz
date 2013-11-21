@@ -4,8 +4,9 @@ include_once('ServerScriptHelper.php');
 
 $helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$helper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -52,10 +53,9 @@ if (file_exists($fullPath)){
         while(!feof($fp))
         {
                 $string = fgets($fp, 4096);
-                $string=str_replace("<A HREF=\"usage", "<A
-HREF=\"webalizer.php?group=" . $group . "&file=usage", $string);
-                $string=str_replace("<IMG SRC=\"", "<IMG
-SRC=\"webalizer.php?group=" . $group . "&file=", $string);
+                $string=str_replace("<A HREF=\"./", "<A HREF=\"webalizer.php?group=" . $group . "&file=", $string); 
+                $string=str_replace("<A HREF=\"usage", "<A HREF=\"webalizer.php?group=" . $group . "&file=usage", $string); 
+                $string=str_replace("<IMG SRC=\"", "<IMG SRC=\"webalizer.php?group=" . $group . "&file=", $string); 
                 $data .= $string;
         }
 

@@ -69,12 +69,6 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-# check aliases.majordomo
-grep -e '^O AliasFile.*/etc/mail/aliases.majordomo' /etc/mail/sendmail.cf > /dev/null
-if [ $? -eq 1 ]; then
-	perl -pi -e 's|O AliasFile=/etc/mail/aliases|O AliasFile=/etc/mail/aliases, /etc/mail/aliases.majordomo|g' /etc/mail/sendmail.cf
-	/etc/init.d/sendmail condrestart
-fi
 
 <end glue>
 <begin ui>
@@ -113,6 +107,25 @@ fi;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Jul 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ18
+- resolved the issue that alias will be broken when new site is created.
+
+* Sat Jun 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ17
+- resolved the issue that can not send the mail to mail list after changing site FQDN.
+
+* Wed Jan 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ15
+- modify the file name for majordomo log to 'log' for majordomo logrotate.
+
+* Wed Dec 23 2009 Hisao SHIBUYA <shibuya@bleuquartz.org> 1.4.0-68BQ14
+- change majordomo package and add sequencer feature.
+
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ13
+- remove sendmail.cf check.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ12
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ12
 - Fixed duplicate include issue.
 

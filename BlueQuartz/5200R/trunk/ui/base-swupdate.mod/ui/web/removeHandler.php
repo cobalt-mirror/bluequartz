@@ -1,15 +1,15 @@
 <?php
 // Author: asun@cobalt.com
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: removeHandler.php 1008 2007-06-25 15:23:03Z shibuya $
+// $Id: removeHandler.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
 // declare some constants
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }

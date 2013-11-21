@@ -141,8 +141,15 @@ sub sites {
     # find all numeric hashes
     my @hashdirs = ();
     foreach my $mount (@mounts) {
-	opendir(SITEDIR, "$mount/.sites");
-	my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+        my $sitedir;
+        if ($mount ne $Base::HomeDir::HOME_ROOT) {
+                $sitedir = '/home/.sites';
+        } else {
+                $sitedir = "$mount/.sites";
+        }
+
+	opendir(SITEDIR, "$sitedir");
+	my @dirs = map { "$sitedir/$_" } grep /^\d+$/, readdir(SITEDIR);
 	push @hashdirs, @dirs;
 	close(SITEDIR);
     }
@@ -184,8 +191,15 @@ sub siteusage {
     # find all numeric hashes
     my @hashdirs = ();
     foreach my $mount (@mounts) {
-	opendir(SITEDIR, "$mount/.sites");
-	my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+	my $sitedir;
+	if ($mount ne $Base::HomeDir::HOME_ROOT) {
+		$sitedir = '/home/.sites';
+	} else {
+		$sitedir = "$mount/.sites";
+	}
+
+	opendir(SITEDIR, "$sitedir");
+	my @dirs = map { "$sitedir/$_" } grep /^\d+$/, readdir(SITEDIR);
 	push @hashdirs, @dirs;
 	close(SITEDIR);
     }

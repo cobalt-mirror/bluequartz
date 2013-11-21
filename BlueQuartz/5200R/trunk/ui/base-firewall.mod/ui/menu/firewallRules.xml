@@ -1,6 +1,6 @@
 <item id="base_firewallRules" label="[[base-firewall.firewall_menu]]" description="[[base-firewall.firewall_menu_help]]" url="/base/firewall/rules.php">
   <parent id="base_security" order="10">
-	<access require="adminFirewall"/>
+	<access require="serverSystemFirewall"/>
   </parent>
 </item>
 

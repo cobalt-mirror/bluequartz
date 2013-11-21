@@ -1,5 +1,5 @@
 #!/usr/bin/perl	-w
-# $Id: copy.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: copy.pl 1435 2010-03-13 02:09:24Z shibuya $
 # Copyright 2000-2002 Sun Microsystems, Inc., All rights reserved.
 
 use lib qw(/usr/sausalito/perl);
@@ -102,7 +102,7 @@ INDEXHTML
 <META HTTP-EQUIV="expires" CONTENT="-1">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 </HEAD>
-<BODY onLoad="location='http://'+location.host+'/login/'">
+<BODY onLoad="location='https://'+location.hostname+':81/login/'">
 </BODY>
 </HTML>
 INDEXHTML

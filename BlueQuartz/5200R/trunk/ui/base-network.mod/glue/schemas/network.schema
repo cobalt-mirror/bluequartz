@@ -1,5 +1,5 @@
 <!--
-	$Id: network.schema 259 2004-01-03 06:28:40Z shibuya $
+	$Id: network.schema 1437 2010-03-21 12:59:56Z shibuya $
 	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 	
 	This is the schema for all things network.
@@ -40,7 +40,12 @@
     <!-- set to true to enable IP pooling -->
     <property 
         name="pooling" type="boolean" default="0"
-        writeacl="ruleCapable(ipPooling)"
+        writeacl="ruleCapable(serverIpPooling)"
+    />
+    <!-- Allow to change IP address -->
+    <property
+	name="interfaceConfigure" type="boolean" default="1"
+	writeacl="ruleCapable(adminUser)"
     />
 </class>
 

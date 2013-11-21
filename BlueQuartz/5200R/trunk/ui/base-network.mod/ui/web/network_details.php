@@ -22,7 +22,7 @@ am_detail_block($factory, $cce, 'Network', '[[base-network.amNetDetails]]');
 $page = $factory->getPage();
 $i18n = $factory->i18n;
 
-$list = $factory->getScrollList("amNetStats", array('', 'eth0', 'eth1'));
+$list = $factory->getScrollList("amNetStats", array(' ', 'eth0', 'eth1'));
 $list->setEntryCountHidden(true);
 // FIXME make column widths match the paged block
 $list->setColumnWidths(array('40%', '30%', '30%'));

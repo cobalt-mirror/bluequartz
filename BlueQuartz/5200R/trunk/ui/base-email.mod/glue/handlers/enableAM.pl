@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: enableAM.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: enableAM.pl 1233 2009-09-06 09:58:50Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # 
 #
@@ -22,12 +22,14 @@ if (!$oid || !$ns) {
 my %nsmap = (
 	enableSMTP => "SMTP",
 	enableImap => "IMAP",
-	enablePop => "POP3"
+	enablePop => "POP3",
+	enableSMTPAuth => "SMTPAuth",
+	enablepopRelay => "popRelay"
 );
 my @oids = $cce->find("ActiveMonitor");
 my $prop;
 
-foreach $prop (("enableSMTP", "enableImap", "enablePop")) {
+foreach $prop (("enableSMTP", "enableImap", "enablePop", "enableSMTPAuth", "enablepopRelay")) {
 	my ($oldval, $newval);
 	$oldval = $oldobj->{$prop} ? 1 : 0;
 	$newval = $newobj->{$prop} ? 1 : 0;
@@ -38,7 +40,7 @@ foreach $prop (("enableSMTP", "enableImap", "enablePop")) {
 	}
 }
 
-if ($newobj->{enableSMTP} || $newobj->{enableImap} || $newobj->{enablePop}) {
+if ($newobj->{enableSMTP} || $newobj->{enableImap} || $newobj->{enablePop} || $newobj->{enableSMTPAuth} || $newobj->{enablepopRelay}) {
     $cce->set($oids[0], 'Email', { 'enabled' => 1 });
 } else {
     $cce->set($oids[0], 'Email', { 'enabled' => 0 });

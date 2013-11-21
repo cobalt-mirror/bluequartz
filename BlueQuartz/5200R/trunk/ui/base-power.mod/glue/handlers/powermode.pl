@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/power
-# $Id: powermode.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id$
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use CCE;

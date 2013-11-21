@@ -19,10 +19,8 @@ all:
 install:
 	mkdir -p $(CCESBINDIR)
 	mkdir -p $(CCEPERLDIR)
-	mkdir -p $(PREFIX)/root/.gnupg
 	(cd sbin; \
 	$(INSTALL) $(INSTALL_SBINFLAGS) $(SCRIPTS) $(CCESBINDIR); \
 	$(INSTALL) $(INSTALL_LIBFLAGS) $(PERLLIB) $(CCEPERLDIR))
-	cd gnupg; tar cBf - . | (cd $(PREFIX)/root/.gnupg; tar xBf -)
 
 rpm:

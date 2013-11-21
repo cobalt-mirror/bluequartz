@@ -11,8 +11,8 @@ include_once("AutoFeatures.php");
 
 $helper =& new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only manageSite should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -21,12 +21,19 @@ $cce =& $helper->getCceClient();
 
 $vsiteOID = $cce->find("Vsite", array("name" => $group));
 
+// Suspended sites must NOT have site_preview enabled:
+if ($suspend == "1") {
+	$site_preview = "0";
+}
+
 $cce->set($vsiteOID[0], "", 
 	  array(
 		"hostname" => $hostname,
 		"domain" => $domain,
 		"fqdn" => ($hostname . "." . $domain),
 		"ipaddr" => $ipAddr,
+                "userPrefixEnabled" => ($_MultiChoice_checkbox_userPrefix ? 1 : 0),
+                "userPrefixField" => $userPrefixField,
 		"maxusers" => $maxusers,
 		"dns_auto" => $dns_auto,
 		"site_preview" => $site_preview,

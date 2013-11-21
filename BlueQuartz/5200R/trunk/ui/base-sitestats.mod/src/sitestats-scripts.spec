@@ -1,14 +1,14 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
-Version: 1.0
-Release: 25BQ18%{?dist}
+Version: 1.1
+Release: 25BQ22%{?dist}
 Vendor: %{?vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
-Requires: webalizer
+Requires: webalizer, tmpwatch
 
 %description
 This package contains the scripts for processing logfiles
@@ -16,6 +16,18 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+* Sun Aug 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ22
+- add requires tmpwatch.
+
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ21
+- remove .svn directory from rpm package.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ20
+- modify split_logs to support postfix.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ19
+- modify maillog2commonlog.pl to support postfix.
+
 * Thu Jun 22 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-25BQ18
 - modify analog.cfg.tmpl to change the hostname and logrotate file for ssl logs.
 

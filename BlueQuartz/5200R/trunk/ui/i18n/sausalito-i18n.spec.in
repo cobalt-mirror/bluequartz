@@ -57,6 +57,10 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
 /usr/sausalito/perl/I18nMail.pm
 /usr/sausalito/perl/JConv.pl
 /usr/sausalito/bin/i18nmail.pl
+/usr/share/dict/cracklib-words
+/usr/share/dict/pw_dict.hwm
+/usr/share/dict/pw_dict.pwd
+/usr/share/dict/pw_dict.pwi
 
 %files devel
 %defattr(-,root,root)
@@ -75,20 +79,36 @@ fi
 
 # make sure these links exist or setlocale doesn't work right
 # temporary fix for now.  try both just to make sure this happens
+if [ ! -d "/usr/lib/locale/en_US" ]; then
+	/usr/bin/localedef -i en_US /usr/lib/locale/en_US
+fi
 if [ -d "/usr/lib/locale/en_US" ]; then
 	ln -sf /usr/lib/locale/en_US /usr/lib/locale/en
 fi
-if [ -d "/usr/share/locale/en_US" ]; then
-	ln -sf /usr/share/locale/en_US /usr/share/locale/en
+
+if [ ! -d "/usr/lib/locale/ja_JP.utf8" ]; then
+	/usr/bin/localedef -i ja_JP -f UTF-8 /usr/lib/locale/ja_JP.utf8
 fi
-if [ -d "/usr/lib/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/lib/locale/ja_JP.eucjp /usr/lib/locale/ja
-fi
-if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/share/locale/ja_JP.eucjp /usr/share/locale/ja
+if [ -d "/usr/lib/locale/ja_JP.utf8" ]; then
+	ln -sf /usr/lib/locale/ja_JP.utf8 /usr/lib/locale/ja
 fi
 
 %changelog
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ20
+- make locale for en_US and ja_JP.utf8 in /usr/lib/locale.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ19
+- import cracklib.
+
+* Tue Sep 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ18
+- use UTF-8 for default encoding for Japanese instead of EUC-JP.
+
+* Thu Sep 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ17
+- modify %post script to use UTF-8 for Japanese.
+
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ16
+- merge from 5100R between r970 with r1218 to support cracklib.
+
 * Sun May 06 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ15
 - modify I18n.php to fix array error.
 

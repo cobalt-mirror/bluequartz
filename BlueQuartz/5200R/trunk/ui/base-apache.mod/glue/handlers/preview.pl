@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: preview.pl 823 2006-07-14 15:01:34Z shibuya $
+# $Id: preview.pl 1474 2010-05-16 14:19:29Z shibuya $
 # Copyright 2005 Project BlueQuartz, All rights reserved.
 # handle the preview for server virtualhost
 #
@@ -37,9 +37,13 @@ my $param;
 
 $param->{'fqdn'} = $obj->{'hostname'} . '.' . $obj->{'domainname'};
 
-my ($oid) = $cce->findx('Network', { 'device' => 'eth0' });
-my ($ok, $obj) = $cce->get($oid);
-
+if (! -f "/proc/user_beancounters") {
+    ($oid) = $cce->findx('Network', { 'device' => 'eth0' });
+}
+else {
+    ($oid) = $cce->findx('Network', { 'device' => 'venet0:0' });
+}
+($ok, $obj) = $cce->get($oid);
 $param->{'ipaddr'} = $obj->{'ipaddr'};
 
 my @preview_sites = $cce->find('VirtualHost', {'site_preview' => 1});
@@ -57,7 +61,7 @@ for my $oid (@preview_sites) {
     my ($ok, $cgi) = $cce->get($void, 'CGI');
     my ($ok, $ssi) = $cce->get($void, 'SSI');
     if ($php->{enabled}) {
-        $script_conf .= "AddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n";
+        $script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n";
     }
     if ($cgi->{enabled}) {
         $script_conf .= "AddHandler cgi-wrapper .cgi\nAddHandler cgi-wrapper .pl\n";
@@ -110,6 +114,11 @@ exit(0);
 sub edit_preview
 {
     my ($in, $out, $param, $aliases) = @_;
+
+# Handle cases where IP is missing (rare, but can happen):
+if (!$param->{ipaddr}) {
+	$param->{ipaddr} = "127.0.0.1"; 
+}
 
     my $preview_conf =<<END;
 # /etc/httpd/conf/vhost/preview

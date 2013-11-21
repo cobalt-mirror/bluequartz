@@ -1,41 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "SMARTnameTag"
-msgstr "SMART (Self-Monitoring Analysis and Reporting Technology) �ξ��֤ξܺ�"
+msgstr "SMART (Self-Monitoring Analysis and Reporting Technology) の状態の詳細"
 
 msgid "noAMobject"
-msgstr "�����ƥ��֥�˥��Υ��֥������Ȥ����Ĥ���ޤ���"
+msgstr "アクティブモニタのオブジェクトが見つかりません"
 
 msgid "errRefreshingSnapshot"
-msgstr "SMART �ξ��֤Υ��ʥåץ���åȵ�Ͽ��Υ��顼"
+msgstr "SMART の状態のスナップショット記録中のエラー"
 
 msgid "errRegettingObject"
-msgstr "�����ƥ��֥�˥��Υ��֥������Ȥ򸡺���Υ��顼"
+msgstr "アクティブモニタのオブジェクトを検索中のエラー"
 
 msgid "smartFailures"
-msgstr "����ޤ���ʣ���Υǥ������ǥ��顼��ȯ�����ޤ����������ƥ��Хå����åפ��ơ��㳲�Τ���ǥ�������򴹤��Ƥ���������"
+msgstr "１台または複数のディスクでエラーが発生しました。システムをバックアップして、障害のあるディスクを交換してください。"
 
 msgid "smartDeclining"
-msgstr "[[VAR.drives]] �ɥ饤�֤ϵ�ǽ���㲼���Ƥ��ޤ��������ΤȤ����ǡ������Ӽ����뤳�Ȥʤ�ư��Ƥ��ޤ�����ǽ���㲼�����ɥ饤�֤θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "[[VAR.drives]] ドライブは機能が低下していますが、今のところデータを喪失することなく動作しています。機能の低下したドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "smartOK"
-msgstr "�ǥ������Ϥ��٤������ư��Ƥ��ޤ���"
+msgstr "ディスクはすべて正常に動作しています。"
 
 msgid "turned_off_drives"
-msgstr "[[VAR.drives]] �ɥ饤�־�����꤬ȯ���������ᡢ���Υɥ饤�֤�̵���ˤ���ޤ����������ȯ�������ɥ饤�֤ΥХå����åפȸ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "[[VAR.drives]] ドライブ上で問題が発生したため、このドライブは無効にされました。問題の発生したドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "unsafe"
-msgstr "[[VAR.drives]] �ɥ饤�֤����꤬ȯ�����ޤ����������դˤ���Ⱦ��󤬼����ޤ��������ȯ�������ɥ饤�֤ΥХå����åפȸ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "[[VAR.drives]] ドライブに問題が発生しましたが、オフにすると情報が失われます。問題の発生したドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "standalone"
-msgstr "[[VAR.drives]] �ɥ饤�֤����꤬ȯ�����ޤ����������դˤ���Ⱦ��󤬼����ޤ��������ȯ������������ɥ������󷿥ɥ饤�֤ΥХå����åפȸ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "[[VAR.drives]] ドライブに問題が発生しましたが、オフにすると情報が失われます。問題の発生したスタンドアローン型ドライブのバックアップと交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "drive_off"
-msgstr "���Υɥ饤�֤ϡ����꤬ȯ���������ᥪ�դˤ���ޤ������ɥ饤�֤θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "このドライブは、問題が発生したためオフにされました。ドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "unsafe_drive"
-msgstr "���Υɥ饤�֤����꤬ȯ�����ޤ����������դˤ���Ⱦ��󤬼����ޤ����ɥ饤�֤θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "このドライブに問題が発生しましたが、オフにすると情報が失われます。ドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "unsafe_drive_standalone"
-msgstr "���Υɥ饤�֤����꤬ȯ�����ޤ����������դˤ���Ⱦ��󤬼����ޤ���������ɥ������󷿥ɥ饤�֤θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "このドライブに問題が発生しましたが、オフにすると情報が失われます。スタンドアローン型ドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"
 
 msgid "drive_declining"
-msgstr "���Υɥ饤�֤ϵ�ǽ���㲼���Ƥ��ޤ��������ΤȤ����ǡ������Ӽ����뤳�Ȥʤ�ư��Ƥ��ޤ�����ǽ���㲼�����ɥ饤�֤θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]] �Υƥ��˥��륵�ݡ��Ȥ򤴻��Ȥ���������"
+msgstr "このドライブは機能が低下していますが、今のところデータを喪失することなく動作しています。機能の低下したドライブの交換については、[[base-sauce-basic.techSupportURL]] のテクニカルサポートをご参照ください。"

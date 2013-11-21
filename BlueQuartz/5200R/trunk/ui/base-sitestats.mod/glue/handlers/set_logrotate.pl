@@ -17,7 +17,7 @@ my $cce = new CCE;
 $cce->connectfd();
 
 my $vsite = {};
-my ($ok, $disk);
+my ($ok, $disk, $sitestats);
 if ($cce->event_is_destroy())
 {
 	$vsite = $cce->event_old();
@@ -39,6 +39,14 @@ else
 		$cce->bye('FAIL', '[[base-sitestats.systemError]]');
 		exit(1);
 	}
+
+	($ok, $sitestats) = $cce->get($cce->event_oid(), 'SiteStats');
+
+	if (!$ok)
+	{
+		$cce->bye('FAIL', '[[base-sitestats.systemError]]');
+		exit(1);
+	}
 }
 
 my $logrotate_file = "$LOGROTATE_DIR/$vsite->{name}";
@@ -53,12 +61,13 @@ else # create or quota change
 	my $log_dir = homedir_get_group_dir($vsite->{name}, $vsite->{volume}) .
 					"/$LOG_DIR";
 	my $size = int($disk->{quota} / 10) || 1;
+	my $rotate = $DEFAULT_ROTATE;
 
 	# disk quota can be -1 to specify unlimited, so deal with it
 	if ($disk->{quota} == -1) { $size = $DEFAULT_SIZE; }
 
 	if (!Sauce::Util::editfile($logrotate_file, *edit_logrotate, 
-				$log_dir, $size))
+				$log_dir, $size, $sitestats->{rotate}))
 	{
 		$cce->bye('FAIL', '[[base-sitestats.cantEnableLogrotate]]');
 		exit(1);
@@ -70,7 +79,7 @@ exit(0);
 
 sub edit_logrotate
 {
-	my($in, $out, $log_dir, $size) = @_;
+	my($in, $out, $log_dir, $size, $rotate) = @_;
 
 	$size .= 'M';
 	my($rotate) = <<EOF;
@@ -78,18 +87,21 @@ $log_dir/mail.log {
    missingok
    compress
    size $size
+   rotate $rotate
 }
 
 $log_dir/ftp.log {
    missingok
    compress
    size $size
+   rotate $rotate
 }
 
 $log_dir/web.log {
    missingok
    compress
    size $size
+   rotate $rotate
 }
 EOF
 

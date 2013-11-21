@@ -13,7 +13,7 @@ function generate_site_list(&$site_list, &$cce, &$factory, $vsite_oids,
 	// page at a time
 	$maxLength = $sites_per_page;
 
-	$site_list->setColumnWidths(array("50%", "20%", "10%", "10%"));
+	$site_list->setColumnWidths(array("50%", "20%", "10%", "10%", "10%"));
 	$site_list->setEntryNum(count($vsite_oids));
 	$site_list->setLength($maxLength);  
 
@@ -61,10 +61,12 @@ function generate_site_list(&$site_list, &$cce, &$factory, $vsite_oids,
 						  $currSite["ipaddr"],
 						  $access = "r");
 		$ipaddr->setPreserveData(false);
+		$created = $factory->getSimpleText($currSite['createdUser']);
 
 		$site_list->addEntry(array(
 					$hostname,
 					$ipaddr,
+					$created,
 					$suspend,
 					$actions
 				     ), "", false, $i);

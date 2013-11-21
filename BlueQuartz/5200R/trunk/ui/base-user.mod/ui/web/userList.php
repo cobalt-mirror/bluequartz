@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userList.php 476 2005-06-12 06:16:11Z shibuya $
+ * $Id: userList.php 1508 2010-08-08 04:31:21Z shibuya $
  */
 include_once("ServerScriptHelper.php");
 include_once("uifc/Button.php");
@@ -82,12 +82,6 @@ if ($group) {
 }
 
 $addurl = "";
-
-$scrollList->addButton(
-	$factory->getAddButton(
-		"javascript: location='/base/user/userAdd.php?group=$group';"
-		. " top.code.flow_showNavigation(false)",
-		"[[base-user.add_user_help]]"));
 
 // disable sorting
 $scrollList->setSortEnabled(false);
@@ -179,6 +173,14 @@ for ($i = $start; $i < count($oids) && $i < $start + $pageLength; $i++) {
 }
 
 $scrollList->setEntryNum(count($oids) - $adminCount);
+
+if($vsiteObj['maxusers'] > count($oids) - $adminCount) {
+    $scrollList->addButton(
+            $factory->getAddButton(
+                    "javascript: location='/base/user/userAdd.php?group=$group';"
+                    . " top.code.flow_showNavigation(false)",
+                    "[[base-user.add_user_help]]"));
+}
 
 $serverScriptHelper->destructor();
 ?>

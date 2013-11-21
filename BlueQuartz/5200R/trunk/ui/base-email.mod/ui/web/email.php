@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: email.php 1015 2007-06-25 15:26:11Z shibuya $
+// $Id: email.php 1459 2010-04-18 15:24:54Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverEmail should be here
+if (!$serverScriptHelper->getAllowed('serverEmail')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -32,27 +32,43 @@ $block->processErrors($errors);
 // basic page
 // smtp
 $block->addDivider($factory->getLabel('SMTP', false), 'basic');
-$block->addFormField(
-  $factory->getBoolean("enableServersField", $email["enableSMTP"]),
-  $factory->getLabel("enableServersField"),
-  "basic"
+
+$smtpEnable = $factory->getOption("enableSMTPField", $email["enableSMTP"]);
+$smtpEnable->addFormField(
+  $factory->getBoolean("enableSMTP_Auth", $email["enableSMTP_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSMTPSField", $email["enableSMTPS"]),
-  $factory->getLabel("enableSMTPSField"),
-  "basic"
+$smtp = $factory->getMultiChoice("enableSMTPField");
+$smtp->addOption($smtpEnable);
+$block->addFormField($smtp, $factory->getLabel("enableSMTPField"), "basic");
+
+// smtps
+$smtpsEnable = $factory->getOption("enableSMTPSField", $email["enableSMTPS"]);
+$smtpsEnable->addFormField(
+  $factory->getBoolean("enableSMTPS_Auth", $email["enableSMTPS_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSMTPAuthField", $email["enableSMTPAuth"]),
-  $factory->getLabel("enableSMTPAuthField"),
-  "basic"
+$smtps = $factory->getMultiChoice("enableSMTPSField");
+$smtps->addOption($smtpsEnable);  
+$block->addFormField($smtps, $factory->getLabel("enableSMTPSField"), "basic");
+
+// submission
+$submissionEnable = $factory->getOption("enableSubmissionPortField", $email["enableSubmissionPort"]);
+$submissionEnable->addFormField(
+  $factory->getBoolean("enableSubmission_Auth", $email["enableSubmission_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
+$submission = $factory->getMultiChoice("enableSubmissionPortField");
+$submission->addOption($submissionEnable);
+$block->addFormField($submission, $factory->getLabel("enableSubmissionPortField"), "basic");
+
+// TLS
 $block->addFormField(
-  $factory->getBoolean("enableSubmissionPortField", $email["enableSubmissionPort"]),
-  $factory->getLabel("enableSubmissionPortField"),
+  $factory->getBoolean("enableTLSField", $email["enableTLS"]),
+  $factory->getLabel("enableTLSField"),
   "basic"
 );
 
@@ -86,12 +102,14 @@ $block->addFormField(
 
 
 // advanced page
+/*
 $queueTimeMap = array("immediate" => "queue0", "quarter-hourly" => "queue15", "half-hourly" => "queue30", "hourly" => "queue60", "quarter-daily" => "queue360", "daily" => "queue1440");
 $queueSelectedMap = array("immediate" => 0, "quarter-hourly" => 1, "half-hourly" => 2, "hourly" => 3, "quarter-daily" => 4, "daily" => 5);
   
 $queue_select = $factory->getMultiChoice("queueTimeField", array_values($queueTimeMap));
 $queue_select->setSelected($queueSelectedMap[$email['queueTime']], true);
 $block->addFormField($queue_select, $factory->getLabel("queueTimeField"), 'advanced');
+*/
 
 // convert from KB to MB
 $max = $email["maxMessageSize"]/1024;
@@ -115,11 +133,19 @@ $block->addFormField(
   "advanced"
 );
 
-$smartRelay = $factory->getDomainName("smartRelayField", $email["smartRelay"]);
+$smartRelay = $factory->getTextField("smartRelayField", $email["smartRelay"]);
 $smartRelay->setOptional(true);
 $block->addFormField(
   $smartRelay, 
   $factory->getLabel("smartRelayField"),
+  "advanced"
+);
+
+$fallbackRelay = $factory->getTextField("fallbackRelayField", $email["fallbackRelay"]);
+$fallbackRelay->setOptional(true);
+$block->addFormField(
+  $fallbackRelay,
+  $factory->getLabel("fallbackRelayField"),
   "advanced"
 );
 
@@ -165,9 +191,14 @@ $block->addFormField(
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 
+$routeButton = $factory->getButton("/base/email/routes.php", "routes");
+
 $serverScriptHelper->destructor();
 ?>
 <?php print($page->toHeaderHtml()); ?>
+
+<?php print($routeButton->toHtml()); ?>
+<BR>
 
 <?php print($block->toHtml()); ?>
 

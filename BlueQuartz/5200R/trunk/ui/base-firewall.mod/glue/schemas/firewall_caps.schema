@@ -1,9 +1,9 @@
 <!-- Firewall Capabilities -->
 
 <!-- System.Firewall -->
-<class name="Capabilities" namespace="modifySystemFirewall" version="1.0">
-	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifySystemFirewall)"/>
-	<property name="nameTag" type="scalar" default="[[base-firewall.cap_modifySystemFirewall]]"/>
+<class name="Capabilities" namespace="serverSystemFirewall" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(serverSystemFirewall)"/>
+	<property name="nameTag" type="scalar" default="[[base-firewall.cap_serverSystemFirewall]]"/>
 </class>
 
 <!-- FirewallChain -->

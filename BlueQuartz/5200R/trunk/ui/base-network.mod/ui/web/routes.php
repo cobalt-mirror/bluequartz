@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: routes.php 1003 2007-06-25 15:19:33Z shibuya $
+ * $Id: routes.php 1418 2010-03-10 14:38:14Z shibuya $
  * Copyright 2001 Sun Microsystems, Inc.	All rights reserved.
  *
  * this one little script both creates the list view, the edit/create view,
@@ -13,8 +13,8 @@ include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverNetwork should be here
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }

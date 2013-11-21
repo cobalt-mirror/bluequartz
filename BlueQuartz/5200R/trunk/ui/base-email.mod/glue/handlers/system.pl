@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/email/
-# $Id: system.pl 805 2006-06-25 11:32:18Z shibuya $
+# $Id: system.pl 1523 2010-09-06 02:43:58Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use CCE;
@@ -10,9 +10,7 @@ use Sauce::Util;
 use Sauce::Config;
 
 # Globals.
-my $Sendmail_cf = Email::SendmailCF;
-my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
-my $Sendmail_sysconfig_file = "/etc/sysconfig/sendmail";
+my $Postfix_cf = Email::PostfixMainCF;
 
 # These should be globals..
 
@@ -36,11 +34,10 @@ if ($obj->{masqAddress} =~ /^localhost$/i)
 
 my $sys_obj = ( $cce->get( ($cce->find("System"))[0] ) )[1];
 
-Sauce::Util::editfile($Sendmail_cf, *make_sendmail_cf,     $obj );
+Sauce::Util::editfile($Postfix_cf, *make_main_cf, $obj );
 
 # add rollback to recreate virtusertable.db
-Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Email::VIRTUSER < " .
-				"$Email::VIRTUSER >/dev/null 2>&1");
+Sauce::Util::addrollbackcommand("/usr/bin/postmap hash:$Email::VIRTUSER >/dev/null 2>&1");
 
 if (!Sauce::Util::replaceblock($Email::VIRTUSER,
 	'# Cobalt System Section Begin',
@@ -50,99 +47,105 @@ if (!Sauce::Util::replaceblock($Email::VIRTUSER,
 	$cce->warn('[[base-email.cantEditFile]]', { 'file' => $Email::VIRTUSER });
 	$cce->bye('FAIL');
 }
+system("/usr/sbin/postmap hash:$Email::VIRTUSER >/dev/null 2>&1");
 
-my $ret = Sauce::Util::editfile($Sendmail_sysconfig_file, *set_queue_time,
-				$obj, $cce);
-if(! $ret ) {
-	$cce->bye('FAIL', 'cantEditFile', {'file' => $Sendmail_sysconfig_file});
-} else {
-	$cce->bye("SUCCESS");
-}
+$cce->bye("SUCCESS");
 
 exit 0;
 
-sub make_sendmail_cf
+sub make_main_cf
 {
 	my $in  = shift;
 	my $out = shift;
 
 	my $obj = shift;
 
-	my $privacy_line;
 	my $maxMessageSize_line;
 	my $smartRelay_line;
+	my $fallbackRelay_line;
 	my $masqDomain_line;
-	my $deliveryMode_line;
 
-	my %Printed_line = ( privacy => 0,
+	my %Printed_line = (
 	                     maxMessageSize => 0,
-						 smartRelay => 0,
-						 masqDomain => 0 );
+			     smartRelay => 0,
+			     fallbackRelay => 0,
+			     masqDomain => 0,
+			     localHeader => 0 );
 
-	if( $obj->{privacy} ) {
-		$privacy_line = "O PrivacyOptions=authwarnings,noexpn,novrfy\n";
-	} else {
-		$privacy_line = "O PrivacyOptions=authwarnings\n";
-	}
-
-
-	if ($obj->{queueTime} eq 'immediate') {
-	    $deliveryMode_line = "O DeliveryMode=background\n";
-	} else {
-	    $deliveryMode_line = "O DeliveryMode=deferred\n";
-	}
 
 	if( $obj->{maxMessageSize} ) {
 		# Max message size is in kilos. Sendmail needs kilos.
-		$maxMessageSize_line = "O MaxMessageSize=" . $obj->{maxMessageSize}*1024 ."\n";
+		$maxMessageSize_line = "message_size_limit = " . $obj->{maxMessageSize}*1024 ."\n";
 	} else {
-		$maxMessageSize_line = "#O MaxMessageSize=0\n";
+		$maxMessageSize_line = "message_size_limit = 0\n";
 	}
 
 	if( $obj->{smartRelay} ) {
-		$smartRelay_line = "DS" . $obj->{smartRelay} . "\n";
+		if ( $obj->{smartRelay} =~ /^(\d|[01]?\d\d|2[0-4]\d|25[0-5])\.(\d|[01]?\d\d|2[0-4]\d|25[0-5])\.(\d|[01]?\d\d|2[0-4]\d|25[0-5])\.(\d|[01]?\d\d|2[0-4]\d|25[0-5])$/ ) {
+			$smartRelay_line = "relayhost = [" . $obj->{smartRelay} . "]\n";
+		} else {
+			$smartRelay_line = "relayhost = " . $obj->{smartRelay} . "\n";
+		}
 	} else {
-		$smartRelay_line = "DS\n";
+		$smartRelay_line = "#relayhost = \n";
+	}
+
+	if( $obj->{fallbackRelay} ) {
+		if ( $obj->{fallbackRelay} =~ /^(\d|[01]?\d\d|2[0-4]\d|25[0-5])\.(\d|[01]?\d\d|2[0-4]\d|25[0-5])\.(\d|[01]?\d\d|2[0-4]\d|25[0-5])\.(\d|[01]?\d\d|2[0-4]\d|25[0-5])$/ ) {
+			$fallbackRelay_line = "fallback_relay = [" . $obj->{fallbackRelay} . "]\n";
+		} else {
+			$fallbackRelay_line = "fallback_relay = " . $obj->{fallbackRelay} . "\n";
+		}
+	} else {
+		$fallbackRelay_line = "#fallback_relay = \n";
 	}
 
 	if( $obj->{masqAddress} ) {
-		$masqDomain_line = "DM" . $obj->{masqAddress} . "\n";
+		system("echo \'/@(.*)\$/	\@$obj->{masqAddress}\' >/etc/postfix/sender_canonical");
+		$masqDomain_line = "sender_canonical_maps = regexp:/etc/postfix/sender_canonical\n";
+		$localHeader_line = "local_header_rewrite_clients = static:all\n";
 	} else {
-		$masqDomain_line = "DM\n";
+		system("cat /dev/null  >/etc/postfix/sender_canonical");
+		$masqDomain_line = "#sender_canonical_maps = regexp:/etc/postfix/sender_canonical\n";
+		$localHeader_line = "#local_header_rewrite_clients = static:all\n";
 	}
 
-	if( $obj->{smartRelay} ) {
-		$smartRelay_line = "DS" . $obj->{smartRelay} . "\n";
-	} else {
-		$smartRelay_line = "DS\n";
-	}
-
+	my $found = 0;
 	select $out;
 	while( <$in> ) {
-		if( /^O PrivacyOptions=/o ) {
-			$Printed_line{'privacy'}++;
-			print $privacy_line;
-		} elsif ( /O MaxMessageSize/o || /\#O MaxMessageSize/o ) {
-			$Printed_line{'maxMessageSize'}++;
-			print $maxMessageSize_line;
-		} elsif ( /^DS/o ) {
-			$Printed_line{'smartRelay'}++;
-			print $smartRelay_line;
-		} elsif ( /^DM/o ) {
-			$Printed_line{'masqDomain'}++;
-			print $masqDomain_line;
-		} elsif ( /^O DeliveryMode=/ ) {
-			$Printed_line{'DeliveryMode'}++;
-			print $deliveryMode_line;
-		} else {
+		if (/^# Add configuration for BlueQuartz by init script./o) {
+			$found = 1;
+		} elsif (!$found) {
 			print $_;
+		}
+
+		if ($found) {
+			if ( /^message_size_limit =/o || /^\#message_size_limit =/o ) {
+				$Printed_line{'maxMessageSize'}++;
+				print $maxMessageSize_line;
+			} elsif ( /^relayhost =/o || /^\#relayhost =/o ) {
+				$Printed_line{'smartRelay'}++;
+				print $smartRelay_line;
+			} elsif ( /^fallback_relay =/o || /^\#fallback_relay =/o ) {
+				$Printed_line{'fallbackRelay'}++;
+				print $fallbackRelay_line;
+			} elsif ( /^sender_canonical_maps =/o || /^\#sender_canonical_maps =/o ) {
+				$Printed_line{'masqDomain'}++;
+				print $masqDomain_line;
+			} elsif ( /^local_header_rewrite_clients =/o || /^#local_header_rewrite_clients =/o ) {
+				$Printed_line{'localHeader'}++;
+				print $localHeader_line;
+			} else {
+				print $_;
+			}
 		}
 	}
 
 	foreach my $key ( keys %Printed_line ) {
 		if ($Printed_line{$key} != 1) {
-			$cce->warn("error_writing_sendmail_cf");
-			print STDERR "Writing sendmail_cf found $Printed_line{$key} occurences of $key\n";
+#			$cce->warn("error_writing_postfix_main_cf");
+$cce->warn($key);
+			print STDERR "Writing postfix_main_cf found $Printed_line{$key} occurences of $key\n";
 		}
 	}
 

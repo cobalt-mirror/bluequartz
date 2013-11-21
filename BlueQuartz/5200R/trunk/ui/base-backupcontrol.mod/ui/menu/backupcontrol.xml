@@ -8,7 +8,7 @@
         <access require="serverBackup"/>
     </parent>
     <parent id="base_sysmaintenance" order="10">
-        <access require="serverBackup"/>
+        <access require="serverServerDesktop"/>
     </parent>
 </item>
 <!--

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: virtual_host.pl 354 2004-05-28 11:13:44Z shibuya $
+# $Id: virtual_host.pl 1490 2010-06-19 09:11:09Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # handle the creation of configuration files for individual vhosts
 #
@@ -19,6 +19,14 @@ $cce->connectfd();
 my $vhost = $cce->event_object();
 my $vhost_new = $cce->event_new();
 my $vhost_old = $cce->event_old();
+
+# write SSL configuration in /etc/httpd/conf/vhosts/siteX, not use mod_perl
+
+my ($void) = $cce->find('Vsite', {'name' => $vhost->{name}});
+my ($ok, $vobj) = $cce->get($void);
+$vhost->{basedir} = $vobj->{basedir};
+my ($ok, $ssl) = $cce->get($void, 'SSL');
+$vhost->{ssl_expires} = $ssl->{expires};
 
 # make sure the directory exists before trying to edit the file
 if (!-d $Base::Httpd::vhost_dir)
@@ -65,6 +73,15 @@ sub edit_vhost
 
     my $include_file = httpd_get_vhost_conf_file($vhost->{name}) . '.include';
 
+    my $aliasRewrite, $aliasRewriteSSL;
+    if ($vhost->{webAliases}) {
+        my @webAliases = $cce->scalar_to_array($vhost->{webAliases});
+        foreach my $alias (@webAliases) {
+           $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:80)?\$ [NC]\n";
+           $aliasRewriteSSL .= "RewriteCond %{HTTP_HOST}                !^$alias(:443)?\$ [NC]\n";
+        }
+    }
+
     my $vhost_conf =<<END;
 # owned by VirtualHost
 NameVirtualHost $vhost->{ipaddr}:80
@@ -85,12 +102,48 @@ ErrorDocument 500 /error/500-internal-server-error.html
 RewriteEngine on
 RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:80)?\$
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:80)?\$ [NC]
+$aliasRewrite
 RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
 RewriteOptions inherit
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
 </VirtualHost>
 END
+
+    # write SSL config
+    my $cafile;
+    if ($vhost->{ssl} && $vhost->{ssl_expires}) {
+        if (-f "$vhost->{basedir}/certs/ca-certs")
+        {
+            $cafile = "SSLCACertificateFile $vhost->{basedir}/certs/ca-certs";
+        }
+
+        $vhost_conf .=<<END;
+
+Listen $vhost->{ipaddr}:443
+<VirtualHost $vhost->{ipaddr}:443>
+SSLengine on
+$cafile
+SSLCertificateFile $vhost->{basedir}/certs/certificate
+SSLCertificateKeyFile $vhost->{basedir}/certs/key
+ServerName $vhost->{fqdn}
+ServerAdmin $vhost->{serverAdmin}
+DocumentRoot $vhost->{documentRoot}
+ErrorDocument 401 /error/401-authorization.html
+ErrorDocument 403 /error/403-forbidden.html
+ErrorDocument 404 /error/404-file-not-found.html
+ErrorDocument 500 /error/500-internal-server-error.html
+RewriteEngine on
+RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:443)?\$
+RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:443)?\$ [NC]
+$aliasRewriteSSL
+RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
+RewriteOptions inherit
+AliasMatch ^/~([^/]+)(/(.*))?           $user_root
+Include $include_file
+</VirtualHost>
+END
+    }
 
     # append line marking the end of the section specifically owned by the VirtualHost
     my $end_mark = "# end of VirtualHost owned section\n";

@@ -1,6 +1,6 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: serverDiskUsage.php 490 2005-08-09 14:04:51Z shibuya $
+// $Id: serverDiskUsage.php 1253 2009-09-15 15:04:53Z shibuya $
 
 include_once('ServerScriptHelper.php');
 include_once('ArrayPacker.php');
@@ -62,8 +62,8 @@ if ($disk_usage->getSelectedId() == 'summary'
         || $disk_usage->getSelectedId() == '')
 {
     // setup the scroll list
-    $usage_list =& $factory->getScrollList('', 
-                    array('', 'partition', 'diskUsed', 'total', 'percentage'),
+    $usage_list =& $factory->getScrollList(' ', 
+                    array(' ', 'partition', 'diskUsed', 'total', 'percentage'),
                     array(1, 2, 3));
     
     $usage_list->setSortEnabled(false);
@@ -140,8 +140,8 @@ if ($disk_usage->getSelectedId() == 'summary'
 else if ($disk_usage->getSelectedId() == 'users') 
 {
     // setup the scroll list
-    $usage_list =& $factory->getScrollList('', 
-                        array('', 'user', 'used', 'quota', 'percentage'),
+    $usage_list =& $factory->getScrollList(' ', 
+                        array(' ', 'user', 'used', 'quota', 'percentage'),
                         array(1,2,3));
     
     $usage_list->setSortEnabled(false);
@@ -290,8 +290,8 @@ else // handle groups
     $i18n =& $factory->getI18n();
 
     // setup the scroll list
-    $usage_list =& $factory->getScrollList('', 
-			array( '',
+    $usage_list =& $factory->getScrollList(' ', 
+			array( ' ',
                                 $groupcolumn_name, $group_used, 
                                 $group_quota, 'percentage'
                         ),

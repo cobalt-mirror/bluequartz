@@ -182,6 +182,12 @@ msgstr "Zone File Format"
 msgid "zone_format_help"	
 msgstr "Choose a zone file format for subnetting on a non-octet boundary which is compatible with your local reverse delegation method.  RFC2317 is the standard format.  DION and OCN-JT are much less commonly used."
 
+msgid "zone_user_format"
+msgstr "Zone File Format"
+
+msgid "zone_user_format_help"
+msgstr "Choose a zone file format for subnetting on a non-octet boundary which is compatible with your local reverse delegation method.  RFC2317 is the standard format.  DION and OCN-JT are much less commonly used."
+
 msgid "zone_format_required_warning"
 msgstr "This field is required if the [[base-dns.zone_format]] you chose above is [[base-dns.USER]] but is ignored otherwise.  Your network administrator will provide you with the correct format if necessary."
 
@@ -220,6 +226,9 @@ msgstr "OCN-JT"
 
 msgid "USER"
 msgstr "User Defined"
+
+msgid "SERVER"
+msgstr "Server Defined"
 
 # --- Record types (reused)
 
@@ -279,6 +288,15 @@ msgstr "Modify SOA"
 
 msgid "edit_soa_help"
 msgstr "Modify the start of authority record for the selected domain or network authority."
+
+msgid "edit_zone"
+msgstr "Modify Zone Format"
+
+msgid "edit_zone_help"
+msgstr "Modify the zone file format for the selected network."
+
+msgid "modify_zone"
+msgstr "[[base-dns.title]] Modify Zone Format"
 
 msgid "confirm_delall"
 msgstr "Are you sure you want to remove ALL of the DNS records for this domain or network?"
@@ -1066,3 +1084,10 @@ msgstr ""
 "you to manage.  If you feel this is an error, please contact <br>"
 "the System Administrator<br>"
 "<br>"
+
+msgid "cap_serverDNS"
+msgstr "DNS Management"
+
+msgid "cap_siteDNS"
+msgstr "Site's DNS Management"
+

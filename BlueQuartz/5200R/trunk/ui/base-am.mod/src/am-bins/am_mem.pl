@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: am_mem.pl 582 2005-10-10 04:44:21Z shibuya $
+# $Id: am_mem.pl 1539 2010-12-05 02:15:54Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # test the memory state
 #
@@ -43,8 +43,8 @@ while(!eof(MEM)) {
 }
 close(MEM);
 
-# Mem free + buffered + swap free
-my $free = $minfo->{MemFree} + $minfo->{Buffers} + $minfo->{SwapFree};
+# Mem free + buffered + cache + swap free
+my $free = $minfo->{MemFree} + $minfo->{Buffers} + $minfo->{Cached} + $minfo->{SwapFree};
 
 dprint("free  = $free\n");
 

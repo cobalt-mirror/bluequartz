@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: dns_generate.pl 871 2006-09-08 16:08:28Z shibuya $
+# $Id: dns_generate.pl 1505 2010-08-06 05:47:37Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # Rewriting the code to generate the DNS db files 
@@ -126,7 +126,7 @@ sub collate_domains_and_networks ()
       if (defined($index->{$network})) {
       	print STDERR "Duplicate SOA for network \"$network\" in obj $oid\n";
       } else {
-      	my $domobj = Domain->new_network($obj->{ipaddr}, $obj->{netmask});
+      	my $domobj = Domain->new_network($obj->{ipaddr}, $obj->{netmask},  $obj->{zone_format}, $obj->{zone_user_format});
 	$domobj->{soa} = $oid;
 	$index->{$network} = $domobj;
       }
@@ -557,8 +557,8 @@ sub new_network
   my $self = {};
   bless($self, $class);
   
-  my ($ip, $nm) = (shift, shift);
-  my $name = $self->network_to_zone($ip,$nm);
+  my ($ip, $nm, $zone_format, $zone_user_format) = (shift, shift, shift, shift);
+  my $name = $self->network_to_zone($ip, $nm, $zone_format, $zone_user_format);
   
   return $self->init($name, @_);
 }
@@ -568,6 +568,8 @@ sub network_to_zone
   my $self = shift;
   my $ip = shift;
   my $nmask = shift;
+  my $zone_format = shift;
+  my $zone_user_format = shift;
   my $nbits = netmask_to_netbits($nmask);
   my @ip = split(/\./, $ip);
 
@@ -577,72 +579,48 @@ sub network_to_zone
     $fip[$i] = sprintf("%03d", $ip[$i]);
   }
 
-  my %zone_formats;
-  # define default zone format here (should match /etc/cobaltdns.RFC2317 !!!!)
-  %zone_formats = (
-    'zone-format-24' =>  "%4/%n.%3.%2.%1.in-addr.arpa",    # 24
-    'zone-format-16' =>  "%3/%n.%2.%1.in-addr.arpa",       # 16
-    'zone-format-8'  =>  "%2/%n.%1.in-addr.arpa",          # 8
-    'zone-format-0'  =>  "%1/%n.in-addr.arpa",             # 0
-  );
- 
   # what zone format should we use?
-  my $zone_format = 'RFC2317';          # nice happy default
-  my ($lookfor,$returnpat,
-         $zone_format_0,$zone_format_8,$zone_format_16,$zone_format_24,
-  );
+  my ($lookfor,$returnpat,);
+
   if ($main::cce) {
     my $sysobj          = $self->load_system_object();
-    $zone_format        = $sysobj->{zone_format};
-    $zone_format_0      = $sysobj->{zone_format_0};
-    $zone_format_8      = $sysobj->{zone_format_8};
-    $zone_format_16     = $sysobj->{zone_format_16};
-    $zone_format_24     = $sysobj->{zone_format_24};
+    if ($zone_format eq 'SERVER') {
+      $zone_format        = $sysobj->{zone_format};
+      $zone_user_format   = $sysobj->{zone_format_24};
+    }
   }
 
   #
   # Either the user has defined their own format (USER), or they are using
   # one of the standard ones RFC2317|DION|OCN-JT  (/etc/cobaltdns.*)
   #
-  if ($zone_format eq 'USER') {         # are we using a user defined format?
-    $zone_formats{'zone-format-8'}  = $zone_format_8;
-    $zone_formats{'zone-format-16'} = $zone_format_16;
-    $zone_formats{'zone-format-24'} = $zone_format_24;
-    $zone_formats{'zone-format-0'}  = $zone_format_0;
-  } elsif (open (CDC, "/etc/cobaltdns.$zone_format")) {
+  if ($zone_format ne 'USER') {         # are we using a user defined format?
+    open (CDC, "/etc/cobaltdns.$zone_format");
     while ($_ = <CDC> ) {
       chomp;
       ($lookfor, $returnpat) = split(/:\s+/);
-      if ($lookfor !~ /^#/) {
-        $zone_formats{$lookfor} = $returnpat;
+      if ($lookfor =~ /^zone-format-24/) {
+        $zone_user_format = $returnpat;
       }
     }
   }
  
   my $domain = ip_to_domain($ip, $nmask);
-  if ($zone_formats{$domain}){
-    $returnpat = $zone_formats{$domain};
+  if ($nbits > 24) {
+    $returnpat = $zone_user_format;
   } else {
-    if ($nbits > 24) {
-      $returnpat = $zone_formats{"zone-format-24"};
-    } elsif ($nbits > 16) {
-      $returnpat = $zone_formats{"zone-format-16"};
-    } elsif ($nbits > 8) {
-      $returnpat = $zone_formats{"zone-format-8"};
-    } else {
-      $returnpat = $zone_formats{"zone-format-0"};
-    }
-    $returnpat =~ s/%1/$ip[0]/;
-    $returnpat =~ s/%2/$ip[1]/;
-    $returnpat =~ s/%3/$ip[2]/;
-    $returnpat =~ s/%4/$ip[3]/;
-    $returnpat =~ s/%n/$nbits/;
-    $returnpat =~ s/%01/$fip[0]/;
-    $returnpat =~ s/%02/$fip[1]/;
-    $returnpat =~ s/%03/$fip[2]/;
-    $returnpat =~ s/%04/$fip[3]/;
-    $returnpat =~ s/h// if ($nbits =~ /^(8|16|24)$/);
+    $returnpat = "%3.%2.%1.in-addr.arpa";
   }
+  $returnpat =~ s/%1/$ip[0]/;
+  $returnpat =~ s/%2/$ip[1]/;
+  $returnpat =~ s/%3/$ip[2]/;
+  $returnpat =~ s/%4/$ip[3]/;
+  $returnpat =~ s/%n/$nbits/;
+  $returnpat =~ s/%01/$fip[0]/;
+  $returnpat =~ s/%02/$fip[1]/;
+  $returnpat =~ s/%03/$fip[2]/;
+  $returnpat =~ s/%04/$fip[3]/;
+  $returnpat =~ s/h// if ($nbits =~ /^(8|16|24)$/);
   return $returnpat;
 }
 

@@ -1,5 +1,14 @@
-# --- Menu
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
+# --- Menu
 msgid "dns"
 msgstr "DNS"
 
@@ -7,207 +16,208 @@ msgid "title"
 msgstr "DNS"
 
 msgid "modifyDNS"
-msgstr "DNS ������"
+msgstr "DNS の設定"
 
 msgid "dns_help"
-msgstr "DNS (Domain Name System) ��������ѹ��Ǥ��ޤ���"
-
+msgstr "DNS (Domain Name System) の設定を変更できます。"
 
 # --- Common
-
 msgid "basic"
-msgstr "����"
+msgstr "基本"
 
 msgid "advanced"
-msgstr "�ܺ�"
+msgstr "詳細"
 
-msgid "defaults"	
-msgstr "�ǥե����"
+msgid "defaults"
+msgstr "デフォルト"
 
 msgid "basic_help"
-msgstr "����Ū�� DNS �����Ф�������ܤǤ���"
+msgstr "基本的な DNS サーバの設定項目です。"
 
 msgid "advanced_help"
-msgstr "�ǡ����������������ƥ��ݸ�ǥե�����ͤʤɡ�DNS �����Фξܺ٤�����Ǥ��ޤ���"
+msgstr "データ形式、セキュリティ保護、デフォルト値など、DNS サーバの詳細を設定できます。"
 
-msgid "defaults_help"	
-msgstr "�ǥե���Ȥ� SOA (Start of Authority) �ѥ�᡼��������Ǥ��ޤ���"
+msgid "defaults_help"
+msgstr "デフォルトの SOA (Start of Authority) パラメータを設定できます。"
 
 # --- Basic settings
-
 msgid "enabled"
-msgstr "DNS �����ӥ���ͭ���ˤ���"
+msgstr "DNS サービスを有効にする"
 
 msgid "enabled_help"
-msgstr "���Υܥå���������å�����ȡ�DNS�ʥɥᥤ��͡��ॷ���ƥ�˥����ӥ���ͭ���ˤʤꡢ���Υ����Ф����Υ����Ф���ӥ�������ͥåȥ����Υ��饤����Ȥ��Ф���ɥᥤ��͡��ॵ���ФȤ��Ƶ�ǽ���ޤ����ɥᥤ��͡��ॵ���Фϡ��ƥ�����ʸ�����ɽ�������ۥ���̾�ܥɥᥤ��͡���ȡ����ͤ�ɽ������� IP ���ɥ쥹�Ȥ��б� �����������հ���) ������󶡤��ޤ���"
-
+msgstr "このボックスをチェックすると、DNS（ドメインネームシステム）サービスが有効になり、このサーバがこのサーバおよびローカルネットワーク上のクライアントに対するドメインネームサーバとして機能します。ドメインネームサーバは、テキスト文字列で表記されるホスト名＋ドメインネームと、数値で表記される IP アドレスとの対応 （正引き、逆引き) 情報を提供します。"
 
 # --- Advanced settings
-
 msgid "caching"
-msgstr "����å���쥳���ɤ��䤤��碌"
+msgstr "キャッシュレコードの問い合わせ"
 
 msgid "caching_help"
-msgstr "����å��󥰡ʡֺƵ�Ū�䤤��碌�פȤ�ƤФ��ˤ�ͭ���ˤ���ȡ�¾�Υ͡��ॵ���Ф����Ҥ���ĥɥᥤ���ͥåȥ�����������Ǥ���褦�ˤʤ�ޤ����ץ饤�١��Ȥʥͥåȥ����ǤΤߤ��Υ����Ф�Ȥ����ˤϡ�����å��󥰤�̵���ˤ��Ƥ���������"
+msgstr "キャッシング（「再帰的問い合わせ」とも呼ばれる）を有効にすると、他のネームサーバが権威を持つドメインやネットワークゾーンを解決できるようになります。プライベートなネットワーク上でのみこのサーバを使う場合には、キャッシングを無効にしてください。"
 
 msgid "soa_defaults"
-msgstr "SOA��Start of Authority�ˤΥǥե��������"
+msgstr "SOA（Start of Authority）のデフォルト設定"
 
 msgid "soa_defaults_help"
-msgstr "�����Ǥϡ������Υɥᥤ��͡���쥳���ɤ��������Ȥ��˥ǥե���ȤȤ��ƻȤ����ͤ�����Ǥ��ޤ���"
+msgstr "ここでは、新規のドメインネームレコードを作成するときにデフォルトとして使われる値を設定できます。"
 
 msgid "admin_email"
-msgstr "DNS �����Ԥ��Żҥ᡼�륢�ɥ쥹"
+msgstr "DNS 管理者の電子メールアドレス"
 
 msgid "admin_email_rule"
-msgstr "�ʻ����㡧 user@example.com��"
+msgstr "（指定例： user@example.com）"
 
 msgid "admin_email_help"
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ�������Ԥ��Żҥ᡼�륢�ɥ쥹�����������������Ϥ��Ƥ���������[[base-dns.admin_email_rule]]"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる管理者の電子メールアドレスを、正しい形式で入力してください。[[base-dns.admin_email_rule]]"
 
 msgid "admin_email_invalid"
-msgstr "[[VAR.invalidValue] �ϡ�[[base-dns.admin_email]] �ˤϻ���Ǥ��ޤ����Żҥ᡼�륢�ɥ쥹�����������������Ϥ��Ƥ���������[[base-dns.admin_email_rule]]"
+msgstr "[[VAR.invalidValue] は、[[base-dns.admin_email]] には指定できません。電子メールアドレスを正しい形式で入力してください。[[base-dns.admin_email_rule]]"
 
 msgid "default_refresh"
-msgstr "��ե�å���ֳ֡��á�"
+msgstr "リフレッシュ間隔（秒）"
 
 msgid "default_refresh_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ�������������ͤ� 10800 �Ǥ���"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 10800 です。"
 
 msgid "default_refresh_help"
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ����ե�å���ֳ֤���ꤷ�Ƥ�����������ե�å���ֳ֤Ȥϡ����������ɥᥤ��͡��ॵ���Ф��ץ饤�ޥ�ɥᥤ��͡��ॵ���Фȥ쥳���ɤ�Ʊ����ޤ���ֳִ֤Ǥ���[[base-dns.default_refresh_rule]]"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われるリフレッシュ間隔を指定してください。リフレッシュ間隔とは、セカンダリドメインネームサーバがプライマリドメインネームサーバとレコードの同期を図る時間間隔です。[[base-dns.default_refresh_rule]]"
 
 msgid "default_refresh_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_refresh]] �ˤϻ���Ǥ��ޤ���[[base-dns.default_refresh_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_refresh]] には指定できません。[[base-dns.default_refresh_rule]]"
 
-msgid "default_refresh_empty"	
-msgstr "[[base-dns.default_refresh]]��ɬ�ܤǤ���[[base-dns.default_refresh_rule]]"
+msgid "default_refresh_empty"
+msgstr "[[base-dns.default_refresh]]は必須です。[[base-dns.default_refresh_rule]]"
 
-msgid "default_retry"	
-msgstr "��ȥ饤�ֳ֡��á�"
+msgid "default_retry"
+msgstr "リトライ間隔（秒）"
 
 msgid "default_retry_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ�������������ͤ� 3600 �Ǥ���"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 3600 です。"
 
 msgid "default_retry_help"
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ����ȥ饤�ֳ֤���ꤷ�Ƥ�����������ȥ饤�ֳ֤Ȥϡ����餫����ͳ�ǥ��������ɥᥤ��͡��ॵ���Ф��ץ饤�ޥ�ɥᥤ��͡��ॵ���ФΥ쥳���ɤ�Ʊ������ʤ����ˡ������֤��쥳���ɤ�Ʊ�����Ԥ�����ֳִ֤Ǥ���[[base-dns.default_retry_rule]]"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われるリトライ間隔を指定してください。リトライ間隔とは、何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバのレコードと同期を取れない場合に、繰り返しレコードの同期を試行する時間間隔です。[[base-dns.default_retry_rule]]"
 
 msgid "default_retry_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_retry]] �ˤϻ���Ǥ��ޤ���[[base-dns.default_retry_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_retry]] には指定できません。[[base-dns.default_retry_rule]]"
 
 msgid "default_retry_empty"
-msgstr "[[base-dns.default_retry]] ��ɬ�ܤǤ���[[base-dns.default_retry_rule]]"
+msgstr "[[base-dns.default_retry]] は必須です。[[base-dns.default_retry_rule]]"
 
 msgid "default_expire"
-msgstr "�����ֳ֡��á�"
+msgstr "失効間隔（秒）"
 
 msgid "default_expire_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ�������������ͤ� 604800 �Ǥ���"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 604800 です。"
 
 msgid "default_expire_help"
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ��뼺���ֳ֤���ꤷ�Ƥ������������餫����ͳ�ǥ��������ɥᥤ��͡��ॵ���Ф��ץ饤�ޥ�ɥᥤ��͡��ॵ���Фȥ쥳���ɤ�Ʊ���Ǥ����������֤�Ʊ�����ߤ��硢�����ֳ֡��áˤ�вᤷ�Ƥ�Ʊ���Ǥ��ʤ��ȡ����������ɥᥤ��͡��ॵ���Фϼ�ʬ�λ��ĥɥᥤ�����Ϥ⤦ͭ���ǤϤʤ���Ƚ�Ǥ����ץ饤�ޥ�ɥᥤ��͡��ॵ���Фغ���Ϣ���Ǥ���ޤǥɥᥤ�������󶡤���ߤ��ޤ���[[base-dns.default_expire_rule]]"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる失効間隔を指定してください。何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバとレコードを同期できず、繰り返し同期を試みる場合、失効間隔（秒）を経過しても同期できないと、セカンダリドメインネームサーバは自分の持つドメイン情報はもう有効ではないと判断し、プライマリドメインネームサーバへ再度連絡できるまでドメイン情報の提供を停止します。[[base-dns.default_expire_rule]]"
 
 msgid "default_expire_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_expire]]�ˤϻ���Ǥ��ޤ���[[base-dns.default_expire_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_expire]]には指定できません。[[base-dns.default_expire_rule]]"
 
 msgid "default_expire_empty"
-msgstr "[[base-dns.default_expire]] ��ɬ�ܤǤ���[[base-dns.default_expire_rule]]"
+msgstr "[[base-dns.default_expire]] は必須です。[[base-dns.default_expire_rule]]"
 
-msgid "default_ttl"	
-msgstr "TTL �ֳ֡��á�"
+msgid "default_ttl"
+msgstr "TTL 間隔（秒）"
 
 msgid "default_ttl_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ�������������ͤ� 86400 �Ǥ���"
+msgstr "1 〜 4096000 の整数を入力してください。初期値は 86400 です。"
 
-msgid "default_ttl_help"	
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ��� TTL �ֳ֤���ꤷ�Ƥ���������TTL �ֳ֤Ȥϡ�¾�Υɥᥤ��͡��ॵ���Ф����Υɥᥤ��͡��ॵ���Ф�����������ɥᥤ�����򥭥�å�����ݴɤ������Υɥᥤ��͡��ॵ���Ф˺Ƥ�Ϣ�����ʤ��ޤޤ��ξ���ͭ���Ǥ�������ꤹ����֤Ǥ���[[base-dns.default_ttl_rule]]"
+msgid "default_ttl_help"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる TTL 間隔を指定してください。TTL 間隔とは、他のドメインネームサーバがこのドメインネームサーバから取得したドメイン情報をキャッシュに保管し、このドメインネームサーバに再び連絡しないままその情報が有効であると想定する期間です。[[base-dns.default_ttl_rule]]"
 
 msgid "default_ttl_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_ttl]] �ˤϻ���Ǥ��ޤ���[[base-dns.default_ttl_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_ttl]] には指定できません。[[base-dns.default_ttl_rule]]"
 
 msgid "default_ttl_empty"
-msgstr "[[base-dns.default_ttl]] ��ɬ�ܤǤ���[[base-dns.default_ttl_rule]]"
+msgstr "[[base-dns.default_ttl]] は必須です。[[base-dns.default_ttl_rule]]"
 
 msgid "global_settings"
-msgstr "�����Фΰ�������"
+msgstr "サーバの一般設定"
 
 msgid "global_settings_help"
-msgstr "�ɥᥤ��͡��ॵ���ФΥǥե�����ͤǤ���"
+msgstr "ドメインネームサーバのデフォルト値です。"
 
 msgid "forwarders"
-msgstr "ž��������"
+msgstr "転送サーバ"
 
 msgid "forwarders_help"
-msgstr "ž���ɥᥤ��͡��ॵ���Ф� IP ���ɥ쥹�����Ϥ��Ƥ������������󥿡��ͥå���³�˲��餫�����꤬���ꡢ�롼�ȥɥᥤ��͡��ॵ���Ф�ľ�ܥ��������Ǥ��ʤ����ˡ�ž���ɥᥤ��͡��ॵ���Ф��Ȥ��ޤ���[[base-dns.forwarders_rule]]"
+msgstr "転送ドメインネームサーバの IP アドレスを入力してください。インターネット接続に何らかの問題があり、ルートドメインネームサーバに直接アクセスできない場合に、転送ドメインネームサーバが使われます。[[base-dns.forwarders_rule]]"
 
 msgid "forwarders_rule"
-msgstr "0 �� 255 �ο��ͣ��Ȥ򡢥ԥꥪ�ɤǶ��ڤä����Ϥ��Ƥ����������ʻ����㡧 192.168.1.1��"
+msgstr "0 〜 255 の数値４組を、ピリオドで区切って入力してください。（指定例： 192.168.1.1）"
 
 msgid "forwarders_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.forwarders]]�ˤϻ���Ǥ��ޤ���[[base-dns.forwarders_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.forwarders]]には指定できません。[[base-dns.forwarders_rule]]"
 
 msgid "zone_xfer_ipaddr"
-msgstr "������ž������Ĥ��� IP ���ɥ쥹"
+msgstr "ゾーン転送を許可する IP アドレス"
 
 msgid "zone_xfer_ipaddr_help"
-msgstr "������ž���Ȥϡ����Υɥᥤ��͡��ॵ���Ф��ݴɤ���Ƥ������쥳���ɤΥ���������ɤ��̣���ޤ������Υե�����ɤˤϡ�������ž������Ĥ����� IP ���ɥ쥹����ꤷ�Ƥ������������������ɥᥤ��͡��ॵ���Фϡ�������ž���ˤ��ץ饤�ޥ�ɥᥤ��͡��ॵ���Фȥ쥳���ɤ�Ʊ�����ޤ������Υե�����ɤ����Τޤ޻Ĥ��ȡ�������ž���ϰ��ڵ��Ĥ���ޤ���"
+msgstr "ゾーン転送とは、このドメインネームサーバに保管されている全レコードのダウンロードを意味します。このフィールドには、ゾーン転送を許可したい IP アドレスを指定してください。セカンダリドメインネームサーバは、ゾーン転送によりプライマリドメインネームサーバとレコードを同期します。このフィールドを空白のまま残すと、ゾーン転送は一切許可されません。"
 
 msgid "zone_xfer_ipaddr_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.zone_xfer_ipaddr]] �Ȥ��ƻ���Ǥ��ޤ���"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.zone_xfer_ipaddr]] として指定できません。"
 
 msgid "recursion_inetaddr"
-msgstr "�Ƶ�Ū���䤤��碌����Ĥ��� IP ���ɥ쥹"
+msgstr "再帰的な問い合わせを許可する IP アドレス"
 
 msgid "recursion_inetaddr_help"
-msgstr "�Ƶ�Ū���䤤��碌�Ȥϡ�����å��奵���ФؤΥ����������̣���ޤ������Ρ���ɤˤϡ��Ƶ�Ū���䤤��碌����Ĥ����� IP ���ɥ쥹���ꤷ�Ƥ���������[[base-dns.inetaddr_rule]]"
+msgstr "再帰的な問い合わせとは、キャッシュサーバへのアクセスを意味します。このールドには、再帰的な問い合わせを許可したい IP アドレス指定してください。[[base-dns.inetaddr_rule]]"
 
 msgid "recursion_inetaddr_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.recursion_inetaddr]] �Ȥ��ƻ���Ǥ��ޤ���"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.recursion_inetaddr]] として指定できません。"
 
 msgid "zone_format_tab"
-msgstr "���������"
+msgstr "ゾーン形式"
 
 msgid "zone_format_tab_help"
-msgstr "�����򥯥�å�����ȡ�DNS �쥳���ɤ�[[base-dns.zone_format_tab]]������Ǥ��ޤ��������ƥ�����Ԥޤ��� ISP ���������[[base-dns.zone_format_tab]]�������ؼ�����ʤ��¤���������פǤ���"
+msgstr "ここをクリックすると、DNS レコードの[[base-dns.zone_format_tab]]を設定できます。システム管理者または ISP から特定の[[base-dns.zone_format_tab]]の設定を指示されない限り設定は不要です。"
 
 msgid "zone_format_settings_divider"
-msgstr "������ե��������������"
+msgstr "ゾーンファイル形式の設定"
 
 msgid "zone_format_user_defined_divider"
-msgstr "�桼������Υ�����ե��������"
+msgstr "ユーザ定義のゾーンファイル形式"
 
 msgid "zone_format"
-msgstr "������ե�����η���"
+msgstr "ゾーンファイルの形式"
 
 msgid "zone_format_help"
-msgstr "��������εհ������°Ѿ��᥽�åɤ��б������󥪥��ƥåȶ�����Υ��֥ͥå��ѥ�����ե��������������Ǥ���������ɸ������� RFC2317 �ǡ�DION �� OCN-JT �Ϥ��ޤ����Ū�ǤϤ���ޤ���"
+msgstr "ローカルの逆引き権限委譲メソッドに対応する非オクテット境界上のサブネット用ゾーンファイル形式を選んでください。標準形式は RFC2317 で、DION と OCN-JT はあまり一般的ではありません。"
+
+msgid "zone_user_format"
+msgstr "ゾーンファイルの形式"
+
+msgid "zone_user_format_help"
+msgstr "ローカルの逆引き権限委譲メソッドに対応する非オクテット境界上のサブネット用ゾーンファイル形式を選んでください。標準形式は RFC2317 で、DION と OCN-JT はあまり一般的ではありません。"
 
 msgid "zone_format_required_warning"
-msgstr "���Υե�����ɤؤ����Ϥϡ����ꤵ��Ƥ��륾����ե�����η������֥桼������פξ��ˤΤ�ɬ�ܤǡ�����ʳ��Υ�����ե���������Ǥ�̵�뤵��ޤ������ꤹ�٤��ͤη����ˤĤ��Ƥϡ��ͥåȥ�������ԤޤǤ��䤤��碌����������"
+msgstr "このフィールドへの入力は、指定されているゾーンファイルの形式が「ユーザ定義」の場合にのみ必須で、それ以外のゾーンファイル形式では無視されます。指定すべき値の形式については、ネットワーク管理者までお問い合わせください。"
 
 msgid "zone_format_24"
-msgstr "24 �ӥåȰʾ�Υͥåȥ���ѥ�����ե��������"
+msgstr "24 ビット以上のネットワーク用ゾーンファイル形式"
 
 msgid "zone_format_24_help"
-msgstr "24 �ӥåȤ�Ķ�����󥪥��ƥåȶ�����Υͥåȥ���ѥ�����ե������������ꤷ�Ƥ���������[[base-dns.zone_format_required_warning]]"
+msgstr "24 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
 
 msgid "zone_format_16"
-msgstr "16 �ӥåȰʾ�Υͥåȥ���ѥ�����ե��������"
+msgstr "16 ビット以上のネットワーク用ゾーンファイル形式"
 
 msgid "zone_format_16_help"
-msgstr "16 �ӥåȤ�Ķ�����󥪥��ƥåȶ�����Υͥåȥ���ѥ�����ե������������ꤷ�Ƥ���������[[base-dns.zone_format_required_warning]]"
+msgstr "16 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
 
 msgid "zone_format_8"
-msgstr "8 �ӥåȰʾ�Υͥåȥ���ѥ�����ե��������"
+msgstr "8 ビット以上のネットワーク用ゾーンファイル形式"
 
 msgid "zone_format_8_help"
-msgstr "8 �ӥåȤ�Ķ�����󥪥��ƥåȶ�����Υͥåȥ���ѥ�����ե������������ꤷ�Ƥ���������[[base-dns.zone_format_required_warning]]"
+msgstr "8 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
 
 msgid "zone_format_0"
-msgstr "0 �ӥåȰʾ�Υͥåȥ���ѥ�����ե��������"
+msgstr "0 ビット以上のネットワーク用ゾーンファイル形式"
 
 msgid "zone_format_0_help"
-msgstr "0 �ӥåȤ�Ķ�����󥪥��ƥåȶ�����Υͥåȥ���ѥ�����ե������������ꤷ�Ƥ���������[[base-dns.zone_format_required_warning]]"
+msgstr "0 ビットを超える非オクテット境界上のネットワーク用ゾーンファイル形式を指定してください。[[base-dns.zone_format_required_warning]]"
 
 msgid "rfc2317"
 msgstr "RFC2317"
@@ -219,847 +229,832 @@ msgid "ocn-jt"
 msgstr "OCN-JT"
 
 msgid "USER"
-msgstr "�桼�����"
+msgstr "ユーザ定義"
+
+msgid "SERVER"
+msgstr "サーバ設定"
 
 # --- Record types (reused)
-
 msgid "a_record"
-msgstr "���������ɥ쥹��A�˥쥳����"
+msgstr "正引きアドレス（A）レコード"
 
 msgid "ptr_record"
-msgstr "�հ������ɥ쥹��PTR�˥쥳����"
+msgstr "逆引きアドレス（PTR）レコード"
 
 msgid "cname_record"
-msgstr "�����ꥢ����CNAME�˥쥳����"
+msgstr "エイリアス（CNAME）レコード"
 
 msgid "mx_record"
-msgstr "�᡼�륵���С�MX�˥쥳����"
+msgstr "メールサーバ（MX）レコード"
 
 msgid "txt_record"
-msgstr "�ƥ����ȡ�TXT�˥쥳����"
+msgstr "テキスト（TXT）レコード"
 
 msgid "records_title"
-msgstr "�ɥᥤ�����ꡧ "
+msgstr "ドメイン設定： "
 
 msgid "a_dir"
-msgstr "������"
+msgstr "正引き"
 
 msgid "ptr_dir"
-msgstr "�հ���"
+msgstr "逆引き"
 
 msgid "cname_dir"
-msgstr "�����ꥢ��"
+msgstr "エイリアス"
 
 msgid "txt_dir"
-msgstr "�ƥ�����"
+msgstr "テキスト"
 
 # --- Primary services
-
 msgid "primary_service_button"
-msgstr "�ץ饤�ޥꥵ���ӥ�������"
+msgstr "プライマリサービスを設定"
 
 msgid "primary_service_button_help"
-msgstr "���Υ����Ф��󶡤��� DNS �쥳���ɤ�����Ǥ��ޤ����ץ饤�ޥ� DNS �����ӥ��ϡ��֥ޥ����� DNS �����ӥ��פȤ�ƤФ�ޤ���"
+msgstr "このサーバが提供する DNS レコードを管理できます。プライマリ DNS サービスは、「マスター DNS サービス」とも呼ばれます。"
 
 msgid "dnsSetting"
-msgstr "[[base-dns.title]] - �ץ饤�ޥꥵ���ӥ��Υꥹ��"
+msgstr "[[base-dns.title]] - プライマリサービスのリスト"
 
 msgid "select_dom"
-msgstr "�ɥᥤ�������..."
+msgstr "ドメインを選択..."
 
 msgid "select_net"
-msgstr "�ͥåȥ��������..."
+msgstr "ネットワークを選択..."
 
 # drop down menu
-
 msgid "add_record"
-msgstr "�쥳���ɤ��ɲ�..."
+msgstr "レコードを追加..."
 
 msgid "edit_soa"
-msgstr "SOA ����"
+msgstr "SOA を修正"
 
 msgid "edit_soa_help"
-msgstr "����Υɥᥤ��ޤ��ϥͥåȥ����Ŭ�Ѥ���� SOA��Start of Authority�ˤ����Ǥ��ޤ���"
+msgstr "特定のドメインまたはネットワークに適用される SOA（Start of Authority）を修正できます。"
+
+msgid "edit_zone"
+msgstr "ゾーン形式を修正"
+
+msgid "edit_zone_help"
+msgstr "特定のネットワークに適そうされるゾーン形式を修正できます。"
+
+msgid "modify_zone"
+msgstr "[[base-dns.title]] - ゾーン形式の修正"
 
 msgid "confirm_delall"
-msgstr "ɽ������Ƥ��� DNS �쥳���ɤ򤹤٤ƺ�����Ƥ�������Ǥ�����"
+msgstr "表示されている DNS レコードをすべて削除してよろしいですか？"
 
 msgid "del_records"
-msgstr "���쥳���ɤ���"
+msgstr "全レコードを削除"
 
 msgid "del_records_help"
-msgstr "���Υܥ���򥯥�å�����ȡ�ɽ������Ƥ��� DNS �쥳���ɤ����ƺ������ޤ��� ����ϼ��ä��Ǥ��ޤ���ΤǤ����դ���������"
+msgstr "このボタンをクリックすると、表示されている DNS レコードが全て削除されます。 削除は取り消しできませんのでご注意ください。"
 
 msgid "source"
-msgstr "�䤤��碌"
+msgstr "問い合わせ"
 
 msgid "source_help"
-msgstr "���Υ͡��ॵ���Ф����������䤤��碌�Ǥ���"
+msgstr "このネームサーバが受信する問い合わせです。"
 
 msgid "direction"
-msgstr "�쥳���ɤμ���"
+msgstr "レコードの種類"
 
 msgid "direction_help"
-msgstr "���Υ͡��ॵ���Ф����������䤤��碌��������������Ȥ��Ϣ�դ���쥳���ɤμ���Ǥ���"
+msgstr "このネームサーバが受信する問い合わせと送信する回答とを関連付けるレコードの種類です。"
 
 msgid "resolution"
-msgstr "����"
+msgstr "回答"
 
 msgid "resolution_help"
-msgstr "�䤤��碌���Ф��Ƥ��Υ͡��ॵ���Ф����������������Ǥ���"
+msgstr "問い合わせに対してこのネームサーバから送信される回答です。"
 
 msgid "listAction"
-msgstr "�ܺ�"
+msgstr "詳細"
 
 msgid "listAction_help"
-msgstr "��ɮ��������򥯥�å�����ȡ����Υ쥳���ɤ����Ǥ��ޤ�������Ȣ��������򥯥�å�����ȡ����Υ쥳���ɤ����Ǥ��ޤ���"
+msgstr "鉛筆アイコンをクリックすると、そのレコードを修正できます。ゴミ箱アイコンをクリックすると、そのレコードを削除できます。"
 
 msgid "confirm_removal"
-msgstr "[[VAR.rec]] �Ȥ����쥳���ɤ������Ƥ�������Ǥ�����"
-
+msgstr "[[VAR.rec]] というレコードを削除してよろしいですか？"
 
 # general IP address rule
 msgid "ipaddr_rule"
-msgstr "IP ���ɥ쥹�ϡ�0 �� 255 �ο��ͣ��Ȥ�ԥꥪ�ɤǶ��ڤä����Ϥ��Ƥ����������ʻ����㡧 192.168.1.1��"
+msgstr "IP アドレスは、0 〜 255 の数値４組をピリオドで区切って入力してください。（指定例： 192.168.1.1）"
 
 msgid "inetaddr_rule"
-msgstr "IP ���ɥ쥹�ϡ�0 �� 255 �ο��ͣ��Ȥ�ԥꥪ�ɤǶ��ڤꡢ/ �θ�˥ͥåȥޥ������Ϥ��Ƥ����������ʻ����㡧 192.168.1.0/24��"
+msgstr "IP アドレスは、0 〜 255 の数値４組をピリオドで区切り、/ の後にネットマクを入力してください。（指定例： 192.168.1.0/24）"
 
 # --- A record
-
 msgid "create_dns_recA"
-msgstr "[[base-dns.title]] - [[base-dns.a_record]]���ɲ�"
+msgstr "[[base-dns.title]] - [[base-dns.a_record]]の追加"
 
 msgid "modify_dns_recA"
-msgstr "[[base-dns.title]] - [[base-dns.a_record]]�ν���"
+msgstr "[[base-dns.title]] - [[base-dns.a_record]]の修正"
 
 msgid "a_record_explain"
-msgstr "[[base-dns.a_record]]�ϡ��ɥᥤ��͡��फ�� IP ���ɥ쥹�ؤ��Ѵ��ǡ������󶡤��ޤ������ξ��Ρ֥ɥᥤ��͡���פϡ��ۥ���̾�ܥɥᥤ��͡���Ǥ⡢�ɥᥤ��͡���ΤߤǤ⹽���ޤ���"
+msgstr "[[base-dns.a_record]]は、ドメインネームから IP アドレスへの変換データを提供します。この場合の「ドメインネーム」は、ホスト名＋ドメインネームでも、ドメインネームのみでも構いません。"
 
 msgid "a_host_name"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "a_host_name_help"
-msgstr "���Υ쥳���ɤΥۥ���̾����ꤷ�Ƥ���������[[base-dns.a_record_explain]]"
+msgstr "このレコードのホスト名を指定してください。[[base-dns.a_record_explain]]"
 
 msgid "a_host_name_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "a_domain_name"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "a_domain_name_help"
-msgstr "���Υ쥳���ɤΥɥᥤ��͡������ꤷ�Ƥ���������[[base-dns.a_record_explain]]"
+msgstr "このレコードのドメインネームを指定してください。[[base-dns.a_record_explain]]"
 
 msgid "a_domain_name_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "a_domain_name_empty"
-msgstr "���Υ쥳���ɤΥɥᥤ�����ꤷ�Ƥ���������"
+msgstr "このレコードのドメインを指定してください。"
 
 msgid "a_ip_address"
-msgstr "IP ���ɥ쥹"
+msgstr "IP アドレス"
 
 msgid "a_ip_address_help"
-msgstr "���Υ쥳���ɤ� IP ���ɥ쥹����ꤷ�Ƥ���������[[base-dns.a_record_explain]]"
+msgstr "このレコードの IP アドレスを指定してください。[[base-dns.a_record_explain]]"
 
 msgid "a_ip_address_invalid"
-msgstr "���ꤵ�줿 IP ���ɥ쥹�������Ǥ���[[base-dns.ipaddr_rule]]"
+msgstr "指定された IP アドレスは不正です。[[base-dns.ipaddr_rule]]"
 
 msgid "a_ip_address_empty"
-msgstr "���ꤵ�줿�ۥ���̾�ȥɥᥤ��͡�����б����� IP ���ɥ쥹�����Ϥ��Ƥ���������[[base-dns.ipaddr_rule]]"
-
+msgstr "指定されたホスト名とドメインネームに対応する IP アドレスを入力してください。[[base-dns.ipaddr_rule]]"
 
 # --- PTR  record
-
 msgid "create_dns_recPTR"
-msgstr "[[base-dns.title]] - [[base-dns.ptr_record]]���ɲ�"
+msgstr "[[base-dns.title]] - [[base-dns.ptr_record]]の追加"
 
 msgid "modify_dns_recPTR"
-msgstr "[[base-dns.title]] - [[base-dns.ptr_record]]�ν���"
+msgstr "[[base-dns.title]] - [[base-dns.ptr_record]]の修正"
 
 msgid "ptr_explain"
-msgstr "[[base-dns.ptr_record]]�ϡ�IP ���ɥ쥹����ɥᥤ��͡���ؤ��Ѵ��ǡ������󶡤��ޤ������ξ��Ρ֥ɥᥤ��͡���פϡ��ۥ���̾�ܥɥᥤ��͡���Ǥ⡢�ɥᥤ��͡���ΤߤǤ⹽���ޤ���"
+msgstr "[[base-dns.ptr_record]]は、IP アドレスからドメインネームへの変換データを提供します。この場合の「ドメインネーム」は、ホスト名＋ドメインネームでも、ドメインネームのみでも構いません。"
 
 msgid "ptr_ip_address"
-msgstr "IP ���ɥ쥹"
+msgstr "IP アドレス"
 
 msgid "ptr_ip_address_help"
-msgstr "���Υ쥳���ɤ� IP ���ɥ쥹����ꤷ�Ƥ���������[[base-dns.ptr_explain]]"
-
-
+msgstr "このレコードの IP アドレスを指定してください。[[base-dns.ptr_explain]]"
 
 msgid "ptr_mask"
-msgstr "���֥ͥåȥޥ���"
+msgstr "サブネットマスク"
 
 msgid "ptr_mask_help"
-msgstr "���Υ쥳���ɤ� IP ���ɥ쥹�Υͥåȥ���ޥ�������ꤷ�Ƥ���������[[base-dns.ptr_explain]]"
+msgstr "このレコードの IP アドレスのネットワークマスクを指定してください。[[base-dns.ptr_explain]]"
 
 msgid "ptr_host_name"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "ptr_host_name_help"
-msgstr "���Υ쥳���ɤΥۥ���̾����ꤷ�Ƥ���������[[base-dns.ptr_explain]]"
+msgstr "このレコードのホスト名を指定してください。[[base-dns.ptr_explain]]"
 
 msgid "ptr_domain_name"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "ptr_domain_name_help"
-msgstr "���Υ쥳���ɤΥɥᥤ��͡������ꤷ�Ƥ���������[[base-dns.ptr_explain]]"
+msgstr "このレコードのドメインネームを指定してください。[[base-dns.ptr_explain]]"
 
 msgid "a_generate_ptr"
-msgstr "�հ������ɥ쥹��PTR�˥쥳���ɤ�ư����"
+msgstr "逆引きアドレス（PTR）レコードを自動生成"
 
 msgid "ptr_generate_a"
-msgstr "���������ɥ쥹��A�˥쥳���ɤ�ư����"
+msgstr "正引きアドレス（A）レコードを自動生成"
 
 msgid "ptr_generate_a_help"
-msgstr "���Υܥå���������å�����ȡ����ꤵ�줿 IP ���ɥ쥹������ꤵ�줿�ۥ���̾�ܥɥᥤ��͡���ؤ��б��򼨤����������ɥ쥹�쥳���ɤ���ưŪ����������ޤ���"
+msgstr "このボックスをチェックすると、指定された IP アドレスから指定されたホスト名＋ドメインネームへの対応を示す正引きアドレスレコードが自動的に生成されます。"
 
 msgid "ptr_subnet_mask_invalid"
-msgstr "���ꤵ�줿���֥ͥåȥޥ����������Ǥ������֥ͥåȥޥ����ϡ�0 �� 255 �ο��ͣ��Ȥ�ԥꥪ�ɤǶ��ڤäƻ��ꤷ�Ƥ����������ʻ����㡧255.255.255.0��"
+msgstr "指定されたサブネットマスクは不正です。サブネットマスクは、0 〜 255 の数値４組をピリオドで区切って指定してください。（指定例：255.255.255.0）"
 
 msgid "ptr_subnet_mask_empty"
-msgstr "���Υ쥳�����ѤΥ��֥ͥåȥޥ�������ꤷ�Ƥ���������"
+msgstr "このレコード用のサブネットマスクを指定してください。"
 
 msgid "ptr_ip_address_invalid"
-msgstr "���ꤵ�줿 IP ���ɥ쥹�������Ǥ���[[base-dns.ipaddr_rule]]"
+msgstr "指定された IP アドレスは不正です。[[base-dns.ipaddr_rule]]"
 
 msgid "ptr_host_name_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "ptr_domain_name_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "ptr_ip_address_empty"
-msgstr "������Υۥ���̾�ȥɥᥤ��͡�����б����� IP ���ɥ쥹�����Ϥ��Ƥ���������[[base-dns.ipaddr_rule]]"
+msgstr "ご指定のホスト名とドメインネームに対応する IP アドレスを入力してください。[[base-dns.ipaddr_rule]]"
 
 msgid "ptr_domain_name_empty"
-msgstr "�������IP ���ɥ쥹���б�����ɥᥤ��͡�������Ϥ��Ƥ���������"
-
+msgstr "ご指定のIP アドレスに対応するドメインネームを入力してください。"
 
 # --- MX record
-
 msgid "create_dns_recMX"
-msgstr "[[base-dns.title]] - [[base-dns.mx_record]]���ɲ�"
+msgstr "[[base-dns.title]] - [[base-dns.mx_record]]の追加"
 
 msgid "modify_dns_recMX"
-msgstr "[[base-dns.title]] - [[base-dns.mx_record]]�ν���"
+msgstr "[[base-dns.title]] - [[base-dns.mx_record]]の修正"
 
 msgid "mx_host_name"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "mx_explain"
-msgstr "[[base-dns.mx_record]] �ϡ�����Υۥ��Ȥȥɥᥤ��͡�����Żҥ᡼����ۿ�����᡼�륵���Ф���ꤷ�ޤ���"
+msgstr "[[base-dns.mx_record]] は、特定のホストとドメインネームへ電子メールを配信するメールサーバを指定します。"
 
 msgid "mx_host_name_help"
-msgstr "���Υե�����ɤ˻��ꤹ��ۥ��Ȱ����Żҥ᡼��ϡ�[[base-dns.mx_target_server]]�ե�����ɤ˻��ꤹ��᡼�륵���Фˤ���ۿ�����ޤ��� [[base-dns.mx_explain]]"
+msgstr "このフィールドに指定するホスト宛の電子メールは、[[base-dns.mx_target_server]]フィールドに指定するメールサーバにより配信されます。 [[base-dns.mx_explain]]"
 
 msgid "mx_domain_name"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "mx_domain_name_empty"
-msgstr "�֥ɥᥤ��͡���ץե�����ɤϾ�ά�Ǥ��ޤ���"
+msgstr "「ドメインネーム」フィールドは省略できません。"
 
 msgid "mx_domain_name_help"
-msgstr "���Υե�����ɤ˻��ꤹ��ɥᥤ��͡��స���Żҥ᡼��ϡ�[[base-dns.mx_target_server]]�ե�����ɤ˻��ꤹ��᡼�륵���Фˤ���ۿ�����ޤ���[[base-dns.mx_explain]]"
+msgstr "このフィールドに指定するドメインネーム宛の電子メールは、[[base-dns.mx_target_server]]フィールドに指定するメールサーバにより配信されます。[[base-dns.mx_explain]]"
 
 msgid "mx_target_server"
-msgstr "�᡼�륵����̾"
+msgstr "メールサーバ名"
 
 msgid "mx_target_server_help"
-msgstr "�嵭�Υۥ���̾�ȥɥᥤ��͡��స�Υ᡼����ۿ�����᡼�륵���ФΥۥ���̾�ܥɥᥤ��͡������ꤷ�Ƥ���������[[base-dns.mx_explain]]"
+msgstr "上記のホスト名とドメインネーム宛のメールを配信するメールサーバのホスト名＋ドメインネームを指定してください。[[base-dns.mx_explain]]"
 
 msgid "mx_priority"
-msgstr "�ۿ���ͥ����"
+msgstr "配信の優先度"
 
 msgid "mx_priority_help"
-msgstr "�嵭�Υ᡼�륵���Ф��Ф���᡼���ۿ���ͥ���٤���ꤷ�Ƥ����������ۿ���ͥ���٤ϡ��᡼���ۿ��Τ���˥᡼�륵���Ф�Ϣ�����ߤ������ꤷ��Ʊ��Υɥᥤ��ޤ��ϥͥåȥ�����Ф���ʣ���� MX �쥳���ɤ���ꤹ����ˤΤ�ͭ���Ǥ���"
+msgstr "上記のメールサーバに対するメール配信の優先度を指定してください。配信の優先度は、メール配信のためにメールサーバへ連絡を試みる順序を規定し、同一のドメインまたはネットワークに対して複数の MX レコードを指定する場合にのみ有効です。"
 
 msgid "very_high"
-msgstr "��ͥ���20��"
+msgstr "最優先（20）"
 
 msgid "high"
-msgstr "ͥ���30��"
+msgstr "優先（30）"
 
 msgid "low"
-msgstr "��ͥ���40��"
+msgstr "低優先（40）"
 
 msgid "very_low"
-msgstr "����ͥ���50��"
+msgstr "最低優先（50）"
 
 msgid "mx_dir_very_high"
-msgstr "�᡼�� (��ͥ��)"
+msgstr "メール (最優先)"
 
-msgid "mx_dir_high"	
-msgstr "�᡼�� (ͥ��)"
+msgid "mx_dir_high"
+msgstr "メール (優先)"
 
-msgid "mx_dir_low"	
-msgstr "�᡼�� (��ͥ��)"
+msgid "mx_dir_low"
+msgstr "メール (低優先)"
 
 msgid "mx_dir_very_low"
-msgstr "�᡼�� (����ͥ��)"
+msgstr "メール (最低優先)"
 
 msgid "mx_host_name_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "mx_domain_name_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "mx_target_server_invalid"
-msgstr "���ꤵ�줿�����ʥɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定された正式なドメインネームには、不正な文字が含まれています。"
 
 msgid "mx_target_server_empty"
-msgstr "�᡼�륵���ФΥۥ���̾�ܥɥᥤ��͡������ꤷ�Ƥ���������"
-
+msgstr "メールサーバのホスト名＋ドメインネームを指定してください。"
 
 # --- CNAME record
-
 msgid "create_dns_recCNAME"
-msgstr "[[base-dns.title]] - [[base-dns.cname_record]]���ɲ�"
+msgstr "[[base-dns.title]] - [[base-dns.cname_record]]の追加"
 
 msgid "modify_dns_recCNAME"
-msgstr "[[base-dns.title]] - [[base-dns.cname_record]]�ν���"
+msgstr "[[base-dns.title]] - [[base-dns.cname_record]]の修正"
 
 msgid "cname_explain"
-msgstr "�����ꥢ���쥳���ɤϡ���ĤΥɥᥤ��͡��फ���̤Υɥᥤ��͡���ؤ��Ѵ��ǡ������󶡤��ޤ���"
+msgstr "エイリアスレコードは、一つのドメインネームから別のドメインネームへの変換データを提供します。"
 
 msgid "cname_host_name"
-msgstr "�����ꥢ���ۥ���̾"
+msgstr "エイリアスホスト名"
 
 msgid "cname_host_name_help"
-msgstr "�¥ۥ���̾�ޤ��ϼ¥ɥᥤ��͡�����б����륨���ꥢ���Υۥ���̾����ꤷ�Ƥ���������[[base-dns.cname_explain]]"
+msgstr "実ホスト名または実ドメインネームに対応するエイリアスのホスト名を指定してください。[[base-dns.cname_explain]]"
 
 msgid "cname_domain_name"
-msgstr "�����ꥢ���ɥᥤ��͡���"
+msgstr "エイリアスドメインネーム"
 
 msgid "cname_domain_name_help"
-msgstr "�¥ۥ���̾�ޤ��ϼ¥ɥᥤ��͡�����б����륨���ꥢ���Υɥᥤ��͡������ꤷ�Ƥ���������[[base-dns.cname_explain]]"
+msgstr "実ホスト名または実ドメインネームに対応するエイリアスのドメインネームを指定してください。[[base-dns.cname_explain]]"
 
 msgid "cname_host_target"
-msgstr "�¥ۥ���̾"
+msgstr "実ホスト名"
 
 msgid "cname_host_target_help"
-msgstr "�º� �������� �Υۥ���̾����ꤷ�Ƥ���������[[base-dns.cname_explain]]"
+msgstr "実際 （正規） のホスト名を指定してください。[[base-dns.cname_explain]]"
 
 msgid "cname_domain_target"
-msgstr "�¥ɥᥤ��͡���"
+msgstr "実ドメインネーム"
 
 msgid "cname_domain_target_help"
-msgstr "�º� �������� �Υɥᥤ��͡������ꤷ�Ƥ���������[[base-dns.cname_explain]]"
-
+msgstr "実際 （正規） のドメインネームを指定してください。[[base-dns.cname_explain]]"
 
 # --- TXT record
-
 msgid "create_dns_recTXT"
-msgstr "[[base-dns.title]] - [[base-dns.txt_record]]���ɲ�"
+msgstr "[[base-dns.title]] - [[base-dns.txt_record]]の追加"
 
 msgid "modify_dns_recTXT"
-msgstr "[[base-dns.title]] - [[base-dns.txt_record]]�ν���"
+msgstr "[[base-dns.title]] - [[base-dns.txt_record]]の修正"
 
 msgid "txt_record_explain"
-msgstr "[[base-dns.txt_record]]�ϡ��ɥᥤ��͡���Υƥ����ȥ쥳���ɤ򵭽Ҥ��ޤ���"
+msgstr "[[base-dns.txt_record]]は、ドメインネームのテキストレコードを記述します。"
 
 msgid "txt_host_name"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "txt_host_name_help"
-msgstr "���Υ쥳���ɤΥۥ���̾����ꤷ�Ƥ���������[[base-dns.txt_record_explain]]"
+msgstr "このレコードのホスト名を指定してください。[[base-dns.txt_record_explain]]"
 
 msgid "txt_host_name_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "txt_domain_name"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "txt_domain_name_help"
-msgstr "���Υ쥳���ɤΥɥᥤ��͡������ꤷ�Ƥ���������[[base-dns.txt_record_explain]]"
+msgstr "このレコードのドメインネームを指定してください。[[base-dns.txt_record_explain]]"
 
 msgid "txt_domain_name_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "txt_domain_name_empty"
-msgstr "���Υ쥳���ɤΥɥᥤ�����ꤷ�Ƥ���������"
+msgstr "このレコードのドメインを指定してください。"
 
 msgid "txt_strings"
-msgstr "�ƥ����ȥ쥳����"
+msgstr "テキストレコード"
 
 msgid "txt_strings_help"
-msgstr "�ƥ����ȥ쥳���ɤ���ꤷ�Ƥ���������"
+msgstr "テキストレコードを指定してください。"
 
 msgid "txt_strings_invalid"
-msgstr "���ꤵ�줿�ƥ����ȥ쥳���ɤ������Ǥ���"
+msgstr "指定されたテキストレコードは不正です。"
 
 msgid "txt_strings_empty"
-msgstr "���ꤵ�줿�ۥ���̾�ȥɥᥤ��͡�����б�����ƥ����ȥ쥳���ɤ����Ϥ��Ƥ���������"
-
+msgstr "指定されたホスト名とドメインネームに対応するテキストレコードを入力してください。"
 
 # --- SOA
-
 msgid "create_soa"
-msgstr "SOA �쥳���ɤ��ɲ�"
+msgstr "SOA レコードの追加"
 
 msgid "modify_soa"
-msgstr "[[base-dns.title]] - SOA �쥳���ɤν���"
+msgstr "[[base-dns.title]] - SOA レコードの修正"
 
 msgid "domain_soa"
-msgstr "Ŭ�ѥɥᥤ��"
+msgstr "適用ドメイン"
 
 msgid "domain_soa_help"
-msgstr "���� SOA ��Start of Authority�˥쥳���ɤ�Ŭ�Ѥ����ɥᥤ��Ǥ���"
+msgstr "この SOA （Start of Authority）レコードが適用されるドメインです。"
 
 msgid "network_soa"
-msgstr "Ŭ�ѥͥåȥ��"
+msgstr "適用ネットワーク"
 
 msgid "network_soa_help"
-msgstr "���� SOA ��Start of Authority�˥쥳���ɤ�Ŭ�Ѥ����ͥåȥ���Ǥ���"
+msgstr "この SOA （Start of Authority）レコードが適用されるネットワークです。"
 
 msgid "primary_dns"
-msgstr "�ץ饤�ޥ�͡��ॵ���С�NS��"
+msgstr "プライマリネームサーバ（NS）"
 
 msgid "primary_dns_help"
-msgstr "Ŭ�ѥɥᥤ��ʤޤ��ϥͥåȥ���ˤ��б�����ץ饤�ޥ�͡��ॵ���ФΥɥᥤ��͡�������Ϥ��Ƥ���������"
+msgstr "適用ドメイン（またはネットワーク）に対応するプライマリネームサーバのドメインネームを入力してください。"
 
 msgid "secondary_dns"
-msgstr "���������͡��ॵ���С�NS��"
+msgstr "セカンダリネームサーバ（NS）"
 
 msgid "secondary_dns_help"
-msgstr "Ŭ�ѥɥᥤ��ʤޤ��ϥͥåȥ���ˤ��б����륻�������͡��ॵ���ФΥɥᥤ��͡�������Ϥ��Ƥ���������"
+msgstr "適用ドメイン（またはネットワーク）に対応するセカンダリネームサーバのドメインネームを入力してください。"
 
 msgid "domain_admin"
-msgstr "DNS �����Ԥ��Żҥ᡼�륢�ɥ쥹"
+msgstr "DNS 管理者の電子メールアドレス"
 
 msgid "domain_admin_rule"
-msgstr "�Żҥ᡼�륢�ɥ쥹�����������������Ϥ��Ƥ������������Υե�����ɤ�ɽ�������ǥե�����ͤϡ���DNS������ץơ��֥�Ρ־ܺ١ץ�������������Ǥ��ޤ����ʻ����㡧 user@example.com��"
+msgstr "電子メールアドレスを正しい形式で入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。（指定例： user@example.com）"
 
 msgid "domain_admin_help"
-msgstr "�����˻��ꤹ���Żҥ᡼�륢�ɥ쥹�ϡ������ɲä����ɥᥤ�󤪤�ӥͥåȥ���δ����Ԥ�Ϣ����Ȥ��ƻȤ��ޤ���[[base-dns.domain_admin_rule]]"
+msgstr "ここに指定する電子メールアドレスは、今後追加されるドメインおよびネットワークの管理者の連絡先として使われます。[[base-dns.domain_admin_rule]]"
 
 msgid "domain_admin_invalid"
-msgstr "[[VAR.invalidValue] �ϡ�[[base-dns.domain_admin]]���ͤȤ��Ƥ������Ǥ���[[base-dns.domain_admin_rule]]"
+msgstr "[[VAR.invalidValue] は、[[base-dns.domain_admin]]の値としては不正です。[[base-dns.domain_admin_rule]]"
 
 msgid "domain_admin_empty"
-msgstr "[[base-dns.domain_admin]] ��ɬ�ܤǤ���[[base-dns.domain_admin_rule]]"
+msgstr "[[base-dns.domain_admin]] は必須です。[[base-dns.domain_admin_rule]]"
 
 msgid "refresh"
-msgstr "��ե�å���ֳ֡��á�"
+msgstr "リフレッシュ間隔（秒）"
 
 msgid "refresh_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ������������Υե�����ɤ�ɽ�������ǥե�����ͤϡ���DNS������ץơ��֥�Ρ־ܺ١ץ�������������Ǥ��ޤ���"
+msgstr "1 〜 4096000 の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
 
 msgid "refresh_help"
-msgstr "�����˻��ꤹ���ե�å���ֳ֤ϡ������ɲä����ɥᥤ�󤪤�ӥͥåȥ���ǻȤ��ޤ�����ե�å���ֳ֤Ȥϡ����������ɥᥤ��͡��ॵ���Ф��ץ饤�ޥ�ɥᥤ��͡��ॵ���Фȥ쥳���ɤ�Ʊ����ޤ���ֳִ֤Ǥ���[[base-dns.refresh_rule]]"
+msgstr "ここに指定するリフレッシュ間隔は、今後追加されるドメインおよびネットワークで使われます。リフレッシュ間隔とは、セカンダリドメインネームサーバがプライマリドメインネームサーバとレコードの同期を図る時間間隔です。[[base-dns.refresh_rule]]"
 
 msgid "refresh_empty"
-msgstr "[[base-dns.refresh]] ��ɬ�ܤǤ���[[base-dns.refresh_rule]]"
+msgstr "[[base-dns.refresh]] は必須です。[[base-dns.refresh_rule]]"
 
 msgid "retry"
-msgstr "��ȥ饤�ֳ֡��á�"
+msgstr "リトライ間隔（秒）"
 
 msgid "retry_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ������������Υե�����ɤ�ɽ�������ǥե�����ͤϡ���DNS������ץơ��֥�Ρ־ܺ١ץ�������������Ǥ��ޤ���"
+msgstr "1 〜 4096000 の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
 
 msgid "retry_help"
-msgstr "�����˻��ꤹ���ȥ饤�ֳ֤ϡ������ɲä����ɥᥤ�󤪤�ӥͥåȥ���ǻȤ��ޤ�����ȥ饤�ֳ֤Ȥϡ����餫����ͳ�ǥ��������ɥᥤ��͡��ॵ���Ф��ץ饤�ޥ�ɥᥤ��͡��ॵ���ФΥ쥳���ɤ�Ʊ������ʤ����ˡ������֤��쥳���ɤ�Ʊ�����Ԥ�����ֳִ֤Ǥ���[[base-dns.retry_rule]]"
+msgstr "ここに指定するリトライ間隔は、今後追加されるドメインおよびネットワークで使われます。リトライ間隔とは、何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバのレコードと同期を取れない場合に、繰り返しレコードの同期を試行する時間間隔です。[[base-dns.retry_rule]]"
 
 msgid "retry_empty"
-msgstr "[[base-dns.retry]] ��ɬ�ܤǤ���[[base-dns.retry_rule]]"
+msgstr "[[base-dns.retry]] は必須です。[[base-dns.retry_rule]]"
 
 msgid "expire"
-msgstr "�����ֳ֡��á�"
+msgstr "失効間隔（秒）"
 
 msgid "expire_rule"
-msgstr "1 �� 4096000 �δ֤����������Ϥ��Ƥ������������Υե�����ɤ�ɽ�������ǥե�����ͤϡ���DNS������ץơ��֥�Ρ־ܺ١ץ�������������Ǥ��ޤ���"
+msgstr "1 〜 4096000 の間の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
 
 msgid "expire_help"
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ��뼺���ֳ֤���ꤷ�Ƥ������������餫����ͳ�ǥ��������ɥᥤ��͡��ॵ���Ф��ץ饤�ޥ�ɥᥤ��͡��ॵ���Фȥ쥳���ɤ�Ʊ���Ǥ����������֤�Ʊ�����ߤ��硢�����ֳ֡��áˤ�вᤷ�Ƥ�Ʊ���Ǥ��ʤ��ȡ����������ɥᥤ��͡��ॵ���Фϼ�ʬ�λ��ĥɥᥤ�����Ϥ⤦ͭ���ǤϤʤ���Ƚ�Ǥ����ץ饤�ޥ�ɥᥤ��͡��ॵ���Фغ���Ϣ���Ǥ���ޤǥɥᥤ�������󶡤���ߤ��ޤ���[[base-dns.expire_rule]]"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる失効間隔を指定してください。何らかの理由でセカンダリドメインネームサーバがプライマリドメインネームサーバとレコードを同期できず、繰り返し同期を試みる場合、失効間隔（秒）を経過しても同期できないと、セカンダリドメインネームサーバは自分の持つドメイン情報はもう有効ではないと判断し、プライマリドメインネームサーバへ再度連絡できるまでドメイン情報の提供を停止します。[[base-dns.expire_rule]]"
 
 msgid "expire_empty"
-msgstr "[[base-dns.expire]] ����ꤷ�Ƥ���������[[base-dns.expire_rule]]"
-
+msgstr "[[base-dns.expire]] を指定してください。[[base-dns.expire_rule]]"
 
 msgid "ttl"
-msgstr "TTL �ֳ֡��á�"
+msgstr "TTL 間隔（秒）"
+
 msgid "ttl_rule"
-msgstr "1 �� 4096000 �����������Ϥ��Ƥ������������Υե�����ɤ�ɽ�������ǥե�����ͤϡ���DNS������ץơ��֥�Ρ־ܺ١ץ�������������Ǥ��ޤ���"
+msgstr "1 〜 4096000 の整数を入力してください。このフィールドに表示されるデフォルト値は、「DNSの設定」テーブルの「詳細」セクションで設定できます。"
 
 msgid "ttl_help"
-msgstr "�������ɥᥤ���ͥåȥ���� DNS �쥳���ɤ��ɲä���ݤ˥ǥե���ȤȤ��ƻȤ��� TTL �ֳ֤���ꤷ�Ƥ���������TTL �ֳ֤Ȥϡ�¾�Υɥᥤ��͡��ॵ���Ф����Υɥᥤ��͡��ॵ���Ф�����������ɥᥤ�����򥭥�å�����ݴɤ������Υɥᥤ��͡��ॵ���Ф˺Ƥ�Ϣ�����ʤ��ޤޤ��ξ���ͭ���Ǥ�������ꤹ����֤Ǥ���[[base-dns.ttl_rule]]"
+msgstr "新しいドメインやネットワークを DNS レコードに追加する際にデフォルトとして使われる TTL 間隔を指定してください。TTL 間隔とは、他のドメインネームサーバがこのドメインネームサーバから取得したドメイン情報をキャッシュに保管し、このドメインネームサーバに再び連絡しないままその情報が有効であると想定する期間です。[[base-dns.ttl_rule]]"
 
 msgid "ttl_invalid"
-msgstr "[[VAR.invalidValue] �ϡ�[[base-dns.ttl]]�ˤϻ���Ǥ��ޤ���[[base-dns.ttl_rule]]"
+msgstr "[[VAR.invalidValue] は、[[base-dns.ttl]]には指定できません。[[base-dns.ttl_rule]]"
 
 msgid "ttl_empty"
-msgstr "[[base-dns.ttl]]����ꤷ�Ƥ���������[[base-dns.ttl_rule]]"
-
-
+msgstr "[[base-dns.ttl]]を指定してください。[[base-dns.ttl_rule]]"
 
 # ---- Secondary Services
-
 msgid "secondary_service_button"
-msgstr "��������ꥵ���ӥ�������"
+msgstr "セカンダリサービスを設定"
 
 msgid "secondary_service_button_help"
-msgstr "�ɥᥤ���ͥåȥ�����Ф��륻������� DNS �����ӥ�������Ǥ��ޤ���"
+msgstr "ドメインやネットワークに対するセカンダリ DNS サービスを管理できます。"
 
 msgid "sec_list"
-msgstr "[[base-dns.title]] - ��������ꥵ���ӥ��Υꥹ��"
+msgstr "[[base-dns.title]] - セカンダリサービスのリスト"
 
 msgid "create_slave_rec"
-msgstr "[[base-dns.title]] - ��������ꥵ���ӥ����ɲ�"
+msgstr "[[base-dns.title]] - セカンダリサービスの追加"
 
 msgid "modify_slave_rec"
-msgstr "[[base-dns.title]] - ��������ꥵ���ӥ��ν���"
+msgstr "[[base-dns.title]] - セカンダリサービスの修正"
 
 msgid "slave_domain_but"
-msgstr "�ɥᥤ��"
+msgstr "ドメイン"
 
 msgid "slave_domain"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "slave_domain_help"
-msgstr "���������ɥᥤ��͡��ॵ���ӥ�������ɥᥤ�����ꤷ�Ƥ���������"
+msgstr "セカンダリドメインネームサービスの提供先ドメインを指定してください。"
 
 msgid "slave_dom_masters"
-msgstr "�ץ饤�ޥ� DNS �����Ф� IP ���ɥ쥹"
+msgstr "プライマリ DNS サーバの IP アドレス"
 
 msgid "slave_dom_masters_help"
-msgstr "���Υɥᥤ��Υץ饤�ޥ�ɥᥤ��͡��ॵ���Ф� IP ���ɥ쥹�����Ϥ��Ƥ���������"
+msgstr "このドメインのプライマリドメインネームサーバの IP アドレスを入力してください。"
 
 msgid "slave_network_but"
-msgstr "�ͥåȥ��"
+msgstr "ネットワーク"
 
 msgid "slave_ipaddr"
-msgstr "�ͥåȥ��"
+msgstr "ネットワーク"
 
 msgid "slave_ipaddr_help"
-msgstr "���������ɥᥤ��͡��ॵ���ӥ�������ͥåȥ���� IP ���ɥ쥹�����Ϥ��Ƥ���������"
+msgstr "セカンダリドメインネームサービスの提供先ネットワークの IP アドレスを入力してください。"
 
 msgid "slave_netmask"
-msgstr "�ͥåȥ���Υ��֥ͥåȥޥ���"
+msgstr "ネットワークのサブネットマスク"
 
 msgid "slave_netmask_help"
-msgstr "���������ɥᥤ��͡��ॵ���ӥ�������ͥåȥ���Υ��֥ͥåȥޥ��������Ϥ��Ƥ���������"
+msgstr "セカンダリドメインネームサービスの提供先ネットワークのサブネットマスクを入力してください。"
 
 msgid "slave_net_masters"
-msgstr "�ץ饤�ޥ� DNS �����Ф� IP ���ɥ쥹"
+msgstr "プライマリ DNS サーバの IP アドレス"
 
 msgid "slave_net_masters_help"
-msgstr "���Υɥᥤ��Υץ饤�ޥ�ɥᥤ��͡��ॵ���Ф� IP ���ɥ쥹�����Ϥ��Ƥ���������"
+msgstr "このドメインのプライマリドメインネームサーバの IP アドレスを入力してください。"
 
 msgid "sec_authority"
-msgstr "��������ꥵ���ӥ�"
+msgstr "セカンダリサービス"
 
 msgid "sec_authority_help"
-msgstr "���Υ����Ф����������ɥᥤ��͡��ॵ���ӥ����󶡤���ɥᥤ��ʤޤ��ϥͥåȥ���ˤǤ���"
+msgstr "このサーバがセカンダリドメインネームサービスを提供するドメイン（またはネットワーク）です。"
 
 msgid "sec_primaries"
-msgstr "�ץ饤�ޥ� DNS ������"
+msgstr "プライマリ DNS サーバ"
 
 msgid "sec_primaries_help"
-msgstr "���Υɥᥤ��ʤޤ��ϥͥåȥ���ˤΥץ饤�ޥ�ɥᥤ��͡��ॵ���Ф� IP ���ɥ쥹�Ǥ���"
+msgstr "このドメイン（またはネットワーク）のプライマリドメインネームサーバの IP アドレスです。"
 
 msgid "recordlist_action"
-msgstr "�ܺ�"
+msgstr "詳細"
 
 msgid "recordlist_action_help"
-msgstr "��ɮ��������򥯥�å�����ȡ����Υ쥳���ɤ����Ǥ��ޤ�������Ȣ��������򥯥�å�����ȡ����Υ쥳���ɤ����Ǥ��ޤ���"
+msgstr "鉛筆アイコンをクリックすると、そのレコードを修正できます。ゴミ箱アイコンをクリックすると、そのレコードを削除できます。"
 
 # end of sentence is completed
-
 msgid "confirm_removal_of_sec"
-msgstr "[[VAR.rec]] �Ȥ������������ɥᥤ��͡��ॵ���ӥ��쥳���ɤ������Ƥ�������Ǥ�����"
+msgstr "[[VAR.rec]] というセカンダリドメインネームサービスレコードを削除してよろしいですか？"
 
 msgid "slave_ipaddr_invalid"
-msgstr "���ꤵ�줿 IP ���ɥ쥹�������Ǥ���"
+msgstr "指定された IP アドレスは不正です。"
 
 msgid "slave_netmask_invalid"
-msgstr "���ꤵ�줿�ͥåȥޥ����������Ǥ����ͥåȥޥ����ϡ�255.255.255.0 �η��������Ϥ��Ƥ���������"
+msgstr "指定されたネットマスクは不正です。ネットマスクは、255.255.255.0 の形式で入力してください。"
 
 msgid "slave_net_masters_invalid"
-msgstr "���ꤵ�줿�ץ饤�ޥ� DNS �����Ф� IP ���ɥ쥹�������Ǥ���"
+msgstr "指定されたプライマリ DNS サーバの IP アドレスは不正です。"
 
 msgid "slave_domain_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���������Ǥ���"
+msgstr "指定されたドメインネームは不正です。"
 
 msgid "slave_dom_masters_invalid"
-msgstr "���ꤵ�줿�ץ饤�ޥ� DNS �����Ф� IP ���ɥ쥹�������Ǥ���"
+msgstr "指定されたプライマリ DNS サーバの IP アドレスは不正です。"
 
 msgid "apply_changes"
-msgstr "�ѹ���Ŭ��"
+msgstr "変更を適用"
 
 msgid "apply_changes_help"
-msgstr "���Υܥ���򥯥�å�����ȡ�DNS �쥳���ɤ˲ä����ѹ���Ŭ�Ѥ���ޤ���DNS �쥳���ɤ������Ƥ⡢���Υܥ���򥯥�å����ʤ��¤꿷���������ͭ���ˤʤ�ޤ���"
+msgstr "このボタンをクリックすると、DNS レコードに加えた変更が適用されます。DNS レコードを修正しても、このボタンをクリックしない限り新しい設定は有効になりません。"
 
 msgid "apply_changes_disabledHelp"
-msgstr "DNS �쥳���ɤ��ɲá���������Ƥ��ʤ����ᡢ���Υܥ���ϸ���̵���Ǥ���DNS �쥳���ɤ��ɲá��������Ƥ��餳�Υܥ���򥯥�å�����ȡ����������꤬ͭ���ˤʤ�ޤ��� "
-
+msgstr "DNS レコードが追加、修正されていないため、このボタンは現在無効です。DNS レコードを追加、修正してからこのボタンをクリックすると、新しい設定が有効になります。 "
 
 # ---- Active monitor
-
 msgid "amDNSNameTag"
-msgstr "DNS ������"
+msgstr "DNS サーバ"
 
 msgid "amDetailsTitle"
-msgstr "DNS �����Фξܺ�"
+msgstr "DNS サーバの詳細"
 
 msgid "amNotRunning"
-msgstr "�ɥᥤ��͡��ॵ���Ф�ư��Ƥ��餺����ư���뤳�Ȥ�Ǥ��ޤ���Ǥ�����[[base-apache.amAdmservNameTag]] �ǡ��ɥᥤ��͡��ॵ���Ф��ö���դˤ��ơ���¸�ץܥ���򥯥�å����Ƥ��顢�⤦���٥���ˤ��ơ���¸�ץܥ���򥯥�å��������꤬��褹�뤫�ɤ�����������������ɥᥤ��͡��ॵ���Ф���������ư���ʤ����ˤϡ�[[base-alpine.serverconfig]] �� [[base-power.power]] ��˥塼�ˤ����[[base-power.reboot]]�ץܥ���򥯥�å����ơ����������Τ�Ƶ�ư���Ƥ�������������Ǥ�ɥᥤ��͡��ॵ���Ф���ư���ʤ����ˤϡ�[[base-sauce-basic.techSupportURL]] �ˤ���ƥ��˥��륵�ݡ��ȥ����ӥ������Ѥ���������"
+msgstr "ドメインネームサーバは動作しておらず、起動することもできませんでした。[[base-apache.amAdmservNameTag]] で、ドメインネームサーバを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。ドメインネームサーバが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでもドメインネームサーバが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
 
 msgid "amStatusOK"
-msgstr "�ɥᥤ��͡��ॵ���Ф������ư��Ƥ��ޤ���"
-
+msgstr "ドメインネームサーバは正常に動作しています。"
 
 # --- Drop-down menu
-
-msgid "select_a_domain"	
-msgstr "�ɥᥤ�������..."
+msgid "select_a_domain"
+msgstr "ドメインを選択..."
 
 msgid "select_a_network"
-msgstr "�ͥåȥ��������..."
+msgstr "ネットワークを選択..."
 
-msgid "no_records"	
-msgstr "�ɥᥤ��ޤ��ϥͥåȥ�����¤�����ޤ���"
+msgid "no_records"
+msgstr "ドメインまたはネットワーク権限がありません。"
 
 msgid "subdom_host_name"
-msgstr "���֥ɥᥤ��͡���"
+msgstr "サブドメインネーム"
 
 msgid "subdom_host_name_help"
-msgstr "���֥ɥᥤ��͡������ꤷ�Ƥ����������㤨�С�remote.ourcompany.com �Ȥ������֥ɥᥤ��θ��¤�Ѿ�����ˤϡ����Υ����Ф� ourcompany.com �Ȥ����ɥᥤ����Ф��븢�¤���äƤ��ʤ���Фʤ�ޤ��󡣤��Υե�����ɤˤϡ����֥ɥᥤ��͡���Ǥ��� remote �Τߤ���ꤷ�ޤ���" 
+msgstr "サブドメインネームを指定してください。例えば、remote.ourcompany.com というサブドメインの権限を委譲するには、このサーバが ourcompany.com というドメインに対する権限を持っていなければなりません。このフィールドには、サブドメインネームである remote のみを指定します。"
 
 msgid "subdom_domain_name"
-msgstr "�ƥɥᥤ��͡���"
+msgstr "親ドメインネーム"
+
 msgid "subdom_domain_name_help"
-msgstr "�ƥɥᥤ��͡�������򤷤Ƥ����������㤨�С�remote.ourcompany.com �Ȥ������֥ɥᥤ��θ��¤�Ѿ�������ˤϡ�ourcompany.com �����򤷤ޤ���"
+msgstr "親ドメインネームを選択してください。例えば、remote.ourcompany.com というサブドメインの権限を委譲する場合には、ourcompany.com を選択します。"
 
 msgid "subdom_nameservers"
-msgstr "�͡��ॵ����"
+msgstr "ネームサーバ"
 
 msgid "subdom_nameservers_help"
-msgstr "���ꤵ�줿���֥ɥᥤ����Ф��븢�¤���ĥ͡��ॵ���Ф� IP ���ɥ쥹����ꤷ�Ƥ���������ʣ�����ꤹ����ˤϡ�����ޤǶ��ڤäƤ������������ʤ��Ȥ⣱�Ĥϻ��ꤹ��ɬ�פ�����ޤ���" 
+msgstr "指定されたサブドメインに対する権限を持つネームサーバの IP アドレスを指定してください。複数指定する場合には、コンマで区切ってください。少なくとも１つは指定する必要があります。"
 
 msgid "subdom_nameservers_invalid"
-msgstr "[[base-dns.subdom_nameservers]]�Υꥹ�Ȥ�������ʸ���ޤ��ϥۥ���̾���ޤޤ�Ƥ��ޤ���"
+msgstr "[[base-dns.subdom_nameservers]]のリストに不正な文字またはホスト名が含まれています。"
 
 msgid "subdom_nameservers_empty"
-msgstr "���Υ��֥ɥᥤ����Ф��븢�¤���� DNS �����Ф򾯤ʤ��Ȥ⣱�Ĥϻ��ꤷ�Ƥ���������"
+msgstr "このサブドメインに対する権限を持つ DNS サーバを少なくとも１つは指定してください。"
 
 msgid "subnet_ip_address"
-msgstr "���֥ͥåȤ� IP ���ɥ쥹"
+msgstr "サブネットの IP アドレス"
 
 msgid "subnet_ip_address_help"
-msgstr "�̤� DNS �����Ф˸��¤�Ѿ����������֥ͥåȾ�� IP ���ɥ쥹����ꤷ�Ƥ���������"  
+msgstr "別の DNS サーバに権限を委譲したいサブネット上の IP アドレスを指定してください。"
 
 msgid "subnet_mask"
-msgstr "���֥ͥåȤΥͥåȥ���ޥ���"
+msgstr "サブネットのネットワークマスク"
 
 msgid "subnet_mask_help"
-msgstr "���֥ͥåȤΥͥåȥ���ޥ�������ꤷ�Ƥ���������" 
+msgstr "サブネットのネットワークマスクを指定してください。"
 
 msgid "subnet_nameservers"
-msgstr "�͡��ॵ����"
+msgstr "ネームサーバ"
 
 msgid "subnet_nameservers_help"
-msgstr "���ꤵ�줿���֥ͥåȤ��Ф��븢�¤���ĥ͡��ॵ���Ф� IP ���ɥ쥹����ꤷ�Ƥ���������ʣ�����ꤹ����ˤϡ�����ޤǶ��ڤäƤ������������ʤ��Ȥ⣱�Ĥϻ��ꤹ��ɬ�פ�����ޤ���" 
+msgstr "指定されたサブネットに対する権限を持つネームサーバの IP アドレスを指定してください。複数指定する場合には、コンマで区切ってください。少なくとも１つは指定する必要があります。"
 
 msgid "subnet_nameservers_invalid"
-msgstr "[[base-dns.subnet_nameservers]] �Υꥹ�Ȥ�������ʸ���ޤ��ϥۥ���̾���ޤޤ�Ƥ��ޤ���"
+msgstr "[[base-dns.subnet_nameservers]] のリストに不正な文字またはホスト名が含まれています。"
 
 msgid "subnet_nameservers_empty"
-msgstr "���Υ��֥ͥåȤ��Ф��븢�¤���� DNS �����Ф򾯤ʤ��Ȥ⣱�Ĥϻ��ꤷ�Ƥ���������"
+msgstr "このサブネットに対する権限を持つ DNS サーバを少なくとも１つは指定してください。"
 
 msgid "create_dns_rec"
-msgstr "DNS �쥳���ɤ��ɲ�" 
+msgstr "DNS レコードを追加"
 
-msgid "modify_dns_rec"	
-msgstr "[[base-dns.title]] - DNS �쥳���ɤ���" 
+msgid "modify_dns_rec"
+msgstr "[[base-dns.title]] - DNS レコードを修正"
 
 msgid "authority"
-msgstr "����"
+msgstr "権限"
 
 msgid "authority_help"
-msgstr "DNS ���¤ϥɥᥤ��ȥͥåȥ���Ǥ���"
+msgstr "DNS 権限はドメインとネットワークです。"
 
 msgid "subnet_dir"
-msgstr "���֥ͥå�"
+msgstr "サブネット"
 
 msgid "subdom_dir"
-msgstr "���֥ɥᥤ��"
+msgstr "サブドメイン"
 
 msgid "subnet"
-msgstr "���֥ͥåȤθ��°Ѿ�"
+msgstr "サブネットの権限委譲"
 
 msgid "subdom"
-msgstr "���֥ɥᥤ��θ��°Ѿ�"
+msgstr "サブドメインの権限委譲"
 
 msgid "modify_dns_recSUBDOM"
-msgstr "[[base-dns.title]] - ���֥ɥᥤ��θ��°Ѿ�����"
+msgstr "[[base-dns.title]] - サブドメインの権限委譲を修正"
 
 msgid "create_dns_recSUBDOM"
-msgstr "���֥ɥᥤ��θ��°Ѿ����ɲ�"
+msgstr "サブドメインの権限委譲を追加"
 
 msgid "modify_dns_recSUBNET"
-msgstr "[[base-dns.title]] - ���֥ͥåȤθ��°Ѿ�����"
+msgstr "[[base-dns.title]] - サブネットの権限委譲を修正"
 
 msgid "create_dns_recSUBNET"
-msgstr "���֥ͥåȤθ��°Ѿ����ɲ�"
+msgstr "サブネットの権限委譲を追加"
 
 msgid "add_secondary"
-msgstr "��������ꥵ���ӥ����ɲ�..."
+msgstr "セカンダリサービスを追加..."
 
 msgid "add_secondary_forward"
-msgstr "�ɥᥤ��"
+msgstr "ドメイン"
 
 msgid "add_secondary_network"
-msgstr "�ͥåȥ��"
-
+msgstr "ネットワーク"
 
 # --- Lots of error messages
-
 msgid "cname_domain_name_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "cname_domain_target_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "cname_host_target_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "subdom_host_name_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "subdom_host_name_empty"
-msgstr "��⡼�Ȥ� DNS �����Ф˸��°Ѿ����������֥ɥᥤ��̾����ꤷ�Ƥ���������"
+msgstr "リモートの DNS サーバに権限委譲したいサブドメイン名を指定してください。"
 
 msgid "subdom_domain_name_invalid"
-msgstr "���ꤵ�줿�ɥᥤ��͡���ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたドメインネームには、不正な文字が含まれています。"
 
 msgid "subdom_namerservers_invalid"
-msgstr "�ץ饤�ޥ� DNS �����ФΥɥᥤ��͡��ब�����Ǥ���"
+msgstr "プライマリ DNS サーバのドメインネームが不正です。"
 
 msgid "subnet_subnet_mask_invalid"
-msgstr "���ꤵ�줿���֥ͥåȥޥ����������Ǥ������֥ͥåȥޥ����ϡ�255.255.255.0�η��������Ϥ��Ƥ���������"
+msgstr "指定されたサブネットマスクは不正です。サブネットマスクは、255.255.255.0の形式で入力してください。"
 
 msgid "subnet_ip_address_invalid"
-msgstr "���ꤵ�줿 IP ���ɥ쥹�������Ǥ��� "
+msgstr "指定された IP アドレスは不正です。 "
 
 msgid "subnet_ip_address_empty"
-msgstr "���°Ѿ�����륵�֥ͥåȤΥ��С��� IP ���ɥ쥹����ꤷ�Ƥ���������"
+msgstr "権限委譲されるサブネットのメンバーの IP アドレスを指定してください。"
 
 msgid "primary_dns_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "secondary_dns_invalid"
-msgstr "���������͡��ॵ���ФΥۥ���̾�ˡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "セカンダリネームサーバのホスト名に、不正な文字が含まれています。"
 
 msgid "refresh_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_refresh]]�ˤϻ���Ǥ��ޤ���[[base-dns.default_refresh_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_refresh]]には指定できません。[[base-dns.default_refresh_rule]]"
 
 msgid "retry_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_retry]]�ˤϻ���Ǥ��ޤ���  [[base-dns.default_retry_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_retry]]には指定できません。  [[base-dns.default_retry_rule]]"
 
 msgid "expire_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-dns.default_expire]]�ˤϻ���Ǥ��ޤ���  [[base-dns.default_expire_rule]]"
+msgstr "[[VAR.invalidValue]] は、[[base-dns.default_expire]]には指定できません。  [[base-dns.default_expire_rule]]"
 
 msgid "cname_domain_name_empty"
-msgstr "�����ꥢ���ɥᥤ��͡������ꤷ�Ƥ���������"
+msgstr "エイリアスドメインネームを指定してください。"
 
 msgid "cname_domain_target_empty"
-msgstr "�����ꥢ���ۥ���̾�ȥɥᥤ��͡�����б�����¥ɥᥤ��͡������ꤷ�Ƥ���������"
+msgstr "エイリアスホスト名とドメインネームに対応する実ドメインネームを指定してください。"
 
 msgid "slave_domain_empty"
-msgstr "���Υ����Ф���������� DNS �����ФȤʤ�ɥᥤ��͡������ꤷ�Ƥ���������"
+msgstr "このサーバがセカンダリ DNS サーバとなるドメインネームを指定してください。"
 
 msgid "slave_dom_masters_empty"
-msgstr "�ɥᥤ��͡���Υץ饤�ޥ� DNS �����Ф� IP ���ɥ쥹����ꤷ�Ƥ���������"
+msgstr "ドメインネームのプライマリ DNS サーバの IP アドレスを指定してください。"
 
 msgid "slave_ipaddr_empty"
-msgstr "�ץ饤�ޥ� DNS �����Фˤ�ä��󶡤����ͥåȥ����� IP ���ɥ쥹����ꤷ�Ƥ���������"
+msgstr "プライマリ DNS サーバによって提供されるネットワーク上の IP アドレスを指定してください。"
 
 msgid "slave_net_masters_empty"
-msgstr "�ͥåȥ���Υץ饤�ޥ� DNS �����Ф� IP ���ɥ쥹����ꤷ�Ƥ���������"
+msgstr "ネットワークのプライマリ DNS サーバの IP アドレスを指定してください。"
 
 msgid "slave_netmask_empty"
-msgstr "���ꤵ�줿�ͥåȥ�� IP ���ɥ쥹�ȶ��ˡ��ץ饤�ޥ� DNS �����Ф����¤���ĥͥåȥ���Υͥåȥ���ޥ�����255.255.255.0 �η����ǻ��ꤷ�Ƥ���������"
+msgstr "指定されたネットワーク IP アドレスと共に、プライマリ DNS サーバが権限を持つネットワークのネットワークマスクを、255.255.255.0 の形式で指定してください。"
 
 msgid "cname_host_name_empty"
-msgstr "���Υ쥳���ɤΥۥ���̾����ꤷ�Ƥ���������"
+msgstr "このレコードのホスト名を指定してください。"
 
 msgid "cname_host_name_invalid"
-msgstr "���ꤵ�줿�ۥ���̾�ˤϡ�������ʸ�����ޤޤ�Ƥ��ޤ���"
+msgstr "指定されたホスト名には、不正な文字が含まれています。"
 
 msgid "parent_network"
-msgstr "�ƥͥåȥ��"
+msgstr "親ネットワーク"
 
 msgid "parent_network_help"
-msgstr "���Υ����Ф����¤���Ŀƥͥåȥ���ǡ����ꤵ�줿���֥ͥåȾ�ˤ������Ƥ� IP ���ɥ쥹�ϡ����οƥͥåȥ����°����ɬ�פ�����ޤ���"
+msgstr "このサーバが権限を持つ親ネットワークで、指定されたサブネット上にある全ての IP アドレスは、この親ネットワークに属する必要があります。"
 
 msgid "invalidDuplicate"
-msgstr "Ʊ��Υɥᥤ��͡���쥳���ɤ�����¸�ߤ��ޤ���"
+msgstr "同一のドメインネームレコードが既に存在します。"
 
 msgid "named-did-not-start"
-msgstr "�͡��ॵ���� (DNS) ���������Ƶ�ư���ޤ���Ǥ�����"
+msgstr "ネームサーバ (DNS) が正しく再起動しませんでした。"
 
 msgid "invalid-authority"
-msgstr "DNS �쥳���ɤ�ɬ���Բķ�ʾ��󤬷�ǡ���Ƥ��ޤ���"
+msgstr "DNS レコードに必要不可欠な情報が欠如しています。"
 
 msgid "SOA-already-exists-for-zone"
-msgstr "���Υ������Ѥ� SOA (Start Of Authority) �쥳���ɤϴ���¸�ߤ��ޤ���"
+msgstr "このゾーン用の SOA (Start Of Authority) レコードは既に存在します。"
 
 msgid "secondaryZoneOverlap"
-msgstr "���Υ쥳���ɤϡ���¸�Υ��������ͥåȥ�������ӥ���̷�⤷�ޤ���"
+msgstr "このレコードは、既存のセカンダリネットワークサービスと矛盾します。"
 
 msgid "secondaryZoneDuplicate"
-msgstr "���Υ쥳���ɤϡ���¸�Υ��������ͥåȥ�������ӥ���̷�⤷�ޤ���"
+msgstr "このレコードは、既存のセカンダリネットワークサービスと矛盾します。"
 
 msgid "primaryZoneDuplicate"
-msgstr "���Υ쥳���ɤϡ���¸�Υץ饤�ޥ�ͥåȥ�������ӥ���̷�⤷�ޤ���"
+msgstr "このレコードは、既存のプライマリネットワークサービスと矛盾します。"
 
 msgid "primaryZoneOverlap"
-msgstr "���Υ쥳���ɤϡ���¸�Υץ饤�ޥ�ͥåȥ�������ӥ���̷�⤷�ޤ���"
-
-msgid ""
-msgstr ""
+msgstr "このレコードは、既存のプライマリネットワークサービスと矛盾します。"
 
 msgid "auto_dns"
-msgstr "��ư DNS"
+msgstr "自動 DNS"
 
 msgid "auto_dns_help"
-msgstr "��ư DNS ����"
+msgstr "自動 DNS 設定"
 
 msgid "auto_a"
-msgstr "�ۥ��ȥ͡���"
+msgstr "ホストネーム"
 
 msgid "auto_a_help"
-msgstr "��ư DNS �Τ���Υۥ���̾���ɲä��ޤ���"
+msgstr "自動 DNS のためのホスト名を追加します。"
 
 msgid "auto_mx"
-msgstr "�᡼�륵���Хۥ���̾"
+msgstr "メールサーバホスト名"
 
 msgid "auto_mx_help"
-msgstr "���Υɥᥤ��Υ᡼�륵���Хۥ���̾���ɲä��ޤ����᡼�륵���Хۥ��Ȥ� domain.tld ���ͤʥɥᥤ��̾�����Τ�Τ��ɲä��ʤ��Ǥ���������"
+msgstr "このドメインのメールサーバホスト名を追加します。メールサーバホストに domain.tld の様なドメイン名だけのものは追加しないでください。"
 
 msgid "dnsNames_header"
-msgstr "���Υ����ȤǴ�������ɥᥤ��̾�����򤷤Ƥ���������"
+msgstr "このサイトで管理するドメイン名を選択してください。"
 
 msgid "dnsNames"
-msgstr "�ɥᥤ��̾������"
+msgstr "ドメイン名の選択"
 
 msgid "dnsNames_help"
-msgstr "�������뤳�ȥɥᥤ��̾�����򤷤ޤ���"
+msgstr "管理することドメイン名を選択します。"
 
 msgid "selected"
-msgstr "��������"
+msgstr "管理する"
 
 msgid "notSelected"
-msgstr "�������ʤ�"
+msgstr "管理しない"
 
 msgid "nodnsmanage"
-msgstr "�ɥᥤ��̾�����Ԥ����ꤵ��Ƥ��ޤ���"
+msgstr "ドメイン名管理者が設定されていません。"
 
 msgid "dnsempty"
-msgstr ""
-"<br>"
-"���Υ����ƥ�δ����ԤϤɤΥɥᥤ��δ����⤢�ʤ��˵��Ĥ��Ƥ��ޤ���<br>"
-"�⤷���顼�ȴ������ʤ顢�����Ԥ�Ϣ�����Ƥ���������<br>"
-"<br>"
+msgstr "<br>このシステムの管理者はどのドメインの管理もあなたに許可していません。<br>もしエラーと感じたなら、管理者に連絡してください。<br><br>"
+
+msgid "cap_serverDNS"
+msgstr "DNS サーバの管理"
+
+msgid "cap_siteDNS"
+msgstr "サイトの DNS 管理"

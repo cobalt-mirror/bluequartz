@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: apacheHandler.php 490 2005-08-09 14:04:51Z shibuya $
+ * $Id: apacheHandler.php 1538 2010-10-13 09:46:37Z oride $
  */
 
 include_once("ArrayPacker.php");
@@ -10,8 +10,8 @@ include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverHttpd should be here
+if (!$serverScriptHelper->getAllowed('serverHttpd')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -53,11 +53,17 @@ if(!$product->isRaq())
 			"hostnameLookups" => $hostnameLookupsField);
 
 		$ok = $cceClient->set($oids[0], "Web", $apache_config);
-		$errors = array_merge($errors, $cceClient->errors());
+		$errors = array_merge((array)$errors, $cceClient->errors());
 		if ($ok && ($maxClientsField < $maxSpareField)) {
 			array_push($errors,
 				   new Error('[[base-apache.ClientMaxError]]'));
 		}
+	
+		$controlpanel_config = array(
+			"urlAdminAccess" => $urlAdminAccess, 
+			"urlSiteadminAccess" => $urlSiteadminAccess, 
+			"urlPersonalAccess" => $urlPersonalAccess);
+		$ok = $cceClient->set($oids[0], "ControlPanel", $controlpanel_config);
 	}
 }
 print($serverScriptHelper->toHandlerHtml("/base/apache/apache.php", $errors));

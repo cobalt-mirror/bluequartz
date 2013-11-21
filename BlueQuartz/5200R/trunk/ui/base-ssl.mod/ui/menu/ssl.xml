@@ -5,7 +5,7 @@
     url="/base/ssl/siteSSL.php"
 >
     <parent id="base_security" order="60">
-        <access require="serverConfig"/>
+        <access require="serverSSL"/>
     </parent>
 </item>
 <!--

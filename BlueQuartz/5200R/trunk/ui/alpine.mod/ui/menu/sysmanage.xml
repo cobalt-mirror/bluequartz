@@ -4,7 +4,7 @@
     description="[[base-alpine.sysmanageDescription]]"
 >
 	<parent id="root" order="1">
-		<access require="adminUser"/>
+		<access require="serverManage"/>
 	</parent>
 </item>
 <!--

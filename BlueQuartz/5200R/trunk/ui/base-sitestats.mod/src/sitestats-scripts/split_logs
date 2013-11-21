@@ -151,7 +151,7 @@ my %daily_flush; # cache unlinking of per-site daily log files
 
 # this specifies how to process system log files for this log type
 my %log_process = (
-    'mail' => '/usr/local/sbin/maillog2commonlog.pl sendmail |',
+    'mail' => '/usr/local/sbin/maillog2commonlog.pl postfix |',
     'ftp' => '/usr/local/sbin/ftplog2commonlog |',
     'net' => '',
     'web' => '');

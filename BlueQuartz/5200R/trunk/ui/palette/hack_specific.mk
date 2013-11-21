@@ -18,7 +18,7 @@ include /usr/sausalito/devel/module.mk
 rpm: clean mod_specfile hack_specfile
 	touch $(TIMEFILE)
 	/bin/tar czf $(PACKAGE_DIR)/SOURCES/base-palette-$(VERSION).tar.gz -C .. palette \
-		--exclude '*CVS*' --exclude '*.spec'
+		--exclude '*svn*' --exclude '*.spec'
 	rpm -bb $(VENDOR)-$(SERVICE).spec &> /tmp/rpm.palette.log
 	mkdir -p rpms
 	find $(PACKAGE_DIR)/RPMS -type f -newer $(TIMEFILE) -exec cp {} rpms/ ';'

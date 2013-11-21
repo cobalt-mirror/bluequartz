@@ -3,7 +3,7 @@
 # /\                                                          \
 # \_| SSL.pm: Functions for manging SSL certificates.         |
 #   |                                                         |
-#   | $Id: SSL.pm 259 2004-01-03 06:28:40Z shibuya $     |
+#   | $Id: SSL.pm 1442 2010-03-23 14:37:48Z shibuya $     |
 #   |                                                         |
 #   | Originally written by                                   |
 #   |   Harris Vaegan-Lloyd <harris@cobaltnet.com>            |
@@ -659,7 +659,7 @@ sub _gen_private_key
     my $cert_dir = shift;
 
     Sauce::Util::modifyfile("$cert_dir/key");
-    system($OPENSSL, 'genrsa', '-out', "$cert_dir/key", '1024');
+    system($OPENSSL, 'genrsa', '-out', "$cert_dir/key", '2048');
     Sauce::Util::chmodfile(0640, "$cert_dir/key");
     
     return ($? ? 0 : 1);

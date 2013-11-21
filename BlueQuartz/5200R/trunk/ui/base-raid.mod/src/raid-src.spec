@@ -1,12 +1,12 @@
 Summary: Binaries and scripts used by the RAID module
 Name: raid-bins
 Version: 1.0.3
-Release: 12
-Copyright: Sun Microsystems, Inc.  2000-2002
+Release: 12BQ4%{?dist}
+Vendor: %{vendor}
+License: Sun modified BSD
 Group: Utils
 Source: raid-bins.tar.gz
 BuildRoot: /tmp/raid-bins
-BuildArchitectures: noarch
 
 %prep
 rm -rf $RPM_BUILD_ROOT
@@ -33,6 +33,18 @@ Currently, this rpm contains the scripts used to
 determine the status of RAID.
 
 %changelog
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ4
+- remove ide-smart binary.
+
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ3
+- remove BuildArchitectures tag because of arch dependent binariy is exist.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ2
+- remove copyright tag and add license tag at spec file.
+
+* Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ1
+- add dist macro for release and add sign to the package.
+
 * Fri Apr 05 2002 Patrick Baltz <patrick.baltz@sun.com>
 - make umount_and_raid function of make_raid.sh more robust
   try to umount 10 times before giving up

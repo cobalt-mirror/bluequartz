@@ -1,5 +1,5 @@
 # Makefile for swatch
-# $Id: Makefile 997 2007-05-05 07:49:24Z shibuya $
+# $Id: Makefile 1293 2009-10-17 15:20:37Z shibuya $
 
 include /usr/sausalito/devel/defines.mk
 
@@ -9,7 +9,7 @@ TOPDIR := $(shell pwd)
 
 V_MAJ=3
 V_MIN=0
-V_PATCH=0
+V_PATCH=3
 SWATCH_VERSION=$(V_MAJ).$(V_MIN).$(V_PATCH)
 
 CC = gcc

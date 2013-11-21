@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
-# $Id: handle_alias.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: handle_alias.pl 1523 2010-09-06 02:43:58Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 #
 # handles creation, modification, and deletion of Email Aliases.
@@ -91,8 +91,7 @@ elsif (exists($new->{action}))
 $DEBUG && print STDERR 'BIG FAT MARKER', Dumper($alias);
 
 # rollback to recreate db to avoid having to copy the db file at all
-Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Email::VIRTUSER < " .
-				"$Email::VIRTUSER >/dev/null 2>&1");
+Sauce::Util::addrollbackcommand("/usr/bin/postmap hash:$Email::VIRTUSER >/dev/null 2>&1");
 my $ok = Sauce::Util::editfile(
             $Email::VIRTUSER,
             *Sauce::Util::hash_edit_function,

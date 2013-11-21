@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: apache.php 1007 2007-06-25 15:22:40Z shibuya $
+// $Id: apache.php 1538 2010-10-13 09:46:37Z oride $
 
 include_once("ArrayPacker.php");
 include_once("Product.php");
@@ -9,8 +9,8 @@ include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverHttpd should be here
+if (!$serverScriptHelper->getAllowed('serverHttpd')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -22,6 +22,8 @@ $factory = $serverScriptHelper->getHtmlComponentFactory("base-apache", "/base/ap
 
 // get web
 $web = $cceClient->getObject("System", array(), "Web");
+// Get ControlPanel
+$ControlPanel = $cceClient->getObject("System", array(), "ControlPanel");
 
 $page = $factory->getPage();
 
@@ -94,6 +96,20 @@ else
 		$factory->getLabel("hostnameLookupsField")
 	);
 
+	$block->addFormField(
+		$factory->getBoolean("urlAdminAccess", $ControlPanel["urlAdminAccess"]),
+		$factory->getLabel("urlAdminAccess")
+	);
+
+	$block->addFormField(
+		$factory->getBoolean("urlSiteadminAccess", $ControlPanel["urlSiteadminAccess"]),
+		$factory->getLabel("urlSiteadminAccess")
+	);
+
+	$block->addFormField(
+		$factory->getBoolean("urlPersonalAccess", $ControlPanel["urlPersonalAccess"]),
+		$factory->getLabel("urlPersonalAccess")
+	);
 
 	$max_client = $factory->getInteger("maxClientsField", $web["maxClients"], 1, $web["maxClientsAdvised"]);
 	$max_client->setWidth(5);

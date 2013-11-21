@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# $Id: validate_alias.pl 840 2006-08-06 20:20:34Z bsmith $
+# $Id: validate_alias.pl 1480 2010-05-30 13:28:52Z shibuya $
 #
 # check for alias collision with other aliases and with system accounts
 # this doesn't resolve conflicts with aliases in /etc/mail/aliases, because
@@ -19,14 +19,48 @@ my %reserved = map { $_ => 1 } qw(
 mailer-daemon
 bin
 daemon
+adm
+lp
+sync
+shutdown
+halt
+mail
+news
+uucp
+operator
 games
+gopher
+ftp
+nobody
+rpm
+dbus
+vcsa
+sshd
+haldarmon
+ntp
+rpc
+rpcuser
+nfsnobody
+apache
+admserv
+distcache
+mailnull
+smmsp
+named
+webalizer
+postfix
+dovecot
+majordomo
+memcached
 ingres
 system
 toor
 uucp
 dumper
 decode
-nobody
+mailman
+mailman-owner
+www
 root
 );
 

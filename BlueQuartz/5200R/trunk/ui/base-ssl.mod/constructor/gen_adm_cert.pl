@@ -46,7 +46,7 @@ if ($difference < 0) {
 			'country' => 'SS',
 			'state' => 'SS',
 			'city' => 'Generic',
-			'orgName' => 'Sun Cobalt'
+			'orgName' => 'Project BlueQuartz'
 		  });
 $cce->bye();
 exit(0);

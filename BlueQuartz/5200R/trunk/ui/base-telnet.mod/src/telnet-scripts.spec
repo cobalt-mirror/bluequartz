@@ -1,7 +1,7 @@
 Summary: Perl modules that contain vital telnet access functionality
 Name: telnet-scripts
 Version: 1.1.2
-Release: 6BQ5%{?dist}
+Release: 6BQ6%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -28,6 +28,9 @@ This package contains a number of scripts and perl modules that
 contain vital functionality for telnet access.
 
 %changelog
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.2-6BQ6
+- remove .svn directory from rpm package.
+
 * Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.2-6BQ5
 - add dist macro for release.
 

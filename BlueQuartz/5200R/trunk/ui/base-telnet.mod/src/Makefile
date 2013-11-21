@@ -51,7 +51,7 @@ rpm-scripts-telnet:
 
 rpm-base-telnet-am:
 	for t in $(DIRS) ; do \
-		tar -zcvf /tmp/$$t.tar.gz $$t --exclude '*CVS*' &> /dev/null &&\
+		tar -zcvf /tmp/$$t.tar.gz $$t --exclude '*CVS*' --exclude='.svn' &> /dev/null &&\
 		$(RPMBUILD) -ta /tmp/$$t.tar.gz &> /tmp/rpm.log && \
 		/bin/rm -f /tmp/$$t.tar.gz ; \
 	done

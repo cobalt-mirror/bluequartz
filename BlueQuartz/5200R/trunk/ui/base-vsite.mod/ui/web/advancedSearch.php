@@ -109,6 +109,9 @@ function &generate_search_fields(&$factory, &$cce)
 	$ip_option =& $factory->getOption('ipaddr');
 	$ip_option->setLabel($factory->getLabel('ipAddr', false));
 	$property->addOption($ip_option);
+	$user_option =& $factory->getOption('createdUser');
+	$user_option->setLabel($factory->getLabel('createdUser', false));
+	$property->addOption($user_option);
 
 	// select the search property for search modify
 	$property->setSelected(
@@ -161,6 +164,7 @@ function &generate_search_fields(&$factory, &$cce)
 		$option =& $factory->getOption($service, $selected);
 		$option->setLabel($factory->getLabel($ns['i18nName'], false));
 		$services_select->addOption($option);
+		unset($option);
 	}
 
 	$search_block->addFormField($services_select,
@@ -208,7 +212,7 @@ function &generate_search_results(&$factory, &$cce, &$criteria)
 						"fqdn",
 						"ipAddr",
 						"listSuspended",
-						""
+						" "
 					    ),
 					    array(0, 1, 2)); 
   

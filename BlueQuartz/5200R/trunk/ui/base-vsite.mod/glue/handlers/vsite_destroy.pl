@@ -8,6 +8,7 @@
 
 use CCE;
 use Vsite;
+use File::Path;
 use Sauce::Util;
 use Sauce::Config;
 use Base::HomeDir qw(homedir_get_group_dir homedir_create_group_link);
@@ -58,7 +59,7 @@ if ($vsite->{dns_auto})
 my ($vhost_oid) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
 ($ok) = $cce->destroy($vhost_oid);
 if (!$ok) {
-	$cce->bye('FAIL');
+	$cce->bye('FAIL', 'VirtualHostNotFound');
 	exit(1);
 }
 
@@ -84,7 +85,7 @@ unless (scalar($cce->find("Vsite", { 'ipaddr' => $vsite->{ipaddr} })))
 	if ($oid) {
 		($ok) = $cce->destroy($oid);
 		if (!$ok) {
-			$cce->bye('FAIL');
+			$cce->bye('FAIL', 'duringDeleteFTPvirtualHost');
 			exit(1);
 		}
 	}
@@ -101,6 +102,11 @@ my ($site_link, $link_target) = homedir_create_group_link($vsite->{name},
 										$vsite->{fqdn}, $vsite->{volume});
 unlink($site_link);
 Sauce::Util::addrollbackcommand("umask 000; /bin/ln -sf \"$link_target\" \"$site_link\"");
+
+# remove site directory: slightly redundant, but sometimes it does NOT get deleted by remove_site_dir.pl
+if ($base =~ /^\/.+/) {
+    rmtree($base);
+}
 
 $cce->bye('SUCCESS');
 exit(0);

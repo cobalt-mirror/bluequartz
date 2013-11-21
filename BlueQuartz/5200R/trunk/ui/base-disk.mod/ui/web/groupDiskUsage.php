@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000-2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: groupDiskUsage.php 259 2004-01-03 06:28:40Z shibuya $
+// $Id: groupDiskUsage.php 1253 2009-09-15 15:04:53Z shibuya $
 
 include_once('ServerScriptHelper.php');
 include_once('uifc/PagedBlock.php');
@@ -105,7 +105,7 @@ $block->addFormField(
 
 // Site system accounts: anonymous ftp usage & site-specific logs/stats
 $sysusage =& $factory->getScrollList('sysQuota', 
-                    array('', 'service', 'service_used', 'service_quota', 
+                    array(' ', 'service', 'service_used', 'service_quota', 
 			'serviceDiskPercentage'), 
                     array(1,2,3));
 
@@ -163,7 +163,7 @@ for ($i = $start; ($i < count($sysquotas)); $i++)
 
 // add on user disk usage
 $user_list =& $factory->getScrollList('userQuota', 
-                    array('', 'user', 'used', 'quota', 'userDiskPercentage'), 
+                    array(' ', 'user', 'used', 'quota', 'userDiskPercentage'), 
                     array(1,2,3));
 
 $user_list->setSortEnabled(false);

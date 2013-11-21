@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=ssl
 
-VERSION=1.1.0
-RELEASE=68BQ8
+VERSION=1.2.1
+RELEASE=68BQ14
 
 # add a buildarch if desired
 BUILDARCH=noarch

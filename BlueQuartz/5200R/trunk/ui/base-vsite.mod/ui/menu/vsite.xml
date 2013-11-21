@@ -9,7 +9,7 @@
 	description="[[base-vsite.sitemanageDescription]]"
 >
 	<parent id="root" order="10">
-		<access require="adminUser"/>
+		<access require="manageSite"/>
 	</parent>
 </item>
 <!--

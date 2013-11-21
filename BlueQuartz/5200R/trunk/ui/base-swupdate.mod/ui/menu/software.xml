@@ -5,7 +5,7 @@
     url="/base/swupdate/splashSoftware.php"
 >
     <parent id="root" order="20">
-        <access require="adminBlueLinq"/>
+        <access require="managePackage"/>
     </parent>
 </item>
 <!--

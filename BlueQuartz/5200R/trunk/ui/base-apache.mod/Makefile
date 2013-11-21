@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=apache
 
-VERSION=1.1.0
-RELEASE=79BQ28
+VERSION=1.2.1
+RELEASE=79BQ40
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,6 +19,8 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
+
+REQUIRES= mod_suphp
 
 #########
 # some useful defines

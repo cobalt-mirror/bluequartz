@@ -5,7 +5,7 @@
     url="/base/sitestats/summary.php?type=net&amp;group=server"
 >
     <parent id="base_serverusage" order="10">
-        <access require="adminUser"/>
+        <access require="serverStatsNetwork"/>
     </parent>
 </item>
 <!--

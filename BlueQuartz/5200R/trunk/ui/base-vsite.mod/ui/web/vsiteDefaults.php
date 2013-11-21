@@ -9,8 +9,8 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only manageSite should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -77,6 +77,17 @@ $defaultsBlock->addFormField(
         $factory->getLabel("mailCatchAll"),
         $pageId
         );
+
+// username Prefix
+$userPrefixEnabled = $factory->getOption("userPrefixEnabled", $vsiteDefaults["userPrefixEnabled"]); 
+$userPrefixEnabled->addFormField (
+       $factory->getUserName("userPrefixField", $vsiteDefaults["userPrefixField"]),
+       $factory->getLabel("userPrefixField")
+);
+
+$userPrefix = $factory->getMultiChoice("userPrefix"); 
+$userPrefix->addOption($userPrefixEnabled);
+$defaultsBlock->addFormField($userPrefix, $factory->getLabel("userPrefixField"), $pageId); 
 
 // auto dns option
 $defaultsBlock->addFormField(

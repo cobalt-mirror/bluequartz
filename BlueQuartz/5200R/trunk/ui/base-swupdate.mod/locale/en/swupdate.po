@@ -1,6 +1,6 @@
 # ----- SW Updates Tab
 msgid "software"
-msgstr "BlueLinQ"
+msgstr "Software Updates"
 
 msgid "software_help"
 msgstr "The [[base-swupdate.software]] section allows you to check for and install new or updated software packages."
@@ -603,3 +603,6 @@ msgstr "Manage BlueLinQ"
 
 msgid "capgroup_adminBlueLinq_help"
 msgstr "This administrative right allows a user to manage BlueLinQ.  This allows a user to install new software and to update existing software."
+
+msgid "cap_managePackage"
+msgstr "Software Updates Management"

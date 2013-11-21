@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=backupcontrol
 
-VERSION=1.0.1
-RELEASE=83BQ7
+VERSION=1.1.0
+RELEASE=83BQ9
 
 # add a buildarch if desired
 BUILDARCH=noarch

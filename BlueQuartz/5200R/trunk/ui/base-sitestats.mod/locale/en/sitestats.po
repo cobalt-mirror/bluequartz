@@ -277,6 +277,12 @@ msgstr "Enable Statistics Generation"
 msgid "sitestatsEnable_help"
 msgstr "Check to enable Virtual Site web, FTP, and email usage statistics."
 
+msgid "sitestatsRotate"
+msgstr "Log Rotate Count"
+
+msgid "sitestatsRotate_help"
+msgstr "Enter the number for log rotate cound"
+
 msgid "sitestatsConsolidate"
 msgstr "Detail Level"
 
@@ -535,3 +541,6 @@ msgstr "Unable to enable log file rotation for this site."
 
 msgid "systemError"
 msgstr "A system error occured while reading information.  Please contact technical support."
+
+msgid "cap_menuServerServerStats"
+msgstr "Show Usage Information"

@@ -1,18 +1,18 @@
 <!--
     Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-    $Id: telnet_caps.schema 259 2004-01-03 06:28:40Z shibuya $
+    $Id: telnet_caps.schema 1430 2010-03-10 15:30:06Z shibuya $
 
-    modifyTelnet capability used to limit access to to properties for
+    serverTelnet capability used to limit access to to properties for
     the Vsite(Services).Telnet namespace and system wide telnet server
     control
 -->
 
 <class
-    name="Capabilities" namespace="modifyTelnet" version="1.0"
+    name="Capabilities" namespace="serverTelnet" version="1.0"
 >
     <property
         name="capable" type="boolean" default="1"
-        readacl="ruleCapable(modifyTelnet)"
+        readacl="ruleCapable(serverTelnet)"
     />
     <property
         name="nameTag" type="scalar" default=""

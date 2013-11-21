@@ -1,6 +1,6 @@
 <?
 // Copyright Sun Microsystems, Inc. 2001
-// $Id: vsiteFtp.php 490 2005-08-09 14:04:51Z shibuya $
+// $Id: vsiteFtp.php 1478 2010-05-30 05:00:16Z shibuya $
 // vsiteFtp.php
 // display the form to modify anonymous ftp settings for a vsite
 
@@ -11,11 +11,14 @@ $factory =& $helper->getHtmlComponentFactory('base-ftp',
                     '/base/ftp/vsiteFtp.php');
 $cce =& $helper->getCceClient();
 
-// Only adminUser can modify things on this page.  
+// Only serverFTP can modify things on this page.  
 // Site admins can view it for informational purposes.
-if ($helper->getAllowed('adminUser')){
+if ($helper->getAllowed('serverFTP')){
     $is_site_admin = 0;
     $access = 'rw';
+} elseif ($helper->getAllowed('siteAnonFTP')) {
+    $access = 'rw';
+    $is_site_admin = 1;
 } elseif ($helper->getAllowed('siteAdmin') &&
           $group == $helper->loginUser['site']) {
     $access = 'r';

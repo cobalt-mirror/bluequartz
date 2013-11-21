@@ -8,7 +8,7 @@
         <access require="adminUser"/>
     </parent>
     <parent id="base_serverconfig" order="20">
-        <access require="serverConfig"/>
+        <access require="serverNetwork"/>
     </parent>
 </item>
 <!--

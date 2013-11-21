@@ -13,7 +13,7 @@ use Sauce::Util;
 my $langs = {
 		'en' => 'en_US',
 		'de' => 'de_DE@euro',
-		'ja' => 'ja_JP.eucJP',
+		'ja' => 'ja_JP.UTF-8',
 		'es' => 'es_ES@euro',
 		'fr' => 'fr_FR@euro',
 		# these may be wrong, but I don't know chinese

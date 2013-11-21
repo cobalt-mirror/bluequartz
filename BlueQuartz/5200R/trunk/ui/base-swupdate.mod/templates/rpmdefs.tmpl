@@ -51,10 +51,6 @@ information for [VENDOR]-[SERVICE].
 %attr(0700,root,root)%{RootDir}/sbin/pkg_prepare.pl
 %attr(0700,root,root)%{RootDir}/sbin/pkg_uninstall.pl
 %attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
-%attr(0700,root,root)%dir /root/.gnupg
-%attr(0644,root,root)%config /root/.gnupg/pubring.gpg
-%attr(0600,root,root)%config /root/.gnupg/secring.gpg
-%attr(0644,root,root)%config /root/.gnupg/trustdb.gpg
 [AUTOFILL]
 
 <end glue>
@@ -115,6 +111,19 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-120BQ19
+- new Capabilities for admin.
+
+* Tue Nov 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-120BQ18
+- remmove xml files for menu for Sun.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-120BQ17
+- translate yum messages.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-120BQ16
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-120BQ15
 - Fixed duplicate include issue.
 

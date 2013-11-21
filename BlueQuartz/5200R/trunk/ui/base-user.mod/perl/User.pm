@@ -657,27 +657,21 @@ sub _internal_useradd
             next;
         }
 
-        if (not exists($user->{uid}))
-        {
-            # get the next available uid
-            $user->{uid} = get_free_uid();
-            $DEBUG && print STDERR "uid is $user->{uid}", "\n";
-        }
-       
         # because the password is crypted elsewhere, don't do it
         # here to be consistent
         # crypt the password
         # my $crypt_pw = (cryptpw($user->{password}))[1];
         # $DEBUG && print STDERR "crypt password $crypt_pw\n";
 
+        my $uid_opt = exists($user->{uid}) ? "-u $user->{uid}" : "";
         my $shell = defined($user->{shell}) ? "-s $user->{shell}" : "";
         my $passwd = defined($user->{password}) ? "$user->{password}" : "*";
-        my $alterroot = ($user->{uid} == 0) ? "-o" : "";
+        my $alterroot = (($user->{uid} == 0) && exists($user->{uid})) ? "-o" : "";
 
         # since were hashing need to create directories first
         mkpath($user->{homedir});
 
-        my $ret = system("/usr/sbin/useradd $user->{name} -M -u $user->{uid} -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
+        my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
 
         if ($ret != 0)
         {
@@ -696,6 +690,7 @@ sub _internal_useradd
                     # rollback command will call userdel with the flag
                     # to rm the user's directory
                     system("/bin/cp -r $user->{skel}/* $user->{homedir}");
+                    system("/bin/cp -r /etc/skel/.bash* $user->{homedir}");
                 }
     
                 Sauce::Util::chmodfile(Sauce::Config::perm_UserDir, $user->{homedir});

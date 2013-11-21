@@ -1,4 +1,4 @@
-# $Id: Makefile 710 2006-03-09 16:20:40Z shibuya $
+# $Id: Makefile 1270 2009-09-16 07:19:25Z shibuya $
 
 ifdef TOPDIR
 include $(TOPDIR)/devel/defines.mk
@@ -21,5 +21,5 @@ install: all
 	$(INSTALL) $(INSTALL_SBINFLAGS) make_raid.sh $(PREFIX)/usr/local/sbin
 
 rpm: 
-	tar --exclude CVS -C ../ -czvf /tmp/raid-bins.tar.gz src > /dev/null 2>&1
+	tar --exclude '.svn' --exclude CVS -C ../ -czvf /tmp/raid-bins.tar.gz src > /dev/null 2>&1
 	rpmbuild -ta /tmp/raid-bins.tar.gz > /tmp/rpm.log 2>&1

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: addRAIDPkg.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: addRAIDPkg.pl 1372 2010-01-18 14:06:08Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 
@@ -43,17 +43,6 @@ if (@oids == 1) {
 	}
 }
 
-@oids = $cce->find('Package', {'name' => $packageName, vendor => 'Cobalt' });
-if (($#oids < 0) && $add_raid_pkg) {
-  $cce->create('Package', { 'name' => $packageName,
-			    'vendor' => 'Cobalt',
-		  	    'version' => 'v1.1',
-			    'nameTag' => '[[base-raid.pkgName]]',
-			    'vendorTag' => '[[base-raid.pkgVendor]]',
-			    'shortDesc' => '[[base-raid.pkgDescription]]',
-			    'new' => 0,
-			    'installState' => 'Installed' });
-}
 $cce->bye();
 exit 0;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.

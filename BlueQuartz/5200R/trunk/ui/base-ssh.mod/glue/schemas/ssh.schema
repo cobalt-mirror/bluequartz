@@ -8,6 +8,6 @@
 >
     <property
         name="enabled" type="boolean" default="1"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverShell)"
     />
 </class>

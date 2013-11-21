@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: settingsHandler.php 1008 2007-06-25 15:23:03Z shibuya $
+// $Id: settingsHandler.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }

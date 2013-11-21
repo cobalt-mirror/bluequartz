@@ -12,7 +12,7 @@
 
 	<property name="enabled"    	type="boolean" 	default="1"
 		writeacl="ruleCapable(adminUser)"/>
-	<property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	<property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"
 		writeacl="ruleCapable(adminUser)"/>
 	<property name="type"		type="scalar"	default="exec"

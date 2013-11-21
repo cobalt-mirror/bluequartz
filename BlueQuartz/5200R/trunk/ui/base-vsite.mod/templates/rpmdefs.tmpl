@@ -122,6 +122,63 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Sep 30 2010 Hideki Oride <oride@gachapom.jp> 1.1-132BQ44
+- The DNS management authority is subdivided. 
+
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ43
+- resolve the issue that the administrator can configure the disk space without any limit, when the disk space will be 0 by Oride-san.
+- Add new feature by Oride-san.
+-- The feature the user limit for the administrator.
+-- The feature the enable/disable shell access for the administrator.
+-- The feature that admin only can configure the template for the vsite.
+-- The feature that enable 'server_admin' is the specific rule for 'admin_name' + '_' for user prefix.
+
+* Thu Jul 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ42
+- add user prefix feature by Oride-san.
+
+* Sat Jun 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ41
+- add RewriteCond for webAliases.
+
+* Sun May 30 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ40
+- resolved the issue that site quota isn't correct for administrator and admin.
+
+* Sun May 30 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ39
+- add 'admin' for default alias for virtual site.
+
+* Sun May 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ38
+- Ability added to disable user owned websites.
+
+* Thu May 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ37
+- add new feature to limit site max and site quote for administrator.
+
+* Mon Apr 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ36
+- resolved the issue that the error pages doesn't have group writable.
+
+* Fri Apr 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ35
+- resolved the issue that the ServerAlias was lost when SSL will be enabled.
+
+* Thu Apr 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ34
+- resolved the issue that the siteadmin can check preview site configuration checkbox.
+
+* Sat Apr 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ33
+- resolved the issue that the advanced search doesn't work with services.
+
+* Tue Mar 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ32
+- change selector size for administrator permission.
+
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-132BQ31
+- new Capabilities for admin.
+
+* Mon Dec 14 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-132BQ30
+- fixed the issue that can not deliver to alias address.
+
+* Tue Sep 22 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-132BQ29
+- add vsite limitation feature.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-132BQ28
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-132BQ27
 - Fixed duplicate include issue.
 

@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-network
 Name: base-network-am
 Version: 1.0.1
-Release: 3BQ5%{?dist}
+Release: 3BQ6%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -25,6 +25,9 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-network module.  
 
 %changelog
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-3BQ6
+- remove .svn directory from rpm package.
+
 * Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-3BQ5
 - add dist macro for release.
 

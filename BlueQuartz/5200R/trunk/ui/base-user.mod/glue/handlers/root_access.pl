@@ -87,6 +87,7 @@ elsif ($root_access->{enabled})
     }
 
     # create the alterroot account if necessary
+    my @user_info = getpwnam($user->{name});
     my (@pwent) = getpwnam($root_prefix . $user->{name});
     if ($pwent[0] ne $root_prefix . $user->{name})
     {
@@ -94,7 +95,7 @@ elsif ($root_access->{enabled})
                             'name' => ($root_prefix . $user->{name}),
                             'uid' => 0,
                             'group' => 'root',
-                            'homedir' => '/root',
+                            'homedir' => $user_info[7],
                             'shell' => '/bin/bash',
                             'password' => $user->{md5_password},
                             'dont_create_home' => 1

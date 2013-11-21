@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.1
-Release: 0BQ5%{?dist}
+Release: 0BQ13%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -56,6 +56,31 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sat May 29 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ13
+- resolved multi select function.
+
+* Thu May 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ12
+- add multi select function into MultiChoice.
+
+* Thu Apr 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ11
+- resolved the issue that export certificate dosn't work with IE7 and IE8.
+
+* Mon Dec 07 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ10
+- modify PagedBlock.php to support php5 for MultiChoice.
+
+* Thu Sep 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ9
+- modify PagedBlock.php to support php5.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ8
+- modify ScrollList.php for php5.
+
+* Thu Sep 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ7
+- modify prop file for Japanese to use UTF-8 for charset.
+
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ6
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ5
 - Fixed duplicate include issue.
 

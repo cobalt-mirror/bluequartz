@@ -9,8 +9,8 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only manageSite should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -25,6 +25,8 @@ $cce->setObject("System",
 			"maxusers" => $maxusers,
 			"emailDisabled" => $emailDisabled,
                         "mailCatchAll" => $mailCatchAll,
+                        "userPrefixEnabled" => ($_MultiChoice_checkbox_userPrefix ? 1 : 0),
+                        "userPrefixField" => $userPrefixField,
 			"dns_auto" => $dns_auto,
 			"site_preview" => $site_preview
 		),

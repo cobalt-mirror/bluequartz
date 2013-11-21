@@ -59,14 +59,12 @@ INSTALL = install
 LDCONFIG = /sbin/ldconfig
 
 # macros useful for sub-Makefiles
-CCE_CFLAGS = -ggdb -Wcast-qual -Werror `glib-config --cflags`
+CCE_CFLAGS = -ggdb -Wcast-qual `glib-config --cflags`
 CCE_INCLUDES = -I$(CCE_TOPDIR)/include
 CCE_DEBUG = -DDEBUG -O0
 CCE_LIBS = -L$(CCE_TOPDIR) -lcce_common `glib-config --libs` -lpam -lfl
-ifdef GLIB_GHASH
 CCE_LIBS += -lghash
 CCE_CFLAGS += -DGLIB_GHASH
-endif
 
 # sane defaults
 CFLAGS = $(CCE_CFLAGS) $(INCLUDES) $(DEBUG) $(DEFS)
@@ -77,5 +75,5 @@ DEBUG =
 DEFS = 
 
 RPMBUILD=$(shell which rpmbuild>/dev/null 2>&1&&echo rpmbuild||echo rpm)
-USER_HTTPD=$(shell id httpd>/dev/null 2>&1&&echo httpd||echo apache)
+USER_HTTPD=admserv
 

@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: downloadHandler.php 1008 2007-06-25 15:23:03Z shibuya $
+// $Id: downloadHandler.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
@@ -10,8 +10,8 @@ $installScript = "/usr/sausalito/sbin/pkg_install.pl";
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }

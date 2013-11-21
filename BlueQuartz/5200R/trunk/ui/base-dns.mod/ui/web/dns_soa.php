@@ -1,5 +1,5 @@
 <?php
-// $Id: dns_soa.php 1013 2007-06-25 15:25:22Z shibuya $
+// $Id: dns_soa.php 1371 2010-01-18 11:27:32Z shibuya $
 //
 // ui for adding/modifying many DNS record types
 $iam = '/base/dns/dns_add.php';

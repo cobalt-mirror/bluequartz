@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=dns
 
-VERSION=1.1.0
-RELEASE=93BQ26
+VERSION=1.2.0
+RELEASE=93BQ36
 
 # add a buildarch if desired
 BUILDARCH=noarch

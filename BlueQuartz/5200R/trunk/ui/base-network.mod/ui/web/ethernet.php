@@ -1,23 +1,23 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernet.php 533 2005-08-12 09:40:56Z shibuya $
+// $Id: ethernet.php 1437 2010-03-21 12:59:56Z shibuya $
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
 
-$serverScriptHelper =& new ServerScriptHelper();
+$serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverNetwork should be here
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }
 
-$cceClient =& $serverScriptHelper->getCceClient();
-$product =& new Product( $cceClient );
-$factory =& $serverScriptHelper->getHtmlComponentFactory("base-network", "/base/network/ethernetHandler.php");
-$i18n =& $serverScriptHelper->getI18n("base-network");
+$cceClient = $serverScriptHelper->getCceClient();
+$product = new Product( $cceClient );
+$factory = $serverScriptHelper->getHtmlComponentFactory("base-network", "/base/network/ethernetHandler.php");
+$i18n = $serverScriptHelper->getI18n("base-network");
 
 // get settings
 $system = $cceClient->getObject("System");
@@ -44,7 +44,7 @@ $domainfield = $factory->getVerticalCompositeFormField(array(
 				 $factory->getLabel("domainNameField")));
 
 
-$fqdn =& $factory->getCompositeFormField(array($hostfield, $domainfield), '&nbsp;.&nbsp;');
+$fqdn = $factory->getCompositeFormField(array($hostfield, $domainfield), '&nbsp;.&nbsp;');
 
 $block->addFormField(
 	$fqdn,
@@ -111,6 +111,7 @@ for ($i = 0; $i < count($interfaces); $i++)
 	// range of possible choices
 	list($sysoid) = $cceClient->find("System");
 	$net_opts = $cceClient->get($sysoid, "Network");
+	$access = $net_opts['interfaceConfigure'] ? 'rw' : 'r';
 	if ($net_opts["pooling"]) {
 		$range_strings = array();
 		$oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
@@ -119,7 +120,7 @@ for ($i = 0; $i < count($interfaces); $i++)
 			$range_strings[] = $range['min'] . ' - ' . $range['max'];
 		}
 		$string = arrayToString($range_strings);
-		$ip = $factory->getIpAddress("ipAddressField$device", $ipaddr);
+		$ip = $factory->getIpAddress("ipAddressField$device", $ipaddr, $access);
 		$ip->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 
 		if ($device != 'eth0') {
@@ -139,21 +140,22 @@ for ($i = 0; $i < count($interfaces); $i++)
 			  "&nbsp;"
 			  );
 		$range_list->setAlignment("TOP");
-		$ip_field =& $factory->getVerticalCompositeFormField(array($ip, $range_list));
-		$ip_field->setId("ipAddr");
-		$ip_field->setAlignment("LEFT");
+		$ip_field[$device] = $factory->getVerticalCompositeFormField(array($ip, $range_list));
+		$ip_field[$device]->setId("ipAddr");
+		$ip_field[$device]->setAlignment("LEFT");
 
 	} else {
 	  
-		$ip_field =& $factory->getIpAddress("ipAddressField$device", $ipaddr);
-		$ip_field->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
+		$ip_field[$device] = $factory->getIpAddress("ipAddressField$device", $ipaddr, $access);
+		$ip_field[$device]->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 		if ($device != 'eth0') {
-			$ip_field->setEmptyMessage($i18n->getJs('ipAddressField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+			$ip_field[$device]->setEmptyMessage($i18n->getJs('ipAddressField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 		}
 
 		// IP not optional for the admin interface and for eth0
-		if (!$is_admin_if && ($device != 'eth0'))
-			$ip_field->setOptional(true);
+		if (!$is_admin_if && ($device != 'eth0')){
+			$ip_field[$device]->setOptional(true);
+		}
 	}
 
 	// use special help text for eth0 and eth1 to keep the qube happy
@@ -171,24 +173,24 @@ for ($i = 0; $i < count($interfaces); $i++)
 	}
 	
 	$block->addFormField(
-	    $ip_field,
+	    $ip_field[$device],
 	    $factory->getLabel($ip_label, true, 
 	                array(), array('name' => "[[base-network.help$device]]")),
 	    $default_page
 	);
 
-	$netmask_field =& $factory->getIpAddress("netMaskField$device", $netmask);
-	$netmask_field->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
+	$netmask_field[$device] = $factory->getIpAddress("netMaskField$device", $netmask, $access);
+	$netmask_field[$device]->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
 	if ($device != 'eth0') {
-		$netmask_field->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+		$netmask_field[$device]->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
 	}
 
 	// Netmask is not optional for the admin iface and for eth0
 	if (!$is_admin_if && ($device != 'eth0'))
-	    $netmask_field->setOptional(true);
+	    $netmask_field[$device]->setOptional(true);
 
 	$block->addFormField(
-	    $netmask_field,
+	    $netmask_field[$device],
 	    $factory->getLabel($nm_label, true,
 	                array(), array('name' => "[[base-network.help$device]]")),
 	    $default_page
@@ -249,7 +251,7 @@ if ($block->getSelectedId() == 'aliasSettings')
 {
 	// add scrollist of aliases
 	$alias_list = $factory->getScrollList(
-	                    '',
+	                    ' ',
 	                    array(
 	                        'aliasName',
 	                        'aliasIpaddr',

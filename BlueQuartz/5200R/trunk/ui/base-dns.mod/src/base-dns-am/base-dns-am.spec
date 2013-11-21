@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-dns-am
 Name: base-dns-am
 Version: 1.0
-Release: 2BQ6%{?dist}
+Release: 2BQ7%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-dns-am.  
 
 %changelog
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-2BQ7
+- remove .svn directory from rpm package.
+
 * Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-2BQ6
 - add dist macro for release.
 

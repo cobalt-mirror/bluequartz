@@ -59,7 +59,7 @@ if ($amobj == null) {
     $syslist = $factory->getScrollList(
         "amSysClients",     // Header label (i18n tag)
         array(         // The column headers
-            "",
+            " ",
             "amClientName",
 	    "action"
         ),
@@ -72,7 +72,7 @@ if ($amobj == null) {
     $servlist = $factory->getScrollList(
         "amServClients",     // Header label (i18n tag)
         array(         // The column headers
-            "",
+            " ",
             "amClientName",
 	    "action"
         ),
@@ -122,7 +122,7 @@ if ($amobj == null) {
                         $otherlist = $factory->getScrollList(
                             "amOtherClients",
                             array(
-                                "",
+                                " ",
                                 "amClientName",
 				"action"
                             ),

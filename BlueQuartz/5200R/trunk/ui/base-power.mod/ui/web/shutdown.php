@@ -1,14 +1,14 @@
 <?php
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: shutdown.php 1002 2007-06-25 15:19:03Z shibuya $
+// $Id: shutdown.php 1419 2010-03-10 14:40:29Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-//Only users with controlPower capability should be here
-if (!$serverScriptHelper->getAllowed('controlPower')) {
+//Only users with serverPower capability should be here
+if (!$serverScriptHelper->getAllowed('serverPower')) {
   header("location: /error/forbidden.html");
   return;
 }

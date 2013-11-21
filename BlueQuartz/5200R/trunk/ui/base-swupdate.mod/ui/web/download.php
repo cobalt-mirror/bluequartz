@@ -1,13 +1,13 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: download.php 1008 2007-06-25 15:23:03Z shibuya $
+// $Id: download.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }

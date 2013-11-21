@@ -82,7 +82,7 @@ if(name.indexOf("Microsoft") != -1 && version.indexOf("Mac") != -1)
 	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"fallback\" VALUE=\"/login.php?target=/nav/flow.php?root=base_wizardLicense\">");
 
 	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginName\" VALUE=\"admin\">");
-	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginPassword\" VALUE=\"admin\">");
+	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginPassword\" VALUE=\"bluequartz\">");
 	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"reuseWindow\" VALUE=\"1\">");
 	  <!-- locale-sensitive -->
 	  document.write("<DIV ALIGN=\"right\"><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><IMG BORDER=\"0\" SRC=\"/libImage/buttonLeftDot.gif\"></A></TD><TD NOWRAP BGCOLOR=\"#000099\"><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><SMALL>Start</SMALL></A></TD><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit(); \"><IMG BORDER=\"0\" SRC=\"/libImage/buttonRight.gif\"></A></TD></TR></TABLE>&nbsp;&nbsp;&nbsp;&nbsp;</DIV>");

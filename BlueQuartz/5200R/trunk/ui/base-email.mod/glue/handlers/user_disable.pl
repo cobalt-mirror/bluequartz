@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # Author: Brian N. Smith
 # Copyright 2006, NuOnce Networks, Inc.  All rights reserved.
-# $Id: user_disable.pl 834 2006-08-03 13:59:23Z shibuya $
+# $Id: user_disable.pl 1495 2010-06-25 09:15:33Z shibuya $
 #
 # use Sauce::Util::editfile by Hisao
 
@@ -10,6 +10,15 @@ use CCE;
 use Email;
 use Sauce::Service;
 use Sauce::Util;
+
+sub nonDuplicatedArray {
+  my @Duplicated=@_;
+  my %seen=();
+  my (@NonDuplicatedArray,@Unique);
+  @Unique = grep {! $seen{$_}++} @Duplicated;
+  @NonDuplicatedArray = sort(@Unique);
+  return @NonDuplicatedArray;
+}
 
 my $Access = $Email::ACCESS;
 
@@ -33,16 +42,23 @@ my @user_aliases =  $cce->scalar_to_array($email->{'aliases'});
 push(@user_aliases, $username);
 
 my @server_aliases = $cce->scalar_to_array($domain->{'mailAliases'});
+
 push(@server_aliases, $virtualsite);
 my $access_list;
+my @emailList;
 if ( $user->{'emailDisabled'} eq "1" ) {
-    foreach my $server(@server_aliases) {
-        foreach my $user_name(@user_aliases) {
-            if ($user_name) {
-                $access_list .= $user_name . '@' . $server . "\t\tERROR:5.1.1:550 User unknown\n";
-            }
-        }
+  foreach my $server(@server_aliases) {
+    foreach my $user_name(@user_aliases) {
+      if ($user_name) {
+        push(@emailList, $user_name . '@' . $server);
+      }
     }
+  }
+}
+
+@emailList = nonDuplicatedArray(@emailList);
+foreach my $entry(@emailList) {
+  $access_list .= $entry . "\t\t550 User unknown\n";
 }
 
 if (!Sauce::Util::replaceblock($Access,
@@ -52,6 +68,7 @@ if (!Sauce::Util::replaceblock($Access,
     $cce->bye('FAIL');
     exit(1);
 }
+system("/usr/sbin/postalias hash:$Access > /dev/null 2>&1");
 
 $cce->bye("SUCCESS");
 exit(0);

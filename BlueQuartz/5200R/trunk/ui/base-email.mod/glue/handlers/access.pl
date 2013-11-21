@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
-# $Id: access.pl 827 2006-07-16 09:43:14Z shibuya $
+# $Id: access.pl 1495 2010-06-25 09:15:33Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use strict;
@@ -11,7 +11,7 @@ my $cce = new CCE( Domain => 'base-email' );
 
 $cce->connectfd();
 
-my $Sendmail_access = $Email::ACCESS;
+my $Postfix_access = $Email::ACCESS;
 my $sys_obj;
 my $sys_oid;
 
@@ -61,10 +61,9 @@ if ( $obj->{relayFor} && $obj->{deniedHosts} ) {
 }
 
 # add rollback so there is no need to copy access.db for rollback
-Sauce::Util::addrollbackcommand("/usr/bin/makemap hash $Sendmail_access < ".
-				"$Sendmail_access >/dev/null 2>&1");
+Sauce::Util::addrollbackcommand("/usr/bin/postalias hash:$Postfix_access >/dev/nul l2>&1");
 
-if (!Sauce::Util::replaceblock($Sendmail_access, 
+if (!Sauce::Util::replaceblock($Postfix_access, 
 	'# Cobalt Access Section Begin', $access_list, 
 	'# Cobalt Access Section End')
    	) {
@@ -72,6 +71,7 @@ if (!Sauce::Util::replaceblock($Sendmail_access,
 	$cce->bye('FAIL');
 	exit(1);
 }
+system("/usr/sbin/postalias hash:$Postfix_access > /dev/null 2>&1");
 
 $cce->bye('SUCCESS');
 exit(0);

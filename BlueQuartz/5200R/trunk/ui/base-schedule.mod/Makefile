@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=schedule
 
 VERSION=1.0.0
-RELEASE=82BQ4
+RELEASE=82BQ5
 
 # add a buildarch if desired
 BUILDARCH=noarch

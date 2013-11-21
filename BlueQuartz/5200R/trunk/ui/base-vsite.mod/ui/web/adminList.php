@@ -74,7 +74,7 @@ for ($i = $start_index;
     $user_name =& $factory->getTextField("un$i", $current['name'], 'r');
     $user_name->setPreserveData(false);
     
-    $yes_no = $current['ui_enabled'] ? '' : '[[base-vsite.suspended]]';
+    $yes_no = $current['ui_enabled'] ? ' ' : '[[base-vsite.suspended]]';
     $suspended =& $factory->getTextField("su$i", 
                         $factory->i18n->get($yes_no), 'r');
     $suspended->setPreserveData(false);

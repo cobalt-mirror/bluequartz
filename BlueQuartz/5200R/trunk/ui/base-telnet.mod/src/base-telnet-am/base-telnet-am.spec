@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-telnet-am
 Name: base-telnet-am
 Version: 1.0.2
-Release: 4BQ5
+Release: 4BQ6
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-telnet-am.  
 
 %changelog
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ6
+- remove .svn directory from rpm package.
+
 * Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.2-4BQ5
 - use vendor macro for Vendor tag.
 

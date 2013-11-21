@@ -1,14 +1,14 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: emailHandler.php 1015 2007-06-25 15:26:11Z shibuya $
+// $Id: emailHandler.php 1459 2010-04-18 15:24:54Z shibuya $
 
-include_once("ServerScriptHelper.php");
+include("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverEmail should be here
+if (!$serverScriptHelper->getAllowed('serverEmail')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -22,17 +22,25 @@ $queueTimeMap = array("queue0" => "immediate", "queue15" => "quarter-hourly", "q
 $max = $maxEmailSizeField ? $maxEmailSizeField*1024 : "";
 //echo "<li> max = $max";
 
+$enableSMTPField = $enableSMTPField ? 1 : 0;
+$enableSMTPSField = $enableSMTPSField ? 1 : 0;
+$enableSubmissionPortField = $enableSubmissionPortField ? 1 : 0;
+
 $cceClient->setObject("System", 
   array(
-    "enableSMTP" => $enableServersField, 
+    "enableSMTP" => $enableSMTPField, 
+    "enableSMTP_Auth" => $enableSMTP_Auth,
     "enableSMTPS" => $enableSMTPSField,
-    "enableSMTPAuth" => $enableSMTPAuthField,
+    "enableSMTPS_Auth" => $enableSMTPS_Auth,
     "enableSubmissionPort" => $enableSubmissionPortField,
+    "enableSubmission_Auth" => $enableSubmission_Auth,
+    "enableTLS" => $enableTLSField,
     "enableImap" => $enableImapField, 
     "enableImaps" => $enableImapsField,
     "enablePop" => $enablePopField, 
     "enablePops" => $enablePopsField,
     "popRelay" => $popRelayField, 
+    "enablepopRelay" => $popRelayField, 
     "queueTime" => $queueTimeMap[$queueTimeField], 
     "maxMessageSize" => $max, 
     "relayFor" => $relayField, 
@@ -40,6 +48,7 @@ $cceClient->setObject("System",
     "deniedUsers" => $blockUserField, 
     "masqAddress" => $masqAddressField,
     "smartRelay" => $smartRelayField,
+    "fallbackRelay" => $fallbackRelayField,
     "deniedHosts" => $blockHostField), 
   "Email");
   

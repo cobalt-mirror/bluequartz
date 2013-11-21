@@ -14,67 +14,76 @@ $cce->connectuds();
 
 # create all minor groups
 my @groups = (
-                {
-                    'name' => 'powerOptions',
-                    'shown' => 1,
-                    'capabilities' => $cce->array_to_scalar(
-                                        'controlPower')
-                },
-                {
-                    'name' => 'serverBackup',
-                    'shown' => 1,
-                    'capabilities' => $cce->array_to_scalar(
-					'modifyArkeia', 'modifyNetWorker',
-					'modifyNetBackup')
-                },
-                {
-                    'name' => 'systemMonitor',
-                    'shown' => 1,
-                    'capabilities' => ''
-                },
-                {
-                    'name' => 'networkServices',
-                    'shown' => 1,
-                    'capabilities' => $cce->array_to_scalar(
-                                        'modifyEmail', 'modifyFtp',
-                                        'modifyTelnet', 'modifyHttpd',
-					'modifySnmp')
-                },
-                {
-                    'name' => 'webServices',
-                    'shown' => 1,
-                    'capabilities' => $cce->array_to_scalar(
-                                        'modifyAsp', 'modifyJava')
-                },
-                {
-                    'name' => 'serverConfig',
-                    'shown' => 1,
-                    'capabilities' => ''
-                },
-                {
-                    'name' => 'siteAdmin',
-                    'shown' => 1,
-                    'capabilities' => ''
-                },
 		{
-		    'name' => 'dnsAdmin',
+		    'name' => 'menuServerNetworkServices',
 		    'shown' => 1,
 		    'capabilities' => $cce->array_to_scalar(
-					'modifyDNS')
+					'serverHttpd', 'serverFTP',
+					'serverEmail', 'serverDNS',
+					'serverSNMP', 'serverShell',
+					'serveriStat'
+					)
+		},
+		{
+		    'name' => 'menuServerSecurity',
+		    'shown' => 1,
+		    'capabilities' => $cce->array_to_scalar(
+					'serverSSL', 'serverSystemFirewall')
+		},
+		{
+		    'name' => 'menuServerSystem',
+		    'shown' => 1,
+		    'capabilities' => $cce->array_to_scalar(
+					'serverNetwork', 'serverIpPooling',
+					'serverVsite', 'serverPower',
+					'serverTime', 'serverInformation')
+		},
+		{
+		    'name' => 'menuServerMaintenance',
+		    'shown' => 1,
+		    'capabilities' => $cce->array_to_scalar(
+					'serverServerDesktop')
+		},
+		{
+		    'name' => 'menuServerServerStats',
+		    'shown' => 1,
+		    'capabilities' => $cce->array_to_scalar(
+					'serverStatsServerNetwork',
+					'serverStatsServerWebalizer',
+					'serverStatsServerWeb',
+					'serverStatsServerFTP',
+					'serverStatsServerEmail',
+					'serverStatsServerDisk')
+		},
+		{
+		    'name' => 'menuServerActiveMonitor',
+		    'shown' => 1,
+		    'capabilities' => $cce->array_to_scalar(
+					'serverShowActiveMonitor',
+					'serverActiveMonitor')
+		},
+		{
+		    'name' => 'serverManage',
+		    'shown' => 1,
+		    'capabilities' => $cce->array_to_scalar(
+					'menuServerNetworkServices',
+					'menuServerSecurity',
+					'menuServerSystem',
+					'menuServerMaintenance',
+					'menuServerServerStatus',
+					'menuServerActiveMonitor')
+		},
+		{
+		    'name' => 'siteAdmin',
+		    'shown' => 1,
+		    'capabilities' => ''
 		},
                 {
                     'name' => 'adminUser',
                     'shown' => 1,
                     'capabilities' => $cce->array_to_scalar(
-                                        'siteAdmin', 'adminBlueLinq',
-                                        'serverBackup', 'systemMonitor',
-                                        'networkServices', 'webServices',
-                                        'serverConfig', 'siteFrontpage',
-                                        'siteSSL',
-                                        'siteAnonFTP', 'siteShell',
-                                        'modifySystemTime', 'scanDetection',
-					'overflow',
-					'dnsAdmin'
+                                        'siteAdmin', 'siteSSL',
+                                        'siteAnonFTP', 'siteShell'
                                       )
                 }
             );

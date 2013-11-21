@@ -630,3 +630,68 @@ msgstr "Disable Email for Domain"
 
 msgid "emailDisabled_help"
 msgstr "This will disables the ability for the domain to receive emails"
+
+msgid "userwebs" 
+msgstr "Enable user owned webs" 
+
+msgid "userwebs_help" 
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory." 
+
+# Capabilities
+msgid "cap_serverVsite"
+msgstr "Virtual Site Settings"
+
+# Vsite Settings
+msgid "vsite"
+msgstr "Virtual Site Settings"
+
+msgid "vsite_help"
+msgstr "Click here to change Vsite Settings."
+
+msgid "vsiteSettings"
+msgstr "Virtual Site Settings"
+
+msgid "maxVsiteField"
+msgstr "Maximum Virtual Sites"
+
+msgid "maxVsiteField_help"
+msgstr "The maximum number for virtual sites on the server."
+
+msgid "maxVsiteUpper"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "The value entered for [[base-vsite.maxVsiteField]] is needed to be less than the value for [[base-vsite.maxVsiteUpper]]."
+
+msgid "maxVsiteAlreadyMade"
+msgstr "The number of Virtual Site is as equal as [[base-vsite.maxVsiteField]]."
+
+msgid "userPrefixField"
+msgstr "User Prefix"
+
+msgid "userPrefixField_help"
+msgstr "Enter the prefix for username. ex)bq5200r_, site1_"
+
+msgid "userPrefixEnabled"
+msgstr "Enable user prefix"
+
+msgid "userPrefixEnabled_help"
+msgstr ""
+
+msgid "userShell"
+msgstr "Enable Shell Access"
+
+msgid "userShell_help"
+msgstr "Enable shell access to allow the creation of users who can connect to the server using services such as telnet and ssh."
+
+msgid "userSitesUser"
+msgstr "Maximum Users"
+
+msgid "userSitesUser_help"
+msgstr "The miximum number for the users on the server."
+
+msgid "maxDiskAlreadyMade"
+msgstr "The number of disk space is as equal as [[base-vsite.quota]]."
+
+msgid "maxUsersAlreadyMade"
+msgstr "The number of Users is as equal as [[base-vsite.maxUsers]]."

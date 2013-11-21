@@ -166,11 +166,23 @@ msgstr "Enable Common Gateway Interface (CGI)"
 msgid "cgi_help"
 msgstr "Enable the use of CGI applications."
 
-msgid "php"
+msgid "PHP_enabled"
 msgstr "Enable PHP Scripting"
 
-msgid "php_help"
+msgid "PHP_enabled_help"
 msgstr "Enable the use of PHP scripts."
+
+msgid "php"
+msgstr "PHP"
+
+msgid "php_help"
+msgstr "Enable PHP scripts for the site."
+
+msgid "enableSuPHP"
+msgstr "Enable suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Enable the use of suPHP."
 
 msgid "ssi"
 msgstr "Enable Server-Side Includes (SSI)"
@@ -190,3 +202,30 @@ msgstr "Common Gateway Interface (CGI)"
 
 msgid "ssiI18nName"
 msgstr "Server-Side Includes (SSI)"
+
+msgid "userwebs" 
+msgstr "Enable user owned webs" 
+ 
+msgid "userwebs_help" 
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory." 
+
+msgid "cap_serverHttpd"
+msgstr "Web Settings"
+
+msgid "urlAdminAccess"
+msgstr "The management screen is displayed by /admin. "
+
+msgid "urlAdminAccess_help"
+msgstr "The management screen is displayed by /admin. "
+
+msgid "urlSiteadminAccess"
+msgstr "The management screen is displayed by /siteadmin. "
+
+msgid "urlSiteadminAccess_help"
+msgstr "The management screen is displayed by /siteadmin. "
+
+msgid "urlPersonalAccess"
+msgstr "The management screen is displayed by /personal. "
+
+msgid "urlPersonalAccess_help"
+msgstr "The management screen is displayed by /personal. "

@@ -1,4 +1,4 @@
-# $Id: Makefile 259 2004-01-03 06:28:40Z shibuya $
+# $Id: Makefile 1232 2009-09-06 09:42:49Z shibuya $
 #
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 #
@@ -10,7 +10,7 @@ include /usr/sausalito/devel/defines.mk
 #endif
 
 BINDIR = $(SWATCHBINDIR)
-BINS = am_pop.exp am_smtp.exp am_imap.exp
+BINS = am_pop.exp am_smtp.exp am_imap.exp am_pb4s.exp am_sasl.exp check-popb4smtp.sh check-sasl.sh
 
 .PHONY: all
 all: install

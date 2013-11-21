@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: vsite_records.php 1013 2007-06-25 15:25:22Z shibuya $
+ * $Id: vsite_records.php 1534 2010-09-28 08:36:52Z oride $
  */
 include_once("ServerScriptHelper.php");
 
@@ -11,8 +11,8 @@ $soamod = '/base/dns/vsite_dns_soa.php';
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
-// Only dnsAdmin should be here 
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+// Only siteDNS should be here 
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
 	header("location: /error/forbidden.html");
 	return; 
 }
@@ -28,6 +28,11 @@ if ( ! $serverScriptHelper->getAllowed('adminUser') ) {
 	$user = $cceClient->getObject("User", array("name" => $loginName));
 	$group = $user["site"]; 
 }
+
+$errors = $serverScriptHelper->getErrors();
+$block = $factory->getPagedBlock("vsiteSettings");
+$block->processErrors($serverScriptHelper->getErrors());
+
 
 if ($HTTP_GET_VARS['commit']) {
 	// Apply changes from records.php

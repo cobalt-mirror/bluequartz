@@ -79,10 +79,6 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ ! -d /etc/mail ]; then \
-	mkdir -p /etc/mail; \
-fi
-
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
 fi
@@ -90,6 +86,8 @@ fi
 if [ $1 = 2 ]; then
     /usr/sausalito/bin/remove_domain.pl
 fi
+
+/usr/sbin/postmap hash:/etc/postfix/virtual > /dev/null 2>&1
 <end glue>
 <begin ui>
 # ui post-install
@@ -121,7 +119,104 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
-* Tue Jun 26 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-0BQ27
+* Fri Dec 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ31
+- use postmap for transport file instead of postalias.
+
+* Wed Dec 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ30
+- resolved the isssue that mail route doesn't work.
+
+* Mon Sep 06 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ29
+- use postmap for virtual.db instead of postalias.
+
+* Fri Aug 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ28
+- resolved the issue that TLS doesn't work when SMTPS is disabled.
+
+* Fri Jun 25 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ27
+- use postalias instead of postmap due to the warning.
+
+* Sun Jun 20 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ26
+- add requires procmail.
+
+* Sat Jun 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ25
+- resolved the issue that virtual.db is older than virtual after chaning configuration at advanced section.
+
+* Sun May 30 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ24
+- modified the reserved system accounts.
+
+* Mon Apr 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ23
+- resolved the issue that TLS and Auth configuration isn't correct.
+
+* Wed Apr 07 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ22
+- resolve the issue that tls isn't enabled.
+
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.5.0-0BQ21
+- new Capabilities for admin.
+
+* Sun Jan 24 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ20
+- replace myhostname when hostname or domainname will be changed.
+
+* Sun Jan 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ19
+- resolve the issue that the email is disabled for user and virtual site.
+
+* Sun Jan 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ18
+- always use smtpd_recipient_restrictions for main.cf.
+
+* Fri Jan 01 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ17
+- remove the script for post install to make mail directory.
+
+* Thu Jan 01 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ16
+- fixed the issue that doesn't rewrite from header.
+
+* Tue Dec 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ15
+- add initPostfix.sh to make .db.
+
+* Mon Dec 14 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ14
+- modify constructor to sync email settings.
+
+* Sun Dec 13 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ13
+- change directory for popip to /etc/poplay.
+
+* Thu Dec 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ12
+- not to use [] bracket for FQDN for smart relay and fallback relay.
+
+* Mon Dec 07 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ11
+- remove dirty hack for MultiChoice for SMTP service.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ10
+- modify restart.pl to force restart postfix.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ9
+- allow ip address for email relay server.
+
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ8
+- modify GUI to configure port and TLS,  Auth combination.
+
+* Sun Nov 29 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ7
+- fixed the initialize issue for main.cf in syncEmailService.pl.
+
+* Tue Nov 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ6
+- fixed sender_canonical feature.
+
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ5
+- support transport_maps and failback_relay.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ4
+- use postmap instead of makemap for postfix.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ3
+- modify remove_domain.pl to support postfix.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ2
+- modify syncEmailService.pl to modify main.cf and master.cf.
+
+* Tue Oct 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-0BQ1
+- use postfix instead of sendmail.
+
+* Sun Sep 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.1-0BQ27
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
+
+* Tue Jun 26 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-0BQ26
 - modify requires in Makefile.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-0BQ25

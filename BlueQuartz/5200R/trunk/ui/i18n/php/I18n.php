@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: I18n.php 1000 2007-05-05 16:00:28Z shibuya $
+ * $Id: I18n.php 1248 2009-09-15 08:16:01Z shibuya $
  */
 global $isI18nDefined;
 if($isI18nDefined)
@@ -237,7 +237,7 @@ class I18n {
 			$encConv = new EncodingConv($string, 'japanese',
 						    $fromEncoding);
 			if ($toEncoding == '') {
-				return $encConv->toEUC();
+				return $encConv->toUTF8();
 			} else {
 				return $encConv->doJapanese($string,
 							    $toEncoding,

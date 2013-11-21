@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=snmp
 
-VERSION=1.0.1
-RELEASE=88BQ5
+VERSION=1.1.0
+RELEASE=88BQ7
 
 # add a buildarch if desired
 BUILDARCH=noarch

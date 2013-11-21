@@ -61,6 +61,34 @@ $encodingTable = {
 				}
 			}
 		},
+        de_DE => {
+                charset => 'ISO-8859-1',
+                schemes => {
+                        body => [\&I18nMail::Subs::setBodyLang],
+                        header => {
+                                "default" => [\&I18nMail::Subs::QuotedPrintable],
+                                "email" => [
+                                        \&I18nMail::Subs::getEmailName,
+                                        \&I18nMail::Subs::QuotedPrintable,
+                                        \&I18nMail::Subs::glueEmailTogether
+                                        ]
+                                }
+                        }
+                },
+        da_DK => {
+                charset => 'ISO-8859-1',
+                schemes => {
+                        body => [\&I18nMail::Subs::setBodyLang],
+                        header => {
+                                "default" => [\&I18nMail::Subs::QuotedPrintable],
+                                "email" => [
+                                        \&I18nMail::Subs::getEmailName,
+                                        \&I18nMail::Subs::QuotedPrintable,
+                                        \&I18nMail::Subs::glueEmailTogether
+                                        ]
+                                }
+                        }
+                },
 	zh_CN => {
 		charset => 'GB2312',
 		schemes => {
@@ -141,6 +169,8 @@ $encodingTable->{en_US}=$encodingTable->{en};
 $encodingTable->{fr}=$encodingTable->{en};
 $encodingTable->{es}=$encodingTable->{en};
 $encodingTable->{de}=$encodingTable->{en};
+$encodingTable->{de_DE}=$encodingTable->{de_DE};
+$encodingTable->{da_DK}=$encodingTable->{da_DK};
 $encodingTable->{'zh'}=$encodingTable->{zh_CN};
 $encodingTable->{'zh-CN'}=$encodingTable->{zh_CN};
 $encodingTable->{'zh-TW'}=$encodingTable->{zh_TW};

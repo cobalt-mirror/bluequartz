@@ -1,12 +1,12 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/handlers/base/maillist -I/usr/sausalito/perl
-# $Id: maillist_destroy 441 2004-12-24 15:41:18Z shibuya $
+# $Id: maillist_destroy 1350 2009-12-23 13:29:37Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Majordomo deconfigurator
 
 my $DEBUG = 0;
 $DEBUG && warn `date`;
 
-my $Lists_base = '/usr/local/majordomo';
+my $Lists_base = '/var/lib/majordomo';
 my $Lists_dir = $Lists_base.'/lists';
 
 use CCE;
@@ -21,10 +21,10 @@ my $obj = $cce->event_old(); # the old values of the object
 if($cce->event_is_destroy()) {
   # delete aliases
   $DEBUG && warn "purging aliaess, event_is_destroy";
-  Sauce::Util::editfile('/etc/mail/aliases.majordomo',
+  Sauce::Util::editfile('/etc/aliases.majordomo',
     \&Sauce::Util::replace_unique_entries, $oid,
     {});
-  Sauce::Util::modifyfile('/etc/mail/aliases.db');
+  Sauce::Util::modifyfile('/etc/aliases.db');
   $DEBUG && warn "Running newaliases";
   system('/usr/bin/newaliases > /dev/null 2>&1');
 }

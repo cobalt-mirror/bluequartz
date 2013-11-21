@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=ftp
 
-VERSION=1.2.0
-RELEASE=77BQ14
+VERSION=1.3.0
+RELEASE=77BQ20
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -21,6 +21,7 @@ BUILDLOCALE=yes
 BUILDSRC=yes
 
 REQUIRES=proftpd
+REQUIRES= base-user-capstone >= 1.1.0-111BQ27
 
 #########
 # some useful defines

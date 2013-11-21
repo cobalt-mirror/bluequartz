@@ -6,10 +6,10 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=bluequartz
 
-BUILD=20080101
+BUILD=20110503
 
 VERSION=5200R
-RELEASE=0.$(BUILD)BQ1
+RELEASE=1.$(BUILD)BQ39
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -22,7 +22,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch sendmail-cf m4 cyrus-sasl
-REQUIRES_GLUE=base-email-capstone
+REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl postfix vixie-cron
+REQUIRES_GLUE=base-email-capstone base-time-capstone base-user-capstone
 
 include /usr/sausalito/devel/module.mk

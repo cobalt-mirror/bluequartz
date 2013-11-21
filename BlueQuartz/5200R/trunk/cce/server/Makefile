@@ -1,4 +1,4 @@
-# $Id: Makefile 474 2005-06-11 15:21:39Z shibuya $
+# $Id: Makefile 1382 2010-02-21 12:11:21Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Makefile for CCE Daemon
 
@@ -7,6 +7,7 @@ include ../dynamic.mk
 DEFS += -DCCE_VERSION=\"$(CCE_VERSION)\"
 LIBS += -lcrypt -ldl #-ldebug 
 INCLUDES += -I./include
+CFLAGS += -D_GNU_SOURCE
 
 SRCS = src/main.c src/smd.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))

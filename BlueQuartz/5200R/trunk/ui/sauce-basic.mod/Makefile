@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=sauce-basic
 
 VERSION=1.1.0
-RELEASE=49BQ8
+RELEASE=49BQ9
 
 # add a buildarch if desired
 BUILDARCH=noarch

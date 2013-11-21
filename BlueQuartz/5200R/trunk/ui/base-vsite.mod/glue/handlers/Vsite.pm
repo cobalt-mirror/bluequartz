@@ -44,7 +44,12 @@ use vars qw(
         %DefaultAliases);
 
 # globals used here
-$DEFAULT_INTERFACE = 'eth0';
+if (! -f "/proc/user_beancounters") {
+	$DEFAULT_INTERFACE = 'eth0';
+}
+else {
+	$DEFAULT_INTERFACE = 'venet0';
+}
 
 # hard-coded configuration options
 $Webdir = Sauce::Config::webdir();
@@ -56,7 +61,8 @@ $Sites_AdminGroup = 'site-adm';
                     "sys",             1,
                     "nobody",          1,
                     "root",            1,
-                    'apache',          1
+                    'apache',          1,
+                    'admin',           1
                     );
 
 ### Removed;
@@ -122,6 +128,7 @@ sub vsite_add_network_interface
 {
     my $cce = shift;
     my $ipaddr = shift;
+    my $user = shift;
     my $device = shift;
 
     $device ||= $DEFAULT_INTERFACE;

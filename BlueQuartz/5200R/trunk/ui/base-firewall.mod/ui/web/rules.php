@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, 2002, Sun Microsystems, Inc. All rights reserved.
-// $Id: rules.php 1021 2007-06-25 15:30:29Z shibuya $
+// $Id: rules.php 1413 2010-03-10 14:28:36Z shibuya $
 //
 
 include_once("ServerScriptHelper.php");
@@ -23,8 +23,8 @@ function profile( $tag )
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
-// Only modifySystemFirewall should be here
-if (!$serverScriptHelper->getAllowed('modifySystemFirewall')) {
+// Only serverSystemFirewall should be here
+if (!$serverScriptHelper->getAllowed('serverSystemFirewall')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -424,7 +424,7 @@ function save_firewall() {
   $block = new PagedBlock ($page,
 	  "defaultPolicy", false);
 
-  include ("uifc/TextField.php");
+  include_once ("uifc/TextField.php");
   $obj = new TextField($page, "chain", $chain, "", "");
   $obj->setAccess("");
   $block->addFormField($obj);

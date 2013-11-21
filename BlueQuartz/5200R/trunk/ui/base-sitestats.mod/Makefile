@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueQuartz'
 SERVICE=sitestats
 
-VERSION=1.0
-RELEASE=124BQ13
+VERSION=1.1
+RELEASE=124BQ19
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -21,6 +21,7 @@ BUILDLOCALE=yes
 BUILDSRC=yes
 
 REQUIRES_UI=coreutils httpd
+REQUIRES=analog
 
 #########
 # some useful defines

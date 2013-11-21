@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.1
-Release: 0BQ15%{?dist}
+Release: 0BQ18%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueQuartz
@@ -52,6 +52,15 @@ done
 /etc/rpm/macros.bluequartz
 
 %changelog
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ18
+- modified defined.mk for FC12 that rpmbuild dir is on home directory.
+
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ17
+- add pre section to spec template.
+
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ16
+- build for 5200R on CentOS5.
+
 * Sun Apr 29 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ15
 - support subversion repository again.
 

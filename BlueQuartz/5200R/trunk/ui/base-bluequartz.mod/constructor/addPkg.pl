@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: addPkg.pl 730 2006-03-25 09:12:04Z shibuya $
+# $Id: addPkg.pl 1359 2010-01-01 06:47:39Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 
@@ -32,7 +32,7 @@ if ($#oids < 0) {
 
     $rpmlist = $cce->array_to_scalar(keys %rpms);
     $cce->create('Package', { 'name' => 'OS',
-			      'version' => "v1.$build",
+			      'version' => "v0.$build",
 			      'vendor' => 'BlueQuartz',
 			      'nameTag' => '[[base-alpine.osName]]',
 			      'vendorTag' => '[[base-alpine.osVendor]]',

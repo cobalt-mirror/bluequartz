@@ -5,7 +5,7 @@
     requiresChildren="1"
 >
     <parent id="base_sysmanage" order="50">
-        <access require="adminUser"/>
+        <access require="menuServerServerStats"/>
     </parent>
 </item>
 <!--

@@ -3,8 +3,8 @@
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 use Data::Dumper;
 #
-# Convert sendmail, smail, or qmail logs to common log format so they can be 
-# processed by standard web log processing software.
+# Convert sendmail, postfix, smail, or qmail logs to common log format so
+# they can be processed by standard web log processing software.
 #
 # Here's a sample log entry, in common log format:
 #
@@ -45,7 +45,7 @@ $tzoffset = sprintf ("%+.4d", $tzoffset );
 # Then we track any thing that comes through as
 # 'accept email for this domain' email. Get's caught as well.
 my(%routes, %aliases);
-open(VUT, '/etc/mail/virtusertable') || die "Could not read virtusertable: $!";
+open(VUT, '/etc/postfix/virtual') || die "Could not read virtusertable: $!";
 while(<VUT>) {
 	chomp;
 	if(/^\s*\@(\S+)\s+\%1\@(.*)$/o) {
@@ -59,10 +59,10 @@ close(VUT);
 $logtype = shift;
 $logtype = lc $logtype;
 if ($logtype ne 'sendmail' and $logtype ne 'smail' and $logtype ne 'newsmail'
-	and $logtype ne 'qmail') {
+	and $logtype ne 'qmail' and $logtype ne 'postfix') {
 	print <<eof;
 Usage:
-	maillog2commonlog [sendmail|smail|newsmail|qmail] < logfile
+	maillog2commonlog [sendmail|postfix|smail|newsmail|qmail] < logfile
 eof
 	exit;
 }
@@ -233,7 +233,11 @@ while (<>) {
 	#if ((/: from=/)) {
 	if ((/: from=/ ne undef) || (/\] received\n/m ne undef) ||
 	   (/\] Received / ne undef) || (/info msg .* from/ ne undef)) { # Recieved mail.
-		if (/: from=/ ne undef) { # SENDMAIL
+		if (/: from=/ ne undef) { # POSTFIX
+                        ($message_id,$from,$size,$nrcpts)=m/\w+\s+\d+\s+\d+:\d+:\d+\s+.*\s+postfix\/qmgr\[\d+\]:\s+(.*?):\s+from=(.*?),\s+size=(.*?),\s+nrcpt=(.*?)\s+/;
+			$msg_buf{$message_id}{nrcpts}+=$nrcpts;
+		}
+		elsif (/: from=/ ne undef) { # SENDMAIL
 			($message_id,$from,$size,$nrcpts)=m/\w+\s+\d+\s+\d+:\d+:\d+\s+\w+\s+sendmail\[\d+\]:\s+(.*?):\s+from=(.*?),\s+size=(.*?),.*,\s+nrcpts=(.*?),/;
 			$msg_buf{$message_id}{nrcpts}+=$nrcpts;
 		}
@@ -259,8 +263,18 @@ while (<>) {
 
 	}
 	elsif ((/: to=.*stat=sent/i ne undef) || (/\] delivered\n/m ne undef) ||
+	       (/: to=.*status=sent/i ne undef) ||
 	       (/\] Delivered / ne undef) || (/starting delivery/ ne undef)) { # The line logs mail being sent ok.
-		if (/: to=.*stat=sent/i ne undef) {
+		if (/, orig_to=.*status=sent/i ne undef) {
+			($mon,$day,$time,$message_id,$orig_to)=m/(\w+)\s+(\d+)\s+(\d+:\d+:\d+)\s+\S+\s+postfix\/\w+\[\d+\]:\s+(.*?):\s+to=\<\S+>, orig_to=\<(.*?)\>.*/;
+			$to = $orig_to;
+			$msg_buf{$message_id}{nrcpts}-=1;
+		}
+		elsif (/: to=.*status=sent/i ne undef) {
+			($mon,$day,$time,$message_id,$to)=m/(\w+)\s+(\d+)\s+(\d+:\d+:\d+)\s+.*\s+postfix\/\w+\[\d+\]:\s+(.*?):\s+to=\<(.*?)\>.*/;
+                        $msg_buf{$message_id}{nrcpts}-=1;
+                }
+		elsif (/: to=.*stat=sent/i ne undef) {
 			#($mon,$day,$time,$message_id,$to)=m/(\w+)\s+(\d+)\s+(\d+:\d+:\d+)\s+\w+\s+sendmail\[\.*?\]:\s+(.*?):\s+to=(.*?),/;
 			($mon,$day,$time,$message_id,$to)=m/(\w+)\s+(\d+)\s+(\d+:\d+:\d+)\s+\w+\s+sendmail\[\d+\]:\s+(.*?):\s+to=(.*?),/;
 			$msg_buf{$message_id}{nrcpts}-=1;
@@ -286,7 +300,7 @@ while (<>) {
 		$msg_buf{$message_id}{day}=$day;
 		$msg_buf{$message_id}{time}=$time;
 		$msg_buf{$message_id}{to}=$to;
-				
+
 		&Log($message_id);
 	}
 }

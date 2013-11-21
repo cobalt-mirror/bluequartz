@@ -48,6 +48,7 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 /etc/init.d/mdchk
+/etc/init.d/fix_grub
 [AUTOFILL]
 
 <end glue>
@@ -76,6 +77,8 @@ information for [VENDOR]-[SERVICE].
 if [ "$1" = 1 ]; then
 	/sbin/chkconfig --add mdchk
 	/sbin/chkconfig mdchk on
+	/sbin/chkconfig --add fix_grub
+	/sbin/chkconfig fix_grub on
 fi
 
 <end glue>
@@ -124,6 +127,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.2.0-87BQ11
+- new Capabilities for admin.
+
+* Mon Jan 18 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1.2-87BQ10
+- use mdadm for CentOS5.
+
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1.2-87BQ9
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1.2-87BQ8
 - Fixed duplicate include issue.
 

@@ -6,7 +6,7 @@
 >
     <parent id="base_system" order="50"/>
     <parent id="base_serverconfig" order="50">
-        <access require="serverConfig"/>
+        <access require="serverTime"/>
     </parent>
 </item>
 

@@ -13,11 +13,11 @@ CCEMODULE = sausalito-palette
 CCERPMSPEC = sausalito-palette.spec
 
 VERSION=0.5.1
-RELEASE=0BQ4
+RELEASE=0BQ13
 
 LOCALES=$(shell dir=locale; \
                 if [ -d $$dir ]; then \
-                        cd $$dir; tmp='-I CVS'; \
+                        cd $$dir; tmp='-I svn'; \
                         for i in $(XLOCALEPAT); do \
                                 tmp="$$tmp -I $$i"; \
                         done; \
@@ -38,16 +38,18 @@ endif
 
 install: install_locale
 	install -d -o root -g root -m 755 $(UIDIR)
-	find $(INSTALLDIRS) -type f -not -regex ".*CVS.*" -exec \
+	find $(INSTALLDIRS) -type f -not -regex ".*svn.*" -exec \
 		install -D -o root -g root -m 644 {} $(UIDIR)/{} \;
-	find sbin -type f -not -regex ".*CVS.*" -exec\
+	find sbin -type f -not -regex ".*svn.*" -exec\
 		install -D -o root -g root -m 755 {} $(BASEDIR)/{} \;
-	cd ccewrap; find . -type f -not -regex ".*CVS.*" -exec \
+	cd ccewrap; find . -type f -not -regex ".*svn.*" -exec \
 		install -D -o root -g root -m 644 {} $(CCEWRAPD)/{} \;
 #	make -C locale/en install
 #	make -C locale/ja install
 
 clean:
+	rm -rf rpms srpms
+	find locale/ -name *.mo | xargs rm -f
 
 ifneq ($(SLK_BUILD), yes)
 ifdef CCETOPDIR

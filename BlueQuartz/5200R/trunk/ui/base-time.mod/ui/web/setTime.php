@@ -1,13 +1,13 @@
 <?php
 // Author: Kenneth C.K. Leung
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: setTime.php 1011 2007-06-25 15:24:33Z shibuya $
+// $Id: setTime.php 1433 2010-03-10 15:32:44Z shibuya $
 set_time_limit(0);
 include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverTime should be here
+if (!$serverScriptHelper->getAllowed('serverTime')) {
   header("location: /error/forbidden.html");
   return;
 }

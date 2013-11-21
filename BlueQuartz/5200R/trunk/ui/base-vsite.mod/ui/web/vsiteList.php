@@ -11,8 +11,8 @@ include_once("base/vsite/vsite_common.php");
 
 $helper =& new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only manageSite should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -42,6 +42,7 @@ $searchBlock->setColumnWidths(array("8%", "92%"));
 $searchby_field =& $factory->getMultiChoice('searchby');
 $searchby_field->addOption($factory->getOption('fqdn'));
 $searchby_field->addOption($factory->getOption('ipAddr'));
+$searchby_field->addOption($factory->getOption('createdUser'));
 
 $searchTextField =& $factory->getTextField('searchtext');
 $searchTextField->setOptional('silent');
@@ -71,10 +72,11 @@ $siteList = $factory->getScrollList("virtualSiteList",
 				    array(
 						"fqdn",
 						"ipAddr",
+						"createdUser",
 						"listSuspended",
-						""
+						" "
 				    ),
-				    array(0, 1, 2)); 
+				    array(0, 1, 2, 3)); 
 
 // reset page index if the search button was clicked
 if ($isSearch == 1) {
@@ -83,16 +85,13 @@ if ($isSearch == 1) {
 
 // figure out how to sort
 $siteList->setSortEnabled(false);
-$sortMap = array(0 => 'fqdn', 1 => 'ipaddr', 2 => 'suspend');
-$sort_types_map = array(0 => 'hostname', 1 => 'ip', 2 => 'old_numeric');
+$sortMap = array(0 => 'fqdn', 1 => 'ipaddr', 2 => 'createdUser', 3 => 'suspend');
+$sort_types_map = array(0 => 'hostname', 1 => 'ip', 2 => 'accountname', 3 => 'old_numeric');
 
 $sortField = $sortMap[$siteList->getSortedIndex()];
 $sort_type = $sort_types_map[$siteList->getSortedIndex()];
 
-// generate site add button
-$siteList->addButton(
-	$factory->getAddButton($script_siteAdd, 
-			       '[[base-vsite.siteaddbut_help]]'));
+global $loginName;
 
 // build up our search array
 if ($searchtext !== '') {
@@ -135,6 +134,9 @@ if ($searchtext !== '') {
 		break;
 	}
 
+	if ( $loginName != 'admin') {
+		$exact = array_merge($exact, array('createdUser' => $loginName));
+	}
 	$vsites = $cce->findx('Vsite', $exact, $regex, $sort_type, $sortField);
 	// special case not contains, because of missing functionality in cce
 	if ($searchop == 'not_contains') {
@@ -151,8 +153,43 @@ if ($searchtext !== '') {
 		$vsites = $new_list;
 	}
 } else {
-	$vsites = $cce->findx('Vsite', array(), array(), $sort_type, 
-			      $sortField);
+	// display the site for the administrator
+	if ( $loginName !== 'admin') {
+		$exact = array('createdUser' => $loginName);
+	}
+	$vsites = $cce->findx('Vsite', $exact, array(), $sort_type, $sortField);
+}
+
+$vsite_disk = 0;
+$vsite_user = 0;
+foreach($vsites as $vsites_oid) {
+    $vsite = $cce->get($vsites_oid);
+    $vsite2 = $cce->get($vsites_oid, "Disk");
+    $vsite_user += $vsite['maxusers'];
+    $vsite_disk += $vsite2['quota'];
+}
+
+list($user_oid) = $cce->find('User', array('name' => $loginName));
+$sites = $cce->get($user_oid, 'Sites');
+
+$visuble = TRUE;
+if($loginName != "admin") {
+    if($sites['max'] <= count($vsites)) {
+        $visuble = FALSE;
+    }
+    if($sites['user'] <= $vsite_user) {
+        $visuble = FALSE;
+    }
+    if($sites['quota'] <= $vsite_disk) {
+        $visuble = FALSE;
+    }
+}
+
+if($visuble) {
+    // generate site add button
+    $siteList->addButton(
+            $factory->getAddButton($script_siteAdd,
+                                   '[[base-vsite.siteaddbut_help]]'));
 }
 
 generate_site_list($siteList, $cce, $factory, $vsites, $sites_per_page);
@@ -251,9 +288,19 @@ print $searchBlock->toHtml();
 print "<br>\n";
 
 // generate site defaults button
-$siteDefaultsButton =& $factory->getButton($script_siteDefaults, 
-					   "sitedefaultsbut");
-print $siteDefaultsButton->toHtml();
+if ($loginName == 'admin') {
+    $siteDefaultsButton =& $factory->getButton($script_siteDefaults, 
+						   "sitedefaultsbut");
+	print $siteDefaultsButton->toHtml();
+	print "<p></p>\n";
+}
+
+// print administrator information
+if ($loginName != 'admin') {
+	global $sites;
+	print "MaxSite : {$sites['max']} / MaxDisk : {$sites['quota']} / MaxUser : {$sites['user']}";
+}
+
 print "<p></p>\n";
 print $siteList->toHtml();
 

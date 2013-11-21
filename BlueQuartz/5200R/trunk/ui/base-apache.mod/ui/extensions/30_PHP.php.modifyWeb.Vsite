@@ -18,26 +18,43 @@ class PHPExtension extends UIExtension
 		$featurePHP = $cce->get($parameters['CCE_OID'], 'PHP');
 
 		if ($parameters['IS_SITE_ADMIN']) {
-			if ( $featurePHP['enabled'] )
-				$container->addFormField(
-					$factory->getBoolean('php', $featurePHP['enabled'], 'r'),
-					$factory->getLabel('php'), $page_id
-					);
+			if ( $featurePHP['enabled'] ) {
+				$phpEnable = $factory->getOption("PHP_enabled", $featurePHP['enabled']);
+				$phpEnable->addFormField(
+				  $factory->getBoolean("suPHP_enabled", $featurePHP['suPHP_enabled'], 'r'),
+				  $factory->getLabel("enableSuPHP")
+				);
+				$php = $factory->getMultiChoice("PHP_enabled");
+				$php->addOption($phpEnable);
+				$php->setAccess('r');
+				$container->addFormField($php, $factory->getLabel("php"), $page_id);
+			}
 		} else {
-				$container->addFormField(
-					$factory->getBoolean('php', $featurePHP['enabled'], 'rw'),
-					$factory->getLabel('php'), $page_id
-					);
+system('echo "call modify" >> /tmp/php.log');
+			$phpEnable = $factory->getOption("PHP_enabled", $featurePHP['enabled']);
+			$phpEnable->addFormField(
+			  $factory->getBoolean("suPHP_enabled", $featurePHP['suPHP_enabled'], 'rw'),
+			  $factory->getLabel("enableSuPHP")
+			);
+			$php = $factory->getMultiChoice("PHP_enabled");
+			$php->addOption($phpEnable);
+			$php->setAccess('rw');
+			$container->addFormField($php, $factory->getLabel("php"), $page_id);
 		}
 	}
 
 	function handle(&$ServerScriptHelper, &$errors, $parameters)
 	{
-    global $php;
+		global $PHP_enabled, $suPHP_enabled;
 		$cce = $ServerScriptHelper->getCceClient();
 
-    $cce->set($parameters['CCE_OID'], 'PHP', array('enabled' => $php));
-    $errors = array_merge($errors, $cce->errors());
+		$cce->set($parameters['CCE_OID'], 'PHP',
+			array(
+				'enabled' => ($PHP_enabled ? 1 : 0),
+				'suPHP_enabled' => $suPHP_enabled
+			));
+
+		$errors = array_merge($errors, $cce->errors());
 	}
 }
 ?>

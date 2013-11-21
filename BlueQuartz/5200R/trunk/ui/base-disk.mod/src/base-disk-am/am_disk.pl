@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: am_disk.pl 742 2006-04-13 13:23:55Z shibuya $
+# $Id: am_disk.pl 1380 2010-02-09 15:38:43Z shibuya $
 #
 # Email is sent to admin for everyone who is over their quota 
 # at 4am. 
@@ -345,6 +345,13 @@ sub users_over_quota {
 	}
 
 	my $dev = Quota::getqcarg($dir);
+
+	if (!$dev) {
+	    # $dev may not always be set. Has problems on extra-admins, which then causes the error:
+	    # Use of uninitialized value in subroutine entry at /usr/sausalito/swatch/bin/am_disk.pl line 348, <GEN1> line 27.
+	    # So if $dev is not defined, we set a safe default:
+	    $dev = "/home";
+	}
 	my ($used, $quota) = Quota::query($dev, $uid);
 
 	if (! defined $quota || $quota == 0) {
@@ -378,6 +385,10 @@ sub sites_over_quota {
     foreach my $disk (@disks) {
 	my ($ok, $obj) = $cce->get($disk);
 	push @mounts, $obj->{mountPoint};
+    }
+
+    if ($#mounts == 0 && $mounts[0] ne '/home') {
+        $mounts[0] = '/home';
     }
 
     # this relies on Alpine's hashing scheme. if the hashing scheme changes

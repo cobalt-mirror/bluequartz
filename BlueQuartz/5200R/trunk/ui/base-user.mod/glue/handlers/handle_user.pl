@@ -177,7 +177,7 @@ $DEBUG && warn('data valid');
 umask 002;
 
 # build comment:
-my $comment1 = $obj->{fullName} || $obj->{name};
+my $comment = $obj->{fullName} || $obj->{name};
 
 #
 # make sure comment gets encoded properly.  trust I18n::encodeString
@@ -185,7 +185,7 @@ my $comment1 = $obj->{fullName} || $obj->{name};
 # another hack here.  It should encode the string properly based on the
 # system-wide locale, so if the locale isn't ja the 'euc' encoding gets ignored.
 #
-my $comment = $i18n->encodeString($comment1, 'euc');
+#my $comment = $i18n->encodeString($comment1, 'euc');
 
 # hacky workaround.  some handler is leaving /etc/group.lock around.
 if (-e "/etc/group.lock") {
@@ -233,6 +233,8 @@ my ($crypt_pw, $md5_pw) = ('', '');
 if (defined($new->{password})) {
 	($crypt_pw, $md5_pw) = cryptpw($new->{password});
 	$user->{password} = $md5_pw;
+} elsif (defined($new->{md5_password})) {
+	$user->{password} = $new->{md5_password};
 }
 		
 if (!@pwent) {

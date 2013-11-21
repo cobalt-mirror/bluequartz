@@ -1,5 +1,5 @@
 <?php
-// $Id: vsite_dns_add.php 1013 2007-06-25 15:25:22Z shibuya $
+// $Id: vsite_dns_add.php 1534 2010-09-28 08:36:52Z oride $
 //
 // ui for adding/modifying many DNS record types
 $iam = '/base/dns/vsite_dns_add.php';
@@ -8,8 +8,8 @@ $parent = '/base/dns/vsite_records.php';
 include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only dnsAdmin should be here
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+// Only siteDNS should be here
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
   header("location: /error/forbidden.html");
   return;
 }

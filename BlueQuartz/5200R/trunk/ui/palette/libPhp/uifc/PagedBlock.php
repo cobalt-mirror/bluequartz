@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: PagedBlock.php 995 2007-05-05 07:44:27Z shibuya $
+// $Id: PagedBlock.php 1329 2009-12-07 14:41:59Z shibuya $
 
 // description:
 // PagedBlock represents a block that have multiple pages with each of them
@@ -492,13 +492,13 @@ class PagedBlock extends Block {
         {
             // form fields on the selected page
             // this should be a reference assignment, but php sucks
-            $formFieldsInPage[] =& $formField;
+            $formFieldsInPage[] = $formField;
             $formFieldIdsInPage[] = $formFieldId;
         }
         else 
         {
             // form fields not on the selected page
-            $formFieldsOutPage[] =& $formField;
+            $formFieldsOutPage[] = $formField;
             $formFieldIdsOutPage[] = $formFieldId;
         }
     }
@@ -561,7 +561,7 @@ class PagedBlock extends Block {
         // FIXME:  this is a nasty hack, if we want to do this there
         //         should be a more general way like checking if the
         //         getFormFields method exists for the given object
-        if(get_class($formField) == "multichoice") 
+        if(get_class($formField) == "MultiChoice") 
         {
             $options =& $formField->getOptions();
             for($j = 0; $j < count($options); $j++) 

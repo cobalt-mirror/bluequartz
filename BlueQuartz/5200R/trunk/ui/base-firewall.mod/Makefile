@@ -1,12 +1,12 @@
 # Makefile
-# $Id: Makefile 1021 2007-06-25 15:30:29Z shibuya $
+# $Id: Makefile 1413 2010-03-10 14:28:36Z shibuya $
 
 VENDOR=base
 VENDORNAME=cobalt
 SERVICE=firewall
 
-VERSION=1.0.1
-RELEASE=24BQ4
+VERSION=1.1.0
+RELEASE=24BQ7
 
 BUILDARCH=noarch
 

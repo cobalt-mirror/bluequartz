@@ -47,20 +47,8 @@ if (not $group_name)
 
 my @admins = ('admin');
 
-# also add all adminUser's to group
-my @admin_oids = $cce->find('User', 
-					{ 
-						'capLevels' => 'adminUser', 
-						'systemAdministrator' => 0 
-					});
-if (scalar(@admin_oids))
-{
-	for my $oid (@admin_oids)
-	{
-		($ok, my $admin) = $cce->get($oid);
-		push @admins, $admin->{name};
-	}
-}
+# add created admin user to group
+push @admins, $vsite->{createdUser};
 
 group_add_members($group_name, @admins);
 
@@ -90,7 +78,7 @@ if (not $ok)
 }
 
 # make sure there is a network interface for this ip
-vsite_add_network_interface($cce, $vsite->{ipaddr});
+vsite_add_network_interface($cce, $vsite->{ipaddr}, $vsite->{createdUser});
 
 my $locale = I18n::i18n_getSystemLocale($cce);
 # make the locale sane
@@ -107,6 +95,7 @@ $DEBUG && print STDERR "Setting up site web.\n";
 Sauce::Util::modifytree($site_web);
 system("/bin/cp -r $skel_web/* \"$site_web/.\"");
 Sauce::Util::chmodfile(02775, "$site_web/error");
+system("/bin/chmod 0664 $site_web/error/*");
 system("/bin/chown -R nobody.$group_name \"$site_web/error\"");
 
 # hack to make sure index.html is at least there
@@ -293,7 +282,7 @@ sub create_system_group
 	my $gid = getgrnam($name);
 	# this chown doesn't need to be rolled back because if the 
 	# Vsite create fails the entire $base dir will just get blown away
-	system('chown', '-R', "nobody.$gid", $base);
+	system('chown', '-R', "nobody.$name", $base);
 
 	return $name;
 }

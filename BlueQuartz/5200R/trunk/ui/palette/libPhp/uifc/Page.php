@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: Page.php 995 2007-05-05 07:44:27Z shibuya $
+// $Id: Page.php 1225 2009-09-04 16:01:03Z shibuya $
 
 // description:
 // This class represents a page on the user interface. It also encapsulates all
@@ -162,6 +162,32 @@ class Page {
 <META HTTP-EQUIV=\"expires\" CONTENT=\"-1\">
 <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
 </HEAD>
+
+  <script language=\"Javascript\" type=\"text/javascript\" src=\"/libJs/ajax_lib.js\"></script>
+  <script language=\"Javascript\">
+    <!--
+      checkpassOBJ = function() {
+        this.onFailure = function() {
+          alert(\"Unable to validate password\");
+        }
+        this.OnSuccess = function() {
+          var response = this.GetResponseText();
+          document.getElementById(\"results\").innerHTML = response;
+        }
+      }
+
+
+      function validate_password ( word ) {
+        checkpassOBJ.prototype = new ajax_lib();
+        checkpass = new checkpassOBJ();
+        var URL = \"/uifc/check_password.php\";
+        var PARAM = \"password=\" + word;
+        checkpass.post(URL, PARAM);
+      }
+
+    //-->
+  </script>
+
 <SCRIPT LANGUAGE=\"javascript\">
 // top.code may not exist yet
 if(top.code != null && top.code.css_captureEvents != null)

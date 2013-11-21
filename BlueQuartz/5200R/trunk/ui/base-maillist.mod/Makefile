@@ -6,7 +6,7 @@ SERVICE=maillist
 
 # MAJVERSION is 0 until alpha release.
 VERSION=1.4.0
-RELEASE=68BQ12
+RELEASE=68BQ18
 
 INSTALL=install
 

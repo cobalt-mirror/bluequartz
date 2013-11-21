@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=documentation
 
 VERSION=1.0.1
-RELEASE=31BQ7
+RELEASE=31BQ8
 
 # add a buildarch if desired
 BUILDARCH=noarch

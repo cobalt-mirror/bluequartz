@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: top.php 1021 2007-06-25 15:30:29Z shibuya $
+// $Id: top.php 1413 2010-03-10 14:28:36Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("ArrayPacker.php");
@@ -13,8 +13,8 @@ $iam = '/base/firewall/top.php';
 // standard uifc header:
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
-// Only modifySystemFirewall should be here
-if (!$serverScriptHelper->getAllowed('modifySystemFirewall')) {
+// Only serverSystemFirewall should be here
+if (!$serverScriptHelper->getAllowed('serverSystemFirewall')) {
   header("location: /error/forbidden.html");
   return;
 }

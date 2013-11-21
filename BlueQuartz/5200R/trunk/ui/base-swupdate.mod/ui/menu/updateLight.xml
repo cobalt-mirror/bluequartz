@@ -2,11 +2,11 @@
     id="base_updateLight" 
     label="[[base-swupdate.update]]" 
     description="[[base-swupdate.update_help]]" 
-    url="javascript: top.code.tab_selectPath('base_softwareUpdateSun'); top.code.cList_selectPath('base_softwareUpdateSun')" 
+    url="javascript: top.code.tab_selectPath('yum_gui'); top.code.cList_selectPath('yum_gui')" 
     type="updateOff"
 >
     <parent id="root" order="800">
-        <access require="adminBlueLinq"/>
+        <access require="managePackage"/>
     </parent>
 </item>
 <!--

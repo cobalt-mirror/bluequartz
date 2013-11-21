@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalAccountHandler.php 1005 2007-06-25 15:21:40Z shibuya $
+// $Id: personalAccountHandler.php 1343 2009-12-13 16:33:02Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
@@ -19,8 +19,39 @@ if($newPasswordField)
 if($styleField)
   $attributes["stylePreference"] = $styleField;
 
+// Username = Password? Baaaad idea!
+if (strcasecmp($loginName, $newPasswordField) == 0) {
+        $attributes["password"] = "1";
+        $errors[] = new Error("[[base-user.error-password-equals-username]]");
+}
+
+// Only use cracklib if someting was entered into the $newPasswordField:
+if ($newPasswordField) {
+
+    // Open CrackLib Dictionary for usage:
+    $dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
+
+    // Perform password check with cracklib:
+    $check = crack_check($dictionary, $newPasswordField);
+
+    // Retrieve messages from cracklib:
+    $diag = crack_getlastmessage();
+
+    if ($diag == 'strong password') {
+        // Nothing to do. Cracklib thinks it's a good password.
+    }
+    else {
+        $attributes["password"] = "1";
+        $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag);
+    }
+
+    // Close cracklib dictionary:
+    crack_closedict($dictionary);
+}
+
 $cceClient->setObject("User", $attributes, "", array("name" => $loginName));
-$errors = $cceClient->errors();
+$errors = array_merge((array)$errors, $cceClient->errors());
+//$errors = $cceClient->errors();
 
 for ($i = 0; $i < count($errors); $i++) {
 	if ( ($errors[$i]->code == 2) && ($errors[$i]->key === "password"))
@@ -28,7 +59,6 @@ for ($i = 0; $i < count($errors); $i++) {
 		$errors[$i]->message = "[[base-user.error-invalid-password]]";
 	}
 }
-
 
 print($serverScriptHelper->toHandlerHtml("/base/user/personalAccount.php", $errors));
 

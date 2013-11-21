@@ -1,4 +1,4 @@
-# $Id: Makefile 991 2007-05-05 05:40:00Z shibuya $
+# $Id: Makefile 1544 2011-05-01 09:27:18Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Top level Makefile for CCE
 
@@ -13,9 +13,9 @@ CCERPMSPEC = $(CCEMODULE).spec
 
 CCE_V_MAJ=0
 CCE_V_MIN=80
-CCE_V_PATCH=2
+CCE_V_PATCH=4
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BQ33
+RPMRELEASE=0BQ11
 
 DIRS = common scalar conf codb ed cscp sessionmgr server client pam \
 	ccewrap pperl

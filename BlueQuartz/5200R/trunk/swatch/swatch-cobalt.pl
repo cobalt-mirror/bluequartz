@@ -1,11 +1,18 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright (c) Turbolinux, inc.
+# Modified by Michael Stauber <mstauber@solarspeed.net>
+# Sun 28 Oct 2007 02:41:19 AM CET
 
 use strict;
 use CCE;
 use Getopt::Long;
 use I18n;
 use SendEmail;
+use Sys::Hostname;
+use POSIX qw(isalpha);
+
+my $host = hostname();
+my $now = localtime time;
 
 my @statecodes = ("N", "G", "Y", "R"),
 my %params;
@@ -140,7 +147,7 @@ while ( defined (my $name = <@names>) ) {
 
 if ($body) {
   $body = $body_head . $body;
-  my $subject = $i18n->get("[[swatch.emailSubject]]");
+  my $subject = $host . ": " . $i18n->get("[[swatch.emailSubject]]");
   my $to;
   foreach $to (@email_list) {
     SendEmail::sendEmail($to, "root <root>", $subject, $body);

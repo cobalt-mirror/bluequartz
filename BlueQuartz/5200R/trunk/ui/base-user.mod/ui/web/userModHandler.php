@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userModHandler.php 1005 2007-06-25 15:21:40Z shibuya $
+ * $Id: userModHandler.php 1534 2010-09-28 08:36:52Z oride $
  */
 
 include_once("ArrayPacker.php");
@@ -23,6 +23,7 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $oids = $cceClient->find("User", array("name" => $userNameField));
 $iam = $serverScriptHelper->getLoginName();
+$errors = array();
 
 // modify user
 $attributes = array("fullName" => $fullNameField);
@@ -40,7 +41,7 @@ if (isset($siteAdministrator) && ($siteAdministrator || (!$siteAdministrator && 
   $attributes["capLevels"] = ($siteAdministrator ? '&siteAdmin&' : '');
 
 if (isset($dnsAdministrator) && ($dnsAdministrator || (!$dnsAdministrator && ($iam != $userNameField))))
-  $attributes["capLevels"] .= ($dnsAdministrator ? '&dnsAdmin&' : '');
+  $attributes["capLevels"] .= ($dnsAdministrator ? '&siteDNS&' : '');
 
 // dirty trick
 $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
@@ -48,10 +49,41 @@ $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
 if (isset($suspendUser))
   $attributes['ui_enabled'] = ($suspendUser) ? '0' : '1';
 
+// Username = Password? Baaaad idea!
+if (strcasecmp($userNameField, $passwordField) == 0) {
+        $attributes["password"] = "1";
+	$error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+        $errors[] = new Error($error_msg);
+}
+
+// Only run cracklib checks if something was entered into the password field:
+if ($passwordField) {
+
+    // Open CrackLib Dictionary for usage:
+    $dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
+
+    // Perform password check with cracklib:
+    $check = crack_check($dictionary, $passwordField);
+
+    // Retrieve messages from cracklib:
+    $diag = crack_getlastmessage();
+
+    if ($diag == 'strong password') {
+        // Nothing to do. Cracklib thinks it's a good password.
+    }
+    else {
+        $attributes["password"] = "1";
+        $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag . ". " . "[[base-user.error-invalid-password]]");
+    }
+
+    // Close cracklib dictionary:
+    crack_closedict($dictionary);
+}
+
 $attributes['emailDisabled'] = $emailDisabled;
 
 $cceClient->set($oids[0], "", $attributes);
-$errors = $cceClient->errors();
+//$errors = $cceClient->errors();
 
 for ($i = 0; $i < count($errors); $i++) {
 	if ( ($errors[$i]->code == 2) && ($errors[$i]->key === "password"))
@@ -59,8 +91,6 @@ for ($i = 0; $i < count($errors); $i++) {
 		$errors[$i]->message = "[[base-user.error-invalid-password]]";
 	}
 }
-
-
 
 // set quota
 if(!$maxDiskSpaceField)
@@ -116,7 +146,7 @@ for($i = 0; $i < count($goids); $i++) {
 $cceClient->set($oids[0], "Email", array(
 	"forwardEnable" => ($forwardEnableField ? 1 : 0), 
 	"forwardEmail" => $forwardEmailField, 
-	"forwardSave" => $forwardSaveField));
+	"forwardSave" => ($forwardSaveField ? 1 : 0)));
 $errors = array_merge($errors, $cceClient->errors());
 
 // set email aliases info

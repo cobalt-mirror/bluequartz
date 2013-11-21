@@ -5,7 +5,7 @@
     url="/base/sitestats/summary.php?type=mail&amp;group=server"
 >
     <parent id="base_serverusage" order="40">
-        <access require="adminUser"/>
+        <access require="serverStatsServerEmail"/>
     </parent>
 </item>
 <!--

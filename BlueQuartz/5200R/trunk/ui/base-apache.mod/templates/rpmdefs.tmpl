@@ -47,6 +47,8 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 /etc/suexec.conf
+/etc/cron.d/suphp_session_file_clear.cron
+/usr/local/sbin/suphp_session_file_clear.sh
 [AUTOFILL]
 
 <end glue>
@@ -111,6 +113,44 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Oct 13 2010 Hideki Oride <oride@gachapom.jp> 1.2.1-79BQ40
+- URL that displayed the management page was able to be selected. 
+- session_path's files auto remove.
+
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.1-79BQ39
+- Copy php.ini file to the vsite homedirectory that is changed the session.save_path to /home/sites/<FQDN>/.tmp by Oride-san.
+
+* Sun Jun 20 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.1-79BQ38
+- support suPHP feature.
+
+* Sat Jun 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-79BQ37
+- add RewriteCond for webAliases.
+
+* Sun May 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-79BQ36
+- add type for php5 extension.
+
+* Sun May 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-79BQ35
+- Ability added to disable user owned websites.
+
+* Fri Apr 16 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-79BQ34
+- resolved the issue that the ServerAlias was lost when SSL will be enabled.
+
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-79BQ33
+- new Capabilities for admin.
+
+* Thu Mar 04 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-79BQ32
+- resolved the issue that can not connect https.
+
+* Thu Dec 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-79BQ31
+- resolved the issue that the error message isn't displayed.
+
+* Tue Sep 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-79BQ30
+- write SSL configuration in /etc/httpd/conf/vhosts/siteX, not use mod_perl.
+
+* Tue Sep 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-79BQ29
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
+
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-79BQ28
 - Fixed duplicate include issue.
 

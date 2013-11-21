@@ -26,6 +26,7 @@ install:
 	ln -s /usr/local/sbin/vacation.pl vacation.pl
 	mkdir -p $(PREFIX)/usr/sausalito/bin
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) bin/remove_domain.pl $(PREFIX)/usr/sausalito/bin/remove_domain.pl
+	$(INSTALL) $(INSTALL_SCRIPTFLAGS) bin/findalias.pl $(PREFIX)/usr/sausalito/bin/findalias.pl
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) \
 	usr/local/sbin/break-smrsh-loop.pl $(PREFIX)/usr/local/sbin/
 	$(INSTALL) \
