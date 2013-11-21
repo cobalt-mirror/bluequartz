@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=dns
 
-VERSION=1.1.0
-RELEASE=94BX04
+VERSION=1.2.0
+RELEASE=93BQ36
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=bind-chroot sausalito-palette >= 0.5.1-0BQ2 bind >= 9.8.2-0.17
+REQUIRES=bind-chroot sausalito-palette >= 0.5.1-0BQ2
 
 #########
 # some useful defines

@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalAccount.php 1159 2008-06-12 12:45:36Z mstauber $
+// $Id: personalAccount.php 1398 2010-03-10 10:41:57Z shibuya $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -41,7 +41,6 @@ $block->addFormField(
 );
 
 // find all possible locales
-$possibleLocales = array();
 $possibleLocales = stringToArray($system["locales"]);
 /*
  * don't show browser option for admin, because then it becomes unclear
@@ -79,15 +78,6 @@ $block->addFormField(
   $passwordField,
   $factory->getLabel("newPasswordField")
 );
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 

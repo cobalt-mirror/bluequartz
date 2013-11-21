@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: FormFieldBuilder.php 1184 2008-09-10 21:23:19Z mstauber $
+// $Id: FormFieldBuilder.php 1465 2010-05-13 00:12:17Z shibuya $
 
 // description:
 // This class helps to build form field components.
@@ -108,11 +108,8 @@ class FormFieldBuilder {
   // param: value: the value of the HTML input field
   // returns: HTML that represents the field
   function makeHiddenField($id, $value = "") {
-
     // HTML safe
-    //$value = htmlspecialchars($value); // Doesn't work anymore, as htmlspecialchars can no longer work on arrays, only strings.
-					 // So we do the job in a special function called formspecialchars:
-    $value = formspecialchars($value);
+    $value = htmlspecialchars($value);
 
     return "<INPUT TYPE=\"HIDDEN\" NAME=\"$id\" VALUE=\"$value\">\n";
   }
@@ -298,9 +295,12 @@ element.isOptional = $isOptional;
 	}
 
 	// add spacer
+	// dirty hack for multiple select
+	if (!$isMultiple) {
 	$result .= "<OPTION>";
 	for($i = 0; $i < $width; $i++)
 	  $result .= "_";
+	}
 
 	// do not put any new lines here because fields that use this code may
 	// want no line breaks to be shown on screen
@@ -376,59 +376,6 @@ document.$formId.$id.options.length = $optionNum;
     return "<INPUT TYPE=\"TEXT\" NAME=\"$id\" $value $size $maxLength $onChange>\n";
   }
 
-  // description: make a HTML field
-  // param: id: the identifier of the field
-  // param: value: the value of the HTML input field
-  // param: access: "" for hidden, "r" for read-only, "w" for write-only
-  //     and "rw" for read and write
-  // param: size: the length of the field
-  // param: maxLength: maximum number of characters
-  //     that can be entered into the field
-  // param: onChange: the onChange attribute of the field
-  // returns: HTML that represents the field
-  function makeHtmlField($id, $value, $access, $size, $maxLength, $onChange) {
-    $shortval = $value;
-    if (($maxLength > 0) && (strlen($value) > $maxLength)) {
-	//$shortval = substr($value, 0, $maxLength) . ' ...';
-    }
-
-    switch($access) {
-      case "":
-	return $this->makeHiddenField($id, $value);
-
-      case "r":
-	return $shortval;
-
-      case "R":
-	return $shortval;
-
-      case "w":
-	$value = "";
-	break;
-
-      case "rw":
-	$value = "VALUE=\"$value\"";
-	break;
-    }
-
-    // log activity if necessary
-    $system = new System();
-    $logChange = ($system->getConfig("logPath") != "") ? "top.code.uiLog_log('change', 'FormField', '$id', this.value);" : "";
-
-    // find size
-    $size = ($size > 0) ? "SIZE=\"$size\"" : "";
-
-    // find max size
-    $maxLength = ($maxLength > 0) ? "MAXLENGTH=\"$maxLength\"" : "";
-
-    // find onChange handler
-    if($onChange != "" || $logChange != "")
-      $onChange = "onChange=\"$logChange $onChange\"";
-
-    return "<INPUT TYPE=\"TEXT\" NAME=\"$id\" $value $size $maxLength $onChange>\n";
-  }
-
-
   // description: make a text area field
   // param: id: the identifier of the field
   // param: value: the value of the HTML input field
@@ -464,7 +411,7 @@ document.$formId.$id.options.length = $optionNum;
 
 	// if no wrap
 	if($wrap == "off")
-	  $value = "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD NOWRAP><FONT STYLE=\"font-size:12px\">$value</FONT></TD></TR></TABLE>";
+	  $value = "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD NOWRAP>$value</TD></TR></TABLE>";
 
 	return $value;
 
@@ -532,31 +479,6 @@ document.$formId.$id.textArea = document.$formId.$textId;
 ";
   }
 }
-
-function formspecialchars($var)
-    {
-        $pattern = '/&(#)?[a-zA-Z0-9]{0,};/';
-
-        if (is_array($var)) {    // If variable is an array
-            $out = array();      // Set output as an array - for now
-            foreach ($var as $key => $v) {     
-                $out[$key] = formspecialchars($v);         // Run formspecialchars on every element of the array and return the result. Also maintains the keys.
-            }
-	    // Now that we're done with the array, we turn it back into a string:
-            $out = implode("", $out);
-        } else {
-            $out = $var;
-//            while (preg_match($pattern,$out) > 0) { // preg_match over unicode = bad idea. /u in pattern helps a little, but it still sucks. Works w/o, too, so scew it.
-//                $out = htmlspecialchars_decode($out,ENT_QUOTES);
-//            }
-	    // Detect the original encoding of the string:
-	    $oldEncoding = mb_detect_encoding($out, "EUC-JP, UTF-8");
-            $out = htmlspecialchars(stripslashes(trim($out)), ENT_QUOTES, $oldEncoding);     // Trim the variable, strip all slashes, and encode it
-
-        }
-        return $out;
-    }
-
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

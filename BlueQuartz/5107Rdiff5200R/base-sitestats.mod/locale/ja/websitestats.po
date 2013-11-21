@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -13,7 +22,7 @@ msgstr "[[base-sitestats.generateBut_help]]"
 
 # summary page
 msgid "summaryStats"
-msgstr "¥¦¥§¥ÖÍøÍÑ¾õ¶·¤ÎÅı·×"
+msgstr "ã‚¦ã‚§ãƒ–åˆ©ç”¨çŠ¶æ³ã®çµ±è¨ˆ"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,34 +31,34 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "³«»ÏÆü»ş"
+msgstr "é–‹å§‹æ—¥æ™‚"
 
 msgid "firstRequest_help"
-msgstr "¤³¤ÎÅı·×¤Ë´Ş¤Ş¤ì¤ëÊó¹ğ´ü´Ö¤Î³«»ÏÆü»ş¤ò¼¨¤·¤Ş¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "ã“ã®çµ±è¨ˆã«å«ã¾ã‚Œã‚‹å ±å‘ŠæœŸé–“ã®é–‹å§‹æ—¥æ™‚ã‚’ç¤ºã—ã¾ã™ã€‚[[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "½ªÎ»Æü»ş"
+msgstr "çµ‚äº†æ—¥æ™‚"
 
 msgid "lastRequest_help"
-msgstr "¤³¤ÎÅı·×¤Ë´Ş¤Ş¤ì¤ëÊó¹ğ´ü´Ö¤Î½ªÎ»Æü»ş¤ò¼¨¤·¤Ş¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "ã“ã®çµ±è¨ˆã«å«ã¾ã‚Œã‚‹å ±å‘ŠæœŸé–“ã®çµ‚äº†æ—¥æ™‚ã‚’ç¤ºã—ã¾ã™ã€‚[[base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "À®¸ù¤·¤¿¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "æˆåŠŸã—ãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°"
 
 msgid "successfulRequests_help"
-msgstr "Àµ¾ï¤Ë½èÍı¤µ¤ì¤¿¥ê¥¯¥¨¥¹¥È¤ÎÁí¿ô¤Ç¤¹¡£"
+msgstr "æ­£å¸¸ã«å‡¦ç†ã•ã‚ŒãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆã®ç·æ•°ã§ã™ã€‚"
 
 msgid "pageRequests"
-msgstr "¥ê¥¯¥¨¥¹¥È¤µ¤ì¤¿¥Ú¡¼¥¸¿ô"
+msgstr "ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚ŒãŸãƒšãƒ¼ã‚¸æ•°"
 
 msgid "pageRequests_help"
-msgstr "¥ê¥¯¥¨¥¹¥È¤µ¤ì¤¿¥Ú¡¼¥¸¤ÎÁí¿ô¤Ç¤¹¡£¡Ö¥Ú¡¼¥¸¡×¤È¤Ï¡¢.html¡¢.htm¡¢.asp¡¢/ ¤Ê¤É¤òËöÈø¤Ë»ı¤Ä¥Õ¥¡¥¤¥ë¤ò°ÕÌ£¤·¤Ş¤¹¡£"
+msgstr "ãƒªã‚¯ã‚¨ã‚¹ãƒˆã•ã‚ŒãŸãƒšãƒ¼ã‚¸ã®ç·æ•°ã§ã™ã€‚ã€Œãƒšãƒ¼ã‚¸ã€ã¨ã¯ã€.htmlã€.htmã€.aspã€/ ãªã©ã‚’æœ«å°¾ã«æŒã¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ„å‘³ã—ã¾ã™ã€‚"
 
 msgid "failedRequests"
-msgstr "¼ºÇÔ¤·¤¿¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "å¤±æ•—ã—ãŸãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°"
 
 msgid "failedRequests_help"
-msgstr "Â¸ºß¤·¤Ê¤¤¥Õ¥¡¥¤¥ë¤ËÂĞ¤¹¤ë¥ê¥¯¥¨¥¹¥È¡¢ÉÔÀµ¤Ê¥ê¥¯¥¨¥¹¥È¡¢ÌäÂê¤Î¤¢¤ë¥ê¥¯¥¨¥¹¥È¤Ê¤É¤ò¼õ¤±¼è¤ë¤È¡¢¤³¤Î¥µ¡¼¥Ğ¤Ï¡ÖÉÔÎÉ¥ê¥¯¥¨¥¹¥È¡×¤òÀ¸À®¤·¤Ş¤¹¡£"
+msgstr "å­˜åœ¨ã—ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ã«å¯¾ã™ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€ä¸æ­£ãªãƒªã‚¯ã‚¨ã‚¹ãƒˆã€å•é¡Œã®ã‚ã‚‹ãƒªã‚¯ã‚¨ã‚¹ãƒˆãªã©ã‚’å—ã‘å–ã‚‹ã¨ã€ã“ã®ã‚µãƒ¼ãƒã¯ã€Œä¸è‰¯ãƒªã‚¯ã‚¨ã‚¹ãƒˆã€ã‚’ç”Ÿæˆã—ã¾ã™ã€‚"
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -58,22 +67,20 @@ msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
 msgid "distinctFiles"
-msgstr "Å¾Á÷¥Õ¥¡¥¤¥ë¿ô¡Ê½ÅÊ£¤ò½ü¤¯¡Ë"
+msgstr "è»¢é€ãƒ•ã‚¡ã‚¤ãƒ«æ•°ï¼ˆé‡è¤‡ã‚’é™¤ãï¼‰"
 
 msgid "distinctFiles_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤Ë¤è¤êÅ¾Á÷¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ÎÁí¿ô¡ÊÆ±¤¸¥Õ¥¡¥¤¥ë¤¬£²²ó°Ê¾åÅ¾Á÷¤µ¤ì¤Æ¤â£±²ó¤È¤·¤Æ¿ô¤¨¤ë¡Ë¤Ç¤¹¡£"
+msgstr "ã“ã®ã‚µãƒ¼ãƒã«ã‚ˆã‚Šè»¢é€ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®ç·æ•°ï¼ˆåŒã˜ãƒ•ã‚¡ã‚¤ãƒ«ãŒï¼’å›ä»¥ä¸Šè»¢é€ã•ã‚Œã¦ã‚‚ï¼‘å›ã¨ã—ã¦æ•°ãˆã‚‹ï¼‰ã§ã™ã€‚"
 
 msgid "uniqueHosts"
-msgstr "¥³¥ó¥Æ¥ó¥È¤ò¥ê¥¯¥¨¥¹¥È¤·¤¿¥³¥ó¥Ô¥å¡¼¥¿¿ô"
+msgstr "ã‚³ãƒ³ãƒ†ãƒ³ãƒˆã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãŸã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿æ•°"
 
 msgid "uniqueHosts_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¾å¤Î¥³¥ó¥Æ¥ó¥È¤ò¥ê¥¯¥¨¥¹¥È¤·¤¿¥³¥ó¥Ô¥å¡¼¥¿¤ÎÂæ¿ô¡Ê½ÅÊ£¤ò´Ş¤á¤Ê¤¤¡Ë¤Ç¤¹¡£¤³¤Î¿ô»ú¤Ë¤è¤ê¡¢¤³¤Î¥µ¡¼¥Ğ¤«¤é¥³¥ó¥Æ¥ó¥È¤ò¥À¥¦¥ó¥í¡¼¥É¤·¤¿¿Í¤Î¿ô¤ò¿äÄê¤Ç¤­¤Ş¤¹¡£¤¿¤À¤·¡¢Æ±°ì¤Î¥Õ¥¡¥¤¥ä¥¦¥©¡¼¥ë¤ä¥×¥í¥­¥·¥µ¡¼¥Ğ¤òÄÌ¤·¤Æ¥¢¥¯¥»¥¹¤¹¤ë¥³¥ó¥Ô¥å¡¼¥¿¤Ï£±¥¢¥É¥ì¥¹¤È¤·¤Æ¿ô¤¨¤é¤ì¤Ş¤¹¡£"
-
+msgstr "ã“ã®ã‚µãƒ¼ãƒä¸Šã®ã‚³ãƒ³ãƒ†ãƒ³ãƒˆã‚’ãƒªã‚¯ã‚¨ã‚¹ãƒˆã—ãŸã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã®å°æ•°ï¼ˆé‡è¤‡ã‚’å«ã‚ãªã„ï¼‰ã§ã™ã€‚ã“ã®æ•°å­—ã«ã‚ˆã‚Šã€ã“ã®ã‚µãƒ¼ãƒã‹ã‚‰ã‚³ãƒ³ãƒ†ãƒ³ãƒˆã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ãŸäººã®æ•°ã‚’æ¨å®šã§ãã¾ã™ã€‚ãŸã ã—ã€åŒä¸€ã®ãƒ•ã‚¡ã‚¤ãƒ¤ã‚¦ã‚©ãƒ¼ãƒ«ã‚„ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã‚’é€šã—ã¦ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã¯ï¼‘ã‚¢ãƒ‰ãƒ¬ã‚¹ã¨ã—ã¦æ•°ãˆã‚‰ã‚Œã¾ã™ã€‚"
 
 # summary links
-
 msgid "otherStatistics"
-msgstr "¤½¤ÎÂ¾¤Î¥¦¥§¥ÖÍøÍÑ¾õ¶·Åı·×"
+msgstr "ãã®ä»–ã®ã‚¦ã‚§ãƒ–åˆ©ç”¨çŠ¶æ³çµ±è¨ˆ"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -94,16 +101,16 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "¥É¥á¥¤¥óÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "ãƒ‰ãƒ¡ã‚¤ãƒ³åˆ¥ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°"
 
 msgid "domainReportBut_help"
-msgstr "¥É¥á¥¤¥óÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ãƒ‰ãƒ¡ã‚¤ãƒ³åˆ¥ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "typesReportBut"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ç¨®é¡åˆ¥ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°"
 
 msgid "typesReportBut_help"
-msgstr "¥Õ¥¡¥¤¥ë¤Î¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¨®é¡åˆ¥ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "requestReportBut"
 msgstr "[[base-sitestats.requestReportBut]]"
@@ -148,7 +155,7 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "¥É¥á¥¤¥óÅı·×"
+msgstr "ãƒ‰ãƒ¡ã‚¤ãƒ³çµ±è¨ˆ"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
@@ -160,10 +167,10 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "requests_help"
-msgstr "Å¾Á÷¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤Î¿ô¤ò¼¨¤·¤Ş¤¹¡£"
+msgstr "è»¢é€ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã®æ•°ã‚’ç¤ºã—ã¾ã™ã€‚"
 
 msgid "vsiteStats"
-msgstr "²¾ÁÛ¥µ¥¤¥ÈÊÌ¤Î¥¦¥§¥ÖÍøÍÑ¾õ¶·"
+msgstr "ä»®æƒ³ã‚µã‚¤ãƒˆåˆ¥ã®ã‚¦ã‚§ãƒ–åˆ©ç”¨çŠ¶æ³"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -184,7 +191,7 @@ msgid "site_help"
 msgstr "[[base-sitestats.site_help]]"
 
 msgid "typeStats"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ç¨®é¡åˆ¥ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -193,7 +200,7 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "¥ê¥¯¥¨¥¹¥ÈÅı·×"
+msgstr "ãƒªã‚¯ã‚¨ã‚¹ãƒˆçµ±è¨ˆ"
 
 msgid "requestFile"
 msgstr "[[base-sitestats.requestFile]]"
@@ -221,4 +228,3 @@ msgstr "[[base-sitestats.hourlySummaryDesc]]"
 
 msgid "dailySummaryDesc"
 msgstr "[[base-sitestats.dailySummaryDesc]]"
-

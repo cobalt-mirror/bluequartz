@@ -1,10 +1,10 @@
 Summary: Active Monitor support for base-telnet-am
 Name: base-telnet-am
-Version: 1.0.3
-Release: 1BX01%{dist}
+Version: 1.0.2
+Release: 4BQ6
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: base-telnet-am.tar.gz
 BuildRoot: /tmp/base-telnet-am
 
@@ -25,18 +25,8 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-telnet-am.  
 
 %changelog
-
-* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.3-1BX01
-- We telnet to 127.0.0.1 instead of localhost now
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.2-4BQ8
-- Rebuilt for BlueOnyx
-
-* Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ7
-- add dist macro for release.
-
-* Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ6
-- add sign to the package.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ6
+- remove .svn directory from rpm package.
 
 * Fri Oct 21 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.2-4BQ5
 - use vendor macro for Vendor tag.

@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
-// $Id: finish.php 1097 2008-02-13 15:12:32Z brian $
+// $Id: finish.php 259 2004-01-03 06:28:40Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
@@ -44,8 +44,6 @@ if($time["deferTimeZone"])
 	$tz = $time["deferTimeZone"];
 
 $cce->set($soid, 'Time', array('deferCommit'=>0, 'timeZone'=>$tz, 'deferTimeZone'=>''));
-//$cce->set($soid, 'convert2passwd', array('convert' => '1'));
-
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

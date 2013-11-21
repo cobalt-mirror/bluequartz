@@ -1,19 +1,17 @@
-#!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: 10_addSystem.pl,v 1.5.2.3 Mon 01 Mar 2010 11:15:18 PM CET mstauber Exp $
-# Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
-# Copyright 2008-2013 Team BlueOnyx. All rights reserved.
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: 10_addSystem.pl,v 1.5.2.2 2002/03/12 00:44:45 pbaltz Exp $
+# Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
 
-#use strict;
+use strict;
 use CCE;
 use I18n;
-use Sys::Hostname::FQDN qw(
-        asciihostinfo
-        gethostinfo
-        fqdn
-        short
-  );
 
 my $errors = 0;
+
+my %locales = (  
+	"en_US" => "&en&",
+	"ja" => "&ja&"
+);
 
 my $cce = new CCE;
 $cce->connectuds();
@@ -24,75 +22,23 @@ chomp($fullbuild);
 # figure out our product
 my ($product, $build, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
 
-if ($build eq "5106R") {
-    my %locales = (  
-	"en_US" => "&en",
-	"da_DK" => "&da_DK&",
-	"de_DE" => "&de_DE&",
-	"ja" => "&ja&"
-    );
-}
-else {
-    # 5X07R or 5X08R:
-    my %locales = (  
-	"en_US" => "&en_US&",
-	"da_DK" => "&da_DK&",
-	"de_DE" => "&de_DE&",
-	"ja_JP" => "&ja_JP&"
-    );
-}
-
-
 my ($i18n) = `grep LANG /etc/sysconfig/i18n`;
-if ($i18n =~ m/^LANG="(.*)"/) {
+if ($i18n =~ m/^LANG="(\S+)"/) {
         $lang = $1;
 }
-if ($i18n =~ m/^LANG=(.*)/) {
-        $lang = $1;
-}
-
 if ($lang =~ /^ja/) {
-    if ($build eq "5106R") {
         $lang = 'ja';
-    }
-    else {
-	# 5X07R or 5X08R:
-        $lang = 'ja_JP';
-    }
-}
-elsif ($lang =~ /^da_DK/) { 
-	$lang = 'da_DK';
-}
-elsif ($lang =~ /^de_DE/) { 
-	$lang = 'de_DE';
-}
-else {
-    if ($build eq "5106R") {
+} else {
         $lang = 'en';
-    }
-    else {
-	# 5X07R or 5X08R:
-        $lang = 'en_US';
-    }
 }
 
-($name,$aliases,$addrtype,$length,@addrs)=gethostinfo();
-$myhost = short();
-$fqdn = fqdn();
-@hlist = split(/\s/, $aliases) ;
-foreach $line (@hlist) {
-    if ($line =~ m/^$myhost\.(.*)$/ig ) {
-        unless (($line =~ m/localhost/ig) || ($line =~ m/localdomain/ig)) {
-            $fqdn = $line;
-        }
-    }
-}
-$mydomain = $fqdn;
-$mydomain =~ s/^$myhost\.//;
-
+my $myhost = `/bin/hostname -s`;
+chomp ($myhost);
 if ( $myhost eq "" ) {
 	$myhost = "localhost";
 }
+my $mydomain = `/bin/hostname -d`;
+chomp ($mydomain);
 if ( $mydomain eq "" ) {
 	$mydomain = "localdomain";
 }
@@ -124,20 +70,7 @@ my $available_langs = $cce->array_to_scalar(I18n::getAvailableLocales('base-syst
 # count the systems;
 my @oids = $cce->find("System");
 if ($#oids == 0) {
-	# We have only one System object - update it:
-    	($sys_oid) = $cce->find('System', '');
-    	($ok) = $cce->set($sys_oid, '',{
-                hostname => $myhost,
-                domainname => $mydomain,
-                dns => $nsscalar,
-                productBuildString=>$fullbuild,
-                productIdentity => $product,
-                productBuild => $build,
-                productLanguage => $lang,
-                console=>"0",
-                locales => $available_langs
-        });
-        $oids[0] = $cce->oid();
+	# we have one and only one System object.  hooray.
 } elsif ($#oids < 0) {
 	# we must create a System object with no properties.
 	$cce->create("System", {

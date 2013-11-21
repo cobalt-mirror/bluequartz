@@ -1,29 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 # $Id: ssh.po,v 1.1.2.1 2002/03/12 22:50:24 pbaltz Exp $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-
 # ui extension strings
 # 20_SSH.php.shell.System
 msgid "enableSSH"
-msgstr "SSH ¥µ¡¼¥Ğ¤òÍ­¸ú¤Ë¤¹¤ë"
+msgstr "SSH ã‚µãƒ¼ãƒã‚’æœ‰åŠ¹ã«ã™ã‚‹"
 
 msgid "enableSSH_help"
-msgstr "SSH ¤òÍ­¸ú¤Ë¤¹¤ë¤È¡¢¥·¥§¥ë¥¢¥¯¥»¥¹¤òµö²Ä¤µ¤ì¤Æ¤¤¤ë¥æ¡¼¥¶¤¬¡¢SSH ¥¯¥é¥¤¥¢¥ó¥È¥½¥Õ¥È¥¦¥§¥¢¤ò»È¤Ã¤Æ¥µ¡¼¥Ğ¤ËÀÜÂ³¤Ç¤­¤ë¤è¤¦¤Ë¤Ê¤ê¤Ş¤¹¡£SSH ¤Ç¤Ï¡¢¥¯¥é¥¤¥¢¥ó¥È¤È¥µ¡¼¥Ğ´Ö¤ÇÁ÷¿®¤µ¤ì¤ë¥Ñ¥¹¥ï¡¼¥É¤Ê¤É¤ÎÁ´¥Ç¡¼¥¿¤¬°Å¹æ²½¤µ¤ì¤ë¤¿¤á¡¢SSH ¤ÎÍøÍÑ¤Ï Telnet ¤ÎÍøÍÑ¤è¤ê¥»¥­¥å¥¢¤Ç¤¢¤ë¤È¹Í¤¨¤é¤ì¤Ş¤¹¡£"
-
-msgid "SSH_Port"
-msgstr "SSH Port:"
-
-msgid "SSH_Port_help"
-msgstr "By default SSH runs on port 22/TCP. However, you can configure it to run on another port instead in order to attempt to evade automated brute force login attacks."
-
-msgid "SSH_Proto"
-msgstr "SSH Protocol:"
-
-msgid "SSH_Proto_help"
-msgstr "SSH supports two protocols: Protocol version 1 and version 2. Two is more advanced and secure. If possible, you should use only protocol 2. But you can also set it to '2,1', in which case applications that support protocol 2 will use it, while older applications that only support protocol 1 can fall back to that instead."
-
-msgid "SSHrootLogin"
-msgstr "SSH Root Login:"
-
-msgid "SSHrootLogin_help"
-msgstr "By default and for security reasons direct SSH login as user 'root' is typically not allowed. If needed, you can allow it here."
-
+msgstr "SSH ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã¨ã€ã‚·ã‚§ãƒ«ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã•ã‚Œã¦ã„ã‚‹ãƒ¦ãƒ¼ã‚¶ãŒã€SSH ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ä½¿ã£ã¦ã‚µãƒ¼ãƒã«æ¥ç¶šã§ãã‚‹ã‚ˆã†ã«ãªã‚Šã¾ã™ã€‚SSH ã§ã¯ã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã¨ã‚µãƒ¼ãƒé–“ã§é€ä¿¡ã•ã‚Œã‚‹ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãªã©ã®å…¨ãƒ‡ãƒ¼ã‚¿ãŒæš—å·åŒ–ã•ã‚Œã‚‹ãŸã‚ã€SSH ã®åˆ©ç”¨ã¯ Telnet ã®åˆ©ç”¨ã‚ˆã‚Šã‚»ã‚­ãƒ¥ã‚¢ã§ã‚ã‚‹ã¨è€ƒãˆã‚‰ã‚Œã¾ã™ã€‚"

@@ -13,7 +13,7 @@
 // sites at the same time, the migration utility should be used.
 // 
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: exportHandler.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: exportHandler.php 1006 2007-06-25 15:22:10Z shibuya $
 
 # FIXME: 
 #  - put some security in here to restrict access

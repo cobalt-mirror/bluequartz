@@ -1,4 +1,4 @@
-# $Id: Network.pm 1136 2008-06-05 01:48:04Z mstauber $
+# $Id: Network.pm 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 #
 # hidden functions only used by scripts in this module
@@ -32,18 +32,9 @@ sub find_eth_ifaces
 	{
 		while (<IFCONFIG>)
 		{
-			if (! -f "/proc/user_beancounters") {
-				# Normal network interfaces:
-				if (!/^(eth\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-			else {
-				# OpenVZ network interfaces:
-				if (!/^(venet\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
+			if (!/^(eth\d+)\s/) { next; }
+			# found an existing interface
+			push @eth_ifaces, $1;
 		}
 		close(IFCONFIG);
     }
@@ -55,17 +46,12 @@ sub find_eth_ifaces
     # now search /etc/sysconfig/network-scripts for aliases
     if (opendir(IFCFG, $Network::NET_SCRIPTS_DIR))
     {
-        while (my $filename = readdir(IFCFG)) {
-	    if (! -f "/proc/user_beancounters") {
-	    	if ($filename =~ /\-(eth\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-	    else {
-	    	if ($filename =~ /\-(venet\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
+        while (my $filename = readdir(IFCFG))
+        {
+            if ($filename =~ /\-(eth\d+\:\d+)$/)
+            {
+                push @eth_ifaces, $1;
+            }
         }
         
         closedir(IFCFG);

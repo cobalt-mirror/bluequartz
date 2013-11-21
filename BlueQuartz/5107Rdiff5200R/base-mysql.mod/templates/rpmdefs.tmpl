@@ -15,19 +15,6 @@ Group: CCE/[VENDOR]
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-Obsoletes: nuonce-mysql-ui <= 1.0.0
-Obsoletes: nuonce-mysql-locale-en  <= 1.0.0
-Obsoletes: nuonce-mysql-glue <= 1.0.0
-Obsoletes: nuonce-mysql-locale-ja <= 1.0.0
-Obsoletes: nuonce-mysql-capstone <= 1.0.0
-Obsoletes: solarspeed-mod_mysql-glue <= 1.0.1
-Obsoletes: solarspeed-mod_mysql-capstone <= 1.0.1
-Obsoletes: solarspeed-mod_mysql-locale-en <= 1.0.1
-Obsoletes: solarspeed-mod_mysql-ui <= 1.0.1
-Obsoletes: solarspeed-mysql-locale-en <= 1.0.0
-Obsoletes: solarspeed-mysql-ui <= 1.0.0
-Obsoletes: solarspeed-mysql-capstone <= 1.0.0
-Obsoletes: solarspeed-mysql-glue <= 1.0.0
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -114,34 +101,12 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Sep 30 2010 Hideki Oride <oride@gachapom.jp> 2.1.0-0BQ2
+- The error is displayed when there is a data base of the same name. 
+- When MySQL was used on site, information on the site was not revokable. 
 
-* Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.1-27
-- Updated locale/de_DE/mysql.po to correct some transitional errors.
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.1-26
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.1-25
-- Merged in Greg Kuhnert's changes for password length for the MySQL passwords from 5106R tree
-- Was previously 2.0.1-19 on 5106R
-
-* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-24
-- Small compat fix for newer MySQL
-
-* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-23
-- Fixed PHP-5.3 compat issues in extensions
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-22
-- Fixed PHP-5.3 compat issues in ui/web/download.php and ui/web/mysqlHandler.php
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-21
-- Cleaned up requirements again.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-20
-- Changed requirement for base-subdomains-locale-en to base-subdomains-locale-en_US
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-19
-- Copied 'en' locales to 'en_US'
+* Fri Sep 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 2.1.0-0BQ1
+- modify for BlueQuartz 5200R by Oride-san
 
 * Wed Sep 16 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.1-18
 - Updated glue/handlers/modify_mysql_data.pl to check if MySQLd is running. If not skip all MySQL related transactions before they generate errors that interfere with site deletions.

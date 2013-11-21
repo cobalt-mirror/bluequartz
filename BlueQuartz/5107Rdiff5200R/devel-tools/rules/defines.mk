@@ -53,12 +53,12 @@ PACKAGE_DIR=$(shell if [ -d /usr/src/redhat ]; then \
 			echo /var/src/rpm; \
 		elif [ -d /usr/src/packages ]; then \
 			echo /usr/src/packages; \
-		elif [ -d /root/rpmbuild ]; then \
-			echo /root/rpmbuild; \
+		elif [ -d $(HOME)/rpmbuild ]; then \
+			echo $(HOME)/rpmbuild; \
 		fi)
 RPM_TOPDIR=$(shell rpm --eval='%{_topdir}')
 
-XLOCALEPAT=en de es fr zh_CN zh_TW
-RPMBUILD=$(shell which rpmbuild>/dev/null 2>&1&&echo rpmbuild||echo rpmbuild)
+XLOCALEPAT=de es fr zh_CN zh_TW
+RPMBUILD=$(shell which rpmbuild>/dev/null 2>&1&&echo rpmbuild||echo rpm)
 USER_HTTPD=$(shell id httpd>/dev/null 2>&1&&echo httpd||echo apache)
 

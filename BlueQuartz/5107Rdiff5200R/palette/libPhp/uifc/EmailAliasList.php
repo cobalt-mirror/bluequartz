@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: EmailAliasList.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: EmailAliasList.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isEmailAliasListDefined;
 if($isEmailAliasListDefined)

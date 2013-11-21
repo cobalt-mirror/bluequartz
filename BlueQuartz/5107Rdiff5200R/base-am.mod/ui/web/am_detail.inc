@@ -14,14 +14,6 @@ function am_detail_block($factory, $cce, $nsname, $name = "")
     if ($amobj == null) {
 	$msg = $factory->getTextBlock("", 
 		$i18n->interpolate("[[base-am.amObjNotFound]]"), "r");
-
-        // PHP5: 
- 	$amobj->addFormField( 
- 	$factory->getTextField("debug_1", "", 'r'), 
- 	    $factory->getLabel("debug_1"), 
- 	    Hidden 
- 	); 
-
 	print($msg->toHtml());
 	print("<BR>");
     } else {
@@ -133,14 +125,6 @@ function am_detail_block_core($factory, $name, $icon, $msgfield, $date)
 
     $mainblock->addFormField($datefield, $label);
     // print it 
-
-    // PHP5: 
-    $mainblock->addFormField( 
-    $factory->getTextField("debug_1", "", 'r'), 
-	$factory->getLabel("debug_1"), 
- 	Hidden 
-    ); 
-
     print($mainblock->toHtml());
 }
 

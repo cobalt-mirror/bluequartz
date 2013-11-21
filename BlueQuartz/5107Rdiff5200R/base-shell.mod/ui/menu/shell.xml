@@ -5,7 +5,7 @@
     url="/base/shell/shellAccess.php"
 >
     <parent id="base_controlpanel" order="60">
-        <access require="networkServices"/>
+        <access require="serverShell"/>
     </parent>
 </item>
 <!--

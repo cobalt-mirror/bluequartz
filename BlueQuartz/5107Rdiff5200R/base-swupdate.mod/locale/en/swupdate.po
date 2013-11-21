@@ -482,7 +482,7 @@ msgid "serverField"
 msgstr "[[base-swupdate.software]] Servers"
 
 msgid "defaultServer"
-msgstr "newlinq.blueonyx.it"
+msgstr "http://updates.bluequartz.org/packages/"
 
 msgid "serverField_help"
 msgstr "Enter the URLs of server locations to query for new software and updates.  The URL of the default server location is [[base-swupdate.defaultServer]]."
@@ -604,8 +604,5 @@ msgstr "Manage BlueLinQ"
 msgid "capgroup_adminBlueLinq_help"
 msgstr "This administrative right allows a user to manage BlueLinQ.  This allows a user to install new software and to update existing software."
 
-msgid "3rdpartypkg_warning"
-msgstr "PLEASE NOTE: Installation of a third-party package or update may cause the server to malfunction, crash, or become unstable. In addition, packages from un-trusted sources may allow a malicious publisher or user to take control of the server. Please only install packages from a trusted third party source." 
-
-msgid "warning_header"
-msgstr "Warning!!!"
+msgid "cap_managePackage"
+msgstr "Software Updates Management"

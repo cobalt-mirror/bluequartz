@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAdd.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: userAdd.php 1499 2010-07-22 08:07:44Z shibuya $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -29,20 +29,10 @@ if (count($errors) == 0)
     if ($group)
     { 
         $defaults = $cceClient->getObject("Vsite", array("name" => $group), "UserDefaults");
-
-	// Find out if FTP access for non-siteAdmins is enabled or disabled for this site:
-	list($ftpvsite) = $cceClient->find("Vsite", array("name" => $group));
-	$ftpPermsObj = $cceClient->get($ftpvsite, 'FTPNONADMIN');
-	$ftpnonadmin = $ftpPermsObj['enabled'];
-
     }
     else  
     {
         $defaults = $cceClient->getObject("System", array(), "UserDefaults");
-
-	// User belongs to no particular site?
-	// Set FTP access for non-siteAdmins by default to allowed state:
-	$ftpnonadmin = "1";
     }
 }
 
@@ -79,34 +69,41 @@ if($prop=="yes"){
 	);
 }
 
-// # Username - start
-if ($vsiteObj['prefix']) {
-    // If we have a Vsite prefix defined, we need to prefix all (new) usernames:
-    $prefixField = $factory->getVerticalCompositeFormField(array($factory->getTextField("prefix", $vsiteObj['prefix'], 'r')));  
-    $shortUserNameField = $factory->getVerticalCompositeFormField(array($factory->getUserName("userNameField", $userNameField, 'rw')));
-    $userNameCombined =& $factory->getCompositeFormField(array($prefixField, $shortUserNameField), '_');
- 
-    // Set Java Script Variable name:
-    $js_prefix = 'userNameField';
- 
-    $block->addFormField(
-        $userNameCombined,
-        $factory->getLabel('userNameField')
-        );
-
+// UserName Prefix add
+if($vsiteObj['userPrefixEnabled'])
+{
+    $userPrefixField = $vsiteObj['userPrefixField'];
+    
+    if(!$userPrefixField)
+    {
+       $octets = explode(".", $vsiteObj['fqdn']);
+       $userPrefixField = "";
+       foreach($octets as $octet)
+       {
+           $userPrefixField .= substr($octet, 0, 1);
+       }
+       $userPrefixField .= time();
+       $userPrefixField .= "_";
+       
+    }
+    
+    $userPrefix = $factory->getUserName("userPrefixField",  $userPrefixField, "r");
+    $userSuffix = $factory->getTextField("userSuffixField", $userSuffixField);
+    
+    $userNameField =& $factory->getCompositeFormField(array($userPrefix, $userSuffix), '');
 }
-else {
-    // If no Vsite prefix is defined, then we don't prefix (new) usernames:
-
-    // Set Java Script Variable name:
-    $js_prefix = 'userNameField';
-
-    $block->addFormField(
-	$factory->getUserName("userNameField", $userNameField),
-	$factory->getLabel("userNameField")
-    );
+else
+{
+    $userPrefix = $factory->getUserName("userPrefixField",  "", "r");
+    $userSuffix = $factory->getTextField("userSuffixField", $userSuffixField);
+    
+    $userNameField =& $factory->getCompositeFormField(array($userPrefix, $userSuffix), '');
 }
-// # Username - end
+
+$block->addFormField(
+    $userNameField,
+    $factory->getLabel("userNameField")
+);
 
 $block->addFormField(
     $factory->getPassword("passwordField", $passwordField),
@@ -208,16 +205,6 @@ $block->addFormField(
     $factory->getLabel("userDescField")
 );
 
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
-
-
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $block->addButton($factory->getCancelButton("/base/user/userList.php?group=$group"));
 
@@ -230,10 +217,6 @@ $serverScriptHelper->destructor();
 
 <?php 
 print($block->toHtml());
-
-// Hidden ftpForNonSiteAdmins flag:
-print "<br><input type=\"hidden\" name=\"ftpForNonSiteAdmins\" value=\"" . $ftpnonadmin . "\"><br>";
-
 if ( $group ) {
 	$vsite = $factory->getTextField("group", $group, "");
 	print($vsite->toHtml());
@@ -253,13 +236,13 @@ function fullNameChangeHandler() {
   var form = document.<?php print($formId)?>;
 
   // generate user name
-  if(form.<?php print($js_prefix)?>.value == "")
-    form.<?php print($js_prefix)?>.value = userNameGenerator_generate(form.fullNameField.value, "<?php print($defaults["userNameGenMode"]) ?>");
+  if(form.userNameField.value == "")
+    form.userNameField.value = userNameGenerator_generate(form.fullNameField.value, "<?php print($defaults["userNameGenMode"]) ?>");
 
   // generate email alias
   if(form.emailAliasesField.textArea.value == "") {
     var alias = emailAliasGenerator_generate(form.fullNameField.value);
-    if(alias != form.<?php print($js_prefix)?>.value)
+    if(alias != form.userNameField.value)
       form.emailAliasesField.textArea.value = alias;
   }
 }

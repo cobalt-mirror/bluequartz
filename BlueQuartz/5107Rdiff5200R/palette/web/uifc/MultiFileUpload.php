@@ -1,13 +1,13 @@
 <?php
 // Author: Mike Waychison, Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: MultiFileUpload.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: MultiFileUpload.php 1024 2007-06-25 15:31:47Z shibuya $
 
 include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
 $product = $serverScriptHelper->getProductCode();
-$isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+$isMonterey = ereg("35[0-9][0-9]R", $product);
 
 // find form action depending on product
 if ((!$isMonterey) && $serverScriptHelper->hasCCE())

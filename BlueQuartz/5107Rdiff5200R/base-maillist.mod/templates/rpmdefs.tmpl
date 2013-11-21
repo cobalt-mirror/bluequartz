@@ -11,15 +11,10 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-
-Conflicts: mailman
-Conflicts: base-mailman-capstone
-Conflicts: base-mailman-ui
-Conflicts: base-mailman-glue
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -75,15 +70,6 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-# Fix sendmail.cf and sendmail.mc:
-/usr/sausalito/scripts/initSendmail.sh
-/etc/init.d/sendmail condrestart
-
-# glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
-fi
-
 <end glue>
 <begin ui>
 # ui post-install
@@ -120,66 +106,25 @@ fi;
 <end locale>
 <end %POST-UNINSTALL>
 
-<begin $CHANGELOG
+<begin $CHANGELOG>
+* Thu Jul 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ18
+- resolved the issue that alias will be broken when new site is created.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX15
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Sat Jun 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ17
+- resolved the issue that can not send the mail to mail list after changing site FQDN.
 
-* Fri Jul 01 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX14
-- Modified glue/handlers/handle_vsite.pl
-- Major bugfix. All lines in the majordomo alias file were getting prefixed
-  with the FQDN - even comment lines. This sneaked in during commit 528.
-  The reason for the code change in 528 is unclear, so I commented the
-  troublesome lines out for now. Mea culpa.
+* Wed Jan 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ15
+- modify the file name for majordomo log to 'log' for majordomo logrotate.
 
-* Wed May 25 2011 Christoph Schneeberger <cschnee@telemedia.ch> 1.4.1-BX13
-- Changed to default access to who and which commands to closed
+* Wed Dec 23 2009 Hisao SHIBUYA <shibuya@bleuquartz.org> 1.4.0-68BQ14
+- change majordomo package and add sequencer feature.
 
-* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX12
-- Changed the 'Obsoltes' for the Mailman related stuff to 'Conflicts', which ought to work a hell of a lot better.
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ13
+- remove sendmail.cf check.
 
-* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX11
-- Added constructor/add_module.pl to make it easier in the future to distinguish between Majordomo and MailMan installs on BX.
-
-* Sun Apr 24 2011 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX10
-- Modified templates/rpmdefs.tmpl to to rely on /usr/sausalito/scripts/initSendmail.sh instead for changes to Sendmail config changes
-- Added the right obsoletes to templates/rpmdefs.tmpl to remove conflicting mailman RPMs
-
-* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX09
-- Resolved issue involving site name change
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.4.1-1BX08
-- Copied 'en' locales to 'en_US'
-
-* Tue Apr 27 2010 Rickard Osser <rickard.osser@bluapp.com> 1.4.1-1BQ7
-- Fixed bug in saving administrators. Use KISS when coding!!!
-
-* Wed Mar 03 2010 Rickard Osser <rickard.osser@bluapp.com> 1.4.1-1BQ6
-- Changed to save mail-addresses in domain-order.
-
-* Sat Aug 22 2009 Taco Scargo <taco@scargo.nl> 1.4.1-1BQ5
-- Fixed issues connected with the domain restriction and fixed configuration so that posts from valid e-mail aliases are also accepted 
-
-* Mon Aug 17 2009 Taco Scargo <taco@scargo.nl> 1.4.1-1BQ4
-- Fixed selection issues when more than 100 local users were available (pagination)
-
-* Mon Aug 17 2009 Taco Scargo <taco@scargo.nl> 1.4.1-1BQ3
-- Patched base-maillist to support restrict posting to email domains that belong to the site
-
-* Wed Mar 04 2009 Rickard Osser <rickard.osser@bluapp.com> 1.4.1-1BQ2
-- Patched base-maillist to support multiple moderators
-
-* Tue Mar 03 2009 Rickard Osser <rickard.osser@bluapp.com> 1.4.1-1BQ1
-- Major rework of admin post policies and moderators.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.4.0-68BQ15
-- Rebuilt for BlueOnyx.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.4.0-68BQ14
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.4.0-68BQ13
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ12
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.4.0-68BQ12
 - Fixed duplicate include issue.

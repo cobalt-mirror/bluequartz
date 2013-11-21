@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userDiskUsage.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: userDiskUsage.php 1019 2007-06-25 15:29:45Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/PagedBlock.php");

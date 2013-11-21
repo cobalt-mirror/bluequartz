@@ -1,5 +1,5 @@
 <!--
-    $Id: apache.schema 711 2006-03-11 15:21:10Z shibuya $
+    $Id: apache.schema 1490 2010-06-19 09:11:09Z shibuya $
     Copyright(c) 2000 Cobalt Networks, Inc.
     Author: Kevin K.M. Chiu
 -->
@@ -14,105 +14,44 @@
 <class name="System" namespace="Web" version="1.0">
     <property 
         name="cgiAccess" type="cgiAccess" default="subset"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="cgiUsers" type="scalar"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="minSpare" type="int" default="5"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="maxSpare" type="int" default="20"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="maxClients" type="int" default="50"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="hostnameLookups" type="boolean" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="minSpareAdvised" type="int" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="maxSpareAdvised" type="int" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="maxClientsAdvised" type="int" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(serverHttpd)"
     />
     <property 
         name="reload" type="uint" optional="yes"
-        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin) OR ruleCapable(modifyHttpd)"
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin) OR ruleCapable(serverHttpd)"
     />
-
-    <!-- Switches for Apache configuration of /home/.sites/ in /etc/httpd/conf.d/blueonyx.conf -->
-
-    <property 
-        name="Options_All" type="boolean" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="Options_FollowSymLinks" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="Options_Includes" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="Options_Indexes" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="Options_MultiViews" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="Options_SymLinksIfOwnerMatch" type="boolean" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-
-
-    <property 
-        name="AllowOverride_All" type="boolean" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="AllowOverride_AuthConfig" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="AllowOverride_FileInfo" type="boolean" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="AllowOverride_Indexes" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="AllowOverride_Limit" type="boolean" default="1"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-    <property 
-        name="AllowOverride_Options" type="boolean" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-
-
-    <!-- Switche that toggles rewriting of /etc/httpd/conf.d/blueonyx.conf -->
-    <property 
-        name="Writeback_BlueOnyx_Conf" type="int" default="0"
-        writeacl="ruleCapable(modifyHttpd)"
-    />
-
 </class>
 
 <!-- 
@@ -167,12 +106,15 @@
         writeacl="ruleCapable(adminUser)"
     />
     <property
-        name="webAliases" type="fqdn" array="yes" optional="yes"
+        name="ssl" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
-    <!-- Web Alias Redirects (to main site name)-->
     <property
-        name="webAliasRedirects" type="boolean" default="0"  
+        name="sslDirty" type="scalar" optional="yes"
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    />
+    <property
+        name="webAliases" type="fqdn" array="yes" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
 </class>

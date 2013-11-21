@@ -1,18 +1,16 @@
 <?php
-// Authors: Kevin K.M. Chiu & Michael Stauber
-// Copyright 2000, Cobalt Networks. All rights reserved.
-// Copyright 2009, Team BlueOnyx. All rights reserved.
-// $Id: apache.php Fri 12 Jun 2009 09:28:20 AM CEST mstauber $
+// Author: Kevin K.M. Chiu
+// Copyright 2000, Cobalt Networks.  All rights reserved.
+// $Id: apache.php 1538 2010-10-13 09:46:37Z oride $
 
 include_once("ArrayPacker.php");
 include_once("Product.php");
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
-$i18n = $serverScriptHelper->getI18n("base-apache");
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverHttpd should be here
+if (!$serverScriptHelper->getAllowed('serverHttpd')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -24,14 +22,16 @@ $factory = $serverScriptHelper->getHtmlComponentFactory("base-apache", "/base/ap
 
 // get web
 $web = $cceClient->getObject("System", array(), "Web");
+// Get ControlPanel
+$ControlPanel = $cceClient->getObject("System", array(), "ControlPanel");
 
 $page = $factory->getPage();
 
 $block = $factory->getPagedBlock("apacheSettings");
 $block->processErrors($serverScriptHelper->getErrors());
 
-if(!$product->isRaq()) {
-
+if(!$product->isRaq())
+{
 	// get frontpage
 	$frontpage = $cceClient->getObject("System", array(), "Frontpage");
 
@@ -45,7 +45,8 @@ if(!$product->isRaq()) {
 
 	// make frontpage field
 	// password only needed to enable frontpage
-	if(!$frontpage["enabled"]) {
+	if(!$frontpage["enabled"]) 
+	{
   
 		$enable = $factory->getOption("frontpageEnabled", $frontpage["enabled"]);
   
@@ -58,7 +59,8 @@ if(!$product->isRaq()) {
   		$frontpageEnabled = $factory->getMultiChoice("frontpageField");
   		$frontpageEnabled->addOption($enable);
 	}
-	else {
+	else
+	{
   		$frontpageEnabled = $factory->getBoolean("frontpageField", $frontpage["enabled"]);
 	}
 
@@ -86,15 +88,28 @@ if(!$product->isRaq()) {
 		$factory->getLabel("cgiAccessField")
 	);
 }
-else {
-	// Add divider:
-	$block->addDivider($factory->getLabel("DIVIDER_TOP", false));
+else
+{
 
 	$block->addFormField(
 		$factory->getBoolean("hostnameLookupsField", $web["hostnameLookups"]),
 		$factory->getLabel("hostnameLookupsField")
 	);
 
+	$block->addFormField(
+		$factory->getBoolean("urlAdminAccess", $ControlPanel["urlAdminAccess"]),
+		$factory->getLabel("urlAdminAccess")
+	);
+
+	$block->addFormField(
+		$factory->getBoolean("urlSiteadminAccess", $ControlPanel["urlSiteadminAccess"]),
+		$factory->getLabel("urlSiteadminAccess")
+	);
+
+	$block->addFormField(
+		$factory->getBoolean("urlPersonalAccess", $ControlPanel["urlPersonalAccess"]),
+		$factory->getLabel("urlPersonalAccess")
+	);
 
 	$max_client = $factory->getInteger("maxClientsField", $web["maxClients"], 1, $web["maxClientsAdvised"]);
 	$max_client->setWidth(5);
@@ -114,6 +129,8 @@ else {
 		$min,
 		$factory->getLabel("minSpareField")
 	);
+		// $factory->getInteger("minSpareField", $web["minSpare"], 1, $web["minSpareAdvised"]),
+
 
 	$max_spare = $factory->getInteger("maxSpareField", $web["maxSpare"], 1, $web["maxSpareAdvised"]);
 	$max_spare->setWidth(5);
@@ -124,72 +141,6 @@ else {
 		$factory->getLabel("maxSpareField")
 	);
 
-	// BlueOnyx.conf modification stuff:
-
-	// Add divider:
-	$block->addDivider($factory->getLabel("DIVIDER_EXPLANATION", false));
-
-	$my_TEXT = $i18n->interpolate("[[base-apache.BlueOnyx_Info_Text]]");
-	$block->addFormField(
-	  $factory->getTextField("BlueOnyx_Info_Text", $my_TEXT, 'r'),
-	  $factory->getLabel(" ")
-	);
-
-	// Add divider:
-	$block->addDivider($factory->getLabel("DIVIDER_OPTIONS", false));
-
-	$block->addFormField(
-		$factory->getBoolean("Options_All", $web["Options_All"]),
-		$factory->getLabel("Options_AllField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("Options_FollowSymLinks", $web["Options_FollowSymLinks"]),
-		$factory->getLabel("Options_FollowSymLinksField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("Options_Includes", $web["Options_Includes"]),
-		$factory->getLabel("Options_IncludesField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("Options_Indexes", $web["Options_Indexes"]),
-		$factory->getLabel("Options_IndexesField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("Options_MultiViews", $web["Options_MultiViews"]),
-		$factory->getLabel("Options_MultiViewsField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("Options_SymLinksIfOwnerMatch", $web["Options_SymLinksIfOwnerMatch"]),
-		$factory->getLabel("Options_SymLinksIfOwnerMatchField")
-	);
-
-	// Add divider:
-	$block->addDivider($factory->getLabel("DIVIDER_ALLOWOVERRIDE", false));
-
-	$block->addFormField(
-		$factory->getBoolean("AllowOverride_All", $web["AllowOverride_All"]),
-		$factory->getLabel("AllowOverride_AllField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("AllowOverride_AuthConfig", $web["AllowOverride_AuthConfig"]),
-		$factory->getLabel("AllowOverride_AuthConfigField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("AllowOverride_FileInfo", $web["AllowOverride_FileInfo"]),
-		$factory->getLabel("AllowOverride_FileInfoField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("AllowOverride_Indexes", $web["AllowOverride_Indexes"]),
-		$factory->getLabel("AllowOverride_IndexesField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("AllowOverride_Limit", $web["AllowOverride_Limit"]),
-		$factory->getLabel("AllowOverride_LimitField")
-	);
-	$block->addFormField(
-		$factory->getBoolean("AllowOverride_Options", $web["AllowOverride_Options"]),
-		$factory->getLabel("AllowOverride_OptionsField")
-	);
 }
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));

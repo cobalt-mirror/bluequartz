@@ -1,11 +1,11 @@
 <?php
 // Copyright 2000-2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: groupDiskUsage.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: groupDiskUsage.php 1253 2009-09-15 15:04:53Z shibuya $
 
 include_once('ServerScriptHelper.php');
 include_once('uifc/PagedBlock.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 $cce =& $helper->getCceClient();
 $factory =& $helper->getHtmlComponentFactory('base-disk', 
                 "/base/disk/groupDiskUsage.php?group=$group");

@@ -1,711 +1,478 @@
-msgid	"CFaccessDenied"
-msgstr	"������������ݤ���ޤ���"
-
-msgid	"CFauthNotAllowed"
-msgstr	" ��̵���� "
-
-msgid	"CFcolonInHostname"
-msgstr	"�ۥ���̾�˥�����ϻȤ��ޤ���"
-
-msgid	"CFdomainRequired"
-msgstr	"�ɥᥤ��͡����ɬ�ܤǤ�"
-
-msgid	"CFinvalidHostname"
-msgstr	"�ۥ���̾�������Ǥ�"
-
-msgid	"CFinvalidListSyntax"
-msgstr	"���襢�ɥ쥹�� List:; ʸˡ�������Ǥ�"
-
-msgid	"CFnotAuthenticated"
-msgstr	"��ǧ�ڤ���Ƥ��ޤ���"
-
-msgid	"CFrealDomainRequired"
-msgstr	"�¥ɥᥤ��͡����ɬ�ܤǤ�"
-
-msgid	"CFrelayDenied"
+msgid ""
 msgstr ""
-"��졼�ϵ��ݤ���ޤ������᡼��ΰ������ʤɤ���ٳ�ǧ����"
-"���꤬�ʤ���Х᡼�륽�եȤʤɤ�Ƶ�ư���Ʋ�������"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid	"CFrelayDeniedFailed"
-msgstr "IP̾���䤤��碌�˼��Ԥ������ᡢ"
-"��졼�ϵ��ݤ���ޤ�����"
+# ----- Menu items
+msgid "emailServices"
+msgstr "電子メールサービス"
 
-msgid	"CFrelayDeniedForged"
-msgstr	"IP ̾�������ȸ��ʤ���뤿�ᡢ��졼�ϵ��ݤ���ޤ�����"
+msgid "emailServices_help"
+msgstr "[[base-email.emailServices]]を設定できます。"
 
-msgid	"CFrelayDeniedTemp"
-msgstr ""
-"���饤����ȥ��ɥ쥹�Ѥ� PTR �쥳����"
-"����Ǥ��ʤ��ä����ᡢ��졼�ϰ��Ū�˵��ݤ���ޤ�����"
+msgid "emailServers"
+msgstr "電子メールサーバ"
 
-msgid	"CFsenderDomainNoexist"
-msgstr	"���пͥ��ɥ쥹�˻��ꤵ�줿�ɥᥤ�󤬸��Ĥ���ޤ���"
+msgid "emailServers_menu"
+msgstr "電子メール"
 
-msgid	"CFuserAddressRequired"
-msgstr	"�桼���Υ��ɥ쥹��ɬ�פǤ�"
+msgid "emailServers_help"
+msgstr "[[base-email.emailServers]]を設定できます。"
 
-msgid	"IMAP"
-msgstr	"IMAP �����ӥ�"
-
-msgid	"POP"
-msgstr	"POP �����ӥ�"
-
-msgid	"SMTP"
-msgstr	"SMTP �����ӥ�"
-
-msgid	"activated"
-msgstr	"Status"
+# ----- Tabs
+msgid "advanced"
+msgstr "詳細"
 
-msgid	"activated_help"
-msgstr "�֥�å��ꥹ�Ȥε�ǽ����ư���Ƥ��뤫�ɤ�����"
-"�����ǳΤ���ޤ���"
+msgid "basic"
+msgstr "基本"
 
-msgid	"activeField"
-msgstr "�����ӥ��ε�ư"
+msgid "basic_help"
+msgstr "基本的な[[base-email.emailSettings]]を設定できます。"
 
-msgid	"activeField_help"
-msgstr "���������Υ֥�å��ꥹ�ȥ����ӥ���ư��������С�"
-"���Υ��ץ��������򤷤ޤ���"
-
-msgid	"addmx"
-msgstr	"�ɲ�"
-
-msgid	"addmx_help"
-msgstr "�����˿�������2�᡼��ɥᥤ���ä��ޤ���"
-
-msgid	"advanced"
-msgstr	"�ܺ�"
-
-msgid	"advanced_help"
-msgstr	""
-"�ۿ��������塼�������Żҥ᡼�륵�����ʤɡ�"
-"[[base-email.emailSetting""s]] �ξܺ٤�����Ǥ��ޤ���"
-
-msgid	"aliasInUse"
-msgstr ""
-"[[VAR.name]] "
-"�Ȥ����Żҥ᡼�륨���ꥢ���ϴ��˻Ȥ��Ƥ��ޤ���"
-"�̤�̾���򤴻��꤯��������"
-
-msgid	"amEmailGreen"
-msgstr	"�Żҥ᡼�륷���ƥ������˵�ǽ���Ƥ��ޤ���"
-
-msgid	"amEmailNameTag"
-msgstr	"�Żҥ᡼�륵����"
-
-msgid	"amEmailRed"
-msgstr	"�Żҥ᡼�륷���ƥ�˿�������꤬����ޤ���"
-
-msgid	"amEmailYellow"
-msgstr	"�Żҥ᡼�륷���ƥ�����꤬����ޤ���"
-
-msgid	"amIMAPBadResponse"
-msgstr	"IMAP �����Ф��������������ޤ���Ǥ�����"
-
-msgid	"amIMAPDetails"
-msgstr	"IMAP��Internet Message Access Protocol�˥����Фξܺ�"
-
-msgid	"amIMAPNameTag"
-msgstr	"IMAP ������"
-
-msgid	"amIMAPNotRunning"
-msgstr ""
-"IMAP "
-"�����Ф�ư��Ƥ��餺����ư���뤳�Ȥ�Ǥ��ޤ���Ǥ�����"
-"��[[base-apache.amAdmservNameTag]]�פǡ�IMAP "
-"�����Ф��ö���դˤ��ơ���¸�ץܥ���򥯥�å����Ƥ��顢"
-"�⤦���٥���ˤ��� �Ƶ�ư���ߤƲ�����������Ǥ� IMAP "
-"�����Ф���������ư���ʤ����ˤϡ�[[base-alpine.serverconfig]]"
-"�� [[base-power.power]] ��˥塼�ˤ��� "
-"��[[base-power.reboot]]�ץܥ���򥯥�å����ơ�"
-"���������Τ�Ƶ�ư���Ƥ�������������Ǥ� IMAP "
-"�����Ф���ư���ʤ����ˤϡ�[[base-sauce-basic.techSupportURL]]"
-"�ˤ���ƥ��˥��륵�ݡ��ȥ����ӥ������Ѥ���������"
-
-msgid	"amIMAPStatusOK"
-msgstr	"IMAP �����Ф������ư��Ƥ��ޤ���"
-
-msgid	"amPOP3BadResponse"
-msgstr	"POP �����Ф��������������ޤ���Ǥ�����"
-
-msgid	"amPOP3Details"
-msgstr	"POP��Post Office Protocol�˥����Фξܺ�"
-
-msgid	"amPOP3NameTag"
-msgstr	"POP ������"
-
-msgid	"amPOP3NotRunning"
-msgstr ""
-"POP "
-"�����Ф�ư��Ƥ��餺����ư���뤳�Ȥ�Ǥ��ޤ���Ǥ�����"
-"��[[base-apache.amAdmservNameTag]]�פǡ�POP�����Ф�"
-"��ö���դˤ��ơ���¸�ץܥ���򥯥�å����Ƥ��顢"
-"�Ƶ�ư���ߤƲ�������POP �����Ф�"
-"��������ư���ʤ����ˤϡ�[[base-alpine.serverconfig]] "
-"�� [[base-power.power]] ��˥塼�ˤ��� "
-"��[[base-power.reboot]]�ץܥ���򥯥�å����ơ�"
-"���������Τ�Ƶ�ư���Ƥ�������������Ǥ� POP ������"
-"����ư���ʤ����ˤϡ�[[base-sauce-basic.techSupportURL]] "
-"�ˤ���ƥ��˥��륵�ݡ��ȥ����ӥ������Ѥ���������"
-
-msgid	"amPOP3StatusOK"
-msgstr	"POP �����Ф������ư��Ƥ��ޤ���"
-
-msgid	"amSMTPBadResponse"
-msgstr	"SMTP �����Ф��������������ޤ���Ǥ�����"
-
-msgid	"amSMTPDetails"
-msgstr	"SMTP��Simple Mail Transfer Protocol�˥����Фξܺ�"
-
-msgid	"amSMTPNameTag"
-msgstr	"SMTP ������"
-
-msgid	"amSMTPNotRunning"
-msgstr ""
-"SMTP �����Ф�ư��Ƥ��餺��"
-"��ư���뤳�Ȥ�Ǥ��ޤ���Ǥ����������٤Τ���SMTP "
-"�����Ф����Ū�˥���åȥ����󤷤Ƥ����ǽ���⤢��ޤ��Τǡ�"
-"�����ƥ��֥�˥����� ��٤򤴳�ǧ����������"
-"��٤����꤬�ʤ����ˤϡ���[[base-apache.amAdmservNameTag]]��"
-"�� SMTP �����Ф��ö���դˤ��ơ���¸�ץܥ���򥯥�å����Ƥ��顢"
-"�⤦���٥���ˤ��� �Ƶ�ư���ߤƲ������� SMTP "
-"�����Ф���������ư���ʤ����ˤϡ�[[base-alpine.serverconfig]]"
-"��[[base-power.power]] "
-"��˥塼�ˤ����[[base-power.reboot]]�ץܥ���򥯥�å����ơ�"
-"���������Τ�Ƶ�ư���Ƥ�������������Ǥ� SMTP "
-"�����Ф�ư���ʤ����ˤϡ�[[base-sauce-basic.techSupportURL]]"
-"�ˤ���ƥ��˥��륵�ݡ��ȥ����ӥ������Ѥ���������"
-
-msgid	"amSMTPStatusOK"
-msgstr	"SMTP �����Ф������ư��Ƥ��ޤ���"
-
-msgid	"apopEnabled"
-msgstr	"APOP (ǧ�� POP)"
-
-msgid	"apopEnabled_help"
-msgstr	"���Υ桼���ˤ� APOP (ǧ�� POP) ��ͭ���ˤ���Ƥ��ޤ���"
-
-msgid	"apopFullText"
-msgstr	"APOP ��ͭ���ˤ���"
-
-msgid	"apopFullText_help"
-msgstr	"APOP (ǧ�� POP) ��ͭ���ˤ��ޤ���"
-
-msgid	"apopPwRequired"
-msgstr "APOP �λ��Ѥ�桼���˵��Ĥ���ˤϡ�"
-"�ѥ���ɤλ��꤬ɬ�פǤ���"
-
-msgid	"badUser"
-msgstr ""
-"�᡼�륵��������ե���������ޤ��ϼ�ư��"
-"�ѹ����Ƥ�����ˤϡ����Υե�����Υ��ꥸ�ʥ���ᤷ��"
-"�⤦���� ��Ʋ�������"
-
-msgid	"bad_blockUserField"
-msgstr ""
-"��[[base-email.blockUserField]]�ץե�����ɤ�"
-"���Ϥ������ɥ쥹�������Ǥ����Żҥ᡼�륢�ɥ쥹"
-"�����������������Ϥ��Ƥ����������ǥե���ȤǤϡ�"
-"����Ȥʤ�ޤ���������� user@example.com �ʤɤǤ���"
-
-msgid	"basic"
-msgstr	"����"
-
-msgid	"basic_help"
-msgstr	"����Ū��[[base-email.emailSettings]]������Ǥ��ޤ���"
-
-msgid	"blackList"
-msgstr "�֥�å��ꥹ�ȡ������ӥ�"
-
-msgid	"blackList_help"
-msgstr ""
-"�֥�å��ꥹ�ȡ������ӥ���Ԥ��ۤʤ�ۥ��ȤΥꥹ�ȤǤ���"
-"������� 'zen.spamhaus.org' �ʤɤǤ���"
-
-msgid	"blacklist"
-msgstr "�֥�å��ꥹ����Ͽ"
-
-msgid	"blacklistHostExists_error"
-msgstr ""
-"��������Ͽ�������֥�å��ꥹ�Ȥ�<FQDN>�����Ϥ��ޤ���"
-"������� 'zen.spamhaus.org' �ʤɤǤ���"
-
-msgid	"blacklistHostField"
-msgstr "�֥�å��ꥹ�ȥ����ӥ�"
-
-msgid	"blacklistHostField_help"
-msgstr ""
-"��������Ͽ�������֥�å��ꥹ�Ȥ�<FQDN>�����Ϥ��ޤ���"
-"������� 'zen.spamhaus.org' �ʤɤǤ���"
-
-msgid	"blacklistRemoveEntry"
-msgstr ""
-"������ [[VAR.blacklistHost]] �֥�å��ꥹ�ȡ�����ȥ꡼�� "
-"������ޤ�����"
-
-msgid	"blacklist_help"
-msgstr "�Żҥ᡼�륵���ӥ��˥֥�å��ꥹ�Ȥ˺ܤ���"
-"DNSBL����Ͽ����ˤϤ����򥯥�å����Ʋ�������"
-
-msgid	"blockHostField"
-msgstr "�����Υۥ��ȡ��ɥᥤ�󤫤���Żҥ᡼��μ�����"
-"���ݤ��롧"
-
-msgid	"blockHostField_help"
-msgstr ""
-"���Υ����Фؤ��Żҥ᡼����ۿ���ػߤ������ۥ���̾��"
-"�ɥᥤ��͡��ब����С������Ϥ��Ƥ���������"
-"[base-email.blockHostField_rule]]"
-
-msgid	"blockHostField_rule"
-msgstr ""
-"�ۥ���̾�ޤ��ϥɥᥤ��͡�������������������Ϥ��Ƥ���������"
-"�ǥե���ȤǤϡ����ι��ܤ϶���Ǥ���"
-"�������  www.spam.com��spam.com �ʤɤǤ���"
-	"�ʤɡ�"
-
-msgid	"blockUserField"
-msgstr	"�����Υ桼��������Żҥ᡼��μ�������ݤ��롧"
-
-msgid	"blockUserField_help"
-msgstr ""
-"���Υ����Фؤ��Żҥ᡼����ۿ���ػߤ������桼��������С�"
-"�����Żҥ᡼�륢�ɥ쥹������Ʋ�������"
-"[base-email.blockUserField_rule]]"
-	"]]"
-
-msgid	"blockUserField_rule"
-msgstr ""
-"�Żҥ᡼�륢�ɥ쥹�����������������Ϥ��Ƥ���������"
-"�ǥե���ȤǤϡ����ι��ܤ϶���Ǥ���"
-"������� user@spam.com �ʤɤǤ���"
-
-msgid	"cantCreateAlias"
-msgstr	"���Υ桼�����Żҥ᡼�륨���ꥢ�������ꤵ��Ƥ��ޤ���"
-
-msgid	"cantEditFile"
-msgstr ""
-"�Żҥ᡼������ե�����ι�����˥��顼��ȯ�����ޤ�����"
-"[[base-email.badUser]]"
-
-msgid	"cantGetUserInfo"
-msgstr	"Vacation �� CCE ����桼�����������Ǥ��ޤ���Ǥ�����"
-
-msgid	"could_not_tie_apop"
-msgstr	"�����ƥ२�顼��ȯ�����ޤ�����[[base-email.badUser]]"
-
-msgid	"couldnt_create_args_file"
-msgstr ""
-"�Żҥ᡼������ե�����ι�����˥��顼��"
-"ȯ�����ޤ�����[[base-email.badUser]]"
-
-msgid	"couldnt_enable_imap_pop"
-msgstr ""
-"�����ƥ������˼��Ԥ������ᡢPOP �ޤ��� IMAP "
-"�����Ф�ꥻ�åȤǤ��ޤ���Ǥ�����[[base-email.badUser]]"
-
-msgid	"couldnt_enable_sendmail"
-msgstr ""
-"�����ƥ������˼��Ԥ������ᡢSMTP "
-"�����Ф�ư�Ǥ��ޤ���Ǥ�����[[base-email.badUser]]"
-
-msgid	"couldnt_make_map"
-msgstr ""
-"�Żҥ᡼�륵���Хޥåץե�����κ�����˥��顼��"
-"ȯ�����ޤ�����[[base-email.badUser]]"
-
-msgid	"couldnt_write_sendmailcf"
-msgstr ""
-"SMTP "
-"����������ե�����ν񤭹�����˥��顼��"
-"ȯ�����ޤ�����[[base-email.badUser]]"
-
-msgid	"deferField"
-msgstr "�������"
-
-msgid	"deferField_help"
-msgstr ""
-"�̾�᡼�륵���С��ϡ����ä����᡼������"
-"�֥�å��ꥹ�Ȥ򸫤Ĥ���� "
-"������Υ����С��˥��顼���֤��ޤ���"
-"�⤷���������Υե�����ɤ򥯥�å�����ȡ�"
-"���Υ��顼��å����������Ū�˱������ޤ���"
-
-msgid "delayChecksField"
-msgstr "delay_checks ��ͭ��"
-
-msgid "delayChecksField_help"
-msgstr ""
-"delay_checks �� Sendmail �� ��³��ǧ�����ν��֤��ѹ��ʸ��"
-"���ˡˤ��ޤ��� ����� �⤷������ RBL�֥�å��ꥹ�ȵ�ǽ�� ����"
-" �ˤ��Ƥ����硢�����ɤ��쥹�ݥ󥹤�����Ǥ��礦��"
-
-msgid	"domainExists_error"
-msgstr ""
-"���Υɥᥤ��̾����2�᡼�륵���С��ι��ܤ�"
-"���Ǥ˻��Ѥ���Ƥ��ޤ���"
-
-msgid	"domainExists_in_relay_error"
-msgstr ""
-"���Υɥᥤ��̾�ϥ᡼���졼�ι��ܤ�"
-"���Ǥ˻��Ѥ���Ƥ��ޤ���"
-
-msgid	"domainExists_in_site_error"
-msgstr ""
-"���Υɥᥤ��̾�ϥ����С��Υ����Ȥι��ܤ�"
-"���Ǥ˻��Ѥ���Ƥ��ޤ���"
-
-msgid	"domainField"
-msgstr "�ɥᥤ��̾"
-
-msgid	"domainField_help"
-msgstr ""
-"�����ʥɥᥤ��̾�����Ϥ��Ƥ��������� "
-"��������2�᡼�륵���С����ɲäǤ��ޤ���"
-
-msgid	"duplicateKeys"
-msgstr ""
-"�������ݤȥ᡼���졼�˴ؤ������򹹿��Ǥ��ޤ���Ǥ�����"
-"���ݤȥ᡼���졼���Ĥ�������Ťʤ�礦����������ޤ���"
-"Ʊ��Υۥ��Ȥޤ��ϥɥᥤ�󤫤���Żҥ᡼��μ������ݤ�"
-"��졼��Ʊ���˹ԹԤ��ޤ���"
-
-msgid	"emailServers"
-msgstr	"�Żҥ᡼�륵����"
-
-msgid	"emailServers_help"
-msgstr	"[[base-email.emailServers]]������Ǥ��ޤ���"
-
-msgid	"emailServers_menu"
-msgstr	"�Żҥ᡼��"
-
-msgid	"emailServices"
-msgstr	"�Żҥ᡼�륵���ӥ�"
-
-msgid	"emailServices_help"
-msgstr	"[[base-email.emailServices]]������Ǥ��ޤ���"
-
-msgid	"emailSettings"
-msgstr	"�Żҥ᡼�륵���Ф�����"
-
-msgid	"enableApop"
-msgstr	"APOP ��ͭ���ˤ���"
-
-msgid	"enableApop_help"
-msgstr ""
-"���Υ桼���� APOP ��Ȥ���褦�ˤǤ��ޤ���"
-"APOP (ǧ�� POP) �ϡ�POP3 "
-"�����Ф��Ф��������ǧ�������ǡ�Fetchmail �� Eudora "
-"�ʤɤΥ᡼�륯�饤����Ȥǥ��ݡ��Ȥ���Ƥ��ޤ���"
-
-msgid	"enableImapField"
-msgstr	"IMAP �����Ф�ͭ���ˤ���"
-
-msgid	"enableImapField_help"
-msgstr ""
-"IMAP��Internet Message Access "
-"Protocol�ˤ�ͭ���ˤ��뤫�ɤ�������ꤷ�ޤ���"
-"IMAP ��ͭ���ˤ���ȡ��桼���� "
-"IMAP �б����Żҥ᡼�륯�饤����Ȥ�Ȥä��Żҥ᡼��"
-"������Ǥ��ޤ���IMAP ��Ȥ��ȡ�"
-"�桼���ϥ����о�ˤ����Żҥ᡼������������ɤ��ʤ���"
-"ľ���ɤळ�Ȥ��Ǥ��ޤ���"
-"¾����IMAP �ǥ᡼������Ƥ���֤ϥ����С��ؤΥ�������"
-"���ݻ���³���ʤ���Фʤ�ʤ����Ȥ���ɬ�פ������ޤ���"
-
-msgid	"enableImapsField"
-msgstr	"IMAPS �����Ф�ͭ���ˤ���"
-
-msgid	"enableImapsField_help"
-msgstr ""
-	"IMAPS��Internet Message Access Protocol over "
-	"TLS/SSL�ˤ�ͭ���ˤ��뤫�ɤ�������ꤷ�ޤ���IMAPS "
-	"��ͭ���ˤ���ȡ��桼���� IMAPS "
-	"�б����Żҥ᡼�륯�饤����Ȥ�Ȥä��Żҥ᡼�������Ǥ��ޤ���IMAPS "
-	"��Ȥ��ȡ��桼���ϥ����о�ˤ����Żҥ᡼��������������ʤ���ľ����"
-	"ľ���ɤळ�Ȥ��Ǥ��ޤ���"
-	"¾����IMAP �ǥ᡼������Ƥ���֤ϥ����С��ؤΥ�������"
-	"��ݻ���³���ʤ���Фʤ�ʤ����Ȥ���ɬ�פ������ޤ���"
-
-msgid	"enablePopField"
-msgstr	"POP �����Ф�ͭ���ˤ���"
-
-msgid	"enablePopField_help"
-msgstr ""
-"POP��Post Office "
-"Protocol�˥᡼����������ӥ���ͭ���ˤ��뤫�ɤ�����"
-"���ꤷ�ޤ���POP "
-"��ͭ���ˤ���ȡ��桼���ϰ���Ū���Żҥ᡼�륯�饤����Ȥ�"
-"�ȤäƤ��Υ����Ф����Żҥ᡼������������ɤ�"
-"�ѥ��������ɤ�����Ǥ��ޤ���"
-
-msgid	"enablePopsField"
-msgstr	"POPS �����Ф�ͭ���ˤ���"
-
-msgid	"enablePopsField_help"
-msgstr ""
-"POPS��Post Office Protocol over "
-"TLS/SSL�˥᡼����������ӥ���ͭ���ˤ��뤫�ɤ�����"
-"���ꤷ�ޤ���POPS "
-"��ͭ���ˤ���ȡ��桼���ϰ���Ū���Żҥ᡼�륯�饤����Ȥ�"
-"�ȤäƤ��Υ����Ф����Żҥ᡼���Ź沽�ǡ����Ȥ���"
-"����������ɤ��ѥ��������ɤ�����Ǥ��ޤ���"
-
-msgid	"enableSMTPAuthField"
-msgstr	"SMTP Auth ��ͭ���ˤ���"
-
-msgid	"enableSMTPAuthField_help"
-msgstr	"SMTP Auth ��ͭ���ˤ��뤫�ɤ�������ꤷ�ޤ���"
-
-msgid	"enableSMTPSField"
-msgstr	"SMTPS �����Ф�ͭ���ˤ���"
-
-msgid	"enableSMTPSField_help"
-msgstr	"SMTP over SSL ��ͭ���ˤ��뤫�ɤ�������ꤷ�ޤ���"
-
-msgid	"enableServersField"
-msgstr	"SMTP �����Ф�ͭ���ˤ���"
-
-msgid	"enableServersField_help"
-msgstr	"SMTP��Simple Mail Transfer "
-	"Protocol�ˤ�ͭ���ˤ��뤫�ɤ�������ꤷ�ޤ���SMTP "
-	"��ͭ���ˤ���ȡ����Υ����Ф� SMTP "
-	"�����ФȤ��ƻȤ������󥿡��ͥåȾ�ˤ���¾�Υ����ФȤδ֤�"
-	"�Żҥ᡼����������Ǥ��ޤ���"
-
-msgid	"enableSubmissionPortField"
-msgstr	"���֥ߥå����ݡ��Ȥ�ͭ���ˤ���"
-
-msgid	"enableSubmissionPortField_help"
-msgstr	"���֥ߥå����ݡ��ȤǤΥ᡼����������ͭ���ˤ��ޤ���"
-
-msgid "enableZpushField"
-msgstr "Z-Push ��ͭ��"
-
-msgid "enableZpushField_help"
-msgstr ""
-"Z-push �� ActiveSync�ߴ������� PDA �� SmartPhone ���Ф��� "
-"�Żҥ᡼���Ʊ�������륪���ץ󡦥����������ץꥱ�������Ǥ� "
-"�ܤ�������� ������ˡ�� : "
-" http://www.blueonyx.it/index.php?page=z-push"
-"�˥����������ơ����Ƥ�֥饦���������ʤɤǤ��ɤ߲�������"
-
-msgid	"error_writing_sendmail_mc"
-msgstr ""
-    "�ǿ��� /etc/mail/sendmail.mc ������Ǥ��ޤ���Ǥ�����"
-	"sendmail.mc �ϲ���Ƥ��ޤ��� �����ʥǥե���Ȥ�������뤿��ˤϡ�"
-	"/usr/sausalito/configs/sendmail/sendmail.mc �� /etc/mail/sendmail.mc "
-	"�˥��ԡ����� �⤦���ٻ�Ԥ��Ʋ�������"
-
-msgid	"imapConnectRateField"
-msgstr	"������� IMAP ��³��"
-
-msgid	"imapConnectRateField_help"
-msgstr ""
-"��ʬ�֤�����˵��Ƥ��� IMAP ��³�κ��������ꤷ�Ƥ���������"
-" IMAP ��³�ο��������ͤ�ã����ȡ�"
-"���θ�ο�����³�ꥯ�����Ȥϵ��ݤ���ޤ���"
-
-
-msgid	"imapConnectRateField_invalid"
-msgstr	"�ֺ������ IMAP "
-	"��³���ץե�����ɤˡ������ϰ���ο��������Ϥ��Ƥ���������"
-	"�ǥե���� �� 1024 �Ǥ���"
-
-msgid	"imapConnectRateField_missing"
-msgstr	"[[base-email.imapConnectRateField_invalid]]"
-
-msgid	"maptoField"
-msgstr	"�᡼�륵���С�"
-
-msgid	"maptoField_help"
-msgstr	"�ᥤ��Υ᡼�륵���Ф���Ͽ���Ƥ���������"
-
-msgid	"masqAddressCantBeLocalhost"
-msgstr	"�������пͥɥᥤ��� localhost �ϻ���Ǥ��ޤ���"
-
-msgid	"masqAddressField"
-msgstr	"�����ԥɥᥤ��ζ�������"
-
-msgid	"masqAddressField_help"
-msgstr	""
-"���Υ����ФΥ桼�������������Żҥ᡼��κ��пͥ��ɥ쥹��"
-"�ɥᥤ��̾�⤷����IP���ɥ쥹�����Ϥ��Ƥ������������ε�ǽ��"
-"�֥ɥᥤ��ޥ����졼�ɡפȤ�"
-"�ƤФ�ޤ���[[base-email.masqAddressField_rule]]"
-
-msgid	"masqAddressField_rule"
-msgstr	""
-"IP���ɥ쥹���ۥ���̾���ޤ��ϥɥᥤ��͡����������������"
-"���Ϥ��Ƥ����������ǥե���Ȥ϶���Ǥ���"
-"������� 192.168.1.100��www.BlueOnyx.org��BlueOnyx.org �ʤɤǤ���"
-
-msgid	"maxEmailSizeField"
-msgstr	"����᡼�륵���� ��MB��"
-
-msgid	"maxEmailSizeField_help"
-msgstr ""
-"���Υ����Ф������������Żҥ᡼���å������κ��祵������"
-"����Ǥ��ޤ���[[base-email.maxEmailSizeField_rule]]"
-
-msgid	"maxEmailSizeField_rule"
-msgstr ""
-"���ꥵ������Ķ�����Żҥ᡼���å���������������ػߤ�����"
-"���ˤϡ������� (1) "
-"�ʾ�����������Ϥ��Ƥ�������������Τޤ޻Ĥ��ȡ��ǥե��������"
-"�ʥ��������¤ʤ��ˤ��Ȥ��ޤ���"
-
-msgid	"maxRecipientsPerMessageField"
-msgstr	"���� ����ͻ�����ʣ��᡼������)"
-
-msgid	"maxRecipientsPerMessageField_help"
-msgstr ""
-"���̤Υ᡼�����ˡ����ͤμ���ͤ򵭺ܤǤ��뤫�����Ϥ��ޤ��� "
-"�����ǻ��ꤵ�줿���¿���μ���ͤ�����С�"
-"���Υ᡼��ϵ��䤵���Ǥ��礦�� "
-
-msgid	"mx"
-msgstr	"��������� �᡼�륵���С�"
-
-msgid	"mx2List"
-msgstr	"��������� �᡼�륵���С��ΰ���"
-
-msgid	"mxRemoveEntry"
-msgstr ""
-"������ [[VAR.mxHost]] MX�����С����쥳���ɤ�"
-"����������ޤ�����"
-
-msgid	"mx_help"
-msgstr	"��������� �᡼�륵���С������ꤹ���礳���򥯥�å�"
-
-msgid	"nonExistentUser"
-msgstr ""
-"����̾������ĥ�������桼�������Ĥ���ʤ����ᡢ"
-"�᡼���ž���Ǥ��ޤ���"
-"[[VAR.users]]  "
-"ž���襢�ɥ쥹�Υꥹ�Ȥ��餳���������뤫��"
-"ž����������˥桼������˺�äƤ���������"
-
-msgid	"popConnectRateField"
-msgstr	"������� POP ��³��"
-
-msgid	"popConnectRateField_help"
-msgstr ""
-"��ʬ�֤�����˵��Ƥ��� POP ��³�κ��������ꤷ�Ƥ���������POP "
-"��³�ο��������ͤ�ã����ȡ����θ�ο�����³�ꥯ�����Ȥϵ���"
-"����ޤ���"
-
-msgid	"popConnectRateField_invalid"
-msgstr ""
-"�ֺ������ POP "
-"��³���ץե�����ɤˡ������ϰ���ο��������Ϥ��Ƥ���������"
-"�ǥե���Ȥ� 80 �Ǥ���"
-
-msgid	"popConnectRateField_missing"
-msgstr	"[[base-email.popConnectRateField_invalid]]"
-
-msgid	"popRelayField"
-msgstr	"POP ǧ�ڥ�졼"
-
-msgid	"popRelayField_help"
-msgstr ""
-"���Υܥå���������å��ˤ���ȡ�POP ǧ�ڤˤ�� SMTP "
-"��졼�ȥ饹�Ȥ�ͭ���ˤʤ�ޤ������ε�ǽ��ͭ���ˤ���ȡ�"
-"POP��Ȥä��Żҥ᡼�������Ǥ����桼���ˤϡ����θ� 30 ʬ��"
-"ǧ�ڤʤ��� SMTP �����ӥ���Ȥä��Żҥ᡼�������������"
-"����ޤ�������ϡ����ˤ˳��Ф��ĥ��¿���桼�����������Ǥ���"
-
-msgid	"queue0"
-msgstr	"¨��"
-
-msgid	"queue1440"
-msgstr	"��������"
-
-msgid	"queue15"
-msgstr	"15ʬ��"
-
-msgid	"queue30"
-msgstr	"30ʬ��"
-
-msgid	"queue360"
-msgstr	"��������"
-
-msgid	"queue60"
-msgstr	"��������"
-
-msgid	"queueTimeField"
-msgstr	"�ۿ�������"
-
-msgid	"queueTimeField_help"
-msgstr ""
-"���Υ����Ф��ۿ��Ԥ����Żҥ᡼���ž��������ֳִ֤�����Ǥ�"
-"�ޤ���¨����ã�ϡ��᡼���Ǥ������®������ޤ�����"
-"���󥿡��ͥåȤؤξ����³��ɬ�פǤ�������Ū����ã��"
-"��ǥ�ˤ�������륢�å���³�ʤɤ��ۿ���Ŭ���Ƥ��ޤ���"
-
-msgid	"receiveField"
-msgstr	"�����Υۥ��ȡ��ɥᥤ�󰸤��Żҥ᡼���������롧"
-
-msgid	"receiveField_help"
-msgstr ""
-"���Υ����Фϡ������ǻ��ꤹ��ۥ���̾�ޤ���"
-"�ɥᥤ��͡��స�Ƥ��Żҥ᡼���������ޤ���"
-"������� www.example.com ��example.com �Ǥ���"
-
-msgid	"receiveField_rule"
-msgstr ""
-"�ۥ���̾�ޤ��ϥɥᥤ��͡�������������������Ϥ��Ƥ���������"
-"���Υ����Ф��Żҥ᡼������밸��ɥᥤ��̾�Ǥ���"
-"�ʻ����㡧 www.BlueOnyx.org��BlueOnyx.org �ʤɡ�"
-
-msgid	"relayField"
-msgstr	"�Żҥ᡼��Υ�졼����Ĥ���ۥ��ȡ��ɥᥤ��IP ���ɥ쥹��"
-
-msgid	"relayField_help"
-msgstr ""
-"���Υե�����ɤˤϡ����Υ����Ф�Ȥä��Żҥ᡼��Υ�졼�����"
-"���� IP ���ɥ쥹���ۥ���̾���ɥᥤ��͡���ΰ�������ꤷ�ޤ���"
-"�桼������³���Ƥ���ޥ����IP���ɥ쥹���ۥ��Ȥ��뤤���ΰ�̾����"
-"���ι��ܤ����äƤ��ʤ���硢�桼���Ϥ��Υ����С��ǥ᡼���������"
-"�Ǥ��ʤ��Ǥ��礦��[[base-email.relayField_rule]]"
-
-msgid	"relayField_rule"
-msgstr ""
-"���Υ����Ф��ͳ�����Żҥ᡼��Υ�졼����Ĥ��륵���Фޤ���"
-"���饤����Ȥ� IP ���ɥ쥹���ۥ���̾���ɥᥤ��͡��������"
-"���Ƥ������������κݡ�0 ��Ȥäƥͥåȥ������ꤹ�뤳�Ȥ�"
-"�Ǥ��ޤ����㤨�С�192.168.0.0 �Ȥ��� IP ���ɥ쥹����ꤹ��"
-"���Ȥˤ�ꡢ255.255.0.0 �Ȥ������֥ͥåȥޥ�������� "
-"192.168.1.1 �Ȥ����ͥåȥ������Υ�졼����ĤǤ��ޤ���"
-
-msgid	"secondaryDomain"
-msgstr	"��������꡼�����С�"
-
-msgid	"secondaryDomain_help"
-msgstr ""
-"���Υ����С��ˤȤäƥ�������꡼���᡼�륵���ӥ���Ԥä� "
-"�����᡼�륵���С��ΰ����Ǥ���"
-
-msgid	"secondarySettings"
-msgstr	"��������꡼����"
-
-msgid	"smartRelayField"
-msgstr	"���ޡ��ȥ�졼������"
-
-msgid	"smartRelayField_help"
-msgstr ""
-"���λ��ꤵ�줿��ʤΤ���ɥᥤ�󤫤��������줿"
-"�Żҥ᡼��ϡ����������С��Ǥϴ����˰����Ǥ���Ƚ��֤���롣"
-
-
-msgid	"smartRelayField_rule"
-msgstr ""
-"�ɥᥤ��͡�������������������Ϥ��Ƥ����������ǥե���ȤǤϡ�"
-"���ι��ܤ϶���Ǥ���������� luquartz.org �ʤɤǤ���"
-
-msgid	"userEmail"
-msgstr	"�桼�����Żҥ᡼������"
-
-msgid	"vacationSubject"
-msgstr	"����μ�ư����"
+msgid "advanced_help"
+msgstr "配信スケジュールや最大電子メールサイズなど、[[base-email.emailSettings]]の詳細を設定できます。"
+
+# ----- Basic Email page
+msgid "emailSettings"
+msgstr "電子メールサーバの設定"
+
+msgid "enableSMTPField"
+msgstr "SMTP サーバを有効にする"
+
+msgid "enableSMTPField_help"
+msgstr "SMTP（Simple Mail Transfer Protocol）を有効にするかどうかを指定します。SMTP を有効にすると、このサーバを SMTP サーバとして使い、インターネット上にある他のサーバとの間で電子メールを送受信できます。また、ユーザはこのサーバを使って電子メールを送信できます。"
+
+msgid "enableImapField"
+msgstr "IMAP サーバを有効にする"
+
+msgid "enableImapField_help"
+msgstr "IMAP（Internet Message Access Protocol）を有効にするかどうかを指定します。IMAP を有効にすると、ユーザは IMAP 対応の電子メールクライアントを使って電子メールを受信できます。IMAP を使うと、ユーザはサーバ上にある電子メールをダウンロードしないで直接読むことができます。ただし、電子メールを操作する間、ユーザはサーバへのアクセスを維持する必要があります。"
+
+msgid "enablePopField"
+msgstr "POP サーバを有効にする"
+
+msgid "enablePopField_help"
+msgstr "POP（Post Office Protocol）メール受信サービスを有効にするかどうかを指定します。POP を有効にすると、ユーザは一般的な電子メールクライアントを使ってこのサーバから電子メールを受信できます。"
+
+msgid "imapConnectRateField"
+msgstr "最大許容 IMAP 接続数"
+
+# same as base-ftp.connectRateField_help
+msgid "imapConnectRateField_help"
+msgstr "１分間あたりに許容する IMAP 接続の最大数を指定してください。IMAP 接続の数が指定値に達すると、その後の新規接続リクエストは拒否されます。"
+
+msgid "imapConnectRateField_invalid"
+msgstr "「最大許容 IMAP 接続数」フィールドに、指定範囲内の数字を入力してください。デフォルトは 1024 です。"
+
+msgid "imapConnectRateField_missing"
+msgstr "[[base-email.imapConnectRateField_invalid]]"
+
+msgid "popConnectRateField"
+msgstr "最大許容 POP 接続数"
+
+msgid "popConnectRateField_help"
+msgstr "１分間あたりに許容する POP 接続の最大数を指定してください。POP 接続の数が指定値に達すると、その後の新規接続リクエストは拒否されます。"
+
+msgid "popConnectRateField_invalid"
+msgstr "「最大許容 POP 接続数」フィールドに、指定範囲内の数字を入力してください。デフォルトは 80 です。"
+
+msgid "popConnectRateField_missing"
+msgstr "[[base-email.popConnectRateField_invalid]]"
+
+# ----- Advanced Email page
+msgid "queueTimeField"
+msgstr "配信の頻度"
+
+msgid "queueTimeField_help"
+msgstr "このサーバが配信待ちの電子メールを転送する時間間隔を設定できます。即時配信を選ぶと、受け取ったメールは直ちに配信されますが、それにはインターネットへの常時接続が必要です。モデムによるダイヤルアップ接続など、必要時にのみインターネットへ接続する方式の場合には、特定の時間間隔に基づく配信が適しています。"
+
+msgid "queue0"
+msgstr "即時"
+
+msgid "queue15"
+msgstr "15分毎"
+
+msgid "queue30"
+msgstr "30分毎"
+
+msgid "queue60"
+msgstr "１時間毎"
+
+msgid "queue360"
+msgstr "６時間毎"
+
+msgid "queue1440"
+msgstr "１日１回"
+
+msgid "maxEmailSizeField"
+msgstr "最大メールサイズ （MB）"
+
+msgid "maxEmailSizeField_rule"
+msgstr "一定サイズを超える電子メールメッセージの送受信を禁止したい場合には、ここに１（MB）以上の整数を入力してください。空欄のまま残すと、デフォルト設定（サイズ制限なし）が使われます。"
+
+msgid "maxEmailSizeField_help"
+msgstr "このサーバが送受信する電子メールメッセージの最大サイズを指定できます。[[base-email.maxEmailSizeField_rule]]"
+
+msgid "masqAddressField"
+msgstr "送信者ドメインの強制使用"
+
+msgid "masqAddressField_rule"
+msgstr "IPアドレス、ホスト名、またはドメインネームを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例： 192.168.1.100、www.bluequartz.org、bluequartz.org など）"
+
+msgid "masqAddressField_help"
+msgstr "このサーバのユーザが送信する電子メールの差出人アドレスを上書きするドメインネームまたはIPアドレスを入力してください。この機能は「ドメインマスカレード」とも呼ばれます。[[base-email.masqAddressField_rule]]"
+
+msgid "smartRelayField"
+msgstr "スマートリレーサーバ"
+
+msgid "smartRelayField_rule"
+msgstr "ドメインネームまたはIPアドレスを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例：bluquartz.org、192.168.0.1 など）"
+
+msgid "smartRelayField_help"
+msgstr "このサーバから送信されるすべての電子メールは、ここに指定するドメインネームを持つメールサーバを経由します。"
+
+msgid "fallbackRelayField"
+msgstr "バックアップリレーサーバ"
+
+msgid "fallbackRelayField_rule"
+msgstr "ドメインネームまたはIPアドレスを正しい形式で入力してください。デフォルトでは、このフィードは空欄です。（指定例：bluquartz.org、192.168.0.1 など）"
+
+msgid "fallbackRelayField_help"
+msgstr "このサーバから送信されるすべての電子メールは、スマートリレーサーバが利用できない場合、ここに指定するバックアップメールサーを経由します。"
+
+msgid "popRelayField"
+msgstr "POP 認証リレー"
+
+msgid "popRelayField_help"
+msgstr "このボックスをチェックにすると、POP 認証による SMTP リレートラストが有効になります。この機能を有効にすると、POPを使って電子メールを受信できたユーザには、その後 30 分間認証なしで SMTP サービスを使った電子メールの送信が許可されます。これは、頻繁に出先からメールを送受信する必要のあるユーザなどには非常に便利な機能です。"
+
+msgid "relayField"
+msgstr "電子メールのリレーを許可するホスト／ドメイン／IP アドレス："
+
+msgid "relayField_rule"
+msgstr "このサーバを経由した電子メールのリレーを許可するサーバまたはクライアントの IP アドレス、ホスト名、ドメインネームを入力してください。その際、0 を使ってネットワークを指定することもできます。例えば、192.168.0.0 という IP アドレスを指定することにより、255.255.0.0 というサブネットマスクを持つ 192.168.1.1 というネットワークからのリレーを許可できます。"
+
+msgid "relayField_help"
+msgstr "このフィールドには、このサーバを使った電子メールのリレーを許可する IP アドレス、ホスト名、ドメインネームの一覧を指定します。ユーザが使用するクライアントマシンの IP アドレス、ホスト名、またはドメインネームをこのフィールドに入力しておかないと、そのユーザはこのサーバから電子メールを送信できませんのでご注意ください。[[base-email.relayField_rule]]"
+
+msgid "receiveField"
+msgstr "これらのホスト／ドメイン宛の電子メールを受信する："
+
+msgid "receiveField_rule"
+msgstr "ホスト名またはドメインネームを正しい形式で入力してください。このサーバのホスト名＋ドメインネームはデフォルトで設定されます（表示はされません）。（指定例： www.bluequartz.org、bluequartz.org など）"
+
+msgid "receiveField_help"
+msgstr "このサーバは、ここで指定するホスト名またはドメインネーム宛ての電子メールを受信します。[[base-email.receiveField_rule]]"
+
+msgid "blockHostField"
+msgstr "これらのホスト／ドメインからの電子メールの受信を拒否する："
+
+msgid "blockHostField_rule"
+msgstr "ホスト名またはドメインネームを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例： www.spam.com、spam.com など）"
+
+msgid "blockHostField_help"
+msgstr "このサーバへの電子メールの配信を禁止したいホスト名やドメインネームがあれば、ここに入力してください。[[base-email.blockHostField_rule]]"
+
+msgid "blockUserField"
+msgstr "これらのユーザからの電子メールの受信を拒否する："
+
+msgid "blockUserField_rule"
+msgstr "電子メールアドレスを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例： user@spam.com など）"
+
+msgid "bad_blockUserField"
+msgstr "「[[base-email.blockUserField]]」フィールドに入力したアドレスが不正です。電子メールアドレスを正しい形式で入力してください。デフォルトでは、このフィールドは空欄です。（指定例、user@spam.com など）"
+
+msgid "blockUserField_help"
+msgstr "このサーバへの電子メールの配信を禁止したいユーザがいれば、その電子メールアドレスをここに入力してください。[[base-email.blockUserField_rule]]"
+
+msgid "duplicateKeys"
+msgstr "受信拒否とメールリレーに関する情報を更新できませんでした。メールリレー許可フィールドと受信拒否フィールドの両方にリストされているホストまたはドメインがあります。同一のホストまたはドメインからの電子メールの受信拒否とリレーは同時に行えません。"
+
+# ----- Active Monitor strings 
+msgid "amEmailNameTag"
+msgstr "電子メールサーバ"
+
+msgid "amSMTPNameTag"
+msgstr "SMTP サーバ"
+
+msgid "amSMTPDetails"
+msgstr "SMTP（Simple Mail Transfer Protocol）サーバの詳細"
+
+msgid "amPOP3NameTag"
+msgstr "POP サーバ"
+
+msgid "amPOP3Details"
+msgstr "POP（Post Office Protocol）サーバの詳細"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP サーバ"
+
+msgid "amIMAPDetails"
+msgstr "IMAP（Internet Message Access Protocol）サーバの詳細"
+
+msgid "amEmailGreen"
+msgstr "電子メールシステムは正常に機能しています。"
+
+msgid "amEmailYellow"
+msgstr "電子メールシステムに問題があります。"
+
+msgid "amEmailRed"
+msgstr "電子メールシステムに深刻な問題があります。"
+
+msgid "amSMTPNotRunning"
+msgstr "SMTP サーバは動作しておらず、起動することもできませんでした。過剰負荷のためSMTP サーバが一時的にシャットダウンしている可能性もありますので、アクティブモニタからサーバの CPU 負荷をご確認ください。負荷に問題がない場合には、「[[base-apache.amAdmservNameTag]]」で SMTP サーバを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。SMTP サーバが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも SMTP サーバを起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amSMTPBadResponse"
+msgstr "SMTP サーバが正しく応答しませんでした。"
+
+msgid "amSMTPStatusOK"
+msgstr "SMTP サーバは正常に動作しています。"
+
+msgid "amPOP3NotRunning"
+msgstr "POP サーバは動作しておらず、起動することもできませんでした。「[[base-apache.amAdmservNameTag]]」で、POPサーバを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。POP サーバが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある 「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも POP サーバが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amPOP3BadResponse"
+msgstr "POP サーバが正しく応答しませんでした。"
+
+msgid "amPOP3StatusOK"
+msgstr "POP サーバは正常に動作しています。"
+
+msgid "amIMAPNotRunning"
+msgstr "IMAP サーバは動作しておらず、起動することもできませんでした。「[[base-apache.amAdmservNameTag]]」で、IMAP サーバを一旦オフにして「保存」ボタンをクリックしてから、もう一度オンにして「保存」ボタンをクリックし、問題が解決するかどうかお試しください。IMAP サーバが正しく起動しない場合には、[[base-alpine.serverconfig]] の [[base-power.power]] メニューにある 「[[base-power.reboot]]」ボタンをクリックして、サーバ本体を再起動してください。それでも IMAP サーバが起動しない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amIMAPBadResponse"
+msgstr "IMAP サーバが正しく応答しませんでした。"
+
+msgid "amIMAPStatusOK"
+msgstr "IMAP サーバは正常に動作しています。"
+
+# --- Handler error messages
+# vacation message 
+msgid "vacationSubject"
+msgstr "からの自動応答"
+
+msgid "cantGetUserInfo"
+msgstr "Vacation は CCE からユーザ情報を入手できませんでした。"
+
+msgid "badUser"
+msgstr "メールサーバ設定ファイルを削除または手動で変更してある場合には、元のファイルを復元してからもう一度お試しください。"
+
+msgid "cantEditFile"
+msgstr "電子メール設定ファイルの更新中にエラーが発生しました。[[base-email.badUser]]"
+
+msgid "masqAddressCantBeLocalhost"
+msgstr "強制差出人ドメインに localhost は指定できません。"
+
+# apop.pl
+msgid "could_not_tie_apop"
+msgstr "システムエラーが発生しました。[[base-email.badUser]]"
+
+msgid "apopPwRequired"
+msgstr "APOP の使用をユーザに許可するには、パスワードの指定が必要です。"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "SMTP サーバ設定ファイルの書き込み中にエラーが発生しました。[[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "システムの設定に失敗したため、SMTP サーバを起動できませんでした。[[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "システムの設定に失敗したため、POP または IMAP サーバをリセットできませんでした。[[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "電子メールサーバマップファイルの作成中にエラーが発生しました。[[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "電子メール設定ファイルの更新中にエラーが発生しました。[[base-email.badUser]]"
+
+msgid "aliasInUse"
+msgstr "[[VAR.name]] という電子メールエイリアスは既に使われています。別の名前をご指定ください。"
+
+msgid "nonExistentUser"
+msgstr "次の名前を持つローカルユーザが見つからないため、メールを転送できません： [[VAR.users]]  転送先アドレスのリストからこれらのユーザを削除するか、ユーザアカウントを作成してから、再度転送を有効にしてみてください。"
+
+# --- sendmail.cf bounce messages ----
+msgid "CFinvalidListSyntax"
+msgstr "宛先アドレスの List:; 文法が不正です"
+
+msgid "CFuserAddressRequired"
+msgstr "ユーザのアドレスが必要です"
+
+msgid "CFcolonInHostname"
+msgstr "ホスト名にコロンは使えません"
+
+msgid "CFinvalidHostname"
+msgstr "ホスト名が不正です"
+
+msgid "CFrealDomainRequired"
+msgstr "実ドメインネームは必須です"
+
+msgid "CFdomainRequired"
+msgstr "ドメインネームは必須です"
+
+msgid "CFsenderDomainNoexist"
+msgstr "差出人アドレスに指定されたドメインが見つかりません"
+
+msgid "CFaccessDenied"
+msgstr "アクセスを拒否されました"
+
+msgid "CFrelayDeniedTemp"
+msgstr "クライアントアドレス用の PTR レコードを解決できなかったため、リレーは一時的に拒否されました。"
+
+msgid "CFrelayDeniedForged"
+msgstr "IP 名が虚偽と見なされるため、リレーは拒否されました。"
+
+msgid "CFrelayDeniedFailed"
+msgstr "IP 名の問い合わせに失敗したため、リレーは拒否されました。"
+
+msgid "CFrelayDenied"
+msgstr "リレーは拒否されました。メールの宛先情報などを再度確認し、問題がなければメールクライアントソフトウェアを再起動してみてください。"
+
+msgid "CFnotAuthenticated"
+msgstr "は認証されていません"
+
+msgid "CFauthNotAllowed"
+msgstr " は無許可 "
+
+# --- schema tags ---
+msgid "userEmail"
+msgstr "ユーザの電子メール設定"
+
+# --- ui extensions ---
+msgid "enableApop"
+msgstr "APOP を有効にする"
+
+msgid "enableApop_help"
+msgstr "このユーザが APOP を使えるようにできます。APOP (認証 POP) は、POP3 サーバに対する安全な認証方式で、Fetchmail や Eudora などのメールクライアントでサポートされています。"
+
+msgid "apopEnabled"
+msgstr "APOP (認証 POP)"
+
+msgid "apopEnabled_help"
+msgstr "このユーザには APOP (認証 POP) が有効にされています。"
+
+msgid "apopFullText"
+msgstr "APOP を有効にする"
+
+msgid "apopFullText_help"
+msgstr "APOP (認証 POP) を有効にします。"
+
+msgid "cantCreateAlias"
+msgstr "このユーザの電子メールエイリアスは設定されていません。"
+
+# new feature
+msgid "SMTP"
+msgstr "SMTP サービス"
+
+msgid "IMAP"
+msgstr "IMAP サービス"
+
+msgid "POP"
+msgstr "POP サービス"
+
+msgid "enableSMTPSField"
+msgstr "SMTPS サーバを有効にする"
+
+msgid "enableSMTPSField_help"
+msgstr "SMTP over SSL を有効にするかどうかを指定します。"
+
+msgid "enableTLSField"
+msgstr "TLS を有効にする"
+
+msgid "enableTLSField_help"
+msgstr "TLS を有効にするかどうかを指定します。"
+
+msgid "enableAuth"
+msgstr "SMTP Auth を有効にする"
+
+msgid "enableAuth_help"
+msgstr "SMTP Auth を有効にするかどうかを指定します。"
+
+msgid "enableSubmissionPortField"
+msgstr "サブミッションポートを有効にする"
+
+msgid "enableSubmissionPortField_help"
+msgstr "サブミッションポートでのメール送受信を有効にします。"
+
+msgid "enableImapsField"
+msgstr "IMAPS サーバを有効にする"
+
+msgid "enableImapsField_help"
+msgstr "IMAPS（Internet Message Access Protocol over TLS/SSL）を有効にするかどうかを指定します。IMAPS を有効にすると、ユーザは IMAPS 対応の電子メールクライアントを使って電子メールを受信できます。IMAPS を使うと、ユーザはサーバ上にある電子メールをダウンローしないで直接読むことができます。ただし、電子メールを操作する間、ユーザはサーバへのアクセスを維持する必要があります。"
+
+msgid "enablePopsField"
+msgstr "POPS サーバを有効にする"
+
+msgid "enablePopsField_help"
+msgstr "POPS（Post Office Protocol over TLS/SSL）メール受信サービスを有効にするかどうかを指定します。POPS を有効にすると、ユーザは一般的な電子メールクライアントを使ってこのサーバから電子メールを受信できます。"
+
+#delivery routes
+msgid "routes"
+msgstr "配信経路を設定"
+
+msgid "routes_help"
+msgstr "このサーバから送られるメールの配信経路を設定、変更できます。"
+
+# list
+msgid "routeList-list-title"
+msgstr "設定されている配信経路"
+
+msgid "createRoute"
+msgstr "配信経路の追加"
+
+msgid "route-target"
+msgstr "ターゲットのドメイン名"
+
+msgid "route-target_help"
+msgstr "配信経路の対象となるドメイン名です。"
+
+msgid "route-server"
+msgstr "メールサーバ"
+
+msgid "route-server_help"
+msgstr "配信経路の対象となるドメイン名を配信するメールサーバです。"
+
+msgid "modifyRoute"
+msgstr "配信経路の変更"
+
+msgid "verify_delete"
+msgstr "[[VAR.route]] という配信経路を削除してよろしいですか？"
+
+# Add a route form
+msgid "route_form_target"
+msgstr "ターゲットのドメイン名"
+
+msgid "route_form_target_help"
+msgstr "配信経路の対象となるドメイン名を入力してください。（指定例：bluquartz.org)"
+
+msgid "route_form_target_empty"
+msgstr "[[base-email.route_form_target]] の値が入力されていません。（指定例：bluquartz.org)"
+
+msgid "route_form_target_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-email.route_form_target]] には不正な値です。（指定例：bluquartz.org)"
+
+msgid "route_form_server"
+msgstr "メールサーバ"
+
+msgid "route_form_server_help"
+msgstr "配信するメールサーバを入力してください。"
+
+msgid "route_form_server_empty"
+msgstr "[[base-email.route_form_server]] の値が入力されていません。"
+
+msgid "route_form_server_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-email.route_form_server]] には不正な値です。"
+
+msgid "routeList_action_header"
+msgstr "詳細・削除"
+
+msgid "routeList_action_header_help"
+msgstr "鉛筆アイコンをクリックすると、配信経路の設定を変更できます。ゴミ箱アイコンをクリックすると、配信経路を削除できます。"
+
+msgid "cap_serverEmail"
+msgstr "電子メールの設定"

@@ -4,7 +4,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2001, Cobalt Networks.  All rights reserved.
-// $Id: uiLog.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: uiLog.php 1024 2007-06-25 15:31:47Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("System.php");

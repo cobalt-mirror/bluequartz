@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu, Will DeHaan
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: locale.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: locale.php 1028 2007-06-25 16:57:31Z shibuya $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -44,7 +44,7 @@ $page = $factory->getPage();
 $block = $factory->getPagedBlock("localeSettings");
 
 $browser_locales = array();
-$browser_locales = preg_split("/,/", $serverScriptHelper->getLocalePreference($HTTP_ACCEPT_LANGUAGE));
+$browser_locales = split(',', $serverScriptHelper->getLocalePreference($HTTP_ACCEPT_LANGUAGE));
 for($i = 0; $i < count($browser_locales); $i++) {
 
   for($j = 0; $j < count($possibleLocales); $j++) {

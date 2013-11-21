@@ -12,8 +12,8 @@ INSTALLDIRS = conf libPhp web menu
 CCEMODULE = sausalito-palette
 CCERPMSPEC = sausalito-palette.spec
 
-VERSION=0.5.2
-RELEASE=0BX25
+VERSION=0.5.1
+RELEASE=0BQ13
 
 LOCALES=$(shell dir=locale; \
                 if [ -d $$dir ]; then \
@@ -48,8 +48,8 @@ install: install_locale
 #	make -C locale/ja install
 
 clean:
-	rm -rf rpms srpms 
-	find locale/ -name *.mo | xargs rm -f 
+	rm -rf rpms srpms
+	find locale/ -name *.mo | xargs rm -f
 
 ifneq ($(SLK_BUILD), yes)
 ifdef CCETOPDIR

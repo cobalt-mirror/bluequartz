@@ -1,4 +1,4 @@
-# $Id: Makefile 1137 2008-06-05 02:31:33Z mstauber $
+# $Id: Makefile 1382 2010-02-21 12:11:21Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Makefile for CCE Daemon
 
@@ -7,14 +7,13 @@ include ../dynamic.mk
 DEFS += -DCCE_VERSION=\"$(CCE_VERSION)\"
 LIBS += -lcrypt -ldl #-ldebug 
 INCLUDES += -I./include
+CFLAGS += -D_GNU_SOURCE
 
 SRCS = src/main.c src/smd.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 
 DAEMON = cced
 CLIENT = cceclient
-
-SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "system-auth-cce.pam.64-bit"; else  echo -n "system-auth-cce.pam"; fi)
 
 all: $(DAEMON) $(CLIENT)
 	
@@ -60,13 +59,9 @@ install: all
 	@$(INSTALL) $(INST_FILEFLAGS) basetypes.schema $(CCE_SCHEMADIR)
 	@echo Installed basetypes.schema in $(CCE_SCHEMADIR)
 	@$(INSTALL) $(INST_BINFLAGS) cced.init $(SYS_INITDIR)
-	@$(INSTALL) $(INST_BINFLAGS) pam_abl $(SYS_INITDIR)
 	@echo Installed cced.init in $(SYS_INITDIR)
-	@echo Installed pam_abl in $(SYS_INITDIR)
 	@$(INSTALL) $(INST_FILEFLAGS) cced.pam $(SYS_PAMDIR)/cced
 	@echo Installed cced.pam in $(SYS_PAMDIR)
-	@$(INSTALL) $(INST_FILEFLAGS) $(SACPAM)  $(SYS_PAMDIR)/system-auth-cce
-	@echo Installed system-auth-cce.pam in $(SYS_PAMDIR)
 
 uninstall:
 	$(RM) -f $(CCE_SBINDIR)/$(DAEMON)
@@ -75,7 +70,6 @@ uninstall:
 	$(RM) -f $(CCE_SCHEMADIR)/basetypes.schema
 	$(RM) -f $(SYS_INITDIR)/cced
 	$(RM) -f $(SYS_PAMDIR)/cced
-	$(RM) -f $(SYS_PAMDIR)/system-auth-cce
 
 clean:
 	$(RM) -f $(OBJS) $(DAEMON) $(CLIENT) .depend

@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -62,6 +62,17 @@ information for [VENDOR]-[SERVICE].
 
 <end capstone>
 <end %FILES>
+
+<begin %PRE-INSTALL>
+<begin HEADER>
+%pre [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue pre-install
+
+<end glue>
+<end %PRE-INSTALL>
 
 <begin %POST-INSTALL>
 <begin HEADER>

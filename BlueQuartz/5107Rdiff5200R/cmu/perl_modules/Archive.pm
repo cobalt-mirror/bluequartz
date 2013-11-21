@@ -1,7 +1,6 @@
-# $Id: Archive.pm Sun 05 Feb 2012 04:02:23 AM CET mstauber $
+# $Id: Archive.pm 1161 2008-06-21 10:31:02Z shibuya $
 # Copyright 2000 Cobalt Networks http://www.cobalt.com/
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
-# Copyright 2012 Team BlueOnyx (http://www.blueonyx.it/). All rights reserved.
 
 package Archive;
 use strict;
@@ -26,10 +25,9 @@ require MIME::Base64;
 import MIME::Base64 qw(decode_base64 encode_base64);
 	
 use vars qw($archConf $archBuild);
-use File::stat;
 
 $archConf = {
-	findBin		=>	'find',	
+	findBin		=>	'/usr/bin/find',	
 	tarBin		=>	'/bin/tar',
 	gzipBin		=>	'/bin/gzip',
 	cpBin		=>	'/bin/cp',
@@ -154,16 +152,13 @@ sub buildTar
 	my $self = shift;
 	my ($ret, $homeDir); 
 
-	# Sun 05 Feb 2012 04:02:51 AM CET (mstauber): Added php.ini to the ignore list. On cmuImport when the site is created,
-	# CCE will create a php.ini already if suPHP is enabled. Extracting the php.ini from the site's private tarball will
-	# then fail, as the CCE created php.ini is protected with chattrib anyway. Otherwise we'd run into an ugly error.
-	$self->setIgnore(qw(.bash_history _vti .forward .vacation_msg php.ini));
+	$self->setIgnore(qw(.bash_history _vti .forward .vacation_msg));
 	if($self->type eq "users") {
 		$homeDir = (getpwnam($self->name))[7];
 	} elsif($self->type eq "groups") {
 		if($self->build =~ /^Qube/) {
 			$homeDir = "/home/groups/".$self->name;
-		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^5106R$/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
+		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
 			$homeDir = $self->{baseDir};
 		} elsif($self->build =~ /^RaQ/) {
 			$homeDir = "/home/sites/".$self->name;
@@ -198,36 +193,20 @@ sub buildTar
 		$self->setBaseDir($homeDir."/private");
 	} else { 
 		$self->addIgnore("web");
-		if(($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) && $self->type eq "groups") {
+		if(($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) && $self->type eq "groups") {
 			$self->addIgnore("users");
 			$self->addIgnore(".users");
 		}	
 		$self->setBaseDir($homeDir);
 	}
 		
-	# Not so dirty hack to get the mail file
-	# mstauber Sun May 24 18:31:25 2009
-	# Whoever coded the initial version of this didn't take into account that the spools do not always reside under /var/spool/mail/<username>
-	# I can't use a platform check here or Perl goes mad at me. So I instead check if we have an ~<username>/mbox file first and use that one.
-	# If we don't find one there, then we use /var/spool/mail/<username> instead. This should still cover all platforms.
-	if($self->type eq "users" && -f $self->baseDir."/mbox") {
-	    my $mailFile = $self->baseDir."/mbox";
-		warn "INFO: Using ", $mailFile, " as mailspool.\n" if($self->cfg('debug'));
-		if(-f $mailFile) {
-			my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
-				$self->baseDir."/cmu-mailspool";
-			qx/$cpCmd/;
-			warn "INFO: Using command ", $cpCmd, " to create copy of mailspool.\n" if($self->cfg('debug'));
-		}
-	}
-	elsif($self->type eq "users" && -f $self->cfg('mailSpool')."/".$self->name) {
+	# dirty hack to get the mail file
+	if($self->type eq "users") {
 		my $mailFile = $self->cfg('mailSpool')."/".$self->name;
-		warn "INFO: Using", $mailFile, " as mailspool.\n" if($self->cfg('debug'));
 		if(-f $mailFile) {
 			my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
 				$self->baseDir."/cmu-mailspool";
 			qx/$cpCmd/;
-			warn "INFO: Using command ", $cpCmd, " to create copy of mailspool.\n" if($self->cfg('debug'));
 		}
 	}
 	# get the private stuff
@@ -333,72 +312,28 @@ sub getFileList
 		next if($f eq "..");
 		$f =~ s/^\.\///o;		
 		unless(grep {$f =~ /^$_/} @{ $self->{ignore} }) {
-			# The function below does no longer work under Perl-5.8.X for whatever weird reason.
-			# Part of the problem is that it barfs on symlinks. Using lstat instead gets around that,
-			# but there we have to make sure to not run it on sockets, special devices and what not.
-			#($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7]; 
-
-			# Run lstat() on files, directories and symlinks only:
-                        if ((-f $dir."/".$f) || (-d $dir."/".$f) || (-l $dir."/".$f)) {
-                                my $sb = lstat($dir."/".$f);
-                                my $uid = $sb->uid;
-                                my $gid = $sb->gid;
-                                my $size = $sb->size;
-				# Uncomment the next line to log debug output to cmu.log:
-				#warn "IN-IF File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
-
-				my $fHash;
-				$fHash->{name} = $f;
-				$fHash->{size} = $size;
-				if(defined($uidHash->{$uid})) {
-					$fHash->{uid} =  $uidHash->{$uid};
+			($uid,$gid,$size) = (stat($dir."/".$f))[4,5,7];
+			my $fHash;
+			$fHash->{name} = $f;
+			$fHash->{size} = $size;
+			if(defined($uidHash->{$uid})) {
+				$fHash->{uid} =  $uidHash->{$uid};
+			} else {
+				$name = (getpwuid($uid))[0];
+				if($name) { $fHash->{uid}= $uidHash->{$uid} = $name; } 
+				else { $fHash->{uid} = $self->cfg('dflUser') }
+			}
+			if($build =~ /^Qube/) {
+				if(defined $gidHash->{$gid}) { 
+					$fHash->{gid} = $gidHash->{$gid}; 
 				} else {
-					$name = (getpwuid($uid))[0];
-					if($name) { $fHash->{uid}= $uidHash->{$uid} = $name; } 
-					else { $fHash->{uid} = $self->cfg('dflUser') }
+					$name = (getgrgid($gid))[0];
+					if($name) { $fHash->{gid} = $gidHash->{$gid} = $name; } 
+					else { $fHash->{gid} = $self->cfg('dflGroup') }
 				}
-				if($build =~ /^Qube/) {
-					if(defined $gidHash->{$gid}) { 
-						$fHash->{gid} = $gidHash->{$gid}; 
-					} else {
-						$name = (getgrgid($gid))[0];
-						if($name) { $fHash->{gid} = $gidHash->{$gid} = $name; } 
-						else { $fHash->{gid} = $self->cfg('dflGroup') }
-					}
-				}
-				push(@{ $xmlData->{file} }, $fHash);
-				$total += $size;				
-                        }
-			# On anything else we assume safe defaults:
-                        else {
-                                my $uid = "nobody";
-                                my $gid = "users";
-                                my $size = "0";
-				# Uncomment the next line to log debug output to cmu.log:
-				#warn "IN-ELSE File: $dir/$f | UID: $uid | GID: $gid | Size: $size \n";
-
-				my $fHash;
-				$fHash->{name} = $f;
-				$fHash->{size} = $size;
-				if(defined($uidHash->{$uid})) {
-					$fHash->{uid} =  $uidHash->{$uid};
-				} else {
-					$name = (getpwuid($uid))[0];
-					if($name) { $fHash->{uid}= $uidHash->{$uid} = $name; } 
-					else { $fHash->{uid} = $self->cfg('dflUser') }
-				}
-				if($build =~ /^Qube/) {
-					if(defined $gidHash->{$gid}) { 
-						$fHash->{gid} = $gidHash->{$gid}; 
-					} else {
-						$name = (getgrgid($gid))[0];
-						if($name) { $fHash->{gid} = $gidHash->{$gid} = $name; } 
-						else { $fHash->{gid} = $self->cfg('dflGroup') }
-					}
-				}
-				push(@{ $xmlData->{file} }, $fHash);
-				$total += $size;
-                        }
+			}
+			push(@{ $xmlData->{file} }, $fHash);
+			$total += $size;
 		}
 
 	}
@@ -419,7 +354,7 @@ sub extractTar
 	} elsif($self->type eq "groups") {
 		if($self->build =~ /^Qube/) {
 			$homeDir = "/home/groups/".$self->name;
-		} elsif($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
+		} elsif($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
 			$homeDir = "/home/sites/".$self->name;
 		} else {
 			warn "ERROR extractTar: Cannot find build type: ", $self->build, "\n";
@@ -467,7 +402,6 @@ sub extractTar
 	$self->setSet("private");
 	$self->setBaseDir($homeDir);
 	foreach my $xml (@{ $self->{archives}->{private} }) {
-
 		if(-f $self->destDir."/".$xml.".".$self->sessID) {
 			$self->setXmlName($self->destDir."/".$xml.".".$self->sessID);
 		} else { $self->setXmlName($self->destDir."/".$xml) }
@@ -505,32 +439,15 @@ sub extractTar
 				qx(/bin/chgrp mail $mailDest);
 				chmod 0660, $mailDest;
 				
-			} elsif($self->build =~ /^RaQ550/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R/) {
+			} elsif($self->build =~ /^RaQ550/ || $self->build =~ /^5100R/ || $self->build =~ /^5200R/) {
 				if(-l $homeDir."/mbox") {
-					warn "WARN $homeDir/mbox is a symlink - removing it.\n";
+					warn "WARN $homeDir/mbox is a symlink\n";
 					unlink($homeDir.'/mbox');
 				}
-				# mstauber Sun May 24 17:20:37 2009
-				# Check the size of the file 'cmu-mailspool' that's included in the user's 'private' tarball.
-				# It contains a copy of his 'mbox' file. Store the size in $cmu_mailspool_size
-				my $cmu_mailspool_size = "";
-				if (-f $mailFile) {
-				    my $cmu_mailspool_size = stat("$mailFile")->size;
-				}
-				else {
-				    my $cmu_mailspool_size = "0";
-				}
-				warn "INFO: Spool ", $mailFile, " is ", $cmu_mailspool_size, " bytes large.\n" if($self->cfg('debug'));
-
-				# We only copy 'cmu-mailspool' over 'mbox' if 'cmu-mailspool' is NOT 0 bytes.
-				# We especially don't copy over if 'mbox' exists, because that would be plain stupid:
-				unless ((-f $homeDir."/mbox") && ($cmu_mailspool_size == "0")) {
-				    my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
+				my $cpCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
 					$homeDir."/mbox";
-				    qx/$cpCmd/;
-				    warn "INFO: Using command ", $cpCmd, " to restore mailspool.\n" if($self->cfg('debug'));
-				    chmod 0600, 'mbox';
-				}
+				qx/$cpCmd/;
+				chmod 0600, 'mbox';
 			} else {
 				my $catCmd = $self->cfg('cpBin')." -p ".$mailFile." ".
 					$self->cfg('mailSpool')."/".$self->name;
@@ -586,8 +503,7 @@ sub setAttr
 	foreach my $file (@{ $fData->{file} }) {
 		if(!defined $file->{uid}) {
 			next;
-		} 
-		elsif(!defined $uidHash->{ $file->{uid} }) {
+		} elsif(!defined $uidHash->{ $file->{uid} }) {
 			my $uid = getpwnam($file->{uid});
 			if($uid) {
 				$uidHash->{ $file->{uid} } = $uid;
@@ -601,21 +517,20 @@ sub setAttr
 			next;
 		}
 
-                my $gid; 
-                if (defined $self->{gid}) { 
-                        $gid = $self->{gid}; 
-                } else { 
-                        $gid = 'users'; 
-                } 
+		my $gid;
+		if (defined $self->{gid}) {
+			$gid = $self->{gid};
+		} else {
+			$gid = 'users';
+		}
 
 		# escape problem chars
 		if($file->{name} =~ /\$/) { $file->{name} =~ s/\$/\\\$/g; }
-#		if($file->{name} =~ /\%/) { $file->{name} =~ s/\%/\\\%/g; }
-		if($file->{name} =~ /\`/) { $file->{name} =~ s/\`/\\\`/g; } #`
+		if($file->{name} =~ /\`/) { $file->{name} =~ s/\`/\\\`/g; }
 
-		if($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
+		if($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5200R/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
 			$ret = chown((getpwnam($file->{uid}))[2],
-			 (getgrnam($self->{gid}))[2], $file->{name} );
+			 (getgrnam($gid))[2], $file->{name} );
 			$ret = ($ret > 0)? 0: 1;
 		} elsif($self->build =~ /^Qube/) { 
 			$ret = chown((getpwnam($file->{uid}))[2],
@@ -623,16 +538,7 @@ sub setAttr
 			$ret = ($ret > 0)? 0: 1;
 		}
 		if($ret != 0) {
-			#warn "ERROR Cannot set ownership for file: $dir/", $file->{name}, " - Debug: UID: $file->{uid} - GID: $self->{gid} \n";
-
-			# During the first try we couldn't set the UID and GID of this file. So we try it again using a system call before we really fail:
-
-			#warn "ERROR Performing command: chown $file->{uid}:$self->{gid} $dir/$file->{name} \n";
-			my $ret_second_attempt = system("chown $file->{uid}:$self->{gid} $dir/$file->{name}");
-
-			if ($ret_second_attempt != 0) {
-			    warn "ERROR Cannot set ownership for file: $dir/", $file->{name}, " - Tried to chown with: UID: $file->{uid} - GID: $self->{gid} and failed.\n";
-			}
+			warn "ERROR Cannot set ownership for file: $dir/", $file->{name}, "\n"
 		}
 	
 	}

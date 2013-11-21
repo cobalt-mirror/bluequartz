@@ -1,5 +1,5 @@
 
-/var/log/admserv/adm_access {
+/var/log/admserv/access_log {
     missingok
     notifempty
     sharedscripts
@@ -8,7 +8,7 @@
     endscript
 }
 
-/var/log/admserv/adm_error {
+/var/log/admserv/error_log {
     missingok
     notifempty
     sharedscripts

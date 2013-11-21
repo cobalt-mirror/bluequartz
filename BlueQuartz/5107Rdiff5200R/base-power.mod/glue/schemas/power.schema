@@ -28,32 +28,32 @@
     <!-- controls wake on lan options -->
     <property 
         name="wakemode" type="wakemode" default="none"
-        writeacl="ruleCapable(controlPower)"
+        writeacl="ruleCapable(serverPower)"
     />
 
     <!-- controls behavior of system when power is applied. 
 	(i.e. in a UPS situation) -->
     <property 
         name="powermode" type="powermode" default="off"
-        writeacl="ruleCapable(controlPower)"
+        writeacl="ruleCapable(serverPower)"
     />
   
     <!-- set to current time to reboot the machine. -->
     <property 
         name="reboot" type="int" default="0"
-        writeacl="ruleCapable(controlPower)"
+        writeacl="ruleCapable(serverPower)"
     />
   
     <!-- set to current time to halt the machine. -->
     <property 
         name="halt" type="int" default="0"
-        writeacl="ruleCapable(controlPower)"
+        writeacl="ruleCapable(serverPower)"
     />
 
     <!-- set to current time to push wakemode and powermode into kernel and eeprom -->
     <property 
         name="set_modes_now"	type="int"	default="0" 
-        writeacl="ruleCapable(controlPower)"
+        writeacl="ruleCapable(serverPower)"
     />
 </class>
 

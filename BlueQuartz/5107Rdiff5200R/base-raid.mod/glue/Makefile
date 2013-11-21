@@ -1,4 +1,4 @@
-# $Id: Makefile 1188 2008-09-16 07:38:34Z mstauber $
+# $Id: Makefile 1263 2009-09-16 06:04:39Z shibuya $
 
 ifdef CCETOPDIR
 include $(CCETOPDIR)/devel/defines.mk
@@ -12,8 +12,6 @@ clean:
 
 install:
 	mkdir -p $(PREFIX)/etc/init.d
-	mkdir -p $(PREFIX)/sbin
 	$(INSTALL) etc/init.d/mdchk $(PREFIX)/etc/init.d
 	$(INSTALL) etc/init.d/fix_grub $(PREFIX)/etc/init.d
-	$(INSTALL) sbin/lsraid $(PREFIX)/sbin
 

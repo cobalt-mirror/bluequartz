@@ -3,7 +3,7 @@
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // AnonFtp.php.create.Vsite
 
-include_once('UIExtension.php');
+include('UIExtension.php');
 
 class AnonFtpExtension extends UIExtension
 {
@@ -12,7 +12,7 @@ class AnonFtpExtension extends UIExtension
         $factory = $ServerScriptHelper->getHtmlComponentFactory("base-ftp");
         $cce = $ServerScriptHelper->getCceClient();
 
-        $defaults = $cce->get($parameters["CCE_SERVICES_OID"], "SiteFtp");
+        $defaults = $cce->get($parameters["CCE_SERVICES_OID"], "AnonFtp");
        
         // construct all the form fields needed, note that only simple
         // form fields are allowd.  no composite form fields
@@ -24,7 +24,7 @@ class AnonFtpExtension extends UIExtension
         // now add the form fields to the block, assume PagedBlock
         if ($parameters['CAN_ADD_PAGE'])
         {
-            $pageId = "SiteFtp";
+            $pageId = "AnonFtp";
             $container->addPage($pageId, $factory->getLabel("ftpTabName"));
         }
         else

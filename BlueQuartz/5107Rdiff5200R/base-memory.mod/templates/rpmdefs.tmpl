@@ -11,19 +11,11 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 [PROVIDES]
-
-Requires: base-console-locale-ja
-Requires: base-console-locale-en_US
-Requires: base-console-locale-de_DE
-Requires: base-console-locale-da_DK
-Requires: base-console-glue
-Requires: base-console-ui
-Requires: base-console-capstone
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -125,28 +117,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BX11
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BX10
-- Requirements fixed
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BX09
-- Copied 'en' locales to 'en_US'
-- Removed 4GB memory limit from glue/handlers/meminfo.pl
-
-* Tue Jul 14 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BQ8
-- Added dependency for base-console to force install of that new module.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BQ7
-- Rebuilt for BlueOnyx.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BQ6
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BQ5 
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-25BQ5
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-25BQ4
 - rebuild with devel-tools 0.5.1-0BQ7.

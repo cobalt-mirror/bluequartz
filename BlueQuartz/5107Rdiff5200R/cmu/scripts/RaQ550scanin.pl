@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: RaQ550scanin.pl 957 2006-05-05 09:55:26Z shibuya $
+# $Id: RaQ550scanin.pl 1511 2010-08-08 07:21:36Z shibuya $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -326,10 +326,8 @@ my $cmd;
 if($cfg->dns eq 't') {
 	warn "INFO: Importing DNS records\n";
 	if($tree->{exportPlatform} eq 'RaQ550' ||
-	   $tree->{exportPlatform} eq '5100R' ||
-	   $tree->{exportPlatform} eq 'TLAS1HE' ||
-	   $tree->{exportPlatform} eq 'TLAS2') {
-		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R series or TLAS HE DNS migration not done yet\n"
+	   $tree->{exportPlatform} eq '5100R') {
+		warn "INFO: RaQ550 to RaQ550 or BlueQuartz 5100R series DNS migration not done yet\n"
 	} elsif(-f $cfg->destDir.'/records') {
 		$cmd = '/usr/cmu/scripts/dnsImport '.$cfg->destDir.'/records';
 		system($cmd);

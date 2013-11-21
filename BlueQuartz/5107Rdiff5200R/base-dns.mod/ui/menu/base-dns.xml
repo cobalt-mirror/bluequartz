@@ -8,7 +8,7 @@
         <access require="adminUser"/>
     </parent>
 	<parent id="base_controlpanel" order="40">
-        <access require="networkServices"/>
+        <access require="serverDNS"/>
     </parent>
 </item>
 

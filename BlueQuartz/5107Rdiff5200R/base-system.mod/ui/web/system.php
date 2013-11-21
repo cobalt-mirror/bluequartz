@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: system.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: system.php 1428 2010-03-10 14:50:55Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverInformation should be here
+if (!$serverScriptHelper->getAllowed('serverInformation')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -102,13 +102,6 @@ if($systemMemory["physicalMemTotal"] != "") {
     $factory->getLabel("memoryField")
   );
 }
-
-// PHP5 related fix:
-$block->addFormField(
-    $factory->getTextField("debug_1", "", 'r'),
-    $factory->getLabel("debug_1"),
-    Hidden
-);
 
 $serverScriptHelper->destructor();
 ?>

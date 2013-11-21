@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: manual.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: manual.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once('Error.php');
@@ -14,15 +14,14 @@ ini_set('max_input_time', '0');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
 
 $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate", "/base/swupdate/manualHandler.php");
-$i18n = $serverScriptHelper->getI18n("base-swupdate");
 
 // check to see if cce is suspended, because it doesn't make any sense
 // to let them continue when cce is locked
@@ -45,7 +44,7 @@ if(is_dir($dirName)) {
 	if ($file[0] == '.')
 		continue;
 	$serverScriptHelper->shell("$magic_cmd $dirName/$file", $output, 'root');
-	if (preg_match("/(tar|compressed|PGP\s+armored|\sdata$)/", $output)) {
+	if (ereg("(tar|compressed|PGP\s+armored|\sdata$)", $output)) {
 		$packages[] = $file;
 	}
   }
@@ -82,21 +81,10 @@ $block->addButton($factory->getButton($page->getSubmitAction(), "prepare"));
 $block->addButton($factory->getCancelButton($backUrl));
 
 $serverScriptHelper->destructor();
-print($page->toHeaderHtml()); 
-
-// 3rd party software warning:
-$thirdparty = $factory->getPagedBlock("warning_header", array("Default"));
-$thirdparty->processErrors($serverScriptHelper->getErrors());
-
-$warning = $i18n->get("3rdpartypkg_warning");
-$thirdparty->addFormField(
-    $factory->getTextList("_", $warning, 'r'),
-    $factory->getLabel(" "),
-    "Default"
-    );
-print($thirdparty->toHtml());
-print($block->toHtml());
-print($page->toFooterHtml());
+?>
+<?php print($page->toHeaderHtml()); ?>
+<?php print($block->toHtml()); ?>
+<?php print($page->toFooterHtml());
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

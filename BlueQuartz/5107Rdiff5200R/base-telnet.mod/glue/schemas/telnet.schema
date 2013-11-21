@@ -1,5 +1,5 @@
 <!-- 
-  $Id: telnet.schema 375 2004-06-20 14:29:28Z shibuya $ 
+  $Id: telnet.schema 1430 2010-03-10 15:30:06Z shibuya $ 
   Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 
   The System.Telnet namespace
@@ -11,15 +11,15 @@
 <class name="System" namespace="Telnet" version="1.0">
     <property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(modifyTelnet)"
+        writeacl="ruleCapable(serverShell)"
     />
     <property 
         name="access" type="telnetaccess" default="none"
-        writeacl="ruleCapable(modifyTelnet)"
+        writeacl="ruleCapable(serverShell)"
     />
     <property 
         name="connectRate" type="int" default="40"
-        writeacl="ruleCapable(modifyTelnet)"
+        writeacl="ruleCapable(serverShell)"
     />
 </class>
 

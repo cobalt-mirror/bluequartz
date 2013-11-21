@@ -183,7 +183,7 @@ sub deactVal
 
 	if($self->getConfig('product') eq 'RaQ3') {
 		$self->{$IM}->{$class}->{$name}->{$attr} = 'off';
-	} elsif($self->getConfig('product') =~ /(RaQ550|5100R|5200R|TLAS1HE|Qube3|5106R)|516[0-1]R/) {
+	} elsif($self->getConfig('product') =~ /(RaQ550|5100R|5200R|TLAS1HE|Qube3)/) {
 		$self->{$IM}->{$class}->{$name}->{$attr} = '0';
 	} else { $self->{$IM}->{$class}->{$name}->{$attr} = 'f' }
 	return 1;

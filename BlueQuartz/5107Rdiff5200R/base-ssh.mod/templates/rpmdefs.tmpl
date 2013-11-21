@@ -117,44 +117,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-11BQ7
+- new Capabilities for admin.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0-11BX15
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0-11BX14
-- Copied 'en' locales to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0-11BX13
-- Version number bump
-
-* Thu Dec 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ12
-- Fixed snafu in glue/handlers/sshd_handler.pl
-
-* Thu Dec 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ11
-- Modified glue/handlers/sshd_handler.pl and ui/extensions/20_SSH.php.shell.System
-- Added ability to import SSH port from sshd_config that's not in the list of supported ports.
-
-* Thu Dec 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ10
-- Modified ui/extensions/20_SSH.php.shell.System to change output into a composite field. Looks better.
-
-* Thu Dec 04 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ9
-- Ability to set SSH to different ports, to allow root access, modify protocols and to edit /root/.bashrc.
-- Extended glue/schemas/ssh.schema with new entries.
-- Added constructor/import_sshd_settings.pl to determine current sshd config.
-- Extended glue/conf/ssh.conf to handle new events.
-- Extended ui/extensions/20_SSH.php.shell.System to provide UI for new switches.
-- Added glue/handlers/sshd_handler.pl to modify /etc/ssh/sshd_config and /root/.bashrc.
-- Modified English, German, Danish and Japanese locales for new strings.
-- German translation complete. Danish and Japanese have the new strings in English for now.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ8
-- Rebuilt for BlueOnyx.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ7
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-11BQ6
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-11BQ6
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
 
 * Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-11BQ5
 - rebuild with devel-tools 0.5.1-0BQ7.

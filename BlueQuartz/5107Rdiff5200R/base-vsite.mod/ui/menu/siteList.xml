@@ -3,7 +3,7 @@
     description="[[base-vsite.virtualSiteList_help]]"
     url="/base/vsite/vsiteList.php">
     <parent id="base_sitemanage" order="5">
-    	<access require="adminUser"/>
+    	<access require="manageSite"/>
     </parent>
 </item>
 <!--

@@ -1,38 +1,35 @@
 <?php
 // Copyright 2001, Sun Microsystems, Inc.  All rights reserved.
-// $Id: support.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: support.php 1001 2007-06-25 15:18:38Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
-$cceClient = $serverScriptHelper->getCceClient();
 
-$factory = $serverScriptHelper->getHtmlComponentFactory("base-documentation", "");
+$stylist = $serverScriptHelper->getStylist();
+$style = $stylist->getStyle("Page");
+$style->setProperty("backgroundColor", "", "#FFFFFF");
+$style->setProperty("backgroundImage", "", "");
+$stylist->setStyle($style);
+
+$factory = new HtmlComponentFactory($stylist, $serverScriptHelper->getI18n("base-documentation"), "");
 $i18n = $serverScriptHelper->getI18n("base-documentation");
 $page = $factory->getPage();
-print($page->toHeaderHtml());
+print($page->toHeaderHtml($style)); 
 
-// Netscape doesn't honor body text styles in tables
-$fontTag = "<FONT STYLE=\"font-family:Arial,Helvetica,sans-serif;font-size:12px;\">%s</FONT>";
-$smallFontTag = "<FONT STYLE=\"font-family:Arial,Helvetica,sans-serif;font-size:12px;\">%s</FONT>";
+$title = $factory->getSimpleBlock("support");
+print $title->toHtml();
+
 ?>
-
-<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="5" WIDTH="530">
-  <TR>
-    <TD COLSPAN="2"><IMG SRC="/libImage/splashPersonal.jpg" ALT="" BORDER="1"></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="TOP" ALIGN="CENTER" WIDTH="*"><H1><?php printf($fontTag, $i18n->get("support")); ?></H1></TD>
-  </TR>
-  <TR>
-    <TD VALIGN="BOTTOM" COLSPAN="2">
-    <BR><BR><?php printf($smallFontTag, $i18n->get('[[base-documentation.supportText]]')); ?><BR></TD>
-  </TR>
+<TABLE WIDTH="550">
+<TR>
+        <TD>
+                <?php print($i18n->get("supportText")); ?>
+        </TD>
+</TR>
 </TABLE>
 
-<?php print($page->toFooterHtml()); ?>
-<?php $serverScriptHelper->destructor();
-
+<?php print($page->toFooterHtml());
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

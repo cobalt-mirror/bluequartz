@@ -1,33 +1,17 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernet.php,v 1.1.1.2.2.3 Mon 10 Aug 2009 11:02:43 AM CEST mstauber Exp $
+// $Id: ethernet.php 1437 2010-03-21 12:59:56Z shibuya $
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverNetwork should be here
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
-}
-
-// Protect certain form fields read-only inside VPS's:
-if (is_file("/proc/user_beancounters")) {
-    $fieldprot = "r";
-}
-else {
-    $fieldprot = "rw";
-}
-
-// Are we running on AWS?
-if (is_file("/etc/is_aws")) {
-    $is_aws = "1";
-}
-else {
-    $is_aws = "0";
 }
 
 $cceClient = $serverScriptHelper->getCceClient();
@@ -39,14 +23,7 @@ $i18n = $serverScriptHelper->getI18n("base-network");
 $system = $cceClient->getObject("System");
 
 $default_page = 'primarySettings';
-if (($fieldprot == "rw") && ($is_aws == "0")) {
-    // Show "Interface Aliasses" if not inside a VPS:
-    $pages = array($default_page, 'aliasSettings');
-}
-else {
-    // Hide "Interface Aliasses" inside a VPS:
-    $pages = array($default_page);
-}
+$pages = array($default_page, 'aliasSettings');
 
 $page = $factory->getPage();
 $form = $page->getForm();
@@ -60,10 +37,10 @@ if (isset($view))
 
 // host and domain names
 $hostfield = $factory->getVerticalCompositeFormField(array(
-			   $factory->getDomainName("hostNameField", $system["hostname"], $fieldprot),
+			   $factory->getDomainName("hostNameField", $system["hostname"]),
 			   $factory->getLabel("hostNameField")));
 $domainfield = $factory->getVerticalCompositeFormField(array(
-				 $factory->getDomainName("domainNameField", $system["domainname"], $fieldprot),
+				 $factory->getDomainName("domainNameField", $system["domainname"]),
 				 $factory->getLabel("domainNameField")));
 
 
@@ -71,11 +48,11 @@ $fqdn = $factory->getCompositeFormField(array($hostfield, $domainfield), '&nbsp;
 
 $block->addFormField(
 	$fqdn,
-	$factory->getLabel("enterFqdn"), 
+	$factory->getLabel("enterFqdn"),
 	$default_page
 );
 
-$dns = $factory->getIpAddressList("dnsAddressesField", $system["dns"], $fieldprot);
+$dns = $factory->getIpAddressList("dnsAddressesField", $system["dns"]);
 $dns->setOptional(true);
 $block->addFormField(
   $dns,
@@ -83,8 +60,8 @@ $block->addFormField(
   $default_page
 );
 
-if (($product->isRaq()) && ($is_aws == "0")) {
-	$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
+if ($product->isRaq()) {
+	$gw = $factory->getIpAddress("gatewayField", $system["gateway"]);
 	$gw->setOptional(true);
 	$block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
 }
@@ -98,8 +75,8 @@ $deviceList = array();
 $devnames = array();
 $i18n = $factory->getI18n();
 $admin_if = '';
-for ($i = 0; $i < count($interfaces); $i++) {
-
+for ($i = 0; $i < count($interfaces); $i++)
+{
 	$is_admin_if = false;
 	$iface = $cceClient->get($interfaces[$i]);
 	$device = $iface['device'];
@@ -109,407 +86,243 @@ for ($i = 0; $i < count($interfaces); $i++) {
 	$devices[] = "'$device'";    
 	$devnames[] = "'" . $i18n->getJs("[[base-network.interface$device]]") . "'";
 
-        // Devices:
-        $dev[$device] = array (
-                        'ipaddr' => $iface["ipaddr"],
-                        'netmask' => $iface["netmask"],
-                        'mac' => $iface["mac"],
-                        'device' => $device,
-                        'bootproto' => $iface["bootproto"],
-                        'enabled' => $iface["enabled"]
-                        );
+	if ($iface["enabled"]) 
+	{
+		$ipaddr = $iface["ipaddr"];
+		$netmask = $iface["netmask"];
+	} 
+	else 
+	{
+		$ipaddr = "";
+		$netmask = "";
+	}
 
-}
+	if ($SERVER_ADDR == $ipaddr)
+	{
+	    $admin_if = $device;
+	    $is_admin_if = true;
+	}
 
-if ($dev['eth0']) {
-    $ipaddr = $dev['eth0']['ipaddr'];
-    $netmask = $dev['eth0']['netmask'];
-    $device = $dev['eth0']['device'];
-    $mac = $dev['eth0']['mac'];
-    $enabled = $dev['eth0']['enabled'];
-    $bootproto = $dev['eth0']['bootproto'];
-    
-    $ip_label = 'ipAddressField1';
-    $nm_label = 'netMaskField1';
+	$block->addDivider(
+	        $factory->getLabel("interface$device", false), 
+	        $default_page);
 
-    $block->addDivider(
-            $factory->getLabel("interface$device", false),
-            $default_page);
+	// With IP Pooling enabled, display the IP field with a 
+	// range of possible choices
+	list($sysoid) = $cceClient->find("System");
+	$net_opts = $cceClient->get($sysoid, "Network");
+	$access = $net_opts['interfaceConfigure'] ? 'rw' : 'r';
+	if ($net_opts["pooling"]) {
+		$range_strings = array();
+		$oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
+		foreach ($oids as $oid) {
+			$range = $cceClient->get($oid);
+			$range_strings[] = $range['min'] . ' - ' . $range['max'];
+		}
+		$string = arrayToString($range_strings);
+		$ip = $factory->getIpAddress("ipAddressField$device", $ipaddr, $access);
+		$ip->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
 
-    if ($is_aws == "0") {
-	$devprot = "rw";
-    }
-    else {
-	$devprot = "r";
-    }
+		if ($device != 'eth0') {
+			$ip->setEmptyMessage($i18n->getJs('ipAddressField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+		}
 
-    $ip_field0 = $factory->getIpAddress("ipAddressField$device", $ipaddr, $devprot);
-    $ip_field0->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
+		// IP is optional, if it isn't the admin iface or eth0
+		if (!$is_admin_if && ($device != 'eth0'))
+			$ip->setOptional(true);
 
-    $block->addFormField(
-            $ip_field0,
-            $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
+		$mylabel = $factory->getLabel("[[base-network.valid_ranges]]");
+		$mylabel->setDescription($factory->i18n->get('[[base-network.valid_ranges_help]]'));
+		$range_list = $factory->getCompositeFormField(
+			  array($mylabel,
+				$factory->getTextList("valid_ranges", $string, "r")
+				),
+			  "&nbsp;"
+			  );
+		$range_list->setAlignment("TOP");
+		$ip_field[$device] = $factory->getVerticalCompositeFormField(array($ip, $range_list));
+		$ip_field[$device]->setId("ipAddr");
+		$ip_field[$device]->setAlignment("LEFT");
 
-    $netmask_field0 = $factory->getIpAddress("netMaskField$device", $netmask, $devprot);
-    $netmask_field0->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
+	} else {
+	  
+		$ip_field[$device] = $factory->getIpAddress("ipAddressField$device", $ipaddr, $access);
+		$ip_field[$device]->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
+		if ($device != 'eth0') {
+			$ip_field[$device]->setEmptyMessage($i18n->getJs('ipAddressField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+		}
 
-    // Netmask is not optional for the admin iface and for eth0
-    $netmask_field0->setOptional(false);
-    
-    $block->addFormField(
-            $netmask_field0,
-            $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
+		// IP not optional for the admin interface and for eth0
+		if (!$is_admin_if && ($device != 'eth0')){
+			$ip_field[$device]->setOptional(true);
+		}
+	}
 
-    $block->addFormField(
-            $factory->getMacAddress("macAddressField$device", $mac, "r"),
-            $factory->getLabel("macAddressField"),
-            $default_page
-        );
+	// use special help text for eth0 and eth1 to keep the qube happy
+	$ip_label = 'ipAddressField';
+	$nm_label = 'netMaskField';
+	if ($device == 'eth0')
+	{
+	    $ip_label = 'ipAddressField1';
+	    $nm_label = 'netMaskField1';
+	}
+	else if ($device == 'eth1')
+	{
+	    $ip_label = 'ipAddressField2';
+	    $nm_label = 'netMaskField2';
+	}
+	
+	$block->addFormField(
+	    $ip_field[$device],
+	    $factory->getLabel($ip_label, true, 
+	                array(), array('name' => "[[base-network.help$device]]")),
+	    $default_page
+	);
 
-    // retain orginal information
-    $block->addFormField(
-            $factory->getBoolean("hasAliases$device", 0, ''));
+	$netmask_field[$device] = $factory->getIpAddress("netMaskField$device", $netmask, $access);
+	$netmask_field[$device]->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
+	if ($device != 'eth0') {
+		$netmask_field[$device]->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
+	}
 
-    $block->addFormField(
-            $factory->getIpAddress("ipAddressOrig$device", $ipaddr, ""),
-            '',
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getIpAddress("netMaskOrig$device", $netmask, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getTextField("bootProtoField$device", $bootproto, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getBoolean("enabled$device", $enabled, ""),
-            "",
-            $default_page
-            );
+	// Netmask is not optional for the admin iface and for eth0
+	if (!$is_admin_if && ($device != 'eth0'))
+	    $netmask_field[$device]->setOptional(true);
 
-}
-if ($dev['eth1']) {
-    $ipaddr = $dev['eth1']['ipaddr'];
-    $netmask = $dev['eth1']['netmask'];
-    $device = $dev['eth1']['device'];
-    $mac = $dev['eth1']['mac'];
-    $enabled = $dev['eth1']['enabled'];
-    $bootproto = $dev['eth1']['bootproto'];
+	$block->addFormField(
+	    $netmask_field[$device],
+	    $factory->getLabel($nm_label, true,
+	                array(), array('name' => "[[base-network.help$device]]")),
+	    $default_page
+	);
 
-    if ($enabled == "0") {
-	$ipaddr = "";
-	$netmask = "";
-    }
-    
-    $ip_label = 'ipAddressField1';
-    $nm_label = 'netMaskField1';
+	$block->addFormField(
+	    $factory->getMacAddress("macAddressField$device", $iface["mac"], "r"),
+	    $factory->getLabel("macAddressField"),
+	    $default_page
+	);
 
-    $block->addDivider(
-            $factory->getLabel("interface$device", false),
-            $default_page);
+	// check for aliases, so a warning can be issued when disabling an
+	// interface with aliases on it
+	$aliases = $cceClient->findx('Network', array('real' => 0),
+					array('device' => "^$device:"));
+	if (count($aliases) > 0)
+	{
+		$block->addFormField(
+			$factory->getBoolean("hasAliases$device", 1, ''));
+	}
+	else
+	{
+		$block->addFormField(
+			$factory->getBoolean("hasAliases$device", 0, ''));
+	}
 
-    $ip_field1 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
-    $ip_field1->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
-
-    $ip_field1->setOptional(true);
-
-    $block->addFormField(
-            $ip_field1,
-            $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
-
-    $netmask_field1 = $factory->getIpAddress("netMaskField$device", $netmask);
-    $netmask_field1->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field1->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
-
-    $netmask_field1->setOptional(true);
-    
-    $block->addFormField(
-            $netmask_field1,
-            $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
-
-    $block->addFormField(
-            $factory->getMacAddress("macAddressField$device", $mac, "r"),
-            $factory->getLabel("macAddressField"),
-            $default_page
-        );
-
-    // retain orginal information
-    $block->addFormField(
-            $factory->getBoolean("hasAliases$device", 0, ''));
-    $block->addFormField(
-            $factory->getIpAddress("ipAddressOrig$device", $ipaddr, ""),
-            '',
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getIpAddress("netMaskOrig$device", $netmask, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getTextField("bootProtoField$device", $bootproto, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getBoolean("enabled$device", $enabled, ""),
-            "",
-            $default_page
-            );
-
-}
-if ($dev['eth2']) {
-    $ipaddr = $dev['eth2']['ipaddr'];
-    $netmask = $dev['eth2']['netmask'];
-    $device = $dev['eth2']['device'];
-    $mac = $dev['eth2']['mac'];
-    $enabled = $dev['eth2']['enabled'];
-    $bootproto = $dev['eth2']['bootproto'];
-    
-    if ($enabled == "0") {
-	$ipaddr = "";
-	$netmask = "";
-    }
-
-    $ip_label = 'ipAddressField';
-    $nm_label = 'netMaskField';
-
-    $block->addDivider(
-            $factory->getLabel("interface$device", false),
-            $default_page);
-
-    $ip_field2 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
-    $ip_field2->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
-
-    $ip_field2->setOptional(true);
-
-    $block->addFormField(
-            $ip_field2,
-            $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
-
-    $netmask_field2 = $factory->getIpAddress("netMaskField$device", $netmask);
-    $netmask_field2->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field2->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
-
-    $netmask_field2->setOptional(true);
-    
-    $block->addFormField(
-            $netmask_field2,
-            $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
-
-    $block->addFormField(
-            $factory->getMacAddress("macAddressField$device", $mac, "r"),
-            $factory->getLabel("macAddressField"),
-            $default_page
-        );
-
-    // retain orginal information
-    $block->addFormField(
-            $factory->getBoolean("hasAliases$device", 0, ''));
-    $block->addFormField(
-            $factory->getIpAddress("ipAddressOrig$device", $ipaddr, ""),
-            '',
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getIpAddress("netMaskOrig$device", $netmask, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getTextField("bootProtoField$device", $bootproto, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getBoolean("enabled$device", $enabled, ""),
-            "",
-            $default_page
-            );
-
-}
-if ($dev['eth3']) {
-    $ipaddr = $dev['eth3']['ipaddr'];
-    $netmask = $dev['eth3']['netmask'];
-    $device = $dev['eth3']['device'];
-    $mac = $dev['eth3']['mac'];
-    $enabled = $dev['eth3']['enabled'];
-    $bootproto = $dev['eth3']['bootproto'];
-    
-    if ($enabled == "0") {
-	$ipaddr = "";
-	$netmask = "";
-    }
-
-    $ip_label = 'ipAddressField';
-    $nm_label = 'netMaskField';
-
-    $block->addDivider(
-            $factory->getLabel("interface$device", false),
-            $default_page);
-
-    $ip_field3 = $factory->getIpAddress("ipAddressField$device", $ipaddr);
-    $ip_field3->setInvalidMessage($i18n->getJs('ipAddressField_invalid'));
-
-    $ip_field3->setOptional(true);
-
-    $block->addFormField(
-            $ip_field3,
-            $factory->getLabel($ip_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
-
-    $netmask_field3 = $factory->getIpAddress("netMaskField$device", $netmask);
-    $netmask_field3->setInvalidMessage($i18n->getJs('netMaskField_invalid'));
-    $netmask_field3->setEmptyMessage($i18n->getJs('netMaskField_empty', 'base-network', array('interface' => "[[base-network.interface$device]]")));
-
-    $netmask_field3->setOptional(true);
-    
-    $block->addFormField(
-            $netmask_field3,
-            $factory->getLabel($nm_label, true,
-                        array(), array('name' => "[[base-network.help$device]]")),
-            $default_page
-        );
-
-    $block->addFormField(
-            $factory->getMacAddress("macAddressField$device", $mac, "r"),
-            $factory->getLabel("macAddressField"),
-            $default_page
-        );
-
-    // retain orginal information
-    $block->addFormField(
-            $factory->getBoolean("hasAliases$device", 0, ''));
-    $block->addFormField(
-            $factory->getIpAddress("ipAddressOrig$device", $ipaddr, ""),
-            '',
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getIpAddress("netMaskOrig$device", $netmask, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getTextField("bootProtoField$device", $bootproto, ""),
-            "",
-            $default_page
-            );
-    $block->addFormField(
-            $factory->getBoolean("enabled$device", $enabled, ""),
-            "",
-            $default_page
-            );
+	// retain orginal information
+	$block->addFormField(
+	    $factory->getIpAddress("ipAddressOrig$device", $ipaddr, ""), 
+	    '',
+	    $default_page
+	    );
+	$block->addFormField(
+	    $factory->getIpAddress("netMaskOrig$device", $netmask, ""), 
+	    "",
+	    $default_page
+	    );
+	$block->addFormField(
+	    $factory->getTextField("bootProtoField$device", $iface["bootproto"], ""),
+	    "",
+	    $default_page
+	    );
+	$block->addFormField(
+	    $factory->getBoolean("enabled$device", $iface["enabled"], ""),
+	    "",
+	    $default_page
+	    );
 }
 
 // add a hidden field indicating which interface is the admin interface
-$block->addFormField($factory->getTextField('adminIf', 'eth0', ''));
+$block->addFormField($factory->getTextField('adminIf', $admin_if, ''));
 $block->addFormField(
 	    $factory->getTextField('deviceList', 
 	                    $cceClient->array_to_scalar($deviceList), ''));
+
 // only do this when the user wants to view it since it could take a while
-
 if ($block->getSelectedId() == 'aliasSettings')
-  {
-    // add scrollist of aliases
-    $alias_list = $factory->getScrollList(
-					  ' ',
-					  array(
-						'aliasName',
-						'aliasIpaddr',
-						'aliasNetmask',
-						'aliasActions'
-						),
-					  array(0, 1, 2)
-					  );
-    
-    $sort_map = array('device', 'ipaddr', 'netmask');
-    $networks = $cceClient->findx(
-				  'Network', array('real' => 0), array(),
-				  'ascii', $sort_map[$alias_list->getSortedIndex()]);
-    
-    if ($alias_list->getSortOrder() == 'descending')
-      $networks = array_reverse($networks);
-    
-    $alias_list->setSortEnabled(false);
-    $alias_list->setAlignments(array('left', 'right', 'right', 'center'));
-    $alias_list->setColumnWidths(array('', '', '', '20'));
-    $num_entries = count($networks);
-    $alias_list->setEntryNum($num_entries);
-    
-    $page_length = 15;
-    $alias_list->setLength($page_length);
-    $start = $alias_list->getPageIndex() * $page_length;
-    for ($i = $start, $j = $start; 
-	 $j < $num_entries && $j < ($start + $page_length); $i++, $j++)
-      {
-	// must be an alias
-	$alias = $cceClient->get($networks[$i]);
-	$device_info = preg_split('/:/', $alias['device']);
-	$alias_name = $i18n->interpolateHtml('[[base-network.alias' .
-					     $device_info[0] . ']]',
-					     array('num' => $device_info[1]));
-	
-	$device = $factory->getTextField("dev$i", $alias_name, 'r');
-	$dev_ipaddr = $factory->getTextField("ip$i", $alias['ipaddr'], 'r');
-	$dev_netmask = $factory->getTextField("nm$i", $alias['netmask'], 'r');
-	
-	$device->setPreserveData(false);
-	$dev_ipaddr->setPreserveData(false);
-	$dev_netmask->setPreserveData(false);
-	
-	$alias_list->addEntry(
-			      array(
-				    $device,
-				    $dev_ipaddr,
-				    $dev_netmask,
-				    $factory->getCompositeFormField(
-								    array(
-									  $factory->getModifyButton(
-												    "/base/network/aliasModify.php?_oid=$networks[$i]"
-												    ),
-									  $factory->getRemoveButton(
-												    "/base/network/aliasRemove.php?_oid=$networks[$i]"
-												    )
-									  )
-								    )
-				    ),
-			      '', false, $j);
-      }
-    
-    $alias_list->addButton(
-			   $factory->getButton('/base/network/aliasModify.php', 'addAliasButton'));
-    
-  }
+{
+	// add scrollist of aliases
+	$alias_list = $factory->getScrollList(
+	                    ' ',
+	                    array(
+	                        'aliasName',
+	                        'aliasIpaddr',
+	                        'aliasNetmask',
+	                        'aliasActions'
+	                        ),
+	                    array(0, 1, 2)
+	                    );
 
-// only add the save button if looking at primary settings AND we're not inside a VPS:
-if ((!isset($alias_list) && ($fieldprot == "rw"))) {
+	$sort_map = array('device', 'ipaddr', 'netmask');
+	$networks = $cceClient->findx(
+	                'Network', array('real' => 0), array(),
+	                'ascii', $sort_map[$alias_list->getSortedIndex()]);
+
+	if ($alias_list->getSortOrder() == 'descending')
+	    $networks = array_reverse($networks);
+
+	$alias_list->setSortEnabled(false);
+	$alias_list->setAlignments(array('left', 'right', 'right', 'center'));
+	$alias_list->setColumnWidths(array('', '', '', '20'));
+	$num_entries = count($networks);
+	$alias_list->setEntryNum($num_entries);
+	
+	$page_length = 15;
+	$alias_list->setLength($page_length);
+	$start = $alias_list->getPageIndex() * $page_length;
+	for ($i = $start, $j = $start; 
+	        $j < $num_entries && $j < ($start + $page_length); $i++, $j++)
+	{
+	    // must be an alias
+	    $alias = $cceClient->get($networks[$i]);
+	    $device_info = split(':', $alias['device']);
+	    $alias_name = $i18n->interpolateHtml('[[base-network.alias' .
+	                        $device_info[0] . ']]',
+	                        array('num' => $device_info[1]));
+
+	    $device = $factory->getTextField("dev$i", $alias_name, 'r');
+	    $dev_ipaddr = $factory->getTextField("ip$i", $alias['ipaddr'], 'r');
+	    $dev_netmask = $factory->getTextField("nm$i", $alias['netmask'], 'r');
+
+	    $device->setPreserveData(false);
+	    $dev_ipaddr->setPreserveData(false);
+	    $dev_netmask->setPreserveData(false);
+
+	    $alias_list->addEntry(
+	        array(
+	            $device,
+	            $dev_ipaddr,
+	            $dev_netmask,
+	            $factory->getCompositeFormField(
+	                array(
+	                    $factory->getModifyButton(
+	                        "/base/network/aliasModify.php?_oid=$networks[$i]"
+	                        ),
+	                    $factory->getRemoveButton(
+	                        "/base/network/aliasRemove.php?_oid=$networks[$i]"
+	                        )
+	                    )
+	                )
+	            ),
+	        '', false, $j);
+	}
+	
+	$alias_list->addButton(
+	    $factory->getButton('/base/network/aliasModify.php', 'addAliasButton'));
+
+}	   
+
+// only add the save button if looking at primary settings
+if (!isset($alias_list))
 	$block->addButton($factory->getSaveButton($page->getSubmitAction()));
-}
 
 $routeButton = $factory->getButton("/base/network/routes.php", "routes");
 

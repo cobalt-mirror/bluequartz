@@ -1,4 +1,4 @@
-# $Id: Makefile 379 2004-07-12 09:36:57Z anders $
+# $Id: Makefile 1544 2011-05-01 09:27:18Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 include ../dynamic.mk
 
@@ -27,10 +27,12 @@ ifneq ($(SLK_BUILD), yes)
 all: mod_locale
 	make -C src all
 	make -C php all
+#	make -C swig all
 
 clean:
 	make -C src clean
 	make -C php clean
+#	make -C swig clean
 	rm -f *.spec
 	rm -f locale/*/*.mo
 endif
@@ -38,6 +40,7 @@ endif
 install: perl_inst install_locale install_httpdconf
 	make -C src install
 	make -C php install
+#	make -C swig install
 
 test: 
 	make -C src test
@@ -45,7 +48,7 @@ test:
 
 install_httpdconf:
 	mkdir -p $(PREFIX)/etc/httpd/conf.d
-	install -o root -g root -m 644 httpd/blueonyx.conf $(PREFIX)/etc/httpd/conf.d
+	install -o root -g root -m 644 httpd/bluequartz.conf $(PREFIX)/etc/httpd/conf.d
 
 perl_inst: $(PERLSRCS)
 	mkdir -p $(CCE_PERLDIR) || /bin/true

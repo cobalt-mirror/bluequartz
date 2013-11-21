@@ -27,10 +27,6 @@ IPCHAINS="/sbin/ipchains"
 IPTABLES="/sbin/iptables"
 IFCONFIG="/sbin/ifconfig"
 
-                
-if [ -d "/etc/apf" ];then
-	exit
-fi
 
 if [ -x $IPTABLES ]; then
 	export TABLES=1
@@ -212,9 +208,9 @@ cat $STATUSFILE | awk '
 			traffic["otherforward"] = traffic["FORWARD"]
 		}
 
-		printf("Other - - %s \"GET /input HTTP/1.1\" 200 %d \"\" \"\"\n", date, traffic["otherin"])
-		printf("Other - - %s \"GET /output HTTP/1.1\" 200 %d \"\" \"\"\n", date, traffic["otherout"])
-		printf("Other - - %s \"GET /forward HTTP/1.1\" 200 %d \"\" \"\"\n", date, traffic["otherforward"])
+		printf("Other - - %s \"GET /input HTTP/1.1\" 200 %s \"\" \"\"\n", date, traffic["otherin"])
+		printf("Other - - %s \"GET /output HTTP/1.1\" 200 %s \"\" \"\"\n", date, traffic["otherout"])
+		printf("Other - - %s \"GET /forward HTTP/1.1\" 200 %s \"\" \"\"\n", date, traffic["otherforward"])
 		}
 
 		# update our records for the last value of the default chains
@@ -225,12 +221,8 @@ cat $STATUSFILE | awk '
 # restart iptables if table dows not exit
 if [ $NEED_RESTART ]; then
 	if [ $TABLES ]; then
-		if [ ! -d "/etc/apf" ];then
-		    /etc/init.d/iptables restart
-		fi
+		/etc/init.d/iptables restart
 	else
-		if [ ! -d "/etc/apf" ];then
-		    /etc/init.d/ipchains restart
-		fi
+		/etc/init.d/ipchains restart
 	fi
 fi

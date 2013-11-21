@@ -6,10 +6,11 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -148,7 +149,7 @@ print "<P></P>\n";
 print $buttons_too->toHtml();
 print "<P></P>\n";
 
-if (!$vsite['expires'])
+if (!$helper->getAllowed('adminUser') && $vsite['expires'] == '')
 {
     print $i18n->interpolateHtml('[[base-ssl.noCertInfo]]');
 }

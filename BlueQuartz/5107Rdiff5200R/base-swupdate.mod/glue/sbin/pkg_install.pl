@@ -188,7 +188,7 @@ my $installed = 0;
 my $totalfiles = scalar(@rpmFiles) + scalar(@srpmFiles);
 my @installedrpms;
 foreach $rpm (@rpmFiles) {
-    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", int((10)*$filesCount/($totalfiles+1) + 85));
+    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", (10)*$filesCount/($totalfiles+1) + 85);
     $error = install_rpm('RPMS', $path, $rpm);
     unless ($error) {
 	print LOG "$rpm successfully installed.\n";
@@ -213,7 +213,7 @@ foreach $rpm (@rpmFiles) {
 
 # screwing up here isn't as fatal
 foreach $rpm (@srpmFiles) {
-    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", int((10)*$filesCount/($totalfiles+1) + 85));
+    setProgress($sysOID, "[[base-swupdate.installingRpm,package=$pkgname,rpm=$rpm]]", (10)*$filesCount/($totalfiles+1) + 85);
     $error = install_rpm('SRPMS', $path, $rpm);
     unless ($error) {
 	print LOG "$rpm successfully installed.\n";
@@ -356,9 +356,6 @@ if ($ARGV[1] =~ /r/i) {
     sleep 4;
     $cce->set($sysOID, 'Power', { reboot => $systime });
     exitScript($cce, 'reboot', "Installation successful.");
-} elsif ($obj->{options} =~ /\brehashcce\b/) {
-    $refreshcce = 'rehash' if ($obj->{options} =~ /\brehashcce\b/);
-	$cce->set($sysOID, 'SWUpdate', { 'uiCMD' => 'install,rehashcce' });
 } else {
     $refreshcce = 'refresh' if ($obj->{options} =~ /\brefreshcce\b/);
     if ($obj->{options} =~ /\brefreshui\b/) { # refresh requested
@@ -389,10 +386,6 @@ sub exitScript {
   if ($value =~ /\brefresh\b/) {
   	sleep 4; # this needs to happen before a browser refresh
   	Sauce::Service::service_run_init('cced.init', 'restart'); 
-	$value = 0;
-  } elsif ($value =~ /\brehash\b/) {
-  	sleep 4; # this needs to happen before a browser refresh
-  	Sauce::Service::service_run_init('cced.init', 'reload'); # We 'reload' instead of using 'rehash' as CCEd chokes on the 'stop'
 	$value = 0;
   } elsif ($value =~ /\breboot\b/) {
 	sleep 30;

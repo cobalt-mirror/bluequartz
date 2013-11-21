@@ -1,6 +1,6 @@
 <?php
 // Copyright 2001, Sun Microsystems.  All rights reserved.
-// $Id: PlainBlock.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: PlainBlock.php 995 2007-05-05 07:44:27Z shibuya $
 
 // description:
 // Plain Block represents a block with NO title and HtmlComponents in it.

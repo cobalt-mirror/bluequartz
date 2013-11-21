@@ -1,6 +1,6 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: aliasModify.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: aliasModify.php 533 2005-08-12 09:40:56Z shibuya $
 // aliasModify.php
 // add or modify an alias for the ethernet interfaces
 
@@ -8,7 +8,7 @@ include_once('ServerScriptHelper.php');
 include_once('uifc/Option.php');
 include_once('base/network/network_common.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 $cce = $helper->getCceClient();
 
 // Only adminUser should be here
@@ -25,7 +25,6 @@ if (isset($ipaddr))
 	{
 		// check for duplicates, because it will fail on this
 		$dups = $cce->find('Network', array('ipaddr' => $ipaddr));
-
 		if (isset($oldIpaddr) && $ipaddr != $oldIpaddr && (count($dups) < 1))
 		{
 			$call_to_handler = false;
@@ -100,8 +99,8 @@ if (!$add)
 foreach ($real_ifs as $oid)
 {
 	$eth =& $cce->get($oid);
-	preg_match('/([0-9]+)/', $eth['device'], $matches);
-	$option = new Option(
+	ereg('([0-9]+)', $eth['device'], $matches);
+	$option =& new Option(
 					$factory->getLabel($eth['device']),
 					$eth['device']
 					);
@@ -143,15 +142,6 @@ if ($SERVER_ADDR == $current['ipaddr'])
 	$alias->addFormField(
 		$factory->getTextField('oldNetmask', $current['netmask'], ''));
 }
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$alias->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 $page =& $factory->getPage();
 $form =& $page->getForm();

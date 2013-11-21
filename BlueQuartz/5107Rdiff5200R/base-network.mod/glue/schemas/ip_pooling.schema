@@ -1,5 +1,5 @@
 <!--
- $Id: ip_pooling.schema 259 2004-01-03 06:28:40Z shibuya $
+ $Id: ip_pooling.schema 1464 2010-05-13 00:04:19Z shibuya $
 
  Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 
@@ -12,13 +12,15 @@
 <!-- enable property is in System.Network.pooling -->
 
 <class name="IPPoolingRange"	namespace=""	version="1.0"
-	createACL="ruleCapable(ipPooling)" destroyACL="ruleCapable(ipPooling)">
+	createACL="ruleCapable(serverIpPooling)" destroyACL="ruleCapable(serverIpPooling)">
 	<property name="min"	type="ipaddr"	default="" optional="1" 
-		writeACL="ruleCapable(ipPooling)"/>
+		writeACL="ruleCapable(serverIpPooling)"/>
 	<property name="max"	type="ipaddr"	default="" optional="1" 
-		writeACL="ruleCapable(ipPooling)"/>
+		writeACL="ruleCapable(serverIpPooling)"/>
+	<property name="admin"	type="word"	default="" optional="1"
+		writeACL="ruleCapable(serverIpPooling)"/>
 	<property name="creation_time"	type="scalar"	default="0"
-		writeACL="ruleCapable(ipPooling)"/>
+		writeACL="ruleCapable(serverIpPooling)"/>
 </class>
 
 <!-- min and max are optional so that I can handle them in the handler -->

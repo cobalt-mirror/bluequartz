@@ -1,6 +1,22 @@
 # Header entry was created by KBabel!
 #
 # Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-ssl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-10-31 20:49+0200\n"
+"PO-Revision-Date: 2008-01-26 05:45+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 msgid "1"
 msgstr "Tag(e)"
@@ -1019,11 +1035,3 @@ msgstr "Bundesland "
 msgid "state_help"
 msgstr "Der Staat, Bundesland oder Region, in der sich die oben genannte Stadt befindet.  [[base-ssl.importantNote]]"
 
-msgid "SSL_enabled"
-msgstr "[[base-ssl.enabled]]"
-
-msgid "SSL_enabled_help"
-msgstr "[[base-ssl.enabled_help]]"
-
-msgid "sslGetFailed"
-msgstr "Der Befehl '/usr/sausalito/sbin/ssl_get.pl' lieferte ein nicht erwarteten Ergebnis zurück. Ist ein Zertifikat vorhanden?"

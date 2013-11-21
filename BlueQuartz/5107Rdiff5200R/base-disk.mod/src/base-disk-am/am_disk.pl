@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: am_disk.pl 1101 2008-03-04 18:20:46Z mstauber $
+# $Id: am_disk.pl 1380 2010-02-09 15:38:43Z shibuya $
 #
 # Email is sent to admin for everyone who is over their quota 
 # at 4am. 
@@ -10,50 +10,12 @@
 
 use lib qw( /usr/sausalito/perl /usr/sausalito/perl/Base);
 use AM::Util;
-use I18n;
 use strict;
 use Disk;
 use CCE;
 use SendEmail;
-use MIME::Lite;
 use Quota;
-use Sys::Hostname;
 use warnings;
-
-# Get hostname:
-my $host = hostname();
-
-my $object;
-my $i18n = new I18n();
-
-my $cce = new CCE;
-$cce->connectuds();
-
-my @sysoid = $cce->find ('System');
-my ($ok, $sysobj) = $cce->get($sysoid[0]);
-my $system_lang = $sysobj->{productLanguage};
-my $platform = $sysobj->{productBuild};
-my $locale = "";
-my $l1_oid = "";
-my $l2_oid = "";
-
-# We can't email in Japanese yet, as MIME:Lite alone doesn't support it. We'd need MIME::Lite:TT:Japanese 
-# and a hell of a lot of dependencies to sort that out. So for now we hard code them to 'en_US' or 'en'
-# for emailing purpose from within this script:
-  
-if ($system_lang eq "ja") {
-    if ($platform eq "5106R") {
-    	$i18n->setLocale("en_US");
-    }
-    else {
-    	$i18n->setLocale("en_US");
-    }
-}
-else {
-    $i18n->setLocale($system_lang);
-} 
-
-###
 
 my $DEBUG = 0;
 
@@ -83,9 +45,6 @@ my $time_to_send_admin_mail = 0;
 if ($hour == 4 && $minutes < 15) {
     $time_to_send_admin_mail = 1;
 }
-
-# mstauber
-if ($DEBUG == "1") { $time_to_send_admin_mail = 1; }
 
 my %am_states = am_get_statecodes();
 
@@ -149,8 +108,11 @@ close(DF);
 
 $server_status = $worst_dev_status;
 
+my $cce = new CCE;
+$cce->connectuds();
+
 my ($am_oid) = $cce->findx('ActiveMonitor');
-my ($okx, $am) = $cce->get($am_oid, 'Disk');
+my ($ok, $am) = $cce->get($am_oid, 'Disk');
 
 my $now = time;
 
@@ -200,10 +162,7 @@ foreach my $username (@users_over_quota) {
     # so it shows if we were over quota LAST TIME
     ($user_ok, $disk) = $cce->get($oid, 'Disk');
     my $newly_over = !$disk->{over_quota};
-
-    # mstauber
-    if ($DEBUG == "1") { $newly_over = "1"; }
-
+    
     # has it been over a day since we last mailed them?
     $send_mail = $disk->{lastmailed} < time - 3600*24; 
 
@@ -218,15 +177,7 @@ foreach my $username (@users_over_quota) {
 	$time_to_send_admin_mail) { #it's 4 am
 	$DEBUG && print "notifying the admin about $username about quota\n";
 	$lastmailed_users{$username} = 1;
-
-	# Get FQDN of the site that this overquota-user belongs to:
-	my ($oidvsite) = $cce->find('Vsite', {'name' => "$user->{site}"});
-	my $uservsite_ok = "";
-	my $user_vsite = "";
-	($uservsite_ok, $user_vsite) = $cce->get($oidvsite);
-
-	push @user_warnings, $username . '@' . $user_vsite->{fqdn};
-
+	push @user_warnings, $username;
     }	
     
     $DEBUG && print "done processing $username\n";
@@ -313,18 +264,10 @@ my @am_output = ();
 my @mail_output = ();
 
 if (@site_warnings) {
-    #push @mail_output, "[[base-disk.sites_over_quota,sites=\"" . join(',', @site_warnings) . "\"]]";
-    my $adm_msg_site_bdy = $i18n->get("[[base-disk.sites_over_quota,sites=\"" . join(',', @site_warnings) . "\"]]");
-    push @mail_output, $adm_msg_site_bdy;
+    push @mail_output, "[[base-disk.sites_over_quota,sites=\"" . join(',', @site_warnings) . "\"]]";
 }
 if (@user_warnings) {
-    my $adm_msg_bdy = $i18n->get("[[base-disk.users_over_quota,users=\"\"]]"); # Can't entirely remove 'users' parameter w/o editing all locales, too.
-    push @mail_output, $adm_msg_bdy;
-    # Moved generation of list of usernames outside the i18n call for better readability:
-    my $adm_msg_bdy_extra = join(' \n', @user_warnings);
-    foreach my $user_single (@user_warnings) {
-	push @mail_output, $user_single;
-    }
+    push @mail_output, "[[base-disk.users_over_quota,users=\"" . join(',', @user_warnings) . "\"]]";
 }
 
 # mail to admin
@@ -334,46 +277,8 @@ if (@mail_output) {
     my ($ok, $am) = $cce->get($am_oid);
     my @am_recips = $cce->scalar_to_array($am->{alertEmailList});
     my $recips = join(',', @am_recips);
-
-    # We don't want to use the crappy SendEmail::sendEmail:
-    # SendEmail::sendEmail($recips, 'admin', '[[base-disk.userOverQuota]]', join("\n", @mail_output));
-
-    # Set locale for i18n
-    my @l1_oid = ();
-    ($l1_oid) = $cce->find('User', {'name' => 'admin'});
-    my ($l1_ok, $user_locale) = $cce->get($l1_oid);
-
-    my $locale = $user_locale->{localePreference};
-
-    if (not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$locale") {
-    	$locale = I18n::i18n_getSystemLocale($cce);
-    }
-
-    # Build the message using MIME::Lite instead:
-    $i18n->setLocale($locale);
-    my $a_subject = $host . ": " . $i18n->get('[[base-disk.userOverQuota]]');
-    my $a_body = join("\n", @mail_output);
-
-    my $send_msg = MIME::Lite->new(
-        From     => "root <root>",
-        To       => $recips,
-        Subject  => $a_subject,
-        Data     => $a_body
-    );
-
-    $send_msg->attr("content-type"         => "text/plain");
-
-    # Set charset based on locale: 
-    if (($locale eq "ja_JP") || ($locale eq "ja")) { 
-        $send_msg->attr("content-type.charset" => "EUC-JP"); 
-    } 
-    else { 
-        $send_msg->attr("content-type.charset" => "UTF-8"); 
-    } 
-
-    # Out with the email:
-    $send_msg->send;
-
+  SendEmail::sendEmail($recips, 'admin', 
+		       '[[base-disk.userOverQuota]]', join("\n", @mail_output));
 }
 
 
@@ -392,44 +297,8 @@ while (my ($user, $site) = each(%users_to_warn)) {
 	$email = $user . '@' . $site->{fqdn};
     }
 
-    # SendEmail::sendEmail($email, 'admin', '[[base-disk.userOverQuota]]', '[[base-disk.overQuotaMsg]]');
-
-    # Set locale for i18n
-    my @l2_oid = ();
-
-    ($l2_oid) = $cce->find('User', {'name' => $user});
-    my ($l2_ok, $user_locale) = $cce->get($l2_oid);
-
-    my $locale = $user_locale->{localePreference};
-    if (not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$locale") {
-    	$locale = I18n::i18n_getSystemLocale($cce);
-    }
-
-    # Build the message using MIME::Lite instead:
-    $i18n->setLocale($locale);
-    my $u_subject = $i18n->get('[[base-disk.userOverQuota]]');
-    my $u_body = $i18n->get('[[base-disk.overQuotaMsg]]') . "\n\n";
-
-    my $send_msg = MIME::Lite->new(
-        From     => "root <root>", 
-        To       => $email,
-        Subject  => $u_subject,
-        Data     => $u_body
-    );
-
-    # Set content type:
-    $send_msg->attr("content-type"         => "text/plain");
-
-    # Set charset based on locale: 
-    if (($locale eq "ja_JP") || ($locale eq "ja")) { 
-        $send_msg->attr("content-type.charset" => "EUC-JP"); 
-    } 
-    else { 
-        $send_msg->attr("content-type.charset" => "UTF-8"); 
-    } 
-
-    # Out with the email:
-    $send_msg->send;
+  SendEmail::sendEmail($email, 'admin', '[[base-disk.userOverQuota]]', 
+		       '[[base-disk.overQuotaMsg]]');
 }
 
 # update lastmailed flags
@@ -464,24 +333,14 @@ exit $server_status;
 sub users_over_quota {
     my ($name, $null, $uid, $user_gid, $all_gid, $dir);
     my (@users_over_quota) = ();
-    my @cceusers;
 
-    # fetch all CCE users
-    my @alluseroids = $cce->find('User', '');
-    foreach my $entry (@alluseroids) {
-        (my $ok, my $user) = $cce->get($entry);
-        push(@cceusers,$user->{name});
-    }
+    # all CCE users are in the "users" group
+    ($name, $null, $all_gid) = getgrnam('users');
 
-    # now we do getpwent() and only lookup users who are CCE users
+    # now we do getpwent() and only lookup users who are in the "users" group
     setpwent();
     while (($name, $null, $uid, $user_gid, $null, $null, $null, $dir) = getpwent()) {
-	my $userfound = 0;
-	if (grep {$_ eq $name} @cceusers) {
-	    $userfound = 1;
-	}
-
-	if($userfound==0) {
+	if ($user_gid != $all_gid) {
 	    next;
 	}
 
@@ -528,17 +387,19 @@ sub sites_over_quota {
 	push @mounts, $obj->{mountPoint};
     }
 
+    if ($#mounts == 0 && $mounts[0] ne '/home') {
+        $mounts[0] = '/home';
+    }
+
     # this relies on Alpine's hashing scheme. if the hashing scheme changes
     # or this is installed on another product, then this will need to change.
     # find all numeric hashes
     my @hashdirs = ();
     foreach my $mount (@mounts) {
-	if (-d "$mount/.sites") {
-		opendir(SITEDIR, "$mount/.sites");
-		my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
-		push @hashdirs, @dirs;
-		close(SITEDIR);
-	}
+	opendir(SITEDIR, "$mount/.sites");
+	my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+	push @hashdirs, @dirs;
+	close(SITEDIR);
     }
 
     # find all dirs in all hashes

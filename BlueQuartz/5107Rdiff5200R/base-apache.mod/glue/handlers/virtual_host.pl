@@ -74,7 +74,7 @@ sub edit_vhost
     my $include_file = httpd_get_vhost_conf_file($vhost->{name}) . '.include';
 
     my $aliasRewrite, $aliasRewriteSSL;
-    if (($vhost->{webAliases}) && ($vhost->{webAliasRedirects} == "0")) {
+    if ($vhost->{webAliases}) {
         my @webAliases = $cce->scalar_to_array($vhost->{webAliases});
         foreach my $alias (@webAliases) {
            $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:80)?\$ [NC]\n";
@@ -103,7 +103,7 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:80)?\$
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:80)?\$ [NC]
 $aliasRewrite
-RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
+RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
 RewriteOptions inherit
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file

@@ -1,425 +1,441 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "monitorLight"
 msgstr "[[base-am.activeMonitor]]"
 
 msgid "monitorLight_help"
-msgstr "[[base-am.activeMonitor]] �ϡ������ƥ��ư����˴ƻ뤷�Ƥ��ޤ��������򥯥�å�����ȡ��ƥ����ƥॳ��ݡ��ͥ�Ȥ�ư������˴ؤ������ɽ������ޤ�����������꤬ȯ������ȡ����Υ��������֤�ɽ������ޤ���"
+msgstr "[[base-am.activeMonitor]] は、システムの動作を常に監視しています。ここをクリックすると、各システムコンポーネントの動作状況に関する情報が表示されます。深刻な問題が発生すると、このアイコンが赤で表示されます。"
 
 msgid "activeMonitor"
-msgstr "�����ƥ��֥�˥�"
+msgstr "アクティブモニタ"
 
 msgid "activeMonitor_help"
-msgstr "�����ƥॳ��ݡ��ͥ�Ȥ�ư��������ǧ�Ǥ��ޤ���"
+msgstr "システムコンポーネントの動作状況を確認できます。"
 
 msgid "amStatusMenuName"
-msgstr "ư�����"
+msgstr "動作状況"
 
 msgid "amStatusMenuDesc"
-msgstr "[[base-am.activeMonitor]]���ƻ뤷�Ƥ��륷���ƥॳ��ݡ��ͥ�Ȥ�ư������˴ؤ������ɽ������ޤ���"
+msgstr "[[base-am.activeMonitor]]が監視しているシステムコンポーネントの動作状況に関する情報が表示されます。"
 
 msgid "amObjNotFound"
-msgstr "�����ƥ२�顼��ȯ�����ޤ�����Active Monitor ���֥������Ȥ����Ĥ���ޤ���"
+msgstr "システムエラーが発生しました。Active Monitor オブジェクトが見つかりません。"
 
 msgid "amSysClients"
-msgstr "�����ƥ��ư����� - ����"
+msgstr "システムの動作状況 - 概要"
 
 msgid "amClientName"
-msgstr "����ݡ��ͥ��̾"
+msgstr "コンポーネント名"
 
 msgid "amClientName_help"
-msgstr "�ƻ뤵��Ƥ��륳��ݡ��ͥ�Ȥ�̾���Ǥ���"
+msgstr "監視されているコンポーネントの名前です。"
 
 msgid "action"
-msgstr "�ܺ�"
+msgstr "詳細"
 
 msgid "action_help"
-msgstr "�����򥯥�å�����ȡ��ƻ뤵��Ƥ��륳��ݡ��ͥ�Ȥ˴ؤ���ܺپ���ɽ������ޤ���"
+msgstr "ここをクリックすると、監視されているコンポーネントに関する詳細情報が表示されます。"
 
 msgid "amServClients"
-msgstr "�����ӥ���ư����� - ����"
+msgstr "サービスの動作状況 - 概要"
 
 msgid "amOtherClients"
-msgstr "����¾��ư����� - ����"
+msgstr "その他の動作状況 - 概要"
 
 msgid "amClientStatus"
-msgstr "���ߤ�ư�����"
+msgstr "現在の動作状況"
 
 msgid "amClientStatus_help"
-msgstr "�ƻ뤵��Ƥ��륳��ݡ��ͥ�Ȥθ��ߤ�ư������Ǥ���"
+msgstr "監視されているコンポーネントの現在の動作状況です。"
 
 msgid "amClientLastChange"
-msgstr "�Ǹ��ư��������Ѳ���������"
+msgstr "最後に動作状況が変化した時刻"
 
 msgid "amNever"
-msgstr "�ʤ�"
+msgstr "なし"
 
 msgid "amClientLastChange_help"
-msgstr "�ƻ뤵��Ƥ��륳��ݡ��ͥ�Ȥ�ư��������Ǹ���Ѳ���������Ǥ���"
+msgstr "監視されているコンポーネントの動作状況が最後に変化した時刻です。"
 
 msgid "amSettingsMenuName"
-msgstr "����"
+msgstr "設定"
 
 msgid "amSettingsMenuDesc"
-msgstr "[[base-am.amSettings]]�Ϥ������ѹ��Ǥ��ޤ���"
+msgstr "[[base-am.amSettings]]はここで変更できます。"
 
 msgid "amSettings"
-msgstr "�����ƥ��֥�˥�������"
+msgstr "アクティブモニタの設定"
 
 msgid "enableAMField"
-msgstr "�ƻ뤹��"
+msgstr "監視する"
 
 msgid "enableAMField_help"
-msgstr "���Υܥå���������å�����ȡ�[[base-am.activeMonitor]] �δƻ뵡ǽ��ͭ���ˤʤ�ޤ����ƥ����ƥॳ��ݡ��ͥ�Ȥ�������ư��Ƥ��뤫�ɤ������ưפ˳�ǧ�Ǥ��ޤ����ƻ��оݤΥ����ƥॳ��ݡ��ͥ�Ȥϡ����Υե�����ɤǻ���Ǥ��ޤ���"
+msgstr "このボックスをチェックすると、[[base-am.activeMonitor]] の監視機能が有効になります。各システムコンポーネントが正しく動作しているかどうかを容易に確認できます。監視対象のシステムコンポーネントは、次のフィールドで指定できます。"
 
 msgid "alertEmailList"
-msgstr "�ٹ�᡼���������"
+msgstr "警告メールの送信先"
 
 msgid "alertEmailList_help"
-msgstr "[[base-am.activeMonitor]] �ϡ������˻��ꤵ��Ƥ����Żҥ᡼�륢�ɥ쥹�طٹ��å��������������ޤ���"
+msgstr "[[base-am.activeMonitor]] は、ここに指定されている電子メールアドレスへ警告メッセージを送信します。"
 
 msgid "itemsToMonitor"
-msgstr "�ƻ��оݤΥ���ݡ��ͥ��"
+msgstr "監視対象のコンポーネント"
 
 msgid "itemsToMonitor_help"
-msgstr "[[base-am.activeMonitor]] �����Ū��ư��������ǧ���륷���ƥॳ��ݡ��ͥ�Ȥ����Ǥ��ޤ�������ˤϡ����ߴƻ뤵��Ƥ��륷���ƥॳ��ݡ��ͥ�Ȥΰ�����ɽ������Ƥ��ޤ�������ˤϡ��ƻ뤵��Ƥ��ʤ������ƥॳ��ݡ��ͥ�Ȥ�ɽ������Ƥ��ޤ����ƻ뤹��ɬ�פΤʤ������ƥॳ��ݡ��ͥ�Ȥ�����С�����ذ�ư���Ƥ���������"
+msgstr "[[base-am.activeMonitor]] が定期的に動作状況を確認するシステムコンポーネントを指定できます。左欄には、現在監視されているシステムコンポーネントの一覧が表示されています。右欄には、監視されていないシステムコンポーネントが表示されています。監視する必要のないシステムコンポーネントがあれば、右欄へ移動してください。"
 
 msgid "selected"
-msgstr "�ƻ뤵��Ƥ��륳��ݡ��ͥ��"
+msgstr "監視されているコンポーネント"
 
 msgid "notSelected"
-msgstr "�ƻ뤵��Ƥ��ʤ�����ݡ��ͥ��"
+msgstr "監視されていないコンポーネント"
 
 msgid "amNoMessage"
-msgstr "���ߡ����Υ���ݡ��ͥ�Ȥ˴ؤ������Ϥ���ޤ���"
+msgstr "現在、このコンポーネントに関する情報はありません。"
 
 msgid "amNotMonitored"
-msgstr "���ߡ����Υ���ݡ��ͥ�Ȥϴƻ뤵��Ƥ��ޤ���"
+msgstr "現在、このコンポーネントは監視されていません。"
 
 msgid "amNotEnabled"
-msgstr "���Υ���ݡ��ͥ�Ȥ�ͭ���ˤ���Ƥ��ޤ���"
+msgstr "このコンポーネントは有効にされていません。"
 
 msgid "alreadyMadeAM"
-msgstr "�����ƥ२�顼��ȯ�����ޤ�����Active Monitor ���֥������ȤϤ��Ǥ�¸�ߤ��ޤ���"
+msgstr "システムエラーが発生しました。Active Monitor オブジェクトはすでに存在します。"
 
 msgid "amCPUName"
-msgstr "CPU �λ��Ѿ���"
+msgstr "CPU の使用状況"
 
 msgid "amCPUWarning_light"
-msgstr "���ߡ�CPU ����٤Ϸ��٤Ǥ���"
+msgstr "現在、CPU の負荷は軽度です。"
 
 msgid "amCPUWarning_moderate"
-msgstr "���ߡ�CPU ����٤������٤Ǥ�������ϡ����Ū�ʼ��פ����ä˵�������Ȥ�ͤ����ޤ��������ӥ��ΰ�����¾�Υ����Ф˰ܹԤ��롢CGI ������ץȤ���ǲ����롢�ʤɤ��к���֤��Ƥ���������"
+msgstr "現在、CPU の負荷は中程度です。これは、一時的な需要の増加に起因するとも考えられます。サービスの一部を他のサーバに移行する、CGI スクリプトを簡素化する、などの対策を講じてください。"
 
 msgid "amCPUWarning_heavy"
-msgstr "���ߡ�CPU �ˤ��ʤ�⤤��٤������äƤ��ޤ��������ФΥѥե����ޥ󥹤˰��ƶ���ڤܤ����줬����ޤ��Τǡ������ӥ��ΰ�����¾�Υ����Ф˰ܹԤ��롢CGI ������ץȤ���ǲ����롢�ʤɤ��к���ľ���˹֤��Ƥ���������"
+msgstr "現在、CPU にかなり高い負荷がかかっています。サーバのパフォーマンスに悪影響を及ぼす恐れがありますので、サービスの一部を他のサーバに移行する、CGI スクリプトを簡素化する、などの対策を直ちに講じてください。"
 
 msgid "amUseLight"
-msgstr "����"
+msgstr "軽度"
 
 msgid "amUseModerate"
-msgstr "������"
+msgstr "中程度"
 
 msgid "amUseHeavy"
-msgstr "����"
+msgstr "重度"
 
 msgid "amCPUDetails"
-msgstr "CPU ���Ѿ����ξܺ�"
+msgstr "CPU 使用状況の詳細"
 
 msgid "amCPUStats"
-msgstr "CPU �����׾���"
+msgstr "CPU の統計情報"
 
 msgid "amCPULoadAvg"
-msgstr "[[VAR.mins]] ʬ�֤�ʿ�����"
+msgstr "[[VAR.mins]] 分間の平均負荷"
 
 msgid "amCPULoadAvgFifteen"
-msgstr "[[VAR.mins]] ʬ�֤�ʿ�����"
+msgstr "[[VAR.mins]] 分間の平均負荷"
 
 msgid "amCPULoadAvgFifteen_help"
-msgstr "[[VAR.mins]] ʬ�֤�ʿ�Ѥ����ĤΥ��������ץ����å��ν������ԤĤ��򼨤����׿����Ǥ���ʿ���ʿ����٤� 0.0 �� 3.0 �Ǥ���"
+msgstr "[[VAR.mins]] 分間に平均いくつのタスクがプロセッサの処理を待つかを示す統計数字です。平常の平均負荷は 0.0 〜 3.0 です。"
 
 msgid "amCPULoadAvg_help"
-msgstr "[[VAR.mins]] ʬ�֤�ʿ�Ѥ����ĤΥ��������ץ����å��ν������ԤĤ��򼨤����׿����Ǥ���ʿ���ʿ����٤� 0.0 �� 3.0 �Ǥ���"
+msgstr "[[VAR.mins]] 分間に平均いくつのタスクがプロセッサの処理を待つかを示す統計数字です。平常の平均負荷は 0.0 〜 3.0 です。"
 
 msgid "amCPUUptime"
-msgstr "Ϣ³��ư����"
+msgstr "連続稼動時間"
 
 msgid "amCPUUptime_help"
-msgstr "����ε�ư����������ơ������Ф����������ַ�³Ū��ư��Ƥ��뤫�򼨤��ޤ���"
+msgstr "前回の起動時から数えて、サーバが何日何時間継続的に動作しているかを示します。"
 
 msgid "days"
-msgstr "[[VAR.val]] ����"
+msgstr "[[VAR.val]] 日　"
 
 msgid "hours"
-msgstr "[[VAR.val]] ���֡�"
+msgstr "[[VAR.val]] 時間　"
 
 msgid "minutes"
-msgstr "[[VAR.val]] ʬ"
+msgstr "[[VAR.val]] 分"
 
 msgid "day"
-msgstr "[[VAR.val]] ����"
+msgstr "[[VAR.val]] 日　"
 
 msgid "hour"
-msgstr "[[VAR.val]] ���֡�"
+msgstr "[[VAR.val]] 時間　"
 
 msgid "minute"
-msgstr "[[VAR.val]] ʬ"
+msgstr "[[VAR.val]] 分"
 
 msgid "amCPUTemp"
-msgstr "CPU �β���"
+msgstr "CPU の温度"
 
 msgid "amCPUTemp_help"
-msgstr "�ץ����å��θ��ߤβ��١ʡ�ˤǤ���ʿ��Ǥϡ��ץ����å��β��٤� 30 �� 60 �� �Ǥ���"
+msgstr "プロセッサの現在の温度（℃）です。平常では、プロセッサの温度は 30 〜 60 ℃ です。"
 
 msgid "degrees"
-msgstr "[[VAR.val]] ��"
+msgstr "[[VAR.val]] ℃"
 
 msgid "amMemoryName"
-msgstr "����λ��Ѿ���"
+msgstr "メモリの使用状況"
 
 msgid "amMemDetails"
-msgstr "������Ѿ����ξܺ�"
+msgstr "メモリ使用状況の詳細"
 
 msgid "amMemWarning_light"
-msgstr "���ߡ������ƥ����λ���Ψ�Ϸ��٤Ǥ���"
+msgstr "現在、システムメモリの使用率は軽度です。"
 
 msgid "amMemWarning_moderate"
-msgstr "���ߡ������ƥ����λ���Ψ�������٤Ǥ������꤬��­���뤳�Ȥ�ͤ����ޤ��Τǡ������ФؤΥ�����ɲä򤴹�θ����������"
+msgstr "現在、システムメモリの使用率は中程度です。メモリが不足することも考えられますので、サーバへのメモリの追加をご考慮ください。"
 
 msgid "amMemWarning_heavy"
-msgstr "���ߡ������ƥ����λ���Ψ�Ͻ��٤Ǥ������꤬��­���Ƥ��ޤ��Τǡ������ФؤΥ�����ɲä򤪴��ᤷ�ޤ���"
+msgstr "現在、システムメモリの使用率は重度です。メモリが不足していますので、サーバへのメモリの追加をお勧めします。"
 
 msgid "amMemStats"
-msgstr "����˴ؤ������׾���"
+msgstr "メモリに関する統計情報"
 
 msgid "amMemTotal"
-msgstr "ʪ������������̡�"
+msgstr "物理メモリ（総容量）"
 
 msgid "amMemTotal_help"
-msgstr "���Υ����ƥ���Ȥ߹��ޤ�Ƥ���¥���������̤Ǥ���"
+msgstr "このシステムに組み込まれている実メモリの総容量です。"
 
 msgid "amMemFree"
-msgstr "ʪ������ζ�������"
+msgstr "物理メモリの空き容量"
 
 msgid "amMemFree_help"
-msgstr "���߻Ȥ��Ƥ��ʤ��¥���ζ������̤Ǥ���"
+msgstr "現在使われていない実メモリの空き容量です。"
 
 msgid "amSwapTotal"
-msgstr "������å�����"
+msgstr "総スワップ容量"
 
 msgid "amSwapTotal_help"
-msgstr "���Υ����ƥ�����ѤǤ��륹��å��ΰ�������̤Ǥ���"
+msgstr "このシステムで利用できるスワップ領域の総容量です。"
 
 msgid "amSwapFree"
-msgstr "����å��ΰ�ζ�������"
+msgstr "スワップ領域の空き容量"
 
 msgid "amSwapFree_help"
-msgstr "���߻Ȥ��Ƥ��ʤ�����å��ΰ�ζ������̤Ǥ���"
+msgstr "現在使われていないスワップ領域の空き容量です。"
 
 msgid "MemKB"
 msgstr "[[VAR.val]] KB"
 
 msgid "amMemUsed"
-msgstr "����λ���Ψ"
+msgstr "メモリの使用率"
 
 msgid "amMemUsed_help"
-msgstr "���߻Ȥ��Ƥ���ʪ������ �ʼ¥���� �����̤Ǥ����¥��������ʬ����˻��Ѥ���Ƥ��뤳�Ȥ⤢��ޤ���"
+msgstr "現在使われている物理メモリ （実メモリ） の容量です。実メモリの大部分が常に使用されていることもあります。"
 
 msgid "amMemPcnt"
-msgstr "[[VAR.used]] KB�����������̤� [[VAR.pcnt]] % ��������"
+msgstr "[[VAR.used]] KB（総メモリ容量の [[VAR.pcnt]] % を使用中）"
 
 msgid "amSwapUsed"
-msgstr "����åפλ���Ψ"
+msgstr "スワップの使用率"
 
 msgid "amSwapUsed_help"
-msgstr "���Υ����ƥ�����ѤǤ��륹��åץ��� �ʲ��ۥ���� �����̤Ǥ����¥���˶��������äƤ⡢����åץ���ΰ�������˻��Ѥ���Ƥ��뤳�Ȥ⤢��ޤ���"
+msgstr "このシステムで利用できるスワップメモリ （仮想メモリ） の容量です。実メモリに空きがあっても、スワップメモリの一部が常に使用されていることもあります。"
 
 msgid "amSwapPcnt"
-msgstr "[[base-am.MemKB,val=[[VAR.used]]]] ��������å����̤� [[VAR.pcnt]] % ��������"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] （総スワップ容量の [[VAR.pcnt]] % を使用中）"
 
 msgid "amPagesSec"
-msgstr "[[VAR.pages]] �ڡ�������"
+msgstr "[[VAR.pages]] ページ／秒"
 
 msgid "pagesPerSec"
-msgstr "���äΥڡ�����"
+msgstr "毎秒のページ数"
 
 msgid "pagesPerSec_help"
-msgstr "��������Ѿ����򼨤����׿����Ǥ�����[[base-am.pagesPerSec]]�פ��ͤ��礭��������ˤϡ����꤬��­���Ƥ��뤿�᥷���ƥ�ϸ�ΨŪ��ư��Ƥ��ʤ��ȹͤ����ޤ���ɬ�פ˱�����ʪ��������ɲä��Ƥ���������"
+msgstr "メモリの利用状況を示す統計数字です。「[[base-am.pagesPerSec]]」の値が大きすぎる場合には、メモリが不足しているためシステムは効率的に動作していないと考えられます。必要に応じて物理メモリを追加してください。"
 
 msgid "amSwapsSec"
-msgstr "[[VAR.swaps]] ����åס���"
+msgstr "[[VAR.swaps]] スワップ／秒"
 
 msgid "swapsPerSec"
-msgstr "���äΥ���å׿�"
+msgstr "毎秒のスワップ数"
 
 msgid "swapsPerSec_help"
-msgstr "��������Ѿ����򼨤����׿����Ǥ�����[[base-am.swapsPerSec]]�פ��ͤ��礭��������ˤϡ����꤬��­���Ƥ��뤿�᥷���ƥ�ϸ�ΨŪ��ư��Ƥ��ʤ��ȹͤ����ޤ���ɬ�פ˱�����ʪ��������ɲä��Ƥ���������"
+msgstr "メモリの利用状況を示す統計数字です。「[[base-am.swapsPerSec]]」の値が大きすぎる場合には、メモリが不足しているためシステムは効率的に動作していないと考えられます。必要に応じて物理メモリを追加してください。"
 
 msgid "amKey"
-msgstr "���Ȱ�̣:"
+msgstr "色と意味:"
 
 msgid "amKeyGrey"
-msgstr "���󤬤ʤ������ƻ뤬̵�������ꤵ��Ƥ��ޤ���"
+msgstr "情報がないか、監視が無効に設定されています。"
 
 msgid "amKeyGreen"
-msgstr "�����ư����"
+msgstr "正常に動作中"
 
 msgid "amKeyYellow"
-msgstr "����ȯ��"
+msgstr "問題発生"
 
 msgid "amKeyRed"
-msgstr "���������ȯ��"
+msgstr "深刻な問題発生"
 
 msgid "amUpdateNow"
-msgstr "����ι���"
+msgstr "情報の更新"
 
 msgid "amUpdateNowConfirm"
-msgstr "���ߤ�ư��������ǧ���ơ�ɽ������Ƥ������򹹿����ޤ��������ˤϿ�ʬ������ޤ�����³�Ԥ��Ƥ�������Ǥ�����"
+msgstr "現在の動作状況を確認して、表示されている情報を更新します。処理には数分かかりますが、続行してよろしいですか？"
 
 msgid "amUpdateNow_help"
-msgstr "���Υܥ���򥯥�å�����ȡ������ƥ�ȥ����ӥ���ư������˴ؤ���ǿ��ξ���ɽ������ޤ���ư������γ�ǧ�ˤϿ�ʬ������ޤ��������ƥХå����饦��ɤǽ�������ޤ���"
+msgstr "このボタンをクリックすると、システムとサービスの動作状況に関する最新の情報が表示されます。動作状況の確認には数分かかりますが、全てバックグラウンドで処理されます。"
 
 msgid "amUpdateNow_disabledHelp"
-msgstr "���ߡ�[[base-am.activeMonitor]] ��̵�������ꤵ��Ƥ��ޤ���ͭ���ˤ���ˤϡ�[[base-am.amSettingsMenuName]] ��˥塼�����[[base-am.enableAMField]]�פ����򤷤Ƥ���������"
+msgstr "現在、[[base-am.activeMonitor]] は無効に設定されています。有効にするには、[[base-am.amSettingsMenuName]] メニューから「[[base-am.enableAMField]]」を選択してください。"
 
 msgid "amDetailNoName"
-msgstr "���Υڡ�������������������꤬ȯ�����ޤ�����name �Ȥ����ѿ����������Ƥ��ޤ���"
+msgstr "このページの生成処理中に問題が発生しました。name という変数が定義されていません。"
 
 msgid "amFansOK"
-msgstr "��ѥե�������������ư��Ƥ��ޤ���"
+msgstr "冷却ファンは全て正常に動作しています。"
 
 msgid "amFansSlow"
-msgstr "��ž®�٤��٤���ѥե��󤬤���ޤ����н�ˡ�ˤĤ��Ƥϥ����ФΥϡ��ɥ������ޥ˥奢��ʤɤ򤴻��Ȥ���������"
+msgstr "回転速度の遅い冷却ファンがあります。対処法についてはサーバのハードウェアマニュアルなどをご参照ください。"
 
 msgid "amFansSlow_email_fan1"
-msgstr "�Ÿ�����ѥե���β�ž®�٤�����Ƥ��ޤ��������Ф��Ÿ����ڤꡢ�Ÿ�����ѥե������³���̵������ǧ���Ƥ���������"
+msgstr "電源冷却用ファンの回転速度が落ちています。サーバの電源を切り、電源冷却用ファンの接続と通気性を確認してください。"
 
 msgid "amFansSlow_email_fan3"
-msgstr "�����ƥ�����ѥե���β�ž®�٤�����Ƥ��ޤ��������Ф��Ÿ����ڤꡢ�����ƥ�����ѥե������³���̵������ǧ���Ƥ���������"
+msgstr "システム冷却用ファンの回転速度が落ちています。サーバの電源を切り、システム冷却用ファンの接続と通気性を確認してください。"
 
 msgid "amFansSlow_email_fan2"
-msgstr "CPU ����ѥե���β�ž®�٤�����Ƥ��ޤ��������Ф��Ÿ����ڤꡢCPU  ����ѥե������³���̵������ǧ���Ƥ���������"
+msgstr "CPU 冷却用ファンの回転速度が落ちています。サーバの電源を切り、CPU  冷却用ファンの接続と通気性を確認してください。"
 
 msgid "amFansDangerouslySlow"
-msgstr "���٤˲�ž®�٤��٤���ѥե��󤬤��ꡢ�����ʾ��֤Ǥ���" 
+msgstr "極度に回転速度の遅い冷却ファンがあり、危険な状態です。"
 
 msgid "amFansDangerouslySlow_email_fan1"
-msgstr "�Ÿ�����ѥե���β�ž®�٤����٤��٤����ᡢ�����ʾ��֤Ǥ���"
+msgstr "電源冷却用ファンの回転速度が極度に遅いため、危険な状態です。"
 
 msgid "amFansDangerouslySlow_email_fan3"
-msgstr "�����ƥ�����ѥե���β�ž®�٤����٤��٤����ᡢ�����ʾ��֤Ǥ���"
+msgstr "システム冷却用ファンの回転速度が極度に遅いため、危険な状態です。"
 
 msgid "amFansDangerouslySlow_email_fan2"
-msgstr "CPU ����ѥե���β�ž®�٤����٤��٤����ᡢ�����ʾ��֤Ǥ���"
+msgstr "CPU 冷却用ファンの回転速度が極度に遅いため、危険な状態です。"
 
 msgid "fanName"
-msgstr "[[VAR.fanNumber]] �֤���ѥե���"
+msgstr "[[VAR.fanNumber]] 番の冷却ファン"
 
 msgid "fanSpeed"
 msgstr "[[VAR.speed]] RPM"
 
 msgid "amFanDetails"
-msgstr "��ѥե���ξܺ�"
+msgstr "冷却ファンの詳細"
 
 msgid "amFanStats"
-msgstr "��ѥե��������"
+msgstr "冷却ファンの統計"
 
 msgid "amFanName"
-msgstr "��ѥե���"
+msgstr "冷却ファン"
 
 msgid "amTempsOK"
-msgstr "���֤β��٤�����Ǥ���"
+msgstr "装置の温度は正常です。"
 
 msgid "amTempsHot"
-msgstr "���֥���ݡ��ͥ������̾����ⲹ��ư��Ƥ����Τ�����ޤ�������ѥե����Ŭ����ư��ȥ����Ф��̵������ǧ���Ƥ���������"
+msgstr "装置コンポーネント中に通常よりも高温で動作しているものがあります。冷却用ファンの適正な動作とサーバの通気性を確認してください。"
 
 msgid "amTempsDangerouslyHot"
-msgstr "���֥���ݡ��ͥ����˴����ʤۤɤιⲹ��ư��Ƥ����Τ�����ޤ����ե���θξ㤬�ͤ����ޤ��Τǡ�����ѥե����Ŭ����ư��ȥ����Ф��̵������ǧ���Ƥ���������"
+msgstr "装置コンポーネント中に危険なほどの高温で動作しているものがあります。ファンの故障が考えられますので、冷却用ファンの適正な動作とサーバの通気性を確認してください。"
 
 msgid "amTempName"
-msgstr "����"
+msgstr "温度"
 
 msgid "sensorNameCPU"
-msgstr "CPU �β���"
+msgstr "CPU の温度"
 
 msgid "sensorNameCPU_help"
-msgstr "�ץ����å���ư��٤Ǥ���"
+msgstr "プロセッサの動作温度です。"
 
 msgid "sensorNameCase"
-msgstr "���������ε���"
+msgstr "装置内部の気温"
 
 msgid "sensorNameCase_help"
-msgstr "���������������ε����Ǥ���"
+msgstr "サーバ筐体内部の気温です。"
 
 msgid "amTemp"
-msgstr "[[VAR.temp]] ��"
+msgstr "[[VAR.temp]] ℃"
 
 msgid "amTempDetails"
-msgstr "���٤ξܺ�"
+msgstr "温度の詳細"
 
 msgid "amTempStats"
-msgstr "���٤�����"
+msgstr "温度の統計"
 
 msgid "amECCName"
-msgstr "ECC��������"
+msgstr "ECCメモリ補正"
 
 msgid "amECCDetails"
-msgstr "[[base-am.amECCName]] �ξܺ�"
+msgstr "[[base-am.amECCName]] の詳細"
 
 msgid "uncorrMemErrors"
-msgstr "�����Х��ץ饤���󥹾����̿Ū�ʥ��ꥨ�顼��ȯ�����ޤ����������Ф�Ƶ�ư���Ƹ��Ƥ�������������Ǥ�Ʊ�ͤΥ��顼����������ˤϡ�����⥸�塼�뤬���������ꤵ��Ƥ��뤫�ɤ����򤴳�ǧ��������������⥸�塼��θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]]�򤴻��Ȥ���������"
+msgstr "サーバアプライアンス上で致命的なメモリエラーが発生しました。サーバを再起動して見てください。それでも同様のエラーが生じる場合には、メモリモジュールが正しく固定されているかどうかをご確認ください。メモリモジュールの交換については、[[base-sauce-basic.techSupportURL]]をご参照ください。"
 
 msgid "tooManyMemErrors"
-msgstr "�����Х��ץ饤���󥹾�Ǿ����ϤΥ��ꥨ�顼��¿��ȯ�����ޤ����������Ф�Ƶ�ư���Ƹ��Ƥ�������������Ǥ�Ʊ�ͤΥ��顼����������ˤϡ�����⥸�塼�뤬���������ꤵ��Ƥ��뤫�ɤ����򤴳�ǧ��������������⥸�塼��θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]]�򤴻��Ȥ���������"
- 
+msgstr "サーバアプライアンス上で小規模のメモリエラーが多数発生しました。サーバを再起動して見てください。それでも同様のエラーが生じる場合には、メモリモジュールが正しく固定されているかどうかをご確認ください。メモリモジュールの交換については、[[base-sauce-basic.techSupportURL]]をご参照ください。"
+
 msgid "someCorrMemErrors"
-msgstr "�����Х��ץ饤���󥹾�Ǿ����ϤΥ��ꥨ�顼�������Ĥ�ȯ�����ޤ����������Ф�Ƶ�ư���Ƹ��Ƥ�������������Ǥ�Ʊ�ͤΥ��顼����������ˤϡ�����⥸�塼�뤬���������ꤵ��Ƥ��뤫�ɤ����򤴳�ǧ��������������⥸�塼��θ򴹤ˤĤ��Ƥϡ�[[base-sauce-basic.techSupportURL]]�򤴻��Ȥ���������"
+msgstr "サーバアプライアンス上で小規模のメモリエラーがいくつか発生しました。サーバを再起動して見てください。それでも同様のエラーが生じる場合には、メモリモジュールが正しく固定されているかどうかをご確認ください。メモリモジュールの交換については、[[base-sauce-basic.techSupportURL]]をご参照ください。"
 
 msgid "amECCOK"
-msgstr "���ꥨ�顼��ȯ�����Ƥ��ޤ���"
+msgstr "メモリエラーは発生していません。"
 
 msgid "viewEccLogs"
-msgstr "ECC ������ɽ��"
+msgstr "ECC ログの表示"
 
 msgid "viewEccLogs_help"
-msgstr "���Υܥ���򥯥�å�����ȡ�ECC ����Υ�����ɽ������ޤ���"
+msgstr "このボタンをクリックすると、ECC メモリのログが表示されます。"
 
 msgid "eccLogs"
-msgstr "ECC ����Υ���"
+msgstr "ECC メモリのログ"
 
 msgid "cant_get_faninfo"
-msgstr "��ѥե�������פ�����Ǥ��ޤ���"
+msgstr "冷却ファンの統計を入手できません。"
 
 msgid "cant_get_tempinfo"
-msgstr "���٤����פ�����Ǥ��ޤ���"
+msgstr "温度の統計を入手できません。"
 
 msgid "bad_ecc_errors"
-msgstr "���� DIMM ����̿Ū���顼��ȯ�����ޤ�����"
+msgstr "この DIMM で致命的エラーが発生しました。"
 
 msgid "corr_ecc_errors"
-msgstr "���� DIMM �Ǿ����Ϥʥ��ꥨ�顼�������Ĥ�ȯ�����ޤ�����"
+msgstr "この DIMM で小規模なメモリエラーがいくつか発生しました。"
 
 msgid "no_ecc_errors"
-msgstr "���� DIMM �������ư��Ƥ��ޤ���"
+msgstr "この DIMM は正常に動作しています。"
 
 msgid "slotempty"
-msgstr "���� DIMM �����åȤ϶����Ƥ��ޤ���"
+msgstr "この DIMM スロットは空いています。"
 
 msgid "acpi_temp_subject"
-msgstr "���֤Υ����С��ҡ��Ȥˤ�륷��åȥ�����"
+msgstr "装置のオーバーヒートによるシャットダウン"
 
 msgid "acpi_temp_shutdown"
-msgstr "CPU �ޤ��ϥ����ƥ������β��٤����Ƹ��٤�Ķ���ޤ����������Τ��ᡢ���Υ����Фϼ�ưŪ�˥���åȥ����󤷤ޤ������������ѥե����ư��ȶ�Ĵ����������ʤɤδĶ��װ����ǧ���Ƥ���������"
+msgstr "CPU またはシステム内部の温度が許容限度を超えました。安全のため、このサーバは自動的にシャットダウンします。筐体内の冷却ファンの動作と空調および配線などの環境要因を確認してください。"
 
 msgid "acpi_fans_subject"
-msgstr "��ѥե���˵������륷��åȥ�����"
+msgstr "冷却ファンに起因するシャットダウン"
 
 msgid "acpi_fans_shutdown_fan1"
-msgstr "�Ÿ�����ѥե���β�ž®�٤����٤��٤����ᡢ���֤ˤȤäƴ����ʾ��֤Ǥ��������Τ��ᡢ���Υ����Фϼ�ưŪ�˥���åȥ����󤷤ޤ���"
+msgstr "電源冷却用ファンの回転速度が極度に遅いため、装置にとって危険な状態です。安全のため、このサーバは自動的にシャットダウンします。"
 
 msgid "acpi_fans_shutdown_fan3"
-msgstr "�����ƥ�����ѥե���β�ž®�٤����٤��٤����ᡢ���֤ˤȤäƴ����ʾ��֤Ǥ��������Τ��ᡢ���Υ����Фϼ�ưŪ�˥���åȥ����󤷤ޤ���"
+msgstr "システム冷却用ファンの回転速度が極度に遅いため、装置にとって危険な状態です。安全のため、このサーバは自動的にシャットダウンします。"
 
 msgid "acpi_fans_shutdown_fan2"
-msgstr "CPU ����ѥե���β�ž®�٤����٤��٤����ᡢ���֤ˤȤäƴ����ʾ��֤Ǥ��������Τ��ᡢ���Υ����Фϼ�ưŪ�˥���åȥ����󤷤ޤ���"
+msgstr "CPU 冷却用ファンの回転速度が極度に遅いため、装置にとって危険な状態です。安全のため、このサーバは自動的にシャットダウンします。"
 
 msgid "no_mem_stats"
-msgstr "���ߡ�����λ��Ѿ����˴ؤ������פ�����Ǥ��ޤ��󡣤��Ф餯���Ƥ�����٤������������"
+msgstr "現在、メモリの使用状況に関する統計を入手できません。しばらくしてから再度お試しください。"
+
+msgid "cap_serverShowActiveMonitor"
+msgstr "アクティブモニタの参照"
+
+msgid "cap_serverActiveMonitor"
+msgstr "アクティブモニタの設定"

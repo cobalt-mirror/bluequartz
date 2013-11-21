@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: Label.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: Label.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isLabelDefined;
 if($isLabelDefined)
@@ -92,15 +92,13 @@ class Label extends HtmlComponent {
     // ISO-8859-1 character set. Japanese is the only supported 
     // language which does not use the ISO-8859-1 charset, so we 
     // do a special case for that.
-    //
-    // Tue 20 Mar 2012 07:27:31 PM CET (mstauber) NOT TRUE! For UTF-8 we can use htmlspecialchars! \o/
     $encoding = $i18n->getProperty("encoding", "palette");
-//    if ($encoding == "none" || !strpos($encoding, "8859-1") === false ) {
-//      $specialChars = array_merge(get_html_translation_table(HTML_SPECIALCHARS), get_html_translation_table(HTML_ENTITIES));
-//      $label = strtr(strtr($this->getLabel(), array_flip($specialChars)), $specialChars);
-//    } else {
+    if ($encoding == "none" || !strpos($encoding, "8859-1") === false ) {
+      $specialChars = array_merge(get_html_translation_table(HTML_SPECIALCHARS), get_html_translation_table(HTML_ENTITIES));
+      $label = strtr(strtr($this->getLabel(), array_flip($specialChars)), $specialChars);
+    } else {
       $label = htmlspecialchars($this->getLabel());
-//    }
+    }
     // using interpolateJs this way is not very clean, but this works for now
     $description = $i18n->interpolateJs("[[VAR.string]]", array("string" => $this->getDescription()));
 

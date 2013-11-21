@@ -1,7 +1,7 @@
 <!-- This is the AM Namespace for monitoring email -->
 <class name="ActiveMonitor" 	namespace="Email" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="aggregate"/>
     <property name="typeData"		type="scalar"	
@@ -29,7 +29,7 @@
 <!-- This is the AM Namespace for monitoring POP3 -->
 <class name="ActiveMonitor" 	namespace="POP3" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -54,7 +54,7 @@
 <!-- This is the AM Namespace for monitoring SMTP -->
 <class name="ActiveMonitor" 	namespace="SMTP" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -79,7 +79,7 @@
 <!-- This is the AM Namespace for monitoring IMAP -->
 <class name="ActiveMonitor" 	namespace="IMAP" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -104,7 +104,7 @@
 <!-- This is the AM Namespace for monitoring SMTP-AUTH -->
 <class name="ActiveMonitor" 	namespace="SMTPAuth" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
@@ -129,7 +129,7 @@
 <!-- This is the AM Namespace for monitoring POP before SMTP -->
 <class name="ActiveMonitor" 	namespace="popRelay" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="0"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="0"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"

@@ -1,5 +1,5 @@
 <program name="/usr/sausalito/sbin/setTime">
-	<capability requires="modifySystemTime"
+	<capability requires="serverTime"
          user="root"/>
 </program>
 <!--

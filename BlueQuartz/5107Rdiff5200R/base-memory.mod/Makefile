@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=memory
 
 VERSION=1.1.0
-RELEASE=25BX11
+RELEASE=25BQ5
 
 # add a buildarch if desired
 BUILDARCH=noarch

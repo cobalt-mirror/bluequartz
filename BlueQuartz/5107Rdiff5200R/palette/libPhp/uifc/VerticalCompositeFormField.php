@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: VerticalCompositeFormField.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: VerticalCompositeFormField.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isVerticalCompositeFormFieldDefined;
 if($isVerticalCompositeFormFieldDefined)
@@ -40,11 +40,10 @@ class VerticalCompositeFormField extends CompositeFormField {
     $result .= "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\">";
     $delimiter .= $this->getDelimiter();
     $formFields = $this->getFormFields();
-
     for($i = 0; $i < count($formFields); $i++) {
       if($i > 0 )
 	$result .= "<TR>$delimiter</TR>";
-      $result .= "<TR><TD $align_text STYLE=\"font-size:12px\">".$formFields[$i]->toHtml($style)."</TD></TR>";
+      $result .= "<TR><TD $align_text>".$formFields[$i]->toHtml($style)."</TD></TR>";
     }
 
     $result .= "</TABLE>";

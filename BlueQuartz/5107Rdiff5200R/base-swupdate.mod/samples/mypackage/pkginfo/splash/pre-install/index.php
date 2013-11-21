@@ -1,10 +1,10 @@
 <?php
 // Author: asun@cobalt.com
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: index.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: index.php 259 2004-01-03 06:28:40Z shibuya $
 
-include_once("ServerScriptHelper.php");
-include_once("base/swupdate/updateLib.php");
+include("ServerScriptHelper.php");
+include("base/swupdate/updateLib.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();

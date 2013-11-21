@@ -72,7 +72,7 @@ $subblock->addFormField(
 
 // cpu temperature
 $temp = `cat /proc/cpuinfo | grep temperature`;
-if ($temp = preg_replace("/[^0-9\.]*/i", "", $temp)) {
+if ($temp = eregi_replace("[^0-9\.]*", "", $temp)) {
 	$itemp = $i18n->interpolate("[[base-am.degrees,val=\"$temp\"]]");
 	$subblock->addFormField(
 		$factory->getTextField("tempField", $itemp, "r"),
@@ -82,13 +82,6 @@ if ($temp = preg_replace("/[^0-9\.]*/i", "", $temp)) {
 
 // print it 
 print("<br>");
-
-// PHP5: 
-$subblock->addFormField( 
-$factory->getTextField("debug_1", "", 'r'), 
-    $factory->getLabel("debug_1"), 
-    "Hidden" 
-); 
 print($subblock->toHtml());
 
 am_back($factory);

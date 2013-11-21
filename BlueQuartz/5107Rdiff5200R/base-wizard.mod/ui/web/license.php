@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: license.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: license.php 1028 2007-06-25 16:57:31Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");

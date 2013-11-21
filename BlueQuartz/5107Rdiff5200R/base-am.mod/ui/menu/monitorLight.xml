@@ -6,7 +6,7 @@
 	type="monitorOff"
 >
   	<parent id="root" order="900">
-        <access require="systemMonitor"/>
+        <access require="serverShowActiveMonitor"/>
   	</parent>
 </item>
 <!--

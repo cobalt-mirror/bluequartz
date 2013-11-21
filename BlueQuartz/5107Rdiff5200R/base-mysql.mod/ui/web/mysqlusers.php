@@ -126,15 +126,32 @@ $block->addFormField(
 // Add divider:
 $block->addDivider($factory->getLabel("DIVIDER_THREE", false), 'MySQL_TAB_ONE');
 
-$mysql_so_15 = '/usr/lib/mysql/libmysqlclient.so.15.0.0';
-$mysql_so_16 = '/usr/lib/mysql/libmysqlclient.so.16.0.0';
-if ((file_exists($mysql_so_15)||($mysql_so_16))) {
+$mysql_so = '/usr/lib/mysql/libmysqlclient.so.15.0.0';
+if (file_exists($mysql_so)) {
 	$access = 'rw';
 }
 else {
 	$access = 'r';
 }
 
+$GRANT = $systemObj['GRANT'];
+$block->addFormField(
+  $factory->getBoolean("GRANT", $GRANT, $access),
+  $factory->getLabel("GRANT"),
+  'MySQL_TAB_ONE'
+);
+$REFERENCE = $systemObj['REFERENCE'];
+$block->addFormField(
+  $factory->getBoolean("REFERENCE", $REFERENCE, $access),
+  $factory->getLabel("REFERENCE"),
+  'MySQL_TAB_ONE'
+);
+$LOCK = $systemObj['LOCK'];
+$block->addFormField(
+  $factory->getBoolean("LOCK", $LOCK, $access),
+  $factory->getLabel("LOCK"),
+  'MySQL_TAB_ONE'
+);
 $CREATE_VIEW = $systemObj['CREATE_VIEW'];
 $block->addFormField(
   $factory->getBoolean("CREATE_VIEW", $CREATE_VIEW, $access),

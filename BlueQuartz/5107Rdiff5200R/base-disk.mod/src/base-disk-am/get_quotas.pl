@@ -1,7 +1,4 @@
 #!/usr/bin/perl
-# get_quotas.pl, v 1.1.0-15BQ15 Thu Nov 27 12:33:05 2008 mstauber Exp $
-# Copyright (c) 2003 Sun Microsystems, Inc. All Rights Reserved.
-# Copyright (c) 2008 Solarspeed Ltd, All Rights Reserved.
 
 use lib qw(/usr/sausalito/perl);
 use Base::HomeDir qw(homedir_get_group_dir);
@@ -10,7 +7,6 @@ use Getopt::Long;
 use strict;
 use CCE;
 use Quota;
-use Unix::PasswdFile;
 
 my $site = '';
 my $sort = '';
@@ -18,7 +14,6 @@ my $descending = '';
 my $help = '';
 my $users_only = 1;
 my $sites_only = '';
-my $pw = new Unix::PasswdFile "/etc/passwd";
 
 GetOptions('site=s' => \$site, 'sort=s' => \$sort, 
 	   'descending' => \$descending, 'ascending' => sub { $descending = 0 },
@@ -107,24 +102,24 @@ sub site_users {
 
 # find all CCE users
 sub all_users {
-
-    # Rewritten from scratch by mstauber
-
     my ($name, $null, $all_gid, $user_gid, $dir);
 
-    # all CCE users are NO LONGER in the "users" group - so we have do do it differently:
-	my @all_users = ();
-
-    foreach $name ($pw->users) {
-        my $uid = $pw->uid($name);
-        my $user_gid = $pw->gid($name);
-        my $dir = $pw->home($name);
-	my @groupworkaround = split(/\//, $dir);
-
-        if ((($uid >= 500)&&($uid != 65534)) && ($groupworkaround[5] ne "logs")) {
-    	    push @all_users, $name;
+    # all CCE users are in the "users" group
+    ($name, $null, $all_gid) = getgrnam('users');
+    # now we do getpwent() and only save users who are in the "users" group
+    my @all_users = ();
+    setpwent();
+    while (($name, $null, $null, $user_gid, $null, $null, $null, $dir) = getpwent()) {
+	if ($user_gid != $all_gid) {
+	    next;
 	}
+
+	if ($name eq 'games') {
+	    next;
+	}
+	push @all_users, $name;
     }
+    endpwent();
     return @all_users;
 }
 
@@ -146,8 +141,15 @@ sub sites {
     # find all numeric hashes
     my @hashdirs = ();
     foreach my $mount (@mounts) {
-	opendir(SITEDIR, "$mount/.sites");
-	my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+        my $sitedir;
+        if ($mount ne $Base::HomeDir::HOME_ROOT) {
+                $sitedir = '/home/.sites';
+        } else {
+                $sitedir = "$mount/.sites";
+        }
+
+	opendir(SITEDIR, "$sitedir");
+	my @dirs = map { "$sitedir/$_" } grep /^\d+$/, readdir(SITEDIR);
 	push @hashdirs, @dirs;
 	close(SITEDIR);
     }
@@ -189,8 +191,15 @@ sub siteusage {
     # find all numeric hashes
     my @hashdirs = ();
     foreach my $mount (@mounts) {
-	opendir(SITEDIR, "$mount/.sites");
-	my @dirs = map { "$mount/.sites/$_" } grep /^\d+$/, readdir(SITEDIR);
+	my $sitedir;
+	if ($mount ne $Base::HomeDir::HOME_ROOT) {
+		$sitedir = '/home/.sites';
+	} else {
+		$sitedir = "$mount/.sites";
+	}
+
+	opendir(SITEDIR, "$sitedir");
+	my @dirs = map { "$sitedir/$_" } grep /^\d+$/, readdir(SITEDIR);
 	push @hashdirs, @dirs;
 	close(SITEDIR);
     }
@@ -223,40 +232,29 @@ sub siteusage {
 }
 
 sub userusage {
-    
-    # Rewritten by mstauber
-
     my %hash = ();
     my ($name, $null, $uid, $user_gid, $all_gid, $dir);
 
-    # all CCE users are NO LONGER in the "users" group - so we have to do it differently:
+    # all CCE users are in the "users" group
+    ($name, $null, $all_gid) = getgrnam('users');
 
-    foreach $name ($pw->users) {
-        my $uid = $pw->uid($name);
-        my $user_gid = $pw->gid($name);
-        my $dir = $pw->home($name);
-	my @groupworkaround = split(/\//, $dir);
-
-	# Ignore all users with an UID below 500 and also the SITEXX-logs users:
-	if (($uid < 500)||($uid == 65534)) {
+    # now we do getpwent() and only lookup users who are in the "users" group
+    setpwent();
+    while (($name, $null, $uid, $user_gid, $null, $null, $null, $dir) = getpwent()) {
+	if ($user_gid != $all_gid) {
 	    next;
 	}
-	elsif ($groupworkaround[5] eq "logs") {
-	    next;
-	}
-	elsif ($name eq "nfsnobody") {
-	    next;
-	}
-	else {
-	    my $dev = Quota::getqcarg($dir);
-	    my ($used, $quota) = Quota::query($dev, $uid);
 
-	    $hash{$name}{used} = $used;
-	    $hash{$name}{quota} = $quota;
-	}
+	my $dev = Quota::getqcarg($dir);
+	my ($used, $quota) = Quota::query($dev, $uid);
+
+	$hash{$name}{used} = $used;
+	$hash{$name}{quota} = $quota;
     }
+    endpwent();
     return %hash;
 }
+
  
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/
-# $Id: restart.pl 967 2006-12-02 16:31:44Z brian $
+# $Id: restart.pl 1328 2009-12-06 14:14:37Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use Sauce::Service;
@@ -25,9 +25,7 @@ if ($obj->{NAMESPACE} ne 'Email')
     }
 }
 
-Sauce::Service::service_run_init('sendmail', 'stop') if $obj->{enableSMTP};
-Sauce::Service::service_send_signal('sendmail', '9') if $obj->{enableSMTP};
-Sauce::Service::service_run_init('sendmail', 'restart') if $obj->{enableSMTP};
+Sauce::Service::service_run_init('postfix', 'restart');
 
 $cce->bye("SUCCESS");
 exit 0;

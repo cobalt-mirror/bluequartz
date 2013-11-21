@@ -10,3 +10,9 @@ perl -pi.bak -e 's|^Alias /error/|#Alias /error/|g' /etc/httpd/conf/httpd.conf
 # disable ScriptAlias
 perl -pi.bak -e 's/^ScriptAlias/#ScriptAlias/g' /etc/httpd/conf/httpd.conf
 
+# disable php configuration
+cat /etc/httpd/conf.d/php.conf | sed -e 's|^AddHandler|#AddHandler|' \
+	-e 's|^AddType|#AddType|' \
+	-e 's|^DirectoryIndex|#DirectoryIndex|' > /etc/httpd/conf.d/php.conf.temp
+/bin/mv /etc/httpd/conf.d/php.conf.temp /etc/httpd/conf.d/php.conf
+

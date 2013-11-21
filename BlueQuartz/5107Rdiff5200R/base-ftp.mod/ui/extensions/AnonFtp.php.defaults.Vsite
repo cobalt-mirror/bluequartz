@@ -3,9 +3,8 @@
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // AnonFtp.php.defaults.Vsite
 
-include_once('UIExtension.php');
+include('UIExtension.php');
 
-//class AnonFtpExtension extends UIExtension
 class AnonFtpExtension extends UIExtension
 {
     function display(&$ServerScriptHelper, &$container, $parameters)
@@ -33,29 +32,9 @@ class AnonFtpExtension extends UIExtension
   
         $ftpField->addOption($enable);
 
-        // More PGP5 conversion bugs! In tabbed environments the values from composite form fields don't
-        // get posted if you're not right on the tab where the input box is. This work around adds it as
-        // hidden field on all tabs:
-
-        $hidden_block_one = $factory->getTextBlock("AnonFtp_quota", $defaults["quota"]);
-        $hidden_block_one->setOptional(true);
-        $container->addFormField(
-            $hidden_block_one,
-            $factory->getLabel("AnonFtp_quota"),
-            "Hidden"
-        );
-
-        $hidden_block_two = $factory->getTextBlock("AnonFtp_maxConnections", $defaults["maxConnections"]);
-        $hidden_block_two->setOptional(true);
-        $container->addFormField(
-            $hidden_block_two,
-            $factory->getLabel("AnonFtp_maxConnections"),
-            "Hidden"
-        );
-
         // now add the form fields to the block, assume PagedBlock
-        $pageId = "siteFtp";
-        $container->addPage($pageId, $factory->getLabel("siteFtp"));
+        $pageId = "AnonFtp";
+        $container->addPage($pageId, $factory->getLabel("ftpTabName"));
         $container->addFormField(
                 $ftpField, 
                 $factory->getLabel("anonFtp"), 

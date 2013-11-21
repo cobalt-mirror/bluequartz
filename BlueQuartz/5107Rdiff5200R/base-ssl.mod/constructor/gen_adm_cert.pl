@@ -26,19 +26,16 @@ my ($ok, $sys) = $cce->get($sys_oid);
 #	 is fixed.  This will occur in about 9 years or so as of 1/14/2002, and
 #	 more than likely this script will no longer be in use.  Hey, I was
 #	 bored.
-# FIXED: This actually removes current time from bug_time in y2038 and subtracts 20 days
-#        to avoid any strange race conditions. I REALLY HOPE WE DON'T USE 32-bit Linux
-#        machines with the y2038 present when the time comes... PBaltz was wrong thouch
-#        to hope for a quick fix! :) / Rickard Osser <rickard.osser@bluapp.com>
 #
+my $days_valid = 9999;
 my $current_time = time();
+my $expire_time = $current_time + ($days_valid * 24 * 60 * 60);
 my $bug_time = (2 ** 31) - 100;  # T-100 seconds to avoid race conditions
-my $difference = $bug_time - $current_time;
-my $days_valid = int($difference / 86400)- 20; # T - 20 days to avoid race conditions.
+my $difference = $bug_time - $expire_time;
 
-# if the clock in the server by any chance is set to something that is past, hardcode 9995 days as that won't break anything.
-if ( $days_valid > 9995 ) {
-    $days_valid = 9995;
+if ($difference < 0) {
+	# need to correct days valid
+	$days_valid += int($difference / (24 * 60 * 60));
 }
 
 # set up ssl
@@ -49,7 +46,7 @@ if ( $days_valid > 9995 ) {
 			'country' => 'SS',
 			'state' => 'SS',
 			'city' => 'Generic',
-			'orgName' => 'Sun Cobalt'
+			'orgName' => 'Project BlueQuartz'
 		  });
 $cce->bye();
 exit(0);

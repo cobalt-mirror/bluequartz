@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: ScrollList.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: ScrollList.php 1271 2009-09-16 09:21:24Z shibuya $
 
 // description:
 // The class represents a list of elements. Elements are being put into pages.
@@ -504,8 +504,8 @@ class ScrollList extends HtmlComponent {
     for($i = 0; $i < $entryNum; $i++)
       $keys[] = $entries[$i][$sortedIndex];
 
-    include_once('BXCollator.php');
-    $collator = new BXCollator();
+    include_once('Collator.php');
+    $collator = new Collator();
     $collator->sort($keys, $entries);
 
     if($sortOrder == "descending")
@@ -766,7 +766,7 @@ class ScrollList extends HtmlComponent {
     $label = $labelObj->toHtml($style->getSubstyle("titleLabel"));
     $result .= "
 <STYLE TYPE=\"text/css\">
-.formField-$widgetid {" . $formFieldStyleStr . "}
+.formField-$widgetid { $formFieldStyleStr }
 </STYLE>
 $shadowFrameStart
 <TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\" BGCOLOR=\"$borderColor\" WIDTH=\"$width\"><TR><TD>

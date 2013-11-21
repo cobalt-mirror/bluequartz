@@ -1,19 +1,21 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: reload.pl 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# $Id: restart_httpd.pl 423 2004-11-23 14:26:50Z shibuya $
+# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 
-use Sauce::Service;
+# signal apache to reload it's configuration files.
+
+my $DEBUG = 0;
+
 use CCE;
+use Sauce::Service;
 
 my $cce = new CCE;
 $cce->connectfd();
 
-Sauce::Service::service_run_init('admserv', 'reload');
-Sauce::Service::service_run_init('httpd', 'reload');
+service_run_init('httpd', 'restart');
 
 $cce->bye('SUCCESS');
-
-exit 0;
+exit(0);
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

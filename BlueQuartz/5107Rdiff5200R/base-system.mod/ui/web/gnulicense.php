@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: gnulicense.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: gnulicense.php 1020 2007-06-25 15:30:09Z shibuya $
 
 include_once("ServerScriptHelper.php");
 

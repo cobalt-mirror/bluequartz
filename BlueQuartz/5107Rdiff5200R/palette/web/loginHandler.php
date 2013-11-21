@@ -2,7 +2,7 @@
 /**
  * Handle login by authorizing through CCE and setting session and id cookies
  *
- * $Id: loginHandler.php 1050 2008-01-23 11:45:43Z mstauber $
+ * $Id: loginHandler.php 1024 2007-06-25 15:31:47Z shibuya $
  *
  * @author Kevin K.M. Chiu, Eric Braswell
  * @copyright Copyright 2001 Sun Microsystems, Inc. All Rights Reserved.
@@ -129,6 +129,9 @@ function printPage($onLoad="", $body="", $head="") {
         <BODY <?php print($onLoad); ?>>
            <?php print($body); ?>
         </BODY>
+        <HEAD> <!-- convince IE really not to cache -->
+            <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+        </HEAD>
     </HTML>
     <?php
 }

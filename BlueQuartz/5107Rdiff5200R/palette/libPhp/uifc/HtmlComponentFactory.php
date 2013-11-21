@@ -423,8 +423,8 @@ class HtmlComponentFactory {
   // param: access: access of the object. Optional
   // returns: an Locale object
   function getLocale($id, $value = "", $access = "rw") {
-    include_once("uifc/BXLocale.php");
-    $ipAddress = new BXLocale($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
+    include_once("uifc/Locale.php");
+    $ipAddress = new Locale($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
     $ipAddress->setAccess($access);
     return $ipAddress;
   }
@@ -724,18 +724,6 @@ class HtmlComponentFactory {
     $textField = new TextField($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
     $textField->setAccess($access);
     return $textField;
-  }
-
-  // description: manufacture a HtmlField object
-  // param: id: id of the object
-  // param: value: value of the object
-  // param: access: access of the object. Optional
-  // returns: a TextField object
-  function getHtmlField($id, $value = "", $access = "rw") {
-    include_once("uifc/HtmlField.php");
-    $htmlField = new HtmlField($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
-    $htmlField->setAccess($access);
-    return $htmlField;
   }
 
   // description: manufacture an TextList object

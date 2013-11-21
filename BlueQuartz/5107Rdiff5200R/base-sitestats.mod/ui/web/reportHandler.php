@@ -9,8 +9,9 @@ include_once('Error.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$serverScriptHelper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$serverScriptHelper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($serverScriptHelper->getAllowed('siteAdmin') &&
       $group == $serverScriptHelper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -19,8 +20,6 @@ if (!$serverScriptHelper->getAllowed('adminUser') &&
 
 $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product($cceClient);
-
-$errors = $cceClient->errors();
 
 // check if cce is suspended, so reports don't get generated.  
 // there is most likely a backup going on
@@ -37,10 +36,10 @@ if ($cceClient->suspended() !== false)
 $oids = $cceClient->find("System");
 
 // Cheesily strip leading zeroes.  
-$_endDate_month  = preg_replace('/^0/', '', $_endDate_month);
-$_startDate_month  = preg_replace('/^0/', '', $_startDate_month);
-$_endDate_day  = preg_replace('/^0/', '', $_endDate_day);
-$_startDate_day  = preg_replace('/^0/', '', $_startDate_day);
+$_endDate_month  = ereg_replace('^0', '', $_endDate_month);
+$_startDate_month  = ereg_replace('^0', '', $_startDate_month);
+$_endDate_day  = ereg_replace('^0', '', $_endDate_day);
+$_startDate_day  = ereg_replace('^0', '', $_startDate_day);
 
 $config = array(
 	"startDay" => $_startDate_day,

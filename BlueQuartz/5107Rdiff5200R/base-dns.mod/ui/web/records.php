@@ -1,14 +1,14 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: records.php 829 2006-07-19 16:26:34Z shibuya $
+ * $Id: records.php 1375 2010-02-02 16:05:22Z shibuya $
  */
 include_once("ServerScriptHelper.php");
 
 $iam = '/base/dns/records.php';
 $addmod = '/base/dns/dns_add.php';
-$addmod_mx = '/base/dns/dns_add_mx.php';
 $soamod = '/base/dns/dns_soa.php';
+$zonemod = '/base/dns/dns_zone.php';
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
@@ -47,7 +47,7 @@ if ($_REMOVE) {
 	$errors = $cceClient->errors();
 }
 if ($_DELMANY) {
-	$death_row = preg_split('/x/', $_DELMANY);
+	$death_row = split('x', $_DELMANY);
 
 	rsort($death_row);
 	for ($i = 0; $i < $death_row[0]; $i++) {
@@ -114,7 +114,7 @@ if (($domauth == '') && ($netauth == '')) {
 	}
 }
 if ($title_authority != '') { 
-	$title_members = preg_split('/\//', $title_authority);
+	$title_members = split('/', $title_authority);
 	$title_authority = $records_title_separator . $title_members[0];
 	if ($title_members[1] != '') {
 		$title_authority .= '/' . $dec_to_nm[$title_members[1]];
@@ -149,6 +149,7 @@ if($domauth != '') {
 	$rec_oids = $cceClient->find("DnsRecord", array('network' => $netauth));
 	$auth_link = '&netauth=' . urlencode($netauth);
 	$block->addButton($factory->getButton("$soamod?_LOAD=" . $auth_oids[$netauth] . $auth_link,"edit_soa"));
+	$block->addButton($factory->getButton("$zonemod?_LOAD=" . $auth_oids[$netauth] . $auth_link,"edit_zone"));
 	$many_oids = join('x', $rec_oids);
 	$block->addButton($factory->getButton("javascript: confirmDelAll(strConfirmDelAll, '_DELMANY=$many_oids');", 'del_records'));
 
@@ -162,7 +163,7 @@ if (count($rec_oids) == 0) {
 //  Array of labels => actions for "add a record" menu
 $addRecordsList = array("a_record" => "dns_add.php?TYPE=A" . $auth_link,
 			"ptr_record" => "dns_add.php?TYPE=PTR" . $auth_link,
-			"mx_record" => "dns_add_mx.php?TYPE=MX" . $auth_link,
+			"mx_record" => "dns_add.php?TYPE=MX" . $auth_link,
 			"cname_record" => "dns_add.php?TYPE=CNAME" . $auth_link,
 			"txt_record" => "dns_add.php?TYPE=TXT" . $auth_link);
 
@@ -257,7 +258,7 @@ if(count($rec_oids)) {
 					$rec['type'] = 'SUBNET';
 					$direction = $i18n->get('subnet_dir');
 
-					$smallnet = preg_split('/\//', $rec['network_delegate']);
+					$smallnet = split('/', $rec['network_delegate']);
 					$source = $smallnet[0] . '/' .
 						$dec_to_nm[$smallnet[1]];
 					$resolution = $rec['delegate_dns_servers'];
@@ -271,30 +272,15 @@ if(count($rec_oids)) {
 					$resolution = $rec['delegate_dns_servers'];
 					$label = $rec['hostname'].'.'.$rec['domainname'];
 				}
-				$resolution = preg_replace('/^&/', '', $resolution);
-				$resolution = preg_replace('/&$/', '', $resolution);
-				$resolution = preg_replace('/&/', ' ', $resolution);
+				$resolution = ereg_replace('^&', '', $resolution);
+				$resolution = ereg_replace('&$', '', $resolution);
+				$resolution = ereg_replace('&', ' ', $resolution);
 			} else {
 				next;
 				echo "unkown type: ".$rec['type']."\n";
 			}
-
-			if ($rec['type'] == 'MX') {
-
-			    $block->addEntry(array(
-				$factory->getTextField("", $source, "r"),
-				$factory->getTextField("", $direction, "r"),
-				$factory->getTextField("", $resolution, "r"),
-				$factory->getCompositeFormField(array(
-					$factory->getModifyButton( "$addmod_mx?_PagedBlock_selectedId_blockid0=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link ),
-					$factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$label', '$domauth', '$netauth')" )
 	
-				))
-			    ));
-			}
-			else {
-
-			    $block->addEntry(array(
+			$block->addEntry(array(
 				$factory->getTextField("", $source, "r"),
 				$factory->getTextField("", $direction, "r"),
 				$factory->getTextField("", $resolution, "r"),
@@ -303,9 +289,7 @@ if(count($rec_oids)) {
 					$factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$label', '$domauth', '$netauth')" )
 	
 				))
-			    ));
-
-			}
+			));
 		}
 	}
 }
@@ -356,10 +340,7 @@ print($block->toHtml());
 $commit_time = time();
 $commitButton = $factory->getButton("/base/dns/dns.php?commit=$commit_time", "apply_changes");
 if($sys_dns['dirty'] == 0) {
-	// I fully understand the prurpose of greying this button out.
-	// However, it's REALLY more grief than it's worth. Hence
-	// screw it, no more greying out here!
-	//$commitButton->setDisabled(true);
+	$commitButton->setDisabled(true);
 }
 
 $backButton = $factory->getBackButton("/base/dns/dns.php");

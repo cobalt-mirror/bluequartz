@@ -1,5 +1,5 @@
 <!--
-$Id: user.schema 1117 2008-05-14 16:18:22Z mstauber $
+$Id: user.schema 833 2006-08-03 13:54:11Z shibuya $
 Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 
 This is the schema for the basic User object.  Moved from
@@ -40,11 +40,6 @@ sauce-basic.mod to base-user.mod.
     />
     <property
         name="emailDisabled" type="boolean" default="0" optional="true"
-          readacl="ruleAll" 
-        writeacl="ruleModifyUser"
-    />
-    <property
-        name="ftpDisabled" type="boolean" default="0" optional="true"
           readacl="ruleAll" 
         writeacl="ruleModifyUser"
     />

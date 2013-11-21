@@ -1,14 +1,12 @@
 Summary: Binaries and scripts used by the RAID module
 Name: raid-bins
 Version: 1.0.3
-Release: 12BX05%{dist}
-Vendor: Project BlueOnyx
-License: Sun BSD
+Release: 12BQ4%{?dist}
+Vendor: %{vendor}
+License: Sun modified BSD
 Group: Utils
 Source: raid-bins.tar.gz
 BuildRoot: /tmp/raid-bins
-AutoReq         : no
-#BuildArchitectures: noarch
 
 %prep
 rm -rf $RPM_BUILD_ROOT
@@ -35,17 +33,14 @@ Currently, this rpm contains the scripts used to
 determine the status of RAID.
 
 %changelog
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BX05
-- Set autoreq to no as it suddenly checks for 64-bit glibc
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ4
+- remove ide-smart binary.
 
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BX04
-- Removed noarch architecture tag from specfile
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ3
+- remove BuildArchitectures tag because of arch dependent binariy is exist.
 
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BQ3
-- Rebuilt for BlueOnyx.
-
-* Tue Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.3-12BQ2
-- Changed Copyright tag to Vendor in specfile
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ2
+- remove copyright tag and add license tag at spec file.
 
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.3-12BQ1
 - add dist macro for release and add sign to the package.

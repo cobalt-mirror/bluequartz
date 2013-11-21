@@ -2,15 +2,13 @@
 <!-- $Id: fowardCCE.xml,v 1.2 2003/09/29 15:11:14 jeffb Exp $ -->
 <!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -->
 <shell>
-  <product value = "BX5108R"/>
-  <product value = "BX5107R"/>
-  <product value = "BO5106R"/>
   <product value = "BQ5100R"/>
+  <product value = "BQ5200R"/>
   <product value = "TLAS2"/>
   <product value = "RaQ550"/>
   <version value = "[VERSION]"/>
   <cadduser>
-	<forward opts = "forward=s w>forward" 
+	<forward opts = "forward=s e>forward" 
 		label = "forwardEmail"
 		nameSpace = "Email"
 		type = "array"
@@ -19,7 +17,7 @@
 	</forward>
   </cadduser>
   <cmoduser>
-	<forward opts = "forward=s w>forward set-forward>forward" 
+	<forward opts = "forward=s e>forward set-forward>forward" 
 		label = "forwardEmail"
 		nameSpace = "Email"
 		type = "array"

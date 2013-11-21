@@ -76,7 +76,7 @@ class ServerScriptHelper {
     $system = new System();
 
     $product = $this->getProductCode();
-    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
 
     if ($this->hasCCE()) 
     {
@@ -120,6 +120,9 @@ class ServerScriptHelper {
     </TR></TABLE>
     </CENTER>
   </BODY>
+  <HEAD>
+    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+  </HEAD>
 </HTML>");
             exit;
         }
@@ -153,6 +156,9 @@ class ServerScriptHelper {
     }
     </SCRIPT>
   </BODY>
+  <HEAD>
+    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+  </HEAD>
 </HTML>");
 	            exit;
             }
@@ -181,6 +187,9 @@ class ServerScriptHelper {
     }
     </SCRIPT>
   </BODY>
+  <HEAD>
+    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+  </HEAD>
 </HTML>");
 	            exit;
             }
@@ -191,10 +200,6 @@ class ServerScriptHelper {
     
         // initialize
         $this->i18n = array();
-	// initialize timezone
-	$timeObj = $cceClient->getObject("System", array(), "Time");
-	$systemTimeZone = $timeObj["timeZone"];
-	date_default_timezone_set($systemTimeZone);
     }
   }
 
@@ -219,7 +224,7 @@ class ServerScriptHelper {
   function getFile($filename) {
     $rv = $this->shell("/bin/ls -s --block-size=1 $filename", $ls);
     if (!$rv) {
-      preg_match("/^([0-9]+)[[:space:]]/", $ls, $regs);
+      ereg("^([0-9]+)[[:space:]]", $ls, $regs);
       $size = $regs[1];
       $fh = $this->popen("/bin/cat $filename");
       // Removed by: Brian Smith
@@ -318,7 +323,7 @@ class ServerScriptHelper {
   {
     global $sessionId;
     $product = $this->getProductCode();
-    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
 
     putenv("CCE_SESSIONID=" . $sessionId);
     putenv("CCE_USERNAME=" . $this->loginName);
@@ -348,7 +353,7 @@ class ServerScriptHelper {
   function shell($cmd, &$output, $runas="") {
     global $sessionId;
     $product = $this->getProductCode();
-    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
 
     // call ccewrap
     //$cmd = escapeShellCmd($cmd);	
@@ -391,7 +396,7 @@ class ServerScriptHelper {
   // returns: an array of access rights in strings
   function getAccessRights() {
     $product = $this->getProductCode();
-    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
 
     // include rights specified in uiRights property
     $accessRights = stringToArray($this->loginUser["uiRights"]);
@@ -563,7 +568,7 @@ class ServerScriptHelper {
     }
 
     $product = $this->getProductCode();
-    $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+    $this->isMonterey = ereg("35[0-9][0-9]R", $product);
 
     // use preference if it is available
     // then use trueBlue if it is available
@@ -572,8 +577,8 @@ class ServerScriptHelper {
       return $preference;
     } else if ($this->isMonterey && in_array("classic", $styleIds)) {
       return "classic";
-    } else if (in_array("BlueOnyx", $styleIds)) {
-      return "BlueOnyx";
+    } else if (in_array("trueBlue", $styleIds)) {
+      return "trueBlue";
     } else {
       return $styleIds[0];
     }
@@ -670,6 +675,9 @@ class ServerScriptHelper {
 $errorJavascript
 $post_vars_html
   </BODY>
+  <HEAD>
+    <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+  </HEAD>
 </HTML>
 ";
   }
@@ -875,7 +883,7 @@ $post_vars_html
         $BUILD_FILE = fopen($build_file, "r");
         $buildtext = fread($BUILD_FILE,filesize($build_file)); 
         fclose($BUILD_FILE);
-        if (preg_match("/for a ([A-Za-z0-9\-]+) in/", $buildtext, $regs)) 
+        if (ereg("for a ([A-Za-z0-9\-]+) in", $buildtext, $regs)) 
         {
             $product = $regs[1];
         }

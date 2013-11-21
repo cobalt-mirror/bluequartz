@@ -5,10 +5,10 @@
   * These functions are intended to simply dealing with browser 
   * compatibility issues. 
   *
-  * $Id: browser.php 265 2004-01-10 15:27:51Z shibuya $
+  * $Id: browser.php 1454 2010-04-15 14:10:20Z shibuya $
   *
   * @author  James Cheng
-  * @version $Revision: 265 $
+  * @version $Revision: 1454 $
   * @copyright  Copyright 2001 Sun Microsystems, Inc. All Rights Reserved.
   * @access public
   */  
@@ -60,7 +60,7 @@ function browser_headers_for_download($filename, $type = '') {
     // Disposition to make it do the right thing.
     // See http://support.microsoft.com/support/kb/articles/Q267/9/91.ASP
     $mimetype = 'application/download';
-    $disposition = 'anything';
+    $disposition = 'attachment';
   } else {
     // Netscape on Windows
     // It too doesn't show a Save As dialog box when it sees a text file.

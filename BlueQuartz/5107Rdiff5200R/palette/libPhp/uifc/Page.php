@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: Page.php 1184 2008-09-10 21:23:19Z mstauber $
+// $Id: Page.php 1225 2009-09-04 16:01:03Z shibuya $
 
 // description:
 // This class represents a page on the user interface. It also encapsulates all
@@ -218,12 +218,14 @@ $formHeader
 
     // Pragma: no-cache again because IE is buggy.
     // See http://support.microsoft.com/support/kb/articles/Q222/0/64.ASP
-    // No longer needed. Removing trailing head section - mstauber
     return "
 $formFooter
 $center
 </FONT>
 </BODY>
+<HEAD>
+<META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+</HEAD>
 </HTML>
 ";
   }

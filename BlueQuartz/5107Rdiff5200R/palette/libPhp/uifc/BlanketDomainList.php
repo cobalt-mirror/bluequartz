@@ -1,7 +1,7 @@
 <?php
 // Author: Will Dehaan
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: BlanketDomainList.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: BlanketDomainList.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isBlanketDomainListDefined;
 if($isBlanketDomainListDefined)

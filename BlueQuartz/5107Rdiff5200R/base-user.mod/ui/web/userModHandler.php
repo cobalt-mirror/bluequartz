@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userModHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: userModHandler.php 1534 2010-09-28 08:36:52Z oride $
  */
 
 include_once("ArrayPacker.php");
@@ -18,14 +18,12 @@ if (!$serverScriptHelper->getAllowed('adminUser') &&
   return;
 }
 
-// Start sane:
-$errors = array();
-
 $autoFeatures = new AutoFeatures($serverScriptHelper);
 $cceClient = $serverScriptHelper->getCceClient();
 
 $oids = $cceClient->find("User", array("name" => $userNameField));
 $iam = $serverScriptHelper->getLoginName();
+$errors = array();
 
 // modify user
 $attributes = array("fullName" => $fullNameField);
@@ -43,7 +41,7 @@ if (isset($siteAdministrator) && ($siteAdministrator || (!$siteAdministrator && 
   $attributes["capLevels"] = ($siteAdministrator ? '&siteAdmin&' : '');
 
 if (isset($dnsAdministrator) && ($dnsAdministrator || (!$dnsAdministrator && ($iam != $userNameField))))
-  $attributes["capLevels"] .= ($dnsAdministrator ? '&dnsAdmin&' : '');
+  $attributes["capLevels"] .= ($dnsAdministrator ? '&siteDNS&' : '');
 
 // dirty trick
 $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
@@ -51,22 +49,10 @@ $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
 if (isset($suspendUser))
   $attributes['ui_enabled'] = ($suspendUser) ? '0' : '1';
 
-// Handle FTP access clauses:
-if ($ftpForNonSiteAdmins == "0") {
-    $hasNoFTPaccess = "1";
-}
-else {
-    $hasNoFTPaccess = "0";
-}
-
-if ($siteAdministrator == "1") {
-    $hasNoFTPaccess = "0";
-}
-
 // Username = Password? Baaaad idea!
 if (strcasecmp($userNameField, $passwordField) == 0) {
         $attributes["password"] = "1";
-        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+	$error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
         $errors[] = new Error($error_msg);
 }
 
@@ -95,8 +81,6 @@ if ($passwordField) {
 }
 
 $attributes['emailDisabled'] = $emailDisabled;
-
-$attributes['ftpDisabled'] = $hasNoFTPaccess;
 
 $cceClient->set($oids[0], "", $attributes);
 //$errors = $cceClient->errors();
@@ -162,7 +146,7 @@ for($i = 0; $i < count($goids); $i++) {
 $cceClient->set($oids[0], "Email", array(
 	"forwardEnable" => ($forwardEnableField ? 1 : 0), 
 	"forwardEmail" => $forwardEmailField, 
-	"forwardSave" => $forwardSaveField));
+	"forwardSave" => ($forwardSaveField ? 1 : 0)));
 $errors = array_merge($errors, $cceClient->errors());
 
 // set email aliases info
@@ -187,33 +171,9 @@ $cceClient->set($oids[0], "Email", $attributes);
 $errors = array_merge($errors, $cceClient->errors());
 
 // set vacation info
-if ($_autoRespondStartDate_amPm == "PM") { 
-  $_autoRespondStartDate_hour = $_autoRespondStartDate_hour + 12; 
- } 
-
-if ($_autoRespondStopDate_amPm == "PM") { 
-  $_autoRespondStopDate_hour = $_autoRespondStopDate_hour + 12; 
- } 
-
-$vacationMsgStart = mktime($_autoRespondStartDate_hour, $_autoRespondStartDate_minute, 
-			   $_autoRespondStartDate_second, $_autoRespondStartDate_month, 
-			   $_autoRespondStartDate_day, $_autoRespondStartDate_year); 
-$vacationMsgStop = mktime($_autoRespondStopDate_hour, $_autoRespondStopDate_minute, 
-			  $_autoRespondStopDate_second, $_autoRespondStopDate_month, 
-			  $_autoRespondStopDate_day, $_autoRespondStopDate_year); 
-
-if (($vacationMsgStop - $vacationMsgStart) < 0) { 
-  $vacationMsgStop = $oldStop; 
-  
-  $error_msg = "[[base-user.invalidVacationDate]]"; 
-  $errors[] = new Error($error_msg); 
- } 
-
 $cceClient->set($oids[0], "Email", array( 
 	"vacationOn" => ($autoResponderField ? 1 : 0), 
-        "vacationMsg" => $autoResponderMessageField, 
-	"vacationMsgStart" => $vacationMsgStart, 
-	"vacationMsgStop" =>$vacationMsgStop)); 
+	"vacationMsg" => $autoResponderMessageField));
 $errors = array_merge($errors, $cceClient->errors());
 
 # log the user out if they are trying to demote themself

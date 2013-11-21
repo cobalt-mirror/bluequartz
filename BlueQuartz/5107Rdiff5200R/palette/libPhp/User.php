@@ -1,7 +1,7 @@
 <?php
 // Author: Patrick Bose
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: User.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: User.php 995 2007-05-05 07:44:27Z shibuya $
 
 // This module replicates a subset of the User.pm functionality.
 

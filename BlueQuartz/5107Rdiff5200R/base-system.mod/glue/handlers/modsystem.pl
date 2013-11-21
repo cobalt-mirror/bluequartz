@@ -39,7 +39,7 @@ if ($obj->{domainname} && $obj->{hostname} !~ m/\.$obj->{domainname}$/) {
   $name = join(".",($obj->{hostname},$obj->{domainname}));
 }
 $name =~ s/\.+/\./g;
-if (length($name) > 70) {
+if (length($name) > 40) {
   $cce->baddata(0, 'hostname', 'hostname-too-long');
   $cce->bye('FAIL');
   exit 1;
@@ -67,30 +67,27 @@ if (defined($new->{hostname}) || defined($new->{domainname}))
   system('/bin/hostname', $name);
 }
 
-if (defined($new->{hostname}) || defined($new->{domainname}) || defined($new->{gateway}) ) {
+if (defined($new->{hostname}) 
+  || defined($new->{domainname})
+  || defined($new->{gateway}) )
+{
   # update /etc/sysconfig/network
   {
-      my $fn = sub {
+    my $fn = sub {
       my ($fin, $fout) = (shift,shift);
       my ($name, $gateway) = (shift, shift);
       my %hash = ();
       while ($_ = <$fin>) {
-        chomp($_);
-        if (m/^\s*([A-Za-z0-9_]+)\s*\=\s*(.*)/) { 
-	    $hash{$1} = $2; 
-	}
+      	chomp($_);
+      	if (m/^\s*([A-Za-z0-9_]+)\s*\=\s*(.*)/) { $hash{$1} = $2; }
       }
       $hash{HOSTNAME} = $name;
       $hash{NETWORKING} = "yes";
       $hash{FORWARD_IPV4} = $hash{FORWARD_IPV4} || "false";
-
-      if (!-e "/etc/is_aws") {
-	  $hash{GATEWAY} = $gateway || $hash{GATEWAY} || "";
-	  if (defined($gateway)) { $hash{GATEWAY} = $gateway; };
-      }
-
+      $hash{GATEWAY} = $gateway || $hash{GATEWAY} || "";
+      if (defined($gateway)) { $hash{GATEWAY} = $gateway; };
       foreach $_ ( sort keys %hash ) {
-        print $fout $_,"=",$hash{$_},"\n";
+      	print $fout $_,"=",$hash{$_},"\n";
       }
       return 1;
     };

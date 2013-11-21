@@ -1,6 +1,6 @@
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: tab.js 1181 2008-09-09 18:18:21Z mstauber $
+// $Id: tab.js 1225 2009-09-04 16:01:03Z shibuya $
 
 //
 // private variables

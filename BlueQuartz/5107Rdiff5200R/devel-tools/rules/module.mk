@@ -81,7 +81,7 @@ clean:
 	-if [ -f ui/Makefile ]; then \
 		make -C glue clean; \
 	fi
-	-rm -rf rpms srpms as_rpms as_srpms packing_list
+	-rm -rf rpms srpms as_rpms as_srpms
 
 src_rpms: FORCE
 	touch $(TIMEFILE)
@@ -104,7 +104,6 @@ src_rpms: FORCE
 
 rpm: clean src_rpms mod_packing_list mod_specfile FORCE
 	touch $(TIMEFILE)
-	sleep 1
 	#
 	# now bundle up the rpm
 	-rm -rf $(TMPDIR)/$(VENDOR)-$(SERVICE)-$(VERSION)
@@ -126,8 +125,6 @@ endif
 	cp `find $(RPM_TOPDIR)/RPMS -follow -type f -newer $(TIMEFILE)` as_rpms
 	-@mkdir as_srpms || /bin/true
 	cp `find $(RPM_TOPDIR)/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms
-	if [ `ls rpms/* |wc -l` -gt 0 ]; then   cp rpms/*  as_rpms; fi 
-	if [ `ls srpms/*|wc -l` -gt 0 ]; then  cp srpms/* as_srpms; fi
 	-@/bin/rm -f $(TIMEFILE)
 
 mod_specfile:
@@ -153,7 +150,6 @@ mod_specfile:
 	REQUIRES_UI="${REQUIRES_UI}" \
 	$(CCEBIN)/mod_rpmize $$rpmdefs $$spec \
 	  $(VENDOR)-$(SERVICE).spec &> /tmp/rpmize.log
-	/usr/bin/perl -pi -e "s/^Requires:\ +\n//" $(VENDOR)-$(SERVICE).spec  
 
 # don't upload srpms, because we don't release these and the source is in cvs
 # this is to keep glazed from getting filled up quite as quickly
@@ -541,8 +537,8 @@ install_capstone:
 
 pkg: install rpm
 	-@echo "making package..."; \
-	$(CCEBIN)/makePkg -v "$(VENDOR)" -s "$(SERVICE)" -n "$(VERSION)" \
-		-r "$(RELEASE)" -a "$(BUILDARCH)" -l "$(LOCALES)" ;
+	$(CCEBIN)/makePkg -l "$(LOCALES)" -v "$(VENDOR)" -s "$(SERVICE)" \
+		-n "$(VERSION)" -r "$(RELEASE)" -a "$(BUILDARCH)";
 
 package: 
 # Variables needed in Makefile
@@ -660,7 +656,7 @@ package:
 #	Results
 #	Create pkg file
 	-mkdir package_results
-	cd package_tmp; tar cBf ../package_results/$(VENDOR)-$(SERVICE).pkg .
+	cd package_tmp; tar -cBIf ../package_results/$(VENDOR)-$(SERVICE).pkg .
 
 #	add Size entry onto packing_list
 	SIZE=`perl -e '@stats = stat("package_results/$(VENDOR)-$(SERVICE).pkg"); print @stats[7];'`; echo Size: $$SIZE >> package_tmp/packing_list

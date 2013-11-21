@@ -46,41 +46,17 @@ $Ui->Integer( "default_expire", 1, 4096000);
 $Ui->Integer( "default_ttl", 1, 4096000);
 
 $Ui->Divider( "global_settings" );
-
-$Ui->Boolean( "query" );
-$Ui->Boolean( "query_all_allowed" );
-$Ui->InetAddressList( "query_inetaddr", array( "Optional" => 'laud') );
-
 $Ui->Boolean( "caching" );
-$Ui->Boolean( "caching_all_allowed" );
-$Ui->InetAddressList( "recursion_inetaddr", array( "Optional" => 'laud') );
-
-
 $Ui->IpAddressList( "forwarders", array( "Optional" => 'loud' ) );
 $Ui->IpAddressList( "zone_xfer_ipaddr", array( "Optional" => 'loud') );
-
-$Ui->Divider( "rate_limits" );
-$Ui->Boolean( "rate_limits_enabled" );
-$Ui->Integer( "responses_per_second", 1, 1024);
-$Ui->Integer( "window", 1, 128);
-
-$Ui->Divider( "dns_logging" );
-$Ui->Boolean( "enable_dns_logging" );
-
-//$Ui->Divider( "dns_sec" );
-//$Ui->Boolean( "enable_dns_sec" );
-
+$Ui->InetAddressList( "recursion_inetaddr", array( "Optional" => 'laud') );
 
 // Zone File Format tab
 $Ui->SetBlockView( "zone_format_tab" );
 $Ui->Divider( "zone_format_settings_divider" );
-//$Ui->Alters( "zone_format", array('RFC2317','DION','OCN-JT','USER'));
-$Ui->Alters( "zone_format", array('RFC2317'));
-//$Ui->Divider( "zone_format_user_defined_divider" );
-//$Ui->TextField( "zone_format_24", array( "Optional" => 'loud' ) );
-//$Ui->TextField( "zone_format_16", array( "Optional" => 'loud' ) );
-//$Ui->TextField( "zone_format_8", array( "Optional" => 'loud' ) );
-//$Ui->TextField( "zone_format_0", array( "Optional" => 'loud' ) );
+$Ui->Alters( "zone_format", array('RFC2317','DION','OCN-JT','USER'));
+$Ui->Divider( "zone_format_user_defined_divider" );
+$Ui->TextField( "zone_format_24", array( "Optional" => 'loud', 'Width' => '25' ) );
 
 $Ui->SetBlockView("auto_dns");
 $Ui->ListField( "auto_a", array( "Optional" => 'loud' ) );

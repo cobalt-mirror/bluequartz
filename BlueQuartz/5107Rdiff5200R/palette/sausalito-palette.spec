@@ -1,10 +1,10 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
-Version: 0.5.2
-Release: 0BX25%{?dist}
-Vendor: Project BlueOnyx
+Version: 0.5.1
+Release: 0BQ13%{?dist}
+Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: sausalito-palette.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-palette-root
@@ -56,187 +56,30 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+* Sat May 29 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ13
+- resolved multi select function.
 
-* Tue Oct 01 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX25
-- Weird non-reproduceable conflict with Classes Locale and Collator conflicting with
-  native PHP functions. Solved by renaming the Classes.
-- Removed libPhp/uifc/Locale.php
-- Added libPhp/uifc/BXLocale.php
-- Removed libPhp/Collator.php
-- Added libPhp/BXCollator.php
-- Modified libPhp/uifc/ScrollList.php
-- Modified libPhp/uifc/HtmlComponentFactory.php
+* Thu May 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ12
+- add multi select function into MultiChoice.
 
-* Thu May 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX24
-- Modified libPhp/uifc/FormFieldBuilder.php to change a hard coded 'UTF-8' transition
-  into something that detects and uses the proper charset.
+* Thu Apr 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ11
+- resolved the issue that export certificate dosn't work with IE7 and IE8.
 
-* Wed Aug 15 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX23
-- Extended libPhp/uifc/SetSelector.php with the ability to generate longer selectors.
+* Mon Dec 07 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ10
+- modify PagedBlock.php to support php5 for MultiChoice.
 
-* Mon Jul 30 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX22
-- Updated libPhp/uifc/FormFieldBuilder.php again to remove the hidden field output of 
-  the new UIFC function getHtmlField(), as we really do not need it. It just clutters up
-  the HTML output of generated pages and doubles load time.
+* Thu Sep 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ9
+- modify PagedBlock.php to support php5.
 
-* Wed Jul 25 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX21
-- Added libPhp/uifc/HtmlField.php to add UIFC function getHtmlField(), which works similar
-  to getTextField(), but allows HTML code.
-- Modified libPhp/uifc/FormFieldBuilder.php and libPhp/uifc/HtmlComponentFactory.php to
-  allow usage of getHtmlField().
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ8
+- modify ScrollList.php for php5.
 
-- Fix to libPhp/uifc/FormFieldBuilder.php to get it from timing out on conversion issues.
+* Thu Sep 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ7
+- modify prop file for Japanese to use UTF-8 for charset.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX20
-- Fix to libPhp/uifc/FormFieldBuilder.php to get it from timing out on conversion issues.
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX19
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX18
-- Updated libPhp/uifc/TimeStamp.php used to set the TimeZone to UTC, which is a bad idea.
-  We want our date and time form fields to show the server time instead. For this we now
-  depend on 'date.timezone' in /etc/admserv/php.ini being set to the servers timezone.
-
-* Thu Sep 01 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX17
-- Modified web/nav/cList.php to make it break out of a frameset if it has been loaded into one.
-
-* Mon Aug 29 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX16
-- Modified libPhp/ServerScriptHelper.php libPhp/uifc/Page.php libPhp/utils/page.php
-  to remove trailing head block from all pages to make pages more compliant with 
-  proper HTML standards. The trailing head block with a pragma to not cache GUI
-  pages was once added as a work around for a really ancient version of Internet
-  Explorer, which since long has been retired. So we do not need this anymore.
-
-* Tue Aug 16 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX15
-- Modified libPhp/uifc/FormFieldBuilder.php as there may only be three parameters instead of four to htmlspecialchars.
-
-* Fri Aug 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX14
-- Modified web/nav/cList.php web/nav/single.php web/nav/flow.php web/loginHandler.php and web/logoutHandler.php
-- Removed trailing and redundant <head></head> block from all pages.
-- Removed Netscape onresize reload from all pages that had it, as it's interfering with newer mobile devices.
-
-* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX13
-- libPhp/uifc/FormFieldBuilder.php: Function makeTextAreaField had no font set.
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX12
-- Fixed missing font size in libPhp/uifc/CompositeFormField.php
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX11
-- Fixed libPhp/uifc/MultiChoice.php again.
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX10
-- Multitabbed pages loose the contends of MultiChoice unless you click through all tabs first
-- htmlspecialchars() no longer works on Arrays in PHP5
-- Activated experimental subroutine in libPhp/uifc/FormFieldBuilder.php to compensate that.
-- I think the Id field also needed that modification in libPhp/uifc/MultiChoice.php. Added it.
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX09
-- Re-added missing TD style for TextLists to libPhp/uifc/MultiChoice.php
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX08
-- Replaced ours libPhp/uifc/MultiChoice.php with the one from BQ, which is longer.
-- Extended libPhp/uifc/FormFieldBuilder.php with an experimental subroutine
-- deals with oddities of htmlspecialchars() in PHP-5.3. Currently disabled.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX07
-- Added Hisao's fix for the MultiSelect function
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX06
-- Copied 'en' locales to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX05
-- libPhp/ServerScriptHelper.php: date_default_timezone_set added as per Rickard's suggestion in [Devel:00444]
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX04
-- libPhp/uifc/TimeStamp.php: Added date_default_timezone_set hardwired to UTC
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX03
-- libPhp/CobaltUI.php: Assigning the return value of new by reference is deprecated
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX02
-- web/uifc/MultiFileUploadHandler.php: ereg() replaced by preg_match() for PHP-5.3
-- web/uifc/MultiFileUpload.php: ereg() replaced by preg_match() for PHP-5.3
-- libPhp/uifc/PagedBlock.php: ereg() replaced by preg_match() for PHP-5.3
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX01
-- libPhp/ServerScriptHelper.php: ereg() replaced by preg_match() for PHP-5.3
-- libPhp/uifc/EmailAddressList.php: ereg() replaced by preg_match() for PHP-5.3
-- libPhp/uifc/IntRange.php: ereg() replaced by preg_match() for PHP-5.3
-- libPhp/utils/file.php: ereg() replaced by preg_match() for PHP-5.3
-- libPhp/Capabilities.php: Line 47 - Assigning the return value of new by reference is deprecated
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX24
-- Version number change for more consistency.
-
-* Sun May 30 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ23
-- Fixed font size in libPhp/uifc/SimpleText.php
-
-* Mon Nov 09 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ22
-- Updated libPhp/uifc/VerticalCompositeFormField.php to remove blank lines at end of file. They cause display errors.
-
-* Mon Nov 09 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ21
-- Updated libPhp/uifc/VerticalCompositeFormField.php to add 12px font size to style.
-- This fixes a display problem that - so far - only exists on Aventurin{e}.
-
-* Sun Nov 08 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ20
-- Added missing TD style for TextLists in libPhp/uifc/MultiChoice.php 
-- This fixes a display problem that - so far - only exists on Aventurin{e}.
-
-* Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ19
-- Modified libPhp/uifc/ScrollList.php to fix CSS issue with formField-1.
-- This finally applies the correct font size and styles to text in ScrlollLists again.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ18
-- Rebuilt for BlueOnyx.
-
-* Sun Nov 23 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ17
-- Found another piece of faulty code that cause missing pagedBlock elements:
-- Updated libPhp/uifc/PagedBlock.php to change reference to a straight pointer.
-
-* Sun Nov 23 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ16
-- Brian found the faulty code that cause missing pagedBlock elements:
-- Updated libPhp/uifc/PagedBlock.php to change reference to a straight pointer.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ15
-- Changed default skin to BlueOnyx
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ14
-- Fixed PHP5 related issue in web/status.php
-
-* Wed Sep 10 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ13
-- Ajax and JS based password strength checker implemented directly through uifc calls.
-- Newly added files for that:
-- web/libJs/ajax_lib.js
-- web/uifc/check_password.php
-- Modified the following pages for that:
-- libPhp/uifc/FormFieldBuilder.php
-- libPhp/uifc/Password.php
-- libPhp/uifc/Page.php
-
-* Tue Sep 09 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ12
-- Tab positions in navigation menu (tab.js) fixed for Chrome and Safari. 
-- Contributed by Jeremy Knope from rainstormconsulting.com
-
-* Tue Sep 09 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ11
-- fixes #10
-- fix for Safari 3.0 missing menu for wizard by Anders, BlackSun Inc.
-
-* Sun Jun 08 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ10
-- fixes #10
-- fix for Safari 3.0 missing menus by Anders, BlackSun Inc.
-
-* Mon May 26 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ9
-- Fix in de_DE/palette.po
-
-* Mon Jan 28 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ8
-- Fix in de_DE/palette.po
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ7
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ6
-- Danish locales added. Thanks to Jes Klittum!
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ6
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ5
 - Fixed duplicate include issue.

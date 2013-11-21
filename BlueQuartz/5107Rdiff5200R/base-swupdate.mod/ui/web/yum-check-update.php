@@ -8,7 +8,7 @@ include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }

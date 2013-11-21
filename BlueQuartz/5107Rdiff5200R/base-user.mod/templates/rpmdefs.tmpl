@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -51,10 +51,6 @@ information for [VENDOR]-[SERVICE].
 /etc/skel/user/es/web/
 /etc/skel/user/fr/web/
 /etc/skel/user/de/web/
-/usr/sausalito/sbin/user_gid_fix.pl
-/usr/sausalito/sbin/fix_user_UID_and_GID.pl
-/usr/sausalito/sbin/remove_passwd_lock.sh
-/etc/cron.d/passwd_lock.cron
 [AUTOFILL]
 <end glue>
 
@@ -79,12 +75,6 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
-    /etc/init.d/crond restart
-fi
-
-# If user_gid_fix.pl has never run, then run it now:
-if [ ! -f /etc/.passwd.pre-uid-fix ]; then
-	/usr/sausalito/sbin/user_gid_fix.pl
 fi
 
 <end glue>
@@ -118,187 +108,47 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu Sep 30 2010 Hideki Oride <oride@gachapom.jp> 1.2.0-0BQ13
+- The DNS management authority is subdivided.
 
-* Fri Aug 03 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX06
-- Modified glue/handlers/root_access.pl to allow us to delete AlterAdmins again on 5107R and 5108R.
-  The function userdel() as provided by Base::User.pm will not allow us to remove an AlterAdmin,
-  because it falsely claims that the user is still logged in - even if that is not true. So in
-  this handler we call /usr/sbin/userdel directly - with the --force parameter.
+* Wed Sep 09 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ12
+- resolved the issue dns administrator doesn't work to modify the user by Oride-san.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX05
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ11
+- resolved the issue dns administrator doesn't work.
+- remove Add button, if user count is already reached the user limitation by Oride-san.
 
-* Sun Jul 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX04
-- Modified constructor/50_addAdmin.pl to also create group site-adm if it does not exist yet.
+* Thu Jul 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ10
+- add user prefix feature by Oride-san.
 
-* Sun Jul 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX03
-- Added locales for start/stop date of vacation messages.
+* Sun May 30 2010 Hisao SHIBUYA <shibuya@bleuquartz.org> 1.2.0-0BQ9
+- change home directory for root access admin to admin's directory instead of /root.
 
-* Thu Jul 21 2011 Rickard Osser <rickard.osser@bluapp.com> 1.2.1-0BX02
-- Added support for setting start/stop date for vacation messages. 
+* Fri Feb 05 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ8
+- change user password that is in suspend site.
 
-* Mon Jun 13 2011 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX01
-- Added Vsite prefix support to ui/web/userAdd.php and ui/web/userAddHandler.php
-- Only needed to add it there, as usernames of existing users cannot be changed.
-- Also removed 'admin' from reserved usernames in ui/web/user.inc if we're using a prefix.
+* Mon Dec 14 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ7
+- resolved the issue that the error message isn't displayed.
 
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX29
-- Copied 'en' locales to 'en_US'
+* Fri Sep 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ6
+- modify userModHandler.php to resolve error for mail forward settings.
 
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX28
-- Updated ui/web/userAddHandler.php - ereg() replacement
+* Fri Sep 11 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ5
+- store comment as UTF-8 instead of EUC-JP.
 
-* Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ27
-- Added /usr/sausalito/sbin/remove_passwd_lock.sh to remove stale /etc/passwd.lock files.
-- Added /etc/cron.d/passwd_lock.cron to automatically run above script every 15 minutes.
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ4
+- merge from 5100R between r970 with r1218.
+- merge from 5100R r1211.
+- convert po file to utf-8.
 
-* Tue Jun 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ26
-- Added glue/sbin/fix_user_UID_and_GID.pl to allow manual fixing of UID and GID of user directories and logfile directories.
-- Modified glue/sbin/user_gid_fix.pl and added a root only check.
+* Tue Jan 01 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ3
+- store the mail on homedir instead of /var/spool/mail/username.
 
-* Tue Jun 23 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ25
-- Modified glue/handlers/suspend_user.pl to use 'usermod' to lock / unlock suspended accounts.
-- This is an important security update, because without locking suspended accounts they can still use SMTP-Auth to send emails - even when suspended!
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ2
+- Fixed duplicate include issue.
 
-* Sat Jun 06 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ24
-- Updated glue/handlers/updateCapabilities.pl with cmuImport work around.
-
-* Sat Jan 02 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ23
-- Updated ui/web/userList.php and removed the ability for siteAdmin's to delete themselves. 
-- That was a bit silly anyway.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ22
-- Rebuilt for BlueOnyx.
-
-* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ21
-- Extended glue/sbin/user_gid_fix.pl to fix UID/GID of logfile directories, too. 
-
-* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ20
-- Further fixes in ui/web/userMod.php for page not preserving attributes from hidden tags.
-- Code cleanup to remove commented out lines.
-
-* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ19
-- Fixed perl/User.pm yet AGAIN. Previous work around wasn't really working.
-- Massively simplified the entire work around for adding users with correct group.
-
-* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ18
-- Had to extend perl/User.pm work-around with provisions for adding server admins.
-
-* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ17
-- Updated glue/sbin/user_gid_fix.pl to chown user directory if needed.
-
-* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ16
-- Updated glue/sbin/user_gid_fix.pl to be more verbose about what it does.
-
-* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ15
-- Fixed a nasty bug:
-- During user creation or cmuImport all users would be added to group "users" instead of "siteXX".
-- This required a fix in perl/User.pm
-- Also added script glue/sbin/user_gid_fix.pl to check for already incorrectly created users and to fix them.
-- New dependency: perl-Unix-ConfigFile >= 0.06-SOL1 - which is used for this fix.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ14
-- Changed default skin to BlueOnxy.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ13
-- Changes in ui/web/personalAccountHandler.php
-- Changes in ui/web/userModHandler.php
-- Changes in ui/web/userAddHandler.php
-- Somehow the strcasecomp for username = password as suggested by Stephanie Sullivan never made it in here.
-
-* Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ12
-- Further fix to ui/web/userMod.php:
-- Had to check for all iterations of _PagedBlock_selectedId_modifyUser or checkbox for forwardEmailField would always show as unticked upon first visit.
-
-* Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ11
-- Fixed nasty PHP5 issue in ui/web/userMod.php with an even more nasty work around.
-- Discovered data loss of input from composite form fields on non-active tabs of pages using pagedBlock.
-
-* Thu Nov 14 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ10
-- Fixed PHP5 related display issue in ui/web/userDefaults.php
-
-* Wed Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ9
-- Removed ui/menu/convert2passwd.xml
-- Removed ui/web/convert2passwdHandler.php
-- Removed ui/web/convert2passwd.php
-
-* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BQ8
-- Merged 5100R code changes to 5106R. This includes:
-- Updated locale in regards to new password minumum length of six characters.
-- Fixed it so that the skel .bash* files are copied to user's home directories 
-- Fixed the issue that fail to add user and vsite with get_free_uid/gid.
-- Fixed the issue that admin and root-admin password isn't able to be sync.
-- Hisao's somewhat drastical removal of all PAM and PAM to Shadow conversion stuff.
-- I AM SCEPTICAL THAT THIS ALL WORKS. NEEDS TESTING!
-
-* Sun Jun 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ33
-- Fixed an array_merge issue in personalEmailHandler.php
-
-* Thu Jun 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ32
-- Fix in personalAccount.php array_merge complaining about 'argument is not an array'
-
-* Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ31
-- Fixed convert2passwd.sh to no longer copy system-auth to /etc/pam.d/, because it's OS dependent. 
-- Created system-auth-centos4 system-auth-centos5. convert2passwd.sh now copies system-auth-centos5 to /etc/pam.d/
-- Added requirement for authconfig-5.3.12-2.el5. convert2passwd.sh now uses it as part of the conversion.
-
-- Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ30
-- personalAccount.php fixed
-
-* Wed Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ29
-- personalAccountHandler.php fixed
-
-* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ28
-- Modified convert2passwd.php fixed for PHP5
-
-* Wed May 14 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ27
-- Added provisions to disallow FTP access for not-siteAdmin users.
-
-* Tue May 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ26
-- Moved cracklib functionality to sausalito-i18n package
-- PLEASE NOTE: Added requirement for sausalito-i18n >= 0.70.2-86BQ16
-
-* Sun May 11 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ25
-- Added functionality from Base-Secure-Passwords.
-- Passwords are now checked against cracklib to detect if they're secure enough.
-- Dissalows that the password equals the username, too.
-- PLEASE NOTE: Requires sausalito-cce-server >= 0.80.3-1BQ34 and base-admserv-capstone >= 1.0.1-0BQ11 
-
-* Wed Feb 13 2008 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ24
-- Made so new systems can't run conversation.  New "trigger" called: runconvert
-
-* Wed Feb 13 2008 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ23
-- Added in original: system-auth for pam
-- Fixed nsswitch.conf in scripts
-- Fixed saslauthd in scripts
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ22
-- German locales added.
-
-* Wed Jan 23 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ21
-- Added constructor 55_fix_solarspeed_nopam.pl
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-111BQ20
-- Danish locales added. Thanks to Jes Klittum!
-
-* Fri Dec 14 2007 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ19
-- modified: convert2passwd.php
-- If they already ran the conversion, let them know
-- modified: convert2password.po
-- added message alerting to conversion
-
-* Fri Dec 14 2007 Brian N. Smith <brian@nuonce.net> 1.1.0-111BQ18
-- New users will be stored in flat files.
-- Switching off the old pwdb files
-- The following files have been modified:
-- locale/en/convert2passwd.po
-- handlers/convert2passwd.pl
-- handlers/convert2passwd.sh
-- schemas/convert2passwd.schema
-- conf/convert2passwd.conf
-- ui/menu/convert2passwd.xml
-- ui/web/convert2passwdHandler.php
-- ui/web/convert2passwd.php
+* Thu May 03 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ1
+- use /etc/passwd and group instead of pwdb.
 
 * Mon Aug 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-111BQ17
 - Added Japanese messages.

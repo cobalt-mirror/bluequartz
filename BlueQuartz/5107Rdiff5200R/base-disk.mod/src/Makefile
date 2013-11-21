@@ -15,6 +15,6 @@ install:
 rpm: base-disk-am-rpm
 
 base-disk-am-rpm:
-	tar -zcvf /tmp/base-disk-am.tar.gz base-disk-am &> /dev/null
+	tar --exclude='.svn' -zcvf /tmp/base-disk-am.tar.gz base-disk-am &> /dev/null
 	$(RPMBUILD) -ta /tmp/base-disk-am.tar.gz &> /tmp/rpm.log
 	/bin/rm -f /tmp/base-disk-am.tar.gz

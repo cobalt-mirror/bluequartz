@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: vsite_records.php 1050 2008-01-23 11:45:43Z mstauber $
+ * $Id: vsite_records.php 1534 2010-09-28 08:36:52Z oride $
  */
 include_once("ServerScriptHelper.php");
 
@@ -11,8 +11,8 @@ $soamod = '/base/dns/vsite_dns_soa.php';
 
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
-// Only dnsAdmin should be here 
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+// Only siteDNS should be here 
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
 	header("location: /error/forbidden.html");
 	return; 
 }
@@ -28,6 +28,11 @@ if ( ! $serverScriptHelper->getAllowed('adminUser') ) {
 	$user = $cceClient->getObject("User", array("name" => $loginName));
 	$group = $user["site"]; 
 }
+
+$errors = $serverScriptHelper->getErrors();
+$block = $factory->getPagedBlock("vsiteSettings");
+$block->processErrors($serverScriptHelper->getErrors());
+
 
 if ($HTTP_GET_VARS['commit']) {
 	// Apply changes from records.php
@@ -58,7 +63,7 @@ if ($_REMOVE) {
 } 
 
 if ($_DELMANY) {
-	$death_row = preg_split('/x/', $_DELMANY);
+	$death_row = split('x', $_DELMANY);
 
 	rsort($death_row);
 	for ($i = 0; $i < $death_row[0]; $i++) {
@@ -151,7 +156,7 @@ if (($domauth == '') && ($netauth == '')) {
 	} 
 } 
 if ($title_authority != '') {
-	$title_members = preg_split('/\//', $title_authority);
+	$title_members = split('/', $title_authority);
 	$title_authority = $records_title_separator . $title_members[0];
 	if ($title_members[1] != '') {
 		$title_authority .= '/' . $dec_to_nm[$title_members[1]];
@@ -292,7 +297,7 @@ if(count($rec_oids)) {
 					$rec['type'] = 'SUBNET';
 					$direction = $i18n->get('subnet_dir');
 
-					$smallnet = preg_split('/\//', $rec['network_delegate']);
+					$smallnet = split('/', $rec['network_delegate']);
 					$source = $smallnet[0] . '/' .
 						$dec_to_nm[$smallnet[1]];
 					$resolution = $rec['delegate_dns_servers'];
@@ -306,9 +311,9 @@ if(count($rec_oids)) {
 					$resolution = $rec['delegate_dns_servers'];
 					$label = $rec['hostname'].'.'.$rec['domainname'];
 				}
-				$resolution = preg_replace('/^&/', '', $resolution);
-				$resolution = preg_replace('/&$/', '', $resolution);
-				$resolution = preg_replace('/&/', ' ', $resolution);
+				$resolution = ereg_replace('^&', '', $resolution);
+				$resolution = ereg_replace('&$', '', $resolution);
+				$resolution = ereg_replace('&', ' ', $resolution);
 			} else {
 				next;
 				echo "unkown type: ".$rec['type']."\n";
@@ -319,7 +324,7 @@ if(count($rec_oids)) {
 				$factory->getTextField("", $direction, "r"),
 				$factory->getTextField("", $resolution, "r"),
 				$factory->getCompositeFormField(array(
-					$factory->getModifyButton( "$addmod?_PagedBlock_selectedId_blockid0=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link . "&group=$group"),
+					$factory->getModifyButton( "$addmod?_PagedBlock_selectedId_blockid0=_".$rec['type']."&_TARGET=$oid&_LOAD=1&TYPE=".$rec['type'].$auth_link ),
 					$factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$label', '$domauth', '$netauth')" )
 	
 				))
@@ -370,9 +375,9 @@ if ( $vsite_dns["domains"] ) {
 	// print "Sys oid: $sys_oid, sys_dirty: ".$sys_dns['dirty'];
 	$commit_time = time();
 	$commitButton = $factory->getButton("/base/dns/vsite_records.php?group=$group&commit=$commit_time", "apply_changes");
-//	if($sys_dns['dirty'] == 0) {
-//	        $commitButton->setDisabled(true);
-//	}
+	if($sys_dns['dirty'] == 0) {
+	        $commitButton->setDisabled(true);
+	}
 ?>
 
 <SCRIPT LANGUAGE="javascript">

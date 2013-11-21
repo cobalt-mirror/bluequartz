@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=vsite
 
-VERSION=3.0
-RELEASE=132BX105
+VERSION=1.1
+RELEASE=132BQ44
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,8 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES= base-email-capstone >= 1.3.0-0BQ16 sausalito-i18n >= 0.70.2-86BQ16 sausalito-cce-server >= 0.80.2-1BQ34 base-admserv-capstone >= 1.0.1-0BQ11 perl-handler-utils >= 1.3.0-11BQ12 mod_suphp mod_authnz_external
-OBSOLETES= nuonce-hostsfix
+REQUIRES= base-email-capstone >= 1.3.0-0BQ16
 
 #########
 # some useful defines

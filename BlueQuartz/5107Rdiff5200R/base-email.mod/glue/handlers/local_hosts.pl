@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/email/
-# $Id: local_hosts.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: local_hosts.pl 1284 2009-10-05 16:36:50Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use strict;
@@ -7,7 +7,7 @@ use CCE;
 use Email;
 use Sauce::Util;
 
-my $Sendmail_cw = Email::SendmailCW;
+my $Postfix_localhost = Email::PostfixLocalHost;
 
 my $cce = new CCE( Domain => 'base-email' );
 
@@ -24,13 +24,13 @@ if (not $ok) {
 
 if ($new_sys->{hostname} || $new_sys->{domainname} || 
 	($cce->event_property() eq 'acceptFor')) {
-	if(!Sauce::Util::replaceblock($Sendmail_cw,
+	if(!Sauce::Util::replaceblock($Postfix_localhost,
 		'# Cobalt System Section Begin',
-		&make_sendmail_cw($email, $sys_obj),
+		&make_postfix_localhost($email, $sys_obj),
 		'# Cobalt System Section End')
 		) {
 		$cce->warn('[[base-email.cantEditFile]]', 
-				{ 'file' => Email::SendmailCW });
+				{ 'file' => Email::PostfixLocalHost });
 		$cce->bye('FAIL');
 		exit(1);
 	}
@@ -39,7 +39,7 @@ if ($new_sys->{hostname} || $new_sys->{domainname} ||
 $cce->bye('SUCCESS');
 exit(0);
 
-sub make_sendmail_cw
+sub make_postfix_localhost
 {
 	my $obj = shift;
 	my $sys = shift;

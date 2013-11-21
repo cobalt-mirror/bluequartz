@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+#!/usr/bin/perl -w
 # $Id: webscripting.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
@@ -40,6 +40,9 @@ sub edit_vhost
 
     my $script_conf = '';
 
+    my $begin = 'RewriteOptions inherit';
+    my $end = 'Include /etc/httpd/conf/vhosts/' . $siteNumber . '.include';
+
 	if ($userwebs->{enabled}) {
 		$script_conf .= "AliasMatch ^/~([^/]+)(/(.*))?           $documentRoot/users/\$1/web/\$3\n";
 	}
@@ -47,35 +50,32 @@ sub edit_vhost
 		$script_conf .= "#AliasMatch ^/~([^/]+)(/(.*))?          $documentRoot/users/\$1/web/\$3\n";
 	}
 
-    # Do the actual editing:
     my $last;
-    while(<$in>) {
-        if (/^Include/i) { 
-            # If we get to this point, we're past the area of interest.
-            # We store it in the string $last and end the charade.
-            $last = $_; 
-            last; 
-        }
+    while(<$in>)
+    {
+        if(/^<\/VirtualHost>/i) { $last = $_; last; }
 
-        if ((/^AliasMatch/) || (/^#AliasMatch/)) {
-            # If we find this line, we ignore it and later add our own.
-            $found = "1";
-            next;
+        if(/^$begin$/)
+        {
+            while(<$in>)
+            {
+                if(/^$end$/) { last; }
+            }
         }
-        else {
-            # Anything else stays and gets printed out straight away.
+        else
+        {
             print $out $_;
         }
     }
 
-    # Print out or new Alias line:
+    print $out $begin, "\n";
     print $out $script_conf;
-
-    # Print out all the rest of the config unaltered:
+    print $out $end, "\n";
     print $out $last;
 
-    # preserve the remainder of the config file and write it out:
-    while(<$in>) {
+    # preserve the remainder of the config file
+    while(<$in>)
+    {
         print $out $_;
     }
 

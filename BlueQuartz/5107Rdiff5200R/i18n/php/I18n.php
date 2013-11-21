@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: I18n.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: I18n.php 1248 2009-09-15 08:16:01Z shibuya $
  */
 global $isI18nDefined;
 if($isI18nDefined)
@@ -41,14 +41,7 @@ class I18n {
 		if($GLOBALS["_I18n_isStub"]) return;
 
 		if($langs == "" && getenv("LANG") == "") {
-			$langs = "en_US";
-		}
-
-		// If the detected language is not 'de_DE', 'da_DK' or 'ja_JP', we fall back to 'en_US'.
-		// This was added particularly for 5107R/5108R as it would default to German otherwise:
-		$my_lang = explode(',', $langs);
-		if ((($my_lang[0] != "de-DE") && ($my_lang[0] != "de_DE")) && (($my_lang[0] != "da-DK") && ($my_lang[0] != "da_DK")) && (($my_lang[0] != "ja") && ($my_lang[0] != "ja-JP") && ($my_lang[0] != "ja_JP"))) {
-			$langs = "en_US";
+			$langs = "en";
 		}
 
 		$this->handle = i18n_new($domain, $langs);
@@ -244,7 +237,7 @@ class I18n {
 			$encConv = new EncodingConv($string, 'japanese',
 						    $fromEncoding);
 			if ($toEncoding == '') {
-				return $encConv->toEUC();
+				return $encConv->toUTF8();
 			} else {
 				return $encConv->doJapanese($string,
 							    $toEncoding,

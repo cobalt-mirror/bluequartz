@@ -1,4 +1,4 @@
-# $Id: Global.pm 1065 2008-01-27 09:19:54Z shibuya $
+# $Id: Global.pm 1516 2010-08-08 14:31:15Z shibuya $
 # Cobalt Networks, Inc http::/www.cobalt.com
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 
@@ -30,16 +30,8 @@ $validExport = {
 	RaQXTR	=>	1,
 	RaQ550	=>	1,
 	'5100R'	=>	1,
-	'5106R' =>	1,
-	'5107R' =>	1,
-	'5108R' =>	1,
-	'5160R' =>	1,
-	'5161R' =>	1,
-	'5207R' =>	1,
-	'5208R' =>	1,
+	'5106R'	=>	1,
 	'5200R' =>	1,
-	TLAS1HE	=>	1,
-	TLAS2	=>	1
 };
 $validImport = { 
 	Qube3	=>	1, 
@@ -48,48 +40,20 @@ $validImport = {
 	RaQXTR	=>	1,
 	RaQ550	=>	1,
 	'5100R'	=>	1,
-	'5106R' =>	1,
-	'5107R' =>	1,
-	'5108R' =>	1,
-	'5160R' =>	1,
-	'5161R' =>	1,
-	'5207R' =>	1,
-	'5208R' =>	1,
+	'5106R'	=>	1,
 	'5200R' =>	1,
-	TLAS1HE	=>	1,
-	TLAS2	=>	1
 }; 
 
 %adjustPath = (
-               Qube2 => 'Qube3',
-               RaQ2 => 'RaQ3',
-               RaQ3 => 'RaQ4',
-               RaQ4 => 'RaQXTR',
-               RaQXTR => 'RaQ550',
-               RaQ550 => 'TLAS1HE',
-               TLAS1HE => '5100R',
-               '5100R' => 'TLAS2',
-               'TLAS2' => '5106R',
-               '5106R' => '5107R',
-               '5107R' => '5108R',
-               '5108R' => '5106R',
-               '5108R' => '5107R',
-               '5108R' => '5160R',
-               '5160R' => '5161R',
-               '5108R' => '5106R',
-               '5106R' => '5107R',
-               '5107R' => '5108R',
-               '5108R' => '5207R',
-               '5207R' => '5208R',
-               '5208R' => '5106R'
-               );
-        
-    # Note: The old adjustPath was just from the oldest model to the newest.
-    # This only allowed migrations from an old platform to a newer. But not
-    # going from 5108R 'down' to 5106R - for example.
-    # So at the end of the old adjustPath (which ended with 5161R) I added
-    # 5108R again and make it adjustable to the bottom end of the supported
-    # platform list: 5106R.
+	Qube2 => 'Qube3',
+	RaQ2 => 'RaQ3',
+	RaQ3 => 'RaQ4',
+	RaQ4 => 'RaQXTR',
+	RaQXTR => 'RaQ550',
+	RaQ550 => '5100R',
+	'5100R' => '5106R',
+	'5106R' => '5200R',
+);
 
 1;
 
@@ -149,18 +113,9 @@ sub getBuild
 		"5103R",			"5100R",
 		"5104R",			"5100R",
 		"5105R",			"5100R",
-		# BlueOnyx builds
 		"5106R",			"5106R",
-		"5107R",			"5107R",
-		"5108R",			"5108R",
-		"5160R",			"5160R",
-		"5161R",			"5161R",
-		"5207R",			"5207R",
-		"5208R",			"5208R",
 		"5200R",			"5200R",
-		# TLAS
-		"TLAS1HE",			"TLAS1HE",
-		"TLAS2",			"TLAS2"
+		"5201R",			"5200R",
 	);
  
 	open(FH, "< $bldFile") 

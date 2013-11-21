@@ -4,7 +4,7 @@ Version: 1.1.1
 Vendor: %{vendor}
 Release: 21BQ12%{?dist}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: am-bins.tar.gz
 BuildRoot: /tmp/am-bins
 Requires: bc
@@ -31,14 +31,14 @@ Monitor subsystem.  These include programs to check the state of the CPU
 and memory usage.  Also, this includes the AM::Util perl module.
 
 %changelog
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.1-21BQ12
-- Rebuilt for BlueOnyx.
+* Sun Dec 05 2010 Hisao SHIBUYA <shibuya@bluequartz.org. 1.1.1-21BQ12
+- resolved the issue that free memory calculation isn't added Cached.
 
-* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.1-21BQ11
-- Added rquirement for bc
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.1-21BQ11
+- remove .svn directory from rpm package.
 
-* Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.1-21BQ10
-- add sign to the package.
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.1-21BQ10
+- add require to bc for am_cpu.pl.
 
 * Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.1-21BQ9
 - add dist macro for release.

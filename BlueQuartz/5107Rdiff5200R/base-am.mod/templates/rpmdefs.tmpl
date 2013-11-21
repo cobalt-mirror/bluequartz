@@ -11,11 +11,10 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-Requires: am-bins
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -104,40 +103,12 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-98BQ18
+- new Capabilities for admin.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BX26
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BX25
-- Various PHP related fixes
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BX24
-- Copied 'en' locales to 'en_US'
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BX23
-- Version number updated for consistency
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BQ22
-- Rebuilt for BlueOnyx.
-
-* Thu Nov 20 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BQ21
-- Removed PHP5 work around block from ui/web/memory_details.php again. Wasn't needed, caused issues.
-
-* Tue Jun 10 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BQ20
-- More display bugfixes for PHP:
-- ui/web/am_detail.inc
-- ui/web/cpu_details.php
-- ui/web/memory_details.php
-
-* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BQ19
-- amSettings.php fixed for PHP5
-- Added requirement for am-bins
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BQ18
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-98BQ17
-- Danish locales added. Thanks to Jes Klittum!
+* Sun Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-98BQ17
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-98BQ16
 - Fixed duplicate include issue.

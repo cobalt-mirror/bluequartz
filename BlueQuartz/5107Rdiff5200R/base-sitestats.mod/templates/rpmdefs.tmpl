@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnax
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -55,7 +55,7 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 <end glue>
 
 <begin ui>
-%defattr(-,apache,root)
+%defattr(-,admserv,root)
 %dir /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 [AUTOFILL]
 
@@ -75,9 +75,6 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
-fi
 
 <end glue>
 <begin ui>
@@ -97,7 +94,7 @@ if [ x"[DEFLOCALE]" != x ]; then
 		fi)
 	done
 fi
-/bin/chown apache.root /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
+/bin/chown admserv.root /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 
 <end ui>
 <begin locale>
@@ -126,59 +123,24 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Mon Sep 06 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-124BQ19
+- change default value for sitestat to be set 3 months by Oride-san.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0-124BX27
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Mon Jun 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-124BQ18
+- add logrotate configuration.
 
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.0-124BX26
-- Various PHP-5.3 related fixes
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-124BQ17
+- new Capabilities for admin.
 
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.0-124BX25
-- Copied 'en' locales to 'en_US'
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ16
+- add require to analog.
 
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0-124BX24
-- Version number bump
+* Fri Sep 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ15
+- use admserv user instead of apache.
 
-* Wed Mar 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ23
-- Fixed snafu in constructor/webalizer_config.pl
-
-* Wed Mar 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ22
-- Added constructor/webalizer_config.pl to reconfigure /etc/webalizer.conf
-- Purpose is to set the switch "ReallyQuiet" to "yes".
-
-* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ21
-- Updated ui/web/request.php to fix ticket http://devel.blueonyx.it/trac/ticket/9
-- FQDN was missing from web statistics of "Top files requested".
-
-* Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ20
-- Updated sitestats-scripts.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ19
-- Rebuilt for BlueOnyx.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ18
-- Changed default skin to BlueOnyx
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ17
-- Fixed array merge error in ui/web/reportHandler.php
-
-* Tue Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ16
-- reportForm.php fixed for 5106
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ15
-- German locales added.
-- Danish locales updated. Thanks to Jes Klittum!
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-124BQ14
-- Danish locales added. Thanks to Jes Klittum!
-
-* Sun Dec 16 2007 Brian N. Smith <brian@nuonce.net> 1.0-124BQ13 
-- problem when extended stats are turned on in /etc/webalizer.conf : 
-- The extended file links are not correctly translated for display in the gui 
-- webalizer. 
-- translate any local link (starting with ./) to an appropriate form for embedding in the gui like  
-- the rest of webalizer output. 
-- Fix provided by Steph  
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ14
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-124BQ13
 - Fixed duplicate include issue.

@@ -1,8 +1,9 @@
-# $Id: Makefile 259 2004-01-03 06:28:40Z shibuya $
+# $Id: Makefile 1382 2010-02-21 12:11:21Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Makefile for common src
 
 include ../../dynamic.mk
+CFLAGS += -D_GNU_SOURCE
 
 SRCS = \
 	argparse.c \
@@ -12,7 +13,6 @@ SRCS = \
 	stresc.c \
 	xml_parse.c \
 	cce_debug_mask.c \
-	glib-ghash.c \
 	intspan.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 DIRLIB = ../common.a

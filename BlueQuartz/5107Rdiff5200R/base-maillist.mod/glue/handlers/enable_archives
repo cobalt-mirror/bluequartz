@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: enable_archives 441 2004-12-24 15:41:18Z shibuya $
+# $Id: enable_archives 1350 2009-12-23 13:29:37Z shibuya $
 #
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 #
@@ -63,14 +63,14 @@ if ($obj_arch->{enabled}) {
 	$action = "\"|/home/mhonarc/bin/mh-wrapper ${listname} ${expireDays}\"";
 }
 
-$ok = Sauce::Util::editfile('/etc/mail/aliases.majordomo', \&setArchiveEnabled,
+$ok = Sauce::Util::editfile('/etc/aliases.majordomo', \&setArchiveEnabled,
 	$listname, $action);
 if (!$ok) {
 	$cce->bye("DEFER");
 	exit();
 }
 
-Sauce::Util::modifyfile('/etc/mail/aliases.db');
+Sauce::Util::modifyfile('/etc/aliases.db');
 system('/usr/bin/newaliases > /dev/null 2>&1');
 
 my $umask = umask(022);

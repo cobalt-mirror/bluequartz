@@ -11,13 +11,15 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only manageSite should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
 
 $cce = $helper->getCceClient();
+
+global $loginName;
 
 $vsiteOID = $cce->create("Vsite", 
 			 array(
@@ -25,15 +27,16 @@ $vsiteOID = $cce->create("Vsite",
 				'domain' => $domain,
 				'fqdn' => ($hostname . '.' . $domain),
 				'ipaddr' => $ipAddr,
+				'createdUser' => $loginName,
 				'webAliases' => $webAliases,
-				'webAliasRedirects' => $webAliasRedirects,
 				'emailDisabled' => $emailDisabled,
 				'mailAliases' => $mailAliases,
 				"mailCatchAll" => $mailCatchAll,
+                                "userPrefixEnabled" => ($_MultiChoice_checkbox_userPrefix ? 1 : 0),
+                                "userPrefixField" => $userPrefixField,
 				'volume' => $volume,
 				'maxusers' => $maxusers,
 				'dns_auto' => $dns_auto,
-				'prefix' => $prefix,
 				'site_preview' => $site_preview
 			 )
 			);

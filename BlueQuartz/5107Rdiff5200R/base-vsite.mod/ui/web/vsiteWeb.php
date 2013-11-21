@@ -9,10 +9,10 @@ include_once('ServerScriptHelper.php');
 include_once('AutoFeatures.php');
 include_once('Capabilities.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only manageSite and siteAdmin should be here
+if (!$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -23,9 +23,9 @@ $factory =& $helper->getHtmlComponentFactory('base-vsite',
                 '/base/vsite/vsiteWeb.php');
 $cce =& $helper->getCceClient();
 
-// Only adminUser can modify things on this page.  
+// Only manageSite can modify things on this page.  
 // Site admins can view it for informational purposes.
-if ($helper->getAllowed('adminUser')){
+if ($helper->getAllowed('manageSite')){
     $is_site_admin = 0;
     $access = 'rw';
 } else {
@@ -41,10 +41,8 @@ if ( $save ) {
 	list($cce_info['CCE_SERVICES_OID']) = $cce->find('VsiteServices');
 	$errors = $autoFeaturesSave->handle('modifyWeb.Vsite', $cce_info);
 
-	// Set webAliases & webAliasRedirects in 'Vsite':
-	$cce->set($site['OID'], '', array("webAliases" => $webAliases, "webAliasRedirects" => $webAliasRedirects));
+	$cce->set($site['OID'], '', array("webAliases" => $webAliases));
 	$errors = array_merge($errors, $cce->errors());
-
 }
 
 $site = $cce->getObject('Vsite', array('name' => $group));
@@ -74,26 +72,13 @@ $settings->addFormField(
        $factory->getLabel("webAliases"), $pageId
        );
 
-# webAliasRedirects:
-if ( $site['webAliasRedirects'] ) {
-	$settings->addFormField(
-		$factory->getBoolean('webAliasRedirects', $site['webAliasRedirects'], $access),
-		$factory->getLabel('webAliasRedirects'), $pageId
-		);
-} else {
-	$settings->addFormField(
-		$factory->getBoolean('webAliasRedirects', $site['webAliasRedirects'], $access),
-		$factory->getLabel('webAliasRedirects'), $pageId
-		);
-}
-
 $settings->addFormField($factory->getTextField('group', $group, ''));
 $settings->addFormField($factory->getTextField('save', '1', ''));
 
 $page =& $factory->getPage();
 $form =& $page->getForm();
 // add the buttons
-if ($helper->getAllowed('adminUser'))
+if ($helper->getAllowed('manageSite'))
     $settings->addButton($factory->getSaveButton($page->getSubmitAction()));
 
 print $page->toHeaderHtml();

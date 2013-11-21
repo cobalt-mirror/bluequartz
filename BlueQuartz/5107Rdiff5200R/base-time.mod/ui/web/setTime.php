@@ -1,14 +1,13 @@
 <?php
 // Author: Kenneth C.K. Leung
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: setTime.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: setTime.php 1433 2010-03-10 15:32:44Z shibuya $
 set_time_limit(0);
 include_once("ServerScriptHelper.php");
-//include_once("tzoffset.php"); <- No longer needed.
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverTime should be here
+if (!$serverScriptHelper->getAllowed('serverTime')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -22,9 +21,7 @@ $page = $factory->getPage();
 $block = $factory->getPagedBlock("timeSetting");
 $block->processErrors($serverScriptHelper->getErrors());
 
-// Get current time from time():
 $t = time();
-
 $systemDisplayedDate = $factory->getTimeStamp("systemDate", $t, "datetime");
 $block->addFormField($factory->getTimeStamp("oldTime", $t, "time", ""));
 $block->addFormField($systemDisplayedDate, $factory->getLabel("systemDisplayedDate"));
@@ -35,19 +32,9 @@ $oldTimeZone = $factory->getTimeZone("oldTimeZone", $defaults["timeZone"], "");
 $block->addFormField($systemDisplayedTimeZone, $factory->getLabel("systemDisplayedTimeZone"));
 $block->addFormField($oldTimeZone);
 
-// NTP server may only be set on stand alone servers, not in a VPS:
-if (! is_file("/proc/user_beancounters")) {
-    $ntpAddress = $factory->getNetAddress("ntpAddress",$defaults["ntpAddress"]);
-    $ntpAddress->setOptional(true);
-    $block->addFormField($ntpAddress, $factory->getLabel("ntpAddress"));
-}
-
-// PHP5 related fix:
-$block->addFormField(
-    $factory->getTextField("debug_1", "", 'r'),
-    $factory->getLabel("debug_1"),
-    Hidden
-);
+$ntpAddress = $factory->getNetAddress("ntpAddress",$defaults["ntpAddress"]);
+$ntpAddress->setOptional(true);
+$block->addFormField($ntpAddress, $factory->getLabel("ntpAddress"));
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $serverScriptHelper->destructor();

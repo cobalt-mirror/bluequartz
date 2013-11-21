@@ -6,7 +6,7 @@ Version: XX_VER_XX
 Release: XX_REL_XX%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: sausalito-i18n.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-i18n-root
@@ -27,7 +27,7 @@ sausalito-i18n is a wrapper library for i18n functions.
 
 %package devel
 Summary: The Sausalito i18n development libraries.
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 
 %description devel
 sausalito-i18n-devel includes the include files and static libraries for the 
@@ -57,10 +57,10 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
 /usr/sausalito/perl/I18nMail.pm
 /usr/sausalito/perl/JConv.pl
 /usr/sausalito/bin/i18nmail.pl
-/usr/share/dict/cracklib-words 
-/usr/share/dict/pw_dict.hwm 
-/usr/share/dict/pw_dict.pwd 
-/usr/share/dict/pw_dict.pwi 
+/usr/share/dict/cracklib-words
+/usr/share/dict/pw_dict.hwm
+/usr/share/dict/pw_dict.pwd
+/usr/share/dict/pw_dict.pwi
 
 %files devel
 %defattr(-,root,root)
@@ -79,65 +79,35 @@ fi
 
 # make sure these links exist or setlocale doesn't work right
 # temporary fix for now.  try both just to make sure this happens
+if [ ! -d "/usr/lib/locale/en_US" ]; then
+	/usr/bin/localedef -i en_US /usr/lib/locale/en_US
+fi
 if [ -d "/usr/lib/locale/en_US" ]; then
 	ln -sf /usr/lib/locale/en_US /usr/lib/locale/en
 fi
-if [ -d "/usr/share/locale/en_US" ]; then
-	ln -sf /usr/share/locale/en_US /usr/share/locale/en
+
+if [ ! -d "/usr/lib/locale/ja_JP.utf8" ]; then
+	/usr/bin/localedef -i ja_JP -f UTF-8 /usr/lib/locale/ja_JP.utf8
 fi
-if [ -d "/usr/lib/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/lib/locale/ja_JP.eucjp /usr/lib/locale/ja
-fi
-if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/share/locale/ja_JP.eucjp /usr/share/locale/ja
+if [ -d "/usr/lib/locale/ja_JP.utf8" ]; then
+	ln -sf /usr/lib/locale/ja_JP.utf8 /usr/lib/locale/ja
 fi
 
 %changelog
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
-- Small locale related fixes to perl/I18n.pm
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ20
+- make locale for en_US and ja_JP.utf8 in /usr/lib/locale.
 
-* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX25
-- Cracklib failed on 64-bit due to this error: http://pecl.php.net/bugs/bug.php?id=9710
-- Fetched updated cracklib/crack/libcrack/src/cracklib.h from PECL SVN.
-- Previous version of it added to our SVN as cracklib/crack/libcrack/src/cracklib.h.old
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ19
+- import cracklib.
 
-* Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX24
-- Ok, last time around we broke Japanese. I wonder what we break this time.
-- Modified perl/I18n.pm and php/I18n.php again. On 5107R we use 'ja' and 
-  ignore and hide 'ja_JP' from the list of available languages.
+* Tue Sep 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ18
+- use UTF-8 for default encoding for Japanese instead of EUC-JP.
 
-* Fri Sep 09 2011 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX23
-- On 5107R the GUI defaulted to something non English (mostly German) if the
-  browser locale wasn't one of our supported locales. I tried to fix this
-  through work arounds both in perl/I18n.pm and php/I18n.php
-- Modified perl/I18n.pm to make sure 'en_US' comes first in the list of
-  supported locales.
-- Modified php/I18n.php to make sure that if no supported locale is detected,
-  then 'en_US' will be used instead.
+* Thu Sep 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ17
+- modify %post script to use UTF-8 for Japanese.
 
-* Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
-- Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
-- Change of minor version number to BX
-
-* Mon Jun 22 2009 Rickard osser <rickard.osser@bluapp.com> 0.70.2-86BQ19
-- Fixed bug which added characters to mime-encoded headers in I18nMail.pm.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BQ18
-- Rebuilt for BlueOnyx.
-
-* Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BQ17
-- Merged 5200R and 5100R code for 5106R
-
-* Tue May 13 2008 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BQ16
-- Added source directory /crack for compilation of crack.so support (cracklib PHP extension)
-
-* Fri Feb 08 2008 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BQ15
-- Modified I18nMail.pm to add Danish and German locale support.
-
-* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ14
-- add sign to the package.
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ16
+- merge from 5100R between r970 with r1218 to support cracklib.
 
 * Sun May 06 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.70.2-86BQ15
 - modify I18n.php to fix array error.

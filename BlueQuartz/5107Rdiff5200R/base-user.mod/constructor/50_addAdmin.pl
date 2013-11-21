@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: 50_addAdmin.pl 1110 2008-05-13 00:50:49Z mstauber $
+# $Id: 50_addAdmin.pl 1227 2009-09-04 16:51:25Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # Author: Kevin K.M. Chiu
@@ -58,10 +58,6 @@ else
 {
     $i18n->setLocale(I18n::i18n_getSystemLocale($cce));
 
-    # If no 'admin' account exists, then it is likely that the group 'site-adm'
-    # doesn't exist either. So we create it here:
-    system("/usr/sbin/groupadd -f site-adm");
-
     # get system locale
     my ($sysoid) = $cce->find('System');
     my ($ok, $sysobj) = $cce->get($sysoid);
@@ -74,8 +70,8 @@ else
                 fullName => $i18n->get('administrator', {}, 'base-user'),
                 localePreference => $locale,
                 name => 'admin',
-                password => 'blueonyx',
-                stylePreference => 'BlueOnyx',
+                password => 'bluequartz',
+                stylePreference => 'trueBlue',
                 systemAdministrator => 1,
                 volume => $Base::HomeDir::HOME_ROOT
             });

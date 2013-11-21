@@ -67,7 +67,6 @@ use File::Path;
 use Sauce::Config;
 use Sauce::Util;
 use Base::HomeDir qw(homedir_get_user_dir);
-use Unix::GroupFile;
 
 use vars qw($DEBUG $UIDS_LOCKFILE $UIDS_CACHE $MIN_UID $MAX_UID);
 $DEBUG = 0;
@@ -671,44 +670,8 @@ sub _internal_useradd
 
         # since were hashing need to create directories first
         mkpath($user->{homedir});
-        
-	# This is a somewhat wacky work around:
-	# We need to create the user directly with the right GID.
-	# The original code would simply create him belonging to group "users", 
-	# which is a bloody mistake. Now the group already exists, as it was 
-	# created on site creation. So we cannot read it with getgrent().
-	# The best way to get the numerical group id now is unfortunately to
-	# read and parse /etc/group. For that we use the Perl module Unix::GroupFile
-	#
-	# The really wacky procedure now is how we determine which group the user
-	# belongs to. We extract that from $user->{homedir} :o( 
 
-	# Get alphanumerical group name $groupworkaround[4] by splitting $user->{homedir}:
-	@groupworkaround = split(/\//, $user->{homedir});
-	
-	# Use Unix::GroupFile to determine numerical GID:
-	$grp = new Unix::GroupFile "/etc/group";
-	$numerical_gid_of_user = $grp->gid($groupworkaround[4]);
-	undef $grp;
-
-	# Work around during user creation for incorrect group in 
-	# /etc/passwd for regular users and siteAdmins:
-	#
-	# If the user is a regular user or siteAdmin, then handle_user.pl set his 
-	# new group to "users". But we need it to be siteXX to which he really belongs.
-	# 
-	# So we set his real group to $groupworkaround[4] which we extrapolated from
-	# the path of his home directory.
-
-	if (($groupworkaround[1] == "root") && ($groupworkaround[2] ne ".sites")) {
-	    # Handle extra admins:
-    	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
-
-	}
-	else {
-	    # Handle normal users:
-	    my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $groupworkaround[4] -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
-    	}
+        my $ret = system("/usr/sbin/useradd $user->{name} -M $uid_opt -g $user->{group} -c \"$user->{comment}\" -d $user->{homedir} -p '$passwd' $shell $alterroot");
 
         if ($ret != 0)
         {

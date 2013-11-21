@@ -9,8 +9,8 @@ include_once("Error.php");
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only serverServerDesktop should be here
+if (!$helper->getAllowed('serverServerDesktop')) {
   header("location: /error/forbidden.html");
   return;
 }

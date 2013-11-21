@@ -37,13 +37,13 @@ if (!$new->{site} && !$obj->{site} && !$old->{site}) {
 	$DEBUG && warn "No site affiliation found";
 	# do nothing for non-virutal site products (aliases is enough)
 } elsif ($cce->event_is_create()) {
-	$DEBUG && warn "Adding list...";
+	$DEBUG && warn "Adding list... ";
 	$DEBUG && warn $new->{name} . ', ' . $new->{internal_name};
 
 	my @site_oids = $cce->find('Vsite', { 'name' => $new->{site} });
-
 	if ($site_oids[0]) {
 		my ($ok, $site) = $cce->get($site_oids[0]);
+
 		$ret = &edit_alii($cce, 1, $new->{name}, $site->{fqdn},
 				  $new->{internal_name}, $new->{site});
 	} else {
@@ -51,6 +51,7 @@ if (!$new->{site} && !$obj->{site} && !$old->{site}) {
 	}
 } elsif ($cce->event_is_destroy()) {
 	$DEBUG && warn "Deleting list...";
+
 	$ret = &edit_alii($cce, 0, $old->{name}, 'XXXnodomainXXX',
 			  $old->{internal_name});
 } elsif ($new->{name} && $old->{name}) {
@@ -125,7 +126,7 @@ sub edit_alii
 			$props->{build_maps} = ($i == $#these_alii) ? 1 : 0;
 			my ($ok) = $cce->create('EmailAlias', $props);
 			if (!$ok) {
-			    return 0;
+				return 0;
 			}
 		} else {
 			# destroy the aliases for this list

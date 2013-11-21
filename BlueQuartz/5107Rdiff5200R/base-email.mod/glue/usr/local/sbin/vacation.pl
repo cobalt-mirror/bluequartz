@@ -1,26 +1,10 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
-# $Id: vacation.pl Thu Dec 18 11:00:02 2008 mstauber $
+# $Id: vacation.pl 1233 2009-09-06 09:58:50Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # usage: vacation.pl [message] [from-address]
 
-# Version 1.1.1.3.stable.sendmail.09
-# modified by rickard.osser@bluapp.com 20110718
-# Added functionality for setting start/stop date for messages.
-#
-# Version 1.1.1.2.stable.sendmail.08
-# modified by mstauber@solarspeed.net 20081218
-# The internal mailer as provided by Sauce::I18nMail is (and always has been!) a piece
-# of garbage that's fubare'ed beyond believe. That bloody mailer doesn't even know how
-# to build email headers right. This interfered with vacation messages in a quite messy
-# way. Patricko tried to solve this in 2005 with a work around, but I just went in
-# and switched to something that works instead. So we now mail through MIME::Lite
-#
 # Version 1.1.1.2.stable.sendmail.07
-# modified by mstauber@solarspeed.net 20081206
-# Added group and user quota check. Vacation messages are not send if user or his group
-# are over quota. Reason: We cannot handle the bounces from joe-jobs that terribly well. 
-#
 # modified by patricko@staff.singnet.com.sg 20071219
 # Changelog: Try 1: fixed local loop. eg: auto-reply to mailer-daemon
 # Changelog: Try 2: Fixed compat issue with MS Outlook 2003 webmail
@@ -60,8 +44,6 @@ use DB_File;
 use Fcntl qw(O_RDWR O_CREAT F_SETLKW F_UNLCK);
 use FileHandle;
 use I18nMail;
-use Quota;
-use MIME::Lite;
 
 # Declare DEBUGGING
 #use Log::Log4perl;
@@ -92,7 +74,6 @@ my @ignores = (
            'daemon',
            'postmaster',
            'root',
-
            );
 
 my ($opt_d)=(0);
@@ -104,7 +85,6 @@ my $Sendmail = Sauce::Config::bin_sendmail;
 
 my @pwent = getpwnam($user_from);
 my $Vaca_dir = $pwent[7];
-my $uname = $pwent[0];
 
 my $i18n=new I18n;
 
@@ -197,8 +177,6 @@ if( not $ok ) {
 	exit(255);
 }
 
-($ok, my $userEmailObj) = $cce->get($oid, 'Email');
-
 #### See 1.0
 if ($for) {$user_from = $for;}
 else
@@ -218,23 +196,7 @@ if( not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$local
 	$locale = I18n::i18n_getSystemLocale($cce);
 }
 
-
-# Check start/stop date
-
-my $startDate = $userEmailObj->{vacationMsgStart};
-my $stopDate = $userEmailObj->{vacationMsgStop};
-
-if ($startDate ne $stopDate) {
-    if ( ! ($startDate < time() && $stopDate > time())) {
-	# We will not use vacation!
-	$cce->bye('SUCCESS');
-	exit;
-    }
-}
-
-
 my $fullname = $user->{fullName};
-
 $fullname ||= $user_from;
 
 $cce->bye('SUCCESS');
@@ -274,81 +236,30 @@ else
 }
 
 
-## Start Quota checks: mstauber
-my $uid   = $pwent[2];
-my $gid   = $pwent[3];
 
-# lookup dev
-my $dev_a = Quota::getqcarg($Vaca_dir);
-my $is_group = "1";
+my $mail = new I18nMail;
+$mail->setLang($locale);
 
-# do query for group's quota:
-my ($group_used, $group_quota) = Quota::query($dev_a, $gid, $is_group);
+my $subject=$i18n->get("[[base-email.vacationSubject]]");
+my $format=$i18n->getProperty("vacationSubject","base-email");
+my %data=(NAME=>$fullname,EMAIL=>"<$user_from>",MSG=>$subject);
+$format=~s/(NAME|EMAIL|MSG)/$data{$1}/g;
 
-# do query for user's quota:
-my $dev = Quota::getqcarg($Vaca_dir);
-my ($used, $quota) = Quota::query($dev, $uid);
+$mail->setSubject($format);
+$mail->setFrom("$fullname <$user_from>");
+$mail->addRawTo($sendto);
 
-my $diff = "20";
+open (INMESSAGE, "$message_file") || die "Can't open message file $!\n";
+my $msg;
+{local $/=undef;$msg=<INMESSAGE>};
+close INMESSAGE;
 
-my $is_overquota = "0";
-if (($group_used + $diff >= $group_quota) || ($used + $diff >= $quota)) {
-    my $is_overquota = "1";
-    
-    # User or group is over quota. Exit silently.
-    $cce->bye('FAIL', "The recipient mailbox is full or the site he belongs to is over the allocated quota. Message delivery terminated."); 
-}
+$mail->setBody($msg);
 
-## End Quota checks
+open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
+print OUT $mail->toText();
+close OUT;
 
-if ($is_overquota eq "0") {
-
-    my $mail = new I18nMail;
-    $mail->setLang($locale);
-
-    my $subject=$i18n->get("[[base-email.vacationSubject]]");
-    my $format=$i18n->getProperty("vacationSubject","base-email");
-    my %data=(NAME=>$fullname,EMAIL=>"<$user_from>",MSG=>$subject);
-    $format=~s/(NAME|EMAIL|MSG)/$data{$1}/g;
-
-    $mail->setSubject($format);
-    $mail->setFrom("$fullname <$user_from>");
-    $mail->addRawTo($sendto);
-
-    open (INMESSAGE, "$message_file") || die "Can't open message file $!\n";
-    my $msg;
-    {local $/=undef;$msg=<INMESSAGE>};
-    close INMESSAGE;
-
-#    No, thanks. The internal email function is (and always has been!) fubar.
-#    $mail->setBody($msg);
-#    open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
-#    print OUT $mail->toText();
-#    close OUT;
-
-    # Build the message using MIME::Lite instead:
-    my $send_msg = MIME::Lite->new(
-        From     => "$fullname <$user_from>",
-        To       => $sendto,
-        Subject  => $format,
-        Data     => $msg
-    );
-
-    # Set content type:
-    $send_msg->attr("content-type"         => "text/plain");
-
-    # Set charset based on locale:
-    if (($locale eq "ja_JP") || ($locale eq "ja")) {
-	$send_msg->attr("content-type.charset" => "EUC-JP");
-    }
-    else {
-	$send_msg->attr("content-type.charset" => "UTF-8");
-    }
-
-    # Out with the email:
-    $send_msg->send;
-
-}
 
 #DEBUGGING
 #$logger->info("Sendmail: $Sendmail");

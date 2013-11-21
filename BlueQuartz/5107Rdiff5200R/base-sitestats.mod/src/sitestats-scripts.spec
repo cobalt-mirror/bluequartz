@@ -1,14 +1,14 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
-Version: 1.0
-Release: 26BX24%{?dist}
-Vendor: Project BlueOnyx
+Version: 1.1
+Release: 25BQ22%{?dist}
+Vendor: %{?vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnax
+Group: System Environment/BlueQuartz
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
-Requires: webalizer
+Requires: webalizer, tmpwatch
 
 %description
 This package contains the scripts for processing logfiles
@@ -16,25 +16,17 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
-* Tue Nov 22 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX24
-- Updated sitestats-scripts/apache.logrotate as the PID file for Apache is locate elsewhere on RHEL6 than on RHEL5.
+* Sun Aug 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ22
+- add requires tmpwatch.
 
-* Thu Oct 27 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX23
-- Updated log_traffic again to allow it to exit early on if APF is installed.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ21
+- remove .svn directory from rpm package.
 
-* Thu Oct 27 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX22
-- Fixes for log_traffic. Should prevent the sporadic corrupt logline mails from Analog.
-- Also added check for presence of /etc/apf directory to prevent log_traffic reappearance
-  to kill off installs of the APF firewall.
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ20
+- modify split_logs to support postfix.
 
-* Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-25BQ21
-- Fixed sitestats-scripts/split_logs by adding a more thorough chown once a sites logs have been done.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-25BQ20
-- Rebuilt for BlueOnyx.
-
-* Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-25BQ19
-- add sign to the package.
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1-25BQ19
+- modify maillog2commonlog.pl to support postfix.
 
 * Thu Jun 22 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-25BQ18
 - modify analog.cfg.tmpl to change the hostname and logrotate file for ssl logs.

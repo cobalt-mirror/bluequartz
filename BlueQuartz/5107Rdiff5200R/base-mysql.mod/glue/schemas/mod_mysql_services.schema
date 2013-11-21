@@ -1,6 +1,3 @@
-<!-- Author: Michael Stauber mstauber@solarspeed.net -->
-<!-- Copyright 2006-2008, Stauber Multimedia Design. All rights reserved. -->
-
 <class
     name="VsiteServices" namespace="MYSQL_Vsite" version="1.0"
 >
@@ -12,6 +9,31 @@
 
     <property 
         name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="username" type="mysqlusername" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="pass" type="password" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="DB" type="mysqldatabase" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="host" type="word" default="localhost"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property 
+        name="port" type="uint" default="3306"
         writeacl="ruleCapable(adminUser)"
     />
 
@@ -27,27 +49,27 @@
     />
 
     <property 
-        name="username" type="scalar" default=""
+        name="username" type="mysqlusername" default=""
         writeacl="ruleCapable(adminUser)"
     />
 
     <property 
-        name="pass" type="scalar" default=""
+        name="pass" type="password" default=""
         writeacl="ruleCapable(adminUser)"
     />
 
     <property 
-        name="DB" type="scalar" default=""
+        name="DB" type="mysqldatabase" default=""
         writeacl="ruleCapable(adminUser)"
     />
 
     <property 
-        name="host" type="scalar" default="localhost"
+        name="host" type="word" default="localhost"
         writeacl="ruleCapable(adminUser)"
     />
 
     <property 
-        name="port" type="scalar" default="3306"
+        name="port" type="uint" default="3306"
         writeacl="ruleCapable(adminUser)"
     />
 
@@ -58,3 +80,5 @@
 
 </class>
 
+<typedef name="mysqlusername" type="re" data="^[A-Za-z0-9][A-Za-z0-9_%]{1,15}$" />
+<typedef name="mysqldatabase" type="re" data="^[A-Za-z0-9][A-Za-z0-9_%]{1,63}$" />

@@ -1,5 +1,5 @@
 <?php
-// $Id: CceError.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: CceError.php 991 2007-05-05 05:40:00Z shibuya $
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.

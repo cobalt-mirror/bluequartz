@@ -151,7 +151,7 @@ my %daily_flush; # cache unlinking of per-site daily log files
 
 # this specifies how to process system log files for this log type
 my %log_process = (
-    'mail' => '/usr/local/sbin/maillog2commonlog.pl sendmail |',
+    'mail' => '/usr/local/sbin/maillog2commonlog.pl postfix |',
     'ftp' => '/usr/local/sbin/ftplog2commonlog |',
     'net' => '',
     'web' => '');
@@ -348,12 +348,6 @@ foreach my $site (keys %active_sites)
 	}
 
 	close(ANALOG);
-
-	if ($DEBUG) {
-	    print STDERR "/bin/chown -R $pids{$site}:$gids{$site} $basedir/$Logdir/ \n";
-	}
-	# Gotta chown the entire bloody directory to deal with historically wrong GIDs on logs:
-	system("/bin/chown -R $pids{$site}:$gids{$site} $basedir/$Logdir/");
 
 	chown($pids{$site}, $gids{$site}, $cache_file);
 	chmod(0660, $cache_file);

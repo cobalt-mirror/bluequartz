@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: regen_httpd_figlet Fri 12 Jun 2009 12:41:33 PM CEST mstauber $
+# $Id: regen_httpd_figlet 259 2004-01-03 06:28:40Z shibuya $
 #
 # this handler is responsible for maintaining the per-Workgroup configuration
 # files for Apache.
@@ -47,7 +47,6 @@ sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
 while(<HTTPD>) {
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
-  s/^#ServerName\s.+$/ServerName $fqdn/;
   s/^MinSpareServers\s.+$/MinSpareServers $minSpare/;
   s/^MaxSpareServers\s.+$/MaxSpareServers $maxSpare/;
   s/^MaxClients\s.+$/MaxClients $maxClients/;

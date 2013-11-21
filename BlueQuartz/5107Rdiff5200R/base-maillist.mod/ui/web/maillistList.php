@@ -1,7 +1,7 @@
 <?php
 // Author: jmayer@cobalt.com
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: maillistList.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: maillistList.php 1014 2007-06-25 15:25:46Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("ArrayPacker.php");

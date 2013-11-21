@@ -4,22 +4,15 @@ package Email;
 
 use vars qw($VIRTUSER $ACCESS);
 
-$VIRTUSER = '/etc/mail/virtusertable';
-$ACCESS = '/etc/mail/access';
-$MAILERTABLE = '/etc/mail/mailertable';
+$VIRTUSER = '/etc/postfix/virtual';
+$ACCESS = '/etc/postfix/access';
 
 # FIXME: rest of these should also be scalars instead of functions
-sub Aliases { return '/etc/mail/aliases'; }
-sub SendmailCF { return '/etc/mail/sendmail.cf'; }
-sub SendmailMC { return '/etc/mail/sendmail.mc'; }
-sub SendmailCW { return '/etc/mail/local-host-names'; }
-
-if (-f "/etc/rc.d/init.d/mailman") {
-        sub MajordomoAliases { return '/etc/mail/aliases.mailman'; }
-}
-if (-f "/usr/local/majordomo/bin/approve") {
-        sub MajordomoAliases { return '/etc/mail/aliases.majordomo'; }
-}
+sub Aliases { return '/etc/aliases'; }
+sub MajordomoAliases { return '/etc/aliases.majordomo'; }
+sub PostfixMainCF { return '/etc/postfix/main.cf'; }
+sub PostfixMasterCF { return '/etc/postfix/master.cf'; }
+sub PostfixLocalHost { return '/etc/postfix/local-host-names'; }
 
 return 1;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.

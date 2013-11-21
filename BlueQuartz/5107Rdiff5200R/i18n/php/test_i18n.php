@@ -18,7 +18,7 @@
 <hr>
 <br>
 
-<?php include_once("I18n.php"); 
+<?php include("I18n.php"); 
 if ($lang && $magicstr) { ?>
 <table width="90%" border="1" cellspacing="0" cellpadding="0">
 <tr><td align="center">

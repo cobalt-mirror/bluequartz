@@ -12,18 +12,10 @@
 <begin %DESCRIPTION>
 <begin glue>
 %package [LABEL]
-Group: System Environment/BlueOnyx
-
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
-Obsoletes: base-bluequartz-capstone 
-Obsoletes: base-bluequartz-ui 
-Obsoletes: base-bluequartz-glue 
-Obsoletes: base-bluequartz-locale-en 
-Obsoletes: base-bluequartz-locale-de_DE
-Obsoletes: base-bluequartz-locale-da_DK
-Obsoletes: base-bluequartz-locale-ja
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -33,10 +25,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin capstone>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
+Requires: php-mbstring
 
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
@@ -64,7 +57,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %dir /etc/locks
 %config /etc/rc.d/init.d/*
-%config /etc/sysconfig/blueonyx
+%config(noreplace) /etc/sysconfig/bluequartz
 %attr(0755,root,root) /usr/sausalito/sbin/*
 %attr(0755,root,root) /usr/sausalito/scripts/*
 %dir /usr/sausalito/runonce
@@ -74,8 +67,8 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/triggers/*
 /etc/build
 /var/www/html/*
-%dir /usr/share/doc/blueonyx-release-5106R
-/usr/share/doc/blueonyx-release-5106R/*
+%dir /usr/share/doc/bluequartz-release-5200R
+/usr/share/doc/bluequartz-release-5200R/*
 <end glue>
 
 <begin ui>
@@ -97,111 +90,45 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ $1 -eq 1 ]; then
-  if [ ! -d "/usr/sausalito/runonce" ];then
-    mkdir -p /usr/sausalito/runonce
-  fi
+if [ $1 = 1 ]; then
+  mkdir -p /usr/sausalito/runonce
   cd /usr/sausalito/scripts
   for FILE in *; do
     if [ -f $FILE ]; then
-        if [ ! -L "/usr/sausalito/runonce/$FILE" ]; then
-            ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
-        fi
+      ln -sf /usr/sausalito/scripts/$FILE /usr/sausalito/runonce/$FILE
     fi
   done
 fi
 
 # update product information
-if [ $1 -gt 1 ] && [ -S /usr/sausalito/cced.socket ]; then
+if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
   /usr/sausalito/sbin/updateSystem.pl
 fi
 
-# update sendmail config files
-/bin/grep 'setup for BlueOnyx' /etc/mail/sendmail.mc > /dev/null 2>&1
-if [ $? = 0 ]; then
-  /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bxold
-  /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
-  /usr/sausalito/scripts/initSendmail.sh
-fi
-
-# Make sure sendmail.mc has confMAX_RCPTS_PER_MESSAGE:
-/bin/grep 'confMAX_RCPTS_PER_MESSAGE' /etc/mail/sendmail.mc > /dev/null 2>&1
-if [ $? = 0 ]; then
-  /bin/mv /etc/mail/sendmail.mc /etc/mail/sendmail.mc.bxold
-  /bin/mv /etc/mail/sendmail.cf /etc/mail/sendmail.cf.bxold
-  /usr/sausalito/scripts/initSendmail.sh
-fi
-
-# update procmailrc
-if [ ! -f /etc/procmailrc ]; then
-  /usr/sausalito/scripts/initProcmail.sh
-else
-  grep '^ORGMAIL=$HOME/mbox' /etc/procmailrc > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'ORGMAIL=$HOME/mbox' >> /etc/procmailrc
-  fi
-  grep '^DEFAULT=$ORGMAIL' /etc/procmailrc > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'DEFAULT=$ORGMAIL' >> /etc/procmailrc
-  fi
-fi
-
+# update saslauthd
 if [ -f /etc/sysconfig/saslauthd ]; then
   /usr/bin/perl -pi -e 's|^MECH=shadow|MECH=pam|g'  /etc/sysconfig/saslauthd
 else
   echo 'MECH=pam' > /etc/sysconfig/saslauthd
 fi
-/usr/sausalito/constructor/base/email/syncEmailService.pl
-/sbin/chkconfig --add blueonyx
+
+# sync email services
+if [ -f /usr/sausalito/constructor/base/email/syncEmailService.pl ]; then
+  /usr/sausalito/constructor/base/email/syncEmailService.pl
+fi
+
+# Register the bluequartz service
+/sbin/chkconfig --add bluequartz
 
 # install pgp key
-#/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
-#if [ $? = 1 ]; then
-#  /bin/rpm --import /usr/share/doc/bluequartz-release-5106R/RPM-GPG-KEY-BlueQuartz-5100R
-#fi
-
-# install BlueOnyx pgp key
-/bin/rpm -q gpg-pubkey-5202f88b-491b00bc > /dev/null 2>&1
+/bin/rpm -q gpg-pubkey-dbeec7cc-4aa39876 > /dev/null 2>&1
 if [ $? = 1 ]; then
-  /bin/rpm --import /usr/share/doc/blueonyx-release-5106R/RPM-GPG-KEY-NUSOL-5106R
+  /bin/rpm --import /usr/share/doc/bluequartz-release-5200R/RPM-GPG-KEY-BlueQuartz-5200R
 fi
 
-# pwdb2shadow
-if [ -f /etc/sysconfig/blueonyx ]; then
-  . /etc/sysconfig/blueonyx
-fi
-
-if [ $AUTH == 'pwdb' ]; then
-  ln -sf /usr/sausalito/scripts/pwdb2shadow.sh /usr/sausalito/runonce/pwdb2shadow.sh
-  /usr/sausalito/scripts/pwdb2shadow.sh
-else 
-  /bin/sed -i -e 's@MECH=pam@MECH=shadow@' /etc/sysconfig/saslauthd
-  /bin/sed -i -e "s@'db files'@files@" /etc/nsswitch.conf
-fi
-
-# Fix php.ini:
-if [ -f /etc/php.ini ]; then
-    /usr/bin/perl -pi -e 's|^error_reporting  =  E_ALL|error_reporting  =  E_ALL & ~E_NOTICE|g' /etc/php.ini
-    /usr/bin/perl -pi -e 's|^short_open_tag = Off|short_open_tag = On|g' /etc/php.ini
-fi
-
-# Fix /etc/logwatch/conf/ignore.conf if we're running in a VPS:
-if [ -f /proc/user_beancounters ]; then
-    if [ -f /etc/logwatch/conf/ignore.conf ]; then
-        echo "###### REGULAR EXPRESSIONS IN THIS FILE WILL BE TRIMMED FROM REPORT OUTPUT #####" > /etc/logwatch/conf/ignore.conf
-        echo "ERROR: failed to open PAM security session" >> /etc/logwatch/conf/ignore.conf
-        echo "ERROR: cannot set security context" >> /etc/logwatch/conf/ignore.conf
-        echo "crond.*: System error" >> /etc/logwatch/conf/ignore.conf
-    fi
-fi
-
-# Fix Dovecot v2.0 configs:
-if [ -f /etc/dovecot/conf.d/10-auth.conf ]; then
-	perl -pi -e 's|^#disable_plaintext_auth = (.*)|disable_plaintext_auth = no|g' /etc/dovecot/conf.d/10-auth.conf
-fi
-if [ -f /etc/dovecot/conf.d/10-mail.conf ]; then
-	perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
-fi
+if [ -f /etc/sysconfig/bluequartz ]; then 
+  . /etc/sysconfig/bluequartz 
+fi 
 
 <end glue>
 <begin ui>
@@ -238,11 +165,7 @@ fi
 /bin/cp /usr/sausalito/triggers/sysklogd/syslog.logrotate /etc/logrotate.d/syslog
 
 %triggerin glue -- webalizer
-%if "%fedora" == "1"
-/bin/cp /usr/sausalito/triggers/webalizer/webalizer-fc1.conf /etc/webalizer.conf
-%else
 /bin/cp /usr/sausalito/triggers/webalizer/webalizer.conf /etc/webalizer.conf
-%endif
 
 %triggerin glue -- httpd
 if [ -f /etc/logrotate.d/httpd ]; then
@@ -253,267 +176,159 @@ fi
 %triggerin glue -- mod_ssl
 /usr/sausalito/scripts/initSSL.sh
 
-%triggerin glue -- sendmail
-if [ ! -f /etc/mail/aliases ]; then
-  if [ -f /etc/mail/aliases.rpmsave ]; then
-    /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
-  else
-    /bin/ln -s /etc/aliases /etc/mail/aliases
-  fi
-  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'root:		admin' >> /etc/mail/aliases
-  fi
-  /etc/init.d/sendmail condrestart
-fi
-if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
-  /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
-    /usr/share/sendmail-cf/hack/popauth.m4
-fi
-
 %triggerin glue -- glibc
-/usr/sausalito/constructor/base/time/syncTimeZone.pl
-
-# for distributions
-%if "%centos" == "6"
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
-%triggerin glue -- httpd
-/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
-# Fix /etc/logrotate.conf, because we want to rotate daily and we want to compress the logs:
-/usr/bin/perl -pi -e 's|^# rotate log files weekly|# rotate log files daily|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^weekly|daily|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
-%triggerin glue -- logrotate
-/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
-# Fix Logwatch's ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups:
-if [ -f /etc/logwatch/conf/ignore.conf ]; then
-  grep '^warning: "ProFTPD" address/port' /etc/logwatch/conf/ignore.conf > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'warning: "ProFTPD" address/port' >> /etc/logwatch/conf/ignore.conf
-  fi
+if [ -f /usr/sausalito/constructor/base/time/syncTimeZone.pl ]; then
+  /usr/sausalito/constructor/base/time/syncTimeZone.pl
 fi
-%endif
 
-%if "%centos" == "5"
 %triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
+/bin/cp /usr/sausalito/triggers/iptables/iptables.init /etc/init.d/iptables
 %triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
-%triggerin glue -- httpd
-/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
-# Fix /etc/logrotate.conf, because we want to rotate daily and we want to compress the logs:
-/usr/bin/perl -pi -e 's|^# rotate log files weekly|# rotate log files daily|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^weekly|daily|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
-%triggerin glue -- logrotate
-/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
-# Fix Logwatch's ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups:
-if [ -f /etc/logwatch/conf/ignore.conf ]; then
-  grep '^warning: "ProFTPD" address/port' /etc/logwatch/conf/ignore.conf > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'warning: "ProFTPD" address/port' >> /etc/logwatch/conf/ignore.conf
-  fi
-fi
-%endif
+/bin/cp /usr/sausalito/triggers/initscripts/ifup /sbin/ifup
 
-%if "%centos" == "4"
-%triggerin glue -- centos-yumconf
-/bin/cp /usr/sausalito/triggers/centos-yumconf/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo 
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS4.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS4 /sbin/ifup
-%endif
-
-%if "%centos" == "4"
 %triggerin glue -- dovecot
 /bin/cat /etc/dovecot.conf | \
-/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
+/bin/sed -e 's|#mail_location =|mail_location = mbox:~/mail/:INBOX=/var/spool/mail/%u|' \
 -e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
 > /etc/dovecot.conf.new
 /bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
-%endif
 
-%if "%centos" == "5"
-%triggerin glue -- dovecot
-/bin/cat /etc/dovecot.conf | \
-/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
--e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
-> /etc/dovecot.conf.new
-/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
-%endif
-
-%if "%centos" == "6"
-%triggerin glue -- dovecot
-perl -pi -e 's|^#disable_plaintext_auth = (.*)|disable_plaintext_auth = no|g' /etc/dovecot/conf.d/10-auth.conf
-perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
-%endif
-
-%if "%centos" == "3"
-%triggerin glue -- yum
-/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS3.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS3 /sbin/ifup
-%endif
-
-%if "%fedora" == "1"
-%triggerin glue -- yum
-/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-FC1.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-FC1 /sbin/ifup
-%endif
+%triggerin glue -- majordomo
+/bin/cp /usr/sausalito/triggers/majordomo/majordomo.cf.template /usr/lib/majordomo
 <end $TRIGGERIN>
 
 <begin $TRIGGERUN>
-%triggerpostun glue -- sendmail
-if [ ! -f /etc/mail/aliases ]; then
-  if [ -f /etc/mail/aliases.rpmsave ]; then
-    /bin/mv /etc/mail/aliases.rpmsave /etc/mail/aliases
-  else
-    /bin/ln -s /etc/aliases /etc/mail/aliases
-  fi
-  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'root:		admin' >> /etc/mail/aliases
-  fi
-  /etc/init.d/sendmail condrestart
-fi
+
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
-* Thu Sep 22 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110922BX108
-- Removed some legacy if-clauses dealing with ancient OS's from templates/rpmdefs.tmpl
-- Change of Apache's 'ServerTokens' moved to relevant constructor of base-apache.mod instead.
-- Modified glue/Makefile to insert 5107R or 5108R model number depending on architecture of the build box.
+* Tue May 03 2011 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20110503BQ39
+- release 20110503.
+- add new build number.
 
-* Thu Jul 21 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110721BX107
-- Version number bump for the release of the updates backported from 5107R
+* Wed Dec 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20101208BQ38
+- release 2010120801.
+- add relay_domains configuration to /etc/postfix/main.cf to resolve mail route feature.
 
-* Thu Jul 21 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110721BX106
-- Updated triggerin for Dovecot v2.0 handling on CentOS6
-- Post install now also fixes Dovecot v2.0 configs
+* Sun Sep 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20100919BQ37
+- release 2010091901.
+- add mysql module.
 
-* Wed Jul 13 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110713BX105
-- templates/rpmdefs.tmpl updated to set shot_open_tag = On in /etc/php.ini
-- Updated version info in glue/Makefile and added support for RHEL6 as well.
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20100808BQ36
+- add -4 option for named to work only for IPv4.
+- release 20100808.
 
-* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110625BX104
-- Small buxfix in glue/Makefile to better catch OS version number on SL
+* Thu Jul 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20100722BQ35
+- general release 2010072201.
 
-* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110625BX103
-- Update to glue/Makefile to better catch OS version number on SL
+* Mon Jun 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100621BQ34
+- release 2010062101.
 
-* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110625BX102
-- Updated build for 5107R
+* Tue Jun 02 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100602BQ33
+- remove the post script to execute initProcmail.sh.
 
-* Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 2.20110615BX101
-- Removed alias removal from sendmail trigger in templates/rpmdefs.tmpl again. Not needed there as scripts/initSendmail.sh will take care of it anyway.
-- Cleaned up glue post-install scripts as they were throwing errors on RPM updates.
+* Tue Jun 02 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100602BQ32
+- change mail_location to /var/spool/mail/%u.
 
-* Wed May 25 2011 Christoph Schneeberger <cschnee@telemedia.ch> 2.20110512BX100
-- Added fix for unwanted aliases to base-blueonyx.mod/templates/rpmdefs.tmpl in sendmail trigger. 
-- Added same fix to base-blueonyx.mod/glue/scripts/initSendmail.sh
-- Both remove news, marketing, sales, webmaster and support as alias for root and change nobody to /dev/null (Majordomo rewrite hack)
+* Mon May 31 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100531BQ31
+- change mail spool to /var/spool/mail.
 
-* Sun Apr 24 2011 Michael Stauber <mstauber@solarspeed.net> 2.20110424BX100
-- Added new sendmail.mc.mailman with provisions for Mailman
-- Added new sendmail.mc.majordomo with provisions for Majordomo
-- DNL'ed unresolveable_domains. 
-- Modified glue/configs/sendmail/sendmail.mc to have no support for Mailman or Majordomo
-- Updated glue/scripts/initSendmail.sh with provisions for Mailman and Majordomo
+* Sat May 29 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100529BQ30
+- resolved the issue that the administrator can su to root user without root access permission.
 
-* Mon Mar 01 2010 Michael Stauber <mstauber@solarspeed.net> 2.20100301BQ99
-- Included new sendmail.mc with provisions for maxRecipientsPerMessage and correct DontBlameSendmail lines
-- Left a copy of the old sendmail.mc as glue/configs/sendmail/sendmail.mc.bxold in the SVN tree
-- Updated glue/scripts/initSendmail.sh with provisions for the Solarspeed AV-SPAM
-- Updated Sendmail trigger in templates/rpmdefs.tmpl
+* Mon Apr 19 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100419BQ29
+- modified the initial script for postfix.
 
-* Fri Jul 17 2009 Rickard Osser <rickard.osser@bluapp.com> 2.20090825BQ98
-- Backed out bgui.mc.
+* Sun Mar 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100321BQ28
+- support Virtual environment and remove php configuration for all sites.
 
-* Fri Jul 17 2009 Rickard Osser <rickard.osser@bluapp.com> 2.20090717BQ97
-- Added bgui.mc for sendmail configuration.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100310BQ27
+- new Capabilities for admin.
 
-* Sun Jul 12 2009 Michael Stauber <mstauber@solarspeed.net> 2.20090712BQ96
-- Added trigger for logrotate to switch logrotate.conf to compressed logs. Otherwise CentOS updates may throw it out again.
-- Added fix for Logwatchs ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups.
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100222BQ26
+- add new platform for test as Fedora 12.
 
-* Mon Apr 06 2009 Michael Stauber <mstauber@solarspeed.net> 2.20090405BQ95
-- Forgot to bump version number in glue/Makefile to 20090405
+* Sun Jan 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100117BQ25
+- modified initPostfix.pl to use always smtpd_recipient_restrictions.
 
-* Mon Apr 06 2009 Michael Stauber <mstauber@solarspeed.net> 2.20090405BQ94
-- Version number bump for CentOS-5.3 release
-- Modified constructor/addPkg.pl to update build number in CODB in 'Installed Software List'
+* Fri Jan 01 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20100101BQ24
+- mofidy init script for postfix to add configuration for sender canonical.
 
-* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081230BQ93
-- Pre-release version number bump to 20083012
-- Updated rpmdefs.tmpl to fix /etc/logwatch/conf/ignore.conf inside VPS's.
+* Wed Dec 23 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091223BQ23
+- add init script to copy sequencer for majordomo.
 
-* Wed Dec 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081208BQ92
-- /etc/php.ini was set to error_report notice. Bad idea!
-- If you use Perl for search and replace, Perl must be a required dependency!
+* Wed Dec 23 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091223BQ22
+- add majordomo.cf.template for majordomo trigger.
 
-* Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081208BQ91
-- Set more sensible defaults for /etc/logrotate.conf
+* Tue Dec 15 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091215BQ21
+- remove initialize .db with postmap from runonce script.
 
-* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081205BQ90
-- Moved and extended the Obsolete tag for more seamless upgrades.
+* Sun Dec 13 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091213BQ20
+- fix the issue that the virtual alias doesn't work.
 
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081203BQ89
-. Rebuilt for BlueOnyx.
+* Thu Dec 10 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091210BQ19
+- fix the issue that webalizer doesn't work for virtual site.
 
-* Fri Nov 14 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ88
-- Added provisions to set ServerTokens in httpd.conf to ProductOnly.
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091206BQ18
+- modify initPostfix.sh to configure /usr/lib/sasl2/smtpd.conf.
 
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ87
-- Added missing glue/triggers/iptables/iptables-CentOS5.init 
-- Added missing glue/triggers/initscripts/ifup-CentOS5
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091206BQ17
+- modify init scripts for postfix and aliases to make db files.
 
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081113BQ86
-- Fixed Triggers for CentOS5
-- Updated glue/scripts/pwdb2shadow.sh to fix SASLAUTHd config upon conversion.
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091206BQ16
+- modify init scripts for postfix not to display warning messages.
 
-* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ85
-- Added NUSOL GPG pubkey. Does not yet fully replace the BlueQuartz key.
+* Sun Nov 29 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091129BQ15
+- modify initPostfix.pl to add space for broken_sasl_auth_clients.
 
-* Mon Nov 10 2008 Michael Stauber <mstauber@solarspeed.net> 2.20081110BQ84
-- Merged 5100R changes to 5106R codebase.
- 
-* Thu Oct 23 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 2.20080820BQ83
-- Fixed triggerun for sendmail. Missing 'then' on line 8
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ14
+- modify initPostfix.pl to configure home_mailbox and mailbox_size_limit.
 
-* Tue Aug 26 2008 Brian Smith <brian@nuonce.net> 2.20080820BQ82
-- Fixed initSendmail.sh file.  Missing 'then' on line 9
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ13
+- add trigger for dovecot to configure dovecot.conf.
 
-* Wed Aug 20 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 2.20080820BQ81
-- modified configration files for pwdb to shadow.
-- migrate from pwdb to shadow.
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ12
+- modify logrotate configuration for syslog to use postfix.
 
-* Mon Jan 28 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20080128BQ80
-- requires base-time-capstone >= 1.0.1-62BQ11 for triggerin.
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ11
+- modify initPostfix.pl and initPostfix.sh to support transport_maps.
 
-* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20081227BQ79
-- add triggerin to sync TimeZone.
+* Tue Nov 03 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091103BQ10
+- modify inintPostfix.pl to support fallback_relay.
 
-* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20080127BQ78
-- add GPL and Sun BSD license files.
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091018BQ9
+- modify initPostfix.pl to use /etc/sysconfig/network for setting myhostname.
 
-* Mon Dec 10 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20071210BQ77
-- fix to import multiple key file.
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091018BQ8
+- check the script that is installed before execting for trigger.
 
-* Mon Dec 10 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.20071210BQ76
-- add pgp key file and install
+* Sun Oct 18 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091018BQ7
+- remove trigger for sendmail.
+- remove init script for sendmail.
+- modify initAliases.sh for postfix.
+
+* Sat Oct 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091017BQ6
+- add vixie-cron to requries.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091012BQ5
+- use hash type for access.db for init script.
+
+* Mon Oct 12 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091012BQ4
+- add require to postfix
+- make access.db in init script, if it isn't exit.
+
+* Tue Oct 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091006BQ3
+- add init script for postfix.
+
+* Sun Oct 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20091004BQ2
+- remove db_checkpoint.cron.
+- add init script for postfix.
+
+* Sun Sep 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20090906BQ1
+- merge from 5100R between r970 with r1218.
+
+* Tue Jan 01 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.20080101BQ1
+- build for 5200R on CentOS5.
 
 * Thu Oct 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.20061012BQ75
 - fixed capability issue on dnsAdmin.

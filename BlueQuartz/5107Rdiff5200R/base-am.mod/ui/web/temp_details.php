@@ -23,7 +23,7 @@ $tempinfo = fopen("/proc/cobalt/sensors/thermal", "r");
 if ($tempinfo) {
   while (!feof($tempinfo)) {
     $line = fgets($tempinfo, 1024);
-    list ($sensorNum, $sensorName, $temperature) = preg_split ("/([[:space:]]|\.|:|\[|\])+/", $line);
+    list ($sensorNum, $sensorName, $temperature) = split ("([[:space:]]|\.|:|\[|\])+", $line);
     if ($sensorNum === false || !$temperature) {
       //need to do this check because there's an extra newline at end of file
       continue;

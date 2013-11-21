@@ -22,42 +22,19 @@ am_detail_block($factory, $cce, 'Network', '[[base-network.amNetDetails]]');
 $page = $factory->getPage();
 $i18n = $factory->i18n;
 
-if (file_exists( "/proc/user_beancounters" )) {
-	// OpenVZ Network Interfaces:
-	$list = $factory->getScrollList("amNetStats", array(' ', 'venet0', 'venet1')); 
-}
-else {
-	// Regular Network Interfaces:
-	$list = $factory->getScrollList("amNetStats", array(' ', 'eth0', 'eth1'));
-}
-
+$list = $factory->getScrollList("amNetStats", array(' ', 'eth0', 'eth1'));
 $list->setEntryCountHidden(true);
 // FIXME make column widths match the paged block
 $list->setColumnWidths(array('40%', '30%', '30%'));
 
-if (file_exists( "/proc/user_beancounters" )) {
-        // OpenVZ Network Interfaces:
-	$eth0_obj = $cce->getObject('Network', array('device' => 'venet0'));
-	$eth1_obj = $cce->getObject('Network', array('device' => 'venet1'));
-}
-else {
-	// Regular Network Interfaces:
-	$eth0_obj = $cce->getObject('Network', array('device' => 'eth0'));
-	$eth1_obj = $cce->getObject('Network', array('device' => 'eth1'));
-}
-					   
+$eth0_obj = $cce->getObject('Network', array('device' => 'eth0'));
+$eth1_obj = $cce->getObject('Network', array('device' => 'eth1'));
+						   
 // Get eth0 info
 if ($eth0_obj['enabled']) {
-	if (file_exists( "/proc/user_beancounters" )) {
-        	// OpenVZ Network Interfaces:
-		$eth0 = `grep venet0 /proc/net/dev`;
-	}
-	else {
-		// Regular Network Interfaces:
-		$eth0 = `grep eth0 /proc/net/dev`;
-	}
+  $eth0 = `grep eth0 /proc/net/dev`;
   $eth0 = chop(ltrim($eth0));
-  $eth0 = preg_split("/[^[:alnum:]]+/", $eth0);
+  $eth0 = split("[^[:alnum:]]+", $eth0);
   $eth0['recv_bytes'] = $eth0[1];
   $eth0['recv_packets'] = $eth0[2];
   $eth0['sent_bytes'] = $eth0[9];
@@ -73,7 +50,7 @@ if ($eth0_obj['enabled']) {
 if ($eth1_obj['enabled']) {
   $eth1 = `grep eth1 /proc/net/dev`;
   $eth1 = chop(ltrim($eth1));
-  $eth1 = preg_split("/[^[:alnum:]]+/", $eth1);
+  $eth1 = split("[^[:alnum:]]+", $eth1);
   $eth1['recv_bytes'] = $eth1[1];
   $eth1['recv_packets'] = $eth1[2];
   $eth1['sent_bytes'] = $eth1[9];

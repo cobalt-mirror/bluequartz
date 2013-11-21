@@ -40,7 +40,7 @@ if (!$ok)
 if (!$root_access->{enabled} || $cce->event_is_destroy())
 {
     my $ret = group_rem_members('wheel', $user->{name});
-
+    
     if (!$ret)
     {
         $cce->bye('FAIL', 'cantDisableRootAccess', { 'name' => $user->{name} });
@@ -48,12 +48,7 @@ if (!$root_access->{enabled} || $cce->event_is_destroy())
     }
 
     # destroy their root account
-    # ($ret) = userdel(0, $root_prefix . $user->{name}); # Commented out for now. 
-    # We need to --force the userdel transactions for AlterAdmins on EL6, because the userdel command
-    # claims that the user in question is logged in - even if it is not. So we use userdel directly
-    # instead:
-    $goaway_user = $root_prefix . $user->{name};
-    $ret = system("/usr/sbin/userdel --force $goaway_user");
+    ($ret) = userdel(0, $root_prefix . $user->{name});
 
     # if this fails it is really bad, don't let the user be destroyed
     # or there will be a back door account
@@ -92,6 +87,7 @@ elsif ($root_access->{enabled})
     }
 
     # create the alterroot account if necessary
+    my @user_info = getpwnam($user->{name});
     my (@pwent) = getpwnam($root_prefix . $user->{name});
     if ($pwent[0] ne $root_prefix . $user->{name})
     {
@@ -99,7 +95,7 @@ elsif ($root_access->{enabled})
                             'name' => ($root_prefix . $user->{name}),
                             'uid' => 0,
                             'group' => 'root',
-                            'homedir' => '/root',
+                            'homedir' => $user_info[7],
                             'shell' => '/bin/bash',
                             'password' => $user->{md5_password},
                             'dont_create_home' => 1
@@ -158,8 +154,6 @@ elsif ($root_access->{enabled})
 
 $cce->bye('SUCCESS');
 exit(0);
-
-
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

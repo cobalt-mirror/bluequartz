@@ -17,3 +17,28 @@
         name="nameTag" type="scalar" default="[[base-vsite.manageAdmin]]"
     />
 </class>
+
+<class
+    name="Capabilities" namespace="serverVsite" version="0.1"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(serverVsite)"
+    />
+    <property
+        name="nameTag" type="scalar" default="[[base-vsite.cap_serverVsite]]"
+    />
+</class>
+
+<class
+    name="Capabilities" namespace="manageSite" version="0.1"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(manageSite)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-vsite.cap_manageSite]]"
+    />
+</class>
+

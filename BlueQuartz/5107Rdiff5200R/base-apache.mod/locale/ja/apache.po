@@ -1,189 +1,202 @@
-# --- Menu
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
+# --- Menu
 msgid "apache"
-msgstr "¥¦¥§¥Ö"
+msgstr "ã‚¦ã‚§ãƒ–"
 
 msgid "apache_help"
-msgstr "[[base-apache.apacheSettings]] ¤òÊÑ¹¹¤Ç¤­¤Ş¤¹¡£"
+msgstr "[[base-apache.apacheSettings]] ã‚’å¤‰æ›´ã§ãã¾ã™ã€‚"
 
 # --- Web Settings page
-
 msgid "apacheSettings"
-msgstr "¥¦¥§¥Ö¤ÎÀßÄê"
+msgstr "ã‚¦ã‚§ãƒ–ã®è¨­å®š"
 
 msgid "frontpageField"
-msgstr "FrontPage ¥µ¡¼¥Ğ¥¨¥¯¥¹¥Æ¥ó¥·¥ç¥ó"
+msgstr "FrontPage ã‚µãƒ¼ãƒã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³"
 
 msgid "frontpageField_help"
-msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢FrontPage ¥µ¡¼¥Ğ¥¨¥¯¥¹¥Æ¥ó¥·¥ç¥ó¤¬Í­¸ú¤Ë¤Ê¤ê¤Ş¤¹¡£"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€FrontPage ã‚µãƒ¼ãƒã‚¨ã‚¯ã‚¹ãƒ†ãƒ³ã‚·ãƒ§ãƒ³ãŒæœ‰åŠ¹ã«ãªã‚Šã¾ã™ã€‚"
 
 msgid "frontpageEnabled"
-msgstr "FrontPage¤òÍ­¸ú¤Ë¤¹¤ë"
+msgstr "FrontPageã‚’æœ‰åŠ¹ã«ã™ã‚‹"
 
 msgid "passwordWebmasterField"
-msgstr "Webmaster¤Î¥Ñ¥¹¥ï¡¼¥É"
+msgstr "Webmasterã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰"
 
 msgid "passwordWebmasterField_help"
-msgstr "FrontPage ¥¯¥é¥¤¥¢¥ó¥È¤Î Webmaster ¤Î¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£FrontPage ¥¯¥é¥¤¥¢¥ó¥È¤Ç [¥¦¥§¥Ö¤ò³«¤¯] ¤òÁªÂò¤¹¤ë¤È¡¢home ¥°¥ë¡¼¥×¤Î¥¦¥§¥Ö¥µ¥¤¥È¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤¹¡£webmaster ¤È¤¤¤¦¥æ¡¼¥¶Ì¾¤È¤³¤³¤Ç»ØÄê¤¹¤ë¥Ñ¥¹¥ï¡¼¥É¤ò»È¤Ã¤Æ¥í¥°¥¤¥ó¤¹¤ë¤È¡¢FrontPage ¥¯¥é¥¤¥¢¥ó¥È¤«¤éÂ¾¤Î FrontPage ¥æ¡¼¥¶¤ò´ÉÍı¤Ç¤­¤Ş¤¹¡£"
+msgstr "FrontPage ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã® Webmaster ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚FrontPage ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã§ [ã‚¦ã‚§ãƒ–ã‚’é–‹ã] ã‚’é¸æŠã™ã‚‹ã¨ã€home ã‚°ãƒ«ãƒ¼ãƒ—ã®ã‚¦ã‚§ãƒ–ã‚µã‚¤ãƒˆã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã™ã€‚webmaster ã¨ã„ã†ãƒ¦ãƒ¼ã‚¶åã¨ã“ã“ã§æŒ‡å®šã™ã‚‹ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ä½¿ã£ã¦ãƒ­ã‚°ã‚¤ãƒ³ã™ã‚‹ã¨ã€FrontPage ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ä»–ã® FrontPage ãƒ¦ãƒ¼ã‚¶ã‚’ç®¡ç†ã§ãã¾ã™ã€‚"
 
 msgid "passwordWebmasterField_rule"
-msgstr "¥Ñ¥¹¥ï¡¼¥É¤Ë¤Ï 3 ¡Á 16 Ê¸»ú¤ò»ÈÍÑ¤Ç¤­¤Ş¤¹¡£¾¯¤Ê¤¯¤È¤â 5 Ê¸»ú°Ê¾å¤Ç¡¢ÂçÊ¸»ú¤È¾®Ê¸»ú¤ÎÎ¾Êı¤ò»È¤¤¡¢¿ô»ú¤äµ­¹æ¤ò´Ş¤à¥Ñ¥¹¥ï¡¼¥É¤ò¤ª´«¤á¤·¤Ş¤¹¡£¼­½ñ¤Ë¤¢¤ë¤è¤¦¤Ê°ìÈÌÅª¤Ê¸ì¶ç¤Ï»ÈÍÑ¤·¤Ê¤¤¤è¤¦¤Ë¤·¤Æ¤¯¤À¤µ¤¤¡£¥Ñ¥¹¥ï¡¼¥ÉÃæ¤ÎÂçÊ¸»ú¤È¾®Ê¸»ú¤Ï¶èÊÌ¤µ¤ì¤Ş¤¹¡£"
+msgstr "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã«ã¯ 3 ã€œ 16 æ–‡å­—ã‚’ä½¿ç”¨ã§ãã¾ã™ã€‚å°‘ãªãã¨ã‚‚ 5 æ–‡å­—ä»¥ä¸Šã§ã€å¤§æ–‡å­—ã¨å°æ–‡å­—ã®ä¸¡æ–¹ã‚’ä½¿ã„ã€æ•°å­—ã‚„è¨˜å·ã‚’å«ã‚€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ãŠå‹§ã‚ã—ã¾ã™ã€‚è¾æ›¸ã«ã‚ã‚‹ã‚ˆã†ãªä¸€èˆ¬çš„ãªèªå¥ã¯ä½¿ç”¨ã—ãªã„ã‚ˆã†ã«ã—ã¦ãã ã•ã„ã€‚ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ä¸­ã®å¤§æ–‡å­—ã¨å°æ–‡å­—ã¯åŒºåˆ¥ã•ã‚Œã¾ã™ã€‚"
 
 msgid "passwordWebmasterField_invalid"
-msgstr "¥Ñ¥¹¥ï¡¼¥É¤¬°ìÃ×¤·¤Ş¤»¤ó¡£ÆşÎÏ¥ß¥¹¤òËÉ¤°¤¿¤á¡¢Æ±¤¸¥Ñ¥¹¥ï¡¼¥É£²²óÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒä¸€è‡´ã—ã¾ã›ã‚“ã€‚å…¥åŠ›ãƒŸã‚¹ã‚’é˜²ããŸã‚ã€åŒã˜ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ï¼’å›å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
 
 msgid "cgiAccessField"
-msgstr "CGI ¥¢¥¯¥»¥¹"
+msgstr "CGI ã‚¢ã‚¯ã‚»ã‚¹"
 
 msgid "cgiAccessField_help"
-msgstr "CGI ¥¢¥¯¥»¥¹¤Îµö²Ä¥ì¥Ù¥ë¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£CGI ¥¢¥¯¥»¥¹¤òµö²Ä¤µ¤ì¤¿¥æ¡¼¥¶¤Ï CGI ¥¹¥¯¥ê¥×¥È¥Õ¥¡¥¤¥ë¤òÄÉ²Ã¤Ç¤­¤Ş¤¹¡£CGI ¥¢¥¯¥»¥¹¤ò¥µ¡¼¥Ğ´ÉÍı¼Ô¤Î¤ß¤Ëµö²Ä¤¹¤ë¤³¤È¤â¡¢¥æ¡¼¥¶Á´°÷¤Ş¤¿¤ÏÆÃÄê¤Î¥æ¡¼¥¶¤Î¤ß¤Ëµö²Ä¤¹¤ë¤³¤È¤â¤Ç¤­¤Ş¤¹¡£"
+msgstr "CGI ã‚¢ã‚¯ã‚»ã‚¹ã®è¨±å¯ãƒ¬ãƒ™ãƒ«ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã•ã‚ŒãŸãƒ¦ãƒ¼ã‚¶ã¯ CGI ã‚¹ã‚¯ãƒªãƒ—ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ ã§ãã¾ã™ã€‚CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’ã‚µãƒ¼ãƒç®¡ç†è€…ã®ã¿ã«è¨±å¯ã™ã‚‹ã“ã¨ã‚‚ã€ãƒ¦ãƒ¼ã‚¶å…¨å“¡ã¾ãŸã¯ç‰¹å®šã®ãƒ¦ãƒ¼ã‚¶ã®ã¿ã«è¨±å¯ã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚"
 
 msgid "cgiAll"
-msgstr "Á´¤Æ¤Î¥æ¡¼¥¶¤Ë CGI ¥¢¥¯¥»¥¹¤òµö²Ä¤¹¤ë¡£"
+msgstr "å…¨ã¦ã®ãƒ¦ãƒ¼ã‚¶ã« CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã™ã‚‹ã€‚"
 
 msgid "cgiNone"
-msgstr "¤É¤Î¥æ¡¼¥¶¤Ë¤â CGI ¥¢¥¯¥»¥¹¤òµö²Ä¤·¤Ê¤¤¡£"
+msgstr "ã©ã®ãƒ¦ãƒ¼ã‚¶ã«ã‚‚ CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã—ãªã„ã€‚"
 
 msgid "cgiSubset"
-msgstr "¼¡¤Î¥æ¡¼¥¶¤Ë¤Î¤ß CGI ¥¢¥¯¥»¥¹¤òµö²Ä¤¹¤ë¡§"
+msgstr "æ¬¡ã®ãƒ¦ãƒ¼ã‚¶ã«ã®ã¿ CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã™ã‚‹ï¼š"
 
 msgid "cgiUsersAllowed"
-msgstr "µö²Ä¤¹¤ë¥æ¡¼¥¶"
+msgstr "è¨±å¯ã™ã‚‹ãƒ¦ãƒ¼ã‚¶"
 
 msgid "cgiUsersDisallowed"
-msgstr "µö²Ä¤·¤Ê¤¤¥æ¡¼¥¶"
+msgstr "è¨±å¯ã—ãªã„ãƒ¦ãƒ¼ã‚¶"
 
 # Don't want a label here, so space
 msgid "cgiUsersField"
 msgstr " "
 
 msgid "cgiUsersField_empty"
-msgstr "CGI ¥¢¥¯¥»¥¹¤òµö²Ä¤¹¤ë¥æ¡¼¥¶¤¬ÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£CGI ¥¢¥¯¥»¥¹¤òµö²Ä¤·¤¿¤¤¥æ¡¼¥¶¤ò»ØÄê¤¹¤ë¤«¡¢ÊÌ¤Î¥ª¥×¥·¥ç¥ó¤òÁª¤ó¤Ç¤¯¤À¤µ¤¤¡£"
+msgstr "CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã™ã‚‹ãƒ¦ãƒ¼ã‚¶ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’è¨±å¯ã—ãŸã„ãƒ¦ãƒ¼ã‚¶ã‚’æŒ‡å®šã™ã‚‹ã‹ã€åˆ¥ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’é¸ã‚“ã§ãã ã•ã„ã€‚"
 
 # --- Handlers
-
 msgid "cantConfigCgi"
-msgstr "CGI ¥¢¥¯¥»¥¹¤òÀµ¤·¤¯ÀßÄê¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "CGI ã‚¢ã‚¯ã‚»ã‚¹ã‚’æ­£ã—ãè¨­å®šã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
 
 msgid "systemObjectNotFound"
-msgstr "¥µ¡¼¥ĞÀßÄê¤Ï°ì»şÅª¤Ë»ÈÍÑ¤Ç¤­¤Ş¤»¤ó¡£¤·¤Ğ¤é¤¯¤·¤Æ¤«¤é¡¢¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£"
-
+msgstr "ã‚µãƒ¼ãƒè¨­å®šã¯ä¸€æ™‚çš„ã«ä½¿ç”¨ã§ãã¾ã›ã‚“ã€‚ã—ã°ã‚‰ãã—ã¦ã‹ã‚‰ã€ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
 
 # --- Active Monitor
-
 msgid "amApacheNameTag"
-msgstr "¥¦¥§¥Ö¥µ¡¼¥Ğ"
+msgstr "ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒ"
 
 msgid "amApacheDetails"
-msgstr "¥¦¥§¥Ö¥µ¡¼¥Ğ¤Î¾ÜºÙ"
+msgstr "ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®è©³ç´°"
 
 msgid "amNotRunning"
-msgstr "[[base-apache.amApacheNameTag]] ¤ÏÆ°ºî¤·¤Æ¤ª¤é¤º¡¢µ¯Æ°¤¹¤ë¤³¤È¤â¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[base-alpine.serverconfig]] ¤Î¡Ö[[base-power.power]]¡×¥á¥Ë¥å¡¼¤Ë¤¢¤ë¡Ö[[base-power.reboot]]¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¡¢¥µ¡¼¥Ğ¤òºÆµ¯Æ°¤·¤Æ¸«¤Æ¤¯¤À¤µ¤¤¡£¤½¤ì¤Ç¤â [[base-apache.amApacheNameTag]] ¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢[[base-sauce-basic.techSupportURL]] ¤Ë¤¢¤ë¥Æ¥¯¥Ë¥«¥ë¥µ¥İ¡¼¥È¥µ¡¼¥Ó¥¹¤ò¤´ÍøÍÑ¤¯¤À¤µ¤¤¡£"
+msgstr "[[base-apache.amApacheNameTag]] ã¯å‹•ä½œã—ã¦ãŠã‚‰ãšã€èµ·å‹•ã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚[[base-alpine.serverconfig]] ã®ã€Œ[[base-power.power]]ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ã‚‹ã€Œ[[base-power.reboot]]ã€ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã€ã‚µãƒ¼ãƒã‚’å†èµ·å‹•ã—ã¦è¦‹ã¦ãã ã•ã„ã€‚ãã‚Œã§ã‚‚ [[base-apache.amApacheNameTag]] ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ããªã„å ´åˆã«ã¯ã€[[base-sauce-basic.techSupportURL]] ã«ã‚ã‚‹ãƒ†ã‚¯ãƒ‹ã‚«ãƒ«ã‚µãƒãƒ¼ãƒˆã‚µãƒ¼ãƒ“ã‚¹ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚"
 
 msgid "amStatusOK"
-msgstr "¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Ş¤¹¡£"
+msgstr "ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã¯æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã¾ã™ã€‚"
 
 msgid "amAdmservNameTag"
-msgstr "¥µ¡¼¥Ğ¥Ç¥¹¥¯¥È¥Ã¥×"
+msgstr "ã‚µãƒ¼ãƒãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—"
 
 msgid "amAdmservDetails"
-msgstr "¥µ¡¼¥Ğ¥Ç¥¹¥¯¥È¥Ã¥×¤Î¾ÜºÙ"
+msgstr "ã‚µãƒ¼ãƒãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã®è©³ç´°"
 
 msgid "amAdmservNotRunning"
-msgstr "[[base-apache.amAdmservNameTag]] ¤ÏÆ°ºî¤·¤Æ¤ª¤é¤º¡¢µ¯Æ°¤¹¤ë¤³¤È¤â¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[base-alpine.serverconfig]] ¤Î¡Ö[[base-power.power]]¡×¥á¥Ë¥å¡¼¤Ë¤¢¤ë¡Ö[[base-power.reboot]]¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¡¢¥µ¡¼¥Ğ¤òºÆµ¯Æ°¤·¤Æ¸«¤Æ¤¯¤À¤µ¤¤¡£¤½¤ì¤Ç¤â [[base-apache.amAdmservNameTag]] ¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢[[base-sauce-basic.techSupportURL]] ¤Ë¤¢¤ë¥Æ¥¯¥Ë¥«¥ë¥µ¥İ¡¼¥È¥µ¡¼¥Ó¥¹¤ò¤´ÍøÍÑ¤¯¤À¤µ¤¤¡£"
+msgstr "[[base-apache.amAdmservNameTag]] ã¯å‹•ä½œã—ã¦ãŠã‚‰ãšã€èµ·å‹•ã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚[[base-alpine.serverconfig]] ã®ã€Œ[[base-power.power]]ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ã‚‹ã€Œ[[base-power.reboot]]ã€ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã€ã‚µãƒ¼ãƒã‚’å†èµ·å‹•ã—ã¦è¦‹ã¦ãã ã•ã„ã€‚ãã‚Œã§ã‚‚ [[base-apache.amAdmservNameTag]] ã«ã‚¢ã‚¯ã‚»ã‚¹ã§ããªã„å ´åˆã«ã¯ã€[[base-sauce-basic.techSupportURL]] ã«ã‚ã‚‹ãƒ†ã‚¯ãƒ‹ã‚«ãƒ«ã‚µãƒãƒ¼ãƒˆã‚µãƒ¼ãƒ“ã‚¹ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚"
 
 msgid "amAdmservStatusOK"
-msgstr "¥µ¡¼¥Ğ¥Ç¥¹¥¯¥È¥Ã¥×¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Ş¤¹¡£"
+msgstr "ã‚µãƒ¼ãƒãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã¯æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã¾ã™ã€‚"
 
 msgid "maxServersRAM"
-msgstr "¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÎºÇÂç¿ô¤Ï¡¢¤³¤Î¥µ¡¼¥Ğ¤ËÅëºÜ¤µ¤ì¤Æ¤¤¤ë RAM ¤ÎÍÆÎÌ¤ËÀ©Ìó¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®æœ€å¤§æ•°ã¯ã€ã“ã®ã‚µãƒ¼ãƒã«æ­è¼‰ã•ã‚Œã¦ã„ã‚‹ RAM ã®å®¹é‡ã«åˆ¶ç´„ã•ã‚Œã¾ã™ã€‚"
 
 msgid "minSpareField"
-msgstr "ºÇ¾®¥¹¥Ú¥¢¥µ¡¼¥Ğ¿ô"
+msgstr "æœ€å°ã‚¹ãƒšã‚¢ã‚µãƒ¼ãƒæ•°"
 
 msgid "minSpareField_help"
-msgstr "¤³¤Î¿ô»ú¤Ï¡¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤Îµ¯Æ°»ş¤ª¤è¤Ó¥¢¥¤¥É¥ë»ş¤Ë¼õ¤±¼è¤Ã¤¿¥¦¥§¥Ö¥ê¥¯¥¨¥¹¥È¤Ë±şÂĞ¤¹¤ë¤¿¤á¤Î¥¦¥§¥Ö¥µ¡¼¥Ğ¥×¥í¥»¥¹¤ÎºÇ¾®¿ô¤ò¼¨¤·¤Ş¤¹¡£[[base-apache.maxServersRAM]]"
+msgstr "ã“ã®æ•°å­—ã¯ã€ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®èµ·å‹•æ™‚ãŠã‚ˆã³ã‚¢ã‚¤ãƒ‰ãƒ«æ™‚ã«å—ã‘å–ã£ãŸã‚¦ã‚§ãƒ–ãƒªã‚¯ã‚¨ã‚¹ãƒˆã«å¿œå¯¾ã™ã‚‹ãŸã‚ã®ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒãƒ—ãƒ­ã‚»ã‚¹ã®æœ€å°æ•°ã‚’ç¤ºã—ã¾ã™ã€‚[[base-apache.maxServersRAM]]"
 
 msgid "minSpareField_empty"
-msgstr "¡ÖºÇ¾®¥¹¥Ú¥¢¥µ¡¼¥Ğ¿ô¡×Íó¤Ë¡¢¥¹¥Ú¥¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÎºÇ¾®¿ô¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œæœ€å°ã‚¹ãƒšã‚¢ã‚µãƒ¼ãƒæ•°ã€æ¬„ã«ã€ã‚¹ãƒšã‚¢ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®æœ€å°æ•°ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "minSpareField_invalid"
-msgstr "¡ÖºÇ¾®¥¹¥Ú¥¢¥µ¡¼¥Ğ¿ô¡×Íó¤Ë»ØÄê¤µ¤ì¤¿¥¹¥Ú¥¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÎºÇ¾®¿ô¤¬ÉÔÀµ¤Ç¤¹¡£É½¼¨¤µ¤ì¤Æ¤¤¤ëÈÏ°ÏÆâ¤ÎÀ°¿ô¤Ç»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œæœ€å°ã‚¹ãƒšã‚¢ã‚µãƒ¼ãƒæ•°ã€æ¬„ã«æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒšã‚¢ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®æœ€å°æ•°ãŒä¸æ­£ã§ã™ã€‚è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ç¯„å›²å†…ã®æ•´æ•°ã§æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "maxSpareField"
-msgstr "ºÇÂç¥¹¥Ú¥¢¥µ¡¼¥Ğ¿ô"
+msgstr "æœ€å¤§ã‚¹ãƒšã‚¢ã‚µãƒ¼ãƒæ•°"
 
 msgid "maxSpareField_help"
-msgstr "¥ê¥¯¥¨¥¹¥È¿ô¤¬Â¿¤¯¤Ê¤ë¤È¡¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÏÉ¬Í×¤Ë±ş¤¸¤ÆÄÉ²ÃÅª¤Ê¥×¥í¥»¥¹¤òµ¯Æ°¤·¤Ş¤¹¡£¤³¤Î¿ô»ú¤Ï¡¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÎºÇÂç¿ô¤ò¼¨¤·¤Ş¤¹¡£¥È¥é¥Õ¥£¥Ã¥¯¤ÎÂ¿¤¤¥µ¥¤¥È¤Ç¤Ï¡¢¤³¤Î¿ô»ú¤òÂç¤­¤á¤ËÀßÄê¤¹¤ë¤³¤È¤Ë¤è¤ê¥Ñ¥Õ¥©¡¼¥Ş¥ó¥¹¤ò¸ş¾å¤Ç¤­¤Ş¤¹¡£[[base-apache.maxServersRAM]]"
+msgstr "ãƒªã‚¯ã‚¨ã‚¹ãƒˆæ•°ãŒå¤šããªã‚‹ã¨ã€ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã¯å¿…è¦ã«å¿œã˜ã¦è¿½åŠ çš„ãªãƒ—ãƒ­ã‚»ã‚¹ã‚’èµ·å‹•ã—ã¾ã™ã€‚ã“ã®æ•°å­—ã¯ã€ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®æœ€å¤§æ•°ã‚’ç¤ºã—ã¾ã™ã€‚ãƒˆãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®å¤šã„ã‚µã‚¤ãƒˆã§ã¯ã€ã“ã®æ•°å­—ã‚’å¤§ãã‚ã«è¨­å®šã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã‚’å‘ä¸Šã§ãã¾ã™ã€‚[[base-apache.maxServersRAM]]"
 
 msgid "maxSpareField_empty"
-msgstr "¡ÖºÇÂç¥¹¥Ú¥¢¥µ¡¼¥Ğ¿ô¡×Íó¤Ë¥¹¥Ú¥¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÎºÇÂç¿ô¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œæœ€å¤§ã‚¹ãƒšã‚¢ã‚µãƒ¼ãƒæ•°ã€æ¬„ã«ã‚¹ãƒšã‚¢ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®æœ€å¤§æ•°ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "maxSpareField_invalid"
-msgstr "¡ÖºÇÂç¥¹¥Ú¥¢¥µ¡¼¥Ğ¿ô¡×Íó¤Ë»ØÄê¤µ¤ì¤¿¥¹¥Ú¥¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤ÎºÇÂç¿ô¤¬ÉÔÀµ¤Ç¤¹¡£É½¼¨¤µ¤ì¤Æ¤¤¤ëÈÏ°ÏÆâ¤ÎÀ°¿ô¤Ç»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œæœ€å¤§ã‚¹ãƒšã‚¢ã‚µãƒ¼ãƒæ•°ã€æ¬„ã«æŒ‡å®šã•ã‚ŒãŸã‚¹ãƒšã‚¢ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®æœ€å¤§æ•°ãŒä¸æ­£ã§ã™ã€‚è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ç¯„å›²å†…ã®æ•´æ•°ã§æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "maxClientsField"
-msgstr "ºÇÂçÆ±»şÀÜÂ³¿ô"
+msgstr "æœ€å¤§åŒæ™‚æ¥ç¶šæ•°"
 
 msgid "maxClientsField_help"
-msgstr "¤³¤Î¿ô»ú¤Ï¡¢¥µ¡¼¥Ğ¤¬Æ±»ş¤Ë±şÂĞ¤¹¤ë¥¯¥é¥¤¥¢¥ó¥È¤«¤é¤Î¥ê¥¯¥¨¥¹¥È¤ÎºÇÂç¿ô¤ò¼¨¤·¤Ş¤¹¡£³Æ¥¯¥é¥¤¥¢¥ó¥ÈÀÜÂ³¤Ë¤Ï¤½¤ì¤¾¤ìÀìÍÑ¤Î¥¦¥§¥Ö¥µ¡¼¥Ğ¥×¥í¥»¥¹¤¬É¬Í×¤Ç¤¹¡£¤³¤ÎÃÍ¤òÄ¶¤¨¤ë¿ô¤Î¥ê¥¯¥¨¥¹¥È¤ò¼õ¤±¼è¤ë¤È¡¢¥¯¥é¥¤¥¢¥ó¥ÈÂ¦¤Ë¡Ö¸½ºß¥µ¡¼¥Ğ¤Ï¥Ó¥¸¡¼¾õÂÖ¤Ê¤¿¤á¡¢¤·¤Ğ¤é¤¯¤·¤Æ¤«¤éºÆÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡×¤È¤¤¤¦ÆâÍÆ¤Î¥á¥Ã¥»¡¼¥¸¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£¤³¤³¤ËÅ¬Àµ¤ÊÃÍ¤òÀßÄê¤¹¤ë¤³¤È¤Ë¤è¤ê¡¢¥µ¡¼¥Ğ¤Î²áÉé²Ù¤òÈò¤±¤ë¤³¤È¤¬¤Ç¤­¤Ş¤¹¡£[[base-apache.maxServersRAM]]"
+msgstr "ã“ã®æ•°å­—ã¯ã€ã‚µãƒ¼ãƒãŒåŒæ™‚ã«å¿œå¯¾ã™ã‚‹ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã‹ã‚‰ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®æœ€å¤§æ•°ã‚’ç¤ºã—ã¾ã™ã€‚å„ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆæ¥ç¶šã«ã¯ãã‚Œãã‚Œå°‚ç”¨ã®ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒãƒ—ãƒ­ã‚»ã‚¹ãŒå¿…è¦ã§ã™ã€‚ã“ã®å€¤ã‚’è¶…ãˆã‚‹æ•°ã®ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ã‘å–ã‚‹ã¨ã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆå´ã«ã€Œç¾åœ¨ã‚µãƒ¼ãƒã¯ãƒ“ã‚¸ãƒ¼çŠ¶æ…‹ãªãŸã‚ã€ã—ã°ã‚‰ãã—ã¦ã‹ã‚‰å†åº¦ãŠè©¦ã—ãã ã•ã„ã€ã¨ã„ã†å†…å®¹ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚ã“ã“ã«é©æ­£ãªå€¤ã‚’è¨­å®šã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šã€ã‚µãƒ¼ãƒã®éè² è·ã‚’é¿ã‘ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚[[base-apache.maxServersRAM]]"
 
 msgid "maxClientsField_empty"
-msgstr "¡ÖºÇÂçÆ±»şÀÜÂ³¿ô¡×Íó¤Ë¡¢µöÍÆ¤¹¤ëÆ±»ş¥¦¥§¥Ö¥µ¡¼¥ĞÀÜÂ³¤ÎºÇÂç¿ô¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œæœ€å¤§åŒæ™‚æ¥ç¶šæ•°ã€æ¬„ã«ã€è¨±å®¹ã™ã‚‹åŒæ™‚ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒæ¥ç¶šã®æœ€å¤§æ•°ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "maxClientsField_invalid"
-msgstr "¡ÖºÇÂçÆ±»şÀÜÂ³¿ô¡×Íó¤Ë»ØÄê¤µ¤ì¤¿Æ±»ş¥¦¥§¥Ö¥µ¡¼¥ĞÀÜÂ³¤ÎºÇÂç¿ô¤¬ÉÔÀµ¤Ç¤¹¡£É½¼¨¤µ¤ì¤Æ¤¤¤ëÈÏ°ÏÆâ¤ÎÀ°¿ô¤Ç»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œæœ€å¤§åŒæ™‚æ¥ç¶šæ•°ã€æ¬„ã«æŒ‡å®šã•ã‚ŒãŸåŒæ™‚ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒæ¥ç¶šã®æœ€å¤§æ•°ãŒä¸æ­£ã§ã™ã€‚è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ç¯„å›²å†…ã®æ•´æ•°ã§æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "hostnameLookupsField"
-msgstr "¥Û¥¹¥È¥Í¡¼¥àÌä¤¤¹ç¤ï¤»"
+msgstr "ãƒ›ã‚¹ãƒˆãƒãƒ¼ãƒ å•ã„åˆã‚ã›"
 
 msgid "hostnameLookupsField_help"
-msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤Î¥Û¥¹¥È¥Í¡¼¥àÌä¤¤¹ç¤ï¤»¤¬Í­¸ú¤Ë¤Ê¤ê¡¢¥¯¥é¥¤¥¢¥ó¥È¤ÎÀÜÂ³»ş¤Ë¥µ¡¼¥Ğ¤Ï¥¯¥é¥¤¥¢¥ó¥È IP ¤ò DNS ¤ØÌä¤¤¹ç¤ï¤»¡¢¼õ¤±¼è¤Ã¤¿¥Û¥¹¥ÈÌ¾¤ò¥í¥°¥Õ¥¡¥¤¥ë¤Ëµ­Ï¿¤·¤Ş¤¹¡£¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤·¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢¥¯¥é¥¤¥¢¥ó¥È¤Î IP ¥¢¥É¥ì¥¹¤Î¤ß¤¬¥¦¥§¥Ö¥µ¡¼¥ĞÍøÍÑ¥É¥á¥¤¥óÊó¹ğ½ñ¤Ë½ñ¤­¹ş¤Ş¤ì¤Ş¤¹¡£¤´Ãí°Õ¡§ ¤³¤Î¥ª¥×¥·¥ç¥ó¤òÍ­¸ú¤Ë¤¹¤ë¤È¡¢¥¦¥§¥Ö¥µ¡¼¥Ğ¤Î¥Ñ¥Õ¥©¡¼¥Ş¥ó¥¹¤¬Äã²¼¤·¤Ş¤¹¡£"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®ãƒ›ã‚¹ãƒˆãƒãƒ¼ãƒ å•ã„åˆã‚ã›ãŒæœ‰åŠ¹ã«ãªã‚Šã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®æ¥ç¶šæ™‚ã«ã‚µãƒ¼ãƒã¯ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆ IP ã‚’ DNS ã¸å•ã„åˆã‚ã›ã€å—ã‘å–ã£ãŸãƒ›ã‚¹ãƒˆåã‚’ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«è¨˜éŒ²ã—ã¾ã™ã€‚ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã—ãªã„å ´åˆã«ã¯ã€ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã® IP ã‚¢ãƒ‰ãƒ¬ã‚¹ã®ã¿ãŒã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒåˆ©ç”¨ãƒ‰ãƒ¡ã‚¤ãƒ³å ±å‘Šæ›¸ã«æ›¸ãè¾¼ã¾ã‚Œã¾ã™ã€‚ã”æ³¨æ„ï¼š ã“ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã¨ã€ã‚¦ã‚§ãƒ–ã‚µãƒ¼ãƒã®ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ãŒä½ä¸‹ã—ã¾ã™ã€‚"
 
 msgid "MinMaxError"
-msgstr "¡Ö[[base-apache.maxSpareField]]¡×¤Ë¤Ï¡¢¡Ö[[base-apache.minSpareField]]¡×¤ÈÆ±¤¸¤«¤Ş¤¿¤Ï¤½¤ì°Ê¾å¤ÎÃÍ¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã€Œ[[base-apache.maxSpareField]]ã€ã«ã¯ã€ã€Œ[[base-apache.minSpareField]]ã€ã¨åŒã˜ã‹ã¾ãŸã¯ãã‚Œä»¥ä¸Šã®å€¤ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 msgid "ClientMaxError"
-msgstr "¡Ö[[base-apache.maxClientsField]]¡×¤Ë¤Ï¡¢¡Ö[[base-apache.maxSpareField]]¡×¤ÈÆ±¤¸¤«¤Ş¤¿¤Ï¤½¤ì°Ê¾å¤ÎÃÍ¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-msgid ""
-msgstr ""
+msgstr "ã€Œ[[base-apache.maxClientsField]]ã€ã«ã¯ã€ã€Œ[[base-apache.maxSpareField]]ã€ã¨åŒã˜ã‹ã¾ãŸã¯ãã‚Œä»¥ä¸Šã®å€¤ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
 
 # strings for UI extenstions
 msgid "webScripting"
-msgstr "¥¦¥§¥Ö"
+msgstr "ã‚¦ã‚§ãƒ–"
 
 msgid "webScriptingTitle"
-msgstr "¥¦¥§¥Ö¥¹¥¯¥ê¥×¥ÈÀßÄê - [[VAR.fqdn]]"
+msgstr "ã‚¦ã‚§ãƒ–ã‚¹ã‚¯ãƒªãƒ—ãƒˆè¨­å®š - [[VAR.fqdn]]"
 
 msgid "webScriptingDescription"
-msgstr "»ÈÍÑ¤¹¤ë¥¹¥¯¥ê¥×¥È¸À¸ì¤Ê¤É¤Î¥¦¥§¥Ö¥ª¥×¥·¥ç¥ó¤òÀßÄê¤Ç¤­¤Ş¤¹¡£"
+msgstr "ä½¿ç”¨ã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆè¨€èªãªã©ã®ã‚¦ã‚§ãƒ–ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¨­å®šã§ãã¾ã™ã€‚"
 
 msgid "cgi"
-msgstr "CGI (Common Gateway Interface) ¤òÍ­¸ú¤Ë¤¹¤ë"
+msgstr "CGI (Common Gateway Interface) ã‚’æœ‰åŠ¹ã«ã™ã‚‹"
 
 msgid "cgi_help"
-msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢CGI ¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Î»ÈÍÑ¤¬µö²Ä¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€CGI ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ä½¿ç”¨ãŒè¨±å¯ã•ã‚Œã¾ã™ã€‚"
+
+msgid "PHP_enabled"
+msgstr "PHP ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æœ‰åŠ¹ã«ã™ã‚‹"
+
+msgid "PHP_enabled_help"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€PHP ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ä½¿ç”¨ãŒè¨±å¯ã•ã‚Œã¾ã™ã€‚"
 
 msgid "php"
-msgstr "PHP ¥¹¥¯¥ê¥×¥È¤òÍ­¸ú¤Ë¤¹¤ë"
+msgstr "PHP"
 
 msgid "php_help"
-msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢PHP ¥¹¥¯¥ê¥×¥È¤Î»ÈÍÑ¤¬µö²Ä¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã®ã‚µã‚¤ãƒˆã§ã®PHPã®ä½¿ç”¨ã‚’è¨±å¯ã™ã‚‹ã‹ã©ã†ã‹ã‚’è¨­å®šã§ãã¾ã™ã€‚"
+
+msgid "enableSuPHP"
+msgstr "suPHP ã‚’æœ‰åŠ¹ã«ã™ã‚‹"
+
+msgid "enableSuPHP_help"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€suPHP ã‚’æœ‰åŠ¹ã«ã—ã¾ã™ã€‚"
 
 msgid "ssi"
-msgstr "SSI (Server-Side Includes) ¤òÍ­¸ú¤Ë¤¹¤ë"
+msgstr "SSI (Server-Side Includes) ã‚’æœ‰åŠ¹ã«ã™ã‚‹"
 
 msgid "ssi_help"
-msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢SSI ¤Î»ÈÍÑ¤¬µö²Ä¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€SSI ã®ä½¿ç”¨ãŒè¨±å¯ã•ã‚Œã¾ã™ã€‚"
 
 msgid "webScripting_help"
 msgstr "[[base-apache.webScriptingDescription]]"
 
 # i18n names for vsite services namespaces provided by this module
-
 msgid "phpI18nName"
-msgstr "PHP ¥¹¥¯¥ê¥×¥È"
+msgstr "PHP ã‚¹ã‚¯ãƒªãƒ—ãƒˆ"
 
 msgid "cgiI18nName"
 msgstr "CGI (Common Gateway Interface)"
@@ -192,120 +205,28 @@ msgid "ssiI18nName"
 msgstr "SSI (Server-Side Includes)"
 
 msgid "userwebs"
-msgstr "Enable user owned webs"
-
+msgstr "ãƒ¦ãƒ¼ã‚¶ã®ã‚¦ã‚§ãƒ–å…¬é–‹ã®æœ‰åŠ¹" 
+ 
 msgid "userwebs_help"
-msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
+msgstr "ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€http://www.example.com/~username/ ã§ãƒ¦ãƒ¼ã‚¶ã‚¦ã‚§ãƒ–ãƒšãƒ¼ã‚¸ã‚’å…¬é–‹ã™ã‚‹ã“ã¨ãŒã§ãã¾ã™ã€‚"
 
-msgid "ftpnonadminI18nName"
-msgstr "FTP for non-Site admins enabled"
+msgid "cap_serverHttpd"
+msgstr "ã‚¦ã‚§ãƒ–ã®è¨­å®š"
 
-msgid "userwebsI18nName"
-msgstr "User owned webs enabled"
+msgid "urlAdminAccess"
+msgstr "/admin ã§ç®¡ç†ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹"
 
+msgid "urlAdminAccess_help"
+msgstr "http://ï¼œä»®æƒ³ã‚µã‚¤ãƒˆã®URLï¼/admin ã§ç®¡ç†ç”»é¢ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"
 
-#
-## BlueOnyx.conf editing additions:
-#
+msgid "urlSiteadminAccess"
+msgstr "/siteadmin ã§ç®¡ç†ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹"
 
-msgid "Options_AllField"
-msgstr "All"
+msgid "urlSiteadminAccess_help"
+msgstr "http://ï¼œä»®æƒ³ã‚µã‚¤ãƒˆã®URLï¼/siteadmin ã§ç®¡ç†ç”»é¢ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"
 
-msgid "Options_AllField_help"
-msgstr "All options except for MultiViews. (Default: Off)"
+msgid "urlPersonalAccess"
+msgstr "/personal ã§ç®¡ç†ç”»é¢ã‚’è¡¨ç¤ºã™ã‚‹"
 
-msgid "Options_FollowSymLinksField"
-msgstr "FollowSymLinks"
-
-msgid "Options_FollowSymLinksField_help"
-msgstr "The server will follow symbolic links. (Default: On)"
-
-msgid "Options_IncludesField"
-msgstr "Includes"
-
-msgid "Options_IncludesField_help"
-msgstr "Server-side includes are permitted. (Default: On)"
-
-msgid "Options_IndexesField"
-msgstr "Indexes"
-
-msgid "Options_IndexesField_help"
-msgstr "If a URL which maps to a directory is requested, and the there is no DirectoryIndex (e.g., index.html) in that directory, then the server will return a formatted listing of the directory. (Default: On)"
-
-msgid "Options_MultiViewsField"
-msgstr "MultiViews"
-
-msgid "Options_MultiViewsField_help"
-msgstr "Content negotiated MultiViews are allowed. Used for displaying pages in different languages based on browser locales. (Default: On)"
-
-msgid "Options_SymLinksIfOwnerMatchField"
-msgstr "SymLinksIfOwnerMatch"
-
-msgid "Options_SymLinksIfOwnerMatchField_help"
-msgstr "The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link. (Default: Off)"
-
-msgid "AllowOverride_AllField"
-msgstr "All"
-
-msgid "AllowOverride_AllField_help"
-msgstr "When the server finds an .htaccess file it needs to know which directives declared in that file can override earlier access information. Ticking this box will allow to override ALL Apache settings (Dangerous! Default: Off)"
-
-msgid "AllowOverride_AuthConfigField"
-msgstr "AuthConfig"
-
-msgid "AllowOverride_AuthConfigField_help"
-msgstr "Allow use of the authorization directives (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require, etc.). (Default: On)"
-
-msgid "AllowOverride_FileInfoField"
-msgstr "FileInfo"
-
-msgid "AllowOverride_FileInfoField_help"
-msgstr "Allow use of the directives controlling document types (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.). (Default: Off)"
-
-msgid "AllowOverride_IndexesField"
-msgstr "Indexes"
-
-msgid "AllowOverride_IndexesField_help"
-msgstr "Allow use of the directives controlling directory indexing (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.). (Default: On)"
-
-msgid "AllowOverride_LimitField"
-msgstr "Limit"
-
-msgid "AllowOverride_LimitField_help"
-msgstr "Allow use of the directives controlling host access (Allow, Deny  and Order). (Default: On)"
-
-msgid "AllowOverride_OptionsField"
-msgstr "Options"
-
-msgid "AllowOverride_OptionsField_help"
-msgstr "Allow use of the directives controlling specific directory features (Options and XBitHack). (Default: Off)"
-
-msgid "DIVIDER_TOP"
-msgstr "General Apache configuration:"
-
-msgid "DIVIDER_EXPLANATION"
-msgstr "Apache features for virtual site directories:"
-
-msgid "BlueOnyx_Info_Text"
-msgstr "A section in /etc/httpd/conf.d/blueonyx.conf defines which 'Options' and 'AllowOverride' features are allowed for the directory (/home/.sites/) in which all virtual sites reside. This restricts usage of .htaccess files and other things. These can be changed below."
-
-msgid "DIVIDER_OPTIONS"
-msgstr "Options:"
-
-msgid "DIVIDER_ALLOWOVERRIDE"
-msgstr "AllowOverride:"
-
-
-# suPHP:
-msgid "PHP_enabled"
-msgstr "Enable PHP Scripting"
-
-msgid "PHP_enabled_help"
-msgstr "Enable the use of PHP scripts."
-
-msgid "enableSuPHP"   
-msgstr "Enable suPHP"
-
-msgid "enableSuPHP_help"
-msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu!"
-
+msgid "urlPersonalAccess_help"
+msgstr "http://ï¼œä»®æƒ³ã‚µã‚¤ãƒˆã®URLï¼/personal ã§ç®¡ç†ç”»é¢ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"

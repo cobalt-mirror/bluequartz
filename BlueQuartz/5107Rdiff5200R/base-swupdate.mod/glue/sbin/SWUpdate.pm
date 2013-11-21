@@ -19,17 +19,10 @@ use URI::Escape;
 use SendEmail;
 use Sauce::Config;
 use CCE;
-use Sort::Versions;
-
-$DEBUG = "0";
-if ($DEBUG)
-{
-        use Sys::Syslog qw( :DEFAULT setlogsock);
-}
 
 # constants
-my $appName = 'BlueLinQ/1.0-5106R';
-my $wgetBin = "/usr/bin/wget -U $appName";
+my $appName = 'BlueLinQ/1.0';
+my $wgetBin = "/usr/bin/wget -A $appName";
 my $tar_cmd = '/bin/tar';
 
 my $pkgprefix = '.swupdate';
@@ -570,17 +563,6 @@ sub read_pkgheader
 	    $settings{options} = $1;
 	    next;
 	}
-
-	if (/^Autoupdate:\s*(.+)\n/i) {
-	    $settings{autoupdate} = $1;
-	    next;
-	}
-
-	if (/^Autoinstall:\s*(.+)\n/i) {
-	    $settings{autoinstall} = $1;
-	    next;
-	}
-
 	
 	if (/^Size:\s*(\d+)/i) {
 	    $settings{size} = $1;
@@ -663,21 +645,6 @@ sub read_pkgheader
     $settings{obsoleteList} = CCE->array_to_scalar(@obsolete) if @obsolete;
     $settings{RPMList} = CCE->array_to_scalar(@rpms) if @rpms;
     $settings{SRPMList} = CCE->array_to_scalar(@srpms) if @srpms;
-
-    if ($settings{autoupdate} =~ /Yes/i) { 
-	$settings{autoupdate} = "1"; 
-    } 
-    else { 
-	$settings{autoupdate} = "0"; 
-    }
-
-    if ($settings{autoinstall} =~ /Yes/i) { 
-	$settings{autoinstall} = "1"; 
-    } 
-    else { 
-	$settings{autoinstall} = "0"; 
-    }
-
     return %settings;
 }
 
@@ -818,23 +785,19 @@ sub swupdate_checkdepend
     # first, check against the product field if it's there.
     # we don't show up if the product field doesn't match. 
     if ($pkg->{product}) {
-        my @product_array = $cce->scalar_to_array($pkg->{product});
-        my ($product) = get_product();
-        # note: we still accept perl regexes in the product field, but we block some wildcards to prevent
-        # older bluequartz packages from causing problems if users insist installing them.
-        foreach $i (@product_array) {
-            if ($i =~ /\.\./) { # Block mega wildcards, but still allow regexes
-              next;
-            }
-            next unless $product =~ /^$i$/; # Accept limited wildcards only
-            $ok = 1;
-            last;
-        }
-
-        unless ($ok) {
-            $cce->bye('SUCCESS') unless $cceref;
-            return -3;
-        }
+	my @product_array = $cce->scalar_to_array($pkg->{product});
+	my ($product) = get_product();
+	# note: we accept perl regexes for the product field
+	foreach $i (@product_array) {
+	    next unless $product =~ /^$i$/;
+	    $ok = 1;
+	    last;
+	}
+	
+	unless ($ok) {
+	    $cce->bye('SUCCESS') unless $cceref;
+	    return -3;
+	}
     }
 
     my @oids = $cce->find('Package', {installState => 'Installed'});
@@ -1084,21 +1047,31 @@ sub compareVersion {
   my($firstVer, $secondVer) = @_;
   $firstVer = swupdate_fromccevers($firstVer);
   $secondVer = swupdate_fromccevers($secondVer);
+  
+  my @firstVerArray = split(/\./, $firstVer);
+  my @secondVerArray = split(/\./, $secondVer);
+  my $index = 0;
+  my ($size, $pad);
 
-    &debug_msg("$version first: $firstVer - version second: $secondVer \n");
-
-    if (versioncmp($firstVer, $secondVer) == -1) {
-	&debug_msg("Return -1 \n");
-	return -1;
+  # get largest size of array
+  if ($#firstVerArray > $#secondVerArray) {
+    $size = $#firstVerArray;
+  } else {
+    $size = $#secondVerArray;
+  }
+  
+  while ($index <= $size) {
+    # pad with 0's to catch compares with 2.0 & 2.0.0 (same) or 2.0 & 2.0.1 (2nd greater)
+    if ($#firstVerArray < $index) {
+      $firstVerArray[$index] = "0";
+    } elsif ($#secondVerArray < $index) {
+      $secondVerArray[$index] = "0";
     }
-    elsif (versioncmp($firstVer, $secondVer) == 1) {
-	&debug_msg("Return 1 \n");
-	return 1;
-    }
-    else {
-	&debug_msg("Return 0 \n");
-	return 0;
-    }
+    return 1 if ($firstVerArray[$index] > $secondVerArray[$index]);
+    return -1 if ($firstVerArray[$index] < $secondVerArray[$index]);
+    $index++;
+  }
+  return 0;
 }
   
 sub prepend_domain 
@@ -1108,18 +1081,6 @@ sub prepend_domain
     $string =~ s/\[\[([^\s\.]+)\]\]/\[\[${domain}\.$1\]\]/g;
     return $string;
 }
-
-sub debug_msg {
-    if ($DEBUG) {    
-        my $msg = shift;
-        $user = $ENV{'USER'};
-        setlogsock('unix');
-        openlog($0,'','user');
-        syslog('info', "$ARGV[0]: $msg");
-        closelog;
-    }           
-}
-
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/email/
-# $Id: mapmaker.pl 489 2005-08-09 14:00:26Z shibuya $
+# $Id: mapmaker.pl 1523 2010-09-06 02:43:58Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # Author: Harris Vaegan-Lloyd
@@ -54,11 +54,18 @@ sub makemap
 	# Yes, I know this could have been done in a shorter manner, but handling
 	# shell return values in perl always makes me do a double take so I
 	# took the clearest path, ratehr than the shortest.
-
-	if( system("/usr/sbin/makemap hash $map < $map >>/dev/null 2>&1") == 0 ) {
-		return 1;
+	if ($map != $Email::VIRTUSER) {
+		if( system("/usr/sbin/postalias hash:$map >/dev/null 2>&1") == 0 ) {
+			return 1;
+		} else {
+			return 0;
+		}
 	} else {
-		return 0;
+		if( system("/usr/sbin/postmap hash:$map >/dev/null 2>&1") == 0 ) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
 

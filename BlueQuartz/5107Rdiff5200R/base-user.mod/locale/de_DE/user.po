@@ -9,13 +9,13 @@ msgstr ""
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Translate Toolkit 1.0.1\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 msgid "="
 msgstr "ist"
@@ -402,26 +402,11 @@ msgid "users_help"
 msgstr "Hier können Benutzer verwaltet werden."
 
 msgid "passwordField_rule"
-msgstr "Ein Passwort muss mindestens 8 bis maximal 24 Zeichen lang sein. Zusätzlich sollte das Passwort mindestens 5 Buchstaben mit einer Mischung aus Groß- und Kleinschreibung und diverse Zahlen und Sonderzeichen beinhalten. Keinesfalls sollten Sie ein Passwort verwenden, welches auf Wörtern basiert, die in einem Wörterbuch zu finden sind. Groß- und Kleinschreibung ist bei Passwörtern von Bedeutung."
+msgstr "Ein Passwort muss mindestens 6 bis maximal 24 Zeichen lang sein. Zusätzlich sollte das Passwort mindestens 5 Buchstaben mit einer Mischung aus Groß- und Kleinschreibung und diverse Zahlen und Sonderzeichen beinhalten. Keinesfalls sollten Sie ein Passwort verwenden, welches auf Wörtern basiert, die in einem Wörterbuch zu finden sind. Groß- und Kleinschreibung ist bei Passwörtern von Bedeutung."
 
 msgid "error-password-equals-username"
 msgstr "Ungültiges Passwort! Das Passwort darf NICHT identisch mit dem Benutzernamen des Kontos sein!"
 
 msgid "error-password-invalid"
 msgstr "Ungültiges Passwort! "
-
-
-# Vacation Message start/stop additions:
-
-msgid "autoRespondStartDate"
-msgstr "Start date:"
-
-msgid "autoRespondStartDate_help"
-msgstr "Date and time when the auto responder (if enabled) starts to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
-
-msgid "autoRespondStopDate"
-msgstr "End date:"
-
-msgid "autoRespondStopDate_help"
-msgstr "Date and time when the auto responder (if enabled) stops to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
 

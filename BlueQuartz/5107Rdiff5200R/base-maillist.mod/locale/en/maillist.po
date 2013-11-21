@@ -258,12 +258,6 @@ msgstr "Only Subscribers Can Post Messages"
 msgid "moderated"
 msgstr "Moderator Confirms All Messages"
 
-msgid "admin"
-msgstr "Only Administrators Can Post Messages"
-
-msgid "domain"
-msgstr "Only Users From Local Domains Can Post Messages"
-
 msgid "subscriptionPolicy"
 msgstr "Subscription Policy"
 
@@ -426,4 +420,16 @@ msgstr "Archiving has been enabled"
 
 msgid "WelcomeMessageBody"
 msgstr "This email has been sent to you to notify you that archiving of the mailing list '[[VAR.name]]' has been enabled for users with accounts on this server.  These users will be able to access this archive from within WebMail.  There is no need to reply to this message."
+
+msgid "enableSeq"
+msgstr "Enable Sequencer"
+
+msgid "enableSeq_help"
+msgstr "Turn the Sequencer on or off."
+
+msgid "subjectPrefix"
+msgstr "Subject prefix"
+
+msgid "subjectPrefix_help"
+msgstr "To add the strings on mail subject field. Replace $SEQNUM to number, if you are enable sequencer.(ex. [$LIST:$SEQNUM])"
 

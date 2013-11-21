@@ -49,7 +49,6 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 /etc/init.d/mdchk
 /etc/init.d/fix_grub
-/sbin/lsraid
 [AUTOFILL]
 
 <end glue>
@@ -128,73 +127,15 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.2.0-87BQ11
+- new Capabilities for admin.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BX26
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Mon Jan 18 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1.2-87BQ10
+- use mdadm for CentOS5.
 
-* Tue Aug 30 2011 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BX25
-- Another fix for constructor/checkAM.pl to disable RAID on non-RAID systems.
-
-* Tue Aug 23 2011 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BX24
-- Modified constructor/checkAM.pl with a working provision to disable RAID monitoring on non-RAID systems.
-  The funny thing here is that if RAID monitoring was enabled on a non-RAID system, then Dovecot failures
-  would result in an email with three empty status lines.
-
-* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BX23
-- PHP-5.3 related fixes in ui/web/drives.inc
-
-* Sat Jun 05 2011 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BX22
-- Copied 'en' locales to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BX21
-- Version number bump
-- raid-bins: Removed noarch architecture tag from specfile
-
-* Fri Jun 19 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ20
-- Updated ui/web/raid.inc as it was using the wrong call for the System Object RAID
-- Updated ui/web/raid.inc with our supported RAID levels beyond the stock RAID0 / RAID1
-
-* Wed Mar 18 2009 Rickard Osser <rickard.osser@bluapp.com> 0.1.2-87BQ19
-- Changed "<" in glue/etc/init.d/mdchk to use -lt instead as it throws an error when run.
-
-* Wed Mar 18 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ18
-- Switched glue/sbin/lsraid from compiled binary to a shell script supplied by Rickard Osser.
-- Modified the /sbin/lsraid line in glue/etc/init.d/mdchk to use the new script to re-create a missing /etc/raidtab
-
-* Thu Mar 12 2009 Rickard Osser <rickard.osser@bluapp.com> 0.1.2-87BQ17
-- Fixed typo in constructor
-
-* Thu Mar 12 2009 Rickard Osser <rickard.osser@bluapp.com> 0.1.2-87BQ16
-- Added support for reporting correct raid-level in the GUI
-- Changed the raid recognition in constructor addRAIDpkg.pl to not add the package
-  but to only report the correct raid level. This also makes the ActiveMonitor show
-  correct raid-level.
-- Added support for dynamic raid-levels to am_bin
-
-* Wed Feb 25 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ15
-- Updated glue/etc/init.d/mdchk to fix typo.
-
-* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ14
-- RAID rebuilds were not working, as we are no longer using raidtools, but mdadm.
-- See ticket http://devel.blueonyx.it/trac/ticket/30
-- As a work around added glue/sbin/lsraid from raidtools RPM to be able to rebuild /etc/raidtab
-- Modified glue/etc/init.d/mdchk to rebuild failed RAID arrays using mdadm
-
-* Tue Jan 06 2009 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ13
-- Added requirement for raid-bins to Makefile, as it's needed for active monitor.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ12
-- Rebuilt for BlueOnyx.
-
-* Tue Sep 16 2008 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ11
-- Added /etc/init.d/fix_grub - contributed by Rickard Osser.
-- Extended fix_grub with more checks for presence of Grub and RAID in general.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ10
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 0.1.2-87BQ9
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1.2-87BQ9
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1.2-87BQ8
 - Fixed duplicate include issue.

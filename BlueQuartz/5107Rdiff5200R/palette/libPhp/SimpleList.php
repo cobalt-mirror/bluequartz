@@ -1,5 +1,5 @@
 <?php
-// $Id: SimpleList.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: SimpleList.php 995 2007-05-05 07:44:27Z shibuya $
 // 
 // A simpler API for quickly building list tables.
 

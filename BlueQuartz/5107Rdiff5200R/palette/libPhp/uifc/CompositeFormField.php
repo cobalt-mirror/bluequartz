@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: CompositeFormField.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: CompositeFormField.php 995 2007-05-05 07:44:27Z shibuya $
 
 // description:
 // This class is a container of FormField objects.
@@ -89,8 +89,8 @@ class CompositeFormField extends FormField {
     $formFields = $this->getFormFields();
     for($i = 0; $i < count($formFields); $i++) {
       if($i > 0)
-	$result .= "<TD><FONT STYLE=\"font-size:12px\">$delimiter</FONT></TD>";
-      $result .= "<TD><FONT STYLE=\"font-size:12px\">".$formFields[$i]->toHtml($style)."</FONT></TD>";
+	$result .= "<TD>$delimiter</TD>";
+      $result .= "<TD>".$formFields[$i]->toHtml($style)."</TD>";
     }
 
     $result .= "</TR></TABLE>";

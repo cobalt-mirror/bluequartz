@@ -9,15 +9,15 @@ include_once('ServerScriptHelper.php');
 include_once('AutoFeatures.php');
 include_once('Capabilities.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 $factory =& $helper->getHtmlComponentFactory('base-vsite', 
                 '/base/vsite/vsiteModSave.php');
 $cce =& $helper->getCceClient();
 
 // determine current user's access rights to view or edit information
-// here.  Only adminUser can modify things on this page.  Site admins
+// here.  Only manageSite can modify things on this page.  Site admins
 // can view it for informational purposes.
-if ($helper->getAllowed('adminUser'))
+if ($helper->getAllowed('manageSite'))
 {   
     $is_site_admin = false;
     $access = 'rw';
@@ -54,7 +54,7 @@ $settings->processErrors($errors);
 // range of possible choices
 list($sysoid) = $cce->find("System");
 $net_opts = $cce->get($sysoid, "Network");
-if ($net_opts["pooling"] && $helper->getAllowed('adminUser') ) {
+if ($net_opts["pooling"] && $helper->getAllowed('manageSite') ) {
 	$range_strings = array();
 	$oids = $cce->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
 	foreach ($oids as $oid) {
@@ -93,9 +93,9 @@ $hostfield = $factory->getVerticalCompositeFormField(array(
 $domainfield = $factory->getVerticalCompositeFormField(array(
 			     $factory->getDomainName("domain", $vsite["domain"], $access),
 			     ));
-if ($helper->getAllowed('adminUser')) {
+if ($helper->getAllowed('manageSite')) {
   // only add these labels if the field is editable
-  // i.e. if user is an adminUser
+  // i.e. if user is an manageSite
   $hostfield->addFormField($factory->getLabel("hostName"));
   $domainfield->addFormField($factory->getLabel("domain"));
 }
@@ -108,17 +108,6 @@ $settings->addFormField(
         $pageId
         );
 
-// site prefix
-$vsite_prefix = $factory->getTextField("prefix", $vsite['prefix'], $access);
-$vsite_prefix->setOptional(true);
-$vsite_prefix->setWidth(5);
- 
-$settings->addFormField(
-        $vsite_prefix,
-        $factory->getLabel("prefix"),
-        $pageId
-        );
-
 
 // vsite disk info
 $disk = $cce->get($vsite['OID'], 'Disk');
@@ -126,13 +115,36 @@ $disk = $cce->get($vsite['OID'], 'Disk');
 $disk_dev = $cce->getObject('Disk', 
 	array('mountPoint' => $vsite['volume']), '');
 
+// dirty hack not to use /home partition
+if (count($disk_dev) == 0) {
+	$disk_dev = $cce->getObject('Disk',
+		array('mountPoint' => '/'), '');
+}
+
+
 if($disk_dev['total']) {
-	$disk_dev['total'] = sprintf("%.0f", ($disk_dev['total'] / 1024));
+	$partitionMax = sprintf("%.0f", ($disk_dev['total'] / 1024));
+}
+
+// set disk space for administrator
+list($user_oid) = $cce->find('User', array('name' => $vsite['createdUser']));
+$sites = $cce->get($user_oid, 'Sites');
+
+$user_sites = $cce->find('Vsite', array('createdUser' => $vsite['createdUser']));
+$user_quota = 0;
+foreach ($user_sites as $oid) {
+    $user_vsite = $cce->get($oid, 'Disk');
+    $user_quota += $user_vsite['quota'];
+}
+$user_quota -= $disk['quota'];
+
+if ($sites['quota'] > 0) {
+    $partitionMax = $sites['quota'] - $user_quota;
 }
 
 // site quota
 $site_quota = $factory->getInteger('quota', 
-	$disk['quota'], 1, $disk_dev['total'], $access);
+	$disk['quota'], 1, $partitionMax, $access);
 
 // don't show bounds if it is read-only
 if ($access == 'rw')
@@ -145,11 +157,51 @@ $settings->addFormField(
         );
 
 // max number of users site can have
+$user_maxusers = 0;
+foreach ($user_sites as $oid) {
+    $user_vsite = $cce->get($oid);
+    $user_maxusers += $user_vsite['maxusers'];
+}
+$user_maxusers -= $vsite['maxusers'];
+
+if ($sites['user'] > 0) {
+    $userMax = $sites['user'] - $user_maxusers;
+}
+#$userMax = $user_maxusers;
+if($vsite['createdUser'] != "admin") {
+    $userMaxField = $factory->getInteger("maxusers", $vsite["maxusers"], 1, $userMax, $access);
+} else {
+    $userMaxField = $factory->getInteger("maxusers", $vsite["maxusers"], 1, '', $access);
+}
+
+// don't show bounds if it is read-only
+if ($access == 'rw' && $vsite['createdUser'] != "admin")
+	$userMaxField->showBounds(1);
+
 $settings->addFormField(
-        $factory->getInteger("maxusers", $vsite["maxusers"], 1, '', $access),
+        $userMaxField,
         $factory->getLabel("maxUsers"),
         $pageId
         );
+
+// username Prefix
+list($sysoid) = $cce->find("System");
+$vsiteDefaults = $cce->get($sysoid, "VsiteDefaults");
+$access2 = $access;
+if($vsiteDefaults["userPrefixField"] == "server_admin") {
+    if($loginName != "admin") {
+        $access2 = "r";
+    }
+}
+$userPrefixEnabled = $factory->getOption("userPrefixEnabled", $vsite["userPrefixEnabled"]);
+$userPrefixEnabled->addFormField (
+        $factory->getUserName("userPrefixField", $vsite["userPrefixField"], $access2),
+        $factory->getLabel("userPrefixField")
+);
+
+$userPrefix = $factory->getMultiChoice("userPrefix", array(), array(), $access2);   
+$userPrefix->addOption($userPrefixEnabled);
+$settings->addFormField($userPrefix, $factory->getLabel("userPrefixField"), $pageId);  
 
 // auto dns option
 $settings->addFormField(
@@ -160,7 +212,7 @@ $settings->addFormField(
 
 // preview site option
 $settings->addFormField(
-        $factory->getBoolean("site_preview", $vsite["site_preview"]),
+        $factory->getBoolean("site_preview", $vsite["site_preview"], $access),
         $factory->getLabel("site_preview"),
         $pageId
         );
@@ -175,13 +227,6 @@ if (!$is_site_admin)
     );
 }
 
-// PHP5 related fix:
-$settings->addFormField(
-    $factory->getTextField("debug_1", "", 'r'),
-    $factory->getLabel("debug_1"),
-    Hidden
-);
-
 // add auto-detected features
 $autoFeatures = new AutoFeatures($helper);
 $cce_info = array('CCE_OID' => $vsite['OID']);
@@ -191,7 +236,7 @@ $cce_info['PAGED_BLOCK_DEFAULT_PAGE'] = 'otherServices';
 $autoFeatures->display($settings, 'modify.Vsite', $cce_info);
 
 // add the buttons
-if ($helper->getAllowed('adminUser'))
+if ($helper->getAllowed('manageSite'))
     $settings->addButton($factory->getSaveButton($page->getSubmitAction()));
 
 print $page->toHeaderHtml();

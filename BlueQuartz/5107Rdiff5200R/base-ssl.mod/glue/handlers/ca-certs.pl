@@ -38,7 +38,7 @@ for my $old_ca (@old_cas)
 # the fact that apache is the underlying server, but this isn't easy
 # to fix and for the forseeable future it isn't going to change.
 
-my $ssl_conf = '/etc/admserv/conf.d/ssl.conf';
+my $ssl_conf = '/etc/admserv/conf/ssl.conf';
 if ($site->{CLASS} eq 'System')
 {
     my @ca_certs = $cce->scalar_to_array($ssl->{caCerts});

@@ -1,12 +1,12 @@
 # Makefile
 
 VENDOR=base
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=maillist
 
 # MAJVERSION is 0 until alpha release.
-VERSION=1.4.1
-RELEASE=1BX15
+VERSION=1.4.0
+RELEASE=68BQ18
 
 INSTALL=install
 
@@ -18,7 +18,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 #BUILDSRC=yes
 
-REQUIRES=majordomo base-maillist-locale-ja_JP
+REQUIRES=majordomo
 REQUIRES_UI=base-admserv-glue
 
 include /usr/sausalito/devel/module.mk

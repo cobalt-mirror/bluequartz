@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -101,56 +101,15 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-62BQ14
+- new Capabilities for admin.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX26
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Mon Sep 14 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-62BQ13
+- convert po file to utf-8 for Japanese.
 
-* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX25
-- Updated ui/web/setTime.php to remove usage of tzoffset.php again. No longer needed now that 'date.timezone'
-  is set in our php.ini.
-
-* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX24
-- Would you believe it: time() now reports the ticks according to GMT and ignores the local timezone.
-- Added ui/web/tzoffset.php to allow us to calculate a timezone Offset between GMT and the system timezone.
-- Modified ui/web/setTime.php to use the new timezone offset to correctly calculate and display the system time.
-
-* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX23
-- Updated constructor/setTimeZone.pl to change default TZ from /usr/share/zoneinfo/America/New_York
-  to /usr/share/zoneinfo/US/Eastern, which seems to work better in /base/time/setTime.php and in Wizard.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX22
-- Copied 'en' locales to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX21
-- Modified constructor/setTimeZone.pl to symlink /etc/localtime to NY in case its no symlink
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BX20
-- Version number bump
-
-* Sat Aug 22 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ19
-- Removed strict from constructor/syncTimeZone.pl
-
-* Mon Dec 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ18
-- Fixed constructor/syncTimeZone.pl to correctly write /etc/sysconfig/clocks
-- No need to use Sauce's integrated write functions for something that simple.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ17
-- Rebuilt for BlueOnyx.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ16
-- Ported work around from 6105R over to allow setting of NTP server and TimeZone.
-
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ15
-- Removed ability to set NTP server for VPS's in ui/web/setTime.php
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ14
-- German locales added.
-
-* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bleuquartz.org> 1.0.1-62BQ13
-- add syncTimeZone.pl for constructor.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-62BQ12
-- Danish locales added. Thanks to Jes Klittum!
+* Mon Sep 07 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-62BQ12
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-62BQ11
 - Fixed duplicate include issue.

@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userDefaults.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: userDefaults.php 1005 2007-06-25 15:21:40Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
@@ -115,12 +115,6 @@ if (isset($group) && $group != "") {
             ));
 }
 
-// PHP5 related fix:
-$block->addFormField(
-    $factory->getTextField("debug_1", "", 'r'),
-    $factory->getLabel("debug_1"),
-    Hidden
-);
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 $block->addButton($factory->getCancelButton("/base/user/userList.php?group=$group"));

@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: maillistMod.php 576 2005-09-05 10:26:24Z shibuya $
+ * $Id: maillistMod.php 1350 2009-12-23 13:29:37Z shibuya $
  * Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
  */
 
@@ -52,7 +52,7 @@ if (isset($group)) {
 //course, no changes are applied until you click "save" for the
 //mailing list.
 
-$_SESSION['localSubs']=$localSubs;
+session_register("localSubs");
 if (!isset($localSubs)) {
   $localSubs = array();
 }
@@ -70,6 +70,7 @@ $temp_array = array();
 foreach ($localSubs as $temp) {
   $temp_array[$temp] = 1;
 }
+
 
 //find all items
 $postids = array();
@@ -91,6 +92,7 @@ while (list ($key, $val) = each($postids)) {
 }
 
 //put new selection back into local subscriber temp list
+unset($localSubs);
 $localSubs = array();
 //special case, "All", copy all into local subscriber temp list
 if ($selectAll) {
@@ -130,23 +132,29 @@ if (isset($mode) && $mode == 'save') {
     
     $remote_recips = arrayToString($a);
   }
-  if ($moderator) {
-    $a = stringToArray($moderator);
-    //uniqify
-    $b = array_flip($a);
-    $a = array_keys($b);
-    
-    $moderator = arrayToString($a);
+
+  if($postPolicy == 'moderated'){
+       $enableSeq = 0;
   }
-  $remote_recips = str_replace("%40", "@", $remote_recips);
-  $moderator = str_replace("%40", "@", $moderator);
+  if(!$enableSeq){
+    $subjectPrefix = str_replace(" \$SEQNUM", "", $subjectPrefix);
+    $subjectPrefix = str_replace("\$SEQNUM", "", $subjectPrefix);
+  }
+  else{
+    if($subjectPrefix != NULL and !strstr("\$SEQNUM", $subjectPrefix)){
+      $subjectPrefix = str_replace("[\$LIST]", "[\$LIST \$SEQNUM]", $subjectPrefix);
+    }
+  }
+
   $vals = array('name' => $listName,
 		'apassword' => $apassword,
+		'enableSeq' => $enableSeq,
 		'local_recips' => $local_recips,
 		'remote_recips' => $remote_recips,
 		'postPolicy' => $postPolicy,
 		'subPolicy' => $subPolicy,
 		'moderator' => $moderator,
+		'subjectPrefix' => $subjectPrefix,
 		'maxlength' => $maxlength,
 		'replyToList' => $replyToList,
 		'description' => $description,
@@ -170,6 +178,7 @@ if (isset($mode) && $mode == 'save') {
   $obj = $cceClient->get($_TARGET);
   $listName = $obj['name'];
   $apassword = $obj['apassword'];
+  $enableSeq = $obj['enableSeq'];
   // we're at the top of a post to a non-locals mode
   // if we're in locals_save mode, we've already copied localsubs into local_recips (see above)
   // if we're not in a mode, we're at first load, so get from obj
@@ -272,21 +281,38 @@ if ($mode != 'locals' && $mode != 'locals_new') {
 
   //advanced page
   if (!$moderator) {
-    $moderators = $factory->getEmailAddress("moderator", "admin");
-  } else {
-    $moderator = str_replace("%40", "@", $moderator);
-    $moderators = $factory->getEmailAddressList("moderator", $moderator);
+    $moderator = "admin";
   }
-  $moderators->setOptional("silent");
-  $block->addFormField($moderators,
+  $block->addFormField($factory->getEmailAddress("moderator", $moderator),
 		       $factory->getLabel("moderator"),
 		       $advancedId);
-
   $pass = $factory->getPassword("apassword", $apassword, false);
   $pass->setOptional("silent");
   $block->addFormField($pass,
 		       $factory->getLabel("apassword"),
 		       $advancedId);
+
+  // sequence
+  $enableSeq = $enableSeq ? $enableSeq : 0;
+  $sequence = $factory->getBoolean("enableSeq", $enableSeq);
+  $block->addFormField($sequence,
+                      $factory->getLabel("enableSeq"),
+                      $advancedId);
+
+  // subject prefix
+  if (!$subjectPrefix) {
+    if($enableSeq){
+      $subjectPrefix = '[$LIST $SEQNUM]';
+    }
+    else{
+      $subjectPrefix = '[$LIST]';
+    }
+  }
+  $prefix = $factory->getTextField("subjectPrefix", $subjectPrefix);
+  $prefix->setOptional(true);
+  $block->addFormField($prefix,
+                      $factory->getLabel("subjectPrefix"),
+                      $advancedId);
 
   $block->addDivider($factory->getLabel("policies", false), $advancedId);
 
@@ -297,8 +323,6 @@ if ($mode != 'locals' && $mode != 'locals_new') {
   $posting->addOption($factory->getOption("members"));
   $posting->addOption($factory->getOption("any"));
   $posting->addOption($factory->getOption("moderated"));
-  $posting->addOption($factory->getOption("admin"));
-  $posting->addOption($factory->getOption("domain"));
   $posting->setSelected($postPolicy, true);
   $block->addFormField($posting,
 		       $factory->getLabel("postingPolicy"),
@@ -390,6 +414,7 @@ if ($mode != 'locals' && $mode != 'locals_new') {
   // need to preserve settings from basic and advanced pages
   $vals = array('listName' => $listName,
 		'apassword' => $apassword,
+		'enableSeq' => $enableSeq,
 		'local_recips' => $local_recips,
 		'remote_recips' => $remote_recips,
 		'postPolicy' => $postPolicy,

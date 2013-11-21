@@ -1,5 +1,5 @@
 <?php
-// $Id: dns_sec.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: dns_sec.php 1013 2007-06-25 15:25:22Z shibuya $
 //
 // ui for adding/modifying many DNS record types
 $iam = '/base/dns/dns_sec.php';
@@ -14,17 +14,14 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
   return;
 }
 
-// Start sane:
-$errors = array();
-
 include_once("CobaltUI.php");
 $Ui = new CobaltUI($sessionId, "base-dns"); 
 
 // return the base ip address of a network
 // as defined by dot-quad member ip and netmask
 function get_network($ip = "127.0.0.1", $nm = "255.255.255.255") {
-  $ip = preg_split('/[.]/',$ip);
-  $nm = preg_split('/[.]/',$nm);
+  $ip = split('[.]',$ip);
+  $nm = split('[.]',$nm);
   for ($i=0; $i<4; $i++):
     $ip[$i] = (int) $ip[$i]; $nm[$i] = (int) $nm[$i];
     $nu[$i] .= $ip[$i] & $nm[$i];

@@ -1,6 +1,6 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: Capabilities.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: Capabilities.php 995 2007-05-05 07:44:27Z shibuya $
 // Description: A class that facilitates working with Capabilities
 // and capability groups
 
@@ -44,7 +44,7 @@ class Capabilities {
       $this->cceClient =& $cce;  
     else {
       include_once("CceClient.php");
-      $this->cceClient = new CceClient();
+      $this->cceClient =& new CceClient();
       // FIXME check connect and authkey for failure
       $this->cceClient->connect();
       $this->cceClient->authkey($loginName, $sessionId);

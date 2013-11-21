@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: status.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: status.php 1024 2007-06-25 15:31:47Z shibuya $
 
 // description:
 // This is a generic page for showing status.
@@ -178,13 +178,6 @@ if($subprogress != "") {
     $factory->getLabel("subprogressField")
   );
 }
-
-// PHP5 related fix:
-$block->addFormField(
-    $factory->getTextField("debug_1", "", 'r'),
-    $factory->getLabel("debug_1"),
-    Hidden
-);
 
 if($backUrl != "")
   $block->addButton($factory->getBackButton($backUrl));

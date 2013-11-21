@@ -1,10 +1,10 @@
-# $Id: cobalt-cmu.spec.in 1066 2008-01-27 09:21:48Z shibuya $
+# $Id: cobalt-cmu.spec.in 1516 2010-08-08 14:31:15Z shibuya $
 
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
-Vendor: Team BlueOnyx
+Release: 0BQ22%{?dist}
+Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/Archiving
 Source: cpr.tar.gz
@@ -67,168 +67,33 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.68-0BQ22
+- support 5201R on x86_64.
 
-* Mon Nov 11 2013 Michael Stauber <mstauber@solarspeed.net>
-- version 2.91-0BX01
-- Tentative first new build that supports 5207R and 5208R platforms.
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.68-0BQ21
+- support import from 5106R.
 
-* Mon Apr 23 2012 Michael Stauber <mstauber@solarspeed.net>
-- version 2.90-0BX02
-- perl_modules/TreeXml.pm still had the old version number 2.82 in it. Fixed.
-- Modified 'adjustPath' in perl_modules/Global.pm to allow migrations from 5108R or 5107R downwards to 5106R.
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.68-0BQ20
+- support 5200R.
+- remove the file and code for TLAS.
 
-* Sun Feb 05 2012 Michael Stauber <mstauber@solarspeed.net>
-- version 2.90-0BX01
-- Modified perl_modules/Archive.pm to add php.ini to the ignore list of files not to pack into tarballs.
-- Modified all relevant *scanin.pl scripts to handle setting of quotas differently. On vsite and user creation
-  we set the quota to unlimited (for users) or very high for vsites (unlimited is not possible there). After
-  importing the tarballs the quota for sites and users is then set to the correct values. That finally allows
-  to import even sites and users without errors even if the sites or users are using more diskspace than 
-  allowed. 
+* Tue Apr 07 2009 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.67-0BQ19
+- fixed the issue that doesn't import admin user without root access, again.
+- remove .svn directory from source archive.
 
-* Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net>
-- version 2.82-0BX07
-- Modified scripts/cmuExport and perl_modules/Archive.pm to remove path to find binary as it is different between EL5 and EL6
-
-* Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
-- version 2.82-0BX06
-- Fixed missing plattform stuff in perl_modules/Archive.pm
-
-* Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
-- version 2.82-0BX05
-- Fixed missing plattform stuff in perl_modules/Global.pm and perl_modules/TreeXml.pm
-- Also bumped version number in perl_modules/TreeXml.pm to 2.82
-
-* Sun Jul 10 2011 Michael Stauber <mstauber@solarspeed.net>
-- version 2.82-0BX04
-- Added scripts for 5107R and 5108R and modified existing scripts to recognize the new platforms.
-
-* Sun Jul 12 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.81-0BX03
-- On cmuImport from platforms older than RaQ550 all users would be suspended, because the suspend state doesn't yet carry over correctly.
-- Modified scripts/5106Rscanin.pl and scripts/5106Radjust.pl to ignore setting of default (un)suspend and account lock states on imports from older platforms.
-
-* Thu Jun 25 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.81-0BX02
-- Modified scripts/5106Rscanin.pl to lock accounts of suspended users on import.
-- Modified scripts/5106Rscanin.pl to run /usr/sausalito/sbin/fix_user_UID_and_GID.pl at the end of an cmuImport.
-
-* Mon Jun 15 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.81-0BX01
-- Version number bumped to 2.81 to make it easier to spot a fully working version again.
-- Modified perl_modules/TreeXml.pm for new version number.
-- Modified perl_modules/Archive.pm with new code to get back UID and file size information w/o having the code falling on it's face.
-
-* Mon Jun 15 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX07
-- Updated perl_modules/Archive.pm *again* to restrict lstat() usage on files, directories and symlinks. Else assume safe defaults für UID, GID and file size.
-- Moved debugging output lines into the if/else sections.
-
-* Sun Jun 14 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX06
-- Updated scripts/cmuExport because on errors it would run a 'chmod 640' via an xargs command on an empty file list, causing an undescriptive error.
-- Updated perl_modules/Archive.pm *again* to switch from stat() to lstat() for gathering file information. This catches symbolic links as well.
-
-* Thu Jun 11 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX05
-- Scanin/Scanout/Adjust scripts updated for model number. Was slightly off in some.
-
-* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX04
-- Modified perl_modules/cmuCCE.pm to fix a typo.
-- Updated perl_modules/cmuCCE.pm to prevent activation of SSL if site had no certificate, as this generated an error message.
-- Updated perl_modules/Archive.pm to fix issue where the first extracted file from a user's public tarball couldn't be chowned correctly.
-- Updated scripts/5100Rscanin.pl and scripts/5106Rscanin.pl for better error messages when someone imports a Vsite on Aventurin{e} to an IP that's not yet assigned to a VPS.
-
-- Imported several changes from BlueQuartz CMU 2.66-0BQ18 [SVN: 1066:1161]
+* Sat Jun 21 2008 Hisao SHIBUYA <shibuya@bluequartz.org>
+- version 2.66-0BQ18
 - fixed exportPlatform check routine.
 - fixed the issue that doesn't import admin user without root access.
 - fixed the chown issue that the gid isn't defined.
 - fixed the issue that doesn't enable SSL.
 - fixed the issue to import the suspended user.
-- fixed the issue that the value is 0 isn't exported 
+- fixed the issue that the value is 0 isn't exported
 - doesn't output error message for exporting admin user.
-
-* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX02
-- Updated perl_modules/TreeXml.pm as the version number must be put in quotes, or the minor/major version check barfs on import.
-
-* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.80-0BX01
-- Bumped version to 2.80 because Hisao has a 2.77 in SVN and we want to avoid that his version overwrites ours on BlueQuartz.
-- Modified perl_modules/TreeXml.pm to hard code the new version number in.
-- Modified scripts/cmuExport to check if it is run as root.
-- Modified scripts/cmuImport to check if it is run as root AND removed the password dialogue for all platforms but RaQ550 and TLAS.
-  It is not really needed for anything and if a root user runs it, we do not want to hassle him unecessarily.
-- Modified perl_modules/Archive.pm to fix a bug that would cause the generated XML files to report the ownerships of all files
-  as root. Bug was caused by different behaviour of Perl::Stat under Perl-5.8.X. New function should work anywhere.
-
-* Wed Jun 3 2009 Rickard Osser <rickard.osser@bluapp.com>
-- version 2.66-0BQ31
-- Backed out changes made to adjustMapping and fixed Global.pm to really
-  follow migration-path.
-
-* Mon May 25 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ30
-- Updated perl_modules/Archive/Archive.pm
-- Added missing pre-declaration of variable.
-
-* Mon May 25 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ29
-- Updated perl_modules/Archive/Archive.pm
-- Fixes long standing issues of not correctly exporting or importing mail-spools of users.
-- This problem existed since BlueQuartz times due to an incorrect way of creating cmu-mailspool for the private tarball.
-
-* Thu May 14 2009 Rickard Osser <rickard.osser@bluapp.com>
-- version 2.66-0BQ28
-- Reversed the changes in Tar.pm and changed name of the subroutine instead. This works with
-  both newer and older Compress::Zlib. Tested on BlueOnyx.
-
-* Sat May  2 2009 Rickard Osser <rickard.osser@bluapp.com>
-- version 2.66-0BQ27
-- Added a check if Compress::Zlib::gzFile::gzseek is needed to be defined in Tar.pm. CentOS 6 will include it's own function.
-
-* Sat May  2 2009 Rickard Osser <rickard.osser@bluapp.com>
-- version 2.66-0BQ26
-- Changed adjustPlatform to be able to handle multiple compatible
-  platforms.
-
-* Mon Mar 09 2009 Rickard Osser <rickard.osser@bluapp.com>
-- version 2.66-0BQ25 
-- Added the missing files for Bluapp Bluapp 5160R and 5161R
-
-* Sun Mar 08 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ24
-- Rolled back Bluapp 5160R and 5161R changes as they caused conflicts.
-
-* Tue Mar 03 2009 Rickard Osser <rickard.osser@bluapp.com>
-- version 2.66-0BQ23
-- Added support for Bluapp 5160R and 5161R
-
-* Fri Feb 27 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ22
-- Modified perl_modules/Archive.pm to fix a typo in version number.
-
-* Wed Feb 25 2009 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ21
-- Modified several Perl modules for better support of BX -> BX migrations:
-- perl_modules/Global.pm
-- perl_modules/TreeXml.pm
-- perl_modules/Archive.pm
-- perl_modules/Conflict.pm
-- This also gets rid of the "unknown platform" error message.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ20
-- Rebuilt for BlueOnyx.
-
-* Sat Nov 15 2008 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ19
-- Added 5106R to perl_modules/Global.pm again.
-
-* Wed Jul 03 2008 Michael Stauber <mstauber@solarspeed.net>
-- version 2.66-0BQ18
-- add 5106R platform
 
 * Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org>
 - version 2.65-0BQ17

@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: status.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: status.php 1008 2007-06-25 15:23:03Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/PagedBlock.php");
@@ -16,7 +16,7 @@ $swupdate["progress"] = round( $swupdate["progress"] );
 $cmd = &$swupdate["uiCMD"];
 
 // check to see if we need to redirect to the download page
-if (preg_match("/packageOID=([0-9]+)/i", $cmd, $reg)) {
+if (eregi("packageOID=([0-9]+)", $cmd, $reg)) {
 	$oid = &$reg[1];
 header("location: /base/swupdate/download.php?packageOID=$oid&backUrl=$backbackUrl");
 	$cceClient->setObject("System", array("uiCMD" => '', 'progress' => '100'), "SWUpdate");

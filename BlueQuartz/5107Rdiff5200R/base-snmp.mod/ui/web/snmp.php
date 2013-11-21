@@ -1,14 +1,14 @@
 <?php
 // Author: Kenneth C.K. Leung
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: snmp.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: snmp.php 1424 2010-03-10 14:47:21Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverSNMP should be here
+if (!$serverScriptHelper->getAllowed('serverSNMP')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -42,15 +42,6 @@ $block->addFormField(
   $readWriteCommunity,
   $factory->getLabel("readWriteSnmpCommunityField")
 );
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 

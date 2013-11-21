@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -117,43 +117,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX19
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Mon Mar 19 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX18
-- Modified ui/web/viewManual.php. It was undefining variables it was using within a foreach. Real smart.
-
-* Thu Jul 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX17
-- Fixed another PHP compat issue in ui/web/viewManual.php
-
-* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX16
-- Support information updated.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX15
-- Copied 'en' locales to 'en_US'
-
-* Wed Dec 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ14
-- Rephrased support info based on Chris Gebhardt's suggestion.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ13
-- Support info updated.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ12
-- Rebuilt for BlueOnyx.
-
-* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ11
-- Added border around image in ui/web/support.php as it looks better.
-
-* Tue Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ10
-- Fixed support.php and viewManual.php for 5106
-- Rephrased English locales, because the English there was a bit ... unclear.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ9
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ8
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-31BQ8
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-31BQ7
 - Fixed duplicate include issue.

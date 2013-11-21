@@ -6,7 +6,7 @@
     type="updateOff"
 >
     <parent id="root" order="800">
-        <access require="adminBlueLinq"/>
+        <access require="managePackage"/>
     </parent>
 </item>
 <!--

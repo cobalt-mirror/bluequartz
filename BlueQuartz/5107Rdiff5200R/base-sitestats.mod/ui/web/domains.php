@@ -12,8 +12,9 @@ include_once('base/sitestats/selector.inc');
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$helper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");

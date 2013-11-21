@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -53,7 +53,6 @@ information for [VENDOR]-[SERVICE].
 <begin ui>
 [AUTOFILL]
 %{RootDir}/ui/web/*.php
-%{RootDir}/ui/web/robots.txt
 %{RootDir}/ui/web/*.html*
 %{RootDir}/ui/web/error
 %{RootDir}/ui/web/libImage/*
@@ -74,12 +73,8 @@ information for [VENDOR]-[SERVICE].
 %post [LABEL]
 <end HEADER>
 
-<begin capstone>
-# capstone post-install
-/usr/sausalito/constructor/base/alpine/12_handle_sl_repos.pl
-<end capstone>
-
 <begin glue>
+# glue post-install
 
 <end glue>
 <begin ui>
@@ -112,91 +107,19 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Fri Sep 17 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.2-85BQ23
+- modify product name to 5200R instead of 5100R for en, da_DK and de_DE.
 
-* Tue Aug 14 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX43
-- Updated locale/de_DE/alpine.po as the German locales were claiming this to be 5106R.
+ Apr 26 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.2-85BQ22
+- modify sysmanage tab to disable for non server manager.
 
-* Mon Aug 13 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX42
-- Added 12_handle_sl_repos.pl to switch sl-release YUM repository files from hard
-  coded versions to 6x, which is the actual release. This is for more seamless 
-  automated updates to the latest versions.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.2-85BQ21
+- new Capabilities for admin.
 
-* Sat Mar 31 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX41
-- Added dependencies for RPMs from YUM Group 'Japanese Support' to Makefile
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX40
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX39
-- Updated web/login.php to remove the doctype from first line. Must not be set here or we cannot redirect from inside the PHP script.
-
-* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX38
-- Replaced web/login.php with Stephanie's fully xhtml transitional 1.0 compliant version.
-- That should also fix the login problems on mobile devices, as we removed the Netscape onresize stuff.
-
-* Thu Jul 28 2011 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX37
-- Added manuals/manual-en_US.pdf
-- Updated locales for that purpose
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX36
-- Copied 'en' locales to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX35
-- PHP 5.3 issue: web/redirector.php line 11 - Assigning the return value of new by reference is deprecated
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX34
-- Fixed typo in web/login.php
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX33
-- web/login.php was using deprecated ereg()
-- web/login.php was using printPage, which doesn't work. Didn't even work on 5106R!
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX32
-- Locales: Product changed from '5106R' to '5107R/5108R'
-
-* Mon Apr 05 2009 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ31
-- English License text in locale/en/product.po was still too rough and gramatically incorrect. 
-
-* Sun Mar 08 2009 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ30
-- The static error message pages in web/error/ exist in multiple languages.
-  However, whatever mechanism is supposed to copy or link them to the default 
-  ones: It's not working. Ultimately we would need a constructor that checks
-  which locale the server is set to and then copies the static pages over. Or
-  re-creates the correct symbolic links. Which would still be undesireable, as 
-  the user using the GUI may have a different locale. Why show a Danish user the 
-  German error messages? Or the English ones? I think in the long run we need
-  dynamically created error pages. 
-- Copied English error pages over to defaults for now.
-
-* Mon Mar 02 2009 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ29
-- Found an old instance of 5102R naming in locale/de_DE/alpine.po
-- Changed that string to 5106R as it should be.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ27
-- Renamed to BlueOnyx.
-- New default admin password 'blueonyx' needed to be added to the intro.html pages.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ26
-- Added images for BlueOnyx skin
-- Modified images for BlueOnyx product type
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ25
-- Further modification of web/login.php to clear $target on CSS instead of exiting.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ24
-- Modified web/login.php to prevent cross site scripting attacks.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ23
-- Added web/robots.txt to prevent search engines from indexing AdmServ pages.
-
-* Thu May 28 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ22
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1-85BQ20
 - New default admin password 'bluequartz' needed to be added to the intro.html pages.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ21
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ20
-- Danish locales added. Thanks to Jes Klittum!
+- change encoding to UTF-8 for locale and html.
+- Add German and Danish locales from 5100R.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.1-85BQ19
 - Fixed duplicate include issue.

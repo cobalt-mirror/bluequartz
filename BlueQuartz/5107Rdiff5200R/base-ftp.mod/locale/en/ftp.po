@@ -205,19 +205,5 @@ msgstr "Unable to migrate the anonymous FTP settings for this site."
 msgid ""
 msgstr ""
 
-# Changes after adding functionality to disable FTP access for non-siteAdmins:
-
-msgid "ftpnonadmin"
-msgstr "Allow User(s) access to FTP"
-
-msgid "ftpnonadmin_help"
-msgstr "Users who are SiteAdministrators can allways FTP to the server - as long as the FTP service in general is enabled. If you also want to allow regular users to access their filespace by FTP, then tick this box."
-
-msgid "siteFtp"
-msgstr "FTP"
-
-msgid "siteFtp_help"
-msgstr "Manage FTP access for this site - including anonymous FTP service."
-
-msgid "ChangeSiteFtp"
-msgstr "FTP Settings for [[VAR.fqdn]]"
+msgid "cap_serverFTP"
+msgstr "FTP Settings"

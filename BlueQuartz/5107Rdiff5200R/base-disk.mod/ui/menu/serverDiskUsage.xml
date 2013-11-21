@@ -3,7 +3,7 @@
     url="/base/disk/serverDiskUsage.php"
 >
     <parent id="base_serverusage" order="60">
-        <access require="systemMonitor"/>
+        <access require="serverStatsServerDisk"/>
     </parent>
 </item>
 <!--

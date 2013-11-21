@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
 # $Id:
-# Copyright 2005 Project BlueOnyx.  All rights reserved.
+# Copyright 2005 Project BlueQuartz.  All rights reserved.
 
 use strict;
 use CCE;
@@ -43,7 +43,7 @@ if (not @oids) {
 
 # update OS package information
 $cce->set($oids[0], '', {
-	'version' => "v3.$product"
+	'version' => "v1.$product"
 });
 
 $cce->bye();

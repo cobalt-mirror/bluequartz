@@ -22,7 +22,7 @@ How to Build CPR
 Update the version:
 If you want to update the CMU version that will be built edit the two files:
 Makefile:
-VERSION   =   2.80
+VERSION   =   2.53
 
 perl_modules/TreeXml.pm:
 $VERSION = 2.53;

@@ -1,9 +1,9 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# $Id: virtual_server.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: virtual_server.pl 1284 2009-10-05 16:36:50Z shibuya $
 #
 # handles email server virtualization for Vsites
-# add hostname, ip address, and mail aliases to appropriate sendmail config
+# add hostname, ip address, and mail aliases to appropriate postfix config
 # files
 
 use CCE;
@@ -80,7 +80,7 @@ if (!$vsite->{suspend} && $vsite->{mailAliases})
 }
 
 # edit the file
-if (!Sauce::Util::editfile(&Email::SendmailCW, 
+if (!Sauce::Util::editfile(&Email::PostfixLocalHost, 
         *edit_local_hosts, \%local_hosts))
 {
     $cce->bye('FAIL', '[[base-email.cantEditLocalHosts]]');

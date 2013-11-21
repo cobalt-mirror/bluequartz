@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/maillist
-# $Id: listmod_aliases 441 2004-12-24 15:41:18Z shibuya $
+# $Id: listmod_aliases 1354 2009-12-23 13:46:22Z shibuya $
 #
 # listmod_aliases depends on:
 #		name
@@ -8,12 +8,12 @@
 
 # Golden setup:
 # 52-6800bbspot-archival:	/dev/null
-# 52-6800bbspot-list:	:include:/usr/local/majordomo/lists/site2/lists/bbspot, 52-6800bbspot-archival
+# 52-6800bbspot-list:	:include:/var/lib/majordomo/lists/site2/lists/bbspot, 52-6800bbspot-archival
 # 52-6800bbspot-approval:	admin
 # 52-6800bbspot-owner:	admin
-# 52-6800bbspot-request:	"|/usr/local/majordomo/wrapper request-answer bbspot -C /usr/local/majordomo/lists/site2/majordomo.cf"
+# 52-6800bbspot-request:	"|/usr/lib/majordomo/wrapper request-answer bbspot -C /var/lib/majordomo/lists/site2/majordomo.cf"
 # owner-52-6800bbspot:	admin
-# 52-6800bbspot:	"|/usr/local/majordomo/wrapper resend -l bbspot -C /usr/local/majordomo/lists/site2/majordomo.cf 52-6800bbspot-list, nobody"
+# 52-6800bbspot:	"|/usr/lib/majordomo/wrapper resend -l bbspot -C /var/lib/majordomo/lists/site2/majordomo.cf 52-6800bbspot-list, nobody"
 
 
 use MailList; # should be a local file
@@ -31,26 +31,16 @@ if($obj->{site}) {
 	($aok, $vsite_obj) = $cce->get( 
 		($cce->find('Vsite', {'name' => $obj->{site}}))[0]);
 }
-my $Majordomo_real = '/usr/local/majordomo';
-my $Majordomo_dir = $Majordomo_real.'/sites/'.$vsite_obj->{name};
-$Majordomo_dir ||= $Majordomo_real;
+my $Majordomo_real = '/usr/lib/majordomo';
 
-my @mod = CCE->scalar_to_array($obj->{moderator});
-
-my $moderators = "";
-for(my $i = 0; $i < scalar(@mod); $i++) {
-    if ($mod[$i] !~ m/\@/) {
-	if (!getpwnam($mod[$i])) {
-	    $cce->baddata(0, 'moderator', 'Moderator-does-not-exist', { 'moderator' => $mod[$i] });
-	    $cce->warn('Could-not-create-maillist');
-	    $cce->bye('FAIL');
-	    exit(1);
-	} 
-    }
-    if($i > 0) {
-	$moderators = $moderators . ",";
-    }
-    $moderators = $moderators . $mod[$i];
+my $mod = $obj->{moderator};
+if ($mod !~ m/\@/) {
+	if (!getpwnam($mod)) {
+		$cce->baddata(0, 'moderator', 'Moderator-does-not-exist', { 'moderator' => $mod });
+		$cce->warn('Could-not-create-maillist');
+		$cce->bye('FAIL');
+		exit(1);
+	}
 }
 
 # create aliases:
@@ -62,54 +52,60 @@ $list ||= $list_external;
 my $enabled = $obj->{enabled}; 
 if (!defined($enabled) || $enabled =~ m/^\s*$/) { $enabled = 1; }
 
-my $owner = $moderators; # FIXME: can we do better than this?
+my $owner = $obj->{moderator}; # FIXME: can we do better than this?
+
+# Identify per-site majordomo config file
+my $site_config;
+if(-e '/var/lib/majordomo/sites/'.$obj->{site}.'/majordomo.cf')
+{
+       $site_config = '-C /var/lib/majordomo/sites/'.$obj->{site}.'/majordomo.cf';
+}
 
 # configure resend options:
 my @resend_opts = (
-  '-l', $list_external	# the list name
+  $site_config, '-l', $list_external	# the list name
 );
-    
+
+# For Sequencer
+my $callProg = 'resend';
+if ($obj->{enableSeq}) {
+  $callProg = 'sequencer';
+  push @resend_opts, ( '-n', '-h', $vsite_obj->{fqdn} );
+}
+
 # If reply to list is set, then set reply-to header
 # Else, the header defaults to original sender, or the original sender's
 # reply-to header.
 my $replyToList = $obj->{replyToList};
 if ($replyToList) {
-	my $replyaddr = $list_external.'@'.$vsite_obj->{fqdn} if($vsite_obj->{fqdn});
+	my $replyaddr = $list_external . '@' . $vsite_obj->{fqdn};
 	push @resend_opts, ( '-r', $replyaddr);
 }
 
-# Identify per-site majordomo config file
-my $site_config;
-if(-e '/usr/local/majordomo/sites/'.$obj->{site}.'/majordomo.cf')
-{
-	$site_config = '-C /usr/local/majordomo/sites/'.$obj->{site}.'/majordomo.cf';
-}
-
 # the recipents; nobody to mask recipients
-push @resend_opts, ($site_config, $list.'-list,', 'nobody'); 
+push @resend_opts, ($list.'-list@'.$vsite_obj->{fqdn}); 
 
 my @forwards = ( 
-	":include:${Majordomo_dir}/lists/${list_external}", 
-	"${list}-archival",
+	":include:/var/lib/majordomo/sites/$obj->{site}/lists/${list_external}",
+#	"${list}-archival",
 	);
 my $forwards = join(", ", @forwards);
 
 
 # what aliases shall i write today?
 my %aliases = (
-	$list => "\"|${Majordomo_real}/wrapper resend @resend_opts\"",
+	$list => "\"|${Majordomo_real}/wrapper $callProg @resend_opts\"",
 	$list.'-list' => "$forwards",
 	$list.'-owner' => "${owner}",
 	'owner-'.$list => "${owner}",
 	$list.'-request' => "\"|${Majordomo_real}/wrapper request-answer ${list_external}\"",
 	$list.'-approval' => $owner,
-	$list.'-archival' => "/dev/null",
 );
 
 # print STDERR "names: $old->{name} -> $obj->{name}\n";
 
 # my $ok = modify_aliases(\%aliases, $old->{name}, $obj->{name});
-my $ok = Sauce::Util::editfile('/etc/mail/aliases.majordomo', 
+my $ok = Sauce::Util::editfile('/etc/aliases.majordomo', 
   \&Sauce::Util::replace_unique_entries, $oid, \%aliases);
   
 if (!$ok || ($ok eq 'FAIL')) {
@@ -120,7 +116,7 @@ if (!$ok || ($ok eq 'FAIL')) {
 
 
 # re-parse aliases:
-Sauce::Util::modifyfile('/etc/mail/aliases.db');
+Sauce::Util::modifyfile('/etc/aliases.db');
 system("/usr/bin/newaliases");
 
 $cce->bye('SUCCESS');

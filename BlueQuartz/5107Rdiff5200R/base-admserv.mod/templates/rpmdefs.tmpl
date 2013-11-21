@@ -44,7 +44,7 @@ information for [VENDOR]-[SERVICE].
 /etc/admserv
 /usr/sbin/httpd.admsrv
 /var/log/admserv
-%attr(700,apache,-) /var/cache/admserv
+%attr(700,admserv,-) /var/cache/admserv
 
 <end glue>
 
@@ -60,6 +60,19 @@ information for [VENDOR]-[SERVICE].
 <end capstone>
 <end %FILES>
 
+<begin %PRE-INSTALL>
+<begin HEADER>
+%pre [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue pre-install
+/usr/sbin/useradd -c "Admserv" -u 49 \
+	-s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || :
+
+<end glue>
+<end %PRE-INSTALL>
+
 <begin %POST-INSTALL>
 <begin HEADER>
 %post [LABEL]
@@ -67,11 +80,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+
 if [ "$1" = 1 ]; then
         for file in admserv; do
                 /sbin/chkconfig --add $file
         done
 fi
+
+sed -i -e 's|%{_prefix}/lib|%{_libdir}|' /etc/admserv/php.ini
 
 if [ ! -f /etc/admserv/certs/certificate ] ; then
 /usr/bin/openssl genrsa -rand /proc/apm:/proc/cpuinfo:/proc/dma:/proc/filesystems:/proc/interrupts:/proc/ioports:/proc/pci:/proc/rtc:/proc/uptime 2048 > /etc/admserv/certs/key 2> /dev/null
@@ -92,23 +108,6 @@ SomeOrganizationalUnit
 ${FQDN}
 root@${FQDN}
 EOF
-fi
-
-# change php.ini for x86_64 environment
-%ifarch x86_64
-perl -pi -e 's|extension_dir = /usr/lib/php|extension_dir = /usr/lib64/php|g' /etc/admserv/php.ini
-%endif
-
-# Increase memory_limit in /etc/admserv/php.ini:
-perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 80M      ; Maximum amount of memory a script may consume \(80MB\)|g' /etc/admserv/php.ini
-
-# Increase upload_max_filesize to 300MB, as some Java WAR files can be rather large on uploads:
-perl -pi -e 's|^upload_max_filesize = (.*)|upload_max_filesize = 300M|g' /etc/admserv/php.ini
-
-
-# Set ServerName in /etc/admserv/conf/httpd.conf:
-if [ -f /usr/sausalito/constructor/base/apache/set_apache_hostname.pl ] ; then
-    /usr/sausalito/constructor/base/apache/set_apache_hostname.pl
 fi
 
 if [ $1 = 2 ]; then
@@ -145,67 +144,35 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Tue May 03 2011 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ8
+- disable some modules for SL6.
 
-* Sun Sep 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX23
-- Modified glue/etc/admserv/conf.d/ssl.conf to force more secure protocols and ciphers
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ7
+- change extension_dir for x86_64 environment.
 
-* Wed Aug 08 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX22
-- Added glue/etc/admserv/conf.d/security.conf to disable TRACK/TRACE.
+* Sun Aug 08 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ6
+- change upload file size to 50M.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX21
-- Updated glue/etc/admserv/conf/httpd.conf to switch it to UTF-8
+* Thu Apr 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ5
+- change key length to 2048 instead of 1024.
 
-* Tue Jul 19 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX20
-- Modified AdmServ's php.ini to set upload_max_filesize to 300MB for Java WAR uploads.
-- Modified templates/rpmdefs.tmpl to run a replace on php.ini as well in case the RPM 
-  doesn't replace it due to user modifications.
+* Sat Dec 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ4
+- modify php.ini to report E_ALL & ~E_NOTICE instead of E_ALL.
 
-* Thu Jul 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX19
-- AdmServ was generating 1024-bit SSL certs again. Fixed.
+* Thu Sep 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ3
+- modify php.ini to load crack.so.
 
-* Tue Jun 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX18
-- Updated glue/etc/admserv/php.ini to set register_globals and register_long_globals to 'on'.
-  I know this is ugly and just a dirty work around. But that's the fastest way to get the GUI
-  working with PHP-5.3 until the time that we can get it to work without this messy fix.
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ2
+- require mod_ssl package.
 
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX17
-- Commented out mod_file_cache.so in httpd.conf
-- Commented out mod_mem_cache.so in httpd.conf
-- Changed lenght of AdmServ SSL cert from 1024 bit to 2048 bit
-- Added mod_ssl to required packages
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-0BQ1
+- change user name to admserv instead of apache.
 
-* Thu Oct 15 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ16
-- Modified glue/etc/admserv/conf.d/ssl.conf
-- Disabled SSLv2, so that the more secure SSLv3 or TLSv1 are used for AdmServ-SSL instead.
-- Added post-install exec of /usr/sausalito/constructor/base/apache/set_apache_hostname.pl to set ServerName in AdmServ config.
+* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-0BQ2
+- modified php.ini to use $HTTP_*_VARS.
 
-* Fri Jul 17 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ15
-- Edited glue/etc/admserv/php.ini to raise memory_limit from 8M to 80M.
-- Module base-console.mod needs a higher memory limit for processing large ScrollLists.
-- Modified templates/rpmdefs.tmpl post install script to raise memory_limit in /etc/admserv/php.ini
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ14
-- Rebuilt for BlueOnyx.
-
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ13
-- Changed ServerTokens to ProductOnly in glue/etc/admserv/conf/httpd.conf
-
-* Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ12
-- Added PHP5 and Apache-2.2.6 related provisions for 5106R
-- httpd.conf, php.ini and php.conf have been modified for usage on CentOS5 only.
-- httpd.conf was changed because some modules on the newer Apache have been renamed.
-- php.conf was of course modified because we now use PHP5 instead of PHP4.
-- php.ini was changed to switch the extension_dir path from ...
-- extension_dir = /usr/lib/php4
-- ... to ..
-- extension_dir = /usr/lib/php/modules
-- ALL THIS IS NO LONGER COMPATIBLE WITH CENTOS4 !!!
-
-* Sun May 11 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BQ11
-- Added extension=crack.so to /etc/admserv/php.ini for cracklib support.
-
-* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-0BQ10
-- add sign to the package.
+* Mon Apr 30 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-0BQ1
+- build for 5200R on CentOS5.
 
 * Thu Aug 17 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-0BQ9
 - glue package requires httpd.

@@ -1,4 +1,4 @@
-# $Id: Makefile 380 2004-07-12 09:38:36Z anders $
+# $Id: Makefile 1382 2010-02-21 12:11:21Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 include ../../dynamic.mk
 
@@ -8,7 +8,7 @@ SHARED_LIB = $(LIBNAME).so
 SHARED_LIB_MAJ = $(SHARED_LIB).$(CCE_V_MAJ)
 SHARED_LIB_FULL = $(SHARED_LIB_MAJ).$(CCE_V_MIN)
 
-CFLAGS += -D_REENTRANT
+CFLAGS += -D_REENTRANT -D_GNU_SOURCE
 DEFS += -DVERSION="\"$(CCE_VERSION)\""
 INCLUDES += -I../include
 

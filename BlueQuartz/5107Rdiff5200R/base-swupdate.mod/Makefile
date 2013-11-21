@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=swupdate
 
-VERSION=1.3.0
-RELEASE=1BX35
+VERSION=1.2.0
+RELEASE=120BQ19
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,8 +19,6 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
-
-REQUIRES = perl-Sort-Versions wget lynx
 
 #########
 # some useful defines

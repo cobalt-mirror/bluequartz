@@ -1,14 +1,14 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: newList.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: newList.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("base/swupdate/updateLib.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -18,7 +18,16 @@ $factory = $serverScriptHelper->getHtmlComponentFactory("base-swupdate");
 $i18n = $serverScriptHelper->getI18n("base-swupdate");
 
 $page = $factory->getPage();
-
+?>
+<center>
+  <div style="border:1px solid black;text-align:left;padding:3px;width:500px">
+    <div style="font-weight:bold;text-align:center">
+      <?=$i18n->get("warning_header");?>
+    </div>
+    <?=$i18n->get("3rdpartypkg_warning");?>
+  </div>
+</center>
+<?php
 $manualInstallButton = $factory->getButton("/base/swupdate/manual.php?backUrl=/base/swupdate/newList.php", "manualInstall");
 $checkNowButton = $factory->getButton("/base/swupdate/checkHandler.php?backUrl=/base/swupdate/newList.php", "checkNow");
 
@@ -66,7 +75,7 @@ for($i = 0; $i < count($oids); $i++) {
 
   $detailUrl = ($url != "") ? "javascript: window.open('$url$options', 'softwareDetails'); void 0;" : "javascript: location='/base/swupdate/download.php?backUrl=/base/swupdate/newList.php&packageOID=$oid'; void 0;";
 
-  $removeButton = preg_match("/^file:/", $package["location"]) ? "javascript: confirmRemove('$oid', '$packageName');" : '';
+  $removeButton = ereg("^file:", $package["location"]) ? "javascript: confirmRemove('$oid', '$packageName');" : '';
 
   $composite = $removeButton ? array($factory->getDetailButton($detailUrl),
 	$factory->getRemoveButton($removeButton)) : array($factory->getDetailButton($detailUrl));
@@ -87,8 +96,6 @@ for($i = 0; $i < count($oids); $i++) {
   $cceClient->set($oids[$i], "", array("new" => 0));
 }
 
-system("/bin/touch /tmp/.guipkginstall");    
-
 print($page->toHeaderHtml()); 
 
 $hasUpdates = updates_check($cceClient);	
@@ -107,7 +114,6 @@ function confirmRemove(oid, name) {
 }
 </SCRIPT>
 
-<br>
 <TABLE>
   <TR>
     <TD>

@@ -1,5 +1,5 @@
 <?php
-// $Id: vsite_dns_soa.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: vsite_dns_soa.php 1534 2010-09-28 08:36:52Z oride $
 //
 // ui for adding/modifying many DNS record types
 $iam = '/base/dns/vsite_dns_soa.php';
@@ -8,14 +8,11 @@ $parent = '/base/dns/vsite_records.php';
 include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only dnsAdmin should be here
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+// Only siteDNS should be here
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
   header("location: /error/forbidden.html");
   return;
 }
-
-// Start sane:
-$errors = array();
 
 if ( ! $serverScriptHelper->getAllowed('adminUser') ) {
 	$cceClient = $serverScriptHelper->getCceClient() or die ("no CCE");

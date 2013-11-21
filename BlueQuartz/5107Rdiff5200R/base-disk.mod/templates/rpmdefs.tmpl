@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -102,47 +102,18 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 2.1.0-88BQ15
+- new Capabilities for admin.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX07
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Sun Jan 24 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 2.0.0-88BQ14
+- change the default settings to send mail to admin when the user is over quota.
 
-* Fri Sep 09 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX06
-- Modified ui/web/serverDiskUsage.php to avoid a potential division by zero.
+* Sun Dec 06 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 2.0.0-88BQ13
+- add constructor to check /home partition.
 
-* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX05
-- Modified ui/web/serverDiskUsage.php with AWS provisions to allow fake /home partition
-
-* Tue Jul 19 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX04
-- Modified constructor/93_update_disks_info.pl to add a simulated /home partition 
-  in case there is no real one. We need a /home 'Disk' object or Vsite creation
-  fails.
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX03
-- Various PHP-5.3 related fixes
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX02
-- Copied 'en' locales to 'en_US'
-
-* Mon Jan 11 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.1-1BX01
-- Modified ui/web/serverDiskUsage.php with provisions to make it easier to spot sites and users that are over quota (or near that limit).
-- Added related new strings to locales.
-- Version number bump to 2.0.1
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ16
-- Rebuilt for BlueOnyx.
-
-* Fri Nov 28 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ15
-- Updated ui/web/serverDiskUsage.php to to hide /home partition if this is a VPS.
-- It is necessary for compatability to have a "Disk" named /home, but we don't want to confuse users.
-
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ14
-- Fixed PHP5 related display issue in ui/web/serverDiskUsage.php
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ13
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 2.0.0-88BQ12
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 2.0.0-88BQ12
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 2.0.0-88BQ11
 - Fixed duplicate include issue.

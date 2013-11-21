@@ -1,4 +1,4 @@
-<!-- $Id: MailList.schema 259 2004-01-03 06:28:40Z shibuya $ -->
+<!-- $Id: MailList.schema 1350 2009-12-23 13:29:37Z shibuya $ -->
 <!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -->
 <!-------------------------------------------------------------------
   MailList
@@ -28,7 +28,7 @@
 <!-- FIXME: these should be enums eventually -->
 <typedef 
     name="postPolicy" type="re" 
-    data="^((moderated)|(any)|(members)|(admin)|(domain))?$" 
+    data="^((moderated)|(any)|(members))?$" 
 />
 <typedef 
     name="subPolicy" type="re"
@@ -54,6 +54,14 @@
         name="apassword" type="scalar" 
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
+    <property
+        name="enableSeq" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
+    <property
+        name="subjectPrefix" type="scalar" optional="true"
+        writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    />
     <property 
         name="postPolicy" type="postPolicy" default="members"
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
@@ -71,7 +79,7 @@
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
     <property 
-        name="moderator" type="scalar" array="true" default="admin"
+        name="moderator" type="scalar" default="admin"
         writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
     <property 

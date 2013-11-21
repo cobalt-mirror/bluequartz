@@ -8,7 +8,7 @@ dnl #
 dnl #     make -C /etc/mail
 dnl #
 include(`/usr/share/sendmail-cf/m4/cf.m4')dnl
-VERSIONID(`setup for BlueOnyx w/o lists')dnl
+VERSIONID(`setup for BlueQuartz')dnl
 OSTYPE(`linux')dnl
 dnl #
 dnl # Uncomment and edit the following line if your outgoing mail needs to
@@ -24,7 +24,7 @@ define(`confTRY_NULL_MX_LIST',true)dnl
 define(`confDONT_PROBE_INTERFACES',true)dnl
 define(`PROCMAIL_MAILER_PATH',`/usr/bin/procmail')dnl
 dnl # removed /etc/mail/aliases.majordomo
-define(`ALIAS_FILE', `/etc/mail/aliases')dnl
+define(`ALIAS_FILE', `/etc/mail/aliases, /etc/mail/aliases.majordomo')dnl
 define(`STATUS_FILE', `/var/log/mail/statistics')dnl
 define(`UUCP_MAILER_MAX', `2000000')dnl
 define(`confUSERDB_SPEC', `/etc/mail/userdb.db')dnl
@@ -116,7 +116,7 @@ dnl # We strongly recommend not accepting unresolvable domains if you want to
 dnl # protect yourself from spam. However, the laptop and users on computers
 dnl # that do not have 24x7 DNS do need this.
 dnl #
-dnl FEATURE(`accept_unresolvable_domains')dnl
+FEATURE(`accept_unresolvable_domains')dnl
 dnl #
 dnl FEATURE(`relay_based_on_MX')dnl
 dnl # 
@@ -142,10 +142,9 @@ dnl some mail servers don't give expn or helo dnl
 dnl define(`confPRIVACY_FLAGS', `needmailhelo needexpnhelo noexpn needvrfyhelo noreceipts authwarnings noetrn noverb')
 dnl 1.6 meg limit on message size
 dnl define(`confMAX_MESSAGE_SIZE',20000000)dnl
-define(`confMAX_RCPTS_PER_MESSAGE',`25')dnl
 dnl timeout on the initial outgoing connect
 dnl define(`TimoutIconnect=30s')dnl
-dnl define(`confLOG_LEVEL',`9')dnl
+dnl define(`confLOG_LEVEL',`14')dnl
 dnl I can do a dns lookup on hte mailer, EVERY MAILER should be be able to do this.
 define(`_DNSVALID_',1)dnl 
 dnl here is the default header in sendmail:$j Sendmail $v/$Z; $b
@@ -182,7 +181,7 @@ MAILER(procmail)dnl
 dnl #
 dnl # additinal configuration for Blue Quartz
 dnl #
-define(`confDONT_BLAME_SENDMAIL', `forwardfileingroupwritabledirpath, ForwardFileInUnsafeDirPath, ForwardFileInUnsafeDirPathSafe')dnl
+define(`confDONT_BLAME_SENDMAIL', `forwardfileingroupwritabledirpath')dnl
 HACK(popauth)dnl
 
 dnl here is the default header in sendmail:$j Sendmail $v/$Z; $b

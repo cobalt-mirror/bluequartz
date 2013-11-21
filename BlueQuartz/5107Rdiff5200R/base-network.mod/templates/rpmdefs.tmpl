@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -101,95 +101,33 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Thu May 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-82BQ20
+- add new feature to limit site max and site quota for administrator.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX36
-- Converted locale encoding from UTF-8 to ISO-8859-1.
+* Thu Apr 15 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-82BQ19
+- require base-bluequartz-glue for check interface constructor.
 
-* Fri Mar 02 2012 Greg Kuhnert 1.1.0-82BX35
-- Updated constructor/30_addNetwork.pl to correctly set mac address in ethernet objects
+* Wed Apr 07 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-82BQ18
+- modify constructor to configure IP pool settings.
 
-* Sun Oct 16 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX34
-- Added some more provisions to deal with the special network considerations under OpenVZ:
-- Modified constructor/40_addGateway.pl and glue/handlers/change_route.pl to parse 
-  /etc/sysconfig/network for the GATEWAY and GATEWAYDEV lines. If missing, they will be
-  added. When that's done, the network is restarted to regain network connectivity.
-  Additionally a line is added to /etc/sysconfig/network-scripts/ifup-routes to make
-  sure that the routing table is rebuilt correctly.
+* Sun Mar 21 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-82BQ17
+- support virutal server environment.
 
-* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX33
-- Added constructor/31_handle_aws_dhcp.pl to automatically update the stored IP of sites 
-  with the IP obtained from DHCP. Also updates DNS (within reasons) and ProFTPd.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-82BQ16
+- new Capabilities for admin.
 
-* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX32
-- Added rudimentary AWS support to cope with single IP and DHCP obtained network settings:
-- Modified constructor/30_addNetwork.pl to not drop DHCP settings from ifcfg files
-- Modified glue/handlers/rewrite-ifcfg.pl to support bootproto=DHCP in ifcfg files
-- Modified glue/handlers/change_route.pl to not create eth0:X files as AWS supports
-  only a single IP per instance anyway. Makes our live a bit easier here.
-- Modified ui/web/ethernet.php to disallow change of network settings if AWS support 
-  is enabled.
+* Sun Mar 07 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-82BQ15
+- fixed the issue that network will be unreachable after constructor on NIFTY Could.
 
-* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX31
-- Modified constructor/40_addGateway.pl. Restart Network under OpenVZ if unreachable
+* Wed Dec 24 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-82BQ14
+- add the constructor to update MAC address.
 
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX30
-- Various PHP-5.3 related fixes.
+* Sun Nov 29 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-82BQ13
+- fixed PHP5 issue for multiple ethernet interface.
 
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX29
-- Copied 'en' locale to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BX28
-- Version number bump
-
-* Mon Aug 10 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ27
-- Modified ui/web/ethernet.php to fix JavaScript issue if you have more than 2 NICs.
-
-* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ26
-- Modified ui/web/ethernet.php to hide Interface Aliases if in a VPS.
-
-* Tue Feb 03 2009 Rickard Osser <rickard.osser@bluapp.com> 1.1.0-82BQ25
-- Re-implemented Interface Aliases to solve bug ticket #12.
-
-* Tue Dec 30 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ24
-- Fixed glue/handlers/rewrite-ifcfg.pl to solve bug ticket #4.
-- Was not rewriting ifcfg's on stand alone installs.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ23
-- Rebuilt for BlueOnyx.
-
-* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ22
-- Fixed '-usage in English locale. Fixes JavaScript issue as reported by Stephanie Sullivan.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ21
-- Fixed RW access to FQDN and DNS fields in ui/web/ethernet.php for stand alone installs.
-
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ20
-- Removed wiz_warn block in ui/web/ethernet.php - was left over from 6105R.
-- Made all relevant blocks in ui/web/ethernet.php read only if 5106R runs in a VPS.
-
-* Sun Jun 29 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ19
-- Reworked OpenVZ provisions in constructor/40_addGateway.pl to set default OpenVZ gateway if it's missing.
-
-* Sat Jun 07 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ18
-- Reworked OpenVZ provisions in constructor/30_addNetwork.pl constructor/40_addGateway.pl
-
-* Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ17
-- Fixed handler rewrite-ifcfg.pl to not rewrite ifcfg-venet0 at all
-
-* Tue Jun 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ16
-- Fully added OpenVZ provisions to all constructors, handlers, schemas and PHP pages.
-
-* Tue Apr 15 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ15 
-- Disabled Network monitoring in Active Monitor by default. 
-
-* Sat Mar 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ14 
-- Fixed 30_addNetwork.pl to make venet0:0 real to prevent its deletion
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ13
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-82BQ12
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-82BQ12
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-82BQ11
 - Fixed duplicate include issue.

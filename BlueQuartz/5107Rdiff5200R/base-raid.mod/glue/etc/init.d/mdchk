@@ -24,17 +24,6 @@ kver=$(uname -r | cut -f1,2 -d.)
 # global source/target variables
 unset GSOURCE GTARGET
 
-# Check if RAID was enabled:
-MD=`/bin/cat /proc/mdstat | /bin/grep ^md | /usr/bin/wc -l`
-if [ "$MD" != "0" ]; then
-    # Check if /etc/raidtab is empty:
-    FTL=`/bin/cat /etc/raidtab | /usr/bin/wc -l`
-    if [ "$FTL" -lt "10" ]; then
-	# Fix /etc/raidtab:
-	/sbin/lsraid  > /etc/raidtab
-    fi
-fi
-
 function raid_status
 # purpose: check a raid-device for active disks
 #          this tries to re-add partitions on the fly if necessary.

@@ -61,7 +61,8 @@ function rectifyTag($tag) {
     if(!empty($i18nDomain)) {
         $domainPiece = $i18nDomain . ".";
     }
-    return("[[$domainPiece" . preg_replace("/\[\[[_a-zA-Z0-9-]\]\]$/", "\\2", $tag) . "]]");
+    
+    return("[[$domainPiece" . ereg_replace("(\[\[)*([_a-zA-Z0-9-]*)(\]\])?$", "\\2", $tag) . "]]");                
 }
 
 /*
@@ -213,9 +214,7 @@ if(!$noLocale) {
 if(!is_array($url)){
     $url = array($url);
 }    
-
-$files = array();
-$names = array();
+    
 for($a = 0; $a < count($url); $a++) {
     $base = $docDir . $url[$a] . $insertLocale . $ext;
     
@@ -224,6 +223,7 @@ for($a = 0; $a < count($url); $a++) {
     // so getLocales will just return
     
     $localedFiles = getLocales($base);
+    
     $files = array_merge($files, $localedFiles);
 
     // Deal with displayed name(s)

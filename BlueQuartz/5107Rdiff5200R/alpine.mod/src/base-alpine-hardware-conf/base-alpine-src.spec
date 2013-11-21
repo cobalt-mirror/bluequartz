@@ -1,9 +1,8 @@
 Summary: Config files describing Alpine hardware
 Name: base-alpine-hardware-conf
 Version: 1.0.0
-Release: 14BQ2
-Vendor: Sun Microsystems, Inc. 2001
-License: Sun modified BSD
+Release: 14BQ1
+Copyright: Sun Microsystems, Inc. 2001
 Group: Utils
 Source: base-alpine-hardware-conf.tar.gz
 BuildRoot: /tmp/%{name}
@@ -21,10 +20,6 @@ make PREFIX=$RPM_BUILD_ROOT install
 This package contains a number of scripts and config files used by Alpine.
 
 %changelog
-* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-14BQ2
-- Replaced copyright tag with vendor tag.
-- Added License field.
-
 * Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.0-14BQ1
 - build for Blue Quartz
 

@@ -1,5 +1,5 @@
 <?php
-// $Id: dns_soa.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: dns_soa.php 1371 2010-01-18 11:27:32Z shibuya $
 //
 // ui for adding/modifying many DNS record types
 $iam = '/base/dns/dns_add.php';
@@ -13,9 +13,6 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
   header("location: /error/forbidden.html");
   return;
 }
-
-// Start sane:
-$errors = array();
 
 // preserve the selected authority in the records list
 if ($HTTP_GET_VARS{'domauth'} != '') {

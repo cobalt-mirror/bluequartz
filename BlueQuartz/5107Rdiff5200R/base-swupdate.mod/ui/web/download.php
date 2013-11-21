@@ -1,13 +1,13 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: download.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: download.php 1427 2010-03-10 14:49:50Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only managePackage should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -76,7 +76,7 @@ $block->addFormField(
   $factory->getLabel("descriptionField")
 );
 
-$location = preg_match('/^file:/', $package['location']) ? $i18n->interpolate('[[base-swupdate.locationLocal]]') : $package['location'];
+$location = ereg('^file:', $package['location']) ? $i18n->interpolate('[[base-swupdate.locationLocal]]') : $package['location'];
 $block->addFormField(
   $factory->getTextField("locationField", $location, "r"),
   $factory->getLabel("locationField")

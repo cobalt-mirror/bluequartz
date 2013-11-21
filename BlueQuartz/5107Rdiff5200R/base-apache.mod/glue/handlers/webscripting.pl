@@ -1,5 +1,5 @@
-#!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: webscripting.pl 259 2004-01-03 06:28:40Z shibuya $
+#!/usr/bin/perl -w
+# $Id: webscripting.pl 1510 2010-08-08 04:55:31Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # This is triggered by changes to the Vsite PHP, CGI, or SSI namespaces.
@@ -7,20 +7,12 @@
 
 use CCE;
 use Base::Httpd qw(httpd_get_vhost_conf_file);
-
-# Debugging switch:
-$DEBUG = "0";
-if ($DEBUG)
-{
-        use Sys::Syslog qw( :DEFAULT setlogsock);
-}
+use Sauce::Util;
 
 my $cce = new CCE;
 $cce->connectfd();
 
 my $vsite = $cce->event_object();
-
-&debug_msg("Init of webscripting.pl\n");
 
 my($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
 ($ok, my $cgi) = $cce->get($cce->event_oid(), 'CGI');
@@ -29,7 +21,6 @@ my($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
 if(not $ok)
 {
     $cce->bye('FAIL', '[[base-apache.cantReadWebScripting]]');
-    &debug_msg("Fail1: [[base-apache.cantReadWebScripting]]\n");
     exit(1);
 }
 
@@ -37,12 +28,38 @@ if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{name}),
                             *edit_vhost, $php, $cgi, $ssi, $vsite->{fqdn}))
 {
     $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
-    &debug_msg("Fail2: [[base-apache.cantEditVhost]]\n");
     exit(1);
+}
+
+if($php->{suPHP_enabled})
+{    $site_dir = "/home/sites/".$vsite->{fqdn};
+    #copy php.ini
+    if(!-e "$site_dir/php.ini") {
+        system("/bin/cp -r /etc/php.ini $site_dir/php.ini");
+        system("/bin/chmod 0664 $site_dir/php.ini");
+        system("/bin/chown nobody.$vsite->{name} $site_dir/php.ini");
+        Sauce::Util::editfile("$site_dir/php.ini", *edit_phpini, $vsite);
+    }
+
+    # mkdir .tmp
+    if(!-e "$site_dir/.tmp") {
+        system("/bin/mkdir \"$site_dir/.tmp\"");
+        system("chmod 2777 \"$site_dir/.tmp\"");
+        system("chown nobody.$vsite->{name} \"$site_dir/.tmp\"");
+    }
 }
 
 $cce->bye('SUCCESS');
 exit(0);
+
+sub edit_phpini {
+       my ($in, $out, $vsite) = @_;
+       while (<$in>) {
+               s/^session\.save_path(.*)$/session\.save_path = \"\/home\/sites\/$vsite->{fqdn}\/\.tmp\"/g;
+               print $out $_;
+       }
+       return 1;
+}
 
 sub edit_vhost
 {
@@ -65,19 +82,20 @@ sub edit_vhost
 
 	if ($php->{enabled})
 	{
-                if ($php->{suPHP_enabled}) { 
-                        $script_conf .= <<EOT
+		if ($php->{suPHP_enabled}) {
+			$script_conf .= <<EOT
 suPHP_Engine on
 suPHP_ConfigPath /home/sites/$fqdn
-suPHP_AddHandler x-httpd-suphp
-AddHandler x-httpd-suphp .php
+suPHP_AddHandler php5-script
+AddHandler php5-script .php
 EOT
-                } else { 
-                        $script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n"; 
-                } 
+		} else {
+			$script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n";
+		}
 	}
 
     my $last;
+    my $enableSSL = 0;
     while(<$in>)
     {
         if(/^<\/VirtualHost>/i) { $last = $_; last; }
@@ -103,24 +121,35 @@ EOT
     # preserve the remainder of the config file
     while(<$in>)
     {
-        print $out $_;
+        if(/^<\/VirtualHost>/i) { $enableSSL = 1; $last = $_; last; }
+
+        if(/^$begin$/)
+        {
+            while(<$in>)
+            {
+                if(/^$end$/) { last; }
+            }
+        }
+        else
+        {
+            print $out $_;
+        }
+    }
+
+    if ($enableSSL) {
+        print $out $begin, "\n";
+        print $out $script_conf;
+        print $out $end, "\n";
+        print $out $last;
+
+        while(<$in>)
+        {
+            print $out $_;
+        }
     }
 
     return 1;
 }
-
-# For debugging:
-sub debug_msg {
-    if ($DEBUG) {
-        my $msg = shift;
-        $user = $ENV{'USER'};
-        setlogsock('unix');
-        openlog($0,'','user');
-        syslog('info', "$ARGV[0]: $msg");
-        closelog;
-    }
-}
-
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

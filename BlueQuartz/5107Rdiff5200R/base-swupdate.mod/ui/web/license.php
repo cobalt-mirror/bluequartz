@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: license.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: license.php 1008 2007-06-25 15:23:03Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("base/swupdate/updateLib.php");
@@ -64,7 +64,7 @@ $page = $factory->getPage();
 // otherwise, we generate a standard license page
 
 $block0 = $factory->getPagedBlock("licenseField");
-$block = $factory->getPagedBlock(' ');
+$block = $factory->getPagedBlock('');
 $block->addFormField($factory->getTextField("nameField", $nameField, ""));
 $block->addFormField($factory->getTextField("backUrl", $backUrl, ""));
 $block->addFormField($factory->getTextField("packageOID", $packageOID, ""));

@@ -1,8 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 #
-# $Id: suspend_user.pl,v 1.1.2.2 Tue 23 Jun 2009 03:15:33 PM EDT mstauber Exp $
+# $Id: suspend_user.pl,v 1.1.2.1 2002/01/31 02:45:16 pbaltz Exp $
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
-# Copyright 2008-2009 Team BlueOnyx. All rights reserved.
 #
 # Watch the ui_enabled property and toggle the enabled property provided
 # that the Vsite (if any) the User belongs to is not suspended.
@@ -15,7 +14,11 @@ $cce->connectfd();
 
 my $user = $cce->event_object();
 
-my $enabled = $user->{ui_enabled};
+my $ui_enabled = $user->{ui_enabled};
+my $user_enabled = $user->{enabled};
+my $enabled = 1;
+
+my $md5_password = $user->{md5_password};
 if ($user->{site} ne '') {
 	# see if the site this user is a member of is suspended
 	my @sites = $cce->find('Vsite',
@@ -26,21 +29,26 @@ if ($user->{site} ne '') {
 	}
 }
 
-my ($ok) = $cce->set($cce->event_oid(), '', { 'enabled' => $enabled });
+if ($enabled == 0 || $user_enabled == 0 || $ui_enabled == 0) {
+	if ($md5_password !~ '^!') {
+		$md5_password = '!' . $md5_password; 
+	}
+} else { 
+	$md5_password =~ s|^!||; 
+} 
+
+if ($enabled != 0) {
+	$enabled = $ui_enabled;
+}
+
+my ($ok) = $cce->set($cce->event_oid(), '', 
+	{ 
+		'enabled' => $enabled, 
+		'md5_password' => $md5_password 
+	}); 
 if (!$ok) {
 	$cce->bye('FAIL');
 	exit(1);
-}
-else {
-    # User accounts MUST be locked or unlocked. Otherwise suspended users can still use SMTP-Auth:
-    if ($enabled == "0") {
-	# Lock account:
-	system("/usr/sbin/usermod -L $user->{name}");
-    }
-    else {
-	# Unlock account:
-	system("/usr/sbin/usermod -U $user->{name}");
-    }
 }
 
 $cce->bye('SUCCESS');

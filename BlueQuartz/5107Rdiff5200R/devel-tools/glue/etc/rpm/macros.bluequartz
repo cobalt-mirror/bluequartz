@@ -1,0 +1,9 @@
+# For CentOS
+## CentOS5
+%Build_CentOS5 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} centos-release`" = "5" ]; then echo '.centos5'; fi)
+%centos5 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} centos-release`" = "5" ]; then echo '5'; fi)
+
+%centos %{?centos5:%{centos5}}
+
+%dist %{?Build_CentOS5:%{Build_CentOS5}}
+

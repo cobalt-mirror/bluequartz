@@ -5,10 +5,11 @@
 include_once('ServerScriptHelper.php');
 include_once('ArrayPacker.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -18,8 +19,6 @@ if (!$helper->getAllowed('adminUser') &&
 $factory =& $helper->getHtmlComponentFactory('base-ssl', 
                                             '/base/ssl/caManager.php');
 $cce = $helper->getCceClient();
-
-$errors = array();
 
 if ($group)
 {
@@ -34,47 +33,49 @@ $ssl = $cce->get($oid, 'SSL');
 
 if ($save)
 {
-    if (preg_match('/addCA/', $caAction))
+    if (ereg('addCA', $caAction))
     {
 	if ($caCert == "none") 
 	{
 		//no file supplied
-		$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+		$error =& new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
 		$errors = array($error);
 	}
 	else 
 	{
+        	// import the uploaded information for the specified site
+        	$fh = fopen($caCert, 'r');
+		if (!$fh) 
+		{
+			//file opening problems
+			$error =& new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+			$errors = array($error);
+		}
+                else 
+                {
 
-	    if (is_uploaded_file($caCert)) {
-    		$tmp_cert = tempnam('/tmp', 'file');
-    		move_uploaded_file($caCert, $tmp_cert);
-	    }
-	    else {
-    		//file opening problems
-    		$error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
-    		$errors = array($error);
+        	        $lines = '';
+        	        while (!feof($fh))
+        	        {
+        	            $lines .= fread($fh, 4096);
+        	        }
+        	        fclose($fh);
+    
+        	        $tmp_cert = tempnam('/tmp', 'file');
+        	        unlink($tmp_cert);
+        	        $helper->putFile($tmp_cert, $lines);
+    
+        	        $runas = ($helper->getAllowed('adminUser') ? 
+                                        'root' : $helper->getLoginName());
+        	        $ret = $helper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=caCert --ca-ident='$addCaIdent'", 
+        	                    $output, $runas);
+        	        if ($ret != 0)
+        	        {
+        	            // deal with error
+        	            $error =& new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
+        	            $errors = array($error);
+        	        }
 
-	    }
-            if (!is_file($tmp_cert))
-            {
-                //file opening problems
-                $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
-                $errors = array($error);
-            }
-            else
-            {
-
-                    $runas = ($helper->getAllowed('adminUser') ? 'root' : $helper->getLoginName());
-                    $ret = $helper->shell("/usr/sausalito/sbin/ssl_import.pl $tmp_cert --group=$group --type=caCert --ca-ident='$addCaIdent'", $output, $runas);
-                    if ($ret != 0)
-                    {
-                        // deal with error
-                        $error = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError$ret]]");
-                        $errors = array($error);
-                        if (is_file($temp_cert)) {
-                            unlink($tmp_cert);
-                        }
-                    }
                 }
 	}
     }
@@ -153,15 +154,6 @@ if (count($cas) && $cas[0] != '')
 
     $action->addOption($remove);
 }
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$manager->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 $manager->addFormField($action, $factory->getLabel('caAction'));
 

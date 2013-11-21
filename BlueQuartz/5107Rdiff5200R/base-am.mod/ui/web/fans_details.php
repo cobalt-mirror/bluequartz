@@ -2,7 +2,7 @@
 
 // Author: James Cheng
 // Copyright 2000, Sun Microsystems, Inc.  All rights reserved.
-// $Id: fans_details.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: fans_details.php 1025 2007-06-25 15:32:16Z shibuya $
 include_once("ServerScriptHelper.php");
 include_once("base/am/am_detail.inc");
 include_once("./fans.inc");

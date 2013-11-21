@@ -1,17 +1,26 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 # $Id: schedule.po,v 1.1.2.1 2002/03/12 22:50:23 pbaltz Exp $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-
 msgid "bad_action"
-msgstr "»ØÄê¤µ¤ì¤¿Áàºî¤ÏÂ¸ºß¤·¤Ê¤¤¤«¡¢¼Â¹Ô¤Ç¤­¤Ş¤»¤ó¡£"
+msgstr "æŒ‡å®šã•ã‚ŒãŸæ“ä½œã¯å­˜åœ¨ã—ãªã„ã‹ã€å®Ÿè¡Œã§ãã¾ã›ã‚“ã€‚"
 
 msgid "bad_start_time"
-msgstr "»ØÄê¤µ¤ì¤¿³«»Ï»ş´Ö¤ÏÉÔÀµ¤Ç¤¹¡£"
+msgstr "æŒ‡å®šã•ã‚ŒãŸé–‹å§‹æ™‚é–“ã¯ä¸æ­£ã§ã™ã€‚"
 
 msgid "cannot_create_timer"
-msgstr "¿·µ¬¤Î¥¹¥±¥¸¥å¡¼¥ë¤ò /etc/cron.d ¤ËÄÉ²Ã¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "æ–°è¦ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ /etc/cron.d ã«è¿½åŠ ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
 
 msgid "timer_add_failed"
-msgstr "¿·µ¬¤Î¥¹¥±¥¸¥å¡¼¥ë¤ò cron ¤ËÄÉ²Ã¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "æ–°è¦ã®ã‚¹ã‚±ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’ cron ã«è¿½åŠ ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
 
 msgid "timer_delete_failed"
-msgstr "»ØÄê¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ò /etc/cron.d ¤«¤éºï½ü¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ /etc/cron.d ã‹ã‚‰å‰Šé™¤ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"

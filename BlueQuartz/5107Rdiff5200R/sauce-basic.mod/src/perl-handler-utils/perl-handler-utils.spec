@@ -1,10 +1,10 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
-Version: 1.3.1
-Release: 0BX02%{?dist}
+Version: 1.3.0
+Release: 11BQ11%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: perl-handler-utils.tar.gz
 BuildRoot: /tmp/perl-sauce
 Provides: perl(Sauce::Util::SecurityLevels)
@@ -33,25 +33,10 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
-
-* Wed Aug 31 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX02
-- Modified Sauce/Service.pm with a special case for 'crond' to prevent forking
-  multiple 'crond' instances.
-
-* Fri Jul 01 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX01
-- Modified Sauce/Util.pm with a debugging switch that helps us to find 
-  troublesome Sauce:editfile calls.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.0-11BQ13
-- Rebuilt for BlueOnyx.
-
-* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 1.3.0-11BQ12
-- Modified hash_edit_function in Sauce/Util.pm to ignore php.ini style section headers.
-
-* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-11BQ11
+* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org< 1.3.0-11BQ11
 - change option -l for tar 1.15 again.
 
-* Thu May 03 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.3.0-11BQ10
+* Thu May 03 2007 Hisao SHIBUYA <shibuya@bluequartz.org< 1.3.0-11BQ10
 - change option -l for tar 1.15.
 
 * Fri Nov 25 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.3.0-11BQ9

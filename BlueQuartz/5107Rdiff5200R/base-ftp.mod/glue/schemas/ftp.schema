@@ -1,5 +1,5 @@
 <! --
-	$Id: ftp.schema 1136 2008-06-05 01:48:04Z mstauber $
+	$Id: ftp.schema 1415 2010-03-10 14:34:49Z shibuya $
 	Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 	Author: asun@cobalt.com
 	
@@ -9,19 +9,19 @@
 <class name="System" namespace="Ftp" version="1.0">
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property
         name="useReverseDNS" type="boolean" default="0"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="maxConnections" type="int" default="100000"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="connectRate" type="int" default="80"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>
 
@@ -50,22 +50,6 @@
     />
 </class>
 
-<class
-    name="VsiteServices" namespace="FTPNONADMIN" version="1.0"
->
-    <property name="featureEnabled" type="boolean" default="0"/>
-
-    <property
-        name="i18nName" type="scalar" default="[[base-apache.ftpnonadminI18nName]]"
-    />
-
-    <property
-        name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
-    />
-</class>
-
-
 <!-- 
     transparency layer for vsites, really just toggles an FtpSite 
     objects settings 
@@ -89,15 +73,6 @@
     />
 </class>
 
-<class
-    name="Vsite" namespace="FTPNONADMIN" version="1.0"
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
->
-    <property
-        name="enabled" type="boolean" default="1"
-        writeacl="ruleCapable(adminUser)"
-    />
-</class>
 
 <class 
     name="FtpSite" version="1.0"

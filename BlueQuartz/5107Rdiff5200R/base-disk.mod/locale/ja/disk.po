@@ -1,286 +1,293 @@
-## NOTE: this is the Disk Usage section of Personal Profile, bits of Active 
-##       Monitor, and virtual site disk usage 
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
+# # NOTE: this is the Disk Usage section of Personal Profile, bits of Active 
+# #       Monitor, and virtual site disk usage 
 # --- Menu
 msgid "userDiskUsage"
-msgstr "�ǥ������λ��Ѿ���"
+msgstr "ディスクの使用状況"
 
 msgid "userDiskUsage_help"
-msgstr "�ǥ������λ��Ѿ����˴ؤ������ɽ������ޤ���"
+msgstr "ディスクの使用状況に関する情報が表示されます。"
 
 msgid "groupDiskUsage"
-msgstr "�ǥ������λ��Ѿ���"
+msgstr "ディスクの使用状況"
 
 msgid "groupDiskUsage_help"
-msgstr "�ƥ桼���Υǥ��������Ѿ����˴ؤ�������ɽ���Ǥ��ޤ���"
+msgstr "各ユーザのディスク使用状況に関する情報を表示できます。"
 
 msgid "groupDiskUsage_menu"
-msgstr "�ǥ�����"
+msgstr "ディスク"
 
 msgid "groupDiskUsage_menu_help"
-msgstr "�ƥ桼���Υǥ��������Ѿ����˴ؤ�������ɽ���Ǥ��ޤ���"
+msgstr "各ユーザのディスク使用状況に関する情報を表示できます。"
 
 # personal profile disk usage page
 msgid "diskUsageFor"
-msgstr "�ǥ������λ��Ѿ��� - [[VAR.userName]]"
+msgstr "ディスクの使用状況 - [[VAR.userName]]"
 
 msgid "userDiskUsed"
-msgstr "�������̡�MB��"
+msgstr "使用容量（MB）"
 
 msgid "userDiskUsed_help"
-msgstr "���߻��Ѥ���Ƥ���ǥ��������̤Ǥ�����ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "現在使用されているディスク容量です。（単位： メガバイト）"
 
 msgid "userDiskFree"
-msgstr "�������̡�MB��"
+msgstr "空き容量（MB）"
 
 msgid "userDiskFree_help"
-msgstr "���߻��ѤǤ���ǥ������ζ������̤Ǥ�����ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "現在使用できるディスクの空き容量です。（単位： メガバイト）"
 
 msgid "userDiskPercentage"
-msgstr "����Ψ"
+msgstr "使用率"
 
 msgid "userDiskPercentage_help"
-msgstr "������Ƥ��Ƥ���ǥ������ΰ����Τ���ǡ����߻�����Υǥ������ΰ褬������򼨤��ޤ���"
+msgstr "割り当てられているディスク領域全体の中で、現在使用中のディスク領域が占める割合を示します。"
 
 msgid "serviceDiskPercentage"
 msgstr "[[base-disk.userDiskPercentage]]"
 
 msgid "serviceDiskPercentage_help"
-msgstr "�ƥ����ӥ��˳�����Ƥ��Ƥ���ǥ������ΰ����Τ���ǡ����߻�����Υǥ������ΰ褬������򼨤��ޤ���"
+msgstr "各サービスに割り当てられているディスク領域全体の中で、現在使用中のディスク領域が占める割合を示します。"
 
 msgid "userOverQuota"
-msgstr "�ǥ��������̤˴ؤ���ٹ�"
+msgstr "ディスク容量に関する警告"
 
 msgid "userOverQuota_help"
-msgstr "���ߡ�������Ƥ��Ƥ���ǥ��������̤�Ķ�᤹���̤Υǥ������ΰ褬���Ѥ���Ƥ��뤳�Ȥ򼨤��ޤ������פˤʤä��Ť��ե�������Żҥ᡼��򤳤Υ����Ф��������ơ��ǥ������ΰ�ζ��������䤷�Ƥ���������"
+msgstr "現在、割り当てられているディスク容量を超過する量のディスク領域が使用されていることを示します。不要になった古いファイルや電子メールをこのサーバから削除して、ディスク領域の空きを増やしてください。"
 
 msgid "overQuotaMsg"
-msgstr "���ߡ�������Ƥ��Ƥ���ǥ��������̤�Ķ�᤹���̤Υǥ������ΰ褬���Ѥ���Ƥ��ޤ������פˤʤä��Ť��ե�������Żҥ᡼��򤳤Υ����Ф��������ơ��ǥ������ΰ�ζ��������䤷�Ƥ���������"
-
+msgstr "現在、割り当てられているディスク容量を超過する量のディスク領域が使用されています。不要になった古いファイルや電子メールをこのサーバから削除して、ディスク領域の空きを増やしてください。"
 
 # ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
-
 msgid "amDiskNameTag"
-msgstr "�ǥ������λ��Ѿ���"
+msgstr "ディスクの使用状況"
 
 msgid "amDetails"
-msgstr "�ǥ��������Ѿ����ξܺ�"
+msgstr "ディスク使用状況の詳細"
 
-	# also sent in email to admin if disk usage high
+# also sent in email to admin if disk usage high
 msgid "amDiskWarning"
-msgstr "�ǥ������Υѡ��ƥ�����󤬤ۤܰ��դǤ���[[VAR.fs]] �ѡ��ƥ�������Υǥ��������̤� [[VAR.pcnt]]% ��������Ǥ������Υѡ��ƥ�������ζ������̤ϡ�[[VAR.free]] MB �Ǥ���"
+msgstr "ディスクのパーティションがほぼ一杯です。[[VAR.fs]] パーティション上のディスク容量の [[VAR.pcnt]]% が使用中です。このパーティション上の空き容量は、[[VAR.free]] MB です。"
 
 msgid "amDiskOk"
-msgstr "�ǥ������λ��Ѿ���������Ǥ���"
+msgstr "ディスクの使用状況は正常です。"
 
 # constructor messages
 # 93_update_disks_info.pl
 msgid "cantCreateDisk"
-msgstr "[[VAR.device]] �ѤΥǥ��������֥������Ȥ������Ǥ��ޤ���"
+msgstr "[[VAR.device]] 用のディスクオブジェクトを生成できません。"
 
 # --- Handler messages, only show on errors 
 # df.pl
 msgid "cantExecuteDf"
-msgstr "df ���ޥ�ɤ�¹ԤǤ��ޤ���"
+msgstr "df コマンドを実行できません。"
 
 msgid "cantUpdateDiskInfo"
-msgstr "[[VAR.device]] �ǥ������Υǥ��������Ѿ�������򹹿��Ǥ��ޤ���"
+msgstr "[[VAR.device]] ディスクのディスク使用状況情報を更新できません。"
 
 # groupusage.pl and userusage.pl
 msgid "cantUpdateDiskUsage"
-msgstr "[[VAR.name]] �Υǥ��������Ѿ�������򹹿��Ǥ��ޤ���"
+msgstr "[[VAR.name]] のディスク使用状況情報を更新できません。"
 
 # modquota.pl
 msgid "couldNotGetId"
-msgstr "�����ƥ��� [[VAR.target]] �����Ĥ���ʤ����ᡢ[[VAR.target]] �� [[VAR.id]] ������Ǥ��ޤ���"
+msgstr "システム上に [[VAR.target]] が見つからないため、[[VAR.target]] の [[VAR.id]] を入手できません。"
 
 msgid "couldNotSync"
-msgstr "������γ�����ƾ����Ȥäƥǥ������γ�����ƾ���򹹿��Ǥ��ޤ���"
+msgstr "メモリ中の割り当て情報を使ってディスクの割り当て情報を更新できません。"
 
 msgid "couldNotSetQuota"
-msgstr "[[VAR.name]] �γ�����Ƥ�����Ǥ��ޤ���"
+msgstr "[[VAR.name]] の割り当てを設定できません。"
 
 # group disk usage page for virtual sites
 msgid "groupDiskUsageFor"
-msgstr "[[VAR.groupName]] �Υǥ��������Ѿ���"
+msgstr "[[VAR.groupName]] のディスク使用状況"
 
 msgid "groupDiskUsed"
-msgstr "�������� (MB)"
+msgstr "使用容量 (MB)"
 
 msgid "groupDiskUsed_help"
-msgstr "�桼���ˤ��Ȥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "ユーザにより使われているディスク領域の合計。（単位： メガバイト）"
 
 msgid "groupDiskFree"
-msgstr "�������� (MB)"
+msgstr "空き容量 (MB)"
 
 msgid "groupDiskFree_help"
-msgstr "���߻��ѤǤ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "現在使用できるディスク領域の合計。（単位： メガバイト）"
 
 msgid "groupDiskPercentage"
-msgstr "����Ψ"
+msgstr "使用率"
 
 msgid "groupDiskPercentage_help"
-msgstr "������Ƥ��Ƥ���ǥ������ΰ����Τ���ǡ����߻Ȥ��Ƥ���ǥ������ΰ褬�����硣"
+msgstr "割り当てられているディスク領域全体の中で、現在使われているディスク領域が占める割合。"
 
 msgid "userQuota"
-msgstr "�桼���Υǥ��������Ѿ���"
+msgstr "ユーザのディスク使用状況"
 
 msgid "user"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "user_help"
-msgstr "��Ͽ�桼���Υ桼��̾��"
+msgstr "登録ユーザのユーザ名。"
 
 msgid "used"
-msgstr "�������� (MB)"
+msgstr "使用容量 (MB)"
 
 msgid "used_help"
-msgstr "�ƥ桼���ˤ��Ȥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各ユーザにより使われているディスク領域の合計。（単位： メガバイト）"
 
 msgid "service_used"
 msgstr "[[base-disk.used]]"
 
 msgid "service_used_help"
-msgstr "�ƥ����ӥ��ˤ��Ȥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各サービスにより使われているディスク領域の合計。（単位： メガバイト）"
 
 msgid "quota"
-msgstr "�������� (MB)"
+msgstr "割当容量 (MB)"
 
 msgid "quota_help"
-msgstr "�ƥ桼���˳�����Ƥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各ユーザに割り当てられているディスク領域の合計。（単位： メガバイト）"
 
 msgid "service_quota"
 msgstr "[[base-disk.quota]]"
 
 msgid "service_quota_help"
-msgstr "�ƥ����ӥ��˳�����Ƥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各サービスに割り当てられているディスク領域の合計。（単位： メガバイト）"
 
 # server disk usage page
 msgid "serverDiskUsage"
-msgstr "�ǥ������λ��Ѿ���"
+msgstr "ディスクの使用状況"
 
 msgid "serverDiskUsageDesc"
-msgstr "���Υ����о�Υǥ��������Ѿ�����ɽ���Ǥ��ޤ���"
+msgstr "このサーバ上のディスク使用状況を表示できます。"
 
 msgid "serverDiskUsage_menu"
-msgstr "�ǥ�����"
+msgstr "ディスク"
 
 msgid "serverDiskUsageDesc_menu"
-msgstr "���Υ����о�Υǥ��������Ѿ�����ɽ���Ǥ��ޤ���"
+msgstr "このサーバ上のディスク使用状況を表示できます。"
 
 msgid "summary"
-msgstr "�ѡ��ƥ��������"
+msgstr "パーティション別"
 
 msgid "summary_help"
-msgstr "�ѡ��ƥ�������̤Υǥ��������Ѿ���������"
+msgstr "パーティション別のディスク使用状況一覧。"
 
 msgid "partition"
-msgstr "�ѡ��ƥ������"
+msgstr "パーティション"
 
 msgid "partition_help"
-msgstr "�ѡ��ƥ������Υ�٥�ޤ��ϥǥ��쥯�ȥ�Ǥ���"
+msgstr "パーティションのラベルまたはディレクトリです。"
 
 msgid "diskUsed"
-msgstr "�������� (MB)"
+msgstr "使用容量 (MB)"
 
 msgid "diskUsed_help"
-msgstr "�ƥѡ��ƥ������ˤ��Ȥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各パーティションにより使われているディスク領域の合計。（単位： メガバイト）"
 
 msgid "total"
-msgstr "�������� (MB)"
+msgstr "割当容量 (MB)"
 
 msgid "total_help"
-msgstr "�ƥѡ��ƥ������˳�����Ƥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各パーティションに割り当てられているディスク領域の合計。（単位： メガバイト）"
 
 msgid "percentage"
-msgstr "����Ψ"
+msgstr "使用率"
 
 msgid "percentage_help"
-msgstr "������Ƥ��Ƥ���ǥ������ΰ����Τ���ǡ����߻Ȥ��Ƥ���ǥ������ΰ褬�����硣"
+msgstr "割り当てられているディスク領域全体の中で、現在使われているディスク領域が占める割合。"
 
 msgid "users"
-msgstr "�桼����"
+msgstr "ユーザ別"
 
 msgid "users_help"
-msgstr "�桼���̤Υǥ��������Ѿ���������"
+msgstr "ユーザ別のディスク使用状況一覧。"
 
 msgid "unlimited"
-msgstr "̵����"
+msgstr "無制限"
 
 msgid "summaryVsite"
-msgstr "��������"
+msgstr "サイト別"
 
 msgid "summaryVsite_help"
-msgstr "�������̤Υǥ��������Ѿ�������"
+msgstr "サイト別のディスク使用状況一覧"
 
 msgid "vsiteName"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "vsiteName_help"
-msgstr "�ƥ����ȤΥۥ���̾�ܥɥᥤ��͡��ࡣ"
+msgstr "各サイトのホスト名＋ドメインネーム。"
 
 msgid "vsiteUsed"
-msgstr "�������� (MB)"
+msgstr "使用容量 (MB)"
 
 msgid "vsiteUsed_help"
-msgstr "�ƥ����Ȥˤ��Ȥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各サイトにより使われているディスク領域の合計。（単位： メガバイト）"
 
 msgid "vsiteQuota"
-msgstr "�������� (MB)"
+msgstr "割当容量 (MB)"
 
 msgid "vsiteQuota_help"
-msgstr "�ƥ����Ȥ˳�����Ƥ��Ƥ���ǥ������ΰ�ι�ס���ñ�̡� �ᥬ�Х��ȡ�"
+msgstr "各サイトに割り当てられているディスク領域の合計。（単位： メガバイト）"
 
 msgid "choose_site"
-msgstr "������̾�򥯥�å�����ȡ����Υ�������Υ桼���̥ǥ��������Ѿ�����ɽ������ޤ���"
+msgstr "サイト名をクリックすると、そのサイト中のユーザ別ディスク使用状況が表示されます。"
 
 msgid "sites_over_quota"
-msgstr "[[VAR.sites]] �Ȥ������ۥ����Ȥ��������Ȥ˳�����Ƥ��Ƥ���ǥ��������̤�Ķ�ᤷ�ޤ�����"
+msgstr "[[VAR.sites]] という仮想サイトが、サイトに割り当てられているディスク容量を超過しました。"
 
 msgid "users_over_quota"
-msgstr "[[VAR.users]] �Ȥ����桼��������ʬ�˳�����Ƥ��Ƥ���ǥ��������̤�Ķ�ᤷ�ޤ�����"
+msgstr "[[VAR.users]] というユーザが、自分に割り当てられているディスク容量を超過しました。"
 
 msgid "site_over_quota"
-msgstr "���ۥ����Ȥ���ˡ�������Ƥ��Ƥ���ǥ��������̤�Ķ�ᤷ����Τ�����ޤ����ܺپ�����̤��Żҥ᡼��˵��ܤ�������ޤ���"
+msgstr "仮想サイトの中に、割り当てられているディスク容量を超過したものがあります。詳細情報は別の電子メールに記載して送ります。"
 
 msgid "user_exceeds"
-msgstr "�桼���������ǥ��������̤�Ķ�ᤷ���Ȥ�"
+msgstr "ユーザが割当ディスク容量を超過したとき"
 
 msgid "user_exceeds_help"
-msgstr "�桼������ʬ�˳�����Ƥ��Ƥ���ǥ��������̤�Ķ�ᤷ�������������٤��Żҥ᡼��μ�������Ǥ��ޤ���"
+msgstr "ユーザが自分に割り当てられているディスク容量を超過した場合に送信すべき電子メールの種類を指定できます。"
 
 msgid "site_exceeds"
-msgstr "�����Ȥ������ǥ��������̤�Ķ�ᤷ���Ȥ�"
+msgstr "サイトが割当ディスク容量を超過したとき"
 
 msgid "site_exceeds_help"
-msgstr "���ۥ����Ȥ�������Ƥ��Ƥ���ǥ��������̤�Ķ�ᤷ�����˷ٹ�᡼����������뤫�ɤ��������Ǥ��ޤ���"
+msgstr "仮想サイトが割り当てられているディスク容量を超過した場合に警告メールを送信するかどうかを指定できます。"
 
 msgid "mail_admin_on_user"
-msgstr "�����Ԥ˷ٹ�᡼�����������"
+msgstr "管理者に警告メールを送信する"
 
 msgid "mail_admin_on_vsite"
-msgstr "�����Ԥ˷ٹ�᡼�����������"
+msgstr "管理者に警告メールを送信する"
 
 msgid "mail_user"
-msgstr "�桼���˷ٹ�᡼�����������"
+msgstr "ユーザに警告メールを送信する"
 
 msgid "settings"
-msgstr "�ٹ�᡼�����������"
+msgstr "警告メールの送信設定"
 
 msgid "settings_help"
-msgstr "�桼���ޤ��ϲ��ۥ����Ȥ������ǥ��������̤�Ķ�ᤷ�����˷ٹ�᡼����������뤫�ɤ���������Ǥ��ޤ���"
+msgstr "ユーザまたは仮想サイトが割当ディスク容量を超過した場合に警告メールを送信するかどうかを設定できます。"
 
 msgid "sysQuota"
-msgstr "�����ƥ�Υǥ��������Ѿ���"
+msgstr "システムのディスク使用状況"
 
 msgid "service"
-msgstr "�����ӥ�"
+msgstr "サービス"
 
 msgid "service_help"
-msgstr "�����Υ��ץꥱ�������ޤ��ϥ����ƥॵ���ӥ����ǥ������ΰ����Ѥ�����⤢��ޤ���"
+msgstr "これらのアプリケーションまたはシステムサービスがディスク領域を使用する場合もあります。"
 
 msgid "errSettingEmails"
-msgstr "�ٹ�᡼��������������¸��˥��顼��ȯ�����ޤ�����"
+msgstr "警告メールの送信設定を保存中にエラーが発生しました。"
 
 msgid "suspended_cce"
-msgstr "root �ѡ��ƥ������˳�����Ƥ��Ƥ���ǥ��������̤ζ������Ĥ꾯�ʤ��ʤäƤ��ޤ����ǡ�����»�����ɻߤ��뤿�ᡢ�����Хǥ����ȥåפϥ��å�����ޤ����������Хǥ����ȥåפزä����ѹ�����¸����ޤ��󡣥����Ф� telnet ��³�ޤ��� ftp ��³�������פʥ����ե����롢�桼���ե�����ʤɤ������Ƥ����������롼�ȥѡ��ƥ�������� 500 �ᥬ�Х��Ȱʾ�ζ����ǥ��������̤���ݤ��Ƥ��顢�����ƥ��֥�˥��Ρ�ư������ײ��̤ˤ��� [����ι���] �ܥ���򥯥�å�����ȡ������ƥ��֥�˥���ľ���˥ǥ������λ��Ѿ�����Ƴ�ǧ���������Хǥ����ȥåפ򥢥���å����ޤ���"
+msgstr "root パーティションに割り当てられているディスク容量の空きが残り少なくなっています。データの損失を防止するため、サーバデスクトップはロックされました。サーバデスクトップへ加えた変更は保存されません。サーバに telnet 接続または ftp 接続し、不要なログファイル、ユーザファイルなどを削除してください。ルートパーティション上に 500 メガバイト以上の空きディスク容量を確保してから、アクティブモニタの「動作状況」画面にある [情報の更新] ボタンをクリックすると、アクティブモニタは直ちにディスクの使用状況を再確認し、サーバデスクトップをアンロックします。"

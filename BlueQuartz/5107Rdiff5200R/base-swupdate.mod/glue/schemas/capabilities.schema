@@ -8,9 +8,9 @@
 	<property name="capable" type="boolean" default="1" readacl="ruleCapable(destroyPackage)"/>
 	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_destroyPackage]]"/>
 </class>
-<class name="Capabilities" namespace="modifyPackage" version="1.0">
-	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyPackage)"/>
-	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_modifyPackage]]"/>
+<class name="Capabilities" namespace="managePackage" version="1.0">
+	<property name="capable" type="boolean" default="1" readacl="ruleCapable(managePackage)"/>
+	<property name="nameTag" type="scalar" default="[[base-swupdate.cap_managePackage]]"/>
 </class>
 
 

@@ -2,7 +2,7 @@
 
 tmpfile='/etc/fstab.tmp'
 
-grep '/home' /etc/fstab > /dev/null 2>&1
+grep '/home[[:blank:]]' /etc/fstab > /dev/null 2>&1
 if [ $? -eq 0 ];
 then
   dir='/home'

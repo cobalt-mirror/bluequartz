@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: preview.pl 1133 2008-05-29 10:13:24Z mstauber $
-# Copyright 2005 Project BlueOnyx, All rights reserved.
+# $Id: preview.pl 1474 2010-05-16 14:19:29Z shibuya $
+# Copyright 2005 Project BlueQuartz, All rights reserved.
 # handle the preview for server virtualhost
 #
 
@@ -61,7 +61,7 @@ for my $oid (@preview_sites) {
     my ($ok, $cgi) = $cce->get($void, 'CGI');
     my ($ok, $ssi) = $cce->get($void, 'SSI');
     if ($php->{enabled}) {
-        $script_conf .= "AddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n";
+        $script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n";
     }
     if ($cgi->{enabled}) {
         $script_conf .= "AddHandler cgi-wrapper .cgi\nAddHandler cgi-wrapper .pl\n";

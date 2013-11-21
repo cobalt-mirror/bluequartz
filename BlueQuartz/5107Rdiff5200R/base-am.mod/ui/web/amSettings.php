@@ -89,16 +89,6 @@ if ($amobj == null)
 
 	$pagedBlock->addButton($factory->getSaveButton(
 		$page->getSubmitAction()));
-
-	// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-	$hidden_block = $factory->getTextBlock("Nothing", "");
-	$hidden_block->setOptional(true);
-	$pagedBlock->addFormField(
-	    $hidden_block,
-	    $factory->getLabel("Nothing"),
-	    "Hidden"
-	    );
-
 	print($pagedBlock->toHtml());
 }
 

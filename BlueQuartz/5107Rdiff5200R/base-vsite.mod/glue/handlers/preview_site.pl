@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: preview_site.pl 711 2006-03-11 15:21:10Z shibuya $
-# Copyright Project BlueOnyx, All rights reserved.
+# Copyright Project BlueQuartz, All rights reserved.
 #
 # handle preview site configuration for a virtual site
 

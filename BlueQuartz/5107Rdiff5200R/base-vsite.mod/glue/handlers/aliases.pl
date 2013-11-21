@@ -45,7 +45,7 @@ if ($cce->event_is_destroy())
 	}
 } else {
 	my %new_aliases;
-	map { $new_aliases{$_} = '%1@' . $vsite->{fqdn} } 
+	map { $new_aliases{$_} = '@' . $vsite->{fqdn} } 
 			$cce->scalar_to_array($vsite->{mailAliases});
 
 	# add catchall email alias
@@ -55,7 +55,7 @@ if ($cce->event_is_destroy())
 	}
 	else
 	{
-		$new_aliases{$vsite->{fqdn}} = 'error:nouser No such user here';
+		$new_aliases{$vsite->{fqdn}} = '';
 	}
 
 	# go through new aliases and create and destroy as necessary
@@ -165,7 +165,7 @@ if ($cce->event_is_destroy())
 	}
 
 	# update web aliases, if necessary
-	if (exists($vsite_new->{webAliases}))
+	if (exists($vsite->{webAliases}))
 	{
 		# map into a hash and then take the keys to avoid duplicates
 		my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});

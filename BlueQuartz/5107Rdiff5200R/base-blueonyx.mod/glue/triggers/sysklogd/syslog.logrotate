@@ -7,7 +7,7 @@
 
 /var/log/maillog {
     prerotate
-        /usr/local/sbin/maillog2commonlog.pl sendmail < /var/log/maillog | \
+        /usr/local/sbin/maillog2commonlog.pl postfix < /var/log/maillog | \
             /usr/local/sbin/split_logs mail
     endscript
     postrotate

@@ -10,7 +10,7 @@ use strict;
 
 use vars qw($confDir $findCmd $baseName);
 my $confDir = '/usr/shell-tools/conf';
-my $findCmd = 'find';
+my $findCmd = '/usr/bin/find';
 my $baseName = '/bin/basename';
 
 sub new
@@ -36,7 +36,7 @@ sub init
 	if(defined $params{build}) { $build = $params{build} }
 	else { die "ShellOpts::init no build name\n" }
 
-        my @xmlFiles = qx($findCmd $confDir -nowarn -type f -maxdepth 1 -name "*.xml");
+	my @xmlFiles = qx($findCmd $confDir -maxdepth 1 -type f -name "*.xml");
 	my ($confData, $baseName);
 	# should read base.xml in first
 	foreach my $file (@xmlFiles) {

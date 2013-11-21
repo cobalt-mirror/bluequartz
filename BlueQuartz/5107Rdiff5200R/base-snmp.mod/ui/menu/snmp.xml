@@ -6,7 +6,7 @@
 >
     <parent id="" order="40"/>
     <parent id="base_controlpanel" order="50">
-        <access require="networkServices"/>
+        <access require="serverSNMP"/>
     </parent>
 </item>
 

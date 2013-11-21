@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
-# $Id: no_duplicates.pl 1136 2008-06-05 01:48:04Z mstauber $
+# $Id: no_duplicates.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 #
 # don't allow the creation of Network aliases with the same IP address
@@ -23,21 +23,11 @@ if (scalar(@devices) > 1)
 	exit(1);
 }
 
-if (! -f "/proc/user_beancounters") {
-	# Normal network devices (eth):
-	# do things differently if this is real or an alias
-	my $real = 0;
-	if ($new_net->{device} =~ /^eth\d$/) {
-	    $real = 1;
-	}
-}
-else {
-	# OpenVZ's venet network devices:
-	# do things differently if this is real or an alias
-	my $real = 0;
-	if ($new_net->{device} =~ /^venet\d$/) {
-	    $real = 1;
-	}
+# do things differently if this is real or an alias
+my $real = 0;
+if ($new_net->{device} =~ /^eth\d$/)
+{
+    $real = 1;
 }
 
 my @old_nets = $cce->find('Network', 

@@ -1,5 +1,5 @@
 <?php
-// $Id: fans_image.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: fans_image.php 1025 2007-06-25 15:32:16Z shibuya $
 include_once("./fans.inc");
 include_once("base/am/imagelib.inc");
 

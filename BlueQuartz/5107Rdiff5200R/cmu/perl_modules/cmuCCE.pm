@@ -1,4 +1,4 @@
-# $Id: cmuCCE.pm Wed 10 Jun 2009 05:07:07 PM EDT mstauber $
+# $Id: cmuCCE.pm 1161 2008-06-21 10:31:02Z shibuya $
 # Copyright (c) 1999,2000,2001 Cobalt Networks, Inc. 
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 # written by: Jeff Bilicki
@@ -388,12 +388,11 @@ sub importCerts
 	foreach my $vsite (keys %{ $tree->{vsite} }) {
 		$vTree = $tree->{vsite}->{$vsite};
 		if(!defined $vTree->{SSL}->{enabled}) { next; }
-		if($vTree->{SSL}->{enabled} eq "0") { next; }
 		
 		my $certFile = '/home/sites/'.$vTree->{fqdn}.'/certs/certificate';
 		if(! -f $certFile) {
 			warn "ERROR SSL enabled for ", $vTree->{fqdn}, 
-				" but no certificate was found at $certFile\n";
+				" but not certificate was found at $certFile\n";
 			next;
 		}
 

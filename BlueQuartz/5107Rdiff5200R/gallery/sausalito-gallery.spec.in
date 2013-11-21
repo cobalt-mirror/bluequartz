@@ -9,7 +9,7 @@ Version: [VERSION]
 Release: [RELEASE]%{?dist}
 Vendor: [VENDORNAME]
 License: [COPYRIGHT]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: %{Vendor}-%{Service}-[VERSION].tar.gz
 BuildRoot: /var/tmp/%{Vendor}-%{Service}
 Requires: httpd
@@ -41,50 +41,18 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX17
-- Copied 'ja' locales to 'ja_JP'.
+* Tue Feb 09 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ9
+- fixed the issut that style is broken with Merlot style.
 
-* Fri Mar 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX16
-- Added the FireSmoke theme created by Rod Morgan (from PortMorgan LLC) to BlueOnyx. Thank you, Rod!
+* Thu Sep 17 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ7
+- use admserv for user.
 
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX15
-- Copied 'en' locales to 'en_US'
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ6
+- remove de locale message.
 
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX14
-- Removed comments from Style XML files as they are unneeded baggage.
-- Copied 'en' locales over to 'en_US'
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX13
-- Version number change for more consistency
-
-* Thu Feb 12 2009 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ12
-- Fixed missing gif extension for MerlotBlueLight in style/Merlot.xml and style/BlueOnyx.xml
-- Ticket http://devel.blueonyx.it/trac/ticket/44
-
-* Mon Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ11
-- Rebuilt for BlueOnyx.
-
-* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ10
-- Changed colors of libImage/BlueOnyx/Merlot_title_background.gif
-- Changed colors of libImage/BlueOnyx/controlBackground.gif
-- Both are used in Wizard and looked godawfully ugly now with the new template.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ9
-- Updated libImage/BlueOnyx/SunCobaltLogo.gif with the right image this time.
-
-* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ8
-- Updated images for BlueOnyx
-- Added BlueOnyx Skin
-
-* Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ7
-- Moved leading comments in /usr/sausalito/ui/style/Merlot.xml to end of file
-- Wouldn't compile the /usr/sausalito/ui/style/Merlot.xml.compiled... otherwise.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ6
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BQ5
-- Danish locales added. Thanks to Jes Klittum!
+* Sat Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ5
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.3.2-0BQ4
 - replace corrupted images on libImages.

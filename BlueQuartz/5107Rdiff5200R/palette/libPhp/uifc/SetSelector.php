@@ -1,7 +1,7 @@
 <?php
 // Author: Jonathan Mayer, Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: SetSelector.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: SetSelector.php 995 2007-05-05 07:44:27Z shibuya $
 
 // description:
 // This class represents a selector to pick items out of a set.
@@ -83,24 +83,7 @@ class SetSelector extends FormField {
     $this->setValueLabel();
 
     // default
-    if ($id == "make_fifty") {
-	$this->rows = "50";
-    }
-    elseif ($id == "make_fourty") {
-	$this->rows = "40";
-    }
-    elseif ($id == "make_thirty") {
-	$this->rows = "30";
-    }
-    elseif ($id == "make_twenty") {
-	$this->rows = "20";
-    }
-    elseif ($id == "make_ten") {
-	$this->rows = "10";
-    }
-    else {
-	$this->rows = "6";
-    }
+    $this->rows = 6;
 
     // internationalize
     $i18n =& $page->getI18n();

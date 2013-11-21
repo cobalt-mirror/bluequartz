@@ -1,14 +1,12 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalEmailHandler.php 1163 2008-06-29 19:00:27Z mstauber $
+// $Id: personalEmailHandler.php 1005 2007-06-25 15:21:40Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
-
-$errors = array();
 
 // boolean cce values are only 0 or 1
 if($autoResponderField) {
@@ -22,36 +20,12 @@ if($forwardEnableField) {
 	$forwardEnableField = "0";
 }
 
-if ($_autoRespondStartDate_amPm == "PM") { 
-  $_autoRespondStartDate_hour = $_autoRespondStartDate_hour + 12; 
- } 
-
-if ($_autoRespondStopDate_amPm == "PM") { 
-  $_autoRespondStopDate_hour = $_autoRespondStopDate_hour + 12; 
- } 
-
-$vacationMsgStart = mktime($_autoRespondStartDate_hour, $_autoRespondStartDate_minute, 
-			   $_autoRespondStartDate_second, $_autoRespondStartDate_month, 
-			   $_autoRespondStartDate_day, $_autoRespondStartDate_year); 
-$vacationMsgStop = mktime($_autoRespondStopDate_hour, $_autoRespondStopDate_minute, 
-			  $_autoRespondStopDate_second, $_autoRespondStopDate_month, 
-			  $_autoRespondStopDate_day, $_autoRespondStopDate_year); 
-
-if (($vacationMsgStop - $vacationMsgStart) < 0) { 
-  $vacationMsgStop = $oldStop; 
-  
-  $error_msg = "[[base-user.invalidVacationDate]]"; 
-  $errors[] = new Error($error_msg); 
- } 
-
 $cceClient->setObject("User", array(
 	"forwardEnable" => $forwardEnableField, 
 	"forwardEmail" => $forwardEmailField, 
 	"forwardSave" => $forwardSaveField,
 	"vacationOn" => $autoResponderField, 
-        "vacationMsg" => $autoResponderMessageField, 
-	"vacationMsgStart" => $vacationMsgStart, 
-	"vacationMsgStop" =>$vacationMsgStop),  
+	"vacationMsg" => $autoResponderMessageField), 
   "Email", 
   array("name" => $serverScriptHelper->getLoginName()));
 $errors = array_merge($cceClient->errors(), $errors);

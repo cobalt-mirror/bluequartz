@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=telnet
 
-VERSION=1.1.0
-RELEASE=57BX15
+VERSION=1.2.0
+RELEASE=57BQ11
 
 # add a buildarch if desired
 BUILDARCH=noarch

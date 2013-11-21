@@ -3,19 +3,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: wizard\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-04-14 02:43+0100\n"
-"Last-Translator: Michael Stauber <mstauber@blueonyx.it>\n"
+"PO-Revision-Date: 2008-01-27 05:30+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 # NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
 msgid "wizardLicense"
-msgstr "BinÃ¤rcode-Lizenzabkommen"
+msgstr "Binärcode-Lizenzabkommen"
 
 msgid "wizardLicense_help"
 msgstr " "
@@ -30,19 +30,19 @@ msgid "adminSettings"
 msgstr "Administrator-Einstellungen"
 
 msgid "adminMessage"
-msgstr "[[base-product.productName]] verlangt Administrator-Rechte um Aufgaben wie das HinzufÃ¼gen von Benutzern oder Gruppen oder das Ã„ndern von Konfigurationseinstellungen vorzunehmen. Der Benutzername des Administrators ist 'admin'. Bitte geben Sie fÃ¼r diesen Benutzer ein schwer zu erratendes Passwort ein und merken Sie sich dieses Passwort unbedingt. "
+msgstr "The [[base-product.productName]] requires an administrator to handle tasks such as adding users and groups as well as configuring settings.  The user name of the administrator is admin.  Enter a hard to guess password for the administrator.  Please remember the password for future use."
 
 msgid "adminNameField"
 msgstr "Benutzername"
 
 msgid "adminNameField_help"
-msgstr "Dies ist der Name, der benutzt wird, um den Administrator zu identifizieren. Dieser Name kann nicht geÃ¤ndert werden."
+msgstr "Dies ist der Name, der benutzt wird, um den Administrator zu identifizieren. Dieser Name kann nicht geändert werden."
 
 msgid "alteradminField"
 msgstr "Alternativer Admin-Zugang"
 
 msgid "alteradminField_help"
-msgstr "Der alternative Admin-Zugang kann verwendet werden, um administrative Privilegien auf mehreren Personen zu verteilen. Falls aktiviert, haben beide Administratoren (sowohl 'admin' als auch 'alteradmin') im Administrationsinterface die gleichen Rechte. Wenn aktiv, kann nur der 'alteradmin' selbst sein eigenes Passwort Ã¤ndern."
+msgstr "Der alternative Admin-Zugang kann verwendet werden, um administrative Privilegien auf mehreren Personen zu verteilen. Falls aktiviert, haben beide Administratoren (sowohl 'admin' als auch 'alteradmin') im Administrationsinterface die gleichen Rechte. Wenn aktiv, kann nur der 'alteradmin' selbst sein eigenes Passwort ändern."
 
 msgid "alteradminEnabled"
 msgstr "Aktivieren"
@@ -51,13 +51,13 @@ msgid "alteradminPassword"
 msgstr "alteradmin Passwort"
 
 msgid "alteradminPassword_help"
-msgstr "Dies ist das Passwort fÃ¼r den 'alteradmin' Benutzer. Falls dieses Konto benutzt wird, sollte man dafÃ¼r ein anderes Passwort als fÃ¼r den regulÃ¤ren 'admin' benutzen."
+msgstr "Dies ist das Passwort für den 'alteradmin' Benutzer. Falls dieses Konto benutzt wird, sollte man dafür ein anderes Passwort als für den regulären 'admin' benutzen."
 
 msgid "passwordField"
 msgstr "Passwort"
 
 msgid "passwordField_rule"
-msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und GroÃŸbuchstaben sowie aus Zahlen und Sonderzeichen bestehen. Es sollten keine in einem WÃ¶rterbuch zu findenden Begriffe verwendet werden. Bei PasswÃ¶rtern wird die GroÃŸ- und Kleinschreibung berÃ¼cksichtigt."
+msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie aus Zahlen und Sonderzeichen bestehen. Es sollten keine in einem Wörterbuch zu findenden Begriffe verwendet werden. Bei Passwörtern wird die Groß- und Kleinschreibung berücksichtigt."
 
 msgid "passwordField_help"
 msgstr "Geben Sie das Passwort ein, welches das System verwendet, um diesen Administrator zu identifizieren.[[base-wizard.passwordField_rule]]"
@@ -66,7 +66,7 @@ msgid "passwordField_invalid"
 msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
 
 msgid "passwordField_empty"
-msgstr "Das eingegebene Passwort ist ungÃ¼ltig [[base-wizard.passwordField]].  [[base-wizard.passwordField_rule]]"
+msgstr "Das eingegebene Passwort ist ungültig [[base-wizard.passwordField]].  [[base-wizard.passwordField_rule]]"
 
 msgid "newPasswordField"
 msgstr "Neues Passwort"
@@ -84,7 +84,7 @@ msgid "timeSettings"
 msgstr "Zeit einstellen"
 
 msgid "timeMessage"
-msgstr "[[base-product.productName]] setzt voraus, dass sowohl Datum als auch Uhrzeit korrekt eingestellt sind. Bitte geben Sie das aktuelle Datum und die Uhrzeit ein und wÃ¤hlen Sie die korrekte Zeitzone aus."
+msgstr "[[base-product.productName]] setzt voraus, dass sowohl Datum als auch Uhrzeit korrekt eingestellt sind. Bitte geben Sie das aktuelle Datum und die Uhrzeit ein und wählen Sie die korrekte Zeitzone aus."
 
 msgid "dateField"
 msgstr "Datum"
@@ -126,49 +126,49 @@ msgid "networkSettings"
 msgstr "Netzwerk-Einstellungen"
 
 msgid "networkMessage"
-msgstr "Ein [[base-product.productName]] kann so eingerichtet werden, dass er sowohl an das Internet, als auch das Intranet angeschlossen ist. Geben Sie hier bitte den Host- und DomÃ¤nen-Namen dieses Servers ein und spezifizieren Sie, auf welche Weise der Server an das Netzwerk angeschlossen ist."
+msgstr "Ein [[base-product.productName]] kann so eingerichtet werden, dass er sowohl an das Internet, als auch das Intranet angeschlossen ist. Geben Sie hier bitte den Host- und Domänen-Namen dieses Servers ein und spezifizieren Sie, auf welche Weise der Server an das Netzwerk angeschlossen ist."
 
 msgid "enterFqdn"
-msgstr "Host- und DomÃ¤nennamen"
+msgstr "Host- und Domänennamen"
 
 msgid "enterFqdn_help"
-msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den DomÃ¤nen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, wÃ¤hrend ein gÃ¼ltiger DomÃ¤nen-Name z.B. 'blueonyx.it' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
+msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, während ein gültiger Domänen-Name z.B. 'bluequartz.org' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
 
 msgid "hostNameField"
 msgstr "Hostname"
 
 msgid "hostNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. 'www' oder 'mail' sind gÃ¼ltige Eingaben."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. 'www' oder 'mail' sind gültige Eingaben."
 
 msgid "hostNameField_help"
-msgstr "Geben Sie bitte den Hostnamen dieses Servers ein. Die Kombination von Hostname und DomÃ¤nen-Namen sollten so gewÃ¤hlt werden, dass sie diesen Server einwandfrei identifizieren kÃ¶nnen. [[base-wizard.hostNameField_rule]]"
+msgstr "Geben Sie bitte den Hostnamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können. [[base-wizard.hostNameField_rule]]"
 
 msgid "domainNameField"
-msgstr "DomÃ¤nenname"
+msgstr "Domänenname"
 
 msgid "domainNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gÃ¼ltiger Eintrag kann z.B. 'blueonyx.it' oder 'meinefirma.de' sein."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'bluequartz.org' oder 'meinefirma.de' sein."
 
 msgid "domainNameField_help"
-msgstr "Geben Sie bitte den DomÃ¤nennamen dieses Servers ein. Die Kombination von Hostname und DomÃ¤nen-Namen sollten so gewÃ¤hlt werden, dass sie diesen Server einwandfrei identifizieren kÃ¶nnen. [[base-wizard.domainNameField_rule]]"
+msgstr "Geben Sie bitte den Domänennamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können. [[base-wizard.domainNameField_rule]]"
 
 msgid "dnsAddressesField"
 msgstr "DNS-Servers"
 
 msgid "dnsAddressesField_rule"
-msgstr "Geben Sie bitte eine Serie von Zahlen von 0 bis 255 ein, die mittels Punkten voneinander getrennt sind. Zum Beispiel '192.168.1.1' wÃ¤re ein gÃ¼ltiger Eintrag. Wenn Sie dieses Feld leer lassen, wird der Server keine DNS-NamensauflÃ¶sungen vornehmen kÃ¶nnen, was zu unvorhersehbaren Netzwerkproblemen fÃ¼hren kann."
+msgstr "Geben Sie bitte eine Serie von Zahlen von 0 bis 255 ein, die mittels Punkten voneinander getrennt sind. Zum Beispiel '192.168.1.1' wäre ein gültiger Eintrag. Wenn Sie dieses Feld leer lassen, wird der Server keine DNS-Namensauflösungen vornehmen können, was zu unvorhersehbaren Netzwerkproblemen führen kann."
 
 msgid "dnsAddressesField_help"
-msgstr "Geben Sie die IP-Adresse(n) Ihrer lokalen DNS-Server ein. Listen Sie dazu die IP-Adressen einzeln pro Zeile auf. Ein DNS-Server hat die Aufgabe, Host- und DomÃ¤nennamen in IP-Adressen zu Ãœbersetzen - und umgekehrt. [[base-wizard.dnsAddressesField_rule]]"
+msgstr "Geben Sie die IP-Adresse(n) Ihrer lokalen DNS-Server ein. Listen Sie dazu die IP-Adressen einzeln pro Zeile auf. Ein DNS-Server hat die Aufgabe, Host- und Domänennamen in IP-Adressen zu übersetzen - und umgekehrt. [[base-wizard.dnsAddressesField_rule]]"
 
 msgid "dnsAddressesField_invalid"
-msgstr "Der Wert [[VAR.invalidValue]] ist keine gÃ¼ltige Eingabe fÃ¼r [[base-wizard.dnsAddressesField]].  [[base-wizard.dnsAddressesField_rule]]"
+msgstr "Der Wert [[VAR.invalidValue]] ist keine gültige Eingabe für [[base-wizard.dnsAddressesField]].  [[base-wizard.dnsAddressesField_rule]]"
 
 msgid "internetField"
 msgstr "Internet-Anbindung"
 
 msgid "internetField_help"
-msgstr "WÃ¤hlen Sie die Art der Internet-Anbindung, welche dieser Server verwendet."
+msgstr "Wählen Sie die Art der Internet-Anbindung, welche dieser Server verwendet."
 
 msgid "none"
 msgstr "Keine - oder nur Intranet"
@@ -192,22 +192,22 @@ msgid "broadbandSettings"
 msgstr "Breitband-Einstellungen"
 
 msgid "broadbandMessage"
-msgstr "Ihr Kabel- oder DSL-Modem sollte an die zweite Netzwerk-Schnittstelle des  [[base-product.productName]] angeschlossen werden. Nehmen Sie bitte die entsprechenden Einstellungen vor, die Ihr Internet Provider fÃ¼r Sie vorgesehen hat."
+msgstr "Ihr Kabel- oder DSL-Modem sollte an die zweite Netzwerk-Schnittstelle des  [[base-product.productName]] angeschlossen werden. Nehmen Sie bitte die entsprechenden Einstellungen vor, die Ihr Internet Provider für Sie vorgesehen hat."
 
 msgid "networkField"
-msgstr "SekundÃ¤res Interface"
+msgstr "Sekundäres Interface"
 
 msgid "networkField_help"
-msgstr "WÃ¤hlen Sie bitte die fÃ¼r Sie richtigen Einstellungen fÃ¼r das sekundÃ¤re Netzwerk-Interface aus. Ihr Internet-Provider sollte Ihnen diese Informationen zur VerfÃ¼gung gestellt haben."
+msgstr "Wählen Sie bitte die für Sie richtigen Einstellungen für das sekundäre Netzwerk-Interface aus. Ihr Internet-Provider sollte Ihnen diese Informationen zur Verfügung gestellt haben."
 
 msgid "dhcp"
-msgstr "Netzwerkeinstellungen Ã¼ber DHCP beziehen."
+msgstr "Netzwerkeinstellungen über DHCP beziehen."
 
 msgid "dhcpHostNameField"
 msgstr "Client Hostname"
 
 msgid "dhcpHostNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gÃ¼ltiger Eintrag kann z.B. 'www' oder 'mail' sein."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'www' oder 'mail' sein."
 
 msgid "dhcpHostNameField_help"
 msgstr "Geben Sie bitte den Hostnamen ein, den dieser Server verwendet, um sich beim DHCP-Server anzumelden. [[base-wizard.dhcpHostNameField_rule]]"
@@ -219,13 +219,13 @@ msgid "dhcpClientIdField_help"
 msgstr "Geben Sie bitte den Identifikationsstring ein, den dieser Server verwendet, um sich beim DHCP-Server anzumelden."
 
 msgid "pppoe"
-msgstr "Automatisch Ã¼ber PPPoE beziehen"
+msgstr "Automatisch über PPPoE beziehen"
 
 msgid "pppUserNameField"
 msgstr "Benutzername"
 
 msgid "pppUserNameField_help"
-msgstr "Geben Sie den Benutzernamen an, mit dem Sie sich bei Ihrem Internet-Provider anmelden mÃ¼ssen."
+msgstr "Geben Sie den Benutzernamen an, mit dem Sie sich bei Ihrem Internet-Provider anmelden müssen."
 
 msgid "pppPasswordField"
 msgstr "Passwort"
@@ -242,52 +242,52 @@ msgid "ipAddressField"
 msgstr "IP-Adresse"
 
 msgid "ipAddressField_rule"
-msgstr "Geben Sie bitte eine Serie von Zahlen von 0 bis 255 ein, die mittels Punkten voneinander getrennt sind. Zum Beispiel '192.168.1.1' wÃ¤re ein gÃ¼ltiger Eintrag."
+msgstr "Geben Sie bitte eine Serie von Zahlen von 0 bis 255 ein, die mittels Punkten voneinander getrennt sind. Zum Beispiel '192.168.1.1' wäre ein gültiger Eintrag."
 
 msgid "ipAddressField_help"
-msgstr "Geben Sie die IP-Adresse des sekundÃ¤ren Interfaces ein, welches Ãœblicherweise direkt mit dem Internet verbunden ist. Falls Sie nur ein Interface verwenden, nutzen Sie stattdessen das primÃ¤re Interface und lassen Sie das sekundÃ¤re Interface leer. [[base-wizard.ipAddressField_rule]]"
+msgstr "Geben Sie die IP-Adresse des sekundären Interfaces ein, welches üblicherweise direkt mit dem Internet verbunden ist. Falls Sie nur ein Interface verwenden, nutzen Sie stattdessen das primäre Interface und lassen Sie das sekundäre Interface leer. [[base-wizard.ipAddressField_rule]]"
 
 msgid "netMaskField"
 msgstr "Subnet-Maske"
 
 msgid "netMaskField_rule"
-msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gÃ¼ltige Eingabe ist z. B. '255.255.255.0'."
+msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. '255.255.255.0'."
 
 msgid "netMaskField_help"
-msgstr "Geben Sie die Netzwerkmaske der primÃ¤ren Schnittstelle ein. Wenn Sie nur eine Netzwerkschnittstelle an dem Server verwenden, benutzen Sie die primÃ¤re Schnittstelle und lassen Sie die sekundÃ¤re Schnittstelle leer. [[base-wizard.netMaskField_rule]]"
+msgstr "Geben Sie die Netzwerkmaske der primären Schnittstelle ein. Wenn Sie nur eine Netzwerkschnittstelle an dem Server verwenden, benutzen Sie die primäre Schnittstelle und lassen Sie die sekundäre Schnittstelle leer. [[base-wizard.netMaskField_rule]]"
 
 msgid "gatewayField"
 msgstr "Gateway"
 
 msgid "gatewayField_rule"
-msgstr "Geben Sie bitte eine Serie von Zahlen von 0 bis 255 ein, die mittels Punkten voneinander getrennt sind. Zum Beispiel '192.168.1.1' wÃ¤re ein gÃ¼ltiger Eintrag."
+msgstr "Geben Sie bitte eine Serie von Zahlen von 0 bis 255 ein, die mittels Punkten voneinander getrennt sind. Zum Beispiel '192.168.1.1' wäre ein gültiger Eintrag."
 
 msgid "gatewayField_help"
-msgstr "Geben Sie die IP-Adresse Ihres Netzwerk-Gateways ein. Ein Netzwerk-Gateways (auch Router genannt), erlaubt die Verbindung zu GerÃ¤ten innerhalb oder ausserhalb Ihres lokalen Netzwerks. [[base-wizard.gatewayField_rule]]"
+msgstr "Geben Sie die IP-Adresse Ihres Netzwerk-Gateways ein. Ein Netzwerk-Gateways (auch Router genannt), erlaubt die Verbindung zu Geräten innerhalb oder ausserhalb Ihres lokalen Netzwerks. [[base-wizard.gatewayField_rule]]"
 
 msgid "secondaryInterface"
-msgstr "SekundÃ¤re Schnittstelle"
+msgstr "Sekundäre Schnittstelle"
 
 msgid "ipAddressField2"
 msgstr "IP-Adresse"
 
 msgid "ipAddressField2_help"
-msgstr "Geben Sie die IP-Adresse des sekundÃ¤ren Interfaces ein, welches Ãœblicherweise direkt mit dem Internet verbunden ist. Falls Sie nur ein Interface verwenden, nutzen Sie stattdessen das primÃ¤re Interface und lassen Sie das sekundÃ¤re Interface leer.  [[base-network.ipAddressField1_rule]]"
+msgstr "Geben Sie die IP-Adresse des sekundären Interfaces ein, welches üblicherweise direkt mit dem Internet verbunden ist. Falls Sie nur ein Interface verwenden, nutzen Sie stattdessen das primäre Interface und lassen Sie das sekundäre Interface leer.  [[base-network.ipAddressField1_rule]]"
 
 msgid "ipAddressNetMaskMismatch"
-msgstr "Das Feld fÃ¼r IP-Adresse und die Netzwerk-Maske mÃ¼ssen entweder beide ausgefÃ¼llt werden, oder beide leer gelassen werden."
+msgstr "Das Feld für IP-Adresse und die Netzwerk-Maske müssen entweder beide ausgefüllt werden, oder beide leer gelassen werden."
 
 msgid "netMaskField2"
 msgstr "[[base-network.netMaskField1]]"
 
 msgid "netMaskField2_help"
-msgstr "Geben Sie die Netzwerk-Maske des sekundÃ¤ren Netzwerk-Interface ein. Falls Sie nur ein Netzwerk-Interface verwenden, nutzen Sie bitte das primÃ¤re Netzwerk-Interface und lassen Sie das sekundÃ¤re Netzwerk-Interface leer. [[base-network.netMaskField1_rule]]"
+msgstr "Geben Sie die Netzwerk-Maske des sekundären Netzwerk-Interface ein. Falls Sie nur ein Netzwerk-Interface verwenden, nutzen Sie bitte das primäre Netzwerk-Interface und lassen Sie das sekundäre Netzwerk-Interface leer. [[base-network.netMaskField1_rule]]"
 
 msgid "macAddressField"
 msgstr "MAC-Adresse"
 
 msgid "macAddressField_help"
-msgstr "Die Media Access Control (MAC)-Adresse ist die Hardware-Adresse der Netzwerk-Schnittstelle. Diese Hardware-Adresse kommt nur einmal vor und kann nach der Herstellung nicht mehr geÃ¤ndert werden."
+msgstr "Die Media Access Control (MAC)-Adresse ist die Hardware-Adresse der Netzwerk-Schnittstelle. Diese Hardware-Adresse kommt nur einmal vor und kann nach der Herstellung nicht mehr geändert werden."
 
 msgid "wizardLan"
 msgstr "Gateway im lokalen Netzwerk (LAN)"
@@ -296,7 +296,7 @@ msgid "wizardLan_help"
 msgstr " "
 
 msgid "lanMessage"
-msgstr "Geben Sie das Standard-Gateway dieses Servers ein. Falls das Gateway Ã¼ber die sekundÃ¤re Netzwerk-Schnittstelle erreichbar ist, dann geben Sie die Informationen dieser Schnittstelle ebenfalls an."
+msgstr "Geben Sie das Standard-Gateway dieses Servers ein. Falls das Gateway über die sekundäre Netzwerk-Schnittstelle erreichbar ist, dann geben Sie die Informationen dieser Schnittstelle ebenfalls an."
 
 msgid "lanSettings"
 msgstr "Einstellungen des lokalen Netzwerks (LAN)"
@@ -308,7 +308,7 @@ msgid "wizardModem_help"
 msgstr " "
 
 msgid "modemMessage"
-msgstr "Ihr ISDN- oder Analogmodem sollte an die serielle Schnittstelle des [[base-product.productName]] angeschlossen sein. Nehmen Sie bitte die entsprechenden Einstellungen vor, die Ihr Internet-Provider fÃ¼r Sie vorgesehen hat."
+msgstr "Ihr ISDN- oder Analogmodem sollte an die serielle Schnittstelle des [[base-product.productName]] angeschlossen sein. Nehmen Sie bitte die entsprechenden Einstellungen vor, die Ihr Internet-Provider für Sie vorgesehen hat."
 
 msgid "modemSettings"
 msgstr "Modem-Einstellungen"
@@ -317,7 +317,7 @@ msgid "connModeField"
 msgstr "Verbindungsmodus"
 
 msgid "connModeField_help"
-msgstr "Geben Sie an, ob die Modemverbindung immer hergestellt werden soll, oder nur hergestellt werden soll, wenn dies fÃ¼r eine abgehende Verbindung notwendig ist. Oder ob nie eine Verbindung hergestellt werden soll."
+msgstr "Geben Sie an, ob die Modemverbindung immer hergestellt werden soll, oder nur hergestellt werden soll, wenn dies für eine abgehende Verbindung notwendig ist. Oder ob nie eine Verbindung hergestellt werden soll."
 
 msgid "demand"
 msgstr "Verbindung nur bei Bedarf"
@@ -335,16 +335,16 @@ msgid "userNameField_help"
 msgstr "Geben Sie den Benutzernamen des Dial-Up Benutzer-Kontos ein, mit dem Sie sich bei Ihrem Internet-Provider anmelden."
 
 msgid "userNameField_empty"
-msgstr "Sie haben keinen gÃ¼ltigen Wert fÃ¼r [[base-wizard.userNameField]] eingegeben.  [[base-wizard.userNameField_help]]"
+msgstr "Sie haben keinen gütigen Wert für [[base-wizard.userNameField]] eingegeben.  [[base-wizard.userNameField_help]]"
 
 msgid "modemPasswordField"
-msgstr "Passwort fÃ¼r Dial-Up Konto"
+msgstr "Passwort für Dial-Up Konto"
 
 msgid "modemPasswordField_help"
 msgstr "Geben Sie das Passwort des Dial-Up Benutzer-Kontos ein, mit dem Sie sich bei Ihrem Internet-Provider anmelden."
 
 msgid "modemPasswordField_empty"
-msgstr "Sie haben keinen gÃ¼ltigen Wert fÃ¼r das Feld [[base-wizard.modemPasswordField]] eingegeben."
+msgstr "Sie haben keinen gültigen Wert für das Feld [[base-wizard.modemPasswordField]] eingegeben."
 
 msgid "modemPasswordField_invalid"
 msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
@@ -353,22 +353,22 @@ msgid "modemPhoneField"
 msgstr "Dial-Up Einwahlnummer"
 
 msgid "modemPhoneField_help"
-msgstr "Geben Sie die Telefonnummer ein, Ã¼ber die Sie sich mit Ihrem Internet-Provider verbinden."
+msgstr "Geben Sie die Telefonnummer ein, über die Sie sich mit Ihrem Internet-Provider verbinden."
 
 msgid "initStringField"
 msgstr "Modem Initialisierungs-String"
 
 msgid "initStringField_help"
-msgstr "Geben Sie die Modeminitialisierungs-Zeichenfolge ein, die vor dem WÃ¤hlen an das Modem weitergegeben wird. Sie mÃ¼ssen eine Initialisierungs-Zeichenfolge eingeben, da der Server Ihr Modem sonst nicht verwenden kann. Wenn Sie die richtige Initialisierungs-Zeichenfolge Ihres Modems nicht wissen, versuchen Sie es mit der Eingabe von ATZ oder schlagen Sie in Ihrer Modemdokumentation nach."
+msgstr "Geben Sie die Modeminitialisierungs-Zeichenfolge ein, die vor dem Wählen an das Modem weitergegeben wird. Sie müssen eine Initialisierungs-Zeichenfolge eingeben, da der Server Ihr Modem sonst nicht verwenden kann. Wenn Sie die richtige Initialisierungs-Zeichenfolge Ihres Modems nicht wissen, versuchen Sie es mit der Eingabe von ATZ oder schlagen Sie in Ihrer Modemdokumentation nach."
 
 msgid "initStringField_empty"
-msgstr "Sie haben keinen Wert im Feld [[base-wizard.initStringField]] eingegeben. Sie mÃ¼ssen eine Initialisierungs-Zeichenfolge eingeben, da der Server Ihr Modem sonst nicht verwenden kann. Wenn Sie die richtige Initialisierungs-Zeichenfolge Ihres Modems nicht wissen, versuchen Sie es mit der Eingabe von ATZ oder schlagen Sie in Ihrer Modemdokumentation nach."
+msgstr "Sie haben keinen Wert im Feld [[base-wizard.initStringField]] eingegeben. Sie müssen eine Initialisierungs-Zeichenfolge eingeben, da der Server Ihr Modem sonst nicht verwenden kann. Wenn Sie die richtige Initialisierungs-Zeichenfolge Ihres Modems nicht wissen, versuchen Sie es mit der Eingabe von ATZ oder schlagen Sie in Ihrer Modemdokumentation nach."
 
 msgid "localIpField"
 msgstr "Lokale IP-Adresse"
 
 msgid "localIpField_help"
-msgstr "Geben Sie die lokale IP-Adresse fÃ¼r diese Seite der Modemverbindung ein. Machen Sie das nur, falls Ihnen Ihr Provider eine IP zugeteilt hat."
+msgstr "Geben Sie die lokale IP-Adresse für diese Seite der Modemverbindung ein. Machen Sie das nur, falls Ihnen Ihr Provider eine IP zugeteilt hat."
 
 msgid "pulseField"
 msgstr "Impulswahl aktivieren"
@@ -404,7 +404,7 @@ msgid "regText"
 msgstr "Das Produkt braucht nicht registriert zu werden."
 
 msgid "regTextOffline"
-msgstr "Diese Software wird ohne Garantie und GewÃ¤hrleistung zur VerfÃ¼gung gestellt. [[base-product.productName]] wird als Open Source Software distributiert."
+msgstr "Diese Software wird ohne Garantie und Gewährleistung zur Verfügung gestellt. [[base-product.productName]] wird als Open Source Software distributiert."
 
 msgid "empty_reg"
 msgstr ""
@@ -418,7 +418,7 @@ msgid "fullNameField_help"
 msgstr "Geben Sie Ihren Namen ein."
 
 msgid "fullNameField_rule"
-msgstr "Sie kÃ¶nnen alle Zeichen bis auf Doppelpunkte verwenden. 'Hans Mustermann' wÃ¤re eine gÃ¼ltige Eingabe."
+msgstr "Sie können alle Zeichen bis auf Doppelpunkte verwenden. 'Hans Mustermann' wäre eine gültige Eingabe."
 
 msgid "titleField"
 msgstr "Position"
@@ -451,7 +451,7 @@ msgid "emailField_help"
 msgstr "Ihre Email-Adresse."
 
 msgid "emailField_rule"
-msgstr "Geben Sie eine gÃ¼ltige Email-Adresse ein."
+msgstr "Geben Sie eine gültige Email-Adresse ein."
 
 msgid "phoneField"
 msgstr "Phone Number"
@@ -469,16 +469,16 @@ msgid "wizardLocale"
 msgstr "Bevorzugte Sprache"
 
 msgid "wizardLocale_help"
-msgstr "WÃ¤hlen Sie hier die bevorzugte Sprache fÃ¼r die Administrations-OberflÃ¤che aus."
+msgstr "Wählen Sie hier die bevorzugte Sprache für die Administrations-Oberfläche aus."
 
 msgid "localeMessage"
-msgstr "WÃ¤hlen Sie hier die bevorzugte Sprache fÃ¼r die Administrations-OberflÃ¤che aus. Die Administrations-OberflÃ¤che unterstÃ¼tzt mehrer Sprachen, die pro Benutzer ausgewÃ¤hlt werden kÃ¶nnen. Die SystemÃ¼berwachung verschickt jedoch Emails in der hier ausgewÃ¤hlten Sprache."
+msgstr "Wählen Sie hier die bevorzugte Sprache für die Administrations-Oberfläche aus. Die Administrations-Oberfläche unterstützt mehrer Sprachen, die pro Benutzer ausgewählt werden können. Die Systemüberwachung verschickt jedoch Emails in der hier ausgewählten Sprache."
 
 msgid "localeField"
-msgstr "WÃ¤hlen Sie die von Ihnen bevorzugte Sprache aus."
+msgstr "Wählen Sie die von Ihnen bevorzugte Sprache aus."
 
 msgid "localeField_help"
-msgstr "Die SystemÃ¼berwachung verschickt Emails in der hier ausgewÃ¤hlten Sprache und diese Sprache wird ebenfalls fÃ¼r Ihr Administrationskonto verwendet, wenn Sie sich an der Administrations-OberflÃ¤che anmelden."
+msgstr "Die Systemüberwachung verschickt Emails in der hier ausgewählten Sprache und diese Sprache wird ebenfalls für Ihr Administrationskonto verwendet, wenn Sie sich an der Administrations-Oberfläche anmelden."
 
 msgid "localeSettings"
 msgstr "Bevorzugte Sprache"
@@ -490,16 +490,16 @@ msgid "wizardRaid_help"
 msgstr " "
 
 msgid "raidMessage"
-msgstr "Ihr [[base-alpine.osName]] Server kann RAID verwenden. Dieser Server hat [[VAR.numdisk]] interne Festplatten. Es stehen zwei MÃ¶glichkeiten zur Auswahl. Eine bietet mehr Speicherplatz, die andere hÃ¶here Ausfall- und Datensicherheit - bei geringerer totaler KapazitÃ¤t. WÃ¤hlen Sie den von Ihnen bevorzugten RAID-Modus aus. Die Wahl, die Sie jetzt treffen, kann spÃ¤ter nicht mehr ohne Datenverlust rÃ¼ckgÃ¤ngig gemacht werden."
+msgstr "Ihr [[base-alpine.osName]] Server kann RAID verwenden. Dieser Server hat [[VAR.numdisk]] interne Festplatten. Es stehen zwei Möglichkeiten zur Auswahl. Eine bietet mehr Speicherplatz, die andere höhere Ausfall- und Datensicherheit - bei geringerer totaler Kapazität. Wählen Sie den von Ihnen bevorzugten RAID-Modus aus. Die Wahl, die Sie jetzt treffen, kann später nicht mehr ohne Datenverlust rückgängig gemacht werden."
 
 msgid "raidAlreadyConfigured"
-msgstr "RAID wurde bereits konfiguriert und kann nun nicht mehr geÃ¤ndert werden."
+msgstr "RAID wurde bereits konfiguriert und kann nun nicht mehr geändert werden."
 
 msgid "raidOption"
 msgstr "RAID Level"
 
 msgid "raidOption_help"
-msgstr "RAID kann mehrere Festplatten zu einem Array verbinden, die dann nach AuÃŸen hin als Einheit fungieren. Bitte prÃ¼fen Sie die zur VerfÃ¼gung stehenden und hier genannten Optionen genau, bevor Sie eine Auswahl treffen."
+msgstr "RAID kann mehrere Festplatten zu einem Array verbinden, die dann nach Außen hin als Einheit fungieren. Bitte prüfen Sie die zur Verfügung stehenden und hier genannten Optionen genau, bevor Sie eine Auswahl treffen."
 
 msgid "raidSettings"
 msgstr "RAID Setup"
@@ -523,10 +523,10 @@ msgid "wizardOnepage_help"
 msgstr " "
 
 msgid "onepageMessage"
-msgstr "Die nachfolgenden Informationen sind notwendig, um diesen Server zu konfigurieren. Bewegen Sie den Mauszeiger Ã¼ber die WÃ¶rter auf der linken Seite der Formularfelder, um weitere Informationen darÃ¼ber zu erhalten, welche Eingaben von Ihnen erwartet werden."
+msgstr "Die nachfolgenden Informationen sind notwendig, um diesen Server zu konfigurieren. Bewegen Sie den Mauszeiger über die Wörter auf der linken Seite der Formularfelder, um weitere Informationen darüber zu erhalten, welche Eingaben von Ihnen erwartet werden."
 
 msgid "mustSelectLicense"
-msgstr "Sie mÃ¼ssen angeben, ob Sie die Lizenzbedingungen akzeptieren, oder nicht. Klicken Sie dazu bitte auf die entsprechenden SchaltflÃ¤chen."
+msgstr "Sie müssen angeben, ob Sie die Lizenzbedingungen akzeptieren, oder nicht. Klicken Sie dazu bitte auf die entsprechenden Schaltflächen."
 
 msgid "accept"
 msgstr "Akzeptieren"
@@ -538,13 +538,13 @@ msgid "decline"
 msgstr "Ablehnen"
 
 msgid "decline_help"
-msgstr "Falls Sie die Lizenzbedingungen ablehnen, werden Sie diese Open Source software nicht verwenden kÃ¶nnen."
+msgstr "Falls Sie die Lizenzbedingungen ablehnen, werden Sie diese Open Source software nicht verwenden können."
 
 msgid "licenseClick"
-msgstr "Um die Lizenzbestimmungen zu akzeptieren oder abzulehnen, mÃ¼ssen Sie bis an das Ende der Lizenzbedingungen scrollen."
+msgstr "Um die Lizenzbestimmungen zu akzeptieren oder abzulehnen, müssen Sie bis an das Ende der Lizenzbedingungen scrollen."
 
 msgid "mustAcceptToUse"
-msgstr "Sie mÃ¼ssen angeben, ob Sie die Lizenzbedingungen akzeptieren, um die [[base-alpine.osName]] Open Source Software zu verwenden."
+msgstr "Sie müssen angeben, ob Sie die Lizenzbedingungen akzeptieren, um die [[base-alpine.osName]] Open Source Software zu verwenden."
 
 msgid "license"
 msgstr "[[base-product.productLicense]]"
@@ -554,26 +554,26 @@ msgid "addVirtualsiteSettings"
 msgstr "Einstellungen  der Virtuelle Site vornehmen"
 
 msgid "enterVsiteFqdn"
-msgstr "Host- und DomÃ¤nennamen"
+msgstr "Host- und Domänennamen"
 
 msgid "enterVsiteFqdn_help"
-msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den DomÃ¤nen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, wÃ¤hrend ein gÃ¼ltiger DomÃ¤nen-Name z.B. 'blueonyx.it' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
+msgstr "Geben Sie den Hostnamen des Servers in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann z.B. 'www', 'mail' oder 'shop' sein, während ein gültiger Domänen-Name z.B. 'bluequartz.org' oder 'meinefirma.de' ist. Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute."
 
 msgid "vsite_hostNameField"
 msgstr "Hostname"
 
 msgid "vsite_hostNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. 'www' oder 'mail' sind gÃ¼ltige Eingaben."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. 'www' oder 'mail' sind gültige Eingaben."
 
 msgid "vsite_hostNameField_help"
-msgstr "Geben Sie bitte den Hostnamen dieses Servers ein. Die Kombination von Hostname und DomÃ¤nen-Namen sollten so gewÃ¤hlt werden, dass sie diesen Server einwandfrei identifizieren kÃ¶nnen. [[base-wizard.vsite_hostNameField_rule]]"
+msgstr "Geben Sie bitte den Hostnamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können. [[base-wizard.vsite_hostNameField_rule]]"
 
 msgid "vsite_domainNameField"
-msgstr "DomÃ¤nen-Name"
+msgstr "Domänen-Name"
 
 msgid "vsite_domainNameField_rule"
-msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dÃ¼rfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gÃ¼ltiger Eintrag kann z.B. 'blueonyx.it' oder 'meinefirma.de' sein."
+msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestriche und Punkte dürfen verwendet werden, jedoch keine anderen Sonderzeichen oder Umlaute. Ein gültiger Eintrag kann z.B. 'bluequartz.org' oder 'meinefirma.de' sein."
 
 msgid "vsite_domainNameField_help"
-msgstr "Geben Sie bitte den DomÃ¤nennamen dieses Servers ein. Die Kombination von Hostname und DomÃ¤nen-Namen sollten so gewÃ¤hlt werden, dass sie diesen Server einwandfrei identifizieren kÃ¶nnen.  [[base-wizard.vsite_domainNameField_rule]]"
+msgstr "Geben Sie bitte den Domänennamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können.  [[base-wizard.vsite_domainNameField_rule]]"
 

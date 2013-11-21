@@ -19,8 +19,6 @@ use Base::User qw(system_useradd useradd usermod);
 
 my $DEBUG = 0;
 
-my %illegal_usernames;
-
 my %illegal_usernames = map { $_ => 1 } qw /
 	root bin daemon adm lp sync shutdown halt mail news uucp operator
 	games gopher ftp nobody dbus rpm htt nscd vcsa ntp wnn ident canna
@@ -45,7 +43,6 @@ my $oid = $cce->event_oid();
 my $old = $cce->event_old();
 my $new = $cce->event_new();
 my $obj = $cce->event_object();
-my $ftpaccessuser = $cce->event_object();
 
 my ($sysoid) = $cce->find("System");
 my ($sysobj);
@@ -180,7 +177,7 @@ $DEBUG && warn('data valid');
 umask 002;
 
 # build comment:
-my $comment1 = $obj->{fullName} || $obj->{name};
+my $comment = $obj->{fullName} || $obj->{name};
 
 #
 # make sure comment gets encoded properly.  trust I18n::encodeString
@@ -188,7 +185,7 @@ my $comment1 = $obj->{fullName} || $obj->{name};
 # another hack here.  It should encode the string properly based on the
 # system-wide locale, so if the locale isn't ja the 'euc' encoding gets ignored.
 #
-my $comment = $i18n->encodeString($comment1, 'euc');
+#my $comment = $i18n->encodeString($comment1, 'euc');
 
 # hacky workaround.  some handler is leaving /etc/group.lock around.
 if (-e "/etc/group.lock") {
@@ -236,6 +233,8 @@ my ($crypt_pw, $md5_pw) = ('', '');
 if (defined($new->{password})) {
 	($crypt_pw, $md5_pw) = cryptpw($new->{password});
 	$user->{password} = $md5_pw;
+} elsif (defined($new->{md5_password})) {
+	$user->{password} = $new->{md5_password};
 }
 		
 if (!@pwent) {
@@ -380,9 +379,6 @@ if (defined($new->{password})) {
 if (defined($old->{name}) && defined($new->{name})) {
 	&update_workgroups();
 }
-
-# Handle User FTP access:
-&ftpaccess;
 
 # all done
 $cce->bye("SUCCESS");
@@ -625,31 +621,6 @@ sub find_user_skel
 	#locale not found
 	return '';
 }
-
-sub ftpaccess {
-
-    # Find the home directories of the respective users:
-    $homedir = '';
-    $homedir = homedir_get_user_dir($ftpaccessuser->{name}, $ftpaccessuser->{site}, $ftpaccessuser->{volume});
-
-    $ftpDisabled = $ftpaccessuser->{ftpDisabled};
-    $ftpaccessusername = $ftpaccessuser->{name};
-    $site = $ftpaccessuser->{site};
-
-    if ($ftpDisabled eq '1') {
-	# Do the file actions. Add the .ftpaccess files to the user directory:
-    	if ($homedir =~ /^\/.+/) {
-            if (-d "$homedir") {
-                system("/bin/echo '<Limit RAW LOGIN READ WRITE DIRS ALL>\nDenyAll\n</Limit>\n' > $homedir/.ftpaccess");
-            }
-        }
-    }
-    else {
-        # Remove the .ftpaccess file from this user's home directory:
-        system("/bin/rm -f $homedir/.ftpaccess");
-    }
-}
-
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

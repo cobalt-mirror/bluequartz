@@ -140,19 +140,9 @@ else
         }
     }
 }
-
-# Restart Sendmail on an as needed basis:
-my ($sys_oid) = $cce->find('System');
-(my $ok, $obj) = $cce->get($sys_oid, 'Email');
-if ($ok){
-	Sauce::Service::service_run_init('sendmail', 'stop') if $obj->{enableSMTP};
-	Sauce::Service::service_send_signal('sendmail', '9') if $obj->{enableSMTP};
-	Sauce::Service::service_run_init('sendmail', 'restart') if $obj->{enableSMTP};
-}
     
 $cce->bye('SUCCESS');
 exit 0;
-
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

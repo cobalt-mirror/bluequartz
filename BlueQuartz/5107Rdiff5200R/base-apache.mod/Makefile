@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=apache
 
-VERSION=1.3.0
-RELEASE=0BX29
+VERSION=1.2.1
+RELEASE=79BQ40
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,7 +19,8 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
-REQUIRES= mod_suphp perl-Tie-DxHash
+
+REQUIRES= mod_suphp
 
 #########
 # some useful defines

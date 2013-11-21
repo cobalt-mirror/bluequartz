@@ -1,0 +1,7 @@
+# System Configration file for BlueQuartz
+
+# The mechanism for authentication.
+AUTH=shadow
+
+# Allow to change IP address
+INTERFACE_CONFIGURE=true

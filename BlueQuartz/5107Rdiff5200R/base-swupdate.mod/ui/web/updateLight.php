@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: updateLight.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: updateLight.php 1008 2007-06-25 15:23:03Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("base/swupdate/updateLib.php");

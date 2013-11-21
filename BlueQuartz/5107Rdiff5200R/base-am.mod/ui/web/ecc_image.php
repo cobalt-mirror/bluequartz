@@ -1,5 +1,5 @@
 <?php
-// $Id: ecc_image.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: ecc_image.php 1025 2007-06-25 15:32:16Z shibuya $
 
 include_once("base/am/imagelib.inc");
 

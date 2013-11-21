@@ -6,7 +6,7 @@
 <!-- This is the AM Namespace for monitoring CPU -->
 <class name="ActiveMonitor" namespace="CPU" version="1.3">
     <property name="enabled"            type="boolean"  default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean"  default="1"/>
     <property name="type"               type="scalar"   default="exec"/>
     <property name="typeData"           type="scalar"   
@@ -28,7 +28,7 @@
 <!-- This is the AM Namespace for monitoring Memory -->
 <class name="ActiveMonitor" namespace="Memory" version="1.3">
     <property name="enabled"            type="boolean"  default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean"  default="1"/>
     <property name="type"               type="scalar"   default="exec"/>
     <property name="typeData"           type="scalar"

@@ -6,10 +6,10 @@
 include_once('ServerScriptHelper.php');
 include_once('AutoFeatures.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only serverShell should be here
+if (!$helper->getAllowed('serverShell')) {
   header("location: /error/forbidden.html");
   return;
 }

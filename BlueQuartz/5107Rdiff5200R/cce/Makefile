@@ -1,4 +1,4 @@
-# $Id: Makefile 1162 2008-06-28 18:29:44Z mstauber $
+# $Id: Makefile 1544 2011-05-01 09:27:18Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # Top level Makefile for CCE
 
@@ -7,25 +7,23 @@ CCE_TOPDIR = $(shell pwd)
 
 include rules.mk
 # do not include dynamic.mk
-include /usr/sausalito/devel/defines.mk
 
 CCEMODULE = sausalito-cce
 CCERPMSPEC = $(CCEMODULE).spec
 
 CCE_V_MAJ=0
-CCE_V_MIN=81
-CCE_V_PATCH=1
+CCE_V_MIN=80
+CCE_V_PATCH=4
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX10
+RPMRELEASE=0BQ11
 
-DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
+DIRS = common scalar conf codb ed cscp sessionmgr server client pam \
 	ccewrap pperl
 
 COMMONLIB = libcce_common.a
 COMMONLIB_DIRS = common scalar conf codb ed cscp sessionmgr
 COMMONLIB_FILES = $(patsubst %,/%.a,$(COMMONLIB_DIRS))
 COMMONLIB_LIBS = $(join $(COMMONLIB_DIRS), $(COMMONLIB_FILES))
-TIMEFILE:=/tmp/make.tmp
 
 .PHONY: all debug depend server client tools 
 all: depend $(COMMONLIB) server client tools
@@ -40,7 +38,7 @@ depend: .depend dynamic.mk
 		echo $(MAKE) -C $$a depend || exit 1; \
 	done
 	@touch .depend
-
+	
 dynamic.mk: Makefile
 	@rm -f $@
 	@( \
@@ -90,12 +88,9 @@ server client: dynamic.mk $(COMMONLIB) FORCE
 	@echo
 	@$(MAKE) -C $@ all
 
-tools: pam pam_abl ccewrap pperl
+tools: pam ccewrap pperl
 
 pam: dynamic.mk $(COMMONLIB) FORCE
-	$(MAKE) -C $@ all
-
-pam_abl: dynamic.mk $(COMMONLIB) FORCE
 	$(MAKE) -C $@ all
 
 pperl: dynamic.mk $(COMMONLIB) FORCE
@@ -127,14 +122,11 @@ clean: dynamic.mk
 	$(RM) -rf rpms $(CCERPMSPEC)
 	$(RM) -f .depend
 	find . -name core | xargs $(RM) -f
-	$(RM) -rf rpms srpms as_rpms as_srpms
-	find . -type f \( -name \*~ -o -name \*.o -o \
-			   -name \#\* -o -name \*.mo -o -name core \) | xargs $(RM) -f
 	$(MAKE) -C test clean
 
 distclean: clean
 	/bin/rm dynamic.mk
-
+	
 #
 # build rules 
 #
@@ -143,7 +135,6 @@ rpm:
 else
 rpm: distclean specfile FORCE
 endif
-	touch $(TIMEFILE)
 	if [ X$(SLK_BUILD) = Xyes ]; then \
 		$(MAKE) -C client locale_rpm; \
 	else \
@@ -156,11 +147,6 @@ endif
 		sleep 10; \
 		$(RPMBUILD) -ta /tmp/sausalito-cce.tar.gz; \
 	fi
-	-@mkdir as_rpms || /bin/true
-	cp `find $(RPM_TOPDIR)/RPMS -follow -type f -newer $(TIMEFILE)` as_rpms
-	-@mkdir as_srpms || /bin/true
-	cp `find $(RPM_TOPDIR)/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms
-	-@/bin/rm -f $(TIMEFILE)
 
 specfile: $(CCERPMSPEC).in
 	sed -e 's/XX_VER_XX/$(CCE_VERSION)/' \
@@ -176,9 +162,9 @@ mod_locale:
 install_locale:
 	$(MAKE) -C client install_locale
 
-install: all server-inst client-inst pam-inst pam_abl-inst ccewrap-inst pperl-inst
+install: all server-inst client-inst pam-inst ccewrap-inst pperl-inst
 
-server-inst client-inst pam-inst pam_abl-inst ccewrap-inst pperl-inst: %-inst: %
+server-inst client-inst pam-inst ccewrap-inst pperl-inst: %-inst: %
 	$(MAKE) -C $< install
 
 uninstall junk:

@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: cList.php 1151 2008-06-08 14:31:11Z shibuya $
+// $Id: cList.php 1225 2009-09-04 16:01:03Z shibuya $
 
 // description:
 // This is the base page of the collapsible list navigation system.
@@ -63,14 +63,6 @@ if(($encoding=$i18n->getProperty("encoding","palette"))!="none")
 <META HTTP-EQUIV="expires" CONTENT="-1">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <TITLE><?php print($title);?></TITLE>
-<script language="javascript" type="text/javascript">
-if (self != top) {
-    if (document.images)
-        top.location.replace(window.location.href);
-    else
-        top.location.href = window.location.href;
-}
-</script>
 <SCRIPT LANGUAGE="javascript">
 // global
 var siteMap;
@@ -152,10 +144,9 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   code.scheduler_doJob();
 }
 </SCRIPT>
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 </HEAD>
 
-<FRAMESET ROWS="<?php print($style->getProperty("tabHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()">
+<FRAMESET ROWS="<?php print($style->getProperty("tabHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()" onResize="if(navigator.appName == 'Netscape') location.reload()">
   <FRAME SRC="blank.html" NAME="controlFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
   <FRAMESET COLS="<?php print($style->getProperty("collapsibleListWidth")); ?>,*" ID="set1" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0">
     <FRAME SRC="blank.html" NAME="navFrame" FRAMEBORDER="no">
@@ -166,6 +157,9 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   <FRAME SRC="<?php print($commFrame ? $commFrame : "blank.html"); ?>" NAME="commFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
 </FRAMESET>
 
+<HEAD>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
 </HTML>
 <?php
 /*

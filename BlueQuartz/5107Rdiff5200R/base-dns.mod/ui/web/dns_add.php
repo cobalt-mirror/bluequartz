@@ -1,5 +1,5 @@
 <?php
-// $Id: dns_add.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: dns_add.php 1013 2007-06-25 15:25:22Z shibuya $
 //
 // ui for adding/modifying many DNS record types
 $iam = '/base/dns/dns_add.php';
@@ -14,17 +14,14 @@ if (!$serverScriptHelper->getAllowed('adminUser')) {
   return;
 }
 
-// Start sane:
-$errors = array();
-
 include_once("CobaltUI.php");
 $Ui = new CobaltUI($sessionId, "base-dns"); 
 
 // return the base ip address of a network
 // as defined by dot-quad member ip and netmask
 function get_network($ip = "127.0.0.1", $nm = "255.255.255.255") {
-	$ip = preg_split('/[.]/',$ip);
-	$nm = preg_split('/[.]/',$nm);
+	$ip = split('[.]',$ip);
+	$nm = split('[.]',$nm);
 	for ($i=0; $i<4; $i++):
 		$ip[$i] = (int) $ip[$i]; $nm[$i] = (int) $nm[$i];
 		$nu[$i] .= $ip[$i] & $nm[$i];
@@ -119,7 +116,7 @@ if ($done) {
 
 // prep default values
 if($HTTP_GET_VARS['netauth'] != '') {
-	$net_defaults = preg_split('/\//', urldecode($HTTP_GET_VARS['netauth']));
+	$net_defaults = split('/', urldecode($HTTP_GET_VARS['netauth']));
 }
 $dom_default = $HTTP_GET_VARS['domauth'];
 
@@ -157,19 +154,14 @@ if ($HTTP_GET_VARS{'TYPE'} == 'PTR') {
 
 } elseif ($HTTP_GET_VARS{'TYPE'} == 'MX') {
 
-	// Redirect to new dedicated dns_add_mx.php page:
-	header("location: /base/dns/dns_add_mx.php");
-	return;
-
-	//if ($Ui->Data['mx_domain_name'] == '') { 
-	//	$Ui->Data['mx_domain_name'] = $dom_default; 
-	//}
-	//$Ui->DomainName( "mx_host_name", array( "Optional" => 'loud' ) ); 
-	//$Ui->DomainName( "mx_domain_name" ); 
-	//$Ui->DomainName( "mx_target_server" );
-	////$Ui->DomainName( "mx_target_server", array( "Optional" => "silent" ) );
-	//$Ui->Alters( "mx_priority", array('very_high', 'high', 'low', 'very_low') ); 
-
+	if ($Ui->Data['mx_domain_name'] == '') { 
+		$Ui->Data['mx_domain_name'] = $dom_default; 
+	}
+	$Ui->DomainName( "mx_host_name", array( "Optional" => 'loud' ) ); 
+	$Ui->DomainName( "mx_domain_name" ); 
+	$Ui->DomainName( "mx_target_server" );
+	// $Ui->DomainName( "mx_target_server", array( "Optional" => "silent" ) );
+	$Ui->Alters( "mx_priority", array('very_high', 'high', 'low', 'very_low') ); 
 } elseif ($HTTP_GET_VARS{'TYPE'} == 'SUBDOM') {
 
 	if ( ! $Ui->Data['subdom_domain_name'] ) { 
@@ -231,7 +223,7 @@ $Ui->AddButtons($ret_url);
 $Ui->EndBlock();
 $Ui->EndPage();
 
-function handle($Ui, $target, $mapping, $post_vars, $get_vars, $nm_to_dec, $dec_to_nm)
+function handle(&$Ui, $target, &$mapping, &$post_vars, &$get_vars, &$nm_to_dec, &$dec_to_nm)
 {
 	// echo "<b>handle $target</b><br>";
 	
@@ -262,7 +254,7 @@ function handle($Ui, $target, $mapping, $post_vars, $get_vars, $nm_to_dec, $dec_
 	return 0;
 }
 	
-function handle_load($Ui, $oid, $dec_to_nm)
+function handle_load(&$Ui, $oid, &$dec_to_nm)
 {
 	// load object attributes
 	$rec = $Ui->Cce->get($oid);
@@ -320,7 +312,7 @@ function handle_load($Ui, $oid, $dec_to_nm)
 			$HTTP_GET_VARS{'netauth'} = $rec['network']; 
 			$Ui->Data['subnet_parent_ip_address'] = $rec['ipaddr'];
 			$Ui->Data['subnet_parent_mask'] = $rec['netmask'];
-			$smallnet = preg_split('/\//', $rec['network_delegate']);
+			$smallnet = split('/', $rec['network_delegate']);
 			$Ui->Data['subnet_ip_address']  = $smallnet[0];
 			$Ui->Data['subnet_mask'] = $dec_to_nm[ $smallnet[1] ];
 			$Ui->Data['subnet_nameservers'] = $rec['delegate_dns_servers'];
@@ -328,7 +320,7 @@ function handle_load($Ui, $oid, $dec_to_nm)
 	}
 }
 
-function handle_post($ui, $target, $mapping, $post_vars)
+function handle_post(&$ui, $target, &$mapping, &$post_vars)
 {
 	while (list($key,$val) = each($mapping))
 	{
@@ -353,7 +345,7 @@ function map_vars($mapping, $post_vars)
 	return $obj;
 }
 
-function update_cce($Ui, $target, $mapping, $http_vars, $nm_to_dec)
+function update_cce(&$Ui, $target, $mapping, $http_vars, $nm_to_dec)
 {
 	$oid = 0;
 	// create record; first determine type

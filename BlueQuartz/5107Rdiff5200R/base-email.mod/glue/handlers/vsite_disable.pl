@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # Author: Brian N. Smith
 # Copyright 2006, NuOnce Networks, Inc.  All rights reserved.
-# $Id: vsite_disable.pl 1037 2007-12-15 01:24:48Z brian $
+# $Id: vsite_disable.pl 1495 2010-06-25 09:15:33Z shibuya $
 #
 # use Sauce::Util::editfile by Hisao
 
@@ -44,7 +44,7 @@ if ( $domain->{'emailDisabled'} eq "1" ) {
 
 @emailList = nonDuplicatedArray(@emailList);
 foreach my $entry(@emailList) {
-  $access_list .= $entry . "\t\tERROR:5.1.1:550 User unknown\n";
+  $access_list .= $entry . "\t\t550 User unknown\n";
 }
 
 if (!Sauce::Util::replaceblock($Access,
@@ -54,6 +54,7 @@ if (!Sauce::Util::replaceblock($Access,
     $cce->bye('FAIL');
     exit(1);
 }
+system("/usr/sbin/postalias hash:$Access > /dev/null 2>&1");
 
 $cce->bye("SUCCESS");
 exit(0);

@@ -1,14 +1,14 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: emailHandler.php Sat 10 Apr 2010 07:00:27 AM CEST mstauber $
+// $Id: emailHandler.php 1459 2010-04-18 15:24:54Z shibuya $
 
-include_once("ServerScriptHelper.php");
+include("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverEmail should be here
+if (!$serverScriptHelper->getAllowed('serverEmail')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -17,56 +17,44 @@ $cceClient = $serverScriptHelper->getCceClient();
 
 $queueTimeMap = array("queue0" => "immediate", "queue15" => "quarter-hourly", "queue30" => "half-hourly", "queue60" => "hourly", "queue360" => "quarter-daily", "queue1440" => "daily");
 
-$maxRecipientsPerMessageMap = 
-    array(
-	"unlimited" => "0", 
-        "5" => "5", 
-        "10" => "10", 
-        "15" => "15", 
-        "20" => "20", 
-        "25" => "25", 
-        "50" => "50", 
-        "75" => "75", 
-        "100" => "100", 
-        "125" => "125", 
-        "150" => "150", 
-        "175" => "175", 
-        "200" => "200"
-    );
-
 // empty maximum message size means no limits
 // convert MB to KB
 $max = $maxEmailSizeField ? $maxEmailSizeField*1024 : "";
 //echo "<li> max = $max";
 
+$enableSMTPField = $enableSMTPField ? 1 : 0;
+$enableSMTPSField = $enableSMTPSField ? 1 : 0;
+$enableSubmissionPortField = $enableSubmissionPortField ? 1 : 0;
+
 $cceClient->setObject("System", 
   array(
-    "enableSMTP" => $enableServersField, 
+    "enableSMTP" => $enableSMTPField, 
+    "enableSMTP_Auth" => $enableSMTP_Auth,
     "enableSMTPS" => $enableSMTPSField,
-    "enableSMTPAuth" => $enableSMTPAuthField,
+    "enableSMTPS_Auth" => $enableSMTPS_Auth,
     "enableSubmissionPort" => $enableSubmissionPortField,
+    "enableSubmission_Auth" => $enableSubmission_Auth,
+    "enableTLS" => $enableTLSField,
     "enableImap" => $enableImapField, 
     "enableImaps" => $enableImapsField,
     "enablePop" => $enablePopField, 
-    "enableZpush" => $enableZpushField, 
     "enablePops" => $enablePopsField,
     "popRelay" => $popRelayField, 
-    "delayChecks" => $delayChecksField, 
     "enablepopRelay" => $popRelayField, 
     "queueTime" => $queueTimeMap[$queueTimeField], 
     "maxMessageSize" => $max, 
-    "maxRecipientsPerMessage" => $maxRecipientsPerMessageMap[$maxRecipientsPerMessageField], 
     "relayFor" => $relayField, 
     "acceptFor" => $receiveField, 
     "deniedUsers" => $blockUserField, 
     "masqAddress" => $masqAddressField,
     "smartRelay" => $smartRelayField,
+    "fallbackRelay" => $fallbackRelayField,
     "deniedHosts" => $blockHostField), 
   "Email");
   
 $errors = $cceClient->errors();
 
-print($serverScriptHelper->toHandlerHtml("/base/email/email.php?view=$_PagedBlock_selectedId_emailSettings", 
+print($serverScriptHelper->toHandlerHtml("/base/email/email.php", 
 	$errors, "base-email"));
 
 # disable activeMonitor for these items

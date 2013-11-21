@@ -1,4 +1,4 @@
-# $Id: TreeXml.pm 945 2005-10-09 12:26:12Z shibuya $
+# $Id: TreeXml.pm 1202 2009-04-07 08:49:22Z shibuya $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 
@@ -23,7 +23,7 @@ use vars qw(@ISA @EXPORT @EXPORT_OK $VERSION);
 		$XMLPROLOG
 		$XMLHEADER
 );      
-$VERSION = "2.91";
+$VERSION = 2.67;
 
 use vars qw($XMLPROLOG $XMLHEADER $KEYATTR);
 $XMLPROLOG = '<?xml version="1.0" encoding="iso-8859-1"?>';
@@ -225,7 +225,7 @@ sub getStats
     my $data = shift;
     my @attrs = [];
 
-    if ($data->{exportPlatform} =~ /RaQ/ || $data->{exportPlatform} =~ /5106R/ || $data->{exportPlatform} =~ /5107R/ || $data->{exportPlatform} =~ /5108R/ || $data->{exportPlatform} =~ /5207R/ || $data->{exportPlatform} =~ /5208R/ || $data->{exportPlatform} =~ /516[0-1]R/ || $data->{exportPlatform} =~ /5100R/ || $data->{exportPlatform} =~ /TLAS[0-9]+HE/) {
+    if ($data->{exportPlatform} =~ /RaQ/ || $data->{exportPlatform} =~ /5100R/ || $data->{exportPlatform} =~ /TLAS1HE/ || $data->{exportPlatform} =~ /TLAS2/) {
 	@attrs = qw(vsite user list);
     }
     elsif ($data->{exportPlatform} =~ /Qube/) {

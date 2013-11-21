@@ -2,7 +2,7 @@
 
 // Author: Tim Hockin
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: ecc_logs.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: ecc_logs.php 1025 2007-06-25 15:32:16Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("base/am/am_detail.inc");
@@ -29,7 +29,7 @@ while (!feof($log)) {
   // that related to kernel logging and reboots
 
   if (strpos($line, "NMI:") || strpos($line, "klogd") || 
-      preg_match("/Kernel.*log/", $line)) {
+      ereg("Kernel.*log", $line)) {
     $output .= $line;
   }
 }

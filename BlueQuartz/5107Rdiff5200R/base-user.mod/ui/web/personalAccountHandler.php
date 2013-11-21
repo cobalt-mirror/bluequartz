@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalAccountHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: personalAccountHandler.php 1343 2009-12-13 16:33:02Z shibuya $
 
 include_once("ServerScriptHelper.php");
 
@@ -9,9 +9,6 @@ $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 $i18n = $serverScriptHelper->getI18n("base-user");
 $loginName = $serverScriptHelper->getLoginName();
-
-// Start sane:
-$errors = array();
 
 // get old settings
 $user = $cceClient->getObject("User", array("name" => $loginName));
@@ -25,8 +22,7 @@ if($styleField)
 // Username = Password? Baaaad idea!
 if (strcasecmp($loginName, $newPasswordField) == 0) {
         $attributes["password"] = "1";
-        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
-        $errors[] = new Error($error_msg);
+        $errors[] = new Error("[[base-user.error-password-equals-username]]");
 }
 
 // Only use cracklib if someting was entered into the $newPasswordField:
@@ -54,7 +50,7 @@ if ($newPasswordField) {
 }
 
 $cceClient->setObject("User", $attributes, "", array("name" => $loginName));
-$errors = array_merge($errors, $cceClient->errors());
+$errors = array_merge((array)$errors, $cceClient->errors());
 //$errors = $cceClient->errors();
 
 for ($i = 0; $i < count($errors); $i++) {

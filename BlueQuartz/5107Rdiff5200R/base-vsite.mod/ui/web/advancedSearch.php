@@ -9,7 +9,7 @@
 include_once('ServerScriptHelper.php');
 include_once('base/vsite/vsite_common.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
 // Only adminUser should be here
 if (!$helper->getAllowed('adminUser')) {
@@ -59,7 +59,6 @@ function &parse_search_criteria()
 	$searchProperty = session_get_var('searchProperty');
 	$searchLimit = session_get_var('searchLimit');
 	$searchText = session_get_var('searchText');
-
 	if ($searchText != '') {
 		parse_text_search($searchProperty, $searchText, $searchLimit,
 				  $return);
@@ -110,6 +109,9 @@ function &generate_search_fields(&$factory, &$cce)
 	$ip_option =& $factory->getOption('ipaddr');
 	$ip_option->setLabel($factory->getLabel('ipAddr', false));
 	$property->addOption($ip_option);
+	$user_option =& $factory->getOption('createdUser');
+	$user_option->setLabel($factory->getLabel('createdUser', false));
+	$property->addOption($user_option);
 
 	// select the search property for search modify
 	$property->setSelected(
@@ -158,10 +160,11 @@ function &generate_search_fields(&$factory, &$cce)
 	$possible_services =& $cce->names('VsiteServices');
 	foreach ($possible_services as $service) {
 		$ns = $cce->get($services_oid, $service);
-		$selected = preg_match("/&$service&/", $services);
+		$selected = ereg("&$service&", $services);
 		$option =& $factory->getOption($service, $selected);
 		$option->setLabel($factory->getLabel($ns['i18nName'], false));
 		$services_select->addOption($option);
+		unset($option);
 	}
 
 	$search_block->addFormField($services_select,

@@ -71,9 +71,9 @@ my $physicalMemTotal = int (($memTotal+16384)/16384)*16;
 
 # 4GB systems use the top 64MB as PCI & ROM address space
 # pad it out by 64 to match the real DIMM total
-#if($physicalMemTotal >= 4032) {
-#    $physicalMemTotal = 4096;
-#}
+if($physicalMemTotal >= 4032) {
+    $physicalMemTotal = 4096;
+}
 
 # write result to CCE
 my @oids = $cce->find("System");

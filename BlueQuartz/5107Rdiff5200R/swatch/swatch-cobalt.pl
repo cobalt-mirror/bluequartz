@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright (c) Turbolinux, inc.
-# Modified by Michael Stauber <mstauber@solarspeed.net> 
-# Di 31 Jul 2012 10:11:41 CEST
+# Modified by Michael Stauber <mstauber@solarspeed.net>
+# Sun 28 Oct 2007 02:41:19 AM CET
 
 use strict;
 use CCE;
@@ -10,22 +10,9 @@ use I18n;
 use SendEmail;
 use Sys::Hostname;
 use POSIX qw(isalpha);
-use MIME::Lite;
-use Encode::Encoder;
 
 my $host = hostname();
 my $now = localtime time;
-
-###
-# Fix for /etc/mtab issue when Bind is running chrooted in a VPS:
-my $mtabissues = `cat /etc/mtab|grep deleted -c`;
-if ($mtabissues =~ /^0(.*)$/) {
-}
-else {
-        system("cat /etc/mtab |grep -v 'deleted' > /etc/mtab.new");
-        system("mv /etc/mtab.new /etc/mtab");
-}
-###
 
 my @statecodes = ("N", "G", "Y", "R"),
 my %params;
@@ -70,27 +57,7 @@ $cce->connectuds();
 my @sysoid = $cce->find ('System');
 my ($ok, $sysobj) = $cce->get($sysoid[0]);
 my $system_lang = $sysobj->{productLanguage};
-my $platform = $sysobj->{productBuild};
-
-# We can't email in Japanese yet, as MIME:Lite alone doesn't support it. We'd need MIME::Lite:TT:Japanese
-# and a hell of a lot of dependencies to sort that out. So for now we hard code them to 'en_US' or 'en'
-# for emailing purpose from within this script:
-
-if ($system_lang eq "ja") {
-    if ($platform eq "5106R") {
-        $i18n->setLocale("en");
-    }
-    else {
-        $i18n->setLocale("en_US");
-    }
-}
-else {
-    $i18n->setLocale($system_lang);
-}
-
-#system("export LANGUAGE=$system_lang.UTF-8");
-#system("export LANG=$system_lang.UTF-8");
-#system("export LC_ALL=$system_lang.UTF-8");
+$i18n->setLocale($system_lang);
 
 my $body_head = $i18n->get('[[swatch.emailBody]]') . "\n\n";
 
@@ -137,7 +104,6 @@ while ( defined (my $name = <@names>) ) {
       my $oldState = $object->{currentState};
       my @aggregates = split / +/, $object->{typeData};
       foreach my $aggregate (@aggregates) {
- 
         my ($ok, $obj, $old, $new) = $cce->get ($oid[0], $aggregate);
         if ($obj->{enabled} && $obj->{monitor}) {
           ($stats{"$aggregate"}, my $ret, $agg_msg) = do_monitor($obj);
@@ -163,51 +129,28 @@ while ( defined (my $name = <@names>) ) {
                  });
         if (($oldState ne $statecodes[$state]) &&
             !($oldState eq "N" && $statecodes[$state] eq "G")) {
-          print "Got MSG start \n" if ($DEBUG_ME);
           $msg = $i18n->get($msgs[$state]) . $msg;
-
         } else {
           $msg = "";
         }
         print "[$name] state : $statecodes[$state]\n" if ($DEBUG_ME);
       }
-
     } elsif (!$object->{aggMember}) {
       ($stats{"$name"}, my $ret, $msg) = do_monitor($object);
     }
-
     if ($msg) {
       $body .= "* " . $msg . "\n\n";
     }
   }
 }
 
-if ($body) {
 
+if ($body) {
   $body = $body_head . $body;
-  my $subject = $host . ": " . Encode::encode("MIME-B", $i18n->get("[[swatch.emailSubject]]"));
+  my $subject = $host . ": " . $i18n->get("[[swatch.emailSubject]]");
   my $to;
   foreach $to (@email_list) {
-  
-    # No, we don't want to use Sauce::SendEmail:
-    #SendEmail::sendEmail($to, "root <root>", $subject, $body);
-
-    # Build the message using MIME::Lite instead:
-    my $send_msg = MIME::Lite->new(
-        From     => "root <root>",
-        To       => $to,
-        Subject  => $subject,
-        Data     => $body,
-	Charset => 'UTF-8'
-    );
-
-    # Set content type:
-    $send_msg->attr("content-type"         => "text/plain");
-    $send_msg->attr("content-type.charset" => "UTF-8");
-
-    # Out with the email:
-    $send_msg->send;
-    print "Sending mail \n" if ($DEBUG_ME);
+    SendEmail::sendEmail($to, "root <root>", $subject, $body);
   }
 }
 
@@ -255,7 +198,7 @@ sub do_monitor
       }
   } elsif ( -x $am ) {
     print "running $am\n" if ($DEBUG_ME);
-    $ret = `PATH=/bin:/sbin:/usr/sbin:/usr/bin LANG=$system_lang $am`;
+    $ret = `PATH=/bin:/sbin:/usr/sbin:/usr/bin LANG=$lang $am`;
     $state = $? >> 8;
   }
   if ($state >= 0) {
@@ -273,27 +216,8 @@ sub do_monitor
       !($oldState eq "N" && $statecodes[$state] eq "G")) {
     print "Status changed\n" if ($DEBUG_ME);
     $msg = $i18n->get($ret);
-
-    ### Start: Append 'top' output if CPU is/was in moderate or heavy useage:
-    if (($object->{nameTag} eq "[[base-am.amCPUName]]") && ($object->{monitor} == "1")) {
-	if ($object->{currentMessage}) {
-		print "CPU is/was in moderate or heavy useage - generating 'top' report\n" if ($DEBUG_ME);
-		my $TOP = `top -b -n 1`;
-		my @procs = split(/\n/, $TOP);
-		$msg .= "\n\n-------------------------------------------\n";
-		$msg .= "System snapshot:\n";
-		$msg .= "-------------------------------------------\n";
-		foreach my $top (@procs) {
-			$top =~ s/ *$//g;
-			$msg .= $top . "\n";
-		}
-		$msg .= "\n\n";
-		print "TOP: \n $TOP \n" if ($DEBUG_ME);
-	}
-    }
-    ### End: Append 'top' output if CPU is/was in moderate or heavy useage:
-
   }
+
 
   return ($state, $ret, $msg);
 }

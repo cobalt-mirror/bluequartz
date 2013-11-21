@@ -1,5 +1,5 @@
-#!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: 30_addNetwork.pl 1146 2008-06-06 23:57:38Z mstauber $
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
+# $Id: 30_addNetwork.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # author: jmayer@cobalt.com
@@ -26,11 +26,6 @@ if (!scalar(@devices))
     exit(1);
 }
 
-# Handle bootproto=dhcp on AWS, where we do NOT change ifcfg-eth0:
-if (-f "/etc/is_aws") {
-    $is_aws = "1";
-}
-
 # for each inteface or alias
 # get information from ifconfig
 # make sure a Network object exists in CCE
@@ -54,11 +49,8 @@ for my $device (@devices)
         {
             $nm = $1;
         }
-        if ($data =~ m/HWaddr\s*(\S+)/s)
-        {
-            $mac = $1;
-        }
     }
+
 
     my @oids = $cce->find('Network', { 'device' => $device } );
 
@@ -84,14 +76,7 @@ for my $device (@devices)
             $DEBUG && print STDERR "Using old config: $ip/$nm\n";
             $obj->{ipaddr} = $ip;
             $obj->{netmask} = $nm;
-            $obj->{mac} = $mac;
             $obj->{enabled} = 1;
-
-	    # If we're on AWS, set bootproto=dhcp:
-            if ($is_aws == "1") {
-        	$obj->{bootproto} = 'dhcp';
-            }
-
         } 
         else 
         {
@@ -135,53 +120,40 @@ for my $device (@devices)
             }
         }
     }
-
+   
     # make sure the real flag is properly set
-    if (! -f "/proc/user_beancounters") { 
-	# Handle standard ethX setups:
-    	if ($oid && $device !~ /:\d+$/) {
-		$cce->set($oid, '', { 'real' => 1 });
-    	}
-    	elsif ($oid) {
-        	$cce->set($oid, '', { 'real' => 0 });
-    	}
+    if ($oid && $device !~ /:\d+$/) 
+    {
+        $cce->set($oid, '', { 'real' => 1 });
     }
-    else {
-	# Handle OpenVZ cases where venet0:0 is the (first) real interface
-	if ($oid && $device =~ /:0/) {
-		$cce->set($oid, '', { 'real' => 1 });
-    	}
-    	elsif ($oid) {
-        	$cce->set($oid, '', { 'real' => 0 });
-    	}
-    $cce->set($oid, '', { 'mac' => $mac });
+    elsif ($oid)
+    {
+        $cce->set($oid, '', { 'real' => 0 });
     }
 }
 
 $cce->bye();
 exit($errors);
 
-sub hack_on_nat {
+sub hack_on_nat
+{
     my ($oid) = $cce->find('System');
-    if ($oid) {
-	if (! -f "/proc/user_beancounters") {
-        	my ($ok) = $cce->set($oid, 'Network', { 
+    if ($oid) 
+    {
+        my ($ok) = $cce->set($oid, 'Network', 
+                        { 
                             'nat' => '1',
                             'ipForwarding' => '1',
                         });
-	}
-	else {
-        	my ($ok) = $cce->set($oid, 'Network', { 
-                            'nat' => '0',
-                            'ipForwarding' => '0',
-                        });
-	}
-        if (not $ok) {
+
+        if (not $ok)
+        {
             $cce->warn('[[base-network.cantTurnOnNat]]');
         }
 
         # debugging:
-        if ($DEBUG) {
+        if ($DEBUG)
+        {
             system('/bin/cp',
                 '/etc/sysconfig/network',
                 '/tmp/.network.' . scalar(time()) );

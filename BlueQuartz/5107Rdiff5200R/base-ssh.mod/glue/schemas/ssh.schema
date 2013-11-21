@@ -1,33 +1,13 @@
 <!--
-    $Id: ssh.schema,v 2.1.1.1 Thu Dec  4 02:32:27 2008 mstauber Exp $
-    Copyright 2006-2008 Solarspeed Ltd. and NuOnce Networks, Inc. All rights reserved.
+    $Id: ssh.schema,v 1.1.1.1 2001/10/19 19:43:04 pbaltz Exp $
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 -->
 
-<class name="System" namespace="SSH" version="2.0">
-
+<class
+    name="System" namespace="SSH" version="1.0"
+>
     <property
         name="enabled" type="boolean" default="1"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverShell)"
     />
-
-    <property
-        name="PermitRootLogin" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
-    />
-
-    <property
-        name="Port" type="uint" default="22"
-        writeacl="ruleCapable(adminUser)"
-    />
-
-    <property
-        name="Protocol" type="scalar" default="2"
-        writeacl="ruleCapable(adminUser)"
-    />
-
-    <property
-        name="force_update" type="scalar" default=""
-        writeacl="ruleCapable(adminUser)"
-    />
-
 </class>

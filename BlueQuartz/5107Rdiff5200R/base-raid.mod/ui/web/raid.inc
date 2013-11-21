@@ -15,29 +15,19 @@ function raid_table($factory, $cce, $helper)
     // get RAID config
     $oid = $cce->find('System');
     if (!$oid) {
-        // not found
+      //fail
     }
-    $raid = $cce->get($oid[0], 'RAID');
+    $raid = $cce->get($oid, 'RAID');
     $level = $raid['level'];
     $disks = $raid['disks'];
-
+    
     // if raid is not setup, then try to figure out what the default is
     if ($level === '') {
-        if ($disks == 1) {
-                $level = 0;
-        }
-        elseif ($disks == 2) {
-                $level = 1;
-        }
-        elseif ($disks == 3) {
-                $level = 1;
-        }
-        elseif ($disks == 4) {
-                $level = 10;
-        }
-        else {
-                $level = 0;
-        }
+    	if ($disks > 1) {
+		$level = 1;
+	} else {
+		$level = 0;
+	}
     }
 
     if ($disks == 0) {

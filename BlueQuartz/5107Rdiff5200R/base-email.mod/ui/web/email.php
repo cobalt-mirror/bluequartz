@@ -1,46 +1,29 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// Copyright 2010, Team BlueOnyx.  All rights reserved.
-// $Id: email.php Sat 10 Apr 2010 06:59:37 AM CEST mstauber $
-  
+// $Id: email.php 1459 2010-04-18 15:24:54Z shibuya $
+
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverEmail should be here
+if (!$serverScriptHelper->getAllowed('serverEmail')) {
   header("location: /error/forbidden.html");
   return;
 }
 
-if (isset($view)) {
-  $_PagedBlock_selectedId_emailSettings = "$view";
-}
-
 $cceClient = $serverScriptHelper->getCceClient();
-if($_PagedBlock_selectedId_emailSettings == "mx") {
-  $factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/email.php");
- } else {
-  $factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/emailHandler.php");
- }
-$i18n = $serverScriptHelper->getI18n("base-email");
+$factory = $serverScriptHelper->getHtmlComponentFactory("base-email", "/base/email/emailHandler.php");
 $product = new Product($cceClient);
-
 
 // get object
 $email = $cceClient->getObject("System", array(), "Email");
 
 $page = $factory->getPage();
 
-$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced", "mx", "blacklist"));
-$block->processErrors($serverScriptHelper->getErrors());
-
-if (isset($view)) {
-  $block->setSelectedId($view);
-  $_PagedBlock_selectedId_emailSettings = "$view";
-}
+$block = $factory->getPagedBlock("emailSettings", array("basic", "advanced"));
 
 // think about what we've done wrong
 $errors = $serverScriptHelper->getErrors(); 
@@ -49,27 +32,43 @@ $block->processErrors($errors);
 // basic page
 // smtp
 $block->addDivider($factory->getLabel('SMTP', false), 'basic');
-$block->addFormField(
-  $factory->getBoolean("enableServersField", $email["enableSMTP"]),
-  $factory->getLabel("enableServersField"),
-  "basic"
+
+$smtpEnable = $factory->getOption("enableSMTPField", $email["enableSMTP"]);
+$smtpEnable->addFormField(
+  $factory->getBoolean("enableSMTP_Auth", $email["enableSMTP_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSMTPSField", $email["enableSMTPS"]),
-  $factory->getLabel("enableSMTPSField"),
-  "basic"
+$smtp = $factory->getMultiChoice("enableSMTPField");
+$smtp->addOption($smtpEnable);
+$block->addFormField($smtp, $factory->getLabel("enableSMTPField"), "basic");
+
+// smtps
+$smtpsEnable = $factory->getOption("enableSMTPSField", $email["enableSMTPS"]);
+$smtpsEnable->addFormField(
+  $factory->getBoolean("enableSMTPS_Auth", $email["enableSMTPS_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
-$block->addFormField(
-  $factory->getBoolean("enableSMTPAuthField", $email["enableSMTPAuth"]),
-  $factory->getLabel("enableSMTPAuthField"),
-  "basic"
+$smtps = $factory->getMultiChoice("enableSMTPSField");
+$smtps->addOption($smtpsEnable);  
+$block->addFormField($smtps, $factory->getLabel("enableSMTPSField"), "basic");
+
+// submission
+$submissionEnable = $factory->getOption("enableSubmissionPortField", $email["enableSubmissionPort"]);
+$submissionEnable->addFormField(
+  $factory->getBoolean("enableSubmission_Auth", $email["enableSubmission_Auth"]),
+  $factory->getLabel("enableAuth")
 );
 
+$submission = $factory->getMultiChoice("enableSubmissionPortField");
+$submission->addOption($submissionEnable);
+$block->addFormField($submission, $factory->getLabel("enableSubmissionPortField"), "basic");
+
+// TLS
 $block->addFormField(
-  $factory->getBoolean("enableSubmissionPortField", $email["enableSubmissionPort"]),
-  $factory->getLabel("enableSubmissionPortField"),
+  $factory->getBoolean("enableTLSField", $email["enableTLS"]),
+  $factory->getLabel("enableTLSField"),
   "basic"
 );
 
@@ -101,39 +100,16 @@ $block->addFormField(
   "basic"
 );
 
-// Z-Push
-$block->addDivider($factory->getLabel('Z-Push ActiveSync', false), 'basic');
-$block->addFormField(
-  $factory->getBoolean("enableZpushField", $email["enableZpush"]),
-  $factory->getLabel("enableZpushField"),
-  "basic"
-);
-
 
 // advanced page
+/*
 $queueTimeMap = array("immediate" => "queue0", "quarter-hourly" => "queue15", "half-hourly" => "queue30", "hourly" => "queue60", "quarter-daily" => "queue360", "daily" => "queue1440");
 $queueSelectedMap = array("immediate" => 0, "quarter-hourly" => 1, "half-hourly" => 2, "hourly" => 3, "quarter-daily" => 4, "daily" => 5);
-
-$maxRecipientsPerMessageMap = 
-    array(
-	"0" => "unlimited", 
-        "5" => "5", 
-        "10" => "10", 
-        "15" => "15", 
-        "20" => "20", 
-        "25" => "25", 
-	"50" => "50", 
-        "75" => "75", 
-        "100" => "100", 
-        "125" => "125", 
-        "150" => "150", 
-        "175" => "175", 
-        "200" => "200" 
-    );
   
 $queue_select = $factory->getMultiChoice("queueTimeField", array_values($queueTimeMap));
 $queue_select->setSelected($queueSelectedMap[$email['queueTime']], true);
 $block->addFormField($queue_select, $factory->getLabel("queueTimeField"), 'advanced');
+*/
 
 // convert from KB to MB
 $max = $email["maxMessageSize"]/1024;
@@ -149,19 +125,6 @@ $block->addFormField(
   "advanced"
 );
 
-// maxRecipientsPerMessage
-$maxRecipientsPerMessage_select = $factory->getMultiChoice("maxRecipientsPerMessageField", array_values($maxRecipientsPerMessageMap));
-$maxRecipientsPerMessage_select->setSelected($maxRecipientsPerMessageMap[$email['maxRecipientsPerMessage']], true);
-$block->addFormField($maxRecipientsPerMessage_select, $factory->getLabel("maxRecipientsPerMessageField"), 'advanced');
-
-// Enable delay_checks
-$block->addFormField(
-  $factory->getBoolean("delayChecksField", $email["delayChecks"]),
-  $factory->getLabel("delayChecksField"),
-  "advanced"
-);
-
-
 $masqAddress = $factory->getNetAddress("masqAddressField", $email["masqAddress"]);
 $masqAddress->setOptional(true);
 $block->addFormField(
@@ -170,11 +133,19 @@ $block->addFormField(
   "advanced"
 );
 
-$smartRelay = $factory->getDomainName("smartRelayField", $email["smartRelay"]);
+$smartRelay = $factory->getTextField("smartRelayField", $email["smartRelay"]);
 $smartRelay->setOptional(true);
 $block->addFormField(
   $smartRelay, 
   $factory->getLabel("smartRelayField"),
+  "advanced"
+);
+
+$fallbackRelay = $factory->getTextField("fallbackRelayField", $email["fallbackRelay"]);
+$fallbackRelay->setOptional(true);
+$block->addFormField(
+  $fallbackRelay,
+  $factory->getLabel("fallbackRelayField"),
   "advanced"
 );
 
@@ -218,131 +189,20 @@ $block->addFormField(
   "advanced"
 );
 
-if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
-  $addmod = '/base/email/mx2_add.php';
-  $confirm_removal = $i18n->get("mxRemoveEntry");
- 
-  $oids = $cceClient->findx("mx2",array(),array(), 'ascii', 'domain');
-  $oidsNum = count($oids);
+$block->addButton($factory->getSaveButton($page->getSubmitAction()));
 
+$routeButton = $factory->getButton("/base/email/routes.php", "routes");
 
-  $mxList = "";
-  $mxList = $factory->getScrollList("mx2List", array("secondaryDomain", " "), array(0));
-  $mxList->setDefaultSortedIndex(0);
-  $mxList->setAlignments(array("left", "center"));
-  $mxList->addButton($factory->getAddButton("javascript: location='$addmod';"
-					    . " top.code.flow_showNavigation(false)", "addmx"));
-  $mxList->setLength(25);
-  $maxLength = $oidsNum;
-  $currentPage = $mxList->getPageIndex();
-  $startIndex = 25 * $currentPage;
-  $mxList->processErrors($serverScriptHelper->getErrors());
-  $mxList->setEntryNum($oidsNum);
-  
-  if ($mxList->getSortOrder() == "descending") {
-    $oids = array_reverse($oids);
-  }
-
-  for($i = $startIndex; 
-      $i < count($oids) || $i < $startIndex + $maxLength;
-      $i++) {
-    $oid = $oids[$i];
-    $domains = $cceClient->get($oid);
-    $domain = $domains['domain'];
-    $mapto = $domains['mapto'];
-    
-    $mxList->addEntry(array(
-			    $factory->getTextField("", $domain, "r"),
-			    $factory->getCompositeFormField(array(
-								  $factory->getModifyButton( "$addmod?_TARGET=$oid"),
-								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$domain', 'mx');" )))));
-  }
- }
-
-if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist") {
-  $addmod = '/base/email/blacklist_add.php';
-  $confirm_removal = $i18n->get("blacklistRemoveEntry");
-  
-  $oids = $cceClient->findx("dnsbl",array(),array(), 'ascii', 'blacklistHost');
-  $oidsNum = count($oids);
-  
-  
-  $blackList = "";
-  $blackList = $factory->getScrollList("blackList", array("blackList", "activated", " "), array(0));
-  $blackList->setDefaultSortedIndex(0);
-  $blackList->setAlignments(array("left", "left", "center"));
-  $blackList->addButton($factory->getAddButton("javascript: location='$addmod';"
-					    . " top.code.flow_showNavigation(false)", "addBlacklist"));
-  $blackList->setLength(25);
-  $maxLength = $oidsNum;
-  $currentPage = $blackList->getPageIndex();
-  $startIndex = 25 * $currentPage;
-  $blackList->processErrors($serverScriptHelper->getErrors());
-  $blackList->setEntryNum($oidsNum);
-  
-  if ($blackList->getSortOrder() == "descending") {
-    $oids = array_reverse($oids);
-  }
-
-  for($i = $startIndex; 
-      $i < count($oids) || $i < $startIndex + $maxLength; 
-      $i++) {
-    $oid = $oids[$i];
-    $hosts = $cceClient->get($oid);
-    $host = $hosts['blacklistHost'];
-    $active = $hosts['active'];
-    if( $active) {
-      $activeStatus = $factory->getImageLabel("blacklist", "/libImage/greenCheck.gif");
-    } else {
-      $activeStatus = $factory->getImageLabel("blacklist", "/libImage/redX.gif");
-    }
-    
-    $blackList->addEntry(array(
-			    $factory->getTextField("", $host, "r"),
-			    $activeStatus,
-			    $factory->getCompositeFormField(array(
-								  $factory->getModifyButton( "$addmod?_TARGET=$oid"),
-								  $factory->getRemoveButton( "javascript: confirmRemove(strConfirmRemoval, '$oid', '$host', 'blacklist');" )))));
-  }
- }
-
-if( $_PagedBlock_selectedId_emailSettings != "mx" && $_PagedBlock_selectedId_emailSettings != "blacklist") {
-  $block->addButton($factory->getSaveButton($page->getSubmitAction()));
-  //$factory->getSaveButton($page->getSubmitAction("/base/email/emailHandler.php")));
- }
 $serverScriptHelper->destructor();
-
-
-print($page->toHeaderHtml());
 ?>
-<SCRIPT LANGUAGE="javascript">
-// these need to be defined seperately or Japanese gets corrupted
-var strConfirmRemoval = '<?php print $confirm_removal; ?>';
-</SCRIPT>
-<SCRIPT LANGUAGE="javascript">
-function confirmRemove(msg, oid, label, view, netauth) {
-  msg = top.code.string_substitute(msg, "[[VAR.mxHost]]", label);
-  msg = top.code.string_substitute(msg, "[[VAR.blacklistHost]]", label);
-  
-  if(confirm(msg))
-    location = "/base/email/oid_deleteHandler.php?_REMOVE=" + oid + "&_VIEW=" + view;
-}
-</SCRIPT>
+<?php print($page->toHeaderHtml()); ?>
 
+<?php print($routeButton->toHtml()); ?>
+<BR>
 
-<?php 
+<?php print($block->toHtml()); ?>
 
-print($block->toHtml());
-
-if($_PagedBlock_selectedId_emailSettings == "mx" || $view == "mx") {
-  print($mxList->toHtml()); 
- }
-
-if($_PagedBlock_selectedId_emailSettings == "blacklist" || $view == "blacklist") {
-  print($blackList->toHtml()); 
- }
-
-print($page->toFooterHtml());
+<?php print($page->toFooterHtml());
 /*
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 

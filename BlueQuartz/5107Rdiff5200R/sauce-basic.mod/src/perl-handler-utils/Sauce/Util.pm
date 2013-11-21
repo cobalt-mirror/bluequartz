@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: Util.pm 1050 2008-01-23 11:45:43Z mstauber $
+# $Id: Util.pm 992 2007-05-05 06:19:57Z shibuya $
 # author: jmayer@cobalt.com
 
 package Sauce::Util;
@@ -12,10 +12,6 @@ $DEFAULT_MODE = 0640;
 my $TXNFILE = '/usr/sausalito/codb/txn/current.handlerlog';
 
 my $DEBUG = 0;
-if ($DEBUG)
-{   
-        use Sys::Syslog qw( :DEFAULT setlogsock);
-}
 
 sub SAFEMODE { O_WRONLY | O_CREAT | O_EXCL };
 
@@ -403,12 +399,6 @@ sub hash_edit_function
 			print $out $_;
 			next;
 		}
-		# skip section blocks like [Main Config File]
-		if (/^\s*\[(.*)\]/) 
-		{
-			print $out $_;
-			next;
-		}
 
 		# need to split up the line, so we can know exactly what to look for
 		my @parts = split(' ');
@@ -552,10 +542,6 @@ sub editfile
   # process file
   my $oldfh = select(); # save stdout file handle
   my $ret = &$function($fin, $fout, @_);
-  
-  my $commz = join(' ', @_);
-  
-  &debug_msg("Util.pm:editfile editing $filename - function: $function payload: $commz");
   select($oldfh); # restore stdout file handle
   
   # close file handles
@@ -1112,16 +1098,7 @@ sub replace_unique_entries
   return 1;
 }
 
-sub debug_msg { 
-    if ($DEBUG) { 
-        my $msg = shift;
-        my $user = $ENV{'USER'};
-        setlogsock('unix');
-        openlog($0,'','user');
-        syslog('info', "$ARGV[0]: $msg");
-        closelog;
-    }
-}
+
 
 1;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.

@@ -30,8 +30,6 @@ $(LANGS):
 
 install: all
 	for a in $(LANGS); do \
-		mkdir $(LOCALEDIR)/$$a; \
-		mkdir $(LOCALEDIR)/$$a/LC_MESSAGES; \
 		install -m 644 -o root -g root $$a/$(SRCFILE).mo \
 			$(LOCALEDIR)/$$a/LC_MESSAGES/$(SRCFILE).mo; \
 	done

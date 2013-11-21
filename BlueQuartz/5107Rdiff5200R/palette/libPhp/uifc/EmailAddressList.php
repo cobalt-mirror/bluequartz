@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu, Mike Waychison
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: EmailAddressList.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: EmailAddressList.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isEmailAddressListDefined;
 if($isEmailAddressListDefined)
@@ -82,7 +82,7 @@ class EmailAddressList extends FormField {
     } else {
       $oldId = $this->getId();
       $this->setId("_".$oldId."_TextField");
-      if (!preg_match("/^\&(.*)\&$/", $this->getValue(), $regs)) {
+      if (!ereg("^\&(.*)\&$", $this->getValue(), $regs)) {
         $value = implode(", ", stringToArray($this->getValue()));
       } else {
         $value = $this->getValue();

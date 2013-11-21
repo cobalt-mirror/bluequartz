@@ -1,5 +1,5 @@
 # MailList.pm
-# $Id: MailList.pm 576 2005-09-05 10:26:24Z shibuya $
+# $Id: MailList.pm 1350 2009-12-23 13:29:37Z shibuya $
 #
 # common functions shared between MailList handlers.  Fun fun fun.
 #
@@ -12,20 +12,27 @@ use Sauce::Util;
 use CCE;
 
 # configuration stuff:
-my $Majordomo_dir = '/usr/local/majordomo';
-my $Lists_dir = $Majordomo_dir . '/lists';
-my $Majordomo_user = 'mail';
-my $Majordomo_group = 'daemon';
+my $Majordomo_dir = '/usr/lib/majordomo';
+my $Majordomo_home = '/var/lib/majordomo';
+my $Lists_dir = $Majordomo_home . '/lists';
+my $Majordomo_user = 'majordomo';
+my $Majordomo_group = 'majordomo';
 my $Majordomo_uid = scalar (getpwnam($Majordomo_user));
 my $Majordomo_gid = scalar (getgrnam($Majordomo_group));
+
+sub getugid () { return ($Majordomo_uid, $Majordomo_gid); }
 
 sub get_listfile {
   my $obj = shift;
 
   my $listfile = ${Lists_dir} . '/' . $obj->{name};
 
-  $listfile = $Majordomo_dir.'/sites/'.$obj->{site}.'/lists/'.$obj->{name} 
-	if ($obj->{site});   
+  if ($obj->{site}) {
+    $listfile = $Majordomo_home.'/sites/'.$obj->{site}.'/lists/'.$obj->{name};
+    Sauce::Util::chmodfile(0771, $Majordomo_home.'/sites/');
+    Sauce::Util::chmodfile(0771, $Majordomo_home.'/sites/'.$obj->{site});
+    Sauce::Util::chmodfile(0771, $Majordomo_home.'/sites/'.$obj->{site}.'/lists/');
+  }
 
   return $listfile;
 }
@@ -53,111 +60,9 @@ sub rewrite_members
   system('rm', '-rf', $listfile) if (-e $listfile);
   open(LIST, ">$listfile");
 
-  my %members = map { $_ => $_ } (
+  my %members = map { $_ => 1 } (
 	@local_recips, 
 	@remote_recips,
-  );
-
-  my %newMembers;
-  my %sortedMembers;
-  foreach $key (keys %members) {
-      my $value = $members{$key};
-      my ($name, $domain) = split("@", $key);
-      $newKey = "$domain-$name";
-      
-      $newMembers{$newKey}  = $value;
-  }
-  
-  $i=0;
-  my @members;
-  foreach $key (sort keys %newMembers) {
-      my $value = $newMembers{$key};
-      $newKey = $value;
-      
-      $members[$i++] = $value;
-  }
-
-  if ($obj->{group}) {
-	push (@members, $obj->{group} . "_alias");
-  }
-  if ($#members >= 0) {
-	print LIST join("\n",@members),"\n";
-  } else {
-	print LIST "nobody\n"; # every club needs a member even nobody
-  }
-  close(LIST);
-
-  Sauce::Util::chmodfile(0640, $listfile);
-  Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $listfile);
-
-  # unlock the members list:
-  Sauce::Util::unlockfile($listfile);
-}
-
-# my ($ok) = rewrite_membersaliases($cce,$obj)
-# create subscriber aliases list from the MailList object
-sub rewrite_membersaliases
-{
-  my ($cce, $obj) = @_;
-
-  # extract information about the list...
-  my $list = $obj->{name};
-
-  # sorry about the ugly perl code here, it's efficient:
-  my @local_recips = CCE->scalar_to_array($obj->{local_recips});
-
-  my $listfile = &get_listfile($obj).".aliases";
-
-  # fetch user emailaliases
-  my ($uoid,$ok,$userEmail,@useremailalias,@localuseremailaliases,$vs_oid,$vsite,@mailaliases,@alllocal_recips,$useremailalias,$local_recip,$mailalias);
-
-  # fetch email domainaliases
-  ($vs_oid) = $cce->find('Vsite', { 'name' => $obj->{site} });
-  ($ok, $vsite) = $cce->get($vs_oid);
-  if (!$ok) {
-     $cce->bye('FAIL', '[[base-maillist.systemError]]');
-     exit(1);
-  }
-  @mailaliases = CCE->scalar_to_array($vsite->{mailAliases});
-
-  foreach $local_recip (@local_recips) {
-    $local_recip =~ s/@.*//;
-    ($uoid) = $cce->find('User', { 'name' => "$local_recip" });
-    ($ok, $userEmail) = $cce->get($uoid, 'Email');
-    @useremailaliases = CCE->scalar_to_array($userEmail->{aliases});
-    push(@localuseremailaliases,@useremailaliases);
-  }
-
-  # useralias + fqdn
-  foreach $useremailalias (@localuseremailaliases) {
-    push(@alllocal_recips,"$useremailalias"."@".$vsite->{fqdn});
-  }
-  # user + domainalias
-  foreach $mailalias (@mailaliases) {
-    foreach $local_recip (@local_recips) {
-      $local_recip =~ s/@.*//;
-      push(@alllocal_recips,"$local_recip"."@"."$mailalias");
-    }
-  }
-  # useralias + domainalias
-  foreach $mailalias (@mailaliases) {
-    foreach $useremailalias (@localuseremailaliases) {
-      $local_recip =~ s/@.*//;
-      push(@alllocal_recips,"$useremailalias"."@"."$mailalias");
-    }
-  }
-
-  # lock the members list:
-  Sauce::Util::lockfile($listfile);
-
-  # rewrite the members list:
-  Sauce::Util::modifyfile("$listfile");
-  unlink($listfile);
-  system('rm', '-rf', $listfile) if (-e $listfile);
-  open(LIST, ">$listfile");
-
-  my %members = map { $_ => 1 } (
-        @alllocal_recips
   );
   my @members = sort keys %members;
   if ($obj->{group}) {
@@ -165,12 +70,10 @@ sub rewrite_membersaliases
   }
   if ($#members >= 0) {
 	print LIST join("\n",@members),"\n";
-  } else {
-	print LIST "nobody\n"; # every club needs a member even nobody
   }
   close(LIST);
 
-  Sauce::Util::chmodfile(0640, $listfile);
+  Sauce::Util::chmodfile(0664, $listfile);
   Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $listfile);
 
   # unlock the members list:
@@ -214,9 +117,8 @@ sub rewrite_config
     "administrivia = no",  # all majordomo commands must be sent to majordomo
     "advertise << END\n/.*/\nEND", # always advertise
     "noadvertise << END\nEND", # never don't advertise
-    "who_access = closed", # nobody may run 'who'
-    "which_access = closed", # nobody may run 'which'
-    "subject_prefix = [\$LIST] ", # prefix listname to subject
+    "who_access = list", # only list members may run 'who'
+    "subject_prefix = $obj->{subjectPrefix} ", # prefix listname to subject
     "message_headers << END\nX-Majordomo-Version: \$VERSION\nEND",
   );
   
@@ -241,53 +143,19 @@ sub rewrite_config
   # configure posting policy
   $_ = $obj->{postPolicy};
   if (m/moderated/) {
-      my @mod = CCE->scalar_to_array($obj->{moderator});
-      my $moderators = "";
-      for(my $i = 0; $i < scalar(@mod); $i++) {
-	  if($i eq 0) {
-	      $moderators = $mod[$i];
-	  } else {
-	      $moderators = "$moderators," . $mod[$i];
-	  }
-      }
-      push (@data,
-	    "moderate = yes",
-	    "moderator = $moderators",
-	    );
+    my $mod = $obj->{moderator} || 'admin';
+    push (@data,
+      "moderate = yes",
+      "moderator = $mod",
+      );
   }
   elsif (m/any/) {
   	# do nothing
 	push (@data, "restrict_post = "); # majordomo needs this. :-b
   }  
-  elsif (m/admin/) {
-  	# policy = Only admins can post
-	my $str = "restrict_post = $obj->{name}.administrator";
-	if ($obj->{group}) {
-	  $str .= ':/etc/group.d/' . $obj->{group};
-	}
-    	push (@data, $str);
-  }  
-  elsif (m/domain/) {
-	#policy = Only domain can post
-	my $mailaliases = '';
-	if ($obj->{site}) {
-	  my ($vs_oid) = $cce->find('Vsite', { 'name' => $obj->{site} });
-	  my ($ok, $vsite) = $cce->get($vs_oid);
-	  if (!$ok) {
-	    $cce->bye('FAIL', '[[base-maillist.systemError]]');
-	    exit(1);
-	  }
-	  $mailaliases = $vsite->{mailAliases};
-	}
-
-	$mailaliases =~ s/&$//;
-	$mailaliases =~ s/&/ @/g;
-	my $str = "restrict_post = \@$fqdn$mailaliases";
-	push (@data, $str);
-  }
   else {
   	# policy = members
-	my $str = "restrict_post = $obj->{name}:$obj->{name}.aliases:$obj->{name}.administrator";
+	my $str = "restrict_post = $obj->{name}:$obj->{name}.administrator";
 	if ($obj->{group}) {
 	  $str .= ':/etc/group.d/' . $obj->{group};
 	}
@@ -310,13 +178,13 @@ sub rewrite_config
   }
 
   # fix the stupid majordome dir permissions cause the rpm doesn't
-  Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, "/usr/local/majordomo");
-  Sauce::Util::chmodfile(0700, "/usr/local/majordomo"); # else majordomo no workee.
+  Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $Majordomo_home);
+  Sauce::Util::chmodfile(0771, $Majordomo_home); # else majordomo no workee.
   
   # edit the file:
   my $name = $obj->{name};
-  Sauce::Util::makedirectory("/usr/local/majordomo/lists",0700);
-  Sauce::Util::chmodfile(0700, "/usr/local/majordomo/lists");
+  Sauce::Util::makedirectory($Lists_dir,0771);
+  Sauce::Util::chmodfile(0771, $Lists_dir);
 
 
   my $listfile = &get_listfile($obj);
@@ -325,27 +193,24 @@ sub rewrite_config
   Sauce::Util::modifyfile($listfile.".config");
   system ("/bin/touch", $listfile.".config");
   Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $listfile.".config");
-  Sauce::Util::chmodfile(0640, $listfile.".config");
+  Sauce::Util::chmodfile(0670, $listfile.".config");
   $ret = Sauce::Util::replaceblock(
 	$listfile.".config",
   	$starttag, join("\n",@data), $stoptag);
 
   # update the admin file
   {
-      my $fn = $listfile.".administrator";
-      my @mod = CCE->scalar_to_array($obj->{moderator});
-      foreach my $mod ( @mod ) {
-	  $moderators = $moderators . $mod."\n";
-      }
-      Sauce::Util::editfile( $fn, 
-			     sub { 
-				 my ($fin, $fout) = (shift, shift);
-				 print $fout $moderators;
-			     } );
-      Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $fn);
-      Sauce::Util::chmodfile(0640, $fn);
+  	my $fn = $listfile.".administrator";
+	my $mod = $obj->{moderator} || "";
+	Sauce::Util::editfile( $fn, 
+		sub { 
+			my ($fin, $fout) = (shift, shift);
+			print $fout $mod,"\n"; 
+		} );
+	Sauce::Util::chownfile($Majordomo_uid, $Majordomo_gid, $fn);
+	Sauce::Util::chmodfile(0670, $fn);
   };
-  
+
   return $ret;
 }
 
@@ -381,20 +246,9 @@ sub munge_members
 	}
 	
 	my @locals = $cce->scalar_to_array($mail_list->{local_recips});
-	for (my $i = 0; $i < scalar(@locals); $i++)
-	{
-		# skip blank entries
-		if ($locals[$i] =~ /^\s*$/) { next; }
+	# munge the moderator too
+	push @locals, $mail_list->{moderator};
 
-		# check to see if it is already correct
-		if ($locals[$i] =~ /\@/) { next; }
-
-		$locals[$i] .= "\@$fqdn";
-	}
-        $mail_list->{local_recips} = $cce->array_to_scalar(@locals);
-
-	# munge the moderators too
-	@locals = $cce->scalar_to_array($mail_list->{moderator});
 	for (my $i = 0; $i < scalar(@locals); $i++)
 	{
 		# skip blank entries
@@ -405,7 +259,9 @@ sub munge_members
 	
 		$locals[$i] .= "\@$fqdn";
 	}
-	$mail_list->{moderator} = $cce->array_to_scalar(@locals);
+	
+	$mail_list->{moderator} = pop(@locals);
+	$mail_list->{local_recips} = $cce->array_to_scalar(@locals);
 }
 
 1;

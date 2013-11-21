@@ -1,27 +1,23 @@
 #!/usr/bin/perl
-# $Id: handle_vsite.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: handle_vsite.pl 1497 2010-07-22 00:51:39Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # handles the creation of a virtual site's majordomo infrastructure
 
 use lib qw( /usr/sausalito/perl );
+use MailList;
 use CCE;
 
-# Debugging switch:
-my $DEBUG = "0";
-if ($DEBUG)
-{
-        use Sys::Syslog qw( :DEFAULT setlogsock);
-}
+my $DEBUG = 0;
 $DEBUG && warn `date`." $0\n";
 
-my $aliasfile = '/etc/mail/aliases.majordomo';
-my $majortemplate = '/usr/local/majordomo/majordomo.cf.template';
-my $majordomo_sites = '/usr/local/majordomo/sites';
+my $aliasfile = '/etc/aliases.majordomo';
+my $majortemplate = '/usr/lib/majordomo/majordomo.cf.template';
+my $majordomo_sites = '/var/lib/majordomo/sites';
 my @majordomo_aliases = ('majordomo', 'majordomo-owner', 'owner-majordomo');
 
-my($UID, $GID) = ( (getpwnam('mail'))[2], (getgrnam('daemon'))[2] );
-my($filemod, $dirmod) = (0640, 0700);
+my($UID, $GID) = MailList::getugid();
+my($filemod, $dirmod) = (0670, 0771);
 
 my $cce = new CCE; 
 $cce->connectfd();
@@ -44,7 +40,7 @@ if ($cce->event_is_create() && ($obj->{name} eq ''))
 
 my $sitelists = $majordomo_sites.'/'.$obj->{name}.'/lists';
 my $sitedigest = $majordomo_sites.'/'.$obj->{name}.'/digests';
-my $logfile = '/usr/local/majordomo/logs';
+my $logfile = '/var/lib/majordomo/log';
 
 if($cce->event_is_destroy())
 {
@@ -173,18 +169,14 @@ elsif($new->{fqdn})
 			$obj->{name},
 			\@majordomo_aliases
 			);
-
-# I don't know why the hell this is in here. It fucks up /etc/mail/alias.majordomo by 
-# prefixing the FQDN to ANY output line. See 'sub edit_fqdn' for more info.
-# I comitted these lines in http://devel.blueonyx.it/trac/changeset/528/BlueOnyx/5107R/ui/base-maillist.mod
-# back in 2010, but dunno why, because /etc/mail/alias.majordomo has no FQDN related stuff in it!
-#
-#                my($bok) = Sauce::Util::editfile(
-#                        $aliasfile,
-#                        *edit_fqdn,
-#                        $old->{fqdn},
-#                        $new->{fqdn}
-#                        );
+		if ($old->{fqdn} ne '') {
+			my($bok) = Sauce::Util::editfile(
+				$aliasfile,
+				*edit_fqdn,
+				$old->{fqdn},
+				$new->{fqdn}
+				);
+		}
 	}
 }
 
@@ -220,7 +212,7 @@ exit 0;
 sub edit_majoralias
 {
 	my($in, $out, $enable, $site, $aliasref) = @_;
-	&debug_msg("edit_majoralias invoked: in: $in - out: $out - enable: $enable - site: $site");
+	$DEBUG && warn "edit_majoralias invoked: ".join(@_)."\n";
 	my ($config, %public_alii);
 	foreach my $alias (@{$aliasref})
 	{
@@ -230,20 +222,21 @@ sub edit_majoralias
 			$config .= $site.'-'.$alias.":\tadmin\n";
 		} else {
 			$config .= $site.'-'.$alias.":\t".
-			'"|/usr/local/majordomo/wrapper majordomo -C '.
-			'/usr/local/majordomo/sites/'.$site.'/majordomo.cf"'.
+			'"|/usr/lib/majordomo/wrapper majordomo -C '.
+			'/usr/lib/majordomo/sites/'.$site.'/majordomo.cf"'.
 			"\n";
 		}
 	}
-	&debug_msg("aliases config: $config\n");
+	$DEBUG && warn "aliases config:\n$config";
 
 	while(<$in>)
 	{
 		if(/^(\S+):\s/)
 		{
+			
 			if ($public_alii{$1}) 
 			{
-				&debug_msg("Skipping: $_");
+				$DEBUG && warn "Skipping: $_";
 				next;
 			}
 		}
@@ -257,13 +250,10 @@ sub edit_list_members
 {
 	my ($in, $out, $old_fqdn, $new_fqdn) = @_;
 
-	&debug_msg("edit_list_members: in: $in - out: $out - old_fqdn: $old_fqdn - new_fqdn: $new_fqdn");
-
 	while (<$in>)
 	{
 		s/^([^\@]+)\@$old_fqdn$/$1\@$new_fqdn/;
 		print $out $_;
-		&debug_msg("edit_list_members: printed: $_");
 	}
 
 	return 1;
@@ -271,32 +261,16 @@ sub edit_list_members
 
 sub edit_fqdn
 {
-        my ($in, $out, $old_fqdn, $new_fqdn) = @_;
+	my ($in, $out, $old_fqdn, $new_fqdn) = @_;
 
-	&debug_msg("edit_fqdn invoked: in: $in - out: $out - old_fqdn: $old_fqdn - new_fqdn: $new_fqdn");
-
-        while (<$in>) {
-                s/$old_fqdn/$new_fqdn/; # <-- This is the culprit that prefixes any line with the FQDN!
-                print $out $_;
-		&debug_msg("edit_fqdn: printed: $_");
-        }
+	while (<$in>) {
+		s/$old_fqdn/$new_fqdn/;
+		print $out $_;
+	}
 
 
-        return 1;
+	return 1;
 }
-
-sub debug_msg {
-    if ($DEBUG) {
-        my $msg = shift;
-        $user = $ENV{'USER'};
-        setlogsock('unix');
-        openlog($0,'','user');
-        syslog('info', "$ARGV[0]: $msg");
-        closelog;
-    }
-} 
-
-
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 

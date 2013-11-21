@@ -23,7 +23,6 @@ my $DEBUG = 0;
 if ($DEBUG) 
 { 
 	use Data::Dumper; 
-	use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
 # set umask, otherwise directories get created with the wrong permissions
@@ -42,27 +41,14 @@ my $group_name = &create_system_group($vsite);
 
 if (not $group_name) 
 {
-	&debug_msg("Cannot add System Group for $group_name \n");
 	$cce->bye('FAIL', '[[base-vsite.cantAddSystemGroup]]');
 	exit(1);
 }
 
 my @admins = ('admin');
 
-# also add all adminUser's to group
-my @admin_oids = $cce->find('User', 
-					{ 
-						'capLevels' => 'adminUser', 
-						'systemAdministrator' => 0 
-					});
-if (scalar(@admin_oids))
-{
-	for my $oid (@admin_oids)
-	{
-		($ok, my $admin) = $cce->get($oid);
-		push @admins, $admin->{name};
-	}
-}
+# add created admin user to group
+push @admins, $vsite->{createdUser};
 
 group_add_members($group_name, @admins);
 
@@ -77,26 +63,22 @@ my ($site_link, $link_target) = homedir_create_group_link($group_name,
 if (! -d "$vsite->{volume}/sites")
 {
 	Sauce::Util::makedirectory("$vsite->{volume}/sites", 0755);
-	&debug_msg("Created $vsite->{volume}/sites as it didn't exist yet.\n");
 }
 Sauce::Util::linkfile($link_target, $site_link);
 
 # group has been added to the system
 # Define name and basedir to Vsite object
-($ok) = $cce->set($cce->event_oid(), '', { 'name' => $group_name, 'basedir' => $site_dir });
+($ok) = $cce->set($cce->event_oid(), '', 
+				{ 'name' => $group_name, 'basedir' => $site_dir });
 if (not $ok) 
 {
 	$DEBUG && print STDERR "ok was $ok\n";
-	&debug_msg("Cannot set site group for $group_name ($site_dir) in event_oid.\n");
 	$cce->bye('FAIL', '[[base-vsite.cantSetSiteGroup]]');
 	exit(1);
 }
 
-# make sure there is a network interface for this ip. We skip this on AWS as anything
-# there runs on a single IP anyway:
-if (!-f "/etc/is_aws") {
-    vsite_add_network_interface($cce, $vsite->{ipaddr});
-}
+# make sure there is a network interface for this ip
+vsite_add_network_interface($cce, $vsite->{ipaddr}, $vsite->{createdUser});
 
 my $locale = I18n::i18n_getSystemLocale($cce);
 # make the locale sane
@@ -113,6 +95,7 @@ $DEBUG && print STDERR "Setting up site web.\n";
 Sauce::Util::modifytree($site_web);
 system("/bin/cp -r $skel_web/* \"$site_web/.\"");
 Sauce::Util::chmodfile(02775, "$site_web/error");
+system("/bin/chmod 0664 $site_web/error/*");
 system("/bin/chown -R nobody.$group_name \"$site_web/error\"");
 
 # hack to make sure index.html is at least there
@@ -304,17 +287,10 @@ sub create_system_group
 	return $name;
 }
 
-sub debug_msg {
-    if ($DEBUG) {
+sub debug_msg
+{
 	my $msg = shift;
 	$DEBUG && print STDERR "$ARGV[0]: ", $msg, "\n";
-
-	$user = $ENV{'USER'};
-	setlogsock('unix');
-	openlog($0,'','user');
-	syslog('info', "$ARGV[0]: $msg");
-	closelog;
-    }
 }
 
 sub edit_webindex {

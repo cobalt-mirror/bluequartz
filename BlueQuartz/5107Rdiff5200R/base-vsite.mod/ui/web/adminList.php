@@ -7,7 +7,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
 // Only admin should be here
 if ($loginName != "admin") {

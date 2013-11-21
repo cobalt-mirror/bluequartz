@@ -15,6 +15,6 @@ install:
 rpm: base-network-am-rpm
 
 base-network-am-rpm:
-	tar -zcvf /tmp/base-network-am.tar.gz base-network-am &> /dev/null
+	tar --exclude='.svn' -zcvf /tmp/base-network-am.tar.gz base-network-am &> /dev/null
 	$(RPMBUILD) -ta /tmp/base-network-am.tar.gz &> /tmp/rpm.log
 	/bin/rm -f /tmp/base-network-am.tar.gz

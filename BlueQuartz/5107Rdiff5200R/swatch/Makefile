@@ -1,5 +1,5 @@
 # Makefile for swatch
-# $Id$
+# $Id: Makefile 1293 2009-10-17 15:20:37Z shibuya $
 
 include /usr/sausalito/devel/defines.mk
 
@@ -9,7 +9,7 @@ TOPDIR := $(shell pwd)
 
 V_MAJ=3
 V_MIN=0
-V_PATCH=2
+V_PATCH=3
 SWATCH_VERSION=$(V_MAJ).$(V_MIN).$(V_PATCH)
 
 CC = gcc
@@ -26,8 +26,6 @@ CONFDIR=$(PREFIX)/etc
 INITDIR=$(PREFIX)/etc/rc.d/init.d
 CRONDIR=$(PREFIX)/etc/cron.d
 SWATCHDIR=$(PREFIX)/usr/sausalito/swatch
-SAUSBINDIR=$(PREFIX)/usr/sausalito/sbin
-
 
 all: 
 	make -C locale
@@ -44,8 +42,6 @@ install: all
 	install $(INSTFLAGS) -m 0644 conf/statecodes $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 conf/statecodes.tcl $(SWATCHDIR)
 	install $(INSTFLAGS) -m 0644 swatch.cron $(CRONDIR)
-	install $(INSTFLAGS) -m 0750 swatch.sh $(SAUSBINDIR)/swatch.sh
-	install $(INSTFLAGS) -m 0750 hotfixes.sh $(SAUSBINDIR)/hotfixes.sh
 
 	make -C locale install
 
@@ -55,8 +51,6 @@ uninstall:
 	rm -f $(CRONDIR)/swatch.cron
 	rm -f $(SWATCHDIR)/statecodes
 	rm -f $(SWATCHDIR)/statecodes.tcl
-	rm -f $(SAUSBINDIR)/swatch.sh
-	rm -f $(SAUSBINDIR)/hotfixes.sh
 	make -C locale uninstall
 
 rpm: clean
@@ -65,7 +59,7 @@ rpm: clean
 	CUR=`pwd`; \
 	DIR=`basename $$CUR`; \
 	cd ..; \
-	tar --exclude=CVS -zcvf /tmp/swatch.tar.gz $$DIR; \
+	tar --exclude=CVS --exclude=.svn -zcvf /tmp/swatch.tar.gz $$DIR; \
 	unset TOPDIR; \
 	rpmbuild -ta /tmp/swatch.tar.gz
 	mkdir -p rpms

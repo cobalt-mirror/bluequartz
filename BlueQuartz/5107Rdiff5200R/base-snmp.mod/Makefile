@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=snmp
 
-VERSION=1.0.2
-RELEASE=1BX03
+VERSION=1.1.0
+RELEASE=88BQ7
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,7 +19,6 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
-REQUIRES = net-snmp-libs net-snmp net-snmp-utils
 
 #########
 # some useful defines

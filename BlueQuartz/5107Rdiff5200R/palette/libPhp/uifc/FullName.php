@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu, modified by Kenneth C.K. Leung
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: FullName.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: FullName.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isFullNameDefined;
 if($isFullNameDefined)

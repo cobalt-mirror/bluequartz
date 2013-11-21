@@ -1,4 +1,4 @@
 #%PAM-1.0
-auth       include      system-auth-cce
-account    include      system-auth-cce
-password   include      system-auth-cce
+auth       include      system-auth
+account    include      system-auth
+password   include      system-auth

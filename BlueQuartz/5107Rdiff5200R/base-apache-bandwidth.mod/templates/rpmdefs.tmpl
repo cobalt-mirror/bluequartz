@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -117,32 +117,6 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
-
-* Mon Dec 17 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX10
-- Fixed ui/extensions/5_ApacheBandwidth.php.modifyWeb.Vsite which still 
-  somehow had a include() in it and not an include_once()
-
-* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX09
-- Modified glue/schemas/bandwidth.schema to add speedlimit default to Vsite object.
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX08
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX07
-- Copied 'en' locales to 'en_US'
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BQ6
-- Rebuilt for BlueOnyx.
-
-* Fri Jul 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BQ5
-- 5_ApacheBandwidth.php.defaults.Vsite fixed for 5106R
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BQ4
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BQ3
-- Danish locales added. Thanks to Jes Klittum!
-
 * Wed May 03 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.0-0BQ2
 - add Requires mod_cband.
 

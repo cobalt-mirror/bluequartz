@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: MultiButton.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: MultiButton.php 995 2007-05-05 07:44:27Z shibuya $
 
 // description:
 // This class represents a button with multiple actions. Users can perform one

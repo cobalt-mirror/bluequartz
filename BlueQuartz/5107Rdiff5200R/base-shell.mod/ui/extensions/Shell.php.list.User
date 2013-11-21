@@ -4,7 +4,7 @@
 // This extension displays on icon on the user list if shell is enabled
 // for the user.
 
-include_once('UIExtension.php');
+include('UIExtension.php');
 
 class ShellExtension extends UIExtension
 {

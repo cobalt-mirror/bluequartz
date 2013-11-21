@@ -3,11 +3,11 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Team BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=raid
 
-VERSION=0.1.2
-RELEASE=87BX26
+VERSION=0.2.0
+RELEASE=87BQ11
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=ms-sys raid-bins
+REQUIRES=ms-sys raid-bins mdadm
 
 #########
 # some useful defines

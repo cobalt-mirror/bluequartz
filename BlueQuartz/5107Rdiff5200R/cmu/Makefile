@@ -3,14 +3,14 @@
 #
 # usage: make <product>
 #
-# $Id: Makefile 1066 2008-01-27 09:21:48Z shibuya $
+# $Id: Makefile 1513 2010-08-08 12:43:32Z shibuya $
 
 CWD = `pwd`
 
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.91
+VERSION   =   2.68
 
 BUILD_DIR =   /tmp/cmu
 TMP_DIR   =   $(BUILD_DIR)/cpr
@@ -78,61 +78,6 @@ RAQ550_LIBS = \
 5200R_LIBS = \
 	RaQUtil.pm
 
-5106R_SCRIPTS = \
-	$(wildcard scripts/5106R*.pl)
-
-5106R_LIBS = \
-	RaQUtil.pm
-
-5107R_SCRIPTS = \
-	$(wildcard scripts/5107R*.pl)
-
-5107R_LIBS = \
-	RaQUtil.pm
-
-5108R_SCRIPTS = \
-	$(wildcard scripts/5108R*.pl)
-
-5108R_LIBS = \
-	RaQUtil.pm
-
-5207R_SCRIPTS = \
-	$(wildcard scripts/5207R*.pl)
-
-5207R_LIBS = \
-	RaQUtil.pm
-
-5208R_SCRIPTS = \
-	$(wildcard scripts/5208R*.pl)
-
-5208R_LIBS = \
-	RaQUtil.pm
-
-5160R_SCRIPTS = \
-	$(wildcard scripts/5160R*.pl)
-
-5160R_LIBS = \
-	RaQUtil.pm
-
-5161R_SCRIPTS = \
-	$(wildcard scripts/5160R*.pl)
-
-5161R_LIBS = \
-	RaQUtil.pm
-
-
-TLAS1HE_SCRIPTS = \
-	$(wildcard scripts/TLAS1HE*.pl)
-
-TLAS1HE_LIBS = \
-	RaQUtil.pm
-
-TLAS2_SCRIPTS = \
-	$(wildcard scripts/TLAS2*.pl)
-
-TLAS2_LIBS = \
-        RaQUtil.pm
-
 QUBE3_SCRIPTS = \
 	$(wildcard scripts/Qube3*.pl)
 
@@ -143,7 +88,7 @@ QUBE2_LIBS = \
 	Qube2.pm 
 
 ADJUST_SCRIPTS = \
-	$(wildcard scripts/RaQ*adjust.pl scripts/5*0*Radjust.pl scripts/TLAS*HEadjust.pl scripts/TLAS2adjust.pl)
+	$(wildcard scripts/RaQ*adjust.pl scripts/5*00Radjust.pl scripts/5106Radjust.pl)
 
 BASE_SCRIPTS = \
 	cmuConfig \
@@ -158,8 +103,6 @@ default::
 
 clean::
 	@echo "Clean up before building"
-	-find . -type f \( -name \*~ -o -name \*.o -o \
-			   -name \#\* -o -name \*.mo \) | xargs rm -f
 	/bin/rm -rf $(BUILD_DIR)
 	/bin/mkdir -p $(PERLDIR)
 	/bin/mkdir -p $(TMP_DIR)/scripts
@@ -236,6 +179,7 @@ raq4:: cmu base adjust
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' \
 			$(PKG_DIR)/RaQ4/packing_list $(PKG_DIR)/RaQ4/uninstall_me
 	(cd $(PKG_DIR)/RaQ4;make)
+	
 
 raqxtr:: cmu base adjust
 	for t in $(RAQXTR_SCRIPTS) ; do \
@@ -280,10 +224,8 @@ raq550:: cmu base adjust
 	sed -e 's/\[PRODUCT\]/5100R/' < $(MAKE_IN) > $(MAKE_FILE)
 	$(CP) conf/5100R.cobaltBase.xml $(BASE_CONF)
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
+	/bin/tar --exclude '.svn' -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
 	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5100R/packing_list
-	(cd $(PKG_DIR)/5100R;make)
 
 5200r:: cmu base adjust
 	for t in $(5200R_SCRIPTS) ; do \
@@ -298,152 +240,6 @@ raq550:: cmu base adjust
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
 	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
 	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5200R/packing_list
-	(cd $(PKG_DIR)/5200R;make)
-
-5106r:: cmu base adjust
-	for t in $(5106R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5106R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5106R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5106R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5106R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5106R/packing_list
-	(cd $(PKG_DIR)/5106R;make)
-
-5107r:: cmu base adjust
-	for t in $(5107R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5107R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5107R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5107R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5107R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5107R/packing_list
-	(cd $(PKG_DIR)/5107R;make)
-
-5108r:: cmu base adjust
-	for t in $(5108R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5108R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5108R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5108R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5108R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5108R/packing_list
-	(cd $(PKG_DIR)/5108R;make)
-
-5207r:: cmu base adjust
-	for t in $(5207R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5207R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5207R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5207R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5207R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5207R/packing_list
-	(cd $(PKG_DIR)/5207R;make)
-
-5208r:: cmu base adjust
-	for t in $(5208R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5208R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5208R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5208R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5208R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5208R/packing_list
-	(cd $(PKG_DIR)/5208R;make)
-
-5160r:: cmu base adjust
-	for t in $(5160R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5160R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5160R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5160R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5160R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5160R/packing_list
-	(cd $(PKG_DIR)/5160R;make)
-
-5161r:: cmu base adjust
-	for t in $(5161R_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(5161R_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/5161R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5161R/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/5161R.cobaltBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5161R/packing_list
-	(cd $(PKG_DIR)/5161R;make)
-
-tlas1he:: cmu base adjust
-	for t in $(TLAS1HE_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(TLAS1HE_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/TLAS1HE/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/TLAS1HE/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/TLAS1HE.turbolinuxBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5100R/packing_list
-	(cd $(PKG_DIR)/TLAS1HE;make)
-
-tlas2:: cmu base adjust
-	for t in $(TLAS2_SCRIPTS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
-    done
-	for t in $(TLAS2_LIBS) ; do \
-	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
-    done
-	sed -e 's/\[PRODUCT\]/TLAS2/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/TLAS2/' < $(MAKE_IN) > $(MAKE_FILE)
-	$(CP) conf/TLAS2.turbolinuxBase.xml $(BASE_CONF)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
-	$(RPMBUILD) -ta $(TMPTAR)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5100R/packing_list
-	(cd $(PKG_DIR)/TLAS2;make)
 
 qube2:: cmu base
 	for t in $(QUBE2_SCRIPTS) ; do \
@@ -475,7 +271,7 @@ qube3:: cmu base
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/Qube3/packing_list
 	(cd $(PKG_DIR)/Qube3;make)
 
-all:: raq2 raq3 raq4 raqxtr raq550 5100r 5106r 5107r 5108r 5207r 5208r 5160r 5161r 5200r tlas1he tlas2 qube2 qube3
+all:: raq2 raq3 raq4 raqxtr raq550 5100r 5200r qube2 qube3
 
 raq1:: cmu
 	(cd $(TMP_DIR);sed -e 's/\[PRODUCT\]/RaQ1/' < $(SPEC_FILE) > $(SPEC_NEW))

@@ -4,7 +4,7 @@ Version: 2.0.0
 Release: 1%{dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: base-mysql-am.tar.gz
 BuildRoot: /tmp/base-mysql-am
 Obsoletes: nuonce-mysql-am

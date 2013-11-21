@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: Password.php 1186 2008-09-10 21:37:51Z mstauber $
+// $Id: Password.php 1225 2009-09-04 16:01:03Z shibuya $
 
 global $isPasswordDefined;
 if($isPasswordDefined)

@@ -1,5 +1,5 @@
 <?php
-// $Id: 5_ApacheBandwidth.php.defaults.Vsite 1143 2008-06-06 02:14:18Z mstauber $
+// $Id: 5_ApacheBandwidth.php.defaults.Vsite 752 2006-05-02 17:41:01Z shibuya $
 //
 // ui extension to set settings for apache bandwidth Vsite creation
 
@@ -29,18 +29,6 @@ class ApacheBandwidthExtension extends UIExtension
                 $pageId, 
                 $factory->getLabel($pageId));
         }
-
-        // More PGP5 conversion bugs! In tabbed environments the values from composite form fields don't
-        // get posted if you're not right on the tab where the input box is. This work around adds it as
-        // hidden field on all tabs:
-
-        $hidden_block = $factory->getTextBlock("ApacheBandwidthSpeed", $defaults["speed"]);
-        $hidden_block->setOptional(true);
-        $container->addFormField(
-            $hidden_block,
-            $factory->getLabel("ApacheBandwidthSpeed"),
-            "Hidden"
-        );
 
         $bandToggle =& $factory->getMultiChoice('ApacheBandwidth_enabled');
         $enable =& $factory->getOption('enabled', $defaults['enabled']);

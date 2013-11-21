@@ -24,10 +24,11 @@ $detailMap = array(
 	'sitestatsConsolidateMonthly' =>	1,
 	);
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$helper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -62,6 +63,11 @@ $container->processErrors($errors);
 // form fields are allowd.  no composite form fields
 $statsEnable = $factory->getBoolean('Sitestats_enabled', $sitestats['enabled'], $sitestats_access);
 
+// logrotate rotate number
+$statsRotate = $factory->getInteger('Sitestats_rotate', $sitestats['rotate'], 1, 10);
+$statsRotate->setWidth(5);
+$statsRotate->showBounds(1);
+
 // simple array setup
 $detailLabels = array_keys($detailMap);
 $detailDays = array_values($detailMap);
@@ -77,6 +83,7 @@ $revMap = array_flip($purgeMap);
 $purgeSelect = $factory->getMultiChoice('Sitestats_purge', $purgeLabels, array($revMap[$sitestats['purge']]), $sitestats_access);
 
 $container->addFormField($statsEnable, $factory->getLabel("sitestatsEnable"));
+$container->addFormField($statsRotate, $factory->getLabel("sitestatsRotate"));
 $container->addFormField($statsConsolidate, $factory->getLabel("sitestatsConsolidate"));
 $container->addFormField($purgeSelect, $factory->getLabel("sitestatsPurge"));
 
@@ -99,11 +106,14 @@ function handle_sitestats(&$helper)
 {
 	global $cce, $group, 
 		$Sitestats_enabled, 
+		$Sitestats_rotate,
 		$Sitestats_consolidate, $Sitestats_purge,
 		$detailMap, $purgeMap;
 
 	if(!$Sitestats_enabled)
 		$Sitestats_enabled = "0";
+	if(!$Sitestats_rotate)
+		$Sitestats_rotate = 4;
 	if(!$Sitestats_consolidate)
 		$Sitestats_consolidate = "0";
 	if(!$Sitestats_purge)
@@ -111,6 +121,7 @@ function handle_sitestats(&$helper)
 
 	$settings = array();
 	$settings["enabled"] = $Sitestats_enabled;
+	$settings['rotate'] = $Sitestats_rotate;
 	$settings["consolidate"] = $detailMap[$Sitestats_consolidate];
 	$settings["purge"] = $purgeMap[$Sitestats_purge];
 

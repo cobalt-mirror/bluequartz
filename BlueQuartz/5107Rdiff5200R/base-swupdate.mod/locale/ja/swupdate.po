@@ -1,701 +1,236 @@
-msgid "3rdpartypkg_warning"
+msgid ""
 msgstr ""
-"¼¡¤Î¤³¤È¤ËÃí°Õ¤·¤Æ¤¯¤À¤µ¤¤: Âè»°¼Ô¥Ñ¥Ã¥±¡¼¥¸¤äºÇ¿·ÈÇ¥¢¥Ã¥×¥Ç¡¼¥È¤Ï "
-"¥µ¡¼¥Ğ¡¼¤Îµ¡Ç½¤òÂ»¤Í¤¿¤ê¡¢¥µ¡¼¥Ğ¡¼¤òÉÔ°ÂÄê¤Ë¤µ¤»¤ë²ÄÇ½À­¤¬¤¢¤ê¤Ş¤¹¡£"
-"¤½¤·¤Æ¿®ÍêÀ­¤Î¤Ê¤¤½Ğ½ê¤«¤é¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ï¡¢°­°Õ¤Î¤¢¤ëÀ©ºî¼Ô¤¬µ®Êı¤Î "
-"¥µ¡¼¥Ğ¡¼¤ò´Æ»ë¤¹¤ë»ö¤¬ ¤Ç¤­¤ë¤«¤âÃÎ¤ì¤Ş¤»¤ó¡£¤É¤¦¤¾ ¿®Íê¤µ¤ì¤¿ "
-"Âè»°¼Ô¤«¤é¤À¤± ¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ²¼¤µ¤¤¡£"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "BadPackageFmtBody"
-msgstr ""
-"¥µ¡¼¥Ğ¤¬¡¢[[base-swupdate.software]] "
-"¤Ë¤ÏÍı²ò¤Ç¤­¤Ê¤¤¥Ñ¥Ã¥±¡¼¥¸¾ğÊó¤òÌá¤·¤Ş¤·¤¿¡£"
-"[[base-sauce-basic.contactTechSupport]]"
+# ----- SW Updates Tab
+msgid "software"
+msgstr "Software Updates"
 
-msgid "CCEsetError"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¤ò CCE ¥Ç¡¼¥¿¥Ù¡¼¥¹¤ØÄÉ²ÃÃæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
-"ÉÔÀµ¤Ê packing_list ¥Ñ¥Ã¥±¡¼¥¸ ¤Ç¤¢¤ë²ÄÇ½À­¤¬¤¢¤ê¤Ş¤¹¡£"
-"[[base-swupdate.notInstalled]]"
+msgid "software_help"
+msgstr "[[base-swupdate.software]] ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã§ã¯ã€æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚„ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒåˆ©ç”¨ã§ãã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã€å¿…è¦ãªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
-msgid "New"
-msgstr "¿·µ¬"
+# ----- Menu items
+msgid "softwareNew"
+msgstr "ä»–ç¤¾ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢"
 
-msgid "NewUpdatesBody"
-msgstr ""
-"¥¤¥ó¥¹¥È¡¼¥ë¤·¤¿¤¤¥Ñ¥Ã¥±¡¼¥¸¤¬¤¢¤ì¤Ğ¡¢[[base-swupdate.software]] "
-"¥á¥Ë¥å¡¼¤ò¤´Í÷¤¯¤À¤µ¤¤¡£"
+msgid "softwareNew_help"
+msgstr "ä»–ç¤¾ã®æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
-msgid "NewUpdatesSubject"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¸ş¤±¤Î¿·µ¬¥½¥Õ¥È¥¦¥§¥¢¤òÆş¼ê¤Ç¤­¤Ş¤¹¡£"
+msgid "softwareNewSun"
+msgstr "[[base-alpine.osName]] ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢"
 
-msgid "NoPackageListBody"
-msgstr ""
-"[[base-swupdate.software]] ¤Ï¡¢¥Ñ¥Ã¥±¡¼¥¸¤Î¥ê¥¹¥È¤ò [[VAR.location]] ¤Ë¤¢¤ë "
-"[[base-swupdate.software]] ¥µ¡¼¥Ğ¤«¤é¼èÆÀ¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[VAR.location]] "
-"¤¬Í­¸ú¤Ê [[base-swupdate.software]] "
-"¥µ¡¼¥Ğ¤Ç¤¢¤ê¡¢¤ª»È¤¤¤Î¥¦¥§¥Ö¥Ö¥é¥¦¥¶¤«¤éÅşÃ£¤Ç¤­¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgid "softwareNewSun_help"
+msgstr "[[base-alpine.osName]] ã‚·ã‚¹ãƒ†ãƒ ã®æ–°ã—ã„ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
-msgid "NoPackagesBody"
-msgstr "¥À¥¦¥ó¥í¡¼¥É¤Ç¤­¤ë¥Ñ¥Ã¥±¡¼¥¸¤Ï¤¢¤ê¤Ş¤»¤ó¡£"
+msgid "softwareUpdate"
+msgstr "ãã®ä»–ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ"
 
-msgid "NoProductInfoBody"
-msgstr ""
-"[[base-swupdate.software]] "
-"¥µ¡¼¥Ğ¤Ç¡¢¤³¤ÎÀ½ÉÊ¤¬Ç§¼±¤µ¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£[[base-sauce-basic.contactTechSuppo"
-"rt]]"
+msgid "softwareUpdate_help"
+msgstr "ç¾åœ¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ [[base-alpine.osName]] ã‚·ã‚¹ãƒ†ãƒ ä»¥å¤–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
-msgid "NoSWUpdateServerBody"
-msgstr ""
-"[[base-swupdate.software]] "
-"¥µ¡¼¥Ğ¤Î¾ì½ê¤¬ÆÃÄê¤Ç¤­¤Ş¤»¤ó¡£[[base-swupdate.software]] "
-"ÀßÄê¥Ú¡¼¥¸¤Ç¡¢[[base-swupdate.software]] ¥µ¡¼¥Ğ¤Î URL ¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgid "softwareUpdateSun"
+msgstr "[[base-alpine.osName]] ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ"
 
-msgid "NoSWUpdateServerSubject"
-msgstr "[[base-swupdate.software]] ¥µ¡¼¥Ğ¤Î URL ¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£"
+msgid "softwareUpdateSun_help"
+msgstr "ç¾åœ¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ [[base-alpine.osName]] ã‚·ã‚¹ãƒ†ãƒ ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
-msgid "NoSystemInfoBody"
-msgstr ""
-"¤³¤Î¥µ¡¼¥Ğ¤Ï¡¢[[base-swupdate.software]] "
-"¥µ¡¼¥Ğ¤¬É¬Í×¤È¤¹¤ë¥·¥¹¥Æ¥à¾ğÊó¤òÆÃÄê¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[base-sauce-basic.cont"
-"actTechSupport]]"
+msgid "softwareInstalled"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ä¸€è¦§"
 
-msgid "NoSystemInfoSubject"
-msgstr "[[base-swupdate.software]] ¤¬¡¢¥·¥¹¥Æ¥à¾ğÊó¤òÆÃÄê¤Ç¤­¤Ş¤»¤ó¡£"
+msgid "softwareInstalled_help"
+msgstr "ç¾åœ¨ã‚·ã‚¹ãƒ†ãƒ ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
-msgid "QueryErrorSubject"
-msgstr "[[base-swupdate.software]] ¥µ¡¼¥Ğ¤Î¸¡º÷Ãæ¤ËÌäÂê¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
+msgid "softwareSettings"
+msgstr "è¨­å®š"
 
-msgid "UnknownErrorBody"
-msgstr ""
-"[[base-swupdate.software]] ¤¬¡¢[[VAR.location]] "
-"¥µ¡¼¥Ğ¤Ë¥¢¥¯¥»¥¹Ãæ¤Ë¡¢¸¶°øÉÔÌÀ¤Î¥¨¥é¡¼¡Ê[[VAR.error]]¡Ë¤ò¼õ¿®¤·¤Ş¤·¤¿¡£"
+msgid "softwareSettings_help"
+msgstr "[[base-swupdate.software]] ã®è¨­å®šã‚’å¤‰æ›´ã§ãã¾ã™ã€‚"
 
-msgid "Update"
-msgstr "¥¢¥Ã¥×¥Ç¡¼¥È"
+# ----- Splash screen message
+msgid "splashSoftwareMessage"
+msgstr "[[base-swupdate.software]] ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã§ã¯ã€ã‚·ã‚¹ãƒ†ãƒ ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ç®¡ç†ã§ãã¾ã™ã€‚"
+
+# --- Common strings
+msgid "install"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
+
+msgid "install_help"
+msgstr "ã“ã®ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€æŒ‡å®šã—ãŸã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¾ã™ã€‚"
+
+msgid "installField"
+msgstr "è©³ç´°"
+
+msgid "installField_help"
+msgstr "ã“ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã«é–¢ã™ã‚‹è©³ç´°ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
+
+msgid "prepare"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æº–å‚™ã‚’é–‹å§‹"
+
+msgid "prepare_help"
+msgstr "ã“ã®ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«æº–å‚™ãŒå§‹ã¾ã‚Šã¾ã™ã€‚"
+
+# package info
+msgid "nameField"
+msgstr "åå‰"
+
+msgid "nameField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®åå‰ã§ã™ã€‚"
+
+msgid "versionField"
+msgstr "ãƒãƒ¼ã‚¸ãƒ§ãƒ³"
+
+msgid "versionField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã™ã€‚"
+
+msgid "vendorField"
+msgstr "æä¾›å…ƒ"
+
+msgid "vendorField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®æä¾›å…ƒã§ã™ã€‚"
+
+msgid "copyrightField"
+msgstr "è‘—ä½œæ¨©"
+
+msgid "copyrightField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«é–¢é€£ã™ã‚‹è‘—ä½œæ¨©ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"
+
+msgid "descriptionField"
+msgstr "èª¬æ˜"
+
+msgid "descriptionField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®èª¬æ˜ã§ã™ã€‚"
+
+msgid "licenseField"
+msgstr "ãƒ©ã‚¤ã‚»ãƒ³ã‚¹"
+
+msgid "licenseField_help"
+msgstr "ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚"
 
 msgid "accept"
-msgstr "¹ç°Õ¤¹¤ë"
+msgstr "åˆæ„ã™ã‚‹"
 
 msgid "accept_help"
-msgstr "¤³¤Î¥é¥¤¥»¥ó¥¹¤Ë¹ç°Õ¤¹¤ë¾ì¹ç¤Ë¤Ï¡¢¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã«åˆæ„ã™ã‚‹å ´åˆã«ã¯ã€ã“ã®ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚"
 
-msgid "advanced"
-msgstr "¾ÜºÙ"
+msgid "decline"
+msgstr "åˆæ„ã—ãªã„"
 
-msgid "advanced_help"
-msgstr "¤¢¤Ş¤ê»È¤ï¤ì¤Ê¤¤ÀßÄê¹àÌÜ¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgid "decline_help"
+msgstr "ã“ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã«åˆæ„ã—ãªã„å ´åˆã«ã¯ã€ã“ã®ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚"
 
-msgid "all"
-msgstr "¤¹¤Ù¤Æ¤Î¥½¥Õ¥È¥¦¥§¥¢"
+msgid "typeField"
+msgstr "ç¨®é¡"
 
-msgid "autoField"
-msgstr "¥¢¥Ã¥×¥Ç¡¼¥È¤ò¼«Æ°Åª¤Ë¥¤¥ó¥¹¥È¡¼¥ë"
+msgid "typeField_help"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ç¨®é¡ã§ã™ã€‚"
 
-msgid "autoField_help"
-msgstr ""
-"¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢[[base-swupdate.software]] "
-"¤ÏÇ§¾ÚºÑ¤ß¤Î¥Ñ¥Ã¥±¡¼¥¸¤ò¼«Æ°Åª¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤·¤Ş¤¹¡£"
+msgid "New"
+msgstr "æ–°è¦"
 
+msgid "Update"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ"
+
+msgid "complete"
+msgstr "å®Œäº†"
+
+msgid "locationField"
+msgstr "ä¿ç®¡å ´æ‰€"
+
+msgid "locationField_help"
+msgstr "ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒä¿ç®¡ã•ã‚Œã¦ã„ã‚‹å ´æ‰€ã§ã™ã€‚"
+
+msgid "locationLocal"
+msgstr "ã“ã®ã‚µãƒ¼ãƒã®ãƒãƒ¼ãƒ‰ãƒ‡ã‚£ã‚¹ã‚¯"
+
+msgid "sizeField"
+msgstr "ã‚µã‚¤ã‚ºï¼ˆMBï¼‰"
+
+msgid "sizeField_help"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ã‚µã‚¤ã‚ºã§ã™ã€‚"
+
+msgid "uninstallableField"
+msgstr "å‰Šé™¤"
+
+msgid "uninstallableField_help"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ãŸå¾Œã§ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã‚‹ã‹ã©ã†ã‹ã‚’ç¤ºã—ã¾ã™ã€‚"
+
+msgid "yes"
+msgstr "ã§ãã‚‹"
+
+msgid "no"
+msgstr "ã§ããªã„"
+
+msgid "none"
+msgstr "ãªã—"
+
+msgid "packagesNeededField"
+msgstr "å¿…è¦ãªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸"
+
+msgid "packagesNeededField_help"
+msgstr "ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹å‰ã«ã€ã“ã“ã«ãƒªã‚¹ãƒˆã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚·ã‚¹ãƒ†ãƒ ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ãŠãå¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚"
+
+# --- general user input strings
+msgid "locationFieldEnter"
+msgstr "ä¿ç®¡å ´æ‰€"
+
+msgid "locationFieldEnter_help"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ãŸã„ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒä¿ç®¡ã•ã‚Œã¦ã„ã‚‹å ´æ‰€ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆä¸Šã®ã‚¦ã‚§ãƒ–ã‚µã‚¤ãƒˆã‹ã‚‰ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ç›´æ¥ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã«ã¯ã€http:// ã¾ãŸã¯ ftp:// ã§å§‹ã¾ã‚‹ URL ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒ–ä¸Šã«ä¿ç®¡ã•ã‚Œã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹å ´åˆã«ã¯ã€ï¼»å‚ç…§ï¼½ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã€ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã—ã¦ãã ã•ã„ã€‚ã‚µãƒ¼ãƒã® /home/packages ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã«è¤‡æ•°ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã‚ã‚‹å ´åˆã«ã¯ã€ãã®ä¸­ã‹ã‚‰ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’é¸æŠã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã™ã€‚"
+
+msgid "invalidUrl"
+msgstr "æŒ‡å®šã•ã‚ŒãŸ URL ã¯ä¸æ­£ã§ã™ã€‚[[base-swupdate.urlField_rule]]"
+
+# ----- New Software List Page
 msgid "availableListNew"
-msgstr "Æş¼ê¤Ç¤­¤ë¿·µ¬¥½¥Õ¥È¥¦¥§¥¢¤Î¥ê¥¹¥È"
-
-msgid "availableListUpdates"
-msgstr "Æş¼ê¤Ç¤­¤ë¥½¥Õ¥È¥¦¥§¥¢¥¢¥Ã¥×¥Ç¡¼¥È¤Î¥ê¥¹¥È"
-
-msgid "badFileName"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤Î¥Õ¥¡¥¤¥ëÌ¾¤¬ÉÔÀµ¤Ç¤¹¡£¥Õ¥¡¥¤¥ëÌ¾¤ò³ÎÇ§¤·¤Æ¡¢"
-"¤â¤¦°ìÅÙ¤ª»î¤·²¼¤µ¤¤¡£ [[base-swupdate.notInstalled]]"
-
-msgid "badFormat"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤Î³ÎÇ§Ãæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
-"¥Õ¥¡¥¤¥ë¤¬²õ¤ì¤Æ¤¤¤ë¤«¡¢Àµ¤·¤¤Ç§¾Ú¾ğÊó¤¬ÆÀ¤é¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-" [base-swupdate.notInstalled]]"
-
-msgid "badPackage"
-msgstr ""
-"¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤ÏÉÔ´°Á´¤Ç¤¹¡£packing_list ¤¬ÉÔÀµ¤«¡¢"
-"¸«¤Ä¤«¤ê¤Ş¤»¤ó¡£ [[base-swupdate.notInstalled]]"
-
-msgid "badProduct"
-msgstr ""
-"The [[VAR.name]] "
-"¥Ñ¥Ã¥±¡¼¥¸¤Ï¡¢¤³¤Î¥µ¡¼¥Ğµ¡¼ï¸ş¤±¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ç¤Ï¤Ê¤¤¤¿¤á¡¢"
-"¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "basic"
-msgstr "´ğËÜ"
-
-msgid "basic_help"
-msgstr "ºÇ¤â¤è¤¯»È¤ï¤ì¤ëÀßÄê¹àÌÜ¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
-
-msgid "cannotDownloadUrl"
-msgstr ""
-"»ØÄê¤µ¤ì¤¿ URL ¤«¤é¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤ò¥À¥¦¥ó¥í¡¼¥É¤Ç¤­¤Ş¤»¤ó¡£URL "
-"¤ò³ÎÇ§¤·¤Æ¡¢¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£ [[base-swupdate.notInstalled]]"
-
-msgid "cantUninstall"
-msgstr "¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ê¤¤¼ïÎà¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ç¤¢¤ë¤¿¤á¡¢ºï½ü¤Ç¤­¤Ş¤»¤ó¡£"
-
-msgid "capgroup_adminBlueLinq"
-msgstr "BlueLinQ ¤Î´ÉÍı"
-
-msgid "capgroup_adminBlueLinq_help"
-msgstr ""
-"¤³¤Î´ÉÍı¼Ô¸¢¸Â¤¬¤¢¤ë¤È¡¢¥æ¡¼¥¶¤Ï BlueLinQ "
-"¤ò´ÉÍı¤·¤Æ¡¢¿·µ¬¥½¥Õ¥È¥¦¥§¥¢¤ä´ûÂ¸¤Î¥½¥Õ¥È¥¦¥§¥¢¤Î"
-"¥¢¥Ã¥×¥Ç¡¼¥È¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤³¤È¤¬¤Ç¤­¤Ş¤»¤¹¡£"
+msgstr "å…¥æ‰‹ã§ãã‚‹æ–°è¦ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ãƒªã‚¹ãƒˆ"
 
 msgid "checkNow"
-msgstr "Æş¼ê²ÄÇ½À­¤òÄ´¤Ù¤ë"
+msgstr "å…¥æ‰‹å¯èƒ½æ€§ã‚’èª¿ã¹ã‚‹"
 
+msgid "checkNow_help"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€å…¥æ‰‹å¯èƒ½ãªæ–°è¦ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’èª¿æŸ»ã§ãã¾ã™ã€‚"
+
+msgid "manualInstall"
+msgstr "æ‰‹å‹•ã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
+
+msgid "manualInstall_help"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’æ‰‹å‹•ã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
+
+msgid "removePackage"
+msgstr "[[VAR.packageName]] ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€ã¾ã ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã¾ã›ã‚“ãŒã€ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰å‰Šé™¤ã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ"
+
+# ----- Software Updates
 msgid "checkNowUpdate"
 msgstr "[[base-swupdate.checkNow]]"
 
 msgid "checkNowUpdate_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¤Î¥¢¥Ã¥×¥Ç¡¼¥È¤¬Æş¼ê²ÄÇ½¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯¤·¤Ş¤¹¡£"
-
-msgid "checkNow_help"
-msgstr ""
-"¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢Æş¼ê²ÄÇ½¤Ê¿·µ¬¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤¬"
-"Â¸ºß¤¹¤ë¤«¤É¤¦¤«³ÎÇ§¤Ç¤­¤Ş¤¹¡£"
-
-msgid "checkSetField"
-msgstr "ÂĞ¾İ¥½¥Õ¥È¥¦¥§¥¢"
-
-msgid "checkSetField_help"
-msgstr ""
-"¥½¥Õ¥È¥¦¥§¥¢¥¢¥Ã¥×¥Ç¡¼¥È¤ÎÌä¤¤¹ç¤ï¤»¤ÎÂĞ¾İ¤È¤Ê¤ë¥½¥Õ¥È¥¦¥§¥¢¤Î"
-"¼ïÎà¤òÁª¤ó¤Ç¤À¤µ¤¤¡£"
-
-msgid "complete"
-msgstr "´°Î»"
-
-msgid "copyrightField"
-msgstr "Ãøºî¸¢"
-
-msgid "copyrightField_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Ë´ØÏ¢¤¹¤ëÃøºî¸¢¤òÉ½¼¨¤·¤Ş¤¹¡£"
-
-msgid "currentlyUninstalling"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¤¤Ş¤¹¡£"
-
-msgid "daily"
-msgstr "ËèÆü"
-
-msgid "decline"
-msgstr "¹ç°Õ¤·¤Ê¤¤"
-
-msgid "decline_help"
-msgstr "¤³¤Î¥é¥¤¥»¥ó¥¹¤Ë¹ç°Õ¤·¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-msgid "defaultServer"
-msgstr "http://updates.BlueOnyx.it/packages/"
-
-msgid "dependent"
-msgstr ""
-"¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤Ï¡¢¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ëÊÌ¤Î¥½¥Õ¥È¥¦¥§¥¢¤Ë"
-"É¬Í×¤Ê¤¿¤á¡¢ºï½ü¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[VAR.depend]] ¤¬¤½¤ì¤Ç¤¹¡£"
-
-msgid "descriptionField"
-msgstr "ÀâÌÀ"
-
-msgid "descriptionField_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ÎÀâÌÀ¤Ç¤¹¡£"
-
-msgid "dlPercent"
-msgstr ""
-"[[VAR.file]] ¥Õ¥¡¥¤¥ë¤Î¥À¥¦¥ó¥í¡¼¥ÉÃæ: [[VAR.percent]]% ¥À¥¦¥ó¥í¡¼¥ÉºÑ¤ß"
-
-msgid "downloadSoftware"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¤ò¥¤¥ó¥¹¥È¡¼¥ë"
-
-msgid "downloading"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤ò¥À¥¦¥ó¥í¡¼¥É¤·¤Æ¤¤¤Ş¤¹..."
-
-msgid "emailField"
-msgstr "ÄÌÃÎ¥á¡¼¥ë¤ÎÁ÷¤êÀè"
-
-msgid "emailField_help"
-msgstr ""
-"¿·µ¬¤Î¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ä¥¢¥Ã¥×¥Ç¡¼¥È¤¬¸«¤Ä¤«¤Ã¤¿¾ì¹ç¡¢"
-"¤½¤ì¤òÄÌÃÎ¤·¤Æ¤¯¤µ¤Ş¤¹¡£"
-"¥Õ¥£¡¼¥ë¥É¤ò¶õÍó¤Î¤Ş¤Ş»Ä¤·¤Æ¤¯¤À¤µ¤¤¡£"
-"¥Ç¥Õ¥©¥ë¥È¤Ç admin ¤ËÄÌÃÎ¤¬¹Ô¤­¤Ş¤¹¡£"
-
-msgid "errorWGET"
-msgstr "wget ¤Î¼Â¹ÔÃæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
-
-msgid "executingPostInstallScript"
-msgstr "¥¤¥ó¥¹¥È¡¼¥ë¸å½èÍı¥¹¥¯¥ê¥×¥È¤Î¼Â¹ÔÃæ..."
-
-msgid "executingPreInstallScript"
-msgstr "¥¤¥ó¥¹¥È¡¼¥ëÁ°½èÍı¥¹¥¯¥ê¥×¥È¤Î¼Â¹ÔÃæ..."
-
-msgid "fail"
-msgstr "¼ºÇÔ"
-
-msgid "failedDep"
-msgstr ""
-"¤³¤Î¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ëÁ°¤Ë¡¢"
-"¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ëÉ¬Í×¤Î¤¢¤ë"
-"[VAR.dep]] "
-"¥Ñ¥Ã¥±¡¼¥¸¤òÀè¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-msgid "fileField"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É¤·¤¿¤¤¥Õ¥¡¥¤¥ë¤ÎÊİ´É¾ì½ê"
-
-msgid "fileField_empty"
-msgstr ""
-"¥¢¥Ã¥×¥í¡¼¥É¤¹¤ë¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤ÎÊİ´É¾ì½ê¤¬»ØÄê"
-"¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£¥í¡¼¥«¥ë¤Ë¤¢¤ë·èÄê¤¹¤ë°Ù¤Ë"
-"¡Ö»²¾È¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£"
-
-msgid "fileField_invalid"
-msgstr "[[base-swupdate.fileField_empty]]"
-
-msgid "fileNotFound"
-msgstr ""
-"[[VAR.file]] ¥Ñ¥Ã¥±¡¼¥¸¤Ï¡¢»ØÄê¤µ¤ì¤¿¥í¥±¡¼¥·¥ç¥ó¤Ç¤Ï¸«¤Ä¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "ftpProxyField"
-msgstr "FTP ¥×¥í¥­¥·¡§¥İ¡¼¥È"
-
-msgid "ftpProxyField_help"
-msgstr ""
-"¥×¥í¥­¥·¥µ¡¼¥Ğ¤ò²ğ¤·¤Æ¥Õ¥¡¥¤¥ä¥¦¥©¡¼¥ë³°Éô¤Ø¥¢¥¯¥»¥¹¤¹¤ë"
-"É¬Í×¤¬¤¢¤ë¾ì¹ç¤Ë¤Ï¡¢¤³¤³¤Ë"
-"TP ¾È²ñÍÑ¤Î¥×¥í¥­¥·¥µ¡¼¥ĞÌ¾¤È¥İ¡¼¥ÈÈÖ¹æ¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
-"¡Ê»ØÄêÎã¡§ proxy.mycompany.com:8080¡Ë"
-
-msgid "ftpProxyInvalid"
-msgstr ""
-"[[base-swupdate.software]] ¤Ï¡¢¤´»ØÄê¤Î FTP "
-"¥×¥í¥­¥·¥µ¡¼¥Ğ¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£¥Í¥Ã¥È¥ï¡¼¥¯¤¬"
-"Àµ¤·¤¯ÀßÄê¤µ¤ì¤Æ¤¤¤ë»ö¤ò ºÆÅÙ³ÎÇ§¤·¤Æ²¼¤µ¤¤¡£"
-
-msgid "hostNotFound"
-msgstr ""
-"[[VAR.file]] ¤Î URL "
-"¤È¤·¤Æ»ØÄê¤µ¤ì¤¿¥Û¥¹¥È¤¬¸«¤Ä¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-"[[base-swupdate.notInstalled]]"
-
-msgid "hostRefused"
-msgstr ""
-" [[VAR.file]] ¤ÎÆş¼êÀè URL ¤È¤·¤Æ»ØÄê¤µ¤ì¤¿¥Û¥¹¥È¤Ø¤Î"
-"ÀÜÂ³¤¬µñÈİ¤µ¤ì¤Ş¤·¤¿¡£"
-
-msgid "hourly"
-msgstr "Ëè»ş"
-
-msgid "httpProxyField"
-msgstr "HTTP ¥×¥í¥­¥·¡§¥İ¡¼¥È"
-
-msgid "httpProxyField_help"
-msgstr ""
-"¥×¥í¥­¥·¥µ¡¼¥Ğ¤ò²ğ¤·¤Æ¥Õ¥¡¥¤¥ä¥¦¥©¡¼¥ë³°Éô¤Ø¥¢¥¯¥»¥¹¤¹¤ë"
-"É¬Í×¤¬¤¢¤ë¾ì¹ç¤Ë¤Ï¡¢"
-"HTTP ¾È²ñÍÑ¤Î¥×¥í¥­¥·¥µ¡¼¥ĞÌ¾¤È¥İ¡¼¥ÈÈÖ¹æ¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
-"¡Ê»ØÄêÎã¡§proxy.mycompany.com:8080¡Ë"
-
-msgid "httpProxyInvalid"
-msgstr ""
-"[[base-swupdate.software]] ¤Ï¡¢¤´»ØÄê¤Î HTTP "
-"¥×¥í¥­¥·¥µ¡¼¥Ğ¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£¥Í¥Ã¥È¥ï¡¼¥¯¤¬"
-"Àµ¤·¤¯ÀßÄê¤µ¤ì¤Æ¤¤¤ë»ö¤ò ºÆÅÙ³ÎÇ§¤·¤Æ²¼¤µ¤¤¡£"
-
-msgid "initializing"
-msgstr "½é´ü²½¤·¤Æ¤¤¤Ş¤¹..."
-
-msgid "install"
-msgstr "¥¤¥ó¥¹¥È¡¼¥ë"
-
-msgid "installField"
-msgstr "¾ÜºÙ"
-
-msgid "installField_help"
-msgstr ""
-"¤³¤Î¥¢¥¤¥³¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥Ñ¥Ã¥±¡¼¥¸¤Î¥À¥¦¥ó¥í¡¼¥É"
-"¤È¥¤¥ó¥¹¥È¡¼¥ë¤Ë´Ø¤¹¤ë¾ğÊó¤¬¸½¤ì¤Ş¤¹¡£"
-"¤½¤³¤Ç¤â¤¦°ìÅÙ¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤«¤ò ³ÎÇ§¤·¤Ş¤¹¡£"
-
-msgid "installLock"
-msgstr ""
-"ÊÌ¤Î¥Ñ¥Ã¥±¡¼¥¸¤ò¸½ºß¥¤¥ó¥¹¥È¡¼¥ë"
-"¡Ê¤Ş¤¿¤Ï¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¡ËÃæ¤Ç¤¹¡£¤·¤Ğ¤é¤¯¤·¤Æ¤«¤é"
-"ºÆ»î¹Ô²¼¤µ¤¤¡£"
-
-msgid "installStatus"
-msgstr "[[VAR.fileName]] ¤Î¾õÂÖ"
-
-msgid "install_help"
-msgstr ""
-"¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢»ØÄê¤·¤¿¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸"
-"¤¬¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Ş¤¹¡£"
-
-msgid "installedList"
-msgstr "¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¥½¥Õ¥È¥¦¥§¥¢¤Î¥ê¥¹¥È"
-
-msgid "installing"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¤¤Ş¤¹..."
-
-msgid "installingRpm"
-msgstr "[[VAR.rpm]] ¥³¥ó¥İ¡¼¥Í¥ó¥È¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¤¤Ş¤¹..."
-
-msgid "installrefresh"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¤ÏÀµ¤·¤¯¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Ş¤·¤¿¡£"
-"¿ôÉÃ¤¹¤ë¤È¥Ö¥é¥¦¥¶²èÌÌ¤¬¹¹¿·¤·¡¢¤³¤Î²èÌÌ¤¬"
-"¥ê¥Õ¥ì¥Ã¥·¥å¤µ¤ì¤Ş¤¹¡£"
-
-msgid "invalidUpload"
-msgstr "»ØÄê¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ò¥¢¥Ã¥×¥í¡¼¥É¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "invalidUrl"
-msgstr "»ØÄê¤µ¤ì¤¿ URL ¤ÏÉÔÀµ¤Ç¤¹¡£[[base-swupdate.urlField_rule]]"
-
-msgid "licenseField"
-msgstr "¥é¥¤¥»¥ó¥¹"
-
-msgid "licenseField_help"
-msgstr "¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤Î¥é¥¤¥»¥ó¥¹¤òÉ½¼¨¤·¤Ş¤¹¡£"
-
-msgid "loaded"
-msgstr "/home/packages ¤ËÊİ´É¤µ¤ì¤Æ¤¤¤ë¥Ñ¥Ã¥±¡¼¥¸"
-
-msgid "locationField"
-msgstr "Êİ´É¾ì½ê"
-
-msgid "locationFieldEnter"
-msgstr "Êİ´É¾ì½ê"
-
-msgid "locationFieldEnter_help"
-msgstr ""
-"¥¤¥ó¥¹¥È¡¼¥ë¤·¤¿¤¤¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤¬Êİ´É¤µ¤ì¤Æ¤¤¤ë¾ì½ê"
-"¤ò»ØÄê¤·¤Ş¤¹¡£ ¤â¤·¤½¤Î¥Ñ¥Ã¥±¡¼¥¸¤¬¥¤¥ó¥¿¡¼¥Í¥Ã¥È¾å¤Î¤É¤³¤«¤Î"
-"°ÌÃÖ¤Ë¤¢¤ë¤Î¤Ê¤é¡¢http:// ¤« ftp:// ¤Î¤É¤Á¤é¤«¤Î url ¤Ç"
-"¤½¤ì¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£¤â¤·¤½¤Î¥Ñ¥Ã¥±¡¼¥¸¤¬µ®Êı¤Î£Ğ£Ã¾å¤Ë"
-"¤¢¤ë¤Î¤Ê¤é¡Ö»²¾È¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£"
-"¤â¤·¤½¤Î¥Ñ¥Ã¥±¡¼¥¸¤ò¥µ¡¼¥Ğ¡¼¤Î /home/packages "
-"¥Ç¥£¥ì¥¯¥È¥ê¤Ë¥¢¥Ã¥×¥í¡¼¥É¤·¤Æ¤¢¤ì¤Ğ¡¢"
-"ÁªÂò»è¤¬ ¤â¤¦°ì¤ÄÁı¤¨¤Ş¤¹¡£¤½¤Î¥Õ¥¡¥¤¥ëÌ¾¤¬¤³¤Î²èÌÌ¤Ë"
-"¸½¤ì ¤½¤ì¤òÁªÂò¤Ç¤­¤Ş¤¹¡£¥Õ¥¡¥¤¥ë¤ÏÊ£¿ô¥¢¥Ã¥×¤Ç¤­¤Ş¤¹¡£"
-
-msgid "locationField_help"
-msgstr ""
-"¥À¥¦¥ó¥í¡¼¥É¤µ¤ì¤Æ¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤¬"
-"Êİ´É¤µ¤ì¤Æ¤¤¤ë¾ì½ê¤Ç¤¹¡£"
-
-
-msgid "locationLocal"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤Î¥Ï¡¼¥É¥Ç¥£¥¹¥¯"
-
-msgid "manualInstall"
-msgstr "¼êÆ°¤Ç¥¤¥ó¥¹¥È¡¼¥ë"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒå…¥æ‰‹å¯èƒ½ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¾ã™ã€‚"
 
 msgid "manualInstallUpdate"
-msgstr "¼êÆ°¤Ç¥¤¥ó¥¹¥È¡¼¥ë"
+msgstr "æ‰‹å‹•ã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
 
 msgid "manualInstallUpdate_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¤Î¥¢¥Ã¥×¥Ç¡¼¥È¤ò¼êÆ°¤Ç¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’æ‰‹å‹•ã§ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
-msgid "manualInstall_help"
-msgstr ""
-"¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ò¼êÆ°¤Ç¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
+msgid "availableListUpdates"
+msgstr "å…¥æ‰‹ã§ãã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã®ãƒªã‚¹ãƒˆ"
 
-msgid "missingRPM"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤¬ÉÔ´°Á´¤Ç¤¹¡£¸«¤Ä¤«¤é¤Ê¤¤ RPM ¤¬¤¢¤ê¤Ş¤¹¡£"
-
-msgid "missingSRPM"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤¬ÉÔ´°Á´¤Ç¤¹¡£¸«¤Ä¤«¤é¤Ê¤¤ SRPM ¤¬¤¢¤ê¤Ş¤¹¡£"
-
-msgid "monthly"
-msgstr "Ëè·î"
-
-msgid "nameField"
-msgstr "Ì¾Á°"
-
-msgid "nameField_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ÎÌ¾Á°¤Ç¤¹¡£"
-
-msgid "never"
-msgstr "¤·¤Ê¤¤"
-
-msgid "no"
-msgstr "¤Ç¤­¤Ê¤¤"
-
-msgid "noLocation"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤ÎÊİ´É¾ì½ê¤¬»ØÄê¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£"
-
-msgid "none"
-msgstr "¤Ê¤·"
-
-msgid "notDownloaded"
-msgstr ""
-"[[VAR.file]] "
-"¥Ñ¥Ã¥±¡¼¥¸¤òÊİ´É¤·¤Æ¤¤¤ë¥µ¡¼¥Ğ¤ËÌäÂê¤¬¤¢¤ë¤¿¤á¡¢"
-"¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤ÏÀµ¤·¤¯¥À¥¦¥ó¥í¡¼¥É¤µ¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "notInstalled"
-msgstr "¤³¤Î¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Ï¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "notUninstalled"
-msgstr "ºï½ü¤Ç¤­¤ë¤â¤Î¤¬¤Ê¤«¤Ã¤¿¤¿¤á¡¢¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "notificationLightField"
-msgstr "ÄÌÃÎÆâÍÆ"
-
-msgid "notificationLightField_help"
-msgstr ""
-"¿·µ¬¤Î¥½¥Õ¥È¥¦¥§¥¢¤ä¥¢¥Ã¥×¥Ç¡¼¥È¤¬¸«¤Ä¤«¤Ã¤¿¾ì¹ç¤Ë¡¢"
-"¤³¤³¤Ç»ØÄê¤¹¤ë¼ïÎà¤Î¥Õ¥¡"
-""
-
-msgid "obsoletePkg"
-msgstr ""
-"[[VAR.name]] "
-"¥Ñ¥Ã¥±¡¼¥¸¤Ï¡¢Í­¸ú´ü¸Â¤¬ÀÚ¤ì¤Æ¤¤¤ë¤¿¤á¡¢¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-
-msgid "packageAlreadyInstalled"
-msgstr "¤³¤Î¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Ï¤¹¤Ç¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Ş¤¹¡£"
-
-msgid "packageInstallSuccess"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤Î¥¤¥ó¥¹¥È¡¼¥ë¤ËÀ®¸ù¤·¤Ş¤·¤¿¡£"
-
-msgid "packagesNeededField"
-msgstr "É¬Í×¤Ê¥Ñ¥Ã¥±¡¼¥¸"
-
-msgid "packagesNeededField_help"
-msgstr ""
-"¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ëÁ°¤Ë¡¢¤³¤³¤Ë¥ê¥¹¥È¤µ¤ì¤Æ¤¤¤ë"
-"¥Ñ¥Ã¥±¡¼¥¸¤ò¥·¥¹¥Æ¥à¤ÏÍ½¤á¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤Ç¤·¤ç¤¦¡£"
-
-msgid "pkgOIDmissing"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¤Ë´Ø¤¹¤ë¾ğÊó¤¬¸«¤Ä¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-"ºï½ü¤·¤¿¥Ñ¥Ã¥±¡¼¥¸¤Ç¤Ê¤¤¤³¤È¤ò³ÎÇ§¤Î¾å¡¢¤â¤¦°ìÅÙ"
-"¤ä¤êÄ¾¤·¤Æ²¼¤µ¤¤¡£¤â¤· ¤½¤ì¤Ç¤âÌäÂê¤¬µ¯¤­¤ë¤Ê¤é "
-"¥Æ¥Ë¥«¥ë¥µ¥İ¡¼¥ÈÃ´Åö¼Ô¤Ş¤Ç¤´Ï¢Íí¤¯¤À¤µ¤¤¡£"
-"([[base-sauce-basic.techSupportEmail]]) ¤Ş¤Ç¡£"
-
-msgid "postInstallFailed"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤ËÌäÂê¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
-"¥¤¥ó¥¹¥È¡¼¥ë¸å¤ÎºÇ½ª½èÍı¥¹¥¯¥ê¥×¥È¤¬Àµ¾ï¤Ë´°Î»¤·¤Ş¤»¤ó¡£"
-
-msgid "preInstallFailed"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤ËÌäÂê¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
-"¥¤¥ó¥¹¥È¡¼¥ëÁ°½èÍı¥¹¥¯¥ê¥×¥È¤¬Àµ¾ï¤Ë´°Î»¤·¤Ş¤»¤ó¡£"
-
-msgid "prepare"
-msgstr "¥¤¥ó¥¹¥È¡¼¥ë½àÈ÷¤ò³«»Ï"
-
-msgid "prepare_help"
-msgstr ""
-"¤³¤Î¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Î"
-"¥¤¥ó¥¹¥È¡¼¥ë½àÈ÷¤¬»Ï¤Ş¤ê¤Ş¤¹¡£"
-
-msgid "progressField"
-msgstr "¿Ê¹Ô¾õ¶·"
-
-msgid "progressField_help"
-msgstr "¥¤¥ó¥¹¥È¡¼¥ë¤Ş¤¿¤Ïºï½ü¤Î¿Ê¹Ô¾õ¶·¤Ç¤¹¡£"
-
-msgid "rebooting"
-msgstr ""
-"¥µ¡¼¥Ğ¤òºÆµ¯Æ°¤·¤Æ¤¤¤Ş¤¹¡£ºÆµ¯Æ°¤Î´°Î»¤Ë¤Ï¿ôÊ¬¤«¤«¤ê¤Ş¤¹¡£"
-"¤·¤Ğ¤é¤¯¤ªÂÔ¤Á¤¯¤À¤µ¤¤¡£"
-
-msgid "rebootpopup"
-msgstr ""
-"¤³¤Î¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë¤¹¤ë¤È¡¢¥µ¡¼¥Ğ¤òºÆµ¯Æ°"
-"¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Ş¤¹¡£½èÍı¤òÂ³¤±¤Ş¤¹¤«¡©"
-
-msgid "removePackage"
-msgstr ""
-"[[VAR.packageName]] "
-"¥Ñ¥Ã¥±¡¼¥¸¤Ï¡¢¤Ş¤À¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¤¬¡¢"
-"¥·¥¹¥Æ¥à¤«¤éºï½ü¤·¤Æ¤è¤í¤·¤¤¤Ç¤¹¤«¡©"
-
-msgid "removingRPM"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸ RPM ¤Îºï½üÃæ"
-
-msgid "requireSignatureField"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤ÎÇ§¾Ú¤¬É¬Í×"
-
-msgid "requireSignatureField_help"
-msgstr ""
-"¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢[[base-swupdate.software]] "
-"¤ÏÇ§¾Ú¸¡ºº¤Ë¹ç³Ê¤·¤¿¥Ñ¥Ã¥±¡¼¥¸¤À¤±¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Ş¤¹¡£"
-
-msgid "rpmInstallError"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¥Õ¥¡¥¤¥ë¤ËÌäÂê¤¬È¯À¸¤·¤Ş¤·¤¿¡£RPM [[VAR.rpm]] "
-"¤Î¥¤¥ó¥¹¥È¡¼¥ëÃæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
-
-msgid "runningUninstallScript"
-msgstr "¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¥¹¥¯¥ê¥×¥È¤Î¼Â¹ÔÃæ"
-
-msgid "scheduleField"
-msgstr "Ìä¤¤¹ç¤ï¤»¤ÎÉÑÅÙ"
-
-msgid "scheduleField_help"
-msgstr ""
-"¿·µ¬¤Î¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ä¥¢¥Ã¥×¥Ç¡¼¥È¤¬"
-"Æş¼ê²ÄÇ½¤«¤É¤¦¤«¤òÄê´üÅª¤Ë³ÎÇ§¤·¤Ş¤¹¡£"
-"[[base-swupdate.software]] "
-"¥µ¡¼¥Ğ¤ØÌä¤¤¹ç¤ï¤»¤ò¹Ô¤¦ÉÑÅÙ¤òÀßÄê¤Ç¤­¤Ş¤¹¡£"
-
-msgid "serverField"
-msgstr "[[base-swupdate.software]] ¥µ¡¼¥Ğ"
-
-msgid "serverFieldInvalid"
-msgstr ""
-"[[base-swupdate.software]] "
-"¤Ï¡¢¤´»ØÄê¤Î¥µ¡¼¥Ğ¤Ë¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£"
-"¥Í¥Ã¥È¥ï¡¼¥¯¤¬Àµ¤·¤¯ÀßÄê¤µ¤ì¤Æ¤¤¤ë»ö¤ò³ÎÇ§¤·¤Æ²¼¤µ¤¤¡£"
-
-msgid "serverField_help"
-msgstr ""
-"¥½¥Õ¥È¥¦¥§¥¢¥¢¥Ã¥×¥Ç¡¼¥È¤¬Êİ´É¤µ¤ì¤Æ¤¤¤ë¥µ¡¼¥Ğ¤Î HTTP "
-"¥¢¥É¥ì¥¹¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£¥Ç¥Õ¥©¥ë¥È¤Î¥¢¥Ã¥×¥Ç¡¼¥È¥µ¡¼¥Ğ¤Ï¡¢"
-"[[base-swupdate.defaultServer]] ¤Ë¤¢¤ê¤Ş¤¹¡£"
-
-msgid "sizeField"
-msgstr "¥µ¥¤¥º¡ÊMB¡Ë"
-
-msgid "sizeField_help"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤Î¥µ¥¤¥º¤Ç¤¹¡£"
-
-msgid "software"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¹¹¿·"
-
-msgid "softwareInstallSettings"
-msgstr "[[base-swupdate.software]] ¤ÎÀßÄê"
-
-msgid "softwareInstalled"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢°ìÍ÷"
-
-msgid "softwareInstalled_help"
-msgstr ""
-"¸½ºß¥·¥¹¥Æ¥à¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸"
-"¤Î¥ê¥¹¥È¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
-
-msgid "softwareNew"
-msgstr "Â¾¼Ò¤Î¥½¥Õ¥È¥¦¥§¥¢"
-
-msgid "softwareNewSun"
-msgstr "[[base-alpine.osName]] ¤Î¥½¥Õ¥È¥¦¥§¥¢"
-
-msgid "softwareNewSun_help"
-msgstr ""
-"[[base-alpine.osName]] ¥·¥¹¥Æ¥à¤Î¿·¤·¤¤¥½¥Õ¥È¥¦¥§¥¢¤ò"
-"¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
-
-msgid "softwareNew_help"
-msgstr "Â¾¼Ò¤Î¿·¤·¤¤¥½¥Õ¥È¥¦¥§¥¢¤ò¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
-
-msgid "softwareSettings"
-msgstr "ÀßÄê"
-
-msgid "softwareSettings_help"
-msgstr "[[base-swupdate.software]] ¤ÎÀßÄê¤òÊÑ¹¹¤Ç¤­¤Ş¤¹¡£"
-
-msgid "softwareUpdate"
-msgstr "¤½¤ÎÂ¾¤Î¥¢¥Ã¥×¥Ç¡¼¥È"
-
-msgid "softwareUpdateSun"
-msgstr "[[base-alpine.osName]] ¤Î¥¢¥Ã¥×¥Ç¡¼¥È"
-
-msgid "softwareUpdateSun_help"
-msgstr ""
-"¸½ºß¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë [[base-alpine.osName]] "
-"¥·¥¹¥Æ¥à¤Î¥½¥Õ¥È¥¦¥§¥¢¤Î¥¢¥Ã¥×¥Ç¡¼¥È¤ò¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
-
-msgid "softwareUpdate_help"
-msgstr ""
-"¸½ºß¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë [[base-alpine.osName]] "
-"¥·¥¹¥Æ¥à°Ê³°¤Î¥½¥Õ¥È¥¦¥§¥¢¤Î¥¢¥Ã¥×¥Ç¡¼¥È¤ò¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
-
-msgid "software_help"
-msgstr ""
-"[[base-swupdate.software]] "
-"¥»¥¯¥·¥ç¥ó¤Ç¤Ï¡¢¿·¤·¤¤¥½¥Õ¥È¥¦¥§¥¢¤ä¥¢¥Ã¥×¥Ç¡¼¥È¥Ñ¥Ã¥±¡¼¥¸¤¬"
-"ÍøÍÑ¤Ç¤­¤ë¤«¤É¤¦¤«¤ò³ÎÇ§¤Ç¤­¤Ş¤¹¡£"
-
-msgid "splashSoftwareMessage"
-msgstr ""
-"[[base-swupdate.software]] "
-"¥»¥¯¥·¥ç¥ó¤Ç¤Ï¡¢¥·¥¹¥Æ¥à¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¥½¥Õ¥È¥¦¥§¥¢¤ò"
-"´ÉÍı¤Ç¤­¤Ş¤¹¡£"
-
-msgid "statusField"
-msgstr "¾õÂÖ"
-
-msgid "statusField_help"
-msgstr ""
-"¤³¤Î¥Õ¥£¡¼¥ë¥É¤Ë¤Ï¡¢¥¤¥ó¥¹¥È¡¼¥ëÃæ¤Ş¤¿¤Ïºï½üÃæ¤Î¥Ñ¥Ã¥±¡¼¥¸¤Î"
-"¸½ºß¤Î¾õÂÖ¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
-
-msgid "success"
-msgstr "À®¸ù"
-
-msgid "typeField"
-msgstr "¼ïÎà"
-
-msgid "typeField_help"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤Î¼ïÎà¤Ç¤¹¡£"
-
-msgid "uninstall"
-msgstr "ºï½ü"
-
-msgid "uninstallConfirm"
-msgstr "[[VAR.packageName]] ¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤è¤í¤·¤¤¤Ç¤¹¤«¡©"
-
-msgid "uninstall_help"
-msgstr ""
-"¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤Î²ÄÇ½¤Ê¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Ç¤¢¤ì¤Ğ¡¢"
-"¤³¤Î¥¢¥¤¥³¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Ş¤¹¡£¤½¤Î¥Ñ¥Ã¥±¡¼¥¸¤¬¥·¥¹¥Æ¥à¤«¤é"
-"¼è¤ê³°¤¹¤µ¤ì¡Êºï½ü¤µ¤ì¡Ë¤Ş¤¹¡£"
-
-msgid "uninstallableField"
-msgstr "ºï½ü"
-
-msgid "uninstallableField_help"
-msgstr ""
-"¥¤¥ó¥¹¥È¡¼¥ë¤·¤¿¸å¤Ç¥Ñ¥Ã¥±¡¼¥¸¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤ë¤«¤É¤¦¤«"
-"¤ò¼¨¤·¤Ş¤¹¡£"
-
-msgid "uninstalled"
-msgstr "¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë´°Î»"
-
-msgid "uninstallrefresh"
-msgstr ""
-"¥Ñ¥Ã¥±¡¼¥¸¤ÏÀµ¤·¤¯¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Ş¤·¤¿¡£"
-"¿ôÉÃ¤¹¤ë¤È¥Ö¥é¥¦¥¶²èÌÌ¤¬¹¹¿·¤µ¤ì¤Ş¤¹¡£¥µ¡¼¥Ó¥¹¤¬ºï½ü¤µ¤ì¤¿"
-"¿·¤é¤·¤¤²èÌÌ¤ËÀÚ´¹¤ï¤ê¤Ş¤¹¡£"
+# ----- View software details & install page
+msgid "downloadSoftware"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
 
 msgid "unknownSize"
-msgstr "ÉÔÌÀ"
+msgstr "ä¸æ˜"
 
-msgid "update"
-msgstr "¥¢¥Ã¥×¥Ç¡¼¥È"
+msgid "rebootpopup"
+msgstr "ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹ã¨ã€ã‚µãƒ¼ãƒã‚’å†èµ·å‹•ã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚å‡¦ç†ã‚’ç¶šè¡Œã—ã¾ã™ã‹ï¼Ÿ"
 
-msgid "update_help"
-msgstr ""
-"¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¿·µ¬¤Î¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Ş¤¿¤Ï"
-"¥¢¥Ã¥×¥Ç¡¼¥È¤¬Æş¼ê²ÄÇ½¤Ë¤Ê¤ê¤Ş¤¹¡£¥Ñ¥Ã¥±¡¼¥¸¤Ş¤¿¤Ï"
-"¥¢¥Ã¥×¥Ç¡¼¥È¤¬Æş¼ê²ÄÇ½¤Ê¾ì¹ç¤Ë¤Ï¡¢¤½¤Î¥¢¥¤¥³¥ó¤Î¿§¤¬ÊÑ¤ï¤ê¤Ş¤¹¡£"
-
-msgid "updates"
-msgstr "¥¢¥Ã¥×¥Ç¡¼¥È¤Î¤ß"
-
-msgid "upload"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É"
-
+# ----- Manual install
 msgid "url"
 msgstr "URL"
 
@@ -703,30 +238,349 @@ msgid "urlField"
 msgstr "[[base-swupdate.url]]"
 
 msgid "urlField_rule"
-msgstr ""
-"¥¤¥ó¥¿¡¼¥Í¥Ã¥È¾å¤Î¥¦¥§¥Ö¥µ¥¤¥È¤«¤é¥Ñ¥Ã¥±¡¼¥¸¤ò¥À¥¦¥ó¥í¡¼¥É"
-"¤¹¤ë¤Ë¤Ï¡¢http:// ¤Ş¤¿¤Ï ftp:// ¤Ç»Ï¤Ş¤ë URL ¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒƒãƒˆä¸Šã®ã‚¦ã‚§ãƒ–ã‚µã‚¤ãƒˆã‹ã‚‰ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã«ã¯ã€http:// ã¾ãŸã¯ ftp:// ã§å§‹ã¾ã‚‹ URL ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
 
-msgid "vendorField"
-msgstr "Äó¶¡¸µ"
+msgid "upload"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰"
 
-msgid "vendorField_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤ÎÄó¶¡¸µ¤Ç¤¹¡£"
+msgid "loaded"
+msgstr "/home/packages ã«ä¿ç®¡ã•ã‚Œã¦ã„ã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸"
+
+msgid "fileField"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿ç®¡å ´æ‰€"
+
+# empty/invalid the same, specify both to be safe
+msgid "fileField_empty"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿ç®¡å ´æ‰€ãŒå…¥åŠ›ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚ãƒ­ãƒ¼ã‚«ãƒ«ãƒãƒ¼ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒ–ä¸Šã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸ã¶ã«ã¯ã€[å‚ç…§] ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "fileField_invalid"
+msgstr "[[base-swupdate.fileField_empty]]"
+
+msgid "invalidUpload"
+msgstr "æŒ‡å®šã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+# ---- Status page
+msgid "installStatus"
+msgstr "[[VAR.fileName]] ã®çŠ¶æ…‹"
+
+msgid "statusField"
+msgstr "çŠ¶æ…‹"
+
+msgid "statusField_help"
+msgstr "ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«ã¯ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ä¸­ã¾ãŸã¯å‰Šé™¤ä¸­ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ç¾åœ¨ã®çŠ¶æ…‹ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
+
+msgid "progressField"
+msgstr "é€²è¡ŒçŠ¶æ³"
+
+msgid "progressField_help"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã¾ãŸã¯å‰Šé™¤ã®é€²è¡ŒçŠ¶æ³ã§ã™ã€‚"
+
+msgid "dlPercent"
+msgstr "[[VAR.file]] ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ä¸­: [[VAR.percent]]% ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰æ¸ˆã¿"
+
+# ---- Install/remove errors & status messages
+msgid "initializing"
+msgstr "åˆæœŸåŒ–ã—ã¦ã„ã¾ã™..."
+
+msgid "downloading"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã—ã¦ã„ã¾ã™..."
+
+msgid "installing"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ã„ã¾ã™..."
+
+msgid "executingPreInstallScript"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å‰å‡¦ç†ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œä¸­..."
+
+msgid "executingPostInstallScript"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å¾Œå‡¦ç†ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œä¸­..."
+
+msgid "installingRpm"
+msgstr "[[VAR.rpm]] ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ã„ã¾ã™..."
+
+msgid "fail"
+msgstr "å¤±æ•—"
+
+msgid "success"
+msgstr "æˆåŠŸ"
+
+msgid "currentlyUninstalling"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ã„ã¾ã™ã€‚"
+
+msgid "cantUninstall"
+msgstr "ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ããªã„ç¨®é¡ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã‚ã‚‹ãŸã‚ã€å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚"
+
+msgid "dependent"
+msgstr "ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹åˆ¥ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã«å¿…è¦ãªãŸã‚ã€å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«ä¾å­˜ã™ã‚‹ä»–ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ï¼š [[VAR.depend]]"
+
+msgid "removingRPM"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ RPM ã®å‰Šé™¤ä¸­"
+
+msgid "runningUninstallScript"
+msgstr "ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®å®Ÿè¡Œä¸­"
+
+msgid "uninstalled"
+msgstr "ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å®Œäº†"
+
+msgid "notUninstalled"
+msgstr "å‰Šé™¤ã§ãã‚‹ã‚‚ã®ãŒãªã‹ã£ãŸãŸã‚ã€ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "packageInstallSuccess"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã«æˆåŠŸã—ã¾ã—ãŸã€‚"
+
+# -- generic message for other strings
+msgid "notInstalled"
+msgstr "ã“ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "cannotDownloadUrl"
+msgstr "æŒ‡å®šã•ã‚ŒãŸ URL ã‹ã‚‰ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã€‚URL ã‚’ç¢ºèªã—ã¦ã€ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚ [[base-swupdate.notInstalled]]"
+
+msgid "badFileName"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ•ã‚¡ã‚¤ãƒ«åãŒä¸æ­£ã§ã™ã€‚ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ç¢ºèªã—ã¦ã€ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚ [[base-swupdate.notInstalled]]"
+
+msgid "packageAlreadyInstalled"
+msgstr "ã“ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã™ã§ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã¾ã™ã€‚"
 
 msgid "verifyingPackage"
-msgstr "¥Ñ¥Ã¥±¡¼¥¸¤Î³ÎÇ§Ãæ..."
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ç¢ºèªä¸­..."
 
-msgid "versionField"
-msgstr "¥Ğ¡¼¥¸¥ç¥ó"
+msgid "badPackage"
+msgstr "ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã¯ä¸å®Œå…¨ã§ã™ã€‚packing_list ãŒä¸æ­£ã‹ã€è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚ [[base-swupdate.notInstalled]]"
 
-msgid "versionField_help"
-msgstr "¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Î¥Ğ¡¼¥¸¥ç¥ó¤Ç¤¹¡£"
+msgid "badFormat"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã®ç¢ºèªä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ãƒ•ã‚¡ã‚¤ãƒ«ãŒå£Šã‚Œã¦ã„ã‚‹ã‹ã€æ­£ã—ã„èªè¨¼æƒ…å ±ãŒå«ã¾ã‚Œã¦ã„ãªã„å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚[[base-swupdate.notInstalled]]"
+
+msgid "CCEsetError"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ CCE ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸è¿½åŠ ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ä¸æ­£ãª packing_list ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã‚ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã€‚[[base-swupdate.notInstalled]]"
+
+msgid "failedDep"
+msgstr "ã“ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹å‰ã«ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã™ã‚‹å¿…è¦ã®ã‚ã‚‹ä»–ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒã‚ã‚Šã¾ã™ã€‚[[VAR.dep]] ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’å…ˆã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "installLock"
+msgstr "åˆ¥ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ç¾åœ¨ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ï¼ˆã¾ãŸã¯ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ï¼‰ä¸­ã§ã™ã€‚ã—ã°ã‚‰ãã—ã¦ã‹ã‚‰å†åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
+
+msgid "obsoletePkg"
+msgstr "[[VAR.name]] ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€æœ‰åŠ¹æœŸé™ãŒåˆ‡ã‚Œã¦ã„ã‚‹ãŸã‚ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "badProduct"
+msgstr "The [[VAR.name]] ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€ã“ã®ã‚µãƒ¼ãƒæ©Ÿç¨®å‘ã‘ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã¯ãªã„ãŸã‚ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "hostNotFound"
+msgstr "[[VAR.file]] ã® URL ã¨ã—ã¦æŒ‡å®šã•ã‚ŒãŸãƒ›ã‚¹ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚[[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "[[VAR.file]] ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã€æŒ‡å®šã•ã‚ŒãŸãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "hostRefused"
+msgstr " [[VAR.file]] ã®å…¥æ‰‹å…ˆ URL ã¨ã—ã¦æŒ‡å®šã•ã‚ŒãŸãƒ›ã‚¹ãƒˆã¸ã®æ¥ç¶šãŒæ‹’å¦ã•ã‚Œã¾ã—ãŸã€‚"
+
+msgid "notDownloaded"
+msgstr "[[VAR.file]] ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ä¿ç®¡ã—ã¦ã„ã‚‹ã‚µãƒ¼ãƒã«å•é¡ŒãŒã‚ã‚‹ãŸã‚ã€ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯æ­£ã—ããƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "noLocation"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ä¿ç®¡å ´æ‰€ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
+
+msgid "missingRPM"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ãŒä¸å®Œå…¨ã§ã™ã€‚è¦‹ã¤ã‹ã‚‰ãªã„ RPM ãŒã‚ã‚Šã¾ã™ã€‚"
+
+msgid "missingSRPM"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ãŒä¸å®Œå…¨ã§ã™ã€‚è¦‹ã¤ã‹ã‚‰ãªã„ SRPM ãŒã‚ã‚Šã¾ã™ã€‚"
+
+msgid "preInstallFailed"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã«å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å‰å‡¦ç†ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ­£å¸¸ã«å®Ÿè¡Œã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "postInstallFailed"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã«å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«å¾Œå‡¦ç†ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒæ­£å¸¸ã«å®Ÿè¡Œã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "rpmInstallError"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãƒ•ã‚¡ã‚¤ãƒ«ã«å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚RPM [[VAR.rpm]] ã®ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"
+
+msgid "errorWGET"
+msgstr "wget ã®å®Ÿè¡Œä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"
+
+msgid "rebooting"
+msgstr "ã‚µãƒ¼ãƒã‚’å†èµ·å‹•ã—ã¦ã„ã¾ã™ã€‚å†èµ·å‹•ã®å®Œäº†ã«ã¯æ•°åˆ†ã‹ã‹ã‚Šã¾ã™ã€‚ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€‚"
+
+msgid "uninstallrefresh"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯æ­£ã—ãã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¾ã—ãŸã€‚æ•°ç§’ã™ã‚‹ã¨ãƒ–ãƒ©ã‚¦ã‚¶ç”»é¢ãŒæ›´æ–°ã—ã€ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®æä¾›ã—ã¦ã„ãŸã‚µãƒ¼ãƒ“ã‚¹é …ç›®ãŒå–ã‚Šé™¤ã‹ã‚Œã¾ã™ã€‚"
+
+msgid "installrefresh"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯æ­£ã—ãã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¾ã—ãŸã€‚æ•°ç§’ã™ã‚‹ã¨ãƒ–ãƒ©ã‚¦ã‚¶ç”»é¢ãŒæ›´æ–°ã—ã€ã“ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®æä¾›ã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹é …ç›®ãŒè¿½åŠ ã•ã‚Œã¾ã™ã€‚"
+
+# ------ Installed Software List
+msgid "installedList"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ãƒªã‚¹ãƒˆ"
+
+msgid "uninstall"
+msgstr "å‰Šé™¤"
+
+msgid "uninstall_help"
+msgstr "ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã®å¯èƒ½ãªã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã‚ã‚Œã°ã€ã“ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰å‰Šé™¤ã§ãã¾ã™ã€‚"
+
+msgid "uninstallConfirm"
+msgstr "[[VAR.packageName]] ã‚’ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ"
+
+# ------ Settings page
+msgid "softwareInstallSettings"
+msgstr "[[base-swupdate.software]] ã®è¨­å®š"
+
+msgid "basic"
+msgstr "åŸºæœ¬"
+
+msgid "basic_help"
+msgstr "æœ€ã‚‚ã‚ˆãä½¿ã‚ã‚Œã‚‹è¨­å®šé …ç›®ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
+
+msgid "advanced"
+msgstr "è©³ç´°"
+
+msgid "advanced_help"
+msgstr "ã‚ã¾ã‚Šä½¿ã‚ã‚Œãªã„è¨­å®šé …ç›®ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
+
+msgid "scheduleField"
+msgstr "å•ã„åˆã‚ã›ã®é »åº¦"
+
+msgid "scheduleField_help"
+msgstr "æ–°è¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚„ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒå…¥æ‰‹å¯èƒ½ã‹ã©ã†ã‹ã‚’å®šæœŸçš„ã«ç¢ºèªã™ã‚‹ãŸã‚ã« [[base-swupdate.software]] ã‚µãƒ¼ãƒã¸å•ã„åˆã‚ã›ã‚’è¡Œã†é »åº¦ã‚’è¨­å®šã§ãã¾ã™ã€‚"
+
+msgid "hourly"
+msgstr "æ¯æ™‚"
+
+msgid "daily"
+msgstr "æ¯æ—¥"
 
 msgid "weekly"
-msgstr "Ëè½µ"
+msgstr "æ¯é€±"
 
-msgid "yes"
-msgstr "¤Ç¤­¤ë"
+msgid "monthly"
+msgstr "æ¯æœˆ"
+
+msgid "never"
+msgstr "ã—ãªã„"
+
+msgid "emailField"
+msgstr "é€šçŸ¥ãƒ¡ãƒ¼ãƒ«ã®é€ã‚Šå…ˆ"
+
+msgid "emailField_help"
+msgstr "æ–°è¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚„ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒè¦‹ã¤ã‹ã£ãŸå ´åˆã€ã¾ãŸã¯å•ã„åˆã‚ã›æ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸå ´åˆã«ã¯ã€é›»å­ãƒ¡ãƒ¼ãƒ«ã§é€šçŸ¥ã•ã‚Œã¾ã™ã€‚ãã®é›»å­ãƒ¡ãƒ¼ãƒ«ã®é€ã‚Šå…ˆã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ã“ã“ã«å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚é›»å­ãƒ¡ãƒ¼ãƒ«ã«ã‚ˆã‚‹é€šçŸ¥ã®å†…å®¹ã¯ã€ã€Œé€šçŸ¥å†…å®¹ã€ã®æŒ‡å®šã«ã‚ˆã‚Šæ±ºã¾ã‚Šã¾ã™ã€‚é›»å­ãƒ¡ãƒ¼ãƒ«ã«ã‚ˆã‚‹é€šçŸ¥ã‚’å—ã‘å–ã‚ŠãŸããªã„å ´åˆã«ã¯ã€ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ç©ºæ¬„ã®ã¾ã¾æ®‹ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "pkgOIDmissing"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã«é–¢ã™ã‚‹æƒ…å ±ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚å‰Šé™¤ã—ãŸãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ãªã„ã“ã¨ã‚’ç¢ºèªã—ã¦ã‹ã‚‰ã€ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚ãã‚Œã§ã‚‚åŒã˜å•é¡ŒãŒç™ºç”Ÿã™ã‚‹å ´åˆã«ã¯ã€ãƒ†ã‚¯ãƒ‹ã‚«ãƒ«ã‚µãƒãƒ¼ãƒˆæ‹…å½“è€…ã¾ã§ã”é€£çµ¡ãã ã•ã„ã€‚([[base-sauce-basic.techSupportEmail]])"
+
+msgid "serverField"
+msgstr "[[base-swupdate.software]] ã‚µãƒ¼ãƒ"
+
+msgid "defaultServer"
+msgstr "http://updates.bluequartz.org/packages/"
+
+msgid "serverField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒä¿ç®¡ã•ã‚Œã¦ã„ã‚‹ã‚µãƒ¼ãƒã® HTTP ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚µãƒ¼ãƒã¯ã€[[base-swupdate.defaultServer]] ã«ã‚ã‚Šã¾ã™ã€‚"
+
+msgid "serverFieldInvalid"
+msgstr "[[base-swupdate.software]] ã¯ã€ã”æŒ‡å®šã®ã‚µãƒ¼ãƒã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãŒæ­£ã—ãè¨­å®šã•ã‚Œã€ã‚µãƒ¼ãƒãŒå‹•ä½œä¸­ã§ã‚ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ã‹ã‚‰ã€å†åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
+
+msgid "httpProxyField"
+msgstr "HTTP ãƒ—ãƒ­ã‚­ã‚·ï¼šãƒãƒ¼ãƒˆ"
+
+msgid "httpProxyField_help"
+msgstr "ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã‚’ä»‹ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ¤ã‚¦ã‚©ãƒ¼ãƒ«å¤–éƒ¨ã¸ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹å¿…è¦ãŒã‚ã‚‹å ´åˆã«ã¯ã€HTTP ç…§ä¼šç”¨ã®ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒåã¨ãƒãƒ¼ãƒˆç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚ï¼ˆæŒ‡å®šä¾‹ï¼š proxy.mycompany.com:8080ï¼‰"
+
+msgid "httpProxyInvalid"
+msgstr "[[base-swupdate.software]] ã¯ã€ã”æŒ‡å®šã® HTTP ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãŒæ­£ã—ãè¨­å®šã•ã‚Œã€ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒãŒå‹•ä½œä¸­ã§ã‚ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ã‹ã‚‰ã€å†åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
+
+msgid "ftpProxyField"
+msgstr "FTP ãƒ—ãƒ­ã‚­ã‚·ï¼šãƒãƒ¼ãƒˆ"
+
+msgid "ftpProxyField_help"
+msgstr "ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã‚’ä»‹ã—ã¦ãƒ•ã‚¡ã‚¤ãƒ¤ã‚¦ã‚©ãƒ¼ãƒ«å¤–éƒ¨ã¸ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹å¿…è¦ãŒã‚ã‚‹å ´åˆã«ã¯ã€FTP ç…§ä¼šç”¨ã®ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒåã¨ãƒãƒ¼ãƒˆç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚ï¼ˆæŒ‡å®šä¾‹ï¼š proxy.mycompany.com:8080ï¼‰"
+
+msgid "ftpProxyInvalid"
+msgstr "[[base-swupdate.software]] ã¯ã€ã”æŒ‡å®šã® FTP ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãŒæ­£ã—ãè¨­å®šã•ã‚Œã€ãƒ—ãƒ­ã‚­ã‚·ã‚µãƒ¼ãƒãŒå‹•ä½œä¸­ã§ã‚ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ã‹ã‚‰ã€å†åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
+
+msgid "autoField"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’è‡ªå‹•çš„ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
+
+msgid "autoField_help"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€[[base-swupdate.software]] ã¯èªè¨¼æ¸ˆã¿ã®ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’è‡ªå‹•çš„ã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¾ã™ã€‚"
+
+msgid "requireSignatureField"
+msgstr "ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®èªè¨¼ãŒå¿…è¦"
+
+msgid "requireSignatureField_help"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€[[base-swupdate.software]] ã¯èªè¨¼æ¤œæŸ»ã«åˆæ ¼ã—ãŸãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã ã‘ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ã¾ã™ã€‚"
+
+msgid "checkSetField"
+msgstr "å¯¾è±¡ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢"
+
+msgid "checkSetField_help"
+msgstr "ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã®å•ã„åˆã‚ã›ã®å¯¾è±¡ã¨ãªã‚‹ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ç¨®é¡ã‚’é¸ã‚“ã§ãã ã•ã„ã€‚"
+
+msgid "all"
+msgstr "ã™ã¹ã¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢"
+
+msgid "updates"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã®ã¿"
+
+msgid "notificationLightField"
+msgstr "é€šçŸ¥å†…å®¹"
+
+msgid "notificationLightField_help"
+msgstr "æ–°è¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚„ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒè¦‹ã¤ã‹ã£ãŸå ´åˆã«ã€ã“ã“ã§æŒ‡å®šã™ã‚‹ç¨®é¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã ã‘ãŒã€Œè¡¨ç¤ºãƒ©ã‚¤ãƒˆã€ã¨ã€Œé›»å­ãƒ¡ãƒ¼ãƒ«ã€ã«ã‚ˆã‚Šé€šçŸ¥ã•ã‚Œã¾ã™ã€‚"
+
+# --- software update icon
+msgid "update"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ"
+
+msgid "update_help"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€æ–°è¦ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¾ãŸã¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒå…¥æ‰‹å¯èƒ½ã‹ã©ã†ã‹ã‚’èª¿æŸ»ã—ã€å¿…è¦ã«å¿œã˜ã¦ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚æ–°è¦ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¾ãŸã¯ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆãŒå…¥æ‰‹å¯èƒ½ãªå ´åˆã«ã¯ã€ã“ã®ã‚¢ã‚¤ã‚³ãƒ³ã®è‰²ãŒå¤‰ã‚ã‚Šã¾ã™ã€‚"
+
+# ----- Strings for emails
+msgid "QueryErrorSubject"
+msgstr "[[base-swupdate.software]] ã‚µãƒ¼ãƒã®æ¤œç´¢ä¸­ã«å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"
+
+msgid "NoProductInfoBody"
+msgstr "[[base-swupdate.software]] ã‚µãƒ¼ãƒã§ã€ã“ã®è£½å“ãŒèªè­˜ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoSWUpdateServerSubject"
+msgstr "[[base-swupdate.software]] ã‚µãƒ¼ãƒã® URL ãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
+
+msgid "NoSWUpdateServerBody"
+msgstr "[[base-swupdate.software]] ã‚µãƒ¼ãƒã®å ´æ‰€ãŒç‰¹å®šã§ãã¾ã›ã‚“ã€‚[[base-swupdate.software]] è¨­å®šãƒšãƒ¼ã‚¸ã§ã€[[base-swupdate.software]] ã‚µãƒ¼ãƒã® URL ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚"
+
+msgid "NoSystemInfoSubject"
+msgstr "[[base-swupdate.software]] ãŒã€ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±ã‚’ç‰¹å®šã§ãã¾ã›ã‚“ã€‚"
+
+msgid "NoSystemInfoBody"
+msgstr "ã“ã®ã‚µãƒ¼ãƒã¯ã€[[base-swupdate.software]] ã‚µãƒ¼ãƒãŒå¿…è¦ã¨ã™ã‚‹ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±ã‚’ç‰¹å®šã§ãã¾ã›ã‚“ã§ã—ãŸã€‚[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackageListBody"
+msgstr "[[base-swupdate.software]] ã¯ã€ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã‚’ [[VAR.location]] ã«ã‚ã‚‹ [[base-swupdate.software]] ã‚µãƒ¼ãƒã‹ã‚‰å–å¾—ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚[[VAR.location]] ãŒæœ‰åŠ¹ãª [[base-swupdate.software]] ã‚µãƒ¼ãƒã§ã‚ã‚Šã€ãŠä½¿ã„ã®ã‚¦ã‚§ãƒ–ãƒ–ãƒ©ã‚¦ã‚¶ã‹ã‚‰åˆ°é”ã§ãã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚"
+
+msgid "BadPackageFmtBody"
+msgstr "ã‚µãƒ¼ãƒãŒã€[[base-swupdate.software]] ã«ã¯ç†è§£ã§ããªã„ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸æƒ…å ±ã‚’æˆ»ã—ã¾ã—ãŸã€‚[[base-sauce-basic.contactTechSupport]]"
+
+msgid "NoPackagesBody"
+msgstr "ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã§ãã‚‹ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚"
+
+msgid "UnknownErrorBody"
+msgstr "[[base-swupdate.software]] ãŒã€[[VAR.location]] ã‚µãƒ¼ãƒã«ã‚¢ã‚¯ã‚»ã‚¹ä¸­ã«ã€åŸå› ä¸æ˜ã®ã‚¨ãƒ©ãƒ¼ï¼ˆ[[VAR.error]]ï¼‰ã‚’å—ä¿¡ã—ã¾ã—ãŸã€‚"
+
+msgid "NewUpdatesSubject"
+msgstr "ã“ã®ã‚µãƒ¼ãƒå‘ã‘ã®æ–°è¦ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚’å…¥æ‰‹ã§ãã¾ã™ã€‚"
+
+msgid "NewUpdatesBody"
+msgstr "ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã—ãŸã„ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒã‚ã‚Œã°ã€[[base-swupdate.software]] ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã”è¦§ãã ã•ã„ã€‚"
+
+# Capabilities
+msgid "capgroup_adminBlueLinq"
+msgstr "BlueLinQ ã®ç®¡ç†"
+
+msgid "capgroup_adminBlueLinq_help"
+msgstr "ã“ã®ç®¡ç†è€…æ¨©é™ãŒã‚ã‚‹ã¨ã€ãƒ¦ãƒ¼ã‚¶ã¯ BlueLinQ ã‚’ç®¡ç†ã—ã¦ã€æ–°è¦ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚„æ—¢å­˜ã®ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
+
+msgid "3rdpartypkg_warning"
+msgstr "By using 3rd party updates, you assume all responsbility associated with your choice.  Please do not use public packages, unless you trust the party that issued them.  If you install their package(s), and they have bad intensions,they can easily take control of your server"
 
 msgid "warning_header"
 msgstr "Warning!!!"
+
+msgid "cap_managePackage"
+msgstr "Software Update ã®ç®¡ç†"

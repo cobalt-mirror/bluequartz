@@ -44,6 +44,12 @@ msgstr "Turn Domain Name System (DNS) server functionality on or off.  Turning t
 
 # --- Advanced settings
 
+msgid "caching"
+msgstr "Cache Record Lookups"
+
+msgid "caching_help"
+msgstr "Enabling caching, also called recursion, allows resolution of domains and network zones that other name servers are authoritative for.  Disabling caching is useful when operating this server on a private network."
+
 msgid "soa_defaults"
 msgstr "Start of Authority (SOA) Default Values"
 
@@ -149,6 +155,12 @@ msgstr "Enter the IP addresses that are allowed to download all records maintain
 msgid "zone_xfer_ipaddr_invalid"
 msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dns.zone_xfer_ipaddr]]."
 
+msgid "recursion_inetaddr"
+msgstr "Query Request Recursion Access by IP Address"
+
+msgid "recursion_inetaddr_help"
+msgstr "Enter the IP addresses that are allowed to request recursion query to the cache server. [[base-dns.inetaddr_rule]]"
+
 msgid "recursion_inetaddr_invalid"
 msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dns.recursion_inetaddr]]."
 
@@ -168,6 +180,12 @@ msgid "zone_format"
 msgstr "Zone File Format"
 
 msgid "zone_format_help"	
+msgstr "Choose a zone file format for subnetting on a non-octet boundary which is compatible with your local reverse delegation method.  RFC2317 is the standard format.  DION and OCN-JT are much less commonly used."
+
+msgid "zone_user_format"
+msgstr "Zone File Format"
+
+msgid "zone_user_format_help"
 msgstr "Choose a zone file format for subnetting on a non-octet boundary which is compatible with your local reverse delegation method.  RFC2317 is the standard format.  DION and OCN-JT are much less commonly used."
 
 msgid "zone_format_required_warning"
@@ -208,6 +226,9 @@ msgstr "OCN-JT"
 
 msgid "USER"
 msgstr "User Defined"
+
+msgid "SERVER"
+msgstr "Server Defined"
 
 # --- Record types (reused)
 
@@ -267,6 +288,15 @@ msgstr "Modify SOA"
 
 msgid "edit_soa_help"
 msgstr "Modify the start of authority record for the selected domain or network authority."
+
+msgid "edit_zone"
+msgstr "Modify Zone Format"
+
+msgid "edit_zone_help"
+msgstr "Modify the zone file format for the selected network."
+
+msgid "modify_zone"
+msgstr "[[base-dns.title]] Modify Zone Format"
 
 msgid "confirm_delall"
 msgstr "Are you sure you want to remove ALL of the DNS records for this domain or network?"
@@ -1055,72 +1085,9 @@ msgstr ""
 "the System Administrator<br>"
 "<br>"
 
-#------- New Advanced Settings: ---------------
+msgid "cap_serverDNS"
+msgstr "DNS Management"
 
-msgid "query"
-msgstr "Allow DNS Query Access"
+msgid "cap_siteDNS"
+msgstr "Site's DNS Management"
 
-msgid "query_help"
-msgstr "This is enabled by default. Allows selected IP address ranges to query your DNS server for DNS information. You can specify which address ranges can query your server a bit further below in the field 'Allow Queries from these Networks'."
-
-msgid "query_all_allowed"
-msgstr "Allow Queries from Everyone"
-
-msgid "query_all_allowed_help"
-msgstr "Allow query access from the entire internet. If you run an authoritative nameserver for domains, then you should turn this on. If your nameserver is supposed to be private, you can turn it off."
-
-msgid "query_inetaddr"
-msgstr "Allow Queries from these Networks"
-
-msgid "query_inetaddr_help"
-msgstr "In this box you can specify which IP address ranges are allowed to query your DNS server. By default only localhost ('127.0.0.1/32') is allowed. If you tick the checkbox for 'Allow Queries from Everyone', then it will override whatever extra address ranges you put in here and will allow anyone query access."
-
-msgid "caching"
-msgstr "Allow DNS Cache Access"
-
-msgid "caching_help"
-msgstr "Enabling caching, also called recursion, allows resolution of domains and network zones that other name servers are authoritative for. However, running such an 'open' DNS server exposes yourself and others to the risks of DDoS attacks. So if you need a DNS server to resolve domains which you are not authoritative for, then you should either use the DNS server of your provider, or (if you still want to use your own DNS server for that!) you should only allow query access for localhost ('127.0.0.1/32') on this DNS server, or selected and trustworthy network address ranges."
-
-msgid "caching_all_allowed"
-msgstr "Open DNS Server (Not recommended!)"
-
-msgid "caching_all_allowed_help"
-msgstr "If you tick this box, your DNS server will be entirely open and will resolve DNS for anyone and everyone. That is a really bad idea. This exposes yourself and others to the risks of DDoS attacks. So if you need a DNS server to resolve domains which you are not authoritative for, then you should either use the DNS server of your provider, or (if you still want to use your own DNS server for that!) you should only allow query access for localhost ('127.0.0.1/32') on this DNS server, or selected and trustworthy network address ranges."
-
-msgid "recursion_inetaddr"
-msgstr "Allow Cache access from these Networks"
-
-msgid "recursion_inetaddr_help"
-msgstr "Enter the IP addresses (with netmask!) of address ranges that are allowed to request recursion query to the cache server. [[base-dns.inetaddr_rule]]"
-
-msgid "rate_limits"
-msgstr "DNS Rate Limits:"
-
-msgid "rate_limits_enabled"
-msgstr "Rate Limits Enabled"
-
-msgid "rate_limits_enabled_help"
-msgstr "DNS Response Rate Limiting (DNS RRL) is an experimental protection feature for domain name servers. This mechanism keeps BIND 9 from being used in amplifying reflection denial of service attacks as well as partially protecting BIND 9 itself from some denial of service attacks. By default it should be enabled."
-
-msgid "responses_per_second"
-msgstr "Responses per Second"
-
-msgid "responses_per_second_help"
-msgstr "Responses-per-second is a limit on identical responses instead of a limit on all responses or even all responses to a single client. 10 identical responses per second is a generous limit except perhaps when many clients are using a single IP address via network address translation (NAT). The default limit of zero specifies an unbounded limit to turn off rate-limiting in a view or to only rate-limit NXDOMAIN or other errors."
-
-msgid "window"
-msgstr "Window"
-
-msgid "window_help"
-msgstr "Rate limiting uses a credit or token bucket scheme.  Each identical response has a conceptual account that is given RESPONSES-PER-SECOND and ERRORS-PER-SECOND credits every second. A DNS request triggering some desired response debits the account by one. Responses are not sent while the account is negative. The account cannot become more positive than the per-second limit or more negative than window times the per-second limit. A DNS client that sends requests that are not answered can therefore penalized for up to window seconds even after the abusive query flow stops."
-
-msgid "dns_logging"
-msgstr "Extended DNS logging:"
-
-msgid "enable_dns_logging"
-msgstr "Enable extended DNS logging"
-
-msgid "enable_dns_logging_help"
-msgstr "WARNING: This should only be used for debugging, as it will log any query to your DNS server to /var/log/messages. Even on a lightly used DNS server this creates a lot of log entries. But you might want to briefly (!) enable extended DNS logging to see if your 'DNS Rate Limits' are working correctly."
-
-#------- New Advanced Settings: ---------------

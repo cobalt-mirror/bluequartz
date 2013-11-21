@@ -3,13 +3,13 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
-SERVICE=blueonyx
+VENDORNAME='Project BlueQuartz'
+SERVICE=bluequartz
 
-BUILD=20110922
+BUILD=20110503
 
-VERSION=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5108R"; else  echo -n "5107R"; fi)
-RELEASE=3.$(BUILD)BX108
+VERSION=5200R
+RELEASE=1.$(BUILD)BQ39
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -22,7 +22,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch sendmail-cf m4 cyrus-sasl perl
-REQUIRES_GLUE=base-email-capstone base-time-capstone >= 1.0.1-62BQ11 base-user-capstone >= 1.2.0-0BQ1 base-user-glue >= 1.2.0-0BQ1 at dovecot php base-admserv-capstone
+REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl postfix vixie-cron
+REQUIRES_GLUE=base-email-capstone base-time-capstone base-user-capstone
 
 include /usr/sausalito/devel/module.mk

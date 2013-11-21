@@ -7,8 +7,8 @@ include_once('Error.php');
 
 $serverScriptHelper = new ServerScriptHelper($sessionId);
 
-//Only users with controlPower capability should be here
-if (!$serverScriptHelper->getAllowed('controlPower')) {
+//Only users with serverPower capability should be here
+if (!$serverScriptHelper->getAllowed('serverPower')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -33,7 +33,7 @@ print $i18n->get("shutting-down") . '<br>';
 print($page->toFooterHtml());
 
 $sysoid = $cceClient->find("System");
-$cceClient->set($sysoid[0], "Power", array("halt" => time()));
+$cceClient->set($sysoid, "Power", array("halt" => time()));
 
 $serverScriptHelper->destructor();
 /*

@@ -1,5 +1,5 @@
 #!/usr/bin/expect
-# $Id: am_smtp.exp 259 2004-01-03 06:28:40Z shibuya $
+# $Id: am_smtp.exp 1288 2009-10-12 10:12:42Z shibuya $
 source /usr/sausalito/swatch/statecodes.tcl
 
 # don't echo the dialog
@@ -13,7 +13,7 @@ expect {
 	# try to restart
 	# use catch so we don't report errors on the exec,
 	# only on the dialog itself
-	catch {exec /etc/rc.d/init.d/sendmail restart >&/dev/null} result
+	catch {exec /etc/rc.d/init.d/postfix restart >&/dev/null} result
 	sleep 5
 	# redo test, fail if get an error again
 	spawn telnet localhost 25
@@ -34,26 +34,6 @@ expect {
 	puts -nonewline $env(redMsg);
 	flush stdout;
 	exit $AM_STATE_RED
-    }
-}
-
-send "HELO localhost\r"
-expect {
-    "250 " {}
-    default { # fail if we're not ack-ed properly
-      puts -nonewline $env(redMsg);
-      flush stdout;
-      exit $AM_STATE_RED
-    }
-}
-
-send "MAIL FROM:<>\r"
-expect {
-    "250 " {}
-    default { # fail if we're not ack-ed properly
-      puts -nonewline $env(redMsg);
-      flush stdout;
-      exit $AM_STATE_RED
     }
 }
 

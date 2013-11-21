@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: addRAIDPkg.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: addRAIDPkg.pl 1372 2010-01-18 14:06:08Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 
@@ -11,70 +11,38 @@ $cce->connectuds();
 
 my $packageName = 'RAID'; 
 my $isConfigurable = 0;
+my $add_raid_pkg = 1;
 my ($system, $ok, $prod, $level);
 
 my @oids = $cce->find('System', {});
 if (@oids == 1) {
-    ($ok, $system) = $cce->get($oids[0]);
-    if ( $ok ) {
-	$prod = ${$system}{'productBuild'};
-    
-    # raid level is not configurable on Bluapp
-    my $home_partition = `/bin/df -l -P /home | grep "/home"`;
-    $home_partition = (split / +/, $home_partition)[0];
-    if ( $home_partition =~ /VolGroup00/ ) {
-	my $lvm = 1;
-	my $volgroup_name = "VolGroup00";
-	my $home_device = `/usr/sbin/vgdisplay $volgroup_name --verbose | /bin/grep 'PV Name'`;
-	($home_device) = (split / +/, $home_device)[3];
-	if( $home_device =~ /\/dev\/md/ ) {
-	    $raid = 1;
-	    $level = `/sbin/mdadm --misc -D $home_device |grep 'Raid Level'`;
-	    ($level) = (split /raid/, $level)[1];
-	} else {
-	    $raid = 0;
-	    $level = 0;
+	($ok, $system) = $cce->get($oids[0]);
+	if ( $ok ) {
+   	$prod = ${$system}{'productBuild'};
+		# raid level is configurable on Raqs
+		if ($prod  =~ /\d+R/) {
+			$isConfigurable = 1;
+			$add_raid_pkg = 0;
+		} else {
+			# we ship RAID1 on nonconfigurable systems
+			$level="1";
+		}
 	}
-    } elsif ($home_partition =~ /\/dev\/md/ ) {
-	$home_device = $home_partition;
-	$lvm = 0;
-	$raid = 1;
-	$level = `/sbin/mdadm --misc -D $home_device |grep 'Raid Level'`;
-	($level) = (split /raid/, $level)[1];
-    } else {
-	$lvm = 0;
-	$raid = 0;
-	$level = 0;
-    }
-}
-}
-
-my $add_raid_pkg = 1 if ($raid);
-
+} 
 
 my $disks = Cobalt::RAID::raid_get_numdisk();
+$isConfigurable = 0 if ( $disks < 2 );
 
 if (@oids == 1) {
-    # The level can only be set once (reconfiguration is not allowed)
-    # therefore we don't set a level now for configurable systems
-    if ($level) {
-	$ok = $cce->set($oids[0], 'RAID', { level => $level, configurable => $isConfigurable, disks => $disks }); 
+	# The level can only be set once (reconfiguration is not allowed)
+	# therefore we don't set a level now for configurable systems
+	if ($level) {
+		$ok = $cce->set($oids[0], 'RAID', { level => $level, configurable => $isConfigurable, disks => $disks }); 
 	} else {
-	    $ok = $cce->set($oids[0], 'RAID', { configurable => $isConfigurable, disks => $disks }); 
+		$ok = $cce->set($oids[0], 'RAID', { configurable => $isConfigurable, disks => $disks }); 
 	}
 }
 
-#@oids = $cce->find('Package', {'name' => $packageName, vendor => 'Cobalt' });
-#if (($#oids < 0) && $add_raid_pkg) {
-#    $cce->create('Package', { 'name' => $packageName,
-#			      'vendor' => 'Cobalt',
-#			      'version' => 'v1.1',
-#			      'nameTag' => '[[base-raid.pkgName]]',
-#			      'vendorTag' => '[[base-raid.pkgVendor]]',
-#			      'shortDesc' => '[[base-raid.pkgDescription]]',
-#			      'new' => 0,
-#			      'installState' => 'Installed' });
-#}
 $cce->bye();
 exit 0;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.

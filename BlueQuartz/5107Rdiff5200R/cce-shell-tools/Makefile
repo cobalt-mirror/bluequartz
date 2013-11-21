@@ -9,7 +9,7 @@ CWD = `pwd`
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.20
+VERSION   =   2.08
 
 BUILD_DIR =   /tmp/shell-tools
 TMP_DIR   =   $(BUILD_DIR)/shell-tools
@@ -68,23 +68,9 @@ raq550: cmu
 	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
 	$(RPMBUILD) -ta $(TMPTAR)
 
-5106r: cmu
-	sed -e 's/\[PRODUCT\]/5106R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5106R/' < $(MAKE_IN) > $(MAKE_FILE)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
-	$(RPMBUILD) -ta $(TMPTAR)
-
-5107r: cmu
-	sed -e 's/\[PRODUCT\]/5107R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5107R/' < $(MAKE_IN) > $(MAKE_FILE)
-	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
-	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
-	$(RPMBUILD) -ta $(TMPTAR)
-
-5108r: cmu
-	sed -e 's/\[PRODUCT\]/5108R/' < $(SPEC_IN) > $(SPEC_FILE)
-	sed -e 's/\[PRODUCT\]/5108R/' < $(MAKE_IN) > $(MAKE_FILE)
+5200r: cmu
+	sed -e 's/\[PRODUCT\]/5200R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5200R/' < $(MAKE_IN) > $(MAKE_FILE)
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
 	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
 	$(RPMBUILD) -ta $(TMPTAR)

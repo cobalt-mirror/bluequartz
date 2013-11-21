@@ -2,10 +2,11 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$helper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -17,7 +18,7 @@ $cce =& $helper->getCceClient();
 $page = $factory->getPage();
 $i18n =& $factory->getI18n();
 
-if (!$file || preg_match("/.\//", $file) || (!preg_match("/.png$/", $file) && !preg_match("/.html$/", $file)) )
+if (!$file || ereg("./", $file) || (!ereg(".png$", $file) && !ereg(".html$", $file)) )
 {
     $file = "index.html";
 }

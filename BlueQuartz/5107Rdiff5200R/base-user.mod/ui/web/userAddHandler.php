@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAddHandler.php 1117 2008-05-14 16:18:22Z mstauber $
+// $Id: userAddHandler.php 1534 2010-09-28 08:36:52Z oride $
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -38,9 +38,9 @@ $styleIdToName = $stylist->getAllResources("en");
 // get IDs of all available styles
 $styleIds = array_keys($styleIdToName);
 
-// style preference is the "BlueOnyx" if it is available, the first available
+// style preference is the "trueBlue" if it is available, the first available
 // style of nothing if no styles are available
-$firstChoice = "BlueOnyx";
+$firstChoice = "trueBlue";
 $stylePreference = "";
 if(count($styleIds) > 0)
 {
@@ -76,45 +76,14 @@ else
     $volume = "/home";
 }
 
-// Handle FTP access clauses:
-if ($ftpForNonSiteAdmins == "0") {
-    $hasNoFTPaccess = "1";
-}
-else {
-    $hasNoFTPaccess = "0";
-}
-
-//echo "SiteAdminFlag: $siteAdministrator <br>";
-
-if ($siteAdministrator == "1") {
-    $hasNoFTPaccess = "0";
-}
-
-// If a prefix is given, prepend it to the userName:
-if ($prefix) {
-    $UserNameArray = array($prefix, $userNameField);
-    $newUserName = implode("_", $UserNameArray);
-    
-    // If someone uses a really long username, then a prefix may make it too long.
-    // So we need to check how long the username now is and if need be, we need to shorten it:
-    $unameLength = strlen($newUserName);
-    if ($unameLength > '31') {
-	// Ok, the name is too long. We need to shorten it back down to 32 characters:
-	$newUserNameShort = (mb_substr($newUserName, '0', '31'));
-	$newUserName = $newUserNameShort;
-    }
-}
-else {
-    $newUserName = $userNameField;
-}
+$userNameField = $userPrefixField.$userSuffixField;
 
 $attributes = array(
-                "name" => $newUserName, 
+                "name" => $userNameField, 
                 "sortName" => $sortby, 
                 "fullName" =>$fullNameField, 
                 "password" => $passwordField, 
 		"emailDisabled" => $emailDisabled,
-		"ftpDisabled" => $hasNoFTPaccess,
                 "localePreference" => "browser", 
                 "stylePreference" => $stylePreference, 
                 "volume" => $volume,
@@ -133,7 +102,7 @@ if (isset($siteAdministrator))
 
 if (isset($dnsAdministrator))
 {
-    $attributes["capLevels"] .= ($dnsAdministrator ? '&dnsAdmin&' : '');
+    $attributes["capLevels"] .= ($dnsAdministrator ? '&siteDNS&' : '');
 }
 
 // dirty trick
@@ -142,8 +111,7 @@ $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);
 // Username = Password? Baaaad idea!
 if (strcasecmp($userNameField, $passwordField) == 0) {
         $attributes["password"] = "1";
-        $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
-        $errors[] = new Error($error_msg);
+        $errors[] = new Error("[[base-user.error-password-equals-username]]");
 }
 
 // Open CrackLib Dictionary for usage:
@@ -187,7 +155,7 @@ if($oid == 0 || count($errors) > 0)
 	}
 
 	// check for username collision, add rejected value to email aliases
-	if (($errors[$i]->code == 5) && (preg_match('/userNameSuggest/', $errors[$i]->message)))
+	if (($errors[$i]->code == 5) && (ereg('userNameSuggest', $errors[$i]->message)))
 	{
 	    if($i18n->getProperty("suggestUsername") == "yes") 
 	    {
@@ -202,7 +170,7 @@ if($oid == 0 || count($errors) > 0)
                     global $HTTP_POST_VARS;
 
 	    	    // The following regex tests for identical use of the username in the alias field:
-	    	    if(!preg_match('/[^a-zA-Z0-9\-\_]'.$userNameField.'[^a-zA-Z0-9\-\_]/',$emailAliasesField)) 
+	    	    if(!ereg('[^a-zA-Z0-9\-\_]'.$userNameField.'[^a-zA-Z0-9\-\_]',$emailAliasesField)) 
 	   	    {
 	  	        $HTTP_POST_VARS['emailAliasesField'] = $userNameField.$emailAliasesField;
 	            }

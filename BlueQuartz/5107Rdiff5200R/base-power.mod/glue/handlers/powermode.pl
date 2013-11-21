@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/power
-# $Id: powermode.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id$
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use CCE;
@@ -15,20 +15,18 @@ my $old = $cce->event_old();
 my $object = $cce->event_object();
 my $new = $cce->event_new();
 
-if (-e "/proc/sys/cobalt/powermode") {
-    if ($new->{powermode} || $new->{set_modes_now}) {
-        print LOG "new powermode is " . $object->{powermode} . "\n";
-    
-        open(FILE, ">/proc/sys/cobalt/powermode");
-        $success = print FILE "$object->{powermode}\n";
-        close(FILE);
-    
-        if (!$success) {
-    	$cce->warn("[[base-power.errSettingPowerMode]]");
-    	$cce->bye('FAIL');
-    	exit 1;
-        }
-	}
+if ($new->{powermode} || $new->{set_modes_now}) {
+    print LOG "new powermode is " . $object->{powermode} . "\n";
+
+    open(FILE, ">/proc/sys/cobalt/powermode");
+    $success = print FILE "$object->{powermode}\n";
+    close(FILE);
+
+    if (!$success) {
+	$cce->warn("[[base-power.errSettingPowerMode]]");
+	$cce->bye('FAIL');
+	exit 1;
+    }
 }
 
 close LOG;

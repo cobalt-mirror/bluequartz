@@ -2,7 +2,7 @@
 // $Id: Shell.php.modify.User,v 1.1.1.1 2001/10/19 22:54:08 pbaltz Exp $
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 
-include_once('UIExtension.php');
+include('UIExtension.php');
 
 class ShellExtension extends UIExtension
 {

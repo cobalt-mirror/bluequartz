@@ -1,4 +1,4 @@
-# $Id: Makefile 266 2004-01-10 15:35:23Z shibuya $
+# $Id: Makefile 1402 2010-03-10 14:12:15Z shibuya $
 
 ifdef TOPDIR
 include $(TOPDIR)/devel/defines.mk
@@ -21,7 +21,7 @@ install: all
 rpm: 
 	for t in $(DIRS) ; do \
 		/bin/rm -rf /tmp/$$t ; \
-		tar -zcvf /tmp/$$t.tar.gz $$t &> /dev/null &&\
+		tar --exclude='.svn' -zcvf /tmp/$$t.tar.gz $$t &> /dev/null &&\
 		$(RPMBUILD) -ta /tmp/$$t.tar.gz &> /tmp/rpm.log && \
 		/bin/rm -f /tmp/$$t.tar.gz ; \
 		/bin/rm -rf /tmp/$$t ; \

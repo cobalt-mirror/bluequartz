@@ -6,16 +6,24 @@
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
-$cceClient = $serverScriptHelper->getCceClient();
 
-$factory = $serverScriptHelper->getHtmlComponentFactory("base-alpine", "");
+$stylist = $serverScriptHelper->getStylist();
+$style = $stylist->getStyle("Page");
+$style->setProperty("backgroundColor", "", "#FFFFFF");
+$style->setProperty("backgroundImage", "", "");
+$stylist->setStyle($style);
+
+$splash = $stylist->getStyle("splash");
+$splashImage = $splash->getProperty("persprofile");
+
+$factory = new HtmlComponentFactory($stylist, $serverScriptHelper->getI18n("base-alpine"), "");
 $i18n = $serverScriptHelper->getI18n("base-alpine");
 $page = $factory->getPage();
-print($page->toHeaderHtml()); 
+print($page->toHeaderHtml($style)); 
 
 // Netscape doesn't honor body text styles in tables
-$fontTag = "<FONT STYLE=\"font-family:Arial,Helvetica,sans-serif;font-size:12px;\">%s</FONT>";
-$smallFontTag = "<FONT STYLE=\"font-family:Arial,Helvetica,sans-serif;font-size:12px;\">%s</FONT>";
+$fontTag = "<FONT STYLE=\"" . $style->toTextStyle() . "\">%s</FONT>";
+$smallFontTag = "<FONT STYLE=\"" . $style->toTextStyle("tiny") . "\">%s</FONT>";
 ?>
 
 <TABLE BORDER="0" CELLSPACING="0" CELLPADDING="5" WIDTH="530">

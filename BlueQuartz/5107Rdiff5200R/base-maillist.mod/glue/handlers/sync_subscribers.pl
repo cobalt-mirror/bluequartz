@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/maillist
-# $Id: sync_subscribers.pl 462 2005-03-29 06:22:59Z shibuya $
+# $Id: sync_subscribers.pl 1350 2009-12-23 13:29:37Z shibuya $
 #
 # Counts subscribers for mailing lists GUI
 # System.MailList .site .commit
@@ -47,7 +47,7 @@ foreach my $oid (@lists) {
 	my($ok, $ml) = $cce->get($oid);
 	next unless ($ok);
 
-	my $list = '/usr/local/majordomo/sites/'.
+	my $list = '/var/lib/majordomo/sites/'.
 		$ml->{site} . '/lists/' . $ml->{name};
 
 	next unless (-r $list);

@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -103,31 +103,12 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-65BQ13
+- new Capabilities for admin.
 
-* Sat Jun 23 2012 Greg Kuhnert 1.1.0-65BX19
-- Tweaked glue/handlers/powermode.pl and glue/handlers/wakemode.pl - They were throwing errors on cced restart on non-cobalt hardware.
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BX18
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BX17
-- Copied 'en' locales to 'en_US'
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BX16
-- Version number bump
-
-* Tue Aug 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BQ15
-- If Object 'System' didn't have OID #1 the GUI buttons for reboot and shutdown wouldn't work.
-- Fixed this in ui/web/shutdownHandler.php and ui/web/rebootHandler.php
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BQ14
-- Rebuilt for BlueOnyx.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BQ13
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-65BQ12
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-65BQ12
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-65BQ11
 - Fixed duplicate include issue.

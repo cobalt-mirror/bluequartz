@@ -1,16 +1,15 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
-Version: 0.5.2
-Release: 1BX09%{?dist}
+Version: 0.5.1
+Release: 0BQ18%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: %{name}.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
-Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
@@ -28,18 +27,18 @@ make install PREFIX=$RPM_BUILD_ROOT
 %postun
 if [ $1 -eq 0 ]; then
   for i in /usr/lib/rpm/rpmrc /usr/lib/rpm/redhat/rpmrc; do
-    if test -f "$i" && egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.blueonyx' "$i"; then
+    if test -f "$i" && egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.bluequartz' "$i"; then
       perl -pi -e \
-        's,^(macrofiles:.*):%{_sysconfdir}/rpm/macros\.blueonyx,$1,' "$i"
+        's,^(macrofiles:.*):%{_sysconfdir}/rpm/macros\.bluequartz,$1,' "$i"
     fi
   done
 fi
 
 %triggerin -- rpm, redhat-rpm-config, /usr/lib/rpm/rpmrc, /usr/lib/rpm/redhat/rpmrc
 for i in /usr/lib/rpm/rpmrc /usr/lib/rpm/redhat/rpmrc; do
-  if test -f "$i" && ! egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.blueonyx' "$i"; then
+  if test -f "$i" && ! egrep -q '^macrofiles:.*%{_sysconfdir}/rpm/macros\.bluequartz' "$i"; then
     perl -pi -e \
-      's,^(macrofiles:.*?)(:~/.*)?$,$1:%{_sysconfdir}/rpm/macros\.blueonyx$2,' "$i"
+      's,^(macrofiles:.*?)(:~/.*)?$,$1:%{_sysconfdir}/rpm/macros\.bluequartz$2,' "$i"
   fi
 done
 
@@ -50,53 +49,17 @@ done
 /usr/sausalito/include/*
 /usr/sausalito/bin/*
 /usr/sausalito/perl/*
-/etc/rpm/macros.blueonyx
+/etc/rpm/macros.bluequartz
 
 %changelog
-* Mon Aug 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX09
-- Added scripts/packsort.pl, a parser for packing_list. It processes a packing_list and dumps a version
-  with semi-correct RPM sort order to STDOUT
-- Modified scripts/makePkg to create a packing_list with semi-correct RPM sort order, provided the file
-  /usr/sausalito/devel/.pkgsort exists (may be empty).
+* Mon Feb 22 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ18
+- modified defined.mk for FC12 that rpmbuild dir is on home directory.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX08
-- Updated dependencies.
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ17
+- add pre section to spec template.
 
-* Sat Mar 03 2012 Greg Kuhnerg 0.5.1-0BX07
-- Updated module.mk to fix a few problems for building PKG files
-- Updated makePkg to copy scripts directory
-
-* Wed Aug 24 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO6
-- Updated scripts/mendocino_package to remove path from find command as it is different between EL5 and EL6
-
-* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO5
-- Updated Requires to make it easier to get a build system set up.
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO4
-- Modified rules/defines.mk: Added 'en' to excluded locales, as we now use 'en_US' as default.
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BXO3
-- Updated rpm-macros
-
-* Wed May 19 2010 Michael Stauber <mstauber@solarspeed.net> 0.5.2-1BO2
-- Added 5108R version number for 64-bit build
-- Bumped version number
-- Added strings for CentOS6 to rpm-macros
-
-* Tue Mar 30 2010 Rickard Osser <rickard.osser@bluapp.com> 0.5.2-1BO1
-- Fixed for CentOS6 and added small quirks for easier build.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ20
-- Updated for name change to BlueOnyx.
-
-* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ19
-- Removed changelog entries from templates/spec.tmpl 
-
-* Sun Jun 01 2008 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BQ17
-- rules/defines.mk updated for 51006R
-
-* Sun Jan 27 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ16
-- add sign to the package.
+* Fri Sep 04 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ16
+- build for 5200R on CentOS5.
 
 * Sun Apr 29 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 0.5.1-0BQ15
 - support subversion repository again.

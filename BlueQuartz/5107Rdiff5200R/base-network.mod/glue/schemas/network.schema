@@ -1,5 +1,5 @@
 <!--
-	$Id: network.schema 1136 2008-06-05 01:48:04Z mstauber $
+	$Id: network.schema 1437 2010-03-21 12:59:56Z shibuya $
 	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 	
 	This is the schema for all things network.
@@ -14,7 +14,7 @@
 />
 
 <typedef name="interface" type="re"
-    data="(^eth[0-9]+(:[0-9]+)?$)|(^venet[0-9]+(:[0-9]+)?$)"/>
+    data="^eth[0-9]+(:[0-9]+)?$"/>
 
 <!-------------------------------------------------------------------------
   System.Network
@@ -40,7 +40,12 @@
     <!-- set to true to enable IP pooling -->
     <property 
         name="pooling" type="boolean" default="0"
-        writeacl="ruleCapable(ipPooling)"
+        writeacl="ruleCapable(serverIpPooling)"
+    />
+    <!-- Allow to change IP address -->
+    <property
+	name="interfaceConfigure" type="boolean" default="1"
+	writeacl="ruleCapable(adminUser)"
     />
 </class>
 

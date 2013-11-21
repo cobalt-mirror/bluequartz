@@ -4,7 +4,7 @@ Version: 1.0.1
 Release: 3BQ9%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Source: base-time-src.tar.gz
 BuildRoot: /var/tmp/base-time-src
 
@@ -27,9 +27,8 @@ PREFIX=$RPM_BUILD_ROOT make install
 %attr(0700,root,root)/usr/sausalito/sbin/epochdate
 
 %changelog
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-3BQ9
-- Rebuilt for BlueOnyx.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-3BQ9
+- remove .svn directory from rpm package.
 
 * Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-3BQ8
 - add sign to the package.

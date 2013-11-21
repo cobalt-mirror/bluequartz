@@ -57,7 +57,7 @@ if ($amobj == null) {
 			// (ie. if Email, then do SMTP, POP3, IMAP too)
 			*/
 			if ($namespace["type"] == "aggregate") {
-				$amServices = preg_split("/ /",$namespace["typeData"]);
+				$amServices = split(" ",$namespace["typeData"]);
 				foreach($amServices as $agServ) {
 					$cce->set($amobj["OID"],$agServ,
 						array("monitor" => $val)

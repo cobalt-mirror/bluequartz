@@ -1,23 +1,24 @@
 <?
 // Copyright Sun Microsystems, Inc. 2001
-// $Id: vsiteFtp.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: vsiteFtp.php 1478 2010-05-30 05:00:16Z shibuya $
 // vsiteFtp.php
 // display the form to modify anonymous ftp settings for a vsite
 
 include_once('ServerScriptHelper.php');
-include_once('AutoFeatures.php');
-include_once('Capabilities.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 $factory =& $helper->getHtmlComponentFactory('base-ftp', 
                     '/base/ftp/vsiteFtp.php');
 $cce =& $helper->getCceClient();
 
-// Only adminUser can modify things on this page.  
+// Only serverFTP can modify things on this page.  
 // Site admins can view it for informational purposes.
-if ($helper->getAllowed('adminUser')){
+if ($helper->getAllowed('serverFTP')){
     $is_site_admin = 0;
     $access = 'rw';
+} elseif ($helper->getAllowed('siteAnonFTP')) {
+    $access = 'rw';
+    $is_site_admin = 1;
 } elseif ($helper->getAllowed('siteAdmin') &&
           $group == $helper->loginUser['site']) {
     $access = 'r';
@@ -39,15 +40,6 @@ if ($ftp_submit)
             array('name' => $group));
 
     $errors = $cce->errors();
-
-    // handle auto features saves here:
-    $vsite_oid = $cce->find('Vsite', array('name' => $group));
-    $autoFeatures = new AutoFeatures($helper);
-    $cce_info = array("CCE_OID" => $vsite_oid[0]);
-    list($cce_info["CCE_SERVICES_OID"]) = $cce->find("VsiteServices");
-    $af_errors = $autoFeatures->handle("modify.FTP", $cce_info);
-    $errors = array_merge($errors, $af_errors);
-
 }
 
 $page = $factory->getPage();
@@ -66,18 +58,10 @@ if (!$ftp_submit)
 $vsite_disk =& $cce->get($vsite_oid, 'Disk');
 
 // start the paged block
-$settings =& $factory->getPagedBlock('ChangeSiteFtp');
+$settings =& $factory->getPagedBlock('modAnonFtp');
 $settings->processErrors($errors);
 $settings->setLabel(
-    $factory->getLabel('ChangeSiteFtp', false, array('fqdn' => $vsite['fqdn'])));
-
-
-// add auto-detected features
-$autoFeatures = new AutoFeatures($helper);
-$cce_info = array('CCE_OID' => $vsite['OID']);
-list($cce_info['CCE_SERVICES_OID']) = $cce->find('VsiteServices');
-
-$autoFeatures->display($settings, 'modify.FTP', $cce_info);
+    $factory->getLabel('modAnonFtp', false, array('fqdn' => $vsite['fqdn'])));
 
 // need to embed this or things get confused
 $settings->addFormField($factory->getTextField('group', $group, ''));
@@ -132,16 +116,6 @@ if ($is_site_admin) {
     );
 	$settings->setColumnWidths(array('20%', '80%'));
 }
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$settings->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
-
 
 // add the buttons
 if (!$is_site_admin)

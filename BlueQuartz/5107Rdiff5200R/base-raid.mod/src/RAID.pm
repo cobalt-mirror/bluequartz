@@ -61,24 +61,7 @@ sub raid_get_state
 
     open(RAID, "/proc/mdstat") or return undef;
     while (<RAID>) {
-	# Patch for handling a 2.6 kernel formatted /proc/mdstat
-        if(/^ /) {
-	    if($dummy eq 1) {
-		chomp;
-                $dummy = 0;
-                $mdstat .= $_ ."\n";
-            }
-        } else {
-            if (/^md/){
-                $dummy = 1;
-                chomp;
-                $mdstat .= $_;
-            }
-        }
-    }
-    
-    foreach $drive ($mdstat) {
-        $_ = $drive;
+
 	# process each raid array
 	if (/^md/ ... /^\s*$/) {
 	    chomp;

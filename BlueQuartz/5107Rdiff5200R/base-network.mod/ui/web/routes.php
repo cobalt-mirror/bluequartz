@@ -1,6 +1,6 @@
 <?php
 /*
- * $Id: routes.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: routes.php 1418 2010-03-10 14:38:14Z shibuya $
  * Copyright 2001 Sun Microsystems, Inc.	All rights reserved.
  *
  * this one little script both creates the list view, the edit/create view,
@@ -13,8 +13,8 @@ include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverNetwork should be here
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -182,9 +182,6 @@ function edit_route ()
 	$mypage = $ui->Page;
 	$myform = $mypage->getForm();
 	$myid = $myform->getId();
-
-	// Have to do this or last input box doesn't show up on PHP5:
-	$ui->SelectField("Nothing", "");
 
 	$ui->Block->addButton(new SaveButton($ui->Page, "javascript: if(document.form.onsubmit()) { document.$myid._save.value = 1; document.$myid.submit(); }"));
 	$ui->Block->addButton(new CancelButton($ui->Page, ($self . "?SAVE= ". ($edit ? $edit : "Route"))));

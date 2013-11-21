@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userMod.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: userMod.php 1534 2010-09-28 08:36:52Z oride $
  */
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -37,15 +37,9 @@ $userDisk = $cceClient->get($oids[0], "Disk");
 $userEmail = $cceClient->get($oids[0], "Email");
 $group = $user["site"];
 
-// Find out if FTP access for non-siteAdmins is enabled or disabled for this site:
-list($ftpvsite) = $cceClient->find("Vsite", array("name" => $group));
-$ftpPermsObj = $cceClient->get($ftpvsite, 'FTPNONADMIN');
-$ftpnonadmin = $ftpPermsObj['enabled'];
-
 $page = $factory->getPage();
 
 $block = new PagedBlock($page, "modifyUser", $factory->getLabel("modifyUser", false, array("userName" => $userNameField)));
-
 $block->addPage("account", $factory->getLabel("account"));
 $block->addPage("email", $factory->getLabel("email"));
 
@@ -118,7 +112,7 @@ if ( isset($group) && $group != "" ) {
   );
 
   $block->addFormField(
-    $factory->getBoolean("dnsAdministrator", $capabilities->getAllowed('dnsAdmin', $useroid) ),
+    $factory->getBoolean("dnsAdministrator", $capabilities->getAllowed('siteDNS', $useroid) ),
     $factory->getLabel("dnsAdministratorField"),
     "account"
   );
@@ -173,137 +167,37 @@ $block->addFormField(
   "email"
 );
 
-// Start: PHP5 work around against data loss in composite form fields:
-if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_modifyUser != "account")) {
+$forwardEnable = $factory->getOption("forwardEnable", $userEmail["forwardEnable"]);
 
-    // This displays when we're on the "Email" tab:
+$forward_emails =& $factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"]);
+$forward_emails->setOptional('silent');
 
-    $forwardEnable = $factory->getOption("forwardEnable", $userEmail["forwardEnable"]);
-    $forward_emails =& $factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"]);
-    $forward_emails->setOptional('silent');
-
-    $forwardEnable->addFormField(
-	$forward_emails,
-	$factory->getLabel("forwardEmailField")
-    );
-    $forwardEnable->addFormField(
-        $factory->getBoolean("forwardSaveField", $userEmail["forwardSave"]),
-        $factory->getLabel("forwardSaveField")
-    );
+$forwardEnable->addFormField(
+  $forward_emails,
+  $factory->getLabel("forwardEmailField")
+);
+$forwardEnable->addFormField(
+  $factory->getBoolean("forwardSaveField", $userEmail["forwardSave"]),
+  $factory->getLabel("forwardSaveField")
+);
   
-    $forward = $factory->getMultiChoice("forwardEnableField");
-    $forward->addOption($forwardEnable);
-    $block->addFormField(
-	$forward,
-	$factory->getLabel("forwardEnableField"),
-	"email"
-    );
+$forward = $factory->getMultiChoice("forwardEnableField");
+$forward->addOption($forwardEnable);
+$block->addFormField(
+  $forward,
+  $factory->getLabel("forwardEnableField"),
+  "email"
+);
 
-    $enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
-    if(!$userEmail["vacationMsgStart"]) { 
-      $start = time(); 
-      $oldStart = time(); 
-    } else { 
-      $start = $userEmail["vacationMsgStart"]; 
-      $oldStart = $userEmail["vacationMsgStop"]; 
-    } 
-    
-    if(!$userEmail["vacationMsgStop"]) { 
-      $stop = time(); 
-      $oldStop = time(); 
-    } else { 
-      $stop = $userEmail["vacationMsgStop"]; 
-      $oldStop = $userEmail["vacationMsgStop"]; 
-    } 
-    
-    $autoRespondStartDate = $factory->getTimeStamp("autoRespondStartDate", $start, "datetime"); 
-    $enableAutoResponder->addFormField($factory->getTimeStamp("oldStart", $oldStart, "time", "")); 
-    
-    $autoRespondStopDate = $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime"); 
-    $enableAutoResponder->addFormField($factory->getTimeStamp("oldStop", $oldStop, "time", "")); 
-    
-    $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
-    $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
-  
-    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
-    $autoResponder = $factory->getMultiChoice("autoResponderField");
-    $autoResponder->addOption($enableAutoResponder);
-    $block->addFormField(
-	$autoResponder,
-	$factory->getLabel("autoResponderField"),
-	"email"
-    );
-
-}
-else {
-
-    // When we're on the "Account" tab we instead input hidden fields with our data:
-
-    if(!$userEmail["vacationMsgStart"]) { 
-      $start = time(); 
-      $oldStart = time(); 
-    } else { 
-      $start = $userEmail["vacationMsgStart"]; 
-      $oldStart = $userEmail["vacationMsgStop"]; 
-    } 
-    
-    if(!$userEmail["vacationMsgStop"]) { 
-      $stop = time(); 
-      $oldStop = time(); 
-    } else { 
-      $stop = $userEmail["vacationMsgStop"]; 
-      $oldStop = $userEmail["vacationMsgStop"]; 
-    } 
-
-    if ($userEmail["forwardEnable"] == "1") {
-	$userEmail["forwardEnable"] = "forwardEnable";
-    }
-
-    $block->addFormField(
-	$factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"], 'r'),
-	$factory->getLabel("forwardEmailField"),
-	"Hidden"
-    );
-
-    $block->addFormField(
-	$factory->getBoolean("forwardSaveField", $userEmail["forwardSave"], 'r'),
-	$factory->getLabel("forwardSaveField"),
-	"Hidden"
-    );
-
-    $block->addFormField(
-	$factory->getBoolean("forwardEnableField", $userEmail["forwardEnable"], 'r'),
-	$factory->getLabel("forwardEnableField"),
-	"Hidden"
-    );
-
-    $block->addFormField(
-	$factory->getBoolean("enableAutoResponderField", $userEmail["vacationOn"], 'r'),
-	$factory->getLabel("enableAutoResponderField"),
-	"Hidden"
-    );
-    
-    $block->addFormField( 
-	 $factory->getTimeStamp("autoRespondStartDate", $start, "datetime", "r"), 
-	 $factory->getLabel("autoRespondStartDate"), 
-	 "Hidden" 
-    ); 
-    
-    $block->addFormField( 
-	 $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime", "r"), 
-	 $factory->getLabel("autoRespondStopDate"), 
-	 "Hidden" 
-    );
-    
-    $block->addFormField(
-	$factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"], 'r'),
-	$factory->getLabel("autoResponderMessageField"),
-	"Hidden"
-    );
-
-}
-
-// End: PHP5 related work around
+$enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
+$enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
+$autoResponder = $factory->getMultiChoice("autoResponderField");
+$autoResponder->addOption($enableAutoResponder);
+$block->addFormField(
+  $autoResponder,
+  $factory->getLabel("autoResponderField"),
+  "email"
+);
 
 $block->addFormField(
   $factory->getBoolean("suspendUser", !$user["ui_enabled"]),
@@ -333,13 +227,7 @@ $serverScriptHelper->destructor();
 ?>
 <?php print($page->toHeaderHtml()); ?>
 
-<?php print($block->toHtml()); 
-
-// Hidden ftpForNonSiteAdmins flag:
-print "<br><input type=\"hidden\" name=\"ftpForNonSiteAdmins\" value=\"" . $ftpnonadmin . "\"><br>";
-
-?>
-
+<?php print($block->toHtml()); ?>
 <?php print($userName->toHtml()); ?>
 
 <?php print($page->toFooterHtml());

@@ -1,7 +1,6 @@
-#!/usr/bin/perl -I/usr/sausalito/perl
+#!/usr/bin/perl -w
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
-# $Id: ssl_import.pl
+# $Id: ssl_import.pl,v 1.8.2.1 2002/02/05 21:47:18 pbaltz Exp $
 # import an uploaded signed certificate and optionally a private key
 
 use strict;
@@ -60,7 +59,6 @@ if ($group)
     if ($vsite->{basedir})
     {
         $cert_dir = "$vsite->{basedir}/$SSL::CERT_DIR";
-	$DEBUG && print STDERR "Cert-Directory: $vsite->{basedir}/$SSL::CERT_DIR \n";
     }
     else
     {
@@ -254,19 +252,14 @@ if ($type ne 'caCert')
     
     # munge date because they changed the strtotime function in php
     $expires =~ s/(\d{1,2}:\d{2}:\d{2})(\s+)(\d{4,})/$3$2$1/;
-
-    # Some certificates don't have the Country or State in the 'Subject',
-    # so we set some defaults here if they're empty:
-    if (!$subject->{C}) { $subject->{C} = "US";}
-    if (!$subject->{ST}) { $subject->{ST} = "Other";}
-
+    
     $cert_info = {
                         'country' => $subject->{C},
                         'state' => $subject->{ST},
                         'city' => $subject->{L},
                         'orgName' => $subject->{O},
                         'orgUnit' => $subject->{OU},
-                        'email' => $subject->{emailAddress},
+                        'email' => $subject->{Email},
                         'expires' => $expires
                     };
 } # end if ($type)
@@ -287,19 +280,17 @@ elsif (not $ok)
 }
 
 exit(0);
-
-# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without modification, 
-# are permitted provided that the following conditions are met:
+# Redistribution and use in source and binary forms, with or without 
+# modification, are permitted provided that the following conditions are met:
 # 
-# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+# -Redistribution of source code must retain the above copyright notice, 
+# this list of conditions and the following disclaimer.
 # 
 # -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation and/or 
-# other materials provided with the distribution.
+# this list of conditions and the following disclaimer in the documentation  
+# and/or other materials provided with the distribution.
 # 
 # Neither the name of Sun Microsystems, Inc. or the names of contributors may 
 # be used to endorse or promote products derived from this software without 

@@ -2,10 +2,10 @@
     id="base_software" 
     label="[[base-swupdate.software]]" 
     description="[[base-swupdate.software_help]]" 
-    url="/base/swupdate/yum.php"
+    url="/base/swupdate/splashSoftware.php"
 >
     <parent id="root" order="20">
-        <access require="adminBlueLinq"/>
+        <access require="managePackage"/>
     </parent>
 </item>
 <!--

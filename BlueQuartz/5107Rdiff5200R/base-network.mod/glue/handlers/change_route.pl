@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
 #
-# $Id: change_route.pl 1136 2008-06-05 01:48:04Z mstauber $
+# $Id: change_route.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # Keeps the routing table on a running machine up to date with
@@ -52,94 +52,6 @@ else
     $cce->connectfd();
 }
 
-# Handle bootproto=dhcp on AWS, where we do NOT change ifcfg-eth0:
-if (-f "/etc/is_aws") {
-        $cce->bye('SUCCESS');
-        exit(0);
-}
-
-
-# Handle OpenVZ network situation:
-if (-e "/proc/user_beancounters") {
-
-    # This is a bit special. Some time ago OpenVZ switched the network behaviour of VPS's
-    # a little. In the past the fake GATEWAY of 192.0.2.1" was mandatory. Now it is no
-    # longer mandatory. But if it is missing, then we at least need to have the parameter
-    # GATEWAYDEV set to "venent0" in /etc/sysconfig/network. This routine here parses
-    # /etc/sysconfig/network if we're under OpenVZ. It checks if GATEWAY and/or GATEWAYDEV
-    # are set. If one of them is not set, we check if we have a network connection by
-    # pinging the IP "8.8.8.8". If we get no result, we edit /etc/sysconfig/network and
-    # make sure that both the fake GATEWAY and the GATEWAYDEV are set. Finally the
-    # network is restarted.
-
-    # Parse /etc/sysconfig/network:
-    $sys_network = "/etc/sysconfig/network";
-    if (-f $sys_network) {
-	open (F, "/etc/sysconfig/network") || die "Could not open $sys_network $!";
-	while ($line = <F>) {
-    	    chomp($line);
-    	    next if $line =~ /^\s*$/;               # skip blank lines
-    	    next if $line =~ /^#$/;                 # skip comments
-    	    if ($line =~ /^GATEWAY=(.*)$/) {
-                $my_gateway = $1;
-                if ($my_gateway =~ /^\"(.*)\"/g) {
-            	    $my_gateway = $1;
-                }
-                
-    	    }
-    	    if ($line =~ /^GATEWAYDEV=(.*)$/) {
-                $my_gatewaydev = $1;
-                if ($my_gatewaydev =~ /^\"(.*)\"/g) {
-            	    $my_gatewaydev = $1;
-                }
-    	    }
-	}
-	close(F);
-    }
-
-    # We're on OpenVZ. See if we have either GATEWAY or GATEWAYDEV defined:
-    if ((!$my_gateway) || (!$my_gatewaydev)) {
-	# At least either GATEWAY or GATEWAYDEV are undefined. Test network connectivity
-	# to see if we can establish a network connection to the outside:
-	use Net::Ping;
-	$p = Net::Ping->new();
-	$host = "8.8.8.8";
-	if (!$p->ping($host)) {
-	    # Network is dead. We need to fix it.
-
-	    # Build output hash:
-	    if ((!$my_gateway) && (!$my_gatewaydev)) {
-		$server_sys_network_writeoff = {
-		    'GATEWAY' => '"192.0.2.1"',
-		    'GATEWAYDEV' => '"venet0"'
-		};
-	    }
-	    elsif ((!$my_gateway) && ($my_gatewaydev)) {
-		$server_sys_network_writeoff = {
-		    'GATEWAY' => '"192.0.2.1"'
-		};
-	    }
-	    else {
-		$server_sys_network_writeoff = {
-		    'GATEWAYDEV' => '"venet0"'
-		};
-	    }
-
-	    # Edit /etc/sysconfig/network:
-	    &edit_sys_network;
-
-	    # Restart Network:
-	    system("/etc/init.d/network restart > /dev/null 2>&1");
-    	}
-	$p->close();
-    }
-}
-
-#$cce->bye('SUCCESS');
-#exit(0);
-
-# End for now
-
 $DEBUG && print STDERR "event oid is ", $cce->event_oid(), "\n";
 
 # 1. extract list of current routes:
@@ -190,14 +102,8 @@ for my $network_oid (@networks)
 
 	# don't use aliases as devices for routes, not necessary, and it
 	# ends up breaking things sometimes
-	if (! -f "/proc/user_beancounters") { 
-		# Normal Network interfaces:
-		$net->{device} =~ s/^(eth\d+):*\d*$/$1/;
-	}
-	else {
-		# OpenVZ Network interfaces:
-		$net->{device} =~ s/^(venet\d+):*\d*$/$1/;
-	}
+	$net->{device} =~ s/^(eth\d+):*\d*$/$1/;
+
     # add this interface's ip address to the routes to add
     push (@nets, $net);
     $new_routes->{$net->{ipaddr} . '/255.255.255.255'} =
@@ -222,14 +128,7 @@ for my $interface (@ifaces)
             my ($ipaddr, $netmask) = ($1, $2);
             $DEBUG && print STDERR "read from ifconfig: $interface $ipaddr/$netmask\n";
 			# don't use aliases for device names
-			if (! -f "/proc/user_beancounters") { 
-				# Normal Network interfaces:
-				$interface =~ s/^(eth\d+):*\d*$/$1/;
-			}
-			else {
-				# OpenVZ Network interfaces:
-				$interface =~ s/^(venet\d+):*\d*$/$1/;
-			}
+			$interface =~ s/^(eth\d+):*\d*$/$1/;
 
             # add a host entry for this interface
             $new_routes->{$ipaddr . '/255.255.255.255'} =
@@ -253,23 +152,9 @@ my ($ok, $system) = $cce->get($system_oid);
 if ($system->{gateway}) 
 {
     my $default_dev = which_device($system->{gateway}, @nets);
-
-    $DEBUG && print STDERR "default_dev: $default_dev\n";
-    $DEBUG && print STDERR "sys-gateway: " . $system->{gateway} . "\n";
-
-    # More OpenVZ madness:
-    if ( -f "/proc/user_beancounters") {
-	# If we're under OpenVZ we have to set up a route for the system gateway first, or we cannot
-	# add the fake "192.0.2.1" IP as default gateway:
-	$new_routes->{$system->{gateway} . '/' . "255.255.255.255"} = "dev" . '/' . "venet0" . '/' . "U";
-	# Now that the route for the fake gateway is set, we can set the fake "192.0.2.1" IP as default gateway:
-	$new_routes->{"0.0.0.0/0.0.0.0"} = $system->{gateway} . "/venet0/UG";
-    }
-    else {
-	#$new_routes->{"0.0.0.0/0.0.0.0"} = $system->{gateway} . "/${default_dev}/UG";
-	# don't associate the default gw with a particular device:
-	$new_routes->{'0.0.0.0/0.0.0.0'} = $system->{gateway} . '//UG';
-    }
+    #$new_routes->{"0.0.0.0/0.0.0.0"} = $system->{gateway} . "/${default_dev}/UG";
+    # don't associate the default gw with a particular device:
+    $new_routes->{'0.0.0.0/0.0.0.0'} = $system->{gateway} . '//UG';
 }
 
 # handle the the loopback route (huh, now I'm sure this doesn't need to be here)
@@ -547,23 +432,8 @@ sub is_ip_in_net
     my ($bip, $bnet, $bmask) = (ip2bin($ip), ip2bin($network), ip2bin($netmask));
     return (($bip & $bmask) == ($bnet & $bmask));  
 }
+  
 
-sub edit_sys_network {
-
-    $ok = Sauce::Util::editfile(
-        $sys_network,
-        *Sauce::Util::hash_edit_function,
-        '\n',
-        { 're' => ' = ', 'val' => '=' },
-        $server_sys_network_writeoff);
-
-    # Error handling:
-    unless ($ok) {
-        $cce->bye('FAIL', "Error while editing $sys_network!");
-        exit(1); 
-    }
-    system("/bin/rm -f /etc/sysconfig/network.backup.*");
-}
 
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 

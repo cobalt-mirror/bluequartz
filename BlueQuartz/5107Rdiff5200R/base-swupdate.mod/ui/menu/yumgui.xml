@@ -4,6 +4,6 @@
     description="[[base-yum.yumguimenuentrydesc]]"
     url="/base/swupdate/yum.php">
     <parent id="base_software" order="1">
-        <access require="adminBlueLinq"/>
+        <access require="managePackage"/>
     </parent>
 </item>

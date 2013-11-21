@@ -83,7 +83,11 @@ my $subject = {
 $DEBUG && print STDERR Dumper($ssl, $subject);
 
 # check for 2038 rollover
-$ssl->{daysValid} = ssl_check_days_valid($ssl->{daysValid});
+if (!ssl_check_days_valid($ssl->{daysValid}))
+{
+    $cce->bye('FAIL', '[[base-ssl.2038bug]]');
+    exit(1);
+}
 
 if (!ssl_gen_csr($cert_dir, $ssl->{daysValid}, $subject))
 {

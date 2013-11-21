@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -119,68 +119,24 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Sat Sep 11 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.1-68BQ14
+- rsolved the issue for 2038 problem for certificate.
 
-* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX08
-- Added locales for Portuguese, Itallian, Spanish and French.
-- Updated existing locales with a missing string for an error message.
-- Fixed a probably 12 year old bug in glue/sbin/ssl_import.pl which dropped
-  the email address of an imported SSL certificate.
+* Sat Apr 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.1-68BQ13
+- change organization name for default certificate.
 
-* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX07
-- Modified ui/web/caManager.php to use is_uploaded_file() and move_uploaded_file() to
-  handle the uploaded SSL certificate, too. Tested with GoDaddy intermediate certs.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.1-68BQ12
+- change key length to 2048 instead of 1024.
 
-* Tue Mar 24 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX06
-- Modified ui/web/uploadCert.php to check if the temp file exists before we unlink it.
+* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-68BQ11
+- new Capabilities for admin.
 
-* Tue Mar 24 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX05
-- Modified glue/sbin/ssl_import.pl to hard wire Country to 'US' and State to 'Other' if
-  the SSL certificate in question doesn't have this mandatory information.
-- Modified ui/web/uploadCert.php to use is_uploaded_file() and move_uploaded_file() to
-  handle the uploaded SSL certificate. There is no need to chuck it around with fopen()
-  and fputs(), especially considering that the previously employed method apparently
-  no longer works on PHP >= 5.3.
-- This should fix the SSL import issues on 5107R and 5108R.
+* Thu Mar 04 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-68BQ10
+- resolved the issue that can not connect https.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX04
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Mon Aug 22 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX03
-- Modified ui/web/caManager.php to fix array_merge(): Argument #1 is not an array in line 95
-
-* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX02
-- Updated glue/handlers/ca-certs.pl to fix typo in path to ssl.conf. The typo added SSLCACertificateFile to the wrong file.
-
-* Fri Jan 21 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX01
-- Merged in 1.1.0-69BQ14 and 1.1.0-69BQ13 from Rickard:
-- Changed the way the ssl_check_days_valid function works. Returns valid days now.
-- Changed the way adm_certs are generated in the constructor, use y2038 bug - todays date to calculate a valid expiration. If this is more than 9995 use 9995 days.
-- Set RSA key length from 1024 to 2048 in glue/handlers/SSL.pm
-- At the moment this only appears to affect the AdmServ CERT.
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BX17
-- Fix for ui/web/createCert.php was a bad idea. Fixed it again!
-
-* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BX16
-- Fixed various PHP-5.3 related issues.
-
-* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BX15
-- Copied 'en' locales to 'en_US'
-
-* Tue Aug 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ13
-- Updated ui/web/createCert.php to set the switch 'Generate Self-Signed Certificate' to off by default.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ12
-- Rebuilt for BlueOnyx.
-
-* Tue Jul 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ11
-- Fixed caManager.php siteSSL.php for 5106
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ10
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ9
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-68BQ9
+- merge from 5100R between r970 with r1218. 
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-68BQ8
 - Fixed duplicate include issue.

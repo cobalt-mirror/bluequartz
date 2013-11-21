@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: setTimeHandler.php 554 2005-08-15 07:05:00Z shibuya $
+// $Id: setTimeHandler.php 1433 2010-03-10 15:32:44Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once('Error.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only serverTime should be here
+if (!$serverScriptHelper->getAllowed('serverTime')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -38,37 +38,15 @@ if ($systemTimeZone != $oldTimeZone) {
 	putenv("TZ=$timeZone");
 }
 
-if (!$timeZone) {
-        $timeZone = $systemTimeZone;
-        putenv("TZ=$timeZone");
-}
-
 if (preg_match('/(\d+):(\d+):(\d+):(\d+):(\d+):(\d+)/', $systemDate, $matches)) {
 	$date = mktime($matches[4], $matches[5], $matches[6], $matches[2], 
 		       $matches[3], $matches[1]);
 }
-if ($date and ($date != $oldTime)) {
-        $time = $date;
-}
-if (!$time) {
-    $time = time();
-}
+if ($date and ($date != $oldTime))
+	$time = $date;
 
 # "deferCommit" is used by the setup wizard, not here... clean up just in case
-$cce->setObject('System', array(
-                            'deferCommit' => '0',
-                            'epochTime' => $time,
-                            'timeZone' => $timeZone,
-                            'ntpAddress' => $ntpAddress,
-                            ), 'Time');
-
-# Work around for 5106R oddity. We use the extra handler to set the timezone instead:
-$cce->setObject('System', array(
-                            'epochTime' => $time,
-                            'timeZone' => $timeZone,
-                            'ntpAddress' => $ntpAddress,
-                            'trigger' => time()
-                            ), 'TempTime');
+$cce->setObject('System', array('deferCommit' => '0'), 'Time');
 
 $serverScriptHelper->shell("/usr/sausalito/sbin/setTime \"$time\" \"$timeZone\" \"$ntpAddress\" \"true\"", $output, "root");
 print $output;

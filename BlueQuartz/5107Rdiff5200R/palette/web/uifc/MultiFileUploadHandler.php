@@ -6,7 +6,7 @@ $page = $factory->getPage();
 $i18n = $page->getI18n();
 
 $product = $serverScriptHelper->getProductCode();
-$isMonterey = preg_match("/35[0-9][0-9]R/", $product);
+$isMonterey = ereg("35[0-9][0-9]R", $product);
 
 if ($fileUpload == "none") {
 	/* file never got uploaded or wasn't valid */
@@ -39,7 +39,7 @@ if ($fileUpload == "none") {
 	copy($fileUpload, $fileName);
 	chmod($fileName, 0600);
 
-	preg_match("/^.*\/(.*)$/", $fileName, $regs);
+	ereg("^.*\/(.*)$", $fileName, $regs);
 	$stripedFileName  = $regs[1];
 
 	/* throw some script back to the client */

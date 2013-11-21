@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # $Id: ssl_get.pl,v 1.6 2001/11/04 22:11:54 pbaltz Exp $
 # output the csr or full key and cert to stdout for the specified group

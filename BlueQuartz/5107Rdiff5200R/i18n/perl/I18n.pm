@@ -1,5 +1,5 @@
 #
-# $Id: I18n.pm 259 2004-01-03 06:28:40Z shibuya $
+# $Id: I18n.pm 1248 2009-09-15 08:16:01Z shibuya $
 #
 # Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
 #
@@ -21,8 +21,7 @@ $DEBUG = 0;
 # only has entries for locales that require conversion
 #
 my $encodings = {
-			'ja' => 'euc',
-			'ja_JP' => 'euc'
+			'ja' => 'utf8'
 		};
 
 #
@@ -31,7 +30,7 @@ my $encodings = {
 # and we can even claim we support the euro character (sort of)
 #
 my $sys_langs = {
-			'ja' => 'ja_JP.eucjp',
+			'ja' => 'ja_JP.UTF-8',
 			'en' => 'en_US',
 			'de' => 'de_DE@euro',
 			'es' => 'es_ES@euro',
@@ -107,19 +106,14 @@ sub getAvailableLocales
 	my $lang_defined = 0;
 	if (!defined($ENV{LANG})) {
 		$lang_defined = 1;
-		$ENV{LANG} = 'en_US';
+		$ENV{LANG} = 'en';
 	}
 
 	# safe pipe read to prevent running via the shell
 	open(LOCALES, "-|") || exec(@cmd);
 	while (my $locale = <LOCALES>) {
 		chomp($locale);
-		if (($locale ne "en") && ($locale ne "ja")) { 
-		    # We use 'en_US' instead of 'en'. At the same time we use 'jp_JP' instead of 'jp'.
-		    # This if clause essentially makes the GUI hide the language options for 'en' and
-		    # 'ja' and instead shows 'en_US' and 'ja_JP' instead. Yes, this is confusing.
-		    push @locales, $locale;
-		}
+		push @locales, $locale;
 	}
 	close(LOCALES);
 
@@ -127,14 +121,7 @@ sub getAvailableLocales
 		$ENV{LANG} = undef;
 	}
 
-	# Sort in a way that 'en_US' or 'en' always comes first:
-	@sorted_locales = sort {
-	    if (($a eq 'en') || ($a eq 'en_US')) { return -1; }
-	    elsif (($b eq 'en') || ($b eq 'en_US')) { return 1; }
-	    else { return $a cmp $b; }
-	} @locales;
-
-	return @sorted_locales;
+	return @locales;
 }
 		
 sub get
@@ -243,7 +230,7 @@ sub i18n_getSystemLocale {
 	}
 	close(FILE);
     }
-    return $locale ? $locale : 'en_US';
+    return $locale ? $locale : 'en';
 }
 
 ####################################

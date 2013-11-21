@@ -6,7 +6,7 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
 // Only admin should be here
 if ($loginName != "admin") {
@@ -20,25 +20,36 @@ $cce =& $helper->getCceClient();
 $i18n =& $factory->getI18n();
 
 $possible_caps = array(
-                        'ipPooling' => 1, 
-                        'controlPower' => 1
+			'serverHttpd' => 1,
+			'serverFTP' => 1,
+			'serverEmail' => 1,
+			'serverDNS' => 1,
+			'siteDNS' => 1,
+			'serverSNMP' => 1,
+			'serverShell' => 1,
+			'serveriStat' => 1,
+			'serverSSL' => 1,
+			'serverSystemFirewall' => 1,
+			'serverNetwork' => 1,
+			'serverIpPooling' => 1,
+			'serverVsite' => 1,
+			'serverPower' => 1,
+			'serverTime' => 1,
+			'serverInformation' => 1,
+			'serverServerDesktop' => 1,
+			'menuServerServerStats' => 1,
+			'serverShowActiveMonitor' => 1,
+			'serverActiveMonitor' => 1,
+			'manageSite' => 1,
+			'managePackage' => 1,
                         );
 
 if (isset($_oid))
     $user = $cce->get($_oid);
 
 // handle setting stuff if this is the submit phase
-if ($_save) {
-
-    // Username = Password? Baaaad idea!
-    if (strcasecmp($userName, $password) == 0) {
-        $errors[] = new Error("[[base-user.error-password-equals-username]]");
-        $errors = array_merge($errors, $cce->errors());
-        print $helper->toHandlerHtml("/base/vsite/manageAdmin.php?oid=$_oid", 
-                                $errors, false);
-        exit;
-    }
-
+if ($submitted)
+{
     list($ok, $errors) = handle_admin_settings($helper, $cce, 
                                             $user, $possible_caps);
     if ($ok)
@@ -83,18 +94,12 @@ if ($i18n->getProperty('needSortName') == 'yes') {
 }
 
 // if this is a create, add the username field
-if (!isset($_oid)) {
+if (!isset($_oid))
+{
     $admin_settings->addFormField(
         $factory->getUserName('userName'),
         $factory->getLabel('userNameCreate')
         );
-}
-else {
-    $uname_field = $factory->getUserName('userName', $user['name'], "r");
-    $admin_settings->addFormField(
-	$uname_field,
-        $factory->getLabel('userName')
-	);
 }
 
 // don't pass back data for password fields
@@ -123,6 +128,12 @@ $admin_settings->addFormField(
     $factory->getLabel('userDiskQuota')
     );
 
+// Server Admin Shell
+$userShell = $cce->get($_oid, 'Shell');
+$admin_settings->addFormField(
+    $factory->getBoolean('shell', ($userShell['enabled'] ? 1 : 0)),
+    $factory->getLabel('userShell'));
+
 // add suspend check box to be consistent
 if (isset($_oid))
 {
@@ -130,6 +141,45 @@ if (isset($_oid))
             $factory->getBoolean('suspend', ($user['ui_enabled'] ? 0 : 1)),
             $factory->getLabel('suspendUser'));
 }
+
+
+// display site controls
+$admin_settings->addDivider($factory->getLabel('adminSites', false));
+
+if (isset($_oid))
+{
+    $site = $cce->get($_oid, 'Sites');
+    $sites_quota = ($site['quota'] == -1 ? '' : $site['quota']);
+    $sites_max = ($site['max'] == -1 ? '' : $site['max']);
+    $sites_user = ($site['user'] == -1 ? '' : $site['user']);
+}
+else
+{
+    $sites_quota = 200;
+    $sites_max = 5;
+    $sites_user = 100;
+}
+
+$site_quota =& $factory->getInteger('siteQuota', $sites_quota, 1);
+$site_quota->setOptional('silent');
+$admin_settings->addFormField(
+    $site_quota,
+    $factory->getLabel('userSitesQuota')
+    );
+
+$site_max =& $factory->getInteger('siteMax', $sites_max, 1);
+$site_max->setOptional('silent');
+$admin_settings->addFormField(
+    $site_max,
+    $factory->getLabel('userSitesMax')
+    );
+
+$site_user =& $factory->getInteger('siteUser', $sites_user, 1);
+$site_user->setOptional('silent');
+$admin_settings->addFormField(
+    $site_user,
+    $factory->getLabel('userSitesUser')
+    );
 
 // display admin controls
 if (isset($_oid))
@@ -179,7 +229,8 @@ $select_caps =& $factory->getSetSelector('adminPowers',
                     'allowedAbilities', 'disallowedAbilities',
                     'rw', 
                     $cce->array_to_scalar($allowed_caps),
-                    $cce->array_to_scalar(array_keys($possible_caps)));
+                    $cce->array_to_scalar(array_keys($possible_caps)),
+                    10);
    
 $select_caps->setOptional(true);
 
@@ -204,11 +255,45 @@ $helper->destructor();
 
 function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
 {
-    global $fullName, $sortNameField, $userName, $password, $diskQuota;
+    global $fullName, $sortNameField, $userName, $password, $diskQuota, $shell;
+    global $siteQuota, $siteMax, $siteUser;
     global $_oid, $rootAccess, $adminPowers, $suspend;
 
     $errors = array();
    
+    // Only run cracklib checks if something was entered into the password field:
+    if ($password) {
+
+        // Check password
+        // Username = Password? Baaaad idea!
+        if (strcasecmp($userName, $password) == 0) {
+            $attributes["password"] = "1";
+            $error_msg = "[[base-user.error-password-equals-username]] [[base-user.error-invalid-password]]";
+            $errors[] = new Error($error_msg);
+            return array(0, $errors);
+        }
+
+        // Open CrackLib Dictionary for usage:
+        $dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
+
+        // Perform password check with cracklib:
+        $check = crack_check($dictionary, $password);
+
+        // Retrieve messages from cracklib:
+        $diag = crack_getlastmessage();
+
+        if ($diag == 'strong password') {
+            // Nothing to do. Cracklib thinks it's a good password.
+        } else {
+            $attributes["password"] = "1";
+            $errors[] = new Error("[[base-user.error-password-invalid]]" . $diag . " . " . "[[base-user.error-invalid-password]]");
+            return array(0, $errors);
+        }
+
+        // Close cracklib dictionary:
+        crack_closedict($dictionary);
+    }
+
     $current_caps = $cce->scalar_to_array($user['capLevels']);
     
     // remove the special capabilities from the user's current ones
@@ -218,20 +303,20 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
         $current_caps[] = 'adminUser';
 
     // hack root access back out
-    if (preg_match("/&rootAccess&/", $adminPowers))
+    if (ereg('&rootAccess&', $adminPowers))
         $rootAccess = 1;
     else
         $rootAccess = 0;
 
-    $adminPowers = preg_replace('/&(rootAccess)&/', '&', $adminPowers);
+    $adminPowers = ereg_replace('&(rootAccess)&', '&', $adminPowers);
     $current_caps = array_merge($current_caps, 
                         $cce->scalar_to_array($adminPowers));
 
     $cap_string = $cce->array_to_scalar($current_caps);
-    if (preg_match("/^&+$/", $cap_string))
+    if (ereg("^&+$", $cap_string))
         $cap_string = '';
     else
-        $cap_string = preg_replace('/&&/', '&', $cap_string);
+        $cap_string = ereg_replace('&&', '&', $cap_string);
 
     // handle create if necessary
     if (!isset($_oid))
@@ -280,7 +365,17 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
                     array('enabled' => $rootAccess));
         $errors = array_merge($errors, $cce->errors());
 
-        $ok = $cce->set($user['OID'], 'Shell', array('enabled' => 1));
+        $ok = $cce->set($user['OID'], 'Shell', array('enabled' => ($shell ? 1 : 0)));
+        $errors = array_merge($errors, $cce->errors());
+    }
+
+    // set sites information
+    if ($big_ok)
+    {
+        $cce->set($user['OID'], 'Sites',
+            array('quota' => ($siteQuota == '' ? -1 : $siteQuota),
+                  'max' => ($siteMax == '' ? -1 : $siteMax),
+		  'user' => ($siteUser == '' ? -1 : $siteUser)));
         $errors = array_merge($errors, $cce->errors());
     }
 

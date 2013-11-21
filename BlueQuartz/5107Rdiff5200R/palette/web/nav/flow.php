@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: flow.php 1180 2008-09-09 07:31:26Z shibuya $
+// $Id: flow.php 1225 2009-09-04 16:01:03Z shibuya $
 
 // description:
 // This is the base page of the flow navigation system.
@@ -94,10 +94,9 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   code.scheduler_doJob();
 }
 </SCRIPT>
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 </HEAD>
 
-<FRAMESET ROWS="<?php print($style->getProperty("titleHeight")); ?>,*,<?php print($style->getProperty("controlHeight")); ?>,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()">
+<FRAMESET ROWS="<?php print($style->getProperty("titleHeight")); ?>,*,<?php print($style->getProperty("controlHeight")); ?>,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()" onResize="if(navigator.appName == 'Netscape') location.reload()">
   <FRAME SRC="blank.html" NAME="titleFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
   <FRAME SRC="blank.php" NAME="mainFrame" FRAMEBORDER="no">
   <FRAME SRC="blank.html" NAME="navFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
@@ -106,6 +105,9 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   <FRAME SRC="<?php print($commFrame ? $commFrame : "blank.html"); ?>" NAME="commFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
 </FRAMESET>
 
+<HEAD>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
 </HTML>
 <?php
 /*

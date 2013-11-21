@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: enableAM.pl 1040 2007-12-16 04:43:14Z mstauber $
+# $Id: enableAM.pl 1233 2009-09-06 09:58:50Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # 
 #

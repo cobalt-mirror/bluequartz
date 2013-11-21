@@ -7,8 +7,8 @@ include_once("ServerScriptHelper.php");
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only serverServerDesktop should be here
+if (!$helper->getAllowed('serverServerDesktop')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -29,15 +29,6 @@ $access = 'rw';
 $block->addFormField($factory->getBoolean('lock_desktop', $systemObj['lock'], $access),
 	$factory->getLabel('lock_desktop')
 );
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 // Allow the administrator to change the setting
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));

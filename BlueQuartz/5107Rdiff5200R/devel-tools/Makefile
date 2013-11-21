@@ -3,8 +3,8 @@ include rules/defines.mk
 CCEMODULE = sausalito-devel-tools
 CCERPMSPEC = sausalito-devel-tools.spec
 
-VERSION=0.5.2
-RELEASE=1BX09
+VERSION=0.5.1
+RELEASE=0BQ18
 
 DIRS = scripts libdebug rules templates glue
 
@@ -15,14 +15,7 @@ all dep clean install:
 
 # update_version: FORCE
 # 	perl -pi -e 's/^Version:.*/Version: $(VERSION)/;s/^Release:.*/Release: $(RELEASE)/;' sausalito-devel-tools.spec
-
-clean local_clean:
-	-find . -type f \( -name \*~ -o -name \*.o -o \
-			   -name \#\* -o -name \*.mo \) | xargs rm -f
-	for dir in $(DIRS); do \
-	        make -C $$dir $(MAKECMDGOALS); \
-	done
-	rm -rf rpms srpms
+	
 
 include rules/package.mk
 

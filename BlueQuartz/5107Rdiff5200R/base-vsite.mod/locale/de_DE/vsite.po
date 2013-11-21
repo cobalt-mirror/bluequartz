@@ -6,17 +6,17 @@ msgstr ""
 "Project-Id-Version: base-vsite\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 07:01+0200\n"
-"PO-Revision-Date: 2008-12-03 02:26+0100\n"
+"PO-Revision-Date: 2008-05-13 17:12+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Translate Toolkit 1.0.1\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 msgid "="
 msgstr "ist"
@@ -205,7 +205,7 @@ msgid "domain"
 msgstr "Domänen-Name"
 
 msgid "domain_help"
-msgstr "Dies ist der Domänen-Name der Seite. Ein Domänen-Name ist der zweite Teil eines voll qualifizierten Domänen-Name. 'BlueOnyx.org' ist ein gültiger Domänen-Name. 'www.BlueOnyx.org' ist ein voll qualifizierter Domänen-Name."
+msgstr "Dies ist der Domänen-Name der Seite. Ein Domänen-Name ist der zweite Teil eines voll qualifizierten Domänen-Name. 'bluequartz.org' ist ein gültiger Domänen-Name. 'www.bluequartz.org' ist ein voll qualifizierter Domänen-Name."
 
 msgid "emailDisabled"
 msgstr "E-Mail deaktivieren"
@@ -220,7 +220,7 @@ msgid "enterFqdn"
 msgstr "Host- und Domänen-Name"
 
 msgid "enterFqdn_help"
-msgstr "Geben Sie den Hostnamen der Seite in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann ggf. 'www', 'mail' oder 'shop' sein. Der Domänen-Name ist 'BlueOnyx.org' oder 'meinefirma.de'."
+msgstr "Geben Sie den Hostnamen der Seite in das erste Feld und den Domänen-Name in das zweite Feld ein. Beispiel: Der Hostname kann ggf. 'www', 'mail' oder 'shop' sein. Der Domänen-Name ist 'bluequartz.org' oder 'meinefirma.de'."
 
 msgid "exitSitemgmt"
 msgstr "Site-Management verlassen"
@@ -607,7 +607,7 @@ msgid "webAliases"
 msgstr "Webserver Aliasse"
 
 msgid "webAliases_help"
-msgstr "Geben Sie zusätzliche Host- und Domänennamen ein, für welche diese virtuelle Site Webanfragen akzeptieren soll. Trennen Sie die Einträge durch Kommata oder Leerzeichen. Beispiel: 'www.BlueOnyx.org, support.bluequarz.org'."
+msgstr "Geben Sie zusätzliche Host- und Domänennamen ein, für welche diese virtuelle Site Webanfragen akzeptieren soll. Trennen Sie die Einträge durch Kommata oder Leerzeichen. Beispiel: 'www.bluequartz.org, support.bluequarz.org'."
 
 msgid "webAliases_invalid"
 msgstr "Das Webserver-Alias [[VAR.invalidValue]] ist ungültig."
@@ -655,7 +655,7 @@ msgid "initialUserName"
 msgstr "Benutzername"
 
 msgid "initialUserName_help"
-msgstr "Geben Sie den Benutzernamen für das Benutzerkonto ein."
+msgstr "Geben Sie den Benutzernamen fr das Benutzerkonto ein."
 
 msgid "isSiteAdminLabel"
 msgstr "Seitenadministrator"
@@ -683,215 +683,4 @@ msgstr "Benutzer-Webs aktivieren"
 
 msgid "userwebs_help"
 msgstr "Falls aktiviert, hat jeder Benutzer dieser Site einen eigenen Webspace, der über http://www.example.com/~username/ zu erreichen ist. Benutzer können dann ihre eigenen Webseiten per FTP in ihr persönliches /web Verzeichnis hochladen."
-
-### PHP Security Additions below:
-msgid "php_server"
-msgstr "PHP Einstellungen"
-
-msgid "php_serverDescription"
-msgstr "Diese Seite erlaubt es, sicherheitsrelevante Einstellungen von PHP zu verändern. Diese hier vorgenommenen Einstellungen werden in php.ini gespeichert. Bitte beachten: PHP ist sehr mächtig und Lücken in schlecht programmierten Scripten erlauben es oft, einen Server zu hacken. Mit sehr restriktiven Grundeinstellungen versuchen wir hier, dem entgegen zu wirken. Die restriktiven Einstellungen können auf Wunsch pro virtueller Site etwas gelockert werden. "
-
-msgid "php_server_head"
-msgstr "PHP Einstellungen für den gesamten Server"
-
-msgid "php_ini_security_settings"
-msgstr "PHP Grundeinstellungen"
-
-msgid "php_ini_security_settings_help"
-msgstr "Dies sind die primären Sicherheitseinstellungen von PHP. Mit Ihnen lassen sich in weitgehender Weise die Performanz und die Sicherheit des Servers konfigurieren. Hier vorgenommene Änderungen werden direkt in php.ini gespeichert."
-
-msgid "php_ini_expert_mode"
-msgstr "php.ini einsehen"
-
-msgid "php_ini_expert_mode_help"
-msgstr "Diese Seite erlaubt es, die komplette php.ini einzusehen - und nicht nur die Auswahl an Optionen auf der vorangegangenen Seite. Achtung: Änderungen können in dieser Ansicht nicht gespeichert werden."
-
-msgid "php_ini_location"
-msgstr "Speicherort:"
-
-msgid "php_ini_location_help"
-msgstr "Zeigt wo sich Ihre php.ini befindet."
-
-msgid "register_globals"
-msgstr "Register Globals:"
-
-msgid "register_globals_help"
-msgstr "'register_globals' = 'On' bewirkt, dass EGPCS-Variablen registriert werden. Was bedeutet, dass diese über den Variablennamen aufgerufen werden können. Leider eröffnen diese wenigen Zeichen bei aktiviertem Register Globals zum Teil sehr große Sicherheitslücken. Sollte unbeding auf 'Off' stehen."
-
-msgid "safe_mode"
-msgstr "Safe Mode:"
-
-msgid "safe_mode_help"
-msgstr "'safe_mode' (empfohlen: on) gibt an, ob PHP in einem speziellen abgesicherten Modus laufen soll oder nicht. Er hat weitreichende Auswirkungen, beispielsweise findet bei Dateioperationen ein zusätzlicher UID-Check statt und der Zugriff auf Umgebungsvariablen ist eingeschränkt. Aus Sicherheitsgründen sollte 'safe_mode' zwingend an sein! Alles andere ist eine Einladung an Hacker."
-
-msgid "safe_mode_gid"
-msgstr "Safe Mode GID:"
-
-msgid "safe_mode_gid_help"
-msgstr "Normalerweise prüft PHP bei aktiviertem 'safe_mode' sowohl die User ID (uid) von zu öffnenden Dateien, als auch die Gruppen ID (gid). Falls Sie diese Einschränkung etwas lockern möchten, können Sie 'safe_mode' deaktivieren und stattdessen 'safe_mode_gid' aktivieren. Dabei wird dann Zugriff auf Dateien gewährt, solange sie zur selben Gruppe (gid) gehören."
-
-msgid "safe_mode_include_dir"
-msgstr "Safe Mode include directory:"
-
-msgid "safe_mode_include_dir_help"
-msgstr "UID und GID Überprüfungen werden ignoriert, wenn Dateien aus folgendem Verzeichnis und seinen Unterverzeichnissen gelesen werdene. Möchte man mehrere Verzeichnisse angeben, so müssen diese durch Semikolon (;) getrennt werden. ACHTUNG: Solange kein abschließender Schräger am Ende eines Pfades steht, wird der Eintrag als Präfix verwendet. Beispiel: '/dir/incl' trifft dann auf alle Verzeichnisse zu, die mit '/dir/incl' anfangen. Wogegen '/dir/incl/' nur auf dieses eine Verzeichnis (und seine Unterverzeichnisse) zutrifft. Lässt man dieses Feld leer, können keine Files mit unterschiedlicher UID oder GID included werden."
-
-msgid "safe_mode_exec_dir"
-msgstr "Safe Mode exec directory:"
-
-msgid "safe_mode_exec_dir_help"
-msgstr "Wenn PHP im 'safe_mode' läuft, dann können Systemprogramme nicht ausgeführt werden, solange sie nicht in einem hier angegebenen Verzeichnis liegen. Möchte man mehrer Verzeichnisse spezifizieren, so sind diese durch Semikolon (;) zu trennen. ACHTUNG: Solange kein abschließender Schräger am Ende eines Pfades steht, wird der Eintrag als Präfix verwendet. Beispiel: '/dir/incl' trifft dann auf alle Verzeichnisse zu, die mit '/dir/incl' anfangen. Wogegen '/dir/incl/' nur auf dieses eine Verzeichnis (und seine Unterverzeichnisse) zutrifft."
-
-msgid "safe_mode_allowed_env_vars"
-msgstr "Safe Mode allowed evelope variables:"
-
-msgid "safe_mode_allowed_env_vars_help"
-msgstr "In PHP können Umgebungsvariablen frei beschrieben werden, was ein enormes potentielles Sicherheitsrisiko darstellt. Ist Safe Mode aktiviert, können PHP-Skripte nur Umgebungsvariablen beeinflussen, deren Name mit einer Präfix anfängt, die hier angegeben wurde. Standardmäßig sind das Variablen, die mit PHP_ anfangen (Beispiel: PHP_FOO = BAR). Falls Sie diesen Wert leer lassen, können Nutzer JEDE Umgebungsvariable modifizieren!"
-
-msgid "safe_mode_protected_env_vars"
-msgstr "Safe Mode protected envelope variables:"
-
-msgid "safe_mode_protected_env_vars_help"
-msgstr "Diese Direktive beinhaltet eine (mit Komatas getrennte) Liste von Umgebungsvariablen, die ein Nutzer NICHT modifizieren kann (z.B. mit putenv()). Diese Variablen werden selbst dann geschützt, wenn 'safe_mode_allowed_env_vars' so eingestellt wird, dass eine Änderung möglich erscheint."
-
-msgid "disable_functions"
-msgstr "Disable functions:"
-
-msgid "disable_functions_help"
-msgstr "Diese Direktive erlaubt es, bestimmte Funktionen und Befehle innerhalb von PHP-Skripten zu untersagen. Möchte man mehrere Befehle verbieten, so sind diese durch Komma zu trennen. Diese Funktion wird nicht von 'safe_mode' beeinflusst."
-
-msgid "disable_classes"
-msgstr "Disable classes:"
-
-msgid "disable_classes_help"
-msgstr "Diese Direktive erlaubt es, die Nutzung ganzer Klassen von PHP Funktionen in PHP-Skripten zu unterbinden. Möchte man mehrere Funktionen verbieten, so sind diese durch Komma zu trennen. Diese Funktion wird nicht von 'safe_mode' beeinflusst."
-
-msgid "allow_url_fopen"
-msgstr "Allow URL fopen:"
-
-msgid "allow_url_fopen_help"
-msgstr "'allow_url_fopen' (empfohlen: off) steuert, ob Dateizugriffe auch auf externe URLs verweisen dürfen oder nicht. Verbietet man dies, fällt es einem Angreifer schwerer, Schadprogramme aus dem Internet nachzuladen. Seit PHP 5.2.0 regeltallow_url_include das Verhalten separat für die Befehle include() und require(). Eine Großzahl von Exploits für PHP-Skripte nutzt es aus, wenn 'allow_url_fopen' auf \"On\" steht."
-
-msgid "allow_url_include"
-msgstr "Allow URL include:"
-
-msgid "allow_url_include_help"
-msgstr "(Nur für PHP >= 5.2.0 relevant) Falls deaktiviert, können PHP-Skripte keine auf fremden Servern gehosteten Skripte per fopen(), file_get_contents() oder include() nachladen. Bitte beachten: Über diesen Angriffsvektor werden die meisten Sites gehackt. Dieser Wert sollte daher (ebenso wie 'allow_url_fopen) auf 'Off' stehen."
-
-msgid "upload_max_filesize"
-msgstr "Upload max filesize:"
-
-msgid "upload_max_filesize_help"
-msgstr "Mit dieser Einstellung beschränkt man die maximale Größe von Uploads, welche PHP-Skripte akzeptieren. Ein Angreifer könnte zum Beispiel versuchen, übergroße Files hochzuladen und damit Resourcen Ihres Servers zu verschwenden, oder Anwendungen zum Absturz zu bringen. Standardmäßig auf 2MB eingestellt."
-
-msgid "post_max_size"
-msgstr "Post max size:"
-
-msgid "post_max_size_help"
-msgstr "Mit dieser Einstellung beschränkt man die maximale Größe von Formularantworten, welche PHP-Skripte akzeptieren. Ein Angreifer könnte zum Beispiel versuchen, übergroße Formularantworten zu schicken und damit Resourcen Ihres Servers zu verschwenden, oder Anwendungen zum Absturz zu bringen. Standardmäßig auf 2MB eingestellt."
-
-msgid "max_execution_time"
-msgstr "Max execution time:"
-
-msgid "max_execution_time_help"
-msgstr "Stellt ein, wie lange ein PHP-Skript laufen darf, bevor seine Ausführung abgebrochen wird."
-
-msgid "max_input_time"
-msgstr "Max input time:"
-
-msgid "max_input_time_help"
-msgstr "Stellt ein, wie lange ein PHP-Skript mit der Verarbeitung von Anfragen beschäftigt sein darf."
-
-msgid "memory_limit"
-msgstr "Memory limit:"
-
-msgid "memory_limit_help"
-msgstr "Stellt ein, wieviel Speicher (RAM) ein PHP-Skript nutzen darf. Stellt man diesen Wert sehr hoch ein, besteht die Gefahr, dass ein Angreifer (oder ein schlecht programmiertes Skript!) alle Systemresourcen aufbraucht. Dieser Wert sollte daher nicht zu hoch eingestellt werden, da er oft auch schlampigen Code kaschiert."
-
-msgid "vsitephpMenu"
-msgstr "PHP"
-
-msgid "vsitephpMenuDesc"
-msgstr "PHP Sicherheitseinstellungen für diese virtuelle Site. Erlaubt es, ganz individuell sicherheitsrelevante Einstellungen vorzunehmen, die nur für diese Site gelten."
-
-msgid "php_vsite_head"
-msgstr "PHP Einstellungen für [[VAR.vsite]]"
-
-msgid "PHPVsiteStatusBox_header"
-msgstr "Achtung:"
-
-msgid "phpVsiteNotEnabled"
-msgstr "Für diese Site ist PHP nicht aktiviert. Solange PHP aus ist, können keine Änderungen an den PHP-Einstellungen dieser Site vorgenommen werden."
-
-msgid "php_ini"
-msgstr "php.ini"
-
-msgid "php_ini_help"
-msgstr "Erlaubt die Einsicht in Ihre php.ini Datei. Änderungen können in dieser Ansicht jedoch nicht gespeichert werden."
-
-
-### fileOwner additions:
-
-msgid "fileOwner_head"
-msgstr "Owner of all /web content for [[VAR.vsite]]"
-
-msgid "prefered_siteAdmin"
-msgstr "SiteAdmin that owns /web:"
-
-msgid "prefered_siteAdmin_help"
-msgstr "If suPHP is enabled, then this field must be set to an existing siteAdmin of this site, or your PHP scripts won't run. Even if you don't have suPHP enabled: If you choose an owner from the list of siteAdmins, then the /web directory of your site will be chown'ed recursively to the UID of the selected user. Means: All files and folders in /web will afterwards be owned by the selected user."
-
-msgid "fileOwnerMenu"
-msgstr "Web Ownership"
-
-msgid "fileOwnerDesc"
-msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have suPHP enabled. If suPHP is enabled and you don't have a siteAdmin as owner of your /web folder, then PHP scripts of your site will not run."
-
-
-# ---- start Prefix
-
-msgid "prefix"
-msgstr "Site Prefix:"
-
-msgid "prefix_help"
-msgstr "The 'Site Prefix' is an optional prefix that allows you to identify users or services related to a site. If set, all (newly created) usernames will be prefixed with this string. A prefix must be alphanumeric (numbers and/or letters only) and may not be longer than five characters. Please note: A prefix can be added or changed at a later time. But doing so will NOT affect any usernames that are already present."
-
-msgid "prefixTooLong"
-msgstr "The 'Site Prefix' you specified is longer than 5 characters."
-
-msgid "prefixInUse"
-msgstr "The 'Site Prefix' you specified is already in use by another site: [[VAR.fqdn]]"
-
-msgid "prefixInvalidChars"
-msgstr "The 'Site Prefix' you specified contains unsupported characters. Only alphanumerical characters are allowed, which means letters and numbers, but no more than five in total."
-
-# ---- end Prefix
-
-
-# --- Start webAliasRedirects
-
-msgid "webAliasRedirects"
-msgstr "Web Alias Redirects"
-
-msgid "webAliasRedirects_help"
-msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems."  
-
-# --- End webAliasRedirects
-
-
-# --- Start 'open_basedir'
-
-msgid "open_basedir_mandatory"
-msgstr "Open Basedir (Server):"
-
-msgid "open_basedir_mandatory_help"
-msgstr "These are the 'open_basedir' settings as defined for the whole server under 'Server Management' / 'Security' / 'PHP'. They are mandatory for every virtual site. In the field below you can specify additional directories that should be added to the 'open_basedir' directive."
-
-msgid "open_basedir"
-msgstr "Open Basedir (Vsite):"
-
-msgid "open_basedir_help"
-msgstr "The 'open_basedir' directive limits the file access of PHP scripts to certain directories. The 'Open Basedir (Server)' field above shows you to which directories PHP scripts already have access to on this server. If the PHP scripts of this site need additional access to further directories, then you can specify these directories here. When the file is outside the specified directory-tree, PHP will refuse to open it."
-
-# --- End 'open_basedir'
 

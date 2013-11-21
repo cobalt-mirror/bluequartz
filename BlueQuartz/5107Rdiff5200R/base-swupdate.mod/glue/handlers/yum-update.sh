@@ -4,8 +4,6 @@
 # Copyright 2006-2007, Stauber Multimedia Design  All rights reserved. 
 # $Id: yum-update.sh, v1.0 2007/12/20 9:02:00 Exp $   
 
-/bin/touch /var/log/yum.log
-/bin/chmod 644 /var/log/yum.log
 /bin/touch /tmp/yum.updating
 /bin/rm -f /tmp/yum.check-update
 /usr/bin/yum -y update > /tmp/yum.update
@@ -22,4 +20,3 @@ fi
 /bin/chmod 644 /var/log/yum.log
 
 exit 0;
-

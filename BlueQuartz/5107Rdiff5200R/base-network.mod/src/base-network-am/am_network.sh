@@ -62,13 +62,6 @@ done
 		
 # test the gateway
 if [ -n $GATEWAY -a -n "`/sbin/route -n | grep "^0.0.0.0" 2>/dev/null`" ]; then
-	# Work around for unpingable gateway on OpenVZ:
-        if [ -f /proc/user_beancounters ];then
-                if [ `cat /proc/user_beancounters | grep kmemsize | awk '{print $1}' | cut -d : -f1` -gt 0 ]; then
-                        # Ping the IP of the master node instead of the Gateway:
-                        GATEWAY=`ping -t 1 -c 1 1.2.3.4 | grep exceed | cut -d " " -f 2`
-                fi
-        fi
 	$PING $GATEWAY > /dev/null 2>&1
 	RET=$?
 	if [ "$RET" != "0" ]; then

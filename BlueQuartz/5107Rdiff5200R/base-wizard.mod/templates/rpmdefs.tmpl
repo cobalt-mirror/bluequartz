@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -102,65 +102,15 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Wed Mar 24 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-122BQ20
+- support virutal server environment.
 
-* Mon Mar 11 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX33
-- Replaced ui/web/registration.php with a redirect to base/swupdate/shop/index.php?reg=true
-- Modified ui/web/registrationHandler.php. No longer needed. Removed email addy in it.
+* Sat Mar 13 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-122BQ19
+- always redirect to https for admserv.
 
-* Sat Apr 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX32
-- Fixed wrecked characters in German translation.
-- Added constructor/set_default_services.pl to set certain email services
-  to on and to enable YUM autoupdate if system is not yet configured.
-- Modified ui/web/onepage.php to hard wire locale_match to 'en_US' if it
-  is undefined yet.
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX31
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX30
-- Modified ui/web/onepage.php and ui/web/onepageHandler.php to add rudimentary AWS support.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX29
-- Copied 'en' locales to 'en_US'
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX28
-- Fixed ui/web/onepageHandler.php
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX27
-- PHP-5.3 related compatability fixes: ereg() and split() replaced with PCRE compliant functions:
-- ui/web/locale.php
-- ui/web/onepageHandler.php
-- ui/web/onepage.php
-- Did I mention that the PHP developers are totaly out of their fucking minds? 
-
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BX26
-- Version number fix for consistency
-
-* Mon Apr 06 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ25
-- Minor wording change in locale/en/wizard.po
-
-* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ24
-- Bumped version number
-- Rickard changed onepageHandler.php to pre-define $errors. Fixes display glitch.
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ23
-- Rebuilt for BlueOnyx.
-
-* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ22
-- Merged in Hisao's remove convert2passwd stuff from 5100R code tree.
-
-* Tue Jul 02 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ21
-- Code overhaul for 5106, OpenVZ provisions added
-- Cracklib support for strong passwords added as well.
-
-* Wed Feb 13 2008 Brian Smith <brian@nuonce.net> 1.0.1-122BQ20
-- convert2passwd auto set to '1' during wizard for new installs
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ19
-- German locales added.
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-122BQ18
-- Danish locales added. Thanks to Jes Klittum!
+* Sun Sep 05 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-122BQ18
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-122BQ17
 - Fixed duplicate include issue.

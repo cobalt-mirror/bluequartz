@@ -53,15 +53,8 @@ sub service_run_init
 
 		return(1);
 	}
-	if ($service eq 'crond') {
-		`killall -9 crond`;
-		`/etc/rc.d/init.d/$service $arg`;
-		return(0);
-	}
 	unless ($options =~ /\bnobg\b/) {
-	
 	    if ($pid = fork()) {
-	    
 		waitpid($pid, 0);
 		# Success, whether it really worked or not...
 		return 1;
@@ -85,7 +78,6 @@ sub service_run_init
 	else
 	{
 		`/etc/rc.d/init.d/$service $arg`;
-		
 	}
 	
 	exit 0 unless ($options =~ /\bnobg\b/);

@@ -3,17 +3,17 @@ VENDOR=base
 
 # if the VENDOR field is an alias, this should be the real name.
 # otherwise, set it to VENDOR.
-VENDORNAME='Project BlueOnyx'
+VENDORNAME='Project BlueQuartz'
 SERVICE=wizard
 
 VERSION=1.0.1
-RELEASE=122BX33
+RELEASE=122BQ20
 
 # add a buildarch if desired
 BUILDARCH=noarch
 
 # default locale for static content
-DEFLOCALE=en_US
+DEFLOCALE=en
 
 # locale exclude pattern
 #XLOCALEPAT=

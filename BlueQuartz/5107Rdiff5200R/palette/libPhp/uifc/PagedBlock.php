@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: PagedBlock.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: PagedBlock.php 1329 2009-12-07 14:41:59Z shibuya $
 
 // description:
 // PagedBlock represents a block that have multiple pages with each of them
@@ -164,7 +164,7 @@ class PagedBlock extends Block {
             {
                 $key = $mapping[$key];
             }
-           if (false && $key) // if ( $error->getKey() && !preg_match("/^\[\[/", $error->vars["key"])) 
+           if (false && $key) // if ( $error->getKey() && !ereg("^\[\[", $error->vars["key"])) 
             {
                 $this->setFormFieldError($key, $error);
             } 
@@ -188,7 +188,6 @@ class PagedBlock extends Block {
   //     Optional if there is only one page
   // see: getDividers()
   function addDivider($label = "", $pageId = "") {
-
     $this->dividers[] = $label;
     $this->dividerPageIds[] = $pageId;
 
@@ -493,14 +492,12 @@ class PagedBlock extends Block {
         {
             // form fields on the selected page
             // this should be a reference assignment, but php sucks
-            // $formFieldsInPage[] =& $formField; <-- Baaad idea!
             $formFieldsInPage[] = $formField;
             $formFieldIdsInPage[] = $formFieldId;
         }
         else 
         {
             // form fields not on the selected page
-            //$formFieldsOutPage[] =& $formField; <-- Another baaad idea!
             $formFieldsOutPage[] = $formField;
             $formFieldIdsOutPage[] = $formFieldId;
         }
@@ -564,7 +561,7 @@ class PagedBlock extends Block {
         // FIXME:  this is a nasty hack, if we want to do this there
         //         should be a more general way like checking if the
         //         getFormFields method exists for the given object
-        if(get_class($formField) == "multichoice") 
+        if(get_class($formField) == "MultiChoice") 
         {
             $options =& $formField->getOptions();
             for($j = 0; $j < count($options); $j++) 

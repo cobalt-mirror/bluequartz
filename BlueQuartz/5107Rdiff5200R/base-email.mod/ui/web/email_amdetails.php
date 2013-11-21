@@ -1,10 +1,10 @@
 <?php
 // Author: Tim Hockin
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: email_amdetails.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: email_amdetails.php 1233 2009-09-06 09:58:50Z shibuya $
 
-include_once("ServerScriptHelper.php");
-include_once("base/am/am_detail.inc");
+include("ServerScriptHelper.php");
+include("base/am/am_detail.inc");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cce = $serverScriptHelper->getCceClient();

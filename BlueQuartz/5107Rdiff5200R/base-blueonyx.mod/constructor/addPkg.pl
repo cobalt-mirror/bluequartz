@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: addPkg.pl Mon 06 Apr 2009 01:27:56 AM EDT mstauber $
+# $Id: addPkg.pl 1359 2010-01-01 06:47:39Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 
@@ -9,14 +9,6 @@ my $conf = '/var/lib/cobalt';
 
 $cce->connectuds();
 my @oids = $cce->find('Package', {'name' => 'OS' });
-
-# read build date
-my ($fullbuild) = `cat /etc/build`;
-chomp($fullbuild);
-
-# figure out our product
-my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
-
 if ($#oids < 0) {
     my (%rpms, $rpmlist);
 
@@ -31,10 +23,17 @@ if ($#oids < 0) {
 	close(CONF);
     }
 
+    # read build date
+    my ($fullbuild) = `cat /etc/build`;
+    chomp($fullbuild);
+
+    # figure out our product
+    my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
+
     $rpmlist = $cce->array_to_scalar(keys %rpms);
     $cce->create('Package', { 'name' => 'OS',
-			      'version' => "v3.$build",
-			      'vendor' => 'BlueOnyx',
+			      'version' => "v0.$build",
+			      'vendor' => 'BlueQuartz',
 			      'nameTag' => '[[base-alpine.osName]]',
 			      'vendorTag' => '[[base-alpine.osVendor]]',
 			      'shortDesc' => '[[base-alpine.osDescription]]',
@@ -45,16 +44,6 @@ if ($#oids < 0) {
     $cce->set($sysoid, 'SWUpdate', { 'rpmsInstalled' => 
 				     $cce->array_to_scalar(%rpms) });
 }
-
-if ($#oids == 0) {
-        # Object already present in CCE. Updating it with current version information:
-        ($sys_oid) = $cce->find('Package', {'name' => 'OS' });
-        ($ok, $sys) = $cce->get($sys_oid);
-        ($ok) = $cce->set($sys_oid, '',{
-				'version' => "v3.$build"
-                          });
-}
-
 $cce->bye();
 exit 0;
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.

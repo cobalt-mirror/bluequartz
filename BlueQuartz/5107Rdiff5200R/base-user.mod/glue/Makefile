@@ -12,9 +12,6 @@ LOCALES=$(shell dir=etc/skel; \
 # include defines.mk here before checking to see which target make is doing
 include $(CCETOPDIR)/devel/defines.mk
 
-SCRIPTS=sbin/user_gid_fix.pl sbin/fix_user_UID_and_GID.pl sbin/remove_passwd_lock.sh
-CRONS=cron.d/passwd_lock.cron
-
 # check PREFIX, because if it is defined we are 'make rpm' and CCETOPDIR
 # needs to be redefined appropriately
 ifdef PREFIX
@@ -28,11 +25,6 @@ install:
 		$(INSTALL) -d -o root -m 0755 $(PREFIX)/etc/skel/user/$$locale/web; \
 		$(INSTALL) -o root etc/skel/$$locale/user-homedir/web/*.html -m 0644 $(PREFIX)/etc/skel/user/$$locale/web/; \
 	done
-	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/sausalito/sbin; \
-	$(INSTALL) -o root -m 0755 $(SCRIPTS) $(PREFIX)//usr/sausalito/sbin/; \
-	mkdir -p $(PREFIX)/etc/cron.d
-	for file in $(CRONS); do \
-	        $(INSTALL) -o root -m 0644 $(INSTALL_DEFAULT) $$file $(PREFIX)/etc/cron.d/; \
-	done
 
 rpm:
+

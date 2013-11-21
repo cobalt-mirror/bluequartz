@@ -1,9 +1,8 @@
 <?php
 // Author: Brian N. Smith, Michael Stauber
 // Copyright 2006-2007, NuOnce Networks, Inc.  All rights reserved.
-// Copyright 2006-2007, Stauber Multimedia Design.  All rights reserved.
-// Copyright 2008-2009, Team BlueOnyx. All rights reserved.
-// $Id: yum.php,v 1.1 Tue 11 Aug 2009 02:24:43 AM EDT Exp $ 
+// Copyright 2006-2007, Stauber Multimedia Design  All rights reserved.
+// $Id: yum.php,v 1.0 2007/12/20 9:02:00 Exp $ 
 
 include_once("ServerScriptHelper.php");
 
@@ -14,8 +13,8 @@ function br2nl($str) {
 
 $serverScriptHelper = new ServerScriptHelper();
 
-//Only users with adminUser capability should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+//Only users with managePackage capability should be here
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -46,18 +45,6 @@ if ( $_save == "1" ) {
 
   $cceClient->setObject("System", $config, "yum");
   $errors = $cceClient->errors();
-}
-else {
-    // We're not saving changes. So we set 'skiplock' to call a handler that runs a
-    // chmod 444 over our files in /tmp so that this PHP page can access them:
-
-    mt_srand((double)microtime() * 1000000);
-    $skiplock = mt_rand();
-    $config = array(
-	"skiplock" => $skiplock
-    );
-    $cceClient->setObject("System", $config, "yum");
-    $errors = $cceClient->errors();
 }
 
 // get settings
@@ -187,21 +174,20 @@ if ( file_exists("/tmp/yum.updating") ) {
 }
 
 // Logfile viewer:
-if ((file_exists("/var/log/yum.log")) && (is_readable("/var/log/yum.log"))) {
-    $datei_yum = "/var/log/yum.log";
-    $array_yum = file($datei_yum);
-    $array_yum = array_reverse($array_yum);
+$datei_yum = "/var/log/yum.log";
+$array_yum = file($datei_yum);
+$array_yum = array_reverse($array_yum);
 
-    for($x=0;$x<count($array_yum);$x++){
+for($x=0;$x<count($array_yum);$x++){
         // Replace
         $array_yum[$x] = nl2br($array_yum[$x]); //#newline conversion
         $array_yum[$x] = br2nl($array_yum[$x]);
 	if ($x < 500) {
 	        $the_file_data = $the_file_data.$array_yum[$x];
 	}
-    }
-    $tfd_num = count($the_file_data);
 }
+
+$tfd_num = count($the_file_data);
 if ($tfd_num < 1) {
     $the_file_data = "Logfile appears to be empty.";
 }
@@ -215,18 +201,13 @@ print $page->toHeaderHtml();
 print $block->toHtml(); 
 print "<br>";
 
-if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || (!$_PagedBlock_selectedId_yumgui_head)) && (!$yum_is_pulling_updates)) { 
+if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || ($_PagedBlock_selectedId_yumgui_head == "")) && (!$yum_is_pulling_updates)) { 
   $yum = $factory->getScrollList("yumTitle",
     array("name", "version", "status"), array(0,1,2));
   $yum->setDefaultSortedIndex(0);
   $yum->addButton($factory->getButton("/base/swupdate/yum-check-update.php", "yumCheck"));
-  if ( file_exists("/tmp/yum.check-update") ) {
-    $yum_output = file_get_contents("/tmp/yum.check-update");
-  }
-  else {
-    $yum_output = "";
-  }
-  $a_yum = preg_split("/\n/", $yum_output);
+  $yum_output = @file_get_contents("/tmp/yum.check-update");
+  $a_yum = split("\n", $yum_output);
   $count = count($a_yum);
   $start = 0;
   for ( $i = 0; $i < $count; $i++ ) {
@@ -239,14 +220,12 @@ if ((($_PagedBlock_selectedId_yumgui_head == "yumTitle") || (!$_PagedBlock_selec
     foreach ( $updates as $entry ) {
       $yum_update = 1;
       $entry = preg_replace("/\s+/", " ", $entry);
-      $a_entry = preg_split("/ /", $entry);
-      if ($a_entry[0] != "") {
-    	    $yum->addEntry(array(
-    	    $factory->getTextField("", $a_entry[0], "r"),
-    	    $factory->getTextField("", $a_entry[1], "r"),
-    	    $factory->getTextField("", $a_entry[2], "r")
-    	    ));
-      }
+      $a_entry = split(" ", $entry);
+      $yum->addEntry(array(
+        $factory->getTextField("", $a_entry[0], "r"),
+        $factory->getTextField("", $a_entry[1], "r"),
+        $factory->getTextField("", $a_entry[2], "r")
+      ));
     }
   }
 
@@ -263,4 +242,5 @@ $serverScriptHelper->destructor();
 echo $page->toFooterHtml();
 
 ?>
+
 

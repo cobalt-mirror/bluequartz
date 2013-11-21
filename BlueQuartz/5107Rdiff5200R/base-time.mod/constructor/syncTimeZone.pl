@@ -1,6 +1,6 @@
-#!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: setTimeZone.pl Sat 22 Aug 2009 06:35:13 AM EDT mstauber $
-# Copyright 2008-2009 Project BlueOnyx., All rights reserved.
+#!/usr/bin/perl -w -I/usr/sausalito/perl
+# $Id: setTimeZone.pl 259 2004-01-03 06:28:40Z shibuya $
+# Copyright 2008 Project BlueQuartz., All rights reserved.
 
 use Sauce::Util;
 use CCE;
@@ -31,10 +31,24 @@ if ($zone and (readlink($localtime) ne $link)) {
 }
 
 # update /etc/sysconfig/clock
-if ($zone) {
-    system("/bin/echo ZONE=\"$zone\" > /etc/sysconfig/clock");
-    system("/bin/echo UTC=false >> /etc/sysconfig/clock");
-    system("/bin/echo ARC=false >> /etc/sysconfig/clock");
+my $fn = sub {
+	my ($fin, $fout) = (shift,shift);
+	my ($text) = (shift);
+
+	while (<$fin>) {
+		if(m/^ZONE/) {
+			# print out the CCE maintained section
+			print $fout "ZONE=\"$text\"\n";
+		} else {
+			print $fout $_;
+		}
+	}
+
+	return 1;
+};
+
+if (!Sauce::Util::editfile($clock, $fn, $zone)) {
+	$cce->warn("[[base-time.errorWritingConfFile]]");
 }
 
 $cce->bye("SUCCESS");

@@ -1,6 +1,6 @@
 <?php
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: wakeoptions.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: wakeoptions.php 1419 2010-03-10 14:40:29Z shibuya $
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/Label.php");
@@ -9,8 +9,8 @@ include_once("uifc/TextList.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-//Only users with controlPower capability should be here
-if (!$serverScriptHelper->getAllowed('controlPower')) {
+//Only users with serverPower capability should be here
+if (!$serverScriptHelper->getAllowed('serverPower')) {
   header("location: /error/forbidden.html");
   return;
 }

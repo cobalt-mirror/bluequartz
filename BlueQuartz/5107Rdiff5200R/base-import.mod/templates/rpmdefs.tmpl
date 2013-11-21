@@ -11,7 +11,7 @@
 
 <begin $DESCRIPTION>
 %package [LABEL]
-Group: System Environment/BlueOnyx
+Group: System Environment/BlueQuartz
 Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
@@ -117,32 +117,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
-
-* Mon Apr 16 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BX15
-- Switched some deprecated PHP functions in ui/web/importHandler.php with undeprecated stuff.
-
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BX14
-- Converted locale encoding from UTF-8 to ISO-8859-1.
-
-* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BX13
-- Copied 'en' locales to 'en_US'
-
-* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BQ12
-- Rebuilt for BlueOnyx.
-
-* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BQ11
-- Fixed PHP5 related display issue in ui/web/import.php
-- Fixed PHP5 related display issue in ui/web/export.php
-
-* Mon Sep 08 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-45BQ10
-- Fixed the issut to fail to import, remove APOP configuration.
-
-* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BQ9
-- German locales added.
-- Danish locales updated. Thanks to Jes Klittum!
-
-* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-45BQ8
-- Danish locales added. Thanks to Jes Klittum!
+* Wed Sep 16 2009 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-45BQ8
+- merge from 5100R between r970 with r1218.
+- convert po file to utf-8.
 
 * Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-45BQ7
 - Fixed duplicate include issue.

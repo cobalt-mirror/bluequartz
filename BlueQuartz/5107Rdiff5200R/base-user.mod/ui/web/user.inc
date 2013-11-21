@@ -5,12 +5,7 @@
 
 // reserved user login names that are not allowed to be manipulated
 // like regular users, e.g. create/destroy in the UI 
-if ($prefix == "") {
-    $_reserved_usernames = array('admin');
-}
-else {
-    $_reserved_usernames = array('');
-}
+$_reserved_usernames = array('admin'); 
 
 // isReservedUsername: checks if login name is restricted from
 //  normal manipulation in the UI

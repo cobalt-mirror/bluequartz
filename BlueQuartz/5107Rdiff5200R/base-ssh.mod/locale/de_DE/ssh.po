@@ -6,17 +6,17 @@ msgstr ""
 "Project-Id-Version: base-ssh\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-11-01 07:01+0200\n"
-"PO-Revision-Date: 2008-12-04 06:56+0100\n"
+"PO-Revision-Date: 2008-01-26 05:05+0100\n"
 "Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
 "Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Translate Toolkit 1.0.1\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 msgid "enableSSH"
 msgstr "SSH Server einschalten"
@@ -32,22 +32,4 @@ msgstr "SSH Server"
 
 msgid "amStatusOK"
 msgstr "Der SSH Server funktioniert normal."
-
-msgid "SSH_Port"
-msgstr "SSH Port:"
-
-msgid "SSH_Port_help"
-msgstr "Normalerweise ist SSH and Port 22/TCP gebunden. Jedoch können Sie SSHd so umkonfigurieren, dass es an einen anderen Port gebunden wird. Damit lassen sich ggf. automatisierte Attacken gegen SSH umgehen."
-
-msgid "SSH_Proto"
-msgstr "SSH Protokoll:"
-
-msgid "SSH_Proto_help"
-msgstr "SSH unterstützt zwei Protokolle: Protokoll Version 1 und Version 2. Version 2 ist neuer und sicherer, daher sollten Sie nach Möglichkeit nur Protokoll 2 verwenden. Falls Sie jedoch SSH-Zugang mit Applikationen brauchen, die nur Protokoll 1 unterstützen, so stellen Sie den Wert auf '2,1'. Damit bleibt Protokoll 2 die bevorzugte Variante, aber Protokoll 1 steht nach wie vor für ältere Applikationen zur Verfügung."
-
-msgid "SSHrootLogin"
-msgstr "SSH Root-Zugang:"
-
-msgid "SSHrootLogin_help"
-msgstr "Normalerweise darf sich Benutzer 'root' aus Sicherheitsgründen nicht direkt per SSH einloggen. Falls Sie es wünschen, können Sie dieses Verhalten hier ändern."
 

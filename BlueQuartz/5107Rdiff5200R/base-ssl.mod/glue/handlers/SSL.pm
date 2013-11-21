@@ -3,7 +3,7 @@
 # /\                                                          \
 # \_| SSL.pm: Functions for manging SSL certificates.         |
 #   |                                                         |
-#   | $Id: SSL.pm 259 2004-01-03 06:28:40Z shibuya $     |
+#   | $Id: SSL.pm 1442 2010-03-23 14:37:48Z shibuya $     |
 #   |                                                         |
 #   | Originally written by                                   |
 #   |   Harris Vaegan-Lloyd <harris@cobaltnet.com>            |
@@ -592,8 +592,7 @@ sub ssl_check_days_valid
     my $days = shift;
 
     # actually check for the cutoff minus a day to be safe
-    my $time_diff = (2 ** 31 - 100) - time();
-    my $days_valid = int($time_diff / 86400)- 20;
+    my $time_diff = (2 ** 31 - 86401) - time();
     if ($DEBUG)
     {
         my @time = gmtime(time());
@@ -612,11 +611,12 @@ sub ssl_check_days_valid
         print STDERR "seconds until rollover is (minus one day) $time_diff\n";
     }
 
-    if ($days > $days_valid) 
-    { 
-	return $days_valid; 
-    } 
-    return $days; 
+    if (($days * 86400) > $time_diff)
+    {
+        return 0;
+    }
+
+    return 1;
 }
 
 # private functions below

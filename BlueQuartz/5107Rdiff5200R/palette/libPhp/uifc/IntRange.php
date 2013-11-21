@@ -1,7 +1,7 @@
 <?php
 // Author: jmayer@cobalt.com
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: IntRange.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: IntRange.php 995 2007-05-05 07:44:27Z shibuya $
 
 global $isIntRangeDefined;
 if($isIntRangeDefined)
@@ -50,7 +50,7 @@ class IntRange extends FormField {
     $value = $this->getValue();
     
     $regs = array();
-    if (preg_match("/^([^:]+):(.+)/", $value, $regs)) {
+    if (ereg("^([^:]+):(.+)", $value, $regs)) {
       $low = $regs[1]; $high = $regs[2];
     } else {
       $low = $value; $high = $value;

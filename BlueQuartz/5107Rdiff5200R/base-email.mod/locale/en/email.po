@@ -315,11 +315,23 @@ msgstr ""
 "or off.  Enabling this service allows users to retrieve email from this "
 "server appliance using most standard email clients."
 
-msgid "enableSMTPAuthField"
+msgid "enableAuthField"
 msgstr "Enable SMTP Auth"
 
-msgid "enableSMTPAuthField_help"
+msgid "enableAuthField_help"
 msgstr "Turn the Simple Mail Transfer Protocol (SMTP) service on or off."
+
+msgid "enableTLSField"
+msgstr "Enable TLS"
+
+msgid "enableTLSField_help"
+msgstr "Turn the TLS for SMTP service on or off."
+
+msgid "enableAuth"
+msgstr "Enable SMTP Auth"
+
+msgid "enableAuth_help"
+msgstr "Turn the SMTP Auth on or off."
 
 msgid "enableSMTPSField"
 msgstr "Enable SMTPS Server"
@@ -327,10 +339,10 @@ msgstr "Enable SMTPS Server"
 msgid "enableSMTPSField_help"
 msgstr "Turn the SMTP over SSL service on or off."
 
-msgid "enableServersField"
+msgid "enableSMTPField"
 msgstr "Enable SMTP Server"
 
-msgid "enableServersField_help"
+msgid "enableSMTPField_help"
 msgstr ""
 "Turn the Simple Mail Transfer Protocol (SMTP) service on or off. Enabling "
 "SMTP will allow this server appliance to act as an SMTP server for sending "
@@ -493,98 +505,22 @@ msgstr ""
 "value is to leave this field empty.  For example example.com is a valid "
 "entry."
 
-msgid "mx"
-msgstr "Secondary Mail-server"
+msgid "fallbackRelayField"
+msgstr "Fallback Relay Server"
 
-msgid "mx_help"
-msgstr "Click here to configure secondary mail-services."
+msgid "fallbackRelayField_help"
+msgstr ""
+"Enter the  fully-qualified domain name of an email server through which all "
+"outgoing email will be routed. "
 
-msgid "mx2List"
-msgstr "Secondary Mail-server List"
-
-msgid "addmx"
-msgstr "Add"
-
-msgid "addmx_help"
-msgstr "Add new secondary mail-domains here."
-
-msgid "secondaryDomain"
-msgstr "Secondary Service"
-
-msgid "secondaryDomain_help"
-msgstr "This is a list of domains which have secondary mail-services on this server."
-
-msgid "secondarySettings"
-msgstr "Secondary Settings"
-
-msgid "domainField"
-msgstr "Domain Name"
-
-msgid "domainField_help"
-msgstr "Enter the domain name you want to which you want to add a secondary mailservice."
-
-msgid "maptoField"
-msgstr "Mail Server"
-
-msgid "maptoField_help"
-msgstr "Enter the main mail server for the domain."
-
-msgid "domainExists_in_relay_error"
-msgstr "The Domain Name is already in use in the relay email field."
-
-msgid "domainExists_in_site_error"
-msgstr "The Domain Name is already in use in a site on the server."
-
-msgid "domainExists_error"
-msgstr "The Domain Name is already in use in the Secondary Mail server section."
-
-msgid "mxRemoveEntry"
-msgstr "Are you sure you want to delete the [[VAR.mxHost]] MX server-record?"
+msgid "fallbackRelayField_rule"
+msgstr ""
+"Please enter a properly formatted fully-qualified domain name.  The default "
+"value is to leave this field empty.  For example example.com is a valid "
+"entry."
 
 msgid "userEmail"
 msgstr "Email options for users"
-
-msgid "blacklist"
-msgstr "Blacklisting"
-
-msgid "blacklist_help"
-msgstr "Click here to add DNSBLs Blacklisting to the e-mail service."
-
-msgid "blackList"
-msgstr "Blacklist Services"
-
-msgid "blackList_help"
-msgstr "This is the list of different hosts that provide Blacklist services. ie 'zen.spamhaus.org'."
-
-msgid "activated"
-msgstr "Status"
-
-msgid "activated_help"
-msgstr "Here you can see if the Blacklist entry is active or not."
-
-msgid "blacklistHostExists_error"
-msgstr "The Blacklist service has already been added, change the hostname to something else."
-
-msgid "blacklistRemoveEntry"
-msgstr "Are you sure you want to delete the [[VAR.blacklistHost]] Blacklist service entry?"
-
-msgid "blacklistHostField"
-msgstr "Blacklist service"
-
-msgid "blacklistHostField_help"
-msgstr "Enter the <FQDN> of the Blacklist service you want to use, ie. 'zen.spamhaus.org'."
-
-msgid "deferField"
-msgstr "Defer Temporary"
-
-msgid "deferField_help"
-msgstr "If you click this field, the mail-server, if there is a problem reaching the Blacklist service, will return a temporary error to the incoming mail-server and thus temporary defer the message. The default behaviour of the mail-server is to accept the mail if it can't reach the Blacklist-service."
-
-msgid "activeField"
-msgstr "Activate service"
-
-msgid "activeField_help"
-msgstr "Select this option if you want to activate this Blacklist service."
 
 msgid "vacationSubject"
 msgstr "Automated Reply from"
@@ -633,23 +569,68 @@ msgstr ""
 msgid "ampopRelayStatusOK"
 msgstr "The POP Authenticated Relaying service is operating normally."
 
-msgid "error_writing_sendmail_mc"
-msgstr "Could not write an updated /etc/mail/sendmail.mc. Please check your sendmail.mc for corruptions. To restore a safe default, copy /usr/sausalito/configs/sendmail/sendmail.mc to /etc/mail/sendmail.mc and try again."
+#delivery routes
+msgid "routes"
+msgstr "Modify Delivery Routes"
 
-msgid "maxRecipientsPerMessageField"
-msgstr "Maximum Recipients per Message"
+msgid "routes_help"
+msgstr "Click here to create delivery routes from this server appliance to other mail server."
 
-msgid "maxRecipientsPerMessageField_help"
-msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
+# list
+msgid "routeList-list-title"
+msgstr "Delivery Route List"
 
-msgid "delayChecksField"
-msgstr "Enable delay_checks"
+msgid "createRoute"
+msgstr "Add Delivery Route"
 
-msgid "delayChecksField_help"
-msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
+msgid "route-target"
+msgstr "Target Domain Name"
 
-msgid "enableZpushField"
-msgstr "Enable Z-Push"
+msgid "route-target_help"
+msgstr "This is the Domain Name to which the listed delivery route refers."
 
-msgid "enableZpushField_help"
-msgstr "Z-push is an open-source application to synchronize ActiveSync compatible PDAs and mobile phones, which allows them access to emails. For more information about how to use Z-Push see: http://www.blueonyx.it/index.php?page=z-push"
+msgid "route-server"
+msgstr "Mail Server"
+
+msgid "route-server_help"
+msgstr "This is the mail server to which the mail to target domain name will be delivered."
+
+msgid "modifyRoute"
+msgstr "Modify Delivery Route"
+
+msgid "verify_delete"
+msgstr "Are you sure you want to remove the delivery route [[VAR.route]]?"
+
+# Add a route form
+msgid "route_form_target"
+msgstr "Target Domain Name"
+
+msgid "route_form_target_help"
+msgstr "Enter the Domain Name to be delivered. "
+
+msgid "route_form_target_empty"
+msgstr "Sorry, you have not entered a value for [[base-email.route_form_target]]."
+
+msgid "route_form_target_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-email.route_form_target]]."
+
+msgid "route_form_server"
+msgstr "Mail Server"
+
+msgid "route_form_server_help"
+msgstr "Enter the Mail Server to be delivered. "
+
+msgid "route_form_server_empty"
+msgstr "Sorry, you have not entered a value for [[base-email.route_form_server]]."
+
+msgid "route_form_server_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-email.route_form_server]]."
+
+msgid "routeList_action_header"
+msgstr "Actions"
+
+msgid "routeList_action_header_help"
+msgstr "Click the Modify icon to change settings for a delivery route, or click the Remove icon to delete a delivery route."
+
+msgid "cap_serverEmail"
+msgstr "Email Service Settings"

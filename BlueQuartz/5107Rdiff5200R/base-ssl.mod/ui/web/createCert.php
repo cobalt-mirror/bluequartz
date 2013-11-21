@@ -4,10 +4,11 @@
 
 include_once('ServerScriptHelper.php');
 
-$helper = new ServerScriptHelper();
+$helper =& new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -127,7 +128,7 @@ $cert_info->processErrors($errors);
 
 if ($type == 'csr')
     $cert_info->addFormField(
-        $factory->getBoolean('genCert', 0),
+        $factory->getBoolean('genCert', 1),
         $factory->getLabel('genSSCert'));
 
 $cert_info->addDivider($factory->getLabel('location', false));

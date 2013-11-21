@@ -6,7 +6,7 @@ source /usr/sausalito/swatch/statecodes.tcl
 log_user 0
 
 # we use telnet to connect
-spawn telnet 127.0.0.1 23
+spawn telnet localhost 23
 expect {
     "Connected to" {}
     default { # we don't connect properly
@@ -16,7 +16,7 @@ expect {
 	catch {exec /etc/rc.d/init.d/xinetd restart >&/dev/null} result
 	sleep 5
 	# redo test, fail if get an error again
-	spawn telnet 127.0.0.1 23
+	spawn telnet localhost 23
 	expect {
 	    "Connected to" {}
 	    default {

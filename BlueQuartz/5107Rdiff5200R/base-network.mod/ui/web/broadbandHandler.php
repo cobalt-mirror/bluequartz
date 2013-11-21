@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: broadbandHandler.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: broadbandHandler.php 1003 2007-06-25 15:19:33Z shibuya $
 
 include_once("ServerScriptHelper.php");
 

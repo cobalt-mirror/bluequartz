@@ -37,7 +37,7 @@ class ReportHelper
 	 * defaults: type = web, group = server
 	 */
 	function ReportHelper($argType = "web", $argGroup = "server", 
-			$argLocale = "en", $argStyle = "BlueOnyx")
+			$argLocale = "en", $argStyle = "trueBlue")
 	{
 		if ($this->isValidType($argType)) { 
 			$this->type = $argType;

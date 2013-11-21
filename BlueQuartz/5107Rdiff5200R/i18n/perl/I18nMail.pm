@@ -466,7 +466,7 @@ sub MimeJa
 
 sub QuotedPrintable{
 	my($str,$charset)=@_;
-	my $qp_str=encode_qp($str, "");
+	my $qp_str=encode_qp($str);
 	chomp($qp_str);
 	return "=?$charset?Q?".$qp_str."?=";
 }

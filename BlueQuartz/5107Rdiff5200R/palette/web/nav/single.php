@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: single.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: single.php 1024 2007-06-25 15:31:47Z shibuya $
 
 // description:
 // This is the base page of the single navigation system.
@@ -88,10 +88,9 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   code.scheduler_doJob();
 }
 </SCRIPT>
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 </HEAD>
 
-<FRAMESET ROWS="<?php print($style->getProperty("titleHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()">
+<FRAMESET ROWS="<?php print($style->getProperty("titleHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()" onResize="if(navigator.appName == 'Netscape') location.reload()">
   <FRAME SRC="blank.html" NAME="titleFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
   <FRAME SRC="blank.php" NAME="mainFrame" FRAMEBORDER="no">
   <FRAME SRC="blank.html" NAME="infoFrame" FRAMEBORDER="no" MARGINWIDTH="0">
@@ -99,6 +98,9 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
   <FRAME SRC="<?php print($commFrame ? $commFrame : "blank.html"); ?>" NAME="commFrame" FRAMEBORDER="no" MARGINWIDTH="0" SCROLLING="no">
 </FRAMESET>
 
+<HEAD>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+</HEAD>
 </HTML>
 <?php
 /*
