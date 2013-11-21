@@ -1,0 +1,587 @@
+<styleResource name="[[FireSmoke.FireSmoke]]">
+  <style id="Login">
+    <property name="fontFamily" target="medium" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" target="medium" value="14px" />
+    <property name="textDecoration" target="medium" value="none"/>
+
+    <property name="color" target="error" value="#990000" />
+
+    <property name="backgroundColor" target="small" value="#000099" />
+    <property name="color" target="small" value="#DEB887" />
+    <property name="fontFace" target="small" value="verdana" />
+    <property name="fontFamily" target="small" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" target="small" value="12px" />
+    <property name="fontWeight" target="small" value="bold" />
+    <property name="textDecoration" target="small" value="none" />
+
+    <property name="color" value="#000099" />
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" value="18px" />
+    <property name="fontWeight" value="bold" />
+    <property name="textDecoration" value="none"/>
+    <property name="fontStyle" value="italic" />
+
+    <property name="fontFamily" target="login" value="Arial,Helvetica,sans-serif" />
+    <property name="fontSize" target="login" value="medium" />
+    <property name="fontWeight" target="login" value="bold" />
+    <property name="textDecoration" target="login" value="none"/>
+
+    <property name="backgroundColor" target="button" value="#990000" />
+  </style>
+
+  <style id="Page">
+    <property name="useSplashXML" value="true"/>
+    <property name="aLinkColor" value="#DEB887"/>
+    <property name="backgroundColor" value="#F5EADB"/>
+    <property name="backgroundImage" value="/libImage/FireSmoke/FSBackgroundCorner.png"/>
+    <property name="backgroundRepeat" value="no-repeat"/>
+    <property name="backgroundAttachment" value="fixed"/>
+    <property name="center" value="true"/>
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+  </style>
+
+  <style id="SplashScreens">
+    <property name="aLinkColor" value="#DEB887"/>
+    <property name="backgroundColor" value="#F5EADB"/>
+    <property name="backgroundRepeat" value="no-repeat"/>
+    <property name="backgroundAttachment" value="fixed"/>
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+    <property name="fontWeight" value="bold" />
+    
+    <property name="adminBackground" value="/libImage/FireSmoke/Admin-Splash.gif"/>
+    <property name="swupdateBackground" value="/libImage/FireSmoke/SWUpdate-Splash.gif"/>
+    <property name="programsBackground" value="/libImage/FireSmoke/Programs-Splash.gif"/>
+    <property name="personalBackground" value="/libImage/FireSmoke/Personal-Splash.gif"/>
+    <property name="webMailBackground" value="/libImage/FireSmoke/WebMail-Splash.gif"/>
+    
+    <property name="adminSplash" value="/libImage/FireSmoke/MerlotSplashSpacer.gif"/>
+    <property name="swupdateSplash" value="/libImage/FireSmoke/MerlotSplashSpacer.gif"/>
+    <property name="programsSplash" value="/libImage/FireSmoke/MerlotSplashSpacer.gif"/>
+    <property name="personalSplash" value="/libImage/FireSmoke/MerlotSplashSpacer.gif"/>
+    <property name="webMailSplash" value="/libImage/FireSmoke/MerlotSplashSpacer.gif"/>
+
+  </style>
+
+  <style id="PagedBlock">
+    <property name="borderColor" value="#D8C4AD"/>
+    <property name="borderThickness" value="0"/>
+    <property name="cellPadding" value="0"/>
+    <property name="dividerAlign" value="left"/>
+    <property name="dividerHeight" value="20"/>
+    <property name="tabAlign" value="right"/>
+    <property name="tabDividerHeight" value="3"/>
+    <property name="titleAlign" value="left"/>
+    <property name="titleHeightBuffer" value="27"/>
+    <property name="width" value="550"/>
+
+    <property name="useShadow" value="true"/>
+    <property name="shadowTopLeftCorner" value="/libImage/FireSmoke/FrameTopLeftCorner.png"/>
+    <property name="shadowTop" value="/libImage/FireSmoke/FrameTop.png"/>
+    <property name="shadowTopLeft" value="/libImage/FireSmoke/FrameTopLeft.png"/>
+    <property name="shadowTopRight" value="/libImage/FireSmoke/FrameTopRight.png"/>
+    <property name="shadowTopRightCorner" value="/libImage/FireSmoke/FrameTopRightCorner.png"/>
+    <property name="shadowLeft" value="/libImage/FireSmoke/FrameLeft.png"/>
+    <property name="shadowLeftTop" value="/libImage/FireSmoke/FrameLeftTop.png"/>
+    <property name="shadowRight" value="/libImage/FireSmoke/FrameRight.png"/>
+    <property name="shadowRightTop" value="/libImage/FireSmoke/FrameRightTop.png"/>
+    <property name="shadowLeftBottom" value="/libImage/FireSmoke/FrameLeftBottom.png"/>
+    <property name="shadowRightBottom" value="/libImage/FireSmoke/FrameRightBottom.png"/>
+    <property name="shadowBottomLeftCorner" value="/libImage/FireSmoke/FrameBottomLeftCorner.png"/>
+    <property name="shadowBottom" value="/libImage/FireSmoke/FrameBottom.png"/>
+    <property name="shadowBottomLeft" value="/libImage/FireSmoke/FrameBottomLeft.png"/>
+    <property name="shadowBottomRight" value="/libImage/FireSmoke/FrameBottomRight.png"/>
+    <property name="shadowBottomRightCorner" value="/libImage/FireSmoke/FrameBottomRightCorner.png"/>
+
+    <property name="listDivider" value="/libImage/FireSmoke/FSLargeDivider.png"/>
+
+    <property name="backgroundColor" target="dividerCell" value="#EAD5BE"/>
+    <property name="backgroundColor" target="labelCell" value="#D8C4AD"/>
+    <property name="backgroundColor" target="formFieldCell" value="#D8C4AD"/>
+    <property name="backgroundColor" target="tabDivider" value="#EAD5BE"/>
+    <property name="backgroundColor" target="titleCell" value="#303030"/>
+
+    <property name="color" target="dividerLabel" value="#000000"/>
+    <property name="fontFamily" target="dividerLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="dividerLabel" value="12px"/>
+    <property name="fontWeight" target="dividerLabel" value="bold"/>
+    <property name="textDecoration" target="dividerLabel" value="none"/>
+
+    <property name="color" target="labelLabel" value="#000000"/>
+    <property name="fontFamily" target="labelLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="labelLabel" value="12px"/>
+    <property name="textDecoration" target="labelLabel" value="none"/>
+
+    <property name="color" target="subscript" value="#A52A2A"/>
+    <property name="fontFamily" target="subscript" value="Verdana,Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="subscript" value="10px"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+
+    <property name="color" target="tabSelected" value="#000000"/>
+    <property name="fontFamily" target="tabSelected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="tabSelected" value="12px"/>
+    <property name="fontWeight" target="tabSelected" value="bold"/>
+    <property name="leftImage" target="tabSelected" value="/libImage/FireSmoke/FSPageTabLeftSelected.png"/>
+    <property name="rightImage" target="tabSelected" value="/libImage/FireSmoke/FSPageTabRightSelected.png"/>
+    <property name="fillImage" target="tabSelected" value="/libImage/FireSmoke/FSTabFillSelected.png"/>
+    <property name="textDecoration" target="tabSelected" value="none"/>
+
+    <property name="color" target="tabUnselected" value="#000000"/>
+    <property name="fontFamily" target="tabUnselected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="tabUnselected" value="12px"/>
+    <property name="fontWeight" target="tabUnselected" value="bold"/>
+    <property name="leftImage" target="tabUnselected" value="/libImage/FireSmoke/FSTabLeftUnselected.png"/>
+    <property name="rightImage" target="tabUnselected" value="/libImage/FireSmoke/FSTabRightUnselected.png"/>
+    <property name="fillImage" target="tabUnselected" value="/libImage/FireSmoke/FSTabFillUnselected.png"/>
+    <property name="textDecoration" target="tabUnselected" value="none"/>
+
+    <property name="color" target="titleLabel" value="#DEB887"/>
+    <property name="fontFamily" target="titleLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="18px"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+    <!-- <property name="fontVariant" target="titleLabel" value="small-caps"/> -->
+  </style>
+
+  <style id="Button">
+    <property name="aLinkColor" value="#DEB887"/>
+    <property name="color" target="normal" value="#DEB887"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/FireSmoke/FSButtonLeft.png"/>
+    <property name="rightImage" target="normal" value="/libImage/FireSmoke/FSButtonRight.png"/>
+    <property name="fillImage" target="normal" value="/libImage/FireSmoke/FSButtonFill.png"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="disabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="disabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="disabled" value="12px"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+
+	<property name="useHeaderButton" value="true"/>
+
+    <property name="color" target="header" value="#DEB887"/>
+    <property name="fontFamily" target="header" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="header" value="12px"/>
+    <property name="fontWeight" target="header" value="bold"/>
+    <property name="leftImage" target="header" value="/libImage/FireSmoke/MerlotHeaderButtonLeft.gif"/>
+    <property name="rightImage" target="header" value="/libImage/FireSmoke/MerlotHeaderButtonRight.gif"/>
+    <property name="fillImage" target="header" value="/libImage/FireSmoke/MerlotHeaderButtonFill.gif"/>
+    <property name="textDecoration" target="header" value="none"/>
+
+    <property name="color" target="headerDisabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="headerDisabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="headerDisabled" value="12px"/>
+    <property name="fontWeight" target="headerDisabled" value="bold"/>
+    <property name="leftImage" target="headerDisabled" value="/libImage/FireSmoke/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="headerDisabled" value="/libImage/FireSmoke/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="headerDisabled" value="/libImage/FireSmoke/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="headerDisabled" value="none"/>
+  </style>
+
+  <style id="Bar">
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+    
+    <property name="startImage" value="/libImage/FireSmoke/FSProgressLeft.png"/>
+    <property name="leftBumper" value="/libImage/FireSmoke/FSProgressLeftBumper.png"/>
+    <property name="filledImage" value="/libImage/FireSmoke/FSProgressFill.png"/>
+    <property name="rightBumper" value="/libImage/FireSmoke/FSProgressRightBumper.png"/>
+    <property name="emptyImage" value="/libImage/FireSmoke/FSProgressEmpty.png"/>
+    <property name="endImage" value="/libImage/FireSmoke/FSProgressRight.png"/>
+    <property name="bumperWidth" value="14"/>
+    
+    <property name="vstartImage" value="/libImage/FireSmoke/MerlotVertProgressLeft.gif"/>
+    <property name="vleftBumper" value="/libImage/FireSmoke/MerlotVertProgressLeftBumper.gif"/>
+    <property name="vfilledImage" value="/libImage/FireSmoke/MerlotVertProgressFill.gif"/>
+    <property name="vrightBumper" value="/libImage/FireSmoke/MerlotVertProgressRightBumper.gif"/>
+    <property name="vemptyImage" value="/libImage/FireSmoke/MerlotVertProgressEmpty.gif"/>
+    <property name="vendImage" value="/libImage/FireSmoke/MerlotVertProgressRight.gif"/>
+    <property name="vbumperWidth" value="14"/>
+  </style>
+
+  <style id="ImageButton">
+  </style>
+
+  <style id="UserStatusIcons">
+    <property name="shellIcon" value="/libImage/FireSmoke/MerlotShell.gif"/>
+    <property name="frontPageIcon" value="/libImage/FireSmoke/MerlotFrontPage.gif"/>
+    <property name="apopIcon" value="/libImage/FireSmoke/MerlotApop.gif"/>
+    <property name="shellIconInactive" value="/libImage/FireSmoke/MerlotShellInactive.gif"/>
+    <property name="frontPageIconInactive" value="/libImage/FireSmoke/MerlotFrontPageInactive.gif"/>
+    <property name="apopIconInactive" value="/libImage/FireSmoke/MerlotApopInactive.gif"/>
+    <property name="inactiveUserIcon" value="/libImage/FireSmoke/MerlotInactiveUser.gif"/>
+  </style>
+
+  <style id="BackupStatusIcons">
+    <property name="restoreIcon" value="/libImage/FireSmoke/MerlotUpload.gif"/>
+    <property name="restoreIconInactive" value="/libImage/FireSmoke/MerlotUploadDisabled.gif"/>
+  </style>
+
+  <style id="DetailButton">
+    <property name="detailIcon" value="/libImage/FireSmoke/FSInspectActive.png"/>
+    <property name="detailIconDisabled" value="/libImage/FireSmoke/FSInspectInactive.png"/>
+  </style>
+
+  <style id="ModifyButton">
+    <property name="modifyIcon" value="/libImage/FireSmoke/FSEditActive.png"/>
+    <property name="modifyIconDisabled" value="/libImage/FireSmoke/FSEditInactive.png"/>
+  </style>
+
+  <style id="RemoveButton">
+    <property name="removeIcon" value="/libImage/FireSmoke/FSDeleteActive.png"/>
+    <property name="removeIconDisabled" value="/libImage/FireSmoke/FSDeleteInactive.png"/>
+  </style>
+
+  <style id="UninstallButton">
+    <property name="uninstallIcon" value="/libImage/FireSmoke/FSDeleteActive.png"/>
+    <property name="uninstallIconDisabled" value="/libImage/FireSmoke/FSDeleteInactive.png"/>
+  </style>
+
+  <style id="CancelButton">
+    <property name="color" target="normal" value="#DEB887"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/FireSmoke/FSButtonLeft.png"/>
+    <property name="rightImage" target="normal" value="/libImage/FireSmoke/FSButtonRight.png"/>
+    <property name="fillImage" target="normal" value="/libImage/FireSmoke/FSButtonFill.png"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="disabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="disabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="disabled" value="12px"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>  </style>
+
+  <style id="Label">
+    <property name="color" value="#000000"/>
+    <property name="fontFamily" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" value="12px"/>
+    <property name="textDecoration" value="none"/>
+  </style>
+
+  <style id="MultiChoice">
+    <property name="backgroundColor" target="fieldGrouper" value="#CCCCCC"/>
+
+    <property name="color" target="choiceLabel" value="#000000"/>
+    <property name="fontFamily" target="choiceLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="choiceLabel" value="12px"/>
+    <property name="textDecoration" target="choiceLabel" value="none"/>
+
+    <property name="color" target="formFieldLabel" value="#A52A2A"/>
+    <property name="fontFamily" target="formFieldLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="formFieldLabel" value="12px"/>
+    <property name="textDecoration" target="formFieldLabel" value="none"/>
+
+    <property name="color" target="subscript" value="#A52A2A"/>
+    <property name="fontFamily" target="subscript" value="Verdana,Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="subscript" value="10px"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+  </style>
+
+  <style id="CheckBox">
+    <property name="image" target="checked" value="/libImage/FireSmoke/greenCheck.gif"/>
+    <property name="image" target="unchecked" value="/libImage/FireSmoke/redX.gif"/>
+  </style>
+
+  <style id="Password">
+    <property name="color" target="subscript" value="#000000"/>
+    <property name="fontFamily" target="subscript" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="subscript" value="12px"/>
+    <property name="fontStyle" target="subscript" value="italic"/>
+  </style>
+
+  <style id="SaveButton">
+    <property name="color" target="normal" value="#DEB887"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="leftImage" target="normal" value="/libImage/FireSmoke/FSButtonLeft.png"/>
+    <property name="rightImage" target="normal" value="/libImage/FireSmoke/FSButtonRight.png"/>
+    <property name="fillImage" target="normal" value="/libImage/FireSmoke/FSButtonFill.png"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="disabled" value="#F1F7FF"/>
+    <property name="fontFamily" target="disabled" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="disabled" value="12px"/>
+    <property name="fontWeight" target="disabled" value="bold"/>
+    <property name="leftImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonLeftDisabled.gif"/>
+    <property name="rightImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonRightDisabled.gif"/>
+    <property name="fillImage" target="disabled" value="/libImage/FireSmoke/MerlotButtonFillDisabled.gif"/>
+    <property name="textDecoration" target="disabled" value="none"/>
+  </style>
+
+  <style id="SetSelector">
+    <property name="addIcon" value="/libImage/FireSmoke/FSLeftArrow.png"/>
+    <property name="addIconDisabled" value="/libImage/FireSmoke/FSLeftArrowDisabled.png"/>
+    <property name="removeIcon" value="/libImage/FireSmoke/FSRightArrow.png"/>
+    <property name="removeIconDisabled" value="/libImage/FireSmoke/FSRightArrowDisabled.png"/>
+    <property name="upIcon" value="/libImage/FireSmoke/MerlotUpArrow.gif"/>
+    <property name="upIconDisabled" value="/libImage/FireSmoke/MerlotUpArrowDisabled.gif"/>
+    <property name="downIcon" value="/libImage/FireSmoke/MerlotDownArrow.gif"/>
+    <property name="downIconDisabled" value="/libImage/FireSmoke/MerlotDownArrowDisabled.gif"/>
+  </style>
+
+  <style id="ScrollList">
+    <property name="borderColor" value="#D8C4AD"/>
+    <property name="borderThickness" value="0"/>
+    <property name="cellPadding" value="0"/>
+    <property name="controlAlign" value="LEFT"/>
+    <property name="sortAscendingIcon" value="/libImage/FireSmoke/FSInactiveSortDown.png"/>
+    <property name="sortDescendingIcon" value="/libImage/FireSmoke/FSInactiveSortUp.png"/>
+    <property name="sortedAscendingIcon" value="/libImage/FireSmoke/FSActiveSortDown.png"/>
+    <property name="sortedDescendingIcon" value="/libImage/FireSmoke/FSActiveSortUp.png"/>
+    <property name="titleAlign" value="LEFT"/>
+    <property name="titleHeightBuffer" value="27"/>
+    <property name="width" value="550"/>
+
+    <property name="useShadow" value="true"/>
+    <property name="shadowTopLeftCorner" value="/libImage/FireSmoke/FrameTopLeftCorner.png"/>
+    <property name="shadowTop" value="/libImage/FireSmoke/FrameTop.png"/>
+    <property name="shadowTopLeft" value="/libImage/FireSmoke/FrameTopLeft.png"/>
+    <property name="shadowTopRight" value="/libImage/FireSmoke/FrameTopRight.png"/>
+    <property name="shadowTopRightCorner" value="/libImage/FireSmoke/FrameTopRightCorner.png"/>
+    <property name="shadowLeft" value="/libImage/FireSmoke/FrameLeft.png"/>
+    <property name="shadowLeftTop" value="/libImage/FireSmoke/FrameLeftTop.png"/>
+    <property name="shadowRight" value="/libImage/FireSmoke/FrameRight.png"/>
+    <property name="shadowRightTop" value="/libImage/FireSmoke/FrameRightTop.png"/>
+    <property name="shadowLeftBottom" value="/libImage/FireSmoke/FrameLeftBottom.png"/>
+    <property name="shadowRightBottom" value="/libImage/FireSmoke/FrameRightBottom.png"/>
+    <property name="shadowBottomLeftCorner" value="/libImage/FireSmoke/FrameBottomLeftCorner.png"/>
+    <property name="shadowBottom" value="/libImage/FireSmoke/FrameBottom.png"/>
+    <property name="shadowBottomLeft" value="/libImage/FireSmoke/FrameBottomLeft.png"/>
+    <property name="shadowBottomRight" value="/libImage/FireSmoke/FrameBottomRight.png"/>
+    <property name="shadowBottomRightCorner" value="/libImage/FireSmoke/FrameBottomRightCorner.png"/>
+
+    <property name="listDivider" value="/libImage/FireSmoke/FSLargeDivider.png"/>
+
+    <property name="useActiveLabel" value="true"/>
+    <property name="activeColumnBackground" value="/libImage/FireSmoke/FSActiveColumn.png"/>
+    <property name="inactiveColumnBackground" value="/libImage/FireSmoke/FSInactiveColumn.png"/>
+
+    <property name="backgroundColor" target="entryCell" value="#D8C4AD"/>
+    <property name="fontFamily" target="entryCell" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="entryCell" value="12px"/>
+
+    <property name="backgroundColor" target="controlCell" value="#EAD5BE"/>
+    <property name="backgroundColor" target="labelCell" value="#D8C4AD"/>
+    <property name="backgroundColor" target="titleCell" value="#303030"/>
+
+    <property name="color" target="controlLabel" value="#000000"/>
+    <property name="fontFamily" target="controlLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="controlLabel" value="12px"/>
+    <property name="textDecoration" target="controlLabel" value="none"/>
+    <property name="fontWeight" target="controlLabel" value="bold"/>
+
+    <property name="color" target="labelLabel" value="#000000"/>
+    <property name="fontFamily" target="labelLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="labelLabel" value="12px"/>
+    <property name="textDecoration" target="labelLabel" value="none"/>
+    <property name="fontWeight" target="labelLabel" value="bold"/>
+
+    <property name="color" target="activeLabelLabel" value="#DEB887"/>
+    <property name="fontFamily" target="activeLabelLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="activeLabelLabel" value="12px"/>
+    <property name="textDecoration" target="activeLabelLabel" value="none"/>
+    <property name="fontWeight" target="activeLabelLabel" value="bold"/>
+
+    <property name="color" target="titleLabel" value="#DEB887"/>
+    <property name="fontFamily" target="titleLabel" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="titleLabel" value="18px"/>
+    <property name="fontWeight" target="titleLabel" value="bold"/>
+    <property name="textDecoration" target="titleLabel" value="none"/>
+    <!-- <property name="fontVariant" target="titleLabel" value="small-caps"/> -->
+  </style>
+
+  <style id="cListNavigation">
+    <property name="collapsibleListWidth" value="180"/>
+    <property name="infoHeight" value="50"/>
+    <property name="tabHeight" value="40"/>
+  </style>
+
+  <style id="flowNavigation">
+    <property name="controlHeight" value="49"/>
+    <property name="infoHeight" value="50"/>
+    <property name="titleHeight" value="40"/>
+  </style>
+
+  <style id="singleNavigation">
+    <property name="infoHeight" value="50"/>
+    <property name="titleHeight" value="40"/>
+  </style>
+
+  <style id="collapsibleList">
+    <property name="aLinkColor" value="#DEB887"/>
+    <property name="borderThickness" value="0"/>
+    <property name="collapsedIcon" value="/libImage/FireSmoke/FSDisclosureRight.png"/>
+    <property name="dividerImage" value="/libImage/FireSmoke/FSDivider.png"/>
+    <property name="expandedIcon" value="/libImage/FireSmoke/FSDisclosureDown.png"/>
+    <property name="selectedIcon" value="/libImage/FireSmoke/FSItemEdit.png"/>
+    <property name="unselectedIcon" value="/libImage/FireSmoke/FSEmpty19x16.png"/>
+    <property name="width" value="100%"/>
+
+    <property name="backgroundColor" target="page" value="#303030"/>
+    <property name="backgroundImage" target="page" value="/libImage/FireSmoke/NavListCorner.gif"/>
+    <property name="backgroundRepeat" target="page" value="no-repeat"/>
+    <property name="backgroundAttachment" target="page" value="fixed"/>
+
+    <property name="color" target="near" value="#DEB887"/>
+    <property name="fontFamily" target="near" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="near" value="12px"/>
+    <property name="fontWeight" target="near" value="bold"/>
+    <property name="textDecoration" target="near" value="none"/>
+
+    <property name="color" target="normal" value="#DEB887"/>
+    <property name="fontFamily" target="normal" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="normal" value="12px"/>
+    <property name="fontWeight" target="normal" value="bold"/>
+    <property name="textDecoration" target="normal" value="none"/>
+
+    <property name="color" target="selected" value="#A52A2A"/>
+    <property name="fontFamily" target="selected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="selected" value="12px"/>
+    <property name="fontWeight" target="selected" value="bold"/>
+    <property name="textDecoration" target="selected" value="none"/>
+  </style>
+
+  <style id="flowControl">
+    <property name="backgroundImage" value="/libImage/FireSmoke/controlBackground.gif"/>
+    <property name="backImage" value="/libImage/FireSmoke/back.gif"/>
+    <property name="backImageDisabled" value="/libImage/FireSmoke/backGray.gif"/>
+    <property name="finishImage" value="/libImage/FireSmoke/finish.gif"/>
+    <property name="finishImageDisabled" value="/libImage/FireSmoke/finishGray.gif"/>
+    <property name="nextImage" value="/libImage/FireSmoke/next.gif"/>
+    <property name="nextImageDisabled" value="/libImage/FireSmoke/nextGray.gif"/>
+  </style>
+
+  <style id="StatusSignal">
+    <property name="disabledIcon" value="/libImage/FireSmoke/FSGrayLight.png"/>
+    <property name="noMonitorIcon" value="/libImage/FireSmoke/FSGrayLight.png"/>
+    <property name="failureIcon" value="/libImage/FireSmoke/FSRedLight.png"/>
+    <property name="newIcon" value="/libImage/FireSmoke/FSBlueLight.gif"/>
+    <property name="noneIcon" value="/libImage/FireSmoke/FSGrayLight.png"/>
+    <property name="normalIcon" value="/libImage/FireSmoke/FSGreenLight.png"/>
+    <property name="oldIcon" value="/libImage/FireSmoke/FSSemiBlueLight.png"/>
+    <property name="pendingIcon" value="/libImage/FireSmoke/FSGrayLight.png"/>
+    <property name="problemIcon" value="/libImage/FireSmoke/FSYellowLight.png"/>
+    <property name="repliedIcon" value="/libImage/FireSmoke/MerlotReply.gif"/>
+    <property name="severeProblemIcon" value="/libImage/FireSmoke/FSRedLight.png"/>
+    <property name="successIcon" value="/libImage/FireSmoke/FSGreenLight.png"/>
+  </style>
+
+  <style id="info">
+    <property name="backgroundColor" target="error" value="#990000"/>
+    <property name="color" target="error" value="#DEB887"/>
+    <property name="errorIcon" target="error" value="/libImage/FireSmoke/MerlotInfoErrorError.gif"/>
+    <property name="fontFamily" target="error" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="error" value="12px"/>
+    <property name="fontWeight" target="error" value="bold"/>
+    <property name="lastIcon" target="error" value="/libImage/FireSmoke/MerlotInfoLeftError.gif"/>
+    <property name="lastIconDisabled" target="error" value="/libImage/FireSmoke/MerlotInfoLeftErrorGray.gif"/>
+    <property name="nextIcon" target="error" value="/libImage/FireSmoke/MerlotInfoRightError.gif"/>
+    <property name="nextIconDisabled" target="error" value="/libImage/FireSmoke/MerlotInfoRightErrorGray.gif"/>
+    <property name="revealMask" target="error" value="/libImage/FireSmoke/revealMaskError.gif"/>
+    <property name="typeIcon" target="error" value="/libImage/FireSmoke/MerlotAlertHelp.gif"/>
+
+    <property name="backgroundColor" target="help" value="#202020"/>
+    <property name="color" target="help" value="#DEB887"/>
+    <property name="errorIcon" target="help" value="/libImage/FireSmoke/MerlotInfoErrorHelp.gif"/>
+    <property name="fontFamily" target="help" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="help" value="12px"/>
+    <property name="fontWeight" target="help" value="bold"/>
+    <property name="lastIcon" target="help" value="/libImage/FireSmoke/MerlotInfoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="help" value="/libImage/FireSmoke/MerlotInfoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="help" value="/libImage/FireSmoke/MerlotInfoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="help" value="/libImage/FireSmoke/MerlotInfoRightHelpGray.gif"/>
+    <property name="revealMask" target="help" value="/libImage/FireSmoke/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="help" value="/libImage/FireSmoke/FSInfoHelp.png"/>
+
+    <property name="backgroundColor" target="status" value="#202020"/>
+    <property name="color" target="status" value="#DEB887"/>
+    <property name="errorIcon" target="status" value="/libImage/FireSmoke/MerlotInfoErrorHelp.gif"/>
+    <property name="fontFamily" target="status" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="status" value="12px"/>
+    <property name="fontWeight" target="status" value="bold"/>
+    <property name="lastIcon" target="status" value="/libImage/FireSmoke/MerlotInfoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="status" value="/libImage/FireSmoke/MerlotInfoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="status" value="/libImage/FireSmoke/MerlotInfoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="status" value="/libImage/FireSmoke/MerlotInfoRightHelpGray.gif"/>
+    <property name="revealMask" target="status" value="/libImage/FireSmoke/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="status" value="/libImage/FireSmoke/spaceHolder.gif"/>
+
+    <property name="backgroundColor" target="wait" value="#202020"/>
+    <property name="color" target="wait" value="#DEB887"/>
+    <property name="errorIcon" target="wait" value="/libImage/FireSmoke/MerlotInfoErrorHelp.gif"/>
+    <property name="fontFamily" target="wait" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="wait" value="12px"/>
+    <property name="fontWeight" target="wait" value="bold"/>
+    <property name="lastIcon" target="wait" value="/libImage/FireSmoke/MerlotInfoLeftHelp.gif"/>
+    <property name="lastIconDisabled" target="wait" value="/libImage/FireSmoke/MerlotInfoLeftHelpGray.gif"/>
+    <property name="nextIcon" target="wait" value="/libImage/FireSmoke/MerlotInfoRightHelp.gif"/>
+    <property name="nextIconDisabled" target="wait" value="/libImage/FireSmoke/MerlotInfoRightHelpGray.gif"/>
+    <property name="revealMask" target="wait" value="/libImage/FireSmoke/revealMaskHelp.gif"/>
+    <property name="typeIcon" target="wait" value="/libImage/FireSmoke/MerlotInfoClock.gif"/>
+  </style>
+
+  <style id="tab">
+    <property name="aLinkColor" value="#000000"/>
+    <property name="backgroundColor" value="#303030"/>
+    <property name="logo" value="/libImage/FireSmoke/FSBlueOnyxLogo.png"/>
+    <property name="logoutImage" value="/libImage/FireSmoke/FSLogOut.png"/>
+    <property name="monitorOffImage" value="/libImage/FireSmoke/FSStatusOkay.png"/>
+    <property name="monitorOnImage" value="/libImage/FireSmoke/FSStatusBad.png"/>
+    <property name="selectedImageLeft" value="/libImage/FireSmoke/FSTabLeftSelected.png"/>
+    <property name="selectedImageRight" value="/libImage/FireSmoke/FSTabRightSelected.png"/>
+    <property name="selectedImageFill" value="/libImage/FireSmoke/FSTabFillSelected.png"/>
+    <property name="top" value="20"/>
+    <property name="unselectedImageLeft" value="/libImage/FireSmoke/FSTabLeftUnselected.png"/>
+    <property name="unselectedImageRight" value="/libImage/FireSmoke/FSTabRightUnselected.png"/>
+    <property name="unselectedImageFill" value="/libImage/FireSmoke/FSTabFillUnselected.png"/>
+    <property name="updateOffImage" value="/libImage/FireSmoke/FSUpdateNone.png"/>
+    <property name="updateOnImage" value="/libImage/FireSmoke/FSUpdateYeah.png"/>
+    <property name="manualOffImage" value="/libImage/FireSmoke/FSHelp.png"/>
+
+    <property name="color" target="selected" value="#000000"/>
+    <property name="fontFamily" target="selected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="selected" value="12px"/>
+    <property name="fontWeight" target="selected" value="bold"/>
+    <property name="textDecoration" target="selected" value="none"/>
+
+    <property name="color" target="unselected" value="#000000"/>
+    <property name="fontFamily" target="unselected" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="unselected" value="12px"/>
+    <property name="fontWeight" target="unselected" value="bold"/>
+    <property name="textDecoration" target="unselected" value="none"/>
+  </style>
+
+  <style id="title">
+    <property name="backgroundImage" value="/libImage/FireSmoke/Merlot_title_background.gif"/>
+    <property name="logo" value="/libImage/FireSmoke/FSBlueOnyxLogo.png"/>
+
+    <property name="color" target="description" value="#DEB887"/>
+    <property name="fontFamily" target="description" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="description" value="12px"/>
+
+    <property name="color" target="title" value="#DEB887"/>
+    <property name="fontFamily" target="title" value="Arial,Helvetica,sans-serif"/>
+    <property name="fontSize" target="title" value="16px"/>
+    <property name="fontWeight" target="title" value="bold"/>
+  </style>
+  
+  <style id="AddressBook">
+    <property name="Inspect" value="/libImage/FireSmoke/FSInspectActive.png"/>
+    <property name="Email" value="/libImage/FireSmoke/MerlotEmailActive.gif"/>
+    <property name="Web" value="/libImage/FireSmoke/MerlotWebActive.gif"/>
+  </style>
+  
+</styleResource>

@@ -1,0 +1,298 @@
+# ----- Menu items
+
+msgid "emailServices"
+msgstr "E-Mail-Dienste"
+
+msgid "emailServices_help"
+msgstr "Hier können Sie [[base-email.emailServices]] konfigurieren."
+
+msgid "emailServers"
+msgstr "E-Mail-Server"
+
+msgid "emailServers_help"
+msgstr "Hier können Sie [[base-email.emailServers]] konfigurieren."
+
+
+# ----- Tabs
+
+msgid "advanced"
+msgstr "Erweitert"
+
+msgid "basic"
+msgstr "Grundlegend"
+
+msgid "basic_help"
+msgstr "Hier können Sie grundlegende [[base-email.emailSettings]] konfigurieren."
+
+msgid "advanced_help"
+msgstr "Hier können Sie erweiterte [[base-email.emailSettings]] wie z. B. den Übertragungszeitplan und die maximale E-Mail-Größe konfigurieren."
+
+
+# ----- Basic Email page
+
+msgid "emailSettings"
+msgstr "E-Mail-Server-Einstellungen"
+
+msgid "enableServersField"
+msgstr "SMTP-Server aktivieren"
+
+msgid "enableServersField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Simple Mail Transfer Protocol (SMTP)-Dienst. Wenn Sie SMTP aktivieren, kann dieser Server als SMTP-Server zum Senden und Empfangen von Internet-E-Mail zwischen anderen Servern fungieren. Mit SMTP können Benutzer diesen Server auch zum Senden von E-Mail verwenden."
+
+msgid "enableImapField"
+msgstr "IMAP-Server aktivieren"
+
+msgid "enableImapField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Internet Message Access Protocol (IMAP)-Dienst. Wenn Sie diesen Dienst aktivieren, können Benutzer unter Einsatz von E-Mail-Clients, die IMAP unterstützen, E-Mail von diesem Server abrufen. Mit IMAP können Benutzer E-Mail auf dem Server speichern. Dabei ist jedoch kontinuierlicher Zugriff auf den Server erforderlich, während der Benutzer mit der E-Mail arbeitet."
+
+msgid "enablePopField"
+msgstr "POP-Server aktivieren"
+
+msgid "enablePopField_help"
+msgstr "Aktivieren oder deaktivieren Sie den Post Office Protocol (POP)-Mail-Abrufdienst. Wenn Sie diesen Dienst aktivieren, können Benutzer unter Einsatz der meisten Standard-E-Mail-Clients E-Mail von diesem Server abrufen."
+
+
+# ----- Advanced Email page
+
+msgid "queueTimeField"
+msgstr "Übertragungszeitplan" 
+
+msgid "queueTimeField_help"
+msgstr "Legen Sie fest, wie oft dieser Server versucht, E-Mail in der Warteschlange zu übertragen."
+
+msgid "queue0"
+msgstr "Sofort"
+
+msgid "queue15"
+msgstr "Alle 15 Minuten"
+
+msgid "queue30"
+msgstr "Alle 30 Minuten"
+
+msgid "queue60"
+msgstr "Stündlich"
+
+msgid "queue360"
+msgstr "Alle 6 Stunden"
+
+msgid "queue1440"
+msgstr "Täglich"
+
+msgid "maxEmailSizeField"
+msgstr "Maximale E-Mail-Größe (MB)"
+
+msgid "maxEmailSizeField_rule"
+msgstr "Bitte geben Sie eine Ganzzahl über 0 ein. Standardmäßig ist dieses Feld leer. Dadurch kann dieser Server E-Mail-Nachrichten jeder Größe senden und empfangen."
+
+msgid "maxEmailSizeField_help"
+msgstr "Stellen Sie die maximale Größe der E-Mail-Nachrichten ein, die dieser Server senden oder empfangen kann. [[base-email.maxEmailSizeField_rule]]"
+
+msgid "masqAddressField"
+msgstr "Absenderdomäne erzwingen"
+
+msgid "masqAddressField_rule"
+msgstr "Bitte geben Sie eine richtig formatierte IP-Adresse, einen Host- oder einen Domänennamen ein. Per Vorgabe wird dieses Feld leer gelassen. Gültige Eingaben sind z. B. 192.168.1.100, www.cobalt.com und cobalt.com."
+
+msgid "masqAddressField_help"
+msgstr "Geben Sie einen Domänennamen oder eine IP-Adresse ein, der bzw. die die Von:-Adresse der E-Mail, die von Benutzern dieses Servers gesendet wurde, überschreibt. Diese Funktion wird auch als Domänen-Maske bezeichnet. [[base-email.masqAddressField_rule]]"
+
+msgid "smartRelayField"
+msgstr "Smart Relay-Server"
+
+msgid "smartRelayField_rule"
+msgstr "Bitte geben Sie einen vollqualifizierten Domänennamen im richtigen Format ein. Per Vorgabe wird dieses Feld leer gelassen. Eine gültige Eingabe ist z. B. meinbuero.de."
+
+msgid "smartRelayField_help"
+msgstr "Geben Sie den vollqualifizierten Domänennamen eines E-Mail-Servers ein, über den alle ausgehenden E-Mail-Nachrichten geleitet werden. "
+
+msgid "popRelayField"
+msgstr "POP-authentifiziertes Weiterleiten"
+
+msgid "popRelayField_help"
+msgstr "Markieren Sie diese Option, um SMTP-Relay-Vertrauensstellungen durch POP-Authentifizierung zu ermöglichen. Ist diese Option markiert, wird jedem Benutzer, der POP erfolgreich zur Überprüfung von E-Mail verwendet, 15 Minuten lang gestattet, mit dem SMTP-Dienst E-Mail zu senden. Diese Funktion ist für Benutzer vorgesehen, die viel unterwegs sind."
+
+msgid "relayField"
+msgstr "E-Mail von Hosts/Domänen/IP-Adressen weiterleiten"
+
+msgid "relayField_rule"
+msgstr "Geben Sie eine Liste der IP-Adressen, Host- und Domänennamen ein, denen gestattet wird, E-Mail über diesen Server weiterzuleiten. Netzwerke können mit Nullen angegeben werden. Um z. B. das Weiterleiten für das Netzwerk 192.168.1.1 mit der Subnetzmaske 255.255.0.0 zu ermöglichen, geben Sie die Adresse 192.168.0.0 an."
+
+msgid "relayField_help"
+msgstr "Geben Sie die IP-Adressen, Host- oder Domänennamen ein, denen gestattet wird, E-Mail über diesen Server weiterzuleiten. Ein Benutzer kann nur ausgehende E-Mail über diesen Server senden, wenn die IP-Adresse, der Host- oder der Domänenname des Computers, von dem aus die Verbindung hergestellt wurde, in dieses Feld eingegeben wird. [[base-email.relayField_rule]]"
+
+msgid "receiveField"
+msgstr "An Hosts/Domänen adressierte E-Mail empfangen"
+
+msgid "receiveField_rule"
+msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Der Vorgabewert ist der vollqualifizierte Domänenname Ihres Servers. Gültige Eingaben sind z. B. www.meinbuero.de und meinbuero.de."
+
+msgid "receiveField_help"
+msgstr "Geben Sie die Host- oder Domänennamen ein, für die dieser Server E-Mail empfangen soll. [[base-email.receiveField_rule]]"
+
+msgid "blockHostField"
+msgstr "E-Mail von Hosts/Domänen blockieren"
+
+msgid "blockHostField_rule"
+msgstr "Bitte geben Sie einen Host- oder Domänennamen im richtigen Format ein. Per Vorgabe wird dieses Feld leer gelassen. Gültige Eingaben sind z. B. www.cobalt.com und cobalt.com."
+
+msgid "blockHostField_help"
+msgstr "Geben Sie die Host- oder Domänennamen ein, denen nicht gestattet wird, E-Mail an diesen Server zu senden. [[base-email.blockHostField_rule]]"
+
+msgid "blockUserField"
+msgstr "E-Mail von Benutzern blockieren"
+
+msgid "blockUserField_rule"
+msgstr "Bitte geben Sie eine E-Mail-Adresse im richtigen Format ein. Per Vorgabe wird dieses Feld leer gelassen. Eine gültige Eingabe ist z. B. h.-g.grossma@meinbuero.de."
+
+msgid "blockUserField_help"
+msgstr "Geben Sie die E-Mail-Adressen von Benutzern ein, denen nicht gestattet wird, E-Mail an diesen Server senden. [[base-email.blockUserField_rule]]"
+
+msgid "duplicateKeys"
+msgstr "Blockier- und Weiterleitungsinformationen konnten nicht aktualisiert werden. Es wurden Hosts oder Domänen sowohl für das Weiterleiten als auch für das Blockieren aufgeführt. E-Mail von einem Host oder einer Domäne kann nicht gleichzeitig blockiert und weitergeleitet werden."
+
+
+
+# ----- Active Monitor strings 
+
+msgid "amEmailNameTag"
+msgstr "E-Mail-Server"
+
+msgid "amSMTPNameTag"
+msgstr "SMTP-Server"
+
+msgid "amSMTPDetails"
+msgstr "Simple Mail Transfer Protocol (SMTP)-Server-Details"
+
+msgid "amPOP3NameTag"
+msgstr "POP-Server"
+
+msgid "amPOP3Details"
+msgstr "Post Office Protocol (POP)-Server-Details"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP-Server"
+
+msgid "amIMAPDetails"
+msgstr "Internet Message Access Protocol (IMAP)-Server-Details"
+
+msgid "amEmailGreen"
+msgstr "Das E-Mail-System funktioniert einwandfrei."
+
+msgid "amEmailYellow"
+msgstr "Im E-Mail-System ist ein Problem aufgetreten."
+
+msgid "amEmailRed"
+msgstr "Im E-Mail-System ist ein schwerwiegendes Problem aufgetreten."
+
+msgid "amSMTPNotRunning"
+msgstr "Der SMTP-Server ist nicht in Betrieb."
+
+msgid "amSMTPBadResponse"
+msgstr "Der SMTP-Server hat eine fehlerhafte Rückmeldung ausgegeben."
+
+msgid "amSMTPStatusOK"
+msgstr "Der SMTP-Server arbeitet normal."
+
+msgid "amPOP3NotRunning"
+msgstr "Der POP-Server ist nicht in Betrieb."
+
+msgid "amPOP3BadResponse"
+msgstr "Der POP-Server hat eine fehlerhafte Rückmeldung ausgegeben."
+
+msgid "amPOP3StatusOK"
+msgstr "Der POP-Server arbeitet normal."
+
+msgid "amIMAPNotRunning"
+msgstr "Der IMAP-Server ist nicht in Betrieb."
+
+msgid "amIMAPBadResponse"
+msgstr "Der IMAP-Server hat eine fehlerhafte Rückmeldung ausgegeben."
+
+msgid "amIMAPStatusOK"
+msgstr "Der IMAP-Server arbeitet normal."
+
+
+# --- Handler error messages
+	# vacation message 
+msgid "vacationSubject"
+msgstr "Automatische Antwort von"
+
+msgid "cantGetUserInfo"
+msgstr "Die Urlaubsfunktion konnte keine Benutzerinformationen von CCE abrufen."
+
+msgid "badUser"
+msgstr "Wenn Mail-Server-Konfigurationsdateien entfernt oder manuell geändert wurden, stellen Sie bitte die Originalversionen wieder her und versuchen Sie es noch einmal."
+
+msgid "cantEditFile"
+msgstr "Leider trat beim Versuch, eine E-Mail-Konfigurationsdatei zu bearbeiten, ein Fehler auf. [[base-email.badUser]]"
+
+	# apop.pl -- call to GDBM_File perl module no workie
+msgid "could_not_tie_apop"
+msgstr "Leider trat ein Systemfehler auf. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "Leider trat beim Versuch, die SMTP-Server-Konfigurationsdatei zu schreiben, ein Fehler auf. [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "Leider konnte der SMTP-Server zu diesem Zeitpunkt aufgrund eines Systemkonfigurationsfehlers nicht gestartet werden. [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "Leider konnte der POP- oder IMAP-Server zu diesem Zeitpunkt aufgrund eines Systemkonfigurationsfehlers nicht zurückgesetzt werden. [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "Leider trat beim Versuch, eine Mail-Server-Zuordnungsdatei zu erstellen, ein Fehler auf. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "Leider trat beim Versuch, eine E-Mail-Konfigurationsdatei zu bearbeiten, ein Fehler auf. [[base-email.badUser]]"
+
+msgid "aliasInUse"
+msgstr "Der E-Mail-Aliasname [[VAR.name]] wird in diesem System bereits verwendet. Bitte wählen Sie einen anderen Namen aus."
+
+msgid "nonExistentUser"
+msgstr "Die Weiterleitung kann nicht aktiviert werden, weil die folgenden lokalen Benutzernamen nicht vorhanden sind: [[VAR.users]]. Bitte entfernen Sie diese Benutzer von der Liste der Weiterleitungsadressen oder erstellen Sie sie, bevor Sie die Weiterleitung aktivieren."
+
+# --- sendmail.cf bounce messages ----
+
+msgid "CFrelayDeniedTemp"
+msgstr "Weiterleiten momentan verweigert. Der PTR-Datensatz für die Client-Adresse kann nicht aufgelöst werden." 
+
+msgid "CFrelayDeniedForged"
+msgstr "Weiterleiten verweigert. Der IP-Name wurde möglicherweise gefälscht." 
+
+msgid "CFrelayDenied"
+msgstr "Weiterleiten verweigert. Suchen Sie erst nach E-Mail oder starten Sie Ihren E-Mail-Client neu." 
+
+msgid "CFaccessDenied"
+msgstr "Zugriff verweigert" 
+
+msgid "CFsenderDomainNoexist"
+msgstr "Die Domäne der Senderadresse existiert nicht." 
+
+msgid "CFinvalidHostname"
+msgstr "Unzulässiger Hostname" 
+
+msgid "CFuserAddressRequired"
+msgstr "Benutzeradresse erforderlich" 
+
+msgid "CFinvalidListSyntax"
+msgstr "List:; Syntax unzulässig für Empfängeradressen" 
+
+msgid "CFnotAuthenticated"
+msgstr "nicht zugriffsberechtigt" 
+
+msgid "CFdomainRequired"
+msgstr "Domänenname erforderlich" 
+
+msgid "CFrelayDeniedFailed"
+msgstr "Weiterleiten verweigert. Lookup des IP-Namens schlug fehl." 
+
+msgid "CFrealDomainRequired"
+msgstr "Echter Domänenname erforderlich" 
+
+msgid "CFauthNotAllowed"
+msgstr " darf nicht fungieren als " 
+
+msgid "CFcolonInHostname"
+msgstr "Doppelpunkt im Hostnamen unzulässig" 
+
+

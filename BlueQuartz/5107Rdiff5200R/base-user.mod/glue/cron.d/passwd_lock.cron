@@ -1,0 +1,2 @@
+# base-user.mod - Cronjob that runs /usr/sausalito/sbin/remove_passwd_lock.sh to remove stale passwd locks:
+*/15 * * * * root /usr/sausalito/sbin/remove_passwd_lock.sh > /dev/null 2>&1 &

@@ -1,0 +1,222 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-27 14:19+0100\n"
+"PO-Revision-Date: 2007-11-27 14:50+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "acpi_power_shutdown"
+msgstr ""
+"Stømforsyningens voltspænding er uden for grænseværdien. For en sikkerheds "
+"skyld lukkes serveren ned.  Hvis problemet fortsætter med at eksistere, ring "
+"venligst til teknisk support."
+
+msgid "acpi_power_subject"
+msgstr "Nedlukning grundet strømfejl"
+
+msgid "activity"
+msgstr "Aktivitet"
+
+msgid "amPowerDetails"
+msgstr "Systemets strømdetaljer"
+
+msgid "askRebootConfirmation"
+msgstr "Er du sikker på at du ønsker at genstarte serveren?"
+
+msgid "askShutdownConfirmation"
+msgstr "Er du sikker på at du ønsker at lukke serveren ned?"
+
+msgid "batteryCritical"
+msgstr ""
+"Batteriets voltspænding er kritisk lav. Dette kan være et tegn på at "
+"batteriet er ved at dø. Se venligst [[base-sauce-basic.techSupportURL]]  for "
+"teknisk support."
+
+msgid "batteryCriticalSubject"
+msgstr "Systemets batterispænding er lav"
+
+msgid "cant_get_power_info"
+msgstr "Kunne ikke hente informationer om systemets strømværdier."
+
+msgid "controlPower"
+msgstr "Kontroller strøm"
+
+msgid "couldNotWakeMachine"
+msgstr "Kunne ikke vække maskinen med MAC adressen [[VAR.address]]."
+
+msgid "errSettingWakeMode"
+msgstr ""
+"Det lykkedes ikke for systemet at indstille de ønskede indstillinger for "
+"opvågning.  Se venligst [[base-sauce-basic.techSupportURL]] for teknisk "
+"support."
+
+msgid "mac_addresses"
+msgstr "MAC adresse der skal vækkes"
+
+msgid "mac_addresses_help"
+msgstr "Indtast MAC adressen på de maskiner du ønsker at vække."
+
+msgid "magic"
+msgstr "Ved modtagelse af Magisk Pakke"
+
+msgid "none"
+msgstr "Aldrig"
+
+msgid "off"
+msgstr "Lad systemet være slukket"
+
+msgid "on"
+msgstr "Tænd systemet"
+
+msgid "power"
+msgstr "Strøm"
+
+msgid "powerCritical"
+msgstr ""
+"Strømforsyningen kører ikke på dens specificerede voltspænding. Dette kan "
+"være et tegn på at strømforsyningen er ved at dø. Se venligst [[base-sauce-"
+"basic.techSupportURL]] for teknisk support."
+
+msgid "powerHelp"
+msgstr "Klik her for at genstarte serveren."
+
+msgid "powerLow"
+msgstr "Strømforsyningen er ved at løbe tør."
+
+msgid "powerName"
+msgstr "Systemstrøm"
+
+msgid "powerOK"
+msgstr "Strømforsyningen og batteriet kører normalt."
+
+msgid "powerOptions_block"
+msgstr "Indstillinger for strøm"
+
+msgid "powermode"
+msgstr "Handling efter genstart som følge af strømafbrydelse"
+
+msgid "powermode_help"
+msgstr ""
+"Dette indstiller systemets opførsel når strøm genoprettes efter "
+"strømafbrydelse."
+
+msgid "poweroptions_menu"
+msgstr "Strøm"
+
+msgid "poweroptions_menu_help"
+msgstr ""
+"Klik her for at konfigurere fjern opstart (Wake On LAN) og "
+"opstartsindstillinger."
+
+msgid "reboot"
+msgstr "Genstart nu"
+
+msgid "rebootMessage"
+msgstr ""
+"Klik på knappen nedenfor for at genstarte systemet. Systemet vil være "
+"utilgængeligt i nogle minutter, da det skal slukke og genstarte alle "
+"tjenester. Når systemet er genstartet vil serverskrivebordet igen være "
+"tilgængeligt."
+
+msgid "reboot_help"
+msgstr "Klik her for at genstarte serveren."
+
+msgid "reboot_menu"
+msgstr "Genstart/Luk ned"
+
+msgid "reboot_menu_help"
+msgstr "Klik her for instruktioner om at lukke ned og genstarte serveren."
+
+msgid "reboot_title"
+msgstr "Genstarter systemet"
+
+msgid "rebooting"
+msgstr ""
+"Serveren er ved at genstarte.  Den skulle være tilgængelig igen om få "
+"minutter."
+
+msgid "remainOff1"
+msgstr "Vil forblive slukket"
+
+msgid "remainOff2"
+msgstr "Når tændt"
+
+msgid "same"
+msgstr "Vend tilbage til samme status som før strømafbrydelsen"
+
+msgid "samePower1"
+msgstr "Vil tænde hvis"
+
+msgid "samePower2"
+msgstr "Tændt før afbrydelse"
+
+msgid "shutdownInstructions"
+msgstr "For at slukke serveren, se venligst manual til serverens hardware."
+
+msgid "shutdownInstructions_softpower"
+msgstr "For at slukke serveren, se venligst manual til serverens hardware."
+
+msgid "shutdownMessage"
+msgstr ""
+"Af sikkerhedsmæssige årsager kan denne server ikke slukkes igennem det "
+"webbaserede kontrolpanel.  <BR>Sluk venligst manuelt."
+
+msgid "shutdown_menu"
+msgstr "Luk ned"
+
+msgid "shutdown_menu_help"
+msgstr "Klik her for intruktioner i at lukke serveren ned."
+
+msgid "shutdown_title"
+msgstr "Lukker systemet ned"
+
+msgid "shutting-down"
+msgstr "Serveren er ved at lukke ned."
+
+msgid "wakeMode_block"
+msgstr "Opvågningsmodus"
+
+msgid "wakeNow_block"
+msgstr "Vågn nu"
+
+msgid "wakeOnlan"
+msgstr "Wake On LAN"
+
+msgid "wakemode"
+msgstr "Ekstern opstart af systemet (Wake On LAN)"
+
+msgid "wakemode_help"
+msgstr ""
+"Dette indstiller systemets evne til vågne ved netværksaktivitet, som "
+"tillader dig start starte systemet over nettet."
+
+msgid "wakenow_button"
+msgstr "Vågn nu"
+
+msgid "wakenow_button_help"
+msgstr "Klik her for at starte maskinerne med de viste MAC adresser."
+
+msgid "wakenow_menu"
+msgstr "Vågn nu"
+
+msgid "wakenow_menu_help"
+msgstr "Klik her for at vække andre maskiner på netværket."
+
+msgid "wakeoptions_menu"
+msgstr "Indstillinger for opvågning"
+
+msgid "wakeoptions_menu_help"
+msgstr "Klik her for at indstille Wake On LAN's opførsel på dette system."
+
+msgid "willPowerUp1"
+msgstr "Vil starte"
+
+msgid "willPowerUp2"
+msgstr "Når den tændes"

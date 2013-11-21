@@ -1,0 +1,638 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-14 09:23+0200\n"
+"PO-Revision-Date: 2007-12-14 12:53+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "CFaccessDenied"
+msgstr "Adgang nægtet"
+
+msgid "CFauthNotAllowed"
+msgstr " ikke tilladt at optræde som "
+
+msgid "CFcolonInHostname"
+msgstr "Kolon er ikke et tilladt tegn i værtsnavn"
+
+msgid "CFdomainRequired"
+msgstr "Domænenavn påkrævet"
+
+msgid "CFinvalidHostname"
+msgstr "Ugyldigt værtsnavn"
+
+msgid "CFinvalidListSyntax"
+msgstr "Liste:; ulovlig syntaks for modtageradresser"
+
+msgid "CFnotAuthenticated"
+msgstr "ikke autoriseret"
+
+msgid "CFrealDomainRequired"
+msgstr "Et rigtigt domænenavn er påkrævet"
+
+msgid "CFrelayDenied"
+msgstr ""
+"Videregivelse nægtet.  Check venligst din email eller genstart din "
+"emailklient."
+
+msgid "CFrelayDeniedFailed"
+msgstr "Videregivelse nægtet.  Opslag på IP adressens navn slog fejl "
+
+msgid "CFrelayDeniedForged"
+msgstr "Videregivelse nægtet.  IP adressens navn muligvis forfalsket "
+
+# Igen er jeg i tvivl om hvordan man bør oversøtte "record" i f.eks. PTR record
+msgid "CFrelayDeniedTemp"
+msgstr ""
+"Videregivelse midlertidigt nægtet.  Kan ikke opløse PTR for klientadressen ."
+
+msgid "CFsenderDomainNoexist"
+msgstr "Afsenderadressens domænenavn findes ikke "
+
+msgid "CFuserAddressRequired"
+msgstr "Brugeradresse påkrævet"
+
+msgid "IMAP"
+msgstr "IMAP tjeneste"
+
+msgid "POP"
+msgstr "POP tjeneste"
+
+msgid "SMTP"
+msgstr "SMTP tjeneste"
+
+msgid "advanced"
+msgstr "Avanceret"
+
+msgid "advanced_help"
+msgstr ""
+"Klik her for at konfigurere avancerede [[base-email.emailSettings]] såsom "
+"skemalægning og maksimal størrelse på emails."
+
+msgid "aliasInUse"
+msgstr ""
+"Beklager, men emailaliasset [[VAR.name]] er allerede i brug på systemet.  "
+"Vælg venligst et andet."
+
+msgid "amEmailGreen"
+msgstr "Emailsystemet fungerer normalt."
+
+msgid "amEmailNameTag"
+msgstr "Emailservere"
+
+msgid "amEmailRed"
+msgstr "Der er et alvorligt problemn med emailsystemet."
+
+msgid "amEmailYellow"
+msgstr "Der er et problemn med emailsystemet."
+
+msgid "amIMAPBadResponse"
+msgstr "IMAP serveren gav et ugyldigt svar."
+
+msgid "amIMAPDetails"
+msgstr "Detaljer om Internet Message Access Protocol (IMAP)"
+
+msgid "amIMAPNameTag"
+msgstr "IMAP server"
+
+msgid "amIMAPNotRunning"
+msgstr ""
+"IMAP serveren kører ikke og kunne ikke genstartes. I [[base-"
+"apache.amAdmservNameTag]] kan du prøve at slå IMAP serveren fra og til for "
+"at se om det løser problemet. Hvis IMAP serveren stadig ikke vil starte kan "
+"du prøve at genstarte selve serveren ved at klikke på knappen [[base-"
+"power.reboot]] i menuen [[base-power.power]] under [[base-"
+"alpine.serverconfig]]. Hvis IMAP serveren stadig ikke vil starte, se da "
+"venligst [[base-sauce-basic.techSupportURL]] for teknisk support."
+
+msgid "amIMAPStatusOK"
+msgstr "IMAP serveren fungerer normalt."
+
+msgid "amPOP3BadResponse"
+msgstr "POP serveren gav et ugyldigt svar."
+
+msgid "amPOP3Details"
+msgstr "Detaljer om Post Office Protocol (POP)"
+
+msgid "amPOP3NameTag"
+msgstr "POP server"
+
+msgid "amPOP3NotRunning"
+msgstr ""
+"POP serveren kører ikke og kunne ikke genstartes. I [[base-"
+"apache.amAdmservNameTag]] kan du prøve at slå POP serveren fra og til for at "
+"se om det løser problemet. Hvis POP serveren stadig ikke vil starte kan du "
+"prøve at genstarte selve serveren ved at klikke på knappen [[base-"
+"power.reboot]] i menuen [[base-power.power]] under [[base-"
+"alpine.serverconfig]]. Hvis POP serveren stadig ikke vil starte, se da "
+"venligst [[base-sauce-basic.techSupportURL]] for teknisk support."
+
+msgid "amPOP3StatusOK"
+msgstr "POP serveren fungerer normalt."
+
+msgid "amSMTPBadResponse"
+msgstr "SMTP serveren gav et ugyldigt svar."
+
+msgid "amSMTPDetails"
+msgstr "Detajler om Simple Mail Transfer Protocol (SMTP)"
+
+msgid "amSMTPNameTag"
+msgstr "SMTP server"
+
+msgid "amSMTPNotRunning"
+msgstr ""
+"SMTP serveren kører ikke og kunne ikke genstartes. SMTP serveren kan have "
+"lukket sig selv ned i forbindelse med stor belastning. Hvis belastning ikke "
+"lader til at være problemet, prøv da at klikke ind på [[base-"
+"apache.amAdmservNameTag]] og slå SMTP serveren fra og til for at se om det "
+"løser problemet. Hvis SMTP serveren stadig ikke vil starte kan du prøve at "
+"genstarte selve serveren ved at klikke på knappen [[base-power.reboot]] i "
+"menuen [[base-power.power]] under [[base-alpine.serverconfig]]. Hvis SMTP "
+"serveren stadig ikke vil starte, se da venligst [[base-sauce-"
+"basic.techSupportURL]] for teknisk support."
+
+msgid "amSMTPStatusOK"
+msgstr "SMTP serveren fungerer normalt."
+
+msgid "apopEnabled"
+msgstr "Autoriseret POP (APOP)"
+
+msgid "apopEnabled_help"
+msgstr "Autoriseret POP (APOP) er slået til for denne bruger."
+
+msgid "apopFullText"
+msgstr "Aktiver APOP"
+
+msgid "apopFullText_help"
+msgstr "Aktiver autoriseret POP (APOP)."
+
+msgid "apopPwRequired"
+msgstr "En adgangskode er påkrævet for at aktivere APOP for denne bruger."
+
+msgid "badUser"
+msgstr ""
+"Hvis emailserverens konfigurationsfiler er flyttet eller modificeret "
+"manuelt, gendan da venligst de oprindelige versioner og prøv igen."
+
+msgid "bad_blockUserField"
+msgstr ""
+"Beklager, men du har indtastet en ugyldig adresse i [[base-"
+"email.blockUserField]]. Indtast venligst en korrekt formatteret "
+"emailadresse.  Standardværdien er at lade være feltet tomt.  "
+"bruger@eksempel.dk er, for eksempel, en gyldig værdi."
+
+msgid "basic"
+msgstr "Basal"
+
+# Jeg er ikke sikker på om denne får den rette ordlyd.
+msgid "basic_help"
+msgstr "Klik her for at konfigurere basale [[base-email.emailSettings]]."
+
+msgid "blockHostField"
+msgstr "Bloker email fra værter/domæner"
+
+msgid "blockHostField_help"
+msgstr ""
+"Indtast værts- og domænenavne der ikke skal tillades at levere emails til "
+"denne server.  [[base-email.blockHostField_rule]]"
+
+msgid "blockHostField_rule"
+msgstr ""
+"Indtast venligst en korrekt formatteret emailadresse.  Standard er at lade "
+"feltet være tomt.  bruger@eksempel.dk er, for eksempel, en gyldig adresse."
+
+msgid "blockUserField"
+msgstr "Bloker email fra brugere"
+
+msgid "blockUserField_help"
+msgstr ""
+"Indtast emailadresser på brugere der ikke skal tillades at levere email til "
+"denne server. [[base-email.blockUserField_rule]]"
+
+msgid "blockUserField_rule"
+msgstr ""
+"Indtast venligst en korrekt formatteret emailadresse. Standard er at lade "
+"feltet være tomt.  bruger@eksempel.dk er, for eksempel, en gyldig adresse."
+
+msgid "cantCreateAlias"
+msgstr "Emailaliasser blev ikke oprettet for denne bruger."
+
+msgid "cantEditFile"
+msgstr ""
+"Beklager, men en fejl opstod i forbindelse med forsøg på redigering af en "
+"emailkonfigurationsfil. [[base-email.badUser]]"
+
+msgid "cantGetUserInfo"
+msgstr "Feriebesked kunne ikke hente brugerinformation fra CCE."
+
+msgid "could_not_tie_apop"
+msgstr "Beklager, men en systemfejl opstod. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr ""
+"Beklager, men en fejl opstod i forbindelse med forsøg på redigering af en "
+"emailkonfigurationsfil. [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr ""
+"Beklager, men POP eller IMAP serveren kunne ikke genstartes i øjeblikket på "
+"grund af en fejl i systemkonfigurationen.  [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr ""
+"Beklager, men det var ikke muligt at starte SMTP serveren p.t. på grund af "
+"en fejl i systemkonfigurationen. [[base-email.badUser]]"
+
+# Hvad kan "email server map file" oversættes til?
+msgid "couldnt_make_map"
+msgstr ""
+"Beklager, men en fejl opstod i forbindelse med forsøg på at lave en map-fil "
+"for emailserveren. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr ""
+"Beklager, men en fejl opstod i forbindelse med forsøg på at skrive SMTP "
+"serverens konfigurationsfil. [[base-email.badUser]]"
+
+msgid "duplicateKeys"
+msgstr ""
+"Blokerings- og videregivelsesinformationerne kunne ikke opdateres.  Der er "
+"dubletter af værter eller domæner som både er listet i forbindelse med "
+"videregivelse og afvisning.  Email fra en vært eller et domæne kan ikke "
+"blokeres og videregives samtidig. "
+
+msgid "emailServers"
+msgstr "Emailservere"
+
+msgid "emailServers_help"
+msgstr "Klik her for at konfigurere [[base-email.emailServers]]."
+
+msgid "emailServers_menu"
+msgstr "Email"
+
+msgid "emailServices"
+msgstr "Emailtjenester"
+
+msgid "emailServices_help"
+msgstr "Klik her for at konfigurere [[base-email.emailServices]]."
+
+msgid "emailSettings"
+msgstr "Indstillinger for emailservere"
+
+msgid "enableApop"
+msgstr "Aktiver APOP"
+
+msgid "enableApop_help"
+msgstr ""
+"Aktiver APOP for brugeren.  APOP er en sikker metode for autorisering mod en "
+"POP3 server.  Denne mulighed er kun tilgængelig i enkelte emailklienter som "
+"f.eks. Fetchmail eller Eudora."
+
+msgid "enableImapField"
+msgstr "Aktiver IMAP server"
+
+msgid "enableImapField_help"
+msgstr ""
+"Slår Internet Message Access Protocol (IMAP) tjenesten til eller fra. Ved at "
+"aktivere denne tjeneste tillades brugere at hente email fra serveren ved "
+"hjælp af en emailklient der understøtter IMAP. IMAP giver brugere mulighed "
+"for at lagre email på serveren, men kræver konstant forbindelse til serveren "
+"i det tidsrum hvor brugeren arbejder med sin email."
+
+msgid "enableImapsField"
+msgstr "Aktiver IMAPS server"
+
+msgid "enableImapsField_help"
+msgstr ""
+"Slår Internet Message Access Protocol over TLS/SSL (IMAPS) tjenesten til "
+"eller fra. Ved at aktivere denne tjeneste tillades brugere at hente email "
+"fra serveren ved hjælp af en emailklient der understøtter IMAPS. IMAPS giver "
+"brugere mulighed for at lagre email på serveren, men kræver konstant "
+"forbindelse til serveren i det tidsrum hvor brugeren arbejder med sin email."
+
+msgid "enablePopField"
+msgstr "Aktiver POP server"
+
+msgid "enablePopField_help"
+msgstr ""
+"Slå afhentning af email via Post Office Protocol (POP) tjenesten til eller "
+"fra.  Ved at aktivere denne tjeneste gives brugerne mulighed for at hente "
+"post fra denne server med de fleste emailklienter."
+
+msgid "enablePopsField"
+msgstr "Aktiver POPS server"
+
+msgid "enablePopsField_help"
+msgstr ""
+"Slå afhentning af email via Post Office Protocol over TLS/SSL (POPS) "
+"tjenesten til eller fra.  Ved at aktivere denne tjeneste gives brugerne "
+"mulighed for at hente post fra denne server med de fleste emailklienter."
+
+msgid "enableSMTPAuthField"
+msgstr "Aktiver SMTP autorisering"
+
+msgid "enableSMTPAuthField_help"
+msgstr "Slå Simple Mail Transfer Protocol (SMTP) til eller fra."
+
+msgid "enableSMTPSField"
+msgstr "Aktiver SMTPS server"
+
+msgid "enableSMTPSField_help"
+msgstr "Slå SMTP over SSL til eller fra."
+
+msgid "enableServersField"
+msgstr "Aktiver SMTP server"
+
+msgid "enableServersField_help"
+msgstr ""
+"Slå Simple Mail Transfer Protocol (SMTP) tjenesten til eller fra. Ved at "
+"aktivere SMTP tillades denne server at optræde som SMTP server der kan "
+"benyttes til at sende og modtage emails mellem servere. SMTP giver også "
+"brugere mulighed for at bruge denne server til at sende email."
+
+# Jeg tror ikke man uden videre kan oversætte Submission, da der vist ikke findes et dansk ord for den tekniske term - og Indsendelsesporten lyder lidt spøjst?
+msgid "enableSubmissionPortField"
+msgstr "Aktiver Submission-porten"
+
+msgid "enableSubmissionPortField_help"
+msgstr "Slå Submissionsporten (port 587) til eller fra."
+
+msgid "imapConnectRateField"
+msgstr "Maksimal forbindelsesrate til IMAP"
+
+msgid "imapConnectRateField_help"
+msgstr ""
+"Indtast det maksimale antal tilladte forbindelser per minut.  Nye "
+"forbindelser vil blive afvist hvis forbindelsesraten har nået til "
+"grænseværdi."
+
+msgid "imapConnectRateField_invalid"
+msgstr ""
+"Indtast venligst et tal indenfor den specificerede mængde.  Standardværdien "
+"er 1024"
+
+msgid "imapConnectRateField_missing"
+msgstr "[[base-email.imapConnectRateField_invalid]]"
+
+msgid "masqAddressCantBeLocalhost"
+msgstr "Beklager, det gennemtvungne afsenderdomæne kan ikke være localhost."
+
+msgid "masqAddressField"
+msgstr "Gennemtving afsenderdomæne"
+
+msgid "masqAddressField_help"
+msgstr ""
+"Indtast et domænenavn eller en IP adresse som skal erstatte Fra: adressen på "
+"emails der sendes af brugere på denne server. Denne funktion kaldes også "
+"domænemaskering. [[base-email.masqAddressField_rule]]"
+
+msgid "masqAddressField_rule"
+msgstr ""
+"Indtast venligst en korrekt formateret IP adresse, et værtsnavn eller "
+"domænenavn.  Standard er at lade feltet være tomt.  192.168.1.100, "
+"www.eksempel.dk, og eksempel.dk er, for eksempel, gyldige værdier."
+
+msgid "maxEmailSizeField"
+msgstr "Maksimal størrelse på email (MB)"
+
+msgid "maxEmailSizeField_help"
+msgstr ""
+"Indstil den maksimale størrelse på emailbeskeder denne server kan sende og "
+"modtage.  [[base-email.maxEmailSizeField_rule]]"
+
+msgid "maxEmailSizeField_rule"
+msgstr ""
+"Indtast venligst et ciffer der er større end 0.  Standard er at lade feltet "
+"være tomt, hvilket vil tillade denne server at sende og modtage emails af "
+"alle størrelser."
+
+msgid "nonExistentUser"
+msgstr ""
+"Videresendelse kan ikke aktiveres idet følgende brugernavne ikke eksisterer: "
+"[[VAR.users]].  Fjern venligst disse brugere fra listen af "
+"videresendelsesadresser inden du aktiverer videresendelse."
+
+msgid "popConnectRateField"
+msgstr "Maksimal forbindelsesrate for POP"
+
+msgid "popConnectRateField_help"
+msgstr "[[base-email.imapConnectRateField_help]]"
+
+msgid "popConnectRateField_invalid"
+msgstr ""
+"Indtast venligst et tal inden for den specificerede mængde.  Standardværdi "
+"er 80."
+
+msgid "popConnectRateField_missing"
+msgstr "[[base-email.popConnectRateField_invalid]]"
+
+msgid "popRelayField"
+msgstr "POP autoriseret videregivelse"
+
+msgid "popRelayField_help"
+msgstr ""
+"Sæt hak her for at aktivere at SMTP videregivelse stoler på POP "
+"autoriseringer.  Hvis dette er valgt vil en vilkårlig bruger som, med "
+"success, benytter POP til at hente email,  blive godkendt til at sende email "
+"igennem denne SMTP tjeneste. Godkendelsen vil vare 30 minutter.  Denne "
+"funktion kan benyttes af brugere der tit rejser."
+
+msgid "queue0"
+msgstr "Øjeblikkeligt"
+
+msgid "queue1440"
+msgstr "Hver dag"
+
+msgid "queue15"
+msgstr "Hvert 15. minut"
+
+msgid "queue30"
+msgstr "Hvert 30. minut"
+
+msgid "queue360"
+msgstr "Hver 6. time"
+
+msgid "queue60"
+msgstr "Hver time"
+
+msgid "queueTimeField"
+msgstr "Leveringstidsplan"
+
+msgid "queueTimeField_help"
+msgstr ""
+"Indstil hvor ofte denne erver vil levere udgående email.  Øjeblikkelig "
+"afsendelse sender email så hurtigt som muligt men har behov for en fast "
+"forbindelse til internettet.  Periodevis levering er bedst i forbindelse med "
+"deltidsforbindelser, såsom forbindelser med telefonmodem."
+
+msgid "receiveField"
+msgstr "Modtag email adresseret til værter/domæner"
+
+msgid "receiveField_help"
+msgstr ""
+"Indtast en liste af værtsnavne eller domænenavne for hvem denne server skal "
+"modtage email.  www.eksempel.dk er, for eksempel, gyldige indtastninger."
+
+msgid "receiveField_rule"
+msgstr ""
+"Indtast venligst et korrekt formateret værtsnavn eller domænenavn.  "
+"Standardværdien er din servers fuldt kvalificerede domænenavn.  "
+"www.eksempel.dk og eksempel.dk er, for eksempel, gyldige indtastninger."
+
+msgid "relayField"
+msgstr "Videregiv email fra værter/domæner/IP adresser"
+
+msgid "relayField_help"
+msgstr ""
+"Indtast IP adresser, værtsnavne eller domænenavne der har tilladelse til at "
+"videregive email igennem denne server.  En bruger vil ikke kunne sende "
+"udgående email igennem denne server medmindre IP adressen, værtsnavnet eller "
+"domænenavnet på den maskine de forbinder fra er indtastet i dette felt.  "
+"[[base-email.relayField_rule]]"
+
+msgid "relayField_rule"
+msgstr ""
+"Indtast IP adresser, værtsnavne eller domænenavne der har tilladelse til at "
+"videregive email igennem denne server.  Netværk kan specificeres ved at "
+"bruge 0'er. For at tillade videregivelse for et netværk 192.168.1.1 med "
+"subnetmaske 255.255.0.0 skal du specificere adressen 192.168.0.0."
+
+msgid "smartRelayField"
+msgstr "Server til smart videregivelse"
+
+msgid "smartRelayField_help"
+msgstr ""
+"Indtast det  fuldt kvalificerede domænenavn på en emailserver igennem hvem "
+"alle udgående emails skal routes. "
+
+msgid "smartRelayField_rule"
+msgstr ""
+"Indtast venligst et korrekt formateret fuldt kvalificeret domænenavn.  "
+"Standard er at lade feltet være tomt.  eksempel.dk er, for eksempel, en "
+"gyldig værdi."
+
+msgid "userEmail"
+msgstr "Emailindstillinger for brugere "
+
+msgid "vacationSubject"
+msgstr "Automatisk svar fra"
+
+msgid "mx"
+msgstr "Secondary Mail-server"
+
+msgid "mx_help"
+msgstr "Click here to configure secondary mail-services."
+
+msgid "mx2List"
+msgstr "Secondary Mail-server List"
+
+msgid "addmx_help"
+msgstr "Add new secondary mail-domains here."
+
+msgid "secondaryDomain"
+msgstr "Secondary Service"
+
+msgid "secondaryDomain_help"
+msgstr "This is a list of domains which have secondary mail-services on this server."
+
+msgid "secondarySettings"
+msgstr "Secondary Settings"
+
+msgid "domainField"
+msgstr "Domain Name"
+
+msgid "domainField_help"
+msgstr "Enter the domain name you want to which you want to add a secondary mailservice."
+
+msgid "maptoField"
+msgstr "Mail Server"
+
+msgid "maptoField_help"
+msgstr "Enter the main mail server for the domain."
+
+msgid "domainExists_in_relay_error"
+msgstr "The Domain Name is already in use in the relay email field."
+
+msgid "domainExists_in_site_error"
+msgstr "The Domain Name is already in use in a site on the server."
+
+msgid "domainExists_error"
+msgstr "The Domain Name is already in use in the Secondary Mail server section."
+
+
+
+msgid "error_writing_sendmail_mc"
+msgstr "Could not write an updated /etc/mail/sendmail.mc. Please check your sendmail.mc for corruptions. To restore a safe default, copy /usr/sausalito/configs/sendmail/sendmail.mc to /etc/mail/sendmail.mc and try again."
+
+msgid "maxRecipientsPerMessageField"
+msgstr "Maximum Recipients per Message"
+
+msgid "maxRecipientsPerMessageField_help"
+msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
+
+msgid "delayChecksField"
+msgstr "Enable delay_checks"
+ 
+msgid "delayChecksField_help"
+msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
+
+msgid "addmx" 
+msgstr "Add"
+
+msgid "mxRemoveEntry" 
+msgstr "Are you sure you want to delete the [[VAR.mxHost]] MX server-record?" 
+
+msgid "blacklist" 
+msgstr "Blacklisting" 
+
+msgid "blacklist_help" 
+msgstr "Click here to add DNSBLs Blacklisting to the e-mail service." 
+
+msgid "blackList" 
+msgstr "Blacklist Services" 
+
+msgid "blackList_help" 
+msgstr "This is the list of different hosts that provide Blacklist services. ie 'zen.spamhaus.org'." 
+
+msgid "activated" 
+msgstr "Status" 
+
+msgid "activated_help" 
+msgstr "Here you can see if the Blacklist entry is active or not." 
+
+msgid "blacklistHostExists_error" 
+msgstr "The Blacklist service has already been added, change the hostname to something else." 
+
+msgid "blacklistRemoveEntry" 
+msgstr "Are you sure you want to delete the [[VAR.blacklistHost]] Blacklist service entry?" 
+
+msgid "blacklistHostField" 
+msgstr "Blacklist service" 
+
+msgid "blacklistHostField_help" 
+msgstr "Enter the <FQDN> of the Blacklist service you want to use, ie. 'zen.spamhaus.org'." 
+
+msgid "deferField" 
+msgstr "Defer Temporary" 
+
+msgid "deferField_help" 
+msgstr "If you click this field, the mail-server, if there is a problem reaching the Blacklist service, will return a temporary error to the incoming mail-server and thus temporary defer the message. The default behaviour of the mail-server is to accept the mail if it can't reach the Blacklist-service." 
+
+msgid "activeField" 
+msgstr "Activate service" 
+
+msgid "activeField_help" 
+msgstr "Select this option if you want to activate this Blacklist service." 
+
+
+msgid "enableZpushField"
+msgstr "Enable Z-Push"
+
+msgid "enableZpushField_help"
+msgstr "Z-push is an open-source application to synchronize ActiveSync compatible PDAs and mobile phones, which allows them access to emails. For more information about how to use Z-Push see: http://www.blueonyx.it/index.php?page=z-push"

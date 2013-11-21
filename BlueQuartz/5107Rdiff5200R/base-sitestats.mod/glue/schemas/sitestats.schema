@@ -1,0 +1,93 @@
+<!-- $Id: sitestats.schema,v 1.11 2001/11/05 18:39:55 pbaltz Exp $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved -->
+ 
+<!-- network, web, ftp stat reports -->
+
+<typedef name="statsReport"
+	 type="re"
+	 data="(net|web|mail|ftp)"/>
+
+<class name="System" namespace="Sitestats" version="1.0">
+	
+	<!-- Vsite defaults -->
+	<property name="enabled" type="boolean" default="1"/>
+	<property name="consolidate" type="boolean" default="0"/>
+	<property name="purge" type="int" default="1801"/>
+
+	<!-- epoch trigger, just like System.Power.reboot -->
+	<!-- FIXME: we probably want to restrict this to site admins and better -->
+	<property name="update" type="int" default="0"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+
+	<!-- The following properties are used to invoke analog -->
+	<!-- FIXME: we need to tie access to appropriate site admins -->
+	<property name="report" type="statsReport" default="net"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="site" type="scalar" default="server"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="startYear" type="int" default="1974"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="startMonth" type="int" default="12"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="startDay" type="int" default="12"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="endYear" type="int" default="1999"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="endMonth" type="int" default="10"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+	<property name="endDay" type="int" default="10"
+	 readacl="ruleAll" writeacl="ruleAll"/>
+</class>
+
+<!-- register as a feature available to Vsites -->
+<class name="VsiteServices" namespace="SiteStats" version="1.0">
+	<property name="featureEnabled" type="boolean" default="0"/>
+
+	<property 
+		name="i18nName" type="scalar" default="[[base-sitestats.serviceName]]"
+	/>
+
+	<!-- generate per-site stats -->
+	<property name="enabled" type="boolean" default="1"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
+	<!-- consolidate daily stats to monthly-only reports -->
+	<property name="consolidate" type="boolean" default="0"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
+	<!-- Stats purge age, in days.  0 == never -->
+	<property name="purge" type="int" default="1801"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
+	<!-- Logfile owner, username -->
+	<property name="owner" type="scalar" default=""
+	 writeacl="ruleCapable(adminUser)"/>
+</class>
+
+<!-- Per-site enable/disable logs && time-to-purge -->
+<class name="Vsite" namespace="SiteStats" version="1.0"
+	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+	<!-- generate per-site stats -->
+	<property name="enabled" type="boolean" default="1"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
+	<!-- consolidate daily stats to monthly-only reports -->
+	<property name="consolidate" type="boolean" default="0"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
+	<!-- Stats purge age, in days.  0 == never -->
+	<property name="purge" type="int" default="1801"
+	 writeacl="ruleCapable(siteAdmin)"/>
+
+	<!-- Logfile owner, username -->
+	<property name="owner" type="scalar" default=""
+	 writeacl="ruleCapable(adminUser)"/>
+
+	<!-- Logs/stats quota -->
+	<property name="quota" type="int" default="1"
+	 writeacl="ruleCapable(adminUser)"/>
+</class>
+
+
+

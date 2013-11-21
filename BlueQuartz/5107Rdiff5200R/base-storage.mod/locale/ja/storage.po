@@ -1,0 +1,201 @@
+# menu entry
+msgid "storage"
+msgstr "その他のストレージ"
+
+msgid "storageDescription"
+msgstr "その他のストレージを追加、削除、修正できます。[[base-storage.storageInstructions]]"
+
+
+# storage list page
+msgid "diskList"
+msgstr "その他のストレージのリスト"
+
+msgid "deviceName"
+msgstr "ディスク名"
+
+msgid "deviceName_help"
+msgstr "利用可能なその他のストレージの名前です。新規に追加されたストレージにはデフォルトの名前が与えられます。"
+
+msgid "mounted"
+msgstr "有効"
+
+msgid "mounted_help"
+msgstr "ストレージが有効にされているかどうかを示します。"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "no"
+msgstr "いいえ"
+
+msgid "actions"
+msgstr "修正・削除"
+
+msgid "actions_help"
+msgstr "[修正] アイコンをクリックすると、新規ストレージの設定や既存ストレージの修正を行えます。[削除] アイコンをクリックすると、ストレージを無効にしてサーバから取り外すことができます。"
+
+msgid "setupNewDisks"
+msgstr "新規ストレージの設定"
+
+msgid "setupNewDisks_help"
+msgstr "サーバに追加されたディスクを設定できます。"
+
+msgid "setupNewDisks_disabledHelp"
+msgstr "設定できる新規ストレージはありません。[[base-storage.storageInstructions]]"
+
+msgid "storageInstructions"
+msgstr "新規ストレージとして表示するには、新規ストレージの電源がオフの状態でサーバに接続する必要があります。"
+
+# new storage setup page
+msgid "newDiskList"
+msgstr "新規ストレージのリスト"
+
+msgid "size"
+msgstr "サイズ (GB)"
+
+msgid "size_help"
+msgstr "ディスクのサイズをギガバイト (GB) を単位として指定してください。"
+
+msgid "setup"
+msgstr "設定"
+
+msgid "setup_help"
+msgstr "設定するディスクのアイコンをクリックしてください。"
+
+msgid "parts"
+msgstr "ディスクのパーティション数"
+
+msgid "parts_help"
+msgstr "各ディスクに存在しているパーティションの数です。"
+
+# storage setup wizard
+msgid "setupDisk"
+msgstr "ディスクの設定 - [[VAR.device]]"
+
+msgid "checkDisk"
+msgstr "ディスクを確認"
+
+msgid "checkDisk_help"
+msgstr "このボックスをチェックすると、マウントする前にディスクのエラーチェックが行われます。"
+
+msgid "eraseDisk"
+msgstr "ディスクを消去して、別のディスクとして設定する"
+
+msgid "eraseDisk_help"
+msgstr "このボックスをチェックすると、ディスクが完全に消去されます。警告: この操作を行うと、ディスク上のデータはすべて失われます。"
+
+msgid "eraseDiskQuestion"
+msgstr "警告: ディスクを消去すると、現在ディスクに保存されているデータはすべて失われます。\nこのディスクを完全に消去してよろしいですか？"
+
+msgid "appendDisk"
+msgstr "ディスクを消去して、既存の /home パーティションに追加する"
+
+msgid "appendDisk_help"
+msgstr "このボックスをチェックすると、ディスクが既存の /home パーティションに追加されます。警告: この操作を行うと、ディスク上のデータはすべて失われます。また、一旦ディスクを /home パーティションに追加すると、サーバから削除できなくなります。万が一ディスクを削除すると、データが失われ、サーバを利用できなくなる可能性があります。"
+
+msgid "appendDiskQuestion"
+msgstr "警告: ディスクを /home パーティションに追加すると、現在ディスクに保存されているデータはすべて失われます。また、ディスクをサーバから削除できなくなります。万が一ディスクを削除すると、データが失われ、サーバを利用できなくなります。\n追加中は、サーバを使用できません。この処理には数分かかります。\nディスクを /home パーティションに追加してよろしいですか？"
+
+msgid "mirrorDisk"
+msgstr "/home パーティションをミラーリングする"
+
+msgid "mirrorDiskQuestion"
+msgstr "警告:  /home パーティションのミラーリングのためにディスクを追加すると、現在の /home パーティションがディスク上にコピーされるため、ディスク上のデータはすべて失われます。\nTこの処理には数分かかります。\nhome パーティションのミラーリングのためにディスクを追加してもよろしいですか？"
+
+msgid "spareMirrorDisk"
+msgstr "/home パーティションのミラーリングのために予備のディスクを追加する"
+
+msgid "useExistingParts"
+msgstr "既存のパーティションを使う"
+
+msgid "selectDiskOption"
+msgstr "ディスクの設定オプションを選択..."
+
+msgid "selectOptionError"
+msgstr "[保存] をクリックする前に、[[base-storage.setupOptions]] メニューからオプションをお選びください。"
+
+msgid "setupOptions"
+msgstr "ディスクの設定オプション"
+
+msgid "setupOptions_help"
+msgstr "ディスクの設定方法を指定してください。"
+
+# disk modify page
+msgid "modifyDisk"
+msgstr "ディスクの修正 - [[VAR.device]]"
+
+msgid "label"
+msgstr "ラベル"
+
+msgid "label_help"
+msgstr "ディスクを識別するラベルを指定してください。"
+
+msgid "mount"
+msgstr "有効にする"
+
+msgid "mount_help"
+msgstr "このボックスをチェックすると、ディスクがマウントされ、利用可能になります。また、サーバの再起動時には、このディスクが自動的にマウントされます。"
+
+msgid "isHomePartition"
+msgstr "ホームディレクトリとして使う"
+
+msgid "isHomePartition_help"
+msgstr "このボックスをチェックすると、新規ユーザおよび新規サイトがこのディスクをホームディレクトリとして利用できるようになります。"
+
+msgid "formatDisk"
+msgstr "ディスクを消去する"
+
+msgid "formatDisk_help"
+msgstr "ディスクが初期化され、ディスク上のデータはすべて失われます。"
+
+msgid "formatQuestion"
+msgstr "警告:  ディスクを消去すると、ディスクに保存されているデータはすべて失われます。\n[[VAR.device]] を消去してもよろしいですか？"
+
+# strings used by the constructor
+# 94_add_storage.pl
+msgid "storageAdd1"
+msgstr "検索"
+
+msgid "storageAdd2"
+msgstr "新規ストレージ..."
+
+# handler error messages
+# label.pl
+msgid "labelInUse"
+msgstr "[[VAR.label]] というラベルは、別のディスクに使われています。"
+
+msgid "changeLabelFailed"
+msgstr "ディスクのラベルを更新できません。"
+
+msgid "cantUpdateMountInfo"
+msgstr "ディスクのマウント情報を更新できません。"
+
+# mount.pl
+msgid "cantUpdateDiskInfo"
+msgstr "このディスクの情報を更新できません。"
+
+msgid "quotaUnsupported"
+msgstr "このディスクのファイルの種類 [[VAR.fstype]] は、ディスク割り当てをサポートしていません。"
+
+msgid "cantEnableQuotas"
+msgstr "このディスクのディスク割り当てをオンにできません。"
+
+msgid "cantDisableQuotas"
+msgstr "このディスクのディスク割り当てをオフにできません。"
+
+msgid "cantMount"
+msgstr "[[VAR.device]] というディスクをマウントできません。"
+
+msgid "cantUmount"
+msgstr "[[VAR.device]] というディスクをアンマウントできません。"
+
+# setup_disk.pl
+msgid "noFsType"
+msgstr "[[VAR.device]] というディスクには、指定された種類のファイルシステムがありません。ファイルシステムの種類を指定するまで、このディスクを設定できません。"
+
+msgid "cantPartition"
+msgstr "[[VAR.device]] というディスクをパーティションできません。"
+
+msgid "cantFormat"
+msgstr "[[VAR.device]] というディスクをフォーマットできません。"
+

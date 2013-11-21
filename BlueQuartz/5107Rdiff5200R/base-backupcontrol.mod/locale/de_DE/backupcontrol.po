@@ -1,0 +1,54 @@
+# translation of base-backupcontrol.po to German
+# Header entry was created by KBabel!
+#
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-backupcontrol\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-01 06:03+0200\n"
+"PO-Revision-Date: 2008-01-24 22:53+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "description"
+msgstr "Hier klicken, um den Serverdesktop zu konfigurieren. "
+
+msgid "desktop_control"
+msgstr "Server Desktop"
+
+msgid "desktop_control_settings"
+msgstr "[[base-backupcontrol.desktop_control]] Modus"
+
+msgid "lock_desktop"
+msgstr "Server Desktop Abschließen"
+
+msgid "lock_desktop_failed"
+msgstr "Der Status des[[base-backupcontrol.desktop_control]] konnte nicht geändert werden"
+
+msgid "lock_desktop_help"
+msgstr "Diese Option ermöglicht es, das administrative Benutzerinterface (Server Desktop) abzuschließen, so dass keine weiteren Änderungen mehr möglich sind."
+
+msgid "lock_failed"
+msgstr "Das Abschließen des [[base-backupcontrol.desktop_control]] hat nicht funktioniert."
+
+msgid "locked"
+msgstr "Der Server Desktop wurde vom Server Administrator abgeschlossen und damit gesperrt."
+
+msgid "unlock_failed"
+msgstr "Das Aufschließen des [[base-backupcontrol.desktop_control]] hat nicht funktioniert."
+
+msgid "abs_description"
+msgstr "Hier klicken, um das automatische Server Backupsystem zu kontrollieren."
+
+msgid "abs_menu"
+msgstr "Server Backup"
+

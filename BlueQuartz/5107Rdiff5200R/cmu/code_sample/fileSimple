@@ -1,0 +1,46 @@
+#!/usr/bin/perl -I../perl_modules
+# $Id: fileSimple 922 2003-07-17 15:22:40Z will $
+
+use strict;
+require XML::Simple;
+#use Devel::Leak;
+use Data::Dumper;
+
+
+my $fileName = "/tmp/cmu3.xml";
+#my $fileName = "/etc/cmu/cobaltBase.xml";
+
+my $ret = readXml($fileName);
+
+
+
+sub readXml {
+	my $file = shift;
+
+	my $p = new XML::Simple(
+		forcearray => 0, 
+		#keyattr => { vsite => "+id" },
+		noattr => 0,
+	);
+
+	my $data = $p->XMLin($file);
+
+	open(FH, "> /tmp/datadumper");
+	print FH Dumper($data);
+	close(FH);
+
+	$p = new XML::Simple(
+		rootname => 'migrate',
+		#keyattr => { vsite => "+id" }
+	);
+	my $newXml = $p->XMLout($data);
+	open(FH, "> /tmp/xmlout.xml");
+	print FH $newXml;
+	close(FH);
+
+#	warn `ps auxwwww | grep $$ |grep fileSimple`;
+
+	return $data; 
+}
+
+

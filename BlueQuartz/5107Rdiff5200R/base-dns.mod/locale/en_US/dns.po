@@ -1,0 +1,1126 @@
+# --- Menu
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "title"
+msgstr "DNS"
+
+msgid "modifyDNS"
+msgstr "[[base-dns.title]] Settings"
+
+msgid "dns_help"	
+msgstr "Click here to change [[base-dns.modifyDNS]]."
+
+
+# --- Common
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "advanced"	
+msgstr "Advanced"
+
+msgid "defaults"	
+msgstr "Defaults"
+
+msgid "basic_help"
+msgstr "Click here to configure basic DNS server settings."
+
+msgid "advanced_help"
+msgstr "Click here to configure advanced DNS server settings, such as data formats, security restrictions and server defaults."
+
+msgid "defaults_help"	
+msgstr "Click here to configure default Start of Authority (SOA) values."
+
+# --- Basic settings
+
+msgid "enabled"
+msgstr "Enable Server"
+
+msgid "enabled_help"
+msgstr "Turn Domain Name System (DNS) server functionality on or off.  Turning this feature on allows this server appliance to act as a local domain name server for itself and for its clients.  A domain name server translates textual host names and domain names into numerical IP addresses, and vice-versa."
+
+
+# --- Advanced settings
+
+msgid "soa_defaults"
+msgstr "Start of Authority (SOA) Default Values"
+
+msgid "soa_defaults_help"
+msgstr "These are the default values used when adding new domain name records."
+
+msgid "admin_email"
+msgstr "Default DNS Administrator Email Address"
+
+msgid "admin_email_rule"
+msgstr "Please enter a properly formatted email address. For example, user@example.com is a valid entry."
+
+msgid "admin_email_help"
+msgstr "Enter the default email address of the administrative contact for all newly added domains and networks.  [[base-dns.admin_email_rule]]"
+
+msgid "admin_email_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.admin_email]].  [[base-dns.admin_email_rule]]"
+
+msgid "default_refresh"
+msgstr "Default Refresh Interval (Seconds)"
+
+msgid "default_refresh_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is 10800."
+
+msgid "default_refresh_help"	
+msgstr "Enter the default refresh interval for all newly added domains and networks.   This value is the interval at which the secondary domain name server will try to synchronize its records with the primary domain name server.  [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_refresh]].  [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_empty"	
+msgstr "Sorry, you have not entered a value for [[base-dns.default_refresh]].  [[base-dns.default_refresh_rule]]"
+
+msgid "default_retry"	
+msgstr "Default Retry Interval (Seconds)"
+
+msgid "default_retry_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is 3600."
+
+msgid "default_retry_help"
+msgstr "Enter the default retry interval for all newly added domains and networks.  If for some reason the secondary domain name server is not able to contact the primary domain name server to synchronize its records, this value is the interval at which the secondary domain name server will try repeatedly to contact the primary domain name server.  [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_retry]].  [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_empty"	
+msgstr "Sorry, you have not entered a value for [[base-dns.default_retry]].  [[base-dns.default_retry_rule]]"
+
+msgid "default_expire"	
+msgstr "Default Expire Interval (Seconds)"
+
+msgid "default_expire_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is 604800."
+
+msgid "default_expire_help"
+msgstr "Enter the default expire interval for all newly added domains and networks.  If for some reason the secondary domain name server is repeatedly not able to contact the primary domain name server to synchronize its records, this value is the interval after which the secondary domain name server will no longer consider its domain information valid. It will then stop serving domain information until the primary domain name server can be contacted again.  [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_expire]].  [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.default_expire]].  [[base-dns.default_expire_rule]]"
+
+msgid "default_ttl"	
+msgstr "Default Time-To-Live Interval (Seconds)"
+
+msgid "default_ttl_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is 86400."
+
+msgid "default_ttl_help"	
+msgstr "Enter the default time-to-live interval for all newly added domains and networks.  This value is the length of time for which other domain name servers will cache the domain information retrieved from this domain name server and will assume it to be valid without checking with this domain name server again.  [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_ttl]].  [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.default_ttl]].  [[base-dns.default_ttl_rule]]"
+
+msgid "global_settings"
+msgstr "Server Settings"
+
+msgid "global_settings_help"
+msgstr "These are the default values for the domain name server."
+
+msgid "forwarders"	
+msgstr "Forwarding Servers"
+
+msgid "forwarders_help"
+msgstr "Enter the IP addresses of forwarding domain name servers.  Forwarding domain name servers are used when [[base-dns.caching]] is enabled and when root domain name servers are not directly accessible due to a limited or restricted Internet connection. [[base-dns.forwarders_rule]]"
+
+msgid "forwarders_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "forwarders_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dns.forwarders]].  [[base-dns.forwarders_rule]]"
+
+msgid "zone_xfer_ipaddr"
+msgstr "Zone Transfer Access by IP Address"
+
+msgid "zone_xfer_ipaddr_help"
+msgstr "Enter the IP addresses that are allowed to download all records maintained by this domain name server through zone transfers.  Zone transfers are used by secondary domain name servers to synchronize their records with primary domain name servers.  The default value is to leave this field empty to refuse zone transfer requests."
+
+msgid "zone_xfer_ipaddr_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dns.zone_xfer_ipaddr]]."
+
+msgid "recursion_inetaddr_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-dns.recursion_inetaddr]]."
+
+msgid "zone_format_tab"
+msgstr "Zone Format"
+
+msgid "zone_format_tab_help"
+msgstr "Click here to configure the [[base-dns.zone_format_tab]] for DNS records.  This should not be necessary unless your System Administrator or ISP has specifically given you a [[base-dns.zone_format_tab]] setting."
+
+msgid "zone_format_settings_divider"
+msgstr "[[base-dns.zone_format]] Settings"
+
+msgid "zone_format_user_defined_divider"
+msgstr "User Defined [[base-dns.zone_format]] Settings"
+
+msgid "zone_format"	
+msgstr "Zone File Format"
+
+msgid "zone_format_help"	
+msgstr "Choose a zone file format for subnetting on a non-octet boundary which is compatible with your local reverse delegation method.  RFC2317 is the standard format.  DION and OCN-JT are much less commonly used."
+
+msgid "zone_format_required_warning"
+msgstr "This field is required if the [[base-dns.zone_format]] you chose above is [[base-dns.USER]] but is ignored otherwise.  Your network administrator will provide you with the correct format if necessary."
+
+msgid "zone_format_24"
+msgstr "[[base-dns.zone_format]] for > 24-bit networks."
+
+msgid "zone_format_24_help"
+msgstr "Define the [[base-dns.zone_format]] to create for a non-octet boundary network with greater than 24 bits here.  [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_16"
+msgstr "[[base-dns.zone_format]] for > 16-bit networks."
+
+msgid "zone_format_16_help"
+msgstr "Define the [[base-dns.zone_format]] to create for a non-octet boundary network with greater than 16 bits here.  [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_8"
+msgstr "[[base-dns.zone_format]] for > 8-bit networks."
+
+msgid "zone_format_8_help"
+msgstr "Define the [[base-dns.zone_format]] to create for a non-octet boundary network with greater than 8 bits here.  [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_0"
+msgstr "[[base-dns.zone_format]] for > 0-bit networks."
+
+msgid "zone_format_0_help"
+msgstr "Define the [[base-dns.zone_format]] to create for a non-octet boundary network with greater than 0 bits here.  [[base-dns.zone_format_required_warning]]"
+
+msgid "RFC2317"
+msgstr "RFC2317"
+
+msgid "DION"
+msgstr "DION"
+
+msgid "OCN-JT"
+msgstr "OCN-JT"
+
+msgid "USER"
+msgstr "User Defined"
+
+# --- Record types (reused)
+
+msgid "a_record"
+msgstr "Forward Address (A) Record"
+
+msgid "ptr_record"
+msgstr "Reverse Address (PTR) Record"
+
+msgid "cname_record"
+msgstr "Alias (CNAME) Record"
+
+msgid "mx_record"
+msgstr "Mail Server (MX) Record"
+
+msgid "txt_record"
+msgstr "Text (TXT) Record"
+
+msgid "records_title"
+msgstr "Domain Settings for "
+
+msgid "a_dir"
+msgstr "Forward"
+
+msgid "ptr_dir"
+msgstr "Reverse"
+
+msgid "cname_dir"
+msgstr "Alias"
+
+msgid "txt_dir"
+msgstr "TXT"
+
+# --- Primary services
+
+msgid "primary_service_button"
+msgstr "Edit Primary Services"
+
+msgid "primary_service_button_help"
+msgstr "Manage DNS records for domains and networks that this server is registered to serve.  Primary DNS service is also called Master DNS service."
+
+msgid "dnsSetting"	
+msgstr "[[base-dns.title]] Primary Service List"
+
+msgid "select_dom"
+msgstr "Select Domain..."
+
+msgid "select_net"	
+msgstr "Select Network..."
+
+	# drop down menu
+msgid "add_record"
+msgstr "Add Record..."
+
+msgid "edit_soa"
+msgstr "Modify SOA"
+
+msgid "edit_soa_help"
+msgstr "Modify the start of authority record for the selected domain or network authority."
+
+msgid "confirm_delall"
+msgstr "Are you sure you want to remove ALL of the DNS records for this domain or network?"
+
+msgid "del_records"
+msgstr "Remove Records"
+
+msgid "del_records_help"
+msgstr "Click to remove all DNS records for this domain or network.  This will remove ALL records in the currently selected zone and cannot be undone."
+
+msgid "source"
+msgstr "Query"
+
+msgid "source_help"
+msgstr "This is the query or question which will be asked directly to this domain name server."
+
+msgid "direction"
+msgstr "Type"
+
+msgid "direction_help"
+msgstr "This is the record type which relates the query to this server with the response from this server."
+
+msgid "resolution"
+msgstr "Response"
+
+msgid "resolution_help"
+msgstr "This is the response or answer which will be returned directly from this domain name server."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "These are the buttons used to modify domain name records or remove domain name records."
+
+msgid "confirm_removal"
+msgstr "Are you sure you want to remove the record [[VAR.rec]]?"
+
+	# general IP address rule
+msgid "ipaddr_rule"
+msgstr "An IP address is a series of four numbers between 0 and 255 separated by periods.  For example, 192.168.1.1 is a valid entry."
+
+msgid "inetaddr_rule"
+msgstr "An IP address is a series of four numbers between 0 and 255 separated by periods and netmask with '/'.  For example, 192.168.1.0/24 is a valid entry."
+
+# --- A record
+
+msgid "create_dns_recA"
+msgstr "[[base-dns.title]] Add New [[base-dns.a_record]]"
+
+msgid "modify_dns_recA"
+msgstr "[[base-dns.title]] Modify [[base-dns.a_record]]"
+
+msgid "a_record_explain"
+msgstr "A [[base-dns.a_record]] provides the translation from a fully-qualified domain name to an IP address.  A fully-qualified domain name can be composed of both a host name and a domain name or only a domain name."
+
+msgid "a_host_name"
+msgstr "Host Name"
+
+msgid "a_host_name_help"
+msgstr "Enter the host name for this record. [[base-dns.a_record_explain]]"
+
+msgid "a_host_name_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "a_domain_name"
+msgstr "Domain Name"
+
+msgid "a_domain_name_help"
+msgstr "Enter the domain name for this record.[[base-dns.a_record_explain]]"
+
+msgid "a_domain_name_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "a_domain_name_empty"
+msgstr "Please specify the domain for this record."
+
+msgid "a_ip_address"
+msgstr "IP Address"
+
+msgid "a_ip_address_help"
+msgstr "Enter the IP address for this record.[[base-dns.a_record_explain]]"
+
+msgid "a_ip_address_invalid"
+msgstr "The specified IP address is invalid. [[base-dns.ipaddr_rule]]"
+
+msgid "a_ip_address_empty"
+msgstr "Please specify the IP address to which the Host and Domain Name will resolve.  [[base-dns.ipaddr_rule]]"
+
+
+# --- PTR  record
+
+msgid "create_dns_recPTR"
+msgstr "[[base-dns.title]] Add New [[base-dns.ptr_record]]"
+
+msgid "modify_dns_recPTR"
+msgstr "[[base-dns.title]] Modify [[base-dns.ptr_record]]"
+
+msgid "ptr_explain"
+msgstr "A [[base-dns.ptr_record]] provides the translation from an IP address to a fully-qualified domain name.  A fully-qualified domain name can be composed of both a host name and a domain name or only a domain name."
+
+msgid "ptr_ip_address"
+msgstr "IP Address"
+
+msgid "ptr_ip_address_help"
+msgstr "Enter the IP address for this record. [[base-dns.ptr_explain]]"
+
+msgid "ptr_mask"
+msgstr "Subnet Mask"
+
+msgid "ptr_mask_help"
+msgstr "Enter the network mask of the IP address for this record. [[base-dns.ptr_explain]]"
+
+msgid "ptr_host_name"
+msgstr "Host Name"
+
+msgid "ptr_host_name_help"
+msgstr "Enter the host name for this record. [[base-dns.ptr_explain]]"
+
+msgid "ptr_domain_name"
+msgstr "Domain Name"
+
+msgid "ptr_domain_name_help"
+msgstr "Enter the domain name for this record. [[base-dns.ptr_explain]]"
+
+msgid "a_generate_ptr"
+msgstr "Generate Reverse Address (PTR) Record"
+
+msgid "ptr_generate_a"
+msgstr "Generate Forward Address (A) Record"
+
+msgid "ptr_generate_a_help"
+msgstr "Automatically add a forward address record to resolve the specified host name and domain name from the specified IP address."
+
+msgid "ptr_subnet_mask_invalid"
+msgstr "The specified subnet mask is invalid.  The subnet mask must be entered in dot-quad notation, which is a series of four numbers between 0 and 255 separated by periods.  For example, 255.255.255.0 is a valid entry."
+
+msgid "ptr_subnet_mask_empty"
+msgstr "Please specify the subnet mask for this record."
+
+msgid "ptr_ip_address_invalid"
+msgstr "The specified IP address is invalid. [[base-dns.ipaddr_rule]]"
+
+msgid "ptr_host_name_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "ptr_domain_name_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "ptr_ip_address_empty"
+msgstr "Please specify the IP address that will resolve to the Host and Domain Name. [[base-dns.ipaddr_rule]]"
+
+msgid "ptr_domain_name_empty"
+msgstr "Please specify the Domain Name that corresponds with the IP Address."
+
+
+# --- MX record
+
+msgid "create_dns_recMX"
+msgstr "[[base-dns.title]] Add New [[base-dns.mx_record]]"
+
+msgid "modify_dns_recMX"
+msgstr "[[base-dns.title]] Modify [[base-dns.mx_record]]"
+
+msgid "mx_host_name"
+msgstr "Host Name"
+
+msgid "mx_explain"
+msgstr "A [[base-dns.mx_record]] identifies the mail server responsible for email destined to the specified host and domain name."
+
+msgid "mx_host_name_help"
+msgstr "Specify the host name that will handle all email sent to the mail server specified in the [[base-dns.mx_target_server]] field. [[base-dns.mx_explain]]"
+
+msgid "mx_domain_name"
+msgstr "Domain Name" 
+
+msgid "mx_domain_name_empty"
+msgstr "Please specify the domain name for this record."
+
+msgid "mx_domain_name_help"
+msgstr "Specify the domain name of the computer for which email should be directed to the mail server specified in the [[base-dns.mx_target_server]] field. [[base-dns.mx_explain]]"
+
+msgid "mx_target_server"
+msgstr "Mail Server Name" 
+
+msgid "mx_target_server_help"
+msgstr "Specify the fully-qualified domain name of the mail server that will accept mail for the specified Host and Domain Name. [[base-dns.mx_explain]]"
+
+msgid "mx_priority"
+msgstr "Delivery Priority" 
+
+msgid "mx_priority_help"
+msgstr "Select the priority of mail delivery to the mail server.  The delivery priority specifies the order in which a series of multiple mail server machines should try to be contacted for mail delivery.  The Delivery Priority setting is only useful if multiple MX records are specified for a domain or network."
+
+msgid "very_high"
+msgstr "Very High (20)"
+
+msgid "high"	
+msgstr "High (30)"
+
+msgid "low"	
+msgstr "Low (40)"
+
+msgid "very_low"
+msgstr "Very Low (50)"
+
+msgid "mx_dir_very_high"
+msgstr "Mail Highest"
+
+msgid "mx_dir_high"	
+msgstr "Mail High"
+
+msgid "mx_dir_low"	
+msgstr "Mail Low"
+
+msgid "mx_dir_very_low"
+msgstr "Mail Lowest"
+
+msgid "mx_host_name_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "mx_domain_name_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "mx_target_server_invalid"
+msgstr "The specified fully-qualified domain name contains invalid characters."
+
+msgid "mx_target_server_empty"
+msgstr "Please specify the fully-qualified domain name of the mail server."
+
+
+# --- CNAME record
+
+msgid "create_dns_recCNAME"
+msgstr "[[base-dns.title]] Add New [[base-dns.cname_record]]"
+
+msgid "modify_dns_recCNAME"
+msgstr "[[base-dns.title]] Modify [[base-dns.cname_record]]"
+
+msgid "cname_explain"
+msgstr "An alias record provides the translation from one fully-qualified domain name to another fully-qualified domain name."
+
+msgid "cname_host_name"
+msgstr "Alias Host Name"
+
+msgid "cname_host_name_help"
+msgstr "Enter the host name that will act as an alias for the real host and/or domain name. [[base-dns.cname_explain]]"
+
+msgid "cname_domain_name"
+msgstr "Alias Domain Name"
+
+msgid "cname_domain_name_help"
+msgstr "Enter the domain name that will act as an alias for the real host and/or domain name. [[base-dns.cname_explain]]"
+
+msgid "cname_host_target"
+msgstr "Real Host Name"
+
+msgid "cname_host_target_help"
+msgstr "Enter the real, or canonical, host name. [[base-dns.cname_explain]]"
+
+msgid "cname_domain_target"
+msgstr "Real Domain Name"
+
+msgid "cname_domain_target_help"
+msgstr "Enter the real, or canonical, domain name. [[base-dns.cname_explain]]"
+
+
+# --- TXT record
+
+msgid "create_dns_recTXT"
+msgstr "[[base-dns.title]] Add New [[base-dns.txt_record]]"
+
+msgid "modify_dns_recTXT"
+msgstr "[[base-dns.title]] Modify [[base-dns.txt_record]]"
+
+msgid "txt_record_explain"
+msgstr "A [[base-dns.txt_record]] identifies the text record for the specified host and domain name."
+
+msgid "txt_host_name"
+msgstr "Host Name"
+
+msgid "txt_host_name_help"
+msgstr "Enter the host name for this record. [[base-dns.txt_record_explain]]"
+
+msgid "txt_host_name_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "txt_domain_name"
+msgstr "Domain Name"
+
+msgid "txt_domain_name_help"
+msgstr "Enter the domain name for this record. [[base-dns.txt_record_explain]]"
+
+msgid "txt_domain_name_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "txt_domain_name_empty"
+msgstr "Please specify the Domain Name that corresponds with the IP Address."
+
+msgid "txt_strings"
+msgstr "Text Record"
+
+msgid "txt_strings_help"
+msgstr "Enter the text record."
+
+msgid "txt_strings_invalid"
+msgstr "The specified text record contains invalid characters."
+
+msgid "txt_strings_empty"
+msgstr "Please specify the Text Record that corresponds with the IP Address."
+
+
+# --- SOA
+
+msgid "create_soa"
+msgstr "Add Start of Authority (SOA) Record"
+
+msgid "modify_soa"
+msgstr "[[base-dns.title]] Modify Start of Authority (SOA) Record"
+
+msgid "domain_soa"
+msgstr "Domain Authority"
+
+msgid "domain_soa_help"
+msgstr "This is the domain authority to which this Start of Authority record applies."
+
+msgid "network_soa"
+msgstr "Network Authority"
+
+msgid "network_soa_help"
+msgstr "This is the network authority to which this Start of Authority record applies."
+
+msgid "primary_dns"
+msgstr "Primary Name Server (NS)"
+
+msgid "primary_dns_help"
+msgstr "Enter the fully-qualified domain name of the primary name server for the selected domain or network authority."
+
+msgid "secondary_dns"
+msgstr "Secondary Name Servers (NS)"
+
+msgid "secondary_dns_help"
+msgstr "Enter a space-separated list of fully-qualified domain names of the secondary name servers for the selected domain or network authority."
+
+msgid "domain_admin"
+msgstr "DNS Administrator Email Address"
+
+msgid "domain_admin_rule"
+msgstr "Please enter a properly formatted email address.  The default email address is set in the [[base-dns.soa_defaults]] section.  For example, user@example.com is a valid entry."
+
+msgid "domain_admin_help"
+msgstr "Enter the email address of the administrative contact for all newly added domains and networks.  [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.domain_admin]].  [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.domain_admin]].  [[base-dns.domain_admin_rule]]"
+
+msgid "refresh"
+msgstr "Refresh Interval (Seconds)"
+
+msgid "refresh_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is set in the [[base-dns.soa_defaults]] section."
+
+msgid "refresh_help"
+msgstr "Enter the default refresh interval for all newly added domains and networks.   This value is the interval at which the secondary domain name server will try to synchronize its records with the primary domain name server.  [[base-dns.refresh_rule]]"
+
+msgid "refresh_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.refresh]].  [[base-dns.refresh_rule]]"
+
+msgid "retry"
+msgstr "Retry Interval (Seconds)"
+
+msgid "retry_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is set in the [[base-dns.soa_defaults]] section."
+
+msgid "retry_help"
+msgstr "Enter the default retry interval for all newly added domains and networks.  If for some reason the secondary domain name server is not able to contact the primary domain name server to synchronize its records, this value is the interval at which the secondary domain name server will try repeatedly to contact the primary domain name server.  [[base-dns.retry_rule]]"
+
+msgid "retry_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.retry]].  [[base-dns.retry_rule]]"
+
+
+msgid "expire"
+msgstr "Expire Interval (Seconds)"
+
+msgid "expire_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is set in the [[base-dns.soa_defaults]] section."
+
+msgid "expire_help"
+msgstr "Enter the default expire interval for all newly added domains and networks.  If for some reason the secondary domain name server is repeatedly not able to contact the primary domain name server to synchronize its records, this value is the interval after which the secondary domain name server will no longer consider its domain information valid. It will then stop serving domain information until the primary domain name server can be contacted again.  [[base-dns.expire_rule]]"
+
+msgid "expire_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.expire]].  [[base-dns.expire_rule]]"
+
+
+msgid "ttl"
+msgstr "Time-To-Live Interval (Seconds)"
+
+msgid "ttl_rule"
+msgstr "Please enter an integer between 1 and 4096000.  The default value is set in the [[base-dns.soa_defaults]] section."
+
+msgid "ttl_help"
+msgstr "Enter the default time-to-live interval for all newly added domains and networks.  This value is the length of time for which other domain name servers will cache the domain information retrieved from this domain name server and assume it to be valid without checking with this domain name server again.  [[base-dns.ttl_rule]]"
+
+msgid "ttl_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.ttl]].  [[base-dns.ttl_rule]]"
+
+msgid "ttl_empty"
+msgstr "Sorry, you have not entered a value for [[base-dns.ttl]].  [[base-dns.ttl_rule]]"
+
+
+
+# ---- Secondary Services
+
+msgid "secondary_service_button"
+msgstr "Edit Secondary Services"
+
+msgid "secondary_service_button_help"
+msgstr "Manage secondary DNS service for domains and networks. "
+
+msgid "sec_list"
+msgstr "[[base-dns.title]] Secondary Service List"
+
+msgid "create_slave_rec"
+msgstr "[[base-dns.title]] Add Secondary Service"
+
+msgid "modify_slave_rec"
+msgstr "[[base-dns.title]] Modify Secondary Service"
+
+msgid "slave_domain_but"
+msgstr "Secondary Domain Name Server for Domain"
+
+msgid "slave_domain"
+msgstr "Domain Name"
+
+msgid "slave_domain_help"
+msgstr "Enter the name of the domain for which this machine will be a secondary domain name server."
+
+msgid "slave_dom_masters"
+msgstr "Primary DNS Server IP Address"
+
+msgid "slave_dom_masters_help"
+msgstr "Enter the IP address of the primary domain name server for this domain."
+
+msgid "slave_network_but"
+msgstr "Secondary Domain Name Server for Network"
+
+msgid "slave_ipaddr"
+msgstr "Network"
+
+msgid "slave_ipaddr_help"
+msgstr "Enter the IP address of the network for which this machine will be a secondary domain name server."
+
+msgid "slave_netmask"
+msgstr "Network Subnet Mask"
+
+msgid "slave_netmask_help"
+msgstr "Enter the subnet mask of the network for which this machine will be a secondary domain name server."
+
+msgid "slave_net_masters"
+msgstr "Primary DNS Server IP Address"
+
+msgid "slave_net_masters_help"
+msgstr "Enter the IP address of the primary domain name server for this domain."
+
+msgid "sec_authority"
+msgstr "Secondary Service"
+
+msgid "sec_authority_help"
+msgstr "This is the domain or network for which this machine will be a secondary domain name server."
+
+msgid "sec_primaries"
+msgstr "Primary DNS Server"
+
+msgid "sec_primaries_help"
+msgstr "This is the IP address of the primary domain name server for this domain or network."
+
+msgid "recordlist_action"
+msgstr "Action"
+
+msgid "recordlist_action_help"
+msgstr "These are the buttons used to modify secondary domain name service records or remove secondary domain name service records."
+
+	# end of sentence is completed
+msgid "confirm_removal_of_sec"
+msgstr "Are you sure you want to delete the secondary domain name service record for [[VAR.rec]]?"
+
+msgid "slave_ipaddr_invalid"
+msgstr "The specified IP address is invalid."
+
+msgid "slave_netmask_invalid"
+msgstr "The specified netmask is invalid.  Netmasks must be entered in dot-quad notation."
+
+msgid "slave_net_masters_invalid"
+msgstr "The primary DNS server IP address is invalid."
+
+msgid "slave_domain_invalid"
+msgstr "The specified domain name is invalid."
+
+msgid "slave_dom_masters_invalid"
+msgstr "The primary DNS server IP address is invalid."
+
+
+
+msgid "apply_changes"
+msgstr "Apply Changes Now"
+
+msgid "apply_changes_help"
+msgstr "Click here to immediately activate any changes made to your domain name server records.  Any modifications made to your domain name records will not be active until they are explicitly applied to the domain name server by clicking this button."
+
+msgid "apply_changes_disabledHelp"
+msgstr "This button is disabled because you have not yet added or modified domain name server records. After adding or modifying domain name server records, click here to immediately activate any changes made to your domain name server records. "
+
+# ---- Active monitor
+
+msgid "amDNSNameTag"
+msgstr "Domain Name Service (DNS) Server"
+
+msgid "amDetailsTitle"
+msgstr "Domain Name Service (DNS) Server Details"
+
+msgid "amNotRunning"
+msgstr "The domain name server is not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the domain name server off then on again to see if this corrects the problem. If the domain name server is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the domain name server is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "amStatusOK"
+msgstr "The domain name server is operating normally."
+
+
+
+
+# --- Drop-down menu
+msgid "select_a_domain"	
+msgstr "Select a Domain..."
+
+msgid "select_a_network"
+msgstr "Select a Network..."
+
+msgid "no_records"	
+msgstr "No Domain or Network Authorities"
+
+msgid "subdom_host_name"
+msgstr "Subdomain Name" 
+
+msgid "subdom_host_name_help"
+msgstr "Specify the unqualified subdomain name.  For example, to delegate the subdomain remote.example.com, this server must be authoritative for the domain example.com.  Specify only the subdomain name, remote." 
+
+msgid "subdom_domain_name"
+msgstr "Parent Domain Name" 
+
+msgid "subdom_domain_name_help"
+msgstr "Select the parent domain name.  For example, to delegate the subdomain remote.example.com, select example.com" 
+
+msgid "subdom_nameservers"
+msgstr "Name Servers" 
+
+msgid "subdom_nameservers_help"
+msgstr "Specify a comma-separated list of fully-qualified host names that are authoritative for the specified subdomain.  At least one name server must be specified.  " 
+
+msgid "subdom_nameservers_invalid"
+msgstr "The [[base-dns.subdom_nameservers]] list contains invalid characters or host names."
+
+msgid "subdom_nameservers_empty"
+msgstr "Please specify at least one DNS server that is authoritative for this subdomain."
+
+msgid "subnet_ip_address"
+msgstr "Subnet IP Address" 
+
+msgid "subnet_ip_address_help"
+msgstr "Specify an IP address within the desired subnet that will be delegated to another DNS server."  
+
+msgid "subnet_mask"
+msgstr "Subnet Network Mask" 
+
+msgid "subnet_mask_help"
+msgstr "Specify the subnet network mask in dot-quad notation." 
+
+msgid "subnet_nameservers"
+msgstr "Name Servers" 
+
+msgid "subnet_nameservers_help"
+msgstr "Specify a comma-separated list of fully-qualified host names that are authoritative for the specified subnet.  At least one name server must be specified." 
+
+msgid "subnet_nameservers_invalid"
+msgstr "The [[base-dns.subnet_nameservers]] list contains invalid characters or host names."
+
+msgid "subnet_nameservers_empty"
+msgstr "Please specify at least one DNS server that is authoritative for this subnet."
+
+msgid "create_dns_rec"
+msgstr "Add a DNS record" 
+
+msgid "modify_dns_rec"	
+msgstr "[[base-dns.title]] Modify a DNS record"
+
+msgid "authority"
+msgstr "Authority"
+
+msgid "authority_help"
+msgstr "DNS authorities are domains and networks. "
+
+msgid "subnet_dir"
+msgstr "Subnet"
+
+msgid "subdom_dir"
+msgstr "Subdomain"
+
+msgid "subnet"
+msgstr "Subnet Delegation"
+
+msgid "subdom"
+msgstr "Subdomain Delegation"
+
+msgid "modify_dns_recSUBDOM"
+msgstr "[[base-dns.title]] Modify a Subdomain Delegation."
+
+msgid "create_dns_recSUBDOM"
+msgstr "Add a Subdomain Delegation"
+
+msgid "modify_dns_recSUBNET"
+msgstr "[[base-dns.title]] Modify a Subnet Delegation"
+
+msgid "create_dns_recSUBNET"
+msgstr "Add a Subnet Delegation"
+
+
+
+msgid "add_secondary"
+msgstr "Add Secondary Service..."
+
+
+msgid "add_secondary_forward"
+msgstr "...for a Domain"
+
+msgid "add_secondary_network"
+msgstr "...for a Network"
+
+# --- Lots of error messages
+
+msgid "cname_domain_name_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "cname_domain_target_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "cname_host_target_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "subdom_host_name_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "subdom_host_name_empty"
+msgstr "Please specify the subdomain name to be delegated to remote DNS servers."
+
+msgid "subdom_domain_name_invalid"
+msgstr "The specified domain name contains invalid characters."
+
+msgid "subdom_namerservers_invalid"
+msgstr "The specified fully-qualified domain name for the primary DNS server is invalid."
+
+msgid "subnet_subnet_mask_invalid"
+msgstr "The specified subnet mask is invalid.  The subnet mask must be entered in dot-quad notation."
+
+msgid "subnet_ip_address_invalid"
+msgstr "The specified IP address is invalid. "
+
+msgid "subnet_ip_address_empty"
+msgstr "Please specify an IP address that is a member of the delegated subnet."
+
+msgid "primary_dns_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "secondary_dns_invalid"
+msgstr "A secondary name server host name contains invalid characters."
+
+msgid "refresh_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_refresh]].  [[base-dns.default_refresh_rule]]"
+
+msgid "retry_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_retry]].  [[base-dns.default_retry_rule]]"
+
+msgid "expire_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-dns.default_expire]].  [[base-dns.default_expire_rule]]"
+
+msgid "cname_domain_name_empty"
+msgstr "Please enter the Alias Domain Name."
+
+msgid "cname_domain_target_empty"
+msgstr "Please specify a Real Domain Name that the Alias Host and Domain Name will resolve to."
+
+msgid "slave_domain_empty"
+msgstr "Please specify the domain name that this server will become a secondary DNS server for."
+
+msgid "slave_dom_masters_empty"
+msgstr "Please specify the IP address of the primary DNS server for the Domain Name."
+
+msgid "slave_ipaddr_empty"
+msgstr "Please specify an IP address that is a member of the network authority served by the Primary DNS Server."
+
+msgid "slave_net_masters_empty"
+msgstr "Please specify the IP address of the primary DNS server for the Network authority."
+
+msgid "slave_netmask_empty"
+msgstr "Please specify the netmask in dot-quad notation that, in addition to the specified Network IP address, defines the network that the Primary DNS Server is authoritative for."
+
+msgid "cname_host_name_empty"
+msgstr "Please specify the host name for this record."
+
+msgid "cname_host_name_invalid"
+msgstr "The specified host name contains invalid characters."
+
+msgid "parent_network"
+msgstr "Parent Network"
+
+msgid "parent_network_help"
+msgstr "This is the parent network for which this server is authoritative.  All IP addresses in the specified subnet must belong to this parent network."
+
+msgid "invalidDuplicate"
+msgstr "An identical domain name record already exists."
+
+msgid "named-did-not-start"
+msgstr "The Name Server (DNS) failed to restart correctly."
+
+msgid "invalid-authority"
+msgstr "The DNS record is missing critical information."
+
+msgid "SOA-already-exists-for-zone"
+msgstr "A start of authority (SOA) record already exists for this zone."
+
+msgid "secondaryZoneOverlap"
+msgstr "An existing secondary network service conflicts with this record."
+
+msgid "secondaryZoneDuplicate"
+msgstr "An existing secondary network service conflicts with this record."
+
+msgid "primaryZoneDuplicate"
+msgstr "An existing primary network service conflicts with this record."
+
+msgid "primaryZoneOverlap"
+msgstr "An existing primary network service conflicts with this record."
+
+msgid ""
+msgstr ""
+
+msgid "auto_dns"
+msgstr "Auto DNS"
+
+msgid "auto_dns_help"
+msgstr "Settings for Auto DNS"
+
+msgid "auto_a"
+msgstr "Host Names"
+
+msgid "auto_a_help"
+msgstr "Add additional host names for Auto DNS.  This will allow you to setup domains in a snap"
+
+msgid "auto_mx"
+msgstr "Mail Server Host Name"
+
+msgid "auto_mx_help"
+msgstr "Add the host name of the Mail Server for this domain.  Do not add the domain.tld"
+
+msgid "dnsNames_header"
+msgstr "Please select which Domain Names this site will manage"
+
+msgid "dnsNames"
+msgstr "Available Domain Names"
+
+msgid "dnsNames_help"
+msgstr "Select which domain names this virtual site will be able to administor"
+
+msgid "selected"
+msgstr "Selected"
+
+msgid "notSelected"
+msgstr "Not Selected"
+
+msgid "nodnsmanage"
+msgstr "Domain Name Manager not Setup"
+
+msgid "dnsempty"
+msgstr ""
+"<br>"
+"The administrator of this sytem has not setup any domains for <br>"
+"you to manage.  If you feel this is an error, please contact <br>"
+"the System Administrator<br>"
+"<br>"
+
+#------- New Advanced Settings: ---------------
+
+msgid "query"
+msgstr "Allow DNS Query Access"
+
+msgid "query_help"
+msgstr "This is enabled by default. Allows selected IP address ranges to query your DNS server for DNS information. You can specify which address ranges can query your server a bit further below in the field 'Allow Queries from these Networks'."
+
+msgid "query_all_allowed"
+msgstr "Allow Queries from Everyone"
+
+msgid "query_all_allowed_help"
+msgstr "Allow query access from the entire internet. If you run an authoritative nameserver for domains, then you should turn this on. If your nameserver is supposed to be private, you can turn it off."
+
+msgid "query_inetaddr"
+msgstr "Allow Queries from these Networks"
+
+msgid "query_inetaddr_help"
+msgstr "In this box you can specify which IP address ranges are allowed to query your DNS server. By default only localhost ('127.0.0.1/32') is allowed. If you tick the checkbox for 'Allow Queries from Everyone', then it will override whatever extra address ranges you put in here and will allow anyone query access."
+
+msgid "caching"
+msgstr "Allow DNS Cache Access"
+
+msgid "caching_help"
+msgstr "Enabling caching, also called recursion, allows resolution of domains and network zones that other name servers are authoritative for. However, running such an 'open' DNS server exposes yourself and others to the risks of DDoS attacks. So if you need a DNS server to resolve domains which you are not authoritative for, then you should either use the DNS server of your provider, or (if you still want to use your own DNS server for that!) you should only allow query access for localhost ('127.0.0.1/32') on this DNS server, or selected and trustworthy network address ranges."
+
+msgid "caching_all_allowed"
+msgstr "Open DNS Server (Not recommended!)"
+
+msgid "caching_all_allowed_help"
+msgstr "If you tick this box, your DNS server will be entirely open and will resolve DNS for anyone and everyone. That is a really bad idea. This exposes yourself and others to the risks of DDoS attacks. So if you need a DNS server to resolve domains which you are not authoritative for, then you should either use the DNS server of your provider, or (if you still want to use your own DNS server for that!) you should only allow query access for localhost ('127.0.0.1/32') on this DNS server, or selected and trustworthy network address ranges."
+
+msgid "recursion_inetaddr"
+msgstr "Allow Cache access from these Networks"
+
+msgid "recursion_inetaddr_help"
+msgstr "Enter the IP addresses (with netmask!) of address ranges that are allowed to request recursion query to the cache server. [[base-dns.inetaddr_rule]]"
+
+msgid "rate_limits"
+msgstr "DNS Rate Limits:"
+
+msgid "rate_limits_enabled"
+msgstr "Rate Limits Enabled"
+
+msgid "rate_limits_enabled_help"
+msgstr "DNS Response Rate Limiting (DNS RRL) is an experimental protection feature for domain name servers. This mechanism keeps BIND 9 from being used in amplifying reflection denial of service attacks as well as partially protecting BIND 9 itself from some denial of service attacks. By default it should be enabled."
+
+msgid "responses_per_second"
+msgstr "Responses per Second"
+
+msgid "responses_per_second_help"
+msgstr "Responses-per-second is a limit on identical responses instead of a limit on all responses or even all responses to a single client. 10 identical responses per second is a generous limit except perhaps when many clients are using a single IP address via network address translation (NAT). The default limit of zero specifies an unbounded limit to turn off rate-limiting in a view or to only rate-limit NXDOMAIN or other errors."
+
+msgid "window"
+msgstr "Window"
+
+msgid "window_help"
+msgstr "Rate limiting uses a credit or token bucket scheme.  Each identical response has a conceptual account that is given RESPONSES-PER-SECOND and ERRORS-PER-SECOND credits every second. A DNS request triggering some desired response debits the account by one. Responses are not sent while the account is negative. The account cannot become more positive than the per-second limit or more negative than window times the per-second limit. A DNS client that sends requests that are not answered can therefore penalized for up to window seconds even after the abusive query flow stops."
+
+msgid "dns_logging"
+msgstr "Extended DNS logging:"
+
+msgid "enable_dns_logging"
+msgstr "Enable extended DNS logging"
+
+msgid "enable_dns_logging_help"
+msgstr "WARNING: This should only be used for debugging, as it will log any query to your DNS server to /var/log/messages. Even on a lightly used DNS server this creates a lot of log entries. But you might want to briefly (!) enable extended DNS logging to see if your 'DNS Rate Limits' are working correctly."
+
+#------- New Advanced Settings: ---------------

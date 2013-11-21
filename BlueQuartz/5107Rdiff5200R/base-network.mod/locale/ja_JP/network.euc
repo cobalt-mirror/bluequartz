@@ -1,0 +1,1043 @@
+# --- Menu
+
+msgid "ethernet"
+msgstr "TCP/IP"
+
+msgid "ethernet_help"
+msgstr "TCP/IP 設定を変更できます。"
+
+msgid "tcpIpSettings"
+msgstr "TCP/IP 設定"
+
+msgid "wan"
+msgstr "インターネット"
+
+msgid "wan_help"
+msgstr "インターネット設定を変更できます。"
+
+
+# --- TCP/IP Page
+
+msgid "primarySettings"
+msgstr "基本設定"
+
+msgid "primarySettings_help"
+msgstr "サーバの実イーサネットポート、DNS、ホスト名、ドメインネームを設定できます。"
+
+msgid "aliasSettings"
+msgstr "インターフェイスエイリアス"
+
+msgid "aliasSettings_help"
+msgstr "このサーバが応答すべき追加的な IP アドレスに関する設定。"
+
+msgid "enterFqdn"
+msgstr "ホスト名とドメインネーム"
+
+msgid "enterFqdn_help"
+msgstr "左欄にはこのサーバのホスト名 (例： www、mail、shomu_2、eigyo13 など) を、右欄にはドメインネーム (例： sun.com、cobaltqube.org、toaru.co.jp) をそれぞれ入力してください。ホスト名とドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
+
+msgid "hostNameField"
+msgstr "ホスト名"
+
+msgid "hostNameField_rule"
+msgstr "ホスト名には、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： www、mail、shomu_2、eigyo13）"
+
+msgid "hostNameField_help"
+msgstr "このサーバのホスト名を入力してください。ホスト名とドメインネームの組合せにより、このサーバを一意に識別できる名前を付けてください。[[base-network.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "ドメインネーム"
+
+# make consistent with rfc 1035
+msgid "domainNameField_rule"
+msgstr "ドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。最初の文字には半角の英小文字をお使いください。（指定例： sun.com、cobaltqube.org、toaru.co.jp）"
+
+msgid "domainNameField_help"
+msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組合せにより、このサーバを一意に識別できる名前を付けてください。[[base-network.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS サーバ"
+
+msgid "dnsAddressesField_rule"
+msgstr "0 〜 255 の数値4 組を、ピリオドで区切って入力してください (指定例： 192.168.1.1)。このフィールドを空欄のまま残すと、このコンピュータはホスト名やドメインネームを使って他のコンピュータを特定できなくなるため、ネットワーク上の問題が生じます。"
+
+msgid "dnsAddressesField_help"
+msgstr "ドメインネームサーバの IP アドレスを入力してください。ドメインネームサーバは、テキスト文字列で表記されるホスト名＋ドメインネームと、数字で表記される IP アドレスとの対応（正引き、逆引き）情報を提供します。[[base-network.dnsAddressesField_rule]]"
+
+# interface names.  These only show up in the UI if their corresponding
+# network device actually exists according to the kernel. 10 should be enough.
+msgid "interfaceeth0"
+msgstr "プライマリ インターフェイス"
+
+msgid "interfaceeth1"
+msgstr "セカンダリ インターフェイス"
+
+msgid "interfaceeth2"
+msgstr "第３のインターフェイス"
+
+msgid "helpeth2"
+msgstr "第３のインターフェイス"
+
+msgid "interfaceeth3"
+msgstr "第４のインターフェイス"
+
+msgid "helpeth3"
+msgstr "第４のインターフェイス"
+
+msgid "interfaceeth4"
+msgstr "第５のインターフェイス"
+
+msgid "helpeth4"
+msgstr "第５のインターフェイス"
+
+msgid "interfaceeth5"
+msgstr "第６のインターフェイス"
+
+msgid "helpeth5"
+msgstr "第６のインターフェイス"
+
+msgid "interfaceeth6"
+msgstr "第７のインターフェイス"
+
+msgid "helpeth6"
+msgstr "第７のインターフェイス"
+
+msgid "interfaceeth7"
+msgstr "第８のインターフェイス"
+
+msgid "helpeth7"
+msgstr "第８のインターフェイス"
+
+msgid "interfaceeth8"
+msgstr "第９のインターフェイス"
+
+msgid "helpeth8"
+msgstr "第９のインターフェイス"
+
+msgid "interfaceeth9"
+msgstr "第10のインターフェイス"
+
+msgid "helpeth9"
+msgstr "第10のインターフェイス"
+
+# leave these forms, because they may be used somewhere
+msgid "primaryInterface"
+msgstr "プライマリインターフェイス"
+
+msgid "secondaryInterface"
+msgstr "セカンダリインターフェイス"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "IP アドレスを指定した場合には、IP ネットワークマスクも指定する必要があります。[[base-network.netMaskField_rule]]"
+
+msgid "netMaskIpAddressMismatch"
+msgstr "[[base-network.netMaskField]] フィールドが記述されている場合には、[[base-network.ipAddressField]] の指定も必要です。 [[base-network.ipAddressField_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC アドレス"
+
+msgid "macAddressField_help"
+msgstr "MAC (Media Access Control) アドレスは、ネットワークインターフェイスカードのハードウェアアドレスで、各ハードウェアをネットワーク上で一意に識別する固有のアドレスです。出荷時に設定され、変更はできません。"
+
+# alias settings page for TCP/IP settings
+msgid "addAliasButton"
+msgstr "エイリアスを追加"
+
+msgid "addAliasButton_help"
+msgstr "このサーバのエイリアス (別名) を追加します。"
+
+msgid "aliasName"
+msgstr "インターフェイスエイリアス"
+
+msgid "aliasName_help"
+msgstr "エイリアスと関連付けられているインターフェイスおよびエイリアス番号"
+
+msgid "aliasIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasIpaddr_help"
+msgstr "エイリアスが応対する IP アドレス"
+
+msgid "aliasNetmask"
+msgstr "ネットマスク"
+
+msgid "aliasNetmask_empty"
+msgstr "エイリアスのネットマスクが入力されていません。[[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_invalid"
+msgstr "[[VAR.invalidValue]] は不正なネットマスクです。[[base-network.route_form_netmask_rule]]"
+
+msgid "aliasNetmask_help"
+msgstr "エイリアスのネットマスク"
+
+msgid "aliasActions"
+msgstr "詳細・削除"
+
+msgid "aliasActions_help"
+msgstr "鉛筆アイコンをクリックすると、エイリアスの設定を変更できます。ゴミ箱アイコンをクリックすると、エイリアスが削除されます。"
+
+msgid "aliaseth0"
+msgstr "プライマリインターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth1"
+msgstr "セカンダリインターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth2"
+msgstr "第３インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth3"
+msgstr "第４インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth4"
+msgstr "第５インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth5"
+msgstr "第６インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth6"
+msgstr "第７インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth7"
+msgstr "第８インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth8"
+msgstr "第９インターフェイスエイリアス [[VAR.num]]"
+
+msgid "aliaseth9"
+msgstr "第10インターフェイスエイリアス [[VAR.num]]"
+
+# add/modify alias page
+msgid "addAlias"
+msgstr "エイリアスを追加"
+
+msgid "modAlias"
+msgstr "エイリアスを修正"
+
+msgid "assocIface"
+msgstr "インターフェイス"
+
+msgid "assocIface_help"
+msgstr "エイリアスが関連付けられている実インターフェイス"
+
+msgid "aliasModIpaddr"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "aliasModIpaddr_empty"
+msgstr "このエイリアスが応対する IP アドレスが入力されていません。[[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_invalid"
+msgstr "[[VAR.invalidValue]] は不正な IP アドレスです。[[base-network.ipAddressField_rule]]"
+
+msgid "aliasModIpaddr_help"
+msgstr "エイリアスが応対する IP アドレス"
+
+
+# Add static Routes
+
+msgid "routes"
+msgstr "スタティックルートを設定"
+
+msgid "routes_help"
+msgstr "このサーバから他のサブネットへのスタティックルートを設定、変更できます。"
+
+# list
+msgid "routeList-list-title"
+msgstr "設定されているスタティックルート"
+
+msgid "createRoute"
+msgstr "スタティックルートの追加"
+
+msgid "route-target"
+msgstr "ターゲットネットワークの IP アドレス"
+
+msgid "route-target_help"
+msgstr "スタティックルートが参照するサブネットの IP アドレスです。"
+
+msgid "route-netmask"
+msgstr "ターゲットネットワークのサブネットマスク"
+
+msgid "route-netmask_help"
+msgstr "スタティックルートが参照するサブネットのネットワークマスクです。"
+
+msgid "route-gateway"
+msgstr "ゲートウェイ"
+
+msgid "route-gateway_help"
+msgstr "ターゲットサブネットのネットワークトラフィックをルートするネットワークゲートウェイです。"
+
+msgid "route-device"
+msgstr "デバイス"
+
+msgid "route-device_help"
+msgstr "スタティックルートの全てのトラフィックをルートするネットワークインターフェイスです。"
+
+msgid "modifyRoute"
+msgstr "スタティックルートの変更"
+
+msgid "verify_delete"
+msgstr "[[VAR.route]] というスタティックルートを削除してよろしいですか？"
+
+# Add a route form
+msgid "route_form_target"
+msgstr "ターゲットサブネットの IP アドレス"
+
+msgid "route_form_target_help"
+msgstr "ルートを変更するサブネットの IP アドレスを入力してください。[[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_rule"
+msgstr "0 〜 255 の数値4 組を、ピリオドで区切って入力してください。(指定例： 192.168.1.1)"
+
+msgid "route_form_target_empty"
+msgstr "[[base-network.route_form_target]] の値が入力されていません。[[base-network.route_form_target_rule]]"
+
+msgid "route_form_target_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-network.route_form_target]] には不正な値です。[[base-network.route_form_target_rule]]"
+
+msgid "route_form_netmask"
+msgstr "ターゲットネットワークマスク"
+
+msgid "route_form_netmask_help"
+msgstr "ルートを変更するサブネットのネットワークマスクを入力してください。[[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_rule"
+msgstr "0 〜 255 の数値4 組を、ピリオドで区切って入力してください。(指定例： 255.255.255.0)"
+
+msgid "route_form_netmask_empty"
+msgstr "[[base-network.route_form_netmask]] の値が入力されていません。[[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_netmask_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-network.route_form_netmask]] には不正な値です。[[base-network.route_form_netmask_rule]]"
+
+msgid "route_form_gateway"
+msgstr "ゲートウェイ"
+
+msgid "route_form_gateway_help"
+msgstr "このサーバのサブネット上のネットワークゲートウェイの IP アドレスを入力してください。このゲートウェイを介して、ターゲットサブネット宛のパケットがルートし直されます。[[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_rule"
+msgstr "0 〜 255 の数値4 組を、ピリオドで区切って入力してください。(指定例： 192.168.1.1)"
+
+msgid "route_form_gateway_empty"
+msgstr "[[base-network.route_form_gateway]] の値が入力されていません。[[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_gateway_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-network.route_form_gateway]] には不正な値です。[[base-network.route_form_gateway_rule]]"
+
+msgid "route_form_device"
+msgstr "ネットワークインターフェイス"
+
+msgid "route_form_device_help"
+msgstr "ターゲットサブネット宛のパケットをルートし直す対象のネットワークインターフェイスを選択してください。デバイスが指定されていない場合には、ネットワークゲートウェイの IP アドレスを基にデバイスが選択されます。"
+
+msgid "route_form_device-eth0"
+msgstr "プライマリイーサネットインターフェイス（eth0）"
+
+msgid "route_form_device-eth1"
+msgstr "セカンダリイーサネットインターフェイス（eth1）"
+
+msgid "route_form_device-eth2"
+msgstr "イーサネットインターフェイス（eth2）"
+
+msgid "route_form_device-eth3"
+msgstr "イーサネットインターフェイス（eth3）"
+
+msgid "route_form_device-eth4"
+msgstr "イーサネットインターフェイス（eth4）"
+
+msgid "route_form_device-eth5"
+msgstr "イーサネットインターフェイス（eth5）"
+
+msgid "route_form_device-eth6"
+msgstr "イーサネットインターフェイス（eth6）"
+
+msgid "route_form_device-eth7"
+msgstr "イーサネットインターフェイス（eth7）"
+
+msgid "route_form_device-eth8"
+msgstr "イーサネットインターフェイス（eth8）"
+
+msgid "route_form_device-eth9"
+msgstr "イーサネットインターフェイス（eth9）"
+
+msgid "route_form_device-ppp0"
+msgstr "Point-to-Point プロトコルインターフェイス（ppp0）"
+
+msgid "routeList_action_header"
+msgstr "詳細・削除"
+
+msgid "routeList_action_header_help"
+msgstr "鉛筆アイコンをクリックすると、スタティックルートの設定を変更できます。ゴミ箱アイコンをクリックすると、スタティックルートを削除できます。"
+
+
+
+# --- Internet Page
+
+# change type drop-down
+
+msgid "changeMode"
+msgstr "インターネット接続を変更..."
+
+msgid "none"
+msgstr "なし（イントラネットのみ）"
+
+msgid "broadband"
+msgstr "ケーブルモデムまたは DSL"
+
+msgid "lan"
+msgstr "LAN 上のゲートウェイ"
+
+msgid "narrowband"
+msgstr "アナログモデムまたは ISDN"
+
+
+# - Gateway on LAN
+	
+msgid "lanSettings"
+msgstr "インターネット設定 - LAN 上のゲートウェイ"
+
+msgid "gatewayField"
+msgstr "サーバゲートウェイ"
+
+msgid "gatewayField_rule"
+msgstr "0 〜 255 の数値4 組を、ピリオドで区切って入力してください。(指定例： 192.168.1.1)"
+
+msgid "gatewayField_help"
+msgstr "このサーバが接続されているローカルネットワーク上のゲートウェイの IP アドレスを入力してください。プライマリインターフェイス、セカンダリインターフェイス共にこのゲートウェイを使います。このサーバは、ネットワークゲートウェイを介してローカルネットワークの外部に接続できます。[[base-network.gatewayField_rule]]"
+
+msgid "forwardField"
+msgstr "IP 転送とマスカレード"
+
+msgid "forwardField_help"
+msgstr "このサーバによるパケットの転送方法を指定してください。「IP パケット転送とマスカレード」を選ぶと、ネットワークアドレス変換が可能になります。それにより、インターネット上に公開されている単一の IP アドレスと、このサーバ内部のネットワークに存在する多数のプライベート IP アドレスとの間のネットワークトラフィックをすべて変換でき、このサーバを介して組織全体でインターネットアクセスを共有できます。「IP パケット転送のみ」を選択すると、ネットワークインターフェイス間のトラフィックは許可されますが、マスカレードは行われず、ネットワークアドレスの変換は行われません。「IP パケットを転送しない」を選ぶと、ネットワークインターフェイス間のトラフィックは全て禁止されます。"
+
+msgid "forward"
+msgstr "IP パケット転送のみ"
+
+msgid "forwardNat"
+msgstr "IP パケット転送とマスカレード"
+
+msgid "forwardOff"
+msgstr "IP パケットを転送しない"
+
+
+
+# --- Cable Modem/DSL
+
+msgid "broadbandSettings"
+msgstr "インターネット設定 − ケーブルモデムまたは DSL"
+
+msgid "networkField"
+msgstr "セカンダリインターフェイス"
+
+msgid "networkField_help"
+msgstr "このサーバのセカンダリインターフェイス用のネットワーク設定を入力してください。"
+
+msgid "dhcp"
+msgstr "DHCP を参照"
+
+msgid "dhcpHostNameField"
+msgstr "クライアントのホスト名"
+
+msgid "dhcpHostNameField_rule"
+msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。（指定例： www、mail、shomu_2、eigyo13）"
+
+msgid "dhcpHostNameField_help"
+msgstr "このサーバを DHCP（Dynamic Host Configuration Protocol）クライアントとして識別するためのホスト名を入力してください。[[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpHostNameField_invalid"
+msgstr "[[VAR.invalidValue]] は、[[base-network.dhcpHostNameField]] には不正な値です。[[base-network.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "クライアントの識別子"
+
+msgid "dhcpClientIdField_help"
+msgstr "このサーバを DHCP（Dynamic Host Configuration Protocol）クライアントとして識別するための識別ストリングを入力してください。"
+
+msgid "pppoe"
+msgstr "PPPoE を参照"
+
+msgid "pppUserNameField"
+msgstr "ユーザ名"
+
+msgid "pppUserNameField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のアカウントへログインするために必要なユーザ名を入力してください。"
+
+msgid "pppUserNameField_empty"
+msgstr "[[base-network.pppUserNameField]] を指定してください。"
+
+msgid "pppPasswordField"
+msgstr "パスワード"
+
+msgid "pppPasswordField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のアカウントへログインするために必要なパスワードを入力してください。"
+
+msgid "pppPasswordField_invalid"
+msgstr "パスワードが一致しません。入力ミスを防止するため、同じパスワードを２回入力してください。もう一度お試しください。"
+
+msgid "static"
+msgstr "手動で設定"
+
+# general ip and netmask strings, there is specialized help text
+# for the primary and secondary interfaces.  all other interfaces use these.
+msgid "ipAddressField"
+msgstr "IP アドレス"
+
+msgid "ipAddressField_rule"
+msgstr "0 〜 255 の数値 4 組を、ピリオドで区切って入力してください。(指定例： 192.168.1.1)"
+
+msgid "ipAddressField_help"
+msgstr "通常は、セカンダリインターフェイスをインターネットに、プライマリインターフェイスをイントラネットに接続します。その場合、ここにセカンダリインターフェイスの IP アドレスを入力してください。ネットワークインターフェイスが１つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_invalid"
+msgstr "[[base-network.ipAddressField]] の指定値が正しい IP アドレスではありません。[[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "サブネットマスク"
+
+msgid "netMaskField_rule"
+msgstr "0 〜 255 の数値 4 組を、ピリオドで区切って入力してください。(指定例： 255.255.255.0)"
+
+msgid "netMaskField_help"
+msgstr "[[VAR.name]] のネットワークマスクを入力してください。ネットワークインターフェイスが１つしかない場合には、プライマリインターフェイスに接続し、セカンダリインターフェイスは空けたまま残してください。[[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_invalid"
+msgstr "[[base-network.netMaskField]] の指定値が正しいネットマスクではありません。[[base-network.netMaskField_rule]]"
+
+# specialized help for the above fields for eth0 and eth1
+# to keep them "friendly" if no more interfaces are added
+
+msgid "ipAddressField1"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressFieldeth0_empty"
+msgstr "プライマリインターフェイスの IP アドレスが指定されていません。通常、プライマリインターフェイスはイントラネット (LAN) に接続します。[[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField_empty"
+msgstr "[[VAR.interface]] の IP アドレスを指定してください。[[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField1_help"
+msgstr "プライマリインターフェイスの IP アドレスを入力してください。通常このインターフェイスはイントラネット（内部ネットワーク、LAN）側に接続します。ネットワークインターフェイスを１つしか接続しない場合には、プライマリインターフェイスを使用し、セカンダリインターフェイスは空けたまま残してください。[[base-network.ipAddressField_rule]]"
+
+msgid "ipAddressField2"
+msgstr "[[base-network.ipAddressField]]"
+
+msgid "ipAddressField2_help"
+msgstr "セカンダリインターフェイスの IP アドレスを入力してください。通常このインターフェイスはインターネット（外部ネットワーク）側に接続します。ネットワークインターフェイスを１つしか接続しない場合には、プライマリインターフェイスを使用し、セカンダリインターフェイスは空けたまま残してください。[[base-network.ipAddressField_rule]]"
+
+msgid "netMaskField1"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskFieldeth0_empty"
+msgstr "プライマリインターフェイスのネットワークマスクが指定されていません。[[base-network.netMaskField_rule]]"
+
+msgid "netMaskField_empty"
+msgstr "[[VAR.interface]] のネットワークマスクを指定してください。[[base-network.netMaskField_rule]]"
+
+msgid "netMaskField1_help"
+msgstr "プライマリインターフェイスのネットワークマスクを入力してください。ネットワークインターフェイスを１つしか接続しない場合には、プライマリインターフェイスを使用し、セカンダリインターフェイスは空けたまま残してください。[[base-network.netMaskField_rule]]"
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField]]"
+
+msgid "netMaskField2_help"
+msgstr "セカンダリインターフェイスのネットワークマスクを入力してください。ネットワークインターフェイスを１つしか接続しない場合には、プライマリインターフェイスを使用し、セカンダリインターフェイスは空けたまま残してください。[[base-network.netMaskField_rule]]"
+
+# error message to protect routes and aliases from having their
+# interface disabled
+msgid "ifaceUsedByRoute"
+msgstr "このインターフェイスを使っているスタティックルートが存在するため、インターフェイスを無効化できませんでした。当該スタティックルートを削除してから、もう一度お試しください。"
+
+msgid "ifaceUsedByAlias"
+msgstr "このインターフェイスを必要とするインターフェイスエイリアスが存在するため、インターフェイスを無効化できませんでした。このインターフェイスに関連付けられているインターフェイスエイリアスを全て削除してから、もう一度お試しください。"
+
+msgid "natField"
+msgstr "IP マスカレード"
+
+msgid "natField_help"
+msgstr "このサーバが IP マスカレードを行うかどうかを指定します。IP マスカレードを行うと、インターネット上に公開されている単一の IP アドレスと、このサーバ内部のネットワークに存在する多数のプライベート IP アドレスとの間のネットワークトラフィックをすべて変換でき、このサーバを介して組織全体でインターネットアクセスを共有できます。"
+
+
+# No internet connection
+
+msgid "wanNoneMessage"
+msgstr "インターネットに接続されていません。"
+
+msgid "wanNoneConfirm"
+msgstr "インターネット接続の種類を指定しなくてもよろしいですか？ "
+
+
+
+# Modem/ISDN	   NOTE:  These strings are also in the file wizard.po in the module base-wizard.mod. They need to be in both places
+
+msgid "modemAuthModeField"
+msgstr "認証モード"
+
+msgid "modemAuthModeField_help"
+msgstr "ダイヤルアップ接続には、２種類の認証モードがあります。どちらの認証モードを設定すべきかについては、プロバイダにお問い合わせください。"
+
+msgid "pap"
+msgstr "PAP"
+
+msgid "chap"
+msgstr "CHAP"
+
+msgid "modemAuthHostField"
+msgstr "サーバのホスト名"
+
+msgid "modemAuthHostField_help"
+msgstr "CHAP ダイアルアップ認証には、ダイアルアップサーバのホスト名が必要です。必要な情報をプロバイダから入手してください。"
+
+msgid "modemAuthHostField_invalid"
+msgstr "[[VAR.invalidValue]] は [[base-network.modemAuthHostField]] には指定できません。"
+
+msgid "modemConnStatus"
+msgstr "接続の状態"
+
+msgid "modemConnStatus_help"
+msgstr "現在の接続状態と、モデムが現在インターネットサービスプロバイダ（ISP）に接続されているかどうかを示します。"
+
+msgid "modemSettings"
+msgstr "インターネット設定 − アナログモデムまたは ISDN"
+
+msgid "modemConnModeField"
+msgstr "接続モード"
+
+msgid "modemConnModeField_help"
+msgstr "モデムの接続形式を、外部への接続が必要なときにだけダイヤルアップ接続を行う、常時接続を維持する、全く接続しない、の中から選んでください。"
+
+msgid "demand"
+msgstr "必要時のみ接続"
+
+msgid "on"
+msgstr "常時接続"
+
+msgid "off"
+msgstr "接続しない"
+
+msgid "modemUserNameField"
+msgstr "ユーザ名"
+
+msgid "modemUserNameField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なユーザ名を入力してください。"
+
+msgid "modemUserNameField_empty"
+msgstr "[[base-network.modemUserNameField]] を指定してください。インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なユーザ名を入力してください。"
+
+msgid "modemPasswordField"
+msgstr "パスワード"
+
+msgid "modemPasswordField_help"
+msgstr "インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なパスワードを入力してください。入力ミスを防止するため、同じパスワードを２回入力してください。"
+
+msgid "modemPasswordField_empty"
+msgstr "[[base-network.modemPasswordField]] を指定してください。インターネットサービスプロバイダ（ISP）のダイヤルアップアカウントへログインするために必要なパスワードを入力してください。"
+
+msgid "modemPasswordField_invalid"
+msgstr "異なるパスワードが入力されました。入力ミスを防止するため、同じパスワードを２回入力してください。もう一度お試しください。"
+
+msgid "modemPhoneField"
+msgstr "ダイヤルアップ接続先の電話番号"
+
+msgid "modemPhoneField_help"
+msgstr "インターネットサービスプロバイダ（ISP）へのダイヤルアップ接続に使う電話番号を入力してください。"
+
+msgid "modemPhoneField_empty"
+msgstr "[[base-network.modemPhoneField]]が指定されていません。インターネットサービスプロバイダ（ISP）へのダイヤルアップ接続に使う電話番号を入力してください。"
+
+msgid "modemInitStrField"
+msgstr "モデム初期化ストリング"
+
+msgid "modemInitStrField_help"
+msgstr "モデム初期化ストリングを入力してください。モデム初期化ストリングは、ダイヤル開始前にモデムに渡されます。モデム初期化ストリングを指定しないと、サーバがモデムを使用できません。デフォルトのモデム初期化ストリングが不明の場合には、「ATZ」と入力するか、ご使用のモデムに付属のマニュアルをご参照ください。"
+
+msgid "modemInitStrField_empty"
+msgstr "[[base-network.modemInitStrField]]は省略できません。モデム初期化ストリングを指定しないと、サーバがモデムを使用できません。デフォルトのモデム初期化ストリングが不明の場合には、「ATZ」と入力するか、ご使用のモデムに付属のマニュアルをご参照ください。"
+
+msgid "modemIpField"
+msgstr "ローカル IP アドレス"
+
+msgid "modemIpField_help"
+msgstr "インターネットサービスプロバイダ（ISP）からモデム接続のためのローカル IP アドレスが割り当てられている場合には、ここに入力してください。"
+
+msgid "modemIpField_invalid"msgstr "[[VAR.invalidValue]] は、[[base-network.modemIpField]]には不正な値です。"
+
+msgid "modemSpeedField"
+msgstr "モデムの速度（baud）"
+
+msgid "modemSpeedField_help"
+msgstr "モデムのシリアル回線の接続速度を指定してください。デフォルトは 115200 です。"
+
+msgid "modemPulseField"
+msgstr "パルスダイヤルを使う"
+
+msgid "modemPulseField_help"
+msgstr "このボックスをチェックすると、トーン（プッシュボタン式）ダイヤルの代わりにパルス（ロータリー式）ダイヤルが使われます。デフォルトでは、トーンダイヤルが使われます。"
+
+msgid "saveTest"
+msgstr "保存とテスト"
+
+msgid "saveTest_help"
+msgstr "このボタンをクリックすると、現在の設定が保存され、設定を確認するために、ご指定のインターネットサービスプロバイダ（ISP）へのテスト接続が行われます。"
+
+
+# --- IP Address change confirm notice
+msgid "confirmNoDhcp"
+msgstr "[[VAR.interface]]の設定は DHCP（Dynamic Host Configuration Protocol ）サーバから自動的に取得されています。\nこの設定を変更すると、[[VAR.interface]] 上での DHCP 参照がオフになります。処理を続行しますか？"
+
+msgid "ethernetChanged"
+msgstr "ネットワーク設定が変更されました。しばらくすると、システムは新しい IP アドレスに接続を開始します。\nログインページが表示されない場合には、ウェブブラウザの URL フィールドに新しいアドレスを入力してサーバに接続してください。"
+
+msgid "confirmMigrateAliases"
+msgstr "[[VAR.interface]] に依存するインターフェイスエイリアスが存在します。このインターフェイスを無効化すると、それらのインターフェイスエイリアスはプライマリインターフェイスに移行します。プライマリ以外のインターフェイスに移行したい場合には、事後に各エイリアスの設定を変更する必要があります。\n\n[[VAR.interface]] を無効化してよろしいですか？"
+
+msgid "adminRedirect"
+msgstr "数秒後に新しい IP アドレスへ接続します。自動的に接続されない場合には、下の「[[base-network.reconnect]]」ボタンをクリックして、手動で新しい IP アドレスへ接続してください。それでも新しい IP アドレスへ接続できない場合には、IP アドレスの変更が失敗したと考えられますので、「[[base-network.oldIPReconnect]]」ボタンをクリックして以前の IP アドレスへ接続してみてください。"
+
+msgid "reconnect"
+msgstr "新規アドレスへ接続"
+
+msgid "reconnect_help"
+msgstr "このボタンをクリックすると、サーバの新規 IP アドレスへ手動で接続できます。"
+
+msgid "oldIPReconnect"
+msgstr "以前のアドレスへ接続"
+
+msgid "oldIPReconnect_help"
+msgstr "このボタンをクリックすると、以前のサーバの IP アドレスへの接続を試みることができます。このボタンは、「[[base-network.reconnect]]」ボタンによる新規 IP アドレスへの接続ができない場合にのみご使用ください。"
+
+# --- Network Usage Info
+
+msgid "netUsage"
+msgstr "ネットワーク"
+
+msgid "netUsage_help"
+msgstr "ネットワークの使用状況が表示されます。"
+
+msgid "amNetUsage"
+msgstr "ネットワーク使用状況"
+
+msgid "eth0"
+msgstr "プライマリインターフェイス（eth0）"
+
+msgid "eth0_help"
+msgstr "プライマリネットワークインターフェイスの使用状況"
+
+msgid "eth1"
+msgstr "セカンダリインターフェイス（eth1）"
+
+msgid "eth1_help"
+msgstr "セカンダリネットワークインターフェイスの使用状況"
+
+msgid "eth2"
+msgstr "ネットワークインターフェイス（eth2）"
+
+msgid "eth3"
+msgstr "ネットワークインターフェイス（eth3）"
+
+msgid "eth4"
+msgstr "ネットワークインターフェイス（eth4）"
+
+msgid "eth5"
+msgstr "ネットワークインターフェイス（eth5）"
+
+msgid "eth6"
+msgstr "ネットワークインターフェイス（eth6）"
+
+msgid "eth7"
+msgstr "ネットワークインターフェイス（eth7）"
+
+msgid "eth8"
+msgstr "ネットワークインターフェイス（eth8）"
+
+msgid "eth9"
+msgstr "ネットワークインターフェイス（eth9）"
+
+msgid "ppp0"
+msgstr "Point-to-Point Protocol インターフェイス（ppp0）"
+
+# --- Active Monitor
+msgid "amIface"
+msgstr "ネットワークインターフェイス"
+
+msgid "amIface_help"
+msgstr "ネットワークインターフェイスの識別子です。"
+
+msgid "amSentB"
+msgstr "送信済み（バイト）"
+
+msgid "amSentB_help"
+msgstr "このネットワークインターフェイスから送信された総バイト数です。"
+
+msgid "amRcvdB"
+msgstr "受信済み（バイト）"
+
+msgid "amRcvdB_help"
+msgstr "このネットワークインターフェイスが受信した総バイト数です。"
+
+msgid "amErrors"
+msgstr "エラー"
+
+msgid "amErrors_help"
+msgstr "このネットワークインターフェイス上で送受信されたエラーの総数です。"
+
+msgid "amColls"
+msgstr "衝突"
+
+msgid "amColls_help"
+msgstr "このネットワークインターフェイス上で検出された衝突の総数です。"
+
+msgid "amNetworkNameTag"
+msgstr "ネットワークの状態"
+
+msgid "amNetDetails"
+msgstr "ネットワーク状態の詳細"
+
+msgid "amIfaceIsDown"
+msgstr "[[VAR.iface]]はダウンしています。"
+
+msgid "amGatewayIsUnreachable"
+msgstr "ネットワークゲートウェイにアクセスできません。ネットワークケーブルがしっかり接続されており、ネットワーク情報が正しく設定されていることをご確認ください。ネットワークは、[[base-apache.amAdmservNameTag]] またはサーバ本体前面にある LCD パネルから設定できます。また、ネットワークそのものに異常がないこともご確認ください。"
+
+msgid "amNetworkOK"
+msgstr "ネットワークは正常に動作しています。"
+
+msgid "dialoutWindowing"
+msgstr "接続時間"
+
+msgid "dialoutWindowing_help"
+msgstr "モデムの使用を特定の時間帯に限定することもできます。デフォルトでは、一日中いつでも使えるように設定されています。"
+
+msgid "dialTimes"
+msgstr "接続回数"
+
+msgid "noDialTimes"
+msgstr "接続しない"
+
+# Strings for Connection Period time labels
+msgid "modem_hour_0"
+msgstr "00:00 - 00:59"
+msgid "modem_hour_1"
+msgstr "01:00 - 01:59"
+msgid "modem_hour_2"
+msgstr "02:00 - 02:59"
+msgid "modem_hour_3"
+msgstr "03:00 - 03:59"
+msgid "modem_hour_4"
+msgstr "04:00 - 04:59"
+msgid "modem_hour_5"
+msgstr "05:00 - 05:59"
+msgid "modem_hour_6"
+msgstr "06:00 - 06:59"
+msgid "modem_hour_7"
+msgstr "07:00 - 07:59"
+msgid "modem_hour_8"
+msgstr "08:00 - 08:59"
+msgid "modem_hour_9"
+msgstr "09:00 - 09:59"
+msgid "modem_hour_10"
+msgstr "10:00 - 10:59"
+msgid "modem_hour_11"
+msgstr "11:00 - 11:59"
+msgid "modem_hour_12"
+msgstr "12:00 - 12:59"
+msgid "modem_hour_13"
+msgstr "13:00 - 13:59"
+msgid "modem_hour_14"
+msgstr "14:00 - 14:59"
+msgid "modem_hour_15"
+msgstr "15:00 - 15:59"
+msgid "modem_hour_16"
+msgstr "16:00 - 16:59"
+msgid "modem_hour_17"
+msgstr "17:00 - 17:59"
+msgid "modem_hour_18"
+msgstr "18:00 - 18:59"
+msgid "modem_hour_19"
+msgstr "19:00 - 19:59"
+msgid "modem_hour_20"
+msgstr "20:00 - 20:59"
+msgid "modem_hour_21"
+msgstr "21:00 - 21:59"
+msgid "modem_hour_22"
+msgstr "22:00 - 22:59"
+msgid "modem_hour_23"
+msgstr "23:00 - 23:59"
+
+# for modem_status.pl invoked directly from modem.php
+msgid "cantGetModem"
+msgstr "[[base-modem.cantGetModem]]"
+
+msgid "modemProblem"
+msgstr "[[base-modem.modemProblem]]"
+
+msgid "offNow"
+msgstr "[[base-modem.offNow]]"
+
+msgid "onNow"
+msgstr "[[base-modem.onNow]]"
+
+# stuff from sauce-basic
+msgid "gateway-not-reachable"
+msgstr "指定されたゲートウェイにアクセスできません。指定のゲートウェイがアクセス可能なサブネットワーク上にあることを確認してください。また、「ダイレクトルーティング」ルールも確認してください。"
+
+msgid "gatewayWithinOwnTargetSubnet"
+msgstr "このルートを、ルーティングテーブルに追加できませんでした。サブネット ([[VAR.target]]) 上にゲートウェイ ([[VAR.gateway]]) が存在していない可能性があります。"
+
+msgid "invalid-route"
+msgstr "[[VAR.network]] へのルートを、ルーティングテーブルに追加できませんでした。ご指定のゲートウェイ ([[VAR.gateway]]) にアクセスできない可能性があります。ゲートウェイ ([[VAR.gateway]]) からターゲット ([[VAR.network]]) へ接続できることをご確認ください。ルートを追加しようとしているインターフェイスは、[[VAR.device]]です。"
+
+msgid "badDefaultGateway"
+msgstr "現在のネットワーク設定では、[[VAR.gateway]] というデフォルトゲートウェイへ接続できません。ネットワーク設定を確認し、少なくとも一つのネットワークインターフェイスがデフォルトゲートウェイと同じネットワーク上に存在するよう設定し直してください。"
+
+msgid "disable-interface-first"
+msgstr "現在使われているネットワークインターフェイスの設定は削除できません。このインターフェイスを無効にしてから、設定を削除してください。"
+
+msgid "amNetStats"
+msgstr "ネットワークの使用状況"
+
+msgid "activity"
+msgstr "動作状況"
+
+msgid "recv_bytes"
+msgstr "受信済みバイト"
+
+msgid "recv_bytes_help"
+msgstr "このネットワークインターフェイスが受信した総バイト数です。"
+
+msgid "recv_packets"
+msgstr "受信済みパケット"
+
+msgid "recv_packets_help"
+msgstr "このネットワークインターフェイスが受信した総パケット数です。"
+
+msgid "sent_bytes"
+msgstr "送信済みバイト"
+
+msgid "sent_bytes_help"
+msgstr "このネットワークインターフェイスが送信した総バイト数です。"
+
+msgid "sent_packets"
+msgstr "送信済みパケット"
+
+msgid "sent_packets_help"
+msgstr "このネットワークインターフェイスが送信した総パケット数です。"
+
+msgid "errors"
+msgstr "エラー"
+
+msgid "errors_help"
+msgstr "このネットワークインターフェイス上で発生した送受信エラーの総数です。エラー数が多い場合には、ネットワークに何らかの問題が発生していると考えられます。"
+
+msgid "collisions"
+msgstr "衝突"
+
+msgid "collisions_help"
+msgstr "ネットワーク上で発生した衝突の総数。衝突数が多い場合には、ネットワークに何らかの問題が発生していると考えられます。"
+
+msgid "stats_disabled"
+msgstr "インターフェイスは無効にされています"
+
+
+# --- IP Pooling strings
+
+msgid "pooling_block"
+msgstr "[[base-network.sitepooling]]"
+
+msgid "enabledField"
+msgstr "有効にする"
+
+msgid "enabledField_help"
+msgstr "このボックスをチェックすると、[[base-network.sitepooling]]が有効になり、指定されている許容範囲内の IP アドレスのみを仮想サイトに割り当てることができるようになります。"
+
+msgid "rangeList"
+msgstr "許容範囲"
+
+msgid "min"
+msgstr "開始"
+
+msgid "min_help"
+msgstr "許容範囲の始まりを示す IP アドレスです。"
+
+msgid "max"
+msgstr "終了"
+
+msgid "max_help"
+msgstr "許容範囲の終わりを示す IP アドレスです。"
+
+msgid "add"
+msgstr "追加"
+
+msgid "add_help"
+msgstr "このボタンをクリックすると、許容範囲を追加できます。"
+
+msgid "save"
+msgstr "保存"
+
+msgid "save_help"
+msgstr "このボタンをクリックすると、許容範囲に加えた変更が保存されます。"
+
+msgid "saveEnabled"
+msgstr "保存"
+
+msgid "saveEnabled_help"
+msgstr "このボタンをクリックすると、IP アドレス割当の有効・無効が保存されます。"
+
+msgid "sitepooling"
+msgstr "IP アドレス割当"
+
+msgid "sitepoolingDescription"
+msgstr "このサーバ上で許容される IP アドレスの範囲を指定できます。"
+
+msgid "restricted"
+msgstr "このページへのアクセスは制限されています。"
+
+msgid "cant_enable_pooling"
+msgstr "次の既存の IP アドレスが指定された許容範囲に含まれていません。[[base-network.sitepooling]]を有効にする前に、これらのアドレスを含む許容範囲を追加してください。[[VAR.ips_not_covered]]"
+
+msgid "missing_part_of_range"
+msgstr "許容範囲が不正です。開始 IP アドレスと終了 IP アドレスを指定してください。単一の IP アドレスを指定したい場合には、両方のフィールドに同一の IP アドレスを入力してください。"
+
+msgid "minGreaterThanMax"
+msgstr "開始 IP アドレス ([[VAR.range_min]]) が終了 IP アドレス ([[VAR.range_max]]) よりも高い値になっています。開始 IP アドレスには、終了 IP アドレスと同じまたはそれ以下の値を指定してください。" 
+
+msgid "ip_not_in_range"
+msgstr "指定された IP アドレス ([[VAR.ipaddr]]) は、許容範囲に含まれていません。別の IP アドレスを指定してください。"
+
+msgid "cant_change_range"
+msgstr "次の IP アドレスが指定された許容範囲に含まれるため、許容範囲を変更できません。 [[VAR.affected_ips]]"
+
+msgid "ip_restricted"
+msgstr "指定された IP アドレス ([[VAR.ipaddr]]) は、許可されていません。別の IP アドレスを指定してください。"
+
+msgid "cant_delete_range"
+msgstr "次の IP アドレスが指定された許容範囲に含まれるため、許容範囲を削除できません。 [[VAR.affected_ips]]"
+
+msgid "cancel"
+msgstr "キャンセル"
+
+msgid "cancel_help"
+msgstr "このボタンをクリックすると、許容範囲に加えた変更がキャンセルされます。"
+
+msgid "valid_ranges"
+msgstr "許容範囲:"
+
+msgid "valid_ranges_help"
+msgstr "このサーバ上では、この範囲内の IP アドレスのみが許容されています。"
+
+# (some) handler error messages
+# no_duplicates.pl
+msgid "noDuplicateDevices"
+msgstr "既に別のインターフェイスまたはエイリアスに「[[VAR.device]]」という名前のデバイスが割り当てられています。各インターフェイスおよびエイリアスには、一意のデバイス名を割り当てる必要があります。"
+
+msgid "noDuplicateIPsAllowed"
+msgstr "既に別のインターフェイスまたはエイリアスに「[[VAR.ipaddr]] 」という IP アドレスが割り当てられています。各インターフェイスおよびエイリアスには、一意の IP アドレスを割り当てる必要があります。"
+
+# validate_netmask.pl
+msgid "invalidNetmaskReal"
+msgstr "[[VAR.device]] に指定されているネットマスク [[VAR.netmask]] は不正です。[[base-network.validNetmaskHelp]]"
+
+msgid "invalidNetmaskAlias"
+msgstr "ご指定のネットマスク [[VAR.netmask]] は不正です。[[base-network.validNetmaskHelp]]"
+
+msgid "validNetmaskHelp"
+msgstr "ネットマスクは、0 〜 255 の数字４組をピリオドで区切って指定してください。サブネットを指定する場合には、255 の次に 128、192、224、240、248、252、または 254 を入力できます。（指定例： 255.255.0.0、255.128.0.0）"

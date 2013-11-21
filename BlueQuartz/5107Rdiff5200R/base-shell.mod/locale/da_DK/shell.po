@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-23 16:27+0100\n"
+"PO-Revision-Date: 2007-11-23 16:30+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "cantEnableNoVsiteShell"
+msgstr ""
+"Shelladgang kan ikke aktiveres for denne bruger, fordi det virtuelle websted "
+"som den er medlem af ikke har shelladgang aktiveret."
+
+msgid "enableShell"
+msgstr "Aktiver shelladgang"
+
+msgid "enableShell_help"
+msgstr ""
+"Aktiver shelladgang for at muliggøre oprettelse af brugere som kan forbinde "
+"til serveren ved hjælp af tjenester som telnet og ssh."
+
+msgid "shell"
+msgstr "[[base-shell.shellMenu]]"
+
+msgid "shellIsEnabled"
+msgstr "Shelladgang"
+
+msgid "shellIsEnabled_help"
+msgstr "Shelladgang er aktiveret for denne bruger."
+
+msgid "shellMenu"
+msgstr "Shell"
+
+msgid "shellMenuDescription"
+msgstr ""
+"Konfigurer tjenester, såsom telnet og ssh, med hvilke brugere med "
+"shelladgang kan forbinde til denne server."
+
+msgid "shellName"
+msgstr "Shelladgang"
+
+msgid "siteShellSettings"
+msgstr "Shellindstillinger for [[VAR.fqdn]]"
+
+msgid "siteshell"
+msgstr "Shell"
+
+msgid "siteshell_help"
+msgstr "Klik her for at konfigurere shelladgang for dette websted."
+
+msgid "userEnableShell"
+msgstr "[[base-shell.enableShell]]"
+
+msgid "userEnableShell_help"
+msgstr ""
+"Aktiver shelladgang for at give brugeren mulighed for at forbinde til "
+"serveren ved hjælp af tjenester som telnet og ssh."

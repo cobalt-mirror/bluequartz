@@ -1,0 +1,201 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+Requires: proftpd
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+/usr/sausalito/bin/addIdentLookups.pl
+%attr(0755,-,-) /usr/sausalito/sbin/ftpaccess.pl
+%attr(0755,-,-) /usr/sausalito/sbin/fixproftpd_conf.pl
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+if [ $1 = 2 ] && [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+fi
+
+if [ $1 = 2 ]; then
+    /bin/cp /etc/proftpd.conf /etc/proftpd.conf.bqold
+    /usr/sausalito/bin/addIdentLookups.pl
+fi
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Mon Aug 27 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BX29
+- Fixed ui/extensions/21_FTPNONADMIN.php.modify.FTP and ui/extensions/10_AnonFtp.php.create.Vsite
+  Both still had include() statements instead of include_once()
+
+* Mon May 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BX28
+- Modified glue/sbin/fixproftpd_conf.pl to exclude localhost from container creation.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BX27
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@blueonyx.it> 1.2.0-77BX26
+- Small PHP-5.3 related fix
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@blueonyx.it> 1.2.0-77BX25
+- Copied 'en' locales to 'en_US'
+
+* Wed Mar  3 2010 Rickard Osser <rickard.osser@bluapp.com> 1.2.0-77BQ24
+- Force IdentLookups off into the <Global> section as this solves the slow ftp problem.
+
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ23
+- Added glue/sbin/fixproftpd_conf.pl
+
+* Tue Jan 13 2009 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ22
+- Updated constructor/syncFTP.pl to address slow FTP logins behind firewalls.
+- See: "[BlueOnyx:00144] SLOW FTP  -- a partial solution"
+- Or: http://www.wains.be/index.php/2006/01/24/slow-logins-under-proftpd-using-xinetd/
+
+* Sun Dec 21 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ21
+- Modified glue/handlers/config_ftp_site.pl to make /web standard login directory.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ20
+- Rebuilt for BlueOnyx.
+
+* Fri Jun 06 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ19
+- AnonFtp.php.defaults.Vsite fixed for 5106R
+
+* Wed Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ18
+- FTP for non-siteadmins disabled by default.
+
+* Tue May 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ17
+- Ability added to disable FTP for non-siteadmins.
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ16
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.2.0-77BQ15
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.2.0-77BQ14
+- Fixed duplicate include issue.
+
+* Sun Jul 02 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-77BQ13
+- backup proftpd.conf as .bqold before executing addIdentLookups.pl.
+
+* Thu Jun 22 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-77BQ12
+- modify system.pl handler not to write IdentLookups tag and add addIdentLookups.pl to add IdentLookups into Global section.
+
+* Sun Jun 11 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-77BQ11
+- add reverse DNS function.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-77BQ10
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-77BQ9
+- rebuild with devel-tools 0.5.1
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.2.0-77BQ8
+- clean up spec file.
+<end $CHANGELOG>

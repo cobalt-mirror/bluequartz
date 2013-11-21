@@ -1,0 +1,215 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: import\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-25 06:15+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "import"
+msgstr "Importieren"
+
+msgid "import_help"
+msgstr "Hier können Sie Benutzer auf den Server importieren."
+
+msgid "importTitle"
+msgstr "Benutzerliste nach [[VAR.fqdn]] importieren"
+
+msgid "dataUpload"
+msgstr "Quelle"
+
+msgid "dataUpload_help"
+msgstr "Geben die die Quelle ein, von der das TSV (Per Tab getrennte Werte) formatierte File mit der Benutzerliste auf den Server geladen werden kann. Geben Sie eine URL ein, die entweder mit http:// oder ftp:// anfängt - falls die Quelle ein Internet-Server ist. Falls Sie das File von einem lokalen Rechner hochladen möchten, geben Sie stattdessen den vollen Pfad auf dem lokalen System ein. Klicken Sie auf 'Durchsuchen' um Ihr lokales System nach der entsprechenden Datei zu durchsuchen. Für mehr Informationen ziehen Sie bitte das Benutzerhandbuch zu Rate."
+
+msgid "dataUpload_empty"
+msgstr "Sie haben keine Datei zum Upload und für den Import spezifiziert."
+
+msgid "urlField_empty"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "url"
+msgstr "URL"
+
+msgid "upload"
+msgstr "Upload"
+
+msgid "fileImport"
+msgstr "Aus File importieren"
+
+msgid "attempt"
+msgstr "Nicht ausgeführt."
+
+msgid "creating"
+msgstr "Füge [[VAR.class]] mit Namen [[VAR.name]] hinzu"
+
+msgid "modifying"
+msgstr "Modifiziere [[VAR.class]] mit Namen [[VAR.name]]"
+
+msgid "importResults"
+msgstr "Ergebnis des Imports"
+
+msgid "result"
+msgstr "Ergebnis"
+
+msgid "action"
+msgstr "Aktion"
+
+msgid "reason"
+msgstr "Grund"
+
+msgid "noFileSpecified"
+msgstr "Fehler beim Datenempfang"
+
+msgid "fileWasNoGood"
+msgstr "Während des Empfangs des Files trat ein Fehler auf. Bitte versuchen Sie, die Datei erneut hochzuladen."
+
+msgid "badFileButtonCancel"
+msgstr "Zurück"
+
+msgid "badFileButtonCancel_help"
+msgstr "Klicken Sie hier, um zur vorherigen Eingabe zu gelangen."
+
+msgid "importResult"
+msgstr "Ergebnis des Imports"
+
+msgid "couldNotOpenFile"
+msgstr "Bei dem Versuch das hochgeladene File zu öffnen, trat ein Fehler auf. Bitte prüfen Sie ob der Pfad korrekt ist und versuchen Sie es noch einmal. Falls Sie die URL Methode verwenden und der Quellserver Logindaten verlangt, dann versuchen Sie, die URL in diesem Format zu spezifizieren: 'http://user:passwort@server.com/file' oder 'ftp://user:passwort@server.com/file'."
+
+msgid "success"
+msgstr "Erfolg"
+
+msgid "fail"
+msgstr "Fehler"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (line [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Jetzt importieren"
+
+msgid "importNow_help"
+msgstr "Klicken Sie hier, um die Benutzer aus dem gewählten File zu importieren."
+
+msgid "importErrors"
+msgstr "Import-Fehler"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] Fehler"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] Fehler"
+
+msgid "fullName"
+msgstr "Name"
+
+msgid "fullName_help"
+msgstr "Dies sind die Namen der Einträge, die aus dem Import-File ausgelesen wurden."
+
+msgid "name"
+msgstr "Namen"
+
+msgid "name_help"
+msgstr "Dies sind die Namen der Benutzer, die aus dem Import-File ausgelesen wurden."
+
+msgid "errorMessageHeader"
+msgstr "Nachricht"
+
+msgid "errorMessageHeader_help"
+msgstr "Hier sind die detailierten Nachrichten und Fehlermeldungen, die während des Imports registriert wurden."
+
+msgid "importSucceeded"
+msgstr "Import war erfolgreich"
+
+msgid "importSucceededMessage"
+msgstr "Während des Imports wurden keine Fehler registriert."
+
+msgid "importSucceededMessage_help"
+msgstr "Während des Imports wurden keine Fehler registriert."
+
+msgid "importStatus"
+msgstr "Import-Status"
+
+msgid "progressField"
+msgstr "Fortschritt"
+
+msgid "progressField_help"
+msgstr "Zeigt den Fortschritt des Imports an. Falls Sie diese Seite verlassen, so läuft der Import im Hintergrund weiter - auch wenn die Fortschrittsanzeige dann nicht mehr sichtbar ist."
+
+msgid "status"
+msgstr "Status"
+
+msgid "status_help"
+msgstr "Momentaner Status des Imports."
+
+msgid "creatingUsers"
+msgstr "Füge Benutzer ([[VAR.pos]]/[[VAR.max]]) hinzu"
+
+msgid "intname"
+msgstr "Benutzername"
+
+msgid "intfullName"
+msgstr "Name"
+
+msgid "intpassword"
+msgstr "Passwort"
+
+msgid "intaliases"
+msgstr "Email Aliasse"
+
+msgid "importChanger"
+msgstr "Wähle Import-Methode..."
+
+msgid "importChangerFile"
+msgstr "File Import"
+
+# --- Export strings ---
+# ----------------------
+msgid "exportUsers"
+msgstr "Export"
+
+msgid "exportUsers_help"
+msgstr "Klicken Sie hier, um Benutzer des Servers zu exportieren. Dabei wird eine TSV (Tab separierte Werte) Datei erzeugt, welche mit der Importfunktion kompatibel ist."
+
+msgid "userExport"
+msgstr "Exportiere Benutzer"
+
+msgid "exportTitle"
+msgstr "Exportiere Benutzer von [[VAR.fqdn]]"
+
+msgid "pwFormat"
+msgstr "Passwort Format"
+
+msgid "pwFormat_help"
+msgstr "Da Passwörter nur in verschlüsselter Form auf dem Server vorliegen, können die Benutzerpasswörter nicht im Klartext exportiert werden. Falls Sie die Exportmethode 'Benutzernamen' wählen, können sich Benutzer nach einem Import mit ihrem Benutzernamen als neuem Passwort anmelden. Falls Sie Zufallswerte auswählen, verhindern Sie, dass sich unerlaubt Fremde Zugriff verschaffen können."
+
+msgid "namePw"
+msgstr "Verwende Benutzernamen als Passwort"
+
+msgid "randomPw"
+msgstr "Verwende zufällige Werte als Passwort"
+
+msgid "downloadList"
+msgstr "Jetzt exportieren"
+
+msgid "downloadList_help"
+msgstr "Klicken Sie hier, um Benutzer des Servers zu exportieren. Dabei wird eine TSV (Tab separierte Werte) Datei erzeugt, welche mit der Importfunktion kompatibel ist."
+
+msgid "usersForExport"
+msgstr "[[VAR.number]] Benutzer verügbar für einen Export."
+
+msgid "oneUserForExport"
+msgstr "Ein Benutzer verfügbar für einen Export."
+
+msgid "noUsersForExport"
+msgstr "Es gibt (noch) keine Benutzer, die exportiert werden könnten. Legen Sie bitte zunächst Benutzer an und versuchen Se es dann erneut."
+

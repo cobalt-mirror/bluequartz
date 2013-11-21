@@ -1,0 +1,16 @@
+
+all: Makefile
+	make check
+
+Makefile: aclocal.m4 Makefile.in configure
+	./configure
+
+aclocal.m4:
+	aclocal
+
+configure.in Makefile.in: Makefile.am
+	automake --add-missing
+
+configure: configure.in
+	autoconf
+

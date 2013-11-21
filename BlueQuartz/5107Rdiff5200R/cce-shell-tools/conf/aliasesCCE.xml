@@ -1,0 +1,104 @@
+<?xml version = "1.0" encoding = "iso-8859-1"?>
+<!-- $Id: aliasesCCE.xml,v 1.2 2003/04/09 20:27:31 jeffb Exp $ -->
+<!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -->
+<shell>
+  <product value = "BX5108R"/>
+  <product value = "BX5107R"/>
+  <product value = "BO5106R"/>
+  <product value = "BQ5100R"/>
+  <product value = "TLAS2"/>
+  <product value = "RaQ550"/>
+  <version value = "[VERSION]"/>
+  <caddvsite>
+	<mailAliases opts = "mailAliases=s e>mailAliases mail>mailAliases"
+		label = "mailAliases"
+		type = "array"
+		help = "Additional host or domain names for which this virtual site should accept email"/>
+	<webAliases opts = "webAliases=s w>webAliases web>webAliases"
+		label = "webAliases"
+		type = "array"
+		help = "Additional host or domain names for which this virtual site should accept web requests. "/>
+  </caddvsite>
+  <cmodvsite>
+	<mailAliases opts = "mailAliases=s e>mailAliases mail>mailAliases set-mailAliases>mailAliases"
+		label = "mailAliases"
+		type = "array"
+		help = "Set email aliases to this list"/>
+	<mailAliasesAdd opts = "mailAliasesAdd=s add-mailAliases>mailAliasesAdd"
+		label = "mailAliases"
+		type = "array"
+		help = "Add email aliases to the list">
+		<ref label = "self" labelValue = "add"/>
+	</mailAliasesAdd>
+	<mailAliasesDel opts = "mailAliasesDel=s del-mailAliases>mailAliasesDel"
+		label = "mailAliases"
+		type = "array"
+		help = "Delete email alias(es) from the list">
+		<ref label = "self" labelValue = "del"/>
+	</mailAliasesDel>
+	<webAliases opts = "webAliases=s w>webAliases web>webAliases set-webAliases>webAliases"
+		label = "webAliases"
+		type = "array"
+		help = "Set web aliases to this list"/>
+	<webAliasesAdd opts = "webAliasesAdd=s add-webAliases>webAliasesAdd"
+		label = "webAliases"
+		type = "array"
+		help = "Add web alias(es) to the list">
+		<ref label = "self" labelValue = "add"/>
+	</webAliasesAdd>
+	<webAliasesDel opts = "webAliasesDel=s del-webAliases>webAliasesDel"
+		label = "webAliases"
+		type = "array"
+		help = "Delete web alias(es) from the list">
+		<ref label = "self" labelValue = "del"/>
+	</webAliasesDel>
+  </cmodvsite>
+  <cadduser>
+	<aliases opts = "aliases=s e>aliases" 
+		label = "aliases"
+		nameSpace = "Email"
+		type = "array"
+		help = "list of email alaises, comma delmited"/>
+  </cadduser>
+  <cmoduser>
+	<aliases opts = "aliases=s e>aliases set-aliases>aliases" 
+		label = "aliases"
+		nameSpace = "Email"
+		type = "array"
+		help = "list of email alaises, comma delmited"/>
+	<aliasesAdd opts = "aliasesAdd=s add-aliases>aliasesAdd"
+		label = "aliases"
+		nameSpace = "Email"
+		type = "array"
+		help = "User email aliases to add, comma delmited">
+		<ref label = "add" labelValue = "aliases"/> 	
+	</aliasesAdd>
+	<aliasesDel opts = "aliasesDel=s delete-aliases>aliasesDel" 
+		label = "aliases"
+		nameSpace = "Email"
+		type = "array"
+		help = "User email aliases to remove, comma delminted">
+		<ref label = "add" labelValue = "aliases"/> 	
+	</aliasesDel>
+  </cmoduser>
+</shell>
+<!--
+Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+Redistribution and use in source and binary forms, with or without modification, 
+are permitted provided that the following conditions are met:
+
+-Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+
+-Redistribution in binary form must reproduce the above copyright notice, 
+this list of conditions and the following disclaimer in the documentation and/or 
+other materials provided with the distribution.
+
+Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+be used to endorse or promote products derived from this software without 
+specific prior written permission.
+
+This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+-->

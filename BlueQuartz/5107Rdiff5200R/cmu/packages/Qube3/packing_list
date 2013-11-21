@@ -1,0 +1,17 @@
+[Package -- Version=1.0]
+Vendor:                Sun Cobalt 
+VendorTag:             [[Sun Cobalt]]
+Name:                  CMU
+NameTag:               [[CMU]]
+Version:               [VERSION] 
+Location:              Qube3-All-CMU-[VERSION].pkg
+Product:               4..0WG
+Product:               4..0WGJ
+PackageType:           update
+LongDesc:              [[longDesc]]
+ShortDesc:             [[shortDesc]]
+Copyright:             [[copyright]]
+Depend:                Cobalt:OS >= 6.0
+RPM: Qube3-cmu-[VERSION]-0.noarch.rpm
+RPM: perl-Compress-Zlib-1.11-1.i386.rpm
+[/Package]

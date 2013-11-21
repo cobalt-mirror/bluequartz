@@ -1,0 +1,68 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shell\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-11-01 06:28+0200\n"
+"PO-Revision-Date: 2008-01-26 01:28+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "cantEnableNoVsiteShell"
+msgstr "Der Shellzugang für diesen Benutzer kann nicht aktiviert werden. Für die Site zu der er gehört, wurde diese Funktion nicht zur Verfügung gestellt."
+
+msgid "enableShell"
+msgstr "Shellzugang einschalten"
+
+msgid "enableShell_help"
+msgstr "Wenn Sie Shellzugang einschalten, können sich Benutzer per SSH oder Telnet (falls diese Dienste aktiviert wurden) mit ihrem Benutzernamen und Passwort einloggen. Aus Sicherheitsgründen sollten Sie das nur in Ausnahmefällen in Erwägung ziehen."
+
+msgid "shell"
+msgstr "[[base-shell.shellMenu]]"
+
+msgid "shellIsEnabled"
+msgstr "Shellzugang"
+
+msgid "shellIsEnabled_help"
+msgstr "Shellzugang ist für diesen Benutzer eingeschaltet."
+
+msgid "shellMenu"
+msgstr "Shell"
+
+msgid "shellMenuDescription"
+msgstr "Erlaubt die Konfiguration der Dienste SSH und Telnet, die für den Shell-Zugang auf den Server genutzt werden können."
+
+msgid "shellName"
+msgstr "Shellzugang"
+
+msgid "siteShellSettings"
+msgstr "Shelleinstellungen für [[VAR.fqdn]]"
+
+msgid "siteshell"
+msgstr "Shell"
+
+msgid "siteshell_help"
+msgstr "Hier klicken, um den Shellzugang für diese Site zu konfigurieren."
+
+msgid "userEnableShell"
+msgstr "[[base-shell.enableShell]]"
+
+msgid "userEnableShell_help"
+msgstr "Shellzugang einschalten, um den Benutzer den Zugang per SSH und/oder Telnet zum Server zu gewähren. "
+
+msgid "amShellGreen"
+msgstr "Shellzugang funktioniert normal."
+
+msgid "amShellNameTag"
+msgstr "Shellzugang"
+
+msgid "amShellRed"
+msgstr "Ein Problem ist mit dem Shellzugang aufgetreten."
+

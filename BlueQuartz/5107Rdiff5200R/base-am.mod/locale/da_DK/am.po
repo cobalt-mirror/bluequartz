@@ -1,0 +1,550 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-09 13:39+0200\n"
+"PO-Revision-Date: 2007-12-14 12:48+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "acpi_fans_shutdown_fan1"
+msgstr ""
+"Strømforsyningens blæser kører faretruende langsomt. For en sikkerheds skyld "
+"lukkes denne maskine ned."
+
+msgid "acpi_fans_shutdown_fan2"
+msgstr ""
+"CPU'ent blæser kører faretruende langsomt. For en sikkerheds skyld lukkes "
+"denne maskine ned."
+
+msgid "acpi_fans_shutdown_fan3"
+msgstr ""
+"Systemets blæser kører faretruende langsomt. For en sikkerheds skyld lukkes "
+"denne maskine ned."
+
+msgid "acpi_fans_subject"
+msgstr "Nedlukning grundet systemblæser"
+
+msgid "acpi_temp_shutdown"
+msgstr ""
+"Enten CPUen eller systemet selv har nået en temperatur over den tilladte "
+"grænseværdi. For en sikkerheds skyld lukkes maskinen ned. Undersøg venligst "
+"om alle blæsere i enheden virker som de skal og at miljøet hvor maskinen er "
+"placeret er tilpas."
+
+msgid "acpi_temp_subject"
+msgstr "Nedlukning grundet overophedning af systemet"
+
+msgid "action"
+msgstr "Handling"
+
+msgid "action_help"
+msgstr ""
+"Klik her for at se mere detaljerede informationer om den overvågede "
+"komponent."
+
+msgid "activeMonitor"
+msgstr "Aktiv overvågning"
+
+msgid "activeMonitor_help"
+msgstr "Klik her for at se status for systemkomponenternes drift."
+
+msgid "alertEmailList"
+msgstr "Notificeringsemails"
+
+msgid "alertEmailList_help"
+msgstr ""
+"Indtast en liste af emailadresser til hvem [[base-am.activeMonitor]] vil "
+"sende advarselsbeskeder."
+
+msgid "alreadyMadeAM"
+msgstr ""
+"Beklager, men en systemfejl er opstået. Et objekt for Aktivitetsovervågning "
+"findes allerede."
+
+msgid "amCPUDetails"
+msgstr "Detaljer for CPU forbrug"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] minutters belastningsgennemsnit"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] minutters belastningsgennemsnit"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr ""
+"Dette er det gennemsnitlige antal opgaver der venter på at blive behandlet "
+"af processoren i de sidste [[VAR.mins]] minutter. Det normale "
+"belastningsgennemsnit er normalt et sted mellem 0.0 og 3.0"
+
+msgid "amCPULoadAvg_help"
+msgstr ""
+"Dette er det gennemsnitlige antal opgaver der venter på at blive behandlet "
+"af processoren i de sidste [[VAR.mins]] minutter. Det normale "
+"belastningsgennemsnit er normalt et sted mellem 0.0 og 3.0"
+
+msgid "amCPUName"
+msgstr "CPU forbrug"
+
+msgid "amCPUStats"
+msgstr "CPU statistikker"
+
+msgid "amCPUTemp"
+msgstr "CPU temperatur"
+
+msgid "amCPUTemp_help"
+msgstr ""
+"Dette er den nuværende temperatur på processoren i \\260C. Den normaqle "
+"processortemperatur er et sted imellem 30 og 60 \\260C."
+
+msgid "amCPUUptime"
+msgstr "Systemoppetid"
+
+msgid "amCPUUptime_help"
+msgstr "Dette er det tidsinterval denne server har været tændt og aktiv."
+
+msgid "amCPUWarning_heavy"
+msgstr ""
+"CPUen bliver kraftigt benyttet. Dette vil resultere i noterbar tab af "
+"ydeevne. Overvej at flytte nogle tjenester til andre servere, eller reducer "
+"kompleksitet af CGI scripts o.l. der kører på serveren."
+
+msgid "amCPUWarning_light"
+msgstr "CPU benyttes i let grad"
+
+msgid "amCPUWarning_moderate"
+msgstr ""
+"CPUen benyttes i moderat grad. Dette kan skyldes en midlertidig øgning i "
+"aktivitet. Overvej at flytte nogle tjenester til andre servere, eller "
+"reducer kompleksitet af CGI scripts o.l. der kører på serveren."
+
+msgid "amClientLastChange"
+msgstr "Status for seneste ændring"
+
+msgid "amClientLastChange_help"
+msgstr ""
+"Dette er tidspunktet for den seneste statusændring af den overvågede "
+"komponent."
+
+msgid "amClientName"
+msgstr "Komponentnavn"
+
+msgid "amClientName_help"
+msgstr "Dette er navnet på den overvågede komponent."
+
+msgid "amClientStatus"
+msgstr "Nuværende status"
+
+msgid "amClientStatus_help"
+msgstr "Dette er nuværende status på den overvågede komponent."
+
+msgid "amDetailNoName"
+msgstr ""
+"Beklager, men der var et problem med at generere denne side. Variablen "
+"'name' er ikke defineret."
+
+msgid "amECCDetails"
+msgstr "[[base-am.amECCName]] Detaljer"
+
+msgid "amECCName"
+msgstr "ECC Hukommelseskorrektion"
+
+msgid "amECCOK"
+msgstr "Ingen hukommelsesfejl registreret."
+
+msgid "amFanDetails"
+msgstr "Blæserdetaljer"
+
+msgid "amFanName"
+msgstr "Blæsere"
+
+msgid "amFanStats"
+msgstr "Blæserstatistikker"
+
+msgid "amFansDangerouslySlow"
+msgstr ""
+"En eller flere blæsere kører faretruende langsomt. Luk serveren ned og check "
+"at blæseren er ordentligt forbundet og ikke kan bevæges frit. Sørg også for "
+"at luft frit kan flyde i kabinettet."
+
+msgid "amFansDangerouslySlow_email_fan1"
+msgstr ""
+"Strømforsyningens blæser kører faretruende langsomt. Luk serveren ned og "
+"check at blæseren er ordentligt forbundet og ikke kan bevæges frit. Sørg "
+"også for at luft frit kan flyde i kabinettet."
+
+msgid "amFansDangerouslySlow_email_fan2"
+msgstr ""
+"CPUens blæser kører faretruende langsomt. Luk serveren ned og check at "
+"blæseren er ordentligt forbundet og ikke kan bevæges frit. Sørg også for at "
+"luft frit kan flyde i kabinettet."
+
+msgid "amFansDangerouslySlow_email_fan3"
+msgstr ""
+"Systemets blæser kører faretruende langsomt. Luk serveren ned og check at "
+"blæseren er ordentligt forbundet og ikke kan bevæges frit. Sørg også for at "
+"luft frit kan flyde i kabinettet."
+
+msgid "amFansOK"
+msgstr "Blæserne kører normalt."
+
+msgid "amFansSlow"
+msgstr ""
+"En eller flere blæsere kører langsomt. Luk serveren ned og check at blæseren "
+"er ordentligt forbundet og ikke kan bevæges frit. Sørg også for at luft "
+"frit kan flyde i kabinettet."
+
+msgid "amFansSlow_email_fan1"
+msgstr ""
+"Strømforsyningens blæser kører langsomt. Luk serveren ned og check at "
+"blæseren er ordentligt forbundet og ikke kan bevæges frit. Sørg også for at "
+"luft frit kan flyde i kabinettet."
+
+msgid "amFansSlow_email_fan2"
+msgstr ""
+"CPUens blæser kører langsomt. Luk serveren ned og check at blæseren er "
+"ordentligt forbundet og ikke kan bevæges frit. Sørg også for at luft frit "
+"kan flyde i kabinettet."
+
+msgid "amFansSlow_email_fan3"
+msgstr ""
+"Systemets blæser kører langsomt. Luk serveren ned og check at blæseren er "
+"ordentligt forbundet og ikke kan bevæges frit. Sørg også for at luft frit "
+"kan flyde i kabinettet."
+
+msgid "amKey"
+msgstr "Nøgle:"
+
+msgid "amKeyGreen"
+msgstr "Normal"
+
+msgid "amKeyGrey"
+msgstr "Ingen information tilgængelig eller overvågning ikke aktiveret."
+
+msgid "amKeyRed"
+msgstr "Stort problem"
+
+msgid "amKeyYellow"
+msgstr "Problem"
+
+msgid "amMemDetails"
+msgstr "Detaljer for hukommelsesforbrug"
+
+msgid "amMemFree"
+msgstr "Ledig fysisk hukommelse"
+
+msgid "amMemFree_help"
+msgstr "Dette er mængden af ledig fysisk hukommelse i systemet."
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB ([[VAR.pcnt]] % af total)"
+
+msgid "amMemStats"
+msgstr "Statistikker over hukommelsesforbrug"
+
+msgid "amMemTotal"
+msgstr "Total fysisk hukommelse"
+
+msgid "amMemTotal_help"
+msgstr "Dette er mængden af fysisk hukommelse tilgængeligt på systemet."
+
+msgid "amMemUsed"
+msgstr "Hukommelsesforbrug"
+
+msgid "amMemUsed_help"
+msgstr ""
+"Dette er mængden af fysisk hukommelse i brug på systemet. Det er normalt at "
+"det meste er i brug hele tiden."
+
+msgid "amMemWarning_heavy"
+msgstr ""
+"Systemhukommelsen bruges i høj grad. Serveren har brug for mere hukommelse "
+"end det p.t. har. Overvej at tilføje mere hukommelse til systemet."
+
+msgid "amMemWarning_light"
+msgstr "Systemhukommelsen bruges i let grad."
+
+msgid "amMemWarning_moderate"
+msgstr ""
+"Systemhukommelsen bruges i moderat grad. Serveren har muligvis brug for mere "
+"hukommelse end det p.t. har. Overvej at tilføje mere hukommelse til "
+"systemet."
+
+msgid "amMemoryName"
+msgstr "Hukommelsesforbrug"
+
+msgid "amNever"
+msgstr "Aldrig"
+
+msgid "amNoMessage"
+msgstr ""
+"Der eri øjeblikket  ingen tilgængelige informationer om denne komponent."
+
+msgid "amNotEnabled"
+msgstr "Komponenten er ikke slået til."
+
+msgid "amNotMonitored"
+msgstr "Komponenten overvåges ikke i øjeblikket."
+
+msgid "amObjNotFound"
+msgstr ""
+"Beklager, en systemfejl opstod. Aktivitetsovervågningsobjektet kunne ikke "
+"findes."
+
+msgid "amOtherClients"
+msgstr "Anden status - Overblik"
+
+msgid "amPagesSec"
+msgstr "[[VAR.pages]] sider i sekundet"
+
+msgid "amServClients"
+msgstr "Tjenestestatus - Overblik"
+
+msgid "amSettings"
+msgstr "Indstillinger for aktivitetsovervågning."
+
+msgid "amSettingsMenuDesc"
+msgstr "Klik her for at konfigurere [[base-am.amSettings]]."
+
+msgid "amSettingsMenuName"
+msgstr "Indstillinger"
+
+msgid "amStatusMenuDesc"
+msgstr "Klik her for at se [[base-am.activeMonitor]]ens statusinformation."
+
+msgid "amStatusMenuName"
+msgstr "Status"
+
+msgid "amSwapFree"
+msgstr "Ledig swap"
+
+msgid "amSwapFree_help"
+msgstr "Dette er mængden af ledig swap tilgængelig på systemet."
+
+msgid "amSwapPcnt"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] ([[VAR.pcnt]] % af total)"
+
+msgid "amSwapTotal"
+msgstr "Total swap"
+
+msgid "amSwapTotal_help"
+msgstr "Dette er den totale mængde swap tilgængelig på systemet."
+
+msgid "amSwapUsed"
+msgstr "Swapforbrug"
+
+msgid "amSwapUsed_help"
+msgstr ""
+"Dette er mængden af swap eller virtuel hukommelse i brug på systemet. Det er "
+"normalt at noget swaphukommelse bruges, også når der fortsat er ledig "
+"fysisk hukommelse."
+
+msgid "amSwapsSec"
+msgstr "[[VAR.swaps]] swaps per sekund"
+
+msgid "amSysClients"
+msgstr "Systemstatus - Overblik"
+
+msgid "amTemp"
+msgstr "[[VAR.temp]] grader Celsius"
+
+msgid "amTempDetails"
+msgstr "Temperaturdetaljer"
+
+msgid "amTempName"
+msgstr "Temperatur"
+
+msgid "amTempStats"
+msgstr "Temperaturstatistikker"
+
+msgid "amTempsDangerouslyHot"
+msgstr ""
+"En eller flere systemkomponenter er ved at blive faretruende varm. En eller "
+"flere systemblæsere kan være ude af drift. Undersøg venligst at systemet har "
+"tilstrækkelig ventilation og at alle blæsere virker som de skal."
+
+msgid "amTempsHot"
+msgstr ""
+"En eller flere systemkomponenter er ved at blive varmere end normalt. "
+"Undersøg venligst at systemet har tilstrækkelig ventilation og at alle "
+"blæsere virker som de skal."
+
+msgid "amTempsOK"
+msgstr "Systemtemperaturen er normal."
+
+msgid "amUpdateNow"
+msgstr "Check status nu"
+
+msgid "amUpdateNowConfirm"
+msgstr ""
+"Er du sikker på at du vil checke status nu? Denne operation kan tage flere "
+"minutter."
+
+msgid "amUpdateNow_disabledHelp"
+msgstr ""
+"[[base-am.activeMonitor]] er slået fra i øjeblikket.  For at slå den til, gå "
+"til menuen [[base-am.amSettingsMenuName]] og vælg \"[[base-"
+"am.enableAMField]]\"."
+
+msgid "amUpdateNow_help"
+msgstr ""
+"Klik her for, øjeblikkeligt, at påbegynde opdatering af system- og "
+"tjenestestatus. Dette kan tage flere minutter og vil fortsætte i baggrunden."
+
+msgid "amUseHeavy"
+msgstr "hårdt"
+
+msgid "amUseLight"
+msgstr "let"
+
+msgid "amUseModerate"
+msgstr "moderat"
+
+msgid "bad_ecc_errors"
+msgstr "Denne DIMM har uretbare fejl."
+
+msgid "cant_get_faninfo"
+msgstr "Kunne ikke hente blæserstatistikker."
+
+msgid "cant_get_tempinfo"
+msgstr "Kunne ikke hente temperaturstatistikker."
+
+msgid "corr_ecc_errors"
+msgstr "Denne DIMM har rettet nogle hukommelsesfejl."
+
+msgid "day"
+msgstr "[[VAR.val]] dag,"
+
+msgid "days"
+msgstr "[[VAR.val]] dage,"
+
+msgid "degrees"
+msgstr "[[VAR.val]] \\260C"
+
+msgid "eccLogs"
+msgstr "ECC hukommelseslogfiler"
+
+msgid "enableAMField"
+msgstr "Aktiver overvågning"
+
+msgid "enableAMField_help"
+msgstr ""
+"Slå [[base-am.activeMonitor]] til eller fra. Ved at slå denne funktion til, "
+"tillades at visse systemkomponenter undersøges med jævne mellemrum, for at "
+"sikre sikker drift. Disse systemkomponenter kan vælges nedenfor."
+
+msgid "fanName"
+msgstr "Blæser [[VAR.fanNumber]]"
+
+msgid "fanSpeed"
+msgstr "[[VAR.speed]] RPM"
+
+msgid "hour"
+msgstr "[[VAR.val]] time,"
+
+msgid "hours"
+msgstr "[[VAR.val]] timer,"
+
+msgid "itemsToMonitor"
+msgstr "Overvågede komponenter"
+
+msgid "itemsToMonitor_help"
+msgstr ""
+"Vælg den specifikke systemkomponent der skal overvåges af [[base-"
+"am.activeMonitor]]. Den venstre kolonne viser de komponenter der i "
+"øjeblikket overvåges. Den højre kolonne viser de systemkomponenter som kan "
+"overvåges. For at tilføje en systemkomponent til overvågningen, flyt da blot "
+"systemkomponenten fra højre kolonne til ventre kolonne."
+
+msgid "minute"
+msgstr "[[VAR.val]] minut"
+
+msgid "minutes"
+msgstr "[[VAR.val]] minutter"
+
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr ""
+"Klik her for at se [[base-am.activeMonitor]]ens statusinformation. Denne "
+"ikon bliver rød hvis en af komponenterne der overvåges af [[base-"
+"am.activeMonitor]]en har alvorlige problemer."
+
+msgid "no_ecc_errors"
+msgstr "Denne DIMM fungerer som den skal."
+
+msgid "no_mem_stats"
+msgstr ""
+"Aktivitetsovervågningen kan ikke hente statistikker om hukommelsesforbrug i "
+"øjeblikket. Prøv igen senere."
+
+msgid "notSelected"
+msgstr "Ikke overvågede komponenter"
+
+msgid "pagesPerSec"
+msgstr "Sider per sekund"
+
+msgid "pagesPerSec_help"
+msgstr ""
+"Dette er et mål for hukommelsesforbrug. Hvis [[base-am.pagesPerSec]] er "
+"overdrevet højt, så benytter systemet ikke hukommelsen effektivt. I så fald "
+"bør du installere mere hukommelse i maskinen."
+
+msgid "selected"
+msgstr "Overvågede komponenter"
+
+msgid "sensorNameCPU"
+msgstr "CPU temperatur"
+
+msgid "sensorNameCPU_help"
+msgstr "Dette er CPUens temperatur."
+
+msgid "sensorNameCase"
+msgstr "Kabinettemperatur"
+
+msgid "sensorNameCase_help"
+msgstr "Dette er temperaturen inde i kabinettet."
+
+msgid "slotempty"
+msgstr "Denne DIMM plads er tom."
+
+msgid "someCorrMemErrors"
+msgstr ""
+"Serveren har oplevet en eller flere retbare hukommelsesfejl. Hvis du fortsat "
+"oplever hukommelsesfejl, se da venligst hardwaremanualen."
+
+msgid "swapsPerSec"
+msgstr "Swaps per sekund"
+
+msgid "swapsPerSec_help"
+msgstr ""
+"Dette er et mål for hukommelsesforbrug. Hvis [[base-am.swapsPerSec]] er "
+"overdrevet højt, så benytter systemet ikke hukommelsen effektivt. I så fald "
+"bør du installere mere hukommelse i maskinen."
+
+msgid "tooManyMemErrors"
+msgstr ""
+"Serveren har oplevet et massivt antal retbare hukommelsesfejl. Genstart "
+"venligst serveren. Hvis du fortsat oplever hukommelsesfejl, se da venligst "
+"hardwaremanualen."
+
+msgid "uncorrMemErrors"
+msgstr ""
+"Serveren har oplevet en hukommelsesfejl der ikke kunne rettes. Genstart "
+"venligst serveren. Hvis du fortsat oplever hukommelsesfejl, se da venligst "
+"hardwaremanualen."
+
+msgid "viewEccLogs"
+msgstr "Se ECC logfiler"
+
+msgid "viewEccLogs_help"
+msgstr "Klik her for at se ECC hukommelseslogfiler."

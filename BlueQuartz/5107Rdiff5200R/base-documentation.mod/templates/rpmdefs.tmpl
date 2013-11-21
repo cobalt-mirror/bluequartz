@@ -1,0 +1,172 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX19
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Mon Mar 19 2012 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX18
+- Modified ui/web/viewManual.php. It was undefining variables it was using within a foreach. Real smart.
+
+* Thu Jul 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX17
+- Fixed another PHP compat issue in ui/web/viewManual.php
+
+* Tue Apr 26 2011 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX16
+- Support information updated.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BX15
+- Copied 'en' locales to 'en_US'
+
+* Wed Dec 24 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ14
+- Rephrased support info based on Chris Gebhardt's suggestion.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ13
+- Support info updated.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ12
+- Rebuilt for BlueOnyx.
+
+* Thu Nov 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ11
+- Added border around image in ui/web/support.php as it looks better.
+
+* Tue Jun 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ10
+- Fixed support.php and viewManual.php for 5106
+- Rephrased English locales, because the English there was a bit ... unclear.
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ9
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.1-31BQ8
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.1-31BQ7
+- Fixed duplicate include issue.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-1BQ6
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-1BQ5
+- rebuild with devel-tools 0.5.1
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-1BQ4
+- clean up locale file.
+
+* Fri Aug 12 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.1-31BQ3
+- use rpmdefs.tmpl.
+<end $CHANGELOG>

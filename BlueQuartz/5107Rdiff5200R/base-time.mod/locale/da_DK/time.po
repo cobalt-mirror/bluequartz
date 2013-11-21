@@ -1,0 +1,60 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
+"POT-Creation-Date: 2007-11-23 16:10+0100\n"
+"PO-Revision-Date: 2007-11-23 16:14+0100\n"
+"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
+"Language-Team: DANISH <jes@enavn.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: quoted-printable\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.0\n"
+
+msgid "capgroup_adminTime"
+msgstr "Administrer systemtid"
+
+msgid "capgroup_adminTime_help"
+msgstr ""
+"Denne administrative rettighed tillader en bruger at indstille systemets tid "
+"og tidszone."
+
+msgid "ntpAddress"
+msgstr "NTP serveradresse"
+
+msgid "ntpAddress_help"
+msgstr ""
+"Indtast netværksadressen eller fuldt kvalificeret domænenavn på en Network "
+"Time Protocol (NTP) server med hvem systemets dato og tid periodisk skal "
+"synkroniseres."
+
+msgid "ntpDefaultServer"
+msgstr "clock.isc.org"
+
+msgid "systemDisplayedDate"
+msgstr "Dato og tid"
+
+msgid "systemDisplayedDate_help"
+msgstr "Indstil dags dato"
+
+msgid "systemDisplayedTime"
+msgstr "Tid"
+
+msgid "systemDisplayedTimeZone"
+msgstr "Tidszone"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Indstil den aktuelle tidszone for denne server."
+
+msgid "systemDisplayedTime_help"
+msgstr "Indstil den aktuelle tid."
+
+msgid "time"
+msgstr "Tid"
+
+msgid "timeSetting"
+msgstr "Tidsindstillinger"
+
+msgid "time_help"
+msgstr "Klik her for at ændre [[base-time.timeSetting]]."

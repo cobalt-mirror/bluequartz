@@ -1,0 +1,311 @@
+# --- Menu
+
+msgid "apache"
+msgstr "ウェブ"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]] を変更できます。"
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "ウェブの設定"
+
+msgid "frontpageField"
+msgstr "FrontPage サーバエクステンション"
+
+msgid "frontpageField_help"
+msgstr "このボックスをチェックすると、FrontPage サーバエクステンションが有効になります。"
+
+msgid "frontpageEnabled"
+msgstr "FrontPageを有効にする"
+
+msgid "passwordWebmasterField"
+msgstr "Webmasterのパスワード"
+
+msgid "passwordWebmasterField_help"
+msgstr "FrontPage クライアントの Webmaster のパスワードを入力してください。FrontPage クライアントで [ウェブを開く] を選択すると、home グループのウェブサイトにアクセスできます。webmaster というユーザ名とここで指定するパスワードを使ってログインすると、FrontPage クライアントから他の FrontPage ユーザを管理できます。"
+
+msgid "passwordWebmasterField_rule"
+msgstr "パスワードには 3 〜 16 文字を使用できます。少なくとも 5 文字以上で、大文字と小文字の両方を使い、数字や記号を含むパスワードをお勧めします。辞書にあるような一般的な語句は使用しないようにしてください。パスワード中の大文字と小文字は区別されます。"
+
+msgid "passwordWebmasterField_invalid"
+msgstr "パスワードが一致しません。入力ミスを防ぐため、同じパスワード２回入力してください。もう一度お試しください。"
+
+msgid "cgiAccessField"
+msgstr "CGI アクセス"
+
+msgid "cgiAccessField_help"
+msgstr "CGI アクセスの許可レベルを指定してください。CGI アクセスを許可されたユーザは CGI スクリプトファイルを追加できます。CGI アクセスをサーバ管理者のみに許可することも、ユーザ全員または特定のユーザのみに許可することもできます。"
+
+msgid "cgiAll"
+msgstr "全てのユーザに CGI アクセスを許可する。"
+
+msgid "cgiNone"
+msgstr "どのユーザにも CGI アクセスを許可しない。"
+
+msgid "cgiSubset"
+msgstr "次のユーザにのみ CGI アクセスを許可する："
+
+msgid "cgiUsersAllowed"
+msgstr "許可するユーザ"
+
+msgid "cgiUsersDisallowed"
+msgstr "許可しないユーザ"
+
+# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "CGI アクセスを許可するユーザが選択されていません。CGI アクセスを許可したいユーザを指定するか、別のオプションを選んでください。"
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "CGI アクセスを正しく設定できませんでした。"
+
+msgid "systemObjectNotFound"
+msgstr "サーバ設定は一時的に使用できません。しばらくしてから、もう一度お試しください。"
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "ウェブサーバ"
+
+msgid "amApacheDetails"
+msgstr "ウェブサーバの詳細"
+
+msgid "amNotRunning"
+msgstr "[[base-apache.amApacheNameTag]] は動作しておらず、起動することもできませんでした。[[base-alpine.serverconfig]] の「[[base-power.power]]」メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバを再起動して見てください。それでも [[base-apache.amApacheNameTag]] にアクセスできない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amStatusOK"
+msgstr "ウェブサーバは正常に動作しています。"
+
+msgid "amAdmservNameTag"
+msgstr "サーバデスクトップ"
+
+msgid "amAdmservDetails"
+msgstr "サーバデスクトップの詳細"
+
+msgid "amAdmservNotRunning"
+msgstr "[[base-apache.amAdmservNameTag]] は動作しておらず、起動することもできませんでした。[[base-alpine.serverconfig]] の「[[base-power.power]]」メニューにある「[[base-power.reboot]]」ボタンをクリックして、サーバを再起動して見てください。それでも [[base-apache.amAdmservNameTag]] にアクセスできない場合には、[[base-sauce-basic.techSupportURL]] にあるテクニカルサポートサービスをご利用ください。"
+
+msgid "amAdmservStatusOK"
+msgstr "サーバデスクトップは正常に動作しています。"
+
+msgid "maxServersRAM"
+msgstr "ウェブサーバの最大数は、このサーバに搭載されている RAM の容量に制約されます。"
+
+msgid "minSpareField"
+msgstr "最小スペアサーバ数"
+
+msgid "minSpareField_help"
+msgstr "この数字は、ウェブサーバの起動時およびアイドル時に受け取ったウェブリクエストに応対するためのウェブサーバプロセスの最小数を示します。[[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_empty"
+msgstr "「最小スペアサーバ数」欄に、スペアウェブサーバの最小数を指定してください。"
+
+msgid "minSpareField_invalid"
+msgstr "「最小スペアサーバ数」欄に指定されたスペアウェブサーバの最小数が不正です。表示されている範囲内の整数で指定してください。"
+
+msgid "maxSpareField"
+msgstr "最大スペアサーバ数"
+
+msgid "maxSpareField_help"
+msgstr "リクエスト数が多くなると、ウェブサーバは必要に応じて追加的なプロセスを起動します。この数字は、ウェブサーバの最大数を示します。トラフィックの多いサイトでは、この数字を大きめに設定することによりパフォーマンスを向上できます。[[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_empty"
+msgstr "「最大スペアサーバ数」欄にスペアウェブサーバの最大数を指定してください。"
+
+msgid "maxSpareField_invalid"
+msgstr "「最大スペアサーバ数」欄に指定されたスペアウェブサーバの最大数が不正です。表示されている範囲内の整数で指定してください。"
+
+msgid "maxClientsField"
+msgstr "最大同時接続数"
+
+msgid "maxClientsField_help"
+msgstr "この数字は、サーバが同時に応対するクライアントからのリクエストの最大数を示します。各クライアント接続にはそれぞれ専用のウェブサーバプロセスが必要です。この値を超える数のリクエストを受け取ると、クライアント側に「現在サーバはビジー状態なため、しばらくしてから再度お試しください」という内容のメッセージが表示されます。ここに適正な値を設定することにより、サーバの過負荷を避けることができます。[[base-apache.maxServersRAM]]"
+
+msgid "maxClientsField_empty"
+msgstr "「最大同時接続数」欄に、許容する同時ウェブサーバ接続の最大数を指定してください。"
+
+msgid "maxClientsField_invalid"
+msgstr "「最大同時接続数」欄に指定された同時ウェブサーバ接続の最大数が不正です。表示されている範囲内の整数で指定してください。"
+
+msgid "hostnameLookupsField"
+msgstr "ホストネーム問い合わせ"
+
+msgid "hostnameLookupsField_help"
+msgstr "このボックスをチェックすると、ウェブサーバのホストネーム問い合わせが有効になり、クライアントの接続時にサーバはクライアント IP を DNS へ問い合わせ、受け取ったホスト名をログファイルに記録します。このボックスをチェックしない場合には、クライアントの IP アドレスのみがウェブサーバ利用ドメイン報告書に書き込まれます。ご注意： このオプションを有効にすると、ウェブサーバのパフォーマンスが低下します。"
+
+msgid "MinMaxError"
+msgstr "「[[base-apache.maxSpareField]]」には、「[[base-apache.minSpareField]]」と同じかまたはそれ以上の値を指定してください。"
+
+msgid "ClientMaxError"
+msgstr "「[[base-apache.maxClientsField]]」には、「[[base-apache.maxSpareField]]」と同じかまたはそれ以上の値を指定してください。"
+
+msgid ""
+msgstr ""
+
+# strings for UI extenstions
+msgid "webScripting"
+msgstr "ウェブ"
+
+msgid "webScriptingTitle"
+msgstr "ウェブスクリプト設定 - [[VAR.fqdn]]"
+
+msgid "webScriptingDescription"
+msgstr "使用するスクリプト言語などのウェブオプションを設定できます。"
+
+msgid "cgi"
+msgstr "CGI (Common Gateway Interface) を有効にする"
+
+msgid "cgi_help"
+msgstr "このボックスをチェックすると、CGI アプリケーションの使用が許可されます。"
+
+msgid "php"
+msgstr "PHP スクリプトを有効にする"
+
+msgid "php_help"
+msgstr "このボックスをチェックすると、PHP スクリプトの使用が許可されます。"
+
+msgid "ssi"
+msgstr "SSI (Server-Side Includes) を有効にする"
+
+msgid "ssi_help"
+msgstr "このボックスをチェックすると、SSI の使用が許可されます。"
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+# i18n names for vsite services namespaces provided by this module
+
+msgid "phpI18nName"
+msgstr "PHP スクリプト"
+
+msgid "cgiI18nName"
+msgstr "CGI (Common Gateway Interface)"
+
+msgid "ssiI18nName"
+msgstr "SSI (Server-Side Includes)"
+
+msgid "userwebs"
+msgstr "Enable user owned webs"
+
+msgid "userwebs_help"
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
+
+msgid "ftpnonadminI18nName"
+msgstr "FTP for non-Site admins enabled"
+
+msgid "userwebsI18nName"
+msgstr "User owned webs enabled"
+
+
+#
+## BlueOnyx.conf editing additions:
+#
+
+msgid "Options_AllField"
+msgstr "All"
+
+msgid "Options_AllField_help"
+msgstr "All options except for MultiViews. (Default: Off)"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinks"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "The server will follow symbolic links. (Default: On)"
+
+msgid "Options_IncludesField"
+msgstr "Includes"
+
+msgid "Options_IncludesField_help"
+msgstr "Server-side includes are permitted. (Default: On)"
+
+msgid "Options_IndexesField"
+msgstr "Indexes"
+
+msgid "Options_IndexesField_help"
+msgstr "If a URL which maps to a directory is requested, and the there is no DirectoryIndex (e.g., index.html) in that directory, then the server will return a formatted listing of the directory. (Default: On)"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViews"
+
+msgid "Options_MultiViewsField_help"
+msgstr "Content negotiated MultiViews are allowed. Used for displaying pages in different languages based on browser locales. (Default: On)"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatch"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link. (Default: Off)"
+
+msgid "AllowOverride_AllField"
+msgstr "All"
+
+msgid "AllowOverride_AllField_help"
+msgstr "When the server finds an .htaccess file it needs to know which directives declared in that file can override earlier access information. Ticking this box will allow to override ALL Apache settings (Dangerous! Default: Off)"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "AuthConfig"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "Allow use of the authorization directives (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require, etc.). (Default: On)"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "FileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "Allow use of the directives controlling document types (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.). (Default: Off)"
+
+msgid "AllowOverride_IndexesField"
+msgstr "Indexes"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "Allow use of the directives controlling directory indexing (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.). (Default: On)"
+
+msgid "AllowOverride_LimitField"
+msgstr "Limit"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "Allow use of the directives controlling host access (Allow, Deny  and Order). (Default: On)"
+
+msgid "AllowOverride_OptionsField"
+msgstr "Options"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "Allow use of the directives controlling specific directory features (Options and XBitHack). (Default: Off)"
+
+msgid "DIVIDER_TOP"
+msgstr "General Apache configuration:"
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "Apache features for virtual site directories:"
+
+msgid "BlueOnyx_Info_Text"
+msgstr "A section in /etc/httpd/conf.d/blueonyx.conf defines which 'Options' and 'AllowOverride' features are allowed for the directory (/home/.sites/) in which all virtual sites reside. This restricts usage of .htaccess files and other things. These can be changed below."
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Options:"
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverride:"
+
+
+# suPHP:
+msgid "PHP_enabled"
+msgstr "Enable PHP Scripting"
+
+msgid "PHP_enabled_help"
+msgstr "Enable the use of PHP scripts."
+
+msgid "enableSuPHP"   
+msgstr "Enable suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu!"
+

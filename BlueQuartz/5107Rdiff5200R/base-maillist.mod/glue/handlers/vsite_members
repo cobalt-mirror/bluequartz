@@ -1,0 +1,22 @@
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/maillist
+#
+
+use MailList; # should be a local file
+use CCE;
+my $cce = new CCE;
+$cce->connectfd();
+
+my $DEBUG = 0;
+$DEBUG && warn `date`;
+
+my $obj = $cce->event_object();
+my @mloids = $cce->find('MailList', { 'site' => $obj->{name}} );
+my ($maillist,$mloid,$ok);
+foreach $mloid (@mloids) {
+  ($ok, $maillist) = $cce->get($mloid);
+  # create subscriber aliases list
+  MailList::rewrite_membersaliases($cce, $maillist);
+}
+
+$cce->bye('SUCCESS');
+exit(0);

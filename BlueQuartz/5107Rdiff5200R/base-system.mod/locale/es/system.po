@@ -1,0 +1,128 @@
+# --- Menu
+msgid "systemInfo"
+msgstr 
+"Información"
+
+msgid "systemInformation"
+msgstr 
+"Información del sistema"
+
+msgid "systemInfo_help"
+msgstr 
+"[[base-system.systemInformation]]."
+
+# --- System Info page
+
+msgid "serialUninitialized"
+msgstr "No inicializado"
+
+msgid "productNameField"
+msgstr "Nombre del producto"
+
+msgid "productNameField_help"
+msgstr "Nombre del producto de su servidor."
+
+msgid "serialNumberField"
+msgstr "Número de serie material"
+
+msgid "serialNumberField_help"
+msgstr "Número de serie de su servidor."
+
+msgid "productSerialNumberField"
+msgstr "Número de serie"
+
+msgid "productSerialNumberField_help"
+msgstr "Número de serie del producto."
+
+msgid "mac0Field"
+msgstr 
+"Dirección MAC de interfaz principal"
+
+msgid "mac0Field_help"
+msgstr 
+"Número de serie de la tarjeta de interfaz de red principal de su servidor."
+
+msgid "mac1Field"
+msgstr 
+"Dirección MAC de interfaz secundaria"
+
+msgid "mac1Field_help"
+msgstr 
+"Número de serie de la tarjeta de interfaz de red secundaria de su servidor."
+
+msgid "memoryField"
+msgstr 
+"Tamaño de memoria (MB)"
+
+msgid "memoryField_help"
+msgstr 
+"Memoria real disponible en su servidor."
+
+msgid "diskField"
+msgstr 
+"Tamaño de disco duro (GB)"
+
+msgid "diskField_help"
+msgstr 
+"Espacio de disco duro disponible en su servidor."
+
+msgid "register"
+msgstr 
+"Registrar ahora"
+
+msgid "register_help"
+msgstr 
+"Pulse aquí para registrar su servidor."
+
+msgid "webLinkText"
+msgstr 
+"Sitio web de Cobalt Networks, Inc."
+
+msgid "webLink"
+msgstr 
+"http://www.cobalt.com/"
+
+msgid "webLinkText_help"
+msgstr 
+"Pulse aquí para ir al [[base-system.webLinkText]]"
+
+msgid "creditsAcknoledgements"
+msgstr 
+"Créditos y agradecimientos"
+
+msgid "creditsAcknoledgements_help"
+msgstr 
+"Pulse aquí para ver los [[base-system.creditsAcknoledgements]]"
+
+msgid "copyright"
+msgstr 
+"Cobalt Qube, Cobalt CacheQube, Cobalt RaQ, Cube, Cobalt Networks, Inc. Y todo el material gráfico contenido son marcas comerciales de Cobalt Networks, Inc. Todos los demás productos y compañías a las que se hace referencia son marcas comerciales o marcas registradas de sus respectivas compañías o propietarios de marca. Copyright 1998-2001.\n\nLa información contenida y la información acerca de este producto están sujetas a cambio sin previo aviso."
+
+msgid "codeNotice"
+msgstr 
+"Algunas partes del software del servidor Cobalt pueden redistribuirse libremente. Algunas requieren un permiso especial para su redistribución, y Cobalt Networks, Inc. Tiene estos permisos. La mayor parte de los componentes de software pueden distribuirse bajo el <A HREF=bsdlicense.php>Copyright BSD</A> y la <A HREF=gnulicense.php>Licencia Pública GNU</A>. El código fuente completo está disponible en ftp://ftp.cobalt.com/."
+
+msgid "rsaNotice"
+msgstr 
+"Incluye software de protocolo de seguridad o criptográfico BSAFE de RSA Security"
+
+msgid "bsdTitle"
+msgstr 
+"Copyright BSD y Licencia"
+
+msgid "bsdLicense"
+msgstr 
+"Copyright (c)1991, 1992, 1993, 1994 The Regents of the University of California. <P>Reservados todos los derechos. Se permite la redistribución y el uso en formato fuente y binario, con o sin modificación, siempre que se cumplan las siguientes condiciones: <P>1.    Las redistribuciones del código fuente deben conservar el aviso de copyright anterior, esta lista de condiciones y el siguiente texto de renuncia de responsabilidades. <P>2.    Las redistribuciones en formato binario deben reproducir el aviso de copyright anterior, esta lista de condiciones y el siguiente texto de renuncia de responsabilidades en la documentación y/o en otros materiales entregados con la distribución. <P>3.    Todo material publicitario que mencione características o el uso de este software debe mostrar el siguiente reconocimiento: Este producto incluye software desarrollado por la Universidad de California, Berkeley y sus colaboradores. <P>4.    No puede utilizarse el nombre de la Universidad ni de sus colaboradores para respaldar o promocionar productos derivados de este software sin el consentimiento firmado específico previo.  <P>ESTE SOFTWARE ES PROPORCIONADO POR LOS REGENTES Y COLABORADORES &quot;TAL CUAL&quot; Y SE RENUNCIA A TODA GARANTÍA EXPRESA O IMPLÍCITA, INCLUIDAS, ENTRE OTRAS, LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD E IDONEIDAD PARA UN FIN PARTICULAR. EN NINGÚN CASO LOS REGENTES NI LOS COLABORADORES SERÁN RESPONSABLES DE NINGÚN DAÑO DIRECTO, INDIRECTO, FORTUITO, ESPECIAL, EJEMPLAR O CONSECUENTE (INCLUIDOS, ENTRE OTROS, LA PROCURACIÓN O SUSTITUCIÓN DE BIENES O SERVICIOS, LA PÉRDIDA DE USO, DATOS O BENEFICIOS, O LA INTERRUPCIÓN DE LA ACTIVIDAD PROFESIONAL) DE ALGÚN MODO CAUSADO Y BAJO NINGUNA TEORÍA DE RESPONSABILIDAD, YA SEA POR CONTRATO, RESPONSABILIDAD ESTRICTA O AGRAVIO (INCLUIDA, ENTRE OTROS, LA NEGLIGENCIA) DERIVADO DE CUALQUIER FORMA DE USO DE ESTE SOFTWARE, AUNQUE SE AVISE DE LA POSIBILIDAD DE DICHO DAÑO."
+ 
+msgid "gnuTitle"
+msgstr "Licencia Pública GNU"
+
+msgid "gnuLicense"
+msgstr "Copyright (C) 1989, 1991 Free Software Foundation, Inc. 675 Mass Ave, Cambridge, MA 02139, Estados Unidos  <P>TÉRMINOS Y CONDICIONES PARA LA COPIA, DISTRIBUCIÓN Y MODIFICACIÓN   <P>0. Esta licencia se aplica a cualquier programa o trabajo que contenga un aviso establecido por el propietario del copyright en el que se afirme que puede distribuirse bajo los términos de esta licencia Pública General. Mas adelante, \"Programa\" hará referencia a cualquier programa o trabajo que cumpla esa condición, y un \"trabajo basado en el Programa\" hará referencia al Programa o a cualquier trabajo de él derivado según la ley de copyright: es decir, un trabajo que contenga el Programa o una parte de él, ya sea de forma literal o con modificaciones y/o traducido a otro idioma. (Mas adelante se incluirá la traducción sin limitaciones en el término \"modificación\".) Se tratará a cada concesionario como \"usted\". Las actividades diferentes a la copia, distribución y modificación no están cubiertas por esta licencia, ya que quedan fuera de su ámbito. El acto de ejecutar el Programa no está limitado, y los productos generados con el Programa sólo están cubiertos si su contenido constituye un trabajo basado en el Programa (con independencia de que se haya realizado ejecutando el Programa). El hecho de que esto se cumpla depende de lo que haga el Programa.  <P>1. Usted puede copiar y distribuir copias literales del código fuente del Programa según lo haya recibido en cualquier medio, siempre que publique de forma visible y apropiada en cada copia un aviso de copyright apropiado y la renuncia de responsabilidades de la garantía, conserve íntegros todos los avisos relativos a esta licencia y a la ausencia de cualquier garantía y que proporcione a cualquier otro receptor del Programa una copia de esta licencia junto con el Programa.  Puede cobrar un precio por el acto físico de transferir una copia, y puede a su elección ofrecer garantía a cambio de unos honorarios.  <P>2. Puede modificar su copia o copias del Programa o de cualquier parte de él, generando así un trabajo basado en el Programa, y copiar y distribuir estas modificaciones o trabajos bajo los términos del apartado 1, siempre que cumpla también todas las condiciones siguientes:  a) Debe hacer que los archivos modificados contengan avisos destacados que indiquen que los ha modificado y la fecha de los cambios realizados.  b) Debe hacer que todo trabajo que distribuya o publique, que contenga de forma total o parcial el Programa o que derive de éste o de una parte del mismo, tenga licencia como producto completo, sin costo alguno, para terceras partes bajo los términos de esta licencia.  c) Si el programa modificado lee normalmente comandos de forma interactiva al ejecutarse, debe hacer que, al iniciarse para ese uso interactivo de la forma más común, imprima o muestre en pantalla un anuncio que contenga un aviso de copyright apropiado y un aviso que indique que no hay ninguna garantía (o que usted proporciona una garantía) y que los usuarios pueden redistribuir el Programa bajo estas condiciones, indicando al usuario cómo ver una copia de esta licencia. (Excepción: si el propio Programa es interactivo pero normalmente no imprime ese aviso, no es necesario que su trabajo basado en el Programa imprima un anuncio.)  Estos requisitos se aplican al trabajo modificado en su conjunto. Si hay secciones identificables de ese trabajo que no derivan del Programa, y pueden considerarse razonablemente trabajos independientes y diferentes en sí mismos, esta licencia y sus términos no se aplican a esas secciones si son distribuidas como trabajos independientes. Pero si distribuye las mismas secciones como parte de un conjunto que es un trabajo basado en el Programa, la distribución del conjunto debe realizarse bajo los términos de esta licencia, cuyos permisos para otros concesionarios se extienden a todo el conjunto y, por tanto, a cada una y todas las partes con independencia de quién las haya elaborado.  Por tanto, la finalidad de este apartado no es reclamar derechos ni negarle sus derechos sobre los trabajos elaborados enteramente por usted, sino ejercer el derecho a controlar la distribución de los trabajos derivados o colectivos basados en el Programa.  Además, el simple hecho de agregar otro trabajo no basado en el Programa al Programa (o a un trabajo basado en el Programa) en un volumen de un medio de almacenamiento o distribución no hace que dicho trabajo entre en el ámbito cubierto por esta licencia.  <P>3. Puede copiar y distribuir el Programa (o un trabajo basado en él, según se especifica en el apartado 2) en formato de código objeto o ejecutable según los términos de los apartados 1 y 2 siempre que cumpla una de las siguientes condiciones:  a) Acompañarlo del código fuente completo correspondiente, en formato electrónico, que debe distribuirse bajo los términos de los apartados 1 y 2 en un medio usado habitualmente para el intercambio de software; o bien,  b) Acompañarlo de una oferta por escrito, válida durante al menos tres años, de facilitar a terceros, por un precio no superior al costo de realizar físicamente la distribución original, una copia completa del código fuente correspondiente en formato electrónico, que se distribuirá bajo los términos de los apartados 1 y 2 en un medio utilizado habitualmente para el intercambio de software; o bien,  c) Acompañarlo de la información que recibió ofreciendo distribuir el código fuente correspondiente. (Esta opción sólo se permite para la distribución no comercial y sólo en el caso de que haya recibido el Programa en formato de código objeto o ejecutable con la oferta, de acuerdo con el subapartado b.)  Por código fuente de un trabajo se entiende la forma preferida del trabajo para hacer modificaciones en él. Para un trabajo ejecutable, se entiende por código fuente completo todo el código fuente de todos los módulos que contenga, más todos los archivos de definición de interfaz asociados, más las secuencias de comandos utilizadas para controlar la compilación y la instalación del ejecutable. Sin embargo, como excepción especial, el código fuente distribuido no necesita incluir nada que se distribuya normalmente (en formato de código fuente o binario) con los componentes principales (compilador, kernel y similares) del sistema operativo en el que se ejecuta el ejecutable, a menos que el propio componente acompañe al ejecutable.  Si la distribución del ejecutable o del código objeto se realiza ofreciendo acceso para copiarlo desde un lugar designado, la oferta de acceso equivalente para copiar el código fuente desde el mismo lugar se considera distribución del código fuente, aunque no se exija a terceros copiar el código fuente junto con el código objeto.  <P>4. No puede copiar, modificar, sublicenciar ni distribuir el Programa salvo en las condiciones expresamente indicadas en esta licencia. Está prohibido todo intento de copiar, modificar, sublicenciar o distribuir el Programa de manera diferente, el cual terminará automáticamente los derechos que le concede esta licencia. Sin embargo, las licencias de terceros que hayan recibido copias, o derechos, de usted bajo esta licencia no terminarán siempre que mantengan un cumplimiento pleno de la misma.  <P>5. No está obligado a aceptar esta licencia, ya que no la ha firmado. Sin embargo, ningún otro documento le proporciona permiso para modificar o distribuir el Programa o los trabajos de él derivados. Estas acciones están prohibidas por la ley si no acepta esta licencia. Por consiguiente, si modifica o distribuye el Programa (o cualquier trabajo basado en el Programa), indica que acepta esta licencia para hacerlo, así como todos sus términos y condiciones para copiar, distribuir o modificar el Programa o los trabajos de él derivados.  <P>6. Cada vez que redistribuya el Programa (o cualquier trabajo basado en el Programa), el receptor recibe automáticamente una licencia del concesionario original para copiar, distribuir o modificar el Programa sujeto a estos términos y condiciones. No puede imponer a los receptores ninguna otra restricción al ejercicio de los derechos aquí garantizados. Usted no es responsable del cumplimiento de esta licencia por terceros. <P>7. Si, como consecuencia de una resolución judicial o de una alegación de violación de patente o por cualquier otro motivo (no limitado a asuntos relacionados con patentes), se le imponen condiciones (ya sea por mandato judicial, por acuerdo o por cualquier otra causa) que contradicen las condiciones de esta licencia, ello no le exime de cumplir las condiciones de esta licencia. Si no puede realizar la distribución de manera que satisfaga al mismo tiempo sus obligaciones bajo esta licencia y cualquier otra obligación pertinente, entonces no podrá distribuir el Programa de ninguna forma. Por ejemplo, si una licencia de patente no permite la redistribución del Programa sin derechos de patente por parte de todos aquellos que reciban copias directa o indirectamente de usted, la única manera en que podría cumplir dicha licencia y esta licencia sería no distribuir en absoluto el Programa. Si alguna parte de este apartado resulta no válida o no aplicable bajo una circunstancia particular, deberá cumplirse el resto del apartado, y en cualquier otra circunstancia deberá cumplirse el apartado en su totalidad. El propósito de este apartado no es inducirle a infringir ninguna reivindicación de derechos de patentes u otros derechos de propiedad ni impugnar la validez de dichas reivindicaciones; la única finalidad de este apartado es proteger la integridad del sistema de distribución de software libre, que se realiza mediante prácticas de licencia pública. Muchas personas han hecho generosas contribuciones a la gran variedad de software distribuido por medio de ese sistema con la confianza de que el sistema se aplicará de manera uniforme; será el autor/donador quien decidirá si desea distribuir el software por medio de cualquier otro sistema, y un concesionario no puede imponer esa elección. Este apartado pretende aclarar completamente lo que se cree que es una consecuencia del resto de esta licencia.  <P>8. Si la distribución y/o el uso del Programa está limitado en algunos países por patentes o interfaces bajo copyright, el propietario del copyright original que coloque el Programa bajo esta licencia puede añadir una limitación explícita de distribución geográfica que excluya a esos países, de manera que sólo se permita la distribución en o entre los países no excluidos. En ese caso, esta licencia incorporará la limitación como si estuviera en el texto de esta licencia. <P>9. La Free Software Foundation puede publicar versiones revisadas y/o nuevas de la Licencia Pública General de tiempo en tiempo. Estas nuevas versiones serán similares en espíritu a la presente versión, pero podrían diferir en detalles para tratar nuevos problemas o situaciones. Cada versión tiene asignado un número de versión único. Si el Programa especifica un número de versión de esta licencia que se aplica a ésta y a \"cualquier versión posterior\", usted tiene la opción de seguir los términos y condiciones de esa versión o de cualquier versión publicada posteriormente por la Free Software Foundation. Si el Programa no especifica un número de versión de esta licencia, puede elegir cualquier versión publicada por la Free Software Foundation. <P>10. Si desea incorporar partes del Programa a otros programas cuyas condiciones de distribución son diferentes, pida permiso para ello al autor. Para los programas de software cuyo copyright sea propiedad de la Free Software Foundation, póngase en contacto con la Free Software Foundation; en ocasiones hacemos excepciones en estos casos. Nuestra decisión se basará en dos objetivos: preservar la libertad de todos los derivados de nuestro software y promover el uso compartido y la reutilización del software en general.[[base-system.gnuLicense2]]"
+
+msgid "gnuLicense2"
+msgstr "<P>AUSENCIA DE GARANTÍA <P>11. COMO EL PROGRAMA SE LICENCIA LIBRE DE CARGAS, NO SE OFRECE NINGUNA GARANTÍA SOBRE EL PROGRAMA, EN TODA LA EXTENSIÓN PERMITIDA POR LA LEGISLACIÓN APLICABLE. EXCEPTO CUANDO SE INDIQUE DE OTRA FORMA POR ESCRITO, LOS PROPIETARIOS DEL COPYRIGHT Y/U OTRAS PARTES PROPORCIONAN EL PROGRAMA \"TAL CUAL\", SIN GARANTÍA DE NINGUNA CLASE, YA SEA EXPRESA O IMPLÍCITA, INCLUIDAS, ENTRE OTRAS, LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD E IDONEIDAD PARA UN PROPÓSITO PARTICULAR. USTED ASUME TODO RIESGO REFERENTE A LA CALIDAD Y PRESTACIONES DEL PROGRAMA. SI SE PROBASE QUE EL PROGRAMA ES DEFECTUOSO, ASUME EL COSTO DE CUALQUIER SERVICIO, REPARACIÓN O CORRECCIÓN. <P>12. EN NINGÚN CASO, SALVO QUE LO REQUIERA LA LEGISLACIÓN APLICABLE O HAYA SIDO ACORDADO POR ESCRITO, NINGÚN PROPIETARIO DEL COPYRIGHT NI NINGUNA OTRA PARTE QUE MODIFIQUE Y/O REDISTRIBUYA EL PROGRAMA SEGÚN SE PERMITE EN ESTA LICENCIA SERÁ RESPONSABLE ANTE USTED POR DAÑOS, INCLUIDO CUALQUIER DAÑO GENERAL, ESPECIAL, FORTUITO O CONSECUENTE PRODUCIDO POR EL USO O LA IMPOSIBILIDAD DE USO DEL PROGRAMA (INCLUIDAS, ENTRE OTRAS, LA PÉRDIDA DE DATOS O LA GENERACIÓN INCORRECTA DE DATOS O LAS PÉRDIDAS SUFRIDAS POR USTED O POR TERCEROS O UN ERROR DEL PROGRAMA AL FUNCIONAR EN COMBINACIÓN CON CUALQUIER OTRO PROGRAMA), AUNQUE EL PROPIETARIO U OTRA PARTE HAYA SIDO ADVERTIDO DE LA POSIBILIDAD DE DICHOS DAÑOS."
+
+
+
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>pam_abl</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1>pam_abl</h1>
+    <dl>
+        <dt>NAME</dt>
+        <dd>pam_abl - query or purge the databases used by the <a href="index.html">pam_abl module</a></dd>
+        <dt>SYNOPSIS</dt>
+        <dd>pam_abl [OPTION] [CONFIG]</dd>
+        <dt>DESCRIPTION</dt>
+        <dd>
+            <p>Perform maintenance on the databases used by the pam_abl (auto blacklist) module. CONFIG is the name of the pam_abl config file (default: /etc/security/pam_abl.conf). The config file is read to discover the names of the pam_abl databases and the rules that control purging of old data from them. The following options are available</p>
+            <table>
+                <tr>
+                    <td>-h, --help</td>
+                    <td>See this message.</td>
+                </tr>
+                <tr>
+                    <td>-p, --purge</td>
+                    <td>Purge databases according to purge rules in config.</td>
+                </tr>
+                <tr>
+                    <td>-r, --relative</td>
+                    <td>Display times relative to now otherwise absolute times will be displayed.</td>
+                </tr>
+                <tr>
+                    <td>-v, --verbose</td>
+                    <td>Verbose output.</td>
+                </tr>
+                <tr>
+                    <td>--okuser=USER</td>
+                    <td>Unblock USER.</td>
+                </tr>
+                <tr>
+                    <td>--okhost=HOST</td>
+                    <td>Unblock HOST.</td>
+                </tr>
+            </table>
+        </dd>
+        <dt>EXAMPLES</dt>
+        <dd>
+            <p>Obtain a list of failed hosts and users:</p>
+            <p><code>$ pam_abl</code></p>
+
+            <p>Obtain a full list of failures listing times relative to now:</p>
+            <p><code>$ pam_abl -rv</code><br />
+            <code>$ pam_abl --relative --verbose</code></p>
+
+            <p>Purge old data:</p>
+            <p><code>$ pam_abl -p</code><br />
+            <code>$ pam_abl --purge</code></p>
+
+            <p>Unblock all example.com, somewhere.com hosts:</p>
+            <p><code>$ pam_abl -v --okhost=*.example.com --okhost=*.somewhere.com</code></p>
+        </dd>
+        <dt>AUTHOR</dt>
+        <dd>Written by Andy Armstrong <a href="mailto:andy@hexten.net">&lt;andy@hexten.net&gt;</a></dd>
+        <dt>LICENCE</dt>
+        <dd>See <a href="copying.html">this page</a> for licensing details.</dd>
+        <dt>REPORTING BUGS</dt>
+        <dd>Report bugs to <a href="mailto:andy@hexten.net">&lt;andy@hexten.net&gt;</a></dd>
+        <dt>SEE ALSO</dt>
+        <dd>The main documentation for <a href="index.html">pam_abl.so</a>.</dd>
+    </dl>
+</body>
+</html>

@@ -1,0 +1,64 @@
+# --- Package text
+msgid "pkgVendor"
+msgstr "Cobalt Networks"
+
+msgid "pkgName"
+msgstr "Cobalt DiskMirror"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] bietet höhere Zuverlässigkeit durch aktive Spiegelung von Inhalten auf einem Festplattenpaar."
+
+# --- Aktiver Monitor
+
+msgid "amRAIDNameTag"
+msgstr "Redundant Array of Independent Disks (RAID)-Status"
+
+msgid "raid_title"
+msgstr "Redundant Array of Independent Disks (RAID)-Statusdetails"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+# --- Aktiver Monitor status messages 
+
+msgid "raid_disabled"
+msgstr "Die Festplattenspiegelung ist deaktiviert."
+
+msgid "raid_working"
+msgstr "Die Festplattenspiegelung ist aktiviert und findet momentan statt. Beide Festplatten funktionieren einwandfrei."
+
+msgid "raid_sync_in_progress"
+msgstr "Momentan werden Serverdaten von einer Festplatte auf die andere kopiert. Die Festplattenspiegelung bleibt nach Abschluss dieser Synchronisierung aktiviert."
+
+msgid "raid_completed"
+msgstr "abgeschlossen"
+
+msgid "raid_minutes_remaining"
+msgstr "Minute(n) verbleiben"
+
+msgid "raid_failure_raq"
+msgstr "Eine Festplatte ist ausgefallen. Bitte schalten Sie den Server ab und ersetzen Sie die ausgefallene Festplatte durch eine neue, die genauso groß ist wie die verbleibende. Die Daten werden auf der Ersatzfestplatte automatisch wiederhergestellt."
+
+msgid "raid_failure_hdc_raq"
+msgstr "Die linke Festplatte ist ausgefallen. Bitte schalten Sie den Server ab und ersetzen Sie dieses Laufwerk durch ein neues mit der gleichen Größe. Das ausgefallene Laufwerk befindet sich auf der linken Seite, wenn Sie frontal zur blauen Kunststoffblende an der Servervorderseite stehen."
+
+msgid "raid_failure_hda_raq"
+msgstr "Die rechte Festplatte ist ausgefallen. Bitte schalten Sie den Server ab und ersetzen Sie dieses Laufwerk durch ein neues mit der gleichen Größe. Das ausgefallene Laufwerk befindet sich auf der rechten Seite, wenn Sie frontal zur blauen Kunststoffblende an der Servervorderseite stehen."
+
+msgid "raid_failure_qube"
+msgstr "Eine Festplatte ist ausgefallen. Bitte schalten Sie den Server ab und ersetzen Sie die ausgefallene Festplatte durch eine neue, die genauso groß ist wie die verbleibende. Die Daten werden auf der Ersatzfestplatte automatisch wiederhergestellt. Weitere Informationen finden Sie auf dem Aktiver Monitor RAID-Detailbildschirm."
+
+msgid "raid_failure_hdc_qube"
+msgstr "Die sekundäre Festplatte ist ausgefallen. Bitte schalten Sie den Server ab und ersetzen Sie dieses Laufwerk durch ein neues mit der gleichen Größe. Das ausgefallene Laufwerk (B) befindet sich ungefähr in Servermitte. Es handelt sich um die Festplatte auf der rechten Seite, wenn Sie frontal zur Servervorderseite stehen."
+
+msgid "raid_failure_hda_qube"
+msgstr "Die primäre Festplatte ist ausgefallen. Bitte schalten Sie den Server ab und ersetzen Sie dieses Laufwerk durch ein neues mit der gleichen Größe. Das ausgefallene Laufwerk (A) befindet sich in Randnähe des Servers. Es handelt sich um die Festplatte auf der linken Seite, wenn Sie frontal zur Servervorderseite stehen."

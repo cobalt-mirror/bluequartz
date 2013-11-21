@@ -1,0 +1,284 @@
+msgid "java"
+msgstr "Java"
+
+msgid "java_help"
+msgstr "Click here to change JavaServer configuration and performance settings."
+
+msgid "warName"
+msgstr "Web Archive (.war)"
+
+msgid "warNames"
+msgstr "Web Archive (.war) List for [[VAR.fqdn]]"
+
+msgid "warNames_menu"
+msgstr "Web Archive (.war) List"
+
+msgid "warName_help"
+msgstr "The archive name of the installed [[base-java.warName]]."
+
+msgid "enabledField"
+msgstr "Enable Server (Tomcat)"
+
+msgid "enabledField_help"
+msgstr "Enable a Java Virtual Machine."
+
+msgid "maxClientsField"
+msgstr "Maximum Simultaneous Sessions"
+
+msgid "maxClientsField_help"
+msgstr "Specify the maximum number of simultaneous Java application connections.  "
+
+msgid "maxClientsField_invalid"
+msgstr "The Maximum Number of Java Sessions is invalid.  Please enter an integer within the specified range."
+
+msgid "javaSettings"
+msgstr "Java Settings"
+
+msgid "javaApps"
+msgstr "Web Deployment"
+
+msgid "javaApps_help"
+msgstr "Load and manage [[base-java.warNames_menu]]."
+
+msgid "warList"
+msgstr "[[base-java.warNames]]"
+
+msgid "warNameHeader"
+msgstr "Name"
+
+msgid "warNameHeader_help"
+msgstr "This is the filename of the installed [[base-java.warName]]."
+
+msgid "warListPathHeader"
+msgstr "Location"
+
+msgid "warListPathHeader_help"
+msgstr "This is the site web subdirectory in which the [[base-java.warName]] is installed."
+
+msgid "warListActionHeader"
+msgstr "Action"
+
+msgid "warListActionHeader_help"
+msgstr "Click the Remove icon to uninstall the web archive by recursively deleting the install directory."
+
+msgid "addWar"
+msgstr "Add New Web Archive to [[VAR.item]]"
+
+msgid "modWar"
+msgstr "Modify [[base-java.warName]] Settings for [[VAR.item]]"
+
+msgid "locationFieldEnter"
+msgstr "Web Archive File"
+
+msgid "locationFieldEnter_help"
+msgstr "Enter the location from which to obtain the .war file.  Enter a URL beginning with either http:// or ftp:// to download the archive from a location on the internet, or enter the file location of a .war file to upload.  Click Browse to choose a file on your local hard drive. If you have downloaded .war archives to the web root, an option to choose one of these files will also be available."
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "URL"
+
+msgid "urlField_empty"
+msgstr "The URL is missing. [[locationFieldEnter_help]]"
+
+msgid "urlField_rule"
+msgstr "Enter a URL beginning with either http:// or ftp:// to download the package from a location on the Internet."
+
+msgid "invalidUrl"
+msgstr "The specified URL is invalid. [[base-java.urlField_rule]]"
+
+msgid "upload"
+msgstr "Upload"
+
+msgid "fileField"
+msgstr "Upload"
+
+msgid "fileField_empty"
+msgstr "The Upload File is missing. [[locationFieldEnter_help]]"
+
+msgid "loaded"
+msgstr "Loaded"
+
+msgid "targetName"
+msgstr "Installation Location"
+
+msgid "targetName_help"
+msgstr "The contents of the [[base-java.warName]] will be extracted to this directory.  The directory will be created if necessary."
+
+msgid "targetName_missing"
+msgstr "A target directory must be specified.  [[base-java.targetName_help]]"
+
+msgid "targetName_invalid"
+msgstr "The specified [[base-java.targetName]] contains invalid characters.  Please remove any extended characters from this field."
+
+msgid "targetField"
+msgstr "Installation Location"
+
+msgid "targetField_empty"
+msgstr "Installation Location is missing.  [[base-java.targetName_help]]"
+
+msgid "confirm_archive_removal"
+msgstr "Are you sure you want to permanently delete the directory [[VAR.path]] and all its contents?"
+
+# Aktiver Monitor
+
+msgid "amJavaNameTag"
+msgstr "JavaServer Pages (JSP) and Servlets"
+
+msgid "amJavaDetails"
+msgstr "[[base-java.amJavaNameTag]] Details"
+
+msgid "amStatusOK"
+msgstr "JavaServer Pages and Servlets are operating normally."
+
+msgid "amNotRunning"
+msgstr "JavaServer Pages and Servlets are not running and could not be restarted. In the [[base-apache.amAdmservNameTag]], try turning the JavaServer Pages and Servlets service off then on again to see if this corrects the problem. If the JavaServer Pages and Servlets service is still unable to start, try rebooting the server itself by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If the JavaServer Pages and Servlets service is still unable to start, please refer [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "javaName"
+msgstr "JavaServer Pages (JSP) and Servlets"
+
+msgid "enableJava"
+msgstr "Enable JSP and Servlets"
+
+msgid "enableJava_help"
+msgstr "Enable to allow the use of JavaServer Pages (JSP) and Servlets."
+
+msgid "installStatus"
+msgstr "Install Status for [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Status Message"
+
+msgid "statusField_help"
+msgstr "This field shows the current status of the [[base-java.warName]] being installed."
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "This is the progress of the installation."
+
+msgid "dlPercent"
+msgstr "Downloading file [[VAR.file]] : [[VAR.percent]]% done"
+
+# ---- Install/remove errors & status messages
+
+msgid "initializing"
+msgstr "Initializing..."
+
+msgid "downloading"
+msgstr "Downloading [[base-java.warName]]..."
+
+msgid "installing"
+msgstr "Installing [[base-java.warName]]..."
+
+msgid "fail"
+msgstr "Failed"
+
+msgid "success"
+msgstr "Success"
+
+# -- generic message for other strings
+msgid "notInstalled"
+msgstr "The software [[base-java.warName]] was not installed."
+
+msgid "cannotDownloadUrl"
+msgstr "Sorry, the [[base-java.warName]] file could not be downloaded from the specified URL. Please check the URL and try again. [[base-java.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Sorry, the file name of the [[base-java.warName]] file is invalid. Please check the name and try again. [[base-java.notInstalled]]"
+
+msgid "verifyingPackage"
+msgstr "Verifying [[base-java.warName]]..."
+
+msgid "badPackage"
+msgstr "The [[base-java.warName]] file is incomplete. The packing_list is invalid or missing. [[base-swupdate.notInstalled]]"
+
+msgid "hostNotFound"
+msgstr "The host specified in the URL could not be contacted.  [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "The [[base-java.warName]] [[VAR.file]] was not found at the specified location."
+
+msgid "hostRefused"
+msgstr "The host specified in the URL for [[VAR.file]] refused the connection."
+
+msgid "downloadFailure"
+msgstr "The [[base-java.warName]] failed to download properly. This may occur because the server where the archive is located is experiencing problems or because you have insufficient permissions to write to this site."
+
+msgid "noLocation"
+msgstr "No location specified to get [[base-java.warName]]."
+
+msgid "errorWGET"
+msgstr "Sorry, an error occurred while trying to run wget."
+
+msgid "unknownFileFormat"
+msgstr "The uploaded file is not a supported format or is corrupt."
+
+msgid "notToUserHome"
+msgstr "The War can not be installed to the home directory of a user."
+
+msgid "loadingWar"
+msgstr "The [[base-java.warName]] is being loaded.  Please wait."
+
+msgid "connectionRefused"
+msgstr "The download attempt was refused by the remote server."
+
+msgid "installFailure"
+msgstr "The [[base-java.warName]] installation has failed."
+
+msgid "couldNotCreateTarget"
+msgstr "The installation target directory could not be created because you do not have sufficient permissions."
+
+msgid "jarFailure"
+msgstr "The [[base-java.warName]] extraction failed.  The archive is corrupt."
+
+msgid "installedWar"
+msgstr "The [[base-java.warName]] has been installed successfully."
+
+msgid ""
+msgstr ""
+
+msgid "javaNotEnabled"
+msgstr "Support for JSP and Servlets is not currently enabled. Please have the system administrator enable JSP and Servlets support in Web Settings before trying to deploy Web Archive (.war) files."
+
+msgid "TomcatAdminInterface"
+msgstr "Tomcat Admin Interface"
+
+msgid "TomcatManagerInterface"
+msgstr "Tomcat Manager Interface"
+
+msgid "TomcatHostManagerInterface"
+msgstr "Tomcat Host Manager Interface"
+
+msgid "TomcatManagerStatus"
+msgstr "Tomcat Manager Status"
+
+msgid "TomcatManager"
+msgstr "Tomcat"
+
+msgid "TomcatManager_desc"
+msgstr "Manage the settings of your Tomcat server."
+
+msgid "TomcatManager_help"
+msgstr "[[base-java.TomcatManager_desc]]"
+
+msgid "TomcatAdminPassHeader"
+msgstr "Tomcat Admin Password"
+
+msgid "AdminPassInformation"
+msgstr "Set the password for Tomcat's admin account:"
+
+msgid "TomcatAdminPassField"
+msgstr "Password:"
+
+msgid "TomcatAdminPassField_help"
+msgstr "To login to the administrative backend of Tomcat you need to login as user 'admin' with the password specified here. This password can (and should!) be different from the server password."
+
+msgid "TomcatStausBox_header"
+msgstr "Please note: Tomcat is stopped"
+
+msgid "TomCatStatusBox_info"
+msgstr "As long as Tomcat is stopped, you will be unable to click on any of the administrative buttons in the menu below. Tomcat will automatically start as soon as at least one virtual site has the service JSP enabled."
+

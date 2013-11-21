@@ -1,0 +1,48 @@
+# strings for shell menu items
+msgid "shellMenu"
+msgstr "シェル"
+
+msgid "shellMenuDescription"
+msgstr "シェルアクセスを許可されているユーザが、このサーバへ接続するために利用する、Telnet や SSH などのサービスを設定できます。"
+
+# server wide shell access page
+msgid "shell"
+msgstr "[[base-shell.shellMenu]]"
+
+# ui extensions
+msgid "shellName"
+msgstr "シェルアクセス"
+
+msgid "enableShell"
+msgstr "シェルアクセスを有効にする"
+
+msgid "enableShell_help"
+msgstr "シェルアクセスを有効にすると、Telnet や SSH などのサービスを使ってサーバに接続できるユーザを作成できます。"
+
+msgid "userEnableShell"
+msgstr "[[base-shell.enableShell]]"
+
+msgid "userEnableShell_help"
+msgstr "シェルアクセスを有効にすると、ユーザは、Telnet や SSH などのサービスを使ってサーバに接続できるようになります。"
+
+msgid "shellIsEnabled"
+msgstr "シェルアクセス"
+
+msgid "shellIsEnabled_help"
+msgstr "このユーザにはシェルアクセスが許可されています。 "
+
+# handler error messages
+# user_shell.pl
+msgid "cantEnableNoVsiteShell"
+msgstr "このユーザの属している仮想サイトはシェルアクセスが有効にされていないため、このユーザのシェルアクセスを有効にできません。"
+
+# site shell menus
+msgid "siteshell"
+msgstr "シェル"
+
+msgid "siteshell_help"
+msgstr "このサイトのシェルアクセスを設定できます。"
+
+msgid "siteShellSettings"
+msgstr "シェルの設定 - [[VAR.fqdn]]"
+
