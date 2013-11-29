@@ -1,0 +1,11 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: ssl_caps.schema,v 1.1 2001/06/29 06:25:02 pbaltz Exp $
+
+    capabilities for ssl that need to exist for the ui at least
+-->
+<class
+    name="Capabilities" namespace="siteSSL" version="1.0"
+>
+    <property name="capable" type="boolean" default="1"/>
+</class>

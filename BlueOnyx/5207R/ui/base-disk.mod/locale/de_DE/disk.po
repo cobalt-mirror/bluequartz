@@ -1,0 +1,303 @@
+# translation of base-disk.po to German
+# Header entry was created by KBabel!
+#
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-disk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-10-31 20:32+0200\n"
+"PO-Revision-Date: 2008-01-27 08:23+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: German\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "amDetails"
+msgstr "Festplattenbelegungs-Details"
+
+msgid "amDiskNameTag"
+msgstr "Festplattenbelegung"
+
+msgid "amDiskOk"
+msgstr "Festplattenbelegung ist normal."
+
+msgid "amDiskWarning"
+msgstr "Eine Festplattenpartition ist fast voll. Der Speicherplatz auf der Partition [[VAR.fs]] ist zu [[VAR.pcnt]]% belegt. Auf der Partition sind noch [[VAR.free]] MB frei."
+
+msgid "cantCreateDisk"
+msgstr "Kann kein Datenbank-Objekt für [[VAR.device]] anlegen."
+
+msgid "cantExecuteDf"
+msgstr "Kann df-Befehl nicht ausführen."
+
+msgid "cantUpdateDiskInfo"
+msgstr "Festplattennutzungsinformationen für die Platte [[VAR.device]] können nicht aufgefrischt werden."
+
+msgid "cantUpdateDiskUsage"
+msgstr "Festplattennutzungsinformationen für die Platte [[VAR.device]] können nicht aufgefrischt werden."
+
+msgid "choose_site"
+msgstr "Klicken Sie auf eine virtuelle Site um die Speichernutzung für Benutzer der Site zu sehen."
+
+msgid "couldNotGetId"
+msgstr "Kann die [[VAR.id]] für [[VAR.target]] nicht auslesen.  [[VAR.target]] scheint auf dem System nicht zu existieren."
+
+msgid "couldNotSetQuota"
+msgstr "Disk Quota für [[VAR.name]] kann nicht gesetzt werden."
+
+msgid "couldNotSync"
+msgstr "Die Plattenquota konnte nicht mit der im Speicher vorhandenen Quota aktualisiert werden."
+
+msgid "diskUsageFor"
+msgstr "Festplattenbelegung für [[VAR.userName]]"
+
+msgid "diskUsed"
+msgstr "Plattennutzung (MB)"
+
+msgid "diskUsed_help"
+msgstr "Speicher in Megabytes (MB), der auf dieser Partition verwendet wird."
+
+msgid "errSettingEmails"
+msgstr "Ein Fehler trat beim Speichern der Benachrichtigungseinstellungen auf."
+
+msgid "groupDiskFree"
+msgstr "Freier Plattenspeicher (MB)"
+
+msgid "groupDiskFree_help"
+msgstr "Die gesamte Plattengröße in Megabytes (MB), die zur Nutzung zur Verfügung steht."
+
+msgid "groupDiskPercentage"
+msgstr "Nutzung in Prozent"
+
+msgid "groupDiskPercentage_help"
+msgstr "Der prozentuale Anteil von verfügbarem Festplattenspeicher, der momentan genutzt wird."
+
+msgid "groupDiskUsage"
+msgstr "Festplatten-Nutzung"
+
+msgid "groupDiskUsageFor"
+msgstr "Plattennutzung für [[VAR.groupName]]"
+
+msgid "groupDiskUsage_help"
+msgstr "Informationen für die gesamte und individuelle Festplatten-Nutzung von Benutzern einsehen."
+
+msgid "groupDiskUsage_menu"
+msgstr "Festplatte"
+
+msgid "groupDiskUsage_menu_help"
+msgstr "Informationen für die gesamte und individuelle Festplatten-Nutzung von Benutzer einsehen."
+
+msgid "groupDiskUsed"
+msgstr "Genutzer Festplattenspeicher (MB)"
+
+msgid "groupDiskUsed_help"
+msgstr "Die gesamte Festplattennutzung in Megabytes (MB) nach Benutzern."
+
+msgid "mail_admin_on_user"
+msgstr "Benachrichtigungsmail senden "
+
+msgid "mail_admin_on_vsite"
+msgstr "Benachrichtigungsmail senden "
+
+msgid "mail_user"
+msgstr "E-Mail Benutzer"
+
+msgid "overQuotaMsg"
+msgstr "Sie belegen momentan mehr Festplattenspeicher, als Ihnen zugestanden wurde. Entfernen Sie nicht mehr benötigte E-Mails und Dateien, um das Problem zu beheben."
+
+msgid "partition"
+msgstr "Partition"
+
+msgid "partition_help"
+msgstr "Name der Partition oder des Verzeichnisses."
+
+msgid "percentage"
+msgstr "Prozentuale Nutzung"
+
+msgid "percentage_help"
+msgstr "Gegenwärtig verfügbarer Festplattenspeicher in Prozent."
+
+msgid "quota"
+msgstr "Erlaubte Festplattennutzung (MB)"
+
+msgid "quota_help"
+msgstr "Festplattenspeicher in Megabytes (MB), der jedem Benutzer zur Verfügung steht."
+
+msgid "serverDiskUsage"
+msgstr "Plattennutzung"
+
+msgid "serverDiskUsageDesc"
+msgstr "Übersicht über die Plattennutzung auf diesem Server."
+
+msgid "serverDiskUsageDesc_menu"
+msgstr "Übersicht über die Plattennutzung auf diesem Server."
+
+msgid "serverDiskUsage_menu"
+msgstr "Platte"
+
+msgid "service"
+msgstr "Dienste"
+
+msgid "serviceDiskPercentage"
+msgstr "[[base-disk.userDiskPercentage]]"
+
+msgid "serviceDiskPercentage_help"
+msgstr "Zeigt die prozentuale Nutzung des Festplatten-Platzes, den dieser Dienst momentan belegt."
+
+msgid "service_help"
+msgstr "Diese Anwendungen oder Systemdienste können Festplattenspeicher belegen. "
+
+msgid "service_quota"
+msgstr "[[base-disk.quota]]"
+
+msgid "service_quota_help"
+msgstr "Festplattenspeicher in Megabytes (MB), der jedem Dienst zur Verfügung steht."
+
+msgid "service_used"
+msgstr "[[base-disk.used]]"
+
+msgid "service_used_help"
+msgstr "Der genutzte Festplattenspeicher in Megabytes (MB) je Dienst."
+
+msgid "settings"
+msgstr "Benachrichtigungseinstellungen"
+
+msgid "settings_help"
+msgstr "Hier klicken um eine E-Mail zu schicken, wenn der Benutzer seine Disk-Quota überschreitet."
+
+msgid "site_exceeds"
+msgstr "Wenn die Site den erlaubten Festplattenspeicher überschreitet"
+
+msgid "site_exceeds_help"
+msgstr "Dies gibt an, ob eine Email gesendet werden soll, wenn eine Seite ihr Limit des erlaubten Festplattenspeichers überschreitet."
+
+msgid "site_over_quota"
+msgstr "Eine oder mehrere virtuelle Seiten haben belegen mehr Festplattenspeicher, als erlaubt. Eine separate E-Mail mit detaillierteren Informationen wurde verschickt."
+
+msgid "sites_over_quota"
+msgstr "Die folgenden virtuellen Seite(n) haben ihre Disk-Quota überschritten: [[VAR.sites]]."
+
+msgid "summary"
+msgstr "Zusammenfassung"
+
+msgid "summaryVsite"
+msgstr "Sites"
+
+msgid "summaryVsite_help"
+msgstr "Festplattennutzung für virtuelle Sites."
+
+msgid "summary_help"
+msgstr "Plattennutzung pro Partition."
+
+msgid "suspended_cce"
+msgstr "Auf der Root-Partition steht nur noch sehr wenig Festplattenspeicher zur Verfügung. Da dies die Stabilität des Betriebssystemes beeinträchtigen kann, wurde der Server Desktop gesperrt. Bitte loggen Sie sich per SSH oder Telnet auf dem Server ein und entfernen oder verschieben Sie unnötige Dateien, um wieder genügend Platz auf der Root-Partition zu schaffen. Die Systemüberwachung wird den Server Desktop automatisch wieder freischalten, sobald genügen Platz zur Verfügung steht. Sie können die Systemüberwachung auch manuell prüfen lassen, ob bereits wieder genug Platz auf der Root-Partition vorhanden ist. Gehen Sie dazu in die Systemüberwachung und klicken Sie dort auf 'Jetzt prüfen'."
+
+msgid "sysQuota"
+msgstr "Plattennutzung des Systems"
+
+msgid "total"
+msgstr "Gesamtgröße (MB)"
+
+msgid "total_help"
+msgstr "Gesamtgröße in Megabytes (MB) dieser Partition."
+
+msgid "unlimited"
+msgstr "Unbegrenzt"
+
+msgid "used"
+msgstr "Plattennutzung (MB)"
+
+msgid "used_help"
+msgstr "Der genutzte Festplattenspeicher in Megabytes (MB) je Benutzer."
+
+msgid "user"
+msgstr "Benutzername"
+
+msgid "userDiskFree"
+msgstr "Freier Festplattenspeicher (MB)"
+
+msgid "userDiskFree_help"
+msgstr "Die Menge des Festplattenspeichers in Megabyte (MB), der zur Verwendung verfügbar ist."
+
+msgid "userDiskPercentage"
+msgstr "Belegt (Prozent)"
+
+msgid "userDiskPercentage_help"
+msgstr "Zeigt an, welcher Prozentsatz des verfügbaren Festplattenspeichers belegt ist."
+
+msgid "userDiskUsage"
+msgstr "Festplattenbelegung"
+
+msgid "userDiskUsage_help"
+msgstr "Hier können Sie Informationen über die Festplattenbelegung einsehen."
+
+msgid "userDiskUsed"
+msgstr "Belegter Festplattenspeicher (MB)"
+
+msgid "userDiskUsed_help"
+msgstr "Die Menge des Festplattenspeichers in Megabyte (MB), welcher derzeit belegt ist."
+
+msgid "userOverQuota"
+msgstr "Quota-Warnung"
+
+msgid "userOverQuota_help"
+msgstr "Zeigt an, dass Sie momentan mehr Festplattenspeicher belegen, als Ihnen zugestanden wurde. Bitte entfernen Sie nicht mehr benötigte E-Mails und Dateien, um das Problem zu beheben."
+
+msgid "userQuota"
+msgstr "Festplattennutzung je Benutzer"
+
+msgid "user_exceeds"
+msgstr "Wenn der Benutzer mehr Platte belegt, als erlaubt"
+
+msgid "user_exceeds_help"
+msgstr "Dies gibt an, welche Mail gesendet werden soll, wenn ein Benutzer sein Limit an erlaubtem Festplattenspeicher überschreitet."
+
+msgid "user_help"
+msgstr "Plattenausnutzung pro Benutzer."
+
+msgid "users"
+msgstr "Alle Benutzer"
+
+msgid "users_help"
+msgstr "Plattennutzung pro Benutzer."
+
+msgid "users_over_quota"
+msgstr "Die folgenden Benutzer haben ihre Disk-Quota überschritten: [[VAR.users]]."
+
+msgid "vsiteName"
+msgstr "Voller Site-Name"
+
+msgid "vsiteName_help"
+msgstr "Kompletter Name der Site."
+
+msgid "vsiteQuota"
+msgstr "Erlaubte Plattennutzung (MB)"
+
+msgid "vsiteQuota_help"
+msgstr "Festplattenspeicher in Megabytes (MB), der dieser Site zur Verfügung steht."
+
+msgid "vsiteUsed"
+msgstr "Speichernutzung (MB)"
+
+msgid "vsiteUsed_help"
+msgstr "Festplattenspeicher in Megabytes (MB), der gegenwärtig von dieser Site verwendet wird."
+
+msgid "OverQuota_Users"
+msgstr "Benutzer mit Disk Quota Problemen:"
+
+msgid "All_Users"
+msgstr "Alle Benutzer:"
+
+msgid "OverQuota_Sites"
+msgstr "Sites mit Disk Quota Problemen:"
+
+msgid "All_Sites"
+msgstr "Alle Sites:"
+

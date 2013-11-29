@@ -1,0 +1,39 @@
+<!-- This is the AM Namespace for monitoring filesystems -->
+<class name="ActiveMonitor" 	namespace="Disk" 	version="1.1">
+    <property name="enabled"    	type="boolean" 	default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="exec"/>
+    <property name="typeData"		type="scalar"	
+	default="/usr/sausalito/swatch/bin/am_disk.pl"/>
+
+    <property name="currentState" 	type="amstate" 	default="N"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+    <property name="nameTag"   	type="scalar"  	
+	default="[[base-disk.amDiskNameTag]]"/>
+
+    <property name="URL"	     	type="scalar" 
+ 	default="/base/disk/serverDiskUsage.php?activeMonitor=1"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+
+    <!-- go yellow if less than 125 MB and more than 90% used -->
+    <property name="yellow_free"	type="scalar"	default="125"/>
+    <property name="yellow_pcnt"	type="scalar"	default="90"/>
+    <!-- go red if less than 100 MB and more than 95% used -->
+    <property name="red_free"	type="scalar"	default="100"/>
+    <property name="red_pcnt"	type="scalar"	default="95"/>
+
+    <property name="mail_admin_on_user"	type="boolean"	
+	writeACL="ruleCapable(systemMonitor)" default="0"/>
+    <property name="mail_user"		type="boolean"	
+	writeACL="ruleCapable(systemMonitor)" default="1"/>
+    <property name="mail_admin_on_vsite"	type="boolean"	
+	writeACL="ruleCapable(systemMonitor)" default="1"/>
+    <property name="suspend_cce"	type="boolean"	
+	writeACL="ruleCapable(systemMonitor)" default="1"/>
+    <property name="root_thresh"	type="scalar"	
+	writeACL="ruleCapable(systemMonitor)" default="500000"/>
+
+</class>

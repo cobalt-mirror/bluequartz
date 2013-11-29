@@ -1,0 +1,546 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-27 08:18+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+# menu labels
+msgid "selectStat"
+msgstr "Details der Nutzung..."
+
+msgid "summary"
+msgstr "Zusammenfassung"
+
+msgid "downloadBut"
+msgstr "Logfile herunterladen"
+
+msgid "downloadBut_help"
+msgstr "Klicken Sie hier, um das Logfile dieses Dienstes herunterzuladen. Das Logfile beinhaltet die verzeichnete Aktivität beginnend ab Mitternacht des ersten Tages bis zum Ende des spezifizierten Tages. Oder bis zum Zeitpunkt, als dieser Report generiert wurde. Falls Logfiles entfernt wurden, so kann es sein, dass für den abgerufenen Zeitraum keine Informationen mehr bereitgestellt werden können."
+
+msgid "serverusage"
+msgstr "Statistiken"
+
+msgid "serverusageDescription"
+msgstr "Klicken Sie hier um Statistiken über die Nutzung des Servers einzusehen."
+
+msgid "netusage"
+msgstr "Netzwerk"
+
+msgid "netusageDescription"
+msgstr "Nutzungsstatistiken des Netzwerks"
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Web usage statistics"
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "FTP-Nutzung"
+
+msgid "mailusage"
+msgstr "Email"
+
+msgid "mailusageDescription"
+msgstr "Email-Nutzung"
+
+# other msgs
+msgid "generateSettings"
+msgstr "Konfigurieren Sie die [[VAR.type]] Report-Optionen"
+
+msgid "generateSettingsVsite"
+msgstr "Konfigurieren Sie die [[VAR.type]] Report-Optionen für [[VAR.fqdn]]"
+
+msgid "customizeBut"
+msgstr "Neuen Report generieren"
+
+msgid "customizeBut_help"
+msgstr "Kann Statistik für bestimmten Zeitraum generieren."
+
+msgid "generateBut"
+msgstr "Report erzeugen"
+
+msgid "generateBut_help"
+msgstr "Report mittels der gewählten Optionen erzeugen."
+
+msgid "generate"
+msgstr "Report erzeugen"
+
+msgid "reportGenerated"
+msgstr "Report erzeugt"
+
+msgid "reportGenerated_help"
+msgstr "Zeitpunkt an dem der Report erzeugt wurde."
+
+msgid "startDate"
+msgstr "Startzeitpunkt"
+
+msgid "startDate_help"
+msgstr "Zeitpunkt des ersten im Logfile festgehaltenen Ereignisses."
+
+msgid "endDate"
+msgstr "Endzeitpunkt"
+
+msgid "endDate_help"
+msgstr "Zeitpunkt des letzten im Logfile festgehaltenen Ereignisses."
+
+msgid "requestCoverageHint"
+msgstr "Bitte beachten Sie, dass die Auswertung nur Informationen enthält, wenn in den Logfiles für den Zeitraum auch Aktivitäten verzeichnet wurden."
+
+msgid "bytesTransfered"
+msgstr "Übertragene Daten"
+
+msgid "bytesTransfered_help"
+msgstr "Gesamtsumme der von diesem Dienst übertragenen Daten während des gewählten Zeitraumes."
+
+msgid "vsitesReportBut"
+msgstr "Nutzung pro Site"
+
+msgid "vsitesReportBut_help"
+msgstr "Generiert einen Report über die Nutzung pro Site."
+
+msgid "periodicReportBut"
+msgstr "Regelmäßige Reports"
+
+msgid "historicalReportBut"
+msgstr "Historie der Nutzung pro Tag, Woche oder Monat."
+
+msgid "historicalReportBut_help"
+msgstr "Reports der täglichen, wöchentlichen oder monatlichen Nutzung."
+
+msgid "requestReportButweb"
+msgstr "Angefragte Files"
+
+msgid "requestReportButweb_help"
+msgstr "Kategorisiert Anfragen nach abgefragten Files."
+
+msgid "requestReportButftp"
+msgstr "[[base-sitestats.requestReportButweb]]"
+
+msgid "requestReportButftp_help"
+msgstr "[[base-sitestats.requestReportButweb_help]]"
+
+msgid "requestReportButmail"
+msgstr "Absender und Empfänger"
+
+msgid "requestReportButmail_help"
+msgstr "Kategorisiert Email-Dienstleistungen nach Absendern und Empfängern."
+
+msgid "requestReportBut"
+msgstr "Files, die am häufigsten abgefragt wurden"
+
+msgid "requestReportBut_help"
+msgstr "Kategorisiert Anfragen nach Art der abgefragten Files."
+
+msgid "downloadLogBut"
+msgstr "Logfile herunterladen (alle verfügbaren Zeiträume)"
+
+msgid "downloadLogBut_help"
+msgstr "Diese Schaltfläche erlaubt das Herunterladen der Logfiles."
+
+msgid "bytes_help"
+msgstr "Anzahl der heruntergeladenen Bytes."
+
+msgid "pbytes"
+msgstr "Prozentsatz der Bytes"
+
+msgid "pbytes_help"
+msgstr "Prozentsatz der insgesamt übertragenen Daten."
+
+msgid "ipAddr"
+msgstr "IP-Addresse"
+
+msgid "ipAddr_help"
+msgstr "Die IP-Adresse(n) für diesen Server. Die IP-Adresse '127.0.0.1' bezeichnet lokalen Netzwerk-Traffic."
+
+msgid "site"
+msgstr "Site"
+
+msgid "site_help"
+msgstr "Name der virtuellen Site. Das Feld 'Server' repräsentiert Traffic, der keiner bestimmten Site zugeordnet werden konnte."
+
+msgid "iDomain"
+msgstr "Empfängerdomänen"
+
+msgid "iDomain_help"
+msgstr "Domänen der Empfänger von Emails, die von diesem Server angenommen wurden. Das Feld 'Server' representiert lokale Empfänger, bei denen keine Domäne beim Versand spezifiziert wurde."
+
+msgid "oDomain"
+msgstr "Absenderdomänen"
+
+msgid "oDomain_help"
+msgstr "Domänen der Absender von Emails, die von diesem Server angenommen wurden. Das Feld 'Server' representiert lokale Empfänger, bei denen keine Domäne beim Empfang spezifiziert wurde."
+
+msgid "Home"
+msgstr "Server"
+
+msgid "requests"
+msgstr "Anfragen"
+
+msgid "domain"
+msgstr "Domäne"
+
+msgid "domain_help"
+msgstr "Die Domäne, von der die Anfrage stammt. Sollte bei Anfragen der Domänenname nicht aufgelöst werden können, so werden diese Anfragen als  \"[[base-sitestats.unresolved numerical addresses]]\" geführt. Bitte beachten Sie, dass die Summen eingerückter Reihen in der Zusammenfassung der zugehörigen Zeilen mit berücksichtigt werden. Beispiel: Der Traffic für alle Hosts mit der '.com'-Endung wird in der Spalte '.com' in der Domänen-Spalte aufgeführt."
+
+msgid "dailyHistory"
+msgstr "Tägliche Übersicht"
+
+msgid "weeklyHistory"
+msgstr "Wöchentliche Übersicht"
+
+msgid "monthlyHistory"
+msgstr "Monatliche Übersicht"
+
+msgid "dailyHistory_help"
+msgstr "Klicken Sie hier um die protokollierten Aktivitäten in täglicher Übersicht zu sehen."
+
+msgid "weeklyHistory_help"
+msgstr "Klicken Sie hier um die protokollierten Aktivitäten in wöchentlicher Übersicht zu sehen."
+
+msgid "monthlyHistory_help"
+msgstr "Klicken Sie hier um die protokollierten Aktivitäten in monatlicher Übersicht zu sehen."
+
+msgid "daily"
+msgstr "Tägliche Nutzung"
+
+msgid "hourly"
+msgstr "Tägliche Nutzungsübersicht nach Stunden"
+
+msgid "useByDayOfWeek"
+msgstr "Wöchentliche Nutzungsübersicht nach Tagen"
+
+msgid "weekly"
+msgstr "Wöchentliche Nutzung"
+
+msgid "monthly"
+msgstr "Monatliche Nutzung"
+
+msgid "filetype"
+msgstr "File Typen"
+
+msgid "filetype_help"
+msgstr "Typ der File-Anfrage basierend nach File-Endungen. Beispiel: Ein File mit '.jpg'-Endung wird als 'JPEG Grafik' geführt."
+
+msgid "requestFile"
+msgstr "File"
+
+msgid "requestFile_help"
+msgstr "Der Name des angefragten Files."
+
+msgid "requestNumber"
+msgstr "Anfragen"
+
+msgid "requestNumber_help"
+msgstr "Anzahl der Anfragen für dieses File."
+
+msgid "noDataError"
+msgstr "Es wurde keine Aktivität während des spezifizierten Zeitraumes protokolliert. Versuchen Sie bitte einen anderen Zeitraum."
+
+msgid "fullDailyDesc"
+msgstr "Diese Auswertung zeigt die kummulierten Aktivität für jeden Tag."
+
+msgid "fullWeeklyDesc"
+msgstr "Diese Auswertung zeigt die kummulierten Aktivität pro Woche."
+
+msgid "fullMonthlyDesc"
+msgstr "Diese Auswertung zeigt die kummulierten Aktivität pro Monat."
+
+msgid "hourlySummaryDesc"
+msgstr "Diese Auswertung zeigt die stündliche Verteilung der kummulierten Aktivität."
+
+msgid "dailySummaryDesc"
+msgstr "Diese Auswertung zeigt die tägliche Verteilung der kummulierten Aktivität."
+
+msgid "gigabyte_abbr"
+msgstr "GB"
+
+msgid "megabyte_abbr"
+msgstr "MB"
+
+msgid "kilobyte_abbr"
+msgstr "KB"
+
+# Vsite menu defaults, per-site config
+msgid "sitestatsTabName"
+msgstr "Nutzungs-Information"
+
+msgid "sitestatsTabName_help"
+msgstr "Konfigurieren Sie hier die Nutzungs-Statistiken."
+
+msgid "sitestatsEnable"
+msgstr "Aktiviere das Anlegen von Statistiken"
+
+msgid "sitestatsEnable_help"
+msgstr "Klicken Sie hier, um für virtuelle Sites Web- FTP- une Email-Statistiken anzulegen."
+
+msgid "sitestatsConsolidate"
+msgstr "Detailgrad"
+
+msgid "sitestatsConsolidate_help"
+msgstr "Der Detailgrad definiert, ob tägliche Nutzungsstatistiken in ein monatliches Logfile kombiniert werden. Das beeinflusst nicht die Qualität der Statistiken, hat aber Einfluss darauf, über welche Zeiträume sie Statistiken einsehen können. Falls 'täglich' ausgewählt wurde, können Reports nur mit weniger als einem Monat an Daten eingesehen werden. Wird 'monatlich' ausgewählt, können mehrere Monate an Statistiken eingesehen werden. Änderungen dieser Einstellung sind nicht rückwirkend und betreffen keine Logfiles, die bereits generiert wurden. Die 'monatliche' Speicherung nimmt weniger Platz weg als die 'tägliche'."
+
+msgid "sitestatsConsolidateDaily"
+msgstr "Täglich"
+
+msgid "sitestatsConsolidateMonthly"
+msgstr "Monatlich"
+
+msgid "sitestatsPurge"
+msgstr "Statistische Übersicht"
+
+msgid "sitestatsPurge_help"
+msgstr "Diese Option beeinflusst, wie weit zurück Sie in Auswertungen gehen können. Ein längerer Zeitraum erlaubt es natürlich, Statistiken mit einer längeren Historie zu erhalten. Das kostet aber deutlich mehr Speicherplatz."
+
+msgid "bytes"
+msgstr "Bytes"
+
+msgid "never"
+msgstr "Ewig"
+
+msgid "month"
+msgstr "1 Monat"
+
+msgid "2month"
+msgstr "2 Monate"
+
+msgid "3month"
+msgstr "3 Monate"
+
+msgid "6month"
+msgstr "6 Monate"
+
+msgid "year"
+msgstr "1 Jahr"
+
+msgid "2year"
+msgstr "2 Jahre"
+
+msgid "3year"
+msgstr "3 Jahre"
+
+msgid "4year"
+msgstr "4 Jahre"
+
+msgid "5year"
+msgstr "5 Jahre"
+
+msgid "byIP"
+msgstr "Nutzung pro IP-Adresse"
+
+msgid "sendReceiveByDomain"
+msgstr "Absender- und Empfänger-Domänen"
+
+msgid "referringSite"
+msgstr "Report über verlinkende Seiten"
+
+msgid "typesReportBut"
+msgstr "File Typen"
+
+msgid "requestorDomain"
+msgstr "Client Domänen"
+
+msgid "summaryStats"
+msgstr "[[VAR.type]] Statistische Auswertung"
+
+msgid "summaryStatsVsite"
+msgstr "[[VAR.type]] Statistische Auswertung für [[VAR.fqdn]]"
+
+msgid "otherStatistics"
+msgstr "Detailierte Statistik"
+
+msgid "view"
+msgstr "Anzeigen"
+
+msgid "view_help"
+msgstr "Klicken Sie hier, um eine detailiertere Anzeige zu erhalten."
+
+msgid "reportType"
+msgstr "Report"
+
+msgid "reportType_help"
+msgstr "Die nachfolgenden detailierteren Statistiken sind verfügbar."
+
+msgid "firstRequest"
+msgstr "Erste Aktivität"
+
+msgid "firstRequest_help"
+msgstr "Das Datum der ersten im Logfile protokollierten Aktivität."
+
+msgid "lastRequest"
+msgstr "Letzte Aktivität"
+
+msgid "lastRequest_help"
+msgstr "Das Datum der letzten im Logfile protokollierten Aktivität."
+
+msgid "successfulRequests"
+msgstr "Summe der Anfragen"
+
+msgid "successfulRequests_help"
+msgstr "Anzahl der individuellen Abfragen dieses Dienstes."
+
+msgid "totalSent"
+msgstr "Summe Gesendet"
+
+msgid "totalSent_help"
+msgstr "Summe der ausgehenden Abfragen."
+
+msgid "totalReceived"
+msgstr "Summe Empfangen"
+
+msgid "totalReceived_help"
+msgstr "Die Anzahl der eingehenden Anfragen dieses Dienstes."
+
+msgid "distinctFiles"
+msgstr "Individuelle Files"
+
+msgid "distinctFiles_help"
+msgstr "Anzahl der verschiedenen angefragten Files."
+
+msgid "uniqueHosts"
+msgstr "Individuelle Clients"
+
+msgid "uniqueHosts_help"
+msgstr "Die Anzahl der verschiedenen Computer, die eine Anfrage machten."
+
+msgid "pageRequests"
+msgstr "Erfolgreiche Anfragen"
+
+msgid "pageRequests_help"
+msgstr "Summe der erfolgreichen Anfragen."
+
+msgid "failedRequests"
+msgstr "Fehlerhafte Anfragen"
+
+msgid "failedRequests_help"
+msgstr "Summe der fehlerhaften, bzw. nicht erfolgreichen Anfragen."
+
+msgid "vsiteStatsIn"
+msgstr "Mail-Empfänger pro Domäne"
+
+msgid "vsiteStatsOut"
+msgstr "Mail-Versender pro Domäne"
+
+msgid "Site"
+msgstr "Virtuelle Site Hostname"
+
+msgid "Site_help"
+msgstr "Voll qualifizierter Host- und Domänen-Namen der virtuellen Site. 'Server' repräsentiert hierbei Anfragen von Diensten, die keiner bestimmten Site zugeordnet werden konnten."
+
+msgid "requests_help"
+msgstr "Die Summe der Anfragen an diesen Dienst pro virtueller Site."
+
+msgid "vsites_in"
+msgstr "Email-Empfänger"
+
+msgid "vsites_in_help"
+msgstr "Klicken Sie hier, um die Domänen der Empfänger von Emails einzusehen, die von diesem Server ausgingen."
+
+msgid "vsites_out"
+msgstr "Email-Absender"
+
+msgid "vsites_out_help"
+msgstr "Klicken Sie hier, um die Domänen der Absender von Emails einzusehen, die Mails an diesen Server verschickten."
+
+msgid "vsiteStats"
+msgstr "[[VAR.type]] Nutzung pro Site"
+
+msgid "domainStats"
+msgstr "[[VAR.type]] Nutzung pro Domäne"
+
+msgid "vsiteStatsVsite"
+msgstr "[[VAR.type]] Nutzung pro virtueller Site für [[VAR.fqdn]]"
+
+msgid "domainStatsVsite"
+msgstr "[[VAR.type]] Nutzung pro Domäne für [[VAR.fqdn]]"
+
+msgid "requestStats"
+msgstr "Angefragte [[VAR.type]] Daten"
+
+msgid "requestStatsVsite"
+msgstr "Angefragte [[VAR.type]] Daten für [[VAR.fqdn]]"
+
+msgid "typeStats"
+msgstr "[[VAR.type]] Nutzung pro File-Typ"
+
+msgid "typeStatsVsite"
+msgstr "[[VAR.type]] Nutzung pro File-Typ für [[VAR.fqdn]]"
+
+msgid "requestStatsOut"
+msgstr "Ausgehende Email"
+
+msgid "requestStatsIn"
+msgstr "Eingehende Email"
+
+msgid "requestStatsOutVsite"
+msgstr "Email Absender via  [[VAR.fqdn]]"
+
+msgid "requestStatsInVsite"
+msgstr "EMail Empfänger via [[VAR.fqdn]]"
+
+msgid "requestInBut"
+msgstr "Email-Empfänger einsehen"
+
+msgid "requestInBut_help"
+msgstr "Klicken Sie hier, um die Empfänger einzusehen, deren Emails von diesem Server verarbeitet wurden."
+
+msgid "requestOutBut"
+msgstr "Email Absender einsehen"
+
+msgid "requestOutBut_help"
+msgstr "Klicken Sie hier, um die Absender einzusehen, deren Emails von diesem Server verarbeitet wurden."
+
+msgid "requestFileIn"
+msgstr "Email-Absender"
+
+msgid "requestFileIn_help"
+msgstr "Dies sind die Email-Adressen von Absendern. Sie beinhalten Emails von Benutzern gehosteter Sites als auch von externen Benutzern, die an Postfächer auf diesem Server geschickt wurden."
+
+msgid "requestFileOut"
+msgstr "Email-Empfänger"
+
+msgid "requestFileOut_help"
+msgstr "Dies sind die Empfänger-Addressen von Emails. Das beinhaltet sowohl lokale als auch nichtlokale Empfänger."
+
+msgid "sitestatsSettingsButton"
+msgstr "Einstellungen"
+
+msgid "sitestatsSettingsButtonHelp"
+msgstr "Klicken Sie hier, um die Nutzungsinformationen und Statistiken für diese Site zu konfigurieren."
+
+msgid "sitestatsSettings"
+msgstr "Nutzungsinformations-Einstellungen für [[VAR.fqdn]]"
+
+msgid "statsQuota"
+msgstr "Nutzungs-Protokolle"
+
+# embedded analog messages
+msgid "unresolved numerical addresses"
+msgstr "Unbekannt"
+
+# vsite service name
+msgid "serviceName"
+msgstr "Nutzungs-Informationen"
+
+msgid "directories"
+msgstr "Index Files"
+
+# some handler error messages
+msgid "cantEnableLogrotate"
+msgstr "Die Logfile-Rotation für diese Site kann nicht aktiviert werden."
+
+msgid "systemError"
+msgstr "Es ist ein Systemfehler aufgetreten, während versucht wurde, die gewünschten Informationen auszulesen."
+

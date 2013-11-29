@@ -1,0 +1,11 @@
+<item 
+    id="base_phpsysinfo" 
+    label="[[base-phpsysinfo.hwInfo]]" 
+    description="[[base-phpsysinfo.hwInfo_help]]" 
+    url="/base/phpsysinfo/.phpsysinfo/index.php"
+>
+    <parent id="base_system" order="80"/>
+    <parent id="base_serverconfig" order="95">
+        <access require="adminUser"/>
+    </parent>
+</item>

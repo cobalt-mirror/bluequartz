@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+# $Id: cadduser,v 1.2 2001/08/24 17:10:09 jeffb Exp $
+use strict;
+$0 = 'cadduser';
+
+use lib "/usr/sausalito/perl";
+use lib "/home/shell-tools/perl";
+
+require Shell;
+require ShellCCE;
+
+my $shell = Shell->new($0);
+
+if(!$shell->isObj('name')) {
+	$shell->usage();
+	print "You must provide the --name option\n";
+	exit 1;
+} elsif(!$shell->isObj('fqdn') && !$shell->isObj('group')) {
+	$shell->usage();
+	print "You must provide the --group or --fqdn option\n";
+	exit 1;
+}
+
+if(!$shell->isObj('fullName')) {
+	$shell->putObj('fullName', $shell->obj('name'));
+}
+if(!$shell->isObj('password')) {
+	$shell->putObj('password', $shell->cfg('defaultPassword'));
+}
+
+# connect to CCE
+my $cce = new ShellCCE;
+$cce->connectuds();
+
+# setup some vars I always use w/ cce
+my ($ok, $bad, @info, $defaults);
+
+# make sure we are adding to something that exists
+$cce->setParent($shell);
+
+# get the defaults
+if(!$shell->isObj('quota', 'Disk')) {
+	my $siteOid = $cce->findx("Vsite", { name => $shell->obj('site') });
+	($ok, $defaults) = $cce->get($siteOid, 'UserDefaults');
+	if($ok == 0) { print "Cannot get user defaults\n"; }
+	else { $shell->putObj('quota', $defaults->{quota}, 'Disk') }
+}
+
+$cce->normalizeObj($shell);
+my $userRef = $cce->unLoad($shell->{obj});
+
+# create the user
+($ok, $bad, @info) = $cce->create("User", $userRef);
+if($ok == 0) {
+	print "Error creating user:\n";
+	$cce->printReturn($bad, @info);
+	$cce->bye("you messed up");
+	exit 1;
+}
+# if we get here, we must set other data related to the user
+my $oid = $cce->oid();
+$cce->setNameSpaces($shell->{obj}, $oid);
+
+print "User $userRef->{name} created successfully\n";
+$cce->bye("my luser is done");
+
+exit 0;

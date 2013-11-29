@@ -1,0 +1,236 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: websitestats\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-27 03:56+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "customizeBut"
+msgstr "[[base-sitestats.customizeBut]]"
+
+msgid "customizeBut_help"
+msgstr "[[base-sitestats.customizeBut_help]]"
+
+msgid "generateBut"
+msgstr "[[base-sitestats.generateBut]]"
+
+msgid "generateBut_help"
+msgstr "[[base-sitestats.generateBut_help]]"
+
+# summary page
+msgid "summaryStats"
+msgstr "Zusammenfassende Web-Statistiken"
+
+msgid "reportGenerated"
+msgstr "[[base-sitestats.reportGenerated]]"
+
+msgid "reportGenerated_help"
+msgstr "[[base-sitestats.reportGenerated_help]]"
+
+msgid "firstRequest"
+msgstr "Erste Anfrage"
+
+msgid "firstRequest_help"
+msgstr "Das Datum der ersten Anfrage, welche im Logfile aufgeführt wird. [[base-sitestats.requestCoverageHint]]"
+
+msgid "lastRequest"
+msgstr "Letzte Anfrage"
+
+msgid "lastRequest_help"
+msgstr "Das Datum der letzten Anfrage, die im Logfile verzeichnet ist. [[base-sitestats.requestCoverageHint]]"
+
+msgid "successfulRequests"
+msgstr "Alle erfolgreichen Anfragen"
+
+msgid "successfulRequests_help"
+msgstr "Dies ist die gesamte Anzahl aller erfolgreichen Anfragen."
+
+msgid "pageRequests"
+msgstr "Seitenaufrufe"
+
+msgid "pageRequests_help"
+msgstr "Zeigt die Anzahl der abgerufenen Webseiten an. Als Seite werden hierbei Zugriffe auf Files mit der Endung '.html', '.htm', '.php', '.asp' oder '/' gezählt."
+
+msgid "failedRequests"
+msgstr "Fehlerhafte Anfragen"
+
+msgid "failedRequests_help"
+msgstr "Wenn Besucher nicht existierende Seiten abrufen, protokolliert der Server das als fehlerhafte Anfrage. Unter dieser Rubrik werden solche und andere fehlerhafte Anfragen aufgeführt, die dazu führten, dass die Anfrage des Besuchers nicht ausgeführt werden konnte."
+
+msgid "bytesTransfered"
+msgstr "[[base-sitestats.bytesTransfered]]"
+
+msgid "bytesTransfered_help"
+msgstr "[[base-sitestats.bytesTransfered_help]]"
+
+msgid "distinctFiles"
+msgstr "Verschiedene übertragene Dateien"
+
+msgid "distinctFiles_help"
+msgstr "Anzahl von verschiedenen Dateien, die von diesem Server übertragen wurden."
+
+msgid "uniqueHosts"
+msgstr "Einzelne Computer, die Dateien abgefragt haben"
+
+msgid "uniqueHosts_help"
+msgstr "Dies zeigt die Anzahl von Computern an, die diesen Server kontaktierten. Dies gibt eine ungefähre Vorstellung davon, wie viele verschiedene Personen Inhalte von diesem Server heruntergeladet haben. Achtung: Verschiedene Computer hinter einer Firewall oder einem Proxyserver werden nur als eine einzige Adresse gezählt."
+
+# summary links
+msgid "otherStatistics"
+msgstr "Andere Web-Nutzungsstatistiken"
+
+msgid "vsitesReportBut"
+msgstr "[[base-sitestats.vsitesReportBut]]"
+
+msgid "vsitesReportBut_help"
+msgstr "[[base-sitestats.vsitesReportBut_help]]"
+
+msgid "periodicReportBut"
+msgstr "[[base-sitestats.periodicReportBut]]"
+
+msgid "periodicReportBut_help"
+msgstr "[[base-sitestats.periodicReportBut_help]]"
+
+msgid "historicalReportBut"
+msgstr "[[base-sitestats.historicalReportBut]]"
+
+msgid "historicalReportBut_help"
+msgstr "[[base-sitestats.historicalReportBut_help]]"
+
+msgid "domainReportBut"
+msgstr "Anfragen nach Domäne"
+
+msgid "domainReportBut_help"
+msgstr "Domänen, von denen Anfragen gestartet wurden."
+
+msgid "typesReportBut"
+msgstr "Anfragen nach Dateityp"
+
+msgid "typesReportBut_help"
+msgstr "Gliederung des Transfers nach Dateitypen."
+
+msgid "requestReportBut"
+msgstr "[[base-sitestats.requestReportBut]]"
+
+msgid "requestReportBut_help"
+msgstr "[[base-sitestats.requestReportBut_help]]"
+
+msgid "downloadLogBut"
+msgstr "[[base-sitestats.downloadLogBut]]"
+
+msgid "downloadLogBut_help"
+msgstr "[[base-sitestats.downloadLogBut_help]]"
+
+msgid "dailyHistory"
+msgstr "[[base-sitestats.dailyHistory]]"
+
+msgid "weeklyHistory"
+msgstr "[[base-sitestats.weeklyHistory]]"
+
+msgid "monthlyHistory"
+msgstr "[[base-sitestats.monthlyHistory]]"
+
+msgid "dailyHistory_help"
+msgstr "[[base-sitestats.dailyHistory_help]]"
+
+msgid "weeklyHistory_help"
+msgstr "[[base-sitestats.weeklyHistory_help]]"
+
+msgid "monthlyHistory_help"
+msgstr "[[base-sitestats.monthlyHistory_help]]"
+
+msgid "daily"
+msgstr "[[base-sitestats.daily]]"
+
+msgid "hourly"
+msgstr "[[base-sitestats.hourly]]"
+
+msgid "daily_help"
+msgstr "[[base-sitestats.daily_help]]"
+
+msgid "hourly_help"
+msgstr "[[base-sitestats.hourly_help]]"
+
+msgid "domainStats"
+msgstr "Domänenstatistiken"
+
+msgid "domain"
+msgstr "[[base-sitestats.domain]]"
+
+msgid "domain_help"
+msgstr "[[base-sitestats.domain_help]]"
+
+msgid "requests"
+msgstr "[[base-sitestats.requests]]"
+
+msgid "requests_help"
+msgstr "Die Anzahl von übertragenen Dateien."
+
+msgid "vsiteStats"
+msgstr "Web-Nutzung pro virtueller Site"
+
+msgid "bytes"
+msgstr "[[base-sitestats.bytes]]"
+
+msgid "bytes_help"
+msgstr "[[base-sitestats.bytes_help]]"
+
+msgid "pbytes"
+msgstr "[[base-sitestats.pbytes]]"
+
+msgid "pbytes_help"
+msgstr "[[base-sitestats.pbytes_help]]"
+
+msgid "site"
+msgstr "[[base-sitestats.site]]"
+
+msgid "site_help"
+msgstr "[[base-sitestats.site_help]]"
+
+msgid "typeStats"
+msgstr "Anfrage nach Dateityp"
+
+msgid "filetype"
+msgstr "[[base-sitestats.filetype]]"
+
+msgid "filetype_help"
+msgstr "[[base-sitestats.filetype_help]]"
+
+msgid "requestStats"
+msgstr "Am häufigsten übertragene Dateien"
+
+msgid "requestFile"
+msgstr "[[base-sitestats.requestFile]]"
+
+msgid "requestFile_help"
+msgstr "[[base-sitestats.requestFile_help]]"
+
+msgid "requestNumber"
+msgstr "[[base-sitestats.requestNumber]]"
+
+msgid "requestNumber_help"
+msgstr "[[base-sitestats.requestNumber_help]]"
+
+msgid "fullDailyDesc"
+msgstr "[[base-sitestats.fullDailyDesc]]"
+
+msgid "fullWeeklyDesc"
+msgstr "[[base-sitestats.fullWeeklyDesc]]"
+
+msgid "fullMonthlyDesc"
+msgstr "[[base-sitestats.fullMonthlyDesc]]"
+
+msgid "hourlySummaryDesc"
+msgstr "[[base-sitestats.hourlySummaryDesc]]"
+
+msgid "dailySummaryDesc"
+msgstr "[[base-sitestats.dailySummaryDesc]]"
+

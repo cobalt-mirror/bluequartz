@@ -1,0 +1,431 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: base-maillist.po\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2008-01-25 18:15+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+# --- Menu
+msgid "maillists"
+msgstr "Mailing-Listen"
+
+msgid "maillistsHelp"
+msgstr "Hier können Sie [[base-maillist.maillistList_menu]] verwalten."
+
+# --- Mailing Lists page
+msgid "maillistList_menu"
+msgstr "Mailing-Listen"
+
+msgid "maillistList"
+msgstr "Mailing-Listen für [[VAR.group]]"
+
+msgid "maillistNameHeader"
+msgstr "Name"
+
+msgid "maillistNameHeader_help"
+msgstr "Name der Mailing-Liste"
+
+msgid "recipientsHeader"
+msgstr "Anzahl der Abonenten"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Abonenten"
+
+msgid "recipientsHeader_help"
+msgstr "Anzahl der Abonenten der Mailing-Liste."
+
+msgid "groupSubscriber"
+msgstr "Alle Mitglieder der [[VAR.group]] Gruppe"
+
+msgid "maillistDescHeader"
+msgstr "Kommentare"
+
+msgid "maillistDescHeader_help"
+msgstr "Diese Zeile beinhaltet Zusatzinformationen über jede Mailing-Liste."
+
+msgid "maillistActionHeader"
+msgstr "Aktion"
+
+msgid "maillistActionHeader_help"
+msgstr "Mit diesen Knöpfen können Sie Mailing-Liste(n) modifizieren oder löschen."
+
+msgid "confirm_removal_of_list"
+msgstr "Sind Sie sicher, dass die die Mailing-Liste  [[VAR.list]] löschen möchten?"
+
+msgid "subscribers"
+msgstr "Abonenten"
+
+msgid "subscribers_help"
+msgstr "Die Liste der Abonenten der Mailing-Liste kann hier konfiguriert werden."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] Lokale Abonenten"
+
+msgid "edit_locals"
+msgstr "Ändern"
+
+msgid "edit_locals_help"
+msgstr "Klicken Sie hier um die lokalen Benutzer auszuwählen, welche Abonenten der Mailing-Liste sind."
+
+msgid "localsSearch"
+msgstr "Benutzerliste durchsuchen"
+
+msgid "search"
+msgstr "Suchen"
+
+msgid "search_help"
+msgstr "Klicken Sie hier um Benutzer anzuzeigen, welche Ihren Suchkriterien entsprechen."
+
+msgid "showall"
+msgstr "Alle Benutzer anzeigen"
+
+msgid "showall_help"
+msgstr "Klicken Sie hier, um alle Benutzer der Site anzuzeigen."
+
+msgid "showselected"
+msgstr "Nur ausgewählte Benutzer anzeigen"
+
+msgid "showselected_help"
+msgstr "Klicken Sie hier, um nur Benutzer anzuzeigen, die ausgwählt wurden."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] auf [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Benutzer, auf die  [[VAR.criteria]] zutrifft"
+
+msgid "selected"
+msgstr "Ausgewählte Benutzer"
+
+msgid "all"
+msgstr "Alle Benutzer"
+
+msgid "selectAll"
+msgstr "Alle Benutzer auswählen"
+
+msgid "selectAll_help"
+msgstr "Klicken Sie hier, um alle Benutzer dieser Site auszuwählen. Die Auswahl wird alle Benutzer auf dieser (und anderen) Seiten beinhalten."
+
+msgid "selectPage"
+msgstr "Diese Seite auswählen"
+
+msgid "selectPage_help"
+msgstr "Klicken Sie hier, um alle Benutzer dieser Site auszuwählen."
+
+msgid "use_these"
+msgstr "Nutze bestehende Auswahl"
+
+msgid "use_these_help"
+msgstr "Klicken Sie hier, um die momentane Auswahl an lokalen Benutzer zu verwenden."
+
+msgid "cancel"
+msgstr "Abbrechen"
+
+msgid "cancel_help"
+msgstr "Klicken Sie hier um die momentanen Einstellungen zu ignorieren und zur vorherigen Auswahl zurückzukehren."
+
+msgid "name"
+msgstr "Benutzername"
+
+msgid "name_help"
+msgstr "Name des Benutzers auf dieser virtuellen Site. Markieren Sie die Checkbox um den Benutzer zur Mailing-Liste hinzuzufügen."
+
+# ----- Add/modify a mailing list Basic
+msgid "createMailList"
+msgstr "Mailing-Liste zu [[VAR.fqdn]] hinzufügen"
+
+msgid "modifyMailList"
+msgstr "Konfiguration der Mailing-Liste für [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Standard"
+
+msgid "advanced"
+msgstr "Fortgeschritten"
+
+msgid "basic_help"
+msgstr "Klicken Sie hier, um die Standard-Einstellungen der Mailing-Liste einzusehen und zu ändern."
+
+msgid "advanced_help"
+msgstr "Klicken Sie hier, um die erweiterten Optionen der Mailing-Liste zu verwalten."
+
+msgid "listName"
+msgstr "Name der Liste"
+
+msgid "listName_rule"
+msgstr "Bitte geben Sie den Namen in Kleinschreibung an. Verwenden Sie dabei nur alphanumerische Zeichen, Minus, Punkt und Unterstriche. "
+
+msgid "listName_help"
+msgstr "Geben Sie den Namen der Mailing-Liste ein.  [[base-maillist.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Der Wert [[VAR.invalidValue]] ist kein gültiger Eintrag für [[base-maillist.listName]].  [[base-maillist.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Sie haben keinen gültigen Wert für  [[base-maillist.listName]] eingetragen.   [[base-maillist.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Mitglieder"
+
+msgid "workgroupMembers_help"
+msgstr "Dieses Feld beinhaltet eine Liste der Mitglieder, die zu der Gruppe gehören, die mit der Mailing-Liste assoziiert ist. Es sind immer alle Mitglieder dieser Gruppe Abonenten der Mailing-Liste."
+
+msgid "group_field"
+msgstr "Gruppenliste"
+
+msgid "group_field_help"
+msgstr "Name der Mailing-Liste dieser Gruppe. Alle Mitglieder dieser Gruppe werden automatisch als Abonenten der Mailing-Liste geführt."
+
+msgid "save"
+msgstr "Speichern"
+
+msgid "save_help"
+msgstr "Diese Mailing-Liste speichern."
+
+msgid "localSubscribers"
+msgstr "Lokale Abonenten"
+
+msgid "localSubscribers_help"
+msgstr "Klicken Sie hier um alle lokalen Benutzer auszuwählen, welche Abonenten dieser Mailing-Liste sind."
+
+msgid "subscribed"
+msgstr "Abonenten hinzugefügt"
+
+msgid "unsubscribed"
+msgstr "Abonenten entfernt"
+
+msgid "remoteSubscribers"
+msgstr "Nicht-lokale Abonenten"
+
+msgid "remoteSubscribers_rule"
+msgstr "Geben Sie hier die korrekt formatierte Email-Adresse ein. Zum Beispiel 'user@example.com' wäre eine gültige Adresse."
+
+msgid "remoteSubscribers_help"
+msgstr "Fügen Sie hier nicht-lokale Benutzer zur Mailing-Liste hinzu. Nicht-lokale Benutzer sind all jene, die kein Email-Konto auf diesem Server haben.[[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Die Eingabe  [[VAR.invalidValue]] ist kein gültiger Wert für das Feld  [[base-maillist.remoteSubscribers]].  [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "description"
+msgstr "Kommentare"
+
+msgid "description_help"
+msgstr "Fügen Sie hier Bemerkungen und Kommentare über die Mailing-Liste hinzu."
+
+# ----- Add/modify a mailing list Advanced
+msgid "moderator"
+msgstr "Moderator"
+
+msgid "moderator_rule"
+msgstr "Geben Sie hier die korrekt formatierte Email-Adresse oder den Benutzernamen eines Benutzers auf diesem Server ein. Standard ist 'admin'. Gültige Einträge wären zum Beispiel: 'user@example.com' oder 'admin'."
+
+msgid "moderator_help"
+msgstr "Geben Sie die Email-Adresse des Benutzers ein, der administrative Rechte für die Mailing-Liste erhalten soll.  [[base-maillist.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "[[VAR.invalidValue] ist ein ungültiger Wert für das Feld [[base-maillist.moderator]].  [[base-maillist.moderator_rule]]"
+
+# handler version
+msgid "Moderator-does-not-exist"
+msgstr "Ungültiger Moderator: Der Benutzer [[VAR.moderator]] scheint nicht zu existieren."
+
+msgid "moderator_empty"
+msgstr "Sie haben keinen Wert für das Feld [[base-maillist.moderator]] spezifiziert.  Sie müssen dort etwas eintragen, selbst wenn die Mailing-Liste als unmoderiert geführt wird. [[base-maillist.moderator_rule]]"
+
+msgid "policies"
+msgstr "Moderation"
+
+msgid "apassword"
+msgstr "Passwort"
+
+msgid "apassword_help"
+msgstr "Geben Sie ein administratives Passwort ür diese Mailing-Liste ein. Dieses Passwort wird verwendet, wenn bestimmte Listenverwaltungsaufgaben über E-Mail durchgeführt werden (z. B. Genehmigung von Abonnements oder Moderation von Nachrichten). Wenn Sie diese Funktionen nicht verwenden wollen, können Sie dieses Feld leer lassen."
+
+msgid "postingPolicy"
+msgstr "Beitrags-Richtlinie"
+
+msgid "postingPolicy_help"
+msgstr "Wählen Sie eine Beitrags-Richtlinie für diese Mailing-Liste aus. Wenn Sie die Option Moderator bestätigt alle Nachrichten auswählen, erfordert jede Nachricht eine Genehmigung durch den Listeneigentümer oder einen Moderator. "
+
+msgid "any"
+msgstr "Alle Benutzer können Nachrichten senden"
+
+msgid "members"
+msgstr "Nur Abonnenten können Nachrichten senden"
+
+msgid "moderated"
+msgstr "Moderator bestätigt alle Nachrichten"
+
+msgid "admin"
+msgstr "Nur Administratoren können Nachrichten senden"
+
+msgid "domain"
+msgstr "Nur Benutzer von lokale Domains können Nachrichten senden"
+
+msgid "subscriptionPolicy"
+msgstr "Abonnement-Richtlinie"
+
+msgid "subscriptionPolicy_help"
+msgstr "Wählen Sie eine Abonnement-Richtlinie für die Mailing-Liste aus. Abonenten können ihr Abonement dadurch beginnen oder beenden, indem sie eine Email an majordomo@[[VAR.fqdn]] mit dem Begriff 'subscribe list' or 'unsubscribe list' im Body der Nachricht schreiben. 'list' ist hierbei durch den Namen der Mailing-Liste zu ersetzen. Falls die Abonement-Richtlinie auf 'geschlossen' steht, erfolgt der Zutritt zur Liste erst nachdem der Moderator den Antrag bestätigt hat. Die Zustimmung zum Beenden des Abonements ist jedoch niemals erforderlich."
+
+msgid "open"
+msgstr "Offen: Jeder kann die Liste abonieren."
+
+msgid "closed"
+msgstr "Geschlossen: Moderator muss Abonement bestätigen."
+
+msgid "confirm"
+msgstr "Bestätigung: Abonement begint erst nach Bestätigungsemail"
+
+msgid "maxlength"
+msgstr "Maximale Länge von Nachrichten"
+
+msgid "maxlength_help"
+msgstr "Wählen Sie die maximale Größe in KB oder MB, die für an diese Mailing-Liste gesendete Nachrichten gelten soll. Nachrichten, die diese Größe überschreiten, werden abgelehnt."
+
+msgid "5120"
+msgstr "5 kb"
+
+msgid "51200"
+msgstr "50 kb"
+
+msgid "512000"
+msgstr "500 kb"
+
+msgid "10485760"
+msgstr "10 MB"
+
+msgid "104857600"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "Antwort-Richtlinie"
+
+msgid "replyToList_help"
+msgstr "Stellen Sie die Antwort-Richtlinie für diese Mailing-Liste ein. Wenn Sie Auf Liste antworten auswählen, gehen die Antworten an die Liste. Ansonsten gehen die Antworten nur an den ursprünglichen Verfasser der Nachricht."
+
+msgid "replyList"
+msgstr "Antwort an Liste"
+
+msgid "archiveSettings"
+msgstr "Archivierung"
+
+msgid "archiveEnabled"
+msgstr "Aktiv"
+
+msgid "archiveEnabled_help"
+msgstr "Geben Sie an, ob an diese Mailing-Liste gesendete Nachrichten archiviert werden. Benutzer mit Konten auf diesem Server können mit Hilfe ihres WebMail-Kontos auf diese Archive zugreifen, wenn WebMail installiert wurde."
+
+msgid "keepForDays"
+msgstr "Aufbewahrungszeitraum (Tage)"
+
+msgid "keepForDays_help"
+msgstr "Geben Sie eine Zahl ein, die angibt, wie viele Tage diese Nachrichten im Archiv aufbewahrt werden. Wenn Sie Null (0) eingeben, werden archivierte Nachrichten unbegrenzt aufbewahrt."
+
+msgid "keepForDays_rule"
+msgstr "Geben Sie eine Zahl ein, die angibt, wie viele Tage diese Nachrichten im Archiv aufbewahrt werden. Wenn Sie Null (0) eingeben, werden archivierte Nachrichten unbegrenzt aufbewahrt. "
+
+msgid "keepForDays_empty"
+msgstr "Sie haben keinen Wert für das Feld [[base-maillist.keepForDays]] eingegeben. [[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Das Feld [[base-maillist.keepForDays]] enthält leider einen ungültigen Wert. [[base-maillist.keepForDays_rule]]"
+
+# ------ Handler messages
+msgid "name-already-taken"
+msgstr "Eine Mailing-Liste mit dem angegebenen Namen ist leider bereits vorhanden. Bitte geben Sie einen anderen Namen ein und versuchen Sie es noch einmal."
+
+msgid "name-already-taken-by-user"
+msgstr "Eine Mailing-Liste mit diesem Namen kann nicht angelegt werden, da der angegebene Name bereits durch ein Email-Konto eines Benutzers verwendet wird. Bitte wählen Sie einen anderen Namen und versuchen Sie es erneut."
+
+msgid "Mail-alias-already-taken"
+msgstr "Eine Mailing-Liste mit diesem Namen kann nicht angelegt werden, da der angegebene Name bereits durch ein Email-Alias eines Benutzers verwendet wird. Bitte wählen Sie einen anderen Namen und versuchen Sie es erneut."
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Leider können Mailing-Listen für Benutzergruppen auf diesem Server nicht entfernt werden."
+
+msgid "Could-not-create-maillist"
+msgstr "Leider trat ein Fehler auf. Die Mailing-Liste konnte nicht erstellt werden. "
+
+# ----- Archives for users with accounts
+#--- List view
+msgid "maillistArchive"
+msgstr "Mailing-Liste Archiv - [[VAR.name]]"
+
+msgid "title"
+msgstr "Betreff"
+
+msgid "title_help"
+msgstr "Dies ist die Betreff-Zeile der Nachricht."
+
+msgid "author"
+msgstr "Absender"
+
+msgid "author_help"
+msgstr "Der Name oder die E-Mail-Adresse der Person, die die Nachricht gesendet hat."
+
+msgid "date"
+msgstr "Datum"
+
+msgid "date_help"
+msgstr "Das Datum, an dem die Nachricht empfangen wurde."
+
+#--- Read message view
+msgid "readMessage"
+msgstr "Nachricht lesen"
+
+msgid "readMessage_help"
+msgstr "Nachricht lesen"
+
+msgid "from"
+msgstr "Von"
+
+msgid "from_help"
+msgstr "Der Name bzw. die E-Mail-Adresse der Person, die die Nachricht gesendet hat."
+
+msgid "subject"
+msgstr "Betreff"
+
+msgid "subject_help"
+msgstr "Der Betreff der Nachricht."
+
+msgid "message"
+msgstr "Nachricht"
+
+msgid "message_help"
+msgstr "Der Text der Nachricht."
+
+msgid "replySender"
+msgstr "Auf Absender antworten"
+
+msgid "replySender_help"
+msgstr "Klicken Sie hier, um dem Autor der Nachricht zu antworten."
+
+msgid "replyAll"
+msgstr "Antwort an alle"
+
+msgid "replyAll_help"
+msgstr "Klicken Sie hier, um dem Autor sowie allen Empfänger der Nachricht zu antworten."
+
+# ------ Misc  (i.e. I have no idea)
+msgid "membership"
+msgstr "Mitgliedschaft"
+
+msgid "membership_help"
+msgstr "Die Mitgliedschaft definiert die Benutzer, die dieser Mailing-Liste zugeordnet sind."
+
+# ------- Strings for email messages
+msgid "WelcomeMessageSubject"
+msgstr "Archivierung wurde aktiviert"
+
+msgid "WelcomeMessageBody"
+msgstr "Diese E-Mail weist Sie darauf hin, dass die Archivierung der Mailing-Liste [[VAR.name]] für Benutzer mit Konten auf diesem Server aktiviert wurde. Diese Benutzer können über WebMail auf dieses Archiv zugreifen. Sie müssen nicht auf diese Nachricht antworten."
+

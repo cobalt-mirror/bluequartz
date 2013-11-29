@@ -1,0 +1,16 @@
+<class name="dnsbl" namespace="" version="1.0"
+	createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)">
+
+	<property 
+        	name="blacklistHost" type="fqdn" default=""
+        	writeacl="ruleCapable(modifyEmail)"
+    	/>
+	<property 
+        	name="deferTemporary" type="boolean" default="1"
+        	writeacl="ruleCapable(modifyEmail)"
+    	/>
+	<property 
+        	name="active" type="boolean" default="0"
+        	writeacl="ruleCapable(modifyEmail)"
+    	/>
+</class>

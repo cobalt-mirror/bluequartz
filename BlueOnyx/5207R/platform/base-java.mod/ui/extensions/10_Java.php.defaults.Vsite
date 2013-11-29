@@ -1,0 +1,35 @@
+<?php
+// $Id: 10_Java.php.defaults.Vsite,v 1.1 2001/11/15 02:44:03 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
+// Java.php.defaults.Vsite
+
+include_once('UIExtension.php');
+
+class JavaExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-java");
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$defaults = $cce->get($parameters["CCE_SERVICES_OID"], "Java");
+	
+		$javaEnable = $factory->getBoolean("Java_enabled", $defaults["enabled"]);
+		
+		// assume PagedBlock because that is most likely going to be it
+		$page_id = 'webScripting';
+		$container->addFormField($javaEnable, $factory->getLabel("enableJava"),
+                    $page_id);
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+		global $Java_enabled;
+
+		$cce = $ServerScriptHelper->getCceClient();
+		
+		$cce->set($parameters["CCE_SERVICES_OID"], "Java", array("enabled" => $Java_enabled));
+		$errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

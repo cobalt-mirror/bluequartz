@@ -1,0 +1,37 @@
+<!--
+  This file describes the schema of the following class types:
+    ActiveMonitor.DiskIntegrity 
+
+  These class definitions are predefined by Cobalt, and should not be
+  extended without Cobalt's permission.  To add application-specific
+  properties to an object, consider creating a new namespace.
+
+-->
+
+  <class name="ActiveMonitor" 	namespace="DiskIntegrity" 	version="1.0">
+    <property name="enabled"      	type="boolean" 	default="1"/>
+    <property name="monitor"		writeACL="ruleCapable(systemMonitor)"
+	type="boolean" 	default="1"/>
+    <property name="type"		type="scalar"	default="aggregate"/>
+    <property name="typeData"		type="scalar"	
+	default="RAID SMART DMA"/>
+
+    <property name="currentState" 	type="amstate" 	default="G"/>
+    <property name="lastChange"   	type="uint"     default="0"/>
+    <property name="lastRun"      	type="uint"     default="0"/>
+    <property name="currentMessage" 	type="scalar" 	default=""/>
+
+    <property name="greenMsg" 		type="scalar" 	
+	default="[[base-raid.integrityOK]]"/>
+    <property name="yellowMsg" 		type="scalar" 	
+	default="[[base-raid.integrityProblem]]"/>
+    <property name="redMsg" 		type="scalar" 	
+	default="[[base-raid.integritySevereProblem]]"/>
+
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-raid.amDiskIntegrityNameTag]]"/>
+    <property name="URL"	     	type="scalar"  	
+	default="/base/raid/disk_integrity_amdetails.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+  </class>
+

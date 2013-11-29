@@ -1,0 +1,42 @@
+# translation of swatch.po to German
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: swatch\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-10-31 20:50+0200\n"
+"PO-Revision-Date: 2008-01-26 07:12+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "cceDown"
+msgstr "Der Dienst CCEd.init läuft nicht. Bitte starten Sie diesen Dienst als 'root' mit '/etc/init.d/cced.init start' neu. Oder starten Sie den Server neu."
+
+msgid "defGreenMsg"
+msgstr "Diese Komponente arbeitet normal"
+
+msgid "defRedMsg"
+msgstr "Bei dieser Komponente ist ein schwerwiegendes Problem aufgetreten."
+
+msgid "defYellowMsg"
+msgstr "Bei dieser Komponente ist ein Problem aufgetreten."
+
+msgid "defUnknownMsg"
+msgstr "Der Status dieser Komponente ist unbekannt."
+
+msgid "emailBody"
+msgstr "Die Systemüberwachung hat unlängst Veränderungen am Status Ihres Servers festgestellt.\n"
+"Weitere Einzelheiten finden Sie im Abschnitt Systemüberwachung der Administrationsoberfläche.\n\n"
+"Folgende Veränderungen wurden registriert:"
+
+msgid "emailSubject"
+msgstr "Änderungen am Status von Aktiver Monitor "
+

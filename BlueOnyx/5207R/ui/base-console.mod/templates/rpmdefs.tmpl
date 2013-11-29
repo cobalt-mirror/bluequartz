@@ -1,0 +1,306 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: CCE/[VENDOR]
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+#Requires: aventurine-conf
+
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+Obsoletes: solarspeed-console-locale-en
+Obsoletes: solarspeed-console-ui
+Obsoletes: solarspeed-console-glue
+Obsoletes: solarspeed-console-capstone
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+%attr(0644,-,-) /etc/cron.d/pam_abl_purge.cron
+%attr(0644,-,-) /etc/pam.d/password-auth-ac.5107R
+%attr(0644,-,-) /etc/pam.d/system-auth.5106R
+%attr(0755,-,-) /usr/sausalito/sbin/pam_abl_import.pl
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_a.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_a.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_e.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_e.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/ajax.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/cron.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/cron.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/index.html
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/logtail.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/maillog.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/maillog.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/messages.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/messages.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/pa.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/pa.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/pe.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/pe.php
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/secure.js
+%attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/secure.php
+
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_a.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_e.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/cron.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/maillog.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/messages.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/pa.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/pe.pl
+%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/secure.pl
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+# Restart CCEd unless we're updating through the GUI:
+if [ ! -f /tmp/yum.updating ]; then
+    /etc/init.d/cced.init restart
+fi
+
+# Restart CRONd:
+/etc/init.d/crond restart > /dev/null 2>&1
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Mon Sep 17 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX07
+- Added ui/web/index.php because IE has some issues with the magnifying glass
+  icon's WHOIS lookup button. It truncates the URL and doesn't redirect back 
+  to /base/console/pam_abl_status.php, but back to /base/console/ instead.
+  Adding an index.php with a redirect to /base/console/pam_abl_status.php
+  now serves as a work around. Not nice, but people who use IE are resistant
+  to pain anyway.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Sat Aug 20 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX05
+- Removed call to /usr/sausalito/sbin/pam_abl_import.pl from glue/cron.d/pam_abl_purge.cron for now.
+  Needs to be made a bit more resilient before we activate this again.
+
+* Mon Aug 15 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX04
+- Updated ui/web/console_logs_*.php to fix array_walk_recursive() line. 
+  Otherwise PHP-5.3.3 now segfaults on us. Great.
+
+* Wed Jul 25 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX03
+- Updated glue/sbin/pam_abl_import.pl with locking mechanism
+
+* Wed Jun 29 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX02
+- Fixed two problems: 
+- Inability to unblock a single blocked host. Always had to unblock them all.
+- New check for valid 'Host rule' didn't take case 'disabled' into account. Fixed.
+
+* Tue Jun 28 2011 Michael Stauber <mstauber@blueonyx.it> 1.2.0-0BX01
+- Updated build for 5106R, 5107R and 5108R
+- To implement pam_abl support into PAM, we usually modified the upstream PAM, which is undesireable.
+  This new build of base-console.mod auto-detects the platform and rotates the right PAM config in,
+  which overwrites one of the stock vendor supplied PAM config files.
+- Added glue/pam.d/system-auth.5106R for 5106R on CentOS5
+- Added glue/pam.d/password-auth-ac.5107R for 5107R and 5108R on CentOS6 and SL6
+- Modified constructor/import_pam_abl_settings.pl to rotate the respective config in.
+- Updated ui/web/pam_abl.php with a better default assuming 'user rule' import.
+
+* Sun Jun 05 2013 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX15
+- ui/web/console_procs.php: ereg() and eregi() replaced with preg_match()
+
+* Sun Jun 05 2013 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX14
+- Palette fix required reversal of fix in ui/web/console_logfilesHandler.php
+
+* Sun Jun 05 2013 Michael Stauber <mstauber@blueonyx.it> 1.1.0-0BX13
+- Various PHP-5.3 related issues fixed.
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@blueonyx.it>
+- [1.1.0-0BX12] Copied 'en' locales to 'en_US'
+
+* Tue Aug 18 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX11] Further speed improvement measures.
+- Added glue/sbin/pam_abl_import.pl to pre-load CODB with ip / host data.
+- Modified glue/cron.d/pam_abl_purge.cron to also run glue/sbin/pam_abl_import.pl
+
+* Mon Aug 17 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX10] All those forward and reverse lookups are too slow on large host/ip lists.
+- Updated glue/schemas/console_pam_abl.schema with timestamp field for fail_host's.
+- Modified glue/handlers/pam_abl_import.pl to only lookup host or IP once and when needed.
+- Removed general rebuild of fail_host database and replaced it with selective delete of entries past their purge timer.
+
+* Thu Aug 13 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX09] Small fix to glue/handlers/pam_abl_import.pl
+
+* Wed Aug 12 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX08] Small fix to glue/handlers/pam_abl_import.pl
+
+* Wed Aug 12 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX07] As pam_abl gets fed with IPs and FQDNs into the 'hosts' database things had to be changed a little.
+- Updated glue/schemas/console_pam_abl.schema to create new database fields for IP and Hostname.
+- Updated glue/handlers/pam_abl_import.pl to to hostname and IP lookups to gather whatever is missing.
+- Updated locales again.
+
+* Tue Aug 11 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX06] Small locale update. 'Reset all user blocks' help text was not showing due to a typo.
+
+* Mon Aug 10 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX05] Added ability to run 'whois' lookup on offending hosts.
+- Added ui/web/pam_abl_whois.php
+- Modified ui/web/pam_abl_status.php
+- Extended locales for new strings.
+- Changed display order of menu items for 'Login Manager' and 'Failed Logins' around.
+
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX04] Fixed small display glitch in non-English versions of UI pages
+- Fixed empty display string in ui/web/console_procs.php and ui/web/console_logins.php
+
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX03] Last post release errands addressed.
+- Modified user_rule defaults in constructor/import_pam_abl_settings.pl
+- Modified user_rule defaults in glue/handlers/import_pam_abl_settings.pl
+
+* Fri Aug 07 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX02] Last post release errands addressed.
+- Added Cronjob glue/cron.d/pam_abl_purge.cron to auto-purge databases every 15 minutes.
+- Added two missing strings to all locales.
+- Added ability to (more or less) disable user- and host-rules in ui/web/pam_abl.php and ui/web/pam_ablHandler.php
+- Modified glue/schemas/console_pam_abl.schema to set user rule to disabled by default.
+- Extended host related unblock/reset handlers with ability to erase ProFTPd bans and to restart xinetd.
+- Added German translation.
+
+* Thu Aug 06 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.1.0-0BX01] Expanded module with pam_abl management functions.
+- Modified glue/conf/console.conf with new calls to pam_abl related handlers.
+- Added glue/schemas/console_pam_abl.schema with new CODB database fields for pam_abl
+- Added ui/menu/console_pam_abl.xml for general pam_abl settings management
+- Added ui/web/pam_abl.php ui/web/pam_ablHandler.php to allow configuration of pam_abl
+- Added glue/handlers/import_pam_abl_settings.pl glue/handlers/update_pam_abl_settings.pl to import and modify pam_abl configuration
+- Added constructor/import_pam_abl_settings.pl to import pam_abl settings on cced restart
+- Modified constructor/create_sol_console_services.pl to auto-generated pam_abl_settings CODB object
+- Added glue/handlers/pam_abl_import.pl to import user and IP blocks into CODB.
+- Added glue/handlers/pam_abl_reset_all.pl to reset all user and host blocks.
+- Added glue/handlers/pam_abl_unblock_host.pl to unblock hosts.
+- Added glue/handlers/pam_abl_unblock_user.pl to unblock users.
+- Added glue/handlers/pam_abl_reset_hosts.pl to remove hosts from database.
+- Added glue/handlers/pam_abl_reset_users.pl to remove users from database.
+- Added glue/handlers/pam_abl_purge.pl to purge old entries from database.
+- Added ui/menu/console_pam_abl_status.xml and ui/web/pam_abl_status.php to show and modify blocks.
+- Updated locales. English only so far.
+
+* Tue Jul 14 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.0.4-0BX01] Donation of module to BlueOnyx.
+- Changed all paths from 'solarspeed' to 'base'.
+- Updated copyright information where applicable.
+- Added German locales.
+- Copied English locales to 'da_DK' and 'ja'.
+
+* Mon Jul 06 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.0.3-SOL1] Added ui/web/stylehack.php to externalize the style hack for easier future maintenance.
+
+* Mon Jul 06 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.0.2-SOL1] Added ability to view logfiles through improvised Ajax based methods.
+
+* Fri Jul 03 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.0.1-SOL1] Added ability to show last logins and to kill ongoing logins.
+
+* Thu Jul 02 2009 Michael Stauber <mstauber@solarspeed.net>
+- [1.0.0-SOL1] Initial build
+
+<end $CHANGELOG>
+

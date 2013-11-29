@@ -1,0 +1,22 @@
+
+msgid "cceDown"
+msgstr "El motor de configuración de cobalto (CCE) no se está ejecutando. Active Monitor no puede funcionar sin el motor de configuración de cobalto. Pruebe a reiniciar el servicio &quot;cced.init&quot; o reinicio del servidor a través de SSH ther. Si el Monitor activo todavía no funciona, por favor consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "defGreenMsg"
+msgstr "Este componente es normal"
+
+msgid "defRedMsg"
+msgstr "Hay un problema grave con este componente"
+
+msgid "defUnknownMsg"
+msgstr "El estado es desconocido para este componente"
+
+msgid "defYellowMsg"
+msgstr "Hay un problema con este componente"
+
+msgid "emailBody"
+msgstr ". Active Monitor ha detectado cambios recientes en el estado de su dispositivo de servidor\nPara obtener más detalles, consulte la sección Monitor activo del Escritorio Server\n\nSummary de cambios.:"
+
+msgid "emailSubject"
+msgstr "Cambios de estado de monitor activos"
+

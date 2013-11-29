@@ -1,0 +1,267 @@
+msgid "yumgui_head"
+msgstr "YUM - Updater"
+
+msgid "autoupdate"
+msgstr "Auto-Update enabled"
+
+msgid "autoupdate_help"
+msgstr "You can enable YUM to automatically download and install all updates. By enabling it and checking all weekdays it'll run daily. If you want to run it once per week on Mondays, just check Monday instead."
+
+msgid "yumlog"
+msgstr "yum.log"
+
+msgid "yumlog_help"
+msgstr "This page lets you review your YUM logfile, into which all transactions of YUM are logged. The logfile is located at /var/log/yum.log"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Settings_help"
+msgstr "You can enable YUM to automatically download and install all updates - on a daily basis. If enabled it will run each morning at 06:00 a.m."
+
+msgid "Logs"
+msgstr "Logs"
+
+msgid "Logs_help"
+msgstr "This page lets you review your YUM logfile, into which all transactions of YUM are logged. The logfile is located at /var/log/yum.lo"
+
+msgid "yumguimenuentry"
+msgstr "YUM Updater"
+
+msgid "yumguimenuentrydesc"
+msgstr "YUM is the updater that CentOS + BlueOnyx uses to keep the OS and the GUI up to date. You can run YUM from the command line (see 'man yum'). Or you can run it fully automated as a daily cronjob. That functionality can be enabled or disabled here."
+
+msgid "yumlog_empty"
+msgstr "The logfile appears to be empty."
+
+msgid "yumTitle"
+msgstr "Available Updates"
+
+msgid "yumTitle_help"
+msgstr "Shows date and time of last YUM update. You can also query the YUM repositories for pending patches and can install the pending patches manually."
+
+msgid "yumCheck"
+msgstr "Check for Updates"
+
+msgid "yumCheck_help"
+msgstr "Poll the YUM repositories for available updates. This may take a moment or two."
+
+msgid "yumNOW"
+msgstr "Update System"
+
+msgid "yumNOW_help"
+msgstr "Run yum update right now to download and install all pending patches."
+
+msgid "yum_last_updated"
+msgstr "Last updated"
+
+msgid "yum_last_updated_help"
+msgstr "Date and time of last YUM update."
+
+msgid "yum_is_pulling_updates"
+msgstr "Update in progress"
+
+msgid "yum_is_pulling_updates_help"
+msgstr "This system is currently being updated. Please check back in a couple of minutes."
+
+msgid "yumguiEMAIL"
+msgstr "Enable email notifications"
+
+msgid "yumguiEMAIL_help"
+msgstr "If enabled YUM will email you the transaction logfile of the performed update."
+
+msgid "yumguiEMAILADDY"
+msgstr "Email address"
+
+msgid "yumguiEMAILADDY_help"
+msgstr "The default email address to which YUM will send the notifications is of course 'admin'. But you can specify a different email address here if desired."
+
+msgid "yumUpdateTime"
+msgstr "Update Time"
+
+msgid "yumUpdateTime_help"
+msgstr "Allows you to specify at which hour and minute the YUM update is supposed to run. It will only run on the days selected below, though."
+
+msgid "yumUpdateSU"
+msgstr "Run on Sundays"
+
+msgid "yumUpdateSU_help"
+msgstr "Check if you want it to run every Sunday."
+
+msgid "yumUpdateMO"
+msgstr "Run on Mondays"
+
+msgid "yumUpdateMO_help"
+msgstr "Check if you want it to run every Monday."
+
+msgid "yumUpdateTU"
+msgstr "Run on Tuesdays"
+
+msgid "yumUpdateTU_help"
+msgstr "Check if you want it to run every Tuesday."
+
+msgid "yumUpdateWE"
+msgstr "Run on Wednesdays"
+
+msgid "yumUpdateWE_help"
+msgstr "Check if you want it to run every Wednesay."
+
+msgid "yumUpdateTH"
+msgstr "Run on Thursdays"
+
+msgid "yumUpdateTH_help"
+msgstr "Check if you want it to run every Thursday."
+
+msgid "yumUpdateFR"
+msgstr "Run on Fridays"
+
+msgid "yumUpdateFR_help"
+msgstr "Check if you want it to run every Friday."
+
+msgid "yumUpdateSA"
+msgstr "Run on Saturdays"
+
+msgid "yumUpdateSA_help"
+msgstr "Check if you want it to run every Saturday."
+
+msgid "name"
+msgstr "Name"
+
+msgid "name_help"
+msgstr "Name of the RPM"
+
+msgid "version"
+msgstr "Version"
+
+msgid "version_help"
+msgstr "Version of the RPM"
+
+msgid "status"
+msgstr "Repository"
+
+msgid "status_help"
+msgstr "YUM repository in which the RPM is located"
+
+msgid "yumguiEXCLUDE"
+msgstr "Exclude these RPMS"
+
+msgid "yumguiEXCLUDE_help"
+msgstr "Exclude the RPMS listed here from being updated.  Add the RPM Name, but leave off the version information.  Only one entry per line"
+
+msgid "cantYUMCONF"
+msgstr "Unable to edit /etc/yum.conf"
+
+msgid "repos"
+msgstr "Repositories"
+
+msgid "repos_help"
+msgstr "You administer the YUM repositories here."
+
+msgid "addRepo"
+msgstr "Add repository"
+
+msgid "addRepo_help"
+msgstr "Click here to add additional YUM repositories."
+
+msgid "viewRepo"
+msgstr "View repository"
+
+msgid "viewRepo_help"
+msgstr "View repository settings (This is a system repository, this repository is read-only)."
+
+msgid "modRepo"
+msgstr "Modify repository"
+
+msgid "modRepo_help"
+msgstr "Modify repository settings."
+
+msgid "repoName"
+msgstr "Name"
+
+msgid "repoName_help"
+msgstr "Name of the repository."
+
+msgid "repoDescription"
+msgstr "Description"
+
+msgid "repoDescription_help"
+msgstr "Description of the repository."
+
+msgid "enabledField"
+msgstr "Enabled"
+
+msgid "enabledField_help"
+msgstr "This enables this repo to be included in updates."
+
+msgid "repoNameField"
+msgstr "Name"
+
+msgid "repoNameField_help"
+msgstr "This is the name of the repository."
+
+msgid "descriptionField"
+msgstr "Description"
+
+msgid "descriptionField_help"
+msgstr "This field describes the repository."
+
+msgid "baseurlField"
+msgstr "BaseURL"
+
+msgid "baseurlField_help"
+msgstr "This field contains the BaseURL of the repository. (This field should be empty if you use Mirrorlist instead.)"
+
+msgid "mirrorlistField"
+msgstr "Mirrorlist"
+
+msgid "mirrorlistField_help"
+msgstr "This field contains the Mirrorlist of the repository. (This field should be empty if you use BaseURL instead.)"
+
+msgid "gpgkeyField"
+msgstr "GPG Key URL"
+
+msgid "gpgkeyField_help"
+msgstr "A URL pointing to the ASCII-armored GPG key file for the repository. This option is used if yum needs a public key to verify a package and the required key hasn't been imported into the RPM database. If this option is set, yum  will  automatically import the key from the specified URL. Can be http:// or https://, ftp:// or a local file://."
+
+msgid "gpgcheckField"
+msgstr "Check GPG Signature"
+
+msgid "gpgcheckField_help"
+msgstr "This tells yum whether or not it should perform a GPG signature check on the packages gotten from this repository."
+
+msgid "excludeField"
+msgstr "Exclude"
+
+msgid "excludeField_help"
+msgstr "List of packages to exclude from updates or installs. This should be a space separated list. Shell globs using wildcards (eg. * and ?) are allowed."
+
+msgid "includepkgsField"
+msgstr "Include packages"
+
+msgid "includepkgsField_help"
+msgstr "Inverse of exclude. This is a list of packages you want to use from a repository. If this option lists only  one  package then that is all yum will ever see from the repository. Defaults to an empty list.  Substitution variables, described in the manpage yum.conf(5), are honored here."
+
+msgid "invalidUrlBase"
+msgstr "The specified URL for [[base-yum.baseurl]] is invalid. [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlMirror"
+msgstr "The specified URL for [[base-yum.mirrolist]] is invalid. [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlPki"
+msgstr "The specified URL for [[base-yum.pki]] is invalid. [[base-swupdate.urlField_rule]]"
+
+msgid "repoNotUnique"
+msgstr "The repository name specified is not unique, choose another name."
+
+msgid "chooseBaseOrMirror"
+msgstr "You have to choose to use either BaseURL or MirrorList, you can't use both at the same time."
+
+msgid "repoFilePreExist"
+msgstr "The specified file for the repository already exists in '/etc/yum.repos.d', choose another name for your repository"
+
+msgid "repoFileCreationFailed"
+msgstr "The specified repository-file could not be created."
+
+msgid "cantRepoConf"
+msgstr "There was a problem editing the repository-file."
+

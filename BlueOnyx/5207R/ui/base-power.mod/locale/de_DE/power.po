@@ -1,0 +1,202 @@
+# translation of power.po to German
+# Michael Stauber <mstauber@solarspeed.net>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: base-power\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-10-31 20:41+0200\n"
+"PO-Revision-Date: 2008-01-27 08:33+0100\n"
+"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
+"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Translate Toolkit 1.0.1\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "acpi_power_shutdown"
+msgstr ""
+
+msgid "acpi_power_subject"
+msgstr ""
+
+msgid "activity"
+msgstr ""
+
+msgid "amPowerDetails"
+msgstr ""
+
+msgid "askRebootConfirmation"
+msgstr "Wollen Sie den Server wirklich neu starten?"
+
+msgid "askShutdownConfirmation"
+msgstr "Sind Sie sicher, dass Sie den Server herunterfahren möchten?"
+
+msgid "batteryCritical"
+msgstr ""
+
+msgid "batteryCriticalSubject"
+msgstr ""
+
+msgid "cant_get_power_info"
+msgstr ""
+
+msgid "controlPower"
+msgstr ""
+
+msgid "couldNotWakeMachine"
+msgstr ""
+
+msgid "errSettingWakeMode"
+msgstr ""
+
+msgid "mac_addresses"
+msgstr "MAC-Adresse"
+
+msgid "mac_addresses_help"
+msgstr "Die MAC-Adresse ist die einzigartige Kennung Ihrer Netzwerk-Karte. Sie ist eine Nummer, die pro Netzwerkkarte nur einmal vergeben wird."
+
+msgid "magic"
+msgstr ""
+
+msgid "none"
+msgstr ""
+
+msgid "off"
+msgstr "Aus"
+
+msgid "on"
+msgstr "An"
+
+msgid "power"
+msgstr "Ein/Aus"
+
+msgid "powerCritical"
+msgstr ""
+
+msgid "powerHelp"
+msgstr "Hier können Sie den Server neu starten."
+
+msgid "powerLow"
+msgstr ""
+
+msgid "powerName"
+msgstr ""
+
+msgid "powerOK"
+msgstr ""
+
+msgid "powerOptions_block"
+msgstr ""
+
+msgid "powermode"
+msgstr ""
+
+msgid "powermode_help"
+msgstr ""
+
+msgid "poweroptions_menu"
+msgstr "Power"
+
+msgid "poweroptions_menu_help"
+msgstr "In diesem Menü können Sie den Server neu starten oder ihn komplett herunterfahren."
+
+msgid "reboot"
+msgstr "Jetzt neu starten"
+
+msgid "rebootMessage"
+msgstr ""
+
+msgid "reboot_help"
+msgstr "Klicken Sie hier, um den Server neu zu starten."
+
+msgid "reboot_menu"
+msgstr ""
+
+msgid "reboot_menu_help"
+msgstr ""
+
+msgid "reboot_title"
+msgstr ""
+
+msgid "rebooting"
+msgstr "Der Server wird jetzt neu gestartet. Er steht in wenigen Minuten wieder zur Verfügung."
+
+msgid "remainOff1"
+msgstr ""
+
+msgid "remainOff2"
+msgstr ""
+
+msgid "same"
+msgstr ""
+
+msgid "samePower1"
+msgstr ""
+
+msgid "samePower2"
+msgstr ""
+
+msgid "shutdownInstructions"
+msgstr "Um den Server auszuschalten, loggen Sie sich per SSH als 'admin' ein und nutzen dann den Befehl 'su -' um sich als 'root' anzumelden. Führen Sie danach das Kommando '/sbin/shutdown -h now' aus. Das Betriebssystem wird dann kontrolliert heruntergefahren und schaltet sich automatisch aus (falls die Hardware diese Funktion unterstützt)."
+
+msgid "shutdownInstructions_softpower"
+msgstr ""
+
+msgid "shutdownMessage"
+msgstr "Aus Sicherheitsgründen kann dieser Server nicht über die Administrationsoberfläche abgeschaltet werden. <BR>[[base-power.shutdownInstructions]]"
+
+msgid "shutdown_menu"
+msgstr "Jetzt herunterfahren"
+
+msgid "shutdown_menu_help"
+msgstr "Klicken Sie hier, um den Server anzuhalten."
+
+msgid "shutdown_title"
+msgstr ""
+
+msgid "shutting-down"
+msgstr ""
+
+msgid "wakeMode_block"
+msgstr ""
+
+msgid "wakeNow_block"
+msgstr ""
+
+msgid "wakeOnlan"
+msgstr ""
+
+msgid "wakemode"
+msgstr ""
+
+msgid "wakemode_help"
+msgstr ""
+
+msgid "wakenow_button"
+msgstr ""
+
+msgid "wakenow_button_help"
+msgstr ""
+
+msgid "wakenow_menu"
+msgstr ""
+
+msgid "wakenow_menu_help"
+msgstr ""
+
+msgid "wakeoptions_menu"
+msgstr ""
+
+msgid "wakeoptions_menu_help"
+msgstr ""
+
+msgid "willPowerUp1"
+msgstr ""
+
+msgid "willPowerUp2"
+msgstr ""
+

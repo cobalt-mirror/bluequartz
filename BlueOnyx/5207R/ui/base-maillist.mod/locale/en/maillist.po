@@ -1,0 +1,429 @@
+# --- Menu
+
+msgid "maillists"
+msgstr "Mailing Lists"
+
+msgid "maillistsHelp"
+msgstr "[[base-maillist.maillistList_menu]] can be managed here."
+
+
+# --- Mailing Lists page
+
+msgid "maillistList_menu"
+msgstr "Mailing Lists"
+
+msgid "maillistList"
+msgstr "Mailing Lists on [[VAR.group]]"
+
+msgid "maillistNameHeader"
+msgstr "Name"
+
+msgid "maillistNameHeader_help"
+msgstr "This is the name of the mailing list."
+
+msgid "recipientsHeader"
+msgstr "Number of Subscribers"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Subscriber[[VAR.plural]]"
+
+msgid "recipientsHeader_help"
+msgstr "These are the number of users who subscribe to the mailing list."
+
+msgid "groupSubscriber"
+msgstr "All members of the [[VAR.group]] group"
+
+msgid "maillistDescHeader"
+msgstr "Remarks"
+
+msgid "maillistDescHeader_help"
+msgstr "This column contains additional information about each mailing list."
+
+msgid "maillistActionHeader"
+msgstr "Action"
+
+msgid "maillistActionHeader_help"
+msgstr "These are the buttons used to modify or delete a mailing list."
+
+msgid "confirm_removal_of_list"
+msgstr "Are you sure you want to remove the [[VAR.list]] mailing list?"
+
+msgid "subscribers"
+msgstr "Subscribers"
+
+msgid "subscribers_help"
+msgstr "The list of members of the mailing list can be configured here."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] Local Subscriber[[VAR.plural]]"
+
+msgid "edit_locals"
+msgstr "Edit"
+
+msgid "edit_locals_help"
+msgstr "Click here to select the local users that are subscribers to this mailing list."
+
+msgid "localsSearch"
+msgstr "Search User List"
+
+msgid "search"
+msgstr "Search"
+
+msgid "search_help"
+msgstr "Click here to display users matching the entered criteria."
+
+msgid "showall"
+msgstr "Show All Users"
+
+msgid "showall_help"
+msgstr "Click here to display all users on the site."
+
+msgid "showselected"
+msgstr "Show Only Selected Users"
+
+msgid "showselected_help"
+msgstr "Click here to display only users that are currently selected."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] on [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Users matching [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Selected Users"
+
+msgid "all"
+msgstr "All Users"
+
+msgid "selectAll"
+msgstr "Select All Users"
+
+msgid "selectAll_help"
+msgstr "Click here to select all users on this site. The selection will include all users on this page and all users on other pages as well."
+
+msgid "selectPage"
+msgstr "Select This Page"
+
+msgid "selectPage_help"
+msgstr "Click here to select all users on this page."
+
+msgid "use_these"
+msgstr "Use Current Selection"
+
+msgid "use_these_help"
+msgstr "Click here to use the current selection as the [[base-maillist.localSubscribers]] list."
+
+msgid "cancel"
+msgstr "Cancel"
+
+msgid "cancel_help"
+msgstr "Click here to return to the settings page and ignore your current selection."
+
+msgid "name"
+msgstr "User Name"
+
+msgid "name_help"
+msgstr "The name of the users on this virtual site. Select the checkboxes to add users to this mailing list."
+
+# ----- Add/modify a mailing list Basic
+
+msgid "createMailList"
+msgstr "Add Mailing List to [[VAR.fqdn]]"
+
+msgid "modifyMailList"
+msgstr "Modify Mailing List Settings for [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "advanced"
+msgstr "Advanced"
+
+msgid "basic_help"
+msgstr "Click here to configure basic mailing list options."
+
+msgid "advanced_help"
+msgstr "Click here to configure advanced mailing list options such as posting and subscription policies."
+
+msgid "listName"
+msgstr "List Name"
+
+msgid "listName_rule"
+msgstr "Please enter only lowercase alphanumeric characters, hyphens, periods, and underscores.  For example, sales is a valid entry."
+
+msgid "listName_help"
+msgstr "Enter the name of the mailing list.  [[base-maillist.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-maillist.listName]].  [[base-maillist.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Sorry, you have not entered a value for [[base-maillist.listName]].   [[base-maillist.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Group Members"
+
+msgid "workgroupMembers_help"
+msgstr "This field contains a list of users who are currently members of the group that is associated with this list.  All members of this group are always subscribed to this mailing list."
+
+msgid "group_field"
+msgstr "Group List Name"
+
+msgid "group_field_help"
+msgstr "This is the name of the group mailing list.  All members of this group are automatically subscribed to this mailing list."
+
+msgid "save"
+msgstr "Save"
+
+msgid "save_help"
+msgstr "Save this mailing list."
+
+
+msgid "localSubscribers"
+msgstr "Local Subscribers"
+
+msgid "localSubscribers_help"
+msgstr "Click the Edit button to select the local users that are subscribers to this mailing list."
+
+msgid "subscribed"
+msgstr "Users Subscribed"
+
+msgid "unsubscribed"
+msgstr "Users Not Subscribed"
+
+msgid "remoteSubscribers"
+msgstr "Remote Subscribers"
+
+msgid "remoteSubscribers_rule"
+msgstr "Please enter a properly formatted email address.  For example, user@example.com is a valid entry."
+
+msgid "remoteSubscribers_help"
+msgstr "Enter the remote users that are subscribers to this mailing list.  Remote users are users who do not have accounts on this server appliance. [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-maillist.remoteSubscribers]].  [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "description"
+msgstr "Remarks"
+
+msgid "description_help"
+msgstr "Enter additional information or comments about the mailing list here."
+
+
+
+# ----- Add/modify a mailing list Advanced
+
+msgid "moderator"
+msgstr "Owner/Moderator"
+
+msgid "moderator_rule"
+msgstr "Please enter a properly formatted email address or the username of a valid user on this server appliance.  The default value is admin.  For example, user@example.com and admin are valid entries."
+
+msgid "moderator_help"
+msgstr "Enter the email address of the user performing all administrative duties for the mailing list.  [[base-maillist.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-maillist.moderator]].  [[base-maillist.moderator_rule]]"
+
+	# handler version
+msgid "Moderator-does-not-exist"
+msgstr "Invalid Moderator: the user [[VAR.moderator]] does not seem to exist."
+
+
+msgid "moderator_empty"
+msgstr "Sorry, you have not entered a value for [[base-maillist.moderator]].  You must enter a value even if no moderation policies have been specified for the mailing list.  [[base-maillist.moderator_rule]]"
+
+msgid "policies"
+msgstr "Policies"
+
+msgid "apassword"
+msgstr "Password"
+
+msgid "apassword_help"
+msgstr "Enter an administrative password for this mailing list. This password is used when performing certain list administration tasks via email (for example, approving subscriptions, or moderating messages).  If you do not plan on using these features, you may leave this field blank."
+
+msgid "postingPolicy"
+msgstr "Posting Policy"
+
+msgid "postingPolicy_help"
+msgstr "Select a posting policy for this mailing list.  If you choose Moderator Confirms All Messages, every message will require approval from the list owner/moderator. "
+
+msgid "any"
+msgstr "All Users Can Post Messages"
+
+msgid "members"
+msgstr "Only Subscribers Can Post Messages"
+
+msgid "moderated"
+msgstr "Moderator Confirms All Messages"
+
+msgid "admin"
+msgstr "Only Administrators Can Post Messages"
+
+msgid "domain"
+msgstr "Only Users From Local Domains Can Post Messages"
+
+msgid "subscriptionPolicy"
+msgstr "Subscription Policy"
+
+msgid "subscriptionPolicy_help"
+msgstr "Select the list's subscription policy.  Users can subscribe or unsubscribe from the list by sending mail to majordomo@[[VAR.fqdn]] with the words 'subscribe list' or 'unsubscribe list' (list is the mailing list name) in the body of the message.  If the policy is 'Closed', the message is sent to the list owner for approval before the subscription is allowed.   Approval is never required to unsubscribe."
+
+msgid "open"
+msgstr "Open: any user may subscribe."
+
+msgid "closed"
+msgstr "Closed: List owner approval is required for subscription."
+
+msgid "confirm"
+msgstr "Confirm: Email confirmation is required for subscription."
+
+msgid "maxlength"
+msgstr "Maximum Message Length"
+
+msgid "maxlength_help"
+msgstr "Select the maximum size in kilobytes or megabytes allowed for messages sent to this mailing list. Messages exceeding this size will be rejected."
+
+msgid "5120"
+msgstr "5 kb"
+msgid "51200"
+msgstr "50 kb"
+msgid "512000"
+msgstr "500 kb"
+msgid "10485760"
+msgstr "10 MB"
+msgid "104857600"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "Reply Policy"
+
+msgid "replyToList_help"
+msgstr "Set the reply policy for this mailing list. If you choose Reply to List, replies will go to the list. Otherwise, replies will go only to the original author of the message."
+
+msgid "replyList"
+msgstr "Reply to List"
+
+msgid "archiveSettings"
+msgstr "Archiving"
+
+msgid "archiveEnabled"
+msgstr "Enable"
+
+msgid "archiveEnabled_help"
+msgstr "Set whether messages sent to this mailing list will be archived. Users with accounts on this server appliance will be able to access these archives using their WebMail account if WebMail is installed."
+
+msgid "keepForDays"
+msgstr "Keep Period (Days)"
+
+msgid "keepForDays_help"
+msgstr "Enter a number specifying the length of time in days that messages will be kept in the archive. Enter a zero (0) to keep archived messages indefinitely."
+
+msgid "keepForDays_rule"
+msgstr "Please enter a number specifying the length of time in days that messages will be kept in the archive. Enter a zero (0) to keep archived messages indefinitely. "
+
+msgid "keepForDays_empty"
+msgstr "Sorry, you have not specified a value for [[base-maillist.keepForDays]]. [[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Sorry, the field [[base-maillist.keepForDays]] contains an invalid value.  [[base-maillist.keepForDays_rule]]"
+
+
+# ------ Handler messages
+
+msgid "name-already-taken"
+msgstr "Sorry, the mailing list could not be created because the specified name is already in use by a mailing list. Please enter a different name and try again."
+
+msgid "name-already-taken-by-user"
+msgstr "Sorry, the mailing list could not be created because the specified name is already in use by a user. Please enter a different name and try again."
+
+msgid "Mail-alias-already-taken"
+msgstr "Sorry, the mailing list could not be created because the email aliases needed by the list already exist. Try giving the mailing list a different name or removing email aliases with similar names."
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Sorry, mailing lists for user groups on this server appliance cannot be removed."
+
+msgid "Could-not-create-maillist"
+msgstr "Sorry, an error occurred. The mailing list could not be created. "
+
+
+
+# ----- Archives for users with accounts
+
+	#--- List view
+msgid "maillistArchive"
+msgstr "Mailing List Archive - [[VAR.name]]"
+
+msgid "title"
+msgstr "Subject"
+
+msgid "title_help"
+msgstr "This is the subject of the message."
+
+msgid "author"
+msgstr "Sender"
+
+msgid "author_help"
+msgstr "This is the name or email address of the person who sent the message."
+
+msgid "date"
+msgstr "Date"
+
+msgid "date_help"
+msgstr "This is the date the message was received."
+
+	#--- Read message view
+msgid "readMessage"
+msgstr "Read Message"
+
+msgid "readMessage_help"
+msgstr "Read Message"
+
+msgid "from"
+msgstr "From"
+
+msgid "from_help"
+msgstr "This is the name and/or email address of the person who sent the message."
+
+msgid "subject"
+msgstr "Subject"
+
+msgid "subject_help"
+msgstr "This is the subject of the message."
+
+msgid "message"
+msgstr "Message"
+
+msgid "message_help"
+msgstr "This is the text of the message."
+
+msgid "replySender"
+msgstr "Reply to Sender"
+
+msgid "replySender_help"
+msgstr "Click here to reply to the author of the message."
+
+msgid "replyAll"
+msgstr "Reply All"
+
+msgid "replyAll_help"
+msgstr "Click here to reply to the author and all other recipients of the message."
+
+# ------ Misc  (i.e. I have no idea)
+
+msgid "membership"
+msgstr "Membership"
+
+msgid "membership_help"
+msgstr "Membership defines the users associated with this mailing list."
+
+
+# ------- Strings for email messages
+
+msgid "WelcomeMessageSubject"
+msgstr "Archiving has been enabled"
+
+msgid "WelcomeMessageBody"
+msgstr "This email has been sent to you to notify you that archiving of the mailing list '[[VAR.name]]' has been enabled for users with accounts on this server.  These users will be able to access this archive from within WebMail.  There is no need to reply to this message."
+

@@ -1,0 +1,1043 @@
+# menu items
+msgid "ssl"
+msgstr "SSL"
+
+msgid "sslDescription"
+msgstr "Access information about the SSL certificate used to provide secure access to your site using https on port 443. For example, SSL allows users to access a site by going to https://www.example.com:443."
+
+msgid "adminSslDescription"
+msgstr "Access information about the SSL certificate used for secure access to the Server Desktop."
+
+# siteSSL button strings
+msgid "createCert"
+msgstr "Create Self-Signed Certificate"
+
+msgid "createCert_help"
+msgstr "Create a new self-signed SSL certificate."
+
+msgid "request"
+msgstr "Create Signing Request"
+
+msgid "request_help"
+msgstr "Create a certificate signing request. The certificate signing request can be submitted to a Certificate Authority to create a signed certificate that web browsers can verify as authentic."
+
+msgid "request_disabledHelp"
+msgstr "A certificate must be created first in order to get a signing request."
+
+msgid "manageCAs"
+msgstr "Manage Certificate Authorities"
+
+msgid "manageCAs_help"
+msgstr "Add or remove secondary certificate authorities for this site. Secondary certificate authorities are usually not needed, but certain authorities issue an extra certificate to be used for client authentication in addition to the usual server certificate that most certificate authorities issue."
+
+msgid "import"
+msgstr "Import"
+
+msgid "import_help"
+msgstr "Import a signed certificate."
+
+msgid "cert_empty"
+msgstr "Sorry, no file has been chosen for import. Please, select a file containing an SSL certificate to import."
+
+msgid "export"
+msgstr "Export"
+
+msgid "export_help"
+msgstr "Download the current private key and certificate, so the certificate can be transferred to another server."
+
+msgid "export_disabledHelp"
+msgstr "A certificate must be created or imported before it can be exported."
+
+# siteSSL page information strings
+msgid "serverDesktop"
+msgstr "Server Desktop"
+
+msgid "sslCertInfo"
+msgstr "Certificate Information for [[VAR.fqdn]]"
+
+# doesn't show up for the admin server
+msgid "enabled"
+msgstr "Enable SSL"
+
+msgid "enabled_help"
+msgstr "Enable SSL to allow secure access to the web server for the site."
+
+msgid "importantNote"
+msgstr "It is important that this information is correct and can be verified with a local, regional, or national government or other official organization."
+
+msgid "location"
+msgstr "Location"
+
+msgid "city"
+msgstr "City"
+
+msgid "city_help"
+msgstr "The city in which the organization is located or registered. [[base-ssl.importantNote]]"
+
+msgid "state"
+msgstr "State or Province"
+
+msgid "state_help"
+msgstr "The state, province, or region in which the above city is located. [[base-ssl.importantNote]]"
+
+msgid "country"
+msgstr "Country"
+
+msgid "country_help"
+msgstr "Select the country in which the organization that will use this certificate is located or registered. [[base-ssl.importantNote]]"
+
+msgid "country_invalid"
+msgstr "No country was selected. The country this organization is located or registered in should be chosen."
+
+msgid "orgInfo"
+msgstr "Organization Information"
+
+msgid "orgInfo_help"
+msgstr "Information about the organization owning this certificate."
+
+msgid "orgName"
+msgstr "Organization"
+
+msgid "orgName_help"
+msgstr "The official name of the organization owning this certificate. In order to obtain a signed certificate from a certificate authority, the organization name and location must be verifiable with a local, regional, or national government or other official organization. In addition, the certificate authority must be able to verify that the person requesting the certificate is the owner or employee of the named organization."
+
+msgid "orgUnit"
+msgstr "Organization Unit"
+
+msgid "orgUnit_help"
+msgstr "The division or unit of the organization that is using this certificate. This is optional, but may be useful if the person applying for a signed certificate is an employee of a subsidiary of a larger organization."
+
+msgid "otherInfo"
+msgstr "Other Information"
+
+msgid "otherInfo_help"
+msgstr "Miscellaneous information about this certificate."
+
+msgid "email"
+msgstr "Contact Email"
+
+msgid "email_help"
+msgstr "The email address to be contacted for information about this certificate."
+
+msgid "expires"
+msgstr "Certificate Expiration Date"
+
+msgid "expires_help"
+msgstr "The date after which the certificate should no longer be considered valid by client software attempting to connect to this server."
+
+# show this if they haven't created or imported a cert
+msgid "noCertInfo"
+msgstr "There is currently no certificate for this site. Create or import a certificate to view information for that certificate."
+
+msgid "daysValid"
+msgstr "Valid Period"
+
+msgid "daysValid_help"
+msgstr "Enter the length of time during which the created certificate should be considered valid. The time length entered must expire the certificate before January, 2038, or creation will fail."
+
+msgid "365"
+msgstr "year(s)"
+
+msgid "30"
+msgstr "month(s)"
+
+msgid "7"
+msgstr "week(s)"
+
+msgid "1"
+msgstr "day(s)"
+
+msgid "requestInformation"
+msgstr "Signing Request Information for [[VAR.fqdn]]"
+
+msgid "enterCertInformation"
+msgstr "Certificate Information for [[VAR.fqdn]]"
+
+msgid "certInstructions"
+msgstr "Click [[base-ssl.createCert]] to create a self-signed certificate for this web site. Self-signed certificates will generate a warning when a browser accesses the site. To get rid of this warning, obtain a signed certificate by submitting a signing request to a Certificate Authority."
+
+msgid "genSSCert"
+msgstr "Generate Self-Signed Certificate"
+
+msgid "genSSCert_help"
+msgstr "Enable to generate a self-signed certificate along with the signing request. The self-signed certificate can be used temporarily while you wait for the Certificate Authority to process your signing request."
+
+msgid "certReqInstructions"
+msgstr "It is important that the location and organization information are correct and can be verified with local, regional, or national governments or other official organizations. If the Certificate Authority cannot verify the information, the signing request may be delayed or rejected."
+
+# strings for uploadCert page
+msgid "importCert"
+msgstr "Import Certificate for [[VAR.fqdn]]"
+
+msgid "certUpload"
+msgstr "Certificate"
+
+msgid "certUpload_help"
+msgstr "Click Browse to select the text file containing the certificate to import. The certificate file must contain both the private key and certificate sections if you are transferring it from another server. If the certificate is from a certificate authority to which you submitted a certificate signing request generated by this server, only the certificate is necessary, but it is okay if a private key is included with the signed certificate."
+
+# helper script error messages
+# ssl_import.pl
+msgid "sslImportError1"
+msgstr "Unable to upload the new certificate."
+
+msgid "sslImportError2"
+msgstr "The specified site does not exist."
+
+msgid "sslImportError3"
+msgstr "Unable to get site information. Please try again."
+
+msgid "sslImportError4"
+msgstr "Unable to read uploaded certificate. Please try again."
+
+msgid "sslImportError5"
+msgstr "The certificate is not a valid SSL certificate."
+
+msgid "sslImportError6"
+msgstr "Unable to generate a certificate signing request for the imported certificate."
+
+msgid "sslImportError7"
+msgstr "Unable to update certificate information for display."
+
+msgid "sslImportError8"
+msgstr "The imported certificate does not contain the private key for this certificate, and the private key currently on the server does not match this certificate. If importing a certificate not created on this server, the RSA private key must be included in the imported certificate file."
+
+msgid "sslImportError10"
+msgstr "The value entered for [[base-ssl.caIdent]] is not unique."
+
+msgid "sslImportError11"
+msgstr "The imported file did not contain an ssl certificate. Please make sure the correct file is being imported."
+
+msgid "sslImportError12"
+msgstr "The imported file contains more than one certificate. Import files can only contain one ssl certificate and possibly a private key."
+
+msgid "sslImportError13"
+msgstr "Could not add the certificate authority to the certificate authority file."
+
+# handler error messages
+# common see ssl.pl, gen_cert.pl, and SSL.pm
+msgid "cantSetExpires"
+msgstr "Certificate was created successfully, but updating the expiration information failed."
+
+msgid "nonExistentCertDir"
+msgstr "The certificate directory given, [[VAR.dir]], does not exist."
+
+msgid "cantGenerateKey"
+msgstr "Openssl was unable to generate a private key for the server."
+
+msgid "cantGenerateSigningRequest"
+msgstr "Openssl was unable to generate a signing request."
+
+msgid "cantGenerateCert"
+msgstr "Openssl was unable to generate a certificate."
+
+msgid "generatedCertInvalid"
+msgstr "The certificate generated by openssl does not appear to be valid."
+
+msgid "2038bug"
+msgstr "Sorry, the value entered for [[base-ssl.daysValid]] would give the certificate an incorrect expiration date, because the expiration date would be during January, 2038. The SSL generation tools cannot accept expiration dates past mid-January 2038. Please enter a value that would expire the certificate before January, 2038."
+
+msgid "fqdnTooLongForCsr"
+msgstr "Sorry, the full host name, [[VAR.fqdn]], is too long to be used to generate a certificate signing request. The full host name must be no more than 64 characters long to be used in a certificate signing request. You can still generate a self-signed certificate, but you will be unable to get a signed certificate without shortening the full host name."
+
+msgid "fqdnTooLongOkay"
+msgstr "The self-signed certificate was created correctly, but the full host name had to be truncated. The full host name, [[VAR.fqdn]], is longer than 64 characters, which is the maximum length of a full host name for ssl certificates."
+
+# vsite_ssl.pl
+msgid "sslAlreadyUsedByIP"
+msgstr "SSL is already being used by [[VAR.fqdn]] which shares the same IP address, [[VAR.ipaddr]], as this site. SSL can only be enabled for one site using a shared IP address. Change the IP address of this site or disable SSL for [[VAR.fqdn]] if you want to enable SSL for this site."
+
+msgid "noCertificateOrKey"
+msgstr "SSL could not be enabled because the certificate or private key for this server is missing."
+
+msgid "cantEditSslConf"
+msgstr "Unable to update the server's SSL configuration file."
+
+msgid "cantUpdateApacheConf"
+msgstr "Unable to include the SSL configuration for this site in the server's configuration."
+
+# gen_cert.pl
+msgid "cantMakeDirectory"
+msgstr "Unable to create the directory, [[VAR.dir]]."
+
+# these messages not shown in UI
+msgid "couldntRunOpenssl"
+msgstr "Could not run 'openssl' command"
+
+msgid "certDirMissing"
+msgstr "Certificate directory missing, could not generate certificate"
+
+# vsite_change_ip.pl
+msgid "sslMigrationConflict"
+msgstr "The IP address cannot be changed to [[VAR.ipaddr]]. SSL is enabled for this site, but there is another site with the specified IP address that also has SSL enabled. Disabling SSL for either site will correct this problem."
+
+# list of available countries for SSL, in other words all ISO codes for any
+# country that has one
+msgid "foocountry"
+msgstr "Select country..."
+
+msgid "AF"
+msgstr "Afghanistan"
+
+msgid "AL"
+msgstr "Albania"
+
+msgid "DZ"
+msgstr "Algeria"
+
+msgid "AS"
+msgstr "American Samoa"
+
+msgid "AD"
+msgstr "Andorra"
+
+msgid "AO"
+msgstr "Angola"
+
+msgid "AI"
+msgstr "Anguilla"
+
+msgid "AQ"
+msgstr "Antarctica"
+
+msgid "AG"
+msgstr "Antigua and Barbuda"
+
+msgid "AR"
+msgstr "Argentina"
+
+msgid "AM"
+msgstr "Armenia"
+
+msgid "AW"
+msgstr "Aruba"
+
+msgid "AU"
+msgstr "Australia"
+
+msgid "AT"
+msgstr "Austria"
+
+msgid "AZ"
+msgstr "Azerbaijan"
+
+msgid "BS"
+msgstr "Bahamas"
+
+msgid "BH"
+msgstr "Bahrain"
+
+msgid "BD"
+msgstr "Bangladesh"
+
+msgid "BB"
+msgstr "Barbados"
+
+msgid "BY"
+msgstr "Belarus"
+
+msgid "BE"
+msgstr "Belgium"
+
+msgid "BZ"
+msgstr "Belize"
+
+msgid "BJ"
+msgstr "Benin"
+
+msgid "BM"
+msgstr "Bermuda"
+
+msgid "BT"
+msgstr "Bhutan"
+
+msgid "BO"
+msgstr "Bolivia"
+
+msgid "BA"
+msgstr "Bosnia and Herzegovina"
+
+msgid "BW"
+msgstr "Botswana"
+
+msgid "BV"
+msgstr "Bouvet Island"
+
+msgid "BR"
+msgstr "Brazil"
+
+msgid "IO"
+msgstr "British Indian Ocean Territory"
+
+msgid "BN"
+msgstr "Brunei Darussalam"
+
+msgid "BG"
+msgstr "Bulgaria"
+
+msgid "BF"
+msgstr "Burkina Faso"
+
+msgid "BI"
+msgstr "Burundi"
+
+msgid "KH"
+msgstr "Cambodia"
+
+msgid "CM"
+msgstr "Cameroon"
+
+msgid "CA"
+msgstr "Canada"
+
+msgid "CV"
+msgstr "Cape Verde"
+
+msgid "KY"
+msgstr "Cayman Islands"
+
+msgid "CF"
+msgstr "Central African Republic"
+
+msgid "TD"
+msgstr "Chad"
+
+msgid "CL"
+msgstr "Chile"
+
+msgid "CN"
+msgstr "China"
+
+msgid "CX"
+msgstr "Christmas Island"
+
+msgid "CC"
+msgstr "Cocos (Keeling) Islands"
+
+msgid "CO"
+msgstr "Colombia"
+
+msgid "KM"
+msgstr "Comoros"
+
+msgid "CG"
+msgstr "Congo, The Democratic Republic of the"
+
+msgid "CK"
+msgstr "Cook Islands"
+
+msgid "CR"
+msgstr "Costa Rica"
+
+msgid "CI"
+msgstr "Cote D'ivoire"
+
+msgid "HR"
+msgstr "Croatia"
+
+msgid "CU"
+msgstr "Cuba"
+
+msgid "CY"
+msgstr "Cyprus"
+
+msgid "CZ"
+msgstr "Czech Republic"
+
+msgid "DK"
+msgstr "Denmark"
+
+msgid "DJ"
+msgstr "Djibouti"
+
+msgid "DM"
+msgstr "Dominica"
+
+msgid "DO"
+msgstr "Dominican Republic"
+
+msgid "TP"
+msgstr "East Timor"
+
+msgid "EC"
+msgstr "Ecuador"
+
+msgid "EG"
+msgstr "Egypt"
+
+msgid "SV"
+msgstr "El Salvador"
+
+msgid "GQ"
+msgstr "Equatorial Guinea"
+
+msgid "ER"
+msgstr "Eritrea"
+
+msgid "EE"
+msgstr "Estonia"
+
+msgid "ET"
+msgstr "Ethiopia"
+
+msgid "FK"
+msgstr "Falkland Islands (Malvinas)"
+
+msgid "FO"
+msgstr "Faroe Islands"
+
+msgid "FJ"
+msgstr "Fiji"
+
+msgid "FI"
+msgstr "Finland"
+
+msgid "FR"
+msgstr "France"
+
+msgid "GF"
+msgstr "French Guiana"
+
+msgid "PF"
+msgstr "French Polynesia"
+
+msgid "TF"
+msgstr "French Southern Territories"
+
+msgid "GA"
+msgstr "Gabon"
+
+msgid "GM"
+msgstr "Gambia"
+
+msgid "GE"
+msgstr "Georgia"
+
+msgid "DE"
+msgstr "Germany"
+
+msgid "GH"
+msgstr "Ghana"
+
+msgid "GI"
+msgstr "Gibraltar"
+
+msgid "GR"
+msgstr "Greece"
+
+msgid "GL"
+msgstr "Greenland"
+
+msgid "GD"
+msgstr "Grenada"
+
+msgid "GP"
+msgstr "Guadeloupe"
+
+msgid "GU"
+msgstr "Guam"
+
+msgid "GT"
+msgstr "Guatemala"
+
+msgid "GN"
+msgstr "Guinea"
+
+msgid "GW"
+msgstr "Guinea-Bissau"
+
+msgid "GY"
+msgstr "Guyana"
+
+msgid "HT"
+msgstr "Haiti"
+
+msgid "HM"
+msgstr "Heard and Mc Donald Islands"
+
+msgid "HN"
+msgstr "Honduras"
+
+msgid "HK"
+msgstr "Hong Kong"
+
+msgid "HU"
+msgstr "Hungary"
+
+msgid "IS"
+msgstr "Iceland"
+
+msgid "IN"
+msgstr "India"
+
+msgid "ID"
+msgstr "Indonesia"
+
+msgid "IR"
+msgstr "Iran, Islamic Republic of"
+
+msgid "IQ"
+msgstr "Iraq"
+
+msgid "IE"
+msgstr "Ireland"
+
+msgid "IL"
+msgstr "Israel"
+
+msgid "IT"
+msgstr "Italy"
+
+msgid "JM"
+msgstr "Jamaica"
+
+msgid "JP"
+msgstr "Japan"
+
+msgid "JO"
+msgstr "Jordan"
+
+msgid "KZ"
+msgstr "Kazakhstan"
+
+msgid "KE"
+msgstr "Kenya"
+
+msgid "KI"
+msgstr "Kiribati"
+
+msgid "KP"
+msgstr "Korea, Democratic People's Republic of"
+
+msgid "KR"
+msgstr "Korea, Republic of"
+
+msgid "KW"
+msgstr "Kuwait"
+
+msgid "KG"
+msgstr "Kyrgyzstan"
+
+msgid "LA"
+msgstr "Lao People's Democratic Republic"
+
+msgid "LV"
+msgstr "Latvia"
+
+msgid "LB"
+msgstr "Lebanon"
+
+msgid "LS"
+msgstr "Lesotho"
+
+msgid "LR"
+msgstr "Liberia"
+
+msgid "LY"
+msgstr "Libyan Arab Jamahiriya"
+
+msgid "LI"
+msgstr "Liechtenstein"
+
+msgid "LT"
+msgstr "Lithuania"
+
+msgid "LU"
+msgstr "Luxembourg"
+
+msgid "MO"
+msgstr "Macau"
+
+msgid "MK"
+msgstr "Macedonia, The Former Yugoslav Republic of"
+
+msgid "MG"
+msgstr "Madagascar"
+
+msgid "MW"
+msgstr "Malawi"
+
+msgid "MY"
+msgstr "Malaysia"
+
+msgid "MV"
+msgstr "Maldives"
+
+msgid "ML"
+msgstr "Mali"
+
+msgid "MT"
+msgstr "Malta"
+
+msgid "MH"
+msgstr "Marshall Islands"
+
+msgid "MQ"
+msgstr "Martinique"
+
+msgid "MR"
+msgstr "Mauritania"
+
+msgid "MU"
+msgstr "Mauritius"
+
+msgid "YT"
+msgstr "Mayotte"
+
+msgid "MX"
+msgstr "Mexico"
+
+msgid "FM"
+msgstr "Micronesia, Federated States of"
+
+msgid "MD"
+msgstr "Moldova, Republic of"
+
+msgid "MC"
+msgstr "Monaco"
+
+msgid "MN"
+msgstr "Mongolia"
+
+msgid "MS"
+msgstr "Montserrat"
+
+msgid "MA"
+msgstr "Morocco"
+
+msgid "MZ"
+msgstr "Mozambique"
+
+msgid "MM"
+msgstr "Myanmar"
+
+msgid "NA"
+msgstr "Namibia"
+
+msgid "NR"
+msgstr "Nauru"
+
+msgid "NP"
+msgstr "Nepal"
+
+msgid "NL"
+msgstr "Netherlands"
+
+msgid "AN"
+msgstr "Netherlands Antilles"
+
+msgid "NC"
+msgstr "New Caledonia"
+
+msgid "NZ"
+msgstr "New Zealand"
+
+msgid "NI"
+msgstr "Nicaragua"
+
+msgid "NE"
+msgstr "Niger"
+
+msgid "NG"
+msgstr "Nigeria"
+
+msgid "NU"
+msgstr "Niue"
+
+msgid "NF"
+msgstr "Norfolk Island"
+
+msgid "MP"
+msgstr "Northern Mariana Islands"
+
+msgid "NO"
+msgstr "Norway"
+
+msgid "OM"
+msgstr "Oman"
+
+msgid "PK"
+msgstr "Pakistan"
+
+msgid "PW"
+msgstr "Palau"
+
+msgid "PS"
+msgstr "Palestinian Territory"
+
+msgid "PA"
+msgstr "Panama"
+
+msgid "PG"
+msgstr "Papua New Guinea"
+
+msgid "PY"
+msgstr "Paraguay"
+
+msgid "PE"
+msgstr "Peru"
+
+msgid "PH"
+msgstr "Philippines"
+
+msgid "PN"
+msgstr "Pitcairn"
+
+msgid "PL"
+msgstr "Poland"
+
+msgid "PT"
+msgstr "Portugal"
+
+msgid "PR"
+msgstr "Puerto Rico"
+
+msgid "QA"
+msgstr "Qatar"
+
+msgid "RE"
+msgstr "Reunion"
+
+msgid "RO"
+msgstr "Romania"
+
+msgid "RU"
+msgstr "Russian Federation"
+
+msgid "RW"
+msgstr "Rwanda"
+
+msgid "SH"
+msgstr "Saint Helena"
+
+msgid "KN"
+msgstr "Saint Kitts And Nevis"
+
+msgid "LC"
+msgstr "Saint Lucia"
+
+msgid "PM"
+msgstr "Saint Pierre and Miquelon"
+
+msgid "VC"
+msgstr "Saint Vincent and the Grenadines"
+
+msgid "WS"
+msgstr "Samoa"
+
+msgid "SM"
+msgstr "San Marino"
+
+msgid "ST"
+msgstr "Sao Tome and Principe"
+
+msgid "SA"
+msgstr "Saudi Arabia"
+
+msgid "SN"
+msgstr "Senegal"
+
+msgid "SC"
+msgstr "Seychelles"
+
+msgid "SL"
+msgstr "Sierra Leone"
+
+msgid "SG"
+msgstr "Singapore"
+
+msgid "SK"
+msgstr "Slovakia"
+
+msgid "SI"
+msgstr "Slovenia"
+
+msgid "SB"
+msgstr "Solomon Islands"
+
+msgid "SO"
+msgstr "Somalia"
+
+msgid "ZA"
+msgstr "South Africa"
+
+msgid "GS"
+msgstr "South Georgia and the South Sandwich Islands"
+
+msgid "ES"
+msgstr "Spain"
+
+msgid "LK"
+msgstr "Sri Lanka"
+
+msgid "SD"
+msgstr "Sudan"
+
+msgid "SR"
+msgstr "Suriname"
+
+msgid "SJ"
+msgstr "Svalbard and Jan Mayen Islands"
+
+msgid "SZ"
+msgstr "Swaziland"
+
+msgid "SE"
+msgstr "Sweden"
+
+msgid "CH"
+msgstr "Switzerland"
+
+msgid "SY"
+msgstr "Syrian Arab Republic"
+
+msgid "TW"
+msgstr "Taiwan"
+
+msgid "TJ"
+msgstr "Tajikistan"
+
+msgid "TZ"
+msgstr "Tanzania, United Republic of"
+
+msgid "TH"
+msgstr "Thailand"
+
+msgid "TG"
+msgstr "Togo"
+
+msgid "TK"
+msgstr "Tokelau"
+
+msgid "TO"
+msgstr "Tonga"
+
+msgid "TT"
+msgstr "Trinidad and Tobago"
+
+msgid "TN"
+msgstr "Tunisia"
+
+msgid "TR"
+msgstr "Turkey"
+
+msgid "TM"
+msgstr "Turkmenistan"
+
+msgid "TC"
+msgstr "Turks and Caicos Islands"
+
+msgid "TV"
+msgstr "Tuvalu"
+
+msgid "UG"
+msgstr "Uganda"
+
+msgid "UA"
+msgstr "Ukraine"
+
+msgid "AE"
+msgstr "United Arab Emirates"
+
+msgid "GB"
+msgstr "United Kingdom"
+
+msgid "US"
+msgstr "United States"
+
+msgid "UM"
+msgstr "United States Minor Outlying Islands"
+
+msgid "UY"
+msgstr "Uruguay"
+
+msgid "UZ"
+msgstr "Uzbekistan"
+
+msgid "VU"
+msgstr "Vanuatu"
+
+msgid "VA"
+msgstr "Vatican City State (Holy See)"
+
+msgid "VE"
+msgstr "Venezuela"
+
+msgid "VN"
+msgstr "Viet Nam"
+
+msgid "VG"
+msgstr "Virgin Islands (British)"
+
+msgid "VI"
+msgstr "Virgin Islands (U.S.)"
+
+msgid "WF"
+msgstr "Wallis and Futuna Islands"
+
+msgid "EH"
+msgstr "Western Sahara"
+
+msgid "YE"
+msgstr "Yemen"
+
+msgid "YU"
+msgstr "Yugoslavia"
+
+msgid "ZM"
+msgstr "Zambia"
+
+msgid "ZW"
+msgstr "Zimbabwe"
+
+# cert authority management page
+msgid "caManager"
+msgstr "Certificate Authority Management for [[VAR.fqdn]]"
+
+msgid "caAction"
+msgstr "Management Actions"
+
+msgid "caAction_help"
+msgstr "Choose the action to perform for this site's secondary certificate authorities."
+
+msgid "addCA"
+msgstr "Add"
+
+msgid "caIdent"
+msgstr "Certificate Authority Name"
+
+msgid "caIdent_help"
+msgstr "Enter a unique name to identify this secondary certificate authority."
+
+msgid "addCaIdent_empty"
+msgstr "Sorry, a value must be entered for [[base-ssl.caIdent]] in order to add a new certificate authority."
+
+msgid "caCert"
+msgstr "Select Certificate"
+
+msgid "caCert_help"
+msgstr "Click browse to select the file that contains the certificate authority's certificate. The certificate should be the only thing in the file."
+
+msgid "caCert_empty"
+msgstr "Sorry, you have not chosen a certificate to upload. You must select a certificate to upload in order to add a new certificate authority."
+
+msgid "removeCA"
+msgstr "Remove"
+
+msgid "removeCAIdent"
+msgstr "Current Certificate Authorities"
+
+msgid "removeCAIdent_help"
+msgstr "Select the secondary certificate authorities whose certificates you want to remove from this site."
+
+# ia5string_check.pl
+msgid "nonAsciiCharacter"
+msgstr "Sorry, non-ascii characters are not allowed for the [[VAR.property]] field."
+
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "The command '/usr/sausalito/sbin/ssl_get.pl' did not return expected results. Maybe there is no certificate present?"

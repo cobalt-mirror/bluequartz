@@ -1,0 +1,51 @@
+Extensible CceWrap With Capabilities
+====================================
+
+This document describes the changes to be to ccewrap in order to make it's
+configuration more extensible.  
+
+As it currently stands, ccewrap has a very simple configuration called
+/etc/ccewrap.conf .  The format of this file is simple: simply state the name of
+the program you wish to let ccewrap work with.  Ccewrap currently checks two
+things: the credentials of the user against cce and the existance of the
+executable in the config file.  It then proceeds to setuid itself to the calling
+user's uid.
+
+The proposed change is to use a drop config directory named /etc/ccewrap.d/ that
+would allow modules to simple drop in .xml files to register themselves with
+ccewrap.  This is the approach that was taken with cce and has proven quite
+effective. 
+
+The syntax of entries for the XML ccewrap config file is as follows:
+
+	- A "program" element that has the following attributes
+		- "name" - the name of the program to configure
+	- A "capability" element.  All "capability" elements must have "program"
+	  elements as their parents.  This element has the following attributes:
+	  	- "requires" - A name of a capability that cce can understand,
+		  or "" to allow any user to run this program.
+		- "user" - Optional - Default = "" - The username that
+		  this program would be run as if the capability name is
+		  matched.
+
+All "program" elements will have a default "Capability" element with require=""
+and user="".
+
+When a client application invokes ccewrap, they will be required to supply a new
+environment variable named CCE_REQUESTUSER.  This variable represents the
+username of the user that the calling application wishes to run the wrapper as.
+This environment variable will always default to requesting the calling user
+when left blank. 
+
+In keeping with our idea that admin==god, if a user authenticates and their
+.systemAdministrator flag is set, then to run an application, it need only be
+present in the configuration files.  No checks to see whether this user matches
+the required capabilities will be done.  To explictly have a program run as
+the actual user rather than as root, the CCE_REQUESTUSER environment variable
+must be explicitly set to something other than blank or NULL.
+
+To maintain backwards compatibility, the old configuration file
+/etc/ccewrap.conf will still be read and used for configuration with the
+previously mentioned defaults although it's use may eventually become
+deprecated.
+

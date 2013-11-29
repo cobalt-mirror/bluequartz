@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Copyright 2000 Cobalt Networks, Inc.
+# http://www.cobalt.com
+# $Id: upgrade_me 922 2003-07-17 15:22:40Z will $
+
+# Things this script must do:
+# 1) Check to make sure none of its RPMS are installed
+# 2) Generate the .installed_rpms file 
+# 3) return status 0 on success
+
+#
+# Variables
+#
+LOG=/var/cobalt/adm.log
+SCRIPTS=$UPGRADE_DIR/scripts
+
+#
+# Verify
+#
+if [ -e /etc/build ]; then
+	/bin/egrep -q "3000R" /etc/build
+	if [ $? != 0 ]; then
+		/bin/echo "4015 This package for RaQ 3 only."
+		exit 1
+	fi
+else
+	/bin/echo "4015 This package for RaQ 3 only."
+	exit 1
+fi
+
+if [ -e "/var/lib/cobalt/RaQ3-Update-OS-1.0.md5lst" ]; then
+	/bin/echo "4016 You must have update 4.0 installed."
+	exit 1
+fi
+if [ -e "/var/lib/cobalt/RaQ3E-Update-OS-2.0.md5lst" ]; then
+	/bin/echo "4016 You must have update 4.0 installed."
+	exit 1
+fi
+if [ -e "/var/lib/cobalt/RaQ3-en-OSUpdate-3.0.md5lst" ]; then
+	/bin/echo "4016 You must have update 4.0 installed."
+	exit 1
+fi
+	
+	
+#
+# Pre-RPM Install
+#
+
+# -Nothing- #
+
+#
+# RPM Install
+#
+
+# Create the file for the list of RPMS we're going to install.
+RPMS=`/bin/ls -1 $UPGRADE_DIR/RPMS`
+/bin/echo -n "" > $UPGRADE_DIR/.installed_rpms
+
+# Do the install
+for rpm in $RPMS; do
+	/bin/rpm \
+		-U \
+		--rcfile /usr/lib/rpm/rpmrc \
+		$UPGRADE_DIR/RPMS/$rpm \
+		--force \
+		> /dev/null 2>&1
+
+	if [ $? != 0 ]; then
+		/bin/echo "4015 Problem installing package component: $rpm"
+		exit 1
+	else
+		/bin/echo $rpm >> $UPGRADE_DIR/.installed_rpms
+	fi
+done
+
+#
+# Post-RPM Install
+#
+
+# hack hack hack
+USERPM=/usr/lib/perl5/site_perl/5.005/Cobalt/User.pm
+perl -pi -e 's#ret=vsite_admin_add#ret=Cobalt::Vsite::vsite_admin_add#' $USERPM
+
+if [ -d "/home/cmu" ]; then
+    /bin/chown root.admin /home/cmu
+    /bin/chmod 755 /home/cmu
+fi
+
+
+exit 0

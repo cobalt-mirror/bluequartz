@@ -1,0 +1,46 @@
+#!/usr/bin/perl -I /usr/sausalito/perl
+# $Id: ftplog2commonlog,v 1.5 2001/12/14 03:56:55 pbaltz Exp $
+#
+# Convert ftp logs to common log format so they can be processed by 
+# standard web log processing software.
+#
+# Ftplog2Commonlog v. 1.0 is copyright 1995, 1996, 1997 by Joey Hess.
+# May be distributed under the terms of the GPL.
+#
+# Usage:
+# 	ftplog2commonlog < logfile
+#
+
+use CCE;
+my $cce = new CCE;
+$cce->connectuds();
+
+my %group; # hash of site group name => site fqdn
+
+my(@site_oids) = $cce->find('Vsite');
+my($oid);
+foreach $oid (@site_oids) {
+	my($ok, $site) = $cce->get($oid);
+	next unless ($ok);
+
+	$group{$site->{name}} = $site->{fqdn};
+	# print "Found site ".$site->{name}." -> ".$site->{fqdn}."\n";
+}
+
+# Set the tzoffset automagically..
+$tzoffset = `/bin/date +%z`;
+$tzoffset = sprintf ("%+.4d", $tzoffset );
+
+while (<>) {
+	($mon,$mday,$time,$year,$host,$size,$filename,$io)=m/.*?\s+(.*?)\s+(\d+)\s+(.*?)\s+(\d+)\s+.*?\s+(.*?)\s+(\d+)\s+(.*?)\s+\S+\s+\S+\s+(\S+)\s+/;
+	if (length($mday) == 1) { $mday="0$mday" }
+	if (length($mon) == 1) { $mon="0$mon" }
+
+	print "$host - - [$mday/$mon/$year:$time $tzoffset] \"GET $filename HTTP/1.0\" 200 $size";
+	if ($filename =~ m#/(site\d+)/#) {
+		print " \"http://$io/\" \"http://$group{$1}/\"";
+	} else {
+		print " \"http://$io/\" \"\"";
+	}
+	print "\n";
+}

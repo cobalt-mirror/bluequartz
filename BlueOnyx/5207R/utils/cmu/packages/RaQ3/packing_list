@@ -1,0 +1,10 @@
+Package: RaQ3-All-CMU 
+Version: [VERSION]
+List File: RaQ3-All-CMU
+REBOOT: no
+SCRIPT: upgrade_me
+UNINSTALL: uninstall_me
+
+RPM: RaQ3-cmu-[VERSION]-0.noarch.rpm
+RPM: perl-Compress-Zlib-1.11-1.i386.rpm
+

@@ -1,0 +1,501 @@
+<?php
+// $Id: 06_MYSQL_Vsite.php.create.Vsite,v 1.0.0 Mon 29 Sep 2008 03:31:43 PM EDT mstauber Exp $
+//
+
+include_once('UIExtension.php');
+include_once("ServerScriptHelper.php");
+
+// Get Module status from 'System' object 'MYSQLUSERS_DEFAULTS':
+$serverScriptHelper = new ServerScriptHelper();
+$cceClient = $serverScriptHelper->getCceClient();
+$helper = new ServerScriptHelper($sessionId);
+$cceHelper =& $helper->getCceClient();
+$db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
+if ($db_rights['solsitemysql'] == "1") {
+
+    class MYSQL_VsiteExtension extends UIExtension {
+	function display(&$ServerScriptHelper, &$container, $parameters) {
+		global $group;
+	        $ret = ini_set("display_errors", "Off");
+
+		$cce = $ServerScriptHelper->getCceClient();
+
+		// will assume the container is a PagedBlock for the time being
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-mysql");
+
+		$featureMYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
+
+		// Find and validate presence of 'MySQL' and pull the data:
+		$serverScriptHelper = new ServerScriptHelper();
+		$cceClient = $serverScriptHelper->getCceClient();
+		$helper = new ServerScriptHelper($sessionId);
+		$cceHelper =& $helper->getCceClient();
+		$getthisOID = $cce->find("MySQL");
+		$mysql_settings_exists = 0;
+		$mysql_settings = $cceClient->get($getthisOID[0]);
+
+		// MySQL settings:
+		$sql_root               = $mysql_settings['sql_root'];
+		$sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+		$sql_host               = $mysql_settings['sql_host'];
+		$sql_port               = $mysql_settings['sql_port'];
+		
+		// Configure defaults:
+		if (!$sql_root) { $sql_root = "root"; }
+		if (!$sql_host) { $sql_host = "localhost"; }
+		if (!$sql_port) { $sql_port = "3306"; }
+
+		if (($sql_host != "localhost") || ($sql_host != "127.0.0.1")) {
+	    	    $my_sql_host = $sql_host . ":" . $sql_port;
+    		    $con_sql_host = $my_sql_host;
+		}
+
+		// Get FQDN of the server:
+		$getthisFQDN = $cce->find("System");
+		$this_FQDN_info = $cceClient->get($getthisFQDN[0]);
+		$this_host = $this_FQDN_info['hostname'];
+		$this_domain = $this_FQDN_info['domainname'];
+		$this_FQDN = $this_host . "." . $this_domain;
+		
+		// Test MySQL connection: (1 = OK, 0 = not OK)
+		$mysql_link = mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+		mysql_select_db("mysql") or $mysql_error = mysql_error();
+		mysql_close($mysql_link);
+		if ($mysql_error != "") {
+    		    $mysql_status = "0";
+		}
+		else {
+    		    $mysql_status = "1";
+		}
+		
+		if ($parameters['IS_SITE_ADMIN']) {
+		    if ( $featureMYSQL_Vsite['enabled'] ) {
+                        $solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
+                        $enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'r');
+                        $enable->setLabel($factory->getLabel('enable', false));
+                        $solmysqlField->addOption($enable);
+			
+                        $solmysqlUsername = $factory->getTextField('solmysql_username', $featureMYSQL_Vsite['username'], 'r');
+                        $solmysqlUsername->setMaxLength("16");                        
+                        $solmysqlUsername->setOptional(false);
+                        $solmysqlUsername->setPreserveData(false);
+                        $enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
+
+                        $solmysqlPass = $factory->getTextField('solmysql_pass', $featureMYSQL_Vsite['pass'], 'r');
+                        $solmysqlPass->setOptional(false);
+                        $solmysqlPass->setPreserveData(false);
+                        $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
+
+                        $solmysqlDB = $factory->getTextField('solmysql_DB', $featureMYSQL_Vsite['DB'], 'r');
+                        $solmysqlDB->setMaxLength("16");
+                        $solmysqlDB->setOptional(false);
+                        $solmysqlDB->setPreserveData(false);
+                        $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
+
+                        $solmysqlHost = $factory->getTextField('solmysql_host', $sql_host, 'r');
+                        $solmysqlHost->setOptional(false);
+                        $solmysqlHost->setPreserveData(false);
+                        $enable->addFormField($solmysqlHost, $factory->getLabel('solmysqlHost'));
+
+                        $solmysqlPort = $factory->getTextField('solmysql_Port', $sql_port, 'r');
+                        $solmysqlPort->setOptional(false);
+                        $solmysqlPort->setPreserveData(false);
+                        $enable->addFormField($solmysqlPort, $factory->getLabel('solmysqlPort'));
+
+			// Hidden field for FQDN:
+                        $container->addFormField(
+                                        $factory->getTextField('this_FQDN', $this_FQDN, 'r'),
+                                        $factory->getLabel('this_FQDN'), "hidden"
+                                    );
+
+			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+		    }
+
+		} else {
+		    
+		    if ($mysql_status == "1") {
+			// MySQL status is OK:
+			
+			if ( $featureMYSQL_Vsite['enabled'] ) {
+			    $prot = 'r';
+			    $protdel = 'rw';
+			}
+			else {
+			    $prot = 'rw';			
+			    $protdel = 'r';
+			}
+
+			if ( !$featureMYSQL_Vsite['enabled'] ) {
+			    // Feature not active, generate username, password and DBname:
+			    // Resolve which site this is for:
+			    $vsite = $cce->getObject('Vsite', array('name' => $group));
+			    $vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
+//			    $my_username = preg_replace ( '/\./', '_', $vs_site );
+//			    $my_dbname = $my_username . '_db';
+			    $my_username = $group;
+			    $my_dbname = $group . '_db';
+			    $my_random_password = createRandomPassword();
+			    if (!$group) {
+				$my_username = "";
+			        $my_dbname = "";
+			    }
+			}
+			else {
+			    // Feature enabled already, read saved values from CCE:
+			    $my_username = $featureMYSQL_Vsite['username'];
+			    $my_random_password = $featureMYSQL_Vsite['pass'];
+			    $my_dbname = $featureMYSQL_Vsite['DB'];
+			}
+
+                        $solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
+                        $enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'rw');
+                        $enable->setLabel($factory->getLabel('enable', false));
+                        $solmysqlField->addOption($enable);
+
+                        $solmysqlUsername = $factory->getTextField('solmysql_username', $my_username, $prot);
+                        $solmysqlUsername->setMaxLength("16");
+                        $solmysqlUsername->setOptional(false);
+                        $solmysqlUsername->setPreserveData(false);
+                        $enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
+
+                        $solmysqlPass = $factory->getTextField('solmysql_pass', $my_random_password, $prot);
+                        $solmysqlPass->setOptional(false);
+                        $solmysqlPass->setPreserveData(false);
+                        $enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
+
+                        $solmysqlDB = $factory->getTextField('solmysql_DB', $my_dbname, $prot);
+                        $solmysqlDB->setMaxLength("16");
+                        $solmysqlDB->setOptional(false);
+                        $solmysqlDB->setPreserveData(false);
+                        $enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
+
+                        $solmysqlHost = $factory->getTextField('solmysql_host', $sql_host, 'r');
+                        $solmysqlHost->setOptional(false);
+                        $solmysqlHost->setPreserveData(false);
+                        $enable->addFormField($solmysqlHost, $factory->getLabel('solmysqlHost'));
+
+                        $solmysqlPort = $factory->getTextField('solmysql_Port', $sql_port, 'r');
+                        $solmysqlPort->setOptional(false);
+                        $solmysqlPort->setPreserveData(false);
+                        $enable->addFormField($solmysqlPort, $factory->getLabel('solmysqlPort'));
+
+			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+
+			// Hidden field for previous status:
+                        $container->addFormField(
+                                        $factory->getTextField('solmysql_Hidden', $featureMYSQL_Vsite['hidden'], 'r'),
+                                        $factory->getLabel('solmysql_Hidden'), "hidden"
+                                        );
+
+			// Hidden field for FQDN:
+                        $container->addFormField(
+                                        $factory->getTextField('this_FQDN', $this_FQDN, 'r'),
+                                        $factory->getLabel('this_FQDN'), "hidden"
+	                                );
+			
+		    }
+		    else {
+			// MySQL status is not OK:
+
+                        $solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
+                        $enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'rw');
+                        $enable->setLabel($factory->getLabel('enable', false));
+                        $solmysqlField->addOption($enable);
+			
+                        $sql_Status = "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running.";
+
+                        $solmysqlStatus = $factory->getTextField('sql_status', $sql_Status, 'r');
+                        $solmysqlStatus->setOptional(false);
+                        $solmysqlStatus->setPreserveData(false);
+                        $enable->addFormField($solmysqlStatus, $factory->getLabel('sql_status'));
+
+			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+		    }
+		}
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters) {
+	    global $solmysql;
+	    global $solmysql_enabled;
+	    global $solmysql_Status;
+	    global $solmysql_username;
+	    global $solmysql_pass;
+	    global $solmysql_DB;
+	    global $solmysql_host;
+	    global $solmysql_Port;
+
+	    global $sql_root;
+	    global $sql_rootpassword;
+	
+	    global $group;    
+	    global $hostname;
+	    global $domain;
+	    
+	    global $this_FQDN;
+	    
+	    if ((!$group) || ($group == "")) {
+		    $fqdn = $hostname . "." . $domain;
+	    }
+	    else {
+		$cce = $ServerScriptHelper->getCceClient();
+		$feature_site = $cce->get($parameters['CCE_OID']);
+		$fqdn = $feature_site['fqdn'];
+	    }
+
+	    $cce = $ServerScriptHelper->getCceClient();
+	    $featureMYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
+	    $solmysqlx_Status = $featureMYSQL_Vsite['enabled'];
+	    
+	    if ($solmysql_enabled == "&solmysql&") {
+		$mysolmysql_enabled = "1";
+	    }
+	    else {
+		$mysolmysql_enabled = "0";
+	    }
+
+	    if ($solmysql_host != 'localhost') {
+		$unmodified_sql_host = $this_FQDN;
+	    }
+	    else {
+		$unmodified_sql_host = $solmysql_host;
+	    }
+
+    	    // Get default DB rights from 'System' object 'solmysql':
+	    $cce = $ServerScriptHelper->getCceClient();
+	    $serverScriptHelper = new ServerScriptHelper();
+	    $cceClient = $serverScriptHelper->getCceClient();
+    	    $helper = new ServerScriptHelper($sessionId);
+            $cceHelper =& $helper->getCceClient();
+            $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
+
+	    $MAX_QUERIES_PER_HOUR = $db_rights['MAX_QUERIES_PER_HOUR'];
+	    $MAX_CONNECTIONS_PER_HOUR = $db_rights['MAX_CONNECTIONS_PER_HOUR'];
+	    $MAX_UPDATES_PER_HOUR = $db_rights['MAX_UPDATES_PER_HOUR'];	    
+
+	    $the_user_rights = array();
+	    if ($db_rights['SELECT'] == "1") {
+		 array_push($the_user_rights, "SELECT");
+	    }
+	    if ($db_rights['INSERT'] == "1") {
+		array_push($the_user_rights, "INSERT");
+	    }
+	    if ($db_rights['UPDATE'] == "1") {
+		array_push($the_user_rights, "UPDATE");
+	    }
+	    if ($db_rights['DELETE'] == "1") {
+		array_push($the_user_rights, "DELETE");
+	    }
+	    if ($db_rights['FILE'] == "1") {
+		array_push($the_user_rights, "FILE");
+	    }
+	    if ($db_rights['CREATE'] == "1") {
+		array_push($the_user_rights, "CREATE");
+	    }
+	    if ($db_rights['DROP'] == "1") {
+		array_push($the_user_rights, "DROP");
+	    }
+	    if ($db_rights['INDEX'] == "1") {
+		array_push($the_user_rights, "INDEX");
+	    }
+	    if ($db_rights['ALTER'] == "1") {
+		array_push($the_user_rights, "ALTER");
+	    }
+	    if ($db_rights['TEMPORARY'] == "1") {
+		array_push($the_user_rights, "CREATE TEMPORARY TABLES");
+	    }
+
+	    if ($db_rights['CREATE_VIEW'] == "1") {
+		array_push($the_user_rights, "CREATE VIEW");
+	    }
+	    if ($db_rights['SHOW_VIEW'] == "1") {
+		array_push($the_user_rights, "SHOW VIEW");
+	    }
+	    if ($db_rights['CREATE_ROUTINE'] == "1") {
+		array_push($the_user_rights, "CREATE ROUTINE");
+	    }
+	    if ($db_rights['ALTER_ROUTINE'] == "1") {
+		array_push($the_user_rights, "ALTER ROUTINE");
+	    }
+	    if ($db_rights['EXECUTE'] == "1") {
+		array_push($the_user_rights, "EXECUTE");
+	    }
+	    
+	    $inhalt = count($the_user_rights);
+	    $inhalt--;
+	    for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
+		if ($inhalt > $x) {
+		    $my_user_rights .= $the_user_rights[$x] . ", "; 
+		}
+		else {
+		    $my_user_rights .= $the_user_rights[$x] . ""; 
+		}
+	    }
+	    $the_user_rights = $my_user_rights;
+
+	    if ($solmysql_Status == "") {
+	    
+		if ($solmysqlx_Status != $mysolmysql_enabled) {
+
+		    // Start - MySQL
+
+		    // Start sane:
+		    $sql_username = $solmysql_username;
+		    $sql_userpass = $solmysql_pass;
+		    $sql_database = $solmysql_DB;
+		    $sql_host = $solmysql_host;
+		    $sql_port = $solmysql_Port;
+		    //$unmodified_sql_host = $sql_host;
+		    
+		    // Find and validate presence of 'MySQL' and pull the data:
+		    $cce = $ServerScriptHelper->getCceClient();
+		    $serverScriptHelper = new ServerScriptHelper();
+		    $cceClient = $serverScriptHelper->getCceClient();
+		    $helper = new ServerScriptHelper($sessionId);
+		    $cceHelper =& $helper->getCceClient();
+		    $getthisOID = $cce->find("MySQL");
+		    $mysql_settings_exists = 0;
+		    $mysql_settings = $cceClient->get($getthisOID[0]);
+
+		    // MySQL settings:
+		    $sql_root               = $mysql_settings['sql_root'];
+		    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+
+		    if (($sql_host != "localhost") || ($sql_host != "127.0.0.1")) {
+		        $my_sql_host = $sql_host . ":" . $sql_port;
+		        $sql_host = $my_sql_host;
+		    }
+
+		    // Make MySQL connection:
+		    $fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+
+		    // Dropping primary database:
+		    $query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
+		    $result = mysql_query($query);
+		
+		    if ($mysolmysql_enabled == "1") {
+			// Create primary database:
+			$query = "CREATE DATABASE `".$sql_database."`;\n";
+			$result = mysql_query($query);
+		    }
+		    
+
+		    if ($mysolmysql_enabled == "0") {
+			// Revoke privileges and drop user:
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "REVOKE ALL PRIVILEGES ON * . * FROM '$sql_username'@'$unmodified_sql_host';\n";
+			$result = mysql_query($query);
+
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "REVOKE ALL PRIVILEGES ON `$sql_database` . * FROM '$sql_username'@'$unmodified_sql_host';\n";
+			$result = mysql_query($query);
+
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "REVOKE GRANT OPTION ON * . * FROM '$sql_username'@'$unmodified_sql_host';\n";
+			$result = mysql_query($query);
+
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "DROP USER '$sql_username'@'$unmodified_sql_host';\n";
+			$result = mysql_query($query);
+		    }
+
+		    if ($mysolmysql_enabled == "1") {
+		    
+			// Setup MySQL-User step1:
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "GRANT USAGE ON * . * TO '$sql_username'@'$unmodified_sql_host' IDENTIFIED BY '$sql_userpass' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
+			$result = mysql_query($query);
+
+			// Setup MySQL-User step2:
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$unmodified_sql_host';\n";
+		
+			$result = mysql_query($query);
+
+			// Setup MySQL-User step3:
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			$query = "FLUSH PRIVILEGES;\n";
+			$result = mysql_query($query);
+		    }
+
+		    // Closing connection
+		    mysql_close($fixed_mysql_link);
+
+		    // End - MySQL
+		}
+
+		// Create Vsite namespace 'MYSQL_Vsite':
+		$cce = $ServerScriptHelper->getCceClient();
+	        $cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+						    'enabled' => $mysolmysql_enabled, 
+						    'username' => $solmysql_username,
+						    'pass' => $solmysql_pass,
+						    'DB' => $solmysql_DB,
+						    'host' => $solmysql_host,
+						    'port' => $solmysql_Port,
+						    'hidden' => time()
+						    ));
+		$errors = array_merge($errors, $cce->errors());
+
+		// Create 'MYSQL_DBs' object:
+
+		$cce = $ServerScriptHelper->getCceClient();
+		$vserverOID = $cce->find("MYSQL_DBs", array("fqdn" => $fqdn));
+		if (count($vserverOID) == 1) {
+    		    $cce->set($vserverOID[0], "", array(
+						    'fqdn' => $fqdn,
+						    'enabled' => $mysolmysql_enabled, 
+						    'username' => $solmysql_username,
+						    'pass' => $solmysql_pass,
+						    'DB' => $solmysql_DB,
+						    'host' => $solmysql_host,
+						    'port' => $solmysql_Port,
+						    'hidden' => time()
+						    ));
+		}
+		else {
+		    $cce = $ServerScriptHelper->getCceClient();
+    		    $ok = $cce->create("MYSQL_DBs", array(
+						    'fqdn' => $fqdn,
+						    'enabled' => $mysolmysql_enabled, 
+						    'username' => $solmysql_username,
+						    'pass' => $solmysql_pass,
+						    'DB' => $solmysql_DB,
+						    'host' => $solmysql_host,
+						    'port' => $solmysql_Port,
+						    'hidden' => time()
+						    ));
+		}
+		$ret = ini_set("display_errors", "On");
+	    }
+	}
+    }
+}
+
+function createRandomPassword() {
+    /**
+     * The letter l (lowercase L) and the number 1
+     * have been removed, as they can be mistaken
+     * for each other.
+    */
+
+    $chars = "abcFGHJKhijkmnovdefgABRSTUVWXCDEwxyzLMNOPQYZ023pqrstu456789";
+    srand((double)microtime()*1000000);
+    $i = 0;
+    $pass = '' ;
+
+    while ($i <= 7) {
+        $num = rand() % 33;
+        $tmp = substr($chars, $num, 1);
+        $pass = $pass . $tmp;
+        $i++;
+    }
+    return $pass;
+
+    // Usage
+    // 
+    // echo "Your random password is: $password";
+
+}
+
+?>
