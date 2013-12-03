@@ -1,6 +1,8 @@
 <?php
-// Copyright Sun Microsystems, Inc. 2001
-// $Id: pooling.php 1136 2008-06-05 01:48:04Z mstauber $
+
+// Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+// $Id: pooling.php
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/Label.php");
@@ -11,8 +13,8 @@ include_once("uifc/FormFieldBuilder.php");
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverIpPooling' should be here:
+if (!$serverScriptHelper->getAllowed('serverIpPooling')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -32,6 +34,18 @@ list($sysoid) = $cceClient->find("System");
 $network = $cceClient->get($sysoid, 'Network');
 $enabled = $network['pooling'];
 
+$access = $network['interfaceConfigure'] ? 'rw' : 'r'; 
+ 
+$oids = $cceClient->findx('User', 
+                                array('capLevels' => 'adminUser'), 
+                                array(), 
+                                'ascii', 
+                                'name'); 
+ 
+foreach ($oids as $oid) { 
+  $admins[$oid] = $cceClient->get($oid); 
+} 
+
 $oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
 $ranges = array();
 
@@ -46,7 +60,7 @@ foreach ($oids as $oid) {
 $need_editable_row = ($action == 'add' || $action == 'edit' || ($action == 'save' && $errors));
 
 if ($act_on == 'new' && $need_editable_row) {
-  $ranges['new'] = array( 'min' => '', 'max' => '');
+  $ranges['new'] = array( 'min' => '', 'max' => '', 'admin' => '');
 }
 
 
@@ -80,7 +94,7 @@ $factory = $serverScriptHelper->getHtmlComponentFactory("base-network", "/base/n
 $page = $factory->getPage();
 
 $rangeList = $factory->getScrollList("rangeList", 
-				array("min", "max", " "));
+				array("min", "max", "admin", " "));
 
 reset($ranges);
 while (list($oid, $range) = each($ranges)) {
@@ -90,6 +104,7 @@ while (list($oid, $range) = each($ranges)) {
   // Else, just display the data in $range_mins, $range_maxes
   $min_string = "range_min$oid";
   $max_string = "range_max$oid";
+  $admin_string = "range_admin$oid"; 
   // We need to edit if:
   // 1. We are in "edit" mode
   // 2. We are in "save" mode, but couldn't save for some reason.
@@ -100,14 +115,30 @@ while (list($oid, $range) = each($ranges)) {
   if ($act_on_this && $need_editable_row) {
     $minField = $factory->getTextField($min_string, $range['min'], "rw");
     $maxField = $factory->getTextField($max_string, $range['max'], "rw");
+    $adminField = $factory->getMultiChoice($admin_string); 
+    $adminField->scroll = true; 
+    $adminField->row = 4; 
+    $adminArray = $cceClient->scalar_to_array($range['admin']); 
+    while (list($admin_oid, $admin) = each($admins)) { 
+      if (in_array($admin['name'], $adminArray)) { 
+        $selected = true; 
+      } else { 
+        $selected = false; 
+      } 
+      $adminField->addOption($factory->getOption($admin['name'], $selected)); 
+    } 
   } else {
     $minField = $factory->getTextField($min_string, $range['min'], "r");
     $maxField = $factory->getTextField($max_string, $range['max'], "r");
+    $adminString = join(', ', $cceClient->scalar_to_array($range['admin'])); 
+    $adminField = $factory->getTextField($admin_string, $adminString, 'r');     
   }
   $minField->setOptional("silent");
   $maxField->setOptional("silent");
   $minField->setPreserveData(false);
   $maxField->setPreserveData(false);
+  $adminField->setOptional('silent');
+  $adminField->setPreserveData(false);
 
   // Create the buttons
   $actions = $factory->getCompositeFormField();
@@ -142,7 +173,7 @@ while (list($oid, $range) = each($ranges)) {
   }
 
   // Finally, add the entry to the list
-  $rangeList->addEntry(array($minField, $maxField, $actions));
+  $rangeList->addEntry(array($minField, $maxField, $adminField, $actions));
 }
 
 if (!$need_editable_row) {
@@ -152,20 +183,11 @@ if (!$need_editable_row) {
 
 // Now we create the "enable" part of the page
 $enableBlock = $factory->getPagedBlock("pooling_block");
-$enabledField = $factory->getBoolean("enabled", $enabled);
+$enabledField = $factory->getBoolean("enabled", $enabled, $access);
 $enabledField->setPreserveData(false);
 $enableBlock->addFormField($enabledField, $factory->getLabel("enabledField"));
 $enableButton = $factory->getButton("javascript: document.form.onsubmit(); document.form.action.value='enable'; document.form.submit();", "saveEnabled");
 $enableBlock->addButton($enableButton);
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$enableBlock->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 // Hidden fields for $action and $act_on
 $builder = new FormFieldBuilder();
@@ -209,25 +231,28 @@ function handlePage() {
     case 'save':
       $values = array();
       if ($HTTP_POST_VARS["range_min$act_on"]) {
-	$values['min'] = $HTTP_POST_VARS["range_min$act_on"];
+        $values['min'] = $HTTP_POST_VARS["range_min$act_on"];
       }
       if ($HTTP_POST_VARS["range_max$act_on"]) {
-	$values['max'] = $HTTP_POST_VARS["range_max$act_on"];
+        $values['max'] = $HTTP_POST_VARS["range_max$act_on"];
       }
+      if ($HTTP_POST_VARS["range_admin$act_on"]) { 
+        $values['admin'] = $cceClient->array_to_scalar($HTTP_POST_VARS["range_admin$act_on"]); 
+      }       
       if ($act_on == 'new') {
-	$ok = $cceClient->create('IPPoolingRange', $values);
+        $ok = $cceClient->create('IPPoolingRange', $values);
       } else {
-	$ok = $cceClient->set($act_on, '', $values);
+        $ok = $cceClient->set($act_on, '', $values);
       }
       if (!$ok) {
-	return $cceClient->errors();
+        return $cceClient->errors();
       }
       break;
     case 'enable':
       list($sysoid) = $cceClient->findx('System');
       $ok = $cceClient->set($sysoid, 'Network', array('pooling' => $HTTP_POST_VARS['enabled']));
       if (!$ok) {
-	return $cceClient->errors();
+        return $cceClient->errors();
       }
       break;
     case 'add':
@@ -241,6 +266,8 @@ function handlePage() {
 }
 		    
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

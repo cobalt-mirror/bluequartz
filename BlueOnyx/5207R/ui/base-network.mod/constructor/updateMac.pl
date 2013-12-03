@@ -1,84 +1,41 @@
-# $Id: Network.pm
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-#
-# hidden functions only used by scripts in this module
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/network
+# $Id$
 
-package Network;
+use strict;
+use CCE;
+use Network;
 
-require Exporter;
+my $DEBUG = 0;
 
-use vars qw(@ISA @EXPORT_OK);
+my $cce = new CCE;
+$cce->connectuds();
 
-@ISA = qw(Exporter);
-@EXPORT_OK = qw(find_eth_ifaces $NET_SCRIPTS_DIR);
-
-# files and directories
-$Network::NET_SCRIPTS_DIR = '/etc/sysconfig/network-scripts';
-$Network::ETC_HOSTS = '/etc/hosts';
-
-# programs
-$Network::IFCONFIG = '/sbin/ifconfig';
-$Network::ROUTE = '/sbin/route';
-
-# exportable routines
-
-# find the interface names for all real and alias interfaces
-sub find_eth_ifaces
-{
-    my @eth_ifaces = ();
-
-    # first find real physical intefaces
-	if (defined(open(IFCONFIG, "$Network::IFCONFIG -a 2>/dev/null |")))
-	{
-		while (<IFCONFIG>)
-		{
-			if (! -f "/proc/user_beancounters") {
-				# Normal network interfaces:
-				if (!/^(eth\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-			else {
-				# OpenVZ network interfaces:
-				if (!/^(venet\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-		}
-		close(IFCONFIG);
-    }
-	else
-	{
-		return ();
-	}
-
-    # now search /etc/sysconfig/network-scripts for aliases
-    if (opendir(IFCFG, $Network::NET_SCRIPTS_DIR))
-    {
-        while (my $filename = readdir(IFCFG)) {
-	    if (! -f "/proc/user_beancounters") {
-	    	if ($filename =~ /\-(eth\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-	    else {
-	    	if ($filename =~ /\-(venet\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-        }
-        
-        closedir(IFCFG);
-    }
-    else
-    {
-        return ();
-    }
-
-    return @eth_ifaces;
+# Are on OpenVZ?
+if (-f "/proc/user_beancounters") { 
+    # Apparently yes. Stopping right here, as we have no MACs.
+    exit(0);
 }
+
+my @oids = $cce->find('Network');
+foreach my $oid (@oids) {
+  my ($ok, $obj) = $cce->get($oid);
+  my $device = $obj->{'device'};
+
+  my $data = `$Network::IFCONFIG $device`;
+
+  my $hex = '[0-9a-fA-F]{2,}';
+  if ($data =~ m/HWaddr ($hex:$hex:$hex:$hex:$hex:$hex)/) {
+    my $mac = $1;
+    $DEBUG && print STDERR "mac address for device $device: $mac\n";
+    my ($ok) = $cce->set($oid, '', { 'mac' => $mac });
+  }
+}
+
+$cce->bye('SUCCESS');
+exit(0);
+
 #
-# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright 2007 Project BlueQuartz.  All rights reserved.
 # Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 

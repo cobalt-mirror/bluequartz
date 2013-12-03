@@ -34,7 +34,7 @@ msgid "enterFqdn"
 msgstr "ホスト名とドメインネーム"
 
 msgid "enterFqdn_help"
-msgstr "左欄にはこのサーバのホスト名 (例： www、mail、shomu_2、eigyo13 など) を、右欄にはドメインネーム (例： sun.com、cobaltqube.org、toaru.co.jp) をそれぞれ入力してください。ホスト名とドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
+msgstr "左欄にはこのサーバのホスト名 (例： www、mail、shomu_2、eigyo13 など) を、右欄にはドメインネーム (例： BlueOnyx.org、cobaltqube.org) をそれぞれ入力してください。ホスト名とドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。"
 
 msgid "hostNameField"
 msgstr "ホスト名"
@@ -50,7 +50,7 @@ msgstr "ドメインネーム"
 
 # make consistent with rfc 1035
 msgid "domainNameField_rule"
-msgstr "ドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。最初の文字には半角の英小文字をお使いください。（指定例： sun.com、cobaltqube.org、toaru.co.jp）"
+msgstr "ドメインネームには、半角の英小文字、数字、ハイフン、ピリオドだけが使用できます。最初の文字には半角の英小文字をお使いください。（指定例： BlueOnyx.org、cobaltqube.org）"
 
 msgid "domainNameField_help"
 msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組合せにより、このサーバを一意に識別できる名前を付けてください。[[base-network.domainNameField_rule]]"
@@ -1041,3 +1041,6 @@ msgstr "ご指定のネットマスク [[VAR.netmask]] は不正です。[[base-network.validNet
 
 msgid "validNetmaskHelp"
 msgstr "ネットマスクは、0 〜 255 の数字４組をピリオドで区切って指定してください。サブネットを指定する場合には、255 の次に 128、192、224、240、248、252、または 254 を入力できます。（指定例： 255.255.0.0、255.128.0.0）"
+
+msgid "openvz_vps"
+msgstr "これは、ドバイOpenVZ VPSです。ネットワーク設定（ホスト名、ドメイン名、DNSサーバやゲートウェイ）は、マスターノード上で変更することができます。しないVPS自体インチ以下に、あなたはこのVPS用に現在設定されている設定を確認することができます。"

@@ -1,15 +1,16 @@
 <?php
 // Author: Kevin K.M. Chiu
-// Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernet.php,v 1.1.1.2.2.3 Mon 10 Aug 2009 11:02:43 AM CEST mstauber Exp $
+// Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+// $Id: ethernet.php
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only users with Capability 'serverNetwork' should be here:
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -634,7 +635,10 @@ function netmaskSubmitHandler(ip, nm)
 </SCRIPT>
 
 <?php print($page->toFooterHtml());
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
@@ -654,4 +658,5 @@ This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS O
 
 You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 */
+
 ?>

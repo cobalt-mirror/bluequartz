@@ -1,23 +1,12 @@
-# translation of base-network.po to German
-# Header entry was created by KBabel!
-#
-# Michael Stauber <mstauber@solarspeed.net>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: network\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 20:36+0200\n"
-"PO-Revision-Date: 2008-01-27 08:50+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Japanese\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid "activity"
 msgstr "Aktivität"
@@ -1046,3 +1035,18 @@ msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die m
 msgid "netMaskField2_rule"
 msgstr "Bitte geben Sie eine Reihe von vier Zahlen zwischen 0 und 255 ein, die mit Punkten getrennt werden. Eine gültige Eingabe ist z. B. '255.255.255.0'."
 
+
+msgid "openvz_vps"
+msgstr "Dies ist ein OpenVZ VPS. Netzwerkeinstellungen (wie Hostnamen, Domain-Namen, DNS-Server und das Gateway) können nur auf der Master-Node verändert werden. Nicht im VPS selbst. Hier können Sie die aktuell konfigurierten Einstellungen für dieses VPS einsehen."
+
+msgid "cap_serverIpPooling"
+msgstr "IP-Adresszuweisung"
+
+msgid "cap_serverNetwork"
+msgstr "TCP/IP-Konfiguration"
+
+msgid "admin"
+msgstr "Server-Administratoren"
+
+msgid "admin_help"
+msgstr "Das sind die Server-Administratoren für diesen IP-Adressbereich."

@@ -1,82 +1,43 @@
-# $Id: Network.pm
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-#
-# hidden functions only used by scripts in this module
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I. -I/usr/sausalito/handlers/base/network
+# $Id$
+# Copyright 2010 Project BlueQuartz.  All rights reserved.
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 
-package Network;
+use strict;
+use CCE;
+use Network;
 
-require Exporter;
+my $DEBUG = 0;
 
-use vars qw(@ISA @EXPORT_OK);
+my $cce = new CCE;
+$cce->connectuds();
 
-@ISA = qw(Exporter);
-@EXPORT_OK = qw(find_eth_ifaces $NET_SCRIPTS_DIR);
+my $configure = 1;
 
-# files and directories
-$Network::NET_SCRIPTS_DIR = '/etc/sysconfig/network-scripts';
-$Network::ETC_HOSTS = '/etc/hosts';
-
-# programs
-$Network::IFCONFIG = '/sbin/ifconfig';
-$Network::ROUTE = '/sbin/route';
-
-# exportable routines
-
-# find the interface names for all real and alias interfaces
-sub find_eth_ifaces
-{
-    my @eth_ifaces = ();
-
-    # first find real physical intefaces
-	if (defined(open(IFCONFIG, "$Network::IFCONFIG -a 2>/dev/null |")))
-	{
-		while (<IFCONFIG>)
-		{
-			if (! -f "/proc/user_beancounters") {
-				# Normal network interfaces:
-				if (!/^(eth\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-			else {
-				# OpenVZ network interfaces:
-				if (!/^(venet\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-		}
-		close(IFCONFIG);
-    }
-	else
-	{
-		return ();
-	}
-
-    # now search /etc/sysconfig/network-scripts for aliases
-    if (opendir(IFCFG, $Network::NET_SCRIPTS_DIR))
-    {
-        while (my $filename = readdir(IFCFG)) {
-	    if (! -f "/proc/user_beancounters") {
-	    	if ($filename =~ /\-(eth\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-	    else {
-	    	if ($filename =~ /\-(venet\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-        }
-        
-        closedir(IFCFG);
-    }
-    else
-    {
-        return ();
-    }
-
-    return @eth_ifaces;
+# If we're using DHCP (like in AWS) or if we're under OpenVZ, then we cannot
+# change the IP address ranges via the GUI:
+if ((-f "/etc/is_aws") || (-f "/proc/user_beancounters")) {
+        $configure = 0;
 }
+
+my @oids = $cce->find('System');
+my $sys_oid = $oids[0];
+my ($ok) = $cce->set($sys_oid, 'Network', { 'interfaceConfigure' => $configure });
+
+@oids = $cce->find('IPPoolingRange');
+if ($#oids < 0 && $configure == 0) {
+  my @net_oids = $cce->find('Network', {'real' => 1});
+  foreach my $oid (@net_oids) {
+    my ($ok, $obj) = $cce->get($oid);
+    my $ipaddr = $obj->{'ipaddr'};
+    $ok = $cce->create('IPPoolingRange', {'min' => $ipaddr, 'max' => $ipaddr});
+  }
+  my ($ok) = $cce->set($sys_oid, 'Network', {'pooling' => 1});
+}
+
+$cce->bye('SUCCESS');
+exit(0);
+
 #
 # Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT

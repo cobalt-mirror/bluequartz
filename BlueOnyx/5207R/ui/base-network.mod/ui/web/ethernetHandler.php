@@ -1,6 +1,7 @@
 <?php
-// Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ethernetHandler.php,v 1.1.1.2.2.1 2005/08/12 09:40:56 shibuya Exp $
+// Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+// $Id: ethernetHandler.php
 
 include_once('ServerScriptHelper.php');
 include_once('Product.php');
@@ -8,8 +9,8 @@ include_once('base/network/network_common.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only users with Capability 'serverNetwork' should be here:
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -179,7 +180,10 @@ if ($call_to_handler)
 }
 
 $serverScriptHelper->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
@@ -199,4 +203,5 @@ This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS O
 
 You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 */
+
 ?>

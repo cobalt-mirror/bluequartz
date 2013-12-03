@@ -1,84 +1,71 @@
-# $Id: Network.pm
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+#!/usr/bin/perl
+# $Id: check_pool.pl
 #
-# hidden functions only used by scripts in this module
+# Description:
+#	Runs on Network creation, or change of Network.ipaddr property.
+#       If IP pooling enabled, checks that the given IP address is
+#       within the pool of acceptable IPs.
 
-package Network;
+use lib qw(/usr/sausalito/perl);
+use lib qw(/usr/sausalito/handlers/base/network);
+use CCE;
+use IpPooling;
 
-require Exporter;
+# FIXME. Passing in i18n domain, needed to proper I18n msgs
+# and variable interpolation by cce client libs.
+my $cce = new CCE('Domain' => 'base-network');
 
-use vars qw(@ISA @EXPORT_OK);
+$cce->connectfd();
 
-@ISA = qw(Exporter);
-@EXPORT_OK = qw(find_eth_ifaces $NET_SCRIPTS_DIR);
+my $vsite_new = $cce->event_new();
 
-# files and directories
-$Network::NET_SCRIPTS_DIR = '/etc/sysconfig/network-scripts';
-$Network::ETC_HOSTS = '/etc/hosts';
-
-# programs
-$Network::IFCONFIG = '/sbin/ifconfig';
-$Network::ROUTE = '/sbin/route';
-
-# exportable routines
-
-# find the interface names for all real and alias interfaces
-sub find_eth_ifaces
-{
-    my @eth_ifaces = ();
-
-    # first find real physical intefaces
-	if (defined(open(IFCONFIG, "$Network::IFCONFIG -a 2>/dev/null |")))
-	{
-		while (<IFCONFIG>)
-		{
-			if (! -f "/proc/user_beancounters") {
-				# Normal network interfaces:
-				if (!/^(eth\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-			else {
-				# OpenVZ network interfaces:
-				if (!/^(venet\d+)\s/) { next; }
-				# found an existing interface
-				push @eth_ifaces, $1;
-			}
-		}
-		close(IFCONFIG);
-    }
-	else
-	{
-		return ();
-	}
-
-    # now search /etc/sysconfig/network-scripts for aliases
-    if (opendir(IFCFG, $Network::NET_SCRIPTS_DIR))
-    {
-        while (my $filename = readdir(IFCFG)) {
-	    if (! -f "/proc/user_beancounters") {
-	    	if ($filename =~ /\-(eth\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-	    else {
-	    	if ($filename =~ /\-(venet\d+\:\d+)$/) {
-                	push @eth_ifaces, $1;
-            	}
-	    }
-        }
-        
-        closedir(IFCFG);
-    }
-    else
-    {
-        return ();
-    }
-
-    return @eth_ifaces;
+my ($sysoid) = $cce->find('System');
+my ($ok, $network) = $cce->get($sysoid, 'Network');
+if (!$ok) {
+    $cce->bye('FAIL');
+    exit 1;
 }
+
+if ($network->{pooling} && $vsite_new->{ipaddr}) {
+    my (@oids) = $cce->find('IPPoolingRange');
+    my @ranges = ();
+
+    # get ranges
+    foreach $a_oid (@oids) {
+	my ($ok, $range) = $cce->get($a_oid);
+	if (!$ok) {
+	    $cce->bye('FAIL');
+	    exit 1;
+	}
+	my @adminArray = $cce->scalar_to_array($range->{admin});
+	my $result = 0;
+	if ($vsite_new->{createdUser} ne 'admin') {
+	    foreach my $admin (@adminArray) {
+		if ($admin eq $vsite_new->{createdUser}) {
+		    $result = 1;
+		}
+	    }
+	} else {
+	    $result = 1;
+	}
+	if ($result) {
+	    push @ranges, $range;
+	}
+    }
+    
+    my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, [ $vsite_new->{ipaddr} ]);
+    if (@error_ips) {
+	$cce->warn('ip_restricted', {'ipaddr' => $vsite_new->{ipaddr}});
+	$cce->bye('FAIL');
+	exit 1;
+    }
+}
+
+$cce->bye('SUCCESS');
+exit 0;
+
 #
-# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2010 Hisao Shibuya
 # Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 

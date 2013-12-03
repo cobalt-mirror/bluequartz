@@ -1,7 +1,8 @@
 <?php
 /*
- * $Id: routes.php 1136 2008-06-05 01:48:04Z mstauber $
- * Copyright 2001 Sun Microsystems, Inc.	All rights reserved.
+ * $Id: routes.php
+ * Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+ * Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
  *
  * this one little script both creates the list view, the edit/create view,
  * and performs all the post handling.	I believe it's better to do all
@@ -13,8 +14,8 @@ include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverNetwork' should be here
+if (!$serverScriptHelper->getAllowed('serverNetwork')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -183,9 +184,6 @@ function edit_route ()
 	$myform = $mypage->getForm();
 	$myid = $myform->getId();
 
-	// Have to do this or last input box doesn't show up on PHP5:
-	$ui->SelectField("Nothing", "");
-
 	$ui->Block->addButton(new SaveButton($ui->Page, "javascript: if(document.form.onsubmit()) { document.$myid._save.value = 1; document.$myid.submit(); }"));
 	$ui->Block->addButton(new CancelButton($ui->Page, ($self . "?SAVE= ". ($edit ? $edit : "Route"))));
 
@@ -193,6 +191,8 @@ function edit_route ()
 	$ui->EndPage();
 }
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
