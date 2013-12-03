@@ -1,0 +1,208 @@
+
+msgid "osName"
+msgstr "BlueOnyx"
+
+msgid "osVendor"
+msgstr "Progetto BlueOnyx"
+
+msgid "osDescription"
+msgstr "Il [[base-alpine.osName]] è il software di base per il [[base-product.productName]]. Questo pacchetto software è necessaria per il vostro apparecchio server per funzionare."
+
+msgid "vendorSite"
+msgstr "http://BlueOnyx.it/"
+
+msgid "sysmanage"
+msgstr "Management Server"
+
+msgid "sysmanageDescription"
+msgstr "Administration Server. Clicca qui per gestire il server."
+
+msgid "security"
+msgstr "Sicurezza"
+
+msgid "securityDescription"
+msgstr "Clicca qui per gestire i certificati e la sicurezza del server."
+
+msgid "sitemanage"
+msgstr "Gestione del sito"
+
+msgid "sitemanageDescription"
+msgstr "Clicca qui per creare, modificare e gestire server virtuale (cioè luogo) le impostazioni, gli account utente e backup."
+
+msgid "controlpanel"
+msgstr "Servizi di rete"
+
+msgid "controlpanelDescription"
+msgstr "Clicca qui per controllare i servizi del server."
+
+msgid "serverconfig"
+msgstr "Impostazioni sistema"
+
+msgid "serverconfigDescription"
+msgstr "Fare clic qui per configurare il server di rete, larghezza di banda e le impostazioni dell'ora."
+
+msgid "cpservicesDescription"
+msgstr "Clicca qui per gestire i siti virtuali e account utente."
+
+msgid "sysmaintenance"
+msgstr "Manutenzione"
+
+msgid "sysmaintenanceDescription"
+msgstr "Clicca qui per effettuare la manutenzione del server, quali il backup di sistema, il controllo di stoccaggio, e il riavvio del sistema."
+
+msgid "serverusage"
+msgstr "Uso del server"
+
+msgid "serverusageDescription"
+msgstr "Clicca qui per visualizzare le statistiche complessive di utilizzo di questo apparecchio server."
+
+msgid "siteusage"
+msgstr "Statistiche di utilizzo"
+
+msgid "siteusageDescription"
+msgstr "Clicca qui per vedere le statistiche di utilizzo per questo sito."
+
+msgid "netusage"
+msgstr "Rete"
+
+msgid "netusageDescription"
+msgstr "Clicca qui per visualizzare l'utilizzo totale della rete per questo server."
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Clicca qui per vedere le statistiche di utilizzo web."
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Clicca qui per vedere le statistiche di utilizzo FTP."
+
+msgid "mailusage"
+msgstr "Posta"
+
+msgid "mailusageDescription"
+msgstr "Clicca qui per visualizzare le statistiche di utilizzo della posta elettronica."
+
+msgid "sysinfo"
+msgstr "Informazioni di sistema"
+
+msgid "sysinfoDescription"
+msgstr "Clicca qui per visualizzare le informazioni di configurazione del server."
+
+msgid "sysbackuprestore"
+msgstr "Backup e ripristino"
+
+msgid "sysbackuprestoreDescription"
+msgstr "Clicca qui per eseguire il backup o il ripristino dei dati del server."
+
+msgid "usermgmt"
+msgstr "Gestione degli utenti"
+
+msgid "usermgmtDescription"
+msgstr "Clicca qui per aggiungere, modificare o rimuovere utenti."
+
+msgid "base-programs"
+msgstr "Programmi"
+
+msgid "base-programs_description"
+msgstr "La sezione Programmi consente di accedere ai programmi installati."
+
+msgid "splashProgramsMessage"
+msgstr "La sezione Programmi permette di accedere a utili strumenti di produttività e applicazioni."
+
+msgid "splashPersonalMessage"
+msgstr "La sezione Profilo personale consente di visualizzare e modificare le impostazioni dell'account utente."
+
+msgid "base-personalProfile"
+msgstr "Personal Profile"
+
+msgid "base-personalProfile_description"
+msgstr "La sezione Profilo personale consente di visualizzare le informazioni sull'account utente."
+
+msgid "wizardSysSettings"
+msgstr "Impostazioni di sistema"
+
+msgid "wizardSysSettings_help"
+msgstr " "
+
+msgid "wizardRaid"
+msgstr "Configurazione Raid"
+
+msgid "wizardRaid_help"
+msgstr " "
+
+msgid "wizardRaidBuild"
+msgstr "Configurazione Raid"
+
+msgid "wizardRaidBuild_help"
+msgstr " "
+
+msgid "wizardRegister"
+msgstr "Registrazione"
+
+msgid "wizardRegister_help"
+msgstr " "
+
+msgid "wizardFinish"
+msgstr " "
+
+msgid "wizardFinish_help"
+msgstr " "
+
+msgid "loginPageTitle"
+msgstr "Accesso - [[base-product.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "Accesso - [[VAR.hostname]]"
+
+msgid "loginMissingCookies"
+msgstr "Prima di provare ad accedere, verificare che il browser supporta la funzionalità dei cookie."
+
+msgid "loginExpiredMessage"
+msgstr "La tua sessione di accesso è scaduta. Per accedere di nuovo, inserisci il tuo nome utente e password."
+
+msgid "loginByeMessage"
+msgstr "Grazie per aver usato il te [[base-product.productName]]."
+
+msgid "loginOkMessage"
+msgstr "Per accedere, inserisci il tuo nome utente e password."
+
+msgid "loginAuthFailed"
+msgstr "Non è stato immesso un nome utente corretto e / o la password. Riprova."
+
+msgid "loginNoCssMessage"
+msgstr "Prima di provare ad accedere, verificare che il vostro browser supporta la funzionalità Cascading Style Sheets."
+
+msgid "loginNoJsMessage"
+msgstr "Prima di provare ad accedere, verificare che il vostro browser supporta le funzionalità Javascript."
+
+msgid "loginPageUsername"
+msgstr "Nome Utente:"
+
+msgid "loginPagePassword"
+msgstr "Password:"
+
+msgid "loginPageSecurity"
+msgstr "Fissare Connect:"
+
+msgid "loginPageLogin"
+msgstr "Accedi"
+
+msgid "documentation"
+msgstr "Documentazione"
+
+msgid "documentation_help"
+msgstr "Clicca qui per visualizzare manuali online per questo apparecchio server."
+
+msgid "pdfDescen"
+msgstr "BlueOnyx Hosting Edition Manuale (inglese)"
+
+msgid "pdfDescja"
+msgstr "BlueOnyx Hosting Edition Manuale (giapponese)"
+
+msgid "pdfDescen_US"
+msgstr "BlueOnyx Hosting Edition Manuale (inglese)"
+

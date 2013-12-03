@@ -1,19 +1,22 @@
 # Server Management
 
 msgid "osName"
-msgstr "Sun Cobalt OS"
+msgstr "BlueOnyx"
 
 msgid "osVendor"
-msgstr "Sun Microsystems, Inc."
+msgstr "Project BlueOnyx"
 
 msgid "osDescription"
 msgstr "[[base-alpine.osName]] は、[[base-product.productName]]の基本ソフトウェアで、このサーバの動作に必要不可欠なソフトウェアパッケージです。"
+
+msgid "vendorSite"
+msgstr "http://BlueOnyx.org/"
 
 msgid "sysmanage"
 msgstr "サーバの管理"
 
 msgid "sysmanageDescription"
-msgstr "Sun Cobalt サーバの管理画面が表示され、サーバの設定や管理操作を行えます。"
+msgstr "サーバの管理画面が表示され、サーバの設定や管理操作を行えます。"
 
 msgid "security"
 msgstr "セキュリティ"
@@ -216,9 +219,13 @@ msgid "documentation_help"
 msgstr "このサーバのオンラインマニュアルが表示されます。" 
 
 msgid "pdfDescen"
-msgstr "RaQ 550 マニュアル (英語)"
+msgstr "BlueOnyx Hosting Edition マニュアル (英語)"
 
 msgid "pdfDescja"
-msgstr "RaQ 550 マニュアル (日本語)"
+msgstr "BlueOnyx Hosting Edition マニュアル (日本語)"
 
+
+
+msgid "pdfDescen_US"
+msgstr "BlueOnyx Hosting Edition Manual (English)"
 

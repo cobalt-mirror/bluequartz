@@ -80,7 +80,7 @@ information for [VENDOR]-[SERVICE].
 <end capstone>
 
 <begin glue>
-
+# glue post-install 
 <end glue>
 <begin ui>
 # ui post-install
@@ -112,6 +112,16 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Dec 03 2013 Michael Stauber <mstauber@solarspeed.net> 0.2-1BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Platform strings still set to 5107R/5108R at this time.
+- Cleaned out 'REQUIRED' list in Makefile.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Merged in new capabilities from Hisao Shibuya's 5200R code branch.
+- Modified web/intro.html.ja from EUC-JP to UTF-8.
 
 * Tue Aug 14 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX43
 - Updated locale/de_DE/alpine.po as the German locales were claiming this to be 5106R.

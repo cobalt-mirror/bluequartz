@@ -1,3 +1,13 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 # Server Management
 
 msgid "osName"
@@ -7,151 +17,151 @@ msgid "osVendor"
 msgstr "Project BlueOnyx"
 
 msgid "osDescription"
-msgstr "[[base-alpine.osName]] ¤Ï¡¢[[base-product.productName]]¤Î´ğËÜ¥½¥Õ¥È¥¦¥§¥¢¤Ç¡¢¤³¤Î¥µ¡¼¥Ğ¤ÎÆ°ºî¤ËÉ¬Í×ÉÔ²Ä·ç¤Ê¥½¥Õ¥È¥¦¥§¥¢¥Ñ¥Ã¥±¡¼¥¸¤Ç¤¹¡£"
+msgstr "[[base-alpine.osName]] ã¯ã€[[base-product.productName]]ã®åŸºæœ¬ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã§ã€ã“ã®ã‚µãƒ¼ãƒã®å‹•ä½œã«å¿…è¦ä¸å¯æ¬ ãªã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã§ã™ã€‚"
 
 msgid "vendorSite"
 msgstr "http://BlueOnyx.org/"
 
 msgid "sysmanage"
-msgstr "¥µ¡¼¥Ğ¤Î´ÉÍı"
+msgstr "ã‚µãƒ¼ãƒã®ç®¡ç†"
 
 msgid "sysmanageDescription"
-msgstr "¥µ¡¼¥Ğ¤Î´ÉÍı²èÌÌ¤¬É½¼¨¤µ¤ì¡¢¥µ¡¼¥Ğ¤ÎÀßÄê¤ä´ÉÍıÁàºî¤ò¹Ô¤¨¤Ş¤¹¡£"
+msgstr "ã‚µãƒ¼ãƒã®ç®¡ç†ç”»é¢ãŒè¡¨ç¤ºã•ã‚Œã€ã‚µãƒ¼ãƒã®è¨­å®šã‚„ç®¡ç†æ“ä½œã‚’è¡Œãˆã¾ã™ã€‚"
 
 msgid "security"
-msgstr "¥»¥­¥å¥ê¥Æ¥£"
+msgstr "ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£"
 
 msgid "securityDescription"
-msgstr "¥Ç¥£¥¸¥¿¥ë¾ÚÌÀ½ñ¤È¥µ¡¼¥Ğ¤Î¥»¥­¥å¥ê¥Æ¥£¤ò´ÉÍı¤Ç¤­¤Ş¤¹¡£"
+msgstr "ãƒ‡ã‚£ã‚¸ã‚¿ãƒ«è¨¼æ˜æ›¸ã¨ã‚µãƒ¼ãƒã®ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã‚’ç®¡ç†ã§ãã¾ã™ã€‚"
 
 msgid "sitemanage"
-msgstr "¥µ¥¤¥È¤Î´ÉÍı"
+msgstr "ã‚µã‚¤ãƒˆã®ç®¡ç†"
 
 msgid "sitemanageDescription"
-msgstr "²¾ÁÛ¥µ¥¤¥È¤Î¿·µ¬ºîÀ®¡¢ÀßÄê¡¢ÊÑ¹¹¡¢¥æ¡¼¥¶¥¢¥«¥¦¥ó¥È¤Î´ÉÍı¤Ê¤É¤ò¹Ô¤¨¤Ş¤¹¡£"
+msgstr "ä»®æƒ³ã‚µã‚¤ãƒˆã®æ–°è¦ä½œæˆã€è¨­å®šã€å¤‰æ›´ã€ãƒ¦ãƒ¼ã‚¶ã‚¢ã‚«ã‚¦ãƒ³ãƒˆã®ç®¡ç†ãªã©ã‚’è¡Œãˆã¾ã™ã€‚"
 
 msgid "controlpanel"
-msgstr "¥Í¥Ã¥È¥ï¡¼¥¯¥µ¡¼¥Ó¥¹"
+msgstr "ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚µãƒ¼ãƒ“ã‚¹"
 
 msgid "controlpanelDescription"
-msgstr "¥µ¡¼¥Ğ¤Î³Æ¼ï¥µ¡¼¥Ó¥¹¤òÀ©¸æ¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã‚µãƒ¼ãƒã®å„ç¨®ã‚µãƒ¼ãƒ“ã‚¹ã‚’åˆ¶å¾¡ã§ãã¾ã™ã€‚"
 
 msgid "serverconfig"
-msgstr "¥·¥¹¥Æ¥à¤ÎÀßÄê"
+msgstr "ã‚·ã‚¹ãƒ†ãƒ ã®è¨­å®š"
 
 msgid "serverconfigDescription"
-msgstr "¥Í¥Ã¥È¥ï¡¼¥¯¡¢ÂÓ°èÉı¡¢»ş¹ï¤ÈÆüÉÕ¤Ê¤É¤òÀßÄê¤Ç¤­¤Ş¤¹¡£"
+msgstr "ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã€å¸¯åŸŸå¹…ã€æ™‚åˆ»ã¨æ—¥ä»˜ãªã©ã‚’è¨­å®šã§ãã¾ã™ã€‚"
 
 msgid "cpservicesDescription"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¾å¤ÇÍøÍÑ¤·¤¿¤¤¥µ¡¼¥Ó¥¹¤òÀßÄê¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã®ã‚µãƒ¼ãƒä¸Šã§åˆ©ç”¨ã—ãŸã„ã‚µãƒ¼ãƒ“ã‚¹ã‚’è¨­å®šã§ãã¾ã™ã€‚"
 
 msgid "sysmaintenance"
-msgstr "Êİ¼é"
+msgstr "ä¿å®ˆ"
 
 msgid "sysmaintenanceDescription"
-msgstr "¥¹¥È¥ì¡¼¥¸¤ÎÀ©¸æ¡¢¥µ¡¼¥Ğ¤ÎºÆµ¯Æ°¤Ê¤É¤ÎÁàºî¤ò¹Ô¤¨¤Ş¤¹¡£"
+msgstr "ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã®åˆ¶å¾¡ã€ã‚µãƒ¼ãƒã®å†èµ·å‹•ãªã©ã®æ“ä½œã‚’è¡Œãˆã¾ã™ã€‚"
 
 msgid "serverusage"
-msgstr "¥µ¡¼¥Ğ¤ÎÍøÍÑ¾õ¶·"
+msgstr "ã‚µãƒ¼ãƒã®åˆ©ç”¨çŠ¶æ³"
 
 msgid "serverusageDescription"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤ÎÍøÍÑ¾õ¶·¤Ë´Ø¤¹¤ëÅı·×¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã®ã‚µãƒ¼ãƒã®åˆ©ç”¨çŠ¶æ³ã«é–¢ã™ã‚‹çµ±è¨ˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "siteusage"
-msgstr "¥µ¥¤¥È¤ÎÍøÍÑ¾õ¶·"
+msgstr "ã‚µã‚¤ãƒˆã®åˆ©ç”¨çŠ¶æ³"
 
 msgid "siteusageDescription"
-msgstr "¤³¤Î¥µ¥¤¥È¤ÎÍøÍÑ¾õ¶·¤Ë´Ø¤¹¤ëÅı·×¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã®ã‚µã‚¤ãƒˆã®åˆ©ç”¨çŠ¶æ³ã«é–¢ã™ã‚‹çµ±è¨ˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "netusage"
-msgstr "¥Í¥Ã¥È¥ï¡¼¥¯"
+msgstr "ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯"
 
 msgid "netusageDescription"
-msgstr "¤³¤Î¥µ¡¼¥ĞÁ´ÂÎ¤Î¥Í¥Ã¥È¥ï¡¼¥¯ÍøÍÑ¾õ¶·¤Ë´Ø¤¹¤ëÅı·×¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã®ã‚µãƒ¼ãƒå…¨ä½“ã®ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯åˆ©ç”¨çŠ¶æ³ã«é–¢ã™ã‚‹çµ±è¨ˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "webusage"
-msgstr "¥¦¥§¥Ö"
+msgstr "ã‚¦ã‚§ãƒ–"
 
 msgid "webusageDescription"
-msgstr "¥¦¥§¥ÖÍøÍÑ¾õ¶·¤Ë´Ø¤¹¤ëÅı·×¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã‚¦ã‚§ãƒ–åˆ©ç”¨çŠ¶æ³ã«é–¢ã™ã‚‹çµ±è¨ˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "ftpusage"
 msgstr "FTP"
 
 msgid "ftpusageDescription"
-msgstr "FTP ÍøÍÑ¾õ¶·¤Ë´Ø¤¹¤ëÅı·×¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "FTP åˆ©ç”¨çŠ¶æ³ã«é–¢ã™ã‚‹çµ±è¨ˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "mailusage"
-msgstr "ÅÅ»Ò¥á¡¼¥ë"
+msgstr "é›»å­ãƒ¡ãƒ¼ãƒ«"
 
 msgid "mailusageDescription"
-msgstr "ÅÅ»Ò¥á¡¼¥ë¤ÎÍøÍÑ¾õ¶·¤Ë´Ø¤¹¤ëÅı·×¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "é›»å­ãƒ¡ãƒ¼ãƒ«ã®åˆ©ç”¨çŠ¶æ³ã«é–¢ã™ã‚‹çµ±è¨ˆãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "sysinfo"
-msgstr "¥·¥¹¥Æ¥à¾ğÊó"
+msgstr "ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±"
 
 msgid "sysinfoDescription"
-msgstr "¥µ¡¼¥ĞÀßÄê¤Ë´Ø¤¹¤ë¾ğÊó¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã‚µãƒ¼ãƒè¨­å®šã«é–¢ã™ã‚‹æƒ…å ±ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "sysbackuprestore"
-msgstr "¥Ğ¥Ã¥¯¥¢¥Ã¥×¡¿Éü¸µ"
+msgstr "ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ï¼å¾©å…ƒ"
 
 msgid "sysbackuprestoreDescription"
-msgstr "¥µ¡¼¥Ğ¤Î¥Ç¡¼¥¿¤ò¥Ğ¥Ã¥¯¥¢¥Ã¥×¤Ş¤¿¤ÏÉü¸µ¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã‚µãƒ¼ãƒã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã¾ãŸã¯å¾©å…ƒã§ãã¾ã™ã€‚"
 
 # Site management
 
 msgid "usermgmt"
-msgstr "¥æ¡¼¥¶¤Î´ÉÍı"
+msgstr "ãƒ¦ãƒ¼ã‚¶ã®ç®¡ç†"
 
 msgid "usermgmtDescription"
-msgstr "¥æ¡¼¥¶¤òÄÉ²Ã¡¢ÊÑ¹¹¡¢ºï½ü¤Ç¤­¤Ş¤¹¡£"
+msgstr "ãƒ¦ãƒ¼ã‚¶ã‚’è¿½åŠ ã€å¤‰æ›´ã€å‰Šé™¤ã§ãã¾ã™ã€‚"
 
 # Programs  
 
 msgid "base-programs"
-msgstr "¥×¥í¥°¥é¥à"
+msgstr "ãƒ—ãƒ­ã‚°ãƒ©ãƒ "
 
 msgid "base-programs_description"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤Ë¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¥×¥í¥°¥é¥à¤Ø¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã®ã‚µãƒ¼ãƒã«ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã¸ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã™ã€‚"
 
 msgid "splashProgramsMessage"
-msgstr "¤³¤³¤Ç¤Ï¡¢¥¤¥ó¥¹¥È¡¼¥ë¤µ¤ì¤Æ¤¤¤ë¥Ä¡¼¥ë¤ä¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Ø¥¢¥¯¥»¥¹¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã§ã¯ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹ãƒ„ãƒ¼ãƒ«ã‚„ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã¸ã‚¢ã‚¯ã‚»ã‚¹ã§ãã¾ã™ã€‚"
 
 # Personal Profile Strings
 
 msgid "splashPersonalMessage"
-msgstr "¥æ¡¼¥¶¥¢¥«¥¦¥ó¥ÈÀßÄê¤òÉ½¼¨¡¢ÊÑ¹¹¤Ç¤­¤Ş¤¹¡£"
+msgstr "ãƒ¦ãƒ¼ã‚¶ã‚¢ã‚«ã‚¦ãƒ³ãƒˆè¨­å®šã‚’è¡¨ç¤ºã€å¤‰æ›´ã§ãã¾ã™ã€‚"
 
 msgid "base-personalProfile"
-msgstr "¸Ä¿Í¥×¥í¥Õ¥£¡¼¥ë"
+msgstr "å€‹äººãƒ—ãƒ­ãƒ•ã‚£ãƒ¼ãƒ«"
 
 msgid "base-personalProfile_description"
-msgstr "¥æ¡¼¥¶¥¢¥«¥¦¥ó¥È¾ğÊó¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ãƒ¦ãƒ¼ã‚¶ã‚¢ã‚«ã‚¦ãƒ³ãƒˆæƒ…å ±ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 # Setup wizard
 msgid "wizardSysSettings"
-msgstr "¥·¥¹¥Æ¥àÀßÄê"
+msgstr "ã‚·ã‚¹ãƒ†ãƒ è¨­å®š"
 
 msgid "wizardSysSettings_help"
 msgstr " "
 
 # this is the screen where you choose which type you want
 msgid "wizardRaid"
-msgstr "Raid ¤ÎÀßÄê"
+msgstr "Raid ã®è¨­å®š"
 
 msgid "wizardRaid_help"
 msgstr " "
 
 # this is the raid conversion status/wait screen
 msgid "wizardRaidBuild"
-msgstr "Raid ¤ÎÀßÄê"
+msgstr "Raid ã®è¨­å®š"
 
 msgid "wizardRaidBuild_help"
 msgstr " "
 
 msgid "wizardRegister"
-msgstr "À½ÉÊÅĞÏ¿"
+msgstr "è£½å“ç™»éŒ²"
 
 msgid "wizardRegister_help"
 msgstr " "
@@ -170,61 +180,59 @@ msgstr " "
 # login page strings (most of these should really be in a central location
 # probably)
 msgid "loginPageTitle"
-msgstr "¥í¥°¥¤¥ó - [[base-product.productName]] - [[VAR.hostname]]"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³ - [[base-product.productName]] - [[VAR.hostname]]"
 
 msgid "login"
-msgstr "¥í¥°¥¤¥ó - [[VAR.hostname]]"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³ - [[VAR.hostname]]"
 
 msgid "loginMissingCookies"
-msgstr "¥í¥°¥¤¥óÁ°¤Ë¡¢¤ª»È¤¤¤Î¥Ö¥é¥¦¥¶¤¬ cookie ¤ò¥µ¥İ¡¼¥È¤·¤Æ¤¤¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³å‰ã«ã€ãŠä½¿ã„ã®ãƒ–ãƒ©ã‚¦ã‚¶ãŒ cookie ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚"
 
 msgid "loginExpiredMessage"
-msgstr "¥í¥°¥¤¥ó¥»¥Ã¥·¥ç¥ó¤¬¥¿¥¤¥à¥¢¥¦¥È¤·¤Ş¤·¤¿¡£ºÆÅÙ¥í¥°¥¤¥ó¤¹¤ë¤Ë¤Ï¡¢¥æ¡¼¥¶Ì¾¤È¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³ã‚»ãƒƒã‚·ãƒ§ãƒ³ãŒã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã—ã¾ã—ãŸã€‚å†åº¦ãƒ­ã‚°ã‚¤ãƒ³ã™ã‚‹ã«ã¯ã€ãƒ¦ãƒ¼ã‚¶åã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
 
 msgid "loginByeMessage"
-msgstr "[[base-product.productName]] ¤ò¤´ÍøÍÑÄº¤­À¿¤Ë¤¢¤ê¤¬¤È¤¦¤´¤¶¤¤¤Ş¤¹¡£"
+msgstr "[[base-product.productName]] ã‚’ã”åˆ©ç”¨é ‚ãèª ã«ã‚ã‚ŠãŒã¨ã†ã”ã–ã„ã¾ã™ã€‚"
 
 msgid "loginOkMessage"
-msgstr "¥í¥°¥¤¥ó¤¹¤ë¤Ë¤Ï¡¢¥æ¡¼¥¶Ì¾¤È¥Ñ¥¹¥ï¡¼¥É¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³ã™ã‚‹ã«ã¯ã€ãƒ¦ãƒ¼ã‚¶åã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
 
 msgid "loginAuthFailed"
-msgstr "ÆşÎÏ¤·¤¿¥æ¡¼¥¶Ì¾¤Ş¤¿¤Ï¥Ñ¥¹¥ï¡¼¥É¤¬´Ö°ã¤Ã¤Æ¤¤¤Ş¤¹¡£¥æ¡¼¥¶Ì¾¤È¥Ñ¥¹¥ï¡¼¥É¤ò³ÎÇ§¤·¤Æ¡¢¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£"
+msgstr "å…¥åŠ›ã—ãŸãƒ¦ãƒ¼ã‚¶åã¾ãŸã¯ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒé–“é•ã£ã¦ã„ã¾ã™ã€‚ãƒ¦ãƒ¼ã‚¶åã¨ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’ç¢ºèªã—ã¦ã€ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
 
 msgid "loginNoCssMessage"
-msgstr "¥í¥°¥¤¥óÁ°¤Ë¡¢¤ª»È¤¤¤Î¥Ö¥é¥¦¥¶¤¬ CSS (¥«¥¹¥±¡¼¥Ç¥£¥ó¥°¥¹¥¿¥¤¥ë¥·¡¼¥È) ¤ò¥µ¥İ¡¼¥È¤·¤Æ¤¤¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³å‰ã«ã€ãŠä½¿ã„ã®ãƒ–ãƒ©ã‚¦ã‚¶ãŒ CSS (ã‚«ã‚¹ã‚±ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã‚¹ã‚¿ã‚¤ãƒ«ã‚·ãƒ¼ãƒˆ) ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚"
 
 msgid "loginNoJsMessage"
-msgstr "¥í¥°¥¤¥óÁ°¤Ë¡¢¤ª»È¤¤¤Î¥Ö¥é¥¦¥¶¤¬ JavaScript ¤ò¥µ¥İ¡¼¥È¤·¤Æ¤¤¤ë¤³¤È¤ò³ÎÇ§¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³å‰ã«ã€ãŠä½¿ã„ã®ãƒ–ãƒ©ã‚¦ã‚¶ãŒ JavaScript ã‚’ã‚µãƒãƒ¼ãƒˆã—ã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚"
 
 msgid "loginPageUsername"
-msgstr "¥æ¡¼¥¶Ì¾:"
+msgstr "ãƒ¦ãƒ¼ã‚¶å:"
 
 msgid "loginPagePassword"
-msgstr "¥Ñ¥¹¥ï¡¼¥É:"
+msgstr "ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰:"
 
 msgid "loginPageSecurity"
-msgstr "¥»¥­¥å¥¢ÀÜÂ³:"
+msgstr "ã‚»ã‚­ãƒ¥ã‚¢æ¥ç¶š:"
 
 msgid "loginPageLogin"
-msgstr "¥í¥°¥¤¥ó"
+msgstr "ãƒ­ã‚°ã‚¤ãƒ³"
 
 # end of login page strings
 
  # documentation 
  
 msgid "documentation"
-msgstr "Ê¸½ñ"
+msgstr "æ–‡æ›¸"
 
 msgid "documentation_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤Î¥ª¥ó¥é¥¤¥ó¥Ş¥Ë¥å¥¢¥ë¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£" 
+msgstr "ã“ã®ã‚µãƒ¼ãƒã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ãƒãƒ‹ãƒ¥ã‚¢ãƒ«ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚" 
 
 msgid "pdfDescen"
-msgstr "BlueOnyx Hosting Edition ¥Ş¥Ë¥å¥¢¥ë (±Ñ¸ì)"
+msgstr "BlueOnyx Hosting Edition ãƒãƒ‹ãƒ¥ã‚¢ãƒ« (è‹±èª)"
 
 msgid "pdfDescja"
-msgstr "BlueOnyx Hosting Edition ¥Ş¥Ë¥å¥¢¥ë (ÆüËÜ¸ì)"
-
-
+msgstr "BlueOnyx Hosting Edition ãƒãƒ‹ãƒ¥ã‚¢ãƒ« (æ—¥æœ¬èª)"
 
 msgid "pdfDescen_US"
 msgstr "BlueOnyx Hosting Edition Manual (English)"
