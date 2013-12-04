@@ -7,8 +7,8 @@ include_once("ArrayPacker.php");
 
 $servhelp = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$servhelp->getAllowed('adminUser')) {
+// Only users with 'serverActiveMonitor' should be here:
+if (!$servhelp->getAllowed('serverActiveMonitor')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -79,7 +79,10 @@ if ($amobj == null) {
 }
 
 $servhelp->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

@@ -16,11 +16,11 @@
 <class name="ActiveMonitor" namespace="" version="1.2">
   <property 
     name="enabled" type="boolean" default="1"
-    writeacl="ruleCapable(systemMonitor)"
+    writeacl="ruleCapable(serverActiveMonitor)"
   />
   <property 
     name="alertEmailList" type="scalar"
-    writeacl="ruleCapable(systemMonitor)"
+    writeacl="ruleCapable(serverActiveMonitor)"
   />
 </class>
 

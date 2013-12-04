@@ -1,8 +1,8 @@
 Summary: Binaries and scripts used by the Active Monitor subsytem
 Name: am-bins
-Version: 1.1.1
+Version: 1.2.0
 Vendor: %{vendor}
-Release: 21BQ12%{?dist}
+Release: 0BX01%{?dist}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
 Source: am-bins.tar.gz
@@ -31,6 +31,10 @@ Monitor subsystem.  These include programs to check the state of the CPU
 and memory usage.  Also, this includes the AM::Util perl module.
 
 %changelog
+* Wed Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Resolved the issue that free memory calculation isn't added Cached. 
+- Remove .svn directory from rpm package. 
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.1-21BQ12
 - Rebuilt for BlueOnyx.
 

@@ -7,8 +7,8 @@ include_once("ServerScriptHelper.php");
 
 $servhelp = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$servhelp->getAllowed('adminUser')) {
+// Only users with 'serverShowActiveMonitor' should be here:
+if (!$servhelp->getAllowed('serverShowActiveMonitor')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -176,7 +176,10 @@ print("<SCRIPT LANGUAGE=\"javascript\">
 print($page->toFooterHtml());
 
 $servhelp->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

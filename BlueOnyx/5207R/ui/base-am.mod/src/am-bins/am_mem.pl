@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: am_mem.pl 582 2005-10-10 04:44:21Z shibuya $
+# $Id: am_mem.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # test the memory state
 #
@@ -43,8 +43,8 @@ while(!eof(MEM)) {
 }
 close(MEM);
 
-# Mem free + buffered + swap free
-my $free = $minfo->{MemFree} + $minfo->{Buffers} + $minfo->{SwapFree};
+# Mem free + buffered + cache + swap free
+my $free = $minfo->{MemFree} + $minfo->{Buffers} + $minfo->{Cached} + $minfo->{SwapFree};
 
 dprint("free  = $free\n");
 
@@ -70,17 +70,19 @@ if ($pct > $ENV{memYellow}) {
 
 print("[[base-am.amMemWarning_light]]");
 exit $am_states{AM_STATE_GREEN};
+#
+# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
 # 
 # -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# this list of conditions and the following disclaimer in the documentation and/or 
+# other materials provided with the distribution.
 # 
 # Neither the name of Sun Microsystems, Inc. or the names of contributors may 
 # be used to endorse or promote products derived from this software without 

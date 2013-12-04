@@ -1,22 +1,12 @@
-# translation of base-am.po to German
-# Header entry was created by KBabel!
-#
-# Michael Stauber <mstauber@solarspeed.net>, 2007.
 msgid ""
 msgstr ""
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"PO-Revision-Date: 2008-01-27 09:28+0100\n"
-"Project-Id-Version: am\n"
-"Language-Team:  <de@li.org>\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"POT-Creation-Date: \n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "MemKB"
 msgstr "[[VAR.val]] KB"
@@ -450,3 +440,8 @@ msgstr "Die Auslastung der CPU ist [[VAR.status]]."
 msgid "amMemWarning"
 msgstr "Die Auslastung des Systemspeichers ist [[VAR.status]]."
 
+msgid "cap_serverShowActiveMonitor"
+msgstr "Systemüberwachung: Status"
+
+msgid "cap_serverActiveMonitor"
+msgstr "Systemüberwachung: Einstellungen"

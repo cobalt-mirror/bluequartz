@@ -21,7 +21,7 @@ install: all
 rpm: 
 	for t in $(DIRS) ; do \
 		/bin/rm -rf /tmp/$$t ; \
-		tar -zcvf /tmp/$$t.tar.gz $$t &> /dev/null &&\
+		tar --exclude='.svn' -zcvf /tmp/$$t.tar.gz $$t &> /dev/null &&\
 		$(RPMBUILD) -ta /tmp/$$t.tar.gz &> /tmp/rpm.log && \
 		/bin/rm -f /tmp/$$t.tar.gz ; \
 		/bin/rm -rf /tmp/$$t ; \

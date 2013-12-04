@@ -8,8 +8,8 @@ include_once("ServerScriptHelper.php");
 
 $servhelp = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$servhelp->getAllowed('adminUser')) {
+// Only users with 'serverActiveMonitor' should be here:
+if (!$servhelp->getAllowed('serverActiveMonitor')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -90,15 +90,6 @@ if ($amobj == null)
 	$pagedBlock->addButton($factory->getSaveButton(
 		$page->getSubmitAction()));
 
-	// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-	$hidden_block = $factory->getTextBlock("Nothing", "");
-	$hidden_block->setOptional(true);
-	$pagedBlock->addFormField(
-	    $hidden_block,
-	    $factory->getLabel("Nothing"),
-	    "Hidden"
-	    );
-
 	print($pagedBlock->toHtml());
 }
 
@@ -106,6 +97,8 @@ print($page->toFooterHtml());
 
 $servhelp->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
