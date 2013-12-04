@@ -44,7 +44,7 @@ information for [VENDOR]-[SERVICE].
 /etc/admserv
 /usr/sbin/httpd.admsrv
 /var/log/admserv
-%attr(700,apache,-) /var/cache/admserv
+%attr(700,admserv,-) /var/cache/admserv
 
 <end glue>
 
@@ -59,7 +59,17 @@ information for [VENDOR]-[SERVICE].
 
 <end capstone>
 <end %FILES>
-
+<begin %PRE-INSTALL> 
+<begin HEADER> 
+%pre [LABEL] 
+<end HEADER> 
+ 
+<begin glue> 
+# glue pre-install 
+/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
+ 
+<end glue> 
+<end %PRE-INSTALL> 
 <begin %POST-INSTALL>
 <begin HEADER>
 %post [LABEL]
@@ -74,7 +84,7 @@ if [ "$1" = 1 ]; then
 fi
 
 if [ ! -f /etc/admserv/certs/certificate ] ; then
-/usr/bin/openssl genrsa -rand /proc/apm:/proc/cpuinfo:/proc/dma:/proc/filesystems:/proc/interrupts:/proc/ioports:/proc/pci:/proc/rtc:/proc/uptime 2048 > /etc/admserv/certs/key 2> /dev/null
+	/usr/bin/openssl genrsa -rand /proc/apm:/proc/cpuinfo:/proc/dma:/proc/filesystems:/proc/interrupts:/proc/ioports:/proc/pci:/proc/rtc:/proc/uptime 2048 > /etc/admserv/certs/key 2> /dev/null
 fi
 
 FQDN=`hostname`
@@ -100,7 +110,7 @@ perl -pi -e 's|extension_dir = /usr/lib/php|extension_dir = /usr/lib64/php|g' /e
 %endif
 
 # Increase memory_limit in /etc/admserv/php.ini:
-perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 80M      ; Maximum amount of memory a script may consume \(80MB\)|g' /etc/admserv/php.ini
+perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 2560M      ; Maximum amount of memory a script may consume \(256MB\)|g' /etc/admserv/php.ini
 
 # Increase upload_max_filesize to 300MB, as some Java WAR files can be rather large on uploads:
 perl -pi -e 's|^upload_max_filesize = (.*)|upload_max_filesize = 300M|g' /etc/admserv/php.ini
@@ -145,6 +155,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.2-0BX01
+- Disabled some modules for SL6.
+- Change of UID for AdmServ from 'apache' to 'admserv'.
+- Raised PHP memory_limit from 80MB to 256MB. These days we have oodles of RAM, so let us use it.
+- Some cleanups in httpd.conf
 
 * Sun Sep 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.1-0BX23
 - Modified glue/etc/admserv/conf.d/ssl.conf to force more secure protocols and ciphers
