@@ -38,6 +38,8 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [AUTOFILL]
 [BUILDARCH]
 
+Requires: php-mbstring
+
 %description [LABEL]
 The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
 information for [VENDOR]-[SERVICE].
@@ -392,6 +394,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Wed Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 4.20131204BX109
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+
 * Thu Sep 22 2011 Michael Stauber <mstauber@solarspeed.net> 3.20110922BX108
 - Removed some legacy if-clauses dealing with ancient OS's from templates/rpmdefs.tmpl
 - Change of Apache's 'ServerTokens' moved to relevant constructor of base-apache.mod instead.

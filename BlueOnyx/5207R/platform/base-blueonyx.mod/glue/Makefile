@@ -1,4 +1,4 @@
-BUILD=20110922
+BUILD=20131204
 PRODUCT=$(shell \
 if [ -f /etc/fedora-release ] && [ "`rpm -q --qf=%{version} fedora-release`" = "1" ]; then echo '5100'; fi; \
 if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "3" ]; then echo '5101'; fi; \
@@ -36,13 +36,13 @@ install:
 	mkdir -p $(PREFIX)/usr/sausalito/scripts
 	mkdir -p $(PREFIX)/usr/sausalito/runonce
 	mkdir -p $(PREFIX)/usr/share/doc/blueonyx-release-5106R
-	tar cBf - --exclude '*CVS*' etc | (cd $(PREFIX)/ ; tar xBf -)
+	tar cBf - --exclude '.svn' etc | (cd $(PREFIX)/ ; tar xBf -)
 	cat etc/build | sed -e 's/XX_BUILD_XX/$(BUILD)/' | \
 			sed -e 's/XX_PRODUCT_XX/$(PRODUCT)/g' > $(PREFIX)/etc/build
-	tar cBf - --exclude '*CVS*' triggers | (cd $(PREFIX)/usr/sausalito/ ; tar xBf -)
+	tar cBf - --exclude '.svn' triggers | (cd $(PREFIX)/usr/sausalito/ ; tar xBf -)
 	mkdir -p $(PREFIX)/var/www/html
 	install -m 0644 httpd/index.html $(PREFIX)/var/www/html/index.html
-	tar cBf - --exclude '*CVS*' sbin | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
-	tar cBf - --exclude '*CVS*' scripts | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
-	tar cBf - --exclude '*CVS*' configs | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
+	tar cBf - --exclude '.svn' sbin | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
+	tar cBf - --exclude '.svn' scripts | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
+	tar cBf - --exclude '.svn' configs | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
 	install -m 0644 doc/* $(PREFIX)/usr/share/doc/blueonyx-release-5106R
