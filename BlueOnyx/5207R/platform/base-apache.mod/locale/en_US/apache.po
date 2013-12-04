@@ -146,9 +146,6 @@ msgstr "The [[base-apache.maxSpareField]] must be greater than or equal to the [
 msgid "ClientMaxError"
 msgstr "The value entered for [[base-apache.maxClientsField]] is less than the value entered for [[base-apache.maxSpareField]].  While this is okay, it may impact the performance of the server. It is recommended that the value for [[base-apache.maxClientsField]] be greater than or equal to the value for [[base-apache.maxSpareField]]."
 
-msgid ""
-msgstr ""
-
 # strings for UI extenstions
 msgid "webScripting"
 msgstr "Web"
