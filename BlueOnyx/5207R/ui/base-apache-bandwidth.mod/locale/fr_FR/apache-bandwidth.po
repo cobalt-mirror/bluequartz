@@ -9,22 +9,22 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "ApacheBandwidth"
-msgstr "Bandbreitenbeschränkung"
-
-msgid "ApacheBandwidthSpeed"
-msgstr "Limit (kbps)"
+msgstr "Limites de bande passante"
 
 msgid "ApacheBandwidth_help"
-msgstr "Beschränkt die maximale Datentransferrate von Sites."
+msgstr "Limiter le taux de transfert de données maximale à partir de sites."
+
+msgid "ApacheBandwidthSpeed"
+msgstr "Limite (kbps)"
+
+msgid "enable"
+msgstr "Activer limites de bande passante"
 
 msgid "bandSpeed"
 msgstr "[[base-apache-bandwidth.ApacheBandwidthSpeed]]"
 
 msgid "bandSpeed_help"
-msgstr "Bandbreitenbeschränkung (in Kilobits pro Sekunde) "
-
-msgid "enable"
-msgstr "Aktiviere Bandbreitenbeschränkung"
+msgstr "Limite de bande passante (en kilobits / seconde)"
 
 msgid "webScripting"
 msgstr "Web"
