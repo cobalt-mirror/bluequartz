@@ -1,0 +1,307 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "apache"
+msgstr "Teia"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]] pode ser alterado aqui."
+
+msgid "apacheSettings"
+msgstr "Configurações da Web"
+
+msgid "frontpageField"
+msgstr "FrontPage Server Extensions"
+
+msgid "frontpageField_help"
+msgstr "Vire o FrontPage Server Extensions ligado ou desligado."
+
+msgid "frontpageEnabled"
+msgstr "Permitir"
+
+msgid "passwordWebmasterField"
+msgstr "webmaster senha"
+
+msgid "passwordWebmasterField_help"
+msgstr "Digite uma senha para o webmaster cliente FrontPage. O web site do grupo casa pode ser acessada selecionando Abrir Web no cliente FrontPage. Entrar usando o nome de login webmaster ea senha que você especificar aqui. Uma vez autenticado, os usuários FrontPage adicionais são gerenciados usando o cliente FrontPage."
+
+msgid "passwordWebmasterField_rule"
+msgstr "A senha deve ter entre 3 e 16 caracteres. Uma boa senha deve conter pelo menos 5 caracteres com uma mistura de letras maiúsculas e minúsculas, bem como números e sinais de pontuação. Não deve soletrar todas as palavras encontradas no dicionário. As senhas são case sensitive."
+
+msgid "passwordWebmasterField_invalid"
+msgstr "Desculpe, você não digitou a mesma senha nos dois campos. A mesma senha é digitada em ambos os campos para se proteger contra erros de digitação. Por favor, tente novamente."
+
+msgid "cgiAccessField"
+msgstr "Acesso CGI"
+
+msgid "cgiAccessField_help"
+msgstr "Vire Acesso CGI ligado ou desligado. Você pode definir os direitos de acesso CGI para que apenas o administrador do aparelho servidor pode adicionar arquivos de script CGI, ou para que tanto o administrador e todos ou usuários selecionados pode adicionar arquivos de script CGI."
+
+msgid "cgiAll"
+msgstr "Permitir o acesso a todos os usuários"
+
+msgid "cgiNone"
+msgstr "Não permitir acesso a qualquer usuário"
+
+msgid "cgiSubset"
+msgstr "Permitir o acesso aos especificados Somente Usuários"
+
+msgid "cgiUsersAllowed"
+msgstr "Usuários permitido o acesso"
+
+msgid "cgiUsersDisallowed"
+msgstr "Usuários que não permitiu o acesso"
+
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "Desculpe, você não selecionou nenhum dos usuários pelo acesso CGI. Por favor, adicione os usuários que têm permissão de acesso CGI ou escolher uma opção de acesso diferente."
+
+msgid "cantConfigCgi"
+msgstr "Desculpe, Acesso CGI não pode ser configurado corretamente no momento."
+
+msgid "systemObjectNotFound"
+msgstr "Desculpe, configuração do servidor está temporariamente indisponível. Por favor, aguarde e tente novamente."
+
+msgid "amApacheNameTag"
+msgstr "Servidor Web"
+
+msgid "amApacheDetails"
+msgstr "Detalhes do Servidor Web"
+
+msgid "amNotRunning"
+msgstr "O [[base-apache.amApacheNameTag]] não está funcionando e não pode ser reiniciado. Tente reiniciar o servidor clicando no botão [[base-power.reboot]] na [[base-power.power]] menu em [[base-alpine.serverconfig]]. Se você ainda não conseguir acessar a [[base-apache.amApacheNameTag]], acesse [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+msgid "amStatusOK"
+msgstr "O servidor web está funcionando normalmente."
+
+msgid "amAdmservNameTag"
+msgstr "Server Desktop"
+
+msgid "amAdmservDetails"
+msgstr "Detalhes do servidor da área de trabalho"
+
+msgid "amAdmservNotRunning"
+msgstr "O [[base-apache.amAdmservNameTag]] não está funcionando e não pode ser reiniciado. Tente reiniciar o servidor clicando no botão [[base-power.reboot]] na [[base-power.power]] menu em [[base-alpine.serverconfig]]. Se você ainda não conseguir acessar a [[base-apache.amAdmservNameTag]], acesse [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+msgid "amAdmservStatusOK"
+msgstr "O Server Desktop está funcionando normalmente."
+
+msgid "maxServersRAM"
+msgstr "O número máximo de servidores web está limitado pela quantidade de RAM instalada neste servidor."
+
+msgid "minSpareField"
+msgstr "Peças Servidores mínimos"
+
+msgid "minSpareField_help"
+msgstr "Quando o servidor web inicia ou está em um estado inativo, este é o número mínimo de processos do servidor web disponíveis para servir requisições web. [[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_empty"
+msgstr "Por favor, especifique um número mínimo de processos do servidor web."
+
+msgid "minSpareField_invalid"
+msgstr "O número especificado de servidores web de reposição não é válido. Por favor, especifique um inteiro dentro da faixa especificada."
+
+msgid "maxSpareField"
+msgstr "Peças Servidores máximo"
+
+msgid "maxSpareField_help"
+msgstr "O servidor web vai lançar processos adicionais, conforme necessário, para atender a carga adicional. Este é o número máximo de processos do sistema será iniciado. Sites de alto tráfego deve aumentar este número para um melhor desempenho. [[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_empty"
+msgstr "Por favor, especifique um número máximo de processos do servidor web de reposição."
+
+msgid "maxSpareField_invalid"
+msgstr "[[base-apache.minSpareField_invalid]]"
+
+msgid "maxClientsField"
+msgstr "Máximo de conexões simultâneas"
+
+msgid "maxClientsField_help"
+msgstr "Este é o número máximo de pedidos que podem ser feitas para o servidor, em qualquer instância. Cada conexão requer seu próprio processo do servidor web. Se esse número for ultrapassado, os clientes receberão uma mensagem informando que o servidor está ocupado e pediu para tentar novamente mais tarde. Essa configuração é útil para controlar a carga sobre o servidor. [[base-apache.maxServersRAM]]"
+
+msgid "maxClientsField_empty"
+msgstr "Por favor, especifique um número máximo de conexões simultâneas do servidor web."
+
+msgid "maxClientsField_invalid"
+msgstr "O número máximo especificado de conexões web não é válido. Por favor, especifique um inteiro dentro da faixa especificada."
+
+msgid "hostnameLookupsField"
+msgstr "Pesquisas hostname"
+
+msgid "hostnameLookupsField_help"
+msgstr "Isso transforma em pesquisas de nome de host para o servidor web. Isso faz com que o servidor para fazer uma pesquisa de DNS do IP do cliente quando ele se conecta ao servidor, e gravá-lo nos arquivos de log. Esta informação hostname é então disponível nos relatórios de uso do servidor web. Sem esse recurso, apenas os endereços IP dos clientes são relatados no relatório de domínio uso do servidor web. AVISO: Ativando esta opção irá diminuir o desempenho do seu servidor web."
+
+msgid "MinMaxError"
+msgstr "O [[base-apache.maxSpareField]] deve ser superior ou igual à [[base-apache.minSpareField]]."
+
+msgid "ClientMaxError"
+msgstr "O valor introduzido para [[base-apache.maxClientsField]] é menor do que o valor digitado para [[base-apache.maxSpareField]]. Enquanto isso é bom, isso pode afetar o desempenho do servidor. Recomenda-se que o valor para [[base-apache.maxClientsField]] ser maior ou igual ao valor de [[base-apache.maxSpareField]]."
+
+msgid ""
+msgstr " "
+
+msgid "webScripting"
+msgstr "Teia"
+
+msgid "webScriptingTitle"
+msgstr "Configurações de script da Web para [[VAR.fqdn]]"
+
+msgid "webScriptingDescription"
+msgstr "Configurar opções da web, tais como linguagens de script."
+
+msgid "cgi"
+msgstr "Ativar Common Gateway Interface (CGI)"
+
+msgid "cgi_help"
+msgstr "Permitir o uso de aplicativos CGI."
+
+msgid "php"
+msgstr "Ativar Scripting PHP"
+
+msgid "php_help"
+msgstr "Permitir o uso de scripts PHP."
+
+msgid "ssi"
+msgstr "Ativar Server-Side Includes (SSI)"
+
+msgid "ssi_help"
+msgstr "Permitir o uso de Server-Side includes."
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+msgid "phpI18nName"
+msgstr "PHP Scripting"
+
+msgid "cgiI18nName"
+msgstr "Common Gateway Interface (CGI)"
+
+msgid "ssiI18nName"
+msgstr "Server-Side Includes (SSI)"
+
+msgid "userwebs"
+msgstr "Ativar teias de propriedade do usuário"
+
+msgid "userwebs_help"
+msgstr "Se ativado, em seguida, cada usuário tem seu próprio espaço na web, que é separado do principal website webspace e acessível através http://www.example.com/~username/. Os usuários podem fazer upload de suas próprias páginas web através de FTP em seu próprio /web diretório. ATENÇÃO: Se suPHP está habilitado, o usuário de propriedade teias não são mais suportados e esse recurso será desativado."
+
+msgid "ftpnonadminI18nName"
+msgstr "FTP para os administradores do site não-habilitadas"
+
+msgid "userwebsI18nName"
+msgstr "Teias de propriedade do usuário habilitado"
+
+msgid "Options_AllField"
+msgstr "Tudo"
+
+msgid "Options_AllField_help"
+msgstr "Todas as opções, exceto para MultiViews. (Padrão: Desativado)"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinks"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "O servidor seguirá links simbólicos. (Padrão: Ativado)"
+
+msgid "Options_IncludesField"
+msgstr "Inclui"
+
+msgid "Options_IncludesField_help"
+msgstr "Server-side includes são permitidas. (Padrão: Ativado)"
+
+msgid "Options_IndexesField"
+msgstr "Índices"
+
+msgid "Options_IndexesField_help"
+msgstr "Se um URL que mapeia para um diretório é solicitada, ea não há DirectoryIndex (por exemplo, index.html) no diretório, o servidor retornará uma lista formatada do diretório. (Padrão: Ativado)"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViews"
+
+msgid "Options_MultiViewsField_help"
+msgstr "Conteúdo MultiViews negociados são permitidos. Usado para exibir páginas em diferentes linguagens baseadas em localidades navegador. (Padrão: Ativado)"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatch"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "O servidor somente seguirá links simbólicos para o qual o arquivo ou diretório de destino é de propriedade da mesma ID de usuário como o link. (Padrão: Desativado)"
+
+msgid "AllowOverride_AllField"
+msgstr "Tudo"
+
+msgid "AllowOverride_AllField_help"
+msgstr "Quando o servidor encontra um arquivo htaccess. Ele precisa saber qual directivas declarados nesse arquivo pode substituir as informações de acesso mais cedo. Assinalando esta opção permitirá substituir TODAS as configurações do Apache (Dangerous! Padrão: Off)"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "AuthConfig"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "Permitir o uso das diretivas de autorização (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Exigir, etc.) (Padrão: Ativado)"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "FileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "Permitir o uso das diretivas que controlam os tipos (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc) de documentos. (Padrão: Desativado)"
+
+msgid "AllowOverride_IndexesField"
+msgstr "Índices"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "Permitir o uso das diretivas que controlam a indexação de diretório (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.) (Padrão: Ativado)"
+
+msgid "AllowOverride_LimitField"
+msgstr "Limitar"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "Permitir o uso das diretivas que controlam o acesso host (Permitir, Negar e da Ordem). (Padrão: Ativado)"
+
+msgid "AllowOverride_OptionsField"
+msgstr "Opções"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "Permitir o uso das diretivas que controlam características específicas do diretório (Options e XBitHack). (Padrão: Desativado)"
+
+msgid "DIVIDER_TOP"
+msgstr "A configuração geral Apache:"
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "Características do Apache para diretórios virtuais do site:"
+
+msgid "BlueOnyx_Info_Text"
+msgstr "Uma seção no arquivo /etc/httpd/conf.d/blueonyx.conf define quais são permitidos 'Opções' e as características \"AllowOverride\" para o diretório (/home/.sites/), no qual todos os sites virtuais residem. Isso restringe o uso de. Htaccess e outras coisas. Estes podem ser alterados a seguir."
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Opções:"
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverride:"
+
+msgid "PHP_enabled"
+msgstr "Ativar Scripting PHP"
+
+msgid "PHP_enabled_help"
+msgstr "Permitir o uso de scripts PHP."
+
+msgid "enableSuPHP"
+msgstr "Ativar suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Permitir o uso de suPHP para que os scripts PHP funcionar com o UID do seu proprietário. Certifique-se de configurar um siteadmin como proprietário da pasta /web através do menu 'Propriedade Web'! ATENÇÃO: Se suPHP está habilitado, o usuário de propriedade teias não são mais suportados e que o recurso vai ficar desligado."
+
+msgid "disabled"
+msgstr "Inválido"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+

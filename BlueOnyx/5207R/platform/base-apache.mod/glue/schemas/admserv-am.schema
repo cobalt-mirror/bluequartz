@@ -1,7 +1,7 @@
 <!-- This is the AM Namespace for monitoring Admserv -->
 <class name="ActiveMonitor" 	namespace="Admserv" 	version="1.1">
     <property name="enabled"    	type="boolean" 	default="1"/>
-    <property name="monitor"	writeACL="ruleCapable(systemMonitor)"
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"

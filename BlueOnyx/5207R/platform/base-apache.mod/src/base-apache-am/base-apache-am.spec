@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
-Version: 1.0.2
-Release: 4BQ11%{?dist}
+Version: 1.0.3
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,10 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+
+* Wed Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.3-0BX01
+- Remove .svn directory from rpm package.
+
 * Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.2-4BQ11
 - Rebuilt for BlueOnyx
 

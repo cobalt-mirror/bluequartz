@@ -1,8 +1,6 @@
 <?php
 /*
- * Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
- * Copyright 2009, Team BlueOnyx. All rights reserved.
- * $Id: apacheHandler.php Fri 12 Jun 2009 11:22:17 AM CEST mstauber $
+ * $Id: apacheHandler.php
  */
 
 include_once("ArrayPacker.php");
@@ -11,8 +9,8 @@ include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverHttpd' should be here
+if (!$serverScriptHelper->getAllowed('serverHttpd')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -85,7 +83,10 @@ else {
 print($serverScriptHelper->toHandlerHtml("/base/apache/apache.php", $errors));
 
 $serverScriptHelper->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
