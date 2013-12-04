@@ -60,14 +60,13 @@ information for [VENDOR]-[SERVICE].
 <end capstone>
 <end %FILES>
 <begin %PRE-INSTALL> 
+# glue pre-install 
+/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 <begin HEADER> 
 %pre [LABEL] 
 <end HEADER> 
  
 <begin glue> 
-# glue pre-install 
-/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
- 
 <end glue> 
 <end %PRE-INSTALL> 
 <begin %POST-INSTALL>
@@ -110,7 +109,7 @@ perl -pi -e 's|extension_dir = /usr/lib/php|extension_dir = /usr/lib64/php|g' /e
 %endif
 
 # Increase memory_limit in /etc/admserv/php.ini:
-perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 2560M      ; Maximum amount of memory a script may consume \(256MB\)|g' /etc/admserv/php.ini
+perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may consume \(8MB\)|memory_limit = 256M      ; Maximum amount of memory a script may consume \(256MB\)|g' /etc/admserv/php.ini
 
 # Increase upload_max_filesize to 300MB, as some Java WAR files can be rather large on uploads:
 perl -pi -e 's|^upload_max_filesize = (.*)|upload_max_filesize = 300M|g' /etc/admserv/php.ini
