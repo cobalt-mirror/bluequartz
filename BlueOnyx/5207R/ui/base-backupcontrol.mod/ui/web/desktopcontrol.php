@@ -1,14 +1,14 @@
 <?php
 /*
- * $Id: desktopcontrol.php,v 1.1.2.2 2002/01/12 02:38:59 pbaltz Exp $
- * Copyright 2001, 2002 Sun Microsystems, Inc.  All rights reserved.
+ * $Id: desktopcontrol.php
+ *
  */
 include_once("ServerScriptHelper.php");
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'serverServerDesktop' should be here
+if (!$helper->getAllowed('serverServerDesktop')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -49,7 +49,10 @@ $helper->destructor();
 <?php print($block->toHtml()); ?>
 
 <?php print($page->toFooterHtml());
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
