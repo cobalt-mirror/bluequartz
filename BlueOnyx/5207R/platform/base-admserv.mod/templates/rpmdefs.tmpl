@@ -60,8 +60,6 @@ information for [VENDOR]-[SERVICE].
 <end capstone>
 <end %FILES>
 <begin %PRE-INSTALL> 
-# glue pre-install 
-/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 <begin HEADER> 
 %pre [LABEL] 
 <end HEADER> 
@@ -114,11 +112,13 @@ perl -pi -e 's|^memory_limit = 8M      ; Maximum amount of memory a script may c
 # Increase upload_max_filesize to 300MB, as some Java WAR files can be rather large on uploads:
 perl -pi -e 's|^upload_max_filesize = (.*)|upload_max_filesize = 300M|g' /etc/admserv/php.ini
 
-
 # Set ServerName in /etc/admserv/conf/httpd.conf:
 if [ -f /usr/sausalito/constructor/base/apache/set_apache_hostname.pl ] ; then
     /usr/sausalito/constructor/base/apache/set_apache_hostname.pl
 fi
+
+# Add user 'admserv':
+/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 
 if [ $1 = 2 ]; then
     /etc/init.d/admserv condrestart
