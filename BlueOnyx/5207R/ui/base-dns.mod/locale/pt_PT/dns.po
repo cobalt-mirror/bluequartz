@@ -1026,7 +1026,7 @@ msgid "caching"
 msgstr "Permitir acesso de cache DNS"
 
 msgid "caching_help"
-msgstr "Ativando cache, também chamado de recursividade, permite resolução de domínios e zonas de rede que outros servidores de nomes autoritativos para. No entanto, executando tal servidor DNS "aberto" expõe a si mesmo e outras pessoas para os riscos de ataques DDoS. Então, se você precisa de um servidor DNS para resolver os domínios que você não está autorizado para, em seguida, você deve usar o servidor DNS de seu provedor, ou (se você ainda quer usar seu próprio servidor DNS para isso!), Você deve apenas permitir consulta acesso para localhost ('127.0.0.1/32') no servidor DNS, ou intervalos de endereços de rede selecionadas e confiáveis."
+msgstr "Ativando cache, também chamado de recursividade, permite resolução de domínios e zonas de rede que outros servidores de nomes autoritativos para. No entanto, executando tal servidor DNS 'aberto' expõe a si mesmo e outras pessoas para os riscos de ataques DDoS. Então, se você precisa de um servidor DNS para resolver os domínios que você não está autorizado para, em seguida, você deve usar o servidor DNS de seu provedor, ou (se você ainda quer usar seu próprio servidor DNS para isso!), Você deve apenas permitir consulta acesso para localhost ('127.0.0.1/32') no servidor DNS, ou intervalos de endereços de rede selecionadas e confiáveis."
 
 msgid "caching_all_allowed"
 msgstr "Open Server DNS (não recomendado!)"
