@@ -1,4 +1,4 @@
-# $Id: documentation.euc 259 2004-01-03 06:28:40Z shibuya $
+# $Id: documentation.po 571 2005-08-18 02:53:08Z shibuya $
 
 # -------------- upper-banner button -----------------------
 
@@ -33,13 +33,13 @@ msgid "documentation"
 msgstr "ユーザマニュアル"
 
 msgid "documentationDescription"
-msgstr "Sun Cobalt サーバのマニュアルを表示。"
+msgstr "[[base-alpine.osName]] サーバのマニュアルを表示。"
 
 msgid "documentation_acrobat_help"
 msgstr "ここをクリックすると、アドビシステムズ社のウェブサイトから Adobe Acrobat Reader をダウンロードできます。"
 
 msgid "documentation_acrobat"
-msgstr "Sun Cobalt サーバのオンラインマニュアルを開くには、PDF ファイル (.pdf) を表示できるソフトウェア (Adobe Acrobat Reader など) が必要です。"
+msgstr "[[base-alpine.osName]] サーバのオンラインマニュアルを開くには、PDF ファイル (.pdf) を表示できるソフトウェア (Adobe Acrobat Reader など) が必要です。"
 
 msgid "pdfDescription"
 msgstr "文書名"
@@ -51,7 +51,7 @@ msgid "pdfSize"
 msgstr "文書サイズ"
 
 msgid "pdfSize_help"
-msgstr "オンラインマニュアルは、Sun Cobalt サーバ上にローカルでホストされています。マニュアルを頻繁に参照する必要があれば、ブラウザのディスクキャッシュを 20MB 以上に設定することによりアクセス速度を向上できます。"
+msgstr "オンラインマニュアルは、サーバ上にローカルでホストされています。マニュアルを頻繁に参照する必要があれば、ブラウザのディスクキャッシュを 20MB 以上に設定することによりアクセス速度を向上できます。"
 
 msgid "pdfAction"
 msgstr "表示"
@@ -80,13 +80,13 @@ msgstr "ユーザマニュアル"
 # -------------- Online support page  -----------------------
 
 msgid "supportLink"
-msgstr "オンラインサポート"
+msgstr "Technical Support"
 
 msgid "supportLink_help"
-msgstr "Sun オンラインサポートセンターに関する情報が表示されます。"
+msgstr "Click here to find support information about [[base-alpine.osName]]."
 
 msgid "support"
-msgstr "オンラインサポート"
+msgstr "Technical Support"
 
 msgid "supportText"
-msgstr "<b>カスタマーサービスおよびテクニカルサポート</b> <br><br>サン・マイクロシステムズ社のサポートサービスは、オンラインサポートセンター (OSC) から提供されます。<br><br><a href=\"http://www.sun.co.jp/service/online\" target=\"support\">http://www.sun.co.jp/service/online</a> へアクセスすると、OSC のウエルカムページが表示されます。画面をスクロールして、「ようこそ Online Support Center へ！！」というリンクをクリックすると、OSC のホームページが表示されます。<br><br>Sun Cobalt 製品に関するサポート情報を得るには、「サン・コバルト・サポート・サービス」というリンクをクリックしてください。サン・コバルト・サポート・サービスのホームページが表示されます。このページには、製品情報、ソフトウェアアップデート、ユーザマニュアルなどダウンロードサイト、ユーザグループや販売代理店のホームページなどへのリンクがあります。また、Sun Cobalt Knowledge Base (英語) や Sun Cobalt Support Forums (英語) へのリンクもあり、必要な情報を検索したり、ディスカッションに参加することができます。<br><br>これらのリンクを使っても必要な情報が見つからない場合には、サン・コバルト・サポート・サービスをお申し込み頂けば、Sun Cobalt のサポートエンジニアによるサポートサービスを受けられます。"
+msgstr "<b>Technical Support for [[base-alpine.osName]]</b> <br>[[base-alpine.osName]] is available on voluntarily work by users and contributors. Go to the URL <a href=\"[[base-alpine.vendorSite]]\" target=\"support\">[[base-alpine.vendorSite]]</a> if you want to participate. Let us build and cultivate this system together. As this system is based on vuluntarily work provided free of charge, we do not make any guarantee that everything will always work flawlessly. So [[base-alpine.osVendor]] does not take any responsibility for features that do not work as intended, nor do we guarantee that the software is error free or fit for a particular purpose. However, commercial support for [[base-alpine.osName]] is available from <a href=\"http://www.solarspeed.net\" target=\"_blank\">Stauber Multimedia Design</a>."
