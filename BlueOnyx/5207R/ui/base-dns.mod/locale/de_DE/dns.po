@@ -1,17 +1,12 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Project-Id-Version: base-dns.po\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-27 09:14+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 # --- Menu
 msgid "dns"
@@ -1097,3 +1092,9 @@ msgid "enable_dns_logging_help"
 msgstr "WARNING: This should only be used for debugging, as it will log any query to your DNS server to /var/log/messages. Even on a lightly used DNS server this creates a lot of log entries. But you might want to briefly (!) enable extended DNS logging to see if your 'DNS Rate Limits' are working correctly."
 
 #------- New Advanced Settings: ---------------
+
+msgid "cap_serverDNS"
+msgstr "Server DNS-Management"
+
+msgid "cap_siteDNS"
+msgstr "Site-DNS-Management"

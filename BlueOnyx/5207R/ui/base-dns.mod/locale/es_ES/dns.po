@@ -1,0 +1,1081 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "title"
+msgstr "DNS"
+
+msgid "modifyDNS"
+msgstr "[[base-dns.title]] Ajustes"
+
+msgid "dns_help"
+msgstr "Haga clic aquí para cambiar [[base-dns.modifyDNS]]."
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "advanced"
+msgstr "Avanzado"
+
+msgid "defaults"
+msgstr "Predeterminados"
+
+msgid "basic_help"
+msgstr "Haga clic aquí para configurar los ajustes básicos del servidor DNS."
+
+msgid "advanced_help"
+msgstr "Haga clic aquí para configurar los parámetros avanzados del servidor DNS, como los formatos de datos, las restricciones de seguridad y los valores predeterminados del servidor."
+
+msgid "defaults_help"
+msgstr "Haga clic aquí para configurar los valores por defecto de inicio de autoridad (SOA)."
+
+msgid "enabled"
+msgstr "Habilitar servidor"
+
+msgid "enabled_help"
+msgstr "Gire el Sistema de nombres de dominio (DNS) funcionalidad del servidor encendido o apagado. Al activar esta función permite que el aparato servidor actuar como servidor de nombres de dominio local para sí y para sus clientes. Un servidor de nombres de dominio traduce los nombres textuales de host y nombres de dominio en direcciones IP numéricas, y viceversa."
+
+msgid "soa_defaults"
+msgstr "Inicio de autoridad (SOA) Valores por defecto"
+
+msgid "soa_defaults_help"
+msgstr "Estos son los valores predeterminados que se utilizan cuando se añaden nuevos registros de nombres de dominio."
+
+msgid "admin_email"
+msgstr "DNS predeterminado Administrador Correo Electrónico"
+
+msgid "admin_email_rule"
+msgstr "Introduzca una dirección de correo electrónico con el formato adecuado. Por ejemplo, user@example.com es una entrada válida."
+
+msgid "admin_email_help"
+msgstr "Introduzca la dirección de correo electrónico predeterminado del contacto administrativo para todos los dominios y las redes que acaba de agregar. [[base-dns.admin_email_rule]]"
+
+msgid "admin_email_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.admin_email]]. [[base-dns.admin_email_rule]]"
+
+msgid "default_refresh"
+msgstr "Por defecto Intervalo de actualización (segundos)"
+
+msgid "default_refresh_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor predeterminado es 10800."
+
+msgid "default_refresh_help"
+msgstr "Introduzca el intervalo de actualización predeterminado para todos los dominios y las redes que acaba de agregar. Este valor es el intervalo en el que el servidor de nombres de dominio secundario tratará de sincronizar sus archivos con el servidor principal de nombres de dominio. [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_refresh]]. [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.default_refresh]]. [[base-dns.default_refresh_rule]]"
+
+msgid "default_retry"
+msgstr "Intervalo predeterminado de reintento (segundos)"
+
+msgid "default_retry_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor predeterminado es 3600."
+
+msgid "default_retry_help"
+msgstr "Introduzca el intervalo predeterminado de reintento para todos los dominios y las redes que acaba de agregar. Si por alguna razón el servidor de nombres de dominio secundario no es capaz de comunicarse con el servidor principal de nombres de dominio para sincronizar sus archivos, este valor es el intervalo en el que el servidor de nombres de dominio secundario intentará varias veces para ponerse en contacto con el servidor principal de nombres de dominio. [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_retry]]. [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.default_retry]]. [[base-dns.default_retry_rule]]"
+
+msgid "default_expire"
+msgstr "Defecto Vencimiento Intervalo (segundos)"
+
+msgid "default_expire_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor predeterminado es 604800."
+
+msgid "default_expire_help"
+msgstr "Introduzca el expirará intervalo predeterminado para todos los dominios y las redes que acaba de agregar. Si por alguna razón el servidor de nombres de dominio secundario no es repetida puede contactar con el servidor principal de nombres de dominio para sincronizar sus archivos, este valor es el intervalo después del cual el servidor de nombres de dominio secundario ya no se tendrá en cuenta la información de dominio válido. A continuación, dejar de servir a la información de dominio hasta que el servidor principal de nombres de dominio puede ser contactado de nuevo. [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_expire]]. [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.default_expire]]. [[base-dns.default_expire_rule]]"
+
+msgid "default_ttl"
+msgstr "Time-To-Live defecto Intervalo (segundos)"
+
+msgid "default_ttl_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor predeterminado es 86400."
+
+msgid "default_ttl_help"
+msgstr "Introduzca el tiempo de espera predeterminado a vivir intervalo para todos los dominios y las redes que acaba de agregar. Este valor es la longitud de tiempo que otros servidores de nombres de dominio serán caché la información de dominio recuperado de este servidor de nombres de dominio y asumirán su validez sin consultar con este servidor de nombres de dominio nuevo. [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_ttl]]. [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.default_ttl]]. [[base-dns.default_ttl_rule]]"
+
+msgid "global_settings"
+msgstr "Configuración del servidor"
+
+msgid "global_settings_help"
+msgstr "Estos son los valores por defecto para el servidor de nombres de dominio."
+
+msgid "forwarders"
+msgstr "Servidores de envío"
+
+msgid "forwarders_help"
+msgstr "Introduzca las direcciones IP de los servidores de nombres de dominio de reenvío. Se utilizan los servidores de nombres de dominio de tránsito cuando [[base-dns.caching]] está habilitado y cuando los servidores de nombres de dominio raíz no son accesibles directamente debido a una conexión a Internet limitada o restringida. [[base-dns.forwarders_rule]]"
+
+msgid "forwarders_rule"
+msgstr "Por favor introduzca una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "forwarders_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-dns.forwarders]]. [[base-dns.forwarders_rule]]"
+
+msgid "zone_xfer_ipaddr"
+msgstr "Zona de Traspasos acceso por dirección IP"
+
+msgid "zone_xfer_ipaddr_help"
+msgstr "Escriba las direcciones IP que tienen permiso para descargar todos los registros mantenidos por este servidor de nombres de dominio a través de transferencias de zona. Las transferencias de zona se utilizan los servidores de nombres de dominio secundarios para sincronizar sus archivos con servidores primarios de nombres de dominio. El valor predeterminado es dejar este campo en blanco para rechazar las solicitudes de transferencia de zona."
+
+msgid "zone_xfer_ipaddr_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-dns.zone_xfer_ipaddr]]."
+
+msgid "recursion_inetaddr_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-dns.recursion_inetaddr]]."
+
+msgid "zone_format_tab"
+msgstr "Formato de la Zona"
+
+msgid "zone_format_tab_help"
+msgstr "Haga clic aquí para configurar los botones [[base-dns.zone_format_tab]] para los registros DNS. Esto no debería ser necesario a menos que el administrador del sistema o el proveedor de Internet le ha dado específicamente a [[base-dns.zone_format_tab]] ajuste."
+
+msgid "zone_format_settings_divider"
+msgstr "[[base-dns.zone_format]] Ajustes"
+
+msgid "zone_format_user_defined_divider"
+msgstr "Definido por el usuario [[base-dns.zone_format]] Ajustes"
+
+msgid "zone_format"
+msgstr "Zona Formato del archivo"
+
+msgid "zone_format_help"
+msgstr "Elija un formato de archivo de zona para las subredes en un límite de octeto que no es compatible con el método de delegación inversa local. RFC2317 es el formato estándar. Dion y OCN-JT son mucho menos comúnmente utilizados."
+
+msgid "zone_format_required_warning"
+msgstr "Este campo es obligatorio si el [[base-dns.zone_format]] que eligió anterior es [[base-dns.USER]], pero se ignora lo contrario. El administrador de red le proporcionará el formato correcto, si es necesario."
+
+msgid "zone_format_24"
+msgstr "[[base-dns.zone_format]]&gt; para redes de 24-bits."
+
+msgid "zone_format_24_help"
+msgstr "Defina el [[base-dns.zone_format]] para crear una red de límite no octeto con más de 24 bits de aquí. [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_16"
+msgstr "[[base-dns.zone_format]]&gt; para redes de 16-bits."
+
+msgid "zone_format_16_help"
+msgstr "Defina el [[base-dns.zone_format]] para crear una red de límite no octeto con más de 16 bits de aquí. [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_8"
+msgstr "[[base-dns.zone_format]]&gt; para redes de 8 bits."
+
+msgid "zone_format_8_help"
+msgstr "Defina el [[base-dns.zone_format]] para crear una red de límite no octeto con más de 8 bits aquí. [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_0"
+msgstr "[[base-dns.zone_format]]&gt; Redes de 0 bits."
+
+msgid "zone_format_0_help"
+msgstr "Defina el [[base-dns.zone_format]] para crear una red de límite no octeto con más de 0 bits de aquí. [[base-dns.zone_format_required_warning]]"
+
+msgid "RFC2317"
+msgstr "RFC2317"
+
+msgid "DION"
+msgstr "DION"
+
+msgid "OCN-JT"
+msgstr "OCN-JT"
+
+msgid "USER"
+msgstr "Definido por el usuario"
+
+msgid "a_record"
+msgstr "Dirección de reenvío (A) Registro"
+
+msgid "ptr_record"
+msgstr "Dirección de registro (PTR) Invertir"
+
+msgid "cname_record"
+msgstr "Alias ​​(CNAME)"
+
+msgid "mx_record"
+msgstr "Servidor de registro de correo (MX)"
+
+msgid "txt_record"
+msgstr "Grabar Texto (TXT)"
+
+msgid "records_title"
+msgstr "Configuración de dominio para"
+
+msgid "a_dir"
+msgstr "Adelante"
+
+msgid "ptr_dir"
+msgstr "Marcha atrás"
+
+msgid "cname_dir"
+msgstr "Alias"
+
+msgid "txt_dir"
+msgstr "TXT"
+
+msgid "primary_service_button"
+msgstr "Editar servicios principales"
+
+msgid "primary_service_button_help"
+msgstr "Administrar los registros DNS de los dominios y las redes que este servidor esté registrada para servir. Servicio DNS primaria también se llama servicio DNS principal."
+
+msgid "dnsSetting"
+msgstr "[[base-dns.title]] Lista de servicios principales"
+
+msgid "select_dom"
+msgstr "Seleccionar dominio ..."
+
+msgid "select_net"
+msgstr "Seleccione Red ..."
+
+msgid "add_record"
+msgstr "Agregar registro ..."
+
+msgid "edit_soa"
+msgstr "Modificar SOA"
+
+msgid "edit_soa_help"
+msgstr "Modificar el comienzo del registro de autoridad para el dominio seleccionado o autoridad red."
+
+msgid "confirm_delall"
+msgstr "¿Está seguro de que desea eliminar todos los registros DNS para este dominio o red?"
+
+msgid "del_records"
+msgstr "Eliminar registros"
+
+msgid "del_records_help"
+msgstr "Haga clic para eliminar todos los registros DNS para este dominio o de red. Esto eliminará todos los registros en la zona seleccionada y no se puede deshacer."
+
+msgid "source"
+msgstr "Pregunta"
+
+msgid "source_help"
+msgstr "Esta es la pregunta o pregunta en la que se pedirá directamente a este servidor de nombres de dominio."
+
+msgid "direction"
+msgstr "Tipo"
+
+msgid "direction_help"
+msgstr "Este es el tipo de registro que se refiere la consulta a este servidor con la respuesta de este servidor."
+
+msgid "resolution"
+msgstr "Respuesta"
+
+msgid "resolution_help"
+msgstr "Esta es la respuesta o la respuesta que se le devolverá directamente desde este servidor de nombres de dominio."
+
+msgid "listAction"
+msgstr "Acción"
+
+msgid "listAction_help"
+msgstr "Estos son los botones que se utilizan para modificar los registros de nombres de dominio o eliminar los registros de nombres de dominio."
+
+msgid "confirm_removal"
+msgstr "¿Está seguro que desea eliminar el registro [[VAR.rec]]?"
+
+msgid "ipaddr_rule"
+msgstr "Una dirección IP es una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 192.168.1.1 es una entrada válida."
+
+msgid "inetaddr_rule"
+msgstr "Una dirección IP es una serie de cuatro números entre 0 y 255 separados por puntos y la máscara de red con &#39;/&#39;. Por ejemplo, 192.168.1.0/24 es una entrada válida."
+
+msgid "create_dns_recA"
+msgstr "[[base-dns.title]] Agregar nuevo [[base-dns.a_record]]"
+
+msgid "modify_dns_recA"
+msgstr "[[base-dns.title]] Modificar [[base-dns.a_record]]"
+
+msgid "a_record_explain"
+msgstr "A [[base-dns.a_record]] proporciona la traducción de un nombre de dominio completo a una dirección IP. Un nombre de dominio completo puede estar compuesto por un nombre de host y un nombre de dominio o sólo un nombre de dominio."
+
+msgid "a_host_name"
+msgstr "Nombre del Host"
+
+msgid "a_host_name_help"
+msgstr "Introduzca el nombre de host para este registro. [[base-dns.a_record_explain]]"
+
+msgid "a_host_name_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "a_domain_name"
+msgstr "Nombre de Dominio"
+
+msgid "a_domain_name_help"
+msgstr "Introduzca el nombre de dominio para este registro. [[base-dns.a_record_explain]]"
+
+msgid "a_domain_name_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "a_domain_name_empty"
+msgstr "Por favor, especifique el dominio de este registro."
+
+msgid "a_ip_address"
+msgstr "Dirección IP"
+
+msgid "a_ip_address_help"
+msgstr "Introduzca la dirección IP para este registro. [[base-dns.a_record_explain]]"
+
+msgid "a_ip_address_invalid"
+msgstr "La dirección IP especificada no es válida. [[base-dns.ipaddr_rule]]"
+
+msgid "a_ip_address_empty"
+msgstr "Por favor, especifique la dirección IP a la que el host y nombres de dominio se resuelven. [[base-dns.ipaddr_rule]]"
+
+msgid "create_dns_recPTR"
+msgstr "[[base-dns.title]] Agregar nuevo [[base-dns.ptr_record]]"
+
+msgid "modify_dns_recPTR"
+msgstr "[[base-dns.title]] Modificar [[base-dns.ptr_record]]"
+
+msgid "ptr_explain"
+msgstr "A [[base-dns.ptr_record]] proporciona la traducción de una dirección IP a un nombre de dominio completo. Un nombre de dominio completo puede estar compuesto por un nombre de host y un nombre de dominio o sólo un nombre de dominio."
+
+msgid "ptr_ip_address"
+msgstr "Dirección IP"
+
+msgid "ptr_ip_address_help"
+msgstr "Introduzca la dirección IP para este registro. [[base-dns.ptr_explain]]"
+
+msgid "ptr_mask"
+msgstr "Máscara de subred"
+
+msgid "ptr_mask_help"
+msgstr "Introduzca la máscara de red de la dirección IP para este registro. [[base-dns.ptr_explain]]"
+
+msgid "ptr_host_name"
+msgstr "Nombre del Host"
+
+msgid "ptr_host_name_help"
+msgstr "Introduzca el nombre de host para este registro. [[base-dns.ptr_explain]]"
+
+msgid "ptr_domain_name"
+msgstr "Nombre de Dominio"
+
+msgid "ptr_domain_name_help"
+msgstr "Introduzca el nombre de dominio para este registro. [[base-dns.ptr_explain]]"
+
+msgid "a_generate_ptr"
+msgstr "Generar Registro de dirección inversa (PTR)"
+
+msgid "ptr_generate_a"
+msgstr "Generar dirección de reenvío (A) Registro"
+
+msgid "ptr_generate_a_help"
+msgstr "Añadir automáticamente un registro de dirección hacia adelante para resolver el nombre de host y el nombre de dominio de la dirección IP especificada."
+
+msgid "ptr_subnet_mask_invalid"
+msgstr "La máscara de subred especificada no es válida. La máscara de subred debe introducirse en notación punto-quad, que es una serie de cuatro números entre 0 y 255 separados por puntos. Por ejemplo, 255.255.255.0 es una entrada válida."
+
+msgid "ptr_subnet_mask_empty"
+msgstr "Especifique la máscara de subred para este registro."
+
+msgid "ptr_ip_address_invalid"
+msgstr "La dirección IP especificada no es válida. [[base-dns.ipaddr_rule]]"
+
+msgid "ptr_host_name_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "ptr_domain_name_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "ptr_ip_address_empty"
+msgstr "Por favor, especifique la dirección IP que se resuelve el host y nombres de dominio. [[base-dns.ipaddr_rule]]"
+
+msgid "ptr_domain_name_empty"
+msgstr "Por favor, especifique el nombre de dominio que se corresponde con la dirección IP."
+
+msgid "create_dns_recMX"
+msgstr "[[base-dns.title]] Agregar nuevo [[base-dns.mx_record]]"
+
+msgid "modify_dns_recMX"
+msgstr "[[base-dns.title]] Modificar [[base-dns.mx_record]]"
+
+msgid "mx_host_name"
+msgstr "Nombre del Host"
+
+msgid "mx_explain"
+msgstr "A [[base-dns.mx_record]] identifica el servidor de correo responsable del correo electrónico destinado a la acogida y el nombre de dominio especificado."
+
+msgid "mx_host_name_help"
+msgstr "Especifique el nombre de host que se encargará de todo el correo electrónico enviado al servidor de correo especificado en la [[base-dns.mx_target_server]] campo. [[base-dns.mx_explain]]"
+
+msgid "mx_domain_name"
+msgstr "Nombre de Dominio"
+
+msgid "mx_domain_name_empty"
+msgstr "Por favor, especifique el nombre de dominio para este registro."
+
+msgid "mx_domain_name_help"
+msgstr "Especifique el nombre de dominio del equipo para el correo electrónico debe ser dirigido al servidor de correo especificado en la [[base-dns.mx_target_server]] campo. [[base-dns.mx_explain]]"
+
+msgid "mx_target_server"
+msgstr "Nombre del servidor de correo"
+
+msgid "mx_target_server_help"
+msgstr "Especifique el nombre de dominio completo del servidor de correo que acepte correo para el host y nombres de dominio. [[base-dns.mx_explain]]"
+
+msgid "mx_priority"
+msgstr "Prioridad de entrega"
+
+msgid "mx_priority_help"
+msgstr "Seleccione la prioridad de la entrega de correo al servidor de correo. La prioridad de entrega especifica el orden en el que una serie de varias máquinas de servidor de correo debe tratar de ponerse en contacto para la entrega de correo. El establecimiento de prioridades de entrega sólo es útil si hay varios registros MX se especifican para un dominio o de red."
+
+msgid "very_high"
+msgstr "Muy alto (20)"
+
+msgid "high"
+msgstr "Alto (30)"
+
+msgid "low"
+msgstr "Baja (40)"
+
+msgid "very_low"
+msgstr "Muy baja (50)"
+
+msgid "mx_dir_very_high"
+msgstr "Correo Mayor"
+
+msgid "mx_dir_high"
+msgstr "Correo alta"
+
+msgid "mx_dir_low"
+msgstr "Correo baja"
+
+msgid "mx_dir_very_low"
+msgstr "Correo Menor"
+
+msgid "mx_host_name_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "mx_domain_name_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "mx_target_server_invalid"
+msgstr "El nombre de dominio completo especificado contiene caracteres no válidos."
+
+msgid "mx_target_server_empty"
+msgstr "Por favor, especifique el nombre de dominio completo del servidor de correo."
+
+msgid "create_dns_recCNAME"
+msgstr "[[base-dns.title]] Agregar nuevo [[base-dns.cname_record]]"
+
+msgid "modify_dns_recCNAME"
+msgstr "[[base-dns.title]] Modificar [[base-dns.cname_record]]"
+
+msgid "cname_explain"
+msgstr "Un registro de alias proporciona la traducción de un nombre de dominio completo a otro nombre de dominio completo."
+
+msgid "cname_host_name"
+msgstr "Alias ​​Nombre Host"
+
+msgid "cname_host_name_help"
+msgstr "Introduzca el nombre de host que se utilice como un alias para el host real y / o nombre de dominio. [[base-dns.cname_explain]]"
+
+msgid "cname_domain_name"
+msgstr "Alias ​​de nombres de dominio"
+
+msgid "cname_domain_name_help"
+msgstr "Introduzca el nombre de dominio que actúe como un alias para el host real y / o nombre de dominio. [[base-dns.cname_explain]]"
+
+msgid "cname_host_target"
+msgstr "Bienes Host Name"
+
+msgid "cname_host_target_help"
+msgstr "Escriba el nombre de sistema real, o canónica. [[base-dns.cname_explain]]"
+
+msgid "cname_domain_target"
+msgstr "Bienes de nombres de dominio"
+
+msgid "cname_domain_target_help"
+msgstr "Introduzca el, nombre de dominio real, o canónica. [[base-dns.cname_explain]]"
+
+msgid "create_dns_recTXT"
+msgstr "[[base-dns.title]] Agregar nuevo [[base-dns.txt_record]]"
+
+msgid "modify_dns_recTXT"
+msgstr "[[base-dns.title]] Modificar [[base-dns.txt_record]]"
+
+msgid "txt_record_explain"
+msgstr "A [[base-dns.txt_record]] identifica el registro de texto para el host y el nombre de dominio especificado."
+
+msgid "txt_host_name"
+msgstr "Nombre del Host"
+
+msgid "txt_host_name_help"
+msgstr "Introduzca el nombre de host para este registro. [[base-dns.txt_record_explain]]"
+
+msgid "txt_host_name_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "txt_domain_name"
+msgstr "Nombre de Dominio"
+
+msgid "txt_domain_name_help"
+msgstr "Introduzca el nombre de dominio para este registro. [[base-dns.txt_record_explain]]"
+
+msgid "txt_domain_name_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "txt_domain_name_empty"
+msgstr "Por favor, especifique el nombre de dominio que se corresponde con la dirección IP."
+
+msgid "txt_strings"
+msgstr "Texto Record"
+
+msgid "txt_strings_help"
+msgstr "Introduzca el registro de texto."
+
+msgid "txt_strings_invalid"
+msgstr "El registro de texto especificado contiene caracteres no válidos."
+
+msgid "txt_strings_empty"
+msgstr "Por favor, especifique el registro de texto que se corresponde con la dirección IP."
+
+msgid "create_soa"
+msgstr "Agregar inicio de autoridad (SOA)"
+
+msgid "modify_soa"
+msgstr "[[base-dns.title]] Modificar inicio de autoridad (SOA)"
+
+msgid "domain_soa"
+msgstr "Autoridad de dominio"
+
+msgid "domain_soa_help"
+msgstr "Esta es la autoridad de dominio al que se aplica este el comienzo de la Autoridad."
+
+msgid "network_soa"
+msgstr "Autoridad de la Red"
+
+msgid "network_soa_help"
+msgstr "Este es el poder de la red a los que se aplica este el comienzo de la Autoridad."
+
+msgid "primary_dns"
+msgstr "Primary Name Server (NS)"
+
+msgid "primary_dns_help"
+msgstr "Introduzca el nombre de dominio completo del servidor de nombres primario para el dominio seleccionado o autoridad red."
+
+msgid "secondary_dns"
+msgstr "Servidores de nombres secundarios (NS)"
+
+msgid "secondary_dns_help"
+msgstr "Escriba una lista separada por espacios de nombres de dominio completos de los servidores de nombres secundarios para el dominio seleccionado o autoridad red."
+
+msgid "domain_admin"
+msgstr "DNS Administrador de Correo Electrónico"
+
+msgid "domain_admin_rule"
+msgstr "Introduzca una dirección de correo electrónico con el formato adecuado. La dirección de correo electrónico por defecto se encuentra en el [[base-dns.soa_defaults]] sección. Por ejemplo, user@example.com es una entrada válida."
+
+msgid "domain_admin_help"
+msgstr "Introduzca la dirección de correo electrónico del contacto administrativo para todos los dominios y las redes que acaba de agregar. [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.domain_admin]]. [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.domain_admin]]. [[base-dns.domain_admin_rule]]"
+
+msgid "refresh"
+msgstr "Intervalo de actualización (segundos)"
+
+msgid "refresh_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor por defecto se encuentra en el [[base-dns.soa_defaults]] sección."
+
+msgid "refresh_help"
+msgstr "Introduzca el intervalo de actualización predeterminado para todos los dominios y las redes que acaba de agregar. Este valor es el intervalo en el que el servidor de nombres de dominio secundario tratará de sincronizar sus archivos con el servidor principal de nombres de dominio. [[base-dns.refresh_rule]]"
+
+msgid "refresh_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.refresh]]. [[base-dns.refresh_rule]]"
+
+msgid "retry"
+msgstr "Intervalo de reintento (segundos)"
+
+msgid "retry_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor por defecto se encuentra en el [[base-dns.soa_defaults]] sección."
+
+msgid "retry_help"
+msgstr "Introduzca el intervalo predeterminado de reintento para todos los dominios y las redes que acaba de agregar. Si por alguna razón el servidor de nombres de dominio secundario no es capaz de comunicarse con el servidor principal de nombres de dominio para sincronizar sus archivos, este valor es el intervalo en el que el servidor de nombres de dominio secundario intentará varias veces para ponerse en contacto con el servidor principal de nombres de dominio. [[base-dns.retry_rule]]"
+
+msgid "retry_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.retry]]. [[base-dns.retry_rule]]"
+
+msgid "expire"
+msgstr "Vencimiento Intervalo (segundos)"
+
+msgid "expire_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor por defecto se encuentra en el [[base-dns.soa_defaults]] sección."
+
+msgid "expire_help"
+msgstr "Introduzca el expirará intervalo predeterminado para todos los dominios y las redes que acaba de agregar. Si por alguna razón el servidor de nombres de dominio secundario no es repetida puede contactar con el servidor principal de nombres de dominio para sincronizar sus archivos, este valor es el intervalo después del cual el servidor de nombres de dominio secundario ya no se tendrá en cuenta la información de dominio válido. A continuación, dejar de servir a la información de dominio hasta que el servidor principal de nombres de dominio puede ser contactado de nuevo. [[base-dns.expire_rule]]"
+
+msgid "expire_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.expire]]. [[base-dns.expire_rule]]"
+
+msgid "ttl"
+msgstr "Time-To-Live Intervalo (segundos)"
+
+msgid "ttl_rule"
+msgstr "Introduzca un número entero entre 1 y 4096000. El valor por defecto se encuentra en el [[base-dns.soa_defaults]] sección."
+
+msgid "ttl_help"
+msgstr "Introduzca el tiempo de espera predeterminado a vivir intervalo para todos los dominios y las redes que acaba de agregar. Este valor es la longitud de tiempo que otros servidores de nombres de dominio serán caché la información de dominio recuperado de este servidor de nombres de dominio y asumir que su validez sin consultar con este servidor de nombres de dominio nuevo. [[base-dns.ttl_rule]]"
+
+msgid "ttl_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.ttl]]. [[base-dns.ttl_rule]]"
+
+msgid "ttl_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-dns.ttl]]. [[base-dns.ttl_rule]]"
+
+msgid "secondary_service_button"
+msgstr "Editar servicios secundarios"
+
+msgid "secondary_service_button_help"
+msgstr "Administrar el servicio de DNS secundario de dominios y redes."
+
+msgid "sec_list"
+msgstr "[[base-dns.title]] Lista de servicios secundarios"
+
+msgid "create_slave_rec"
+msgstr "[[base-dns.title]] Añadir servicio secundario"
+
+msgid "modify_slave_rec"
+msgstr "[[base-dns.title]] Modificar servicios secundarios"
+
+msgid "slave_domain_but"
+msgstr "Secundaria Domain Name Server para el dominio"
+
+msgid "slave_domain"
+msgstr "Nombre de Dominio"
+
+msgid "slave_domain_help"
+msgstr "Introduzca el nombre del dominio para el que esta máquina va a ser un servidor de nombres de dominio secundario."
+
+msgid "slave_dom_masters"
+msgstr "Dirección IP del servidor DNS primario"
+
+msgid "slave_dom_masters_help"
+msgstr "Introduzca la dirección IP del servidor de nombres de dominio principal para este dominio."
+
+msgid "slave_network_but"
+msgstr "Secundaria Domain Name Server para Network"
+
+msgid "slave_ipaddr"
+msgstr "Red"
+
+msgid "slave_ipaddr_help"
+msgstr "Introduzca la dirección IP de la red para la que esta máquina va a ser un servidor de nombres de dominio secundario."
+
+msgid "slave_netmask"
+msgstr "Una máscara de subred"
+
+msgid "slave_netmask_help"
+msgstr "Introduzca la máscara de subred de la red a la que esta máquina va a ser un servidor de nombres de dominio secundario."
+
+msgid "slave_net_masters"
+msgstr "Dirección IP del servidor DNS primario"
+
+msgid "slave_net_masters_help"
+msgstr "Introduzca la dirección IP del servidor de nombres de dominio principal para este dominio."
+
+msgid "sec_authority"
+msgstr "Servicio Secundaria"
+
+msgid "sec_authority_help"
+msgstr "Este es el dominio o la red para la que esta máquina va a ser un servidor de nombres de dominio secundario."
+
+msgid "sec_primaries"
+msgstr "Servidor DNS primario"
+
+msgid "sec_primaries_help"
+msgstr "Esta es la dirección IP del servidor de nombres de dominio principal para este dominio o de red."
+
+msgid "recordlist_action"
+msgstr "Acción"
+
+msgid "recordlist_action_help"
+msgstr "Estos son los botones que se utilizan para modificar los registros de servicio de nombres de dominio secundarios o eliminar archivos de los servicios de nombres de dominio secundarios."
+
+msgid "confirm_removal_of_sec"
+msgstr "¿Está seguro que desea eliminar el registro de nombres de dominio secundario para [[VAR.rec]]?"
+
+msgid "slave_ipaddr_invalid"
+msgstr "La dirección IP especificada no es válida."
+
+msgid "slave_netmask_invalid"
+msgstr "La máscara de red especificada no es válida. Máscaras de red se deben introducir en notación punto-quad."
+
+msgid "slave_net_masters_invalid"
+msgstr "La dirección IP del servidor DNS primario no es válida."
+
+msgid "slave_domain_invalid"
+msgstr "El nombre de dominio especificado no es válido."
+
+msgid "slave_dom_masters_invalid"
+msgstr "La dirección IP del servidor DNS primario no es válida."
+
+msgid "apply_changes"
+msgstr "Aplicar cambios ahora"
+
+msgid "apply_changes_help"
+msgstr "Haga clic aquí para activar inmediatamente los cambios realizados en los registros del servidor de nombres de dominio. Las modificaciones introducidas en los registros de nombres de dominio no estarán activos hasta que se aplican de forma explícita con el servidor de nombres de dominio, haga clic en este botón."
+
+msgid "apply_changes_disabledHelp"
+msgstr "Este botón está desactivado porque todavía no ha añadido o modificado los registros del servidor de nombres de dominio. Después de añadir o modificar registros de servidor de nombres de dominio, haga clic aquí para activar inmediatamente los cambios realizados en los registros del servidor de nombres de dominio."
+
+msgid "amDNSNameTag"
+msgstr "Servicio de Nombres de Dominio (DNS)"
+
+msgid "amDetailsTitle"
+msgstr "Domain Name Service (DNS) Detalles del Servidor"
+
+msgid "amNotRunning"
+msgstr "El servidor de nombres de dominio no está en ejecución y no se puede reiniciar. En el [[base-apache.amAdmservNameTag]], intente girar el servidor de nombres de dominio y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si el servidor de nombres de dominio aún no puede arrancar, intente reiniciar el servidor sí mismo haciendo clic en el [[base-power.reboot]] en la [[base-power.power]] del menú en [[base-alpine.serverconfig] ]. Si el servidor de nombre de dominio es todavía no arranca, consulte [[base-salsa-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "amStatusOK"
+msgstr "El servidor de nombres de dominio está funcionando normalmente."
+
+msgid "select_a_domain"
+msgstr "Seleccione un dominio ..."
+
+msgid "select_a_network"
+msgstr "Seleccione una red ..."
+
+msgid "no_records"
+msgstr "Ninguna autoridad de dominio o de red"
+
+msgid "subdom_host_name"
+msgstr "Subdominio Nombre"
+
+msgid "subdom_host_name_help"
+msgstr "Especifique el nombre de subdominio no calificado. Por ejemplo, para delegar la remote.example.com subdominio, este servidor debe estar autorizado para el dominio example.com. Especifique sólo el nombre del subdominio, a distancia."
+
+msgid "subdom_domain_name"
+msgstr "Padres de nombres de dominio"
+
+msgid "subdom_domain_name_help"
+msgstr "Seleccione el nombre de dominio principal. Por ejemplo, para delegar la remote.example.com subdominio, seleccione example.com"
+
+msgid "subdom_nameservers"
+msgstr "Servidores de nombres"
+
+msgid "subdom_nameservers_help"
+msgstr "Especifica una lista separada por comas de nombres de host completamente cualificados que están autorizados para el subdominio especificado. Se debe especificar al menos un servidor de nombres."
+
+msgid "subdom_nameservers_invalid"
+msgstr "El [[base-dns.subdom_nameservers]] lista contiene caracteres o nombres de host válidos."
+
+msgid "subdom_nameservers_empty"
+msgstr "Especifique por lo menos un servidor DNS que tiene autoridad para este subdominio."
+
+msgid "subnet_ip_address"
+msgstr "Dirección IP de subred"
+
+msgid "subnet_ip_address_help"
+msgstr "Especifique una dirección IP dentro de la subred deseada que se delega a otro servidor DNS."
+
+msgid "subnet_mask"
+msgstr "Máscara de subred de red"
+
+msgid "subnet_mask_help"
+msgstr "Especifique la máscara de red de la subred en notación punto-quad."
+
+msgid "subnet_nameservers"
+msgstr "Servidores de nombres"
+
+msgid "subnet_nameservers_help"
+msgstr "Especifica una lista separada por comas de nombres de host completamente cualificados que están autorizados para la subred especificada. Se debe especificar al menos un servidor de nombres."
+
+msgid "subnet_nameservers_invalid"
+msgstr "El [[base-dns.subnet_nameservers]] lista contiene caracteres o nombres de host válidos."
+
+msgid "subnet_nameservers_empty"
+msgstr "Especifique por lo menos un servidor DNS que es autoritativo para esta subred."
+
+msgid "create_dns_rec"
+msgstr "Agregar un registro DNS"
+
+msgid "modify_dns_rec"
+msgstr "[[base-dns.title]] Modificar un registro DNS"
+
+msgid "authority"
+msgstr "Autoridad"
+
+msgid "authority_help"
+msgstr "Autoridades DNS son los dominios y las redes."
+
+msgid "subnet_dir"
+msgstr "Subred"
+
+msgid "subdom_dir"
+msgstr "Subdominio"
+
+msgid "subnet"
+msgstr "Delegación de subred"
+
+msgid "subdom"
+msgstr "Subdominio Delegación"
+
+msgid "modify_dns_recSUBDOM"
+msgstr "[[base-dns.title]] Modificar una delegación subdominio."
+
+msgid "create_dns_recSUBDOM"
+msgstr "Añadir una delegación Subdominio"
+
+msgid "modify_dns_recSUBNET"
+msgstr "[[base-dns.title]] Modificar una delegación de subred"
+
+msgid "create_dns_recSUBNET"
+msgstr "Añadir una delegación de subred"
+
+msgid "add_secondary"
+msgstr "Añadir servicio secundario ..."
+
+msgid "add_secondary_forward"
+msgstr "... Para un dominio"
+
+msgid "add_secondary_network"
+msgstr "... Para una red"
+
+msgid "cname_domain_name_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "cname_domain_target_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "cname_host_target_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "subdom_host_name_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "subdom_host_name_empty"
+msgstr "Especifique el nombre de subdominio que ser delegada a los servidores DNS remotos."
+
+msgid "subdom_domain_name_invalid"
+msgstr "El nombre de dominio especificado contiene caracteres no válidos."
+
+msgid "subdom_namerservers_invalid"
+msgstr "El nombre de dominio completo especificado para el servidor DNS principal no es válido."
+
+msgid "subnet_subnet_mask_invalid"
+msgstr "La máscara de subred especificada no es válida. La máscara de subred debe introducirse en notación punto-quad."
+
+msgid "subnet_ip_address_invalid"
+msgstr "La dirección IP especificada no es válida."
+
+msgid "subnet_ip_address_empty"
+msgstr "Especifique una dirección IP que es miembro de la subred delegada."
+
+msgid "primary_dns_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "secondary_dns_invalid"
+msgstr "Un nombre de nombre de host del servidor secundario contiene caracteres no válidos."
+
+msgid "refresh_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_refresh]]. [[base-dns.default_refresh_rule]]"
+
+msgid "retry_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_retry]]. [[base-dns.default_retry_rule]]"
+
+msgid "expire_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-dns.default_expire]]. [[base-dns.default_expire_rule]]"
+
+msgid "cname_domain_name_empty"
+msgstr "Por favor introduce el nombre de alias de dominio."
+
+msgid "cname_domain_target_empty"
+msgstr "Especifique un nombre de dominio real que el alias de host y nombres de dominio se resuelven a."
+
+msgid "slave_domain_empty"
+msgstr "Por favor, especifique el nombre de dominio que el servidor se convertirá en un servidor DNS secundario para."
+
+msgid "slave_dom_masters_empty"
+msgstr "Por favor, especifique la dirección IP del servidor DNS primario para el nombre de dominio."
+
+msgid "slave_ipaddr_empty"
+msgstr "Especifique una dirección IP que es miembro de la autoridad de la red servida por el servidor DNS primario."
+
+msgid "slave_net_masters_empty"
+msgstr "Por favor, especifique la dirección IP del servidor DNS primario para la autoridad Network."
+
+msgid "slave_netmask_empty"
+msgstr "Especifique la máscara de red en notación punto-quad que, además de la dirección IP de red especifica, define la red que el servidor DNS primario está autorizado para."
+
+msgid "cname_host_name_empty"
+msgstr "Por favor, especifique el nombre de host para este registro."
+
+msgid "cname_host_name_invalid"
+msgstr "El nombre de host especificado contiene caracteres no válidos."
+
+msgid "parent_network"
+msgstr "Red de Padres"
+
+msgid "parent_network_help"
+msgstr "Esta es la red de padres para los que este servidor tiene autoridad. Todas las direcciones IP de la subred especificada debe pertenecer a esta red de padres."
+
+msgid "invalidDuplicate"
+msgstr "Ya existe un registro de nombres de dominio idénticos."
+
+msgid "named-did-not-start"
+msgstr "El servidor de nombres (DNS) no pudo reiniciar correctamente."
+
+msgid "invalid-authority"
+msgstr "El registro de DNS que falta información esencial."
+
+msgid "SOA-already-exists-for-zone"
+msgstr "A principios de registro de autoridad (SOA) ya existe para esta zona."
+
+msgid "secondaryZoneOverlap"
+msgstr "Un conflicto de servicios de red secundaria existentes con este disco."
+
+msgid "secondaryZoneDuplicate"
+msgstr "Un conflicto de servicios de red secundaria existentes con este disco."
+
+msgid "primaryZoneDuplicate"
+msgstr "Un conflicto de servicios de red primarios existentes con este disco."
+
+msgid "primaryZoneOverlap"
+msgstr "Un conflicto de servicios de red primarios existentes con este disco."
+
+msgid ""
+msgstr ""
+
+msgid "auto_dns"
+msgstr "Auto DNS"
+
+msgid "auto_dns_help"
+msgstr "Configuración de Auto DNS"
+
+msgid "auto_a"
+msgstr "Nombres de host"
+
+msgid "auto_a_help"
+msgstr "Añadir nombres de sistema adicionales para DNS Auto. Esto le permitirá configurar los dominios en un instante"
+
+msgid "auto_mx"
+msgstr "Mail Server Host Name"
+
+msgid "auto_mx_help"
+msgstr "Agregue el nombre de host del servidor de correo para este dominio. No añada el domain.tld"
+
+msgid "dnsNames_header"
+msgstr "Por favor, seleccione el que Domain Names este sitio se encargará de"
+
+msgid "dnsNames"
+msgstr "Nombres de Dominio Disponible"
+
+msgid "dnsNames_help"
+msgstr "Seleccione el dominio que nombra este sitio virtual será capaz de administor"
+
+msgid "selected"
+msgstr "Seleccionado"
+
+msgid "notSelected"
+msgstr "No seleccionado"
+
+msgid "nodnsmanage"
+msgstr "Nombre de dominio no Setup"
+
+msgid "dnsempty"
+msgstr "El administrador de este Sytem no ha configurar los dominios para que usted maneje. Si cree que esto es un error, por favor póngase en contacto con el administrador del sistema"
+
+msgid "query"
+msgstr "Permitir DNS Query Access"
+
+msgid "query_help"
+msgstr "Esto está habilitada por defecto. Permite que la dirección IP seleccionada varía para consultar el servidor DNS para obtener información DNS. Usted puede especificar los rangos de direcciones pueden consultar su servidor un poco más adelante en el campo &quot;Permitir consultas de estas redes."
+
+msgid "query_all_allowed"
+msgstr "Permitir consultas de todo el mundo"
+
+msgid "query_all_allowed_help"
+msgstr "Permitir el acceso de consulta de toda la Internet. Si ejecuta un servidor de nombres oficial para el dominio, debe habilitar esta función. Si su servidor de nombres se supone que es privada, puede desactivarlo."
+
+msgid "query_inetaddr"
+msgstr "Permitir consultas de estas redes"
+
+msgid "query_inetaddr_help"
+msgstr "En este cuadro puede especificar que se permiten rangos de direcciones IP para consultar el servidor DNS. Por defecto sólo se permite localhost (.0.0.1/32 &#39;127 &#39;). Si marca la casilla &quot;Permitir consultas de todo el mundo &#39;, entonces se reemplazará cualquier rangos de direcciones adicionales que usted pone aquí y va a permitir el acceso de consulta a nadie."
+
+msgid "caching"
+msgstr "Permitir DNS caché Acceso"
+
+msgid "caching_help"
+msgstr "Habilitar el almacenamiento en caché, también llamada recursiva, permite la resolución de dominios y zonas de red que otros servidores de nombres están autorizados para. Sin embargo, la ejecución de un servidor de este tipo &quot;abierto&quot; DNS a sí mismo ya los demás expone a los riesgos de ataques DDoS. Así que si usted necesita un servidor DNS para resolver dominios que no están autorizados para, a continuación, usted debe utilizar el servidor DNS de su proveedor, o (si usted todavía desea utilizar su propio servidor DNS para que!) Sólo se debe permitir consulta acceso a localhost (&#39;127 .0.0.1/32 &#39;) en este servidor DNS, o intervalos de direcciones de red seleccionados y de confianza."
+
+msgid "caching_all_allowed"
+msgstr "Apertura del servidor DNS (No se recomienda!)"
+
+msgid "caching_all_allowed_help"
+msgstr "Si marca esta casilla, el servidor DNS será completamente abierto y DNS para resolver todos y cada uno. Esa es una muy mala idea. Esto expone a sí mismo ya los demás a los riesgos de ataques DDoS. Así que si usted necesita un servidor DNS para resolver dominios que no están autorizados para, a continuación, usted debe utilizar el servidor DNS de su proveedor, o (si usted todavía desea utilizar su propio servidor DNS para que!) Sólo se debe permitir consulta acceso a localhost (&#39;127 .0.0.1/32 &#39;) en este servidor DNS, o intervalos de direcciones de red seleccionados y de confianza."
+
+msgid "recursion_inetaddr"
+msgstr "Permitir el acceso de caché de estas redes"
+
+msgid "recursion_inetaddr_help"
+msgstr "Introduzca las direcciones IP (con máscara de red!) De los rangos de direcciones que se les permita solicitar consulta recursiva al servidor de caché. [[base-dns.inetaddr_rule]]"
+
+msgid "rate_limits"
+msgstr "DNS límites del ritmo:"
+
+msgid "rate_limits_enabled"
+msgstr "Límites del ritmo Activado"
+
+msgid "rate_limits_enabled_help"
+msgstr "DNS de respuesta limitación de DNS (RRL) es una función de protección experimental de los servidores de nombres de dominio. Este mecanismo mantiene BIND 9 que se utilicen en la amplificación de la reflexión ataques de denegación de servicio, así como la protección parcial BIND 9 en sí de algunos ataques de denegación de servicio. Por defecto, se debe habilitar."
+
+msgid "responses_per_second"
+msgstr "Las respuestas por segundo"
+
+msgid "responses_per_second_help"
+msgstr "Las respuestas por segundo es un límite en las respuestas idénticas en lugar de un límite en todas las respuestas, o incluso todas las respuestas a un solo cliente. 10 respuestas idénticas por segundo es un límite generoso excepto quizás cuando muchos clientes están utilizando una única dirección IP a través de la traducción de direcciones de red (NAT). El límite predeterminado de cero especifica un límite sin límites para apagar limitante de la velocidad en una vista o sólo NXDOMAIN rate-limit u otros errores."
+
+msgid "window"
+msgstr "Ventana"
+
+msgid "window_help"
+msgstr "Limitación de velocidad utiliza un esquema de crédito o cubetas de fichas. Cada respuesta idéntica tiene una cuenta conceptual que se da RESPUESTAS por segundo y errores por segundo créditos cada segundo. A petición DNS desencadenar alguna respuesta deseada carga a la cuenta de uno. Las respuestas no se envían mientras que la cuenta es negativa. La cuenta no puede llegar a ser más positiva que la por-segundo límite o más negativa que la ventana veces por segundo límite. Un cliente de DNS que envía peticiones que no son contestadas por lo tanto se penaliza hasta segundo de ventanas, incluso después de que los abusos se detiene el flujo de consultas."
+
+msgid "dns_logging"
+msgstr "Extended registro DNS:"
+
+msgid "enable_dns_logging"
+msgstr "Habilitar el registro de DNS ampliada"
+
+msgid "enable_dns_logging_help"
+msgstr "ADVERTENCIA: Esto sólo se debe utilizar para la depuración, ya que registrará cualquier consulta al servidor DNS en / var / log / messages. Incluso en un servidor DNS utilizado ligeramente esto crea una gran cantidad de entradas de registro. Sin embargo, es posible que desee breve (!) Activar DNS extendidos tala para ver si sus &quot;límites del ritmo DNS &#39;están trabajando correctamente."
+
+msgid "cap_serverDNS"
+msgstr "Gestión del servidor DNS"
+
+msgid "cap_siteDNS"
+msgstr "Gestión de DNS del sitio"
+

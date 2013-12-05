@@ -1048,12 +1048,7 @@ msgid "nodnsmanage"
 msgstr "Domain Name Manager not Setup"
 
 msgid "dnsempty"
-msgstr ""
-"<br>"
-"The administrator of this sytem has not setup any domains for <br>"
-"you to manage.  If you feel this is an error, please contact <br>"
-"the System Administrator<br>"
-"<br>"
+msgstr "The administrator of this sytem has not setup any domains for you to manage. If you feel this is an error, please contact the System Administrator"
 
 #------- New Advanced Settings: ---------------
 
@@ -1124,3 +1119,9 @@ msgid "enable_dns_logging_help"
 msgstr "WARNING: This should only be used for debugging, as it will log any query to your DNS server to /var/log/messages. Even on a lightly used DNS server this creates a lot of log entries. But you might want to briefly (!) enable extended DNS logging to see if your 'DNS Rate Limits' are working correctly."
 
 #------- New Advanced Settings: ---------------
+
+msgid "cap_serverDNS"
+msgstr "Server DNS Management"
+ 
+msgid "cap_siteDNS"
+msgstr "Site DNS Management"
