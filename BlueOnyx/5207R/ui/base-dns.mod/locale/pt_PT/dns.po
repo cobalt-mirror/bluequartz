@@ -1008,7 +1008,7 @@ msgid "query"
 msgstr "Permitir consultas DNS Acesso"
 
 msgid "query_help"
-msgstr "Isso é ativado por padrão. Permite endereço IP selecionado varia para consultar o servidor de DNS para obter informações de DNS. Você pode especificar quais faixas de endereços pode consultar o seu servidor um pouco mais abaixo no campo "Permitir consultas a partir dessas redes"."
+msgstr "Isso é ativado por padrão. Permite endereço IP selecionado varia para consultar o servidor de DNS para obter informações de DNS. Você pode especificar quais faixas de endereços pode consultar o seu servidor um pouco mais abaixo no campo 'Permitir consultas a partir dessas redes'."
 
 msgid "query_all_allowed"
 msgstr "Permitir Consultas de Todos"
@@ -1020,19 +1020,19 @@ msgid "query_inetaddr"
 msgstr "Permitir consultas a partir dessas redes"
 
 msgid "query_inetaddr_help"
-msgstr "Nessa caixa, você pode especificar quais faixas de endereços IP estão autorizados a consultar o servidor de DNS. Por padrão, somente localhost ('127 .0.0.1/32') é permitido. Se você marcar a caixa de seleção "Permitir consultas de todos ', então ela substituirá qualquer adicional intervalos de endereços que você colocou no aqui e vai permitir que qualquer pessoa o acesso de consulta."
+msgstr "Nessa caixa, você pode especificar quais faixas de endereços IP estão autorizados a consultar o servidor de DNS. Por padrão, somente localhost ('127.0.0.1/32') é permitido. Se você marcar a caixa de seleção 'Permitir consultas de todos', então ela substituirá qualquer adicional intervalos de endereços que você colocou no aqui e vai permitir que qualquer pessoa o acesso de consulta."
 
 msgid "caching"
 msgstr "Permitir acesso de cache DNS"
 
 msgid "caching_help"
-msgstr "Ativando cache, também chamado de recursividade, permite resolução de domínios e zonas de rede que outros servidores de nomes autoritativos para. No entanto, executando tal servidor DNS "aberto" expõe a si mesmo e outras pessoas para os riscos de ataques DDoS. Então, se você precisa de um servidor DNS para resolver os domínios que você não está autorizado para, em seguida, você deve usar o servidor DNS de seu provedor, ou (se você ainda quer usar seu próprio servidor DNS para isso!), Você deve apenas permitir consulta acesso para localhost ('127 .0.0.1/32') no servidor DNS, ou intervalos de endereços de rede selecionadas e confiáveis."
+msgstr "Ativando cache, também chamado de recursividade, permite resolução de domínios e zonas de rede que outros servidores de nomes autoritativos para. No entanto, executando tal servidor DNS "aberto" expõe a si mesmo e outras pessoas para os riscos de ataques DDoS. Então, se você precisa de um servidor DNS para resolver os domínios que você não está autorizado para, em seguida, você deve usar o servidor DNS de seu provedor, ou (se você ainda quer usar seu próprio servidor DNS para isso!), Você deve apenas permitir consulta acesso para localhost ('127.0.0.1/32') no servidor DNS, ou intervalos de endereços de rede selecionadas e confiáveis."
 
 msgid "caching_all_allowed"
 msgstr "Open Server DNS (não recomendado!)"
 
 msgid "caching_all_allowed_help"
-msgstr "Se você marcar esta caixa, o servidor DNS será totalmente aberto e vai resolver de DNS para qualquer um e todos. Essa é uma idéia muito ruim. Isso expõe a si mesmo e outras pessoas para os riscos de ataques DDoS. Então, se você precisa de um servidor DNS para resolver os domínios que você não está autorizado para, em seguida, você deve usar o servidor DNS de seu provedor, ou (se você ainda quer usar seu próprio servidor DNS para isso!), Você deve apenas permitir consulta acesso para localhost ('127 .0.0.1/32') no servidor DNS, ou intervalos de endereços de rede selecionadas e confiáveis."
+msgstr "Se você marcar esta caixa, o servidor DNS será totalmente aberto e vai resolver de DNS para qualquer um e todos. Essa é uma idéia muito ruim. Isso expõe a si mesmo e outras pessoas para os riscos de ataques DDoS. Então, se você precisa de um servidor DNS para resolver os domínios que você não está autorizado para, em seguida, você deve usar o servidor DNS de seu provedor, ou (se você ainda quer usar seu próprio servidor DNS para isso!), Você deve apenas permitir consulta acesso para localhost ('127.0.0.1/32') no servidor DNS, ou intervalos de endereços de rede selecionadas e confiáveis."
 
 msgid "recursion_inetaddr"
 msgstr "Permitir o acesso de cache a partir dessas redes"
@@ -1068,7 +1068,7 @@ msgid "enable_dns_logging"
 msgstr "Ativar registro DNS estendida"
 
 msgid "enable_dns_logging_help"
-msgstr "AVISO: Este só deve ser utilizado para a depuração, como ele irá registrar qualquer consulta para o servidor DNS em / var / log / messages. Mesmo em um servidor DNS usado levemente isso cria uma grande quantidade de entradas de registro. Mas você pode querer brevemente (!) Habilitar o registro DNS estendida para ver se o seu "Limites da Taxa de DNS" estão funcionando corretamente."
+msgstr "AVISO: Este só deve ser utilizado para a depuração, como ele irá registrar qualquer consulta para o servidor DNS em /var/log/messages. Mesmo em um servidor DNS usado levemente isso cria uma grande quantidade de entradas de registro. Mas você pode querer brevemente (!) Habilitar o registro DNS estendida para ver se o seu "Limites da Taxa de DNS" estão funcionando corretamente."
 
 msgid "cap_serverDNS"
 msgstr "Gerenciamento de servidor DNS"
