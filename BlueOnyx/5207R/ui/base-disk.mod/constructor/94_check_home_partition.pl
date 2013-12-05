@@ -1,9 +1,7 @@
 #!/usr/bin/perl
-# $Id: 93_update_disks_info.pl
+# $Id: 94_check_home_partition.pl
 #
-# Makes sure a Disk object exists for each internal logical partition, 
-# and that each Disk's total space and used space are up to date
-#
+# / partition will be home partition, if there isn't /home partition.
 
 use strict;
 use lib qw(/usr/sausalito/perl /usr/sausalito/handlers/base/disk);
@@ -15,56 +13,19 @@ my $cce = new CCE('Domain' => 'base-disk');
 
 $cce->connectuds();
 
-my $mounts = disk_getmounts();
+my ($oid) = $cce->find("Disk", { 'mountPoint' => '/home' });
 
-for my $partition (keys %$mounts)
-{
-    # this script only deals with internal disks
-    next unless ($partition =~ /^\/dev/);
-
-    my ($oid) = $cce->find("Disk", { 'device' => $partition });
-
-    # get disk usage information
-    my $info = disk_get_usage_info($partition);
-
-    if ($oid)
-    {
-        $cce->set($oid, "", { 'total' => $info->{$partition}->{Total}, 
-                            'used' => $info->{$partition}->{Used} });
-    }
-    else
-    {
-        my $partition_info = { 
-                            'device' => $partition,
-                            'mountPoint' => $info->{$partition}->{MountPoint},
-                            'total' => $info->{$partition}->{Total},
-                            'used' => $info->{$partition}->{Used},
-                            'mounted' => 1,
-                            'internal' => 1
-                        };
-
-        if($info->{$partition}->{MountPoint} =~ /$Base::HomeDir::HOME_ROOT/)
-        {
-            $partition_info->{isHomePartition} = 1;
-        }
-       
-        my ($ok) = $cce->create("Disk", $partition_info);
-
-        if (not $ok)
-        {
-            $cce->bye('FAIL', 'cantCreateDisk', { 'device' => $partition });
-            exit(1);
-        }
-    }
+if (!$oid) {
+    my ($oid) = $cce->find("Disk", { 'mountPoint' => '/' });
+    $cce->set($oid, "", { 'isHomePartition' => 1 });
 }
 
 $cce->bye('SUCCESS');
 exit(0);
 
 #
-# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2009 Project BlueQuartz
 # Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, 
 # are permitted provided that the following conditions are met:

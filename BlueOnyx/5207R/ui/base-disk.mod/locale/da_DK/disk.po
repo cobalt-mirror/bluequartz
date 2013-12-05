@@ -1,16 +1,12 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
-"POT-Creation-Date: 2007-11-12 10:45+0200\n"
-"PO-Revision-Date: 2007-12-14 11:49+0100\n"
-"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
-"Language-Team: DANISH <jes@enavn.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: quoted-printable\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "amDetails"
 msgstr "Detaljer om diskforbrug"
@@ -64,10 +60,10 @@ msgid "diskUsageFor"
 msgstr "Diskforbrug for [[VAR.userName]]"
 
 msgid "diskUsed"
-msgstr "Diskforbrug (MB)"
+msgstr "Diskforbrug"
 
 msgid "diskUsed_help"
-msgstr "Mængden af plads i megabyte (MB) i brug på denne partition."
+msgstr "Mængden af plads i brug på denne partition."
 
 msgid "errSettingEmails"
 msgstr ""
@@ -75,10 +71,10 @@ msgstr ""
 "notifikationsindstillingerne."
 
 msgid "groupDiskFree"
-msgstr "Ledig diskplads (MB)"
+msgstr "Ledig diskplads"
 
 msgid "groupDiskFree_help"
-msgstr "Den totale mængde plads i megabyte (MB) som fortsat er tilgængelig."
+msgstr "Den totale mængde plads som fortsat er tilgængelig."
 
 msgid "groupDiskPercentage"
 msgstr "Procent brugt"
@@ -102,10 +98,10 @@ msgid "groupDiskUsage_menu_help"
 msgstr "Se informationer om det totale og individuelle diskforbrug for brugere."
 
 msgid "groupDiskUsed"
-msgstr "Brugt diskplads (MB)"
+msgstr "Brugt diskplads"
 
 msgid "groupDiskUsed_help"
-msgstr "Det totale antal megabytes (MB) brugt af brugere."
+msgstr "Den samlede diskplads, der bruges af brugerne."
 
 msgid "mail_admin_on_user"
 msgstr "Send varslingsemail"
@@ -134,11 +130,11 @@ msgid "percentage_help"
 msgstr "Procentdelen af den tilgængelige plads, der i øjeblikket er i brug."
 
 msgid "quota"
-msgstr "Tildelt diskplads (MB)"
+msgstr "Tildelt diskplads"
 
 msgid "quota_help"
 msgstr ""
-"Mængden af diskplads i megabyte (MB) som er tilgængelig for hver bruger."
+"Mængden af diskplads som er tilgængelig for hver bruger."
 
 msgid "serverDiskUsage"
 msgstr "Diskforbrug"
@@ -170,13 +166,13 @@ msgid "service_quota"
 msgstr "[[base-disk.quota]]"
 
 msgid "service_quota_help"
-msgstr "Mængden af diskplads i megabyte (MB) tilgængelig til hver tjeneste."
+msgstr "Mængden af diskplads tilgængelig til hver tjeneste."
 
 msgid "service_used"
 msgstr "[[base-disk.used]]"
 
 msgid "service_used_help"
-msgstr "Mængden af diskplads i megabyte (MB) brugt af hver tjeneste."
+msgstr "Mængden af diskplads brugt af hver tjeneste."
 
 msgid "settings"
 msgstr "Notificeringsindstillinger"
@@ -229,29 +225,29 @@ msgid "sysQuota"
 msgstr "Systemets diskforbrug"
 
 msgid "total"
-msgstr "Total størrelse (MB)"
+msgstr "Total størrelse"
 
 msgid "total_help"
-msgstr "Denne partitions totale størrelse i megabyte (MB)."
+msgstr "Denne partitions totale størrelse."
 
 msgid "unlimited"
 msgstr "Ubegrænset"
 
 msgid "used"
-msgstr "Diskforbrug (MB)"
+msgstr "Diskforbrug"
 
 msgid "used_help"
-msgstr "Mængden af diskplads i megabyte (MB) brugt af hver bruger."
+msgstr "Mængden af diskplads brugt af hver bruger."
 
 msgid "user"
 msgstr "Brugernavn"
 
 msgid "userDiskFree"
-msgstr "Ledig diskplads (MB)"
+msgstr "Ledig diskplads"
 
 msgid "userDiskFree_help"
 msgstr ""
-"Dette er en totale mængde diskplads i megabyte (MB) der er ledig til brug."
+"Dette er en totale mængde diskplads der er ledig til brug."
 
 msgid "userDiskPercentage"
 msgstr "Procent i brug"
@@ -265,14 +261,14 @@ msgid "userDiskUsage"
 msgstr "Diskforbrug"
 
 msgid "userDiskUsage_help"
-msgstr "Klik her for at se informationer om dit diskforbrug."
+msgstr "Viser oplysninger om din diskplads."
 
 msgid "userDiskUsed"
-msgstr "Diskplads brugt (MB)"
+msgstr "Diskplads brugt"
 
 msgid "userDiskUsed_help"
 msgstr ""
-"Dette er mængden af diskplads i megabyte (MB) som du bruger i øjeblikket."
+"Dette er mængden af diskplads som du bruger i øjeblikket."
 
 msgid "userOverQuota"
 msgstr "Kvoteadvarsel"
@@ -313,17 +309,17 @@ msgid "vsiteName_help"
 msgstr "Dette sites fulde værtsnavn."
 
 msgid "vsiteQuota"
-msgstr "Tildelt diskplads (MB)"
+msgstr "Tildelt diskplads"
 
 msgid "vsiteQuota_help"
-msgstr "Mængden af diskplads i megabyte (MB) tildelt dette site."
+msgstr "Mængden af diskplads tildelt dette site."
 
 msgid "vsiteUsed"
-msgstr "Diskforbrug (MB)"
+msgstr "Diskforbrug"
 
 msgid "vsiteUsed_help"
 msgstr ""
-"Mængden af diskplads i megabyte (MB) der i øjeblikket er brugt på dette "
+"Mængden af diskplads der i øjeblikket er brugt på dette "
 "site."
 
 msgid "OverQuota_Users"
@@ -337,4 +333,18 @@ msgstr "Over quota sites:"
 
 msgid "All_Sites"
 msgstr "All sites:"
+
+#-- New for BlueOnyx-NG:
+
+msgid "userDiskPercentage_moreInfo"
+msgstr "[[VAR.percentage]]% ([[VAR.used]]) af [[VAR.total]] brugt."
+
+msgid "mail_admin_on_user_help"
+msgstr "Send en mail til admin, hvis en bruger overskrider sin tildelte disk kvote."
+
+msgid "mail_user_help"
+msgstr "Send en e-mail til brugeren, hvis han overskrider sin disk kvote. Denne e-mail kan ikke gå igennem, hvis utilstrækkelig diskplads typerne for den pågældende bruger."
+
+msgid "mail_admin_on_vsite_help"
+msgstr "Send en mail til admin, hvis en virtuel hjemmeside overskrider sin tildelte disk kvote."
 

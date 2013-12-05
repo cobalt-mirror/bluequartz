@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "userDiskUsage"
+msgstr "Uso del disco"
+
+msgid "userDiskUsage_help"
+msgstr "Muestra información sobre el uso del disco."
+
+msgid "groupDiskUsage"
+msgstr "Uso del disco"
+
+msgid "groupDiskUsage_help"
+msgstr "Ver la información total y el individuo el uso del disco para los usuarios."
+
+msgid "groupDiskUsage_menu"
+msgstr "Disco"
+
+msgid "groupDiskUsage_menu_help"
+msgstr "Ver la información total y el individuo el uso del disco para los usuarios."
+
+msgid "diskUsageFor"
+msgstr "Uso del disco de [[VAR.userName]]"
+
+msgid "userDiskUsed"
+msgstr "Espacio en disco usado"
+
+msgid "userDiskUsed_help"
+msgstr "Esta es la cantidad de espacio de disco que está utilizando actualmente."
+
+msgid "userDiskFree"
+msgstr "Espacio libre en disco"
+
+msgid "userDiskFree_help"
+msgstr "Esta es la cantidad total de espacio en disco que usted tiene disponible para su uso."
+
+msgid "userDiskPercentage"
+msgstr "Porcentaje"
+
+msgid "userDiskPercentage_help"
+msgstr "Esto muestra el porcentaje de espacio en disco permitido del usuario que se utiliza actualmente."
+
+msgid "serviceDiskPercentage"
+msgstr "[[base-disk.userDiskPercentage]]"
+
+msgid "serviceDiskPercentage_help"
+msgstr "Esto muestra el porcentaje de espacio en disco permitido del servicio que se utiliza actualmente."
+
+msgid "userOverQuota"
+msgstr "Advertencia de cuota"
+
+msgid "userOverQuota_help"
+msgstr "Esto indica que usted está usando más espacio en el disco y luego se le permite en este servidor. Eliminar mensajes de correo electrónico innecesarios, archivos adjuntos y otros archivos para corregir esto."
+
+msgid "overQuotaMsg"
+msgstr "En este momento está usando más espacio en disco que se le permite en este servidor. Eliminar mensajes de correo electrónico innecesarios, archivos adjuntos y otros archivos para corregir esto."
+
+msgid "amDiskNameTag"
+msgstr "Uso del disco"
+
+msgid "amDetails"
+msgstr "Detalles de uso de disco"
+
+msgid "amDiskWarning"
+msgstr "Una partición del disco está casi lleno. El espacio en disco en la partición [[VAR.fs]] es [[VAR.pcnt]]% utilizado. La partición tiene [[VAR.free]] MB disponibles."
+
+msgid "amDiskOk"
+msgstr "Uso del disco es normal."
+
+msgid "cantCreateDisk"
+msgstr "No se puede crear un objeto de disco para [[VAR.device]]."
+
+msgid "cantExecuteDf"
+msgstr "No se puede ejecutar el comando df"
+
+msgid "cantUpdateDiskInfo"
+msgstr "No se puede actualizar la información de uso de disco para este disco, [[VAR.device]]."
+
+msgid "cantUpdateDiskUsage"
+msgstr "No se puede actualizar la información de uso de disco para [[VAR.name]]."
+
+msgid "couldNotGetId"
+msgstr "No se puede obtener la [[VAR.id]] de [[VAR.target]]. [[VAR.target]] no parece existir en el sistema."
+
+msgid "couldNotSync"
+msgstr "No se puede actualizar la información de cuota de disco con la información de cuotas en la memoria."
+
+msgid "couldNotSetQuota"
+msgstr "No se puede establecer la cuota de [[VAR.name]]."
+
+msgid "groupDiskUsageFor"
+msgstr "Uso del disco de [[VAR.groupName]]"
+
+msgid "groupDiskUsed"
+msgstr "Espacio en disco usado"
+
+msgid "groupDiskUsed_help"
+msgstr "El espacio total en disco utilizado por los usuarios."
+
+msgid "groupDiskFree"
+msgstr "Espacio libre en disco"
+
+msgid "groupDiskFree_help"
+msgstr "El espacio total en disco que está disponible para su uso."
+
+msgid "groupDiskPercentage"
+msgstr "Porcentaje"
+
+msgid "groupDiskPercentage_help"
+msgstr "El porcentaje del espacio disponible en el disco que se utiliza."
+
+msgid "userQuota"
+msgstr "Usuario Uso del disco"
+
+msgid "user"
+msgstr "Nombre de usuario"
+
+msgid "user_help"
+msgstr "El nombre de usuario de cada miembro."
+
+msgid "used"
+msgstr "Uso del disco"
+
+msgid "used_help"
+msgstr "La cantidad de espacio en disco utilizado por cada usuario."
+
+msgid "service_used"
+msgstr "[[base-disk.used]]"
+
+msgid "service_used_help"
+msgstr "La cantidad de espacio utilizado por cada servicio."
+
+msgid "quota"
+msgstr "Con espacio en disco"
+
+msgid "quota_help"
+msgstr "La cantidad de espacio en disco disponible para cada usuario."
+
+msgid "service_quota"
+msgstr "[[base-disk.quota]]"
+
+msgid "service_quota_help"
+msgstr "La cantidad de espacio en disco disponible para cada servicio."
+
+msgid "serverDiskUsage"
+msgstr "Uso del disco"
+
+msgid "serverDiskUsageDesc"
+msgstr "Ver un resumen del uso del disco para este servidor."
+
+msgid "serverDiskUsage_menu"
+msgstr "Disco"
+
+msgid "serverDiskUsageDesc_menu"
+msgstr "Ver un resumen del uso del disco para este servidor."
+
+msgid "summary"
+msgstr "Resumen"
+
+msgid "summary_help"
+msgstr "Uso de disco para cada partición."
+
+msgid "partition"
+msgstr "Tabique"
+
+msgid "partition_help"
+msgstr "La etiqueta o el directorio de la partición."
+
+msgid "diskUsed"
+msgstr "Uso del disco"
+
+msgid "diskUsed_help"
+msgstr "La cantidad de espacio utilizado en esta partición."
+
+msgid "total"
+msgstr "Tamaño total"
+
+msgid "total_help"
+msgstr "El tamaño total de la partición."
+
+msgid "percentage"
+msgstr "Porcentaje"
+
+msgid "percentage_help"
+msgstr "El porcentaje del espacio disponible en el disco que está actualmente en uso."
+
+msgid "users"
+msgstr "Todos los usuarios"
+
+msgid "users_help"
+msgstr "Uso de disco para los usuarios."
+
+msgid "unlimited"
+msgstr "Ilimitado"
+
+msgid "summaryVsite"
+msgstr "Sitios"
+
+msgid "summaryVsite_help"
+msgstr "Uso de disco para los sitios."
+
+msgid "vsiteName"
+msgstr "Host Nombre"
+
+msgid "vsiteName_help"
+msgstr "El nombre de host completo de este sitio."
+
+msgid "vsiteUsed"
+msgstr "Uso de disco"
+
+msgid "vsiteUsed_help"
+msgstr "La cantidad de espacio en disco utilizado actualmente por este sitio."
+
+msgid "vsiteQuota"
+msgstr "Con espacio en disco"
+
+msgid "vsiteQuota_help"
+msgstr "La cantidad de espacio en disco disponible para este sitio."
+
+msgid "choose_site"
+msgstr "Haga clic en un sitio de arriba para ver la información de uso de disco para los usuarios de ese sitio."
+
+msgid "sites_over_quota"
+msgstr "El sitio virtual de siguiente (s) han superado su cuota: [[VAR.sites]]."
+
+msgid "users_over_quota"
+msgstr "El siguiente usuario (s) han superado su cuota: [[VAR.users]]."
+
+msgid "site_over_quota"
+msgstr "Uno o más sitios virtuales ha superado su cuota. Un correo electrónico independiente ha sido enviado con más detalles."
+
+msgid "user_exceeds"
+msgstr "Cuando el usuario supera mascotas Espacio en disco"
+
+msgid "user_exceeds_help"
+msgstr "Esto especifica qué es el correo se envía cuando un usuario exceda su espacio en disco permitido."
+
+msgid "site_exceeds"
+msgstr "Cuando el emplazamiento supera los animales de espacio en disco"
+
+msgid "site_exceeds_help"
+msgstr "Esto especifica qué es el correo se envía cuando un sitio es superior a su espacio en disco permitido."
+
+msgid "mail_admin_on_user"
+msgstr "Enviar Alerta Notificación por correo electrónico"
+
+msgid "mail_admin_on_vsite"
+msgstr "Enviar Alerta Notificación por correo electrónico"
+
+msgid "mail_user"
+msgstr "Email del usuario"
+
+msgid "settings"
+msgstr "Configuración de la notificación"
+
+msgid "settings_help"
+msgstr "Haga clic aquí para controlar el correo electrónico que se envía cuando los usuarios o sitios exceden sus cuotas."
+
+msgid "sysQuota"
+msgstr "Sistema de Uso de disco"
+
+msgid "service"
+msgstr "Servicio"
+
+msgid "service_help"
+msgstr "Estas aplicaciones y servicios del sistema pueden consumir espacio en disco."
+
+msgid "errSettingEmails"
+msgstr "Se ha producido un error al guardar los valores de notificación."
+
+msgid "suspended_cce"
+msgstr "La partición raíz tiene poco espacio en disco. Para evitar posibles daños en los datos, el Escritorio del servidor se ha bloqueado. No hay cambios en el Escritorio del servidor se guardarán. Por favor, telnet o ftp en el dispositivo de servidor y eliminar archivos innecesarios. Active Monitor se desbloqueará el Escritorio del servidor, cuando al menos 500 megabytes de espacio de disco disponible en la partición raíz. Para forzar Monitor activo para examinar el uso de disco, haga clic en el botón Comprobar estado ahora en la pantalla de estado del monitor activo."
+
+msgid "OverQuota_Users"
+msgstr "Más usuarios de cuota:"
+
+msgid "All_Users"
+msgstr "Total Usuarios:"
+
+msgid "OverQuota_Sites"
+msgstr "En los sitios de cuota:"
+
+msgid "All_Sites"
+msgstr "Todos los sitios:"
+
+msgid "userDiskPercentage_moreInfo"
+msgstr "[[VAR.percentage]]% ([[VAR.used]]) de [[VAR.total]] utilizado."
+
+msgid "mail_admin_on_user_help"
+msgstr "Envíe un correo electrónico al administrador si un usuario supera su cuota de disco asignado."
+
+msgid "mail_user_help"
+msgstr "Envíe un correo electrónico al usuario en caso de que supere su cuota de disco. Este correo electrónico puede no pasar si hay espacio suficiente en el disco es disponible para ese usuario."
+
+msgid "mail_admin_on_vsite_help"
+msgstr "Envíe un correo electrónico al administrador si un sitio virtual supera su cuota de disco asignado."
+

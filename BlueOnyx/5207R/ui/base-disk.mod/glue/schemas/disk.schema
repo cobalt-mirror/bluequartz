@@ -1,11 +1,11 @@
 <!-- 
-  $Id: disk.schema 259 2004-01-03 06:28:40Z shibuya $
+  $Id: disk.schema
   Copyright 2001, Sun Microsystems, Inc.
 -->
 
 <!-- typedef for acceptable filesystem types -->
 <typedef name="knownFs" type="re" 
-    data="^(ext2|xfs|reiserfs|smbfs|nfs|iso9660)$"/>
+    data="^(ext2|ext3|ext4|xfs|reiserfs|simfs|smbfs|nfs|iso9660)$"/>
 
 <!-- 
     typedef for valid disk devices includes /dev and nfs type disks 

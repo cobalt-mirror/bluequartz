@@ -6,7 +6,7 @@ msgid "userDiskUsage"
 msgstr "Disk Usage"
 
 msgid "userDiskUsage_help"
-msgstr "Click here to view information about your disk usage."
+msgstr "Shows information about your disk usage."
 
 msgid "groupDiskUsage"
 msgstr "Disk Usage"
@@ -26,16 +26,16 @@ msgid "diskUsageFor"
 msgstr "Disk Usage for [[VAR.userName]]"
 
 msgid "userDiskUsed"
-msgstr "Disk Space Used (MB)"
+msgstr "Disk Space Used"
 
 msgid "userDiskUsed_help"
-msgstr "This is the amount of disk space in megabytes (MB) that you are currently using."
+msgstr "This is the amount of disk space that you are currently using."
 
 msgid "userDiskFree"
-msgstr "Disk Space Free (MB)"
+msgstr "Disk Space Free"
 
 msgid "userDiskFree_help"
-msgstr "This is the total amount of disk space in megabytes (MB) that you have available for your use."
+msgstr "This is the total amount of disk space that you have available for your use."
 
 msgid "userDiskPercentage"
 msgstr "Percentage Used"
@@ -67,7 +67,7 @@ msgstr "Disk Usage"
 msgid "amDetails"
 msgstr "Disk Usage Details"
 
-	# also sent in email to admin if disk usage high
+# also sent in email to admin if disk usage high
 msgid "amDiskWarning"
 msgstr "A disk partition is nearly full. Disk space on the partition [[VAR.fs]] is [[VAR.pcnt]]% used.  The partition has [[VAR.free]] MB available."
 
@@ -106,16 +106,16 @@ msgid "groupDiskUsageFor"
 msgstr "Disk Usage for [[VAR.groupName]]"
 
 msgid "groupDiskUsed"
-msgstr "Disk Space Used (MB)"
+msgstr "Disk Space Used"
 
 msgid "groupDiskUsed_help"
-msgstr "The total disk space in megabytes (MB) used by users."
+msgstr "The total disk space used by users."
 
 msgid "groupDiskFree"
-msgstr "Disk Space Free (MB)"
+msgstr "Disk Space Free"
 
 msgid "groupDiskFree_help"
-msgstr "The total disk space in megabytes (MB) that is still available for use."
+msgstr "The total disk space that is still available for use."
 
 msgid "groupDiskPercentage"
 msgstr "Percentage Used"
@@ -133,28 +133,28 @@ msgid "user_help"
 msgstr "The user name of each member."
 
 msgid "used"
-msgstr "Disk Usage (MB)"
+msgstr "Disk Usage"
 
 msgid "used_help"
-msgstr "The amount of disk space in megabytes (MB) used by each user."
+msgstr "The amount of disk space used by each user."
 
 msgid "service_used"
 msgstr "[[base-disk.used]]"
 
 msgid "service_used_help"
-msgstr "The amount of disk space in megabytes (MB) used by each service."
+msgstr "The amount of disk space used by each service."
 
 msgid "quota"
-msgstr "Allowed Disk Space (MB)"
+msgstr "Allowed Disk Space"
 
 msgid "quota_help"
-msgstr "The amount of disk space in megabytes (MB) available to each user."
+msgstr "The amount of disk space available to each user."
 
 msgid "service_quota"
 msgstr "[[base-disk.quota]]"
 
 msgid "service_quota_help"
-msgstr "The amount of disk space in megabytes (MB) available to each service."
+msgstr "The amount of disk space available to each service."
 
 # server disk usage page
 msgid "serverDiskUsage"
@@ -182,16 +182,16 @@ msgid "partition_help"
 msgstr "The label or directory of the partition."
 
 msgid "diskUsed"
-msgstr "Disk Usage (MB)"
+msgstr "Disk Usage"
 
 msgid "diskUsed_help"
-msgstr "The amount of space in megabytes (MB) used on this partition."
+msgstr "The amount of space used on this partition."
 
 msgid "total"
-msgstr "Total Size (MB)"
+msgstr "Total Size"
 
 msgid "total_help"
-msgstr "The total size in megabytes (MB) of this partition."
+msgstr "The total size of this partition."
 
 msgid "percentage"
 msgstr "Percentage Used"
@@ -221,16 +221,16 @@ msgid "vsiteName_help"
 msgstr "The full host name of this site."
 
 msgid "vsiteUsed"
-msgstr "Disk Usage (MB)"
+msgstr "Disk Usage"
 
 msgid "vsiteUsed_help"
-msgstr "The amount of disk space in megabytes (MB) currently used by this site."
+msgstr "The amount of disk space currently used by this site."
 
 msgid "vsiteQuota"
-msgstr "Allowed Disk Space (MB)"
+msgstr "Allowed Disk Space"
 
 msgid "vsiteQuota_help"
-msgstr "The amount of disk space in megabytes (MB) available to this site."
+msgstr "The amount of disk space available to this site."
 
 msgid "choose_site"
 msgstr "Click on a site above to see the disk usage information for the users in that site."
@@ -298,4 +298,16 @@ msgstr "Over quota sites:"
 msgid "All_Sites"
 msgstr "All sites:"
 
+#-- New for BlueOnyx-NG:
 
+msgid "userDiskPercentage_moreInfo"
+msgstr "[[VAR.percentage]]% ([[VAR.used]]) of [[VAR.total]] used."
+
+msgid "mail_admin_on_user_help"
+msgstr "Send an email to admin if a user exceeds his allocated disk quota."
+
+msgid "mail_user_help"
+msgstr "Send an email to the user if he exceeds his disk quota. This email might not go through if insufficient disk space is avaiable for that user."
+
+msgid "mail_admin_on_vsite_help"
+msgstr "Send an email to admin if a virtual site exceeds its allocated disk quota."

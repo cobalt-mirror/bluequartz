@@ -6,7 +6,7 @@ msgid "userDiskUsage"
 msgstr "ディスクの使用状況"
 
 msgid "userDiskUsage_help"
-msgstr "ディスクの使用状況に関する情報が表示されます。"
+msgstr "あなたのディスクの使用状況に関する情報が表示されます。"
 
 msgid "groupDiskUsage"
 msgstr "ディスクの使用状況"
@@ -25,16 +25,16 @@ msgid "diskUsageFor"
 msgstr "ディスクの使用状況 - [[VAR.userName]]"
 
 msgid "userDiskUsed"
-msgstr "使用容量（MB）"
+msgstr "使用容量"
 
 msgid "userDiskUsed_help"
-msgstr "現在使用されているディスク容量です。（単位： メガバイト）"
+msgstr "現在使用されているディスク容量です。"
 
 msgid "userDiskFree"
-msgstr "空き容量（MB）"
+msgstr "空き容量"
 
 msgid "userDiskFree_help"
-msgstr "現在使用できるディスクの空き容量です。（単位： メガバイト）"
+msgstr "現在使用できるディスクの空き容量です。"
 
 msgid "userDiskPercentage"
 msgstr "使用率"
@@ -105,16 +105,16 @@ msgid "groupDiskUsageFor"
 msgstr "[[VAR.groupName]] のディスク使用状況"
 
 msgid "groupDiskUsed"
-msgstr "使用容量 (MB)"
+msgstr "使用容量"
 
 msgid "groupDiskUsed_help"
-msgstr "ユーザにより使われているディスク領域の合計。（単位： メガバイト）"
+msgstr "ユーザにより使われているディスク領域の合計。"
 
 msgid "groupDiskFree"
-msgstr "空き容量 (MB)"
+msgstr "空き容量"
 
 msgid "groupDiskFree_help"
-msgstr "現在使用できるディスク領域の合計。（単位： メガバイト）"
+msgstr "現在使用できるディスク領域の合計。"
 
 msgid "groupDiskPercentage"
 msgstr "使用率"
@@ -132,28 +132,28 @@ msgid "user_help"
 msgstr "登録ユーザのユーザ名。"
 
 msgid "used"
-msgstr "使用容量 (MB)"
+msgstr "使用容量"
 
 msgid "used_help"
-msgstr "各ユーザにより使われているディスク領域の合計。（単位： メガバイト）"
+msgstr "各ユーザにより使われているディスク領域の合計。"
 
 msgid "service_used"
 msgstr "[[base-disk.used]]"
 
 msgid "service_used_help"
-msgstr "各サービスにより使われているディスク領域の合計。（単位： メガバイト）"
+msgstr "各サービスにより使われているディスク領域の合計。"
 
 msgid "quota"
-msgstr "割当容量 (MB)"
+msgstr "割当容量"
 
 msgid "quota_help"
-msgstr "各ユーザに割り当てられているディスク領域の合計。（単位： メガバイト）"
+msgstr "各ユーザに割り当てられているディスク領域の合計。"
 
 msgid "service_quota"
 msgstr "[[base-disk.quota]]"
 
 msgid "service_quota_help"
-msgstr "各サービスに割り当てられているディスク領域の合計。（単位： メガバイト）"
+msgstr "各サービスに割り当てられているディスク領域の合計。"
 
 # server disk usage page
 msgid "serverDiskUsage"
@@ -181,16 +181,16 @@ msgid "partition_help"
 msgstr "パーティションのラベルまたはディレクトリです。"
 
 msgid "diskUsed"
-msgstr "使用容量 (MB)"
+msgstr "使用容量"
 
 msgid "diskUsed_help"
-msgstr "各パーティションにより使われているディスク領域の合計。（単位： メガバイト）"
+msgstr "各パーティションにより使われているディスク領域の合計。"
 
 msgid "total"
-msgstr "割当容量 (MB)"
+msgstr "割当容量"
 
 msgid "total_help"
-msgstr "各パーティションに割り当てられているディスク領域の合計。（単位： メガバイト）"
+msgstr "各パーティションに割り当てられているディスク領域の合計。"
 
 msgid "percentage"
 msgstr "使用率"
@@ -220,16 +220,16 @@ msgid "vsiteName_help"
 msgstr "各サイトのホスト名＋ドメインネーム。"
 
 msgid "vsiteUsed"
-msgstr "使用容量 (MB)"
+msgstr "使用容量"
 
 msgid "vsiteUsed_help"
-msgstr "各サイトにより使われているディスク領域の合計。（単位： メガバイト）"
+msgstr "各サイトにより使われているディスク領域の合計。"
 
 msgid "vsiteQuota"
-msgstr "割当容量 (MB)"
+msgstr "割当容量"
 
 msgid "vsiteQuota_help"
-msgstr "各サイトに割り当てられているディスク領域の合計。（単位： メガバイト）"
+msgstr "各サイトに割り当てられているディスク領域の合計。"
 
 msgid "choose_site"
 msgstr "サイト名をクリックすると、そのサイト中のユーザ別ディスク使用状況が表示されます。"
@@ -284,3 +284,17 @@ msgstr "警告メールの送信設定を保存中にエラーが発生しました。"
 
 msgid "suspended_cce"
 msgstr "root パーティションに割り当てられているディスク容量の空きが残り少なくなっています。データの損失を防止するため、サーバデスクトップはロックされました。サーバデスクトップへ加えた変更は保存されません。サーバに telnet 接続または ftp 接続し、不要なログファイル、ユーザファイルなどを削除してください。ルートパーティション上に 500 メガバイト以上の空きディスク容量を確保してから、アクティブモニタの「動作状況」画面にある [情報の更新] ボタンをクリックすると、アクティブモニタは直ちにディスクの使用状況を再確認し、サーバデスクトップをアンロックします。"
+
+#-- New for BlueOnyx-NG:
+
+msgid "userDiskPercentage_moreInfo"
+msgstr "[[VAR.percentage]]% ([[VAR.used]]) の [[VAR.total]] 使用。"
+
+msgid "mail_admin_on_user_help"
+msgstr "ユーザが自分の割り当てられたディスククォータを超えた場合に管理者に電子メールを送信します。"
+
+msgid "mail_user_help"
+msgstr "彼は彼のディスククォータを超えた場合、ユーザーに電子メールを送信します。十分なディスク容量がそのユーザーの盛である場合、このメールが通過しない場合があります。"
+
+msgid "mail_admin_on_vsite_help"
+msgstr "仮想サイトは、その割り当てられたディスククォータを超えた場合に管理者に電子メールを送信します。"
