@@ -1068,7 +1068,7 @@ msgid "enable_dns_logging"
 msgstr "Ativar registro DNS estendida"
 
 msgid "enable_dns_logging_help"
-msgstr "AVISO: Este só deve ser utilizado para a depuração, como ele irá registrar qualquer consulta para o servidor DNS em /var/log/messages. Mesmo em um servidor DNS usado levemente isso cria uma grande quantidade de entradas de registro. Mas você pode querer brevemente (!) Habilitar o registro DNS estendida para ver se o seu "Limites da Taxa de DNS" estão funcionando corretamente."
+msgstr "AVISO: Este só deve ser utilizado para a depuração, como ele irá registrar qualquer consulta para o servidor DNS em /var/log/messages. Mesmo em um servidor DNS usado levemente isso cria uma grande quantidade de entradas de registro. Mas você pode querer brevemente (!) Habilitar o registro DNS estendida para ver se o seu 'Limites da Taxa de DNS' estão funcionando corretamente."
 
 msgid "cap_serverDNS"
 msgstr "Gerenciamento de servidor DNS"
