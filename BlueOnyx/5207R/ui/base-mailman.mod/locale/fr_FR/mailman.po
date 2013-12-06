@@ -1,0 +1,478 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "mailmans"
+msgstr "Listes de diffusion"
+
+msgid "mailmansHelp"
+msgstr "[[base-mailman.mailmanList_menu]] peuvent être gérés ici."
+
+msgid "mailmanList_menu"
+msgstr "Listes de diffusion"
+
+msgid "mailmanList"
+msgstr "Listes de diffusion sur [[VAR.group]]"
+
+msgid "mailmanNameHeader"
+msgstr "Nom"
+
+msgid "mailmanNameHeader_help"
+msgstr "C&#39;est le nom de la liste de diffusion."
+
+msgid "recipientsHeader"
+msgstr "Nombre d&#39;abonnés"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Subscriber [[VAR.plural]]"
+
+msgid "recipientsHeader_help"
+msgstr "Ce sont le nombre d&#39;utilisateurs qui souscrivent à la liste de diffusion."
+
+msgid "groupSubscriber"
+msgstr "Tous les membres du [[VAR.group]] groupe"
+
+msgid "mailmanDescHeader"
+msgstr "Remarques"
+
+msgid "mailmanDescHeader_help"
+msgstr "Cette colonne contient des informations supplémentaires sur chaque liste de diffusion."
+
+msgid "mailmanActionHeader"
+msgstr "Action"
+
+msgid "mailmanActionHeader_help"
+msgstr "Ce sont les boutons utilisés pour modifier ou supprimer une liste de diffusion."
+
+msgid "confirm_removal_of_list"
+msgstr "Etes-vous sûr de vouloir supprimer la [[VAR.list]] liste de diffusion?"
+
+msgid "subscribers"
+msgstr "Abonnés"
+
+msgid "subscribers_help"
+msgstr "La liste des membres de la liste de diffusion peut être configuré ici."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] abonné local [[VAR.plural]]"
+
+msgid "edit_locals"
+msgstr "Modifier"
+
+msgid "edit_locals_help"
+msgstr "Cliquez ici pour sélectionner les utilisateurs locaux qui sont abonnés à cette liste de diffusion."
+
+msgid "localsSearch"
+msgstr "Recherche Liste des utilisateurs"
+
+msgid "search"
+msgstr "Rechercher"
+
+msgid "search_help"
+msgstr "Cliquez ici pour voir les utilisateurs qui correspondent aux critères entrés."
+
+msgid "showall"
+msgstr "Afficher tous les utilisateurs"
+
+msgid "showall_help"
+msgstr "Cliquez ici pour afficher tous les utilisateurs sur le site."
+
+msgid "showselected"
+msgstr "Afficher uniquement les utilisateurs sélectionnés"
+
+msgid "showselected_help"
+msgstr "Cliquez ici pour afficher uniquement les utilisateurs qui sont actuellement sélectionnés."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] sur [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Les utilisateurs correspondant [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Utilisateurs sélectionnés"
+
+msgid "all"
+msgstr "Tous les utilisateurs"
+
+msgid "selectAll"
+msgstr "Sélectionnez Tous les utilisateurs"
+
+msgid "selectAll_help"
+msgstr "Cliquez ici pour sélectionner tous les utilisateurs sur ce site. La sélection comprendra tous les utilisateurs sur cette page et tous les utilisateurs sur d&#39;autres pages ainsi."
+
+msgid "selectPage"
+msgstr "Sélectionner cette page"
+
+msgid "selectPage_help"
+msgstr "Cliquez ici pour sélectionner tous les utilisateurs sur cette page."
+
+msgid "use_these"
+msgstr "Utiliser la sélection actuelle"
+
+msgid "use_these_help"
+msgstr "Cliquez ici pour utiliser la sélection actuelle comme le [[base-mailman.localSubscribers]] liste."
+
+msgid "cancel"
+msgstr "Résilier"
+
+msgid "cancel_help"
+msgstr "Cliquez ici pour revenir à la page des paramètres et d&#39;ignorer votre sélection actuelle."
+
+msgid "name"
+msgstr "Nom d&#39;utilisateur"
+
+msgid "name_help"
+msgstr "Le nom des utilisateurs sur ce site virtuel. Cochez les cases pour ajouter des utilisateurs à cette liste de diffusion."
+
+msgid "createMailList"
+msgstr "Ajouter à la liste de diffusion [[VAR.fqdn]]"
+
+msgid "modifyMailList"
+msgstr "Modifier Paramètres de la liste de diffusion pour [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "advanced"
+msgstr "Avancé"
+
+msgid "basic_help"
+msgstr "Cliquez ici pour configurer les options de base de listes de diffusion."
+
+msgid "advanced_help"
+msgstr "Cliquez ici pour configurer avancées mailing list options telles que l&#39;affichage et les politiques de souscription."
+
+msgid "listName"
+msgstr "Nom de la liste"
+
+msgid "listName_rule"
+msgstr "S&#39;il vous plaît entrer seulement minuscules caractères alphanumériques, traits d&#39;unions et caractères de soulignement périodes. Par exemple, la vente est une entrée valide."
+
+msgid "listName_help"
+msgstr "Entrez le nom de la liste de diffusion. [[base-mailman.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Membres du groupe"
+
+msgid "workgroupMembers_help"
+msgstr "Ce champ contient une liste d&#39;utilisateurs qui sont actuellement membres du groupe qui est associé à cette liste. Tous les membres de ce groupe sont toujours abonnés à cette liste de diffusion."
+
+msgid "group_field"
+msgstr "Groupe List Name"
+
+msgid "group_field_help"
+msgstr "C&#39;est le nom de la liste de diffusion du groupe. Tous les membres de ce groupe sont automatiquement abonnés à cette liste de diffusion."
+
+msgid "save"
+msgstr "Sauvegarder"
+
+msgid "save_help"
+msgstr "Enregistrer cette liste d&#39;envoi."
+
+msgid "localSubscribers"
+msgstr "Abonnés du service local"
+
+msgid "localSubscribers_help"
+msgstr "Cliquez sur le bouton Modifier pour sélectionner les utilisateurs locaux qui sont abonnés à cette liste de diffusion."
+
+msgid "subscribed"
+msgstr "Utilisateurs abonnés"
+
+msgid "unsubscribed"
+msgstr "Les utilisateurs n&#39;ont pas été souscrites"
+
+msgid "remoteSubscribers"
+msgstr "Abonnés à distance"
+
+msgid "remoteSubscribers_rule"
+msgstr "S&#39;il vous plaît entrer une adresse email correctement formatée. Par exemple, user@example.com est une entrée valide."
+
+msgid "remoteSubscribers_help"
+msgstr "Entrez les utilisateurs distants qui sont abonnés à cette liste de diffusion. Les utilisateurs distants sont les utilisateurs qui n&#39;ont pas de compte sur ce serveur. [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base mailman.remoteSubscribers]]. [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribersDigest"
+msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
+
+msgid "remoteSubscribersDigest_rule"
+msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)"
+
+msgid "remoteSubscribersDigest_help"
+msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"
+
+msgid "remoteSubscribersDigest_invalid"
+msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
+
+msgid "description"
+msgstr "Remarques"
+
+msgid "description_help"
+msgstr "Entrez les informations ou commentaires supplémentaires sur la liste de diffusion ici."
+
+msgid "moderator"
+msgstr "Propriétaire / Modérateur"
+
+msgid "moderator_rule"
+msgstr "S&#39;il vous plaît entrer une adresse email correctement formatée ou le nom d&#39;utilisateur d&#39;un utilisateur valide sur ce serveur. La valeur par défaut est admin. Par exemple, user@example.com et d&#39;administration sont entrées valides."
+
+msgid "moderator_help"
+msgstr "Entrez l&#39;adresse email de l&#39;utilisateur qui effectue toutes les tâches administratives pour la liste de diffusion. [[base-mailman.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "Désolé, [[VAR.invalidValue] est une valeur correcte pour [[base-mailman.moderator]]. [[base-mailman.moderator_rule]]"
+
+msgid "Moderator-does-not-exist"
+msgstr "Invalide Modérateur: l&#39;utilisateur [[VAR.moderator]] ne semble pas exister."
+
+msgid "moderator_empty"
+msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-mailman.moderator]]. Vous devez entrer une valeur, même si aucune politique de modération ont été définies pour la liste de diffusion. [[base-mailman.moderator_rule]]"
+
+msgid "policies"
+msgstr "Politiques"
+
+msgid "apassword"
+msgstr "Mot de passe"
+
+msgid "apassword_help"
+msgstr "Entrez un mot de passe administrateur pour cette liste de diffusion. Ce mot de passe est utilisé lors de l&#39;exécution de certaines tâches d&#39;administration de la liste par e-mail (par exemple, l&#39;approbation abonnements, ou la modération des messages). Si vous ne prévoyez pas d&#39;utiliser ces fonctionnalités, vous pouvez laisser ce champ vide."
+
+msgid "postingPolicy"
+msgstr "Affichage politique"
+
+msgid "postingPolicy_help"
+msgstr "Sélectionnez une politique d&#39;affichage pour cette liste de diffusion. Si vous choisissez Modérateur confirme tous les messages, chaque message devra obtenir l&#39;approbation de la liste propriétaire / modérateur."
+
+msgid "any"
+msgstr "Tous les utilisateurs peuvent poster des messages"
+
+msgid "members"
+msgstr "Seuls les abonnés peuvent poster des messages"
+
+msgid "moderated"
+msgstr "Modérateur confirme tous les messages"
+
+msgid "subscriptionPolicy"
+msgstr "Politique d&#39;inscription"
+
+msgid "subscriptionPolicy_help"
+msgstr "Sélectionnez la politique de souscription de la liste. Les utilisateurs peuvent s&#39;abonner ou se désabonner de la liste en envoyant un courrier à Mailman @ [[VAR.fqdn]] avec les mots de s&#39;abonner liste &#39;ou&#39; liste de désabonnement (liste est le nom de la liste de diffusion) dans le corps du message. Si la politique est «fermé», le message est envoyé au propriétaire de la liste pour approbation avant la souscription est autorisée. Approbation n&#39;est jamais obligé de se désinscrire."
+
+msgid "open"
+msgstr "Ouvert: tout utilisateur peut s&#39;abonner."
+
+msgid "closed"
+msgstr "Fermé: Liste approbation du propriétaire est nécessaire à la souscription."
+
+msgid "confirm"
+msgstr "Confirmez: confirmation électronique est requise pour l&#39;abonnement."
+
+msgid "maxlength"
+msgstr "Durée maximale du message"
+
+msgid "maxlength_help"
+msgstr "Sélectionnez la taille maximale en kilo-octets ou méga-octets autorisés pour les messages envoyés à cette liste de diffusion. Les messages dépassant cette taille seront rejetées."
+
+msgid "5"
+msgstr "5 ko"
+
+msgid "50"
+msgstr "50 kb"
+
+msgid "500"
+msgstr "500 kb"
+
+msgid "10000"
+msgstr "10 Mo"
+
+msgid "100000"
+msgstr "100 Mo"
+
+msgid "replyToList"
+msgstr "Répondre politique"
+
+msgid "replyToList_help"
+msgstr "Définissez la stratégie de réponse de cette liste de diffusion. Si vous choisissez Répondre à la liste, les réponses iront à la liste. Dans le cas contraire, les réponses vont seulement à l&#39;auteur d&#39;origine du message."
+
+msgid "replyList"
+msgstr "Répondre à la liste"
+
+msgid "archiveSettings"
+msgstr "Archivage"
+
+msgid "archiveEnabled"
+msgstr "Permettre"
+
+msgid "archiveEnabled_help"
+msgstr "Définissez si les messages envoyés à cette liste de diffusion seront archivés. Les utilisateurs disposant de comptes sur ce serveur pourront accéder à ces archives en utilisant leur compte de messagerie si WebMail est installé."
+
+msgid "keepForDays"
+msgstr "Période de rétention (jours)"
+
+msgid "keepForDays_help"
+msgstr "Entrez un nombre spécifiant la durée en jours que les messages seront conservés dans les archives. Entrez un zéro (0) pour conserver les messages archivés indéfiniment."
+
+msgid "keepForDays_rule"
+msgstr "S&#39;il vous plaît entrer un numéro indiquant la durée en jours que les messages seront conservés dans les archives. Entrez un zéro (0) pour conserver les messages archivés indéfiniment."
+
+msgid "keepForDays_empty"
+msgstr "Désolé, vous n&#39;avez pas spécifié une valeur pour [[base-mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Désolé, le champ [[base-mailman.keepForDays]] contient une valeur non valide. [[base-mailman.keepForDays_rule]]"
+
+msgid "name-already-taken"
+msgstr "Désolé, la liste de diffusion n&#39;a pas pu être créé car le nom spécifié est déjà utilisé par une liste de diffusion. S&#39;il vous plaît entrer un nom différent et essayez à nouveau."
+
+msgid "name-already-taken-by-user"
+msgstr "Désolé, la liste de diffusion n&#39;a pas pu être créé car le nom spécifié est déjà utilisé par un utilisateur. S&#39;il vous plaît entrer un nom différent et essayez à nouveau."
+
+msgid "Mail-alias-already-taken"
+msgstr "Désolé, la liste de diffusion n&#39;a pas pu être créé car les alias de messagerie requis par la liste existent déjà. Essayez de donner la liste de diffusion un nom différent ou supprimer des alias email avec des noms similaires."
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Désolé, les listes de diffusion pour les groupes d&#39;utilisateurs sur ce serveur ne peuvent pas être supprimés."
+
+msgid "Could-not-create-mailman"
+msgstr "Désolé, une erreur s&#39;est produite. La liste de diffusion n&#39;a pas pu être créé."
+
+msgid "mailmanArchive"
+msgstr "Mailing List Archive - [[VAR.name]]"
+
+msgid "title"
+msgstr "Sujet"
+
+msgid "title_help"
+msgstr "C&#39;est l&#39;objet du message."
+
+msgid "author"
+msgstr "Expéditeur"
+
+msgid "author_help"
+msgstr "C&#39;est le nom ou l&#39;adresse email de la personne qui a envoyé le message."
+
+msgid "date"
+msgstr "Date d&#39;"
+
+msgid "date_help"
+msgstr "Il s&#39;agit de la date à laquelle le message a été reçu."
+
+msgid "readMessage"
+msgstr "Message lu"
+
+msgid "readMessage_help"
+msgstr "Message lu"
+
+msgid "from"
+msgstr "À partir de"
+
+msgid "from_help"
+msgstr "C&#39;est le nom et / ou l&#39;adresse email de la personne qui a envoyé le message."
+
+msgid "subject"
+msgstr "Sujet"
+
+msgid "subject_help"
+msgstr "C&#39;est l&#39;objet du message."
+
+msgid "message"
+msgstr "Un message"
+
+msgid "message_help"
+msgstr "Ceci est le texte du message."
+
+msgid "replySender"
+msgstr "Répondre à l&#39;expéditeur"
+
+msgid "replySender_help"
+msgstr "Cliquez ici pour répondre à l&#39;auteur du message."
+
+msgid "replyAll"
+msgstr "Répondre à tous"
+
+msgid "replyAll_help"
+msgstr "Cliquez ici pour répondre à l&#39;auteur et tous les autres destinataires du message."
+
+msgid "membership"
+msgstr "Adhésion"
+
+msgid "membership_help"
+msgstr "L&#39;adhésion définit les utilisateurs associés à cette liste de diffusion."
+
+msgid "WelcomeMessageSubject"
+msgstr "L&#39;archivage a été activé"
+
+msgid "WelcomeMessageBody"
+msgstr "Ce courriel a été envoyé vers vous pour vous informer que l&#39;archivage de la liste de diffusion &#39;[[VAR.name]] a été activé pour les utilisateurs disposant de comptes sur ce serveur. Ces utilisateurs seront en mesure d&#39;accéder à ces archives au sein de WebMail. Il n&#39;est pas nécessaire de répondre à ce message."
+
+msgid "MailMan_header"
+msgstr "MailMan"
+
+msgid "mailman_enabled"
+msgstr "Activer Mailman:"
+
+msgid "mailman_enabled_help"
+msgstr "Mailman est un démon, qui a besoin de courir pour que des messages des listes comme des processus. Vous pouvez activer ou désactiver ce service ici. La commande de ligne de commande pour arrêter, démarrer ou redémarrer Mailman est: /etc/init.d/mailman stop | start | restart"
+
+msgid "oldpass"
+msgstr "Mot de passe:"
+
+msgid "oldpass_help"
+msgstr "Les fonctions administratives de MailMan sont protégés par un mot de passe généré automatiquement. Ce champ de texte affiche le mot de passe qui a été généré pour ce serveur lors de la configuration initiale."
+
+msgid "MailMan_Admin"
+msgstr "MailMan interface d&#39;administration"
+
+msgid "MailMan_Admin_help"
+msgstr "Ce bouton vous permet d&#39;accéder à l&#39;interface d&#39;administration de Mailman. Ce lien a été ajouté à votre décoration, mais en pratique il ne faut jamais l&#39;utiliser sauf si vous savez vraiment ce que vous faites là. S&#39;il vous plaît utiliser l&#39;interface graphique BlueOnyx pour ajouter ou supprimer des listes de diffusion à la place."
+
+msgid "menu_system_mailman"
+msgstr "MailMan"
+
+msgid "menu_system_mailman_help"
+msgstr "Cliquez ici pour gérer la liste de diffusion Mailman service."
+
+msgid "vsiteMailMan_Admin"
+msgstr "MailMan interface d&#39;administration"
+
+msgid "vsiteMailMan_Admin_help"
+msgstr "Ce bouton vous permet d&#39;accéder à l&#39;interface d&#39;administration Mailman pour certaines des options de configuration plus avancées de Mailman."
+
+msgid "MailMan_Archive"
+msgstr "MailMan Archive"
+
+msgid "MailMan_Archive_help"
+msgstr "Ce bouton vous permet d&#39;accéder à l&#39;archive MailMan publique de votre liste d&#39;envoi."
+
+msgid "amDetailsTitle"
+msgstr "Mailman service Détails"
+
+msgid "amMAILMANNameTag"
+msgstr "MailMan Liste Daemon postale"
+
+msgid "amMAILMANNotRunning"
+msgstr "Le service MailMan ne fonctionne pas normalement. S&#39;il vous plaît essayez de redémarrer manuellement."
+
+msgid "amMAILMANStatusOK"
+msgstr "Le service MailMan fonctionne normalement."
+
+msgid "listAddress"
+msgstr "Liste d&#39;adresses:"
+
+msgid "listAddress_help"
+msgstr "C&#39;est l&#39;adresse email que cette liste de diffusion est accessible à. Pour envoyer des messages à cette liste, envoyez vos courriels à cette adresse."
+

@@ -1,436 +1,111 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
-"POT-Creation-Date: 2007-11-20 12:31+0100\n"
-"PO-Revision-Date: 2007-12-14 12:56+0100\n"
-"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
-"Language-Team: DANISH <jes@enavn.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: quoted-printable\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0\n"
-
-msgid "10485760"
-msgstr "10 MB"
-
-msgid "104857600"
-msgstr "100 MB"
-
-msgid "5120"
-msgstr "5 kb"
-
-msgid "51200"
-msgstr "50 kb"
-
-msgid "512000"
-msgstr "500 kb"
-
-msgid "CannotDeleteGroupMaillist"
-msgstr ""
-"Beklager, men postlister for brugergrupper på denne server kan ikke fjernes."
-
-msgid "Could-not-create-mailman"
-msgstr "Beklager, men en fejl opstod. Postlisten kunne ikke oprettes."
-
-msgid "Mail-alias-already-taken"
-msgstr ""
-"Beklager, men postlisten kunne ikke oprettes ford i det nødvendige "
-"emailalias, som listen skal bruge, allerede eksisterer. Prøv at give "
-"postlisten et andet navn, eller fjern aliasser med lignende navne."
-
-msgid "Moderator-does-not-exist"
-msgstr ""
-"Ugyldig moderator: brugeren [[VAR.moderator]] lader ikke til at eksistere."
-
-msgid "WelcomeMessageBody"
-msgstr ""
-"Denne email er sendt til dig for at meddele dig at arkivering af postlisten "
-"'[[VAR.name]]' er aktiveret for brugere med konti på denne server.  Disse "
-"brugere vil have mulighed for at tilgå dette arkiv via deres WebMail.  Det "
-"er ikke nødvendigt at svare på denne meddelelse."
-
-msgid "WelcomeMessageSubject"
-msgstr "Arkivering er aktiveret."
-
-msgid "advanced"
-msgstr "Avanceret"
-
-msgid "advanced_help"
-msgstr ""
-"Klik her for at konfigurere avancerede indstillinger for postlisten, såsom "
-"afsendelses- og tilmeldingspolitik."
-
-msgid "all"
-msgstr "Alle brugere"
-
-msgid "any"
-msgstr "Alle brugere kan sende meddelelser"
-
-msgid "apassword"
-msgstr "Adgangskode"
-
-msgid "apassword_help"
-msgstr ""
-"Indtast en administrativ adgangskode til denne postliste. Denne adgangskode "
-"bruges når bestemte listeadministrationshandlinger skal foretages via email "
-"(for eksempel godkendelse, tilmeldinger, eller moderering af meddelelser).  "
-"Hvis du ikke planlægger at bruge disse funktioner kan du lade dette felt "
-"være tomt."
-
-msgid "archiveEnabled"
-msgstr "Aktiver"
-
-msgid "archiveEnabled_help"
-msgstr ""
-"Indstil hvorvidt meddelelser sendt til denne postliste vil blive arkiveret. "
-"Brugere med konti på denne server wil kunne tilgå disse arkiver igennem "
-"deres webmail, hvis webmail er installeret."
-
-msgid "archiveSettings"
-msgstr "Arkivering"
-
-msgid "author"
-msgstr "Afsender"
-
-msgid "author_help"
-msgstr ""
-"Dette er navnet, eller emailadressen, på den person som har sendt "
-"meddelelsen."
-
-msgid "basic"
-msgstr "Basal"
-
-msgid "basic_help"
-msgstr "Klik her for at konfigurere basale indstillinger for postlister."
-
-msgid "cancel"
-msgstr "Annuller"
-
-msgid "cancel_help"
-msgstr ""
-"Klik her for at gå tilbage til indstillingssiden og ignorere dine nuværende "
-"valg."
-
-msgid "closed"
-msgstr "Lukket: Listens ejers godkendelse er nødvendig for a tilmelde sig."
-
-msgid "confirm"
-msgstr "Bekræft: Bekræftelse via email er nødvendigt for at tilmelde sig."
-
-msgid "confirm_removal_of_list"
-msgstr "Er du sikker på at du vil fjerne postlisten [[VAR.list]]?"
-
-msgid "createMailList"
-msgstr "Føj postliste til [[VAR.fqdn]]"
-
-msgid "date"
-msgstr "Dato"
-
-msgid "date_help"
-msgstr "Dette er datoen da meddelelsen blev modtaget."
-
-msgid "description"
-msgstr "Bemærkninger"
-
-msgid "description_help"
-msgstr ""
-"Indtast yderligere informationer eller kommentarer om denne postliste her."
-
-msgid "edit_locals"
-msgstr "Rediger"
-
-msgid "edit_locals_help"
-msgstr ""
-"Klik her for at vælge de lokale brugere der skal være medlemmer af denne "
-"postliste."
-
-msgid "from"
-msgstr "Fra"
-
-msgid "from_help"
-msgstr ""
-"Dette er navn og/eller emailadresse på den person som har sendt meddelelsen."
-
-msgid "groupSubscriber"
-msgstr "Alle medlemmer af gruppen [[VAR.group]]"
-
-msgid "group_field"
-msgstr "Gruppelistenavn"
-
-msgid "group_field_help"
-msgstr ""
-"Dette er navnet på gruppepostlisten.  Alle medlemmer af denne gruppe "
-"tilføjes automatisk som medlemmer af postlisten."
-
-msgid "keepForDays"
-msgstr "Arkiveringsperiode (Dage)"
-
-msgid "keepForDays_empty"
-msgstr ""
-"Beklager, men du har ikke specificeret en værdi for [[base-"
-"mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
-
-msgid "keepForDays_help"
-msgstr ""
-"Indtast et tal der specificerer antal dage meddelelser vil blive lagret i "
-"arkivet. Indtast et nul (0) for at lagre arkiverede meddelelser på ubestemt "
-"tid."
-
-msgid "keepForDays_invalid"
-msgstr ""
-"Beklager, men feltet [[base-mailman.keepForDays]] indeholder en ugyldig "
-"værdi.  [[base-mailman.keepForDays_rule]]"
-
-msgid "keepForDays_rule"
-msgstr ""
-"Indtast et tal der specificerer antal dage meddelelser vil blive lagret i "
-"arkivet. Indtast et nul (0) for at lagre arkiverede meddelelser på ubestemt "
-"tid. "
-
-msgid "listName"
-msgstr "Listenavn"
-
-msgid "listName_empty"
-msgstr ""
-"Beklager, men du har indtastet en ugyldig værdi form [[base-"
-"mailman.listName]].   [[base-mailman.listName_rule]]"
-
-msgid "listName_help"
-msgstr "Indtast postlistens navn.  [[base-mailman.listName_rule]]"
-
-msgid "listName_invalid"
-msgstr ""
-"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
-"mailman.listName]].  [[base-mailman.listName_rule]]"
-
-msgid "listName_rule"
-msgstr ""
-"Indtast venligst kun små alfanumeriske bogstaver, bindestreger, punktummer "
-"og understreger.  salg er, for eksempel, en gyldig indtastning."
-
-msgid "localSubs_list"
-msgstr "[[VAR.criteria]] på [[VAR.fqdn]]"
-
-msgid "localSubscribers"
-msgstr "Lokale medlemmer"
-
-msgid "localSubscribers_help"
-msgstr ""
-"Klik på knappen Rediger for at vælge lokale brugere der skal være medlemmer "
-"af denne postliste."
-
-msgid "localsSearch"
-msgstr "Søg i brugerlisten"
-
-msgid "mailmanActionHeader"
-msgstr "Handling"
-
-msgid "mailmanActionHeader_help"
-msgstr "Dette er knapperne der bruges til at ændre eller slette en postliste."
-
-msgid "mailmanArchive"
-msgstr "Postlistearkiv - [[VAR.name]]"
-
-msgid "mailmanDescHeader"
-msgstr "Bemærkninger"
-
-msgid "mailmanDescHeader_help"
-msgstr "Denne kolonne indeholder yderligere informationer om hver postliste."
-
-msgid "mailmanList"
-msgstr "Postlister på [[VAR.group]]"
-
-msgid "mailmanList_menu"
-msgstr "Postlister"
-
-msgid "mailmanNameHeader"
-msgstr "Navn"
-
-msgid "mailmanNameHeader_help"
-msgstr "Dette er postlistens navn."
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "mailmans"
 msgstr "Postlister"
 
 msgid "mailmansHelp"
-msgstr "[[base-mailman.mailmanList_menu]] kan administreres her."
+msgstr "[[base-mailman.mailmanList_menu]] kan styres her."
 
-msgid "matching"
-msgstr "Brugere der matcher [[VAR.criteria]]"
+msgid "mailmanList_menu"
+msgstr "Postlister"
 
-msgid "maxlength"
-msgstr "Maksimal beskedlængde"
+msgid "mailmanList"
+msgstr "Postlister på [[VAR.group]]"
 
-msgid "maxlength_help"
-msgstr ""
-"Vælg den maksimale størrelse i kiliobyte eller megebyte som tillades "
-"meddelelser at have, når de sendes til denne postliste. Meddelelser der "
-"overstiger denne størrelse vil blive afvist."
+msgid "mailmanNameHeader"
+msgstr "Navn"
 
-msgid "members"
-msgstr "Kun tilmeldte kan sende meddelelser"
-
-msgid "membership"
-msgstr "Medlemskab"
-
-msgid "membership_help"
-msgstr "Medlemskab definerer hvilke brugere der er tilknyttet denne postliste."
-
-msgid "message"
-msgstr "Meddelelse"
-
-msgid "message_help"
-msgstr "Dette er meddelelsens tekst."
-
-msgid "moderated"
-msgstr "Moderator godkender alle meddelelser"
-
-msgid "moderator"
-msgstr "Ejer/Moderator"
-
-msgid "moderator_empty"
-msgstr ""
-"Beklager, men du har ikke indtastet en værdi for [[base-"
-"mailman.moderator]].  Du skal indtaste en værdi uanset om postlisten ikke "
-"har defineret nogle moderationspolitikker.  [[base-mailman.moderator_rule]]"
-
-msgid "moderator_help"
-msgstr ""
-"Indtast venligst en korrekt formateret emailadresse eller brugernavnet på en "
-"gyldig bruger på denne server.  Standardværdien er admin.  "
-"bruger@eksempel.dk og admin er, for eksempel, gyldige indtastninger."
-
-msgid "moderator_invalid"
-msgstr ""
-"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
-"mailman.moderator]].  [[base-mailman.moderator_rule]]"
-
-msgid "moderator_rule"
-msgstr ""
-"Indtast venligst en korrekt formatteret emailadresse eller brugernavnet på "
-"en gyldig bruger på denne server.  STandardværdien er admin.  "
-"bruger@eksempel.dk og admin er, for eksempel, gyldige indtastninger."
-
-msgid "modifyMailList"
-msgstr "Rediger indstillinger for postlisten [[VAR.listName]]"
-
-msgid "name"
-msgstr "Brugernavn"
-
-msgid "name-already-taken"
-msgstr ""
-"Beklager, men postlisten kunne ikke oprettes fordi det specificerede navn "
-"allerede er i brug af en anden mailingliste. Indtast venligst et andet navn "
-"og prøv igen."
-
-msgid "name-already-taken-by-user"
-msgstr ""
-"Beklager, men postlisten kunne ikke oprettes fordi det specificerede navn "
-"allerede er i brug af en anden bruger. Indtast venligst et andet navn og "
-"prøv igen."
-
-msgid "name_help"
-msgstr ""
-"Navnet på brugerne på dette virtuelle websted. Sæt hak ud for brugeren for "
-"at tilføje brugeren til postlisten."
-
-msgid "numLocals"
-msgstr "[[VAR.num]] Lokalt/Lokale medlem/er"
-
-msgid "numSubs"
-msgstr "[[VAR.num]] Medlem/er"
-
-msgid "open"
-msgstr "Åben: Enhver bruger kan melde sig til."
-
-msgid "policies"
-msgstr "Politikker"
-
-msgid "postingPolicy"
-msgstr "Afsendelsespolitik"
-
-msgid "postingPolicy_help"
-msgstr ""
-"Vælg en afsendelsespolitik for denne postliste.  Hvis du vælger \"Moderator "
-"godkender alle meddelelser\", vil alle meddelelser kræve godkendelse fra "
-"listeejeren/moderatoren. "
-
-msgid "readMessage"
-msgstr "Læs meddelelse"
-
-msgid "readMessage_help"
-msgstr "Læs meddelelse"
+msgid "mailmanNameHeader_help"
+msgstr "Dette er navnet på mailinglisten."
 
 msgid "recipientsHeader"
-msgstr "Antal tilmeldte"
+msgstr "Antallet af abonnenter"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Subscriber [[VAR.plural]]"
 
 msgid "recipientsHeader_help"
-msgstr "Dette er antallet af brugere som er tilmeldt postlisten."
+msgstr "Det er antallet af brugere, der abonnerer på mailinglisten."
 
-msgid "remoteSubscribers"
-msgstr "Eksterne tilmeldte"
+msgid "groupSubscriber"
+msgstr "Alle medlemmer af [[VAR.group]] gruppe"
 
-msgid "remoteSubscribers_help"
-msgstr ""
-"Indtast de eksterne brugere der skal være tilmeldt denne postliste.  "
-"Eksterne brugere er brugere som ikke har konti på denne server.[[base-"
-"mailman.remoteSubscribers_rule]]"
+msgid "mailmanDescHeader"
+msgstr "Bemærkninger"
 
-msgid "remoteSubscribers_invalid"
-msgstr ""
-"Beklager, men [[VAR.invalidValue]] er en ugyldig værdi for [[base-"
-"mailman.remoteSubscribers]].  [[base-mailman.remoteSubscribers_rule]]"
+msgid "mailmanDescHeader_help"
+msgstr "Denne kolonne indeholder yderligere oplysninger om hver postliste."
 
-msgid "remoteSubscribers_rule"
-msgstr ""
-"Indtast venligst en korrekt formateret emailadresse.  bruger@eksempel er, "
-"for eksempel, en gyldig indtastning."
+msgid "mailmanActionHeader"
+msgstr "Action"
 
-msgid "replyAll"
-msgstr "Svar til alle"
+msgid "mailmanActionHeader_help"
+msgstr "Det er de knapper, der bruges til at ændre eller slette en postliste."
 
-msgid "replyAll_help"
-msgstr "Klikl her for at svare til forfatteren og alle meddelelsens modtagere."
+msgid "confirm_removal_of_list"
+msgstr "Er du sikker på du vil fjerne [[VAR.list]] mailing liste?"
 
-msgid "replyList"
-msgstr "Svar til liste"
+msgid "subscribers"
+msgstr "Abonnenter"
 
-msgid "replySender"
-msgstr "Svar til afsender"
+msgid "subscribers_help"
+msgstr "Listen over medlemmer af postlisten kan konfigureres her."
 
-msgid "replySender_help"
-msgstr "Klik her for at svare til meddelelsens forfatter."
+msgid "numLocals"
+msgstr "[[VAR.num]] Lokal Subscriber [[VAR.plural]]"
 
-msgid "replyToList"
-msgstr "Besvarelsespolitik"
+msgid "edit_locals"
+msgstr "Edit"
 
-msgid "replyToList_help"
-msgstr ""
-"Indstil postlistens besvarelsespolitik. Hvis du vælger Sver til liste, vil "
-"alle svar blive sendt til selve listen. Ellers vil svar gå til den "
-"oprindelige forfatter af meddelelsen."
+msgid "edit_locals_help"
+msgstr "Klik her for at vælge de lokale brugere, som abonnenter til denne postliste."
 
-msgid "save"
-msgstr "Gem"
-
-msgid "save_help"
-msgstr "Gem denne postliste."
+msgid "localsSearch"
+msgstr "Søg Brugerliste"
 
 msgid "search"
 msgstr "Søg"
 
 msgid "search_help"
-msgstr "Klik her for at vise brugere der matcher det indtastede kritere."
+msgstr "Klik her for at vise brugere, der matcher de indtastede kriterier."
+
+msgid "showall"
+msgstr "Vis alle brugere"
+
+msgid "showall_help"
+msgstr "Klik her for at vise alle brugere på sitet."
+
+msgid "showselected"
+msgstr "Vis kun valgte brugere"
+
+msgid "showselected_help"
+msgstr "Klik her for at vise kun brugere, der er valgt i øjeblikket."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] på [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Brugere matchende [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Valgte brugere"
+
+msgid "all"
+msgstr "Alle Brugere"
 
 msgid "selectAll"
 msgstr "Vælg alle brugere"
 
 msgid "selectAll_help"
-msgstr ""
-"Klik her for at vælge alle brugere på dette websted. Valget vil inkludere "
-"alle brugere på denne side, samt alle brugere på andre sider."
+msgstr "Klik her for at vælge alle brugere på dette site. Udvælgelsen vil indeholde alle brugere på denne side og alle brugere på andre sider også."
 
 msgid "selectPage"
 msgstr "Vælg denne side"
@@ -438,157 +113,365 @@ msgstr "Vælg denne side"
 msgid "selectPage_help"
 msgstr "Klik her for at vælge alle brugere på denne side."
 
-msgid "selected"
-msgstr "Valgte brugere"
+msgid "use_these"
+msgstr "Brug aktuelle valg"
 
-msgid "showall"
-msgstr "Vis alle brugere"
+msgid "use_these_help"
+msgstr "Klik her for at bruge det aktuelle valg som [[basis-mailman.localSubscribers]] liste."
 
-msgid "showall_help"
-msgstr "Klik her for at vise alle brugere på webstedet."
+msgid "cancel"
+msgstr "Annuller"
 
-msgid "showselected"
-msgstr "Vis kun valgte brugere"
+msgid "cancel_help"
+msgstr "Klik her for at vende tilbage til siden med indstillinger og ignorere dit aktuelle valg."
 
-msgid "showselected_help"
-msgstr "Klik her for kun at vise de, i øjeblikket, valgte brugere."
+msgid "name"
+msgstr "Brugernavn"
 
-msgid "subject"
-msgstr "Emne"
+msgid "name_help"
+msgstr "Navnet på brugerne på denne virtuelle site. Marker afkrydsningsfelterne for at tilføje brugere til denne postliste."
 
-msgid "subject_help"
-msgstr "Dette er meddelelsens emne."
+msgid "createMailList"
+msgstr "Tilføj mailingliste for at [[VAR.fqdn]]"
+
+msgid "modifyMailList"
+msgstr "Rediger liste Indstillinger for [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Grundlæggende"
+
+msgid "advanced"
+msgstr "Avanceret"
+
+msgid "basic_help"
+msgstr "Klik her for at konfigurere grundlæggende postliste muligheder."
+
+msgid "advanced_help"
+msgstr "Klik her for at konfigurere avancerede postliste muligheder såsom udstationering og abonnement politikker."
+
+msgid "listName"
+msgstr "List Name"
+
+msgid "listName_rule"
+msgstr "Indtast venligst kun små alfanumeriske tegn, bindestreger, punktummer og understregninger. For eksempel er salget er en gyldig indtastning."
+
+msgid "listName_help"
+msgstr "Indtast navnet på mailinglisten. [[base-mailman.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Beklager, [[VAR.invalidValue]] er en ugyldig værdi for [[basis-mailman.listName]]. [[base-mailman.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Beklager, du har ikke indtastet en værdi for [[basis-mailman.listName]]. [[base-mailman.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Gruppens medlemmer"
+
+msgid "workgroupMembers_help"
+msgstr "Dette felt indeholder en liste over brugere, der er i øjeblikket medlemmer af gruppen, der er forbundet med denne liste. Alle medlemmer af denne gruppe er altid abonnerer på denne postliste."
+
+msgid "group_field"
+msgstr "Group List Name"
+
+msgid "group_field_help"
+msgstr "Dette er navnet på gruppens postliste. Alle medlemmer af denne gruppe bliver automatisk tilmeldt til denne postliste."
+
+msgid "save"
+msgstr "Gem"
+
+msgid "save_help"
+msgstr "Gem denne postliste."
+
+msgid "localSubscribers"
+msgstr "Lokale Abonnenter"
+
+msgid "localSubscribers_help"
+msgstr "Klik på knappen Rediger til at vælge de lokale brugere, der er abonnenter til denne postliste."
 
 msgid "subscribed"
-msgstr "Tilmeldte brugere"
+msgstr "Brugere abonnement"
 
-msgid "subscribers"
-msgstr "Tilmeldte"
+msgid "unsubscribed"
+msgstr "Brugere ikke abonnerer"
 
-msgid "subscribers_help"
-msgstr "Postlistens medlemmer kan indstilles her."
+msgid "remoteSubscribers"
+msgstr "Fjerntliggende Abonnenter"
+
+msgid "remoteSubscribers_rule"
+msgstr "Indtast venligst en korrekt formateret e-mail-adresse. For eksempel user@example.com er en gyldig indtastning."
+
+msgid "remoteSubscribers_help"
+msgstr "Indtast de eksterne brugere, som er abonnenter til denne postliste. Eksterne brugere er brugere, som ikke har konti på denne server apparatet. [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Beklager, [[VAR.invalidValue]] er en ugyldig værdi for [[basis-mailman.remoteSubscribers]]. [[base-mailman.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribersDigest"
+msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
+
+msgid "remoteSubscribersDigest_rule"
+msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)"
+
+msgid "remoteSubscribersDigest_help"
+msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"
+
+msgid "remoteSubscribersDigest_invalid"
+msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
+
+msgid "description"
+msgstr "Bemærkninger"
+
+msgid "description_help"
+msgstr "Indtast yderligere oplysninger eller bemærkninger om postlisten her."
+
+msgid "moderator"
+msgstr "Ejer / Moderator"
+
+msgid "moderator_rule"
+msgstr "Indtast venligst en korrekt formateret e-mail-adresse eller brugernavn af en gyldig bruger på denne server apparatet. Standardværdien er admin. For eksempel user@example.com og admin er gyldige poster."
+
+msgid "moderator_help"
+msgstr "Indtast e-mail-adressen på den bruger udføre alle administrative opgaver for mailinglisten. [[base-mailman.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "Beklager, [[VAR.invalidValue] er en ugyldig værdi for [[basis-mailman.moderator]]. [[base-mailman.moderator_rule]]"
+
+msgid "Moderator-does-not-exist"
+msgstr "Ugyldig Moderator: brugeren synes at eksistere [[VAR.moderator]] ikke."
+
+msgid "moderator_empty"
+msgstr "Beklager, du har ikke indtastet en værdi for [[basis-mailman.moderator]]. Du skal indtaste en værdi, selv hvis der ikke er angivet nogen moderation politikker for mailinglisten. [[base-mailman.moderator_rule]]"
+
+msgid "policies"
+msgstr "Politikker"
+
+msgid "apassword"
+msgstr "Adgangskode"
+
+msgid "apassword_help"
+msgstr "Indtast en administrativ adgangskode til denne postliste. Denne adgangskode bruges når du udfører bestemte liste administrationsopgaver via e-mail (for eksempel godkendelse abonnementer eller modererende meddelelser). Hvis du ikke har planer om at bruge disse funktioner, kan du lade dette felt være tomt."
+
+msgid "postingPolicy"
+msgstr "Udstationering Policy"
+
+msgid "postingPolicy_help"
+msgstr "Vælg en udstationering politik for denne postliste. Hvis du vælger Moderator bekræfter Alle meddelelser vil hver besked kræver godkendelse fra listen ejer / moderator."
+
+msgid "any"
+msgstr "Alle burgere kan slå meddelelser"
+
+msgid "members"
+msgstr "Kun Abonnenter kan sende indlæg"
+
+msgid "moderated"
+msgstr "Moderator Bekræfter alle meddelelser"
 
 msgid "subscriptionPolicy"
-msgstr "Tilmeldingspolitik"
+msgstr "Abonnement Policy"
 
 msgid "subscriptionPolicy_help"
-msgstr ""
-"Vælg listens tilmeldingspolitik. Brugere kan til- og afmelde sig listen ved "
-"at sende en email til majordomo@[[VAR.fqdn]] med ordene 'subscribe liste' "
-"eller 'unsubscribe liste' (liste er postlistens navn) i meddelelsens "
-"indhold.  Hvis politikken er 'Lukket', så vil meddelelsen blive sendt til "
-"godkendelse hos listens ejer før tilmelding tillades.   Godkendelse er "
-"aldrig påkrævet for at afmelde."
+msgstr "Vælg den liste abonnement politik. Brugere kan tilmelde eller framelde fra listen ved at sende mail til postbud @ [[VAR.fqdn]] med ordene "abonnere liste 'eller' unsubscribe liste« (listen er postlisten navn) i selve meddelelsen. Hvis politikken er 'lukket', sendes meddelelsen til listen ejeren til godkendelse inden abonnementet er tilladt. Godkendelsen er aldrig forpligtet til at afmelde."
+
+msgid "open"
+msgstr "Åben: enhver bruger kan abonnere på."
+
+msgid "closed"
+msgstr "Lukket: Listeejers godkendelse kræves for abonnement."
+
+msgid "confirm"
+msgstr "Bekræft: E-mail bekræftelse er nødvendig for abonnement."
+
+msgid "maxlength"
+msgstr "Maksimal Indspilningslængde"
+
+msgid "maxlength_help"
+msgstr "Vælg den maksimale størrelse i kilobyte eller megabyte tilladt for meddelelser, der sendes til denne postliste. Beskeder, der overstiger denne størrelse, vil blive afvist."
+
+msgid "5"
+msgstr "5 kb"
+
+msgid "50"
+msgstr "50 kb"
+
+msgid "500"
+msgstr "500 kb"
+
+msgid "10000"
+msgstr "10 MB"
+
+msgid "100000"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "Svar Politik"
+
+msgid "replyToList_help"
+msgstr "Indstil svar politik for denne postliste. Hvis du vælger Svar på liste, svar vil gå til listen. Ellers vil svarene kun gå til den oprindelige forfatter af meddelelsen."
+
+msgid "replyList"
+msgstr "Svar til liste"
+
+msgid "archiveSettings"
+msgstr "Arkivering"
+
+msgid "archiveEnabled"
+msgstr "Aktiver"
+
+msgid "archiveEnabled_help"
+msgstr "Angiv, om meddelelser, der sendes til denne postliste vil blive arkiveret. Brugere med konti på denne server apparat vil være i stand til at få adgang til disse arkiver ved hjælp af deres WebMail konto, hvis WebMail er installeret."
+
+msgid "keepForDays"
+msgstr "Hold Periode (dage)"
+
+msgid "keepForDays_help"
+msgstr "Indtast et nummer med angivelse af tid i dage, at meddelelser vil blive holdt i arkivet. Indtast et nul (0) for at holde arkiverede meddelelser på ubestemt tid."
+
+msgid "keepForDays_rule"
+msgstr "Indtast et nummer med angivelse af tid i dage, at meddelelser vil blive holdt i arkivet. Indtast et nul (0) for at holde arkiverede meddelelser på ubestemt tid."
+
+msgid "keepForDays_empty"
+msgstr "Beklager, men du har ikke angivet en værdi for [[basis-mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Beklager, [[basis-mailman.keepForDays]] indeholder feltet en ugyldig værdi. [[base-mailman.keepForDays_rule]]"
+
+msgid "name-already-taken"
+msgstr "Kunne desværre postliste ikke oprettes, fordi det angivne navn er allerede i brug af en postliste. Angiv et andet navn og prøv igen."
+
+msgid "name-already-taken-by-user"
+msgstr "Kunne desværre postliste ikke oprettes, fordi det angivne navn er allerede i brug af en bruger. Angiv et andet navn og prøv igen."
+
+msgid "Mail-alias-already-taken"
+msgstr "Beklager, kunne ikke oprettes, fordi e-mail-aliasser, der kræves af listen findes allerede postlisten. Prøv at give mailinglisten et andet navn eller fjerne e-mail-aliaser med lignende navne."
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Beklager, kan postlister for brugergrupper på denne server apparat ikke fjernes."
+
+msgid "Could-not-create-mailman"
+msgstr "Beklager, der opstod en fejl. Kunne ikke oprettes postliste."
+
+msgid "mailmanArchive"
+msgstr "Mailing List Archive - [[VAR.name]]"
 
 msgid "title"
 msgstr "Emne"
 
 msgid "title_help"
-msgstr "Dette er meddelelsens emne."
+msgstr "Dette er emnet for meddelelsen."
 
-msgid "unsubscribed"
-msgstr "Ikke tilmeldte brugere"
+msgid "author"
+msgstr "Sender"
 
-msgid "use_these"
-msgstr "Brug nuværende valg"
+msgid "author_help"
+msgstr "Dette er det navn eller e-mail-adressen på den person, der sendte meddelelsen."
 
-msgid "use_these_help"
-msgstr ""
-"Klik her for at bruge det nuværende valg som liste over [[base-"
-"mailman.localSubscribers]]"
+msgid "date"
+msgstr "Dato"
 
-msgid "workgroupMembers"
-msgstr "Gruppemedlemmer"
+msgid "date_help"
+msgstr "Det er den dato, hvor meddelelsen blev modtaget."
 
-msgid "workgroupMembers_help"
-msgstr ""
-"Dette felt indeholder en liste af brugere som i øjeblikket er medlemmer af "
-"en gruppe som er tilknyttet denne liste.  Alle medlemmer i denne gruppe er "
-"altid tilmeldt denne postliste."
+msgid "readMessage"
+msgstr "Læs besked"
 
-msgid "remoteSubscribersDigest"
-msgstr ""
+msgid "readMessage_help"
+msgstr "Læs besked"
 
-msgid "remoteSubscribersDigest_rule"
-msgstr ""
+msgid "from"
+msgstr "Fra"
 
-msgid "remoteSubscribersDigest_help"
-msgstr ""
+msgid "from_help"
+msgstr "Dette er det navn og / eller e-mail-adressen på den person, der sendte meddelelsen."
 
-msgid "remoteSubscribersDigest_invalid"
-msgstr ""
+msgid "subject"
+msgstr "Emne"
 
-msgid "10000"
-msgstr ""
+msgid "subject_help"
+msgstr "Dette er emnet for meddelelsen."
 
-msgid "100000"
-msgstr ""
+msgid "message"
+msgstr "Message"
 
-# ------- Strings for System tab of Mailman
+msgid "message_help"
+msgstr "Dette er teksten i beskeden."
+
+msgid "replySender"
+msgstr "Svar til afsender"
+
+msgid "replySender_help"
+msgstr "Klik her for at svare til forfatteren af ​​meddelelsen."
+
+msgid "replyAll"
+msgstr "Svar til alle"
+
+msgid "replyAll_help"
+msgstr "Klik her for at svare til forfatteren og alle andre modtagere af meddelelsen."
+
+msgid "membership"
+msgstr "Medlemskab"
+
+msgid "membership_help"
+msgstr "Medlemskab definerer brugerne er forbundet med denne postliste."
+
+msgid "WelcomeMessageSubject"
+msgstr "Arkivering er blevet aktiveret"
+
+msgid "WelcomeMessageBody"
+msgstr "Denne e-mail er blevet sendt til dig for at fortælle dig, at arkivering af postlisten '[[VAR.name]]' er blevet aktiveret for brugere med konti på denne server. Disse brugere vil være i stand til at få adgang til dette arkiv indefra WebMail. Der er ingen grund til at besvare denne besked."
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "mailman_enabled"
-msgstr "Enable Mailman:"
+msgstr "Aktiver Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart MailMan is: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman har en dæmon, der skal køre, for postliste beskeder altid vil være processer. Du kan aktivere eller deaktivere denne tjeneste her. Kommandolinjen kommando til at stoppe, starte eller genstarte mailman er: /etc/init.d/mailman-stop | start | restart"
 
 msgid "oldpass"
 msgstr "Password:"
 
 msgid "oldpass_help"
-msgstr "The administrative functions of MailMan are protected with an automatically generated password. This textfield shows the password that was generated for this server upon initial setup."
+msgstr "De administrative funktioner i Mailman er beskyttet med en automatisk genereret adgangskode. Denne tekstfeltet viser den adgangskode, der blev genereret til denne server ved første opsætning."
 
 msgid "MailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "Mailman Admin interface"
 
 msgid "MailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface. This link has been added for your convinience, but in practical terms you should never use it unless you really know what you are doing there. Please use the BlueOnyx GUI to add or delete mailing lists instead."
+msgstr "Denne knap giver dig mulighed for at få adgang til mailman admin interface. Dette link er blevet tilføjet til din bekvemmelighed, men i praksis bør du aldrig bruge det, medmindre du virkelig ved hvad du laver der. Brug venligst BlueOnyx GUI for at tilføje eller slette postlister i stedet."
 
 msgid "menu_system_mailman"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "menu_system_mailman_help"
-msgstr "Click here to manage the mailing list service MailMan."
-
-
-# ------- Extra strings for vsite management of MailMan:
+msgstr "Klik her for at administrere mailing-liste service postbud."
 
 msgid "vsiteMailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "Mailman Admin interface"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface for some of the more advanced configuration options of MailMan."
+msgstr "Denne knap giver dig mulighed for at få adgang til mailman admin interface til nogle af de mere avancerede indstillingsmuligheder af Mailman."
 
 msgid "MailMan_Archive"
-msgstr "MailMan Archive"
+msgstr "Mailman Arkiv"
 
 msgid "MailMan_Archive_help"
-msgstr "This button allows you to access the public MailMan archive of your mailing list." 
-
-
-# ------- Extra strings for AM components of MailMan:
+msgstr "Denne knap giver dig mulighed for at få adgang til offentlige mailman arkiv af din postliste."
 
 msgid "amDetailsTitle"
-msgstr "MailMan Service Details"
+msgstr "Mailman service Detaljer"
 
 msgid "amMAILMANNameTag"
-msgstr "MailMan Mailing List Daemon"
+msgstr "Mailman Mailing List Daemon"
 
 msgid "amMAILMANNotRunning"
-msgstr "The MailMan service is NOT operating normally. Please try to manually restart it."
+msgstr "Postbudet service er ikke normalt. Prøv at manuelt genstarte den."
 
 msgid "amMAILMANStatusOK"
-msgstr "The MailMan service is operating normally."
+msgstr "Postbudet tjeneste fungerer normalt."
 
-
-# ------- Extra strings for showing mailing list address:
-
-msgid "listAddress"  
-msgstr "List Address:"
+msgid "listAddress"
+msgstr "List Adresse:"
 
 msgid "listAddress_help"
-msgstr "This is the email address that this mailing list is reachable at. To post messages to this list, send your emails to this address."
-
+msgstr "Dette er den e-mail-adresse, som denne postliste er tilgængelig på. At skrive indlæg til denne liste, sende dine e-mails til denne adresse."

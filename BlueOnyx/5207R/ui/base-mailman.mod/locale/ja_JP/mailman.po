@@ -1,504 +1,478 @@
-# --- Menu
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "mailmans"
-msgstr "Mailing Lists"
+msgstr "メーリングリスト"
 
 msgid "mailmansHelp"
-msgstr "[[base-mailman.mailmanList_menu]] can be managed here."
-
-
-# --- Mailing Lists page
+msgstr "[[base-mailman.mailmanList_menu]]ここに管理することができます。"
 
 msgid "mailmanList_menu"
-msgstr "Mailing Lists"
+msgstr "メーリングリスト"
 
 msgid "mailmanList"
-msgstr "Mailing Lists on [[VAR.group]]"
+msgstr "[[VAR.group]]でメーリングリスト"
 
 msgid "mailmanNameHeader"
-msgstr "Name"
+msgstr "名前"
 
 msgid "mailmanNameHeader_help"
-msgstr "This is the name of the mailing list."
+msgstr "これはメーリングリストの名前です。"
 
 msgid "recipientsHeader"
-msgstr "Number of Subscribers"
+msgstr "加入者数"
 
 msgid "numSubs"
-msgstr "[[VAR.num]] Subscriber[[VAR.plural]]"
+msgstr "[[VAR.num]]加入[[VAR.plural]]"
 
 msgid "recipientsHeader_help"
-msgstr "These are the number of users who subscribe to the mailing list."
+msgstr "これらはメーリングリストに加入しているユーザの数である。"
 
 msgid "groupSubscriber"
-msgstr "All members of the [[VAR.group]] group"
+msgstr "[[VAR.group]]グループのすべてのメンバー"
 
 msgid "mailmanDescHeader"
-msgstr "Remarks"
+msgstr "備考"
 
 msgid "mailmanDescHeader_help"
-msgstr "This column contains additional information about each mailing list."
+msgstr "この列には、各メーリングリストに関する追加情報が含まれています。"
 
 msgid "mailmanActionHeader"
-msgstr "Action"
+msgstr "アクション"
 
 msgid "mailmanActionHeader_help"
-msgstr "These are the buttons used to modify or delete a mailing list."
+msgstr "これらは、メーリング·リストを変更または削除するために使用するボタンです。"
 
 msgid "confirm_removal_of_list"
-msgstr "Are you sure you want to remove the [[VAR.list]] mailing list?"
+msgstr "あなたは[[VAR.list]]メーリングリストを削除してもよろしいですか？"
 
 msgid "subscribers"
-msgstr "Subscribers"
+msgstr "加入者"
 
 msgid "subscribers_help"
-msgstr "The list of members of the mailing list can be configured here."
+msgstr "メーリングリストのメンバーの一覧は、ここで設定を行います。"
 
 msgid "numLocals"
-msgstr "[[VAR.num]] Local Subscriber[[VAR.plural]]"
+msgstr "[[VAR.num]]ローカル加入[[VAR.plural]]"
 
 msgid "edit_locals"
-msgstr "Edit"
+msgstr "編集"
 
 msgid "edit_locals_help"
-msgstr "Click here to select the local users that are subscribers to this mailing list."
+msgstr "このメーリングリストへの加入者であるローカルユーザを選択するには、ここをクリックしてください。"
 
 msgid "localsSearch"
-msgstr "Search User List"
+msgstr "検索ユーザーリスト"
 
 msgid "search"
-msgstr "Search"
+msgstr "検索"
 
 msgid "search_help"
-msgstr "Click here to display users matching the entered criteria."
+msgstr "入力された条件に一致するユーザーを表示するには、ここをクリックしてください。"
 
 msgid "showall"
-msgstr "Show All Users"
+msgstr "すべてのユーザーを表示"
 
 msgid "showall_help"
-msgstr "Click here to display all users on the site."
+msgstr "サイト上のすべてのユーザーを表示するには、ここをクリックします。"
 
 msgid "showselected"
-msgstr "Show Only Selected Users"
+msgstr "選択したユーザーのみを表示する"
 
 msgid "showselected_help"
-msgstr "Click here to display only users that are currently selected."
+msgstr "現在選択されているユーザーだけを表示するには、ここをクリックしてください。"
 
 msgid "localSubs_list"
-msgstr "[[VAR.criteria]] on [[VAR.fqdn]]"
+msgstr "[[VAR.criteria]]の[[VAR.fqdn]]"
 
 msgid "matching"
-msgstr "Users matching [[VAR.criteria]]"
+msgstr "[[VAR.criteria]]一致するユーザー"
 
 msgid "selected"
-msgstr "Selected Users"
+msgstr "選択したユーザー"
 
 msgid "all"
-msgstr "All Users"
+msgstr "すべてのユーザー"
 
 msgid "selectAll"
-msgstr "Select All Users"
+msgstr "すべてのユーザーを選択"
 
 msgid "selectAll_help"
-msgstr "Click here to select all users on this site. The selection will include all users on this page and all users on other pages as well."
+msgstr "このサイト上のすべてのユーザーを選択するには、ここをクリックしてください。選択は、同様に、このページ上のすべてのユーザーや他のページ上のすべてのユーザーが含まれます。"
 
 msgid "selectPage"
-msgstr "Select This Page"
+msgstr "このページを選択する"
 
 msgid "selectPage_help"
-msgstr "Click here to select all users on this page."
+msgstr "このページのすべてのユーザーを選択するには、ここをクリックしてください。"
 
 msgid "use_these"
-msgstr "Use Current Selection"
+msgstr "現在の選択を使用してください"
 
 msgid "use_these_help"
-msgstr "Click here to use the current selection as the [[base-mailman.localSubscribers]] list."
+msgstr "[[base-mailman.localSubscribers]]リストとして現在の選択を使用するには、ここをクリックしてください。"
 
 msgid "cancel"
-msgstr "Cancel"
+msgstr "キャンセル"
 
 msgid "cancel_help"
-msgstr "Click here to return to the settings page and ignore your current selection."
+msgstr "設定ページに戻り、現在の選択を無視するには、ここをクリックしてください。"
 
 msgid "name"
-msgstr "User Name"
+msgstr "ユーザー名"
 
 msgid "name_help"
-msgstr "The name of the users on this virtual site. Select the checkboxes to add users to this mailing list."
-
-# ----- Add/modify a mailing list Basic
+msgstr "この仮想サイト上のユーザの名前。このメーリングリストにユーザを追加するチェックボックスを選択します。"
 
 msgid "createMailList"
-msgstr "Add Mailing List to [[VAR.fqdn]]"
+msgstr "[[VAR.fqdn]]にメーリングリストの追加"
 
 msgid "modifyMailList"
-msgstr "Modify Mailing List Settings for [[VAR.listName]]"
+msgstr "[[VAR.listName]]のためのメーリングリストの設定を変更"
 
 msgid "basic"
-msgstr "Basic"
+msgstr "基本"
 
 msgid "advanced"
-msgstr "Advanced"
+msgstr "高度な"
 
 msgid "basic_help"
-msgstr "Click here to configure basic mailing list options."
+msgstr "基本的なメーリングリストのオプションを設定するには、ここをクリックしてください。"
 
 msgid "advanced_help"
-msgstr "Click here to configure advanced mailing list options such as posting and subscription policies."
+msgstr "このような投稿とサブスクリプションの政策などの高度なメーリングリストのオプションを設定するには、ここをクリックしてください。"
 
 msgid "listName"
-msgstr "List Name"
+msgstr "リスト名"
 
 msgid "listName_rule"
-msgstr "Please enter only lowercase alphanumeric characters, hyphens, periods, and underscores.  For example, sales is a valid entry."
+msgstr "小文字の英数字、ハイフン、ピリオド、アンダースコアのみを入力してください。たとえば、売上高は有効なエントリです。"
 
 msgid "listName_help"
-msgstr "Enter the name of the mailing list.  [[base-mailman.listName_rule]]"
+msgstr "メーリングリストの名前を入力します。 [[base-mailman.listName_rule]]"
 
 msgid "listName_invalid"
-msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-mailman.listName]].  [[base-mailman.listName_rule]]"
+msgstr "申し訳ありませんが、[[VAR.invalidValue]] [[base-mailman.listName]]は無効な値です。 [[base-mailman.listName_rule]]"
 
 msgid "listName_empty"
-msgstr "Sorry, you have not entered a value for [[base-mailman.listName]].   [[base-mailman.listName_rule]]"
+msgstr "申し訳ありませんが、あなたは、[[base-mailman.listName]]の値を入力していません。 [[base-mailman.listName_rule]]"
 
 msgid "workgroupMembers"
-msgstr "Group Members"
+msgstr "グループメンバー"
 
 msgid "workgroupMembers_help"
-msgstr "This field contains a list of users who are currently members of the group that is associated with this list.  All members of this group are always subscribed to this mailing list."
+msgstr "このフィールドには、現在、このリストに関連付けられているグループのメンバーであるユーザーのリストが含まれています。このグループのすべてのメンバーは、常にこのメーリングリストを購読している。"
 
 msgid "group_field"
-msgstr "Group List Name"
+msgstr "グループリスト名"
 
 msgid "group_field_help"
-msgstr "This is the name of the group mailing list.  All members of this group are automatically subscribed to this mailing list."
+msgstr "これは、グループのメーリングリストの名前です。このグループのすべてのメンバーは、自動的にこのメーリングリストを購読している。"
 
 msgid "save"
-msgstr "Save"
+msgstr "保存"
 
 msgid "save_help"
-msgstr "Save this mailing list."
-
+msgstr "このメーリングリストを保存します。"
 
 msgid "localSubscribers"
-msgstr "Local Subscribers"
+msgstr "地元の契約者"
 
 msgid "localSubscribers_help"
-msgstr "Click the Edit button to select the local users that are subscribers to this mailing list."
+msgstr "このメーリングリストへの加入者であるローカルユーザを選択する場合は、[Edit]ボタンをクリックします。"
 
 msgid "subscribed"
-msgstr "Users Subscribed"
+msgstr "加入ユーザ"
 
 msgid "unsubscribed"
-msgstr "Users Not Subscribed"
+msgstr "ユーザーは購読していない"
 
 msgid "remoteSubscribers"
-msgstr "Remote Subscribers"
+msgstr "リモート·サブスクライバ"
 
 msgid "remoteSubscribers_rule"
-msgstr "Please enter a properly formatted email address.  For example, user@example.com is a valid entry."
+msgstr "適切な形式の電子メールアドレスを入力してください。例えば、user@example.comは有効なエントリです。"
 
 msgid "remoteSubscribers_help"
-msgstr "Enter the remote users that are subscribers to this mailing list.  Remote users are users who do not have accounts on this server appliance. [[base-mailman.remoteSubscribers_rule]]"
+msgstr "このメーリングリストへの加入者であるリモート·ユーザを入力します。リモートユーザーは、このサーバアプライアンスにアカウントを持たないユーザーです。 [[塩基 -  mailman.remoteSubscribers_rule]]"
 
 msgid "remoteSubscribers_invalid"
-msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-mailman.remoteSubscribers]].  [[base-mailman.remoteSubscribers_rule]]"
+msgstr "申し訳ありませんが、[[VAR.invalidValue]] [[base-mailman.remoteSubscribers]]は無効な値です。 [[base-mailman.remoteSubscribers_rule]]"
 
 msgid "remoteSubscribersDigest"
-msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
+msgstr "[[base-mailman.remoteSubscribers]]（ダイジェスト）"
 
 msgid "remoteSubscribersDigest_rule"
-msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)" 
+msgstr "[[base-mailman.remoteSubscribers_rule]]（ダイジェスト）"
 
 msgid "remoteSubscribersDigest_help"
-msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"   
+msgstr "[[base-mailman.remoteSubscribers_help]]（ダイジェスト）"
 
 msgid "remoteSubscribersDigest_invalid"
-msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
+msgstr "[[base-mailman.remoteSubscribers_invalid]]（ダイジェスト）"
 
 msgid "description"
-msgstr "Remarks"
+msgstr "備考"
 
 msgid "description_help"
-msgstr "Enter additional information or comments about the mailing list here."
-
-
-
-# ----- Add/modify a mailing list Advanced
+msgstr "ここメーリングリストに関する追加情報やコメントを入力してください。"
 
 msgid "moderator"
-msgstr "Owner/Moderator"
+msgstr "所有者/管理人"
 
 msgid "moderator_rule"
-msgstr "Please enter a properly formatted email address or the username of a valid user on this server appliance.  The default value is admin.  For example, user@example.com and admin are valid entries."
+msgstr "適切な形式の電子メールアドレスまたはこのサーバーアプライアンス上の有効なユーザーのユーザー名を入力してください。デフォルト値はadminです。例えば、user@example.comと管理者が有効なエントリです。"
 
 msgid "moderator_help"
-msgstr "Enter the email address of the user performing all administrative duties for the mailing list.  [[base-mailman.moderator_rule]]"
+msgstr "メーリングリストのすべての管理作業を実行するユーザーの電子メールアドレスを入力します。 [[base-mailman.moderator_rule]]"
 
 msgid "moderator_invalid"
-msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-mailman.moderator]].  [[base-mailman.moderator_rule]]"
+msgstr "申し訳ありませんが、[[VAR.invalidValue] [[base-mailman.moderator]]は無効な値です。 [[base-mailman.moderator_rule]]"
 
-	# handler version
 msgid "Moderator-does-not-exist"
-msgstr "Invalid Moderator: the user [[VAR.moderator]] does not seem to exist."
-
+msgstr "無効なモデレーター：ユーザーは[[VAR.moderator]]は存在していないようです。"
 
 msgid "moderator_empty"
-msgstr "Sorry, you have not entered a value for [[base-mailman.moderator]].  You must enter a value even if no moderation policies have been specified for the mailing list.  [[base-mailman.moderator_rule]]"
+msgstr "申し訳ありませんが、あなたは、[[base-mailman.moderator]]の値を入力していません。あなたは、モデレーションポリシーがメーリングリストに指定されていない場合でも、値を入力する必要があります。 [[base-mailman.moderator_rule]]"
 
 msgid "policies"
-msgstr "Policies"
+msgstr "ポリシー"
 
 msgid "apassword"
-msgstr "Password"
+msgstr "パスワード"
 
 msgid "apassword_help"
-msgstr "Enter an administrative password for this mailing list. This password is used when performing certain list administration tasks via email (for example, approving subscriptions, or moderating messages).  If you do not plan on using these features, you may leave this field blank."
+msgstr "このメーリングリストの管理者用パスワードを入力します。 （例えば、サブスクリプションを承認するか、メッセージのモデレート）電子メールを介して特定のリスト管理作業を実行するときにこのパスワードは使用されている。これらの機能を使用する予定がない場合は、このフィールドは空白のままでかまいません。"
 
 msgid "postingPolicy"
-msgstr "Posting Policy"
+msgstr "ポスティング·ポリシー"
 
 msgid "postingPolicy_help"
-msgstr "Select a posting policy for this mailing list.  If you choose Moderator Confirms All Messages, every message will require approval from the list owner/moderator. "
+msgstr "このメーリングリストの転記ポリシーを選択します。あなたは管理人、すべてのメッセージを確認し選択した場合は、すべてのメッセージは、リストのオーナー/司会者の承認が必要になります。"
 
 msgid "any"
-msgstr "All Users Can Post Messages"
+msgstr "すべてのユーザーがメッセージを書き込むことができます"
 
 msgid "members"
-msgstr "Only Subscribers Can Post Messages"
+msgstr "加入者だけがメッセージを書き込むことができます"
 
 msgid "moderated"
-msgstr "Moderator Confirms All Messages"
+msgstr "モデレータは、すべてのメッセージを確認します"
 
 msgid "subscriptionPolicy"
-msgstr "Subscription Policy"
+msgstr "サブスクリプション·ポリシー"
 
 msgid "subscriptionPolicy_help"
-msgstr "Select the list's subscription policy.  Users can subscribe or unsubscribe from the list by sending mail to mailman@[[VAR.fqdn]] with the words 'subscribe list' or 'unsubscribe list' (list is the mailing list name) in the body of the message.  If the policy is 'Closed', the message is sent to the list owner for approval before the subscription is allowed.   Approval is never required to unsubscribe."
+msgstr "リストの購読ポリシーを選択します。ユーザーは、郵便配達人にメールを送信することで購読するか、リストから解除することができます@ [[VAR.fqdn]]の言葉は、メッセージの本文に「退会リスト」（リストはメーリングリスト名）」リストを購読 'で。ポリシーは「閉鎖」されている場合は、サブスクリプションが許可される前に、メッセージが承認のためにリストの所有者に送信されます。承認が退会するのに必要なことはありません。"
 
 msgid "open"
-msgstr "Open: any user may subscribe."
+msgstr "開き：すべてのユーザーが加入してもよい。"
 
 msgid "closed"
-msgstr "Closed: List owner approval is required for subscription."
+msgstr "クローズ：リストオーナーの承認がサブスクリプションのために必要です。"
 
 msgid "confirm"
-msgstr "Confirm: Email confirmation is required for subscription."
+msgstr "確認：Eメールの確認は、サブスクリプションのために必要となります。"
 
 msgid "maxlength"
-msgstr "Maximum Message Length"
+msgstr "メッセージの最大長"
 
 msgid "maxlength_help"
-msgstr "Select the maximum size in kilobytes or megabytes allowed for messages sent to this mailing list. Messages exceeding this size will be rejected."
+msgstr "このメーリングリストに送信されたメッセージに対して許可キロバイトまたはメガバイト単位での最大サイズを選択します。このサイズを超えるメッセージは拒否されます。"
 
 msgid "5"
-msgstr "5 kb"
+msgstr "5キロバイト"
+
 msgid "50"
-msgstr "50 kb"
+msgstr "50キロバイト"
+
 msgid "500"
-msgstr "500 kb"
+msgstr "500キロバイト"
+
 msgid "10000"
-msgstr "10 MB"
+msgstr "10メガバイト"
+
 msgid "100000"
-msgstr "100 MB"
+msgstr "100メガバイト"
 
 msgid "replyToList"
-msgstr "Reply Policy"
+msgstr "ポリシーの返信"
 
 msgid "replyToList_help"
-msgstr "Set the reply policy for this mailing list. If you choose Reply to List, replies will go to the list. Otherwise, replies will go only to the original author of the message."
+msgstr "このメーリングリストに対する応答ポリシーを設定します。リストに返信することを選択した場合、返信はリストに移動します。そうしないと、回答は、メッセージの作者に行きます。"
 
 msgid "replyList"
-msgstr "Reply to List"
+msgstr "リストに返信"
 
 msgid "archiveSettings"
-msgstr "Archiving"
+msgstr "アーカイブ"
 
 msgid "archiveEnabled"
-msgstr "Enable"
+msgstr "有効にする"
 
 msgid "archiveEnabled_help"
-msgstr "Set whether messages sent to this mailing list will be archived. Users with accounts on this server appliance will be able to access these archives using their WebMail account if WebMail is installed."
+msgstr "このメーリングリストに送信されたメッセージをアーカイブするかどうかを設定します。このサーバアプライアンス上のアカウントを持つユーザーは、Webメールがインストールされている場合、そのWebメールアカウントを使用してこれらのアーカイブにアクセスできるようになります。"
 
 msgid "keepForDays"
-msgstr "Keep Period (Days)"
+msgstr "（日）の期間を保つ"
 
 msgid "keepForDays_help"
-msgstr "Enter a number specifying the length of time in days that messages will be kept in the archive. Enter a zero (0) to keep archived messages indefinitely."
+msgstr "メッセージがアーカイブに保管されることを日数で時間の長さを指定する数値を入力します。 （0）無期限にアーカイブされたメッセージを保持するために、ゼロを入力してください。"
 
 msgid "keepForDays_rule"
-msgstr "Please enter a number specifying the length of time in days that messages will be kept in the archive. Enter a zero (0) to keep archived messages indefinitely. "
+msgstr "メッセージがアーカイブに保管されることを日数で時間の長さを指定する数値を入力してください。 （0）無期限にアーカイブされたメッセージを保持するために、ゼロを入力してください。"
 
 msgid "keepForDays_empty"
-msgstr "Sorry, you have not specified a value for [[base-mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
+msgstr "申し訳ありませんが、あなたは、[[base-mailman.keepForDays]]の値を指定していません。 [[base-mailman.keepForDays_rule]]"
 
 msgid "keepForDays_invalid"
-msgstr "Sorry, the field [[base-mailman.keepForDays]] contains an invalid value.  [[base-mailman.keepForDays_rule]]"
-
-
-# ------ Handler messages
+msgstr "申し訳ありませんが、フィールド[[ベースは-mailman.keepForDays]]無効な値が含まれています。 [[base-mailman.keepForDays_rule]]"
 
 msgid "name-already-taken"
-msgstr "Sorry, the mailing list could not be created because the specified name is already in use by a mailing list. Please enter a different name and try again."
+msgstr "指定された名前がメーリングリストによってすでに使用されているので、申し訳ありませんが、メーリングリストは作成できませんでした。別の名前を入力して、もう一度やり直してください。"
 
 msgid "name-already-taken-by-user"
-msgstr "Sorry, the mailing list could not be created because the specified name is already in use by a user. Please enter a different name and try again."
+msgstr "指定された名前は、ユーザーがすでに使用されているので、申し訳ありませんが、メーリングリストは作成できませんでした。別の名前を入力して、もう一度やり直してください。"
 
 msgid "Mail-alias-already-taken"
-msgstr "Sorry, the mailing list could not be created because the email aliases needed by the list already exist. Try giving the mailing list a different name or removing email aliases with similar names."
+msgstr "リストが必要とする電子メールエイリアスが既に存在するため、申し訳ありませんが、メーリングリストは作成できませんでした。メーリングリストの別の名前を与えるか、類似した名前と電子メールエイリアスを削除してみてください。"
 
 msgid "CannotDeleteGroupMaillist"
-msgstr "Sorry, mailing lists for user groups on this server appliance cannot be removed."
+msgstr "申し訳ありませんが、このサーバアプライアンス上のユーザグループのためのメーリングリストを削除することはできません。"
 
 msgid "Could-not-create-mailman"
-msgstr "Sorry, an error occurred. The mailing list could not be created. "
+msgstr "申し訳ありませんが、エラーが発生しました。メーリングリストは作成できませんでした。"
 
-
-
-# ----- Archives for users with accounts
-
-	#--- List view
 msgid "mailmanArchive"
-msgstr "Mailing List Archive - [[VAR.name]]"
+msgstr "[[VAR.name]]  - メーリングリストアーカイブ"
 
 msgid "title"
-msgstr "Subject"
+msgstr "テーマ"
 
 msgid "title_help"
-msgstr "This is the subject of the message."
+msgstr "これはメッセージの件名です。"
 
 msgid "author"
-msgstr "Sender"
+msgstr "送り主"
 
 msgid "author_help"
-msgstr "This is the name or email address of the person who sent the message."
+msgstr "これは、メッセージの送信者の名前または電子メールアドレスです。"
 
 msgid "date"
-msgstr "Date"
+msgstr "日付"
 
 msgid "date_help"
-msgstr "This is the date the message was received."
+msgstr "これは、メッセージが受信された日付です。"
 
-	#--- Read message view
 msgid "readMessage"
-msgstr "Read Message"
+msgstr "メッセージを読む"
 
 msgid "readMessage_help"
-msgstr "Read Message"
+msgstr "メッセージを読む"
 
 msgid "from"
-msgstr "From"
+msgstr "から"
 
 msgid "from_help"
-msgstr "This is the name and/or email address of the person who sent the message."
+msgstr "これは、メッセージの送信者の名前、および/または電子メールアドレスです。"
 
 msgid "subject"
-msgstr "Subject"
+msgstr "テーマ"
 
 msgid "subject_help"
-msgstr "This is the subject of the message."
+msgstr "これはメッセージの件名です。"
 
 msgid "message"
-msgstr "Message"
+msgstr "メッセージ"
 
 msgid "message_help"
-msgstr "This is the text of the message."
+msgstr "これは、メッセージのテキストです。"
 
 msgid "replySender"
-msgstr "Reply to Sender"
+msgstr "送信者に返信"
 
 msgid "replySender_help"
-msgstr "Click here to reply to the author of the message."
+msgstr "メッセージの作成者に返信するにはここをクリックしてください。"
 
 msgid "replyAll"
-msgstr "Reply All"
+msgstr "全員に返信"
 
 msgid "replyAll_help"
-msgstr "Click here to reply to the author and all other recipients of the message."
-
-# ------ Misc  (i.e. I have no idea)
+msgstr "著者とメッセージのすべての他の受信者に返信するにはここをクリックしてください。"
 
 msgid "membership"
-msgstr "Membership"
+msgstr "メンバーシップ"
 
 msgid "membership_help"
-msgstr "Membership defines the users associated with this mailing list."
-
-
-# ------- Strings for email messages
+msgstr "会員は、このメーリングリストに関連付けられているユーザーが定義されています。"
 
 msgid "WelcomeMessageSubject"
-msgstr "Archiving has been enabled"
+msgstr "アーカイブが有効になっている"
 
 msgid "WelcomeMessageBody"
-msgstr "This email has been sent to you to notify you that archiving of the mailing list '[[VAR.name]]' has been enabled for users with accounts on this server.  These users will be able to access this archive from within WebMail.  There is no need to reply to this message."
-
-
-# ------- Strings for System tab of Mailman
+msgstr "この電子メールは、メーリングリストのアーカイブは '[[VAR.name]]'このサーバー上のアカウントを持つユーザーのために有効になっていることを通知するあなたに送信されました。これらのユーザーは、ウェブメールの中から、このアーカイブにアクセスできるようになります。このメッセージに応答する必要はない。"
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "のMailMan"
 
 msgid "mailman_enabled"
-msgstr "Enable Mailman:"
+msgstr "Mailmanのを有効にします。"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart MailMan is: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailmanはメーリングリストのメッセージがプロセスであるためには実行する必要があるデーモンを持っています。必要であれば、ここでサービスを有効または無効にすることができます。停止Mailmanがある開始または再起動するコマンドラインコマンド：|開始|ます。/etc/init.d/mailmanの停止、再起動"
 
 msgid "oldpass"
-msgstr "Password:"
+msgstr "パスワード："
 
 msgid "oldpass_help"
-msgstr "The administrative functions of MailMan are protected with an automatically generated password. This textfield shows the password that was generated for this server upon initial setup."
+msgstr "のMailmanの管理機能は、自動的に生成されたパスワードで保護されています。このテキストフ​​ィールドには、最初のセットアップ時にこのサーバー用に生成されたパスワードが表示されます。"
 
 msgid "MailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "のMailMan管理インターフェイス"
 
 msgid "MailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface. This link has been added for your convinience, but in practical terms you should never use it unless you really know what you are doing there. Please use the BlueOnyx GUI to add or delete mailing lists instead."
+msgstr "このボタンは、Mailmanの管理画面にアクセスすることができます。このリンクはあなたの便利さのために追加されましたが、あなたが本当にあなたがそこに何をしているか知っていない限り、実用的な面では、それを使用しないでください。代わりに、メーリングリストを追加または削除するBlueOnyxのGUIを使用してください。"
 
 msgid "menu_system_mailman"
-msgstr "MailMan"
+msgstr "のMailMan"
 
 msgid "menu_system_mailman_help"
-msgstr "Click here to manage the mailing list service MailMan."
-
-
-# ------- Extra strings for vsite management of MailMan:
+msgstr "メーリングリストサービスのMailManを管理するにはここをクリックしてください。"
 
 msgid "vsiteMailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "のMailMan管理インターフェイス"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface for some of the more advanced configuration options of MailMan."
+msgstr "このボタンを使用すると、のMailman、より高度な設定オプションの一部についてのMailMan管理インタフェースにアクセスすることができます。"
 
 msgid "MailMan_Archive"
-msgstr "MailMan Archive"
+msgstr "のMailManアーカイブ"
 
 msgid "MailMan_Archive_help"
-msgstr "This button allows you to access the public MailMan archive of your mailing list." 
-
-
-# ------- Extra strings for AM components of MailMan:
+msgstr "このボタンを使用すると、メーリングリストの公共のMailManアーカイブにアクセスすることができます。"
 
 msgid "amDetailsTitle"
-msgstr "MailMan Service Details"
+msgstr "のMailManサービスの詳細"
 
 msgid "amMAILMANNameTag"
-msgstr "MailMan Mailing List Daemon"
+msgstr "のMailManメーリングリストのデーモン"
 
 msgid "amMAILMANNotRunning"
-msgstr "The MailMan service is NOT operating normally. Please try to manually restart it."
+msgstr "のMailManサービスが正常に動作していません。手動で再起動してみてください。"
 
 msgid "amMAILMANStatusOK"
-msgstr "The MailMan service is operating normally."
+msgstr "のMailManサービスが正常に動作しています。"
 
-
-# ------- Extra strings for showing mailing list address:
-
-msgid "listAddress"  
-msgstr "List Address:"
+msgid "listAddress"
+msgstr "リストのアドレス："
 
 msgid "listAddress_help"
-msgstr "This is the email address that this mailing list is reachable at. To post messages to this list, send your emails to this address."
+msgstr "これは、このメーリングリストで到達可能なメールアドレスです。このリストにメッセージを投稿するには、このアドレスにメールを送信します。"
 

@@ -150,28 +150,28 @@ msgid "listName"
 msgstr "List Name"
 
 msgid "listName_rule"
-msgstr "Please enter only lowercase alphanumeric characters, hyphens, periods, and underscores.  For example, sales is a valid entry."
+msgstr "Please enter only lowercase alphanumeric characters, hyphens, periods, and underscores. For example, sales is a valid entry."
 
 msgid "listName_help"
-msgstr "Enter the name of the mailing list.  [[base-mailman.listName_rule]]"
+msgstr "Enter the name of the mailing list. [[base-mailman.listName_rule]]"
 
 msgid "listName_invalid"
-msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-mailman.listName]].  [[base-mailman.listName_rule]]"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
 
 msgid "listName_empty"
-msgstr "Sorry, you have not entered a value for [[base-mailman.listName]].   [[base-mailman.listName_rule]]"
+msgstr "Sorry, you have not entered a value for [[base-mailman.listName]].  [[base-mailman.listName_rule]]"
 
 msgid "workgroupMembers"
 msgstr "Group Members"
 
 msgid "workgroupMembers_help"
-msgstr "This field contains a list of users who are currently members of the group that is associated with this list.  All members of this group are always subscribed to this mailing list."
+msgstr "This field contains a list of users who are currently members of the group that is associated with this list. All members of this group are always subscribed to this mailing list."
 
 msgid "group_field"
 msgstr "Group List Name"
 
 msgid "group_field_help"
-msgstr "This is the name of the group mailing list.  All members of this group are automatically subscribed to this mailing list."
+msgstr "This is the name of the group mailing list. All members of this group are automatically subscribed to this mailing list."
 
 msgid "save"
 msgstr "Save"
@@ -196,13 +196,13 @@ msgid "remoteSubscribers"
 msgstr "Remote Subscribers"
 
 msgid "remoteSubscribers_rule"
-msgstr "Please enter a properly formatted email address.  For example, user@example.com is a valid entry."
+msgstr "Please enter a properly formatted email address. For example, user@example.com is a valid entry."
 
 msgid "remoteSubscribers_help"
-msgstr "Enter the remote users that are subscribers to this mailing list.  Remote users are users who do not have accounts on this server appliance. [[base-mailman.remoteSubscribers_rule]]"
+msgstr "Enter the remote users that are subscribers to this mailing list. Remote users are users who do not have accounts on this server appliance. [[base-mailman.remoteSubscribers_rule]]"
 
 msgid "remoteSubscribers_invalid"
-msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-mailman.remoteSubscribers]].  [[base-mailman.remoteSubscribers_rule]]"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-mailman.remoteSubscribers]]. [[base-mailman.remoteSubscribers_rule]]"
 
 msgid "remoteSubscribersDigest"
 msgstr "[[base-mailman.remoteSubscribers]] (Digest)"
@@ -211,7 +211,7 @@ msgid "remoteSubscribersDigest_rule"
 msgstr "[[base-mailman.remoteSubscribers_rule]] (Digest)" 
 
 msgid "remoteSubscribersDigest_help"
-msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"   
+msgstr "[[base-mailman.remoteSubscribers_help]] (Digest)"  
 
 msgid "remoteSubscribersDigest_invalid"
 msgstr "[[base-mailman.remoteSubscribers_invalid]] (Digest)"
@@ -230,13 +230,13 @@ msgid "moderator"
 msgstr "Owner/Moderator"
 
 msgid "moderator_rule"
-msgstr "Please enter a properly formatted email address or the username of a valid user on this server appliance.  The default value is admin.  For example, user@example.com and admin are valid entries."
+msgstr "Please enter a properly formatted email address or the username of a valid user on this server appliance. The default value is admin. For example, user@example.com and admin are valid entries."
 
 msgid "moderator_help"
-msgstr "Enter the email address of the user performing all administrative duties for the mailing list.  [[base-mailman.moderator_rule]]"
+msgstr "Enter the email address of the user performing all administrative duties for the mailing list. [[base-mailman.moderator_rule]]"
 
 msgid "moderator_invalid"
-msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-mailman.moderator]].  [[base-mailman.moderator_rule]]"
+msgstr "Sorry, [[VAR.invalidValue] is an invalid value for [[base-mailman.moderator]]. [[base-mailman.moderator_rule]]"
 
 	# handler version
 msgid "Moderator-does-not-exist"
@@ -244,7 +244,7 @@ msgstr "Invalid Moderator: the user [[VAR.moderator]] does not seem to exist."
 
 
 msgid "moderator_empty"
-msgstr "Sorry, you have not entered a value for [[base-mailman.moderator]].  You must enter a value even if no moderation policies have been specified for the mailing list.  [[base-mailman.moderator_rule]]"
+msgstr "Sorry, you have not entered a value for [[base-mailman.moderator]]. You must enter a value even if no moderation policies have been specified for the mailing list. [[base-mailman.moderator_rule]]"
 
 msgid "policies"
 msgstr "Policies"
@@ -253,13 +253,13 @@ msgid "apassword"
 msgstr "Password"
 
 msgid "apassword_help"
-msgstr "Enter an administrative password for this mailing list. This password is used when performing certain list administration tasks via email (for example, approving subscriptions, or moderating messages).  If you do not plan on using these features, you may leave this field blank."
+msgstr "Enter an administrative password for this mailing list. This password is used when performing certain list administration tasks via email (for example, approving subscriptions, or moderating messages). If you do not plan on using these features, you may leave this field blank."
 
 msgid "postingPolicy"
 msgstr "Posting Policy"
 
 msgid "postingPolicy_help"
-msgstr "Select a posting policy for this mailing list.  If you choose Moderator Confirms All Messages, every message will require approval from the list owner/moderator. "
+msgstr "Select a posting policy for this mailing list. If you choose Moderator Confirms All Messages, every message will require approval from the list owner/moderator. "
 
 msgid "any"
 msgstr "All Users Can Post Messages"
@@ -274,7 +274,7 @@ msgid "subscriptionPolicy"
 msgstr "Subscription Policy"
 
 msgid "subscriptionPolicy_help"
-msgstr "Select the list's subscription policy.  Users can subscribe or unsubscribe from the list by sending mail to mailman@[[VAR.fqdn]] with the words 'subscribe list' or 'unsubscribe list' (list is the mailing list name) in the body of the message.  If the policy is 'Closed', the message is sent to the list owner for approval before the subscription is allowed.   Approval is never required to unsubscribe."
+msgstr "Select the list's subscription policy. Users can subscribe or unsubscribe from the list by sending mail to mailman@[[VAR.fqdn]] with the words 'subscribe list' or 'unsubscribe list' (list is the mailing list name) in the body of the message. If the policy is 'Closed', the message is sent to the list owner for approval before the subscription is allowed.  Approval is never required to unsubscribe."
 
 msgid "open"
 msgstr "Open: any user may subscribe."
@@ -333,7 +333,7 @@ msgid "keepForDays_empty"
 msgstr "Sorry, you have not specified a value for [[base-mailman.keepForDays]]. [[base-mailman.keepForDays_rule]]"
 
 msgid "keepForDays_invalid"
-msgstr "Sorry, the field [[base-mailman.keepForDays]] contains an invalid value.  [[base-mailman.keepForDays_rule]]"
+msgstr "Sorry, the field [[base-mailman.keepForDays]] contains an invalid value. [[base-mailman.keepForDays_rule]]"
 
 
 # ------ Handler messages
@@ -416,7 +416,7 @@ msgstr "Reply All"
 msgid "replyAll_help"
 msgstr "Click here to reply to the author and all other recipients of the message."
 
-# ------ Misc  (i.e. I have no idea)
+# ------ Misc (i.e. I have no idea)
 
 msgid "membership"
 msgstr "Membership"
@@ -431,7 +431,7 @@ msgid "WelcomeMessageSubject"
 msgstr "Archiving has been enabled"
 
 msgid "WelcomeMessageBody"
-msgstr "This email has been sent to you to notify you that archiving of the mailing list '[[VAR.name]]' has been enabled for users with accounts on this server.  These users will be able to access this archive from within WebMail.  There is no need to reply to this message."
+msgstr "This email has been sent to you to notify you that archiving of the mailing list '[[VAR.name]]' has been enabled for users with accounts on this server. These users will be able to access this archive from within WebMail. There is no need to reply to this message."
 
 
 # ------- Strings for System tab of Mailman
@@ -496,7 +496,7 @@ msgstr "The MailMan service is operating normally."
 
 # ------- Extra strings for showing mailing list address:
 
-msgid "listAddress"  
+msgid "listAddress" 
 msgstr "List Address:"
 
 msgid "listAddress_help"

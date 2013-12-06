@@ -1,3 +1,13 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 # --- Menu
 
 msgid "mailmans"
@@ -440,46 +450,40 @@ msgid "MailMan_header"
 msgstr "MailMan"
 
 msgid "mailman_enabled"
-msgstr "Enable Mailman:"
+msgstr "Aktivieren Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart MailMan is: /etc/init.d/mailman stop|start|restart"
+msgstr "MailMan ist der Dämon für Mailing-Listen. Der Dienst muss laufen, damit Mailing-Listen funktionieren. Hier können Sie den Dienst aktivieren oder deaktivieren. Der Kommandozeilen-Befehl um MailMan zu stoppen, starten oder neu starten ist: /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
-msgstr "Password:"
+msgstr "Passwort:"
 
 msgid "oldpass_help"
-msgstr "The administrative functions of MailMan are protected with an automatically generated password. This textfield shows the password that was generated for this server upon initial setup."
+msgstr "Die Verwaltungsfunktionen von MailMan sind mit einem automatisch generierten Passwort geschützt. Dieses Textfeld zeigt das Kennwort, das für diesen Server beim ersten Setup erzeugt wurde."
 
 msgid "MailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "MailMan Admin-Interface"
 
 msgid "MailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface. This link has been added for your convinience, but in practical terms you should never use it unless you really know what you are doing there. Please use the BlueOnyx GUI to add or delete mailing lists instead."
+msgstr "Hier können Sie auf das MailMan Admin-Interface zugreifen. Dieser Link ist für Ihre Bequemlichkeit hinzugefügt worden, aber in der Praxis sollte Sie dieses Interface nur verwenden, wenn Sie wirklich wissen, was Sie dort tun. Bitte benutzen Sie die BlueOnyx GUI zum hinzufügen oder löschen von Listen - nicht die MailMan GUI."
 
 msgid "menu_system_mailman"
 msgstr "MailMan"
 
 msgid "menu_system_mailman_help"
-msgstr "Click here to manage the mailing list service MailMan."
-
-
-# ------- Extra strings for vsite management of MailMan:
+msgstr "Klicken Sie hier, um die Mailinglistendienst MailMan zu verwalten."
 
 msgid "vsiteMailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "MailMan Admin-Interface"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface for some of the more advanced configuration options of MailMan."
+msgstr "Hier können Sie auf das MailMan Admin-Interface für einige der erweiterten Konfigurationsoptionen zugreifen."
 
 msgid "MailMan_Archive"
-msgstr "MailMan Archive"
+msgstr "MailMan Archiv"
 
 msgid "MailMan_Archive_help"
-msgstr "This button allows you to access the public MailMan archive of your mailing list." 
-
-
-# ------- Extra strings for AM components of MailMan:
+msgstr "Mit dieser Taste können Sie auf das öffentliche MailMan-Archiv Ihrer Mailingliste zugreifen."
 
 msgid "amDetailsTitle"
 msgstr "MailMan Service Details"
@@ -488,17 +492,13 @@ msgid "amMAILMANNameTag"
 msgstr "MailMan Mailing List Daemon"
 
 msgid "amMAILMANNotRunning"
-msgstr "The MailMan service is NOT operating normally. Please try to manually restart it."
+msgstr "Der MailMan-Service arbeitet nicht normal. Bitte versuchen Sie ihn manuell neu zu starten."
 
 msgid "amMAILMANStatusOK"
-msgstr "The MailMan service is operating normally."
+msgstr "Der MailMan-Service funktioniert normal."
 
-
-# ------- Extra strings for showing mailing list address:
-
-msgid "listAddress"  
-msgstr "List Address:"
+msgid "listAddress"
+msgstr "List Adresse:"
 
 msgid "listAddress_help"
-msgstr "This is the email address that this mailing list is reachable at. To post messages to this list, send your emails to this address."
-
+msgstr "Dies ist die E-Mail-Adresse, über welche diese Mailingliste erreichbar ist. Um Nachrichten an diese Liste zu senden, schicken Sie Ihre E-Mails an diese Adresse."
