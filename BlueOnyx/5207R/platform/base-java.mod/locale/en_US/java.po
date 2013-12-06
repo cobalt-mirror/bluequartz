@@ -26,10 +26,10 @@ msgid "maxClientsField"
 msgstr "Maximum Simultaneous Sessions"
 
 msgid "maxClientsField_help"
-msgstr "Specify the maximum number of simultaneous Java application connections.  "
+msgstr "Specify the maximum number of simultaneous Java application connections. "
 
 msgid "maxClientsField_invalid"
-msgstr "The Maximum Number of Java Sessions is invalid.  Please enter an integer within the specified range."
+msgstr "The Maximum Number of Java Sessions is invalid. Please enter an integer within the specified range."
 
 msgid "javaSettings"
 msgstr "Java Settings"
@@ -71,7 +71,7 @@ msgid "locationFieldEnter"
 msgstr "Web Archive File"
 
 msgid "locationFieldEnter_help"
-msgstr "Enter the location from which to obtain the .war file.  Enter a URL beginning with either http:// or ftp:// to download the archive from a location on the internet, or enter the file location of a .war file to upload.  Click Browse to choose a file on your local hard drive. If you have downloaded .war archives to the web root, an option to choose one of these files will also be available."
+msgstr "Enter the location from which to obtain the .war file. Enter a URL beginning with either http:// or ftp:// to download the archive from a location on the internet, or enter the file location of a .war file to upload. Click Browse to choose a file on your local hard drive. If you have downloaded .war archives to the web root, an option to choose one of these files will also be available."
 
 msgid "url"
 msgstr "URL"
@@ -104,19 +104,19 @@ msgid "targetName"
 msgstr "Installation Location"
 
 msgid "targetName_help"
-msgstr "The contents of the [[base-java.warName]] will be extracted to this directory.  The directory will be created if necessary."
+msgstr "The contents of the [[base-java.warName]] will be extracted to this directory. The directory will be created if necessary."
 
 msgid "targetName_missing"
-msgstr "A target directory must be specified.  [[base-java.targetName_help]]"
+msgstr "A target directory must be specified. [[base-java.targetName_help]]"
 
 msgid "targetName_invalid"
-msgstr "The specified [[base-java.targetName]] contains invalid characters.  Please remove any extended characters from this field."
+msgstr "The specified [[base-java.targetName]] contains invalid characters. Please remove any extended characters from this field."
 
 msgid "targetField"
 msgstr "Installation Location"
 
 msgid "targetField_empty"
-msgstr "Installation Location is missing.  [[base-java.targetName_help]]"
+msgstr "Installation Location is missing. [[base-java.targetName_help]]"
 
 msgid "confirm_archive_removal"
 msgstr "Are you sure you want to permanently delete the directory [[VAR.path]] and all its contents?"
@@ -196,7 +196,7 @@ msgid "badPackage"
 msgstr "The [[base-java.warName]] file is incomplete. The packing_list is invalid or missing. [[base-swupdate.notInstalled]]"
 
 msgid "hostNotFound"
-msgstr "The host specified in the URL could not be contacted.  [[base-swupdate.notInstalled]]"
+msgstr "The host specified in the URL could not be contacted. [[base-swupdate.notInstalled]]"
 
 msgid "fileNotFound"
 msgstr "The [[base-java.warName]] [[VAR.file]] was not found at the specified location."
@@ -220,7 +220,7 @@ msgid "notToUserHome"
 msgstr "The War can not be installed to the home directory of a user."
 
 msgid "loadingWar"
-msgstr "The [[base-java.warName]] is being loaded.  Please wait."
+msgstr "The [[base-java.warName]] is being loaded. Please wait."
 
 msgid "connectionRefused"
 msgstr "The download attempt was refused by the remote server."
@@ -232,7 +232,7 @@ msgid "couldNotCreateTarget"
 msgstr "The installation target directory could not be created because you do not have sufficient permissions."
 
 msgid "jarFailure"
-msgstr "The [[base-java.warName]] extraction failed.  The archive is corrupt."
+msgstr "The [[base-java.warName]] extraction failed. The archive is corrupt."
 
 msgid "installedWar"
 msgstr "The [[base-java.warName]] has been installed successfully."

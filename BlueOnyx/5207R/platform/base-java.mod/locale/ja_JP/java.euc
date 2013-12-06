@@ -1,0 +1,280 @@
+
+msgid "java"
+msgstr "ジャワ"
+
+msgid "java_help"
+msgstr "のJavaServer構成とパフォーマンスの設定を変更するには、ここをクリックしてください。"
+
+msgid "warName"
+msgstr "Webアーカイブ（。戦争）"
+
+msgid "warNames"
+msgstr "[[VAR.fqdn]]用のWebアーカイブ（。戦争）一覧"
+
+msgid "warNames_menu"
+msgstr "Webアーカイブ（。戦争）一覧"
+
+msgid "warName_help"
+msgstr "インストールのアーカイブ名[[base-java.warName]]。"
+
+msgid "enabledField"
+msgstr "サーバー（Tomcatの）を有効に"
+
+msgid "enabledField_help"
+msgstr "Java仮想マシンを有効にします。"
+
+msgid "maxClientsField"
+msgstr "最大同時セッション数"
+
+msgid "maxClientsField_help"
+msgstr "同時Javaアプリケーション接続の最大数を指定します。"
+
+msgid "maxClientsField_invalid"
+msgstr "Javaのセッションの最大数が無効です。指定された範囲内の整数を入力してください。"
+
+msgid "javaSettings"
+msgstr "Javaの設定"
+
+msgid "javaApps"
+msgstr "Web配置"
+
+msgid "javaApps_help"
+msgstr "ロードおよび管理[[base-java.warNames_menu]]。"
+
+msgid "warList"
+msgstr "[[base-java.warNames]]"
+
+msgid "warNameHeader"
+msgstr "名前"
+
+msgid "warNameHeader_help"
+msgstr "これがインストールされているファイルのファイル名である[[base-java.warName]]。"
+
+msgid "warListPathHeader"
+msgstr "場所"
+
+msgid "warListPathHeader_help"
+msgstr "これは[[base-java.warName]]インストールされているサブサイトのWebです。"
+
+msgid "warListActionHeader"
+msgstr "アクション"
+
+msgid "warListActionHeader_help"
+msgstr "再帰的にインストールディレクトリを削除することによって、Webアーカイブをアンインストールするには、Remove]アイコンをクリックします。"
+
+msgid "addWar"
+msgstr "[[VAR.item]]への新規Webアーカイブを追加"
+
+msgid "modWar"
+msgstr "[[VAR.item]]用[[base-java.warName]]の設定を変更します"
+
+msgid "locationFieldEnter"
+msgstr "Webアーカイブファイル"
+
+msgid "locationFieldEnter_help"
+msgstr "。warファイルを入手する場所を入力してください。インターネット上の場所からアーカイブをダウンロードしたり、アップロードする。warファイルのファイルの場所を入力するようにhttp://またはftp://のいずれかで始まるURLを入力してください。ローカルハードドライブ上のファイルを選択するには、[参照]をクリックします。あなたがダウンロードした場合。戦争アーカイブをWebルートに、これらのファイルのいずれかを選択するオプションも利用できるようになります。"
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "URL"
+
+msgid "urlField_empty"
+msgstr "URLが欠落しています。 [[locationFieldEnter_help]]"
+
+msgid "urlField_rule"
+msgstr "インターネット上の場所からパッケージをダウンロードするためにhttp://またはftp://のいずれかで始まるURLを入力します。"
+
+msgid "invalidUrl"
+msgstr "指定されたURLは無効です。 [[base-java.urlField_rule]]"
+
+msgid "upload"
+msgstr "アップロード"
+
+msgid "fileField"
+msgstr "アップロード"
+
+msgid "fileField_empty"
+msgstr "アップロードファイルが欠落しています。 [[locationFieldEnter_help]]"
+
+msgid "loaded"
+msgstr "ロード"
+
+msgid "targetName"
+msgstr "設置場所"
+
+msgid "targetName_help"
+msgstr "の内容は[[base-java.warName]]このディレクトリに抽出されます。必要な場合は、ディレクトリが作成されます。"
+
+msgid "targetName_missing"
+msgstr "ターゲットディレクトリを指定する必要があります。 [[base-java.targetName_help]]"
+
+msgid "targetName_invalid"
+msgstr "指定された[[base-java.targetName]]無効な文字が含まれています。このフィールドから任意の拡張文字を削除してください。"
+
+msgid "targetField"
+msgstr "設置場所"
+
+msgid "targetField_empty"
+msgstr "設置場所が不足しています。 [[base-java.targetName_help]]"
+
+msgid "confirm_archive_removal"
+msgstr "あなたは永久にディレクトリ[[VAR.path]]とそのすべての内容を削除してもよろしいですか？"
+
+msgid "amJavaNameTag"
+msgstr "のJavaServer Pages（JSP）とサーブレット"
+
+msgid "amJavaDetails"
+msgstr "[[base-java.amJavaNameTag]]詳細"
+
+msgid "amStatusOK"
+msgstr "のJavaServer Pagesおよびサーブレットは正常に動作しています。"
+
+msgid "amNotRunning"
+msgstr "のJavaServer Pagesおよびサーブレットが実行されていないと再起動できませんでした。で[[ベースapache.amAdmservNameTag]]、これが問題を修正するかどうかを確認するには、もう一度入れ直しのJavaServer Pagesおよびサーブレットサービスをオフにしてみてください。のJavaServer Pagesおよびサーブレットのサービスがまだ起動できない場合は、[[ベース高山下の[[base-power.power]]メニューの[[base-power.reboot]]ボタンをクリックして、サーバ自体を再起動してみてください。 serverconfig]]。のJavaServer Pagesおよびサーブレットのサービスがまだ起動できない場合は、テクニカルサポートのために[[ベース醤油-basic.techSupportURL]]を参照してください。"
+
+msgid "javaName"
+msgstr "のJavaServer Pages（JSP）とサーブレット"
+
+msgid "enableJava"
+msgstr "JSPとサーブレットを有効にする"
+
+msgid "enableJava_help"
+msgstr "のJavaServer Pages（JSP）とサーブレットの使用を可能にするために有効にします。"
+
+msgid "installStatus"
+msgstr "[[VAR.fileName]]のステータスをインストール"
+
+msgid "statusField"
+msgstr "状況メッセージ"
+
+msgid "statusField_help"
+msgstr "このフィールドは、[[base-java.warName]]インストールされているの現在の状態を示しています。"
+
+msgid "progressField"
+msgstr "進捗"
+
+msgid "progressField_help"
+msgstr "これは、インストールの進捗状況です。"
+
+msgid "dlPercent"
+msgstr "ダウンロードファイルには、[[VAR.file]]：[[VAR.percent]]％完了"
+
+msgid "initializing"
+msgstr "初期化中..."
+
+msgid "downloading"
+msgstr "ダウンロード[[base-java.warName]] ..."
+
+msgid "installing"
+msgstr "インストール[[base-java.warName]] ..."
+
+msgid "fail"
+msgstr "失敗した"
+
+msgid "success"
+msgstr "成功"
+
+msgid "notInstalled"
+msgstr "ソフトウェア[[base-java.warName]]インストールされていません。"
+
+msgid "cannotDownloadUrl"
+msgstr "申し訳ありませんが、[[base-java.warName]]ファイルが指定されたURLからダウンロードすることができませんでした。 URLを確認してからもう一度お試しください。 [[base-java.notInstalled]]"
+
+msgid "badFileName"
+msgstr "申し訳ありませんが、ファイルのファイル名[[base-java.warNameは]]ファイルが無効です。名前を確認して、もう一度試してください。 [[base-java.notInstalled]]"
+
+msgid "verifyingPackage"
+msgstr "確認[[base-java.warName]] ..."
+
+msgid "badPackage"
+msgstr "[[base-java.warName]]ファイルが不完全です。するpacking_listが無効か、または見つかりません。 [[ベースswupdate.notInstalled]]"
+
+msgid "hostNotFound"
+msgstr "URLで指定したホストに接続できませんでした。 [[ベースswupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "[[base-java.warName]] [[VAR.file]]指定された場所では見つかりませんでした。"
+
+msgid "hostRefused"
+msgstr "のURLで指定したホスト[[VAR.file]]の接続を拒否しました。"
+
+msgid "downloadFailure"
+msgstr "[[base-java.warName]]を正しくダウンロードすることができませんでした。このサイトに書き込むための十分な権限を持っているので、アーカイブが置かれているサーバーで問題が発生したり、されているため、これが発生する可能性があります。"
+
+msgid "noLocation"
+msgstr "取得するために指定されていません場所[[base-java.warName]]。"
+
+msgid "errorWGET"
+msgstr "wgetを実行しようとしているときに申し訳ありませんが、エラーが発生しました。"
+
+msgid "unknownFileFormat"
+msgstr "アップロードされたファイルは、サポートされている形式ではありませんか、または壊れています。"
+
+msgid "notToUserHome"
+msgstr "戦争は、ユーザのホームディレクトリにインストールすることはできません。"
+
+msgid "loadingWar"
+msgstr "[[base-java.warName]]ロードされている。しばらくお待ちください。"
+
+msgid "connectionRefused"
+msgstr "ダウンロードしようと、リモートサーバーによって拒否されました。"
+
+msgid "installFailure"
+msgstr "[[base-java.warName]]インストールに失敗しました。"
+
+msgid "couldNotCreateTarget"
+msgstr "あなたが十分な権限を持っていないため、インストール先のディレクトリを作成できませんでした。"
+
+msgid "jarFailure"
+msgstr "[[base-java.warName]]抽出に失敗しました。アーカイブが壊れています。"
+
+msgid "installedWar"
+msgstr "[[base-java.warName]]正常にインストールされています"
+
+msgid ""
+msgstr ""
+
+msgid "javaNotEnabled"
+msgstr "JSPとサーブレットのサポートは現在有効になっていない。システム管理者は、Webアーカイブ（。WAR）ファイルを展開しようとする前に、Web設定でJSPとサーブレットのサポートを有効にお召し上がりください。"
+
+msgid "TomcatAdminInterface"
+msgstr "Tomcatの管理インターフェイス"
+
+msgid "TomcatManagerInterface"
+msgstr "Tomcatのマネージャインターフェイス"
+
+msgid "TomcatHostManagerInterface"
+msgstr "Tomcatのホストマネージャインターフェイス"
+
+msgid "TomcatManagerStatus"
+msgstr "Tomcatのマネージャステータス"
+
+msgid "TomcatManager"
+msgstr "雄猫"
+
+msgid "TomcatManager_desc"
+msgstr "あなたのTomcatサーバーの設定を管理します。"
+
+msgid "TomcatManager_help"
+msgstr "[[base-java.TomcatManager_desc]]"
+
+msgid "TomcatAdminPassHeader"
+msgstr "Tomcatの管理者パスワード"
+
+msgid "AdminPassInformation"
+msgstr "Tomcatの管理者アカウントのパスワードを設定します。"
+
+msgid "TomcatAdminPassField"
+msgstr "パスワード："
+
+msgid "TomcatAdminPassField_help"
+msgstr "、Tomcatの管理バックエンドにログインするには、ここで指定したパスワードを持つユーザー '管理'としてログインする必要があります。このパスワードは（とする必要があります！）サーバーのパスワードとは異なる場合があります。"
+
+msgid "TomcatStausBox_header"
+msgstr "ご注意：Tomcatが停止している"
+
+msgid "TomCatStatusBox_info"
+msgstr "Tomcatが停止している限り、あなたは以下のメニューで管理ボタンのいずれかをクリックすることができません。 Tomcatは自動的に少なくとも1つの仮想サイトがサービスJSPが有効になっているとすぐに開始されます。"
+
