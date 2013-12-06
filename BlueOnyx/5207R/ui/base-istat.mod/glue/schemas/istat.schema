@@ -1,0 +1,14 @@
+<class name="System" namespace="iStat" version="1.0">
+	<property 
+	name="enabled" type="boolean" default="0"
+	writeacl="ruleCapable(serveriStat)"
+    />
+	<property 
+	name="serverCode" type="int" default="12345"
+	writeacl="ruleCapable(serveriStat)"
+    />
+	<property
+	name="networkPort" type="int" default="5109"
+	writeacl="ruleCapable(serveriStat)"
+    />
+</class>
