@@ -17,7 +17,11 @@ Summary: [LABEL] for [VENDOR]-[SERVICE].
 [BUILDARCH]
 [PROVIDES]
 
-Requires: base-console-locale-ja
+Requires: base-console-locale-pt_PT
+Requires: base-console-locale-es_ES
+Requires: base-console-locale-it_IT
+Requires: base-console-locale-fr_FR
+Requires: base-console-locale-ja_JP
 Requires: base-console-locale-en_US
 Requires: base-console-locale-de_DE
 Requires: base-console-locale-da_DK
@@ -125,6 +129,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-25BX11
 - Converted locale encoding from UTF-8 to ISO-8859-1.
