@@ -2,7 +2,7 @@ Summary: iStat server for Linux
 Name: istatd
 Version: 0.5.9
 Vendor: Project BlueOnyx
-Release: 0BX01
+Release: 0BX02
 License: New BSD
 Group: System Environment/Daemons
 Source0: istatd.tar.gz
@@ -26,6 +26,9 @@ usage and keeps the history. Once connecting from the iPhone and entering the
 lock code this data will be sent to the iPhone and shown in fancy graphs.
 
 %changelog
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.9-0BX01
+- Added /tmp to the monitored partitions as well.
 
 * Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.9-0BX01
 - Update to latest version.
