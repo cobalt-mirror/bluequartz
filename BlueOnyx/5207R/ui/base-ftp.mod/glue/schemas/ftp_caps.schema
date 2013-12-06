@@ -1,15 +1,18 @@
 <!--
     Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-    $Id: ftp_caps.schema 259 2004-01-03 06:28:40Z shibuya $
+    $Id: ftp_caps.schema
 
     Capabilities namespaces associated with ftp.
 -->
 <class
-    name="Capabilities" namespace="modifyFtp" version="1.0"
+    name="Capabilities" namespace="serverFTP" version="1.0"
 >
     <property
         name="capable" type="boolean" default="1"
-        readacl="ruleCapable(modifyFtp)"
+        readacl="ruleCapable(serverFTP)"
+    />
+    <property
+    name="nameTag" type="scalar" default="[[base-ftp.cap_serverFTP]]"
     />
 </class>
 

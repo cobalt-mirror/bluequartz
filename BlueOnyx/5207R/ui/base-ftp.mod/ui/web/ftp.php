@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: ftp.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: ftp.php 
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverFTP' should be here:
+if (!$serverScriptHelper->getAllowed('serverFTP')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -56,15 +56,6 @@ $block->addFormField(
   $factory->getLabel("connectRateField")
 );
 
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
-
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 
 $serverScriptHelper->destructor();
@@ -74,7 +65,10 @@ $serverScriptHelper->destructor();
 <?php print($block->toHtml()); ?>
 
 <?php print($page->toFooterHtml());
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

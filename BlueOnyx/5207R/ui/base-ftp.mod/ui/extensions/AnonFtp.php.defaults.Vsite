@@ -33,7 +33,7 @@ class AnonFtpExtension extends UIExtension
   
         $ftpField->addOption($enable);
 
-        // More PGP5 conversion bugs! In tabbed environments the values from composite form fields don't
+        // More PHP5 conversion bugs! In tabbed environments the values from composite form fields don't
         // get posted if you're not right on the tab where the input box is. This work around adds it as
         // hidden field on all tabs:
 
@@ -54,8 +54,8 @@ class AnonFtpExtension extends UIExtension
         );
 
         // now add the form fields to the block, assume PagedBlock
-        $pageId = "siteFtp";
-        $container->addPage($pageId, $factory->getLabel("siteFtp"));
+        $pageId = "AnonFtp";
+        $container->addPage($pageId, $factory->getLabel("AnonFtp"));
         $container->addFormField(
                 $ftpField, 
                 $factory->getLabel("anonFtp"), 

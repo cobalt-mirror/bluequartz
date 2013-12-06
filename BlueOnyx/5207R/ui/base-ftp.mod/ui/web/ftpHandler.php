@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: ftpHandler.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: ftpHandler.php
 
 include_once("ServerScriptHelper.php");
 
@@ -10,8 +10,8 @@ if(!$maxUserField)
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverFTP' should be here:
+if (!$serverScriptHelper->getAllowed('serverFTP')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -30,7 +30,10 @@ print($serverScriptHelper->toHandlerHtml("/base/ftp/ftp.php",
 	$errors));
 
 $serverScriptHelper->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

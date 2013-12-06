@@ -1,5 +1,5 @@
 <! --
-	$Id: ftp.schema 1136 2008-06-05 01:48:04Z mstauber $
+	$Id: ftp.schema
 	Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 	Author: asun@cobalt.com
 	
@@ -9,19 +9,19 @@
 <class name="System" namespace="Ftp" version="1.0">
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property
         name="useReverseDNS" type="boolean" default="0"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="maxConnections" type="int" default="100000"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="connectRate" type="int" default="80"
-        writeacl="ruleCapable(modifyFtp)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>
 
@@ -38,15 +38,15 @@
 	<!-- default settings for anonymous ftp for use in Vsite addition -->
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="maxConnections" type="int" default="10"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="quota" type="int" default="20"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>
 
@@ -61,7 +61,7 @@
 
     <property
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>
 
@@ -73,59 +73,59 @@
 -->
 <class 
     name="Vsite" namespace="AnonFtp" version="1.0"
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+    createacl="ruleCapable(serverFTP)" destroyacl="ruleCapable(serverFTP)"
 >
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="maxConnections" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="quota" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>
 
 <class
     name="Vsite" namespace="FTPNONADMIN" version="1.0"
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+    createacl="ruleCapable(serverFTP)" destroyacl="ruleCapable(serverFTP)"
 >
     <property
         name="enabled" type="boolean" default="1"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>
 
 <class 
     name="FtpSite" version="1.0"
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+    createacl="ruleCapable(serverFTP)" destroyacl="ruleCapable(serverFTP)"
 >
 	<property 
         name="ipaddr" type="ipaddr"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="maxConnections" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="anonymous" type="boolean" default="0"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="quota" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 	<property 
         name="commit" type="int" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 
     <!--
@@ -134,11 +134,11 @@
     -->
     <property
         name="denyGroups" type="accountname" optional="yes" array="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
     <property
         name="denyUsers" type="accountname" optional="yes" array="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 
 	<!-- 
@@ -147,13 +147,13 @@
 	-->
 	<property 
         name="anonymousOwner" type="accountname" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
     <!--
         which directory the anonymous ftp dir should live under
     -->
     <property
         name="anonBasedir" type="scalar" optional="yes"
-        writeacl="ruleCapable(adminUser)"
+        writeacl="ruleCapable(serverFTP)"
     />
 </class>

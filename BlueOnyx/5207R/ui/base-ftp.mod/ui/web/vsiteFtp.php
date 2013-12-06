@@ -1,7 +1,6 @@
 <?
 // Copyright Sun Microsystems, Inc. 2001
-// $Id: vsiteFtp.php 1136 2008-06-05 01:48:04Z mstauber $
-// vsiteFtp.php
+// $Id: vsiteFtp.php
 // display the form to modify anonymous ftp settings for a vsite
 
 include_once('ServerScriptHelper.php');
@@ -13,11 +12,14 @@ $factory =& $helper->getHtmlComponentFactory('base-ftp',
                     '/base/ftp/vsiteFtp.php');
 $cce =& $helper->getCceClient();
 
-// Only adminUser can modify things on this page.  
+// Only 'serverFTP' can modify things on this page.  
 // Site admins can view it for informational purposes.
-if ($helper->getAllowed('adminUser')){
+if ($helper->getAllowed('serverFTP')){
     $is_site_admin = 0;
     $access = 'rw';
+} elseif ($helper->getAllowed('siteAnonFTP')) {
+    $access = 'rw';
+    $is_site_admin = 1;
 } elseif ($helper->getAllowed('siteAdmin') &&
           $group == $helper->loginUser['site']) {
     $access = 'r';
@@ -66,10 +68,10 @@ if (!$ftp_submit)
 $vsite_disk =& $cce->get($vsite_oid, 'Disk');
 
 // start the paged block
-$settings =& $factory->getPagedBlock('ChangeSiteFtp');
+$settings =& $factory->getPagedBlock('modAnonFtp');
 $settings->processErrors($errors);
 $settings->setLabel(
-    $factory->getLabel('ChangeSiteFtp', false, array('fqdn' => $vsite['fqdn'])));
+    $factory->getLabel('modAnonFtp', false, array('fqdn' => $vsite['fqdn'])));
 
 
 // add auto-detected features
@@ -133,16 +135,6 @@ if ($is_site_admin) {
 	$settings->setColumnWidths(array('20%', '80%'));
 }
 
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$settings->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
-
-
 // add the buttons
 if (!$is_site_admin)
 	$settings->addButton($factory->getSaveButton($page->getSubmitAction()));
@@ -161,7 +153,10 @@ print $page->toFooterHtml();
 
 // nice people say goodbye
 $helper->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
