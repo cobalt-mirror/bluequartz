@@ -1,10 +1,7 @@
 ifndef CCEBASE
 CCEBASE = /usr/sausalito
 endif
-ifdef CCETOPDIR 
-include $(CCETOPDIR)/devel/defines.mk 
-else 
-include /usr/sausalito/devel/defines.mk
+include $(CCEBASE)/devel/defines.mk
 
 SCRIPTS=sbin/ftpaccess.pl sbin/fixproftpd_conf.pl
 
