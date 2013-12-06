@@ -417,3 +417,50 @@ msgstr "Neue MySQL-Benutzer und Datenbanken werden mit den hier konfigurierten S
 msgid "root_has_no_pwd"
 msgstr "Für den MySQL-Benutzer 'root' wurde noch kein Passwort vergeben! Bitte vergeben Sie für MySQL-Benutzer 'root' unbedingt ein Passwort!"
 
+msgid "sqlstatus_fail"
+msgstr "MySQL-Verbindung kann nicht hergestellt werden. Bitte überprüfen Sie die Einstellungen unter 'Netzwerkdienste' / 'MySQL Config' zuerst. Prüfen Sie, ob MySQLd läuft."
+
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "CreateFailUserExists"
+msgstr "Dieser MySQL-Benutzer existiert bereits in der MySQL Benutzertabelle vorhanden."
+
+msgid "CreateFailDBExists"
+msgstr "Diese MySQL-Datenbank ist bereits in der MySQL-Datenbanktabelle vorhanden."
+
+msgid "CreateFailDatabaseExists"
+msgstr "Diese MySQL-Datenbank ist bereits vorhanden."

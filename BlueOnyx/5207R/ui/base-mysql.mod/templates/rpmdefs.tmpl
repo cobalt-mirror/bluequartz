@@ -115,6 +115,17 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Updated Danish, English and German locales.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Updated Schema files with new additions from Hisao's 5200R tree.
+- Added Hideki Oride's glue/handlers/exist_user_and_db_check.pl and modified it to use localized error messages.
+- Added localized error messages from glue/handlers/exist_user_and_db_check.pl to all locales.
+- Modified MySQL version check in ui/web/mysqlusers.php
+
 * Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.1-27
 - Updated locale/de_DE/mysql.po to correct some transitional errors.
 

@@ -1,414 +1,463 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "amDetailsTitle"
-msgstr "MySQL Server Details"
+msgstr "MySQLサーバの詳細"
 
 msgid "amMysqlNameTag"
-msgstr "MySQL Server"
+msgstr "MySQLサーバ"
 
 msgid "amNotAccepting"
-msgstr ""
-"The MySQL server is NOT operating normally.  Please try to manually restart "
-"it"
+msgstr "MySQLサーバは正常に動作していません。手動で再起動してみてください。"
 
 msgid "amStatusOK"
-msgstr "The MySQL server is operating normally."
+msgstr "MySQLサーバは正常に動作しています。"
 
 msgid "current_pass"
-msgstr "Current Password:"
+msgstr "現在のパスワード："
 
 msgid "current_pass_help"
-msgstr "Please enter in your current password"
+msgstr "現在のパスワードに入力してください"
 
 msgid "delete_backup"
-msgstr "Delete Backup"
+msgstr "バックアップを削除"
 
 msgid "delete_backup_help"
-msgstr "Delete your MySQL backup file"
+msgstr "MySQLのバックアップファイルを削除します。"
 
 msgid "download_backup"
-msgstr "Download DB Backup"
+msgstr "DBバックアップをダウンロード"
 
 msgid "download_backup_help"
-msgstr "Download the current snap shot of your database"
+msgstr "データベースの現在のスナップショットをダウンロードする"
 
 msgid "dump"
-msgstr "Run SQL Dump"
+msgstr "実行されるSQLダンプ"
 
 msgid "dump_help"
-msgstr "Execute MySQL Dump"
+msgstr "MySQLのダンプを実行"
 
 msgid "filesize"
-msgstr "File Size:"
+msgstr "ファイルサイズ："
 
 msgid "filesize_help"
-msgstr "The size of your MySQL dump file"
+msgstr "MySQLのダンプ·ファイルのサイズ"
 
 msgid "last_backup"
-msgstr "Last Backed Up:"
+msgstr "最後のバックアップさ："
 
 msgid "last_backup_help"
-msgstr "Look at when the backup last happened"
+msgstr "バックアップは、最後の起こったときを見てください"
 
 msgid "mysql_enabled"
-msgstr "Enable MySQL Server:"
+msgstr "MySQLサーバを有効にします。"
 
 msgid "mysql_enabled_help"
-msgstr "Click to enable MySQL Server"
+msgstr "MySQLサーバを有効にする]をクリック"
 
 msgid "mysql_header"
-msgstr "MySQL Server"
+msgstr "MySQLサーバ"
 
 msgid "mysqldump"
-msgstr "Create Database Snap Shot"
+msgstr "データベーススナップショットを作成します。"
 
 msgid "mysqldump_help"
-msgstr "Back up all of your databases"
+msgstr "すべてのデータベースをバックアップする"
 
 msgid "mysqlpass"
-msgstr "New Password:"
+msgstr "新しいパスワード："
 
 msgid "mysqlpass_help"
-msgstr "Allows you to change your MySQL password, as long as you know the current password."
+msgstr "あなたは限り、あなたは現在のパスワードを知っているように、MySQLのパスワードを変更することができます。"
 
 msgid "password"
-msgstr "MySQL Password"
+msgstr "MySQLのパスワード"
 
 msgid "password_help"
-msgstr "The password for the main user of MySQL"
+msgstr "MySQLは主ユーザーのパスワード"
 
 msgid "server"
-msgstr "Server"
+msgstr "サーバー"
 
 msgid "server_help"
-msgstr "Enable & Disable MySQL Server"
+msgstr "MySQLサーバを有効にすると無効"
 
 msgid "sqldump"
-msgstr "SQL DB Dump"
+msgstr "SQL DBのダンプ"
 
 msgid "sqldump_help"
-msgstr "Dump all of the databases to a text file"
+msgstr "テキストフ​​ァイルにすべてのデータベースをダンプ"
 
 msgid "sqlpass"
-msgstr "Change Password"
+msgstr "パスワードを変更"
 
 msgid "sqlpass_help"
-msgstr "Allows you to change your MySQL password. Can also be used to clear a MySQL password, provided you know the current password. To do so simply leave the 'New Password' field empty."
+msgstr "あなたのMySQLのパスワードを変更することができます。また、現在のパスワードを知っている提供、MySQLのパスワードをクリアすることができます。そうするためには、単純に空の「新しいパスワード」フィールドにしておきます。"
 
 msgid "username"
-msgstr "MySQL Username"
+msgstr "MySQLのユーザー名"
 
 msgid "username_help"
-msgstr "The main user user for MySQL"
-
-# Solarspeed additions:
+msgstr "MySQLのメインユーザーのユーザー"
 
 msgid "MySQL_Settings_head"
-msgstr "MySQL Settings"
+msgstr "MySQLの設定"
 
 msgid "MySQL_Settings_divider"
-msgstr "Configure the settings for automatic creation of MySQL users and databases."
+msgstr "MySQLユーザとデータベースの自動作成のための設定を行います。"
 
 msgid "sql_host"
-msgstr "MySQL Host:"
+msgstr "MySQLのホスト："
 
 msgid "sql_host_help"
-msgstr "Host on which the MySQL server is located. Needs to be specified so that applications can connect to MySQL. By default this should be 'localhost'."
+msgstr "MySQLサーバが配置されているホスト。アプリケーションがMySQLに接続できるように指定する必要があります。デフォルトでは、 'localhost'の必要があります。"
 
 msgid "sql_port"
-msgstr "MySQL Port:"
+msgstr "MySQLのポート："
 
 msgid "sql_port_help"
-msgstr "TCP/IP port on which MySQL is reachable on the specified host. By default this should be '3306'."
+msgstr "MySQLは指定されたホストの到達可能なTCP / IPポート。デフォルトでは'3306 'でなければなりません。"
 
 msgid "MYSQL_ROOT_Settings_divider"
-msgstr "MySQL root user settings - needed for database initialisation, setup and maintenance:"
+msgstr "MySQLのrootユーザの設定 - データベースの初期化と設定や保守のために必要。"
 
 msgid "sql_root"
-msgstr "MySQL User:"
+msgstr "MySQLのユーザー："
 
 msgid "sql_root_help"
-msgstr "Username of the MySQL user with 'root' privileges. By default this should be 'root'."
+msgstr "「ルート」権限を持つMySQLのユーザのユーザ名。デフォルトでは、「ルート」でなければなりません。"
 
 msgid "sql_rootpassword"
-msgstr "MySQL Password:"
+msgstr "MySQLのパスワード："
 
 msgid "sql_rootpassword_help"
-msgstr "Password of the MySQL 'root' user."
+msgstr "MySQLのrootユーザーのパスワード。"
 
 msgid "sql_status"
-msgstr "MySQL Status:"
+msgstr "MySQLの状態："
 
 msgid "sql_status_help"
-msgstr "Shows the status of your MySQL connection and if it is possible to connect to the MySQL server with the login details that you specified above."
+msgstr "あなたのMySQL接続の状態が表示され、それはあなたが上で指定したログイン詳細をMySQLサーバに接続することが可能です。"
 
 msgid "mysql_status_unconfigured"
-msgstr "Please configure the settings."
+msgstr "設定を構成してください。"
 
 msgid "mysql_status_incorrect"
-msgstr "MySQL connection cannot be established. Check settings."
+msgstr "MySQLの接続が確立できません。設定を確認してください。"
 
 msgid "mysql_status_ok"
-msgstr "MySQL connection possible with this settings."
+msgstr "この設定で可能なMySQL接続。"
 
 msgid "MySQL_menu"
-msgstr "MySQL"
+msgstr "MySQLの"
 
 msgid "MySQL_menu_help"
-msgstr "Configure the MySQL related settings, so that applications can communicate with MySQL."
+msgstr "アプリケーションは、MySQLと通信できるように、MySQLの関連する設定を構成します。"
 
 msgid "MySQL_Local_divider"
-msgstr "Local MySQL server:"
+msgstr "ローカルのMySQLサーバ："
 
 msgid "MySQL_Remote_divider"
-msgstr "MySQL Server Details:"
+msgstr "MySQLサーバの詳細："
 
 msgid "MySQL_Login_divider"
-msgstr "MySQL 'root' user details:"
+msgstr "MySQLのrootユーザーの詳細："
 
 msgid "MySQL_Status_divider"
-msgstr "MySQL Connection Status:"
-
-### mysqlusers start:
+msgstr "MySQLの接続ステータス："
 
 msgid "mysql_head"
-msgstr "MySQL Configuration"
+msgstr "MySQL設定"
 
 msgid "my_cnf"
-msgstr "/etc/my.cnf Editor:"
+msgstr "は、/etc/my.cnfに編集："
 
 msgid "my_cnf_help"
-msgstr "Here you can edit your my.cnf directly. Please note that this editor does not check if what you enter makes any sense. It doesn't correct typos or wrong definitions."
+msgstr "ここでは、直接のmy.cnfを編集することができます。何か意味が入力した内容は、このエディタがチェックされませんのでご注意ください。これはタイプミスや誤った定義を修正していません。"
 
 msgid "mysql_license"
-msgstr "License management:"
+msgstr "ライセンス管理："
 
 msgid "mysql_license_help"
-msgstr "This software is copyrighted work and requires a per server license. You can request, view or manage your server license here."
+msgstr "このソフトウェアは、作品を著作権で保護し、サーバーごとにライセンスが必要です。あなたは、要求ビューまたはここにサーバライセンスを管理できます。"
 
 msgid "customer_name"
-msgstr "Customer Name:"
+msgstr "顧客名："
 
 msgid "customer_name_help"
-msgstr "Please enter your name here. This should be the name under which you have purchased the software at http://www.solarspeed.net"
+msgstr "あなたの名前をここに入力してください。これは、http://www.solarspeed.netでソフトウェアを購入したときの名前でなければなりません"
 
 msgid "customer_email"
-msgstr "Customer Email:"
+msgstr "顧客の電子メール："
 
 msgid "customer_email_help"
-msgstr "Please enter your email address here. This should be the same email address which you have used in the Solarspeed.net online store for the purchase."
+msgstr "ここにメールアドレスを入力してください。これは、購入のためSolarspeed.netオンラインストアで使用した同じ電子メールアドレスでなければなりません。"
 
 msgid "customer_company"
-msgstr "Company Name:"
+msgstr "会社名："
 
 msgid "customer_company_help"
-msgstr "Please enter your company name here. If you are not incorporated, please use your domain name instead."
+msgstr "ここにあなたの会社名を入力してください。あなたが組み込まれていない場合は、代わりにドメイン名を使用してください。"
 
 msgid "server_key"
-msgstr "Server Key:"
+msgstr "サーバキー："
 
 msgid "server_key_help"
-msgstr "The 'Server Key' is an automatically generated unique identifier that helps us to identify if you run the software on the server that it was licensed for."
+msgstr "「サーバーキーは 'あなたはそれがためにライセンスを取得したサーバー上でソフトウェアを実行する場合、私たちを識別するのに役立ちます、自動的に生成される一意の識別子です。"
 
 msgid "product_key"
-msgstr "Product Key:"
+msgstr "プロダクトキー："
 
 msgid "product_key_help"
-msgstr "The 'Product Key' is your software license. It unlocks the software if it is installed on the server that it was licensed for."
+msgstr "「プロダクトキー」は、ソフトウェアのライセンスです。それはそれがためにライセンスを取得したサーバーにインストールされている場合は、ソフトウェアのロックを解除します。"
 
 msgid "email_key_request"
-msgstr "Email Key Request"
+msgstr "Eメールキーリクエスト"
 
 msgid "email_key_request_help"
-msgstr "When you press this button, an email is sent to keyrequest@solarspeed.net. The email will contain your name, company name and email address. It will also email the 'Server Key' so that we can generate a 'Product Key' for you."
+msgstr "このボタンを押すと、メールがkeyrequest@solarspeed.netに送信されます。電子メールは、お名前、会社名、電子メールアドレスが含まれます。私たちはあなたのための「プロダクトキー」を生成できるように、それはまた、「サーバキーを 'メールでお知らせいたします。"
 
 msgid "mail_status"
-msgstr "Email Status:"
+msgstr "Eメールステータス："
 
 msgid "mail_status_help"
-msgstr "Status of the Email Key Request delivery. Tells you if your registration email could be sent to keyrequest@solarspeed.net"
+msgstr "メールキーリクエスト配信の状況。あなたの登録メールがkeyrequest@solarspeed.netに送ることができればあなたに伝えます"
 
 msgid "back_to_key_request"
-msgstr "Return to the previous page"
+msgstr "前のページに戻る"
 
 msgid "back_to_key_request_help"
-msgstr "Returns you to the previous page."
+msgstr "前のページに戻ります。"
 
 msgid "MySQL_Config_head"
-msgstr "MySQL Config"
+msgstr "MySQLの設定変更"
 
 msgid "MySQL_Config_head_help"
-msgstr "Configuration of your MySQL Server."
+msgstr "MySQLサーバの構成。"
 
 msgid "MySQL_Config_desc"
-msgstr "MySQL Settings"
+msgstr "MySQLの設定"
 
 msgid "MySQL_Config_desc_help"
-msgstr "Allows you to configure the automatic MySQL database and user creation."
+msgstr "自動MySQLのデータベースとユーザーの作成を構成することができます。"
 
 msgid "MySQL_TAB_ONE"
-msgstr "Auto-Create MySQL Users and Databases"
+msgstr "MySQLのユーザーとデータベースを自動作成"
 
 msgid "MySQL_TAB_ONE_help"
-msgstr "Allows you to automatically create MySQL Users and Databases for each site."
+msgstr "あなたが自動的に各サイトのMySQLのユーザーとデータベースを作成することができます。"
 
 msgid "MySQL_TAB_TWO"
-msgstr "/etc/my.cnf Editor"
+msgstr "は、/etc/my.cnfの編集者"
 
 msgid "MySQL_TAB_TWO_help"
-msgstr "Allows you to edit /etc/my.cnf directly through the GUI."
+msgstr "あなたは、GUIを介して直接に/etc/my.cnfのを編集することができます。"
 
 msgid "udb_switch"
-msgstr "MySQL auto-create"
+msgstr "MySQLの自動作成"
 
 msgid "udb_switch_help"
-msgstr "Allows automatic creation of MySQL users and databases through the GUI. Either upon creating a new site, or by editing the 'Web' services of an existing site. Only server administrators have this capability."
+msgstr "GUIを使用してMySQLユーザとデータベースの自動作成を可能にする。いずれかの新しいサイトを作成する際に、または既存のサイトの「WEB」のサービスを編集して。唯一のサーバー管理者はこの機能を持っています。"
 
 msgid "solmysqlFullText"
-msgstr "MySQL user and database"
+msgstr "MySQLのユーザーとデータベース"
 
 msgid "solmysqlFullText_help"
-msgstr "Allows you to automatically create or remove a MySQL database and a MySQL user for this site. PLEASE NOTE: If the checkbox is already checked, then unchecking it and saving the changes will remove the MySQL database AND the user."
+msgstr "あなたは自動的にMySQLデータベースと、このサイトのMySQLユーザを作成したり、削除することができます。注意：チェックボックスがすでにオンになっている場合、それをオフにし、変更を保存すると、MySQLのデータベースとユーザーを削除します。"
 
 msgid "solmysqlUsername"
-msgstr "Username"
+msgstr "ユーザ名"
 
 msgid "solmysqlUsername_help"
-msgstr "Username of the MySQL user. Has rights and permissions only for the database specified below."
+msgstr "MySQLのユーザのユーザ名。唯一の下の指定されたデータベースの権限とアクセス許可を持っています。"
 
 msgid "solmysqlPass"
-msgstr "Password"
+msgstr "パスワード"
 
 msgid "solmysqlPass_help"
-msgstr "MySQL password for the MySQL user in question."
+msgstr "問題のMySQLユーザのためのMySQLのパスワード。"
 
 msgid "solmysqlDB"
-msgstr "Database Name"
+msgstr "データベース名"
 
 msgid "solmysqlDB_help"
-msgstr "Name of the MySQL database for this site."
+msgstr "このサイトのMySQLデータベースの名前。"
 
 msgid "solmysqlHost"
-msgstr "Database Host"
+msgstr "データベースホスト"
 
 msgid "solmysqlHost_help"
-msgstr "Host on which the MySQL server is running. Typically this is 'localhost'."
+msgstr "MySQLサーバが動作しているホスト。通常、これは 'localhost'のです。"
 
 msgid "solmysqlPort"
-msgstr "Port"
+msgstr "ポート"
 
 msgid "solmysqlPort_help"
-msgstr "Port on which the MySQL server is listening. Typically this is '3306'."
+msgstr "MySQLサーバーが待機しているポート。通常、これは'3306 'です。"
 
 msgid "MySQL_DIVIDER_ONE"
-msgstr "Default rights on auto-created users:"
+msgstr "自動作成されたユーザーのデフォルトの権利："
 
 msgid "mysql_default_privileges"
-msgstr "Default privileges:"
+msgstr "デフォルトの権限："
 
 msgid "mysql_default_privileges_help"
-msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
+msgstr "新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォルトの権限で作成されます。"
 
 msgid "EXPLAIN_RIGHTS"
-msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
+msgstr "新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォルトの権限で作成されます。"
 
 msgid "DIVIDER_ZERO"
-msgstr "Default database privileges:"
+msgstr "デフォルトのデータベース権限："
 
 msgid "DIVIDER_ONE"
-msgstr "Data privileges:"
+msgstr "データ特権："
 
 msgid "DIVIDER_TWO"
-msgstr "Structure privileges (by default all are granted):"
+msgstr "構造権限（デフォルトですべてが許可されています）："
 
 msgid "DIVIDER_THREE"
-msgstr "Structure privileges (by default these are not granted):"
+msgstr "構造権限（デフォルトでは、これらが付与されていません）。"
 
 msgid "DIVIDER_FOUR"
-msgstr "Resource Limits:"
+msgstr "リソースの制限："
 
 msgid "SELECT_help"
-msgstr "Allows reading data."
+msgstr "データを読み込むことができます。"
 
 msgid "INSERT_help"
-msgstr "Allows inserting and replacing data."
+msgstr "データの挿入と交換ができます。"
 
 msgid "UPDATE_help"
-msgstr "Allows changing data."
+msgstr "データを変更することができます。"
 
 msgid "DELETE_help"
-msgstr "Allows deleting data."
+msgstr "データを削除することができます。"
 
 msgid "FILE_help"
-msgstr "Allows importing data from files and exporting data to files. Not set by default."
+msgstr "ファイルからデータをインポートし、ファイルにデータをエクスポートすることができます。デフォルトで設定されていません。"
 
 msgid "CREATE_help"
-msgstr "Allows creating databases and tables."
+msgstr "データベースとテーブルを作成することができます。"
 
 msgid "ALTER_help"
-msgstr "Allows altering the structure of existing tables."
+msgstr "既存のテーブルの構造を変更することができます。"
 
 msgid "INDEX_help"
-msgstr "Allows creating and dropping indexes."
+msgstr "インデックスを作成してドロップすることができます。"
 
 msgid "DROP_help"
-msgstr "Allows dropping of databases and tables."
+msgstr "データベースとテーブルの削除を許可。"
 
 msgid "TEMPORARY"
-msgstr "CREATE TEMPORARY TABLES"
+msgstr "一時テーブルのCREATE"
 
 msgid "TEMPORARY_help"
-msgstr "Allows creating temporary tables."
+msgstr "一時テーブルを作成することができます。"
 
 msgid "CREATE_VIEW"
-msgstr "CREATE VIEW"
+msgstr "CREATE VIEWを"
 
 msgid "CREATE_VIEW_help"
-msgstr "Allows creating new views. (Only available in MySQL5 or better.)"
+msgstr "新しいビューを作成することができます。 （のみのMySQL5で利用可能な、またはより良い。）"
 
 msgid "SHOW_VIEW"
-msgstr "SHOW VIEW"
+msgstr "ビューの表示"
 
 msgid "SHOW_VIEW_help"
-msgstr "Allows performing SHOW CREATE VIEW queries. (Only available in MySQL5 or better.)"
+msgstr "ショーはVIEWクエリを作成実行することができます。 （のみのMySQL5で利用可能な、またはより良い。）"
 
 msgid "CREATE_ROUTINE"
-msgstr "CREATE ROUTINE"
+msgstr "ルーチンを作成"
 
 msgid "CREATE_ROUTINE_help"
-msgstr "Allows creating stored routines. (Only available in MySQL5 or better.)"
+msgstr "ストアドルーチンを作成することができます。 （のみのMySQL5で利用可能な、またはより良い。）"
 
 msgid "ALTER_ROUTINE"
-msgstr "ALTER ROUTINE"
+msgstr "ROUTINE、ALTER"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "Allows altering and dropping of stored routines. (Only available in MySQL5 or better.)"
+msgstr "ストアドルーチンの変更し、ドロップを可能にする。 （のみのMySQL5で利用可能な、またはより良い。）"
 
 msgid "EXECUTE_help"
-msgstr "Allows running of store routines. (Only available in MySQL5 or better.)"
+msgstr "店舗ルーチンの実行が可能です。 （のみのMySQL5で利用可能な、またはより良い。）"
 
 msgid "MAX_QUERIES_PER_HOUR"
-msgstr "MAX QUERIES PER HOUR"
+msgstr "MAXはPER時間に照会"
 
 msgid "MAX_QUERIES_PER_HOUR_help"
-msgstr "Limits the number of queries a user may send to the server per hour. '0' means no limit."
+msgstr "ユーザーは時間あたりのサーバに送信することがクエリの数を制限します。 '0 'は無制限を意味する。"
 
 msgid "MAX_UPDATES_PER_HOUR"
-msgstr "MAX UPDATES PER HOUR"
+msgstr "MAXアップデートPER HOUR"
 
 msgid "MAX_UPDATES_PER_HOUR_help"
-msgstr "Limits the number of commands that change any table or database the user may execute per hour. '0' means no limit."
+msgstr "ユーザーが時間あたりに実行可能性のあるテーブルまたはデータベースを変更するコマンドの数を制限します。 '0 'は無制限を意味する。"
 
 msgid "MAX_CONNECTIONS_PER_HOUR"
-msgstr "MAX CONNECTIONS PER HOUR"
+msgstr "HOURあたりの最大接続"
 
 msgid "MAX_CONNECTIONS_PER_HOUR_help"
-msgstr "Limits the number of connections the user may open per hour. '0' means no limit."
+msgstr "ユーザーが時間ごとのオープンも接続の数を制限します。 '0 'は無制限を意味する。"
 
 msgid "MySQL_Info_Text"
-msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
-
-#
+msgstr "新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォルトの権限で作成されます。"
 
 msgid "root_has_no_pwd"
-msgstr "MySQL password for MySQL-root user apparently not yet set! Please set a password for MySQL-user 'root'!"
+msgstr "MySQLのrootユーザーのためのMySQLのパスワードは明らかにまだ設定されていません！ MySQLのユーザー「ルート」のパスワードを設定してください！"
 
+msgid "sqlstatus_fail"
+msgstr "MySQLの接続が確立できません。最初の「ネットワークサービス」/「MySQLの設定変更」の下の設定を確認してください。 MySQLが動作している場合にも参照してください。"
+
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "CreateFailUserExists"
+msgstr "そのMySQLのユーザーは既にMySQLユーザーテーブルに存在する。"
+
+msgid "CreateFailDBExists"
+msgstr "そのMySQLデータベースは、すでにMySQLのデータベースのテーブルに存在します。"
+
+msgid "CreateFailDatabaseExists"
+msgstr "MySQLデータベースが既に存在していること。"
 

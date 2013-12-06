@@ -5,9 +5,7 @@ msgid "amMysqlNameTag"
 msgstr "MySQL Server"
 
 msgid "amNotAccepting"
-msgstr ""
-"The MySQL server is NOT operating normally.  Please try to manually restart "
-"it"
+msgstr "The MySQL server is NOT operating normally. Please try to manually restart it."
 
 msgid "amStatusOK"
 msgstr "The MySQL server is operating normally."
@@ -411,4 +409,54 @@ msgstr "New MySQL users will be created with the following default privileges fo
 msgid "root_has_no_pwd"
 msgstr "MySQL password for MySQL-root user apparently not yet set! Please set a password for MySQL-user 'root'!"
 
+msgid "sqlstatus_fail"
+msgstr "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running."
 
+## Label renaming for 5200R:
+
+# was: "solmysqlFullText"
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+# was: msgid "solmysqlFullText_help"
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "CreateFailUserExists"
+msgstr "That MySQL user already exists in the MySQL user table."
+
+msgid "CreateFailDBExists"
+msgstr "That MySQL database already exists in the MySQL database table."
+
+msgid "CreateFailDatabaseExists"
+msgstr "That MySQL database already exists."
