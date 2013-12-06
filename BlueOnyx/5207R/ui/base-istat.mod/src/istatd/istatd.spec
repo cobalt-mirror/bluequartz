@@ -8,7 +8,7 @@ Group: System Environment/Daemons
 Source0: istatd-%{version}.tar.gz
 Source1: istatd.init
 Source2: istat.conf
-Patch0: istatd-Makefile.patch
+#Patch0: istatd-Makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: libxml2-devel
 
@@ -32,7 +32,7 @@ lock code this data will be sent to the iPhone and shown in fancy graphs.
 %prep
 %setup
 
-%patch0 -p1 -b .makefile
+#%patch0 -p1 -b .makefile
 
 %build
 %configure
