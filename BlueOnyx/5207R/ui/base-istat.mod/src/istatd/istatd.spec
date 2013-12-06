@@ -5,7 +5,7 @@ Vendor: Project BlueOnyx
 Release: 0BX01
 License: New BSD
 Group: System Environment/Daemons
-Source0: istatd-%{version}.tar.gz
+Source0: istatd.tar.gz
 Source1: istatd.init
 Source2: istat.conf
 #Patch0: istatd-Makefile.patch
@@ -30,7 +30,7 @@ lock code this data will be sent to the iPhone and shown in fancy graphs.
 - build for Blue Quartz
 
 %prep
-%setup
+%setup -n istatd
 
 #%patch0 -p1 -b .makefile
 
