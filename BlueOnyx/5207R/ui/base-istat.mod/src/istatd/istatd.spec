@@ -6,11 +6,18 @@ Release: 0BX01
 License: New BSD
 Group: System Environment/Daemons
 Source0: istatd.tar.gz
-Source1: istatd.init
-Source2: istat.conf
+#Source1: istatd.init
+#Source2: istat.conf
 #Patch0: istatd-Makefile.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
 BuildRequires: libxml2-devel
+
+%ifarch64
+BuildArch:      x86_64
+%endif
+%ifarch32
+BuildArch:      i386
+%endif
 
 %description
 iStat Server is a daemon serving statistics to your iStat iPhone application
@@ -35,17 +42,18 @@ lock code this data will be sent to the iPhone and shown in fancy graphs.
 #%patch0 -p1 -b .makefile
 
 %build
+make all
 %configure
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd $RPM_BUILD_DIR/%{name}-%{version}
-make install DESTDIR=$RPM_BUILD_ROOT
+cd $RPM_BUILD_DIR/%{name}
+make PREFIX=$RPM_BUILD_ROOT install DESTDIR=$RPM_BUILD_ROOT
 
 mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/rc.d/init.d
-install -m 755 %{SOURCE1} $RPM_BUILD_ROOT/%{_sysconfdir}/rc.d/init.d/istatd
-install -m 600 %{SOURCE2} $RPM_BUILD_ROOT/%{_sysconfdir}
+install -m 755 $RPM_BUILD_DIR/%{name}/istatd.init $RPM_BUILD_ROOT/%{_sysconfdir}/rc.d/init.d/istatd
+install -m 600 $RPM_BUILD_DIR/%{name}/istat.conf $RPM_BUILD_ROOT/%{_sysconfdir}
 
 %post
 /sbin/chkconfig --add istatd
