@@ -5,7 +5,7 @@ msgid "powerHelp"
 msgstr "Click here to reboot the server appliance."
 
 msgid "shutdownMessage"
-msgstr "For security reasons, this server appliance cannot be shutdown through the web user interface.  <BR>Please shutdown manualy."
+msgstr "For security reasons, this server appliance cannot be shutdown through the web user interface. <BR>Please shutdown manualy."
 
 msgid "shutdownInstructions"
 msgstr "To power down the server appliance, refer the manual of server hardware."
@@ -17,7 +17,7 @@ msgid "acpi_power_subject"
 msgstr "Power Error Shutdown"
 
 msgid "acpi_power_shutdown"
-msgstr "The power supply voltage is out of range. For safety, the server appliance is being shut down.  If the problem persists, please call technical support."
+msgstr "The power supply voltage is out of range. For safety, the server appliance is being shut down. If the problem persists, please call technical support."
 
 msgid "rebootMessage"
 msgstr "Click the button below to reboot the system. The system will be unavailable for several minutes, as it turns off and restarts all services. After the system has restarted, the Server Desktop will again be available."
@@ -44,13 +44,13 @@ msgid "askRebootConfirmation"
 msgstr "Are you sure you want to reboot the server appliance?"
 
 msgid "rebooting"
-msgstr "The server appliance is now rebooting.  It should be available again in a few minutes."
+msgstr "The server appliance is now rebooting. It should be available again in a few minutes."
 
 msgid "poweroptions_menu"
 msgstr "Power"
 
 msgid "poweroptions_menu_help"
-msgstr "Click here to configure remote booting (Wake On LAN) and power up options."
+msgstr "This page allows you to reboot or shutdown the server."
 
 msgid "powerOptions_block"
 msgstr "Power Options"
@@ -125,7 +125,7 @@ msgid "shutdown_menu"
 msgstr "Shutdown"
 
 msgid "shutdown_menu_help"
-msgstr "Click here for instructions on shutting down the machine."
+msgstr "Click here to power down the server. This will power off the server and you will need physical access to it to power it up again. This might not be the best of ideas. I hope you know what you are doing. Seriously."
 
 msgid "couldNotWakeMachine"
 msgstr "Could not wake up the machine with MAC address [[VAR.address]]."
@@ -170,7 +170,7 @@ msgid "amPowerDetails"
 msgstr "System Power Details"
 
 msgid "errSettingWakeMode"
-msgstr "The system failed in setting your requested wake settings.  Please refer to [[base-sauce-basic.techSupportURL]] for technical support."
+msgstr "The system failed in setting your requested wake settings. Please refer to [[base-sauce-basic.techSupportURL]] for technical support."
 
 msgid "cant_get_power_info"
 msgstr "Couldn't get information on the system power values."
@@ -181,3 +181,5 @@ msgstr "Are you sure you want to shutdown the server appliance?"
 msgid "shutting-down"
 msgstr "The server appliance is now shutting down."
 
+msgid "cap_serverPower" 
+msgstr "Power Settings"

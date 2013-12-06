@@ -1,21 +1,12 @@
-# translation of power.po to German
-# Michael Stauber <mstauber@solarspeed.net>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: base-power\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 20:41+0200\n"
-"PO-Revision-Date: 2008-01-27 08:33+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "acpi_power_shutdown"
 msgstr ""
@@ -153,7 +144,7 @@ msgid "shutdown_menu"
 msgstr "Jetzt herunterfahren"
 
 msgid "shutdown_menu_help"
-msgstr "Klicken Sie hier, um den Server anzuhalten."
+msgstr "Klicken Sie hier, um den Server auszuschalten. Wenn Sie den Server ausschalten, brauchen Sie physischen Zugang zum Server, um ihn wieder zu starten. Das ist daher vielleicht nicht gerade die beste aller Ideen. Ich hoffe Sie wissen was Sie da tun. Ernsthaft."
 
 msgid "shutdown_title"
 msgstr ""
@@ -199,4 +190,7 @@ msgstr ""
 
 msgid "willPowerUp2"
 msgstr ""
+
+msgid "cap_serverPower"
+msgstr "Energie-Einstellungen"
 

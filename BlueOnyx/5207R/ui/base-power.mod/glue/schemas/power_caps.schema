@@ -1,20 +1,20 @@
 <!--
     Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-    $Id: power_caps.schema,v 1.2 2001/11/08 20:53:10 pbaltz Exp $
+    $Id: power_caps.schema
 
     capabilities associated with controlling the wake on lan and
     power state of the machine
 -->
 
 <class
-    name="Capabilities" namespace="controlPower" version="0.1"
+    name="Capabilities" namespace="serverPower" version="0.1"
 >
     <property
         name="capable" type="boolean" default="1"
-        readacl="ruleCapable(controlPower)"
+        readacl="ruleCapable(serverPower)"
     />
     <property
-        name="nameTag" type="scalar" default="[[base-power.controlPower]]"
+        name="nameTag" type="scalar" default="[[base-power.cap_serverPower]]"
     />
 </class>
 

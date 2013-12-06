@@ -7,8 +7,8 @@ include_once('Error.php');
 
 $serverScriptHelper = new ServerScriptHelper($sessionId);
 
-//Only users with controlPower capability should be here
-if (!$serverScriptHelper->getAllowed('controlPower')) {
+//Only users with 'serverPower' capability should be here
+if (!$serverScriptHelper->getAllowed('serverPower')) {
   header("location: /error/forbidden.html");
   return;
 }
