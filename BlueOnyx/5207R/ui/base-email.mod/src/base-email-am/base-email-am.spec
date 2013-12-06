@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-email-am
 Name: base-email-am
 Version: 1.3.1
-Release: 1BX01%{?dist}
+Release: 1BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-email-am.  
 
 %changelog
+* Thu Dec 05 2013 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX01
+- Removed .svn directory from rpm package. 
+
 * Wed Aug 31 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.1-1BX01
 - Modified am_smtp.exp with improvements suggested by Steven Howes.
   Gets rid of the 'did not issue MAIL/EXPN/VRFY/ETRN during connection to MTA'

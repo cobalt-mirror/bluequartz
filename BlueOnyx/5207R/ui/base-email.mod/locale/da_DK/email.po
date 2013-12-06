@@ -1,16 +1,12 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
-"POT-Creation-Date: 2007-11-14 09:23+0200\n"
-"PO-Revision-Date: 2007-12-14 12:53+0100\n"
-"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
-"Language-Team: DANISH <jes@enavn.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: quoted-printable\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "CFaccessDenied"
 msgstr "Adgang nægtet"
@@ -524,69 +520,69 @@ msgid "vacationSubject"
 msgstr "Automatisk svar fra"
 
 msgid "mx"
-msgstr "Secondary Mail-server"
+msgstr "Sekundær Mail-server"
 
 msgid "mx_help"
-msgstr "Click here to configure secondary mail-services."
+msgstr "Klik her for at konfigurere sekundære mail-tjenester."
 
 msgid "mx2List"
-msgstr "Secondary Mail-server List"
+msgstr "Sekundær Mail-server liste"
 
 msgid "addmx_help"
-msgstr "Add new secondary mail-domains here."
+msgstr "Tilføj nye sekundære mail-domæner her."
 
 msgid "secondaryDomain"
-msgstr "Secondary Service"
+msgstr "Sekundær service"
 
 msgid "secondaryDomain_help"
-msgstr "This is a list of domains which have secondary mail-services on this server."
+msgstr "Dette er en liste over domæner, som har sekundære mail-services på denne server."
 
 msgid "secondarySettings"
-msgstr "Secondary Settings"
+msgstr "Sekundære indstillinger"
 
 msgid "domainField"
 msgstr "Domain Name"
 
 msgid "domainField_help"
-msgstr "Enter the domain name you want to which you want to add a secondary mailservice."
+msgstr "Indtast det domænenavn, du ønsker, som du ønsker at tilføje en sekundær mailservice."
 
 msgid "maptoField"
-msgstr "Mail Server"
+msgstr "Mail-server"
 
 msgid "maptoField_help"
-msgstr "Enter the main mail server for the domain."
+msgstr "Indtast den primære mailserver for domænet."
 
 msgid "domainExists_in_relay_error"
-msgstr "The Domain Name is already in use in the relay email field."
+msgstr "Domain Name er allerede i brug i relæet email felt."
 
 msgid "domainExists_in_site_error"
-msgstr "The Domain Name is already in use in a site on the server."
+msgstr "Domain Name er allerede i brug i en hjemmeside på serveren."
 
 msgid "domainExists_error"
-msgstr "The Domain Name is already in use in the Secondary Mail server section."
+msgstr "Domain Name er allerede i brug i den sekundære Mailserver sektion."
 
 
 
 msgid "error_writing_sendmail_mc"
-msgstr "Could not write an updated /etc/mail/sendmail.mc. Please check your sendmail.mc for corruptions. To restore a safe default, copy /usr/sausalito/configs/sendmail/sendmail.mc to /etc/mail/sendmail.mc and try again."
+msgstr "Kunne ikke skrive en opdateret /etc/mail/sendmail.mc. Tjek venligst din sendmail.mc for fordærv. Hvis du vil gendanne en sikker standard copy /usr/sausalito/configs/sendmail/sendmail.mc til /etc/mail/sendmail.mc og prøv igen."
 
 msgid "maxRecipientsPerMessageField"
-msgstr "Maximum Recipients per Message"
+msgstr "Maksimalt Modtagere pr Message"
 
 msgid "maxRecipientsPerMessageField_help"
-msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
+msgstr "Definerer, hvor mange modtagere kuvert af en e-mail, kan have. Hvis emails har flere modtagere end angivet her, så e-mail vil blive afvist."
 
 msgid "delayChecksField"
-msgstr "Enable delay_checks"
- 
+msgstr "Aktiver delay_checks"
+
 msgid "delayChecksField_help"
-msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
+msgstr "delay_checks ændrer rækkefølgen Sendmail kontrollerer, om en forbindelse er korrekt eller ej, er dette en god mulighed for os, hvis du bruger RBL sortlister."
 
 msgid "addmx" 
-msgstr "Add"
+msgstr "Tilføj"
 
-msgid "mxRemoveEntry" 
-msgstr "Are you sure you want to delete the [[VAR.mxHost]] MX server-record?" 
+msgid "mxRemoveEntry"
+msgstr "Er du sikker på du vil slette [[VAR.mxHost]] MX-server-record?"
 
 msgid "blacklist" 
 msgstr "Blacklisting" 
@@ -598,41 +594,40 @@ msgid "blackList"
 msgstr "Blacklist Services" 
 
 msgid "blackList_help" 
-msgstr "This is the list of different hosts that provide Blacklist services. ie 'zen.spamhaus.org'." 
+msgstr "Dette er en liste over forskellige værter, der leverer Blackliste tjenester. altså 'zen.spamhaus.org'."
 
-msgid "activated" 
-msgstr "Status" 
+msgid "activated"
+msgstr "Status"
 
-msgid "activated_help" 
-msgstr "Here you can see if the Blacklist entry is active or not." 
+msgid "activated_help"
+msgstr "Her kan du se, om Blacklist indgang er aktiv eller ej."
 
-msgid "blacklistHostExists_error" 
-msgstr "The Blacklist service has already been added, change the hostname to something else." 
+msgid "blacklistHostExists_error"
+msgstr "Sortlisten tjeneste er allerede blevet tilføjet, ændre værtsnavnet til noget andet."
 
-msgid "blacklistRemoveEntry" 
-msgstr "Are you sure you want to delete the [[VAR.blacklistHost]] Blacklist service entry?" 
+msgid "blacklistRemoveEntry"
+msgstr "Er du sikker på du vil slette [[VAR.blacklistHost]] Blacklist tjeneste indtastning?"
 
-msgid "blacklistHostField" 
-msgstr "Blacklist service" 
+msgid "blacklistHostField"
+msgstr "Sortliste tjeneste"
 
-msgid "blacklistHostField_help" 
-msgstr "Enter the <FQDN> of the Blacklist service you want to use, ie. 'zen.spamhaus.org'." 
+msgid "blacklistHostField_help"
+msgstr "Indtast <FQDN> af Den sorte liste tjeneste, du vil bruge, dvs. 'zen.spamhaus.org'."
 
-msgid "deferField" 
-msgstr "Defer Temporary" 
+msgid "deferField"
+msgstr "Udskyd Midlertidig"
 
-msgid "deferField_help" 
-msgstr "If you click this field, the mail-server, if there is a problem reaching the Blacklist service, will return a temporary error to the incoming mail-server and thus temporary defer the message. The default behaviour of the mail-server is to accept the mail if it can't reach the Blacklist-service." 
+msgid "deferField_help"
+msgstr "Hvis du klikker på dette felt, mailserveren, hvis der er et problem at nå Den sorte liste service, vil returnere en midlertidig fejl på den indgående post-server og dermed midlertidig udskyde meddelelsen. Den standard opførsel af mailserveren er at acceptere mail, hvis det ikke kan nå blackliste service."
 
-msgid "activeField" 
-msgstr "Activate service" 
+msgid "activeField"
+msgstr "Aktiver tjeneste"
 
-msgid "activeField_help" 
-msgstr "Select this option if you want to activate this Blacklist service." 
-
+msgid "activeField_help"
+msgstr "Vælg denne mulighed, hvis du ønsker at aktivere denne blackliste service."
 
 msgid "enableZpushField"
-msgstr "Enable Z-Push"
+msgstr "Aktiver Z-Push"
 
 msgid "enableZpushField_help"
-msgstr "Z-push is an open-source application to synchronize ActiveSync compatible PDAs and mobile phones, which allows them access to emails. For more information about how to use Z-Push see: http://www.blueonyx.it/index.php?page=z-push"
+msgstr "Z-Push er en open-source program til at synkronisere ActiveSync kompatible PDA'er og mobiltelefoner, som giver dem adgang til e-mails. For mere information om, hvordan du bruger Z-Push se: http://www.blueonyx.it/index.php?page=z-push"

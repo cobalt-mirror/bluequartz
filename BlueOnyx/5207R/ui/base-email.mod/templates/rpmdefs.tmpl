@@ -123,6 +123,15 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 05 2013 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Updated dependency list in Makefile.
+- Modified glue/usr/local/sbin/vacation.pl so that ja_JP encoded messages now use UTF-8 again.
+
 * Fri Aug 23 2013 Michael Stauber <mstauber@solarspeed.net> 1.5.1-0BX13
 - Modified constructor/syncEmailService.pl with provisions for 5106R only that allow us to bypass the problem with
   'TLS message: tlsv1 alert insufficient security:s3_pkt.c:1092:SSL alert number 71' as per 

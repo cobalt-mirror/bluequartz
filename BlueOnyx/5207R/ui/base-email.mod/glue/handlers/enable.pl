@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email/
-# $Id: enable.pl 771 2006-06-10 15:27:00Z shibuya $
+# $Id: enable.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 use Sauce::Service;

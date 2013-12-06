@@ -1,0 +1,526 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "CFaccessDenied"
+msgstr "Accès refusé"
+
+msgid "CFauthNotAllowed"
+msgstr "pas autorisés à agir en tant que"
+
+msgid "CFcolonInHostname"
+msgstr "Colon illégale en partie nom d&#39;hôte"
+
+msgid "CFdomainRequired"
+msgstr "Nom de domaine requis"
+
+msgid "CFinvalidHostname"
+msgstr "Nom d&#39;hôte invalide"
+
+msgid "CFinvalidListSyntax"
+msgstr "Liste:; syntaxe illégal pour les adresses des destinataires"
+
+msgid "CFnotAuthenticated"
+msgstr "pas authentifié"
+
+msgid "CFrealDomainRequired"
+msgstr "Nom de domaine réel besoin"
+
+msgid "CFrelayDenied"
+msgstr "Relais nié. S&#39;il vous plaît vérifier votre courrier de première ou de redémarrer votre client de messagerie."
+
+msgid "CFrelayDeniedFailed"
+msgstr "Relais nié. Recherche de nom IP échoué"
+
+msgid "CFrelayDeniedForged"
+msgstr "Relais nié. Nom IP peut-être forgé"
+
+msgid "CFrelayDeniedTemp"
+msgstr "Relais temporairement refusée. Impossible de résoudre enregistrement PTR pour l&#39;adresse du client"
+
+msgid "CFsenderDomainNoexist"
+msgstr "Domaine de l&#39;adresse de l&#39;expéditeur n&#39;existe pas"
+
+msgid "CFuserAddressRequired"
+msgstr "Adresse d&#39;utilisateur requis"
+
+msgid "IMAP"
+msgstr "IMAP service"
+
+msgid "POP"
+msgstr "Service POP"
+
+msgid "SMTP"
+msgstr "Service SMTP"
+
+msgid "advanced"
+msgstr "Avancé"
+
+msgid "advanced_help"
+msgstr "Cliquez ici pour configurer avancé [[base-email.emailSettings]] comme le calendrier de livraison et la taille maximum des emails."
+
+msgid "aliasInUse"
+msgstr "Désolé, les alias de messagerie, [[VAR.name]], est déjà utilisé sur ce système. S&#39;il vous plaît choisir un autre."
+
+msgid "amEmailGreen"
+msgstr "Le système de messagerie fonctionne normalement."
+
+msgid "amEmailNameTag"
+msgstr "Serveurs de messagerie"
+
+msgid "amEmailRed"
+msgstr "Il ya un grave problème avec le système de messagerie."
+
+msgid "amEmailYellow"
+msgstr "Il ya un problème avec le système de messagerie."
+
+msgid "amIMAPBadResponse"
+msgstr "Le serveur IMAP a donné une mauvaise réponse."
+
+msgid "amIMAPDetails"
+msgstr "Internet Message Access Protocol (IMAP) Détails du serveur"
+
+msgid "amIMAPNameTag"
+msgstr "Serveur IMAP"
+
+msgid "amIMAPNotRunning"
+msgstr "Le serveur IMAP ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver le serveur IMAP hors tension, puis à nouveau pour voir si cela résout le problème. Si le serveur IMAP est toujours pas à démarrer, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]] . Si le serveur IMAP est toujours pas à démarrer, s&#39;il vous plaît se référer [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amIMAPStatusOK"
+msgstr "Le serveur IMAP fonctionne normalement."
+
+msgid "amPOP3BadResponse"
+msgstr "Le serveur POP a donné une mauvaise réponse."
+
+msgid "amPOP3Details"
+msgstr "Post Office Protocol (POP) Détails du serveur"
+
+msgid "amPOP3NameTag"
+msgstr "Serveur POP"
+
+msgid "amPOP3NotRunning"
+msgstr "Le serveur POP ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver le serveur POP hors tension puis de nouveau pour voir si cela résout le problème. Si le serveur POP est toujours pas à démarrer, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]] . Si le serveur POP est toujours pas à démarrer, s&#39;il vous plaît se référer [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amPOP3StatusOK"
+msgstr "Le serveur POP fonctionne normalement."
+
+msgid "amSMTPBadResponse"
+msgstr "Le serveur SMTP a donné une mauvaise réponse."
+
+msgid "amSMTPDetails"
+msgstr "Simple Mail Transfer Protocol (SMTP) Server Détails"
+
+msgid "amSMTPNameTag"
+msgstr "Serveur SMTP"
+
+msgid "amSMTPNotRunning"
+msgstr "Le serveur SMTP ne fonctionne pas et ne peut pas être redémarré. Le serveur SMTP peut se fermer temporairement sous charge extrême. Vérifier la charge du processeur sur le serveur. Si la charge ne semble pas être le problème, passez à la [[base-apache.amAdmservNameTag]] et essayez de tourner le serveur SMTP éteindre puis le rallumer pour voir si cela résout le problème. Si le serveur SMTP est toujours pas à démarrer, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]] . Si le serveur SMTP est toujours pas à démarrer, s&#39;il vous plaît se référer [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amSMTPStatusOK"
+msgstr "Le serveur SMTP fonctionne normalement."
+
+msgid "apopEnabled"
+msgstr "POP authentifié (APOP)"
+
+msgid "apopEnabled_help"
+msgstr "POP authentifié (APOP) est activée pour cet utilisateur."
+
+msgid "apopFullText"
+msgstr "Activer APOP"
+
+msgid "apopFullText_help"
+msgstr "Activer le protocole POP authentifié (APOP)."
+
+msgid "apopPwRequired"
+msgstr "Un mot de passe est nécessaire pour permettre APOP pour un utilisateur."
+
+msgid "badUser"
+msgstr "Si les fichiers de configuration du serveur de messagerie ont été supprimés ou modifiés manuellement, s&#39;il vous plaît restaurer les versions originales et réessayez."
+
+msgid "bad_blockUserField"
+msgstr "Désolé, vous avez entré une adresse invalide dans [[base-email.blockUserField]]. S&#39;il vous plaît entrer une adresse email correctement formatée. La valeur par défaut est de laisser le champ vide. Par exemple, user@example.com est une entrée valide."
+
+msgid "basic"
+msgstr "Basic"
+
+msgid "basic_help"
+msgstr "Cliquez ici pour configurer de base [[base-email.emailSettings]]."
+
+msgid "blockHostField"
+msgstr "Bloquer le courrier à partir d&#39;hôtes / domaines"
+
+msgid "blockHostField_help"
+msgstr "Entrez les noms d&#39;hôte et des noms de domaine qui ne sont pas autorisés à acheminer le courrier vers ce serveur. [[base-email.blockHostField_rule]]"
+
+msgid "blockHostField_rule"
+msgstr "S&#39;il vous plaît entrer un nom d&#39;hôte correctement formaté ou nom de domaine. La valeur par défaut est de laisser ce champ vide. Par exemple, www.example.com et example.com sont entrées valides."
+
+msgid "blockUserField"
+msgstr "Bloquer le courrier De Utilisateurs"
+
+msgid "blockUserField_help"
+msgstr "Entrez les adresses électroniques des utilisateurs qui ne sont pas autorisés à acheminer le courrier vers ce serveur. [[base-email.blockUserField_rule]]"
+
+msgid "blockUserField_rule"
+msgstr "S&#39;il vous plaît entrer une adresse email correctement formatée. La valeur par défaut est de laisser ce champ vide. Par exemple, user@example.com est une entrée valide."
+
+msgid "cantCreateAlias"
+msgstr "alias de messagerie n&#39;ont pas été créés pour cet utilisateur."
+
+msgid "cantEditFile"
+msgstr "Désolé, une erreur s&#39;est produite tout en essayant de modifier un fichier de configuration de la messagerie. [[base-email.badUser]]"
+
+msgid "cantGetUserInfo"
+msgstr "Vacances n&#39;a pas pu obtenir les informations utilisateur de CCE."
+
+msgid "could_not_tie_apop"
+msgstr "Désolé, une erreur système est survenue. [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "Désolé, une erreur s&#39;est produite tout en essayant de modifier un fichier de configuration de la messagerie. [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "Désolé, le serveur POP ou IMAP ne pouvait pas être remis à zéro à ce moment en raison d&#39;un échec de la configuration du système. [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "Désolé, le serveur SMTP n&#39;a pas pu être démarré à ce moment en raison d&#39;un échec de la configuration du système. [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "Désolé, une erreur s&#39;est produite en essayant de créer un fichier de mappage de serveur de messagerie. [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "Désolé, une erreur s&#39;est produite en essayant d&#39;écrire le fichier de configuration du serveur SMTP. [[base-email.badUser]]"
+
+msgid "duplicateKeys"
+msgstr "Blocage et relayer l&#39;information n&#39;a pas pu être mis à jour. Il ya des hôtes ou des domaines énumérés à la fois pour relayer et blocage double. Email d&#39;un hôte ou de domaine ne peut pas être bloqué et relayé simultanément."
+
+msgid "emailServers"
+msgstr "Serveurs de messagerie"
+
+msgid "emailServers_help"
+msgstr "Cliquez ici pour configurer [[base-email.emailServers]]."
+
+msgid "emailServers_menu"
+msgstr "Email"
+
+msgid "emailServices"
+msgstr "Email Services"
+
+msgid "emailServices_help"
+msgstr "Cliquez ici pour configurer [[base-email.emailServices]]."
+
+msgid "emailSettings"
+msgstr "Paramètres de messagerie"
+
+msgid "enableApop"
+msgstr "Activer APOP"
+
+msgid "enableApop_help"
+msgstr "Activer APOP pour l&#39;utilisateur. APOP est une méthode sécurisée d&#39;authentification à un serveur POP3. Cette option n&#39;est disponible que pour certains lecteurs comme Fetchmail ou Eudora."
+
+msgid "enableImapField"
+msgstr "Activer le serveur IMAP"
+
+msgid "enableImapField_help"
+msgstr "Tournez le service Internet Message Access Protocol (IMAP) ou le désactiver. L&#39;activation de ce service permet aux utilisateurs de récupérer le courrier à partir de ce serveur en utilisant les clients de messagerie IMAP support. IMAP permet aux utilisateurs de stocker le courrier électronique sur le serveur mais nécessite un accès continu au serveur pendant le temps des utilisateurs travaillent avec leur courrier."
+
+msgid "enableImapsField"
+msgstr "Activer le serveur IMAPS"
+
+msgid "enableImapsField_help"
+msgstr "Tournez le Message Access Protocol Internet sur le service TLS / SSL (IMAPS) ou le désactiver. L&#39;activation de ce service permet aux utilisateurs de récupérer le courrier à partir de ce serveur en utilisant les clients de messagerie IMAPS de soutien. IMAPS permet aux utilisateurs de stocker le courrier électronique sur le serveur mais nécessite un accès continu au serveur pendant le temps des utilisateurs travaillent avec leur courrier."
+
+msgid "enablePopField"
+msgstr "Activer le serveur POP"
+
+msgid "enablePopField_help"
+msgstr "Tournez le Post Office Protocol (POP) Service de récupération de courrier ou le désactiver. L&#39;activation de ce service permet aux utilisateurs de récupérer le courrier à partir de ce serveur en utilisant des clients de messagerie les plus standards."
+
+msgid "enablePopsField"
+msgstr "Activer le serveur POP"
+
+msgid "enablePopsField_help"
+msgstr "Tournez le protocole de bureau de poste sur TLS / SSL service de messagerie (POP) de récupération ou le désactiver. L&#39;activation de ce service permet aux utilisateurs de récupérer le courrier à partir de ce serveur en utilisant des clients de messagerie les plus standards."
+
+msgid "enableSMTPAuthField"
+msgstr "Activer l&#39;authentification SMTP"
+
+msgid "enableSMTPAuthField_help"
+msgstr "Tournez le service Simple Mail Transfer Protocol (SMTP) ou le désactiver."
+
+msgid "enableSMTPSField"
+msgstr "Activer le serveur SMTPS"
+
+msgid "enableSMTPSField_help"
+msgstr "Tournez le SMTP sur le service SSL activé ou désactivé."
+
+msgid "enableServersField"
+msgstr "Activer le serveur SMTP"
+
+msgid "enableServersField_help"
+msgstr "Tournez le service Simple Mail Transfer Protocol (SMTP) ou le désactiver. Activation SMTP permettra cet appareil de serveur pour agir comme un serveur SMTP pour l&#39;envoi et la réception de courrier électronique sur Internet entre autres serveurs. SMTP permet également aux utilisateurs d&#39;utiliser cet appareil de serveur pour l&#39;envoi de courriels."
+
+msgid "enableSubmissionPortField"
+msgstr "Activer le port de soumission"
+
+msgid "enableSubmissionPortField_help"
+msgstr "Tournez le port de soumission (587) ou le désactiver."
+
+msgid "imapConnectRateField"
+msgstr "Maximum IMAP taux de connexion"
+
+msgid "imapConnectRateField_help"
+msgstr "Entrez le nombre maximal de connexions autorisées par minute. Les nouvelles connexions seront refusées si le taux de raccordement a atteint cette limite."
+
+msgid "imapConnectRateField_invalid"
+msgstr "S&#39;il vous plaît entrer un numéro dans la plage spécifiée. La valeur par défaut est 1024."
+
+msgid "imapConnectRateField_missing"
+msgstr "[[base-email.imapConnectRateField_invalid]]"
+
+msgid "masqAddressCantBeLocalhost"
+msgstr "Désolé, le domaine de l&#39;expéditeur forcé ne peut être localhost."
+
+msgid "masqAddressField"
+msgstr "Armée de domaine de l&#39;expéditeur"
+
+msgid "masqAddressField_help"
+msgstr "Saisissez un nom de domaine ou l&#39;adresse IP pour remplacer le From: adresse de courriel envoyé par les utilisateurs de ce serveur. Cette fonction est également appelée mascarade de domaine. [[base-email.masqAddressField_rule]]"
+
+msgid "masqAddressField_rule"
+msgstr "S&#39;il vous plaît entrer une adresse IP correctement formatée, le nom d&#39;hôte ou le nom de domaine. La valeur par défaut est de laisser ce champ vide. Par exemple, 192.168.1.100, www.example.com et example.com sont entrées valides."
+
+msgid "maxEmailSizeField"
+msgstr "Maximum Email Size (MB)"
+
+msgid "maxEmailSizeField_help"
+msgstr "Définir la taille maximale des e-mails de ce serveur va envoyer ou recevoir. [[base-email.maxEmailSizeField_rule]]"
+
+msgid "maxEmailSizeField_rule"
+msgstr "S&#39;il vous plaît entrer un entier supérieur à 0. La valeur par défaut est de laisser ce champ vide qui permettra à ce serveur pour envoyer et recevoir des e-mails de n&#39;importe quelle taille."
+
+msgid "nonExistentUser"
+msgstr "Transfert ne peut pas être activée car les noms d&#39;utilisateurs locaux suivants n&#39;existent pas: [[VAR.users]]. S&#39;il vous plaît supprimer ces utilisateurs de la liste d&#39;adresses d&#39;expédition, ou créer les utilisateurs avant d&#39;activer la redirection."
+
+msgid "popConnectRateField"
+msgstr "POP taux maximum de connexion"
+
+msgid "popConnectRateField_help"
+msgstr "[[base-email.imapConnectRateField_help]]"
+
+msgid "popConnectRateField_invalid"
+msgstr "S&#39;il vous plaît entrer un numéro dans la plage spécifiée. La valeur par défaut est 80."
+
+msgid "popConnectRateField_missing"
+msgstr "[[base-email.popConnectRateField_invalid]]"
+
+msgid "popRelayField"
+msgstr "POP relais authentifié"
+
+msgid "popRelayField_help"
+msgstr "Cochez pour activer les fiducies de relais SMTP par authentification POP. Si elle est cochée, tout utilisateur qui utilise avec succès POP pour vérifier le courrier sera autorisé pendant 30 minutes pour envoyer un email en utilisant le service SMTP. Cette caractéristique convient aux utilisateurs qui voyagent fréquemment."
+
+msgid "queue0"
+msgstr "Immédiate"
+
+msgid "queue1440"
+msgstr "Every Day"
+
+msgid "queue15"
+msgstr "Toutes les 15 minutes"
+
+msgid "queue30"
+msgstr "Toutes les 30 minutes"
+
+msgid "queue360"
+msgstr "Toutes les 6 heures"
+
+msgid "queue60"
+msgstr "Every Hour"
+
+msgid "queueTimeField"
+msgstr "Calendrier de livraison"
+
+msgid "queueTimeField_help"
+msgstr "Réglez la fréquence de cet appareil de serveur livrer le courrier sortant. Livraison immédiate envoie le courrier le plus rapidement possible mais nécessite une connexion Internet à temps plein. Livraison périodique est préférable pour une utilisation avec des connexions Internet à temps partiel, comme la numérotation à la demande."
+
+msgid "receiveField"
+msgstr "Recevez un courriel adressée à des hôtes / domaines"
+
+msgid "receiveField_help"
+msgstr "Saisissez une liste de noms d&#39;hôtes personnalisées ou des noms de domaine pour lesquels ce serveur recevra email. Par exemple, www.example.com et example.com sont entrées valides."
+
+msgid "receiveField_rule"
+msgstr "S&#39;il vous plaît entrer un nom d&#39;hôte correctement formaté ou nom de domaine. La valeur par défaut est le nom de domaine complet de votre serveur applicatif. Par exemple, www.example.com et example.com sont entrées valides."
+
+msgid "relayField"
+msgstr "Relais Email De hôtes / domaines / adresses IP"
+
+msgid "relayField_help"
+msgstr "Entrez les adresses IP, hôte ou les noms qui sont autorisés à email à relayer via ce serveur domaine. Un utilisateur ne sera pas en mesure d&#39;envoyer des e-mails sortants via ce serveur à moins que l&#39;adresse IP, nom d&#39;hôte ou de domaine de la machine sur laquelle ils se connectent depuis sont entrées dans ce domaine. [[base-email.relayField_rule]]"
+
+msgid "relayField_rule"
+msgstr "S&#39;il vous plaît entrer une liste d&#39;adresses IP, hôte et des noms de domaine qui seront approuvés à la messagerie relais en utilisant ce serveur. Les réseaux peuvent être spécifiées en utilisant 0. Par exemple, pour autoriser le relais pour un réseau 192.168.1.1 avec un masque de sous-réseau 255.255.0.0, indiquez l&#39;adresse 192.168.0.0."
+
+msgid "smartRelayField"
+msgstr "Smart Relais serveur"
+
+msgid "smartRelayField_help"
+msgstr "Entrez le nom de domaine complet d&#39;un serveur de messagerie à travers laquelle tout le courrier sortant sera acheminé."
+
+msgid "smartRelayField_rule"
+msgstr "S&#39;il vous plaît entrer un nom de domaine entièrement qualifié correctement formaté. La valeur par défaut est de laisser ce champ vide. Par exemple example.com est une entrée valide."
+
+msgid "mx"
+msgstr "Secondaire serveur de courrier"
+
+msgid "mx_help"
+msgstr "Cliquez ici pour configurer les services de messagerie secondaires."
+
+msgid "mx2List"
+msgstr "Liste Courrier-serveur secondaire"
+
+msgid "addmx"
+msgstr "Ajouter"
+
+msgid "addmx_help"
+msgstr "Ajouter une nouvelle correspondance des domaines secondaire ici."
+
+msgid "secondaryDomain"
+msgstr "Service secondaire"
+
+msgid "secondaryDomain_help"
+msgstr "Il s&#39;agit d&#39;une liste de domaines qui ont par correspondance des services secondaires sur ce serveur."
+
+msgid "secondarySettings"
+msgstr "Paramètres secondaires"
+
+msgid "domainField"
+msgstr "Nom de domaine"
+
+msgid "domainField_help"
+msgstr "Entrez le nom de domaine que vous voulez qui vous voulez ajouter un mailservice secondaire."
+
+msgid "maptoField"
+msgstr "Mail Server"
+
+msgid "maptoField_help"
+msgstr "Entrez le serveur de messagerie principal pour le domaine."
+
+msgid "domainExists_in_relay_error"
+msgstr "Le nom de domaine est déjà en cours d&#39;utilisation dans le domaine de messagerie relais."
+
+msgid "domainExists_in_site_error"
+msgstr "Le nom de domaine est déjà utilisé dans un site sur le serveur."
+
+msgid "domainExists_error"
+msgstr "Le nom de domaine est déjà utilisé dans la section du serveur de messagerie secondaire."
+
+msgid "mxRemoveEntry"
+msgstr "Etes-vous sûr de vouloir effacer le [[VAR.mxHost]] MX serveur record?"
+
+msgid "userEmail"
+msgstr "Options de messagerie pour les utilisateurs"
+
+msgid "blacklist"
+msgstr "Liste noire"
+
+msgid "blacklist_help"
+msgstr "Cliquez ici pour ajouter Blacklisting DNSBLs au service e-mail."
+
+msgid "blackList"
+msgstr "Les services Blacklist"
+
+msgid "blackList_help"
+msgstr "Il s&#39;agit de la liste des différents hôtes qui fournissent des services sur liste noire. ie &#39;zen.spamhaus.org »."
+
+msgid "activated"
+msgstr "Statut"
+
+msgid "activated_help"
+msgstr "Ici vous pouvez voir si l&#39;entrée de la liste noire est actif ou non."
+
+msgid "blacklistHostExists_error"
+msgstr "Le service Blacklist a déjà été ajouté, changer le nom d&#39;hôte à autre chose."
+
+msgid "blacklistRemoveEntry"
+msgstr "Etes-vous sûr de vouloir effacer le [[VAR.blacklistHost]] Blacklist entrée en service?"
+
+msgid "blacklistHostField"
+msgstr "Service Blacklist"
+
+msgid "blacklistHostField_help"
+msgstr "Entrez le <FQDN> du service de Blacklist vous souhaitez utiliser, c&#39;est à dire. «Zen.spamhaus.org»."
+
+msgid "deferField"
+msgstr "Différer temporaire"
+
+msgid "deferField_help"
+msgstr "Si vous cliquez sur ce domaine, le serveur de courrier, si il ya un problème pour atteindre le service de Blacklist, retourne une erreur temporaire au serveur de courrier entrant et donc temporaire reporter le message. Le comportement par défaut du serveur de courrier est d&#39;accepter le poste si elle ne peut pas atteindre la Blacklist-service."
+
+msgid "activeField"
+msgstr "Activer le service"
+
+msgid "activeField_help"
+msgstr "Sélectionnez cette option si vous souhaitez activer ce service de liste noire."
+
+msgid "vacationSubject"
+msgstr "Répondre automatisé de"
+
+msgid "amSMTPAuthBadResponse"
+msgstr "Le serveur saslauthd (SMTP-AUTH) a donné une mauvaise réponse."
+
+msgid "amSMTPAuthDetails"
+msgstr "Saslauthd (SMTP-AUTH) Détails du serveur"
+
+msgid "amSMTPAuthNameTag"
+msgstr "Saslauthd serveur"
+
+msgid "amSMTPAuthNotRunning"
+msgstr "Le serveur saslauthd ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver le serveur SMTP-AUTH hors tension puis de nouveau pour voir si cela résout le problème. Si le serveur SMTP-AUTH est toujours pas à démarrer, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig ]]. Si le serveur SMTP-AUTH est toujours pas à démarrer, s&#39;il vous plaît se référer [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "amSMTPAuthStatusOK"
+msgstr "Le serveur SMTP-AUTH fonctionne normalement."
+
+msgid "ampopRelayBadResponse"
+msgstr "Le serveur de relais authentifié POP a donné une mauvaise réponse."
+
+msgid "ampopRelayDetails"
+msgstr "POP authentifiés Relais de Service Détails"
+
+msgid "ampopRelayNameTag"
+msgstr "POP Service de relais authentifié"
+
+msgid "ampopRelayNotRunning"
+msgstr "Le service de relais authentifié POP ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver le service de relais authentifié POP hors tension puis de nouveau pour voir si cela résout le problème. Si le service de relais authentifié POP est toujours pas à démarrer, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig ]]. Si le service de relais authentifié POP est toujours pas à démarrer, s&#39;il vous plaît se référer [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "ampopRelayStatusOK"
+msgstr "Le service de relais authentifié POP fonctionne normalement."
+
+msgid "error_writing_sendmail_mc"
+msgstr "Impossible d&#39;écrire une mise à jour /etc/mail/sendmail.mc. S&#39;il vous plaît vérifier votre sendmail.mc pour corruptions. Pour restaurer un défaut sûr, copier /usr/sausalito/configs/sendmail/sendmail.mc au fichier /etc/mail/sendmail.mc et réessayez."
+
+msgid "maxRecipientsPerMessageField"
+msgstr "Les destinataires maximum par message"
+
+msgid "maxRecipientsPerMessageField_help"
+msgstr "Définit le nombre de bénéficiaires de l&#39;enveloppe d&#39;un message e-mail peut avoir. Si emails ont plus de bénéficiaires que celles spécifiées ici, puis l&#39;e-mail sera rejeté."
+
+msgid "delayChecksField"
+msgstr "Activer delay_checks"
+
+msgid "delayChecksField_help"
+msgstr "delay_checks modifie les contrôles de Sendmail de commande si une connexion est correcte ou non, c&#39;est une bonne option pour nous si vous utilisez des listes noires RBL."
+
+msgid "enableZpushField"
+msgstr "Activer Z-Push"
+
+msgid "enableZpushField_help"
+msgstr "Z-Push est une application open-source pour synchroniser les PDA compatibles ActiveSync et les téléphones mobiles, ce qui leur permet d&#39;accéder aux e-mails. Pour plus d&#39;informations sur l&#39;utilisation de Z-Push voir: http://www.blueonyx.it/index.php?page=z-push"
+

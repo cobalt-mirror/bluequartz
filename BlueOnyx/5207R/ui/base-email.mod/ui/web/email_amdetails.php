@@ -1,7 +1,6 @@
 <?php
 // Author: Tim Hockin
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: email_amdetails.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: email_amdetails.php
 
 include_once("ServerScriptHelper.php");
 include_once("base/am/am_detail.inc");
@@ -29,6 +28,8 @@ print($page->toFooterHtml());
 
 $serverScriptHelper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
