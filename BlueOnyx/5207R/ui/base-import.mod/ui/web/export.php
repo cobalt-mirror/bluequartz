@@ -3,7 +3,7 @@
 // to a TSV format compatible with the import format.  
 //
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: export.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: export.php
 
 include_once("ServerScriptHelper.php");
 
@@ -69,12 +69,6 @@ if ( $number > 0 ) {
 	// otherwise, it never disappears
 	$block->addButton($factory->getButton("javascript: if (document.$formId.onsubmit()) { document.$formId.submit(); }", "downloadList"));
 
-	// PHP5 related fix:
-	$block->addFormField(
-	    $factory->getTextField("debug_1", "", 'r'),
-	    $factory->getLabel("debug_1"),
-	    Hidden
-	);
 }
 
 $helper->destructor();

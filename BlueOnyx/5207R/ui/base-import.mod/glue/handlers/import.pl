@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: import.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: import.pl 
 # Copyright 2000-2002 Sun Microsystems, Inc., All rights reserved.
 
 #

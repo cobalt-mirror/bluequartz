@@ -1,0 +1,208 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "import"
+msgstr "Importazione"
+
+msgid "import_help"
+msgstr "Clicca qui per importare gli utenti sul server."
+
+msgid "importTitle"
+msgstr "Importa Elenco utenti per [[VAR.fqdn]]"
+
+msgid "dataUpload"
+msgstr "File di origine"
+
+msgid "dataUpload_help"
+msgstr "Inserire la posizione da cui ottenere il file di formato che contiene un elenco di utenti da caricare al sistema TSV (Tab Separated Value). Immettere un URL che inizia con http:// o ftp:// per scaricare il file da un percorso su Internet, oppure immettere il percorso completo di un file da caricare. Fare clic su Sfoglia per scegliere un file sul disco rigido locale. Si prega di fare riferimento al manuale dell'apparecchio al server per la descrizione completa del formato di file."
+
+msgid "dataUpload_empty"
+msgstr "Siamo spiacenti, non è stato selezionato un file da caricare sul server per l'importazione."
+
+msgid "urlField_empty"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "url"
+msgstr "URL"
+
+msgid "upload"
+msgstr "Caricare"
+
+msgid "fileImport"
+msgstr "Importa da file"
+
+msgid "attempt"
+msgstr "Non affrontato."
+
+msgid "creating"
+msgstr "Aggiunta di [[VAR.class]] di nome [[VAR.name]]"
+
+msgid "modifying"
+msgstr "Modifica [[VAR.class]] di nome [[VAR.name]]"
+
+msgid "importResults"
+msgstr "Import Risultato"
+
+msgid "result"
+msgstr "Risultato"
+
+msgid "action"
+msgstr "Azione"
+
+msgid "reason"
+msgstr "Motivo"
+
+msgid "noFileSpecified"
+msgstr "File di ricezione Errore"
+
+msgid "fileWasNoGood"
+msgstr "Siamo spiacenti, si è verificato un errore durante la ricezione il file specificato. Prova a caricare di nuovo il file."
+
+msgid "badFileButtonCancel"
+msgstr "Indietro"
+
+msgid "badFileButtonCancel_help"
+msgstr "Clicca qui per tornare indietro."
+
+msgid "importResult"
+msgstr "Import Risultato"
+
+msgid "couldNotOpenFile"
+msgstr "Siamo spiacenti, si è verificato un errore durante il tentativo di aprire il file caricato. Si prega di verificare la posizione e riprovare. Se si utilizza il metodo URL ed è necessario fare il login, provare un URL con un formato simile a http://utente:password @ server.address / file o ftp://user:password @ file di server.address /."
+
+msgid "success"
+msgstr "Successo"
+
+msgid "fail"
+msgstr "Fail"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (linea [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Importa ora"
+
+msgid "importNow_help"
+msgstr "Clicca qui per importare gli utenti dal file selezionato."
+
+msgid "importErrors"
+msgstr "Errori di importazione"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] errori"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] errore"
+
+msgid "fullName"
+msgstr "Nome e Cognome"
+
+msgid "fullName_help"
+msgstr "Questi sono i nomi completi delle voci forniti dal file di importazione."
+
+msgid "name"
+msgstr "Nome Utente"
+
+msgid "name_help"
+msgstr "Questi sono i nomi degli utenti delle voci forniti dal file di importazione."
+
+msgid "errorMessageHeader"
+msgstr "Message"
+
+msgid "errorMessageHeader_help"
+msgstr "Si tratta di messaggi dettagliati per gli errori che si sono verificati durante l'importazione."
+
+msgid "importSucceeded"
+msgstr "Importa Riuscito"
+
+msgid "importSucceededMessage"
+msgstr "Non si sono verificati errori durante l'importazione."
+
+msgid "importSucceededMessage_help"
+msgstr "Non si sono verificati errori durante l'importazione."
+
+msgid "importStatus"
+msgstr "Importazione di stato"
+
+msgid "progressField"
+msgstr "Progress"
+
+msgid "progressField_help"
+msgstr "Questo è lo stato di avanzamento dell'importazione. Se si lascia questa sezione l'importazione degli utenti continuerà a funzionare in background, ma la barra di avanzamento non sarà più visibile."
+
+msgid "status"
+msgstr "Stato"
+
+msgid "status_help"
+msgstr "Questo è lo stato attuale di importazione."
+
+msgid "creatingUsers"
+msgstr "Aggiunta di utenti ([[VAR.pos]] / [[VAR.max]])"
+
+msgid "intname"
+msgstr "nome utente"
+
+msgid "intfullName"
+msgstr "fullname"
+
+msgid "intpassword"
+msgstr "parola d'ordine"
+
+msgid "intaliases"
+msgstr "alias di posta elettronica"
+
+msgid "importChanger"
+msgstr "Selezionare Importa Metodo ..."
+
+msgid "importChangerFile"
+msgstr "Importa file"
+
+msgid "exportUsers"
+msgstr "Esportazione"
+
+msgid "exportUsers_help"
+msgstr "Clicca qui per esportare gli utenti dal server. La funzione di esportazione restituisce un file in formato TSV (Tab Separated Value), che è compatibile con la funzione di importazione utente."
+
+msgid "userExport"
+msgstr "Esportazione dell'elenco utenti"
+
+msgid "exportTitle"
+msgstr "Esporta elenco utenti da [[VAR.fqdn]]"
+
+msgid "pwFormat"
+msgstr "Password Format"
+
+msgid "pwFormat_help"
+msgstr "A causa della algoritmo di cifratura utilizzato per memorizzare le password utente, la password attuale dell'utente non può essere esportato. Se si sceglie di utilizzare nomi utente, gli utenti saranno in grado di utilizzare il loro nome di login come password. Scelta di stringhe casuali impedisce ad altri utenti di essere in grado di indovinare con facilità la password di un altro utente."
+
+msgid "namePw"
+msgstr "Utilizzare nomi utente, le password"
+
+msgid "randomPw"
+msgstr "Utilizzare stringhe casuali come password"
+
+msgid "downloadList"
+msgstr "Esporta adesso"
+
+msgid "downloadList_help"
+msgstr "Clicca qui per esportare gli utenti dal server. La funzione di esportazione restituisce un file in formato TSV (Tab Separated Value), che è compatibile con la funzione di importazione utente."
+
+msgid "usersForExport"
+msgstr "[[VAR.number]] gli utenti sono disponibili per l'esportazione."
+
+msgid "oneUserForExport"
+msgstr "Un utente è disponibile per l'esportazione."
+
+msgid "noUsersForExport"
+msgstr "Non ci sono utenti disponibili per l'esportazione. Gli utenti devono essere aggiunti prima che possano essere esportati."
+

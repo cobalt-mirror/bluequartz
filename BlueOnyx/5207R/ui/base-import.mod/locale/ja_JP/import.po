@@ -1,20 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "import"
-msgstr "����ݡ���"
+msgstr "インポート"
 
 msgid "import_help"
-msgstr "�桼���Υꥹ�Ȥ򤳤Υ����Ф˥���ݡ��ȤǤ��ޤ���"
+msgstr "ユーザのリストをこのサーバにインポートできます。"
 
 msgid "importTitle"
-msgstr "�桼���ꥹ�Ȥ� [[VAR.fqdn]] �˥���ݡ���"
+msgstr "ユーザリストを [[VAR.fqdn]] にインポート"
 
 msgid "dataUpload"
-msgstr "�������ե�����"
+msgstr "ソースファイル"
 
 msgid "dataUpload_help"
-msgstr "����ݡ��Ȥ������桼���Υꥹ�Ȥ�ޤ�ƥ����ȥե�����ʥ��ֶ��ڤ�ˤ���¸������ꤷ�Ƥ������������󥿡��ͥåȤ������������ɤ��������ˤϡ�http:// �ޤ��� ftp:// �ǤϤ��ޤ� URL ����ꤷ�Ƥ������������饤����� PC ���饢�åץ����ɤ�����ˤϡ���������ϡ��ɥǥ�������Υե�����̾�ȥѥ������Ϥ��뤫���λ��ȡϥܥ���򥯥�å����ƥե���������򤷤Ƥ����������ե����������ɬ�פʥ桼������ε�����ˡ�ʤɤˤĤ��Ƥϡ��桼���ޥ˥奢��ε��Ҥ򤴻��Ȥ���������"
+msgstr "インポートしたいユーザのリストを含むテキストファイル（タブ区切り）の保存場所を指定してください。インターネットからダウンロードしたい場合には、http:// または ftp:// ではじまる URL を指定してください。クライアント PC からアップロードする場合には、ローカルハードディスク上のファイル名とパスを入力するか、［参照］ボタンをクリックしてファイルを選択してください。ファイル形式や必要なユーザ情報の記述方法などについては、ユーザマニュアルの記述をご参照ください。"
 
 msgid "dataUpload_empty"
-msgstr "���Υ����Ф˥��åץ����ɡʥ���ݡ��ȡˤ������桼���ե��������ꤷ�Ƥ���������"
+msgstr "このサーバにアップロード（インポート）したいユーザファイルを指定してください。"
 
 msgid "urlField_empty"
 msgstr "[[base-import.dataUpload_empty]]"
@@ -26,177 +36,177 @@ msgid "url"
 msgstr "URL"
 
 msgid "upload"
-msgstr "���åץ�����"
+msgstr "アップロード"
 
 msgid "fileImport"
-msgstr "�ե����뤫�饤��ݡ���"
+msgstr "ファイルからインポート"
 
 msgid "attempt"
-msgstr "��Ԥ���Ƥ��ޤ���"
+msgstr "試行されていません。"
 
 msgid "creating"
-msgstr "[[VAR.name]] �Ȥ���̾���� [[VAR.class]] ���ɲä��Ƥ��ޤ�"
+msgstr "[[VAR.name]] という名前の [[VAR.class]] を追加しています"
 
 msgid "modifying"
-msgstr "[[VAR.name]] �Ȥ���̾���� [[VAR.class]] �������Ƥ��ޤ�"
+msgstr "[[VAR.name]] という名前の [[VAR.class]] を修正しています"
 
 msgid "importResults"
-msgstr "����ݡ��Ȥη��"
+msgstr "インポートの結果"
 
 msgid "result"
-msgstr "���"
+msgstr "結果"
 
 msgid "action"
-msgstr "�н�"
+msgstr "対処"
 
 msgid "reason"
-msgstr "����"
+msgstr "原因"
 
 msgid "noFileSpecified"
-msgstr "�ե�����μ������顼"
+msgstr "ファイルの受信エラー"
 
 msgid "fileWasNoGood"
-msgstr "����ե�����μ�����˥��顼��ȯ�����ޤ������ե������⤦���٥��åץ����ɤ��Ƹ��Ƥ���������"
+msgstr "指定ファイルの受信中にエラーが発生しました。ファイルをもう一度アップロードして見てください。"
 
 msgid "badFileButtonCancel"
-msgstr "���"
+msgstr "戻る"
 
 msgid "badFileButtonCancel_help"
-msgstr "���β��̤����ˤϡ������򥯥�å����Ƥ���������"
+msgstr "前の画面に戻るには、ここをクリックしてください。"
 
 msgid "importResult"
-msgstr "����ݡ��Ȥη��"
+msgstr "インポートの結果"
 
 msgid "couldNotOpenFile"
-msgstr "���åץ����ɤ��줿�ե�����򳫤��ݤ˥��顼��ȯ�����ޤ������ե�����������ǧ���Ƥ��顢�⤦���٤�������������������󤹤�ɬ�פΤ��� URL ����ե���������������ɤ�����ˤϡ�URL �ե�����ɤ� http://user:password@server.address/file �ޤ��� ftp://user:password@server.address/file �ʤɤη����ǥ桼��̾�ȥѥ���ɤ���ꤷ�ƤߤƤ���������"
+msgstr "アップロードされたファイルを開く際にエラーが発生しました。ファイル形式を確認してから、もう一度お試しください。ログインする必要のある URL からファイルをダウンロードする場合には、URL フィールドに http://user:password@server.address/file または ftp://user:password@server.address/file などの形式でユーザ名とパスワードを指定してみてください。"
 
 msgid "success"
-msgstr "����"
+msgstr "成功"
 
 msgid "fail"
-msgstr "����"
+msgstr "失敗"
 
 msgid "errorMessage"
-msgstr "[[VAR.error]]��[[VAR.line]] �ԡ�"
+msgstr "[[VAR.error]]（[[VAR.line]] 行）"
 
 msgid "importNow"
-msgstr "����ݡ��Ȥ򳫻Ϥ���"
+msgstr "インポートを開始する"
 
 msgid "importNow_help"
-msgstr "�ե��������¸������ꤷ�Ƥ��Υܥ���򥯥�å�����ȡ��桼���Υ���ݡ��Ȥ����Ϥ���ޤ���"
+msgstr "ファイルの保存場所を指定してこのボタンをクリックすると、ユーザのインポートが開始されます。"
 
 msgid "importErrors"
-msgstr "����ݡ��ȥ��顼"
+msgstr "インポートエラー"
 
 msgid "errorCountPlural"
-msgstr "���顼���� [[VAR.count]]"
+msgstr "エラー数： [[VAR.count]]"
 
 msgid "errorCountSingular"
-msgstr "���顼���� [[VAR.count]]"
+msgstr "エラー数： [[VAR.count]]"
 
 msgid "fullName"
-msgstr "��̾"
+msgstr "氏名"
 
 msgid "fullName_help"
-msgstr "����ݡ��ȥե�����˴ޤޤ�Ƥ���桼���λ�̾�Ǥ���"
+msgstr "インポートファイルに含まれているユーザの氏名です。"
 
 msgid "name"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "name_help"
-msgstr "����ݡ��ȥե�����˴ޤޤ�Ƥ���桼���Υ桼��̾�Ǥ���"
+msgstr "インポートファイルに含まれているユーザのユーザ名です。"
 
 msgid "errorMessageHeader"
-msgstr "��å�����"
+msgstr "メッセージ"
 
 msgid "errorMessageHeader_help"
-msgstr "����ݡ������ȯ���������顼�˴ؤ���ܺ٥�å������Ǥ���"
+msgstr "インポート中に発生したエラーに関する詳細メッセージです。"
 
 msgid "importSucceeded"
-msgstr "����ݡ��Ȥ��������ޤ���"
+msgstr "インポートに成功しました"
 
 msgid "importSucceededMessage"
-msgstr "����ݡ�����˥��顼��ȯ�����ޤ���Ǥ�����"
+msgstr "インポート中にエラーは発生しませんでした。"
 
 msgid "importSucceededMessage_help"
-msgstr "����ݡ�����˥��顼��ȯ�����ޤ���Ǥ�����"
+msgstr "インポート中にエラーは発生しませんでした。"
 
 msgid "importStatus"
-msgstr "����ݡ��Ȥξ���"
+msgstr "インポートの状態"
 
 msgid "progressField"
-msgstr "�ʹԾ���"
+msgstr "進行状況"
 
 msgid "progressField_help"
-msgstr "����ݡ��ȤοʹԾ����Ǥ���¾�δ������̤ذ�ư���Ƥ�桼���Υ���ݡ��ȤϥХå����饦��ɤǷ�³����ޤ��������β��̤���äƤ�ʹԾ����򼨤�������դ�ɽ������ʤ��ʤ�ޤ���"
+msgstr "インポートの進行状況です。他の管理画面へ移動してもユーザのインポートはバックグラウンドで継続されますが、この画面へ戻っても進行状況を示す棒グラフは表示されなくなります。"
 
 msgid "status"
-msgstr "����"
+msgstr "状態"
 
 msgid "status_help"
-msgstr "����ݡ��Ȥθ��ߤξ��֤Ǥ���"
+msgstr "インポートの現在の状態です。"
 
 msgid "creatingUsers"
-msgstr "�桼�����ɲä��Ƥ��ޤ� ��[[VAR.pos]]/[[VAR.max]]��"
+msgstr "ユーザを追加しています （[[VAR.pos]]/[[VAR.max]]）"
 
 msgid "intname"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "intfullName"
-msgstr "��̾"
+msgstr "氏名"
 
 msgid "intpassword"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
 msgid "intaliases"
-msgstr "�Żҥ᡼�륨���ꥢ��"
+msgstr "電子メールエイリアス"
 
 msgid "importChanger"
-msgstr "����ݡ�����ˡ������..."
+msgstr "インポート方法の選択..."
 
 msgid "importChangerFile"
-msgstr "�ե�����򥤥�ݡ��Ȥ���"
+msgstr "ファイルをインポートする"
 
 # --- Export strings ---
 # ----------------------
 
 msgid "exportUsers"
-msgstr "�������ݡ���"
+msgstr "エクスポート"
 
 msgid "exportUsers_help"
-msgstr "���Υ����Ⱦ�Υ桼�������ƥ����ȥե�����ʥ��ֶ��ڤ�ˤ˥������ݡ��ȤǤ��ޤ����������줿�桼���ꥹ�Ȥϡ�����ݡ��ȵ�ǽ��Ȥäƥ���ݡ��ȤǤ��ޤ���"
+msgstr "このサイト上のユーザ情報をテキストファイル（タブ区切り）にエクスポートできます。生成されたユーザリストは、インポート機能を使ってインポートできます。"
 
 msgid "userExport"
-msgstr "�桼���ꥹ�ȤΥ������ݡ���"
+msgstr "ユーザリストのエクスポート"
 
 msgid "exportTitle"
-msgstr "�桼���ꥹ�Ȥ� [[VAR.fqdn]] ���饨�����ݡ���"
+msgstr "ユーザリストを [[VAR.fqdn]] からエクスポート"
 
 msgid "pwFormat"
-msgstr "�ѥ���ɤη���"
+msgstr "パスワードの形式"
 
 msgid "pwFormat_help"
-msgstr "�桼���Υѥ���ɾ���ϰŹ沽������¸����Ƥ��뤿�ᥨ�����ݡ��Ȥ���ޤ��󡣥桼���ꥹ����ˤϡ��桼��̾�ޤ��ϥ�����ʸ�����ѥ���ɤȤ��ƴޤ�뤳�Ȥ��Ǥ��ޤ���������ʸ�����ѥ���ɤȤ��ƻȤ��ȡ�����ݡ��Ȼ��Υǡ����������ƥ�����ޤ�ޤ���"
+msgstr "ユーザのパスワード情報は暗号化して保存されているためエクスポートされません。ユーザリスト中には、ユーザ名またはランダム文字列をパスワードとして含めることができます。ランダム文字列をパスワードとして使うと、インポート時のデータセキュリティが高まります。"
 
 msgid "namePw"
-msgstr "�ѥ���ɤȤ��ƥ桼��̾�򥨥����ݡ��Ȥ���"
+msgstr "パスワードとしてユーザ名をエクスポートする"
 
 msgid "randomPw"
-msgstr "�ѥ���ɤȤ��ƥ�����ʸ������������ƥ������ݡ��Ȥ���"
+msgstr "パスワードとしてランダム文字列を生成してエクスポートする"
 
 msgid "downloadList"
-msgstr "�������ݡ��Ȥ򳫻Ϥ���"
+msgstr "エクスポートを開始する"
 
 msgid "downloadList_help"
-msgstr "���Υܥ���򥯥�å�����ȡ����Υ����Ⱦ����Ͽ�桼�����ƥ����ȥե����� (���ֶ��ڤ�) �˥������ݡ��Ȥ���ޤ����������줿�桼���ꥹ�Ȥϡ�����ݡ��ȵ�ǽ��Ȥäƥ���ݡ��ȤǤ��ޤ���"
+msgstr "このボタンをクリックすると、このサイト上の登録ユーザがテキストファイル (タブ区切り) にエクスポートされます。生成されたユーザリストは、インポート機能を使ってインポートできます。"
 
 msgid "usersForExport"
-msgstr "[[VAR.number]] �ͤΥ桼���򥨥����ݡ��ȤǤ��ޤ���"
+msgstr "[[VAR.number]] 人のユーザをエクスポートできます。"
 
 msgid "oneUserForExport"
-msgstr "���ͤΥ桼���򥨥����ݡ��ȤǤ��ޤ���"
+msgstr "１人のユーザをエクスポートできます。"
 
 msgid "noUsersForExport"
-msgstr "���ߡ����Υ����Ȥˤϥ桼������Ͽ����Ƥ��ޤ��󡣥������ݡ��Ȥ������˥桼�����ɲä��Ƥ���������"
+msgstr "現在、このサイトにはユーザが登録されていません。エクスポートする前にユーザを追加してください。"
 
 # --- End of Export strings --- 

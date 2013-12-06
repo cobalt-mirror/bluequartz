@@ -1,7 +1,7 @@
 <?php 
 // Authort: Harris Vaegan-Lloyd
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: import.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: import.php 
 
 include_once("ServerScriptHelper.php");
 
@@ -41,13 +41,6 @@ $location->addOption($upload);
 $block->addFormField(
 	$location,
 	$factory->getLabel('dataUpload')
-);
-
-// PHP5 related fix:
-$block->addFormField(
-    $factory->getTextField("debug_1", "", 'r'),
-    $factory->getLabel("debug_1"),
-    Hidden
 );
 
 $mypage = $factory->getPage();

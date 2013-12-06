@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=import
 
-VERSION=1.2.0
-RELEASE=45BX15
+VERSION=1.3.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch

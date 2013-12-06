@@ -7,7 +7,7 @@
 // status page is shown to the user during the import.
 //
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: importHandler.php 1190 2008-10-22 05:20:07Z shibuya $
+// $Id: importHandler.php
 
 include_once("ServerScriptHelper.php");
 include_once("ArrayPacker.php");
