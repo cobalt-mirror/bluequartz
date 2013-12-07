@@ -1,180 +1,190 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "subdomain_header"
-msgstr "Sub Domain Setup"
+msgstr "サブドメインの設定"
 
 msgid "vsite_enabled"
-msgstr "Enable Sub Domains"
+msgstr "サブドメインを有効にする"
 
 msgid "vsite_enabled_help"
-msgstr "Allows you to enable Sub Domains for virtual hosts"
+msgstr "仮想ホスト用のサブドメインを有効にすることができます"
 
 msgid "default_max_subdomains"
-msgstr "Default # of Sub Domains"
+msgstr ""
 
 msgid "default_max_subdomains_help"
-msgstr "Allows you to create a baseline of the default each site can create"
+msgstr "あなたは、各サイトが作成でき、デフォルトのベースラインを作成することができます"
 
 msgid "vlist_header"
-msgstr "All Available Virtual Sites"
+msgstr "使用可能なすべての仮想サイトの"
 
 msgid "v_name"
-msgstr "Name"
+msgstr "名前"
 
 msgid "v_name_help"
-msgstr "Name of Virtual Site"
+msgstr "仮想サイトの名前"
 
 msgid "v_subdomain"
-msgstr "# of Sub Domains"
+msgstr ""
 
 msgid "v_subdomain_help"
-msgstr "Shows how many sub domains are allowed"
+msgstr "多くのサブドメインが許可されている方法を示しています。"
 
 msgid "v_subdomain_enabled"
-msgstr "Status"
+msgstr "ステータス"
 
 msgid "v_subdomain_enabled_help"
-msgstr "Track the status of each vsite.  Is it enabled or disabled?"
+msgstr "各vsiteの状態を追跡します。それが有効か無効か？"
 
 msgid "vsite_header"
-msgstr "Sub Domain Settings"
+msgstr "サブドメイン設定"
 
 msgid "vsite_name"
-msgstr "Virtual Site Host Name"
+msgstr "仮想サイトのホスト名"
 
 msgid "vsite_name_help"
-msgstr "The name of your virtual site"
+msgstr "あなたの仮想サイトの名前"
 
 msgid "max_subdomains"
-msgstr "Max # of Sub Domains"
+msgstr ""
 
 msgid "max_subdomains_help"
-msgstr "The max # of sub domains that you are allowed to host"
+msgstr ""
 
 msgid "sub_title"
-msgstr "Sub Domains Configuration"
+msgstr "サブドメインの設定"
 
 msgid "sub_domain"
-msgstr "Sub Domain"
+msgstr "サブドメイン"
 
 msgid "sub_domain_help"
-msgstr "Name of your sub domains"
+msgstr "あなたのサブドメインの名前"
 
 msgid "sub_path"
-msgstr "Sub Domain Path"
+msgstr "サブドメインパス"
 
 msgid "sub_path_help"
-msgstr "Path to your Sub Domains"
+msgstr "あなたのサブドメインへのパス"
 
 msgid "vsite_add_header"
-msgstr "Add a Sub Domain"
+msgstr "サブドメインの追加"
 
 msgid "enterFqdn"
-msgstr "Enter name of Sub Domain"
+msgstr "サブドメインの名前を入力します"
 
 msgid "enterFqdn_help"
-msgstr "Enter name of Sub Domain"
+msgstr "サブドメインの名前を入力します"
 
 msgid "hostname"
-msgstr "Host Name"
+msgstr "ホスト名"
 
 msgid "hostname_help"
-msgstr "Name of your new Sub Domain"
+msgstr "新しいサブドメインの名前"
 
 msgid "domainname"
-msgstr "Domain Name"
+msgstr "ドメイン名"
 
 msgid "domainname_help"
-msgstr "Name of your Domain"
+msgstr "ドメインの名前"
 
 msgid "button_cancel"
-msgstr "Cancel"
+msgstr "キャンセル"
 
 msgid "button_cancel_help"
-msgstr "Cancel Configuration"
+msgstr "設定を取り消す"
 
 msgid "php"
-msgstr "Enable PHP Scripting"
+msgstr "PHPスクリプトを有効にする"
 
 msgid "php_help"
-msgstr "Enables PHP For your Sub Domain"
+msgstr "あなたのサブドメインのPHPを有効にします"
 
 msgid "cgi"
-msgstr "Enable Common Gateway Interface (CGI)"
+msgstr "CGI（Common Gateway Interface）を有効にします"
 
 msgid "cgi_help"
-msgstr "Enables CGI for your Sub Domain"
+msgstr "あなたのサブドメインのCGIを有効に"
 
 msgid "ssi"
-msgstr "Enable Server Side Includes (SSI)"
+msgstr "サーバーサイドインクルード（SSI）を有効にする"
 
 msgid "ssi_help"
-msgstr "Enable Server Side Includes for your Sub Domain"
+msgstr "あなたのサブドメインのサーバーサイドインクルードを有効にする"
 
 msgid "vsite_mod_header"
-msgstr "Modify Sub Domain Settings"
+msgstr "サブドメインの設定を変更"
 
 msgid "new_sub"
-msgstr "Add new Sub Domain"
+msgstr "新しいサブドメインの追加"
 
 msgid "new_sub_help"
-msgstr "Add new Sub Domain"
+msgstr "新しいサブドメインの追加"
 
 msgid "php_head"
 msgstr "PHP"
 
 msgid "php_head_help"
-msgstr "Shows if you enabled PHP on the virtual site"
+msgstr "仮想サイト上でPHPを有効にした場合を示してい"
 
 msgid "cgi_head"
 msgstr "CGI"
 
 msgid "cgi_head_help"
-msgstr "Shows if you enabled CGI on the virtual site"
+msgstr "仮想サイト上でCGIが有効になっている場合を示している"
 
 msgid "ssi_head"
 msgstr "SSI"
 
 msgid "ssi_head_help"
-msgstr "Shows if you enabled SSI on the virtual site"
+msgstr "仮想サイト上でSSIを有効にした場合を示してい"
 
 msgid "default_settings"
-msgstr "Default Settings for inital config"
+msgstr "頭文字設定のデフォルト設定"
 
 msgid "divider_subdomains"
-msgstr "Configuration for Sub Domains"
+msgstr "サブドメインのコンフィグレーション"
 
 msgid "enabled"
-msgstr "User Sub Domain"
+msgstr "ユーザーサブドメイン"
 
 msgid "enabled_help"
-msgstr "Create a subdomain for the user like: user . domain . tld"
+msgstr "ユーザ：のようなユーザーのためにサブドメインを作成します。ドメイン。 TLD"
 
 msgid "webpath"
-msgstr "Web Path"
+msgstr "ウェブパス"
 
 msgid "webpath_help"
-msgstr "The path to the content of the subdomain.  This will NOT automatically be deleted should you remove this entry later"
+msgstr "サブドメインのコンテンツへのパス。後でこのエントリを削除する必要があり、これは自動的に削除されることはありません"
 
 msgid "webdir"
-msgstr "Web Directory"
+msgstr "ウェブディレクトリ"
 
 msgid "webdir_help"
-msgstr "The directory that holds the web content for the subdomain"
+msgstr "サブドメインのためのWebコンテンツを保持しているディレクトリ"
 
 msgid "rootpath"
-msgstr "Root Base Directory"
+msgstr "ルートベースディレクトリ"
 
 msgid "rootpath_help"
-msgstr "The path, either to the vsite's webdirectory, or the subdomain subdirectory"
+msgstr "どちらvsiteのwebdirectory、またはサブドメインのサブディレクトリへのパス、"
 
 msgid "menu_vsite_subdomains"
-msgstr "Sub Domains"
+msgstr "サブドメイン"
 
 msgid "menu_vsite_subdomains_help"
-msgstr "Manage your sub domains"
+msgstr "あなたのサブドメインを管理する"
 
 msgid "menu_system_subdomains"
-msgstr "Sub Domains"
+msgstr "サブドメイン"
 
 msgid "menu_system_subdomains_help"
-msgstr "Allow Virtual Sites to create subdomains."
+msgstr "仮想サイトのサブドメインを作成することができます。"
 

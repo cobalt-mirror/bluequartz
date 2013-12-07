@@ -8,7 +8,7 @@ msgid "vsite_enabled_help"
 msgstr "Allows you to enable Sub Domains for virtual hosts"
 
 msgid "default_max_subdomains"
-msgstr "Default # of Sub Domains"
+msgstr "Default number of Sub Domains"
 
 msgid "default_max_subdomains_help"
 msgstr "Allows you to create a baseline of the default each site can create"
@@ -23,7 +23,7 @@ msgid "v_name_help"
 msgstr "Name of Virtual Site"
 
 msgid "v_subdomain"
-msgstr "# of Sub Domains"
+msgstr "Number of Sub Domains"
 
 msgid "v_subdomain_help"
 msgstr "Shows how many sub domains are allowed"
@@ -32,7 +32,7 @@ msgid "v_subdomain_enabled"
 msgstr "Status"
 
 msgid "v_subdomain_enabled_help"
-msgstr "Track the status of each vsite.  Is it enabled or disabled?"
+msgstr "Track the status of each vsite. Is it enabled or disabled?"
 
 msgid "vsite_header"
 msgstr "Sub Domain Settings"
@@ -44,10 +44,10 @@ msgid "vsite_name_help"
 msgstr "The name of your virtual site"
 
 msgid "max_subdomains"
-msgstr "Max # of Sub Domains"
+msgstr "Max number of Sub Domains"
 
 msgid "max_subdomains_help"
-msgstr "The max # of sub domains that you are allowed to host"
+msgstr "The max number of sub domains that you are allowed to host"
 
 msgid "sub_title"
 msgstr "Sub Domains Configuration"
@@ -152,7 +152,7 @@ msgid "webpath"
 msgstr "Web Path"
 
 msgid "webpath_help"
-msgstr "The path to the content of the subdomain.  This will NOT automatically be deleted should you remove this entry later"
+msgstr "The path to the content of the subdomain. This will NOT automatically be deleted should you remove this entry later"
 
 msgid "webdir"
 msgstr "Web Directory"
