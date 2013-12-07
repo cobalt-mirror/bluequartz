@@ -1,14 +1,14 @@
 <?php
 // Author: Kenneth C.K. Leung
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: snmp.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: snmp.php
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverSNMP' should be here:
+if (!$serverScriptHelper->getAllowed('serverSNMP')) {
   header("location: /error/forbidden.html");
   return;
 }

@@ -1,5 +1,15 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "snmpSettings"
-msgstr "SNMP ¤ÎÀßÄê"
+msgstr "SNMP ã®è¨­å®š"
 
 
 # --- Menu
@@ -8,48 +18,48 @@ msgid "snmp"
 msgstr "SNMP"
 
 msgid "snmp_help"
-msgstr "SNMP ¡ÊSimple Network Management Protocol¡Ë ¥µ¡¼¥Ó¥¹¤òÀßÄê¤Ç¤­¤Ş¤¹¡£"
+msgstr "SNMP ï¼ˆSimple Network Management Protocolï¼‰ ã‚µãƒ¼ãƒ“ã‚¹ã‚’è¨­å®šã§ãã¾ã™ã€‚"
 
 
 # --- SNMP page
 
 msgid "enableServer"
-msgstr "SNMP ¥µ¡¼¥Ó¥¹¤òÍ­¸ú¤Ë¤¹¤ë"
+msgstr "SNMP ã‚µãƒ¼ãƒ“ã‚¹ã‚’æœ‰åŠ¹ã«ã™ã‚‹"
 
 msgid "enableServer_help"
-msgstr "¤³¤Î¥Ü¥Ã¥¯¥¹¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤È¡¢SNMP¡ÊSimple Network Management Protocol¡Ë¥µ¡¼¥Ó¥¹¤¬Í­¸ú¤Ë¤Ê¤ê¤Ş¤¹¡£SNMP ¤Ï¡¢¥Í¥Ã¥È¥ï¡¼¥¯¥Ç¥Ğ¥¤¥¹¤Î´Æ»ë¤È´ÉÍı¡¢¥Í¥Ã¥È¥ï¡¼¥¯¤ÎÀßÄê¡¢Åı·×¾ğÊó¼ı½¸¡¢¥Ñ¥Õ¥©¡¼¥Ş¥ó¥¹¡¢¥»¥­¥å¥ê¥Æ¥£¤Î´ÉÍıµ¡Ç½¤òÄó¶¡¤¹¤ë¥Í¥Ã¥È¥ï¡¼¥¯´ÉÍı¥×¥í¥È¥³¥ë¤Ç¤¹¡£"
+msgstr "ã“ã®ãƒœãƒƒã‚¯ã‚¹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã¨ã€SNMPï¼ˆSimple Network Management Protocolï¼‰ã‚µãƒ¼ãƒ“ã‚¹ãŒæœ‰åŠ¹ã«ãªã‚Šã¾ã™ã€‚SNMP ã¯ã€ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®ç›£è¦–ã¨ç®¡ç†ã€ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã®è¨­å®šã€çµ±è¨ˆæƒ…å ±åé›†ã€ãƒ‘ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ã€ã‚»ã‚­ãƒ¥ãƒªãƒ†ã‚£ã®ç®¡ç†æ©Ÿèƒ½ã‚’æä¾›ã™ã‚‹ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ç®¡ç†ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã§ã™ã€‚"
 
 msgid "readSnmpCommunityField"
-msgstr "ÆÉ¤ß½Ğ¤·ÀìÍÑ SNMP ¥³¥ß¥å¥Ë¥Æ¥£"
+msgstr "èª­ã¿å‡ºã—å°‚ç”¨ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£"
 
 msgid "readSnmpCommunityField_rule"
-msgstr "ÆÉ¤ß½Ğ¤·ÀìÍÑ SNMP ¥³¥ß¥å¥Ë¥Æ¥£¤ÎÌ¾Á°¤Ë¤Ï¡¢È¾³Ñ¤Î±Ñ¿ô»ú¡¢¥Ô¥ê¥ª¥É (.)¡¢¥Ï¥¤¥Õ¥ó (-)¡¢¥¢¥ó¥À¡¼¥¹¥³¥¢ (_) ¤Î¤ß¤¬»È¤¨¤Ş¤¹¡£"
+msgstr "èª­ã¿å‡ºã—å°‚ç”¨ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã®åå‰ã«ã¯ã€åŠè§’ã®è‹±æ•°å­—ã€ãƒ”ãƒªã‚ªãƒ‰ (.)ã€ãƒã‚¤ãƒ•ãƒ³ (-)ã€ã‚¢ãƒ³ãƒ€ãƒ¼ã‚¹ã‚³ã‚¢ (_) ã®ã¿ãŒä½¿ãˆã¾ã™ã€‚"
 
 msgid "readSnmpCommunityField_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤¬½êÂ°¤·¤Æ¤¤¤ëÆÉ¤ß½Ğ¤·ÀìÍÑ SNMP ¥³¥ß¥å¥Ë¥Æ¥£¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£[[base-snmp.readSnmpCommunityField_rule]]"
+msgstr "ã“ã®ã‚µãƒ¼ãƒãŒæ‰€å±ã—ã¦ã„ã‚‹èª­ã¿å‡ºã—å°‚ç”¨ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚[[base-snmp.readSnmpCommunityField_rule]]"
 
 msgid "readSnmpCommunityField_invalid"
-msgstr "[[VAR.invalidValue]] ¤Ï¡¢[[base-snmp.readSnmpCommunityField]]¤Ë¤ÏÉÔÀµ¤ÊÌ¾Á°¤Ç¤¹¡£[[base-snmp.readSnmpCommunityField_rule]]"
+msgstr "[[VAR.invalidValue]] ã¯ã€[[base-snmp.readSnmpCommunityField]]ã«ã¯ä¸æ­£ãªåå‰ã§ã™ã€‚[[base-snmp.readSnmpCommunityField_rule]]"
 
 msgid "readWriteSnmpCommunityField"
-msgstr "ÆÉ¤ß½ñ¤­²ÄÇ½ SNMP ¥³¥ß¥å¥Ë¥Æ¥£"
+msgstr "èª­ã¿æ›¸ãå¯èƒ½ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£"
 
 msgid "readWriteSnmpCommunityField_rule"
-msgstr "ÆÉ¤ß½ñ¤­²ÄÇ½ SNMP ¥³¥ß¥å¥Ë¥Æ¥£¤ÎÌ¾Á°¤Ë¤Ï¡¢È¾³Ñ¤Î±Ñ¿ô»ú¡¢¥Ô¥ê¥ª¥É (.)¡¢¥Ï¥¤¥Õ¥ó (-)¡¢¥¢¥ó¥À¡¼¥¹¥³¥¢ (_) ¤Î¤ß¤¬»È¤¨¤Ş¤¹¡£"
+msgstr "èª­ã¿æ›¸ãå¯èƒ½ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã®åå‰ã«ã¯ã€åŠè§’ã®è‹±æ•°å­—ã€ãƒ”ãƒªã‚ªãƒ‰ (.)ã€ãƒã‚¤ãƒ•ãƒ³ (-)ã€ã‚¢ãƒ³ãƒ€ãƒ¼ã‚¹ã‚³ã‚¢ (_) ã®ã¿ãŒä½¿ãˆã¾ã™ã€‚"
 
 msgid "readWriteSnmpCommunityField_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤¬½êÂ°¤·¤Æ¤¤¤ëÆÉ¤ß½ñ¤­²ÄÇ½ SNMP ¥³¥ß¥å¥Ë¥Æ¥£¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£[[base-snmp.readWriteSnmpCommunityField_rule]]"
+msgstr "ã“ã®ã‚µãƒ¼ãƒãŒæ‰€å±ã—ã¦ã„ã‚‹èª­ã¿æ›¸ãå¯èƒ½ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚[[base-snmp.readWriteSnmpCommunityField_rule]]"
 
 msgid "readWriteSnmpCommunityField_invalid"
-msgstr "[[VAR.invalidValue]] ¤Ï¡¢[[base-snmp.readWriteSnmpCommunityField]]¤Ë¤ÏÉÔÀµ¤ÊÌ¾Á°¤Ç¤¹¡£[[base-snmp.readWriteSnmpCommunityField_rule]]"
+msgstr "[[VAR.invalidValue]] ã¯ã€[[base-snmp.readWriteSnmpCommunityField]]ã«ã¯ä¸æ­£ãªåå‰ã§ã™ã€‚[[base-snmp.readWriteSnmpCommunityField_rule]]"
 
 # --- Other handler messages
 
 msgid "readNorWriteSet"
-msgstr "SNMP ¤òÍ­¸ú¤Ë¤¹¤ë¤Ë¤Ï¡¢ÆÉ¤ß½ñ¤­²ÄÇ½¥³¥ß¥å¥Ë¥Æ¥£¤ò»ØÄê¤¹¤ëÉ¬Í×¤¬¤¢¤ê¤Ş¤¹¡£"
+msgstr "SNMP ã‚’æœ‰åŠ¹ã«ã™ã‚‹ã«ã¯ã€èª­ã¿æ›¸ãå¯èƒ½ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã‚’æŒ‡å®šã™ã‚‹å¿…è¦ãŒã‚ã‚Šã¾ã™ã€‚"
 
 msgid "readEqualWrite"
-msgstr "ÆÉ¤ß½ñ¤­²ÄÇ½¥³¥ß¥å¥Ë¥Æ¥£¤ò»ØÄê¤¹¤ë¤Ë¤Ï¡¢¤½¤ÎÌ¾Á°¤ò¡ÖÆÉ¤ß½ñ¤­²ÄÇ½ SNMP ¥³¥ß¥å¥Ë¥Æ¥£¡×¥Õ¥£¡¼¥ë¥É¤ËÆşÎÏ¤¹¤ë¤À¤±¤Ç½½Ê¬¤Ç¤¹¡£ÆÉ¤ß½Ğ¤·¥³¥ß¥å¥Ë¥Æ¥£¤Ï¡¢¤³¤ì¤é¤Î¾ò·ï¤òÈ¿±Ç¤¹¤ë¤è¤¦¤ËÊÑ¹¹¤µ¤ì¤Æ¤¤¤Ş¤¹¡£"
+msgstr "èª­ã¿æ›¸ãå¯èƒ½ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã‚’æŒ‡å®šã™ã‚‹ã«ã¯ã€ãã®åå‰ã‚’ã€Œèª­ã¿æ›¸ãå¯èƒ½ SNMP ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã€ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«å…¥åŠ›ã™ã‚‹ã ã‘ã§ååˆ†ã§ã™ã€‚èª­ã¿å‡ºã—ã‚³ãƒŸãƒ¥ãƒ‹ãƒ†ã‚£ã¯ã€ã“ã‚Œã‚‰ã®æ¡ä»¶ã‚’åæ˜ ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã•ã‚Œã¦ã„ã¾ã™ã€‚"
 
 	# --- These won't be shown in UI
 msgid "cannotFork"
@@ -71,15 +81,18 @@ msgstr "Error while breaking symlink [[VAR.msg]]"
 # --- Active Monitor
 
 msgid "amSNMPNameTag"
-msgstr "SNMP ¥µ¡¼¥Ğ"
+msgstr "SNMP ã‚µãƒ¼ãƒ"
 
 msgid "amDetailsTitle"
-msgstr "SNMP ¥µ¡¼¥Ğ¤Î¾ÜºÙ"
+msgstr "SNMP ã‚µãƒ¼ãƒã®è©³ç´°"
 
 msgid "amSNMPNotRunning"
-msgstr "SNMP ¥µ¡¼¥Ğ¤ÏÆ°ºî¤·¤Æ¤ª¤é¤º¡¢µ¯Æ°¤¹¤ë¤³¤È¤â¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£[[base-apache.amAdmservNameTag]] ¤Ç¡¢SNMP ¥µ¡¼¥Ğ¤ò°ìÃ¶¥ª¥Õ¤Ë¤·¤Æ¡ÖÊİÂ¸¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤«¤é¡¢¤â¤¦°ìÅÙ¥ª¥ó¤Ë¤·¤Æ¡ÖÊİÂ¸¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¡¢ÌäÂê¤¬²ò·è¤¹¤ë¤«¤É¤¦¤«¤ª»î¤·¤¯¤À¤µ¤¤¡£SNMP ¥µ¡¼¥Ğ¤¬Àµ¤·¤¯µ¯Æ°¤·¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢[[base-alpine.serverconfig]] ¤Î [[base-power.power]] ¥á¥Ë¥å¡¼¤Ë¤¢¤ë¡Ö[[base-power.reboot]]¡×¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¡¢¥µ¡¼¥ĞËÜÂÎ¤òºÆµ¯Æ°¤·¤Æ¤¯¤À¤µ¤¤¡£¤½¤ì¤Ç¤â SNMP ¥µ¡¼¥Ğ¤¬µ¯Æ°¤·¤Ê¤¤¾ì¹ç¤Ë¤Ï¡¢[[base-sauce-basic.techSupportURL]] ¤Ë¤¢¤ë¥Æ¥¯¥Ë¥«¥ë¥µ¥İ¡¼¥È¥µ¡¼¥Ó¥¹¤ò¤´ÍøÍÑ¤¯¤À¤µ¤¤¡£"
+msgstr "SNMP ã‚µãƒ¼ãƒã¯å‹•ä½œã—ã¦ãŠã‚‰ãšã€èµ·å‹•ã™ã‚‹ã“ã¨ã‚‚ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚[[base-apache.amAdmservNameTag]] ã§ã€SNMP ã‚µãƒ¼ãƒã‚’ä¸€æ—¦ã‚ªãƒ•ã«ã—ã¦ã€Œä¿å­˜ã€ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã‹ã‚‰ã€ã‚‚ã†ä¸€åº¦ã‚ªãƒ³ã«ã—ã¦ã€Œä¿å­˜ã€ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã€å•é¡ŒãŒè§£æ±ºã™ã‚‹ã‹ã©ã†ã‹ãŠè©¦ã—ãã ã•ã„ã€‚SNMP ã‚µãƒ¼ãƒãŒæ­£ã—ãèµ·å‹•ã—ãªã„å ´åˆã«ã¯ã€[[base-alpine.serverconfig]] ã® [[base-power.power]] ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«ã‚ã‚‹ã€Œ[[base-power.reboot]]ã€ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã€ã‚µãƒ¼ãƒæœ¬ä½“ã‚’å†èµ·å‹•ã—ã¦ãã ã•ã„ã€‚ãã‚Œã§ã‚‚ SNMP ã‚µãƒ¼ãƒãŒèµ·å‹•ã—ãªã„å ´åˆã«ã¯ã€[[base-sauce-basic.techSupportURL]] ã«ã‚ã‚‹ãƒ†ã‚¯ãƒ‹ã‚«ãƒ«ã‚µãƒãƒ¼ãƒˆã‚µãƒ¼ãƒ“ã‚¹ã‚’ã”åˆ©ç”¨ãã ã•ã„ã€‚"
 
 msgid "amSNMPStatusOK"
-msgstr "SNMP ¥µ¡¼¥Ğ¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Ş¤¹¡£"
+msgstr "SNMP ã‚µãƒ¼ãƒã¯æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã¾ã™ã€‚"
+
+msgid "cap_serverSNMP"
+msgstr "SNMPè¨­å®š"
 
 

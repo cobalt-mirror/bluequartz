@@ -1,20 +1,12 @@
-# Michael Stauber <mstauber@solarspeed.net>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: snmp\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 20:48+0200\n"
-"PO-Revision-Date: 2008-01-26 05:02+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "amDetailsTitle"
 msgstr "SNMP-Server Details"
@@ -87,4 +79,7 @@ msgstr "SNMP-Einstellungen"
 
 msgid "snmp_help"
 msgstr "Hier können Sie die [[base-snmp.snmpSettings]] ändern."
+
+msgid "cap_serverSNMP"
+msgstr "SNMP-Einstellungen"
 

@@ -26,10 +26,10 @@ msgid "readSnmpCommunityField_rule"
 msgstr "The Read Only SNMP Community you enter can only contain alphanumeric characters along with '.', '-', and '_'."
 
 msgid "readSnmpCommunityField_help"
-msgstr "Enter the Read Only SNMP Community to which this server appliance belongs.  [[base-snmp.readSnmpCommunityField_rule]]"
+msgstr "Enter the Read Only SNMP Community to which this server appliance belongs. [[base-snmp.readSnmpCommunityField_rule]]"
 
 msgid "readSnmpCommunityField_invalid"
-msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-snmp.readSnmpCommunityField]].  [[base-snmp.readSnmpCommunityField_rule]]"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-snmp.readSnmpCommunityField]]. [[base-snmp.readSnmpCommunityField_rule]]"
 
 msgid "readWriteSnmpCommunityField"
 msgstr "Read and Write SNMP Community"
@@ -38,7 +38,7 @@ msgid "readWriteSnmpCommunityField_rule"
 msgstr "The Read and Write SNMP Community you enter can only contain alphanumeric characters along with '.', '-', and '_'."
 
 msgid "readWriteSnmpCommunityField_help"
-msgstr "Enter the Read and Write SNMP Community to which this server appliance belongs.  [[base-snmp.readWriteSnmpCommunityField_rule]]"
+msgstr "Enter the Read and Write SNMP Community to which this server appliance belongs. [[base-snmp.readWriteSnmpCommunityField_rule]]"
 
 msgid "readWriteSnmpCommunityField_invalid"
 msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[base-snmp.readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
@@ -49,7 +49,7 @@ msgid "readNorWriteSet"
 msgstr "Sorry, you must enter a read and/or write community in order to enable SNMP."
 
 msgid "readEqualWrite"
-msgstr "To have a community that will both read and write, it is sufficient to enter it into the Read and Write field.  Your read community has been changed to reflect these requirements."
+msgstr "To have a community that will both read and write, it is sufficient to enter it into the Read and Write field. Your read community has been changed to reflect these requirements."
 
 	# --- These won't be shown in UI
 msgid "cannotFork"
@@ -82,4 +82,5 @@ msgstr "The SNMP server is not running and could not be restarted. In the [[base
 msgid "amSNMPStatusOK"
 msgstr "The SNMP server is operating normally."
 
-
+msgid "cap_serverSNMP" 
+msgstr "SNMP Settings" 
