@@ -72,7 +72,7 @@ msgstr "Prepare"
 msgid "prepare_help"
 msgstr "Click here to prepare the software package for installation."
 
-	# package info
+# package info
 msgid "nameField"
 msgstr "Name"
 
@@ -255,7 +255,7 @@ msgstr "Packages in /home/packages"
 msgid "fileField"
 msgstr "Upload file location"
 
-	# empty/invalid the same, specify both to be safe
+# empty/invalid the same, specify both to be safe
 msgid "fileField_empty"
 msgstr "Sorry, you have not entered a file location of a package to upload. Click Browse to choose a file on your local hard drive."
 
@@ -336,7 +336,7 @@ msgid "packageInstallSuccess"
 msgstr "Package installation successful."
 
 
-	# -- generic message for other strings
+# -- generic message for other strings
 msgid "notInstalled"
 msgstr "The software package was not installed."
 
@@ -359,7 +359,7 @@ msgid "badFormat"
 msgstr "There was an error verifying the package file. It may be corrupted, or it may not have the correct authentication information. [[base-swupdate.notInstalled]]"
 
 msgid "CCEsetError"
-msgstr "There was an error in adding the package to the CCE database.  The package packing_list may be invalid. [[base-swupdate.notInstalled]]"
+msgstr "There was an error in adding the package to the CCE database. The package packing_list may be invalid. [[base-swupdate.notInstalled]]"
 
 msgid "failedDep"
 msgstr "The software package needs other software package(s) to be installed first. Please install the following package(s): [[VAR.dep]]."
@@ -371,7 +371,7 @@ msgid "obsoletePkg"
 msgstr "The [[VAR.name]] package was not installed because it is no longer current."
 
 msgid "badProduct"
-msgstr "The [[VAR.name]] package was not installed because it was not created for this server appliance."
+msgstr "The [[VAR.name]] package was not installed because it is not compatible with this version of [[base-alpine.osName]]."
 
 msgid "hostNotFound"
 msgstr "The host specified in the URL for [[VAR.file]] was not found. [[base-swupdate.notInstalled]]"
@@ -485,7 +485,7 @@ msgid "defaultServer"
 msgstr "newlinq.blueonyx.it"
 
 msgid "serverField_help"
-msgstr "Enter the URLs of server locations to query for new software and updates.  The URL of the default server location is [[base-swupdate.defaultServer]]."
+msgstr "Enter the URLs of server locations to query for new software and updates. The URL of the default server location is [[base-swupdate.defaultServer]]."
 
 msgid "serverFieldInvalid"
 msgstr "[[base-swupdate.software]] was unable to contact the server specified. Please makes sure that it is accessible from your server appliance."
@@ -494,7 +494,7 @@ msgid "httpProxyField"
 msgstr "HTTP proxy:Port"
 
 msgid "httpProxyField_help"
-msgstr "Enter the proxy server and port for HTTP queries if a proxy server is needed to reach outside your firewall.  Example: proxy.example.com:8080."
+msgstr "Enter the proxy server and port for HTTP queries if a proxy server is needed to reach outside your firewall. Example: proxy.example.com:8080."
 
 msgid "httpProxyInvalid"
 msgstr "[[base-swupdate.software]] was unable to contact the HTTP proxy server. Please make sure that it is accessible from your server appliance."
@@ -503,7 +503,7 @@ msgid "ftpProxyField"
 msgstr "FTP proxy:Port"
 
 msgid "ftpProxyField_help"
-msgstr "Enter the proxy server and port for FTP queries if a proxy server is needed to reach outside your firewall.  Example: proxy.example.com:8080."
+msgstr "Enter the proxy server and port for FTP queries if a proxy server is needed to reach outside your firewall. Example: proxy.example.com:8080."
 
 msgid "ftpProxyInvalid"
 msgstr "[[base-swupdate.software]] was unable to contact the FTP proxy server. Please make sure that it is accessible from your server appliance."
@@ -554,58 +554,51 @@ msgid "QueryErrorSubject"
 msgstr "There was a problem querying the [[base-swupdate.software]] server."
 
 msgid "NoProductInfoBody"
-msgstr "The [[base-swupdate.software]] server did not recognize your product.\n\
-[[base-sauce-basic.contactTechSupport]]"
+msgstr "The [[base-swupdate.software]] server did not recognize your product.[[base-sauce-basic.contactTechSupport]]"
 
 msgid "NoSWUpdateServerSubject"
 msgstr "No URL specified for the [[base-swupdate.software]] server."
 
 msgid "NoSWUpdateServerBody"
-msgstr "The location for the [[base-swupdate.software]] server could not be\n\
-determined. Please go to the [[base-swupdate.software]] Settings page and\n\
-specify a URL for the [[base-swupdate.software]] server."
+msgstr "The location for the [[base-swupdate.software]] server could not be determined. Please go to the [[base-swupdate.software]] Settings page and specify a URL for the [[base-swupdate.software]] server."
 
 msgid "NoSystemInfoSubject"
 msgstr "[[base-swupdate.software]] is unable to determine system information."
 
 msgid "NoSystemInfoBody"
-msgstr "The server was unable to determine system information needed by the\n\
-[[base-swupdate.software]] server. [[base-sauce-basic.contactTechSupport]]"
+msgstr "The server was unable to determine system information needed by the [[base-swupdate.software]] server. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "NoPackageListBody"
-msgstr "[[base-swupdate.software]] was unable to retrieve a list of packages\n\
-from the [[base-swupdate.software]] server located at [[VAR.location]].\n\
-Please check to make sure that [[VAR.location]]\n\
-is a valid [[base-swupdate.software]] server and that you can query \n\
-it from your web browser."
+msgstr "[[base-swupdate.software]] was unable to retrieve a list of packages from the [[base-swupdate.software]] server located at [[VAR.location]]. Please check to make sure that [[VAR.location]] is a valid [[base-swupdate.software]] server and that you can query it from your web browser."
 
 msgid "BadPackageFmtBody"
-msgstr "The server returned package information that\n\
-[[base-swupdate.software]] did not understand. [[base-sauce-basic.contactTechSupport]]"
+msgstr "The server returned package information that [[base-swupdate.software]] did not understand. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "NoPackagesBody"
 msgstr "There are no new packages available for download."
 
 msgid "UnknownErrorBody"
-msgstr "[[base-swupdate.software]] received an unknown error ([[VAR.error]])\n\
-when attempting to contact the server located at [[VAR.location]]."
+msgstr "[[base-swupdate.software]] received an unknown error ([[VAR.error]]) when attempting to contact the server located at [[VAR.location]]."
 
 msgid "NewUpdatesSubject"
 msgstr "New software is available for your server appliance"
 
 msgid "NewUpdatesBody"
-msgstr "Please check the [[base-swupdate.software]] menu if you wish to\n\
-install any of the following packages:"
+msgstr "Please check the [[base-swupdate.software]] menu if you wish to install any of the following packages:"
 
 # Capabilities
 msgid "capgroup_adminBlueLinq"
 msgstr "Manage BlueLinQ"
 
 msgid "capgroup_adminBlueLinq_help"
-msgstr "This administrative right allows a user to manage BlueLinQ.  This allows a user to install new software and to update existing software."
+msgstr "This administrative right allows a user to manage BlueLinQ. This allows a user to install new software and to update existing software."
 
 msgid "3rdpartypkg_warning"
 msgstr "PLEASE NOTE: Installation of a third-party package or update may cause the server to malfunction, crash, or become unstable. In addition, packages from un-trusted sources may allow a malicious publisher or user to take control of the server. Please only install packages from a trusted third party source." 
 
 msgid "warning_header"
 msgstr "Warning!!!"
+
+msgid "cap_managePackage" 
+msgstr "Software Updates Management" 
+

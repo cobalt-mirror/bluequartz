@@ -23,13 +23,13 @@ msgid "Logs"
 msgstr "Logs"
 
 msgid "Logs_help"
-msgstr "This page lets you review your YUM logfile, into which all transactions of YUM are logged. The logfile is located at /var/log/yum.lo"
+msgstr "This page lets you review your YUM logfile, into which all transactions of YUM are logged. The logfile is located at /var/log/yum.log"
 
 msgid "yumguimenuentry"
 msgstr "YUM Updater"
 
 msgid "yumguimenuentrydesc"
-msgstr "YUM is the updater that CentOS + BlueOnyx uses to keep the OS and the GUI up to date. You can run YUM from the command line (see 'man yum'). Or you can run it fully automated as a daily cronjob. That functionality can be enabled or disabled here."
+msgstr "YUM is the updater that BlueOnyx uses to keep the OS and the GUI up to date. You can run YUM from the command line (see 'man yum'). Or you can run it fully automated as a daily cronjob. That functionality can be enabled or disabled here."
 
 msgid "yumlog_empty"
 msgstr "The logfile appears to be empty."
@@ -146,7 +146,7 @@ msgid "yumguiEXCLUDE"
 msgstr "Exclude these RPMS"
 
 msgid "yumguiEXCLUDE_help"
-msgstr "Exclude the RPMS listed here from being updated.  Add the RPM Name, but leave off the version information.  Only one entry per line"
+msgstr "Exclude the RPMS listed here from being updated. Add the RPM Name, but leave off the version information. Only one entry per line"
 
 msgid "cantYUMCONF"
 msgstr "Unable to edit /etc/yum.conf"
@@ -221,7 +221,7 @@ msgid "gpgkeyField"
 msgstr "GPG Key URL"
 
 msgid "gpgkeyField_help"
-msgstr "A URL pointing to the ASCII-armored GPG key file for the repository. This option is used if yum needs a public key to verify a package and the required key hasn't been imported into the RPM database. If this option is set, yum  will  automatically import the key from the specified URL. Can be http:// or https://, ftp:// or a local file://."
+msgstr "A URL pointing to the ASCII-armored GPG key file for the repository. This option is used if yum needs a public key to verify a package and the required key hasn't been imported into the RPM database. If this option is set, yum will automatically import the key from the specified URL. Can be http:// or https://, ftp:// or a local file://."
 
 msgid "gpgcheckField"
 msgstr "Check GPG Signature"
@@ -239,7 +239,7 @@ msgid "includepkgsField"
 msgstr "Include packages"
 
 msgid "includepkgsField_help"
-msgstr "Inverse of exclude. This is a list of packages you want to use from a repository. If this option lists only  one  package then that is all yum will ever see from the repository. Defaults to an empty list.  Substitution variables, described in the manpage yum.conf(5), are honored here."
+msgstr "Inverse of exclude. This is a list of packages you want to use from a repository. If this option lists only one package then that is all yum will ever see from the repository. Defaults to an empty list. Substitution variables, described in the manpage yum.conf(5), are honored here."
 
 msgid "invalidUrlBase"
 msgstr "The specified URL for [[base-yum.baseurl]] is invalid. [[base-swupdate.urlField_rule]]"
@@ -272,7 +272,7 @@ msgid "RSS_News_Menu"
 msgstr "BlueOnyx News"
 
 msgid "RSS_News_Menu_Desc"
-msgstr "This page shows a newsfeed of news related to BlueOnyx from the BlueOnyx.it website. It shows news about released updates and other important information."
+msgstr "This page shows a newsfeed of news related to BlueOnyx from the www.BlueOnyx.it website. It shows news about released updates and other important information."
 
 msgid "RSSnewsTitle"
 msgstr "BlueOnyx News:"
@@ -299,7 +299,7 @@ msgid "link"
 msgstr "URL"
 
 msgid "link_help"
-msgstr "When you click on one of the icons below, news article on the BlueOnyx.it webpage is loaded inside the GUI frameset."
+msgstr "When you click on one of the icons below, news article on the www.BlueOnyx.it webpage is loaded inside the GUI frameset."
 
 msgid "internal"
 msgstr "News"

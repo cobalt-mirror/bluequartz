@@ -130,6 +130,74 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- New Capabilities for admin.
+- Shop integration added to this release. 
+
+* Fri May 03 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX8
+- Modified glue/sbin/SWUpdate.pm to include the hostname in the Email Subject.
+
+* Mon Mar 11 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX7
+- Modified glue/schemas/shop.schema to show category 'BlueOnyx' first.
+- Modified ui/web/shop/index.php and ui/web/shop/switcher.php to work with the productive version of the shop.
+- Modified glue/sbin/SWUpdate.pm to enabled logging to Syslog. Also added more logging messages.
+- Modified glue/sbin/pkg_install.pl and glue/sbin/pkg_prepare.pl with logging to Syslog.
+- The logging is not yet awfully complete and could need more final touches.
+- Modified ui/web/shop/index.php to work in Wizard mode, too.
+- Updated locale strings.
+
+* Fri Aug 10 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX6
+- Modified ui/web/rss-news.php to not use file() to pull the RSS feed, but cURL instead. This is smarter.
+- Updated ui/web/shop/index.php to add the extra NewLinQ calls to check for snstatus into the areWeOnline check.
+  Also turned the product image into a clickable link for the product URL.
+
+* Wed Jul 25 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX5
+- Updated ui/web/rss-news.php with a deeper check to see if the RSS news are parseable. A badly configured 
+  router or proxy could allow access to www.blueonyx.it, but would not allow the RSS feed to be served. If
+  that happens, we now display the connection problems error page instead.
+- Updated glue/schemas/shop.schema to save the last seen category in there, so that we can start browsing at
+  that category when we re-visit the page. Defaults to 'blueonyx/web-applications'.
+- Modified ui/web/shop/switcher.php to handle CODB saves of last visited category.
+- Updated locales with a missing string.
+- Modified ui/web/shop/index.php heavily. Cleaned up the HTML generation of the products table as it was not
+  yet pretty enough. That was the easy part. Then I noticed that the product descriptions were cut off partially
+  due to the sub-optimal format of the CSV. Better delimiters and end flags would help. Using str_getcsv()
+  instead for parsing didn't help either. Had to get a bit creative there and found a work around using
+  preg_split() on the mandatory doublequote followed by a newline at the end of each product. Some other small
+  fixes all around as the products array was now looking a bit different.
+- Updated Version regexp in glue/schemas/update.schema
+
+* Wed Jul 25 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX4
+- Updated Makefile for dependency sausalito-palette >= 0.5.2-0BX21 as we use the new getHtmlField() it provides.
+- Updated ui/web/shop/switcher.php to support product category changes.
+- Lots of changes to ui/web/shop/index.php. Category changes now work and when you change the category. Products
+  are now shown correctly with image and short_desc in HTML. This required some UIFC hacking and usage of off
+  the record methods.
+- Updated locales.
+
+* Mon Jul 23 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX3
+- Modified glue/handlers/yum-update.sh to remove linebreaks as per [BlueOnyx:10946]
+- Modified ui/web/shop/index.php to drop out all the legacy RSS functions and redundant code.
+  Also dropped the Magento API polls in favour for using the new NewLinQ methods for polls.
+  Added a rudimentary display of all products with their categories in one large table. This 
+  is just for testing purpose and the final presentation will look a lot nicer.
+
+* Wed Jul 18 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX2
+- Added constructor/create_shop.pl and glue/schemas/shop.schema
+- The new schema stores some shop related info in CODB and the constructor creates the object if it is missing.
+- Added ui/web/shop/switcher.php to update CODB on shop selector changes.
+- Updated ui/web/shop/index.php
+- Updated locales
+
+* Wed Jul 18 2012 Michael Stauber <mstauber@solarspeed.net> 1.4.0-1BX1
+- First experimental draft of the BlueOnyx Shop integration.
+- Must NOT be released to the public and must be kept outside the official repositories until the security
+  issues are worked out. If you read this and wonder: Tough luck, that version is gone now. 
+
 * Sun Jun 23 2012 Greg Kuhnert 1.3.0-1BX35
 - Modified glue/sbin/pkg_install.pl to fix a cosmetic bug in the progress indicator during PKG install.
 - The existing return value for progress was a float, but the schema defined an integer.

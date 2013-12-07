@@ -1,6 +1,5 @@
 <?php
-// Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: uninstallHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: uninstallHandler.php
 
 include_once("ServerScriptHelper.php");
 include_once('Error.php');
@@ -10,8 +9,8 @@ $uninstallScript = "/usr/sausalito/sbin/pkg_uninstall.pl";
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'managePackage' should be here:
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -38,6 +37,8 @@ print($serverScriptHelper->toHandlerHtml("/base/swupdate/status.php?nameField=".
 
 $serverScriptHelper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

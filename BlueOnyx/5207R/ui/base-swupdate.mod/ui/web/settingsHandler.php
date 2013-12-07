@@ -1,15 +1,14 @@
 <?php
 // Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: settingsHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: settingsHandler.php
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'managePackage' should be here:
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -53,6 +52,8 @@ print($serverScriptHelper->toHandlerHtml("/base/swupdate/settings.php", $errors)
 
 $serverScriptHelper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

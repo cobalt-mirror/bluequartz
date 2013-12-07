@@ -1,6 +1,5 @@
 // Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: updateLight.js 3 2003-07-17 15:19:15Z will $
+// $Id: updateLight.js
 
 // check if we need to run update light code
 updateLight_scheduleAccessCheck();

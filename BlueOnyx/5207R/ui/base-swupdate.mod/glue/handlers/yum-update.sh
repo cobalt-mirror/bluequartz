@@ -13,7 +13,7 @@
 if [ -f /etc/yumgui.conf ]; then
   source /etc/yumgui.conf
   EMAILRECIPIENT=$MAILTO
-  /bin/cat /tmp/yum.update | /bin/mail -s "`/bin/hostname` Yum Update output for `/bin/date +\%m`-`/bin/date +\%d`-`/bin/date +\%y`" $EMAILRECIPIENT
+  /bin/cat /tmp/yum.update | /bin/sed 's/\r//' | /bin/mail -s "`/bin/hostname` Yum Update output for `/bin/date +\%m`-`/bin/date +\%d`-`/bin/date +\%y`" $EMAILRECIPIENT
 fi
 
 /usr/bin/yum check-update > /tmp/yum.check-update

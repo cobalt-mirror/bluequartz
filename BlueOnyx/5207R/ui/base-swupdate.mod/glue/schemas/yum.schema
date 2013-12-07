@@ -8,72 +8,72 @@
        <property name="yumguiEMAIL"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
         <property name="yumguiEXCLUDE"
             type="scalar"
             default=""
             optional="true"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
         <property name="yumguiEMAILADDY"
             type="scalar"
             default=""
             optional="true"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
         <property name="yumUpdateTime"
             type="scalar"
             default="6:00"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
         <property name="yumUpdateSU"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="yumUpdateMO"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="yumUpdateTU"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="yumUpdateWE"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="yumUpdateTH"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="yumUpdateFR"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="yumUpdateSA"
             type="boolean"
             default="0"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
        />
        <property name="autoupdate"
             type="scalar"
             default="Off"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
        <property name="y_force_update"
             type="scalar"
             default=""
             optional="true"
-            writeacl="ruleCapable(adminUser)"
+            writeacl="ruleCapable(managePackage)"
         />
-  <PROPERTY name="update" type="word" default="0"/>
-  <PROPERTY name="check" type="word" default=""/>
-  <PROPERTY name="skiplock" type="word" default=""/>
+  <PROPERTY name="update" type="word" default="0" writeacl="ruleCapable(managePackage) />
+  <PROPERTY name="check" type="word" default="" writeacl="ruleCapable(managePackage) />
+  <PROPERTY name="skiplock" type="word" default="" writeacl="ruleCapable(managePackage) />
 </CLASS>

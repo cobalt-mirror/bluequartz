@@ -1,15 +1,14 @@
 <?php
 // Author: asun@cobalt.com
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: removeHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: removeHandler.php
 
 include_once("ServerScriptHelper.php");
 
 // declare some constants
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'managePackage' should be here:
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -24,6 +23,8 @@ if ($object && ($object["CLASS"] == 'Package') &&
 print($serverScriptHelper->toHandlerHtml($backUrl));
 $serverScriptHelper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

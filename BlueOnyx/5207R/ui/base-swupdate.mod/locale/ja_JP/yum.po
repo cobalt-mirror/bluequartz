@@ -1,207 +1,328 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "yumgui_head"
-msgstr "YUM - Updater"
+msgstr "YUM  - アップデータ"
 
 msgid "autoupdate"
-msgstr "Auto-Update enabled:"
+msgstr "自動更新を有効に"
 
 msgid "autoupdate_help"
-msgstr "You can enable YUM to automatically download and install all updates. By enabling it and checking all weekdays it'll run daily. If you want to run it once per week on Mondays, just check Monday instead."
+msgstr "あなたは、すべての更新を自動的にダウンロードしてインストールするYUM有効にすることができます。それを可能にし、すべての平日をチェックすることによって、それは、毎日実行することになるでしょう。あなたは月曜日に一度週にそれを実行したい場合は、だけではなく、月曜日チェック。"
 
 msgid "yumlog"
 msgstr "yum.log"
 
 msgid "yumlog_help"
-msgstr "This page lets you review your YUM logfile, into which all transactions of YUM are logged. The logfile is located at /var/log/yum.log"
+msgstr "このページには、YUMのすべてのトランザクションがログに記録されその中に、あなたのYUMログファイルを確認できます。ログファイルは、/var/log/yum.logに位置しています"
 
 msgid "Settings"
-msgstr "Settings"
+msgstr "設定"
 
 msgid "Settings_help"
-msgstr "You can enable YUM to automatically download and install all updates - on a daily basis. If enabled it will run each morning at 06:00 a.m."
+msgstr "あなたは、すべての更新を自動的にダウンロードしてインストールするYUM有効にすることができます - 日常的に。有効にした場合には、午前06:00毎朝実行されます"
 
 msgid "Logs"
-msgstr "Logs"
+msgstr "ログ"
 
 msgid "Logs_help"
-msgstr "This page lets you review your YUM logfile, into which all transactions of YUM are logged. The logfile is located at /var/log/yum.lo"
+msgstr "このページには、YUMのすべてのトランザクションがログに記録されその中に、あなたのYUMログファイルを確認できます。ログファイルは、/var/log/yum.loに位置しています"
 
 msgid "yumguimenuentry"
-msgstr "YUM Updater"
+msgstr "YUMアップデータ"
 
 msgid "yumguimenuentrydesc"
-msgstr "YUM is the updater that CentOS + BlueOnyx uses to keep the OS and the GUI up to date. You can run YUM from the command line (see 'man yum'). Or you can run it fully automated as a daily cronjob. That functionality can be enabled or disabled here."
+msgstr "YUMはBlueOnyxが最新のOSとGUIを維持するために使用するアップデータです。あなたが（ &#39;人YUM &quot;を参照）、コマンドラインからYUM実行することができます。それともあなたは、毎日のcronジョブとして、それは完全に自動実行することができます。その機能が有効にするか、ここを無効にすることができます。"
 
 msgid "yumlog_empty"
-msgstr "The logfile appears to be empty."
+msgstr "ログファイルは空のように見えます。"
 
 msgid "yumTitle"
-msgstr "Available Updates"
+msgstr "利用可能なアップデート"
 
 msgid "yumTitle_help"
-msgstr "Shows date and time of last YUM update. You can also query the YUM repositories for pending patches and can install the pending patches manually."
+msgstr "最後YUM更新の日付と時刻を表示します。また、保留中のパッチのYUMリポジトリを照会することができますし、手動で保留中のパッチをインストールすることができます。"
 
 msgid "yumCheck"
-msgstr "Check for Updates"
+msgstr "更新を確認"
 
 msgid "yumCheck_help"
-msgstr "Poll the YUM repositories for available updates. This may take a moment or two."
+msgstr "利用可能なアップデートのためのYUMリポジトリをポーリング。これは、瞬間または2つを取ることができる。"
 
 msgid "yumNOW"
-msgstr "Update System"
+msgstr "アップデートシステム"
 
 msgid "yumNOW_help"
-msgstr "Run yum update right now to download and install all pending patches."
+msgstr "保留中のすべてのパッチをダウンロードしてインストールする今yumのアップデートを実行します。"
 
 msgid "yum_last_updated"
-msgstr "Last updated:"
+msgstr "最終更新日"
 
 msgid "yum_last_updated_help"
-msgstr "Date and time of last YUM update."
+msgstr "最後YUMアップデートの日付と時刻。"
 
 msgid "yum_is_pulling_updates"
-msgstr "Update in progress:"
+msgstr "進行中の更新"
 
 msgid "yum_is_pulling_updates_help"
-msgstr "This system is currently being updated. Please check back in a couple of minutes."
+msgstr "このシステムは現在更新されています。数分に戻って確認してください。"
 
 msgid "yumguiEMAIL"
-msgstr "Enable email notifications:"
+msgstr "電子メール通知を有効にする"
 
 msgid "yumguiEMAIL_help"
-msgstr "If enabled YUM will email you the transaction logfile of the performed update."
+msgstr "対応YUMを使用すると実行更新のトランザクションログファイルをメールでお知らせいたします。"
 
 msgid "yumguiEMAILADDY"
-msgstr "Email address:"
+msgstr "電子メールアドレス"
 
 msgid "yumguiEMAILADDY_help"
-msgstr "The default email address to which YUM will send the notifications is of course 'admin'. But you can specify a different email address here if desired."
+msgstr "YUMは、通知の送信先となるデフォルトの電子メールアドレスはもちろん &#39;管理&#39;である。必要に応じて、しかし、あなたは、ここで別のメールアドレスを指定することができます。"
 
 msgid "yumUpdateTime"
-msgstr "Update Time:"
+msgstr "更新時間"
 
 msgid "yumUpdateTime_help"
-msgstr "Allows you to specify at which hour and minute the YUM update is supposed to run. It will only run on the days selected below, though."
+msgstr "あなたはYUMアップデートが実行するように想定される時間と分で指定することができます。それだけで、しかし、以下で選択日に実行されます。"
 
 msgid "yumUpdateSU"
-msgstr "Run on Sundays:"
+msgstr "日曜日に実行"
 
 msgid "yumUpdateSU_help"
-msgstr "Check if you want it to run every Sunday."
+msgstr "あなたはそれが毎週日曜日に実行したいかどうかを確認します。"
 
 msgid "yumUpdateMO"
-msgstr "Run on Mondays:"
+msgstr "月曜日で実行"
 
 msgid "yumUpdateMO_help"
-msgstr "Check if you want it to run every Monday."
+msgstr "あなたはそれが毎週月曜日に実行するかどうかを確認します。"
 
 msgid "yumUpdateTU"
-msgstr "Run on Tuesdays:"
+msgstr "火曜日に実行"
 
 msgid "yumUpdateTU_help"
-msgstr "Check if you want it to run every Tuesday."
+msgstr "あなたはそれが毎週火曜日に実行したいかどうかを確認します。"
 
 msgid "yumUpdateWE"
-msgstr "Run on Wednesdays:"
+msgstr "水曜実行"
 
 msgid "yumUpdateWE_help"
-msgstr "Check if you want it to run every Wednesay."
+msgstr "あなたはそれがすべてのWednesayを実行したいかどうかを確認します。"
 
 msgid "yumUpdateTH"
-msgstr "Run on Thursdays:"
+msgstr "木曜実行"
 
 msgid "yumUpdateTH_help"
-msgstr "Check if you want it to run every Thursday."
+msgstr "あなたはそれが毎週木曜日に実行したいかどうかを確認します。"
 
 msgid "yumUpdateFR"
-msgstr "Run on Fridays:"
+msgstr "金曜日に実行"
 
 msgid "yumUpdateFR_help"
-msgstr "Check if you want it to run every Friday."
+msgstr "あなたはそれが毎週金曜日に実行するかどうかを確認します。"
 
 msgid "yumUpdateSA"
-msgstr "Run on Saturdays:"
+msgstr "土曜日に実行"
 
 msgid "yumUpdateSA_help"
-msgstr "Check if you want it to run every Saturday."
+msgstr "あなたはそれが毎週土曜日に実行したいかどうかを確認します。"
 
 msgid "name"
-msgstr "Name:"
+msgstr "名前"
 
 msgid "name_help"
-msgstr "Name of the RPM"
+msgstr "RPMの名前"
 
 msgid "version"
-msgstr "Version:"
+msgstr "バージョン"
 
 msgid "version_help"
-msgstr "Version of the RPM"
+msgstr "RPMのバージョン"
 
 msgid "status"
-msgstr "Repository:"
+msgstr "リポジトリー"
 
 msgid "status_help"
-msgstr "YUM repository in which the RPM is located"
+msgstr "RPMが配置されているYUMリポジトリ"
 
 msgid "yumguiEXCLUDE"
-msgstr "Exclude these RPMS"
+msgstr "これらのRPMを除外"
 
 msgid "yumguiEXCLUDE_help"
-msgstr "Exclude the RPMS listed here from being updated.  Add the RPM Name, but leave off the version information.  Only one entry per line"
+msgstr "更新されてから、ここに記載されているRPMSを除外します。 RPM名を追加しますが、バージョン情報をオフにしておきます。行ごとに1つだけのエントリ"
 
 msgid "cantYUMCONF"
-msgstr "Unable to edit: /etc/yum.conf"
+msgstr "の/etc/yum.confを編集することができません"
 
+msgid "repos"
+msgstr "リポジトリ"
 
-### RSS-News:
+msgid "repos_help"
+msgstr "ここYUMリポジトリを管理します。"
+
+msgid "addRepo"
+msgstr "リポジトリを追加"
+
+msgid "addRepo_help"
+msgstr "追加のYUMリポジトリを追加するにはここをクリックしてください。"
+
+msgid "viewRepo"
+msgstr "リポジトリを見る"
+
+msgid "viewRepo_help"
+msgstr "リポジトリ設定を表示します（これは、システムのリポジトリである、このリポジトリは、読み取り専用である）。"
+
+msgid "modRepo"
+msgstr "リポジトリを変更"
+
+msgid "modRepo_help"
+msgstr "リポジトリ設定を変更します。"
+
+msgid "repoName"
+msgstr "名前"
+
+msgid "repoName_help"
+msgstr "リポジトリの名前。"
+
+msgid "repoDescription"
+msgstr "説明"
+
+msgid "repoDescription_help"
+msgstr "リポジトリの説明。"
+
+msgid "enabledField"
+msgstr "使用可能"
+
+msgid "enabledField_help"
+msgstr "これは、このレポがアップデートに含まれるようになります。"
+
+msgid "repoNameField"
+msgstr "名前"
+
+msgid "repoNameField_help"
+msgstr "これは、リポジトリの名前です。"
+
+msgid "descriptionField"
+msgstr "説明"
+
+msgid "descriptionField_help"
+msgstr "このフィールドには、リポジトリを説明しています。"
+
+msgid "baseurlField"
+msgstr "BASEURL"
+
+msgid "baseurlField_help"
+msgstr "このフィールドには、リポジトリのベースURLが含まれています。 （代わりにミラーリストを使用している場合、このフィールドは空である必要があります。）"
+
+msgid "mirrorlistField"
+msgstr "ミラーリスト"
+
+msgid "mirrorlistField_help"
+msgstr "このフィールドには、リポジトリのミラーリストが含まれています。 （代わりにBASEURL使用している場合、このフィールドは空である必要があります。）"
+
+msgid "gpgkeyField"
+msgstr "GPGキーURL"
+
+msgid "gpgkeyField_help"
+msgstr "リポジトリのASCII装甲GPGキーファイルを指すURL。 yumのパッケージを確認するために、公開鍵を必要とし、必要なキーがRPMデータベースにインポートされていない場合、このオプションは使用されています。このオプションが設定されている場合は、yumが自動的に指定されたURLから鍵をインポートします。 http://またはhttps://、ftp://でまたはローカルファイル:/ /することができます。"
+
+msgid "gpgcheckField"
+msgstr "GPG署名を確認してください"
+
+msgid "gpgcheckField_help"
+msgstr "これは、このリポジトリから取得したパッケージにGPG署名チェックを行うべきかどうかyumを伝えます。"
+
+msgid "excludeField"
+msgstr "除外する"
+
+msgid "excludeField_help"
+msgstr "アップデートまたはインストールから除外するパッケージのリスト。これは、スペースで区切られたリストでなければなりません。ワイルドカード（例：*と？）を使用して、シェルのグロブは許可されています。"
+
+msgid "includepkgsField"
+msgstr "パッケージが含まれています"
+
+msgid "includepkgsField_help"
+msgstr "除外の逆。これは、リポジトリから使用するパッケージのリストです。このオプションは、すべてのyumで唯一つのパッケージは、これまでリポジトリから表示されます表示される場合。空のリストにデフォルト設定されます。マンページyum.conf（5）に記載されて置換変数は、ここで光栄です。"
+
+msgid "invalidUrlBase"
+msgstr "ために指定されたURL [[base-yum.baseurl]]は無効です。 [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlMirror"
+msgstr "ために指定されたURL [[base-yum.mirrolist]]は無効です。 [[base-swupdate.urlField_rule]]"
+
+msgid "invalidUrlPki"
+msgstr "ために指定されたURL [[base-yum.pki]]は無効です。 [[base-swupdate.urlField_rule]]"
+
+msgid "repoNotUnique"
+msgstr "指定されたリポジトリ名が一意で??はありませんが、別の名前を選択します。"
+
+msgid "chooseBaseOrMirror"
+msgstr "あなたはBASEURLまたはミラーリストのいずれかを使用するように選択しなければならない、あなたは、両方を同時に使用することはできません。"
+
+msgid "repoFilePreExist"
+msgstr "リポジトリの指定したファイルがリポジトリに別の名前を選択し、 &#39;の/etc/yum.repos.d&#39;に既に存在してい"
+
+msgid "repoFileCreationFailed"
+msgstr "指定されたリポジトリ?ファイルが作成できませんでした。"
+
+msgid "cantRepoConf"
+msgstr "リポジトリファイルの編集に問題が発生しました。"
 
 msgid "RSS_News_Menu"
-msgstr "BlueOnyx News"
+msgstr "BlueOnyxニュース"
 
 msgid "RSS_News_Menu_Desc"
-msgstr "This page shows a newsfeed of news related to BlueOnyx from the BlueOnyx.it website. It shows news about released updates and other important information."
+msgstr "このページには、www.BlueOnyx.itサイトからBlueOnyxに関連するニュースのニュースフィードを示しています。これは、リリースされた更新プログラムやその他の重要な情報についてのニュースが表示されます。"
 
 msgid "RSSnewsTitle"
-msgstr "BlueOnyx News:"
+msgstr "BlueOnyxニュース："
 
 msgid "title"
-msgstr "Subject"
+msgstr "主題"
 
 msgid "title_help"
-msgstr "Subject of the news article."
+msgstr "ニュース記事の件名。"
 
 msgid "desc"
-msgstr "Summary"
+msgstr "要約"
 
 msgid "desc_help"
-msgstr "Short summary of the news article."
+msgstr "ニュース記事の要約。"
 
 msgid "date"
-msgstr "Date"
+msgstr "日付"
 
 msgid "date_help"
-msgstr "Date when the article was posted."
+msgstr "記事が投稿された日付。"
 
 msgid "link"
 msgstr "URL"
 
 msgid "link_help"
-msgstr "When you click on one of the icons below, news article on the BlueOnyx.it webpage is loaded inside the GUI frameset."
+msgstr "あなたが以下のいずれかのアイコンをクリックすると、www.BlueOnyx.itウェブページ上のニュース記事は、GUIフレームの内側にロードされます。"
 
 msgid "internal"
-msgstr "News"
+msgstr "ニュース"
 
 msgid "internal_help"
-msgstr "When you click on one of the icons below, news article will be displayed inside the GUI."
+msgstr "あなたが以下のいずれかのアイコンをクリックすると、ニュース記事は、GUI内に表示されます。"
 
 msgid "openURL_help"
-msgstr "Click on this icon to view the news article in question."
+msgstr "問題のニュース記事を表示するには、このアイコンをクリックします。"
 
 msgid "ErrorMSG"
-msgstr "Please note:"
+msgstr "ご注意："
 
 msgid "ErrorMSG_help"
-msgstr "Please read the info text below."
+msgstr "下記の情報テキストをお読みください。"
 
 msgid "ErrorMSGdesc"
-msgstr "This page would usually display the newsfeed about updates and other important anouncements from the www.blueonyx.it website. However, your server apparently cannot resolve the domain name www.blueonyx.it, or access to that domain is currently not possible for other reasons. This has no impact on the functionality of this server, although you also may be unable to get YUM updates as long as this problem persists."
+msgstr "このページには、通常のアップデートとwww.blueonyx.it Webサイトから他の重要なアナウンスメントに関するニュースフィードを表示していました。しかし、あなたのサーバーは明らかにドメイン名www.blueonyx.itを解決するか、そのドメインにアクセスできない他の理由で現在できません。あなたも、この問題が解決しない限り、YUMアップデートを取得できない場合がありますが、これは、このサーバーの機能には影響を与えません。"
 

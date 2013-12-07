@@ -1,7 +1,6 @@
 <?php
 // Author: asun@cobalt.com
-// Copyright (c) 2000 Cobalt Networks. All rights reserved.
-// $Id: updateLib.php 259 2004-01-03 06:28:40Z shibuya $
+// $Id: updateLib.php
 
 // get swupdate splash directory
 function updates_splashname(&$vendor, &$name, &$version, &$stage)
@@ -89,6 +88,8 @@ if(top.code != null && top.code.updateLight_repaintLight != null &&
 ";	
 }
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

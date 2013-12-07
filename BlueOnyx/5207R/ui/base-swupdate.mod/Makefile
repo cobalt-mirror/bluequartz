@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=swupdate
 
-VERSION=1.3.0
-RELEASE=1BX35
+VERSION=1.4.1
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES = perl-Sort-Versions wget lynx
+REQUIRES = perl-Sort-Versions wget lynx php-soap sausalito-palette >= 0.5.2-0BX21
 
 #########
 # some useful defines

@@ -1,7 +1,7 @@
 #!/usr/bin/perl
-# $Id: pkg_prepare.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: pkg_prepare.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-#
+# Copyright 2008-2013 Team BlueOnyx, www.blueonyx.it
 #
 # author: asun@cobalt.com
 #
@@ -69,7 +69,9 @@ my $packageOID;
 if ($ret gt -1) {
     my $info;
 
+    &debug_msg("--- unpacking --- \n");
     print LOG "--- unpacking ---\n";
+    &debug_msg("$opt_f: \n");
     print LOG "$opt_f:";
     
     ($ret, $info) = swupdate_unpack($opt_f, $cce, $sysoid, $sigp);
@@ -79,6 +81,7 @@ if ($ret gt -1) {
         $packageOID = $ret if ($opt_i);
     }
     print LOG " $ret ($info)\n";
+    &debug_msg("$ret ($info) \n");
     $ret = $ret gt 0 ? 0 : -1;
 }
 $cce->bye('SUCCESS');
@@ -86,8 +89,10 @@ close(LOG);
 unlink($opt_f);
 
 if ($packageOID && $opt_R) {
+    &debug_msg("Executing: /usr/sausalito/sbin/pkg_install.pl $packageOID -R \n");
     $ret = system("/usr/sausalito/sbin/pkg_install.pl $packageOID -R")
 } elsif ($packageOID) {
+    &debug_msg("Executing: /usr/sausalito/sbin/pkg_install.pl $packageOID \n");
     $ret = system("/usr/sausalito/sbin/pkg_install.pl $packageOID")
 } 
 

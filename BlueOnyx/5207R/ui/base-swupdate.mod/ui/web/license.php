@@ -1,6 +1,5 @@
 <?php
-// Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: license.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: license.php 
 
 include_once("ServerScriptHelper.php");
 include_once("base/swupdate/updateLib.php");
@@ -90,6 +89,8 @@ top.code.info_show('');
 <?php print($block->toHtml()); ?>
 <?php print($page->toFooterHtml());
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

@@ -1,7 +1,6 @@
 <?php
 // Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: updateLight.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: updateLight.php
 
 include_once("ServerScriptHelper.php");
 include_once("base/swupdate/updateLib.php");
@@ -31,6 +30,8 @@ $js
 
 $serverScriptHelper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

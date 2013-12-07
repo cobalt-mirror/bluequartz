@@ -1,368 +1,328 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
-"POT-Creation-Date: 2007-11-03 09:11+0200\n"
-"PO-Revision-Date: 2007-11-21 10:49+0100\n"
-"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
-"Language-Team: DANISH <jes@enavn.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: quoted-printable\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "yumgui_head"
-msgstr "YUM - Opdatering"
+msgstr "YUM - Updater"
 
 msgid "autoupdate"
-msgstr "Automatisk opdatering aktiv:"
+msgstr "Automatisk opdatering aktiveret"
 
 msgid "autoupdate_help"
-msgstr ""
-"Du kan indstille YUM til automatisk at downloade og installere alle "
-"opdateringer. Aktivering og markering af alle ugedage vil medføre at det "
-"køres dagligt. Hvis du kun vil have det til at køre en gang om ugen, f.eks. "
-"om mandagen, sæt da kun hak i Mandag."
+msgstr "Du kan aktivere YUM til automatisk at hente og installere alle opdateringer. Ved at aktivere det og kontrollere alle hverdage det vil køre dagligt. Hvis du ønsker at køre det en gang om ugen på mandage, lige tjekke mandag i stedet."
 
 msgid "yumlog"
 msgstr "yum.log"
 
 msgid "yumlog_help"
-msgstr ""
-"Denne side giver dig mulighed for at gennemse din YUM-logfil, i hvilken alle "
-"YUM's transaktioner logføres. Logfilen er placeret i /var/log/yum.log"
+msgstr "Denne side lader dig gennemgå din YUM logfil, hvori alle transaktioner mellem YUM er logget. Den logfil er placeret på /var/log/yum.log"
 
 msgid "Settings"
 msgstr "Indstillinger"
 
 msgid "Settings_help"
-msgstr ""
-"Du kan indstille YUM til automatisk at downloade og installere alle "
-"opdateringer - på daglig basis. Hvis det er aktiveret vil det køre hver "
-"morgen klokken 06:00."
+msgstr "Du kan aktivere YUM til automatisk at hente og installere alle opdateringer - på daglig basis. Hvis aktiveret det vil køre hver morgen på 6:00"
 
 msgid "Logs"
-msgstr "Logfiler"
+msgstr "Logs"
 
 msgid "Logs_help"
-msgstr ""
-"Denne side lader dig gennemse din YUM-logfil, i hvilken alle YUM's "
-"transaktioner logføres. Logfilen er placeret i /var/log/yum.log"
+msgstr "Denne side lader dig gennemgå din YUM logfil, hvori alle transaktioner mellem YUM er logget. Den logfil er placeret på /var/log/yum.log"
 
 msgid "yumguimenuentry"
-msgstr "YUM Opdatering"
+msgstr "YUM Updater"
 
 msgid "yumguimenuentrydesc"
-msgstr ""
-"YUM er det opdateringsværksøj som benyttes af CentOS og BlueOnyx til at "
-"holde OS og GUI opdateret. Du kan også køre YUM fra kommandolinien (se 'man "
-"yum'). YUM kan også køres fuldt automatiseret som et dagligt cronjob. "
-"Funktionaliteten kan aktiveres eller deaktiveres her."
+msgstr "YUM er opdateringsprogrammet at BlueOnyx bruger til at holde OS og GUI up to date. Du kan køre YUM fra kommandolinjen (se \"man yum\"). Eller du kan køre det fuldautomatisk som en daglig cronjob. Denne funktionalitet kan aktiveres eller deaktiveres her."
 
 msgid "yumlog_empty"
-msgstr "Logfilen lader til at være tom."
+msgstr "Logfilen synes at være tom."
 
 msgid "yumTitle"
 msgstr "Tilgængelige opdateringer"
 
 msgid "yumTitle_help"
-msgstr ""
-"Viser dato og tid for den seneste YUM opdatering. Du kan også forespørge YUM "
-"repositorierne om afventende patches og kan derefter installere dem "
-"manuelt."
+msgstr "Viser dato og klokkeslæt for seneste YUM opdatering. Du kan også forespørge YUM depoter til verserende patches og kan installere de verserende patches manuelt."
 
 msgid "yumCheck"
 msgstr "Søg efter opdateringer"
 
 msgid "yumCheck_help"
-msgstr ""
-"Spørg YUM repositorierne efter tilgængelige opdateringer. Dette tager "
-"muligvis kun et øjeblik eller to."
+msgstr "Polle YUM depoter til tilgængelige opdateringer. Dette kan tage et øjeblik eller to."
 
 msgid "yumNOW"
-msgstr "Opdatér systemet"
+msgstr "Opdatering System"
 
 msgid "yumNOW_help"
-msgstr ""
-"Kør yum-opdateringen med det samme for at downloade og installere alle "
-"ventende patches."
+msgstr "Kør yum update lige nu til at downloade og installere alle ventende patches."
 
 msgid "yum_last_updated"
-msgstr "Senest opdateret:"
+msgstr "Sidst opdateret"
 
 msgid "yum_last_updated_help"
-msgstr "Dato og tidspunkt for seneste YUM-opdatering."
+msgstr "Dato og klokkeslæt for sidste YUM opdatering."
 
 msgid "yum_is_pulling_updates"
-msgstr "Opdatering i gang:"
+msgstr "Opdatering i gang"
 
 msgid "yum_is_pulling_updates_help"
-msgstr ""
-"Systemet opdateres i øjeblikket. Check venligst tilbage om et par minutter."
+msgstr "Dette system er i øjeblikket ved at blive opdateret. Vend tilbage om et par minutter."
 
 msgid "yumguiEMAIL"
-msgstr "Aktivér emailnotifikation:"
+msgstr "Aktiver e-mail-meddelelser"
 
 msgid "yumguiEMAIL_help"
-msgstr ""
-"Hvis dette er aktiveret vil YUM sende en email med transaktionslogfilen for "
-"den udførte opdatering."
+msgstr "Hvis aktiveret YUM vil emaile dig transaktionen logfil af det udførte opdatering."
 
 msgid "yumguiEMAILADDY"
-msgstr "Emailadresse:"
+msgstr "E-mail-adresse"
 
 msgid "yumguiEMAILADDY_help"
-msgstr ""
-"Standardemailadressen til hvilken YUM vil sende notificering er naturligvis "
-"'admin'. Men du kan specificere en anden emailadresse her, hvis ønsket."
+msgstr "Som standard email-adresse, som YUM vil sende meddelelser er naturligvis \"admin\". Men du kan angive en anden e-mail-adresse her, hvis det ønskes."
 
 msgid "yumUpdateTime"
-msgstr "Opdateringstidspunkt:"
+msgstr "Opdater Time"
 
 msgid "yumUpdateTime_help"
-msgstr ""
-"Tillader dig at specificére hvilken time og minut YUM skal køre. Det vil dog "
-"kun køre på de, nedenfor, valgte dage."
+msgstr "Gør det muligt at angive, hvor time og minut YUM opdatering er meningen at køre. Det vil kun køre på de dage valgt nedenfor, selv om."
 
 msgid "yumUpdateSU"
-msgstr "Kør på søndage:"
+msgstr "Kør om søndagen"
 
 msgid "yumUpdateSU_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver søndag."
+msgstr "Kontroller, om du vil have den til at køre hver søndag."
 
 msgid "yumUpdateMO"
-msgstr "Kør på mandage:"
+msgstr "Kør på mandage"
 
 msgid "yumUpdateMO_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver mandag."
+msgstr "Kontroller, om du vil have den til at køre hver mandag."
 
 msgid "yumUpdateTU"
-msgstr "Kør på tirsdage:"
+msgstr "Kør på tirsdage"
 
 msgid "yumUpdateTU_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver tirsdag."
+msgstr "Kontroller, om du vil have den til at køre hver tirsdag."
 
 msgid "yumUpdateWE"
-msgstr "Kør på onsdage:"
+msgstr "Kør om onsdagen"
 
 msgid "yumUpdateWE_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver onsdag."
+msgstr "Kontroller, om du vil have den til at køre hver Wednesay."
 
 msgid "yumUpdateTH"
-msgstr "Kør på torsdage:"
+msgstr "Kør om torsdagen"
 
 msgid "yumUpdateTH_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver torsdag."
+msgstr "Kontroller, om du vil have den til at køre hver torsdag."
 
 msgid "yumUpdateFR"
-msgstr "Kør på fredage:"
+msgstr "Kør om fredagen"
 
 msgid "yumUpdateFR_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver fredag."
+msgstr "Kontroller, om du vil have den til at køre hver fredag."
 
 msgid "yumUpdateSA"
-msgstr "Kør på lørdage:"
+msgstr "Kør på lørdage"
 
 msgid "yumUpdateSA_help"
-msgstr "Sæt hak hvis du vil have det til at køre hver lørdag."
+msgstr "Kontroller, om du vil have den til at køre hver lørdag."
 
 msgid "name"
-msgstr "Navn:"
+msgstr "Navn"
 
 msgid "name_help"
-msgstr "RPM'ens navn"
+msgstr "Navn på RPM"
 
 msgid "version"
-msgstr "Version:"
+msgstr "Version"
 
 msgid "version_help"
-msgstr "RPM'ens version"
+msgstr "Version af RPM"
 
 msgid "status"
-msgstr "Repositorie:"
+msgstr "Repository"
 
 msgid "status_help"
-msgstr "Det YUM repositorie hvor RPM'en er placeret."
+msgstr "YUM repository hvor RPM ligger"
 
 msgid "yumguiEXCLUDE"
-msgstr "Ekskludér disse RPM'er"
+msgstr "Udelukke disse RPMS"
 
 msgid "yumguiEXCLUDE_help"
-msgstr ""
-"Ekskludér de RPM'er der er oplistet her fra at blive opdateret  Tilføj "
-"RPM'ens navn, men udelad versionsinformation.  Kun en indtastning per linie."
+msgstr "Udelukke de RPMS anført her fra at blive opdateret. Tilsæt RPM navn, men lad off version. Kun én indgang per linje"
 
 msgid "cantYUMCONF"
-msgstr "Kunne ikke redigere: /etc/yum.conf"
-
-## Added for "Repository" tab:
+msgstr "Kan ikke redigere /etc/yum.conf"
 
 msgid "repos"
-msgstr "Repositories"
+msgstr "Arkiver"
 
 msgid "repos_help"
-msgstr "You administer the YUM repositories here."
+msgstr "Du administrerer YUM repositories her."
 
 msgid "addRepo"
-msgstr "Add repository"
+msgstr "Tilføj repository"
 
 msgid "addRepo_help"
-msgstr "Click here to add additional YUM repositories."
+msgstr "Klik her for at tilføje yderligere YUM repositories."
 
 msgid "viewRepo"
-msgstr "View repository"
+msgstr "Se repository"
 
 msgid "viewRepo_help"
-msgstr "View repository settings (This is a system repository, this repository is read-only)."
+msgstr "Se repository indstillinger (Det er et system repository, dette repository er read-only)."
 
 msgid "modRepo"
-msgstr "Modify repository"
+msgstr "Rediger repository"
 
 msgid "modRepo_help"
-msgstr "Modify repository settings."
+msgstr "Rediger repository indstillinger."
 
 msgid "repoName"
-msgstr "Name"
+msgstr "Navn"
 
 msgid "repoName_help"
-msgstr "Name of the repository."
+msgstr "Navn på lageret."
 
 msgid "repoDescription"
-msgstr "Description"
+msgstr "Beskrivelse"
 
 msgid "repoDescription_help"
-msgstr "Description of the repository."
+msgstr "Beskrivelse af lageret."
 
 msgid "enabledField"
-msgstr "Enabled"
+msgstr "Aktiveret"
 
 msgid "enabledField_help"
-msgstr "This enables this repo to be included in updates."
+msgstr "Dette giver denne repo skal medtages i opdateringer."
 
 msgid "repoNameField"
-msgstr "Name"
+msgstr "Navn"
 
 msgid "repoNameField_help"
-msgstr "This is the name of the repository."
+msgstr "Dette er navnet på lageret."
 
 msgid "descriptionField"
-msgstr "Description"
+msgstr "Beskrivelse"
 
 msgid "descriptionField_help"
-msgstr "This field describes the repository."
+msgstr "Dette felt beskriver lageret."
 
 msgid "baseurlField"
 msgstr "BaseURL"
 
 msgid "baseurlField_help"
-msgstr "This field contains the BaseURL of the repository. (This field should be empty if you use Mirrorlist instead.)"
+msgstr "Dette felt indeholder baseURL af depotet. (Dette felt skal være tom, hvis du bruger filspejl i stedet.)"
 
 msgid "mirrorlistField"
-msgstr "Mirrorlist"
+msgstr "Filspejl"
 
 msgid "mirrorlistField_help"
-msgstr "This field contains the Mirrorlist of the repository. (This field should be empty if you use BaseURL instead.)"
+msgstr "Dette felt indeholder filspejl af depotet. (Dette felt skal være tom, hvis du bruger baseURL i stedet.)"
 
 msgid "gpgkeyField"
 msgstr "GPG Key URL"
 
 msgid "gpgkeyField_help"
-msgstr "A URL pointing to the ASCII-armored GPG key file for the repository. This option is used if yum needs a public key to verify a package and the required key hasn't been imported into the RPM database. If this option is set, yum  will  automatically import the key from the specified URL. Can be http:// or https://, ftp:// or a local file://."
+msgstr "En webadresse, der peger til den ASCII-pansret GPG nøglefil for arkivet. Denne mulighed anvendes, hvis yum brug for en offentlig nøgle til at kontrollere en pakke og den nødvendige nøgle ikke er blevet importeret til RPM-databasen. Hvis denne indstilling er indstillet, yum automatisk importere nøglen fra den angivne URL. Kan være http:// eller https://, ftp:// eller en lokal file :/ /."
 
 msgid "gpgcheckField"
-msgstr "Check GPG Signature"
+msgstr "Check GPG Underskrift"
 
 msgid "gpgcheckField_help"
-msgstr "This tells yum whether or not it should perform a GPG signature check on the packages gotten from this repository."
+msgstr "Dette fortæller yum, hvorvidt det skal udføre en GPG signatur kontrollere de pakker fået fra dette arkiv."
 
 msgid "excludeField"
-msgstr "Exclude"
+msgstr "Udeluk"
 
 msgid "excludeField_help"
-msgstr "List of packages to exclude from updates or installs. This should be a space separated list. Shell globs using wildcards (eg. * and ?) are allowed."
+msgstr "Liste over pakker at udelukke opdateringer eller installerer. Dette bør være et mellemrum separeret liste. Shell globs bruge wildcards (f.eks * og?) Er tilladt."
 
 msgid "includepkgsField"
-msgstr "Include packages"
+msgstr "Medtag pakker"
 
 msgid "includepkgsField_help"
-msgstr "Inverse of exclude. This is a list of packages you want to use from a repository. If this option lists only  one  package then that is all yum will ever see from the repository. Defaults to an empty list.  Substitution variables, described in the manpage yum.conf(5), are honored here."
+msgstr "Inverse udelukke. Dette er en liste over pakker, du vil bruge fra en repository. Hvis denne indstilling kun opført én pakke, så det er alt yum nogensinde vil se fra lageret. Standard er en tom liste. Substitution variabler, der er beskrevet i manpage yum.conf (5), er beæret her."
 
 msgid "invalidUrlBase"
-msgstr "The specified URL for [[base-yum.baseurl]] is invalid. [[base-swupdate.urlField_rule]]"
+msgstr "Den angivne URL til [[base-yum.baseurl]] er ugyldig. [[base-swupdate.urlField_rule]]"
 
 msgid "invalidUrlMirror"
-msgstr "The specified URL for [[base-yum.mirrolist]] is invalid. [[base-swupdate.urlField_rule]]"
+msgstr "Den angivne URL til [[base-yum.mirrolist]] er ugyldig. [[base-swupdate.urlField_rule]]"
 
 msgid "invalidUrlPki"
-msgstr "The specified URL for [[base-yum.pki]] is invalid. [[base-swupdate.urlField_rule]]"
+msgstr "Den angivne URL til [[base-yum.pki]] er ugyldig. [[base-swupdate.urlField_rule]]"
 
 msgid "repoNotUnique"
-msgstr "The repository name specified is not unique, choose another name."
+msgstr "Lageret angivne navn ikke er entydigt, skal du vælge et andet navn."
 
 msgid "chooseBaseOrMirror"
-msgstr "You have to choose to use either BaseURL or MirrorList, you can't use both at the same time."
+msgstr "Du er nødt til at vælge at bruge enten basiswebadressen eller filspejl, kan du ikke bruge begge på samme tid."
 
 msgid "repoFilePreExist"
-msgstr "The specified file for the repository already exists in '/etc/yum.repos.d', choose another name for your repository"
+msgstr "Den angivne fil for arkivet allerede findes i \"/etc/yum.repos.d\", vælg et andet navn til din repository"
 
 msgid "repoFileCreationFailed"
-msgstr "The specified repository-file could not be created."
+msgstr "Den angivne repository-fil kunne ikke oprettes."
 
 msgid "cantRepoConf"
-msgstr "There was a problem editing the repository-file."
-
-
-### RSS-News:
+msgstr "Der opstod et problem med at redigere repository-fil."
 
 msgid "RSS_News_Menu"
 msgstr "BlueOnyx News"
 
 msgid "RSS_News_Menu_Desc"
-msgstr "This page shows a newsfeed of news related to BlueOnyx from the BlueOnyx.it website. It shows news about released updates and other important information."
+msgstr "Denne side viser en newsfeed af nyheder relateret til BlueOnyx fra www.BlueOnyx.it hjemmeside. Det viser nyheder om udgivne opdateringer og andre vigtige oplysninger."
 
 msgid "RSSnewsTitle"
 msgstr "BlueOnyx News:"
 
 msgid "title"
-msgstr "Subject"
+msgstr "Emne"
 
 msgid "title_help"
-msgstr "Subject of the news article."
+msgstr "Genstand for nyhedsartikel."
 
 msgid "desc"
-msgstr "Summary"
+msgstr "Resumé"
 
 msgid "desc_help"
-msgstr "Short summary of the news article."
+msgstr "Kort resumé af nyhederne artiklen."
 
 msgid "date"
-msgstr "Date"
+msgstr "Dato"
 
 msgid "date_help"
-msgstr "Date when the article was posted."
+msgstr "Dato, hvor artiklen blev lagt ud."
 
 msgid "link"
 msgstr "URL"
 
 msgid "link_help"
-msgstr "When you click on one of the icons below, news article on the BlueOnyx.it webpage is loaded inside the GUI frameset."
+msgstr "Når du klikker på et af ikonerne nedenfor er nyhedsartikel på www.BlueOnyx.it webside indlæst inde i GUI rammesæt."
 
 msgid "internal"
-msgstr "News"
+msgstr "Nyheder"
 
 msgid "internal_help"
-msgstr "When you click on one of the icons below, news article will be displayed inside the GUI."
+msgstr "Når du klikker på et af ikonerne nedenfor vil nyhedsartikel blive vist inde i GUI."
 
 msgid "openURL_help"
-msgstr "Click on this icon to view the news article in question."
+msgstr "Klik på dette ikon for at se nyhederne pågældende artikel."
 
 msgid "ErrorMSG"
-msgstr "Please note:"
+msgstr "Bemærk:"
 
 msgid "ErrorMSG_help"
-msgstr "Please read the info text below."
+msgstr "Læs info-teksten nedenfor."
 
 msgid "ErrorMSGdesc"
-msgstr "This page would usually display the newsfeed about updates and other important anouncements from the www.blueonyx.it website. However, your server apparently cannot resolve the domain name www.blueonyx.it, or access to that domain is currently not possible for other reasons. This has no impact on the functionality of this server, although you also may be unable to get YUM updates as long as this problem persists."
+msgstr "Denne side normalt ville vise newsfeed om opdateringer og andre vigtige anouncements fra www.blueonyx.it hjemmeside. Men din server tilsyneladende ikke kan løse domænenavnet www.blueonyx.it eller adgang til dette domæne er i øjeblikket ikke muligt for andre grunde. Dette har ingen indvirkning på funktionaliteten af ​​denne server, selvom du også kan være ude af stand til at få YUM opdateringer, så længe dette problem fortsætter."
 

@@ -1,7 +1,6 @@
 <?php
 // Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: downloadHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: downloadHandler.php
 
 include_once("ServerScriptHelper.php");
 
@@ -10,8 +9,8 @@ $installScript = "/usr/sausalito/sbin/pkg_install.pl";
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'managePackage' should be here:
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -29,6 +28,8 @@ print($serverScriptHelper->toHandlerHtml(
 );
 $serverScriptHelper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

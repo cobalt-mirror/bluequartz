@@ -1,8 +1,8 @@
 <?php
 
 // Author: Michael Stauber
-// Copyright 2006-2011, Stauber Multimedia Design. All rights reserved.
-// Copyright 2008-2011, Team BlueOnyx. All rights reserved.
+// Copyright 2006-2012, Stauber Multimedia Design. All rights reserved.
+// Copyright 2008-2012, Team BlueOnyx. All rights reserved.
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/ImageButton.php");
@@ -36,13 +36,6 @@ else {
 
 if ($online == "1") {
 
-    // General parameters for the scroll list:
-    $scrollList = $factory->getScrollList("[[base-yum.RSSnewsTitle]]", array("title", "desc", "date", "internal", "link"));
-    $scrollList->setAlignments(array("left", "left", "center", "center", "center"));
-    $scrollList->setSortEnabled(false);
-    $scrollList->setColumnWidths(array("250", "*", "120", "25", "25"));
-    $scrollList->setWidth("100%");
-
     // Process the RSS feed:
     getRssfeed($rsslocation,"BlueOnyx News","auto",50,3);
 
@@ -52,6 +45,29 @@ if ($online == "1") {
     // $GLOBALS["_bx_date"]  : Date
     // $GLOBALS["_bx_desc"]  : Short description
     // $GLOBALS["_bx_link"]  : Link
+
+    if ($GLOBALS["_bx_title"] == "n/a") {
+	// Although we can establish a connection to www.blueonyx.it, the RSS feed did not return expected results:
+	$scrollList = $factory->getScrollList("[[base-yum.RSSnewsTitle]]", array("ErrorMSG"));
+	$scrollList->setAlignments(array("left"));
+	$scrollList->setSortEnabled(false);
+	$scrollList->setWidth("500");
+	$scrollList->addEntry(array(
+    	    $factory->getTextField("", $i18n->get('[[base-yum.ErrorMSGdesc]]'), "r")
+	));
+	print($scrollList->toHtml());
+	print($page->toFooterHtml());
+	$serverScriptHelper->destructor();
+	exit;
+    }
+
+    // General parameters for the scroll list:
+    $scrollList = $factory->getScrollList("[[base-yum.RSSnewsTitle]]", array("title", "desc", "date", "internal", "link"));
+    $scrollList->setAlignments(array("left", "left", "center", "center", "center"));
+    $scrollList->setSortEnabled(false);
+    $scrollList->setColumnWidths(array("250", "*", "120", "25", "25"));
+    $scrollList->setWidth("100%");
+
 
     // Count number of news-entries:
     $bx_num = count($GLOBALS["_bx_title"]);
@@ -92,7 +108,7 @@ if ($online == "1") {
 }
 else {
 
-    // General parameters for the scroll list:
+    // Connection to www.blueonyx.it not possible. Show error message:
     $scrollList = $factory->getScrollList("[[base-yum.RSSnewsTitle]]", array("ErrorMSG"));
     $scrollList->setAlignments(array("left"));
     $scrollList->setSortEnabled(false);
@@ -125,8 +141,7 @@ function getRssfeed($rssfeed, $cssclass="", $encode="auto", $howmany=10, $mode=0
 	$bx_link = array();
     
 	// Pull the RSS feed:
-	$data = @file($rssfeed);
-	$data = implode ("", $data);
+	$data = get_data($rssfeed);
 	if(strpos($data,"</item>") > 0)
 	{
 		preg_match_all("/<item.*>(.+)<\/item>/Uism", $data, $items);
@@ -171,9 +186,11 @@ function getRssfeed($rssfeed, $cssclass="", $encode="auto", $howmany=10, $mode=0
 		$channeltitle = preg_replace('/<!\[CDATA\[(.+)\]\]>/Uism', '$1', $channeltitle);
 		$channellink = preg_replace('/<!\[CDATA\[(.+)\]\]>/Uism', '$1', $channellink);
 	}
-	
-	// Titel, link and description of the news items:
-	foreach ($items[1] as $item) {
+	// Check if we get multiple news items back. If not, a proxy or a badly configured router may be interfering:
+	$counter = count ($items);
+	if ($counter) {
+	    // Titel, link and description of the news items:
+	    foreach ($items[1] as $item) {
 		preg_match("/<title.*>(.+)<\/title>/Uism", $item, $title);
 		if($atom == 0)
 		{
@@ -201,12 +218,16 @@ function getRssfeed($rssfeed, $cssclass="", $encode="auto", $howmany=10, $mode=0
 		$bx_link[] = $link[1];
 
 		if ($howmany-- <= 1) break;
+	    }
+	    $GLOBALS["_bx_title"] = $bx_title;
+	    $GLOBALS["_bx_date"] = $bx_date;
+	    $GLOBALS["_bx_desc"] = $bx_desc;
+	    $GLOBALS["_bx_link"] = $bx_link;
 	}
-
-	$GLOBALS["_bx_title"] = $bx_title;
-	$GLOBALS["_bx_date"] = $bx_date;
-	$GLOBALS["_bx_desc"] = $bx_desc;
-	$GLOBALS["_bx_link"] = $bx_link;
+	else {
+	    // Did not receive expected results. Set bx_title to something we can catch and process:
+	    $GLOBALS["_bx_title"] = "n/a";
+	}
 }
 
 function areWeOnline($domain) {
@@ -229,6 +250,17 @@ function areWeOnline($domain) {
     // Generate response:
    if ($response) return true;
        return false;
+}
+
+function get_data($url) {
+  $ch = curl_init();
+  $timeout = 5;
+  curl_setopt($ch,CURLOPT_URL,$url);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+  curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+  $data = curl_exec($ch);
+  curl_close($ch);
+  return $data;
 }
 
 ?>

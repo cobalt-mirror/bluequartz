@@ -1,13 +1,12 @@
 <?php
-// Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: download.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: download.php
 
 include_once("ServerScriptHelper.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'managePackage' should be here:
+if (!$serverScriptHelper->getAllowed('managePackage')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -127,6 +126,8 @@ $serverScriptHelper->destructor();
 <?php print($block->toHtml()); ?>
 <?php print($page->toFooterHtml());
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

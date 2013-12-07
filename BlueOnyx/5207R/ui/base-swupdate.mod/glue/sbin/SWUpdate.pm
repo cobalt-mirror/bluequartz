@@ -21,7 +21,7 @@ use Sauce::Config;
 use CCE;
 use Sort::Versions;
 
-$DEBUG = "0";
+$DEBUG = "1";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -37,6 +37,9 @@ my $localedir = '/usr/share/locale';
 
 # cron, ui, and everything else
 my @emailaddrs;
+
+# Hostname:
+my $host = hostname();
 
 1;
 
@@ -276,13 +279,17 @@ sub swupdate_verifyuntar
 
 	# verify
 	`$gpg --verify $file > /dev/null 2>&1`;
-	return (-1, 'badsig') if $?;
+	if ($?) {
+	    &debug_msg("ERROR: The PKG is contain a bad or unsupported security signature. You have the checkbox ticked that only signed PKGs can be installed and this PKG failed the signature check.\n");
+	    return (-1, 'badsig');
+	}
 
 	# convert the file
 	`$gpg --output $local.tar $local > /dev/null 2>&1`;
 	$local .= '.tar' if -e "$local.tar";
 	$type = get_magic($local);
     } elsif ($sigp) {
+	&debug_msg("ERROR: The PKG is not signed and you have the checkbox ticked that only signed PKGs can be installed.\n");
 	return (-1, 'nosig');
     }
 	
@@ -295,6 +302,7 @@ sub swupdate_verifyuntar
 	$local .= '.unzipped';
 	if ($err) {
 	    unlink($local);
+	    &debug_msg("The PKG file could not be unzipped with either bzip2, bunzip2 or gunzip. It is probably damaged.\n");
 	    return (-1, 'nounzip');
 	}
 	$type = get_magic($local);
@@ -303,6 +311,7 @@ sub swupdate_verifyuntar
     # it has to be a tar file
     unless ($type =~ /tar/) {
 	unlink($local);
+	&debug_msg("The PKG did not contain a tarball. It is probably damaged.\n");
 	return (-1, 'notar');
     }
 
@@ -312,7 +321,10 @@ sub swupdate_verifyuntar
     `$tar_cmd xf $local -C $destdir 2>/dev/null`;
     $err = $?;
     unlink($local);
-    return (-1, 'cantuntar') if $err;
+    if ($err) {
+	&debug_msg("The PKG could not be unpacked with TAR. It is probably damaged.\n");
+	return (-1, 'cantuntar');
+    }
     unlink($file);
     return (0);
 }
@@ -351,6 +363,7 @@ sub swupdate_unpack
     }
 
     # unpack the basic package.
+    &debug_msg("Unpacking of the PKG is in progress ... \n");
     `mkdir -p $path`;
     setProgress($cce, $status, '[[base-swupdate.verifyingPackage]]') if $status;
     my $size = -s $file;
@@ -359,6 +372,7 @@ sub swupdate_unpack
 	`rm -rf $path`;
 	setProgress($cce, $status, '[[base-swupdate.badFormat]]', 100) if $status;
 	$cce->bye('SUCCESS') unless $cceref;
+      &debug_msg("Verification of the PKG failed. Error message 'badFormat' was given.\n");
 	return ($err, $info);
     }
 
@@ -368,12 +382,14 @@ sub swupdate_unpack
 	`rm -rf $path`;
 	setProgress($cce, $status, '[[base-swupdate.badPackage]]', 100) if $status;
 	$cce->bye('SUCCESS') unless $cceref;
+	&debug_msg("Verification of the PKG failed. Error message 'nopackinglist' was given.\n");
 	return (-1, 'nopackinglist');
     }
     close(PL);
 
     # now, attempt to add the package. always make it visible at this stage.
     # also clear out things that are only used by the update server.
+    &debug_msg("Package verification complete. The PKG should now be visible in the GUI for install. \n");
     $settings{size} = $size;
     $settings{location} = 'file:' . $path;
     $settings{url} = '';
@@ -384,9 +400,12 @@ sub swupdate_unpack
 	my $string = ($info eq 'alreadyinstalled') ? '[[base-swupdate.packageAlreadyInstalled]]' : '[[base-swupdate.badFormat]]';
 	setProgress($cce, $status, $string, 100) if $status;
         $cce->bye('SUCCESS') unless $cceref;
+	&debug_msg("Installation of PKG failed. Reason given: $info \n");
     	return (-1, $info); 
     }
     $cce->bye('SUCCESS') unless $cceref;
+
+    &debug_msg("Unpacking and verification of PKG complete. Moving contends to appropriate places for the install.\n");
     
     # move files into the appropriate place
     swupdate_install_pkginfo("$path/pkginfo", $settings{vendor},
@@ -429,28 +448,33 @@ sub swupdate_normal_download
     while (<WGET>) {
 	if (/Host\s+not\s+found/i) {
 	    close(WGET);
+	    &debug_msg("WGET download of PKG failed. Reasin given: 'hostnotfound'. \n");
 	    return (-1, 'down', 'hostnotfound', \%error);
 	}
 	    
 	if (/404\s+Not\s+Found/i) {
 	    close(WGET);
+	    &debug_msg("WGET download of PKG failed. Reasin given: 'filenotfound'. \n");
 	    return (-1, 'down', 'filenotfound', \%error);
 	}
       
 	if (/refused/i) {
 	    close(WGET);
+	    &debug_msg("WGET download of PKG failed. Reasin given: 'refusedconnect'. \n");
 	    return (-1, 'down', 'refusedconnect', \%error);
 	}
 	
 	if (/\[\s*(\d+)\%\]/) {
 	    $percent = $1;
 	    my $filePercent = ceil($1);
+	    &debug_msg("WGET download of PKG in progress. \n");
 	    setProgress($status, "[[base-swupdate.dlPercent,percent=$filePercent,file=$location]]", ceil($percent)) if $status;
 	}
     }
 
     # we didn't get a file. error out.
     unless (-f $file and -s $file) {
+	&debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'. We did not get a file.\n");
 	return (-1, 'down', 'queryerror', \%error);
     }
 
@@ -461,9 +485,11 @@ sub swupdate_normal_download
 	    while (<FILE>) {
 		if (/No packages available/i) {
 			close(FILE);
+			&debug_msg("WGET download of PKG failed. Reasin given: 'nopkgavail'.\n");
 			return (-1, 'up', 'nopkgavail', \%error);
 		} elsif (/^ERROR/) {
 			close(FILE);
+			&debug_msg("WGET download of PKG failed. Reasin given: 'queryerror'.\n");
 			return (-1, 'down', 'queryerror', \%error);
 		}
 	    }
@@ -472,6 +498,7 @@ sub swupdate_normal_download
     }
 
     # we got the file. 
+    &debug_msg("WGET download: We got the file. \n");
     return (0);
 }
 
@@ -936,27 +963,27 @@ sub swupdate_notify
     my ($subject, $body);
 
     if ($error eq 'nosysinfo') {
-	$subject = '[[base-swupdate.NoSystemInfoSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.NoSystemInfoSubject]]';
 	$body = '[[base-swupdate.NoSystemInfoBody]]';
 
     } elsif ($error eq 'nolocation') {
-	$subject = '[[base-swupdate.NoSWUpdateServerSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.NoSWUpdateServerSubject]]';
 	$body = '[[base-swupdate.NoSWUpdateServerBody]]';
 
     } elsif ($error eq 'nopkgavail') {
-	$subject = '[[base-swupdate.NoPackagesSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.NoPackagesSubject]]';
 	$body = '[[base-swupdate.NoPackagesBody]]';
 
     } elsif ($error =~ /(?:queryerror|filenotfound|hostnotfound|refusedconnect)/) {
-	$subject = '[[base-swupdate.QueryErrorSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
 	$body = '[[base-swupdate.NoPackageListBody,location=' . (ref $obj->{location} eq "ARRAY" ? $obj->{location}->[0] : $obj->{location}) . ']]';
 
     } elsif ($error eq 'badpkgfmt') {
-	$subject = '[[base-swupdate.QueryErrorSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
 	$body = '[[base-swupdate.BadPackageFmtBody,location=' . (ref $obj->{location} eq "ARRAY" ? $obj->{location}->[0] : $obj->{location}) . ']]';
 
     } elsif ($error) {
-	$subject = '[[base-swupdate.QueryErrorSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.QueryErrorSubject]]';
 	$body = '[[base-swupdate.UnknownErrorBody,location=' . $obj->{location} . ',error='. $error . ']]';
 
     } else {
@@ -964,7 +991,7 @@ sub swupdate_notify
 	my @array = @$obj;
 	my $ref;
 	
-	$subject = '[[base-swupdate.NewUpdatesSubject]]';
+	$subject = $host . ': ' . '[[base-swupdate.NewUpdatesSubject]]';
 	$body = "[[base-swupdate.NewUpdatesBody]]\n\n";
 	foreach $ref (@array) {
 	    my $name = $ref->{nameTag} ? $ref->{nameTag} : $ref->{name};
@@ -1085,18 +1112,13 @@ sub compareVersion {
   $firstVer = swupdate_fromccevers($firstVer);
   $secondVer = swupdate_fromccevers($secondVer);
 
-    &debug_msg("$version first: $firstVer - version second: $secondVer \n");
-
     if (versioncmp($firstVer, $secondVer) == -1) {
-	&debug_msg("Return -1 \n");
 	return -1;
     }
     elsif (versioncmp($firstVer, $secondVer) == 1) {
-	&debug_msg("Return 1 \n");
 	return 1;
     }
     else {
-	&debug_msg("Return 0 \n");
 	return 0;
     }
 }
