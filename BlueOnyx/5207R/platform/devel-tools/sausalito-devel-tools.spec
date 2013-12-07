@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.2
-Release: 1BX09%{?dist}
+Release: 1BX10%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,11 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX10
+- I always hated it that the capstone did not require all the bloody locales of a module and that ANY 
+  locale would satisfy the locale dependency. Well, this is fixed: On build time all existing locales
+  are added as requirements to capstone and each locale only satisfies only the dependency for itself.
+
 * Mon Aug 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX09
 - Added scripts/packsort.pl, a parser for packing_list. It processes a packing_list and dumps a version
   with semi-correct RPM sort order to STDOUT

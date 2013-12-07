@@ -116,20 +116,31 @@ sub print_section
 
             if ($section eq 'DESCRIPTION') 
             {
+
+		my $seen_locale = "0";
+
                 # special-case locale 
                 if ($type eq 'locale') 
                 {
-                    # only add this once so it doesn't multiply for each
-                    # locale
-                    $provides .= "[VENDOR]-[SERVICE]-locale ";
-                    
+
                     foreach $locale (@locales) 
                     {
-                        print_type($fh, $section, $type, 
-                                "$type-$locale", xlate_line($provides), %hash);
+
+			if ($seen_locale eq "0") {
+			    $provides = 'Provides: ' . $ENV{PROVIDES};
+	        	    $provides .= "[VENDOR]-[SERVICE]-locale-$locale ";
+	        	    $seen_locale++;
+	        	}
+	        	else {
+	        	    $provides = "";
+	        	}
+
+                        print_type($fh, $section, $type, "$type-$locale", xlate_line($provides), %hash);
+
+                        $requires .= "[VENDOR]-[SERVICE]-locale-$locale ";
+
                     }
-                    
-                    $requires .= "[VENDOR]-[SERVICE]-locale ";
+
                 } 
                 elsif ($type eq 'glue' && $requires_glue ne '')
                 {
