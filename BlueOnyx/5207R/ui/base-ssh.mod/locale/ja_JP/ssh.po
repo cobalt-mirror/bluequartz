@@ -1,29 +1,25 @@
-# $Id: ssh.po,v 1.1.2.1 2002/03/12 22:50:24 pbaltz Exp $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 
-# ui extension strings
-# 20_SSH.php.shell.System
 msgid "enableSSH"
-msgstr "SSH �����Ф�ͭ���ˤ���"
+msgstr "SSHサーバを有効にする"
 
 msgid "enableSSH_help"
-msgstr "SSH ��ͭ���ˤ���ȡ������륢����������Ĥ���Ƥ���桼������SSH ���饤����ȥ��եȥ�������Ȥäƥ����Ф���³�Ǥ���褦�ˤʤ�ޤ���SSH �Ǥϡ����饤����Ȥȥ����д֤����������ѥ���ɤʤɤ����ǡ������Ź沽����뤿�ᡢSSH �����Ѥ� Telnet �����Ѥ�ꥻ���奢�Ǥ���ȹͤ����ޤ���"
+msgstr "SSHを有効にシェルアクセスを持つユーザは、SSHクライアントソフトウェアを使用して、このサーバに接続することができます。 sshはクライアントとサーバの間で送信されるパスワードを含むすべてのデータを暗号化するので、SSHを使用することが一般的とTelnetの使用よりも安全と考えられている。"
 
 msgid "SSH_Port"
-msgstr "SSH Port:"
+msgstr "SSHポート："
 
 msgid "SSH_Port_help"
-msgstr "By default SSH runs on port 22/TCP. However, you can configure it to run on another port instead in order to attempt to evade automated brute force login attacks."
+msgstr "デフォルトでは、SSHはポート22/TCP上で実行されます。ただし、自動化されたブルートフォースログイン攻撃を回避しようとするために、代わりに別のポートで実行するように設定することができます。"
 
 msgid "SSH_Proto"
-msgstr "SSH Protocol:"
+msgstr "SSHプロトコル："
 
 msgid "SSH_Proto_help"
-msgstr "SSH supports two protocols: Protocol version 1 and version 2. Two is more advanced and secure. If possible, you should use only protocol 2. But you can also set it to '2,1', in which case applications that support protocol 2 will use it, while older applications that only support protocol 1 can fall back to that instead."
+msgstr "プロトコルバージョン1とバージョン2：SSHには2つのプロトコルをサポートしています。二人はより高度で安全です。可能であれば、あなただけのプロトコル2を使用する必要があります。のみをサポートプロトコル1が代わりにそのにフォールバックできるように古いアプリケーション間しかし、あなたはまた、'2に設定1 '、プロトコル2をサポートするアプリケーションがそれを使用される場合には、することができます。"
 
 msgid "SSHrootLogin"
-msgstr "SSH Root Login:"
+msgstr "SSHルートログイン："
 
 msgid "SSHrootLogin_help"
-msgstr "By default and for security reasons direct SSH login as user 'root' is typically not allowed. If needed, you can allow it here."
+msgstr "ユーザ 'root'で、デフォルトでは、セキュリティ上の理由から直接SSHログインは、通常許可されていません。必要な場合は、ここでそれを許可することができます。"
 
