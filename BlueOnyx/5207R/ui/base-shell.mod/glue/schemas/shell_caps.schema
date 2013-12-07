@@ -9,3 +9,15 @@
 >
     <property name="capable" type="boolean" default="1"/>
 </class>
+<class
+    name="Capabilities" namespace="serverShell" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(serverShell)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-shell.cap_serverShell]]"
+    />
+</class>
+
