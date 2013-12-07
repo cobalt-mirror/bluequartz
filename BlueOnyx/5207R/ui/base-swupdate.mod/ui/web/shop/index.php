@@ -86,11 +86,7 @@ if (areWeOnline($shoplist_url)) {
   	    }
   	}
   }
-
-  // Are we online and in the green?
-  if ($snstatus == "GREEN") {
-      $online = "1";
-  }
+  $online = "1";
 }
 else {
     $online = "0";
@@ -266,7 +262,7 @@ if ($online == "1") {
 
   // Selector for Categories:
   //
-  // And yes, this is dirty, but the only other way around this would require chanegs to UIFC again:
+  // And yes, this is dirty, but the only other way around this would require changes to UIFC again:
   $Shop_Label_CatSelector = $i18n->get('[[base-shop.CAT_SELECTOR]]');
   echo "<p><label for=\"CAT_SELECTOR\"><H3>$Shop_Label_CatSelector</H3></label><select id=\"CAT_SELECTOR\" onchange=\"goToPage('CAT_SELECTOR')\">";
   foreach ($categories as $cats) {
