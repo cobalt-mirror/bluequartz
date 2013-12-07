@@ -1,4 +1,4 @@
-# $Id: Schedule.pm,v 1.7 2001/08/10 01:13:44 bservies Exp $
+# $Id: Schedule.pm
 #
 # Copyright 2001, Sun Microsystems, Inc.  All rights reserved.
 #

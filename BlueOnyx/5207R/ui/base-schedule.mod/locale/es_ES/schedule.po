@@ -9,16 +9,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "bad_action"
-msgstr "Den ønskede handling eksisterer ikke eller kunne ikke eksekveres."
+msgstr "La acción especificada no existe o no es ejecutable."
 
 msgid "bad_start_time"
-msgstr "Det ønskede starttidspunkt er ikke gyldigt."
+msgstr "La hora de inicio especificada no es válida."
 
 msgid "cannot_create_timer"
-msgstr "Kunne ikke tilføje ny skedulering til /etc/cron.d."
+msgstr "No se puede agregar un nuevo programa en /etc/cron.d."
 
 msgid "timer_add_failed"
-msgstr "Kunne ikke tilføje ny skedulering til cron."
+msgstr "No se pudo agregar un nuevo horario de cron."
 
 msgid "timer_delete_failed"
-msgstr "Kunne ikke slette den ønskede fil fra /etc/cron.d"
+msgstr "Se pudo eliminar el archivo especificado en /etc/cron.d."
+
