@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "Web Usage Summary Statistics"
+msgstr "FTP Uso Resumo Estatística"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,34 +30,34 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "First Request"
+msgstr "Primeira transferência"
 
 msgid "firstRequest_help"
-msgstr "The date of the first request covered in this report. [[base-sitestats.requestCoverageHint]]"
+msgstr "A data da primeira transferência abordados neste relatório. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "Last Request"
+msgstr "Última transferência"
 
 msgid "lastRequest_help"
-msgstr "The date of the last request covered in this report. [[base-sitestats.requestCoverageHint]]"
+msgstr "A data da última transferência abordados neste relatório. [[base-sitestats.requestCoverageHint]]"
+
+msgid "totalSent"
+msgstr "Total de arquivos enviados"
+
+msgid "totalSent_help"
+msgstr "Este é o número total de ficheiros enviados."
+
+msgid "totalReceived"
+msgstr "Total de arquivos recebidos"
+
+msgid "totalReceived_help"
+msgstr "Este é o número total de ficheiros recebidos."
 
 msgid "successfulRequests"
-msgstr "Total Successful Requests"
+msgstr "Total de transferências bem sucedidas"
 
 msgid "successfulRequests_help"
-msgstr "This is the total of all successful requests."
-
-msgid "pageRequests"
-msgstr "Page Requests"
-
-msgid "pageRequests_help"
-msgstr "This is the number of pages requested.  A page is a file that ends in .html, .htm, .asp, or /."
-
-msgid "failedRequests"
-msgstr "Failed Requests"
-
-msgid "failedRequests_help"
-msgstr "When people request non-existent files, the appliance server generates a bad request. This category also includes malformed requests and other erroneous requests."
+msgstr "Este é o total de todas as transferências de sucesso."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -58,22 +66,19 @@ msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
 msgid "distinctFiles"
-msgstr "Distinct Files Served"
+msgstr "Arquivos distintos Transferidos"
 
 msgid "distinctFiles_help"
-msgstr "Number of distinct files served by this appliance server."
+msgstr "Número de arquivos distintos transferidos por este servidor."
 
 msgid "uniqueHosts"
-msgstr "Unique Computers Requesting Content"
+msgstr "Computadores únicas Transferência de Arquivos"
 
 msgid "uniqueHosts_help"
-msgstr "This displays the number of unique computers contacting this server. It gives you a rough idea of how many different people downloaded content from this appliance server. Note: Multiple computers behind a firewall or a proxy server will count as only one address."
-
-
-# summary links
+msgstr "Isto mostra o número de computadores únicos contato com este servidor. Ele fornece uma idéia de quantas pessoas diferentes, o conteúdo baixado a partir deste servidor. Nota: Vários computadores por trás de um firewall ou um servidor proxy irá contar como um único endereço."
 
 msgid "otherStatistics"
-msgstr "Other Web Usage Statistics"
+msgstr "Outros www FTP"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -94,16 +99,16 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "Requests by Domain"
+msgstr "Pedidos por Domínio"
 
 msgid "domainReportBut_help"
-msgstr "Get reports showing the domains from which requests were originating."
+msgstr "Obter relatórios que mostram os domínios dos quais pedidos foram originários."
 
 msgid "typesReportBut"
-msgstr "Requests by Type of File"
+msgstr "Pedidos por Tipo de Arquivo"
 
 msgid "typesReportBut_help"
-msgstr "Categorizes requests by the types of files."
+msgstr "Quebra pedidos dos tipos de arquivos."
 
 msgid "requestReportBut"
 msgstr "[[base-sitestats.requestReportBut]]"
@@ -148,7 +153,7 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "Domain Statistics"
+msgstr "Estatísticas domínio"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
@@ -157,22 +162,22 @@ msgid "domain_help"
 msgstr "[[base-sitestats.domain_help]]"
 
 msgid "requests"
-msgstr "[[base-sitestats.requests]]"
+msgstr "[[-Base sitestats.requests]]"
 
 msgid "requests_help"
-msgstr "The number of requests handled."
+msgstr "O número de arquivos transferidos."
 
 msgid "vsiteStats"
-msgstr "Web Use by Virtual Site"
+msgstr "Usar FTP pelo site Virtual"
 
 msgid "bytes"
-msgstr "[[base-sitestats.bytes]]"
+msgstr "[[-Base sitestats.bytes]]"
 
 msgid "bytes_help"
 msgstr "[[base-sitestats.bytes_help]]"
 
 msgid "pbytes"
-msgstr "[[base-sitestats.pbytes]]"
+msgstr "[[-Base sitestats.pbytes]]"
 
 msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
@@ -184,7 +189,7 @@ msgid "site_help"
 msgstr "[[base-sitestats.site_help]]"
 
 msgid "typeStats"
-msgstr "Requests by File Type"
+msgstr "Solicitações por tipo de arquivo"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -193,13 +198,13 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "Request Statistics"
+msgstr "Top arquivos transferidos"
 
 msgid "requestFile"
 msgstr "[[base-sitestats.requestFile]]"
 
 msgid "requestFile_help"
-msgstr "[[base-sitestats.requestFile_help]]"
+msgstr "O nome do arquivo solicitado em relação ao diretório base do site. O diretório base para o site \"www.example.com\", por exemplo, seria \"/home/sites/www.example.com\"."
 
 msgid "requestNumber"
 msgstr "[[base-sitestats.requestNumber]]"

@@ -10,7 +10,7 @@ msgid "downloadBut"
 msgstr "Download Log"
 
 msgid "downloadBut_help"
-msgstr "Click to download the usage log for this service.  The log file contains service activity beginning at midnight on the date of the first activity until the end of the day for the date of the last activity for the dates specified when this report was generated.  If log files have been removed, there may be missing dates in the output log file."
+msgstr "Click to download the usage log for this service. The log file contains service activity beginning at midnight on the date of the first activity until the end of the day for the date of the last activity for the dates specified when this report was generated. If log files have been removed, there may be missing dates in the output log file."
 
 msgid "serverusage"
 msgstr "Usage Information"
@@ -102,7 +102,7 @@ msgid "periodicReportBut"
 msgstr "Periodic Reports"
 
 msgid "periodicReportBut_help"
-msgstr  "Get reports showing activity by day or hour." 
+msgstr "Get reports showing activity by day or hour." 
 
 msgid "historicalReportBut"
 msgstr "Historical Use by Day, Week, or Month."
@@ -153,25 +153,25 @@ msgid "ipAddr"
 msgstr "IP Address"
 
 msgid "ipAddr_help"
-msgstr "The IP addresses for this server.  The IP address, 127.0.0.1, is for local network traffic not received from an external IP address."
+msgstr "The IP addresses for this server. The IP address, 127.0.0.1, is for local network traffic not received from an external IP address."
 
 msgid "site"
 msgstr "Site"
 
 msgid "site_help"
-msgstr "The name of the virtual site.  \"Server\" represents traffic that is not affiliated with any site."
+msgstr "The name of the virtual site. \"Server\" represents traffic that is not affiliated with any site."
 
 msgid "iDomain"
 msgstr "Recipient Domains"
 
 msgid "iDomain_help"
-msgstr "The domains of the recipient email address for mail handled by this server.  \"Server\" represents local recipients with no domain specified."
+msgstr "The domains of the recipient email address for mail handled by this server. \"Server\" represents local recipients with no domain specified."
 
 msgid "oDomain"
 msgstr "Sender Domains"
 
 msgid "oDomain_help"
-msgstr "The domains of the sender email addresses for mail handled by this server.  \"Server\" represents local senders with no domain specified."
+msgstr "The domains of the sender email addresses for mail handled by this server. \"Server\" represents local senders with no domain specified."
 
 msgid "Home"
 msgstr "Server"
@@ -183,7 +183,7 @@ msgid "domain"
 msgstr "Domain"
 
 msgid "domain_help"
-msgstr "The domain from which the request originated.  Clients that do not have domain names are categorized as \"[[base-sitestats.unresolved numerical addresses]]\".  Note that the sums of indented rows are included in the totals for their respective parent rows.  For example, the traffic for all hosts which end in \".com\" will be reflected in the row which lists \".com\" in the Domain column."
+msgstr "The domain from which the request originated. Clients that do not have domain names are categorized as \"[[base-sitestats.unresolved numerical addresses]]\". Note that the sums of indented rows are included in the totals for their respective parent rows. For example, the traffic for all hosts which end in \".com\" will be reflected in the row which lists \".com\" in the Domain column."
 
 msgid "dailyHistory"
 msgstr "Daily History"
@@ -222,7 +222,7 @@ msgid "filetype"
 msgstr "File Type"
 
 msgid "filetype_help"
-msgstr "The type of file requested based on the file extension.  For example, a file with .jpg extension would be a JPEG graphic."
+msgstr "The type of file requested based on the file extension. For example, a file with .jpg extension would be a JPEG graphic."
 
 msgid "requestFile"
 msgstr "File"
@@ -237,7 +237,7 @@ msgid "requestNumber_help"
 msgstr "The number of requests for this file."
 
 msgid "noDataError"
-msgstr "No data were found for activity during the period specified.  You may want to try another set of dates."
+msgstr "No data were found for activity during the period specified. You may want to try another set of dates."
 
 msgid "fullDailyDesc"
 msgstr "This report shows the cumulative activity for each day included in the report."
@@ -281,7 +281,7 @@ msgid "sitestatsConsolidate"
 msgstr "Detail Level"
 
 msgid "sitestatsConsolidate_help"
-msgstr "The detail level determines whether daily statistics information files are combined into one monthly statistics information file per month.  This does not affect statistics information for the current month.  If Daily is selected, you can generate reports containing less than one month's worth of statistics for months prior to the current month.  If Monthly is selected, you can only generate reports containing the statistics for whole months for months prior to the current month.  Statistics combination cannot be undone for months that have been combined already.  Selecting Monthly will consume less disk space compared to Daily."
+msgstr "The detail level determines whether daily statistics information files are combined into one monthly statistics information file per month. This does not affect statistics information for the current month. If Daily is selected, you can generate reports containing less than one month's worth of statistics for months prior to the current month. If Monthly is selected, you can only generate reports containing the statistics for whole months for months prior to the current month. Statistics combination cannot be undone for months that have been combined already. Selecting Monthly will consume less disk space compared to Daily."
 
 msgid "sitestatsConsolidateDaily"
 msgstr "Daily"
@@ -428,7 +428,7 @@ msgid "Site"
 msgstr "Virtual Site Hostname"
 
 msgid "Site_help"
-msgstr "The fully qualified domain name of the active virtual site.  'Server' represents service requests that are not associated with any Virtual Site."
+msgstr "The fully qualified domain name of the active virtual site. 'Server' represents service requests that are not associated with any Virtual Site."
 
 msgid "requests_help"
 msgstr "The total number of service requests by the adjacent Virtual Site."
@@ -497,13 +497,13 @@ msgid "requestFileIn"
 msgstr "Mail Sender"
 
 msgid "requestFileIn_help"
-msgstr "These are the sender email addresses.  These include mail sent by users who are site members and mail from external email addresses sent to site members."
+msgstr "These are the sender email addresses. These include mail sent by users who are site members and mail from external email addresses sent to site members."
 
 msgid "requestFileOut"
 msgstr "Mail Recipient"
 
 msgid "requestFileOut_help"
-msgstr "These are the recipient email addresses.  These include mail received by users who are members of this site as well as mail sent to external email addresses from users of this site."
+msgstr "These are the recipient email addresses. These include mail received by users who are members of this site as well as mail sent to external email addresses from users of this site."
 
 msgid "sitestatsSettingsButton"
 msgstr "Settings"
@@ -534,4 +534,7 @@ msgid "cantEnableLogrotate"
 msgstr "Unable to enable log file rotation for this site."
 
 msgid "systemError"
-msgstr "A system error occured while reading information.  Please contact technical support."
+msgstr "A system error occured while reading information. Please contact technical support."
+
+msgid "cap_menuServerServerStats" 
+msgstr "Show Usage Information" 

@@ -55,7 +55,7 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 <end glue>
 
 <begin ui>
-%defattr(-,apache,root)
+%defattr(-,admserv,root)
 %dir /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 [AUTOFILL]
 
@@ -97,7 +97,7 @@ if [ x"[DEFLOCALE]" != x ]; then
 		fi)
 	done
 fi
-/bin/chown apache.root /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
+/bin/chown admserv.root /%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 
 <end ui>
 <begin locale>
@@ -126,6 +126,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Added glue/schemas/sitestats_caps.schema 
+- Added requirement for analog to Makefile.
+- New Capabilities for admin.
+- Use admserv user instead of apache. 
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.0-124BX27
 - Converted locale encoding from UTF-8 to ISO-8859-1.

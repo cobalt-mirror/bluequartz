@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "Network Usage Summary Statistics"
+msgstr "Resumen de uso de red Estadísticas"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,16 +30,16 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "First Activity"
+msgstr "Primera Actividad"
 
 msgid "firstRequest_help"
-msgstr "The date of the first activity covered in this report. [[base-sitestats.requestCoverageHint]]"
+msgstr "La fecha de la primera actividad que abarca este informe. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "Last Activity"
+msgstr "Última actividad"
 
 msgid "lastRequest_help"
-msgstr "The date of the last activity covered in this report. [[base-sitestats.requestCoverageHint]]"
+msgstr "La fecha de la última actividad que abarca este informe. [[base-sitestats.requestCoverageHint]]"
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -39,16 +47,14 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
-# summary links
-
 msgid "otherStatistics"
-msgstr "Other Network Usage Statistics"
+msgstr "Otras Estadísticas de uso de red"
 
 msgid "vsitesReportBut"
-msgstr "Use by IP"
+msgstr "El uso por IP"
 
 msgid "vsitesReportBut_help"
-msgstr "Get a report of network use based on IP address."
+msgstr "Obtener un informe de uso de la red basándose en la dirección IP."
 
 msgid "periodicReportBut"
 msgstr "[[base-sitestats.periodicReportBut]]"
@@ -102,7 +108,7 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "vsiteStats"
-msgstr "Network Use by IP Address"
+msgstr "Uso de la Red por la dirección IP"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -117,13 +123,13 @@ msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
 
 msgid "site"
-msgstr "IP Address"
+msgstr "Dirección IP"
 
 msgid "site_help"
-msgstr "Traffic has been accounted for based on IP address.  \"Other\" refers to broadcast traffic not destined for a specific IP address."
+msgstr "El tráfico se ha tenido en cuenta en base a la dirección IP. \"Otro\" se refiere a transmitir el tráfico no destinado a una dirección IP específica."
 
 msgid "typeStats"
-msgstr "Requests by File Type"
+msgstr "Solicitudes por tipo de archivo"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"

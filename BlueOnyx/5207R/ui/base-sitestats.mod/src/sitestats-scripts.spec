@@ -1,14 +1,14 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX24%{?dist}
+Release: 26BX25%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
 Source: sitestats-scripts.tar.gz
 BuildRoot: /tmp/sitestats-scripts
 BuildArchitectures: noarch
-Requires: webalizer
+Requires: webalizer, tmpwatch
 
 %description
 This package contains the scripts for processing logfiles
@@ -16,6 +16,11 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX25
+- Removed .svn from package.
+- Added requirement for tmpwatch
+
 * Tue Nov 22 2011 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX24
 - Updated sitestats-scripts/apache.logrotate as the PID file for Apache is locate elsewhere on RHEL6 than on RHEL5.
 

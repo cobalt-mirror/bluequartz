@@ -20,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "FTP 利用状況の統計"
+msgstr "Web Usage Statistiche riassuntive"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -31,34 +30,34 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "開始日時"
+msgstr "Prima richiesta"
 
 msgid "firstRequest_help"
-msgstr "この統計に含まれる報告期間の開始日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "La data della prima richiesta oggetto della presente relazione. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "終了日時"
+msgstr "Last Request"
 
 msgid "lastRequest_help"
-msgstr "この統計に含まれる報告期間の終了日時を示します。[[base-sitestats.requestCoverageHint]]"
-
-msgid "totalSent"
-msgstr "送信ファイル数"
-
-msgid "totalSent_help"
-msgstr "送信されたファイルの総数です。"
-
-msgid "totalReceived"
-msgstr "受信ファイル数"
-
-msgid "totalReceived_help"
-msgstr "受信したファイルの総数です。"
+msgstr "La data dell'ultima richiesta oggetto della presente relazione. [[base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "成功した転送の数"
+msgstr "Totale richieste soddisfatte"
 
 msgid "successfulRequests_help"
-msgstr "正常に行われた転送の総数です。"
+msgstr "Questo è il totale di tutte le richieste riuscite."
+
+msgid "pageRequests"
+msgstr "Pagina Richieste"
+
+msgid "pageRequests_help"
+msgstr "Questo è il numero di pagine richieste. Una pagina è un file che termina in.html, .htm, .asp, o /."
+
+msgid "failedRequests"
+msgstr "Le richieste non riuscite"
+
+msgid "failedRequests_help"
+msgstr "Quando le persone chiedono i file non esistenti, il server appliance genera un cattivo richiesta. Questa categoria comprende anche le richieste malformate e altre richieste errate."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -67,22 +66,19 @@ msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
 msgid "distinctFiles"
-msgstr "転送ファイル数（重複を除く）"
+msgstr "I file distinti serviti"
 
 msgid "distinctFiles_help"
-msgstr "このサーバにより転送されたファイルの総数（同じファイルが２回以上転送されても１回として数える）です。"
+msgstr "Numero di file distinti serviti da questo server appliance."
 
 msgid "uniqueHosts"
-msgstr "ファイル転送を行ったコンピュータ数"
+msgstr "Computer uniche richiesta di contenuti"
 
 msgid "uniqueHosts_help"
-msgstr "このサーバとの間でファイル転送を行ったコンピュータの台数（重複を含めない）です。この数字により、このサーバからコンテントをダウンロードした人の数を推定できます。ただし、同一のファイヤウォールやプロキシサーバを通してアクセスするコンピュータは１アドレスとして数えられます。"
-
-
-# summary links
+msgstr "Questo mostra il numero di computer univoci nel contattare questo server. Ti dà una vaga idea di quante persone diverse scaricato contenuti da questo server appliance. Nota: Più computer dietro un firewall o un server proxy conterà come un solo indirizzo."
 
 msgid "otherStatistics"
-msgstr "その他の FTP 利用状況統計"
+msgstr "Altri Web Statistiche"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -103,16 +99,16 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "ドメイン別のリクエスト数"
+msgstr "Le richieste per dominio"
 
 msgid "domainReportBut_help"
-msgstr "ドメイン別のリクエスト数が表示されます。"
+msgstr "Ottenere report che mostrano i domini da cui richieste sono state originarie."
 
 msgid "typesReportBut"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Le richieste per tipo di file"
 
 msgid "typesReportBut_help"
-msgstr "ファイルの種類別のリクエスト数が表示されます。"
+msgstr "Categorizza richieste dai tipi di file."
 
 msgid "requestReportBut"
 msgstr "[[base-sitestats.requestReportBut]]"
@@ -157,7 +153,7 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "ドメイン統計"
+msgstr "Dominio Statistiche"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
@@ -169,10 +165,10 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "requests_help"
-msgstr "転送されたファイルの数を示します。"
+msgstr "Il numero di richieste gestite."
 
 msgid "vsiteStats"
-msgstr "仮想サイト別の FTP 利用状況"
+msgstr "Web Usa da Virtual Site"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -193,7 +189,7 @@ msgid "site_help"
 msgstr "[[base-sitestats.site_help]]"
 
 msgid "typeStats"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Le richieste per Formato di file"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -202,13 +198,13 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "最も転送頻度の多いファイル"
+msgstr "Richiesta Statistiche"
 
 msgid "requestFile"
 msgstr "[[base-sitestats.requestFile]]"
 
 msgid "requestFile_help"
-msgstr "リクエストされた各ファイル名を、サイトのベースディレクトリ（例： www.yourcompany.com というサイトのベースディレクトリは、/home/sites/www.yourcompany.com）からの相対アドレスで示します。"
+msgstr "[[base-sitestats.requestFile_help]]"
 
 msgid "requestNumber"
 msgstr "[[base-sitestats.requestNumber]]"

@@ -4,6 +4,6 @@
     description="Webalizer Statistics."
     url="/base/sitestats/webalizer.php?group=server" >
     <parent id="base_serverusage" order="15">
-        <access require="adminUser"/>
+        <access require="serverStatsServerWebalizer"/>
     </parent>
 </item>

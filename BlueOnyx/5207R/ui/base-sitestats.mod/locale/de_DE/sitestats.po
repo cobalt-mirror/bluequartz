@@ -1,17 +1,12 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Project-Id-Version: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-27 08:18+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 # menu labels
 msgid "selectStat"
@@ -543,4 +538,8 @@ msgstr "Die Logfile-Rotation für diese Site kann nicht aktiviert werden."
 
 msgid "systemError"
 msgstr "Es ist ein Systemfehler aufgetreten, während versucht wurde, die gewünschten Informationen auszulesen."
+
+msgid "cap_menuServerServerStats"
+msgstr "Zeigen Nutzungsdaten"
+
 

@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "電子メール利用状況の統計"
+msgstr "Posta utilizzo Statistiche riassuntive"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,22 +30,22 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "開始日時"
+msgstr "Primo mail"
 
 msgid "firstRequest_help"
-msgstr "この統計に含まれる報告期間の開始日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "La data della prima posta coperta in questo rapporto. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "終了日時"
+msgstr "Ultimo Email"
 
 msgid "lastRequest_help"
-msgstr "この統計に含まれる報告期間の終了日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "La data dell'ultima posta coperta in questo rapporto. [[base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "メッセージ数"
+msgstr "Messaggi totali gestite"
 
 msgid "successfulRequests_help"
-msgstr "取り扱われた電子メールメッセージの総数です。"
+msgstr "Questo 竪 il totale di tutte le email gestite."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -45,10 +53,8 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
-# summary links
-
 msgid "otherStatistics"
-msgstr "その他の電子メール統計"
+msgstr "Altri Posta Statistiche"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -69,22 +75,22 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "ドメイン別のリクエスト数"
+msgstr "Le richieste per dominio"
 
 msgid "domainReportBut_help"
-msgstr "ドメイン別のリクエスト数が表示されます。"
+msgstr "Ottenere report che mostrano i domini da cui richieste sono state originarie."
 
 msgid "typesReportBut"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Le richieste per tipo di file"
 
 msgid "typesReportBut_help"
-msgstr "ファイルの種類別のリクエスト数が表示されます。"
+msgstr "Categorizza richieste dai tipi di file."
 
 msgid "requestReportBut"
-msgstr "アドレス別の電子メール利用状況"
+msgstr "Mail inviati o ricevuti per Indirizzo"
 
 msgid "requestReportBut_help"
-msgstr "各ユーザによる電子メールの利用状況（送受信）がメールアドレス別に表示されます。"
+msgstr "Questo riporta l'uso della posta da parte dell'utente per la posta in entrata o in uscita."
 
 msgid "downloadLogBut"
 msgstr "[[base-sitestats.downloadLogBut]]"
@@ -123,22 +129,22 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "ドメイン統計"
+msgstr "Dominio Statistiche"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
 
 msgid "requests"
-msgstr "電子メール数"
+msgstr "Messaggi"
 
 msgid "requests_help"
-msgstr "取り扱われた電子メールの数量を示します。"
+msgstr "Il numero di messaggi di posta elettronica gestito."
 
 msgid "vsiteStatsOut"
-msgstr "ホスト名別の送信メール統計"
+msgstr "Posta inviata da Host Name"
 
 msgid "vsiteStatsIn"
-msgstr "ホスト名別の受信メール統計"
+msgstr "E-mail ricevuta da Host Name"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -153,13 +159,13 @@ msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
 
 msgid "site"
-msgstr "ホスト名"
+msgstr "Nome Host"
 
 msgid "site_help"
-msgstr "電子メールが送受信されたマシンの名前です。"
+msgstr "Questo 竪 il nome della macchina da o verso cui la posta 竪 stato inviato."
 
 msgid "typeStats"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Le richieste per Formato di file"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -168,52 +174,52 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "vsites_out"
-msgstr "送信メール"
+msgstr "Posta inviata"
 
 msgid "vsites_out_help"
-msgstr "このサーバ上の仮想サイトへ最も頻繁に電子メールを送った送信元のサイトが表示されます。"
+msgstr "Clicca qui per vedere i migliori siti da cui mail 竪 stata inviata."
 
 msgid "vsites_in"
-msgstr "受信メール"
+msgstr "Mail ricevuta"
 
 msgid "vsites_in_help"
-msgstr "このサーバ上の仮想サイトが最も頻繁に電子メールを送った送信先のサイトが表示されます。."
+msgstr "Clicca qui per consultare le altre a cui mail 竪 stata inviata."
 
 msgid "requestStatsIn"
-msgstr "アドレス別の受信メール"
+msgstr "Mail ricevuta da indirizzo"
 
 msgid "requestStatsOut"
-msgstr "アドレス別の送信メール"
+msgstr "Posta inviata da Indirizzo"
 
 msgid "requestFileOut"
-msgstr "アドレス"
+msgstr "Indirizzo"
 
 msgid "requestFileOut_help"
-msgstr "電子メールの送信元アドレスです。この統計数字には送信メールと受信メールの両方が含まれるため、このサーバ上でホストされていないホスト名が含まれる場合もあります。"
+msgstr "L'indirizzo da cui la mail 竪 stata inviata. Si noti che questo si basa sia posta in entrata e in uscita. Pertanto, questo pu嘆 includere indirizzi non ospitati su questo server."
 
 msgid "requestFileIn"
-msgstr "アドレス"
+msgstr "Indirizzo"
 
 msgid "requestFileIn_help"
-msgstr "電子メールの送信先アドレスです。この統計数字には送信メールと受信メールの両方が含まれるため、このサーバ上でホストされていないホスト名が含まれる場合もあります。"
+msgstr "L'indirizzo al quale la posta elettronica 竪 stato inviato. Si noti che questo si basa sia posta in entrata e in uscita. Pertanto, questo pu嘆 includere indirizzi non ospitati su questo server."
 
 msgid "requestNumber"
-msgstr "電子メール"
+msgstr "Messaggi di posta elettronica"
 
 msgid "requestNumber_help"
-msgstr "このユーザの電子メール数です。"
+msgstr "Il numero di messaggi di posta elettronica per questo utente."
 
 msgid "requestOutBut"
-msgstr "送信メール"
+msgstr "Email inviata"
 
 msgid "requestOutBut_help"
-msgstr "電子メール送信数の最も多いアドレスの一覧が表示されます。"
+msgstr "Clicca qui per vedere le migliori indirizzi da cui mail 竪 stata inviata."
 
 msgid "requestInBut"
-msgstr "受信メール"
+msgstr "E-mail ricevuta"
 
 msgid "requestInBut_help"
-msgstr "電子メール受信数の最も多いアドレスの一覧が表示されます。"
+msgstr "Clicca qui per visualizzare gli indirizzi migliori per cui mail 竪 stata inviata."
 
 msgid "fullDailyDesc"
 msgstr "[[base-sitestats.fullDailyDesc]]"
@@ -229,3 +235,4 @@ msgstr "[[base-sitestats.hourlySummaryDesc]]"
 
 msgid "dailySummaryDesc"
 msgstr "[[base-sitestats.dailySummaryDesc]]"
+

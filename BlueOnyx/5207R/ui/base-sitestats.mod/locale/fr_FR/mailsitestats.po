@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "¥¦¥§¥ÖÍøÍÑ¾õ¶·¤ÎÅı·×"
+msgstr "Courrier utilisation Statistiques sommaires"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,34 +30,22 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "³«»ÏÆü»ş"
+msgstr "PremiÃ¨re Email"
 
 msgid "firstRequest_help"
-msgstr "¤³¤ÎÅı·×¤Ë´Ş¤Ş¤ì¤ëÊó¹ğ´ü´Ö¤Î³«»ÏÆü»ş¤ò¼¨¤·¤Ş¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "La date de la premiÃ¨re dÃ©pÃªche couverte dans ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "½ªÎ»Æü»ş"
+msgstr "DerniÃ¨re Email"
 
 msgid "lastRequest_help"
-msgstr "¤³¤ÎÅı·×¤Ë´Ş¤Ş¤ì¤ëÊó¹ğ´ü´Ö¤Î½ªÎ»Æü»ş¤ò¼¨¤·¤Ş¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "La date de la derniÃ¨re dÃ©pÃªche couverte dans ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "À®¸ù¤·¤¿¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Nombre de messages traitÃ©s"
 
 msgid "successfulRequests_help"
-msgstr "Àµ¾ï¤Ë½èÍı¤µ¤ì¤¿¥ê¥¯¥¨¥¹¥È¤ÎÁí¿ô¤Ç¤¹¡£"
-
-msgid "pageRequests"
-msgstr "¥ê¥¯¥¨¥¹¥È¤µ¤ì¤¿¥Ú¡¼¥¸¿ô"
-
-msgid "pageRequests_help"
-msgstr "¥ê¥¯¥¨¥¹¥È¤µ¤ì¤¿¥Ú¡¼¥¸¤ÎÁí¿ô¤Ç¤¹¡£¡Ö¥Ú¡¼¥¸¡×¤È¤Ï¡¢.html¡¢.htm¡¢.asp¡¢/ ¤Ê¤É¤òËöÈø¤Ë»ı¤Ä¥Õ¥¡¥¤¥ë¤ò°ÕÌ£¤·¤Ş¤¹¡£"
-
-msgid "failedRequests"
-msgstr "¼ºÇÔ¤·¤¿¥ê¥¯¥¨¥¹¥È¿ô"
-
-msgid "failedRequests_help"
-msgstr "Â¸ºß¤·¤Ê¤¤¥Õ¥¡¥¤¥ë¤ËÂĞ¤¹¤ë¥ê¥¯¥¨¥¹¥È¡¢ÉÔÀµ¤Ê¥ê¥¯¥¨¥¹¥È¡¢ÌäÂê¤Î¤¢¤ë¥ê¥¯¥¨¥¹¥È¤Ê¤É¤ò¼õ¤±¼è¤ë¤È¡¢¤³¤Î¥µ¡¼¥Ğ¤Ï¡ÖÉÔÎÉ¥ê¥¯¥¨¥¹¥È¡×¤òÀ¸À®¤·¤Ş¤¹¡£"
+msgstr "Il s&#39;agit du total de tous les courriels traitÃ©s."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -57,23 +53,8 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
-msgid "distinctFiles"
-msgstr "Å¾Á÷¥Õ¥¡¥¤¥ë¿ô¡Ê½ÅÊ£¤ò½ü¤¯¡Ë"
-
-msgid "distinctFiles_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¤Ë¤è¤êÅ¾Á÷¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ÎÁí¿ô¡ÊÆ±¤¸¥Õ¥¡¥¤¥ë¤¬£²²ó°Ê¾åÅ¾Á÷¤µ¤ì¤Æ¤â£±²ó¤È¤·¤Æ¿ô¤¨¤ë¡Ë¤Ç¤¹¡£"
-
-msgid "uniqueHosts"
-msgstr "¥³¥ó¥Æ¥ó¥È¤ò¥ê¥¯¥¨¥¹¥È¤·¤¿¥³¥ó¥Ô¥å¡¼¥¿¿ô"
-
-msgid "uniqueHosts_help"
-msgstr "¤³¤Î¥µ¡¼¥Ğ¾å¤Î¥³¥ó¥Æ¥ó¥È¤ò¥ê¥¯¥¨¥¹¥È¤·¤¿¥³¥ó¥Ô¥å¡¼¥¿¤ÎÂæ¿ô¡Ê½ÅÊ£¤ò´Ş¤á¤Ê¤¤¡Ë¤Ç¤¹¡£¤³¤Î¿ô»ú¤Ë¤è¤ê¡¢¤³¤Î¥µ¡¼¥Ğ¤«¤é¥³¥ó¥Æ¥ó¥È¤ò¥À¥¦¥ó¥í¡¼¥É¤·¤¿¿Í¤Î¿ô¤ò¿äÄê¤Ç¤­¤Ş¤¹¡£¤¿¤À¤·¡¢Æ±°ì¤Î¥Õ¥¡¥¤¥ä¥¦¥©¡¼¥ë¤ä¥×¥í¥­¥·¥µ¡¼¥Ğ¤òÄÌ¤·¤Æ¥¢¥¯¥»¥¹¤¹¤ë¥³¥ó¥Ô¥å¡¼¥¿¤Ï£±¥¢¥É¥ì¥¹¤È¤·¤Æ¿ô¤¨¤é¤ì¤Ş¤¹¡£"
-
-
-# summary links
-
 msgid "otherStatistics"
-msgstr "¤½¤ÎÂ¾¤Î¥¦¥§¥ÖÍøÍÑ¾õ¶·Åı·×"
+msgstr "Autre courrier Statistiques d&#39;accÃ¨s"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -94,22 +75,22 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "¥É¥á¥¤¥óÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Demandes par domaine"
 
 msgid "domainReportBut_help"
-msgstr "¥É¥á¥¤¥óÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "Obtenez des rapports montrant les domaines depuis lesquels les demandes Ã©taient originaires."
 
 msgid "typesReportBut"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Demandes par type de fichier"
 
 msgid "typesReportBut_help"
-msgstr "¥Õ¥¡¥¤¥ë¤Î¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "CatÃ©gorise les demandes par les types de fichiers."
 
 msgid "requestReportBut"
-msgstr "[[base-sitestats.requestReportBut]]"
+msgstr "Email envoyÃ© ou reÃ§u par adresse"
 
 msgid "requestReportBut_help"
-msgstr "[[base-sitestats.requestReportBut_help]]"
+msgstr "Cette fonction rend l&#39;utilisation du courrier par l&#39;utilisateur pour le courrier Ã©lectronique entrant ou sortant."
 
 msgid "downloadLogBut"
 msgstr "[[base-sitestats.downloadLogBut]]"
@@ -148,22 +129,22 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "¥É¥á¥¤¥óÅı·×"
+msgstr "Domaine Statistiques"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
 
-msgid "domain_help"
-msgstr "[[base-sitestats.domain_help]]"
-
 msgid "requests"
-msgstr "[[base-sitestats.requests]]"
+msgstr "Messages"
 
 msgid "requests_help"
-msgstr "Å¾Á÷¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤Î¿ô¤ò¼¨¤·¤Ş¤¹¡£"
+msgstr "Le nombre d&#39;emails traitÃ©s."
 
-msgid "vsiteStats"
-msgstr "²¾ÁÛ¥µ¥¤¥ÈÊÌ¤Î¥¦¥§¥ÖÍøÍÑ¾õ¶·"
+msgid "vsiteStatsOut"
+msgstr "Mail envoyÃ© par le nom d&#39;hÃ´te"
+
+msgid "vsiteStatsIn"
+msgstr "Le courrier reÃ§u par le nom d&#39;hÃ´te"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -178,13 +159,13 @@ msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
 
 msgid "site"
-msgstr "[[base-sitestats.site]]"
+msgstr "Nom d&#39;hÃ´te"
 
 msgid "site_help"
-msgstr "[[base-sitestats.site_help]]"
+msgstr "C&#39;est le nom de la machine ou Ã  laquelle le courrier a Ã©tÃ© envoyÃ©."
 
 msgid "typeStats"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Demandes par type de fichier"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -192,20 +173,53 @@ msgstr "[[base-sitestats.filetype]]"
 msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
-msgid "requestStats"
-msgstr "¥ê¥¯¥¨¥¹¥ÈÅı·×"
+msgid "vsites_out"
+msgstr "Mail envoyÃ©"
 
-msgid "requestFile"
-msgstr "[[base-sitestats.requestFile]]"
+msgid "vsites_out_help"
+msgstr "Cliquez ici pour voir les meilleurs sites Ã  partir desquels mail a Ã©tÃ© envoyÃ©."
 
-msgid "requestFile_help"
-msgstr "[[base-sitestats.requestFile_help]]"
+msgid "vsites_in"
+msgstr "Courrier reÃ§u"
+
+msgid "vsites_in_help"
+msgstr "Cliquez ici pour voir les meilleurs sites auxquels mail a Ã©tÃ© envoyÃ©."
+
+msgid "requestStatsIn"
+msgstr "Mail reÃ§u par adresse"
+
+msgid "requestStatsOut"
+msgstr "Mail envoyÃ© par adresse"
+
+msgid "requestFileOut"
+msgstr "Adresse"
+
+msgid "requestFileOut_help"
+msgstr "L&#39;adresse Ã  partir de laquelle le message a Ã©tÃ© envoyÃ©. Notez que ceci est basÃ© sur deux e-mails entrants et sortants. Par consÃ©quent, cela peut inclure les adresses ne sont pas hÃ©bergÃ©s sur ce serveur."
+
+msgid "requestFileIn"
+msgstr "Adresse"
+
+msgid "requestFileIn_help"
+msgstr "L&#39;adresse Ã  laquelle le message a Ã©tÃ© envoyÃ©. Notez que ceci est basÃ© sur deux e-mails entrants et sortants. Par consÃ©quent, cela peut inclure les adresses ne sont pas hÃ©bergÃ©s sur ce serveur."
 
 msgid "requestNumber"
-msgstr "[[base-sitestats.requestNumber]]"
+msgstr "Emails"
 
 msgid "requestNumber_help"
-msgstr "[[base-sitestats.requestNumber_help]]"
+msgstr "Le nombre d&#39;e-mails pour cet utilisateur."
+
+msgid "requestOutBut"
+msgstr "Courriel envoyÃ©"
+
+msgid "requestOutBut_help"
+msgstr "Cliquez ici pour voir les meilleurs adresses Ã  partir desquelles mail a Ã©tÃ© envoyÃ©."
+
+msgid "requestInBut"
+msgstr "E-mail reÃ§u"
+
+msgid "requestInBut_help"
+msgstr "Cliquez ici pour voir les meilleurs adresses Ã  laquelle le courrier a Ã©tÃ© envoyÃ©."
 
 msgid "fullDailyDesc"
 msgstr "[[base-sitestats.fullDailyDesc]]"

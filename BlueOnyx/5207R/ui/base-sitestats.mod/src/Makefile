@@ -13,7 +13,7 @@ install:
 
 rpm:
 	cp $(SCRIPTSDIR).spec  $(PACKAGE_DIR)/SPECS/
-	tar --exclude CVS -czf $(PACKAGE_DIR)/SOURCES/$(SCRIPTSDIR).tar.gz \
+	tar --exclude '.svn' -czf $(PACKAGE_DIR)/SOURCES/$(SCRIPTSDIR).tar.gz \
 		$(SCRIPTSDIR)
 	$(RPMBUILD) -ba $(PACKAGE_DIR)/SPECS/$(SCRIPTSDIR).spec
 

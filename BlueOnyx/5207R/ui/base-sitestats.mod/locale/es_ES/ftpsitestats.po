@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "FTP ÍøÍÑ¾õ¶·¤ÎÅý·×"
+msgstr "FTP Uso EstadÃ­sticos de resumen"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,34 +30,34 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "³«»ÏÆü»þ"
+msgstr "Primera Transferencia"
 
 msgid "firstRequest_help"
-msgstr "¤³¤ÎÅý·×¤Ë´Þ¤Þ¤ì¤ëÊó¹ð´ü´Ö¤Î³«»ÏÆü»þ¤ò¼¨¤·¤Þ¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "La fecha de la primera transferencia que abarca este informe. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "½ªÎ»Æü»þ"
+msgstr "Ãšltima Transferencia"
 
 msgid "lastRequest_help"
-msgstr "¤³¤ÎÅý·×¤Ë´Þ¤Þ¤ì¤ëÊó¹ð´ü´Ö¤Î½ªÎ»Æü»þ¤ò¼¨¤·¤Þ¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "La fecha del Ãºltimo traslado cubierto por este informe. [[base-sitestats.requestCoverageHint]]"
 
 msgid "totalSent"
-msgstr "Á÷¿®¥Õ¥¡¥¤¥ë¿ô"
+msgstr "Total Archivos Enviados"
 
 msgid "totalSent_help"
-msgstr "Á÷¿®¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ÎÁí¿ô¤Ç¤¹¡£"
+msgstr "Este es el nÃºmero total de archivos enviados."
 
 msgid "totalReceived"
-msgstr "¼õ¿®¥Õ¥¡¥¤¥ë¿ô"
+msgstr "Total Archivos Recibidos"
 
 msgid "totalReceived_help"
-msgstr "¼õ¿®¤·¤¿¥Õ¥¡¥¤¥ë¤ÎÁí¿ô¤Ç¤¹¡£"
+msgstr "Este es el nÃºmero total de archivos recibidos."
 
 msgid "successfulRequests"
-msgstr "À®¸ù¤·¤¿Å¾Á÷¤Î¿ô"
+msgstr "Total de transferencias exitosas"
 
 msgid "successfulRequests_help"
-msgstr "Àµ¾ï¤Ë¹Ô¤ï¤ì¤¿Å¾Á÷¤ÎÁí¿ô¤Ç¤¹¡£"
+msgstr "Este es el total de todas las transferencias exitosas."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -58,22 +66,19 @@ msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
 msgid "distinctFiles"
-msgstr "Å¾Á÷¥Õ¥¡¥¤¥ë¿ô¡Ê½ÅÊ£¤ò½ü¤¯¡Ë"
+msgstr "Archivos distintos transferidos"
 
 msgid "distinctFiles_help"
-msgstr "¤³¤Î¥µ¡¼¥Ð¤Ë¤è¤êÅ¾Á÷¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤ÎÁí¿ô¡ÊÆ±¤¸¥Õ¥¡¥¤¥ë¤¬£²²ó°Ê¾åÅ¾Á÷¤µ¤ì¤Æ¤â£±²ó¤È¤·¤Æ¿ô¤¨¤ë¡Ë¤Ç¤¹¡£"
+msgstr "NÃºmero de archivos distintos transferidos por este servidor."
 
 msgid "uniqueHosts"
-msgstr "¥Õ¥¡¥¤¥ëÅ¾Á÷¤ò¹Ô¤Ã¤¿¥³¥ó¥Ô¥å¡¼¥¿¿ô"
+msgstr "Computadoras Ãºnicos Transferencia de archivos"
 
 msgid "uniqueHosts_help"
-msgstr "¤³¤Î¥µ¡¼¥Ð¤È¤Î´Ö¤Ç¥Õ¥¡¥¤¥ëÅ¾Á÷¤ò¹Ô¤Ã¤¿¥³¥ó¥Ô¥å¡¼¥¿¤ÎÂæ¿ô¡Ê½ÅÊ£¤ò´Þ¤á¤Ê¤¤¡Ë¤Ç¤¹¡£¤³¤Î¿ô»ú¤Ë¤è¤ê¡¢¤³¤Î¥µ¡¼¥Ð¤«¤é¥³¥ó¥Æ¥ó¥È¤ò¥À¥¦¥ó¥í¡¼¥É¤·¤¿¿Í¤Î¿ô¤ò¿äÄê¤Ç¤­¤Þ¤¹¡£¤¿¤À¤·¡¢Æ±°ì¤Î¥Õ¥¡¥¤¥ä¥¦¥©¡¼¥ë¤ä¥×¥í¥­¥·¥µ¡¼¥Ð¤òÄÌ¤·¤Æ¥¢¥¯¥»¥¹¤¹¤ë¥³¥ó¥Ô¥å¡¼¥¿¤Ï£±¥¢¥É¥ì¥¹¤È¤·¤Æ¿ô¤¨¤é¤ì¤Þ¤¹¡£"
-
-
-# summary links
+msgstr "Esto muestra el nÃºmero de equipos Ãºnicos contacto este servidor. Proporciona una idea aproximada de cuÃ¡ntas personas diferentes descargado el contenido de este servidor. Nota: Varios equipos detrÃ¡s de un firewall o un servidor proxy contarÃ¡ como una sola direcciÃ³n."
 
 msgid "otherStatistics"
-msgstr "¤½¤ÎÂ¾¤Î FTP ÍøÍÑ¾õ¶·Åý·×"
+msgstr "Otros Estadisticas de acceso FTP"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -94,16 +99,16 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "¥É¥á¥¤¥óÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Solicitudes de dominio"
 
 msgid "domainReportBut_help"
-msgstr "¥É¥á¥¤¥óÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô¤¬É½¼¨¤µ¤ì¤Þ¤¹¡£"
+msgstr "Consigue informes que muestran los dominios desde los que se solicita originarios."
 
 msgid "typesReportBut"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Solicitudes por Tipo de Archivo"
 
 msgid "typesReportBut_help"
-msgstr "¥Õ¥¡¥¤¥ë¤Î¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô¤¬É½¼¨¤µ¤ì¤Þ¤¹¡£"
+msgstr "Descompone las peticiones de los tipos de archivos."
 
 msgid "requestReportBut"
 msgstr "[[base-sitestats.requestReportBut]]"
@@ -148,7 +153,7 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "¥É¥á¥¤¥óÅý·×"
+msgstr "Dominio EstadÃ­sticas"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
@@ -160,10 +165,10 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "requests_help"
-msgstr "Å¾Á÷¤µ¤ì¤¿¥Õ¥¡¥¤¥ë¤Î¿ô¤ò¼¨¤·¤Þ¤¹¡£"
+msgstr "El nÃºmero de archivos transferidos."
 
 msgid "vsiteStats"
-msgstr "²¾ÁÛ¥µ¥¤¥ÈÊÌ¤Î FTP ÍøÍÑ¾õ¶·"
+msgstr "FTP Uso de Sitio Virtual"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -184,7 +189,7 @@ msgid "site_help"
 msgstr "[[base-sitestats.site_help]]"
 
 msgid "typeStats"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Solicitudes por tipo de archivo"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -193,13 +198,13 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "ºÇ¤âÅ¾Á÷ÉÑÅÙ¤ÎÂ¿¤¤¥Õ¥¡¥¤¥ë"
+msgstr "Top Archivos Transferidos"
 
 msgid "requestFile"
 msgstr "[[base-sitestats.requestFile]]"
 
 msgid "requestFile_help"
-msgstr "¥ê¥¯¥¨¥¹¥È¤µ¤ì¤¿³Æ¥Õ¥¡¥¤¥ëÌ¾¤ò¡¢¥µ¥¤¥È¤Î¥Ù¡¼¥¹¥Ç¥£¥ì¥¯¥È¥ê¡ÊÎã¡§ www.yourcompany.com ¤È¤¤¤¦¥µ¥¤¥È¤Î¥Ù¡¼¥¹¥Ç¥£¥ì¥¯¥È¥ê¤Ï¡¢/home/sites/www.yourcompany.com¡Ë¤«¤é¤ÎÁêÂÐ¥¢¥É¥ì¥¹¤Ç¼¨¤·¤Þ¤¹¡£"
+msgstr "El nombre del archivo de solicitud relativa al directorio raÃ­z del sitio. El directorio base del sitio web \"www.example.com \", por ejemplo, serÃ­a \"/home/sites/www.example.com\"."
 
 msgid "requestNumber"
 msgstr "[[base-sitestats.requestNumber]]"

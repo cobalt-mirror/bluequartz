@@ -20,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "ネットワーク利用状況の統計"
+msgstr "L'utilizzo della rete Statistiche riassuntive"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -31,16 +30,16 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "開始日時"
+msgstr "Prima azione"
 
 msgid "firstRequest_help"
-msgstr "この統計に含まれる報告期間の開始日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "La data della prima attività oggetto della presente relazione. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "終了日時"
+msgstr "Ultima attività"
 
 msgid "lastRequest_help"
-msgstr "この統計に含まれる報告期間の終了日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "La data dell'ultima attività oggetto della presente relazione. [[base-sitestats.requestCoverageHint]]"
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -48,16 +47,14 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
-# summary links
-
 msgid "otherStatistics"
-msgstr "その他のネットワーク統計"
+msgstr "Altri Network Statistiche"
 
 msgid "vsitesReportBut"
-msgstr "IP 別の利用状況"
+msgstr "Utilizzare da IP"
 
 msgid "vsitesReportBut_help"
-msgstr "IP アドレス別のネットワーク利用状況が表示されます。"
+msgstr "Ottenere un rapporto di utilizzo della rete in base all'indirizzo IP."
 
 msgid "periodicReportBut"
 msgstr "[[base-sitestats.periodicReportBut]]"
@@ -111,7 +108,7 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "vsiteStats"
-msgstr "IP アドレス別のネットワーク利用状況"
+msgstr "Uso in rete con indirizzo IP"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -126,13 +123,13 @@ msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
 
 msgid "site"
-msgstr "IP アドレス"
+msgstr "Indirizzo IP"
 
 msgid "site_help"
-msgstr "IP アドレス別のトラフィック統計です。「その他」には、特定の IP アドレスを対象としていないブロードキャストトラフィックが含まれます。"
+msgstr "Il traffico è stato contabilizzato in base all'indirizzo IP. \"Altro\" si riferisce a trasmettere il traffico non destinato ad un indirizzo IP specifico."
 
 msgid "typeStats"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Le richieste per Formato di file"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"

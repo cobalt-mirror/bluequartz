@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "ウェブ利用状況の統計"
+msgstr "Web Usage Resumo Estat鱈stica"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,34 +30,34 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "開始日時"
+msgstr "Primeiro pedido"
 
 msgid "firstRequest_help"
-msgstr "この統計に含まれる報告期間の開始日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "A data do primeiro pedido abordados neste relat坦rio. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "終了日時"
+msgstr "Last Request"
 
 msgid "lastRequest_help"
-msgstr "この統計に含まれる報告期間の終了日時を示します。[[base-sitestats.requestCoverageHint]]"
+msgstr "A data do 炭ltimo pedido abordados neste relat坦rio. [[base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "成功したリクエスト数"
+msgstr "Total de solicita巽探es bem-sucedidas"
 
 msgid "successfulRequests_help"
-msgstr "正常に処理されたリクエストの総数です。"
+msgstr "Este 辿 o total de todos os pedidos de sucesso."
 
 msgid "pageRequests"
-msgstr "リクエストされたページ数"
+msgstr "Solicita巽探es de p叩gina"
 
 msgid "pageRequests_help"
-msgstr "リクエストされたページの総数です。「ページ」とは、.html、.htm、.asp、/ などを末尾に持つファイルを意味します。"
+msgstr "Este 辿 o n炭mero de p叩ginas pedidas. A p叩gina 辿 um arquivo que termina em .html, .htm, .asp, ou /."
 
 msgid "failedRequests"
-msgstr "失敗したリクエスト数"
+msgstr "Solicita巽探es falhas"
 
 msgid "failedRequests_help"
-msgstr "存在しないファイルに対するリクエスト、不正なリクエスト、問題のあるリクエストなどを受け取ると、このサーバは「不良リクエスト」を生成します。"
+msgstr "Quando as pessoas solicitar arquivos inexistentes, o servidor aparelho gera uma solicita巽達o ruim. Esta categoria tamb辿m inclui pedidos malformados e outros pedidos errados."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -58,22 +66,19 @@ msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
 msgid "distinctFiles"
-msgstr "転送ファイル数（重複を除く）"
+msgstr "Arquivos distintos Servido"
 
 msgid "distinctFiles_help"
-msgstr "このサーバにより転送されたファイルの総数（同じファイルが２回以上転送されても１回として数える）です。"
+msgstr "N炭mero de arquivos distintos servidos por este servidor aparelho."
 
 msgid "uniqueHosts"
-msgstr "コンテントをリクエストしたコンピュータ数"
+msgstr "Computadores exclusivos solicitando conte炭do"
 
 msgid "uniqueHosts_help"
-msgstr "このサーバ上のコンテントをリクエストしたコンピュータの台数（重複を含めない）です。この数字により、このサーバからコンテントをダウンロードした人の数を推定できます。ただし、同一のファイヤウォールやプロキシサーバを通してアクセスするコンピュータは１アドレスとして数えられます。"
-
-
-# summary links
+msgstr "Isto mostra o n炭mero de computadores 炭nicos contato com este servidor. Ele lhe d叩 uma id辿ia de quantas pessoas diferentes, o conte炭do baixado a partir deste servidor aparelho. Nota: V叩rios computadores por tr叩s de um firewall ou um servidor proxy ir叩 contar como um 炭nico endere巽o."
 
 msgid "otherStatistics"
-msgstr "その他のウェブ利用状況統計"
+msgstr "Outros Web Usage Statistics"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -94,16 +99,16 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "ドメイン別のリクエスト数"
+msgstr "Pedidos por Dom鱈nio"
 
 msgid "domainReportBut_help"
-msgstr "ドメイン別のリクエスト数が表示されます。"
+msgstr "Obter relat坦rios que mostram os dom鱈nios dos quais pedidos foram origin叩rios."
 
 msgid "typesReportBut"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Pedidos por Tipo de Arquivo"
 
 msgid "typesReportBut_help"
-msgstr "ファイルの種類別のリクエスト数が表示されます。"
+msgstr "Categoriza pedidos pelos tipos de arquivos."
 
 msgid "requestReportBut"
 msgstr "[[base-sitestats.requestReportBut]]"
@@ -148,7 +153,7 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "ドメイン統計"
+msgstr "Estat鱈sticas dom鱈nio"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
@@ -160,10 +165,10 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "requests_help"
-msgstr "転送されたファイルの数を示します。"
+msgstr "O n炭mero de pedidos tratados."
 
 msgid "vsiteStats"
-msgstr "仮想サイト別のウェブ利用状況"
+msgstr "Uso de Web site virtual"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -184,7 +189,7 @@ msgid "site_help"
 msgstr "[[base-sitestats.site_help]]"
 
 msgid "typeStats"
-msgstr "ファイル種類別のリクエスト数"
+msgstr "Solicita巽探es por tipo de arquivo"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -193,7 +198,7 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "リクエスト統計"
+msgstr "Pedido de Estat鱈stica"
 
 msgid "requestFile"
 msgstr "[[base-sitestats.requestFile]]"

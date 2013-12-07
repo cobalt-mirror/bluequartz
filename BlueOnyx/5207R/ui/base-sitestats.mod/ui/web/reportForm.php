@@ -8,8 +8,9 @@ include_once("ServerScriptHelper.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only menuServerServerStats and siteAdmin should be here
+if (!$helper->getAllowed('menuServerServerStats') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -42,14 +43,6 @@ $block->addFormField( $factory->getTimeStamp("startDate", time(), "date"),
 $block->addFormField( $factory->getTimeStamp("endDate", time(), "date"),
         $factory->getLabel("endDate") );
 
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
 
 $submit = $factory->getButton($page->getSubmitAction(), "generateBut");
 $back = $factory->getBackButton("/base/sitestats/summary.php?group=$group&type=$type");

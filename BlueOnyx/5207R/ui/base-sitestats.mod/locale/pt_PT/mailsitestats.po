@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "FTP Usage Summary Statistics"
+msgstr "Correio Uso Resumo Estatística"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,34 +30,22 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "First Transfer"
+msgstr "Primeiro e-mail"
 
 msgid "firstRequest_help"
-msgstr "The date of the first transfer covered in this report. [[base-sitestats.requestCoverageHint]]"
+msgstr "A data do primeiro correio abordados neste relatório. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "Last Transfer"
+msgstr "Última Email"
 
 msgid "lastRequest_help"
-msgstr "The date of the last transfer covered in this report. [[base-sitestats.requestCoverageHint]]"
-
-msgid "totalSent"
-msgstr "Total Files Sent"
-
-msgid "totalSent_help"
-msgstr "This is the total number of files sent."
-
-msgid "totalReceived"
-msgstr "Total Files Received"
-
-msgid "totalReceived_help"
-msgstr "This is the total number of files received."
+msgstr "A data da última correio abordados neste relatório. [[base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "Total Successful Transfers"
+msgstr "Total de mensagens tratadas"
 
 msgid "successfulRequests_help"
-msgstr "This is the total of all successful transfers."
+msgstr "Este é o total de todos os e-mails manipulados."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -57,23 +53,8 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
-msgid "distinctFiles"
-msgstr "Distinct Files Transferred"
-
-msgid "distinctFiles_help"
-msgstr "Number of distinct files transferred by this server."
-
-msgid "uniqueHosts"
-msgstr "Unique Computers Transferring Files"
-
-msgid "uniqueHosts_help"
-msgstr "This displays the number of unique computers contacting this server. It provides a rough idea of how many different people downloaded content from this server. Note: Multiple computers behind a firewall or a proxy server will count as only one address."
-
-
-# summary links
-
 msgid "otherStatistics"
-msgstr "Other FTP Usage Statistics"
+msgstr "Outros Correio www"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -94,22 +75,22 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "Requests by Domain"
+msgstr "Pedidos por Domínio"
 
 msgid "domainReportBut_help"
-msgstr "Get reports showing the domains from which requests were originating."
+msgstr "Obter relatórios que mostram os domínios dos quais pedidos foram originários."
 
 msgid "typesReportBut"
-msgstr "Requests by Type of File"
+msgstr "Pedidos por Tipo de Arquivo"
 
 msgid "typesReportBut_help"
-msgstr "Breaks down requests by the types of files."
+msgstr "Categoriza pedidos pelos tipos de arquivos."
 
 msgid "requestReportBut"
-msgstr "[[base-sitestats.requestReportBut]]"
+msgstr "Mail enviado ou recebido por endereço"
 
 msgid "requestReportBut_help"
-msgstr "[[base-sitestats.requestReportBut_help]]"
+msgstr "Este relata o uso de correio de usuário para e-mail de entrada ou saída."
 
 msgid "downloadLogBut"
 msgstr "[[base-sitestats.downloadLogBut]]"
@@ -148,22 +129,22 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "Domain Statistics"
+msgstr "Estatísticas domínio"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
 
-msgid "domain_help"
-msgstr "[[base-sitestats.domain_help]]"
-
 msgid "requests"
-msgstr "[[base-sitestats.requests]]"
+msgstr "Mensagens"
 
 msgid "requests_help"
-msgstr "The number of files transferred."
+msgstr "O número de e-mails manipulados."
 
-msgid "vsiteStats"
-msgstr "FTP Use by Virtual Site"
+msgid "vsiteStatsOut"
+msgstr "E-mails enviados pelo nome do host"
+
+msgid "vsiteStatsIn"
+msgstr "E-mail recebido pelo nome do host"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -178,13 +159,13 @@ msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
 
 msgid "site"
-msgstr "[[base-sitestats.site]]"
+msgstr "Nome do host"
 
 msgid "site_help"
-msgstr "[[base-sitestats.site_help]]"
+msgstr "Este é o nome da máquina a partir de ou para que e-mail foi enviado."
 
 msgid "typeStats"
-msgstr "Requests by File Type"
+msgstr "Solicitações por tipo de arquivo"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -192,20 +173,53 @@ msgstr "[[base-sitestats.filetype]]"
 msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
-msgid "requestStats"
-msgstr "Top Files Transferred"
+msgid "vsites_out"
+msgstr "E-mails enviados"
 
-msgid "requestFile"
-msgstr "[[base-sitestats.requestFile]]"
+msgid "vsites_out_help"
+msgstr "Clique aqui para ver os principais sites a partir do qual e-mail foi enviado."
 
-msgid "requestFile_help"
-msgstr "The name of the file requested relative to the site's base directory.  The base directory for the site \"www.example.com\", for example, would be \"/home/sites/www.example.com\"."
+msgid "vsites_in"
+msgstr "E-mail recebido"
+
+msgid "vsites_in_help"
+msgstr "Clique aqui para ver os principais sites para que mail foi enviado."
+
+msgid "requestStatsIn"
+msgstr "E-mail recebido por endereço"
+
+msgid "requestStatsOut"
+msgstr "E-mails enviados por endereço"
+
+msgid "requestFileOut"
+msgstr "Endereço"
+
+msgid "requestFileOut_help"
+msgstr "O endereço de onde o email foi enviado. Note-se que este é baseado em ambos os e-mails recebidos e enviados. Portanto, isso pode incluir endereços não hospedados no servidor."
+
+msgid "requestFileIn"
+msgstr "Endereço"
+
+msgid "requestFileIn_help"
+msgstr "O endereço para o qual o e-mail foi enviado. Note-se que este é baseado em ambos os e-mails recebidos e enviados. Portanto, isso pode incluir endereços não hospedados no servidor."
 
 msgid "requestNumber"
-msgstr "[[base-sitestats.requestNumber]]"
+msgstr "Emails"
 
 msgid "requestNumber_help"
-msgstr "[[base-sitestats.requestNumber_help]]"
+msgstr "O número de e-mails para este usuário."
+
+msgid "requestOutBut"
+msgstr "E-mail enviado"
+
+msgid "requestOutBut_help"
+msgstr "Clique aqui para ver os principais endereços a partir do qual e-mail foi enviado."
+
+msgid "requestInBut"
+msgstr "E-mail recebido"
+
+msgid "requestInBut_help"
+msgstr "Clique aqui para ver os principais endereços para os quais mail foi enviado."
 
 msgid "fullDailyDesc"
 msgstr "[[base-sitestats.fullDailyDesc]]"

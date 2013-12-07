@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "customizeBut"
 msgstr "[[base-sitestats.customizeBut]]"
@@ -11,9 +20,8 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
-# summary page
 msgid "summaryStats"
-msgstr "¥Í¥Ã¥È¥ï¡¼¥¯ÍøÍÑ¾õ¶·¤ÎÅı·×"
+msgstr "L&#39;utilisation du rÃ©seau Statistiques sommaires"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -22,16 +30,16 @@ msgid "reportGenerated_help"
 msgstr "[[base-sitestats.reportGenerated_help]]"
 
 msgid "firstRequest"
-msgstr "³«»ÏÆü»ş"
+msgstr "PremiÃ¨re activitÃ©"
 
 msgid "firstRequest_help"
-msgstr "¤³¤ÎÅı·×¤Ë´Ş¤Ş¤ì¤ëÊó¹ğ´ü´Ö¤Î³«»ÏÆü»ş¤ò¼¨¤·¤Ş¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "La date de la premiÃ¨re activitÃ© couverte par ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "½ªÎ»Æü»ş"
+msgstr "DerniÃ¨re activitÃ©"
 
 msgid "lastRequest_help"
-msgstr "¤³¤ÎÅı·×¤Ë´Ş¤Ş¤ì¤ëÊó¹ğ´ü´Ö¤Î½ªÎ»Æü»ş¤ò¼¨¤·¤Ş¤¹¡£[[base-sitestats.requestCoverageHint]]"
+msgstr "La date de la derniÃ¨re activitÃ© couverte par ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -39,16 +47,14 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
-# summary links
-
 msgid "otherStatistics"
-msgstr "¤½¤ÎÂ¾¤Î¥Í¥Ã¥È¥ï¡¼¥¯Åı·×"
+msgstr "Autres statistiques d&#39;utilisation du rÃ©seau"
 
 msgid "vsitesReportBut"
-msgstr "IP ÊÌ¤ÎÍøÍÑ¾õ¶·"
+msgstr "Utilisez par IP"
 
 msgid "vsitesReportBut_help"
-msgstr "IP ¥¢¥É¥ì¥¹ÊÌ¤Î¥Í¥Ã¥È¥ï¡¼¥¯ÍøÍÑ¾õ¶·¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "Obtenez un rapport d&#39;utilisation du rÃ©seau basÃ© sur l&#39;adresse IP."
 
 msgid "periodicReportBut"
 msgstr "[[base-sitestats.periodicReportBut]]"
@@ -102,7 +108,7 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "vsiteStats"
-msgstr "IP ¥¢¥É¥ì¥¹ÊÌ¤Î¥Í¥Ã¥È¥ï¡¼¥¯ÍøÍÑ¾õ¶·"
+msgstr "L&#39;utilisation du rÃ©seau par adresse IP"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -117,13 +123,13 @@ msgid "pbytes_help"
 msgstr "[[base-sitestats.pbytes_help]]"
 
 msgid "site"
-msgstr "IP ¥¢¥É¥ì¥¹"
+msgstr "Adresse IP"
 
 msgid "site_help"
-msgstr "IP ¥¢¥É¥ì¥¹ÊÌ¤Î¥È¥é¥Õ¥£¥Ã¥¯Åı·×¤Ç¤¹¡£¡Ö¤½¤ÎÂ¾¡×¤Ë¤Ï¡¢ÆÃÄê¤Î IP ¥¢¥É¥ì¥¹¤òÂĞ¾İ¤È¤·¤Æ¤¤¤Ê¤¤¥Ö¥í¡¼¥É¥­¥ã¥¹¥È¥È¥é¥Õ¥£¥Ã¥¯¤¬´Ş¤Ş¤ì¤Ş¤¹¡£"
+msgstr "Le trafic a Ã©tÃ© comptabilisÃ©e sur la base de l&#39;adresse IP. \"Autre\" se rÃ©fÃ¨re Ã  diffuser trafic non destinÃ© Ã  une adresse IP spÃ©cifique."
 
 msgid "typeStats"
-msgstr "¥Õ¥¡¥¤¥ë¼ïÎàÊÌ¤Î¥ê¥¯¥¨¥¹¥È¿ô"
+msgstr "Demandes par type de fichier"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
