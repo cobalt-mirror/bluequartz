@@ -73,7 +73,7 @@
             optional="true"
             writeacl="ruleCapable(managePackage)"
         />
-  <PROPERTY name="update" type="word" default="0" writeacl="ruleCapable(managePackage) />
-  <PROPERTY name="check" type="word" default="" writeacl="ruleCapable(managePackage) />
-  <PROPERTY name="skiplock" type="word" default="" writeacl="ruleCapable(managePackage) />
+  <PROPERTY name="update" type="word" default="0" writeacl="ruleCapable(managePackage)" />
+  <PROPERTY name="check" type="word" default="" writeacl="ruleCapable(managePackage)" />
+  <PROPERTY name="skiplock" type="word" default="" writeacl="ruleCapable(managePackage)" />
 </CLASS>
