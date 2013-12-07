@@ -16,7 +16,7 @@ if ($helper->getAllowed('adminUser'))
     $is_site_admin = false;
     $access = 'rw';
 }
-elseif ($helper->getAllowed('siteAdmin') &&
+elseif ($helper->getAllowed('serverShell') &&
         $group == $helper->loginUser['site'])
 {
     $access = 'r';
@@ -49,16 +49,6 @@ $shellEnable = $factory->getBoolean('Shell_enabled',
         
 $block->addFormField($shellEnable, 
 	$factory->getLabel('enableShell'));
-
-// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
-$hidden_block = $factory->getTextBlock("Nothing", "");
-$hidden_block->setOptional(true);
-$block->addFormField(
-    $hidden_block,
-    $factory->getLabel("Nothing"),
-    "Hidden"
-    );
-
 
 if (!$is_site_admin)
 	$block->addButton($factory->getSaveButton($page->getSubmitAction()));

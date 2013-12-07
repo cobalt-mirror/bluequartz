@@ -1,9 +1,19 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 # strings for shell menu items
 msgid "shellMenu"
-msgstr "е╖езеы"
+msgstr "уВ╖уВзуГл"
 
 msgid "shellMenuDescription"
-msgstr "е╖езеыевепе╗е╣дЄ╡Ў▓─д╡дьд╞дддыецб╝е╢дмбвд│д╬е╡б╝е╨д╪└▄┬│д╣дыд┐дсд╦═°═╤д╣дыбвTelnet дф SSH д╩д╔д╬е╡б╝е╙е╣дЄ└▀─ъд╟днд▐д╣бг"
+msgstr "уВ╖уВзуГлуВвуВпуВ╗уВ╣уВТши▒хПпуБХуВМуБжуБДуВЛуГжуГ╝уВ╢уБМуАБуБУуБоуВ╡уГ╝уГРуБ╕цОеч╢ЪуБЩуВЛуБЯуВБуБлхИйчФиуБЩуВЛуАБTelnet уВД SSH уБкуБйуБоуВ╡уГ╝уГУуВ╣уВТшинхоЪуБзуБНуБ╛уБЩуАВ"
 
 # server wide shell access page
 msgid "shell"
@@ -11,38 +21,41 @@ msgstr "[[base-shell.shellMenu]]"
 
 # ui extensions
 msgid "shellName"
-msgstr "е╖езеыевепе╗е╣"
+msgstr "уВ╖уВзуГлуВвуВпуВ╗уВ╣"
 
 msgid "enableShell"
-msgstr "е╖езеыевепе╗е╣дЄ═н╕·д╦д╣ды"
+msgstr "уВ╖уВзуГлуВвуВпуВ╗уВ╣уВТцЬЙхК╣уБлуБЩуВЛ"
 
 msgid "enableShell_help"
-msgstr "е╖езеыевепе╗е╣дЄ═н╕·д╦д╣дыд╚бвTelnet дф SSH д╩д╔д╬е╡б╝е╙е╣дЄ╗╚д├д╞е╡б╝е╨д╦└▄┬│д╟дндыецб╝е╢дЄ║ю└од╟днд▐д╣бг"
+msgstr "уВ╖уВзуГлуВвуВпуВ╗уВ╣уВТцЬЙхК╣уБлуБЩуВЛуБиуАБTelnet уВД SSH уБкуБйуБоуВ╡уГ╝уГУуВ╣уВТф╜┐уБгуБжуВ╡уГ╝уГРуБлцОеч╢ЪуБзуБНуВЛуГжуГ╝уВ╢уВТф╜ЬцИРуБзуБНуБ╛уБЩуАВ"
 
 msgid "userEnableShell"
 msgstr "[[base-shell.enableShell]]"
 
 msgid "userEnableShell_help"
-msgstr "е╖езеыевепе╗е╣дЄ═н╕·д╦д╣дыд╚бвецб╝е╢д╧бвTelnet дф SSH д╩д╔д╬е╡б╝е╙е╣дЄ╗╚д├д╞е╡б╝е╨д╦└▄┬│д╟дндыдшджд╦д╩дъд▐д╣бг"
+msgstr "уВ╖уВзуГлуВвуВпуВ╗уВ╣уВТцЬЙхК╣уБлуБЩуВЛуБиуАБуГжуГ╝уВ╢уБпуАБTelnet уВД SSH уБкуБйуБоуВ╡уГ╝уГУуВ╣уВТф╜┐уБгуБжуВ╡уГ╝уГРуБлцОеч╢ЪуБзуБНуВЛуВИуБЖуБлуБкуВКуБ╛уБЩуАВ"
 
 msgid "shellIsEnabled"
-msgstr "е╖езеыевепе╗е╣"
+msgstr "уВ╖уВзуГлуВвуВпуВ╗уВ╣"
 
 msgid "shellIsEnabled_help"
-msgstr "д│д╬ецб╝е╢д╦д╧е╖езеыевепе╗е╣дм╡Ў▓─д╡дьд╞ддд▐д╣бг "
+msgstr "уБУуБоуГжуГ╝уВ╢уБлуБпуВ╖уВзуГлуВвуВпуВ╗уВ╣уБМши▒хПпуБХуВМуБжуБДуБ╛уБЩуАВ "
 
 # handler error messages
 # user_shell.pl
 msgid "cantEnableNoVsiteShell"
-msgstr "д│д╬ецб╝е╢д╬┬░д╖д╞ддды▓╛┴█е╡еде╚д╧е╖езеыевепе╗е╣дм═н╕·д╦д╡дьд╞ддд╩ддд┐дсбвд│д╬ецб╝е╢д╬е╖езеыевепе╗е╣дЄ═н╕·д╦д╟днд▐д╗дєбг"
+msgstr "уБУуБоуГжуГ╝уВ╢уБох▒ЮуБЧуБжуБДуВЛф╗оцГ│уВ╡уВдуГИуБпуВ╖уВзуГлуВвуВпуВ╗уВ╣уБМцЬЙхК╣уБлуБХуВМуБжуБДуБкуБДуБЯуВБуАБуБУуБоуГжуГ╝уВ╢уБоуВ╖уВзуГлуВвуВпуВ╗уВ╣уВТцЬЙхК╣уБлуБзуБНуБ╛уБЫуВУуАВ"
 
 # site shell menus
 msgid "siteshell"
-msgstr "е╖езеы"
+msgstr "уВ╖уВзуГл"
 
 msgid "siteshell_help"
-msgstr "д│д╬е╡еде╚д╬е╖езеыевепе╗е╣дЄ└▀─ъд╟днд▐д╣бг"
+msgstr "уБУуБоуВ╡уВдуГИуБоуВ╖уВзуГлуВвуВпуВ╗уВ╣уВТшинхоЪуБзуБНуБ╛уБЩуАВ"
 
 msgid "siteShellSettings"
-msgstr "е╖езеыд╬└▀─ъ - [[VAR.fqdn]]"
+msgstr "уВ╖уВзуГлуБошинхоЪ - [[VAR.fqdn]]"
+
+msgid "cap_serverShell"
+msgstr "уВ╖уВзуГлуБошинхоЪ"
 
