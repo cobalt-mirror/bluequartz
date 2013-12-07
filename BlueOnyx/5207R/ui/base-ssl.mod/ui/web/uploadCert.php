@@ -1,13 +1,14 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: uploadCert.php,v 1.10.2.1 2002/04/16 23:37:16 naroori Exp $
+// $Id: uploadCert.php
 
 include_once('ServerScriptHelper.php');
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");

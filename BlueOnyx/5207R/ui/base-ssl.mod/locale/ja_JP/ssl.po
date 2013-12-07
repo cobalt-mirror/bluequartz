@@ -1,3 +1,13 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 # menu items
 msgid "ssl"
 msgstr "SSL"
@@ -1041,3 +1051,7 @@ msgstr "[[base-ssl.enabled_help]]"
 
 msgid "sslGetFailed"
 msgstr "コマンド '/usr/sausalito/sbin/ssl_get.pl' が期待される結果を返しませんでした。多分ない証明書が存在がありません？"
+
+msgid "cap_serverSSL"
+msgstr "SSL設定"
+

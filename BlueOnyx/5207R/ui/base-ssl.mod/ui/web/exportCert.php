@@ -1,6 +1,6 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: exportCert.php,v 1.5 2001/12/06 02:10:03 jcheng Exp $
+// $Id: exportCert.php
 // pipe either the certificate signing reques or the private key 
 // and certificate out to be saved by the user
 
@@ -10,8 +10,9 @@ include_once("utils/browser.php");
 // make sure the pipe to read from can be opened first
 $helper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");

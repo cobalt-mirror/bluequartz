@@ -1,6 +1,6 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
-// $Id: siteSSL.php,v 1.15 2001/11/04 22:11:54 pbaltz Exp $
+// $Id: siteSSL.php
 // siteSSL.php
 // display the page to setup ssl info for a site
 
@@ -8,8 +8,9 @@ include_once('ServerScriptHelper.php');
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");

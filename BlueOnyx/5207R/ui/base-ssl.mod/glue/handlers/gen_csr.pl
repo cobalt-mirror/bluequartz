@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/ssl
-# $Id: gen_csr.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: gen_csr.pl
 # Copyright Sun Microsystems, Inc.  All rights reserved.
 #
 # generate a certificate signing request on demand from the current info
@@ -84,6 +84,11 @@ $DEBUG && print STDERR Dumper($ssl, $subject);
 
 # check for 2038 rollover
 $ssl->{daysValid} = ssl_check_days_valid($ssl->{daysValid});
+if (!ssl_check_days_valid($ssl->{daysValid})) 
+{ 
+    $cce->bye('FAIL', '[[base-ssl.2038bug]]'); 
+    exit(1); 
+} 
 
 if (!ssl_gen_csr($cert_dir, $ssl->{daysValid}, $subject))
 {

@@ -3,7 +3,7 @@
 # /\                                                          \
 # \_| SSL.pm: Functions for manging SSL certificates.         |
 #   |                                                         |
-#   | $Id: SSL.pm 259 2004-01-03 06:28:40Z shibuya $     |
+#   | $Id: SSL.pm                                             |
 #   |                                                         |
 #   | Originally written by                                   |
 #   |   Harris Vaegan-Lloyd <harris@cobaltnet.com>            |

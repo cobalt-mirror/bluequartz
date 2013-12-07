@@ -300,7 +300,7 @@ msgid "AQ"
 msgstr "南極"
 
 msgid "AG"
-msgstr "アンティグア−バーブーダ"
+msgstr "アンティグア‐バーブーダ"
 
 msgid "AR"
 msgstr "アルゼンチン"
@@ -543,7 +543,7 @@ msgid "GN"
 msgstr "ギニア"
 
 msgid "GW"
-msgstr "ギニア･ビサウ"
+msgstr "ギニア・ビサウ"
 
 msgid "GY"
 msgstr "ギアナ"
@@ -810,7 +810,7 @@ msgid "SH"
 msgstr "セントヘレナ"
 
 msgid "KN"
-msgstr "セントキッツ･ネイビス"
+msgstr "セントキッツ・ネイビス"
 
 msgid "LC"
 msgstr "セントルシア"
@@ -1032,3 +1032,12 @@ msgstr "このサイトから削除したい証明を発行した第２の認証機関を指定してください。
 # ia5string_check.pl
 msgid "nonAsciiCharacter"
 msgstr "[[VAR.property]] フィールドには、半角英数字しか入力できません。"
+
+msgid "SSL_enabled"
+msgstr "[[base-ssl.enabled]]"
+
+msgid "SSL_enabled_help"
+msgstr "[[base-ssl.enabled_help]]"
+
+msgid "sslGetFailed"
+msgstr "コマンド '/usr/sausalito/sbin/ssl_get.pl' が期待される結果を返しませんでした。多分ない証明書が存在がありません？"

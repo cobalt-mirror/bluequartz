@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "ssl"
 msgstr "SSL"
@@ -1023,4 +1032,8 @@ msgid "SSL_enabled_help"
 msgstr "[[base-ssl.enabled_help]]"
 
 msgid "sslGetFailed"
-msgstr "La commande '/usr/Sausalito/sbin/ssl_get.pl' ne renvoient pas les résultats escomptés. Peut-être il n'ya pas de certificat actuel?"
+msgstr "La commande '/usr/sausalito/sbin/ssl_get.pl' ne renvoient pas les résultats escomptés. Peut-être il n'ya pas de certificat actuel?"
+
+msgid "cap_serverSSL"
+msgstr "Paramètres SSL"
+

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/ssl
-# $Id: gen_cert.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: gen_cert.pl 
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # Use the SSL information for the vsite to generate a private key, self-signed
 # certificate and a certificate signing request.
@@ -51,6 +51,11 @@ if (! -d $cert_dir)
 
 # make sure we don't hit 2038 rollover
 $ssl_info->{daysValid} = ssl_check_days_valid($ssl_info->{daysValid}); 
+if (!ssl_check_days_valid($ssl_info->{daysValid})) 
+{ 
+    $cce->bye('FAIL', '[[base-ssl.2038bug]]'); 
+    exit(1); 
+} 
 
 # call ssl_set_identity which generates a self-signed certificate
 my $ret = ssl_set_identity(

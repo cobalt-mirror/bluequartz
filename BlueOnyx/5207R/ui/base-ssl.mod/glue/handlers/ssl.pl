@@ -1,9 +1,10 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/ssl
-# $Id: ssl.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: ssl.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
 # update the admin server's certificate on changes to System attributes
 # such as hostname, domain name, and identity information
 
+use Time::Local qw( timelocal ); 
 use POSIX;
 use CCE;
 use SSL qw(
@@ -30,6 +31,15 @@ if (! -d $cert_dir)
 
 # make sure we don't hit 2038 rollover
 $ssl->{daysValid} = ssl_check_days_valid($ssl->{daysValid}); 
+if ($ssl->{daysValid} eq "9999") { 
+    $ssl->{daysValid} = int((timelocal(59, 59, 23, 31, 11, 2037) - time())/(24 * 60 * 60)); 
+} 
+if (!ssl_check_days_valid($ssl->{daysValid})) 
+{ 
+    $cce->bye('FAIL', '[[base-ssl.2038bug]]'); 
+    exit(1); 
+} 
+
 
 # setup the certificate
 my $ret = ssl_set_identity(

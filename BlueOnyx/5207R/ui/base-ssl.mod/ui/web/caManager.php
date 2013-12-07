@@ -1,14 +1,15 @@
 <?php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: caManager.php,v 1.3.2.2 2002/04/16 23:37:16 naroori Exp $
+// $Id: caManager.php
 
 include_once('ServerScriptHelper.php');
 include_once('ArrayPacker.php');
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only serverSSL and siteAdmin should be here
+if (!$helper->getAllowed('serverSSL') &&
+    !$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");

@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/ssl
-# $Id: vsite_ssl.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: vsite_ssl.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # update siteAdminCaps property when enabling/disabling ssl
 
@@ -34,6 +34,10 @@ if ($ssl_info->{enabled} && scalar(@other_sites) > 1)
                 });
     exit(1);
 }
+
+# set VirtualHost.ssl 
+my ($void) = $cce->find('VirtualHost', {'name' => $vsite->{name}}); 
+$cce->set($void, '', {'ssl' => $ssl_info->{enabled}}); 
 
 # update siteAdminCaps in Vsite
 if (!$cce->event_is_destroy())
