@@ -1,7 +1,7 @@
 <item 
     id="nuonce_remoteProfile" 
-    label="Remote Access" 
-    description="Access your server remotely" 
+    label="[[base-remote.remote_menu]]" 
+    description="[[base-remote.connect_help]]" 
 >
     <parent id="root" order="60"/>
 </item>

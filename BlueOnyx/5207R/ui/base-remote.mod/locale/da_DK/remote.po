@@ -1,16 +1,24 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "header"
-msgstr "Connect to Server"
+msgstr "Opret forbindelse til server"
 
 msgid "connect"
-msgstr "Launch Mindterm"
+msgstr "Start Mindterm"
 
 msgid "connect_help"
-msgstr "Connect to this server via SSH"
+msgstr "Opret forbindelse til denne server via SSH"
 
 msgid "about"
-msgstr ""
-"Mindterm is a Java based application that allows you to access your server "
-"from a remote location.  It uses Secure Shell.  You must have SSH enabled "
-"in order to connect to your server.  If you do not have it enabled, please "
-"do so before you connect."
-""
+msgstr "Mindterm er en Java-baseret program, der giver dig adgang til din server fra en ekstern placering. Det bruger Secure Shell. Du skal have SSH slået til for at oprette forbindelse til din server. Hvis du ikke har gjort det muligt, skal du gøre det, inden du tilslutter."
+
+msgid "remote_menu"
+msgstr "Remote Access"
