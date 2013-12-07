@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: addRAIDPkg.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: addRAIDPkg.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 
@@ -17,36 +17,36 @@ my @oids = $cce->find('System', {});
 if (@oids == 1) {
     ($ok, $system) = $cce->get($oids[0]);
     if ( $ok ) {
-	$prod = ${$system}{'productBuild'};
-    
-    # raid level is not configurable on Bluapp
-    my $home_partition = `/bin/df -l -P /home | grep "/home"`;
-    $home_partition = (split / +/, $home_partition)[0];
-    if ( $home_partition =~ /VolGroup00/ ) {
-	my $lvm = 1;
-	my $volgroup_name = "VolGroup00";
-	my $home_device = `/usr/sbin/vgdisplay $volgroup_name --verbose | /bin/grep 'PV Name'`;
-	($home_device) = (split / +/, $home_device)[3];
-	if( $home_device =~ /\/dev\/md/ ) {
-	    $raid = 1;
-	    $level = `/sbin/mdadm --misc -D $home_device |grep 'Raid Level'`;
-	    ($level) = (split /raid/, $level)[1];
-	} else {
-	    $raid = 0;
-	    $level = 0;
+		$prod = ${$system}{'productBuild'};
+	    
+	    # raid level is not configurable on Bluapp
+	    my $home_partition = `/bin/df -l -P /home | grep "/home"`;
+	    $home_partition = (split / +/, $home_partition)[0];
+	    if ( $home_partition =~ /VolGroup00/ ) {
+		my $lvm = 1;
+		my $volgroup_name = "VolGroup00";
+		my $home_device = `/usr/sbin/vgdisplay $volgroup_name --verbose | /bin/grep 'PV Name'`;
+		($home_device) = (split / +/, $home_device)[3];
+		if( $home_device =~ /\/dev\/md/ ) {
+		    $raid = 1;
+		    $level = `/sbin/mdadm --misc -D $home_device |grep 'Raid Level'`;
+		    ($level) = (split /raid/, $level)[1];
+		} else {
+		    $raid = 0;
+		    $level = 0;
+		}
+	    } elsif ($home_partition =~ /\/dev\/md/ ) {
+			$home_device = $home_partition;
+			$lvm = 0;
+			$raid = 1;
+			$level = `/sbin/mdadm --misc -D $home_device |grep 'Raid Level'`;
+			($level) = (split /raid/, $level)[1];
+	    } else {
+			$lvm = 0;
+			$raid = 0;
+			$level = 0;
+	    }
 	}
-    } elsif ($home_partition =~ /\/dev\/md/ ) {
-	$home_device = $home_partition;
-	$lvm = 0;
-	$raid = 1;
-	$level = `/sbin/mdadm --misc -D $home_device |grep 'Raid Level'`;
-	($level) = (split /raid/, $level)[1];
-    } else {
-	$lvm = 0;
-	$raid = 0;
-	$level = 0;
-    }
-}
 }
 
 my $add_raid_pkg = 1 if ($raid);

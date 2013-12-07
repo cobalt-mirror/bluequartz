@@ -70,34 +70,34 @@ msgid "raid_failure_email"
 msgstr "A hard drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
 
 msgid "raid0_failure_email"
-msgstr "A hard drive has failed in raid0 configuration.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Then, restore the /home directory using your backups."
+msgstr "A hard drive has failed in raid0 configuration. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
 
 msgid "raid_failure_email_Alpine_hda"
-msgstr "Drive 1 has failed.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Data will be restored to the replacement hard drive automatically."
+msgstr "Drive 1 has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
 
 msgid "raid0_failure_email_Alpine_hda"
-msgstr "Drive 1 has failed in raid0 configuration.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Then, restore the /home directory using your backups."
+msgstr "Drive 1 has failed in raid0 configuration. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
 
 msgid "raid_failure_email_Alpine_hdc"
-msgstr "Drive 2 has failed.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Data will be restored to the replacement hard drive automatically."
+msgstr "Drive 2 has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically."
 
 msgid "raid0_failure_email_Alpine_hdc"
-msgstr "Drive 2 has failed in raid0 configuration.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Then, restore the /home directory using your backups."
+msgstr "Drive 2 has failed in raid0 configuration. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Then, restore the /home directory using your backups."
 
 msgid "raid_failure_hdc_raq"
-msgstr "The hard drive (hdc) has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size."
+msgstr "The hard drive (hdc) has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size."
 
 msgid "raid_failure_hda_raq"
-msgstr "The hard drive (hda) has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size."
+msgstr "The hard drive (hda) has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size."
 
 msgid "raid_failure_qube"
-msgstr "A hard drive has failed.  Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive.  Data will be restored to the replacement hard drive automatically.  Check the Active Monitor RAID details screen for more information."
+msgstr "A hard drive has failed. Please shutdown the server appliance and replace the failed hard drive with a new one that is the same size as the remaining drive. Data will be restored to the replacement hard drive automatically. Check the Active Monitor RAID details screen for more information."
 
 msgid "raid_failure_hdc_qube"
-msgstr "The secondary hard drive has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size.  The failed drive (labeled B) is located near the center of the server appliance.  It is the hard drive on the right side when facing the the front of the server appliance."
+msgstr "The secondary hard drive has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size. The failed drive (labeled B) is located near the center of the server appliance. It is the hard drive on the right side when facing the the front of the server appliance."
 
 msgid "raid_failure_hda_qube"
-msgstr "The primary hard drive (hda) has failed.  Please shutdown the server appliance and replace this drive with a new drive of identical size."
+msgstr "The primary hard drive (hda) has failed. Please shutdown the server appliance and replace this drive with a new drive of identical size."
 
 # --- Handlers
  
@@ -113,7 +113,7 @@ msgid "raidstatus"
 msgstr "RAID Setup"
 
 msgid "configuring"
-msgstr "Setting up RAID.  This operation will take several minutes."
+msgstr "Setting up RAID. This operation will take several minutes."
 
 msgid "raidstep1"
 msgstr "Preparing disk..."
@@ -125,10 +125,10 @@ msgid "raidstep3"
 msgstr "Starting up services..."
 
 msgid "setupNoDiskSpace"
-msgstr "ERROR: Not enough disk space. You should not add data until RAID has been configured.  If you have added files to the server already, you must remove them and try again. Contact technical support for more help if needed."
+msgstr "ERROR: Not enough disk space. You should not add data until RAID has been configured. If you have added files to the server already, you must remove them and try again. Contact technical support for more help if needed."
 
 msgid "setupNoUmountHome"
-msgstr "ERROR: Couldn't unmount /home.  Make sure you are not logged in to the system or have started any programs."
+msgstr "ERROR: Couldn't unmount /home. Make sure you are not logged in to the system or have started any programs."
 
 msgid "confirmRaid0"
 msgstr "Are you certain you want your system to use RAID striping to store data?\n\n This choice cannot be changed after completing the setup wizard."
