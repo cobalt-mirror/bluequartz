@@ -85,6 +85,18 @@ sub update_i18n
 	if ($locale eq "ja_JP") {
         	$locale = "ja_JP.UTF-8";
 	}
+	if ($locale eq "es_ES") {
+        	$locale = "es_ES.UTF-8";
+	}
+	if ($locale eq "fr_FR") {
+        	$locale = "fr_FR.UTF-8";
+	}
+	if ($locale eq "it_IT") {
+        	$locale = "it_IT.UTF-8";
+	}
+	if ($locale eq "pt_PT") {
+        	$locale = "pt_PT.UTF-8";
+	}
 	if ($locale eq "en") {
         	$locale = "en_US";
 	}
