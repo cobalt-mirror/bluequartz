@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=time
 
-VERSION=1.0.1
-RELEASE=62BX26
+VERSION=1.1.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch

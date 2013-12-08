@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
 #
-# $Id: ntp.pl 259 2004-01-03 06:28:40Z shibuya $
+# $Id: ntp.pl
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 #
 # Configure and start/stop ntpd.

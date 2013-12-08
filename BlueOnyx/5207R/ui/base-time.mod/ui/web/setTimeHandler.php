@@ -1,15 +1,15 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: setTimeHandler.php 554 2005-08-15 07:05:00Z shibuya $
+// $Id: setTimeHandler.php
 
 include_once("ServerScriptHelper.php");
 include_once('Error.php');
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverTime' should be here:
+if (!$serverScriptHelper->getAllowed('serverTime')) {
   header("location: /error/forbidden.html");
   return;
 }

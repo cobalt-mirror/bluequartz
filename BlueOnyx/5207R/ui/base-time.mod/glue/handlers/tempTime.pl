@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
 #
-# $Id: tmpTime.pl,v 1.0.0-1 Wed 17 Sep 2008 09:01:05 AM CEST mstauber Exp $
+# $Id: tmpTime.pl
 # Copyright 2008 Solarspeed Ltd. All rights reserved.
 #
 

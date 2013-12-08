@@ -18,7 +18,7 @@ install: $(PROGRAM)
 	$(INSTALL) $(INSTALL_SBINFLAGS) epochdate $(CCESBINDIR)
 
 rpm:
-	cd ..; tar --exclude '*CVS*' -zcf base-time-src.tar.gz src;
+	cd ..; tar --exclude '.svn' -zcf base-time-src.tar.gz src;
 	cp ../base-time-src.tar.gz $(PACKAGE_DIR)/SOURCES;
 	cp base-time-src.spec $(PACKAGE_DIR)/SPECS;
 	$(RPMBUILD) -ba $(PACKAGE_DIR)/SPECS/base-time-src.spec;
