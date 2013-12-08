@@ -1,0 +1,115 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "systemInfo"
+msgstr "Informations"
+
+msgid "systemInformation"
+msgstr "Informations sur le système"
+
+msgid "systemInfo_help"
+msgstr "[[base-system.systemInformation]] peuvent être consultés ici."
+
+msgid "serialUninitialized"
+msgstr "Non initialisée"
+
+msgid "productNameField"
+msgstr "Nom du produit"
+
+msgid "productNameField_help"
+msgstr "C&#39;est le nom du produit de votre appareil serveur."
+
+msgid "productBuildField"
+msgstr "Numéro de build"
+
+msgid "productBuildField_help"
+msgstr "Ceci est le numéro de build de votre appareil serveur."
+
+msgid "serialNumberField"
+msgstr "Numéro de série matériel"
+
+msgid "serialNumberField_help"
+msgstr "Il s&#39;agit du numéro de série matériel de votre appareil de serveur."
+
+msgid "productSerialNumberField"
+msgstr "Numéro de série du"
+
+msgid "productSerialNumberField_help"
+msgstr "Il s&#39;agit du numéro de série du produit de votre appareil serveur."
+
+msgid "mac0Field"
+msgstr "Interface principale Adresse MAC"
+
+msgid "mac0Field_help"
+msgstr "Il s&#39;agit du numéro de série du matériel de la carte d&#39;interface réseau primaire de votre appareil au serveur."
+
+msgid "mac1Field"
+msgstr "Secondaire Interface MAC Address"
+
+msgid "mac1Field_help"
+msgstr "Il s&#39;agit du numéro de série du matériel de la carte d&#39;interface réseau secondaire dans votre appareil du serveur."
+
+msgid "memoryField"
+msgstr "Taille de la mémoire (MB)"
+
+msgid "memoryField_help"
+msgstr "Il s&#39;agit de la quantité totale de mémoire réelle disponible sur votre appareil de serveur."
+
+msgid "diskField"
+msgstr "Taille du disque dur (Go)"
+
+msgid "diskField_help"
+msgstr "Il s&#39;agit de la quantité totale d&#39;espace disque disponible sur votre appareil de serveur."
+
+msgid "register"
+msgstr "Inscrivez-vous maintenant"
+
+msgid "register_help"
+msgstr "Cliquez ici pour enregistrer votre appliance serveur."
+
+msgid "webLinkText"
+msgstr "[[base-alpine.osVendor]] Site Web"
+
+msgid "webLink"
+msgstr "[[base-alpine.vendorSite]]"
+
+msgid "webLinkText_help"
+msgstr "Cliquez ici pour aller à la [[base-system.webLinkText]]."
+
+msgid "creditsAcknoledgements"
+msgstr "Crédits et remerciements"
+
+msgid "creditsAcknoledgements_help"
+msgstr "Cliquez ici pour voir [[base-system.creditsAcknoledgements]]"
+
+msgid "copyright"
+msgstr "[[base-product.longNoticeEnglish]] <BR><P><P><BR> [[base-product.longNoticeFrench]]"
+
+msgid "codeNotice"
+msgstr "[[base-alpine.osName]] logiciel sont librement redistribuables. La majorité des composants logiciels de ce serveur sont distribuables sous la <A HREF=bsdlicense.php>licence BSD</a> et la <A HREF=gnulicense.php>licence publique GNU</a> . Le code source complet de [[base-alpine.osName]] est disponible au [[base-alpine.vendorSite]]."
+
+msgid "rsaNotice"
+msgstr "Comprend cryptographique BSAFE ou le logiciel de protocole de sécurité RSA Security"
+
+msgid "bsdTitle"
+msgstr "Le droit d&#39;auteur et de la licence BSD"
+
+msgid "bsdLicense"
+msgstr "Droits d&#39;auteur 1991, 1992, 1993, 1994 Les Régents de l&#39;Université de Californie. <P> Tous droits réservés. La redistribution et l&#39;utilisation sous formes source et binaire, avec ou sans modification, sont autorisées sous réserve que les conditions suivantes sont remplies: <P> 1. Les redistributions du code source doivent conserver l&#39;avis de copyright ci-dessus, cette liste de conditions et la renonciation suivante. <P> 2. Les redistributions sous forme binaire doivent reproduire l&#39;avis de copyright ci-dessus, cette liste de conditions et la renonciation suivante dans la documentation et / ou d&#39;autres documents fournis avec la distribution. <P> 3. Tous les matériaux publicitaires mentionnant les caractéristiques ou l&#39;utilisation de ce logiciel doivent comporter la mention suivante: Ce produit contient un logiciel développé par l&#39;Université de Californie, Berkeley et ses collaborateurs. <P> 4. Ni le nom de l&#39;Université ni les noms de ses collaborateurs ne peuvent être utilisés pour approuver ou promouvoir des produits dérivés de ce logiciel sans autorisation écrite préalable. <P> CE LOGICIEL EST FOURNI PAR LES ET LES COLLABORATEURS EN L&#39;ETAT ET TOUTE GARANTIE, EXPLICITE OU IMPLICITE, Y COMPRIS, MAIS SANS S&#39;Y LIMITER, LES GARANTIES DE QUALITÉ MARCHANDE ET D&#39;ADAPTATION À UN USAGE PARTICULIER. EN AUCUN CAS LES COLLABORATEURS NE POURRONT ÊTRE TENUS RESPONSABLES DE DOMMAGES DIRECTS, INDIRECTS, ACCESSOIRES, SPÉCIAUX, EXEMPLAIRES OU INDIRECTS (Y COMPRIS, MAIS SANS S&#39;Y LIMITER, L&#39;ACQUISITION DE BIENS OU DE SERVICES DE REMPLACEMENT, LA PERTE D&#39;UTILISATION, DE DONNÉES OU DE PROFITS OU PERTE D&#39;EXPLOITATION) SOIT LA CAUSE ET LA THÉORIE DE LA RESPONSABILITÉ, QUE CE SOIT DANS UN CONTRAT, RESPONSABILITÉ STRICTE OU D&#39;UN DÉLIT (Y COMPRIS LA NÉGLIGENCE OU AUTRE) découlant de quelque manière DE L&#39;UTILISATION DE CE LOGICIEL, MÊME SI AVERTI DE LA POSSIBILITÉ DE TELS DOMMAGES."
+
+msgid "gnuTitle"
+msgstr "GNU Public License"
+
+msgid "gnuLicense"
+msgstr "Copyright (C) 1989, 1991 Free Software Foundation, Inc. 675 Mass Ave, Cambridge, MA 02139, USA"
+
+msgid "cap_serverInformation"
+msgstr "Affichage des informations du système"
+

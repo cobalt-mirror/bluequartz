@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: 10_addSystem.pl,v 1.5.2.3 Mon 01 Mar 2010 11:15:18 PM CET mstauber Exp $
+# $Id: 10_addSystem.pl
 # Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
 # Copyright 2008-2013 Team BlueOnyx. All rights reserved.
 
@@ -24,23 +24,17 @@ chomp($fullbuild);
 # figure out our product
 my ($product, $build, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
 
-if ($build eq "5106R") {
-    my %locales = (  
-	"en_US" => "&en",
-	"da_DK" => "&da_DK&",
-	"de_DE" => "&de_DE&",
-	"ja" => "&ja&"
-    );
-}
-else {
-    # 5X07R or 5X08R:
-    my %locales = (  
+# Supported languages:
+my %locales = (  
 	"en_US" => "&en_US&",
 	"da_DK" => "&da_DK&",
 	"de_DE" => "&de_DE&",
-	"ja_JP" => "&ja_JP&"
-    );
-}
+	"es_ES" => "&es_ES&",
+	"fr_FR" => "&fr_FR&",
+	"it_IT" => "&it_IT&",
+	"ja_JP" => "&ja_JP&",
+	"pt_PT" => "&pt_PT&"
+);
 
 
 my ($i18n) = `grep LANG /etc/sysconfig/i18n`;
@@ -53,7 +47,7 @@ if ($i18n =~ m/^LANG=(.*)/) {
 
 if ($lang =~ /^ja/) {
     if ($build eq "5106R") {
-        $lang = 'ja';
+        $lang = 'ja_JP';
     }
     else {
 	# 5X07R or 5X08R:
@@ -68,7 +62,7 @@ elsif ($lang =~ /^de_DE/) {
 }
 else {
     if ($build eq "5106R") {
-        $lang = 'en';
+        $lang = 'en_US';
     }
     else {
 	# 5X07R or 5X08R:
@@ -127,29 +121,29 @@ if ($#oids == 0) {
 	# We have only one System object - update it:
     	($sys_oid) = $cce->find('System', '');
     	($ok) = $cce->set($sys_oid, '',{
-                hostname => $myhost,
-                domainname => $mydomain,
-                dns => $nsscalar,
-                productBuildString=>$fullbuild,
-                productIdentity => $product,
-                productBuild => $build,
-                productLanguage => $lang,
-                console=>"0",
-                locales => $available_langs
+                'hostname' => $myhost,
+                'domainname' => $mydomain,
+                'dns' => $nsscalar,
+                'productBuildString'=>$fullbuild,
+                'productIdentity' => $product,
+                'productBuild' => $build,
+                'productLanguage' => $lang,
+                'console' =>"0",
+                'locales' => $available_langs
         });
         $oids[0] = $cce->oid();
 } elsif ($#oids < 0) {
 	# we must create a System object with no properties.
 	$cce->create("System", {
-		hostname => $myhost,
-		domainname => $mydomain,
-		dns => $nsscalar,
-		productBuildString=>$fullbuild,
-		productIdentity => $product,
-		productBuild => $build,
-		productLanguage => $lang,
-		console=>"0",
-		locales => $available_langs
+		'hostname' => $myhost,
+		'domainname' => $mydomain,
+		'dns' => $nsscalar,
+		'productBuildString'=>$fullbuild,
+		'productIdentity' => $product,
+		'productBuild' => $build,
+		'productLanguage' => $lang,
+		'console' =>"0",
+		'locales' => $available_langs
 	});
 	$oids[0] = $cce->oid();
 } else { # we have more than one System object.
@@ -182,17 +176,19 @@ $cce->bye();
 exit($errors);
 	
 
+# 
+# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
 # 
 # -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# this list of conditions and the following disclaimer in the documentation and/or 
+# other materials provided with the distribution.
 # 
 # Neither the name of Sun Microsystems, Inc. or the names of contributors may 
 # be used to endorse or promote products derived from this software without 
@@ -201,3 +197,4 @@ exit($errors);
 # This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # 
 # You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# 

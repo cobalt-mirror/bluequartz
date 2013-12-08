@@ -1,15 +1,14 @@
 <?php
 // Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: system.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: system.php 
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverInformation' should be here:
+if (!$serverScriptHelper->getAllowed('serverInformation')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -147,6 +146,8 @@ print("<BR>");
 
 <?php print($page->toFooterHtml());
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
