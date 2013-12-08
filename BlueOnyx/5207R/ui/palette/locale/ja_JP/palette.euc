@@ -261,9 +261,6 @@ msgstr "アップロードするファイルを追加"
 msgid "MultiFileUploadWindow_description"
 msgstr " "
 
-msgid "addAttachment"
-msgstr "アップロードするファイルを選択"
-
 msgid "fileToAttach"
 msgstr "ファイル"
 
@@ -343,40 +340,40 @@ msgid "pm"
 msgstr "午後"
 
 msgid "01month"
-msgstr "1"
+msgstr "1月"
 
 msgid "02month"
-msgstr "2"
+msgstr "2月"
 
 msgid "03month"
-msgstr "3"
+msgstr "3月"
 
 msgid "04month"
-msgstr "4"
+msgstr "4月"
 
 msgid "05month"
-msgstr "5"
+msgstr "5月"
 
 msgid "06month"
-msgstr "6"
+msgstr "6月"
 
 msgid "07month"
-msgstr "7"
+msgstr "7月"
 
 msgid "08month"
-msgstr "8"
+msgstr "8月"
 
 msgid "09month"
-msgstr "9"
+msgstr "9月"
 
 msgid "10month"
-msgstr "10"
+msgstr "10月"
 
 msgid "11month"
-msgstr "11"
+msgstr "11月"
 
 msgid "12month"
-msgstr "12"
+msgstr "12月"
 
 msgid "0000Hour"
 msgstr "12"
@@ -450,6 +447,89 @@ msgstr "22"
 msgid "2300Hour"  
 msgstr "23"
 
+# -- Months (short):
+
+msgid "01month_short"
+msgstr "1月"
+
+msgid "02month_short"
+msgstr "2月"
+
+msgid "03month_short"
+msgstr "3月"
+
+msgid "04month_short"
+msgstr "4月"
+
+msgid "05month_short"
+msgstr "5月"
+
+msgid "06month_short"
+msgstr "6月"
+
+msgid "07month_short"
+msgstr "7月"
+
+msgid "08month_short"
+msgstr "8月"
+
+msgid "09month_short"
+msgstr "9月"
+
+msgid "10month_short"
+msgstr "10月"
+
+msgid "11month_short"
+msgstr "11月"
+
+msgid "12month_short"
+msgstr "11月"
+
+#-- Weekdays (long):
+
+msgid "sunday"
+msgstr "日曜日"
+
+msgid "monday"
+msgstr "月曜日"
+
+msgid "tuesday"
+msgstr "火曜日"
+
+msgid "wednesday"
+msgstr "水曜日"
+
+msgid "thursday"
+msgstr "木曜日"
+
+msgid "friday"
+msgstr "金曜日"
+
+msgid "saturday"
+msgstr "土曜日"
+
+#-- Weekdays (short):
+
+msgid "sunday_short"
+msgstr "日曜日"
+
+msgid "monday_short"
+msgstr "月曜日"
+
+msgid "tuesday_short"
+msgstr "火曜日"
+
+msgid "wednesday_short"
+msgstr "水曜日"
+
+msgid "thursday_short"
+msgstr "木曜日"
+
+msgid "friday_short"
+msgstr "金曜日"
+
+msgid "saturday_short"
+msgstr "土曜日"
 
 #
 # Time Zone Stuff
@@ -486,7 +566,7 @@ msgid "UTC"
 msgstr "UTC オフセット"
 
 msgid "NorthAmerica/AG"
-msgstr "アンティグア−バーブーダ"
+msgstr "アンティグア‐バーブーダ"
 
 msgid "America/St_Johns"
 msgstr "セントジョンズ"
@@ -561,7 +641,7 @@ msgid "NorthAmerica/HT"
 msgstr "ハイチ"
 
 msgid "America/Port-au-Prince"
-msgstr "ポルト−プランス"
+msgstr "ポルト‐プランス"
 
 msgid "NorthAmerica/HN"
 msgstr "ホンジュラス"
@@ -733,9 +813,6 @@ msgstr "ブダペスト"
 
 msgid "Europe/IS"
 msgstr "アイスランド"
-
-msgid "Atlantic/Reykjavik"
-msgstr "レイキャビーク"
 
 msgid "Europe/IE"
 msgstr "アイルランド"
@@ -1164,9 +1241,6 @@ msgid "Africa/Douala"
 msgstr "ドゥアーラ"
 
 msgid "Africa/CV"
-msgstr "カーボベルデ"
-
-msgid "Atlantic/Cape_Verde"
 msgstr "カーボベルデ"
 
 msgid "Africa/CF"
@@ -1952,7 +2026,7 @@ msgstr "チリ"
 msgid "Chile/Continental"
 msgstr "チリ"
 
-msgid "Chile/Continental"
+msgid "Chile/EasterIsland"
 msgstr "イースター島"
 
 msgid "Oceania/AU"
@@ -2191,7 +2265,7 @@ msgid "af"
 msgstr "アフガニスタン"
 
 msgid "ag"  
-msgstr "アンティグア−バーブーダ"
+msgstr "アンティグア‐バーブーダ"
 
 msgid "ai"  
 msgstr "アングィラ"
@@ -3332,3 +3406,355 @@ msgstr "簡体字中国語"
 
 msgid "locale_zh_TW"
 msgstr "繁体字中国語"
+
+msgid "pwCheckStr"
+msgstr "Pパスワードの強度試験"
+
+
+# New strings for BlueOnyx NG:
+
+msgid "val_required"
+msgstr "このフィールドは必須です。"
+
+msgid "val_remote"
+msgstr "このフィールドを修正してください。"
+
+msgid "val_email"
+msgstr "有効なメールアドレスを入力してください。"
+
+msgid "val_date"
+msgstr "有効な日付を入力してください。"
+
+msgid "val_dateISO"
+msgstr "有効な日付（ISO）を入力してください。"
+
+msgid "val_number"
+msgstr "有効な番号を入力してください。"
+
+msgid "val_digits"
+msgstr "数字だけを入力してください。"
+
+msgid "val_creditcard"
+msgstr "有効なクレジットカード番号を入力してください."
+
+msgid "val_equalTo"
+msgstr "再び同じ値を入力してください。"
+
+msgid "val_accept"
+msgstr "有効な拡張子の付いた値を入力してください。"
+
+msgid "val_maxlength"
+msgstr "あなたが許可されたよりも多くの文字を入力しました。"
+
+msgid "val_minlength"
+msgstr "あなたが不足して文字を入力しました。"
+
+msgid "val_rangelength"
+msgstr "入力された値が許容範囲を超えています。"
+
+msgid "val_range"
+msgstr "許可された範囲内にある値を入力してください。"
+
+msgid "val_max"
+msgstr "入力された値が許容されているものより大きくなっています。"
+
+msgid "val_min"
+msgstr "入力された値が許容されているものより小さくなっています。"
+
+msgid "val_url"
+msgstr "有効なURLを入力してください。"
+
+# End: basic 'validator' checks
+
+# Start: Extended 'validator' checks
+
+msgid "val_is_required"
+msgstr "フィールド[[VAR.field]]が必要です。"
+
+# End: Extended 'validator' checks
+
+# Start: Style Switcher
+msgid "layout"
+msgstr "設計"
+
+msgid "fluid"
+msgstr "流動的"
+
+msgid "fixed"
+msgstr "不動"
+
+msgid "menus"
+msgstr "メニュー"
+
+msgid "side"
+msgstr "側面"
+
+msgid "top"
+msgstr "上"
+
+msgid "slide"
+msgstr "滑る"
+
+msgid "theme"
+msgstr "主題"
+
+msgid "dark"
+msgstr "暗い"
+
+msgid "light"
+msgstr "軽快"
+
+msgid "BGs"
+msgstr "背景画像"
+
+msgid "silver"
+msgstr "白金"
+
+msgid "wood"
+msgstr "木材"
+
+msgid "squares"
+msgstr "正方形"
+
+msgid "noise"
+msgstr "ノイズ"
+
+msgid "stripes"
+msgstr "ストライプ"
+
+msgid "metal"
+msgstr "金属"
+
+msgid "boxes"
+msgstr "箱"
+
+msgid "punched"
+msgstr "パンチ"
+
+msgid "honeycomb"
+msgstr "ハニカム"
+
+msgid "timber"
+msgstr "木材"
+# End: Style Switcher
+
+msgid "autogrow_expanding"
+msgstr "このフィールドは、単にFacebook上のように、拡大し続けている。"
+
+msgid "autogrow_prefill"
+msgstr "あなたが入力を続ける、私は成長し続ける..."
+
+msgid "page_render_part_one"
+msgstr "ページは"
+
+msgid "page_render_part_two"
+msgstr "秒でレンダリング。"
+
+# Start: Calendar stuff
+msgid "next"
+msgstr "次"
+
+msgid "previous"
+msgstr "前"
+
+msgid "done"
+msgstr "完了"
+
+msgid "today"
+msgstr "今日"
+# End: Calendar stuff
+
+# Start: Adminica Icon helptexts:
+msgid "icon_toggle"
+msgstr "は、この要素を切り替えます。"
+
+msgid "icon_grabber"
+msgstr "は、この要素を移動します。"
+
+msgid "icon_window"
+msgstr "は新しいブラウザウィンドウで開きます。"
+
+msgid "icon_show_all_tabs"
+msgstr "すべてのタブを展開し、単一のタブ内のすべての情報が表示されます。"
+
+# End: Adminica Icon helptexts:
+
+# Start: Error page localization:
+msgid "401title"
+msgstr "権限が必要です"
+
+msgid "401text"
+msgstr "このサーバは、あなたが要求されたドキュメントにアクセスすることを許可されていることを確認することができませんでした。間違った証明書（例：不正なパスワード）、またはブラウザを供給も不要資格情報を提供する方法を理解していません。"
+
+msgid "403title"
+msgstr "禁じられた"
+
+msgid "403text"
+msgstr "あなたはこのサーバーに要求されたファイルにアクセスする権限がありません。"
+
+msgid "404title"
+msgstr "ファイルが見つかりません"
+
+msgid "404text"
+msgstr "が要求されたURLは、このサーバー上に見つかりませんでした。"
+
+msgid "500title"
+msgstr "内部サーバーエラー"
+
+msgid "500text"
+msgstr "サーバーは内部エラーが発生したため、リクエストを完了できませんでした。"
+
+msgid "pageNotDoneYetTitle"
+msgstr "トランジション誤差"
+
+msgid "pageNotDoneYetText"
+msgstr "あなたがアクセスしようとしているGUIページには、まだBlueOnyx5207Rまたは5208Rに変換されていません。 YUMアップデートを行い、また、任意のと、インストールされている可能性があるすべてのサードパーティ製のPKGのへの更新のための 'ソフトウェアアップデート' を確認してください。これで問題が解決しない場合は、エラーが起こったときに使用しようとしたソフトウェアのベンダーにお問い合わせください。"
+# End: Error page localization
+
+# Start: Datatables
+msgid "sProcessing"
+msgstr "処理中..."
+
+msgid "sLengthMenu"
+msgstr "_MENU_ 件表示"
+
+msgid "sZeroRecords"
+msgstr "データはありません。"
+
+msgid "sInfo"
+msgstr " _TOTAL_ 件中 _START_ から _END_ まで表示"
+
+msgid "sInfoEmpty"
+msgstr " 0 件中 0 から 0 まで表示"
+
+msgid "sInfoFiltered"
+msgstr "（全 _MAX_ 件より抽出）"
+
+msgid "sSearch"
+msgstr "検索:"
+
+msgid "sFirst"
+msgstr "先頭"
+
+msgid "sLast"
+msgstr "前"
+
+msgid "sPrevious"
+msgstr "[[palette.previous]]"
+
+msgid "sNext"
+msgstr "[[palette.next]]"
+# End: Datatables
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "しない"
+
+msgid "enabled"
+msgstr "この項目が有効になっています。"
+
+msgid "disabled"
+msgstr "この項目は無効になっています。"
+
+msgid "notprivileged"
+msgstr "あなたはこの項目を変更する権限を持っていない。"
+
+
+msgid "disabled_short"
+msgstr "使用禁止"
+
+msgid "enabled_short"
+msgstr "使用可能"
+
+msgid "demo_mode_short"
+msgstr "デモ"
+
+msgid "demo_mode"
+msgstr "このサーバーはデモモードで動作します。変更の保存は、特定のページ上で無効になっています。"
+
+## New Countries:
+msgid "ax"
+msgstr "オーランド諸島"
+
+msgid "bl"
+msgstr "セントバーツ"
+
+msgid "bq"
+msgstr "ボネール島、セントユースタティウスとサバ"
+
+msgid "cd"
+msgstr "コンゴ民主共和国"
+
+msgid "cw"
+msgstr "キュラソー"
+
+msgid "gg"
+msgstr "ガーンジー島"
+
+msgid "im"
+msgstr "マン島"
+
+msgid "je"
+msgstr "ジャージ"
+
+msgid "me"
+msgstr "モンテネグロ"
+
+msgid "mf"
+msgstr "サンマルタン（フレンチ部分）"
+
+msgid "rs"
+msgstr "セルビア"
+
+msgid "ss"
+msgstr "南スーダン"
+
+msgid "sx"
+msgstr "シントマールテン（オランダ一部）"
+
+msgid "tl"
+msgstr "東ティモール"
+
+msgid "ps"
+msgstr "パレスチナ"
+
+msgid "pw_way_too_short"
+msgstr "それはあまりにも短すぎる！"
+
+msgid "pw_too_short"
+msgstr "それはあまりにも短すぎる！"
+
+msgid "pw_not_nuff_different"
+msgstr "それだけでは十分では別の文字が含まれていません。"
+
+msgid "pw_all_whitespace"
+msgstr "これは、すべての空白です！"
+
+msgid "pw_too_simple"
+msgstr "それはあまりにも単純すぎるか体系的です！"
+
+msgid "pw_insurance_number"
+msgstr "これは、国民保険番号のように見えます！"
+
+msgid "pw_dictionary_word"
+msgstr "これは、辞書の単語に基づいています！"
+
+msgid "pw_reversed_dictionary_word"
+msgstr "それが逆に辞書の単語に基づいています！"
+
+msgid "pw_strong_password"
+msgstr "強力なパスワード。"
+
+msgid "pw_not_identical"
+msgstr "入力した2つのパスワードが同じではありません。"
+
+msgid "addAll"
+msgstr "すべてを追加"
+
+msgid "removeAll"
+msgstr "すべて削除"
+
+msgid "itemsCount"
+msgstr "選択した項目"

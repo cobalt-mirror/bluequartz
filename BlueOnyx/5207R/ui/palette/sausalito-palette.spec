@@ -59,6 +59,9 @@ fi
 
 * Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX26
 - Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
 - When implemneting the four new locales ("es_ES", "fr_FR", "it_IT", "pt_PT") the code
   for rendering the pages blew up right in my face. i18n's function on detecting the charset
   of locales somehow believes Spanish, French and so on needs EUC-JP. Oh, and our perfectly

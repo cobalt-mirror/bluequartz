@@ -1,16 +1,12 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
-"POT-Creation-Date: 2007-12-11 11:11+0100\n"
-"PO-Revision-Date: 2007-12-12 16:10+0100\n"
-"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
-"Language-Team: DANISH <jes@enavn.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: quoted-printable\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "0000Hour"
 msgstr "24"
@@ -119,6 +115,90 @@ msgstr "22"
 
 msgid "2300Hour"
 msgstr "23"
+
+# -- Months (short):
+
+msgid "01month_short"
+msgstr "Jan"
+
+msgid "02month_short"
+msgstr "Feb"
+
+msgid "03month_short"
+msgstr "Mar"
+
+msgid "04month_short"
+msgstr "Apr"
+
+msgid "05month_short"
+msgstr "Maj"
+
+msgid "06month_short"
+msgstr "Jun"
+
+msgid "07month_short"
+msgstr "Jul"
+
+msgid "08month_short"
+msgstr "Aug"
+
+msgid "09month_short"
+msgstr "Sep"
+
+msgid "10month_short"
+msgstr "Okt"
+
+msgid "11month_short"
+msgstr "Nov"
+
+msgid "12month_short"
+msgstr "Dec"
+
+#-- Weekdays (long):
+
+msgid "sunday"
+msgstr "Søndag"
+
+msgid "monday"
+msgstr "Mandag"
+
+msgid "tuesday"
+msgstr "Tirsdag"
+
+msgid "wednesday"
+msgstr "Onsdag"
+
+msgid "thursday"
+msgstr "Torsdag"
+
+msgid "friday"
+msgstr "Fredag"
+
+msgid "saturday"
+msgstr "Lørdag"
+
+#-- Weekdays (short):
+
+msgid "sunday_short"
+msgstr "Sø"
+
+msgid "monday_short"
+msgstr "Ma"
+
+msgid "tuesday_short"
+msgstr "Ti"
+
+msgid "wednesday_short"
+msgstr "On"
+
+msgid "thursday_short"
+msgstr "To"
+
+msgid "friday_short"
+msgstr "Fr"
+
+msgid "saturday_short"
+msgstr "Lø"
 
 msgid "AM"
 msgstr "Armenien"
@@ -3301,3 +3381,347 @@ msgstr "Zimbabwe"
 
 msgid "pwCheckStr"
 msgstr "Password strength test"
+
+# New strings for BlueOnyx NG:
+
+msgid "val_required"
+msgstr "This field is required."
+
+msgid "val_remote"
+msgstr "Please fix this field."
+
+msgid "val_email"
+msgstr "Please enter a valid email address."
+
+msgid "val_date"
+msgstr "Please enter a valid date."
+
+msgid "val_dateISO"
+msgstr "Please enter a valid date (ISO)."
+
+msgid "val_number"
+msgstr "Please enter a valid number."
+
+msgid "val_digits"
+msgstr "Please enter only digits."
+
+msgid "val_creditcard"
+msgstr "Please enter a valid credit card number."
+
+msgid "val_equalTo"
+msgstr "Please enter the same value again."
+
+msgid "val_accept"
+msgstr "Please enter a value with a valid extension."
+
+msgid "val_maxlength"
+msgstr "You entered more characters than allowed."
+
+msgid "val_minlength"
+msgstr "You entered insufficient characters."
+
+msgid "val_rangelength"
+msgstr "The entered value is outside the allowed range."
+
+msgid "val_range"
+msgstr "Please enter a value that is inside the allowed range."
+
+msgid "val_max"
+msgstr "The entered value is greater than allowed."
+
+msgid "val_min"
+msgstr "The entered value is smaller than allowed."
+
+# End: basic 'validator' checks
+
+# Start: Extended 'validator' checks
+
+msgid "val_is_required"
+msgstr "The field [[VAR.field]] is required."
+
+# End: Extended 'validator' checks
+
+# Start: Style Switcher
+msgid "layout"
+msgstr "Layout"
+
+msgid "fluid"
+msgstr "Fluid"
+
+msgid "fixed"
+msgstr "Fixed"
+
+msgid "menus"
+msgstr "Menuer"
+
+msgid "side"
+msgstr "Side"
+
+msgid "top"
+msgstr "Top"
+
+msgid "slide"
+msgstr "Skub"
+
+msgid "theme"
+msgstr "Tema"
+
+msgid "dark"
+msgstr "Mørk"
+
+msgid "light"
+msgstr "Lys"
+
+msgid "BGs"
+msgstr "Baggrund"
+
+msgid "silver"
+msgstr "Sølv"
+
+msgid "wood"
+msgstr "Træ"
+
+msgid "squares"
+msgstr "Squares"
+
+msgid "noise"
+msgstr "Støj"
+
+msgid "stripes"
+msgstr "Stripes"
+
+msgid "metal"
+msgstr "Metal"
+
+msgid "boxes"
+msgstr "Boxes"
+
+msgid "punched"
+msgstr "Hullede"
+
+msgid "honeycomb"
+msgstr "Honeycomb"
+
+msgid "timber"
+msgstr "Timber"
+# End: Style Switcher
+
+msgid "autogrow_expanding"
+msgstr "Dette felt holder ekspanderende, ligesom på Facebook."
+
+msgid "autogrow_prefill"
+msgstr "Du holder skrive, jeg holde voksende ..."
+
+msgid "page_render_part_one"
+msgstr "Page afsagt i"
+
+msgid "page_render_part_two"
+msgstr "sekunder"
+
+# Start: Calendar stuff
+msgid "next"
+msgstr "Næste"
+
+msgid "previous"
+msgstr "Forrige"
+
+msgid "done"
+msgstr "Udfærdiget"
+
+msgid "today"
+msgstr "I Dag"
+# End: Calendar stuff
+
+# Start: Adminica Icon helptexts:
+msgid "icon_toggle"
+msgstr "Toggle dette element."
+
+msgid "icon_grabber"
+msgstr "Flyt dette element."
+
+msgid "icon_window"
+msgstr "Åbn i nyt browservindue."
+
+msgid "icon_show_all_tabs"
+msgstr "Udvid alle faner og vise alle oplysninger i en enkelt fane."
+# End: Adminica Icon helptexts:
+
+# Start: Error page localization:
+msgid "401title"
+msgstr "Autorisation kræves"
+
+msgid "401text"
+msgstr "Denne server kunne ikke bekræfte, at du er autoriseret til at få adgang til dokumentet du anmodede om. Enten leverede de forkerte legitimationsoplysninger (f.eks forkert adgangskode), eller din browser understøtter ikke forstår at levere de nødvendige legitimationsoplysninger."
+
+msgid "403title"
+msgstr "Den forbudte"
+
+msgid "403text"
+msgstr "Du har ikke tilladelse til at få adgang til ønskede fil på denne server."
+
+msgid "404title"
+msgstr "Fil ikke fundet"
+
+msgid "404text"
+msgstr "Den anmodede webadresse blev ikke fundet på denne server."
+
+msgid "500title"
+msgstr "Internal Server Error"
+
+msgid "500text"
+msgstr "Serveren opstod en intern fejl, og var ude af stand til at fuldføre din anmodning."
+
+msgid "pageNotDoneYetTitle"
+msgstr "Overgang Fejl"
+
+msgid "pageNotDoneYetText"
+msgstr "GUI side, du forsøger at få adgang til endnu ikke er blevet konverteret til BlueOnyx 5207R eller 5208R. Undlad venligst en YUM opdatering, og også kontrollere 'Softwareopdateringer' for opdateringer til enhver og alle tredjeparts pkgs, som du måske har installeret. Hvis dette ikke løser problemet, skal du kontakte leverandøren af ​​den software, som du forsøgte at bruge, når fejlen er sket."
+# End: Error page localization
+
+# Start: Datatables
+msgid "sProcessing"
+msgstr "Henter ..."
+
+msgid "sLengthMenu"
+msgstr "Vis _MENU_ linjer"
+
+msgid "sZeroRecords"
+msgstr "Ingen linjer matcher s&oslash;gningen"
+
+msgid "sInfo"
+msgstr "Viser _START_ til _END_ af _TOTAL_ linjer"
+
+msgid "sInfoEmpty"
+msgstr "Viser 0 til 0 af 0 linjer"
+
+msgid "sInfoFiltered"
+msgstr "(filtreret fra _MAX_ linjer)"
+
+msgid "sSearch"
+msgstr "S&oslash;g:"
+
+msgid "sFirst"
+msgstr "F&oslash;rste"
+
+msgid "sLast"
+msgstr "Forrige"
+
+msgid "sPrevious"
+msgstr "[[palette.previous]]"
+
+msgid "sNext"
+msgstr "[[palette.next]]"
+# End: Datatables
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "enabled"
+msgstr "Dette element er aktiveret."
+
+msgid "disabled"
+msgstr "Dette element er deaktiveret."
+
+msgid "notprivileged"
+msgstr "Du har ikke rettigheder til at ændre dette punkt."
+
+msgid "disabled_short"
+msgstr "Deaktiveret"
+
+msgid "enabled_short"
+msgstr "Aktiveret"
+
+msgid "demo_mode_short"
+msgstr "Demo"
+
+msgid "demo_mode"
+msgstr "Denne server fungerer i demo-tilstand. Lagring af ændringer er blevet deaktiveret på visse sider."
+
+## New Countries:
+msgid "ax"
+msgstr "Åland"
+
+msgid "bl"
+msgstr "Saint Barthélemy"
+
+msgid "bq"
+msgstr "Bonaire, Sint Eustatius og Saba"
+
+msgid "cd"
+msgstr "Congo, Den Demokratiske Republik"
+
+msgid "cw"
+msgstr "Curaçao"
+
+msgid "gg"
+msgstr "Guernsey"
+
+msgid "im"
+msgstr "Isle of Man"
+
+msgid "je"
+msgstr "Jersey"
+
+msgid "me"
+msgstr "Montenegro"
+
+msgid "mf"
+msgstr "Saint Martin (fransk del)"
+
+msgid "rs"
+msgstr "Serbien"
+
+msgid "ss"
+msgstr "Sydsudan"
+
+msgid "sx"
+msgstr "Sint Maarten (hollandske del)"
+
+msgid "tl"
+msgstr "Timor-Leste"
+
+msgid "ps"
+msgstr "Palæstina"
+
+
+msgid "pw_way_too_short"
+msgstr "Det er alt for kort!"
+
+msgid "pw_too_short"
+msgstr "Det er for kort!"
+
+msgid "pw_not_nuff_different"
+msgstr "Den indeholder ikke nok forskellige karakterer."
+
+msgid "pw_all_whitespace"
+msgstr "Det er alt mellemrum!"
+
+msgid "pw_too_simple"
+msgstr "Det er for simplistisk eller for systematisk!"
+
+msgid "pw_insurance_number"
+msgstr "Det ligner en National Insurance nummer!"
+
+msgid "pw_dictionary_word"
+msgstr "Det er baseret på en ordbog ord!"
+
+msgid "pw_reversed_dictionary_word"
+msgstr "Det er baseret på en omvendt ordbog ord!"
+
+msgid "pw_strong_password"
+msgstr "Stærk adgangskode."
+
+msgid "pw_not_identical"
+msgstr "De to adgangskoder, du indtastede, er ikke identiske."
+
+msgid "addAll"
+msgstr "Tilføj alle"
+
+msgid "removeAll"
+msgstr "Fjern alle"
+
+msgid "itemsCount"
+msgstr "emner valgt"

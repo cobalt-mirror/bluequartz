@@ -1,21 +1,12 @@
-# translation of palette.po to German
-# Michael Stauber <mstauber@solarspeed.net>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: base-palette\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-10-31 20:41+0200\n"
-"PO-Revision-Date: 2008-01-28 02:04+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "integerBounds"
 msgstr "([[VAR.minBound]] - [[VAR.maxBound]])"
@@ -130,6 +121,91 @@ msgstr "22"
 
 msgid "2300Hour"
 msgstr "23"
+
+# -- Months (short):
+
+msgid "01month_short"
+msgstr "Jan"
+
+msgid "02month_short"
+msgstr "Feb"
+
+msgid "03month_short"
+msgstr "Mär"
+
+msgid "04month_short"
+msgstr "Apr"
+
+msgid "05month_short"
+msgstr "Mai"
+
+msgid "06month_short"
+msgstr "Jun"
+
+msgid "07month_short"
+msgstr "Jul"
+
+msgid "08month_short"
+msgstr "Aug"
+
+msgid "09month_short"
+msgstr "Sep"
+
+msgid "10month_short"
+msgstr "Okt"
+
+msgid "11month_short"
+msgstr "Nov"
+
+msgid "12month_short"
+msgstr "Dez"
+
+#-- Weekdays (long):
+
+msgid "sunday"
+msgstr "Sonntag"
+
+msgid "monday"
+msgstr "Montag"
+
+msgid "tuesday"
+msgstr "Dienstag"
+
+msgid "wednesday"
+msgstr "Mittwoch"
+
+msgid "thursday"
+msgstr "Donnerstag"
+
+msgid "friday"
+msgstr "Freitag"
+
+msgid "saturday"
+msgstr "Samstag"
+
+#-- Weekdays (short):
+
+msgid "sunday_short"
+msgstr "So"
+
+msgid "monday_short"
+msgstr "Mo"
+
+msgid "tuesday_short"
+msgstr "Di"
+
+msgid "wednesday_short"
+msgstr "Mi"
+
+msgid "thursday_short"
+msgstr "Do"
+
+msgid "friday_short"
+msgstr "Fr"
+
+msgid "saturday_short"
+msgstr "Sa"
+
 
 msgid "AM"
 msgstr "Armenien"
@@ -3295,3 +3371,350 @@ msgstr "Simbabwe"
 
 msgid "pwCheckStr"
 msgstr "Passwordgüte"
+
+# New strings for BlueOnyx NG:
+
+msgid "val_required"
+msgstr "Dieses Feld wird benötigt."
+
+msgid "val_remote"
+msgstr "Bitte Eingabe korrigieren."
+
+msgid "val_email"
+msgstr "Bitte gültige Email-Adresse eingeben."
+
+msgid "val_date"
+msgstr "Bitte gültiges Datum eingeben."
+
+msgid "val_dateISO"
+msgstr "Bitte Datum im ISO Format eingeben."
+
+msgid "val_number"
+msgstr "Bitte gültige Nummer eingeben."
+
+msgid "val_digits"
+msgstr "Es sind nur Zahlen erlaubt."
+
+msgid "val_creditcard"
+msgstr "Bitte gültike Kreditkarten-Nummer eingeben."
+
+msgid "val_equalTo"
+msgstr "Die selbe Eingabe nochmal."
+
+msgid "val_accept"
+msgstr "Eingabe mit gültiger Endung eingeben."
+
+msgid "val_maxlength"
+msgstr "Mehr Zeichen als erlaubt eingegeben."
+
+msgid "val_minlength"
+msgstr "Weniger Zeichen als nötig eingegeben."
+
+msgid "val_rangelength"
+msgstr "Eingabe liegt ausserhalb des erlaubten Bereiches."
+
+msgid "val_range"
+msgstr "Eingabe liegt ausserhalb des erlaubten Bereiches."
+
+msgid "val_max"
+msgstr "Eingegebener Wert ist größer als erlaubt."
+
+msgid "val_min"
+msgstr "Eingegebener Wert ist kleiner als erlaubt."
+
+msgid "val_url"
+msgstr "Bitte gültige URL eingeben."
+
+# End: basic 'validator' checks
+
+# Start: Extended 'validator' checks
+
+msgid "val_is_required"
+msgstr "Eingabe im Feld [[VAR.field]] wird benötigt."
+
+# End: Extended 'validator' checks
+
+# Start: Style Switcher
+msgid "layout"
+msgstr "Layout"
+
+msgid "fluid"
+msgstr "Flüssig"
+
+msgid "fixed"
+msgstr "Fest"
+
+msgid "menus"
+msgstr "Menüs"
+
+msgid "side"
+msgstr "Seitlich"
+
+msgid "top"
+msgstr "Oben"
+
+msgid "slide"
+msgstr "Fließend"
+
+msgid "theme"
+msgstr "Thema"
+
+msgid "dark"
+msgstr "Dunkel"
+
+msgid "light"
+msgstr "Hell"
+
+msgid "BGs"
+msgstr "Hintergrund"
+
+msgid "silver"
+msgstr "Silber"
+
+msgid "wood"
+msgstr "Holz"
+
+msgid "squares"
+msgstr "Quadrate"
+
+msgid "noise"
+msgstr "Rauschen"
+
+msgid "stripes"
+msgstr "Streifen"
+
+msgid "metal"
+msgstr "Metall"
+
+msgid "boxes"
+msgstr "Karos"
+
+msgid "punched"
+msgstr "Löcher"
+
+msgid "honeycomb"
+msgstr "Waben"
+
+msgid "timber"
+msgstr "Panele"
+# End: Style Switcher
+
+msgid "autogrow_expanding"
+msgstr "Dieses Feld wird bei Bedarf größer, genau wie auf Facebook."
+
+msgid "autogrow_prefill"
+msgstr "Tippen Sie weiter, ich wachse mit ..."
+
+msgid "page_render_part_one"
+msgstr "Seite wurde in"
+
+msgid "page_render_part_two"
+msgstr "Sekunden gerendert"
+
+# Start: Calendar stuff
+msgid "next"
+msgstr "Weiter"
+
+msgid "previous"
+msgstr "Zurück"
+
+msgid "done"
+msgstr "Fertig"
+
+msgid "today"
+msgstr "Heute"
+# End: Calendar stuff
+
+# Start: Adminica Icon helptexts:
+msgid "icon_toggle"
+msgstr "Element auf/zu."
+
+msgid "icon_grabber"
+msgstr "Element verschieben."
+
+msgid "icon_window"
+msgstr "In neuem Fenster öffnen."
+
+msgid "icon_show_all_tabs"
+msgstr "Erweitern Sie alle Registerkarten und zeigen Sie alle Informationen in einem einzigen Register."
+# End: Adminica Icon helptexts:
+
+# Start: Error page localization:
+msgid "401title"
+msgstr "Autorisierung erforderlich"
+
+msgid "401text"
+msgstr "Dieser Server kann nicht überprüfen, ob Sie berechtigt sind, auf das gewünschte Dokument zuzugreifen. Entweder sind die Anmeldeinformationen nicht korrekt, oder Ihr Browser lieferte die Anmeldeinformationen in einem nicht unterstützten Format."
+
+msgid "403title"
+msgstr "Forbidden"
+
+msgid "403text"
+msgstr "Sie haben keine Berechtigung auf diesem Server auf die angeforderte Datei zuzugreifen."
+
+msgid "404title"
+msgstr "Datei nicht gefunden"
+
+msgid "404text"
+msgstr "Die angeforderte URL wurde auf diesem Server nicht gefunden."
+
+msgid "500title"
+msgstr "Internal Server Error"
+
+msgid "500text"
+msgstr "Ihre Anfrage konnte wegen eines internen Fehlers nicht erfolgreich bearbeitet werden."
+
+msgid "pageNotDoneYetTitle"
+msgstr "Übergangsfehler"
+
+msgid "pageNotDoneYetText"
+msgstr "Die GUI-Seite, auf die Sie zugreifen möchten, ist noch nicht zu BlueOnyx 5207R oder 5208R portiert worden. Bitte machen Sie einen YUM-Update und überprüfen sie ebenfalls 'Software Updates' nach Aktualisierungen für alle PKGs von Drittanbietern, die Sie installiert haben. Wenn dies das Problem nicht löst, dann wenden Sie sich bitte an den Hersteller der Software, die Sie verwendeten, als der Fehler auftrat."
+# End: Error page localization
+
+# Start: Datatables
+msgid "sProcessing"
+msgstr "Bitte warten ..."
+
+msgid "sLengthMenu"
+msgstr "_MENU_ Einträge anzeigen"
+
+msgid "sZeroRecords"
+msgstr "Keine Einträge vorhanden."
+
+msgid "sInfo"
+msgstr  "_START_ bis _END_ von _TOTAL_ Einträgen"
+
+msgid "sInfoEmpty"
+msgstr "0 bis 0 von 0 Einträgen"
+
+msgid "sInfoFiltered"
+msgstr "(gefiltert von _MAX_  Einträgen)"
+
+msgid "sSearch"
+msgstr "Suchen:"
+
+msgid "sFirst"
+msgstr "Erster"
+
+msgid "sLast"
+msgstr "Letzter"
+
+msgid "sPrevious"
+msgstr "[[palette.previous]]"
+
+msgid "sNext"
+msgstr "[[palette.next]]"
+# End: Datatables
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "enabled"
+msgstr "Dieses Element ist aktiviert."
+
+msgid "disabled"
+msgstr "Dieses Element ist deaktiviert."
+
+msgid "notprivileged"
+msgstr "Sie haben nicht die Rechte, dieses Element zu ändern."
+
+msgid "disabled_short"
+msgstr "Deaktiviert"
+
+msgid "enabled_short"
+msgstr "Aktiviert"
+
+msgid "demo_mode_short"
+msgstr "Demo"
+
+msgid "demo_mode"
+msgstr "Dieser Server arbeitet im Demo-Modus. Das Speichern von Änderungen ist auf bestimmten Seiten deaktiviert."
+
+## New Countries:
+msgid "ax"
+msgstr "Åland-Inseln"
+
+msgid "bl"
+msgstr "Saint Barthélemy"
+
+msgid "bq"
+msgstr "Bonaire, St. Eustatius und Saba"
+
+msgid "cd"
+msgstr "Kongo,  Demokratische Republik"
+
+msgid "cw"
+msgstr "Curaçao"
+
+msgid "gg"
+msgstr "Guernsey"
+
+msgid "im"
+msgstr "Isle of Man"
+
+msgid "je"
+msgstr "Jersey"
+
+msgid "me"
+msgstr "Montenegro"
+
+msgid "mf"
+msgstr "St. Martin (Französisch Teil)"
+
+msgid "rs"
+msgstr "Serbien"
+
+msgid "ss"
+msgstr "Südsudan"
+
+msgid "sx"
+msgstr "St. Maarten (niederländischen Teil)"
+
+msgid "tl"
+msgstr "Timor-Leste"
+
+msgid "ps"
+msgstr "Palästina"
+
+
+msgid "pw_way_too_short"
+msgstr "Es ist viel zu kurz!"
+
+msgid "pw_too_short"
+msgstr "Es ist zu kurz!"
+
+msgid "pw_not_nuff_different"
+msgstr "Es enthält nicht genug unterschiedliche Zeichen."
+
+msgid "pw_all_whitespace"
+msgstr "Es sind nur Leerzeichen!"
+
+msgid "pw_too_simple"
+msgstr "Es ist zu einfach oder zu systematisch!"
+
+msgid "pw_insurance_number"
+msgstr "Es sieht aus wie eine Versicherungsnummer!"
+
+msgid "pw_dictionary_word"
+msgstr "Es basiert auf einem Wort aus dem Wörterbuch!"
+
+msgid "pw_reversed_dictionary_word"
+msgstr "Es basiert auf einer umgekehrten Wort aus dem Wörterbuch!"
+
+msgid "pw_strong_password"
+msgstr "Gutes Passwort."
+
+msgid "pw_not_identical"
+msgstr "Die beiden eingegebenen Passwörter sind nicht identisch."
+
+msgid "addAll"
+msgstr "Alle hinzufügen"
+
+msgid "removeAll"
+msgstr "Alle entfernen"
+
+msgid "itemsCount"
+msgstr "Elemente ausgewählt"

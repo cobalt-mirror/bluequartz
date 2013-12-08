@@ -1,99 +1,105 @@
-#
-# These strings are used throughout the UI and are necessarily general in nature.
-#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "sort"
-msgstr "Sort"
+msgstr "Ordina"
 
 msgid "sort_help"
-msgstr "Click here to sort the list by this column."
+msgstr "Clicca qui per ordinare l'elenco in questa colonna."
 
 msgid "add"
-msgstr "Add"
+msgstr "Aggiungi"
 
 msgid "add_help"
-msgstr "Click here to add an item."
+msgstr "Clicca qui per aggiungere un elemento."
 
 msgid "modify"
-msgstr "Modify"
+msgstr "Modifica"
 
 msgid "modify_help"
-msgstr "Click here to modify this item."
+msgstr "Clicca qui per modificare questa voce."
 
 msgid "modify_disabled_help"
-msgstr "This item cannot be modified."
+msgstr "Questo articolo non può essere modificato."
 
 msgid "remove"
-msgstr "Remove"
+msgstr "Rimuovere"
 
 msgid "remove_help"
-msgstr "Click here to remove this item."
+msgstr "Fare clic qui per rimuovere questo oggetto."
 
 msgid "remove_disabled_help"
-msgstr "This item cannot be deleted."
+msgstr "Questa voce non può essere eliminata."
 
 msgid "back"
-msgstr "Back"
+msgstr "Indietro"
 
 msgid "back_help"
-msgstr "Click here to go back to the previous page."
+msgstr "Clicca qui per tornare alla pagina precedente."
 
 msgid "forward"
-msgstr "Forward"
+msgstr "Inoltrare"
 
 msgid "forward_help"
-msgstr "Click here to go forward to the next page."
+msgstr "Clicca qui per andare avanti alla pagina successiva."
 
 msgid "save"
-msgstr "Save"
+msgstr "Salva"
 
 msgid "save_help"
-msgstr "Click here to save any changes made to this page."
+msgstr "Clicca qui per salvare le modifiche apportate a questa pagina."
 
 msgid "cancel"
-msgstr "Cancel"
+msgstr "Annullare"
 
 msgid "cancel_help"
-msgstr "Click here to cancel any changes made to this page."
+msgstr "Fare clic qui per annullare eventuali modifiche apportate a questa pagina."
 
 msgid "detail"
-msgstr "Details"
+msgstr "Dettagli"
 
 msgid "detail_help"
-msgstr "Click here to view more details for this item."
+msgstr "Clicca qui per vedere ulteriori dettagli per questo prodotto."
 
 msgid "defaultEmptyMessage"
-msgstr "Sorry, you have not entered a value for [[VAR.name]]. [[VAR.rule]]"
+msgstr "Siamo spiacenti, non è stato inserito un valore per [[VAR.name]]. [[VAR.rule]]"
 
 msgid "defaultInvalidMessage"
-msgstr "Sorry, [[VAR.invalidValue]] is an invalid value for [[VAR.name]]. [[VAR.rule]]"
+msgstr "Siamo spiacenti, [[VAR.invalidValue]] è un valore non valido per [[VAR.name]]. [[VAR.rule]]"
 
 msgid "cceDown"
-msgstr "A crucial system component (CCE) is currently not operating. Please try again in a moment."
+msgstr "Una componente fondamentale del sistema (CCE) non è attualmente in funzione. Riprova in un attimo."
 
 msgid "emptyList"
-msgstr "This list is currently empty."
+msgstr "Questo elenco è vuoto."
 
 msgid "entryCountPlural"
-msgstr "[[VAR.count]] Entries"
+msgstr "[[VAR.count]] voci"
 
 msgid "entryCountSingular"
 msgstr "[[VAR.count]] Entry"
 
 msgid "entryRange"
-msgstr "Entries [[VAR.from]] - [[VAR.to]]"
+msgstr "Voci [[VAR.from]] - [[VAR.to]]"
 
 msgid "logout"
-msgstr "Logout"
+msgstr "Esci"
 
 msgid "logoutHelp"
-msgstr "Click here to logout of the system."
+msgstr "Clicca qui per il logout del sistema."
 
 msgid "logoutConfirm"
-msgstr "Are you sure you want to logout of the system?"
+msgstr "Sei sicuro di voler uscire del sistema?"
 
 msgid "browser"
-msgstr "<Set From Browser Options>"
+msgstr "<Set da opzioni del browser>"
 
 msgid "localeLanguage"
 msgstr "[[VAR.language]]"
@@ -102,225 +108,202 @@ msgid "localeLanguageCountry"
 msgstr "[[VAR.language]] ([[VAR.country]])"
 
 msgid "import"
-msgstr "Import"
+msgstr "Importazione"
 
 msgid "import_help"
-msgstr "Clicking here will launch your Address Book and allow you to select email addresses to use for this field."
+msgstr "Cliccando qui lancerà tua rubrica e consente di selezionare gli indirizzi di posta elettronica da utilizzare per questo campo."
 
 msgid "navigationTitle"
-msgstr "[[VAR.userName]] logged in on [[VAR.hostName]]"
+msgstr "[[VAR.userName]] accesso su [[VAR.hostName]]"
 
 msgid "noItems"
-msgstr "_______ Empty _______"
+msgstr "_______ Vuoto _______"
 
 msgid "optional"
-msgstr "optional"
+msgstr "opzionale"
 
 msgid "repeat"
-msgstr "Enter Again"
+msgstr "Rientrare"
 
 msgid "statusSignalFailure"
-msgstr "Failure"
+msgstr "Fallimento"
 
 msgid "statusSignalFailure_help"
-msgstr "This item failed."
+msgstr "Questa voce non è riuscita."
 
 msgid "statusSignalNew"
-msgstr "New"
+msgstr "Nuovo"
 
 msgid "statusSignalNew_help"
-msgstr "This item is new."
+msgstr "Questo articolo è nuovo."
 
 msgid "statusSignalOld"
-msgstr "Old"
+msgstr "Vecchio"
 
 msgid "statusSignalOld_help"
-msgstr "This item is old."
+msgstr "Questa voce è vecchio."
 
 msgid "statusSignalReplied"
-msgstr "Replied"
+msgstr "Ha risposto"
 
 msgid "statusSignalReplied_help"
-msgstr "This item is replied to."
+msgstr "Questa voce è risposto."
 
 msgid "statusSignalNone"
-msgstr "Status not available"
+msgstr "Stato non disponibile"
 
 msgid "statusSignalNone_help"
-msgstr "This item has no indicator."
+msgstr "Questo articolo non ha indicatore."
 
 msgid "statusSignalDisabled"
-msgstr "Item not enabled"
+msgstr "Articolo non abilitato"
 
 msgid "statusSignalDisabled_help"
-msgstr "This item is disabled."
+msgstr "Questa voce è disattivata."
 
 msgid "statusSignalNoMonitor"
-msgstr "Monitoring not enabled"
+msgstr "Monitoraggio non abilitato"
 
 msgid "statusSignalNoMonitor_help"
-msgstr "This item is not being monitored."
+msgstr "Questa voce non è monitorato."
 
 msgid "statusSignalPending"
-msgstr "Currently running"
+msgstr "Attualmente in esecuzione"
 
 msgid "statusSignalPending_help"
-msgstr "This item is currently not running."
+msgstr "Questo articolo non è attualmente in esecuzione."
 
 msgid "statusSignalNormal"
-msgstr "Normal"
+msgstr "Normale"
 
 msgid "statusSignalNormal_help"
-msgstr "This item is normal."
+msgstr "Questa voce è normale."
 
 msgid "statusSignalProblem"
-msgstr "Problem"
+msgstr "Problema"
 
 msgid "statusSignalProblem_help"
-msgstr "This item has a problem."
+msgstr "Questa voce ha un problema."
 
 msgid "statusSignalSevereProblem"
-msgstr "Severe Problem"
+msgstr "Problema Grave"
 
 msgid "statusSignalSevereProblem_help"
-msgstr "This item has a severe problem."
+msgstr "Questa voce ha un problema grave."
 
 msgid "statusSignalSuccess"
-msgstr "Success"
+msgstr "Successo"
 
 msgid "statusSignalSuccess_help"
-msgstr "This item succeeded."
+msgstr "Questa voce è riuscito."
 
 msgid "noInstances"
-msgstr "Sorry, but the operation failed to complete. The system could not find an instance of class [[VAR.class]] to modify."
+msgstr "Spiacenti, ma l'operazione non è stata completata. Il sistema Impossibile trovare un'istanza di classe [[VAR.class]] da modificare."
 
 msgid "tooManyInstances"
-msgstr "Sorry, but the operation failed to complete. The system found more than one instance of class [[VAR.class]] to modify."
+msgstr "Spiacenti, ma l'operazione non è stata completata. Il sistema ha trovato più di una istanza della classe [[VAR.class]] da modificare."
 
 msgid "uninstall"
-msgstr "Uninstall"
+msgstr "Disinstalla"
 
 msgid "uninstall_help"
-msgstr "Click here to uninstall an item."
+msgstr "Clicca qui per disinstallare un elemento."
 
 msgid "uninstall_disabled_help"
-msgstr "This item cannot be uninstalled."
+msgstr "Questa voce non può essere disinstallato."
 
 msgid "wait"
-msgstr "Please wait for the changes to complete."
-
-#
-# status page stuff
-#
+msgstr "Attendere le modifiche per completare prega."
 
 msgid "messageField"
-msgstr "Task Status"
+msgstr "Stato attività"
 
 msgid "messageField_help"
-msgstr "This field shows the current status of the performing task."
+msgstr "Questo campo mostra lo stato corrente del compito di eseguire."
 
 msgid "progressField"
-msgstr "Task Progress"
+msgstr "Lo stato di avanzamento"
 
 msgid "progressField_help"
-msgstr "This is the progress of the performing task."
+msgstr "Questo è il progresso del compito eseguendo."
 
 msgid "submessageField"
-msgstr "Sub-task Status"
+msgstr "Sub-task Stato"
 
 msgid "submessageField_help"
-msgstr "This field shows the current status of the performing sub-task."
+msgstr "Questo campo mostra lo stato corrente della esecuzione di sub-task."
 
 msgid "subprogressField"
 msgstr "Sub-task Progress"
 
 msgid "subprogressField_help"
-msgstr "This is the progress of the performing sub-task."
-
-
-#
-# MultiFileUpload Stuff
-#
+msgstr "Questo è il progresso della esecuzione di sub-task."
 
 msgid "noFiles"
-msgstr "_______ No Files _______"
+msgstr "_______ Nessun file _______"
 
 msgid "addAttachment"
-msgstr "Add"
+msgstr "Aggiungi"
 
 msgid "addAttachment_help"
-msgstr "Add a file to list."
+msgstr "Aggiungere un file alla lista."
 
 msgid "removeAttachment"
-msgstr "Remove"
+msgstr "Rimuovere"
 
 msgid "removeAttachment_help"
-msgstr "Remove a file from list."
+msgstr "Rimuovere un file dalla lista."
 
 msgid "MultiFileUploadWindow"
-msgstr "Add File to Upload"
+msgstr "Aggiungi file da caricare"
 
 msgid "MultiFileUploadWindow_description"
-msgstr " "
+msgstr ""
 
 msgid "fileToAttach"
 msgstr "File"
 
 msgid "fileToAttach_help"
-msgstr "Select a file to upload and click the 'submit' button to continue, or press 'Cancel' to close this window."
+msgstr "Selezionare un file da caricare e fare clic sul pulsante 'Invia' per continuare, oppure premere 'Annulla' per chiudere questa finestra."
 
 msgid "fileUpload_invalid"
-msgstr "Sorry, you have not selected a file to upload."
+msgstr "Siamo spiacenti, non è stato selezionato un file da caricare."
 
 msgid "addAttachmentButton"
-msgstr "Submit"
+msgstr "Presentare"
 
 msgid "addAttachmentButton_help"
-msgstr "Click here after selecting the file you wish to upload."
+msgstr "Clicca qui dopo aver selezionato il file che si desidera caricare."
 
 msgid "errorGettingFile"
-msgstr "Upload Error"
+msgstr "Errore di caricamento"
 
 msgid "errorOccuredWhilereceivingFile"
-msgstr "Sorry, an error occured while receiving the file. Please try again."
+msgstr "Siamo spiacenti, un errore si è verificato durante la ricezione del file. Riprova."
 
-#
-# Numerics
-#
 msgid "integerBounds"
 msgstr "([[VAR.minBound]] - [[VAR.maxBound]])"
 
-#
-# Time Stuff
-#
-
-# possible VARs: date
 msgid "date"
 msgstr "[[VAR.date]]"
 
-# possible VARs: hour, amPm
 msgid "hour"
 msgstr "[[VAR.hour]]"
 
-# possible VARs: minute
 msgid "minute"
 msgstr "[[VAR.minute]]"
 
-# possible VARs: year
 msgid "year"
 msgstr "[[VAR.year]]"
 
-# possible VARs: month, date, year, hour, minute, amPm
 msgid "dateTimeFormat"
-msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]] [[VAR.12Hour]]:[[VAR.minute]] [[VAR.amPm]]"
+msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]] [[VAR.12Hour]]: [[VAR.minute]] [[VAR.amPm]]"
 
-# possible VARs: month, date, year
 msgid "dateFormat"
 msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]]"
 
-# possible VARs: hour, minute, amPm
 msgid "timeFormat"
-msgstr "[[VAR.hour]]:[[VAR.minute]] [[VAR.amPm]]"
+msgstr "[[VAR.hour]]: [[VAR.minute]] [[VAR.amPm]]"
 
 msgid "am"
 msgstr "AM"
@@ -329,47 +312,47 @@ msgid "pm"
 msgstr "PM"
 
 msgid "01month"
-msgstr "January"
+msgstr "Gennaio"
 
 msgid "02month"
-msgstr "February"
+msgstr "Febbraio"
 
 msgid "03month"
-msgstr "March"
+msgstr "Marzo"
 
 msgid "04month"
-msgstr "April"
+msgstr "Aprile"
 
 msgid "05month"
-msgstr "May"
+msgstr "Maggio"
 
 msgid "06month"
-msgstr "June"
+msgstr "Giugno"
 
 msgid "07month"
-msgstr "July"
+msgstr "Luglio"
 
 msgid "08month"
-msgstr "August"
+msgstr "Agosto"
 
 msgid "09month"
-msgstr "September"
+msgstr "Settembre"
 
 msgid "10month"
-msgstr "October"
+msgstr "Ottobre"
 
 msgid "11month"
-msgstr "November"
+msgstr "Novembre"
 
 msgid "12month"
-msgstr "December"
+msgstr "Dicembre"
 
 msgid "0000Hour"
 msgstr "12"
 
 msgid "0100Hour"
 msgstr "1"
- 
+
 msgid "0200Hour"
 msgstr "2"
 
@@ -415,10 +398,10 @@ msgstr "3"
 msgid "1600Hour"
 msgstr "4"
 
-msgid "1700Hour" 
+msgid "1700Hour"
 msgstr "5"
 
-msgid "1800Hour" 
+msgid "1800Hour"
 msgstr "6"
 
 msgid "1900Hour"
@@ -433,71 +416,65 @@ msgstr "9"
 msgid "2200Hour"
 msgstr "10"
 
-msgid "2300Hour" 
+msgid "2300Hour"
 msgstr "11"
-
-# -- Months (short):
 
 msgid "01month_short"
 msgstr "Jan"
 
 msgid "02month_short"
-msgstr "Feb"
+msgstr "Febbraio"
 
 msgid "03month_short"
 msgstr "Mar"
 
 msgid "04month_short"
-msgstr "Apr"
+msgstr "Aprile"
 
 msgid "05month_short"
-msgstr "May"
+msgstr "Maggio"
 
 msgid "06month_short"
-msgstr "Jun"
+msgstr "Giugno"
 
 msgid "07month_short"
-msgstr "Jul"
+msgstr "Luglio"
 
 msgid "08month_short"
-msgstr "Aug"
+msgstr "Agosto"
 
 msgid "09month_short"
-msgstr "Sep"
+msgstr "Settembre"
 
 msgid "10month_short"
-msgstr "Oct"
+msgstr "Ottobre"
 
 msgid "11month_short"
-msgstr "Nov"
+msgstr "Novembre"
 
 msgid "12month_short"
-msgstr "Dec"
-
-#-- Weekdays (long):
+msgstr "Dicembre"
 
 msgid "sunday"
-msgstr "Sunday"
+msgstr "Domenica"
 
 msgid "monday"
-msgstr "Monday"
+msgstr "Lunedi"
 
 msgid "tuesday"
-msgstr "Tuesday"
+msgstr "Martedì"
 
 msgid "wednesday"
-msgstr "Wednesday"
+msgstr "Mercoledì"
 
 msgid "thursday"
-msgstr "Thursday"
+msgstr "Giovedi"
 
 msgid "friday"
-msgstr "Friday"
+msgstr "Venerdì"
 
 msgid "saturday"
-msgstr "Saturday"
-
-#-- Weekdays (short):
+msgstr "Sabato"
 
 msgid "sunday_short"
 msgstr "Su"
@@ -509,7 +486,7 @@ msgid "tuesday_short"
 msgstr "Tu"
 
 msgid "wednesday_short"
-msgstr "We"
+msgstr "Noi"
 
 msgid "thursday_short"
 msgstr "Th"
@@ -520,43 +497,38 @@ msgstr "Fr"
 msgid "saturday_short"
 msgstr "Sa"
 
-
-#
-# Time Zone Stuff
-#
-
 msgid "Africa"
 msgstr "Africa"
 
 msgid "Antarctica"
-msgstr "Antarctica"
+msgstr "Antartide"
 
 msgid "Asia"
 msgstr "Asia"
 
 msgid "Atlantic"
-msgstr "Atlantic Ocean"
+msgstr "Oceano Atlantico"
 
 msgid "Europe"
-msgstr "Europe"
+msgstr "Europa"
 
 msgid "Indian"
-msgstr "Indian Ocean"
+msgstr "Oceano Indiano"
 
 msgid "NorthAmerica"
-msgstr "North America"
+msgstr "Nord America"
 
 msgid "Oceania"
-msgstr "Oceania (Including Australia)"
+msgstr "Oceania (compresa l'Australia)"
 
 msgid "SouthAmerica"
-msgstr "South America"
+msgstr "Sud America"
 
 msgid "UTC"
-msgstr "UTC offsets"
+msgstr "UTC offset"
 
 msgid "NorthAmerica/AG"
-msgstr "Antigua and Barbuda"
+msgstr "Antigua e Barbuda"
 
 msgid "America/St_Johns"
 msgstr "St. Johns"
@@ -589,7 +561,7 @@ msgid "NorthAmerica/CU"
 msgstr "Cuba"
 
 msgid "America/Havana"
-msgstr "Havana"
+msgstr "L'Avana"
 
 msgid "NorthAmerica/DM"
 msgstr "Dominica"
@@ -598,7 +570,7 @@ msgid "America/Dominica"
 msgstr "Dominica"
 
 msgid "NorthAmerica/DO"
-msgstr "Dominican Republic"
+msgstr "Repubblica Dominicana"
 
 msgid "America/Santo_Domingo"
 msgstr "Santo Domingo"
@@ -610,10 +582,10 @@ msgid "America/El_Salvador"
 msgstr "El Salvador"
 
 msgid "NorthAmerica/GL"
-msgstr "Greenland"
+msgstr "Groenlandia"
 
 msgid "America/Godthab"
-msgstr "Godthab"
+msgstr "Godthàb"
 
 msgid "NorthAmerica/GD"
 msgstr "Grenada"
@@ -640,10 +612,10 @@ msgid "America/Tegucigalpa"
 msgstr "Tegucigalpa"
 
 msgid "NorthAmerica/JM"
-msgstr "Jamaica"
+msgstr "Giamaica"
 
 msgid "America/Jamaica"
-msgstr "Jamaica"
+msgstr "Giamaica"
 
 msgid "Navajo"
 msgstr "Navajo"
@@ -655,7 +627,7 @@ msgid "America/Managua"
 msgstr "Managua"
 
 msgid "NorthAmerica/MX"
-msgstr "Mexico"
+msgstr "Messico"
 
 msgid "NorthAmerica/PA"
 msgstr "Panama"
@@ -670,37 +642,37 @@ msgid "America/Puerto_Rico"
 msgstr "Puerto Rico"
 
 msgid "NorthAmerica/KN"
-msgstr "Saint Kitts and Nevis"
+msgstr "Saint Kitts e Nevis"
 
 msgid "America/St_Kitts"
 msgstr "St. Kitts"
 
 msgid "NorthAmerica/LC"
-msgstr "Saint Lucia"
+msgstr "Santa Lucia"
 
 msgid "America/St_Lucia"
-msgstr "Saint Lucia"
+msgstr "Santa Lucia"
 
 msgid "NorthAmerica/PM"
-msgstr "St. Pierre and Miquelon"
+msgstr "St. Pierre e Miquelon"
 
 msgid "America/Miquelon"
 msgstr "Miquelon"
 
 msgid "NorthAmerica/VC"
-msgstr "Saint Vincent and The Grenadines"
+msgstr "Saint Vincent e Grenadine"
 
 msgid "America/St_Vincent"
 msgstr "St. Vincent"
 
 msgid "NorthAmerica/TT"
-msgstr "Trinidad and Tobago"
+msgstr "Trinidad e Tobago"
 
 msgid "America/Port_of_Spain"
 msgstr "Port of Spain"
 
 msgid "NorthAmerica/TC"
-msgstr "Turks and Caicos Islands"
+msgstr "Isole Turks e Caicos"
 
 msgid "America/Grand_Turk"
 msgstr "Grand Turk"
@@ -724,19 +696,19 @@ msgid "Europe/Vienna"
 msgstr "Vienna"
 
 msgid "Europe/BY"
-msgstr "Belarus"
+msgstr "Bielorussia"
 
 msgid "Europe/Minsk"
 msgstr "Minsk"
 
 msgid "Europe/BE"
-msgstr "Belgium"
+msgstr "Belgio"
 
 msgid "Europe/Brussels"
-msgstr "Brussels"
+msgstr "Bruxelles"
 
 msgid "Europe/BA"
-msgstr "Bosnia and Herzegovina"
+msgstr "Bosnia-Erzegovina"
 
 msgid "Europe/Sarajevo"
 msgstr "Sarajevo"
@@ -748,19 +720,19 @@ msgid "Europe/Sofia"
 msgstr "Sofia"
 
 msgid "Europe/HR"
-msgstr "Croatia"
+msgstr "Croazia"
 
 msgid "Europe/Zagreb"
-msgstr "Zagreb"
+msgstr "Zagabria"
 
 msgid "Europe/CZ"
-msgstr "Czech Republic"
+msgstr "Repubblica Ceca"
 
 msgid "Europe/Prague"
-msgstr "Prague"
+msgstr "Praga"
 
 msgid "Europe/DK"
-msgstr "Denmark"
+msgstr "Danimarca"
 
 msgid "Europe/Copenhagen"
 msgstr "Copenhagen"
@@ -772,52 +744,52 @@ msgid "Europe/Tallinn"
 msgstr "Tallinn"
 
 msgid "Europe/FI"
-msgstr "Finland"
+msgstr "Finlandia"
 
 msgid "Europe/Helsinki"
 msgstr "Helsinki"
 
 msgid "Europe/FR"
-msgstr "France"
+msgstr "Francia"
 
 msgid "Europe/Paris"
-msgstr "Paris"
+msgstr "Parigi"
 
 msgid "Europe/DE"
-msgstr "Germany"
+msgstr "Germania"
 
 msgid "Europe/Berlin"
-msgstr "Berlin"
+msgstr "Berlino"
 
 msgid "Europe/GR"
-msgstr "Greece"
+msgstr "Grecia"
 
 msgid "Europe/Athens"
-msgstr "Athens"
+msgstr "Atene"
 
 msgid "Europe/HU"
-msgstr "Hungary"
+msgstr "Ungheria"
 
 msgid "Europe/Budapest"
 msgstr "Budapest"
 
 msgid "Europe/IS"
-msgstr "Iceland"
+msgstr "Islanda"
 
 msgid "Europe/IE"
-msgstr "Ireland"
+msgstr "Irlanda"
 
 msgid "Europe/Dublin"
-msgstr "Dublin"
+msgstr "Dublino"
 
 msgid "Europe/IT"
-msgstr "Italy"
+msgstr "Italia"
 
 msgid "Europe/Rome"
-msgstr "Rome"
+msgstr "Roma"
 
 msgid "Europe/LV"
-msgstr "Latvia"
+msgstr "Lettonia"
 
 msgid "Europe/Riga"
 msgstr "Riga"
@@ -829,16 +801,16 @@ msgid "Europe/Vaduz"
 msgstr "Vaduz"
 
 msgid "Europe/LT"
-msgstr "Lithuania"
+msgstr "Lituania"
 
 msgid "Europe/Vilnius"
 msgstr "Vilnius"
 
 msgid "Europe/LU"
-msgstr "Luxembourg"
+msgstr "Lussemburgo"
 
 msgid "Europe/Luxembourg"
-msgstr "Luxembourg"
+msgstr "Lussemburgo"
 
 msgid "Europe/MK"
 msgstr "Macedonia"
@@ -865,34 +837,34 @@ msgid "Europe/Monaco"
 msgstr "Monaco"
 
 msgid "Europe/NL"
-msgstr "Netherlands"
+msgstr "Paesi Bassi"
 
 msgid "Europe/Amsterdam"
 msgstr "Amsterdam"
 
 msgid "Europe/NO"
-msgstr "Norway"
+msgstr "Norvegia"
 
 msgid "Europe/Oslo"
 msgstr "Oslo"
 
 msgid "Europe/PL"
-msgstr "Poland"
+msgstr "Polonia"
 
 msgid "Europe/Warsaw"
-msgstr "Warsaw"
+msgstr "Varsavia"
 
 msgid "Europe/PT"
-msgstr "Portugal"
+msgstr "Portogallo"
 
 msgid "Europe/Lisbon"
-msgstr "Lisbon"
+msgstr "Lisbona"
 
 msgid "Europe/RO"
 msgstr "Romania"
 
 msgid "Europe/Bucharest"
-msgstr "Bucharest"
+msgstr "Bucarest"
 
 msgid "Europe/SM"
 msgstr "San Marino"
@@ -901,13 +873,13 @@ msgid "Europe/San_Marino"
 msgstr "San Marino"
 
 msgid "Europe/YU"
-msgstr "Serbia and Montenegro"
+msgstr "Serbia e Montenegro"
 
 msgid "Europe/Belgrade"
-msgstr "Belgrade"
+msgstr "Belgrado"
 
 msgid "Europe/SK"
-msgstr "Slovakia"
+msgstr "Slovacchia"
 
 msgid "Europe/Bratislava"
 msgstr "Bratislava"
@@ -916,31 +888,31 @@ msgid "Europe/SI"
 msgstr "Slovenia"
 
 msgid "Europe/Ljubljana"
-msgstr "Ljubljana"
+msgstr "Lubiana"
 
 msgid "Europe/ES"
-msgstr "Spain"
+msgstr "Spagna"
 
 msgid "Europe/Madrid"
 msgstr "Madrid"
 
 msgid "Europe/SE"
-msgstr "Sweden"
+msgstr "Svezia"
 
 msgid "Europe/Stockholm"
-msgstr "Stockholm"
+msgstr "Stoccolma"
 
 msgid "Europe/CH"
-msgstr "Switzerland"
+msgstr "Svizzera"
 
 msgid "Europe/Zurich"
-msgstr "Zurich"
+msgstr "Zurigo"
 
 msgid "Europe/VA"
-msgstr "Vatican City"
+msgstr "Città del Vaticano"
 
 msgid "Europe/Vatican"
-msgstr "Vatican"
+msgstr "Vaticano"
 
 msgid "Asia/AF"
 msgstr "Afghanistan"
@@ -985,13 +957,13 @@ msgid "Asia/Brunei"
 msgstr "Brunei"
 
 msgid "Asia/KH"
-msgstr "Cambodia"
+msgstr "Cambogia"
 
 msgid "Asia/Phnom_Penh"
 msgstr "Phnom Penh"
 
 msgid "Asia/CY"
-msgstr "Cyprus"
+msgstr "Cipro"
 
 msgid "Asia/Nicosia"
 msgstr "Nicosia"
@@ -1012,7 +984,7 @@ msgid "Asia/IR"
 msgstr "Iran"
 
 msgid "Asia/Tehran"
-msgstr "Tehran"
+msgstr "Teheran"
 
 msgid "Asia/RQ"
 msgstr "Iraq"
@@ -1021,19 +993,19 @@ msgid "Asia/Baghdad"
 msgstr "Baghdad"
 
 msgid "Asia/JO"
-msgstr "Jordan"
+msgstr "Giordania"
 
 msgid "Asia/Amman"
 msgstr "Amman"
 
 msgid "Asia/KP"
-msgstr "North Korea"
+msgstr "Corea del Nord"
 
 msgid "Asia/Pyongyang"
 msgstr "Pyongyang"
 
 msgid "Asia/KR"
-msgstr "South Korea"
+msgstr "Corea del Sud"
 
 msgid "Asia/Seoul"
 msgstr "Seoul"
@@ -1045,7 +1017,7 @@ msgid "Asia/Kuwait"
 msgstr "Kuwait"
 
 msgid "Asia/KG"
-msgstr "Kyrgyzstan"
+msgstr "Kirghizistan"
 
 msgid "Asia/Bishkek"
 msgstr "Bishkek"
@@ -1057,16 +1029,16 @@ msgid "Asia/Vientiane"
 msgstr "Vientiane"
 
 msgid "Asia/LB"
-msgstr "Lebanon"
+msgstr "Libano"
 
 msgid "Asia/Beirut"
 msgstr "Beirut"
 
 msgid "Asia/MO"
-msgstr "Macau"
+msgstr "Macao"
 
 msgid "Asia/Macao"
-msgstr "Macau"
+msgstr "Macao"
 
 msgid "Asia/MN"
 msgstr "Mongolia"
@@ -1099,7 +1071,7 @@ msgid "Asia/Karachi"
 msgstr "Karachi"
 
 msgid "Asia/PH"
-msgstr "Philippines"
+msgstr "Filippine"
 
 msgid "Asia/Manila"
 msgstr "Manila"
@@ -1111,7 +1083,7 @@ msgid "Asia/Qatar"
 msgstr "Qatar"
 
 msgid "Asia/SA"
-msgstr "Saudi Arabia"
+msgstr "Arabia Saudita"
 
 msgid "Asia/Riyadh"
 msgstr "Riyadh"
@@ -1129,10 +1101,10 @@ msgid "Asia/Colombo"
 msgstr "Colombo"
 
 msgid "Asia/SY"
-msgstr "Syria"
+msgstr "Siria"
 
 msgid "Asia/Damascus"
-msgstr "Damascus"
+msgstr "Damasco"
 
 msgid "Asia/TW"
 msgstr "Taiwan"
@@ -1141,19 +1113,19 @@ msgid "Asia/Taipei"
 msgstr "Taipei"
 
 msgid "Asia/TJ"
-msgstr "Tajikistan"
+msgstr "Tagikistan"
 
 msgid "Asia/Dushanbe"
 msgstr "Dushanbe"
 
 msgid "Asia/TH"
-msgstr "Thailand"
+msgstr "Thailandia"
 
 msgid "Asia/Bangkok"
 msgstr "Bangkok"
 
 msgid "Asia/TR"
-msgstr "Turkey"
+msgstr "Turchia"
 
 msgid "Asia/Istanbul"
 msgstr "Istanbul"
@@ -1165,7 +1137,7 @@ msgid "Asia/Ashkhabad"
 msgstr "Ashkhabad"
 
 msgid "Asia/AE"
-msgstr "United Arab Emirates"
+msgstr "Emirati Arabi Uniti"
 
 msgid "Asia/Dubai"
 msgstr "Dubai"
@@ -1180,7 +1152,7 @@ msgid "Asia/VN"
 msgstr "Vietnam"
 
 msgid "Asia/Saigon"
-msgstr "Ho Chi Minh City"
+msgstr "Ho Chi Minh Città"
 
 msgid "Asia/YE"
 msgstr "Yemen"
@@ -1192,7 +1164,7 @@ msgid "Africa/DZ"
 msgstr "Algeria"
 
 msgid "Africa/Algiers"
-msgstr "Algiers"
+msgstr "Algeri"
 
 msgid "Africa/AO"
 msgstr "Angola"
@@ -1225,58 +1197,58 @@ msgid "Africa/Bujumbura"
 msgstr "Bujumbura"
 
 msgid "Africa/CM"
-msgstr "Cameroon"
+msgstr "Camerun"
 
 msgid "Africa/Douala"
 msgstr "Douala"
 
 msgid "Africa/CV"
-msgstr "Cape Verde"
+msgstr "Capo Verde"
 
 msgid "Africa/CF"
-msgstr "Central African Republic"
+msgstr "Repubblica Centrafricana"
 
 msgid "Africa/Bangui"
 msgstr "Bangui"
 
 msgid "Africa/ES"
-msgstr "Ceuta and Melilla (Spain)"
+msgstr "Ceuta e Melilla (Spagna)"
 
 msgid "Africa/Ceuta"
 msgstr "Ceuta"
 
 msgid "Africa/TD"
-msgstr "Chad"
+msgstr "Ciad"
 
 msgid "Africa/Ndjamena"
-msgstr "Ndjamena"
+msgstr "N'Djamena"
 
 msgid "Africa/CG"
-msgstr "Congo, Republic of the"
+msgstr "Congo, Repubblica del"
 
 msgid "Africa/Brazzaville"
 msgstr "Brazzaville"
 
 msgid "Africa/CI"
-msgstr "Cote d'Ivoire"
+msgstr "Costa d'Avorio"
 
 msgid "Africa/Abidjan"
 msgstr "Abidjan"
 
 msgid "Africa/DJ"
-msgstr "Djibouti"
+msgstr "Gibuti"
 
 msgid "Africa/Djibouti"
-msgstr "Djibouti"
+msgstr "Gibuti"
 
 msgid "Africa/EG"
-msgstr "Egypt"
+msgstr "Egitto"
 
 msgid "Africa/Cairo"
 msgstr "Cairo"
 
 msgid "Africa/GQ"
-msgstr "Equatorial Guinea"
+msgstr "Guinea Equatoriale"
 
 msgid "Africa/Malabo"
 msgstr "Malabo"
@@ -1285,13 +1257,13 @@ msgid "Africa/ER"
 msgstr "Eritrea"
 
 msgid "Africa/Asmera"
-msgstr "Asmera"
+msgstr "Asmara"
 
 msgid "Africa/ET"
-msgstr "Ethiopia"
+msgstr "Etiopia"
 
 msgid "Africa/Addis_Ababa"
-msgstr "Addis Ababa"
+msgstr "Addis Abeba"
 
 msgid "Africa/GA"
 msgstr "Gabon"
@@ -1342,7 +1314,7 @@ msgid "Africa/Monrovia"
 msgstr "Monrovia"
 
 msgid "Africa/LY"
-msgstr "Libya"
+msgstr "Libia"
 
 msgid "Africa/Tripoli"
 msgstr "Tripoli"
@@ -1360,13 +1332,13 @@ msgid "Africa/Nouakchott"
 msgstr "Nouakchott"
 
 msgid "Africa/MA"
-msgstr "Morocco"
+msgstr "Marocco"
 
 msgid "Africa/Casablanca"
 msgstr "Casablanca"
 
 msgid "Africa/MZ"
-msgstr "Mozambique"
+msgstr "Mozambico"
 
 msgid "Africa/Maputo"
 msgstr "Maputo"
@@ -1390,13 +1362,13 @@ msgid "Africa/Lagos"
 msgstr "Lagos"
 
 msgid "Africa/RW"
-msgstr "Rwanda"
+msgstr "Ruanda"
 
 msgid "Africa/Kigali"
 msgstr "Kigali"
 
 msgid "Africa/ST"
-msgstr "Sao Tome and Principe"
+msgstr "Sao Tome e Principe"
 
 msgid "Africa/Sao_Tome"
 msgstr "Sao Tome"
@@ -1417,10 +1389,10 @@ msgid "Africa/SO"
 msgstr "Somalia"
 
 msgid "Africa/Mogadishu"
-msgstr "Mogadishu"
+msgstr "Mogadiscio"
 
 msgid "Africa/ZA"
-msgstr "South Africa"
+msgstr "Sud Africa"
 
 msgid "Africa/Johannesburg"
 msgstr "Johannesburg"
@@ -1453,7 +1425,7 @@ msgid "Africa/TN"
 msgstr "Tunisia"
 
 msgid "Africa/Tunis"
-msgstr "Tunis"
+msgstr "Tunisi"
 
 msgid "Africa/UG"
 msgstr "Uganda"
@@ -1462,7 +1434,7 @@ msgid "Africa/Kampala"
 msgstr "Kampala"
 
 msgid "Africa/EH"
-msgstr "Western Sahara"
+msgstr "Sahara occidentale"
 
 msgid "Africa/El_Aaiun"
 msgstr "El Aaiun"
@@ -1504,7 +1476,7 @@ msgid "America/Guayaquil"
 msgstr "Guayaquil"
 
 msgid "SouthAmerica/GF"
-msgstr "French Guiana"
+msgstr "Guiana Francese"
 
 msgid "America/Cayenne"
 msgstr "Cayenne"
@@ -1522,7 +1494,7 @@ msgid "America/Asuncion"
 msgstr "Asuncion"
 
 msgid "SouthAmerica/PE"
-msgstr "Peru"
+msgstr "Perù"
 
 msgid "America/Lima"
 msgstr "Lima"
@@ -1546,7 +1518,7 @@ msgid "America/Caracas"
 msgstr "Caracas"
 
 msgid "Oceania/AS"
-msgstr "American Samoa"
+msgstr "Samoa Americane"
 
 msgid "Pacific/Pago_Pago"
 msgstr "Pago Pago"
@@ -1558,13 +1530,13 @@ msgid "Pacific/Fiji"
 msgstr "Fiji"
 
 msgid "Oceania/CL"
-msgstr "Easter Island (Chile)"
+msgstr "Isola di Pasqua (Cile)"
 
 msgid "Pacific/Easter"
-msgstr "Easter"
+msgstr "Pasqua"
 
 msgid "Oceania/CK"
-msgstr "Cook Islands"
+msgstr "Isole Cook"
 
 msgid "Pacific/Rarotonga"
 msgstr "Rarotonga"
@@ -1588,7 +1560,7 @@ msgid "Pacific/Nauru"
 msgstr "Nauru"
 
 msgid "Oceania/NC"
-msgstr "New Caledonia"
+msgstr "Nuova Caledonia"
 
 msgid "Pacific/Noumea"
 msgstr "Noumea"
@@ -1606,7 +1578,7 @@ msgid "Pacific/Norfolk"
 msgstr "Norfolk"
 
 msgid "Oceania/MP"
-msgstr "Northern Mariana Islands"
+msgstr "Isole Marianne Settentrionali"
 
 msgid "Pacific/Saipan"
 msgstr "Saipan"
@@ -1618,7 +1590,7 @@ msgid "Pacific/Palau"
 msgstr "Palau"
 
 msgid "Oceania/PG"
-msgstr "Papua New Guinea"
+msgstr "Papua Nuova Guinea"
 
 msgid "Pacific/Port_Moresby"
 msgstr "Port Moresby"
@@ -1630,7 +1602,7 @@ msgid "Pacific/Pitcairn"
 msgstr "Pitcairn"
 
 msgid "Oceania/SB"
-msgstr "Solomon Islands"
+msgstr "Isole Salomone"
 
 msgid "Pacific/Guadalcanal"
 msgstr "Guadalcanal"
@@ -1666,7 +1638,7 @@ msgid "Pacific/Apia"
 msgstr "Apia"
 
 msgid "Oceania/WF"
-msgstr "Wallis and Futuna Islands"
+msgstr "Isole Wallis e Futuna"
 
 msgid "Pacific/Wallis"
 msgstr "Wallis"
@@ -1678,16 +1650,16 @@ msgid "Atlantic/Bermuda"
 msgstr "Bermuda"
 
 msgid "Atlantic/ES"
-msgstr "Canary Islands (Spain)"
+msgstr "Isole Canarie (Spagna)"
 
 msgid "Atlantic/Canary"
-msgstr "Canary"
+msgstr "Canarie"
 
 msgid "Atlantic/FO"
-msgstr "Faeroe Islands"
+msgstr "Isole Fær Øer"
 
 msgid "Atlantic/Faeroe"
-msgstr "Faeroe"
+msgstr "Fær Øer"
 
 msgid "Atlantic/FK"
 msgstr "Falkand Islands (Malvinas)"
@@ -1696,13 +1668,13 @@ msgid "Atlantic/Stanley"
 msgstr "Stanley"
 
 msgid "Atlantic/CV"
-msgstr "Cape Verde"
+msgstr "Capo Verde"
 
 msgid "Atlantic/Cape_Verde"
-msgstr "Cape Verde"
+msgstr "Capo Verde"
 
 msgid "Atlantic/IS"
-msgstr "Iceland"
+msgstr "Islanda"
 
 msgid "Atlantic/Reykjavik"
 msgstr "Reykjavik"
@@ -1711,10 +1683,10 @@ msgid "Atlantic/SH"
 msgstr "St. Helena"
 
 msgid "Atlantic/St_Helena"
-msgstr "St Helena"
+msgstr "Sant'Elena"
 
 msgid "Atlantic/SJ"
-msgstr "Svalbard and Jan Mayen Islands"
+msgstr "Isole Svalbard e Jan Mayen"
 
 msgid "Atlantic/Jan_Mayen"
 msgstr "Jan Mayen"
@@ -1726,25 +1698,25 @@ msgid "Indian/Chagos"
 msgstr "Chagos"
 
 msgid "Indian/CX"
-msgstr "Christmas Island"
+msgstr "Isola di Natale"
 
 msgid "Indian/Christmas"
-msgstr "Christmas"
+msgstr "Natale"
 
 msgid "Indian/KM"
-msgstr "Comoros"
+msgstr "Comore"
 
 msgid "Indian/CC"
-msgstr "Cocos (Keeling) Islands"
+msgstr "Cocos (Keeling)"
 
 msgid "Indian/Cocos"
 msgstr "Cocos"
 
 msgid "Indian/Comoro"
-msgstr "Comoro"
+msgstr "Comore"
 
 msgid "Indian/FR"
-msgstr "French Southern Territories"
+msgstr "Territori francesi meridionali"
 
 msgid "Indian/Kerguelen"
 msgstr "Kerguelen"
@@ -1756,10 +1728,10 @@ msgid "Indian/Antananarivo"
 msgstr "Antananarivo"
 
 msgid "Indian/MV"
-msgstr "Maldives"
+msgstr "Maldive"
 
 msgid "Indian/Maldives"
-msgstr "Maldives"
+msgstr "Maldive"
 
 msgid "Indian/MU"
 msgstr "Mauritius"
@@ -1786,28 +1758,28 @@ msgid "US/Samoa"
 msgstr "Samoa"
 
 msgid "US/Aleutian"
-msgstr "Aleutian Time"
+msgstr "Aleutian Tempo"
 
 msgid "US/Hawaii"
 msgstr "Hawaii"
 
 msgid "US/Alaska"
-msgstr "Alaskan Time"
+msgstr "Tempo dell'Alaska"
 
 msgid "US/Pacific"
-msgstr "Pacific Time"
+msgstr "Ora del Pacifico"
 
 msgid "US/Arizona"
 msgstr "Arizona"
 
 msgid "US/Mountain"
-msgstr "Mountain Time"
+msgstr "Tempo di montagna"
 
 msgid "US/Central"
-msgstr "Central Time"
+msgstr "Central Standard Time"
 
 msgid "US/East-Indiana"
-msgstr "East Indiana"
+msgstr "Est Indiana"
 
 msgid "US/Eastern"
 msgstr "Eastern Time"
@@ -1816,28 +1788,28 @@ msgid "NorthAmerica/CA"
 msgstr "Canada"
 
 msgid "Canada/Pacific"
-msgstr "Pacific Time"
+msgstr "Ora del Pacifico"
 
 msgid "Canada/Yukon"
-msgstr "Yukon Time"
+msgstr "Yukon Tempo"
 
 msgid "Canada/Central"
-msgstr "Central Time"
+msgstr "Central Standard Time"
 
 msgid "Canada/Eastern"
 msgstr "Eastern Time"
 
 msgid "Canada/Mountain"
-msgstr "Mountain Time"
+msgstr "Tempo di montagna"
 
 msgid "Canada/Newfoundland"
-msgstr "Newfoundland"
+msgstr "Terranova"
 
 msgid "Canada/Saskatchewan"
 msgstr "Saskatchewan"
 
 msgid "Canada/East-Saskatchewan"
-msgstr "East Saskatchewan"
+msgstr "Oriente Saskatchewan"
 
 msgid "Canada/Atlantic"
 msgstr "Atlantic"
@@ -1849,22 +1821,22 @@ msgid "Mexico/BajaSur"
 msgstr "Baja Sur"
 
 msgid "Mexico/General"
-msgstr "Mexico"
+msgstr "Messico"
 
 msgid "Europe/RU"
-msgstr "Russia (European Time Zones)"
+msgstr "Russia (fusi orari europei)"
 
 msgid "Europe/Kaliningrad"
 msgstr "Kaliningrad"
 
 msgid "Europe/Moscow"
-msgstr "Moscow"
+msgstr "Mosca"
 
 msgid "Europe/Samara"
 msgstr "Samara"
 
 msgid "Europe/UA"
-msgstr "Ukraine"
+msgstr "Ucraina"
 
 msgid "Europe/Kiev"
 msgstr "Kiev"
@@ -1873,19 +1845,19 @@ msgid "Europe/Simferopol"
 msgstr "Simferopol"
 
 msgid "Europe/UK"
-msgstr "United Kingdom"
+msgstr "Regno Unito"
 
 msgid "Europe/Belfast"
 msgstr "Belfast"
 
 msgid "Europe/London"
-msgstr "London"
+msgstr "Londra"
 
 msgid "Asia/RU"
-msgstr "Russia (Asian Time Zones)"
+msgstr "Russia (Tempo asiatici Zones)"
 
 msgid "Asia/Yekaterinburg"
-msgstr "Yekaterinburg"
+msgstr "Ekaterinburg"
 
 msgid "Asia/Novosibirsk"
 msgstr "Novosibirsk"
@@ -1927,7 +1899,7 @@ msgid "Asia/Ujung_Pandang"
 msgstr "Ujung Pandang"
 
 msgid "Asia/CN"
-msgstr "China"
+msgstr "Cina"
 
 msgid "Asia/Chungking"
 msgstr "Chungking"
@@ -1948,16 +1920,16 @@ msgid "Asia/Urumqi"
 msgstr "Urumqi"
 
 msgid "Asia/IL"
-msgstr "Israel"
+msgstr "Israele"
 
 msgid "Asia/Gaza"
 msgstr "Gaza"
 
 msgid "Asia/Jerusalem"
-msgstr "Jerusalem"
+msgstr "Gerusalemme"
 
 msgid "Asia/JP"
-msgstr "Japan"
+msgstr "Giappone"
 
 msgid "Asia/Ishigaki"
 msgstr "Ishigaki"
@@ -1966,7 +1938,7 @@ msgid "Asia/Tokyo"
 msgstr "Tokyo"
 
 msgid "Asia/MY"
-msgstr "Malaysia"
+msgstr "Malesia"
 
 msgid "Asia/Kuala_Lumpur"
 msgstr "Kuala Lumpur"
@@ -1981,13 +1953,13 @@ msgid "Asia/Almaty"
 msgstr "Almaty"
 
 msgid "Asia/Aqtau"
-msgstr "Aqtau"
+msgstr "Aktau"
 
 msgid "Asia/Aqtobe"
 msgstr "Aqtobe"
 
 msgid "Africa/CD"
-msgstr "Congo, Democratic Republic of the"
+msgstr "Congo, Repubblica Democratica del"
 
 msgid "Africa/Kinshasa"
 msgstr "Kinshasa"
@@ -1996,7 +1968,7 @@ msgid "Africa/Lubumbashi"
 msgstr "Lubumbashi"
 
 msgid "SouthAmerica/BR"
-msgstr "Brazil"
+msgstr "Brasile"
 
 msgid "Brazil/Acre"
 msgstr "Acre"
@@ -2005,22 +1977,22 @@ msgid "Brazil/DeNoronha"
 msgstr "De Noronha"
 
 msgid "Brazil/East"
-msgstr "East Brazil"
+msgstr "Est del Brasile"
 
 msgid "Brazil/West"
-msgstr "West Brazil" 
+msgstr "Ovest Brasile"
 
 msgid "SouthAmerica/CH"
-msgstr "Chile"
+msgstr "Cile"
 
 msgid "Chile/Continental"
-msgstr "Chile"
+msgstr "Cile"
 
 msgid "Chile/EasterIsland"
-msgstr "Easter Island"
+msgstr "Isola di Pasqua"
 
 msgid "Oceania/AU"
-msgstr "Australia"
+msgstr "L'Australia"
 
 msgid "Australia/Perth"
 msgstr "Perth"
@@ -2059,7 +2031,7 @@ msgid "Australia/Hobart"
 msgstr "Hobart"
 
 msgid "Oceania/US"
-msgstr "US Islands in the South Pacific"
+msgstr "Isole degli Stati Uniti nel Pacifico meridionale"
 
 msgid "Pacific/Johnston"
 msgstr "Johnston"
@@ -2071,7 +2043,7 @@ msgid "Pacific/Wake"
 msgstr "Wake"
 
 msgid "Oceania/MH"
-msgstr "Marshall Islands"
+msgstr "Isole Marshall"
 
 msgid "Pacific/Kwajalein"
 msgstr "Kwajalein"
@@ -2080,7 +2052,7 @@ msgid "Pacific/Majuro"
 msgstr "Majuro"
 
 msgid "Oceania/NZ"
-msgstr "New Zealand"
+msgstr "Nuova Zelanda"
 
 msgid "Pacific/Auckland"
 msgstr "Auckland"
@@ -2116,25 +2088,25 @@ msgid "Pacific/Tarawa"
 msgstr "Tarawa"
 
 msgid "Oceania/PF"
-msgstr "French Polynesia"
+msgstr "Polinesia francese"
 
 msgid "Pacific/Gambier"
 msgstr "Gambier"
 
 msgid "Pacific/Marquesas"
-msgstr "Marquesas"
+msgstr "Marchesi"
 
 msgid "Pacific/Tahiti"
 msgstr "Tahiti"
 
 msgid "Antarctica/AQ"
-msgstr "Antarctica"
+msgstr "Antartide"
 
 msgid "Antarctica/Casey"
 msgstr "Casey"
 
 msgid "Antarctica/DumontDUrville"
-msgstr "Dumont D'Urville"
+msgstr "Dumont d'Urville"
 
 msgid "Antarctica/Mawson"
 msgstr "Mawson"
@@ -2146,853 +2118,844 @@ msgid "Antarctica/Palmer"
 msgstr "Palmer"
 
 msgid "Antarctica/South_Pole"
-msgstr "South Pole"
+msgstr "Polo Sud"
 
 msgid "Atlantic/PT"
-msgstr "Portuguese Islands in the Atlantic"
+msgstr "Isole portoghese nell'Atlantico"
 
 msgid "Atlantic/Azores"
-msgstr "Azores"
+msgstr "Azzorre"
 
 msgid "Atlantic/Madeira"
 msgstr "Madeira"
 
 msgid "UTC/UTC"
-msgstr "UTC offsets"
+msgstr "UTC offset"
 
 msgid "Etc/UTC"
 msgstr "UTC"
 
 msgid "Etc/GMT+1"
-msgstr "UTC+1:00"
+msgstr "UTC +1:00"
 
 msgid "Etc/GMT+2"
-msgstr "UTC+2:00"
+msgstr "UTC +2:00"
 
 msgid "Etc/GMT+3"
-msgstr "UTC+3:00"
+msgstr "UTC +3:00"
 
 msgid "Etc/GMT+4"
-msgstr "UTC+4:00"
+msgstr "UTC +4:00"
 
 msgid "Etc/GMT+5"
-msgstr "UTC+5:00"
+msgstr "UTC +5:00"
 
 msgid "Etc/GMT+6"
-msgstr "UTC+6:00"
+msgstr "UTC +6:00"
 
 msgid "Etc/GMT+7"
-msgstr "UTC+7:00"
+msgstr "UTC +7:00"
 
 msgid "Etc/GMT+8"
-msgstr "UTC+8:00"
+msgstr "UTC +8:00"
 
 msgid "Etc/GMT+9"
-msgstr "UTC+9:00"
+msgstr "UTC +9:00"
 
 msgid "Etc/GMT+10"
-msgstr "UTC+10:00"
+msgstr "UTC +10:00"
 
 msgid "Etc/GMT+11"
-msgstr "UTC+11:00"
+msgstr "UTC +11:00"
 
 msgid "Etc/GMT+12"
-msgstr "UTC+12:00"
+msgstr "UTC +12:00"
 
 msgid "Etc/GMT-1"
-msgstr "UTC-1:00"
+msgstr "UTC-1: 00"
 
 msgid "Etc/GMT-2"
-msgstr "UTC-2:00"
+msgstr "UTC-2: 00"
 
 msgid "Etc/GMT-3"
-msgstr "UTC-3:00"
+msgstr "UTC-3: 00"
 
 msgid "Etc/GMT-4"
-msgstr "UTC-4:00"
+msgstr "UTC-4: 00"
 
 msgid "Etc/GMT-5"
-msgstr "UTC-5:00"
+msgstr "UTC-5: 00"
 
 msgid "Etc/GMT-6"
-msgstr "UTC-6:00"
+msgstr "UTC-6: 00"
 
 msgid "Etc/GMT-7"
-msgstr "UTC-7:00"
+msgstr "UTC-7: 00"
 
 msgid "Etc/GMT-8"
-msgstr "UTC-8:00"
+msgstr "UTC-8: 00"
 
 msgid "Etc/GMT-9"
-msgstr "UTC-9:00"
+msgstr "UTC-9: 00"
 
 msgid "Etc/GMT-10"
-msgstr "UTC-10:00"
+msgstr "UTC-10: 00"
 
 msgid "Etc/GMT-11"
-msgstr "UTC-11:00"
+msgstr "UTC-11: 00"
 
 msgid "Etc/GMT-12"
-msgstr "UTC-12:00"
+msgstr "UTC-12: 00"
 
 msgid "Etc/GMT-13"
-msgstr "UTC-13:00"
+msgstr "UTC-13: 00"
 
 msgid "Etc/GMT-14"
-msgstr "UTC-14:00"
+msgstr "UTC-14: 00"
 
-#
-# ISO 3166 Country Code
-#
-
-msgid "ad" 
+msgid "ad"
 msgstr "Andorra"
 
-msgid "ae" 
-msgstr "United Arab Emirates"
+msgid "ae"
+msgstr "Emirati Arabi Uniti"
 
 msgid "af"
 msgstr "Afghanistan"
 
-msgid "ag" 
-msgstr "Antigua and Barbuda"
+msgid "ag"
+msgstr "Antigua e Barbuda"
 
-msgid "ai" 
+msgid "ai"
 msgstr "Anguilla"
 
-msgid "al" 
+msgid "al"
 msgstr "Albania"
 
-msgid "AM" 
+msgid "AM"
 msgstr "Armenia"
 
-msgid "an" 
-msgstr "Netherlands Antilles"
+msgid "an"
+msgstr "Antille Olandesi"
 
-msgid "ao" 
+msgid "ao"
 msgstr "Angola"
 
-msgid "aq" 
-msgstr "Antarctica"
+msgid "aq"
+msgstr "Antartide"
 
-msgid "ar" 
+msgid "ar"
 msgstr "Argentina"
 
-msgid "as" 
-msgstr "American Samoa"
+msgid "as"
+msgstr "Samoa Americane"
 
-msgid "at" 
+msgid "at"
 msgstr "Austria"
 
-msgid "au" 
-msgstr "Australia"
+msgid "au"
+msgstr "L'Australia"
 
-msgid "aw" 
+msgid "aw"
 msgstr "Aruba"
 
-msgid "az" 
+msgid "az"
 msgstr "Azerbaidjan"
 
-msgid "ba" 
-msgstr "Bosnia-Herzegovina"
+msgid "ba"
+msgstr "Bosnia-Erzegovina"
 
-msgid "bb" 
+msgid "bb"
 msgstr "Barbados"
 
-msgid "bd" 
+msgid "bd"
 msgstr "Bangladesh"
 
-msgid "be" 
-msgstr "Belgium"
+msgid "be"
+msgstr "Belgio"
 
-msgid "bf" 
+msgid "bf"
 msgstr "Burkina Faso"
 
-msgid "bg" 
+msgid "bg"
 msgstr "Bulgaria"
 
-msgid "bh" 
+msgid "bh"
 msgstr "Bahrain"
 
-msgid "bi" 
+msgid "bi"
 msgstr "Burundi"
 
-msgid "bj" 
+msgid "bj"
 msgstr "Benin"
 
-msgid "bm" 
+msgid "bm"
 msgstr "Bermuda"
 
-msgid "bn" 
+msgid "bn"
 msgstr "Brunei Darussalam"
 
-msgid "bo" 
+msgid "bo"
 msgstr "Bolivia"
 
-msgid "br" 
-msgstr "Brazil"
+msgid "br"
+msgstr "Brasile"
 
-msgid "bs" 
+msgid "bs"
 msgstr "Bahamas"
 
-msgid "bt" 
+msgid "bt"
 msgstr "Bhutan"
 
-msgid "bv" 
-msgstr "Bouvet Island"
+msgid "bv"
+msgstr "Isola Bouvet"
 
-msgid "bw" 
+msgid "bw"
 msgstr "Botswana"
 
-msgid "by" 
-msgstr "Belarus"
+msgid "by"
+msgstr "Bielorussia"
 
-msgid "bz" 
+msgid "bz"
 msgstr "Belize"
 
-msgid "ca" 
+msgid "ca"
 msgstr "Canada"
 
-msgid "cc" 
-msgstr "Cocos (Keeling) Islands"
+msgid "cc"
+msgstr "Cocos (Keeling)"
 
-msgid "cf" 
-msgstr "Central African Republic"
+msgid "cf"
+msgstr "Repubblica Centrafricana"
 
-msgid "cg" 
+msgid "cg"
 msgstr "Congo"
 
-msgid "ch" 
-msgstr "Switzerland"
+msgid "ch"
+msgstr "Svizzera"
 
-msgid "ci" 
-msgstr "Ivory Coast (Cote D'Ivoire)"
+msgid "ci"
+msgstr "Costa d'Avorio (Costa d'Avorio)"
 
-msgid "ck" 
-msgstr "Cook Islands"
+msgid "ck"
+msgstr "Isole Cook"
 
-msgid "cl" 
-msgstr "Chile"
+msgid "cl"
+msgstr "Cile"
 
-msgid "cm" 
-msgstr "Cameroon"
+msgid "cm"
+msgstr "Camerun"
 
-msgid "cn" 
-msgstr "China"
+msgid "cn"
+msgstr "Cina"
 
-msgid "co" 
+msgid "co"
 msgstr "Colombia"
 
-msgid "cr" 
+msgid "cr"
 msgstr "Costa Rica"
 
-msgid "cs" 
-msgstr "Former Czechoslovakia"
+msgid "cs"
+msgstr "L'ex Cecoslovacchia"
 
-msgid "cu" 
+msgid "cu"
 msgstr "Cuba"
 
-msgid "cv" 
-msgstr "Cape Verde"
+msgid "cv"
+msgstr "Capo Verde"
 
-msgid "cx" 
-msgstr "Christmas Island"
+msgid "cx"
+msgstr "Isola di Natale"
 
-msgid "cy" 
-msgstr "Cyprus"
+msgid "cy"
+msgstr "Cipro"
 
-msgid "cz" 
-msgstr "Czech Republic"
+msgid "cz"
+msgstr "Repubblica Ceca"
 
-msgid "de" 
-msgstr "Germany"
+msgid "de"
+msgstr "Germania"
 
-msgid "dj" 
-msgstr "Djibouti"
+msgid "dj"
+msgstr "Gibuti"
 
-msgid "dk" 
-msgstr "Denmark"
+msgid "dk"
+msgstr "Danimarca"
 
-msgid "dm" 
+msgid "dm"
 msgstr "Dominica"
 
-msgid "do" 
-msgstr "Dominican Republic"
+msgid "do"
+msgstr "Repubblica Dominicana"
 
-msgid "dz" 
+msgid "dz"
 msgstr "Algeria"
 
-msgid "ec" 
+msgid "ec"
 msgstr "Ecuador"
 
-msgid "ee" 
+msgid "ee"
 msgstr "Estonia"
 
-msgid "eg" 
-msgstr "Egypt"
+msgid "eg"
+msgstr "Egitto"
 
-msgid "eh" 
-msgstr "Western Sahara"
+msgid "eh"
+msgstr "Sahara occidentale"
 
-msgid "er" 
+msgid "er"
 msgstr "Eritrea"
 
-msgid "es" 
-msgstr "Spain"
+msgid "es"
+msgstr "Spagna"
 
-msgid "et" 
-msgstr "Ethiopia"
+msgid "et"
+msgstr "Etiopia"
 
-msgid "fi" 
-msgstr "Finland"
+msgid "fi"
+msgstr "Finlandia"
 
-msgid "fj" 
+msgid "fj"
 msgstr "Fiji"
 
-msgid "fk" 
-msgstr "Falkland Islands"
+msgid "fk"
+msgstr "Isole Falkland"
 
-msgid "fm" 
+msgid "fm"
 msgstr "Micronesia"
 
-msgid "fo" 
-msgstr "Faroe Islands"
+msgid "fo"
+msgstr "Isole Faroe"
 
-msgid "fr" 
-msgstr "France"
+msgid "fr"
+msgstr "Francia"
 
-msgid "fx" 
-msgstr "France (European Territory)"
+msgid "fx"
+msgstr "Francia (territorio europeo)"
 
-msgid "ga" 
+msgid "ga"
 msgstr "Gabon"
 
-msgid "gb" 
-msgstr "Great Britain"
+msgid "gb"
+msgstr "Gran Bretagna"
 
-msgid "gd" 
+msgid "gd"
 msgstr "Grenada"
 
-msgid "ge" 
+msgid "ge"
 msgstr "Georgia"
 
-msgid "gf" 
-msgstr "French Guyana"
+msgid "gf"
+msgstr "Guyana francese"
 
-msgid "gh" 
+msgid "gh"
 msgstr "Ghana"
 
-msgid "gi" 
-msgstr "Gibraltar"
+msgid "gi"
+msgstr "Gibilterra"
 
-msgid "gl" 
-msgstr "Greenland"
+msgid "gl"
+msgstr "Groenlandia"
 
-msgid "gm" 
+msgid "gm"
 msgstr "Gambia"
 
-msgid "gn" 
+msgid "gn"
 msgstr "Guinea"
 
-msgid "gp" 
-msgstr "Guadeloupe (French)"
+msgid "gp"
+msgstr "Guadalupa (Francese)"
 
-msgid "gq" 
-msgstr "Equatorial Guinea"
+msgid "gq"
+msgstr "Guinea Equatoriale"
 
-msgid "gr" 
-msgstr "Greece"
+msgid "gr"
+msgstr "Grecia"
 
-msgid "gs" 
-msgstr "S. Georgia and S. Sandwich Isls."
+msgid "gs"
+msgstr "S. Georgia e S. Sandwich ISL."
 
-msgid "gt" 
+msgid "gt"
 msgstr "Guatemala"
 
-msgid "gu" 
+msgid "gu"
 msgstr "Guam (USA)"
 
-msgid "gw" 
+msgid "gw"
 msgstr "Guinea Bissau"
 
-msgid "gy" 
+msgid "gy"
 msgstr "Guyana"
 
-msgid "hk" 
+msgid "hk"
 msgstr "Hong Kong"
 
-msgid "hm" 
-msgstr "Heard and McDonald Islands"
+msgid "hm"
+msgstr "Heard e Isole McDonald"
 
-msgid "hn" 
+msgid "hn"
 msgstr "Honduras"
 
-msgid "hr" 
-msgstr "Croatia"
+msgid "hr"
+msgstr "Croazia"
 
-msgid "ht" 
+msgid "ht"
 msgstr "Haiti"
 
-msgid "hu" 
-msgstr "Hungary"
+msgid "hu"
+msgstr "Ungheria"
 
-msgid "id" 
+msgid "id"
 msgstr "Indonesia"
 
-msgid "ie" 
-msgstr "Ireland"
+msgid "ie"
+msgstr "Irlanda"
 
-msgid "il" 
-msgstr "Israel"
+msgid "il"
+msgstr "Israele"
 
-msgid "in" 
+msgid "in"
 msgstr "India"
 
-msgid "io" 
-msgstr "British Indian Ocean Territory"
+msgid "io"
+msgstr "Territorio britannico dell'Oceano Indiano"
 
-msgid "iq" 
+msgid "iq"
 msgstr "Iraq"
 
-msgid "ir" 
+msgid "ir"
 msgstr "Iran"
 
-msgid "is" 
-msgstr "Iceland"
+msgid "is"
+msgstr "Islanda"
 
-msgid "it" 
-msgstr "Italy"
+msgid "it"
+msgstr "Italia"
 
-msgid "jm" 
-msgstr "Jamaica"
+msgid "jm"
+msgstr "Giamaica"
 
-msgid "jo" 
-msgstr "Jordan"
+msgid "jo"
+msgstr "Giordania"
 
-msgid "jp" 
-msgstr "Japan"
+msgid "jp"
+msgstr "Giappone"
 
-msgid "ke" 
+msgid "ke"
 msgstr "Kenya"
 
-msgid "kg" 
-msgstr "Kyrgyzstan"
+msgid "kg"
+msgstr "Kirghizistan"
 
-msgid "kh" 
-msgstr "Cambodia"
+msgid "kh"
+msgstr "Cambogia"
 
-msgid "ki" 
+msgid "ki"
 msgstr "Kiribati"
 
-msgid "km" 
-msgstr "Comoros"
+msgid "km"
+msgstr "Comore"
 
-msgid "kn" 
-msgstr "Saint Kitts and Nevis Anguilla"
+msgid "kn"
+msgstr "Saint Kitts e Nevis Anguilla"
 
-msgid "kp" 
-msgstr "North Korea"
+msgid "kp"
+msgstr "Corea del Nord"
 
-msgid "kr" 
-msgstr "South Korea"
+msgid "kr"
+msgstr "Corea del Sud"
 
-msgid "kw" 
+msgid "kw"
 msgstr "Kuwait"
 
-msgid "ky" 
-msgstr "Cayman Islands"
+msgid "ky"
+msgstr "Isole Cayman"
 
-msgid "kz" 
+msgid "kz"
 msgstr "Kazakhstan"
 
-msgid "la" 
+msgid "la"
 msgstr "Laos"
 
-msgid "lb" 
-msgstr "Lebanon"
+msgid "lb"
+msgstr "Libano"
 
-msgid "lc" 
-msgstr "Saint Lucia"
+msgid "lc"
+msgstr "Santa Lucia"
 
-msgid "li" 
+msgid "li"
 msgstr "Liechtenstein"
 
-msgid "lk" 
+msgid "lk"
 msgstr "Sri Lanka"
 
-msgid "lr" 
+msgid "lr"
 msgstr "Liberia"
 
-msgid "ls" 
+msgid "ls"
 msgstr "Lesotho"
 
-msgid "lt" 
-msgstr "Lithuania"
+msgid "lt"
+msgstr "Lituania"
 
-msgid "lu" 
-msgstr "Luxembourg"
+msgid "lu"
+msgstr "Lussemburgo"
 
-msgid "lv" 
-msgstr "Latvia"
+msgid "lv"
+msgstr "Lettonia"
 
-msgid "ly" 
-msgstr "Libya"
+msgid "ly"
+msgstr "Libia"
 
-msgid "ma" 
-msgstr "Morocco"
+msgid "ma"
+msgstr "Marocco"
 
-msgid "mc" 
+msgid "mc"
 msgstr "Monaco"
 
-msgid "md" 
+msgid "md"
 msgstr "Moldavia"
 
-msgid "mg" 
+msgid "mg"
 msgstr "Madagascar"
 
-msgid "mh" 
-msgstr "Marshall Islands"
+msgid "mh"
+msgstr "Isole Marshall"
 
-msgid "mk" 
+msgid "mk"
 msgstr "Macedonia"
 
-msgid "ml" 
+msgid "ml"
 msgstr "Mali"
 
 msgid "mm"
 msgstr "Myanmar"
 
-msgid "mn" 
+msgid "mn"
 msgstr "Mongolia"
 
-msgid "mo" 
-msgstr "Macau"
+msgid "mo"
+msgstr "Macao"
 
-msgid "mp" 
-msgstr "Northern Mariana Islands"
+msgid "mp"
+msgstr "Isole Marianne Settentrionali"
 
-msgid "mq" 
-msgstr "Martinique (French)"
+msgid "mq"
+msgstr "Martinica (Francia)"
 
-msgid "mr" 
+msgid "mr"
 msgstr "Mauritania"
 
-msgid "ms" 
+msgid "ms"
 msgstr "Montserrat"
 
-msgid "mt" 
+msgid "mt"
 msgstr "Malta"
 
-msgid "mu" 
+msgid "mu"
 msgstr "Mauritius"
 
-msgid "mv" 
-msgstr "Maldives"
+msgid "mv"
+msgstr "Maldive"
 
-msgid "mw" 
+msgid "mw"
 msgstr "Malawi"
 
-msgid "mx" 
-msgstr "Mexico"
+msgid "mx"
+msgstr "Messico"
 
-msgid "my" 
-msgstr "Malaysia"
+msgid "my"
+msgstr "Malesia"
 
-msgid "mz" 
-msgstr "Mozambique"
+msgid "mz"
+msgstr "Mozambico"
 
-msgid "na" 
+msgid "na"
 msgstr "Namibia"
 
-msgid "nc" 
-msgstr "New Caledonia (French)"
+msgid "nc"
+msgstr "Nuova Caledonia (Francese)"
 
-msgid "ne" 
+msgid "ne"
 msgstr "Niger"
 
-msgid "nf" 
+msgid "nf"
 msgstr "Norfolk Island"
 
-msgid "ng" 
+msgid "ng"
 msgstr "Nigeria"
 
-msgid "ni" 
+msgid "ni"
 msgstr "Nicaragua"
 
-msgid "nl" 
-msgstr "Netherlands"
+msgid "nl"
+msgstr "Paesi Bassi"
 
-msgid "no" 
-msgstr "Norway"
+msgid "no"
+msgstr "Norvegia"
 
-msgid "np" 
+msgid "np"
 msgstr "Nepal"
 
-msgid "nr" 
+msgid "nr"
 msgstr "Nauru"
 
-msgid "nt" 
+msgid "nt"
 msgstr "Neutral Zone"
 
-msgid "nu" 
+msgid "nu"
 msgstr "Niue"
 
-msgid "nz" 
-msgstr "New Zealand"
+msgid "nz"
+msgstr "Nuova Zelanda"
 
-msgid "om" 
+msgid "om"
 msgstr "Oman"
 
-msgid "pa" 
+msgid "pa"
 msgstr "Panama"
 
-msgid "pe" 
-msgstr "Peru"
+msgid "pe"
+msgstr "Perù"
 
-msgid "pf" 
-msgstr "Polynesia (French)"
+msgid "pf"
+msgstr "Polinesia (francese)"
 
-msgid "pg" 
-msgstr "Papua New Guinea"
+msgid "pg"
+msgstr "Papua Nuova Guinea"
 
-msgid "ph" 
-msgstr "Philippines"
+msgid "ph"
+msgstr "Filippine"
 
-msgid "pk" 
+msgid "pk"
 msgstr "Pakistan"
 
-msgid "pl" 
-msgstr "Poland"
+msgid "pl"
+msgstr "Polonia"
 
 msgid "PM"
-msgstr "Saint Pierre and Miquelon"
+msgstr "Saint Pierre e Miquelon"
 
-msgid "pn" 
-msgstr "Pitcairn Island"
+msgid "pn"
+msgstr "Pitcairn"
 
-msgid "pr" 
+msgid "pr"
 msgstr "Puerto Rico"
 
-msgid "pt" 
-msgstr "Portugal"
+msgid "pt"
+msgstr "Portogallo"
 
-msgid "pw" 
+msgid "pw"
 msgstr "Palau"
 
-msgid "py" 
+msgid "py"
 msgstr "Paraguay"
 
-msgid "qa" 
+msgid "qa"
 msgstr "Qatar"
 
-msgid "re" 
+msgid "re"
 msgstr "Reunion (French)"
 
-msgid "ro" 
+msgid "ro"
 msgstr "Romania"
 
-msgid "ru" 
-msgstr "Russian Federation"
+msgid "ru"
+msgstr "Federazione Russa"
 
-msgid "rw" 
-msgstr "Rwanda"
+msgid "rw"
+msgstr "Ruanda"
 
-msgid "sa" 
-msgstr "Saudi Arabia"
+msgid "sa"
+msgstr "Arabia Saudita"
 
-msgid "sb" 
-msgstr "Solomon Islands"
+msgid "sb"
+msgstr "Isole Salomone"
 
-msgid "sc" 
+msgid "sc"
 msgstr "Seychelles"
 
-msgid "sd" 
+msgid "sd"
 msgstr "Sudan"
 
-msgid "se" 
-msgstr "Sweden"
+msgid "se"
+msgstr "Svezia"
 
-msgid "sg" 
+msgid "sg"
 msgstr "Singapore"
 
-msgid "sh" 
-msgstr "Saint Helena"
+msgid "sh"
+msgstr "Sant'Elena"
 
-msgid "si" 
+msgid "si"
 msgstr "Slovenia"
 
-msgid "sj" 
-msgstr "Svalbard and Jan Mayen Islands"
+msgid "sj"
+msgstr "Isole Svalbard e Jan Mayen"
 
-msgid "sk" 
-msgstr "Slovak Republic"
+msgid "sk"
+msgstr "Repubblica Slovacca"
 
-msgid "sl" 
+msgid "sl"
 msgstr "Sierra Leone"
 
 msgid "sm"
 msgstr "San Marino"
 
-msgid "sn" 
+msgid "sn"
 msgstr "Senegal"
 
-msgid "so" 
+msgid "so"
 msgstr "Somalia"
 
-msgid "sr" 
+msgid "sr"
 msgstr "Suriname"
 
-msgid "st" 
-msgstr "Saint Tome (Sao Tome) and Principe"
+msgid "st"
+msgstr "San Tome (Sao Tome) e Principe"
 
-msgid "su" 
-msgstr "Former USSR"
+msgid "su"
+msgstr "L'ex Unione Sovietica"
 
-msgid "sv" 
+msgid "sv"
 msgstr "El Salvador"
 
-msgid "sy" 
-msgstr "Syria"
+msgid "sy"
+msgstr "Siria"
 
-msgid "sz" 
+msgid "sz"
 msgstr "Swaziland"
 
-msgid "tc" 
-msgstr "Turks and Caicos Islands"
+msgid "tc"
+msgstr "Isole Turks e Caicos"
 
-msgid "td" 
-msgstr "Chad"
+msgid "td"
+msgstr "Ciad"
 
-msgid "tf" 
-msgstr "French Southern Territories"
+msgid "tf"
+msgstr "Territori francesi meridionali"
 
-msgid "tg" 
+msgid "tg"
 msgstr "Togo"
 
-msgid "th" 
-msgstr "Thailand"
+msgid "th"
+msgstr "Thailandia"
 
-msgid "tj" 
+msgid "tj"
 msgstr "Tadjikistan"
 
-msgid "tk" 
+msgid "tk"
 msgstr "Tokelau"
 
-msgid "tm" 
+msgid "tm"
 msgstr "Turkmenistan"
 
-msgid "tn" 
+msgid "tn"
 msgstr "Tunisia"
 
-msgid "to" 
+msgid "to"
 msgstr "Tonga"
 
-msgid "tp" 
-msgstr "East Timor"
+msgid "tp"
+msgstr "Timor Est"
 
-msgid "tr" 
-msgstr "Turkey"
+msgid "tr"
+msgstr "Turchia"
 
-msgid "tt" 
-msgstr "Trinidad and Tobago"
+msgid "tt"
+msgstr "Trinidad e Tobago"
 
-msgid "tv" 
+msgid "tv"
 msgstr "Tuvalu"
 
-msgid "tw" 
+msgid "tw"
 msgstr "Taiwan"
 
-msgid "tz" 
+msgid "tz"
 msgstr "Tanzania"
 
-msgid "ua" 
-msgstr "Ukraine"
+msgid "ua"
+msgstr "Ucraina"
 
-msgid "ug" 
+msgid "ug"
 msgstr "Uganda"
 
-msgid "uk" 
-msgstr "United Kingdom"
+msgid "uk"
+msgstr "Regno Unito"
 
-msgid "um" 
-msgstr "USA Minor Outlying Islands"
+msgid "um"
+msgstr "USA Isole Minori"
 
-msgid "us" 
+msgid "us"
 msgstr "United States"
 
-msgid "uy" 
+msgid "uy"
 msgstr "Uruguay"
 
-msgid "uz" 
+msgid "uz"
 msgstr "Uzbekistan"
 
-msgid "va" 
-msgstr "Vatican City State"
+msgid "va"
+msgstr "Città del Vaticano"
 
-msgid "vc" 
-msgstr "Saint Vincent and Grenadines"
+msgid "vc"
+msgstr "Saint Vincent e Grenadine"
 
-msgid "ve" 
+msgid "ve"
 msgstr "Venezuela"
 
-msgid "vg" 
-msgstr "Virgin Islands (British)"
+msgid "vg"
+msgstr "Isole Vergini (britanniche)"
 
-msgid "vi" 
-msgstr "Virgin Islands (USA)"
+msgid "vi"
+msgstr "Isole Vergini (USA)"
 
-msgid "vn" 
+msgid "vn"
 msgstr "Vietnam"
 
-msgid "vu" 
+msgid "vu"
 msgstr "Vanuatu"
 
-msgid "wf" 
-msgstr "Wallis and Futuna Islands"
+msgid "wf"
+msgstr "Isole Wallis e Futuna"
 
-msgid "ws" 
+msgid "ws"
 msgstr "Samoa"
 
-msgid "ye" 
+msgid "ye"
 msgstr "Yemen"
 
-msgid "yt" 
+msgid "yt"
 msgstr "Mayotte"
 
-msgid "yu" 
-msgstr "Yugoslavia"
+msgid "yu"
+msgstr "Jugoslavia"
 
-msgid "za" 
-msgstr "South Africa"
+msgid "za"
+msgstr "Sud Africa"
 
-msgid "zm" 
+msgid "zm"
 msgstr "Zambia"
 
-msgid "zr" 
-msgstr "Congo, Democratic Republic of the"
+msgid "zr"
+msgstr "Congo, Repubblica Democratica del"
 
-msgid "zw" 
+msgid "zw"
 msgstr "Zimbabwe"
-
-
-#
-# ISO 639 Language Code
-#
 
 msgid "lang_aa"
 msgstr "Afar"
 
 msgid "lang_ab"
-msgstr "Abkhazian"
+msgstr "Abkhazia"
 
 msgid "lang_af"
 msgstr "Afrikaans"
 
 msgid "lang_am"
-msgstr "Amharic"
+msgstr "Amarico"
 
 msgid "lang_ar"
-msgstr "Arabic"
+msgstr "Arabo"
 
 msgid "lang_as"
 msgstr "Assamese"
@@ -3001,16 +2964,16 @@ msgid "lang_ay"
 msgstr "Aymara"
 
 msgid "lang_az"
-msgstr "Azerbaijani"
+msgstr "Azero"
 
 msgid "lang_ba"
-msgstr "Bashkir"
+msgstr "Baschiro"
 
 msgid "lang_be"
-msgstr "Byelorussian"
+msgstr "Bielorusso"
 
 msgid "lang_bg"
-msgstr "Bulgarian"
+msgstr "Bulgaro"
 
 msgid "lang_bh"
 msgstr "Bihari"
@@ -3022,55 +2985,55 @@ msgid "lang_bn"
 msgstr "Bengali; Bangla"
 
 msgid "lang_bo"
-msgstr "Tibetan"
+msgstr "Tibetano"
 
 msgid "lang_br"
 msgstr "Breton"
 
 msgid "lang_ca"
-msgstr "Catalan"
+msgstr "Catalano"
 
 msgid "lang_co"
-msgstr "Corsican"
+msgstr "Corsica"
 
 msgid "lang_cs"
-msgstr "Czech"
+msgstr "Repubblica"
 
 msgid "lang_cy"
 msgstr "Welsh"
 
 msgid "lang_da"
-msgstr "Danish"
+msgstr "Danese"
 
 msgid "lang_de"
-msgstr "German"
+msgstr "Tedesco"
 
 msgid "lang_dz"
 msgstr "Bhutani"
 
 msgid "lang_el"
-msgstr "Greek"
+msgstr "Greco"
 
 msgid "lang_en"
-msgstr "English"
+msgstr "Inglese"
 
 msgid "lang_eo"
 msgstr "Esperanto"
 
 msgid "lang_es"
-msgstr "Spanish"
+msgstr "Spagnolo"
 
 msgid "lang_et"
 msgstr "Estonian"
 
 msgid "lang_eu"
-msgstr "Basque"
+msgstr "Basco"
 
 msgid "lang_fa"
-msgstr "Farsi; Persian"
+msgstr "Farsi; persiano"
 
 msgid "lang_fi"
-msgstr "Finnish"
+msgstr "Finlandese"
 
 msgid "lang_fj"
 msgstr "Fiji"
@@ -3079,19 +3042,19 @@ msgid "lang_fo"
 msgstr "Faroese"
 
 msgid "lang_fr"
-msgstr "French"
+msgstr "Francese"
 
 msgid "lang_fy"
-msgstr "Frisian"
+msgstr "Frisone"
 
 msgid "lang_ga"
-msgstr "Irish; Gaelic"
+msgstr "Irlandese, il gaelico"
 
 msgid "lang_gd"
-msgstr "Scots; Gaelic"
+msgstr "Scots; gaelico"
 
 msgid "lang_gl"
-msgstr "Galician"
+msgstr "Galiziano"
 
 msgid "lang_gn"
 msgstr "Guarani"
@@ -3103,19 +3066,19 @@ msgid "lang_ha"
 msgstr "Hausa"
 
 msgid "lang_he"
-msgstr "Hebrew"
+msgstr "Ebraico"
 
 msgid "lang_hi"
 msgstr "Hindi"
 
 msgid "lang_hr"
-msgstr "Croatian"
+msgstr "Croato"
 
 msgid "lang_hu"
-msgstr "Hungarian"
+msgstr "Ungherese"
 
 msgid "lang_hy"
-msgstr "Armenian"
+msgstr "Armeno"
 
 msgid "lang_ia"
 msgstr "Interlingua"
@@ -3130,31 +3093,31 @@ msgid "lang_in"
 msgstr "Indonesian"
 
 msgid "lang_is"
-msgstr "Icelandic"
+msgstr "Islandese"
 
 msgid "lang_it"
-msgstr "Italian"
+msgstr "Italiano"
 
 msgid "lang_ja"
-msgstr "Japanese"
+msgstr "Giapponese"
 
 msgid "lang_ji"
 msgstr "Yiddish"
 
 msgid "lang_jv"
-msgstr "Javanese"
+msgstr "Giavanese"
 
 msgid "lang_ka"
-msgstr "Georgian"
+msgstr "Georgiana"
 
 msgid "lang_kk"
-msgstr "Kazakh"
+msgstr "Kazako"
 
 msgid "lang_kl"
-msgstr "Greenlandic"
+msgstr "Groenlandese"
 
 msgid "lang_km"
-msgstr "Cambodian"
+msgstr "Cambogiano"
 
 msgid "lang_kn"
 msgstr "Kannada"
@@ -3166,13 +3129,13 @@ msgid "lang_ks"
 msgstr "Kashmiri"
 
 msgid "lang_ku"
-msgstr "Kurdish"
+msgstr "Curda"
 
 msgid "lang_ky"
 msgstr "Kirghiz"
 
 msgid "lang_la"
-msgstr "Latin"
+msgstr "Latina"
 
 msgid "lang_ln"
 msgstr "Lingala"
@@ -3181,40 +3144,40 @@ msgid "lang_lo"
 msgstr "Laothian"
 
 msgid "lang_lt"
-msgstr "Lithuanian"
+msgstr "Lituano"
 
 msgid "lang_lv"
-msgstr "Latvian; Lettish"
+msgstr "Lettone, lettone"
 
 msgid "lang_mg"
-msgstr "Malagasy"
+msgstr "Malgascio"
 
 msgid "lang_mi"
 msgstr "Maori"
 
 msgid "lang_mk"
-msgstr "Macedonian"
+msgstr "Macedone"
 
 msgid "lang_ml"
 msgstr "Malayalam"
 
 msgid "lang_mn"
-msgstr "Mongolian"
+msgstr "Mongolo"
 
 msgid "lang_mo"
-msgstr "Moldavian"
+msgstr "Moldava"
 
 msgid "lang_mr"
 msgstr "Marathi"
 
 msgid "lang_ms"
-msgstr "Malay"
+msgstr "Malese"
 
 msgid "lang_mt"
 msgstr "Maltese"
 
 msgid "lang_my"
-msgstr "Burmese"
+msgstr "Birmano"
 
 msgid "lang_na"
 msgstr "Nauru"
@@ -3223,13 +3186,13 @@ msgid "lang_ne"
 msgstr "Nepali"
 
 msgid "lang_nl"
-msgstr "Dutch"
+msgstr "Olandese"
 
 msgid "lang_no"
 msgstr "Norwegian"
 
 msgid "lang_oc"
-msgstr "Occitan"
+msgstr "Occitano"
 
 msgid "lang_om"
 msgstr "Afan (Oromo)"
@@ -3241,34 +3204,34 @@ msgid "lang_pa"
 msgstr "Punjabi"
 
 msgid "lang_pl"
-msgstr "Polish"
+msgstr "Polacco"
 
 msgid "lang_ps"
-msgstr "Pashto; Pushto"
+msgstr "Pashto, Pushto"
 
 msgid "lang_pt"
-msgstr "Portuguese"
+msgstr "Portoghese"
 
 msgid "lang_qu"
 msgstr "Quechua"
 
 msgid "lang_rm"
-msgstr "Rhaeto-Romance"
+msgstr "Retoromanzo"
 
 msgid "lang_rn"
 msgstr "Kurundi"
 
 msgid "lang_ro"
-msgstr "Romanian"
+msgstr "Rumeno"
 
 msgid "lang_ru"
-msgstr "Russian"
+msgstr "Russo"
 
 msgid "lang_rw"
 msgstr "Kinyarwanda"
 
 msgid "lang_sa"
-msgstr "Sanskrit"
+msgstr "Sanscrito"
 
 msgid "lang_sd"
 msgstr "Sindhi"
@@ -3277,16 +3240,16 @@ msgid "lang_sg"
 msgstr "Sangho"
 
 msgid "lang_sh"
-msgstr "Serbo-Croatian"
+msgstr "Serbo-croato"
 
 msgid "lang_si"
-msgstr "Singhalese"
+msgstr "Cingalesi"
 
 msgid "lang_sk"
-msgstr "Slovak"
+msgstr "Slovacca"
 
 msgid "lang_sl"
-msgstr "Slovenian"
+msgstr "Sloveno"
 
 msgid "lang_sm"
 msgstr "Samoan"
@@ -3295,10 +3258,10 @@ msgid "lang_sn"
 msgstr "Shona"
 
 msgid "lang_so"
-msgstr "Somali"
+msgstr "Somalo"
 
 msgid "lang_sq"
-msgstr "Albanian"
+msgstr "Albanese"
 
 msgid "lang_sr"
 msgstr "Serbian"
@@ -3313,7 +3276,7 @@ msgid "lang_su"
 msgstr "Sundanese"
 
 msgid "lang_sv"
-msgstr "Swedish"
+msgstr "Svedese"
 
 msgid "lang_sw"
 msgstr "Swahili"
@@ -3325,16 +3288,16 @@ msgid "lang_te"
 msgstr "Telugu"
 
 msgid "lang_tg"
-msgstr "Tajik"
+msgstr "Tagiko"
 
 msgid "lang_th"
 msgstr "Thai"
 
 msgid "lang_ti"
-msgstr "Tigrinya"
+msgstr "Tigrino"
 
 msgid "lang_tk"
-msgstr "Turkmen"
+msgstr "Turkmeno"
 
 msgid "lang_tl"
 msgstr "Tagalog"
@@ -3346,7 +3309,7 @@ msgid "lang_to"
 msgstr "Tonga"
 
 msgid "lang_tr"
-msgstr "Turkish"
+msgstr "Turco"
 
 msgid "lang_ts"
 msgstr "Tsonga"
@@ -3358,16 +3321,16 @@ msgid "lang_tw"
 msgstr "Twi"
 
 msgid "lang_uk"
-msgstr "Ukrainian"
+msgstr "Ucraino"
 
 msgid "lang_ur"
 msgstr "Urdu"
 
 msgid "lang_uz"
-msgstr "Uzbek"
+msgstr "Uzbeko"
 
 msgid "lang_vi"
-msgstr "Vietnamese"
+msgstr "Vietnamita"
 
 msgid "lang_vo"
 msgstr "Volapuk"
@@ -3382,369 +3345,344 @@ msgid "lang_yo"
 msgstr "Yoruba"
 
 msgid "lang_zh"
-msgstr "Chinese"
+msgstr "Cinese"
 
 msgid "lang_zu"
 msgstr "Zulu"
-#
-#Translation for specific locales
-#
-
-# Start: basic 'validator' checks
 
 msgid "locale_zh_CN"
-msgstr "Simplified Chinese"
- 
+msgstr "Cinese semplificato"
+
 msgid "locale_zh_TW"
-msgstr "Traditional Chinese"
+msgstr "Cinese tradizionale"
 
 msgid "pwCheckStr"
-msgstr "Password strength test"
-
-# New strings for BlueOnyx NG:
+msgstr "Prova di resistenza dimenticata"
 
 msgid "val_required"
-msgstr "This field is required."
+msgstr "Questo campo è obbligatorio."
 
 msgid "val_remote"
-msgstr "Please fix this field."
+msgstr "Si prega di correggere questo campo."
 
 msgid "val_email"
-msgstr "Please enter a valid email address."
+msgstr "Si prega di inserire un indirizzo email valido."
 
 msgid "val_date"
-msgstr "Please enter a valid date."
+msgstr "Inserisci una data valida."
 
 msgid "val_dateISO"
-msgstr "Please enter a valid date (ISO)."
+msgstr "Si prega di inserire una data valida (ISO)."
 
 msgid "val_number"
-msgstr "Please enter a valid number."
+msgstr "Si prega di inserire un numero valido."
 
 msgid "val_digits"
-msgstr "Please enter only digits."
+msgstr "Inserisci solo cifre."
 
 msgid "val_creditcard"
-msgstr "Please enter a valid credit card number."
+msgstr "Si prega di inserire un numero di carta di credito valida."
 
 msgid "val_equalTo"
-msgstr "Please enter the same value again."
+msgstr "Inserisci nuovamente lo stesso valore."
 
 msgid "val_accept"
-msgstr "Please enter a value with a valid extension."
+msgstr "Inserisci un valore con un'estensione valida."
 
 msgid "val_maxlength"
-msgstr "You entered more characters than allowed."
+msgstr "Hai inserito più caratteri consentito."
 
 msgid "val_minlength"
-msgstr "You entered insufficient characters."
+msgstr "Hai inserito caratteri insufficienti."
 
 msgid "val_rangelength"
-msgstr "The entered value is outside the allowed range."
+msgstr "Il valore immesso non è compreso nell'intervallo consentito."
 
 msgid "val_range"
-msgstr "Please enter a value that is inside the allowed range."
+msgstr "Si prega di inserire un valore che si trova all'interno del range consentito."
 
 msgid "val_max"
-msgstr "The entered value is greater than allowed."
+msgstr "Il valore inserito è maggiore di quanto consentito."
 
 msgid "val_min"
-msgstr "The entered value is smaller than allowed."
+msgstr "Il valore inserito è minore di permesso."
 
 msgid "val_url"
-msgstr "Please enter a valid URL."
-
-# End: basic 'validator' checks
-
-# Start: Extended 'validator' checks
+msgstr "Inserisci un URL valido."
 
 msgid "val_is_required"
-msgstr "The field [[VAR.field]] is required."
+msgstr "Il campo [[VAR.field]] è richiesto."
 
-# End: Extended 'validator' checks
-
-# Start: Style Switcher
 msgid "layout"
-msgstr "Layout"
+msgstr "Disposizione"
 
 msgid "fluid"
 msgstr "Fluid"
 
 msgid "fixed"
-msgstr "Fixed"
+msgstr "Risolto"
 
 msgid "menus"
-msgstr "Menus"
+msgstr "Menu"
 
 msgid "side"
 msgstr "Side"
 
 msgid "top"
-msgstr "Top"
+msgstr "Superiore"
 
 msgid "slide"
-msgstr "Slide"
+msgstr "Far scorrere"
 
 msgid "theme"
-msgstr "Theme"
+msgstr "Argomento"
 
 msgid "dark"
-msgstr "Dark"
+msgstr "Scuro"
 
 msgid "light"
-msgstr "Light"
+msgstr "Chiaro"
 
 msgid "BGs"
-msgstr "BGs"
+msgstr "BG"
 
 msgid "silver"
-msgstr "Silver"
+msgstr "Argento"
 
 msgid "wood"
-msgstr "Wood"
+msgstr "Legno"
 
 msgid "squares"
-msgstr "Squares"
+msgstr "Piazze"
 
 msgid "noise"
-msgstr "Noise"
+msgstr "Rumore"
 
 msgid "stripes"
 msgstr "Stripes"
 
 msgid "metal"
-msgstr "Metal"
+msgstr "Metallo"
 
 msgid "boxes"
-msgstr "Boxes"
+msgstr "Scatole"
 
 msgid "punched"
-msgstr "Punched"
+msgstr "Perforato"
 
 msgid "honeycomb"
 msgstr "Honeycomb"
 
 msgid "timber"
 msgstr "Timber"
-# End: Style Switcher
 
 msgid "autogrow_expanding"
-msgstr "This field keeps expanding, just like on Facebook."
+msgstr "Questo campo in continua espansione, proprio come su Facebook."
 
 msgid "autogrow_prefill"
-msgstr "You keep typing, I keep growing ..."
+msgstr "Continui a scrivere, continuo a crescere ..."
 
 msgid "page_render_part_one"
-msgstr "Page rendered in"
+msgstr "Pagina resa in"
 
 msgid "page_render_part_two"
-msgstr "seconds"
+msgstr "secondi"
 
-# Start: Calendar stuff
 msgid "next"
-msgstr "Next"
+msgstr "Successivo"
 
 msgid "previous"
-msgstr "Previous"
+msgstr "Precedente"
 
 msgid "done"
-msgstr "Done"
+msgstr "Fatto"
 
 msgid "today"
-msgstr "Today"
-# End: Calendar stuff
+msgstr "Oggi"
 
-# Start: Adminica Icon helptexts:
 msgid "icon_toggle"
-msgstr "Toggle this element."
+msgstr "Alterna questo elemento."
 
 msgid "icon_grabber"
-msgstr "Move this element."
+msgstr "Spostare questo elemento."
 
 msgid "icon_window"
-msgstr "Open in new browser window."
+msgstr "Aprire in una nuova finestra del browser."
 
 msgid "icon_show_all_tabs"
-msgstr "Expand all tabs and show all information in a single tab."
-# End: Adminica Icon helptexts
+msgstr "Espandi tutte le schede e mostrare tutte le informazioni in un'unica scheda."
 
-# Start: Error page localization:
 msgid "401title"
-msgstr "Authorization Required"
+msgstr "Autorizzazione richiesta"
 
 msgid "401text"
-msgstr "This server could not verify that you are authorized to access the document you requested. Either you supplied the wrong credentials (e.g. bad password), or your browser does not understand how to supply the credentials required."
+msgstr "Questo server non ha potuto verificare che si è autorizzati ad accedere al documento richiesto. O avete fornito le credenziali sbagliate (ad esempio password errata), oppure il tuo browser non capire come fornire le credenziali richieste."
 
 msgid "403title"
-msgstr "Forbidden"
+msgstr "Proibita"
 
 msgid "403text"
-msgstr "You do not have permission to access the requested file on this server."
+msgstr "Non si dispone dell'autorizzazione per accedere al file richiesto su questo server."
 
 msgid "404title"
-msgstr "File Not Found"
+msgstr "File non trovato"
 
 msgid "404text"
-msgstr "The requested URL was not found on this server."
+msgstr "L'URL richiesto non è stato trovato su questo server."
 
 msgid "500title"
 msgstr "Internal Server Error"
 
 msgid "500text"
-msgstr "The server encountered an internal error and was unable to complete your request."
+msgstr "Il server ha rilevato un errore interno e non è riuscito a completare la richiesta."
 
 msgid "pageNotDoneYetTitle"
-msgstr "Transition Error"
+msgstr "Errore Transizione"
 
 msgid "pageNotDoneYetText"
-msgstr "The GUI page that you are trying to access has not yet been converted to BlueOnyx 5207R or 5208R. Please do a YUM update and also check 'Software Updates' for updates to any and all third party PKGs that you might have installed. If this does not solve the problem, please contact the vendor of the software that you tried to use when the error happened."
-# End: Error page localization
+msgstr "La pagina di interfaccia grafica che si sta tentando di accedere non è ancora stato convertito in BlueOnyx 5207R o 5208R. Si prega di fare un aggiornamento di yum e anche controllare Aggiornamenti software per aggiornamenti ogni e qualsiasi PKGS di terze parti che si potrebbe installare. Se questo non risolve il problema, contattare il fornitore del software che si è tentato di utilizzare quando è accaduto l'errore."
 
-# Start: Datatables
 msgid "sProcessing"
 msgstr "Processing ..."
 
 msgid "sLengthMenu"
-msgstr "Show _MENU_ entries"
+msgstr "Mostra Post _MENU_"
 
 msgid "sZeroRecords"
-msgstr "No data available in table."
+msgstr "Non sono disponibili dati in tabella."
 
 msgid "sInfo"
-msgstr "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr "Risultati _START_ a _END_ di voci _TOTAL_"
 
 msgid "sInfoEmpty"
-msgstr "Showing 0 to 0 of 0 entries"
+msgstr "Risultati 0-0 di 0 voci"
 
 msgid "sInfoFiltered"
-msgstr "(filtered from _MAX_ total entries)"
+msgstr "(Filtrata da voci totali _MAX_)"
 
 msgid "sSearch"
-msgstr "Search:"
+msgstr "Ricerca:"
 
 msgid "sFirst"
-msgstr "First"
+msgstr "Primo"
 
 msgid "sLast"
-msgstr "Last"
+msgstr "Ultimo"
 
 msgid "sPrevious"
 msgstr "[[palette.previous]]"
 
 msgid "sNext"
 msgstr "[[palette.next]]"
-# End: Datatables
 
 msgid "Yes"
-msgstr "Yes"
+msgstr "Sì"
 
 msgid "No"
 msgstr "No"
 
 msgid "enabled"
-msgstr "This item is enabled."
+msgstr "Questa voce è abilitata."
 
 msgid "disabled"
-msgstr "This item is disabled."
+msgstr "Questa voce è disattivata."
 
 msgid "notprivileged"
-msgstr "You do not have the privileges to modify this item."
+msgstr "Non si dispone dei privilegi necessari per modificare questa voce."
 
 msgid "disabled_short"
-msgstr "Disabled"
+msgstr "Disabile"
 
 msgid "enabled_short"
-msgstr "Enabled"
+msgstr "Abilitato"
 
 msgid "demo_mode_short"
 msgstr "Demo"
 
 msgid "demo_mode"
-msgstr "This server operates in demo mode. Saving of changes has been disabled on certain pages."
+msgstr "Questo server funziona in modalità demo. Salvataggio delle modifiche è stato disattivato in alcune pagine."
 
-## New Countries:
-msgid "ax" 
-msgstr "Åland Islands"
+msgid "ax"
+msgstr "Isole Åland"
 
-msgid "bl" 
-msgstr "Saint Barthélemy"
+msgid "bl"
+msgstr "Saint Barthelemy"
 
-msgid "bq" 
-msgstr "Bonaire, Sint Eustatius and Saba"
+msgid "bq"
+msgstr "Bonaire, Sint Eustatius e Saba"
 
-msgid "cd" 
-msgstr "Congo, the Democratic Republic of the"
+msgid "cd"
+msgstr "Congo, Repubblica Democratica del"
 
-msgid "cw" 
+msgid "cw"
 msgstr "Curaçao"
 
-msgid "gg" 
+msgid "gg"
 msgstr "Guernsey"
 
-msgid "im" 
-msgstr "Isle of Man"
+msgid "im"
+msgstr "Isola di Man"
 
-msgid "je" 
+msgid "je"
 msgstr "Jersey"
 
-msgid "me" 
+msgid "me"
 msgstr "Montenegro"
 
-msgid "mf" 
-msgstr "Saint Martin (French part)"
+msgid "mf"
+msgstr "Saint Martin (parte francese)"
 
-msgid "rs" 
+msgid "rs"
 msgstr "Serbia"
 
-msgid "ss" 
-msgstr "South Sudan"
+msgid "ss"
+msgstr "Sud Sudan"
 
-msgid "sx" 
-msgstr "Sint Maarten (Dutch part)"
+msgid "sx"
+msgstr "Sint Maarten (parte olandese)"
 
-msgid "tl" 
-msgstr "Timor-Leste"
+msgid "tl"
+msgstr "Timor Est"
 
 msgid "ps"
-msgstr "Palestine, State of"
-
-## Updated Password Check:
+msgstr "Palestina, Stato di"
 
 msgid "pw_way_too_short"
-msgstr "It is WAY too short!"
+msgstr "E 'troppo breve!"
 
 msgid "pw_too_short"
-msgstr "It is too short!"
+msgstr "E 'troppo corto!"
 
 msgid "pw_not_nuff_different"
-msgstr "It does not contain enough different characters."
+msgstr "Non contiene caratteri abbastanza diversi."
 
 msgid "pw_all_whitespace"
-msgstr "It is all whitespace!"
+msgstr "Si tratta di tutti gli spazi vuoti!"
 
 msgid "pw_too_simple"
-msgstr "It is too simplistic or too systematic!"
+msgstr "E 'troppo semplicistico o troppo sistematico!"
 
 msgid "pw_insurance_number"
-msgstr "It looks like a National Insurance number!"
+msgstr "Sembra un numero di assicurazione nazionale!"
 
 msgid "pw_dictionary_word"
-msgstr "It is based on a dictionary word!"
+msgstr "Si basa su una parola del dizionario!"
 
 msgid "pw_reversed_dictionary_word"
-msgstr "It is based on a reversed dictionary word!"
+msgstr "Si basa su una parola del dizionario invertito!"
 
 msgid "pw_strong_password"
-msgstr "Strong password."
+msgstr "Password di protezione."
 
 msgid "pw_not_identical"
-msgstr "The two passwords you entered are not identical."
+msgstr "Le due password inserite non sono identiche."
 
 msgid "addAll"
-msgstr "Add all"
+msgstr "Aggiungi tutti"
 
 msgid "removeAll"
-msgstr "Remove all"
+msgstr "Rimuovere tutti"
 
 msgid "itemsCount"
-msgstr "items selected"
+msgstr "articoli selezionati"
+

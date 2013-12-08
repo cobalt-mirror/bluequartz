@@ -1,99 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 #
 # These strings are used throughout the UI and are necessarily general in nature.
 #
 
 msgid "sort"
-msgstr "¥½¡¼¥È"
+msgstr "ã‚½ãƒ¼ãƒˆ"
 
 msgid "sort_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¤³¤Î¥«¥é¥à¤Î¾º½ç¤Ş¤¿¤Ï¹ß½ç¤Ë¥ê¥¹¥È¤¬¥½¡¼¥È¡ÊÊÂ¤ÓÂØ¤¨¡Ë¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã“ã®ã‚«ãƒ©ãƒ ã®æ˜‡é †ã¾ãŸã¯é™é †ã«ãƒªã‚¹ãƒˆãŒã‚½ãƒ¼ãƒˆï¼ˆä¸¦ã³æ›¿ãˆï¼‰ã•ã‚Œã¾ã™ã€‚"
 
 msgid "add"
-msgstr "ÄÉ²Ã"
+msgstr "è¿½åŠ "
 
 msgid "add_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¹àÌÜ¤òÄÉ²Ã¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€é …ç›®ã‚’è¿½åŠ ã§ãã¾ã™ã€‚"
 
 msgid "modify"
-msgstr "½¤Àµ"
+msgstr "ä¿®æ­£"
 
 msgid "modify_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¤³¤Î¹àÌÜ¤ò½¤Àµ¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã“ã®é …ç›®ã‚’ä¿®æ­£ã§ãã¾ã™ã€‚"
 
 msgid "modify_disabled_help"
-msgstr "¤³¤Î¹àÌÜ¤Ï½¤Àµ¤Ç¤­¤Ş¤»¤ó¡£"
+msgstr "ã“ã®é …ç›®ã¯ä¿®æ­£ã§ãã¾ã›ã‚“ã€‚"
 
 msgid "remove"
-msgstr "ºï½ü"
+msgstr "å‰Šé™¤"
 
 msgid "remove_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¤³¤Î¹àÌÜ¤òºï½ü¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã“ã®é …ç›®ã‚’å‰Šé™¤ã§ãã¾ã™ã€‚"
 
 msgid "remove_disabled_help"
-msgstr "¤³¤Î¹àÌÜ¤Ïºï½ü¤Ç¤­¤Ş¤»¤ó¡£"
+msgstr "ã“ã®é …ç›®ã¯å‰Šé™¤ã§ãã¾ã›ã‚“ã€‚"
 
 msgid "back"
-msgstr "Ìá¤ë"
+msgstr "æˆ»ã‚‹"
 
 msgid "back_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢Á°¤Î¥Ú¡¼¥¸¤ËÌá¤ê¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€å‰ã®ãƒšãƒ¼ã‚¸ã«æˆ»ã‚Šã¾ã™ã€‚"
 
 msgid "forward"
-msgstr "¿Ê¤à"
+msgstr "é€²ã‚€"
 
 msgid "forward_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¼¡¤Î¥Ú¡¼¥¸¤Ë¿Ê¤ß¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€æ¬¡ã®ãƒšãƒ¼ã‚¸ã«é€²ã¿ã¾ã™ã€‚"
 
 msgid "save"
-msgstr "ÊİÂ¸"
+msgstr "ä¿å­˜"
 
 msgid "save_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¤³¤Î¥Ú¡¼¥¸¤Ë²Ã¤¨¤¿ÊÑ¹¹¤¬ÊİÂ¸¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã“ã®ãƒšãƒ¼ã‚¸ã«åŠ ãˆãŸå¤‰æ›´ãŒä¿å­˜ã•ã‚Œã¾ã™ã€‚"
 
 msgid "cancel"
-msgstr "¥­¥ã¥ó¥»¥ë"
+msgstr "ã‚­ãƒ£ãƒ³ã‚»ãƒ«"
 
 msgid "cancel_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¤³¤Î¥Ú¡¼¥¸¤Ë²Ã¤¨¤¿ÊÑ¹¹¤¬¥­¥ã¥ó¥»¥ë¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã“ã®ãƒšãƒ¼ã‚¸ã«åŠ ãˆãŸå¤‰æ›´ãŒã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã™ã€‚"
 
 msgid "detail"
-msgstr "¾ÜºÙ"
+msgstr "è©³ç´°"
 
 msgid "detail_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¤³¤Î¹àÌÜ¤Î¾ÜºÙ¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã“ã®é …ç›®ã®è©³ç´°ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "defaultEmptyMessage"
-msgstr "[[VAR.name]]¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡£[[VAR.rule]]"
+msgstr "[[VAR.name]]ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚[[VAR.rule]]"
 
 msgid "defaultInvalidMessage"
-msgstr "[[VAR.invalidValue]] ¤Ï¡¢[[VAR.name]]¤Ë¤Ï»ØÄê¤Ç¤­¤Ş¤»¤ó¡£[[VAR.rule]]"
+msgstr "[[VAR.invalidValue]] ã¯ã€[[VAR.name]]ã«ã¯æŒ‡å®šã§ãã¾ã›ã‚“ã€‚[[VAR.rule]]"
 
 msgid "cceDown"
-msgstr "CCE¡Êcrucial system component¡Ë¤Ï¸½ºßÆ°ºî¤·¤Æ¤¤¤Ş¤»¤ó¡£¤·¤Ğ¤é¤¯¤·¤Æ¤«¤é¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£"
+msgstr "CCEï¼ˆcrucial system componentï¼‰ã¯ç¾åœ¨å‹•ä½œã—ã¦ã„ã¾ã›ã‚“ã€‚ã—ã°ã‚‰ãã—ã¦ã‹ã‚‰ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
 
 msgid "emptyList"
-msgstr "¤³¤Î¥ê¥¹¥È¤Ë¤Ï¡¢¸½ºß¤Î¤È¤³¤í²¿¤â´Ş¤Ş¤ì¤Æ¤¤¤Ş¤»¤ó¡£"
+msgstr "ã“ã®ãƒªã‚¹ãƒˆã«ã¯ã€ç¾åœ¨ã®ã¨ã“ã‚ä½•ã‚‚å«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
 
 msgid "entryCountPlural"
-msgstr "[[VAR.count]] ¥¨¥ó¥È¥ê"
+msgstr "[[VAR.count]] ã‚¨ãƒ³ãƒˆãƒª"
 
 msgid "entryCountSingular"
-msgstr "[[VAR.count]] ¥¨¥ó¥È¥ê"
+msgstr "[[VAR.count]] ã‚¨ãƒ³ãƒˆãƒª"
 
 msgid "entryRange"
-msgstr "¥¨¥ó¥È¥ê [[VAR.from]] ¡Á [[VAR.to]]"
+msgstr "ã‚¨ãƒ³ãƒˆãƒª [[VAR.from]] ã€œ [[VAR.to]]"
 
 msgid "logout"
-msgstr "¥í¥°¥¢¥¦¥È"
+msgstr "ãƒ­ã‚°ã‚¢ã‚¦ãƒˆ"
 
 msgid "logoutHelp"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥·¥¹¥Æ¥à¤«¤é¥í¥°¥¢¥¦¥È¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã§ãã¾ã™ã€‚"
 
 msgid "logoutConfirm"
-msgstr "¥·¥¹¥Æ¥à¤«¤é¥í¥°¥¢¥¦¥È¤·¤Æ¤è¤í¤·¤¤¤Ç¤¹¤«¡©"
+msgstr "ã‚·ã‚¹ãƒ†ãƒ ã‹ã‚‰ãƒ­ã‚°ã‚¢ã‚¦ãƒˆã—ã¦ã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ"
 
 msgid "browser"
-msgstr "<¥Ö¥é¥¦¥¶¤Î¥ª¥×¥·¥ç¥ó¤«¤éÀßÄê>"
+msgstr "<ãƒ–ãƒ©ã‚¦ã‚¶ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‹ã‚‰è¨­å®š>"
 
 msgid "localeLanguage"
 msgstr "[[VAR.language]]"
@@ -102,185 +112,185 @@ msgid "localeLanguageCountry"
 msgstr "[[VAR.language]]([[VAR.country]])"
 
 msgid "import"
-msgstr "¥¤¥ó¥İ¡¼¥È"
+msgstr "ã‚¤ãƒ³ãƒãƒ¼ãƒˆ"
 
 msgid "import_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¥¢¥É¥ì¥¹Ä¢¤¬³«¤­¡¢¤³¤Î¥Õ¥£¡¼¥ë¥É¤ËÆşÎÏ¤¹¤ëÅÅ»Ò¥á¡¼¥ë¥¢¥É¥ì¥¹¤òÁªÂò¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã‚¢ãƒ‰ãƒ¬ã‚¹å¸³ãŒé–‹ãã€ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã«å…¥åŠ›ã™ã‚‹é›»å­ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’é¸æŠã§ãã¾ã™ã€‚"
 
 msgid "navigationTitle"
-msgstr "[[VAR.hostName]]; ¥æ¡¼¥¶Ì¾ - [[VAR.userName]]"
+msgstr "[[VAR.hostName]]; ãƒ¦ãƒ¼ã‚¶å - [[VAR.userName]]"
 
 msgid "noItems"
-msgstr "_______ ¶õÍó _______"
+msgstr "_______ ç©ºæ¬„ _______"
 
 msgid "optional"
-msgstr "¾ÊÎ¬²Ä"
+msgstr "çœç•¥å¯"
 
 msgid "repeat"
-msgstr "ºÆÅÙÆşÎÏ"
+msgstr "å†åº¦å…¥åŠ›"
 
 msgid "statusSignalFailure"
-msgstr "¼ºÇÔ"
+msgstr "å¤±æ•—"
 
 msgid "statusSignalFailure_help"
-msgstr "¤³¤Î¹àÌÜ¤Ï¼ºÇÔ¤·¤Ş¤·¤¿¡£"
+msgstr "ã“ã®é …ç›®ã¯å¤±æ•—ã—ã¾ã—ãŸã€‚"
 
 msgid "statusSignalNew"
-msgstr "¿·µ¬"
+msgstr "æ–°è¦"
 
 msgid "statusSignalNew_help"
-msgstr "¤³¤ì¤Ï¿·¤·¤¤¹àÌÜ¤Ç¤¹¡£"
+msgstr "ã“ã‚Œã¯æ–°ã—ã„é …ç›®ã§ã™ã€‚"
 
 msgid "statusSignalOld"
-msgstr "´ûÂ¸"
+msgstr "æ—¢å­˜"
 
 msgid "statusSignalOld_help"
-msgstr "¤³¤ì¤Ï´ûÂ¸¤Î¹àÌÜ¤Ç¤¹¡£"
+msgstr "ã“ã‚Œã¯æ—¢å­˜ã®é …ç›®ã§ã™ã€‚"
 
 msgid "statusSignalReplied"
-msgstr "±şÅúºÑ¤ß"
+msgstr "å¿œç­”æ¸ˆã¿"
 
 msgid "statusSignalReplied_help"
-msgstr "¤³¤Î¹àÌÜ¤Ï±şÅúºÑ¤ß¤Ç¤¹¡£"
+msgstr "ã“ã®é …ç›®ã¯å¿œç­”æ¸ˆã¿ã§ã™ã€‚"
 
 msgid "statusSignalNone"
-msgstr "Æ°ºî¾õ¶·¤Ï¼ı½¸¤µ¤ì¤Æ¤¤¤Ş¤»¤ó"
+msgstr "å‹•ä½œçŠ¶æ³ã¯åé›†ã•ã‚Œã¦ã„ã¾ã›ã‚“"
 
 msgid "statusSignalNone_help"
-msgstr "¤³¤Î¹àÌÜ¤Ë¤Ï»ØÉ¸¤Ï¤¢¤ê¤Ş¤»¤ó¡£"
+msgstr "ã“ã®é …ç›®ã«ã¯æŒ‡æ¨™ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚"
 
 msgid "statusSignalDisabled"
-msgstr "Ìµ¸ú¤Ë¤µ¤ì¤Æ¤¤¤ë¹àÌÜ"
+msgstr "ç„¡åŠ¹ã«ã•ã‚Œã¦ã„ã‚‹é …ç›®"
 
 msgid "statusSignalDisabled_help"
-msgstr "¤³¤Î¹àÌÜ¤ÏÌµ¸ú¤Ë¤µ¤ì¤Æ¤¤¤Ş¤¹¡£"
+msgstr "ã“ã®é …ç›®ã¯ç„¡åŠ¹ã«ã•ã‚Œã¦ã„ã¾ã™ã€‚"
 
 msgid "statusSignalNoMonitor"
-msgstr "´Æ»ë¤µ¤ì¤Æ¤¤¤Ê¤¤¹àÌÜ"
+msgstr "ç›£è¦–ã•ã‚Œã¦ã„ãªã„é …ç›®"
 
 msgid "statusSignalNoMonitor_help"
-msgstr "¤³¤Î¹àÌÜ¤Ï´Æ»ë¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£"
+msgstr "ã“ã®é …ç›®ã¯ç›£è¦–ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
 
 msgid "statusSignalPending"
-msgstr "¸½ºßÆ°ºîÃæ"
+msgstr "ç¾åœ¨å‹•ä½œä¸­"
 
 msgid "statusSignalPending_help"
-msgstr "¤³¤Î¹àÌÜ¤Ï¸½ºßÆ°ºî¤·¤Æ¤¤¤Ş¤»¤ó¡£"
+msgstr "ã“ã®é …ç›®ã¯ç¾åœ¨å‹•ä½œã—ã¦ã„ã¾ã›ã‚“ã€‚"
 
 msgid "statusSignalNormal"
-msgstr "Àµ¾ï¤ËÆ°ºîÃæ"
+msgstr "æ­£å¸¸ã«å‹•ä½œä¸­"
 
 msgid "statusSignalNormal_help"
-msgstr "¤³¤Î¹àÌÜ¤ÏÀµ¾ï¤ËÆ°ºî¤·¤Æ¤¤¤Ş¤¹¡£"
+msgstr "ã“ã®é …ç›®ã¯æ­£å¸¸ã«å‹•ä½œã—ã¦ã„ã¾ã™ã€‚"
 
 msgid "statusSignalProblem"
-msgstr "ÌäÂêÈ¯À¸"
+msgstr "å•é¡Œç™ºç”Ÿ"
 
 msgid "statusSignalProblem_help"
-msgstr "¤³¤Î¹àÌÜ¤ËÌäÂê¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
+msgstr "ã“ã®é …ç›®ã«å•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"
 
 msgid "statusSignalSevereProblem"
-msgstr "¿¼¹ï¤ÊÌäÂêÈ¯À¸"
+msgstr "æ·±åˆ»ãªå•é¡Œç™ºç”Ÿ"
 
 msgid "statusSignalSevereProblem_help"
-msgstr "¤³¤Î¹àÌÜ¤Ë¿¼¹ï¤ÊÌäÂê¤¬È¯À¸¤·¤Ş¤·¤¿¡£"
+msgstr "ã“ã®é …ç›®ã«æ·±åˆ»ãªå•é¡ŒãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚"
 
 msgid "statusSignalSuccess"
-msgstr "À®¸ù"
+msgstr "æˆåŠŸ"
 
 msgid "statusSignalSuccess_help"
-msgstr "¤³¤Î¹àÌÜ¤ÏÀ®¸ù¤·¤Ş¤·¤¿¡£"
+msgstr "ã“ã®é …ç›®ã¯æˆåŠŸã—ã¾ã—ãŸã€‚"
 
 msgid "noInstances"
-msgstr "Áàºî¤ò´°Î»¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£½¤Àµ¤¹¤ë[[VAR.class]]¥¯¥é¥¹¤Î¥¤¥ó¥¹¥¿¥ó¥¹¤¬¸«¤Ä¤«¤ê¤Ş¤»¤ó¤Ç¤·¤¿¡£"
+msgstr "æ“ä½œã‚’å®Œäº†ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ä¿®æ­£ã™ã‚‹[[VAR.class]]ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚"
 
 msgid "tooManyInstances"
-msgstr "Áàºî¤ò´°Î»¤Ç¤­¤Ş¤»¤ó¤Ç¤·¤¿¡£½¤Àµ¤¹¤ë[[VAR.class]]¥¯¥é¥¹¤Î¥¤¥ó¥¹¥¿¥ó¥¹¤¬Ê£¿ô¸«¤Ä¤«¤ê¤Ş¤·¤¿¡£"
+msgstr "æ“ä½œã‚’å®Œäº†ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚ä¿®æ­£ã™ã‚‹[[VAR.class]]ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãŒè¤‡æ•°è¦‹ã¤ã‹ã‚Šã¾ã—ãŸã€‚"
 
 msgid "uninstall"
-msgstr "¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë"
+msgstr "ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«"
 
 msgid "uninstall_help"
-msgstr "¤³¤³¤ò¥¯¥ê¥Ã¥¯¤¹¤ë¤È¡¢¥¢¥¤¥Æ¥à¤ò¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤¹¡£"
+msgstr "ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã™ã‚‹ã¨ã€ã‚¢ã‚¤ãƒ†ãƒ ã‚’ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã™ã€‚"
 
 msgid "uninstall_disabled_help"
-msgstr "¤³¤Î¥¢¥¤¥Æ¥à¤Ï¥¢¥ó¥¤¥ó¥¹¥È¡¼¥ë¤Ç¤­¤Ş¤»¤ó¡£"
+msgstr "ã“ã®ã‚¢ã‚¤ãƒ†ãƒ ã¯ã‚¢ãƒ³ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã§ãã¾ã›ã‚“ã€‚"
 
 
 msgid "wait"
-msgstr "ÊÑ¹¹¤¬´°Î»¤¹¤ë¤Ş¤Ç¡¢¤·¤Ğ¤é¤¯¤ªÂÔ¤Á¤¯¤À¤µ¤¤¡£"
+msgstr "å¤‰æ›´ãŒå®Œäº†ã™ã‚‹ã¾ã§ã€ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€‚"
 
 #
 # status page stuff
 #
 
 msgid "messageField"
-msgstr "¥¿¥¹¥¯¤Î¾õÂÖ"
+msgstr "ã‚¿ã‚¹ã‚¯ã®çŠ¶æ…‹"
 
 msgid "messageField_help"
-msgstr "¼Â¹ÔÃæ¤Î¥¿¥¹¥¯¤Î¸½ºß¤Î¾õÂÖ¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "å®Ÿè¡Œä¸­ã®ã‚¿ã‚¹ã‚¯ã®ç¾åœ¨ã®çŠ¶æ…‹ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "progressField"
-msgstr "¥¿¥¹¥¯¤Î¿Ê¹Ô¾õ¶·"
+msgstr "ã‚¿ã‚¹ã‚¯ã®é€²è¡ŒçŠ¶æ³"
 
 msgid "progressField_help"
-msgstr "¼Â¹ÔÃæ¤Î¥¿¥¹¥¯¤Î¿Ê¹Ô¾õ¶·¤Ç¤¹¡£"
+msgstr "å®Ÿè¡Œä¸­ã®ã‚¿ã‚¹ã‚¯ã®é€²è¡ŒçŠ¶æ³ã§ã™ã€‚"
 
 msgid "submessageField"
-msgstr "¥µ¥Ö¥¿¥¹¥¯¤Î¾õÂÖ"
+msgstr "ã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®çŠ¶æ…‹"
 msgid "submessageField_help"
-msgstr "¼Â¹ÔÃæ¤Î¥µ¥Ö¥¿¥¹¥¯¤Î¸½ºß¤Î¾õÂÖ¤¬É½¼¨¤µ¤ì¤Ş¤¹¡£"
+msgstr "å®Ÿè¡Œä¸­ã®ã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®ç¾åœ¨ã®çŠ¶æ…‹ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
 
 msgid "subprogressField"
-msgstr "¥µ¥Ö¥¿¥¹¥¯¤Î¿Ê¹Ô¾õ¶·"
+msgstr "ã‚µãƒ–ã‚¿ã‚¹ã‚¯ã®é€²è¡ŒçŠ¶æ³"
 
 msgid "subprogressField_help"
-msgstr "¥µ¥Ö¼Â¹ÔÃæ¤Î¥¿¥¹¥¯¤Î¿Ê¹Ô¾õ¶·¤Ç¤¹¡£"
+msgstr "ã‚µãƒ–å®Ÿè¡Œä¸­ã®ã‚¿ã‚¹ã‚¯ã®é€²è¡ŒçŠ¶æ³ã§ã™ã€‚"
 #
 # MultiFileUpload Stuff
 #
 
 msgid "noFiles"
-msgstr "_______ ¥Õ¥¡¥¤¥ë¤Ê¤· _______"
+msgstr "_______ ãƒ•ã‚¡ã‚¤ãƒ«ãªã— _______"
 
 msgid "addAttachment"
-msgstr "ÄÉ²Ã"
+msgstr "è¿½åŠ "
 
 msgid "addAttachment_help"
-msgstr "¥Õ¥¡¥¤¥ë¤ò¥ê¥¹¥È¤ËÄÉ²Ã¤·¤Ş¤¹¡£"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ ã—ã¾ã™ã€‚"
 
 msgid "removeAttachment"
-msgstr "ºï½ü"
+msgstr "å‰Šé™¤"
 
 msgid "removeAttachment_help"
-msgstr "¥Õ¥¡¥¤¥ë¤ò¥ê¥¹¥È¤«¤éºï½ü¤·¤Ş¤¹¡£"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤ã—ã¾ã™ã€‚"
 
 msgid "MultiFileUploadWindow"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É¤¹¤ë¥Õ¥¡¥¤¥ë¤òÄÉ²Ã"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¿½åŠ "
 
 msgid "MultiFileUploadWindow_description"
 msgstr " "
 
 msgid "fileToAttach"
-msgstr "¥Õ¥¡¥¤¥ë"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«"
 
 msgid "fileToAttach_help"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É¤¹¤ë¥Õ¥¡¥¤¥ë¤òÁª¤ó¤Ç¡ÎÅºÉÕ¡Ï¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤ÆÁàºî¤òÂ³¤±¤ë¤«¡¢¡Î¥­¥ã¥ó¥»¥ë¡Ï¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤³¤Î¥¦¥£¥ó¥É¥¦¤òÊÄ¤¸¤Ş¤¹¡£"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸ã‚“ã§ï¼»æ·»ä»˜ï¼½ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦æ“ä½œã‚’ç¶šã‘ã‚‹ã‹ã€ï¼»ã‚­ãƒ£ãƒ³ã‚»ãƒ«ï¼½ãƒœã‚¿ãƒ³ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ã“ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã¾ã™ã€‚"
 
 msgid "fileUpload_invalid"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É¤¹¤ë¥Õ¥¡¥¤¥ë¤¬ÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
 
 msgid "addAttachmentButton"
-msgstr "ÅºÉÕ"
+msgstr "æ·»ä»˜"
 
 msgid "addAttachmentButton_help"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É¤·¤¿¤¤¥Õ¥¡¥¤¥ë¤òÁª¤ó¤Ç¤«¤é¡¢¤³¤³¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã—ãŸã„ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸ã‚“ã§ã‹ã‚‰ã€ã“ã“ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¦ãã ã•ã„ã€‚"
 
 msgid "errorGettingFile"
-msgstr "¥¢¥Ã¥×¥í¡¼¥É¥¨¥é¡¼"
+msgstr "ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã‚¨ãƒ©ãƒ¼"
 
 msgid "errorOccuredWhilereceivingFile"
-msgstr "¥Õ¥¡¥¤¥ë¤Î¼õ¿®Ãæ¤Ë¥¨¥é¡¼¤¬È¯À¸¤·¤Ş¤·¤¿¡£¤â¤¦°ìÅÙ¤ª»î¤·¤¯¤À¤µ¤¤¡£"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ã®å—ä¿¡ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ã‚‚ã†ä¸€åº¦ãŠè©¦ã—ãã ã•ã„ã€‚"
 
 #
 # Numerics
@@ -291,19 +301,19 @@ msgstr "([[VAR.minBound]] - [[VAR.maxBound]])"
 # Time Stuff
 #
 msgid "yearLabel"
-msgstr "Ç¯"
+msgstr "å¹´"
 
 msgid "monthLabel"
-msgstr "·î"
+msgstr "æœˆ"
 
 msgid "dayLabel"
-msgstr "Æü"
+msgstr "æ—¥"
 
 msgid "hourLabel"
-msgstr "»ş"
+msgstr "æ™‚"
 
 msgid "minuteLabel"
-msgstr "Ê¬"
+msgstr "åˆ†"
 
 # possible VARs: date
 msgid "date"
@@ -334,46 +344,46 @@ msgid "timeFormat"
 msgstr "[[VAR.amPm]] [[VAR.hour]] [[palette.hourLabel]] [[VAR.minute]] [[palette.minuteLabel]]"
 
 msgid "am"
-msgstr "¸áÁ°"
+msgstr "åˆå‰"
 
 msgid "pm"
-msgstr "¸á¸å"
+msgstr "åˆå¾Œ"
 
 msgid "01month"
-msgstr "1"
+msgstr "1æœˆ"
 
 msgid "02month"
-msgstr "2"
+msgstr "2æœˆ"
 
 msgid "03month"
-msgstr "3"
+msgstr "3æœˆ"
 
 msgid "04month"
-msgstr "4"
+msgstr "4æœˆ"
 
 msgid "05month"
-msgstr "5"
+msgstr "5æœˆ"
 
 msgid "06month"
-msgstr "6"
+msgstr "6æœˆ"
 
 msgid "07month"
-msgstr "7"
+msgstr "7æœˆ"
 
 msgid "08month"
-msgstr "8"
+msgstr "8æœˆ"
 
 msgid "09month"
-msgstr "9"
+msgstr "9æœˆ"
 
 msgid "10month"
-msgstr "10"
+msgstr "10æœˆ"
 
 msgid "11month"
-msgstr "11"
+msgstr "11æœˆ"
 
 msgid "12month"
-msgstr "12"
+msgstr "12æœˆ"
 
 msgid "0000Hour"
 msgstr "12"
@@ -447,1645 +457,1728 @@ msgstr "22"
 msgid "2300Hour"  
 msgstr "23"
 
+# -- Months (short):
+
+msgid "01month_short"
+msgstr "1æœˆ"
+
+msgid "02month_short"
+msgstr "2æœˆ"
+
+msgid "03month_short"
+msgstr "3æœˆ"
+
+msgid "04month_short"
+msgstr "4æœˆ"
+
+msgid "05month_short"
+msgstr "5æœˆ"
+
+msgid "06month_short"
+msgstr "6æœˆ"
+
+msgid "07month_short"
+msgstr "7æœˆ"
+
+msgid "08month_short"
+msgstr "8æœˆ"
+
+msgid "09month_short"
+msgstr "9æœˆ"
+
+msgid "10month_short"
+msgstr "10æœˆ"
+
+msgid "11month_short"
+msgstr "11æœˆ"
+
+msgid "12month_short"
+msgstr "11æœˆ"
+
+#-- Weekdays (long):
+
+msgid "sunday"
+msgstr "æ—¥æ›œæ—¥"
+
+msgid "monday"
+msgstr "æœˆæ›œæ—¥"
+
+msgid "tuesday"
+msgstr "ç«æ›œæ—¥"
+
+msgid "wednesday"
+msgstr "æ°´æ›œæ—¥"
+
+msgid "thursday"
+msgstr "æœ¨æ›œæ—¥"
+
+msgid "friday"
+msgstr "é‡‘æ›œæ—¥"
+
+msgid "saturday"
+msgstr "åœŸæ›œæ—¥"
+
+#-- Weekdays (short):
+
+msgid "sunday_short"
+msgstr "æ—¥æ›œæ—¥"
+
+msgid "monday_short"
+msgstr "æœˆæ›œæ—¥"
+
+msgid "tuesday_short"
+msgstr "ç«æ›œæ—¥"
+
+msgid "wednesday_short"
+msgstr "æ°´æ›œæ—¥"
+
+msgid "thursday_short"
+msgstr "æœ¨æ›œæ—¥"
+
+msgid "friday_short"
+msgstr "é‡‘æ›œæ—¥"
+
+msgid "saturday_short"
+msgstr "åœŸæ›œæ—¥"
 
 #
 # Time Zone Stuff
 #
 
 msgid "Africa"
-msgstr "¥¢¥Õ¥ê¥«"
+msgstr "ã‚¢ãƒ•ãƒªã‚«"
 
 msgid "Antarctica"
-msgstr "Æî¶Ë"
+msgstr "å—æ¥µ"
 
 msgid "Asia"
-msgstr "¥¢¥¸¥¢"
+msgstr "ã‚¢ã‚¸ã‚¢"
 
 msgid "Atlantic"
-msgstr "ÂçÀ¾ÍÎ"
+msgstr "å¤§è¥¿æ´‹"
 
 msgid "Europe"
-msgstr "¥è¡¼¥í¥Ã¥Ñ"
+msgstr "ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘"
 
 msgid "Indian"
-msgstr "¥¤¥ó¥ÉÍÎ"
+msgstr "ã‚¤ãƒ³ãƒ‰æ´‹"
 
 msgid "NorthAmerica"
-msgstr "ËÌÊÆ"
+msgstr "åŒ—ç±³"
 
 msgid "Oceania"
-msgstr "¥ª¥»¥¢¥Ë¥¢¡¿¥ª¡¼¥¹¥È¥é¥ê¥¢"
+msgstr "ã‚ªã‚»ã‚¢ãƒ‹ã‚¢ï¼ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢"
 
 msgid "SouthAmerica"
-msgstr "ÆîÊÆ"
+msgstr "å—ç±³"
 
 msgid "UTC"
-msgstr "UTC ¥ª¥Õ¥»¥Ã¥È"
+msgstr "UTC ã‚ªãƒ•ã‚»ãƒƒãƒˆ"
 
 msgid "NorthAmerica/AG"
-msgstr "¥¢¥ó¥Æ¥£¥°¥¢¡İ¥Ğ¡¼¥Ö¡¼¥À"
+msgstr "ã‚¢ãƒ³ãƒ†ã‚£ã‚°ã‚¢â€ãƒãƒ¼ãƒ–ãƒ¼ãƒ€"
 
 msgid "America/St_Johns"
-msgstr "¥»¥ó¥È¥¸¥ç¥ó¥º"
+msgstr "ã‚»ãƒ³ãƒˆã‚¸ãƒ§ãƒ³ã‚º"
 
 msgid "NorthAmerica/BS"
-msgstr "¥Ğ¥Ï¥Ş"
+msgstr "ãƒãƒãƒ"
 
 msgid "America/Nassau"
-msgstr "¥Ê¥Ã¥½¡¼"
+msgstr "ãƒŠãƒƒã‚½ãƒ¼"
 
 msgid "NorthAmerica/BB"
-msgstr "¥Ğ¥ë¥Ğ¥É¥¹"
+msgstr "ãƒãƒ«ãƒãƒ‰ã‚¹"
 
 msgid "America/Barbados"
-msgstr "¥Ğ¥ë¥Ğ¥É¥¹"
+msgstr "ãƒãƒ«ãƒãƒ‰ã‚¹"
 
 msgid "NorthAmerica/BZ"
-msgstr "¥Ù¥ê¡¼¥º"
+msgstr "ãƒ™ãƒªãƒ¼ã‚º"
 
 msgid "America/Belize"
-msgstr "¥Ù¥ê¡¼¥º"
+msgstr "ãƒ™ãƒªãƒ¼ã‚º"
 
 msgid "NorthAmerica/CR"
-msgstr "¥³¥¹¥¿¥ê¥«"
+msgstr "ã‚³ã‚¹ã‚¿ãƒªã‚«"
 
 msgid "America/Costa_Rica"
-msgstr "¥³¥¹¥¿¥ê¥«"
+msgstr "ã‚³ã‚¹ã‚¿ãƒªã‚«"
 
 msgid "NorthAmerica/CU"
-msgstr "¥­¥å¡¼¥Ğ"
+msgstr "ã‚­ãƒ¥ãƒ¼ãƒ"
 
 msgid "America/Havana"
-msgstr "¥Ï¥Ğ¥Ê"
+msgstr "ãƒãƒãƒŠ"
 
 msgid "NorthAmerica/DM"
-msgstr "¥É¥ß¥Ë¥«"
+msgstr "ãƒ‰ãƒŸãƒ‹ã‚«"
 
 msgid "America/Dominica"
-msgstr "¥É¥ß¥Ë¥«"
+msgstr "ãƒ‰ãƒŸãƒ‹ã‚«"
 
 msgid "NorthAmerica/DO"
-msgstr "¥É¥ß¥Ë¥«¶¦ÏÂ¹ñ"
+msgstr "ãƒ‰ãƒŸãƒ‹ã‚«å…±å’Œå›½"
 
 msgid "America/Santo_Domingo"
-msgstr "¥µ¥ó¥È¥É¥ß¥ó¥´"
+msgstr "ã‚µãƒ³ãƒˆãƒ‰ãƒŸãƒ³ã‚´"
 
 msgid "NorthAmerica/SV"
-msgstr "¥¨¥ë¥µ¥ë¥Ğ¥É¥ë"
+msgstr "ã‚¨ãƒ«ã‚µãƒ«ãƒãƒ‰ãƒ«"
 
 msgid "America/El_Salvador"
-msgstr "¥¨¥ë¥µ¥ë¥Ğ¥É¥ë"
+msgstr "ã‚¨ãƒ«ã‚µãƒ«ãƒãƒ‰ãƒ«"
 
 msgid "NorthAmerica/GL"
-msgstr "¥°¥ê¡¼¥ó¥é¥ó¥É"
+msgstr "ã‚°ãƒªãƒ¼ãƒ³ãƒ©ãƒ³ãƒ‰"
 
 msgid "America/Godthab"
-msgstr "¥´¥Ã¥È¥Û¡¼¥×"
+msgstr "ã‚´ãƒƒãƒˆãƒ›ãƒ¼ãƒ—"
 
 msgid "NorthAmerica/GD"
-msgstr "¥°¥ì¥Ê¥À"
+msgstr "ã‚°ãƒ¬ãƒŠãƒ€"
 
 msgid "America/Grenada"
-msgstr "¥°¥ì¥Ê¥À"
+msgstr "ã‚°ãƒ¬ãƒŠãƒ€"
 
 msgid "NorthAmerica/GT"
-msgstr "¥¬¥Æ¥Ş¥é"
+msgstr "ã‚¬ãƒ†ãƒãƒ©"
 
 msgid "America/Guatemala"
-msgstr "¥¬¥Æ¥Ş¥é"
+msgstr "ã‚¬ãƒ†ãƒãƒ©"
 
 msgid "NorthAmerica/HT"
-msgstr "¥Ï¥¤¥Á"
+msgstr "ãƒã‚¤ãƒ"
 
 msgid "America/Port-au-Prince"
-msgstr "¥İ¥ë¥È¡İ¥×¥é¥ó¥¹"
+msgstr "ãƒãƒ«ãƒˆâ€ãƒ—ãƒ©ãƒ³ã‚¹"
 
 msgid "NorthAmerica/HN"
-msgstr "¥Û¥ó¥¸¥å¥é¥¹"
+msgstr "ãƒ›ãƒ³ã‚¸ãƒ¥ãƒ©ã‚¹"
 
 msgid "America/Tegucigalpa"
-msgstr "¥Æ¥°¥·¥¬¥ë¥Ñ"
+msgstr "ãƒ†ã‚°ã‚·ã‚¬ãƒ«ãƒ‘"
 
 msgid "NorthAmerica/JM"
-msgstr "¥¸¥ã¥Ş¥¤¥«"
+msgstr "ã‚¸ãƒ£ãƒã‚¤ã‚«"
 
 msgid "America/Jamaica"
-msgstr "¥¸¥ã¥Ş¥¤¥«"
+msgstr "ã‚¸ãƒ£ãƒã‚¤ã‚«"
 
 msgid "Navajo"
-msgstr "¥Ê¥Ğ¥Û¼«¼£¶è"
+msgstr "ãƒŠãƒãƒ›è‡ªæ²»åŒº"
 
 msgid "NorthAmerica/NI"
-msgstr "¥Ë¥«¥é¥°¥¢"
+msgstr "ãƒ‹ã‚«ãƒ©ã‚°ã‚¢"
 
 msgid "America/Managua"
-msgstr "¥Ş¥Ê¥°¥¢"
+msgstr "ãƒãƒŠã‚°ã‚¢"
 
 msgid "NorthAmerica/MX"
-msgstr "¥á¥­¥·¥³"
+msgstr "ãƒ¡ã‚­ã‚·ã‚³"
 
 msgid "NorthAmerica/PA"
-msgstr "¥Ñ¥Ê¥Ş"
+msgstr "ãƒ‘ãƒŠãƒ"
 
 msgid "America/Panama"
-msgstr "¥Ñ¥Ê¥Ş"
+msgstr "ãƒ‘ãƒŠãƒ"
 
 msgid "NorthAmerica/PR"
-msgstr "¥×¥¨¥ë¥È¥ê¥³"
+msgstr "ãƒ—ã‚¨ãƒ«ãƒˆãƒªã‚³"
 
 msgid "America/Puerto_Rico"
-msgstr "¥×¥¨¥ë¥È¥ê¥³"
+msgstr "ãƒ—ã‚¨ãƒ«ãƒˆãƒªã‚³"
 
 msgid "NorthAmerica/KN"
-msgstr "¥»¥ó¥È¥­¥Ã¥Ä¡¦¥Í¥¤¥Ó¥¹"
+msgstr "ã‚»ãƒ³ãƒˆã‚­ãƒƒãƒ„ãƒ»ãƒã‚¤ãƒ“ã‚¹"
 
 msgid "America/St_Kitts"
-msgstr "¥»¥ó¥È¥­¥Ã¥ÄÅç"
+msgstr "ã‚»ãƒ³ãƒˆã‚­ãƒƒãƒ„å³¶"
 
 msgid "NorthAmerica/LC"
-msgstr "¥»¥ó¥È¥ë¥·¥¢"
+msgstr "ã‚»ãƒ³ãƒˆãƒ«ã‚·ã‚¢"
 
 msgid "America/St_Lucia"
-msgstr "¥»¥ó¥È¥ë¥·¥¢"
+msgstr "ã‚»ãƒ³ãƒˆãƒ«ã‚·ã‚¢"
 
 msgid "NorthAmerica/PM"
-msgstr "¥µ¥ó¥Ô¥¨¡¼¥ë¡¦¥¨¡¦¥ß¥¯¥í¥óÅç"
+msgstr "ã‚µãƒ³ãƒ”ã‚¨ãƒ¼ãƒ«ãƒ»ã‚¨ãƒ»ãƒŸã‚¯ãƒ­ãƒ³å³¶"
 
 msgid "America/Miquelon"
-msgstr "¥ß¥¯¥í¥ó"
+msgstr "ãƒŸã‚¯ãƒ­ãƒ³"
 
 msgid "NorthAmerica/VC"
-msgstr "¥»¥ó¥È¥Ó¥ó¥»¥ó¥È¡¿¥°¥ì¥Ê¥Ç¥£¡¼¥ó½ôÅç"
+msgstr "ã‚»ãƒ³ãƒˆãƒ“ãƒ³ã‚»ãƒ³ãƒˆï¼ã‚°ãƒ¬ãƒŠãƒ‡ã‚£ãƒ¼ãƒ³è«¸å³¶"
 
 msgid "America/St_Vincent"
-msgstr "¥»¥ó¥È¥Ó¥ó¥»¥ó¥È"
+msgstr "ã‚»ãƒ³ãƒˆãƒ“ãƒ³ã‚»ãƒ³ãƒˆ"
 
 msgid "NorthAmerica/TT"
-msgstr "¥È¥ê¥Ë¥À¡¼¥É¡¦¥È¥Ğ¥´"
+msgstr "ãƒˆãƒªãƒ‹ãƒ€ãƒ¼ãƒ‰ãƒ»ãƒˆãƒã‚´"
 
 msgid "America/Port_of_Spain"
-msgstr "¥İ¡¼¥È¥ª¥Ö¥¹¥Ú¥¤¥ó"
+msgstr "ãƒãƒ¼ãƒˆã‚ªãƒ–ã‚¹ãƒšã‚¤ãƒ³"
 
 msgid "NorthAmerica/TC"
-msgstr "¥¿¡¼¥¯¥¹¡¿¥«¥¤¥³¥¹½ôÅç"
+msgstr "ã‚¿ãƒ¼ã‚¯ã‚¹ï¼ã‚«ã‚¤ã‚³ã‚¹è«¸å³¶"
 
 msgid "America/Grand_Turk"
-msgstr "¥°¥é¥ó¥É¥¿¡¼¥¯"
+msgstr "ã‚°ãƒ©ãƒ³ãƒ‰ã‚¿ãƒ¼ã‚¯"
 
 msgid "Europe/AL"
-msgstr "¥¢¥ë¥Ğ¥Ë¥¢"
+msgstr "ã‚¢ãƒ«ãƒãƒ‹ã‚¢"
 
 msgid "Europe/Tirane"
-msgstr "¥Á¥é¥Ê"
+msgstr "ãƒãƒ©ãƒŠ"
 
 msgid "Europe/AD"
-msgstr "¥¢¥ó¥É¥é"
+msgstr "ã‚¢ãƒ³ãƒ‰ãƒ©"
 
 msgid "Europe/Andorra"
-msgstr "¥¢¥ó¥É¥é"
+msgstr "ã‚¢ãƒ³ãƒ‰ãƒ©"
 
 msgid "Europe/AT"
-msgstr "¥ª¡¼¥¹¥È¥ê¥¢"
+msgstr "ã‚ªãƒ¼ã‚¹ãƒˆãƒªã‚¢"
 
 msgid "Europe/Vienna"
-msgstr "¥¦¥£¡¼¥ó"
+msgstr "ã‚¦ã‚£ãƒ¼ãƒ³"
 
 msgid "Europe/BY"
-msgstr "¥Ù¥é¥ë¡¼¥·"
+msgstr "ãƒ™ãƒ©ãƒ«ãƒ¼ã‚·"
 
 msgid "Europe/Minsk"
-msgstr "¥ß¥ó¥¹¥¯"
+msgstr "ãƒŸãƒ³ã‚¹ã‚¯"
 
 msgid "Europe/BE"
-msgstr "¥Ù¥ë¥®¡½"
+msgstr "ãƒ™ãƒ«ã‚®â€•"
 
 msgid "Europe/Brussels"
-msgstr "¥Ö¥ê¥å¥Ã¥»¥ë"
+msgstr "ãƒ–ãƒªãƒ¥ãƒƒã‚»ãƒ«"
 
 msgid "Europe/BA"
-msgstr "¥Ü¥¹¥Ë¥¢¡¦¥Ø¥ë¥Ä¥§¥´¥Ó¥Ê"
+msgstr "ãƒœã‚¹ãƒ‹ã‚¢ãƒ»ãƒ˜ãƒ«ãƒ„ã‚§ã‚´ãƒ“ãƒŠ"
 
 msgid "Europe/Sarajevo"
-msgstr "¥µ¥é¥¨¥Ü"
+msgstr "ã‚µãƒ©ã‚¨ãƒœ"
 
 msgid "Europe/BG"
-msgstr "¥Ö¥ë¥¬¥ê¥¢"
+msgstr "ãƒ–ãƒ«ã‚¬ãƒªã‚¢"
 
 msgid "Europe/Sofia"
-msgstr "¥½¥Õ¥£¥¢"
+msgstr "ã‚½ãƒ•ã‚£ã‚¢"
 
 msgid "Europe/HR"
-msgstr "¥¯¥í¥¢¥Á¥¢"
+msgstr "ã‚¯ãƒ­ã‚¢ãƒã‚¢"
 
 msgid "Europe/Zagreb"
-msgstr "¥¶¥°¥ì¥Ö"
+msgstr "ã‚¶ã‚°ãƒ¬ãƒ–"
 
 msgid "Europe/CZ"
-msgstr "¥Á¥§¥³¶¦ÏÂ¹ñ"
+msgstr "ãƒã‚§ã‚³å…±å’Œå›½"
 
 msgid "Europe/Prague"
-msgstr "¥×¥é¥Ï"
+msgstr "ãƒ—ãƒ©ãƒ"
 
 msgid "Europe/DK"
-msgstr "¥Ç¥ó¥Ş¡¼¥¯"
+msgstr "ãƒ‡ãƒ³ãƒãƒ¼ã‚¯"
 
 msgid "Europe/Copenhagen"
-msgstr "¥³¥Ú¥ó¥Ï¡¼¥²¥ó"
+msgstr "ã‚³ãƒšãƒ³ãƒãƒ¼ã‚²ãƒ³"
 
 msgid "Europe/EE"
-msgstr "¥¨¥¹¥È¥Ë¥¢"
+msgstr "ã‚¨ã‚¹ãƒˆãƒ‹ã‚¢"
 
 msgid "Europe/Tallinn"
-msgstr "¥¿¥ê¥ó"
+msgstr "ã‚¿ãƒªãƒ³"
 
 msgid "Europe/FI"
-msgstr "¥Õ¥£¥ó¥é¥ó¥É"
+msgstr "ãƒ•ã‚£ãƒ³ãƒ©ãƒ³ãƒ‰"
 
 msgid "Europe/Helsinki"
-msgstr "¥Ø¥ë¥·¥ó¥­"
+msgstr "ãƒ˜ãƒ«ã‚·ãƒ³ã‚­"
 
 msgid "Europe/FR"
-msgstr "¥Õ¥é¥ó¥¹"
+msgstr "ãƒ•ãƒ©ãƒ³ã‚¹"
 
 msgid "Europe/Paris"
-msgstr "¥Ñ¥ê"
+msgstr "ãƒ‘ãƒª"
 
 msgid "Europe/DE"
-msgstr "¥É¥¤¥Ä"
+msgstr "ãƒ‰ã‚¤ãƒ„"
 
 msgid "Europe/Berlin"
-msgstr "¥Ù¥ë¥ê¥ó"
+msgstr "ãƒ™ãƒ«ãƒªãƒ³"
 
 msgid "Europe/GR"
-msgstr "¥®¥ê¥·¥ã"
+msgstr "ã‚®ãƒªã‚·ãƒ£"
 
 msgid "Europe/Athens"
-msgstr "¥¢¥Æ¥Í"
+msgstr "ã‚¢ãƒ†ãƒ"
 
 msgid "Europe/HU"
-msgstr "¥Ï¥ó¥¬¥ê¡¼"
+msgstr "ãƒãƒ³ã‚¬ãƒªãƒ¼"
 
 msgid "Europe/Budapest"
-msgstr "¥Ö¥À¥Ú¥¹¥È"
+msgstr "ãƒ–ãƒ€ãƒšã‚¹ãƒˆ"
 
 msgid "Europe/IS"
-msgstr "¥¢¥¤¥¹¥é¥ó¥É"
+msgstr "ã‚¢ã‚¤ã‚¹ãƒ©ãƒ³ãƒ‰"
 
 msgid "Europe/IE"
-msgstr "¥¢¥¤¥ë¥é¥ó¥É"
+msgstr "ã‚¢ã‚¤ãƒ«ãƒ©ãƒ³ãƒ‰"
 
 msgid "Europe/Dublin"
-msgstr "¥À¥Ö¥ê¥ó"
+msgstr "ãƒ€ãƒ–ãƒªãƒ³"
 
 msgid "Europe/IT"
-msgstr "¥¤¥¿¥ê¥¢"
+msgstr "ã‚¤ã‚¿ãƒªã‚¢"
 
 msgid "Europe/Rome"
-msgstr "¥í¡¼¥Ş"
+msgstr "ãƒ­ãƒ¼ãƒ"
 
 msgid "Europe/LV"
-msgstr "¥é¥È¥Ó¥¢"
+msgstr "ãƒ©ãƒˆãƒ“ã‚¢"
 
 msgid "Europe/Riga"
-msgstr "¥ê¥¬"
+msgstr "ãƒªã‚¬"
 
 msgid "Europe/LI"
-msgstr "¥ê¥Ò¥Æ¥ó¥·¥å¥¿¥¤¥ó"
+msgstr "ãƒªãƒ’ãƒ†ãƒ³ã‚·ãƒ¥ã‚¿ã‚¤ãƒ³"
 
 msgid "Europe/Vaduz"
-msgstr "¥Õ¥¡¥É¥¥¡¼¥Ä"
+msgstr "ãƒ•ã‚¡ãƒ‰ã‚¥ãƒ¼ãƒ„"
 
 msgid "Europe/LT"
-msgstr "¥ê¥È¥¢¥Ë¥¢"
+msgstr "ãƒªãƒˆã‚¢ãƒ‹ã‚¢"
 
 msgid "Europe/Vilnius"
-msgstr "¥Ó¥ê¥Ë¥å¥¹"
+msgstr "ãƒ“ãƒªãƒ‹ãƒ¥ã‚¹"
 
 msgid "Europe/LU"
-msgstr "¥ë¥¯¥»¥ó¥Ö¥ë¥¯"
+msgstr "ãƒ«ã‚¯ã‚»ãƒ³ãƒ–ãƒ«ã‚¯"
 
 msgid "Europe/Luxembourg"
-msgstr "¥ë¥¯¥»¥ó¥Ö¥ë¥¯"
+msgstr "ãƒ«ã‚¯ã‚»ãƒ³ãƒ–ãƒ«ã‚¯"
 
 msgid "Europe/MK"
-msgstr "¥Ş¥±¥É¥Ë¥¢"
+msgstr "ãƒã‚±ãƒ‰ãƒ‹ã‚¢"
 
 msgid "Europe/Skopje"
-msgstr "¥¹¥³¥Ô¥¨"
+msgstr "ã‚¹ã‚³ãƒ”ã‚¨"
 
 msgid "Europe/MT"
-msgstr "¥Ş¥ë¥¿"
+msgstr "ãƒãƒ«ã‚¿"
 
 msgid "Europe/Malta"
-msgstr "¥Ş¥ë¥¿"
+msgstr "ãƒãƒ«ã‚¿"
 
 msgid "Europe/MD"
-msgstr "¥â¥ë¥É¥Ğ"
+msgstr "ãƒ¢ãƒ«ãƒ‰ãƒ"
 
 msgid "Europe/Chisinau"
-msgstr "¥­¥·¥Ë¥ç¥Õ"
+msgstr "ã‚­ã‚·ãƒ‹ãƒ§ãƒ•"
 
 msgid "Europe/MC"
-msgstr "¥â¥Ê¥³"
+msgstr "ãƒ¢ãƒŠã‚³"
 
 msgid "Europe/Monaco"
-msgstr "¥â¥Ê¥³"
+msgstr "ãƒ¢ãƒŠã‚³"
 
 msgid "Europe/NL"
-msgstr "¥ª¥é¥ó¥À"
+msgstr "ã‚ªãƒ©ãƒ³ãƒ€"
 
 msgid "Europe/Amsterdam"
-msgstr "¥¢¥à¥¹¥Æ¥ë¥À¥à"
+msgstr "ã‚¢ãƒ ã‚¹ãƒ†ãƒ«ãƒ€ãƒ "
 
 msgid "Europe/NO"
-msgstr "¥Î¥ë¥¦¥§¡¼"
+msgstr "ãƒãƒ«ã‚¦ã‚§ãƒ¼"
 
 msgid "Europe/Oslo"
-msgstr "¥ª¥¹¥í"
+msgstr "ã‚ªã‚¹ãƒ­"
 
 msgid "Europe/PL"
-msgstr "¥İ¡¼¥é¥ó¥É"
+msgstr "ãƒãƒ¼ãƒ©ãƒ³ãƒ‰"
 
 msgid "Europe/Warsaw"
-msgstr "¥ï¥ë¥·¥ã¥ï"
+msgstr "ãƒ¯ãƒ«ã‚·ãƒ£ãƒ¯"
 
 msgid "Europe/PT"
-msgstr "¥İ¥ë¥È¥¬¥ë"
+msgstr "ãƒãƒ«ãƒˆã‚¬ãƒ«"
 
 msgid "Europe/Lisbon"
-msgstr "¥ê¥¹¥Ü¥ó"
+msgstr "ãƒªã‚¹ãƒœãƒ³"
 
 msgid "Europe/RO"
-msgstr "¥ë¡¼¥Ş¥Ë¥¢"
+msgstr "ãƒ«ãƒ¼ãƒãƒ‹ã‚¢"
 
 msgid "Europe/Bucharest"
-msgstr "¥Ö¥«¥ì¥¹¥È"
+msgstr "ãƒ–ã‚«ãƒ¬ã‚¹ãƒˆ"
 
 msgid "Europe/SM"
-msgstr "¥µ¥ó¥Ş¥ê¥Î"
+msgstr "ã‚µãƒ³ãƒãƒªãƒ"
 
 msgid "Europe/San_Marino"
-msgstr "¥µ¥ó¥Ş¥ê¥Î"
+msgstr "ã‚µãƒ³ãƒãƒªãƒ"
 
 msgid "Europe/YU"
-msgstr "¥»¥ë¥Ó¥¢¡¿¥â¥ó¥Æ¥Í¥°¥í"
+msgstr "ã‚»ãƒ«ãƒ“ã‚¢ï¼ãƒ¢ãƒ³ãƒ†ãƒã‚°ãƒ­"
 
 msgid "Europe/Belgrade"
-msgstr "¥Ù¥ª¥°¥é¡¼¥É"
+msgstr "ãƒ™ã‚ªã‚°ãƒ©ãƒ¼ãƒ‰"
 
 msgid "Europe/SK"
-msgstr "¥¹¥í¥Ğ¥­¥¢"
+msgstr "ã‚¹ãƒ­ãƒã‚­ã‚¢"
 
 msgid "Europe/Bratislava"
-msgstr "¥Ö¥é¥Æ¥£¥¹¥é¥Ğ"
+msgstr "ãƒ–ãƒ©ãƒ†ã‚£ã‚¹ãƒ©ãƒ"
 
 msgid "Europe/SI"
-msgstr "¥¹¥í¥Ù¥Ë¥¢"
+msgstr "ã‚¹ãƒ­ãƒ™ãƒ‹ã‚¢"
 
 msgid "Europe/Ljubljana"
-msgstr "¥ê¥å¥Ö¥ê¥ã¥Ê"
+msgstr "ãƒªãƒ¥ãƒ–ãƒªãƒ£ãƒŠ"
 
 msgid "Europe/ES"
-msgstr "¥¹¥Ú¥¤¥ó"
+msgstr "ã‚¹ãƒšã‚¤ãƒ³"
 
 msgid "Europe/Madrid"
-msgstr "¥Ş¥É¥ê¡¼¥É"
+msgstr "ãƒãƒ‰ãƒªãƒ¼ãƒ‰"
 
 msgid "Europe/SE"
-msgstr "¥¹¥¦¥§¡¼¥Ç¥ó"
+msgstr "ã‚¹ã‚¦ã‚§ãƒ¼ãƒ‡ãƒ³"
 
 msgid "Europe/Stockholm"
-msgstr "¥¹¥È¥Ã¥¯¥Û¥ë¥à"
+msgstr "ã‚¹ãƒˆãƒƒã‚¯ãƒ›ãƒ«ãƒ "
 
 msgid "Europe/CH"
-msgstr "¥¹¥¤¥¹"
+msgstr "ã‚¹ã‚¤ã‚¹"
 
 msgid "Europe/Zurich"
-msgstr "¥Á¥å¡¼¥ê¥Ã¥Ò"
+msgstr "ãƒãƒ¥ãƒ¼ãƒªãƒƒãƒ’"
 
 msgid "Europe/VA"
-msgstr "¥Ğ¥Á¥«¥ó»Ô¹ñ"
+msgstr "ãƒãƒã‚«ãƒ³å¸‚å›½"
 
 msgid "Europe/Vatican"
-msgstr "¥Ğ¥Á¥«¥ó"
+msgstr "ãƒãƒã‚«ãƒ³"
 
 msgid "Asia/AF"
-msgstr "¥¢¥Õ¥¬¥Ë¥¹¥¿¥ó"
+msgstr "ã‚¢ãƒ•ã‚¬ãƒ‹ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Kabul"
-msgstr "¥«¡¼¥Ö¥ë"
+msgstr "ã‚«ãƒ¼ãƒ–ãƒ«"
 
 msgid "Asia/AM"
-msgstr "¥¢¥ë¥á¥Ë¥¢"
+msgstr "ã‚¢ãƒ«ãƒ¡ãƒ‹ã‚¢"
 
 msgid "Asia/Yerevan"
-msgstr "¥¤¥¨¥ì¥Ğ¥ó"
+msgstr "ã‚¤ã‚¨ãƒ¬ãƒãƒ³"
 
 msgid "Asia/AZ"
-msgstr "¥¢¥¼¥ë¥Ğ¥¤¥¸¥ã¥ó"
+msgstr "ã‚¢ã‚¼ãƒ«ãƒã‚¤ã‚¸ãƒ£ãƒ³"
 
 msgid "Asia/Baku"
-msgstr "¥Ğ¥¯¡¼"
+msgstr "ãƒã‚¯ãƒ¼"
 
 msgid "Asia/BH"
-msgstr "¥Ğ¡¼¥ì¡¼¥ó"
+msgstr "ãƒãƒ¼ãƒ¬ãƒ¼ãƒ³"
 
 msgid "Asia/Bahrain"
-msgstr "¥Ğ¡¼¥ì¡¼¥ó"
+msgstr "ãƒãƒ¼ãƒ¬ãƒ¼ãƒ³"
 
 msgid "Asia/BD"
-msgstr "¥Ğ¥ó¥°¥é¥Ç¥·¥å"
+msgstr "ãƒãƒ³ã‚°ãƒ©ãƒ‡ã‚·ãƒ¥"
 
 msgid "Asia/Dacca"
-msgstr "¥À¥Ã¥«"
+msgstr "ãƒ€ãƒƒã‚«"
 
 msgid "Asia/BT"
-msgstr "¥Ö¡¼¥¿¥ó"
+msgstr "ãƒ–ãƒ¼ã‚¿ãƒ³"
 
 msgid "Asia/Thimbu"
-msgstr "¥Æ¥£¥ó¥Ö¡¼"
+msgstr "ãƒ†ã‚£ãƒ³ãƒ–ãƒ¼"
 
 msgid "Asia/BN"
-msgstr "¥Ö¥ë¥Í¥¤"
+msgstr "ãƒ–ãƒ«ãƒã‚¤"
 
 msgid "Asia/Brunei"
-msgstr "¥Ö¥ë¥Í¥¤"
+msgstr "ãƒ–ãƒ«ãƒã‚¤"
 
 msgid "Asia/KH"
-msgstr "¥«¥ó¥Ü¥¸¥¢"
+msgstr "ã‚«ãƒ³ãƒœã‚¸ã‚¢"
 
 msgid "Asia/Phnom_Penh"
-msgstr "¥×¥Î¥ó¥Ú¥ó"
+msgstr "ãƒ—ãƒãƒ³ãƒšãƒ³"
 
 msgid "Asia/CY"
-msgstr "¥­¥×¥í¥¹"
+msgstr "ã‚­ãƒ—ãƒ­ã‚¹"
 
 msgid "Asia/Nicosia"
-msgstr "¥Ë¥³¥·¥¢"
+msgstr "ãƒ‹ã‚³ã‚·ã‚¢"
 
 msgid "Asia/GE"
-msgstr "¥°¥ë¥¸¥¢"
+msgstr "ã‚°ãƒ«ã‚¸ã‚¢"
 
 msgid "Asia/Tbilisi"
-msgstr "¥È¥Ó¥ê¥·"
+msgstr "ãƒˆãƒ“ãƒªã‚·"
 
 msgid "Asia/IN"
-msgstr "¥¤¥ó¥É"
+msgstr "ã‚¤ãƒ³ãƒ‰"
 
 msgid "Asia/Calcutta"
-msgstr "¥«¥ë¥«¥Ã¥¿"
+msgstr "ã‚«ãƒ«ã‚«ãƒƒã‚¿"
 
 msgid "Asia/IR"
-msgstr "¥¤¥é¥ó"
+msgstr "ã‚¤ãƒ©ãƒ³"
 
 msgid "Asia/Tehran"
-msgstr "¥Æ¥Ø¥é¥ó"
+msgstr "ãƒ†ãƒ˜ãƒ©ãƒ³"
 
 msgid "Asia/RQ"
-msgstr "¥¤¥é¥¯"
+msgstr "ã‚¤ãƒ©ã‚¯"
 
 msgid "Asia/Baghdad"
-msgstr "¥Ğ¥°¥À¥Ã¥É"
+msgstr "ãƒã‚°ãƒ€ãƒƒãƒ‰"
 
 msgid "Asia/JO"
-msgstr "¥è¥ë¥À¥ó"
+msgstr "ãƒ¨ãƒ«ãƒ€ãƒ³"
 
 msgid "Asia/Amman"
-msgstr "¥¢¥ó¥Ş¥ó"
+msgstr "ã‚¢ãƒ³ãƒãƒ³"
 
 msgid "Asia/KP"
-msgstr "ËÌÄ«Á¯"
+msgstr "åŒ—æœé®®"
 
 msgid "Asia/Pyongyang"
-msgstr "Ê¿¾í"
+msgstr "å¹³å£Œ"
 
 msgid "Asia/KR"
-msgstr "´Ú¹ñ"
+msgstr "éŸ“å›½"
 
 msgid "Asia/Seoul"
-msgstr "¥½¥¦¥ë"
+msgstr "ã‚½ã‚¦ãƒ«"
 
 msgid "Asia/KW"
-msgstr "¥¯¥¦¥§¡¼¥È"
+msgstr "ã‚¯ã‚¦ã‚§ãƒ¼ãƒˆ"
 
 msgid "Asia/Kuwait"
-msgstr "¥¯¥¦¥§¡¼¥È"
+msgstr "ã‚¯ã‚¦ã‚§ãƒ¼ãƒˆ"
 
 msgid "Asia/KG"
-msgstr "¥­¥ë¥®¥¹¥¿¥ó"
+msgstr "ã‚­ãƒ«ã‚®ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Bishkek"
-msgstr "¥Ó¥·¥±¥¯"
+msgstr "ãƒ“ã‚·ã‚±ã‚¯"
 
 msgid "Asia/LA"
-msgstr "¥é¥ª¥¹"
+msgstr "ãƒ©ã‚ªã‚¹"
 
 msgid "Asia/Vientiane"
-msgstr "¥Ó¥¨¥ó¥Á¥ã¥ó"
+msgstr "ãƒ“ã‚¨ãƒ³ãƒãƒ£ãƒ³"
 
 msgid "Asia/LB"
-msgstr "¥ì¥Ğ¥Î¥ó"
+msgstr "ãƒ¬ãƒãƒãƒ³"
 
 msgid "Asia/Beirut"
-msgstr "¥Ù¥¤¥ë¡¼¥È"
+msgstr "ãƒ™ã‚¤ãƒ«ãƒ¼ãƒˆ"
 
 msgid "Asia/MO"
-msgstr "¥Ş¥«¥ª"
+msgstr "ãƒã‚«ã‚ª"
 
 msgid "Asia/Macao"
-msgstr "¥Ş¥«¥ª"
+msgstr "ãƒã‚«ã‚ª"
 
 msgid "Asia/MN"
-msgstr "¥â¥ó¥´¥ë"
+msgstr "ãƒ¢ãƒ³ã‚´ãƒ«"
 
 msgid "Asia/Ulan_Bator"
-msgstr "¥¦¥é¥ó¥Ğ¡¼¥È¥ë"
+msgstr "ã‚¦ãƒ©ãƒ³ãƒãƒ¼ãƒˆãƒ«"
 
 msgid "Asia/MM"
-msgstr "¥ß¥ã¥ó¥Ş¡¼"
+msgstr "ãƒŸãƒ£ãƒ³ãƒãƒ¼"
 
 msgid "Asia/Rangoon"
-msgstr "¥é¥ó¥°¡¼¥ó"
+msgstr "ãƒ©ãƒ³ã‚°ãƒ¼ãƒ³"
 
 msgid "Asia/NP"
-msgstr "¥Í¥Ñ¡¼¥ë"
+msgstr "ãƒãƒ‘ãƒ¼ãƒ«"
 
 msgid "Asia/Katmandu"
-msgstr "¥«¥È¥Ş¥ó¥º"
+msgstr "ã‚«ãƒˆãƒãƒ³ã‚º"
 
 msgid "Asia/OM"
-msgstr "¥ª¥Ş¡¼¥ó"
+msgstr "ã‚ªãƒãƒ¼ãƒ³"
 
 msgid "Asia/Muscat"
-msgstr "¥Ş¥¹¥«¥Ã¥È"
+msgstr "ãƒã‚¹ã‚«ãƒƒãƒˆ"
 
 msgid "Asia/PK"
-msgstr "¥Ñ¥­¥¹¥¿¥ó"
+msgstr "ãƒ‘ã‚­ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Karachi"
-msgstr "¥«¥é¥Á"
+msgstr "ã‚«ãƒ©ãƒ"
 
 msgid "Asia/PH"
-msgstr "¥Õ¥£¥ê¥Ô¥ó"
+msgstr "ãƒ•ã‚£ãƒªãƒ”ãƒ³"
 
 msgid "Asia/Manila"
-msgstr "¥Ş¥Ë¥é"
+msgstr "ãƒãƒ‹ãƒ©"
 
 msgid "Asia/QA"
-msgstr "¥«¥¿¡¼¥ë"
+msgstr "ã‚«ã‚¿ãƒ¼ãƒ«"
 
 msgid "Asia/Qatar"
-msgstr "¥«¥¿¡¼¥ë"
+msgstr "ã‚«ã‚¿ãƒ¼ãƒ«"
 
 msgid "Asia/SA"
-msgstr "¥µ¥¦¥¸¥¢¥é¥Ó¥¢"
+msgstr "ã‚µã‚¦ã‚¸ã‚¢ãƒ©ãƒ“ã‚¢"
 
 msgid "Asia/Riyadh"
-msgstr "¥ê¥ä¥É"
+msgstr "ãƒªãƒ¤ãƒ‰"
 
 msgid "Asia/SG"
-msgstr "¥·¥ó¥¬¥İ¡¼¥ë"
+msgstr "ã‚·ãƒ³ã‚¬ãƒãƒ¼ãƒ«"
 
 msgid "Asia/Singapore"
-msgstr "¥·¥ó¥¬¥İ¡¼¥ë"
+msgstr "ã‚·ãƒ³ã‚¬ãƒãƒ¼ãƒ«"
 
 msgid "Asia/LK"
-msgstr "¥¹¥ê¥é¥ó¥«"
+msgstr "ã‚¹ãƒªãƒ©ãƒ³ã‚«"
 
 msgid "Asia/Colombo"
-msgstr "¥³¥í¥ó¥Ü"
+msgstr "ã‚³ãƒ­ãƒ³ãƒœ"
 
 msgid "Asia/SY"
-msgstr "¥·¥ê¥¢"
+msgstr "ã‚·ãƒªã‚¢"
 
 msgid "Asia/Damascus"
-msgstr "¥À¥Ş¥¹¥«¥¹"
+msgstr "ãƒ€ãƒã‚¹ã‚«ã‚¹"
 
 msgid "Asia/TW"
-msgstr "ÂæÏÑ"
+msgstr "å°æ¹¾"
 
 msgid "Asia/Taipei"
-msgstr "ÂæËÌ"
+msgstr "å°åŒ—"
 
 msgid "Asia/TJ"
-msgstr "¥¿¥¸¥­¥¹¥¿¥ó"
+msgstr "ã‚¿ã‚¸ã‚­ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Dushanbe"
-msgstr "¥É¥¥¥·¥ã¥ó¥Ù"
+msgstr "ãƒ‰ã‚¥ã‚·ãƒ£ãƒ³ãƒ™"
 
 msgid "Asia/TH"
-msgstr "¥¿¥¤"
+msgstr "ã‚¿ã‚¤"
 
 msgid "Asia/Bangkok"
-msgstr "¥Ğ¥ó¥³¥¯"
+msgstr "ãƒãƒ³ã‚³ã‚¯"
 
 msgid "Asia/TR"
-msgstr "¥È¥ë¥³"
+msgstr "ãƒˆãƒ«ã‚³"
 
 msgid "Asia/Istanbul"
-msgstr "¥¤¥¹¥¿¥ó¥Ö¡¼¥ë"
+msgstr "ã‚¤ã‚¹ã‚¿ãƒ³ãƒ–ãƒ¼ãƒ«"
 
 msgid "Asia/TM"
-msgstr "¥È¥ë¥¯¥á¥Ë¥¹¥¿¥ó"
+msgstr "ãƒˆãƒ«ã‚¯ãƒ¡ãƒ‹ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Ashkhabad"
-msgstr "¥¢¥·¥Ï¥Ğ¡¼¥É"
+msgstr "ã‚¢ã‚·ãƒãƒãƒ¼ãƒ‰"
 
 msgid "Asia/AE"
-msgstr "¥¢¥é¥Ö¼óÄ¹¹ñÏ¢Ë®"
+msgstr "ã‚¢ãƒ©ãƒ–é¦–é•·å›½é€£é‚¦"
 
 msgid "Asia/Dubai"
-msgstr "¥É¥Ğ¥¤"
+msgstr "ãƒ‰ãƒã‚¤"
 
 msgid "Asia/UZ"
-msgstr "¥¦¥º¥Ù¥­¥¹¥¿¥ó"
+msgstr "ã‚¦ã‚ºãƒ™ã‚­ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Tashkent"
-msgstr "¥¿¥·¥±¥ó¥È"
+msgstr "ã‚¿ã‚·ã‚±ãƒ³ãƒˆ"
 
 msgid "Asia/VN"
-msgstr "¥Ù¥È¥Ê¥à"
+msgstr "ãƒ™ãƒˆãƒŠãƒ "
 
 msgid "Asia/Saigon"
-msgstr "¥Û¡¼¥Á¥ß¥ó»Ô"
+msgstr "ãƒ›ãƒ¼ãƒãƒŸãƒ³å¸‚"
 
 msgid "Asia/YE"
-msgstr "¥¤¥¨¥á¥ó"
+msgstr "ã‚¤ã‚¨ãƒ¡ãƒ³"
 
 msgid "Asia/Aden"
-msgstr "¥¢¥Ç¥ó"
+msgstr "ã‚¢ãƒ‡ãƒ³"
 
 msgid "Africa/DZ"
-msgstr "¥¢¥ë¥¸¥§¥ê¥¢"
+msgstr "ã‚¢ãƒ«ã‚¸ã‚§ãƒªã‚¢"
 
 msgid "Africa/Algiers"
-msgstr "¥¢¥ë¥¸¥§¡¼"
+msgstr "ã‚¢ãƒ«ã‚¸ã‚§ãƒ¼"
 
 msgid "Africa/AO"
-msgstr "¥¢¥ó¥´¥é"
+msgstr "ã‚¢ãƒ³ã‚´ãƒ©"
 
 msgid "Africa/Luanda"
-msgstr "¥ë¥¢¥ó¥À"
+msgstr "ãƒ«ã‚¢ãƒ³ãƒ€"
 
 msgid "Africa/BF"
-msgstr "¥Ö¥ë¥­¥Ê¥Õ¥¡¥½ "
+msgstr "ãƒ–ãƒ«ã‚­ãƒŠãƒ•ã‚¡ã‚½ "
 
 msgid "Africa/Ouagadougou"
-msgstr "¥ï¥¬¥É¥¥¡¼¥°¡¼"
+msgstr "ãƒ¯ã‚¬ãƒ‰ã‚¥ãƒ¼ã‚°ãƒ¼"
 
 msgid "Africa/BJ"
-msgstr "¥Ù¥Ë¥ó"
+msgstr "ãƒ™ãƒ‹ãƒ³"
 
 msgid "Africa/Porto-Novo"
-msgstr "¥İ¥ë¥È¥Î¥Ü"
+msgstr "ãƒãƒ«ãƒˆãƒãƒœ"
 
 msgid "Africa/BW"
-msgstr "¥Ü¥Ä¥ï¥Ê"
+msgstr "ãƒœãƒ„ãƒ¯ãƒŠ"
 
 msgid "Africa/Gaborone"
-msgstr "¥¬¥Ğ¥í¡¼¥ó"
+msgstr "ã‚¬ãƒãƒ­ãƒ¼ãƒ³"
 
 msgid "Africa/BI"
-msgstr "¥Ö¥ë¥ó¥¸"
+msgstr "ãƒ–ãƒ«ãƒ³ã‚¸"
 
 msgid "Africa/Bujumbura"
-msgstr "¥Ö¥¸¥å¥ó¥Ö¥é"
+msgstr "ãƒ–ã‚¸ãƒ¥ãƒ³ãƒ–ãƒ©"
 
 msgid "Africa/CM"
-msgstr "¥«¥á¥ë¡¼¥ó"
+msgstr "ã‚«ãƒ¡ãƒ«ãƒ¼ãƒ³"
 
 msgid "Africa/Douala"
-msgstr "¥É¥¥¥¢¡¼¥é"
+msgstr "ãƒ‰ã‚¥ã‚¢ãƒ¼ãƒ©"
 
 msgid "Africa/CV"
-msgstr "¥«¡¼¥Ü¥Ù¥ë¥Ç"
+msgstr "ã‚«ãƒ¼ãƒœãƒ™ãƒ«ãƒ‡"
 
 msgid "Africa/CF"
-msgstr "Ãæ±û¥¢¥Õ¥ê¥«¶¦ÏÂ¹ñ"
+msgstr "ä¸­å¤®ã‚¢ãƒ•ãƒªã‚«å…±å’Œå›½"
 
 msgid "Africa/Bangui"
-msgstr "¥Ğ¥ó¥®"
+msgstr "ãƒãƒ³ã‚®"
 
 msgid "Africa/ES"
-msgstr "¥»¥¦¥¿¡¿¥á¥ê¥ä (¥¹¥Ú¥¤¥ó)"
+msgstr "ã‚»ã‚¦ã‚¿ï¼ãƒ¡ãƒªãƒ¤ (ã‚¹ãƒšã‚¤ãƒ³)"
 
 msgid "Africa/Ceuta"
-msgstr "¥»¥¦¥¿"
+msgstr "ã‚»ã‚¦ã‚¿"
 
 msgid "Africa/TD"
-msgstr "¥Á¥ã¥É"
+msgstr "ãƒãƒ£ãƒ‰"
 
 msgid "Africa/Ndjamena"
-msgstr "¥Ì¥¸¥ã¥á¥Ê"
+msgstr "ãƒŒã‚¸ãƒ£ãƒ¡ãƒŠ"
 
 msgid "Africa/CG"
-msgstr "¥³¥ó¥´¶¦ÏÂ¹ñ"
+msgstr "ã‚³ãƒ³ã‚´å…±å’Œå›½"
 
 msgid "Africa/Brazzaville"
-msgstr "¥Ö¥é¥¶¥Ó¥ë"
+msgstr "ãƒ–ãƒ©ã‚¶ãƒ“ãƒ«"
 
 msgid "Africa/CI"
-msgstr "¥³¡¼¥È¥¸¥Ü¥¢¡¼¥ë"
+msgstr "ã‚³ãƒ¼ãƒˆã‚¸ãƒœã‚¢ãƒ¼ãƒ«"
 
 msgid "Africa/Abidjan"
-msgstr "¥¢¥Ó¥¸¥ã¥ó"
+msgstr "ã‚¢ãƒ“ã‚¸ãƒ£ãƒ³"
 
 msgid "Africa/DJ"
-msgstr "¥¸¥Ö¥Á"
+msgstr "ã‚¸ãƒ–ãƒ"
 
 msgid "Africa/Djibouti"
-msgstr "¥¸¥Ö¥Á"
+msgstr "ã‚¸ãƒ–ãƒ"
 
 msgid "Africa/EG"
-msgstr "¥¨¥¸¥×¥È"
+msgstr "ã‚¨ã‚¸ãƒ—ãƒˆ"
 
 msgid "Africa/Cairo"
-msgstr "¥«¥¤¥í"
+msgstr "ã‚«ã‚¤ãƒ­"
 
 msgid "Africa/GQ"
-msgstr "ÀÖÆ»¥®¥Ë¥¢"
+msgstr "èµ¤é“ã‚®ãƒ‹ã‚¢"
 
 msgid "Africa/Malabo"
-msgstr "¥Ş¥é¥Ü"
+msgstr "ãƒãƒ©ãƒœ"
 
 msgid "Africa/ER"
-msgstr "¥¨¥ê¥È¥ê¥¢"
+msgstr "ã‚¨ãƒªãƒˆãƒªã‚¢"
 
 msgid "Africa/Asmera"
-msgstr "¥¢¥¹¥Ş¥é"
+msgstr "ã‚¢ã‚¹ãƒãƒ©"
 
 msgid "Africa/ET"
-msgstr "¥¨¥Á¥ª¥Ô¥¢"
+msgstr "ã‚¨ãƒã‚ªãƒ”ã‚¢"
 
 msgid "Africa/Addis_Ababa"
-msgstr "¥¢¥Ç¥£¥¹¥¢¥Ù¥Ğ"
+msgstr "ã‚¢ãƒ‡ã‚£ã‚¹ã‚¢ãƒ™ãƒ"
 
 msgid "Africa/GA"
-msgstr "¥¬¥Ü¥ó"
+msgstr "ã‚¬ãƒœãƒ³"
 
 msgid "Africa/Libreville"
-msgstr "¥ê¡¼¥Ö¥ë¥Ó¥ë"
+msgstr "ãƒªãƒ¼ãƒ–ãƒ«ãƒ“ãƒ«"
 
 msgid "Africa/GM"
-msgstr "¥¬¥ó¥Ó¥¢"
+msgstr "ã‚¬ãƒ³ãƒ“ã‚¢"
 
 msgid "Africa/Banjul"
-msgstr "¥Ğ¥ó¥¸¥å¥ë"
+msgstr "ãƒãƒ³ã‚¸ãƒ¥ãƒ«"
 
 msgid "Africa/GH"
-msgstr "¥¬¡¼¥Ê"
+msgstr "ã‚¬ãƒ¼ãƒŠ"
 
 msgid "Africa/Accra"
-msgstr "¥¢¥¯¥é"
+msgstr "ã‚¢ã‚¯ãƒ©"
 
 msgid "Africa/GN"
-msgstr "¥®¥Ë¥¢"
+msgstr "ã‚®ãƒ‹ã‚¢"
 
 msgid "Africa/Conakry"
-msgstr "¥³¥Ê¥¯¥ê"
+msgstr "ã‚³ãƒŠã‚¯ãƒª"
 
 msgid "Africa/GW"
-msgstr "¥®¥Ë¥¢¡¦¥Ó¥µ¥¦"
+msgstr "ã‚®ãƒ‹ã‚¢ãƒ»ãƒ“ã‚µã‚¦"
 
 msgid "Africa/Bissau"
-msgstr "¥Ó¥µ¥¦"
+msgstr "ãƒ“ã‚µã‚¦"
 
 msgid "Africa/KE"
-msgstr "¥±¥Ë¥¢"
+msgstr "ã‚±ãƒ‹ã‚¢"
 
 msgid "Africa/Nairobi"
-msgstr "¥Ê¥¤¥í¥Ó"
+msgstr "ãƒŠã‚¤ãƒ­ãƒ“"
 
 msgid "Africa/LS"
-msgstr "¥ì¥½¡¼¥È"
+msgstr "ãƒ¬ã‚½ãƒ¼ãƒˆ"
 
 msgid "Africa/Maseru"
-msgstr "¥Ş¥»¥ë"
+msgstr "ãƒã‚»ãƒ«"
 
 msgid "Africa/LR"
-msgstr "¥ê¥Ù¥ê¥¢"
+msgstr "ãƒªãƒ™ãƒªã‚¢"
 
 msgid "Africa/Monrovia"
-msgstr "¥â¥ó¥í¥Ó¥¢"
+msgstr "ãƒ¢ãƒ³ãƒ­ãƒ“ã‚¢"
 
 msgid "Africa/LY"
-msgstr "¥ê¥Ó¥¢"
+msgstr "ãƒªãƒ“ã‚¢"
 
 msgid "Africa/Tripoli"
-msgstr "¥È¥ê¥İ¥ê"
+msgstr "ãƒˆãƒªãƒãƒª"
 
 msgid "Africa/ML"
-msgstr "¥Ş¥ê"
+msgstr "ãƒãƒª"
 
 msgid "Africa/Bamako"
-msgstr "¥Ğ¥Ş¥³"
+msgstr "ãƒãƒã‚³"
 
 msgid "Africa/MR"
-msgstr "¥â¡¼¥ê¥¿¥Ë¥¢"
+msgstr "ãƒ¢ãƒ¼ãƒªã‚¿ãƒ‹ã‚¢"
 
 msgid "Africa/Nouakchott"
-msgstr "¥Ì¥¢¥¯¥·¥ç¥Ã¥È"
+msgstr "ãƒŒã‚¢ã‚¯ã‚·ãƒ§ãƒƒãƒˆ"
 
 msgid "Africa/MA"
-msgstr "¥â¥í¥Ã¥³"
+msgstr "ãƒ¢ãƒ­ãƒƒã‚³"
 
 msgid "Africa/Casablanca"
-msgstr "¥«¥µ¥Ö¥é¥ó¥«"
+msgstr "ã‚«ã‚µãƒ–ãƒ©ãƒ³ã‚«"
 
 msgid "Africa/MZ"
-msgstr "¥â¥¶¥ó¥Ó¡¼¥¯"
+msgstr "ãƒ¢ã‚¶ãƒ³ãƒ“ãƒ¼ã‚¯"
 
 msgid "Africa/Maputo"
-msgstr "¥Ş¥×¥È"
+msgstr "ãƒãƒ—ãƒˆ"
 
 msgid "Africa/NA"
-msgstr "¥Ê¥ß¥Ó¥¢"
+msgstr "ãƒŠãƒŸãƒ“ã‚¢"
 
 msgid "Africa/Windhoek"
-msgstr "¥¦¥£¥ó¥È¥Õ¡¼¥¯"
+msgstr "ã‚¦ã‚£ãƒ³ãƒˆãƒ•ãƒ¼ã‚¯"
 
 msgid "Africa/NE"
-msgstr "¥Ë¥¸¥§¡¼¥ë"
+msgstr "ãƒ‹ã‚¸ã‚§ãƒ¼ãƒ«"
 
 msgid "Africa/Niamey"
-msgstr "¥Ë¥¢¥á¡¼"
+msgstr "ãƒ‹ã‚¢ãƒ¡ãƒ¼"
 
 msgid "Africa/NG"
-msgstr "¥Ê¥¤¥¸¥§¥ê¥¢"
+msgstr "ãƒŠã‚¤ã‚¸ã‚§ãƒªã‚¢"
 
 msgid "Africa/Lagos"
-msgstr "¥é¥´¥¹"
+msgstr "ãƒ©ã‚´ã‚¹"
 
 msgid "Africa/RW"
-msgstr "¥ë¥ï¥ó¥À"
+msgstr "ãƒ«ãƒ¯ãƒ³ãƒ€"
 
 msgid "Africa/Kigali"
-msgstr "¥­¥¬¥ê"
+msgstr "ã‚­ã‚¬ãƒª"
 
 msgid "Africa/ST"
-msgstr "¥µ¥ó¥È¡¼¥á¡¦¥×¥ê¥ó¥·¥Ú"
+msgstr "ã‚µãƒ³ãƒˆãƒ¼ãƒ¡ãƒ»ãƒ—ãƒªãƒ³ã‚·ãƒš"
 
 msgid "Africa/Sao_Tome"
-msgstr "¥µ¥ó¥È¡¼¥á"
+msgstr "ã‚µãƒ³ãƒˆãƒ¼ãƒ¡"
 
 msgid "Africa/SN"
-msgstr "¥»¥Í¥¬¥ë"
+msgstr "ã‚»ãƒã‚¬ãƒ«"
 
 msgid "Africa/Dakar"
-msgstr "¥À¥«¡¼¥ë"
+msgstr "ãƒ€ã‚«ãƒ¼ãƒ«"
 
 msgid "Africa/SL"
-msgstr "¥·¥¨¥é¥ì¥ª¡¼¥Í"
+msgstr "ã‚·ã‚¨ãƒ©ãƒ¬ã‚ªãƒ¼ãƒ"
 
 msgid "Africa/Freetown"
-msgstr "¥Õ¥ê¡¼¥¿¥¦¥ó"
+msgstr "ãƒ•ãƒªãƒ¼ã‚¿ã‚¦ãƒ³"
 
 msgid "Africa/SO"
-msgstr "¥½¥Ş¥ê¥¢"
+msgstr "ã‚½ãƒãƒªã‚¢"
 
 msgid "Africa/Mogadishu"
-msgstr "¥â¥¬¥Ç¥£¥·¥ª"
+msgstr "ãƒ¢ã‚¬ãƒ‡ã‚£ã‚·ã‚ª"
 
 msgid "Africa/ZA"
-msgstr "Æî¥¢¥Õ¥ê¥«¶¦ÏÂ¹ñ"
+msgstr "å—ã‚¢ãƒ•ãƒªã‚«å…±å’Œå›½"
 
 msgid "Africa/Johannesburg"
-msgstr "¥è¥Ï¥Í¥¹¥Ğ¡¼¥°"
+msgstr "ãƒ¨ãƒãƒã‚¹ãƒãƒ¼ã‚°"
 
 msgid "Africa/SD"
-msgstr "¥¹¡¼¥À¥ó"
+msgstr "ã‚¹ãƒ¼ãƒ€ãƒ³"
 
 msgid "Africa/Khartoum"
-msgstr "¥Ï¥ë¥Ä¡¼¥à"
+msgstr "ãƒãƒ«ãƒ„ãƒ¼ãƒ "
 
 msgid "Africa/SZ"
-msgstr "¥¹¥ï¥¸¥é¥ó¥É"
+msgstr "ã‚¹ãƒ¯ã‚¸ãƒ©ãƒ³ãƒ‰"
 
 msgid "Africa/Mbabane"
-msgstr "¥à¥Ğ¥Ğ¥Í"
+msgstr "ãƒ ãƒãƒãƒ"
 
 msgid "Africa/TZ"
-msgstr "¥¿¥ó¥¶¥Ë¥¢"
+msgstr "ã‚¿ãƒ³ã‚¶ãƒ‹ã‚¢"
 
 msgid "Africa/Dar_es_Salaam"
-msgstr "¥À¥ë¥¨¥¹¥µ¥é¡¼¥à"
+msgstr "ãƒ€ãƒ«ã‚¨ã‚¹ã‚µãƒ©ãƒ¼ãƒ "
 
 msgid "Africa/TG"
-msgstr "¥È¡¼¥´"
+msgstr "ãƒˆãƒ¼ã‚´"
 
 msgid "Africa/Lome"
-msgstr "¥í¥á"
+msgstr "ãƒ­ãƒ¡"
 
 msgid "Africa/TN"
-msgstr "¥Á¥å¥Ë¥¸¥¢"
+msgstr "ãƒãƒ¥ãƒ‹ã‚¸ã‚¢"
 
 msgid "Africa/Tunis"
-msgstr "¥Á¥å¥Ë¥¹"
+msgstr "ãƒãƒ¥ãƒ‹ã‚¹"
 
 msgid "Africa/UG"
-msgstr "¥¦¥¬¥ó¥À"
+msgstr "ã‚¦ã‚¬ãƒ³ãƒ€"
 
 msgid "Africa/Kampala"
-msgstr "¥«¥ó¥Ñ¥é"
+msgstr "ã‚«ãƒ³ãƒ‘ãƒ©"
 
 msgid "Africa/EH"
-msgstr "À¾¥µ¥Ï¥é"
+msgstr "è¥¿ã‚µãƒãƒ©"
 
 msgid "Africa/El_Aaiun"
-msgstr "¥¨¥ë¥¢¥¤¥¦¥ó"
+msgstr "ã‚¨ãƒ«ã‚¢ã‚¤ã‚¦ãƒ³"
 
 msgid "Africa/ZM"
-msgstr "¥¶¥ó¥Ó¥¢"
+msgstr "ã‚¶ãƒ³ãƒ“ã‚¢"
 
 msgid "Africa/Lusaka"
-msgstr "¥ë¥µ¥«"
+msgstr "ãƒ«ã‚µã‚«"
 
 msgid "Africa/ZW"
-msgstr "¥¸¥ó¥Ğ¥Ö¥¨"
+msgstr "ã‚¸ãƒ³ãƒãƒ–ã‚¨"
 
 msgid "Africa/Harare"
-msgstr "¥Ï¥é¡¼¥ì"
+msgstr "ãƒãƒ©ãƒ¼ãƒ¬"
 
 msgid "SouthAmerica/AR"
-msgstr "¥¢¥ë¥¼¥ó¥Á¥ó"
+msgstr "ã‚¢ãƒ«ã‚¼ãƒ³ãƒãƒ³"
 
 msgid "America/Buenos_Aires"
-msgstr "¥Ö¥¨¥Î¥¹¥¢¥¤¥ì¥¹"
+msgstr "ãƒ–ã‚¨ãƒã‚¹ã‚¢ã‚¤ãƒ¬ã‚¹"
 
 msgid "SouthAmerica/BO"
-msgstr "¥Ü¥ê¥Ó¥¢"
+msgstr "ãƒœãƒªãƒ“ã‚¢"
 
 msgid "America/La_Paz"
-msgstr "¥é¥Ñ¥¹"
+msgstr "ãƒ©ãƒ‘ã‚¹"
 
 msgid "SouthAmerica/CO"
-msgstr "¥³¥í¥ó¥Ó¥¢"
+msgstr "ã‚³ãƒ­ãƒ³ãƒ“ã‚¢"
 
 msgid "America/Bogota"
-msgstr "¥Ü¥´¥¿"
+msgstr "ãƒœã‚´ã‚¿"
 
 msgid "SouthAmerica/EC"
-msgstr "¥¨¥¯¥¢¥É¥ë"
+msgstr "ã‚¨ã‚¯ã‚¢ãƒ‰ãƒ«"
 
 msgid "America/Guayaquil"
-msgstr "¥°¥¢¥ä¥­¥ë"
+msgstr "ã‚°ã‚¢ãƒ¤ã‚­ãƒ«"
 
 msgid "SouthAmerica/GF"
-msgstr "Ê©ÎÎ¥®¥¢¥Ê"
+msgstr "ä»é ˜ã‚®ã‚¢ãƒŠ"
 
 msgid "America/Cayenne"
-msgstr "¥«¥¤¥¨¥ó¥Ì"
+msgstr "ã‚«ã‚¤ã‚¨ãƒ³ãƒŒ"
 
 msgid "SouthAmerica/GY"
-msgstr "¥¬¥¤¥¢¥Ê"
+msgstr "ã‚¬ã‚¤ã‚¢ãƒŠ"
 
 msgid "America/Guyana"
-msgstr "¥¬¥¤¥¢¥Ê"
+msgstr "ã‚¬ã‚¤ã‚¢ãƒŠ"
 
 msgid "SouthAmerica/PY"
-msgstr "¥Ñ¥é¥°¥¢¥¤"
+msgstr "ãƒ‘ãƒ©ã‚°ã‚¢ã‚¤"
 
 msgid "America/Asuncion"
-msgstr "¥¢¥¹¥ó¥·¥ª¥ó"
+msgstr "ã‚¢ã‚¹ãƒ³ã‚·ã‚ªãƒ³"
 
 msgid "SouthAmerica/PE"
-msgstr "¥Ú¥ë¡¼"
+msgstr "ãƒšãƒ«ãƒ¼"
 
 msgid "America/Lima"
-msgstr "¥ê¥Ş"
+msgstr "ãƒªãƒ"
 
 msgid "SouthAmerica/SR"
-msgstr "¥¹¥ê¥Ê¥à"
+msgstr "ã‚¹ãƒªãƒŠãƒ "
 
 msgid "America/Paramaribo"
-msgstr "¥Ñ¥é¥Ş¥ê¥Ü"
+msgstr "ãƒ‘ãƒ©ãƒãƒªãƒœ"
 
 msgid "SouthAmerica/UY"
-msgstr "¥¦¥ë¥°¥¢¥¤"
+msgstr "ã‚¦ãƒ«ã‚°ã‚¢ã‚¤"
 
 msgid "America/Montevideo"
-msgstr "¥â¥ó¥Æ¥Ó¥Ç¥ª"
+msgstr "ãƒ¢ãƒ³ãƒ†ãƒ“ãƒ‡ã‚ª"
 
 msgid "SouthAmerica/VE"
-msgstr "¥Ù¥Í¥º¥¨¥é"
+msgstr "ãƒ™ãƒã‚ºã‚¨ãƒ©"
 
 msgid "America/Caracas"
-msgstr "¥«¥é¥«¥¹"
+msgstr "ã‚«ãƒ©ã‚«ã‚¹"
 
 msgid "Oceania/AS"
-msgstr "¥¢¥á¥ê¥«ÎÎ¥µ¥â¥¢"
+msgstr "ã‚¢ãƒ¡ãƒªã‚«é ˜ã‚µãƒ¢ã‚¢"
 
 msgid "Pacific/Pago_Pago"
-msgstr "¥Ñ¥´¥Ñ¥´"
+msgstr "ãƒ‘ã‚´ãƒ‘ã‚´"
 
 msgid "Oceania/FJ"
-msgstr "¥Õ¥£¡¼¥¸¡¼"
+msgstr "ãƒ•ã‚£ãƒ¼ã‚¸ãƒ¼"
 
 msgid "Pacific/Fiji"
-msgstr "¥Õ¥£¡¼¥¸¡¼"
+msgstr "ãƒ•ã‚£ãƒ¼ã‚¸ãƒ¼"
 
 msgid "Oceania/CL"
-msgstr "¥¤¡¼¥¹¥¿¡¼Åç (¥Á¥ê)"
+msgstr "ã‚¤ãƒ¼ã‚¹ã‚¿ãƒ¼å³¶ (ãƒãƒª)"
 
 msgid "Pacific/Easter"
-msgstr "¥¤¡¼¥¹¥¿¡¼"
+msgstr "ã‚¤ãƒ¼ã‚¹ã‚¿ãƒ¼"
 
 msgid "Oceania/CK"
-msgstr "¥¯¥Ã¥¯½ôÅç"
+msgstr "ã‚¯ãƒƒã‚¯è«¸å³¶"
 
 msgid "Pacific/Rarotonga"
-msgstr "¥é¥í¥È¥ó¥¬"
+msgstr "ãƒ©ãƒ­ãƒˆãƒ³ã‚¬"
 
 msgid "Oceania/EC"
-msgstr "¥¬¥é¥Ñ¥´¥¹ (¥¨¥¯¥¢¥É¥ë)"
+msgstr "ã‚¬ãƒ©ãƒ‘ã‚´ã‚¹ (ã‚¨ã‚¯ã‚¢ãƒ‰ãƒ«)"
 
 msgid "Pacific/Galapagos"
-msgstr "¥¬¥é¥Ñ¥´¥¹"
+msgstr "ã‚¬ãƒ©ãƒ‘ã‚´ã‚¹"
 
 msgid "Oceania/GU"
-msgstr "¥°¥¢¥à"
+msgstr "ã‚°ã‚¢ãƒ "
 
 msgid "Pacific/Guam"
-msgstr "¥°¥¢¥à"
+msgstr "ã‚°ã‚¢ãƒ "
 
 msgid "Oceania/NR"
-msgstr "¥Ê¥¦¥ë"
+msgstr "ãƒŠã‚¦ãƒ«"
 
 msgid "Pacific/Nauru"
-msgstr "¥Ê¥¦¥ë"
+msgstr "ãƒŠã‚¦ãƒ«"
 
 msgid "Oceania/NC"
-msgstr "¥Ë¥å¡¼¥«¥ì¥É¥Ë¥¢"
+msgstr "ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¬ãƒ‰ãƒ‹ã‚¢"
 
 msgid "Pacific/Noumea"
-msgstr "¥Ì¥á¥¢"
+msgstr "ãƒŒãƒ¡ã‚¢"
 
 msgid "Oceania/NU"
-msgstr "¥Ë¥¦¥¨"
+msgstr "ãƒ‹ã‚¦ã‚¨"
 
 msgid "Pacific/Niue"
-msgstr "¥Ë¥¦¥¨"
+msgstr "ãƒ‹ã‚¦ã‚¨"
 
 msgid "Oceania/NF"
-msgstr "¥Î¡¼¥Õ¥©¡¼¥¯"
+msgstr "ãƒãƒ¼ãƒ•ã‚©ãƒ¼ã‚¯"
 
 msgid "Pacific/Norfolk"
-msgstr "¥Î¡¼¥Õ¥©¡¼¥¯"
+msgstr "ãƒãƒ¼ãƒ•ã‚©ãƒ¼ã‚¯"
 
 msgid "Oceania/MP"
-msgstr "ËÌ¥Ş¥ê¥¢¥Ê½ôÅç"
+msgstr "åŒ—ãƒãƒªã‚¢ãƒŠè«¸å³¶"
 
 msgid "Pacific/Saipan"
-msgstr "¥µ¥¤¥Ñ¥ó"
+msgstr "ã‚µã‚¤ãƒ‘ãƒ³"
 
 msgid "Oceania/PW"
-msgstr "¥Ñ¥é¥¦"
+msgstr "ãƒ‘ãƒ©ã‚¦"
 
 msgid "Pacific/Palau"
-msgstr "¥Ñ¥é¥¦"
+msgstr "ãƒ‘ãƒ©ã‚¦"
 
 msgid "Oceania/PG"
-msgstr "¥Ñ¥×¥¢¥Ë¥å¡¼¥®¥Ë¥¢"
+msgstr "ãƒ‘ãƒ—ã‚¢ãƒ‹ãƒ¥ãƒ¼ã‚®ãƒ‹ã‚¢"
 
 msgid "Pacific/Port_Moresby"
-msgstr "¥İ¡¼¥È¥â¥ì¥¹¥Ó¡¼"
+msgstr "ãƒãƒ¼ãƒˆãƒ¢ãƒ¬ã‚¹ãƒ“ãƒ¼"
 
 msgid "Oceania/PN"
-msgstr "¥Ô¥È¥±¥¢¥ó"
+msgstr "ãƒ”ãƒˆã‚±ã‚¢ãƒ³"
 
 msgid "Pacific/Pitcairn"
-msgstr "¥Ô¥È¥±¥¢¥ó"
+msgstr "ãƒ”ãƒˆã‚±ã‚¢ãƒ³"
 
 msgid "Oceania/SB"
-msgstr "¥½¥í¥â¥ó½ôÅç"
+msgstr "ã‚½ãƒ­ãƒ¢ãƒ³è«¸å³¶"
 
 msgid "Pacific/Guadalcanal"
-msgstr "¥°¥¢¥À¥ë¥«¥Ê¥ë"
+msgstr "ã‚°ã‚¢ãƒ€ãƒ«ã‚«ãƒŠãƒ«"
 
 msgid "Oceania/TK"
-msgstr "¥È¥±¥é¥¦"
+msgstr "ãƒˆã‚±ãƒ©ã‚¦"
 
 msgid "Pacific/Fakaofo"
-msgstr "¥Õ¥¡¥«¥ª¥Õ¥©"
+msgstr "ãƒ•ã‚¡ã‚«ã‚ªãƒ•ã‚©"
 
 msgid "Oceania/TO"
-msgstr "¥È¥ó¥¬"
+msgstr "ãƒˆãƒ³ã‚¬"
 
 msgid "Pacific/Tongatapu"
-msgstr "¥È¥ó¥¬¥¿¥×"
+msgstr "ãƒˆãƒ³ã‚¬ã‚¿ãƒ—"
 
 msgid "Oceania/TV"
-msgstr "¥Ä¥Ğ¥ë"
+msgstr "ãƒ„ãƒãƒ«"
 
 msgid "Pacific/Funafuti"
-msgstr "¥Õ¥Ê¥Õ¥Æ¥£"
+msgstr "ãƒ•ãƒŠãƒ•ãƒ†ã‚£"
 
 msgid "Oceania/VU"
-msgstr "¥Ğ¥Ì¥¢¥Ä"
+msgstr "ãƒãƒŒã‚¢ãƒ„"
 
 msgid "Pacific/Efate"
-msgstr "¥¨¥Õ¥¡¡¼¥Æ"
+msgstr "ã‚¨ãƒ•ã‚¡ãƒ¼ãƒ†"
 
 msgid "Oceania/EH"
-msgstr "À¾¥µ¥â¥¢"
+msgstr "è¥¿ã‚µãƒ¢ã‚¢"
 
 msgid "Pacific/Apia"
-msgstr "¥¢¥Ô¥¢"
+msgstr "ã‚¢ãƒ”ã‚¢"
 
 msgid "Oceania/WF"
-msgstr "¥¦¥©¥ê¥¹¡¦¥Õ¥È¥¥¡¼¥Ê½ôÅç"
+msgstr "ã‚¦ã‚©ãƒªã‚¹ãƒ»ãƒ•ãƒˆã‚¥ãƒ¼ãƒŠè«¸å³¶"
 
 msgid "Pacific/Wallis"
-msgstr "¥¦¥©¥ê¥¹"
+msgstr "ã‚¦ã‚©ãƒªã‚¹"
 
 msgid "Atlantic/BM"
-msgstr "¥Ğ¥ß¥å¡¼¥À"
+msgstr "ãƒãƒŸãƒ¥ãƒ¼ãƒ€"
 
 msgid "Atlantic/Bermuda"
-msgstr "¥Ğ¥ß¥å¡¼¥À"
+msgstr "ãƒãƒŸãƒ¥ãƒ¼ãƒ€"
 
 msgid "Atlantic/ES"
-msgstr "¥«¥Ê¥ê¥¢½ôÅç (¥¹¥Ú¥¤¥ó)"
+msgstr "ã‚«ãƒŠãƒªã‚¢è«¸å³¶ (ã‚¹ãƒšã‚¤ãƒ³)"
 
 msgid "Atlantic/Canary"
-msgstr "¥«¥Ê¥ê¥¢"
+msgstr "ã‚«ãƒŠãƒªã‚¢"
 
 msgid "Atlantic/FO"
-msgstr "¥Õ¥§¥í¡¼½ôÅç"
+msgstr "ãƒ•ã‚§ãƒ­ãƒ¼è«¸å³¶"
 
 msgid "Atlantic/Faeroe"
-msgstr "¥Õ¥§¥í¡¼"
+msgstr "ãƒ•ã‚§ãƒ­ãƒ¼"
 
 msgid "Atlantic/FK"
-msgstr "¥Õ¥©¡¼¥¯¥é¥ó¥É½ôÅç (¥Ş¥ë¥Ó¥Ê¥¹)"
+msgstr "ãƒ•ã‚©ãƒ¼ã‚¯ãƒ©ãƒ³ãƒ‰è«¸å³¶ (ãƒãƒ«ãƒ“ãƒŠã‚¹)"
 
 msgid "Atlantic/Stanley"
-msgstr "¥¹¥¿¥ó¥ê¡¼"
+msgstr "ã‚¹ã‚¿ãƒ³ãƒªãƒ¼"
 
 msgid "Atlantic/CV"
-msgstr "¥«¡¼¥Ü¥Ù¥ë¥Ç"
+msgstr "ã‚«ãƒ¼ãƒœãƒ™ãƒ«ãƒ‡"
 
 msgid "Atlantic/Cape_Verde"
-msgstr "¥«¡¼¥Ü¥Ù¥ë¥Ç"
+msgstr "ã‚«ãƒ¼ãƒœãƒ™ãƒ«ãƒ‡"
 
 msgid "Atlantic/IS"
-msgstr "¥¢¥¤¥¹¥é¥ó¥É"
+msgstr "ã‚¢ã‚¤ã‚¹ãƒ©ãƒ³ãƒ‰"
 
 msgid "Atlantic/Reykjavik"
-msgstr "¥ì¥¤¥­¥ã¥Ó¡¼¥¯"
+msgstr "ãƒ¬ã‚¤ã‚­ãƒ£ãƒ“ãƒ¼ã‚¯"
 
 msgid "Atlantic/SH"
-msgstr "¥»¥ó¥È¥Ø¥ì¥Ê"
+msgstr "ã‚»ãƒ³ãƒˆãƒ˜ãƒ¬ãƒŠ"
 
 msgid "Atlantic/St_Helena"
-msgstr "¥»¥ó¥È¥Ø¥ì¥Ê"
+msgstr "ã‚»ãƒ³ãƒˆãƒ˜ãƒ¬ãƒŠ"
 
 msgid "Atlantic/SJ"
-msgstr "¥¹¥Ğ¡¼¥ë¥Ğ¥ë¡¿¥ä¥ó¥Ş¥¤¥¨¥ó½ôÅç"
+msgstr "ã‚¹ãƒãƒ¼ãƒ«ãƒãƒ«ï¼ãƒ¤ãƒ³ãƒã‚¤ã‚¨ãƒ³è«¸å³¶"
 
 msgid "Atlantic/Jan_Mayen"
-msgstr "¥ä¥ó¥Ş¥¤¥¨¥ó"
+msgstr "ãƒ¤ãƒ³ãƒã‚¤ã‚¨ãƒ³"
 
 msgid "Indian/UK"
-msgstr "¥Á¥ã¥´¥¹½ôÅç (±Ñ¹ñ)"
+msgstr "ãƒãƒ£ã‚´ã‚¹è«¸å³¶ (è‹±å›½)"
 
 msgid "Indian/Chagos"
-msgstr "¥Á¥ã¥´¥¹"
+msgstr "ãƒãƒ£ã‚´ã‚¹"
 
 msgid "Indian/CX"
-msgstr "¥¯¥ê¥¹¥Ş¥¹Åç"
+msgstr "ã‚¯ãƒªã‚¹ãƒã‚¹å³¶"
 
 msgid "Indian/Christmas"
-msgstr "¥¯¥ê¥¹¥Ş¥¹"
+msgstr "ã‚¯ãƒªã‚¹ãƒã‚¹"
 
 msgid "Indian/KM"
-msgstr "¥³¥â¥í"
+msgstr "ã‚³ãƒ¢ãƒ­"
 
 msgid "Indian/CC"
-msgstr "¥³¥³¥¹ (¥­¡¼¥ê¥ó¥°) ½ôÅç"
+msgstr "ã‚³ã‚³ã‚¹ (ã‚­ãƒ¼ãƒªãƒ³ã‚°) è«¸å³¶"
 
 msgid "Indian/Cocos"
-msgstr "¥³¥³¥¹"
+msgstr "ã‚³ã‚³ã‚¹"
 
 msgid "Indian/Comoro"
-msgstr "¥³¥â¥í"
+msgstr "ã‚³ãƒ¢ãƒ­"
 
 msgid "Indian/FR"
-msgstr "¥¤¥ó¥ÉÍÎÆîÉô¥Õ¥é¥ó¥¹ÎÎ"
+msgstr "ã‚¤ãƒ³ãƒ‰æ´‹å—éƒ¨ãƒ•ãƒ©ãƒ³ã‚¹é ˜"
 
 msgid "Indian/Kerguelen"
-msgstr "¥±¥ë¥²¥ì¥ó"
+msgstr "ã‚±ãƒ«ã‚²ãƒ¬ãƒ³"
 
 msgid "Indian/MG"
-msgstr "¥Ş¥À¥¬¥¹¥«¥ë"
+msgstr "ãƒãƒ€ã‚¬ã‚¹ã‚«ãƒ«"
 
 msgid "Indian/Antananarivo"
-msgstr "¥¢¥ó¥¿¥Ê¥Ê¥ê¥Ü"
+msgstr "ã‚¢ãƒ³ã‚¿ãƒŠãƒŠãƒªãƒœ"
 
 msgid "Indian/MV"
-msgstr "¥â¥ë¥¸¥Ö"
+msgstr "ãƒ¢ãƒ«ã‚¸ãƒ–"
 
 msgid "Indian/Maldives"
-msgstr "¥â¥ë¥¸¥Ö"
+msgstr "ãƒ¢ãƒ«ã‚¸ãƒ–"
 
 msgid "Indian/MU"
-msgstr "¥â¡¼¥ê¥·¥ã¥¹"
+msgstr "ãƒ¢ãƒ¼ãƒªã‚·ãƒ£ã‚¹"
 
 msgid "Indian/Mauritius"
-msgstr "¥â¡¼¥ê¥·¥ã¥¹"
+msgstr "ãƒ¢ãƒ¼ãƒªã‚·ãƒ£ã‚¹"
 
 msgid "Indian/RE"
-msgstr "¥ì¥æ¥Ë¥ª¥ó"
+msgstr "ãƒ¬ãƒ¦ãƒ‹ã‚ªãƒ³"
 
 msgid "Indian/Reunion"
-msgstr "¥ì¥æ¥Ë¥ª¥ó"
+msgstr "ãƒ¬ãƒ¦ãƒ‹ã‚ªãƒ³"
 
 msgid "Indian/SC"
-msgstr "¥»¡¼¥·¥§¥ë"
+msgstr "ã‚»ãƒ¼ã‚·ã‚§ãƒ«"
 
 msgid "Indian/Mahe"
-msgstr "¥Ş¥Ø¡¼"
+msgstr "ãƒãƒ˜ãƒ¼"
 
 msgid "NorthAmerica/US"
-msgstr "ÊÆ¹ñ"
+msgstr "ç±³å›½"
 
 msgid "US/Samoa"
-msgstr "¥¢¥á¥ê¥«ÎÎ¥µ¥â¥¢"
+msgstr "ã‚¢ãƒ¡ãƒªã‚«é ˜ã‚µãƒ¢ã‚¢"
 
 msgid "US/Aleutian"
-msgstr "¥¢¥ê¥å¡¼¥·¥ã¥óÉ¸½à»ş"
+msgstr "ã‚¢ãƒªãƒ¥ãƒ¼ã‚·ãƒ£ãƒ³æ¨™æº–æ™‚"
 
 msgid "US/Hawaii"
-msgstr "¥Ï¥ï¥¤"
+msgstr "ãƒãƒ¯ã‚¤"
 
 msgid "US/Alaska"
-msgstr "¥¢¥é¥¹¥«É¸½à»ş"
+msgstr "ã‚¢ãƒ©ã‚¹ã‚«æ¨™æº–æ™‚"
 
 msgid "US/Pacific"
-msgstr "ÂÀÊ¿ÍÎÉ¸½à»ş"
+msgstr "å¤ªå¹³æ´‹æ¨™æº–æ™‚"
 
 msgid "US/Arizona"
-msgstr "¥¢¥ê¥¾¥Ê½£"
+msgstr "ã‚¢ãƒªã‚¾ãƒŠå·"
 
 msgid "US/Mountain"
-msgstr "»³ÃÏÉ¸½à»ş"
+msgstr "å±±åœ°æ¨™æº–æ™‚"
 
 msgid "US/Central"
-msgstr "ÃæÉôÉ¸½à»ş"
+msgstr "ä¸­éƒ¨æ¨™æº–æ™‚"
 
 msgid "US/East-Indiana"
-msgstr "¥¤¥ó¥Ç¥£¥¢¥Ê½£ÅìÉô"
+msgstr "ã‚¤ãƒ³ãƒ‡ã‚£ã‚¢ãƒŠå·æ±éƒ¨"
 
 msgid "US/Eastern"
-msgstr "ÅìÉôÉ¸½à»ş"
+msgstr "æ±éƒ¨æ¨™æº–æ™‚"
 
 msgid "NorthAmerica/CA"
-msgstr "¥«¥Ê¥À"
+msgstr "ã‚«ãƒŠãƒ€"
 
 msgid "Canada/Pacific"
-msgstr "ÂÀÊ¿ÍÎÉ¸½à»ş"
+msgstr "å¤ªå¹³æ´‹æ¨™æº–æ™‚"
 
 msgid "Canada/Yukon"
-msgstr "¥æ¡¼¥³¥óÉ¸½à»ş"
+msgstr "ãƒ¦ãƒ¼ã‚³ãƒ³æ¨™æº–æ™‚"
 
 msgid "Canada/Central"
-msgstr "ÃæÉôÉ¸½à»ş"
+msgstr "ä¸­éƒ¨æ¨™æº–æ™‚"
 
 msgid "Canada/Eastern"
-msgstr "ÅìÉôÉ¸½à»ş"
+msgstr "æ±éƒ¨æ¨™æº–æ™‚"
 
 msgid "Canada/Mountain"
-msgstr "»³ÃÏÉ¸½à»ş"
+msgstr "å±±åœ°æ¨™æº–æ™‚"
 
 msgid "Canada/Newfoundland"
-msgstr "¥Ë¥å¡¼¥Õ¥¡¥ó¥É¥é¥ó¥É"
+msgstr "ãƒ‹ãƒ¥ãƒ¼ãƒ•ã‚¡ãƒ³ãƒ‰ãƒ©ãƒ³ãƒ‰"
 
 msgid "Canada/Saskatchewan"
-msgstr "¥µ¥¹¥«¥Á¥§¥ï¥ó"
+msgstr "ã‚µã‚¹ã‚«ãƒã‚§ãƒ¯ãƒ³"
 
 msgid "Canada/East-Saskatchewan"
-msgstr "Åì¥µ¥¹¥«¥Á¥§¥ï¥ó"
+msgstr "æ±ã‚µã‚¹ã‚«ãƒã‚§ãƒ¯ãƒ³"
 
 msgid "Canada/Atlantic"
-msgstr "ÂçÀ¾ÍÎ"
+msgstr "å¤§è¥¿æ´‹"
 
 msgid "Mexico/BajaNorte"
-msgstr "¥Ğ¥Ï¥Î¥ë¥Æ"
+msgstr "ãƒãƒãƒãƒ«ãƒ†"
 
 msgid "Mexico/BajaSur"
-msgstr "¥Ğ¥Ï¥µ¡¼"
+msgstr "ãƒãƒã‚µãƒ¼"
 
 msgid "Mexico/General"
-msgstr "¥á¥­¥·¥³"
+msgstr "ãƒ¡ã‚­ã‚·ã‚³"
 
 msgid "Europe/RU"
-msgstr "¥í¥·¥¢ (¥è¡¼¥í¥Ã¥Ñ»ş´ÖÂÓ)"
+msgstr "ãƒ­ã‚·ã‚¢ (ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘æ™‚é–“å¸¯)"
 
 msgid "Europe/Kaliningrad"
-msgstr "¥«¥ê¡¼¥Ë¥ó¥°¥é¡¼¥É"
+msgstr "ã‚«ãƒªãƒ¼ãƒ‹ãƒ³ã‚°ãƒ©ãƒ¼ãƒ‰"
 
 msgid "Europe/Moscow"
-msgstr "¥â¥¹¥¯¥ï"
+msgstr "ãƒ¢ã‚¹ã‚¯ãƒ¯"
 
 msgid "Europe/Samara"
-msgstr "¥µ¥Ş¥é"
+msgstr "ã‚µãƒãƒ©"
 
 msgid "Europe/UA"
-msgstr "¥¦¥¯¥é¥¤¥Ê"
+msgstr "ã‚¦ã‚¯ãƒ©ã‚¤ãƒŠ"
 
 msgid "Europe/Kiev"
-msgstr "¥­¥¨¥Õ"
+msgstr "ã‚­ã‚¨ãƒ•"
 
 msgid "Europe/Simferopol"
-msgstr "¥·¥à¥Õ¥§¥í¥İ¥ê"
+msgstr "ã‚·ãƒ ãƒ•ã‚§ãƒ­ãƒãƒª"
 
 msgid "Europe/UK"
-msgstr "±Ñ¹ñ"
+msgstr "è‹±å›½"
 
 msgid "Europe/Belfast"
-msgstr "¥Ù¥ë¥Õ¥¡¡¼¥¹¥È"
+msgstr "ãƒ™ãƒ«ãƒ•ã‚¡ãƒ¼ã‚¹ãƒˆ"
 
 msgid "Europe/London"
-msgstr "¥í¥ó¥É¥ó"
+msgstr "ãƒ­ãƒ³ãƒ‰ãƒ³"
 
 msgid "Asia/RU"
-msgstr "¥í¥·¥¢ (¥¢¥¸¥¢»ş´ÖÂÓ)"
+msgstr "ãƒ­ã‚·ã‚¢ (ã‚¢ã‚¸ã‚¢æ™‚é–“å¸¯)"
 
 msgid "Asia/Yekaterinburg"
-msgstr "¥¨¥«¥Æ¥ê¥ó¥Ö¥ë¥¯"
+msgstr "ã‚¨ã‚«ãƒ†ãƒªãƒ³ãƒ–ãƒ«ã‚¯"
 
 msgid "Asia/Novosibirsk"
-msgstr "¥Î¥Ü¥·¥Ó¥ë¥¹¥¯"
+msgstr "ãƒãƒœã‚·ãƒ“ãƒ«ã‚¹ã‚¯"
 
 msgid "Asia/Omsk"
-msgstr "¥ª¥à¥¹¥¯"
+msgstr "ã‚ªãƒ ã‚¹ã‚¯"
 
 msgid "Asia/Krasnoyarsk"
-msgstr "¥¯¥é¥¹¥Î¥ä¥ë¥¹¥¯"
+msgstr "ã‚¯ãƒ©ã‚¹ãƒãƒ¤ãƒ«ã‚¹ã‚¯"
 
 msgid "Asia/Irkutsk"
-msgstr "¥¤¥ë¥¯¡¼¥Ä¥¯"
+msgstr "ã‚¤ãƒ«ã‚¯ãƒ¼ãƒ„ã‚¯"
 
 msgid "Asia/Yakutsk"
-msgstr "¥ä¥¯¡¼¥Ä¥¯"
+msgstr "ãƒ¤ã‚¯ãƒ¼ãƒ„ã‚¯"
 
 msgid "Asia/Vladivostok"
-msgstr "¥¦¥é¥¸¥ª¥¹¥È¥¯"
+msgstr "ã‚¦ãƒ©ã‚¸ã‚ªã‚¹ãƒˆã‚¯"
 
 msgid "Asia/Magadan"
-msgstr "¥Ş¥¬¥À¥ó"
+msgstr "ãƒã‚¬ãƒ€ãƒ³"
 
 msgid "Asia/Kamchatka"
-msgstr "¥«¥à¥Á¥ã¥Ã¥«"
+msgstr "ã‚«ãƒ ãƒãƒ£ãƒƒã‚«"
 
 msgid "Asia/Anadyr"
-msgstr "¥¢¥Ê¥Ç¥£¥ê"
+msgstr "ã‚¢ãƒŠãƒ‡ã‚£ãƒª"
 
 msgid "Asia/ID"
-msgstr "¥¤¥ó¥É¥Í¥·¥¢"
+msgstr "ã‚¤ãƒ³ãƒ‰ãƒã‚·ã‚¢"
 
 msgid "Asia/Jakarta"
-msgstr "¥¸¥ã¥«¥ë¥¿"
+msgstr "ã‚¸ãƒ£ã‚«ãƒ«ã‚¿"
 
 msgid "Asia/Jayapura"
-msgstr "¥¸¥ã¥ä¥×¥é"
+msgstr "ã‚¸ãƒ£ãƒ¤ãƒ—ãƒ©"
 
 msgid "Asia/Ujung_Pandang"
-msgstr "¥¦¥¸¥å¥ó¥Ñ¥ó¥À¥ó"
+msgstr "ã‚¦ã‚¸ãƒ¥ãƒ³ãƒ‘ãƒ³ãƒ€ãƒ³"
 
 msgid "Asia/CN"
-msgstr "Ãæ¹ñ"
+msgstr "ä¸­å›½"
 
 msgid "Asia/Chungking"
-msgstr "½Å·Ä"
+msgstr "é‡æ…¶"
 
 msgid "Asia/Harbin"
-msgstr "¥Ï¥ë¥Ó¥ó"
+msgstr "ãƒãƒ«ãƒ“ãƒ³"
 
 msgid "Asia/Hong_Kong"
-msgstr "¹á¹Á"
+msgstr "é¦™æ¸¯"
 
 msgid "Asia/Kashgar"
-msgstr "¥«¥·¥å¥¬¥ë"
+msgstr "ã‚«ã‚·ãƒ¥ã‚¬ãƒ«"
 
 msgid "Asia/Shanghai"
-msgstr "¾å³¤"
+msgstr "ä¸Šæµ·"
 
 msgid "Asia/Urumqi"
-msgstr "¥¦¥ë¥à¥Á"
+msgstr "ã‚¦ãƒ«ãƒ ãƒ"
 
 msgid "Asia/IL"
-msgstr "¥¤¥¹¥é¥¨¥ë"
+msgstr "ã‚¤ã‚¹ãƒ©ã‚¨ãƒ«"
 
 msgid "Asia/Gaza"
-msgstr "¥¬¥¶"
+msgstr "ã‚¬ã‚¶"
 
 msgid "Asia/Jerusalem"
-msgstr "¥¨¥ë¥µ¥ì¥à"
+msgstr "ã‚¨ãƒ«ã‚µãƒ¬ãƒ "
 
 msgid "Asia/JP"
-msgstr "ÆüËÜ"
+msgstr "æ—¥æœ¬"
 
 msgid "Asia/Ishigaki"
-msgstr "ÀĞ³ÀÅç"
+msgstr "çŸ³å£å³¶"
 
 msgid "Asia/Tokyo"
-msgstr "ÆüËÜÉ¸½à»ş"
+msgstr "æ—¥æœ¬æ¨™æº–æ™‚"
 
 msgid "Asia/MY"
-msgstr "¥Ş¥ì¡¼¥·¥¢"
+msgstr "ãƒãƒ¬ãƒ¼ã‚·ã‚¢"
 
 msgid "Asia/Kuala_Lumpur"
-msgstr "¥¯¥¢¥é¥ë¥ó¥×¡¼¥ë"
+msgstr "ã‚¯ã‚¢ãƒ©ãƒ«ãƒ³ãƒ—ãƒ¼ãƒ«"
 
 msgid "Asia/Kuching"
-msgstr "¥¯¥Á¥ó"
+msgstr "ã‚¯ãƒãƒ³"
 
 msgid "Asia/KZ"
-msgstr "¥«¥¶¥Õ¥¹¥¿¥ó"
+msgstr "ã‚«ã‚¶ãƒ•ã‚¹ã‚¿ãƒ³"
 
 msgid "Asia/Almaty"
-msgstr "¥¢¥ë¥Ş¥È¥¥¥¤"
+msgstr "ã‚¢ãƒ«ãƒãƒˆã‚¥ã‚¤"
 
 msgid "Asia/Aqtau"
-msgstr "¥¢¥¯¥¿¥¦"
+msgstr "ã‚¢ã‚¯ã‚¿ã‚¦"
 
 msgid "Asia/Aqtobe"
-msgstr "¥¢¥¯¥È¥Ù"
+msgstr "ã‚¢ã‚¯ãƒˆãƒ™"
 
 msgid "Africa/CD"
-msgstr "¥³¥ó¥´Ì±¼ç¶¦ÏÂ¹ñ"
+msgstr "ã‚³ãƒ³ã‚´æ°‘ä¸»å…±å’Œå›½"
 
 msgid "Africa/Kinshasa"
-msgstr "¥­¥ó¥·¥ã¥µ"
+msgstr "ã‚­ãƒ³ã‚·ãƒ£ã‚µ"
 
 msgid "Africa/Lubumbashi"
-msgstr "¥ë¥Ö¥ó¥Ğ¥·"
+msgstr "ãƒ«ãƒ–ãƒ³ãƒã‚·"
 
 msgid "SouthAmerica/BR"
-msgstr "¥Ö¥é¥¸¥ë"
+msgstr "ãƒ–ãƒ©ã‚¸ãƒ«"
 
 msgid "Brazil/Acre"
-msgstr "¥¢¥¯¥ì"
+msgstr "ã‚¢ã‚¯ãƒ¬"
 
 msgid "Brazil/DeNoronha"
-msgstr "¥Ç¥Î¥í¥ó¥Ï"
+msgstr "ãƒ‡ãƒãƒ­ãƒ³ãƒ"
 
 msgid "Brazil/East"
-msgstr "Åì¥Ö¥é¥¸¥ë"
+msgstr "æ±ãƒ–ãƒ©ã‚¸ãƒ«"
 
 msgid "Brazil/West"
-msgstr "À¾¥Ö¥é¥¸¥ë" 
+msgstr "è¥¿ãƒ–ãƒ©ã‚¸ãƒ«" 
 
 msgid "SouthAmerica/CH"
-msgstr "¥Á¥ê"
+msgstr "ãƒãƒª"
 
 msgid "Chile/Continental"
-msgstr "¥Á¥ê"
+msgstr "ãƒãƒª"
 
 msgid "Chile/EasterIsland"
-msgstr "¥¤¡¼¥¹¥¿¡¼Åç"
+msgstr "ã‚¤ãƒ¼ã‚¹ã‚¿ãƒ¼å³¶"
 
 msgid "Oceania/AU"
-msgstr "¥ª¡¼¥¹¥È¥é¥ê¥¢"
+msgstr "ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢"
 
 msgid "Australia/Perth"
-msgstr "¥Ñ¡¼¥¹"
+msgstr "ãƒ‘ãƒ¼ã‚¹"
 
 msgid "Australia/Darwin"
-msgstr "¥À¡¼¥¦¥£¥ó"
+msgstr "ãƒ€ãƒ¼ã‚¦ã‚£ãƒ³"
 
 msgid "Australia/Adelaide"
-msgstr "¥¢¥Ç¥ì¡¼¥É"
+msgstr "ã‚¢ãƒ‡ãƒ¬ãƒ¼ãƒ‰"
 
 msgid "Australia/Brisbane"
-msgstr "¥Ö¥ê¥º¥Ù¥ó"
+msgstr "ãƒ–ãƒªã‚ºãƒ™ãƒ³"
 
 msgid "Australia/Sydney"
-msgstr "¥·¥É¥Ë¡¼"
+msgstr "ã‚·ãƒ‰ãƒ‹ãƒ¼"
 
 msgid "Australia/Broken_Hill"
-msgstr "¥Ö¥í¡¼¥¯¥ó¥Ò¥ë"
+msgstr "ãƒ–ãƒ­ãƒ¼ã‚¯ãƒ³ãƒ’ãƒ«"
 
 msgid "Australia/Queensland"
-msgstr "¥¯¥¤¡¼¥ó¥º¥é¥ó¥É"
+msgstr "ã‚¯ã‚¤ãƒ¼ãƒ³ã‚ºãƒ©ãƒ³ãƒ‰"
 
 msgid "Australia/Lindeman"
-msgstr "¥ê¥ó¥Ç¥Ş¥ó"
+msgstr "ãƒªãƒ³ãƒ‡ãƒãƒ³"
 
 msgid "Australia/Lord_Howe"
-msgstr "¥í¡¼¥É¥Ï¥¦"
+msgstr "ãƒ­ãƒ¼ãƒ‰ãƒã‚¦"
 
 msgid "Australia/Canberra"
-msgstr "¥­¥ã¥ó¥Ù¥é"
+msgstr "ã‚­ãƒ£ãƒ³ãƒ™ãƒ©"
 
 msgid "Australia/Melbourne"
-msgstr "¥á¥ë¥Ü¥ë¥ó"
+msgstr "ãƒ¡ãƒ«ãƒœãƒ«ãƒ³"
 
 msgid "Australia/Hobart"
-msgstr "¥Û¡¼¥Ğ¡¼¥È"
+msgstr "ãƒ›ãƒ¼ãƒãƒ¼ãƒˆ"
 
 msgid "Oceania/US"
-msgstr "ÆîÂÀÊ¿ÍÎ¤ÎÊÆÎÎ½ôÅç"
+msgstr "å—å¤ªå¹³æ´‹ã®ç±³é ˜è«¸å³¶"
 
 msgid "Pacific/Johnston"
-msgstr "¥¸¥ç¥ó¥¹¥È¥ó"
+msgstr "ã‚¸ãƒ§ãƒ³ã‚¹ãƒˆãƒ³"
 
 msgid "Pacific/Midway"
-msgstr "¥ß¥Ã¥É¥¦¥§¡¼"
+msgstr "ãƒŸãƒƒãƒ‰ã‚¦ã‚§ãƒ¼"
 
 msgid "Pacific/Wake"
-msgstr "¥¦¥¨¡¼¥¯"
+msgstr "ã‚¦ã‚¨ãƒ¼ã‚¯"
 
 msgid "Oceania/MH"
-msgstr "¥Ş¡¼¥·¥ã¥ë½ôÅç"
+msgstr "ãƒãƒ¼ã‚·ãƒ£ãƒ«è«¸å³¶"
 
 msgid "Pacific/Kwajalein"
-msgstr "¥¯¥¢¥¸¥ã¥ê¥ó"
+msgstr "ã‚¯ã‚¢ã‚¸ãƒ£ãƒªãƒ³"
 
 msgid "Pacific/Majuro"
-msgstr "¥Ş¥¸¥å¥í"
+msgstr "ãƒã‚¸ãƒ¥ãƒ­"
 
 msgid "Oceania/NZ"
-msgstr "¥Ë¥å¡¼¥¸¡¼¥é¥ó¥É"
+msgstr "ãƒ‹ãƒ¥ãƒ¼ã‚¸ãƒ¼ãƒ©ãƒ³ãƒ‰"
 
 msgid "Pacific/Auckland"
-msgstr "¥ª¡¼¥¯¥é¥ó¥É"
+msgstr "ã‚ªãƒ¼ã‚¯ãƒ©ãƒ³ãƒ‰"
 
 msgid "Pacific/Chatham"
-msgstr "¥Á¥ã¥¿¥à"
+msgstr "ãƒãƒ£ã‚¿ãƒ "
 
 msgid "Oceania/FM"
-msgstr "¥ß¥¯¥í¥Í¥·¥¢"
+msgstr "ãƒŸã‚¯ãƒ­ãƒã‚·ã‚¢"
 
 msgid "Pacific/Kosrae"
-msgstr "¥³¥¹¥é¥¨"
+msgstr "ã‚³ã‚¹ãƒ©ã‚¨"
 
 msgid "Pacific/Ponape"
-msgstr "¥İ¥Ê¥Ú"
+msgstr "ãƒãƒŠãƒš"
 
 msgid "Pacific/Truk"
-msgstr "¥È¥é¥Ã¥¯"
+msgstr "ãƒˆãƒ©ãƒƒã‚¯"
 
 msgid "Pacific/Yap"
-msgstr "¥ä¥Ã¥×"
+msgstr "ãƒ¤ãƒƒãƒ—"
 
 msgid "Oceania/KI"
-msgstr "¥­¥ê¥Ğ¥¹"
+msgstr "ã‚­ãƒªãƒã‚¹"
 
 msgid "Pacific/Enderbury"
-msgstr "¥¨¥ó¥À¡¼¥Ù¥ê¡¼"
+msgstr "ã‚¨ãƒ³ãƒ€ãƒ¼ãƒ™ãƒªãƒ¼"
 
 msgid "Pacific/Kiritimati"
-msgstr "¥­¥ê¥Æ¥£¥Ş¥Æ¥£"
+msgstr "ã‚­ãƒªãƒ†ã‚£ãƒãƒ†ã‚£"
 
 msgid "Pacific/Tarawa"
-msgstr "¥¿¥é¥ï"
+msgstr "ã‚¿ãƒ©ãƒ¯"
 
 msgid "Oceania/PF"
-msgstr "¥Õ¥é¥ó¥¹ÎÎ¥İ¥ê¥Í¥·¥¢"
+msgstr "ãƒ•ãƒ©ãƒ³ã‚¹é ˜ãƒãƒªãƒã‚·ã‚¢"
 
 msgid "Pacific/Gambier"
-msgstr "¥¬¥ó¥Ó¥¢"
+msgstr "ã‚¬ãƒ³ãƒ“ã‚¢"
 
 msgid "Pacific/Marquesas"
-msgstr "¥Ş¥ë¥±¥µ¥¹"
+msgstr "ãƒãƒ«ã‚±ã‚µã‚¹"
 
 msgid "Pacific/Tahiti"
-msgstr "¥¿¥Ò¥Á"
+msgstr "ã‚¿ãƒ’ãƒ"
 
 msgid "Antarctica/AQ"
-msgstr "Æî¶Ë"
+msgstr "å—æ¥µ"
 
 msgid "Antarctica/Casey"
-msgstr "¥±¡¼¥·¡¼"
+msgstr "ã‚±ãƒ¼ã‚·ãƒ¼"
 
 msgid "Antarctica/DumontDUrville"
-msgstr "¥Ç¥å¥â¥ó¡¦¥É¥¥¥Ó¥ë"
+msgstr "ãƒ‡ãƒ¥ãƒ¢ãƒ³ãƒ»ãƒ‰ã‚¥ãƒ“ãƒ«"
 
 msgid "Antarctica/Mawson"
-msgstr "¥â¡¼¥½¥ó"
+msgstr "ãƒ¢ãƒ¼ã‚½ãƒ³"
 
 msgid "Antarctica/McMurdo"
-msgstr "¥Ş¥¯¥Ş¡¼¥É"
+msgstr "ãƒã‚¯ãƒãƒ¼ãƒ‰"
 
 msgid "Antarctica/Palmer"
-msgstr "¥Ñ¡¼¥Ş¡¼"
+msgstr "ãƒ‘ãƒ¼ãƒãƒ¼"
 
 msgid "Antarctica/South_Pole"
-msgstr "Æî¶ËÅÀ"
+msgstr "å—æ¥µç‚¹"
 
 msgid "Atlantic/PT"
-msgstr "ÂçÀ¾ÍÎ¤Î¥İ¥ë¥È¥¬¥ëÎÎ½ôÅç"
+msgstr "å¤§è¥¿æ´‹ã®ãƒãƒ«ãƒˆã‚¬ãƒ«é ˜è«¸å³¶"
 
 msgid "Atlantic/Azores"
-msgstr "¥¢¥¾¥ì¥¹"
+msgstr "ã‚¢ã‚¾ãƒ¬ã‚¹"
 
 msgid "Atlantic/Madeira"
-msgstr "¥Ş¥Ç¥£¥é"
+msgstr "ãƒãƒ‡ã‚£ãƒ©"
 
 msgid "UTC/UTC"
-msgstr "UTC ¥ª¥Õ¥»¥Ã¥È"
+msgstr "UTC ã‚ªãƒ•ã‚»ãƒƒãƒˆ"
 
 msgid "Etc/UTC"
 msgstr "UTC"
@@ -2173,733 +2266,733 @@ msgstr "UTC-14:00"
 #
 
 msgid "ad"  
-msgstr "¥¢¥ó¥É¥é"
+msgstr "ã‚¢ãƒ³ãƒ‰ãƒ©"
 
 msgid "ae"  
-msgstr "¥¢¥é¥Ö¼óÄ¹¹ñÏ¢Ë®"
+msgstr "ã‚¢ãƒ©ãƒ–é¦–é•·å›½é€£é‚¦"
 
 msgid "af"
-msgstr "¥¢¥Õ¥¬¥Ë¥¹¥¿¥ó"
+msgstr "ã‚¢ãƒ•ã‚¬ãƒ‹ã‚¹ã‚¿ãƒ³"
 
 msgid "ag"  
-msgstr "¥¢¥ó¥Æ¥£¥°¥¢¡İ¥Ğ¡¼¥Ö¡¼¥À"
+msgstr "ã‚¢ãƒ³ãƒ†ã‚£ã‚°ã‚¢â€ãƒãƒ¼ãƒ–ãƒ¼ãƒ€"
 
 msgid "ai"  
-msgstr "¥¢¥ó¥°¥£¥é"
+msgstr "ã‚¢ãƒ³ã‚°ã‚£ãƒ©"
 
 msgid "al"  
-msgstr "¥¢¥ë¥Ğ¥Ë¥¢"
+msgstr "ã‚¢ãƒ«ãƒãƒ‹ã‚¢"
 
 msgid "AM"
-msgstr "¥¢¥ë¥á¥Ë¥¢"
+msgstr "ã‚¢ãƒ«ãƒ¡ãƒ‹ã‚¢"
 
 msgid "an"  
-msgstr "¥ª¥é¥ó¥ÀÎÎ¥¢¥ó¥Á¥ë½ôÅç"
+msgstr "ã‚ªãƒ©ãƒ³ãƒ€é ˜ã‚¢ãƒ³ãƒãƒ«è«¸å³¶"
 
 msgid "ao"  
-msgstr "¥¢¥ó¥´¥é"
+msgstr "ã‚¢ãƒ³ã‚´ãƒ©"
 
 msgid "aq"  
-msgstr "Æî¶Ë"
+msgstr "å—æ¥µ"
 
 msgid "ar"  
-msgstr "¥¢¥ë¥¼¥ó¥Á¥ó"
+msgstr "ã‚¢ãƒ«ã‚¼ãƒ³ãƒãƒ³"
 
 msgid "as"  
-msgstr "¥¢¥á¥ê¥«ÎÎ¥µ¥â¥¢"
+msgstr "ã‚¢ãƒ¡ãƒªã‚«é ˜ã‚µãƒ¢ã‚¢"
 
 msgid "at"  
-msgstr "¥ª¡¼¥¹¥È¥ê¥¢"
+msgstr "ã‚ªãƒ¼ã‚¹ãƒˆãƒªã‚¢"
 
 msgid "au" 
-msgstr "¥ª¡¼¥¹¥È¥é¥ê¥¢"
+msgstr "ã‚ªãƒ¼ã‚¹ãƒˆãƒ©ãƒªã‚¢"
 
 msgid "aw" 
-msgstr "¥¢¥ë¡¼¥Ğ"
+msgstr "ã‚¢ãƒ«ãƒ¼ãƒ"
 
 msgid "az"  
-msgstr "¥¢¥¼¥ë¥Ğ¥¤¥¸¥ã¥ó"
+msgstr "ã‚¢ã‚¼ãƒ«ãƒã‚¤ã‚¸ãƒ£ãƒ³"
 
 msgid "ba"  
-msgstr "¥Ü¥¹¥Ë¥¢¡¦¥Ø¥ë¥Ä¥§¥´¥Ó¥Ê"
+msgstr "ãƒœã‚¹ãƒ‹ã‚¢ãƒ»ãƒ˜ãƒ«ãƒ„ã‚§ã‚´ãƒ“ãƒŠ"
 
 msgid "bb"  
-msgstr "¥Ğ¥ë¥Ğ¥É¥¹"
+msgstr "ãƒãƒ«ãƒãƒ‰ã‚¹"
 
 msgid "bd"  
-msgstr "¥Ğ¥ó¥°¥é¥Ç¥·¥å"
+msgstr "ãƒãƒ³ã‚°ãƒ©ãƒ‡ã‚·ãƒ¥"
 
 msgid "be"  
-msgstr "¥Ù¥ë¥®¡¼"
+msgstr "ãƒ™ãƒ«ã‚®ãƒ¼"
 
 msgid "bf"  
-msgstr "¥Ö¥ë¥­¥Ê¥Õ¥¡¥½ "
+msgstr "ãƒ–ãƒ«ã‚­ãƒŠãƒ•ã‚¡ã‚½ "
 
 msgid "bg" 
-msgstr "¥Ö¥ë¥¬¥ê¥¢"
+msgstr "ãƒ–ãƒ«ã‚¬ãƒªã‚¢"
 
 msgid "bh"  
-msgstr "¥Ğ¡¼¥ì¡¼¥ó"
+msgstr "ãƒãƒ¼ãƒ¬ãƒ¼ãƒ³"
 
 msgid "bi"  
-msgstr "¥Ö¥ë¥ó¥¸"
+msgstr "ãƒ–ãƒ«ãƒ³ã‚¸"
 
 msgid "bj"  
-msgstr "¥Ù¥Ë¥ó"
+msgstr "ãƒ™ãƒ‹ãƒ³"
 
 msgid "bm"  
-msgstr "¥Ğ¥ß¥å¡¼¥À"
+msgstr "ãƒãƒŸãƒ¥ãƒ¼ãƒ€"
 
 msgid "bn"  
-msgstr "¥Ö¥ë¥Í¥¤¡¦¥À¥ë¥µ¥é¡¼¥à"
+msgstr "ãƒ–ãƒ«ãƒã‚¤ãƒ»ãƒ€ãƒ«ã‚µãƒ©ãƒ¼ãƒ "
 
 msgid "bo"  
-msgstr "¥Ü¥ê¥Ó¥¢"
+msgstr "ãƒœãƒªãƒ“ã‚¢"
 
 msgid "br"  
-msgstr "¥Ö¥é¥¸¥ë"
+msgstr "ãƒ–ãƒ©ã‚¸ãƒ«"
 
 msgid "bs"  
-msgstr "¥Ğ¥Ï¥Ş"
+msgstr "ãƒãƒãƒ"
 
 msgid "bt"  
-msgstr "¥Ö¡¼¥¿¥ó"
+msgstr "ãƒ–ãƒ¼ã‚¿ãƒ³"
 
 msgid "bv"  
-msgstr "¥Ö¡¼¥ÙÅç"
+msgstr "ãƒ–ãƒ¼ãƒ™å³¶"
 
 msgid "bw"  
-msgstr "¥Ü¥Ä¥ï¥Ê"
+msgstr "ãƒœãƒ„ãƒ¯ãƒŠ"
 
 msgid "by"  
-msgstr "¥Ù¥é¥ë¡¼¥·"
+msgstr "ãƒ™ãƒ©ãƒ«ãƒ¼ã‚·"
 
 msgid "bz"  
-msgstr "¥Ù¥ê¡¼¥º"
+msgstr "ãƒ™ãƒªãƒ¼ã‚º"
 
 msgid "ca"  
-msgstr "¥«¥Ê¥À"
+msgstr "ã‚«ãƒŠãƒ€"
 
 msgid "cc"
-msgstr "¥³¥³¥¹ (¥­¡¼¥ê¥ó¥°) ½ôÅç"
+msgstr "ã‚³ã‚³ã‚¹ (ã‚­ãƒ¼ãƒªãƒ³ã‚°) è«¸å³¶"
 
 msgid "cf"  
-msgstr "Ãæ±û¥¢¥Õ¥ê¥«¶¦ÏÂ¹ñ"
+msgstr "ä¸­å¤®ã‚¢ãƒ•ãƒªã‚«å…±å’Œå›½"
 
 msgid "cg" 
-msgstr "¥³¥ó¥´"
+msgstr "ã‚³ãƒ³ã‚´"
 
 msgid "ch" 
-msgstr "¥¹¥¤¥¹"
+msgstr "ã‚¹ã‚¤ã‚¹"
 
 msgid "ci"  
-msgstr "¾İ²ç³¤´ß¶¦ÏÂ¹ñ (¥³¡¼¥È¥¸¥Ü¥¢¡¼¥ë)"
+msgstr "è±¡ç‰™æµ·å²¸å…±å’Œå›½ (ã‚³ãƒ¼ãƒˆã‚¸ãƒœã‚¢ãƒ¼ãƒ«)"
 
 msgid "ck" 
-msgstr "¥¯¥Ã¥¯½ôÅç"
+msgstr "ã‚¯ãƒƒã‚¯è«¸å³¶"
 
 msgid "cl"  
-msgstr "¥Á¥ê"
+msgstr "ãƒãƒª"
 
 msgid "cm"  
-msgstr "¥«¥á¥ë¡¼¥ó"
+msgstr "ã‚«ãƒ¡ãƒ«ãƒ¼ãƒ³"
 
 msgid "cn"  
-msgstr "Ãæ¹ñ"
+msgstr "ä¸­å›½"
 
 msgid "co"  
-msgstr "¥³¥í¥ó¥Ó¥¢"
+msgstr "ã‚³ãƒ­ãƒ³ãƒ“ã‚¢"
 
 msgid "cr"  
-msgstr "¥³¥¹¥¿¥ê¥«"
+msgstr "ã‚³ã‚¹ã‚¿ãƒªã‚«"
 
 msgid "cs"  
-msgstr "µì¥Á¥§¥³¥¹¥í¥Ğ¥­¥¢"
+msgstr "æ—§ãƒã‚§ã‚³ã‚¹ãƒ­ãƒã‚­ã‚¢"
 
 msgid "cu"  
-msgstr "¥­¥å¡¼¥Ğ"
+msgstr "ã‚­ãƒ¥ãƒ¼ãƒ"
 
 msgid "cv"  
-msgstr "¥«¡¼¥Ü¥Ù¥ë¥Ç"
+msgstr "ã‚«ãƒ¼ãƒœãƒ™ãƒ«ãƒ‡"
 
 msgid "cx"  
-msgstr "¥¯¥ê¥¹¥Ş¥¹Åç"
+msgstr "ã‚¯ãƒªã‚¹ãƒã‚¹å³¶"
 
 msgid "cy"  
-msgstr "¥­¥×¥í¥¹"
+msgstr "ã‚­ãƒ—ãƒ­ã‚¹"
 
 msgid "cz"  
-msgstr "¥Á¥§¥³¶¦ÏÂ¹ñ"
+msgstr "ãƒã‚§ã‚³å…±å’Œå›½"
 
 msgid "de"  
-msgstr "¥É¥¤¥Ä"
+msgstr "ãƒ‰ã‚¤ãƒ„"
 
 msgid "dj"  
-msgstr "¥¸¥Ö¥Á"
+msgstr "ã‚¸ãƒ–ãƒ"
 
 msgid "dk" 
-msgstr "¥Ç¥ó¥Ş¡¼¥¯"
+msgstr "ãƒ‡ãƒ³ãƒãƒ¼ã‚¯"
 
 msgid "dm"  
-msgstr "¥É¥ß¥Ë¥«"
+msgstr "ãƒ‰ãƒŸãƒ‹ã‚«"
 
 msgid "do"  
-msgstr "¥É¥ß¥Ë¥«¶¦ÏÂ¹ñ"
+msgstr "ãƒ‰ãƒŸãƒ‹ã‚«å…±å’Œå›½"
 
 msgid "dz"  
-msgstr "¥¢¥ë¥¸¥§¥ê¥¢"
+msgstr "ã‚¢ãƒ«ã‚¸ã‚§ãƒªã‚¢"
 
 msgid "ec"  
-msgstr "¥¨¥¯¥¢¥É¥ë"
+msgstr "ã‚¨ã‚¯ã‚¢ãƒ‰ãƒ«"
 
 msgid "ee"  
-msgstr "¥¨¥¹¥È¥Ë¥¢"
+msgstr "ã‚¨ã‚¹ãƒˆãƒ‹ã‚¢"
 
 msgid "eg"  
-msgstr "¥¨¥¸¥×¥È"
+msgstr "ã‚¨ã‚¸ãƒ—ãƒˆ"
 
 msgid "eh"  
-msgstr "À¾¥µ¥Ï¥é"
+msgstr "è¥¿ã‚µãƒãƒ©"
 
 msgid "er"  
-msgstr "¥¨¥ê¥È¥ê¥¢"
+msgstr "ã‚¨ãƒªãƒˆãƒªã‚¢"
 
 msgid "es"  
-msgstr "¥¹¥Ú¥¤¥ó"
+msgstr "ã‚¹ãƒšã‚¤ãƒ³"
 
 msgid "et"  
-msgstr "¥¨¥Á¥ª¥Ô¥¢"
+msgstr "ã‚¨ãƒã‚ªãƒ”ã‚¢"
 
 msgid "fi"  
-msgstr "¥Õ¥£¥ó¥é¥ó¥É"
+msgstr "ãƒ•ã‚£ãƒ³ãƒ©ãƒ³ãƒ‰"
 
 msgid "fj" 
-msgstr "¥Õ¥£¡¼¥¸¡¼"
+msgstr "ãƒ•ã‚£ãƒ¼ã‚¸ãƒ¼"
 
 msgid "fk"  
-msgstr "¥Õ¥©¡¼¥¯¥é¥ó¥É½ôÅç"
+msgstr "ãƒ•ã‚©ãƒ¼ã‚¯ãƒ©ãƒ³ãƒ‰è«¸å³¶"
 
 msgid "fm"  
-msgstr "¥ß¥¯¥í¥Í¥·¥¢"
+msgstr "ãƒŸã‚¯ãƒ­ãƒã‚·ã‚¢"
 
 msgid "fo"  
-msgstr "¥Õ¥§¥í¡¼½ôÅç"
+msgstr "ãƒ•ã‚§ãƒ­ãƒ¼è«¸å³¶"
 
 msgid "fr"  
-msgstr "¥Õ¥é¥ó¥¹"
+msgstr "ãƒ•ãƒ©ãƒ³ã‚¹"
 
 msgid "fx"  
-msgstr "¥Õ¥é¥ó¥¹ (¥è¡¼¥í¥Ã¥ÑÎÎ)"
+msgstr "ãƒ•ãƒ©ãƒ³ã‚¹ (ãƒ¨ãƒ¼ãƒ­ãƒƒãƒ‘é ˜)"
 
 msgid "ga"  
-msgstr "¥¬¥Ü¥ó"
+msgstr "ã‚¬ãƒœãƒ³"
 
 msgid "gb"  
-msgstr "±Ñ¹ñ"
+msgstr "è‹±å›½"
 
 msgid "gd"  
-msgstr "¥°¥ì¥Ê¥À"
+msgstr "ã‚°ãƒ¬ãƒŠãƒ€"
 
 msgid "ge"  
-msgstr "¥°¥ë¥¸¥¢"
+msgstr "ã‚°ãƒ«ã‚¸ã‚¢"
 
 msgid "gf"  
-msgstr "Ê©ÎÎ¥®¥¢¥Ê"
+msgstr "ä»é ˜ã‚®ã‚¢ãƒŠ"
 
 msgid "gh"  
-msgstr "¥¬¡¼¥Ê"
+msgstr "ã‚¬ãƒ¼ãƒŠ"
 
 msgid "gi"  
-msgstr "¥¸¥Ö¥é¥ë¥¿¥ë"
+msgstr "ã‚¸ãƒ–ãƒ©ãƒ«ã‚¿ãƒ«"
 
 msgid "gl" 
-msgstr "¥°¥ê¡¼¥ó¥é¥ó¥É"
+msgstr "ã‚°ãƒªãƒ¼ãƒ³ãƒ©ãƒ³ãƒ‰"
 
 msgid "gm"  
-msgstr "¥¬¥ó¥Ó¥¢"
+msgstr "ã‚¬ãƒ³ãƒ“ã‚¢"
 
 msgid "gn"  
-msgstr "¥®¥Ë¥¢"
+msgstr "ã‚®ãƒ‹ã‚¢"
 
 msgid "gp"  
-msgstr "¥°¥¢¥É¥ë¡¼¥×Åç (¥Õ¥é¥ó¥¹)"
+msgstr "ã‚°ã‚¢ãƒ‰ãƒ«ãƒ¼ãƒ—å³¶ (ãƒ•ãƒ©ãƒ³ã‚¹)"
 
 msgid "gq"  
-msgstr "ÀÖÆ»¥®¥Ë¥¢"
+msgstr "èµ¤é“ã‚®ãƒ‹ã‚¢"
 
 msgid "gr"  
-msgstr "¥®¥ê¥·¥ã"
+msgstr "ã‚®ãƒªã‚·ãƒ£"
 
 msgid "gs"  
-msgstr "¥µ¥¦¥¹¥¸¥ç¡¼¥¸¥¢Åç¤ª¤è¤Ó¥µ¥¦¥¹¥µ¥ó¥É¥¤¥Ã¥Á½ôÅç"
+msgstr "ã‚µã‚¦ã‚¹ã‚¸ãƒ§ãƒ¼ã‚¸ã‚¢å³¶ãŠã‚ˆã³ã‚µã‚¦ã‚¹ã‚µãƒ³ãƒ‰ã‚¤ãƒƒãƒè«¸å³¶"
 
 msgid "gt"  
-msgstr "¥°¥¢¥Æ¥Ş¥é"
+msgstr "ã‚°ã‚¢ãƒ†ãƒãƒ©"
 
 msgid "gu" 
-msgstr "¥°¥¢¥à (ÊÆ¹ñ)"
+msgstr "ã‚°ã‚¢ãƒ  (ç±³å›½)"
 
 msgid "gw"  
-msgstr "¥®¥Ë¥¢¡¦¥Ó¥µ¥¦"
+msgstr "ã‚®ãƒ‹ã‚¢ãƒ»ãƒ“ã‚µã‚¦"
 
 msgid "gy"  
-msgstr "¥¬¥¤¥¢¥Ê"
+msgstr "ã‚¬ã‚¤ã‚¢ãƒŠ"
 
 msgid "hk"  
-msgstr "¹á¹½`"
+msgstr "é¦™æ§‹`"
 
 msgid "hm" 
-msgstr "¥Ï¡¼¥É¡¦¥Ş¥¯¥É¥Ê¥ë¥É½ôÅç"
+msgstr "ãƒãƒ¼ãƒ‰ãƒ»ãƒã‚¯ãƒ‰ãƒŠãƒ«ãƒ‰è«¸å³¶"
 
 msgid "hn"  
-msgstr "¥Û¥ó¥¸¥å¥é¥¹"
+msgstr "ãƒ›ãƒ³ã‚¸ãƒ¥ãƒ©ã‚¹"
 
 msgid "hr"  
-msgstr "¥¯¥í¥¢¥Á¥¢"
+msgstr "ã‚¯ãƒ­ã‚¢ãƒã‚¢"
 
 msgid "ht"  
-msgstr "¥Ï¥¤¥Á"
+msgstr "ãƒã‚¤ãƒ"
 
 msgid "hu"  
-msgstr "¥Ï¥ó¥¬¥ê¡¼"
+msgstr "ãƒãƒ³ã‚¬ãƒªãƒ¼"
 
 msgid "id"  
-msgstr "¥¤¥ó¥É¥Í¥·¥¢"
+msgstr "ã‚¤ãƒ³ãƒ‰ãƒã‚·ã‚¢"
 
 msgid "ie"  
-msgstr "¥¢¥¤¥ë¥é¥ó¥É"
+msgstr "ã‚¢ã‚¤ãƒ«ãƒ©ãƒ³ãƒ‰"
 
 msgid "il"  
-msgstr "¥¤¥¹¥é¥¨¥ë"
+msgstr "ã‚¤ã‚¹ãƒ©ã‚¨ãƒ«"
 
 msgid "in"  
-msgstr "¥¤¥ó¥É"
+msgstr "ã‚¤ãƒ³ãƒ‰"
 
 msgid "io"  
-msgstr "¥¤¥ó¥ÉÍÎ±Ñ¹ñÎÎ"
+msgstr "ã‚¤ãƒ³ãƒ‰æ´‹è‹±å›½é ˜"
 
 msgid "iq"  
-msgstr "¥¤¥é¥¯"
+msgstr "ã‚¤ãƒ©ã‚¯"
 
 msgid "ir"  
-msgstr "¥¤¥é¥ó"
+msgstr "ã‚¤ãƒ©ãƒ³"
 
 msgid "is"  
-msgstr "¥¢¥¤¥¹¥é¥ó¥É"
+msgstr "ã‚¢ã‚¤ã‚¹ãƒ©ãƒ³ãƒ‰"
 
 msgid "it"  
-msgstr "¥¤¥¿¥ê¥¢"
+msgstr "ã‚¤ã‚¿ãƒªã‚¢"
 
 msgid "jm" 
-msgstr "¥¸¥ã¥Ş¥¤¥«"
+msgstr "ã‚¸ãƒ£ãƒã‚¤ã‚«"
 
 msgid "jo"  
-msgstr "¥è¥ë¥À¥ó"
+msgstr "ãƒ¨ãƒ«ãƒ€ãƒ³"
 
 msgid "jp"  
-msgstr "ÆüËÜ"
+msgstr "æ—¥æœ¬"
 
 msgid "ke"  
-msgstr "¥±¥Ë¥¢"
+msgstr "ã‚±ãƒ‹ã‚¢"
 
 msgid "kg"  
-msgstr "¥­¥ë¥®¥¹¥¿¥ó"
+msgstr "ã‚­ãƒ«ã‚®ã‚¹ã‚¿ãƒ³"
 
 msgid "kh"  
-msgstr "¥«¥ó¥Ü¥¸¥¢"
+msgstr "ã‚«ãƒ³ãƒœã‚¸ã‚¢"
 
 msgid "ki"  
-msgstr "¥­¥ê¥Ğ¥¹"
+msgstr "ã‚­ãƒªãƒã‚¹"
 
 msgid "km" 
-msgstr "¥³¥â¥í"
+msgstr "ã‚³ãƒ¢ãƒ­"
 
 msgid "kn"  
-msgstr "¥»¥ó¥È¥­¥Ã¥Ä¡¦¥Í¥¤¥Ó¥¹¥¢¥ó¥®¥é"
+msgstr "ã‚»ãƒ³ãƒˆã‚­ãƒƒãƒ„ãƒ»ãƒã‚¤ãƒ“ã‚¹ã‚¢ãƒ³ã‚®ãƒ©"
 
 msgid "kp"  
-msgstr "ËÌÄ«Á¯"
+msgstr "åŒ—æœé®®"
 
 msgid "kr"  
-msgstr "´Ú¹ñ"
+msgstr "éŸ“å›½"
 
 msgid "kw" 
-msgstr "¥¯¥¦¥§¡¼¥È"
+msgstr "ã‚¯ã‚¦ã‚§ãƒ¼ãƒˆ"
 
 msgid "ky"  
-msgstr "¥±¥¤¥Ş¥ó½ôÅç"
+msgstr "ã‚±ã‚¤ãƒãƒ³è«¸å³¶"
 
 msgid "kz"  
-msgstr "¥«¥¶¥Õ¥¹¥¿¥ó"
+msgstr "ã‚«ã‚¶ãƒ•ã‚¹ã‚¿ãƒ³"
 
 msgid "la"  
-msgstr "¥é¥ª¥¹"
+msgstr "ãƒ©ã‚ªã‚¹"
 
 msgid "lb"  
-msgstr "¥ì¥Ğ¥Î¥ó"
+msgstr "ãƒ¬ãƒãƒãƒ³"
 
 msgid "lc"  
-msgstr "¥»¥ó¥È¥ë¥·¥¢"
+msgstr "ã‚»ãƒ³ãƒˆãƒ«ã‚·ã‚¢"
 
 msgid "li"  
-msgstr "¥ê¥Ò¥Æ¥ó¥·¥å¥¿¥¤¥ó"
+msgstr "ãƒªãƒ’ãƒ†ãƒ³ã‚·ãƒ¥ã‚¿ã‚¤ãƒ³"
 
 msgid "lk" 
-msgstr "¥¹¥ê¥é¥ó¥«"
+msgstr "ã‚¹ãƒªãƒ©ãƒ³ã‚«"
 
 msgid "lr"  
-msgstr "¥ê¥Ù¥ê¥¢"
+msgstr "ãƒªãƒ™ãƒªã‚¢"
 
 msgid "ls"  
-msgstr "¥ì¥½¥È"
+msgstr "ãƒ¬ã‚½ãƒˆ"
 
 msgid "lt"  
-msgstr "¥ê¥È¥¢¥Ë¥¢"
+msgstr "ãƒªãƒˆã‚¢ãƒ‹ã‚¢"
 
 msgid "lu" 
-msgstr "¥ë¥¯¥»¥ó¥Ö¥ë¥¯"
+msgstr "ãƒ«ã‚¯ã‚»ãƒ³ãƒ–ãƒ«ã‚¯"
 
 msgid "lv" 
-msgstr "¥é¥È¥Ó¥¢"
+msgstr "ãƒ©ãƒˆãƒ“ã‚¢"
 
 msgid "ly"  
-msgstr "¥ê¥Ó¥¢"
+msgstr "ãƒªãƒ“ã‚¢"
 
 msgid "ma"  
-msgstr "¥â¥í¥Ã¥³"
+msgstr "ãƒ¢ãƒ­ãƒƒã‚³"
 
 msgid "mc"  
-msgstr "¥â¥Ê¥³"
+msgstr "ãƒ¢ãƒŠã‚³"
 
 msgid "md"  
-msgstr "¥â¥ë¥À¥Ó¥¢"
+msgstr "ãƒ¢ãƒ«ãƒ€ãƒ“ã‚¢"
 
 msgid "mg"  
-msgstr "¥Ş¥À¥¬¥¹¥«¥ë"
+msgstr "ãƒãƒ€ã‚¬ã‚¹ã‚«ãƒ«"
 
 msgid "mh"  
-msgstr "¥Ş¡¼¥·¥ã¥ë½ôÅç"
+msgstr "ãƒãƒ¼ã‚·ãƒ£ãƒ«è«¸å³¶"
 
 msgid "mk"  
-msgstr "¥Ş¥±¥É¥Ë¥¢"
+msgstr "ãƒã‚±ãƒ‰ãƒ‹ã‚¢"
 
 msgid "ml"  
-msgstr "¥Ş¥ê"
+msgstr "ãƒãƒª"
 
 msgid "mm"
-msgstr "¥ß¥ã¥ó¥Ş¡¼"
+msgstr "ãƒŸãƒ£ãƒ³ãƒãƒ¼"
 
 msgid "mn" 
-msgstr "¥â¥ó¥´¥ë"
+msgstr "ãƒ¢ãƒ³ã‚´ãƒ«"
 
 msgid "mo" 
-msgstr "¥Ş¥«¥ª"
+msgstr "ãƒã‚«ã‚ª"
 
 msgid "mp" 
-msgstr "ËÌ¥Ş¥ê¥¢¥Ê½ôÅç"
+msgstr "åŒ—ãƒãƒªã‚¢ãƒŠè«¸å³¶"
 
 msgid "mq" 
-msgstr "¥Ş¥ë¥Á¥Ë¡¼¥¯Åç (¥Õ¥é¥ó¥¹)"
+msgstr "ãƒãƒ«ãƒãƒ‹ãƒ¼ã‚¯å³¶ (ãƒ•ãƒ©ãƒ³ã‚¹)"
 
 msgid "mr"  
-msgstr "¥â¡¼¥ê¥¿¥Ë¥¢"
+msgstr "ãƒ¢ãƒ¼ãƒªã‚¿ãƒ‹ã‚¢"
 
 msgid "ms"  
-msgstr "¥â¥ó¥»¥é¥Ã¥È"
+msgstr "ãƒ¢ãƒ³ã‚»ãƒ©ãƒƒãƒˆ"
 
 msgid "mt"  
-msgstr "¥Ş¥ë¥¿"
+msgstr "ãƒãƒ«ã‚¿"
 
 msgid "mu" 
-msgstr "¥â¡¼¥ê¥·¥ã¥¹"
+msgstr "ãƒ¢ãƒ¼ãƒªã‚·ãƒ£ã‚¹"
 
 msgid "mv" 
-msgstr "¥â¥ë¥¸¥Ö"
+msgstr "ãƒ¢ãƒ«ã‚¸ãƒ–"
 
 msgid "mw"  
-msgstr "¥Ş¥é¥¦¥¤"
+msgstr "ãƒãƒ©ã‚¦ã‚¤"
 
 msgid "mx"  
-msgstr "¥á¥­¥·¥³"
+msgstr "ãƒ¡ã‚­ã‚·ã‚³"
 
 msgid "my"  
-msgstr "¥Ş¥ì¡¼¥·¥¢"
+msgstr "ãƒãƒ¬ãƒ¼ã‚·ã‚¢"
 
 msgid "mz"  
-msgstr "¥â¥¶¥ó¥Ó¡¼¥¯"
+msgstr "ãƒ¢ã‚¶ãƒ³ãƒ“ãƒ¼ã‚¯"
 
 msgid "na"  
-msgstr "¥Ê¥ß¥Ó¥¢"
+msgstr "ãƒŠãƒŸãƒ“ã‚¢"
 
 msgid "nc"  
-msgstr "¥Ë¥å¡¼¥«¥ì¥É¥Ë¥¢ (¥Õ¥é¥ó¥¹)"
+msgstr "ãƒ‹ãƒ¥ãƒ¼ã‚«ãƒ¬ãƒ‰ãƒ‹ã‚¢ (ãƒ•ãƒ©ãƒ³ã‚¹)"
 
 msgid "ne"  
-msgstr "¥Ë¥¸¥§¡¼¥ë"
+msgstr "ãƒ‹ã‚¸ã‚§ãƒ¼ãƒ«"
 
 msgid "nf"  
-msgstr "¥Î¡¼¥Õ¥©¡¼¥¯Åç"
+msgstr "ãƒãƒ¼ãƒ•ã‚©ãƒ¼ã‚¯å³¶"
 
 msgid "ng" 
-msgstr "¥Ê¥¤¥¸¥§¥ê¥¢"
+msgstr "ãƒŠã‚¤ã‚¸ã‚§ãƒªã‚¢"
 
 msgid "ni"  
-msgstr "¥Ë¥«¥é¥°¥¢"
+msgstr "ãƒ‹ã‚«ãƒ©ã‚°ã‚¢"
 
 msgid "nl"  
-msgstr "¥ª¥é¥ó¥À"
+msgstr "ã‚ªãƒ©ãƒ³ãƒ€"
 
 msgid "no"  
-msgstr "¥Î¥ë¥¦¥§¡¼"
+msgstr "ãƒãƒ«ã‚¦ã‚§ãƒ¼"
 
 msgid "np"  
-msgstr "¥Í¥Ñ¡¼¥ë"
+msgstr "ãƒãƒ‘ãƒ¼ãƒ«"
 
 msgid "nr"  
-msgstr "¥Ê¥¦¥ë"
+msgstr "ãƒŠã‚¦ãƒ«"
 
 msgid "nt"  
-msgstr "ÃæÎ©ÃÏÂÓ"
+msgstr "ä¸­ç«‹åœ°å¸¯"
 
 msgid "nu" 
-msgstr "¥Ë¥¦¥¨"
+msgstr "ãƒ‹ã‚¦ã‚¨"
 
 msgid "nz"  
-msgstr "¥Ë¥å¡¼¥¸¡¼¥é¥ó¥É"
+msgstr "ãƒ‹ãƒ¥ãƒ¼ã‚¸ãƒ¼ãƒ©ãƒ³ãƒ‰"
 
 msgid "om" 
-msgstr "¥ª¥Ş¡¼¥ó"
+msgstr "ã‚ªãƒãƒ¼ãƒ³"
 
 msgid "pa"  
-msgstr "¥Ñ¥Ê¥Ş"
+msgstr "ãƒ‘ãƒŠãƒ"
 
 msgid "pe"  
-msgstr "¥Ú¥ë¡¼"
+msgstr "ãƒšãƒ«ãƒ¼"
 
 msgid "pf"  
-msgstr "¥Õ¥é¥ó¥¹ÎÎ¥İ¥ê¥Í¥·¥¢"
+msgstr "ãƒ•ãƒ©ãƒ³ã‚¹é ˜ãƒãƒªãƒã‚·ã‚¢"
 
 msgid "pg" 
-msgstr "¥Ñ¥×¥¢¥Ë¥å¡¼¥®¥Ë¥¢"
+msgstr "ãƒ‘ãƒ—ã‚¢ãƒ‹ãƒ¥ãƒ¼ã‚®ãƒ‹ã‚¢"
 
 msgid "ph"  
-msgstr "¥Õ¥£¥ê¥Ô¥ó"
+msgstr "ãƒ•ã‚£ãƒªãƒ”ãƒ³"
 
 msgid "pk"  
-msgstr "¥Ñ¥­¥¹¥¿¥ó"
+msgstr "ãƒ‘ã‚­ã‚¹ã‚¿ãƒ³"
 
 msgid "pl"  
-msgstr "¥İ¡¼¥é¥ó¥É"
+msgstr "ãƒãƒ¼ãƒ©ãƒ³ãƒ‰"
 
 msgid "PM"
-msgstr "¥µ¥ó¥Ô¥¨¡¼¥ë¡¦¥¨¡¦¥ß¥¯¥í¥óÅç"
+msgstr "ã‚µãƒ³ãƒ”ã‚¨ãƒ¼ãƒ«ãƒ»ã‚¨ãƒ»ãƒŸã‚¯ãƒ­ãƒ³å³¶"
 
 msgid "pn"  
-msgstr "¥Ô¥È¥±¥¢¥óÅç"
+msgstr "ãƒ”ãƒˆã‚±ã‚¢ãƒ³å³¶"
 
 msgid "pr"  
-msgstr "¥×¥¨¥ë¥È¥ê¥³"
+msgstr "ãƒ—ã‚¨ãƒ«ãƒˆãƒªã‚³"
 
 msgid "pt"  
-msgstr "¥İ¥ë¥È¥¬¥ë"
+msgstr "ãƒãƒ«ãƒˆã‚¬ãƒ«"
 
 msgid "pw"  
-msgstr "¥Ñ¥é¥¦"
+msgstr "ãƒ‘ãƒ©ã‚¦"
 
 msgid "py"  
-msgstr "¥Ñ¥é¥°¥¢¥¤"
+msgstr "ãƒ‘ãƒ©ã‚°ã‚¢ã‚¤"
 
 msgid "qa"  
-msgstr "¥«¥¿¡¼¥ë"
+msgstr "ã‚«ã‚¿ãƒ¼ãƒ«"
 
 msgid "re"  
-msgstr "¥ì¥æ¥Ë¥ª¥óÅç (¥Õ¥é¥ó¥¹)"
+msgstr "ãƒ¬ãƒ¦ãƒ‹ã‚ªãƒ³å³¶ (ãƒ•ãƒ©ãƒ³ã‚¹)"
 
 msgid "ro"  
-msgstr "¥ë¡¼¥Ş¥Ë¥¢"
+msgstr "ãƒ«ãƒ¼ãƒãƒ‹ã‚¢"
 
 msgid "ru"  
-msgstr "¥í¥·¥¢Ï¢Ë®"
+msgstr "ãƒ­ã‚·ã‚¢é€£é‚¦"
 
 msgid "rw"  
-msgstr "¥ë¥ï¥ó¥À"
+msgstr "ãƒ«ãƒ¯ãƒ³ãƒ€"
 
 msgid "sa"  
-msgstr "¥µ¥¦¥¸¥¢¥é¥Ó¥¢"
+msgstr "ã‚µã‚¦ã‚¸ã‚¢ãƒ©ãƒ“ã‚¢"
 
 msgid "sb"  
-msgstr "¥½¥í¥â¥ó½ôÅç"
+msgstr "ã‚½ãƒ­ãƒ¢ãƒ³è«¸å³¶"
 
 msgid "sc"  
-msgstr "¥»¡¼¥·¥§¥ë"
+msgstr "ã‚»ãƒ¼ã‚·ã‚§ãƒ«"
 
 msgid "sd"  
-msgstr "¥¹¡¼¥À¥ó"
+msgstr "ã‚¹ãƒ¼ãƒ€ãƒ³"
 
 msgid "se"  
-msgstr "¥¹¥¦¥§¡¼¥Ç¥ó"
+msgstr "ã‚¹ã‚¦ã‚§ãƒ¼ãƒ‡ãƒ³"
 
 msgid "sg"  
-msgstr "¥·¥ó¥¬¥İ¡¼¥ë"
+msgstr "ã‚·ãƒ³ã‚¬ãƒãƒ¼ãƒ«"
 
 msgid "sh"  
-msgstr "¥»¥ó¥È¥Ø¥ì¥Ê"
+msgstr "ã‚»ãƒ³ãƒˆãƒ˜ãƒ¬ãƒŠ"
 
 msgid "si"  
-msgstr "¥¹¥í¥Ù¥Ë¥¢"
+msgstr "ã‚¹ãƒ­ãƒ™ãƒ‹ã‚¢"
 
 msgid "sj"  
-msgstr "¥¹¥Ğ¡¼¥ë¥Ğ¥ë¡¿¥ä¥ó¥Ş¥¤¥¨¥ó½ôÅç"
+msgstr "ã‚¹ãƒãƒ¼ãƒ«ãƒãƒ«ï¼ãƒ¤ãƒ³ãƒã‚¤ã‚¨ãƒ³è«¸å³¶"
 
 msgid "sk" 
-msgstr "¥¹¥í¥Ğ¥­¥¢¶¦ÏÂ¹ñ"
+msgstr "ã‚¹ãƒ­ãƒã‚­ã‚¢å…±å’Œå›½"
 
 msgid "sl"  
-msgstr "¥·¥¨¥é¥ì¥ª¡¼¥Í"
+msgstr "ã‚·ã‚¨ãƒ©ãƒ¬ã‚ªãƒ¼ãƒ"
 
 msgid "sm"
-msgstr "¥µ¥ó¥Ş¥ê¥Î"
+msgstr "ã‚µãƒ³ãƒãƒªãƒ"
 
 msgid "sn" 
-msgstr "¥»¥Í¥¬¥ë"
+msgstr "ã‚»ãƒã‚¬ãƒ«"
 
 msgid "so"  
-msgstr "¥½¥Ş¥ê¥¢"
+msgstr "ã‚½ãƒãƒªã‚¢"
 
 msgid "sr"  
-msgstr "¥¹¥ê¥Ê¥à"
+msgstr "ã‚¹ãƒªãƒŠãƒ "
 
 msgid "st"  
-msgstr "¥µ¥ó¥È¡¼¥á¡¦¥×¥ê¥ó¥·¥Ú"
+msgstr "ã‚µãƒ³ãƒˆãƒ¼ãƒ¡ãƒ»ãƒ—ãƒªãƒ³ã‚·ãƒš"
 
 msgid "su"  
-msgstr "µì¥½Ï¢"
+msgstr "æ—§ã‚½é€£"
 
 msgid "sv"  
-msgstr "¥¨¥ë¥µ¥ë¥Ğ¥É¥ë"
+msgstr "ã‚¨ãƒ«ã‚µãƒ«ãƒãƒ‰ãƒ«"
 
 msgid "sy"  
-msgstr "¥·¥ê¥¢"
+msgstr "ã‚·ãƒªã‚¢"
 
 msgid "sz"  
-msgstr "¥¹¥ï¥¸¥é¥ó¥É"
+msgstr "ã‚¹ãƒ¯ã‚¸ãƒ©ãƒ³ãƒ‰"
 
 msgid "tc"  
-msgstr "¥¿¡¼¥¯¥¹¡¿¥«¥¤¥³¥¹½ôÅç"
+msgstr "ã‚¿ãƒ¼ã‚¯ã‚¹ï¼ã‚«ã‚¤ã‚³ã‚¹è«¸å³¶"
 
 msgid "td"  
-msgstr "¥Á¥ã¥É"
+msgstr "ãƒãƒ£ãƒ‰"
 
 msgid "tf"  
-msgstr "¥¤¥ó¥ÉÍÎÆîÉô¥Õ¥é¥ó¥¹ÎÎ"
+msgstr "ã‚¤ãƒ³ãƒ‰æ´‹å—éƒ¨ãƒ•ãƒ©ãƒ³ã‚¹é ˜"
 
 msgid "tg" 
-msgstr "¥È¡¼¥´"
+msgstr "ãƒˆãƒ¼ã‚´"
 
 msgid "th" 
-msgstr "¥¿¥¤"
+msgstr "ã‚¿ã‚¤"
 
 msgid "tj"  
-msgstr "¥¿¥¸¥­¥¹¥¿¥ó"
+msgstr "ã‚¿ã‚¸ã‚­ã‚¹ã‚¿ãƒ³"
 
 msgid "tk" 
-msgstr "¥È¥±¥é¥¦"
+msgstr "ãƒˆã‚±ãƒ©ã‚¦"
 
 msgid "tm"  
-msgstr "¥È¥ë¥¯¥á¥Ë¥¹¥¿¥ó"
+msgstr "ãƒˆãƒ«ã‚¯ãƒ¡ãƒ‹ã‚¹ã‚¿ãƒ³"
 
 msgid "tn"  
-msgstr "¥Á¥å¥Ë¥¸¥¢"
+msgstr "ãƒãƒ¥ãƒ‹ã‚¸ã‚¢"
 
 msgid "to"  
-msgstr "¥È¥ó¥¬"
+msgstr "ãƒˆãƒ³ã‚¬"
 
 msgid "tp"  
-msgstr "Åì¥Æ¥£¥â¡¼¥ë"
+msgstr "æ±ãƒ†ã‚£ãƒ¢ãƒ¼ãƒ«"
 
 msgid "tr"  
-msgstr "¥È¥ë¥³"
+msgstr "ãƒˆãƒ«ã‚³"
 
 msgid "tt"  
-msgstr "¥È¥ê¥Ë¥À¡¼¥É¡¦¥È¥Ğ¥´"
+msgstr "ãƒˆãƒªãƒ‹ãƒ€ãƒ¼ãƒ‰ãƒ»ãƒˆãƒã‚´"
 
 msgid "tv" 
-msgstr "¥Ä¥Ğ¥ë"
+msgstr "ãƒ„ãƒãƒ«"
 
 msgid "tw"  
-msgstr "ÂæÏÑ"
+msgstr "å°æ¹¾"
 
 msgid "tz"  
-msgstr "¥¿¥ó¥¶¥Ë¥¢"
+msgstr "ã‚¿ãƒ³ã‚¶ãƒ‹ã‚¢"
 
 msgid "ua"  
-msgstr "¥¦¥¯¥é¥¤¥Ê"
+msgstr "ã‚¦ã‚¯ãƒ©ã‚¤ãƒŠ"
 
 msgid "ug"  
-msgstr "¥¦¥¬¥ó¥À"
+msgstr "ã‚¦ã‚¬ãƒ³ãƒ€"
 
 msgid "uk"  
-msgstr "±Ñ¹ñ"
+msgstr "è‹±å›½"
 
 msgid "um" 
-msgstr "ÊÆ¹ñÎÎ¤Î¤½¤ÎÂ¾¤Î½ôÅç"
+msgstr "ç±³å›½é ˜ã®ãã®ä»–ã®è«¸å³¶"
 
 msgid "us"  
-msgstr "ÊÆ¹ñ"
+msgstr "ç±³å›½"
 
 msgid "uy"  
-msgstr "¥¦¥ë¥°¥¢¥¤"
+msgstr "ã‚¦ãƒ«ã‚°ã‚¢ã‚¤"
 
 msgid "uz"  
-msgstr "¥¦¥º¥Ù¥­¥¹¥¿¥ó"
+msgstr "ã‚¦ã‚ºãƒ™ã‚­ã‚¹ã‚¿ãƒ³"
 
 msgid "va"  
-msgstr "¥Ğ¥Á¥«¥ó»Ô¹ñ"
+msgstr "ãƒãƒã‚«ãƒ³å¸‚å›½"
 
 msgid "vc"  
-msgstr "¥»¥ó¥È¥Ó¥ó¥»¥ó¥È¡¿¥°¥ì¥Ê¥Ç¥£¡¼¥ó½ôÅç"
+msgstr "ã‚»ãƒ³ãƒˆãƒ“ãƒ³ã‚»ãƒ³ãƒˆï¼ã‚°ãƒ¬ãƒŠãƒ‡ã‚£ãƒ¼ãƒ³è«¸å³¶"
 
 msgid "ve"  
-msgstr "¥Ù¥Í¥º¥¨¥é"
+msgstr "ãƒ™ãƒã‚ºã‚¨ãƒ©"
 
 msgid "vg"  
-msgstr "¥ô¥¡¡¼¥¸¥ó½ôÅç (±ÑÎÎ)"
+msgstr "ãƒ´ã‚¡ãƒ¼ã‚¸ãƒ³è«¸å³¶ (è‹±é ˜)"
 
 msgid "vi"  
-msgstr "¥ô¥¡¡¼¥¸¥ó½ôÅç (ÊÆÎÎ)"
+msgstr "ãƒ´ã‚¡ãƒ¼ã‚¸ãƒ³è«¸å³¶ (ç±³é ˜)"
 
 msgid "vn"  
-msgstr "¥Ù¥È¥Ê¥à"
+msgstr "ãƒ™ãƒˆãƒŠãƒ "
 
 msgid "vu"  
-msgstr "¥Ğ¥Ì¥¢¥Ä"
+msgstr "ãƒãƒŒã‚¢ãƒ„"
 
 msgid "wf"  
-msgstr "¥¦¥©¥ê¥¹¡¦¥Õ¥È¥¥¡¼¥Ê½ôÅç"
+msgstr "ã‚¦ã‚©ãƒªã‚¹ãƒ»ãƒ•ãƒˆã‚¥ãƒ¼ãƒŠè«¸å³¶"
 
 msgid "ws"  
-msgstr "¥µ¥â¥¢"
+msgstr "ã‚µãƒ¢ã‚¢"
 
 msgid "ye"  
-msgstr "¥¤¥¨¥á¥ó"
+msgstr "ã‚¤ã‚¨ãƒ¡ãƒ³"
 
 msgid "yt"  
-msgstr "¥Ş¥è¥Ã¥ÈÅç"
+msgstr "ãƒãƒ¨ãƒƒãƒˆå³¶"
 
 msgid "yu"  
-msgstr "¥æ¡¼¥´¥¹¥é¥Ó¥¢"
+msgstr "ãƒ¦ãƒ¼ã‚´ã‚¹ãƒ©ãƒ“ã‚¢"
 
 msgid "za"  
-msgstr "Æî¥¢¥Õ¥ê¥«¶¦ÏÂ¹ñ"
+msgstr "å—ã‚¢ãƒ•ãƒªã‚«å…±å’Œå›½"
 
 msgid "zm" 
-msgstr "¥¶¥ó¥Ó¥¢"
+msgstr "ã‚¶ãƒ³ãƒ“ã‚¢"
 
 msgid "zr"  
-msgstr "¥³¥ó¥´Ì±¼ç¶¦ÏÂ¹ñ"
+msgstr "ã‚³ãƒ³ã‚´æ°‘ä¸»å…±å’Œå›½"
 
 msgid "zw"  
-msgstr "¥¸¥ó¥Ğ¥Ö¥¨"
+msgstr "ã‚¸ãƒ³ãƒãƒ–ã‚¨"
 
 
 #
@@ -2907,423 +3000,771 @@ msgstr "¥¸¥ó¥Ğ¥Ö¥¨"
 #
 
 msgid "lang_aa"
-msgstr "¥¢¥Õ¥¡¡¼¸ì"
+msgstr "ã‚¢ãƒ•ã‚¡ãƒ¼èª"
 
 msgid "lang_ab"
-msgstr "¥¢¥×¥Ï¥º¸ì"
+msgstr "ã‚¢ãƒ—ãƒã‚ºèª"
 
 msgid "lang_af"
-msgstr "¥¢¥Õ¥ê¥«¡¼¥ó¥¹¸ì"
+msgstr "ã‚¢ãƒ•ãƒªã‚«ãƒ¼ãƒ³ã‚¹èª"
 
 msgid "lang_am"
-msgstr "¥¢¥à¥Ï¥é¸ì"
+msgstr "ã‚¢ãƒ ãƒãƒ©èª"
 
 msgid "lang_ar"
-msgstr "¥¢¥é¥Ó¥¢¸ì"
+msgstr "ã‚¢ãƒ©ãƒ“ã‚¢èª"
 
 msgid "lang_as"
-msgstr "¥¢¥Ã¥µ¥à¸ì"
+msgstr "ã‚¢ãƒƒã‚µãƒ èª"
 
 msgid "lang_ay"
-msgstr "¥¢¥¤¥Ş¥é¸ì"
+msgstr "ã‚¢ã‚¤ãƒãƒ©èª"
 
 msgid "lang_az"
-msgstr "¥¢¥¼¥ë¥Ğ¥¤¥¸¥ã¥ó¸ì"
+msgstr "ã‚¢ã‚¼ãƒ«ãƒã‚¤ã‚¸ãƒ£ãƒ³èª"
 
 msgid "lang_ba"
-msgstr "¥Ğ¥·¥­¡¼¥ë¸ì"
+msgstr "ãƒã‚·ã‚­ãƒ¼ãƒ«èª"
 
 msgid "lang_be"
-msgstr "Çò¥í¥·¥¢¸ì"
+msgstr "ç™½ãƒ­ã‚·ã‚¢èª"
 
 msgid "lang_bg"
-msgstr "¥Ö¥ë¥¬¥ê¥¢¸ì"
+msgstr "ãƒ–ãƒ«ã‚¬ãƒªã‚¢èª"
 
 msgid "lang_bh"
-msgstr "¥Ó¥Ï¡¼¥ë¸ì"
+msgstr "ãƒ“ãƒãƒ¼ãƒ«èª"
 
 msgid "lang_bi"
-msgstr "¥Ó¥¹¥é¥Ş¸ì"
+msgstr "ãƒ“ã‚¹ãƒ©ãƒèª"
 
 msgid "lang_bn"
-msgstr "¥Ù¥ó¥¬¥ë¸ì"
+msgstr "ãƒ™ãƒ³ã‚¬ãƒ«èª"
 
 msgid "lang_bo"
-msgstr "¥Á¥Ù¥Ã¥È¸ì"
+msgstr "ãƒãƒ™ãƒƒãƒˆèª"
 
 msgid "lang_br"
-msgstr "¥Ö¥ë¥È¥ó¸ì"
+msgstr "ãƒ–ãƒ«ãƒˆãƒ³èª"
 
 msgid "lang_ca"
-msgstr "¥«¥¿¥í¥Ë¥¢¸ì"
+msgstr "ã‚«ã‚¿ãƒ­ãƒ‹ã‚¢èª"
 
 msgid "lang_co"
-msgstr "¥³¥ë¥·¥«ÅçÊı¸À"
+msgstr "ã‚³ãƒ«ã‚·ã‚«å³¶æ–¹è¨€"
 
 msgid "lang_cs"
-msgstr "¥Á¥§¥³¸ì"
+msgstr "ãƒã‚§ã‚³èª"
 
 msgid "lang_cy"
-msgstr "¥¦¥§¡¼¥ë¥º¸ì"
+msgstr "ã‚¦ã‚§ãƒ¼ãƒ«ã‚ºèª"
 
 msgid "lang_da"
-msgstr "¥Ç¥ó¥Ş¡¼¥¯¸ì"
+msgstr "ãƒ‡ãƒ³ãƒãƒ¼ã‚¯èª"
 
 msgid "lang_de"
-msgstr "¥É¥¤¥Ä¸ì"
+msgstr "ãƒ‰ã‚¤ãƒ„èª"
 
 msgid "lang_dz"
-msgstr "¥Ö¡¼¥¿¥ó¸ì"
+msgstr "ãƒ–ãƒ¼ã‚¿ãƒ³èª"
 
 msgid "lang_el"
-msgstr "¥®¥ê¥·¥¢¸ì"
+msgstr "ã‚®ãƒªã‚·ã‚¢èª"
 
 msgid "lang_en"
-msgstr "±Ñ¸ì"
+msgstr "è‹±èª"
 
 msgid "lang_eo"
-msgstr "¥¨¥¹¥Ú¥é¥ó¥È"
+msgstr "ã‚¨ã‚¹ãƒšãƒ©ãƒ³ãƒˆ"
 
 msgid "lang_es"
-msgstr "¥¹¥Ú¥¤¥ó¸ì"
+msgstr "ã‚¹ãƒšã‚¤ãƒ³èª"
 
 msgid "lang_et"
-msgstr "¥¨¥¹¥È¥Ë¥¢¸ì"
+msgstr "ã‚¨ã‚¹ãƒˆãƒ‹ã‚¢èª"
 
 msgid "lang_eu"
-msgstr "¥Ğ¥¹¥¯¸ì"
+msgstr "ãƒã‚¹ã‚¯èª"
 
 msgid "lang_fa"
-msgstr "¥Ú¥ë¥·¥ã¸ì"
+msgstr "ãƒšãƒ«ã‚·ãƒ£èª"
 
 msgid "lang_fi"
-msgstr "¥Õ¥£¥ó¥é¥ó¥É¸ì"
+msgstr "ãƒ•ã‚£ãƒ³ãƒ©ãƒ³ãƒ‰èª"
 
 msgid "lang_fj"
-msgstr "¥Õ¥£¡¼¥¸¡¼¸ì"
+msgstr "ãƒ•ã‚£ãƒ¼ã‚¸ãƒ¼èª"
 
 msgid "lang_fo"
-msgstr "¥Õ¥§¥í¡¼¸ì"
+msgstr "ãƒ•ã‚§ãƒ­ãƒ¼èª"
 
 msgid "lang_fr"
-msgstr "¥Õ¥é¥ó¥¹¸ì"
+msgstr "ãƒ•ãƒ©ãƒ³ã‚¹èª"
 
 msgid "lang_fy"
-msgstr "¥Õ¥ê¥¸¥¢¸ì"
+msgstr "ãƒ•ãƒªã‚¸ã‚¢èª"
 
 msgid "lang_ga"
-msgstr "¥¢¥¤¥ë¥é¥ó¥É¸ì; ¥²¡¼¥ë¸ì"
+msgstr "ã‚¢ã‚¤ãƒ«ãƒ©ãƒ³ãƒ‰èª; ã‚²ãƒ¼ãƒ«èª"
 
 msgid "lang_gd"
-msgstr "¥¹¥³¥Ã¥È¥é¥ó¥É¸ì; ¥²¡¼¥ë¸ì"
+msgstr "ã‚¹ã‚³ãƒƒãƒˆãƒ©ãƒ³ãƒ‰èª; ã‚²ãƒ¼ãƒ«èª"
 
 msgid "lang_gl"
-msgstr "¥¬¥ê¥Á¥¢¸ì"
+msgstr "ã‚¬ãƒªãƒã‚¢èª"
 
 msgid "lang_gn"
-msgstr "¥°¥¢¥é¥Ë¡¼¸ì"
+msgstr "ã‚°ã‚¢ãƒ©ãƒ‹ãƒ¼èª"
 
 msgid "lang_gu"
-msgstr "¥°¥¸¥ã¥é¡¼¥Æ¥£¡¼¸ì"
+msgstr "ã‚°ã‚¸ãƒ£ãƒ©ãƒ¼ãƒ†ã‚£ãƒ¼èª"
 
 msgid "lang_ha"
-msgstr "¥Ï¥¦¥µ¸ì"
+msgstr "ãƒã‚¦ã‚µèª"
 
 msgid "lang_he"
-msgstr "¥Ø¥Ö¥é¥¤¸ì"
+msgstr "ãƒ˜ãƒ–ãƒ©ã‚¤èª"
 
 msgid "lang_hi"
-msgstr "¥Ò¥ó¥Ç¥£¡¼¸ì"
+msgstr "ãƒ’ãƒ³ãƒ‡ã‚£ãƒ¼èª"
 
 msgid "lang_hr"
-msgstr "¥¯¥í¥¢¥Á¥¢¸ì"
+msgstr "ã‚¯ãƒ­ã‚¢ãƒã‚¢èª"
 
 msgid "lang_hu"
-msgstr "¥Ï¥ó¥¬¥ê¡¼¸ì"
+msgstr "ãƒãƒ³ã‚¬ãƒªãƒ¼èª"
 
 msgid "lang_hy"
-msgstr "¥¢¥á¥ê¥«±Ñ¸ì"
+msgstr "ã‚¢ãƒ¡ãƒªã‚«è‹±èª"
 
 msgid "lang_ia"
-msgstr "¥¤¥ó¥¿¡¼¥ê¥ó¥°¥¡"
+msgstr "ã‚¤ãƒ³ã‚¿ãƒ¼ãƒªãƒ³ã‚°ã‚¡"
 
 msgid "lang_ie"
-msgstr "¥¤¥ó¥¿¡¼¥ê¥ó¥°¥¡"
+msgstr "ã‚¤ãƒ³ã‚¿ãƒ¼ãƒªãƒ³ã‚°ã‚¡"
 
 msgid "lang_ik"
-msgstr "¥¤¥Ì¥Ô¥¢¥Ã¥¯¸ì"
+msgstr "ã‚¤ãƒŒãƒ”ã‚¢ãƒƒã‚¯èª"
 
 msgid "lang_in"
-msgstr "¥¤¥ó¥É¥Í¥·¥¢¸ì"
+msgstr "ã‚¤ãƒ³ãƒ‰ãƒã‚·ã‚¢èª"
 
 msgid "lang_is"
-msgstr "¥¢¥¤¥¹¥é¥ó¥É¸ì"
+msgstr "ã‚¢ã‚¤ã‚¹ãƒ©ãƒ³ãƒ‰èª"
 
 msgid "lang_it"
-msgstr "¥¤¥¿¥ê¥¢¸ì"
+msgstr "ã‚¤ã‚¿ãƒªã‚¢èª"
 
 msgid "lang_ja"
-msgstr "ÆüËÜ¸ì"
+msgstr "æ—¥æœ¬èª"
 
 msgid "lang_ji"
-msgstr "¥¤¥Ç¥£¥Ã¥·¥å¸ì"
+msgstr "ã‚¤ãƒ‡ã‚£ãƒƒã‚·ãƒ¥èª"
 
 msgid "lang_jv"
-msgstr "¥¸¥ã¥ï¸ì"
+msgstr "ã‚¸ãƒ£ãƒ¯èª"
 
 msgid "lang_ka"
-msgstr "¥°¥ë¥¸¥¢¸ì"
+msgstr "ã‚°ãƒ«ã‚¸ã‚¢èª"
 
 msgid "lang_kk"
-msgstr "¥«¥¶¡¼¥Õ¸ì"
+msgstr "ã‚«ã‚¶ãƒ¼ãƒ•èª"
 
 msgid "lang_kl"
-msgstr "¥°¥ê¡¼¥ó¥é¥ó¥É¸ì"
+msgstr "ã‚°ãƒªãƒ¼ãƒ³ãƒ©ãƒ³ãƒ‰èª"
 
 msgid "lang_km"
-msgstr "¥«¥ó¥Ü¥¸¥¢¸ì"
+msgstr "ã‚«ãƒ³ãƒœã‚¸ã‚¢èª"
 
 msgid "lang_kn"
-msgstr "¥«¥ó¥Ê¥À¸ì"
+msgstr "ã‚«ãƒ³ãƒŠãƒ€èª"
 
 msgid "lang_ko"
-msgstr "´Ú¹ñ¸ì"
+msgstr "éŸ“å›½èª"
 
 msgid "lang_ks"
-msgstr "¥«¥·¥ß¡¼¥ë¸ì"
+msgstr "ã‚«ã‚·ãƒŸãƒ¼ãƒ«èª"
 
 msgid "lang_ku"
-msgstr "¥¯¥ë¥É¸ì"
+msgstr "ã‚¯ãƒ«ãƒ‰èª"
 
 msgid "lang_ky"
-msgstr "¥­¥ë¥®¥¹¸ì"
+msgstr "ã‚­ãƒ«ã‚®ã‚¹èª"
 
 msgid "lang_la"
-msgstr "¥é¥Æ¥ó¸ì"
+msgstr "ãƒ©ãƒ†ãƒ³èª"
 
 msgid "lang_ln"
-msgstr "¥ê¥ó¥¬¥é¸ì"
+msgstr "ãƒªãƒ³ã‚¬ãƒ©èª"
 
 msgid "lang_lo"
-msgstr "¥é¥ª¸ì"
+msgstr "ãƒ©ã‚ªèª"
 
 msgid "lang_lt"
-msgstr "¥ê¥È¥¢¥Ë¥¢¸ì"
+msgstr "ãƒªãƒˆã‚¢ãƒ‹ã‚¢èª"
 
 msgid "lang_lv"
-msgstr "¥é¥È¥ô¥£¥¢¸ì; ¥ì¥Ã¥È¸ì"
+msgstr "ãƒ©ãƒˆãƒ´ã‚£ã‚¢èª; ãƒ¬ãƒƒãƒˆèª"
 
 msgid "lang_mg"
-msgstr "¥Ş¥é¥¬¥·¸ì"
+msgstr "ãƒãƒ©ã‚¬ã‚·èª"
 
 msgid "lang_mi"
-msgstr "¥Ş¥ª¥ê¸ì"
+msgstr "ãƒã‚ªãƒªèª"
 
 msgid "lang_mk"
-msgstr "¥Ş¥±¥É¥Ë¥¢¸ì"
+msgstr "ãƒã‚±ãƒ‰ãƒ‹ã‚¢èª"
 
 msgid "lang_ml"
-msgstr "¥Ş¥é¥ä¡¼¥é¥à¸ì"
+msgstr "ãƒãƒ©ãƒ¤ãƒ¼ãƒ©ãƒ èª"
 
 msgid "lang_mn"
-msgstr "ÌØ¸Å¸ì"
+msgstr "è’™å¤èª"
 
 msgid "lang_mo"
-msgstr "¥â¥ë¥À¥ô¥£¥¢¸ì"
+msgstr "ãƒ¢ãƒ«ãƒ€ãƒ´ã‚£ã‚¢èª"
 
 msgid "lang_mr"
-msgstr "¥Ş¥é¡¼¥Æ¥£¡¼¸ì"
+msgstr "ãƒãƒ©ãƒ¼ãƒ†ã‚£ãƒ¼èª"
 
 msgid "lang_ms"
-msgstr "¥Ş¥é¥¤¸ì"
+msgstr "ãƒãƒ©ã‚¤èª"
 
 msgid "lang_mt"
-msgstr "¥Ş¥ë¥¿¸ì"
+msgstr "ãƒãƒ«ã‚¿èª"
 
 msgid "lang_my"
-msgstr "¥Ó¥ë¥Ş¸ì"
+msgstr "ãƒ“ãƒ«ãƒèª"
 
 msgid "lang_na"
-msgstr "¥Ê¥¦¥ë¸ì"
+msgstr "ãƒŠã‚¦ãƒ«èª"
 
 msgid "lang_ne"
-msgstr "¥Í¥Ñ¡¼¥ë¸ì"
+msgstr "ãƒãƒ‘ãƒ¼ãƒ«èª"
 
 msgid "lang_nl"
-msgstr "¥ª¥é¥ó¥À¸ì"
+msgstr "ã‚ªãƒ©ãƒ³ãƒ€èª"
 
 msgid "lang_no"
-msgstr "¥Î¥ë¥¦¥§¡¼¸ì"
+msgstr "ãƒãƒ«ã‚¦ã‚§ãƒ¼èª"
 
 msgid "lang_oc"
-msgstr "¥ª¥Ã¥¯¸ì"
+msgstr "ã‚ªãƒƒã‚¯èª"
 
 msgid "lang_om"
-msgstr "¥¢¥Õ¥¡¥ó¸ì (¥ª¥í¥â¸ì)"
+msgstr "ã‚¢ãƒ•ã‚¡ãƒ³èª (ã‚ªãƒ­ãƒ¢èª)"
 
 msgid "lang_or"
-msgstr "¥ª¥ê¥ä¡¼¸ì"
+msgstr "ã‚ªãƒªãƒ¤ãƒ¼èª"
 
 msgid "lang_pa"
-msgstr "¥Ñ¥ó¥¸¥ã¡¼¥Ó¡¼¸ì"
+msgstr "ãƒ‘ãƒ³ã‚¸ãƒ£ãƒ¼ãƒ“ãƒ¼èª"
 
 msgid "lang_pl"
-msgstr "¥İ¡¼¥é¥ó¥É¸ì"
+msgstr "ãƒãƒ¼ãƒ©ãƒ³ãƒ‰èª"
 
 msgid "lang_ps"
-msgstr "¥Ñ¥·¥å¥È¡¼¸ì; ¥×¥·¥å¥È¥¥¡¼¸ì"
+msgstr "ãƒ‘ã‚·ãƒ¥ãƒˆãƒ¼èª; ãƒ—ã‚·ãƒ¥ãƒˆã‚¥ãƒ¼èª"
 
 msgid "lang_pt"
-msgstr "¥İ¥ë¥È¥¬¥ë¸ì"
+msgstr "ãƒãƒ«ãƒˆã‚¬ãƒ«èª"
 
 msgid "lang_qu"
-msgstr "¥­¥Á¥å¥ï¸ì"
+msgstr "ã‚­ãƒãƒ¥ãƒ¯èª"
 
 msgid "lang_rm"
-msgstr "¥ì¥È¥í¥Ş¥ó¸ì"
+msgstr "ãƒ¬ãƒˆãƒ­ãƒãƒ³èª"
 
 msgid "lang_rn"
-msgstr "¥¯¥ë¥ó¥Ç¥£¡¼¸ì"
+msgstr "ã‚¯ãƒ«ãƒ³ãƒ‡ã‚£ãƒ¼èª"
 
 msgid "lang_ro"
-msgstr "¥ë¡¼¥Ş¥Ë¥¢¸ì"
+msgstr "ãƒ«ãƒ¼ãƒãƒ‹ã‚¢èª"
 
 msgid "lang_ru"
-msgstr "¥í¥·¥¢¸ì"
+msgstr "ãƒ­ã‚·ã‚¢èª"
 
 msgid "lang_rw"
-msgstr "¥­¥ó¥ä¥ë¥ï¥ó¥À¸ì"
+msgstr "ã‚­ãƒ³ãƒ¤ãƒ«ãƒ¯ãƒ³ãƒ€èª"
 
 msgid "lang_sa"
-msgstr "Ûğ¸ì"
+msgstr "æ¢µèª"
 
 msgid "lang_sd"
-msgstr "¥·¥ó¥Ç¥£¡¼¸ì"
+msgstr "ã‚·ãƒ³ãƒ‡ã‚£ãƒ¼èª"
 
 msgid "lang_sg"
-msgstr "¥µ¥ó¥´¸ì"
+msgstr "ã‚µãƒ³ã‚´èª"
 
 msgid "lang_sh"
-msgstr "¥»¥ë¥Ü¡¦¥¯¥í¥¢¥Á¥¢¸ì"
+msgstr "ã‚»ãƒ«ãƒœãƒ»ã‚¯ãƒ­ã‚¢ãƒã‚¢èª"
 
 msgid "lang_si"
-msgstr "¥·¥ó¥Ï¥é¸ì"
+msgstr "ã‚·ãƒ³ãƒãƒ©èª"
 
 msgid "lang_sk"
-msgstr "¥¹¥í¥ô¥¡¥­¥¢¸ì"
+msgstr "ã‚¹ãƒ­ãƒ´ã‚¡ã‚­ã‚¢èª"
 
 msgid "lang_sl"
-msgstr "¥¹¥í¥ô¥§¥Ë¥¢¸ì"
+msgstr "ã‚¹ãƒ­ãƒ´ã‚§ãƒ‹ã‚¢èª"
 
 msgid "lang_sm"
-msgstr "¥µ¥â¥¢¸ì"
+msgstr "ã‚µãƒ¢ã‚¢èª"
 
 msgid "lang_sn"
-msgstr "¥·¥ç¥Ê¸ì"
+msgstr "ã‚·ãƒ§ãƒŠèª"
 
 msgid "lang_so"
-msgstr "¥½¥Ş¥ê¸ì"
+msgstr "ã‚½ãƒãƒªèª"
 
 msgid "lang_sq"
-msgstr "¥¢¥ë¥Ğ¥Ë¥¢¸ì"
+msgstr "ã‚¢ãƒ«ãƒãƒ‹ã‚¢èª"
 
 msgid "lang_sr"
-msgstr "¥»¥ë¥Ó¥¢¸ì"
+msgstr "ã‚»ãƒ«ãƒ“ã‚¢èª"
 
 msgid "lang_ss"
-msgstr "¥·¥¹¥ï¥Æ¥£¸ì"
+msgstr "ã‚·ã‚¹ãƒ¯ãƒ†ã‚£èª"
 
 msgid "lang_st"
-msgstr "¥»¥½¥È¸ì"
+msgstr "ã‚»ã‚½ãƒˆèª"
 
 msgid "lang_su"
-msgstr "¥¹¥ó¥À¸ì"
+msgstr "ã‚¹ãƒ³ãƒ€èª"
 
 msgid "lang_sv"
-msgstr "¥¹¥¦¥§¡¼¥Ç¥ó¸ì"
+msgstr "ã‚¹ã‚¦ã‚§ãƒ¼ãƒ‡ãƒ³èª"
 
 msgid "lang_sw"
-msgstr "¥¹¥ï¥Ò¥ê¸ì"
+msgstr "ã‚¹ãƒ¯ãƒ’ãƒªèª"
 
 msgid "lang_ta"
-msgstr "¥¿¥ß¥ë¸ì"
+msgstr "ã‚¿ãƒŸãƒ«èª"
 
 msgid "lang_te"
-msgstr "¥Æ¥ë¥°¸ì"
+msgstr "ãƒ†ãƒ«ã‚°èª"
 
 msgid "lang_tg"
-msgstr "¥¿¥¸¥¯¸ì"
+msgstr "ã‚¿ã‚¸ã‚¯èª"
 
 msgid "lang_th"
-msgstr "¥¿¥¤¸ì"
+msgstr "ã‚¿ã‚¤èª"
 
 msgid "lang_ti"
-msgstr "¥Æ¥£¥°¥ê¥Ë¥¢¸ì"
+msgstr "ãƒ†ã‚£ã‚°ãƒªãƒ‹ã‚¢èª"
 
 msgid "lang_tk"
-msgstr "¥È¥¥¥ë¥¯¥á¥ó¸ì"
+msgstr "ãƒˆã‚¥ãƒ«ã‚¯ãƒ¡ãƒ³èª"
 
 msgid "lang_tl"
-msgstr "¥¿¥¬¥í¥°¸ì"
+msgstr "ã‚¿ã‚¬ãƒ­ã‚°èª"
 
 msgid "lang_tn"
-msgstr "¥»¥Ä¥ï¥Ê¸ì"
+msgstr "ã‚»ãƒ„ãƒ¯ãƒŠèª"
 
 msgid "lang_to"
-msgstr "¥È¥ó¥¬¸ì"
+msgstr "ãƒˆãƒ³ã‚¬èª"
 
 msgid "lang_tr"
-msgstr "¥È¥ë¥³¸ì"
+msgstr "ãƒˆãƒ«ã‚³èª"
 
 msgid "lang_ts"
-msgstr "¥È¥½¥ó¥¬¸ì"
+msgstr "ãƒˆã‚½ãƒ³ã‚¬èª"
 
 msgid "lang_tt"
-msgstr "¥¿¥¿¡¼¥ë¸ì"
+msgstr "ã‚¿ã‚¿ãƒ¼ãƒ«èª"
 
 msgid "lang_tw"
-msgstr "¥È¥¦¥£¸ì"
+msgstr "ãƒˆã‚¦ã‚£èª"
 
 msgid "lang_uk"
-msgstr "¥¦¥¯¥é¥¤¥Ê¸ì"
+msgstr "ã‚¦ã‚¯ãƒ©ã‚¤ãƒŠèª"
 
 msgid "lang_ur"
-msgstr "¥¦¥ë¥É¥¥¡¼¸ì"
+msgstr "ã‚¦ãƒ«ãƒ‰ã‚¥ãƒ¼èª"
 
 msgid "lang_uz"
-msgstr "¥¦¥º¥Ù¥¯¸ì"
+msgstr "ã‚¦ã‚ºãƒ™ã‚¯èª"
 
 msgid "lang_vi"
-msgstr "¥Ù¥È¥Ê¥à¸ì"
+msgstr "ãƒ™ãƒˆãƒŠãƒ èª"
 
 msgid "lang_vo"
-msgstr "¥Ü¥é¥Ô¥å¥Ã¥¯¸ì"
+msgstr "ãƒœãƒ©ãƒ”ãƒ¥ãƒƒã‚¯èª"
 
 msgid "lang_wo"
-msgstr "¥¦¥©¥í¥Õ¸ì"
+msgstr "ã‚¦ã‚©ãƒ­ãƒ•èª"
 
 msgid "lang_xh"
-msgstr "¥Û¥µ¸ì"
+msgstr "ãƒ›ã‚µèª"
 
 msgid "lang_yo"
-msgstr "¥è¥ë¥Ğ¸ì"
+msgstr "ãƒ¨ãƒ«ãƒèª"
 
 msgid "lang_zh"
-msgstr "Ãæ¹ñ¸ì"
+msgstr "ä¸­å›½èª"
 
 msgid "lang_zu"
-msgstr "¥º¡¼¥ë¡¼¸ì"
+msgstr "ã‚ºãƒ¼ãƒ«ãƒ¼èª"
 
 #
 #Translation for specific locales
 #
 
 msgid "locale_zh_CN"
-msgstr "´ÊÂÎ»úÃæ¹ñ¸ì"
+msgstr "ç°¡ä½“å­—ä¸­å›½èª"
 
 msgid "locale_zh_TW"
-msgstr "ÈËÂÎ»úÃæ¹ñ¸ì"
+msgstr "ç¹ä½“å­—ä¸­å›½èª"
 
 msgid "pwCheckStr"
-msgstr "Password strength test"
+msgstr "Pãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã®å¼·åº¦è©¦é¨“"
 
+
+# New strings for BlueOnyx NG:
+
+msgid "val_required"
+msgstr "ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯å¿…é ˆã§ã™ã€‚"
+
+msgid "val_remote"
+msgstr "ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ä¿®æ­£ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_email"
+msgstr "æœ‰åŠ¹ãªãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_date"
+msgstr "æœ‰åŠ¹ãªæ—¥ä»˜ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_dateISO"
+msgstr "æœ‰åŠ¹ãªæ—¥ä»˜ï¼ˆISOï¼‰ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_number"
+msgstr "æœ‰åŠ¹ãªç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_digits"
+msgstr "æ•°å­—ã ã‘ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_creditcard"
+msgstr "æœ‰åŠ¹ãªã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰ç•ªå·ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„."
+
+msgid "val_equalTo"
+msgstr "å†ã³åŒã˜å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_accept"
+msgstr "æœ‰åŠ¹ãªæ‹¡å¼µå­ã®ä»˜ã„ãŸå€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_maxlength"
+msgstr "ã‚ãªãŸãŒè¨±å¯ã•ã‚ŒãŸã‚ˆã‚Šã‚‚å¤šãã®æ–‡å­—ã‚’å…¥åŠ›ã—ã¾ã—ãŸã€‚"
+
+msgid "val_minlength"
+msgstr "ã‚ãªãŸãŒä¸è¶³ã—ã¦æ–‡å­—ã‚’å…¥åŠ›ã—ã¾ã—ãŸã€‚"
+
+msgid "val_rangelength"
+msgstr "å…¥åŠ›ã•ã‚ŒãŸå€¤ãŒè¨±å®¹ç¯„å›²ã‚’è¶…ãˆã¦ã„ã¾ã™ã€‚"
+
+msgid "val_range"
+msgstr "è¨±å¯ã•ã‚ŒãŸç¯„å›²å†…ã«ã‚ã‚‹å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+msgid "val_max"
+msgstr "å…¥åŠ›ã•ã‚ŒãŸå€¤ãŒè¨±å®¹ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã‚ˆã‚Šå¤§ãããªã£ã¦ã„ã¾ã™ã€‚"
+
+msgid "val_min"
+msgstr "å…¥åŠ›ã•ã‚ŒãŸå€¤ãŒè¨±å®¹ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã‚ˆã‚Šå°ã•ããªã£ã¦ã„ã¾ã™ã€‚"
+
+msgid "val_url"
+msgstr "æœ‰åŠ¹ãªURLã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚"
+
+# End: basic 'validator' checks
+
+# Start: Extended 'validator' checks
+
+msgid "val_is_required"
+msgstr "ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰[[VAR.field]]ãŒå¿…è¦ã§ã™ã€‚"
+
+# End: Extended 'validator' checks
+
+# Start: Style Switcher
+msgid "layout"
+msgstr "è¨­è¨ˆ"
+
+msgid "fluid"
+msgstr "æµå‹•çš„"
+
+msgid "fixed"
+msgstr "ä¸å‹•"
+
+msgid "menus"
+msgstr "ãƒ¡ãƒ‹ãƒ¥ãƒ¼"
+
+msgid "side"
+msgstr "å´é¢"
+
+msgid "top"
+msgstr "ä¸Š"
+
+msgid "slide"
+msgstr "æ»‘ã‚‹"
+
+msgid "theme"
+msgstr "ä¸»é¡Œ"
+
+msgid "dark"
+msgstr "æš—ã„"
+
+msgid "light"
+msgstr "è»½å¿«"
+
+msgid "BGs"
+msgstr "èƒŒæ™¯ç”»åƒ"
+
+msgid "silver"
+msgstr "ç™½é‡‘"
+
+msgid "wood"
+msgstr "æœ¨æ"
+
+msgid "squares"
+msgstr "æ­£æ–¹å½¢"
+
+msgid "noise"
+msgstr "ãƒã‚¤ã‚º"
+
+msgid "stripes"
+msgstr "ã‚¹ãƒˆãƒ©ã‚¤ãƒ—"
+
+msgid "metal"
+msgstr "é‡‘å±"
+
+msgid "boxes"
+msgstr "ç®±"
+
+msgid "punched"
+msgstr "ãƒ‘ãƒ³ãƒ"
+
+msgid "honeycomb"
+msgstr "ãƒãƒ‹ã‚«ãƒ "
+
+msgid "timber"
+msgstr "æœ¨æ"
+# End: Style Switcher
+
+msgid "autogrow_expanding"
+msgstr "ã“ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯ã€å˜ã«Facebookä¸Šã®ã‚ˆã†ã«ã€æ‹¡å¤§ã—ç¶šã‘ã¦ã„ã‚‹ã€‚"
+
+msgid "autogrow_prefill"
+msgstr "ã‚ãªãŸãŒå…¥åŠ›ã‚’ç¶šã‘ã‚‹ã€ç§ã¯æˆé•·ã—ç¶šã‘ã‚‹..."
+
+msgid "page_render_part_one"
+msgstr "ãƒšãƒ¼ã‚¸ã¯"
+
+msgid "page_render_part_two"
+msgstr "ç§’ã§ãƒ¬ãƒ³ãƒ€ãƒªãƒ³ã‚°ã€‚"
+
+# Start: Calendar stuff
+msgid "next"
+msgstr "æ¬¡"
+
+msgid "previous"
+msgstr "å‰"
+
+msgid "done"
+msgstr "å®Œäº†"
+
+msgid "today"
+msgstr "ä»Šæ—¥"
+# End: Calendar stuff
+
+# Start: Adminica Icon helptexts:
+msgid "icon_toggle"
+msgstr "ã¯ã€ã“ã®è¦ç´ ã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚"
+
+msgid "icon_grabber"
+msgstr "ã¯ã€ã“ã®è¦ç´ ã‚’ç§»å‹•ã—ã¾ã™ã€‚"
+
+msgid "icon_window"
+msgstr "ã¯æ–°ã—ã„ãƒ–ãƒ©ã‚¦ã‚¶ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§é–‹ãã¾ã™ã€‚"
+
+msgid "icon_show_all_tabs"
+msgstr "ã™ã¹ã¦ã®ã‚¿ãƒ–ã‚’å±•é–‹ã—ã€å˜ä¸€ã®ã‚¿ãƒ–å†…ã®ã™ã¹ã¦ã®æƒ…å ±ãŒè¡¨ç¤ºã•ã‚Œã¾ã™ã€‚"
+
+# End: Adminica Icon helptexts:
+
+# Start: Error page localization:
+msgid "401title"
+msgstr "æ¨©é™ãŒå¿…è¦ã§ã™"
+
+msgid "401text"
+msgstr "ã“ã®ã‚µãƒ¼ãƒã¯ã€ã‚ãªãŸãŒè¦æ±‚ã•ã‚ŒãŸãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹ã“ã¨ã‚’è¨±å¯ã•ã‚Œã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèªã™ã‚‹ã“ã¨ãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚é–“é•ã£ãŸè¨¼æ˜æ›¸ï¼ˆä¾‹ï¼šä¸æ­£ãªãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ï¼‰ã€ã¾ãŸã¯ãƒ–ãƒ©ã‚¦ã‚¶ã‚’ä¾›çµ¦ã‚‚ä¸è¦è³‡æ ¼æƒ…å ±ã‚’æä¾›ã™ã‚‹æ–¹æ³•ã‚’ç†è§£ã—ã¦ã„ã¾ã›ã‚“ã€‚"
+
+msgid "403title"
+msgstr "ç¦ã˜ã‚‰ã‚ŒãŸ"
+
+msgid "403text"
+msgstr "ã‚ãªãŸã¯ã“ã®ã‚µãƒ¼ãƒãƒ¼ã«è¦æ±‚ã•ã‚ŒãŸãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚¢ã‚¯ã‚»ã‚¹ã™ã‚‹æ¨©é™ãŒã‚ã‚Šã¾ã›ã‚“ã€‚"
+
+msgid "404title"
+msgstr "ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“"
+
+msgid "404text"
+msgstr "ãŒè¦æ±‚ã•ã‚ŒãŸURLã¯ã€ã“ã®ã‚µãƒ¼ãƒãƒ¼ä¸Šã«è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "500title"
+msgstr "å†…éƒ¨ã‚µãƒ¼ãƒãƒ¼ã‚¨ãƒ©ãƒ¼"
+
+msgid "500text"
+msgstr "ã‚µãƒ¼ãƒãƒ¼ã¯å†…éƒ¨ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸãŸã‚ã€ãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å®Œäº†ã§ãã¾ã›ã‚“ã§ã—ãŸã€‚"
+
+msgid "pageNotDoneYetTitle"
+msgstr "ãƒˆãƒ©ãƒ³ã‚¸ã‚·ãƒ§ãƒ³èª¤å·®"
+
+msgid "pageNotDoneYetText"
+msgstr "ã‚ãªãŸãŒã‚¢ã‚¯ã‚»ã‚¹ã—ã‚ˆã†ã¨ã—ã¦ã„ã‚‹GUIãƒšãƒ¼ã‚¸ã«ã¯ã€ã¾ã BlueOnyx5207Rã¾ãŸã¯5208Rã«å¤‰æ›ã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚ YUMã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆã‚’è¡Œã„ã€ã¾ãŸã€ä»»æ„ã®ã¨ã€ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ã•ã‚Œã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã™ã¹ã¦ã®ã‚µãƒ¼ãƒ‰ãƒ‘ãƒ¼ãƒ†ã‚£è£½ã®PKGã®ã¸ã®æ›´æ–°ã®ãŸã‚ã® 'ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ' ã‚’ç¢ºèªã—ã¦ãã ã•ã„ã€‚ã“ã‚Œã§å•é¡ŒãŒè§£æ±ºã—ãªã„å ´åˆã¯ã€ã‚¨ãƒ©ãƒ¼ãŒèµ·ã“ã£ãŸã¨ãã«ä½¿ç”¨ã—ã‚ˆã†ã¨ã—ãŸã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã®ãƒ™ãƒ³ãƒ€ãƒ¼ã«ãŠå•ã„åˆã‚ã›ãã ã•ã„ã€‚"
+# End: Error page localization
+
+# Start: Datatables
+msgid "sProcessing"
+msgstr "å‡¦ç†ä¸­..."
+
+msgid "sLengthMenu"
+msgstr "_MENU_ ä»¶è¡¨ç¤º"
+
+msgid "sZeroRecords"
+msgstr "ãƒ‡ãƒ¼ã‚¿ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚"
+
+msgid "sInfo"
+msgstr " _TOTAL_ ä»¶ä¸­ _START_ ã‹ã‚‰ _END_ ã¾ã§è¡¨ç¤º"
+
+msgid "sInfoEmpty"
+msgstr " 0 ä»¶ä¸­ 0 ã‹ã‚‰ 0 ã¾ã§è¡¨ç¤º"
+
+msgid "sInfoFiltered"
+msgstr "ï¼ˆå…¨ _MAX_ ä»¶ã‚ˆã‚ŠæŠ½å‡ºï¼‰"
+
+msgid "sSearch"
+msgstr "æ¤œç´¢:"
+
+msgid "sFirst"
+msgstr "å…ˆé ­"
+
+msgid "sLast"
+msgstr "å‰"
+
+msgid "sPrevious"
+msgstr "[[palette.previous]]"
+
+msgid "sNext"
+msgstr "[[palette.next]]"
+# End: Datatables
+
+msgid "Yes"
+msgstr "ã¯ã„"
+
+msgid "No"
+msgstr "ã—ãªã„"
+
+msgid "enabled"
+msgstr "ã“ã®é …ç›®ãŒæœ‰åŠ¹ã«ãªã£ã¦ã„ã¾ã™ã€‚"
+
+msgid "disabled"
+msgstr "ã“ã®é …ç›®ã¯ç„¡åŠ¹ã«ãªã£ã¦ã„ã¾ã™ã€‚"
+
+msgid "notprivileged"
+msgstr "ã‚ãªãŸã¯ã“ã®é …ç›®ã‚’å¤‰æ›´ã™ã‚‹æ¨©é™ã‚’æŒã£ã¦ã„ãªã„ã€‚"
+
+
+msgid "disabled_short"
+msgstr "ä½¿ç”¨ç¦æ­¢"
+
+msgid "enabled_short"
+msgstr "ä½¿ç”¨å¯èƒ½"
+
+msgid "demo_mode_short"
+msgstr "ãƒ‡ãƒ¢"
+
+msgid "demo_mode"
+msgstr "ã“ã®ã‚µãƒ¼ãƒãƒ¼ã¯ãƒ‡ãƒ¢ãƒ¢ãƒ¼ãƒ‰ã§å‹•ä½œã—ã¾ã™ã€‚å¤‰æ›´ã®ä¿å­˜ã¯ã€ç‰¹å®šã®ãƒšãƒ¼ã‚¸ä¸Šã§ç„¡åŠ¹ã«ãªã£ã¦ã„ã¾ã™ã€‚"
+
+## New Countries:
+msgid "ax"
+msgstr "ã‚ªãƒ¼ãƒ©ãƒ³ãƒ‰è«¸å³¶"
+
+msgid "bl"
+msgstr "ã‚»ãƒ³ãƒˆãƒãƒ¼ãƒ„"
+
+msgid "bq"
+msgstr "ãƒœãƒãƒ¼ãƒ«å³¶ã€ã‚»ãƒ³ãƒˆãƒ¦ãƒ¼ã‚¹ã‚¿ãƒ†ã‚£ã‚¦ã‚¹ã¨ã‚µãƒ"
+
+msgid "cd"
+msgstr "ã‚³ãƒ³ã‚´æ°‘ä¸»å…±å’Œå›½"
+
+msgid "cw"
+msgstr "ã‚­ãƒ¥ãƒ©ã‚½ãƒ¼"
+
+msgid "gg"
+msgstr "ã‚¬ãƒ¼ãƒ³ã‚¸ãƒ¼å³¶"
+
+msgid "im"
+msgstr "ãƒãƒ³å³¶"
+
+msgid "je"
+msgstr "ã‚¸ãƒ£ãƒ¼ã‚¸"
+
+msgid "me"
+msgstr "ãƒ¢ãƒ³ãƒ†ãƒã‚°ãƒ­"
+
+msgid "mf"
+msgstr "ã‚µãƒ³ãƒãƒ«ã‚¿ãƒ³ï¼ˆãƒ•ãƒ¬ãƒ³ãƒéƒ¨åˆ†ï¼‰"
+
+msgid "rs"
+msgstr "ã‚»ãƒ«ãƒ“ã‚¢"
+
+msgid "ss"
+msgstr "å—ã‚¹ãƒ¼ãƒ€ãƒ³"
+
+msgid "sx"
+msgstr "ã‚·ãƒ³ãƒˆãƒãƒ¼ãƒ«ãƒ†ãƒ³ï¼ˆã‚ªãƒ©ãƒ³ãƒ€ä¸€éƒ¨ï¼‰"
+
+msgid "tl"
+msgstr "æ±ãƒ†ã‚£ãƒ¢ãƒ¼ãƒ«"
+
+msgid "ps"
+msgstr "ãƒ‘ãƒ¬ã‚¹ãƒãƒŠ"
+
+msgid "pw_way_too_short"
+msgstr "ãã‚Œã¯ã‚ã¾ã‚Šã«ã‚‚çŸ­ã™ãã‚‹ï¼"
+
+msgid "pw_too_short"
+msgstr "ãã‚Œã¯ã‚ã¾ã‚Šã«ã‚‚çŸ­ã™ãã‚‹ï¼"
+
+msgid "pw_not_nuff_different"
+msgstr "ãã‚Œã ã‘ã§ã¯ååˆ†ã§ã¯åˆ¥ã®æ–‡å­—ãŒå«ã¾ã‚Œã¦ã„ã¾ã›ã‚“ã€‚"
+
+msgid "pw_all_whitespace"
+msgstr "ã“ã‚Œã¯ã€ã™ã¹ã¦ã®ç©ºç™½ã§ã™ï¼"
+
+msgid "pw_too_simple"
+msgstr "ãã‚Œã¯ã‚ã¾ã‚Šã«ã‚‚å˜ç´”ã™ãã‚‹ã‹ä½“ç³»çš„ã§ã™ï¼"
+
+msgid "pw_insurance_number"
+msgstr "ã“ã‚Œã¯ã€å›½æ°‘ä¿é™ºç•ªå·ã®ã‚ˆã†ã«è¦‹ãˆã¾ã™ï¼"
+
+msgid "pw_dictionary_word"
+msgstr "ã“ã‚Œã¯ã€è¾æ›¸ã®å˜èªã«åŸºã¥ã„ã¦ã„ã¾ã™ï¼"
+
+msgid "pw_reversed_dictionary_word"
+msgstr "ãã‚ŒãŒé€†ã«è¾æ›¸ã®å˜èªã«åŸºã¥ã„ã¦ã„ã¾ã™ï¼"
+
+msgid "pw_strong_password"
+msgstr "å¼·åŠ›ãªãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã€‚"
+
+msgid "pw_not_identical"
+msgstr "å…¥åŠ›ã—ãŸ2ã¤ã®ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ãŒåŒã˜ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã€‚"
+
+msgid "addAll"
+msgstr "ã™ã¹ã¦ã‚’è¿½åŠ "
+
+msgid "removeAll"
+msgstr "ã™ã¹ã¦å‰Šé™¤"
+
+msgid "itemsCount"
+msgstr "é¸æŠã—ãŸé …ç›®"
