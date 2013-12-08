@@ -1,7 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
 # $Id: 10_addSystem.pl
-# Copyright 2000-2002 Sun Microsystems, Inc. All rights reserved.
-# Copyright 2008-2013 Team BlueOnyx. All rights reserved.
 
 #use strict;
 use CCE;
@@ -59,6 +57,18 @@ elsif ($lang =~ /^da_DK/) {
 }
 elsif ($lang =~ /^de_DE/) { 
 	$lang = 'de_DE';
+}
+elsif ($lang =~ /^es_ES/) { 
+	$lang = 'es_ES';
+}
+elsif ($lang =~ /^fr_FR/) { 
+	$lang = 'fr_FR';
+}
+elsif ($lang =~ /^it_IT/) { 
+	$lang = 'it_IT';
+}
+elsif ($lang =~ /^pt_PT/) { 
+	$lang = 'pt_PT';
 }
 else {
     if ($build eq "5106R") {

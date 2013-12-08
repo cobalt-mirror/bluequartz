@@ -125,6 +125,7 @@ system("/bin/rm -f /etc/sysconfig/i18n.backup.*");
 # 
 # Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, 
 # are permitted provided that the following conditions are met:

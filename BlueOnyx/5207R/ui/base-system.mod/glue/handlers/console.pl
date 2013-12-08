@@ -11,6 +11,9 @@ $cce->connectfd();
 
 my $obj = $cce->event_object();
 
+$cce->bye('SUCCESS');
+exit(0);
+
 # actuate the changes
 if ($obj->{console}) {
 	Sauce::Util::addrollbackcommand("/sbin/nvram -c console off");
