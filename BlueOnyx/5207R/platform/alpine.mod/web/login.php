@@ -66,7 +66,7 @@ if(($charset=$i18n->getProperty("encoding","palette"))!="none")
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php if ($charset != "none") {echo $charset;} else {echo "iso-8859-1";} ?>" />
+<meta http-equiv="Content-Type" content="text/html; charset=<?php if ($charset != "none") {echo $charset;} else {echo "UTF-8";} ?>" />
 <style type="text/css">
 <!--
 small {<?php print($myStyle->toTextStyle("small")); ?>}
