@@ -54,7 +54,7 @@ msgid "autoResponderField"
 msgstr "Urlaubsnachricht"
 
 msgid "autoResponderField_help"
-msgstr "Mit der Funktion Urlaubsnachricht können Sie automatisch eine benutzerdefinierte Nachricht senden, wenn Ihnen jemand E-Mail schickt. Dies mag nützlich sein, wenn Sie Ihre E-Mail wegen Abwesenheit nicht lesen können oder eine automatische Antwort an den Absender schicken möchten."
+msgstr "Mit der Funktion Urlaubsnachricht können Sie automatisch eine Nachricht senden, wenn Ihnen jemand E-Mail schickt."
 
 msgid "autoResponderMessageField"
 msgstr "Automatische Antwort"
@@ -165,7 +165,7 @@ msgid "forwardEmailField_help"
 msgstr "Geben Sie die Email-Adressen ein, an die Sie Ihre Email weiterleiten möchten. [[base-user.forwardEmailField_rule]]"
 
 msgid "forwardEmailField_rule"
-msgstr "Die eingegebenen Werte müssen gültige Email-Adressen sein und dürfen keine Umlaute oder Sonderzeichen enthalten. Eine gültige Adresse wäre zum Beispiel 'm.alois_hingerl@muenchen-hbf.de'. Um mehrere Adressen anzugeben, trennen Sie die Adressen mit einem Komma oder listen Sie eine Email-Adresse pro Zeile."
+msgstr "Geben Sie eine gültige E-Mail-Adressen. Mehrere Adressen sind in Ordnung, wenn diese auf separaten Zeilen sind."
 
 msgid "forwardEnable"
 msgstr "Aktivieren"
@@ -414,14 +414,33 @@ msgstr "Ungültiges Passwort! "
 # Vacation Message start/stop additions:
 
 msgid "autoRespondStartDate"
-msgstr "Start date:"
+msgstr "Anfangsdatum:"
 
 msgid "autoRespondStartDate_help"
-msgstr "Date and time when the auto responder (if enabled) starts to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
+msgstr "Datum und Zeit, an dem der Autoresponder (falls aktiviert) damit beginnt Abwesenheitsnachrichten zu senden. Wenn Start-und Enddatum identisch sind, während der Auto-Responder aktiviert ist, dann wird er permanent funktionieren bis er ausgeschaltet wird."
 
 msgid "autoRespondStopDate"
-msgstr "End date:"
+msgstr "Enddatum:"
 
 msgid "autoRespondStopDate_help"
-msgstr "Date and time when the auto responder (if enabled) stops to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
+msgstr "Datum und Zeit, an dem der Autoresponder (falls aktiviert) damit aufhört Abwesenheitsnachrichten zu senden. Wenn Start-und Enddatum identisch sind, während der Auto-Responder aktiviert ist, dann wird er permanent funktionieren bis er ausgeschaltet wird."
 
+#---
+
+msgid "autoRespondStartTime"
+msgstr "Anfangszeit:"
+
+msgid "autoRespondStartTime_help"
+msgstr "Zeitpunkt, an dem der Autoresponder (falls aktiviert) damit beginnt Abwesenheitsnachrichten zu senden."
+
+
+msgid "autoRespondStoptTime"
+msgstr "Endzeit:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "Zeitpunkt, an dem der Autoresponder (falls aktiviert) damit aufhört Abwesenheitsnachrichten zu senden."
+
+msgid "invalidVacationDate"
+msgstr "Sie haben ein ungültiges Datum für die Abwesenheitsnachricht angegeben. Der Zeitpunkt für das Ende der Benachrichtigungen darf nicht vor dem Startzeitpunkt liegen."
+
+#---

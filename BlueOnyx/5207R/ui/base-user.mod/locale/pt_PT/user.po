@@ -1,0 +1,421 @@
+
+msgid "userList"
+msgstr "Lista de usuários"
+
+msgid "userListTitle"
+msgstr "Lista de usuários para [[VAR.fqdn]]"
+
+msgid "users_help"
+msgstr "Clique aqui para gerenciar usuários."
+
+msgid "fullName"
+msgstr "Nome Completo"
+
+msgid "fullName_help"
+msgstr "Este é o nome completo do utilizador."
+
+msgid "userName"
+msgstr "Nome de usuário"
+
+msgid "userName_help"
+msgstr "Este é o nome usado pelo sistema para identificar o utilizador."
+
+msgid "listAction"
+msgstr "Ação"
+
+msgid "listAction_help"
+msgstr "Estes são os botões usados ​​para modificar as configurações de um usuário ou para remover um usuário."
+
+msgid "addNewUser"
+msgstr "Adicionar novo usuário"
+
+msgid "addNewUserTitle"
+msgstr "Adicionar novo usuário para [[VAR.fqdn]]"
+
+msgid "fullNameField"
+msgstr "[[base-user.fullName]]"
+
+msgid "fullNameField_rule"
+msgstr "Por favor insira os caracteres, exceto dois pontos. Por exemplo, John Doe é uma entrada válida."
+
+msgid "fullNameField_help"
+msgstr "Digite o nome completo do usuário. [[base-user.fullNameField_rule]]"
+
+msgid "userNameField"
+msgstr "[[base-user.username]]"
+
+msgid "userNameField_rule"
+msgstr "Por favor, insira mais de 31 caracteres contendo apenas caracteres alfanuméricos em minúsculas, pontos, hífens e sublinhados. O primeiro caractere deve ser uma letra. Por exemplo, john.doe é uma entrada válida."
+
+msgid "userNameField_help"
+msgstr "Inserir o nome a ser usado pelo sistema para identificar o utilizador. [[base-user.userNameField_rule]]"
+
+msgid "userNameAlreadyTaken"
+msgstr "Desculpe, você digitou um valor para [[base-user.userNameField]] que não está disponível no sistema. Por favor, insira um outro valor para [[base-user.userNameField]]."
+
+msgid "userNameSuggest"
+msgstr "[[base-user.userNameAlreadyTaken]] Os seguintes nomes estão disponíveis: [[VAR.list]]."
+
+msgid "passwordField"
+msgstr "Senha"
+
+msgid "passwordField_help"
+msgstr "Digite a senha para ser usado pelo sistema para identificar o usuário. [[base-user.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Desculpe, você não digitou a mesma senha nos dois campos. A mesma senha é digitada em ambos os campos para se proteger contra erros de digitação. Por favor, tente novamente."
+
+msgid "error-invalid-password"
+msgstr "Desculpe, a senha que você digitou é inválido. [[base-user.passwordField_rule]]"
+
+msgid "maxDiskSpaceField"
+msgstr "Espaço máximo permitido Disk"
+
+msgid "maxDiskSpaceField_rule"
+msgstr "O espaço em disco máximo permitido deve estar dentro do intervalo especificado entre parênteses."
+
+msgid "maxDiskSpaceField_help"
+msgstr "Defina a cota de disco deste usuário. Este é o máximo de espaço em disco disponível para este usuário para o armazenamento de páginas da web, mensagens de e-mail e todos os outros arquivos do usuário. [[base-user.maxDiskSpaceField_rule]] O valor padrão para novos usuários está definido na seção Modelo de Usuário."
+
+msgid "maxDiskSpaceFieldDefault"
+msgstr "[[base-user.maxDiskSpaceField]]"
+
+msgid "maxDiskSpaceFieldDefault_help"
+msgstr "Definir o espaço em disco máximo padrão para novos usuários. Este é o máximo de espaço em disco disponível para os usuários para o armazenamento de páginas da web, mensagens de e-mail e todos os outros arquivos do usuário. [[base-user.maxDiskSpaceField_rule]]"
+
+msgid "memberGroupsField"
+msgstr "Associação de Grupo"
+
+msgid "memberGroupsField_help"
+msgstr "Definir os membros do grupo deste usuário. A coluna da esquerda mostra os grupos aos quais esse usuário pertence atualmente. A coluna da direita mostra os grupos aos quais esse usuário poderia pertencem. Para adicionar este usuário como um membro de um grupo, mova o grupo na coluna da direita para a coluna da esquerda."
+
+msgid "memberGroups"
+msgstr "Grupos Filiado"
+
+msgid "allGroups"
+msgstr "Grupos não filiados"
+
+msgid "modifyUser"
+msgstr "Modificar configurações de usuário para [[VAR.userName]]"
+
+msgid "newPasswordField"
+msgstr "Nova Senha"
+
+msgid "newPasswordField_help"
+msgstr "[[base-user.passwordField_help]]"
+
+msgid "newPasswordField_invalid"
+msgstr "[[base-user.passwordField_invalid]]"
+
+msgid "emailSettingsFor"
+msgstr "Configurações de e-mail para [[VAR.userName]]"
+
+msgid "emailAlias"
+msgstr "Alias ​​de e-mail"
+
+msgid "emailAliasesField"
+msgstr "E-mail Alias"
+
+msgid "emailAliasesField_rule"
+msgstr "Por favor insira caracteres contendo apenas caracteres alfanuméricos em minúsculas, pontos, hífens e sublinhados. O valor padrão é a minúscula primeiro e último nome do usuário separados por um ponto. Por exemplo, john.doe é uma entrada válida."
+
+msgid "emailAliasesField_help"
+msgstr "Digite os nomes adicionais que o usuário receberá e-mail como. [[base-user.emailAliasesField_rule]]"
+
+msgid "forwardEnableField"
+msgstr "Encaminhamento de e-mail"
+
+msgid "forwardEnableField_help"
+msgstr "Permitindo o encaminhamento de e-mail provoca e-mail recebido, no futuro, será automaticamente encaminhado para os endereços de email especificado."
+
+msgid "forwardEnable"
+msgstr "Permitir"
+
+msgid "forwardEmailField_rule"
+msgstr "Insira os endereços de e-mail válidos. Vários endereços estão bem. Separe-os com uma vírgula ou colocar cada endereço em uma linha separada."
+
+msgid "forwardEmailField"
+msgstr "Endereços de e-mail"
+
+msgid "forwardEmailField_help"
+msgstr "Digite os endereços de e-mail para o qual você gostaria que seu e-mail encaminhado. [[base-user.forwardEmailField_rule]]"
+
+msgid "autoResponderField"
+msgstr "Mensagem de férias"
+
+msgid "autoResponderField_help"
+msgstr "Mensagem de férias permite enviar automaticamente uma mensagem personalizada para todos os que lhe envia e-mail."
+
+msgid "enableAutoResponderField"
+msgstr "Permitir"
+
+msgid "autoResponderMessageField"
+msgstr "Auto-Responder"
+
+msgid "autoResponderMessageField_help"
+msgstr "Digite a mensagem que será enviada automaticamente como uma resposta ao remetente de cada e-mail que você recebe."
+
+msgid "blank-vacation-msg"
+msgstr "Desculpe, você digitou um valor inválido para [[base-user.autoResponderMessageField]]."
+
+msgid "userDefaults"
+msgstr "Editar Modelo de Usuário"
+
+msgid "userDefaults_help"
+msgstr "Clique aqui para alterar as configurações padrão para novos usuários."
+
+msgid "userDefaultsTitle"
+msgstr "Editar Modelo de usuário para [[VAR.fqdn]]"
+
+msgid "basicDefaults"
+msgstr "Básico"
+
+msgid "serviceDefaults"
+msgstr "Serviços"
+
+msgid "usersPerPage"
+msgstr "Número de usuários por página"
+
+msgid "usersPerPage_help"
+msgstr "Defina o número de usuários a serem exibidos por página na lista de usuários."
+
+msgid "userNameGenField"
+msgstr "Nome Generation usuário"
+
+msgid "userNameGenField_help"
+msgstr "Defina o método pelo qual os nomes de usuário são gerados automaticamente após a inserção de nomes completos. Por exemplo, se John Doe é o nome completo, em seguida, johnd, jsilva, john doe ou seria o nome de usuário gerado automaticamente."
+
+msgid "first"
+msgstr "Apenas o primeiro nome"
+
+msgid "last"
+msgstr "Apenas Sobrenome"
+
+msgid "firstInitLast"
+msgstr "Inicial do primeiro nome e sobrenome"
+
+msgid "firstLastInit"
+msgstr "Nome e inicial do sobrenome"
+
+msgid "languageField"
+msgstr "Preferência de idioma"
+
+msgid "languageField_help"
+msgstr "O servidor vai tentar exibir páginas no idioma preferido você selecionar aqui. Se você selecionar 'Ajuste de opções do navegador, o servidor vai tentar exibir páginas com base em preferências de idioma do seu navegador web. Se o idioma selecionado não estiver disponível, o servidor irá exibir páginas usando o idioma padrão que está disponível para o servidor."
+
+msgid "account"
+msgstr "Conta"
+
+msgid "account_help"
+msgstr "Clique aqui para configurar as definições contas básicas."
+
+msgid "email"
+msgstr "Email"
+
+msgid "email_help"
+msgstr "Clique aqui para configurar as definições de e-mail como aliases, encaminhamento e mensagem de férias."
+
+msgid "personalEmail"
+msgstr "Email"
+
+msgid "personalEmail_help"
+msgstr "Clique aqui para gerenciar o encaminhamento de e-mails e configurações de resposta automática."
+
+msgid "styleField"
+msgstr "Estilo"
+
+msgid "styleField_help"
+msgstr "Muda o estilo gráfico usado para exibir menus, botões e outros itens."
+
+msgid "personalAccount"
+msgstr "Conta"
+
+msgid "personalAccount_help"
+msgstr "Clique aqui para gerenciar informações de conta de usuário pessoal."
+
+msgid "accountSettings"
+msgstr "Configurações da conta de [[VAR.userName]]"
+
+msgid "removeUserConfirm"
+msgstr "Você tem certeza que deseja remover o usuário [[VAR.userName]]?"
+
+msgid "reloadMessage"
+msgstr "Seu navegador irá agora atualizar automaticamente para usar o idioma escolhido."
+
+msgid "forwardSaveField"
+msgstr "Salvar cópia"
+
+msgid "forwardSaveField_help"
+msgstr "Salvar cópia salva uma cópia de cada e-mail recebido para a caixa de correio, além de encaminhar uma cópia para os endereços de email especificado."
+
+msgid "userDesc"
+msgstr "Observações"
+
+msgid "userDesc_help"
+msgstr "Esta coluna fornece informações adicionais sobre cada usuário."
+
+msgid "userDescField"
+msgstr "Observações"
+
+msgid "userDescField_help"
+msgstr "Digite informações adicionais ou comentários sobre o usuário aqui."
+
+msgid "uidAlreadyTaken"
+msgstr "Desculpe, ocorreu um erro. O uid entrou já está tomada."
+
+msgid "aliasAlreadyTaken"
+msgstr "Desculpe, este usuário não pode ser criado com o nome especificado por um alias de e-mail já existe para esse nome."
+
+msgid "aliasAlreadyTaken2"
+msgstr "Desculpe, aliases de e-mail do usuário não pode ser definido porque um ou mais dos aliases especificados já está em uso."
+
+msgid "add_user_help"
+msgstr "Clique aqui para adicionar um novo usuário."
+
+msgid "administrator"
+msgstr "Administrador"
+
+msgid "failed-to-add-user"
+msgstr "A conta de usuário não pode ser criado por causa de um erro do sistema."
+
+msgid "cantCreateUserServices"
+msgstr "Não é possível criar o objeto UserServices."
+
+msgid "="
+msgstr "é"
+
+msgid "match"
+msgstr "contém"
+
+msgid "nomatch"
+msgstr "não contêm"
+
+msgid "searchbut"
+msgstr "Pesquisar"
+
+msgid "searchbut_help"
+msgstr "Clique aqui para obter uma lista de usuários com base nos critérios inseridos."
+
+msgid "userSearch"
+msgstr "Procurar Usuários"
+
+msgid "userSearchCriteria"
+msgstr "Pesquisar:"
+
+msgid "userSearchCriteria_help"
+msgstr "Você pode usar essa ferramenta de busca para encontrar usuários com base nos critérios especificados. Selecione o campo no qual a pesquisar e escolher a forma como o texto que você digitar deve ser comparado com o campo."
+
+msgid "capgroup_adminUser"
+msgstr "Gerenciar usuários"
+
+msgid "capgroup_adminUser_help"
+msgstr "Este direito administrativo permite ao usuário criar, destruir e modificar outros usuários nesta máquina"
+
+msgid "siteAdminEnabled"
+msgstr "Administrador do Site"
+
+msgid "siteAdminEnabled_help"
+msgstr "Este usuário é um administrador do site."
+
+msgid "userSuspended"
+msgstr "Usuário Suspenso"
+
+msgid "userSuspended_help"
+msgstr "Este utilizador está suspenso e será negado o acesso aos serviços do sistema associados a essa conta, como telnet, FTP, e-mail e acesso à web para seus arquivos. E-mail enviado a esta conta serão rejeitados eo remetente receberá uma mensagem de erro."
+
+msgid "rights"
+msgstr "Estado"
+
+msgid "rights_help"
+msgstr "Esta coluna exibe os ícones para os recursos ativados para o usuário. Passe o mouse sobre os ícones para mais informações sobre cada item."
+
+msgid "emailAliases"
+msgstr "E-mail Alias"
+
+msgid "emailAliases_help"
+msgstr "Esta coluna lista os aliases de e-mail para o usuário. O usuário pode receber e-mail endereçado a estes nomes, além do nome de usuário."
+
+msgid "suspendUser"
+msgstr "Suspenso"
+
+msgid "suspendUser_help"
+msgstr "Suspendendo um usuário irá impedir que o usuário acesse os serviços do sistema associados a essa conta, como telnet, FTP, e-mail, Web e acesso a seus arquivos. E-mail enviado para a conta do usuário suspenso será rejeitada eo remetente receberá uma mensagem de erro."
+
+msgid "siteAdministratorField"
+msgstr "Administrador do Site"
+
+msgid "siteAdministratorField_help"
+msgstr "Os administradores do site são os usuários que são capazes de configurar as definições para um site."
+
+msgid "cantDeleteUser"
+msgstr "Não é possível excluir o usuário especificado."
+
+msgid "cleanupOldFiles"
+msgstr "Este usuário possui arquivos que estão no diretório do site, mas não no diretório home do usuário que você pode querer manter. Você deve excluir esses arquivos ou transferir a propriedade para outro usuário antes de excluir este usuário."
+
+msgid "cantGetRootAccess"
+msgstr "Não foi possível obter o namespace RootAccess para [[VAR.name]] de CCE."
+
+msgid "cantDisableRootAccess"
+msgstr "Incapaz de desabilitar o acesso root para [[VAR.name]]."
+
+msgid "cantEnableRootAccess"
+msgstr "Incapaz de permitir o acesso root para [[VAR.name]]."
+
+msgid "cantDeleteAlterRoot"
+msgstr "Não foi possível remover a conta de usuário root, [[VAR.root]]."
+
+msgid "cantCreateAlterRoot"
+msgstr "Não é possível criar a conta de usuário root, [[VAR.root]]."
+
+msgid "cantUpdateAlterRoot"
+msgstr "Incapaz de sincronizar a senha da conta de usuário root para a conta root, [[VAR.root]], para coincidir com a senha [[VAR.name]] 's conta."
+
+msgid "emailDisabled"
+msgstr "Desative-mail do usuário"
+
+msgid "emailDisabled_help"
+msgstr "Isso irá desativar e-mail do usuário para a sua conta principal e todos os aliases"
+
+msgid "dnsAdministratorField"
+msgstr "Administrador de DNS"
+
+msgid "dnsAdministratorField_help"
+msgstr "Este usuário é um administrador DNS."
+
+msgid "passwordField_rule"
+msgstr "A senha deve ter entre 6 e 24 caracteres. Uma boa senha deve conter pelo menos 6 caracteres com uma mistura de letras maiúsculas e minúsculas, bem como números e sinais de pontuação. Não deve soletrar todas as palavras encontradas no dicionário. As senhas são case sensitive."
+
+msgid "error-password-equals-username"
+msgstr "Senha inválida - você não pode usar uma senha que é idêntico ao seu nome de usuário!"
+
+msgid "error-password-invalid"
+msgstr "Senha inválida:"
+
+msgid "autoRespondStartDate"
+msgstr "Data de início:"
+
+msgid "autoRespondStartDate_help"
+msgstr "Data e hora em que a resposta automática (se habilitado) começa a enviar mensagens de férias. Se a data de início e parada são idênticos, enquanto o atendedor automático estiver ativado, ele será executado até que seja desligado."
+
+msgid "autoRespondStopDate"
+msgstr "Data final:"
+
+msgid "autoRespondStopDate_help"
+msgstr "Data e hora em que a resposta automática (se habilitado) pára de enviar mensagens de férias. Se a data de início e parada são idênticos, enquanto o atendedor automático estiver ativado, ele será executado até que seja desligado."
+
+msgid "autoRespondStartTime"
+msgstr "Hora de início:"
+
+msgid "autoRespondStartTime_help"
+msgstr "Momento em que a resposta automática (se habilitado) começa a enviar mensagens de férias."
+
+msgid "autoRespondStoptTime"
+msgstr "Parar o tempo:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "Momento em que a resposta automática (se habilitado) pára de enviar mensagens de férias."
+
+msgid "invalidVacationDate"
+msgstr "Você digitou uma data de férias inválido. A data ea hora parada não deve ser anterior à data de início."
+

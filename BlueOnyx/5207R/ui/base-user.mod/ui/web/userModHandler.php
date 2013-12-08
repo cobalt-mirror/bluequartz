@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userModHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: userModHandler.php
  */
 
 include_once("ArrayPacker.php");
@@ -43,7 +43,7 @@ if (isset($siteAdministrator) && ($siteAdministrator || (!$siteAdministrator && 
   $attributes["capLevels"] = ($siteAdministrator ? '&siteAdmin&' : '');
 
 if (isset($dnsAdministrator) && ($dnsAdministrator || (!$dnsAdministrator && ($iam != $userNameField))))
-  $attributes["capLevels"] .= ($dnsAdministrator ? '&dnsAdmin&' : '');
+  $attributes["capLevels"] .= ($dnsAdministrator ? '&siteDNS&' : '');
 
 // dirty trick
 $attributes["capLevels"] = str_replace("&&", "&", $attributes["capLevels"]);

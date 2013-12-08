@@ -6,7 +6,7 @@ msgstr "ユーザのリスト - [[VAR.fqdn]]"
 
 msgid "users_help"
 msgstr "ユーザを管理できます。"
- 
+
 msgid "fullName"
 msgstr "氏名"
 
@@ -36,6 +36,7 @@ msgstr "[[base-user.fullName]]"
 
 msgid "fullNameField_rule"
 msgstr "漢字、ひらがな、カタカナ、ローマ字などを自由に使えますが、半角のコロンは使えません。（指定例： 田辺純子、安田 豊）"
+
 msgid "fullNameField_help"
 msgstr "ユーザの氏名を入力してください。[[base-user.fullNameField_rule]]"
 
@@ -43,7 +44,7 @@ msgid "userNameField"
 msgstr "[[base-user.userName]]"
 
 msgid "userNameField_rule"
-msgstr "半角の英小文字、数字、ピリオド、ハイフン、アンダースコアのみを使って、12 文字以内で入力してください。最初の一文字には英小文字をご使用ください。（指定例： h_shibuya）"
+msgstr "半角の英小文字、数字、ピリオド、ハイフン、アンダースコアのみを使って、31 文字以内で入力してください。最初の一文字には英小文字をご使用ください。（指定例： h_shibuya）"
 
 msgid "userNameField_help"
 msgstr "ユーザの識別名です。電子メールの宛先アドレスとしても使われます。[[base-user.userNameField_rule]]"
@@ -56,9 +57,6 @@ msgstr "[[base-user.userNameAlreadyTaken]] 以下に利用可能な名前を示します: [[VAR
 
 msgid "passwordField"
 msgstr "パスワード"
-
-msgid "passwordField_rule"
-msgstr "パスワードには、3 〜 16 文字の半角英数字および記号を使えます。セキュリティを保持するため、大文字と小文字の両方を使い、5 文字以上で、数字や句読点を少なくとも一つは含む、辞書に載っていないような文字列の使用をお勧めします。パスワード中の大文字と小文字は区別されます。"
 
 msgid "passwordField_help"
 msgstr "このユーザのパスワードを入力してください。[[base-user.passwordField_rule]]"
@@ -123,7 +121,6 @@ msgstr "電子メールエイリアスには、半角の英小文字、数字、ピリオド、ハイフン、アン
 msgid "emailAliasesField_help"
 msgstr "このユーザは、自分のユーザ名宛の電子メールに加えて、ここで指定するアドレス宛の電子メールを受信できます。[[base-user.emailAliasesField_rule]]"
 
-
 msgid "forwardEnableField"
 msgstr "電子メール転送"
 
@@ -134,7 +131,7 @@ msgid "forwardEnable"
 msgstr "有効にする"
 
 msgid "forwardEmailField_rule"
-msgstr "電子メールアドレスを正しい形式で入力してください (例： jtanabe@sun.com)。複数のアドレスを指定するには、各アドレスをカンマで区切るか、改行してください。"
+msgstr "有効なメールアドレスを入力します。複数のアドレスで大丈夫です。カンマで区切るか、または別々の行にアドレスを入れた。"
 
 msgid "forwardEmailField"
 msgstr "転送先アドレス"
@@ -144,13 +141,15 @@ msgstr "電子メールの転送先アドレスを入力してください。[[base-user.forwardEmailFi
 
 msgid "autoResponderField"
 msgstr "不在時自動応答メッセージ"
+
 msgid "autoResponderField_help"
-msgstr "不在時自動応答メッセージを有効にすると、受信した電子メールに対して自動的に返信メッセージが送られます。休暇や出張などのためしばらく電子メールを読めないときや、送信者に特定の自動応答メッセージを送信したいときなどにこの機能を利用すると便利です。"
+msgstr "不在時自動応答メッセージを有効にすると、受信した電子メールに対して自動的に返信メッセージが送られます。"
 
 msgid "enableAutoResponderField"
 msgstr "有効にする"
 
-msgid "autoResponderMessageField"msgstr "自動応答メッセージ"
+msgid "autoResponderMessageField"
+msgstr "自動返信"
 
 msgid "autoResponderMessageField_help"
 msgstr "受信した電子メールの差出人宛に自動的に送信したいメッセージをここに入力してください。自動応答メッセージは、同じ差出人に対しては、週一通のみ送られます。"
@@ -217,7 +216,6 @@ msgid "email_help"
 msgstr "電子メールエイリアス、メール転送、不在時応答メッセージなどを設定できます。"
 
 # Personal Profile Section
-
 msgid "personalEmail"
 msgstr "電子メール"
 
@@ -242,6 +240,7 @@ msgstr "アカウント情報 - [[VAR.userName]]"
 
 msgid "removeUserConfirm"
 msgstr "[[VAR.userName]]というユーザを削除してよろしいですか？"
+
 msgid "reloadMessage"
 msgstr "お使いのウェブブラウザは自動的に更新され、指定されたスタイルで画面が表示されます。"
 
@@ -393,3 +392,56 @@ msgstr "ルートユーザアカウント [[VAR.root]] を作成できません。"
 msgid "cantUpdateAlterRoot"
 msgstr "ルートアカウント [[VAR.root]] のルートアカウントパスワードを [[VAR.name]] アカウントのパスワードに同期して一致させることができません。"
 
+msgid "emailDisabled"
+msgstr "電子メールを無効にする"
+
+msgid "emailDisabled_help"
+msgstr "このユーザの電子メールが無効になります。"
+
+msgid "dnsAdministratorField"
+msgstr "DNS 管理者"
+
+msgid "dnsAdministratorField_help"
+msgstr "DNS 管理者とは、許可されたドメイン名の DNS の管理を行うユーザのことです。"
+
+msgid "passwordField_rule"
+msgstr "パスワードは6文字から24文字の間でなければなりません。さらに良いパスワードとは、大文字と小文字だけでなく、数字や句読点のミックスで少なくとも5文字を含める必要があります。これは、辞書に載っている、任意の単語を綴るべきではありません。パスワードは大文字と小文字が区別されます。"
+
+msgid "error-password-equals-username"
+msgstr "無効なパスワード - あなたのユーザ名と同一のパスワードを使用することはできません！"
+
+msgid "error-password-invalid"
+msgstr "無効なパスワード: "
+
+# Vacation Message start/stop additions:
+
+msgid "autoRespondStartDate"
+msgstr "日付を起動します。"
+
+msgid "autoRespondStartDate_help"
+msgstr "日付と自動応答が（有効な場合）休暇のメッセージを送信するために開始時間。自動応答が有効になっている開始および終了日が同一である場合、それがオフされるまで、それが実行されます。"
+
+msgid "autoRespondStopDate"
+msgstr "日付を終了します："
+
+msgid "autoRespondStopDate_help"
+msgstr "日付と自動応答が（有効な場合）休暇のメッセージを送信するために停止する時間。自動応答が有効になっている開始および終了日が同一である場合、それがオフされるまで、それが実行されます。"
+
+#---
+
+msgid "autoRespondStartTime"
+msgstr "開始時刻:"
+
+msgid "autoRespondStartTime_help"
+msgstr "オートレスポンダーは、（有効な場合）不在メッセージを送信するために開始された時刻。"
+
+
+msgid "autoRespondStoptTime"
+msgstr "停止時間:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "オートレスポンダーは、（有効な場合）不在メッセージを送信するために停止する時間。"
+
+msgid "invalidVacationDate"
+msgstr "無効な休暇の日付を入力しました。停止日時は開始日より前であってはなりません。"
+#---

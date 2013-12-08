@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
 #
-# $Id: handle_user.pl,v 1.42.2.3 2002/03/30 01:31:38 pbaltz Exp $
+# $Id: handle_user.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # unified create/modify script for users.
@@ -180,7 +180,7 @@ $DEBUG && warn('data valid');
 umask 002;
 
 # build comment:
-my $comment1 = $obj->{fullName} || $obj->{name};
+my $comment = $obj->{fullName} || $obj->{name};
 
 #
 # make sure comment gets encoded properly.  trust I18n::encodeString
@@ -188,7 +188,7 @@ my $comment1 = $obj->{fullName} || $obj->{name};
 # another hack here.  It should encode the string properly based on the
 # system-wide locale, so if the locale isn't ja the 'euc' encoding gets ignored.
 #
-my $comment = $i18n->encodeString($comment1, 'euc');
+#my $comment = $i18n->encodeString($comment1, 'euc');
 
 # hacky workaround.  some handler is leaving /etc/group.lock around.
 if (-e "/etc/group.lock") {
@@ -237,6 +237,9 @@ if (defined($new->{password})) {
 	($crypt_pw, $md5_pw) = cryptpw($new->{password});
 	$user->{password} = $md5_pw;
 }
+elsif (defined($new->{md5_password})) { 
+        $user->{password} = $new->{md5_password}; 
+} 
 		
 if (!@pwent) {
 	# create

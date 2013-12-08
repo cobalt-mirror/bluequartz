@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# $Id: updateCapabilities.pl,v 1.3 2001/06/30 02:18:34 pbaltz Exp $
+# $Id: updateCapabilities.pl
 #
 
 use CCE;

@@ -35,37 +35,37 @@ msgid "fullNameField"
 msgstr "[[base-user.fullName]]"
 
 msgid "fullNameField_rule"
-msgstr "Please enter any characters except colons.  For example, John Doe is a valid entry."
+msgstr "Please enter any characters except colons. For example, John Doe is a valid entry."
 
 msgid "fullNameField_help"
-msgstr "Enter the full name of the user.  [[base-user.fullNameField_rule]]"
+msgstr "Enter the full name of the user. [[base-user.fullNameField_rule]]"
 
 msgid "userNameField"
 msgstr "[[base-user.userName]]"
 
 msgid "userNameField_rule"
-msgstr "Please enter no more than 31 characters containing only lowercase alphanumeric characters, periods, hyphens and underscores.  The first character must be a letter. For example, john.doe is a valid entry."
+msgstr "Please enter no more than 31 characters containing only lowercase alphanumeric characters, periods, hyphens and underscores. The first character must be a letter. For example, john.doe is a valid entry."
 
 msgid "userNameField_help"
-msgstr "Enter the name to be used by the system to identify the user.  [[base-user.userNameField_rule]]"
+msgstr "Enter the name to be used by the system to identify the user. [[base-user.userNameField_rule]]"
 
 msgid "userNameAlreadyTaken"
-msgstr "Sorry, you have entered a value for [[base-user.userNameField]] that is not available on this system.  Please enter another value for [[base-user.userNameField]]."
+msgstr "Sorry, you have entered a value for [[base-user.userNameField]] that is not available on this system. Please enter another value for [[base-user.userNameField]]."
 
 msgid "userNameSuggest"
-msgstr "[[base-user.userNameAlreadyTaken]]  The following names are available: [[VAR.list]]."
+msgstr "[[base-user.userNameAlreadyTaken]] The following names are available: [[VAR.list]]."
 
 msgid "passwordField"
 msgstr "Password"
 
 msgid "passwordField_help"
-msgstr "Enter the password to be used by the system to identify this user.  [[base-user.passwordField_rule]]"
+msgstr "Enter the password to be used by the system to identify this user. [[base-user.passwordField_rule]]"
 
 msgid "passwordField_invalid"
-msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+msgstr "Sorry, you have not entered the same password in both fields. The same password is entered in both fields to protect against typing errors. Please try again."
 
 msgid "error-invalid-password"
-msgstr "Sorry, the password you entered was invalid.  [[base-user.passwordField_rule]]"
+msgstr "Sorry, the password you entered was invalid. [[base-user.passwordField_rule]]"
 
 msgid "maxDiskSpaceField"
 msgstr "Maximum Allowed Disk Space"
@@ -74,19 +74,19 @@ msgid "maxDiskSpaceField_rule"
 msgstr "The maximum allowed disk space must be within the range specified in parentheses."
 
 msgid "maxDiskSpaceField_help"
-msgstr "Set the disk quota of this user.  This is the maximum disk space available to this user for the storage of web pages, email messages and all other user files.  [[base-user.maxDiskSpaceField_rule]]  The default value for new users is set in the User Template section."
+msgstr "Set the disk quota of this user. This is the maximum disk space available to this user for the storage of web pages, email messages and all other user files. [[base-user.maxDiskSpaceField_rule]] The default value for new users is set in the User Template section."
 
 msgid "maxDiskSpaceFieldDefault"
 msgstr "[[base-user.maxDiskSpaceField]]"
 
 msgid "maxDiskSpaceFieldDefault_help"
-msgstr "Set the default maximum disk space for new users.  This is the maximum disk space available to users for the storage of web pages, email messages and all other user files.  [[base-user.maxDiskSpaceField_rule]]"
+msgstr "Set the default maximum disk space for new users. This is the maximum disk space available to users for the storage of web pages, email messages and all other user files. [[base-user.maxDiskSpaceField_rule]]"
 
 msgid "memberGroupsField"
 msgstr "Group Membership"
 
 msgid "memberGroupsField_help"
-msgstr "Set the group membership of this user.  The left column shows the groups to which this user currently belongs.  The right column shows the groups to which this user could possibly belong.  To add this user as a member of a group, move the group from the right column to the left column."
+msgstr "Set the group membership of this user. The left column shows the groups to which this user currently belongs. The right column shows the groups to which this user could possibly belong. To add this user as a member of a group, move the group from the right column to the left column."
 
 msgid "memberGroups"
 msgstr "Groups Affiliated"
@@ -116,10 +116,10 @@ msgid "emailAliasesField"
 msgstr "Email Aliases"
 
 msgid "emailAliasesField_rule"
-msgstr "Please enter characters containing only lowercase alphanumeric characters, periods, hyphens and underscores.  The default value is the lowercase first and last name of the user separated by a period.  For example, john.doe is a valid entry."
+msgstr "Please enter characters containing only lowercase alphanumeric characters, periods, hyphens and underscores. The default value is the lowercase first and last name of the user separated by a period. For example, john.doe is a valid entry."
 
 msgid "emailAliasesField_help"
-msgstr "Enter additional names that the user will receive email as.  [[base-user.emailAliasesField_rule]]"
+msgstr "Enter additional names that the user will receive email as. [[base-user.emailAliasesField_rule]]"
 
 
 msgid "forwardEnableField"
@@ -132,7 +132,7 @@ msgid "forwardEnable"
 msgstr "Enable"
 
 msgid "forwardEmailField_rule"
-msgstr "The values entered must be valid email addresses such as user@example.com.  To specify multiple addresses, separate the addresses with a comma, or put each address on a separate line."
+msgstr "Enter valid email addresses. Multiple addresses are fine. Separate them with a comma or put each address on a separate line."
 
 msgid "forwardEmailField"
 msgstr "Email Addresses"
@@ -144,7 +144,7 @@ msgid "autoResponderField"
 msgstr "Vacation Message"
 
 msgid "autoResponderField_help"
-msgstr "Vacation Message allows you to automatically send a custom message to everyone who sends you email. This is useful if you are unable to read your email, or want to send an automatic response message to the sender."
+msgstr "Vacation Message allows you to automatically send a custom message to everyone who sends you email."
 
 msgid "enableAutoResponderField"
 msgstr "Enable"
@@ -155,9 +155,9 @@ msgstr "Auto-Reply"
 msgid "autoResponderMessageField_help"
 msgstr "Enter the message which will be sent automatically as a reply to the sender of every email you receive. "
 
-	# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
+# Handler message if message is "blank", meaning no text, just space(s)/tab(s)
 msgid "blank-vacation-msg"
-msgstr "Sorry,  you have entered an invalid value for [[base-user.autoResponderMessageField]]."
+msgstr "Sorry, you have entered an invalid value for [[base-user.autoResponderMessageField]]."
 
 msgid "userDefaults"
 msgstr "Edit User Template"
@@ -184,7 +184,7 @@ msgid "userNameGenField"
 msgstr "User Name Generation"
 
 msgid "userNameGenField_help"
-msgstr "Set the method by which user names are automatically generated after entering full names.  For example, if John Doe is the full name, then either johnd, jdoe, john or doe would be the automatically generated user name."
+msgstr "Set the method by which user names are automatically generated after entering full names. For example, if John Doe is the full name, then either johnd, jdoe, john or doe would be the automatically generated user name."
 
 msgid "first"
 msgstr "Only First Name"
@@ -202,7 +202,7 @@ msgid "languageField"
 msgstr "Language Preference"
 
 msgid "languageField_help"
-msgstr "The server will try to display pages in the preferred language you select here. If you select 'Set From Browser Options', the server will try to display pages based on your web browser's language preferences.  If the language you select is unavailable, the server will display pages using the default language that is available to your server."
+msgstr "The server will try to display pages in the preferred language you select here. If you select 'Set From Browser Options', the server will try to display pages based on your web browser's language preferences. If the language you select is unavailable, the server will display pages using the default language that is available to your server."
 
 msgid "account"
 msgstr "Account"
@@ -309,7 +309,7 @@ msgid "userSearchCriteria"
 msgstr "Search:"
 
 msgid "userSearchCriteria_help"
-msgstr "You can use this search tool to find users based on the criteria you specify.  Select the field on which to search and choose how the text you enter should be compared against the field."
+msgstr "You can use this search tool to find users based on the criteria you specify. Select the field on which to search and choose how the text you enter should be compared against the field."
 
 # Capabilities
 msgid "capgroup_adminUser"
@@ -328,25 +328,25 @@ msgid "userSuspended"
 msgstr "User Suspended"
 
 msgid "userSuspended_help"
-msgstr "This user is suspended and will be denied access to system services associated with that account such as telnet, FTP, mail, and web access to their files.  Email sent to this account will be rejected and the sender will receive an error message."
+msgstr "This user is suspended and will be denied access to system services associated with that account such as telnet, FTP, mail, and web access to their files. Email sent to this account will be rejected and the sender will receive an error message."
 
 msgid "rights"
 msgstr "Status"
 
 msgid "rights_help"
-msgstr "This column displays icons for features enabled for the user.  Move your mouse over the icons for more information on each item."
+msgstr "This column displays icons for features enabled for the user. Move your mouse over the icons for more information on each item."
 
 msgid "emailAliases"
 msgstr "Email Aliases"
 
 msgid "emailAliases_help"
-msgstr "This column lists the email aliases for the user.  The user can receive email addressed to these names in addition to the user name."
+msgstr "This column lists the email aliases for the user. The user can receive email addressed to these names in addition to the user name."
 
 msgid "suspendUser"
 msgstr "Suspended"
 
 msgid "suspendUser_help"
-msgstr "Suspending a user will prevent that user from accessing system services associated with that account such as telnet, FTP, mail, and Web access to their files.  Email sent to the suspended user's account will be rejected and the sender will receive an error message."
+msgstr "Suspending a user will prevent that user from accessing system services associated with that account such as telnet, FTP, mail, and Web access to their files. Email sent to the suspended user's account will be rejected and the sender will receive an error message."
 
 msgid "siteAdministratorField"
 msgstr "Site Administrator"
@@ -358,7 +358,7 @@ msgid "cantDeleteUser"
 msgstr "Unable to delete the specified user."
 
 msgid "cleanupOldFiles"
-msgstr "This user owns files that are under the site's directory but not in the user's home directory that you may want to keep.  You must delete these files or reassign the ownership to another user before deleting this user."
+msgstr "This user owns files that are under the site's directory but not in the user's home directory that you may want to keep. You must delete these files or reassign the ownership to another user before deleting this user."
 
 # handler error messages for root_access.pl
 msgid "cantGetRootAccess"
@@ -414,3 +414,22 @@ msgstr "End date:"
 msgid "autoRespondStopDate_help"
 msgstr "Date and time when the auto responder (if enabled) stops to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
 
+#---
+
+msgid "autoRespondStartTime"
+msgstr "Start time:"
+
+msgid "autoRespondStartTime_help"
+msgstr "Time when the autoresponder (if enabled) starts to send out vacation messages."
+
+
+msgid "autoRespondStoptTime"
+msgstr "Stop time:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "Time when the autoresponder (if enabled) stops to send out vacation messages."
+
+msgid "invalidVacationDate"
+msgstr "You have entered an invalid vacation date. The stop date and time must not be before the start date."
+
+#---

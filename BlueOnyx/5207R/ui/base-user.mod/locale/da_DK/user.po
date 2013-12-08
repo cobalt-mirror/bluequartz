@@ -49,7 +49,7 @@ msgid "autoResponderField"
 msgstr "Feriebesked"
 
 msgid "autoResponderField_help"
-msgstr "Feriebesked tillader dig, automatisk, at sende en selvvalgt besked til alle som sender dig en email. Dette er smart hvis du ikke har mulighed for at læse din email, eller vil sende en automatisk besked til afsenderen."
+msgstr "Feriebesked tillader dig, automatisk, at sende en selvvalgt besked til alle som sender dig en email."
 
 msgid "autoResponderMessageField"
 msgstr "Autosvar"
@@ -160,7 +160,7 @@ msgid "forwardEmailField_help"
 msgstr "Indtast den emailadresse hvortil dine emails skal viderestilles. [[base-user.forwardEmailField_rule]]"
 
 msgid "forwardEmailField_rule"
-msgstr "De indtastede værdier skal være gyldige emailadresser som for eksempel bruger@eksempel.dk.  For at specificere flere emailadresser, separer dem da med komma, eller sæt hver emailadresse på en linie for sig."
+msgstr "Indtast gyldige e-mail adresser. Flere adresser er fint. Adskille dem med et komma eller sætte hver adresse på en separat linje."
 
 msgid "forwardEnable"
 msgstr "Aktiver"
@@ -410,14 +410,33 @@ msgstr "Ugyldig adgangskode: "
 # Vacation Message start/stop additions:
 
 msgid "autoRespondStartDate"
-msgstr "Start date:"
+msgstr "Start dato:"
 
 msgid "autoRespondStartDate_help"
-msgstr "Date and time when the auto responder (if enabled) starts to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
+msgstr "Dato og tidspunkt hvor autoresponder starter (hvis aktiveret) for at sende ferie beskeder. Hvis start-og slutdatoer er den samme, mens auto-responder er aktiveret, så vil det arbejde kontinuerligt indtil slukket."
 
 msgid "autoRespondStopDate"
-msgstr "End date:"
+msgstr "End dato:"
 
 msgid "autoRespondStopDate_help"
-msgstr "Date and time when the auto responder (if enabled) stops to send out vacation messages. If start and stop date are identical while the auto responder is enabled, then it will run until it is turned off."
+msgstr "Dato og tidspunkt hvor autoresponder stopper (hvis aktiveret) for at sende ferie beskeder. Hvis start-og slutdatoer er den samme, mens auto-responder er aktiveret, så vil det arbejde kontinuerligt indtil slukket."
 
+#---
+
+msgid "autoRespondStartTime"
+msgstr "Start tid:"
+
+msgid "autoRespondStartTime_help"
+msgstr "idspunkt, hvor den autoresponder starter (hvis aktiveret) for at sende ferie beskeder."
+
+
+msgid "autoRespondStoptTime"
+msgstr "Stop tid:"
+
+msgid "autoRespondStoptTime_help"
+msgstr "Tidspunkt, hvor den autoresponder stopper (hvis aktiveret) for at sende ferie beskeder."
+
+msgid "invalidVacationDate"
+msgstr "Du har indtastet en ugyldig ferie dato. Stop dato og tid må ikke være før startdatoen."
+
+#---

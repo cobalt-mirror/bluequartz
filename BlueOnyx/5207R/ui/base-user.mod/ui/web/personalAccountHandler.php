@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: personalAccountHandler.php 1136 2008-06-05 01:48:04Z mstauber $
+// $Id: personalAccountHandler.php
 
 include_once("ServerScriptHelper.php");
 

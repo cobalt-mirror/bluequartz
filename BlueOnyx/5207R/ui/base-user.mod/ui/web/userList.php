@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userList.php Sat 03 Jan 2009 01:37:28 PM CET mstauber $
+ * $Id: userList.php
  */
 include_once("ServerScriptHelper.php");
 include_once("uifc/Button.php");
@@ -82,12 +82,6 @@ if ($group) {
 }
 
 $addurl = "";
-
-$scrollList->addButton(
-	$factory->getAddButton(
-		"javascript: location='/base/user/userAdd.php?group=$group';"
-		. " top.code.flow_showNavigation(false)",
-		"[[base-user.add_user_help]]"));
 
 // disable sorting
 $scrollList->setSortEnabled(false);
@@ -180,18 +174,25 @@ for ($i = $start; $i < count($oids) && $i < $start + $pageLength; $i++) {
 	}
 
 	$scrollList->addEntry(
-	    array($factory->getFullName("", $fullName, "r"),
-	      $factory->getUserName("", $userName, "r"),
-	      $aliases,
-	      $factory->getCompositeFormField($rights),
-	      $factory->getCompositeFormField(
-		array($factory->getModifyButton("javascript: location='/base/user/userMod.php?userNameField=$userName&group=$group'; top.code.flow_showNavigation(false)"),
-      					$delButton)
-		    )), "", false, $i);
-		
+                array($factory->getFullName("", $fullName, "r"), 
+                      $factory->getUserName("", $userName, "r"), 
+                      $aliases, 
+                      $factory->getCompositeFormField($rights), 
+                      $factory->getCompositeFormField( 
+                                array($factory->getModifyButton("javascript: location='/base/user/userMod.php?userNameField=$userName&group=$group'; top.code.flow_showNavigation(false)"), 
+                                        $factory->getRemoveButton("javascript: confirmRemove('$userName')") 
+                ))), "", false, $i); 
 }
 
 $scrollList->setEntryNum(count($oids) - $adminCount);
+
+if($vsiteObj['maxusers'] > count($oids) - $adminCount) { 
+    $scrollList->addButton( 
+            $factory->getAddButton( 
+                    "javascript: location='/base/user/userAdd.php?group=$group';" 
+                    . " top.code.flow_showNavigation(false)", 
+                    "[[base-user.add_user_help]]")); 
+} 
 
 $serverScriptHelper->destructor();
 ?>

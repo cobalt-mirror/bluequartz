@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: userMod.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: userMod.php
  */
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -118,7 +118,7 @@ if ( isset($group) && $group != "" ) {
   );
 
   $block->addFormField(
-    $factory->getBoolean("dnsAdministrator", $capabilities->getAllowed('dnsAdmin', $useroid) ),
+    $factory->getBoolean("dnsAdministrator", $capabilities->getAllowed('siteDNS', $useroid) ),
     $factory->getLabel("dnsAdministratorField"),
     "account"
   );

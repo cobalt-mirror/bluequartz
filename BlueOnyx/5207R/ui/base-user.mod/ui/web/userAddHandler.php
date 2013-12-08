@@ -1,7 +1,7 @@
 <?php
 // Author: Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: userAddHandler.php 1117 2008-05-14 16:18:22Z mstauber $
+// $Id: userAddHandler.php
 
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
@@ -91,8 +91,8 @@ if ($siteAdministrator == "1") {
 }
 
 // If a prefix is given, prepend it to the userName:
-if ($prefix) {
-    $UserNameArray = array($prefix, $userNameField);
+if ($userPrefixField) {
+    $UserNameArray = array($userPrefixField, $userSuffixField);
     $newUserName = implode("_", $UserNameArray);
     
     // If someone uses a really long username, then a prefix may make it too long.
@@ -105,7 +105,7 @@ if ($prefix) {
     }
 }
 else {
-    $newUserName = $userNameField;
+    $newUserName = $userSuffixField;
 }
 
 $attributes = array(
@@ -113,8 +113,8 @@ $attributes = array(
                 "sortName" => $sortby, 
                 "fullName" =>$fullNameField, 
                 "password" => $passwordField, 
-		"emailDisabled" => $emailDisabled,
-		"ftpDisabled" => $hasNoFTPaccess,
+        		"emailDisabled" => $emailDisabled,
+        		"ftpDisabled" => $hasNoFTPaccess,
                 "localePreference" => "browser", 
                 "stylePreference" => $stylePreference, 
                 "volume" => $volume,
@@ -133,7 +133,7 @@ if (isset($siteAdministrator))
 
 if (isset($dnsAdministrator))
 {
-    $attributes["capLevels"] .= ($dnsAdministrator ? '&dnsAdmin&' : '');
+    $attributes["capLevels"] .= ($dnsAdministrator ? '&siteDNS&' : '');
 }
 
 // dirty trick
