@@ -1,0 +1,82 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "telnetMenu"
+msgstr "Telnet"
+
+msgid "telnetMenu_help"
+msgstr "Clique aqui para configurar as definições de Telnet."
+
+msgid "enableServer"
+msgstr "Ativar Servidor"
+
+msgid "enableServer_help"
+msgstr "Marque esta caixa para permitir o acesso telnet para o servidor. Além disso, os servidores e os administradores do site pode definir os privilégios de acesso para cada conta de usuário individual."
+
+msgid "telnetSettings"
+msgstr "Definições Telnet"
+
+msgid "access"
+msgstr "Acessar"
+
+msgid "access_help"
+msgstr "Escolha a política de acesso telnet. Telnet é usado por usuários avançados ou o administrador do servidor para executar scripts shell ou usar comandos shell. Desligar ou restringir o acesso telnet é sugerido para aumentar a segurança."
+
+msgid "none"
+msgstr "Off - Não permitir Logins"
+
+msgid "root"
+msgstr "On - Permitir somente Logins Administrador"
+
+msgid "reg"
+msgstr "On - Permitir todos os logins de usuários"
+
+msgid "connectRateField"
+msgstr "Taxa máxima de conexão"
+
+msgid "connectRateField_help"
+msgstr "Digite o número máximo permitido de conexões por minuto. Novas solicitações de conexão será negada se a taxa de conexão atingiu este limite."
+
+msgid "connectRateField_rule"
+msgstr "Por favor insira um número inteiro dentro do intervalo especificado. O valor padrão é 40."
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "advanced"
+msgstr "Avançado"
+
+msgid "basic_help"
+msgstr "O servidor Telnet pode ser ativado ou desativado aqui."
+
+msgid "advanced_help"
+msgstr "Parâmetros do servidor Telnet podem ser geridos aqui."
+
+msgid "amTelnetNameTag"
+msgstr "O servidor Telnet"
+
+msgid "amDetailsTitle"
+msgstr "Telnet Detalhes do Servidor"
+
+msgid "amNotAccepting"
+msgstr "O servidor telnet não está funcionando e não pode ser reiniciado. No [[base-apache.amAdmservNameTag]], tente desligar o servidor telnet off em seguida, novamente para ver se isso corrige o problema. Se o servidor telnet ainda é incapaz de iniciar, tente reiniciar o próprio servidor, clicando no [[base-power.reboot]] na [[base-power.power]] menu em [[base-alpine.serverconfig]] . Se o servidor telnet ainda é incapaz de começar, por favor consulte [[base-sauce-basic.techSupportURL]] para suporte técnico."
+
+msgid "amStatusOK"
+msgstr "O servidor telnet está funcionando normalmente."
+
+msgid "enableTelnet"
+msgstr "Ativar o servidor Telnet"
+
+msgid "enableTelnet_help"
+msgstr "Ativando telnet permite que os usuários com acesso a shell para se conectar a esse servidor usando o software cliente telnet."
+
+msgid "telnetEnable"
+msgstr "Permitir"
+

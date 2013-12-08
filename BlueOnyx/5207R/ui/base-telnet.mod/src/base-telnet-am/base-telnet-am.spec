@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-telnet-am
 Name: base-telnet-am
 Version: 1.0.3
-Release: 1BX01%{dist}
+Release: 1BX02%{dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-telnet-am.  
 
 %changelog
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.3-1BX02
+- Removed .svn directory from package.
 
 * Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 1.0.3-1BX01
 - We telnet to 127.0.0.1 instead of localhost now

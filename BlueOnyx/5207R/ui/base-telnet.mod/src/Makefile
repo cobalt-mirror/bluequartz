@@ -42,7 +42,7 @@ install-am:
 rpm: rpm-scripts-telnet rpm-base-telnet-am
 
 rpm-scripts-telnet:
-	cd ..;tar -zcvf $(PACKAGE_DIR)/SOURCES/telnet-scripts.tar.gz src &> /dev/null;\
+	cd ..;tar  --exclude '.svn' -zcvf $(PACKAGE_DIR)/SOURCES/telnet-scripts.tar.gz src &> /dev/null;\
 	cp src/telnet-scripts.spec $(PACKAGE_DIR)/SPECS;\
 	touch /tmp/time.stamp;\
 	$(RPMBUILD) -ba $(PACKAGE_DIR)/SPECS/telnet-scripts.spec; \
@@ -51,7 +51,7 @@ rpm-scripts-telnet:
 
 rpm-base-telnet-am:
 	for t in $(DIRS) ; do \
-		tar -zcvf /tmp/$$t.tar.gz $$t --exclude '*CVS*' &> /dev/null &&\
+		tar -zcvf /tmp/$$t.tar.gz $$t --exclude '.svn' &> /dev/null &&\
 		$(RPMBUILD) -ta /tmp/$$t.tar.gz &> /tmp/rpm.log && \
 		/bin/rm -f /tmp/$$t.tar.gz ; \
 	done

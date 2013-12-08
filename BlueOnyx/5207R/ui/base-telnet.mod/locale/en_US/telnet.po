@@ -17,7 +17,7 @@ msgid "access"
 msgstr "Access"
 
 msgid "access_help"
-msgstr "Choose the policy for telnet access.  Telnet is used by advanced users or the server administrator to run shell scripts or use shell commands. Turning off or restricting telnet access is suggested for increased security. "
+msgstr "Choose the policy for telnet access. Telnet is used by advanced users or the server administrator to run shell scripts or use shell commands. Turning off or restricting telnet access is suggested for increased security. "
 
 msgid "none"
 msgstr "Off - Do Not Allow Logins"
@@ -32,10 +32,10 @@ msgid "connectRateField"
 msgstr "Maximum Connection Rate"
 
 msgid "connectRateField_help"
-msgstr "Enter the maximum number of allowed connections per minute.  New connection requests will be denied if the connection rate has reached this limit. "
+msgstr "Enter the maximum number of allowed connections per minute. New connection requests will be denied if the connection rate has reached this limit. "
 
 msgid "connectRateField_rule"
-msgstr "Please enter an integer within the specified range.  The default value is 40."
+msgstr "Please enter an integer within the specified range. The default value is 40."
 
 msgid "basic"
 msgstr "Basic"

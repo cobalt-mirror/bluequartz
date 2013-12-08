@@ -1,7 +1,7 @@
 Summary: Perl modules that contain vital telnet access functionality
 Name: telnet-scripts
 Version: 1.1.3
-Release: 7BX01%{?dist}
+Release: 7BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,9 @@ if [ -e /usr/sausalito/sbin/initTelnet.sh ];then
 fi
 
 %changelog
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.1.3-7BX02
+- Removed .svn directory from package.
 
 * Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.3-7BX01
 - initTelnet.sh used to get run by BTO? Makes no sense, we can do it on post install.

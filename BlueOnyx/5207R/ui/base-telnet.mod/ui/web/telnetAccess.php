@@ -1,7 +1,7 @@
 <?php
 // Author: Phil Ploquin, Kevin K.M. Chiu
 // Copyright 2000, Cobalt Networks.  All rights reserved.
-// $Id: telnetAccess.php 1050 2008-01-23 11:45:43Z mstauber $
+// $Id: telnetAccess.php
 
 include_once("ServerScriptHelper.php");
 include_once("Product.php");
