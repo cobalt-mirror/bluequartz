@@ -53,8 +53,16 @@ if(!isset($title)) {
 header("cache-control: no-cache");
 $lang=$i18n->getLocales();
 header("Content-language: $lang[0]");
-if(($encoding=$i18n->getProperty("encoding","palette"))!="none")
-	header("Content-type: text/html; charset=$encoding");
+
+//make really sure the browser knows what we are giving it.
+if ($lang[0] == "ja_JP") {
+    $charset = "EUC-JP";
+}
+else {
+    $charset = "windows-1252";
+}
+
+header("Content-type: text/html; charset=\"$charset\"");
 
 ?>
 

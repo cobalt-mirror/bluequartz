@@ -144,8 +144,13 @@ class Page {
     //make really sure the browser knows what we are giving it.
     $lang=$this->i18n->getLocales();
     header("Content-language: $lang[0]");
-    if(($encoding=$this->i18n->getProperty("encoding","palette"))!="none")
-	header("Content-type: text/html; charset=$encoding");
+    if ($lang[0] == "ja_JP") {
+        $charset = "EUC-JP";
+    }
+    else {
+        $charset = "windows-1252";
+    }
+    header("Content-type: text/html; charset=\"$charset\"");
 
     // log activity if necessary
     $logLoad = "";
@@ -161,6 +166,7 @@ class Page {
 <HEAD>
 <META HTTP-EQUIV=\"expires\" CONTENT=\"-1\">
 <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
+<meta http-equiv=\"content-type\" content=\"text/html; $charset\">
 </HEAD>
 
   <script language=\"Javascript\" type=\"text/javascript\" src=\"/libJs/ajax_lib.js\"></script>
