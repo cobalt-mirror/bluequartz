@@ -305,7 +305,7 @@ if ($online == "1") {
     	if ($num_prods > "0") {
 
     	  // General parameters for the scroll list:
-    	  $ProductsTable[$cats] = $factory->getScrollList($cats, array("product_name", ""));
+    	  $ProductsTable[$cats] = $factory->getScrollList($cats, array("product_name", " "));
     	  $ProductsTable[$cats]->setAlignments(array("left", "center"));
     	  $ProductsTable[$cats]->setSortEnabled(true);
     	  $ProductsTable[$cats]->setDefaultSortedIndex(0);
