@@ -62,7 +62,7 @@ else {
     $charset = "windows-1252";
 }
 
-header("Content-type: text/html; charset=\"$charset\"");
+header("Content-type: text/html; charset=$charset");
 
 ?>
 
@@ -70,6 +70,7 @@ header("Content-type: text/html; charset=\"$charset\"");
 <HEAD>
 <META HTTP-EQUIV="expires" CONTENT="-1">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=<?php print($charset)?>">
 <TITLE><?php print($title);?></TITLE>
 <script language="javascript" type="text/javascript">
 if (self != top) {
@@ -161,6 +162,7 @@ print($siteMap->toJavascript($serverScriptHelper->getAccessRights(), "siteMap.",
 }
 </SCRIPT>
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv="content-type" content="text/html; charset=<?php print($charset)?>">
 </HEAD>
 
 <FRAMESET ROWS="<?php print($style->getProperty("tabHeight")); ?>,*,<?php print($style->getProperty("infoHeight")); ?>,0,0" BORDER="0" FRAMEBORDER="no" FRAMESPACING="0" onLoad="init()">

@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX26%{?dist}
+Release: 0BX27%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,12 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX01
+- Various charset fixes. They help some, but under Spanish, Portuguese
+  and French the lefthand side menu is still buggered. Toplevel menu
+  entries with accents or special characters are garbled. That's beyond
+  my ability to fix at this time. It works in the new GUI, so to hell with it.
 
 * Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX26
 - Preparational build for 5207R/5208R. Doesn't include new GUI yet.

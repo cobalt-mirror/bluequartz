@@ -150,7 +150,7 @@ class Page {
     else {
         $charset = "windows-1252";
     }
-    header("Content-type: text/html; charset=\"$charset\"");
+    header("Content-type: text/html; charset=$charset");
 
     // log activity if necessary
     $logLoad = "";
@@ -166,7 +166,7 @@ class Page {
 <HEAD>
 <META HTTP-EQUIV=\"expires\" CONTENT=\"-1\">
 <META HTTP-EQUIV=\"Pragma\" CONTENT=\"no-cache\">
-<meta http-equiv=\"content-type\" content=\"text/html; $charset\">
+<meta http-equiv=\"content-type\" content=\"text/html; charset=$charset\">
 </HEAD>
 
   <script language=\"Javascript\" type=\"text/javascript\" src=\"/libJs/ajax_lib.js\"></script>

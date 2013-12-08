@@ -297,6 +297,9 @@ function _cList_repaint() {
   doc.open();
   doc.write("<HTML>");
   doc.write("<HEAD>");
+
+  doc.write("<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">");
+
   doc.write("<STYLE TYPE=\"text/css\">");
   doc.write("<!-- ");
   doc.write("BODY { " + _cList_style["backgroundStylePage"] + "}\n");

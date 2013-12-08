@@ -39,14 +39,21 @@ $title = $i18n->getHtml("navigationTitle", "", array("hostName" => $hostname, "u
 header("cache-control: no-cache");
 $lang=$i18n->getLocales();
 header("Content-language: $lang[0]");
-if(($encoding=$i18n->getProperty("encoding","palette"))!="none")
-	header("Content-type: text/html; charset=$encoding");
+    header("Content-language: $lang[0]");
+    if ($lang[0] == "ja_JP") {
+        $charset = "EUC-JP";
+    }
+    else {
+        $charset = "windows-1252";
+    }
+    header("Content-type: text/html; charset=\"$charset\"");
 ?>
 
 <HTML>
 <HEAD>
 <META HTTP-EQUIV="expires" CONTENT="-1">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<meta http-equiv=\"content-type\" content=\"text/html; $charset\">
 <TITLE><?php print($title);?></TITLE>
 <SCRIPT LANGUAGE="javascript">
 // global
