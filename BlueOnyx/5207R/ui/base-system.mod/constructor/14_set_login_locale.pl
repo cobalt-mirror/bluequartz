@@ -12,8 +12,8 @@ use Sauce::Util;
 my $langs = {
 		'en' => 'en_US',
 		'de' => 'de_DE@euro',
-		'ja' => 'ja_JP.UTF-8',
-		'ja_JP' => 'ja_JP.UTF-8',
+		'ja' => 'ja_JP.utf8',
+		'ja_JP' => 'ja_JP.utf8',
 		'es' => 'es_ES@euro',
 		'fr' => 'fr_FR@euro',
 		'pt' => 'pt_PT@euro',
@@ -63,7 +63,7 @@ sub update_i18n
 		$curlangcode = "en_US";
 	    }
 	    # LC_ALL on SL6 must be a bit more specific:
-	    $locale_LC_ALL = "en_US.UTF-8";
+	    $locale_LC_ALL = "en_US.utf8";
 	}
 	else {
 	    # LC_ALL on CentOS5 can be a bit more simplicistic:
@@ -72,9 +72,9 @@ sub update_i18n
         # Same for Japanese:
         if (($build eq "5106R") || ($build eq "5107R") || ($build eq "5108R")) {
             if (($curlangcode eq "ja") || ($curlangcode eq "ja_JP")) {
-                $curlangcode = "ja_JP.UTF-8";
+                $curlangcode = "ja_JP.utf8";
         	# LC_ALL on SL6 must be a bit more specific:
-        	$locale_LC_ALL = "en_US.UTF-8";
+        	$locale_LC_ALL = "en_US.utf8";
             }
         }
 	else {
@@ -83,19 +83,25 @@ sub update_i18n
 	}
 
 	if ($locale eq "ja_JP") {
-        	$locale = "ja_JP.UTF-8";
+        	$locale = "ja_JP.utf8";
+	}
+	if ($locale eq "da_DK") {
+        	$locale = "da_DK.utf8";
+	}
+	if ($locale eq "de_DE") {
+        	$locale = "de_DE.utf8";
 	}
 	if ($locale eq "es_ES") {
-        	$locale = "es_ES.UTF-8";
+        	$locale = "es_ES.utf8";
 	}
 	if ($locale eq "fr_FR") {
-        	$locale = "fr_FR.UTF-8";
+        	$locale = "fr_FR.utf8";
 	}
 	if ($locale eq "it_IT") {
-        	$locale = "it_IT.UTF-8";
+        	$locale = "it_IT.utf8";
 	}
 	if ($locale eq "pt_PT") {
-        	$locale = "pt_PT.UTF-8";
+        	$locale = "pt_PT.utf8";
 	}
 	if ($locale eq "en") {
         	$locale = "en_US";
