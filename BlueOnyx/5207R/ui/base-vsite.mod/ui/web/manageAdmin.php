@@ -20,11 +20,14 @@ $cce =& $helper->getCceClient();
 $i18n =& $factory->getI18n();
 
 $possible_caps = array(
+            'manageSite' => 1,
+            'siteDNS' => 1,
+            'serverShowActiveMonitor' => 1,
+            'serverInformation' => 1,
             'serverHttpd' => 1,
             'serverFTP' => 1,
             'serverEmail' => 1,
             'serverDNS' => 1,
-            'siteDNS' => 1,
             'serverSNMP' => 1,
             'serverShell' => 1,
             'serveriStat' => 1,
@@ -35,12 +38,9 @@ $possible_caps = array(
             'serverVsite' => 1,
             'serverPower' => 1,
             'serverTime' => 1,
-            'serverInformation' => 1,
             'serverServerDesktop' => 1,
             'menuServerServerStats' => 1,
-            'serverShowActiveMonitor' => 1,
             'serverActiveMonitor' => 1,
-            'manageSite' => 1,
             'managePackage' => 1,
                         );
 

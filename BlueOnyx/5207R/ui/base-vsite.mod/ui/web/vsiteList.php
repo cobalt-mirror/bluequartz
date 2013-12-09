@@ -182,19 +182,19 @@ foreach($vsites as $vsites_oid) {
  
 list($user_oid) = $cce->find('User', array('name' => $loginName)); 
 $sites = $cce->get($user_oid, 'Sites'); 
- 
-$visible = TRUE; 
-if($loginName != "admin") { 
-    if($sites['max'] => count($vsites)) { 
-        $visible = FALSE; 
-    } 
-    if($sites['user'] => $vsite_user) { 
-        $visible = FALSE; 
-    } 
-    if($sites['quota'] => $vsite_disk) { 
-        $visible = FALSE; 
-    } 
-} 
+
+$visible = TRUE;
+if($loginName != "admin") {
+    if($sites['max'] <= count($vsites)) {
+        $visible = FALSE;
+    }
+    if($sites['user'] <= $vsite_user) {
+        $visible = FALSE;
+    }
+    if($sites['quota'] <= $vsite_disk) {
+        $visible = FALSE;
+    }
+}
  
 if($visible) { 
     // generate site add button 
