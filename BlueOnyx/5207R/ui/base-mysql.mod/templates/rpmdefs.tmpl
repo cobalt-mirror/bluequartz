@@ -115,6 +115,13 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX02
+- Time to backpedal a bit: Disabled glue/handlers/exist_user_and_db_check.pl for now. Totally nice idea,
+  but incompatible with our MySQL implementation. Need to make more adjustments to this and don't have the
+  time for that now. Will get back to this later on.
+- Small fixes to ui/extensions/06_MYSQL_Vsite.php.create.Vsite and ui/extensions/06_MYSQL_Vsite.php.modifyWeb.Vsite.
+  We only want the CODB set transaction if we have all the data we need. 
+
 * Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX01
 - Preparational build for 5207R/5208R. Doesn't include new GUI yet.
 - Updated Danish, English and German locales.

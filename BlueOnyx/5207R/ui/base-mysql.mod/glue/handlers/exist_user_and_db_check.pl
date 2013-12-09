@@ -15,6 +15,10 @@ $cce = new CCE;
 
 $cce->connectfd();
 
+# Nice idea, but this needs more work. So we just die here for now:
+$cce->bye('SUCCESS');
+exit(0);
+
 my $vsite     = $cce->event_object();
 my $vsite_oid = $cce->event_oid();
 my $vsite_new = $cce->event_new();

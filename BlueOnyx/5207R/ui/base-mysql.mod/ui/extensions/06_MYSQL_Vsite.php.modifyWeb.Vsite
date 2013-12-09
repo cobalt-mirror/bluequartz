@@ -425,46 +425,47 @@ if ($db_rights['solsitemysql'] == "1") {
 		}
 
 		// Create Vsite namespace 'MYSQL_Vsite':
-		$cce = $ServerScriptHelper->getCceClient();
-	        $cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
-						    'enabled' => $mysolmysql_enabled, 
-						    'username' => $solmysql_username,
-						    'pass' => $solmysql_pass,
-						    'DB' => $solmysql_DB,
-						    'host' => $solmysql_host,
-						    'port' => $solmysql_Port,
-						    'hidden' => time()
-						    ));
-		$errors = array_merge($errors, $cce->errors());
+		if (($mysolmysql_enabled == "1") && ($solmysql_username) && ($solmysql_DB)) {
+			$cce = $ServerScriptHelper->getCceClient();
+		        $cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+							    'enabled' => $mysolmysql_enabled, 
+							    'username' => $solmysql_username,
+							    'pass' => $solmysql_pass,
+							    'DB' => $solmysql_DB,
+							    'host' => $solmysql_host,
+							    'port' => $solmysql_Port,
+							    'hidden' => time()
+							    ));
+			$errors = array_merge($errors, $cce->errors());
 
-		// Create 'MYSQL_DBs' object:
-
-		$cce = $ServerScriptHelper->getCceClient();
-		$vserverOID = $cce->find("MYSQL_DBs", array("fqdn" => $fqdn));
-		if (count($vserverOID) == 1) {
-    		    $cce->set($vserverOID[0], "", array(
-						    'fqdn' => $fqdn,
-						    'enabled' => $mysolmysql_enabled, 
-						    'username' => $solmysql_username,
-						    'pass' => $solmysql_pass,
-						    'DB' => $solmysql_DB,
-						    'host' => $solmysql_host,
-						    'port' => $solmysql_Port,
-						    'hidden' => time()
-						    ));
-		}
-		else {
-		    $cce = $ServerScriptHelper->getCceClient();
-    		    $ok = $cce->create("MYSQL_DBs", array(
-						    'fqdn' => $fqdn,
-						    'enabled' => $mysolmysql_enabled, 
-						    'username' => $solmysql_username,
-						    'pass' => $solmysql_pass,
-						    'DB' => $solmysql_DB,
-						    'host' => $solmysql_host,
-						    'port' => $solmysql_Port,
-						    'hidden' => time()
-						    ));
+			// Create 'MYSQL_DBs' object:
+			$cce = $ServerScriptHelper->getCceClient();
+			$vserverOID = $cce->find("MYSQL_DBs", array("fqdn" => $fqdn));
+			if (count($vserverOID) == 1) {
+	    		    $cce->set($vserverOID[0], "", array(
+							    'fqdn' => $fqdn,
+							    'enabled' => $mysolmysql_enabled, 
+							    'username' => $solmysql_username,
+							    'pass' => $solmysql_pass,
+							    'DB' => $solmysql_DB,
+							    'host' => $solmysql_host,
+							    'port' => $solmysql_Port,
+							    'hidden' => time()
+							    ));
+			}
+			else {
+			    $cce = $ServerScriptHelper->getCceClient();
+	    		    $ok = $cce->create("MYSQL_DBs", array(
+							    'fqdn' => $fqdn,
+							    'enabled' => $mysolmysql_enabled, 
+							    'username' => $solmysql_username,
+							    'pass' => $solmysql_pass,
+							    'DB' => $solmysql_DB,
+							    'host' => $solmysql_host,
+							    'port' => $solmysql_Port,
+							    'hidden' => time()
+							    ));
+			}
 		}
 		$ret = ini_set("display_errors", "On");
 	    }
