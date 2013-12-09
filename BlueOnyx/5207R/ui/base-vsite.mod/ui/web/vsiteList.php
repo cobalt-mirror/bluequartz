@@ -100,11 +100,6 @@ $sort_types_map = array(0 => 'hostname', 1 => 'ip', 2 => 'accountname', 3 => 'ol
 $sortField = $sortMap[$siteList->getSortedIndex()];
 $sort_type = $sort_types_map[$siteList->getSortedIndex()];
 
-// generate site add button
-$siteList->addButton(
-	$factory->getAddButton($script_siteAdd, 
-			       '[[base-vsite.siteaddbut_help]]'));
-
 global $loginName; 
 
 // build up our search array
@@ -188,20 +183,20 @@ foreach($vsites as $vsites_oid) {
 list($user_oid) = $cce->find('User', array('name' => $loginName)); 
 $sites = $cce->get($user_oid, 'Sites'); 
  
-$visuble = TRUE; 
+$visible = TRUE; 
 if($loginName != "admin") { 
-    if($sites['max'] <= count($vsites)) { 
-        $visuble = FALSE; 
+    if($sites['max'] => count($vsites)) { 
+        $visible = FALSE; 
     } 
-    if($sites['user'] <= $vsite_user) { 
-        $visuble = FALSE; 
+    if($sites['user'] => $vsite_user) { 
+        $visible = FALSE; 
     } 
-    if($sites['quota'] <= $vsite_disk) { 
-        $visuble = FALSE; 
+    if($sites['quota'] => $vsite_disk) { 
+        $visible = FALSE; 
     } 
 } 
  
-if($visuble) { 
+if($visible) { 
     // generate site add button 
     $siteList->addButton( 
             $factory->getAddButton($script_siteAdd, 
