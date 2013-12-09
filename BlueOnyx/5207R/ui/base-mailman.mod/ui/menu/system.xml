@@ -3,5 +3,7 @@
   label="[[base-mailman.menu_system_mailman]]"
   description="[[base-mailman.menu_system_mailman_help]]"
   url="/base/mailman/system.php">
-  <parent id="base_controlpanel" order="31"/>
+  <parent id="base_controlpanel" order="31">
+	<access require="serverServerDesktop"/>
+  </parent>  	
 </item>

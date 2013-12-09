@@ -8,7 +8,7 @@
 	$i18n = $serverScriptHelper->getI18n("base-mailman");
 	$cceClient = $serverScriptHelper->getCceClient();
 
-	if (!$serverScriptHelper->getAllowed('adminUser')) {
+	if (!$serverScriptHelper->getAllowed('serverServerDesktop')) {
 		header("location: /error/forbidden.html");
 		return;
 	}
