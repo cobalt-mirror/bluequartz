@@ -299,8 +299,16 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
     // remove the special capabilities from the user's current ones
     remove_caps($current_caps, $special_caps);
 
-    if (!in_array('adminUser', $current_caps))
+    if (!in_array('adminUser', $current_caps)) {
         $current_caps[] = 'adminUser';
+    }
+
+    // Need to add 'modifyJava' if the user has 'manageSite', too:
+    if (in_array('manageSite', $current_caps))) {
+        if (!in_array('modifyJava', $current_caps)) {
+            $current_caps[] = 'modifyJava';
+        }
+    }
 
     // hack root access back out
     if (preg_match("/&rootAccess&/", $adminPowers)) 
@@ -337,7 +345,7 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
     {
         $new_settings = array(
                             'fullName' => $fullName,
-                'sortName' => $sortNameField,
+                            'sortName' => $sortNameField,
                             'capLevels' => $cap_string,
                             'ui_enabled' => ($suspend ? 0 : 1)
                             );
@@ -375,7 +383,7 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
         $cce->set($user['OID'], 'Sites',
             array('quota' => ($siteQuota == '' ? -1 : $siteQuota),
                   'max' => ($siteMax == '' ? -1 : $siteMax),
-          'user' => ($siteUser == '' ? -1 : $siteUser)));
+                  'user' => ($siteUser == '' ? -1 : $siteUser)));
         $errors = array_merge($errors, $cce->errors());
     }
 
