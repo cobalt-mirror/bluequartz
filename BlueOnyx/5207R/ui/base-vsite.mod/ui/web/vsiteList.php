@@ -310,7 +310,7 @@ if ($loginName == 'admin') {
 // Print administrative information:
 if ($loginName != 'admin') { 
         global $sites; 
-        print "[[base-vsite.maxVsiteField]]: {$sites['max']} / [[base-vsite.quota]] : {$sites['quota']} / [[base-vsite.userSitesUser]]: {$sites['user']}"; 
+        print $i18n->getHtml("[[base-vsite.maxVsiteField]]") . ": {$sites['max']} - " . $i18n->getHtml("[[base-vsite.quota]]") . ": {$sites['quota']} - ". $i18n->getHtml("[[base-vsite.userSitesUser]]") . ": {$sites['user']}"; 
 } 
 
 print "<p></p>\n";
