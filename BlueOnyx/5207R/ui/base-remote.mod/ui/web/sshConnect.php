@@ -26,7 +26,7 @@
 
         $block->addFormField(
             $factory->getTextList("", $string, 'r'),
-            $factory->getLabel("")
+            $factory->getLabel(" ")
         );
 
 	$block->addButton($factory->getButton("/base/remote/sshConnect.php", "connect"));
