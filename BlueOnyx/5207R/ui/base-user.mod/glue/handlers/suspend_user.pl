@@ -9,11 +9,20 @@
 #
 
 use CCE;
+use Base::User::Capabilities;
+
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $cce = new CCE;
 $cce->connectfd();
 
 my $user = $cce->event_object();
+$reserve_user = $user;
 
 my $ui_enabled = $user->{ui_enabled}; 
 my $user_enabled = $user->{enabled}; 
@@ -29,6 +38,14 @@ if ($user->{site} ne '') {
 		# site is suspended.  don't allow user to be enabled.
 		$enabled = 0;
 	}
+}
+
+# Set vsite_suspend, which is the opposite of the user 'enable':
+if ($enabled == "1") {
+        $vsite_suspend = "0";
+}
+else {
+        $vsite_suspend = "1";
 }
 
 if ($enabled == 0 || $user_enabled == 0 || $ui_enabled == 0) { 
@@ -65,8 +82,46 @@ else {
     }
 }
 
+# Reseller handling:
+&debug_msg("Checking if user has Capability 'manageSite'.\n");
+&debug_msg("Our user is:" . $reserve_user->{name} . ".\n");
+&debug_msg("We extrapolate: " . $reserve_user->{capLevels} . ".\n");
+@userCaps = $cce->scalar_to_array($reserve_user->{capLevels});
+$has_manageSite = "0";
+foreach my $testcap (@userCaps) {
+        if ($testcap eq 'manageSite') {
+                $has_manageSite = "1";
+                 &debug_msg("This user has cap 'manageSite'.\n");
+        }
+}
+
+if ($has_manageSite == "1") {
+    &debug_msg("Checking which sites he owns - if any.\n");
+    # Get a list of all sites that this reseller owns:
+    my @ResellerSites = $cce->find('Vsite', { 'createdUser' => $reserve_user->{name}});
+    foreach my $rsites (@ResellerSites) {
+        &debug_msg("Processing Vsite with OID $rsites.\n");
+        my ($ok) = $cce->set($rsites, '',
+                {
+                        'suspend' => $vsite_suspend
+                });
+    }
+}
+
 $cce->bye('SUCCESS');
 exit(0);
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without 
