@@ -50,9 +50,7 @@
     />
 </class>
 
-<class
-    name="VsiteServices" namespace="FTPNONADMIN" version="1.0"
->
+<class name="VsiteServices" namespace="FTPNONADMIN" version="1.0"/>
     <property name="featureEnabled" type="boolean" default="0"/>
 
     <property
@@ -73,7 +71,7 @@
 -->
 <class 
     name="Vsite" namespace="AnonFtp" version="1.0"
-    createacl="ruleCapable(serverFTP)" destroyacl="ruleCapable(serverFTP)"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
 >
 	<property 
         name="enabled" type="boolean" default="0"
@@ -91,7 +89,7 @@
 
 <class
     name="Vsite" namespace="FTPNONADMIN" version="1.0"
-    createacl="ruleCapable(serverFTP)" destroyacl="ruleCapable(serverFTP)"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
 >
     <property
         name="enabled" type="boolean" default="1"
