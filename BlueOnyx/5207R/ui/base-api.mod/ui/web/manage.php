@@ -22,8 +22,8 @@ include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverServerDesktop' should be here
+if (!$serverScriptHelper->getAllowed('serverServerDesktop')) {
   header("location: /error/forbidden.html");
   return;
 }
