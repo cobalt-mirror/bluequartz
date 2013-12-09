@@ -7,7 +7,7 @@ CCE_TOPDIR = $(shell pwd)
 
 include rules.mk
 # do not include dynamic.mk
-include /usr/sausalito/devel/defines.mk
+#include /usr/sausalito/devel/defines.mk
 
 CCEMODULE = sausalito-cce
 CCERPMSPEC = $(CCEMODULE).spec
@@ -16,7 +16,7 @@ CCE_V_MAJ=0
 CCE_V_MIN=81
 CCE_V_PATCH=1
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX10
+RPMRELEASE=1BX11
 
 DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
 	ccewrap pperl

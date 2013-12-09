@@ -1,15 +1,13 @@
-# $Id: Makefile 1503 2010-08-04 14:36:37Z shibuya $
+# $Id: Makefile 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 #
 # Makefile for swig module creation.
 # May later do perl API creation as well as python.
 #
 
-include ../../dynamic.mk
+include ../../rules.mk
 
-#include /usr/lib/swig_lib/Makefile
-include /usr/share/doc/swig-1.3.29/Manual/Makefile
-
+include /usr/lib/swig_lib/Makefile
 
 SWIG=swig
 SWIGOPT=-v -I../include/ -shadow
@@ -32,7 +30,7 @@ SRCS=
 TARGET=cce
 INTERFACE=cce.i
 
-#all:: python
+all:: python
 
 clean:
 	rm -f *_wrap* *.o mypython code *.so *.sl *.pm

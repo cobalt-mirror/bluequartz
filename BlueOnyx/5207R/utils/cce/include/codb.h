@@ -15,9 +15,7 @@
 #include <odb_attribs.h>
 #include <cce_conf.h>
 
-#ifdef GLIB_GHASH
-#include "glib-ghash.h"
-#endif
+#include <glib-ghash.h>
 
 typedef struct codb_handle_struct codb_handle;
 typedef unsigned long oid_t;
