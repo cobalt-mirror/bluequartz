@@ -1,14 +1,14 @@
 <?php
 	// Author: Brian N. Smith
 	// Copyright 2006, NuOnce Networks, Inc. All rights reserved.
-	// $Id: system.php,v 2.0 2006/08/10 15:29:00 Exp $
+	// $Id: system.php
 
 	include_once("ServerScriptHelper.php");
 
 	$serverScriptHelper = new ServerScriptHelper();
 	$cceClient = $serverScriptHelper->getCceClient();
 
-	if (!$serverScriptHelper->getAllowed('adminUser')) {
+	if (!$serverScriptHelper->getAllowed('serverServerDesktop')) {
 		header("location: /error/forbidden.html");
 		return;
 	}
