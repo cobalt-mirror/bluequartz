@@ -1,6 +1,6 @@
 <?php
 // Copyright Sun Microsystems, Inc. 2001
-// $Id: vsiteDefaults.php,v 1.11 2001/12/07 01:48:44 pbaltz Exp $
+// $Id: vsiteDefaults.php
 // vsiteDefaults.php
 // display a form so admin can specify default settings for new virtual sites
 
@@ -9,8 +9,8 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'manageSite' should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }

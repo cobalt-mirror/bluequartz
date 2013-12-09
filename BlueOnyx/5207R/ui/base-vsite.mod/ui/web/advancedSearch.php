@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
- * $Id: advancedSearch.php,v 1.16.2.5 2002/04/05 09:55:51 pbaltz Exp $
+ * $Id: advancedSearch.php
  *
  * Provide searching by multiple properties.
  */
@@ -110,6 +110,9 @@ function &generate_search_fields(&$factory, &$cce)
 	$ip_option =& $factory->getOption('ipaddr');
 	$ip_option->setLabel($factory->getLabel('ipAddr', false));
 	$property->addOption($ip_option);
+	$user_option =& $factory->getOption('createdUser'); 
+	$user_option->setLabel($factory->getLabel('createdUser', false)); 
+	$property->addOption($user_option); 
 
 	// select the search property for search modify
 	$property->setSelected(
@@ -162,6 +165,7 @@ function &generate_search_fields(&$factory, &$cce)
 		$option =& $factory->getOption($service, $selected);
 		$option->setLabel($factory->getLabel($ns['i18nName'], false));
 		$services_select->addOption($option);
+		unset($option);
 	}
 
 	$search_block->addFormField($services_select,

@@ -11,25 +11,25 @@ msgid "domain"
 msgstr "Domain Name"
 
 msgid "domain_help"
-msgstr "This is the domain name of the site.  A domain name is the second part of a fully-qualified domain name.  For example, example.com and BlueOnyx.org are valid domain names."
+msgstr "This is the domain name of the site. A domain name is the second part of a fully-qualified domain name. For example, example.com and BlueOnyx.org are valid domain names."
 
 msgid "fqdn"
 msgstr "Full Host Name"
 
 msgid "fqdn_help"
-msgstr "This is the complete name of the site and is also known as the fully-qualified domain name.  The full host name is sorted by domain and then by host name."
+msgstr "This is the complete name of the site and is also known as the fully-qualified domain name. The full host name is sorted by domain and then by host name."
 
 msgid "enterFqdn"
 msgstr "Host and Domain Name"
 
 msgid "enterFqdn_help"
-msgstr "Enter the host name of the site in the first field and the domain name in the second field.  For example, the host name could be www, mail, etc.  The domain name could be example.com, BlueOnyx.org, etc."
+msgstr "Enter the host name of the site in the first field and the domain name in the second field. For example, the host name could be www, mail, etc. The domain name could be example.com, BlueOnyx.org, etc."
 
 msgid "hostName"
 msgstr "Host Name"
 
 msgid "hostName_help"
-msgstr "This is the host name of the site.  A host name is the first part of a fully-qualified domain name.  For example, mail and www are valid host names."
+msgstr "This is the host name of the site. A host name is the first part of a fully-qualified domain name. For example, mail and www are valid host names."
 
 msgid "generalSettings"
 msgstr "General Settings"
@@ -41,10 +41,10 @@ msgid "services"
 msgstr "Services"
 
 msgid "quota"
-msgstr "Maximum Allowed Disk Space (MB)"
+msgstr "Maximum Allowed Disk Space"
 
 msgid "quota_help"
-msgstr "The maximum disk space on the server in megabytes (MB) available to a site for files."
+msgstr "The maximum disk space on the server available to a site for files."
 
 msgid "maxUsers"
 msgstr "Maximum Allowed Number of Users"
@@ -56,19 +56,19 @@ msgid "dns_auto"
 msgstr "Automatic DNS Configuration"
 
 msgid "dns_auto_help"
-msgstr "Automatic DNS configuration manages DNS records for this site.  Web and Email server aliases are supported only if they share the site domain name.  This service does not register the domain name with a top level registrar."
+msgstr "Automatic DNS configuration manages DNS records for this site. Web and Email server aliases are supported only if they share the site domain name. This service does not register the domain name with a top level registrar."
 
 msgid "webAliases"
 msgstr "Web Server Aliases"
 
 msgid "webAliases_help"
-msgstr "Enter additional host or domain names for which this virtual site should accept web requests.  Separate multiple entries with commas or spaces.  Example: www2.example.com, www.example.com.  Note that DNS must be configured to resolve alias addresses in addition to the site name."
+msgstr "Enter additional host or domain names for which this virtual site should accept web requests. Separate multiple entries with commas or spaces. Example: www2.example.com, www.example.com. Note that DNS must be configured to resolve alias addresses in addition to the site name."
 
 msgid "mailAliases"
 msgstr "Email Server Aliases"
 
 msgid "mailAliases_help"
-msgstr "Enter additional host or domain names for which this virtual site should accept email [SMTP port 25] connections.  Separate multiple entries with commas or spaces.  Example: mail2.example.com, mail.example.com."
+msgstr "Enter additional host or domain names for which this virtual site should accept email [SMTP port 25] connections. Separate multiple entries with commas or spaces. Example: mail2.example.com, mail.example.com."
 
 msgid "otherServices"
 msgstr "Services and Features"
@@ -109,13 +109,13 @@ msgid "searchBy"
 msgstr "Search"
 
 msgid "searchBy_help"
-msgstr "Choose the site property on which to search.  Sites containing the text entered in the field for the chosen property will be listed."
+msgstr "Choose the site property on which to search. Sites containing the text entered in the field for the chosen property will be listed."
 
 msgid "searchCriteria"
 msgstr "Search Criteria"
 
 msgid "searchCriteria_help"
-msgstr "Choose how to search the specified attribute.  The drop-down box can be used to limit how exact the search text must be matched.  Enter the search text in the field."
+msgstr "Choose how to search the specified attribute. The drop-down box can be used to limit how exact the search text must be matched. Enter the search text in the field."
 
 msgid "vsiteSearch"
 msgstr "Search Virtual Sites"
@@ -191,10 +191,10 @@ msgid "numResultsPerPage"
 msgstr "Sites Per Page"
 
 msgid "numResultsPerPage_help"
-msgstr "Set the number of sites to display on the page at one time.  The remaining sites will be available by selecting the desired page from the menu at the top of the list."
+msgstr "Set the number of sites to display on the page at one time. The remaining sites will be available by selecting the desired page from the menu at the top of the list."
 
 msgid "numResultsPerPage_invalid"
-msgstr "Sorry, the value entered for [[base-vsite.numResultsPerPage]] is either too small or not a number.  Please enter an integer greater than or equal to one."
+msgstr "Sorry, the value entered for [[base-vsite.numResultsPerPage]] is either too small or not a number. Please enter an integer greater than or equal to one."
 
 msgid "searchOptions"
 msgstr "Search Options"
@@ -276,7 +276,7 @@ msgid "homePartition"
 msgstr "Site Directory Location"
 
 msgid "homePartition_help"
-msgstr "Choose the directory location where this site's home directory will be located.  The /home directory is the default location and is located on the server's internal hard disks.  The other directories are located on additional storage.  If a site's home directory is located on an additional storage device, disabling or removing that device will cause a site to become non-functional."
+msgstr "Choose the directory location where this site's home directory will be located. The /home directory is the default location and is located on the server's internal hard disks. The other directories are located on additional storage. If a site's home directory is located on an additional storage device, disabling or removing that device will cause a site to become non-functional."
 
 msgid "newVsiteSettings"
 msgstr "Add New Virtual Site"
@@ -301,7 +301,7 @@ msgstr "View information about resource usage for this site."
 
 # manageAdmin screen
 msgid "manageAdminUsersBlurb"
-msgstr "Creating separate server administrator accounts other than the 'admin' account allows the system administrator to allow trusted third parties to manage the server.  Administrator accounts can be created to have all the same powers, except for managing administrator accounts, that the 'admin' account has.  Administrator accounts can also be created with more limits on which aspects of the server they are allowed to control."
+msgstr "Creating separate server administrator accounts other than the 'admin' account allows the system administrator to allow trusted third parties to manage the server. Administrator accounts can be created to have all the same powers, except for managing administrator accounts, that the 'admin' account has. Administrator accounts can also be created with more limits on which aspects of the server they are allowed to control."
 
 msgid "manageAdminUsers"
 msgstr "Server Administrators"
@@ -313,19 +313,19 @@ msgid "manageAdmin"
 msgstr "Modify Server Administrator Settings for [[VAR.name]]"
 
 msgid "manageAdminDescription"
-msgstr "Create and manage server administrator accounts.  [[base-vsite.manageAdminUsersBlurb]]"
+msgstr "Create and manage server administrator accounts. [[base-vsite.manageAdminUsersBlurb]]"
 
 msgid "rootAccess"
 msgstr "Root Access"
 
 msgid "rootAccess_help"
-msgstr "Enabling root access allows the admin user to use the 'su' program to become the root user when logged into the server via telnet or ssh.  If enabled, a new root account with the user name 'root-&lt;username&gt;', where &lt;username&gt; is the name of the user with root access, will be created.  The new account will have the same password as the user's regular account.  For example, for an administrator with a user name of 'bob', the user 'bob' could run the command 'su - root-bob', and enter their account password to become the root user."
+msgstr "Enabling root access allows the admin user to use the 'su' program to become the root user when logged into the server via telnet or ssh. If enabled, a new root account with the user name 'root-&lt;username&gt;', where &lt;username&gt; is the name of the user with root access, will be created. The new account will have the same password as the user's regular account. For example, for an administrator with a user name of 'bob', the user 'bob' could run the command 'su - root-bob', and enter their account password to become the root user."
 
 msgid "adminPowers"
 msgstr "Additional Access Rights"
 
 msgid "adminPowers_help"
-msgstr "This allows restoration of certain abilities to a server administrator that are normally reserved for the 'admin' user alone.  Move extra abilities that this server administrator account should be allowed from the [[base-vsite.disallowedAbilities]] column to the [[base-vsite.allowedAbilities]] column."
+msgstr "This allows restoration of certain abilities to a server administrator that are normally reserved for the 'admin' user alone. Move extra abilities that this server administrator account should be allowed from the [[base-vsite.disallowedAbilities]] column to the [[base-vsite.allowedAbilities]] column."
 
 msgid "allowedAbilities"
 msgstr "Extra Abilities"
@@ -349,13 +349,13 @@ msgid "suspendUser"
 msgstr "Suspend User"
 
 msgid "suspendUser_help"
-msgstr "Suspending a user will prevent that user from accessing the server.  Users will not be able to connect to the server while they are suspended."
+msgstr "Suspending a user will prevent that user from accessing the server. Users will not be able to connect to the server while they are suspended."
 
 msgid "mailCatchAll"
 msgstr "Catch-All Email Address"
 
 msgid "mailCatchAll_help"
-msgstr "Specify an email address to receive messages that are addressed to unknown users and mailing lists.  If left blank, email addressed to unknown users or mailing lists will not be accepted.  If the specified address does not exist, mail to unknown users and mailing lists may be rejected just as if no address was specified."
+msgstr "Specify an email address to receive messages that are addressed to unknown users and mailing lists. If left blank, email addressed to unknown users or mailing lists will not be accepted. If the specified address does not exist, mail to unknown users and mailing lists may be rejected just as if no address was specified."
 
 # administrator accounts list
 msgid "adminUsersList"
@@ -377,7 +377,7 @@ msgid "actions"
 msgstr "Actions"
 
 msgid "actions_help"
-msgstr "Click the pencil to modify the user.  Click the trash can to remove the user."
+msgstr "Click the pencil to modify the user. Click the trash can to remove the user."
 
 msgid "deleteQuestion"
 msgstr "Are you sure you want to remove the administrator, [[VAR.name]]?"
@@ -402,10 +402,10 @@ msgid "userPassword_help"
 msgstr "Enter the user's password."
 
 msgid "userDiskQuota"
-msgstr "Maximum Allowed Disk Space (MB)"
+msgstr "Maximum Allowed Disk Space"
 
 msgid "userDiskQuota_help"
-msgstr "Enter the maximum amount of disk space in megabytes (MB) that this user should be allowed to use on this server.  Leave the field blank to give the user access to an unlimited amount of disk space."
+msgstr "Enter the maximum amount of disk space that this user should be allowed to use on this server. Leave the field blank to give the user access to an unlimited amount of disk space."
 
 msgid "userInformation"
 msgstr "User Information"
@@ -415,11 +415,11 @@ msgstr "Administrator Options"
 
 # general handler error messages
 msgid "cantReadVsite"
-msgstr "[[base-vsite.operationFailed]]  Unable to get the information for this site from CCE."
+msgstr "[[base-vsite.operationFailed]] Unable to get the information for this site from CCE."
 
 # unique.pl
 msgid "fqdnTooLong"
-msgstr "Sorry, the host and domain name is too long.  The length of the combined host and domain name must be less than 255 characters."
+msgstr "Sorry, the host and domain name is too long. The length of the combined host and domain name must be less than 255 characters."
 
 msgid "localhostNotAllowed"
 msgstr "The host name, localhost, is reserved and cannot be specified as the host name of a virtual site."
@@ -428,47 +428,47 @@ msgid "fqdnInUse"
 msgstr "The specified host name and domain name combination, [[VAR.fqdn]], is in use by another virtual site."
 
 msgid "usedWebAliases"
-msgstr "The following web server aliases are in use and cannot be set:  [[VAR.aliases]]"
+msgstr "The following web server aliases are in use and cannot be set: [[VAR.aliases]]"
 
 msgid "usedMailAliases"
-msgstr "The following mail server aliases are in use and cannot be set:  [[VAR.aliases]]"
+msgstr "The following mail server aliases are in use and cannot be set: [[VAR.aliases]]"
 
 # aliases.pl
 msgid "cantCreateMailAlias"
-msgstr "[[base-vsite.operationFailed]]  The mail alias, [[VAR.alias]], could not be created."
+msgstr "[[base-vsite.operationFailed]] The mail alias, [[VAR.alias]], could not be created."
 
 msgid "cantUpdateMailAlias"
-msgstr "[[base-vsite.operationFailed]]  The mail alias, [[VAR.alias]], could not be updated."
+msgstr "[[base-vsite.operationFailed]] The mail alias, [[VAR.alias]], could not be updated."
 
 msgid "cantUpdateUserMailAliases"
-msgstr "[[base-vsite.operationFailed]]  Unable to update the email information for the users who belong to this site."
+msgstr "[[base-vsite.operationFailed]] Unable to update the email information for the users who belong to this site."
 
 # auto_dns.pl
 msgid "cantCreateAtypeRecord"
-msgstr "[[base-vsite.operationFailed]]  Unable to create the DNS entry for [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Unable to create the DNS entry for [[VAR.fqdn]]."
 
 msgid "cantCreateWebAlias"
-msgstr "[[base-vsite.operationFailed]]  Unable to create the DNS entry for the web server alias, [[VAR.alias]], for [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Unable to create the DNS entry for the web server alias, [[VAR.alias]], for [[VAR.fqdn]]."
 
 msgid "cantCreateAtypeRecordForMail"
-msgstr "[[base-vsite.operationFailed]]  Unable to create the A type DNS entry for the mail server alias, [[VAR.alias]], for [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Unable to create the A type DNS entry for the mail server alias, [[VAR.alias]], for [[VAR.fqdn]]."
 
 msgid "cantCreateMXRecordForMailAlias"
-msgstr "[[base-vsite.operationFailed]]  Unable to create the MX type DNS entry for the mail server alias, [[VAR.alias]], for [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Unable to create the MX type DNS entry for the mail server alias, [[VAR.alias]], for [[VAR.fqdn]]."
 
 msgid "cantRestartDns"
-msgstr "[[base-vsite.operationFailed]]  Unable to restart the DNS server."
+msgstr "[[base-vsite.operationFailed]] Unable to restart the DNS server."
 
 msgid "cantMigrateDnsRecords"
-msgstr "[[base-vsite.operationFailed]]  Unable to update the DNS entries for [[VAR.fqdn]] to match the new site information."
+msgstr "[[base-vsite.operationFailed]] Unable to update the DNS entries for [[VAR.fqdn]] to match the new site information."
 
 # change_net_info.pl
 msgid "cantUpdateVhost"
-msgstr "[[base-vsite.operationFailed]]  Unable to update the web server information for this site."
+msgstr "[[base-vsite.operationFailed]] Unable to update the web server information for this site."
 
 # maxuser.pl
 msgid "overUserLimit"
-msgstr "[[base-vsite.operationFailed]]  The site, [[VAR.fqdn]], has exceeded the maximum number of users that it is allowed to have."
+msgstr "[[base-vsite.operationFailed]] The site, [[VAR.fqdn]], has exceeded the maximum number of users that it is allowed to have."
 
 # network_destroy.pl
 msgid "vsiteUsingIpAddress"
@@ -479,18 +479,18 @@ msgstr "The IP address cannot be changed, because one or more sites are using th
 
 # suspend.pl
 msgid "cantDisableVhost"
-msgstr "[[base-vsite.operationFailed]]  Unable to disable the site's web server."
+msgstr "[[base-vsite.operationFailed]] Unable to disable the site's web server."
 
 msgid "cantSuspendUsers"
-msgstr "[[base-vsite.operationFailed]]  Unable to suspend all the site's users."
+msgstr "[[base-vsite.operationFailed]] Unable to suspend all the site's users."
 
 # update_site_admins.pl
 msgid "cantUpdateSiteAdminCaps"
-msgstr "[[base-vsite.operationFailed]]  Unable to update the capabilities for site administrators."
+msgstr "[[base-vsite.operationFailed]] Unable to update the capabilities for site administrators."
 
 # vsite_adminusers.pl
 msgid "couldNotAddAdminAccount"
-msgstr "[[base-vsite.operationFailed]]  The admin user account for [[VAR.fqdn]] could not be created."
+msgstr "[[base-vsite.operationFailed]] The admin user account for [[VAR.fqdn]] could not be created."
 
 # vsite_create.pl
 msgid "cantAddSystemGroup"
@@ -506,28 +506,28 @@ msgid "cantAddFtpVhost"
 msgstr "Unable to create this site's FTP server entry."
 
 msgid "cantAddSystemAlias"
-msgstr "Unable to create the system email alias, [[VAR.alias]], for this site.  Make sure no user on the system is using the alias and try again."
+msgstr "Unable to create the system email alias, [[VAR.alias]], for this site. Make sure no user on the system is using the alias and try again."
 
 msgid "vsiteUserOwnsAlias"
-msgstr "Unable to create the system email alias, [[VAR.alias]], for this site.  The user, [[VAR.user]], who is a member of the site, [[VAR.site]], appears to be using the alias.  Remove the alias from [[VAR.user]] and try again."
+msgstr "Unable to create the system email alias, [[VAR.alias]], for this site. The user, [[VAR.user]], who is a member of the site, [[VAR.site]], appears to be using the alias. Remove the alias from [[VAR.user]] and try again."
 
 msgid "userOwnsAlias"
-msgstr "Unable to create the system email alias, [[VAR.alias]], for this site.  The user, [[VAR.user]], who is not a member of any site (possibly a server administrator), appears to be using the alias.  Remove the alias from [[VAR.user]] and try again."
+msgstr "Unable to create the system email alias, [[VAR.alias]], for this site. The user, [[VAR.user]], who is not a member of any site (possibly a server administrator), appears to be using the alias. Remove the alias from [[VAR.user]] and try again."
 
 # vsite_destroy.pl
 msgid "cantDestroyNetwork"
-msgstr "Unable to disable the network interface associated with this site's IP address.  This did not prevent the site from being removed."
+msgstr "Unable to disable the network interface associated with this site's IP address. This did not prevent the site from being removed."
 
 msgid "siteMembersFound"
-msgstr "The site cannot be removed, because some of the site's user accounts have not been removed.  Please examine the site's user list to see which user accounts remain."
+msgstr "The site cannot be removed, because some of the site's user accounts have not been removed. Please examine the site's user list to see which user accounts remain."
 
 # Vsite.pm
 msgid "cantCreateNetwork"
-msgstr "[[base-vsite.operationFailed]]  Unable to create the network interface associated with this site's IP address."
+msgstr "[[base-vsite.operationFailed]] Unable to create the network interface associated with this site's IP address."
 
 # watch_disk.pl
 msgid "diskUsedBySites"
-msgstr "This device cannot be modified, because the following sites are located on it:  [[VAR.sites]].  Please remove these sites before disabling this device or making it unavailable for use as a home directory."
+msgstr "This device cannot be modified, because the following sites are located on it: [[VAR.sites]]. Please remove these sites before disabling this device or making it unavailable for use as a home directory."
 
 # system_adminuser.pl
 msgid "cantRemoveAdminFromGroup"
@@ -604,10 +604,10 @@ msgid "sitemail_help"
 msgstr "Click here to configure email options such as site aliases."
 
 msgid "diskQuota_invalid"
-msgstr "Sorry, the value entered for [[base-vsite.userDiskQuota]] is either too small or not a number.  [[base-vsite.diskQuota_rule]]"
+msgstr "Sorry, the value entered for [[base-vsite.userDiskQuota]] is either too small or not a number. [[base-vsite.diskQuota_rule]]"
 
 msgid "diskQuota_rule"
-msgstr "Enter a number greater than or equal to one to limit this user's disk space.  Leave the field blank to give the user access to all available disk space on the device on which the user's home directory is located."
+msgstr "Enter a number greater than or equal to one to limit this user's disk space. Leave the field blank to give the user access to all available disk space on the device on which the user's home directory is located."
 
 msgid "cantAddUserToServerAdminGroup"
 msgstr "Unable to add [[VAR.user]] to the server administrators group."
@@ -825,7 +825,7 @@ msgid "webAliasRedirects"
 msgstr "Web Alias Redirects"
 
 msgid "webAliasRedirects_help"
-msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems."  
+msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems." 
 
 # --- End webAliasRedirects
 
@@ -845,3 +845,113 @@ msgstr "The 'open_basedir' directive limits the file access of PHP scripts to ce
 
 # --- End 'open_basedir'
 
+msgid "siteRemove"
+msgstr "Delete this site."
+
+msgid "sitePreview"
+msgstr "Preview this site."
+
+msgid "Features"
+msgstr "Features"
+
+msgid "Features_help"
+msgstr "Shows which services and features are enabled for this virtual site."
+
+msgid "siteRemoveConfirmNeutral"
+msgstr "Are you sure you want to remove this virtual site?"
+
+msgid "removeConfirmInfo"
+msgstr "This will also remove all user accounts, emails and site data of this virtual site and cannot be undone."
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Actions_help"
+msgstr "These buttons allow you to modify, view or delete a virtual site."
+
+###
+
+msgid "sitedefaultsbutNeutral"
+msgstr "Template"
+
+msgid "sitedefaultsbutNeutral_help"
+msgstr "Edit the settings that are automatically filled in when adding a virtual site."
+
+msgid "disabled"
+msgstr "Disabled"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "PHP_version"
+msgstr "PHP Version:"
+
+msgid "PHP_version_help"
+msgstr "Shows the version of PHP of the public web server."
+
+##
+
+# Capabilities 
+msgid "cap_serverVsite" 
+msgstr "Virtual Site Settings" 
+ 
+# Vsite Settings 
+msgid "vsite" 
+msgstr "Virtual Site Settings" 
+ 
+msgid "vsite_help" 
+msgstr "Click here to change the virtual site settings." 
+ 
+msgid "vsiteSettings" 
+msgstr "Virtual Site Settings" 
+ 
+msgid "maxVsiteField" 
+msgstr "Maximum Virtual Sites" 
+ 
+msgid "maxVsiteField_help" 
+msgstr "The maximum number for virtual sites on this server." 
+ 
+msgid "maxVsiteUpper" 
+msgstr "512" 
+ 
+msgid "VsiteMaxError" 
+msgstr "The value entered for [[base-vsite.maxVsiteField]] must be less than [[base-vsite.maxVsiteUpper]]." 
+ 
+msgid "maxVsiteAlreadyMade" 
+msgstr "The current number of Virtual Sites as defined per [[base-vsite.maxVsiteField]]." 
+ 
+msgid "userPrefixField" 
+msgstr "User Prefix" 
+ 
+msgid "userPrefixField_help" 
+msgstr "Enter the username prefix. Example: customerA_, site1_" 
+ 
+msgid "userPrefixEnabled" 
+msgstr "Enable user prefix" 
+ 
+msgid "userPrefixEnabled_help" 
+msgstr "When the feature user prefix is enabled, all new usernames will be prefixed with this prefix." 
+ 
+msgid "userShell" 
+msgstr "Enable Shell Access" 
+ 
+msgid "userShell_help" 
+msgstr "Enable shell access to allow the creation of users who can connect to the server using services such as Telnet and SSH." 
+ 
+msgid "userSitesUser" 
+msgstr "Maximum Users" 
+ 
+msgid "userSitesUser_help" 
+msgstr "The maximum number of users that can be created on this server." 
+ 
+msgid "maxDiskAlreadyMade" 
+msgstr "The amount of disk space currently in use as per [[base-vsite.quota]]." 
+ 
+msgid "maxUsersAlreadyMade" 
+msgstr "The number of users currently in existence as per [[base-vsite.userSitesUser]]." 
+
+msgid "createdUser"
+msgstr "Owner"
+
+msgid "createdUser_help"
+msgstr "Shows the owner of this virtual site."

@@ -1,5 +1,5 @@
 #
-# $Id: vsite.prop,v 1.1.2.3 2002/03/14 00:58:27 pbaltz Exp $
+# $Id: vsite.prop,v 1.1.2.2 2002/02/22 01:23:02 pbaltz Exp $
 # Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
 #
 # locale sensitive properties to worry about for the vsite module
@@ -12,4 +12,4 @@
 sentenceOrder:	S V O
 
 # do we need to use sortName property for sorting
-needSortName:	yes
+needSortName:	no

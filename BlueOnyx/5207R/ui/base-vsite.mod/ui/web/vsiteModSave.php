@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
- * $Id: vsiteModSave.php,v 1.17 2001/12/18 05:02:38 pbaltz Exp $
+ * $Id: vsiteModSave.php
  *
  * processes input from vsiteMod.php page
  */
@@ -11,8 +11,8 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'manageSite' should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -26,6 +26,13 @@ if ($suspend == "1") {
     $site_preview = "0"; 
 }
 
+if ($prefix != "") {
+	$userPrefixEnabled = "1";
+}
+else {
+	$userPrefixEnabled = "0";
+}
+
 $cce->set($vsiteOID[0], "", 
 	  array(
 		"hostname" => $hostname,
@@ -36,6 +43,8 @@ $cce->set($vsiteOID[0], "",
 		"dns_auto" => $dns_auto,
 		"site_preview" => $site_preview,
 		"prefix" => $prefix,
+        "userPrefixEnabled" => $userPrefixEnabled, 
+        "userPrefixField" => $prefix, 		
 		"suspend" => $suspend
 	  )
 	 );

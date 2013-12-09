@@ -136,6 +136,22 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- New Capabilities for admin. 
+- The DNS management authority is subdivided (Hideki Oride).
+- Add 'admin' for default alias for virtual site. 
+- Resolved the issue that the ServerAlias was lost when SSL got enabled/disabled.
+- Add new feature by Oride-san. 
+-- The feature the user limit for the administrator. 
+-- The feature the enable/disable shell access for the administrator. 
+-- The feature that admin only can configure the template for the vsite. 
+-- The feature that enable 'server_admin' is the specific rule for 'admin_name' + '_' for user prefix. 
+- Half disabled Oride-san's prefix stuff to merge it with our own. Have to see how compatible this is now.
+
 * Fri Jan 18 2013 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX105
 - Added support for PHP-5.4, as we need to set 'register_globals' to 'Off' for that.
 - Updated glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl

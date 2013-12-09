@@ -1,5 +1,5 @@
 <?php
-// $Id: vsiteDefaultsSave.php,v 1.9 2001/12/07 01:48:44 pbaltz Exp $
+// $Id: vsiteDefaultsSave.php
 // Copyright Sun Microsystems, Inc. 2001
 // vsiteDefaultsSave.php
 // saves information entered on vsiteDefaults.php page into cce
@@ -9,8 +9,8 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'manageSite' should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }

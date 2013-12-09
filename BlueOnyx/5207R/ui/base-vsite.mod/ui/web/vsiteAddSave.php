@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
- * $Id: vsiteAddSave.php,v 1.23 2001/12/18 05:02:38 pbaltz Exp $
+ * $Id: vsiteAddSave.php
  *
  * processes input from vsiteAdd.php page and redirects to the site list page
  */
@@ -11,13 +11,24 @@ include_once("AutoFeatures.php");
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'manageSite' should be here:
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
 
 $cce = $helper->getCceClient();
+
+global $loginName; 
+
+if ($prefix != "") {
+	$userPrefixEnabled = "1";
+}
+else {
+	$userPrefixEnabled = "0";
+}
+
+
 
 $vsiteOID = $cce->create("Vsite", 
 			 array(
@@ -25,6 +36,7 @@ $vsiteOID = $cce->create("Vsite",
 				'domain' => $domain,
 				'fqdn' => ($hostname . '.' . $domain),
 				'ipaddr' => $ipAddr,
+				'createdUser' => $loginName, 
 				'webAliases' => $webAliases,
 				'webAliasRedirects' => $webAliasRedirects,
 				'emailDisabled' => $emailDisabled,
@@ -34,6 +46,8 @@ $vsiteOID = $cce->create("Vsite",
 				'maxusers' => $maxusers,
 				'dns_auto' => $dns_auto,
 				'prefix' => $prefix,
+                "userPrefixEnabled" => $userPrefixEnabled, 
+                "userPrefixField" => $prefix, 				
 				'site_preview' => $site_preview
 			 )
 			);

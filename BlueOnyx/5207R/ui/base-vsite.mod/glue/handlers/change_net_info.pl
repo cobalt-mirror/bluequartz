@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
-# $Id: change_net_info.pl,v 1.18 2001/10/23 18:27:22 pbaltz Exp $
+# $Id: change_net_info.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # change_net_info.pl
 # do things like making sure casp, httpd.conf, aliases, maillists, email info,
@@ -22,15 +22,19 @@ my $vsite_old = $cce->event_old();
 
 my $msg;
 
-# modify VirtualHost entry for this site
-my ($vhost) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
-
-my ($ok) = $cce->set($vhost, '', { 'ipaddr' => $vsite->{ipaddr}, 'fqdn' => $vsite->{fqdn}, 'webAliases' => $vsite->{webAliases} });
-
-if (not $ok)
+# stuff to do if either the ip or fqdn has changed
+if ($vsite_new->{ipaddr} || $vsite_new->{fqdn} || $vsite_new->{webAliases})
 {
-    $cce->bye('FAIL', '[[base-vsite.cantUpdateVhost]]');
-    exit(1);
+    # modify VirtualHost entry for this site
+    my ($vhost) = $cce->find('VirtualHost', { 'name' => $vsite->{name} });
+
+    my ($ok) = $cce->set($vhost, '', { 'ipaddr' => $vsite->{ipaddr}, 'fqdn' => $vsite->{fqdn}, 'webAliases' => $vsite->{webAliases} });
+
+    if (not $ok)
+    {
+        $cce->bye('FAIL', '[[base-vsite.cantUpdateVhost]]');
+        exit(1);
+    }
 }
 
 if ($vsite_new->{fqdn})
@@ -59,7 +63,7 @@ if ($vsite_new->{ipaddr})
 {
     # make sure that there is a network interface for the new ip - but not on AWS:
     if (!-f "/etc/is_aws") {
-	vsite_add_network_interface($cce, $vsite_new->{ipaddr});
+	   vsite_add_network_interface($cce, $vsite_new->{ipaddr});
     }
 
     # delete the old interface, this is a no op if another site is using the old ip still

@@ -1,866 +1,964 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
 msgid "basicSettingsTab_help"
-msgstr "���ˤ˻Ȥ���������Ǥ��ޤ���"
+msgstr "頻繁に使う設定を指定できます。"
 
 msgid "ipAddr"
-msgstr "IP ���ɥ쥹"
+msgstr "IP アドレス"
 
 msgid "ipAddr_help"
-msgstr "���Υ����Ȥ� IP ���ɥ쥹�Ǥ���"
+msgstr "このサイトの IP アドレスです。"
 
 msgid "domain"
-msgstr "�ɥᥤ��͡���"
+msgstr "ドメインネーム"
 
 msgid "domain_help"
-msgstr "���Υ����ȤΥɥᥤ��͡���Ǥ����ɥᥤ��͡���ϡ������ɥᥤ��̾ (�ۥ���̾�ܥɥᥤ��͡���) �θ�Ⱦ��ʬ�Ǥ��� (example.BlueOnyx.org��BlueOnyx.org �ʤ�)"
+msgstr "このサイトのドメインネームです。ドメインネームは、完全ドメイン名 (ホスト名＋ドメインネーム) の後半部分です。 (example.BlueOnyx.org、BlueOnyx.org など)"
 
 msgid "fqdn"
-msgstr "������̾"
+msgstr "サイト名"
 
 msgid "fqdn_help"
-msgstr "���Υ����Ȥ��դ˼��̤���̾���Ǥ���������̾�ϡ��ִ����ɥᥤ��̾ (�ۥ���̾�ܥɥᥤ��͡���)�פȤ�ƤФ�ޤ���������̾�ǥ����Ȥ�¹Ԥ���ȡ��ޤ��ɥᥤ��͡���ξ���ޤ��Ϲ߽硢���˥ۥ���̾�ξ���ޤ��Ϲ߽�ǥ����Ȥ���ޤ���"
+msgstr "このサイトを一意に識別する名前です。サイト名は、「完全ドメイン名 (ホスト名＋ドメインネーム)」とも呼ばれます。サイト名でソートを実行すると、まずドメインネームの昇順または降順、次にホスト名の昇順または降順でソートされます。"
 
 msgid "enterFqdn"
-msgstr "�ۥ���̾�ȥɥᥤ��͡���"
+msgstr "ホスト名とドメインネーム"
 
 msgid "enterFqdn_help"
-msgstr "���Υե�����ɤˤϤ��Υ����ȤΥۥ���̾�򡢱��Υե�����ɤˤϥɥᥤ��͡���򤽤줾�����Ϥ��Ƥ��������� (�ۥ���̾����: www��mail��eigyo-13�� �ɥᥤ��͡������: cobaltqube.org��BlueOnyx.org �ʤ�)"
+msgstr "左のフィールドにはこのサイトのホスト名を、右のフィールドにはドメインネームをそれぞれ入力してください。 (ホスト名の例: www、mail、eigyo-13； ドメインネームの例: cobaltqube.org、BlueOnyx.org など)"
 
 msgid "hostName"
-msgstr "�ۥ���̾"
+msgstr "ホスト名"
 
 msgid "hostName_help"
-msgstr "���Υ����ȤΥۥ���̾�Ǥ����ۥ���̾�ϡ������ɥᥤ��̾ (�ۥ���̾�ܥɥᥤ��͡���) ����Ⱦ��ʬ�Ǥ��� (������: mail��www)"
+msgstr "このサイトのホスト名です。ホスト名は、完全ドメイン名 (ホスト名＋ドメインネーム) の前半部分です。 (指定例: mail、www)"
 
 msgid "generalSettings"
-msgstr "��������"
+msgstr "一般設定"
 
 msgid "generalSettings_help"
-msgstr "���Υ����Ȥ�������������ꡢ�����Υ����ӥ�������Ǥ��ޤ���"
+msgstr "このサイトの設定を修正したり、一部のサービスを設定できます。"
 
 msgid "services"
-msgstr "�����ӥ�"
+msgstr "サービス"
 
 msgid "quota"
-msgstr "������ƥǥ��������� (MB)"
+msgstr "最大許容ディスク容量"
 
 msgid "quota_help"
-msgstr "�����Ȥ��ե��������¸�˻Ȥ���ǥ��������̤κ����ͤ���ꤷ�Ƥ��������� (ñ�̡� �ᥬ�Х��� (MB))"
+msgstr "サイトがファイルの保存に使えるディスク容量の最大値を指定してください。"
 
 msgid "maxUsers"
-msgstr "�桼���κ����"
+msgstr "ユーザの最大数"
 
 msgid "maxUsers_help"
-msgstr "�����ȤǺ����Ǥ���桼����������Ȥκ��������ꤷ�Ƥ���������"
+msgstr "サイトで作成できるユーザアカウントの最大数を指定してください。"
 
 msgid "dns_auto"
-msgstr "��ư DNS ����"
+msgstr "自動 DNS 設定"
 
 msgid "dns_auto_help"
-msgstr "��ư DNS ����ϡ����Υ����Ȥ� DNS �쥳���ɤ�������ޤ��������ȤΥɥᥤ��͡����ͭ������˸¤ꡢ�����֥����Ф��Żҥ᡼�륵���Ф���̾�����ݡ��Ȥ���ޤ������Υ����ӥ��Ǥϡ��ȥåץ�٥�Υ쥸���ȥ�ǥɥᥤ��͡������Ͽ���ޤ���"
+msgstr "自動 DNS 設定は、このサイトの DNS レコードを管理します。サイトのドメインネームを共有する場合に限り、ウェブサーバと電子メールサーバの別名がサポートされます。このサービスでは、トップレベルのレジストラでドメインネームを登録しません。"
 
 msgid "webAliases"
-msgstr "�����֥����Ф���̾"
+msgstr "ウェブサーバの別名"
 
 msgid "webAliases_help"
-msgstr "���β��ۥ����Ȥ������֥ꥯ�����Ȥ�����դ���ۥ���̾�ޤ��ϥɥᥤ��͡������̾����ꤷ�Ƥ���������ʣ������̾����ꤹ����ϡ�����ޤޤ��ϥ��ڡ����Ƕ��ڤä����Ϥ��Ƥ���������������: www2.example.com, www.example.com��������̾�Τۤ�����̾�Υ��ɥ쥹�򻲾Ȥ���ˤ� DNS �����ꤹ��ɬ�פ�����ޤ���"
+msgstr "この仮想サイトがウェブリクエストを受け付けるホスト名またはドメインネームの別名を指定してください。複数の別名を指定する場合は、コンマまたはスペースで区切って入力してください。指定例: www2.example.com, www.example.com。サイト名のほか、別名のアドレスを参照するには DNS を設定する必要があります。"
 
 msgid "mailAliases"
-msgstr "�Żҥ᡼�륵���Ф���̾"
+msgstr "電子メールサーバの別名"
 
 msgid "mailAliases_help"
-msgstr "���β��ۥ����Ȥ��Żҥ᡼�� [SMTP port 25] ��³������դ���ۥ���̾�ޤ��ϥɥᥤ��͡������̾����ꤷ�Ƥ���������ʣ������̾����ꤹ����ϡ�����ޤޤ��ϥ��ڡ����Ƕ��ڤä����Ϥ��Ƥ���������������: mail2.example.com, mail.example.com��"
+msgstr "この仮想サイトが電子メール [SMTP port 25] 接続を受け付けるホスト名またはドメインネームの別名を指定してください。複数の別名を指定する場合は、コンマまたはスペースで区切って入力してください。指定例: mail2.example.com, mail.example.com。"
 
 msgid "otherServices"
-msgstr "�����ӥ��ȵ�ǽ"
+msgstr "サービスと機能"
 
 msgid "otherServices_help"
-msgstr "�Ƽ掠���ӥ���ͭ���ޤ���̵���ˤǤ��ޤ���"
+msgstr "各種サービスを有効または無効にできます。"
 
 # various menu items
 msgid "exitSitemgmt"
-msgstr "�����Ȥδ�����λ"
+msgstr "サイトの管理を終了"
 
 msgid "exitSitemgmtHelp"
-msgstr "���Υ�����ɥ����Ĥ��ޤ���"
+msgstr "このウィンドウが閉じます。"
 
 msgid "sitesettings"
-msgstr "�����Ȥ�����"
+msgstr "サイトの設定"
 
 msgid "sitesettingsDescription"
-msgstr "��������ȥ����ӥ�����������Ǥ��ޤ���"
+msgstr "一般設定とサービスの設定を修正できます。"
 
 # Site List Page
 msgid "windowTitle"
-msgstr "[[VAR.vsite]] ���ۥ����Ȥ� [[VAR.user]] �Ȥ��ƴ�������"
+msgstr "[[VAR.vsite]] 仮想サイトを [[VAR.user]] として管理する"
 
 msgid "virtualSiteList"
-msgstr "���ۥ����ȤΥꥹ��"
+msgstr "仮想サイトのリスト"
 
 msgid "virtualSiteList_help"
-msgstr "���Υ����о�β��ۥ����Ȥ�����ޤ��Ͻ����Ǥ��ޤ���"
+msgstr "このサーバ上の仮想サイトを作成または修正できます。"
 
 msgid "listSuspended"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "listSuspended_help"
-msgstr "�����Ȥ������ڥ�ɤ���Ƥ��뤳�Ȥ򼨤��ޤ��������Ȥ������ڥ�ɤ���Ƥ���ȡ���Ͽ�桼���ˤ�륵���ȤؤΥ�������������Ӱ��̥桼���ˤ�륵���ȴ�Ϣ�Υ����֥����Ȥ� ftp �����ȤؤΥ���������̵���ˤʤ�ޤ���"
+msgstr "サイトがサスペンドされていることを示します。サイトがサスペンドされていると、登録ユーザによるサイトへのアクセス、および一般ユーザによるサイト関連のウェブサイトや ftp サイトへのアクセスが無効になります。"
 
 msgid "searchBy"
-msgstr "����"
+msgstr "検索"
 
 msgid "searchBy_help"
-msgstr "�������륵���ȤΥץ��ѥƥ�����ꤷ�Ƥ������������ꤷ���ץ��ѥƥ��˴ؤ��ơ��ե�����ɤ����Ϥ����ƥ����Ȥ�ޤॵ���Ȥ�����ɽ������ޤ���"
+msgstr "検索するサイトのプロパティを指定してください。指定したプロパティに関して、フィールドに入力したテキストを含むサイトが一覧表示されます。"
 
 msgid "searchCriteria"
-msgstr "�������"
+msgstr "検索基準"
 
 msgid "searchCriteria_help"
-msgstr "���ꤵ�줿°���򸡺�������ˡ�����Ӥ����������ɥ��åץ�����ꥹ�Ȥ��顢��������ƥ����Ȥΰ��׾������Ǥ��ޤ�����������ƥ����Ȥ�ե�����ɤ����Ϥ��Ƥ���������"
+msgstr "指定された属性を検索する方法をお選びください。ドロップダウンリストから、検索するテキストの一致条件を指定できます。検索するテキストをフィールドに入力してください。"
 
 msgid "vsiteSearch"
-msgstr "���ۥ����Ȥ򸡺�"
+msgstr "仮想サイトを検索"
 
 # site list buttons
 msgid "searchbut"
-msgstr "����"
+msgstr "検索"
 
 msgid "searchbut_help"
-msgstr "���ꤷ���ץ��ѥƥ��˰��פ��벾�ۥ����Ȥ򸡺��Ǥ��ޤ���"
+msgstr "指定したプロパティに一致する仮想サイトを検索できます。"
 
 msgid "advancedSearch"
-msgstr "�ܺٸ���"
+msgstr "詳細検索"
 
 msgid "advancedSearch_help"
-msgstr "����¾�δ���Ȥäƥ����Ȥ򸡺��Ǥ��ޤ���"
+msgstr "その他の基準を使ってサイトを検索できます。"
 
 msgid "sitedefaultsbut"
-msgstr "���ۥ����ȤΥƥ�ץ졼�Ȥ��Խ�"
+msgstr "仮想サイトのテンプレートを編集"
 
 msgid "sitedefaultsbut_help"
-msgstr "���ۥ����Ȥ��ɲä����Ȥ��˼�ưŪ�˵��������������Խ��Ǥ��ޤ���"
+msgstr "仮想サイトを追加したときに自動的に記入される設定を編集できます。"
 
 msgid "siteaddbut"
-msgstr "�����Ȥ��ɲ�"
+msgstr "サイトの追加"
 
 msgid "siteaddbut_help"
-msgstr "���Υ����Ф˿����β��ۥ����Ȥ��ɲäǤ��ޤ���"
+msgstr "このサーバに新規の仮想サイトを追加できます。"
 
 msgid "suspend"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "suspend_help"
-msgstr "�ܥå���������å�����ȡ������Ȥ������ڥ�ɤ���ޤ��������Ȥ򥵥��ڥ�ɤ���ȡ������ȤΥ桼���䡢�����Ȥ˴�Ϣ���륦���֥����Ȥ� ftp �����ȤؤΥ���������̵���ˤʤ�ޤ���"
+msgstr "ボックスをチェックすると、サイトがサスペンドされます。サイトをサスペンドすると、サイトのユーザや、サイトに関連するウェブサイトや ftp サイトへのアクセスが無効になります。"
 
 # site list search options
 msgid "siteUses"
-msgstr "�����Ȥ�����"
+msgstr "サイトの利用"
 
 msgid "="
-msgstr "�������Ȱ��פ��륵���Ȥ�ɽ��"
+msgstr "が、次と一致するサイトを表示"
 
 msgid "begins"
-msgstr "��������ʸ���ǻϤޤ륵���Ȥ�ɽ��"
+msgstr "が、次の文字で始まるサイトを表示"
 
 msgid "ends"
-msgstr "��������ʸ���ǽ���륵���Ȥ�ɽ��"
+msgstr "が、次の文字で終わるサイトを表示"
 
 msgid "contains"
-msgstr "�ˡ�����ʸ����ޤॵ���Ȥ�ɽ��"
+msgstr "に、次の文字を含むサイトを表示"
 
 msgid "not_contains"
-msgstr "�ˡ�����ʸ����ޤޤʤ������Ȥ�ɽ��"
+msgstr "に、次の文字を含まないサイトを表示"
 
 msgid "inSubnet"
-msgstr "�������Υ��֥ͥåȤˤ��륵���Ȥ�ɽ��"
+msgstr "が、次のサブネットにあるサイトを表示"
 
 msgid "notInSubnet"
-msgstr "�������Υ��֥ͥåȤˤʤ������Ȥ�ɽ��"
+msgstr "が、次のサブネットにないサイトを表示"
 
 # site list search results strings
 msgid "search_vsite_results_1"
-msgstr "������� (<1> �Ĥβ��ۥ����Ȥ򸫤Ĥ��ޤ���)"
+msgstr "検索結果 (<1> つの仮想サイトを見つけました)"
 
 msgid "search_vsite_results"
-msgstr "������� (<[[VAR.num]]> �Ĥβ��ۥ����Ȥ򸫤Ĥ��ޤ���)"
+msgstr "検索結果 (<[[VAR.num]]> つの仮想サイトを見つけました)"
 
 msgid "search_vsite_nonefound"
-msgstr "���θ����Ǥϲ��ۥ����Ȥϸ��Ĥ���ޤ���Ǥ������������򶹤����Ƥ⤦���ٸ������Ƥ���������"
+msgstr "この検索では仮想サイトは見つかりませんでした。検索基準を狭くしてもう一度検索してください。"
 
 # common search strings
 msgid "numResultsPerPage"
-msgstr "1 �ڡ�����ɽ�����륵���ȿ�"
+msgstr "1 ページに表示するサイト数"
 
 msgid "numResultsPerPage_help"
-msgstr "1 �ڡ�����ɽ�����륵���ȿ������ꤷ�Ƥ����������Ĥ�Υ����Ȥϡ��ꥹ�Ȥξ����ˤ����˥塼���餪�����ʥڡ����������ɽ���Ǥ��ޤ���"
+msgstr "1 ページに表示するサイト数を設定してください。残りのサイトは、リストの上部にあるメニューからお好きなページを選んで表示できます。"
 
 msgid "numResultsPerPage_invalid"
-msgstr "[[base-vsite.numResultsPerPage]] �˻��ꤵ�줿�ͤϡ����������뤫�����ǤϤ���ޤ���1 �ʾ�����������Ϥ��Ƥ���������"
+msgstr "[[base-vsite.numResultsPerPage]] に指定された値は、小さすぎるか数字ではありません。1 以上の整数を入力してください。"
 
 msgid "searchOptions"
-msgstr "�������ץ����"
+msgstr "検索オプション"
 
 msgid "displayOptions"
-msgstr "ɽ�����ץ����"
+msgstr "表示オプション"
 
 # advanced search page
 msgid "siteUses_help"
-msgstr "����Υ����ӥ�����ꤹ��ȡ����Υ����ӥ���ͭ���ˤʤäƤ��륵���Ȥ򸡺��Ǥ��ޤ���"
+msgstr "特定のサービスを指定すると、そのサービスが有効になっているサイトを検索できます。"
 
 msgid "suspended"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "suspended_help"
-msgstr "���ߥ����ڥ�ɤ���Ƥ��륵���Ȥ򸡺��Ǥ��ޤ���"
+msgstr "現在サスペンドされているサイトを検索できます。"
 
 msgid "searchResults"
-msgstr "���ۥ����Ȥθ������"
+msgstr "仮想サイトの検索結果"
 
 msgid "modifySearch"
-msgstr "��������"
+msgstr "検索を修正"
 
 msgid "modifySearch_help"
-msgstr "���ߤΥꥹ�Ȥκ����˻Ȥä������������Ǥ��ޤ���"
+msgstr "現在のリストの作成に使った検索基準を修正できます。"
 
 msgid "newSearch"
-msgstr "��������"
+msgstr "新規検索"
 
 msgid "newSearch_help"
-msgstr "�����θ�����Ԥ��ޤ���"
+msgstr "新規の検索を行えます。"
 
 # delete site button
 msgid "siteRemoveConfirm"
-msgstr "[[VAR.fqdn]] �Ȥ��������Ȥ������Ƥ�������Ǥ�����"
+msgstr "[[VAR.fqdn]] というサイトを削除してよろしいですか？"
 
 msgid "deletingSite"
-msgstr "�����Ȥ������Ƥ��ޤ������Ф餯���Ԥ���������..."
+msgstr "サイトを削除しています。しばらくお待ちください..."
 
 msgid "removingUsers"
-msgstr "�桼������"
+msgstr "ユーザを削除"
 
 msgid "removingSite"
-msgstr "�����Ȥ���"
+msgstr "サイトを削除"
 
 msgid "noSuchSite"
-msgstr "���ꤵ�줿 [[VAR.site]] �Ȥ��������Ȥ����Ĥ���ޤ���Ǥ�����"
+msgstr "指定された [[VAR.site]] というサイトが見つかりませんでした。"
 
 msgid "removeFailed"
-msgstr "�����Ȥ����Ǥ��ޤ���Ǥ�����"
+msgstr "サイトを削除できませんでした。"
 
 # Site Defaults Page
 msgid "vsiteDefaults"
-msgstr "���ۥ����ȤΥƥ�ץ졼��"
+msgstr "仮想サイトのテンプレート"
 
 msgid "siteDefaultsTab"
-msgstr "��������"
+msgstr "基本設定"
 
 msgid "siteDefaultsTab_help"
-msgstr "�������ۥ����ȤΥͥåȥ�����桼���ȥǥ������ξ�¡��Żҥ᡼��Υǥե������������Ǥ��ޤ���"
+msgstr "新規仮想サイトのネットワーク、ユーザとディスクの上限、電子メールのデフォルト設定を修正できます。"
 
 msgid "defaultIpAddr"
 msgstr "[[base-vsite.ipAddr]]"
 
 msgid "defaultIpAddr_help"
-msgstr "�����Ȥ��ɲä����Ȥ��˵��������ǥե���Ȥ� IP ���ɥ쥹����ꤷ�Ƥ���������"
+msgstr "サイトを追加したときに記入されるデフォルトの IP アドレスを指定してください。"
 
 msgid "defaultDomain"
 msgstr "[[base-vsite.domain]]"
 
 msgid "defaultDomain_help"
-msgstr "���������Ȥ�°����ǥե���ȤΥɥᥤ�����ꤷ�Ƥ���������"
+msgstr "新規サイトが属するデフォルトのドメインを指定してください。"
 
 # site add page
 msgid "defaultHome"
-msgstr "�ǥե���ȥǥ��쥯�ȥ� (/home)"
+msgstr "デフォルトディレクトリ (/home)"
 
 msgid "homePartition"
-msgstr "�����ȥǥ��쥯�ȥ����¸���"
+msgstr "サイトディレクトリの保存場所"
 
 msgid "homePartition_help"
-msgstr "�����ȤΥۡ���ǥ��쥯�ȥ����¸������ꤷ�Ƥ����������ǥե���Ȥ���¸���ϡ������Ф���¢�ϡ��ɥǥ�������ˤ��� /home �ǥ��쥯�ȥ�Ǥ�������¾����¸������ꤹ����ˤϡ��̤Υ��ȥ졼����Υǥ��쥯�ȥ����ꤷ�Ƥ⹽���ޤ��󤬡����γ������ȥ졼�����곰�������������ꤹ��ȡ������Ȥ���������ǽ���ʤ��ʤ�ޤ��ΤǤ����դ���������"
+msgstr "サイトのホームディレクトリの保存場所を指定してください。デフォルトの保存場所は、サーバの内蔵ハードディスク上にある /home ディレクトリです。その他の保存場所を指定する場合には、別のストレージ上のディレクトリを指定しても構いませんが、その外部ストレージを取り外したり削除したりすると、サイトが正しく機能しなくなりますのでご注意ください。"
 
 msgid "newVsiteSettings"
-msgstr "�������ۥ����Ȥ��ɲ�"
+msgstr "新規仮想サイトを追加"
 
 # site mod page
 msgid "modVsiteSettings"
-msgstr "���ۥ����Ȥ����� - [[VAR.site]]"
+msgstr "仮想サイトの設定 - [[VAR.site]]"
 
 # site add/mod error messages
 msgid "webAliases_invalid"
-msgstr "[[VAR.invalidValue]] �Ȥ��������֥�������̾�������Ǥ���"
+msgstr "[[VAR.invalidValue]] というウェブサーバ別名は不正です。"
 
 msgid "mailAliases_invalid"
-msgstr "[[VAR.invalidValue]] �Ȥ����Żҥ᡼�륵������̾�������Ǥ���"
+msgstr "[[VAR.invalidValue]] という電子メールサーバ別名は不正です。"
 
 # usage statitics menu
 msgid "siteusage"
-msgstr "���Ѿ���"
+msgstr "利用状況"
 
 msgid "siteusageDescription"
-msgstr "�����Ȥ����Ѿ����˴ؤ�������ɽ���Ǥ��ޤ���"
+msgstr "サイトの利用状況に関する情報を表示できます。"
 
 # manageAdmin screen
 msgid "manageAdminUsersBlurb"
-msgstr "admin �ʳ��Υ����д����ԥ�������Ȥ�������뤳�Ȥˤ�ꡢ�����ƥ�����Ԥϡ��軰�Ԥ˥����Фδ������¤�����Ǥ��ޤ��������д����Ԥˤϡ�admin ��������Ȥδ���ǽ�Ϥ�������Ƥδ������¤�Ϳ���뤳�Ȥ⡢ɬ�פ˱��������¤��ߤ��뤳�Ȥ�Ǥ��ޤ���"
+msgstr "admin 以外のサーバ管理者アカウントを作成することにより、システム管理者は、第三者にサーバの管理権限を委託できます。サーバ管理者には、admin アカウントの管理能力を除く全ての管理権限を与えることも、必要に応じて制限を設けることもできます。"
 
 msgid "manageAdminUsers"
-msgstr "�����Фδ�����"
+msgstr "サーバの管理者"
 
 msgid "addAdminHelp"
-msgstr "�����Υ����д����ԥ�������Ȥ�����Ǥ��ޤ���"
+msgstr "新規のサーバ管理者アカウントを作成できます。"
 
 msgid "manageAdmin"
-msgstr "�����д����Ԥ�������� - [[VAR.name]]"
+msgstr "サーバ管理者の設定を修正 - [[VAR.name]]"
 
 msgid "manageAdminDescription"
-msgstr "�����д����ԥ�������Ȥ�����������Ǥ��ޤ���[[base-vsite.manageAdminUsersBlurb]]"
+msgstr "サーバ管理者アカウントを作成、管理できます。[[base-vsite.manageAdminUsersBlurb]]"
 
 msgid "rootAccess"
-msgstr "�롼�ȥ�������"
+msgstr "ルートアクセス"
 
 msgid "rootAccess_help"
-msgstr "�롼�ȥ���������ͭ���ˤ���ȡ������д������¤��������Ƥ���桼���ϡ�Telnet �ޤ��� SSH ��Ȥäƥ����Ф˥������󤷤��Ȥ��ˡ�su ���ޥ�ɤ�Ȥäƥ롼�ȥ桼���ˤʤ뤳�Ȥ��Ǥ��ޤ������Υ��ץ�����ͭ���ˤ���ȡ�'root-&lt;username&gt;' (&lt;username&gt; �ϥ롼�ȥ��������ε��Ĥ���Ƥ�������ԥ桼���Υ桼��̾) �Ȥ����桼��̾����Ŀ����Υ롼�ȥ�������Ȥ���������ޤ������Υ롼�ȥ�������ȤΥѥ���ɤϡ��桼�����̾�Υ�������ȤΥѥ���ɤ�Ʊ���Ǥ����㤨�С�nishida �Ȥ����桼��̾����Ĵ����ԥ桼���Ǥ���С�nishida �Ȥ��ƥ����Ф˥������󤷤Ƥ��顢'su - root-nishida' �Ȥ������ޥ�ɤ�¹Ԥ�����ʬ�Υѥ���ɤ�������Ϥ��뤳�Ȥˤ�ꡢ�롼�ȥ桼���ˤʤ뤳�Ȥ��Ǥ��ޤ���"
+msgstr "ルートアクセスを有効にすると、サーバ管理権限を委託されているユーザは、Telnet または SSH を使ってサーバにログインしたときに、su コマンドを使ってルートユーザになることができます。このオプションを有効にすると、'root-&lt;username&gt;' (&lt;username&gt; はルートアクセスの許可されている管理者ユーザのユーザ名) というユーザ名を持つ新規のルートアカウントが作成されます。このルートアカウントのパスワードは、ユーザの通常のアカウントのパスワードと同じです。例えば、nishida というユーザ名を持つ管理者ユーザであれば、nishida としてサーバにログインしてから、'su - root-nishida' というコマンドを実行し、自分のパスワードを再度入力することにより、ルートユーザになることができます。"
 
 msgid "adminPowers"
-msgstr "�ɲ�Ū����������"
+msgstr "追加的アクセス権"
 
 msgid "adminPowers_help"
-msgstr "�̾�� admin �桼���ˤ������Ĥ���Ƥ��ʤ������θ��¤򥵡��д����Ԥ˰������뤳�Ȥ�Ǥ��ޤ������Υ����д����ԥ�������Ȥ˵��Ĥ������ɲ�Ū�ʸ��¤��[[base-vsite.disallowedAbilities]]���󤫤��[[base-vsite.allowedAbilities]]����ذ�ư���Ƥ���������"
+msgstr "通常は admin ユーザにしか許可されていない一部の権限をサーバ管理者に委託することもできます。このサーバ管理者アカウントに許可したい追加的な権限を「[[base-vsite.disallowedAbilities]]」欄から「[[base-vsite.allowedAbilities]]」欄へ移動してください。"
 
 msgid "allowedAbilities"
-msgstr "���Ĥ����ɲ�Ū����"
+msgstr "許可する追加的権限"
 
 msgid "disallowedAbilities"
-msgstr "���Ĥ��ʤ�����"
+msgstr "許可しない権限"
 
 msgid "userSuspended"
-msgstr "�����ڥ��"
+msgstr "サスペンド"
 
 msgid "userSuspended_help"
-msgstr "�����д����ԥ�������Ȥ������ڥ�ɤ���Ƥ��뤫�ɤ����򼨤��ޤ���"
+msgstr "サーバ管理者アカウントがサスペンドされているかどうかを示します。"
 
 msgid "yes"
-msgstr "�Ϥ�"
+msgstr "はい"
 
 msgid "no"
-msgstr "������"
+msgstr "いいえ"
 
 msgid "suspendUser"
-msgstr "���Υ桼���򥵥��ڥ�ɤ���"
+msgstr "このユーザをサスペンドする"
 
 msgid "suspendUser_help"
-msgstr "���Υܥå���������å�����ȡ����Υ桼���ϥ����ڥ�ɤ���ޤ��������ڥ�ɤ���Ƥ���桼���ϡ������ڥ�ɤ���������ޤǥ����Ф���³�Ǥ��ޤ���"
+msgstr "このボックスをチェックすると、このユーザはサスペンドされます。サスペンドされているユーザは、サスペンドが解除されるまでサーバに接続できません。"
 
 msgid "mailCatchAll"
-msgstr "����å��������Żҥ᡼�륢�ɥ쥹"
+msgstr "キャッチオール電子メールアドレス"
 
 msgid "mailCatchAll_help"
-msgstr "�����ˤϡ�¸�ߤ��ʤ��桼����᡼��󥰥ꥹ�Ȱ��Υ�å����������Ƽ������뤿����Żҥ᡼�륢�ɥ쥹����ꤷ�Ƥ�������������Τޤޤˤ���ȡ�¸�ߤ��ʤ��桼����᡼��󥰥ꥹ�Ȱ��Υ�å������ϼ�������ޤ��󡣤����˻��ꤹ���Żҥ᡼�륢�ɥ쥹���ºߤ��ʤ����ˤϡ�����ˤ�������Ʊ�ͤˡ�¸�ߤ��ʤ��桼����᡼��󥰥ꥹ�Ȱ��Υ�å������ϵ��䤵��ޤ���(������: admin��eigyo13@BlueOnyx.org)"
+msgstr "ここには、存在しないユーザやメーリングリスト宛のメッセージを全て受信するための電子メールアドレスを指定してください。空欄のままにすると、存在しないユーザやメーリングリスト宛のメッセージは受信されません。ここに指定する電子メールアドレスが実在しない場合には、空欄にした場合と同様に、存在しないユーザやメーリングリスト宛のメッセージは拒絶されます。(指定例: admin、eigyo13@BlueOnyx.org)"
 
 # administrator accounts list
 msgid "adminUsersList"
-msgstr "�����д����ԤΥꥹ��"
+msgstr "サーバ管理者のリスト"
 
 msgid "fullName"
-msgstr "��̾"
+msgstr "氏名"
 
 msgid "fullName_help"
-msgstr "�桼���λ�̾�����Ϥ��Ƥ���������"
+msgstr "ユーザの氏名を入力してください。"
 
 msgid "userName"
-msgstr "�桼��̾"
+msgstr "ユーザ名"
 
 msgid "userName_help"
-msgstr "�桼���Υ桼��̾����ꤷ�Ƥ���������"
+msgstr "ユーザのユーザ名を指定してください。"
 
 msgid "actions"
-msgstr "�����"
+msgstr "操作・削除"
 
 msgid "actions_help"
-msgstr "��ɮ��������򥯥�å�����ȥ桼�������Ǥ�������Ȣ��������򥯥�å�����ȥ桼�����������ޤ���"
+msgstr "鉛筆アイコンをクリックするとユーザを修正でき、ゴミ箱アイコンをクリックするとユーザが削除されます。"
 
 msgid "deleteQuestion"
-msgstr "[[VAR.name]] �Ȥ��������Ԥ������Ƥ��������Ǥ�����"
+msgstr "[[VAR.name]] という管理者を削除してもよろしいですか？"
 
 msgid "deletingUser"
-msgstr "�桼���������Ƥ��ޤ������Ф餯���Ԥ���������..."
+msgstr "ユーザを削除しています。しばらくお待ちください..."
 
 # create/modify admin user page
 msgid "createAdminUser"
-msgstr "���������д����Ԥ��ɲ�"
+msgstr "新規サーバ管理者を追加"
 
 msgid "userNameCreate"
 msgstr "[[base-vsite.userName]]"
 
 msgid "userNameCreate_help"
-msgstr "���������д����ԤΥ桼��̾����ꤷ�Ƥ���������"
+msgstr "新規サーバ管理者のユーザ名を指定してください。"
 
 msgid "userPassword"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
 msgid "userPassword_help"
-msgstr "�桼���Υѥ���ɤ���ꤷ�Ƥ���������"
+msgstr "ユーザのパスワードを指定してください。"
 
 msgid "userDiskQuota"
-msgstr "������ƥǥ��������� (MB)"
+msgstr "最大許容ディスク容量"
 
 msgid "userDiskQuota_help"
-msgstr "�桼�������Υ����о�ǻȤ���ǥ��������̤κ����ͤ�ᥬ�Х��� (MB) �ǻ��ꤷ�Ƥ������������Υե�����ɤ����Τޤޤˤ���ȡ����Υ桼�������������Ǥ���ǥ��������̤����¤����ꤵ��ޤ���"
+msgstr "ユーザがこのサーバ上で使えるディスク容量の最大値をメガバイト で指定してください。このフィールドを空欄のままにすると、このユーザがアクセスできるディスク容量に制限は設定されません。"
 
 msgid "userInformation"
-msgstr "�桼���ξ���"
+msgstr "ユーザの情報"
 
 msgid "adminOptions"
-msgstr "�����ԥ��ץ����"
+msgstr "管理者オプション"
 
 # general handler error messages
 msgid "cantReadVsite"
-msgstr "[[base-vsite.operationFailed]]���Υ����Ȥ˴ؤ������� CCE ��������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトに関する情報を CCE から入手できません。"
 
 # unique.pl
 msgid "fqdnTooLong"
-msgstr "�ۥ���̾�ȥɥᥤ��͡��बĹ�����ޤ����ۥ���̾�ȥɥᥤ��͡�����碌��Ĺ���� 255 ̤���Ǥ���ɬ�פ�����ޤ���"
+msgstr "ホスト名とドメインネームが長すぎます。ホスト名とドメインネームを合わせた長さが 255 未満である必要があります。"
 
 msgid "localhostNotAllowed"
-msgstr "localhost �Ȥ����ۥ���̾��ͽ�󤵤�Ƥ��뤿�ᡢ���ۥ����ȤΥۥ���̾�Ȥ��ƻ���Ǥ��ޤ���"
+msgstr "localhost というホスト名は予約されているため、仮想サイトのホスト名として指定できません。"
 
 msgid "fqdnInUse"
-msgstr "���ꤵ�줿�ۥ���̾�ȥɥᥤ��͡�����Ȥ߹�碌 [[VAR.fqdn]] �ϡ��̤β��ۥ����Ȥ˻Ȥ��Ƥ��ޤ���"
+msgstr "指定されたホスト名とドメインネームの組み合わせ [[VAR.fqdn]] は、別の仮想サイトに使われています。"
 
 msgid "usedWebAliases"
-msgstr "���Υ����֥�������̾�ϻȤ��Ƥ��뤿�ᡢ����Ǥ��ޤ���: [[VAR.aliases]]"
+msgstr "次のウェブサーバ別名は使われているため、設定できません: [[VAR.aliases]]"
 
 msgid "usedMailAliases"
-msgstr "�����Żҥ᡼�륵������̾�ϻȤ��Ƥ��뤿�ᡢ����Ǥ��ޤ���: [[VAR.aliases]]"
+msgstr "次の電子メールサーバ別名は使われているため、設定できません: [[VAR.aliases]]"
 
 # aliases.pl
 msgid "cantCreateMailAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.alias]] �Ȥ����Żҥ᡼�륨���ꥢ��������Ǥ��ޤ���Ǥ�����"
+msgstr "[[base-vsite.operationFailed]][[VAR.alias]] という電子メールエイリアスを作成できませんでした。"
 
 msgid "cantUpdateMailAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.alias]] �Ȥ����Żҥ᡼�륨���ꥢ���򹹿��Ǥ��ޤ���Ǥ�����"
+msgstr "[[base-vsite.operationFailed]][[VAR.alias]] という電子メールエイリアスを更新できませんでした。"
 
 msgid "cantUpdateUserMailAliases"
-msgstr "[[base-vsite.operationFailed]]���Υ����Ȥ�°����桼�����Żҥ᡼�����򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトに属するユーザの電子メール情報を更新できません。"
 
 # auto_dns.pl
 msgid "cantCreateAtypeRecord"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �� DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の DNS エントリを作成できません。"
 
 msgid "cantCreateWebAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �Υ����֥�������̾ [[VAR.alias]] �� DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] のウェブサーバ別名 [[VAR.alias]] の DNS エントリを作成できません。"
 
 msgid "cantCreateAtypeRecordForMail"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] ���Żҥ᡼�륵������̾ [[VAR.alias]] �� A ������ DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の電子メールサーバ別名 [[VAR.alias]] の A タイプ DNS エントリを作成できません。"
 
 msgid "cantCreateMXRecordForMailAlias"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] ���Żҥ᡼�륵������̾ [[VAR.alias]] �� MX ������ DNS ����ȥ������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の電子メールサーバ別名 [[VAR.alias]] の MX タイプ DNS エントリを作成できません。"
 
 msgid "cantRestartDns"
-msgstr "[[base-vsite.operationFailed]]DNS �����Ф�Ƶ�ư�Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]DNS サーバを再起動できません。"
 
 msgid "cantMigrateDnsRecords"
-msgstr "[[base-vsite.operationFailed]]���������Ⱦ���˰��פ��� [[VAR.fqdn]] �� DNS ����ȥ�򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]新規サイト情報に一致する [[VAR.fqdn]] の DNS エントリを更新できません。"
 
 # change_net_info.pl
 msgid "cantUpdateVhost"
-msgstr "[[base-vsite.operationFailed]]���Υ����ȤΥ����֥����о���򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトのウェブサーバ情報を更新できません。"
 
 # maxuser.pl
 msgid "overUserLimit"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �Ȥ��������Ȥˤϡ����Ĥ���Ƥ���������Ķ����桼����¸�ߤ��Ƥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] というサイトには、許可されている最大数を超えるユーザが存在しています。"
 
 # network_destroy.pl
 msgid "vsiteUsingIpAddress"
-msgstr "1 �Ĥޤ���ʣ���Υ����Ȥ����Υͥåȥ�����󥿡��ե������˳�����Ƥ�줿 IP ���ɥ쥹��ȤäƤ��뤿�ᡢ���Υ��󥿡��ե�������̵���ˤǤ��ޤ���"
+msgstr "1 つまたは複数のサイトがこのネットワークインターフェイスに割り当てられた IP アドレスを使っているため、このインターフェイスは無効にできません。"
 
 msgid "vsiteUsingChangingIP"
-msgstr "1 �Ĥޤ���ʣ���Υ����Ȥ����Υ��󥿡��ե������˳�����Ƥ�줿 IP ���ɥ쥹��ȤäƤ��뤿�ᡢ���� IP ���ɥ쥹���ѹ��Ǥ��ޤ���"
+msgstr "1 つまたは複数のサイトがこのインターフェイスに割り当てられた IP アドレスを使っているため、この IP アドレスは変更できません。"
 
 # suspend.pl
 msgid "cantDisableVhost"
-msgstr "[[base-vsite.operationFailed]]���Υ����ȤΥ����֥����Ф�̵���ˤǤ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトのウェブサーバを無効にできません。"
 
 msgid "cantSuspendUsers"
-msgstr "[[base-vsite.operationFailed]]�����ȤΥ桼���򤹤٤ƥ����ڥ�ɤ��뤳�ȤϤǤ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]サイトのユーザをすべてサスペンドすることはできません。"
 
 # update_site_admins.pl
 msgid "cantUpdateSiteAdminCaps"
-msgstr "[[base-vsite.operationFailed]]�����ȴ����Ԥθ��¤򹹿��Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]サイト管理者の権限を更新できません。"
 
 # vsite_adminusers.pl
 msgid "couldNotAddAdminAccount"
-msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] �� admin �桼����������Ȥ�����Ǥ��ޤ���Ǥ�����"
+msgstr "[[base-vsite.operationFailed]][[VAR.fqdn]] の admin ユーザアカウントを作成できませんでした。"
 
 # vsite_create.pl
 msgid "cantAddSystemGroup"
-msgstr "���Υ����Ȥϡ������ƥब�����ȥ����ƥ॰�롼�פ�����Ǥ��ʤ��ä�����˺����Ǥ��ޤ���Ǥ�����"
+msgstr "このサイトは、システムがサイトシステムグループを作成できなかったために作成できませんでした。"
 
 msgid "cantSetSiteGroup"
-msgstr "���Υ����Ȥϡ������Ȥξ�����б����륷���ƥ॰�롼��̾�ǹ����Ǥ��ʤ��ä�����˺����Ǥ��ޤ���Ǥ�����"
+msgstr "このサイトは、サイトの情報を対応するシステムグループ名で更新できなかったために作成できませんでした。"
 
 msgid "cantAddVirtualHost"
-msgstr "���Υ����Ȥϡ���Ϣ���륦���֥����Ф�����Ǥ��ʤ��ä�����˺����Ǥ��ޤ���Ǥ�����"
+msgstr "このサイトは、関連するウェブサーバを作成できなかったために作成できませんでした。"
 
 msgid "cantAddFtpVhost"
-msgstr "���Υ����Ȥ� FTP �����Х���ȥ������Ǥ��ޤ���"
+msgstr "このサイトの FTP サーバエントリを作成できません。"
 
 msgid "cantAddSystemAlias"
-msgstr "���Υ����ȤΥ����ƥ��Żҥ᡼�륨���ꥢ�� [[VAR.alias]] ������Ǥ��ޤ���Ǥ����������ƥ��ˤ��Υ����ꥢ����ȤäƤ���桼�������ʤ����Ȥ��ǧ�����⤦���٤������������"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。システム上にこのエイリアスを使っているユーザがいないことを確認し、もう一度お試しください。"
 
 msgid "vsiteUserOwnsAlias"
-msgstr "���Υ����ȤΥ����ƥ��Żҥ᡼�륨���ꥢ�� [[VAR.alias]] ������Ǥ��ޤ���Ǥ��������Υ����ȤΥ��С��Ǥ��� [[VAR.user]] �Ȥ����桼���������Υ����ꥢ����ȤäƤ��ޤ���[[VAR.user]] �桼�����餳�Υ����ꥢ�����������⤦���٤������������"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。このサイトのメンバーである [[VAR.user]] というユーザが、このエイリアスを使っています。[[VAR.user]] ユーザからこのエイリアスを削除し、もう一度お試しください。"
 
 msgid "userOwnsAlias"
-msgstr "���Υ����ȤΥ����ƥ��Żҥ᡼�륨���ꥢ�� [[VAR.alias]] ������Ǥ��ޤ���Ǥ������ɤΥ����ȤΥ��С��Ǥ�ʤ� [[VAR.user]] �Ȥ����桼�� (���餯�����д�����) �������Υ����ꥢ����ȤäƤ��ޤ���[[VAR.user]] �桼�����餳�Υ����ꥢ�����������⤦���٤������������"
+msgstr "このサイトのシステム電子メールエイリアス [[VAR.alias]] を作成できませんでした。どのサイトのメンバーでもない [[VAR.user]] というユーザ (恐らくサーバ管理者) が、このエイリアスを使っています。[[VAR.user]] ユーザからこのエイリアスを削除し、もう一度お試しください。"
 
 # vsite_destroy.pl
 msgid "cantDestroyNetwork"
-msgstr "���Υ����Ȥ� IP ���ɥ쥹�˴ط�����ͥåȥ�����󥿡��ե�������̵���ˤǤ��ޤ��󡣤���ˤ�ꡢ�����Ȥκ����˸�����뤳�ȤϤ���ޤ���Ǥ�����"
+msgstr "このサイトの IP アドレスに関係するネットワークインターフェイスを無効にできません。これにより、サイトの削除が妨げられることはありませんでした。"
 
 msgid "siteMembersFound"
-msgstr "�����ȤΥ桼����������Ȥΰ��������Ǥ��ʤ����ᡢ�����Ȥ����Ǥ��ޤ��󡣥����ȤΥ桼���Υꥹ�Ȥ�Ĵ�٤ơ��ĤäƤ���桼����������Ȥ��ǧ���Ƥ���������"
+msgstr "サイトのユーザアカウントの一部を削除できないため、サイトを削除できません。サイトのユーザのリストを調べて、残っているユーザアカウントを確認してください。"
 
 # Vsite.pm
 msgid "cantCreateNetwork"
-msgstr "[[base-vsite.operationFailed]]���Υ����Ȥ� IP ���ɥ쥹�˴ط�����ͥåȥ�����󥿡��ե�����������Ǥ��ޤ���"
+msgstr "[[base-vsite.operationFailed]]このサイトの IP アドレスに関係するネットワークインターフェイスを作成できません。"
 
 # watch_disk.pl
 msgid "diskUsedBySites"
-msgstr "���Υ����Ȥ�¸�ߤ��Ƥ��뤿�ᡢ���ΥǥХ��������Ǥ��ޤ���: [[VAR.sites]]�����ΥǥХ�����̵���ˤ����ꡢ�ۡ���ǥ��쥯�ȥ�Ȥ��ƻ��ѤǤ��ʤ��褦�ˤ������ˡ������Υ����Ȥ������Ƥ���������"
+msgstr "次のサイトが存在しているため、このデバイスを修正できません: [[VAR.sites]]。このデバイスを無効にしたり、ホームディレクトリとして使用できないようにする前に、これらのサイトを削除してください。"
 
 # system_adminuser.pl
 msgid "cantRemoveAdminFromGroup"
-msgstr "[[VAR.group]] �Ȥ��������ȥ��롼�פ��� [[VAR.user]] �����Ǥ��ޤ���"
+msgstr "[[VAR.group]] というサイトグループから [[VAR.user]] を削除できません。"
 
 msgid "cantAddAdminToGroup"
-msgstr "[[VAR.group]] �Ȥ��������ȥ��롼�פ��� [[VAR.user]] ���ɲäǤ��ޤ���"
+msgstr "[[VAR.group]] というサイトグループから [[VAR.user]] を追加できません。"
 
 msgid "cantCreateSiteAdminGroup"
-msgstr "�����ȴ����ԥ��롼�פ�����Ǥ��ޤ���"
+msgstr "サイト管理者グループを作成できません。"
 
 msgid "cantRemoveUserFromSiteAdminGroup"
-msgstr "�����ȴ����ԥ��롼�פ��� [[VAR.user]] �����Ǥ��ޤ���"
+msgstr "サイト管理者グループから [[VAR.user]] を削除できません。"
 
 msgid "cantAddUserToSiteAdminGroup"
-msgstr "�����ȴ����ԥ��롼�פ� [[VAR.user]] ���ɲäǤ��ޤ���"
+msgstr "サイト管理者グループへ [[VAR.user]] を追加できません。"
 
 msgid "cantRemoveUserFromServerAdminGroup"
-msgstr "�����д����ԥ��롼�פ��� [[VAR.user]] �����Ǥ��ޤ���"
+msgstr "サーバ管理者グループから [[VAR.user]] を削除できません。"
 
 msgid "sitemanage"
-msgstr "�����Ȥδ���"
+msgstr "サイトの管理"
 
 msgid "sitemanageDescription"
-msgstr "���ۥ����Ȥȥ桼����������Ȥ�����Ǥ��ޤ���"
+msgstr "仮想サイトとユーザアカウントを管理できます。"
 
 msgid "sitetabDescription"
-msgstr "�桼����������ȡ��᡼��󥰥ꥹ�ȡ�ftp���Хå����åפʤɤΥ����Ȥ����������Ǥ��ޤ���"
+msgstr "ユーザアカウント、メーリングリスト、ftp、バックアップなどのサイトの設定を管理できます。"
 
 msgid "sitetabDescription_menu"
-msgstr "�桼����������ȡ��᡼��󥰥ꥹ�ȡ�ftp���Хå����åפʤɡ�[[VAR.hostname]] ���������������˥塼��ʲ�������ꤷ�Ƥ���������"
+msgstr "ユーザアカウント、メーリングリスト、ftp、バックアップなど、[[VAR.hostname]] の設定を管理するメニューを以下から指定してください。"
 
 msgid "mod_name"
-msgstr "�⥸�塼��̾"
+msgstr "モジュール名"
 
 msgid "version"
-msgstr "�С������ 1.0"
+msgstr "バージョン 1.0"
 
 # general use strings
 msgid "operationFailed"
-msgstr "���˼��Ԥ��ޤ�����"
+msgstr "操作に失敗しました。"
 
 msgid "basicSettingsTab"
-msgstr "��������"
+msgstr "基本設定"
 
 msgid "sitemaintenance"
-msgstr "�ݼ�"
+msgstr "保守"
 
 msgid "sitemaintenanceDescription"
-msgstr "�Хå����åפ������ʤɡ������Ȥ��ݼ鵡ǽ��¹ԤǤ��ޤ���"
+msgstr "バックアップや復元など、サイトの保守機能を実行できます。"
 
 msgid "siteservices"
-msgstr "�����ӥ�"
+msgstr "サービス"
 
 msgid "siteservicesDescription"
-msgstr "���Υ����Ȥ����Ѥ��륵���ӥ�������Ǥ��ޤ���"
+msgstr "このサイトで利用するサービスを設定できます。"
 
 msgid "siteweb"
-msgstr "������"
+msgstr "ウェブ"
 
 msgid "siteweb_help"
-msgstr "������ץȸ���ʤɤΥ����֥��ץ���������Ǥ��ޤ���"
+msgstr "スクリプト言語などのウェブオプションを設定できます。"
 
 msgid "siteWebSettings"
-msgstr "���������� - [[VAR.fqdn]]"
+msgstr "ウェブ設定 - [[VAR.fqdn]]"
 
 msgid "siteEmailSettings"
-msgstr "�Żҥ᡼������ - [[VAR.fqdn]]"
+msgstr "電子メール設定 - [[VAR.fqdn]]"
 
 msgid "sitemail"
-msgstr "�Żҥ᡼��"
+msgstr "電子メール"
 
 msgid "sitemail_help"
-msgstr "�����ȤΥ����ꥢ���ʤɤ��Żҥ᡼�륪�ץ���������Ǥ��ޤ���"
+msgstr "サイトのエイリアスなどの電子メールオプションを設定できます。"
 
 msgid "diskQuota_invalid"
-msgstr "[[base-vsite.userDiskQuota]] �˻��ꤵ�줿�ͤϡ����������뤫�����ǤϤ���ޤ���[[base-vsite.diskQuota_rule]]"
+msgstr "[[base-vsite.userDiskQuota]] に指定された値は、小さすぎるか数字ではありません。[[base-vsite.diskQuota_rule]]"
 
 msgid "diskQuota_rule"
-msgstr "���Υ桼���Υǥ��������̤����¤��� 1 ����礭�ʿ�������ꤷ�Ƥ������������Υե�����ɤ����Τޤޤˤ���ȡ����Υ桼���Υۡ���ǥ��쥯�ȥ꤬¸�ߤ���ǥХ�����ζ����ǥ��������̤򤹤٤Ƥ��Υ桼�����Ȥ���褦�ˤʤ�ޤ���"
+msgstr "このユーザのディスク容量を制限する 1 より大きな数字を指定してください。このフィールドを空欄のままにすると、このユーザのホームディレクトリが存在するデバイス上の空きディスク容量をすべてこのユーザが使えるようになります。"
 
 msgid "cantAddUserToServerAdminGroup"
-msgstr "�����д����ԥ��롼�פ� [[VAR.user]] ���ɲäǤ��ޤ���"
+msgstr "サーバ管理者グループに [[VAR.user]] を追加できません。"
 
 # sort name for server administrator add/modify
 msgid "sortName"
-msgstr "��ߤ���"
+msgstr "よみがな"
 
 msgid "sortName_help"
-msgstr "��̾���ɤ߲�̾�Ǥ���"
+msgstr "氏名の読み仮名です。"
 
 msgid "sortNameField"
 msgstr "[[base-vsite.sortName]]"
 
 msgid "sortNameField_rule"
-msgstr "���ξ���˴�Ť��ơ��桼����ɽ������ʤ�ߤ��ʤξ���ޤ��Ϲ߽�ˤ���ޤ�ޤ���"
+msgstr "この情報に基づいて、ユーザの表示順序（よみがなの昇順または降順）が決まります。"
 
 msgid "sortNameField_help"
-msgstr "�桼���λ�̾��Ҥ餬�ʤǵ������Ƥ����������㡧 ���ʤ٤����)��[[base-vsite.sortNameField_rule]]"
+msgstr "ユーザの氏名をひらがなで記入してください（例： たなべじゅんこ)。[[base-vsite.sortNameField_rule]]"
 
 msgid "systemFqdnNotAllowed"
-msgstr "���ꤵ�줿�ۥ���̾�ȥɥᥤ��͡�����Ȥ߹�碌 [[VAR.fqdn]] �ϡ������ƥ�ǻȤ��Ƥ��ޤ���"
+msgstr "指定されたホスト名とドメインネームの組み合わせ [[VAR.fqdn]] は、システムで使われています。"
 
 # preview site
 msgid "site_preview"
-msgstr "�ץ�ӥ塼����������"
+msgstr "プレビューサイト設定"
 
 msgid "site_preview_help"
-msgstr "�ܥå���������å�����ȡ�http://������̾/���ۥ�����̾/�ǥ����֥����ȤؤΥ����������Ǥ��ޤ���"
+msgstr "ボックスをチェックすると、http://サーバ名/仮想サイト名/でウェブサイトへのアクセスができます。"
 
 msgid "cantChangeSitePreview"
-msgstr "���Υ����ȤΥץ�ӥ塼�����Ȥ�����Ǥ��ޤ���"
+msgstr "このサイトのプレビューサイトを作成できません。"
 
 msgid "emailDisabled"
-msgstr "�Żҥ᡼���̵���ˤ���"
+msgstr "電子メールを無効にする"
 
 msgid "emailDisabled_help"
-msgstr "���Υɥᥤ����Żҥ᡼�뤬̵���ˤʤ�ޤ���"
+msgstr "このドメインの電子メールが無効になります。"
 
 msgid "userwebs"
-msgstr "Enable user owned webs"
+msgstr "ユーザ所有のウェブを有効に"
 
 msgid "userwebs_help"
-msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
-
-### PHP Security Additions below:
+msgstr "有効にした場合、各ユーザーはhttp://www.example.com/を介してメインウェブサイトのウェブスペースと到達〜ユーザ名/から分離されている彼自身のウェブスペースを持っています。ユーザーは、自分のWeb /専用のディレクトリにFTPを通じて、自分のWebページをアップロードすることができます。"
 
 msgid "php_server"
-msgstr "PHP Settings"
+msgstr "PHPの設定"
 
 msgid "php_serverDescription"
-msgstr "This page allows you to configure security and performance related settings of PHP. These changes are applied to your php.ini config file of PHP. Please keep in mind that PHP is very powerful and can often be used to exploit a server. Hence we configure it in a very restrictive and secure fashion. You can loosen these restrictions on a per site basis."
+msgstr "このページでは、PHPのセキュリティとパフォーマンス関連の設定を構成することができます。これらの変更は、PHPのphp.iniの設定ファイルに適用されます。 PHPは非常に強力であり、しばしばサーバーを悪用するために使用することができることを心に留めておいてください。したがって、我々は非常に限定的かつ安全な方法でそれを設定します。あなたは、サイトごとにこれらの制限を緩めることができます。"
 
 msgid "php_server_head"
-msgstr "Server wide PHP Settings"
+msgstr "サーバーワイドPHPの設定"
 
 msgid "php_ini_security_settings"
-msgstr "Main PHP Settings"
+msgstr "メインのPHPの設定"
 
 msgid "php_ini_security_settings_help"
-msgstr "Main security and performance settings applicable on a server wide level. These changes are directly applied to your php.ini file."
+msgstr "サーバー全体のレベルで適用される主なセキュリティとパフォーマンス設定。これらの変更は、直接php.iniファイルに適用されます。"
 
 msgid "php_ini_expert_mode"
-msgstr "Review php.ini"
+msgstr "レビューphp.iniの"
 
 msgid "php_ini_expert_mode_help"
-msgstr "This page allows you to review the entire php.ini file and shows all options - not just the few editable ones. Please note: Saving changes on this page is not possible."
+msgstr "このページでは、全体のphp.iniファイルを確認することを可能にし、すべてのオプションを示します - だけではなく、いくつかの編集可能なものを。ご注意：このページで変更を保存することはできません。"
 
 msgid "php_ini_location"
-msgstr "Location:"
+msgstr "場所："
 
 msgid "php_ini_location_help"
-msgstr "This shows where your php.ini file is located."
+msgstr "これは、php.iniファイルが置かれている場所を示します。"
 
 msgid "register_globals"
-msgstr "Register Globals:"
+msgstr "グローバルを登録します。"
 
 msgid "register_globals_help"
-msgstr "For maximum security you must set 'register_globals' to 'Off'. Otherwise it is easily possible that unsecurely programmed PHP scripts can be used to hack your server."
+msgstr "最大限のセキュリティを確保するためには、 &#39;off&#39;に &#39;register_globalsが&#39;を設定しなければなりません。それ以外の場合は、unsecurelyプログラムされたPHPスクリプトは、あなたのサーバーをハックするために使用することができることを容易に可能である。"
 
 msgid "safe_mode"
-msgstr "Safe Mode:"
+msgstr "セーフモード："
 
 msgid "safe_mode_help"
-msgstr "The PHP safe mode is an attempt to solve the shared-server security problem. If enabled PHP scripts will only be allowed to open files which are owned by the *same* user (UID) and group (GID). SECURITY WARNING: You *SHOULD NOT* turn off Safe Mode. Turning off Safe Mode is an invitation to get hacked."
+msgstr "PHPセーフモードは、共有サーバのセキュリティ問題を解決するための試みである。場合対応PHPスクリプトのみ*同じ*ユーザ（UID）とグループ（GID）が所有しているファイルを開くことが許可されます。セキュリティ警告：あなたは* *セーフモードをオフにするべきではない（SHOULD NOT）。セーフモードをオフにすると、ハッキングされたために招待状です。"
 
 msgid "safe_mode_gid"
-msgstr "Safe Mode GID:"
+msgstr "セーフモードはGID："
 
 msgid "safe_mode_gid_help"
-msgstr "By default, Safe Mode does an UID/GID compare check when opening files and only allows to open files owned by the same UID/GID. If you want to relax this to just a GID compare, then turn on safe_mode_gid."
+msgstr "デフォルトでは、セーフモードはUID / GIDは、ファイルを開くときにチェックを比較し、同じUID / GIDが所有するファイルを開くことができません。あなただけのGIDの比較にこれをリラックスしたい場合は、チェックを緩やかオンにします。"
 
 msgid "safe_mode_include_dir"
-msgstr "Safe Mode include directory:"
+msgstr "セーフモードは、ディレクトリが含まれています。"
 
 msgid "safe_mode_include_dir_help"
-msgstr "UID/GID checks are bypassed when including files from this directory and its subdirectories. This directive can take a colon (semi-colon on Windows) separated path, rather than just a single directory. The restriction specified is actually a prefix, not a directory name. This means that 'safe_mode_include_dir = /dir/incl' also allows access to '/dir/include' and '/dir/incls' if they exist. When you want to restrict access to only the specified directory, end with a slash. For example: 'safe_mode_include_dir = /dir/incl/'. If the value of this directive is empty, no files with different UID/GID can be included."
+msgstr "このディレクトリとそのサブディレクトリからファイルを含める場合、UID / GIDのチェックはバイパスされます。このディレクティブは、コロン（Windowsではセミコロン）で区切られたパスだけではなく、単一のディレクトリを取ることができます。指定された制限は実はプレフィックスではなく、ディレクトリ名です。これは、彼らが存在する場合 &#39;safe_mode_include_dirを組み込ん= / DIR /税込は&#39;また &#39;/ DIR /インクルード&#39;と &#39;/ DIR / INCLS&#39;へのアクセスを許可することを意味します。あなたは、スラッシュで終了し、指定されたディレクトリへのアクセスを制限したいときに。たとえば、次のように &#39;safe_mode_include_dirを組み込ん= / DIR /税込/&#39;。このディレクティブの値が空の場合、異なるUID / GIDを持つファイルが含まれていることはできません。"
 
 msgid "safe_mode_exec_dir"
-msgstr "Safe Mode exec directory:"
+msgstr "セーフモードのexecディレクトリ："
 
 msgid "safe_mode_exec_dir_help"
-msgstr "If PHP is used in safe mode, system() and the other functions executing system programs refuse to start programs that are not in this directory."
+msgstr "PHPがセーフモード、システム（）で使用されている場合は、システム?プログラムを実行する他の関数は、このディレクトリに含まれていないプログラムを起動することを拒否。"
 
 msgid "safe_mode_allowed_env_vars"
-msgstr "Safe Mode allowed evelope variables:"
+msgstr "セーフモードevelope変数を許さ："
 
 msgid "safe_mode_allowed_env_vars_help"
-msgstr "Setting certain environment variables may be a potential security breach. This directive contains a comma-delimited list of prefixes. In Safe Mode, the user may only alter environment variables whose names begin with the prefixes supplied here. By default, users will only be able to set environment variables that begin with PHP_ (e.g. PHP_FOO=BAR). Note: If this directive is empty, PHP will let the user modify ANY environment variable!"
+msgstr "特定の環境変数を設定すると、潜在的なセキュリティ違反かもしれません。このディレクティブは、接頭辞のカンマ区切りのリストが含まれています。セーフモードでは、ユーザーは唯一名前がここに付属の接頭辞で始まる環境変数を変更することがあります。デフォルトでは、ユーザーはPHP_（例えばPHP_FOO = BAR）で始まる環境変数を設定することができるようになります。注意：このディレクティブが空の場合、PHPはユーザーが任意の環境変数を変更できるようになる！"
 
 msgid "safe_mode_protected_env_vars"
-msgstr "Safe Mode protected envelope variables:"
+msgstr "セーフモード保護された封筒の変数："
 
 msgid "safe_mode_protected_env_vars_help"
-msgstr "This directive contains a comma-delimited list of environment variables that the end user won't be able to change using putenv(). These variables will be protected even if safe_mode_allowed_env_vars is set to allow to change them."
+msgstr "このディレクティブは、エンドユーザーがをputenv（）を使用して変更することはできないという環境変数のカンマ区切りのリストが含まれています。 safe_mode_allowed_env_varsが変更することを許可するように設定されている場合でも、これらの変数は保護されます。"
 
 msgid "disable_functions"
-msgstr "Disable functions:"
+msgstr "機能を無効にします。"
 
 msgid "disable_functions_help"
-msgstr "This directive allows you to disable certain functions for security reasons. It takes on a comma-delimited list of function names. disable_functions is not affected by Safe Mode."
+msgstr "このディレクティブを使用すると、セキュリティ上の理由から、特定の機能を無効にすることができます。これは、関数名のカンマ区切りのリストになります。 disable_functionsはセーフモードの影響を受けません。"
 
 msgid "disable_classes"
-msgstr "Disable classes:"
+msgstr "クラスを無効にする："
 
 msgid "disable_classes_help"
-msgstr "This directive allows you to disable certain classes for security reasons. It takes on a comma-delimited list of class names. disable_classes is not affected by Safe Mode."
+msgstr "このディレクティブを使用すると、セキュリティ上の理由から、特定のクラスを無効にすることができます。これは、クラス名のカンマ区切りのリストをとります。 disable_classesはセーフモードの影響を受けません。"
 
 msgid "allow_url_fopen"
-msgstr "Allow URL fopen:"
+msgstr "URLのFOPENを許可："
 
 msgid "allow_url_fopen_help"
-msgstr "If enabled, allow_url_fopen allows PHP's file functions - such as file_get_contents() and the include and require statements - can retrieve data from remote locations, like an FTP or web site. Programmers frequently forget this and don't do proper input filtering when passing user-provided data to these functions, opening them up to code injection vulnerabilities. A large number of code injection vulnerabilities and hacks reported in PHP-based web applications are caused by the combination of enabling allow_url_fopen and bad input filtering. Off by default."
+msgstr "有効にした場合、allow_url_fopenをPHPのファイル関数ができます - などはfile_get_contents（など）をし、含まれており、文を必要とする -  FTPまたはWebサイトのように、遠隔地からのデータを取得することができます。プログラマは、頻繁にこのことを忘れて、コードインジェクションの脆弱性にそれらを開放し、これらの関数にユーザー提供のデータを渡すときにフィルタリング適切な入力をしない。 PHPベースのWebアプリケーションで報告されたコードインジェクションの脆弱性とハック多数のallow_url_fopenをと不正な入力フィルタリングを有効にすることの組み合わせによって引き起こされます。デフォルトではオフ。"
 
 msgid "allow_url_include"
-msgstr "Allow URL include:"
+msgstr "URLが含まれることができます："
 
 msgid "allow_url_include_help"
-msgstr "(Only applicable for PHP >= 5.2.0) If disabled, allow_url_include bars remote file access via the include and require statements, but leaves it available for other file functions like fopen() and file_get_contents. Please note: include and require are the most common attack points for code injection attempts, so this setting plugs that particular hole without affecting the remote file access capabilities of the standard file functions. By default, allow_url_include is disabled."
+msgstr "ビア（PHPにのみ適用&gt; = 5.2.0）無効にした場合にはallow_url_includeバーリモートファイルアクセスが含まれており、文を必要としますが、関数fopen（）とはfile_get_contentsのような他のファイル関数のために、それが可能なままになります。ご注意：includeおよび必要とコードインジェクションの試みのための最も一般的な攻撃ポイントなので、この設定は標準のファイル関数のリモートファイルアクセス機能に影響を与えることなく、その特定の穴を差し込む。デフォルトでは、allow_url_includeをは無効になっています。"
 
 msgid "upload_max_filesize"
-msgstr "Upload max filesize:"
+msgstr "最大ファイルサイズをアップロードする："
 
 msgid "upload_max_filesize_help"
-msgstr "upload_max_filesize limits the maximum size of files that PHP will accept through uploads. Attackers may attempt to send grossly oversized files to exhaust your system resources; by setting a realistic value here you can mitigate some of the damage by those attacks. By default, PHP sets this value to 2MB."
+msgstr "upload_max_filesizeではPHPがアップロードを通じて受け入れるというファイルの最大サイズを制限します。攻撃者は、システムリソースを使い果たすために肉眼特大のファイルを送信しようとすることがあり、ここで現実的な値を設定することにより、あなたは、これらの攻撃によってダメージの一部を軽減することができます。デフォルトでは、PHPは2メガバイトにこの値を設定します。"
 
 msgid "post_max_size"
-msgstr "Post max size:"
+msgstr "最大サイズを投稿："
 
 msgid "post_max_size_help"
-msgstr "This protection allows you to limit the maximum size POST request that PHP will process. Attackers may attempt to send grossly oversized POST requests to exhaust your system resources; by setting a realistic value here you can mitigate some of the damage by those attacks."
+msgstr "この保護は、PHPが処理する最大サイズのPOST要求を制限することができます。攻撃者は、システムリソースを使い果たすために肉眼特大のPOSTリクエストを送信しようとすることがあり、ここで現実的な値を設定することにより、あなたは、これらの攻撃によってダメージの一部を軽減することができます。"
 
 msgid "max_execution_time"
-msgstr "Max execution time:"
+msgstr "最大実行時間："
 
 msgid "max_execution_time_help"
-msgstr "Maximum amount of time each script may run."
+msgstr "時間の最大量は、それぞれのスクリプトが実行されることがあります。"
 
 msgid "max_input_time"
-msgstr "Max input time:"
+msgstr "最大入力時間："
 
 msgid "max_input_time_help"
-msgstr "Maximum amount of time each script may spend parsing request data."
+msgstr "最大時間は、各スクリプトは、要求データを構文解析費やすことができる。"
 
 msgid "memory_limit"
-msgstr "Memory limit:"
+msgstr "メモリ制限："
 
 msgid "memory_limit_help"
-msgstr "Defines how much memory a script may use. Settings this to a high value leaves the server vulnerable to attacks that attempt to exhaust resources and creates an environment where poor programming practices can propagate unchecked."
+msgstr "スクリプトが使用できるメモリの量を定義します。高い値に設定、これはリソースを使い果たすしようと貧しいプログラミング手法がオフに伝播することができる環境を作成した攻撃に対して脆弱なサーバーを残します。"
 
 msgid "vsitephpMenu"
 msgstr "PHP"
 
 msgid "vsitephpMenuDesc"
-msgstr "PHP related security and ressource settings for this virtual site. Allows you to individually adjust the PHP related security and resource settings on a per site basis."
+msgstr "この仮想サイトのPHP関連のセキュリティとressource設定。個別サイトごとにPHP関連のセキュリティとリソースの設定を調整することができます。"
 
 msgid "php_vsite_head"
-msgstr "PHP Settings for [[VAR.vsite]]"
+msgstr "[[VAR.vsite]]のためにPHPの設定"
 
 msgid "PHPVsiteStatusBox_header"
-msgstr "Please note:"
+msgstr "ご注意："
 
 msgid "phpVsiteNotEnabled"
-msgstr "PHP is not enabled for this virtual site. Before PHP is not enabled in general, no further PHP related options may be configured."
+msgstr "PHPは、この仮想サイトが有効になっていません。 PHPは一般的に有効になっていない前に、これ以上のPHP関連のオプションは設定されないかもしれません。"
 
 msgid "php_ini"
-msgstr "php.ini"
+msgstr "php.iniの"
 
 msgid "php_ini_help"
-msgstr "Raw contends of your php.ini file. For review only. Changes cannot be saved on this page."
-
-### fileOwner additions:
+msgstr "生は、php.iniファイルの主張。審査のみ。変更はこのページで保存することはできません。"
 
 msgid "fileOwner_head"
-msgstr "Owner of all /web content for [[VAR.vsite]]"
+msgstr "[[VAR.vsite]]のためのすべて/ Webコンテンツの所有者"
 
 msgid "prefered_siteAdmin"
-msgstr "SiteAdmin that owns /web:"
+msgstr "/ウェブを所有SiteAdmin："
 
 msgid "prefered_siteAdmin_help"
-msgstr "If suPHP is enabled, then this field must be set to an existing siteAdmin of this site, or your PHP scripts won't run. Even if you don't have suPHP enabled: If you choose an owner from the list of siteAdmins, then the /web directory of your site will be chown'ed recursively to the UID of the selected user. Means: All files and folders in /web will afterwards be owned by the selected user."
+msgstr "suPHPが有効になっている場合、このフィールドは、このサイトの既存siteAdminに設定する必要があります、またはあなたのPHPスクリプトが実行されません。あなたはsuPHPが有効になっていない場合でも：あなたがsiteAdminsのリストから所有者を選択した場合、あなたのサイトの/ webディレクトリを選択したユーザのUIDに再帰的にchown&#39;edされます。手段：/ウェブ内のすべてのファイルとフォルダは、その後、選択したユーザーによって所有されます。"
 
 msgid "fileOwnerMenu"
-msgstr "Web Ownership"
+msgstr "ウェブ所有"
 
 msgid "fileOwnerDesc"
-msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have suPHP enabled. If suPHP is enabled and you don't have a siteAdmin as owner of your /web folder, then PHP scripts of your site will not run."
-
-
-# ---- start Prefix
+msgstr "このメニュー項目は、あなたのサイト/ Webフォルダ（およびすべてのファイルとフォルダ内！）の所有権を変更することができます。それはあなたがsuPHP有効にしている場合particulary重要です所有者としてsiteAdminを選択することができます。 suPHPが有効になっていると、あなたの/ Webフォルダの所有者としてsiteAdminをお持ちでない場合は、あなたのサイトの当時のPHPスクリプトが実行されません。"
 
 msgid "prefix"
-msgstr "Site Prefix:"
+msgstr "サイトの接頭辞："
 
 msgid "prefix_help"
-msgstr "The 'Site Prefix' is an optional prefix that allows you to identify users or services related to a site. If set, all (newly created) usernames will be prefixed with this string. A prefix must be alphanumeric (numbers and/or letters only) and may not be longer than five characters. Please note: A prefix can be added or changed at a later time. But doing so will NOT affect any usernames that are already present."
+msgstr "&#39;サイト接頭辞は、&#39;あなたは、サイトに関連するユーザやサービスを識別することを可能にするオプションの接頭辞です。設定した場合は、すべての（新たに作成された）ユーザー名は、この文字列が付けられます。接頭辞は英数字でなければなりません（数字及び/または文字のみ）と5文字より長くないかもしれません。ご注意：接頭辞は後で追加または変更することができます。しかし、そうすることは、すでに存在しているユーザ名のいずれかには影響しません。"
 
 msgid "prefixTooLong"
-msgstr "The 'Site Prefix' you specified is longer than 5 characters."
+msgstr "指定した &#39;サイト接頭辞は&#39; 5文字を超えています。"
 
 msgid "prefixInUse"
-msgstr "The 'Site Prefix' you specified is already in use by another site: [[VAR.fqdn]]"
+msgstr "指定した &#39;サイト接頭辞は&#39;別のサイトですでに使用されている[[VAR.fqdn]]"
 
 msgid "prefixInvalidChars"
-msgstr "The 'Site Prefix' you specified contains unsupported characters. Only alphanumerical characters are allowed, which means letters and numbers, but no more than five in total."
-
-# ---- end Prefix
-
-
-# --- Start webAliasRedirects
+msgstr "指定した &#39;サイト接頭辞&#39;はサポートされていない文字が含まれています。唯一の英数字文字は文字と数字を意味する、許されませんが、これ以上、合計で5よりもされています。"
 
 msgid "webAliasRedirects"
-msgstr "Web Alias Redirects"
+msgstr "ウェブエイリアスリダイレクト"
 
 msgid "webAliasRedirects_help"
-msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems."  
-
-# --- End webAliasRedirects
-
-
-# --- Start 'open_basedir'
+msgstr "サイトは複数のWebサーバのエイリアス &quot;を持っている場合は、その後の行動は、次の2種類が可能です：（a）は &#39;WebサーバのエイリアスのURLへのURL要求がメインのサイトURLにリダイレクトします。これがデフォルトです。 （b）は &#39;Webサーバエイリアス&#39;へのURL要求がメインのサイトURLにリダイレクトされません。代わりにエイリアスは、自分自身で独立したサイトのようになります。この動作は、Web統計および/または特定のCMSシステムと面倒なことができますのでご了承ください。"
 
 msgid "open_basedir_mandatory"
-msgstr "Open Basedir (Server):"
+msgstr "オープンBASEDIR（サーバー）："
 
 msgid "open_basedir_mandatory_help"
-msgstr "These are the 'open_basedir' settings as defined for the whole server under 'Server Management' / 'Security' / 'PHP'. They are mandatory for every virtual site. In the field below you can specify additional directories that should be added to the 'open_basedir' directive."
+msgstr "これらは &#39;サーバ管理&#39; / &#39;セキュリティ&#39; / &#39;PHP&#39;下全体のサーバーに対して定義されている &#39;open_basedirの&#39;設定です。彼らは、すべての仮想サイトに必須です。下のフィールドには、 &#39;open_basedirの&#39;ディレクティブに追加されるべきである追加のディレクトリを指定することができます。"
 
 msgid "open_basedir"
-msgstr "Open Basedir (Vsite):"
+msgstr "オープンBASEDIR（Vsite）："
 
 msgid "open_basedir_help"
-msgstr "The 'open_basedir' directive limits the file access of PHP scripts to certain directories. The 'Open Basedir (Server)' field above shows you to which directories PHP scripts already have access to on this server. If the PHP scripts of this site need additional access to further directories, then you can specify these directories here. When the file is outside the specified directory-tree, PHP will refuse to open it."
+msgstr "&#39;open_basedirの&#39;ディレクティブは、特定のディレクトリにPHPスクリプトのファイルアクセスを制限します。 &#39;BASEDIR（サーバー）オープン&#39;フィールドは、上記のPHPスクリプトは、すでにこのサーバー上へのアクセス権を持っているディレクトリへのあなたを示しています。このサイトのPHPスクリプトはさらにディレクトリへの追加のアクセスを必要とする場合は、ここでこれらのディレクトリを指定することができます。ファイルが指定されたディレクトリツリーの外にある場合、PHPはそれを開くことを拒否します。"
 
-# --- End 'open_basedir'
+msgid "siteRemove"
+msgstr "このサイトを削除します。"
+
+msgid "sitePreview"
+msgstr "このサイトをプレビューします。"
+
+msgid "Features"
+msgstr "特長"
+
+msgid "Features_help"
+msgstr "示しているサービスや機能は、この仮想サイトで有効になっている。"
+
+msgid "siteRemoveConfirmNeutral"
+msgstr "あなたは、この仮想サイトを削除してもよろしいですか？"
+
+msgid "removeConfirmInfo"
+msgstr "これはまた、すべてのユーザーアカウント、メールやこの仮想サイトのサイトデータを削除し、元に戻すことはできません。"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "Actions_help"
+msgstr "これらのボタンを使用すると、仮想サイトの変更、表示または削除することができます。"
+
+msgid "sitedefaultsbutNeutral"
+msgstr "テンプレート"
+
+msgid "sitedefaultsbutNeutral_help"
+msgstr "自動的に仮想サイトを追加する際に記入されている設定を編集します。"
+
+msgid "disabled"
+msgstr "使用禁止"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "PHP_version"
+msgstr "PHPバージョン："
+
+msgid "PHP_version_help"
+msgstr "公開WebサーバのPHPのバージョンを表示します。"
+
+##
+
+msgid "cap_serverVsite"
+msgstr "仮想サイトの設定"
+
+msgid "vsite"
+msgstr "仮想サイトの設定"
+
+msgid "vsite_help"
+msgstr "仮想サイトの設定を変更するには、ここをクリックしてください。"
+
+msgid "vsiteSettings"
+msgstr "仮想サイトの設定"
+
+msgid "maxVsiteField"
+msgstr "最大仮想サイト"
+
+msgid "maxVsiteField_help"
+msgstr "このサーバー上の仮想サイトの最大数。"
+
+msgid "maxVsiteUpper"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "値がに入力された[base-vsite.maxVsiteField]]、[base-vsite.maxVsiteUpper]]未満でなければなりません。"
+
+msgid "maxVsiteAlreadyMade"
+msgstr "[base-vsite.maxVsiteField]]あたりに定義されるように仮想サイトの現在の数。"
+
+msgid "userPrefixField"
+msgstr "ユーザー接頭部"
+
+msgid "userPrefixField_help"
+msgstr "ユーザ名のプレフィックスを入力してください。例：customerA_、site1_"
+
+msgid "userPrefixEnabled"
+msgstr "ユーザーの接頭辞を使用可能に"
+
+msgid "userPrefixEnabled_help"
+msgstr "機能ユーザーのプレフィックスを有効にすると、すべての新しいユーザー名は、この接頭辞を付けることがます。"
+
+msgid "userShell"
+msgstr "シェルアクセスを有効にする"
+
+msgid "userShell_help"
+msgstr "TelnetやSSHなどのサービスを使用してサーバーに接続できるユーザーを作成できるようにシェルアクセスを有効にします。"
+
+msgid "userSitesUser"
+msgstr "最大ユーザー"
+
+msgid "userSitesUser_help"
+msgstr "このサーバー上に作成することができるユーザーの最大数。"
+
+msgid "maxDiskAlreadyMade"
+msgstr "現在、[base-vsite.quota]]に従って、使用中のディスク領域の量。"
+
+msgid "maxUsersAlreadyMade"
+msgstr "[base-vsite.userSitesUser]]に従って、現在現存するユーザーの数。"
+
+msgid "createdUser"
+msgstr "オーナー"
+
+msgid "createdUser_help"
+msgstr "この仮想サイトの所有者が表示されます。"
 

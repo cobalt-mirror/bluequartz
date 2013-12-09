@@ -1,6 +1,6 @@
 <!--
     Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-    $Id: vsite_caps.schema,v 1.2 2001/09/05 22:35:35 jcheng Exp $
+    $Id: vsite_caps.schema
 
     This capability specifies who can modify admin's special privileges
     like su to root and all that.
@@ -17,3 +17,27 @@
         name="nameTag" type="scalar" default="[[base-vsite.manageAdmin]]"
     />
 </class>
+
+<class 
+    name="Capabilities" namespace="serverVsite" version="0.1" 
+> 
+    <property 
+        name="capable" type="boolean" default="1" 
+        readacl="ruleCapable(serverVsite)" 
+    /> 
+    <property 
+        name="nameTag" type="scalar" default="[[base-vsite.cap_serverVsite]]" 
+    /> 
+</class> 
+ 
+<class 
+    name="Capabilities" namespace="manageSite" version="0.1" 
+> 
+    <property 
+        name="capable" type="boolean" default="1" 
+        readacl="ruleCapable(manageSite)" 
+    /> 
+    <property 
+        name="nameTag" type="scalar" default="[[base-vsite.cap_manageSite]]" 
+    /> 
+</class> 

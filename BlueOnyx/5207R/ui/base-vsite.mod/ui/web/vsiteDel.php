@@ -1,7 +1,7 @@
 <?php
 /*
  * Copyright 2001, 2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: vsiteDel.php,v 1.8.2.2 2002/02/28 03:08:04 pbaltz Exp $
+ * $Id: vsiteDel.php
  * 
  * tell cce to destroy the specified virtual site
  */
@@ -10,8 +10,8 @@ include_once("ServerScriptHelper.php");
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'manageSite' should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }

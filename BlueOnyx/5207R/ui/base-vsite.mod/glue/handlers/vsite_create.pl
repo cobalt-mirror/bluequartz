@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
-# $Id: vsite_create.pl,v 1.41 2001/11/30 02:15:47 pbaltz Exp $
+# $Id: vsite_create.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # largely based on siteMod.pm and siteAdd.pm in turbo_ui
@@ -49,20 +49,8 @@ if (not $group_name)
 
 my @admins = ('admin');
 
-# also add all adminUser's to group
-my @admin_oids = $cce->find('User', 
-					{ 
-						'capLevels' => 'adminUser', 
-						'systemAdministrator' => 0 
-					});
-if (scalar(@admin_oids))
-{
-	for my $oid (@admin_oids)
-	{
-		($ok, my $admin) = $cce->get($oid);
-		push @admins, $admin->{name};
-	}
-}
+# Add created admin user to group 
+push @admins, $vsite->{createdUser}; 
 
 group_add_members($group_name, @admins);
 
@@ -113,6 +101,7 @@ $DEBUG && print STDERR "Setting up site web.\n";
 Sauce::Util::modifytree($site_web);
 system("/bin/cp -r $skel_web/* \"$site_web/.\"");
 Sauce::Util::chmodfile(02775, "$site_web/error");
+system("/bin/chmod 0664 $site_web/error/*"); 
 system("/bin/chown -R nobody.$group_name \"$site_web/error\"");
 
 # hack to make sure index.html is at least there

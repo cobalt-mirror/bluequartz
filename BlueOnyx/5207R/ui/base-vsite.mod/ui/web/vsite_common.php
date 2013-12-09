@@ -1,20 +1,20 @@
 <?php
 /*
  * Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
- * $Id: vsite_common.php,v 1.11.2.2 2002/04/05 09:55:51 pbaltz Exp $
+ * $Id: vsite_common.php
  *
  * common functions used in more than one ui page
  */
 
 function generate_site_list(&$site_list, &$cce, &$factory, $vsite_oids, 
-			    $sites_per_page = 15, $page)
+			    $sites_per_page = 15)
 {
 
 	// find all the sites' oids, but only actually get a certain amount per 
 	// page at a time
 	$maxLength = $sites_per_page;
 
-	$site_list->setColumnWidths(array("50%", "20%", "10%", "10%"));
+	$site_list->setColumnWidths(array("50%", "20%", "10%", "10%", "10%"));
 	$site_list->setEntryNum(count($vsite_oids));
 	$site_list->setLength($maxLength);  
 
@@ -68,10 +68,12 @@ function generate_site_list(&$site_list, &$cce, &$factory, $vsite_oids,
 						  $currSite["ipaddr"],
 						  $access = "r");
 		$ipaddr->setPreserveData(false);
+		$created = $factory->getSimpleText($currSite['createdUser']);
 
 		$site_list->addEntry(array(
 					$hostname,
 					$ipaddr,
+					$created,
 					$suspend,
 					$actions
 				     ), "", false, $i);

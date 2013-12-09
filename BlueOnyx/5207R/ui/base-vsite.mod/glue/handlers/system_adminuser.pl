@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-# $Id: system_adminuser.pl,v 1.4 2001/10/27 03:30:35 pbaltz Exp $
+# $Id: system_adminuser.pl
 #
 # make sure all adminUser's get added to the site groups when the user
 # is created or destroyed and to the admin-users group

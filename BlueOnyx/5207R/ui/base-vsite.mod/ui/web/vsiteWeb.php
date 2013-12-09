@@ -1,5 +1,5 @@
 <?php
-// $Id: vsiteWeb.php,v 1.1 2001/11/05 08:24:52 pbose Exp $
+// $Id: vsiteWeb.php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 //
 // This page brings in things related to web services
@@ -11,8 +11,8 @@ include_once('Capabilities.php');
 
 $helper = new ServerScriptHelper();
 
-// Only adminUser and siteAdmin should be here
-if (!$helper->getAllowed('adminUser') &&
+// Only 'manageSite' and siteAdmin should be here
+if (!$helper->getAllowed('manageSite') &&
     !($helper->getAllowed('siteAdmin') &&
       $group == $helper->loginUser['site'])) {
   header("location: /error/forbidden.html");
@@ -23,9 +23,9 @@ $factory =& $helper->getHtmlComponentFactory('base-vsite',
                 '/base/vsite/vsiteWeb.php');
 $cce =& $helper->getCceClient();
 
-// Only adminUser can modify things on this page.  
+// Only 'manageSite' can modify things on this page.  
 // Site admins can view it for informational purposes.
-if ($helper->getAllowed('adminUser')){
+if ($helper->getAllowed('manageSite')){
     $is_site_admin = 0;
     $access = 'rw';
 } else {
@@ -93,7 +93,7 @@ $settings->addFormField($factory->getTextField('save', '1', ''));
 $page =& $factory->getPage();
 $form =& $page->getForm();
 // add the buttons
-if ($helper->getAllowed('adminUser'))
+if ($helper->getAllowed('manageSite'))
     $settings->addButton($factory->getSaveButton($page->getSubmitAction()));
 
 print $page->toHeaderHtml();

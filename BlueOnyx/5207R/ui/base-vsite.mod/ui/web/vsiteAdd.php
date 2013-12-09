@@ -1,17 +1,18 @@
 <?php
 // Copyright Sun Microsystems, Inc. 2001
-// $Id: vsiteAdd.php,v 1.38.2.1 2002/01/12 05:00:00 pbaltz Exp $
+// $Id: vsiteAdd.php
 // vsiteAdd.php
 // display the form for creating a new virtual site
 
 include_once("ServerScriptHelper.php");
 include_once("AutoFeatures.php");
 include_once("ArrayPacker.php");
+include_once("Error.php"); 
 
 $helper = new ServerScriptHelper($sessionId);
 
-// Only adminUser should be here
-if (!$helper->getAllowed('adminUser')) {
+// Only 'manageSite' should be here
+if (!$helper->getAllowed('manageSite')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -43,6 +44,24 @@ $errors = $helper->getErrors();
  */
 
 list($sysoid) = $cce->find("System");
+$vsite = $cce->get($sysoid, "Vsite"); 
+$vsiteoids = $cce->find("Vsite"); 
+ 
+if ($vsite['maxVsite'] <= count($vsiteoids)) { 
+    $errors[] = new Error('[[base-vsite.maxVsiteAlreadyMade]]'); 
+    print $helper->toHandlerHtml("/base/vsite/vsiteList.php", $errors, false); 
+} 
+ 
+ 
+// check vsite max for administrator 
+list($user_oid) = $cce->find('User', array('name' => $loginName)); 
+$sites = $cce->get($user_oid, 'Sites'); 
+ 
+$user_sites = $cce->find('Vsite', array('createdUser' => $loginName)); 
+if ($sites['max'] > 0 && $sites['max'] <= count($user_sites)) { 
+    $errors[] = new Error('[[base-vsite.maxVsiteAlreadyMade]]'); 
+    print $helper->toHandlerHtml("/base/vsite/vsiteList.php", $errors, false); 
+} 
 if (count($errors) == 0)
 {    
     $vsiteDefaults = $cce->get($sysoid, "VsiteDefaults");
@@ -97,13 +116,18 @@ $settings->processErrors($errors);
 
 // With IP Pooling enabled, display the IP field with a 
 // range of possible choices
+global $loginName;
 $net_opts = $cce->get($sysoid, "Network");
 if ($net_opts["pooling"]) {
 	$range_strings = array();
+
 	$oids = $cce->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
 	foreach ($oids as $oid) {
 		$range = $cce->get($oid);
-		$range_strings[] = $range['min'] . ' - ' . $range['max'];
+        $adminArray = $cce->scalar_to_array($range['admin']); 
+        if ($loginName == 'admin' || in_array($loginName, $adminArray)) { 
+                $range_strings[] = $range['min'] . ' - ' . $range['max']; 
+        } 
 	}
 	$string = arrayToString($range_strings);
 	$ip = $factory->getIpAddress("ipAddr", $vsiteDefaults["ipaddr"]);
@@ -269,11 +293,31 @@ $cce->set((!isset($selected_oid) ? $home_oid : $selected_oid),
 
 $partition = $cce->get((!isset($selected_oid) ? $home_oid : $selected_oid));
 $partitionMax = floor( $partition["total"] / 1024 );
+
+// set disk space for administrator 
+$user_sites = $cce->find('Vsite', array('createdUser' => $loginName)); 
+$user_quota = 0; 
+foreach ($user_sites as $oid) { 
+    $vsite = $cce->get($oid, 'Disk'); 
+    $user_quota += $vsite['quota']; 
+} 
+ 
+if ($sites['quota'] > 0) { 
+    $partitionMax = $sites['quota'] - $user_quota; 
+} 
+
 if($partitionMax) {
     $quotaField = $factory->getInteger("quota", $vsiteDefaults["quota"], 1, $partitionMax);
     $quotaField->showBounds(1);
 } else {
-    $quotaField = $factory->getInteger("quota", $vsiteDefaults["quota"], 0);
+    if($loginName == "admin") { 
+        $quotaField = $factory->getInteger("quota", $vsiteDefaults["quota"], 0); 
+    } else { 
+       $quotaField = $factory->getInteger("quota", 1, 0, 0, "r");  
+        
+       $errors[] = new Error('[[base-vsite.maxDiskAlreadyMade]]'); 
+       print $helper->toHandlerHtml("/base/vsite/vsiteList.php", $errors, false); 
+    } 
 }
 
 $settings->addFormField(
@@ -283,11 +327,35 @@ $settings->addFormField(
         );
 
 // max number of users site can have
-$settings->addFormField(
-        $factory->getInteger("maxusers", $vsiteDefaults["maxusers"], 1),
-        $factory->getLabel("maxUsers"),
-        $defaultPage
-        );
+$vsite = ""; 
+$user_maxusers = 0; 
+foreach ($user_sites as $oid) { 
+    $vsite = $cce->get($oid); 
+    $user_maxusers += $vsite['maxusers']; 
+} 
+ 
+if ($sites['user'] > 0) { 
+    $userMax = $sites['user'] - $user_maxusers; 
+} 
+ 
+if($userMax) { 
+    $userMaxField = $factory->getInteger("maxusers", $vsiteDefaults["maxusers"], 1, $userMax); 
+    $userMaxField->showBounds(1); 
+} else { 
+    if($loginName == "admin") { 
+        $userMaxField = $factory->getInteger("maxusers", $vsiteDefaults["maxusers"], 0); 
+    } else { 
+       $userMaxField = $factory->getInteger("maxusers", 1, 0, 0, "r"); 
+       $errors[] = new Error('[[base-vsite.maxUsersAlreadyMade]]'); 
+       print $helper->toHandlerHtml("/base/vsite/vsiteList.php", $errors, false); 
+    } 
+} 
+ 
+$settings->addFormField( 
+        $userMaxField, 
+        $factory->getLabel("maxUsers"), 
+        $defaultPage 
+        ); 
 
 // auto dns option
 $settings->addFormField(

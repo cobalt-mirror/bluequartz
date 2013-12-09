@@ -1,5 +1,5 @@
 <?php
-// $Id: adminList.php,v 1.7.2.2 2002/02/22 01:23:02 pbaltz Exp $
+// $Id: adminList.php
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 //
 // list the non sys-admin adminUsers for the machine and allow them to be

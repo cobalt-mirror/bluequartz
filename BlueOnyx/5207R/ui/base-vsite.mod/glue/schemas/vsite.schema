@@ -1,5 +1,5 @@
 <!--
- $Id: vsite.schema,v 1.39.2.2 2002/03/20 06:00:02 uzi Exp $
+ $Id: vsite.schema
  Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 -->
 
@@ -115,6 +115,18 @@
         writeacl="ruleCapable(adminUser)"
     />
 
+    <!-- Is user Prefix set? --> 
+    <property 
+        name="userPrefixEnabled" type="boolean" default="0" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+ 
+    <!-- User Prefix --> 
+    <property 
+        name="userPrefixField" type="accountname" optional="yes" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
     <!-- Vsite prefix -->
     <property
         name="prefix" type="scalar" default=""
@@ -136,6 +148,12 @@
         optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
+
+    <property 
+        name="createdUser" type="accountname" default="admin" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
 </class>
 
 <!-- 
@@ -214,6 +232,19 @@
         name="mailCatchAll" type="scalar" default=""
         writeacl="ruleCapable(adminUser)"
     />
+
+    <!-- is user Prefix? --> 
+    <property 
+        name="userPrefixEnabled" type="boolean" default="0" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+ 
+    <!-- User Prefix --> 
+    <property 
+        name="userPrefixField" type="accountname" optional="yes" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+
     <property 
         name="dns_auto" type="boolean" default="1"
         writeacl="ruleCapable(adminUser)"
@@ -238,3 +269,39 @@
         writeacl="ruleCapable(adminUser)"
     />
 </class>
+
+<!-- This is the System Vsite settings --> 
+<class name="System" namespace="Vsite" version="1.0"> 
+    <property 
+        name="maxVsite" type="int" default="100" 
+        writeacl="ruleCapable(serverVsite)" 
+    /> 
+    <property 
+        name="maxVsiteUpper" type="int" default="512" 
+        writeacl="ruleCapable(serverVsite)" 
+    /> 
+</class> 
+ 
+<class  
+    name="User" namespace="Sites" version="1.0" 
+    createacl="ruleAll" destroyacl="ruleAll" 
+> 
+    <!-- used space in KB --> 
+    <property  
+        name="used" type="int"  
+        writeacl="ruleSelf OR ruleModifyUser" 
+    /> 
+    <!-- quota in MB --> 
+    <property  
+        name="quota" type="int" default="-1"  
+        writeacl="ruleModifyUser" 
+    /> 
+    <property 
+        name="max" type="int" default="-1" 
+        writeacl="ruleModifyUser" 
+    /> 
+    <property 
+        name="user" type="int" default="-1" 
+        writeacl="ruleModifyUser" 
+    /> 
+</class> 

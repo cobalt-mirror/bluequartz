@@ -1,0 +1,915 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "basicSettingsTab_help"
+msgstr "Configure as definições mais comumente usados."
+
+msgid "ipAddr"
+msgstr "Endereço IP"
+
+msgid "ipAddr_help"
+msgstr "Este é o endereço IP do site."
+
+msgid "domain"
+msgstr "Nome de Domínio"
+
+msgid "domain_help"
+msgstr "Este é o nome do domínio do site. Um nome de domínio é a segunda parte de um nome de domínio totalmente qualificado. Por exemplo, example.com e BlueOnyx.org são nomes de domínio válidos."
+
+msgid "fqdn"
+msgstr "Anfitrião Nome Completo"
+
+msgid "fqdn_help"
+msgstr "Este é o nome completo do site e também é conhecido como o nome de domínio totalmente qualificado. O nome do host completo é classificada por domínio e, em seguida, pelo nome do host."
+
+msgid "enterFqdn"
+msgstr "Host e Nome de Domínio"
+
+msgid "enterFqdn_help"
+msgstr "Digite o nome do host do site no primeiro campo eo nome do domínio no segundo campo. Por exemplo, o nome do host pode ser www, correio, etc O nome de domínio pode ser example.com, BlueOnyx.org, etc"
+
+msgid "hostName"
+msgstr "Nome do host"
+
+msgid "hostName_help"
+msgstr "Este é o nome do host do site. Um nome de host é a primeira parte de um nome de domínio totalmente qualificado. Por exemplo, e-mail e www são nomes de host válidos."
+
+msgid "generalSettings"
+msgstr "Configurações Gerais"
+
+msgid "generalSettings_help"
+msgstr "Modificar as configurações para este site e configurar alguns serviços."
+
+msgid "services"
+msgstr "Serviços"
+
+msgid "quota"
+msgstr "Espaço em disco máximo permitido"
+
+msgid "quota_help"
+msgstr "O espaço máximo em disco no servidor disponíveis para um site de arquivos."
+
+msgid "maxUsers"
+msgstr "Máximo Permitido Número de usuários"
+
+msgid "maxUsers_help"
+msgstr "O número máximo de contas de usuário que um site pode ter."
+
+msgid "dns_auto"
+msgstr "Configuração DNS automático"
+
+msgid "dns_auto_help"
+msgstr "Configuração automática DNS gere registros de DNS para este site. Aliases do servidor da Web e e-mail são suportados apenas se eles compartilham o nome de domínio do site. Este serviço não registrar o nome de domínio com um alto nível de registradores."
+
+msgid "webAliases"
+msgstr "Alias ​​do Servidor Web"
+
+msgid "webAliases_help"
+msgstr "Digite o host adicional ou nomes de domínio para o qual este site virtual deve aceitar requisições web. Separe múltiplas entradas com vírgulas ou espaços. Exemplo: www2.example.com, www.example.com. Note-se que o DNS deve ser configurado para resolver endereços de alias, além do nome do site."
+
+msgid "mailAliases"
+msgstr "E-mail Alias ​​do Servidor"
+
+msgid "mailAliases_help"
+msgstr "Digite o host adicional ou nomes de domínio para o qual este site virtual deve aceitar email [porta SMTP 25] conexões. Separe múltiplas entradas com vírgulas ou espaços. Exemplo: mail2.example.com, mail.example.com."
+
+msgid "otherServices"
+msgstr "Serviços e Recursos"
+
+msgid "otherServices_help"
+msgstr "Ativar ou desativar vários serviços."
+
+msgid "exitSitemgmt"
+msgstr "Sair Gestão do Site"
+
+msgid "exitSitemgmtHelp"
+msgstr "Fechar esta janela."
+
+msgid "sitesettings"
+msgstr "Definições do Site"
+
+msgid "sitesettingsDescription"
+msgstr "Clique aqui para modificar lugar geral e configurações do serviço."
+
+msgid "windowTitle"
+msgstr "Gerenciando site virtual [[VAR.vsite]] como [[VAR.user]]"
+
+msgid "virtualSiteList"
+msgstr "Lista de sites Virtual"
+
+msgid "virtualSiteList_help"
+msgstr "Clique aqui para criar ou modificar sites virtuais nesse servidor."
+
+msgid "listSuspended"
+msgstr "Suspenso"
+
+msgid "listSuspended_help"
+msgstr "Isso indica se o site está suspenso. Se um site está suspenso, o acesso para os usuários do site, bem como o site web e ftp associada a ele vai ser desativado."
+
+msgid "searchBy"
+msgstr "Pesquisar"
+
+msgid "searchBy_help"
+msgstr "Escolha a propriedade local em que deseja pesquisar. Sites que contêm o texto digitado no campo para a propriedade escolhida serão listadas."
+
+msgid "searchCriteria"
+msgstr "Critérios da pesquisa"
+
+msgid "searchCriteria_help"
+msgstr "Escolha como procurar o atributo especificado. A caixa drop-down pode ser usado para limitar o exato o texto da pesquisa deve ser correspondido. Digite o texto de pesquisa no campo."
+
+msgid "vsiteSearch"
+msgstr "Pesquisar Sites virtuais"
+
+msgid "searchbut"
+msgstr "Pesquisar"
+
+msgid "searchbut_help"
+msgstr "Pesquisar sites virtuais que atendem às propriedades escolhidas."
+
+msgid "advancedSearch"
+msgstr "Busca Avançada"
+
+msgid "advancedSearch_help"
+msgstr "Procurar sites que usam outros critérios."
+
+msgid "sitedefaultsbut"
+msgstr "Edite Virtual modelo de site"
+
+msgid "sitedefaultsbut_help"
+msgstr "Editar as configurações que são preenchidos automaticamente ao adicionar um site virtual."
+
+msgid "siteaddbut"
+msgstr "Adicionar site"
+
+msgid "siteaddbut_help"
+msgstr "Adicionar um novo site virtual a este servidor."
+
+msgid "suspend"
+msgstr "Suspender"
+
+msgid "suspend_help"
+msgstr "Se marcado, este site está suspenso. Suspendendo um site irá desativar completamente o acesso para os usuários deste site, bem como o site web e ftp associada a ele."
+
+msgid "siteUses"
+msgstr "Site usa"
+
+msgid "="
+msgstr "é"
+
+msgid "begins"
+msgstr "Começa com"
+
+msgid "ends"
+msgstr "Termina com"
+
+msgid "contains"
+msgstr "Contém"
+
+msgid "not_contains"
+msgstr "Não Contém"
+
+msgid "inSubnet"
+msgstr "está na sub-rede"
+
+msgid "notInSubnet"
+msgstr "não está na sub-rede"
+
+msgid "search_vsite_results_1"
+msgstr "Resultados da pesquisa (um site virtual Encontrado)"
+
+msgid "search_vsite_results"
+msgstr "Resultados da pesquisa ([[VAR.num]] Sites virtuais Encontrado)"
+
+msgid "search_vsite_nonefound"
+msgstr "Não Sites virtuais foram encontrados com esta pesquisa, tente diminuir seus critérios de pesquisa."
+
+msgid "numResultsPerPage"
+msgstr "Sites Por Página"
+
+msgid "numResultsPerPage_help"
+msgstr "Defina o número de sites para exibir na página de cada vez. Os locais restantes estarão disponíveis, selecionando a página desejada a partir do menu no topo da lista."
+
+msgid "numResultsPerPage_invalid"
+msgstr "Lamentamos, mas o valor inserido para [[base-vsite.numResultsPerPage]] é demasiado pequeno ou não um número. Por favor introduza um número inteiro maior do que ou igual a um."
+
+msgid "searchOptions"
+msgstr "Opções de Pesquisa"
+
+msgid "displayOptions"
+msgstr "Opções de Exibição"
+
+msgid "siteUses_help"
+msgstr "Selecione os serviços desejados para encontrar sites que usam esses serviços específicos."
+
+msgid "suspended"
+msgstr "Suspenso"
+
+msgid "suspended_help"
+msgstr "Escolha para encontrar sites que estão atualmente suspensas."
+
+msgid "searchResults"
+msgstr "Virtual do site Search Results"
+
+msgid "modifySearch"
+msgstr "Modificar Pesquisa"
+
+msgid "modifySearch_help"
+msgstr "Modificar os critérios de pesquisa utilizados para gerar a lista atual."
+
+msgid "newSearch"
+msgstr "Nova Pesquisa"
+
+msgid "newSearch_help"
+msgstr "Criar uma nova pesquisa."
+
+msgid "siteRemoveConfirm"
+msgstr "Você tem certeza que deseja remover do site, [[VAR.fqdn]]?"
+
+msgid "deletingSite"
+msgstr "Removendo site, por favor aguarde ..."
+
+msgid "removingUsers"
+msgstr "Remoção de usuários"
+
+msgid "removingSite"
+msgstr "A remoção do site"
+
+msgid "noSuchSite"
+msgstr "O local especificado, [[VAR.site]], não pôde ser encontrado."
+
+msgid "removeFailed"
+msgstr "Remoção do site falhou"
+
+msgid "vsiteDefaults"
+msgstr "Virtual modelo de site"
+
+msgid "siteDefaultsTab"
+msgstr "Basic Settings"
+
+msgid "siteDefaultsTab_help"
+msgstr "Modificar os limites de rede, usuário e disco padrão, e as configurações de e-mail para novos sites virtuais."
+
+msgid "defaultIpAddr"
+msgstr "[[base-vsite.ipAddr]]"
+
+msgid "defaultIpAddr_help"
+msgstr "O endereço IP padrão que será preenchido ao adicionar um site."
+
+msgid "defaultDomain"
+msgstr "[[base-vsite.domain]]"
+
+msgid "defaultDomain_help"
+msgstr "O domínio padrão para que novos sites pertencerá."
+
+msgid "defaultHome"
+msgstr "Diretório padrão (/home)"
+
+msgid "homePartition"
+msgstr "Site Diretório Localização"
+
+msgid "homePartition_help"
+msgstr "Escolha o diretório onde diretório home deste site será localizado. O diretório /home é o local padrão e está localizado em discos rígidos internos do servidor. Os outros directórios estão localizados no armazenamento adicional. Se o diretório home de um site está localizado em um dispositivo de armazenamento adicional, desativar ou remover esse dispositivo fará com que um site para se tornar não-funcional."
+
+msgid "newVsiteSettings"
+msgstr "Adicionar Novo Site Virtual"
+
+msgid "modVsiteSettings"
+msgstr "Virtual configurações do site para [[VAR.site]]"
+
+msgid "webAliases_invalid"
+msgstr "Alias ​​do servidor Web [[VAR.invalidValue]] é inválido."
+
+msgid "mailAliases_invalid"
+msgstr "E-mail alias de servidor [[VAR.invalidValue]] é inválido."
+
+msgid "siteusage"
+msgstr "Informações de Uso"
+
+msgid "siteusageDescription"
+msgstr "Exibir informações sobre o uso de recursos para este site."
+
+msgid "manageAdminUsersBlurb"
+msgstr "Criando além da conta 'admin' contas de administrador de servidores separados permite que o administrador do sistema para permitir que terceiros confiáveis ​​para gerenciar o servidor. Contas de administrador podem ser criados para ter todos os mesmos poderes, exceto para o gerenciamento de contas de administrador, que a conta 'admin' tem. Contas de administrador também pode ser criado com mais limites em que aspectos do servidor que estão autorizados a controlar."
+
+msgid "manageAdminUsers"
+msgstr "Administradores"
+
+msgid "addAdminHelp"
+msgstr "Criar uma nova conta de administrador do servidor."
+
+msgid "manageAdmin"
+msgstr "Modificar Configurações do administrador do servidor para [[VAR.name]]"
+
+msgid "manageAdminDescription"
+msgstr "Criar e gerenciar contas de administrador do servidor. [[base-vsite.manageAdminUsersBlurb]]"
+
+msgid "rootAccess"
+msgstr "Acesso Root"
+
+msgid "rootAccess_help"
+msgstr "Permitindo o acesso root permite que o usuário admin para usar o programa 'su' para se tornar o usuário root quando conectado ao servidor via telnet ou ssh. Se ativado, onde <nomedousuário> é o nome do usuário com acesso root, será criada uma nova conta de raiz com o nome de usuário 'root-<username>'. A nova conta terá a mesma senha da conta normal do usuário. Por exemplo, para um administrador com um nome de usuário 'bob', o usuário 'bob' poderia correr 'su - root-bob' o comando e digite a senha da conta para se tornar o usuário root."
+
+msgid "adminPowers"
+msgstr "Direitos de acesso adicionais"
+
+msgid "adminPowers_help"
+msgstr "Isso permite que a restauração de certas habilidades de um administrador de servidor, que normalmente são reservados para o usuário 'admin' sozinho. Mova habilidades extras que esta conta administrador do servidor deve ser permitido a partir da [[-base vsite.disallowedAbilities]] coluna à [[-base vsite.allowedAbilities]] coluna."
+
+msgid "allowedAbilities"
+msgstr "Habilidades extras"
+
+msgid "disallowedAbilities"
+msgstr "Habilidades disponíveis"
+
+msgid "userSuspended"
+msgstr "Suspenso"
+
+msgid "userSuspended_help"
+msgstr "Mostra se uma conta de administrador do servidor está suspenso."
+
+msgid "yes"
+msgstr "Sim"
+
+msgid "no"
+msgstr "Não"
+
+msgid "suspendUser"
+msgstr "Suspender Usuário"
+
+msgid "suspendUser_help"
+msgstr "Suspendendo um usuário irá impedir que o usuário acessar o servidor. Os usuários não serão capazes de se conectar ao servidor, enquanto eles estão suspensos."
+
+msgid "mailCatchAll"
+msgstr "Catch-All Endereço de E-mail"
+
+msgid "mailCatchAll_help"
+msgstr "Indique um endereço de e-mail para receber mensagens que são endereçadas a usuários desconhecidos e listas de discussão. Se deixado em branco, e-mail dirigida a usuários desconhecidos ou listas de discussão não serão aceitos. Se o endereço especificado não existe, e-mail de usuários desconhecidos e listas de discussão podem ser rejeitadas como se nenhum endereço foi especificado."
+
+msgid "adminUsersList"
+msgstr "Lista de Server Administrator"
+
+msgid "fullName"
+msgstr "Nome Completo"
+
+msgid "fullName_help"
+msgstr "O nome completo do usuário."
+
+msgid "userName"
+msgstr "Nome de usuário"
+
+msgid "userName_help"
+msgstr "O nome de usuário do usuário."
+
+msgid "actions"
+msgstr "Ações"
+
+msgid "actions_help"
+msgstr "Clique no lápis para modificar o usuário. Clique na lata de lixo para remover o usuário."
+
+msgid "deleteQuestion"
+msgstr "Você tem certeza que deseja remover o administrador, [[VAR.name]]?"
+
+msgid "deletingUser"
+msgstr "Remoção de usuário, por favor aguarde ..."
+
+msgid "createAdminUser"
+msgstr "Adicionar Administrator Novo Servidor"
+
+msgid "userNameCreate"
+msgstr "[[base-vsite.userName]]"
+
+msgid "userNameCreate_help"
+msgstr "Digite o nome de usuário para o novo administrador do servidor."
+
+msgid "userPassword"
+msgstr "Senha"
+
+msgid "userPassword_help"
+msgstr "Digite a senha do usuário."
+
+msgid "userDiskQuota"
+msgstr "Espaço em disco máximo permitido"
+
+msgid "userDiskQuota_help"
+msgstr "Digite o valor máximo de espaço em disco de que este usuário deve ter permissão para utilizar este servidor."
+
+msgid "userInformation"
+msgstr "Informação do usuário"
+
+msgid "adminOptions"
+msgstr "Opções de Administrador"
+
+msgid "cantReadVsite"
+msgstr "[[base-vsite.operationFailed]] Não foi possível obter a informação para este site de CCE."
+
+msgid "fqdnTooLong"
+msgstr "O funcionário eo nome de domínio é muito longo. O comprimento do hospedeiro combinado e nome de domínio deve ter menos de 255 caracteres."
+
+msgid "localhostNotAllowed"
+msgstr "O nome do host, localhost, é reservado e não pode ser especificado como o nome do host de um site virtual."
+
+msgid "fqdnInUse"
+msgstr "O nome do host especificado e combinação de nome de domínio, [[VAR.fqdn]], está em uso por outro site virtual."
+
+msgid "usedWebAliases"
+msgstr "Os seguintes aliases servidor web estão em uso e não pode ser definido: [[VAR.aliases]]"
+
+msgid "usedMailAliases"
+msgstr "Os seguintes aliases do servidor de correio estão em uso e não pode ser definido: [[VAR.aliases]]"
+
+msgid "cantCreateMailAlias"
+msgstr "[[base-vsite.operationFailed]] O alias de email, [[VAR.alias]], não pode ser criado."
+
+msgid "cantUpdateMailAlias"
+msgstr "[[base-vsite.operationFailed]] O alias de email, [[VAR.alias]], não pode ser atualizado."
+
+msgid "cantUpdateUserMailAliases"
+msgstr "[[base-vsite.operationFailed]] Não é possível atualizar as informações e-mail para os usuários que pertencem a este site."
+
+msgid "cantCreateAtypeRecord"
+msgstr "[[base-vsite.operationFailed]] Não é possível criar a entrada de DNS para o [[VAR.fqdn]]."
+
+msgid "cantCreateWebAlias"
+msgstr "[[base-vsite.operationFailed]] Não é possível criar a entrada de DNS para o alias do servidor web, [[VAR.alias]], por [[VAR.fqdn]]."
+
+msgid "cantCreateAtypeRecordForMail"
+msgstr "[[base-vsite.operationFailed]] Não é possível criar a entrada DNS Um tipo para o alias do servidor de correio, [[VAR.alias]], por [[VAR.fqdn]]."
+
+msgid "cantCreateMXRecordForMailAlias"
+msgstr "[[base-vsite.operationFailed]] Não é possível criar a entrada MX tipo DNS para o alias do servidor de correio, [[VAR.alias]], por [[VAR.fqdn]]."
+
+msgid "cantRestartDns"
+msgstr "[[base-vsite.operationFailed]] Não é possível reiniciar o servidor DNS."
+
+msgid "cantMigrateDnsRecords"
+msgstr "[[base-vsite.operationFailed]] Não é possível atualizar a entrada DNS para [[VAR.fqdn]] para coincidir com as informações do novo site."
+
+msgid "cantUpdateVhost"
+msgstr "[[base-vsite.operationFailed]] Não é possível atualizar as informações do servidor web para este site."
+
+msgid "overUserLimit"
+msgstr "[[base-vsite.operationFailed]] O site, [[VAR.fqdn]], excedeu o número máximo de usuários que é permitido ter."
+
+msgid "vsiteUsingIpAddress"
+msgstr "A interface de rede não pode ser desativado, porque um ou mais sites estão usando o endereço IP atribuído à interface."
+
+msgid "vsiteUsingChangingIP"
+msgstr "O endereço IP não pode ser mudado, porque um ou mais sites estão usando o endereço IP atual atribuído a essa interface."
+
+msgid "cantDisableVhost"
+msgstr "[[base-vsite.operationFailed]] Não é possível desativar servidor web do site."
+
+msgid "cantSuspendUsers"
+msgstr "[[base-vsite.operationFailed]] Não é possível suspender todos os usuários do site."
+
+msgid "cantUpdateSiteAdminCaps"
+msgstr "[[base-vsite.operationFailed]] Não é possível atualizar as capacidades para os administradores do site."
+
+msgid "couldNotAddAdminAccount"
+msgstr "[[base-vsite.operationFailed]] A conta de usuário administrador para [[VAR.fqdn]] não pôde ser criado."
+
+msgid "cantAddSystemGroup"
+msgstr "O local não poderia ser criado, porque o sistema não foi capaz de criar o grupo de sistemas site."
+
+msgid "cantSetSiteGroup"
+msgstr "O local não poderia ser criado, pois as informações do site não pode ser atualizado com o nome do grupo de sistema correspondente."
+
+msgid "cantAddVirtualHost"
+msgstr "O local não poderia ser criado, porque o seu servidor web associado não pôde ser criado."
+
+msgid "cantAddFtpVhost"
+msgstr "Não é possível criar a entrada do servidor FTP deste site."
+
+msgid "cantAddSystemAlias"
+msgstr "Não é possível criar o alias de e-mail do sistema, [[VAR.alias]], para este site. Certifique-se que nenhum usuário do sistema está usando o alias e tente novamente."
+
+msgid "vsiteUserOwnsAlias"
+msgstr "Não é possível criar o alias de e-mail do sistema, [[VAR.alias]], para este site. O usuário, [[VAR.user]], que é um membro do site, [[VAR.site]], parece estar usando o alias. Remova o alias de [[VAR.user]] e tente novamente."
+
+msgid "userOwnsAlias"
+msgstr "Não é possível criar o alias de e-mail do sistema, [[VAR.alias]], para este site. O usuário, [[VAR.user]], que não é membro de qualquer local (possivelmente um administrador do servidor), parece estar usando o alias. Remova o alias de [[VAR.user]] e tente novamente."
+
+msgid "cantDestroyNetwork"
+msgstr "Incapaz de desativar a interface de rede associada com o endereço IP deste site. Isso não impediu que o site seja removido."
+
+msgid "siteMembersFound"
+msgstr "O sítio não pode ser retirada, porque algumas das contas do utilizador do local não foram removidos. Por favor, examine lista de usuários do site para ver as contas de usuário permanecem."
+
+msgid "cantCreateNetwork"
+msgstr "[[base-vsite.operationFailed]] Não é possível criar a interface de rede associada com o endereço IP deste site."
+
+msgid "diskUsedBySites"
+msgstr "Este dispositivo não pode ser alterado, porque os seguintes sítios estão localizados nela: [[VAR.sites]]. Por favor, remova esses sites antes de desativar o dispositivo ou tornando-o indisponível para o uso como um diretório home."
+
+msgid "cantRemoveAdminFromGroup"
+msgstr "Não foi possível remover [[VAR.user]] a partir do grupo de sites, [[VAR.group]]."
+
+msgid "cantAddAdminToGroup"
+msgstr "Não é possível adicionar [[VAR.user]] ao grupo de sites, [[VAR.group]]."
+
+msgid "cantCreateSiteAdminGroup"
+msgstr "Não é possível criar site do grupo administradores."
+
+msgid "cantRemoveUserFromSiteAdminGroup"
+msgstr "Não foi possível remover [[VAR.user]] a partir do grupo de administradores do site."
+
+msgid "cantAddUserToSiteAdminGroup"
+msgstr "Não é possível adicionar [[VAR.user]] para o grupo de administradores do site."
+
+msgid "cantRemoveUserFromServerAdminGroup"
+msgstr "Não foi possível remover [[VAR.user]] a partir do grupo de administradores do servidor."
+
+msgid "sitemanage"
+msgstr "Gestão do Site"
+
+msgid "sitemanageDescription"
+msgstr "Clique aqui para gerenciar sites virtuais e contas de usuários."
+
+msgid "sitetabDescription"
+msgstr "Gerenciar as configurações do site, incluindo contas de usuários, listas de discussão, FTP e backup."
+
+msgid "sitetabDescription_menu"
+msgstr "Escolha um dos menus abaixo para gerenciar as configurações de [[VAR.hostname]], incluindo contas de usuários, listas de discussão, FTP e backup."
+
+msgid "mod_name"
+msgstr "nome do módulo"
+
+msgid "version"
+msgstr "versão 1.0"
+
+msgid "operationFailed"
+msgstr "A operação falhou."
+
+msgid "basicSettingsTab"
+msgstr "Basic Settings"
+
+msgid "sitemaintenance"
+msgstr "Manutenção"
+
+msgid "sitemaintenanceDescription"
+msgstr "Clique aqui para realizar a manutenção do site, como backup e restauração."
+
+msgid "siteservices"
+msgstr "Serviços"
+
+msgid "siteservicesDescription"
+msgstr "Clique aqui para configurar os serviços disponíveis para este site."
+
+msgid "siteweb"
+msgstr "Teia"
+
+msgid "siteweb_help"
+msgstr "Clique aqui para configurar as opções da Internet, tais como linguagens de script."
+
+msgid "siteWebSettings"
+msgstr "Configurações da Web para [[VAR.fqdn]]"
+
+msgid "siteEmailSettings"
+msgstr "Configurações de e-mail para [[VAR.fqdn]]"
+
+msgid "sitemail"
+msgstr "Email"
+
+msgid "sitemail_help"
+msgstr "Clique aqui para configurar as opções de e-mail como aliases do site."
+
+msgid "diskQuota_invalid"
+msgstr "Lamentamos, mas o valor inserido para [[base-vsite.userDiskQuota]] é demasiado pequeno ou não um número. [[base-vsite.diskQuota_rule]]"
+
+msgid "diskQuota_rule"
+msgstr "Introduzir um número maior ou igual a um espaço de disco de limitar este utilizador. Deixe o campo em branco para dar ao usuário acesso a todo o espaço em disco disponível no dispositivo em que o diretório home do usuário está localizado."
+
+msgid "cantAddUserToServerAdminGroup"
+msgstr "Não é possível adicionar [[VAR.user]] ao grupo de administradores do servidor."
+
+msgid "systemFqdnNotAllowed"
+msgstr "O nome do host especificado e combinação de nome de domínio, [[VAR.fqdn]], está em uso pelo sistema."
+
+msgid "site_preview"
+msgstr "Configuração do Site Preview"
+
+msgid "site_preview_help"
+msgstr "Se marcado, site de visualização é criada. Você pode acessar o site de visualização em http://ServerName/VsiteName/."
+
+msgid "cantChangeSitePreview"
+msgstr "Não é possível alterar configuração do Site Preview"
+
+msgid "emailDisabled"
+msgstr "Desabilitar e-mail para Domínio"
+
+msgid "emailDisabled_help"
+msgstr "Esta vontade desativa a capacidade para o domínio para receber e-mails"
+
+msgid "userwebs"
+msgstr "Ativar teias de propriedade do usuário"
+
+msgid "userwebs_help"
+msgstr "Se ativado, em seguida, cada usuário tem seu próprio espaço na web, que é separado do principal website webspace e acessível através http://www.example.com/ ~ username /. Os usuários podem fazer upload de suas próprias páginas web através de FTP em seu próprio /web diretório."
+
+msgid "php_server"
+msgstr "Configurações PHP"
+
+msgid "php_serverDescription"
+msgstr "Esta página permite que você configure as configurações relacionadas com a segurança e desempenho do PHP. Essas alterações são aplicadas ao seu arquivo de configuração php.ini do PHP. Tenha em mente que o PHP é muito poderosa e muitas vezes pode ser usado para explorar um servidor. Daí que configurá-lo de uma forma muito restritiva e segura. Você pode soltar essas restrições em uma base por site."
+
+msgid "php_server_head"
+msgstr "Configurações PHP todo o servidor"
+
+msgid "php_ini_security_settings"
+msgstr "Configurações principais PHP"
+
+msgid "php_ini_security_settings_help"
+msgstr "Configurações de segurança e desempenho principais aplicáveis ​​em um nível grande de servidores. Estas mudanças são aplicadas diretamente ao seu arquivo php.ini."
+
+msgid "php_ini_expert_mode"
+msgstr "php.ini revisão"
+
+msgid "php_ini_expert_mode_help"
+msgstr "Esta página permite que você revise o arquivo php.ini inteiro e mostra todas as opções - e não apenas os poucos editáveis. Por favor, note: Salvando alterações nesta página não é possível."
+
+msgid "php_ini_location"
+msgstr "Localização:"
+
+msgid "php_ini_location_help"
+msgstr "Isso mostra onde o arquivo php.ini está localizado."
+
+msgid "register_globals"
+msgstr "Register Globals:"
+
+msgid "register_globals_help"
+msgstr "Para segurança máxima tem de definir 'register_globals' para 'Off'. Caso contrário, é facilmente possível que os scripts PHP unsecurely programados pode ser usado para cortar o seu servidor."
+
+msgid "safe_mode"
+msgstr "Modo de Segurança:"
+
+msgid "safe_mode_help"
+msgstr "O modo seguro do PHP é uma tentativa de resolver o problema de servidores compartilhados. Se os scripts PHP habilitados só será autorizado a abrir arquivos que são de propriedade da * mesmo * usuário (UID) e grupo (GID). Aviso de Segurança: * Você NÃO DEVE * desligar Modo de Segurança. Desligar Modo de Segurança é um convite para ser hackeado."
+
+msgid "safe_mode_gid"
+msgstr "Modo de Segurança GID:"
+
+msgid "safe_mode_gid_help"
+msgstr "Por padrão, o Modo de Segurança faz um UID / GID comparar verificar ao abrir arquivos e só permite abrir arquivos de propriedade do UID / GID mesmo. Se você quer relaxar esta apenas compara com o GID, então ligue safe_mode_gid."
+
+msgid "safe_mode_include_dir"
+msgstr "Modo de Segurança incluir o diretório:"
+
+msgid "safe_mode_include_dir_help"
+msgstr "UID / GID verificações são feitas quando é inclusão de arquivos desse diretório e seus subdiretórios. Esta diretiva pode ter um (ponto e vírgula no Windows) via separada por dois pontos, ao invés de apenas um único diretório. A restrição especificada é na verdade um prefixo, não um nome de diretório. Isto significa que 'safe_mode_include_dir=/dir/incl' também permite acesso a '/dir/include' e '/dir/incls' se eles existirem. Quando você quiser restringir o acesso apenas ao diretório especificado, termine com uma barra. Por exemplo: 'safe_mode_include_dir=/dir/incl/'. Se o valor dessa diretiva estiver vazia, nenhum arquivo com UID / GID diferente pode ser incluído."
+
+msgid "safe_mode_exec_dir"
+msgstr "Modo de Segurança diretório exec:"
+
+msgid "safe_mode_exec_dir_help"
+msgstr "Se o PHP for usado no modo seguro, system() e as outras funções que executam programas do sistema se recusam a executar programas que não estão no diretório atual."
+
+msgid "safe_mode_allowed_env_vars"
+msgstr "Modo de Segurança permitiu variáveis ​​evelope:"
+
+msgid "safe_mode_allowed_env_vars_help"
+msgstr "Editar certas variáveis ​​de ambientes pode ser uma potencial quebra de segurança. Essa diretiva contem uma lista delimitada por vírgula de prefixos. No modo de segurança, o usuário só pode alterar as variáveis ​​de ambiente cujos nomes começam com os prefixos fornecidos aqui. Por padrão, os usuários só será capaz de definir variáveis ​​de ambiente que começam com PHP_ (eg PHP_FOO = BAR). Nota: Se essa diretiva estiver vazia, o PHP deixará o usuário modificar QUALQUER variável de ambiente!"
+
+msgid "safe_mode_protected_env_vars"
+msgstr "Modo de variáveis ​​envelope protegidas seguros:"
+
+msgid "safe_mode_protected_env_vars_help"
+msgstr "Esta directiva contém uma lista delimitada por vírgulas de variáveis ​​de ambiente que o usuário final não será capaz de mudar usando putenv(). Estas variáveis ​​serão protegidas mesmo se safe_mode_allowed_env_vars está configurado para permitir alterá-las."
+
+msgid "disable_functions"
+msgstr "Desativar funções:"
+
+msgid "disable_functions_help"
+msgstr "Esta diretiva permite que você desabilite certas funções por razões de segurança. Ela recebe uma lista delimitada por vírgulas de nomes de funções. disable_functions não é afetada pela diretiva Safe Mode."
+
+msgid "disable_classes"
+msgstr "Desativar classes:"
+
+msgid "disable_classes_help"
+msgstr "Esta diretiva permite que você desabilite certas classes por razões de segurança. Ela recebe uma lista delimitada por vírgulas de nomes de classe. disable_classes não é afetada pela diretiva Safe Mode."
+
+msgid "allow_url_fopen"
+msgstr "Permitir URL fopen:"
+
+msgid "allow_url_fopen_help"
+msgstr "Se ativado, allow_url_fopen permite funções de arquivo do PHP - como file_get_contents () e de inclusão e exigem declarações - pode recuperar dados a partir de locais remotos, como um FTP ou web site. Os programadores freqüentemente esquecer isso e não fazer a filtragem ao passar os dados fornecidos pelo usuário para estas funções, abrindo-se a vulnerabilidades de injeção de código de entrada adequada. Um grande número de vulnerabilidades de injeção de código e hacks reportados em aplicações web baseadas em PHP são causados ​​pela combinação de permitir allow_url_fopen e filtragem de entrada ruins. Desativada por padrão."
+
+msgid "allow_url_include"
+msgstr "Permitir URL incluem:"
+
+msgid "allow_url_include_help"
+msgstr "(Apenas aplicável para PHP> = 5.2.0) Se desativado, allow_url_include bares acesso remoto a arquivos via de inclusão e exigem declarações, mas deixa-o disponível para outras funções de arquivo como fopen () e file_get_contents. Atenção: incluir e exigir são os pontos de ataque mais comuns para as tentativas de injeção de código, de modo que este cenário se conecta esse buraco especial, sem afetar as capacidades de acesso a arquivos remotos das funções de arquivos padrão. Por padrão, allow_url_include está desativado."
+
+msgid "upload_max_filesize"
+msgstr "Envie max tamanho do arquivo:"
+
+msgid "upload_max_filesize_help"
+msgstr "upload_max_filesize limita o tamanho máximo de arquivos que o PHP irá aceitar através uploads. Atacantes podem tentar enviar arquivos grosseiramente enormes para esgotar os recursos do sistema, definindo um valor realista aqui você pode atenuar alguns dos danos causados ​​por esses ataques. Por padrão, o PHP define esse valor de 2MB."
+
+msgid "post_max_size"
+msgstr "Publicar tamanho máximo:"
+
+msgid "post_max_size_help"
+msgstr "Esta proteção permite limitar a solicitação POST tamanho máximo que o PHP irá processar. Os atacantes podem tentar enviar solicitações POST grosseiramente enormes para esgotar os recursos do sistema, definindo um valor realista aqui você pode atenuar alguns dos danos causados ​​por esses ataques."
+
+msgid "max_execution_time"
+msgstr "Tempo de execução Max:"
+
+msgid "max_execution_time_help"
+msgstr "Quantidade máxima de tempo cada script pode ser executado."
+
+msgid "max_input_time"
+msgstr "Tempo de entrada de Max:"
+
+msgid "max_input_time_help"
+msgstr "Quantidade máxima de tempo cada script pode gastar analisar os dados da solicitação."
+
+msgid "memory_limit"
+msgstr "Limite de memória:"
+
+msgid "memory_limit_help"
+msgstr "Define o quanto de memória um script pode usar. Configurações para um valor alto deixa o servidor vulnerável a ataques que tentam esgotar os recursos e cria um ambiente onde as práticas de programação pobres podem propagar desmarcada."
+
+msgid "vsitephpMenu"
+msgstr "PHP"
+
+msgid "vsitephpMenuDesc"
+msgstr "PHP segurança relacionada e configurações Ressource para este site virtual. Permite ajustar individualmente as configurações de segurança e recursos relacionados ao PHP em uma base por site."
+
+msgid "php_vsite_head"
+msgstr "Configurações PHP para [[VAR.vsite]]"
+
+msgid "PHPVsiteStatusBox_header"
+msgstr "Por favor, note:"
+
+msgid "phpVsiteNotEnabled"
+msgstr "PHP não está habilitado para este site virtual. Antes do PHP não está habilitado, em geral, há outras opções relacionadas com PHP pode ser configurado."
+
+msgid "php_ini"
+msgstr "php.ini"
+
+msgid "php_ini_help"
+msgstr "Raw defende do seu arquivo php.ini. Revisão apenas para. As mudanças não podem ser salvos desta página."
+
+msgid "fileOwner_head"
+msgstr "Proprietário de todo o conteúdo /web para [[VAR.vsite]]"
+
+msgid "prefered_siteAdmin"
+msgstr "SiteAdmin que possui /web:"
+
+msgid "prefered_siteAdmin_help"
+msgstr "Se suPHP está habilitado, então este campo deve ser definido como um siteadmin existente deste site ou de seus scripts PHP não será executado. Mesmo se você não tem suPHP ativada: Se você optar por um proprietário da lista de siteAdmins, então o diretório /web de seu site será chown'ed recursivamente para o UID do usuário selecionado. Meios: Todos os arquivos e pastas em /web irá depois ser propriedade do usuário selecionado."
+
+msgid "fileOwnerMenu"
+msgstr "Propriedade Web"
+
+msgid "fileOwnerDesc"
+msgstr "Este item de menu permite que você mude a propriedade da pasta /web do seu site (e todos os arquivos e pastas dentro!). Ele permite que você escolha um siteadmin como proprietário, o que é particularmente importante se você tiver suPHP habilitado. Se suPHP está ativado e você não tem um siteadmin como proprietário da pasta /web, então scripts PHP do seu site não será executado."
+
+msgid "prefix"
+msgstr "Prefixo Site:"
+
+msgid "prefix_help"
+msgstr "O 'Prefixo Site' é um prefixo opcional que permite identificar os usuários ou serviços relacionados a um site. Se for definido, todos os (recém-criada) usernames será prefixado com esta cadeia. Um prefixo deve ser alfanumérico (números e / ou letras apenas) e não pode ser maior do que cinco personagens. Nota: Um prefixo pode ser adicionado ou alterado em um momento posterior. Mas isso não afetará quaisquer nomes que já estão presentes."
+
+msgid "prefixTooLong"
+msgstr "O 'Prefixo Site' especificado é mais de 5 caracteres."
+
+msgid "prefixInUse"
+msgstr "O 'Prefixo Site' especificado já está em uso por outro site: [[VAR.fqdn]]"
+
+msgid "prefixInvalidChars"
+msgstr "O 'Prefixo Site' você especificado contém caracteres não suportados. Somente caracteres alfanuméricos são permitidos, o que significa que letras e números, mas não mais do que cinco no total."
+
+msgid "webAliasRedirects"
+msgstr "Alias ​​é redirecionada"
+
+msgid "webAliasRedirects_help"
+msgstr "Se um site tem vários 'Alias ​​servidor web, então, dois tipos de comportamentos são possíveis: (a) Um pedido de URL para um' Servidor Web Alias ​​'URL irá redirecionar para os principais sites de URL. Este é o padrão. (B) Um pedido de URL a um servidor da Web 'Alias' não vai redirecionar para os principais sites de URL. Em vez disso o alias será parecido com um site independente em seu próprio país. Por favor note que este comportamento pode ser problemático, com estatísticas de web e / ou certos sistemas CMS."
+
+msgid "open_basedir_mandatory"
+msgstr "Abrir Basedir (Servidor):"
+
+msgid "open_basedir_mandatory_help"
+msgstr "Estas são as configurações 'open_basedir' definidas para todo o servidor em 'Management Server' / 'Segurança' / 'PHP'. Eles são obrigatórios para cada site virtual. No campo abaixo você pode especificar diretórios adicionais que devem ser adicionados à directiva 'open_basedir'."
+
+msgid "open_basedir"
+msgstr "Abrir Basedir (Vsite):"
+
+msgid "open_basedir_help"
+msgstr "A directiva 'open_basedir' limita o acesso de scripts PHP arquivo para determinados diretórios. O campo 'Open Basedir (Server)' acima mostra para quais diretórios scripts PHP já têm acesso a este servidor. Se os scripts PHP deste site necessita de acesso adicional a outros diretórios, você pode especificar esses diretórios aqui. Quando o arquivo está fora do diretório especificado, o PHP se recusará a abrí-lo."
+
+msgid "siteRemove"
+msgstr "Excluir este site."
+
+msgid "sitePreview"
+msgstr "Prévia deste site."
+
+msgid "Features"
+msgstr "Características"
+
+msgid "Features_help"
+msgstr "Mostra quais serviços e recursos estão habilitados para este site virtual."
+
+msgid "siteRemoveConfirmNeutral"
+msgstr "Você tem certeza que deseja remover este site virtual?"
+
+msgid "removeConfirmInfo"
+msgstr "Isso também irá remover todas as contas de usuário, e-mails e dados do site deste site virtual e não pode ser desfeita."
+
+msgid "Actions"
+msgstr "Ações"
+
+msgid "Actions_help"
+msgstr "Estes botões permitem modificar, ver ou apagar um site virtual."
+
+msgid "sitedefaultsbutNeutral"
+msgstr "Modelo"
+
+msgid "sitedefaultsbutNeutral_help"
+msgstr "Editar as configurações que são preenchidos automaticamente ao adicionar um site virtual."
+
+msgid "disabled"
+msgstr "Inválido"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "PHP_version"
+msgstr "PHP Version:"
+
+msgid "PHP_version_help"
+msgstr "Mostra a versão do PHP do servidor web público."
+
+##
+
+msgid "cap_serverVsite"
+msgstr "Definições do site Virtual"
+
+msgid "vsite"
+msgstr "Definições do site Virtual"
+
+msgid "vsite_help"
+msgstr "Clique aqui para alterar as configurações do site virtuais."
+
+msgid "vsiteSettings"
+msgstr "Definições do site Virtual"
+
+msgid "maxVsiteField"
+msgstr "Máximo Sites virtuais"
+
+msgid "maxVsiteField_help"
+msgstr "O número máximo de sites virtuais nesse servidor."
+
+msgid "maxVsiteUpper"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "O valor introduzido para [[base-vsite.maxVsiteField]] deve ser inferior a [[base-vsite.maxVsiteUpper]]."
+
+msgid "maxVsiteAlreadyMade"
+msgstr "O número atual de sites virtuais, tal como definido por [[base-vsite.maxVsiteField]]."
+
+msgid "userPrefixField"
+msgstr "Prefixo Usuário"
+
+msgid "userPrefixField_help"
+msgstr "Digite o prefixo nome de usuário. Exemplo: customerA_, site1_"
+
+msgid "userPrefixEnabled"
+msgstr "Ativar prefixo usuário"
+
+msgid "userPrefixEnabled_help"
+msgstr "Quando o prefixo usuário recurso é ativado, todos os novos nomes serão prefixados com este prefixo."
+
+msgid "userShell"
+msgstr "Habilitar Shell Access"
+
+msgid "userShell_help"
+msgstr "Habilitar o acesso shell para permitir a criação de usuários que podem se conectar ao servidor usando serviços como Telnet e SSH."
+
+msgid "userSitesUser"
+msgstr "Máximo de Usuários"
+
+msgid "userSitesUser_help"
+msgstr "O número máximo de usuários que podem ser criados no servidor."
+
+msgid "maxDiskAlreadyMade"
+msgstr "A quantidade de espaço em disco atualmente em uso como por [[base-vsite.quota]]."
+
+msgid "maxUsersAlreadyMade"
+msgstr "O número de usuários atualmente em existência como por [[base-vsite.userSitesUser]]."
+
+msgid "createdUser"
+msgstr "Proprietário"
+
+msgid "createdUser_help"
+msgstr "Mostra o proprietário deste site virtual."
+

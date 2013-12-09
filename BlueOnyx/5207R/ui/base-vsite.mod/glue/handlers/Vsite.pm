@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
 # Vsite.pm: Functions for virtual hosting
 #
-# $Id: Vsite.pm,v 1.20 2001/12/04 07:28:44 pbaltz Exp $
+# $Id: Vsite.pm
 #
 # Written by
 #   Will DeHaan (will@cobaltnet.com)
@@ -61,7 +61,8 @@ $Sites_AdminGroup = 'site-adm';
                     "sys",             1,
                     "nobody",          1,
                     "root",            1,
-                    'apache',          1
+                    'apache',          1,
+                    'admin',           1
                     );
 
 ### Removed;
@@ -127,6 +128,7 @@ sub vsite_add_network_interface
 {
     my $cce = shift;
     my $ipaddr = shift;
+    my $user = shift;
     my $device = shift;
 
     $device ||= $DEFAULT_INTERFACE;

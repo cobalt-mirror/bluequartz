@@ -1,22 +1,12 @@
-# Header entry was created by KBabel!
-#
-# Michael Stauber <mstauber@solarspeed.net>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: base-vsite\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-01 07:01+0200\n"
-"PO-Revision-Date: 2008-12-03 02:26+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Translate Toolkit 1.0.1\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "="
 msgstr "ist"
@@ -370,10 +360,10 @@ msgid "overUserLimit"
 msgstr "[[base-vsite.operationFailed]] Die Site [[VAR.fqdn]], hat die maximale Anzahl von erlaubten Benutzern überschritten."
 
 msgid "quota"
-msgstr "Maximal erlaubter Festplattenspeicher (MB)"
+msgstr "Maximal erlaubter Festplattenspeicher"
 
 msgid "quota_help"
-msgstr "Der maximal erlaubte Festplattenspeicher in Megabytes (MB), der einer Seite zur Speicherung von Dateien, Webseiten, Emails und Logfiles zur Verfügung steht."
+msgstr "Der maximal erlaubte Festplattenspeicher, der einer Seite zur Speicherung von Dateien, Webseiten, Emails und Logfiles zur Verfügung steht."
 
 msgid "removeFailed"
 msgstr "Das Löschen der Site ist fehlgeschlagen"
@@ -544,10 +534,10 @@ msgid "usedWebAliases"
 msgstr "Die folgenden Web-Aliasse werden bereits verwendet und können daher nicht genutzt werden: [[VAR.aliases]]"
 
 msgid "userDiskQuota"
-msgstr "Maximal erlaubter Plattenspeicher (MB)"
+msgstr "Maximal erlaubter Plattenspeicher"
 
 msgid "userDiskQuota_help"
-msgstr "Geben Sie den maximal erlaubten Festplattenspeicher in Megabytes an, den dieser User auf dem Server verwenden darf. Lassen Sie das Feld leer, um den Benutzer unbegrenzt Speicher zur Verfügung zu stellen."
+msgstr "Geben Sie den maximal erlaubten Festplattenspeicher an, den dieser User auf dem Server verwenden darf."
 
 msgid "userInformation"
 msgstr "Benutzerinformationen"
@@ -833,65 +823,157 @@ msgstr "Erlaubt die Einsicht in Ihre php.ini Datei. Änderungen können in diese
 ### fileOwner additions:
 
 msgid "fileOwner_head"
-msgstr "Owner of all /web content for [[VAR.vsite]]"
+msgstr "Besitzer von /web für [[VAR.vsite]]"
 
 msgid "prefered_siteAdmin"
-msgstr "SiteAdmin that owns /web:"
+msgstr "SiteAdmin für /web:"
 
 msgid "prefered_siteAdmin_help"
-msgstr "If suPHP is enabled, then this field must be set to an existing siteAdmin of this site, or your PHP scripts won't run. Even if you don't have suPHP enabled: If you choose an owner from the list of siteAdmins, then the /web directory of your site will be chown'ed recursively to the UID of the selected user. Means: All files and folders in /web will afterwards be owned by the selected user."
+msgstr "Wenn suPHP aktiviert ist, dann muss dieses Feld zu einem bestehenden siteAdmins dieser Website gesetzt werden, oder Ihre PHP-Skripte werden nicht ausgeführt. Auch wenn Sie nicht suPHP aktiviert haben: Wenn Sie einen Eigentümer aus der Liste der siteAdmins wählen, dann wird das /web-Verzeichnis Ihrer Website rekursiv auf die UID des ausgewählten Benutzers ge-chown&#39;ed werden. Bedeutet: Alle Dateien und Ordner in /web werden danach dem ausgewählten Benutzer gehören."
 
 msgid "fileOwnerMenu"
-msgstr "Web Ownership"
+msgstr "Web-Eigentümer"
 
 msgid "fileOwnerDesc"
-msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have suPHP enabled. If suPHP is enabled and you don't have a siteAdmin as owner of your /web folder, then PHP scripts of your site will not run."
-
-
-# ---- start Prefix
+msgstr "Dieser Menüeintrag ermöglicht es Ihnen, den Eigentümer des /web Ordners Ihrer Website (und alle Dateien und Ordner innerhalb!) zu ändern. Es ermöglicht es Ihnen, eine siteadmin als Eigentümer zu definieren. Das ist besonders dann wichtig, wenn suPHP aktiviert ist. Wenn suPHP aktiviert ist und Sie keinen siteadmin als Eigentümer Ihres /web-Ordners gesetzt haben, dann werden die PHP-Skripte Ihrer Website nicht ausgeführt."
 
 msgid "prefix"
-msgstr "Site Prefix:"
+msgstr "Standardpräfix:"
 
 msgid "prefix_help"
-msgstr "The 'Site Prefix' is an optional prefix that allows you to identify users or services related to a site. If set, all (newly created) usernames will be prefixed with this string. A prefix must be alphanumeric (numbers and/or letters only) and may not be longer than five characters. Please note: A prefix can be added or changed at a later time. But doing so will NOT affect any usernames that are already present."
+msgstr "Die &#39;Standardpräfix&#39; ist eine optionale Präfix, mit der Sie einfach Benutzer oder Dienste einer Website zuordnen können. Wenn gesetzt, werden alle (neu geschaffenen) Benutzernamen diese Zeichenfolge vorangestellt bekommen. Ein Präfix muss alphanumerische Zeichen (Zahlen und / oder Buchstaben) haben und darf nicht länger als fünf Zeichen sein. Bitte beachten: Ein Präfix kann hinzugefügt oder zu einem späteren Zeitpunkt geändert werden. Aber das wird keine Auswirkungen auf Benutzernamen haben, die bereits vorhanden sind. Bestehende Nutzernamen werden dadurch nicht verändert."
 
 msgid "prefixTooLong"
-msgstr "The 'Site Prefix' you specified is longer than 5 characters."
+msgstr "Die von Ihnen angegebene &#39;Standardpräfix&#39; ist länger als 5 Zeichen."
 
 msgid "prefixInUse"
-msgstr "The 'Site Prefix' you specified is already in use by another site: [[VAR.fqdn]]"
+msgstr "Die von Ihnen angegebene &#39;Standardpräfix&#39; wird bereits von einer anderen Seite verwendet: [[VAR.fqdn]]"
 
 msgid "prefixInvalidChars"
-msgstr "The 'Site Prefix' you specified contains unsupported characters. Only alphanumerical characters are allowed, which means letters and numbers, but no more than five in total."
-
-# ---- end Prefix
-
-
-# --- Start webAliasRedirects
+msgstr "Die von Ihnen angegebene &#39;Standardpräfix&#39; enthält nicht unterstützte Zeichen. Nur alphanumerische Zeichen sind erlaubt. Was bedeutet: Buchstaben und Zahlen. Aber nicht mehr als insgesamt fünf."
 
 msgid "webAliasRedirects"
-msgstr "Web Alias Redirects"
+msgstr "Web Alias ​​leitet um"
 
 msgid "webAliasRedirects_help"
-msgstr "If a site has multiple 'Web Server Aliases', then two kinds of behaviours are possible: (a) An URL request to a 'Web Server Alias' URL will redirect to the main sites URL. This is the default. (b) An URL request to a 'Web Server Alias' will not redirect to the main sites URL. Instead the alias will look like an independent site on its own. Please note that this behaviour can be troublesome with web statistics and/or certain CMS systems."  
-
-# --- End webAliasRedirects
-
-
-# --- Start 'open_basedir'
+msgstr "Wenn eine Website mehrere &#39;Web Server Aliases&#39; hat, dann sind zwei Arten von Verhaltensweisen möglich: (a) Ein URL-Anforderung an ein &quot;Web Server Alias ​​&#39;URL wird zum primären FQDN der Seite umgeleitet. Dies ist die Standardeinstellung. (B) Ein URL-Anforderung an ein &#39;Web Server Alias ​​&quot; wird nicht zum primären FQDN umgeleitet. Stattdessen werden die Aliasse ​​wie eine eigenständige Website mit eigener URL aussehen. Bitte beachten Sie, dass dieses Verhalten negative Auswirkungen auf Web-Statistiken und/oder bestimmte CMS-Systeme haben kann."
 
 msgid "open_basedir_mandatory"
 msgstr "Open Basedir (Server):"
 
 msgid "open_basedir_mandatory_help"
-msgstr "These are the 'open_basedir' settings as defined for the whole server under 'Server Management' / 'Security' / 'PHP'. They are mandatory for every virtual site. In the field below you can specify additional directories that should be added to the 'open_basedir' directive."
+msgstr "Das sind die &#39;open_basedir&#39; Einstellungen, die für den gesamten Server unter &quot;Server Management&quot; / &quot;Sicherheit&quot; / &#39;PHP&#39; definiert werden. Sie sind wirksam für jeden virtuellen Site. Im Feld darunter können Sie weitere Verzeichnisse angeben, die zusätzlich in die &#39;open_basedir&#39; Richtlinien aufgenommen werden."
 
 msgid "open_basedir"
 msgstr "Open Basedir (Vsite):"
 
 msgid "open_basedir_help"
-msgstr "The 'open_basedir' directive limits the file access of PHP scripts to certain directories. The 'Open Basedir (Server)' field above shows you to which directories PHP scripts already have access to on this server. If the PHP scripts of this site need additional access to further directories, then you can specify these directories here. When the file is outside the specified directory-tree, PHP will refuse to open it."
+msgstr "Die &#39;open_basedir&#39; Richtlinie begrenzt den Zugriff von Dateien von PHP-Skripten auf bestimmte Verzeichnisse. Im &#39;Open Basedir (Server)&#39; Feld oben sehen Sie, auf welche Verzeichnisse PHP-Skripte bereits Zugang haben. Wenn die PHP-Skripte dieser Website zusätzlich Zugriff auf weitere Verzeichnisse benötigen, dann können Sie diese Verzeichnisse hier angeben. Wenn die Datei außerhalb der angegebenen Verzeichnis-Baum ist, wird PHP sich weigern, solche Dateien zu öffnen."
 
-# --- End 'open_basedir'
+msgid "siteRemove"
+msgstr "Diese virtuellen Site löschen."
+
+msgid "sitePreview"
+msgstr "Vorschau dieser virtuellen Site."
+
+msgid "Features"
+msgstr "Eigenschaften"
+
+msgid "Features_help"
+msgstr "Zeigt, welche Dienste und Funktionen für diese virtuelle Seite aktiviert sind."
+
+msgid "siteRemoveConfirmNeutral"
+msgstr "Sind Sie wirklich sicher, dass Sie diese virtuelle Website löschen möchten?"
+
+msgid "removeConfirmInfo"
+msgstr "Beim Löschen werden auch alle Benutzerkonten, E-Mails und Daten dieser virtuelle Site gelöscht. Dies kann nicht rückgängig gemacht werden."
+
+msgid "Actions"
+msgstr "Aktionen"
+
+msgid "Actions_help"
+msgstr "Mit diesen Icons können Sie die virtuelle Site ändern, anzeigen lassen, oder die virtuelle Site löschen."
+
+msgid "sitedefaultsbutNeutral"
+msgstr "Template"
+
+msgid "sitedefaultsbutNeutral_help"
+msgstr "Bearbeiten Sie die Einstellungen, die automatisch beim Anlegen einer virtuelle Website aktiviert werden sollen."
+
+msgid "disabled"
+msgstr "Deaktiviert"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "PHP_version"
+msgstr "PHP Version:"
+
+msgid "PHP_version_help"
+msgstr "Zeigt die PHP-Version des öffentlichen Webservers an."
+
+##
+
+msgid "cap_serverVsite"
+msgstr "Virtuelle-Site Einstellungen"
+
+msgid "vsite"
+msgstr "Virtuelle-Site Einstellungen"
+
+msgid "vsite_help"
+msgstr "Klicken Sie hier, um die Einstellungen der virtuellen Site zu ändern."
+
+msgid "vsiteSettings"
+msgstr "Virtuelle-Site Einstellungen"
+
+msgid "maxVsiteField"
+msgstr "Maximale Anzahl virtueller Sites"
+
+msgid "maxVsiteField_help"
+msgstr "Die maximale Anzahl der virtuellen Sites auf diesem Server."
+
+msgid "maxVsiteUpper"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "Der Wert für [[base-vsite.maxVsiteField]] muss kleiner sein als [[base-vsite.maxVsiteUpper]]."
+
+msgid "maxVsiteAlreadyMade"
+msgstr "Die aktuelle Anzahl der virtuellen Seiten wie per [[base-vsite.maxVsiteField]] definiert."
+
+msgid "userPrefixField"
+msgstr "User-Präfix"
+
+msgid "userPrefixField_help"
+msgstr "Geben Sie den Benutzernamen-Präfix. Beispiel: KundeA_, site1_"
+
+msgid "userPrefixEnabled"
+msgstr "Aktivieren Sie Benutzer-Präfixe"
+
+msgid "userPrefixEnabled_help"
+msgstr "Wenn die Funktion 'Benutzer Präfix' aktiviert ist, werden alle neuen Benutzernamen mit dieser Präfix vorangestellt angelegt."
+
+msgid "userShell"
+msgstr "Shell-Zugriff aktivieren"
+
+msgid "userShell_help"
+msgstr "Shell-Zugriff aktivieren, um Benutzern dieser Site Dienste wie Telnet und SSH zu erlauben."
+
+msgid "userSitesUser"
+msgstr "Maximale Anzahl Benutzer"
+
+msgid "userSitesUser_help"
+msgstr "Die maximale Anzahl der Benutzer, die auf diesem Server erstellt werden können."
+
+msgid "maxDiskAlreadyMade"
+msgstr "Die Menge an Speicherplatz, die derzeit laut [[base-vsite.quota]] belegt ist."
+
+msgid "maxUsersAlreadyMade"
+msgstr "Die Anzahl der Benutzer, die derzeit laut [[base-vsite.userSitesUser]] angelegt sind."
+
+msgid "createdUser"
+msgstr "Eigentümer"
+
+msgid "createdUser_help"
+msgstr "Zeigt den Eigentümer des virtuellen Site."
 

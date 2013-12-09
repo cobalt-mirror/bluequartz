@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: aliases.pl,v 1.15.2.2 2002/02/21 23:53:21 pbaltz Exp $
+# $Id: aliases.pl
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # handle any configuration for the mailAliases and webAliases fields
@@ -165,7 +165,7 @@ if ($cce->event_is_destroy())
 	}
 
 	# update web aliases, if necessary
-	if (exists($vsite_new->{webAliases}))
+	if (exists($vsite->{webAliases}))
 	{
 		# map into a hash and then take the keys to avoid duplicates
 		my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
