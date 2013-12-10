@@ -30,8 +30,8 @@ PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito make
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/ui
 PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito make install 
-rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_CN
-rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
+rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_CN
+rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 
 [FILES_SECTION]
 
