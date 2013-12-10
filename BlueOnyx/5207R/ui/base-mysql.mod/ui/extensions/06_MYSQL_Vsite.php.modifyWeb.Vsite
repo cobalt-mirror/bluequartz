@@ -425,7 +425,7 @@ if ($db_rights['solsitemysql'] == "1") {
 		}
 
 		// Create Vsite namespace 'MYSQL_Vsite':
-		if (($mysolmysql_enabled == "1") && ($solmysql_username) && ($solmysql_DB)) {
+		if (($solmysql_username) && ($solmysql_DB)) {
 			$cce = $ServerScriptHelper->getCceClient();
 		        $cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
 							    'enabled' => $mysolmysql_enabled, 
