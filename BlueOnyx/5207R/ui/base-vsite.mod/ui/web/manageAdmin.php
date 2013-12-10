@@ -302,13 +302,6 @@ function handle_admin_settings(&$helper, &$cce, &$user, $special_caps)
         $current_caps[] = 'adminUser';
     }
 
-    // Need to add 'modifyJava' if the user has 'manageSite', too:
-    if (in_array('manageSite', $current_caps)) {
-        if (!in_array('modifyJava', $current_caps)) {
-            $current_caps[] = 'modifyJava';
-        }
-    }
-
     // hack root access back out
     if (preg_match("/&rootAccess&/", $adminPowers)) 
         $rootAccess = 1;
