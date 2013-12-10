@@ -143,7 +143,7 @@ sub convertOpts
 	if($self->{opts}->isLabelValue($opt)) {
 		$val = $self->{opts}->labelValue($opt);
 	}
-	if($val == 1 && $self->build !~ /^(RaQ550|BQ5100R|TLAS2|Qube3|BO5106R)$/) {
+	if($val == 1 && $self->build !~ /^(RaQ550|BQ5100R|TLAS2|Qube3|BO5106R|BX5107R|BX5108R|BX5207R|BX5208R)$/) {
 		$val = $self->convertBool($val);
 	}
 	
@@ -401,6 +401,8 @@ sub getBuild
 		"5106R",			"BO5106R",
 		"5107R",			"BX5107R",
 		"5108R",			"BX5108R",
+		"5207R",			"BX5207R",
+		"5208R",			"BX5208R",
 		# TLAS
 		"TLAS2",			"TLAS2",
 	);

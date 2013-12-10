@@ -3,7 +3,7 @@
 Summary: Sun Cobalt Shell Tools
 Name: [PRODUCT]-shell-tools
 Version: [VERSION]
-Release: 0BX03%{?dist}
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: Applications/System
@@ -50,6 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
 
 %changelog
+* Wed Aug 24 2011 Michael Stauber <mstauber@blueonyx.it>
+- 2.30-0BX01
+- Added 5207R and 5208R platforms.
+
 * Wed Aug 24 2011 Michael Stauber <mstauber@blueonyx.it>
 - 2.20-0BX03
 - Modified perl/ShellOpts.pm to remove path to find binary as it's different between EL5 and EL6

@@ -2,14 +2,14 @@
 #
 # usage: make <product>
 #
-# $Id: Makefile,v 1.9 2003/09/29 15:11:14 jeffb Exp $
+# $Id: Makefile
 
 CWD = `pwd`
 
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.20
+VERSION   =   2.30
 
 BUILD_DIR =   /tmp/shell-tools
 TMP_DIR   =   $(BUILD_DIR)/shell-tools
@@ -85,6 +85,20 @@ raq550: cmu
 5108r: cmu
 	sed -e 's/\[PRODUCT\]/5108R/' < $(SPEC_IN) > $(SPEC_FILE)
 	sed -e 's/\[PRODUCT\]/5108R/' < $(MAKE_IN) > $(MAKE_FILE)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
+	$(RPMBUILD) -ta $(TMPTAR)
+
+5207r: cmu
+	sed -e 's/\[PRODUCT\]/5207R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5207R/' < $(MAKE_IN) > $(MAKE_FILE)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
+	$(RPMBUILD) -ta $(TMPTAR)
+
+5208r: cmu
+	sed -e 's/\[PRODUCT\]/5208R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5208R/' < $(MAKE_IN) > $(MAKE_FILE)
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
 	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
 	$(RPMBUILD) -ta $(TMPTAR)

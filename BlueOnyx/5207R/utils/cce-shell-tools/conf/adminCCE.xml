@@ -1,7 +1,9 @@
 <?xml version = "1.0" encoding = "iso-8859-1"?>
-<!-- $Id: adminCCE.xml,v 1.3 2003/04/09 20:27:31 jeffb Exp $ -->
+<!-- $Id: adminCCE.xml -->
 <!-- Copyright 2001 Sun Microsystems, Inc.  All rights reserved. -->
 <shell>
+  <product value = "BX5208R"/>
+  <product value = "BX5207R"/>
   <product value = "BX5108R"/>
   <product value = "BX5107R"/>
   <product value = "BO5106R"/>
