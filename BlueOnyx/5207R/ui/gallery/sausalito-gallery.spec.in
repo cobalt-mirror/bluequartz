@@ -41,6 +41,10 @@ rm $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 /usr/sausalito/ui/style/*.xml
 
 %changelog
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.3.3-0BX01
+- Use admserv as user. 
+
 * Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.3.2-0BX17
 - Copied 'ja' locales to 'ja_JP'.
 

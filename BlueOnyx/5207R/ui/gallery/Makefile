@@ -17,8 +17,8 @@ CCETMPL=$(CCEDEVEL)/templates
 VENDOR = sausalito
 VENDORNAME = 'Project BlueOnyx'
 SERVICE = gallery
-VERSION = 0.3.2
-RELEASE = 0BX17
+VERSION = 0.3.3
+RELEASE = 0BX01
 UIMENUS = none
 BUILDARCH=noarch
 BUILDUI = no
@@ -44,8 +44,8 @@ all: mod_locale
 install: install_locale
 	@install -d -o root -g root -m 755 $(UIDIR)
 	@find style -type f -name "*.xml" -exec install -D -o root -g root -m 644 {} $(UIDIR)/{} \;
-	@echo "chown style directory to $(USER_HTTPD) so it can write compiled styles to it..."
-	@chown $(USER_HTTPD) $(STYLEDIR)
+	@echo "chown style directory to admserv so it can write compiled styles to it..."
+	@chown admserv $(STYLEDIR)
 	@find libImage -type f ! -path "*/CVS/*" -exec install -D -o root -g root -m 644 {} $(WEBDIR)/{} \;
 	@echo "installing locale-sensitive styles...";
 	for i in `find locale -type f -name "*.xml"` ; do \
@@ -104,4 +104,4 @@ rpm: clean specfile
 	find rpms -type f -printf "RPM: %P\n" > packing_list
 
 specfile: $(CCERPMSPEC).in
-	sed -e 's/XX_USER_HTTPD_XX/$(USER_HTTPD)/' sausalito-gallery.spec.in > sausalito-gallery.spec
+	sed -e 's/XX_USER_HTTPD_XX/admserv/' sausalito-gallery.spec.in > sausalito-gallery.spec
