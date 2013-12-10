@@ -57,7 +57,10 @@ fi
 
 %changelog
 
-* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX01
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX28
+- Small fix to web/nav/flow.php
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX27
 - Various charset fixes. They help some, but under Spanish, Portuguese
   and French the lefthand side menu is still buggered. Toplevel menu
   entries with accents or special characters are garbled. That's beyond

@@ -46,7 +46,7 @@ header("Content-language: $lang[0]");
     else {
         $charset = "windows-1252";
     }
-    header("Content-type: text/html; charset=\"$charset\"");
+    header("Content-type: text/html; charset=$charset");
 ?>
 
 <HTML>
