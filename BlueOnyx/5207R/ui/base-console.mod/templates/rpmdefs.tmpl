@@ -83,14 +83,14 @@ information for [VENDOR]-[SERVICE].
 %attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/secure.js
 %attr(0644,-,-) /usr/sausalito/ui/web/base/console/.logtail/secure.php
 
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_a.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/adm_e.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/cron.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/maillog.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/messages.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/pa.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/pe.pl
-%attr(6755,-,-) /usr/sausalito/ui/web/base/console/.logtail/secure.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/adm_a.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/adm_e.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/cron.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/maillog.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/messages.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/pa.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/pe.pl
+%attr(6755,-,-) /usr/sausalito/bin/logtail/secure.pl
 
 <end ui>
 
@@ -163,6 +163,16 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+
+* Mon oct 21 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX08
+- Added additional locales for 5107R/5108R
+- Moved logtail perl scripts out of the web tree.
 
 * Mon Sep 17 2012 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX07
 - Added ui/web/index.php because IE has some issues with the magnifying glass

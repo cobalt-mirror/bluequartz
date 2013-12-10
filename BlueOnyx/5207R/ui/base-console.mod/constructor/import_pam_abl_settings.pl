@@ -42,7 +42,7 @@ chomp($fullbuild);
 my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/);
 
 # Copy the right config file in place:
-if (($model eq "5107R") || ($model eq "5108R")) {
+if (($model eq "5107R") || ($model eq "5108R") || ($model eq "5207R") || ($model eq "5208R")) {
     if (-e "/etc/pam.d/password-auth-ac.5107R") {
 	system("/bin/cp /etc/pam.d/password-auth-ac.5107R /etc/pam.d/password-auth-ac");
     }

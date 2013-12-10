@@ -1,250 +1,303 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n" 
 
 msgid "procsMenu"
-msgstr "Processes"
+msgstr "プロセス"
 
 msgid "procsMenu_help"
-msgstr "Allows you to see which processes are running on your server. Replicates the output of 'ps auxwf'. Also allows you to kill processes."
+msgstr "あなたは、プロセスがあなたのサーバー上で実行されているかを確認することができます。 'PS auxwf'の出力を複製します。また、プロセスを終了することができます。"
 
 msgid "vserver_processlist"
-msgstr "Server Process List"
+msgstr "サーバープロセス一覧"
 
 msgid "PID_help"
-msgstr "Process ID."
+msgstr "IDを処理します。"
 
 msgid "USER_help"
-msgstr "User name of the process owner."
+msgstr "プロセス所有者のユーザー名。"
 
 msgid "CPU_help"
-msgstr "CPU utilization of the process in '##.#' format. It is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage. It will not add up to 100% unless you are lucky."
+msgstr "'XX.X'形式でプロセスのCPU使用率。これは、プロセスがパーセンテージで表さ、（CPUTIME /リアルタイム比）を実行された時間で割った使用されたCPU時間である。運がない限り、それは100％まで追加されません。"
 
 msgid "MEM_help"
-msgstr "Memory utilization. Ratio of the process's resident set size to the physical memory on the machine, expressed as a percentage."
+msgstr "メモリ使用率。マシン上の物理メモリーに対する、プロセスの常駐セットサイズの比率は、パーセンテージで表さ。"
 
 msgid "VSZ_help"
-msgstr "Virtual memory usage of entire process."
+msgstr "全体のプロセスの仮想メモリ使用量。"
 
 msgid "RSS_help"
-msgstr "Resident set size, the non-swapped physical memory that a task has used (in kiloBytes)."
+msgstr "常駐セットサイズ、非スワップタスクは（キロバイト単位）を使用していることを物理メモリ。"
 
 msgid "TTY_help"
-msgstr "Controlling tty (terminal)."
+msgstr "端末（端末）を制御する。"
 
 msgid "STAT_help"
-msgstr "Multi-character process state."
+msgstr "複数文字のプロセス状態。"
 
 msgid "START_help"
-msgstr "Starting time or date of the process. Only the year will be displayed if the process was not started the same year ps was invoked, or 'mmmdd' if it was not started the same day, or 'HH:MM' otherwise."
+msgstr "プロセスの時間または日付を起動。そうでなければ：それは同じ日、または 'MM HH'が開始されていない場合、プロセスが同じPSが起動された年、または 'mmmdd'が開始されなかった場合にのみ年が表示されます。"
 
 msgid "TIME_help"
-msgstr "Cumulative CPU time, '[dd-]hh:mm:ss' format."
+msgstr "累積CPU時間、 '[DD-] HH：MM：SS'形式。"
 
 msgid "COMMAND_help"
-msgstr "Command with all its arguments as a string. May chop as desired. Modifications to the arguments are not shown. The output in this column may contain spaces."
+msgstr "文字列として、そのすべての引数を持つコマンド。必要に応じて切ることがあります。引数への修正が示されていない。この列の出力には、スペースを含めることができます。"
 
 msgid "KILL_help"
-msgstr "Click the icon next to the process in question to kill it with 'kill -9 PID'. BE CAREFUL NOT TO KILL IMPORTANT PROCESSES!"
+msgstr "'kill -9 pidを'でそれを殺すために、問題のプロセスの横にあるアイコンをクリックします。重要プロセスを強制終了しないように注意してください！"
 
 msgid "loginsMenu"
-msgstr "Logins"
+msgstr "ログイン"
 
 msgid "loginsMenu_help"
-msgstr "Allows you to see the last logins to your server and reproduces the output of the Linux command 'last'."
+msgstr "あなたのサーバーへの最後のログインを参照してくださいすることができますし、Linuxのコマンド '最後'の出力を再現。"
 
 msgid "vserver_loginlist"
-msgstr "Logins to this server"
+msgstr "このサーバへのログイン"
 
 msgid "LUSER"
-msgstr "Username"
+msgstr "ユーザー名"
 
 msgid "LUSER_help"
-msgstr "Shows the username of the user in question."
+msgstr "問題になっているユーザーのユーザー名を表示します。"
 
 msgid "CONSOLE"
-msgstr "Console"
+msgstr "コンソール"
 
 msgid "CONSOLE_help"
-msgstr "This column shows which console or network service the user was using to login."
+msgstr "この列は、ユーザーがログインに使用されたコンソール、またはネットワークサービスを示しています。"
 
 msgid "HOST"
-msgstr "Host"
+msgstr "ホスト"
 
 msgid "HOST_help"
-msgstr "Hostname or IP of the user that logged in."
+msgstr "ログインしたユーザーのホスト名またはIP"
 
 msgid "START_DATE"
-msgstr "Login start date"
+msgstr "日付を起動しログイン"
 
 msgid "START_DATE_help"
-msgstr "Shows the date on which the login in question started."
+msgstr "問題のログインが開始された日付を表示します。"
 
 msgid "STIME"
-msgstr "S-Time"
+msgstr "S-タイム"
 
 msgid "STIME_help"
-msgstr "Shows the time on which the login in question started."
+msgstr "問題のログインが開始した時刻を示します。"
 
 msgid "ETIME"
-msgstr "E-Time"
+msgstr "E-タイム"
 
 msgid "ETIME_help"
-msgstr "Shows the time on which the login in question ended."
+msgstr "問題のログインが終了している時間を表示します。"
 
 msgid "DURATION"
-msgstr "Duration"
+msgstr "デュレーション"
 
 msgid "DURATION_help"
-msgstr "Shows how long the login lasted - or if it's still going on."
+msgstr "ログインが続いたどのくらいの時間を示して - またはそれはまだ起こっている場合。"
 
 msgid "UKILL"
-msgstr "Kill"
+msgstr "殺す"
 
 msgid "UKILL_help"
-msgstr "Allows you to boot the user from the system (if he is still logged in!). That alone doesn't prevent him from logging in again, though. For that you may have to suspend the site or user in question, too."
+msgstr "あなたは（彼がまだログインしている場合！）システムからユーザーを起動することができます。それだけでは、しかし、再度ログインから彼を防ぐことはできません。そのためにも、問題のサイトやユーザーを中断する必要があります。"
 
 msgid "logfilesMenu"
-msgstr "Logfiles"
+msgstr "ログファイル"
 
 msgid "logfilesMenu_help"
-msgstr "Allows you to examine the server logfiles."
+msgstr "サーバーのログファイルを調べることができます。"
 
 msgid "sol_view"
-msgstr "Logfile:"
+msgstr "ログファイル："
 
 msgid "sol_view_help"
-msgstr "Choose the logfile that you want to examine."
-
-### pam_abl strings:
+msgstr "調べたいことをログファイルを選択してください。"
 
 msgid "pam_ablMenu"
-msgstr "Login Manager"
+msgstr "ログインマネージャ"
 
 msgid "pam_ablMenu_help"
-msgstr "The 'Login Manager' allows you to configure the protection against brute force password guessing attempts. You can configure after how many failed logins the account or the attacking hosts will be prevented from logging in at all. Even if he finally uses a valid username and password. If you ever block yourself: You will always be able to login to the GUI as 'admin' to reset the blockade."
+msgstr "'ログインマネージャは、'あなたは、ブルートフォースのパスワード推測を試みに対する保護を設定することができます。あなたは、アカウントまたは攻撃ホストは全くのログインを防止する方法を多くの失敗したログイン後に設定することができます。彼は最終的に有効なユーザー名とパスワードを使用している場合でも。あなたは今まで自分をブロックした場合：あなたはいつも封鎖をリセットするために '管理者'としてGUIにログインすることができます。"
 
 msgid "pam_abl_head"
-msgstr "Login Manager"
+msgstr "ログインマネージャ"
 
 msgid "pam_abl_location"
-msgstr "Config File:"
+msgstr "設定ファイル："
 
 msgid "pam_abl_location_help"
-msgstr "Location of the pam_abl config file."
+msgstr "pam_abl設定ファイルの場所。"
 
 msgid "user_purge"
-msgstr "User purge:"
+msgstr "ユーザーパージ："
 
 msgid "user_purge_help"
-msgstr "Defines how long failed logins for users are retained in the user database. Failed logins are still stored in the database even after the temporary blocking has expired."
+msgstr "ユーザーのための失敗したログインがユーザデータベースに保持される時間を定義します。失敗したログインはまだ一時的なブロッキングの有効期限が切れた後でも、データベースに格納されます。"
 
 msgid "host_purge"
-msgstr "Host purge:"
+msgstr "ホストパージ："
 
 msgid "host_purge_help"
-msgstr "Defines how long failed logins for hosts are retained in the host database. Failed logins are still stored in the database even after the temporary blocking has expired."
+msgstr "ホストのための失敗したログインは、ホスト?データベースに保持されているどのくらいの時間を定義します。失敗したログインはまだ一時的なブロッキングの有効期限が切れた後でも、データベースに格納されます。"
 
 msgid "user_rule"
-msgstr "User rule:"
+msgstr "ユーザールール："
 
 msgid "user_rule_help"
-msgstr "Amount of failed logins per hour until the user account will be blacklisted, preventing anyone to login to that account even with a valid password. PLEASE NOTE: You should leave this at 'disabled', because otherwise someone could run a 'Denial of Service' attack against you that (temporarily) blocks even legitimate users from using their accounts."
+msgstr "ユーザーアカウントまで毎時ログイン失敗の量は誰もが有効なパスワードであっても、そのアカウントにログインすることを防止、ブラックリストに登録されます。ご注意：あなたはそうしないと、誰かがあなたに対して攻撃 'サービス拒否'を実行する可能性があるため、 '身体障害者'でこれを残すべきでさえ（一時的に）ブロックの自分のアカウントを使用してから正当なユーザー。"
 
 msgid "host_rule"
-msgstr "Host rule:"
+msgstr "ホストのルール："
 
 msgid "host_rule_help"
-msgstr "Amount of failed logins per hour until the originating host will be blackisted. Even logins with correct usernames and password from the offending IP will then be blocked. Exception: User 'admin' can still login to the GUI from that IP - if he knows the correct password."
+msgstr "元ホストがblackistedされるまで、時間当たり失敗したログインの量。問題のあるIPから正しいユーザー名とパスワードでさえログインはその後ブロックされます。例外：ユーザー 'adminが'まだそのIPからGUIにログインすることができます - 彼は正しいパスワードを知っていれば。"
 
 msgid "pam_abl_statusMenu"
-msgstr "Failed Logins"
+msgstr "失敗したログイン"
 
 msgid "pam_abl_statusMenu_help"
-msgstr "Shows you a list of IP addresses from which failed login attempts were registered. Also shows which user names were used. This page also allows you to reset autentication blockades. A red status light next to an IP or username means that the host (or user!) is not allowed to login anymore."
+msgstr "あなたの登録したログイン試行を失敗したIPアドレスのリストを表示します。また、ユーザー名が使用されたを示しています。このページでは、autenticationの封鎖をリセットすることができます。 IPまたはユーザー名の横の赤いステータスランプがホスト（またはユーザー！）もうログインが許可されていないことを意味します。"
 
 msgid "pam_abl_blocked_users_and_hosts"
-msgstr "Failed Login History"
+msgstr "失敗したログイン履歴"
 
 msgid "blocked_hosts"
-msgstr "Blocked hosts"
+msgstr "ブロックされたホスト"
 
 msgid "blocked_users"
-msgstr "Blocked users"
+msgstr "ブロックされたユーザー"
 
 msgid "pam_abl_blocked_hosts"
-msgstr "Hosts with failed login activity:"
+msgstr "失敗したログイン活性を持つホスト："
 
 msgid "host_ip"
-msgstr "IP address"
+msgstr "IPアドレス"
 
 msgid "host_ip_help"
-msgstr "IP address from which failed login attempts were recorded."
+msgstr "ログイン試行に失敗し、そこからIPアドレスを記録した。"
 
 msgid "failcnt"
-msgstr "Fail"
+msgstr "失敗する"
 
 msgid "failcnt_help"
-msgstr "Shows how many failed logins were recorded."
+msgstr "記録されたどのように多くの失敗したログインを示しています。"
 
 msgid "access"
-msgstr "Access"
+msgstr "アクセス"
 
 msgid "access_help"
-msgstr "Shows if access is still allowed or if it is blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+msgstr "アクセスであればショーはまだ許可されているか、それがブロックされている場合。緑色のステータスランプの意味： - 許可されたアクセス（または再びまだ）です。赤の意味：アクセスがブロックされます。"
 
-msgid "Action"	
-msgstr "Unblock"
+msgid "Action"
+msgstr "ブロックを解除"
 
-msgid "Action_help"	
-msgstr "Clicking on the button allows you to remove an active blocking of the host or account in question. If the button is greyed out, then this host or account is currently not blocked."
+msgid "Action_help"
+msgstr "ボタンをクリックすると、問題になっているホストまたはアカウントのアクティブなブロックを削除することができます。ボタンがグレーアウトされている場合は、このホストまたはアカウントは現在ブロックされません。"
 
 msgid "reset_hosts_button"
-msgstr "Reset all host blocks"
+msgstr "すべてのホストブロックをリセット"
 
 msgid "reset_hosts_button_help"
-msgstr "Allows you to reset all host blocks and also removes all host event activity from the host database."
+msgstr "あなたはすべてのホストブロックをリセットすることができ、また、ホスト?データベースからすべてのホストのイベント?アクティビティを削除します。"
 
 msgid "reset_users_button"
-msgstr "Reset all user blocks"
+msgstr "すべてのユーザーのブロックをリセット"
 
 msgid "reset_users_button_help"
-msgstr "Allows you to reset all user blocks and also removes all user event activity from the user database."
+msgstr "あなたはすべてのユーザーのブロックをリセットすることができ、また、ユーザデータベースからすべてのユーザーイベント?アクティビティを削除します。"
 
 msgid "reset_all_button"
-msgstr "Reset all blocks"
+msgstr "すべてのブロックをリセット"
 
 msgid "reset_all_button_help"
-msgstr "Allows you to reset all host and user blocks. Also removes all failed login event activity from the databases."
+msgstr "あなたはすべてのホストやユーザーのブロックをリセットすることができます。また、データベースからすべての失敗したログインイベント?アクティビティを削除します。"
 
 msgid "purge_button"
-msgstr "Purge events"
+msgstr "パージイベント"
 
 msgid "purge_button_help"
-msgstr "Allows you to manually expire events from the user and host database which are past their expiry date."
+msgstr "手動でそれらの有効期限を過ぎているユーザーとホスト?データベースからイベントを期限切れにすることができます。"
 
 msgid "pam_abl_blocked_users"
-msgstr "Accounts with failed login activity:"
+msgstr "失敗したログイン活性を持つアカウント："
 
 msgid "username"
-msgstr "Account"
+msgstr "アカウント"
 
 msgid "username_help"
-msgstr "User name for which failed login activity was registered. These usernames may not not be valid accounts on this server, but someone tried to login with them nonetheless."
+msgstr "ログインアクティビティを失敗したユーザ名が登録されました。これらのユーザー名は、このサーバ上の有効なアカウントではないないかもしれませんが、誰かがそれにもかかわらず、それらを使用してログインしようとした。"
 
 msgid "blocked_hosts_help"
-msgstr "Shows a list of hosts from which failed login activity was registered, how often they failed to authenticate correctly and if they're still blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+msgstr "ログインアクティビティを失敗したからホストのリストは、それらがまだブロックされている場合、彼らは正しく認証するために失敗し、どのくらいの頻度で、登録されたことが示されます。緑色のステータスランプの意味： - 許可されたアクセス（または再びまだ）です。赤の意味：アクセスがブロックされます。"
 
 msgid "blocked_users_help"
-msgstr "Shows a list of user accounts for which failed login activity was registered, how often the authentication failed and if the account is still blocked. A green status light means: Access is (still - or again) allowed. Red means: The access is blocked."
+msgstr "認証が失敗し、アカウントがまだブロックされている場合どのくらいの頻度で、ログイン?アクティビティーを失敗したユーザアカウントのリストが登録されたを示しています。緑色のステータスランプの意味： - 許可されたアクセス（または再びまだ）です。赤の意味：アクセスがブロックされます。"
 
 msgid "whois"
-msgstr "Whois"
+msgstr "フーイズ"
 
 msgid "whois_help"
-msgstr "Shows the 'whois' information about the IP in question."
+msgstr "問題のIPについて 'のwhoisの情報を表示します。"
 
 msgid "host_fqdn"
-msgstr "Hostname"
+msgstr "ホスト名"
 
 msgid "host_fqdn_help"
-msgstr "Hostname from which failed login attempts were recorded. If it shows '-n/a-' it means that the host didn't have a valid reverse DNS. If it shows 'localhost', it doesn't necessarily mean that the attack came from your server. There are a lot of (predominantly Asian) ISP's which set the reverse DNS for their network to 'localhost'."
+msgstr "ホスト名、失敗したから、ログイン試行を記録した。それが表示されている場合 '-n/a-'それは、ホストが有効な逆引きDNSを持っていなかったことを意味します。それは 'localhostの'を示している場合、それは必ずしも攻撃があなたのサーバーから来たという意味ではありません。 'localhost'のへのネットワークのDNSの逆引きを設定してISPの多くの（主にアジア）があります。"
 
+msgid "/var/log/cron"
+msgstr "/var/log/cron"
 
+msgid "/var/log/cron_help"
+msgstr "/var/log/cron"
+
+msgid "/var/log/maillog"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/maillog_help"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/messages"
+msgstr "/var/log/messages"
+
+msgid "/var/log/messages_help"
+msgstr "/var/log/messages"
+
+msgid "/var/log/secure"
+msgstr "/var/log/secure"
+
+msgid "/var/log/secure_help"
+msgstr "/var/log/secure"
+
+msgid "/var/log/httpd/access_log"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/access_log_help"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/error_log"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/httpd/error_log_help"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/admserv/adm_access"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_access_help"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_error"
+msgstr "/var/log/admserv/adm_error"
+
+msgid "/var/log/admserv/adm_error_help"
+msgstr "/var/log/admserv/adm_error"

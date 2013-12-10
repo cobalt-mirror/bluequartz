@@ -15,7 +15,7 @@ msgid "USER_help"
 msgstr "User name of the process owner."
 
 msgid "CPU_help"
-msgstr "CPU utilization of the process in '##.#' format. It is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage. It will not add up to 100% unless you are lucky."
+msgstr "CPU utilization of the process in 'XX.X' format. It is the CPU time used divided by the time the process has been running (cputime/realtime ratio), expressed as a percentage. It will not add up to 100% unless you are lucky."
 
 msgid "MEM_help"
 msgstr "Memory utilization. Ratio of the process's resident set size to the physical memory on the machine, expressed as a percentage."
@@ -247,4 +247,50 @@ msgstr "Hostname"
 msgid "host_fqdn_help"
 msgstr "Hostname from which failed login attempts were recorded. If it shows '-n/a-' it means that the host didn't have a valid reverse DNS. If it shows 'localhost', it doesn't necessarily mean that the attack came from your server. There are a lot of (predominantly Asian) ISP's which set the reverse DNS for their network to 'localhost'."
 
+msgid "/var/log/cron"
+msgstr "/var/log/cron"
 
+msgid "/var/log/cron_help"
+msgstr "/var/log/cron"
+
+msgid "/var/log/maillog"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/maillog_help"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/messages"
+msgstr "/var/log/messages"
+
+msgid "/var/log/messages_help"
+msgstr "/var/log/messages"
+
+msgid "/var/log/secure"
+msgstr "/var/log/secure"
+
+msgid "/var/log/secure_help"
+msgstr "/var/log/secure"
+
+msgid "/var/log/httpd/access_log"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/access_log_help"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/error_log"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/httpd/error_log_help"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/admserv/adm_access"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_access_help"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_error"
+msgstr "/var/log/admserv/adm_error"
+
+msgid "/var/log/admserv/adm_error_help"
+msgstr "/var/log/admserv/adm_error"

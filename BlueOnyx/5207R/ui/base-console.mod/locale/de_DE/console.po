@@ -1,16 +1,12 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Project-Id-Version: email.po\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-08-12 17:23+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@blueonyx.it>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "procsMenu"
 msgstr "Prozesse"
@@ -258,4 +254,52 @@ msgstr "Hostnamen"
 
 msgid "host_fqdn_help"
 msgstr "Hostnamen, von denen die Loginfehler ausgingen. Falls '-n/a-' angezeigt wird, so hatte de betreffende IP keine Reverse-DNS. Achtung: Wird 'localhost' angezeigt, so bedeutet das nicht zwangsläufig, dass die Loginfehler von Ihrem eigenen System ausgingen. Viele Provider in Asien setzen ihre kompletten Netzwerke auf die Reverse-DNS 'localhost'."
+
+msgid "/var/log/cron"
+msgstr "/var/log/cron"
+
+msgid "/var/log/cron_help"
+msgstr "/var/log/cron"
+
+msgid "/var/log/maillog"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/maillog_help"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/messages"
+msgstr "/var/log/messages"
+
+msgid "/var/log/messages_help"
+msgstr "/var/log/messages"
+
+msgid "/var/log/secure"
+msgstr "/var/log/secure"
+
+msgid "/var/log/secure_help"
+msgstr "/var/log/secure"
+
+msgid "/var/log/httpd/access_log"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/access_log_help"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/error_log"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/httpd/error_log_help"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/admserv/adm_access"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_access_help"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_error"
+msgstr "/var/log/admserv/adm_error"
+
+msgid "/var/log/admserv/adm_error_help"
+msgstr "/var/log/admserv/adm_error"
 
