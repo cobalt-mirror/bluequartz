@@ -1,5 +1,5 @@
 <?php
-// $Id: AnonFtp.php.defaults.Vsite,v 1.7 2001/10/25 01:24:24 pbaltz Exp $
+// $Id: AnonFtp.php.defaults.Vsite
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // AnonFtp.php.defaults.Vsite
 
@@ -33,7 +33,7 @@ class AnonFtpExtension extends UIExtension
   
         $ftpField->addOption($enable);
 
-        // More PHP5 conversion bugs! In tabbed environments the values from composite form fields don't
+        // More PGP5 conversion bugs! In tabbed environments the values from composite form fields don't
         // get posted if you're not right on the tab where the input box is. This work around adds it as
         // hidden field on all tabs:
 
@@ -54,8 +54,8 @@ class AnonFtpExtension extends UIExtension
         );
 
         // now add the form fields to the block, assume PagedBlock
-        $pageId = "AnonFtp";
-        $container->addPage($pageId, $factory->getLabel("AnonFtp"));
+        $pageId = "siteFtp";
+        $container->addPage($pageId, $factory->getLabel("siteFtp"));
         $container->addFormField(
                 $ftpField, 
                 $factory->getLabel("anonFtp"), 

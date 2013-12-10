@@ -1,6 +1,7 @@
 <?
 // Copyright Sun Microsystems, Inc. 2001
 // $Id: vsiteFtp.php
+// vsiteFtp.php
 // display the form to modify anonymous ftp settings for a vsite
 
 include_once('ServerScriptHelper.php');
@@ -24,6 +25,10 @@ if ($helper->getAllowed('serverFTP')){
           $group == $helper->loginUser['site']) {
     $access = 'r';
     $is_site_admin = 1;
+} elseif ($helper->getAllowed('manageSite') &&
+          $group == $helper->loginUser['site']) {
+    $access = 'rw';
+    $is_site_admin = 0;
 } else {
     header("location: /error/forbidden.html");
     return;
@@ -68,10 +73,10 @@ if (!$ftp_submit)
 $vsite_disk =& $cce->get($vsite_oid, 'Disk');
 
 // start the paged block
-$settings =& $factory->getPagedBlock('modAnonFtp');
+$settings =& $factory->getPagedBlock('ChangeSiteFtp');
 $settings->processErrors($errors);
 $settings->setLabel(
-    $factory->getLabel('modAnonFtp', false, array('fqdn' => $vsite['fqdn'])));
+    $factory->getLabel('ChangeSiteFtp', false, array('fqdn' => $vsite['fqdn'])));
 
 
 // add auto-detected features
@@ -121,29 +126,40 @@ $enable->addFormField($connections, $factory->getLabel('ftpUsers'));
 $ftpField->addOption($enable);
 
 if ($is_site_admin) {
-	$settings->addFormField(
-		$factory->getInteger('ftpquota', $shown_quota, 1, "", $access),
-		$factory->getLabel('ftpQuota'));
-	$settings->addFormField(
-		$factory->getInteger('ftpusers', $vsiteServices['maxConnections'], 1, "", $access),
-		$factory->getLabel('ftpUsers'));
+    $settings->addFormField(
+        $factory->getInteger('ftpquota', $shown_quota, 1, "", $access),
+        $factory->getLabel('ftpQuota'));
+    $settings->addFormField(
+        $factory->getInteger('ftpusers', $vsiteServices['maxConnections'], 1, "", $access),
+        $factory->getLabel('ftpUsers'));
 } else { 
-	$settings->addFormField(
+    $settings->addFormField(
     $ftpField,
     $factory->getLabel('anonFtp')
     );
-	$settings->setColumnWidths(array('20%', '80%'));
+    $settings->setColumnWidths(array('20%', '80%'));
 }
 
+// Don't ask why, but somehow with PHP5 we need to add a blank FormField or nothing shows on this page:
+$hidden_block = $factory->getTextBlock("Nothing", "");
+$hidden_block->setOptional(true);
+$settings->addFormField(
+    $hidden_block,
+    $factory->getLabel("Nothing"),
+    "Hidden"
+    );
+
+
 // add the buttons
-if (!$is_site_admin)
-	$settings->addButton($factory->getSaveButton($page->getSubmitAction()));
+if (!$is_site_admin) {
+    $settings->addButton($factory->getSaveButton($page->getSubmitAction()));
+}
 
 if (count($errors))
 {
     $settings->setSelectedId('errors');
     $settings->processErrors($errors, 
-    		array('quota' => 'ftpquota', 'maxConnections' => 'ftpusers'));
+            array('quota' => 'ftpquota', 'maxConnections' => 'ftpusers'));
 }
 
 
@@ -153,10 +169,7 @@ print $page->toFooterHtml();
 
 // nice people say goodbye
 $helper->destructor();
-
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

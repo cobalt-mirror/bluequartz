@@ -130,6 +130,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX04
+- Renaming of 'siteFtp' to 'anonFtp' wasn't the smartest of ideas, as it might break ability for straight upgrades.
+- Fixed ui/extensions/AnonFtp.php.defaults.Vsite
+- Fixed ui/extensions/00_FTPNONADMIN.php.create.Vsite
+- Fixed ui/extensions/21_FTPNONADMIN.php.modify.FTP
+- Fixed ui/extensions/21_FTPNONADMIN.php.defaults.Vsite
+- Fixed ui/extensions/10_AnonFtp.php.create.Vsite
+- Fixed ui/menu/vsite_ftp.xml
+- Fixed ui/web/vsiteFtp.php to allow resellers to save changes, too.
+
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX03
 - glue/schemas/ftp.schema failed validation. Fixed.
 
