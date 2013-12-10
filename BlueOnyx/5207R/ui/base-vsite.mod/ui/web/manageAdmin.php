@@ -32,7 +32,6 @@ $possible_caps = array(
             'serverShell' => 1,
             'serveriStat' => 1,
             'serverSSL' => 1,
-            'serverSystemFirewall' => 1,
             'serverNetwork' => 1,
             'serverIpPooling' => 1,
             'serverVsite' => 1,
