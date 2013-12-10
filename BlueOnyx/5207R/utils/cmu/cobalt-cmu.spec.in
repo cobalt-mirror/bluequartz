@@ -68,6 +68,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net>
+- version 2.91-0BX02
+- Somewhat more refined build that supports 5207R and 5208R platforms.
+- Major new feature are the 520XRadjust scripts borrowed from Hisao Shibuya.
+
 * Mon Nov 11 2013 Michael Stauber <mstauber@solarspeed.net>
 - version 2.91-0BX01
 - Tentative first new build that supports 5207R and 5208R platforms.

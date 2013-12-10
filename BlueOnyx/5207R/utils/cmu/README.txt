@@ -25,7 +25,7 @@ Makefile:
 VERSION   =   2.80
 
 perl_modules/TreeXml.pm:
-$VERSION = 2.53;
+$VERSION = 2.80;
 
 To compile the complete packages you need to have the following rpms placed in /usr/src/redhat/RPMS/noarch
 perl-Compress-Zlib-1.11-1.i386.rpm
