@@ -249,7 +249,7 @@ class I18n {
 			$encConv = new EncodingConv($string, 'japanese',
 						    $fromEncoding);
 			if ($toEncoding == '') {
-				return $encConv->toEUC();
+				return $encConv->toUTF8();
 			} else {
 				return $encConv->doJapanese($string,
 							    $toEncoding,
