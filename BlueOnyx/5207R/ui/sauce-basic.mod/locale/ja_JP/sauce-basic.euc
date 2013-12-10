@@ -1,22 +1,19 @@
 # Global tech support strings
 
-	# ご参考: ヨーロッパ、中近東、アフリカからは、+31 71 565 7070 までお電話ください。または、support-emea@cobalt.com 宛に電子メールをお送りください。
-	# 日本からは、support-japan@cobalt.com 宛に電子メールをお送りください。
 msgid "techSupportUSPhone"
-msgstr "(888) 702-6225"
+msgstr "(Not available)"
 
 msgid "techSupportIntlPhone"
-msgstr "1 (650) 623-2679"
+msgstr "(Not available)"
 
 msgid "techSupportEmail"
-msgstr "support@sun.co.jp"
-	
-	# This should work for at least USA and Canada
+msgstr "(Not available)"
+
 msgid "contactTechSupport"
-msgstr "テクニカルサポートは [[base-sauce-basic.techSupportURL]] をご利用ください｡"
+msgstr "テクニカルサポートはありませんので、 [[base-sauce-basic.techSupportURL]] などをご覧下さい。"
 
 msgid "techSupportURL"
-msgstr "http://www.sun.co.jp/service/online/"
+msgstr "[[base-alpine.vendorSite]]index-j.html"
 
 msgid "kill_dhclient_failed"
 msgstr "dhclient の動作停止を確認できません。"
