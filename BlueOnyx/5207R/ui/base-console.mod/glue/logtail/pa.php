@@ -12,7 +12,7 @@ if (!$helper->getAllowed('adminUser')) {
   return;
 }
 
-$cmd = "/usr/sausalito/ui/web/base/console/.logtail/pa.pl";
+$cmd = "/usr/sausalito/bin/logtail/pa.pl";
 exec("$cmd 2>&1", $output);
 foreach($output as $outputline) {
     echo ("$outputline\n");
