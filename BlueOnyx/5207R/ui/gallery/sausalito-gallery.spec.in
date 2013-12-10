@@ -13,6 +13,15 @@ Group: System Environment/BlueOnyx
 Source: %{Vendor}-%{Service}-[VERSION].tar.gz
 BuildRoot: /var/tmp/%{Vendor}-%{Service}
 Requires: httpd
+Requires: sausalito-gallery-locale-da_DK
+Requires: sausalito-gallery-locale-de_DE
+Requires: sausalito-gallery-locale-en_US
+Requires: sausalito-gallery-locale-es_ES
+Requires: sausalito-gallery-locale-fr_FR
+Requires: sausalito-gallery-locale-it_IT
+Requires: sausalito-gallery-locale-ja_JP
+Requires: sausalito-gallery-locale-pt_PT
+
 [BUILDARCH]
 
 %description
