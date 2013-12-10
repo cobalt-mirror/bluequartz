@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.2
-Release: 1BX10%{?dist}
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,11 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX01
+- Another version number bump as there was a bit of dissagreement if it was 0.5.2 or 0.5.1.
+- Added a pre section to spec template. Dunno why *that* was missing.
+
 * Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX10
 - I always hated it that the capstone did not require all the bloody locales of a module and that ANY 
   locale would satisfy the locale dependency. Well, this is fixed: On build time all existing locales
