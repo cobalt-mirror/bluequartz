@@ -1,6 +1,6 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
-Version: 0.5.2
+Version: 0.5.3
 Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
