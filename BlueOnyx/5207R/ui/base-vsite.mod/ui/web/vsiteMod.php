@@ -1,6 +1,5 @@
 <?php
 // $Id: vsiteMod.php
-// Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // vsiteMod.php
 // display the form for modifying the "general" (everything but FTP) 
 // settings for a virtual site
@@ -55,29 +54,29 @@ $settings->processErrors($errors);
 list($sysoid) = $cce->find("System");
 $net_opts = $cce->get($sysoid, "Network");
 if ($net_opts["pooling"] && $helper->getAllowed('manageSite') ) {
-	$range_strings = array();
-	$oids = $cce->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
-	foreach ($oids as $oid) {
-		$range = $cce->get($oid);
-		$range_strings[] = $range['min'] . ' - ' . $range['max'];
-	}
-	$string = arrayToString($range_strings);
-	$ip = $factory->getIpAddress("ipAddr", $vsite["ipaddr"]);
-	$mylabel = $factory->getLabel("[[base-network.valid_ranges]]");
-	$mylabel->setDescription($factory->i18n->get('[[base-network.valid_ranges_help]]'));
-	$range_list = $factory->getCompositeFormField(
-		      array($mylabel,
-			    $factory->getTextList("valid_ranges", $string, "r")
-			    ),
-		      "&nbsp;"
-		      );
-	$range_list->setAlignment("TOP");
-	$ip_address = $factory->getVerticalCompositeFormField(array($ip, $range_list));
-	$ip_address->setId("ipAddr");
-	$ip_address->setAlignment("LEFT");
+    $range_strings = array();
+    $oids = $cce->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
+    foreach ($oids as $oid) {
+        $range = $cce->get($oid);
+        $range_strings[] = $range['min'] . ' - ' . $range['max'];
+    }
+    $string = arrayToString($range_strings);
+    $ip = $factory->getIpAddress("ipAddr", $vsite["ipaddr"]);
+    $mylabel = $factory->getLabel("[[base-network.valid_ranges]]");
+    $mylabel->setDescription($factory->i18n->get('[[base-network.valid_ranges_help]]'));
+    $range_list = $factory->getCompositeFormField(
+              array($mylabel,
+                $factory->getTextList("valid_ranges", $string, "r")
+                ),
+              "&nbsp;"
+              );
+    $range_list->setAlignment("TOP");
+    $ip_address = $factory->getVerticalCompositeFormField(array($ip, $range_list));
+    $ip_address->setId("ipAddr");
+    $ip_address->setAlignment("LEFT");
 } else {
-	// IP address, without ranges
-	$ip_address = $factory->getIpAddress("ipAddr", $vsite["ipaddr"], $access);
+    // IP address, without ranges
+    $ip_address = $factory->getIpAddress("ipAddr", $vsite["ipaddr"], $access);
 }
 
 $settings->addFormField(
@@ -88,11 +87,11 @@ $settings->addFormField(
 
 // host and domain names
 $hostfield = $factory->getVerticalCompositeFormField(array(
-			   $factory->getDomainName("hostname", $vsite["hostname"], $access),
-			   ));
+               $factory->getDomainName("hostname", $vsite["hostname"], $access),
+               ));
 $domainfield = $factory->getVerticalCompositeFormField(array(
-			     $factory->getDomainName("domain", $vsite["domain"], $access),
-			     ));
+                 $factory->getDomainName("domain", $vsite["domain"], $access),
+                 ));
 if ($helper->getAllowed('manageSite')) {
   // only add these labels if the field is editable
   // i.e. if user is an 'manageSite'
@@ -108,6 +107,49 @@ $settings->addFormField(
         $pageId
         );
 
+//-- Start Owner Management
+
+// Find all 'adminUsers' with the capability 'manageSite':
+$admins = $cce->findx('User', 
+                array('systemAdministrator' => 0, capLevels => 'manageSite'),
+                array());
+
+// Set up an array that - at least - has 'admin' in it:
+$adminNames = array('admin');
+foreach ($admins as $num => $oid) {
+    $current = $cce->get($oid);
+    // Found a reseller, adding him to the array as well:
+    $adminNames[] = $current['name'];
+}
+
+// If that Vsite has no owner yet, then 'admin' will own it:
+if ($vsite['createdUser'] == "") {
+    $current_createdUser = "nobody";
+}
+else {
+    $current_createdUser = $vsite['createdUser'];
+}
+
+// If the current user has the cap 'serverManage', then he is allowed to change the owner:
+if ($helper->getAllowed('serverManage')) { 
+    // Sort the array values:
+    asort($adminNames);
+    // Build the MultiChoice selector:
+    $current_createdUser_select = $factory->getMultiChoice("createdUser", array_values($adminNames));
+    $current_createdUser_select->setSelected($current_createdUser, true);
+    $settings->addFormField($current_createdUser_select, $factory->getLabel("createdUser"), $pageId);
+}
+else {
+    // Current user doesn't have the cap 'serverManage'. So we just add a hidden TextField with the current owner in it:
+    $settings->addFormField(
+            $factory->getTextField("createdUser", $vsite['createdUser'], "r"),
+            $factory->getLabel("createdUser"),
+            "hidden"
+            );
+}
+
+//-- End Owner Management
+
 // site prefix
 $vsite_prefix = $factory->getTextField("prefix", $vsite['prefix'], $access);
 $vsite_prefix->setOptional(true);
@@ -119,12 +161,11 @@ $settings->addFormField(
         $pageId
         );
 
-
 // vsite disk info
 $disk = $cce->get($vsite['OID'], 'Disk');
 
 $disk_dev = $cce->getObject('Disk', 
-	array('mountPoint' => $vsite['volume']), '');
+    array('mountPoint' => $vsite['volume']), '');
 
 // dirty hack not to use /home partition 
 if (count($disk_dev) == 0) { 
@@ -154,7 +195,7 @@ if ($sites['quota'] > 0) {
 
 // site quota
 $site_quota = $factory->getInteger('quota', 
-	$disk['quota'], 1, $partitionMax, $access); 
+    $disk['quota'], 1, $partitionMax, $access); 
 
 // don't show bounds if it is read-only
 if ($access == 'rw')
@@ -258,6 +299,8 @@ print $page->toFooterHtml();
 // nice people say goodbye
 $helper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

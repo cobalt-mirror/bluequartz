@@ -136,6 +136,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX11
+- Modified ui/web/vsiteMod.php and ui/web/vsiteModSave.php to give users with the capability 'serverManage' the
+  ability to modify the owner of a Vsite. They can select all 'adminUser' with the capability 'manageSite' to
+  be the owner of a Vsite. Or they can change it back to 'admin', which is the default value anyway. Resellers
+  (which is capability 'manageSite') or 'siteAdmin' users won't see the pulldown, as the info is hidden from them.
+
 * Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX10
 - Modified ui/web/manageAdmin.php as we no longer need to add 'modifyJava' to users with 'manageAdmin' Capability.
 

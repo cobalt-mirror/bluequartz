@@ -1,6 +1,5 @@
 <?php
 /*
- * Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
  * $Id: vsiteModSave.php
  *
  * processes input from vsiteMod.php page
@@ -33,6 +32,10 @@ else {
 	$userPrefixEnabled = "0";
 }
 
+if ($createdUser == "") {
+	$createdUser = "admin";
+}
+
 $cce->set($vsiteOID[0], "", 
 	  array(
 		"hostname" => $hostname,
@@ -42,6 +45,7 @@ $cce->set($vsiteOID[0], "",
 		"maxusers" => $maxusers,
 		"dns_auto" => $dns_auto,
 		"site_preview" => $site_preview,
+		"createdUser" => $createdUser,
 		"prefix" => $prefix,
         "userPrefixEnabled" => $userPrefixEnabled, 
         "userPrefixField" => $prefix, 		
@@ -67,6 +71,8 @@ print $helper->toHandlerHtml("/base/vsite/vsiteMod.php?group=$group", $errors);
 // nice people say aufwiedersehen
 $helper->destructor();
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
