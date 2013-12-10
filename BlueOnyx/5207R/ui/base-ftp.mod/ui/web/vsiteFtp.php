@@ -13,22 +13,22 @@ $factory =& $helper->getHtmlComponentFactory('base-ftp',
                     '/base/ftp/vsiteFtp.php');
 $cce =& $helper->getCceClient();
 
-// Only 'serverFTP' can modify things on this page.  
+// Only 'serverFTP' and 'manageSite' can modify things on this page.
 // Site admins can view it for informational purposes.
 if ($helper->getAllowed('serverFTP')){
     $is_site_admin = 0;
     $access = 'rw';
-} elseif ($helper->getAllowed('siteAnonFTP')) {
+} elseif ($helper->getAllowed('manageSite')) {
+    $access = 'rw';
+    $is_site_admin = 0;
+}
+ elseif ($helper->getAllowed('siteAnonFTP')) {
     $access = 'rw';
     $is_site_admin = 1;
 } elseif ($helper->getAllowed('siteAdmin') &&
           $group == $helper->loginUser['site']) {
     $access = 'r';
     $is_site_admin = 1;
-} elseif ($helper->getAllowed('manageSite') &&
-          $group == $helper->loginUser['site']) {
-    $access = 'rw';
-    $is_site_admin = 0;
 } else {
     header("location: /error/forbidden.html");
     return;
