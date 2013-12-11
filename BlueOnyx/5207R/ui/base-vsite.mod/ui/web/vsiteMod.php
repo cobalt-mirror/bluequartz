@@ -124,7 +124,7 @@ foreach ($admins as $num => $oid) {
 
 // If that Vsite has no owner yet, then 'admin' will own it:
 if ($vsite['createdUser'] == "") {
-    $current_createdUser = "nobody";
+    $current_createdUser = "admin";
 }
 else {
     $current_createdUser = $vsite['createdUser'];
