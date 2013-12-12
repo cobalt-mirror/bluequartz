@@ -19,6 +19,10 @@ $cceClient = $serverScriptHelper->getCceClient();
 $product = new Product($cceClient);
 
 $oids = $cceClient->find("System");
+
+// get web
+$web = $cceClient->getObject("System", array(), "Web");
+
 $errors = array();
 
 if(!$product->isRaq()) {
@@ -77,13 +81,11 @@ else {
 		// Check if the HTTP/SSL ports are in use:
 		$HTTPportInUse = `/bin/netstat -tupan|/bin/grep LISTEN|/bin/grep :$httpPortField|/bin/grep -v httpd|/usr/bin/wc -l`;
 		$SSLportInUse = `/bin/netstat -tupan|/bin/grep LISTEN|/bin/grep :$sslPortField|/bin/grep -v httpd|/usr/bin/wc -l`;
-		chomp($HTTPportInUse);
-		chomp($SSLportInUse);
 
-		if ($HTTPportInUse != "0") {
+		if (($HTTPportInUse != "0\n") && ($web['httpPort'] != $httpPortField)) {
 			array_push($errors, new Error('[[base-apache.httpPortInUse]]'));
 		}
-		elseif ($SSLportInUse != "0") {
+		elseif (($SSLportInUse != "0\n") && ($web['sslPort'] != $sslPortField)) {
 			array_push($errors, new Error('[[base-apache.SSLportInUse]]'));
 		}
 		elseif ($maxClientsField < $maxSpareField) {
@@ -92,18 +94,19 @@ else {
 		else {
 		    $ok = $cceClient->set($oids[0], "Web", $apache_config);
 		    array_push($errors, $cceClient->errors());
+
+		    // In case the HTTP-port or SSL-port are changed, we also need to update all 
+		    // VHost containers with the new port information. Which is a bit messy. But
+		    // We can simply do so by updating all 'VirtualHost.ipaddr' and let our
+		    // existing handler base/apache/virtual_host.pl take care of it:
+		    $VirtualHosts = $cceClient->find("VirtualHost");
+		    foreach ($VirtualHosts as $VH) {
+		    	$VHsettings = $cceClient->get($VH);
+			$ok = $cceClient->set($VH, "", array('ipaddr' => $VHsettings['ipaddr']));
+		    }
 		}
 	}
 
-	// In case the HTTP-port or SSL-port are changed, we also need to update all 
-	// VHost containers with the new port information. Which is a bit messy. But
-	// We can simply do so by updating all 'VirtualHost.ipaddr' and let our
-	// existing handler base/apache/virtual_host.pl take care of it:
-	$VirtualHosts = $cceClient->find("VirtualHost");
-	foreach ($VirtualHosts as $VH) {
-		$VHsettings = $cceClient->get($VH);
-		$ok = $cceClient->set($VH, "", 'ipaddr' => $VHsettings->{'ipaddr'});
-	}
 }
 print($serverScriptHelper->toHandlerHtml("/base/apache/apache.php", $errors));
 

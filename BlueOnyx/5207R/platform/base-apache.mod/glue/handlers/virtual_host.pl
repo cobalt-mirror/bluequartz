@@ -9,7 +9,13 @@ use Sauce::Util;
 use Base::Httpd qw(httpd_get_vhost_conf_file);
 use FileHandle;
 
-my $DEBUG = 0;
+# Debugging switch:
+$DEBUG = "1";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+        &debug_msg("Debugging enabled for virtual_host.pl\n");
+}
 
 my $cce = new CCE;
 
@@ -28,17 +34,23 @@ my ($ok, $ssl) = $cce->get($void, 'SSL');
 $vhost->{ssl_expires} = $ssl->{expires};
 
 # Get "System" . "Web":
-my ($ok, $objWeb) = $cce->get($oid);
+my ($oid) = $cce->find('System');
+my ($ok, $objWeb) = $cce->get($oid, 'Web');
 
 # HTTP and SSL ports:
 $httpPort = "80";
 if ($objWeb->{'httpPort'}) {
     $httpPort = $objWeb->{'httpPort'};
 }
+else {
+
+}
 $sslPort = "443";
 if ($objWeb->{'sslPort'}) {
     $sslPort = $objWeb->{'sslPort'};
 }
+&debug_msg("HTTP Port: $httpPort\n");
+&debug_msg("SSL Port: $sslPort\n");
 
 # make sure the directory exists before trying to edit the file
 if (!-d $Base::Httpd::vhost_dir)
@@ -62,9 +74,9 @@ my $include_file = httpd_get_vhost_conf_file($vhost->{name}) . '.include';
 if (!-e $include_file) {
     my $fh = new FileHandle(">$include_file");
     if ($fh) {
-	print $fh "# ${include_file}\n";
-	print $fh "# user customizations can be added here.\n\n";
-	$fh->close();
+    print $fh "# ${include_file}\n";
+    print $fh "# user customizations can be added here.\n\n";
+    $fh->close();
     }
     Sauce::Util::chmodfile(0644, $include_file);
 }
@@ -93,6 +105,8 @@ sub edit_vhost
            $aliasRewriteSSL .= "RewriteCond %{HTTP_HOST}                !^$alias(:$sslPort)?\$ [NC]\n";
         }
     }
+
+    &debug_msg("Editing Vhost container for $vhost->{fqdn}\n");
 
     my $vhost_conf =<<END;
 # owned by VirtualHost
@@ -165,24 +179,35 @@ END
 
     while (<$in>)
     {
-    	if (!$conf_printed && /^$end_mark$/)
-    	{
-    		print $out $vhost_conf;
-    		$conf_printed = 1;
-    	}
-    	elsif ($conf_printed)
-    	{
-    		# print out information entered by other objects
-    		print $out $_;
-    	}
+        if (!$conf_printed && /^$end_mark$/)
+        {
+            print $out $vhost_conf;
+            $conf_printed = 1;
+        }
+        elsif ($conf_printed)
+        {
+            # print out information entered by other objects
+            print $out $_;
+        }
     }
 
     if (!$conf_printed)
     {
-    	print $out $vhost_conf;
+        print $out $vhost_conf;
     }
 
     return 1;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 

@@ -21,7 +21,7 @@ $oid = $cce->event_oid();
 ($ok, $obj) = $cce->get($soid);
 
 # Get "System" . "Web":
-($ok, $objWeb) = $cce->get($soid);
+($ok, $objWeb) = $cce->get($soid, 'Web');
 
 # HTTP and SSL ports:
 $httpPort = "80";

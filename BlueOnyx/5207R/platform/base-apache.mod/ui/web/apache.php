@@ -94,7 +94,7 @@ else {
 	);
 
 	// HTTP Port:
-	$httpPortField = $factory->getInteger("httpPortField", $web["httpPort"], "80", "65535"]);
+	$httpPortField = $factory->getInteger("httpPortField", $web["httpPort"], "80", "65535");
 	$httpPortField->setWidth(5);
 	$httpPortField->showBounds(1);
 	$block->addFormField(
@@ -103,7 +103,7 @@ else {
 	);
 
 	// SSL Port:
-	$sslPortField = $factory->getInteger("sslPortField", $web["sslPort"], "443", "65535"]);
+	$sslPortField = $factory->getInteger("sslPortField", $web["sslPort"], "443", "65535");
 	$sslPortField->setWidth(5);
 	$sslPortField->showBounds(1);
 	$block->addFormField(

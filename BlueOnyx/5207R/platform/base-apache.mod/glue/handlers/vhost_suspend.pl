@@ -16,12 +16,16 @@ $cce->connectfd();
 my $vhost = $cce->event_object();
 
 # Get "System" . "Web":
-my ($ok, $objWeb) = $cce->get($oid);
+my ($oid) = $cce->find('System');
+my ($ok, $objWeb) = $cce->get($oid, 'Web');
 
 # HTTP and SSL ports:
 $httpPort = "80";
 if ($objWeb->{'httpPort'}) {
     $httpPort = $objWeb->{'httpPort'};
+}
+else {
+
 }
 $sslPort = "443";
 if ($objWeb->{'sslPort'}) {

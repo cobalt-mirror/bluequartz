@@ -33,7 +33,7 @@ my ($oid) = $cce->find('System');
 my ($ok, $obj) = $cce->get($oid);
 
 # Get "System" . "Web":
-my ($ok, $objWeb) = $cce->get($oid);
+my ($ok, $objWeb) = $cce->get($oid, 'Web');
 
 # HTTP and SSL ports:
 $httpPort = "80";

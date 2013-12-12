@@ -77,14 +77,14 @@ my @groups = (
             'shown' => 1,
             'capabilities' => ''
         },
-                {
-                    'name' => 'adminUser',
-                    'shown' => 1,
-                    'capabilities' => $cce->array_to_scalar(
-                                        'siteAdmin', 'siteSSL',
-                                        'siteAnonFTP', 'siteShell'
-                                      )
-                }
+        {
+            'name' => 'adminUser',
+            'shown' => 1,
+            'capabilities' => $cce->array_to_scalar(
+                                'siteAdmin', 'siteSSL',
+                                'siteAnonFTP', 'siteShell'
+                              )
+        }
             );
 
 # now loop through all the capability groups and create as necessary
