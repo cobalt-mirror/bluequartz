@@ -1,6 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: virtual_host.pl 1490 2010-06-19 09:11:09Z shibuya $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# $Id: virtual_host.pl
 # handle the creation of configuration files for individual vhosts
 #
 
@@ -27,6 +26,19 @@ my ($ok, $vobj) = $cce->get($void);
 $vhost->{basedir} = $vobj->{basedir};
 my ($ok, $ssl) = $cce->get($void, 'SSL');
 $vhost->{ssl_expires} = $ssl->{expires};
+
+# Get "System" . "Web":
+my ($ok, $objWeb) = $cce->get($oid);
+
+# HTTP and SSL ports:
+$httpPort = "80";
+if ($objWeb->{'httpPort'}) {
+    $httpPort = $objWeb->{'httpPort'};
+}
+$sslPort = "443";
+if ($objWeb->{'sslPort'}) {
+    $sslPort = $objWeb->{'sslPort'};
+}
 
 # make sure the directory exists before trying to edit the file
 if (!-d $Base::Httpd::vhost_dir)
@@ -77,21 +89,21 @@ sub edit_vhost
     if (($vhost->{webAliases}) && ($vhost->{webAliasRedirects} == "0")) {
         my @webAliases = $cce->scalar_to_array($vhost->{webAliases});
         foreach my $alias (@webAliases) {
-           $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:80)?\$ [NC]\n";
-           $aliasRewriteSSL .= "RewriteCond %{HTTP_HOST}                !^$alias(:443)?\$ [NC]\n";
+           $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:$httpPort)?\$ [NC]\n";
+           $aliasRewriteSSL .= "RewriteCond %{HTTP_HOST}                !^$alias(:$sslPort)?\$ [NC]\n";
         }
     }
 
     my $vhost_conf =<<END;
 # owned by VirtualHost
-NameVirtualHost $vhost->{ipaddr}:80
+NameVirtualHost $vhost->{ipaddr}:$httpPort
 
 # FrontPage needs the following four things to be here
 # otherwise all the vhosts need to go in httpd.conf, which could
 # get very large since there could be thousands of vhosts
 ServerRoot $Base::Httpd::server_root
 
-<VirtualHost $vhost->{ipaddr}:80>
+<VirtualHost $vhost->{ipaddr}:$httpPort>
 ServerName $vhost->{fqdn}
 ServerAdmin $vhost->{serverAdmin}
 DocumentRoot $vhost->{documentRoot}
@@ -100,8 +112,8 @@ ErrorDocument 403 /error/403-forbidden.html
 ErrorDocument 404 /error/404-file-not-found.html
 ErrorDocument 500 /error/500-internal-server-error.html
 RewriteEngine on
-RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:80)?\$
-RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:80)?\$ [NC]
+RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$httpPort)?\$
+RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$httpPort)?\$ [NC]
 $aliasRewrite
 RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
 RewriteOptions inherit
@@ -120,8 +132,8 @@ END
 
         $vhost_conf .=<<END;
 
-Listen $vhost->{ipaddr}:443
-<VirtualHost $vhost->{ipaddr}:443>
+Listen $vhost->{ipaddr}:$sslPort
+<VirtualHost $vhost->{ipaddr}:$sslPort>
 SSLengine on
 $cafile
 SSLCertificateFile $vhost->{basedir}/certs/certificate
@@ -134,8 +146,8 @@ ErrorDocument 403 /error/403-forbidden.html
 ErrorDocument 404 /error/404-file-not-found.html
 ErrorDocument 500 /error/500-internal-server-error.html
 RewriteEngine on
-RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:443)?\$
-RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:443)?\$ [NC]
+RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$sslPort)?\$
+RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$sslPort)?\$ [NC]
 $aliasRewriteSSL
 RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
 RewriteOptions inherit
@@ -172,17 +184,20 @@ END
 
     return 1;
 }
+
+# 
+# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
 # 
 # -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# this list of conditions and the following disclaimer in the documentation and/or 
+# other materials provided with the distribution.
 # 
 # Neither the name of Sun Microsystems, Inc. or the names of contributors may 
 # be used to endorse or promote products derived from this software without 
@@ -191,3 +206,4 @@ END
 # This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # 
 # You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# 

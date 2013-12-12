@@ -305,3 +305,24 @@ msgstr "[[palette.disabled]]"
 msgid "cap_serverHttpd"
 msgstr "Impostazioni di Apache"
 
+#
+
+msgid "httpPortField"
+msgstr "Porta HTTP"
+
+msgid "httpPortField_help"
+msgstr "L'Apache Webserver di solito va sulla porta 80 (HTTP). Se si vuole cambiare a una porta diversa, allora potete farlo qui. Questo è utile solo se si desidera utilizzare qualcos'altro di fronte Apache per filtrare, cache o reindirizzare il traffico. Come ad esempio un Varnish Cache, un proxy di inoltro o un bilanciatore di carico. Se si modifica questa impostazione, allora tutti i siti virtuali esistenti verranno spostati nel nuovo porto e verranno creati tutti i nuovi siti per utilizzare questa nuova porta. Indirizzi IP dei siti virtuali non verranno modificati."
+
+msgid "sslPortField"
+msgstr "HTTPS/SSL Port"
+
+msgid "sslPortField_help"
+msgstr "L'Apache Webserver di solito usa la porta 443 per il traffico HTTPS. Se si vuole cambiare a una porta diversa, allora potete farlo qui. Questo è utile solo se si desidera utilizzare qualcos'altro di fronte Apache per filtrare, cache o reindirizzare il traffico. Come ad esempio un Varnish Cache, un proxy di inoltro o un bilanciatore di carico. Se si modifica questa impostazione, allora tutti i siti virtuali esistenti con SSL abilitato passerà dalla porta 443 alla nuova porta per il traffico SSL. Indirizzi IP dei siti virtuali non verranno modificati."
+
+msgid "httpPortInUse"
+msgstr "La porta specificata come nuova porta HTTP è già in uso da un altro servizio. Si prega di scegliere invece un'altra porta."
+
+msgid "SSLportInUse"
+msgstr "La porta specificata come nuova porta HTTPS/SSL è già in uso da un altro servizio. Si prega di scegliere invece un'altra porta."
+
+

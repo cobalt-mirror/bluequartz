@@ -337,3 +337,21 @@ msgstr "[[palette.disabled]]"
 msgid "cap_serverHttpd"
 msgstr "Apache-Einstellungen"
 
+#
+msgid "httpPortField"
+msgstr "HTTP Port"
+
+msgid "httpPortField_help"
+msgstr "Der Apache-Webserver läuft in der Regel auf Port 80 (HTTP). Wenn Sie dies auf einen anderen Port ändern möchten, dann können Sie das hier tun. Das ist jedoch nur dann sinnvoll, wenn Sie dem Apache einen anderen Dienst vorschalten wollen. Etwa einen Varnish Cache, eine Weiterleitungs-Proxy oder einen Load-Balancer. Wenn Sie den Apache Port hier ändern, werden alle vorhandenen virtuellen Sites auf den neuen Port wechseln. Alle zukünftig neu angelegten virtuell Sites werden direkt den neuen Port verwenden. Die IP-Adressen der virtuellen Seiten werden hierbei nicht verändert."
+
+msgid "sslPortField"
+msgstr "HTTPS / SSL-Port"
+
+msgid "sslPortField_help"
+msgstr "Der Apache-Webserver verwendet in der Regel Port 443 für HTTPS/SSL. Wenn Sie dies auf einen anderen Port ändern möchten, dann können Sie das hier tun. Das ist jedoch nur dann sinnvoll, wenn Sie dem Apache einen anderen Dienst vorschalten wollen. Etwa einen Varnish Cache, eine Weiterleitungs-Proxy oder einen Load-Balancer. Wenn Sie den Apache Port hier ändern, werden alle vorhandenen virtuellen Sites auf den neuen Port wechseln. Alle zukünftig neu angelegten virtuell Sites werden direkt den neuen Port verwenden. Die IP-Adressen der virtuellen Seiten werden hierbei nicht verändert."
+
+msgid "httpPortInUse"
+msgstr "Der spezifizierte neue HTTP-Port wird bereits von einem anderen Dienst verwendet. Bitte wählen Sie einen anderen Port aus."
+
+msgid "SSLportInUse"
+msgstr "Der spezifizierte neue HTTPS/SSL-Port wird bereits von einem anderen Dienst verwendet. Bitte wählen Sie einen anderen Port aus."

@@ -93,6 +93,23 @@ else {
 		$factory->getLabel("hostnameLookupsField")
 	);
 
+	// HTTP Port:
+	$httpPortField = $factory->getInteger("httpPortField", $web["httpPort"], "80", "65535"]);
+	$httpPortField->setWidth(5);
+	$httpPortField->showBounds(1);
+	$block->addFormField(
+		$httpPortField,
+		$factory->getLabel("httpPortField")
+	);
+
+	// SSL Port:
+	$sslPortField = $factory->getInteger("sslPortField", $web["sslPort"], "443", "65535"]);
+	$sslPortField->setWidth(5);
+	$sslPortField->showBounds(1);
+	$block->addFormField(
+		$sslPortField,
+		$factory->getLabel("sslPortField")
+	);
 
 	$max_client = $factory->getInteger("maxClientsField", $web["maxClients"], 1, $web["maxClientsAdvised"]);
 	$max_client->setWidth(5);

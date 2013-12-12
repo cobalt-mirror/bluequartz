@@ -13,6 +13,14 @@
 
 <class name="System" namespace="Web" version="1.0">
     <property 
+        name="httpPort" type="int" default="80"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="sslPort" type="int" default="443"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
         name="cgiAccess" type="cgiAccess" default="subset"
         writeacl="ruleCapable(serverHttpd)"
     />

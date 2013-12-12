@@ -305,3 +305,22 @@ msgstr "[[palette.disabled]]"
 msgid "cap_serverHttpd"
 msgstr "Configuración de Apache"
 
+#
+
+msgid "httpPortField"
+msgstr "Puerto HTTP"
+
+msgid "httpPortField_help"
+msgstr "El servidor web Apache normalmente se ejecuta en el puerto 80 (HTTP). Si desea cambiar a un puerto diferente, entonces usted puede hacerlo aquí. Esto sólo es útil si quiere usar algo más delante de Apache para filtrar, caché o redirigir el tráfico. Tal como Varnish Cache, un proxy de reenvío o un equilibrador de carga. Si cambia esta opción, entonces todos los sitios virtuales existentes se trasladarán al nuevo puerto y todos los sitios nuevos se crearán para utilizar este nuevo puerto. No se cambiarán las direcciones IP de los sitios virtuales."
+
+msgid "sslPortField"
+msgstr "HTTPS/SSL Puerto"
+
+msgid "sslPortField_help"
+msgstr "El servidor web Apache normalmente utiliza el puerto 443 para el tráfico HTTPS. Si desea cambiar a un puerto diferente, entonces usted puede hacerlo aquí. Esto sólo es útil si quiere usar algo más delante de Apache para filtrar, caché o redirigir el tráfico. Tal como Varnish Cache, un proxy de reenvío o un equilibrador de carga. Si cambia esta opción, entonces todos los sitios virtuales existentes con SSL habilitado cambiará desde el puerto 443 para el nuevo puerto para el tráfico SSL. No se cambiarán las direcciones IP de los sitios virtuales."
+
+msgid "httpPortInUse"
+msgstr "El puerto que ha especificado como nuevo puerto HTTP ya está en uso por otro servicio. Por favor elija otro puerto en vez."
+
+msgid "SSLportInUse"
+msgstr "El puerto que ha especificado como puerto nuevo HTTPS/SSL ya está en uso por otro servicio. Por favor elija otro puerto en vez."

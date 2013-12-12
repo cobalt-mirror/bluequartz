@@ -28,6 +28,7 @@ my $hostname = $obj->{hostname};
 my $domain = $obj->{domainname};
 $hostname =~ s/\.${domain}$//;
 my $fqdn = $hostname . '.' . $domain;
+my $httpPort = $web->{'httpPort'}
 
 my $minSpare = $web->{minSpare};
 my $maxSpare = $web->{maxSpare};
@@ -52,6 +53,7 @@ while(<HTTPD>) {
   s/^MaxSpareServers\s.+$/MaxSpareServers $maxSpare/;
   s/^MaxClients\s.+$/MaxClients $maxClients/;
   s/^HostnameLookups\s.+$/HostnameLookups $hostLookups/;
+  s/^Listen\s.+$/Listen $httpPort/;
   
   print STAGE;
 }
@@ -68,4 +70,3 @@ if(-s $stage) {
 }
 
 exit(0);
-

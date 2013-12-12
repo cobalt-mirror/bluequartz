@@ -149,6 +149,22 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX01
+- Added ability to change the default HTTP and HTTPS port.
+- Modified glue/schemas/apache.schema
+- Modified constructor/set_apache_hostname.pl
+- Modified glue/httpd/ssl_perl.conf
+- Modified glue/handlers/preview.pl
+- Modified glue/handlers/virtual_host.pl
+- Modified glue/handlers/regen_httpd_figlet
+- Modified glue/handlers/webscripting3.pl
+- Modified glue/handlers/vhost_suspend.pl
+- Modified ui/web/apacheHandler.php
+- Modified ui/web/apache.php
+- Added new locale strings for that functionality.
+- Modified glue/schemas/apache-am.schema to call the new am_apache.sh instead
+  of the am_apache.exp.
+
 * Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX02
 - Added missing locale string for 'cap_serverHttpd'.
 

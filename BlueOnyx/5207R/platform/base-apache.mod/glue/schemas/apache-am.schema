@@ -5,7 +5,7 @@
 	type="boolean" 	default="1"/>
     <property name="type"		type="scalar"	default="exec"/>
     <property name="typeData"		type="scalar"
-	default="/usr/sausalito/swatch/bin/am_apache.exp"/>
+	default="/usr/sausalito/swatch/bin/am_apache.sh"/>
 
     <property name="greenMsg"		type="scalar"	
 	default="[[base-apache.amStatusOK]]"/>
