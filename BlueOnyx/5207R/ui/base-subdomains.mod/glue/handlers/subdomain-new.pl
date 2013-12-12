@@ -1,8 +1,8 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Author: Brian N. Smith
 # Copyright 2008, NuOnce Networks, Inc.  All rights reserved.
-# Copyright 2010, Team BlueOnyx. All rights reserved.
-# $Id: subdomain-new.pl, v2.0 2008/12/30 13:17:00 Exp $
+# Copyright 2008-2013, Team BlueOnyx. All rights reserved.
+# $Id: subdomain-new.pl
 
 use CCE;
 use Sauce::Util;
@@ -16,6 +16,22 @@ $cce->connectfd();
 
 $oid = $cce->event_oid();
 ($ok, $subdomain) = $cce->get($oid);
+
+($soid) = $cce->find('System');
+($ok, $obj) = $cce->get($soid);
+
+# Get "System" . "Web":
+($ok, $objWeb) = $cce->get($soid);
+
+# HTTP and SSL ports:
+$httpPort = "80";
+if ($objWeb->{'httpPort'}) {
+    $httpPort = $objWeb->{'httpPort'};
+}
+$sslPort = "443";
+if ($objWeb->{'sslPort'}) {
+    $sslPort = $objWeb->{'sslPort'};
+}
 
 ## Lets search existing Subdomains to verify this is unquie.
 @oids = $cce->find('Subdomains', { 'group' => $subdomain->{'group'},  'hostname' => $subdomain->{'hostname'}});
@@ -248,10 +264,10 @@ foreach $service (@services) {
   }
 }
 
-$site_config = "NameVirtualHost $ipadd:80
+$site_config = "NameVirtualHost $ipadd:$httpPort
 ServerRoot /etc/httpd
 
-<VirtualHost $ipadd:80>
+<VirtualHost $ipadd:$httpPort>
   ServerName  $fqdn
   ServerAdmin admin
   DocumentRoot $web_dir
