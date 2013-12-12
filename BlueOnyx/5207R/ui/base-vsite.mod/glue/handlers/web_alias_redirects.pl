@@ -1,6 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: web_alias_redirects.pl, v1.0.0.0 Thu 16 Jun 2011 01:15:38 AM CEST mstauber Exp $
-# Copyright 2006-2011 Team BlueOnyx. All rights reserved.
+# $Id: web_alias_redirects.pl
 
 # This handler is run whenever 'Vsite' key 'webAliasRedirects' is set.
 #
@@ -37,6 +36,22 @@ if ($whatami eq "handler") {
     $old = $cce->event_old();
     $new = $cce->event_new();
 
+    ($soid) = $cce->find('System');
+    ($ok, $obj) = $cce->get($soid);
+
+    # Get "System" . "Web":
+    ($ok, $objWeb) = $cce->get($soid);
+
+    # HTTP and SSL ports:
+    $httpPort = "80";
+    if ($objWeb->{'httpPort'}) {
+        $httpPort = $objWeb->{'httpPort'};
+    }
+    $sslPort = "443";
+    if ($objWeb->{'sslPort'}) {
+        $sslPort = $objWeb->{'sslPort'};
+    }
+
     # Poll info about the Vsite in question:
     ($ok, $vsite) = $cce->get($oid);
 
@@ -72,14 +87,14 @@ sub edit_vhost {
     if (($vsite->{webAliases}) && ($vsite->{webAliasRedirects} == "0")) {
         my @webAliases = $cce->scalar_to_array($vsite->{webAliases});
         foreach my $alias (@webAliases) {
-           $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:80)?\$ [NC]\n";
+           $aliasRewrite .= "RewriteCond %{HTTP_HOST}                !^$alias(:$httpPort)?\$ [NC]\n";
         }
     }
 
     # Build our output string:
     my $vhost_conf =<<END;
-RewriteCond %{HTTP_HOST}                !^$vsite->{ipaddr}(:80)?\$
-RewriteCond %{HTTP_HOST}                !^$vsite->{fqdn}(:80)?\$ [NC]
+RewriteCond %{HTTP_HOST}                !^$vsite->{ipaddr}(:$httpPort)?\$
+RewriteCond %{HTTP_HOST}                !^$vsite->{fqdn}(:$httpPort)?\$ [NC]
 $aliasRewrite
 END
 
@@ -124,3 +139,25 @@ END
 
 $cce->bye('SUCCESS');
 exit(0);
+
+# 
+# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+# 
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
+# 
+# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+# 
+# -Redistribution in binary form must reproduce the above copyright notice, 
+# this list of conditions and the following disclaimer in the documentation and/or 
+# other materials provided with the distribution.
+# 
+# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
+# be used to endorse or promote products derived from this software without 
+# specific prior written permission.
+# 
+# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# 
+# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# 
