@@ -8,14 +8,29 @@
 use CCE;
 my $cce = new CCE;
 
-my $ret = `grep -q raid /proc/mdstat`;
-my $on = $? >> 8;
+if (-f "/proc/mdstat")  {
+	my $ret = `grep -q raid /proc/mdstat`;
+	my $on = $? >> 8;
+}
+else {
+	my $on = "0";
+}
 
 $cce->connectuds();
 my @oids = $cce->find ('ActiveMonitor');
 if ($#oids > -1) {
-  $cce->set($oids[0], 'DiskIntegrity', {"monitor" => (($on == 1) ? 0 : 1)});
+	if ($on == "1") {
+  		$cce->set($oids[0], 'RAID', {"monitor" => "1"});
+  		$cce->set($oids[0], 'SMART', {"monitor" => "1"});
+  		$cce->set($oids[0], 'DMA', {"monitor" => "1"});
+  		$cce->set($oids[0], 'DiskIntegrity', {"monitor" => "1"});
+  	}
+  	else {
+  		$cce->set($oids[0], 'RAID', {"monitor" => "0"});
+  		$cce->set($oids[0], 'SMART', {"monitor" => "0"});
+  		$cce->set($oids[0], 'DMA', {"monitor" => "0"});
+  		$cce->set($oids[0], 'DiskIntegrity', {"monitor" => "0"});
+  	}
 }
 $cce->bye();
 exit 0;
-
