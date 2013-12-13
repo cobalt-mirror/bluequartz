@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX17%{?dist}
+Release: 0BX18%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -64,12 +64,19 @@ if [ -f /etc/swatch.conf.rpmnew ]; then
         mv /etc/swatch.conf.rpmnew /etc/swatch.conf
 fi 
 
-if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
-        # We're on 5106R - Switch lang in /etc/swatch.conf fron en_US to en:
-        sed -i -e 's@^lang = en_US@lang = en@' /etc/swatch.conf
-fi   
+#if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
+#        # We're on 5106R - Switch lang in /etc/swatch.conf fron en_US to en:
+#        sed -i -e 's@^lang = en_US@lang = en@' /etc/swatch.conf
+#fi   
 
 %changelog
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX18
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Modified swatch-cobalt.pl so that it now mails in Japanese as well.
 
 * Thu Sep 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX17
 - Extended hotfixes.sh to remove default Apache pages if present.

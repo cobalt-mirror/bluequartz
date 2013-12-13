@@ -1,7 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # Copyright (c) Turbolinux, inc.
 # Modified by Michael Stauber <mstauber@solarspeed.net> 
-# Di 31 Jul 2012 10:11:41 CEST
 
 use strict;
 use CCE;
@@ -72,21 +71,7 @@ my ($ok, $sysobj) = $cce->get($sysoid[0]);
 my $system_lang = $sysobj->{productLanguage};
 my $platform = $sysobj->{productBuild};
 
-# We can't email in Japanese yet, as MIME:Lite alone doesn't support it. We'd need MIME::Lite:TT:Japanese
-# and a hell of a lot of dependencies to sort that out. So for now we hard code them to 'en_US' or 'en'
-# for emailing purpose from within this script:
-
-if ($system_lang eq "ja") {
-    if ($platform eq "5106R") {
-        $i18n->setLocale("en");
-    }
-    else {
-        $i18n->setLocale("en_US");
-    }
-}
-else {
-    $i18n->setLocale($system_lang);
-}
+$i18n->setLocale($system_lang);
 
 #system("export LANGUAGE=$system_lang.UTF-8");
 #system("export LANG=$system_lang.UTF-8");
@@ -198,7 +183,7 @@ if ($body) {
         To       => $to,
         Subject  => $subject,
         Data     => $body,
-	Charset => 'UTF-8'
+        Charset => 'UTF-8'
     );
 
     # Set content type:
