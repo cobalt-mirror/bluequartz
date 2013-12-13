@@ -10,7 +10,7 @@ use Base::Httpd qw(httpd_get_vhost_conf_file);
 use FileHandle;
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
@@ -106,7 +106,7 @@ sub edit_vhost
         }
     }
 
-    &debug_msg("Editing Vhost container for $vhost->{fqdn}\n");
+    &debug_msg("Editing Vhost container for $vhost->{fqdn} and using Port $httpPort\n");
 
     my $vhost_conf =<<END;
 # owned by VirtualHost
@@ -182,12 +182,14 @@ END
         if (!$conf_printed && /^$end_mark$/)
         {
             print $out $vhost_conf;
+            &debug_msg("Done1: Editing Vhost container for $vhost->{fqdn} and using Port $httpPort\n");
             $conf_printed = 1;
         }
         elsif ($conf_printed)
         {
             # print out information entered by other objects
             print $out $_;
+            &debug_msg("Done2: Editing Vhost container for $vhost->{fqdn} and using Port $httpPort\n");
         }
     }
 
