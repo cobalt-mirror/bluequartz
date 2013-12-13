@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX18%{?dist}
+Release: 0BX19%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -70,6 +70,9 @@ fi
 #fi   
 
 %changelog
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX19
+- We still can't email in Japanese. UTF-8 or not. Backed out that change.
 
 * Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX18
 - Preparational build for 5207R/5208R. Doesn't include new GUI yet.
