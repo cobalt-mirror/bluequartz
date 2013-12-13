@@ -27,7 +27,7 @@ my @groups = (
             'name' => 'menuServerSecurity',
             'shown' => 1,
             'capabilities' => $cce->array_to_scalar(
-                    'serverSSL', 'serverSystemFirewall')
+                    'serverSSL')
         },
         {
             'name' => 'menuServerSystem',
