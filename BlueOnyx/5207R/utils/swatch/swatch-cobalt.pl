@@ -75,16 +75,12 @@ my $platform = $sysobj->{productBuild};
 # and a hell of a lot of dependencies to sort that out. So for now we hard code them to 'en_US' or 'en'
 # for emailing purpose from within this script:
 
-if ($system_lang eq "ja") {
-    if ($platform eq "5106R") {
-        $i18n->setLocale("en_US");
-    }
-    else {
-        $i18n->setLocale("en_US");
-    }
+if (($system_lang eq "ja") || ($system_lang eq "ja_JP")) {
+  $i18n->setLocale("en_US");
+
 }
 else {
-    $i18n->setLocale($system_lang);
+  $i18n->setLocale($system_lang);
 }
 
 #system("export LANGUAGE=$system_lang.UTF-8");
