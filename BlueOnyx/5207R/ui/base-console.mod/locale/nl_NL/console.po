@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "procsMenu"
+msgstr "Processen"
+
+msgid "procsMenu_help"
+msgstr "Kunt u zien welke processen actief zijn op uw server. Een replica van de output van 'ps auxwf'. Ook kunt u processen te doden."
+
+msgid "vserver_processlist"
+msgstr "Server Process List"
+
+msgid "PID_help"
+msgstr "Proces-id."
+
+msgid "USER_help"
+msgstr "Gebruikersnaam van de proceseigenaar."
+
+msgid "CPU_help"
+msgstr "CPU-gebruik van het proces in het formaat 'XX.X'. Het is de CPU-tijd die gedeeld door de tijd het proces loopt (cputime/realtime verhouding), uitgedrukt in procenten. Het zal niet op tot 100%, tenzij je geluk hebt."
+
+msgid "MEM_help"
+msgstr "Geheugengebruik. Verhouding van het proces van residente set om het fysieke geheugen van het apparaat, uitgedrukt in een percentage."
+
+msgid "VSZ_help"
+msgstr "Gebruik van virtueel geheugen gehele proces."
+
+msgid "RSS_help"
+msgstr "Residente set, de niet-verwisseld fysieke geheugen dat een taak heeft gebruikt (in kilobytes)."
+
+msgid "TTY_help"
+msgstr "Controlling tty (terminal)."
+
+msgid "STAT_help"
+msgstr "Multi-karakter proces staat."
+
+msgid "START_help"
+msgstr "Vanaf de tijd of datum van het proces. Alleen het jaar zal worden weergegeven als het proces niet is gestart hetzelfde jaar ps werd ingeroepen, of 'mmmdd' als het niet was begonnen op dezelfde dag, of 'HH: MM' anders."
+
+msgid "TIME_help"
+msgstr "Cumulatieve CPU-tijd, '[dd-] uu: mm: ss' formaat."
+
+msgid "COMMAND_help"
+msgstr "Commando met al zijn argumenten als een string. Kan hakken zoals gewenst. Wijzigingen aan de argumenten worden niet getoond. De productie in deze kolom kan spaties bevatten."
+
+msgid "KILL_help"
+msgstr "Klik op het pictogram naast het proces in kwestie om het te doden met 'kill -9 PID'. WEES VOORZICHTIG belangrijke processen niet te doden!"
+
+msgid "loginsMenu"
+msgstr "Logins"
+
+msgid "loginsMenu_help"
+msgstr "Hiermee kunt u de laatste logins om uw server te zien en reproduceert de uitgang van de Linux command 'laatste'."
+
+msgid "vserver_loginlist"
+msgstr "Logins op deze server"
+
+msgid "LUSER"
+msgstr "Gebruikersnaam"
+
+msgid "LUSER_help"
+msgstr "Toont de gebruikersnaam van de gebruiker in kwestie."
+
+msgid "CONSOLE"
+msgstr "Console"
+
+msgid "CONSOLE_help"
+msgstr "Deze kolom geeft aan welke console of netwerkdienst de gebruiker werd gebruikt om in te loggen."
+
+msgid "HOST"
+msgstr "Gastheer"
+
+msgid "HOST_help"
+msgstr "Hostnaam of IP-adres van de gebruiker die ingelogd"
+
+msgid "START_DATE"
+msgstr "Inloggen startdatum"
+
+msgid "START_DATE_help"
+msgstr "Toont de datum waarop de aanmelding in kwestie begonnen."
+
+msgid "STIME"
+msgstr "S-Time"
+
+msgid "STIME_help"
+msgstr "Toont de tijd waarop de login in kwestie begonnen."
+
+msgid "ETIME"
+msgstr "E-Time"
+
+msgid "ETIME_help"
+msgstr "Toont de tijd waarop de login in kwestie beëindigd."
+
+msgid "DURATION"
+msgstr "Duur"
+
+msgid "DURATION_help"
+msgstr "Geeft aan hoe lang het duurde login - of als het gaat nog steeds door."
+
+msgid "UKILL"
+msgstr "Doden"
+
+msgid "UKILL_help"
+msgstr "Hiermee kunt u de gebruiker op te starten vanaf het systeem (als hij nog steeds ingelogd!). Dat alleen weerhoudt hem er niet van opnieuw aan te melden, dat wel. Voor dat je kan hebben om de site of gebruiker in kwestie te schorsen."
+
+msgid "logfilesMenu"
+msgstr "Logfiles"
+
+msgid "logfilesMenu_help"
+msgstr "Hiermee kunt u de server logfiles te onderzoeken."
+
+msgid "sol_view"
+msgstr "Logfile:"
+
+msgid "sol_view_help"
+msgstr "Kies het logbestand dat u wilt onderzoeken."
+
+msgid "pam_ablMenu"
+msgstr "Log Manager"
+
+msgid "pam_ablMenu_help"
+msgstr "De 'Aanmelden Manager' kunt u de bescherming tegen brute force password guessing pogingen configureren. U kunt instellen na hoeveel mislukte aanmeldingen de rekening of de aanvallende gastheren zullen worden verhinderd in te loggen op alle. Zelfs als hij gebruik maakt eindelijk een geldige gebruikersnaam en wachtwoord. Als je jezelf ooit te blokkeren: Je zal altijd in staat in te loggen op de GUI als 'admin' om de blokkade te resetten."
+
+msgid "pam_abl_head"
+msgstr "Log Manager"
+
+msgid "pam_abl_location"
+msgstr "Config File:"
+
+msgid "pam_abl_location_help"
+msgstr "Locatie van het pam_abl configuratiebestand."
+
+msgid "user_purge"
+msgstr "Gebruiker purge:"
+
+msgid "user_purge_help"
+msgstr "Bepaalt hoe lang ontbroken logins voor gebruikers blijven in de eigen database. Mislukte aanmeldingen worden nog steeds opgeslagen in de database, zelfs nadat de tijdelijke blokkering is verlopen."
+
+msgid "host_purge"
+msgstr "Host purge:"
+
+msgid "host_purge_help"
+msgstr "Bepaalt hoe lang ontbroken logins voor hosts blijven in de hostdatabase. Mislukte aanmeldingen worden nog steeds opgeslagen in de database, zelfs nadat de tijdelijke blokkering is verlopen."
+
+msgid "user_rule"
+msgstr "Gebruiker regel:"
+
+msgid "user_rule_help"
+msgstr "Bedrag van mislukte aanmeldingen per uur totdat de gebruikersaccount wordt de zwarte lijst, waardoor iedereen in te loggen op die rekening, zelfs met een geldig wachtwoord. LET OP: U moet dit laten staan ​​'uitgeschakeld', want anders kan iemand een 'denial of service' aanval tegen je loopt dat (tijdelijk) blokkeert zelfs legitieme gebruikers van het gebruik van hun rekeningen."
+
+msgid "host_rule"
+msgstr "Host regel:"
+
+msgid "host_rule_help"
+msgstr "Bedrag van mislukte aanmeldingen per uur totdat de gastheer van herkomst zal worden blackisted. Zelfs logins met de juiste gebruikersnaam en wachtwoord van de overtredende IP wordt dan geblokkeerd. Uitzondering: gebruiker 'admin' kan nog steeds inloggen op de GUI van dat IP - als hij weet het juiste wachtwoord."
+
+msgid "pam_abl_statusMenu"
+msgstr "Mislukt Logins"
+
+msgid "pam_abl_statusMenu_help"
+msgstr "Toont u een lijst met IP-adressen van waaruit mislukte login pogingen werden geregistreerd. Ook laat zien welke gebruikersnamen werden gebruikt. Deze pagina kunt u ook autentication blokkades resetten. Een rood statuslampje naast een IP of gebruikersnaam betekent dat de gastheer (of de gebruiker!) Niet meer mogen inloggen."
+
+msgid "pam_abl_blocked_users_and_hosts"
+msgstr "Mislukt Inloggen Geschiedenis"
+
+msgid "blocked_hosts"
+msgstr "Geblokkeerde hosts"
+
+msgid "blocked_users"
+msgstr "Geblokkeerde gebruikers"
+
+msgid "pam_abl_blocked_hosts"
+msgstr "Hosts met mislukte login activiteit:"
+
+msgid "host_ip"
+msgstr "IP-adres"
+
+msgid "host_ip_help"
+msgstr "IP-adres vanwaar mislukte login pogingen werden geregistreerd."
+
+msgid "failcnt"
+msgstr "Mislukken"
+
+msgid "failcnt_help"
+msgstr "Geeft aan hoeveel mislukte aanmeldingen werden geregistreerd."
+
+msgid "access"
+msgstr "Toegang"
+
+msgid "access_help"
+msgstr "Toont als de toegang is nog steeds toegestaan ​​of als het wordt geblokkeerd. Een groene statuslampje betekent: Access is (nog steeds - of opnieuw) toegestaan. Rood betekent: De toegang wordt geblokkeerd."
+
+msgid "Action"
+msgstr "Deblokkeren"
+
+msgid "Action_help"
+msgstr "Klikken op de knop kunt u een actieve blokkering van de gastheer of rekening in kwestie te verwijderen. Als de knop grijs is, dan is deze gastheer of account is momenteel niet geblokkeerd."
+
+msgid "reset_hosts_button"
+msgstr "Reset alle gastheer blokken"
+
+msgid "reset_hosts_button_help"
+msgstr "Kunt u alle gastheer blokken resetten en verwijdert ook alle gastheer event activiteit van de host-database."
+
+msgid "reset_users_button"
+msgstr "Reset alle gebruikersblokken"
+
+msgid "reset_users_button_help"
+msgstr "Hiermee kunt u alle gebruikers-blokken te resetten en verwijdert ook alle gebruikersgebeurtenis activiteit uit de eigen database."
+
+msgid "reset_all_button"
+msgstr "Reset alle blokken"
+
+msgid "reset_all_button_help"
+msgstr "Kunt u alle host en gebruiker blokken resetten. Verwijdert ook alle mislukte login event activiteit uit de databases."
+
+msgid "purge_button"
+msgstr "Purge events"
+
+msgid "purge_button_help"
+msgstr "Kunt u handmatig evenementen vervallen de gebruiker en host-databank die voorbij hun vervaldatum."
+
+msgid "pam_abl_blocked_users"
+msgstr "Accounts met mislukte login activiteit:"
+
+msgid "username"
+msgstr "Rekening"
+
+msgid "username_help"
+msgstr "Gebruikersnaam voor die mislukte login activiteit werd geregistreerd. Deze gebruikersnamen kunnen niet niet geldig accounts op deze server, maar iemand probeerde om toch in te loggen met hen."
+
+msgid "blocked_hosts_help"
+msgstr "Toont een lijst met hosts van waaruit mislukte login activiteit werd geregistreerd, hoe vaak ze niet te kunnen authenticeren en als ze nog steeds geblokkeerd. Een groene statuslampje betekent: Access is (nog steeds - of opnieuw) toegestaan. Rood betekent: De toegang wordt geblokkeerd."
+
+msgid "blocked_users_help"
+msgstr "Toont een lijst met gebruikersaccounts waarvoor mislukte login activiteit werd geregistreerd, hoe vaak de authenticatie mislukt en als de account is nog geblokkeerd. Een groene statuslampje betekent: Access is (nog steeds - of opnieuw) toegestaan. Rood betekent: De toegang wordt geblokkeerd."
+
+msgid "whois"
+msgstr "Whois"
+
+msgid "whois_help"
+msgstr "Toont de 'whois' informatie over het IP in kwestie."
+
+msgid "host_fqdn"
+msgstr "Hostname"
+
+msgid "host_fqdn_help"
+msgstr "Hostname waaruit mislukte login pogingen werden geregistreerd. Als het toont '-n/a-' betekent dat de gastheer niet over een geldige reverse DNS. Als het toont 'localhost', het hoeft niet te betekenen dat de aanval kwam van uw server. Er zijn veel (voornamelijk Aziatische) ISP's die de omgekeerde DNS voor hun netwerk op 'localhost'."
+
+msgid "/var/log/cron"
+msgstr "/var/log/cron"
+
+msgid "/var/log/cron_help"
+msgstr "/var/log/cron"
+
+msgid "/var/log/maillog"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/maillog_help"
+msgstr "/var/log/maillog"
+
+msgid "/var/log/messages"
+msgstr "/var/log/messages"
+
+msgid "/var/log/messages_help"
+msgstr "/var/log/messages"
+
+msgid "/var/log/secure"
+msgstr "/var/log/secure"
+
+msgid "/var/log/secure_help"
+msgstr "/var/log/secure"
+
+msgid "/var/log/httpd/access_log"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/access_log_help"
+msgstr "/var/log/httpd/access_log"
+
+msgid "/var/log/httpd/error_log"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/httpd/error_log_help"
+msgstr "/var/log/httpd/error_log"
+
+msgid "/var/log/admserv/adm_access"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_access_help"
+msgstr "/var/log/admserv/adm_access"
+
+msgid "/var/log/admserv/adm_error"
+msgstr "/var/log/admserv/adm_error"
+
+msgid "/var/log/admserv/adm_error_help"
+msgstr "/var/log/admserv/adm_error"
+
