@@ -51,6 +51,9 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/style/trueBlue.xml.zh_TW
 
 %changelog
 
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 0.3.3-0BX02
+- Merged in locales for the Netherlands ('nl_NL').
+
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.3.3-0BX01
 - Use admserv as user. 
 
