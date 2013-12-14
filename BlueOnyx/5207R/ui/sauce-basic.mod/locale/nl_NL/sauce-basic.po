@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "techSupportUSPhone"
+msgstr "(Niet beschikbaar)"
+
+msgid "techSupportIntlPhone"
+msgstr "(Niet beschikbaar)"
+
+msgid "techSupportEmail"
+msgstr "(Niet beschikbaar)"
+
+msgid "contactTechSupport"
+msgstr "Kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische info."
+
+msgid "techSupportURL"
+msgstr "[[base-alpine.vendorSite]]"
+
+msgid "kill_dhclient_failed"
+msgstr "Niet in staat om ervoor te zorgen dat de dhclient heeft gestopt."
+
+msgid "Invalid-object"
+msgstr "Interne fout: Er is geprobeerd een ongeldige object te verwijderen. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Er is een fout opgetreden. De gebruiker [[VAR.name]] is al verwijderd."
+
+msgid "failed-to-add-user"
+msgstr "Interne fout: Kan nieuwe gebruiker $ naam niet maken. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "Sorry, de opgegeven waarde voor quotum is te groot. De maximaal toegestane schijfruimte is [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "Sorry, de opgegeven host naam is te lang. De maximale lengte van een host-naam is 40 tekens."
+
+msgid "descReadOnly"
+msgstr "De beschrijving van de gebruiker is alleen-lezen."
+
