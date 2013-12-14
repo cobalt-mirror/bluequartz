@@ -648,13 +648,13 @@ msgid "saveTest_help"
 msgstr "Dit zal uw huidige instellingen op te slaan en proberen een test verbinding met uw internet service provider om de instellingen te controleren."
 
 msgid "confirmNoDhcp"
-msgstr "Uw [[VAR.interface]] instellingen werden verkregen uit een Dynamic Host Configuration Protocol (DHCP) server. \ NChanging deze instellingen schakelt DHCP lookups op de [[VAR.interface]] zetten. Wil je doorgaan?"
+msgstr "Uw [[VAR.interface]] instellingen werden verkregen uit een Dynamic Host Configuration Protocol (DHCP) server.\nChanging deze instellingen schakelt DHCP lookups op de [[VAR.interface]] zetten. Wil je doorgaan?"
 
 msgid "ethernetChanged"
-msgstr "Uw netwerkinstellingen zijn gewijzigd. Na enkele ogenblikken zal het systeem proberen om verbinding te maken met uw nieuwe IP-adres. \ NAls de login pagina niet verschijnt, kunt u verbinding met de server het apparaat door het intikken van het nieuwe adres in uw webbrowser."
+msgstr "Uw netwerkinstellingen zijn gewijzigd. Na enkele ogenblikken zal het systeem proberen om verbinding te maken met uw nieuwe IP-adres.\nAls de login pagina niet verschijnt, kunt u verbinding met de server het apparaat door het intikken van het nieuwe adres in uw webbrowser."
 
 msgid "confirmMigrateAliases"
-msgstr "De [[VAR.interface]] heeft er aliassen die afhankelijk. Het uitschakelen van de interface zal veroorzaken die er aliassen de primaire interface te verplaatsen. De aliassen kan naar andere interface worden verplaatst na de wijziging door het wijzigen van elke alias. \ N \ nWeet u zeker dat u de [[VAR.interface]] uitschakelen?"
+msgstr "De [[VAR.interface]] heeft er aliassen die afhankelijk. Het uitschakelen van de interface zal veroorzaken die er aliassen de primaire interface te verplaatsen. De aliassen kan naar andere interface worden verplaatst na de wijziging door het wijzigen van elke alias.\n\nWeet u zeker dat u de [[VAR.interface]] uitschakelen?"
 
 msgid "adminRedirect"
 msgstr "In een paar seconden, moet u omgeleid naar het nieuwe IP-adres. Als je niet wordt doorverwezen, klik dan op de onderstaande [[base-network.reconnect]] knop om te proberen verbinding te maken met het nieuwe IP-adres. Als dat niet lukt, het IP-adres te veranderen kan hebben gefaald, en je moet op de [[base-network.oldIPReconnect]] knop om te proberen verbinding te maken met de servers vorige IP-adres."
