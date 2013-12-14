@@ -1,0 +1,98 @@
+# --- Menu
+
+msgid "apache"
+msgstr "Web"
+
+msgid "apache_help"
+msgstr "Hier können Sie [[base-apache.apacheSettings]] ändern."
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "Web-Einstellungen"
+
+msgid "frontpageEnabled"
+msgstr "Aktivieren"
+
+msgid "frontpageField"
+msgstr "FrontPage-Server-Erweiterungen"
+
+msgid "frontpageField_help"
+msgstr "Aktivieren oder deaktivieren Sie die FrontPage-Server-Erweiterungen."
+
+
+msgid "passwordWebmasterField"
+msgstr "webmaster-Passwort"
+
+msgid "passwordWebmasterField_help"
+msgstr "Geben Sie ein Passwort für den FrontPage-Client-webmaster ein. Auf die Home-Gruppen-Website kann durch Auswählen von Web öffnen im FrontPage-Client zugegriffen werden. Melden Sie sich mit dem Anmeldenamen webmaster und dem hier angegebenen Passwort an. Wenn Ihnen die Zugriffsberechtigung erteilt wurde, werden weitere FrontPage-Benutzer mit dem FrontPage-Client verwaltet."
+
+msgid "passwordWebmasterField_rule"
+msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie Zahlen und Satzzeichen bestehen. Es sollten keine in einem Wörterbuch zu findenden Wörter verwendet werden. Bei Passwörtern wird die Groß- und Kleinschreibung berücksichtigt."
+
+msgid "passwordWebmasterField_invalid"
+msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gleiche Passwort muss in beide Felder eingegeben werden, um Tippfehlern vorzubeugen. Bitte versuchen Sie es noch einmal."
+
+msgid "cgiAccessField"
+msgstr "CGI-Zugriff"
+
+msgid "cgiAccessField_help"
+msgstr "Aktivieren oder deaktivieren Sie den CGI-Zugriff. Sie können die CGI-Zugriffsrechte so einstellen, dass nur der Serveradministrator CGI-Skriptdateien hinzufügen kann oder dass sowohl der Administrator als auch alle oder nur ausgewählte Benutzer CGI-Skriptdateien hinzufügen können."
+
+msgid "cgiAll"
+msgstr "Allen Benutzern Zugriff gewähren"
+
+msgid "cgiNone"
+msgstr "Keinem Benutzer Zugriff gewähren"
+
+msgid "cgiSubset"
+msgstr "Nur bestimmten Benutzern Zugriff gewähren"
+
+msgid "cgiUsersAllowed"
+msgstr "Zugriffsberechtigte Benutzer"
+
+msgid "cgiUsersDisallowed"
+msgstr "Nicht zugriffsberechtigte Benutzer"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "Sie haben keine Benutzer für den CGI-Zugriff ausgewählt. Bitte fügen Sie Benutzer hinzu, denen Sie den CGI-Zugriff gewähren, oder wählen Sie eine andere Zugriffsoption aus."
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "Der CGI-Zugriff konnte leider nicht richtig konfiguriert werden."
+
+msgid "systemObjectNotFound"
+msgstr "Die Serverkonfiguration ist derzeit leider nicht verfügbar. Bitte warten Sie und versuchen Sie es noch einmal."
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "Webserver"
+
+msgid "amApacheDetails"
+msgstr "Webserver-Details"
+
+msgid "amNotRunning"
+msgstr "Der Webserver ist nicht in Betrieb."
+
+msgid "amStatusOK"
+msgstr "Der Webserver arbeitet normal."
+
+msgid "amAdmservNameTag"
+msgstr "Server-Desktop"
+
+msgid "amAdmservDetails"
+msgstr "Server-Desktop-Details"
+
+msgid "amAdmservNotRunning"
+msgstr "Das Server-Desktop ist nicht in Betrieb."
+
+msgid "amAdmservStatusOK"
+msgstr "Das Server-Desktop ist in Betrieb."
+

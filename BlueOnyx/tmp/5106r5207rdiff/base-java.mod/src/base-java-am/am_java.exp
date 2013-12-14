@@ -1,0 +1,45 @@
+#!/usr/bin/expect
+
+source /usr/sausalito/swatch/statecodes.tcl
+
+# don't echo the dialog
+log_user 0
+
+# we use telnet to connect
+spawn telnet localhost 8080
+expect {
+    "Connected to" {}
+    default { 
+	# try to restart
+	# use catch so we don't report errors on the exec,
+	# only on the dialog itself
+	catch {exec /etc/rc.d/init.d/tomcat5 restart >&/dev/null}
+	sleep 5
+	# redo test, fail if get an error again
+	spawn telnet localhost 8080
+	expect {
+	    "Connected to" {}
+	    default {
+		puts -nonewline $env(redMsg);
+		flush stdout;
+		exit $AM_STATE_RED;
+	    }
+	}
+    }
+}
+
+send "HEAD /manager/ HTTP/1.0\r"
+send "\r"
+expect {
+    "HTTP/1.1" {}
+    default { # fail if we don't get an OK
+	puts -nonewline $env(redMsg);
+	flush stdout;
+	exit $AM_STATE_RED
+    }
+}
+
+puts -nonewline $env(greenMsg)
+flush stdout;
+exit $AM_STATE_GREEN
+
