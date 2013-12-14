@@ -31,6 +31,7 @@ my %locales = (
 	"fr_FR" => "&fr_FR&",
 	"it_IT" => "&it_IT&",
 	"ja_JP" => "&ja_JP&",
+	"nl_NL" => "&nl_NL&",
 	"pt_PT" => "&pt_PT&"
 );
 
@@ -69,6 +70,9 @@ elsif ($lang =~ /^it_IT/) {
 }
 elsif ($lang =~ /^pt_PT/) { 
 	$lang = 'pt_PT';
+}
+elsif ($lang =~ /^nl_NL/) { 
+	$lang = 'nl_NL';
 }
 else {
     if ($build eq "5106R") {

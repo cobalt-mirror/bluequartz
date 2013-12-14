@@ -18,6 +18,8 @@ my $langs = {
         'fr' => 'fr_FR@euro',
         'pt' => 'pt_PT@euro',
         'it' => 'it_IT@euro',
+        'nl' => 'nl_NL@euro',
+        'da' => 'da_DK@euro',
         # these may be wrong, but I don't know chinese
         'zh_CN' => 'zh_CN', 
         'zh_TW' => 'zh_TW'
@@ -95,6 +97,9 @@ sub update_i18n
         }
         if ($locale eq "pt_PT") {
                 $locale = "pt_PT.utf8";
+        }
+        if ($locale eq "nl_NL") {
+                $locale = "nl_NL.utf8";
         }
         if ($locale eq "en") {
                 $locale = "en_US";
