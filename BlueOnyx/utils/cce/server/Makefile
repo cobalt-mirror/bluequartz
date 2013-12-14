@@ -7,6 +7,7 @@ include ../dynamic.mk
 DEFS += -DCCE_VERSION=\"$(CCE_VERSION)\"
 LIBS += -lcrypt -ldl #-ldebug 
 INCLUDES += -I./include
+CFLAGS += -D_GNU_SOURCE 
 
 SRCS = src/main.c src/smd.c
 OBJS = $(patsubst %.c,%.o,$(SRCS))

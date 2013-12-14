@@ -1,0 +1,21 @@
+PLEASE NOTE:
+
+As of right now this module is no longer compatible with anything *but* CentOS5. 
+
+httpd.conf, php.ini and php.conf have been modified for usage on CentOS5 only.
+
+httpd.conf was changed because some modules on the newer Apache have been renamed.
+
+php.conf was of course modified because we now use PHP5 instead of PHP4.
+
+php.ini was changed to switch the extension_dir path from ...
+
+extension_dir = /usr/lib/php4
+
+... to ..
+
+extension_dir = /usr/lib/php/modules
+
+The Makefile and SPEC file need to be fixed if we want to retain downward compatability.
+
+- mstauber

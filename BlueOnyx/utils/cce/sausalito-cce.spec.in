@@ -15,17 +15,8 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel
 BuildRequires: flex, bison
-
-%if "%sles" == "9"
-BuildRequires: php4-devel
-%endif
-%if "%tlas" == "2"
-BuildRequires: php4
-%endif
-%if 0%{?fedora}%{?centos}
 BuildRequires: php-devel
-Requires: httpd
-%endif
+
 
 # Maximum RPM: "There are times when RPM's automatic dependency
 # processing may not be desirable."  Yeah, like when it crashes.
@@ -37,10 +28,11 @@ sausalito-cce has both the server and client parts of cce.
 %package server
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
-Requires: glib, pam
-%if "%centos" == "4"
-Requires: audit-libs
-%endif
+Requires: glib, glib-ghash, pam
+%if "%centos" == "5" 
+Requires: audit-libs 
+%endif 
+
 
 %description server
 The cce-server package contains the server-side parts of the Cobalt 
@@ -49,7 +41,7 @@ Configuration Engine.
 %package client
 Group: System Environment/BlueOnyx
 Summary: The CCE client libraries
-Requires: glib, pam, httpd
+Requires: glib, glib-ghash, pam, httpd, base-admserv-glue
 
 %description client
 The cce-client package contains the client-side parts of the Cobalt 
@@ -173,7 +165,7 @@ fi
 
 # resetup the owner of ccewrap
 if [ $1 = 2 ]; then
- 	/bin/chgrp apache /usr/sausalito/bin/ccewrap
+ 	/bin/chgrp admserv /usr/sausalito/bin/ccewrap
 	/bin/chmod u+s /usr/sausalito/bin/ccewrap
 fi
 
@@ -187,6 +179,13 @@ fi
 %changelog
 
 %changelog
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX11
+- disable swig build. 
+- disable Indexes for httpd. 
+- add base-admserv-glue to requires for client package. 
+- fixed the issue that ccewrap group is changed after upgrade.
+- user admserv group for ccewrap. 
 
 * Thu Jun 27 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX10
 - Added Italian and Portuguese locales.
