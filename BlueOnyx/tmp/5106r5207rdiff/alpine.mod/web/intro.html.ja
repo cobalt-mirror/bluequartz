@@ -1,6 +1,6 @@
 <HTML>
 <HEAD>
-	<META HTTP-EQUIV="Content-type"  CONTENT="text/html; charset=EUC-JP">
+<META HTTP-EQUIV="Content-type"  CONTENT="text/html; charset=UTF-8">
 <!-- locale-sensitive -->
 <STYLE TYPE="text/css">
 <!--
@@ -62,13 +62,13 @@ if(name.indexOf("Microsoft") != -1 && version.indexOf("Mac") != -1)
 	 <SCRIPT LANGUAGE="javascript">	
 	if(!cssEnabled) {
 	  <!-- locale-sensitive -->
-	  document.write("<FONT SIZE=\"+1\" COLOR=\"#990000\">�������󤹤����ˡ��֥饦������� CSS (Cascading Style Sheets) ��ǽ�Υ��ݡ��Ȥ�ͭ���ˤ������Υڡ����򹹿����Ƥ���������</FONT>");
+	  document.write("<FONT SIZE=\"+1\" COLOR=\"#990000\">ログインする前に、ブラウザ設定で CSS (Cascading Style Sheets) 機能のサポートを有効にし、このページを更新してください。</FONT>");
 	} else if(!cookieEnabled) {
 	  <!-- locale-sensitive -->
-	  document.write("<STRONG>�������󤹤����ˡ��֥饦������� Cookie �Υ��ݡ��Ȥ�ͭ���ˤ������Υڡ����򹹿����Ƥ���������</STRONG>");
+	  document.write("<STRONG>ログインする前に、ブラウザ設定で Cookie のサポートを有効にし、このページを更新してください。</STRONG>");
 	} else {
 	  <!-- locale-sensitive -->
- 	   document.write("<BIG>�����٤ϡ�BlueOnyx �򤴺���ĺ���ޤ������ˤ��꤬�Ȥ��������ޤ���BlueOnyx �ϡ������ץ󥽡����Υ����֥ۥ��ƥ��󥰤˺�Ŭ�ι���ǽ�����Х��ץ饤���󥹤Ǥ������ꤪ��Ӵ������ϡ����ƥ֥饦�����̤����ñ�ʥ�˥塼���ǹԤ��ޤ�������������Ϥۤ�ο�ʬ�Ǵ�λ����ľ���˥����֡��Żҥ᡼�롢FTP �ʤɤΥ����ӥ����󶡤���ʣ���Υɥᥤ������ꤷ��������ĺ���ޤ���<P>���Ργ��ϡϥܥ���򥯥�å�����ȥ��åȥ��åץ��������ɤ���ư�����ƥե�����ɤ�ɬ�פʾ�������Ϥ�������ǡ������Фν��������ñ�˹Ԥ��ޤ���</BIG>");		
+ 	   document.write("<BIG>この度は、BlueOnyx をご採用頂きまして誠にありがとうございます。BlueOnyx は、オープンソースのウェブホスティングに最適の高性能サーバアプライアンスです。設定および管理操作は、全てブラウザ画面から簡単なメニュー操作で行えます。初期設定操作はほんの数分で完了し、直ちにウェブ、電子メール、FTP などのサービスを提供する複数のドメインを設定し、ご利用頂けます。<P>下の［開始］ボタンをクリックするとセットアップウィザードが起動し、各フィールドに必要な情報を入力するだけで、サーバの初期設定を簡単に行えます。</BIG>");		
 	var action = sslEnabled ? "https://"+location.hostname+":81/loginHandler.php" : "http://"+location.hostname+":444/loginHandler.php";
 
 	  document.write("<FORM ACTION=\""+action+"\" ENCTYPE=\"application/x-www-form-urlencoded\" METHOD=\"POST\" NAME=\"form\" onSubmit=\"this.timeStamp.value = (new Date()).getTime(); return true;\">");
@@ -86,7 +86,7 @@ if(name.indexOf("Microsoft") != -1 && version.indexOf("Mac") != -1)
 	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"newLoginPassword\" VALUE=\"blueonyx\">");
 	  document.write("<INPUT TYPE=\"HIDDEN\" NAME=\"reuseWindow\" VALUE=\"1\">");
 	  <!-- locale-sensitive -->
-	  document.write("<DIV ALIGN=\"right\"><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><IMG BORDER=\"0\" SRC=\"/libImage/buttonLeftDot.gif\"></A></TD><TD NOWRAP BGCOLOR=\"#000099\"><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><SMALL>����</SMALL></A></TD><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit(); \"><IMG BORDER=\"0\" SRC=\"/libImage/buttonRight.gif\"></A></TD></TR></TABLE>&nbsp;&nbsp;&nbsp;&nbsp;</DIV>");
+	  document.write("<DIV ALIGN=\"right\"><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><IMG BORDER=\"0\" SRC=\"/libImage/buttonLeftDot.gif\"></A></TD><TD NOWRAP BGCOLOR=\"#000099\"><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit();\"><SMALL>開始</SMALL></A></TD><TD><A HREF=\"javascript: if(document.form.onsubmit()) document.form.submit(); \"><IMG BORDER=\"0\" SRC=\"/libImage/buttonRight.gif\"></A></TD></TR></TABLE>&nbsp;&nbsp;&nbsp;&nbsp;</DIV>");
 	  document.write("</FORM>");
 		}
       </SCRIPT>
@@ -94,7 +94,7 @@ if(name.indexOf("Microsoft") != -1 && version.indexOf("Mac") != -1)
 <NOSCRIPT>
 <!-- --><P>
 <!-- --><IMG SRC="/.cobalt/images/bang.gif"><!-- locale-sensitive -->
-<!-- -->���åȥ��åץ��������ɤ�ɽ���ˤ� JavaScript �Υ��ݡ��Ȥ�ɬ�פǤ����֥饦�����꤫�� Javascript ��ͭ���ˤ��Ƥ���������
+<!-- -->セットアップウィザードの表示には JavaScript のサポートが必要です。ブラウザ設定から Javascript を有効にしてください。
 <!-- --></P>
 </NOSCRIPT>
 

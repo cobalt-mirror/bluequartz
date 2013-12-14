@@ -14,7 +14,7 @@ my $DEBUG = 0;
 $DEBUG && warn $0.' '.`date`;
 eval('use strict;') if ($DEBUG);
 
-my $tomcat_conf = '/etc/tomcat5/server.xml';
+my $tomcat_conf = '/etc/tomcat6/server.xml';
 
 my $cce = new CCE;
 $cce->connectfd();

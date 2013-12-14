@@ -9,8 +9,8 @@ ulimit -u 2048 &> /dev/null
 #	 The corresponding rpms should really be fixed.
 #
 
-CLASSPATH=$CLASSPATH:/var/lib/tomcat5/common/endorsed
-CLASSPATH=$CLASSPATH:/var/lib/tomcat5/common/lib
+CLASSPATH=$CLASSPATH:/var/lib/tomcat6/common/endorsed
+CLASSPATH=$CLASSPATH:/var/lib/tomcat6/common/lib
 CLASSPATH=$CLASSPATH:/usr/share/java/javamail
 CLASSPATH=$CLASSPATH:/usr/share/java
 CLASSPATH=$CLASSPATH:/usr/share/java/mx4j

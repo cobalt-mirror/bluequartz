@@ -1,5 +1,5 @@
 <!--
-	$Id: java.schema,v 1.16 2001/10/24 20:36:03 pbaltz Exp $
+	$Id: java.schema
 	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 	Author: Will Dehaan <null@sun.com>
 -->
@@ -9,21 +9,21 @@
 	<!-- enabled controlled by tomcat_toggle.pl based on Vsite.Java.enable -->
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 
 	<!-- global tomcat settings -->
 	<property 
         name="maxClients" type="int" default="50"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 	<property 
         name="maxClientsAdvised" type="int" default="100"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 	<property 
         name="JavaAdminPass" type="password" default="password"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 </class>
 
@@ -31,11 +31,11 @@
 <class name="System" namespace="JavaStatus" version="1.0">
         <property
         name="TomcatStatus" type="boolean" default="0"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
         <property
         name="TomcatUITrigger" type="int" default="0"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 </class>
 
@@ -50,7 +50,7 @@
     <!-- the default properties for this service used in creating Vsites -->
     <property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 </class>
 
@@ -61,7 +61,7 @@
 	<!-- per-site JavaServer Pages and Servlet support -->
 	<property 
         name="enabled" type="boolean" default="0"
-        writeacl="ruleCapable(modifyJava)"
+        writeacl="ruleCapable(adminUser)"
     />
 
 	<!-- .war archive install status -->

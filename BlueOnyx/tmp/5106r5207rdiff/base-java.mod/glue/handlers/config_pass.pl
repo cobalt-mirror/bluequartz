@@ -2,7 +2,7 @@
 # $Id: config_pass.pl,v 1.0.0 Do 27 Nov 2008 12:40:50 CET mstauber Exp $
 # Copyright 2007-2008, Solarspeed Ltd. and NuOnce Networks, Inc., All rights reserved.
 
-my $tomcat_properties = '/etc/tomcat5/tomcat-users.xml';
+my $tomcat_properties = '/etc/tomcat6/tomcat-users.xml';
 
 my $DEBUG = 0;
 $DEBUG && warn $0.' '.`date`;

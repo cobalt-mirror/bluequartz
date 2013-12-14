@@ -1,7 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 #
-# $Id: vhost_suspend.pl 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+# $Id: vhost_suspend.pl
 #
 # Setup rewrite rules when disabling a VirtualHost to give a 403 error, since
 # we don't want people bounced to the login page anymore.
@@ -15,6 +14,23 @@ my $cce = new CCE;
 $cce->connectfd();
 
 my $vhost = $cce->event_object();
+
+# Get "System" . "Web":
+my ($oid) = $cce->find('System');
+my ($ok, $objWeb) = $cce->get($oid, 'Web');
+
+# HTTP and SSL ports:
+$httpPort = "80";
+if ($objWeb->{'httpPort'}) {
+    $httpPort = $objWeb->{'httpPort'};
+}
+else {
+
+}
+$sslPort = "443";
+if ($objWeb->{'sslPort'}) {
+    $sslPort = $objWeb->{'sslPort'};
+}
 
 # rewrite the rewrite rules if site is enabled/disabled
 my $ok = 1;
@@ -46,8 +62,8 @@ RewriteCond %{REQUEST_URI}		/error/.*
 RewriteRule .*				- [L]
 RewriteCond %{REQUEST_URI}              /libImage/.*
 RewriteRule .*                          - [L]
-RewriteCond %{HTTP_HOST}		^$vhost->{ipaddr}(:80)?\$ [OR]
-RewriteCond %{HTTP_HOST}		^$vhost->{fqdn}(:80)?\$ [NC]
+RewriteCond %{HTTP_HOST}		^$vhost->{ipaddr}(:$httpPort)?\$ [OR]
+RewriteCond %{HTTP_HOST}		^$vhost->{fqdn}(:$httpPort)?\$ [NC]
 RewriteRule .*				- [L,F]
 # END VHOST SUSPEND RULES
 NEWRULES
@@ -67,17 +83,20 @@ NEWRULES
 
 	return 1;
 }
+
+# 
+# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Redistribution and use in source and binary forms, with or without modification, 
+# are permitted provided that the following conditions are met:
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
 # 
 # -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# this list of conditions and the following disclaimer in the documentation and/or 
+# other materials provided with the distribution.
 # 
 # Neither the name of Sun Microsystems, Inc. or the names of contributors may 
 # be used to endorse or promote products derived from this software without 
@@ -86,3 +105,4 @@ NEWRULES
 # This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # 
 # You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# 

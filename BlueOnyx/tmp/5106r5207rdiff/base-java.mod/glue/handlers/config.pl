@@ -4,7 +4,7 @@
 # Tomcat configurator
 # Will DeHaan <null@sun.com>
 
-my $tomcat_properties = '/etc/tomcat5/server.xml';
+my $tomcat_properties = '/etc/tomcat6/server.xml';
 
 my $DEBUG = 0;
 $DEBUG && warn $0.' '.`date`;

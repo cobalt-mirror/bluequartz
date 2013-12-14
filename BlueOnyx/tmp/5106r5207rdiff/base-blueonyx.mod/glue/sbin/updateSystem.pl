@@ -43,7 +43,7 @@ if (not @oids) {
 
 # update OS package information
 $cce->set($oids[0], '', {
-	'version' => "v1.$product"
+	'version' => "v3.$product"
 });
 
 $cce->bye();

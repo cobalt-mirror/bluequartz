@@ -193,7 +193,7 @@ if(-d "products.prd/$PRODUCT/misc"){
 	if(-d "products.prd/$PRODUCT/scripts"){
 		print "\tFound Scripts directory...\n";
 		system("/bin/cp -r products.prd/$PRODUCT/scripts package");
-		system("/usr/bin/find package/scripts -type f -exec chmod 755 {} \\;")
+		system("find package/scripts -type f -exec chmod 755 {} \\;")
 	}
 
 	system("/bin/cp -r products.prd/$PRODUCT/pkginfo package") == 0 || 

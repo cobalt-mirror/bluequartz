@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # This is triggered by changes to the VirtualHost's ip, fqdn, or host.

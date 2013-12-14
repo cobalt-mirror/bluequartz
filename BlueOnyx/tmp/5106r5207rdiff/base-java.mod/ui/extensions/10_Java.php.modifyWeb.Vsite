@@ -1,5 +1,5 @@
 <?php
-// $Id: 10_Java.php.modifyWeb.Vsite,v 1.1 2001/11/05 08:14:18 pbose Exp $
+// $Id: 10_Java.php.modifyWeb.Vsite
 // Copyright 2001 Sun Microsystems, Inc.  All Rights Reserved.
 // Java.php.modify.Vsite
 
@@ -14,7 +14,7 @@ class JavaExtension extends UIExtension
 		
 		$defaults = $cce->get($parameters["CCE_OID"], "Java");
 
-        $allowed = $ServerScriptHelper->getAllowed('modifyJava');
+        $allowed = $ServerScriptHelper->getAllowed('adminUser');
 
         // don't show the field if they aren't allowed to modify
         // and it's not enabled

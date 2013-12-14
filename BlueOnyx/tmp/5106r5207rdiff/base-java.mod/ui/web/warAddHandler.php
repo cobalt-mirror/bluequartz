@@ -30,7 +30,7 @@ $nameField = "";
 $user = $serverScriptHelper->getLoginName();
     
 // Filter bash manipulative characters
-$targetField = ereg_replace("[\n\r\;\"]", "", $targetField);
+$targetField = preg_replace('/[\n\r\;\"]/', "", $targetField);
 
 // reset progress status/messages
 if ($_TARGET) { // Modify
@@ -72,7 +72,7 @@ if ($_TARGET) { // Modify
     $names = explode("/", $urlField);
     $nameField = $names[count($names)-1];
   
-    $urlField = ereg_replace("[\n\r\;\"]", "", $urlField);
+    $urlField = preg_replace('/[\n\r\;\"]/', "", $urlField);
     $serverScriptHelper->fork("$prepare_cmd -n $user -g $group -u \"$urlField\" -t \"$targetField\" -c", $user);
   
     // print "$prepare_cmd -n $user -g $group -u \"$urlField\"";
@@ -107,7 +107,8 @@ if ($_TARGET) { // Modify
       chmod($file, 0666); // httpd->$user hand-off
   
       // install
-      $file = ereg_replace("[\n\r\;\"]", "", $file);
+      $file = preg_replace('/[\n\r\;\"]/', "", $file);
+
       $serverScriptHelper->fork("$prepare_cmd -n $user -g $group -f \"$file\" -t \"$targetField\" -c", $user);
 
     } else {
@@ -124,7 +125,7 @@ if ($_TARGET) { // Modify
 
     $nameField = $loadedField;
 
-    $loadedField = ereg_replace("[\n\r\;\"]", "", $loadedField);
+    $loadedField = preg_replace('/[\n\r\;\"]/', "", $loadedField);
     $serverScriptHelper->fork("$prepare_cmd -n $user -g $group -f \"$packageDir/$loadedField\" -t \"$targetField\" -c", $user);
   }
 

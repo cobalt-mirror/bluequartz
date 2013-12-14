@@ -6,10 +6,10 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=blueonyx
 
-BUILD=20110817
+BUILD=20131204
 
-VERSION=5106R
-RELEASE=2.$(BUILD)BX102
+VERSION=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5108R"; else  echo -n "5107R"; fi)
+RELEASE=4.$(BUILD)BX109
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -22,7 +22,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch sendmail-cf m4 cyrus-sasl perl
-REQUIRES_GLUE=base-email-capstone base-time-capstone >= 1.0.1-62BQ11 base-user-capstone >= 1.2.0-0BQ1 base-user-glue >= 1.2.0-0BQ1 at
+REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl sendmail-cf m4 sendmail vixie-cron perl
+REQUIRES_GLUE=base-email-capstone base-time-capstone base-user-capstone at dovecot php base-admserv-capstone
 
 include /usr/sausalito/devel/module.mk

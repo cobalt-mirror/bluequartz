@@ -98,7 +98,8 @@ if($add)
 	                // $serverScriptHelper->shell("$magic_cmd $dirName/$file", $output);
 			$output = `$magic_cmd $dirName/$file 2>&1`;
 			// $output = system("$magic_cmd $dirName/$file");
-	                if (ereg("Zip archive data", $output)) {
+	                //if (ereg("Zip archive data", $output)) {
+	                if (preg_match("/Zip archive data/", $output)) {
 	                        $wars[] = $file;
 	                }
 	        }

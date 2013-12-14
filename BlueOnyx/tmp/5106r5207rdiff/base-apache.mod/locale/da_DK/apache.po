@@ -1,16 +1,12 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"Report-Msgid-Bugs-To: Jes Kasper Klittum <jes@enavn.com>\n"
-"POT-Creation-Date: 2007-11-09 14:59+0200\n"
-"PO-Revision-Date: 2007-12-14 12:44+0100\n"
-"Last-Translator: Jes Kasper Klittum <jes@enavn.com>\n"
-"Language-Team: DANISH <jes@enavn.com>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
-"Content-Transfer-Encoding: quoted-printable\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "ClientMaxError"
 msgstr ""
@@ -85,9 +81,6 @@ msgstr ""
 
 msgid "cgiAll"
 msgstr "Giv adgang til alle brugere"
-
-msgid "cgiI18nName"
-msgstr "Common Gateway Interface (CGI)"
 
 msgid "cgiNone"
 msgstr "Tillad ikke adgang for brugere"
@@ -226,151 +219,152 @@ msgid "php"
 msgstr "Aktiver PHP"
 
 msgid "phpI18nName"
-msgstr "PHP scripting"
+msgstr "PHP Scripting"
 
-msgid "php_help"
-msgstr "Aktiver brug af PHP scripts."
-
-msgid "ssi"
-msgstr "Aktiver Server-Side Inkluderinger (SSI)"
+msgid "cgiI18nName"
+msgstr "Common Gateway Interface (CGI)"
 
 msgid "ssiI18nName"
-msgstr "Server-Side Inkluderinger"
-
-msgid "ssi_help"
-msgstr "Aktiver brug af Server-Side Inkluderinger."
-
-msgid "systemObjectNotFound"
-msgstr ""
-"Beklager, men serverkonfiguration kan ikke foretages i øjeblikket. Vent "
-"venligst og prøv igen senere."
-
-msgid "webScripting"
-msgstr "Web"
-
-msgid "webScriptingDescription"
-msgstr "Konfigurer webindstillinger såsom programmeringssprog."
-
-msgid "webScriptingTitle"
-msgstr "Webscriptingindstillinger for [[VAR.fqdn]]"
-
-msgid "webScripting_help"
-msgstr "[[base-apache.webScriptingDescription]]"
+msgstr "Server-Side Includes (SSI)"
 
 msgid "userwebs"
-msgstr "Enable user owned webs"
+msgstr "Aktiver brugernes ejede webs"
 
 msgid "userwebs_help"
-msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory."
+msgstr "Hvis aktiveret, så hver bruger har sin egen webhotel, som er adskilt fra det primære websted webspace og kan nås via http://www.example.com/~ brugernavn/. Brugere kan derefter uploade deres egne websider via FTP ind i deres egen /web-mappe. BEMÆRK: Hvis der suphp er aktiveret, bruger ejede webs understøttes ikke længere, og denne funktion vil blive slukket."
 
 msgid "ftpnonadminI18nName"
-msgstr "FTP for non-Site admins enabled"
+msgstr "FTP til ikke-Site aktiveret admins"
 
 msgid "userwebsI18nName"
-msgstr "User owned webs enabled"
-
-#
-## BlueOnyx.conf editing additions:
-#
+msgstr "Bruger ejede webs aktiveret"
 
 msgid "Options_AllField"
-msgstr "All"
+msgstr "Alle"
 
 msgid "Options_AllField_help"
-msgstr "All options except for MultiViews. (Default: Off)"
+msgstr "Alle muligheder undtagen MultiViews. (Standard: Fra)"
 
 msgid "Options_FollowSymLinksField"
 msgstr "FollowSymLinks"
 
 msgid "Options_FollowSymLinksField_help"
-msgstr "The server will follow symbolic links. (Default: On)"
+msgstr "Serveren vil følge symbolske links. (Standard: Til)"
 
 msgid "Options_IncludesField"
-msgstr "Includes"
+msgstr "Inkluderer"
 
 msgid "Options_IncludesField_help"
-msgstr "Server-side includes are permitted. (Default: On)"
+msgstr "Server-side indeholder er tilladt. (Standard: Til)"
 
 msgid "Options_IndexesField"
 msgstr "Indexes"
 
 msgid "Options_IndexesField_help"
-msgstr "If a URL which maps to a directory is requested, and the there is no DirectoryIndex (e.g., index.html) in that directory, then the server will return a formatted listing of the directory. (Default: On)"
+msgstr "Hvis en URL, som kort til en mappe der anmodes og der er ingen DirectoryIndex (fx index.html) i denne mappe, så vil serveren returnere en formateret liste af biblioteket. (Standard: Til)"
 
 msgid "Options_MultiViewsField"
 msgstr "MultiViews"
 
 msgid "Options_MultiViewsField_help"
-msgstr "Content negotiated MultiViews are allowed. Used for displaying pages in different languages based on browser locales. (Default: On)"
+msgstr "Indhold forhandlet MultiViews er tilladt. Anvendes til at vise sider på forskellige sprog baseret på browser locales. (Standard: Til)"
 
 msgid "Options_SymLinksIfOwnerMatchField"
 msgstr "SymLinksIfOwnerMatch"
 
 msgid "Options_SymLinksIfOwnerMatchField_help"
-msgstr "The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link. (Default: Off)"
+msgstr "Serveren vil kun følge symbolske links, for hvilken indikativprisen fil eller mappe er ejet af den samme bruger-id, som linket. (Standard: Fra)"
 
 msgid "AllowOverride_AllField"
-msgstr "All"
+msgstr "Alle"
 
 msgid "AllowOverride_AllField_help"
-msgstr "When the server finds an .htaccess file it needs to know which directives declared in that file can override earlier access information. Ticking this box will allow to override ALL Apache settings (Dangerous! Default: Off)"
+msgstr "Når serveren finder en. Htaccess fil er det nødvendigt at vide, hvilke direktiver erklæret i denne fil kan tilsidesætte tidligere adgangsoplysninger. Tikkende denne boks vil gøre det muligt at tilsidesætte alle Apache indstillinger (Dangerous! Standard: Fra)"
 
 msgid "AllowOverride_AuthConfigField"
 msgstr "AuthConfig"
 
 msgid "AllowOverride_AuthConfigField_help"
-msgstr "Allow use of the authorization directives (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require, etc.). (Default: On)"
+msgstr "Tillad brug af tilladelsen direktiver (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Kræv, etc.). (Standard: Til)"
 
 msgid "AllowOverride_FileInfoField"
-msgstr "FileInfo"
+msgstr "Fileinfo"
 
 msgid "AllowOverride_FileInfoField_help"
-msgstr "Allow use of the directives controlling document types (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.). (Default: Off)"
+msgstr "Tillad brug af direktiverne kontrollerende dokumenttyper (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.). (Standard: Fra)"
 
 msgid "AllowOverride_IndexesField"
 msgstr "Indexes"
 
 msgid "AllowOverride_IndexesField_help"
-msgstr "Allow use of the directives controlling directory indexing (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.). (Default: On)"
+msgstr "Tillad brug af direktiverne kontrollerende directory indeksering (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.). (Standard: Til)"
 
 msgid "AllowOverride_LimitField"
-msgstr "Limit"
+msgstr "Begræns"
 
 msgid "AllowOverride_LimitField_help"
-msgstr "Allow use of the directives controlling host access (Allow, Deny  and Order). (Default: On)"
+msgstr "Tillad brug af direktiverne kontrollerende værtsadgang (Tillad, Afvis og Order). (Standard: Til)"
 
 msgid "AllowOverride_OptionsField"
-msgstr "Options"
+msgstr "Optioner"
 
 msgid "AllowOverride_OptionsField_help"
-msgstr "Allow use of the directives controlling specific directory features (Options and XBitHack). (Default: Off)"
+msgstr "Tillad brug af direktiverne kontrollerer specifikke bibliotek funktioner (Options og XBitHack). (Standard: Fra)"
 
 msgid "DIVIDER_TOP"
-msgstr "General Apache configuration:"
+msgstr "General Apache konfiguration:"
 
 msgid "DIVIDER_EXPLANATION"
-msgstr "Apache features for virtual site directories:"
+msgstr "Apache funktioner til virtuelle site mapper:"
 
 msgid "BlueOnyx_Info_Text"
-msgstr "A section in /etc/httpd/conf.d/blueonyx.conf defines which 'Options' and 'AllowOverride' features are allowed for the directory (/home/.sites/) in which all virtual sites reside. This restricts usage of .htaccess files and other things. These can be changed below."
+msgstr "Et afsnit i /etc/httpd/conf.d/blueonyx.conf definerer, hvilke &#39;Funktioner&#39; og &#39;AllowOverride&#39; funktioner er tilladt for mappen (/home/.sites/), hvor alle virtuelle sites bor. Dette begrænser brugen af .htaccess-filer og andre ting. Disse kan ændres nedenfor."
 
 msgid "DIVIDER_OPTIONS"
-msgstr "Options:"
+msgstr "Valg:"
 
 msgid "DIVIDER_ALLOWOVERRIDE"
 msgstr "AllowOverride:"
 
-
-# suPHP:
 msgid "PHP_enabled"
-msgstr "Enable PHP Scripting"
+msgstr "Aktiver PHP Scripting"
 
 msgid "PHP_enabled_help"
-msgstr "Enable the use of PHP scripts."
+msgstr "Aktivere brugen af ​​PHP-scripts."
 
-msgid "enableSuPHP"   
-msgstr "Enable suPHP"
+msgid "enableSuPHP"
+msgstr "Aktiver suphp"
 
 msgid "enableSuPHP_help"
-msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu!"
+msgstr "Aktivere brugen af ​​suphp så PHP-scripts kører med UID deres ejer. Vær sikker på at konfigurere en Siteadmin som ejer af din /web mappe via &#39;Web Ejerskab&#39; menuen! BEMÆRK: Hvis der suphp er aktiveret, bruger ejede webs understøttes ikke længere, og at funktionen vil blive slukket."
+
+msgid "disabled"
+msgstr "Deaktiveret"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "cap_serverHttpd"
+msgstr "Apache-indstillinger"
+
+#
+
+msgid "httpPortField"
+msgstr "HTTP Port"
+
+msgid "httpPortField_help"
+msgstr "Apache Webserver normalt kører på port 80 (HTTP). Hvis du ønsker at ændre det til en anden port, så kan du gøre det her. Dette er kun nyttig, hvis du ønsker at bruge noget andet foran Apache til at filtrere, cache eller omdirigere trafik. Såsom en Varnish Cache, en viderestilling fuldmagt eller en load balancer. Hvis du ændrer denne indstilling, så alle eksisterende virtuelle steder vil blive flyttet til den nye havn og alle nye sites vil blive oprettet til at bruge denne nye port. IP-adresser virtuelle steder vil ikke blive ændret."
+
+msgid "sslPortField"
+msgstr "HTTPS/SSL Port"
+
+msgid "sslPortField_help"
+msgstr "Apache Webserver bruger normalt port 443 for HTTPS-trafik. Hvis du ønsker at ændre det til en anden port, så kan du gøre det her. Dette er kun nyttig, hvis du ønsker at bruge noget andet foran Apache til at filtrere, cache eller omdirigere trafik. Såsom en Varnish Cache, en viderestilling fuldmagt eller en load balancer. Hvis du ændrer denne indstilling, så alle eksisterende virtuelle websteder med SSL aktiveret vil skifte fra port 443 til den nye port til SSL-trafik. IP-adresser virtuelle steder vil ikke blive ændret."
+
+msgid "httpPortInUse"
+msgstr "Havnen, du har angivet som ny HTTP-port er allerede i brug af en anden tjeneste. Vælg venligst en anden port i stedet."
+
+msgid "SSLportInUse"
+msgstr "Havnen, du har angivet som ny HTTPS/SSL port er allerede i brug af en anden tjeneste. Vælg venligst en anden port i stedet."
+
 

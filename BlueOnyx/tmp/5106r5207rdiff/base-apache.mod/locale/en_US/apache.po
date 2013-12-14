@@ -27,10 +27,10 @@ msgid "passwordWebmasterField_help"
 msgstr "Enter a password for the FrontPage client webmaster. The home group web site may be accessed by selecting Open Web in the FrontPage client.  Login using the login name webmaster and the password you specify here.  Once authenticated, additional FrontPage users are managed using the FrontPage client."
 
 msgid "passwordWebmasterField_rule"
-msgstr "The password should be between 3 and 16 characters long.  A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation.  It should not spell out any words found in the dictionary.  Passwords are case sensitive."
+msgstr "The password should be between 3 and 16 characters long. A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation.  It should not spell out any words found in the dictionary. Passwords are case sensitive."
 
 msgid "passwordWebmasterField_invalid"
-msgstr "Sorry, you have not entered the same password in both fields.  The same password is entered in both fields to protect against typing errors.  Please try again."
+msgstr "Sorry, you have not entered the same password in both fields. The same password is entered in both fields to protect against typing errors.  Please try again."
 
 msgid "cgiAccessField"
 msgstr "CGI Access"
@@ -95,7 +95,6 @@ msgstr "The [[base-apache.amAdmservNameTag]] is not running and could not be res
 msgid "amAdmservStatusOK"
 msgstr "The Server Desktop is operating normally."
 
-
 msgid "maxServersRAM"
 msgstr "The maximum number of web servers is limited by the amount of RAM installed in this server."
 
@@ -145,10 +144,7 @@ msgid "MinMaxError"
 msgstr "The [[base-apache.maxSpareField]] must be greater than or equal to the [[base-apache.minSpareField]]."
 
 msgid "ClientMaxError"
-msgstr "The value entered for [[base-apache.maxClientsField]] is less than the value entered for [[base-apache.maxSpareField]].  While this is okay, it may impact the performance of the server.  It is recommended that the value for [[base-apache.maxClientsField]] be greater than or equal to the value for [[base-apache.maxSpareField]]."
-
-msgid ""
-msgstr ""
+msgstr "The value entered for [[base-apache.maxClientsField]] is less than the value entered for [[base-apache.maxSpareField]].  While this is okay, it may impact the performance of the server. It is recommended that the value for [[base-apache.maxClientsField]] be greater than or equal to the value for [[base-apache.maxSpareField]]."
 
 # strings for UI extenstions
 msgid "webScripting"
@@ -307,3 +303,31 @@ msgstr "Enable suPHP"
 msgid "enableSuPHP_help" 
 msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu! PLEASE NOTE: If suPHP is enabled, user owned webs are no longer supported and that feature will get turned off." 
 
+msgid "disabled"
+msgstr "Disabled"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "cap_serverHttpd"
+msgstr "Apache Settings"
+
+###
+
+msgid "httpPortField"
+msgstr "HTTP Port"
+
+msgid "httpPortField_help"
+msgstr "Normally the Apache Webserver runs on Port 80 (HTTP). If you want to change it to a different port, then you can do so here. This is only useful if you want to use something else in front of Apache to filter, cache or redirect traffic. Such as a Varnish Cache, a forwarding proxy or a load balancer. If you change this setting, then all existing virtual sites will be moved to the new port and all new sites will be created to use this new port. IP addresses of virtual sites will not be changed."
+
+msgid "sslPortField"
+msgstr "HTTPS/SSL Port"
+
+msgid "sslPortField_help"
+msgstr "Normally the Apache Webserver uses Port 443 for HTTPS traffic. If you want to change it to a different port, then you can do so here. This is only useful if you want to use something else in front of Apache to filter, cache or redirect traffic. Such as a Varnish Cache, a forwarding proxy or a load balancer. If you change this setting, then all existing virtual sites with SSL enabled will switch from port 443 to the new port for SSL traffic. IP addresses of virtual sites will not be changed."
+
+msgid "httpPortInUse"
+msgstr "The port you specified as new HTTP port is already in use by another service. Please choose another port instead."
+
+msgid "SSLportInUse"
+msgstr "The port you specified as new HTTPS/SSL port is already in use by another service. Please choose another port instead."

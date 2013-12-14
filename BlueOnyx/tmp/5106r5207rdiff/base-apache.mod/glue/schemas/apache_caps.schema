@@ -1,14 +1,17 @@
 <!--
     Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-    $Id: apache_caps.schema 259 2004-01-03 06:28:40Z shibuya $
+    $Id: apache_caps.schema
 
     Capabilities associated with apache and the like.
 -->
 <class
-    name="Capabilities" namespace="modifyHttpd" version="1.0"
+    name="Capabilities" namespace="serverHttpd" version="1.0"
 >
     <property
         name="capable" type="boolean" default="1"
-        readacl="ruleCapable(modifyHttpd)"
+        readacl="ruleCapable(serverHttpd)"
     />
+    <property 
+        name="nameTag" type="scalar" default="[[base-apache.cap_serverHttpd]]" 
+    />     
 </class>
