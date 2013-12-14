@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX28%{?dist}
+Release: 0BX29%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX29
+- Merged in locales for the Netherlands ('nl_NL').
 
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX28
 - Small fix to web/nav/flow.php
