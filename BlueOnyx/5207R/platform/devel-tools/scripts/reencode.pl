@@ -46,6 +46,10 @@ sub set_posix_locale
 				'en' => 'en_US',
 				'de' => 'de_DE@euro',
 				'es' => 'es_ES@euro',
+				'it' => 'it_IT@euro',
+				'nl' => 'nl_NL@euro',
+				'pt' => 'pt_PT@euro',
+				'da' => 'da_DK@euro',
 				'fr' => 'fr_FR@euro'
 				# does chinese need any special treatment?
 			};
