@@ -1,0 +1,85 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "snmpSettings"
+msgstr "Simple Network Management Protocol (SNMP) Instellingen"
+
+msgid "snmp"
+msgstr "SNMP"
+
+msgid "snmp_help"
+msgstr "[[base-snmp.snmpSettings]] kunnen hier worden gewijzigd."
+
+msgid "enableServer"
+msgstr "Enable Server"
+
+msgid "enableServer_help"
+msgstr "Draai het Simple Network Management Protocol (SNMP)-server in-of uitschakelen. SNMP is een network management protocol en biedt een middel om te controleren en te beheersen netwerkapparaten en configuraties, verzamelen van statistieken, prestaties en beveiliging op een netwerk te beheren."
+
+msgid "readSnmpCommunityField"
+msgstr "Alleen lezen SNMP Community"
+
+msgid "readSnmpCommunityField_rule"
+msgstr "Het alleen-lezen SNMP-community die u invoert mag alleen alfanumerieke tekens bevatten, samen met, '.' '-' En '_'."
+
+msgid "readSnmpCommunityField_help"
+msgstr "Voer de Read Only SNMP Gemeenschap tot welke deze server apparaat behoort. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readSnmpCommunityField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-snmp.readSnmpCommunityField]]. [[base-snmp.readSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField"
+msgstr "Lezen en schrijven SNMP-community"
+
+msgid "readWriteSnmpCommunityField_rule"
+msgstr "Het lezen en schrijven SNMP-community die u invoert mag alleen alfanumerieke tekens bevatten, samen met, '.' '-' En '_'."
+
+msgid "readWriteSnmpCommunityField_help"
+msgstr "Voer de Lezen en Schrijven SNMP Gemeenschap tot welke deze server apparaat behoort. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "readWriteSnmpCommunityField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-snmp.readWriteSnmpCommunityField]]. [[base-snmp.readWriteSnmpCommunityField_rule]]"
+
+msgid "readNorWriteSet"
+msgstr "Sorry, je moet een lees-en / of schrijfrechten gemeenschap om SNMP te voeren."
+
+msgid "readEqualWrite"
+msgstr "Aan een gemeenschap die zowel lezen en schrijven hebben, is het voldoende om deze in de Lezen en Schrijven veld. Uw gelezen is gewijzigd om deze eisen te reflecteren."
+
+msgid "cannotFork"
+msgstr "Fout bij het vertakken [[VAR.msg]]"
+
+msgid "cannotCreateSynlink"
+msgstr "Fout bij het maken Symlink [[VAR.msg]]"
+
+msgid "cannotStartSnmpServer"
+msgstr "Fout bij starten SNMP server [[VAR.msg]]"
+
+msgid "cannotStopSnmpService"
+msgstr "Fout bij het stoppen SNMP-service [[VAR.msg]]"
+
+msgid "cannotBreakLink"
+msgstr "Fout tijdens het breken symlink [[VAR.msg]]"
+
+msgid "amSNMPNameTag"
+msgstr "Simple Network Management Protocol (SNMP) Server"
+
+msgid "amDetailsTitle"
+msgstr "Simple Network Management Protocol (SNMP) Server Details"
+
+msgid "amSNMPNotRunning"
+msgstr "De SNMP-server is niet actief en kon niet worden opgestart. In de [[base-apache.amAdmservNameTag]], schakelt u de SNMP-server uit en weer aan om te zien of dit corrigeert het probleem. Als de SNMP-server is nog steeds niet in staat om te beginnen, probeer dan het rebooten van de server zelf door te klikken op de [[base-power.reboot]] knop in het menu onder [[base-power.power]] [[base-alpine.serverconfig]]. Als de SNMP-server is nog steeds niet in staat om te beginnen, zie [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amSNMPStatusOK"
+msgstr "De SNMP-server werkt normaal."
+
+msgid "cap_serverSNMP"
+msgstr "SNMP-instellingen"
+
