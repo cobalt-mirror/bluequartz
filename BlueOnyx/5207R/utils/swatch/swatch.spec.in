@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX20%{?dist}
+Release: 0BX21%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -70,6 +70,9 @@ fi
 #fi   
 
 %changelog
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX21
+- Merged in locales for the Netherlands ('nl_NL').
 
 * Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX20
 - Small fix.
