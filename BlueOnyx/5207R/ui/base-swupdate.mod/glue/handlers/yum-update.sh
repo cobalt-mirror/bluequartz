@@ -19,7 +19,9 @@ fi
 /usr/bin/yum check-update > /tmp/yum.check-update
 /bin/rm -f /tmp/yum.updating
 
+# Various permission fixes:
 /bin/chmod 644 /var/log/yum.log
+/bin/chmod 777 /var/lib/php/session
 
 exit 0;
 
