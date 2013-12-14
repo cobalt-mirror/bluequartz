@@ -42,12 +42,58 @@ PREFIX=$RPM_BUILD_ROOT make install
 
 %changelog
 
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 2.0.6-17
-- Copied 'ja' locales to 'ja_JP'.
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0.0-12
+- Converted locale encoding from UTF-8 to ISO-8859-1.
 
-* Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 2.0.6-16
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-11
+- Updated glue/Makefile to remove some trailing spaces.
+- Added architecture-specific if-clause to specfile file-list
+
+* Thu Sep 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-10
+- Readied for 5108R. Pre-compiled mod_jk.so's moved to glue/modules/32-bit.el6/mod_jk.so
+  and glue/modules/64-bit.el6/mod_jk.so
+- Updated glue/Makefile to pick the right one.
+- Yes, ideally we'd need to compile mod_jk.so on 'make', but this will do for now.
+
+* Mon Sep 12 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-9
 - Copied the 'en_US' locales to 'ja' and 'da_DK', as we don't have 
   Japanese or Danish locales for this module yet.
+
+* Tue Jul 19 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-8
+- Modified Makefile to add php-process to required dependencies
+  It is needed for posix_getpid() used in ui/web/warAddHandler.php
+- Modified ui/web/warAddHandler.php to fix some preg_replace calls.
+
+* Fri Jul 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-7
+- Modified ui/web/tomcat-manager.php to remove the 'Tomcat Admin
+  Interface' button. The '/admin' URL is no longer working, as that
+  part has been dropped from Tomcat6.
+
+* Fri Jul 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-6
+- Somewhere along the lines a few earlier SVN commits got lost.
+- Manually added them again by merging bits and pieces.
+- Version number bump to release six.
+- Rolled in updated mod_jk.so again, left old one in the 'old' folder.
+
+* Fri Jul 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-5
+- PHP-5.3 related fixes in ui/web/warAddHandler.php ui/web/warAdd.php 
+  ui/web/status.php and ui/web/warList.php
+
+* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-4
+- Updated with a rebuilt mod_jk.so (v1.2.31)
+
+* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-3
+- Updated dependencies
+
+* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-2
+- Updated dependencies
+
+* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1
+- First experimental built for Tomcat6. Will probably not work.
+
+* Sat Jun 5 2010 Michael Stauber <mstauber@solarspeed.net> 2.0.6-16
+- Removed 'noarch' from toplevel makefile as this module is platform dependent
+- Copied 'en' locales to 'en_US'
 
 * Thu Apr 2 2009 Michael Stauber <mstauber@solarspeed.net> 2.0.6-15
 - Was still not working. Pulling mod_jk.so into base-java-glue as a dirty work around.

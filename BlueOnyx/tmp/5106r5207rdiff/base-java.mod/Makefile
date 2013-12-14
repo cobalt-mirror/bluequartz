@@ -6,11 +6,11 @@ VENDOR=base
 VENDORNAME='Team BlueOnyx'
 SERVICE=java
 
-VERSION=2.0.6
-RELEASE=18
+VERSION=3.0.1
+RELEASE=0BX02
 
 # add a buildarch if desired
-BUILDARCH=noarch
+#BUILDARCH=noarch
 
 # locale exclude pattern
 #XLOCALEPAT=
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES= base-java-am base-java-filler jpackage-utils ant axis bcel chkfontpath classpathx-jaf classpathx-mail cryptix cryptix-asn1 jakarta-commons-beanutils jakarta-commons-collections jakarta-commons-dbcp jakarta-commons-digester jakarta-commons-discovery jakarta-commons-el jakarta-commons-fileupload jakarta-commons-httpclient3 jakarta-commons-launcher jakarta-commons-logging jakarta-commons-modeler jakarta-commons-pool jakarta-commons-validator jakarta-taglibs-standard jta log4j mx4j oro puretls regexp saxon struts tomcat5 tomcat5-admin-webapps tomcat5-jasper tomcat5-servlet-2.4-api tomcat5-webapps unixODBC unixODBC-devel wsdl4j xerces-j2 xml-commons xml-commons-apis xml-commons-resolver xorg-x11-deprecated-libs xorg-x11-font-utils xorg-x11-xfs java-1.6.0-openjdk-devel java-1.6.0-openjdk 
+REQUIRES= apache-jasper apache-jasper-javadoc apache-tomcat-apis base-java-am base-java-glue base-java-locale base-java-ui jakarta-commons-collections-tomcat5 jakarta-commons-dbcp-tomcat5 jakarta-commons-pool-tomcat5 tomcat6 tomcat6-admin-webapps tomcat6-docs-webapp tomcat6-el-2.1-api tomcat6-javadoc tomcat6-jsp-2.1-api tomcat6-lib tomcat6-servlet-2.5-api tomcat6-webapps php-process
 OBSOLETES= mod_jk mod_jk-ap20
 
 #########

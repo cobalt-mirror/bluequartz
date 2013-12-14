@@ -8,7 +8,7 @@ include_once('CceClient.php');
 
 global $sessionId, $loginName;
 
-$cce =& new CceClient();
+$cce = new CceClient();
 
 $cce->connect();
 

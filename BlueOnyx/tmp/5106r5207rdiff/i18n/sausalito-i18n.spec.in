@@ -79,25 +79,43 @@ fi
 
 # make sure these links exist or setlocale doesn't work right
 # temporary fix for now.  try both just to make sure this happens
+if [ ! -d "/usr/lib/locale/en_US" ]; then 
+        /usr/bin/localedef -i en_US /usr/lib/locale/en_US 
+fi 
 if [ -d "/usr/lib/locale/en_US" ]; then
 	ln -sf /usr/lib/locale/en_US /usr/lib/locale/en
 fi
+
 if [ -d "/usr/share/locale/en_US" ]; then
 	ln -sf /usr/share/locale/en_US /usr/share/locale/en
 fi
-if [ -d "/usr/lib/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/lib/locale/ja_JP.eucjp /usr/lib/locale/ja
+
+if [ ! -d "/usr/lib/locale/ja_JP.utf8" ]; then 
+        /usr/bin/localedef -i ja_JP -f UTF-8 /usr/lib/locale/ja_JP.utf8 
+fi 
+if [ -d "/usr/lib/locale/ja_JP.utf8" ]; then
+	ln -sf /usr/lib/locale/ja_JP.utf8 /usr/lib/locale/ja
 fi
-if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/share/locale/ja_JP.eucjp /usr/share/locale/ja
+if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
+	ln -sf /usr/share/locale/ja_JP.utf8 /usr/share/locale/ja
 fi
 
 %changelog
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX28
-- Fix to php/I18n.php as fallback language was still defined as 'en', while it must be 'en_US' now.
 
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX27
-- Another fix to perl/I18n.pm to change 'en' to 'en_US' automatically.
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8
+- Use UTF-8 for default encoding for Japanese instead of EUC-JP. 
+- Modified %post script to use UTF-8 for Japanese.
+- Updated cracklib/crack/libcrack/src/cracklib.h
+- Updated cracklib/crack/run-tests.php
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX27
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- For the addition of the new languages ("es_ES", "fr_FR", "it_IT", "pt_PT")
+  I18n.php needed a small tweak.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
 - Small locale related fixes to perl/I18n.pm

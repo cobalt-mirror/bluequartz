@@ -50,11 +50,17 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %config /etc/profile.d/java.sh
 %config /etc/httpd/conf.d/mod_jk.conf
-%config /etc/tomcat5/jk/workers.properties
-%config(noreplace)/etc/tomcat5/tomcat-users.xml.dist
-%config(noreplace)/etc/tomcat5/tomcat5.logrotate.dist
+%config /etc/tomcat6/jk/workers.properties
+%config(noreplace)/etc/tomcat6/tomcat-users.xml.dist
+%config(noreplace)/etc/tomcat6/tomcat6.logrotate.dist
 %attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
+
+%ifarch %ix86
 %attr(0755,root,root)/usr/lib/httpd/modules/mod_jk.so
+%endif
+%ifarch x86_64
+%attr(0755,root,root)/usr/lib64/httpd/modules/mod_jk.so
+%endif
 
 [AUTOFILL]
 <end glue>
@@ -108,3 +114,16 @@ information for [VENDOR]-[SERVICE].
 
 <end locale>
 <end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX02
+- Changed required Capability for Java related transactions to 'adminUser'.
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+
+<end $CHANGELOG>

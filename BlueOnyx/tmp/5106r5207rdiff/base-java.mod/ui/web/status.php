@@ -21,7 +21,7 @@ $jsite["progress"] = round( $jsite["progress"] );
 $cmd = &$jsite["uiCMD"];
 
 // check to see if we need to redirect to the download page
-if (eregi("success", $cmd, $reg)) {
+if (preg_match("/success/i", $cmd, $reg)) {
 	$oid = &$reg[1];
 	// Allow the servlet list to identify the installed war
 	header("location: /base/java/warList.php?group=$group&warOID=$oid&backUrl=$backbackUrl");

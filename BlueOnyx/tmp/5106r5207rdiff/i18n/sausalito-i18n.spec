@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.70.2
-Release: 86BX28%{?dist}
+Release: 86BX27%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,8 +93,10 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX27
-- Another fix to perl/I18n.pm to change 'en' to 'en_US' automatically.
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX27
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- For the addition of the new languages ("es_ES", "fr_FR", "it_IT", "pt_PT")
+  I18n.php needed a small tweak.
 
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX26
 - Small locale related fixes to perl/I18n.pm

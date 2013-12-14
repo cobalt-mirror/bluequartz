@@ -16,13 +16,24 @@
 %Build_CentOS5 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} centos-release`" = "5" ]; then echo '.centos5'; fi)
 %centos5 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} centos-release`" = "5" ]; then echo '5'; fi)
 
+## CentOS6
+%Build_CentOS6 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} centos-release`" = "6" ]; then echo '.centos6'; fi)
+%centos6 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} centos-release`" = "6" ]; then echo '6'; fi)
 
-%centos %{?centos3:%{centos3}}%{?centos4:%{centos4}}%{?centos5:%{centos5}}
+## RHEL6 (for development purpose only!)
+%Build_CentOS6 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} redhat-release`" = "6" ]; then echo '.centos6'; fi)
+%centos6 %(if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%%{version} redhat-release`" = "6" ]; then echo '6'; fi)
+
+%centos %{?centos3:%{centos3}}%{?centos4:%{centos4}}%{?centos5:%{centos5}}%{?centos6:%{centos6}}
 
 # For SLES
 ## SLES9
 %Build_SLES9 %(if [ -f /etc/SuSE-release ] && [ "`rpm -q --qf=%%{version} sles-release`" = "9" ]; then echo 1; fi)
 %sles %(if [ -f /etc/SuSE-release ] && [ "`rpm -q --qf=%%{version} sles-rsles-release`" = "9" ]; then echo '9'; fi)
 
-%dist %{?Build_FC1:%{Build_FC1}}%{?Build_CentOS3:%{Build_CentOS3}}%{?Build_CentOS4:%{Build_CentOS4}}%{?Build_CentOS5:%{Build_CentOS5}}
+%dist %{?Build_FC1:%{Build_FC1}}%{?Build_CentOS3:%{Build_CentOS3}}%{?Build_CentOS4:%{Build_CentOS4}}%{?Build_CentOS5:%{Build_CentOS5}}%{?Build_CentOS6:%{Build_CentOS6}}
 
+%debug_package %{nil}
+%_unpackaged_files_terminate_build 0
+%__perl_requires %{!?nil}
+%__arch_install_post %{nil}

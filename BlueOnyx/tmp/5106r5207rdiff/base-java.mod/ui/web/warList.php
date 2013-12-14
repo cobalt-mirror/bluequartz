@@ -93,7 +93,8 @@ for($i = $start; $i < count($oids) && $i < $start+$pageLength; $i++) {
 	"javascript: confirmRemove('$msg', '$oid')");
   // if ($war['group']) { $w->setDisabled(true); }
 
-  $archive = ereg_replace("^.+/([^/]+)$", "\\1", $war["war"]);
+  //$archive = ereg_replace("^.+/([^/]+)$", "\\1", $war["war"]);
+  $archive = preg_replace("/^.+\/([^\/]+)$/", "\\1", $war["war"]);
 
   $scrollList->addEntry( array(
     $factory->getTextField("", $archive, "r"),

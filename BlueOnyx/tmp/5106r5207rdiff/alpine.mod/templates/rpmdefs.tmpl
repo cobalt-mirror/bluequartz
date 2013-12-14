@@ -74,9 +74,13 @@ information for [VENDOR]-[SERVICE].
 %post [LABEL]
 <end HEADER>
 
-<begin glue>
-# glue post-install
+<begin capstone>
+# capstone post-install
+/usr/sausalito/constructor/base/alpine/12_handle_sl_repos.pl
+<end capstone>
 
+<begin glue>
+# glue post-install 
 <end glue>
 <begin ui>
 # ui post-install
@@ -109,24 +113,62 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX37
-- Fixed snafu in web/login.php
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 0.2-1BX03
+- Small fix to constructor/setup_capabilities.pl
 
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX36
-- Expanded dependency list with 'en_US' locales.
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 0.2-1BX02
+- Various charset fixes.
 
-* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX35
-- Cleaned up dependency list.
+* Tue Dec 03 2013 Michael Stauber <mstauber@solarspeed.net> 0.2-1BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Platform strings still set to 5107R/5108R at this time.
+- Cleaned out 'REQUIRED' list in Makefile.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Merged in new capabilities from Hisao Shibuya's 5200R code branch.
+- Modified web/intro.html.ja from EUC-JP to UTF-8.
 
-* Sat Mar 31 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX34
-- Added some Japanese support RPMs to Makefile as requirements.
+* Tue Aug 14 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX43
+- Updated locale/de_DE/alpine.po as the German locales were claiming this to be 5106R.
 
-* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX33
+* Mon Aug 13 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX42
+- Added 12_handle_sl_repos.pl to switch sl-release YUM repository files from hard
+  coded versions to 6x, which is the actual release. This is for more seamless 
+  automated updates to the latest versions.
+
+* Sat Mar 31 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX41
+- Added dependencies for RPMs from YUM Group 'Japanese Support' to Makefile
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX40
 - Converted locale encoding from UTF-8 to ISO-8859-1.
 
-* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX32
+* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX39
+- Updated web/login.php to remove the doctype from first line. Must not be set here or we cannot redirect from inside the PHP script.
+
+* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX38
+- Replaced web/login.php with Stephanie's fully xhtml transitional 1.0 compliant version.
+- That should also fix the login problems on mobile devices, as we removed the Netscape onresize stuff.
+
+* Thu Jul 28 2011 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX37
+- Added manuals/manual-en_US.pdf
+- Updated locales for that purpose
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX36
+- Copied 'en' locales to 'en_US'
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX35
+- PHP 5.3 issue: web/redirector.php line 11 - Assigning the return value of new by reference is deprecated
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX34
+- Fixed typo in web/login.php
+
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX33
 - web/login.php was using deprecated ereg()
 - web/login.php was using printPage, which doesn't work. Didn't even work on 5106R!
+
+* Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.1-85BX32
+- Locales: Product changed from '5106R' to '5107R/5108R'
 
 * Mon Apr 05 2009 Michael Stauber <mstauber@solarspeed.net> 0.1-85BQ31
 - English License text in locale/en/product.po was still too rough and gramatically incorrect. 

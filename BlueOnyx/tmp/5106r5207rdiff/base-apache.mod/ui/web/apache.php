@@ -1,8 +1,6 @@
 <?php
 // Authors: Kevin K.M. Chiu & Michael Stauber
-// Copyright 2000, Cobalt Networks. All rights reserved.
-// Copyright 2009, Team BlueOnyx. All rights reserved.
-// $Id: apache.php Fri 12 Jun 2009 09:28:20 AM CEST mstauber $
+// $Id: apache.php
 
 include_once("ArrayPacker.php");
 include_once("Product.php");
@@ -11,8 +9,8 @@ include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 $i18n = $serverScriptHelper->getI18n("base-apache");
 
-// Only adminUser should be here
-if (!$serverScriptHelper->getAllowed('adminUser')) {
+// Only 'serverHttpd' should be here
+if (!$serverScriptHelper->getAllowed('serverHttpd')) {
   header("location: /error/forbidden.html");
   return;
 }
@@ -95,6 +93,23 @@ else {
 		$factory->getLabel("hostnameLookupsField")
 	);
 
+	// HTTP Port:
+	$httpPortField = $factory->getInteger("httpPortField", $web["httpPort"], "80", "65535");
+	$httpPortField->setWidth(5);
+	$httpPortField->showBounds(1);
+	$block->addFormField(
+		$httpPortField,
+		$factory->getLabel("httpPortField")
+	);
+
+	// SSL Port:
+	$sslPortField = $factory->getInteger("sslPortField", $web["sslPort"], "443", "65535");
+	$sslPortField->setWidth(5);
+	$sslPortField->showBounds(1);
+	$block->addFormField(
+		$sslPortField,
+		$factory->getLabel("sslPortField")
+	);
 
 	$max_client = $factory->getInteger("maxClientsField", $web["maxClients"], 1, $web["maxClientsAdvised"]);
 	$max_client->setWidth(5);
@@ -202,6 +217,8 @@ $serverScriptHelper->destructor();
 
 <?php print($page->toFooterHtml());
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

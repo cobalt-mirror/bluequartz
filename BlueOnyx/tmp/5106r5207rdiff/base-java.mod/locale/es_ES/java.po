@@ -1,0 +1,286 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "java"
+msgstr "Java"
+
+msgid "java_help"
+msgstr "Haga clic aquí para cambiar la configuración de JavaServer y ajustes de rendimiento."
+
+msgid "warName"
+msgstr "Archivo Web (.war)"
+
+msgid "warNames"
+msgstr "Web del Archivo (.war) Lista de [[VAR.fqdn]]"
+
+msgid "warNames_menu"
+msgstr "Archivo Web (.war) Lista"
+
+msgid "warName_help"
+msgstr "El nombre del archivo instalado [[base-java.warName]]."
+
+msgid "enabledField"
+msgstr "Active Server (Tomcat)"
+
+msgid "enabledField_help"
+msgstr "Habilitar una Máquina Virtual Java."
+
+msgid "maxClientsField"
+msgstr "Máximo de sesiones simultáneas"
+
+msgid "maxClientsField_help"
+msgstr "Especifique el número máximo de conexiones simultáneas de aplicaciones Java."
+
+msgid "maxClientsField_invalid"
+msgstr "El número máximo de sesiones de Java no es válido. Introduzca un número entero dentro del rango especificado."
+
+msgid "javaSettings"
+msgstr "Configuración de Java"
+
+msgid "javaApps"
+msgstr "Deployment Web"
+
+msgid "javaApps_help"
+msgstr "Cargar y gestionar [[base-java.warNames_menu]]."
+
+msgid "warList"
+msgstr "[[base-java.warNames]]"
+
+msgid "warNameHeader"
+msgstr "Nombre"
+
+msgid "warNameHeader_help"
+msgstr "Este es el nombre de archivo del instalado [[base-java.warName]]."
+
+msgid "warListPathHeader"
+msgstr "Ubicación"
+
+msgid "warListPathHeader_help"
+msgstr "Este es el sitio web de subdirectorio en el que el [[base-java.warName]] se instala."
+
+msgid "warListActionHeader"
+msgstr "Acción"
+
+msgid "warListActionHeader_help"
+msgstr "Haga clic en el icono Eliminar para desinstalar el archivo web de forma recursiva eliminar el directorio de instalación."
+
+msgid "addWar"
+msgstr "Crear Nuevo Archivo Web a [[VAR.item]]"
+
+msgid "modWar"
+msgstr "Modificar [[base java.warName]] Los ajustes de [[VAR.item]]"
+
+msgid "locationFieldEnter"
+msgstr "Web Archivo Archivo"
+
+msgid "locationFieldEnter_help"
+msgstr "Introduzca la ubicación desde la que obtener el archivo.war. Introduzca una dirección URL que empieza con http:// o ftp:// para descargar el archivo desde una ubicación en el Internet, o escriba la ubicación del archivo de un archivo.war para subir. Haga clic en Examinar para seleccionar un archivo en su disco duro local. Si ha descargado. Archivos guerra a raíz de la web, la opción de elegir uno de estos archivos también estará disponible."
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "URL"
+
+msgid "urlField_empty"
+msgstr "La URL no. [[LocationFieldEnter_help]]"
+
+msgid "urlField_rule"
+msgstr "Introduzca una dirección URL que empieza con http:// o ftp:// para descargar el paquete desde una ubicación en Internet."
+
+msgid "invalidUrl"
+msgstr "La URL especificada no es válida. [[base-java.urlField_rule]]"
+
+msgid "upload"
+msgstr "Subir"
+
+msgid "fileField"
+msgstr "Subir"
+
+msgid "fileField_empty"
+msgstr "La carga de archivos no se encuentra. [[LocationFieldEnter_help]]"
+
+msgid "loaded"
+msgstr "Cargado"
+
+msgid "targetName"
+msgstr "Ubicación de la instalación"
+
+msgid "targetName_help"
+msgstr "El contenido de la [[base-java.warName]] se extraen a este directorio. El directorio será creado si es necesario."
+
+msgid "targetName_missing"
+msgstr "Se debe especificar un directorio de destino. [[base-java.targetName_help]]"
+
+msgid "targetName_invalid"
+msgstr "La especificado [[base-java.targetName]] contiene caracteres no válidos. Por favor, elimine los caracteres extendidos de este campo."
+
+msgid "targetField"
+msgstr "Ubicación de la instalación"
+
+msgid "targetField_empty"
+msgstr "Ubicación de la instalación no se encuentra. [[base-java.targetName_help]]"
+
+msgid "confirm_archive_removal"
+msgstr "¿Está seguro que desea eliminar permanentemente el directorio [[VAR.path]] y todo su contenido?"
+
+msgid "amJavaNameTag"
+msgstr "JavaServer Pages (JSP) y Servlets"
+
+msgid "amJavaDetails"
+msgstr "[[Base java.amJavaNameTag]] Detalles"
+
+msgid "amStatusOK"
+msgstr "JavaServer Pages y servlets están operando normalmente."
+
+msgid "amNotRunning"
+msgstr "JavaServer Pages y servlets no están en ejecución y no podrá reiniciarse. En el [[base-apache.amAdmservNameTag]], pruebe a las JavaServer Pages y servicios Servlets y vuelva a encenderlo de nuevo para ver si esto soluciona el problema. Si las JavaServer Pages y servlets de servicios es todavía no arranca, intente reiniciar el servidor sí mismo haciendo clic en el botón [[base-power.reboot]] en el menú [[base-power.power]] de [[base-alpino. serverconfig]]. Si las JavaServer Pages y servlets de servicios es todavía no arranca, consulte [[base-sauce-basic.techSupportURL]] para obtener asistencia técnica."
+
+msgid "javaName"
+msgstr "JavaServer Pages (JSP) y Servlets"
+
+msgid "enableJava"
+msgstr "Habilitar JSP y Servlets"
+
+msgid "enableJava_help"
+msgstr "Habilitar para permitir el uso de JavaServer Pages (JSP) y Servlets."
+
+msgid "installStatus"
+msgstr "Instale Estado de [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Mensaje de estado"
+
+msgid "statusField_help"
+msgstr "Este campo muestra el estado actual de la [[base-java.warName]] se está instalando."
+
+msgid "progressField"
+msgstr "Progreso"
+
+msgid "progressField_help"
+msgstr "Este es el progreso de la instalación."
+
+msgid "dlPercent"
+msgstr "Descarga de archivo [[VAR.file]]: [[VAR.percent]]% hecho"
+
+msgid "initializing"
+msgstr "Inicializando ..."
+
+msgid "downloading"
+msgstr "Descarga de [[base-java.warName]] ..."
+
+msgid "installing"
+msgstr "Instalación de [[base-java.warName]] ..."
+
+msgid "fail"
+msgstr "Fracasado"
+
+msgid "success"
+msgstr "Éxito"
+
+msgid "notInstalled"
+msgstr "El software [[base-java.warName]] no se instaló."
+
+msgid "cannotDownloadUrl"
+msgstr "Lo sentimos, la [[base-java.warName]] archivo no se puede descargar desde la URL especificada. Por favor compruebe la URL y vuelva a intentarlo. [[base-java.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Lo sentimos, el nombre de archivo de la [[base-java.warName]] archivo no es válido. Compruebe el nombre y vuelva a intentarlo. [[base-java.notInstalled]]"
+
+msgid "verifyingPackage"
+msgstr "Verificación de [[base-java.warName]] ..."
+
+msgid "badPackage"
+msgstr "El [[base-java.warName]] archivo está incompleto. El packing_list es válido o falta. [[base-swupdate.notInstalled]]"
+
+msgid "hostNotFound"
+msgstr "El host especificado en el URL no pudo ser contactado. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "El [[base-java.warName]] [[VAR.file]] no se encontró en la ubicación especificada."
+
+msgid "hostRefused"
+msgstr "El host especificado en el URL para [[VAR.file]] rechazado la conexión."
+
+msgid "downloadFailure"
+msgstr "El [[base-java.warName]] no pudo descargará correctamente. Esto puede ocurrir debido a que el servidor donde se encuentra el contenedor está experimentando problemas o porque tiene permisos suficientes para escribir en este sitio."
+
+msgid "noLocation"
+msgstr "Sin lugar especificado para obtener [[base-java.warName]]."
+
+msgid "errorWGET"
+msgstr "Lo sentimos, ha ocurrido un error al intentar ejecutar wget."
+
+msgid "unknownFileFormat"
+msgstr "El archivo subido no es un formato compatible o está dañado."
+
+msgid "notToUserHome"
+msgstr "La guerra no se puede instalar en el directorio principal de un usuario."
+
+msgid "loadingWar"
+msgstr "El [[base-java.warName]] se está cargando. Por favor, espere."
+
+msgid "connectionRefused"
+msgstr "El intento de descarga fue rechazada por el servidor remoto."
+
+msgid "installFailure"
+msgstr "El [[base-java.warName]] instalación ha fallado."
+
+msgid "couldNotCreateTarget"
+msgstr "El directorio de destino de la instalación no se pudo crear porque no tiene los permisos necesarios."
+
+msgid "jarFailure"
+msgstr "El [[base-java.warName]] extracción falló. El archivo está dañado."
+
+msgid "installedWar"
+msgstr "El [[base-java.warName]] ha sido instalado con éxito."
+
+msgid "javaNotEnabled"
+msgstr "Soporte para JSP y servlets no está actualmente habilitado. Tenga a mano el administrador del sistema de habilitación JSP y Servlets apoyo en Configuración del Web antes de intentar implementar Archivo Web (.war) archivos."
+
+msgid "TomcatAdminInterface"
+msgstr "Interfaz de administración de Tomcat"
+
+msgid "TomcatManagerInterface"
+msgstr "Interfaz de gestor de Tomcat"
+
+msgid "TomcatHostManagerInterface"
+msgstr "Tomcat Manager Interface Host"
+
+msgid "TomcatManagerStatus"
+msgstr "Tomcat Manager Estado"
+
+msgid "TomcatManager"
+msgstr "Tomcat"
+
+msgid "TomcatManager_desc"
+msgstr "Administrar la configuración de tu servidor Tomcat."
+
+msgid "TomcatManager_help"
+msgstr "[[base-java.TomcatManager_desc]]"
+
+msgid "TomcatAdminPassHeader"
+msgstr "Tomcat admin contraseña"
+
+msgid "AdminPassInformation"
+msgstr "Establezca la contraseña de cuenta de administrador de Tomcat:"
+
+msgid "TomcatAdminPassField"
+msgstr "Contraseña:"
+
+msgid "TomcatAdminPassField_help"
+msgstr "Para acceder al backend administrativo de Tomcat debes iniciar una sesión como usuario &quot;admin&quot; con la contraseña especificada aquí. Esta contraseña puede (y debe!) Ser diferente de la contraseña del servidor."
+
+msgid "TomcatStausBox_header"
+msgstr "Nota: Tomcat se detiene"
+
+msgid "TomCatStatusBox_info"
+msgstr "Mientras Tomcat se detiene, no podrá hacer clic en cualquiera de los botones administrativas en el menú inferior. Tomcat se inicie automáticamente tan pronto como al menos un sitio virtual tiene el servicio JSP habilitado."
+

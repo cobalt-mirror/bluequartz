@@ -26,8 +26,8 @@ if(!$cceClient->connect()) {
   }
   $i18n = new I18n("palette", $locale);
 
-  $cceDown = "<CENTER><BR><BR><BR><BR><FONT COLOR=\"#990000\">"
-               . $i18n->get("cceDown") . "</FONT></CENTER>";
+  $cceDown = "<div style=\"text-align: center;\"><br><br><br><br><span style=\"color: #990000;\">"
+               . $i18n->get("cceDown") . "</span></div>";
   echo "$cceDown";
   error_log("loginHandler.php: $cceDown");
   exit;
@@ -54,8 +54,8 @@ $stylist->setResource("BlueOnyx",$locale);
 
 $myStyle = $stylist->getStyle("Login");
 
-$secure = "CHECKED";
-if ($HTTP_GET_VARS['secure']) { $secure = "CHECKED"; }
+$secure = "checked";
+if ($HTTP_GET_VARS['secure']) { $secure = "checked"; }
 
 preg_match("/^([^:]+)/", $HTTP_SERVER_VARS['HTTP_HOST'], $matches);
 $hostname = $matches[0];
@@ -64,31 +64,36 @@ if(($charset=$i18n->getProperty("encoding","palette"))!="none")
 	header("Content-type: text/html; charset=$charset");
 ?>
 
-<HTML>
-<HEAD>
-<STYLE TYPE="text/css">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php if ($charset != "none") {echo $charset;} else {echo "UTF-8";} ?>" />
+<style type="text/css">
 <!--
-SMALL {<?php print($myStyle->toTextStyle("small")); ?>}
-BIG { <?php print($myStyle->toTextStyle("login")); ?>}
+small {<?php print($myStyle->toTextStyle("small")); ?>}
+big { <?php print($myStyle->toTextStyle("login")); ?>}
 -->
-</STYLE>
+</style>
 
-<SCRIPT LANGUAGE="javascript">
+<script language="JavaScript" type="text/javascript">
 <!--
+ //<![CDATA[
 function focuslogin() {
 document.form.newLoginName.focus();
 }
+//]]>
 // -->
-</SCRIPT>
+</script>
 
-<TITLE><?php
+<title><?php
         print $i18n->interpolate(
                 "[[base-alpine.loginPageTitle,hostname=\"$hostname\"]]");
-?></TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" onLoad="focuslogin()" onResize="if(navigator.appName == 'Netscape') location.reload()" LINK="#FFFFFF" VLINK="#FFFFFF">
-<DIV ID="checkCss" STYLE="position:absolute"></DIV>
-<SCRIPT LANGUAGE="javascript">
+?></title>
+</head>
+<body bgcolor="#FFFFFF" onload="focuslogin()" link="#FFFFFF" vlink="#FFFFFF">
+<div id="checkCss" style="position:absolute"></div>
+<script language="JavaScript" type="text/javascript">
+<!--
+ //<![CDATA[
 cssEnabled = false;
 if(document.layers && document.checkCss != null)
         cssEnabled = true;
@@ -96,19 +101,23 @@ if(document.all && checkCss != null)
         cssEnabled = true;
 if(document.getElementById && document.getElementById != null)
         cssEnabled = true;
-</SCRIPT>
-<CENTER>
-<TABLE WIDTH="650" CELLSPACING="0" CELLPADDING="0" BORDER="0">
-	<TR>
-		<td valign="middle" align="right" colspan=1 background="/libImage/login_top.jpg" width="650" height="174">
+//]]>
+// -->
+</script>
+<center>
+<table width="650" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<td valign="middle" align="right" colspan="1" style="background-image: url(/libImage/login_top.jpg);" width="650" height="174">
 
-<TABLE WIDTH="350" background="">
-	<TR>
-		<TD>
-		<FONT STYLE="<?php print($myStyle->toTextStyle()); ?>"><?php print($i18n->getHtml("login","",array("hostname" =>$hostname))); ?></FONT>
-<BR><BR>
-<FONT STYLE="<?php print($myStyle->toTextStyle("medium")); ?>">
-<SCRIPT LANGUAGE="javascript"> <!--
+<table width="350">
+	<tr>
+		<td align="left">
+		<span style="<?php print($myStyle->toTextStyle()); ?>"><?php print($i18n->getHtml("login","",array("hostname" =>$hostname))); ?></span>
+<br /><br />
+<div style="<?php print($myStyle->toTextStyle("medium")); ?>">
+<script language="JavaScript" type="text/javascript">
+<!--
+//<![CDATA[
 // cookie check
 cookieEnabled = false;
 var cookie = "cookieSupport=true";
@@ -118,65 +127,69 @@ if(document.cookie.indexOf(cookie) != -1)
 // cookie check end
 
  if (!cookieEnabled) { 
-  document.write("<FONT COLOR=\"<?php print($myStyle->getProperty("color","error")); ?>\">\n<?php print($i18n->getJs("loginMissingCookies")); ?>\n</FONT>"); 
+  document.write("<span style=\"<?php print($myStyle->getProperty("color","error")); ?>;\">\n<?php print($i18n->getJs("loginMissingCookies")); ?>\n</span>"); 
  } else if(location.search.indexOf("expired=true") != -1) { 
- document.write("<FONT COLOR=\"<?php print($myStyle->getProperty("color","error")); ?>\">\n<?php print($i18n->getJs("loginExpiredMessage")); ?>\n</FONT>"); 
+ document.write("<span style=\"<?php print($myStyle->getProperty("color","error")); ?>;\">\n<?php print($i18n->getJs("loginExpiredMessage")); ?>\n</span>"); 
  } else if(location.search.indexOf("bye=true") != -1) { 
   document.write("\n<?php print($i18n->getJs("loginByeMessage")); ?>\n"); 
  } else if(cssEnabled) {
         <?php if (!$authFailed) { ?> 
   document.write('\n<?php print($i18n->getJs("loginOkMessage")); ?>\n');
         <?php } else { ?> 
-  document.write("<FONT COLOR=\"<?php print($myStyle->getProperty("color","error")); ?>\">\n<?php print($i18n->getJs("loginAuthFailed")); ?>\n</FONT>");
+  document.write("<span style=\"<?php print($myStyle->getProperty("color","error")); ?>;\">\n<?php print($i18n->getJs("loginAuthFailed")); ?>\n</span>");
         <?php } ?> 
  } else { 
-  document.write("<FONT COLOR=\"<?php print($myStyle->getProperty("color","error")); ?>\">\n<?php print($i18n->getJs("loginNoCssMessage")); ?>\n</FONT>"); 
+  document.write("<span style=\"<?php print($myStyle->getProperty("color","error")); ?>;\">\n<?php print($i18n->getJs("loginNoCssMessage")); ?>\n</span>"); 
  }
-  // -->
-                                </SCRIPT>
-                                <NOSCRIPT>
-                                        <FONT COLOR="<?php print($myStyle->getProperty("color","error")); ?>">
-                                                <?php print($i18n->getHtml("loginNoJsMessage")); ?> </FONT>
-                                </NOSCRIPT>
-                        </FONT>
-		</TD>
-	</TR>
-</TABLE>
+//]]>
+// -->
+                                </script>
+                                <noscript>
+                                        <span style="<?php print($myStyle->getProperty("color","error")); ?>;">
+                                                <?php print($i18n->getHtml("loginNoJsMessage")); ?> </span>
+                                </noscript>
+                        </div>
+		</td>
+	</tr>
+</table>
 
 		</td>
-	</TR>
-	<TR>
-		<td valign="top" align="left" background="/libImage/login_bottom.jpg" WIDTH="650">
-		<table cellspacing=0 cellpadding=0 border=0><tr><td background=""><img src="/libImage/Spacer.gif" width=300 height=374></td><td background="" valign="top" align="left">	
-			<SCRIPT LANGUAGE="javascript">
+	</tr>
+	<tr>
+		<td valign="top" align="left" style="background-image: url(/libImage/login_bottom.jpg);" width="650">
+		<table cellspacing="0" cellpadding="0" border="0"><tr><td><img src="/libImage/Spacer.gif" width="300" height="374" alt="" /></td><td valign="top" align="left">	
+			<script language="JavaScript" type="text/javascript">
+			<!--
+			//<![CDATA[
+
 if(cssEnabled && cookieEnabled){
         document.write(' \
-<FORM ENCTYPE="application/x-www-form-urlencoded" METHOD="POST" NAME="form" ID="form"> \
-<INPUT TYPE="HIDDEN" NAME="reuseWindow" VALUE="true"> \
-<INPUT TYPE="HIDDEN" NAME="timeStamp"> \
-<INPUT TYPE="HIDDEN" NAME="target" VALUE="<?php print(($target != "") ? $target : "/redirector.php") ?>"> \
+<form enctype="application/x-www-form-urlencoded" method="post" name="form" id="form"> \
+<input type="hidden" name="reuseWindow" value="true"> \
+<input type="hidden" name="timeStamp"> \
+<input type="hidden" name="target" value="<?php print(($target != "") ? $target : "/redirector.php") ?>"> \
 <table border=0 cellspacing=0 cellspacing=0> \
 <tr> \
         <td align="right"><big><?php print $i18n->getHtml("loginPageUsername") ?></big></td> \
         <td><input type="text" name="newLoginName" size=15></td> \
 </tr> \
 <tr> \
-        <td align="right"><BIG><?php print $i18n->getHtml("loginPagePassword") ?></BIG></td> \
+        <td align="right"><big><?php print $i18n->getHtml("loginPagePassword") ?></big></td> \
         <td><input type="password" name="newLoginPassword" size="15" onKeyPress="if(document.layers && event.which == 13 && document.form.onsubmit()) document.form.submit()"></td> \
 </tr> \
 <tr> \
-        <td align="right"><BIG><?php print $i18n->getHtml("loginPageSecurity") ?></BIG></td> \
+        <td align="right"><big><?php print $i18n->getHtml("loginPageSecurity") ?></big></td> \
         <TD><INPUT TYPE="CHECKBOX" NAME="secure" <?php echo $secure; ?>></TD> \
 </tr> \
 <tr> \
-<td colspan=2 background="" ALIGN="right"> \
-<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"> \
-<TR> \
-<TD><A HREF="javascript: if(document.form.onsubmit()) document.form.submit();"><IMG BORDER="0" SRC="/libImage/buttonLeftDot.gif"></A></TD> \
-<TD NOWRAP BGCOLOR="#000099"><A HREF="javascript: if(document.form.onsubmit()) document.form.submit();"><SMALL><?php print $i18n->get("loginPageLogin") ?></SMALL></A></TD> \
-<TD><A HREF="javascript: if(document.form.onsubmit()) document.form.submit(); "><IMG BORDER="0" SRC="/libImage/buttonRight.gif"></A></TD> \
-</TR> \
-</TABLE> \
+<td colspan=2 background="" align="right"> \
+<table border="0" cellpadding="0" cellspacing="0"> \
+<tr> \
+<td><a href="javascript: if(document.form.onsubmit()) document.form.submit();"><img border="0" src="/libImage/buttonLeftDot.gif"></a></td> \
+<td nowrap bgcolor="#000099"><a href="javascript: if(document.form.onsubmit()) document.form.submit();"><small><?php print $i18n->get("loginPageLogin") ?></small></a></td> \
+<td><a href="javascript: if(document.form.onsubmit()) document.form.submit(); "><img border="0" src="/libImage/buttonRight.gif"></a></td> \
+</tr> \
+</table> \
 </td></tr></table> \
 </form> \
  '); 
@@ -193,16 +206,16 @@ if(cssEnabled && cookieEnabled){
   this.action = 'http://'+location.hostname+':444/loginHandler.php';
   return true 
  }
-
-
-			</SCRIPT>
+//]]>
+// -->
+			</script>
 		</td></tr></table>
 		</td>
-	</TR>
-</TABLE>
-</CENTER>
-</BODY>
-</HTML>
+	</tr>
+</table>
+</center>
+</body>
+</html>
 
 <!--
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
@@ -224,4 +237,5 @@ This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS O
 
 You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 -->
+
 

@@ -10,6 +10,9 @@
 # All RPMs under <module>/as_rpms are automatically included in the final
 # packing_list.
 
+# 2012-08-07 (mstauber): Added optional sorting of RPMs. Not perfect yet, 
+#			 but it is a start.
+
 use strict;
 use Cwd;
 use Getopt::Std;
@@ -155,13 +158,77 @@ while($line = <IN>) {
 	next;
     }
 
-    # put in RPM list before the end
-    if($line =~ /^\s*\[\/Package\]/) {
+    if (!-f "/usr/sausalito/devel/.pkgsort") {
+      # Dump list of RPMs in an unsorted fashion (traditional behaviour):
+      # put in RPM list before the end
+      if($line =~ /^\s*\[\/Package\]/) {
 	my $rpm;
 	foreach $rpm (@rpms) {
 	    print OUT "RPM: $rpm\n";
 	}
+      }
     }
+    else {
+      ### Start: Sort 
+      # Sort RPMs in a fashion that doesn't resolve dependencies yet, but at least maintain
+      # the bare neccessities: locate, ui, glue and capstone get installed in that order.
+      # But only after anything else has been installed.
+      if($line =~ /^\s*\[\/Package\]/) {
+	my %HoA = ('capstone' => [], 'locale' => [], 'glue' => [], 'ui' => [], 'other' => []);
+	my $line;
+	my $i;
+	foreach $line (@rpms) {
+            my $rpmname = $line;
+            if ($rpmname =~ m/-capstone-/g) {
+                push(@{$HoA{'capstone'}}, $rpmname);
+            }
+            elsif ($rpmname =~ m/-locale-/g) {
+                push(@{$HoA{'locale'}}, $rpmname);
+            }
+            elsif ($rpmname =~ m/-glue-/g) {
+                push(@{$HoA{'glue'}}, $rpmname);
+            }
+            elsif ($rpmname =~ m/-ui-/g) {
+                push(@{$HoA{'ui'}}, $rpmname);
+            }
+            elsif ($rpmname =~ m/\.rpm/g) {
+                push(@{$HoA{'other'}}, $rpmname);
+            }
+	}
+
+	$i = 0;
+	foreach $line (@{$HoA{'other'}}) {
+	  print OUT "RPM: " . $HoA{'other'}->[$i] . "\n"; 
+	  $i++;
+	}
+	$i = 0;
+	foreach $line (@{$HoA{'locale'}}) {
+	  print OUT "RPM: " . $HoA{'locale'}->[$i] . "\n"; 
+	  $i++;
+	}
+	$i = 0;
+	foreach $line (@{$HoA{'locale'}}) {
+	  print OUT "RPM: " . $HoA{'locale'}->[$i] . "\n"; 
+	  $i++;
+	}
+	$i = 0;
+	foreach $line (@{$HoA{'ui'}}) {
+	  print OUT "RPM: " . $HoA{'ui'}->[$i] . "\n"; 
+	  $i++;
+	}
+	$i = 0;
+	foreach $line (@{$HoA{'glue'}}) {
+	  print OUT "RPM: " . $HoA{'glue'}->[$i] . "\n"; 
+	  $i++;
+	}
+	$i = 0;
+	foreach $line (@{$HoA{'capstone'}}) {
+	  print OUT "RPM: " . $HoA{'capstone'}->[$i] . "\n"; 
+	  $i++;
+	}
+      }
+    }
+    ### End: Sort
 
     # print to target
     print OUT $line;

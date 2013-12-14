@@ -1,6 +1,6 @@
 <?php
 // Authors: Brian N. Smith & Michael Stauber
-// Copyright 2007-2008, Solarspeed Ltd. and NuOnce Networks, Inc.  All rights reserved.
+// Copyright 2007-2011, Solarspeed.net and NuOnce Networks, Inc.  All rights reserved.
 // $Id: tomcat-manager.php,v 2.0 Wed Nov 26 17:02:08 2008 mstauber Exp $
 
 include_once("ServerScriptHelper.php");
@@ -55,13 +55,14 @@ $hostManagerURL = "http://" . $sysConfig["hostname"] . "." . $sysConfig["domainn
 $managerStatusURL = "http://" . $sysConfig["hostname"] . "." . $sysConfig["domainname"] . ":8080/manager/status";
 
 // Admin URL:
-$linkButton = $factory->getDetailButton($adminURL);
-if ($javaStatus["TomcatStatus"] == "0") {
-    $linkButton->setDisabled(true);
-}
-$namefield = $i18n->interpolate("[[base-java.TomcatAdminInterface]]");
-$desc_html = $factory->getTextField("", $namefield, "r");
-$scrollList->addEntry( array($desc_html, $linkButton), "", false );
+// This is no longer included in Tomcat6!
+//$linkButton = $factory->getDetailButton($adminURL);
+//if ($javaStatus["TomcatStatus"] == "0") {
+//    $linkButton->setDisabled(true);
+//}
+//$namefield = $i18n->interpolate("[[base-java.TomcatAdminInterface]]");
+//$desc_html = $factory->getTextField("", $namefield, "r");
+//$scrollList->addEntry( array($desc_html, $linkButton), "", false );
 
 // Manager URL:
 $linkButton = $factory->getDetailButton($managerURL);

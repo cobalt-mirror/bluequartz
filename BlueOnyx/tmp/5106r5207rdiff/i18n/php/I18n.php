@@ -1,7 +1,6 @@
 <?php
 /*
- * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: I18n.php 1136 2008-06-05 01:48:04Z mstauber $
+ * $Id: I18n.php
  */
 global $isI18nDefined;
 if($isI18nDefined)
@@ -44,12 +43,18 @@ class I18n {
 			$langs = "en_US";
 		}
 
-		// If the detected language is not 'de_DE', 'da_DK' or 'ja_JP', we fall back to 'en_US'.
-		// This was added particularly for 5107R/5108R as it would default to German otherwise:
+		// If the detected language is not 'de_DE', 'da_DK', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT' or 'ja_JP', we fall back to 'en_US'.
+		// This was added particularly for 5107R/5108R (and later) as it would default to German otherwise:
 		$my_lang = explode(',', $langs);
-		if ((($my_lang[0] != "de-DE") && ($my_lang[0] != "de_DE")) && (($my_lang[0] != "da-DK") && ($my_lang[0] != "da_DK")) && (($my_lang[0] != "ja") && ($my_lang[0] != "ja-JP") && ($my_lang[0] != "ja_JP"))) {
-			$langs = "en_US";
-		}
+    if ((($my_lang[0] != "de-DE") && ($my_lang[0] != "de_DE")) &&
+        (($my_lang[0] != "da-DK") && ($my_lang[0] != "da_DK")) &&
+        (($my_lang[0] != "es-ES") && ($my_lang[0] != "es_ES")) &&
+        (($my_lang[0] != "fr-FR") && ($my_lang[0] != "fr_FR")) &&
+        (($my_lang[0] != "it-IT") && ($my_lang[0] != "it_IT")) &&
+        (($my_lang[0] != "pt-PT") && ($my_lang[0] != "pt_PT")) &&
+        (($my_lang[0] != "ja") && ($my_lang[0] != "ja-JP") && ($my_lang[0] != "ja_JP"))) {
+            $langs = "en_US";
+    }
 
 		$this->handle = i18n_new($domain, $langs);
 	}
@@ -244,7 +249,7 @@ class I18n {
 			$encConv = new EncodingConv($string, 'japanese',
 						    $fromEncoding);
 			if ($toEncoding == '') {
-				return $encConv->toEUC();
+				return $encConv->toUTF8();
 			} else {
 				return $encConv->doJapanese($string,
 							    $toEncoding,
@@ -260,6 +265,8 @@ class I18n {
 	}
 }
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

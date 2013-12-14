@@ -183,10 +183,127 @@ msgstr "[[base-apache.webScriptingDescription]]"
 # i18n names for vsite services namespaces provided by this module
 
 msgid "phpI18nName"
-msgstr "PHP スクリプト"
+msgstr "PHPスクリプト"
 
 msgid "cgiI18nName"
-msgstr "CGI (Common Gateway Interface)"
+msgstr "コモンゲートウェイインタフェース（CGI）"
 
 msgid "ssiI18nName"
-msgstr "SSI (Server-Side Includes)"
+msgstr "サーバーサイドインクルード（SSI）"
+
+msgid "userwebs"
+msgstr "ユーザ所有のウェブを有効に"
+
+msgid "userwebs_help"
+msgstr "有効にした場合、各ユーザーはhttp://www.example.com/を介してメインウェブサイトのウェブスペースと到達〜ユーザ名/から分離されている彼自身のウェブスペースを持っています。ユーザーは、自分のWeb /専用のディレクトリにFTPを通じて、自分のWebページをアップロードすることができます。注意：suPHPが有効になっている場合は、ユーザが所有するウェブもはやサポートされておらず、この機能がオフになります。"
+
+msgid "ftpnonadminI18nName"
+msgstr "有効非サイト管理者用のFTP"
+
+msgid "userwebsI18nName"
+msgstr "有効になっているユーザーが所有するウェブ"
+
+msgid "Options_AllField"
+msgstr "すべて"
+
+msgid "Options_AllField_help"
+msgstr "All MultiViewsを除いたオプション。 （デフォルト：オフ）"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinksを"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "サーバは、シンボリックリンクをたどります。 （デフォルト：オン）"
+
+msgid "Options_IncludesField"
+msgstr "含まれています"
+
+msgid "Options_IncludesField_help"
+msgstr "サーバーサイドインクルードが許可されます。 （デフォルト：オン）"
+
+msgid "Options_IndexesField"
+msgstr "インデックス"
+
+msgid "Options_IndexesField_help"
+msgstr "どのディレクトリにマップされたURLがリクエストされ、そのディレクトリ内にDirectoryIndexに（例えば、index.htmlには）存在していない場合、サーバはディレクトリ内の一覧を整形して返します。 （デフォルト：オン）"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViewsオプション"
+
+msgid "Options_MultiViewsField_help"
+msgstr "コンテンツネゴシエーションさMultiViewsオプションが許可されています。ブラウザのロケールに基づいて、異なる言語のページを表示するために使用される。 （デフォルト：オン）"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatchが"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "サーバは、ターゲットのファイルまたはディレクトリがリンクと同じユーザーIDによって所有されているシンボリックリンクをたどります。 （デフォルト：オフ）"
+
+msgid "AllowOverride_AllField"
+msgstr "すべて"
+
+msgid "AllowOverride_AllField_help"
+msgstr "サーバがhtaccessファイルを見つけると、そのファイルの中で宣言ディレクティブは、以前のアクセス情報を上書きすることができるかを知る必要があります。 （：オフDangerous!デフォルト）は、このボックスにチェックを入れ、すべてのApacheの設定を上書きすることができます"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "authconfigの"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "許可指令（AuthDBMGroupFileを、AuthDBMUserFile、AuthGroupFileは、でAuthName、AuthDigestRealmSeed、AuthTypeディレクティブ、AuthUserFileは、要求など）を使用することができます。 （デフォルト：オン）"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "のFileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "ドキュメントタイプ（AddEncodingディレクティブ、AddHandlerディレクティブ、AddLanguageディレクティブ、AddTypeディレクティブ、DefaultTypeで、ErrorDocumentを、LanguagePriorityは、など）を制御するためのディレクティブの使用を許可します。 （デフォルト：オフ）"
+
+msgid "AllowOverride_IndexesField"
+msgstr "インデックス"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "（AddDescription、よりAddIconByType、AddIconByEncoding、AddIconByTypeを、DefaultIconは、DirectoryIndexに、もしFancyIndexing、もしHeaderName、IndexIgnoreは、IndexOptionsは、ReadmeNameと、など）ディレクトリインデックスを制御するディレクティブの使用を許可。 （デフォルト：オン）"
+
+msgid "AllowOverride_LimitField"
+msgstr "制限"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "（許可拒否およびOrde??r）ホストアクセスを制御するディレクティブの使用を許可。 （デフォルト：オン）"
+
+msgid "AllowOverride_OptionsField"
+msgstr "オプション"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "特定のディレクトリ機能（オプションとXBitHack）を制御するためのディレクティブの使用を許可します。 （デフォルト：オフ）"
+
+msgid "DIVIDER_TOP"
+msgstr "一般的なApacheの設定："
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "仮想サイトのディレクトリ用のApacheの特徴："
+
+msgid "BlueOnyx_Info_Text"
+msgstr "の/etc/httpd/conf.d/blueonyx.confセクションでは、 &#39;オプション&#39;と &#39;AllowOverrideの&#39;の機能はすべての仮想サイトが存在するディレクトリ（/home/.sites/）に許可されているかを定義します。これは、。htaccessのファイルや他のものの使用を制限しています。これらは、以下に変更することができる。"
+
+msgid "DIVIDER_OPTIONS"
+msgstr "オプション："
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverrideの："
+
+msgid "PHP_enabled"
+msgstr "PHPスクリプトを有効にする"
+
+msgid "PHP_enabled_help"
+msgstr "PHPスクリプトの使用を有効にします。"
+
+msgid "enableSuPHP"
+msgstr "suPHPを有効にする"
+
+msgid "enableSuPHP_help"
+msgstr "PHPスクリプトは、その所有者のUIDを使用して実行するようにsuPHPの使用を有効にします。 &#39;ウェブの所有権&#39;メニューを通じて/ Webフォルダの所有者としてsiteAdminを設定してください！注意：suPHPが有効になっている場合は、ユーザが所有するウェブサポートされなくなって、その機能がオフになってしまいます。"
+
+msgid "disabled"
+msgstr "使用禁止"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"

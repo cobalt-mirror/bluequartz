@@ -23,7 +23,7 @@ class EncodingConv {
 		// that we previously used doesn't support some extensions to
 		// certain character encodings (IBM codes in JIS)
 		if (!$oldEncoding) {
-			$oldEncoding = 'EUC-JP';
+			$oldEncoding = 'UTF-8';
 		}
 
   		return mb_convert_encoding($oldString, $newEncoding, $oldEncoding);
