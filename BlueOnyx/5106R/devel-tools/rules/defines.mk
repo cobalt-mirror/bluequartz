@@ -53,6 +53,8 @@ PACKAGE_DIR=$(shell if [ -d /usr/src/redhat ]; then \
 			echo /var/src/rpm; \
 		elif [ -d /usr/src/packages ]; then \
 			echo /usr/src/packages; \
+        elif [ -d /root/rpmbuild ]; then \ 
+            echo /root/rpmbuild; \ 
 		fi)
 RPM_TOPDIR=$(shell rpm --eval='%{_topdir}')
 
