@@ -1,418 +1,415 @@
-# --- Menu
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "maillists"
-msgstr "�᡼��󥰥ꥹ��"
+msgstr "メーリングリスト"
 
 msgid "maillistsHelp"
-msgstr "[[base-maillist.maillistList_menu]]������Ǥ��ޤ���"
-
-
-# --- Mailing Lists page
+msgstr "[[base-maillist.maillistList_menu]]はここで管理することができます。"
 
 msgid "maillistList_menu"
-msgstr "�᡼��󥰥ꥹ��"
+msgstr "メーリングリスト"
 
 msgid "maillistList"
-msgstr "[[VAR.group]] �Υ᡼��󥰥ꥹ��"
+msgstr "[[VAR.group]]でメーリングリスト"
 
 msgid "maillistNameHeader"
-msgstr "�ꥹ��̾"
+msgstr "名前"
 
 msgid "maillistNameHeader_help"
-msgstr "�᡼��󥰥ꥹ�Ȥ�̾���Ǥ���"
+msgstr "これはメーリングリストの名前です。"
 
 msgid "recipientsHeader"
-msgstr "���ɼ�"
+msgstr "加入者数"
 
 msgid "numSubs"
-msgstr "[[VAR.num]] �ͤ�������"
+msgstr "[[VAR.num]] Subscriber[[VAR.plural]]"
 
 msgid "recipientsHeader_help"
-msgstr "�᡼��󥰥ꥹ�Ȥι��ɼԿ��Ǥ���"
+msgstr "これらはメーリングリストに加入しているユーザの数である。"
 
 msgid "groupSubscriber"
-msgstr "[[VAR.group]] ���롼�פΥ��С�����"
+msgstr "[[VAR.group]]グループのすべてのメンバー"
 
 msgid "maillistDescHeader"
-msgstr "����"
+msgstr "備考"
 
 msgid "maillistDescHeader_help"
-msgstr "�᡼��󥰥ꥹ�Ȥ������䥳���ȤʤɤǤ���"
+msgstr "この列には、各メーリングリストに関する追加情報が含まれています。"
 
 msgid "maillistActionHeader"
-msgstr "���������"
+msgstr "アクション"
 
 msgid "maillistActionHeader_help"
-msgstr "�����Υ�������򥯥�å�����ȡ��᡼��󥰥ꥹ�Ȥν����ޤ��Ϻ����Ԥ��ޤ�������Ȣ�����졼ɽ������Ƥ���᡼��󥰥ꥹ�ȤϺ���Ǥ��ޤ���"
+msgstr "これらは、メーリング·リストを変更または削除するために使用するボタンです。"
 
 msgid "confirm_removal_of_list"
-msgstr "[[VAR.list]] �᡼��󥰥ꥹ�Ȥ������Ƥ��������Ǥ�����"
+msgstr "あなたは[[VAR.list]]メーリングリストを削除してもよろしいですか？"
 
 msgid "subscribers"
-msgstr "���ɼ�"
+msgstr "加入者"
 
 msgid "subscribers_help"
-msgstr "�᡼��󥰥ꥹ�Ȥι��ɼԤ��ɲá�����Ǥ��ޤ���"
+msgstr "メーリングリストのメンバーの一覧は、ここで設定を行います。"
 
 msgid "numLocals"
-msgstr "[[VAR.num]] �͹�����"
+msgstr "[[VAR.num]]ローカルSubscriber[[VAR.plural]]"
 
 msgid "edit_locals"
-msgstr "�Խ�"
+msgstr "編集"
 
 msgid "edit_locals_help"
-msgstr "���Υܥ���򥯥�å�����ȡ����Υ����Ȥ���Ͽ����Ƥ���桼���ΰ�������᡼��󥰥ꥹ�Ȥι��ɼԤ�����Ǥ��ޤ���"
+msgstr "このメーリングリストへの加入者であるローカルユーザを選択するには、ここをクリックしてください。"
 
 msgid "localsSearch"
-msgstr "�桼���θ���"
+msgstr "検索ユーザーリスト"
 
 msgid "search"
-msgstr "����"
+msgstr "検索"
 
 msgid "search_help"
-msgstr "�����ʸ�����桼��̾�˴ޤ�桼���Τߤ������ɽ���Ǥ��ޤ���"
+msgstr "入力された条件に一致するユーザーを表示するには、ここをクリックしてください。"
 
 msgid "showall"
-msgstr "�桼��������ɽ��"
+msgstr "すべてのユーザーを表示"
 
 msgid "showall_help"
-msgstr "���Υܥ���򥯥�å�����ȡ������Ȥ���Ͽ����Ƥ���桼��������ɽ������ޤ���"
+msgstr "サイト上のすべてのユーザーを表示するには、ここをクリックします。"
 
 msgid "showselected"
-msgstr "���򤵤�Ƥ���桼���Τ�ɽ��"
+msgstr "選択したユーザーのみを表示する"
 
 msgid "showselected_help"
-msgstr "���Υܥ���򥯥�å�����ȡ����򤵤�Ƥ���桼���Τߤ�ɽ������ޤ���"
+msgstr "現在選択されているユーザーだけを表示するには、ここをクリックしてください。"
 
 msgid "localSubs_list"
-msgstr "[[VAR.fqdn]] ��[[VAR.criteria]]"
+msgstr "[[VAR.fqdn]]上[[VAR.criteria]]"
 
 msgid "matching"
-msgstr "[[VAR.criteria]] ��ޤ�桼��"
+msgstr "[[VAR.criteria]]に一致するユーザー"
 
 msgid "selected"
-msgstr "����桼��"
+msgstr "選択したユーザー"
 
 msgid "all"
-msgstr "��Ͽ�桼������"
+msgstr "すべてのユーザー"
 
 msgid "selectAll"
-msgstr "�桼������������"
+msgstr "すべてのユーザーを選択"
 
 msgid "selectAll_help"
-msgstr "���Υܥ���򥯥�å�����ȡ����Υ����Ȥ���Ͽ����Ƥ���桼�����������򤵤�ޤ�������ˤϡ����Υڡ�����ɽ������Ƥ���桼���Ф���Ǥʤ���¾�Υڡ�����ɽ�������桼���������ޤޤ�ޤ���"
+msgstr "このサイト上のすべてのユーザーを選択するには、ここをクリックしてください。選択は、同様に、このページ上のすべてのユーザーや他のページ上のすべてのユーザーが含まれます。"
 
 msgid "selectPage"
-msgstr "���Υڡ����Υ桼������������"
+msgstr "このページを選択する"
 
 msgid "selectPage_help"
-msgstr "���Υڡ�����ɽ������Ƥ���桼�����������򤵤�ޤ���"
+msgstr "このページのすべてのユーザーを選択するには、ここをクリックしてください。"
 
 msgid "use_these"
-msgstr "���򤵤�Ƥ���桼������ɼԤ˲ä���"
+msgstr "現在の選択を使用してください"
 
 msgid "use_these_help"
-msgstr "���Υܥ���򥯥�å�����ȡ����򤵤�Ƥ���桼�������� [[base-maillist.localSubscribers]] �᡼��󥰥ꥹ�Ȥι��ɼԤȤ����ɲä���ޤ���"
+msgstr "[[base-maillist.localSubscribers]]リストとして現在の選択を使用するには、ここをクリックしてください。"
 
 msgid "cancel"
-msgstr "����󥻥�"
+msgstr "キャンセル"
 
 msgid "cancel_help"
-msgstr "���Υܥ���򥯥�å�����ȡ�������ߤ��ơֹ��ɼԡץڡ�������뤳�Ȥ��Ǥ��ޤ���"
+msgstr "設定ページに戻り、現在の選択を無視するには、ここをクリックしてください。"
 
 msgid "name"
-msgstr "�桼��̾"
+msgstr "ユーザー名"
 
 msgid "name_help"
-msgstr "���β��ۥ����Ȥ���Ͽ����Ƥ���桼���Υ桼��̾�Ǥ����᡼��󥰥ꥹ���ɲä������桼���Υ����å��ܥå����򥯥�å����Ƥ���������"
-
-# ----- Add/modify a mailing list Basic
+msgstr "この仮想サイト上のユーザの名前。このメーリングリストにユーザを追加するチェックボックスを選択します。"
 
 msgid "createMailList"
-msgstr "[[VAR.fqdn]] �إ᡼��󥰥ꥹ�Ȥ��ɲä���"
+msgstr "[[VAR.fqdn]]にメーリングリストの追加"
 
 msgid "modifyMailList"
-msgstr "[[VAR.listName]] �᡼��󥰥ꥹ�Ȥ�������ѹ�����"
+msgstr "[[VAR.listName]]のためのメーリングリストの設定を変更"
 
 msgid "basic"
-msgstr "����"
+msgstr "基本"
 
 msgid "advanced"
-msgstr "�ܺ�"
+msgstr "高度な"
 
 msgid "basic_help"
-msgstr "�᡼��󥰥ꥹ�Ȥδ���Ū�ʥ��ץ���������Ǥ��ޤ���"
+msgstr "基本的なメーリングリストのオプションを設定するには、ここをクリックしてください。"
 
 msgid "advanced_help"
-msgstr "�᡼��󥰥ꥹ�ȤΥѥ���ɡ���å������κ��祵��������Ƥ���ɤε�§�ʤɡ��᡼��󥰥ꥹ�Ȥξܺ٤�����Ǥ��ޤ���"
+msgstr "このような投稿とサブスクリプションの政策などの高度なメーリングリストのオプションを設定するには、ここをクリックしてください。"
 
 msgid "listName"
-msgstr "�ꥹ��̾"
+msgstr "リスト名"
 
 msgid "listName_rule"
-msgstr "�ꥹ��̾�ˤϡ�Ⱦ�ѤαѾ�ʸ�����������ϥ��ե󡢥ԥꥪ�ɡ���������������������Ȥ��ޤ����Ϥ���Σ�ʸ����ɬ���Ѿ�ʸ���ˤ��Ƥ������������㡧 eigyo13��coba-q��shomu_2 �ʤɡ�"
+msgstr "小文字の英数字、ハイフン、ピリオド、アンダースコアのみを入力してください。たとえば、売上高は有効なエントリです。"
 
 msgid "listName_help"
-msgstr "�ɲä������᡼��󥰥ꥹ�Ȥ�̾�������Ϥ��Ƥ���������[[base-maillist.listName_rule]]"
+msgstr "メーリングリストの名前を入力します。 [[base-maillist.listName_rule]]"
 
 msgid "listName_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-maillist.listName]]�ˤϻ���Ǥ��ޤ���[[base-maillist.listName_rule]]"
+msgstr "申し訳ありませんが、[[VAR.invalidValue]]は[[base-maillist.listName]]は無効な値です。 [[base-maillist.listName_rule]]"
 
 msgid "listName_empty"
-msgstr "[[base-maillist.listName]]����ꤷ�Ƥ���������[[base-maillist.listName_rule]]"
+msgstr "申し訳ありませんが、あなたは[[base-maillist.listName]]に値を入力していません。 [[base-maillist.listName_rule]]"
 
 msgid "workgroupMembers"
-msgstr "���롼�פΥ��С�"
+msgstr "グループメンバー"
 
 msgid "workgroupMembers_help"
-msgstr "���Υꥹ�Ȥ˴�Ϣ�դ����Ƥ��륰�롼�פ˽�°����桼���ΰ����Ǥ������롼�ץ��С����������Υ᡼��󥰥ꥹ�Ȥ�ưŪ�˹��ɤ��ޤ���"
+msgstr "このフィールドには、現在、このリストに関連付けられているグループのメンバーであるユーザーのリストが含まれています。このグループのすべてのメンバーは、常にこのメーリングリストを購読している。"
 
 msgid "group_field"
-msgstr "���롼�ץꥹ��̾"
+msgstr "グループリスト名"
 
 msgid "group_field_help"
-msgstr "���롼�ץ᡼��󥰥ꥹ�Ȥ�̾���Ǥ������롼�ץ��С����������Υ᡼��󥰥ꥹ�Ȥ�ưŪ�˹��ɤ��ޤ���"
+msgstr "これは、グループのメーリングリストの名前です。このグループのすべてのメンバーは、自動的にこのメーリングリストを購読している。"
 
 msgid "save"
-msgstr "��¸"
+msgstr "保存"
 
 msgid "save_help"
-msgstr "�᡼��󥰥ꥹ�Ȥ���¸"
-
+msgstr "このメーリングリストを保存します。"
 
 msgid "localSubscribers"
-msgstr "��Ͽ�桼��"
+msgstr "地元の契約者"
 
 msgid "localSubscribers_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ���ɤ�����Ͽ�桼������ꤷ�Ƥ�������������ˤϸ��߹��ɤ��Ƥ��ʤ���Ͽ�桼���ΰ�����ɽ������Ƥ��ޤ������ɤ��������桼�����󤫤麸��˰�ư���Ƥ������������ɤ���ä������桼���ϱ���˰�ư���Ƥ���������"
+msgstr "このメーリングリストへの加入者であるローカルユーザを選択する場合は、[Edit]ボタンをクリックします。"
 
 msgid "subscribed"
-msgstr "���߹��ɤ��Ƥ���桼��"
+msgstr "加入ユーザ"
 
 msgid "unsubscribed"
-msgstr "���߹��ɤ��Ƥ��ʤ��桼��"
+msgstr "ユーザーは購読していない"
 
 msgid "remoteSubscribers"
-msgstr "�������ɼ�"
+msgstr "リモート·サブスクライバ"
 
 msgid "remoteSubscribers_rule"
-msgstr "�������ɼԤ��Żҥ᡼�륢�ɥ쥹�����������������Ϥ��Ƥ������������㡧 yutaka.yasuda@cobaltqube.org��"
+msgstr "適切な形式の電子メールアドレスを入力してください。例えば、user@example.comは有効なエントリです。"
 
 msgid "remoteSubscribers_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ���ɤ��볰�����ɼԤ��Żҥ᡼�륢�ɥ쥹����ꤷ�Ƥ����������������ɼԤȤϡ����Υ����Ⱦ�˥�������Ȥ���äƤ��ʤ��ͤ��̣���ޤ���[[base-maillist.remoteSubscribers_rule]]"
+msgstr "このメーリングリストへの加入者であるリモート·ユーザを入力します。リモートユーザーは、このサーバアプライアンスにアカウントを持たないユーザーです。 [[base-maillist.remoteSubscribers_rule]]"
 
 msgid "remoteSubscribers_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-maillist.remoteSubscribers]]�ˤϻ���Ǥ��ޤ���  [[base-maillist.remoteSubscribers_rule]]"
+msgstr "申し訳ありませんが、[[VAR.invalidValue]]は[[base-maillist.remoteSubscribers]]は無効な値です。 [[base-maillist.remoteSubscribers_rule]]"
 
 msgid "description"
-msgstr "����"
+msgstr "備考"
 
 msgid "description_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ˴ؤ��������䥳���Ȥ����ϤǤ��ޤ���"
-
-# ----- Add/modify a mailing list Advanced
+msgstr "ここメーリングリストに関する追加情報やコメントを入力してください。"
 
 msgid "moderator"
-msgstr "�ꥹ�ȴ�����"
+msgstr "所有者/管理人"
 
 msgid "moderator_rule"
-msgstr "���Υꥹ�Ȥ��������桼���Υ桼��̾ (��Ͽ�桼���ξ��) �ޤ����Żҥ᡼�륢�ɥ쥹 (�������ɼԤξ��) �����Ϥ��Ƥ����������ǥե���Ȥ�admin�Ǥ������㡧 nishida��shibuya@sun.co.jp �ʤɡ�"
+msgstr "適切な形式の電子メールアドレスまたはこのサーバーアプライアンス上の有効なユーザーのユーザー名を入力してください。デフォルト値はadminです。例えば、user@example.comと管理者が有効なエントリです。"
 
 msgid "moderator_help"
-msgstr "�����ǻ��ꤹ��桼���ˤϡ����Υ᡼��󥰥ꥹ�Ȥδ������¤�Ϳ�����ޤ���[[base-maillist.moderator_rule]]"
+msgstr "メーリングリストのすべての管理作業を実行するユーザーの電子メールアドレスを入力します。 [[base-maillist.moderator_rule]]"
 
 msgid "moderator_invalid"
-msgstr "[[VAR.invalidValue]] �ϡ�[[base-maillist.moderator]] �ˤϻ���Ǥ��ޤ���[[base-maillist.moderator_rule]]"
-
-# handler version
+msgstr "申し訳ありませんが、[[VAR.invalidValue] [[base-maillist.moderator]]は無効な値です。 [[base-maillist.moderator_rule]]"
 
 msgid "Moderator-does-not-exist"
-msgstr "�᡼��󥰥ꥹ�ȴ�����̾�������Ǥ���[[VAR.moderator]] �Ȥ����桼���ϸ��Ĥ���ޤ���"
+msgstr "無効な司会：ユーザー[[VAR.moderator]]が存在していないようです。"
 
 msgid "moderator_empty"
-msgstr "[[base-maillist.moderator]] ����ꤷ�Ƥ�����������Ƥ���ɤΥݥꥷ��������ʤ��᡼��󥰥ꥹ�Ȥξ��Ǥ⡢�ꥹ�ȴ����Ԥ���ꤹ��ɬ�פ�����ޤ���[[base-maillist.moderator_rule]]"
+msgstr "申し訳ありませんが、あなたは[[base-maillist.moderator]]に値を入力していません。あなたは、モデレーションポリシーがメーリングリストに指定されていない場合でも、値を入力する必要があります。 [[base-maillist.moderator_rule]]"
 
 msgid "policies"
-msgstr "�ݥꥷ��������"
+msgstr "ポリシー"
 
 msgid "apassword"
-msgstr "�ѥ����"
+msgstr "パスワード"
 
 msgid "apassword_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥδ����ԥѥ���ɤ���ꤷ�Ƥ������������Υѥ���ɤϡ��Żҥ᡼���Ȥäƥꥹ�ȴ�����̳�ʹ��ɤε��Ĥ���ƥ�å������δ����ʤɡˤ�Ԥ��ݤ�ɬ�פˤʤ�ޤ����Żҥ᡼��ˤ��ꥹ�ȴ�����Ԥ�ʤ����ˤϡ��ѥ���ɤ��ά���Ƥ⹽���ޤ���"
+msgstr "このメーリングリストの管理者用パスワードを入力します。 （例えば、サブスクリプションを承認するか、メッセージのモデレート）電子メールを介して特定のリスト管理作業を実行するときにこのパスワードは使用されている。これらの機能を使用する予定がない場合は、このフィールドは空白のままでかまいません。"
 
 msgid "postingPolicy"
-msgstr "��ƥݥꥷ��"
+msgstr "ポスティング·ポリシー"
 
 msgid "postingPolicy_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ���Ƥ���ݤ�Ŭ�Ѥ����ݥꥷ�������򤷤Ƥ����������Υꥹ�ȴ����Ԥε��Ĥ�ɬ�סϤ����֤ȡ��ꥹ�ȴ����Ԥε��Ĥ�������å������Τߤ��ꥹ�Ȥ˷Ǽ�����ޤ���"
+msgstr "このメーリングリストの転記ポリシーを選択します。あなたは管理人、すべてのメッセージを確認し選択した場合は、すべてのメッセージは、リストのオーナー/司会者の承認が必要になります。"
 
 msgid "any"
-msgstr "���ƤΥ桼������ƤǤ���"
+msgstr "すべてのユーザーがメッセージを書き込むことができます"
 
 msgid "members"
-msgstr "���ɼԤΤߤ���ƤǤ���"
+msgstr "加入者だけがメッセージを書き込むことができます"
 
 msgid "moderated"
-msgstr "�ꥹ�ȴ����Ԥε��Ĥ�ɬ��"
+msgstr "モデレータは、すべてのメッセージを確認します"
+
+msgid "admin"
+msgstr "唯一の管理者がメッセージを書き込むことができます"
+
+msgid "domain"
+msgstr "ローカルドメインのユーザのみがメッセージを書き込むことができます"
 
 msgid "subscriptionPolicy"
-msgstr "���ɥݥꥷ��"
+msgstr "サブスクリプション·ポリシー"
 
 msgid "subscriptionPolicy_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ���ɤ���ݤ�Ŭ�Ѥ����ݥꥷ�������򤷤Ƥ����������᡼��󥰥ꥹ�Ȥ���ɤޤ��Ϲ��ɤ���ߤ��������ϡ��Żҥ᡼�����ʸ�ˡ�subscribe �ꥹ��̾�סʹ��ɤ�����ˤޤ��ϡ�unsubscribe �ꥹ��̾�סʹ��ɤ���ߤ�����ˤȵ��Ҥ��ơ�majordomo@[[VAR.fqdn]]�װ����������Ƥ������������ɥݥꥷ�����ָ���פξ��ˤϡ��Żҥ᡼��ϥꥹ�ȴ����Ԥ��������졢��ǧ��˹��ɤ����Ĥ���ޤ������ɤ���ߤ���ݤˤϵ��Ĥ�ɬ�פ���ޤ���"
+msgstr "リストの購読ポリシーを選択します。ユーザーは、メッセージの本文に含まれる単語」リストを購読」または「購読中止リスト」（リストはメーリングリスト名です）と[[VAR.fqdn]] @ Majordomoのために、メールを送信することで、購読するか、リストから解除することができます。ポリシーは「閉鎖」されている場合は、サブスクリプションが許可される前に、メッセージが承認のためにリストの所有者に送信されます。承認が退会するのに必要なことはありません。"
 
 msgid "open"
-msgstr "������ �ɤΥ桼���Ǥ⼫ͳ�˹��ɤǤ���"
+msgstr "開き：すべてのユーザーが加入してもよい。"
 
 msgid "closed"
-msgstr "���ꡧ ���ɤˤϥꥹ�ȴ����Ԥε��Ĥ�ɬ��"
+msgstr "クローズ：リストオーナーの承認がサブスクリプションのために必要です。"
 
 msgid "confirm"
-msgstr "��ǧ�� ���ɤˤ��Żҥ᡼��ˤ���ǧ��ɬ��"
+msgstr "確認：Eメールの確認は、サブスクリプションのために必要となります。"
 
 msgid "maxlength"
-msgstr "�����å�����������"
+msgstr "メッセージの最大長"
 
 msgid "maxlength_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ���������Ĥ����å������κ��祵���������򤷤Ƥ��������������ǻ��ꤹ�륵������Ķ�����å������ϼ�������ݤ���ޤ���"
+msgstr "このメーリングリストに送信されたメッセージに対して許可キロバイトまたはメガバイト単位での最大サイズを選択します。このサイズを超えるメッセージは拒否されます。"
 
 msgid "5120"
-msgstr "5 KB"
+msgstr "5キロバイト"
+
 msgid "51200"
-msgstr "50 KB"
+msgstr "50キロバイト"
+
 msgid "512000"
-msgstr "500 KB"
+msgstr "500キロバイト"
+
 msgid "10485760"
-msgstr "10 MB"
+msgstr "10メガバイト"
+
 msgid "104857600"
-msgstr "100 MB"
+msgstr "100メガバイト"
 
 msgid "replyToList"
-msgstr "�ֿ��ݥꥷ��"
+msgstr "ポリシーの返信"
 
 msgid "replyToList_help"
-msgstr "���Υ᡼��󥰥ꥹ�Ȥ˷Ǽ����줿��å��������Ф����ֿ���å����������������ꤷ�Ƥ����������Υꥹ�Ȱ����ֿ��Ϥ����֤ȡ��ֿ��ϥꥹ�Ȱ��������ޤ�������Ƽ԰����ֿ��Ϥ����֤ȡ��ֿ��ϥ�å���������ƼԤˤΤ������ޤ���"
+msgstr "このメーリングリストに対する応答ポリシーを設定します。リストに返信することを選択した場合、返信はリストに移動します。そうしないと、回答は、メッセージの作者に行きます。"
 
 msgid "replyList"
-msgstr "�ꥹ�Ȱ����ֿ�"
+msgstr "リストに返信"
 
 msgid "archiveSettings"
-msgstr "���������֤�����"
+msgstr "アーカイブ"
 
 msgid "archiveEnabled"
-msgstr "���������֤�ͭ���ˤ���"
+msgstr "有効にする"
 
 msgid "archiveEnabled_help"
-msgstr "���Υܥå���������å�����ȡ��᡼��󥰥ꥹ�Ȥ���Ƥ��줿���ƤΥ�å������ϻ��ꤵ�줿���֤������������֤���¸����ޤ���WebMail �����󥹥ȡ��뤵��Ƥ���С����Υ����Ф���Ͽ�桼���ϲ�����ƥ�å�����������Ǥ��ޤ���"
+msgstr "このメーリングリストに送信されたメッセージをアーカイブするかどうかを設定します。このサーバアプライアンス上のアカウントを持つユーザーは、Webメールがインストールされている場合、そのWebメールアカウントを使用してこれらのアーカイブにアクセスできるようになります。"
 
 msgid "keepForDays"
-msgstr "��¸����"msgid "keepForDays_help"
-msgstr "���������֤��줿��å���������¸���֤���ꤷ�Ƥ���������0 �����Ϥ���ȡ����������֤��줿��å�������̵���¤���¸����ޤ���"
+msgstr "（日）の期間を保つ"
+
+msgid "keepForDays_help"
+msgstr "メッセージがアーカイブに保管されることを日数で時間の長さを指定する数値を入力します。 （0）無期限にアーカイブされたメッセージを保持するために、ゼロを入力してください。"
 
 msgid "keepForDays_rule"
-msgstr "���������֤��줿��å���������¸���֤���ꤷ�Ƥ���������0 �����Ϥ���ȡ����������֤��줿��å�������̵���¤���¸����ޤ���"
+msgstr "メッセージがアーカイブに保管されることを日数で時間の長さを指定する数値を入力してください。 （0）無期限にアーカイブされたメッセージを保持するために、ゼロを入力してください。"
 
 msgid "keepForDays_empty"
-msgstr "[[base-maillist.keepForDays]]�ե�����ɤؤ����Ϥ�ɬ�ܤǤ���[[base-maillist.keepForDays_rule]]"
+msgstr "申し訳ありませんが、あなたは[[base-maillist.keepForDays]]の値を指定していません。 [[base-maillist.keepForDays_rule]]"
 
 msgid "keepForDays_invalid"
-msgstr "[[base-maillist.keepForDays]] �ե�����ɤλ����ͤ������Ǥ���[[base-maillist.keepForDays_rule]]"
-
-
-# ------ Handler messages
+msgstr "申し訳ありませんが、フィールド[[base-maillist.keepForDays]]に無効な値が含まれています。 [[base-maillist.keepForDays_rule]]"
 
 msgid "name-already-taken"
-msgstr "������Υ᡼��󥰥ꥹ��̾�Ϥ��Ǥ�¸�ߤ��뤿�ᡢ�᡼��󥰥ꥹ�Ȥ�����Ǥ��ޤ���Ǥ������̤�̾����ȤäƤ⤦���٤������������"
+msgstr "指定された名前がメーリングリストによってすでに使用されているので、申し訳ありませんが、メーリングリストは作成できませんでした。別の名前を入力して、もう一度やり直してください。"
 
 msgid "name-already-taken-by-user"
-msgstr "������Υ᡼��󥰥ꥹ��̾�ϴ��˥桼��̾�ޤ����Żҥ᡼�륨���ꥢ���Ȥ��ƻȤ��Ƥ��뤿�ᡢ�᡼��󥰥ꥹ�Ȥ�����Ǥ��ޤ���Ǥ������̤�̾����ȤäƤ⤦���٤������������"
+msgstr "指定された名前は、ユーザーがすでに使用されているので、申し訳ありませんが、メーリングリストは作成できませんでした。別の名前を入力して、もう一度やり直してください。"
 
 msgid "Mail-alias-already-taken"
-msgstr "������Υ᡼��󥰥ꥹ�Ȥ�ɬ�פ��Żҥ᡼�륨���ꥢ����Ʊ��̾��������Żҥ᡼�륨���ꥢ�������Ǥ�¸�ߤ��뤿�ᡢ�᡼��󥰥ꥹ�Ȥ�����Ǥ��ޤ���Ǥ������᡼��󥰥ꥹ�Ȥ��̤�̾������ꤹ�뤫���ޤ��������̾��������Żҥ᡼�륨���ꥢ���������Ƥ���⤦���٤������������"
+msgstr "リストが必要とする電子メールエイリアスが既に存在するため、申し訳ありませんが、メーリングリストは作成できませんでした。メーリングリストの別の名前を与えるか、類似した名前と電子メールエイリアスを削除してみてください。"
 
 msgid "CannotDeleteGroupMaillist"
-msgstr "���Υ����о��¸�ߤ��륰�롼�פΥ᡼��󥰥ꥹ�ȤϺ���Ǥ��ޤ���"
+msgstr "申し訳ありませんが、このサーバアプライアンス上のユーザグループのためのメーリングリストを削除することはできません。"
 
 msgid "Could-not-create-maillist"
-msgstr "���顼��ȯ���������ᡢ�᡼��󥰥ꥹ�ȤϺ�������ޤ���Ǥ�����"
-
-
-
-# ----- Archives for users with accounts
-
-#--- List view
+msgstr "申し訳ありませんが、エラーが発生しました。メーリングリストは作成できませんでした。"
 
 msgid "maillistArchive"
-msgstr "�᡼��󥰥ꥹ�ȤΥ��������� - [[VAR.name]]"msgid "title"
-msgstr "��̾"
+msgstr "メーリングリストアーカイブ -  [[VAR.name]]"
+
+msgid "title"
+msgstr "テーマ"
 
 msgid "title_help"
-msgstr "��å������η�̾�Ǥ���"
+msgstr "これはメッセージの件名です。"
 
 msgid "author"
-msgstr "��Ƽ�"
+msgstr "送り主"
 
 msgid "author_help"
-msgstr "��å���������Ƥ����桼����̾���ޤ����Żҥ᡼�륢�ɥ쥹�Ǥ���"
+msgstr "これは、メッセージの送信者の名前または電子メールアドレスです。"
 
 msgid "date"
-msgstr "����"
+msgstr "日付"
 
 msgid "date_help"
-msgstr "��å�����������������դǤ���"
-
-#--- Read message view
+msgstr "これは、メッセージが受信された日付です。"
 
 msgid "readMessage"
-msgstr "��å��������ɤ�"
+msgstr "メッセージを読む"
 
 msgid "readMessage_help"
-msgstr "��å��������ɤळ�Ȥ��Ǥ��ޤ���"
+msgstr "メッセージを読む"
 
 msgid "from"
-msgstr "���п�"
+msgstr "から"
 
 msgid "from_help"
-msgstr "��å����������������桼����̾���ޤ����Żҥ᡼�륢�ɥ쥹�Ǥ���"
+msgstr "これは、メッセージの送信者の名前、および/または電子メールアドレスです。"
 
 msgid "subject"
-msgstr "��̾"
+msgstr "テーマ"
 
 msgid "subject_help"
-msgstr "��å������η�̾�Ǥ���"
+msgstr "これはメッセージの件名です。"
 
 msgid "message"
-msgstr "��ʸ"
+msgstr "メッセージ"
 
 msgid "message_help"
-msgstr "��å���������ʸ�Ǥ���"
+msgstr "これは、メッセージのテキストです。"
 
 msgid "replySender"
-msgstr "��Ƽ԰����ֿ�"
+msgstr "送信者に返信"
 
 msgid "replySender_help"
-msgstr "���Υ�å���������Ƽ԰����ֿ�����ˤϡ������򥯥�å����Ƥ���������"
+msgstr "メッセージの作成者に返信するにはここをクリックしてください。"
 
 msgid "replyAll"
-msgstr "�������ֿ�"
+msgstr "全員に返信"
 
 msgid "replyAll_help"
-msgstr "���Υ�å���������ƼԤ���ӹ��ɼ��������ֿ�����ˤϡ������򥯥�å����Ƥ���������"
-
-# ------ Misc  (i.e. I have no idea)
+msgstr "著者とメッセージのすべての他の受信者に返信するにはここをクリックしてください。"
 
 msgid "membership"
-msgstr "���С����å�"
+msgstr "メンバーシップ"
 
 msgid "membership_help"
-msgstr "���С����åפϡ����Υ᡼��󥰥ꥹ�Ȥ˴�Ϣ����桼����������ޤ���"
-
-# ------- Strings for email messages
+msgstr "会員は、このメーリングリストに関連付けられているユーザーが定義されています。"
 
 msgid "WelcomeMessageSubject"
-msgstr "���������֤�����Ǥ��ޤ�"
+msgstr "アーカイブが有効になっている"
 
 msgid "WelcomeMessageBody"
-msgstr "���Τ餻�� ���Υ����Ф���Ͽ�桼���ϡ�[[VAR.name]]�Ȥ���̾���Υ᡼��󥰥ꥹ�ȤΥ��������֤� WebMail ���鸫�뤳�Ȥ��Ǥ��ޤ������Υ�å��������ֿ�����ɬ�פϤ���ޤ���"
+msgstr "このメールはあなたのメーリングリストのアーカイブを通知するためにあなたに送られてきた「[[VAR.name]] 'このサーバー上のアカウントを持つユーザーのために有効になっている。これらのユーザーは、ウェブメールの中から、このアーカイブにアクセスできるようになります。このメッセージに応答する必要はない。"
 

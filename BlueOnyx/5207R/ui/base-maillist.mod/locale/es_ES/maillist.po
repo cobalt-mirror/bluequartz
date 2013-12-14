@@ -1,0 +1,415 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "maillists"
+msgstr "Listas de correo"
+
+msgid "maillistsHelp"
+msgstr "[[base-maillist.maillistList_menu]] se pueden manejar aquí."
+
+msgid "maillistList_menu"
+msgstr "Listas de correo"
+
+msgid "maillistList"
+msgstr "Listas de correo en [[VAR.group]]"
+
+msgid "maillistNameHeader"
+msgstr "Nombre"
+
+msgid "maillistNameHeader_help"
+msgstr "Este es el nombre de la lista de correo."
+
+msgid "recipientsHeader"
+msgstr "Número de suscriptores"
+
+msgid "numSubs"
+msgstr "[[VAR.num]] Subscriber[[VAR.plural]]"
+
+msgid "recipientsHeader_help"
+msgstr "Estos son el número de usuarios que se suscriban a la lista de correo."
+
+msgid "groupSubscriber"
+msgstr "Todos los miembros del grupo [[VAR.group]]"
+
+msgid "maillistDescHeader"
+msgstr "Observaciones"
+
+msgid "maillistDescHeader_help"
+msgstr "Esta columna contiene información adicional acerca de cada lista de correo."
+
+msgid "maillistActionHeader"
+msgstr "Acción"
+
+msgid "maillistActionHeader_help"
+msgstr "Estos son los botones que se utilizan para modificar o eliminar una lista de correo."
+
+msgid "confirm_removal_of_list"
+msgstr "¿Está seguro que desea eliminar la lista de correo [[VAR.list]]?"
+
+msgid "subscribers"
+msgstr "Suscriptores"
+
+msgid "subscribers_help"
+msgstr "La lista de los miembros de la lista de correo se puede configurar aquí."
+
+msgid "numLocals"
+msgstr "[[VAR.num]] Subscriber[[VAR.plural]] Local"
+
+msgid "edit_locals"
+msgstr "Editar"
+
+msgid "edit_locals_help"
+msgstr "Haz clic aquí para seleccionar los usuarios locales que son suscriptores a esta lista de correo."
+
+msgid "localsSearch"
+msgstr "Búsqueda de usuarios"
+
+msgid "search"
+msgstr "Búsqueda"
+
+msgid "search_help"
+msgstr "Haga clic aquí para ver los usuarios que coincidan con los criterios introducidos."
+
+msgid "showall"
+msgstr "Mostrar todos los usuarios"
+
+msgid "showall_help"
+msgstr "Haga clic aquí para visualizar todos los usuarios en el sitio."
+
+msgid "showselected"
+msgstr "Mostrar sólo los usuarios"
+
+msgid "showselected_help"
+msgstr "Haga clic aquí para mostrar sólo los usuarios que están actualmente seleccionados."
+
+msgid "localSubs_list"
+msgstr "[[VAR.criteria]] en [[VAR.fqdn]]"
+
+msgid "matching"
+msgstr "Los usuarios que coincidan [[VAR.criteria]]"
+
+msgid "selected"
+msgstr "Usuarios seleccionados"
+
+msgid "all"
+msgstr "Todos los usuarios"
+
+msgid "selectAll"
+msgstr "Seleccione Todos los usuarios"
+
+msgid "selectAll_help"
+msgstr "Haga clic aquí para seleccionar todos los usuarios en este sitio. La selección incluirá todos los usuarios de esta página y de todos los usuarios en otras páginas también."
+
+msgid "selectPage"
+msgstr "Seleccionar esta página"
+
+msgid "selectPage_help"
+msgstr "Haga clic aquí para seleccionar todos los usuarios de esta página."
+
+msgid "use_these"
+msgstr "Utilice Selección actual"
+
+msgid "use_these_help"
+msgstr "Haga clic aquí para utilizar la selección actual como la lista [[base-maillist.localSubscribers]]."
+
+msgid "cancel"
+msgstr "Cancelar"
+
+msgid "cancel_help"
+msgstr "Haga clic aquí para volver a la página de configuración y pasar por alto la selección actual."
+
+msgid "name"
+msgstr "Nombre de usuario"
+
+msgid "name_help"
+msgstr "El nombre de los usuarios en este sitio virtual. Seleccione las casillas de verificación para agregar usuarios a esta lista de correo."
+
+msgid "createMailList"
+msgstr "Añadir a la Lista de Correo [[VAR.fqdn]]"
+
+msgid "modifyMailList"
+msgstr "Modificar la configuración de la lista de correo para [[VAR.listName]]"
+
+msgid "basic"
+msgstr "Básico"
+
+msgid "advanced"
+msgstr "Avanzado"
+
+msgid "basic_help"
+msgstr "Haga clic aquí para configurar las opciones de la lista de correo básicas."
+
+msgid "advanced_help"
+msgstr "Haga clic aquí para configurar las opciones avanzadas de la lista de correo, tales como las políticas de publicación y suscripción."
+
+msgid "listName"
+msgstr "Nombre de la Lista"
+
+msgid "listName_rule"
+msgstr "Introduzca sólo caracteres alfanuméricos en minúsculas, guiones, puntos y guiones bajos. Por ejemplo, las ventas es una entrada válida."
+
+msgid "listName_help"
+msgstr "Introduzca el nombre de la lista de correo. [[base-maillist.listName_rule]]"
+
+msgid "listName_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-maillist.listName]]. [[base-maillist.listName_rule]]"
+
+msgid "listName_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-maillist.listName]]. [[base-maillist.listName_rule]]"
+
+msgid "workgroupMembers"
+msgstr "Miembros del grupo"
+
+msgid "workgroupMembers_help"
+msgstr "Este campo contiene una lista de los usuarios que son actualmente miembros del grupo que se asocia con esta lista. Todos los miembros de este grupo siempre está suscrito a esta lista de correo."
+
+msgid "group_field"
+msgstr "Lista de Grupos Nombre"
+
+msgid "group_field_help"
+msgstr "Este es el nombre de la lista de correo de grupo. Todos los miembros de este grupo se suscriben automáticamente a esta lista de correo."
+
+msgid "save"
+msgstr "Guardar"
+
+msgid "save_help"
+msgstr "Guarde esta lista de correo."
+
+msgid "localSubscribers"
+msgstr "Suscriptores Locales"
+
+msgid "localSubscribers_help"
+msgstr "Haga clic en el botón Editar para seleccionar los usuarios locales que son suscriptores a esta lista de correo."
+
+msgid "subscribed"
+msgstr "Los usuarios suscritos"
+
+msgid "unsubscribed"
+msgstr "Los usuarios no suscritas"
+
+msgid "remoteSubscribers"
+msgstr "Suscriptores remotos"
+
+msgid "remoteSubscribers_rule"
+msgstr "Por favor, introduce una dirección de correo electrónico con el formato adecuado. Por ejemplo, user@example.com es una entrada válida."
+
+msgid "remoteSubscribers_help"
+msgstr "Introduce los usuarios remotos que son suscriptores a esta lista de correo. Los usuarios remotos son usuarios que no tienen cuentas en este dispositivo de servidor. [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "remoteSubscribers_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue]] es un valor no válido para [[base-maillist.remoteSubscribers]]. [[base-maillist.remoteSubscribers_rule]]"
+
+msgid "description"
+msgstr "Observaciones"
+
+msgid "description_help"
+msgstr "Introduzca información adicional o comentarios acerca de la lista de correo aquí."
+
+msgid "moderator"
+msgstr "Propietario / Moderador"
+
+msgid "moderator_rule"
+msgstr "Por favor, introduce una dirección de correo electrónico con el formato correcto o el nombre de usuario de un usuario válido en este dispositivo de servidor. El valor por defecto es admin. Por ejemplo, user@example.com y administrador son entradas válidas."
+
+msgid "moderator_help"
+msgstr "Introduzca la dirección de correo electrónico del usuario que realiza todas las tareas administrativas de la lista de correo. [[base-maillist.moderator_rule]]"
+
+msgid "moderator_invalid"
+msgstr "Lo sentimos, [[VAR.invalidValue] es un valor no válido para [[base-maillist.moderator]]. [[base-maillist.moderator_rule]]"
+
+msgid "Moderator-does-not-exist"
+msgstr "Moderador válido: la [[VAR.moderator]] usuario no parece existir."
+
+msgid "moderator_empty"
+msgstr "Lo sentimos, no se ha introducido un valor para [[base-maillist.moderator]]. Debe ingresar un valor, incluso si no se han especificado las políticas de moderación de la lista de correo. [[base-maillist.moderator_rule]]"
+
+msgid "policies"
+msgstr "Políticas"
+
+msgid "apassword"
+msgstr "Contraseña"
+
+msgid "apassword_help"
+msgstr "Introduzca una contraseña de administración para esta lista de correo. Esta contraseña se utiliza al realizar ciertas tareas de administración de lista a través de correo electrónico (por ejemplo, la aprobación de las suscripciones o moderar los mensajes). Si no va a utilizar estas características, puede dejar este campo en blanco."
+
+msgid "postingPolicy"
+msgstr "Política de entradas"
+
+msgid "postingPolicy_help"
+msgstr "Seleccione una política de contabilización de esta lista de correo. Si decide Moderador Confirma todos los mensajes, cada mensaje se requerirá la aprobación de la lista de propietario / moderador."
+
+msgid "any"
+msgstr "Todos los usuarios pueden publicar mensajes"
+
+msgid "members"
+msgstr "Sólo los suscriptores pueden publicar mensajes"
+
+msgid "moderated"
+msgstr "Moderador Confirma todos los mensajes"
+
+msgid "admin"
+msgstr "Sólo los administradores pueden publicar mensajes"
+
+msgid "domain"
+msgstr "Sólo los usuarios de dominios locales pueden publicar mensajes"
+
+msgid "subscriptionPolicy"
+msgstr "Política Suscripción"
+
+msgid "subscriptionPolicy_help"
+msgstr "Seleccione la política de suscripción de la lista. Los usuarios pueden suscribirse o darse de baja de la lista enviando un correo a majordomo @ [[VAR.fqdn]] con las palabras "lista suscribirse" o "lista unsubscribe '(lista es el nombre de la lista de correo) en el cuerpo del mensaje. Si la política está "cerrado", el mensaje se envía al propietario de la lista para su aprobación antes de permitir la suscripción. Aprobación nunca está obligado a darse de baja."
+
+msgid "open"
+msgstr "Abra: cualquier usuario puede suscribirse."
+
+msgid "closed"
+msgstr "Se requiere la aprobación del propietario de lista para la suscripción: Cerrado."
+
+msgid "confirm"
+msgstr "Confirmar: Se requiere la confirmación por correo electrónico de suscripción."
+
+msgid "maxlength"
+msgstr "Duración máxima del mensaje"
+
+msgid "maxlength_help"
+msgstr "Seleccione el tamaño máximo en kilobytes o megabytes permitidos para los mensajes enviados a esta lista de correo. Los mensajes que superen este tamaño serán rechazados."
+
+msgid "5120"
+msgstr "5 kb"
+
+msgid "51200"
+msgstr "50 kb"
+
+msgid "512000"
+msgstr "500 kb"
+
+msgid "10485760"
+msgstr "10 MB"
+
+msgid "104857600"
+msgstr "100 MB"
+
+msgid "replyToList"
+msgstr "Responder Política"
+
+msgid "replyToList_help"
+msgstr "Establecer la política de respuesta para esta lista de correo. Si usted elige Responder a la lista, las respuestas irán a la lista. De lo contrario, las respuestas irán sólo al autor original del mensaje."
+
+msgid "replyList"
+msgstr "Responder a la lista"
+
+msgid "archiveSettings"
+msgstr "Archiving"
+
+msgid "archiveEnabled"
+msgstr "Permitir"
+
+msgid "archiveEnabled_help"
+msgstr "Indica si los mensajes enviados a esta lista de correo se archivarán. Los usuarios con cuentas en este dispositivo de servidor será capaz de acceder a estos archivos utilizando su cuenta de correo web, si está instalado WebMail."
+
+msgid "keepForDays"
+msgstr "Mantenga Período (días)"
+
+msgid "keepForDays_help"
+msgstr "Introduzca un número que especifica el intervalo de tiempo en días que los mensajes serán guardados en el archivo. Introduzca un cero (0) para mantener los mensajes archivados indefinidamente."
+
+msgid "keepForDays_rule"
+msgstr "Por favor, introduzca un número que especifica el intervalo de tiempo en días que los mensajes serán guardados en el archivo. Introduzca un cero (0) para mantener los mensajes archivados indefinidamente."
+
+msgid "keepForDays_empty"
+msgstr "Lo sentimos, no se ha especificado un valor para [[base-maillist.keepForDays]]. [[base-maillist.keepForDays_rule]]"
+
+msgid "keepForDays_invalid"
+msgstr "Lo sentimos, la [[base-maillist.keepForDays]] campo contiene un valor no válido. [[base-maillist.keepForDays_rule]]"
+
+msgid "name-already-taken"
+msgstr "Lo sentimos, la lista de correo no se puede crear porque el nombre especificado ya está en uso por una lista de correo. Por favor, introduzca un nombre diferente y vuelva a intentarlo."
+
+msgid "name-already-taken-by-user"
+msgstr "Lo sentimos, la lista de correo no se puede crear porque el nombre especificado ya está en uso por un usuario. Por favor, introduzca un nombre diferente y vuelva a intentarlo."
+
+msgid "Mail-alias-already-taken"
+msgstr "Lo sentimos, la lista de correo no se puede crear porque los alias de correo electrónico que necesita la lista ya existen. Trate de darle a la lista de correo de un nombre diferente o eliminar alias de correo electrónico con nombres similares."
+
+msgid "CannotDeleteGroupMaillist"
+msgstr "Lo sentimos, listas de correo para los grupos de usuarios de este dispositivo de servidor no se pueden quitar."
+
+msgid "Could-not-create-maillist"
+msgstr "Disculpa, ocurrió un error. La lista de correo no pudo ser creada."
+
+msgid "maillistArchive"
+msgstr "Mailing List Archive - [[VAR.name]]"
+
+msgid "title"
+msgstr "Sujeto"
+
+msgid "title_help"
+msgstr "Este es el asunto del mensaje."
+
+msgid "author"
+msgstr "Remitente"
+
+msgid "author_help"
+msgstr "Este es el nombre o dirección de correo electrónico de la persona que envió el mensaje."
+
+msgid "date"
+msgstr "Fecha"
+
+msgid "date_help"
+msgstr "Esta es la fecha en que el mensaje fue recibido."
+
+msgid "readMessage"
+msgstr "Leer Mensaje"
+
+msgid "readMessage_help"
+msgstr "Leer Mensaje"
+
+msgid "from"
+msgstr "Desde"
+
+msgid "from_help"
+msgstr "Este es el nombre y / o dirección de correo electrónico de la persona que envió el mensaje."
+
+msgid "subject"
+msgstr "Sujeto"
+
+msgid "subject_help"
+msgstr "Este es el asunto del mensaje."
+
+msgid "message"
+msgstr "Mensaje"
+
+msgid "message_help"
+msgstr "Este es el texto del mensaje."
+
+msgid "replySender"
+msgstr "Responder al remitente"
+
+msgid "replySender_help"
+msgstr "Haga clic aquí para responder al autor del mensaje."
+
+msgid "replyAll"
+msgstr "Responder a todos"
+
+msgid "replyAll_help"
+msgstr "Haga clic aquí para responder al autor ya todos los destinatarios del mensaje."
+
+msgid "membership"
+msgstr "Afiliación"
+
+msgid "membership_help"
+msgstr "Membresía define los usuarios asociados a esta lista de correo."
+
+msgid "WelcomeMessageSubject"
+msgstr "Archiving se ha habilitado"
+
+msgid "WelcomeMessageBody"
+msgstr "Este correo electrónico ha sido enviado a usted para informarle que el archivo de la lista de correo '[[VAR.name]]' se ha habilitado para los usuarios con cuentas en este servidor. Estos usuarios podrán acceder a este archivo desde dentro de WebMail. No hay necesidad de responder a este mensaje."
+

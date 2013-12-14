@@ -1,106 +1,99 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: base-maillist.po\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-25 18:15+0100\n"
-"Last-Translator: Michael Stauber <mstauber@solarspeed.net>\n"
-"Language-Team: Michael Stauber <mstauber@solarspeed.net>\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
-"X-Poedit-SourceCharset: iso-8859-1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-# --- Menu
 msgid "maillists"
 msgstr "Mailing-Listen"
 
 msgid "maillistsHelp"
-msgstr "Hier können Sie [[base-maillist.maillistList_menu]] verwalten."
+msgstr "[[base-maillist.maillistList_menu]] können hier verwaltet werden."
 
-# --- Mailing Lists page
 msgid "maillistList_menu"
 msgstr "Mailing-Listen"
 
 msgid "maillistList"
-msgstr "Mailing-Listen für [[VAR.group]]"
+msgstr "Mailinglisten auf [[VAR.group]]"
 
 msgid "maillistNameHeader"
 msgstr "Name"
 
 msgid "maillistNameHeader_help"
-msgstr "Name der Mailing-Liste"
+msgstr "Dies ist der Name der Mailingliste."
 
 msgid "recipientsHeader"
-msgstr "Anzahl der Abonenten"
+msgstr "Anzahl der Abonnenten"
 
 msgid "numSubs"
-msgstr "[[VAR.num]] Abonenten"
+msgstr "[[VAR.num]] Subscriber[[VAR.plural]]"
 
 msgid "recipientsHeader_help"
-msgstr "Anzahl der Abonenten der Mailing-Liste."
+msgstr "Dies sind die Anzahl der Benutzer, welche die Mailingliste abonniert haben."
 
 msgid "groupSubscriber"
-msgstr "Alle Mitglieder der [[VAR.group]] Gruppe"
+msgstr "Alle Mitglieder der Gruppe [[VAR.group]]"
 
 msgid "maillistDescHeader"
-msgstr "Kommentare"
+msgstr "Bemerkungen"
 
 msgid "maillistDescHeader_help"
-msgstr "Diese Zeile beinhaltet Zusatzinformationen über jede Mailing-Liste."
+msgstr "Diese Spalte enthält zusätzliche Informationen zu jeder Mailing-Liste."
 
 msgid "maillistActionHeader"
 msgstr "Aktion"
 
 msgid "maillistActionHeader_help"
-msgstr "Mit diesen Knöpfen können Sie Mailing-Liste(n) modifizieren oder löschen."
+msgstr "Hier können Sie Mailing-Listen ändern oder löschen."
 
 msgid "confirm_removal_of_list"
-msgstr "Sind Sie sicher, dass die die Mailing-Liste  [[VAR.list]] löschen möchten?"
+msgstr "Sind Sie sicher, dass Sie die [[VAR.list]] Mailing-Liste entfernen wollen?"
 
 msgid "subscribers"
-msgstr "Abonenten"
+msgstr "Abonnenten"
 
 msgid "subscribers_help"
-msgstr "Die Liste der Abonenten der Mailing-Liste kann hier konfiguriert werden."
+msgstr "Die Liste der Mitglieder der Mailingliste kann hier bearbeitet werden."
 
 msgid "numLocals"
-msgstr "[[VAR.num]] Lokale Abonenten"
+msgstr "[[VAR.num]] lokale Subscriber[[VAR.plural]]"
 
 msgid "edit_locals"
-msgstr "Ändern"
+msgstr "Bearbeiten"
 
 msgid "edit_locals_help"
-msgstr "Klicken Sie hier um die lokalen Benutzer auszuwählen, welche Abonenten der Mailing-Liste sind."
+msgstr "Klicken Sie hier, um lokale Konten als Teilnehmer dieser Mailing-Liste auszuwählen."
 
 msgid "localsSearch"
-msgstr "Benutzerliste durchsuchen"
+msgstr "Suche Benutzerliste"
 
 msgid "search"
-msgstr "Suchen"
+msgstr "Suche"
 
 msgid "search_help"
-msgstr "Klicken Sie hier um Benutzer anzuzeigen, welche Ihren Suchkriterien entsprechen."
+msgstr "Klicken Sie hier, um Benutzer zu finden, welche den eingegebenen Kriterien entsprechen."
 
 msgid "showall"
 msgstr "Alle Benutzer anzeigen"
 
 msgid "showall_help"
-msgstr "Klicken Sie hier, um alle Benutzer der Site anzuzeigen."
+msgstr "Klicken Sie hier, um alle Benutzer anzuzeigen."
 
 msgid "showselected"
 msgstr "Nur ausgewählte Benutzer anzeigen"
 
 msgid "showselected_help"
-msgstr "Klicken Sie hier, um nur Benutzer anzuzeigen, die ausgwählt wurden."
+msgstr "Klicken Sie hier, um nur Benutzer anzuzeigen, welche derzeit ausgewählt sind."
 
 msgid "localSubs_list"
 msgstr "[[VAR.criteria]] auf [[VAR.fqdn]]"
 
 msgid "matching"
-msgstr "Benutzer, auf die  [[VAR.criteria]] zutrifft"
+msgstr "Benutzer entsprechend [[VAR.criteria]]"
 
 msgid "selected"
 msgstr "Ausgewählte Benutzer"
@@ -109,187 +102,184 @@ msgid "all"
 msgstr "Alle Benutzer"
 
 msgid "selectAll"
-msgstr "Alle Benutzer auswählen"
+msgstr "Wählen Sie Alle Benutzer"
 
 msgid "selectAll_help"
-msgstr "Klicken Sie hier, um alle Benutzer dieser Site auszuwählen. Die Auswahl wird alle Benutzer auf dieser (und anderen) Seiten beinhalten."
+msgstr "Klicken Sie hier, um alle Benutzer auf dieser Seite auszuwählen. Die Auswahl wird für alle Benutzer auf dieser Seite und alle Benutzer auf andere Seiten entsprechend erweitert."
 
 msgid "selectPage"
-msgstr "Diese Seite auswählen"
+msgstr "Wählen Sie diese Seite"
 
 msgid "selectPage_help"
-msgstr "Klicken Sie hier, um alle Benutzer dieser Site auszuwählen."
+msgstr "Klicken Sie hier, um alle Benutzer auf dieser Seite auswählen."
 
 msgid "use_these"
-msgstr "Nutze bestehende Auswahl"
+msgstr "Verwenden Sie aktuelle Auswahl"
 
 msgid "use_these_help"
-msgstr "Klicken Sie hier, um die momentane Auswahl an lokalen Benutzer zu verwenden."
+msgstr "Klicken Sie hier, um die aktuelle Auswahl als [[base-maillist.localSubscribers]] Liste verwenden."
 
 msgid "cancel"
-msgstr "Abbrechen"
+msgstr "Stornieren"
 
 msgid "cancel_help"
-msgstr "Klicken Sie hier um die momentanen Einstellungen zu ignorieren und zur vorherigen Auswahl zurückzukehren."
+msgstr "Klicken Sie hier, um zur Seite Einstellungen zurückzukehren und die aktuelle Auswahl zu ignorieren."
 
 msgid "name"
 msgstr "Benutzername"
 
 msgid "name_help"
-msgstr "Name des Benutzers auf dieser virtuellen Site. Markieren Sie die Checkbox um den Benutzer zur Mailing-Liste hinzuzufügen."
+msgstr "Die Namen der Benutzer dieser virtuellen Site. Wählen Sie die Kontrollkästchen an, um die Benutzer zu dieser Mailing-Liste hinzuzufügen."
 
-# ----- Add/modify a mailing list Basic
 msgid "createMailList"
 msgstr "Mailing-Liste zu [[VAR.fqdn]] hinzufügen"
 
 msgid "modifyMailList"
-msgstr "Konfiguration der Mailing-Liste für [[VAR.listName]]"
+msgstr "Ändern Sie Einstellungen für die Mailingliste [[VAR.listName]]"
 
 msgid "basic"
-msgstr "Standard"
+msgstr "Grund-"
 
 msgid "advanced"
 msgstr "Fortgeschritten"
 
 msgid "basic_help"
-msgstr "Klicken Sie hier, um die Standard-Einstellungen der Mailing-Liste einzusehen und zu ändern."
+msgstr "Klicken Sie hier, um grundlegenden Optionen der Mailingliste zu konfigurieren."
 
 msgid "advanced_help"
-msgstr "Klicken Sie hier, um die erweiterten Optionen der Mailing-Liste zu verwalten."
+msgstr "Klicken Sie hier, um erweiterte Mailingliste Optionen wie Buchungs- und Abonnement-Richtlinien zu konfigurieren."
 
 msgid "listName"
-msgstr "Name der Liste"
+msgstr "Liste Name"
 
 msgid "listName_rule"
-msgstr "Bitte geben Sie den Namen in Kleinschreibung an. Verwenden Sie dabei nur alphanumerische Zeichen, Minus, Punkt und Unterstriche. "
+msgstr "Bitte geben Sie nur kleingeschriebene alphanumerische Zeichen, Bindestriche, Punkte und Unterstriche."
 
 msgid "listName_help"
-msgstr "Geben Sie den Namen der Mailing-Liste ein.  [[base-maillist.listName_rule]]"
+msgstr "Geben Sie den Namen der Mailingliste ein. [[base-maillist.listName_rule]]"
 
 msgid "listName_invalid"
-msgstr "Der Wert [[VAR.invalidValue]] ist kein gültiger Eintrag für [[base-maillist.listName]].  [[base-maillist.listName_rule]]"
+msgstr "Leider ist [[VAR.invalidValue]] ein ungültiger Wert für [[base-maillist.listName]]. [[base-maillist.listName_rule]]"
 
 msgid "listName_empty"
-msgstr "Sie haben keinen gültigen Wert für  [[base-maillist.listName]] eingetragen.   [[base-maillist.listName_rule]]"
+msgstr "Sorry, Sie haben keinen Wert für [[base-maillist.listName]] eingegeben. [[base-maillist.listName_rule]]"
 
 msgid "workgroupMembers"
-msgstr "Mitglieder"
+msgstr "Gruppenmitglieder"
 
 msgid "workgroupMembers_help"
-msgstr "Dieses Feld beinhaltet eine Liste der Mitglieder, die zu der Gruppe gehören, die mit der Mailing-Liste assoziiert ist. Es sind immer alle Mitglieder dieser Gruppe Abonenten der Mailing-Liste."
+msgstr "Dieses Feld enthält eine Liste von Nutzern, die derzeit Mitglieder der Liste sind. Alle Mitglieder dieser Gruppe sind immer auf diese Mailing-Liste abonniert."
 
 msgid "group_field"
-msgstr "Gruppenliste"
+msgstr "Gruppenliste Name"
 
 msgid "group_field_help"
-msgstr "Name der Mailing-Liste dieser Gruppe. Alle Mitglieder dieser Gruppe werden automatisch als Abonenten der Mailing-Liste geführt."
+msgstr "Dies ist der Name der Gruppe, Mailing-Liste. Alle Mitglieder dieser Gruppe werden automatisch auf diese Mailing-Liste abonniert."
 
 msgid "save"
-msgstr "Speichern"
+msgstr "Sparen"
 
 msgid "save_help"
-msgstr "Diese Mailing-Liste speichern."
+msgstr "Speichern Sie diese Mailingliste."
 
 msgid "localSubscribers"
-msgstr "Lokale Abonenten"
+msgstr "Lokale Abonnenten"
 
 msgid "localSubscribers_help"
-msgstr "Klicken Sie hier um alle lokalen Benutzer auszuwählen, welche Abonenten dieser Mailing-Liste sind."
+msgstr "Klicken Sie auf die Schaltfläche 'Bearbeiten', um die lokalen Benutzer als Teilnehmer auf dieser Mailing-Liste auszuwählen."
 
 msgid "subscribed"
-msgstr "Abonenten hinzugefügt"
+msgstr "Benutzer mit Abo"
 
 msgid "unsubscribed"
-msgstr "Abonenten entfernt"
+msgstr "Benutzer ohne Abo"
 
 msgid "remoteSubscribers"
-msgstr "Nicht-lokale Abonenten"
+msgstr "Remote-Abonnenten"
 
 msgid "remoteSubscribers_rule"
-msgstr "Geben Sie hier die korrekt formatierte Email-Adresse ein. Zum Beispiel 'user@example.com' wäre eine gültige Adresse."
+msgstr "Bitte geben Sie eine korrekt formatierte E-Mail-Adresse ein. Zum Beispiel ist user@example.com gültiger Eintrag."
 
 msgid "remoteSubscribers_help"
-msgstr "Fügen Sie hier nicht-lokale Benutzer zur Mailing-Liste hinzu. Nicht-lokale Benutzer sind all jene, die kein Email-Konto auf diesem Server haben.[[base-maillist.remoteSubscribers_rule]]"
+msgstr "Geben Sie die Remote-Benutzer an, welche Teilnehmer auf diese Mailing-Liste sind. Remote-Benutzer sind Benutzer, die keine Konten auf diesem Server haben. [[base-maillist.remoteSubscribers_rule]]"
 
 msgid "remoteSubscribers_invalid"
-msgstr "Die Eingabe  [[VAR.invalidValue]] ist kein gültiger Wert für das Feld  [[base-maillist.remoteSubscribers]].  [[base-maillist.remoteSubscribers_rule]]"
+msgstr "Leider ist [[VAR.invalidValue]] ein ungültiger Wert für [[base-maillist.remoteSubscribers]]. [[base-maillist.remoteSubscribers_rule]]"
 
 msgid "description"
-msgstr "Kommentare"
+msgstr "Bemerkungen"
 
 msgid "description_help"
-msgstr "Fügen Sie hier Bemerkungen und Kommentare über die Mailing-Liste hinzu."
+msgstr "Geben Sie hier zusätzliche Informationen oder Kommentare über die Mailing-Liste ein."
 
-# ----- Add/modify a mailing list Advanced
 msgid "moderator"
-msgstr "Moderator"
+msgstr "Eigentümer/Moderator"
 
 msgid "moderator_rule"
-msgstr "Geben Sie hier die korrekt formatierte Email-Adresse oder den Benutzernamen eines Benutzers auf diesem Server ein. Standard ist 'admin'. Gültige Einträge wären zum Beispiel: 'user@example.com' oder 'admin'."
+msgstr "Bitte geben Sie eine korrekt formatierte E-Mail-Adresse oder den Benutzernamen eines gültigen Benutzer dieses Servers ein. Der Standardwert ist admin. Zum Beispiel sind 'user@example.com' und 'admin' gültige Einträge."
 
 msgid "moderator_help"
-msgstr "Geben Sie die Email-Adresse des Benutzers ein, der administrative Rechte für die Mailing-Liste erhalten soll.  [[base-maillist.moderator_rule]]"
+msgstr "Geben Sie die E-Mail-Adresse des Benutzers ein, der alle administrativen Aufgaben für die Mailingliste übernimmt. [[base-maillist.moderator_rule]]"
 
 msgid "moderator_invalid"
-msgstr "[[VAR.invalidValue] ist ein ungültiger Wert für das Feld [[base-maillist.moderator]].  [[base-maillist.moderator_rule]]"
+msgstr "Leider ist [[VAR.invalidValue] ein ungültiger Wert für [[base-maillist.moderator]]. [[base-maillist.moderator_rule]]"
 
-# handler version
 msgid "Moderator-does-not-exist"
-msgstr "Ungültiger Moderator: Der Benutzer [[VAR.moderator]] scheint nicht zu existieren."
+msgstr "Ungültige Moderator: Der Benutzer [[VAR.moderator]] scheint nicht zu existieren."
 
 msgid "moderator_empty"
-msgstr "Sie haben keinen Wert für das Feld [[base-maillist.moderator]] spezifiziert.  Sie müssen dort etwas eintragen, selbst wenn die Mailing-Liste als unmoderiert geführt wird. [[base-maillist.moderator_rule]]"
+msgstr "Sorry, Sie haben keinen Wert für [[base-maillist.moderator]] eingegeben haben. Sie müssen einen Wert eingeben, auch wenn keine Moderation für die Mailingliste erforderlich ist. [[base-maillist.moderator_rule]]"
 
 msgid "policies"
-msgstr "Moderation"
+msgstr "Richtlinien"
 
 msgid "apassword"
 msgstr "Passwort"
 
 msgid "apassword_help"
-msgstr "Geben Sie ein administratives Passwort ür diese Mailing-Liste ein. Dieses Passwort wird verwendet, wenn bestimmte Listenverwaltungsaufgaben über E-Mail durchgeführt werden (z. B. Genehmigung von Abonnements oder Moderation von Nachrichten). Wenn Sie diese Funktionen nicht verwenden wollen, können Sie dieses Feld leer lassen."
+msgstr "Geben Sie ein Administratorpasswort für diese Mailingliste. Dieses Passwort wird verwendet, wenn bestimmte Verwaltungsaufgaben per E-Mail (z.B. Genehmigung von Abonnements oder moderierte Nachrichten) anstehen. Wenn Sie auf die Verwendung dieser Features verzichten wollen, können Sie dieses Feld leer lassen."
 
 msgid "postingPolicy"
-msgstr "Beitrags-Richtlinie"
+msgstr "Buchungspolitik"
 
 msgid "postingPolicy_help"
-msgstr "Wählen Sie eine Beitrags-Richtlinie für diese Mailing-Liste aus. Wenn Sie die Option Moderator bestätigt alle Nachrichten auswählen, erfordert jede Nachricht eine Genehmigung durch den Listeneigentümer oder einen Moderator. "
+msgstr "Wählen Sie einen Buchungsrichtlinien für diese Mailingliste. Wenn Sie 'Moderator bestätigt alle Nachrichten' verwenden, ist für das Posting jeder Nachricht die Zustimmung des Besitzer/Moderator der Liste erforderlich."
 
 msgid "any"
-msgstr "Alle Benutzer können Nachrichten senden"
+msgstr "Alle Benutzer können Nachrichten veröffentlichen"
 
 msgid "members"
-msgstr "Nur Abonnenten können Nachrichten senden"
+msgstr "Nur Abonnenten können Nachrichten veröffentlichen"
 
 msgid "moderated"
-msgstr "Moderator bestätigt alle Nachrichten"
+msgstr "Moderator Bestätigt alle Nachrichten"
 
 msgid "admin"
-msgstr "Nur Administratoren können Nachrichten senden"
+msgstr "Nur Administratoren können Nachrichten verfassen"
 
 msgid "domain"
-msgstr "Nur Benutzer von lokale Domains können Nachrichten senden"
+msgstr "Nur Benutzer von lokalen Domänen können Nachrichten veröffentlichen"
 
 msgid "subscriptionPolicy"
-msgstr "Abonnement-Richtlinie"
+msgstr "Abonnement-Politik"
 
 msgid "subscriptionPolicy_help"
-msgstr "Wählen Sie eine Abonnement-Richtlinie für die Mailing-Liste aus. Abonenten können ihr Abonement dadurch beginnen oder beenden, indem sie eine Email an majordomo@[[VAR.fqdn]] mit dem Begriff 'subscribe list' or 'unsubscribe list' im Body der Nachricht schreiben. 'list' ist hierbei durch den Namen der Mailing-Liste zu ersetzen. Falls die Abonement-Richtlinie auf 'geschlossen' steht, erfolgt der Zutritt zur Liste erst nachdem der Moderator den Antrag bestätigt hat. Die Zustimmung zum Beenden des Abonements ist jedoch niemals erforderlich."
+msgstr "Wählen Sie die Liste der Abonnementen-Politik. Benutzer können selbst abonnieren oder abbestellen, indem sie eine Mail an majordomo@[[VAR.fqdn]] mit den Worten 'subscribe Liste' oder 'unsubscribe Liste' (Liste ist der Mailinglistenname) in den Textteil der Nachricht eingeben. Wenn die Richtlinie "geschlossen" gewählt ist, wird die Nachricht dem Moderator zur Genehmigung vorgelegt, bevor das Abonnement gestattet wird. Man kann sich jedoch jederzeit ohne Genehmigung abmelden."
 
 msgid "open"
-msgstr "Offen: Jeder kann die Liste abonieren."
+msgstr "Offer: Jeder kann der Liste beitreten."
 
 msgid "closed"
-msgstr "Geschlossen: Moderator muss Abonement bestätigen."
+msgstr "Geschlossen: Genehmigung durch Moderator erforderlich."
 
 msgid "confirm"
-msgstr "Bestätigung: Abonement begint erst nach Bestätigungsemail"
+msgstr "Bestätigung: E-Mail-Bestätigung für Abonnement erforderlich."
 
 msgid "maxlength"
-msgstr "Maximale Länge von Nachrichten"
+msgstr "Maximale Nachrichtenlänge"
 
 msgid "maxlength_help"
-msgstr "Wählen Sie die maximale Größe in KB oder MB, die für an diese Mailing-Liste gesendete Nachrichten gelten soll. Nachrichten, die diese Größe überschreiten, werden abgelehnt."
+msgstr "Wählen Sie die maximale Größe in Kilobyte oder Megabyte für Nachrichten aus, welche an diese Mailingliste geschickt werden können. Nachrichten, welche diese Größe überschreiten, werden abgelehnt."
 
 msgid "5120"
 msgstr "5 kb"
@@ -307,125 +297,119 @@ msgid "104857600"
 msgstr "100 MB"
 
 msgid "replyToList"
-msgstr "Antwort-Richtlinie"
+msgstr "Antworten-Richtlinie"
 
 msgid "replyToList_help"
-msgstr "Stellen Sie die Antwort-Richtlinie für diese Mailing-Liste ein. Wenn Sie Auf Liste antworten auswählen, gehen die Antworten an die Liste. Ansonsten gehen die Antworten nur an den ursprünglichen Verfasser der Nachricht."
+msgstr "Stellen Sie die Antwort-Richtlinien für diese Mailingliste. Wenn Sie Antworten auf Liste wählen, gegen alle Antworten and die Liste. Andernfalls werden Antworten nur an den ursprünglichen Autor der Nachricht zu gehen."
 
 msgid "replyList"
-msgstr "Antwort an Liste"
+msgstr "Beantworte-Liste"
 
 msgid "archiveSettings"
 msgstr "Archivierung"
 
 msgid "archiveEnabled"
-msgstr "Aktiv"
+msgstr "Ermöglichen"
 
 msgid "archiveEnabled_help"
-msgstr "Geben Sie an, ob an diese Mailing-Liste gesendete Nachrichten archiviert werden. Benutzer mit Konten auf diesem Server können mit Hilfe ihres WebMail-Kontos auf diese Archive zugreifen, wenn WebMail installiert wurde."
+msgstr "Festlegen, ob Nachrichten an diese Mailingliste archiviert werden. Benutzer mit Konten auf diesem Server sind in der Lage, auf dieses Archive zuzugreifen."
 
 msgid "keepForDays"
-msgstr "Aufbewahrungszeitraum (Tage)"
+msgstr "Aufbewahrungs-Zeitraum (Tage)"
 
 msgid "keepForDays_help"
-msgstr "Geben Sie eine Zahl ein, die angibt, wie viele Tage diese Nachrichten im Archiv aufbewahrt werden. Wenn Sie Null (0) eingeben, werden archivierte Nachrichten unbegrenzt aufbewahrt."
+msgstr "Geben Sie eine Zahl für die Dauer der Tage ein, die Nachrichten im Archiv aufbewahrt werden. Geben Sie eine Null (0) ein um Nachrichten auf unbestimmte Zeit zu archivieren."
 
 msgid "keepForDays_rule"
-msgstr "Geben Sie eine Zahl ein, die angibt, wie viele Tage diese Nachrichten im Archiv aufbewahrt werden. Wenn Sie Null (0) eingeben, werden archivierte Nachrichten unbegrenzt aufbewahrt. "
+msgstr "Bitte geben Sie eine Zahl für die Anzahl der Tage ein, die Nachrichten archiviert werden. Geben Sie eine Null (0) ein um Nachrichten auf unbestimmte Zeit zu archivieren."
 
 msgid "keepForDays_empty"
-msgstr "Sie haben keinen Wert für das Feld [[base-maillist.keepForDays]] eingegeben. [[base-maillist.keepForDays_rule]]"
+msgstr "Sorry, Sie haben keinen Wert für [[base-maillist.keepForDays]] eingegeben. [[base-maillist.keepForDays_rule]]"
 
 msgid "keepForDays_invalid"
-msgstr "Das Feld [[base-maillist.keepForDays]] enthält leider einen ungültigen Wert. [[base-maillist.keepForDays_rule]]"
+msgstr "Sorry, das Feld [[base-maillist.keepForDays]] enthält einen ungültigen Wert. [[base-maillist.keepForDays_rule]]"
 
-# ------ Handler messages
 msgid "name-already-taken"
-msgstr "Eine Mailing-Liste mit dem angegebenen Namen ist leider bereits vorhanden. Bitte geben Sie einen anderen Namen ein und versuchen Sie es noch einmal."
+msgstr "Sorry, die Mailingliste konnte nicht erstellt werden, weil der angegebene Name bereits von einer anderen Mailing-Liste verwendet wird. Bitte geben Sie einen anderen Namen ein und versuchen Sie es erneut."
 
 msgid "name-already-taken-by-user"
-msgstr "Eine Mailing-Liste mit diesem Namen kann nicht angelegt werden, da der angegebene Name bereits durch ein Email-Konto eines Benutzers verwendet wird. Bitte wählen Sie einen anderen Namen und versuchen Sie es erneut."
+msgstr "Sorry, die Mailingliste konnte nicht erstellt werden, da der angegebene Name ist bereits für ein Benutzer-Konto auf dem Server verwendet wird. Bitte geben Sie einen anderen Namen ein und versuchen Sie es erneut."
 
 msgid "Mail-alias-already-taken"
-msgstr "Eine Mailing-Liste mit diesem Namen kann nicht angelegt werden, da der angegebene Name bereits durch ein Email-Alias eines Benutzers verwendet wird. Bitte wählen Sie einen anderen Namen und versuchen Sie es erneut."
+msgstr "Sorry, die Mailingliste konnte nicht erstellt werden, weil das E-Mail-Alias, welches von der Liste benötigt wird, bereits anderweitig vorgeben wurde. Versuchen Sie, der Mailingliste einen anderen Namen oder eine andere E-Mail-Aliase zu geben."
 
 msgid "CannotDeleteGroupMaillist"
-msgstr "Leider können Mailing-Listen für Benutzergruppen auf diesem Server nicht entfernt werden."
+msgstr "Es tut uns leid, Mailinglisten für Benutzergruppen können nicht entfernt werden."
 
 msgid "Could-not-create-maillist"
-msgstr "Leider trat ein Fehler auf. Die Mailing-Liste konnte nicht erstellt werden. "
+msgstr "Sorry, es ist ein Fehler aufgetreten. Die Mailingliste konnte nicht erstellt werden."
 
-# ----- Archives for users with accounts
-#--- List view
 msgid "maillistArchive"
-msgstr "Mailing-Liste Archiv - [[VAR.name]]"
+msgstr "Mailinglisten-Archiv - [[VAR.name]]"
 
 msgid "title"
-msgstr "Betreff"
+msgstr "Thema"
 
 msgid "title_help"
-msgstr "Dies ist die Betreff-Zeile der Nachricht."
+msgstr "Dies ist der Gegenstand der Nachricht."
 
 msgid "author"
 msgstr "Absender"
 
 msgid "author_help"
-msgstr "Der Name oder die E-Mail-Adresse der Person, die die Nachricht gesendet hat."
+msgstr "Dies ist der Name oder E-Mail-Adresse der Person, an welche die Nachricht gesendet wird."
 
 msgid "date"
 msgstr "Datum"
 
 msgid "date_help"
-msgstr "Das Datum, an dem die Nachricht empfangen wurde."
+msgstr "Dies ist das Datum, zu welchem die Nachricht empfangen wurde."
 
-#--- Read message view
 msgid "readMessage"
-msgstr "Nachricht lesen"
+msgstr "Lesen von Nachrichten"
 
 msgid "readMessage_help"
-msgstr "Nachricht lesen"
+msgstr "Lesen von Nachrichten"
 
 msgid "from"
-msgstr "Von"
+msgstr "Absender"
 
 msgid "from_help"
-msgstr "Der Name bzw. die E-Mail-Adresse der Person, die die Nachricht gesendet hat."
+msgstr "Dies ist der Name und/oder die E-Mail-Adresse der Person, welche die Nachricht gesendet hat."
 
 msgid "subject"
-msgstr "Betreff"
+msgstr "Thema"
 
 msgid "subject_help"
-msgstr "Der Betreff der Nachricht."
+msgstr "Dies ist der Gegenstand der Nachricht."
 
 msgid "message"
 msgstr "Nachricht"
 
 msgid "message_help"
-msgstr "Der Text der Nachricht."
+msgstr "Dies ist der Text der Nachricht."
 
 msgid "replySender"
-msgstr "Auf Absender antworten"
+msgstr "Antwort an Absender"
 
 msgid "replySender_help"
-msgstr "Klicken Sie hier, um dem Autor der Nachricht zu antworten."
+msgstr "Klicken Sie hier, um an den Autor der Nachricht zu antworten."
 
 msgid "replyAll"
-msgstr "Antwort an alle"
+msgstr "Allen antworten"
 
 msgid "replyAll_help"
-msgstr "Klicken Sie hier, um dem Autor sowie allen Empfänger der Nachricht zu antworten."
+msgstr "Klicken Sie hier, um auf den Autor und alle anderen Empfänger der Nachricht zu antworten."
 
-# ------ Misc  (i.e. I have no idea)
 msgid "membership"
 msgstr "Mitgliedschaft"
 
 msgid "membership_help"
-msgstr "Die Mitgliedschaft definiert die Benutzer, die dieser Mailing-Liste zugeordnet sind."
+msgstr "Mitgliedschaft definiert die Benutzer, welche ein Abonement dieser Mailingliste haben."
 
-# ------- Strings for email messages
 msgid "WelcomeMessageSubject"
-msgstr "Archivierung wurde aktiviert"
+msgstr "Archivierung aktiviert wurde"
 
 msgid "WelcomeMessageBody"
-msgstr "Diese E-Mail weist Sie darauf hin, dass die Archivierung der Mailing-Liste [[VAR.name]] für Benutzer mit Konten auf diesem Server aktiviert wurde. Diese Benutzer können über WebMail auf dieses Archiv zugreifen. Sie müssen nicht auf diese Nachricht antworten."
+msgstr "Diese E-Mail wurde an Sie geschickt, um Ihre Mitgliedschaft in der Mailingliste '[[VAR.name]]' zu bestätigen. Es ist nicht notwendig auf diese Nachricht zu antworten."
 
