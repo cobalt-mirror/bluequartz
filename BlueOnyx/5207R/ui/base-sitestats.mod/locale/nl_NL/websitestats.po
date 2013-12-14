@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "customizeBut"
+msgstr "[[base-sitestats.customizeBut]]"
+
+msgid "customizeBut_help"
+msgstr "[[base-sitestats.customizeBut_help]]"
+
+msgid "generateBut"
+msgstr "[[base-sitestats.generateBut]]"
+
+msgid "generateBut_help"
+msgstr "[[base-sitestats.generateBut_help]]"
+
+msgid "summaryStats"
+msgstr "Web Gebruiksoverzicht Statistieken"
+
+msgid "reportGenerated"
+msgstr "[[base-sitestats.reportGenerated]]"
+
+msgid "reportGenerated_help"
+msgstr "[[base-sitestats.reportGenerated_help]]"
+
+msgid "firstRequest"
+msgstr "Eerste aanvragen"
+
+msgid "firstRequest_help"
+msgstr "De datum van het eerste verzoek behandeld in dit rapport. [[base-sitestats.requestCoverageHint]]"
+
+msgid "lastRequest"
+msgstr "Last Request"
+
+msgid "lastRequest_help"
+msgstr "De datum van de laatste aanvraag die in dit rapport. [[base-sitestats.requestCoverageHint]]"
+
+msgid "successfulRequests"
+msgstr "Totaal Succesvolle Verzoeken"
+
+msgid "successfulRequests_help"
+msgstr "Dit is het totaal van alle succesvolle aanvragen."
+
+msgid "pageRequests"
+msgstr "Pagina Verzoeken"
+
+msgid "pageRequests_help"
+msgstr "Dit is het aantal pagina aangevraagd. Een pagina is een bestand dat eindigt op. Html,. Htm,. Asp, of /."
+
+msgid "failedRequests"
+msgstr "Mislukte aanvragen"
+
+msgid "failedRequests_help"
+msgstr "Als mensen vragen onbestaande bestanden, het apparaat server genereert een slechte verzoek. Deze categorie omvat ook misvormde verzoeken en andere foutieve verzoeken."
+
+msgid "bytesTransfered"
+msgstr "[[base-sitestats.bytesTransfered]]"
+
+msgid "bytesTransfered_help"
+msgstr "[[base-sitestats.bytesTransfered_help]]"
+
+msgid "distinctFiles"
+msgstr "Verschillende bestanden Geserveerd"
+
+msgid "distinctFiles_help"
+msgstr "Aantal verschillende bestanden gediend door dit apparaat server."
+
+msgid "uniqueHosts"
+msgstr "Unieke Computers aanvragen Content"
+
+msgid "uniqueHosts_help"
+msgstr "Dit geeft het aantal unieke computers contact opnemen met deze server. Het geeft je een ruw idee van hoeveel verschillende mensen gedownloade content via dit apparaat server. Opmerking: Meerdere computers achter een firewall of een proxyserver wordt zo maar een adres tellen."
+
+msgid "otherStatistics"
+msgstr "Andere Web Rapport"
+
+msgid "vsitesReportBut"
+msgstr "[[base-sitestats.vsitesReportBut]]"
+
+msgid "vsitesReportBut_help"
+msgstr "[[base-sitestats.vsitesReportBut_help]]"
+
+msgid "periodicReportBut"
+msgstr "[[base-sitestats.periodicReportBut]]"
+
+msgid "periodicReportBut_help"
+msgstr "[[base-sitestats.periodicReportBut_help]]"
+
+msgid "historicalReportBut"
+msgstr "[[base-sitestats.historicalReportBut]]"
+
+msgid "historicalReportBut_help"
+msgstr "[[base-sitestats.historicalReportBut_help]]"
+
+msgid "domainReportBut"
+msgstr "Verzoeken van Domein"
+
+msgid "domainReportBut_help"
+msgstr "Rapporten krijgen die de domeinen waarvan verzoeken zijn oorsprong."
+
+msgid "typesReportBut"
+msgstr "Verzoeken van type bestand"
+
+msgid "typesReportBut_help"
+msgstr "Categoriseert verzoeken van de soorten bestanden."
+
+msgid "requestReportBut"
+msgstr "[[base-sitestats.requestReportBut]]"
+
+msgid "requestReportBut_help"
+msgstr "[[base-sitestats.requestReportBut_help]]"
+
+msgid "downloadLogBut"
+msgstr "[[base-sitestats.downloadLogBut]]"
+
+msgid "downloadLogBut_help"
+msgstr "[[base-sitestats.downloadLogBut_help]]"
+
+msgid "dailyHistory"
+msgstr "[[base-sitestats.dailyHistory]]"
+
+msgid "weeklyHistory"
+msgstr "[[base-sitestats.weeklyHistory]]"
+
+msgid "monthlyHistory"
+msgstr "[[base-sitestats.monthlyHistory]]"
+
+msgid "dailyHistory_help"
+msgstr "[[base-sitestats.dailyHistory_help]]"
+
+msgid "weeklyHistory_help"
+msgstr "[[base-sitestats.weeklyHistory_help]]"
+
+msgid "monthlyHistory_help"
+msgstr "[[base-sitestats.monthlyHistory_help]]"
+
+msgid "daily"
+msgstr "[[base-sitestats.daily]]"
+
+msgid "hourly"
+msgstr "[[base-sitestats.hourly]]"
+
+msgid "daily_help"
+msgstr "[[base-sitestats.daily_help]]"
+
+msgid "hourly_help"
+msgstr "[[base-sitestats.hourly_help]]"
+
+msgid "domainStats"
+msgstr "Domein Statistieken"
+
+msgid "domain"
+msgstr "[[base-sitestats.domain]]"
+
+msgid "domain_help"
+msgstr "[[base-sitestats.domain_help]]"
+
+msgid "requests"
+msgstr "[[base-sitestats.requests]]"
+
+msgid "requests_help"
+msgstr "Het aantal behandelde verzoeken."
+
+msgid "vsiteStats"
+msgstr "Web Gebruik door Virtual Site"
+
+msgid "bytes"
+msgstr "[[base-sitestats.bytes]]"
+
+msgid "bytes_help"
+msgstr "[[base-sitestats.bytes_help]]"
+
+msgid "pbytes"
+msgstr "[[base-sitestats.pbytes]]"
+
+msgid "pbytes_help"
+msgstr "[[base-sitestats.pbytes_help]]"
+
+msgid "site"
+msgstr "[[base-sitestats.site]]"
+
+msgid "site_help"
+msgstr "[[base-sitestats.site_help]]"
+
+msgid "typeStats"
+msgstr "Verzoeken op bestandstype"
+
+msgid "filetype"
+msgstr "[[base-sitestats.filetype]]"
+
+msgid "filetype_help"
+msgstr "[[base-sitestats.filetype_help]]"
+
+msgid "requestStats"
+msgstr "Verzoek Statistieken"
+
+msgid "requestFile"
+msgstr "[[base-sitestats.requestFile]]"
+
+msgid "requestFile_help"
+msgstr "[[base-sitestats.requestFile_help]]"
+
+msgid "requestNumber"
+msgstr "[[base-sitestats.requestNumber]]"
+
+msgid "requestNumber_help"
+msgstr "[[base-sitestats.requestNumber_help]]"
+
+msgid "fullDailyDesc"
+msgstr "[[base-sitestats.fullDailyDesc]]"
+
+msgid "fullWeeklyDesc"
+msgstr "[[base-sitestats.fullWeeklyDesc]]"
+
+msgid "fullMonthlyDesc"
+msgstr "[[base-sitestats.fullMonthlyDesc]]"
+
+msgid "hourlySummaryDesc"
+msgstr "[[base-sitestats.hourlySummaryDesc]]"
+
+msgid "dailySummaryDesc"
+msgstr "[[base-sitestats.dailySummaryDesc]]"
+
