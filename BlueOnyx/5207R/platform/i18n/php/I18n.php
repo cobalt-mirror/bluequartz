@@ -43,7 +43,7 @@ class I18n {
 			$langs = "en_US";
 		}
 
-		// If the detected language is not 'de_DE', 'da_DK', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT' or 'ja_JP', we fall back to 'en_US'.
+		// If the detected language is not 'de_DE', 'da_DK', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL' or 'ja_JP', we fall back to 'en_US'.
 		// This was added particularly for 5107R/5108R (and later) as it would default to German otherwise:
 		$my_lang = explode(',', $langs);
     if ((($my_lang[0] != "de-DE") && ($my_lang[0] != "de_DE")) &&
@@ -51,6 +51,7 @@ class I18n {
         (($my_lang[0] != "es-ES") && ($my_lang[0] != "es_ES")) &&
         (($my_lang[0] != "fr-FR") && ($my_lang[0] != "fr_FR")) &&
         (($my_lang[0] != "it-IT") && ($my_lang[0] != "it_IT")) &&
+        (($my_lang[0] != "nl-NL") && ($my_lang[0] != "nl_NL")) &&
         (($my_lang[0] != "pt-PT") && ($my_lang[0] != "pt_PT")) &&
         (($my_lang[0] != "ja") && ($my_lang[0] != "ja-JP") && ($my_lang[0] != "ja_JP"))) {
             $langs = "en_US";

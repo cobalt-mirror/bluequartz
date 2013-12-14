@@ -31,11 +31,15 @@ my $encodings = {
 # and we can even claim we support the euro character (sort of)
 #
 my $sys_langs = {
-			'ja' => 'ja_JP.UTF-8',
-			'en' => 'en_US',
-			'de' => 'de_DE@euro',
-			'es' => 'es_ES@euro',
-			'fr' => 'fr_FR@euro'
+				'ja' => 'ja_JP.eucjp',
+				'en' => 'en_US',
+				'de' => 'de_DE@euro',
+				'es' => 'es_ES@euro',
+				'it' => 'it_IT@euro',
+				'nl' => 'nl_NL@euro',
+				'pt' => 'pt_PT@euro',
+				'da' => 'da_DK@euro',
+				'fr' => 'fr_FR@euro'
 			# does chinese need any special treatment?
 		};
 

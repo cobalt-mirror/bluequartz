@@ -102,6 +102,9 @@ fi
 
 %changelog
 
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX02
+- Merged in locale support for the Netherlands ('nl_NL').
+
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX01
 - Preparational build for 5207R/5208R. Doesn't include new GUI yet.
 - Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
