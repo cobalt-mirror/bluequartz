@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl -w -I/usr/sausalito/perl -I.
 # $Id: webscripting.pl 259 2004-01-03 06:28:40Z shibuya $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
