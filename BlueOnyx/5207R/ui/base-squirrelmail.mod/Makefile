@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=squirrelmail
 
 VERSION=1.0.0
-RELEASE=0BX14
+RELEASE=0BX15
 
 # add a buildarch if desired
 BUILDARCH=noarch
