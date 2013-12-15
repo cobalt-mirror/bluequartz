@@ -28,7 +28,7 @@ my $hostname = $obj->{hostname};
 my $domain = $obj->{domainname};
 $hostname =~ s/\.${domain}$//;
 my $fqdn = $hostname . '.' . $domain;
-my $httpPort = $web->{'httpPort'}
+my $httpPort = $web->{'httpPort'};
 
 umask(0077);
 my $stage = "$confdir/httpd.conf~";
