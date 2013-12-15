@@ -264,7 +264,7 @@ msgid "subscriptionPolicy"
 msgstr "Abonnement-Politik"
 
 msgid "subscriptionPolicy_help"
-msgstr "Wählen Sie die Liste der Abonnementen-Politik. Benutzer können selbst abonnieren oder abbestellen, indem sie eine Mail an majordomo@[[VAR.fqdn]] mit den Worten 'subscribe Liste' oder 'unsubscribe Liste' (Liste ist der Mailinglistenname) in den Textteil der Nachricht eingeben. Wenn die Richtlinie "geschlossen" gewählt ist, wird die Nachricht dem Moderator zur Genehmigung vorgelegt, bevor das Abonnement gestattet wird. Man kann sich jedoch jederzeit ohne Genehmigung abmelden."
+msgstr "Wählen Sie die Liste der Abonnementen-Politik. Benutzer können selbst abonnieren oder abbestellen, indem sie eine Mail an majordomo@[[VAR.fqdn]] mit den Worten 'subscribe Liste' oder 'unsubscribe Liste' (Liste ist der Mailinglistenname) in den Textteil der Nachricht eingeben. Wenn die Richtlinie 'geschlossen' gewählt ist, wird die Nachricht dem Moderator zur Genehmigung vorgelegt, bevor das Abonnement gestattet wird. Man kann sich jedoch jederzeit ohne Genehmigung abmelden."
 
 msgid "open"
 msgstr "Offer: Jeder kann der Liste beitreten."

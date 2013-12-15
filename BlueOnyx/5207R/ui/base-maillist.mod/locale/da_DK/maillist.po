@@ -264,7 +264,7 @@ msgid "subscriptionPolicy"
 msgstr "Abonnement Policy"
 
 msgid "subscriptionPolicy_help"
-msgstr "Vælg den liste abonnement politik. Brugere kan tilmelde eller framelde fra listen ved at sende mail til Majordomo @ [[VAR.fqdn]] med ordene 'abonnere liste "eller" unsubscribe liste «(listen er den postliste navn) i selve meddelelsen. Hvis politikken er 'lukket', sendes meddelelsen til listen ejeren til godkendelse inden abonnementet er tilladt. Godkendelsen er aldrig forpligtet til at afmelde."
+msgstr "Vælg den liste abonnement politik. Brugere kan tilmelde eller framelde fra listen ved at sende mail til majordomo@[[VAR.fqdn]] med ordene 'subscribe list' eller 'unsubscribe list' (listen er den postliste navn) i selve meddelelsen. Hvis politikken er 'lukket', sendes meddelelsen til listen ejeren til godkendelse inden abonnementet er tilladt. Godkendelsen er aldrig forpligtet til at afmelde."
 
 msgid "open"
 msgstr "Åben: enhver bruger kan abonnere på."

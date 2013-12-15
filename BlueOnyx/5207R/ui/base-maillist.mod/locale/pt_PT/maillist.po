@@ -264,7 +264,7 @@ msgid "subscriptionPolicy"
 msgstr "Política de Assinatura"
 
 msgid "subscriptionPolicy_help"
-msgstr "Selecione política de subscrição da lista. Os usuários podem se cadastrar ou descadastrar da lista, enviando e-mail para majordomo @ [[VAR.fqdn]] com as palavras "lista subscrever" ou "lista unsubscribe" (lista é o nome da lista de discussão) no corpo da mensagem. Se a política é "fechada", a mensagem é enviada para o proprietário da lista para aprovação antes da assinatura é permitido. Aprovação nunca é obrigado a cancelar a assinatura."
+msgstr "Selecione política de subscrição da lista. Os usuários podem se cadastrar ou descadastrar da lista, enviando e-mail para majordomo@[[VAR.fqdn]] com as palavras 'subscribe list' ou 'unsubscribe list' (lista é o nome da lista de discussão) no corpo da mensagem. Se a política é 'fechada', a mensagem é enviada para o proprietário da lista para aprovação antes da assinatura é permitido. Aprovação nunca é obrigado a cancelar a assinatura."
 
 msgid "open"
 msgstr "Abra: qualquer usuário pode se inscrever."
@@ -411,5 +411,5 @@ msgid "WelcomeMessageSubject"
 msgstr "O arquivamento foi ativado"
 
 msgid "WelcomeMessageBody"
-msgstr "Este e-mail foi enviado a você para notificá-lo de que o arquivamento da lista de discussão "[[VAR.name]]" foi habilitado para os usuários com contas neste servidor. Esses usuários serão capazes de acessar esse arquivo de dentro do WebMail. Não há necessidade de responder a esta mensagem."
+msgstr "Este e-mail foi enviado a você para notificá-lo de que o arquivamento da lista de discussão '[[VAR.name]]' foi habilitado para os usuários com contas neste servidor. Esses usuários serão capazes de acessar esse arquivo de dentro do WebMail. Não há necessidade de responder a esta mensagem."
 

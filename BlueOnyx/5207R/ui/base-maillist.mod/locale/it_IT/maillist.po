@@ -264,7 +264,7 @@ msgid "subscriptionPolicy"
 msgstr "Politica di abbonamento"
 
 msgid "subscriptionPolicy_help"
-msgstr "Selezionare la politica di sottoscrizione della lista. Gli utenti possono iscriversi o cancellarsi dalla lista inviando mail a majordomo @ [[VAR.fqdn]] con le parole 'list subscribe' o 'lista unsubscribe' (lista è il nome della mailing list) nel corpo del messaggio. Se il criterio è 'chiuso', il messaggio viene inviato al proprietario della lista per l'approvazione prima della sottoscrizione è permesso. L'approvazione è mai necessario per annullare l'iscrizione."
+msgstr "Selezionare la politica di sottoscrizione della lista. Gli utenti possono iscriversi o cancellarsi dalla lista inviando mail a majordomo@[[VAR.fqdn]] con le parole 'subscribe list' o 'unsubscribe list' (lista è il nome della mailing list) nel corpo del messaggio. Se il criterio è 'chiuso', il messaggio viene inviato al proprietario della lista per l'approvazione prima della sottoscrizione è permesso. L'approvazione è mai necessario per annullare l'iscrizione."
 
 msgid "open"
 msgstr "Aperto: ogni utente può iscriversi."

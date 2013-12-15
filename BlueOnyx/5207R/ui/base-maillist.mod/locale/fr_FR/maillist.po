@@ -264,7 +264,7 @@ msgid "subscriptionPolicy"
 msgstr "Politique d'abonnement"
 
 msgid "subscriptionPolicy_help"
-msgstr "Sélectionnez la politique de souscription de la liste. Les utilisateurs peuvent s'abonner ou se désabonner de la liste en envoyant un courrier à majordomo @ [[VAR.fqdn]] avec les mots "liste souscrire» ou «liste de désabonnement (liste est le nom de la liste de diffusion) dans le corps du message. Si la politique est «fermé», le message est envoyé au propriétaire de la liste pour approbation avant la souscription est autorisée. Jamais l'approbation est nécessaire pour vous désinscrire."
+msgstr "Sélectionnez la politique de souscription de la liste. Les utilisateurs peuvent s'abonner ou se désabonner de la liste en envoyant un courrier à majordomo@[[VAR.fqdn]] avec les mots 'subscribe list' ou 'unsubscribe list' (liste est le nom de la liste de diffusion) dans le corps du message. Si la politique est 'fermé', le message est envoyé au propriétaire de la liste pour approbation avant la souscription est autorisée. Jamais l'approbation est nécessaire pour vous désinscrire."
 
 msgid "open"
 msgstr "Ouvrez: tout utilisateur peut s'abonner."
