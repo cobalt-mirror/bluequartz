@@ -114,6 +114,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
+- Modified glue/sbin/named_trigger_update.pl to only run if initial setup
+  has not yet been completed. We really don't want to run this on boxes
+  that already have been configured, as it might break expected DNS
+  behaviour.
+
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
 - Merged in locales for the Netherlands ('nl_NL').
 
