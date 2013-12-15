@@ -14,7 +14,7 @@ if [ -f /etc/yumgui.conf ]; then
   /bin/cat /tmp/yum.update | /bin/sed 's/\r//' | /bin/mail -s "`/bin/hostname` Yum Update output for `/bin/date +\%m`-`/bin/date +\%d`-`/bin/date +\%y`" $EMAILRECIPIENT
 fi
 
-/usr/bin/yum --exclude=base-maillist* --exclude=majordomo -y groupinstall blueonyx
+/usr/bin/yum --exclude=base-maillist* --exclude=majordomo --exclude=mailman --exclude base-mailman* -y groupinstall blueonyx
 
 /usr/bin/yum check-update > /tmp/yum.check-update
 /bin/rm -f /tmp/yum.updating
