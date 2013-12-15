@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=istat
 
 VERSION=1.2.0
-RELEASE=0BX03
+RELEASE=0BX04
 
 # add a buildarch if desired
 BUILDARCH=noarch
