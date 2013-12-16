@@ -130,6 +130,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Dec 16 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX09
+- Updated glue/handlers/yum-update.sh yet again to redirect the output 
+  of the 'yum groupinstall' to /dev/null. Otherwise we get a crond email
+  every day for this transaction.
+
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX08
 - Merged in locales for the Netherlands ('nl_NL').
 
