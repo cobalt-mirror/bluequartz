@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# This is a wrapper that wraps around the PHP mail() function. 
-# It logs some useful extra variables to /var/log/maillog.
-# These give us a good indication about which PHP script is
-# sending emails:
-
-/usr/bin/logger -p mail.info sendmail-wrapper-php: site=${_HTTP_HOST}, client=${_REMOTE_ADDR}, script=${PWD}${_SCRIPT_NAME}, uid=${UID}, user=${_SOWNER}
-/usr/sbin/sendmail -t -i $*

@@ -1,8 +1,0 @@
-<item 
-    id="base_phpmyadmin" 
-    label="[[base-phpmyadmin.PMA]]" 
-    description="[[base-phpmyadmin.PMA_help]]" 
-    url="/base/phpmyadmin/index.php"
->
-    <parent id="base_personalProfile" order="15"/>
-</item>
