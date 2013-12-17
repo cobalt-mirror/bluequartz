@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "SMARTnameTag"
+msgstr "Analyse d&#39;auto-surveillance et d&#39;information technologique (SMART) Détails de l&#39;état"
+
+msgid "noAMobject"
+msgstr "Vous ne trouvez pas l&#39;objet d&#39;Active Monitor"
+
+msgid "errRefreshingSnapshot"
+msgstr "Erreur d&#39;enregistrement instantané de l&#39;état SMART"
+
+msgid "errRegettingObject"
+msgstr "Erreur trouver un nouvel objet Active Monitor"
+
+msgid "smartFailures"
+msgstr "Un ou plusieurs de vos disques comporte une erreur. S&#39;il vous plaît sauvegarder votre système et de remplacer le disque défectueux. (FIXME! quel disque dois-je remplacer?)"
+
+msgid "smartDeclining"
+msgstr "Les disques suivants ont commencé à s&#39;affaiblir, mais sont actuellement en mesure de fonctionner sans aucune perte de données: [[VAR.display_names]]. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] de l&#39;aide pour remplacer un disque affaibli."
+
+msgid "smartOK"
+msgstr "auto-surveillance Drive fonctionne normalement sur tous les disques installés."
+
+msgid "turned_off_drives"
+msgstr "Les lecteurs suivants commencent à échouer et ont été désactivés: [[VAR.display_names]]. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] de l&#39;aide sur la façon de sauvegarder et remplacer les disques défectueux."
+
+msgid "unsafe"
+msgstr "Les disques suivants sont en train d&#39;échouer, mais ne peuvent pas être désactivés sans perte d&#39;information: [[VAR.display_names]]. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] de l&#39;aide sur la façon de sauvegarder et remplacer les disques défectueux."
+
+msgid "standalone"
+msgstr "Les disques suivants sont en train d&#39;échouer, mais ne peuvent pas être désactivés sans perte d&#39;information: [[VAR.display_names]]. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] de l&#39;aide sur la façon de sauvegarder et remplacer autonome disques défectueux."
+
+msgid "drive_off"
+msgstr "Ce disque a été désactivé parce qu&#39;il a échoué. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur le remplacement de ce lecteur."
+
+msgid "unsafe_drive"
+msgstr "Ce disque est en panne mais ne peut être éteint sans perte d&#39;information. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur le remplacement du disque."
+
+msgid "unsafe_drive_standalone"
+msgstr "Ce disque est en panne mais ne peut être éteint sans perte d&#39;information. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour des instructions sur le remplacement d&#39;un lecteur autonome."
+
+msgid "drive_declining"
+msgstr "Ce disque a commencé à s&#39;affaiblir, mais actuellement est capable de fonctionner sans perte de données. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur le remplacement d&#39;un disque en déclin."
+

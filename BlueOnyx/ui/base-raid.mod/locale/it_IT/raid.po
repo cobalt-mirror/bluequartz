@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "pkgVendor"
+msgstr "[[base-alpine.osName]]"
+
+msgid "pkgName"
+msgstr "Disk Mirroring"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] fornisce una maggiore affidabilità per il mirroring attivamente contenuti attraverso una coppia di hard disk."
+
+msgid "amRAIDNameTag"
+msgstr "Redundant Array of Independent Disks (RAID) Stato"
+
+msgid "raid_title"
+msgstr "Redundant Array of Independent Disks (RAID) Dettagli dello stato di"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+msgid "raid_disabled"
+msgstr "RAID è disabilitato su questo sistema."
+
+msgid "raid_working"
+msgstr "Il sottosistema RAID funziona normalmente."
+
+msgid "raid_sync_in_progress"
+msgstr "Il sistema è risincronizzazione le informazioni sui dischi."
+
+msgid "raid_sync_in_progress_email"
+msgstr "Il sistema è risincronizzazione le informazioni sui dischi. Si prega di guardare il [[base-raid.amDiskIntegrityNameTag]] voce Monitor attivo per ulteriori informazioni."
+
+msgid "raid_sync_incomplete"
+msgstr "Il sistema è in pausa quando risincronizzazione le informazioni sui dischi. Attendere qualche minuto per la sincronizzazione di riprendere prega. Se la sincronizzazione non riprende, si prega di fare riferimento a [[base-sauce-basic.techSupportURL]] per l'assistenza."
+
+msgid "raid_sync_incomplete_email"
+msgstr "Il sistema è in pausa quando risincronizzazione le informazioni sui dischi. Si prega di guardare il [[base-raid.amDiskIntegrityNameTag]] voce Monitor attivo per ulteriori informazioni."
+
+msgid "raid_completed"
+msgstr "completato"
+
+msgid "raid_minutes_remaining"
+msgstr "minuto (s) rimanendo"
+
+msgid "raid_sync_delayed"
+msgstr "sincronizzazione è stato ritardato"
+
+msgid "raid_less_than_one_remaining"
+msgstr "meno di 1 minuto rimanente"
+
+msgid "raid_failure"
+msgstr "Un disco rigido non è riuscita. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente."
+
+msgid "raid0_failure"
+msgstr "Un disco rigido non è riuscita. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente."
+
+msgid "raid_failure_email"
+msgstr "Un disco rigido non è riuscita. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente."
+
+msgid "raid0_failure_email"
+msgstr "Un disco rigido non è riuscita in configurazione RAID0. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. Quindi, ripristinare la directory /home usando i backup."
+
+msgid "raid_failure_email_Alpine_hda"
+msgstr "Unità 1 è fallito. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente."
+
+msgid "raid0_failure_email_Alpine_hda"
+msgstr "Unità 1 ha fallito in configurazione RAID0. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. Quindi, ripristinare la directory /home usando i backup."
+
+msgid "raid_failure_email_Alpine_hdc"
+msgstr "Drive 2 non è riuscita. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente."
+
+msgid "raid0_failure_email_Alpine_hdc"
+msgstr "Drive 2 ha fallito in configurazione RAID0. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. Quindi, ripristinare la directory /home usando i backup."
+
+msgid "raid_failure_hdc_raq"
+msgstr "Il disco rigido (HDC) non è riuscita. Si prega di spegnere il dispositivo server e sostituire questa unità con una nuova unità di dimensioni identiche."
+
+msgid "raid_failure_hda_raq"
+msgstr "Il disco fisso (hda) è fallito. Si prega di spegnere il dispositivo server e sostituire questa unità con una nuova unità di dimensioni identiche."
+
+msgid "raid_failure_qube"
+msgstr "Un disco rigido non è riuscita. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente. Controllare il monitor RAID schermo attiva dettagli per ulteriori informazioni."
+
+msgid "raid_failure_hdc_qube"
+msgstr "Il disco rigido secondario è riuscito. Si prega di spegnere il dispositivo server e sostituire questa unità con una nuova unità di dimensioni identiche. L'unità guasta (etichetta B) si trova vicino al centro della macchina server. È il disco rigido sul lato destra guardando la parte anteriore dell'apparecchio server."
+
+msgid "raid_failure_hda_qube"
+msgstr "Il disco rigido primario (hda) è fallito. Si prega di spegnere il dispositivo server e sostituire questa unità con una nuova unità di dimensioni identiche."
+
+msgid "cantGetRAID"
+msgstr "Impossibile ottenere oggetto evento RAID."
+
+msgid "RAIDLevelChangeFailed"
+msgstr "Esecuzione di script di modifica del livello RAID non è riuscita."
+
+msgid "raidstatus"
+msgstr "Configurazione RAID"
+
+msgid "configuring"
+msgstr "Configurazione RAID. Questa operazione richiederà alcuni minuti."
+
+msgid "raidstep1"
+msgstr "Preparazione del disco ..."
+
+msgid "raidstep2"
+msgstr "Impostazione di quote ..."
+
+msgid "raidstep3"
+msgstr "Messa in servizi ..."
+
+msgid "setupNoDiskSpace"
+msgstr "Errore: Spazio su disco insufficiente. Si consiglia di non aggiungere dati fino al RAID è stato configurato. Se sono stati aggiunti i file sul server già, è necessario rimuovere e riprovare. Contattare il supporto tecnico per ulteriori informazioni, se necessario."
+
+msgid "setupNoUmountHome"
+msgstr "ERRORE: impossibile smontare /home. Assicurarsi che non si è effettuato l'accesso al sistema o aver avviato alcun programma."
+
+msgid "confirmRaid0"
+msgstr "Sei sicuro che si desidera il vostro sistema di utilizzare RAID striping per memorizzare i dati? \n\n Questa scelta non può essere modificata dopo aver completato la procedura guidata di configurazione."
+
+msgid "confirmRaid1"
+msgstr "Sei sicuro che si desidera il vostro sistema di utilizzare RAID mirroring per memorizzare i dati? \n\n Questa scelta non può essere modificata dopo aver completato la procedura guidata di configurazione."
+
+msgid "confirmRaid5"
+msgstr "Sei sicuro che si desidera il vostro sistema di utilizzare RAID striping con parità per memorizzare i dati? \n\nQuesto scelta non può essere modificata dopo aver completato la procedura guidata di configurazione."
+
+msgid "amDiskIntegrityNameTag"
+msgstr "L'integrità del disco"
+
+msgid "integrityOK"
+msgstr "I dischi funzionano normalmente."
+
+msgid "integrityProblem"
+msgstr "C'è un problema con l'integrità del disco."
+
+msgid "integritySevereProblem"
+msgstr "Vi è un problema grave con integrità disco."
+
+msgid "raid_working_raq"
+msgstr "Mirroring dei dischi è abilitata e attiva."
+
+msgid "raid_sync_in_progress_raq"
+msgstr "I dati del server è attualmente in fase di duplicati per assicurare l'integrità del disco. Il mirroring del disco verrà attivato e attivo dopo questa sincronizzazione è completa."
+
+msgid "config_raid0"
+msgstr "Il sistema è configurato per lo striping dei dischi (RAID 0) usando [[VAR.numdisks]] disk [[VAR.plural]]."
+
+msgid "config_raid1"
+msgstr "Il sistema è configurato per il mirroring del disco (RAID 1) usando [[VAR.numdisks]] disk [[VAR.plural]]."
+
+msgid "config_raid5"
+msgstr "Il sistema è configurato per lo striping del disco con parità (RAID 5) usando [[VAR.numdisks]] disk [[VAR.plural]]."
+
+msgid "drives_ok"
+msgstr "Tutte le unità funzionano normalmente."
+
+msgid "drives_problem"
+msgstr "Uno o più dei dischi sta avendo un problema. L'illustrazione seguente mostra la posizione dei dischi. Muovi il mouse sopra l'immagine del disco per vedere più dettagli."
+
+msgid "drives_syncing_problem"
+msgstr "Il sistema è risincronizzazione le informazioni sui dischi. L'illustrazione seguente mostra la posizione dei dischi. Muovi il mouse sopra l'immagine del disco per vedere più dettagli."
+
+msgid "drives_severe_problem"
+msgstr "Uno o più dei dischi sta avendo un problema. L'illustrazione seguente mostra la posizione dei dischi. Muovi il mouse sopra l'immagine del disco per vedere più dettagli."
+
+msgid "per_drive_title"
+msgstr "Stato unità Dettagli"
+
+msgid "drive_failed"
+msgstr "Questa unità è guasta. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. I dati verranno ripristinati alla sostituzione disco rigido automaticamente."
+
+msgid "drive_failed_in_raid0"
+msgstr "Questa unità è guasta. Si prega di spegnere il server appliance e sostituire il disco fisso guasto con uno nuovo che è la stessa dimensione della restante unità. Quindi, ripristinare la directory /home usando i backup."
+
+msgid "drive_syncing"
+msgstr "I dati su questa unità è in fase di sincronizzazione."
+
+msgid "drive_ok"
+msgstr "Questa unità funziona normalmente."
+
+msgid "Alpine_dev_hda"
+msgstr "Unità 1"
+
+msgid "Alpine_dev_hdc"
+msgstr "Drive 2"
+

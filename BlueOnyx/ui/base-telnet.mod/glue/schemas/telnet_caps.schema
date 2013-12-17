@@ -1,0 +1,20 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: telnet_caps.schema
+
+    serverTelnet capability used to limit access to to properties for
+    the Vsite(Services).Telnet namespace and system wide telnet server
+    control
+-->
+
+<class
+    name="Capabilities" namespace="serverTelnet" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(serverTelnet)"
+    />
+    <property
+        name="nameTag" type="scalar" default=""
+    />
+</class>

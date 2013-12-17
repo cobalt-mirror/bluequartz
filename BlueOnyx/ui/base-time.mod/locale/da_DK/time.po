@@ -1,0 +1,60 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "capgroup_adminTime"
+msgstr "Administrer systemtid"
+
+msgid "capgroup_adminTime_help"
+msgstr ""
+"Denne administrative rettighed tillader en bruger at indstille systemets tid "
+"og tidszone."
+
+msgid "ntpAddress"
+msgstr "NTP serveradresse"
+
+msgid "ntpAddress_help"
+msgstr ""
+"Indtast netværksadressen eller fuldt kvalificeret domænenavn på en Network "
+"Time Protocol (NTP) server med hvem systemets dato og tid periodisk skal "
+"synkroniseres."
+
+msgid "ntpDefaultServer"
+msgstr "clock.isc.org"
+
+msgid "systemDisplayedDate"
+msgstr "Dato og tid"
+
+msgid "systemDisplayedDate_help"
+msgstr "Indstil dags dato"
+
+msgid "systemDisplayedTime"
+msgstr "Tid"
+
+msgid "systemDisplayedTimeZone"
+msgstr "Tidszone"
+
+msgid "systemDisplayedTimeZone_help"
+msgstr "Indstil den aktuelle tidszone for denne server."
+
+msgid "systemDisplayedTime_help"
+msgstr "Indstil den aktuelle tid."
+
+msgid "time"
+msgstr "Tid"
+
+msgid "timeSetting"
+msgstr "Tidsindstillinger"
+
+msgid "time_help"
+msgstr "Klik her for at ændre [[base-time.timeSetting]]."
+
+msgid "cap_serverTime"
+msgstr "Tidsindstillinger"
+

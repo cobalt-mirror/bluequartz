@@ -1,0 +1,563 @@
+# NOTE: Some of these strings, such as those for network setup, can also be found in other modules.
+
+msgid "wizardLicense"
+msgstr "Binary Code License"
+
+msgid "wizardLicense_help"
+msgstr " "
+
+msgid "wizardAdmin"
+msgstr "Administrator Settings"
+
+msgid "wizardAdmin_help"
+msgstr " "
+
+msgid "adminSettings"
+msgstr "Administrator Settings"
+
+msgid "adminMessage"
+msgstr "The [[base-product.productName]] requires an administrator to handle tasks such as adding users and groups as well as configuring settings. The user name of the administrator is admin. Enter a hard to guess password for the administrator. Please remember the password for future use."
+
+msgid "adminNameField"
+msgstr "User Name"
+
+msgid "adminNameField_help"
+msgstr "This is the name used by the system to identify the administrator and is not changeable."
+
+msgid "alteradminField"
+msgstr "Alteradmin Account"
+
+msgid "alteradminField_help"
+msgstr "The alteradmin account can be used to share administrative responsibilities between multiple parties with unique passwords. If enabled, both admin and alteradmin may authenticate to this administrative interface. Once enabled, only the alteradmin may change the password or disable the account."
+
+msgid "alteradminEnabled"
+msgstr "Enable"
+
+msgid "alteradminPassword"
+msgstr "alteradmin Password"
+
+msgid "alteradminPassword_help"
+msgstr "This is the password the alteradmin user will use to authenticate. If the alteradmin account is enabled, this password should be different than the one used for the admin user."
+
+msgid "passwordField"
+msgstr "Password"
+
+msgid "passwordField_rule"
+msgstr "The password should be between 3 and 16 characters long. A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation. It should not spell out any words found in the dictionary. Passwords are case sensitive."
+
+msgid "passwordField_help"
+msgstr "Enter the password to be used by the system to identify the administrator. [[base-wizard.passwordField_rule]]"
+
+msgid "passwordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields. The same password is entered in both fields to protect against typing errors. Please try again."
+
+msgid "passwordField_empty"
+msgstr "Sorry, you have not entered a value for [[base-wizard.passwordField]]. [[base-wizard.passwordField_rule]]"
+
+msgid "newPasswordField"
+msgstr "New Password"
+
+msgid "newPasswordField_help"
+msgstr "Enter the password to be used by the system to identify the administrator. [[base-wizard.passwordField_rule]]"
+
+msgid "wizardTime"
+msgstr "Time Settings"
+
+msgid "wizardTime_help"
+msgstr " "
+
+msgid "timeSettings"
+msgstr "Time Settings"
+
+msgid "timeMessage"
+msgstr "The [[base-product.productName]] requires the correct date and time to function properly. Please enter the current date and time as well as the proper time zone."
+
+msgid "dateField"
+msgstr "Date"
+
+msgid "dateField_help"
+msgstr "Set the current date."
+
+msgid "timeField"
+msgstr "Time"
+
+msgid "timeField_help"
+msgstr "Set the current time."
+
+msgid "timeZoneField"
+msgstr "Time Zone"
+
+msgid "timeZoneField_help"
+msgstr "Set the time zone where this server appliance is located."
+
+msgid "wizardUsers"
+msgstr "User Settings"
+
+msgid "wizardUsers_help"
+msgstr " "
+
+msgid "wizardWorkgroups"
+msgstr "Group Settings"
+
+msgid "wizardWorkgroups_help"
+msgstr " "
+
+msgid "wizardNetwork"
+msgstr "Network Integration"
+
+msgid "wizardNetwork_help"
+msgstr " "
+
+msgid "networkSettings"
+msgstr "Network Settings"
+
+msgid "networkMessage"
+msgstr "The [[base-product.productName]] can be set up to be accessible on an Intranet within your organization as well as on the Internet at large. Please enter the host name and domain name of this server appliance as well as a reachable domain server and a method of network connectivity."
+
+msgid "enterFqdn"
+msgstr "Host and Domain Name"
+
+msgid "enterFqdn_help"
+msgstr "Enter the host name of the server in the first field and the domain name in the second field. For example, www is a valid host name, and example.com is a valid domain name. Please enter only lowercase alphanumeric characters, dashes or periods."
+
+msgid "hostNameField"
+msgstr "Host Name"
+
+msgid "hostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods. For example, www is a valid entry."
+
+msgid "hostNameField_help"
+msgstr "Enter the host name of this server appliance. The host name and the domain name combined together should uniquely identify this server appliance. [[base-wizard.hostNameField_rule]]"
+
+msgid "domainNameField"
+msgstr "Domain Name"
+
+msgid "domainNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods. For example, example.com is a valid entry."
+
+msgid "domainNameField_help"
+msgstr "Enter the domain name of this server appliance. The host name and the domain name combined together should uniquely identify this server appliance. [[base-wizard.domainNameField_rule]]"
+
+msgid "dnsAddressesField"
+msgstr "DNS Servers"
+
+msgid "dnsAddressesField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods. For example, 192.168.1.1 is a valid entry. Leaving this field empty will prevent this machine from finding other machines by hostname or domain name and will cause networking difficulties."
+
+msgid "dnsAddressesField_help"
+msgstr "Enter the IP address or addresses of your local domain name server or servers, one address per line. A domain name server translates host names and domain names into IP addresses and vice-versa. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "dnsAddressesField_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is an invalid value in [[base-wizard.dnsAddressesField]]. [[base-wizard.dnsAddressesField_rule]]"
+
+msgid "internetField"
+msgstr "Internet Connection"
+
+msgid "internetField_help"
+msgstr "Select the type of Internet connection which will be used with this server appliance."
+
+msgid "none"
+msgstr "None or Intranet Use Only"
+
+msgid "broadband"
+msgstr "Cable Modem or DSL"
+
+msgid "lan"
+msgstr "Gateway on Local Area Network (LAN)"
+
+msgid "narrowband"
+msgstr "Analog Modem or ISDN"
+
+msgid "wizardBroadband"
+msgstr "Broadband Settings"
+
+msgid "wizardBroadband_help"
+msgstr " "
+
+msgid "broadbandSettings"
+msgstr "Broadband Settings"
+
+msgid "broadbandMessage"
+msgstr "Your Cable Modem or DSL Connection should be connected to the secondary interface of the [[base-product.productName]]. Please enter the appropriate configuration settings given to you by your Internet Service Provider."
+
+msgid "networkField"
+msgstr "Secondary Interface"
+
+msgid "networkField_help"
+msgstr "Select the appropriate networking configuration for the secondary interface of this server appliance. Your Internet Service Provider should provide you with the information needed to complete this step."
+
+msgid "dhcp"
+msgstr "Obtain Automatically Using Dynamic Host Configuration Protocol (DHCP)"
+
+msgid "dhcpHostNameField"
+msgstr "Client Host Name"
+
+msgid "dhcpHostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods. For example, www is a valid entry."
+
+msgid "dhcpHostNameField_help"
+msgstr "Enter the host name that identifies this server as a Dynamic Host Configuration Protocol (DHCP) client. [[base-wizard.dhcpHostNameField_rule]]"
+
+msgid "dhcpClientIdField"
+msgstr "Client Identifier"
+
+msgid "dhcpClientIdField_help"
+msgstr "Enter the identification string that identifies this server as a Dynamic Host Configuration Protocol (DHCP) client."
+
+msgid "pppoe"
+msgstr "Obtain Automatically Using Point-to-Point Protocol Over Ethernet (PPPoE)"
+
+msgid "pppUserNameField"
+msgstr "User Name"
+
+msgid "pppUserNameField_help"
+msgstr "Enter the user name used to login to your Internet Service Provider."
+
+msgid "pppPasswordField"
+msgstr "Password"
+
+#msgid "pppPasswordField_help"
+#msgstr "Enter the password used to login to your Internet Service Provider."
+
+msgid "pppPasswordField_help"
+msgstr "Sorry, you have not entered a value for [[base-wizard.pppPasswordField]]."
+
+msgid "static"
+msgstr "Specify Manually"
+
+msgid "ipAddressField"
+msgstr "IP Address"
+
+msgid "ipAddressField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods. For example, 192.168.1.1 is a valid entry."
+
+msgid "ipAddressField_help"
+msgstr "Enter the IP address of the secondary interface, which is typically connected to the Internet side. If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty. [[base-wizard.ipAddressField_rule]]"
+
+msgid "netMaskField"
+msgstr "Subnet Mask"
+
+msgid "netMaskField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods. For example, 255.255.255.0 is a valid entry."
+
+msgid "netMaskField_help"
+msgstr "Enter the network mask of the primary interface. If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty. [[base-wizard.netMaskField_rule]]"
+
+msgid "gatewayField"
+msgstr "Gateway"
+
+msgid "gatewayField_rule"
+msgstr "Please enter a series of four numbers between 0 and 255 separated by periods. For example, 192.168.1.1 is a valid entry."
+
+msgid "gatewayField_help"
+msgstr "Enter the IP address of your local network gateway. A network gateway, sometimes referred to as a router, allows you to connect to the world outside of your local network area. [[base-wizard.gatewayField_rule]]"
+
+msgid "secondaryInterface"
+msgstr "Secondary Interface"
+
+msgid "ipAddressField2"
+msgstr "IP Address"
+
+msgid "ipAddressField2_help"
+msgstr "Enter the IP address of the secondary interface, which is typically connected to the Internet side. If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty. [[base-network.ipAddressField1_rule]]"
+
+msgid "ipAddressNetMaskMismatch"
+msgstr "Both the IP Address and IP Network Mask fields must either be filled in together or left empty together."
+
+msgid "netMaskField2"
+msgstr "[[base-network.netMaskField1]]"
+
+msgid "netMaskField2_help"
+msgstr "Enter the network mask of the secondary interface. If you are using only one network interface connection to the server appliance, use the primary interface and leave the secondary interface empty. [[base-network.netMaskField1_rule]]"
+
+msgid "macAddressField"
+msgstr "MAC Address"
+
+msgid "macAddressField_help"
+msgstr "The Media Access Control (MAC) address is the hardware address of the network interface card. This hardware address is a unique identifier and cannot be changed after manufacture."
+
+msgid "wizardLan"
+msgstr "Local Area Network (LAN) Settings"
+
+msgid "wizardLan_help"
+msgstr " "
+
+msgid "lanMessage"
+msgstr "Enter the default gateway for this server appliance. If the gateway is on the network connected to the secondary interface, enter the information of the interface as well."
+
+msgid "lanSettings"
+msgstr "Local Area Network (LAN) Settings"
+
+msgid "wizardModem"
+msgstr "Modem Settings"
+
+msgid "wizardModem_help"
+msgstr " "
+
+msgid "modemMessage"
+msgstr "Your Analog Modem or ISDN Connection should be connected the serial port interface of the [[base-product.productName]]. Please enter the appropriate configuration settings which you obtained from your Internet Service Provider."
+
+msgid "modemSettings"
+msgstr "Modem Settings"
+
+msgid "connModeField"
+msgstr "Connection Mode"
+
+msgid "connModeField_help"
+msgstr "Select whether the modem connection should be established only when necessary for an outgoing connection, should always be established, or should never be established."
+
+msgid "demand"
+msgstr "Connection On Demand Only"
+
+msgid "on"
+msgstr "Connection Always On"
+
+msgid "off"
+msgstr "Connection Always Off"
+
+msgid "userNameField"
+msgstr "Dial-Up Account User Name"
+
+msgid "userNameField_help"
+msgstr "Enter the user name of the dial-up account used to login to your Internet Service Provider."
+
+msgid "userNameField_empty"
+msgstr "Sorry, you have not entered a value for [[base-wizard.userNameField]]. [[base-wizard.userNameField_help]]"
+
+msgid "modemPasswordField"
+msgstr "Dial-Up Account Password"
+
+msgid "modemPasswordField_help"
+msgstr "Enter the password of the dial-up account used to login to the your Internet Service Provider."
+
+msgid "modemPasswordField_empty"
+msgstr "Sorry, you have not entered a value for [[base-wizard.modemPasswordField]]. Please enter the password of the dial-up account used to login to the your Internet Service Provider."
+
+msgid "modemPasswordField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields. The same password is entered in both fields to protect against typing errors. Please try again."
+
+msgid "modemPhoneField"
+msgstr "Dial-Up Phone Number"
+
+msgid "modemPhoneField_help"
+msgstr "Enter the phone number used to dial-up your Internet Service Provider."
+
+msgid "initStringField"
+msgstr "Modem Initialization String"
+
+msgid "initStringField_help"
+msgstr "Enter the modem initialization string which will be passed to the modem before dialing."
+
+msgid "initStringField_empty"
+msgstr "You have not entered a value for [[base-wizard.initStringField]]. You must enter an initialization string or your server will not be able to use your modem. If you do not know your modem's default initialization string, try entering 'ATZ' or consult your modem documentation."
+
+msgid "localIpField"
+msgstr "Local IP Address"
+
+msgid "localIpField_help"
+msgstr "Enter the local IP address at this end of the modem connection only if one has been assigned by the your Internet Service Provider."
+
+msgid "pulseField"
+msgstr "Enable Pulse Dialing"
+
+msgid "pulseField_help"
+msgstr "Turn pulse dialing on or off. Enabling this feature will use pulse dialing instead of tone dialing. The default value is to leave pulse dialing off."
+
+msgid "wizardRegistration"
+msgstr "Product Responsibility"
+
+msgid "wizardRegistration_help"
+msgstr " "
+
+msgid "registration"
+msgstr "Product Responsibility"
+
+msgid "regRightArrow"
+msgstr "the right arrow"
+
+msgid "regSubmit"
+msgstr "Submit"
+
+msgid "regSubmit_help"
+msgstr "[[base-product.productName]] is distributed as an open source."
+
+msgid "regCancel"
+msgstr "There is no registration"
+
+msgid "regCancel_help"
+msgstr "[[base-product.productName]] is distributed as an open source."
+
+msgid "regText"
+msgstr "The registratin is not effective by using following form."
+
+msgid "regTextOffline"
+msgstr "There is no registration and guarantee because [[base-product.productName]] is distributed as an open source."
+
+msgid "empty_reg"
+msgstr "This registration is not effective, [[base-product.productName]] is distributed as an open source. \\nPlease skip it."
+
+msgid "fullNameField"
+msgstr "Full Name"
+
+msgid "fullNameField_help"
+msgstr "Enter your full name."
+
+msgid "fullNameField_rule"
+msgstr "Please enter any characters except colons. For example, John Doe is a valid entry."
+
+msgid "titleField"
+msgstr "Job Title"
+
+msgid "titleField_help"
+msgstr "Enter your job title."
+
+msgid "companyField"
+msgstr "Company Name"
+
+msgid "companyField_help"
+msgstr "Enter your company name."
+
+msgid "addressField"
+msgstr "Full Address"
+
+msgid "addressField_help"
+msgstr "Enter your full address."
+
+msgid "countryField"
+msgstr "Country"
+
+msgid "countryField_help"
+msgstr "Enter your country."
+
+msgid "emailField"
+msgstr "Email Address"
+
+msgid "emailField_help"
+msgstr "Enter your email address."
+
+msgid "emailField_rule"
+msgstr "Please enter a valid email address in the form user@example.com."
+
+msgid "phoneField"
+msgstr "Phone Number"
+
+msgid "phoneField_help"
+msgstr "Enter your phone number."
+
+msgid "faxField"
+msgstr "Fax Number"
+
+msgid "faxField_help"
+msgstr "Enter your fax number."
+
+msgid "wizardLocale"
+msgstr "Preferred Language"
+
+msgid "wizardLocale_help"
+msgstr " "
+
+msgid "localeMessage"
+msgstr "Select the Preferred Language for administering this server. The web interface may be browsed using any language, but Active Monitor generated email will use the Preferred Language."
+
+msgid "localeField"
+msgstr "Select Your Preferred Language"
+
+msgid "localeField_help"
+msgstr "The Preferred Language is used by Active Monitor when sending email notification, and the administrative web interface if a preferred browser language is not found."
+
+msgid "localeSettings"
+msgstr "Preferred Language"
+
+msgid "wizardRaid"
+msgstr "RAID Setup"
+
+msgid "wizardRaid_help"
+msgstr " "
+
+msgid "raidMessage"
+msgstr "Your [[base-alpine.osName]] server has RAID storage capability. This server has a set of [[VAR.numdisk]] internal disks that may be setup in one of two different ways, depending on your needs. One solution offers higher disk capacity, while the other provides higher reliability at the expense of capacity. Please choose a RAID configuration from the options below. WARNING: This decision cannot be reversed without data loss. Please be certain you understand the implications of your choice before proceeding."
+
+msgid "raidAlreadyConfigured"
+msgstr "RAID has already been configured and can no longer be changed."
+
+msgid "raidOption"
+msgstr "RAID Level"
+
+msgid "raidOption_help"
+msgstr "RAID storage allows multiple disks to be used together as one. Carefully read the options and select how you would like to use the disks."
+
+msgid "raidSettings"
+msgstr "RAID Setup"
+
+msgid "raid0"
+msgstr "RAID 0 mode - Also known as striping, RAID 0 groups all internal disks together into one single logical disk. All space is usable for storing data, but all information will be lost if any disk fails."
+
+msgid "raid1"
+msgstr "RAID 1 mode - Also known as mirroring, RAID 1 maintains identical data on both internal disks. If either disk fails your data will be available from the surviving disk, but only half the raw disk space will be available for storing information."
+
+msgid "raid5"
+msgstr "RAID 5 mode - Also known as striping with parity, RAID 5 maintains parity information for data written to disk. If a single disk fails, your data can be reconstructed from the parity information available on the surviving disks. Storage of the parity data decreases the total amount of available storage. Data will be lost if multiple disks fail at the same time."
+
+msgid "onepageSettings"
+msgstr "System Settings"
+
+msgid "wizardOnepage"
+msgstr "System Settings"
+
+msgid "wizardOnepage_help"
+msgstr " "
+
+msgid "onepageMessage"
+msgstr "The following information is needed to configure this server appliance. You can mouse over the words on the left side of the form for help on the individual fields. If you do not know what to enter, please contact your system administrator."
+
+msgid "mustSelectLicense"
+msgstr "You must either accept or decline the license agreement by selecting one of the options at the bottom of the agreement. Be sure to scroll down if you can not see the Accept and Decline options."
+
+msgid "accept"
+msgstr "Accept"
+
+msgid "accept_help"
+msgstr "Press Accept if you have read and agree to the terms of the license agreement and are ready to continue."
+
+msgid "decline"
+msgstr "Decline"
+
+msgid "decline_help"
+msgstr "If you decline the terms of using open source software you will not be able to use the [[base-product.productName]]."
+
+msgid "licenseClick"
+msgstr "In order to Accept or Decline the terms of using open source software located below, you must scroll to the end of the document."
+
+msgid "mustAcceptToUse"
+msgstr "You must accept the terms of using open source software in order to use [[base-alpine.osName]]."
+
+msgid "license"
+msgstr "[[base-product.productLicense]]"
+
+# default virtual site settings
+msgid "addVirtualsiteSettings"
+msgstr "Add Virtual Site Settings"
+
+msgid "enterVsiteFqdn"
+msgstr "Host and Domain Name"
+
+msgid "enterVsiteFqdn_help"
+msgstr "Enter the host name of the site in the first field and the domain name in the second field. For example, the host name could be www, mail, etc. The domain name could be example.com, blueonyx.it, etc."
+
+msgid "vsite_hostNameField"
+msgstr "Host Name"
+
+msgid "vsite_hostNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods. For example, www is a valid entry."
+
+msgid "vsite_hostNameField_help"
+msgstr "Enter the host name of this server appliance. The host name and the domain name combined together should uniquely identify this server appliance. [[base-wizard.vsite_hostNameField_rule]]"
+
+msgid "vsite_domainNameField"
+msgstr "Domain Name"
+
+msgid "vsite_domainNameField_rule"
+msgstr "Please enter only lowercase alphanumeric characters, dashes or periods. For example, example.com is a valid entry."
+
+msgid "vsite_domainNameField_help"
+msgstr "Enter the domain name of this server appliance. The host name and the domain name combined together should uniquely identify this server appliance. [[base-wizard.vsite_domainNameField_rule]]"

@@ -1,0 +1,8 @@
+/var/log/ipacct {
+    prerotate
+        /usr/local/sbin/split_logs net < /var/log/ipacct
+    endscript
+    missingok
+    daily
+}
+

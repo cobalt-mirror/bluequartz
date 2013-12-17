@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "DMAnameTag"
+msgstr "Direct Memory Access (DMA) Drive-status"
+
+msgid "dma_fixed_drives"
+msgstr "DMA is uitgeschakeld voor de volgende drive (s): [[VAR.display_names]]. Actieve Monitor heeft met succes weer ingeschakeld DMA op de stations. Als de stations nog steeds DMA problemen ondervindt, raadpleegt u [[base-sauce-basic.techSupportURL]] voor instructies over het maken van back-up en het vervangen van de schijven die ervaren DMA problemen."
+
+msgid "dma_off_drives"
+msgstr "DMA is uitgeschakeld voor de volgende drive (s): [[VAR.display_names]]. Actieve Monitor kon DMA weer in te schakelen voor de stations. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het maken van back-up en het vervangen van de omvormer (s) die ervaren DMA mislukkingen."
+
+msgid "dma_ok"
+msgstr "DMA normaal uitvoert."
+
+msgid "dma_off"
+msgstr "DMA is niet ingeschakeld op dit station. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het maken van back-up en het vervangen van de drive die wordt ervaren van DMA mislukkingen."
+
+msgid "disk_dma_fixed"
+msgstr "DMA is uitgeschakeld voor deze schijf, maar Active Monitor heeft met succes weer ingeschakeld DMA. Als dit station blijven DMA problemen ondervindt, raadpleegt u [[base-sauce-basic.techSupportURL]] voor instructies over het maken van back-up en het vervangen van de schijf."
+
+msgid "disk_dma_off"
+msgstr "DMA is niet ingeschakeld voor dit station, en Active Monitor kon DMA weer in te schakelen. Raadpleeg [[base-sauce-basic.techSupportURL]] voor instructies over het maken van back-up en het vervangen van de schijf."
+

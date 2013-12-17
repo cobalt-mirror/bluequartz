@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "DMAnameTag"
+msgstr "Access (DMA) Etat de l&#39;entraînement direct à la mémoire"
+
+msgid "dma_fixed_drives"
+msgstr "DMA a été désactivé pour le lecteur suivant (s): [[VAR.display_names]]. Active Monitor a réactivé avec succès DMA sur les disques. Si les lecteurs continuent d&#39;éprouver des problèmes de DMA, s&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde et le remplacement des lecteurs qui connaissent des problèmes de DMA."
+
+msgid "dma_off_drives"
+msgstr "DMA est désactivée pour le lecteur suivant (s): [[VAR.display_names]]. Active Monitor a été incapable de tourner DMA dos pour les lecteurs. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde et remplacer le disque (s) qui connaissent des échecs DMA."
+
+msgid "dma_ok"
+msgstr "DMA fonctionne normalement."
+
+msgid "dma_off"
+msgstr "DMA n&#39;est pas activé sur ce disque. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde et de remplacer le lecteur qui connaît des échecs DMA."
+
+msgid "disk_dma_fixed"
+msgstr "DMA a été désactivée pour ce disque, mais Active Monitor a réactivé avec succès DMA. Si ce disque continuent d&#39;éprouver des problèmes de DMA, s&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde et remplacer le disque."
+
+msgid "disk_dma_off"
+msgstr "DMA n&#39;est pas activé pour ce disque et Active Monitor a été incapable de tourner DMA dos. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde et remplacer le disque."
+

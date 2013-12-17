@@ -1,0 +1,41 @@
+#!/bin/sh
+
+
+IFS=$(echo -en "\n\b")
+
+raids=`mdadm --detail --scan| sort`
+
+for raid in $raids; do 
+    array=`echo $raid | awk -F " " '{ print $2 }'` 
+    part_array=`echo $raid | awk -F " " '{ print $2 }' | awk -F "/" '{ print $3 }'` 
+    level=`echo $raid | awk -F " " '{ print $3 }' | awk -F "raid" '{ print $2 }'` 
+    num_devices=`echo $raid | awk -F " " '{ print $4 }' | awk -F "=" '{ print $2 }'`
+
+    mdadm=`mdadm --detail $array`
+    
+    persistence=`mdadm --detail $array |grep Persistence | awk -F ":" '{ print $2 }'`
+    if [ $persistence = " Superblock is persistent" ];then
+	superblock="1"
+    else
+	superblock="0"
+    fi
+
+    chunkSize=`mdadm --detail $array |grep "Chunk Size" | awk -F ":" '{ print $2 }' | awk -F "K" '{ print $1 }'`
+    if [ !$chunkSize ];then
+	chunkSize="0"
+    fi
+    
+    echo "raiddev $array"
+    echo -e "\traid-level\t\t$level"
+    echo -e "\tnr-raid-disks\t\t$num_devices"
+    echo -e "\tpersistent-superblock\t$superblock"
+    echo -e "\tchunk-size\t\t$chunkSize"
+    for ((disk=0; disk<$num_devices; disk++));do
+	part=$(($disk+5))
+	member=`cat /proc/mdstat |grep $part_array |awk -F " " '{ print $'$part' }' | awk -F "[" '{ print $1 }'`
+	raid_disk=`cat /proc/mdstat |grep $part_array |awk -F " " '{ print $'$part' }' | awk -F "[" '{ print $2 }' | awk -F "]" '{ print $1 }'`
+	echo -e "\tdevice\t\t/dev/$member"
+	echo -e "\traid-disk\t\t$raid_disk"
+    done
+    
+done

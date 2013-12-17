@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "pkgVendor"
+msgstr "[[base-alpine.osName]]"
+
+msgid "pkgName"
+msgstr "miroir de disques"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] fournit une fiabilité accrue en reflétant activement le contenu à travers une paire de disques durs."
+
+msgid "amRAIDNameTag"
+msgstr "Redundant Array of Independent Disks (RAID) Etat"
+
+msgid "raid_title"
+msgstr "Redundant Array of Independent Disks (RAID) Détails de l&#39;état"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+msgid "raid_disabled"
+msgstr "RAID est désactivé sur ce système."
+
+msgid "raid_working"
+msgstr "Le sous-système RAID fonctionne normalement."
+
+msgid "raid_sync_in_progress"
+msgstr "Le système est resynchronisation des informations sur les disques."
+
+msgid "raid_sync_in_progress_email"
+msgstr "Le système est resynchronisation des informations sur les disques. S&#39;il vous plaît regardez la [[base-raid.amDiskIntegrityNameTag]] entrée dans Active Monitor pour plus d&#39;informations."
+
+msgid "raid_sync_incomplete"
+msgstr "Le système a fait une pause lors de resynchroniser les informations sur les disques. S&#39;il vous plaît patienter quelques minutes pour la synchronisation de reprendre. Si la synchronisation ne reprend pas, s&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] de l&#39;aide."
+
+msgid "raid_sync_incomplete_email"
+msgstr "Le système a fait une pause lors de resynchroniser les informations sur les disques. S&#39;il vous plaît regardez la [[base-raid.amDiskIntegrityNameTag]] entrée dans Active Monitor pour plus d&#39;informations."
+
+msgid "raid_completed"
+msgstr "terminé"
+
+msgid "raid_minutes_remaining"
+msgstr "minute (s) restant"
+
+msgid "raid_sync_delayed"
+msgstr "synchronisation a été retardée"
+
+msgid "raid_less_than_one_remaining"
+msgstr "moins de 1 minute restantes"
+
+msgid "raid_failure"
+msgstr "Un disque dur a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement."
+
+msgid "raid0_failure"
+msgstr "Un disque dur a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement."
+
+msgid "raid_failure_email"
+msgstr "Un disque dur a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement."
+
+msgid "raid0_failure_email"
+msgstr "Un disque dur a échoué dans une configuration RAID 0. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Ensuite, restaurez le répertoire / home utilisant vos sauvegardes."
+
+msgid "raid_failure_email_Alpine_hda"
+msgstr "Entraînement 1 a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement."
+
+msgid "raid0_failure_email_Alpine_hda"
+msgstr "Entraînement 1 a échoué en configuration RAID0. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Ensuite, restaurez le répertoire / home utilisant vos sauvegardes."
+
+msgid "raid_failure_email_Alpine_hdc"
+msgstr "Drive 2 a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement."
+
+msgid "raid0_failure_email_Alpine_hdc"
+msgstr "Drive 2 a échoué dans une configuration RAID 0. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Ensuite, restaurez le répertoire / home utilisant vos sauvegardes."
+
+msgid "raid_failure_hdc_raq"
+msgstr "Le disque dur (hdc) a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer ce disque par un disque de taille identique."
+
+msgid "raid_failure_hda_raq"
+msgstr "Le disque dur (hda) a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer ce disque par un disque de taille identique."
+
+msgid "raid_failure_qube"
+msgstr "Un disque dur a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement. Vérifiez l&#39;écran des détails du RAID Active Monitor pour plus d&#39;informations."
+
+msgid "raid_failure_hdc_qube"
+msgstr "Le disque dur secondaire a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer ce disque par un disque de taille identique. Le disque en panne (marqué B) est situé près du centre de l&#39;appareil de serveur. Il est le disque dur sur le côté droit face à la l&#39;avant de l&#39;appareil de serveur."
+
+msgid "raid_failure_hda_qube"
+msgstr "Le disque dur principal (HDA) a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer ce disque par un disque de taille identique."
+
+msgid "cantGetRAID"
+msgstr "Impossible d&#39;obtenir objet événement RAID."
+
+msgid "RAIDLevelChangeFailed"
+msgstr "Exécution de script de changement de niveau de RAID a échoué."
+
+msgid "raidstatus"
+msgstr "RAID Configuration"
+
+msgid "configuring"
+msgstr "Mise en place RAID. Cette opération peut prendre plusieurs minutes."
+
+msgid "raidstep1"
+msgstr "Préparation disque ..."
+
+msgid "raidstep2"
+msgstr "Mise en place des quotas ..."
+
+msgid "raidstep3"
+msgstr "Démarrage des services ..."
+
+msgid "setupNoDiskSpace"
+msgstr "Erreur: Pas assez d&#39;espace disque. Vous ne devez pas ajouter des données jusqu&#39;à RAID a été configuré. Si vous avez ajouté des fichiers sur le serveur déjà, vous devez les supprimer et réessayez. Contactez le support technique pour obtenir de l&#39;aide si nécessaire."
+
+msgid "setupNoUmountHome"
+msgstr "ERREUR: Impossible de démonter / home. Assurez-vous que vous n&#39;êtes pas connecté au système ou que vous avez commencé des programmes."
+
+msgid "confirmRaid0"
+msgstr "Êtes-vous certain que vous voulez que votre système à utiliser RAID striping pour stocker des données?\n\n Ce choix ne peut pas être changée après avoir terminé l&#39;assistant de configuration."
+
+msgid "confirmRaid1"
+msgstr "Êtes-vous certain que vous voulez que votre système à utiliser en miroir RAID pour stocker des données?\n\n Ce choix ne peut pas être changée après avoir terminé l&#39;assistant de configuration."
+
+msgid "confirmRaid5"
+msgstr "Êtes-vous certain que vous voulez que votre système à utiliser striping RAID avec parité pour stocker des données?\n\nCe choix ne peut être modifié après avoir terminé l&#39;assistant de configuration."
+
+msgid "amDiskIntegrityNameTag"
+msgstr "l&#39;intégrité du disque"
+
+msgid "integrityOK"
+msgstr "Disques fonctionnent normalement."
+
+msgid "integrityProblem"
+msgstr "Il ya un problème avec l&#39;intégrité du disque."
+
+msgid "integritySevereProblem"
+msgstr "Il ya un problème grave avec l&#39;intégrité du disque."
+
+msgid "raid_working_raq"
+msgstr "miroir de disque est activé et actif."
+
+msgid "raid_sync_in_progress_raq"
+msgstr "Les données de serveur est en cours de duplication afin d&#39;assurer l&#39;intégrité du disque. La mise en miroir est activée et active après cette synchronisation est terminée."
+
+msgid "config_raid0"
+msgstr "Votre système est configuré pour l&#39;entrelacement (RAID 0) en utilisant [[VAR.numdisks]] disque [[VAR.plural]]."
+
+msgid "config_raid1"
+msgstr "Votre système est configuré en miroir (RAID 1) en utilisant [[VAR.numdisks]] disque [[VAR.plural]]."
+
+msgid "config_raid5"
+msgstr "Votre système est configuré pour l&#39;entrelacement avec parité (RAID 5) en utilisant [[VAR.numdisks]] disque [[VAR.plural]]."
+
+msgid "drives_ok"
+msgstr "Tous les disques fonctionnent normalement."
+
+msgid "drives_problem"
+msgstr "Un ou plusieurs des disques a un problème. L&#39;illustration ci-dessous montre l&#39;emplacement des disques. Déplacez la souris sur l&#39;image disque pour plus de détails."
+
+msgid "drives_syncing_problem"
+msgstr "Le système est resynchronisation des informations sur les disques. L&#39;illustration ci-dessous montre l&#39;emplacement des disques. Déplacez la souris sur l&#39;image disque pour plus de détails."
+
+msgid "drives_severe_problem"
+msgstr "Un ou plusieurs des disques a un problème. L&#39;illustration ci-dessous montre l&#39;emplacement des disques. Déplacez la souris sur l&#39;image disque pour plus de détails."
+
+msgid "per_drive_title"
+msgstr "Conduire des détails d&#39;état"
+
+msgid "drive_failed"
+msgstr "Ce disque a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Les données seront restaurées au remplacement du disque dur automatiquement."
+
+msgid "drive_failed_in_raid0"
+msgstr "Ce disque a échoué. S&#39;il vous plaît arrêter l&#39;appareil de serveur et de remplacer le disque dur défectueux par un nouveau qui est la même taille que le disque restant. Ensuite, restaurez le répertoire / home utilisant vos sauvegardes."
+
+msgid "drive_syncing"
+msgstr "Les données sur ce disque est en cours de synchronisation."
+
+msgid "drive_ok"
+msgstr "Ce disque fonctionne normalement."
+
+msgid "Alpine_dev_hda"
+msgstr "Entraînement 1"
+
+msgid "Alpine_dev_hdc"
+msgstr "Drive 2"
+

@@ -1,0 +1,313 @@
+## NOTE: this is the Disk Usage section of Personal Profile, bits of Active 
+##       Monitor, and virtual site disk usage 
+
+# --- Menus 
+msgid "userDiskUsage"
+msgstr "Disk Usage"
+
+msgid "userDiskUsage_help"
+msgstr "Shows information about your disk usage."
+
+msgid "groupDiskUsage"
+msgstr "Disk Usage"
+
+msgid "groupDiskUsage_help"
+msgstr "View total and individual disk usage information for users."
+
+msgid "groupDiskUsage_menu"
+msgstr "Disk"
+
+msgid "groupDiskUsage_menu_help"
+msgstr "View total and individual disk usage information for users."
+
+
+# personal profile disk usage page
+msgid "diskUsageFor"
+msgstr "Disk Usage for [[VAR.userName]]"
+
+msgid "userDiskUsed"
+msgstr "Disk Space Used"
+
+msgid "userDiskUsed_help"
+msgstr "This is the amount of disk space that you are currently using."
+
+msgid "userDiskFree"
+msgstr "Disk Space Free"
+
+msgid "userDiskFree_help"
+msgstr "This is the total amount of disk space that you have available for your use."
+
+msgid "userDiskPercentage"
+msgstr "Percentage Used"
+
+msgid "userDiskPercentage_help"
+msgstr "This shows the percentage of the user's allowed disk space that is currently used."
+
+msgid "serviceDiskPercentage"
+msgstr "[[base-disk.userDiskPercentage]]"
+
+msgid "serviceDiskPercentage_help"
+msgstr "This shows the percentage of the service's allowed disk space that is currently used."
+
+msgid "userOverQuota"
+msgstr "Quota Warning"
+
+msgid "userOverQuota_help"
+msgstr "This indicates that you are currently using more disk space then you are allowed on this server.  Remove unneeded emails, attachments, and other files to correct this."
+
+msgid "overQuotaMsg"
+msgstr "You are currently using more disk space than you are allowed on this server.  Remove unneeded emails, attachments, and other files to correct this."
+
+
+# ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
+
+msgid "amDiskNameTag"
+msgstr "Disk Usage"
+
+msgid "amDetails"
+msgstr "Disk Usage Details"
+
+# also sent in email to admin if disk usage high
+msgid "amDiskWarning"
+msgstr "A disk partition is nearly full. Disk space on the partition [[VAR.fs]] is [[VAR.pcnt]]% used.  The partition has [[VAR.free]] MB available."
+
+msgid "amDiskOk"
+msgstr "Disk usage is normal."
+
+# constructor messages
+# 93_update_disks_info.pl
+msgid "cantCreateDisk"
+msgstr "Unable to create a Disk object for [[VAR.device]]."
+
+# --- Handler messages, only show on errors 
+# df.pl
+msgid "cantExecuteDf"
+msgstr "Cannot execute df command"
+
+msgid "cantUpdateDiskInfo"
+msgstr "Unable to update the disk usage information for this disk, [[VAR.device]]."
+
+# groupusage.pl and userusage.pl
+msgid "cantUpdateDiskUsage"
+msgstr "Unable to update the disk usage information for [[VAR.name]]."
+
+# modquota.pl
+msgid "couldNotGetId"
+msgstr "Unable to get the [[VAR.id]] for [[VAR.target]].  [[VAR.target]] does not appear to exist on the system."
+
+msgid "couldNotSync"
+msgstr "Unable to update the on disk quota information with the quota information in memory."
+
+msgid "couldNotSetQuota"
+msgstr "Unable to set the quota for [[VAR.name]]."
+
+# group disk usage page for virtual sites
+msgid "groupDiskUsageFor"
+msgstr "Disk Usage for [[VAR.groupName]]"
+
+msgid "groupDiskUsed"
+msgstr "Disk Space Used"
+
+msgid "groupDiskUsed_help"
+msgstr "The total disk space used by users."
+
+msgid "groupDiskFree"
+msgstr "Disk Space Free"
+
+msgid "groupDiskFree_help"
+msgstr "The total disk space that is still available for use."
+
+msgid "groupDiskPercentage"
+msgstr "Percentage Used"
+
+msgid "groupDiskPercentage_help"
+msgstr "The percentage of the available disk space being used."
+
+msgid "userQuota"
+msgstr "User Disk Usage"
+
+msgid "user"
+msgstr "User Name"
+
+msgid "user_help"
+msgstr "The user name of each member."
+
+msgid "used"
+msgstr "Disk Usage"
+
+msgid "used_help"
+msgstr "The amount of disk space used by each user."
+
+msgid "service_used"
+msgstr "[[base-disk.used]]"
+
+msgid "service_used_help"
+msgstr "The amount of disk space used by each service."
+
+msgid "quota"
+msgstr "Allowed Disk Space"
+
+msgid "quota_help"
+msgstr "The amount of disk space available to each user."
+
+msgid "service_quota"
+msgstr "[[base-disk.quota]]"
+
+msgid "service_quota_help"
+msgstr "The amount of disk space available to each service."
+
+# server disk usage page
+msgid "serverDiskUsage"
+msgstr "Disk Usage"
+
+msgid "serverDiskUsageDesc"
+msgstr "View a summary of disk usage for this server."
+
+msgid "serverDiskUsage_menu"
+msgstr "Disk"
+
+msgid "serverDiskUsageDesc_menu"
+msgstr "View a summary of disk usage for this server."
+
+msgid "summary"
+msgstr "Summary"
+
+msgid "summary_help"
+msgstr "Disk usage for each partition."
+
+msgid "partition"
+msgstr "Partition"
+
+msgid "partition_help"
+msgstr "The label or directory of the partition."
+
+msgid "diskUsed"
+msgstr "Disk Usage"
+
+msgid "diskUsed_help"
+msgstr "The amount of space used on this partition."
+
+msgid "total"
+msgstr "Total Size"
+
+msgid "total_help"
+msgstr "The total size of this partition."
+
+msgid "percentage"
+msgstr "Percentage Used"
+
+msgid "percentage_help"
+msgstr "The percentage of the available disk space that is currently in use."
+
+msgid "users"
+msgstr "All Users"
+
+msgid "users_help"
+msgstr "Disk usage for users."
+
+msgid "unlimited"
+msgstr "Unlimited"
+
+msgid "summaryVsite"
+msgstr "Sites"
+
+msgid "summaryVsite_help"
+msgstr "Disk usage for sites."
+
+msgid "vsiteName"
+msgstr "Full Host Name"
+
+msgid "vsiteName_help"
+msgstr "The full host name of this site."
+
+msgid "vsiteUsed"
+msgstr "Disk Usage"
+
+msgid "vsiteUsed_help"
+msgstr "The amount of disk space currently used by this site."
+
+msgid "vsiteQuota"
+msgstr "Allowed Disk Space"
+
+msgid "vsiteQuota_help"
+msgstr "The amount of disk space available to this site."
+
+msgid "choose_site"
+msgstr "Click on a site above to see the disk usage information for the users in that site."
+
+msgid "sites_over_quota"
+msgstr "The following virtual site(s) have exceeded their quota: [[VAR.sites]]."
+
+msgid "users_over_quota"
+msgstr "The following user(s) have exceeded their quota: [[VAR.users]]."
+
+msgid "site_over_quota"
+msgstr "One or more virtual sites has exceeded its quota. A separate email has been sent with more details."
+
+msgid "user_exceeds"
+msgstr "When User Exceeds Allowed Disk Space"
+
+msgid "user_exceeds_help"
+msgstr "This specifies what mail is sent when a user exceeds their allowed disk space."
+
+msgid "site_exceeds"
+msgstr "When Site Exceeds Allowed Disk Space"
+
+msgid "site_exceeds_help"
+msgstr "This specifies what mail is sent when a site exceeds its allowed disk space."
+
+msgid "mail_admin_on_user"
+msgstr "Send Alert Notification Email"
+
+msgid "mail_admin_on_vsite"
+msgstr "Send Alert Notification Email"
+
+msgid "mail_user"
+msgstr "Email User"
+
+msgid "settings"
+msgstr "Notification Settings"
+
+msgid "settings_help"
+msgstr "Click here to control the email that is sent when users or sites exceed their quotas."
+
+msgid "sysQuota"
+msgstr "System Disk Usage"
+
+msgid "service"
+msgstr "Service"
+
+msgid "service_help"
+msgstr "These applications or system services may consume disk space. "
+
+msgid "errSettingEmails"
+msgstr "An error has occurred saving Notification Settings."
+
+msgid "suspended_cce"
+msgstr "The root partition is low on disk space. To prevent possible data corruption, the Server Desktop has been locked. No changes in the Server Desktop will be saved. Please telnet or ftp into the server appliance and delete unnecessary files. Active Monitor will unlock the Server Desktop when at least 500 megabytes of disk space is available on the root partition. To force Active Monitor to examine the disk usage, click the button labeled Check Status Now in the Active Monitor status screen."
+
+msgid "OverQuota_Users"
+msgstr "Over quota users:"
+
+msgid "All_Users"
+msgstr "All users:"
+
+msgid "OverQuota_Sites"
+msgstr "Over quota sites:"
+
+msgid "All_Sites"
+msgstr "All sites:"
+
+#-- New for BlueOnyx-NG:
+
+msgid "userDiskPercentage_moreInfo"
+msgstr "[[VAR.percentage]]% ([[VAR.used]]) of [[VAR.total]] used."
+
+msgid "mail_admin_on_user_help"
+msgstr "Send an email to admin if a user exceeds his allocated disk quota."
+
+msgid "mail_user_help"
+msgstr "Send an email to the user if he exceeds his disk quota. This email might not go through if insufficient disk space is avaiable for that user."
+
+msgid "mail_admin_on_vsite_help"
+msgstr "Send an email to admin if a virtual site exceeds its allocated disk quota."

@@ -1,0 +1,37 @@
+<class 
+    name="VsiteServices" namespace="ApacheBandwidth" version="1.0"
+>
+	<property name="featureEnabled" type="boolean" default="1"
+	writeacl="ruleCapable(adminUser)"
+	/>
+
+    <!-- i18n name for use if necessary -->
+    <property 
+        name="i18nName" type="scalar" 
+        default="[[base-apache-bandwidth.ApacheBandwidth]]"
+    />
+
+	<!-- default properties to store for vsites -->
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+	/>
+	<property
+	name="speed" type="int" default="1000"
+	writeacl="ruleCapable(adminUser)"
+	/>
+</class>
+
+<class 
+    name="Vsite" namespace="ApacheBandwidth" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="speed" type="int"  default="1000"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>

@@ -1,0 +1,250 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
+- Yet more fixes to handlers and constructors.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
+- More fixes to handlers and constructors.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
+- Some fixes to handlers and constructors.
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- New Capabilities for admin. 
+
+* Fri May 10 2013 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX38
+- Modified constructor/10_addSystem.pl to properly set host and domain via
+  perl-Sys-Hostname-FQDN instead of using hostname()
+- Added perl-Sys-Hostname-FQDN as dependency.
+
+* Sat Apr 14 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX37
+- Updated constructor/14_set_login_locale.pl and glue/handlers/set_login_locale.pl again.
+  We need to sort LINGUAS in a way that 'en_US' always comes first. This leaves the Linux
+  console at 'en_US' which some may find undesireable. But if we don't, we get plenty of
+  follow up errors both in the GUI as well as in some handlers or constructors.
+
+* Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX36
+- Also modified glue/handlers/set_login_locale.pl to remove the substr() from lang detection
+
+* Thu Apr 12 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX35
+- Updated constructor/14_set_login_locale.pl to remove substr() from lang detection
+  We really NEED the full curlangcode and not the shortened 2 letter designation.
+
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX34
+- Updated constructor/14_set_login_locale.pl and glue/handlers/set_login_locale.pl again to
+  set 'en_US' in case we still run on 'en' only.
+
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX33
+- Updated constructor/14_set_login_locale.pl and glue/handlers/set_login_locale.pl
+
+* Sun Apr 01 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX32
+- Small bugfixes in constructor/14_set_login_locale.pl
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX31
+- Modified constructor/14_set_login_locale.pl to force setting of LANG to 'ja_JP.eucJP' if
+  language is set to Japanese.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX30
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Thu Sep 01 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX29
+- Updated glue/handlers/modsystem.pl to supress writing Gateway info on DHCP systems.
+
+* Thu Sep 01 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX28
+- Modified glue/handlers/modsystem.pl to allow FQDNs longer than 40 chars
+
+* Tue Jul 12 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX27
+- Modified constructor/14_set_login_locale.pl to remove backups of edited i18n file
+
+* Tue Jul 12 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX26
+- Added constructor/14_set_login_locale.pl to update /etc/sysconfig/i18n on CCEd restarts
+
+* Tue Jun 28 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX25
+- Updated glue/handlers/set_login_locale.pl to set LC_ALL to 'en_US.UTF-8' if 5107R or 5108R.
+
+* Sat Jun 25 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX24
+- Added constructor to force memory update in CODB from Rickards 5106R's 1.1.0-40BQ22
+- Updated constructor/10_addSystem.pl and glue/handlers/set_login_locale.pl with platform checks.
+  This allows us to use the same modules on 5106R, 5107R and 5108R.
+
+* Thu Jun 03 2010  Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX23
+- Copied locale/en to locale/en_US
+- Modified constructor/10_addSystem.pl to use 'en_US' instead of 'en'
+- Modified glue/handlers/set_login_locale.pl to use 'en_US' instead of 'en'
+
+* Thu Jun 03 2010  Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BX22
+- Version number bump
+
+* Mon Mar 01 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ21
+- On CCEd restart locale would always be reset to English, even if the user had chosen a different one.
+- Fixed by modifying constructor/10_addSystem.pl which was missing provisions for de_DE and da_DK
+- These had already been added during beta, but somehow got dropped along the way.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ20
+- Rebuilt for BlueOnyx.
+
+* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ19
+- Fixed PHP5 related display issue in ui/web/system.php
+
+* Tue Jul 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ18
+- Modified 10_addSystem.pl
+
+* Tue Jul 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ17
+- set_login_locale.pl updated to chmod 644 /etc/sysconfig/i18n after edits
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ16
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-40BQ15
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-40BQ14
+- Fixed duplicate include issue.
+
+* Sat May 05 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-40BQ13
+- modify constructor to fix error message issue.
+
+* Wed May 03 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-40BQ12
+- remove registration button and add build number information.
+
+* Thu Feb 02 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-40BQ11
+- remove cobalt specific constructor and modify the constructor to set default lang with /etc/sysconfig/i18n.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-40BQ10
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-40BQ9
+- rebuild with devel-tools 0.5.1
+
+* Thu Aug 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-40BQ8
+- clean up locale file.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-40BQ7
+- fix security problem that can be accessed unauthorized function.
+- clean up spec file.
+<end $CHANGELOG>

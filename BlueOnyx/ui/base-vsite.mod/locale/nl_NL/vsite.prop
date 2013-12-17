@@ -1,0 +1,15 @@
+#
+# $Id: vsite.prop,v 1.1.2.2 2002/02/22 01:23:02 pbaltz Exp $
+# Copyright 2002 Sun Microsystems, Inc.  All rights reserved.
+#
+# locale sensitive properties to worry about for the vsite module
+#
+
+#
+# the subject/verb/object ordering in sentences.  V is verb.  S is subject.
+# O is object.
+#
+sentenceOrder:	S V O
+
+# do we need to use sortName property for sorting
+needSortName:	no

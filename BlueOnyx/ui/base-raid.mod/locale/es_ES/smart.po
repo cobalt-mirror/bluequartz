@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "SMARTnameTag"
+msgstr "Análisis de autocontrol y de Tecnología de Información (SMART) Detalles del estado"
+
+msgid "noAMobject"
+msgstr "No se puede encontrar el objeto Monitor activo"
+
+msgid "errRefreshingSnapshot"
+msgstr "Error de grabación instantánea de estado SMART"
+
+msgid "errRegettingObject"
+msgstr "Error volver a encontrar objetos Monitor activo"
+
+msgid "smartFailures"
+msgstr "Uno o más de sus discos tiene un error. Por favor, copia de seguridad de su sistema y reemplazar el disco dañado. (FIXME! qué disco debo sustituir?)"
+
+msgid "smartDeclining"
+msgstr "Las siguientes unidades han comenzado a debilitarse, pero son actualmente capaces de correr sin perder los datos: [[VAR.display_names]]. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener ayuda en la sustitución de una unidad debilitada."
+
+msgid "smartOK"
+msgstr "Autocontrol Drive está funcionando normalmente en todas las unidades instaladas."
+
+msgid "turned_off_drives"
+msgstr "Las siguientes unidades están empezando a fallar y se han desactivado: [[VAR.display_names]]. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener ayuda sobre cómo realizar copias de seguridad y sustituir las unidades que han fallado."
+
+msgid "unsafe"
+msgstr "Las siguientes unidades están empezando a fallar, pero no se pueden apagar sin pérdida de información: [[VAR.display_names]]. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener ayuda sobre cómo realizar copias de seguridad y sustituir las unidades que han fallado."
+
+msgid "standalone"
+msgstr "Las siguientes unidades están empezando a fallar, pero no se pueden apagar sin pérdida de información: [[VAR.display_names]]. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener ayuda sobre cómo realizar copias de seguridad y sustituir independiente unidades que han fallado."
+
+msgid "drive_off"
+msgstr "Esta unidad se ha apagado debido a que ha fallado. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener instrucciones sobre cómo cambiar esta unidad."
+
+msgid "unsafe_drive"
+msgstr "Esta unidad ha fallado, pero no se puede apagar sin pérdida de información. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener instrucciones sobre cómo sustituir la unidad."
+
+msgid "unsafe_drive_standalone"
+msgstr "Esta unidad ha fallado, pero no se puede apagar sin pérdida de información. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener instrucciones sobre cómo sustituir una unidad independiente."
+
+msgid "drive_declining"
+msgstr "Esta unidad ha comenzado a debilitarse, pero en la actualidad es capaz de correr sin perder ningún dato. Por favor, consulte [[base-sauce-basic.techSupportURL]] para obtener instrucciones sobre cómo sustituir un disco en declive."
+

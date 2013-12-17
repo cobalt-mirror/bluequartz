@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "bytes"
+msgstr "[[base-sitestats.bytes]]"
+
+msgid "bytesTransfered"
+msgstr "[[base-sitestats.bytesTransfered]]"
+
+msgid "bytesTransfered_help"
+msgstr "[[base-sitestats.bytesTransfered_help]]"
+
+msgid "bytes_help"
+msgstr "[[base-sitestats.bytes_help]]"
+
+msgid "customizeBut"
+msgstr "[[base-sitestats.customizeBut]]"
+
+msgid "customizeBut_help"
+msgstr "[[base-sitestats.customizeBut_help]]"
+
+msgid "daily"
+msgstr "[[base-sitestats.daily]]"
+
+msgid "dailyHistory"
+msgstr "[[base-sitestats.dailyHistory]]"
+
+msgid "dailyHistory_help"
+msgstr "[[base-sitestats.dailyHistory_help]]"
+
+msgid "dailySummaryDesc"
+msgstr "[[base-sitestats.dailySummaryDesc]]"
+
+msgid "daily_help"
+msgstr "[[base-sitestats.daily_help]]"
+
+msgid "domain"
+msgstr "[[base-sitestats.domain]]"
+
+msgid "domainReportBut"
+msgstr "Anfragen nach Domain"
+
+msgid "domainReportBut_help"
+msgstr "Logfiles über Domänen, von denen die Anfragen ausgingen."
+
+msgid "domainStats"
+msgstr "Domainstatistiken"
+
+msgid "downloadLogBut"
+msgstr "[[base-sitestats.downloadLogBut]]"
+
+msgid "downloadLogBut_help"
+msgstr "[[base-sitestats.downloadLogBut_help]]"
+
+msgid "filetype"
+msgstr "[[base-sitestats.filetype]]"
+
+msgid "filetype_help"
+msgstr "[[base-sitestats.filetype_help]]"
+
+msgid "firstRequest"
+msgstr "Erste Email"
+
+msgid "firstRequest_help"
+msgstr "Das Datum der ersten Mail, die in diesem Logfile aufgeführt wird. [[base-sitestats.requestCoverageHint]]"
+
+msgid "fullDailyDesc"
+msgstr "[[base-sitestats.fullDailyDesc]]"
+
+msgid "fullMonthlyDesc"
+msgstr "[[base-sitestats.fullMonthlyDesc]]"
+
+msgid "fullWeeklyDesc"
+msgstr "[[base-sitestats.fullWeeklyDesc]]"
+
+msgid "generateBut"
+msgstr "[[base-sitestats.generateBut]]"
+
+msgid "generateBut_help"
+msgstr "[[base-sitestats.generateBut_help]]"
+
+msgid "historicalReportBut"
+msgstr "[[base-sitestats.historicalReportBut]]"
+
+msgid "historicalReportBut_help"
+msgstr "[[base-sitestats.historicalReportBut_help]]"
+
+msgid "hourly"
+msgstr "[[base-sitestats.hourly]]"
+
+msgid "hourlySummaryDesc"
+msgstr "[[base-sitestats.hourlySummaryDesc]]"
+
+msgid "hourly_help"
+msgstr "[[base-sitestats.hourly_help]]"
+
+msgid "lastRequest"
+msgstr "Letzte Email"
+
+msgid "lastRequest_help"
+msgstr "Das Datum der letzten Email, die in diesem Logfile aufgeführt wird. [[base-sitestats.requestCoverageHint]]"
+
+msgid "monthlyHistory"
+msgstr "[[base-sitestats.monthlyHistory]]"
+
+msgid "monthlyHistory_help"
+msgstr "[[base-sitestats.monthlyHistory_help]]"
+
+msgid "otherStatistics"
+msgstr "Andere Mailnutzungsstatistiken "
+
+msgid "pbytes"
+msgstr "[[base-sitestats.pbytes]]"
+
+msgid "pbytes_help"
+msgstr "[[base-sitestats.pbytes_help]]"
+
+msgid "periodicReportBut"
+msgstr "[[base-sitestats.periodicReportBut]]"
+
+msgid "periodicReportBut_help"
+msgstr "[[base-sitestats.periodicReportBut_help]]"
+
+msgid "reportGenerated"
+msgstr "[[base-sitestats.reportGenerated]]"
+
+msgid "reportGenerated_help"
+msgstr "[[base-sitestats.reportGenerated_help]]"
+
+msgid "requestFileIn"
+msgstr "Adresse"
+
+msgid "requestFileIn_help"
+msgstr "Die Adresse, zu der die Adresse gesendet wurde. Beachten Sie, das dies auf eingehende und ausgehende Mails zutrifft. Daher können Adressen angezeigt werden, die nicht auf diesem Server gehostet werden."
+
+msgid "requestFileOut"
+msgstr "Adresse"
+
+msgid "requestFileOut_help"
+msgstr "Die Adresse, von der die Mail gesendet wurde.  Beachten Sie, das dies auf eingehende und ausgehende Mails zutrifft.  Daher können Adressen angezeigt werden, die nicht auf diesem Server gehostet sind."
+
+msgid "requestInBut"
+msgstr "Empfangene Emails"
+
+msgid "requestInBut_help"
+msgstr "Hier klicken, um die Adressen anzuzeigen, an welche die meisten Nachrichten gesendet wurden."
+
+msgid "requestNumber"
+msgstr "Emails"
+
+msgid "requestNumber_help"
+msgstr "Die Anzahl der Emails von diesem Benutzer."
+
+msgid "requestOutBut"
+msgstr "Gesendete Emails"
+
+msgid "requestOutBut_help"
+msgstr "Hier klicken, um die Adressen zu sehen, von denen die meisten Nachrichten gesendet wurden."
+
+msgid "requestReportBut"
+msgstr "Gesandte oder emfpangene Nachrichten nach Adresse"
+
+msgid "requestReportBut_help"
+msgstr "Zeigt die Mailnutzung nach Benutzer für ein- und ausgehende Emails."
+
+msgid "requestStatsIn"
+msgstr "Empfangene Mail nach Adresse"
+
+msgid "requestStatsOut"
+msgstr "Gesendete Mail nach Adresse"
+
+msgid "requests"
+msgstr "Nachrichten"
+
+msgid "requests_help"
+msgstr "Anzahl der Nachrichten"
+
+msgid "site"
+msgstr "Hostname"
+
+msgid "site_help"
+msgstr "Dies ist der Name des Server von dem oder zu dem die Mail gesendet wurde."
+
+msgid "successfulRequests"
+msgstr "Gesamte Anzahl protokollierter Nachrichten"
+
+msgid "successfulRequests_help"
+msgstr "Dies ist die Gesamtsumme aller protokollierten Emails."
+
+msgid "summaryStats"
+msgstr "Zusammenfassende Mailnutzungsstatistik"
+
+msgid "typeStats"
+msgstr "Anfragen nach Dateityp"
+
+msgid "typesReportBut"
+msgstr "Anfragen nach Dateityp"
+
+msgid "typesReportBut_help"
+msgstr "Ordnet die Anfragen nach dem Dateityp."
+
+msgid "vsiteStatsIn"
+msgstr "Empfangene Mails nach Hostname"
+
+msgid "vsiteStatsOut"
+msgstr "Gesendete Mails nach Hostname"
+
+msgid "vsitesReportBut"
+msgstr "[[base-sitestats.vsitesReportBut]]"
+
+msgid "vsitesReportBut_help"
+msgstr "[[base-sitestats.vsitesReportBut_help]]"
+
+msgid "vsites_in"
+msgstr "Emfpangene Mail"
+
+msgid "vsites_in_help"
+msgstr "Klicken Sie hier, um die Sites zu sehen, zu denen die meisten Mails gesendet wurden."
+
+msgid "vsites_out"
+msgstr "Gesendete Mail"
+
+msgid "vsites_out_help"
+msgstr "Klicken Sie hier, um die Sites zu sehen, von denen die meisten Mails gesendet wurden."
+
+msgid "weeklyHistory"
+msgstr "[[base-sitestats.weeklyHistory]]"
+
+msgid "weeklyHistory_help"
+msgstr "[[base-sitestats.weeklyHistory_help]]"
+

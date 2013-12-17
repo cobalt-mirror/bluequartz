@@ -1,0 +1,1112 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "="
+msgstr "er"
+
+msgid "actions"
+msgstr "Handlinger"
+
+msgid "actions_help"
+msgstr ""
+"Klik på blyanten for at redigere brugeren.  Klik på skraldespanden for at "
+"slette denne bruger."
+
+msgid "addAdminHelp"
+msgstr "Opret en ny serveradministrator."
+
+msgid "adminOptions"
+msgstr "Valgmuligheder for administrator"
+
+msgid "adminPowers"
+msgstr "Yderligere adgangsrettigheder"
+
+msgid "adminPowers_help"
+msgstr ""
+"Dette giver mulighed for tildeling af bestemte rettigheder til en "
+"serveradministrator, som normalt er reserveret til brugeren 'admin'.  Flyt "
+"rettigheder som denne serveradministrator skal have fra kolonnen [[base-"
+"vsite.disallowedAbilities]] til kolonnen [[base-vsite.allowedAbilities]]."
+
+msgid "adminUsersList"
+msgstr "Liste over serveradministratorer"
+
+msgid "advancedSearch"
+msgstr "Avanceret søgning"
+
+msgid "advancedSearch_help"
+msgstr "Søg efter websteder med andre kriterier."
+
+msgid "allowedAbilities"
+msgstr "Ekstra rettigheder"
+
+msgid "basicSettingsTab"
+msgstr "Basale indstillinger"
+
+msgid "basicSettingsTab_help"
+msgstr "Konfigurer de mest almindeligt brugte indstillinger."
+
+msgid "begins"
+msgstr "Begynder med"
+
+msgid "cantAddAdminToGroup"
+msgstr "Kunne ikke føje [[VAR.user]] til webstedets gruppe [[VAR.group]]."
+
+msgid "cantAddFtpVhost"
+msgstr "Kunne ikke oprette dette websteds FTP-serverindstillinger."
+
+msgid "cantAddSystemAlias"
+msgstr ""
+"Kunne ikke oprette system-emailaliasset [[VAR.alias]], for dette websted.  "
+"Sørg for at ingen bruger på systemet bruger dette alias og prøv igen."
+
+msgid "cantAddSystemGroup"
+msgstr ""
+"Webstedet kunne ikke oprettes, fordi systemet ikke kunne oprette webstedets "
+"systemgruppe."
+
+msgid "cantAddUserToServerAdminGroup"
+msgstr ""
+"Kunne ikke føje brugeren [[VAR.user]] til serveradministratorens gruppe."
+
+msgid "cantAddUserToSiteAdminGroup"
+msgstr "Kunne ikke føje [[VAR.user]] til siteadministratorens gruppe."
+
+msgid "cantAddVirtualHost"
+msgstr ""
+"Dette websted kunne ikke oprettes fordi dets tilknyttede webserver ikke "
+"kunne oprettes."
+
+msgid "cantChangeSitePreview"
+msgstr "Kan ikke ændre indstillinger for forhåndsvisning af websted"
+
+msgid "cantCreateAtypeRecord"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette DNS for [[VAR.fqdn]]."
+
+msgid "cantCreateAtypeRecordForMail"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette A record i DNS for "
+"mailserveraliasset [[VAR.alias]], på for [[VAR.fqdn]]."
+
+msgid "cantCreateMXRecordForMailAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette MX record i DNS for "
+"mailserveraliasset [[VAR.alias]], på for [[VAR.fqdn]]."
+
+msgid "cantCreateMailAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Mailaliasset [[VAR.alias]], kunne ikke "
+"oprettes."
+
+msgid "cantCreateNetwork"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette netværksinterface "
+"associeret med dette websteds IP-adresse."
+
+msgid "cantCreateSiteAdminGroup"
+msgstr "Kunne ikke oprette siteadministratorens gruppe."
+
+msgid "cantCreateWebAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke oprette DNS for webserveraliasset "
+"[[VAR.alias]], på [[VAR.fqdn]]."
+
+msgid "cantDestroyNetwork"
+msgstr ""
+"Kunne ikke deaktivere det netværksinterface som er associeret med webstedets "
+"IP-adresse.  Dette forhindrede dog ikke webstedet i at blive slettet."
+
+msgid "cantDisableVhost"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke deaktivere webstedets webserver."
+
+msgid "cantMigrateDnsRecords"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke opdatere DNS for [[VAR.fqdn]] så "
+"det matcher de nye informationer om webstedet."
+
+msgid "cantReadVsite"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke hente webstedets informationer "
+"fra CCE."
+
+msgid "cantRemoveAdminFromGroup"
+msgstr "Kunne ikke fjerne [[VAR.user]] fra webstedets gruppe [[VAR.group]]."
+
+msgid "cantRemoveUserFromServerAdminGroup"
+msgstr "Kunne ikke fjerne [[VAR.user]] fra serveradministratorens gruppe."
+
+msgid "cantRemoveUserFromSiteAdminGroup"
+msgstr "Kunne ikke fjerne [[VAR.user]] fra siteadministratorens gruppe."
+
+msgid "cantRestartDns"
+msgstr "[[base-vsite.operationFailed]]  Kunne ikke genstarte DNS serveren."
+
+msgid "cantSetSiteGroup"
+msgstr ""
+"Webstedet kunne ikke oprettes, fordi webstedets information ikke kunne "
+"opdateres med dets korresponderende systemgruppenavn."
+
+msgid "cantSuspendUsers"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke suspendere alle webstedets "
+"brugere."
+
+msgid "cantUpdateMailAlias"
+msgstr ""
+"[[base-vsite.operationFailed]]  Emailaliasset, [[VAR.alias]], kunne ikke "
+"opdateres."
+
+msgid "cantUpdateSiteAdminCaps"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke opdatere rettighederne for "
+"siteadministratorer."
+
+msgid "cantUpdateUserMailAliases"
+msgstr ""
+"[[base-vsite.operationFailed]]  Kunne ikke opdatere emailinformationerne for "
+"de brugere der hører til dette websted."
+
+msgid "cantUpdateVhost"
+msgstr ""
+"[[base-vsite.operationFailed]] Kunne ikke opdatere webserverinformationen "
+"for dette websted."
+
+msgid "contains"
+msgstr "Indeholder"
+
+msgid "couldNotAddAdminAccount"
+msgstr ""
+"[[base-vsite.operationFailed]]  Adminbrugerkonto for [[VAR.fqdn]] kunne ikke "
+"oprettes."
+
+msgid "createAdminUser"
+msgstr "Opret ny serveradministrator"
+
+msgid "defaultDomain"
+msgstr "[[base-vsite.domain]]"
+
+msgid "defaultDomain_help"
+msgstr "Standard domæne til hvilket nye websteder vil høre."
+
+msgid "defaultHome"
+msgstr "Standardbibliotek (/home)"
+
+msgid "defaultIpAddr"
+msgstr "[[base-vsite.ipAddr]]"
+
+msgid "defaultIpAddr_help"
+msgstr "Standardadresse der vil blive indsat når et nyt websted oprettes."
+
+msgid "deleteQuestion"
+msgstr "Er du sikker på at du vel slette administratoren, [[VAR.name]]?"
+
+msgid "deletingSite"
+msgstr "Sletter websted, vent venligst..."
+
+msgid "deletingUser"
+msgstr "Sletter bruger, vent venligst..."
+
+msgid "disallowedAbilities"
+msgstr "Tilgængelige rettigheder"
+
+msgid "diskQuota_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-vsite.userDiskQuota]] er enten "
+"for lav eller ikke et tal.  [[base-vsite.diskQuota_rule]]"
+
+msgid "diskQuota_rule"
+msgstr ""
+"Indtast et tal større end eller lig med en for at begrænse brugerens "
+"diskplads.  Lad feltet være tomt for at give brugeren adgang til alt ledig "
+"plads på den enhed hvor brugerens hjemmebibliotek er placeret."
+
+msgid "diskUsedBySites"
+msgstr ""
+"Enheden kan ikke ændres, fordi følgende webstedet er placeret på den:  "
+"[[VAR.sites]].  Slet venligst disse websteder for denne enhed deaktiveres "
+"eller gøres utilgængeligt til brug som et hjemmebibliotek."
+
+msgid "displayOptions"
+msgstr "Vis valgmuligheder"
+
+msgid "dns_auto"
+msgstr "Automatisk opsætning af DNS"
+
+msgid "dns_auto_help"
+msgstr ""
+"Automatisk opsætning af DNS administrerer DNS for dette websted.  Web og "
+"emailserveraliasser er kun understøttede hvis de deler webstedets "
+"domænenavn.  Denne tjeneste registrerer ikke automatisk domænenavnet med en "
+"Top-Level registrar."
+
+msgid "domain"
+msgstr "Domænenavn"
+
+msgid "domain_help"
+msgstr ""
+"Dette er webstedets domænenavn. Et domænenavn er den anden del af et fuldt "
+"kvalificeret domænenavn.  eksempel.dk og BlueOnyx.dk er, for eksempel, "
+"gyldige domænenavne."
+
+msgid "emailDisabled"
+msgstr "Deaktiver email på domænet"
+
+msgid "emailDisabled_help"
+msgstr "Dette vil deaktivere domænets mulighed for at modtage email."
+
+msgid "ends"
+msgstr "Slutter med"
+
+msgid "enterFqdn"
+msgstr "Vært eller domænenavn"
+
+msgid "enterFqdn_help"
+msgstr ""
+"Indtast webstedets værtsnavn i det første felt og domænenavnet i det andet "
+"felt.  Domænet kan f.eks. være eksempel.dk, BlueOnyx.dk, o.s.v."
+
+msgid "exitSitemgmt"
+msgstr "Forlad administration af websted"
+
+msgid "exitSitemgmtHelp"
+msgstr "Luk dette vindue."
+
+msgid "fqdn"
+msgstr "Fuldt værtsnavn"
+
+msgid "fqdnInUse"
+msgstr ""
+"Kombinationen af det specificerede værtsnavn og domænenavn, [[VAR.fqdn]], er "
+"i brug af et andet virtuelt websted."
+
+msgid "fqdnTooLong"
+msgstr ""
+"Beklager, men værts- og domænenavn er for langt.  Den kombinerede længde af "
+"værtsnavn og domænenavn skal være mindre end 255 karakterer."
+
+msgid "fqdn_help"
+msgstr ""
+"Dette er webstedets komplette navn, og kendes også som det fuldt "
+"kvalificerede domænenavn.  Det fulde værtsnavn sorteres efter domæne og "
+"derefter efter værtsnavn."
+
+msgid "fullName"
+msgstr "Fuldt navn"
+
+msgid "fullName_help"
+msgstr "Brugerens fulde navn."
+
+msgid "generalSettings"
+msgstr "Generelle indstillinger"
+
+msgid "generalSettings_help"
+msgstr "Rediger indstillinger for dette websted og konfigurer tjenester."
+
+msgid "homePartition"
+msgstr "Placering af webstedets bibliotek"
+
+msgid "homePartition_help"
+msgstr ""
+"Vælg det bibliotek hvor dette websteds hjemmebibliotek skal placeres.  /home "
+"biblioteket er standardplacering og er placeret på serverens interne "
+"harddiske.  De andre biblioteker er placeret på andre lagerenheder.  Hvis et "
+"websteds hjemmebibliotek er placeret på en anden lagerenhed, vil "
+"deaktivering eller bortfjernelse af enheden medføre at webstedet ophører med "
+"at fungere."
+
+msgid "hostName"
+msgstr "Værtsnavn"
+
+msgid "hostName_help"
+msgstr ""
+"Dette er webstedets værtsnavn.  Værtsnavnet er den første del af et fuldt "
+"kvalificeret domænenavn.  mail og www er, for eksempel, gyldige værtsnavne."
+
+msgid "inSubnet"
+msgstr "er på subnettet"
+
+msgid "ipAddr"
+msgstr "IP-adresse"
+
+msgid "ipAddr_help"
+msgstr "Dette er webstedets IP-adresse."
+
+msgid "listSuspended"
+msgstr "Suspenderet"
+
+msgid "listSuspended_help"
+msgstr ""
+"Dette indikerer om webstedet er suspenderet eller ej. Hvis et websted er "
+"suspenderet, så deaktiveres adgang for brugere til web og FTP på webstedet."
+
+msgid "localhostNotAllowed"
+msgstr ""
+"Værtsnavnet localhost er reserveret og kan ikke specificeres som værtnavn på "
+"et virtuelt websted."
+
+msgid "mailAliases"
+msgstr "Emailserveraliasser"
+
+msgid "mailAliases_help"
+msgstr ""
+"Indtast yderligere vært- eller domænenavne for hvilke dette virtuelle "
+"websted skal acceptere email [SMTP port 25] forbindelser.  Separer flere "
+"indtastninger med komma eller mellemrum.  Eksempel: mail2.eksempel.dk, "
+"mail.eksempel.dk"
+
+msgid "mailAliases_invalid"
+msgstr "Emailserveraliasset [[VAR.invalidValue]] er ugyldigt."
+
+msgid "mailCatchAll"
+msgstr "\"Fang-alt\" emailadresse"
+
+msgid "mailCatchAll_help"
+msgstr ""
+"Specificer en emailadresse som skal modtage meddelelser sendt til ukendte "
+"brugere og postlister.  Hvis denne efterlades tom, vil email sendt til "
+"ukendte brugere eller postlister ikke blive accepteret.  Hvis den "
+"specificerede adresse ikke findes, vil mail til ukendte brugere og "
+"postlister muligvis blive afvist, som hvis der ingen adresse var "
+"specificeret."
+
+msgid "manageAdmin"
+msgstr "Rediger serveradministratorindstillinger for [[VAR.name]]"
+
+msgid "manageAdminDescription"
+msgstr ""
+"Opret og administrer serveradministratorkonti.  [[base-"
+"vsite.manageAdminUsersBlurb]]"
+
+msgid "manageAdminUsers"
+msgstr "Administratorer"
+
+msgid "manageAdminUsersBlurb"
+msgstr ""
+"Oprettelse af separate serveradministratorkonti, udover 'admin' kontoen, "
+"giver serveradministratoren mulighed for at tillade betroede tjedjeparter at "
+"administrere serveren.  Administratorkonti kan oprettes så de har alle de "
+"samme rettigheder, udover administration ad administratorkonti, som 'admin' "
+"kontoen har.  Administratorkonti kan også oprettes med flere begrænsinger af "
+"hvilke aspekter af serveren de har lov til at kontrollere."
+
+msgid "maxUsers"
+msgstr "Maksimalt antal tilladte brugere"
+
+msgid "maxUsers_help"
+msgstr "Det maksimale antal brugere som webstedet kan have."
+
+msgid "modVsiteSettings"
+msgstr "Indstillinger for virtuelt websted [[VAR.site]]"
+
+msgid "mod_name"
+msgstr "Modulnavn"
+
+msgid "modifySearch"
+msgstr "Rediger søgning"
+
+msgid "modifySearch_help"
+msgstr ""
+"Rediger de søgekriterier der benyttes til at generere den aktuelle liste."
+
+msgid "newSearch"
+msgstr "Ny søgning"
+
+msgid "newSearch_help"
+msgstr "Opret en ny søgning."
+
+msgid "newVsiteSettings"
+msgstr "Tilføj et nyt virtuelt websted."
+
+msgid "no"
+msgstr "Nej"
+
+msgid "noSuchSite"
+msgstr "Det specificerede websted, [[VAR.site]], blev ikke fundet."
+
+msgid "notInSubnet"
+msgstr "er ikke i subnettet"
+
+msgid "not_contains"
+msgstr "Indeholder ikke"
+
+msgid "numResultsPerPage"
+msgstr "Websteder per side"
+
+msgid "numResultsPerPage_help"
+msgstr ""
+"Indstil det antal websteder per side som skal vises på samme tid.  De "
+"resterende websteder vil kunne findes ved at vælge det ønskede sidetal fra "
+"menuen i toppen af listen."
+
+msgid "numResultsPerPage_invalid"
+msgstr ""
+"Beklager, men den indtastede værdi for [[base-vsite.numResultsPerPage]] er "
+"enten for lav eller ikke et tal.  Indtast venligst et tal der er større end "
+"eller lig med et."
+
+msgid "operationFailed"
+msgstr "Operationen slog fejl."
+
+msgid "otherServices"
+msgstr "Tjenester og funktioner"
+
+msgid "otherServices_help"
+msgstr "Aktiver eller deaktiver forskellige tjenester."
+
+msgid "overUserLimit"
+msgstr ""
+"[[base-vsite.operationFailed]]  Webstedet, [[VAR.fqdn]] har overskredet det "
+"maksimale antal brugere det tillades at have."
+
+msgid "quota"
+msgstr "Maksimalt tilladt diskplads"
+
+msgid "quota_help"
+msgstr ""
+"Den maksimale diskplads som webstedet har tilgængeligt til "
+"filer."
+
+msgid "removeFailed"
+msgstr "Sletning af websted slog fejl"
+
+msgid "removingSite"
+msgstr "Sletter websted"
+
+msgid "removingUsers"
+msgstr "Fjerner brugere"
+
+msgid "rootAccess"
+msgstr "Rodadgang"
+
+msgid "rootAccess_help"
+msgstr ""
+"Aktivering af rodadgang giver adminbrugeren mulighed for, når vedkommende er "
+"logget ind med SSH, at bruge 'su' for at udføre kommandoer med root "
+"rettigheder.  Hvis dette er aktiveret, oprettes en ny root konto med navnet "
+"'root-&lt;brugernavn&gt;', hvor &lt;brugernavn&gt; er navnet på den bruger "
+"med rodadgang som vil blive oprettet.  Den nye konto vil have samme "
+"adgangskode som brugerens normale adgangskode.  For en administrator med "
+"brugernavnet 'peter', vil brugeren 'peter' kunne køre kommandoen 'su - root-"
+"peter' og indtaste sin kontos adgangskode for at blive rodbruger."
+
+msgid "searchBy"
+msgstr "Søg"
+
+msgid "searchBy_help"
+msgstr ""
+"Vælg felt at søge efter.  Webstedet som indeholder den indtastede tekst i "
+"det valgte felt vil blive vist."
+
+msgid "searchCriteria"
+msgstr "Søgekriterier"
+
+msgid "searchCriteria_help"
+msgstr ""
+"Vælg hvordan den specificerede attribut skal gennemsøges.  Rullemenuen kan "
+"bruges til at begrænse hvor nøjagtigt søgeteksten skal matches.  Indtast "
+"søgeteksten i feltet."
+
+msgid "searchOptions"
+msgstr "Valgmuligheder for søgning"
+
+msgid "searchResults"
+msgstr "Søgeresultater for virtuelle websteder"
+
+msgid "search_vsite_nonefound"
+msgstr ""
+"Ingen virtuelle websteder blev fundet med denne søgning. Prøv at begrænse "
+"dine søgekriterier."
+
+msgid "search_vsite_results"
+msgstr "Søgeresultater ([[VAR.num]] virtuelle websteder fundet)"
+
+msgid "search_vsite_results_1"
+msgstr "Søgeresultat (1 virtuelt websted fundet)"
+
+msgid "searchbut"
+msgstr "Søg"
+
+msgid "searchbut_help"
+msgstr "Søg efter virtuelle websteder der passer til det valgte."
+
+msgid "services"
+msgstr "Tjenester"
+
+msgid "siteDefaultsTab"
+msgstr "Basale indstillinger"
+
+msgid "siteDefaultsTab_help"
+msgstr ""
+"Rediger standardværdier for netværk, brugere og diskbegrænsninger, samt "
+"emailindstillinger for nye virtuelle websteder."
+
+msgid "siteEmailSettings"
+msgstr "Emailindstillinger for [[VAR.fqdn]]"
+
+msgid "siteMembersFound"
+msgstr ""
+"Webstedet kan ikke slettes, fordi nogle af webstedets brugerkonti ikke er "
+"slettet.  Undersøg venligst webstedets brugerliste for at se hvilke brugere "
+"der er tilbage."
+
+msgid "siteRemoveConfirm"
+msgstr "Er du sikker på at du vil slette webstedet, [[VAR.fqdn]]?"
+
+msgid "siteUses"
+msgstr "Brugere på webstedet"
+
+msgid "siteUses_help"
+msgstr ""
+"Vælg de ønskede tjenester for at finde websteder der bruger de specificerede "
+"tjenester."
+
+msgid "siteWebSettings"
+msgstr "Webindstillinger for [[VAR.fqdn]]"
+
+msgid "site_preview"
+msgstr "Konfiguration af forhåndsvisning"
+
+msgid "site_preview_help"
+msgstr ""
+"Hvis valgt vil forhåndsvisning af webstedet blive oprettet. Du kan derefter "
+"gennemse webstedet på adressen http://ServerNavn/WebstedsNavn/."
+
+msgid "siteaddbut"
+msgstr "Tilføj websted"
+
+msgid "siteaddbut_help"
+msgstr "Føj et nyt websted til denne server."
+
+msgid "sitedefaultsbut"
+msgstr "Rediger skabelon for virtuelle websteder"
+
+msgid "sitedefaultsbut_help"
+msgstr ""
+"Rediger de indstillinger der automatisk udfyldes når et virtuelt websted "
+"oprettes."
+
+msgid "sitemail"
+msgstr "Email"
+
+msgid "sitemail_help"
+msgstr ""
+"Klik her for at konfigurere emailindstillinger såsom aliasser for websteder."
+
+msgid "sitemaintenance"
+msgstr "Vedligeholdelse"
+
+msgid "sitemaintenanceDescription"
+msgstr ""
+"Klik her for at udføre vedligeholdelse af websteder, såsom backup og "
+"restore."
+
+msgid "sitemanage"
+msgstr "Webstedsadministration"
+
+msgid "sitemanageDescription"
+msgstr "Klik her for at administrere virtuelle websteder og brugerkonti."
+
+msgid "siteservices"
+msgstr "Tjenester"
+
+msgid "siteservicesDescription"
+msgstr "Klik her for at konfigurere tilgængelige tjenester for dette websted."
+
+msgid "sitesettings"
+msgstr "Indstillinger for websted"
+
+msgid "sitesettingsDescription"
+msgstr "Klik her for at ændre generelle websteds- og tjenesteindstillinger."
+
+msgid "sitetabDescription"
+msgstr ""
+"Administrere webstedsindstillinger såsom brugerkonti, postlister, FTP og "
+"backup."
+
+msgid "sitetabDescription_menu"
+msgstr ""
+"Vælg fra menuen nedenfor for at administrere indstillinger for "
+"[[VAR.hostname]], såsom brugerkonti, postlister, FTP og backup."
+
+msgid "siteusage"
+msgstr "Forbrugsinformation"
+
+msgid "siteusageDescription"
+msgstr "Vis informationer om ressourceforbrug på dette websted."
+
+msgid "siteweb"
+msgstr "Web"
+
+msgid "siteweb_help"
+msgstr "Klik her for at konfigurere webindstillinger som f.eks. scriptsprog."
+
+msgid "suspend"
+msgstr "Suspender"
+
+msgid "suspendUser"
+msgstr "Suspender bruger"
+
+msgid "suspendUser_help"
+msgstr ""
+"Suspendering af en bruger vil forhindre denne i at tilgå serveren.  Brugere "
+"vil ikke kunne forbinde til serveren så længe de er suspenderede."
+
+msgid "suspend_help"
+msgstr ""
+"Hvis dette er valgt vil webstedet være suspenderet. Suspendering af et "
+"websted vil fuldstændigt deaktivere adgang for brugere på webstedet, ligesom "
+"web og FTP adgangen også vil være deaktiveret."
+
+msgid "suspended"
+msgstr "Suspenderet"
+
+msgid "suspended_help"
+msgstr "Vælg for at finde websteder der i øjeblikket er suspenderede."
+
+msgid "systemFqdnNotAllowed"
+msgstr ""
+"Det specificerede værtsnavn og domænenavn, [[VAR.fqdn]], er i brug af "
+"systemet."
+
+msgid "usedMailAliases"
+msgstr ""
+"Følgende mailserveraliasser er i brug og kan ikke indstilles:  "
+"[[VAR.aliases]]"
+
+msgid "usedWebAliases"
+msgstr ""
+"Følgende webserveraliasser er i brug og kan ikke indstilles:  "
+"[[VAR.aliases]]"
+
+msgid "userDiskQuota"
+msgstr "Maksimalt tilladt diskplads"
+
+msgid "userDiskQuota_help"
+msgstr ""
+"Indtast den maksimale mængde diskplads som denne bruger skal "
+"tillades at optage på serveren.  Lad feltet være tomt for at give denne "
+"bruger ubegrænset adgang til diskplads."
+
+msgid "userInformation"
+msgstr "Brugerinformation"
+
+msgid "userName"
+msgstr "Brugernavn"
+
+msgid "userNameCreate"
+msgstr "[[base-vsite.userName]]"
+
+msgid "userNameCreate_help"
+msgstr "Indtast brugernavn på den nye serveradministrator."
+
+msgid "userName_help"
+msgstr "Brugerens brugernavn."
+
+msgid "userOwnsAlias"
+msgstr ""
+"Kunne ikke oprette systememailaliasset, [[VAR.alias]], for dette websted.  "
+"Brugeren, [[VAR.user]], som ikke er medlem af noget websted (muligvis en "
+"serveradministrator), lader til at bruge aliasset-  Fjern aliasset fra "
+"[[VAR.user]] og prøv igen."
+
+msgid "userPassword"
+msgstr "Adgangskode"
+
+msgid "userPassword_help"
+msgstr "Indtast brugerens adgangskode."
+
+msgid "userSuspended"
+msgstr "Suspenderet"
+
+msgid "userSuspended_help"
+msgstr "Viser hvorvidt en serveradministrators konto er suspenderet."
+
+msgid "version"
+msgstr "version 1.0"
+
+msgid "virtualSiteList"
+msgstr "Virtuelle websteder"
+
+msgid "virtualSiteList_help"
+msgstr "Lik her for at oprette eller redigere virtuelle websteder på serveren."
+
+msgid "vsiteDefaults"
+msgstr "Skabelon for virtuelle websteder"
+
+msgid "vsiteSearch"
+msgstr "Søg i virtuelle websteder"
+
+msgid "vsiteUserOwnsAlias"
+msgstr ""
+"Kunne ikke oprette systememailaliasset, [[VAR.alias]], på dette websted.  "
+"Brugeren, [[VAR.user]], som er medlem af webstedet, [[VAR.site]], lader til "
+"at benytte aliasset.  Fjern aliasset fra [[VAR.user]] og prøv igen."
+
+msgid "vsiteUsingChangingIP"
+msgstr ""
+"IP-adressen kan ikke ændres, fordi et eller flere websteder har den aktuelle "
+"IP-adresse tildelt dette interface."
+
+msgid "vsiteUsingIpAddress"
+msgstr ""
+"Netværksinterfacet kan ikke deaktiveres fordi et eller flere websteder "
+"bruger den IP-adresse der er tildelt interfacet."
+
+msgid "webAliases"
+msgstr "Webserveralias"
+
+msgid "webAliases_help"
+msgstr ""
+"Indtast yderligere værts- eller domænenavne for hvilke dette virtuelle "
+"websted skal acceptere forespørgsler via web.  Separer indtastninger med "
+"komma eller mellemrum. Eksempel: www2.eksempel.dk, www.eksempel.dk.  Vær "
+"opmærksom på at DNS skal konfigureres til at opløse aliasserne foruden selve "
+"webstedets navn."
+
+msgid "webAliases_invalid"
+msgstr "Webserveraliasset [[VAR.invalidValue]] er ugyldigt."
+
+msgid "windowTitle"
+msgstr "Administrerer virtuelt websted [[VAR.vsite]] som [[VAR.user]]"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "userwebs"
+msgstr "Aktiver brugernes ejede webs"
+
+msgid "userwebs_help"
+msgstr "Hvis aktiveret, så hver bruger har sin egen webhotel, som er adskilt fra det primære websted webspace og kan nås via http://www.example.com/ ~ brugernavn /. Brugere kan derefter uploade deres egne websider via FTP ind i deres egen / web-mappe."
+
+msgid "php_server"
+msgstr "PHP-indstillinger"
+
+msgid "php_serverDescription"
+msgstr "På denne side kan du konfigurere sikkerhed og ydeevne relaterede indstillinger af PHP. Disse ændringer er anvendt til din php.ini konfigurationsfil af PHP. Vær opmærksom på, at PHP er meget kraftfuld og kan ofte bruges til at udnytte en server. Derfor kan vi konfigurere den på en meget restriktiv og sikker måde. Du kan løsne disse restriktioner på en per site basis."
+
+msgid "php_server_head"
+msgstr "Server brede PHP-indstillinger"
+
+msgid "php_ini_security_settings"
+msgstr "Primære PHP-indstillinger"
+
+msgid "php_ini_security_settings_help"
+msgstr "Vigtigste sikkerhed og ydeevne indstillinger gælder på en server bredt niveau. Disse ændringer er anvendt direkte til din php.ini fil."
+
+msgid "php_ini_expert_mode"
+msgstr "Anmeldelse php.ini"
+
+msgid "php_ini_expert_mode_help"
+msgstr "Denne side giver dig at gennemgå hele php.ini og viser alle muligheder - ikke kun de få redigerbare dem. Bemærk venligst: Gem ændringer på denne side er ikke mulig."
+
+msgid "php_ini_location"
+msgstr "Lokation:"
+
+msgid "php_ini_location_help"
+msgstr "Dette viser, hvor din php.ini filen er placeret."
+
+msgid "register_globals"
+msgstr "Register Globals:"
+
+msgid "register_globals_help"
+msgstr "For at opnå maksimal sikkerhed, skal du indstille &quot;register_globals&quot; til &#39;Off&#39;. Ellers er det let muligt at unsecurely programmerede PHP-scripts kan bruges til at hacke din server."
+
+msgid "safe_mode"
+msgstr "Safe Mode:"
+
+msgid "safe_mode_help"
+msgstr "PHP safe mode er et forsøg på at løse delt server sikkerhedsproblem. Hvis aktiverede PHP-scripts kun får lov til at åbne filer, som er ejet af * samme * bruger (UID) og gruppe (GID). SIKKERHED ADVARSEL: Du * BØR IKKE * slukke fejlsikret tilstand. Slukning Safe Mode er en invitation til at komme hacket."
+
+msgid "safe_mode_gid"
+msgstr "Safe Mode GID:"
+
+msgid "safe_mode_gid_help"
+msgstr "Som standard gør fejlsikret tilstand en UID / GID sammenligne tjekke, når du åbner filer og tillader kun at åbne filer ejes af den samme UID / GID. Hvis du ønsker at slappe af dette til bare en GID sammenligne, tænd derefter safe_mode_gid."
+
+msgid "safe_mode_include_dir"
+msgstr "Safe Mode omfatter bibliotek:"
+
+msgid "safe_mode_include_dir_help"
+msgstr "UID / GID kontrol er omgået, når herunder filer fra denne mappe og dens undermapper. Dette direktiv kan tage et kolon (semikolon på Windows) adskilt sti, snarere end blot en enkelt bibliotek. Den angivne begrænsning er faktisk et præfiks, ikke en mappe navn. Det betyder, at &#39;safe_mode_include_dir = / dir / incl&#39; også giver adgang til &#39;/ dir / include&#39; og &#39;/ dir / incls&#39;, hvis de findes. Når du ønsker at begrænse adgangen til den angivne mappe, ende med en skråstreg. For eksempel: »safe_mode_include_dir = / dir / incl / &#39;. Hvis værdien af ​​dette direktiv er tom, kan ingen filer med forskellige UID / GID medtages."
+
+msgid "safe_mode_exec_dir"
+msgstr "Safe Mode exec mappe:"
+
+msgid "safe_mode_exec_dir_help"
+msgstr "Hvis PHP bruges i fejlsikret tilstand, system () og de andre funktioner, udførende systemprogrammer nægter at starte programmer, der ikke i denne mappe."
+
+msgid "safe_mode_allowed_env_vars"
+msgstr "Safe Mode tilladt evelope variable:"
+
+msgid "safe_mode_allowed_env_vars_help"
+msgstr "Indstilling af visse miljøvariabler kan være en potentiel sikkerhedsbrist. Dette direktiv indeholder en kommasepareret liste over præfikser. I fejlsikret tilstand, kan brugeren kun ændre miljøvariabler, hvis navne begynder med de præfikser leveres her. Som standard, vil brugerne kun kunne sætte miljøvariable, der begynder med PHP_ (f.eks PHP_FOO = BAR). Bemærk: Hvis dette direktiv er tom, vil PHP lade brugeren ændre enhver miljøvariabel!"
+
+msgid "safe_mode_protected_env_vars"
+msgstr "Fejlsikret tilstand beskyttede envelope variabler:"
+
+msgid "safe_mode_protected_env_vars_help"
+msgstr "Dette direktiv indeholder en kommasepareret liste over miljøvariabler at slutbrugeren ikke vil være i stand til at ændre ved hjælp putenv (). Disse variabler vil blive beskyttet, selvom safe_mode_allowed_env_vars er indstillet til at gøre det muligt at ændre dem."
+
+msgid "disable_functions"
+msgstr "Deaktiver funktioner:"
+
+msgid "disable_functions_help"
+msgstr "Dette direktiv gør det muligt at deaktivere visse funktioner af sikkerhedsmæssige årsager. Det tager på en kommasepareret liste med navne på funktioner. disable_functions påvirkes ikke af fejlsikret tilstand."
+
+msgid "disable_classes"
+msgstr "Deaktiver klasser:"
+
+msgid "disable_classes_help"
+msgstr "Dette direktiv gør det muligt at deaktivere visse klasser af sikkerhedsmæssige årsager. Det tager på en kommasepareret liste med klassen navne. disable_classes påvirkes ikke af fejlsikret tilstand."
+
+msgid "allow_url_fopen"
+msgstr "Tillad URL fopen:"
+
+msgid "allow_url_fopen_help"
+msgstr "Hvis aktiveret, allow_url_fopen tillader PHP sagsakter funktioner - såsom file_get_contents () og omfatter og kræver udsagn - kan hente data fra fjerntliggende steder, ligesom en FTP-eller web site. Programmører ofte glemmer dette og ikke gøre ordentlig input filtrering, når de passerer brugeren leverede data til disse funktioner, åbne dem op til kode injektion sårbarheder. Et stort antal kode injektion sårbarheder og hacks rapporteret i PHP-baserede web-applikationer er forårsaget af en kombination af muligt allow_url_fopen og dårlige input filtrering. Fra som standard."
+
+msgid "allow_url_include"
+msgstr "Tillad URL include:"
+
+msgid "allow_url_include_help"
+msgstr "(Gælder kun for PHP&gt; = 5.2.0) Hvis den er deaktiveret, allow_url_include barer fjernfil adgang via omfatter og kræver udtalelser, men overlader det til rådighed for andre fil funktioner som fopen () og file_get_contents. Bemærk venligst: inkluderer og kræver er de mest almindelige angrebspunkter for kode injektion forsøg, så denne indstilling propper netop hul uden at påvirke de fjernadgang kapaciteter standard fil-funktioner. Som standard er allow_url_include deaktiveret."
+
+msgid "upload_max_filesize"
+msgstr "Upload max filstørrelse:"
+
+msgid "upload_max_filesize_help"
+msgstr "upload_max_filesize begrænser den maksimale størrelse på filer, PHP vil acceptere igennem uploads. Angribere kan forsøge at sende groft overdimensionerede filer at udtømme dit system ressourcer, ved at sætte en realistisk værdi her du kan afbøde nogle af de skader, som disse angreb. Som standard indstiller PHP denne værdi til 2MB."
+
+msgid "post_max_size"
+msgstr "Indlæg max størrelse:"
+
+msgid "post_max_size_help"
+msgstr "Denne beskyttelse giver dig mulighed for at begrænse den maksimale størrelse POST anmodning om, at PHP vil behandle. Angribere kan forsøge at sende groft overdimensionerede POST-anmodninger at udtømme dit system ressourcer, ved at sætte en realistisk værdi her du kan afbøde nogle af de skader, som disse angreb."
+
+msgid "max_execution_time"
+msgstr "Max gennemførelsestid:"
+
+msgid "max_execution_time_help"
+msgstr "Maksimal mængde tid hver script kan køre."
+
+msgid "max_input_time"
+msgstr "Max input tid:"
+
+msgid "max_input_time_help"
+msgstr "Maksimal mængde tid hver script kan bruge parsing anmode data."
+
+msgid "memory_limit"
+msgstr "Hukommelse grænse:"
+
+msgid "memory_limit_help"
+msgstr "Definerer, hvor meget hukommelse et script kan bruge. Indstillinger dette til en høj værdi forlader serveren sårbar over for angreb, der forsøger at udtømme ressourcer og skaber et miljø, hvor fattige programmering praksis kan forplante ukontrolleret."
+
+msgid "vsitephpMenu"
+msgstr "PHP"
+
+msgid "vsitephpMenuDesc"
+msgstr "PHP relateret sikkerhed og ressourcebehov indstillinger for denne virtuelle site. Giver dig mulighed for individuel justering PHP relaterede sikkerheds-og ressource indstillingerne på en per site basis."
+
+msgid "php_vsite_head"
+msgstr "PHP Indstillinger for [[VAR.vsite]]"
+
+msgid "PHPVsiteStatusBox_header"
+msgstr "Bemærk:"
+
+msgid "phpVsiteNotEnabled"
+msgstr "PHP er ikke aktiveret for denne virtuelle site. Før PHP ikke er aktiveret i almindelighed kan ikke yderligere PHP relaterede muligheder konfigureres."
+
+msgid "php_ini"
+msgstr "php.ini"
+
+msgid "php_ini_help"
+msgstr "Raw gjort din php.ini fil. For gennemgang alene. Ændringer kan ikke gemmes på denne side."
+
+msgid "fileOwner_head"
+msgstr "Ejer af alt / web-indhold for [[VAR.vsite]]"
+
+msgid "prefered_siteAdmin"
+msgstr "Siteadmin der ejer / web:"
+
+msgid "prefered_siteAdmin_help"
+msgstr "Hvis suphp er aktiveret, så dette felt skal indstilles til en eksisterende Siteadmin af dette websted eller dine PHP scripts vil ikke køre. Selv hvis du ikke har suphp aktiveret: Hvis du vælger en ejer fra listen over siteAdmins, så / web directory på dit websted vil blive chown&#39;ed rekursivt til UID for det valgte bruger. Midler: Alle filer og mapper i / nettet vil bagefter være ejet af den valgte bruger."
+
+msgid "fileOwnerMenu"
+msgstr "Web Ejerskab"
+
+msgid "fileOwnerDesc"
+msgstr "Dette menupunkt giver dig mulighed for at ændre ejerskabet af / web mappe på dit websted (og alle filer og mapper inden!). Det giver dig mulighed for at vælge en Siteadmin som ejer, som er af særligt vigtigt, hvis du suphp har aktiveret. Hvis suphp er aktiveret, og du ikke har en Siteadmin som ejer af din / web mappe vil derefter PHP-scripts på dit websted ikke køre."
+
+msgid "prefix"
+msgstr "Sitet Præfiks:"
+
+msgid "prefix_help"
+msgstr "Den &quot;site Præfiks&quot; er en valgfri præfiks, som giver dig mulighed for at identificere brugere eller tjenester relateret til et websted. Hvis indstillet, vil alle (nyoprettede) brugernavne foranstillet med denne streng. Et præfiks skal være alfanumerisk (tal og / eller bogstaver kun) og må ikke være længere end fem tegn. Bemærk: Et præfiks kan tilføjes eller ændres på et senere tidspunkt. Men at gøre det vil ikke påvirke nogen brugernavne, der allerede er til stede."
+
+msgid "prefixTooLong"
+msgstr "Den &quot;site Prefix&quot; du har angivet er længere end 5 tegn."
+
+msgid "prefixInUse"
+msgstr "Den &quot;site Prefix&quot;, du har angivet, er allerede i brug af en anden site: [[VAR.fqdn]]"
+
+msgid "prefixInvalidChars"
+msgstr "Den &quot;site Prefix&quot; du har angivet indeholder ikke-understøttede tegn. Kun alfanumeriske tegn er tilladt, hvilket betyder, bogstaver og tal, men ikke mere end fem i alt."
+
+msgid "webAliasRedirects"
+msgstr "Web Alias ​​Omdirigeringer"
+
+msgid "webAliasRedirects_help"
+msgstr "Hvis et websted har flere &#39;Web Server Aliaser&#39; og derefter to slags adfærd er mulige: (a) En URL anmodning til en &#39;Web Server Alias&#39; URL vil omdirigere til de vigtigste sites webadresse. Dette er standardindstillingen. (B) En URL anmodning til en &#39;Web Server Alias&#39; vil ikke omdirigere til de vigtigste steder webadresse. I stedet alias vil ligne en selvstændig hjemmeside på egen hånd. Bemærk, at denne adfærd kan være generende med webstatistik og / eller visse CMS-systemer."
+
+msgid "open_basedir_mandatory"
+msgstr "Åbent Basedir (server):"
+
+msgid "open_basedir_mandatory_help"
+msgstr "Det er de &#39;open_basedir&#39; indstillinger som defineret for hele serveren under &#39;Server Management&#39; / &#39;Sikkerhed&#39; / &#39;PHP&#39;. De er obligatoriske for alle virtuelle site. I feltet nedenfor kan du angive yderligere mapper, som skal føjes til den &quot;open_basedir&quot; direktiv."
+
+msgid "open_basedir"
+msgstr "Åbent Basedir (Vsite):"
+
+msgid "open_basedir_help"
+msgstr "Den &quot;open_basedir&quot;-direktivet begrænser aktindsigt af PHP-scripts til bestemte mapper. Den &quot;Open Basedir (server) &#39;felt ovenfor viser dig, hvilke mapper PHP-scripts allerede har adgang til på denne server. Hvis PHP-scripts af denne hjemmeside brug for yderligere adgang til yderligere mapper, så du kan angive disse mapper her. Når filen er uden for det angivne bibliotek-træet, vil PHP nægter at åbne den."
+
+msgid "siteRemove"
+msgstr "Slet dette site."
+
+msgid "sitePreview"
+msgstr "Vis denne site."
+
+msgid "Features"
+msgstr "Features"
+
+msgid "Features_help"
+msgstr "Viser, hvilke tjenester og funktioner er aktiveret for denne virtuelle site."
+
+msgid "siteRemoveConfirmNeutral"
+msgstr "Er du sikker på du vil fjerne denne virtuelle site?"
+
+msgid "removeConfirmInfo"
+msgstr "Dette vil også fjerne alle brugerkonti, e-mails og site data af denne virtuelle websted og kan ikke fortrydes."
+
+msgid "Actions"
+msgstr "Aktioner"
+
+msgid "Actions_help"
+msgstr "Disse knapper tillader dig at ændre, se eller slette en virtuel site."
+
+msgid "sitedefaultsbutNeutral"
+msgstr "Skabelon"
+
+msgid "sitedefaultsbutNeutral_help"
+msgstr "Rediger de indstillinger, der automatisk udfyldes, når du tilføjer en virtuel site."
+
+msgid "disabled"
+msgstr "Deaktiveret"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "PHP_version"
+msgstr "PHP Version:"
+
+msgid "PHP_version_help"
+msgstr "Viser versionen af ​​PHP den offentlige webserver."
+
+##
+
+msgid "cap_serverVsite"
+msgstr "Virtuelle Indstillinger for websted"
+
+msgid "vsite"
+msgstr "Virtuelle Indstillinger for websted"
+
+msgid "vsite_help"
+msgstr "Klik her for at ændre den virtuelle webstedsindstillinger."
+
+msgid "vsiteSettings"
+msgstr "Virtuelle Indstillinger for websted"
+
+msgid "maxVsiteField"
+msgstr "Maksimalt Virtuelle steder"
+
+msgid "maxVsiteField_help"
+msgstr "Det maksimale antal virtuelle steder på denne server."
+
+msgid "maxVsiteUpper"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "Den indtastede værdi for [[base-vsite.maxVsiteField]] skal være mindre end [[base-vsite.maxVsiteUpper]]."
+
+msgid "maxVsiteAlreadyMade"
+msgstr "Det nuværende antal af virtuelle steder som defineret per [[base-vsite.maxVsiteField]]."
+
+msgid "userPrefixField"
+msgstr "Bruger Præfiks"
+
+msgid "userPrefixField_help"
+msgstr "Indtast brugernavnet præfiks. Eksempel: customerA_, site1_"
+
+msgid "userPrefixEnabled"
+msgstr "Aktiver bruger præfiks"
+
+msgid "userPrefixEnabled_help"
+msgstr "Når funktionen bruger præfiks er aktiveret, vil alle nye brugernavne foranstillet med dette præfiks."
+
+msgid "userShell"
+msgstr "Aktiver Shell Adgang"
+
+msgid "userShell_help"
+msgstr "Aktiver shell adgang til at tillade oprettelsen af ​​brugere, der kan oprette forbindelse til serveren ved hjælp af tjenester såsom Telnet og SSH."
+
+msgid "userSitesUser"
+msgstr "Største brugere"
+
+msgid "userSitesUser_help"
+msgstr "Det maksimale antal brugere, der kan oprettes på denne server."
+
+msgid "maxDiskAlreadyMade"
+msgstr "Mængden af ​​diskplads i øjeblikket i brug som pr [[base-vsite.quota]]."
+
+msgid "maxUsersAlreadyMade"
+msgstr "Antallet af brugere som eksisterer i dag som pr [[base-vsite.userSitesUser]]."
+
+msgid "createdUser"
+msgstr "Ejer"
+
+msgid "createdUser_help"
+msgstr "Viser ejeren af ​​denne virtuelle site."
+
+msgid "cap_manageSite"
+msgstr "Virtual Site Management"
+
+#
+
+msgid "adminSites"
+msgstr "Virtual site Administration"
+
+msgid "adminSites_help"
+msgstr "Virtuelle steder, der er under ledelse af denne bruger."
+
+msgid "userSitesQuota"
+msgstr "Maksimal Disk Quota"
+
+msgid "userSitesQuota_help"
+msgstr "Maksimal mængde diskkvota, at alle virtuelle steder, der er forbundet til denne administrator måtte have."
+
+msgid "userSitesMax"
+msgstr "Antallet af websteder"
+
+msgid "userSitesMax_help"
+msgstr "Maksimalt antal virtuelle websteder, der dermed administrator er tilladt at skabe."
+
+

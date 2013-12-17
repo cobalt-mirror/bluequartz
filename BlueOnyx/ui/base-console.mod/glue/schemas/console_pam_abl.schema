@@ -1,0 +1,100 @@
+<!--
+ $Id: console_pam_abl.schema, v1.1.0-2 Mon 17 Aug 2009 11:54:03 PM CEST mstauber Exp $
+ Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
+ Copyright 2009 Team BlueOnyx. All rights reserved.
+-->
+
+<class name="fail_users" namespace="" version="1.0" createACL="ruleCapable(adminUser)" destroyACL="ruleCapable(adminUser)">
+
+	<!-- Username: -->
+	<property name="username" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- Failcount: -->
+	<property name="failcnt" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- Blocking: -->
+	<property name="blocking" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- Activity: -->
+	<property name="activity" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- user_remove: -->
+	<property name="user_remove" type="int" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+</class>
+
+<class name="fail_hosts" namespace="" version="1.0" createACL="ruleCapable(adminUser)" destroyACL="ruleCapable(adminUser)">
+
+        <!-- Old host field. Contains IP. No longer used, but must stay in for compatability. -->
+        <property name="host" type="ipaddr" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Offending FQDN: -->
+        <property name="host_fqdn" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Offending IP: -->
+        <property name="host_ip" type="ipaddr" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Failcount: -->
+        <property name="failcnt" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Blocking: -->
+        <property name="blocking" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- Activity: -->
+        <property name="activity" type="scalar" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- host_remove: -->
+	<property name="host_remove" type="int" default="" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+	<!-- timestamp: -->
+	<!-- Used to determine age of entry and if DNS lookup (forward or reverse) needs to be done. -->
+	<property name="timestamp" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+</class>
+
+<class name="pam_abl_settings" namespace="" version="1.0" createACL="ruleCapable(adminUser)" destroyACL="ruleCapable(adminUser)">
+
+        <!-- user_purge: -->
+        <property name="user_purge" type="scalar" default="2d" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- user_rule: -->
+        <property name="host_rule" type="scalar" default="!admin/cced=10000/1h,50000/1m" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- host_purge: -->
+        <property name="host_purge" type="scalar" default="2d" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- host_rule: -->
+        <property name="user_rule" type="scalar" default="*=30/1h" optional="false" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- purge: -->
+	<!-- Is called when we purge the database -->
+        <property name="purge" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- update_config: -->
+	<!-- Is called when we update the config file through the GUI and need to rewrite pam_abl.conf -->
+        <property name="update_config" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- reload_config: -->
+	<!-- Is called when access the pam_abl.php page and updates CODB with the settings from the config file. -->
+        <property name="reload_config" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- force_update: -->
+        <property name="force_update" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- reset_all: -->
+	<!-- Is called when we want to reset all blocks. Resets host and user blocks. -->
+        <property name="reset_all" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- reset_users: -->
+	<!-- Is called when we want to reset all user blocks only -->
+        <property name="reset_users" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- reset_hosts: -->
+	<!-- Is called when we want to reset all host blocks only -->
+        <property name="reset_hosts" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+        <!-- import_history: -->
+    	<!-- When this switch is set, we run the pam_abl CLI to populate CODB with what the CLI reports. -->
+        <property name="import_history" type="int" default="0" optional="true" writeACL="ruleCapable(adminUser)" readacl="ruleAll"/>
+
+</class>

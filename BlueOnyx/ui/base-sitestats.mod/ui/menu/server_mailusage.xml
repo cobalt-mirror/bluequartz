@@ -1,0 +1,10 @@
+<item 
+    id="base_server_mailusage" 
+    label="[[base-sitestats.mailusage]]" 
+    description="[[base-sitestats.mailusageDescription]]" 
+    url="/base/sitestats/summary.php?type=mail&amp;group=server"
+>
+    <parent id="base_serverusage" order="40">
+        <access require="serverStatsServerEmail"/>
+    </parent>
+</item>

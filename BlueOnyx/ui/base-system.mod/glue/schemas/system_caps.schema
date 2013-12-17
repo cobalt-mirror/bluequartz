@@ -1,0 +1,12 @@
+<class
+    name="Capabilities" namespace="serverInformation" version="1.0"
+>
+    <property
+	name="capable" type="boolean" default="1"
+	readacl="ruleCapable(serverInformation)"
+    />
+    <property
+	name="nameTag" type="scalar" default="[[base-system.cap_serverInformation]]"
+    />
+</class>
+

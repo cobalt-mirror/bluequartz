@@ -1,0 +1,8 @@
+<class
+    name="Capabilities" namespace="modifyPHP" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyPHP)"
+    />
+</class>

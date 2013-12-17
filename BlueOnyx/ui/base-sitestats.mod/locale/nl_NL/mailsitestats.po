@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "customizeBut"
+msgstr "[[base-sitestats.customizeBut]]"
+
+msgid "customizeBut_help"
+msgstr "[[base-sitestats.customizeBut_help]]"
+
+msgid "generateBut"
+msgstr "[[base-sitestats.generateBut]]"
+
+msgid "generateBut_help"
+msgstr "[[base-sitestats.generateBut_help]]"
+
+msgid "summaryStats"
+msgstr "Mail Gebruiksoverzicht Statistieken"
+
+msgid "reportGenerated"
+msgstr "[[base-sitestats.reportGenerated]]"
+
+msgid "reportGenerated_help"
+msgstr "[[base-sitestats.reportGenerated_help]]"
+
+msgid "firstRequest"
+msgstr "Eerste E-mail"
+
+msgid "firstRequest_help"
+msgstr "De datum van de eerste e-mail die in dit rapport. [[base-sitestats.requestCoverageHint]]"
+
+msgid "lastRequest"
+msgstr "Laatste Email"
+
+msgid "lastRequest_help"
+msgstr "De datum van de laatste e-mail die in dit rapport. [[base-sitestats.requestCoverageHint]]"
+
+msgid "successfulRequests"
+msgstr "Totaal berichten Behandeld"
+
+msgid "successfulRequests_help"
+msgstr "Dit is het totaal van alle e-mails behandeld."
+
+msgid "bytesTransfered"
+msgstr "[[base-sitestats.bytesTransfered]]"
+
+msgid "bytesTransfered_help"
+msgstr "[[base-sitestats.bytesTransfered_help]]"
+
+msgid "otherStatistics"
+msgstr "Andere Mail Rapport"
+
+msgid "vsitesReportBut"
+msgstr "[[base-sitestats.vsitesReportBut]]"
+
+msgid "vsitesReportBut_help"
+msgstr "[[base-sitestats.vsitesReportBut_help]]"
+
+msgid "periodicReportBut"
+msgstr "[[base-sitestats.periodicReportBut]]"
+
+msgid "periodicReportBut_help"
+msgstr "[[base-sitestats.periodicReportBut_help]]"
+
+msgid "historicalReportBut"
+msgstr "[[base-sitestats.historicalReportBut]]"
+
+msgid "historicalReportBut_help"
+msgstr "[[base-sitestats.historicalReportBut_help]]"
+
+msgid "domainReportBut"
+msgstr "Verzoeken van Domein"
+
+msgid "domainReportBut_help"
+msgstr "Rapporten krijgen die de domeinen waarvan verzoeken zijn oorsprong."
+
+msgid "typesReportBut"
+msgstr "Verzoeken van type bestand"
+
+msgid "typesReportBut_help"
+msgstr "Categoriseert verzoeken van de soorten bestanden."
+
+msgid "requestReportBut"
+msgstr "Mail verzonden of ontvangen op Adres"
+
+msgid "requestReportBut_help"
+msgstr "Dit meldt mail gebruik door de gebruiker voor inkomende of uitgaande e-mail."
+
+msgid "downloadLogBut"
+msgstr "[[base-sitestats.downloadLogBut]]"
+
+msgid "downloadLogBut_help"
+msgstr "[[base-sitestats.downloadLogBut_help]]"
+
+msgid "dailyHistory"
+msgstr "[[base-sitestats.dailyHistory]]"
+
+msgid "weeklyHistory"
+msgstr "[[base-sitestats.weeklyHistory]]"
+
+msgid "monthlyHistory"
+msgstr "[[base-sitestats.monthlyHistory]]"
+
+msgid "dailyHistory_help"
+msgstr "[[base-sitestats.dailyHistory_help]]"
+
+msgid "weeklyHistory_help"
+msgstr "[[base-sitestats.weeklyHistory_help]]"
+
+msgid "monthlyHistory_help"
+msgstr "[[base-sitestats.monthlyHistory_help]]"
+
+msgid "daily"
+msgstr "[[base-sitestats.daily]]"
+
+msgid "hourly"
+msgstr "[[base-sitestats.hourly]]"
+
+msgid "daily_help"
+msgstr "[[base-sitestats.daily_help]]"
+
+msgid "hourly_help"
+msgstr "[[base-sitestats.hourly_help]]"
+
+msgid "domainStats"
+msgstr "Domein Statistieken"
+
+msgid "domain"
+msgstr "[[base-sitestats.domain]]"
+
+msgid "requests"
+msgstr "Berichten"
+
+msgid "requests_help"
+msgstr "Het aantal e-mails behandeld."
+
+msgid "vsiteStatsOut"
+msgstr "Mail verzonden door Host Name"
+
+msgid "vsiteStatsIn"
+msgstr "Mail ontvangen door Host Name"
+
+msgid "bytes"
+msgstr "[[base-sitestats.bytes]]"
+
+msgid "bytes_help"
+msgstr "[[base-sitestats.bytes_help]]"
+
+msgid "pbytes"
+msgstr "[[base-sitestats.pbytes]]"
+
+msgid "pbytes_help"
+msgstr "[[base-sitestats.pbytes_help]]"
+
+msgid "site"
+msgstr "Hostnaam"
+
+msgid "site_help"
+msgstr "Dit is de naam van de machine of waarnaar mail verzonden."
+
+msgid "typeStats"
+msgstr "Verzoeken op bestandstype"
+
+msgid "filetype"
+msgstr "[[base-sitestats.filetype]]"
+
+msgid "filetype_help"
+msgstr "[[base-sitestats.filetype_help]]"
+
+msgid "vsites_out"
+msgstr "Mail Verzonden"
+
+msgid "vsites_out_help"
+msgstr "Klik hier om de bovenste plaatsen waar mail werd verzonden bekijken."
+
+msgid "vsites_in"
+msgstr "Mail ontvangen"
+
+msgid "vsites_in_help"
+msgstr "Klik hier om de top sites waarnaar mail verzonden te bekijken."
+
+msgid "requestStatsIn"
+msgstr "Mail ontvangen op Adres"
+
+msgid "requestStatsOut"
+msgstr "Mail Verzonden op Adres"
+
+msgid "requestFileOut"
+msgstr "Adres"
+
+msgid "requestFileOut_help"
+msgstr "Het adres waar de e-mail is verzonden. Merk op dat deze is gebaseerd op zowel inkomende als uitgaande e-mail. Daarom kan deze bevatten adressen niet op deze server gehost."
+
+msgid "requestFileIn"
+msgstr "Adres"
+
+msgid "requestFileIn_help"
+msgstr "Het adres waar de e-mail is verzonden. Merk op dat deze is gebaseerd op zowel inkomende als uitgaande e-mail. Daarom kan deze bevatten adressen niet op deze server gehost."
+
+msgid "requestNumber"
+msgstr "Emails"
+
+msgid "requestNumber_help"
+msgstr "Het aantal e-mails voor deze gebruiker."
+
+msgid "requestOutBut"
+msgstr "E-mail verzonden"
+
+msgid "requestOutBut_help"
+msgstr "Klik hier om de top-adressen van waaruit mail werd verzonden bekijken."
+
+msgid "requestInBut"
+msgstr "E-mail ontvangen"
+
+msgid "requestInBut_help"
+msgstr "Klik hier om de top adressen waaraan mail verzonden te bekijken."
+
+msgid "fullDailyDesc"
+msgstr "[[base-sitestats.fullDailyDesc]]"
+
+msgid "fullWeeklyDesc"
+msgstr "[[base-sitestats.fullWeeklyDesc]]"
+
+msgid "fullMonthlyDesc"
+msgstr "[[base-sitestats.fullMonthlyDesc]]"
+
+msgid "hourlySummaryDesc"
+msgstr "[[base-sitestats.hourlySummaryDesc]]"
+
+msgid "dailySummaryDesc"
+msgstr "[[base-sitestats.dailySummaryDesc]]"
+

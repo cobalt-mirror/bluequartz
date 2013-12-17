@@ -1,0 +1,36 @@
+This file is only to remind harris what this module should do.
+
+Main Conf.
+
+	Hosts/Domains allowed relay.
+
+	Privacy. (Exp/Vrfy commands.)
+
+	Max document size..
+
+	Smart relay host..
+
+	Add route.
+
+	Accept mail for.
+
+	Masquerade Domain.
+
+	Denied Hosts.
+
+	Delivery Mode.
+
+	Queue Interval.
+
+Personal Email
+
+	Add Aliases.
+
+	Add APOP.
+
+Notes.
+
+Make sendmail rebuild aliases automatically on restart.
+
+Must completly rebuild sendmail.cf and all associated files after each run for
+safety, start thinking about meatgrinder for this.

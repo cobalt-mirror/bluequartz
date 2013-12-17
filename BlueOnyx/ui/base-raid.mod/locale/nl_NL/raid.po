@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "pkgVendor"
+msgstr "[[base-alpine.osName]]"
+
+msgid "pkgName"
+msgstr "Disk Mirroring"
+
+msgid "pkgDescription"
+msgstr "[[base-raid.pkgName]] zorgt voor een verbeterde betrouwbaarheid door actief spiegelen inhoud in een paar harde schijven."
+
+msgid "amRAIDNameTag"
+msgstr "Redundant Array of Independent Disks (RAID) Status"
+
+msgid "raid_title"
+msgstr "Redundant Array of Independent Disks (RAID) Status Details"
+
+msgid "amClientStatus"
+msgstr "[[base-am.amClientStatus]]"
+
+msgid "amClientStatus_help"
+msgstr "[[base-am.amClientStatus_help]]"
+
+msgid "amClientLastChange"
+msgstr "[[base-am.amClientLastChange]]"
+
+msgid "amClientLastChange_help"
+msgstr "[[base-am.amClientLastChange_help]]"
+
+msgid "raid_disabled"
+msgstr "RAID is uitgeschakeld op dit systeem."
+
+msgid "raid_working"
+msgstr "De RAID-subsysteem werkt normaal."
+
+msgid "raid_sync_in_progress"
+msgstr "Het systeem opnieuw te synchroniseren van de gegevens op de schijven."
+
+msgid "raid_sync_in_progress_email"
+msgstr "Het systeem opnieuw te synchroniseren van de gegevens op de schijven. Kijk op de [[base-raid.amDiskIntegrityNameTag]] vermelding in Active Monitor voor meer informatie."
+
+msgid "raid_sync_incomplete"
+msgstr "Het systeem is gepauzeerd wanneer opnieuw te synchroniseren van de gegevens op de schijven. Wacht een paar minuten voor de synchronisatie te hervatten. Als de synchronisatie niet wordt hervat, verwijzen wij u naar [[base-sauce-basic.techSupportURL]] voor hulp."
+
+msgid "raid_sync_incomplete_email"
+msgstr "Het systeem is gepauzeerd wanneer opnieuw te synchroniseren van de gegevens op de schijven. Kijk op de [[base-raid.amDiskIntegrityNameTag]] vermelding in Active Monitor voor meer informatie."
+
+msgid "raid_completed"
+msgstr "voltooid"
+
+msgid "raid_minutes_remaining"
+msgstr "minute (s) resterende"
+
+msgid "raid_sync_delayed"
+msgstr "synchronisatie is vertraagd"
+
+msgid "raid_less_than_one_remaining"
+msgstr "minder dan 1 minuut te gaan"
+
+msgid "raid_failure"
+msgstr "Een harde schijf is mislukt. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf."
+
+msgid "raid0_failure"
+msgstr "Een harde schijf is mislukt. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf."
+
+msgid "raid_failure_email"
+msgstr "Een harde schijf is mislukt. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf."
+
+msgid "raid0_failure_email"
+msgstr "Een harde schijf is defect in RAID0 configuratie. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Dan, het herstel van de /home directory met behulp van uw back-ups."
+
+msgid "raid_failure_email_Alpine_hda"
+msgstr "Drive 1 is mislukt. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf."
+
+msgid "raid0_failure_email_Alpine_hda"
+msgstr "Drive 1 heeft gefaald in RAID0 configuratie. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Dan, het herstel van de /home directory met behulp van uw back-ups."
+
+msgid "raid_failure_email_Alpine_hdc"
+msgstr "Drive 2 is mislukt. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf."
+
+msgid "raid0_failure_email_Alpine_hdc"
+msgstr "Drive 2 heeft gefaald in RAID0 configuratie. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Dan, het herstel van de /home directory met behulp van uw back-ups."
+
+msgid "raid_failure_hdc_raq"
+msgstr "De harde schijf (HDC) is mislukt. Behagen de server afsluiten apparaat en vervang deze schijf door een nieuwe schijf van dezelfde grootte."
+
+msgid "raid_failure_hda_raq"
+msgstr "De harde schijf (hda) is mislukt. Behagen de server afsluiten apparaat en vervang deze schijf door een nieuwe schijf van dezelfde grootte."
+
+msgid "raid_failure_qube"
+msgstr "Een harde schijf is mislukt. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf. Controleer de Active Monitor RAID-informatie scherm voor meer informatie."
+
+msgid "raid_failure_hdc_qube"
+msgstr "De secundaire vaste schijf is mislukt. Behagen de server afsluiten apparaat en vervang deze schijf door een nieuwe schijf van dezelfde grootte. De defecte schijf (met label B) is gelegen nabij het centrum van de server apparaat. Het is de harde schijf aan de rechterzijde worden geconfronteerd met de de voorkant van de server apparaat."
+
+msgid "raid_failure_hda_qube"
+msgstr "De primaire vaste schijf (hda) is mislukt. Behagen de server afsluiten apparaat en vervang deze schijf door een nieuwe schijf van dezelfde grootte."
+
+msgid "cantGetRAID"
+msgstr "Kan RAID gebeurtenisobject niet krijgen."
+
+msgid "RAIDLevelChangeFailed"
+msgstr "Uitvoering van het RAID-niveau verandering script mislukt."
+
+msgid "raidstatus"
+msgstr "RAID Setup"
+
+msgid "configuring"
+msgstr "Het opzetten van RAID. Deze operatie zal enkele minuten duren."
+
+msgid "raidstep1"
+msgstr "Voorbereiden van schijf ..."
+
+msgid "raidstep2"
+msgstr "Het opzetten van quota ..."
+
+msgid "raidstep3"
+msgstr "Opstarten diensten ..."
+
+msgid "setupNoDiskSpace"
+msgstr "ERROR: Niet genoeg schijfruimte. Je moet niet de gegevens toe te voegen totdat RAID is geconfigureerd. Als u bestanden hebt toegevoegd aan de server al, moet u deze verwijderen en het opnieuw proberen. Neem contact op met de technische ondersteuning voor meer hulp als dat nodig is."
+
+msgid "setupNoUmountHome"
+msgstr "FOUT: kan niet worden gedeactiveerd /home. Zorg ervoor dat u bent niet ingelogd op het systeem of hebben geen programma's gestart."
+
+msgid "confirmRaid0"
+msgstr "Weet u zeker dat u wilt dat uw systeem RAID striping gebruiken om gegevens op te slaan?\n\nDeze keuze kan na het voltooien van de installatiewizard worden gewijzigd."
+
+msgid "confirmRaid1"
+msgstr "Weet u zeker dat u wilt dat uw systeem RAID mirroring gebruiken om gegevens op te slaan?\n\nDeze keuze kan na het voltooien van de installatiewizard worden gewijzigd."
+
+msgid "confirmRaid5"
+msgstr "Weet u zeker dat u uw systeem om RAID striping gebruiken met pariteit om gegevens op te slaan willen?\n\nDeze keuze kan na het voltooien van de installatiewizard worden gewijzigd."
+
+msgid "amDiskIntegrityNameTag"
+msgstr "Disk Integriteit"
+
+msgid "integrityOK"
+msgstr "Schijven worden normaal functioneren."
+
+msgid "integrityProblem"
+msgstr "Er is een probleem met de schijf integriteit."
+
+msgid "integritySevereProblem"
+msgstr "Er is een ernstig probleem met de schijf integriteit."
+
+msgid "raid_working_raq"
+msgstr "Disk mirroring is ingeschakeld en actief is."
+
+msgid "raid_sync_in_progress_raq"
+msgstr "Server-gegevens wordt momenteel gedupliceerd naar drive-integriteit te verzekeren. Disk mirroring wordt ingeschakeld en actief na deze synchronisatie is voltooid."
+
+msgid "config_raid0"
+msgstr "Uw systeem is geconfigureerd voor disk striping (RAID 0) met [[VAR.numdisks]] disk[[VAR.plural]]."
+
+msgid "config_raid1"
+msgstr "Uw systeem is geconfigureerd voor disk mirroring (RAID 1) met [[VAR.numdisks]] disk[[VAR.plural]]."
+
+msgid "config_raid5"
+msgstr "Uw systeem is geconfigureerd voor disk striping met parity (RAID 5) met behulp van [[VAR.numdisks]] disk[[VAR.plural]]."
+
+msgid "drives_ok"
+msgstr "Alle drives zijn normaal functioneren."
+
+msgid "drives_problem"
+msgstr "Een of meer van de schijven wordt een probleem. De onderstaande afbeelding toont de locatie van de schijven. Beweeg de muis over de schijfkopie om meer details te zien."
+
+msgid "drives_syncing_problem"
+msgstr "Het systeem opnieuw te synchroniseren van de gegevens op de schijven. De onderstaande afbeelding toont de locatie van de schijven. Beweeg de muis over de schijfkopie om meer details te zien."
+
+msgid "drives_severe_problem"
+msgstr "Een of meer van de schijven wordt een probleem. De onderstaande afbeelding toont de locatie van de schijven. Beweeg de muis over de schijfkopie om meer details te zien."
+
+msgid "per_drive_title"
+msgstr "Drivestatus Details"
+
+msgid "drive_failed"
+msgstr "Deze schijf is defect. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Gegevens worden automatisch hersteld naar de vervangende harde schijf."
+
+msgid "drive_failed_in_raid0"
+msgstr "Deze schijf is defect. Behagen de server afsluiten apparaat en vervang de defecte harde schijf door een nieuwe die is van hetzelfde formaat als de resterende schijf. Dan, het herstel van de /home directory met behulp van uw back-ups."
+
+msgid "drive_syncing"
+msgstr "Data op deze schijf wordt gesynchroniseerd."
+
+msgid "drive_ok"
+msgstr "Deze drive is normaal."
+
+msgid "Alpine_dev_hda"
+msgstr "Rijd 1"
+
+msgid "Alpine_dev_hdc"
+msgstr "Drive 2"
+
