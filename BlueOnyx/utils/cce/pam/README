@@ -1,9 +1,0 @@
-# $Id: README 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-#
-
-this module is an authentication module that performs an authentication check against CCE.  It assumes the secret is a sessionId but has a fallback to trying to authenticate using the secret as a plain text password.  This fallback will give CCE a change to challenge pam_pwdb.
-
-module services provided:
-
-	auth		_authetication and _setcred (blank)
