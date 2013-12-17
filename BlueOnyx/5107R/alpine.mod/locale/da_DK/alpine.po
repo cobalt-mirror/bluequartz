@@ -1,0 +1,248 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+
+msgid "base-personalProfile"
+msgstr "Personlig profil"
+
+msgid "base-personalProfile_description"
+msgstr ""
+"Sektionen Personlig profil giver dig overblik over din brugers "
+"kontoinformationer."
+
+msgid "base-programs"
+msgstr "Programmer"
+
+msgid "base-programs_description"
+msgstr ""
+"Sektionen Programmer giver dig adgang til programmer der, i øjeblikket, er "
+"installerede."
+
+msgid "controlpanel"
+msgstr "Netværkstjenester"
+
+msgid "controlpanelDescription"
+msgstr "Klik her for at kontrollere serverens tjenester."
+
+msgid "cpservicesDescription"
+msgstr "Klik her for at administrere virtuelle sites og brugerkonti."
+
+msgid "documentation"
+msgstr "Dokumentation"
+
+msgid "documentation_help"
+msgstr "Klik her for at se manualer for denne server."
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Klik her for at se statistikker over brug af FTP."
+
+msgid "login"
+msgstr "Log ind - [[VAR.hostname]]"
+
+msgid "loginAuthFailed"
+msgstr ""
+"Du har ikke tastet et korrekt brugernavn og/eller adgangskode. Prøv venligst "
+"igen."
+
+msgid "loginByeMessage"
+msgstr "Tak fordi du bruger [[base-product.productName]]."
+
+msgid "loginExpiredMessage"
+msgstr ""
+"Din session er udløbet. For at logge ind igen, bedes du indtaste brugernavn "
+"og adgangskode."
+
+msgid "loginMissingCookies"
+msgstr ""
+"Undersøg venligst om din browser understøtter cookies, før du prøver at "
+"logge ind."
+
+msgid "loginNoCssMessage"
+msgstr ""
+"Undersøg venligst om din browser understøtter Cascading Style Sheets (CSS), "
+"før du prøver at logge ind."
+
+msgid "loginNoJsMessage"
+msgstr ""
+"Undersøg venligst om din browser understøtter JavaScript, før du prøver at "
+"logge ind."
+
+msgid "loginOkMessage"
+msgstr "Indtast venligst dit brugernavn og adgangskode for at logge ind."
+
+msgid "loginPageLogin"
+msgstr "Log ind"
+
+msgid "loginPagePassword"
+msgstr "Adgangskode:"
+
+msgid "loginPageSecurity"
+msgstr "Sikker forbindelse:"
+
+msgid "loginPageTitle"
+msgstr "Log ind - [[base-product.productName]] - [[VAR.hostname]]"
+
+msgid "loginPageUsername"
+msgstr "Brugernavn:"
+
+msgid "mailusage"
+msgstr "Email"
+
+msgid "mailusageDescription"
+msgstr "Klik her for at se statistikker over brug af email."
+
+msgid "netusage"
+msgstr "Netværk"
+
+msgid "netusageDescription"
+msgstr "Klik her for at se totalt netværksforbrug for denne server."
+
+msgid "osDescription"
+msgstr ""
+"[[base-alpine.osName]] er basissoftwaren for [[base-product.productName]]. "
+"Denne softwarepakke er påkrævet for at din server kan fungere."
+
+msgid "osName"
+msgstr "BlueOnyx"
+
+msgid "osVendor"
+msgstr "BlueOnyx projektet"
+
+msgid "pdfDescen"
+msgstr "Manual for BlueOnyx Hostingudgave (Engelsk)"
+
+msgid "pdfDescja"
+msgstr "Manual for BlueOnyx Hostingudgave (Japansk)"
+
+msgid "security"
+msgstr "Sikkerhed"
+
+msgid "securityDescription"
+msgstr "Klik her for at administrere certifikater og serversikkerhed."
+
+msgid "serverconfig"
+msgstr "Systemindstillinger"
+
+msgid "serverconfigDescription"
+msgstr ""
+"Klik her for at konfigurere serverens netværk, båndbredde og "
+"tidsindstillinger."
+
+msgid "serverusage"
+msgstr "Serverens forbrug"
+
+msgid "serverusageDescription"
+msgstr "Klik her for at se en overordnet brugsstatistik for denne server."
+
+msgid "sitemanage"
+msgstr "Siteadministration"
+
+msgid "sitemanageDescription"
+msgstr ""
+"Klik her for at oprette, redigere og administrere virtuelle server- (det vil "
+"sige site-) indstillinger, brugerkonti og backups."
+
+msgid "siteusage"
+msgstr "Forbrugsstatistik"
+
+msgid "siteusageDescription"
+msgstr "Klik her for at se statistikker for dette sites brug."
+
+# Order "brugbare" kunne godt erstattes med et mere kraftfuldt ord for "useful".
+msgid "splashPersonalMessage"
+msgstr ""
+"Sektionen Personlig profil giver dig mulighed for at se og ændre "
+"indstillinger for din brugerkonto."
+
+# Order "brugbare" kunne godt erstattes med et mere kraftfuldt ord for "useful".
+msgid "splashProgramsMessage"
+msgstr ""
+"Sektionen Programmer giver dig adgang til brugbare produktivitetsværktøjer "
+"og -applikationer."
+
+msgid "sysbackuprestore"
+msgstr "Sikkerhedskopiering og gendannelse"
+
+msgid "sysbackuprestoreDescription"
+msgstr ""
+"Klik her for at foretage sikkerhedskopi af, eller gendannelse af, din "
+"servers data."
+
+msgid "sysinfo"
+msgstr "Systeminformation"
+
+msgid "sysinfoDescription"
+msgstr "Klik her for at se serverens konfigurationsinformation."
+
+msgid "sysmaintenance"
+msgstr "Vedligeholdelse"
+
+msgid "sysmaintenanceDescription"
+msgstr ""
+"Klik her for at udføre vedligeholdelse såsom sikkerhedskopiering af "
+"systemdata, lagerkontrol og genstart af systemet."
+
+msgid "sysmanage"
+msgstr "Serveradministration"
+
+msgid "sysmanageDescription"
+msgstr "Serveradministration. Klik her for at administrere serveren."
+
+msgid "usermgmt"
+msgstr "Brugeradministration"
+
+msgid "usermgmtDescription"
+msgstr "Klik her for at tilføje, redigere eller slette brugere."
+
+msgid "vendorSite"
+msgstr "http://blueonyx.it/"
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Klik her for at se statistikker over webforbrug."
+
+msgid "wizardFinish"
+msgstr "_"
+
+msgid "wizardFinish_help"
+msgstr "_"
+
+msgid "wizardRaid"
+msgstr "Opsætning af RAID"
+
+msgid "wizardRaidBuild"
+msgstr "Opsætning af RAID"
+
+msgid "wizardRaidBuild_help"
+msgstr "_"
+
+msgid "wizardRaid_help"
+msgstr "_"
+
+msgid "wizardRegister"
+msgstr "Registrering"
+
+msgid "wizardRegister_help"
+msgstr "_"
+
+msgid "wizardSysSettings"
+msgstr "Systemindstillinger"
+
+msgid "wizardSysSettings_help"
+msgstr "_"
+
+msgid "pdfDescen_US"
+msgstr "BlueOnyx Hosting Edition Manual (English)"
+

@@ -1,0 +1,50 @@
+# vendor and service name
+%define Vendor [VENDOR]
+%define Service [SERVICE]
+%define RootDir [ROOTDIR]
+
+Summary: skeleton spec template 
+Name: %{Vendor}-%{Service}
+Version: [VERSION]
+Release: [RELEASE]%{?dist}
+Vendor: [VENDORNAME]
+License: [LICENSE]
+Group: System Environment/BlueOnyx
+Source: %{Vendor}-%{Service}-[VERSION].tar.gz
+BuildRoot: /var/tmp/%{Vendor}-%{Service}
+
+%description
+This is a skeleton package. It builds the ui, locale, and glue rpms.
+
+[DESCRIPTION_SECTION]
+
+%prep
+[PREP_SECTION]
+
+%setup
+[SETUP_SECTION]
+
+%build
+make
+[BUILD_SECTION]
+
+%install
+rm -rf $RPM_BUILD_ROOT
+PREFIX=$RPM_BUILD_ROOT make install
+[INSTALL_SECTION]
+
+[PRE-INSTALL_SECTION] 
+
+[POST-INSTALL_SECTION]
+
+[POST-UNINSTALL_SECTION]
+
+[TRIGGERIN_SECTION]
+
+[TRIGGERUN_SECTION]
+
+[FILES_SECTION]
+
+%changelog
+[CHANGELOG_SECTION]
+

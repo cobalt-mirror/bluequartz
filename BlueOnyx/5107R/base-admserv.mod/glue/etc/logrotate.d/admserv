@@ -1,0 +1,19 @@
+
+/var/log/admserv/adm_access {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+	/bin/kill -HUP `cat /var/run/admserv.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}
+
+/var/log/admserv/adm_error {
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+	/bin/kill -HUP `cat /var/run/admserv.pid 2>/dev/null` 2> /dev/null || true
+    endscript
+}
+
