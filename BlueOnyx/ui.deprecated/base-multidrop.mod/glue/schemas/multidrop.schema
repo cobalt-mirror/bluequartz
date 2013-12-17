@@ -1,0 +1,12 @@
+<typedef name="proto" type="re" data="(POP3|IMAP|ETRN)"/>
+
+<class name="System" namespace="Multidrop" version="1.0">
+	<property name="enable" type="boolean" writeacl="ruleCapable(modifyMultidrop)"/>
+	<property name="server" type="hostname" writeacl="ruleCapable(modifyMultidrop)"/>
+	<property name="userDomain" type="hostname" writeacl="ruleCapable(modifyMultidrop)"/>
+	<property name="userName" type="scalar" writeacl="ruleCapable(modifyMultidrop)"/>
+	<property name="password" type="scalar" optional="true" writeacl="ruleCapable(modifyMultidrop)"/>
+	<property name="proto" type="proto" writeacl="ruleCapable(modifyMultidrop)"/>
+	<!-- How many seconds to wait before checks. -->
+	<property name="interval" type="int" writeacl="ruleCapable(modifyMultidrop)"/>
+</class>

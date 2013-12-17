@@ -1,0 +1,15 @@
+<item 
+	id="base_multidrop" 
+	label="[[base-multidrop.multidrop]]" 
+	description="[[base-multidrop.multidropHelp]]"
+	url="/base/multidrop/multidrop.php"
+>
+	<parent id="base_email" order="30">
+		<access require="adminUser"/>
+<!--		<access require="modifyMultidrop"/> -->
+	</parent>
+    <parent id="base_controlpanel" order="30">
+        <access require="networkServices"/>
+    </parent>
+</item>
+

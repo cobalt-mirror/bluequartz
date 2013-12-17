@@ -1,0 +1,2 @@
+# Cronjob that helps us restarting CCEd conditionally after PKG installs through the GUI.
+02,17,32,47 * * * *	root	/usr/sausalito/sbin/swupdate_tmp_clean.pl

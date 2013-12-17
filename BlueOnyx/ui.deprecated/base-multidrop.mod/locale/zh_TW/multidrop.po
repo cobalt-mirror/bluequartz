@@ -1,0 +1,75 @@
+# ----- Menu
+msgid "multidrop"
+msgstr "遠端擷取"
+
+msgid "multidropHelp"
+msgstr "此處可配置遠端電子郵件擷取設定。"
+
+# ----- Remote Retrieval (aka multidrop)page
+
+msgid "modifyMultidrop"
+msgstr "遠端擷取設定"
+
+msgid "enableField"
+msgstr "啟用遠端擷取"
+
+msgid "enableField_help"
+msgstr "開啟或關閉「遠端擷取」。「遠端擷取」或「多點」可用來定期地從遠端伺服器收取電子郵件；如需進一步資訊，請參閱伺服器設備手冊。"
+
+msgid "serverField"
+msgstr "遠端電子郵件伺服器"
+
+msgid "serverField_eg"
+msgstr "例如，192.168.1.100 和 mail.cobalt.com 就是有效的輸入項。"
+
+msgid "serverField_rule"
+msgstr "請輸入 [[base-multidrop.serverField]] 的適當格式化網址或完整網域名稱。 [[base-multidrop.serverField_eg]]"
+
+msgid "serverField_help"
+msgstr "請輸入遠端電子郵件伺服器的網址或完整的網域名稱，以使用該伺服器來接收您整個網域的電子郵件。  [[base-multidrop.serverField_eg]]"
+
+msgid "userDomainField"
+msgstr "電子郵件網域名稱"
+
+msgid "userDomainField_rule"
+msgstr "請輸入已適當格式化網址或為完整網域名稱的 [[base-multidrop.userDomainField]]。例如，192.168.1.100 和 mail.cobalt.com 就是有效的輸入項。"
+
+msgid "userDomainField_help"
+msgstr "請輸入您的電子郵件傳送到的網域名稱。例如，如果儲存到多點信箱之電子郵件的其中一個電子郵件位址為 joe@example.com，那麼網域名稱即是 example.com"
+
+msgid "userNameField"
+msgstr "使用者名稱"
+
+msgid "userNameField_help"
+msgstr "請輸入您遠端電子郵件伺服器帳戶的使用者名稱，以用來接收您整個網域的電子郵件。"
+
+msgid "userNameField_rule"
+msgstr "請輸入不超過 12 個字元、且僅包含小寫英數字元、句點、連字符號和底線的使用者名稱。"
+
+msgid "passwordField"
+msgstr "密碼"
+
+msgid "passwordField_help"
+msgstr "請輸入您遠端電子郵件伺服器帳戶的密碼，以接收您整個網域的電子郵件。"
+
+msgid "passwordField_invalid"
+msgstr "很抱歉，您並未在兩個欄位中輸入相同的密碼；在兩個欄位中輸入相同的密碼可防止鍵入錯誤；請重試。"
+
+msgid "intervalField"
+msgstr "接收頻率"
+
+msgid "intervalField_rule"
+msgstr "請輸入間隔，必須是大於 0 的數字 "
+
+msgid "intervalField_help"
+msgstr "請輸入自遠端電子郵件伺服器接收電子郵件的頻率（以分鐘為單位）。"
+
+msgid "protoField"
+msgstr "訊息擷取通信協定"
+
+msgid "protoField_help"
+msgstr "請選取從遠端電子郵件伺服器中接收電子郵件訊息的方法。如果您的遠端電子郵件伺服器是與 ESMTP 相容的伺服器，即可使用 ETRN 方法。預設為 POP3，對大部份的使用者應該都適用。"
+
+msgid "badInterval"
+msgstr "[[base-multidrop.intervalField]] 必須大於 0。"
+
