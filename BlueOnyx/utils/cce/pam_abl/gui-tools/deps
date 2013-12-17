@@ -1,0 +1,4 @@
+config.o: config.c pam_abl.h
+log.o: log.c pam_abl.h
+pam_abl.o: pam_abl.c pam_abl.h
+rule.o: rule.c pam_abl.h

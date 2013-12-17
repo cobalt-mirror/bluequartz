@@ -1,0 +1,70 @@
+TODO:
+----
+version codb for smooth upgrades
+use version on classes to do some type of upgrade (!)
+MUST: make changes to all released versions to make them more relaxed about
+	schema validity checking for 3rd party app compat.
+provide a cce-config, like glib-config
+better -nf handling
+what if we GET an object of invalid class
+what if we GET and illegal properties exist
+what if we put magic props in a schema
+	-- any property starting with _ is reserved and not schema-able
+protect ODB files (umask!)
+Logging/debugging cleanup
+	Don't log Passwords/Authkeys (generic answer)
+codb cleanup - e.g.: 15 calls to impl_obj_exists() on a GET
+configuration file
+	session_timeout
+be more stringent (and correct) about doing session cleanup 
+	(instead of blocking accept(), use select(), run cleanups at timeout)
+Better reporting from codb to cscp.  Eg. Perm denied on props during create
+
+
+WISHLIST:
+---------
+per-class default acls
+put leading underscores on magic properties
+new basetype: enum
+CSCP: handle all properties as "(namespace.)?propname"
+CSCP extension to get a single property of an oid
+CSCP extension to do generic 'find Object'
+CSCP: STRUCTURE(GETSCHEMA?) command
+CSCP: CLASSVER <class> command
+SCHEMA property: NOSAVE properties of classes
+replace syslog() with sauslog()
+	start cced and fork a log handler thread
+	opensauslog(logname, idstr, log_stderr);
+		open(LOGDIR "/" logname ".log");
+	closesauslog();
+	sauslog(syslog_style_params);
+stacked codb
+	object cache layer:
+		accessed objects are put into an opaque structure
+			stored in codb
+		pointer to structure is used everywhere
+			changes to objs stored in each codb_handle
+		when refcount drops, codb frees object 
+			(no more getting hashes multiple times)
+inheritance
+arbitrarily deep sub-namespaces
+typedefs that can reference other typedefs in 'data'
+classconf stored IN codb
+no i18n in CCE or all i18n in CCE
+new CSCP warnings: 
+	3xx UNKNOWN PROPERTY (set/create only)
+	3xx INVALID DATATYPE (set/create) - maybe just log this?
+	cover each error case with a specific message or unify as much as
+		possible to minimal set of msgs
+make $ style variables in CCE conf files ($SAUSALITO, for example)
+make an allowable type (for property) be anon:(type definition)
+	anon:re:^foo$
+	anon:exec:/tmp/bar
+provide true local datatypes
+
+
+ODB TODO:
+--------
+get rid of _LISTS propfile
+schema importer tool
+rename _SCALARS -> _PROPS

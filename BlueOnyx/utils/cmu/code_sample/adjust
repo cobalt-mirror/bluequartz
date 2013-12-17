@@ -1,0 +1,43 @@
+#!/usr/bin/perl 
+use lib "/cvs/cpr/perl_modules";
+use IPC::Open3;
+require CmuCfg;
+import CmuCfg qw($appConf $glbConf);
+require Global;
+import Global qw(&cmuLog &parseD &getBuild $validImport %adjustPath);
+use TreeXml;
+
+my $build = getBuild();
+
+my $cobaltBase = {};
+addNode('cobaltBase', $glbConf, $cobaltBase);
+deleteNode('cobaltBase', $appConf);
+
+$glbConf->{destDir} = "/tmp/import";
+$glbConf->{sessID} = $$;
+
+chdir $glbConf->{destDir} || 
+	die "Could not chdir to ", $glbConf->{destDir}, ": $!\n";
+
+warn "build is: $build\n";
+my $importXml = $glbConf->{destDir}."/".$glbConf->{cmuXml};
+# unpack data here set $importXml
+my $iTree = TreeXml::readXml($importXml, 1);
+my $migrate = $iTree->{migrate};
+
+while($migrate->{adjustPlatform} ne $build) {
+	my $adjustCmd = "/cvs/cpr/scripts/".
+		$adjustPath{ $migrate->{adjustPlatform} }.
+		"adjust.pl";
+	warn "adjust cmd: ", $adjustCmd, "\n";
+	if($pid = open3(*WR, *RE, *ER, $adjustCmd)) {
+    		print WR TreeXml::writeXml($cobaltBase);
+    		close(WR);
+    		close(RE);
+			while(my $line = <ER>) { cmuLog("Adjust", $line); }
+    		close(ER);
+			waitpid ($pid, 0);
+		}
+		$migrate->{adjustPlatform} = $adjustPath{ $migrate->{adjustPlatform} };
+	}
+

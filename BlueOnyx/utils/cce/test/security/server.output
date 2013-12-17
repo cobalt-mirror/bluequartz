@@ -1,0 +1,50 @@
+Not sending anything to syslog.
+Verbose mode enabled.
+Cobalt Configuration Engine (CCE) version 0.80.1
+Copyright (c) 1999,2000 Cobalt Networks, Inc.
+client 0:PID: CREATE  setup 
+client 0:PID: CREATE succeeded
+client 0:PID: SET  1 trigger = 1 
+client 0:handlers/createusers_handler: CREATE  User name = admin enabled = 1 systemAdministrator = 1 
+client 0:handlers/createusers_handler: CREATE succeeded
+client 0:handlers/createusers_handler: CREATE  User name = test1 enabled = 1 vsite = one vsiteadmin = 1 capabilities = "&foo&bar&" 
+client 0:handlers/createusers_handler: CREATE succeeded
+client 0:handlers/createusers_handler: CREATE  User name = test2 enabled = 1 vsite = two vsiteadmin = 1 capabilities = "&baz&" 
+client 0:handlers/createusers_handler: CREATE succeeded
+client 0:PID: SET succeeded
+client 0:PID: CREATE  stuff name = foo 
+client 0:PID: CREATE stuff failed (-9)
+client 0:PID: CREATE  stuff vsite = one name = foo1 
+client 0:PID: CREATE stuff failed (-9)
+client 0:PID: AUTH to "test1" (3) succeeded
+client 3:PID: CREATE  stuff name = fooone 
+client 3:PID: CREATE stuff failed (-9)
+client 3:PID: CREATE  stuff vsite = one name = fooone1 
+client 3:PID: CREATE succeeded
+client 3:PID: SET  5 captest = fooonemodify 
+client 3:PID: SET succeeded
+client 3:PID: SET  5 other = foo1modother 
+client 3:PID: SET succeeded
+client 3:PID: SET  5 booltest = foo1modbool 
+client 3:PID: SET 5 failed (-9)
+client 3:PID: AUTH to "test2" (4) succeeded
+client 4:PID: CREATE  stuff name = footwo 
+client 4:PID: CREATE stuff failed (-9)
+client 4:PID: CREATE  stuff vsite = one name = footwo1 
+client 4:PID: CREATE stuff failed (-9)
+client 4:PID: CREATE  stuff vsite = two name = footwo2 
+client 4:PID: CREATE succeeded
+client 4:PID: SET  5 captest = fooonemodify 
+client 4:PID: SET 5 failed (-9)
+client 4:PID: SET  6 captest = fooonemodify 
+client 4:PID: SET 6 failed (-9)
+client 4:PID: SET  5 other = foo2modother 
+client 4:PID: SET 5 failed (-9)
+client 4:PID: SET  6 other = foo2modother2 
+client 4:PID: SET succeeded
+client 4:PID: SET  5 booltest = foo2modbool 
+client 4:PID: SET 5 failed (-9)
+client 4:PID: SET  6 booltest = foo2modbool 
+client 4:PID: SET succeeded
+caught SIGTERM: cleaning up
+exiting
