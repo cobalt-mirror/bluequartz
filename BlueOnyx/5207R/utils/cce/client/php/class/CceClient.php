@@ -201,10 +201,15 @@ class CceClient {
   // returns: matching $oids
   // usage: $oids = $cce->findx($class, $vars, $regex_vars,
   //                            $sorttype, $sortkey);
-  function findx($class, $vars = array(), $revars = array(),
-   $sorttype="", $sortprop = "") {
-    return ccephp_findx($this->handle, $class, $vars, $revars,
-        $sorttype, $sortprop);
+  function findx($class, $vars = array(), $revars = array(), $sorttype="", $sortprop = "") {
+    if (!is_array($vars)) { 
+      // This should NOT be needed. Sadly, it is. If you have exactly
+      // 26 Vsites, then vsiteList.php will otherwise bugger out when you
+      // try to load the second page of results and claims that $vars is
+      // not an array. This is reproduceable and a bit freaky.
+      $vars = array(); 
+    }
+    return ccephp_findx($this->handle, $class, $vars, $revars, $sorttype, $sortprop);
   }
 
   // description: gets the $namespace of the CCE object with given $oid

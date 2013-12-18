@@ -180,6 +180,9 @@ fi
 
 %changelog
 
+* Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX12
+- Fixed weird (but reproduceable) error in CceClient.php.
+
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX11
 - disable swig build. 
 - disable Indexes for httpd. 
