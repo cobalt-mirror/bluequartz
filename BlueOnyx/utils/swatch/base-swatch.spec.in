@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: base-swatch
 Version: XX_VER_XX
-Release: 0BX21%{?dist}
+Release: 0BX22%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -77,6 +77,8 @@ if [ "`/bin/cat /etc/build | /bin/grep 5107R`" == "" ]; then
 fi
 
 %changelog
+* Fri Dec 20 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX22
+- Non-English locales were broken in Emails again. Fixed.
 
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX21
 - Merged in locales for the Netherlands ('nl_NL').
