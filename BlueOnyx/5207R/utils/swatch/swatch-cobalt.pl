@@ -11,6 +11,7 @@ use Sys::Hostname;
 use POSIX qw(isalpha);
 use MIME::Lite;
 use Encode::Encoder;
+use Encode qw(from_to);
 
 my $host = hostname();
 my $now = localtime time;
@@ -180,6 +181,10 @@ while ( defined (my $name = <@names>) ) {
 if ($body) {
 
   $body = $body_head . $body;
+
+  # Need to convert to UTF-8. Ain'that funny. The source *IS* UTF-8:
+  from_to($body, "windows-1252", "utf-8");
+
   my $subject = $host . ": " . Encode::encode("MIME-B", $i18n->get("[[swatch.emailSubject]]"));
   my $to;
   foreach $to (@email_list) {
@@ -193,12 +198,12 @@ if ($body) {
         To       => $to,
         Subject  => $subject,
         Data     => $body,
-        Charset => 'UTF-8'
+        Charset => 'utf-8'
     );
 
     # Set content type:
-    $send_msg->attr("content-type"         => "text/plain");
-    $send_msg->attr("content-type.charset" => "UTF-8");
+    $send_msg->attr("content-type"         => 'text/plain');
+    $send_msg->attr("content-type.charset" => "utf-8");
 
     # Out with the email:
     $send_msg->send;
