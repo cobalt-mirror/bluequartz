@@ -84,6 +84,22 @@ my @groups = (
                                 'siteAdmin', 'siteSSL',
                                 'siteAnonFTP', 'siteShell'
                               )
+        },
+        {
+            'name' => 'admin',
+            'shown' => 1,
+            'capabilities' => $cce->array_to_scalar(
+                    'serverHttpd', 'serverFTP', 'serverEmail', 'serverDNS', 
+                    'serverSNMP', 'serverShell', 'serveriStat', 'serverSSL', 
+                    'serverSystemFirewall', 'serverNetwork', 
+                    'serverVsite', 'serverTime', 'serverInformation', 
+                    'serverServerDesktop', 'serverStatsServerNetwork', 
+                    'serverStatsServerWebalizer', 'serverStatsServerWeb', 
+                    'serverStatsServerFTP', 'serverStatsServerEmail', 
+                    'serverStatsServerDisk', 'serverShowActiveMonitor', 
+                    'serverActiveMonitor', 'manageSite','menuServerServerStats', 
+                    'managePackage', 'siteAdmin', 'siteSSL', 'siteAnonFTP', 'siteShell'
+                              )
         }
             );
 

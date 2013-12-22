@@ -113,6 +113,15 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sat Dec 21 2013 Michael Stauber <mstauber@solarspeed.net> 0.2-1BX05
+- Modified constructor/setup_capabilities.pl as our Capabilities for 
+  'admin' have been shot six ways 'til Sunday. Added Capability group 
+  'admin' that contains all the missing extra Capabilities that 'admin' 
+  has. The whole Capabilities management for 5207R/5208R needed a full 
+  overhaul anyway, as we can't haggle with Globals and assumptions. 
+  Better to do it the right way and load 'admin' with really all 
+  Capabilities that he should have instead of just waving him through.
+
 * Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 0.2-1BX04
 - Merged in locales for the Netherlands ('nl_NL').
 - Other non-English locales had the PO-headers missing. Fixed.
