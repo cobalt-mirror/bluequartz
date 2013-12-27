@@ -1,3 +1,12 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "istat"
 msgstr "iStat"
@@ -32,3 +41,5 @@ msgstr "Non riescono a scrivere il file di configurazione."
 msgid "cap_serveriStat"
 msgstr "Impostazioni istat"
 
+msgid "NetworkPortInUse"
+msgstr "La porta specificata come nuova porta è già in uso da un altro servizio. Si prega di scegliere invece un'altra porta."
