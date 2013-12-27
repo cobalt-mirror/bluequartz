@@ -112,8 +112,12 @@ if ($vsite['expires'])
         foreach ($fields as $var)
         {
             $value = $vsite[$var];
-            if ($var == 'country')
+            if ($var == 'country') {
                 $value = $i18n->get($vsite[$var]);
+                if ($value = "") {
+                    $value = " ";
+                }
+            }
                 
             $ssl_info->addFormField(
                 $factory->getTextField($var, $value, 'r'),
