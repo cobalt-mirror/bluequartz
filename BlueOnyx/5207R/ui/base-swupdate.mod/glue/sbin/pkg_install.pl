@@ -377,8 +377,7 @@ exitScript($cce, $refreshcce, "Installation successful.");
 
 sub exitScript {
   my ($cce, $value, $exitMessage) = @_;
-
-  &debug_msg("$exitMessage \n");
+  
   print LOG "$exitMessage\n";
   close(LOG);
 
