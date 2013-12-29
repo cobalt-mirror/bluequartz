@@ -130,6 +130,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Dec 28 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX10
+- Partial rollback of extended logging in glue/sbin/pkg_install.pl
+  and glue/sbin/pkg_prepare.pl. It is not yet finished and should not
+  have been included yet.
+- Modified glue/sbin/SWUpdate.pm to use Sys::Hostname, which had 
+  erronously been missing.
+- Modified Makefile to add dependency for perl-Sys-Hostname-FQDN.
+
 * Mon Dec 16 2013 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX09
 - Updated glue/handlers/yum-update.sh yet again to redirect the output 
   of the 'yum groupinstall' to /dev/null. Otherwise we get a crond email
