@@ -1,4 +1,0 @@
-<class name="Capabilities" namespace="modifyMultidrop" version="1.0">
-	<property name="capable" type="boolean" default="1" readacl="ruleCapable(modifyMultidrop)"/>
-	<property name="nameTag" type="scalar" default="[[base-multidrop.cap_modifyMultidrop]]"/>
-</class>
