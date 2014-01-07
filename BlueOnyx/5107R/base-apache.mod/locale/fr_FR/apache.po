@@ -8,170 +8,182 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+# --- Menu
+
 msgid "apache"
-msgstr "Web"
+msgstr "Serveur-Web"
 
 msgid "apache_help"
-msgstr "[[base-apache.apacheSettings]] peut être changé ici."
+msgstr "Les [[base-apache.apacheSettings]] peuvent être changés ici."
+
+# --- Web Settings page
 
 msgid "apacheSettings"
-msgstr "Paramètres Web"
+msgstr "Options Serveur-Web"
 
 msgid "frontpageField"
-msgstr "FrontPage Server Extensions"
+msgstr "Extensions Serveur FrontPage"
 
 msgid "frontpageField_help"
-msgstr "Tournez extensions serveur FrontPage ou le désactiver."
+msgstr "Activer ou désactiver les extensions du serveur FrontPage."
 
 msgid "frontpageEnabled"
-msgstr "Permettre"
+msgstr "activé"
 
 msgid "passwordWebmasterField"
-msgstr "webmaster Mot de passe"
+msgstr "Mot de passe du webmaster"
 
 msgid "passwordWebmasterField_help"
-msgstr "Entrez un mot de passe pour le webmaster du client FrontPage. Le site web de foyer de groupe peut être consulté en sélectionnant Open Web dans le client FrontPage. Connectez-vous en utilisant le nom de login et le mot de webmaster que vous spécifiez ici. Une fois authentifié, les utilisateurs FrontPage supplémentaires sont gérés par le client FrontPage."
+msgstr "Entrez un mot de passe pour le webmaster de FrontPage. Le site web du foyer de groupe peut être consulté en sélectionnant Open Web dans FrontPage. Connectez-vous en utilisant le nom de login webmaster et son mot de passe que vous spécifiez ici. Une fois authentifié, les utilisateurs FrontPage supplémentaires seront gérés par le serveur FrontPage."
 
 msgid "passwordWebmasterField_rule"
-msgstr "Le mot de passe doit être comprise entre 3 et 16 caractères. Un bon mot de passe doit contenir au moins 5 caractères avec un mélange de lettres majuscules et minuscules ainsi que des chiffres et signes de ponctuation. Il ne devrait pas épeler tous les mots trouvés dans le dictionnaire. Les mots de passe sont sensibles à la casse."
+msgstr "Le mot de passe doit contenir entre 3 et 16 caractères. Un bon mot de passe doit inclure au moins 5 caractères avec un mélange de lettres majuscules et minuscules ainsi que des chiffres et signes de ponctuation. Il ne devrait pas contenir des mots trouvés dans le dictionnaire. Les mots de passe sont sensibles à la casse."
 
 msgid "passwordWebmasterField_invalid"
-msgstr "Désolé, vous n&#39;avez pas entré le même mot de passe dans les deux champs. Le même mot de passe est entré dans les deux champs pour se protéger contre les erreurs de frappe. S&#39;il vous plaît essayer de nouveau."
+msgstr "Désolé, vous n'avez pas tapé le même mot de passe dans les deux champs. Le même mot de passe doit être inséré dans les deux champs pour se protéger contre les erreurs de frappe. Veuillez essayez à nouveau."
 
 msgid "cgiAccessField"
 msgstr "Accès CGI"
 
 msgid "cgiAccessField_help"
-msgstr "Mettre l&#39;accès CGI allumé ou éteint. Vous pouvez définir les droits d&#39;accès CGI de sorte que seul l&#39;administrateur du serveur applicatif peut ajouter des fichiers de script CGI, ou que l&#39;administrateur et tous ou certains utilisateurs peuvent ajouter des fichiers de script CGI."
+msgstr "Activez ou désactivez l'accès CGI. Vous pouvez définir les droits d'accès CGI de sorte que seul l'administrateur du serveur, certains ou tous les utilisateurs puissent ajouter des programmes CGI (appelés aussi fichiers script CGI)."
 
 msgid "cgiAll"
-msgstr "Autoriser l&#39;accès à tous les utilisateurs"
+msgstr "Autoriser l'accès à tous les utilisateurs"
 
 msgid "cgiNone"
-msgstr "Ne pas autoriser l&#39;accès à tout utilisateur"
+msgstr "N'autoriser l'accès à aucun utilisateur"
 
 msgid "cgiSubset"
-msgstr "Autoriser l&#39;accès à certains utilisateurs seulement"
+msgstr "Autoriser l'accès à certains utilisateurs seulement"
 
 msgid "cgiUsersAllowed"
-msgstr "Les utilisateurs autorisés à accéder"
+msgstr "Utilisateurs autorisés au CGI"
 
 msgid "cgiUsersDisallowed"
-msgstr "Les utilisateurs non autorisés d&#39;accès"
+msgstr "Utilisateurs sans autorisation CGI"
 
+	# Don't want a label here, so space
 msgid "cgiUsersField"
-msgstr ""
+msgstr " "
 
 msgid "cgiUsersField_empty"
-msgstr "Désolé, vous n&#39;avez sélectionné aucun utilisateurs pour l&#39;accès CGI. S&#39;il vous plaît ajouter des utilisateurs qui sont autorisés à accéder CGI ou choisir une option d&#39;accès différent."
+msgstr "Désolé, vous n'avez pas sélectionné d'utilisateur pour l'accès CGI. Veuillez ajouter des utilisateurs autorisés à utiliser CGI ou choisissez une option d'accès différente."
+
+# --- Handlers
 
 msgid "cantConfigCgi"
-msgstr "Désolé, Access CGI n&#39;a pas pu être configuré correctement pour le moment."
+msgstr "Désolé, l'accès CGI n'a actuellement pas pu être configuré correctement."
 
 msgid "systemObjectNotFound"
-msgstr "Désolé, la configuration du serveur est momentanément indisponible. S&#39;il vous plaît patienter et essayer à nouveau."
+msgstr "Désolé, la configuration du serveur est momentanément indisponible. Veuillez patienter et essayer à nouveau."
+
+# --- Active Monitor
 
 msgid "amApacheNameTag"
-msgstr "Serveur Web"
+msgstr "Serveur-Web"
 
 msgid "amApacheDetails"
-msgstr "Détails du serveur Web"
+msgstr "Détails du serveur-web"
 
 msgid "amNotRunning"
-msgstr "Le [[base-apache.amApacheNameTag]] ne fonctionne pas et ne pouvait pas être redémarré. Essayez de redémarrer le serveur en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]]. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amApacheNameTag]], s&#39;il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+msgstr "Le [[base-apache.amApacheNameTag]] ne fonctionne pas et ne pouvait pas être redémarré. Essayez de redémarrer le serveur en cliquant sur le [[base-power.reboot]] dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si vous ne parvenez toujours pas à accéder au [[base-apache.amApacheNameTag]], veuillez consulter le support technique au [[base-sauce-basic.techSupportURL]]."
 
 msgid "amStatusOK"
-msgstr "Le serveur Web fonctionne normalement."
+msgstr "Le serveur-web fonctionne normalement."
 
+	# "Server Desktop" is difficult to translate, an admin interface is assumed: "Bureau du Serveur" or "Desktop du Serveur"
 msgid "amAdmservNameTag"
-msgstr "Server Desktop"
+msgstr "Desktop du serveur"
 
 msgid "amAdmservDetails"
-msgstr "Détails sur le serveur de bureau"
+msgstr "Détails sur le [[base-apache.amAdmservNameTag]]"
 
 msgid "amAdmservNotRunning"
-msgstr "Le [[base-apache.amAdmservNameTag]] ne fonctionne pas et ne pouvait pas être redémarré. Essayez de redémarrer le serveur en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]]. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amAdmservNameTag]], s&#39;il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
+msgstr "Le [[base-apache.amAdmservNameTag]] ne fonctionne pas et ne pouvait pas être redémarré. Essayez de redémarrer le serveur en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]]. Si vous ne parvenez toujours pas à accéder à la [[base-apache.amAdmservNameTag]], s'il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour le support technique."
 
 msgid "amAdmservStatusOK"
-msgstr "Le Server Desktop fonctionne normalement."
+msgstr "Le [[base-apache.amAdmservNameTag]] fonctionne normalement."
 
 msgid "maxServersRAM"
-msgstr "Le nombre maximum de serveurs web est limitée par la quantité de RAM installée sur ce serveur."
+msgstr "Le nombre maximum de serveurs web est limité par la quantité de RAM installée sur ce serveur."
 
 msgid "minSpareField"
-msgstr "Pièces Serveurs minimum"
+msgstr "Minimum de processus du serveur-web"
 
 msgid "minSpareField_help"
-msgstr "Lorsque le serveur Web commence ou se trouve dans un état de repos, c&#39;est le nombre minimal de processus de serveurs web disponibles pour servir les requêtes web. [[base-apache.maxServersRAM]]"
+msgstr "Le nombre minimal de processus disponibles au serveur pour soutenir les requêtes web lorsque celui-ci démarre ou tourne au ralenti. [[base-apache.maxServersRAM]]"
 
 msgid "minSpareField_empty"
-msgstr "S&#39;il vous plaît spécifier un nombre minimum de processus du serveur web."
+msgstr "Veuillez spécifier un nombre minimum de processus disponibles au serveur-web."
 
 msgid "minSpareField_invalid"
-msgstr "Le nombre spécifié de serveurs web de rechange n&#39;est pas valide. S&#39;il vous plaît spécifier un nombre entier dans la plage spécifiée."
+msgstr "Le nombre de processus spécifié n'est pas valide. Veuillez spécifier un nombre entier compris dans les limites spécifiées."
 
 msgid "maxSpareField"
-msgstr "Pièces de serveurs maximum"
+msgstr "Maximum de processus du serveur-web"
 
 msgid "maxSpareField_help"
-msgstr "Le serveur web va lancer des processus supplémentaires, au besoin, pour desservir une charge supplémentaire. Ce nombre est le nombre maximal de processus le système démarre. Sites à fort trafic devrait augmenter ce nombre pour une meilleure performance. [[base-apache.maxServersRAM]]"
+msgstr "Le serveur-web va lancer des processus supplémentaires pour desservir une éventuelle charge additionnelle. Ceci est le nombre maximal de processus que le système démarrera. Il faut augmenter ce nombre pour une meilleure performance des sites à trafic intense. [[base-apache.maxServersRAM]]"
 
 msgid "maxSpareField_empty"
-msgstr "S&#39;il vous plaît spécifier un nombre maximal de processus du serveur Web de rechange."
+msgstr "Veuillez spécifier un nombre maximum de processus disponibles au serveur-web."
 
 msgid "maxSpareField_invalid"
 msgstr "[[base-apache.minSpareField_invalid]]"
 
 msgid "maxClientsField"
-msgstr "Connexions simultanées maximum"
+msgstr "Maximun de connexions simultanées"
 
 msgid "maxClientsField_help"
-msgstr "C&#39;est le nombre maximal de demandes qui peuvent être faites sur le serveur à tout instant. Chaque connexion nécessite son propre processus de serveur Web. Si ce nombre est dépassé, les clients recevront un message indiquant que le serveur est occupé, et a demandé d&#39;essayer à nouveau plus tard. Ce paramètre est utile pour contrôler la charge sur votre serveur. [[base-apache.maxServersRAM]]"
+msgstr "C'est le nombre maximal de demandes qui peuvent être faites au le serveur à tout instant. Chaque connexion nécessite son propre processus au serveur-web. Si ce nombre est dépassé, les clients recevront un message indiquant que le serveur est occupé et seront demandés d'essayer à nouveau plus tard. Ce paramètre est utile pour contrôler la charge de votre serveur. [[base-apache.maxServersRAM]]"
 
 msgid "maxClientsField_empty"
-msgstr "S&#39;il vous plaît spécifier un nombre maximal de connexions au serveur Web simultanées."
+msgstr "Veuillez spécifier le nombre maximal de connexions simultanées au serveur-web."
 
 msgid "maxClientsField_invalid"
-msgstr "Le nombre maximal spécifié de connexions simultanées n&#39;est pas valide. S&#39;il vous plaît spécifier un nombre entier dans la plage spécifiée."
+msgstr "Le nombre maximal spécifié de connexions simultanées n'est pas valide. Veuillez spécifier un nombre entier dans la plage spécifiée."
 
 msgid "hostnameLookupsField"
-msgstr "Recherche du nom"
+msgstr "Hostname Lookups"
 
 msgid "hostnameLookupsField_help"
-msgstr "Cela active la recherche du nom du serveur Web. Cela provoque le serveur pour effectuer une recherche DNS sur l&#39;IP du client lorsqu&#39;il se connecte au serveur, et l&#39;enregistrer dans les fichiers journaux. Cette information hostname est ensuite disponible dans les rapports Web d&#39;utilisation du serveur. Sans cette fonction, seules les adresses IP des clients sont consignés dans le rapport de domaine d&#39;utilisation du serveur web. ATTENTION: L&#39;activation de cette option permet de diminuer les performances de votre serveur web."
+msgstr "Ceci active la recherche du nom de domaine (hostname) du serveur-web. Le serveur-web effectuera une recherche DNS sur l'IP du client qui se connecte au serveur et l'inscrira dans les fichiers-journal. Cette information sera ensuite disponible dans les comptes-rendu de l'utilisation du serveur-web. Sans cette fonction, seulement l'adresse IP des clients sans leurs hostnames y seront inscrits. ATTENTION&nbsp;: L'activation de cette option diminuera les performances de votre serveur-web."
 
 msgid "MinMaxError"
-msgstr "Le [[base-apache.maxSpareField]] doit être supérieure ou égale à la [[base-apache.minSpareField]]."
+msgstr "Le nombre [[base-apache.maxSpareField]] doit être supérieure ou égale au nombre [[base-apache.minSpareField]]."
 
 msgid "ClientMaxError"
-msgstr "La valeur saisie pour [[base-apache.maxClientsField]] est inférieur à la valeur indiquée pour [[base-apache.maxSpareField]]. Alors que ce n&#39;est pas grave, ça peut influer sur les performances du serveur. Il est recommandé que la valeur pour [[base-apache.maxClientsField]] être supérieure ou égale à la valeur pour [[base-apache.maxSpareField]]."
+msgstr "La valeur saisie pour [[base-apache.maxClientsField]] est inférieure au nombre [[base-apache.maxSpareField]]. Alors que ce n'est pas grave, ça peut influer sur les performances du serveur. Il est recommandé que la valeur pour [[base-apache.maxClientsField]] soit supérieure ou égale au nombre [[base-apache.maxSpareField]]."
+
+# strings for UI extenstions
 
 msgid "webScripting"
-msgstr "Web"
+msgstr "WebScript"
 
 msgid "webScriptingTitle"
-msgstr "Paramètres de script Web pour [[VAR.fqdn]]"
+msgstr "Options langage script web pour [[VAR.fqdn]]"
 
 msgid "webScriptingDescription"
-msgstr "Configurer les options du Web tels que les langages de script."
+msgstr "Configurer les options des langages script pour web."
 
 msgid "cgi"
 msgstr "Activer Common Gateway Interface (CGI)"
 
 msgid "cgi_help"
-msgstr "Permettre l&#39;utilisation des applications CGI."
+msgstr "Permettre l'utilisation des applications CGI."
 
 msgid "php"
 msgstr "Activer PHP Scripting"
 
 msgid "php_help"
-msgstr "Permettre l&#39;utilisation de scripts PHP."
+msgstr "Permettre l'utilisation de scripts PHP."
 
 msgid "ssi"
-msgstr "Activer le serveur-Side Includes (SSI)"
+msgstr "Activer Server Side Includes (SSI)"
 
 msgid "ssi_help"
-msgstr "Permettre l&#39;utilisation de Server Side Includes."
+msgstr "Permettre l'utilisation de Server Side Includes."
 
 msgid "webScripting_help"
 msgstr "[[base-apache.webScriptingDescription]]"
@@ -186,115 +198,121 @@ msgid "ssiI18nName"
 msgstr "Server Side Includes (SSI)"
 
 msgid "userwebs"
-msgstr "Activer toiles appartenant à des utilisateurs"
+msgstr "Activer les espaces web privés pour utilisateurs"
 
 msgid "userwebs_help"
-msgstr "Si elle est activée, chaque utilisateur dispose de son propre espace web, qui est séparé de l&#39;espace web site principal et accessible par http://www.example.com/~username/. Les utilisateurs peuvent ensuite télécharger leurs propres pages Web via FTP dans leur propre / répertoire web. S&#39;IL VOUS PLAÎT NOTE: Si suPHP est activée, l&#39;utilisateur appartenant toiles ne sont plus pris en charge et cette fonction sera désactivée."
+msgstr "Cette option activée, chaque utilisateur dispose de son propre espace web qui est indépendant de celui du site principal et qui est accessible à http://hote.domaine.tld/~&lt;nom_utilisateur&gt;/. Les utilisateurs peuvent alors télécharger dans leur répertoire privé /web leurs propres pages via FTP. ATTENTION&nbsp;: Si suPHP est activé, cette fonction ne sera pas prise en compte et les utilisateurs n'auront pas d'espace web privé."
 
 msgid "ftpnonadminI18nName"
-msgstr "FTP pour les administrateurs non-Site activés"
+msgstr "FTP autorisé aux utilisateurs"
 
 msgid "userwebsI18nName"
-msgstr "toiles appartenant à l&#39;utilisateur autorisé"
+msgstr "Espaces web privés autorisés"
+
+#
+## BlueOnyx.conf editing additions:
+#
 
 msgid "Options_AllField"
-msgstr "Tous"
+msgstr "Tout"
 
 msgid "Options_AllField_help"
-msgstr "Toutes options sauf MultiViews. (Par défaut: Off)"
+msgstr "Toutes les options sauf MultiViews. (désactivé par défaut)"
 
 msgid "Options_FollowSymLinksField"
 msgstr "FollowSymLinks"
 
 msgid "Options_FollowSymLinksField_help"
-msgstr "Le serveur va suivre les liens symboliques. (Activée par défaut)"
+msgstr "Le serveur va suivre les liens symboliques. (activé par défaut)"
 
 msgid "Options_IncludesField"
-msgstr "Comprend"
+msgstr "SSI"
 
 msgid "Options_IncludesField_help"
-msgstr "Inclusions côté serveur sont autorisés. (Activée par défaut)"
+msgstr "Le langage de programmation Server Side Includes est autorisé. (activé par défaut)"
 
 msgid "Options_IndexesField"
-msgstr "Index"
+msgstr "Indexes"
 
 msgid "Options_IndexesField_help"
-msgstr "Si une URL qui correspond à un répertoire est demandé, et il n&#39;y a pas le DirectoryIndex (par exemple, index.html) dans ce répertoire, le serveur renverra une liste formatée du répertoire. (Activée par défaut)"
+msgstr "Si une URL mène à un répertoire existant et qu'il n'y a pas de fichier DirectoryIndex (par exemple index.html) dans ce répertoire, le serveur renverra une liste formatée du contenu du répertoire. (activé par défaut)"
 
 msgid "Options_MultiViewsField"
 msgstr "MultiViews"
 
 msgid "Options_MultiViewsField_help"
-msgstr "Contenu MultiViews négociés sont autorisés. Utilisé pour afficher des pages en différentes langues sur la base de paramètres régionaux de votre navigateur. (Activée par défaut)"
+msgstr "La négociation de contenu MultiViews est autorisée. Celle-ci permet d'afficher des pages dans des langues différentes grâce aux paramètres régionaux du navigateur utilisé. (activé par défaut)"
 
 msgid "Options_SymLinksIfOwnerMatchField"
 msgstr "SymLinksIfOwnerMatch"
 
 msgid "Options_SymLinksIfOwnerMatchField_help"
-msgstr "Le serveur ne suivra les liens symboliques pour laquelle le fichier ou le répertoire cible est détenue par le même nom d&#39;utilisateur que le lien. (Par défaut: Off)"
+msgstr "Le serveur ne suivra les liens symboliques aux fichiers ou répertoires adressés que si ceux-ci appartiennent au même utilisateur que le lien lui-même. (désactivé par défaut)"
 
 msgid "AllowOverride_AllField"
-msgstr "Tous"
+msgstr "OverrideAll"
 
 msgid "AllowOverride_AllField_help"
-msgstr "Lorsque le serveur trouve un fichier htaccess., Il a besoin de savoir quelles directives déclarés dans ce fichier peuvent remplacer plus tôt informations d&#39;accès. En cochant cette case permettra de remplacer TOUS les paramètres Apache (dangereux défaut: OFF)"
+msgstr "Lorsque le serveur trouve un fichier .htaccess, il doit savoir si les directives Apache spécifiées dans ce fichier auront le droit d'outrepasser les directives déclarées auparavant par défault. En cochant cette case, TOUTES les directives définies dans le fichier .htaccess seront prioritaires. (DANGEREUX&nbsp;! désactivé par défaut)"
 
 msgid "AllowOverride_AuthConfigField"
 msgstr "AuthConfig"
 
 msgid "AllowOverride_AuthConfigField_help"
-msgstr "Permet l&#39;utilisation des directives de l&#39;autorisation (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Exiger, etc.) (Activée par défaut)"
+msgstr "Permet l'utilisation des directives Apache réglementant de l'autorisation d'accès comme AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require etc. (activé par défaut)"
 
 msgid "AllowOverride_FileInfoField"
 msgstr "FileInfo"
 
 msgid "AllowOverride_FileInfoField_help"
-msgstr "Permet l&#39;utilisation des directives qui contrôlent les types de documents (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.) (Par défaut: Off)"
+msgstr "Permet l'utilisation des directives Apache contrôlant les types de documents comme AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority etc. (désactivé par défaut)"
 
 msgid "AllowOverride_IndexesField"
-msgstr "Index"
+msgstr "Indexes"
 
 msgid "AllowOverride_IndexesField_help"
-msgstr "Permet l&#39;utilisation des directives qui contrôlent l&#39;indexation (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.) (Activée par défaut)"
+msgstr "Permet l'utilisation des directives Apache contrôlant l'indexation des répertoires comme AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName etc. (activé par défaut)"
 
 msgid "AllowOverride_LimitField"
-msgstr "Limite"
+msgstr "Limit"
 
 msgid "AllowOverride_LimitField_help"
-msgstr "Permet l&#39;utilisation des directives qui contrôlent l&#39;accès hôte (Allow, Deny et Order). (Activée par défaut)"
+msgstr "Permet l'utilisation des directives Apache Allow, Deny, Order réglementant l'accès des hôtes. (activé par défaut)"
 
 msgid "AllowOverride_OptionsField"
-msgstr "Options d&#39;"
+msgstr "Options"
 
 msgid "AllowOverride_OptionsField_help"
-msgstr "Permet l&#39;utilisation des directives contrôlant les fonctionnalités spécifiques d&#39;un répertoire (Options et XBitHack). (Par défaut: Off)"
+msgstr "Permet l'utilisation des directives Apache Options et XBitHack contrôlant les fonctionnalités spécifiques d'un répertoire. (désactivé par défaut)"
 
 msgid "DIVIDER_TOP"
-msgstr "Configuration générale Apache:"
+msgstr "Configuration générale Apache&nbsp;:"
 
 msgid "DIVIDER_EXPLANATION"
-msgstr "Caractéristiques Apache pour les répertoires de sites virtuels:"
+msgstr "Caractéristiques Apache pour les répertoires de sites virtuels&nbsp;:"
 
 msgid "BlueOnyx_Info_Text"
-msgstr "Une section dans /etc/httpd/conf.d/blueonyx.conf définit les «Options» et des fonctions «AllowOverride» sont autorisés pour le répertoire (/home/.sites/) dans lequel tous les sites virtuels résident. Ceci limite l&#39;utilisation des fichiers. Htaccess et d&#39;autres choses. Ceux-ci peuvent être modifiés ci-dessous."
+msgstr "Une part du fichier de configuration /etc/httpd/conf.d/blueonyx.conf définit quelles fonctions «&nbsp;Options&nbsp;» et  «&nbsp;AllowOverride&nbsp;» sont autorisées pour le répertoire (/home/.sites/) dans lequel tous les sites virtuels résident. Ceci limite l'utilisation des fichiers .htaccess entre autres. Ces caractéristiques peuvent être modifiées ci-dessous."
 
 msgid "DIVIDER_OPTIONS"
-msgstr "Options:"
+msgstr "Options&nbsp;:"
 
 msgid "DIVIDER_ALLOWOVERRIDE"
-msgstr "AllowOverride:"
+msgstr "AllowOverride&nbsp;:"
+
+# suPHP:
 
 msgid "PHP_enabled"
-msgstr "Activer PHP Scripting"
+msgstr "PHP Scripting activé"
 
 msgid "PHP_enabled_help"
-msgstr "Permettre l&#39;utilisation de scripts PHP."
+msgstr "L'utilisation de scripts PHP est autorisée."
 
 msgid "enableSuPHP"
 msgstr "Activer suPHP"
 
 msgid "enableSuPHP_help"
-msgstr "Permettre l&#39;utilisation de suPHP de sorte que les scripts PHP s&#39;exécutent avec l&#39;UID de leur propriétaire. Assurez-vous de configurer un Siteadmin en tant que propriétaire de votre dossier /web via le menu &quot;Propriété Web»! S&#39;IL VOUS PLAÎT NOTE: Si suPHP est activée, l&#39;utilisateur appartenant toiles ne sont plus pris en charge et cette fonctionnalité sera être éteinte."
+msgstr "Permettre l'utilisation de suPHP de sorte que les scripts PHP s'exécutent avec l'UID de leur propriétaire. Assurez-vous de configurer dans le menu «&nbsp;[[base-vsite.fileOwnerMenu]]&nbsp;» un SiteAdmin en tant que propriétaire du répertoire /web&nbsp;! ATTENTION&nbsp;! Si suPHP est activé, la fonction d'espace web privé ne sera plus pris en charge et les utilisateurs non-SiteAdmin n'auront plus leur répertoire individuel."
 
 msgid "disabled"
 msgstr "Désactivé"
@@ -305,22 +323,22 @@ msgstr "[[palette.disabled]]"
 msgid "cap_serverHttpd"
 msgstr "Paramètres Apache"
 
-#
+###
 
 msgid "httpPortField"
 msgstr "Port HTTP"
 
 msgid "httpPortField_help"
-msgstr "Le serveur web Apache s'exécute généralement sur le port 80 (HTTP). Si vous souhaitez le changer pour un autre port, alors vous pouvez le faire ici. Cela n'est utile que si vous voulez utiliser autre chose devant Apache pour filtrer, cache ou rediriger le trafic. Comme un cache Varnish, une redirection de proxy ou un équilibreur de charge. Si vous modifiez ce paramètre, tous les sites virtuels existants seront déplacés vers le nouveau port et tous les nouveaux sites seront créés pour utiliser ce nouveau port. adresses IP des sites virtuels ne seront pas modifiés."
+msgstr "Le serveur-web Apache utilise généralement le port 80 (HTTP). Si vous souhaitez utiliser un autre port, vous pouvez le faire ici. Cela n'est utile que si vous voulez devancer Apache avec un autre service comme un Varnish Cache, une redirection de proxy ou un équilibreur de charge pour filtrer, cacher ou rediriger le trafic. Si vous modifiez ce paramètre, tous les sites virtuels existants seront déplacés vers le nouveau port et tous les nouveaux sites créés utiliseront ce nouveau port. Les adresses IP des sites virtuels ne seront pas modifiés."
 
 msgid "sslPortField"
-msgstr "HTTPS/SSL Port"
+msgstr "Port HTTPS/SSL"
 
 msgid "sslPortField_help"
-msgstr "Le serveur web Apache utilise généralement le port 443 pour le trafic HTTPS. Si vous souhaitez le changer pour un autre port, alors vous pouvez le faire ici. Cela n'est utile que si vous voulez utiliser autre chose devant Apache pour filtrer, cache ou rediriger le trafic. Comme un cache Varnish, une redirection de proxy ou un équilibreur de charge. Si vous modifiez ce paramètre, tous les sites virtuels existants avec SSL activé passera du port 443 pour le nouveau port pour le trafic SSL. adresses IP des sites virtuels ne seront pas modifiés."
+msgstr "Le serveur-web Apache utilise généralement le port 443 pour le trafic HTTPS. Si vous souhaitez le changer pour un autre port, alors vous pouvez le faire ici. Cela n'est utile que si vous voulez devancer Apache avec un autre service comme un Varnish Cache, une redirection de proxy ou un équilibreur de charge pour filtrer, cacher ou rediriger le trafic. Si vous modifiez ce paramètre, tous les sites virtuels existants utilisant SSL passeront par le nouveau port au lieu du port 443 au pour le trafic SSL. Les adresses IP des sites virtuels ne seront pas modifiés."
 
 msgid "httpPortInUse"
-msgstr "Le port que vous avez spécifié comme nouveau port HTTP est déjà utilisé par un autre service. S'il vous plaît choisir un autre port à la place."
+msgstr "Le port que vous avez spécifié comme nouveau port HTTP est déjà utilisé par un autre service. Veuillez en choisir un différent."
 
 msgid "SSLportInUse"
-msgstr "Le port que vous avez spécifié comme nouveau port HTTPS/SSL est déjà utilisé par un autre service. S'il vous plaît choisir un autre port à la place."
+msgstr "Le port que vous avez spécifié comme nouveau port HTTPS/SSL est déjà utilisé par un autre service. Veuillez choisir un port différent."
