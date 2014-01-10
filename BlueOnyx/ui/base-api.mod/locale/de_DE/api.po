@@ -12,13 +12,13 @@ msgid "APImenu"
 msgstr "API"
 
 msgid "APImenu_help"
-msgstr "Konfigurieren Sie die BlueOnyx API. Es ermöglicht die Remote-Bereitstellung und Remote-Verwaltung des Servers. Zum Beispiel mit WHMCS (http://www.whmcs.com/) oder durch eigene API-Aufrufe."
+msgstr "Konfiguration der BlueOnyx API. Mittels API können gewisse Server-Funktionen aus der Ferne angesprochen werden. Primär können damit virtuelle Sites und Benutzer angelegt, gelöscht und/oder suspendiert werden. Zum Beispiel mittels WHMCS (http://www.whmcs.com/) oder durch eigene API-Aufrufe."
 
 msgid "apiSettings"
 msgstr "API-Einstellungen"
 
 msgid "API_info"
-msgstr "Die BlueOnyx API ermöglicht Remote-Bereitstellung von Sites zu und Benutzer und einige verwandte Server-Management-Funktionen. API-Aufrufe über HTTP (s) zum admserv der BlueOnyx gemacht. Ein WHMCS Modul verfügbar ist. Für weitere Informationen lesen Sie bitte die API Dokumentation: http://www.blueonyx.it/api/"
+msgstr "Die BlueOnyx API ermöglicht Remote-Bereitstellung von Sites und Benutzern, sowie einige verwandte Server-Management-Funktionen. API-Aufrufe werden mittels HTTP(s) an den Dienst 'admserv' des BlueOnyx-Servers gerichtet. Ein WHMCS Modul zur Nutzung der BlueOnyx-API ist verfügbar. Für weitere Informationen lesen Sie bitte die API-Dokumentation: http://www.blueonyx.it/api/"
 
 msgid "enableServerField"
 msgstr "API aktivieren"
@@ -30,7 +30,7 @@ msgid "forceHTTPSField"
 msgstr "HTTPS erzwingen"
 
 msgid "forceHTTPSField_help"
-msgstr "Falls aktiviert, werden nur SSL-verschlüsselte Verbindungen zur API per HTTPS erlaubt. Aus Sicherheitsgründen sollte dies aktiviert werden."
+msgstr "Falls aktiviert, werden nur SSL-verschlüsselte Verbindungen zur API (per HTTPS) erlaubt. Aus Sicherheitsgründen sollte dies aktiviert werden."
 
 msgid "apiHosts"
 msgstr "API Nutzer"
