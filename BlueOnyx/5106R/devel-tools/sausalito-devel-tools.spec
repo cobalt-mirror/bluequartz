@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.5.3
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -10,10 +10,10 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
+Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
-Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++
 
 %prep
 %setup -n %{name}
@@ -53,6 +53,22 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Wed Jan 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX03
+- Backported fixes from 5107R tree.
+
+* Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX02
+- Merged in locales support for the Netherlands ('nl_NL').
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX01
+- Another version number bump as there was a bit of dissagreement if it was 0.5.2 or 0.5.1.
+- Added a pre section to spec template. Dunno why *that* was missing.
+
+* Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX10
+- I always hated it that the capstone did not require all the bloody locales of a module and that ANY 
+  locale would satisfy the locale dependency. Well, this is fixed: On build time all existing locales
+  are added as requirements to capstone and each locale only satisfies only the dependency for itself.
+
 * Mon Aug 06 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX09
 - Added scripts/packsort.pl, a parser for packing_list. It processes a packing_list and dumps a version
   with semi-correct RPM sort order to STDOUT
