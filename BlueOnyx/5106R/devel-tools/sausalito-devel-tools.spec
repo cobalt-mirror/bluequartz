@@ -54,7 +54,7 @@ done
 
 %changelog
 
-* Wed Jan 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX03
+* Wed Jan 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX03
 - Backported fixes from 5107R tree.
 
 * Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX02
