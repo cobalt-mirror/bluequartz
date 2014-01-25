@@ -1,6 +1,4 @@
 <?php
-// Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
 // $Id: ftp.php 
 
 include_once("ServerScriptHelper.php");
@@ -28,8 +26,13 @@ $block = $factory->getPagedBlock("ftpSettings");
 $block->processErrors($serverScriptHelper->getErrors());
 
 $block->addFormField(
-  $factory->getBoolean("enableServerField", $ftp["enabled"]),
-  $factory->getLabel("enableServerField")
+  $factory->getBoolean("enableServerFieldNew", $ftp["enabled"]),
+  $factory->getLabel("enableServerFieldNew")
+);
+
+$block->addFormField(
+  $factory->getBoolean("enableSFTPserverField", $ftp["ftpsEnabled"]),
+  $factory->getLabel("enableSFTPserverField")
 );
 
 $block->addFormField(
@@ -67,8 +70,8 @@ $serverScriptHelper->destructor();
 <?php print($page->toFooterHtml());
 
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 
