@@ -760,7 +760,7 @@ msgid "allow_url_fopen"
 msgstr "Allow URL fopen:"
 
 msgid "allow_url_fopen_help"
-msgstr "'allow_url_fopen' (empfohlen: off) steuert, ob Dateizugriffe auch auf externe URLs verweisen dürfen oder nicht. Verbietet man dies, fällt es einem Angreifer schwerer, Schadprogramme aus dem Internet nachzuladen. Seit PHP 5.2.0 regeltallow_url_include das Verhalten separat für die Befehle include() und require(). Eine Großzahl von Exploits für PHP-Skripte nutzt es aus, wenn 'allow_url_fopen' auf \"On\" steht."
+msgstr "'allow_url_fopen' (empfohlen: off) steuert, ob Dateizugriffe auch auf externe URLs verweisen dürfen oder nicht. Verbietet man dies, fällt es einem Angreifer schwerer, Schadprogramme aus dem Internet nachzuladen. Seit PHP 5.2.0 regelt allow_url_include das Verhalten separat für die Befehle include() und require(). Eine Großzahl von Exploits für PHP-Skripte nutzt es aus, wenn 'allow_url_fopen' auf \"On\" steht."
 
 msgid "allow_url_include"
 msgstr "Allow URL include:"
