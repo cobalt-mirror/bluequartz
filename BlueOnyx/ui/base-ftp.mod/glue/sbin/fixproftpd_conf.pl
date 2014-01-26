@@ -1,8 +1,8 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/vsite
-# $Id: fixproftpd_conf.pl Thu 06 Aug 2009 09:03:51 PM EDT mstauber $
+# $Id: fixproftpd_conf.pl Sat 25 Jan 2014 15:40:02 PM COT mstauber $
 #
-# This script outputs the VirtualHost containers that are supposed to be 
-# present in your /etc/proftpd.conf - based on the IPs your sites are
+# This script prints out the VirtualHost containers that are supposed to 
+# be present in your /etc/proftpd.conf - based on the IPs your sites are
 # using.
 
 use CCE;
@@ -44,6 +44,19 @@ foreach $ip (@unique_ips) {
 	    print "        AllowOverwrite  on\n";
 	    print "        DefaultChdir            /web\n";
 	    print "        DisplayLogin    .ftphelp\n";
+	    print "        TLSEngine on\n";
+	    print "        TLSLog /var/log/proftpd/tls.log\n";
+	    print "        TLSRequired off\n";
+	    print "        TLSRSACertificateFile /etc/pki/dovecot/certs/dovecot.pem\n";
+	    print "        TLSRSACertificateKeyFile /etc/pki/dovecot/private/dovecot.pem\n";
+	    print "        TLSVerifyClient off\n";
+	    print "        TLSOptions NoCertRequest NoSessionReuseRequired\n";
+	    print "        TLSRenegotiate required off\n";
+	    print "        TLSOptions NoCertRequest\n";
+	    print "        TLSRenegotiate required off\n";
+	    print "        TLSOptions UseImplicitSSL\n";
+	    print "        # The 'standard' implicit FTPS port is 990\n";
+	    print "        Port 990\n";
 	    print "</VirtualHost>\n";
 	    print "\n"
 	};

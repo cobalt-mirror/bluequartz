@@ -11,6 +11,10 @@
         name="enabled" type="boolean" default="0"
         writeacl="ruleCapable(serverFTP)"
     />
+    <property 
+        name="ftpsEnabled" type="boolean" default="0"
+        writeacl="ruleCapable(serverFTP)"
+    />
 	<property
         name="useReverseDNS" type="boolean" default="0"
         writeacl="ruleCapable(serverFTP)"

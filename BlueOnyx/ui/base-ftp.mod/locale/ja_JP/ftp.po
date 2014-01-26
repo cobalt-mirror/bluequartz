@@ -232,3 +232,16 @@ msgstr "[[VAR.fqdn]]用のFTP設定"
 msgid "cap_serverFTP"
 msgstr "FTP設定"
 
+# sftpd:
+
+msgid "enableServerFieldNew"
+msgstr "FTPを有効にする"
+
+msgid "enableServerFieldNew_help"
+msgstr "[[base-ftp.enableServerField_help]]"
+
+msgid "enableSFTPserverField"
+msgstr "SFTPを有効にする"
+
+msgid "enableSFTPserverField_help"
+msgstr "オンまたはオフにセキュアファイル転送プロトコル（SFTP）機能をオンにします。 SFTPは、ポート990/TCP上で動作し、FTPサーバへの安全な接続を可能にします。それは、FTPに接続するための好ましい方法である必要があります。"

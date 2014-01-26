@@ -221,3 +221,16 @@ msgstr "FTP-instellingen voor [[VAR.fqdn]]"
 msgid "cap_serverFTP"
 msgstr "FTP-instellingen"
 
+# sftpd addition:
+
+msgid "enableServerFieldNew"
+msgstr "FTP inschakelen"
+
+msgid "enableServerFieldNew_help"
+msgstr "[[base-ftp.enableServerField_help]]"
+
+msgid "enableSFTPserverField"
+msgstr "Enable SFTP"
+
+msgid "enableSFTPserverField_help"
+msgstr "Draai Secure File Transfer Protocol (SFTP) functionaliteit in of uit. SFTP op poort 990/TCP en maakt een veilige verbinding met de FTP-server. Het moet de voorkeursmethode voor aansluiting op FTP zijn."

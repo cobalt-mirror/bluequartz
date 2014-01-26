@@ -1,6 +1,4 @@
 <?php
-// Author: Kevin K.M. Chiu
-// Copyright 2000, Cobalt Networks.  All rights reserved.
 // $Id: ftpHandler.php
 
 include_once("ServerScriptHelper.php");
@@ -18,10 +16,11 @@ if (!$serverScriptHelper->getAllowed('serverFTP')) {
 
 $cceClient = $serverScriptHelper->getCceClient();
 
-$attributes = array("enabled" => $enableServerField,
+$attributes = array("enabled" => $enableServerFieldNew,
+			"ftpsEnabled" => $enableSFTPserverField,
 		    "useReverseDNS" => $useReverseDNSField,
 		    "maxConnections" => $maxUserField,
-                    "connectRate" => $connectRateField);
+            "connectRate" => $connectRateField);
 
 $cceClient->setObject("System", $attributes, "Ftp");
 $errors = $cceClient->errors();
@@ -32,8 +31,8 @@ print($serverScriptHelper->toHandlerHtml("/base/ftp/ftp.php",
 $serverScriptHelper->destructor();
 
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

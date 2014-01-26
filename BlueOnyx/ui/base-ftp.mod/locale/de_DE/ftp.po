@@ -227,3 +227,18 @@ msgstr "FTP-Einstellungen für [[VAR.fqdn]]"
 
 msgid "cap_serverFTP"
 msgstr "FTP-Einstellungen"
+
+# sftpd addition:
+
+msgid "enableServerFieldNew"
+msgstr "FTP aktivieren"
+
+msgid "enableServerFieldNew_help"
+msgstr "[[base-ftp.enableServerField_help]]"
+
+msgid "enableSFTPserverField"
+msgstr "SFTP aktivieren"
+
+msgid "enableSFTPserverField_help"
+msgstr "Hier können Sie Secure File Transfer Protocol (SFTP)-Funktionalität ein- oder ausschalten. SFTP läuft auf Port 990/TCP und ermöglicht eine sichere Verbindung zum FTP-Server. Es sollte die bevorzugte Methode zum Verbinden mit FTP sein."
+

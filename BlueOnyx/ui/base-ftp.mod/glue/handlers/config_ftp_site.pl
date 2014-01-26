@@ -93,7 +93,21 @@ END
                                         $group, $ftp_dir, 
                                         $ftp_site->{maxConnections});
 		}
-	
+
+        $site_config .= "    TLSEngine on\n";
+        $site_config .= "    TLSLog /var/log/proftpd/tls.log\n";
+        $site_config .= "    TLSRequired off\n";
+        $site_config .= "    TLSRSACertificateFile /etc/pki/dovecot/certs/dovecot.pem\n";
+        $site_config .= "    TLSRSACertificateKeyFile /etc/pki/dovecot/private/dovecot.pem\n";
+        $site_config .= "    TLSVerifyClient off\n";
+        $site_config .= "    TLSOptions NoCertRequest NoSessionReuseRequired\n";
+        $site_config .= "    TLSRenegotiate required off\n";
+        $site_config .= "    TLSOptions NoCertRequest\n";
+        $site_config .= "    TLSRenegotiate required off\n";
+        $site_config .= "    TLSOptions UseImplicitSSL\n";
+        $site_config .= "    # The 'standard' implicit FTPS port is 990\n";
+        $site_config .= "    Port 990\n";
+
 		$site_config .= "</VirtualHost>\n";
 	}
 

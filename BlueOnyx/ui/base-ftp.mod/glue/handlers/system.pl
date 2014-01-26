@@ -1,5 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/handlers/base/ftp -I/usr/sausalito/perl
-# $Id: system.pl 804 2006-06-22 14:01:22Z shibuya $
+# $Id: system.pl 
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # handle ftp access
@@ -31,15 +31,23 @@ if (not $ok) {
 }
 
 # Manage xinetd.d/proftpd
-
 $lastRate = $old->{connectRate}; # Pun intended...
 $firstRate = $obj->{connectRate};
 $firstRate ||= 80;
 
+# proftpd:
 $old = Sauce::Service::service_get_xinetd('proftpd') ? 'on' : 'off';
 my $new = $obj->{enabled} ? 'on' : 'off';
 if (($old ne $new) || ($lastRate ne $firstRate)) {
   Sauce::Service::service_set_xinetd('proftpd', $new, $firstRate);
+  Sauce::Service::service_send_signal('xinetd', 'HUP');
+}
+
+# proftpds:
+$old = Sauce::Service::service_get_xinetd('proftpds') ? 'on' : 'off';
+my $new = $obj->{ftpsEnabled} ? 'on' : 'off';
+if (($old ne $new) || ($lastRate ne $firstRate)) {
+  Sauce::Service::service_set_xinetd('proftpds', $new, $firstRate);
   Sauce::Service::service_send_signal('xinetd', 'HUP');
 }
 
