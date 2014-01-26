@@ -230,7 +230,9 @@ msgid "enableServerFieldNew_help"
 msgstr "[[base-ftp.enableServerField_help]]"
 
 msgid "enableSFTPserverField"
-msgstr "Enable SFTP"
+msgstr "Enable FTPS"
 
 msgid "enableSFTPserverField_help"
-msgstr "Draai Secure File Transfer Protocol (SFTP) functionaliteit in of uit. SFTP op poort 990/TCP en maakt een veilige verbinding met de FTP-server. Het moet de voorkeursmethode voor aansluiting op FTP zijn."
+msgstr "Draai FTPS (FTP met SSL/TLS) functionaliteit in of uit. FTPS op poort 990/TCP en zorgt voor een veilige verbinding met de FTP-server. Het moet de voorkeursmethode voor aansluiting op FTP zijn. FTP-clients moet 'expliciet FTP over TLS' gebruiken om te kunnen gebruik maken van deze functie."
+
+
