@@ -230,7 +230,9 @@ msgid "enableServerFieldNew_help"
 msgstr "[[base-ftp.enableServerField_help]]"
 
 msgid "enableSFTPserverField"
-msgstr "Ativar SFTP"
+msgstr "Ativar FTPS"
 
 msgid "enableSFTPserverField_help"
-msgstr "Vire seguro File Transfer Protocol (SFTP) funcionalidade ligada ou desligada. SFTP é executado na porta 990/TCP e permite uma conexão segura com o servidor FTP. Deve ser o método preferido para a ligação ao FTP."
+msgstr "Vire FTPS (FTP com SSL/TLS) funcionalidade ligada ou desligada. FTPS é executado na porta 990/TCP e permite uma conexão segura com o servidor FTP. Deve ser o método preferido para a ligação ao FTP. Clientes FTP deve usar 'FTP explícito sobre TLS' para ser capaz de fazer uso desse recurso."
+
+

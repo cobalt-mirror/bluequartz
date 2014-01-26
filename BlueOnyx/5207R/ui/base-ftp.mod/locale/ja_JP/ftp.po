@@ -241,7 +241,7 @@ msgid "enableServerFieldNew_help"
 msgstr "[[base-ftp.enableServerField_help]]"
 
 msgid "enableSFTPserverField"
-msgstr "SFTPを有効にする"
+msgstr "FTPSを有効にする"
 
 msgid "enableSFTPserverField_help"
-msgstr "オンまたはオフにセキュアファイル転送プロトコル（SFTP）機能をオンにします。 SFTPは、ポート990/TCP上で動作し、FTPサーバへの安全な接続を可能にします。それは、FTPに接続するための好ましい方法である必要があります。"
+msgstr "オンまたはオフにFTPS（FTP、SSL/TLSで）機能をオンにします。 FTPSは、ポート990/TCP上で動作し、FTPサーバへの安全な接続を可能にします。それは、FTPに接続するための好ましい方法である必要があります。 FTPクライアントは、この機能を利用することができるように 'TLSを明示的にFTP'を使用する必要があります。"
