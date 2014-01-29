@@ -20,6 +20,9 @@ system("/bin/cp /etc/admserv/certs/certificate /etc/pki/dovecot/certs/dovecot.pe
 
 Sauce::Service::service_run_init('dovecot', 'restart');
 
+# Restart xinetd as well, so that ProFTPd gets to know the new cert:
+Sauce::Service::service_run_init('xinetd', 'restart');
+
 $cce->bye("SUCCESS");
 exit(0);
 
