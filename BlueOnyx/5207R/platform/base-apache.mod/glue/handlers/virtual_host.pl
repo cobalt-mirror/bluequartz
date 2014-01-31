@@ -135,7 +135,6 @@ AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
 </VirtualHost>
 END
-    }
 
     # append line marking the end of the section specifically owned by the VirtualHost
     my $end_mark = "# end of VirtualHost owned section\n";
