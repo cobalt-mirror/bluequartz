@@ -52,6 +52,7 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/sbin/fix_302_httpd_redirects.pl 
 /usr/sausalito/sbin/fix_web-and-email-server-aliasses.pl 
 /usr/sausalito/sbin/set_default_php_settings.pl
+/usr/sausalito/sbin/toggle_ssl.pl
 [AUTOFILL]
 
 <end glue>
@@ -148,6 +149,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Jan 31 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX07
+- Removed SSL VirtualHost container from glue/handlers/virtual_host.pl 
+  as ssl_perl.pl handles that for us.
+- Added glue/sbin/toggle_ssl.pl to allow a quick rewrite of all
+  VirtualHost containers on SSL enabled Vsites.
 
 * Tue Jan 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX06
 - Added cleaned up French translation as provided by Meaulnes Legler.
