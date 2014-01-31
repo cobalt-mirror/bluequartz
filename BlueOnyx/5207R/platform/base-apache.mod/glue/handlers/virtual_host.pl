@@ -112,9 +112,9 @@ sub edit_vhost
 # owned by VirtualHost
 NameVirtualHost $vhost->{ipaddr}:$httpPort
 
-# FrontPage needs the following four things to be here
-# otherwise all the vhosts need to go in httpd.conf, which could
-# get very large since there could be thousands of vhosts
+# ServerRoot needs to be set. Otherwise all the vhosts 
+# need to go in httpd.conf, which could get very large 
+# since there could be thousands of vhosts:
 ServerRoot $Base::Httpd::server_root
 
 <VirtualHost $vhost->{ipaddr}:$httpPort>
@@ -130,40 +130,6 @@ RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$httpPort)?\$
 RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$httpPort)?\$ [NC]
 $aliasRewrite
 RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
-RewriteOptions inherit
-AliasMatch ^/~([^/]+)(/(.*))?           $user_root
-Include $include_file
-</VirtualHost>
-END
-
-    # write SSL config
-    my $cafile;
-    if ($vhost->{ssl} && $vhost->{ssl_expires}) {
-        if (-f "$vhost->{basedir}/certs/ca-certs")
-        {
-            $cafile = "SSLCACertificateFile $vhost->{basedir}/certs/ca-certs";
-        }
-
-        $vhost_conf .=<<END;
-
-Listen $vhost->{ipaddr}:$sslPort
-<VirtualHost $vhost->{ipaddr}:$sslPort>
-SSLengine on
-$cafile
-SSLCertificateFile $vhost->{basedir}/certs/certificate
-SSLCertificateKeyFile $vhost->{basedir}/certs/key
-ServerName $vhost->{fqdn}
-ServerAdmin $vhost->{serverAdmin}
-DocumentRoot $vhost->{documentRoot}
-ErrorDocument 401 /error/401-authorization.html
-ErrorDocument 403 /error/403-forbidden.html
-ErrorDocument 404 /error/404-file-not-found.html
-ErrorDocument 500 /error/500-internal-server-error.html
-RewriteEngine on
-RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$sslPort)?\$
-RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$sslPort)?\$ [NC]
-$aliasRewriteSSL
-RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R]
 RewriteOptions inherit
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
@@ -213,8 +179,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
 # Redistribution and use in source and binary forms, with or without modification, 
