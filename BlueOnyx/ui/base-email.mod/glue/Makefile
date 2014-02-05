@@ -21,7 +21,7 @@ install:
 	mkdir -p $(PREFIX)/etc/smrsh/
 	mkdir -p $(PREFIX)/etc/cron.d
 	mkdir -p $(PREFIX)/etc/cron.daily
-	mkdir -p $(PREFIX)/etc/dovecot/conf.d/10-ssl.conf.bx
+	mkdir -p $(PREFIX)/etc/dovecot/conf.d
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) \
 	usr/local/sbin/vacation.pl $(PREFIX)/usr/local/sbin/
 	cd $(PREFIX)/etc/smrsh; \

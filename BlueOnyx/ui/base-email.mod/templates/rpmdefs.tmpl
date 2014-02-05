@@ -87,7 +87,7 @@ if [ ! -d /etc/mail ]; then \
 fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    /etc/init.d/cced.init rehash
 fi
 
 if [ $1 = 2 ]; then
