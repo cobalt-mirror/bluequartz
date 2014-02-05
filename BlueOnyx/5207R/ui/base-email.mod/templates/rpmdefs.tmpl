@@ -49,6 +49,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,root,root)/usr/local/sbin/vacation.pl
 %attr(0755,root,root)/usr/local/sbin/break-smrsh-loop.pl
 %attr(0644,root,root)/etc/cron.d/break-smrsh-loop.cron
+%attr(0644,root,root)/etc/dovecot/conf.d/10-ssl.conf.bx
 %attr(0755,root,root)/etc/cron.daily/mboxfix.pl
 %attr(0755,root,root)/usr/sausalito/bin/remove_domain.pl
 %attr(0755,root,root)/usr/sausalito/bin/findalias.pl
@@ -86,12 +87,20 @@ if [ ! -d /etc/mail ]; then \
 fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    /etc/init.d/cced.init rehash
 fi
 
 if [ $1 = 2 ]; then
     /usr/sausalito/bin/remove_domain.pl
 fi
+
+cat /etc/dovecot/conf.d/10-ssl.conf.bx > /etc/dovecot/conf.d/10-ssl.conf
+
+if [ -f /var/run/dovecot/login/imap ]; then
+	/etc/init.d/dovecot restart
+fi
+
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -123,6 +132,13 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Feb 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX06
+- Added /etc/dovecot/conf.d/10-ssl.conf.bx, which on post-install will be
+  dumped into /etc/dovecot/conf.d/10-ssl.conf. With that we now specify
+  the ciphers and protocols, which will allow TLSv1.2 on EL6 based boxes.
+  We also use it to specify the SSL cipher list and use the recommended
+  one from https://bettercrypto.org/static/applied-crypto-hardening.pdf
 
 * Tue Jan 28 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX05
 - Modified glue/handlers/copy_certs.pl and glue/conf/email.conf as email

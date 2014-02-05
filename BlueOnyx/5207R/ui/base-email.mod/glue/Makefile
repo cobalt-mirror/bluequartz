@@ -21,6 +21,7 @@ install:
 	mkdir -p $(PREFIX)/etc/smrsh/
 	mkdir -p $(PREFIX)/etc/cron.d
 	mkdir -p $(PREFIX)/etc/cron.daily
+	mkdir -p $(PREFIX)/etc/dovecot/conf.d
 	$(INSTALL) $(INSTALL_SCRIPTFLAGS) \
 	usr/local/sbin/vacation.pl $(PREFIX)/usr/local/sbin/
 	cd $(PREFIX)/etc/smrsh; \
@@ -34,4 +35,5 @@ install:
 	etc/cron.d/break-smrsh-loop.cron $(PREFIX)/etc/cron.d
 	$(INSTALL) \
 	etc/cron.daily/mboxfix.pl $(PREFIX)/etc/cron.daily
+	$(INSTALL) etc/dovecot/conf.d/10-ssl.conf.bx $(PREFIX)/etc/dovecot/conf.d/10-ssl.conf.bx
 rpm:
