@@ -6,6 +6,8 @@
 # description: script to apply cpu microcode
 #
 
+# See [BlueOnyx:14349] MBR loss on software RAID1:
+exit 0
 
 # Source function library.
 . /etc/init.d/functions
