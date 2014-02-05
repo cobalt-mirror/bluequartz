@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,10 +198,10 @@ msgid "ssiI18nName"
 msgstr "Server Side Includes (SSI)"
 
 msgid "userwebs"
-msgstr "Activer les espaces web privés pour utilisateurs"
+msgstr "[[base-vsite.userwebs]]"
 
 msgid "userwebs_help"
-msgstr "Cette option activée, chaque utilisateur dispose de son propre espace web qui est indépendant de celui du site principal et qui est accessible à http://hote.domaine.tld/~&lt;nom_utilisateur&gt;/. Les utilisateurs peuvent alors télécharger dans leur répertoire privé /web leurs propres pages via FTP. ATTENTION&nbsp;: Si suPHP est activé, cette fonction ne sera pas prise en compte et les utilisateurs n'auront pas d'espace web privé."
+msgstr "[[base-vsite.userwebs_help]] ATTENTION&nbsp;: Si suPHP est activé, cette fonction ne sera pas prise en compte et les utilisateurs n'auront pas d'espace web privé."
 
 msgid "ftpnonadminI18nName"
 msgstr "FTP autorisé aux utilisateurs"
@@ -312,7 +312,7 @@ msgid "enableSuPHP"
 msgstr "Activer suPHP"
 
 msgid "enableSuPHP_help"
-msgstr "Permettre l'utilisation de suPHP de sorte que les scripts PHP s'exécutent avec l'UID de leur propriétaire. Assurez-vous de configurer dans le menu «&nbsp;[[base-vsite.fileOwnerMenu]]&nbsp;» un SiteAdmin en tant que propriétaire du répertoire /web&nbsp;! ATTENTION&nbsp;! Si suPHP est activé, la fonction d'espace web privé ne sera plus pris en charge et les utilisateurs non-SiteAdmin n'auront plus leur répertoire individuel."
+msgstr "Permettre l'utilisation de suPHP de sorte que les scripts PHP opèrent avec l'UID de leur propriétaire. Assurez-vous de configurer dans le menu «&nbsp;[[base-vsite.fileOwnerMenu]]&nbsp;» un SiteAdmin en tant que propriétaire du répertoire /web&nbsp;! ATTENTION&nbsp;! Si suPHP est activé, la fonction d'espace web privé ne sera plus pris en charge et les utilisateurs non-SiteAdmin n'auront plus leur répertoire individuel."
 
 msgid "disabled"
 msgstr "Désactivé"

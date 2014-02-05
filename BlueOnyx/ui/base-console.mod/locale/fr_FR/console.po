@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,247 +12,249 @@ msgid "procsMenu"
 msgstr "Processus"
 
 msgid "procsMenu_help"
-msgstr "Vous permet de voir quels sont les processus en cours d&#39;exécution sur votre serveur. Réplique de la sortie de &#39;ps auxwf ». Vous permet également de tuer des processus."
+msgstr "Examine les processus opérant sur votre serveur. Reproduit la réplique de la commande Linux `ps auxwf`. Vous permet aussi d'annuler des processus par la commande Linux `kill`."
 
 msgid "vserver_processlist"
-msgstr "Liste Process Server"
+msgstr "Liste des processus en cours"
 
 msgid "PID_help"
-msgstr "ID de processus."
+msgstr "ID du processus."
 
 msgid "USER_help"
-msgstr "Nom d&#39;utilisateur du propriétaire du processus."
+msgstr "Identifiant du propriétaire du processus."
 
 msgid "CPU_help"
-msgstr "l&#39;utilisation du CPU du processus au format &#39;XX.X». C&#39;est le temps CPU utilisé, divisé par le temps, le processus a été exécuté (cputime / rapport en temps réel), exprimée en pourcentage. Il ne s&#39;additionnent pas à 100%, sauf si vous êtes chanceux."
+msgstr "Pourcentage d'utilisation du CPU par ce processus au format « XX.X ». C'est-à-dire le temps d'utilisation du CPU  divisé par le temps employé par ce processus (rapport cputime/realtime) en pourcent. Il ne s'additionnent pas à 100%, sauf si vous êtes chanceux."
 
 msgid "MEM_help"
-msgstr "utilisation de la mémoire. Ratio de résident de la taille de l&#39;ensemble du processus de la mémoire physique de la machine, exprimée en pourcentage."
+msgstr "utilisation de la mémoire. Pourcentage de la taille de l'ensemble du processus et de la mémoire physique de la machine."
 
 msgid "VSZ_help"
-msgstr "Utilisation de la mémoire virtuelle de l&#39;ensemble du processus."
+msgstr "VSZ (Virtual Size) : Taille virtuelle de l'image du processus (code + données + pile)."
 
 msgid "RSS_help"
-msgstr "Taille résidente définie, la non-échangés mémoire physique qu&#39;une tâche a utilisé (en kilo-octets)."
+msgstr "RSS (Resident Set Size) : Taille résidente de l'image du processus. Nombre de kilo-octets se trouvant en mémoire."
 
 msgid "TTY_help"
-msgstr "Contrôle tty (terminaux)."
+msgstr "TTY : nom du terminal en fonction."
 
 msgid "STAT_help"
-msgstr "Multi-caractère état du processus."
+msgstr "État du processus (affiché en plusieurs champs)."
 
 msgid "START_help"
-msgstr "Heure ou la date de l&#39;opération de démarrage. Seule l&#39;année sera affiché si le processus n&#39;a pas été lancé la même année ps a été invoquée, ou «mmmdd» si elle n&#39;a pas été lancé le même jour, ou «HH: MM &#39;autrement."
+msgstr "Heure ou date du début de l'opération. Seule l'année sera affichée si le processus n'a pas été lancé la même année ps a été invoqué, ou « mmmjj » si elle n'a pas été lancé le même jour, ou « HH:MM » autrement."
 
 msgid "TIME_help"
-msgstr "Temps CPU cumulé, «[jj-] hh: mm: ss le format."
+msgstr "Durée CPU au format « [jj-]hh:mm:ss »."
 
 msgid "COMMAND_help"
-msgstr "Commande avec tous ses arguments sous forme de chaîne. Peut couper comme vous le souhaitez. Les modifications apportées aux arguments ne sont pas représentés. La sortie dans cette colonne peut contenir des espaces."
+msgstr "Commande avec tous ses arguments en texte-chaîne. Peut être utilisé partiellement si désiré. Les arguments modifiés ne sont pas représentés. Dans cette colonne, la réplique de commande peut contenir des espaces."
 
 msgid "KILL_help"
-msgstr "Cliquez sur l&#39;icône en regard du processus en question de le tuer avec &quot;kill -9 PID. ATTENTION de ne pas tuer des processus importants!"
+msgstr "Cliquer sur l'icône à coté du processus en question pour l'annuler avec la commande Linux `kill -9 PID`. ATTENTION ! Ne pas annuler des processus importants!"
 
 msgid "loginsMenu"
-msgstr "Logins"
+msgstr "Connexions"
 
 msgid "loginsMenu_help"
-msgstr "Vous permet de voir les dernières connexions à votre serveur et reproduit la sortie de la commande Linux «dernier»."
+msgstr "Indique les dernières connexions (logins) à votre serveur (réplique de la commande Linux `last`)."
 
 msgid "vserver_loginlist"
 msgstr "Connexions à ce serveur"
 
 msgid "LUSER"
-msgstr "Nom d&#39;utilisateur"
+msgstr "Identifiant"
 
 msgid "LUSER_help"
-msgstr "Affiche le nom de l&#39;utilisateur en question."
+msgstr "Indique l'identifiant de l'utilisateur en question."
 
 msgid "CONSOLE"
 msgstr "Console"
 
 msgid "CONSOLE_help"
-msgstr "Cette colonne indique quelle console ou réseau de service à l&#39;utilisateur a utilisé pour se connecter."
+msgstr "Colonne indiquant la console (télétype) ou le service réseau utilisé par l'utilisateur qui s'est connecté."
 
 msgid "HOST"
-msgstr "Host"
+msgstr "Nom d'hôte"
 
 msgid "HOST_help"
-msgstr "Nom d&#39;hôte ou adresse IP de l&#39;utilisateur qui s&#39;est connecté po"
+msgstr "Indique le nom d'hôte (host) ou l'adresse IP de l'utilisateur qui s'est connecté."
 
 msgid "START_DATE"
-msgstr "Connexion date de début"
+msgstr "Date du début de la connexion "
 
 msgid "START_DATE_help"
-msgstr "Affiche la date à laquelle la connexion en question a commencé."
+msgstr "Indique la date à laquelle la connexion en question a commencé."
 
 msgid "STIME"
 msgstr "S-Time"
 
 msgid "STIME_help"
-msgstr "Indique l&#39;heure à laquelle la connexion en question a commencé."
+msgstr "Indique l'heure à laquelle la connexion en question a commencé."
 
 msgid "ETIME"
 msgstr "E-Time"
 
 msgid "ETIME_help"
-msgstr "Indique l&#39;heure à laquelle la connexion en question a pris fin."
+msgstr "Indique l'heure à laquelle la connexion en question a pris fin."
 
 msgid "DURATION"
 msgstr "Durée"
 
 msgid "DURATION_help"
-msgstr "Indique combien de temps a duré le login - ou si elle est toujours en cours."
+msgstr "Indique combien de temps la connexion a duré - ou si elle est toujours en cours."
 
 msgid "UKILL"
-msgstr "Tuez"
+msgstr "Kill"
 
 msgid "UKILL_help"
-msgstr "Vous permet de démarrer l&#39;utilisateur du système (s&#39;il est toujours connecté!). Cela seul ne l&#39;empêche pas de se connecter à nouveau, cependant. Pour que vous pourriez avoir à suspendre le site ou utilisateur en question, aussi."
+msgstr "Coupe la connexion de l'utilisateur s'il est encore connecté. Cela néanmoins ne l'empêche pas de se reconnecter. Pour empêcher ceci, il faut destituer cet utilisateur ou son site en question."
 
 msgid "logfilesMenu"
-msgstr "Logfiles"
+msgstr "Fichiers-journal"
 
 msgid "logfilesMenu_help"
-msgstr "Vous permet d&#39;examiner les fichiers journaux de serveur."
+msgstr "Vous permet de consulter les fichiers-journal (logfiles) du serveur."
 
 msgid "sol_view"
-msgstr "Logfile:"
+msgstr "Fichier-journal :"
 
 msgid "sol_view_help"
-msgstr "Choisissez le fichier journal que vous souhaitez examiner."
+msgstr "Choisissez le fichier-journal que vous souhaitez examiner."
+
+### pam_abl strings:
 
 msgid "pam_ablMenu"
-msgstr "Gestionnaire de connexion"
+msgstr "Gestion des connexions"
 
 msgid "pam_ablMenu_help"
-msgstr "Le «Login Manager» vous permet de configurer la protection contre la force brutale de passe tentatives devinettes. Vous pouvez configurer après combien de connexions échouées le compte ou les hôtes qui attaquent seront empêchés de se connecter à tous. Même s&#39;il utilise enfin un nom d&#39;utilisateur valide et mot de passe. Si jamais vous bloquer vous-même: vous serez toujours capable de se connecter à l&#39;interface utilisateur en tant que «admin» pour réinitialiser le blocus."
+msgstr "« [[base-console.pam_ablMenu]] » (Login Manager) vous permet de configurer la protection contre les attaques par force brute qui cherchent à trouver les mots de passe. Vous pouvez configurer combien de connexions sont permises au compte utilisateur ou aux hôtes qui attaquent avant qu'ils ne soient bannis (même s'il a enfin trouvé une combinaison identifiant / mot de passe valide). Si jamais vous vous bloquez vous-même, vous serez toujours capable de vous connecter à l'interface utilisateur en tant que « admin » pour révoquer votre bannissement."
 
 msgid "pam_abl_head"
-msgstr "Gestionnaire de connexion"
+msgstr "[[base-console.pam_ablMenu]]"
 
 msgid "pam_abl_location"
-msgstr "Config File:"
+msgstr "Fichier de configuration :"
 
 msgid "pam_abl_location_help"
-msgstr "Emplacement du fichier de config pam_abl."
+msgstr "Emplacement du fichier de configuration pam_abl."
 
 msgid "user_purge"
-msgstr "purge de l&#39;utilisateur:"
+msgstr "Purge d'utilisateurs :"
 
 msgid "user_purge_help"
-msgstr "Définit combien de temps les connexions échouées pour les utilisateurs sont conservées dans la base de données de l&#39;utilisateur. Connexions qui ont échoué sont toujours stockés dans la base de données même après le blocage temporaire a expiré."
+msgstr "Définit combien de temps les utilisateurs aux connexions échouées restent fichés dans la base de données utilisateurs. Les connexions échouées demeurent fichées même après que le blocage temporaire ait expiré."
 
 msgid "host_purge"
-msgstr "purge de l&#39;hôte:"
+msgstr "Purge de l'hôte :"
 
 msgid "host_purge_help"
-msgstr "Définit combien de temps les connexions échouées pour les hôtes sont conservés dans la base de données hôte. Connexions qui ont échoué sont toujours stockés dans la base de données même après le blocage temporaire a expiré."
+msgstr "Définit combien de temps les hôtes aux connexions échouées restent fichés dans la base de données hôtes. Les connexions échouées demeurent fichées même après que le blocage temporaire ait expiré."
 
 msgid "user_rule"
-msgstr "règle d&#39;utilisateur:"
+msgstr "Règle d'utilisateur :"
 
 msgid "user_rule_help"
-msgstr "Montant d&#39;échecs de connexion par heure jusqu&#39;à ce que le compte utilisateur sera mis à l&#39;index, empêchant quiconque de se connecter à ce compte, même avec un mot de passe valide. Veuillez noter: Vous devez laisser cela à «handicapé», parce que sinon quelqu&#39;un pourrait lancer un «déni de service» attaque contre vous qui (temporairement) bloque même les utilisateurs légitimes d&#39;utiliser leurs comptes."
+msgstr "Montant d'échecs de connexion par heure jusqu'à ce que ce compte utilisateur sera mis sur la liste noire, empêchant quiconque à se connecter même avec un mot de passe valide. AVIS : Laisser cette option désactivée ; sinon quelqu'un pourrait lancer une attaque « Denial of Service » qui empêcheraient temporairement même les utilisateurs légitimes à se connecter."
 
 msgid "host_rule"
-msgstr "Organisez règle:"
+msgstr "Règle d'hôte :"
 
 msgid "host_rule_help"
-msgstr "Montant d&#39;échecs de connexion par heure jusqu&#39;à ce que l&#39;hôte d&#39;origine sera blackisted. Même les connexions avec les noms d&#39;utilisateur et mot de passe de l&#39;IP incriminée sera alors bloquée. Exception: l&#39;utilisateur &#39;admin&#39; peut toujours se connecter à l&#39;interface graphique de cette IP - s&#39;il connaît le mot de passe correct."
+msgstr "Montant d'échecs de connexion par heure jusqu'à ce que cet hôte (host) sera mis sur la liste noire. Toutes les connexions de l'IP incriminée seront bannies, même avec une combinaison identifiant / mot de passe valide. Exception : l'utilisateur admin pourra toujours encore se connecter à l'interface d'administration, même de cette adresse IP bannie."
 
 msgid "pam_abl_statusMenu"
-msgstr "Failed logins"
+msgstr "Connexions échouées"
 
 msgid "pam_abl_statusMenu_help"
-msgstr "Vous montre une liste d&#39;adresses IP à partir desquelles ont échoué les tentatives de connexion ont été enregistrées. Indique également les noms d&#39;utilisateurs ont été utilisés. Cette page permet également de réinitialiser blocus autentication. Un voyant d&#39;état rouge à côté d&#39;une IP ou nom d&#39;utilisateur signifie que l&#39;hôte (ou l&#39;utilisateur!) N&#39;est pas autorisé à se connecter plus."
+msgstr "Liste d'adresses IP à partir desquelles les tentatives de connexion ont échoué. Indique également les identifiants utilisés. Cette page permet également à rétablir une authentification. Un voyant rouge à côté d'une adresse IP ou d'un identifiant signifie que l'hôte ou l'utilisateur n'est plus autorisé à se connecter."
 
 msgid "pam_abl_blocked_users_and_hosts"
-msgstr "Histoire des échecs de connexion"
+msgstr "Historique des échecs de connexion"
 
 msgid "blocked_hosts"
-msgstr "Hôtes bloqués"
+msgstr "Hôtes bannis"
 
 msgid "blocked_users"
-msgstr "Utilisateurs bloqués"
+msgstr "Utilisateurs bannis"
 
 msgid "pam_abl_blocked_hosts"
-msgstr "Hôtes avec l&#39;activité des échecs de connexion:"
+msgstr "Hôtes ayant eu des échecs de connexion :"
 
 msgid "host_ip"
 msgstr "Adresse IP"
 
 msgid "host_ip_help"
-msgstr "Adresse IP à partir de laquelle tentatives de connexion infructueuses ont été enregistrés."
+msgstr "Indique l'adresse IP à partir de laquelle les tentatives de connexion ont été lancées."
 
 msgid "failcnt"
-msgstr "Fail"
+msgstr "Échecs de connexion"
 
 msgid "failcnt_help"
-msgstr "Indique combien de connexions infructueuses ont été enregistrés."
+msgstr "Indique combien de connexions échouées ont été enregistrées."
 
 msgid "access"
 msgstr "Accès"
 
 msgid "access_help"
-msgstr "Indique si l&#39;accès est toujours autorisés ou si elle est bloquée. Un vert moyen lumineux d&#39;état: L&#39;accès est (encore - ou à nouveau) permis. Rouge signifie: L&#39;accès est bloqué."
+msgstr "Indique si l'accès est autorisé ou bloqué. Un voyant vert signifie que l'accès est (encore ou à nouveau) permis ; un voyant rouge signifie que l'accès est bloqué."
 
 msgid "Action"
 msgstr "Débloquer"
 
 msgid "Action_help"
-msgstr "En cliquant sur le bouton vous permet de supprimer un blocage actif de l&#39;hôte ou le compte en question. Si le bouton est grisé, alors cet hôte ou compte actuellement pas bloquée."
+msgstr "Cliquer sur le bouton pour révoquer un bannissement de l'hôte ou du compte en question. Si le bouton est gris, cet hôte ou ce compte n'est actuellement pas banni."
 
 msgid "reset_hosts_button"
-msgstr "Réinitialiser tous les blocs d&#39;accueil"
+msgstr "Révoquer tous les bannissements d'hôtes"
 
 msgid "reset_hosts_button_help"
-msgstr "Vous permet de réinitialiser tous les blocs d&#39;accueil et supprime également toutes les activités de l&#39;événement d&#39;accueil de la base de données hôte."
+msgstr "Permet de révoquer tous les bannissements d'hôte et supprime également toute mention de la base de données hôte."
 
 msgid "reset_users_button"
-msgstr "Réinitialiser tous les blocs de l&#39;utilisateur"
+msgstr "Révoquer tous les bannissements d'utilisateur"
 
 msgid "reset_users_button_help"
-msgstr "Permet de réinitialiser tous les blocs utilisateur et supprime également toutes les activités de l&#39;événement de l&#39;utilisateur à partir de la base de données de l&#39;utilisateur."
+msgstr "Permet de révoquer tous les bannissements d'utilisateurs et supprime également toute mention de la base de données utilisateur."
 
 msgid "reset_all_button"
-msgstr "Réinitialiser tous les blocs"
+msgstr "Révoquer tous les bannissements"
 
 msgid "reset_all_button_help"
-msgstr "Vous permet de réinitialiser tous les hôtes et les blocs utilisateur. Supprime également toutes les activités de l&#39;événement de connexion a échoué dans les bases de données."
+msgstr "Permet de révoquer tous les bannissements des hôtes et des comptes utilisateur. En supprime également toute mention dans les bases de données."
 
 msgid "purge_button"
 msgstr "événements de purge"
 
 msgid "purge_button_help"
-msgstr "Permet d&#39;expirer manuellement les événements de l&#39;utilisateur et base de données hôte qui ont dépassé leur date de péremption."
+msgstr "Permet d'ôter manuellement des bases de données hôte et utilisateur les enregistrements ayant dépassé leur date de péremption."
 
 msgid "pam_abl_blocked_users"
-msgstr "Comptes ayant une activité échec de connexion:"
+msgstr "Comptes ayant eu des échecs de connexion:"
 
 msgid "username"
-msgstr "Considération"
+msgstr "Identifiants"
 
 msgid "username_help"
-msgstr "Nom d&#39;utilisateur pour qui n&#39;a pas l&#39;activité de connexion a été enregistré. Ces noms d&#39;utilisateur ne peuvent pas être des comptes valides sur ce serveur, mais quelqu&#39;un a essayé de se connecter avec eux quand même."
+msgstr "Identifiants des utilisateurs ayant eu des échecs de connexion. Il est possible que ces identifiants n'existent pas sur ce serveur ; quoi qu'il en soit, quelqu'un a essayé de se connecter avec ceux-ci."
 
 msgid "blocked_hosts_help"
-msgstr "Affiche une liste des hôtes à partir de laquelle l&#39;activité n&#39;a pas de connexion a été enregistré, combien de fois ils n&#39;ont pas réussi à authentifier correctement et s&#39;ils sont toujours bloquées. Un vert moyen lumineux d&#39;état: L&#39;accès est (encore - ou à nouveau) permis. Rouge signifie: L&#39;accès est bloqué."
+msgstr "Affiche une liste des hôtes avec un historique d'échecs de connexion, leur nombre de tentatives de connexion ayant échoué et s'ils sont encore bannis. Un voyant vert signifie que l'accès est (encore ou à nouveau) permis ; un voyant rouge signifie que l'accès est bloqué."
 
 msgid "blocked_users_help"
-msgstr "Affiche une liste des comptes d&#39;utilisateurs pour qui n&#39;a pas l&#39;activité de connexion a été enregistré, combien de fois l&#39;authentification échoue et si le compte est toujours bloqué. Un vert moyen lumineux d&#39;état: L&#39;accès est (encore - ou à nouveau) permis. Rouge signifie: L&#39;accès est bloqué."
+msgstr "Affiche une liste des comptes d'utilisateurs avec un historique d'échecs de connexion, leur nombre de tentatives de connexion ayant échoué et s'ils sont encore bannis. Un voyant vert signifie que l'accès est (encore ou à nouveau) permis ; un voyant rouge signifie que l'accès est bloqué."
 
 msgid "whois"
 msgstr "Whois"
 
 msgid "whois_help"
-msgstr "Affiche les informations &quot;whois&quot; sur l&#39;IP en question."
+msgstr "Affiche les informations « whois » de l'IP en question."
 
 msgid "host_fqdn"
 msgstr "Hostname"
 
 msgid "host_fqdn_help"
-msgstr "Nom de l&#39;hôte à partir duquel tentatives de connexion infructueuses ont été enregistrés. Si elle montre &#39;-N/A-&#39;, cela signifie que l&#39;hôte ne dispose pas d&#39;un reverse DNS valides. Si elle montre &#39;localhost&#39;, cela ne signifie pas nécessairement que l&#39;attaque provenait de votre serveur. Il ya beaucoup de (principalement asiatiques) FAI qui fixent les reverse DNS pour leur réseau à &#39;localhost&#39;."
+msgstr "Nom de l'hôte correspondant à l'adresse IP avec un historique d'échecs de connexion. « N/A » (not available) signifie que cette adresse IP ne dispose pas de « Reverse-DNS » et ne peut donc pas être attribuée à un hôte. Si elle montre « localhost », cela ne signifie pas nécessairement que l'attaque provenait de votre serveur. Il ya beaucoup de FAIs (Fournisseur d'Accès Internet), principalement asiatiques, qui définissent le Reverse-DNS de leur réseau à « localhost »."
 
 msgid "/var/log/cron"
 msgstr "/var/log/cron"

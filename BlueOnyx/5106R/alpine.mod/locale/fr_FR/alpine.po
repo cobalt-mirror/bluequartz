@@ -1,12 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+# Server Management
 
 msgid "osName"
 msgstr "BlueOnyx"
@@ -15,112 +17,118 @@ msgid "osVendor"
 msgstr "Projet BlueOnyx"
 
 msgid "osDescription"
-msgstr "Le [[base-alpine.osName]] est le logiciel de base pour la [[base-product.productName]]. Ce logiciel est nécessaire pour que votre appareil de serveur pour fonctionner."
+msgstr "Le [[base-alpine.osName]] est le logiciel de base pour la [[base-product.productName]]. Ce logiciel est nécessaire pour que votre serveur fonctionne."
 
 msgid "vendorSite"
 msgstr "http://www.BlueOnyx.it/"
 
 msgid "sysmanage"
-msgstr "Management Server"
+msgstr "Gestion Serveur"
 
 msgid "sysmanageDescription"
-msgstr "Administration du serveur. Cliquez ici pour gérer le serveur."
+msgstr "Administration du serveur. Cliquer ici pour gérer le serveur."
 
 msgid "security"
 msgstr "Sécurité"
 
 msgid "securityDescription"
-msgstr "Cliquez ici pour gérer des certificats et de la sécurité du serveur."
+msgstr "Cliquer ici pour gérer les certificats et la sécurité du serveur."
 
 msgid "sitemanage"
 msgstr "Gestion du site"
 
 msgid "sitemanageDescription"
-msgstr "Cliquez ici pour créer, modifier et gérer des serveurs virtuels (c&#39;est-à-site) paramètres, comptes utilisateurs et des sauvegardes."
+msgstr "Cliquer ici pour créer, modifier et gérer les serveurs virtuels (c'est-à-dire : les sites), leurs paramètres, les comptes utilisateurs et les sauvegardes."
 
 msgid "controlpanel"
-msgstr "Services de réseau"
+msgstr "Services réseau"
 
 msgid "controlpanelDescription"
-msgstr "Cliquez ici pour contrôler les services du serveur."
+msgstr "Cliquer ici pour contrôler les services du serveur."
 
 msgid "serverconfig"
 msgstr "Paramètres système"
 
 msgid "serverconfigDescription"
-msgstr "Cliquez ici pour configurer le réseau, la bande passante du serveur et les paramètres de temps."
+msgstr "Cliquer ici pour configurer le réseau, la bande passante du serveur et les réglages horaires."
 
 msgid "cpservicesDescription"
-msgstr "Cliquez ici pour gérer des sites virtuels et des comptes utilisateurs."
+msgstr "Cliquer ici pour gérer les sites virtuels et les comptes utilisateurs."
 
 msgid "sysmaintenance"
 msgstr "Entretien"
 
 msgid "sysmaintenanceDescription"
-msgstr "Cliquez ici pour effectuer la maintenance du serveur telles que la sauvegarde du système, le contrôle de stockage, et le redémarrage du système."
+msgstr "Cliquer ici pour effectuer la maintenance du serveur telles que la sauvegarde du système, le contrôle de stockage, et le redémarrage du système."
 
 msgid "serverusage"
 msgstr "Utilisation du serveur"
 
 msgid "serverusageDescription"
-msgstr "Cliquez ici pour voir les statistiques globales d&#39;utilisation de cet appareil de serveur."
+msgstr "Cliquer ici pour voir les statistiques d'utilisation globales de ce serveur."
 
 msgid "siteusage"
-msgstr "Statistiques d&#39;accès"
+msgstr "Statistiques d'accès"
 
 msgid "siteusageDescription"
-msgstr "Cliquez ici pour voir les statistiques d&#39;utilisation de ce site."
+msgstr "Cliquer ici pour voir les statistiques d'utilisation de ce site."
 
 msgid "netusage"
 msgstr "Réseau"
 
 msgid "netusageDescription"
-msgstr "Cliquez ici pour voir l&#39;utilisation totale du réseau pour ce serveur."
+msgstr "Cliquer ici pour voir l'entière utilisation du réseau de ce serveur."
 
 msgid "webusage"
 msgstr "Web"
 
 msgid "webusageDescription"
-msgstr "Cliquez ici pour consulter les statistiques d&#39;utilisation du Web."
+msgstr "Cliquer ici pour consulter les statistiques de l'utilisation du Web."
 
 msgid "ftpusage"
 msgstr "FTP"
 
 msgid "ftpusageDescription"
-msgstr "Cliquez ici pour voir les statistiques d&#39;utilisation de FTP."
+msgstr "Cliquer ici pour voir les statistiques d'utilisation de FTP."
 
 msgid "mailusage"
 msgstr "Courrier"
 
 msgid "mailusageDescription"
-msgstr "Cliquez ici pour voir les statistiques de l&#39;utilisation du courrier électronique."
+msgstr "Cliquer ici pour voir les statistiques de l'utilisation du courrier électronique."
 
 msgid "sysinfo"
 msgstr "Informations sur le système"
 
 msgid "sysinfoDescription"
-msgstr "Cliquez ici pour voir les informations de configuration du serveur."
+msgstr "Cliquer ici pour voir la configuration du serveur."
 
 msgid "sysbackuprestore"
-msgstr "Sauvegarde et restauration"
+msgstr "Sauvegarde et Restitution"
 
 msgid "sysbackuprestoreDescription"
-msgstr "Cliquez ici pour sauvegarder ou restaurer les données du serveur."
+msgstr "Cliquer ici pour sauvegarder ou rétablir les données du serveur."
+
+# Site management
 
 msgid "usermgmt"
 msgstr "Gestion des utilisateurs"
 
 msgid "usermgmtDescription"
-msgstr "Cliquez ici pour ajouter, modifier ou supprimer des utilisateurs."
+msgstr "Cliquer ici pour ajouter, modifier ou supprimer des utilisateurs."
+
+# Programs  
 
 msgid "base-programs"
 msgstr "Programmes"
 
 msgid "base-programs_description"
-msgstr "La section Programmes vous permet d&#39;accéder à des programmes déjà installés."
+msgstr "La section Programmes permet d'accéder à des programmes déjà installés."
 
 msgid "splashProgramsMessage"
-msgstr "La section Programmes vous permet d&#39;accéder à des outils et des applications de productivité utiles."
+msgstr "La section Programmes vous permet d'accéder à des outils et des applications de productivité utiles."
+
+# Personal Profile Strings
 
 msgid "splashPersonalMessage"
 msgstr "La section de profil personnel vous permet de visualiser et de modifier les paramètres de votre compte utilisateur."
@@ -129,37 +137,52 @@ msgid "base-personalProfile"
 msgstr "Profil Personnel"
 
 msgid "base-personalProfile_description"
-msgstr "La section de profil personnel vous permet de visualiser les informations de votre compte utilisateur."
+msgstr "La section de profil personnel vous permet de consulter les informations sur votre compte utilisateur."
+
+# Setup wizard
 
 msgid "wizardSysSettings"
-msgstr "Paramètres système"
+msgstr "Paramètres Système"
 
 msgid "wizardSysSettings_help"
-msgstr ""
+msgstr " "
+
+# this is the screen where you choose which type you want
 
 msgid "wizardRaid"
 msgstr "Raid Setup"
 
 msgid "wizardRaid_help"
-msgstr ""
+msgstr " "
+
+# this is the raid conversion status/wait screen
 
 msgid "wizardRaidBuild"
 msgstr "Raid Setup"
 
 msgid "wizardRaidBuild_help"
-msgstr ""
+msgstr " "
 
 msgid "wizardRegister"
 msgstr "Inscription"
 
 msgid "wizardRegister_help"
-msgstr ""
+msgstr " "
+
+# the finish page is not presented in the frameset, but we fill this
+# in for completeness and so that wizardFinish doesn't accidently show up
+# in the top frame while the page is loading...
 
 msgid "wizardFinish"
-msgstr ""
+msgstr " "
 
 msgid "wizardFinish_help"
-msgstr ""
+msgstr " "
+
+# end of Setup Wizard strings
+
+# login page strings (most of these should really be in a central location
+# probably)
 
 msgid "loginPageTitle"
 msgstr "Connexion - [[base-product.productName]] - [[VAR.hostname]]"
@@ -168,50 +191,54 @@ msgid "login"
 msgstr "Connexion - [[VAR.hostname]]"
 
 msgid "loginMissingCookies"
-msgstr "Avant d&#39;essayer de vous connecter, veuillez vérifier que votre navigateur prend en charge la fonctionnalité de cookie."
+msgstr "Avant d'essayer de vous connecter, veuillez vérifier que votre navigateur prenne en charge les «&nbsp;cookies&nbsp;»."
 
 msgid "loginExpiredMessage"
-msgstr "Votre session a expiré. Pour vous connecter à nouveau, s&#39;il vous plaît entrer votre nom d&#39;utilisateur et mot de passe."
+msgstr "Votre session a expiré. Pour vous reconnecter, veuillez saisir votre identifiant et mot de passe."
 
 msgid "loginByeMessage"
-msgstr "Merci d&#39;utiliser le [[base-product.productName]]."
+msgstr "Merci d'utiliser [[base-product.productName]]."
 
 msgid "loginOkMessage"
-msgstr "Pour vous connecter, s&#39;il vous plaît entrer votre nom d&#39;utilisateur et mot de passe."
+msgstr "Pour vous connecter, veuillez saisir votre identifiant et votre mot de passe."
 
 msgid "loginAuthFailed"
-msgstr "Vous n&#39;avez pas entré un nom d&#39;utilisateur et / ou mot de passe. S&#39;il vous plaît essayer de nouveau."
+msgstr "Vous avez omis l'identifiant et/ou le mot de passe. Veuillez essayer à nouveau."
 
 msgid "loginNoCssMessage"
-msgstr "Avant d&#39;essayer de vous connecter, veuillez vérifier que votre navigateur prend en charge la fonctionnalité Cascading Style Sheets."
+msgstr "Avant d'essayer de vous connecter, veuillez vérifier que votre navigateur prenne en charge la fonctionnalité CSS (Cascading Style Sheets)."
 
 msgid "loginNoJsMessage"
-msgstr "Avant d&#39;essayer de vous connecter, veuillez vérifier que votre navigateur prend en charge la fonctionnalité JavaScript."
+msgstr "Avant d'essayer de vous connecter, veuillez vérifier que votre navigateur prenne en charge la fonctionnalité «&nbsp;JavaScript&nbsp;»."
 
 msgid "loginPageUsername"
-msgstr "Nom d&#39;utilisateur:"
+msgstr "Identifiant&nbsp;:"
 
 msgid "loginPagePassword"
-msgstr "Mot de passe:"
+msgstr "Mot de passe&nbsp;:"
 
 msgid "loginPageSecurity"
-msgstr "Fixez connexion:"
+msgstr "Connexion sécurisée&nbsp;:"
 
 msgid "loginPageLogin"
 msgstr "Connexion"
+
+# end of login page strings
+
+# documentation 
 
 msgid "documentation"
 msgstr "Documentation"
 
 msgid "documentation_help"
-msgstr "Cliquez ici pour afficher les manuels en ligne de cet appareil de serveur."
+msgstr "Cliquer ici pour afficher les manuels en ligne de ce serveur."
 
 msgid "pdfDescen"
-msgstr "BlueOnyx Manuel Édition Hébergement (en anglais)"
+msgstr "BlueOnyx Hosting Edition Manual (en anglais)"
 
 msgid "pdfDescja"
-msgstr "BlueOnyx Manuel Édition Hébergement (japonais)"
+msgstr "BlueOnyx Hosting Edition Manual (en japonais)"
 
 msgid "pdfDescen_US"
-msgstr "BlueOnyx Manuel Édition Hébergement (en anglais)"
+msgstr "BlueOnyx Hosting Edition Manual (en anglais USA)"
 

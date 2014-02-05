@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "basicSettingsTab_help"
-msgstr "Configurez les paramètres les plus couramment utilisés."
+msgstr "Configurer les paramètres utilisés les plus couramment."
 
 msgid "ipAddr"
 msgstr "Adresse IP"
@@ -150,7 +150,7 @@ msgid "sitedefaultsbut"
 msgstr "Modifier le modèle de site virtuel"
 
 msgid "sitedefaultsbut_help"
-msgstr "Modifier les paramètres par défault lorsqu'un site virtuel sera ajouté."
+msgstr "Modifier les paramètres par défaut lorsqu'un site virtuel sera ajouté."
 
 msgid "siteaddbut"
 msgstr "Ajouter un site"
@@ -649,7 +649,7 @@ msgid "diskQuota_invalid"
 msgstr "Désolé, la valeur saisie pour [[base-vsite.userDiskQuota]] est soit trop petit ou pas un nombre. [[base-vsite.diskQuota_rule]]"
 
 msgid "diskQuota_rule"
-msgstr "Entrer un nombre supérieur ou égal à un pour limiter l'espace de disque de cet utilisateur. Laisser le champ vide pour donner à l'utilisateur un espace disque illimité, c'est à dire tout l'espace disque disponible sur le périphérique sur lequel le répertoire personnel de l'utilisateur se trouve."
+msgstr "Taper un nombre supérieur ou égal à un pour limiter l'espace de disque de cet utilisateur. Laisser le champ vide pour donner à l'utilisateur un espace disque illimité, c'est à dire tout l'espace disque disponible sur le périphérique sur lequel le répertoire personnel de l'utilisateur se trouve."
 
 msgid "cantAddUserToServerAdminGroup"
 msgstr "Impossible d'ajouter [[VAR.user]] au groupe d'administrateurs de serveur."
@@ -737,7 +737,7 @@ msgid "safe_mode_exec_dir"
 msgstr "Safe Mode Exec Directory"
 
 msgid "safe_mode_exec_dir_help"
-msgstr "Si PHP est utilisé en Safe&nbsp;Mode, la fonction PHP system() et d'autres fonctions exécutant des programmes systèmes refusent de démarrer des programmes qui ne sont pas dans ce répertoire."
+msgstr "Si PHP est utilisé en Safe&nbsp;Mode, la fonction PHP system() et d'autres fonctions accomplissant des programmes systèmes refusent de démarrer des programmes qui ne sont pas dans ce répertoire."
 
 msgid "safe_mode_allowed_env_vars"
 msgstr "Safe Mode Allowed Envelope Variables"
@@ -791,13 +791,13 @@ msgid "max_execution_time"
 msgstr "Max Execution Time"
 
 msgid "max_execution_time_help"
-msgstr "Le temps maximum d'execution d'un script avant que PHP ne le stoppe."
+msgstr "Le temps maximum d'exécution d'un script avant que PHP ne le stoppe."
 
 msgid "max_input_time"
 msgstr "Max Input Time"
 
 msgid "max_input_time_help"
-msgstr "Le temps maximum d'analyse de données qu'un script puisse employer avant que PHP ne stoppe son execution."
+msgstr "Le temps maximum d'analyse de données qu'un script puisse employer avant que PHP ne stoppe son exécution."
 
 msgid "memory_limit"
 msgstr "Limite de la mémoire"
@@ -878,13 +878,13 @@ msgid "open_basedir_mandatory"
 msgstr "Open Basedir (serveur)"
 
 msgid "open_basedir_mandatory_help"
-msgstr "Ce sont les paramètres «&nbsp;open_basedir&nbsp;» définis pour tout le serveur dans la rubrique «&nbsp;Gestion du serveur&nbsp;» / «&nbsp;Sécurité&nbsp;» / «&nbsp;PHP&nbsp;». Ils sont obligatoires pour chaque site virtuel. Dans le champ ci-dessous vous pouvez spécifier des répertoires supplémentaires qui devraient être ajoutés à la directive «&nbsp;open_basedir&nbsp;»."
+msgstr "Ce sont les paramètres «&nbsp;open_basedir&nbsp;» définis pour tout le serveur dans la rubrique «&nbsp;[[base-alpine.sysmanage]]&nbsp;» / «&nbsp;[[base-alpine.security]]&nbsp;» / «&nbsp;PHP&nbsp;». Ils sont obligatoires pour chaque site virtuel. Dans le champ ci-dessous vous pouvez spécifier des répertoires supplémentaires qui devraient être ajoutés à la directive «&nbsp;open_basedir&nbsp;»."
 
 msgid "open_basedir"
 msgstr "Open Basedir (site virtuel)"
 
 msgid "open_basedir_help"
-msgstr "La directive «&nbsp;open_basedir&nbsp;» limite l'accès aux fichiers de scripts PHP pour certains répertoires. Le champ «&nbsp;Open Basedir (serveur)&nbsp;» de ci-dessus définit à quels répertoires les scripts PHP ont déjà accès. Si ces scripts PHP ont besoin d'accès supplémentaires à d'autres répertoires, ils peuvent être spécifiés ici. Lorsque le fichier est en dehors de l'arborescence spécifiée, PHP y refusera l'accès."
+msgstr "La directive «&nbsp;open_basedir&nbsp;» limite l'accès aux fichiers-scripts PHP pour certains répertoires. Le champ «&nbsp;Open Basedir (serveur)&nbsp;» de ci-dessus définit à quels répertoires les scripts PHP ont déjà accès. Si ces scripts PHP ont besoin d'accès supplémentaires à d'autres répertoires, ils peuvent être spécifiés ici. Lorsque le fichier est en dehors de l'arborescence spécifiée, PHP y refusera l'accès."
 
 # --- End 'open_basedir'
 
@@ -898,7 +898,7 @@ msgid "Features"
 msgstr "Caractéristiques"
 
 msgid "Features_help"
-msgstr "Indique quels services et queles fonctionnalités sont activées pour ce site virtuel."
+msgstr "Indique quels services et quelles fonctionnalités sont activées pour ce site virtuel."
 
 msgid "siteRemoveConfirmNeutral"
 msgstr "Etes-vous sûr de vouloir supprimer ce site virtuel?"
@@ -918,7 +918,7 @@ msgid "sitedefaultsbutNeutral"
 msgstr "Modèle"
 
 msgid "sitedefaultsbutNeutral_help"
-msgstr "Modifier les paramètres par défault insérés automatiquement lorsque vous ajoutez un site virtuel."
+msgstr "Modifier les paramètres par défaut insérés automatiquement lorsque vous ajoutez un site virtuel."
 
 msgid "disabled"
 msgstr "Désactivé"

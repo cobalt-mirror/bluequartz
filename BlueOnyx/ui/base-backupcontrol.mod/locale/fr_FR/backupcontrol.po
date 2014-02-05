@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,31 +9,33 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "desktop_control"
-msgstr "Server Desktop"
+msgstr "[[base-apache.amAdmservNameTag]]"
 
 msgid "description"
-msgstr "Cliquez ici pour commander le mode de fonctionnement du Server Desktop."
+msgstr "Cliquez ici pour vous rendre à l'interface d'administration «&nbsp;[[base-apache.amAdmservNameTag]]&nbsp;» pour gérer le fonctionnement du serveur."
+
+# UI menu
 
 msgid "desktop_control_settings"
-msgstr "[[base-backupcontrol.desktop_control]] Contrôle"
+msgstr "Options [[base-backupcontrol.desktop_control]]"
 
 msgid "lock_desktop"
-msgstr "Desktop Lock Server"
+msgstr "Verrouiller [[base-backupcontrol.desktop_control]]"
 
 msgid "lock_desktop_help"
-msgstr "Cette option donne la possibilité de rendre l&#39;interface utilisateur d&#39;administration (Server Desktop) en lecture seule."
+msgstr "Rendre l'interface d'administration [[base-backupcontrol.desktop_control]] inaltérable (en lecture seule)."
 
 msgid "lock_desktop_failed"
-msgstr "Impossible de modifier l&#39;état de la [[base-backupcontrol.desktop_control]]"
+msgstr "Impossible de modifier [[base-backupcontrol.desktop_control]]"
 
 msgid "lock_failed"
-msgstr "Verrouillage de la [[base-backupcontrol.desktop_control]] a échoué."
+msgstr "Le verrouillage de [[base-backupcontrol.desktop_control]] a échoué."
 
 msgid "unlock_failed"
-msgstr "Libérer le [[base-backupcontrol.desktop_control]] a échoué."
+msgstr "Le déverrouillage de [[base-backupcontrol.desktop_control]] a échoué."
 
 msgid "locked"
-msgstr "Le Server Desktop a été verrouillé par un administrateur du serveur."
+msgstr "Le [[base-backupcontrol.desktop_control]] a été verrouillé par un administrateur du serveur."
 
 msgid "cap_serverServerDesktop"
-msgstr "Réglages du serveur de bureau"
+msgstr "Paramètres [[base-backupcontrol.desktop_control]]"

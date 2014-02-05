@@ -1,201 +1,224 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+## NOTE: this is the Disk Usage section of Personal Profile, bits of Active 
+##       Monitor, and virtual site disk usage 
+
+# --- Menus 
+
 msgid "userDiskUsage"
 msgstr "Utilisation du disque"
 
 msgid "userDiskUsage_help"
-msgstr "Affiche des informations sur votre utilisation du disque."
+msgstr "Affiche des informations sur votre utilisation du disque dur."
 
 msgid "groupDiskUsage"
 msgstr "Utilisation du disque"
 
 msgid "groupDiskUsage_help"
-msgstr "Voir information globale et individuelle usage disque pour les utilisateurs."
+msgstr "Voir détails de l'utilisation globale et individuelle du disque dur pour les utilisateurs."
 
 msgid "groupDiskUsage_menu"
-msgstr "Disk"
+msgstr "Disque dur"
 
 msgid "groupDiskUsage_menu_help"
-msgstr "Voir information globale et individuelle usage disque pour les utilisateurs."
+msgstr "Affiche les informations concernant l'utilisation globale et individuelle du disque dur pour les utilisateurs."
+
+# personal profile disk usage page
 
 msgid "diskUsageFor"
-msgstr "Utilisation du disque pour [[VAR.userName]]"
+msgstr "Utilisation du disque de [[VAR.userName]]"
 
 msgid "userDiskUsed"
-msgstr "L&#39;espace disque utilisé"
+msgstr "Espace Disque Utilisé"
 
 msgid "userDiskUsed_help"
-msgstr "Il s&#39;agit de la quantité d&#39;espace disque que vous utilisez actuellement."
+msgstr "Indique la quantité d'espace disque dur que vous utilisez actuellement."
 
 msgid "userDiskFree"
-msgstr "Espace disque libre"
+msgstr "Espace Disque Libre"
 
 msgid "userDiskFree_help"
-msgstr "Il s&#39;agit de la quantité totale d&#39;espace disque que vous avez à votre disposition."
+msgstr "Indique la quantité d'espace disque dur que vous avez à votre disposition."
 
 msgid "userDiskPercentage"
 msgstr "Pourcentage utilisé"
 
 msgid "userDiskPercentage_help"
-msgstr "Cela montre le pourcentage de l&#39;espace disque permis de l&#39;utilisateur qui est actuellement utilisé."
+msgstr "Indique le pourcentage actuel utilisé/attribué d'espace disque dur par l'utilisateur."
 
 msgid "serviceDiskPercentage"
 msgstr "[[base-disk.userDiskPercentage]]"
 
 msgid "serviceDiskPercentage_help"
-msgstr "Cela montre le pourcentage de l&#39;espace disque permis du service qui est actuellement utilisé."
+msgstr "Indique le pourcentage actuel utilisé/attribué d'espace disque dur pour ce service."
 
 msgid "userOverQuota"
-msgstr "Avertissement du quota"
+msgstr "Avertissement quota"
 
 msgid "userOverQuota_help"
-msgstr "Cela indique que vous utilisez actuellement plus d&#39;espace disque, alors vous êtes autorisé sur ce serveur. Retirer emails inutiles, pièces jointes et autres fichiers pour corriger cela."
+msgstr "Votre quota est atteint. Cela veut dire que vous utilisez actuellement plus d'espace sur le disque dur que vous êtes autorisé à faire sur ce serveur. Supprimez e-mails superflus, pièces jointes inutiles et autres fichiers en trop pour y remédier."
 
 msgid "overQuotaMsg"
-msgstr "Vous utilisez actuellement plus d&#39;espace disque que vous êtes autorisé sur ce serveur. Retirer emails inutiles, pièces jointes et autres fichiers pour corriger cela."
+msgstr "Vous utilisez actuellement plus d'espace disque que permis. Supprimez e-mails superflus, pièces jointes inutiles et autres fichiers en trop pour y remédier."
+
+# ---- Active Monitor -- This is under Active Monitor->Status->Disk Usage Details
 
 msgid "amDiskNameTag"
-msgstr "Utilisation du disque"
+msgstr "Utilisation disque dur "
 
 msgid "amDetails"
-msgstr "Disque détails d&#39;utilisation"
+msgstr "Détails d'utilisation du disque dur"
 
 msgid "amDiskWarning"
-msgstr "Une partition de disque est presque plein. L&#39;espace disque sur la partition [[VAR.fs]] est [[VAR.pcnt]]% utilisé. La partition a [[VAR.free]] mo disponibles."
+msgstr "Une partition du disque dur est presque pleine. L'espace disque sur la partition [[VAR.fs]] est utilisé à [[VAR.pcnt]]% . La partition a [[VAR.free]] MO disponibles."
 
 msgid "amDiskOk"
-msgstr "L&#39;utilisation du disque est normal."
+msgstr "L'utilisation du disque dur est normal."
+
+# constructor messages
+# 93_update_disks_info.pl
 
 msgid "cantCreateDisk"
-msgstr "Impossible de créer un objet de disque pour [[VAR.device]]."
+msgstr "Impossible de créer l'objet disque dur pour [[VAR.device]]."
+
+# --- Handler messages, only show on errors 
+# df.pl
 
 msgid "cantExecuteDf"
-msgstr "Impossible d&#39;exécuter la commande df"
+msgstr "Impossible d'opérer la commande `df`"
 
 msgid "cantUpdateDiskInfo"
-msgstr "Impossible de mettre à jour les informations sur l&#39;utilisation du disque pour ce disque, [[VAR.device]]."
+msgstr "Impossible de mettre à jour les informations sur l'utilisation du disque dur [[VAR.device]]."
+
+# groupusage.pl and userusage.pl
 
 msgid "cantUpdateDiskUsage"
-msgstr "Impossible de mettre à jour les informations sur l&#39;utilisation du disque pour [[VAR.name]]."
+msgstr "Impossible de mettre à jour les informations sur l'utilisation du disque dur [[VAR.name]]."
+
+# modquota.pl
 
 msgid "couldNotGetId"
-msgstr "Impossible d&#39;obtenir la [[VAR.id]] pour [[VAR.target]]. [[VAR.target]] ne semble pas exister sur le système."
+msgstr "Impossible d'obtenir « [[VAR.id]] » pour [[VAR.target]]. [[VAR.target]] ne semble pas exister sur le système."
 
 msgid "couldNotSync"
-msgstr "Impossible de mettre à jour les informations de quota de disque sur les informations de quota dans la mémoire."
+msgstr "Impossible de mettre à jour les informations de quota de disque avec les informations en mémoire."
 
 msgid "couldNotSetQuota"
 msgstr "Impossible de définir le quota de [[VAR.name]]."
 
+# group disk usage page for virtual sites
+
 msgid "groupDiskUsageFor"
-msgstr "Utilisation du disque pour [[VAR.groupName]]"
+msgstr "Utilisation du disque dur pour [[VAR.groupName]]"
 
 msgid "groupDiskUsed"
-msgstr "L&#39;espace disque utilisé"
+msgstr "Espace Disque Utilisé"
 
 msgid "groupDiskUsed_help"
-msgstr "L&#39;espace disque total utilisé par les utilisateurs."
+msgstr "Indique la quantité d'espace disque dur que les utilisateurs de ce groupe utilisent actuellement."
 
 msgid "groupDiskFree"
-msgstr "Espace disque libre"
+msgstr "Espace Disque Libre"
 
 msgid "groupDiskFree_help"
-msgstr "L&#39;espace disque total qui est toujours disponible pour utilisation."
+msgstr "Indique la quantité d'espace disque dur encore disponible."
 
 msgid "groupDiskPercentage"
 msgstr "Pourcentage utilisé"
 
 msgid "groupDiskPercentage_help"
-msgstr "Le pourcentage de l&#39;espace disque disponible est utilisé."
+msgstr "Indique le pourcentage actuel utilisé/attribué d'espace disque dur."
 
 msgid "userQuota"
-msgstr "Utilisation du disque de l&#39;utilisateur"
+msgstr "Quota de l'utilisateur"
 
 msgid "user"
-msgstr "Nom d&#39;utilisateur"
+msgstr "Nom de l'utilisateur"
 
 msgid "user_help"
-msgstr "Le nom d&#39;utilisateur de chaque membre."
+msgstr "L'identifiant de chaque utilisateur."
 
 msgid "used"
-msgstr "Utilisation du disque"
+msgstr "Utilisation disque"
 
 msgid "used_help"
-msgstr "La quantité d&#39;espace disque utilisé par chaque utilisateur."
+msgstr "Indique la quantité d'espace disque dur utilisé par chaque utilisateur."
 
 msgid "service_used"
 msgstr "[[base-disk.used]]"
 
 msgid "service_used_help"
-msgstr "La quantité d&#39;espace disque utilisée par chaque service."
+msgstr "Indique la quantité d'espace disque dur utilisé par chaque service."
 
 msgid "quota"
 msgstr "Espace disque permis"
 
 msgid "quota_help"
-msgstr "La quantité d&#39;espace disque disponible pour chaque utilisateur."
+msgstr "Indique la quantité d'espace disque disponible pour chaque utilisateur."
 
 msgid "service_quota"
 msgstr "[[base-disk.quota]]"
 
 msgid "service_quota_help"
-msgstr "La quantité d&#39;espace disque disponible pour chaque service."
+msgstr "Indique la quantité d'espace disque dur disponible pour chaque service."
+
+# server disk usage page
 
 msgid "serverDiskUsage"
 msgstr "Utilisation du disque"
 
 msgid "serverDiskUsageDesc"
-msgstr "Voir un résumé de l&#39;utilisation du disque pour ce serveur."
+msgstr "Résumé de l'utilisation du disque dur pour ce serveur."
 
 msgid "serverDiskUsage_menu"
-msgstr "Disk"
+msgstr "Disque dur"
 
 msgid "serverDiskUsageDesc_menu"
-msgstr "Voir un résumé de l&#39;utilisation du disque pour ce serveur."
+msgstr "Voir un résumé de l'utilisation du disque dur pour ce serveur."
 
 msgid "summary"
 msgstr "Résumé"
 
 msgid "summary_help"
-msgstr "L&#39;utilisation du disque pour chaque partition."
+msgstr "Indique l'utilisation du disque pour chaque partition."
 
 msgid "partition"
 msgstr "Partition"
 
 msgid "partition_help"
-msgstr "L&#39;étiquette ou le répertoire de la partition."
+msgstr "Indique le nom ou le répertoire de la partition."
 
 msgid "diskUsed"
 msgstr "Utilisation du disque"
 
 msgid "diskUsed_help"
-msgstr "La quantité d&#39;espace utilisé sur cette partition."
+msgstr "La quantité d'espace disque dur utilisé sur cette partition."
 
 msgid "total"
 msgstr "Taille totale"
 
 msgid "total_help"
-msgstr "La taille totale de cette partition."
+msgstr "La taille au total de cette partition."
 
 msgid "percentage"
 msgstr "Pourcentage utilisé"
 
 msgid "percentage_help"
-msgstr "Le pourcentage de l&#39;espace disque disponible qui est actuellement en cours d&#39;utilisation."
+msgstr "Le pourcentage utilisé/disponible de l'espace disque dur actuellement."
 
 msgid "users"
 msgstr "Tous les utilisateurs"
 
 msgid "users_help"
-msgstr "L&#39;utilisation du disque pour les utilisateurs."
+msgstr "L'utilisation du disque dur par les utilisateurs."
 
 msgid "unlimited"
 msgstr "Illimité"
@@ -204,64 +227,64 @@ msgid "summaryVsite"
 msgstr "Sites"
 
 msgid "summaryVsite_help"
-msgstr "L&#39;utilisation du disque pour les sites."
+msgstr "Indique l'utilisation du disque dur par les sites."
 
 msgid "vsiteName"
-msgstr "Nom complet de l&#39;hôte"
+msgstr "Nom de l'hôte"
 
 msgid "vsiteName_help"
-msgstr "Le nom d&#39;hôte complet de ce site."
+msgstr "Le nom complet d'hôte de ce site."
 
 msgid "vsiteUsed"
 msgstr "Utilisation du disque"
 
 msgid "vsiteUsed_help"
-msgstr "La quantité d&#39;espace disque actuellement utilisé par ce site."
+msgstr "Indique la quantité d'espace disque actuellement utilisé par ce site."
 
 msgid "vsiteQuota"
 msgstr "Espace disque permis"
 
 msgid "vsiteQuota_help"
-msgstr "La quantité d&#39;espace disque disponible sur ce site."
+msgstr "Indique la quantité d'espace disque dur disponible à ce site."
 
 msgid "choose_site"
-msgstr "Cliquez sur un site ci-dessus pour voir les informations de l&#39;utilisation du disque pour les utilisateurs de ce site."
+msgstr "Cliquer sur un site ci-dessus pour voir l'utilisation du disque dur des utilisateurs de ce site."
 
 msgid "sites_over_quota"
-msgstr "Le site virtuel suivant (s) ont dépassé leur quota: [[VAR.sites]]."
+msgstr "Sites virtuels qui ont dépassé leur quota : [[VAR.sites]]."
 
 msgid "users_over_quota"
-msgstr "L&#39;utilisateur suivant (s) ont dépassé leur quota: [[VAR.users]]."
+msgstr "Utilisateurs qui ont dépassé leur quota : [[VAR.users]]."
 
 msgid "site_over_quota"
-msgstr "Un ou plusieurs sites virtuels a dépassé son quota. Un e-mail séparé a été envoyé avec plus de détails."
+msgstr "Un ou plusieurs sites virtuels ont dépassé leur quota. Un courriel a été envoyé avec plus de détails."
 
 msgid "user_exceeds"
-msgstr "Lorsque l&#39;utilisateur dépasse l&#39;espace disque autorisé"
+msgstr "L'utilisateur dépasse l'espace disque autorisé"
 
 msgid "user_exceeds_help"
-msgstr "Ceci indique que le courrier est envoyé lorsqu&#39;un utilisateur dépasse leur espace disque autorisé."
+msgstr "Ceci indique qu'un courriel sera envoyé lorsqu'un utilisateur dépassera son quota."
 
 msgid "site_exceeds"
-msgstr "Quand site dépasse l&#39;espace disque autorisé"
+msgstr "Le site dépasse l'espace disque autorisé"
 
 msgid "site_exceeds_help"
-msgstr "Ceci indique que le courrier est envoyé quand un site dépasse son espace disque autorisé."
+msgstr "Ceci indique qu'un courriel sera envoyé lorsqu'un site dépasse son quota."
 
 msgid "mail_admin_on_user"
-msgstr "Envoyer une notification d&#39;alerte Email"
+msgstr "Envoyer un message d'alerte par e-mail"
 
 msgid "mail_admin_on_vsite"
-msgstr "Envoyer une notification d&#39;alerte Email"
+msgstr "Envoyer un message d'alerte par e-mail"
 
 msgid "mail_user"
-msgstr "Email User"
+msgstr "Utilisateur e-mail"
 
 msgid "settings"
 msgstr "Paramètres de notification"
 
 msgid "settings_help"
-msgstr "Cliquez ici pour contrôler le courriel qui est envoyé lorsque des utilisateurs ou sites dépassent leurs quotas."
+msgstr "Cliquer ici pour contrôler le courriel envoyé lorsque des utilisateurs ou sites dépassent leurs quotas."
 
 msgid "sysQuota"
 msgstr "Utilisation du disque système"
@@ -270,35 +293,34 @@ msgid "service"
 msgstr "Service"
 
 msgid "service_help"
-msgstr "Ces applications ou services du système peuvent consommer de l&#39;espace disque."
+msgstr "Ces applications ou ces services système peuvent consumer de l'espace disque dur."
 
 msgid "errSettingEmails"
-msgstr "Une erreur s&#39;est produite enregistrer les paramètres de notification."
+msgstr "Une erreur s'est produite en enregistrant les paramètres de messagerie."
 
 msgid "suspended_cce"
-msgstr "La partition racine est faible sur l&#39;espace disque. Pour éviter tout risque de corruption des données, le bureau du serveur a été verrouillé. Aucun changement dans le bureau du serveur seront sauvés. S&#39;il vous plaît telnet ou ftp dans l&#39;appareil de serveur et de supprimer les fichiers inutiles. Active Monitor débloquerez le bureau du serveur lorsque au moins 500 Mo d&#39;espace disque disponible sur la partition racine. Pour forcer Active Monitor pour examiner l&#39;utilisation du disque, cliquez sur le bouton intitulé Vérif.Etat maintenant dans l&#39;écran d&#39;état du moniteur actif."
+msgstr "La partition « root » n'a plus beaucoup d'espace disque. Pour éviter tout risque de corruption des données, « [[base-vsite.amAdmservNameTag]] » a été verrouillé. Aucun changement y sera enregistré. Veuilles vous connecter au serveur par telnet, ssh ou ftp et supprimer tout fichiers inutiles. « [[base-am.activeMonitor]] » débloquera « [[base-vsite.amAdmservNameTag]] » que lorsqu'au moins 500 Mo d'espace disque seront disponibles sur la partition root. Pour forcer « [[base-am.activeMonitor]] » à examiner l'utilisation du disque, cliquez sur le bouton « [[base-am.amUpdateNow]] » dans la page « [[base-am.activeMonitor]] »."
 
 msgid "OverQuota_Users"
-msgstr "Plus les utilisateurs de quotas:"
+msgstr "Utilisateurs au quota atteint :"
 
 msgid "All_Users"
 msgstr "Tous les utilisateurs:"
 
 msgid "OverQuota_Sites"
-msgstr "Sur les sites de quotas:"
+msgstr "Sites au quota atteint :"
 
 msgid "All_Sites"
 msgstr "Tous les sites:"
 
 msgid "userDiskPercentage_moreInfo"
-msgstr "[[VAR.percentage]]% ([[VAR.used]]) de [[VAR.total]] utilisé."
+msgstr "[[VAR.used]] sont [[VAR.percentage]]% de [[VAR.total]]."
 
 msgid "mail_admin_on_user_help"
-msgstr "Envoyer un email à l'admin si un utilisateur dépasse son quota de disque alloué."
+msgstr "Envoyer un courriel également à l'admin si un utilisateur dépasse son quota de disque dur."
 
 msgid "mail_user_help"
-msgstr "Envoyez un email à l'utilisateur s'il dépasse son quota de disque. Cet email peut pas passer par si l'espace disque est insuffisant disponibles pour cet utilisateur."
+msgstr "Envoyez un courriel à l'utilisateur s'il dépasse son quota de disque dur. Cet courriel risque de ne pas être reçu par cet utilisateur si son espace disque est insuffisant."
 
 msgid "mail_admin_on_vsite_help"
-msgstr "Envoyer un email à l'admin si un site virtuel dépasse son quota de disque alloué."
-
+msgstr "Envoyer un courriel également à l'admin si un site virtuel dépasse son quota de disque dur."

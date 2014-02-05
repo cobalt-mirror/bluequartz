@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,115 +12,115 @@ msgid "monitorLight"
 msgstr "[[base-am.activeMonitor]]"
 
 msgid "monitorLight_help"
-msgstr "Cliquez ici pour voir [[base-am.activeMonitor]] des informations d&#39;état. Cette icône s&#39;allume en rouge si l&#39;un des composants surveillés par [[base-am.activeMonitor]] avoir de graves problèmes."
+msgstr "Cliquer ici pour le statut du [[base-am.activeMonitor]]. Cette icône tourne au rouge si l'un des composants surveillés par «&nbsp;[[base-am.activeMonitor]]&nbsp;» a des problèmes graves."
 
 msgid "activeMonitor"
-msgstr "Active Monitor"
+msgstr "Suivi du Système"
 
 msgid "activeMonitor_help"
-msgstr "Cliquez ici pour vérifier le bon fonctionnement des composants du système."
+msgstr "Cliquer ici pour vérifier le bon fonctionnement des composants du système."
 
 msgid "amStatusMenuName"
 msgstr "Statut"
 
 msgid "amStatusMenuDesc"
-msgstr "Cliquez ici pour voir [[base-am.activeMonitor]] des informations d&#39;état."
+msgstr "Cliquer ici pour consulter l'état du «&nbsp;[[base-am.activeMonitor]]&nbsp;»."
 
 msgid "amObjNotFound"
-msgstr "Désolé, une erreur système est survenue. L&#39;objet Active Monitor n&#39;a pas pu être trouvé."
+msgstr "Désolé, une erreur système est survenue. L'objet «&nbsp;[[base-am.activeMonitor]]&nbsp;» n'a pas pu être trouvé."
 
 msgid "amSysClients"
-msgstr "État du système - Aperçu"
+msgstr "État du Système - Aperçu"
 
 msgid "amClientName"
 msgstr "Nom du composant"
 
 msgid "amClientName_help"
-msgstr "C&#39;est le nom du composant contrôlé."
+msgstr "C'est le nom du composant surveillé."
 
 msgid "action"
 msgstr "Action"
 
 msgid "action_help"
-msgstr "Cliquez ici pour afficher des informations plus détaillées sur le composant contrôlé."
+msgstr "Cliquer ici pour afficher des informations plus détaillées sur le composant surveillé."
 
 msgid "amServClients"
-msgstr "Statut du service - Présentation"
+msgstr "Statut du service - Vue d'ensemble"
 
 msgid "amOtherClients"
-msgstr "Autre Statut - Vue d&#39;ensemble"
+msgstr "Autre statut - Vue d'ensemble"
 
 msgid "amClientStatus"
 msgstr "Statut actuel"
 
 msgid "amClientStatus_help"
-msgstr "Ceci est l&#39;état actuel du composant contrôlé."
+msgstr "Ceci est l'état actuel du composant surveillé."
 
 msgid "amClientLastChange"
-msgstr "État Dernière modification"
+msgstr "Dernier changement d'état"
 
 msgid "amNever"
 msgstr "Jamais"
 
 msgid "amClientLastChange_help"
-msgstr "C&#39;est l&#39;heure de la dernière modification du statut du composant contrôlé."
+msgstr "L'heure du dernier changement d'état du composant surveillé."
 
 msgid "amSettingsMenuName"
-msgstr "Réglages"
+msgstr "Paramètres"
 
 msgid "amSettingsMenuDesc"
-msgstr "Cliquez ici pour configurer [[base-am.amSettings]]."
+msgstr "Cliquer ici pour configurer [[base-am.amSettings]]."
 
 msgid "amSettings"
-msgstr "Paramètres Active Monitor"
+msgstr "Paramètres [[base-am.activeMonitor]]"
 
 msgid "enableAMField"
 msgstr "Activer la surveillance"
 
 msgid "enableAMField_help"
-msgstr "Tournez [[base-am.activeMonitor]] ou le désactiver. L&#39;activation de cette fonctionnalité permet aux composants spécifiques du système pour être contrôlés régulièrement pour un fonctionnement correct. Ces composants du système peuvent être sélectionnés ci-dessous."
+msgstr "Activer ou désactiver «&nbsp;[[base-am.activeMonitor]]&nbsp;». Ceci permet de surveiller régulièrement le fonctionnement correct des composants spécifiques du système. Ces composants peuvent être sélectionnés ci-dessous."
 
 msgid "alertEmailList"
-msgstr "Alerte e-mails de notification"
+msgstr "Alerte par e-mail"
 
 msgid "alertEmailList_help"
-msgstr "Entrez la liste des adresses e-mail à laquelle [[base-am.activeMonitor]] enverra des messages d&#39;alerte."
+msgstr "Entrez la liste des adresses e-mail auxquelles «&nbsp;[[base-am.activeMonitor]]&nbsp;» enverra des messages d'alerte."
 
 msgid "itemsToMonitor"
 msgstr "Composants surveillés"
 
 msgid "itemsToMonitor_help"
-msgstr "Sélectionnez les composants spécifiques du système d&#39;être régulièrement vérifiés par [[base-am.activeMonitor]]. La colonne de gauche montre les composants du système qui sont actuellement surveillés. La colonne de droite montre les composants du système qui pourrait éventuellement être surveillés. Pour ajouter un composant du système à surveiller, déplacer le composant du système à partir de la colonne de droite de la colonne de gauche."
+msgstr "Sélectionnez les composants spécifiques du système que «&nbsp;[[base-am.activeMonitor]]&nbsp;» doit surveiller. La colonne de gauche montre les composants du système qui sont actuellement surveillés. La colonne de droite montre les composants du système qui pourrait aussi être surveillés mais ne le sont pas. Pour ajouter un composant du système à surveiller, déplacer celui-ci de la colonne de droite vers la colonne de gauche."
 
 msgid "selected"
-msgstr "Composants surveillés"
+msgstr "Composants système surveillés"
 
 msgid "notSelected"
-msgstr "Les composants non surveillée"
+msgstr "Composants système non surveillés"
 
 msgid "amNoMessage"
-msgstr "Aucune information n&#39;est disponible pour ce composant en ce moment."
+msgstr "Aucune information n'est actuellement disponible pour ce composant système."
 
 msgid "amNotMonitored"
-msgstr "Ce composant n&#39;est pas surveillé en ce moment."
+msgstr "Ce composant système n'est actuellement pas surveillé."
 
 msgid "amNotEnabled"
-msgstr "Ce composant n&#39;est pas activé."
+msgstr "Ce composant n'est pas activé."
 
 msgid "alreadyMadeAM"
-msgstr "Désolé, une erreur système est survenue. Un objet Active Monitor existe déjà."
+msgstr "Désolé, une erreur système est survenue. Un objet «&nbsp;[[base-am.activeMonitor]]&nbsp;» existe déjà."
 
 msgid "amCPUName"
-msgstr "Utilisation de l&#39;UC"
+msgstr "Utilisation du processeur CPU"
 
 msgid "amCPUWarning_light"
-msgstr "Le CPU est peu utilisé."
+msgstr "Le processeur CPU est peu utilisé."
 
 msgid "amCPUWarning_moderate"
-msgstr "Le CPU est modérément utilisé. Cela peut être dû à un accroissement temporaire de l&#39;activité. Envisager de déplacer certains services vers d&#39;autres serveurs, ou de réduire la complexité des scripts CGI s&#39;exécutant sur le serveur lui-même."
+msgstr "Le processeur CPU est utilisé avec modération. Cela peut être dû à un accroissement temporaire de l'activité. Envisagez de déplacer certains services vers d'autres serveurs ou de réduire la complexité des scripts CGI opérant sur le serveur lui-même."
 
 msgid "amCPUWarning_heavy"
-msgstr "Le CPU est fortement utilisé. Cela se traduira par la perte de performance notable. Envisager de déplacer certains services vers d&#39;autres serveurs, ou de réduire la complexité des scripts CGI s&#39;exécutant sur le serveur lui-même."
+msgstr "Le processeur CPU est fortement utilisé. Cela se traduira par une perte de performance notable. Envisagez de déplacer certains services vers d'autres serveurs ou de réduire la complexité des scripts CGI opérant sur le serveur lui-même."
 
 msgid "amUseLight"
 msgstr "légèrement"
@@ -132,28 +132,28 @@ msgid "amUseHeavy"
 msgstr "fortement"
 
 msgid "amCPUDetails"
-msgstr "CPU détails d&#39;utilisation"
+msgstr "Détails d'utilisation du processeur CPU"
 
 msgid "amCPUStats"
 msgstr "Statistiques CPU"
 
 msgid "amCPULoadAvg"
-msgstr "[[VAR.mins]] Minute Charge moyenne"
+msgstr "Charge moyenne [[VAR.mins]] minute(s)"
 
 msgid "amCPULoadAvgFifteen"
-msgstr "[[VAR.mins]] Minute Charge moyenne"
+msgstr "Charge moyenne pendant les dernières [[VAR.mins]] minutes"
 
 msgid "amCPULoadAvgFifteen_help"
-msgstr "C&#39;est le nombre moyen de tâches en attente d&#39;être exécuté par le processeur sur une [[VAR.mins]] minute de temps. La charge moyenne normale se situe entre 0,0 et 3,0."
+msgstr "C'est la quantité moyenne de tâches en attente à être accomplies par le processeur pendant [[VAR.mins]] minute(s). La charge moyenne normale se situe entre 0,0 et 3,0."
 
 msgid "amCPULoadAvg_help"
-msgstr "C&#39;est le nombre moyen de tâches en attente d&#39;être exécuté par le processeur sur une [[VAR.mins]] minute de temps. La charge moyenne normale se situe entre 0,0 et 3,0."
+msgstr "C'est la quantité moyenne de tâches en attente à être accomplies par le processeur pendant [[VAR.mins]] minute(s). La charge moyenne normale se situe entre 0,0 et 3,0."
 
 msgid "amCPUUptime"
-msgstr "Système Uptime"
+msgstr "Durée Système en marche"
 
 msgid "amCPUUptime_help"
-msgstr "Il s&#39;agit de la durée pendant laquelle le dispositif de serveur a été mis en marche et de fonctionnement."
+msgstr "Durée de fonctionnement du serveur depuis qu'il a été mis en marche."
 
 msgid "days"
 msgstr "[[VAR.val]] jours,"
@@ -162,88 +162,88 @@ msgid "hours"
 msgstr "[[VAR.val]] heures,"
 
 msgid "minutes"
-msgstr "[[VAR.val]] Minutes"
+msgstr "[[VAR.val]] minutes,"
 
 msgid "day"
-msgstr "[[VAR.val]] Jour,"
+msgstr "[[VAR.val]] jour,"
 
 msgid "hour"
-msgstr "[[VAR.val]] Heure,"
+msgstr "[[VAR.val]] heure,"
 
 msgid "minute"
-msgstr "[[VAR.val]] Minute"
+msgstr "[[VAR.val]] minute,"
 
 msgid "amCPUTemp"
 msgstr "Température CPU"
 
 msgid "amCPUTemp_help"
-msgstr "Il s&#39;agit de la température actuelle du processeur en C. La température du processeur normale se situe entre 30 et 60 ° C."
+msgstr "Température actuelle du processeur CPU en Celsius. La température du processeur normale se situe entre 30ºC et 60ºC."
 
 msgid "degrees"
-msgstr "[[VAR.val]] C"
+msgstr "[[VAR.val]]ºC"
 
 msgid "amMemoryName"
-msgstr "Utilisation de la mémoire"
+msgstr "Utilisation Mémoire Système"
 
 msgid "amMemDetails"
-msgstr "Mémoire détails d&#39;utilisation"
+msgstr "Détails d'utilisation de la mémoire vive"
 
 msgid "amMemWarning_light"
-msgstr "La mémoire système est peu utilisé."
+msgstr "La mémoire système est peu utilisée."
 
 msgid "amMemWarning_moderate"
-msgstr "La mémoire système est modérément utilisé. Le serveur peut avoir besoin de plus de mémoire qu&#39;il n&#39;en a actuellement. Pensez à ajouter plus de mémoire sur le serveur."
+msgstr "La mémoire système est utilisée avec modération. Le serveur peut avoir besoin de plus de mémoire vive qu'il en a actuellement. Considérez ajouter plus de mémoire vive au serveur."
 
 msgid "amMemWarning_heavy"
-msgstr "La mémoire système est largement utilisé. Le serveur a besoin de plus de mémoire qu&#39;il n&#39;en a actuellement. Pensez à ajouter plus de mémoire sur le serveur."
+msgstr "La mémoire système est intensément utilisée. Le serveur devrait avoir besoin de plus de mémoire vive qu'il en a actuellement. Considérez ajouter plus de mémoire vive au serveur."
 
 msgid "amMemStats"
-msgstr "Statistiques d&#39;accès mémoire"
+msgstr "Statistiques d'accès mémoire vive"
 
 msgid "amMemTotal"
-msgstr "Mémoire physique totale"
+msgstr "Total réel mémoire"
 
 msgid "amMemTotal_help"
-msgstr "Il s&#39;agit de la quantité de mémoire réelle totale disponible sur le système."
+msgstr "Quantité totale de mémoire vive installée sur ce système."
 
 msgid "amMemFree"
-msgstr "Mémoire physique libre"
+msgstr "Mémoire réellement disponible"
 
 msgid "amMemFree_help"
-msgstr "Il s&#39;agit de la quantité de mémoire réelle disponible sur le système."
+msgstr "Quantité de mémoire vive réellement disponible sur ce système."
 
 msgid "amSwapTotal"
-msgstr "Totale d&#39;espace de swap"
+msgstr "Espace swap total"
 
 msgid "amSwapTotal_help"
-msgstr "Il s&#39;agit de la quantité d&#39;espace de swap total disponible sur le système."
+msgstr "Quantité d'espace d'échange «&nbsp;swap&nbsp;» attribué au système."
 
 msgid "amSwapFree"
 msgstr "Swap Espace libre"
 
 msgid "amSwapFree_help"
-msgstr "Il s&#39;agit de la quantité d&#39;espace de swap disponible sur le système."
+msgstr "Quantité d'espace d'échange «&nbsp;swap&nbsp;» disponible par le système."
 
 msgid "MemKB"
-msgstr "[[VAR.val]] KB"
+msgstr "[[VAR.val]] KO"
 
 msgid "amMemUsed"
 msgstr "Utilisation de la mémoire"
 
 msgid "amMemUsed_help"
-msgstr "Il s&#39;agit de la quantité de mémoire physique réelle ou en cours d&#39;utilisation sur le système. Il est normal pour la plupart de la mémoire réelle à utiliser à tout moment."
+msgstr "Quantité de mémoire réellement en cours d'utilisation sur le système. C'est d'usage qu'à certains moments, la plupart de la mémoire vive soit utilisée."
 
 msgid "amMemPcnt"
-msgstr "[[VAR.used]] KB ([[VAR.pcnt]]% du total)"
+msgstr "[[VAR.used]] KO ([[VAR.pcnt]]% du total)"
 
 msgid "amSwapUsed"
-msgstr "Swap utilisation"
+msgstr "Swap en utilisation"
 
 msgid "amSwapUsed_help"
-msgstr "Il s&#39;agit de la quantité de swap ou mémoire virtuelle utilisée sur le système. Il est normal pour une mémoire de swap doit être utilisé en tout temps, même lorsque la mémoire réelle est toujours disponible."
+msgstr "Quantité de mémoire swap ou virtuelle utilisée par le système. C'est d'usage que la mémoire swap soit utilisée à tout temps, même lorsque la mémoire vive est encore disponible."
 
 msgid "amSwapPcnt"
-msgstr "[[base-am.MemKB, val = [[VAR.used]]]] ([[VAR.pcnt]]% du total)"
+msgstr "[[base-am.MemKB,val=[[VAR.used]]]] ([[VAR.pcnt]]% du total)"
 
 msgid "amPagesSec"
 msgstr "[[VAR.pages]] pages par seconde"
@@ -252,25 +252,25 @@ msgid "pagesPerSec"
 msgstr "Pages par seconde"
 
 msgid "pagesPerSec_help"
-msgstr "Il s&#39;agit d&#39;une mesure de l&#39;utilisation de la mémoire. Si [[base-am.pagesPerSec]] est trop importante, le système n&#39;utilise pas efficacement la mémoire. Vous pouvez vouloir installer plus de mémoire sur l&#39;appareil de serveur."
+msgstr "Mensuration de l'utilisation de la mémoire vie. Si [[base-am.pagesPerSec]] est trop élevé, le système n'utilise pas efficacement sa mémoire vive. Considérez ajouter plus de mémoire vive au serveur."
 
 msgid "amSwapsSec"
 msgstr "[[VAR.swaps]] swaps par seconde"
 
 msgid "swapsPerSec"
-msgstr "Échanges Per Second"
+msgstr "Échanges swap par seconde"
 
 msgid "swapsPerSec_help"
-msgstr "Il s&#39;agit d&#39;une mesure de l&#39;utilisation de la mémoire. Si [[base-am.swapsPerSec]] est trop importante, le système n&#39;utilise pas efficacement la mémoire. Vous pouvez vouloir installer plus de mémoire sur l&#39;appareil de serveur."
+msgstr "Mensuration de l'utilisation de la mémoire vie. Si [[base-am.pagesPerSec]] est trop élevé, le système n'utilise pas efficacement sa mémoire vive. Considérez ajouter plus de mémoire vive au serveur."
 
 msgid "amKey"
-msgstr "Légende:"
+msgstr "Légende&nbsp;:"
 
 msgid "amKeyGrey"
 msgstr "Aucune information disponible ou surveillance non activée"
 
 msgid "amKeyGreen"
-msgstr "Normale"
+msgstr "Normal"
 
 msgid "amKeyYellow"
 msgstr "Problème"
@@ -279,58 +279,58 @@ msgid "amKeyRed"
 msgstr "Problème grave"
 
 msgid "amUpdateNow"
-msgstr "Vérifier l&#39;état maintenant"
+msgstr "Vérifier l'état maintenant"
 
 msgid "amUpdateNowConfirm"
-msgstr "Etes-vous sûr que vous voulez vérifier l&#39;état maintenant? Cette opération peut prendre plusieurs minutes."
+msgstr "Etes-vous sûr que vous voulez vérifier l'état maintenant? Cette opération peut durer plusieurs minutes."
 
 msgid "amUpdateNow_help"
-msgstr "Cliquez ici pour commencer immédiatement le système et les informations d&#39;état de service mise à jour. Cela peut prendre aussi longtemps que quelques minutes, et procédera à l&#39;arrière-plan."
+msgstr "Cliquer ici pour immédiatement mettre à jour les informations concernant le système et ses services. Cela peut durer quelques minutes et procédera en arrière-plan."
 
 msgid "amUpdateNow_disabledHelp"
-msgstr "[[base-am.activeMonitor]] est désactivée. Pour l&#39;activer, allez dans le [[base-am.amSettingsMenuName]] et sélectionnez le menu \"[[base-am.enableAMField]]\"."
+msgstr "«&nbsp;[[base-am.activeMonitor]]&nbsp;» est désactivé. Pour l'activer, allez dans le [[base-am.amSettingsMenuName]] et sélectionnez le menu «&nbsp;[[base-am.enableAMField]]&nbsp;»."
 
 msgid "amDetailNoName"
-msgstr "Désolé, il y avait un problème générer cette page. La variable &#39;name&#39; n&#39;est pas défini."
+msgstr "Désolé, il y a un problème de mise en page. La variable 'name' n'est pas définie."
 
 msgid "amFansOK"
 msgstr "Les ventilateurs fonctionnent normalement."
 
 msgid "amFansSlow"
-msgstr "Un ou plusieurs ventilateurs est lente. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Un ou plusieurs ventilateurs sont au ralenti. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansSlow_email_fan1"
-msgstr "Le ventilateur du bloc d&#39;alimentation est en marche lentement. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Le ventilateur du bloc d'alimentation est au ralenti. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansSlow_email_fan3"
-msgstr "Le ventilateur du système est en marche lentement. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Le ventilateur du système est au ralenti. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansSlow_email_fan2"
-msgstr "Le ventilateur du processeur tourne lentement. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Le ventilateur du processeur est au ralenti. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansDangerouslySlow"
-msgstr "Un ou plusieurs ventilateurs est dangereusement lente. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Un ou plusieurs ventilateurs sont dangereusement au ralenti. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansDangerouslySlow_email_fan1"
-msgstr "Le ventilateur d&#39;alimentation est dangereusement lente. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Le ventilateur d'alimentation est dangereusement lente. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansDangerouslySlow_email_fan3"
-msgstr "Le ventilateur du système est dangereusement lente. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Le ventilateur du système est dangereusement lente. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "amFansDangerouslySlow_email_fan2"
-msgstr "Le ventilateur du processeur est dangereusement lente. Arrêtez le système serveur et vérifiez que le ventilateur est correctement branché et pas obstrué. Et s&#39;il vous plaît assurer une circulation d&#39;air adéquate."
+msgstr "Le ventilateur du processeur est dangereusement lente. Arrêtez le serveur et vérifiez que les ventilateurs soient correctement branchés et pas obstrués. Et veuillez assurer une circulation d'air adéquate."
 
 msgid "fanName"
-msgstr "Fan [[VAR.fanNumber]]"
+msgstr "Ventilateur [[VAR.fanNumber]]"
 
 msgid "fanSpeed"
-msgstr "[[VAR.speed]] RPM"
+msgstr "[[VAR.speed]] tr/min"
 
 msgid "amFanDetails"
-msgstr "Détails Fan"
+msgstr "Détails Ventilateur"
 
 msgid "amFanStats"
-msgstr "Statistiques Fan"
+msgstr "Statistiques Ventilateur"
 
 msgid "amFanName"
 msgstr "Ventilateurs"
@@ -339,10 +339,10 @@ msgid "amTempsOK"
 msgstr "La température du système est normal."
 
 msgid "amTempsHot"
-msgstr "Un ou plusieurs composants du système est en marche plus chaud que la normale. Veuillez vérifier que le système dispose d&#39;une ventilation adéquate et que tous les ventilateurs fonctionnent correctement."
+msgstr "Un ou plusieurs composants du système sont en surchauffe. Veuillez vérifier que le système dispose d'une ventilation adéquate et que tous les ventilateurs fonctionnent correctement."
 
 msgid "amTempsDangerouslyHot"
-msgstr "Un ou plusieurs composants de système fonctionne dangereusement chaud. Un des ventilateurs du système peut avoir échoué. Veuillez vérifier que le système dispose d&#39;une ventilation adéquate et que tous les ventilateurs fonctionnent correctement."
+msgstr "Un ou plusieurs composants de système sont dangereusement en surchauffe. Un des ventilateurs du système risque être cassé. Veuillez vérifier que le système dispose d'une ventilation adéquate et que tous les ventilateurs fonctionnent correctement."
 
 msgid "amTempName"
 msgstr "Température"
@@ -351,16 +351,16 @@ msgid "sensorNameCPU"
 msgstr "Température CPU"
 
 msgid "sensorNameCPU_help"
-msgstr "C&#39;est la température du processeur."
+msgstr "La température du processeur CPU."
 
 msgid "sensorNameCase"
 msgstr "Température ambiante"
 
 msgid "sensorNameCase_help"
-msgstr "Il s&#39;agit de la température à l&#39;intérieur du boîtier."
+msgstr "Température à l'intérieur du boîtier."
 
 msgid "amTemp"
-msgstr "[[VAR.temp]] degrés Celsius"
+msgstr "[[VAR.temp]]º Celsius"
 
 msgid "amTempDetails"
 msgstr "Détails de température"
@@ -369,73 +369,73 @@ msgid "amTempStats"
 msgstr "Statistiques de température"
 
 msgid "amECCName"
-msgstr "Mémoire ECC Correction"
+msgstr "Correction mémoire ECC"
 
 msgid "amECCDetails"
-msgstr "[[base-am.amECCName]] Détails"
+msgstr "Détails [[base-am.amECCName]]"
 
 msgid "uncorrMemErrors"
-msgstr "L&#39;appareil de serveur a rencontré une erreur de mémoire incorrigible. S&#39;il vous plaît redémarrer votre appareil de serveur. Si vous continuez à rencontrer des erreurs de mémoire corrigibles, s&#39;il vous plaît se référer au manuel du matériel."
+msgstr "Le serveur s'est heurté à une erreur de mémoire fatale. Veuillez redémarrer le serveur. Si vous continuez à tomber sur ces erreurs, veuillez vous référer au manuel et remplacer éventuellement de la mémoire vive."
 
 msgid "tooManyMemErrors"
-msgstr "L&#39;appareil de serveur a connu un nombre excessif d&#39;erreurs de mémoire corrigibles. S&#39;il vous plaît redémarrer votre appareil de serveur. Si vous continuez à rencontrer des erreurs de mémoire corrigibles, s&#39;il vous plaît se référer au manuel du matériel."
+msgstr "Le serveur s'est heurté à un nombre excessif d'erreurs de mémoire. Veuillez redémarrer le serveur. Si vous continuez à tomber sur ces erreurs, veuillez vous référer au manuel et remplacer éventuellement de la mémoire vive."
 
 msgid "someCorrMemErrors"
-msgstr "L&#39;appareil de serveur a connu une ou plusieurs erreurs de mémoire corrigibles. Si vous continuez à rencontrer des erreurs de mémoire, s&#39;il vous plaît se référer au manuel du matériel."
+msgstr "Le serveur s'est heurté à une ou plusieurs erreurs de mémoire corrigibles. Si vous continuez à tomber sur ces erreurs, veuillez vous référer au manuel et remplacer éventuellement de la mémoire vive."
 
 msgid "amECCOK"
-msgstr "Pas d&#39;erreurs de mémoire détectées."
+msgstr "Pas d'erreurs de mémoire détectées."
 
 msgid "viewEccLogs"
-msgstr "Voir ECC Logs"
+msgstr "Voir fichier-journal ECC"
 
 msgid "viewEccLogs_help"
-msgstr "Cliquez ici pour consulter les journaux de mémoire ECC."
+msgstr "Cliquer ici pour consulter les fichiers-journal de mémoire ECC."
 
 msgid "eccLogs"
-msgstr "ECC Logs mémoire"
+msgstr "Fichiers-journal mémoire ECC"
 
 msgid "cant_get_faninfo"
-msgstr "Impossible d&#39;obtenir les statistiques du ventilateur."
+msgstr "Impossible d'obtenir les statistiques du ventilateur."
 
 msgid "cant_get_tempinfo"
-msgstr "Impossible d&#39;obtenir les statistiques de la température."
+msgstr "Impossible d'obtenir les statistiques de la température."
 
 msgid "bad_ecc_errors"
-msgstr "Cette DIMM comporte des erreurs non corrigeables."
+msgstr "Ce DIMM (Dual In-line Memory Module) comporte des erreurs non corrigeables."
 
 msgid "corr_ecc_errors"
-msgstr "Cette DIMM a corrigé certaines erreurs de mémoire."
+msgstr "Ce DIMM (Dual In-line Memory Module) a corrigé certaines erreurs de mémoire vive."
 
 msgid "no_ecc_errors"
-msgstr "Cette DIMM fonctionne normalement."
+msgstr "Ce DIMM (Dual In-line Memory Module) fonctionne normalement."
 
 msgid "slotempty"
-msgstr "Ce slot DIMM est vide."
+msgstr "Ce slot DIMM (Dual In-line Memory Module) est vide."
 
 msgid "acpi_temp_subject"
-msgstr "Surchauffe du système d&#39;arrêt"
+msgstr "Arrêt du système due à la surchauffe"
 
 msgid "acpi_temp_shutdown"
-msgstr "Soit le CPU ou le système lui-même a atteint une température supérieure au seuil autorisé. Par mesure de sécurité, cette machine est en cours de fermeture. Veuillez vérifier que tous les fans de cette unité fonctionnent correctement et que l&#39;environnement dans lequel la machine est en fonctionnement est adéquat."
+msgstr "Soit le processeur CPU ou le système lui-même a atteint une température supérieure à la limite autorisée. Par mesure de sécurité, le serveur va se mettre à l'arrêt. Veuillez vérifier que tous les ventilateurs de cette unité fonctionnent correctement et que l'environnement dans lequel la machine est placée soit adéquat."
 
 msgid "acpi_fans_subject"
 msgstr "Arrêt du ventilateur du système"
 
 msgid "acpi_fans_shutdown_fan1"
-msgstr "Le ventilateur d&#39;alimentation est dangereusement lente. Par mesure de sécurité, cette machine est en cours d&#39;arrêt."
+msgstr "Le ventilateur d'alimentation tourne dangereusement au ralenti. Par mesure de sécurité, cette machine va se mettre à l'arrêt."
 
 msgid "acpi_fans_shutdown_fan3"
-msgstr "Le ventilateur du système est dangereusement lente. Par mesure de sécurité, cette machine est en cours d&#39;arrêt."
+msgstr "Le ventilateur du système tourne dangereusement au ralenti. Par mesure de sécurité, cette machine  va se mettre à l'arrêt."
 
 msgid "acpi_fans_shutdown_fan2"
-msgstr "Le ventilateur du processeur est dangereusement lente. Par mesure de sécurité, cette machine est en cours d&#39;arrêt."
+msgstr "Le ventilateur du processeur CPU tourne dangereusement au ralenti. Par mesure de sécurité, cette machine va se mettre à l'arrêt."
 
 msgid "no_mem_stats"
-msgstr "Active Monitor est incapable d&#39;obtenir des statistiques sur l&#39;utilisation de la mémoire en ce moment. S&#39;il vous plaît réessayer plus tard."
+msgstr "«&nbsp;[[base-am.activeMonitor]]&nbsp;» est incapable d'obtenir des statistiques sur l'utilisation de la mémoire vive en ce moment. Veuillez réessayer plus tard."
 
 msgid "cap_serverShowActiveMonitor"
-msgstr "Active Monitor Etat"
+msgstr "Statut du «&nbsp;[[base-am.activeMonitor]]&nbsp;»"
 
 msgid "cap_serverActiveMonitor"
-msgstr "Paramètres d'Active Monitor"
+msgstr "Paramètres du «&nbsp;[[base-am.activeMonitor]]&nbsp;»"
