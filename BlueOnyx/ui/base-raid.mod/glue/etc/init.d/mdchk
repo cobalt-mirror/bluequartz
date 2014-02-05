@@ -5,6 +5,9 @@
 #              random number generation.
 # securlevel: 80 
 
+# See [BlueOnyx:14349] MBR loss on software RAID1:
+exit 0
+
 ## For local RAID equipped configuration only
 egrep -q "md[0-9]+" /etc/fstab || exit 0
 test -e /etc/cobalt/ha-config  && exit 0
@@ -224,7 +227,8 @@ function raid_status
             if ( system("test -s /sbin/grub") == 0 ) {
               if (system("cat /etc/grub.conf | grep -v \"#\" | grep -q \"/dev/md[0-9]\"") == 0) {
                 for (disk in _disk_ok) {
-                  system(sprintf("ms-sys -s %s > /dev/stderr", disk));
+                  # See [BlueOnyx:14349] MBR loss on software RAID1:
+                  #system(sprintf("ms-sys -s %s > /dev/stderr", disk));
                 }
               }
             }
