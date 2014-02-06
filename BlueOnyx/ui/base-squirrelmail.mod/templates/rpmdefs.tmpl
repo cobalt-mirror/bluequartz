@@ -70,14 +70,13 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-cat /etc/httpd/conf.d/squirrelmail.conf.bx > /etc/httpd/conf.d/squirrelmail.conf
-# Disabled AdmServ and httpd restart for now. Too dangerous to use them here if all we fix is the crappy Squirrelmail:
-#/etc/init.d/httpd stop
-#sleep 2
-#killall -9 httpd
-#sleep 2
-#/etc/init.d/httpd start
-#/etc/init.d/admserv reload
+# Remove Squirrelmail from public Apache, as it won't work there anymore:
+if [ -f /etc/httpd/conf.d/squirrelmail.conf ];then
+	/bin/rm -f /etc/httpd/conf.d/squirrelmail.conf
+	# Restart Apache
+	/etc/init.d/httpd reload
+	/sbin/swatch
+fi
 
 # Several fixes to help with the transition of AdmServ's UID/GID:
 /bin/chown -R admserv:admserv /var/lib/squirrelmail/prefs
@@ -117,6 +116,9 @@ cat /etc/httpd/conf.d/squirrelmail.conf.bx > /etc/httpd/conf.d/squirrelmail.conf
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Feb 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX17
+- Removed Squirrelmail from public Apache, as it won't work there anymore.
 
 * Thu Feb 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX16
 - Modified constructor/squirrelmail_apache.pl and post-install scripts
