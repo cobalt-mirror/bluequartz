@@ -89,9 +89,9 @@ if [ $1 = 2 ]; then
 	# if a previous proftpd was already installed. Because then it was
 	# an upgrade, not a first install:
 	if [ -f /etc/proftpd.conf.bqold ]; then
-	    /usr/sausalito/sbin/fixproftpd_conf_proftpd.pl >> /etc/proftpd.conf
+	    /usr/sausalito/sbin/fixproftpd_conf.pl >> /etc/proftpd.conf
 	    # Restart of xinetd:
-		/etc/init.d/xinetd restart
+	    /etc/init.d/xinetd restart
 	fi
 fi
 
