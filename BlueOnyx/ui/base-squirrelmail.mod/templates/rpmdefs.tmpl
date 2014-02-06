@@ -75,7 +75,7 @@ if [ -f /etc/httpd/conf.d/squirrelmail.conf ];then
 	/bin/rm -f /etc/httpd/conf.d/squirrelmail.conf
 	# Restart Apache
 	/etc/init.d/httpd reload
-	/sbin/swatch
+	/usr/sbin/swatch
 fi
 
 # Several fixes to help with the transition of AdmServ's UID/GID:
@@ -116,6 +116,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Feb 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX18
+- Post install script fix for location of swatch.
 
 * Thu Feb 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX17
 - Removed Squirrelmail from public Apache, as it won't work there anymore.
