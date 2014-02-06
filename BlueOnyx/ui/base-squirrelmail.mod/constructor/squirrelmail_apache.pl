@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: squirrelmail_apache.pl v1.0.0.0 Sun 18 Jan 2009 09:50:09 PM EST mstauber Exp $
-# Copyright 2006-2009 Solarspeed Ltd. All rights reserved.
+# $Id: squirrelmail_apache.pl v1.0.1-1 
+# Copyright 2006-2013 Solarspeed.net All rights reserved.
 
 # Location of AdmServ config:
 $admserv_conf = "/etc/admserv/conf.d/squirrelmail.conf";
@@ -37,6 +37,13 @@ unless (($CHECK_CONFIG == "2") && ($CHECK_CONFIG_AGAIN == "2")) {
 	Sauce::Service::service_run_init('httpd', 'reload');
     }
 }
+
+# Several fixes to help with the transition of AdmServ's UID/GID:
+system("/bin/chown -R admserv:admserv /var/lib/squirrelmail/prefs");
+system("/bin/chown -R root:admserv /etc/squirrelmail/config_local.php");
+system("/bin/chown -R root:admserv /etc/squirrelmail/config.php");
+system("/bin/chown -R root:admserv /etc/squirrelmail/default_pref");
+system("/bin/chown -R root:admserv /etc/squirrelmail/sqspell_config.php");
 
 $cce->bye('SUCCESS');
 exit(0);

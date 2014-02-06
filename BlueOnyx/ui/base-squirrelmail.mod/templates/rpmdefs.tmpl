@@ -79,6 +79,13 @@ cat /etc/httpd/conf.d/squirrelmail.conf.bx > /etc/httpd/conf.d/squirrelmail.conf
 #/etc/init.d/httpd start
 #/etc/init.d/admserv reload
 
+# Several fixes to help with the transition of AdmServ's UID/GID:
+/bin/chown -R admserv:admserv /var/lib/squirrelmail/prefs
+/bin/chown -R root:admserv /etc/squirrelmail/config_local.php
+/bin/chown -R root:admserv /etc/squirrelmail/config.php
+/bin/chown -R root:admserv /etc/squirrelmail/default_pref
+/bin/chown -R root:admserv /etc/squirrelmail/sqspell_config.php
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -110,6 +117,10 @@ cat /etc/httpd/conf.d/squirrelmail.conf.bx > /etc/httpd/conf.d/squirrelmail.conf
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thi Feb 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX16
+- Modified constructor/squirrelmail_apache.pl and post-install scripts
+  to fix UID/GID of config files to admserv.
 
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX15
 - Preparational build for 5207R/5208R. Doesn't include new GUI yet.
