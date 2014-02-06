@@ -102,11 +102,7 @@ END
         $site_config .= "    TLSVerifyClient off\n";
         $site_config .= "    TLSOptions NoCertRequest NoSessionReuseRequired\n";
         $site_config .= "    TLSRenegotiate required off\n";
-        $site_config .= "    TLSOptions NoCertRequest\n";
-        $site_config .= "    TLSRenegotiate required off\n";
         $site_config .= "    TLSOptions UseImplicitSSL\n";
-        $site_config .= "    # The 'standard' implicit FTPS port is 990\n";
-        $site_config .= "    Port 990\n";
 
 		$site_config .= "</VirtualHost>\n";
 	}
