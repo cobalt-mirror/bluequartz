@@ -8,7 +8,18 @@ else
 include /usr/sausalito/devel/defines.mk
 endif
 
-all: phpize configure build 
+CRACKLIB=$(shell \
+if [ "`uname -m`" = "x86_64" ]; then \
+        echo 'cracklib.h.x86_64'; \
+else \
+        echo 'cracklib.h.i686'; \
+fi; \
+)
+
+all: prep phpize configure build 
+
+prep:
+	cp crack/libcrack/src/$(CRACKLIB) crack/libcrack/src/cracklib.h
 
 phpize:
 	cd crack ; /usr/bin/phpize

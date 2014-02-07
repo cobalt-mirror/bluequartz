@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.71.1
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -79,20 +79,34 @@ fi
 
 # make sure these links exist or setlocale doesn't work right
 # temporary fix for now.  try both just to make sure this happens
+if [ ! -d "/usr/lib/locale/en_US" ]; then 
+        /usr/bin/localedef -i en_US /usr/lib/locale/en_US 
+fi 
 if [ -d "/usr/lib/locale/en_US" ]; then
 	ln -sf /usr/lib/locale/en_US /usr/lib/locale/en
 fi
+
 if [ -d "/usr/share/locale/en_US" ]; then
 	ln -sf /usr/share/locale/en_US /usr/share/locale/en
 fi
-if [ -d "/usr/lib/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/lib/locale/ja_JP.eucjp /usr/lib/locale/ja
+
+if [ ! -d "/usr/lib/locale/ja_JP.utf8" ]; then 
+        /usr/bin/localedef -i ja_JP -f UTF-8 /usr/lib/locale/ja_JP.utf8 
+fi 
+if [ -d "/usr/lib/locale/ja_JP.utf8" ]; then
+	ln -sf /usr/lib/locale/ja_JP.utf8 /usr/lib/locale/ja
 fi
-if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
-	ln -sf /usr/share/locale/ja_JP.eucjp /usr/share/locale/ja
+if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
+	ln -sf /usr/share/locale/ja_JP.utf8 /usr/share/locale/ja
 fi
 
 %changelog
+
+* Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX03   
+- Cracklib for x86_64 has a bug in cracklib.h as per https://bugs.php.net/bug.php?id=57463
+- Added cracklib/crack/libcrack/src/cracklib.h.i686
+- Added cracklib/crack/libcrack/src/cracklib.h.x86_64
+- Added platform specific rotation of cracklib.h via modified cracklib/Makefile
 
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX02
 - Merged in locale support for the Netherlands ('nl_NL').
