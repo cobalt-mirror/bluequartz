@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
+Release: 0BX03%{?dist}
 Vendor: Team BlueOnyx
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -67,6 +67,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net>
+- version 2.91-0BX03
+- Reverted compression scheme again in perl_modules/Archive/Tar.pm
+  Otherwise cmu would act up on 5107R/5108R.
 
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net>
 - version 2.91-0BX02
