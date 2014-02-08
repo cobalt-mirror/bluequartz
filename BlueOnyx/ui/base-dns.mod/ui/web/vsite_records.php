@@ -12,7 +12,7 @@ $soamod = '/base/dns/vsite_dns_soa.php';
 $serverScriptHelper = new ServerScriptHelper() or die ("no server-script-helper");
 
 // Only dnsAdmin should be here 
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
 	header("location: /error/forbidden.html");
 	return; 
 }
