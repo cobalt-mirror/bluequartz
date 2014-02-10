@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # $Id: syncEmailService.pl Sat 10 Apr 2010 07:30:55 AM CEST mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2008-2013 Team BlueOnyx, All rights reserved.
+# Copyright 2008-2014 Team BlueOnyx, All rights reserved.
 
 use Sauce::Util;
 use Sauce::Config;
@@ -49,7 +49,8 @@ if (! -d "/usr/share/ssl/certs") {
 	system("mkdir /usr/share/ssl/certs");
 }
 system("/bin/cp /etc/pki/tls/certs/ca-bundle.crt /usr/share/ssl/certs/");
-system("cat /etc/admserv/certs/key /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
+system("echo \"\" > /etc/admserv/certs/blank.txt"); 
+system("cat /etc/admserv/certs/key /etc/admserv/certs/blank.txt /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
 system("chmod 0600 /usr/share/ssl/certs/sendmail.pem");
 
 system("/bin/cp /etc/admserv/certs/key /etc/pki/dovecot/private/dovecot.pem");
@@ -82,7 +83,8 @@ Sauce::Service::service_toggle_init('dovecot', 1);
 # sync sendmail settings
 # submission port
 my $run = 0;
-if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {    $run = 1;
+if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
+    $run = 1;
 }
 
 # settings smtp, smtps and submission port

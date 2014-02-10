@@ -9,10 +9,10 @@ my $cce = new CCE( Namespace => 'Email',
 $cce->connectfd();
 
 # for smtps
-system("cat /etc/admserv/certs/key /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
+system("echo \"\" > /etc/admserv/certs/blank.txt"); 
+system("cat /etc/admserv/certs/key /etc/admserv/certs/blank.txt /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
 chmod 0600, "/usr/share/ssl/certs/sendmail.pem";
 Sauce::Service::service_run_init('sendmail', 'restart');
-
 
 # for dovecot
 system("/bin/cp /etc/admserv/certs/key /etc/pki/dovecot/private/dovecot.pem");
