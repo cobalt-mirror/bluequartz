@@ -59,6 +59,7 @@ fi
 
 * Mon Feb 10 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX30
 - Added libPhp/BXEncoding.php
+- Modified libPhp/uifc/TextBlock.php as it was getting its value via round about.
 
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX29
 - Merged in locales for the Netherlands ('nl_NL').
