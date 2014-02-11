@@ -38,7 +38,7 @@ $possible_caps = array(
             'serverPower' => 1,
             'serverTime' => 1,
             'serverServerDesktop' => 1,
-            'menuServerServerStats' => 1,
+//            'menuServerServerStats' => 1,
             'serverActiveMonitor' => 1,
             'managePackage' => 1,
                         );
