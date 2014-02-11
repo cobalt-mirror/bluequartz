@@ -36,7 +36,7 @@ if($passwordField)
   $attributes["password"] = $passwordField;
 $obj = $cceClient->get($oids[0], "");
 if (!$obj["desc_readonly"]) {
-  $attributes["description"] = $userDescField;	
+  $attributes["description"] = $userDescField;  
 }
 
 # don't set this attribute now if a siteadmin is trying to demote himself
@@ -103,15 +103,15 @@ $cceClient->set($oids[0], "", $attributes);
 //$errors = $cceClient->errors();
 
 for ($i = 0; $i < count($errors); $i++) {
-	if ( ($errors[$i]->code == 2) && ($errors[$i]->key === "password"))
-	{
-		$errors[$i]->message = "[[base-user.error-invalid-password]]";
-	}
+  if ( ($errors[$i]->code == 2) && ($errors[$i]->key === "password"))
+  {
+    $errors[$i]->message = "[[base-user.error-invalid-password]]";
+  }
 }
 
 // set quota
 if(!$maxDiskSpaceField)
-	$maxDiskSpaceField = -1;
+  $maxDiskSpaceField = -1;
 
 $cceClient->set($oids[0], "Disk", array("quota" => $maxDiskSpaceField));
 $errors = array_merge($errors, $cceClient->errors());
@@ -138,20 +138,20 @@ for($i = 0; $i < count($goids); $i++) {
     // add user to group
     $found = false;
     for($j = 0; $j < count($members); $j++)
-	if($members[$j] == $userNameField) {
-	  $found = true;
-	  break;
-	}
+  if($members[$j] == $userNameField) {
+    $found = true;
+    break;
+  }
     if(!$found)
-	$members[] = $userNameField;
+  $members[] = $userNameField;
   }
   else {
     // remove user from group
     for($j = 0; $j < count($members); $j++)
-	if($members[$j] == $userNameField) {
-	  array_splice($members, $j, 1);
-	  break;
-	}
+  if($members[$j] == $userNameField) {
+    array_splice($members, $j, 1);
+    break;
+  }
   }
 
   // update CCE
@@ -161,9 +161,9 @@ for($i = 0; $i < count($goids); $i++) {
 
 // set email forwarding info
 $cceClient->set($oids[0], "Email", array(
-	"forwardEnable" => ($forwardEnableField ? 1 : 0), 
-	"forwardEmail" => $forwardEmailField, 
-	"forwardSave" => $forwardSaveField));
+  "forwardEnable" => ($forwardEnableField ? 1 : 0), 
+  "forwardEmail" => $forwardEmailField, 
+  "forwardSave" => $forwardSaveField));
 $errors = array_merge($errors, $cceClient->errors());
 
 // set email aliases info
@@ -177,7 +177,7 @@ $emailAliasesField = $cceClient->array_to_scalar($emailAliasesFieldArray);
 // in cce, this also skirts around dealing with browser issues
 $emailAliasesField = str_replace("&&", "&", $emailAliasesField);
 if ($emailAliasesField == '&') {
-	$emailAliasesField = '';
+  $emailAliasesField = '';
 }
 
 $attributes = array("aliases" => $emailAliasesField);
@@ -197,11 +197,11 @@ if ($_autoRespondStopDate_amPm == "PM") {
  } 
 
 $vacationMsgStart = mktime($_autoRespondStartDate_hour, $_autoRespondStartDate_minute, 
-			   $_autoRespondStartDate_second, $_autoRespondStartDate_month, 
-			   $_autoRespondStartDate_day, $_autoRespondStartDate_year); 
+         $_autoRespondStartDate_second, $_autoRespondStartDate_month, 
+         $_autoRespondStartDate_day, $_autoRespondStartDate_year); 
 $vacationMsgStop = mktime($_autoRespondStopDate_hour, $_autoRespondStopDate_minute, 
-			  $_autoRespondStopDate_second, $_autoRespondStopDate_month, 
-			  $_autoRespondStopDate_day, $_autoRespondStopDate_year); 
+        $_autoRespondStopDate_second, $_autoRespondStopDate_month, 
+        $_autoRespondStopDate_day, $_autoRespondStopDate_year); 
 
 if (($vacationMsgStop - $vacationMsgStart) < 0) { 
   $vacationMsgStop = $oldStop; 
@@ -210,11 +210,20 @@ if (($vacationMsgStop - $vacationMsgStart) < 0) {
   $errors[] = new Error($error_msg); 
  } 
 
-$cceClient->set($oids[0], "Email", array( 
-	"vacationOn" => ($autoResponderField ? 1 : 0), 
-        "vacationMsg" => BXEncoding::toWin1252($autoResponderMessageField), 
-	"vacationMsgStart" => $vacationMsgStart, 
-	"vacationMsgStop" =>$vacationMsgStop)); 
+if (isset($autoResponderMessageField)) {
+  $cceClient->set($oids[0], "Email", array( 
+    "vacationOn" => ($autoResponderField ? 1 : 0), 
+    "vacationMsg" => BXEncoding::toUTF8($autoResponderMessageField), 
+    "vacationMsgStart" => $vacationMsgStart, 
+    "vacationMsgStop" =>$vacationMsgStop)); 
+}
+else {
+  $cceClient->set($oids[0], "Email", array( 
+    "vacationOn" => ($autoResponderField ? 1 : 0), 
+    "vacationMsgStart" => $vacationMsgStart, 
+    "vacationMsgStop" =>$vacationMsgStop));   
+}
+
 $errors = array_merge($errors, $cceClient->errors());
 
 # log the user out if they are trying to demote themself
