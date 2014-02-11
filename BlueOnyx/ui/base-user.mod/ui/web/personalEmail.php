@@ -5,6 +5,7 @@
 
 include_once("ServerScriptHelper.php");
 include_once("uifc/PagedBlock.php");
+include_once("BXEncoding.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
@@ -54,7 +55,7 @@ if(!$userEmail["vacationMsgStop"]) {
 
 $autoRespondStartDate = $factory->getTimeStamp("autoRespondStartDate", $start, "datetime"); 
 $enableAutoResponder->addFormField($factory->getTimeStamp("oldStart", $oldStart, "time", "")); 
-	 
+   
 $autoRespondStopDate = $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime"); 
 $enableAutoResponder->addFormField($factory->getTimeStamp("oldStop", $oldStop, "time", "")); 
 
@@ -62,7 +63,7 @@ $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("au
 $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
 
 $enableAutoResponder->addFormField(
-  $factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]),
+  $factory->getTextBlock("autoResponderMessageField", BXEncoding::toWin1252($userEmail["vacationMsg"])),
   $factory->getLabel("autoResponderMessageField")
 );
 $autoResponder->addOption($enableAutoResponder);
