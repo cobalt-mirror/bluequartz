@@ -342,3 +342,10 @@ msgstr "Le port que vous avez spécifié comme nouveau port HTTP est déjà util
 
 msgid "SSLportInUse"
 msgstr "Le port que vous avez spécifié comme nouveau port HTTPS/SSL est déjà utilisé par un autre service. Veuillez choisir un port différent."
+
+msgid "HSTS"
+msgstr "HSTS:"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) est un mécanisme de politique de sécurité Web par lequel un serveur web déclare que conformes agents utilisateurs (comme un navigateur Web) sont d'interagir avec lui en utilisant des connexions HTTPS ne sécurisées (ie HTTP couches sur TLS / SSL). Gares TGV est une des normes voie de protocole IETF et est spécifié dans la RFC 6797. Pour plus d'informations, voir: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+
