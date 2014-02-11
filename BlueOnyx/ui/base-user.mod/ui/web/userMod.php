@@ -9,6 +9,7 @@ include_once("Product.php");
 include_once("uifc/PagedBlock.php");
 include_once("AutoFeatures.php");
 include_once("Capabilities.php");
+include_once("BXEncoding.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
@@ -225,7 +226,7 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
     $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
     $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
   
-    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
+    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", BXEncoding::toWin1252($userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
     $autoResponder = $factory->getMultiChoice("autoResponderField");
     $autoResponder->addOption($enableAutoResponder);
     $block->addFormField(

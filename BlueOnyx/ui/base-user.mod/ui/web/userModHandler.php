@@ -7,6 +7,7 @@
 include_once("ArrayPacker.php");
 include_once("ServerScriptHelper.php");
 include_once("AutoFeatures.php");
+include_once("BXEncoding.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
@@ -211,7 +212,7 @@ if (($vacationMsgStop - $vacationMsgStart) < 0) {
 
 $cceClient->set($oids[0], "Email", array( 
 	"vacationOn" => ($autoResponderField ? 1 : 0), 
-        "vacationMsg" => $autoResponderMessageField, 
+        "vacationMsg" => BXEncoding::toWin1252($autoResponderMessageField), 
 	"vacationMsgStart" => $vacationMsgStart, 
 	"vacationMsgStop" =>$vacationMsgStop)); 
 $errors = array_merge($errors, $cceClient->errors());
