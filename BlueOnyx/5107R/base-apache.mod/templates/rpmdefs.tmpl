@@ -78,6 +78,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
+    /etc/init.d/httpd restart
 fi
 
 # Make sure that the Apache alias database ownership is setup properly.
