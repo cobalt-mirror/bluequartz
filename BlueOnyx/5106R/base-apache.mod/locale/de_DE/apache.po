@@ -123,7 +123,7 @@ msgid "maxSpareField_empty"
 msgstr "Bitte geben Sie die maximale Anzahl von zusätzlichen Webserver-Prozessen an. "
 
 msgid "maxSpareField_help"
-msgstr "Der Webserver wird ntigenfalls weitere Prozesse starten, um den erhhten Bedarf zu decken. Dies ist die maximale Anzahl von Prozessen, die der Server starten wird, um den erhhten Bedarf zu decken. Viel besuchte Seiten sollten eine hohe Nummer fr bessere Performance haben.  [[base-apache.maxServersRAM]]"
+msgstr "Der Webserver wird nötigenfalls weitere Prozesse starten, um den erhöhten Bedarf zu decken. Dies ist die maximale Anzahl von Prozessen, die der Server starten wird, um den erhöhten Bedarf zu decken. Vielbesuchte Seiten sollten eine hohe Nummer für eine bessere Performance haben. [[base-apache.maxServersRAM]]"
 
 msgid "maxSpareField_invalid"
 msgstr "[[base-apache.minSpareField_invalid]]"
@@ -135,7 +135,7 @@ msgid "minSpareField_empty"
 msgstr "Bitte geben Sie die minimale Anzahl von Webserver-Prozessen an."
 
 msgid "minSpareField_help"
-msgstr "Wenn der Webserver startet oder wenn er im Leerlauf ist, dann ist dies die minimale Anzahl von Webserverprozessen, die für Webanfragen zur Verfügung steht.  [[base-apache.maxServersRAM]]"
+msgstr "Wenn der Webserver startet oder wenn er im Leerlauf ist, dann ist dies die minimale Anzahl von Webserverprozessen, die für Webanfragen zur Verfügung steht. [[base-apache.maxServersRAM]]"
 
 msgid "minSpareField_invalid"
 msgstr "Die angegebenen Anzahl von Webservern ist ungültig. Bitte geben Sie eine ganze Zahl ein, die im angegebenen Bereich liegt."
@@ -355,3 +355,10 @@ msgstr "Der spezifizierte neue HTTP-Port wird bereits von einem anderen Dienst v
 
 msgid "SSLportInUse"
 msgstr "Der spezifizierte neue HTTPS/SSL-Port wird bereits von einem anderen Dienst verwendet. Bitte wählen Sie einen anderen Port aus."
+
+msgid "HSTS"
+msgstr "HSTS"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) ist ein Web-Sicherheits-Mechanismus, bei dem ein Web-Server erklärt, dass mit ihm agierende User Agents (wie Web-Browser) nur sichere HTTPS-Verbindungen (dh.: HTTP-Ebene über TLS/SSL) zu benutzen haben. HSTS ist ein IETF-Standard-Protokoll und ist in RFC 6797 spezifiziert. Für weitere Informationen siehe: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+

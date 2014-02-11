@@ -337,3 +337,10 @@ msgstr "新しいHTTPポートとして指定したポートが別のサービ�
 
 msgid "SSLportInUse"
 msgstr "あなたは新しいHTTPS/SSLポートとして指定したポートが別のサービスですでに使用されています。代わりに別のポートを選択してください。"
+
+msgid "HSTS"
+msgstr "のHSTS"
+
+msgid "HSTS_help"
+msgstr "HTTPの厳格なトランスポートセキュリティ（のHST）は、Webサーバーが（Webブラウザなど）準拠のユーザーエージェントにのみ、安全なHTTPS接続（つまり、HTTPレイヤード上のTLS / SSL）を使用してそれと対話することであることを宣言し、それによってWebセキュリティポリシーメカニズムです。のHSTは、IETF標準化過程プロトコルであり、RFC 6797で規定されています。詳細情報については以下を参照してください。http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Securityを"
+

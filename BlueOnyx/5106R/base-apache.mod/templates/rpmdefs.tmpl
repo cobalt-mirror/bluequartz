@@ -78,6 +78,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
     /etc/init.d/cced.init restart
+    /etc/init.d/httpd restart
 fi
 
 # Make sure that the Apache alias database ownership is setup properly.
@@ -149,6 +150,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+* Mon Feb 10 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX09
+- Made HSTS configureable (on/off) globally. 
+- Modified glue/schemas/apache.schema
+- Modified glue/httpd/ssl_perl.conf
+- Modified Makefile
+- Modified ui/web/apache.php
+- Updated all locales.
+
 * Mon Feb 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX08
 - Updated glue/httpd/ssl_perl.conf again to add Strict-Transport-Security
   and to streamline the SSL ciphers.

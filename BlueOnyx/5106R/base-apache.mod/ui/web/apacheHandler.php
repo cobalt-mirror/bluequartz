@@ -55,6 +55,8 @@ else {
 			"httpPort" => $httpPortField,
 			"sslPort" => $sslPortField,
 
+			"HSTS" => $HSTS,
+
 			"minSpare" => $minSpareField, 
 			"maxSpare" => $maxSpareField, 
 			"maxClients" => $maxClientsField, 
