@@ -133,6 +133,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Feb 13 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX09
+- On Server host- and domain-name changes handler hostname.pl failed.
+  We actually don't need it, as it's only needed for Postfix.
+- Modified glue/handlers/hostname.pl to disable the disturbing sections.
+- Modified glue/conf/email.conf to disable calling hostname.pl
+- Modified glue/handlers/system.pl to nicen up formatting.
+
 * Sun Feb 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX08
 - The concatenation fix for sendmail.pem had gone walkies. Added it again.
 - Fixed glue/handlers/copy_certs.pl

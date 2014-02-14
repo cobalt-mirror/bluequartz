@@ -78,11 +78,11 @@ sub make_sendmail_mc
 	my $delayChecks_line;
 
 	my %Printed_line = ( privacy => 0,
-	                     maxMessageSize => 0,
-			     maxRecipientsPerMessage => 0,
-			     smartRelay => 0,
-			     masqDomain => 0,
-			     delayChecks => 0 );
+		maxMessageSize => 0,
+		maxRecipientsPerMessage => 0,
+		smartRelay => 0,
+		masqDomain => 0,
+		delayChecks => 0 );
 	my @Mailer_line = ();
 	
 	if( $obj->{privacy} ) {
