@@ -1,6 +1,5 @@
-<class
-    name="Capabilities" namespace="menuServerServerStats" version="1.0"
->
+
+<class name="Capabilities" namespace="menuServerServerStats" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(menuServerServerStats)"
@@ -10,9 +9,7 @@
     />
 </class>
 
-<class
-    name="Capabilities" namespace="statsServerNetwork" version="1.0"
->
+<class name="Capabilities" namespace="statsServerNetwork" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(serverStatsServerNetwork)"
@@ -22,9 +19,7 @@
     />
 </class>
 
-<class
-    name="Capabilities" namespace="serverStatsServerWebalizer" version="1.0"
->
+<class name="Capabilities" namespace="serverStatsServerWebalizer" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(serverStatsServerWebalizer)"
@@ -34,9 +29,7 @@
     />
 </class>
 
-<class
-    name="Capabilities" namespace="serverStatsServerWeb" version="1.0"
->
+<class name="Capabilities" namespace="serverStatsServerWeb" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(serverStatsServerWeb)"
@@ -46,9 +39,7 @@
     />
 </class>
 
-<class
-    name="Capabilities" namespace="serverStatsServerFTP" version="1.0"
->
+<class name="Capabilities" namespace="serverStatsServerFTP" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(serverStatsServerFTP)"
@@ -58,9 +49,7 @@
     />
 </class>
 
-<class
-    name="Capabilities" namespace="serverStatsServerEmail" version="1.0"
->
+<class name="Capabilities" namespace="serverStatsServerEmail" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(serverStatsServerEmail)"
@@ -70,9 +59,8 @@
     />
 </class>
 
-<class
-    name="Capabilities" namespace="serverStatsServerDisk" version="1.0"
->
+<!-- We already have that in base-disk:
+<class name="Capabilities" namespace="serverStatsServerDisk" version="1.0">
     <property
         name="capable" type="boolean" default="1"
         readacl="ruleCapable(serverStatsServerDisk)"
@@ -81,4 +69,4 @@
         name="nameTag" type="scalar" default="[[base-sitestats.cap_serverStatsServerDisk]]"
     />
 </class>
-
+-->

@@ -127,6 +127,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Feb 15 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX05
+- Updated glue/schemas/sitestats_caps.schema as it was declaring a
+  Capability namespace for 'serverStatsServerDisk' which is already
+  declared via the 'base-disk' module. We don't need to declare it twice.
+
 * Mon Feb 10 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX04
 - Small Fix in German locale.
 
