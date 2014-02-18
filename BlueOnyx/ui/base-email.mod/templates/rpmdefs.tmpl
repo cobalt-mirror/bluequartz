@@ -133,6 +133,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Feb 18 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX10
+- Modified constructor/syncEmailService.pl and glue/handlers/copy_certs.pl
+  to copy/create the intermediate cert files for Dovecot. If no intermediates
+  are being used by AdmServ, then a blank file is created instead. 
+  10-ssl.conf is thenupdated and the needed 'ssl_ca' line is added, pointing
+  to the intermediate. The editing uses Sauce::Util, which will prevent that
+  the line shows up twice in case someone has already added it.
+
 * Thu Feb 13 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX09
 - On Server host- and domain-name changes handler hostname.pl failed.
   We actually don't need it, as it's only needed for Postfix.

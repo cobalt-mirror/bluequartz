@@ -78,6 +78,18 @@ if ($model eq "5106R") {
 Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
 system('rm -f /etc/dovecot.conf.backup.*');
 
+# Handle Dovecot intermediate cert:
+if (-f "/etc/admserv/certs/ca-certs") {
+    system("/bin/cp /etc/admserv/certs/ca-certs /etc/pki/dovecot/certs/ca.pem");
+}
+else {
+    system("touch /etc/pki/dovecot/certs/ca.pem");
+}
+chmod 0600, "/etc/pki/dovecot/certs/ca.pem";
+
+# Edit /etc/dovecot/conf.d/10-ssl.conf:
+&edit_dovecot_intermediate;
+
 Sauce::Service::service_toggle_init('dovecot', 1);
 
 # sync sendmail settings
@@ -191,10 +203,10 @@ sub make_sendmail_mc
 
     # 5106R Diffie-Hellmann File:
     if ($model eq "5106R") {
-	$DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
+	   $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
     }
     else {
-	$DiffieHellmann = "";
+	   $DiffieHellmann = "";
     }
 
 	# MaxRecipientsPerMessage
@@ -239,7 +251,33 @@ sub make_sendmail_mc
             print $_;
         }
     }
-    return 1;}
+    return 1;
+}
+
+sub edit_dovecot_intermediate {
+
+    # Build output hash:
+    $server_dovecot_settings_writeoff = { 
+        'ssl_ca' => "</etc/pki/dovecot/certs/ca.pem"
+    };
+
+    # Write changes using Sauce::Util::hash_edit_function:
+
+    $ok = Sauce::Util::editfile(
+        "/etc/dovecot/conf.d/10-ssl.conf",
+        *Sauce::Util::hash_edit_function,
+        '#',
+        { 're' => '=', 'val' => ' = ' },
+        $server_dovecot_settings_writeoff);
+
+    system('/bin/rm -f /etc/dovecot/conf.d/10-ssl.conf.backup.*');
+
+    # Error handling:
+    unless ($ok) {
+        $cce->bye('FAIL', "Error while editing /etc/dovecot/conf.d/10-ssl.conf!");
+        exit(1);
+    }
+}
 
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
