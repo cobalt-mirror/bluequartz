@@ -136,6 +136,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Feb 21 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX21
+- Modified ui/web/vsiteMod.php to address a problem with getInteger()
+  in regards to max allowed Vsite diskspace and max number of allowed
+  users. For complex reasons the max value was comming up blank in
+  certain scenarios. Corresponding HtmlComponentFactory fix is also out.
+
 * Mon Feb 10 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX20
 - Modified ui/web/manageAdmin.php to remove display of 'menuServerServerStats'.
   Its working in the new GUI, but not the old one. Need to investigate
