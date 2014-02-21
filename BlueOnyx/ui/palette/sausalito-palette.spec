@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX30%{?dist}
+Release: 0BX31%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Fri Feb 21 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX31
+- Modified libPhp/uifc/HtmlComponentFactory.php to change the === comparator
+  on getInteger() and getNumber() to something else that seems to work better.
 
 * Mon Feb 10 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX30
 - Added libPhp/BXEncoding.php
