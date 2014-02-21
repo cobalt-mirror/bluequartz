@@ -57,7 +57,7 @@ class HtmlComponentFactory {
   }
 
   function getI18n() {
-  return $this->i18n;
+    return $this->i18n;
   }
 
   // description: manufacture a AddButton object
@@ -498,10 +498,7 @@ class HtmlComponentFactory {
     include_once("uifc/MultiChoice.php");
     $multiChoice = new MultiChoice($this->page, $id);
     for($i = 0; $i < count($optionValues); $i++)
-      $multiChoice->addOption(
-  $this->getOption($optionValues[$i], 
-    in_array($optionValues[$i], $selectedValues) )
-      );
+      $multiChoice->addOption($this->getOption($optionValues[$i], in_array($optionValues[$i], $selectedValues)));
     $multiChoice->setAccess($access);
     return $multiChoice;
   }
@@ -603,10 +600,10 @@ class HtmlComponentFactory {
   }
 
   function getIntRange($id, $value = "", $access = "rw") {
-  include_once("uifc/IntRange.php");
-  $pr = new IntRange($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
-  $pr->setAccess($access);
-  return $pr;
+    include_once("uifc/IntRange.php");
+    $pr = new IntRange($this->page, $id, $value, $this->_getInvalidMessage($id), $this->_getEmptyMessage($id));
+    $pr->setAccess($access);
+    return $pr;
   }
 
   // description: manufacture a Page object
@@ -859,11 +856,11 @@ class HtmlComponentFactory {
       $ruleTag = $id."_rule";
       $rule = $this->i18n->get($ruleTag);
       if($rule == $ruleTag)
-  $rule = "";
+        $rule = "";
 
       $message = $this->i18n->get("defaultEmptyMessage", "palette", array(
-  "name" => $this->i18n->get($id),
-  "rule" => $rule
+        "name" => $this->i18n->get($id),
+        "rule" => $rule
       ));
     }
 
@@ -872,7 +869,7 @@ class HtmlComponentFactory {
 
   function _getInvalidMessage($id) {
     $tag = $id."_invalid";
-  $message = $this->i18n->getJs($tag);
+    $message = $this->i18n->getJs($tag);
 
     // message not found?
     if($message == $tag) {
@@ -880,11 +877,11 @@ class HtmlComponentFactory {
       $ruleTag = $id."_rule";
       $rule = $this->i18n->get($ruleTag);
       if($rule == $ruleTag)
-  $rule = "";
+        $rule = "";
 
       $message = $this->i18n->get("defaultInvalidMessage", "palette", array(
-  "name" => $this->i18n->get($id),
-  "rule" => $rule
+        "name" => $this->i18n->get($id),
+        "rule" => $rule
       ));
     }
 
