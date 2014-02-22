@@ -1,0 +1,53 @@
+<class name="System" namespace="Time" version="1.0">
+	<!-- system time in seconds -->
+        <property 
+		name="epochTime" type="int" 
+		writeacl="ruleCapable(serverTime)"
+	/>
+        <property 
+		name="timeZone" type="scalar" 
+		writeacl="ruleCapable(serverTime)"
+	/>
+        <property 
+		name="ntpEnabled" type="boolean" 
+		writeacl="ruleCapable(serverTime)"
+	/>
+        <property 
+		name="ntpAddress" type="scalar" 
+		writeacl="ruleCapable(serverTime)"
+	/>
+	<property
+		name="deferCommit" type="boolean" default="0"
+		writeacl="ruleCapable(serverTime)"
+	/>
+        <property 
+		name="deferTimeZone" type="scalar"
+		writeacl="ruleCapable(serverTime)"
+	/>
+	<!-- localtime when a deferred time set is made -->
+        <property 
+		name="epochOffset" type="int" default="0"
+		writeacl="ruleCapable(serverTime)"
+	/>
+</class>
+
+<class name="System" namespace="TempTime" version="1.0">
+        <!-- system time in seconds -->
+        <property
+                name="epochTime" type="int" optional="yes"
+                writeacl="ruleCapable(serverTime)"
+        />
+        <property
+                name="timeZone" type="scalar"
+                writeacl="ruleCapable(serverTime)"
+        />
+        <property
+                name="ntpAddress" type="scalar" optional="yes"
+                writeacl="ruleCapable(serverTime)"
+        />
+        <property
+                name="trigger" type="int"
+                writeacl="ruleCapable(serverTime)"
+        />
+</class>
+

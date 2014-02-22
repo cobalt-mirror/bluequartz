@@ -1,0 +1,13 @@
+<item 
+    id="base_reboot" 
+    label="[[base-power.reboot_menu]]" 
+    description="[[base-power.reboot_menu_help]]" 
+    url="/base/power/reboot.php"
+>
+    <parent id="base_notused" order="50">
+        <access require="serverPower"/>
+    </parent>
+    <parent id="base_notused" order="50">
+        <access require="serverPower"/>
+    </parent>
+</item>

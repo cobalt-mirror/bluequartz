@@ -1,0 +1,190 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "subdomain_header"
+msgstr "サブドメインの設定"
+
+msgid "vsite_enabled"
+msgstr "サブドメインを有効にする"
+
+msgid "vsite_enabled_help"
+msgstr "仮想ホスト用のサブドメインを有効にすることができます"
+
+msgid "default_max_subdomains"
+msgstr ""
+
+msgid "default_max_subdomains_help"
+msgstr "あなたは、各サイトが作成でき、デフォルトのベースラインを作成することができます"
+
+msgid "vlist_header"
+msgstr "使用可能なすべての仮想サイトの"
+
+msgid "v_name"
+msgstr "名前"
+
+msgid "v_name_help"
+msgstr "仮想サイトの名前"
+
+msgid "v_subdomain"
+msgstr ""
+
+msgid "v_subdomain_help"
+msgstr "多くのサブドメインが許可されている方法を示しています。"
+
+msgid "v_subdomain_enabled"
+msgstr "ステータス"
+
+msgid "v_subdomain_enabled_help"
+msgstr "各vsiteの状態を追跡します。それが有効か無効か？"
+
+msgid "vsite_header"
+msgstr "サブドメイン設定"
+
+msgid "vsite_name"
+msgstr "仮想サイトのホスト名"
+
+msgid "vsite_name_help"
+msgstr "あなたの仮想サイトの名前"
+
+msgid "max_subdomains"
+msgstr ""
+
+msgid "max_subdomains_help"
+msgstr ""
+
+msgid "sub_title"
+msgstr "サブドメインの設定"
+
+msgid "sub_domain"
+msgstr "サブドメイン"
+
+msgid "sub_domain_help"
+msgstr "あなたのサブドメインの名前"
+
+msgid "sub_path"
+msgstr "サブドメインパス"
+
+msgid "sub_path_help"
+msgstr "あなたのサブドメインへのパス"
+
+msgid "vsite_add_header"
+msgstr "サブドメインの追加"
+
+msgid "enterFqdn"
+msgstr "サブドメインの名前を入力します"
+
+msgid "enterFqdn_help"
+msgstr "サブドメインの名前を入力します"
+
+msgid "hostname"
+msgstr "ホスト名"
+
+msgid "hostname_help"
+msgstr "新しいサブドメインの名前"
+
+msgid "domainname"
+msgstr "ドメイン名"
+
+msgid "domainname_help"
+msgstr "ドメインの名前"
+
+msgid "button_cancel"
+msgstr "キャンセル"
+
+msgid "button_cancel_help"
+msgstr "設定を取り消す"
+
+msgid "php"
+msgstr "PHPスクリプトを有効にする"
+
+msgid "php_help"
+msgstr "あなたのサブドメインのPHPを有効にします"
+
+msgid "cgi"
+msgstr "CGI（Common Gateway Interface）を有効にします"
+
+msgid "cgi_help"
+msgstr "あなたのサブドメインのCGIを有効に"
+
+msgid "ssi"
+msgstr "サーバーサイドインクルード（SSI）を有効にする"
+
+msgid "ssi_help"
+msgstr "あなたのサブドメインのサーバーサイドインクルードを有効にする"
+
+msgid "vsite_mod_header"
+msgstr "サブドメインの設定を変更"
+
+msgid "new_sub"
+msgstr "新しいサブドメインの追加"
+
+msgid "new_sub_help"
+msgstr "新しいサブドメインの追加"
+
+msgid "php_head"
+msgstr "PHP"
+
+msgid "php_head_help"
+msgstr "仮想サイト上でPHPを有効にした場合を示してい"
+
+msgid "cgi_head"
+msgstr "CGI"
+
+msgid "cgi_head_help"
+msgstr "仮想サイト上でCGIが有効になっている場合を示している"
+
+msgid "ssi_head"
+msgstr "SSI"
+
+msgid "ssi_head_help"
+msgstr "仮想サイト上でSSIを有効にした場合を示してい"
+
+msgid "default_settings"
+msgstr "頭文字設定のデフォルト設定"
+
+msgid "divider_subdomains"
+msgstr "サブドメインのコンフィグレーション"
+
+msgid "enabled"
+msgstr "ユーザーサブドメイン"
+
+msgid "enabled_help"
+msgstr "ユーザ：のようなユーザーのためにサブドメインを作成します。ドメイン。 TLD"
+
+msgid "webpath"
+msgstr "ウェブパス"
+
+msgid "webpath_help"
+msgstr "サブドメインのコンテンツへのパス。後でこのエントリを削除する必要があり、これは自動的に削除されることはありません"
+
+msgid "webdir"
+msgstr "ウェブディレクトリ"
+
+msgid "webdir_help"
+msgstr "サブドメインのためのWebコンテンツを保持しているディレクトリ"
+
+msgid "rootpath"
+msgstr "ルートベースディレクトリ"
+
+msgid "rootpath_help"
+msgstr "どちらvsiteのwebdirectory、またはサブドメインのサブディレクトリへのパス、"
+
+msgid "menu_vsite_subdomains"
+msgstr "サブドメイン"
+
+msgid "menu_vsite_subdomains_help"
+msgstr "あなたのサブドメインを管理する"
+
+msgid "menu_system_subdomains"
+msgstr "サブドメイン"
+
+msgid "menu_system_subdomains_help"
+msgstr "仮想サイトのサブドメインを作成することができます。"
+

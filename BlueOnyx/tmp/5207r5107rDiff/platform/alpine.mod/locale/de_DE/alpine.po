@@ -1,0 +1,224 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "base-personalProfile"
+msgstr "Persönliches Profil"
+
+msgid "base-personalProfile_description"
+msgstr "Die Sektion 'Persönliches Profil' erlaubt es Ihnen, die Einstellungen Ihres Benutzerkontos einzusehen und zu ändern."
+
+msgid "base-programs"
+msgstr "Programme"
+
+msgid "base-programs_description"
+msgstr "Dieser Abschnitt erlaubt es, gegenwärtig installierte Programme einzusehen."
+
+msgid "controlpanel"
+msgstr "Netzwerkdienste"
+
+msgid "controlpanelDescription"
+msgstr "Klicken Sie hier um die Dienste des Server zu kontrollieren."
+
+msgid "cpservicesDescription"
+msgstr "Klicken Sie hier um virtuellen Seiten und Benutzerkonten zu verwalten."
+
+msgid "documentation"
+msgstr "Dokumentation"
+
+msgid "documentation_help"
+msgstr "Klicken Sie hier um online Hilfsdokumente für diese Serveranwendung einzusehen."
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Klicken Sie hier um die FTP Nutzungsstatistiken zu sehen."
+
+msgid "login"
+msgstr "Login - [[VAR.hostname]]"
+
+msgid "loginAuthFailed"
+msgstr "Ihr Benutzername und/oder Passwort ist inkorrekt. Bitte versuchen Sie es erneut."
+
+msgid "loginByeMessage"
+msgstr "Vielen Dank, dass Sie sich für [[base-product.productName]] entschieden haben."
+
+msgid "loginExpiredMessage"
+msgstr "Ihre Sitzung zum Administrationszugang wurde nach längerer Inaktivität automatisch beendet. Um sich erneut einzuloggen, geben Sie bitte Ihren Benutzernamen und Ihr Passwort erneut ein."
+
+msgid "loginMissingCookies"
+msgstr "Bevor Sie versuchen sich einzuloggen stellen Sie bitte sicher, da Ihr Browser Cookies unterstützt."
+
+msgid "loginNoCssMessage"
+msgstr "Bevor Sie versuchen sich einzuloggen, stellen Sie bitte sicher, dass Ihr Browser die Cascading Style Sheets Funktion unterstützt."
+
+msgid "loginNoJsMessage"
+msgstr "Bevor Sie versuchen sich einzuloggen stellen Sie bitte sicher, da Ihr Browser die JavaScript Funktionalität unterstützt."
+
+msgid "loginOkMessage"
+msgstr "Um sich anzumelden, geben Sie bitte Ihren Benutzernamen und Ihr Passwort ein."
+
+msgid "loginPageLogin"
+msgstr "Login"
+
+msgid "loginPagePassword"
+msgstr "Passwort:"
+
+msgid "loginPageSecurity"
+msgstr "Sichere Anmeldung:"
+
+msgid "loginPageTitle"
+msgstr "Login - [[base-product.productName]] - [[VAR.hostname]]"
+
+msgid "loginPageUsername"
+msgstr "Benutzername:"
+
+msgid "mailusage"
+msgstr "Mail"
+
+msgid "mailusageDescription"
+msgstr "Klicken Sie hier um Emailnutzungsstatistiken zu sehen."
+
+msgid "netusage"
+msgstr "Netzwerk"
+
+msgid "netusageDescription"
+msgstr "Klicken Sie hier um die absolute Netzwerknutzung dieses Servers zu sehen."
+
+msgid "osDescription"
+msgstr "[[base-alpine.osName]] ist die Basissoftware für [[base-product.productName]]. Diese Softwarepaket ist notwendig, um diesen Server zu verwalten."
+
+msgid "osName"
+msgstr "BlueOnyx"
+
+msgid "osVendor"
+msgstr "Project BlueOnyx"
+
+msgid "pdfDescen"
+msgstr "Englische Dokumentation"
+
+msgid "pdfDescja"
+msgstr "Japanische Dokumentation"
+
+msgid "security"
+msgstr "Sicherheit"
+
+msgid "securityDescription"
+msgstr "Klicken Sie hier um Zertifikate für eine sichere Verbindung zu verwalten."
+
+msgid "serverconfig"
+msgstr "Systemeinstellungen"
+
+msgid "serverconfigDescription"
+msgstr "Klicken Sie hier um das Netzwerk des Servers, Bandbreiten- und Zeiteinstellungen vorzunehmen."
+
+msgid "serverusage"
+msgstr "Serverbenutzung"
+
+msgid "serverusageDescription"
+msgstr "Klicken Sie hier um zur Statistikbersicht dieser Serveranwendung zu gelangen."
+
+msgid "sitemanage"
+msgstr "Seiten Management"
+
+msgid "sitemanageDescription"
+msgstr "Klicken Sie hier um virtuelle Servereinstellungen, Benutzerkonten und Sicherungen vorzunehmen und zu bedienen. "
+
+msgid "siteusage"
+msgstr "Benutzungstatistik"
+
+msgid "siteusageDescription"
+msgstr "Klicken Sie hier um die Statistik der Benutzung dieser Seite zu sehen."
+
+msgid "splashPersonalMessage"
+msgstr "Der Abschnitt 'Persönliches Profil' erlaubt es Ihnen, Ihre Benutzereinstellungen einzusehen und zu ändern."
+
+msgid "splashProgramsMessage"
+msgstr "Der Abschnitt 'Programme' erlaubt es Ihnen, hilfreiche Werkzeuge und Applikationen einzusehen und zu verwalten."
+
+msgid "sysbackuprestore"
+msgstr "Sicherung und Wiederherrstellung"
+
+msgid "sysbackuprestoreDescription"
+msgstr "Klicken Sie hier um Sicherungen vorzunehmen, oder um Serverdaten wiederherzustellen."
+
+msgid "sysinfo"
+msgstr "Systeminformation"
+
+msgid "sysinfoDescription"
+msgstr "Klicken Sie hier und Serverkonfiguraton einzusehen und zu verwalten."
+
+msgid "sysmaintenance"
+msgstr "Wartung"
+
+msgid "sysmaintenanceDescription"
+msgstr "Klicken Sie hier um die Wartung des Server vorzunehmen, dazu gehören z.B. Datensicherungen, Speicherkontrolle und Systemneustarts."
+
+msgid "sysmanage"
+msgstr "Server Management"
+
+msgid "sysmanageDescription"
+msgstr "Das 'Server Management' erlaubt es Ihnen, die Konfiguration wichtiger Dienste einzusehen und zu ändern."
+
+msgid "usermgmt"
+msgstr "Benutzerverwaltung"
+
+msgid "usermgmtDescription"
+msgstr "Klicken Sie hier um Benutzer hinzuzufügen, zu ändern oder zu löschen."
+
+msgid "vendorSite"
+msgstr "http://BlueOnyx.it/"
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Klicken Sie hier um die Zugriffsstatistiken einzusehen."
+
+msgid "wizardFinish"
+msgstr "-"
+
+msgid "wizardFinish_help"
+msgstr "-"
+
+msgid "wizardRaid"
+msgstr "Raid Setup"
+
+msgid "wizardRaidBuild"
+msgstr "Raid Setup"
+
+msgid "wizardRaidBuild_help"
+msgstr "-"
+
+msgid "wizardRaid_help"
+msgstr "-"
+
+msgid "wizardRegister"
+msgstr "Registrierung"
+
+msgid "wizardRegister_help"
+msgstr "-"
+
+msgid "wizardSysSettings"
+msgstr "Systemeinstellungen"
+
+msgid "wizardSysSettings_help"
+msgstr "-"
+
+msgid "supportform"
+msgstr "Technischer Support"
+
+msgid "supportformDescription"
+msgstr "-"
+
+
+msgid "pdfDescen_US"
+msgstr "BlueOnyx Hosting Edition Manual (English)"
+

@@ -1,0 +1,25 @@
+
+msgid "enableSSH"
+msgstr "Activer le serveur SSH"
+
+msgid "enableSSH_help"
+msgstr "Activation de SSH permet aux utilisateurs ayant un accès shell à se connecter à ce serveur en utilisant le logiciel client ssh. Utilisation de ssh est généralement considéré comme plus sûr que l&#39;utilisation de telnet depuis SSH crypte toutes les données, y compris les mots de passe qui sont envoyés entre le client et le serveur."
+
+msgid "SSH_Port"
+msgstr "SSH Port:"
+
+msgid "SSH_Port_help"
+msgstr "Par défaut SSH fonctionne sur le port 22/tcp. Cependant, vous pouvez le configurer pour fonctionner sur un autre port au lieu afin de tenter d&#39;esquiver les attaques de connexion par force brute automatisés."
+
+msgid "SSH_Proto"
+msgstr "Protocole SSH:"
+
+msgid "SSH_Proto_help"
+msgstr "SSH supporte deux protocoles: le protocole version 1 et version 2. Deux est plus avancé et sécurisé. Si possible, vous devez utiliser uniquement le protocole 2. Mais vous pouvez aussi le mettre à &#39;2, 1 &#39;, dans lequel cas les demandes que le support du protocole 2 allez l&#39;utiliser, alors que les anciennes applications qui prennent en charge uniquement le protocole 1 peut revenir à cette place."
+
+msgid "SSHrootLogin"
+msgstr "SSH login root:"
+
+msgid "SSHrootLogin_help"
+msgstr "Par défaut et pour des raisons de sécurité connexion SSH directe comme &#39;root&#39; utilisateur n&#39;est généralement pas autorisée. Si nécessaire, vous pouvez laisser ici."
+

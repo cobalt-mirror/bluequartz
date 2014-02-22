@@ -1,0 +1,121 @@
+<!--
+	$Id: java.schema
+	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+	Author: Will Dehaan <null@sun.com>
+-->
+
+<!-- Server Management global settings -->
+<class name="System" namespace="Java" version="1.0">
+	<!-- enabled controlled by tomcat_toggle.pl based on Vsite.Java.enable -->
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+	<!-- global tomcat settings -->
+	<property 
+        name="maxClients" type="int" default="50"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="maxClientsAdvised" type="int" default="100"
+        writeacl="ruleCapable(adminUser)"
+    />
+	<property 
+        name="JavaAdminPass" type="password" default="password"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<!-- Status of Tomcat - used by tomcat-manager.php -->
+<class name="System" namespace="JavaStatus" version="1.0">
+        <property
+        name="TomcatStatus" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+        <property
+        name="TomcatUITrigger" type="int" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<!-- The UI feature checkbox hook -->
+<class name="VsiteServices" namespace="Java" version="1.0">
+    <property name="featureEnabled" type="boolean" default="0"/>
+
+    <property
+        name="i18nName" type="scalar" default="[[base-java.javaName]]"
+    />
+
+    <!-- the default properties for this service used in creating Vsites -->
+    <property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
+
+<class 
+    name="Vsite" namespace="Java" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+	<!-- per-site JavaServer Pages and Servlet support -->
+	<property 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+	<!-- .war archive install status -->
+	<property 
+        name="uiCMD" type="scalar" default="" optional="true"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/>
+ 
+	<property 
+        name="message" type="scalar" default="" optional="true"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/>
+ 
+	<property 
+        name="progress" type="scalar" default="" optional="true"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/> 
+</class>
+
+<!-- JavaWar deployer -->
+<class 
+    name="JavaWar" namespace="" version="1.0"
+    createacl="ruleCapable(siteAdmin)" destroyacl="ruleCapable(siteAdmin)"
+>
+	<!-- name of war archive -->
+	<property name="war" type="scalar"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/> 
+
+	<!-- installation target directory of web archive -->
+	<property name="name" type="scalar"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/>
+
+	<!-- mark user or group.  Alpine uses group only --> 
+	<property name="class" type="scalar" optional="true"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/> 
+	
+	<!-- site ownership -->
+	<property name="group" type="scalar" optional="true"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/>
+
+	<!-- the autenticated user during deployment, and owner of unpacked .war -->
+	<property name="user" type="scalar" optional="true"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/> 
+
+	<!-- unused, intended for off-line config -->
+	<property name="enabled" type="boolean" default="1"
+	 writeacl="ruleCapable(siteAdmin)"
+	 readacl="ruleCapable(siteAdmin)"/>
+ 
+</class>
+
+

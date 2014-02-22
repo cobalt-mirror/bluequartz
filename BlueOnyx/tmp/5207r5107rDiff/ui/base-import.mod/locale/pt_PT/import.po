@@ -1,0 +1,199 @@
+
+msgid "import"
+msgstr "Importar"
+
+msgid "import_help"
+msgstr "Clique aqui para importar usuários para o servidor."
+
+msgid "importTitle"
+msgstr "Import User List para [[VAR.fqdn]]"
+
+msgid "dataUpload"
+msgstr "Source File"
+
+msgid "dataUpload_help"
+msgstr "Digite o local do qual obter o TSV (Tab Separated Value) formato de arquivo que contém uma lista de usuários a serem enviados para o sistema. Digite uma URL que começa com http:// ou ftp:// para baixar o arquivo de um local na Internet, ou digite o caminho completo para um arquivo para upload. Clique em Procurar para selecionar um arquivo em seu disco rígido local. Por favor, consulte o manual do aparelho o servidor para a descrição completa de formato de arquivo."
+
+msgid "dataUpload_empty"
+msgstr "Desculpe, você não selecionou um arquivo a ser enviado para o servidor para importação."
+
+msgid "urlField_empty"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "dataUpload_invalid"
+msgstr "[[base-import.dataUpload_empty]]"
+
+msgid "url"
+msgstr "URL"
+
+msgid "upload"
+msgstr "Carregar"
+
+msgid "fileImport"
+msgstr "Importar do arquivo"
+
+msgid "attempt"
+msgstr "Não tentada."
+
+msgid "creating"
+msgstr "Adicionando [[VAR.class]] chamado [[VAR.name]]"
+
+msgid "modifying"
+msgstr "Modificando [[VAR.class]] chamado [[VAR.name]]"
+
+msgid "importResults"
+msgstr "Import resultado"
+
+msgid "result"
+msgstr "Resultar"
+
+msgid "action"
+msgstr "Ação"
+
+msgid "reason"
+msgstr "Razão"
+
+msgid "noFileSpecified"
+msgstr "Arquivo recebendo erro"
+
+msgid "fileWasNoGood"
+msgstr "Desculpe, ocorreu um erro ao receber o arquivo especificado. Por favor, tente fazer o upload do arquivo novamente."
+
+msgid "badFileButtonCancel"
+msgstr "De volta"
+
+msgid "badFileButtonCancel_help"
+msgstr "Clique aqui para voltar."
+
+msgid "importResult"
+msgstr "Import resultado"
+
+msgid "couldNotOpenFile"
+msgstr "Desculpe, ocorreu um erro ao tentar abrir o arquivo enviado. Por favor verifique o endereço e tente novamente. Se você estiver usando o método de URL e você precisa fazer o login, tente uma URL com um formato como http://usuário:senha@server.address/arquivo ou ftp://user:password@server.address/arquivo."
+
+msgid "success"
+msgstr "Sucesso"
+
+msgid "fail"
+msgstr "Falhar"
+
+msgid "errorMessage"
+msgstr "[[VAR.error]] (linha [[VAR.line]])"
+
+msgid "importNow"
+msgstr "Importe Agora"
+
+msgid "importNow_help"
+msgstr "Clique aqui para importar os usuários do arquivo selecionado."
+
+msgid "importErrors"
+msgstr "Erros de importação"
+
+msgid "errorCountPlural"
+msgstr "[[VAR.count]] erros"
+
+msgid "errorCountSingular"
+msgstr "[[VAR.count]] erro"
+
+msgid "fullName"
+msgstr "Nome Completo"
+
+msgid "fullName_help"
+msgstr "Estes são os nomes completos das entradas fornecidas pelo arquivo de importação."
+
+msgid "name"
+msgstr "Nome de usuário"
+
+msgid "name_help"
+msgstr "Estes são os nomes de usuário das entradas fornecidas pelo arquivo de importação."
+
+msgid "errorMessageHeader"
+msgstr "Mensagem"
+
+msgid "errorMessageHeader_help"
+msgstr "Estas são mensagens detalhadas de erros que ocorreram durante a importação."
+
+msgid "importSucceeded"
+msgstr "Importar Sucedido"
+
+msgid "importSucceededMessage"
+msgstr "Não ocorreram erros durante a importação."
+
+msgid "importSucceededMessage_help"
+msgstr "Não ocorreram erros durante a importação."
+
+msgid "importStatus"
+msgstr "Import Estado"
+
+msgid "progressField"
+msgstr "Progresso"
+
+msgid "progressField_help"
+msgstr "Este é o progresso da importação. Se você deixar essa seção a importação usuário continuará a funcionar em segundo plano, mas a barra de progresso não será mais visível."
+
+msgid "status"
+msgstr "Estado"
+
+msgid "status_help"
+msgstr "Esta é a situação atual de Importação."
+
+msgid "creatingUsers"
+msgstr "Adicionando usuários ([[VAR.pos]] / [[VAR.max]])"
+
+msgid "intname"
+msgstr "nome de usuário"
+
+msgid "intfullName"
+msgstr "fullname"
+
+msgid "intpassword"
+msgstr "senha"
+
+msgid "intaliases"
+msgstr "aliases de e-mail"
+
+msgid "importChanger"
+msgstr "Selecione método de importação ..."
+
+msgid "importChangerFile"
+msgstr "Importar Arquivo"
+
+msgid "exportUsers"
+msgstr "Exportar"
+
+msgid "exportUsers_help"
+msgstr "Clique aqui para exportar os usuários do servidor. A função de exportação retorna um arquivo de formato TSV (Tab Separated Value), que é compatível com a função de importação do usuário."
+
+msgid "userExport"
+msgstr "Exportar Lista de usuários"
+
+msgid "exportTitle"
+msgstr "Exportar lista de usuários a partir de [[VAR.fqdn]]"
+
+msgid "pwFormat"
+msgstr "Formato senha"
+
+msgid "pwFormat_help"
+msgstr "Devido ao algoritmo de criptografia usado para armazenar senhas de usuário, senha atual do usuário não pode ser exportado. Se você optar por usar nomes de usuários, os usuários serão capazes de usar seu nome de login quanto a senha. Escolhendo seqüências aleatórias impede que outros usuários sejam capazes de adivinhar facilmente a senha de outro usuário."
+
+msgid "namePw"
+msgstr "Use nomes de usuário como senhas"
+
+msgid "randomPw"
+msgstr "Use seqüências aleatórias como senhas"
+
+msgid "downloadList"
+msgstr "Exportar agora"
+
+msgid "downloadList_help"
+msgstr "Clique aqui para exportar os usuários do servidor. A função de exportação retorna um arquivo de formato TSV (Tab Separated Value), que é compatível com a função de importação do usuário."
+
+msgid "usersForExport"
+msgstr "[[VAR.number]] usuários estão disponíveis para exportação."
+
+msgid "oneUserForExport"
+msgstr "Um usuário está disponível para exportação."
+
+msgid "noUsersForExport"
+msgstr "Não há usuários disponíveis para exportação. Os usuários devem ser adicionados antes que possam ser exportados."
+

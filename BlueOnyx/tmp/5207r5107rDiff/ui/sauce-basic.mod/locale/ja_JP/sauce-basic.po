@@ -1,0 +1,47 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# Global tech support strings
+
+msgid "techSupportUSPhone"
+msgstr "(Not available)"
+
+msgid "techSupportIntlPhone"
+msgstr "(Not available)"
+
+msgid "techSupportEmail"
+msgstr "(Not available)"
+
+msgid "contactTechSupport"
+msgstr "テクニカルサポートはありませんので、 [[base-sauce-basic.techSupportURL]] などをご覧下さい。"
+
+msgid "techSupportURL"
+msgstr "[[base-alpine.vendorSite]]index-j.html"
+
+msgid "kill_dhclient_failed"
+msgstr "dhclient の動作停止を確認できません。"
+
+msgid "Invalid-object"
+msgstr "内部エラー: 不正なオブジェクトを削除しようとしました。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "エラーが発生しました。[[VAR.name]] というユーザはすでに削除されています。"
+
+msgid "failed-to-add-user"
+msgstr "内部エラー： 新規ユーザ $name を作成できませんでした。[[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "割当容量として指定した値が大きすぎます。最大許容ディスク割当容量は、[[VAR.max]] です。"
+
+msgid "hostname-too-long"
+msgstr "指定されたホスト名が長すぎます。ホスト名は 40 文字以下で指定してください。"
+
+msgid "descReadOnly"
+msgstr "ユーザの説明は読み出し専用です。"

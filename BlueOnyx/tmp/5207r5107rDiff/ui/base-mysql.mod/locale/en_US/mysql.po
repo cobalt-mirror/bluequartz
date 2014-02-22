@@ -1,0 +1,462 @@
+msgid "amDetailsTitle"
+msgstr "MySQL Server Details"
+
+msgid "amMysqlNameTag"
+msgstr "MySQL Server"
+
+msgid "amNotAccepting"
+msgstr "The MySQL server is NOT operating normally. Please try to manually restart it."
+
+msgid "amStatusOK"
+msgstr "The MySQL server is operating normally."
+
+msgid "current_pass"
+msgstr "Current Password:"
+
+msgid "current_pass_help"
+msgstr "Please enter in your current password"
+
+msgid "delete_backup"
+msgstr "Delete Backup"
+
+msgid "delete_backup_help"
+msgstr "Delete your MySQL backup file"
+
+msgid "download_backup"
+msgstr "Download DB Backup"
+
+msgid "download_backup_help"
+msgstr "Download the current snap shot of your database"
+
+msgid "dump"
+msgstr "Run SQL Dump"
+
+msgid "dump_help"
+msgstr "Execute MySQL Dump"
+
+msgid "filesize"
+msgstr "File Size:"
+
+msgid "filesize_help"
+msgstr "The size of your MySQL dump file"
+
+msgid "last_backup"
+msgstr "Last Backed Up:"
+
+msgid "last_backup_help"
+msgstr "Look at when the backup last happened"
+
+msgid "mysql_enabled"
+msgstr "Enable MySQL Server:"
+
+msgid "mysql_enabled_help"
+msgstr "Click to enable MySQL Server"
+
+msgid "mysql_header"
+msgstr "MySQL Server"
+
+msgid "mysqldump"
+msgstr "Create Database Snap Shot"
+
+msgid "mysqldump_help"
+msgstr "Back up all of your databases"
+
+msgid "mysqlpass"
+msgstr "New Password:"
+
+msgid "mysqlpass_help"
+msgstr "Allows you to change your MySQL password, as long as you know the current password."
+
+msgid "password"
+msgstr "MySQL Password"
+
+msgid "password_help"
+msgstr "The password for the main user of MySQL"
+
+msgid "server"
+msgstr "Server"
+
+msgid "server_help"
+msgstr "Enable & Disable MySQL Server"
+
+msgid "sqldump"
+msgstr "SQL DB Dump"
+
+msgid "sqldump_help"
+msgstr "Dump all of the databases to a text file"
+
+msgid "sqlpass"
+msgstr "Change Password"
+
+msgid "sqlpass_help"
+msgstr "Allows you to change your MySQL password. Can also be used to clear a MySQL password, provided you know the current password. To do so simply leave the 'New Password' field empty."
+
+msgid "username"
+msgstr "MySQL Username"
+
+msgid "username_help"
+msgstr "The main user user for MySQL"
+
+# Solarspeed additions:
+
+msgid "MySQL_Settings_head"
+msgstr "MySQL Settings"
+
+msgid "MySQL_Settings_divider"
+msgstr "Configure the settings for automatic creation of MySQL users and databases."
+
+msgid "sql_host"
+msgstr "MySQL Host:"
+
+msgid "sql_host_help"
+msgstr "Host on which the MySQL server is located. Needs to be specified so that applications can connect to MySQL. By default this should be 'localhost'."
+
+msgid "sql_port"
+msgstr "MySQL Port:"
+
+msgid "sql_port_help"
+msgstr "TCP/IP port on which MySQL is reachable on the specified host. By default this should be '3306'."
+
+msgid "MYSQL_ROOT_Settings_divider"
+msgstr "MySQL root user settings - needed for database initialisation, setup and maintenance:"
+
+msgid "sql_root"
+msgstr "MySQL User:"
+
+msgid "sql_root_help"
+msgstr "Username of the MySQL user with 'root' privileges. By default this should be 'root'."
+
+msgid "sql_rootpassword"
+msgstr "MySQL Password:"
+
+msgid "sql_rootpassword_help"
+msgstr "Password of the MySQL 'root' user."
+
+msgid "sql_status"
+msgstr "MySQL Status:"
+
+msgid "sql_status_help"
+msgstr "Shows the status of your MySQL connection and if it is possible to connect to the MySQL server with the login details that you specified above."
+
+msgid "mysql_status_unconfigured"
+msgstr "Please configure the settings."
+
+msgid "mysql_status_incorrect"
+msgstr "MySQL connection cannot be established. Check settings."
+
+msgid "mysql_status_ok"
+msgstr "MySQL connection possible with this settings."
+
+msgid "MySQL_menu"
+msgstr "MySQL"
+
+msgid "MySQL_menu_help"
+msgstr "Configure the MySQL related settings, so that applications can communicate with MySQL."
+
+msgid "MySQL_Local_divider"
+msgstr "Local MySQL server:"
+
+msgid "MySQL_Remote_divider"
+msgstr "MySQL Server Details:"
+
+msgid "MySQL_Login_divider"
+msgstr "MySQL 'root' user details:"
+
+msgid "MySQL_Status_divider"
+msgstr "MySQL Connection Status:"
+
+### mysqlusers start:
+
+msgid "mysql_head"
+msgstr "MySQL Configuration"
+
+msgid "my_cnf"
+msgstr "/etc/my.cnf Editor:"
+
+msgid "my_cnf_help"
+msgstr "Here you can edit your my.cnf directly. Please note that this editor does not check if what you enter makes any sense. It doesn't correct typos or wrong definitions."
+
+msgid "mysql_license"
+msgstr "License management:"
+
+msgid "mysql_license_help"
+msgstr "This software is copyrighted work and requires a per server license. You can request, view or manage your server license here."
+
+msgid "customer_name"
+msgstr "Customer Name:"
+
+msgid "customer_name_help"
+msgstr "Please enter your name here. This should be the name under which you have purchased the software at http://www.solarspeed.net"
+
+msgid "customer_email"
+msgstr "Customer Email:"
+
+msgid "customer_email_help"
+msgstr "Please enter your email address here. This should be the same email address which you have used in the Solarspeed.net online store for the purchase."
+
+msgid "customer_company"
+msgstr "Company Name:"
+
+msgid "customer_company_help"
+msgstr "Please enter your company name here. If you are not incorporated, please use your domain name instead."
+
+msgid "server_key"
+msgstr "Server Key:"
+
+msgid "server_key_help"
+msgstr "The 'Server Key' is an automatically generated unique identifier that helps us to identify if you run the software on the server that it was licensed for."
+
+msgid "product_key"
+msgstr "Product Key:"
+
+msgid "product_key_help"
+msgstr "The 'Product Key' is your software license. It unlocks the software if it is installed on the server that it was licensed for."
+
+msgid "email_key_request"
+msgstr "Email Key Request"
+
+msgid "email_key_request_help"
+msgstr "When you press this button, an email is sent to keyrequest@solarspeed.net. The email will contain your name, company name and email address. It will also email the 'Server Key' so that we can generate a 'Product Key' for you."
+
+msgid "mail_status"
+msgstr "Email Status:"
+
+msgid "mail_status_help"
+msgstr "Status of the Email Key Request delivery. Tells you if your registration email could be sent to keyrequest@solarspeed.net"
+
+msgid "back_to_key_request"
+msgstr "Return to the previous page"
+
+msgid "back_to_key_request_help"
+msgstr "Returns you to the previous page."
+
+msgid "MySQL_Config_head"
+msgstr "MySQL Config"
+
+msgid "MySQL_Config_head_help"
+msgstr "Configuration of your MySQL Server."
+
+msgid "MySQL_Config_desc"
+msgstr "MySQL Settings"
+
+msgid "MySQL_Config_desc_help"
+msgstr "Allows you to configure the automatic MySQL database and user creation."
+
+msgid "MySQL_TAB_ONE"
+msgstr "Auto-Create MySQL Users and Databases"
+
+msgid "MySQL_TAB_ONE_help"
+msgstr "Allows you to automatically create MySQL Users and Databases for each site."
+
+msgid "MySQL_TAB_TWO"
+msgstr "/etc/my.cnf Editor"
+
+msgid "MySQL_TAB_TWO_help"
+msgstr "Allows you to edit /etc/my.cnf directly through the GUI."
+
+msgid "udb_switch"
+msgstr "MySQL auto-create"
+
+msgid "udb_switch_help"
+msgstr "Allows automatic creation of MySQL users and databases through the GUI. Either upon creating a new site, or by editing the 'Web' services of an existing site. Only server administrators have this capability."
+
+msgid "solmysqlFullText"
+msgstr "MySQL user and database"
+
+msgid "solmysqlFullText_help"
+msgstr "Allows you to automatically create or remove a MySQL database and a MySQL user for this site. PLEASE NOTE: If the checkbox is already checked, then unchecking it and saving the changes will remove the MySQL database AND the user."
+
+msgid "solmysqlUsername"
+msgstr "Username"
+
+msgid "solmysqlUsername_help"
+msgstr "Username of the MySQL user. Has rights and permissions only for the database specified below."
+
+msgid "solmysqlPass"
+msgstr "Password"
+
+msgid "solmysqlPass_help"
+msgstr "MySQL password for the MySQL user in question."
+
+msgid "solmysqlDB"
+msgstr "Database Name"
+
+msgid "solmysqlDB_help"
+msgstr "Name of the MySQL database for this site."
+
+msgid "solmysqlHost"
+msgstr "Database Host"
+
+msgid "solmysqlHost_help"
+msgstr "Host on which the MySQL server is running. Typically this is 'localhost'."
+
+msgid "solmysqlPort"
+msgstr "Port"
+
+msgid "solmysqlPort_help"
+msgstr "Port on which the MySQL server is listening. Typically this is '3306'."
+
+msgid "MySQL_DIVIDER_ONE"
+msgstr "Default rights on auto-created users:"
+
+msgid "mysql_default_privileges"
+msgstr "Default privileges:"
+
+msgid "mysql_default_privileges_help"
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
+
+msgid "EXPLAIN_RIGHTS"
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
+
+msgid "DIVIDER_ZERO"
+msgstr "Default database privileges:"
+
+msgid "DIVIDER_ONE"
+msgstr "Data privileges:"
+
+msgid "DIVIDER_TWO"
+msgstr "Structure privileges (by default all are granted):"
+
+msgid "DIVIDER_THREE"
+msgstr "Structure privileges (by default these are not granted):"
+
+msgid "DIVIDER_FOUR"
+msgstr "Resource Limits:"
+
+msgid "SELECT_help"
+msgstr "Allows reading data."
+
+msgid "INSERT_help"
+msgstr "Allows inserting and replacing data."
+
+msgid "UPDATE_help"
+msgstr "Allows changing data."
+
+msgid "DELETE_help"
+msgstr "Allows deleting data."
+
+msgid "FILE_help"
+msgstr "Allows importing data from files and exporting data to files. Not set by default."
+
+msgid "CREATE_help"
+msgstr "Allows creating databases and tables."
+
+msgid "ALTER_help"
+msgstr "Allows altering the structure of existing tables."
+
+msgid "INDEX_help"
+msgstr "Allows creating and dropping indexes."
+
+msgid "DROP_help"
+msgstr "Allows dropping of databases and tables."
+
+msgid "TEMPORARY"
+msgstr "CREATE TEMPORARY TABLES"
+
+msgid "TEMPORARY_help"
+msgstr "Allows creating temporary tables."
+
+msgid "CREATE_VIEW"
+msgstr "CREATE VIEW"
+
+msgid "CREATE_VIEW_help"
+msgstr "Allows creating new views. (Only available in MySQL5 or better.)"
+
+msgid "SHOW_VIEW"
+msgstr "SHOW VIEW"
+
+msgid "SHOW_VIEW_help"
+msgstr "Allows performing SHOW CREATE VIEW queries. (Only available in MySQL5 or better.)"
+
+msgid "CREATE_ROUTINE"
+msgstr "CREATE ROUTINE"
+
+msgid "CREATE_ROUTINE_help"
+msgstr "Allows creating stored routines. (Only available in MySQL5 or better.)"
+
+msgid "ALTER_ROUTINE"
+msgstr "ALTER ROUTINE"
+
+msgid "ALTER_ROUTINE_help"
+msgstr "Allows altering and dropping of stored routines. (Only available in MySQL5 or better.)"
+
+msgid "EXECUTE_help"
+msgstr "Allows running of store routines. (Only available in MySQL5 or better.)"
+
+msgid "MAX_QUERIES_PER_HOUR"
+msgstr "MAX QUERIES PER HOUR"
+
+msgid "MAX_QUERIES_PER_HOUR_help"
+msgstr "Limits the number of queries a user may send to the server per hour. '0' means no limit."
+
+msgid "MAX_UPDATES_PER_HOUR"
+msgstr "MAX UPDATES PER HOUR"
+
+msgid "MAX_UPDATES_PER_HOUR_help"
+msgstr "Limits the number of commands that change any table or database the user may execute per hour. '0' means no limit."
+
+msgid "MAX_CONNECTIONS_PER_HOUR"
+msgstr "MAX CONNECTIONS PER HOUR"
+
+msgid "MAX_CONNECTIONS_PER_HOUR_help"
+msgstr "Limits the number of connections the user may open per hour. '0' means no limit."
+
+msgid "MySQL_Info_Text"
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
+
+#
+
+msgid "root_has_no_pwd"
+msgstr "MySQL password for MySQL-root user apparently not yet set! Please set a password for MySQL-user 'root'!"
+
+msgid "sqlstatus_fail"
+msgstr "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running."
+
+## Label renaming for 5200R:
+
+# was: "solmysqlFullText"
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+# was: msgid "solmysqlFullText_help"
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "CreateFailUserExists"
+msgstr "That MySQL user already exists in the MySQL user table."
+
+msgid "CreateFailDBExists"
+msgstr "That MySQL database already exists in the MySQL database table."
+
+msgid "CreateFailDatabaseExists"
+msgstr "That MySQL database already exists."

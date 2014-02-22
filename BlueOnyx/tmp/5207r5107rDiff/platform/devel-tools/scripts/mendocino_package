@@ -1,0 +1,409 @@
+#!/usr/bin/perl
+
+use strict;
+use lib qw(/usr/sausalito/perl);
+use FileHandle;
+use Devel;
+
+my $BUILD_DIR = "/home/build";
+my $PRODUCT = "mendocino";
+my $RPM_DIR = "/fargo/rpms/i386";
+my $SRPM_DIR = "/fargo/srpms";
+my $FORCE = 0;
+my $DISABLE = 0; # do a dry-run
+my $BUILD = 1;
+my $XLOCALEPAT = ""; # locales to exclude when building locales (ie, ja)
+my $CVSTAG = ""; # default CVS tag
+my $INSTALL = 0;  # add option to install rpms or not
+my $SAME_VERSION = 0;  # add option to compile and upload without incrementing release number
+my $PACKAGE = 1;
+
+my $curr_dir = `pwd`;
+chomp $curr_dir;
+
+use Getopt::Long;
+GetOptions( "force" => \$FORCE, 
+	"debug" => \$DISABLE,
+	"build!" => \$BUILD,
+	"exclude-locales=s" => \$XLOCALEPAT,
+	"cvs-tags=s" => \$CVSTAG,
+	"build-dir=s" => \$BUILD_DIR,
+	"product=s" => \$PRODUCT,
+	"rpm-dir=s" => \$RPM_DIR,
+	"srpm-dir=s" => \$SRPM_DIR,
+	"install!" => \$INSTALL,
+	"rebuild" => \$SAME_VERSION);
+
+$ENV{RPM_DIR} = $RPM_DIR;
+$ENV{SRPM_DIR} = $SRPM_DIR;
+$ENV{PRODUCT} =$PRODUCT;
+
+if ($FORCE) {
+  print STDERR "Forcing the rebuilding of all modules.\n";
+} else {
+  warn "--force NOT SPECIFIED, MODULES MAY NOT BE REBUILT\n";
+  sleep 3;
+}
+if ($DISABLE) {
+  print STDERR "Debugging mode: performing a dry run.\n";
+}
+if (!$BUILD) {
+	print STDERR "Just checking out all modules.\n";
+}
+
+if ($XLOCALEPAT) {
+	print STDERR "Doing a normal build, but excluding the following locales:  $XLOCALEPAT\n";
+	$ENV{XLOCALEPAT} = $XLOCALEPAT;
+}
+
+# check environment variables
+if (!$ENV{"CVSROOT"}) {
+  print STDERR <<EOT ;
+Error: all of these environment variables must be defined:
+  CVSROOT
+
+EOT
+  exit(1);
+}
+
+if (!-d $BUILD_DIR) {
+  mkdir($BUILD_DIR, 0700);
+}
+chdir($BUILD_DIR) || die;
+
+my %module_list;  # use a hash to hopefully make checking for duplicate modules quicker
+
+# use these to track stuff for summary of problem modules at end of build
+my @modules_failed_build = ();
+my @modules_failed_install = ();
+
+my %rpms_installed = map { chomp($_); $_ => 1; } `rpm -qa`;
+
+print STDERR "*** checking out all modules ***\n";
+if(-d 'products.prd'){
+	exit if not cvs_cmd("update -PAd products.prd");
+}else{
+	exit if not cvs_cmd("co products.prd");
+}
+
+if (-f "products.prd/$PRODUCT/devel_list")
+{
+	check_out_modules("products.prd/$PRODUCT/devel_list", $CVSTAG, \%module_list);
+}
+
+# lets checkout all modules at once so I don't need to build any by hand
+opendir PRODUCT, "products.prd/$PRODUCT/" or die "Can't open products.prd/$PRODUCT/, unable to access packing_list files:  $!\n";
+
+my @rpm_list=();
+my @misc_rpms;
+my @rpms_to_install;
+my @rpms_capstone;
+for my $list (grep /^packing_list/o, readdir PRODUCT)
+{
+	check_out_modules("products.prd/$PRODUCT/$list", $CVSTAG, \%module_list);
+	push @rpm_list, (map {"$RPM_DIR/$_"} get_list("products.prd/$PRODUCT/$list", "RPM"));
+	my @misc = get_list("products.prd/$PRODUCT/$list", "MISC-RPM"); 
+	foreach(@misc) {
+		s/\.\///g;
+		chomp;
+		push @misc_rpms ,$_;
+	}
+}
+# exit here if nobuild is enabled
+exit 0 unless $BUILD;
+
+# a little sugar just, so I know how much is left to go since I'm using a hash
+my $num_modules = scalar(keys %module_list);
+my $cur_module = 1;
+
+foreach $_ (keys %module_list) {
+  print STDERR "*** processing $_ $cur_module of $num_modules modules ***\n";
+  $cur_module++; 
+  my $foo = $_;
+  my $buildSections = $module_list{$foo};
+  push @rpm_list, build_rpms($foo, $buildSections);
+  print STDERR "\n";
+}
+
+# print out messages if there were problems with the build or install
+if(@modules_failed_build){
+	print STDERR "The following modules had build problems:\n";
+	for my $module (@modules_failed_build){
+		print STDERR "$module\n";
+	}
+}
+
+	print "Rolling Package...\n";
+	-d "package" && system("/bin/rm -rf package");
+	mkdir("package", 0700);
+	mkdir("package/RPMS", 0755);
+#	push @rpm_list, (split/\n/, `find . ! -path '*package*' -name '*.rpm' ! -name '*capstone*' ! -name '*.src.rpm'  -print`);
+
+if (scalar @misc_rpms || -d "products.prd/$PRODUCT/misc") {
+	mkdir("package/MISC", 0755);
+}
+
+#copy over the misc stuff from products.prd
+if(-d "products.prd/$PRODUCT/misc"){
+	system("cp -r products.prd/$PRODUCT/misc/* package/MISC/");
+}
+
+	foreach(@rpm_list){
+		s/^\.\///;
+		chomp;
+		# see if i'm a misc rpm or not..
+		my $rpm = $_;
+		my $flag = 0;
+		foreach(@misc_rpms) {
+			if ($rpm =~ m/$_/i) {
+				# we have a match for a misc rpm
+				system("/bin/cp -f $rpm package/MISC") == 0 ||
+					print STDERR "Couldn't copy $rpm to package/MISC: $!";
+				$flag = 1;
+				last;
+			}
+		}
+		if (!$flag) {
+			$rpm =~ m/([^\/]*)$/;
+			if(/-capstone-/) {
+				push @rpms_capstone, $_;
+			} else {
+				push @rpms_to_install, $_;
+			}
+			system("/bin/cp -f $rpm package/RPMS") == 0 ||
+				print STDERR "Couldn't copy $rpm to package/RPMS: $!";
+		}
+	}
+
+	# Capstone RPMS must follow UI and locale RPMS of the same module
+	my $rpmset = "RPM: ".(join"\nRPM: ", (map {m#\/([^\/]+)$#;$1} @rpms_to_install))."\n";
+	$rpmset .= "RPM: ".(join"\nRPM: ", (map {m#\/([^\/]+)$#;$1} @rpms_capstone))."\n";
+
+	open IN, "products.prd/$PRODUCT/package_list.tmpl" || 
+		die("can't find package template!");
+	open OUT, "+>package/packing_list";
+	while(<IN>){
+		s/\[AUTOFILL-RPM\]/$rpmset/;
+		print OUT;
+	}
+	close IN;
+	close OUT;
+	print "\tWrote packing_list...\n";
+
+	if(-d "products.prd/$PRODUCT/scripts"){
+		print "\tFound Scripts directory...\n";
+		system("/bin/cp -r products.prd/$PRODUCT/scripts package");
+		system("find package/scripts -type f -exec chmod 755 {} \\;")
+	}
+
+	system("/bin/cp -r products.prd/$PRODUCT/pkginfo package") == 0 || 
+		die("can't find pkginfo directory!");
+	print "\tFound pkginfo directory...\n";
+	foreach(<package/pkginfo/locale/*>){
+		next unless -d $_;
+		foreach my $po (<$_/*.po>){
+			print "\tFormatting $_...\n";
+			$po =~ m#/([^/.]+)\.po$#;
+			my $name=$1;
+			system("/usr/bin/msgfmt -e -o $_/${name}.mo $po");
+		}
+	}
+	my $time=time();
+	print "\tWriting $curr_dir/$time.pkg...\n";
+	chdir "package";
+	system("/bin/tar -zcf $curr_dir/$time.pkg --exclude '*CVS*' *");
+
+	warn "Normal ML package completion.\n" unless (@modules_failed_build || @modules_failed_install);
+
+	# Now respin for the ja build
+	if(-s "$curr_dir/$time.pkg"){
+		my $jpkg = $time.'-ja.pkg';
+		my $stage_dir = "$curr_dir/ja-stage-$$";
+		system('/bin/rm', '-rf', $stage_dir) if (-d $stage_dir);
+
+		mkdir($stage_dir, 0755) || 
+			die "Could not create ja-package staging directory: $!";
+		chdir($stage_dir);
+		system('/bin/tar', '-xzf', "$curr_dir/$time.pkg");
+		open(PACK, 'packing_list') ||
+			die "Could not open packing list for reading: $!";
+		my $new_packing_list;
+		while(<PACK>){
+			# 4...WG -> 4...WGJ
+			s/4\.\.\.WG(\s*)$/4\.\.\.WGJ$1/;
+			# OS depends on 6.1, not 6.2 
+			s/Cobalt:OS\s+=\s+6\.2(\s*)$/Cobalt:OS = 6.1$1/;
+			$new_packing_list .= $_;
+			$new_packing_list .= 
+				"Product:               4...WGJ-VML\n" 
+				if(/^\s*Product:\s+/);
+		}
+		close(PACK);
+		open(NU, ">packing_list") ||
+			die "Could not write packing_list: $!";
+		print NU $new_packing_list;
+		close(NU);
+
+		system('/bin/tar -czf '.$curr_dir.'/'.$jpkg.' *');
+		chdir($curr_dir);
+		system('/bin/rm', '-rf', $stage_dir);
+		warn "ja package completed at: $curr_dir/$jpkg\n";
+	}
+
+
+############################################################################
+
+sub smart_diff
+{
+    my ($tag, $module) = @_;
+
+    open DIFF, "cvs diff -RN --brief -r $tag $module 2>/dev/null |" 
+	or die "Can't cvs diff $module with tag $tag: $!\n";
+    $DISABLE && open FOO, ">$module.diff";
+
+    while (<DIFF>)
+    {
+	$DISABLE && print FOO $_;
+	
+	# Gee, I hope cvs never gets i18ned
+	if (!/^Files ([^\s]+) and ([^\s]+) differ$/) { next; }
+	
+	my $last_rpm_version = $1;
+	my $most_recent_version = $2;
+
+	$DISABLE && print STDERR "most recent version file is $most_recent_version\n";
+
+	# as long as the most recent version is not /dev/null the file is
+	# actually one that was added or has changed, and is not just a removed file
+	if ($most_recent_version !~ /^\/dev\/null$/)
+	{
+	    close DIFF;
+	    $DISABLE && print STDERR "status from cvs diff is $?\n";
+	    $DISABLE && close FOO;
+	    return 1;
+	}
+    }
+
+    # if we get here, there are no real differences
+    close DIFF;
+    $DISABLE && print STDERR "status from cvs diff is $?\n";
+    $DISABLE && close FOO;
+    return 0;
+}
+
+sub build_rpms
+{
+  my $module = shift;
+  my $sectionsString = shift;
+  my $release = "unknown";
+  my $releaseString = "";
+  my %buildSections = ();
+  my @rpms = ();
+
+  foreach(qw/default ui src locale glue capstone/){
+	if($sectionsString =~ /\b$_\b/i){
+		$buildSections{$_} = "yes";
+	}else{
+		$buildSections{$_} = "no";
+	}
+  }
+
+  print STDERR "Building $module ...\n";
+  
+  # check for diffs:
+  # (exception: if packing_list is missing, always rebuild.)
+  
+  my $tag = "LAST_RPM";
+
+  if($CVSTAG ne ""){
+	$tag = $CVSTAG."_".$tag;
+  }
+
+#  my $diff_status = smart_diff($tag, $module);
+   my $diff_status = 1;
+  if ($diff_status) { print STDERR "\t$module has been updated since last build.\n"; }
+  if (!$FORCE && !$diff_status && (-e "${module}/packing_list")) {
+    print STDERR "\t$module already up-to-date, skipping.\n";
+    return ();
+  } 
+
+  if (! -e "${module}/Makefile") {
+    print STDERR "\t$module has no Makefile, skipping.\n";
+    return ();
+  }
+  
+  # increment version numbers, wherever we may find them.
+  if (not $SAME_VERSION) {
+    my $fh = new FileHandle("$module/Makefile");
+    if (defined($fh)) {
+      my $out = new FileHandle(">$module/Makefile~") || die;
+      while (defined($_ = <$fh>)) {
+      	if (m/^\s*RELEASE\s*=\s*(\d+)/) {
+	  $release = $1 + 1;
+	  $releaseString = "RELEASE=$release";
+	  $_ =~ s/^\s*RELEASE\s*=\s*\d+/$releaseString/;
+	}
+	if($buildSections{default} eq "no" && 
+		m/^\s*BUILD(UI|SRC|GLUE|LOCALE)\s*=\s*(yes|no)/o){
+		if($buildSections{lc($1)} eq "yes" && $2 eq "no"){
+			my $section = $1;
+			my $newSetting = "yes";
+			my $newLine = "BUILD$section = $newSetting";
+			s/^\s*BUILD$1\s*=\s*$2/$newLine/;
+		}
+	}
+	print $out $_;
+      }
+      $out->close();
+      $fh->close();
+      unlink("$module/Makefile")
+      && link("$module/Makefile~", "$module/Makefile")
+      && unlink("$module/Makefile~");
+    }
+  }
+
+  if ($release eq "unknown") {
+    print STDERR "ERROR $module: no version info in Makefile\n";
+    push @modules_failed_build, $module;
+    return ();
+  }
+  
+  # make
+  $DISABLE || make_cmd("-C $module update_version"); # ignore errors
+  $DISABLE || make_cmd("-C $module rpm") 
+	|| ( push(@modules_failed_build, $module) && return () );
+
+  if($buildSections{default} eq "yes"){
+	@rpms = `find $module -name '*.rpm' ! -name '*.src.rpm' -print`;
+	chomp @rpms;
+  }else{
+	foreach(keys %buildSections){
+		if($buildSections{$_} eq "yes"){
+			if(/src/i){
+				push @rpms, (split/\n/,`find $module/rpms -name '*.rpm' -and ! -name '*.src.rpm' -print`);
+			}else{
+				push @rpms, (split/\n/,`find $module -name '*.rpm' -and ! -name '*.src.rpm' -and -name '*-$_-*' -print`);
+			}
+		}
+		chomp @rpms;
+	}
+  }
+
+  print STDERR "\tSuccessfully built release $release of $module.\n";
+  return @rpms;
+}
+
+sub get_list{
+	my $packlist_file = shift;
+	my $tag = shift;
+	my @list=();
+
+	my $fh = new FileHandle("< $packlist_file") || die "error in getting list from $packlist_file: $!";
+	while (defined($_ = <$fh>)) {
+		if(m/^\s*$tag: (.*)/i){
+			push @list, $1;
+		}
+	}
+	$fh->close();
+	return @list;
+}

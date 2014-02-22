@@ -1,0 +1,1078 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "dns"
+msgstr "DNS"
+
+msgid "title"
+msgstr "DNS"
+
+msgid "modifyDNS"
+msgstr "[[base-dns.title]] Instellingen"
+
+msgid "dns_help"
+msgstr "Klik hier om [[base-dns.modifyDNS]] veranderen."
+
+msgid "basic"
+msgstr "Basisch"
+
+msgid "advanced"
+msgstr "Vergevorderd"
+
+msgid "defaults"
+msgstr "Defaults"
+
+msgid "basic_help"
+msgstr "Klik hier om fundamentele DNS-server configureren."
+
+msgid "advanced_help"
+msgstr "Klik hier om geavanceerde DNS server instellingen, zoals data formaten, veiligheid beperkingen en server standaardinstellingen configureren."
+
+msgid "defaults_help"
+msgstr "Klik hier om standaard Start of Authority (SOA)-waarden te configureren."
+
+msgid "enabled"
+msgstr "Enable Server"
+
+msgid "enabled_help"
+msgstr "Draai Domain Name System (DNS)-server-en uitschakelen. Als u deze functie op dit toelaat server apparaat fungeren als een lokale DNS-server voor zichzelf en voor haar klanten. Een domeinnaam server vertaalt tekstuele hostnamen en domeinnamen in numerieke IP-adressen, en vice-versa."
+
+msgid "soa_defaults"
+msgstr "Start of Authority (SOA) Standaardwaarden"
+
+msgid "soa_defaults_help"
+msgstr "Dit zijn de standaard waarden die gebruikt worden bij het toevoegen van nieuwe domeinnaam registers."
+
+msgid "admin_email"
+msgstr "Standaard DNS Administrator E-mailadres"
+
+msgid "admin_email_rule"
+msgstr "Vul een goed geformatteerde e-mailadres. Bijvoorbeeld user@example.com een ​​geldige invoer."
+
+msgid "admin_email_help"
+msgstr "Voer de standaard e-mailadres van de administratieve contactpersoon voor alle nieuw toegevoegde domeinen en netwerken. [[base-dns.admin_email_rule]]"
+
+msgid "admin_email_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.admin_email]]. [[base-dns.admin_email_rule]]"
+
+msgid "default_refresh"
+msgstr "Standaard Refresh Interval (seconden)"
+
+msgid "default_refresh_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is 10800."
+
+msgid "default_refresh_help"
+msgstr "Voer de standaard refresh interval voor alle nieuw toegevoegde domeinen en netwerken. Deze waarde is de interval waarmee de secundaire DNS-server zal proberen om haar administratie te synchroniseren met de primaire domeinnaam server. [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_refresh]]. [[base-dns.default_refresh_rule]]"
+
+msgid "default_refresh_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.default_refresh]]. [[base-dns.default_refresh_rule]]"
+
+msgid "default_retry"
+msgstr "Standaard Retry Interval (seconden)"
+
+msgid "default_retry_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is 3600."
+
+msgid "default_retry_help"
+msgstr "Voer de standaard interval voor nieuwe pogingen voor alle nieuw toegevoegde domeinen en netwerken. Als om wat voor reden dan ook de secundaire DNS-server is niet in staat om contact met de primaire domeinnaam server om de gegevens te synchroniseren, deze waarde is het interval waarmee de secundaire DNS-server herhaaldelijk zal proberen om contact met de primaire domeinnaam server. [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_retry]]. [[base-dns.default_retry_rule]]"
+
+msgid "default_retry_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.default_retry]]. [[base-dns.default_retry_rule]]"
+
+msgid "default_expire"
+msgstr "Standaard verlopen Interval (seconden)"
+
+msgid "default_expire_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is 604.800."
+
+msgid "default_expire_help"
+msgstr "Voer de standaard vervallen interval voor alle nieuw toegevoegde domeinen en netwerken. Als om wat voor reden dan ook de secundaire DNS-server is herhaaldelijk niet in staat om contact met de primaire domeinnaam server om de gegevens te synchroniseren, deze waarde is het interval waarna de secundaire DNS-server zal niet langer rekening met haar domein informatie geldig. Daarna zal hij stoppen serveren domein informatie totdat de primaire domeinnaam van de server weer contact kan worden opgenomen. [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_expire]]. [[base-dns.default_expire_rule]]"
+
+msgid "default_expire_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.default_expire]]. [[base-dns.default_expire_rule]]"
+
+msgid "default_ttl"
+msgstr "Default Time-To-Live Interval (seconden)"
+
+msgid "default_ttl_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is 86400."
+
+msgid "default_ttl_help"
+msgstr "Voer de standaard time-to-live-interval voor alle nieuw toegevoegde domeinen en netwerken. Deze waarde is de lengte van de periode waarin andere domeinnaam servers zullen het domein informatie uit deze domeinnaam server cache en zal aannemen dat het om geldig te zijn zonder met deze domeinnaam server weer. [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_ttl]]. [[base-dns.default_ttl_rule]]"
+
+msgid "default_ttl_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.default_ttl]]. [[base-dns.default_ttl_rule]]"
+
+msgid "global_settings"
+msgstr "Serverinstellingen"
+
+msgid "global_settings_help"
+msgstr "Dit zijn de standaardwaarden voor de domeinnaam server."
+
+msgid "forwarders"
+msgstr "Forwarding Servers"
+
+msgid "forwarders_help"
+msgstr "Voer de IP-adressen van forwarding domeinnaam servers. Forwarding domeinnaam servers worden gebruikt wanneer [[base-dns.caching]] is ingeschakeld en, als de root domain name servers zijn niet rechtstreeks toegankelijk te wijten aan een beperkte of beperkt internetverbinding. [[base-dns.forwarders_rule]]"
+
+msgid "forwarders_rule"
+msgstr "Vul een reeks van vier getallen tussen 0 en 255, gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "forwarders_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-dns.forwarders]]. [[base-dns.forwarders_rule]]"
+
+msgid "zone_xfer_ipaddr"
+msgstr "Zone Transfer Toegang via IP-adres"
+
+msgid "zone_xfer_ipaddr_help"
+msgstr "Voer de IP-adressen die zijn toegestaan ​​om alle records bijgehouden downloaden door deze domeinnaam server via zone transfers. Zone transfers worden gebruikt door secundaire domain name servers om hun records met primaire domain name servers te synchroniseren. De standaardwaarde is om dit veld leeg te laten aan zonetransfer verzoeken weigeren."
+
+msgid "zone_xfer_ipaddr_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-dns.zone_xfer_ipaddr]]."
+
+msgid "recursion_inetaddr_invalid"
+msgstr "Sorry, [[VAR.invalidValue]] is een ongeldige waarde voor [[base-dns.recursion_inetaddr]]."
+
+msgid "zone_format_tab"
+msgstr "Zone Format"
+
+msgid "zone_format_tab_help"
+msgstr "Klik hier om de [[base-dns.zone_format_tab]] configureren voor DNS-records. Dit zou niet nodig, tenzij de systeembeheerder of ISP u specifiek een [[base-dns.zone_format_tab]] instelling heeft gegeven."
+
+msgid "zone_format_settings_divider"
+msgstr "[[base-dns.zone_format]] Instellingen"
+
+msgid "zone_format_user_defined_divider"
+msgstr "User Defined [[base-dns.zone_format]] Instellingen"
+
+msgid "zone_format"
+msgstr "Zone File Format"
+
+msgid "zone_format_help"
+msgstr "Kies een zone bestandsindeling voor subnetting op een niet-octet grens die compatibel is met uw lokale omgekeerde delegatie methode is. RFC2317 is het standaard formaat. DION en OCN-JT zijn veel minder vaak gebruikt."
+
+msgid "zone_format_required_warning"
+msgstr "Dit veld is vereist als het [[base-dns.zone_format]] hierboven geselecteerde is [[base-dns.USER]] maar is in andere genegeerd. De netwerkbeheerder zal u voorzien van het juiste formaat indien nodig."
+
+msgid "zone_format_24"
+msgstr "[[base-dns.zone_format]] voor> 24-bit netwerken."
+
+msgid "zone_format_24_help"
+msgstr "Definieer de [[base-dns.zone_format]] maken voor een niet-octet begrenzingsnetwerk met meer dan 24 bits here. [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_16"
+msgstr "[[base-dns.zone_format]] voor> 16-bits netwerken."
+
+msgid "zone_format_16_help"
+msgstr "Definieer de [[base-dns.zone_format]] maken voor een niet-octet begrenzingsnetwerk met meer dan 16 bits here. [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_8"
+msgstr "[[base-dns.zone_format]] gedurende> 8-bits netwerken."
+
+msgid "zone_format_8_help"
+msgstr "Definieer de [[base-dns.zone_format]] maken voor een niet-octet begrenzingsnetwerk met meer dan 8 bits here. [[base-dns.zone_format_required_warning]]"
+
+msgid "zone_format_0"
+msgstr "[[base-dns.zone_format]] voor> 0-bit netwerken."
+
+msgid "zone_format_0_help"
+msgstr "Definieer de [[base-dns.zone_format]] maken voor een niet-octet begrenzingsnetwerk met meer dan 0 stukjes hier. [[base-dns.zone_format_required_warning]]"
+
+msgid "RFC2317"
+msgstr "RFC2317"
+
+msgid "DION"
+msgstr "DION"
+
+msgid "OCN-JT"
+msgstr "OCN-JT"
+
+msgid "USER"
+msgstr "User Defined"
+
+msgid "a_record"
+msgstr "Forward Adres (A) Record"
+
+msgid "ptr_record"
+msgstr "Reverse Address (PTR) Record"
+
+msgid "cname_record"
+msgstr "Alias ​​(CNAME) Record"
+
+msgid "mx_record"
+msgstr "Mailserver (MX) Record"
+
+msgid "txt_record"
+msgstr "Tekst (TXT) Record"
+
+msgid "records_title"
+msgstr "Domein Instellingen voor"
+
+msgid "a_dir"
+msgstr "Vooruit"
+
+msgid "ptr_dir"
+msgstr "Reverse"
+
+msgid "cname_dir"
+msgstr "Alias"
+
+msgid "txt_dir"
+msgstr "TXT"
+
+msgid "primary_service_button"
+msgstr "Bewerken Primaire Services"
+
+msgid "primary_service_button_help"
+msgstr "Beheer DNS-records voor domeinen en netwerken die deze server wordt geregistreerd om te dienen. Primaire DNS-service wordt ook wel Master DNS-service."
+
+msgid "dnsSetting"
+msgstr "[[base-dns.title]] Primaire zenderlijst"
+
+msgid "select_dom"
+msgstr "Selecteer Domain ..."
+
+msgid "select_net"
+msgstr "Selecteer Netwerk ..."
+
+msgid "add_record"
+msgstr "Record toevoegen ..."
+
+msgid "edit_soa"
+msgstr "Wijzig SOA"
+
+msgid "edit_soa_help"
+msgstr "Wijzig de start van de geautoriseerde beschrijving voor het geselecteerde domein of netwerk autoriteit."
+
+msgid "confirm_delall"
+msgstr "Weet u zeker dat u alle van de DNS-records verwijderen voor dit domein of netwerk?"
+
+msgid "del_records"
+msgstr "Verwijder Records"
+
+msgid "del_records_help"
+msgstr "Klik om alle DNS-records voor het domein of netwerk te verwijderen. Hiermee worden alle records in de geselecteerde zone te verwijderen en kan niet ongedaan worden gemaakt."
+
+msgid "source"
+msgstr "Vraag"
+
+msgid "source_help"
+msgstr "Dit is de vraag of een vraag die rechtstreeks zal worden gevraagd om deze domeinnaam server."
+
+msgid "direction"
+msgstr "Type"
+
+msgid "direction_help"
+msgstr "Dit is het type record dat de vraag betrekking heeft op deze server met de reactie van deze server."
+
+msgid "resolution"
+msgstr "Antwoord"
+
+msgid "resolution_help"
+msgstr "Dit is de reactie of antwoord dat rechtstreeks uit deze domeinnaam server zal worden teruggegeven."
+
+msgid "listAction"
+msgstr "Actie"
+
+msgid "listAction_help"
+msgstr "Dit zijn de knoppen waarmee de domeinnaam registers aan te passen of te verwijderen domeinnaam registers."
+
+msgid "confirm_removal"
+msgstr "Weet u zeker dat u het record [[VAR.rec]] verwijderen?"
+
+msgid "ipaddr_rule"
+msgstr "Een IP-adres is een reeks van vier getallen tussen 0 en 255 gescheiden door punten. Bijvoorbeeld, 192.168.1.1 een geldige invoer."
+
+msgid "inetaddr_rule"
+msgstr "Een IP-adres is een reeks van vier getallen tussen 0 en 255, gescheiden door punten en netmask met '/'. Bijvoorbeeld 192.168.1.0/24 een geldige invoer."
+
+msgid "create_dns_recA"
+msgstr "[[base-dns.title]] Nieuwe [[base-dns.a_record]]"
+
+msgid "modify_dns_recA"
+msgstr "[[base-dns.title]] Wijzigen [[base-dns.a_record]]"
+
+msgid "a_record_explain"
+msgstr "Een [[base-dns.a_record]] biedt de vertaling van een volledig gekwalificeerde domeinnaam naar een IP-adres. Een volledig gekwalificeerde domeinnaam kan bestaan ​​uit zowel een hostnaam en een domeinnaam of alleen een domeinnaam."
+
+msgid "a_host_name"
+msgstr "Hostnaam"
+
+msgid "a_host_name_help"
+msgstr "Voer de hostnaam voor dit record. [[base-dns.a_record_explain]]"
+
+msgid "a_host_name_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "a_domain_name"
+msgstr "Domeinnaam"
+
+msgid "a_domain_name_help"
+msgstr "Voer de domeinnaam voor deze record.[[base-dns.a_record_explain]]"
+
+msgid "a_domain_name_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "a_domain_name_empty"
+msgstr "Gelieve het domein voor dit record."
+
+msgid "a_ip_address"
+msgstr "IP-adres"
+
+msgid "a_ip_address_help"
+msgstr "Voer het IP-adres voor deze record.[[base-dns.a_record_explain]]"
+
+msgid "a_ip_address_invalid"
+msgstr "Het opgegeven IP-adres is ongeldig. [[base-dns.ipaddr_rule]]"
+
+msgid "a_ip_address_empty"
+msgstr "Specificeer het IP-adres waar de host-en domeinnaam zal oplossen. [[base-dns.ipaddr_rule]]"
+
+msgid "create_dns_recPTR"
+msgstr "[[base-dns.title]] Nieuwe [[base-dns.ptr_record]]"
+
+msgid "modify_dns_recPTR"
+msgstr "[[base-dns.title]] Wijzigen [[base-dns.ptr_record]]"
+
+msgid "ptr_explain"
+msgstr "Een [[base-dns.ptr_record]] biedt de vertaling van een IP-adres aan een volledig gekwalificeerde domeinnaam. Een volledig gekwalificeerde domeinnaam kan bestaan ​​uit zowel een hostnaam en een domeinnaam of alleen een domeinnaam."
+
+msgid "ptr_ip_address"
+msgstr "IP-adres"
+
+msgid "ptr_ip_address_help"
+msgstr "Voer het IP-adres voor dit record. [[base-dns.ptr_explain]]"
+
+msgid "ptr_mask"
+msgstr "Subnetmasker"
+
+msgid "ptr_mask_help"
+msgstr "Voer de netwerk-masker van het IP-adres voor dit record. [[base-dns.ptr_explain]]"
+
+msgid "ptr_host_name"
+msgstr "Hostnaam"
+
+msgid "ptr_host_name_help"
+msgstr "Voer de hostnaam voor dit record. [[base-dns.ptr_explain]]"
+
+msgid "ptr_domain_name"
+msgstr "Domeinnaam"
+
+msgid "ptr_domain_name_help"
+msgstr "Voer de domeinnaam voor dit record. [[base-dns.ptr_explain]]"
+
+msgid "a_generate_ptr"
+msgstr "Genereer Reverse Address (PTR) Record"
+
+msgid "ptr_generate_a"
+msgstr "Genereer Forward Adres (A) Record"
+
+msgid "ptr_generate_a_help"
+msgstr "Voeg automatisch een voorwaartse adresrecord naar de opgegeven hostnaam en de domeinnaam op te lossen van het opgegeven IP-adres."
+
+msgid "ptr_subnet_mask_invalid"
+msgstr "De opgegeven subnetmasker is ongeldig. Het subnetmasker moet dot-quad-notatie, die is een reeks van vier getallen tussen 0 en 255, gescheiden door punten worden ingevoerd. Bijvoorbeeld 255.255.255.0 een geldige invoer."
+
+msgid "ptr_subnet_mask_empty"
+msgstr "Specificeer het subnetmasker voor dit record."
+
+msgid "ptr_ip_address_invalid"
+msgstr "Het opgegeven IP-adres is ongeldig. [[base-dns.ipaddr_rule]]"
+
+msgid "ptr_host_name_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "ptr_domain_name_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "ptr_ip_address_empty"
+msgstr "Specificeer het IP-adres dat zal besluiten tot de host-en domeinnaam. [[base-dns.ipaddr_rule]]"
+
+msgid "ptr_domain_name_empty"
+msgstr "Gelieve de domeinnaam die overeenkomt met het IP-adres."
+
+msgid "create_dns_recMX"
+msgstr "[[base-dns.title]] Nieuwe [[base-dns.mx_record]]"
+
+msgid "modify_dns_recMX"
+msgstr "[[base-dns.title]] Wijzigen [[base-dns.mx_record]]"
+
+msgid "mx_host_name"
+msgstr "Hostnaam"
+
+msgid "mx_explain"
+msgstr "Een [[base-dns.mx_record]] identificeert de mailserver die verantwoordelijk is voor e-mail bestemd voor de opgegeven host en domeinnaam."
+
+msgid "mx_host_name_help"
+msgstr "Geef de hostnaam dat alle e-mail verzonden naar de mailserver opgegeven in het veld [[base-dns.mx_target_server]] zal behandelen. [[base-dns.mx_explain]]"
+
+msgid "mx_domain_name"
+msgstr "Domeinnaam"
+
+msgid "mx_domain_name_empty"
+msgstr "Specificeer de domeinnaam voor dit record."
+
+msgid "mx_domain_name_help"
+msgstr "Geef de domeinnaam van de computer waarvoor e-mail moet worden gericht aan de mailserver opgegeven in het veld [[base-dns.mx_target_server]]. [[base-dns.mx_explain]]"
+
+msgid "mx_target_server"
+msgstr "Mail Server Name"
+
+msgid "mx_target_server_help"
+msgstr "Geef de volledig gekwalificeerde domeinnaam van de mailserver die mail accepteert voor de opgegeven host-en domeinnaam. [[base-dns.mx_explain]]"
+
+msgid "mx_priority"
+msgstr "Priority levering"
+
+msgid "mx_priority_help"
+msgstr "Selecteer de prioriteit van postbezorging naar de mailserver. De levering prioriteit bepaalt de volgorde waarin een reeks van meerdere mailserver machines moet proberen te worden voor postbezorging. De instelling Delivery Prioriteit is alleen nuttig als meerdere MX-records zijn opgegeven voor een domein of netwerk."
+
+msgid "very_high"
+msgstr "Zeer hoog (20)"
+
+msgid "high"
+msgstr "Hoog (30)"
+
+msgid "low"
+msgstr "Laag (40)"
+
+msgid "very_low"
+msgstr "Zeer laag (50)"
+
+msgid "mx_dir_very_high"
+msgstr "Mail Hoogste"
+
+msgid "mx_dir_high"
+msgstr "Mail High"
+
+msgid "mx_dir_low"
+msgstr "Mail Low"
+
+msgid "mx_dir_very_low"
+msgstr "Mail Laagste"
+
+msgid "mx_host_name_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "mx_domain_name_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "mx_target_server_invalid"
+msgstr "De opgegeven volledig gekwalificeerde domeinnaam bevat ongeldige tekens."
+
+msgid "mx_target_server_empty"
+msgstr "Gelieve de volledig gekwalificeerde domeinnaam van de mailserver."
+
+msgid "create_dns_recCNAME"
+msgstr "[[base-dns.title]] Nieuwe [[base-dns.cname_record]]"
+
+msgid "modify_dns_recCNAME"
+msgstr "[[base-dns.title]] Wijzigen [[base-dns.cname_record]]"
+
+msgid "cname_explain"
+msgstr "Een alias opnemen biedt de vertaling van een volledig gekwalificeerde domeinnaam naar een andere volledig gekwalificeerde domeinnaam."
+
+msgid "cname_host_name"
+msgstr "Alias ​​hostnaam"
+
+msgid "cname_host_name_help"
+msgstr "Voer de hostnaam die zal fungeren als een alias voor de echte host en/of domeinnaam. [[base-dns.cname_explain]]"
+
+msgid "cname_domain_name"
+msgstr "Alias ​​Domeinnaam"
+
+msgid "cname_domain_name_help"
+msgstr "Voer de domeinnaam die zal fungeren als een alias voor de echte host en/of domeinnaam. [[base-dns.cname_explain]]"
+
+msgid "cname_host_target"
+msgstr "Echte hostnaam"
+
+msgid "cname_host_target_help"
+msgstr "Voer het echt, of canonieke, hostnaam. [[base-dns.cname_explain]]"
+
+msgid "cname_domain_target"
+msgstr "Echte Domeinnaam"
+
+msgid "cname_domain_target_help"
+msgstr "Voer het echt, of canonieke, domeinnaam. [[base-dns.cname_explain]]"
+
+msgid "create_dns_recTXT"
+msgstr "[[base-dns.title]] Nieuwe [[base-dns.txt_record]]"
+
+msgid "modify_dns_recTXT"
+msgstr "[[base-dns.title]] Wijzigen [[base-dns.txt_record]]"
+
+msgid "txt_record_explain"
+msgstr "Een [[base-dns.txt_record]] identificeert de tekst record voor de opgegeven host en domeinnaam."
+
+msgid "txt_host_name"
+msgstr "Hostnaam"
+
+msgid "txt_host_name_help"
+msgstr "Voer de hostnaam voor dit record. [[base-dns.txt_record_explain]]"
+
+msgid "txt_host_name_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "txt_domain_name"
+msgstr "Domeinnaam"
+
+msgid "txt_domain_name_help"
+msgstr "Voer de domeinnaam voor dit record. [[base-dns.txt_record_explain]]"
+
+msgid "txt_domain_name_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "txt_domain_name_empty"
+msgstr "Gelieve de domeinnaam die overeenkomt met het IP-adres."
+
+msgid "txt_strings"
+msgstr "Tekst Record"
+
+msgid "txt_strings_help"
+msgstr "Voer de tekst opnemen."
+
+msgid "txt_strings_invalid"
+msgstr "De opgegeven tekst record bevat ongeldige tekens."
+
+msgid "txt_strings_empty"
+msgstr "Gelieve de tekst Record die overeenkomt met het IP-adres."
+
+msgid "create_soa"
+msgstr "Voeg Start of Authority (SOA) Record"
+
+msgid "modify_soa"
+msgstr "[[base-dns.title]] Wijzigen Start of Authority (SOA) Record"
+
+msgid "domain_soa"
+msgstr "Domain Authority"
+
+msgid "domain_soa_help"
+msgstr "Dit is het domein autoriteit waaraan deze Start of Authority verslag geldt."
+
+msgid "network_soa"
+msgstr "Netwerk Autoriteit"
+
+msgid "network_soa_help"
+msgstr "Dit is het netwerk autoriteit waaraan deze Start of Authority verslag geldt."
+
+msgid "primary_dns"
+msgstr "Primary Name Server (NS)"
+
+msgid "primary_dns_help"
+msgstr "Voer de volledig gekwalificeerde domeinnaam van de primaire nameserver voor het geselecteerde domein of netwerk autoriteit."
+
+msgid "secondary_dns"
+msgstr "Secundaire Name Servers (NS)"
+
+msgid "secondary_dns_help"
+msgstr "Voer een door spaties gescheiden lijst van volledig gekwalificeerde domeinnamen van de secundaire nameservers voor het geselecteerde domein of netwerk autoriteit."
+
+msgid "domain_admin"
+msgstr "DNS Administrator E-mailadres"
+
+msgid "domain_admin_rule"
+msgstr "Vul een goed geformatteerde e-mailadres. De standaard e-mailadres is ingesteld in het gedeelte [[base-dns.soa_defaults]]. Bijvoorbeeld user@example.com een ​​geldige invoer."
+
+msgid "domain_admin_help"
+msgstr "Voer het e-mailadres van de administratieve contactpersoon voor alle nieuw toegevoegde domeinen en netwerken. [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.domain_admin]]. [[base-dns.domain_admin_rule]]"
+
+msgid "domain_admin_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.domain_admin]]. [[base-dns.domain_admin_rule]]"
+
+msgid "refresh"
+msgstr "Vernieuwen Interval (seconden)"
+
+msgid "refresh_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is ingesteld in het gedeelte [[base-dns.soa_defaults]]."
+
+msgid "refresh_help"
+msgstr "Voer de standaard refresh interval voor alle nieuw toegevoegde domeinen en netwerken. Deze waarde is de interval waarmee de secundaire DNS-server zal proberen om haar administratie te synchroniseren met de primaire domeinnaam server. [[base-dns.refresh_rule]]"
+
+msgid "refresh_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.refresh]]. [[base-dns.refresh_rule]]"
+
+msgid "retry"
+msgstr "Retry Interval (seconden)"
+
+msgid "retry_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is ingesteld in het gedeelte [[base-dns.soa_defaults]]."
+
+msgid "retry_help"
+msgstr "Voer de standaard interval voor nieuwe pogingen voor alle nieuw toegevoegde domeinen en netwerken. Als om wat voor reden dan ook de secundaire DNS-server is niet in staat om contact met de primaire domeinnaam server om de gegevens te synchroniseren, deze waarde is het interval waarmee de secundaire DNS-server herhaaldelijk zal proberen om contact met de primaire domeinnaam server. [[base-dns.retry_rule]]"
+
+msgid "retry_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.retry]]. [[base-dns.retry_rule]]"
+
+msgid "expire"
+msgstr "Vervallen Interval (seconden)"
+
+msgid "expire_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is ingesteld in het gedeelte [[base-dns.soa_defaults]]."
+
+msgid "expire_help"
+msgstr "Voer de standaard vervallen interval voor alle nieuw toegevoegde domeinen en netwerken. Als om wat voor reden dan ook de secundaire DNS-server is herhaaldelijk niet in staat om contact met de primaire domeinnaam server om de gegevens te synchroniseren, deze waarde is het interval waarna de secundaire DNS-server zal niet langer rekening met haar domein informatie geldig. Daarna zal hij stoppen serveren domein informatie totdat de primaire domeinnaam van de server weer contact kan worden opgenomen. [[base-dns.expire_rule]]"
+
+msgid "expire_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.expire]]. [[base-dns.expire_rule]]"
+
+msgid "ttl"
+msgstr "Time-To-Live Interval (seconden)"
+
+msgid "ttl_rule"
+msgstr "Vul een geheel getal tussen 1 en 4096000. De standaardwaarde is ingesteld in het gedeelte [[base-dns.soa_defaults]]."
+
+msgid "ttl_help"
+msgstr "Voer de standaard time-to-live-interval voor alle nieuw toegevoegde domeinen en netwerken. Deze waarde is de lengte van de periode waarin andere domeinnaam servers zullen het domein informatie opgehaald cachen van deze domeinnaam server en veronderstellen een geldigheidsduur zonder controle met deze domeinnaam server weer. [[base-dns.ttl_rule]]"
+
+msgid "ttl_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.ttl]]. [[base-dns.ttl_rule]]"
+
+msgid "ttl_empty"
+msgstr "Sorry, je hebt niet opgegeven en een waarde voor [[base-dns.ttl]]. [[base-dns.ttl_rule]]"
+
+msgid "secondary_service_button"
+msgstr "Bewerk Secundaire Services"
+
+msgid "secondary_service_button_help"
+msgstr "Beheer secundaire DNS-service voor domeinen en netwerken."
+
+msgid "sec_list"
+msgstr "[[base-dns.title]] Secundaire zenderlijst"
+
+msgid "create_slave_rec"
+msgstr "[[base-dns.title]] toevoegen Secundaire Dienst"
+
+msgid "modify_slave_rec"
+msgstr "[[base-dns.title]] Wijzigen Secundaire Dienst"
+
+msgid "slave_domain_but"
+msgstr "Secondary Domain Name Server voor Domain"
+
+msgid "slave_domain"
+msgstr "Domeinnaam"
+
+msgid "slave_domain_help"
+msgstr "Voer de naam van het domein waarvoor deze machine zal een secundaire DNS-server zijn."
+
+msgid "slave_dom_masters"
+msgstr "Primaire DNS Server IP Adres"
+
+msgid "slave_dom_masters_help"
+msgstr "Voer het IP-adres van de primaire DNS-server voor dit domein."
+
+msgid "slave_network_but"
+msgstr "Secondary Domain Name Server voor Network"
+
+msgid "slave_ipaddr"
+msgstr "Netwerk"
+
+msgid "slave_ipaddr_help"
+msgstr "Voer het IP-adres van het netwerk waarvoor deze machine zal een secundaire DNS-server zijn."
+
+msgid "slave_netmask"
+msgstr "Subnetmasker voor het netwerk"
+
+msgid "slave_netmask_help"
+msgstr "Voer het subnetmasker van het netwerk waarvoor deze machine zal een secundaire DNS-server zijn."
+
+msgid "slave_net_masters"
+msgstr "Primaire DNS Server IP Adres"
+
+msgid "slave_net_masters_help"
+msgstr "Voer het IP-adres van de primaire DNS-server voor dit domein."
+
+msgid "sec_authority"
+msgstr "Secundaire Dienst"
+
+msgid "sec_authority_help"
+msgstr "Dit is het domein of netwerk waarvoor deze machine zal een secundaire DNS-server zijn."
+
+msgid "sec_primaries"
+msgstr "Primaire DNS-server"
+
+msgid "sec_primaries_help"
+msgstr "Dit is het IP-adres van de primaire DNS-server voor dit domein of netwerk."
+
+msgid "recordlist_action"
+msgstr "Actie"
+
+msgid "recordlist_action_help"
+msgstr "Dit zijn de knoppen waarmee secundaire domain name service registers aan te passen of te verwijderen secundaire domeinnaam van dienst."
+
+msgid "confirm_removal_of_sec"
+msgstr "Weet u zeker dat u de secundaire domain name service record voor [[VAR.rec]] verwijderen?"
+
+msgid "slave_ipaddr_invalid"
+msgstr "Het opgegeven IP-adres is ongeldig."
+
+msgid "slave_netmask_invalid"
+msgstr "De opgegeven netmask is ongeldig. Netmasks moet dot-quad-notatie worden ingevoerd."
+
+msgid "slave_net_masters_invalid"
+msgstr "De primaire DNS-server IP-adres is ongeldig."
+
+msgid "slave_domain_invalid"
+msgstr "De opgegeven domeinnaam is ongeldig."
+
+msgid "slave_dom_masters_invalid"
+msgstr "De primaire DNS-server IP-adres is ongeldig."
+
+msgid "apply_changes"
+msgstr "Wijzigingen toepassen Nu"
+
+msgid "apply_changes_help"
+msgstr "Klik hier om eventuele wijzigingen in uw domeinnaam server neemt onmiddellijk activeren. Eventuele wijzigingen aan uw domeinnaam records pas actief worden wanneer ze expliciet door te klikken op deze knop worden toegepast op de domeinnaam server."
+
+msgid "apply_changes_disabledHelp"
+msgstr "Deze knop is uitgeschakeld, omdat je nog niet hebt toegevoegd of gewijzigd domeinnaam naamserverrecords. Na het toevoegen of wijzigen van de domeinnaam server neemt, klik hier om alle wijzigingen aan jouw domein server verslagen onmiddellijk te activeren."
+
+msgid "amDNSNameTag"
+msgstr "Domain Name Service (DNS)-server"
+
+msgid "amDetailsTitle"
+msgstr "Domain Name Service (DNS) Server Details"
+
+msgid "amNotRunning"
+msgstr "De domeinnaam van de server is niet actief en kon niet worden opgestart. In de [[base-apache.amAdmservNameTag]], schakelt u de domeinnaam van de server uit en weer aan om te zien of dit corrigeert het probleem. Als de domeinnaam van de server is nog steeds niet in staat om te beginnen, probeer dan het rebooten van de server zelf door te klikken op de [[base-power.reboot]] knop in het menu onder [[base-power.power]] [[base-alpine.serverconfig]]. Als de domeinnaam van de server is nog steeds niet in staat om te beginnen, zie [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amStatusOK"
+msgstr "De domeinnaam van de server werkt normaal."
+
+msgid "select_a_domain"
+msgstr "Selecteer een domein ..."
+
+msgid "select_a_network"
+msgstr "Selecteer een netwerk ..."
+
+msgid "no_records"
+msgstr "Geen domein of Network Autoriteiten"
+
+msgid "subdom_host_name"
+msgstr "Subdomein"
+
+msgid "subdom_host_name_help"
+msgstr "Geef de goedkeurende subdomein naam. Bijvoorbeeld, om het subdomein remote.example.com delegeren, deze server moet gezaghebbend voor het domein example.com zijn. Geef alleen de naam van het subdomein, remote."
+
+msgid "subdom_domain_name"
+msgstr "Ouder Domeinnaam"
+
+msgid "subdom_domain_name_help"
+msgstr "Selecteer de bovenliggende domeinnaam. Bijvoorbeeld, om het subdomein remote.example.com delegeren, selecteert example.com"
+
+msgid "subdom_nameservers"
+msgstr "Name Servers"
+
+msgid "subdom_nameservers_help"
+msgstr "Geef een door komma's gescheiden lijst van volledig gekwalificeerde hostnamen die als autoriteit voor de opgegeven subdomein zijn. Ten minste een name server moet worden opgegeven."
+
+msgid "subdom_nameservers_invalid"
+msgstr "De [[base-dns.subdom_nameservers]] lijst bevat ongeldige tekens of hostnamen."
+
+msgid "subdom_nameservers_empty"
+msgstr "Geef ten minste een DNS-server die als autoriteit voor dit subdomein."
+
+msgid "subnet_ip_address"
+msgstr "Subnet IP-adres"
+
+msgid "subnet_ip_address_help"
+msgstr "Geef een IP-adres binnen het gewenste subnet die zullen worden gedelegeerd aan een andere DNS-server."
+
+msgid "subnet_mask"
+msgstr "Subnet Network Mask"
+
+msgid "subnet_mask_help"
+msgstr "Geef het subnet mask netwerk in dot-quad-notatie."
+
+msgid "subnet_nameservers"
+msgstr "Name Servers"
+
+msgid "subnet_nameservers_help"
+msgstr "Geef een door komma's gescheiden lijst van volledig gekwalificeerde hostnamen die als autoriteit voor de opgegeven subnet zijn. Ten minste een name server moet worden opgegeven."
+
+msgid "subnet_nameservers_invalid"
+msgstr "De [[base-dns.subnet_nameservers]] lijst bevat ongeldige tekens of hostnamen."
+
+msgid "subnet_nameservers_empty"
+msgstr "Geef ten minste een DNS-server die als autoriteit voor dit subnet."
+
+msgid "create_dns_rec"
+msgstr "Voeg een DNS-record"
+
+msgid "modify_dns_rec"
+msgstr "[[base-dns.title]] Wijzig een DNS-record"
+
+msgid "authority"
+msgstr "Autoriteit"
+
+msgid "authority_help"
+msgstr "DNS autoriteiten zijn domeinen en netwerken."
+
+msgid "subnet_dir"
+msgstr "Subnet"
+
+msgid "subdom_dir"
+msgstr "Subdomein"
+
+msgid "subnet"
+msgstr "Subnet Delegatie"
+
+msgid "subdom"
+msgstr "Subdomein Delegatie"
+
+msgid "modify_dns_recSUBDOM"
+msgstr "[[base-dns.title]] Wijzig een subdomein delegatie."
+
+msgid "create_dns_recSUBDOM"
+msgstr "Voeg een subdomein delegatie"
+
+msgid "modify_dns_recSUBNET"
+msgstr "[[base-dns.title]] een Subnet delegatie wijzigen"
+
+msgid "create_dns_recSUBNET"
+msgstr "Voeg een Subnet delegatie"
+
+msgid "add_secondary"
+msgstr "Voeg Secundaire service ..."
+
+msgid "add_secondary_forward"
+msgstr "... Voor een domein"
+
+msgid "add_secondary_network"
+msgstr "... Voor een netwerk"
+
+msgid "cname_domain_name_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "cname_domain_target_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "cname_host_target_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "subdom_host_name_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "subdom_host_name_empty"
+msgstr "Omschrijf het subdomein naam te worden gedelegeerd aan externe DNS-servers."
+
+msgid "subdom_domain_name_invalid"
+msgstr "De opgegeven domeinnaam bevat ongeldige tekens."
+
+msgid "subdom_namerservers_invalid"
+msgstr "De opgegeven volledig gekwalificeerde domeinnaam voor de primaire DNS-server is ongeldig."
+
+msgid "subnet_subnet_mask_invalid"
+msgstr "De opgegeven subnetmasker is ongeldig. Het subnetmasker moet dot-quad-notatie worden ingevoerd."
+
+msgid "subnet_ip_address_invalid"
+msgstr "Het opgegeven IP-adres is ongeldig."
+
+msgid "subnet_ip_address_empty"
+msgstr "Geef een IP-adres dat is een lid van de gedelegeerde subnet."
+
+msgid "primary_dns_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "secondary_dns_invalid"
+msgstr "Een secundaire naamserver hostnaam bevat ongeldige tekens."
+
+msgid "refresh_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_refresh]]. [[base-dns.default_refresh_rule]]"
+
+msgid "retry_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_retry]]. [[base-dns.default_retry_rule]]"
+
+msgid "expire_invalid"
+msgstr "Sorry, [[VAR.invalidValue] is een ongeldige waarde voor [[base-dns.default_expire]]. [[base-dns.default_expire_rule]]"
+
+msgid "cname_domain_name_empty"
+msgstr "Vul de Alias ​​Domeinnaam."
+
+msgid "cname_domain_target_empty"
+msgstr "Geef een Echte domeinnaam die de Alias ​​host-en domeinnaam worden omgezet naar."
+
+msgid "slave_domain_empty"
+msgstr "Gelieve de domeinnaam die deze server een secundaire DNS-server voor zal worden."
+
+msgid "slave_dom_masters_empty"
+msgstr "Specificeer het IP-adres van de primaire DNS-server voor de Domeinnaam."
+
+msgid "slave_ipaddr_empty"
+msgstr "Geef een IP-adres dat is een lid van het netwerk instantie bediend door de primaire DNS-server."
+
+msgid "slave_net_masters_empty"
+msgstr "Specificeer het IP-adres van de primaire DNS-server voor het netwerk autoriteit."
+
+msgid "slave_netmask_empty"
+msgstr "Gelieve het netmask in dot-quad notatie die, in aanvulling op de eisen Netwerk IP-adres, definieert het netwerk dat de primaire DNS-server als autoriteit voor."
+
+msgid "cname_host_name_empty"
+msgstr "Specificeer de hostnaam voor dit record."
+
+msgid "cname_host_name_invalid"
+msgstr "De opgegeven hostnaam bevat ongeldige tekens."
+
+msgid "parent_network"
+msgstr "Ouder Network"
+
+msgid "parent_network_help"
+msgstr "Dit is de moedermaatschappij netwerk waarvoor deze server is gezaghebbend. Alle IP-adressen in het opgegeven subnet moeten behoren tot deze ouder netwerk."
+
+msgid "invalidDuplicate"
+msgstr "Een identieke domeinnaam opnemen al bestaat."
+
+msgid "named-did-not-start"
+msgstr "De Name Server (DNS) niet juist meer kan opstarten."
+
+msgid "invalid-authority"
+msgstr "De DNS-record ontbreekt cruciale informatie."
+
+msgid "SOA-already-exists-for-zone"
+msgstr "Een start van autoriteit (SOA) opnemen al bestaat voor deze zone."
+
+msgid "secondaryZoneOverlap"
+msgstr "Een bestaande secundaire netwerkdienst strijdig is met deze plaat."
+
+msgid "secondaryZoneDuplicate"
+msgstr "Een bestaande secundaire netwerkdienst strijdig is met deze plaat."
+
+msgid "primaryZoneDuplicate"
+msgstr "Een bestaande primaire netwerkdienst strijdig is met deze plaat."
+
+msgid "primaryZoneOverlap"
+msgstr "Een bestaande primaire netwerkdienst strijdig is met deze plaat."
+
+msgid "auto_dns"
+msgstr "Auto DNS"
+
+msgid "auto_dns_help"
+msgstr "Instellingen voor Auto DNS"
+
+msgid "auto_a"
+msgstr "Hostnamen"
+
+msgid "auto_a_help"
+msgstr "Voeg extra hostnamen voor Auto DNS. Dit zal u toelaten om setup domeinen in een handomdraai"
+
+msgid "auto_mx"
+msgstr "Mail Server Host Name"
+
+msgid "auto_mx_help"
+msgstr "Voeg de naam van de Mail Server voor dit domein host. Laat de domain.tld niet toevoegen"
+
+msgid "dnsNames_header"
+msgstr "Maak een keuze die domeinnamen zal deze site te beheren"
+
+msgid "dnsNames"
+msgstr "Beschikbare domeinnamen"
+
+msgid "dnsNames_help"
+msgstr "Selecteer welke domeinnamen deze virtuele website kunnen administor zal zijn"
+
+msgid "selected"
+msgstr "Gekozen"
+
+msgid "notSelected"
+msgstr "Niet geselecteerd"
+
+msgid "nodnsmanage"
+msgstr "Domeinnaam Manager niet instellen"
+
+msgid "dnsempty"
+msgstr "De beheerder van dit syteem heeft geen setup welke domeinen voor u beheren. Als u denkt dat dit een fout is, neem dan contact op met de systeembeheerder"
+
+msgid "query"
+msgstr "Laat DNS Query Access"
+
+msgid "query_help"
+msgstr "Dit is standaard ingeschakeld. Hiermee geselecteerde IP-adres reeksen om uw DNS-server voor DNS-informatie opvragen. U kunt aangeven welk adres reeksen uw server onder een beetje verder kan opvragen in het veld 'Allow Vragen van deze Networks'."
+
+msgid "query_all_allowed"
+msgstr "Laat Vragen van Everyone"
+
+msgid "query_all_allowed_help"
+msgstr "Sta query-toegang vanaf het hele internet. Als u een gezaghebbend nameserver voor domeinen draaien, dan moet je deze aanzet. Als uw nameserver wordt verondersteld prive te zijn, kunt u deze uitschakelen."
+
+msgid "query_inetaddr"
+msgstr "Laat Vragen van deze netwerken"
+
+msgid "query_inetaddr_help"
+msgstr "In dit vak kunt u aangeven welk IP-adres reeksen mag uw DNS-server opvragen. Standaard alleen localhost ('127 .0.0.1/32 ') is toegestaan. Als u het selectievakje aanvinken voor 'Queries toestaan ​​van Everyone', dan zal het overschrijven wat extra adresbereiken je hier plaatsen in en zal iedereen query-toegang mogelijk te maken."
+
+msgid "caching"
+msgstr "Laat DNS Cache Access"
+
+msgid "caching_help"
+msgstr "Het inschakelen van caching, ook wel recursie, laat resolutie van domeinen en netwerk zones die andere nameservers zijn gezaghebbend voor. Echter, hardlopen zo'n 'open' DNS-server bloot jezelf en anderen om de risico's van DDoS-aanvallen. Dus als je een DNS-server nodig hebt om domeinen die u niet gemachtigd voor te lossen, dan moet je gebruik maken van de DNS-server van uw provider, of (als je nog wilt uw eigen DNS-server te gebruiken voor die!) Moet je alleen toestaan ​​vraag toegang voor localhost ('127 .0.0.1/32 ') op deze DNS-server, of geselecteerde en betrouwbare netwerk-adres bereiken."
+
+msgid "caching_all_allowed"
+msgstr "Open DNS-server (niet aanbevolen!)"
+
+msgid "caching_all_allowed_help"
+msgstr "Als u hier een vinkje zetten, zal uw DNS-server volledig open zijn en zal DNS oplossen voor iedereen en iedereen. Dat is een heel slecht idee. Dit onthult jezelf en anderen om de risico's van DDoS-aanvallen. Dus als je een DNS-server nodig hebt om domeinen die u niet gemachtigd voor te lossen, dan moet je gebruik maken van de DNS-server van uw provider, of (als je nog wilt uw eigen DNS-server te gebruiken voor die!) Moet je alleen toestaan ​​vraag toegang voor localhost ('127 .0.0.1/32 ') op deze DNS-server, of geselecteerde en betrouwbare netwerk-adres bereiken."
+
+msgid "recursion_inetaddr"
+msgstr "Toegang toestaan ​​Cache van deze netwerken"
+
+msgid "recursion_inetaddr_help"
+msgstr "Voer de IP-adressen (met netmask!) Van adresbereiken die mogen recursie vraag verzoeken de cache server. [[base-dns.inetaddr_rule]]"
+
+msgid "rate_limits"
+msgstr "DNS Rate Limits:"
+
+msgid "rate_limits_enabled"
+msgstr "Beoordeel Grenzen Ingeschakeld"
+
+msgid "rate_limits_enabled_help"
+msgstr "DNS responspercentage beperken (DNS RRL) is een experimentele bescherming functie voor domain name servers. Dit mechanisme houdt BIND 9 wordt gebruikt in het versterken van reflectie denial of service-aanvallen, alsmede gedeeltelijk beschermen BIND 9 zelf van enkele denial of service attacks. Standaard moet worden ingeschakeld."
+
+msgid "responses_per_second"
+msgstr "Reacties per seconde"
+
+msgid "responses_per_second_help"
+msgstr "Reacties per seconde is een limiet op identieke reacties in plaats van een limiet op alle reacties of zelfs alle reacties bij een cliënt. 10 identieke reacties per seconde is een gulle limiet behalve misschien wanneer veel klanten gebruik maakt van een enkel IP-adres via Network Address Translation (NAT). De standaard limiet van nul geeft een onbegrensde limiet aan snelheidsbeperkende in een weergave of alleen rente-limiet NXDOMAIN of andere fouten uit te schakelen."
+
+msgid "window"
+msgstr "Venster"
+
+msgid "window_help"
+msgstr "Snelheidsbeperkende maakt gebruik van een credit-of token bucket regeling. Elke identieke respons heeft een conceptuele account die wordt gegeven REACTIES per seconde en fouten per seconde credits per seconde verwerkt. Een DNS-verzoek triggering sommige gewenste respons debiteert de rekening voor een. Reacties worden niet verzonden, terwijl de rekening negatief is. De rekening kan niet positiever dan de per-seconde te beperken of meer negatieve dan vermenigvuldigd met de per-seconde limiet geworden. Een DNS-client die verzoeken stuurt die niet beantwoord kan dus gestraft voor maximaal venster seconden, zelfs nadat het misbruik vraag stroom stopt."
+
+msgid "dns_logging"
+msgstr "Uitgebreide DNS logging:"
+
+msgid "enable_dns_logging"
+msgstr "Enable uitgebreide DNS logging"
+
+msgid "enable_dns_logging_help"
+msgstr "WAARSCHUWING: Deze mag alleen worden gebruikt voor het debuggen, aangezien het een query naar de DNS-server naar /var/log/messages zal loggen. Zelfs op een licht gebruikte DNS-server dit zorgt voor een veel log entries. Maar je zou willen kort (!) Staat uitgebreide DNS logging om te zien of je 'DNS Rate Limits' correct werken."
+
+msgid "cap_serverDNS"
+msgstr "Server DNS Management"
+
+msgid "cap_siteDNS"
+msgstr "Site DNS Management"
+

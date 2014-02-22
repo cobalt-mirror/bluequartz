@@ -1,0 +1,22 @@
+The format of the import file runs like this..
+
+(
+	CLASSNAME  ( "\t" ( NAMESPACE "." )? ATTRIBUTE )* "\n"
+	"ADD"      ( "\t" VALUE )* "\n"
+) *
+
+For example.
+
+Workgroup name
+ADD	blerk
+User	name	fullName	password	Email.aliases
+ADD	harris	Harris Vaegan-Lloyd	foobar	&foo&bar&baz&
+ADD	sam	samantha	suzy	&loo&lan&lark&
+
+Think of it as a really stupid language rather than a data file.
+
+Lines which do not start with an "ADD" command set up the script to work on
+objects with the Class of the first arguments and set up which attributes to
+set/add with. Attributes can not include tabs - I should fix that somewhow.
+
+

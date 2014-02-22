@@ -1,0 +1,8 @@
+<item 
+    id="base_sysservices" 
+    label="[[base-services.cpservices]]" 
+    description="[[base-services.cpservicesDescription]]" 
+    url="/base/services/services.php"
+>
+    <parent id="base_not_in_use" order="10"/>
+</item>

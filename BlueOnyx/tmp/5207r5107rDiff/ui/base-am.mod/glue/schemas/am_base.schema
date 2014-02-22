@@ -1,0 +1,48 @@
+<!--
+  For information on how Active Monitor works, see the documentation in the
+  config files.  For schema details look at am.schema.
+-->
+
+<!-- This is the AM Namespace for monitoring CPU -->
+<class name="ActiveMonitor" namespace="CPU" version="1.3">
+    <property name="enabled"            type="boolean"  default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
+	type="boolean"  default="1"/>
+    <property name="type"               type="scalar"   default="exec"/>
+    <property name="typeData"           type="scalar"   
+	default="/usr/sausalito/swatch/bin/am_cpu.sh"/>
+
+    <property name="currentState"       type="amstate"  default="N"/>
+    <property name="lastChange"         type="uint"     default="0"/>
+    <property name="lastRun"            type="uint"     default="0"/>
+    <property name="currentMessage"     type="scalar"   default=""/>
+    <property name="nameTag"   		type="scalar"  	
+	default="[[base-am.amCPUName]]"/>
+    <property name="URL"	    	type="scalar" 
+ 	default="/base/am/cpu_details.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+    <property name="yThreshhold"	type="scalar"	default="4.0"/>
+    <property name="rThreshhold"	type="scalar"	default="6.0"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring Memory -->
+<class name="ActiveMonitor" namespace="Memory" version="1.3">
+    <property name="enabled"            type="boolean"  default="1"/>
+    <property name="monitor"	writeACL="ruleCapable(serverActiveMonitor)"
+	type="boolean"  default="1"/>
+    <property name="type"               type="scalar"   default="exec"/>
+    <property name="typeData"           type="scalar"
+	default="/usr/sausalito/swatch/bin/am_mem.pl"/>
+
+    <property name="currentState"       type="amstate"  default="N"/>
+    <property name="lastChange"         type="uint"     default="0"/>
+    <property name="lastRun"            type="uint"     default="0"/>
+    <property name="currentMessage"     type="scalar"   default=""/>
+    <property name="nameTag"      	type="scalar"  	
+	default="[[base-am.amMemoryName]]"/>
+    <property name="URL"	     	type="scalar"  	
+ 	default="/base/am/memory_details.php"/>
+    <property name="UIGroup"		type="scalar"   default="system"/>
+    <property name="memYellow"		type="int"	default="80"/>
+    <property name="memRed"		type="int"	default="90"/>
+</class>

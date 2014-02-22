@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "techSupportUSPhone"
+msgstr "(Non disponible)"
+
+msgid "techSupportIntlPhone"
+msgstr "(Non disponible)"
+
+msgid "techSupportEmail"
+msgstr "(Non disponible)"
+
+msgid "contactTechSupport"
+msgstr "S&#39;il vous plaît visitez [[base-sauce-basic.techSupportURL]] pour info technique."
+
+msgid "techSupportURL"
+msgstr "[[Base-alpine.vendorSite]]"
+
+msgid "kill_dhclient_failed"
+msgstr "Impossible de s'assurer que dhclient s'est arrêté de fonctionner."
+
+msgid "Invalid-object"
+msgstr "Erreur interne : Tentative de suppression d'objet non valide. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Une erreur s'est produite. L'utilisateur [[VAR.name]] a déjà été supprimé."
+
+msgid "failed-to-add-user"
+msgstr "Erreur interne : Impossible de créer le nouvel utilisateur $name. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "La valeur spécifiée pour le quota est trop grande. Le quota de disque maximum permis est [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "Le nom d'hôte spécifié est trop long. Un nom d'hôte est limité à 40 caractères."
+
+msgid "descReadOnly"
+msgstr "La description de l'utilisateur est en lecture seule."

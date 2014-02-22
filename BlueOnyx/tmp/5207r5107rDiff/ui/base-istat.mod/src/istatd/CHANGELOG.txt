@@ -1,0 +1,71 @@
+  CHANGELOG FOR ISTAT
+ -------------------------------------------------------------------------
+  * Version: 0.5.9
+ -------------------------------------------------------------------------
+  * Version: 0.5.8
+  * Fix: Checking the temperature on QNAP needs reopen of /proc
+  * Fix: Build issue on Solaris 10
+  * Fix: Tests for network libraries
+  * Fix: Killed some memory leaks
+  * Fix: istatd failed to build on new pedantic gcc
+ -------------------------------------------------------------------------
+  * Version: 0.5.7
+  * New: Probes for used swap space even if it's not used by client.
+  * New: Default config will set disk_mount_path_label to 1.
+  * New: Support for temperature on QNAP ARM NAS devices.
+  * New: Support for cross-compiling to QNAP (if you have a toolchain)
+  * New: Support for older versions of lm_sensors (API < 0x0400).
+  * New: Support for AIX via libperfstat.
+  * New: Finally a README.txt with install instructions.
+  * Fix: libfslabel could in some cases return uninitialized variables.
+  * Fix: kvm_open caused an error on first probe.
+  * Fix: sysctl will now warn if the network device can't be found.
+  * Fix: monitor_net can now include a colon (eg. ce:ce0).
+  * Fix: Detect user/group config errors on system where uid_t/gid_t are unsigned.
+  * Fix: PID file ends with a newline.
+  * Fix: Calculate swap correctly on solaris using the Sun compiler.
+ -------------------------------------------------------------------------
+  * Version: 0.5.6
+  * New: Temperature and fan support with lm_sensors.
+  * Fix: Reverted old cache memory calculation.
+ -------------------------------------------------------------------------
+  * Version: 0.5.5
+  * New: FreeBSD 4.10 support, thanks to tagentsoft for the patch.
+  * Fix: Memory meterics incorrect in Linux (cached).
+  * Fix: Do not create PID file if it's not specified in config.
+  * Fix: Removed unneccesary linkage to libld.
+  * Fix: Reverted load avg. probe for procfs.
+  * Fix: Segfault when reading cache with more than one client.
+  * Fix: PID file contained the mother PID when -d was passed.
+  * Fix: Mute sys/mount.h warning in FreeBSD 6.0.
+ -------------------------------------------------------------------------
+  * Version: 0.5.4
+  * New: FreeBSD support. Yay!
+  * New: Implemented libfslabel. Support for reading disk labels.
+  * New: Specify custom disk labels in config file.
+  * Fix: CPU calculation gone bad. -0% idle not more an issue.
+  * Fix: Some dubious C string manipulation.
+  * Fix: Probe failed net ifaces every minute to see if they are up.
+  * Fix: Create pid and cache directories automaticly.
+ -------------------------------------------------------------------------
+  * Version: 0.5.3
+  * New: Solaris support. Yay!
+  * New: Changed to automake building system.
+  * New: monitor_disk can now take mount points.
+  * Fix: Permissions problem with cache fixed.
+  * Fix: Resolved issue with no memory stats running istatd on a VPS.
+ -------------------------------------------------------------------------
+  * Version: 0.5.2
+  * New: Cache directory now configurable by cache_dir in config.
+  * New: Created basic man page documentation.
+  * New: Flag for clearing the cache. (--clear-sessions)
+  * Fix: Should be more quiet on the stdout now.
+  * Fix: Default path to configuration file will now be honoured.
+  * Fix: Makefile should obey configured paths.
+ -------------------------------------------------------------------------
+  * Version: 0.5.1
+  * Fix: Display help and version without read permission to config.
+  * Fix: Forgot to rename properties for network and port that was changed.
+ -------------------------------------------------------------------------
+  * Version: 0.5.0
+  * New: First release.

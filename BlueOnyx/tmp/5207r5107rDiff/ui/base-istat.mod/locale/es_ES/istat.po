@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "istat"
+msgstr "iStat"
+
+msgid "istat_help"
+msgstr "Ajustes iStat puede cambiarse aquí."
+
+msgid "iStatSettings"
+msgstr "Ajustes iStat"
+
+msgid "enableiStatField"
+msgstr "Activar servidor"
+
+msgid "enableiStatField_help"
+msgstr "Encienda el servidor iStat encendido o apagado. iStat recoge datos tales como CPU, memoria, red y uso del disco y sigue la historia. iStat está cumpliendo las estadísticas a su aplicación iStat iPhone / iPad."
+
+msgid "serverCodeField"
+msgstr "Código del Servidor"
+
+msgid "serverCodeField_help"
+msgstr "Introduzca el código de acceso que tiene cinco dígitos para la conexión de este servidor. El código de acceso se introduce sólo puede contener caracteres numéricos."
+
+msgid "networkPortField"
+msgstr "Número de puerto"
+
+msgid "networkPortField_help"
+msgstr "Introduzca el número de puerto que se utilizará el servidor. El número de puerto predeterminado es 5109."
+
+msgid "errorWritingConfFile"
+msgstr "Error al escribir el archivo de configuración."
+
+msgid "cap_serveriStat"
+msgstr "Ajustes iStat"
+
+msgid "NetworkPortInUse"
+msgstr "El puerto que ha especificado como nuevo puerto ya está en uso por otro servicio. Por favor elija otro puerto en vez."

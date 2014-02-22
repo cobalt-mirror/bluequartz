@@ -1,0 +1,462 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "amDetailsTitle"
+msgstr "Dettagli del server MySQL"
+
+msgid "amMysqlNameTag"
+msgstr "MySQL Server"
+
+msgid "amNotAccepting"
+msgstr "Il server MySQL non funziona regolarmente. Si prega di provare a riavviare manualmente."
+
+msgid "amStatusOK"
+msgstr "Il server MySQL funziona normalmente."
+
+msgid "current_pass"
+msgstr "Password attuale:"
+
+msgid "current_pass_help"
+msgstr "Inserisci la password attuale"
+
+msgid "delete_backup"
+msgstr "Elimina Backup"
+
+msgid "delete_backup_help"
+msgstr "Eliminare il file di backup di MySQL"
+
+msgid "download_backup"
+msgstr "Scarica DB Backup"
+
+msgid "download_backup_help"
+msgstr "Scarica l'attuale snap shot del database"
+
+msgid "dump"
+msgstr "Eseguire SQL Dump"
+
+msgid "dump_help"
+msgstr "Eseguire MySQL Dump"
+
+msgid "filesize"
+msgstr "Dimensioni della cartella:"
+
+msgid "filesize_help"
+msgstr "La dimensione del file di dump di MySQL"
+
+msgid "last_backup"
+msgstr "Dell'ultimo backup:"
+
+msgid "last_backup_help"
+msgstr "Guardate l'ultima volta è successo il backup"
+
+msgid "mysql_enabled"
+msgstr "Abilita MySQL Server:"
+
+msgid "mysql_enabled_help"
+msgstr "Fare clic per attivare MySQL Server"
+
+msgid "mysql_header"
+msgstr "MySQL Server"
+
+msgid "mysqldump"
+msgstr "Crea database Snap Shot"
+
+msgid "mysqldump_help"
+msgstr "Eseguire il backup di tutti i database"
+
+msgid "mysqlpass"
+msgstr "Nuova Password:"
+
+msgid "mysqlpass_help"
+msgstr "Consente di modificare la password di MySQL, fino a quando si conosce la password corrente."
+
+msgid "password"
+msgstr "MySQL password"
+
+msgid "password_help"
+msgstr "La password per l'utente principale di MySQL"
+
+msgid "server"
+msgstr "Server"
+
+msgid "server_help"
+msgstr "Abilitare e disabilitare MySQL Server"
+
+msgid "sqldump"
+msgstr "DB SQL Dump"
+
+msgid "sqldump_help"
+msgstr "Dump di tutti i database in un file di testo"
+
+msgid "sqlpass"
+msgstr "Cambia password"
+
+msgid "sqlpass_help"
+msgstr "Consente di modificare la password di MySQL. Può essere utilizzato anche per cancellare una password di MySQL, a condizione di sapere la password corrente. Per farlo è sufficiente lasciare il campo 'Nuova password' vuoto."
+
+msgid "username"
+msgstr "Username MySQL"
+
+msgid "username_help"
+msgstr "L'utente utilizzatore principale per MySQL"
+
+msgid "MySQL_Settings_head"
+msgstr "Impostazioni di MySQL"
+
+msgid "MySQL_Settings_divider"
+msgstr "Configurare le impostazioni per la creazione automatica di utenti e database MySQL."
+
+msgid "sql_host"
+msgstr "MySQL Host:"
+
+msgid "sql_host_help"
+msgstr "Host su cui il server MySQL si trova. Deve essere specificato in modo che le applicazioni possono connettersi a MySQL. Per impostazione predefinita, questo dovrebbe essere 'localhost'."
+
+msgid "sql_port"
+msgstr "Porta MySQL:"
+
+msgid "sql_port_help"
+msgstr "TCP / IP su cui MySQL è raggiungibile a l'host specificato. Per impostazione predefinita, questo dovrebbe essere '3306 '."
+
+msgid "MYSQL_ROOT_Settings_divider"
+msgstr "MySQL impostazioni utente Root - necessari per l'inizializzazione del database, configurazione e manutenzione:"
+
+msgid "sql_root"
+msgstr "MySQL User:"
+
+msgid "sql_root_help"
+msgstr "Username dell'utente MySQL con i privilegi di 'root'. Per impostazione predefinita, questo dovrebbe essere 'root'."
+
+msgid "sql_rootpassword"
+msgstr "MySQL Password:"
+
+msgid "sql_rootpassword_help"
+msgstr "Password dell'utente 'root' il MySQL."
+
+msgid "sql_status"
+msgstr "MySQL Stato:"
+
+msgid "sql_status_help"
+msgstr "Mostra lo stato della connessione di MySQL e se è possibile connettersi al server MySQL con i dati di accesso che hai specificato sopra."
+
+msgid "mysql_status_unconfigured"
+msgstr "Si prega di configurare le impostazioni."
+
+msgid "mysql_status_incorrect"
+msgstr "Connessione MySQL non può essere stabilita. Controllare le impostazioni."
+
+msgid "mysql_status_ok"
+msgstr "Collegamento possibile con queste impostazioni MySQL."
+
+msgid "MySQL_menu"
+msgstr "MySQL"
+
+msgid "MySQL_menu_help"
+msgstr "Configurare le impostazioni relative MySQL, in modo che le applicazioni possono comunicare con MySQL."
+
+msgid "MySQL_Local_divider"
+msgstr "Local server MySQL:"
+
+msgid "MySQL_Remote_divider"
+msgstr "Dettagli del server MySQL:"
+
+msgid "MySQL_Login_divider"
+msgstr "'Root' MySQL Utente:"
+
+msgid "MySQL_Status_divider"
+msgstr "MySQL Stato connessione:"
+
+msgid "mysql_head"
+msgstr "Configurazione di MySQL"
+
+msgid "my_cnf"
+msgstr "/ Etc / my.cnf Editor:"
+
+msgid "my_cnf_help"
+msgstr "Qui è possibile modificare il my.cnf direttamente. Si prega di notare che questo editor non verifica se ciò che si immette ha senso. Esso non corretti errori di battitura o definizioni sbagliate."
+
+msgid "mysql_license"
+msgstr "Gestione delle licenze:"
+
+msgid "mysql_license_help"
+msgstr "Questo software è protetto da copyright di lavoro e richiede una licenza per server. È possibile richiedere, visualizzare o gestire la tua licenza server qui."
+
+msgid "customer_name"
+msgstr "Nome cliente:"
+
+msgid "customer_name_help"
+msgstr "Inserisci il tuo nome qui. Questo dovrebbe essere il nome con il quale è stato acquistato il software in http://www.solarspeed.net"
+
+msgid "customer_email"
+msgstr "Clienti E-mail:"
+
+msgid "customer_email_help"
+msgstr "Inserisci il tuo indirizzo email qui. Questo dovrebbe essere lo stesso indirizzo email che hai usato nel negozio online Solarspeed.net per l'acquisto."
+
+msgid "customer_company"
+msgstr "Nome della società:"
+
+msgid "customer_company_help"
+msgstr "Inserisci il nome della società qui. Se non sono incorporati, si prega di utilizzare il nome di dominio, invece."
+
+msgid "server_key"
+msgstr "Chiave del server:"
+
+msgid "server_key_help"
+msgstr "La 'chiave del server' è un identificatore univoco generato automaticamente che ci aiuta a identificare se si esegue il software sul server che è stato concesso in licenza per."
+
+msgid "product_key"
+msgstr "Product Key:"
+
+msgid "product_key_help"
+msgstr "Il 'Product Key' è la licenza del software. Si sblocca il software, se installato sul server che è stato concesso in licenza per."
+
+msgid "email_key_request"
+msgstr "Email chiave Richiesta"
+
+msgid "email_key_request_help"
+msgstr "Quando si preme questo pulsante, viene inviata un'email di keyrequest@solarspeed.net. L'email conterrà il tuo nome, il nome dell'azienda e indirizzo email. Sarà inoltre posta la 'Chiave server' in modo da poter generare un 'Product Key' per voi."
+
+msgid "mail_status"
+msgstr "Email Stato:"
+
+msgid "mail_status_help"
+msgstr "Stato della consegna Email Request Key. Indica se l'email di registrazione può essere inviata al keyrequest@solarspeed.net"
+
+msgid "back_to_key_request"
+msgstr "Ritorna alla pagina precedente"
+
+msgid "back_to_key_request_help"
+msgstr "Riporta alla pagina precedente."
+
+msgid "MySQL_Config_head"
+msgstr "MySQL Config"
+
+msgid "MySQL_Config_head_help"
+msgstr "Configurazione del server MySQL."
+
+msgid "MySQL_Config_desc"
+msgstr "Impostazioni di MySQL"
+
+msgid "MySQL_Config_desc_help"
+msgstr "Consente di configurare il database MySQL automatico e creazione dell'utente."
+
+msgid "MySQL_TAB_ONE"
+msgstr "Creazione automatica di MySQL utenti e database"
+
+msgid "MySQL_TAB_ONE_help"
+msgstr "Consente di creare automaticamente MySQL utenti e database per ogni sito."
+
+msgid "MySQL_TAB_TWO"
+msgstr "/etc/my.cnf Editor"
+
+msgid "MySQL_TAB_TWO_help"
+msgstr "Consente di modificare /etc/my.cnf direttamente attraverso l'interfaccia grafica."
+
+msgid "udb_switch"
+msgstr "MySQL Creazione automatica"
+
+msgid "udb_switch_help"
+msgstr "Consente la creazione automatica di utenti di MySQL e database attraverso l'interfaccia grafica. In entrambi i casi sulla creazione di un nuovo sito, o modificando i servizi 'web' di un sito esistente. Solo gli amministratori del server hanno questa capacità."
+
+msgid "solmysqlFullText"
+msgstr "Utente e il database MySQL"
+
+msgid "solmysqlFullText_help"
+msgstr "Consente di creare o rimuovere automaticamente un database MySQL e un utente MySQL per questo sito. NOTA: Se la casella è già selezionata, deselezionando la casella e salvare le modifiche elimina il database MySQL e l'utente."
+
+msgid "solmysqlUsername"
+msgstr "Nome utente"
+
+msgid "solmysqlUsername_help"
+msgstr "Nome utente dell'utente MySQL. Ha diritti e le autorizzazioni solo per il database specificato di seguito."
+
+msgid "solmysqlPass"
+msgstr "Parola d'ordine"
+
+msgid "solmysqlPass_help"
+msgstr "Password di MySQL per l'utente MySQL in questione."
+
+msgid "solmysqlDB"
+msgstr "Nome database"
+
+msgid "solmysqlDB_help"
+msgstr "Nome del database MySQL per questo sito."
+
+msgid "solmysqlHost"
+msgstr "Host Database"
+
+msgid "solmysqlHost_help"
+msgstr "Host su cui è in esecuzione il server MySQL. In genere questo è 'localhost'."
+
+msgid "solmysqlPort"
+msgstr "Porto"
+
+msgid "solmysqlPort_help"
+msgstr "Porta su cui è in ascolto il server MySQL. In genere questo è '3306 '."
+
+msgid "MySQL_DIVIDER_ONE"
+msgstr "Diritti predefiniti per gli utenti auto-creati:"
+
+msgid "mysql_default_privileges"
+msgstr "Privilegi predefiniti:"
+
+msgid "mysql_default_privileges_help"
+msgstr "I nuovi utenti di MySQL verranno creati con i seguenti privilegi di default per la propria banca dati, come mostrato di seguito."
+
+msgid "EXPLAIN_RIGHTS"
+msgstr "I nuovi utenti di MySQL verranno creati con i seguenti privilegi di default per la propria banca dati, come mostrato di seguito."
+
+msgid "DIVIDER_ZERO"
+msgstr "Privilegi di database predefiniti:"
+
+msgid "DIVIDER_ONE"
+msgstr "Dati privilegi:"
+
+msgid "DIVIDER_TWO"
+msgstr "Privilegi di struttura (per default tutti sono concessi):"
+
+msgid "DIVIDER_THREE"
+msgstr "Privilegi di struttura (per default queste non sono concessi):"
+
+msgid "DIVIDER_FOUR"
+msgstr "Limiti di risorse:"
+
+msgid "SELECT_help"
+msgstr "Permette di leggere i dati."
+
+msgid "INSERT_help"
+msgstr "Permette l'inserimento e la sostituzione dei dati."
+
+msgid "UPDATE_help"
+msgstr "Consente la modifica dei dati."
+
+msgid "DELETE_help"
+msgstr "Consente l'eliminazione dei dati."
+
+msgid "FILE_help"
+msgstr "Consente l'importazione di dati da file ed esportare i dati in file. Non impostato di default."
+
+msgid "CREATE_help"
+msgstr "Consente la creazione di database e tabelle."
+
+msgid "ALTER_help"
+msgstr "Permette di modificare la struttura delle tabelle esistenti."
+
+msgid "INDEX_help"
+msgstr "Permette la creazione e la caduta degli indici."
+
+msgid "DROP_help"
+msgstr "Consente la caduta di database e tabelle."
+
+msgid "TEMPORARY"
+msgstr "Creare tabelle temporanee"
+
+msgid "TEMPORARY_help"
+msgstr "Permette la creazione di tabelle temporanee."
+
+msgid "CREATE_VIEW"
+msgstr "CREATE VIEW"
+
+msgid "CREATE_VIEW_help"
+msgstr "Permette la creazione di nuovi punti di vista. (Disponibile solo in MySQL5 o migliore.)"
+
+msgid "SHOW_VIEW"
+msgstr "Mostra vista"
+
+msgid "SHOW_VIEW_help"
+msgstr "Consente di eseguire le query SHOW CREATE VIEW. (Disponibile solo in MySQL5 o migliore.)"
+
+msgid "CREATE_ROUTINE"
+msgstr "CREATE ROUTINE"
+
+msgid "CREATE_ROUTINE_help"
+msgstr "Permette la creazione di routine memorizzati. (Disponibile solo in MySQL5 o migliore.)"
+
+msgid "ALTER_ROUTINE"
+msgstr "ALTER ROUTINE"
+
+msgid "ALTER_ROUTINE_help"
+msgstr "Permette di modificare e far cadere di routine memorizzati. (Disponibile solo in MySQL5 o migliore.)"
+
+msgid "EXECUTE_help"
+msgstr "Consente l'esecuzione di routine di negozio. (Disponibile solo in MySQL5 o migliore.)"
+
+msgid "MAX_QUERIES_PER_HOUR"
+msgstr "DOMANDE MAX ALL'ORA"
+
+msgid "MAX_QUERIES_PER_HOUR_help"
+msgstr "Limita il numero di query che un utente può inviare al server per ora. '0 'Significa nessun limite."
+
+msgid "MAX_UPDATES_PER_HOUR"
+msgstr "AGGIORNAMENTI MAX ALL'ORA"
+
+msgid "MAX_UPDATES_PER_HOUR_help"
+msgstr "Limita il numero di comandi che cambiano ogni tabella o il database che l'utente può eseguire ogni ora. '0 'Significa nessun limite."
+
+msgid "MAX_CONNECTIONS_PER_HOUR"
+msgstr "CONNESSIONI MAX ALL'ORA"
+
+msgid "MAX_CONNECTIONS_PER_HOUR_help"
+msgstr "Limita il numero di connessioni che l'utente può aprire all'ora. '0 'Significa nessun limite."
+
+msgid "MySQL_Info_Text"
+msgstr "I nuovi utenti di MySQL verranno creati con i seguenti privilegi di default per la propria banca dati, come mostrato di seguito."
+
+msgid "root_has_no_pwd"
+msgstr "MySQL password per l'utente root di MySQL a quanto pare non è ancora impostata! Si prega di impostare una password di 'root' utente MySQL!"
+
+msgid "sqlstatus_fail"
+msgstr "Connessione MySQL non può essere stabilita. Controllare le impostazioni in 'Servizi di rete' / 'MySQL Config' primi. Anche vedere se MySQL è in esecuzione."
+
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "CreateFailUserExists"
+msgstr "Questo utente MySQL esiste già nella tabella utenti di MySQL."
+
+msgid "CreateFailDBExists"
+msgstr "Questo database MySQL esiste già nella tabella di database MySQL."
+
+msgid "CreateFailDatabaseExists"
+msgstr "Questo database MySQL esiste già."

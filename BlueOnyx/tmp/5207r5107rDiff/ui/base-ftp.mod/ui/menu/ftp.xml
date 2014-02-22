@@ -1,0 +1,11 @@
+<item id="base_ftp" label="[[base-ftp.ftp]]" 
+    description="[[base-ftp.ftp_help]]" 
+    url="/base/ftp/ftp.php"
+>
+    <parent id="base_fileSharing" order="20">
+        <access require="adminUser"/>
+    </parent>
+    <parent id="base_controlpanel" order="20">
+        <access require="serverFTP"/>
+    </parent>
+</item>

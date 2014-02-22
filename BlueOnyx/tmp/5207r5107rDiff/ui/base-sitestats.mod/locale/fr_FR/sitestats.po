@@ -1,0 +1,542 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "selectStat"
+msgstr "Affichage de l&#39;utilisation détaillé ..."
+
+msgid "summary"
+msgstr "Résumé"
+
+msgid "downloadBut"
+msgstr "Télécharger identifiez-vous"
+
+msgid "downloadBut_help"
+msgstr "Cliquez ici pour télécharger le journal d&#39;utilisation de ce service. Le fichier journal contient une activité de service à compter de minuit le jour de la première activité jusqu&#39;à la fin de la journée de la date de la dernière activité pour les dates indiquées lorsque ce rapport a été généré. Si les fichiers journaux ont été supprimés, il peut manquer dates dans le fichier journal de sortie."
+
+msgid "serverusage"
+msgstr "Statistiques"
+
+msgid "serverusageDescription"
+msgstr "Cliquez ici pour parcourir serveur et les statistiques d&#39;utilisation des services du réseau."
+
+msgid "netusage"
+msgstr "Réseau"
+
+msgid "netusageDescription"
+msgstr "Les statistiques d&#39;utilisation du réseau"
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Les statistiques d&#39;utilisation Web"
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Statistiques d&#39;utilisation FTP"
+
+msgid "mailusage"
+msgstr "Email"
+
+msgid "mailusageDescription"
+msgstr "Les statistiques d&#39;utilisation e-mail"
+
+msgid "generateSettings"
+msgstr "Configurez [[VAR.type]] options de reporting"
+
+msgid "generateSettingsVsite"
+msgstr "Configurez [[VAR.type]] Rapports options de [[VAR.fqdn]]"
+
+msgid "customizeBut"
+msgstr "Générer un nouveau rapport"
+
+msgid "customizeBut_help"
+msgstr "Personnalisation d&#39;un rapport d&#39;utilisation par jour."
+
+msgid "generateBut"
+msgstr "Générer un rapport"
+
+msgid "generateBut_help"
+msgstr "Générer des rapports en utilisant les options spécifiées."
+
+msgid "generate"
+msgstr "Générer des rapports"
+
+msgid "reportGenerated"
+msgstr "Rapport généré"
+
+msgid "reportGenerated_help"
+msgstr "Il s&#39;agit de la date et l&#39;heure que ce rapport a été généré."
+
+msgid "startDate"
+msgstr "À partir de"
+
+msgid "startDate_help"
+msgstr "Il s&#39;agit de la date de la première activité qui sera inclus dans le rapport."
+
+msgid "endDate"
+msgstr "Se terminant le"
+
+msgid "endDate_help"
+msgstr "Il s&#39;agit de la date de la dernière activité qui sera inclus dans le rapport."
+
+msgid "requestCoverageHint"
+msgstr "Notez que les dates couvertes dans le rapport peuvent être moins que les jours que vous avez sélectionné s&#39;il n&#39;y avait pas d&#39;activité sur toute la gamme sélectionnée."
+
+msgid "bytesTransfered"
+msgstr "Les données transférées"
+
+msgid "bytesTransfered_help"
+msgstr "La quantité totale de données transférées par ce service au cours de la période spécifiée."
+
+msgid "vsitesReportBut"
+msgstr "Utilisez par site virtuel"
+
+msgid "vsitesReportBut_help"
+msgstr "Obtenez un rapport d&#39;utilisation basée sur les sites virtuels."
+
+msgid "periodicReportBut"
+msgstr "Rapports périodiques"
+
+msgid "periodicReportBut_help"
+msgstr "Obtenez des rapports montrant une activité par jour ni l&#39;heure."
+
+msgid "historicalReportBut"
+msgstr "Utilisation historique par jour, semaine ou mois."
+
+msgid "historicalReportBut_help"
+msgstr "Rapports d&#39;utilisation quotidienne, hebdomadaire ou mensuelle."
+
+msgid "requestReportButweb"
+msgstr "Fichiers demandés"
+
+msgid "requestReportButweb_help"
+msgstr "Catégorise les demandes des fichiers demandés."
+
+msgid "requestReportButftp"
+msgstr "[[base-sitestats.requestReportButweb]]"
+
+msgid "requestReportButftp_help"
+msgstr "[[base-sitestats.requestReportButweb_help]]"
+
+msgid "requestReportButmail"
+msgstr "Expéditeurs et destinataires"
+
+msgid "requestReportButmail_help"
+msgstr "Catégorise service de courrier par les expéditeurs et les destinataires."
+
+msgid "requestReportBut"
+msgstr "Top fichiers demandés"
+
+msgid "requestReportBut_help"
+msgstr "Catégorise les demandes des fichiers demandés."
+
+msgid "downloadLogBut"
+msgstr "Télécharger le fichier journal (toutes les dates)"
+
+msgid "downloadLogBut_help"
+msgstr "Ce lien vous permet de télécharger le fichier de logs bruts sur votre machine locale."
+
+msgid "bytes_help"
+msgstr "Le nombre d&#39;octets transférés."
+
+msgid "pbytes"
+msgstr "Pourcentage de Bytes"
+
+msgid "pbytes_help"
+msgstr "Le pourcentage du nombre total d&#39;octets transférés."
+
+msgid "ipAddr"
+msgstr "Adresse IP"
+
+msgid "ipAddr_help"
+msgstr "Les adresses IP de ce serveur. L&#39;adresse IP, 127.0.0.1, est pour le trafic du réseau local pas reçu d&#39;une adresse IP externe."
+
+msgid "site"
+msgstr "Site"
+
+msgid "site_help"
+msgstr "Le nom du site virtuel. \"Server\" représente le trafic qui n&#39;est pas affilié à aucun site."
+
+msgid "iDomain"
+msgstr "Domaines bénéficiaires"
+
+msgid "iDomain_help"
+msgstr "Les domaines de l&#39;adresse email du destinataire de courrier traité par ce serveur. \"Server\" représente destinataires locaux sans domaine spécifié."
+
+msgid "oDomain"
+msgstr "Domaines de l&#39;expéditeur"
+
+msgid "oDomain_help"
+msgstr "Les domaines de l&#39;e-mail de l&#39;expéditeur adresses de courrier traité par ce serveur. \"Server\" représente expéditeurs locaux sans domaine spécifié."
+
+msgid "Home"
+msgstr "Serveur"
+
+msgid "requests"
+msgstr "Demandes"
+
+msgid "domain"
+msgstr "Domaine"
+
+msgid "domain_help"
+msgstr "Le domaine d&#39;où provient la demande. Les clients qui n&#39;ont pas de noms de domaine sont classés en tant que \"[[base-sitestats.unresolved numerical addresses]]\". Notez que les sommes des lignes dentelées sont incluses dans les totaux pour les lignes parentes respectives. Par exemple, le trafic pour tous les hôtes qui se terminent par \".com\" sera reflété dans la ligne qui répertorie \".com\" dans la colonne de domaine."
+
+msgid "dailyHistory"
+msgstr "Histoire quotidien"
+
+msgid "weeklyHistory"
+msgstr "Histoire hebdomadaire"
+
+msgid "monthlyHistory"
+msgstr "Histoire mensuelle"
+
+msgid "dailyHistory_help"
+msgstr "Cliquez ici pour voir l&#39;activité historique sur une base quotidienne."
+
+msgid "weeklyHistory_help"
+msgstr "Cliquez ici pour voir l&#39;activité historique sur une base hebdomadaire."
+
+msgid "monthlyHistory_help"
+msgstr "Cliquez ici pour voir l&#39;activité historique sur une base mensuelle."
+
+msgid "daily"
+msgstr "Utilisation quotidienne"
+
+msgid "hourly"
+msgstr "Utilisez par heure de la journée"
+
+msgid "useByDayOfWeek"
+msgstr "Utilisez par jour de la semaine"
+
+msgid "weekly"
+msgstr "Utilisation hebdomadaire"
+
+msgid "monthly"
+msgstr "Utilisation mensuelle"
+
+msgid "filetype"
+msgstr "Type de fichier"
+
+msgid "filetype_help"
+msgstr "Le type de fichier demandé basé sur l&#39;extension de fichier. Par exemple, un fichier. Jpg serait un graphique JPEG."
+
+msgid "requestFile"
+msgstr "Fichier"
+
+msgid "requestFile_help"
+msgstr "Le nom du fichier demandé."
+
+msgid "requestNumber"
+msgstr "Demandes"
+
+msgid "requestNumber_help"
+msgstr "Le nombre de demandes pour ce fichier."
+
+msgid "noDataError"
+msgstr "Aucune donnée n&#39;a été trouvée pour l&#39;activité pendant la période spécifiée. Vous pouvez essayer une autre série de dates."
+
+msgid "fullDailyDesc"
+msgstr "Ce rapport montre l&#39;activité cumulée pour chaque jour compris dans le rapport."
+
+msgid "fullWeeklyDesc"
+msgstr "Ce rapport montre l&#39;activité cumulée pour chaque semaine incluse dans le rapport."
+
+msgid "fullMonthlyDesc"
+msgstr "Ce rapport montre l&#39;activité cumulée pour chaque mois compris dans le rapport."
+
+msgid "hourlySummaryDesc"
+msgstr "Ce rapport montre la répartition horaire de l&#39;activité cumulée."
+
+msgid "dailySummaryDesc"
+msgstr "Ce rapport montre la distribution quotidienne de l&#39;activité cumulée."
+
+msgid "gigabyte_abbr"
+msgstr "GB"
+
+msgid "megabyte_abbr"
+msgstr "MB"
+
+msgid "kilobyte_abbr"
+msgstr "KB"
+
+msgid "sitestatsTabName"
+msgstr "Informations sur l&#39;utilisation"
+
+msgid "sitestatsTabName_help"
+msgstr "Configurer le site Virtual usage génération de statistiques et à la préservation de l&#39;historique d&#39;utilisation."
+
+msgid "sitestatsEnable"
+msgstr "Activer Statistiques Generation"
+
+msgid "sitestatsEnable_help"
+msgstr "Cocher pour activer Virtual Site web, FTP, et les statistiques d&#39;utilisation e-mail."
+
+msgid "sitestatsConsolidate"
+msgstr "Niveau de détail"
+
+msgid "sitestatsConsolidate_help"
+msgstr "Le niveau de détail détermine si les statistiques quotidiennes fichiers d&#39;informations sont combinées en une seule statistiques mensuelles dossier d&#39;information par mois. Cela n&#39;affecte pas les informations statistiques pour le mois courant. Si quotidien est sélectionnée, vous pouvez générer des rapports contenant l&#39;équivalent de statistiques moins d&#39;un mois pour les mois précédant le mois en cours. Si mensuelle est sélectionnée, vous ne pouvez générer des rapports contenant les statistiques des mois entiers pendant des mois précédant le mois en cours. Statistiques combinaison ne peut être annulée pendant des mois qui ont déjà été réunis. Sélection mensuelle va consommer moins d&#39;espace disque par rapport au quotidien."
+
+msgid "sitestatsConsolidateDaily"
+msgstr "Daily"
+
+msgid "sitestatsConsolidateMonthly"
+msgstr "Mensuellement"
+
+msgid "sitestatsPurge"
+msgstr "Statistiques Histoire"
+
+msgid "sitestatsPurge_help"
+msgstr "Cette option détermine comment loin dans le temps, vous serez en mesure de couvrir dans les rapports statistiques. Une longue période de temps vous permet de générer des rapports avec une histoire plus longue, au détriment de l&#39;espace disque."
+
+msgid "bytes"
+msgstr "Octets"
+
+msgid "never"
+msgstr "Toujours"
+
+msgid "month"
+msgstr "1 mois"
+
+msgid "2month"
+msgstr "2 mois"
+
+msgid "3month"
+msgstr "3 mois"
+
+msgid "6month"
+msgstr "6 mois"
+
+msgid "year"
+msgstr "1 an"
+
+msgid "2year"
+msgstr "2 ans"
+
+msgid "3year"
+msgstr "3 ans"
+
+msgid "4year"
+msgstr "4 ans"
+
+msgid "5year"
+msgstr "5 ans"
+
+msgid "byIP"
+msgstr "Utilisez par adresse IP"
+
+msgid "sendReceiveByDomain"
+msgstr "Envoi et réception de Domaines"
+
+msgid "referringSite"
+msgstr "Se référant Rapport de chantier"
+
+msgid "typesReportBut"
+msgstr "Types de fichiers"
+
+msgid "requestorDomain"
+msgstr "Domaines des clients"
+
+msgid "summaryStats"
+msgstr "[[VAR.type]] Résumé des statistiques"
+
+msgid "summaryStatsVsite"
+msgstr "[[VAR.type]] Résumé des statistiques pour [[VAR.fqdn]]"
+
+msgid "otherStatistics"
+msgstr "Statistiques détaillées"
+
+msgid "view"
+msgstr "Voir"
+
+msgid "view_help"
+msgstr "Cliquez ici pour voir un rapport d&#39;utilisation détaillée."
+
+msgid "reportType"
+msgstr "Signaler"
+
+msgid "reportType_help"
+msgstr "Les statistiques détaillées suivantes sont disponibles."
+
+msgid "firstRequest"
+msgstr "Première activité"
+
+msgid "firstRequest_help"
+msgstr "La date de la première activité couverte par ce rapport. Notez que les dates couvertes dans le rapport peuvent être moins que les jours que vous avez sélectionné s&#39;il n&#39;y avait pas d&#39;activité sur toute la gamme sélectionnée."
+
+msgid "lastRequest"
+msgstr "Dernière activité"
+
+msgid "lastRequest_help"
+msgstr "La date de la dernière activité couverte par ce rapport. Notez que les dates couvertes dans le rapport peuvent être moins que les jours que vous avez sélectionné s&#39;il n&#39;y avait pas d&#39;activité sur toute la gamme sélectionnée."
+
+msgid "successfulRequests"
+msgstr "Nombre total de demandes"
+
+msgid "successfulRequests_help"
+msgstr "Le nombre de transactions individuelles ce service a fait."
+
+msgid "totalSent"
+msgstr "Total appels émis"
+
+msgid "totalSent_help"
+msgstr "Le nombre de demandes de service sortants."
+
+msgid "totalReceived"
+msgstr "Totale reçue"
+
+msgid "totalReceived_help"
+msgstr "Le nombre de demandes de service entrantes."
+
+msgid "distinctFiles"
+msgstr "Fichiers distincts"
+
+msgid "distinctFiles_help"
+msgstr "Le nombre de fichiers uniques desservies."
+
+msgid "uniqueHosts"
+msgstr "Clients uniques"
+
+msgid "uniqueHosts_help"
+msgstr "Le nombre d&#39;ordinateurs uniques qui ont fait des demandes de service."
+
+msgid "pageRequests"
+msgstr "Demandes réussies"
+
+msgid "pageRequests_help"
+msgstr "C&#39;est le nombre total de demandes de service réussies."
+
+msgid "failedRequests"
+msgstr "Demandes ayant échoué"
+
+msgid "failedRequests_help"
+msgstr "C&#39;est le nombre total de demandes de service a échoué."
+
+msgid "vsiteStatsIn"
+msgstr "Les destinataires du courrier par domaine"
+
+msgid "vsiteStatsOut"
+msgstr "expéditeurs de courrier de domaine"
+
+msgid "Site"
+msgstr "Site d&#39;hôte virtuel"
+
+msgid "Site_help"
+msgstr "Le nom de domaine complet du site virtuel actif. &#39;Serveur&#39; représente les requêtes services qui ne sont pas associés à un site virtuel."
+
+msgid "requests_help"
+msgstr "Le nombre total de demandes de service par le site Virtual adjacent."
+
+msgid "vsites_in"
+msgstr "Les destinataires de courrier"
+
+msgid "vsites_in_help"
+msgstr "Cliquez pour afficher les domaines bénéficiaires de courrier traité par ce serveur."
+
+msgid "vsites_out"
+msgstr "expéditeurs de courrier"
+
+msgid "vsites_out_help"
+msgstr "Cliquez pour afficher les domaines de l&#39;expéditeur du courrier traités par ce serveur."
+
+msgid "vsiteStats"
+msgstr "[[VAR.type]] Utilisation par site virtuel"
+
+msgid "domainStats"
+msgstr "[[VAR.type]] Utilisation par domaine"
+
+msgid "vsiteStatsVsite"
+msgstr "[[VAR.type]] Utilisation par site virtuel pour [[VAR.fqdn]]"
+
+msgid "domainStatsVsite"
+msgstr "[[VAR.type]] Utilisation de domaine pour [[VAR.fqdn]]"
+
+msgid "requestStats"
+msgstr "Demandées [[VAR.type]] données"
+
+msgid "requestStatsVsite"
+msgstr "Demandé [[VAR.type]] données pour [[VAR.fqdn]]"
+
+msgid "typeStats"
+msgstr "[[VAR.type]] par type de fichier"
+
+msgid "typeStatsVsite"
+msgstr "[[VAR.type]] par type de fichier pour [[VAR.fqdn]]"
+
+msgid "requestStatsOut"
+msgstr "E-mails sortants"
+
+msgid "requestStatsIn"
+msgstr "E-mails entrants"
+
+msgid "requestStatsOutVsite"
+msgstr "expéditeurs de courrier par [[VAR.fqdn]]"
+
+msgid "requestStatsInVsite"
+msgstr "Les bénéficiaires de mail via [[VAR.fqdn]]"
+
+msgid "requestInBut"
+msgstr "Voir destinataires de courrier"
+
+msgid "requestInBut_help"
+msgstr "Cliquez pour afficher les destinataires de courrier pour les messages traités par ce serveur."
+
+msgid "requestOutBut"
+msgstr "Voir expéditeurs de courrier"
+
+msgid "requestOutBut_help"
+msgstr "Cliquez pour afficher les expéditeurs de courrier pour les messages traités par ce serveur."
+
+msgid "requestFileIn"
+msgstr "Mail Sender"
+
+msgid "requestFileIn_help"
+msgstr "Ce sont les adresses e-mail de l&#39;expéditeur. Ceux-ci comprennent le courrier envoyé par les utilisateurs qui sont membres du site et les messages provenant d&#39;adresses e-mail externes envoyés aux membres du site."
+
+msgid "requestFileOut"
+msgstr "Destinataire du message"
+
+msgid "requestFileOut_help"
+msgstr "Ce sont les adresses électroniques des destinataires. Ceux-ci comprennent le courrier reçu par les utilisateurs qui sont membres de ce site ainsi que le courrier envoyé à des adresses électroniques externes des utilisateurs de ce site."
+
+msgid "sitestatsSettingsButton"
+msgstr "Réglages"
+
+msgid "sitestatsSettingsButtonHelp"
+msgstr "Cliquez sur pour configurer les informations d&#39;utilisation et de la statistique génération pour ce site."
+
+msgid "sitestatsSettings"
+msgstr "Réglages des informations d&#39;accès à [[VAR.fqdn]]"
+
+msgid "statsQuota"
+msgstr "les journaux d&#39;utilisation"
+
+msgid "unresolved numerical addresses"
+msgstr "Inconnue"
+
+msgid "serviceName"
+msgstr "Informations sur l&#39;utilisation"
+
+msgid "directories"
+msgstr "fichiers d&#39;index"
+
+msgid "cantEnableLogrotate"
+msgstr "Impossible d&#39;activer la rotation du fichier log pour ce site."
+
+msgid "systemError"
+msgstr "Une erreur système est survenue lors de la lecture d&#39;informations. S&#39;il vous plaît contacter le support technique."
+
+msgid "cap_menuServerServerStats"
+msgstr "Afficher les informations d'utilisation"
+
+

@@ -1,0 +1,8 @@
+<!-- this is the menu item 'Site List' that shows up when you have NO site open yet -->
+<item id="base_siteList1" label="[[base-vsite.virtualSiteList]]" 
+    description="[[base-vsite.virtualSiteList_help]]"
+    url="/base/vsite/vsiteList.php">
+    <parent id="base_sitemanage" order="5">
+    	<access require="manageSite"/>
+    </parent>
+</item>

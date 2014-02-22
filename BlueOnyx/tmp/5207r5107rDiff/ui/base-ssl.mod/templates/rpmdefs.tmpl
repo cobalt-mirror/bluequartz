@@ -1,0 +1,217 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+/usr/sausalito/sbin/ssl_get.pl
+/usr/sausalito/sbin/ssl_import.pl
+[AUTOFILL]
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Fri Dec 27 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX03
+- Small fix in ui/web/siteSSL.php to prevent showing of locale headers.
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- Changed organization name for default AdmServ SSL certificate.
+- New Capabilities for admin. 
+- Various small fixes in handlers.
+
+* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX08
+- Added locales for Portuguese, Itallian, Spanish and French.
+- Updated existing locales with a missing string for an error message.
+- Fixed a probably 12 year old bug in glue/sbin/ssl_import.pl which dropped
+  the email address of an imported SSL certificate.
+
+* Wed May 02 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX07
+- Modified ui/web/caManager.php to use is_uploaded_file() and move_uploaded_file() to
+  handle the uploaded SSL certificate, too. Tested with GoDaddy intermediate certs.
+
+* Tue Mar 24 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX06
+- Modified ui/web/uploadCert.php to check if the temp file exists before we unlink it.
+
+* Tue Mar 24 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX05
+- Modified glue/sbin/ssl_import.pl to hard wire Country to 'US' and State to 'Other' if
+  the SSL certificate in question doesn't have this mandatory information.
+- Modified ui/web/uploadCert.php to use is_uploaded_file() and move_uploaded_file() to
+  handle the uploaded SSL certificate. There is no need to chuck it around with fopen()
+  and fputs(), especially considering that the previously employed method apparently
+  no longer works on PHP >= 5.3.
+- This should fix the SSL import issues on 5107R and 5108R.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX04
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Mon Aug 22 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX03
+- Modified ui/web/caManager.php to fix array_merge(): Argument #1 is not an array in line 95
+
+* Thu Aug 11 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX02
+- Updated glue/handlers/ca-certs.pl to fix typo in path to ssl.conf. The typo added SSLCACertificateFile to the wrong file.
+
+* Fri Jan 21 2011 Michael Stauber <mstauber@solarspeed.net> 1.1.0-70BX01
+- Merged in 1.1.0-69BQ14 and 1.1.0-69BQ13 from Rickard:
+- Changed the way the ssl_check_days_valid function works. Returns valid days now.
+- Changed the way adm_certs are generated in the constructor, use y2038 bug - todays date to calculate a valid expiration. If this is more than 9995 use 9995 days.
+- Set RSA key length from 1024 to 2048 in glue/handlers/SSL.pm
+- At the moment this only appears to affect the AdmServ CERT.
+
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BX17
+- Fix for ui/web/createCert.php was a bad idea. Fixed it again!
+
+* Sun Jun 06 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BX16
+- Fixed various PHP-5.3 related issues.
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BX15
+- Copied 'en' locales to 'en_US'
+
+* Tue Aug 11 2009 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ13
+- Updated ui/web/createCert.php to set the switch 'Generate Self-Signed Certificate' to off by default.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ12
+- Rebuilt for BlueOnyx.
+
+* Tue Jul 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ11
+- Fixed caManager.php siteSSL.php for 5106
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ10
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.1.0-68BQ9
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.1.0-68BQ8
+- Fixed duplicate include issue.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-68BQ7
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-68BQ6
+- rebuild with devel-tools 0.5.1
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-68BQ5
+- modified Group tag.
+
+* Sat Aug 13 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-68BQ4
+- fix security problem that can be accessed unauthorized function.
+
+* Sat Aug 13 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.1.0-68BQ3
+- clean up spec file.
+<end $CHANGELOG>

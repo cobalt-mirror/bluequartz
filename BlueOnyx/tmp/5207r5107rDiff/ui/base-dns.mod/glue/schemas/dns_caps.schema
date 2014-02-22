@@ -1,0 +1,20 @@
+<!--
+    Copyright 2006 NuOnce Networks, Inc.  All rights reserved.
+    $Id: dns_caps.schema
+
+    modifyDNS capability used to limit access to to properties for
+    the Vsite(Services).DNS namespace and system wide DNS server
+    control
+-->
+
+<class
+    name="Capabilities" namespace="serverDNS" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(serverDNS)"
+    />
+    <property
+        name="nameTag" type="scalar" default="[[base-dns.cap_serverDNS]]"
+    />
+</class>

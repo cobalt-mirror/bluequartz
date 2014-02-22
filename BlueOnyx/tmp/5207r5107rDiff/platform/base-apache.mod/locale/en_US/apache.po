@@ -1,0 +1,333 @@
+# --- Menu
+
+msgid "apache"
+msgstr "Web"
+
+msgid "apache_help"
+msgstr "[[base-apache.apacheSettings]] can be changed here."
+
+# --- Web Settings page
+
+msgid "apacheSettings"
+msgstr "Web Settings"
+
+msgid "frontpageField"
+msgstr "FrontPage Server Extensions"
+
+msgid "frontpageField_help"
+msgstr "Turn FrontPage Server Extensions on or off."
+
+msgid "frontpageEnabled"
+msgstr "Enable"
+
+msgid "passwordWebmasterField"
+msgstr "webmaster Password"
+
+msgid "passwordWebmasterField_help"
+msgstr "Enter a password for the FrontPage client webmaster. The home group web site may be accessed by selecting Open Web in the FrontPage client.  Login using the login name webmaster and the password you specify here.  Once authenticated, additional FrontPage users are managed using the FrontPage client."
+
+msgid "passwordWebmasterField_rule"
+msgstr "The password should be between 3 and 16 characters long. A good password should contain at least 5 characters with a mix of uppercase and lowercase letters as well as numbers and punctuation.  It should not spell out any words found in the dictionary. Passwords are case sensitive."
+
+msgid "passwordWebmasterField_invalid"
+msgstr "Sorry, you have not entered the same password in both fields. The same password is entered in both fields to protect against typing errors.  Please try again."
+
+msgid "cgiAccessField"
+msgstr "CGI Access"
+
+msgid "cgiAccessField_help"
+msgstr "Turn CGI Access on or off. You can set the CGI access rights so that only the server appliance administrator can add CGI script files, or so that both the administrator and all or selected users can add CGI script files."
+
+msgid "cgiAll"
+msgstr "Allow Access To All Users"
+
+msgid "cgiNone"
+msgstr "Do Not Allow Access To Any User"
+
+msgid "cgiSubset"
+msgstr "Allow Access To Specified Users Only"
+
+msgid "cgiUsersAllowed"
+msgstr "Users Allowed Access"
+
+msgid "cgiUsersDisallowed"
+msgstr "Users Not Allowed Access"
+
+	# Don't want a label here, so space
+msgid "cgiUsersField"
+msgstr " "
+
+msgid "cgiUsersField_empty"
+msgstr "Sorry, you have not selected any users for CGI Access. Please add users who are allowed CGI Access or choose a different access option."
+
+# --- Handlers
+
+msgid "cantConfigCgi"
+msgstr "Sorry, CGI Access could not be correctly configured at this time."
+
+msgid "systemObjectNotFound"
+msgstr "Sorry, server configuration is temporarily unavailable.  Please wait and try again."
+
+
+# --- Active Monitor
+
+msgid "amApacheNameTag"
+msgstr "Web Server"
+
+msgid "amApacheDetails"
+msgstr "Web Server Details"
+
+msgid "amNotRunning"
+msgstr "The [[base-apache.amApacheNameTag]] is not running and could not be restarted. Try rebooting the server by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If you are still unable to access the [[base-apache.amApacheNameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "amStatusOK"
+msgstr "The web server is operating normally."
+
+msgid "amAdmservNameTag"
+msgstr "Server Desktop"
+
+msgid "amAdmservDetails"
+msgstr "Server Desktop Details"
+
+msgid "amAdmservNotRunning"
+msgstr "The [[base-apache.amAdmservNameTag]] is not running and could not be restarted. Try rebooting the server by clicking the [[base-power.reboot]] button in the [[base-power.power]] menu under [[base-alpine.serverconfig]]. If you are still unable to access the [[base-apache.amAdmservNameTag]], please visit [[base-sauce-basic.techSupportURL]] for technical support."
+
+msgid "amAdmservStatusOK"
+msgstr "The Server Desktop is operating normally."
+
+msgid "maxServersRAM"
+msgstr "The maximum number of web servers is limited by the amount of RAM installed in this server."
+
+msgid "minSpareField"
+msgstr "Minimum Spare Servers"
+
+msgid "minSpareField_help"
+msgstr "When the web server starts or is in an idle state, this is the minimum number of web server processes available for serving web requests.  [[base-apache.maxServersRAM]]"
+
+msgid "minSpareField_empty"
+msgstr "Please specify a minimum number of web server processes."
+
+msgid "minSpareField_invalid"
+msgstr "The specified number of spare web servers is not valid.  Please specify an integer within the specified range."
+
+msgid "maxSpareField"
+msgstr "Maximum Spare Servers"
+
+msgid "maxSpareField_help"
+msgstr "The web server will launch additional processes, as needed, to service additional load. This number is the maximum number of processes the system will launch. High traffic sites should increase this number for better performance.  [[base-apache.maxServersRAM]]"
+
+msgid "maxSpareField_empty"
+msgstr "Please specify a maximum number of spare web server processes. "
+
+msgid "maxSpareField_invalid"
+msgstr "[[base-apache.minSpareField_invalid]]"
+
+msgid "maxClientsField"
+msgstr "Maximum Simultaneous Connections"
+
+msgid "maxClientsField_help"
+msgstr "This is the maximum number of requests that can be made to the server at any instance.  Each connection requires its own web server process.  If this number is exceeded, clients will receive a message that the server is busy, and asked to try again later. This setting is useful for controlling the load on your server.  [[base-apache.maxServersRAM]]"
+
+msgid "maxClientsField_empty"
+msgstr "Please specify a maximum number of simultaneous web server connections."
+
+msgid "maxClientsField_invalid"
+msgstr "The specified maximum number of simultaneous web connections is not valid.  Please specify an integer within the specified range."
+
+msgid "hostnameLookupsField"
+msgstr "Hostname Lookups"
+
+msgid "hostnameLookupsField_help"
+msgstr "This turns on hostname lookups for the web server. This causes the server to do a DNS lookup on the client IP when it connects to the server, and record it in the log files. This hostname information is then available in the server usage web reports. Without this feature, only client IP addresses are reported in the web server usage domain report. WARNING: Enabling this option will decrease the performance of your web server."
+
+msgid "MinMaxError"
+msgstr "The [[base-apache.maxSpareField]] must be greater than or equal to the [[base-apache.minSpareField]]."
+
+msgid "ClientMaxError"
+msgstr "The value entered for [[base-apache.maxClientsField]] is less than the value entered for [[base-apache.maxSpareField]].  While this is okay, it may impact the performance of the server. It is recommended that the value for [[base-apache.maxClientsField]] be greater than or equal to the value for [[base-apache.maxSpareField]]."
+
+# strings for UI extenstions
+msgid "webScripting"
+msgstr "Web"
+
+msgid "webScriptingTitle"
+msgstr "Web Scripting Settings for [[VAR.fqdn]]"
+
+msgid "webScriptingDescription"
+msgstr "Configure web options such as scripting languages."
+
+msgid "cgi"
+msgstr "Enable Common Gateway Interface (CGI)"
+
+msgid "cgi_help"
+msgstr "Enable the use of CGI applications."
+
+msgid "php"
+msgstr "Enable PHP Scripting"
+
+msgid "php_help"
+msgstr "Enable the use of PHP scripts."
+
+msgid "ssi"
+msgstr "Enable Server-Side Includes (SSI)"
+
+msgid "ssi_help"
+msgstr "Enable the use of Server-Side Includes."
+
+msgid "webScripting_help"
+msgstr "[[base-apache.webScriptingDescription]]"
+
+# i18n names for vsite services namespaces provided by this module
+msgid "phpI18nName"
+msgstr "PHP Scripting"
+
+msgid "cgiI18nName"
+msgstr "Common Gateway Interface (CGI)"
+
+msgid "ssiI18nName"
+msgstr "Server-Side Includes (SSI)"
+
+msgid "userwebs"
+msgstr "Enable user owned webs"
+
+msgid "userwebs_help"
+msgstr "If enabled, then each user has his own webspace, which is separated from the main website webspace and reachable through http://www.example.com/~username/ . Users can then upload their own webpages through FTP into their own /web directory. PLEASE NOTE: If suPHP is enabled, user owned webs are no longer supported and this feature will be turned off."
+
+msgid "ftpnonadminI18nName"
+msgstr "FTP for non-Site admins enabled"
+
+msgid "userwebsI18nName"
+msgstr "User owned webs enabled"
+
+#
+## BlueOnyx.conf editing additions:
+#
+
+msgid "Options_AllField"
+msgstr "All"
+
+msgid "Options_AllField_help"
+msgstr "All options except for MultiViews. (Default: Off)"
+
+msgid "Options_FollowSymLinksField"
+msgstr "FollowSymLinks"
+
+msgid "Options_FollowSymLinksField_help"
+msgstr "The server will follow symbolic links. (Default: On)"
+
+msgid "Options_IncludesField"
+msgstr "Includes"
+
+msgid "Options_IncludesField_help"
+msgstr "Server-side includes are permitted. (Default: On)"
+
+msgid "Options_IndexesField"
+msgstr "Indexes"
+
+msgid "Options_IndexesField_help"
+msgstr "If a URL which maps to a directory is requested, and the there is no DirectoryIndex (e.g., index.html) in that directory, then the server will return a formatted listing of the directory. (Default: On)"
+
+msgid "Options_MultiViewsField"
+msgstr "MultiViews"
+
+msgid "Options_MultiViewsField_help"
+msgstr "Content negotiated MultiViews are allowed. Used for displaying pages in different languages based on browser locales. (Default: On)"
+
+msgid "Options_SymLinksIfOwnerMatchField"
+msgstr "SymLinksIfOwnerMatch"
+
+msgid "Options_SymLinksIfOwnerMatchField_help"
+msgstr "The server will only follow symbolic links for which the target file or directory is owned by the same user id as the link. (Default: Off)"
+
+msgid "AllowOverride_AllField"
+msgstr "All"
+
+msgid "AllowOverride_AllField_help"
+msgstr "When the server finds an .htaccess file it needs to know which directives declared in that file can override earlier access information. Ticking this box will allow to override ALL Apache settings (Dangerous! Default: Off)"
+
+msgid "AllowOverride_AuthConfigField"
+msgstr "AuthConfig"
+
+msgid "AllowOverride_AuthConfigField_help"
+msgstr "Allow use of the authorization directives (AuthDBMGroupFile, AuthDBMUserFile, AuthGroupFile, AuthName, AuthDigestRealmSeed, AuthType, AuthUserFile, Require, etc.). (Default: On)"
+
+msgid "AllowOverride_FileInfoField"
+msgstr "FileInfo"
+
+msgid "AllowOverride_FileInfoField_help"
+msgstr "Allow use of the directives controlling document types (AddEncoding, AddLanguage, AddType, DefaultType, ErrorDocument, LanguagePriority, etc.). (Default: Off)"
+
+msgid "AllowOverride_IndexesField"
+msgstr "Indexes"
+
+msgid "AllowOverride_IndexesField_help"
+msgstr "Allow use of the directives controlling directory indexing (AddDescription, AddIcon, AddIconByEncoding, AddIconByType, DefaultIcon, DirectoryIndex, FancyIndexing, HeaderName, IndexIgnore, IndexOptions, ReadmeName, etc.). (Default: On)"
+
+msgid "AllowOverride_LimitField"
+msgstr "Limit"
+
+msgid "AllowOverride_LimitField_help"
+msgstr "Allow use of the directives controlling host access (Allow, Deny  and Order). (Default: On)"
+
+msgid "AllowOverride_OptionsField"
+msgstr "Options"
+
+msgid "AllowOverride_OptionsField_help"
+msgstr "Allow use of the directives controlling specific directory features (Options and XBitHack). (Default: Off)"
+
+msgid "DIVIDER_TOP"
+msgstr "General Apache configuration:"
+
+msgid "DIVIDER_EXPLANATION"
+msgstr "Apache features for virtual site directories:"
+
+msgid "BlueOnyx_Info_Text"
+msgstr "A section in /etc/httpd/conf.d/blueonyx.conf defines which 'Options' and 'AllowOverride' features are allowed for the directory (/home/.sites/) in which all virtual sites reside. This restricts usage of .htaccess files and other things. These can be changed below."
+
+msgid "DIVIDER_OPTIONS"
+msgstr "Options:"
+
+msgid "DIVIDER_ALLOWOVERRIDE"
+msgstr "AllowOverride:"
+
+# suPHP:
+msgid "PHP_enabled" 
+msgstr "Enable PHP Scripting" 
+
+msgid "PHP_enabled_help" 
+msgstr "Enable the use of PHP scripts." 
+
+msgid "enableSuPHP" 
+msgstr "Enable suPHP" 
+
+msgid "enableSuPHP_help" 
+msgstr "Enable the use of suPHP so that PHP scripts run with the UID of their owner. Be sure to configure a siteAdmin as owner of your /web folder through the 'Web Ownership' menu! PLEASE NOTE: If suPHP is enabled, user owned webs are no longer supported and that feature will get turned off." 
+
+msgid "disabled"
+msgstr "Disabled"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "cap_serverHttpd"
+msgstr "Apache Settings"
+
+###
+
+msgid "httpPortField"
+msgstr "HTTP Port"
+
+msgid "httpPortField_help"
+msgstr "Normally the Apache Webserver runs on Port 80 (HTTP). If you want to change it to a different port, then you can do so here. This is only useful if you want to use something else in front of Apache to filter, cache or redirect traffic. Such as a Varnish Cache, a forwarding proxy or a load balancer. If you change this setting, then all existing virtual sites will be moved to the new port and all new sites will be created to use this new port. IP addresses of virtual sites will not be changed."
+
+msgid "sslPortField"
+msgstr "HTTPS/SSL Port"
+
+msgid "sslPortField_help"
+msgstr "Normally the Apache Webserver uses Port 443 for HTTPS traffic. If you want to change it to a different port, then you can do so here. This is only useful if you want to use something else in front of Apache to filter, cache or redirect traffic. Such as a Varnish Cache, a forwarding proxy or a load balancer. If you change this setting, then all existing virtual sites with SSL enabled will switch from port 443 to the new port for SSL traffic. IP addresses of virtual sites will not be changed."
+
+msgid "httpPortInUse"
+msgstr "The port you specified as new HTTP port is already in use by another service. Please choose another port instead."
+
+msgid "SSLportInUse"
+msgstr "The port you specified as new HTTPS/SSL port is already in use by another service. Please choose another port instead."

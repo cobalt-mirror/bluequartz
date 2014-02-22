@@ -1,0 +1,442 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "monitorLight"
+msgstr "[[base-am.activeMonitor]]"
+
+msgid "monitorLight_help"
+msgstr "Klik hier om [[base-am.activeMonitor]] statusinformatie bekijken. Dit pictogram wordt rood als een van de onderdelen die door [[base-am.activeMonitor]] ernstige problemen."
+
+msgid "activeMonitor"
+msgstr "Actieve Monitor"
+
+msgid "activeMonitor_help"
+msgstr "Klik hier om te controleren op de juiste werking van systeemcomponenten."
+
+msgid "amStatusMenuName"
+msgstr "Toestand"
+
+msgid "amStatusMenuDesc"
+msgstr "Klik hier om [[base-am.activeMonitor]] statusinformatie bekijken."
+
+msgid "amObjNotFound"
+msgstr "Sorry, een systeemfout opgetreden. De Active Monitor object kon niet worden gevonden."
+
+msgid "amSysClients"
+msgstr "System Status - Overzicht"
+
+msgid "amClientName"
+msgstr "Component Naam"
+
+msgid "amClientName_help"
+msgstr "Dit is de naam van de bewaakte component."
+
+msgid "action"
+msgstr "Actie"
+
+msgid "action_help"
+msgstr "Klik hier voor meer gedetailleerde informatie over de bewaakte onderdeel te bekijken."
+
+msgid "amServClients"
+msgstr "Dienst Status - Overzicht"
+
+msgid "amOtherClients"
+msgstr "Andere Status - Overzicht"
+
+msgid "amClientStatus"
+msgstr "Huidige status"
+
+msgid "amClientStatus_help"
+msgstr "Dit is de huidige status van de bewaakte component."
+
+msgid "amClientLastChange"
+msgstr "Status Laatst gewijzigd"
+
+msgid "amNever"
+msgstr "Nooit"
+
+msgid "amClientLastChange_help"
+msgstr "Dit is de tijd van de laatste wijziging in de status van de bewaakte component."
+
+msgid "amSettingsMenuName"
+msgstr "Instellingen"
+
+msgid "amSettingsMenuDesc"
+msgstr "Klik hier om [[base-am.amSettings]] configureren."
+
+msgid "amSettings"
+msgstr "Actieve Monitor Settings"
+
+msgid "enableAMField"
+msgstr "Enable Monitoring"
+
+msgid "enableAMField_help"
+msgstr "Zet [[base-am.activeMonitor]] in-of uitschakelen. Deze functionaliteit inschakelt, kunt specifieke systeemcomponenten regelmatig worden gecontroleerd op juiste werking. Deze onderdelen kunt u hieronder geselecteerd."
+
+msgid "alertEmailList"
+msgstr "Alert Notification Emails"
+
+msgid "alertEmailList_help"
+msgstr "Geef de lijst met e-mailadressen waarnaar [[base-am.activeMonitor]] waarschuwingen sturen."
+
+msgid "itemsToMonitor"
+msgstr "Bewaakte componenten"
+
+msgid "itemsToMonitor_help"
+msgstr "Selecteer de specifieke systeemonderdelen regelmatig worden gecontroleerd door [[base-am.activeMonitor]]. De linkerkolom toont de onderdelen van het systeem die momenteel worden gecontroleerd. De rechterkolom toont de systeemcomponenten die eventueel kan worden gecontroleerd. Om een ​​deelsysteem te worden gecontroleerd toe te voegen, de deelsystemen te verplaatsen van de rechterkant naar de linkerkolom."
+
+msgid "selected"
+msgstr "Bewaakte onderdelen"
+
+msgid "notSelected"
+msgstr "Onderdelen niet bewaakt"
+
+msgid "amNoMessage"
+msgstr "Er is geen informatie beschikbaar voor deze component op dit moment."
+
+msgid "amNotMonitored"
+msgstr "Deze component niet wordt gecontroleerd op dit moment."
+
+msgid "amNotEnabled"
+msgstr "Deze component is niet ingeschakeld."
+
+msgid "alreadyMadeAM"
+msgstr "Sorry, een systeemfout opgetreden. Een Active Monitor object al bestaat."
+
+msgid "amCPUName"
+msgstr "CPU Usage"
+
+msgid "amCPUWarning_light"
+msgstr "De CPU wordt licht gebruikt."
+
+msgid "amCPUWarning_moderate"
+msgstr "De CPU wordt matig gebruikt. Dit kan te wijten zijn aan een tijdelijke toename van de activiteit. Overwegen te verhuizen enkele diensten naar andere servers, of het verminderen van de complexiteit van de CGI-scripts die op de server zelf."
+
+msgid "amCPUWarning_heavy"
+msgstr "De CPU wordt intensief gebruikt. Dit leidt tot merkbaar prestatieverlies. Overwegen te verhuizen enkele diensten naar andere servers, of het verminderen van de complexiteit van de CGI-scripts die op de server zelf."
+
+msgid "amUseLight"
+msgstr "licht"
+
+msgid "amUseModerate"
+msgstr "matig"
+
+msgid "amUseHeavy"
+msgstr "hard"
+
+msgid "amCPUDetails"
+msgstr "CPU Usage Details"
+
+msgid "amCPUStats"
+msgstr "CPU Statistieken"
+
+msgid "amCPULoadAvg"
+msgstr "[[VAR.mins]] Minute Gemiddelde belasting"
+
+msgid "amCPULoadAvgFifteen"
+msgstr "[[VAR.mins]] Minute Gemiddelde belasting"
+
+msgid "amCPULoadAvgFifteen_help"
+msgstr "Dit is het gemiddeld aantal taken wachten om te worden uitgevoerd door de processor gedurende [[VAR.mins]] minuten tijd. De normale gemiddelde belasting is ergens tussen de 0,0 en 3,0."
+
+msgid "amCPULoadAvg_help"
+msgstr "Dit is het gemiddeld aantal taken wachten om te worden uitgevoerd door de processor gedurende [[VAR.mins]] minuten tijd. De normale gemiddelde belasting is ergens tussen de 0,0 en 3,0."
+
+msgid "amCPUUptime"
+msgstr "System Uptime"
+
+msgid "amCPUUptime_help"
+msgstr "Dit is de tijd dat de server apparaat is ingeschakeld en werkt."
+
+msgid "days"
+msgstr "[[VAR.val]] Dagen"
+
+msgid "hours"
+msgstr "[[VAR.val]] Uren"
+
+msgid "minutes"
+msgstr "[[VAR.val]] Minuten"
+
+msgid "day"
+msgstr "[[VAR.val]] Day"
+
+msgid "hour"
+msgstr "[[VAR.val]] Uur"
+
+msgid "minute"
+msgstr "[[VAR.val]] Minute"
+
+msgid "amCPUTemp"
+msgstr "CPU Temperatuur"
+
+msgid "amCPUTemp_help"
+msgstr "Dit is de huidige temperatuur van de processor C. De normale processor temperatuur tussen 30 en 60 C."
+
+msgid "degrees"
+msgstr "[[VAR.val]] C"
+
+msgid "amMemoryName"
+msgstr "Geheugengebruik"
+
+msgid "amMemDetails"
+msgstr "Geheugengebruik Details"
+
+msgid "amMemWarning_light"
+msgstr "Systeemgeheugen wordt licht gebruikt."
+
+msgid "amMemWarning_moderate"
+msgstr "Systeemgeheugen wordt matig gebruikt. De server kan meer geheugen dan het momenteel nodig. Overweeg het toevoegen van meer geheugen aan de server."
+
+msgid "amMemWarning_heavy"
+msgstr "Systeemgeheugen wordt intensief gebruikt. De server heeft meer geheugen dan het momenteel heeft. Overweeg het toevoegen van meer geheugen aan de server."
+
+msgid "amMemStats"
+msgstr "Geheugengebruik Statistieken"
+
+msgid "amMemTotal"
+msgstr "Totaal fysiek geheugen"
+
+msgid "amMemTotal_help"
+msgstr "Dit is het bedrag van de totale reële geheugen beschikbaar is op het systeem."
+
+msgid "amMemFree"
+msgstr "Gratis fysiek geheugen"
+
+msgid "amMemFree_help"
+msgstr "Dit is de hoeveelheid vrij echte geheugen beschikbaar is op het systeem."
+
+msgid "amSwapTotal"
+msgstr "Totaal Wisselbestandruimte"
+
+msgid "amSwapTotal_help"
+msgstr "Dit is het bedrag van de totale swap ruimte beschikbaar is op het systeem."
+
+msgid "amSwapFree"
+msgstr "Vrije ruimte Swap"
+
+msgid "amSwapFree_help"
+msgstr "Dit is de hoeveelheid vrije swap ruimte beschikbaar is op het systeem."
+
+msgid "MemKB"
+msgstr "[[VAR.val]] KB"
+
+msgid "amMemUsed"
+msgstr "Geheugengebruik"
+
+msgid "amMemUsed_help"
+msgstr "Dit is de hoeveelheid fysiek of werkelijk gebruikte geheugen aan het systeem. Het is normaal voor de meeste echte geheugen gebruikt op alle tijden."
+
+msgid "amMemPcnt"
+msgstr "[[VAR.used]] KB ([[VAR.pcnt]]% van het totaal)"
+
+msgid "amSwapUsed"
+msgstr "Swap Gebruik"
+
+msgid "amSwapUsed_help"
+msgstr "Dit is de hoeveelheid swap of virtueel geheugen in gebruik is op het systeem. Het is normaal dat er wat swap geheugen moet worden gebruikt ten alle tijden, zelfs wanneer echt geheugen nog beschikbaar is."
+
+msgid "amSwapPcnt"
+msgstr "[[Base-am.MemKB, val = [[VAR.used]]]] ([[VAR.pcnt]]% van het totaal)"
+
+msgid "amPagesSec"
+msgstr "[[VAR.pages]] pagina's per seconde"
+
+msgid "pagesPerSec"
+msgstr "Pagina's per seconde"
+
+msgid "pagesPerSec_help"
+msgstr "Dit is een maat voor geheugengebruik. Als [[base-am.pagesPerSec]] is overdreven groot, dan is het systeem niet efficiënt gebruik van het geheugen. Misschien wilt u meer geheugen op de server installeren apparaat."
+
+msgid "amSwapsSec"
+msgstr "[[VAR.swaps]] swaps per seconde"
+
+msgid "swapsPerSec"
+msgstr "Swaps Per Second"
+
+msgid "swapsPerSec_help"
+msgstr "Dit is een maat voor geheugengebruik. Als [[base-am.swapsPerSec]] is overdreven groot, dan is het systeem niet efficiënt gebruik van het geheugen. Misschien wilt u meer geheugen op de server installeren apparaat."
+
+msgid "amKey"
+msgstr "Key:"
+
+msgid "amKeyGrey"
+msgstr "Geen informatie beschikbaar of Monitoring Niet Ingeschakeld"
+
+msgid "amKeyGreen"
+msgstr "Normaal"
+
+msgid "amKeyYellow"
+msgstr "Probleem"
+
+msgid "amKeyRed"
+msgstr "Ernstige Probleem"
+
+msgid "amUpdateNow"
+msgstr "Status controleren Nu"
+
+msgid "amUpdateNowConfirm"
+msgstr "Weet u zeker dat u de status nu controleren? Deze operatie kan enkele minuten duren."
+
+msgid "amUpdateNow_help"
+msgstr "Klik hier om onmiddellijk te beginnen met het updaten van het systeem en service statusinformatie. Dit kan zolang enkele minuten duren, en zal overgaan op de achtergrond."
+
+msgid "amUpdateNow_disabledHelp"
+msgstr "[[base-am.activeMonitor]] is momenteel uitgeschakeld. Om het mogelijk te maken, gaat u naar de [[base-am.amSettingsMenuName]] menu en selecteer [[base-am.enableAMField]]."
+
+msgid "amDetailNoName"
+msgstr "Sorry, was er een probleem genereren van deze pagina. De variabele 'naam' is niet gedefinieerd."
+
+msgid "amFansOK"
+msgstr "De ventilatoren werken normaal."
+
+msgid "amFansSlow"
+msgstr "Een of meer van de fans is traag. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansSlow_email_fan1"
+msgstr "De voeding ventilator langzaam draait. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansSlow_email_fan3"
+msgstr "De System Fan wordt langzaam draait. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansSlow_email_fan2"
+msgstr "De CPU Fan is langzaam draait. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansDangerouslySlow"
+msgstr "Een of meer van de fans is gevaarlijk langzaam. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansDangerouslySlow_email_fan1"
+msgstr "De voeding Fan is gevaarlijk langzaam. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansDangerouslySlow_email_fan3"
+msgstr "De System Fan is gevaarlijk langzaam. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "amFansDangerouslySlow_email_fan2"
+msgstr "De CPU Fan is gevaarlijk langzaam. De server afsluiten apparaat en controleer of de ventilator goed en niet belemmerd is aangesloten. En zorg er dan voor een goede luchtstroom."
+
+msgid "fanName"
+msgstr "Fan [[VAR.fanNumber]]"
+
+msgid "fanSpeed"
+msgstr "[[VAR.speed]] RPM"
+
+msgid "amFanDetails"
+msgstr "Fan Details"
+
+msgid "amFanStats"
+msgstr "Fan Statistieken"
+
+msgid "amFanName"
+msgstr "Fans"
+
+msgid "amTempsOK"
+msgstr "De temperatuur is in orde."
+
+msgid "amTempsHot"
+msgstr "Een of meer systeemcomponenten loopt heter dan normaal. Controleer of het systeem voldoende ventilatie is en dat alle fans goed werken."
+
+msgid "amTempsDangerouslyHot"
+msgstr "Een of meer onderdelen van het systeem actief is gevaarlijk warm. Een van de systeem fans wellicht mislukt. Controleer of het systeem voldoende ventilatie is en dat alle fans goed werken."
+
+msgid "amTempName"
+msgstr "Temperatuur"
+
+msgid "sensorNameCPU"
+msgstr "CPU Temperatuur"
+
+msgid "sensorNameCPU_help"
+msgstr "Dit is de temperatuur van de processor."
+
+msgid "sensorNameCase"
+msgstr "Omgevingstemperatuur"
+
+msgid "sensorNameCase_help"
+msgstr "Dit is de temperatuur in de behuizing."
+
+msgid "amTemp"
+msgstr "[[VAR.temp]] graden Celsius"
+
+msgid "amTempDetails"
+msgstr "Temperatuur Details"
+
+msgid "amTempStats"
+msgstr "Temperatuur Statistieken"
+
+msgid "amECCName"
+msgstr "ECC-geheugen Correctie"
+
+msgid "amECCDetails"
+msgstr "[[base-am.amECCName]] Details"
+
+msgid "uncorrMemErrors"
+msgstr "De server apparaat is een corrigeerbare geheugen opgetreden. Start uw server apparaat. Als u nog steeds onherstelbare geheugenfouten, kijk dan in de hardware handleiding."
+
+msgid "tooManyMemErrors"
+msgstr "De server apparaat heeft een te groot aantal corrigeerbare geheugenfouten ervaren. Start uw server apparaat. Als u nog steeds corrigeerbare geheugenfouten, kijk dan in de hardware handleiding."
+
+msgid "someCorrMemErrors"
+msgstr "De server apparaat heeft ervaren een of meer corrigeerbare geheugenfouten. Als u nog steeds het geheugen fouten, kijk dan in de hardware handleiding."
+
+msgid "amECCOK"
+msgstr "Geen geheugen fouten ontdekt."
+
+msgid "viewEccLogs"
+msgstr "Bekijk ECC Logs"
+
+msgid "viewEccLogs_help"
+msgstr "Klik hier om de ECC-geheugen logs te bekijken."
+
+msgid "eccLogs"
+msgstr "ECC-geheugen Logs"
+
+msgid "cant_get_faninfo"
+msgstr "Kon fan statistieken niet krijgen."
+
+msgid "cant_get_tempinfo"
+msgstr "Kon temperatuur statistieken niet krijgen."
+
+msgid "bad_ecc_errors"
+msgstr "Deze DIMM heeft corrigeerbare fouten."
+
+msgid "corr_ecc_errors"
+msgstr "Deze DIMM heeft gecorrigeerd wat geheugen fouten."
+
+msgid "no_ecc_errors"
+msgstr "Deze DIMM normaal functioneert."
+
+msgid "slotempty"
+msgstr "Deze DIMM-slot is leeg."
+
+msgid "acpi_temp_subject"
+msgstr "Systeem Oververhitting Shutdown"
+
+msgid "acpi_temp_shutdown"
+msgstr "Ofwel de CPU of het toestel zelf een temperatuur boven de toegestane drempelwaarde bereikt. Voor de veiligheid is deze machine wordt stilgelegd. Controleer of alle fans in dit toestel goed is en dat de omgeving waarin de machine is voldoende werken."
+
+msgid "acpi_fans_subject"
+msgstr "System Fan Shutdown"
+
+msgid "acpi_fans_shutdown_fan1"
+msgstr "De voeding Fan is gevaarlijk langzaam. Voor de veiligheid is dit apparaat wordt uitgeschakeld."
+
+msgid "acpi_fans_shutdown_fan3"
+msgstr "De System Fan is gevaarlijk langzaam. Voor de veiligheid is dit apparaat wordt uitgeschakeld."
+
+msgid "acpi_fans_shutdown_fan2"
+msgstr "De CPU Fan is gevaarlijk langzaam. Voor de veiligheid is dit apparaat wordt uitgeschakeld."
+
+msgid "no_mem_stats"
+msgstr "Actieve Monitor is niet in staat om statistieken over het geheugengebruik te krijgen op dit moment. Probeer het later opnieuw."
+
+msgid "cap_serverShowActiveMonitor"
+msgstr "Actieve Monitor Status"
+
+msgid "cap_serverActiveMonitor"
+msgstr "Actieve Monitor Settings"
+

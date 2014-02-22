@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# Global tech support strings
+msgid "techSupportUSPhone"
+msgstr "(No disponible)"
+
+msgid "techSupportIntlPhone"
+msgstr "(No disponible)"
+
+msgid "techSupportEmail"
+msgstr "(No disponible)"
+	
+msgid "contactTechSupport"
+msgstr "Visita [[base-salsa-basic.techSupportURL]] para obtener información técnica."
+
+msgid "kill_dhclient_failed"
+msgstr "No se pudo comprobar que el cliente DHCP se ha detenido."
+
+msgid "Invalid-object"
+msgstr "Error interno: se ha intentado eliminar un objeto inválido. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "Already-Destroyed"
+msgstr "Error: usuario [[VAR.name]] ya eliminado."
+
+msgid "failed-to-add-user"
+msgstr "Error interno: no se pudo crear el nuevo usuario $name. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "excessivelyLargeQuota"
+msgstr "El valor para la cuota es demasiado grande. La máxima permitida es [[VAR.max]]."
+
+msgid "hostname-too-long"
+msgstr "El nombre del servidor es demasiado largo. La longitud máxima es de 40 caracteres."
+
+msgid "descReadOnly"
+msgstr "La descripción del usuario es de sólo lectura."

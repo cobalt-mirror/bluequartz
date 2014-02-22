@@ -1,0 +1,658 @@
+# configuration bits for mod_rpmize
+# syntax:
+# <begin [x]section>
+# <end [x]section>
+#
+# x an be $ for a string or % for a hash.
+# if a hash is being used, you can add sub-sections with
+# <begin sub-section>
+# <end sub-section>
+
+
+<begin $DESCRIPTION>
+%package [LABEL]
+Group: System Environment/BlueOnyx
+Summary: [LABEL] for [VENDOR]-[SERVICE].
+[AUTOFILL]
+[BUILDARCH]
+Obsoletes: solarspeed-mod_php  <= 5.2.6
+Obsoletes: solarspeed-mod_php-gui <= 5.2.6
+Obsoletes: nuonce-hostsfix
+
+[PROVIDES]
+
+%description [LABEL]
+The [VENDOR]-[SERVICE]-[LABEL] package contains the [LABEL]
+information for [VENDOR]-[SERVICE].
+
+<end $DESCRIPTION>
+
+<begin %PREP>
+<end %PREP>
+
+<begin %SETUP>
+<end %SETUP>
+
+<begin %BUILD>
+<end %BUILD>
+
+<begin %INSTALL>
+<end %INSTALL>
+
+<begin %FILES>
+<begin HEADER>
+%files [LABEL]
+%defattr(-,root,root)
+<end HEADER>
+
+<begin locale>
+[AUTOFILL]
+
+<end locale>
+
+<begin glue>
+[AUTOFILL]
+/etc/skel/vsite/*
+%attr(0755,-,-) /usr/sausalito/sbin/vsite_destroy.pl
+%attr(0755,-,-) /usr/sausalito/sbin/fix_user_suspension.pl
+%attr(0755,-,-) /usr/sausalito/sbin/web_alias_redirects.pl
+%attr(0755,-,-) /usr/sausalito/sbin/suPHP_fixer.pl
+%attr(0755,-,-) /usr/sausalito/sbin/php_settings_convert.pl
+%attr(0755,-,-) /usr/sausalito/sbin/phpsendmail
+%attr(0755,-,-) /usr/sausalito/configs/php/set_php_headers.php
+
+<end glue>
+
+<begin ui>
+[AUTOFILL]
+
+<end ui>
+
+<begin capstone>
+%{RootDir}/capstone/%{Vendor}-%{Service}.cap
+[AUTOFILL]
+
+<end capstone>
+<end %FILES>
+
+<begin %POST-INSTALL>
+<begin HEADER>
+%post [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-install
+# This is not needed at the moment:
+#if [ -S /usr/sausalito/cced.socket ]; then
+#    /etc/init.d/cced.init restart
+#    /usr/sausalito/sbin/suPHP_fixer.pl
+#    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
+#fi
+
+<end glue>
+<begin ui>
+# ui post-install
+# this is somewhat nasty, but it always makes sure that there's a
+# default .html file in case the browser doesn't specify a locale
+if [ x"[DEFLOCALE]" != x ]; then
+	for dir in `find [CCEWEB] -type d`; do 
+		(cd $dir; 
+		if [ x"`ls *.htm[l].[DEFLOCALE] 2> /dev/null`" != x ]; then
+			for file in `ls *.htm[l].[DEFLOCALE]`; do
+				base=`basename $file .[DEFLOCALE]`
+				if [ ! -f $base ]; then
+					ln -s $file $base
+ 				fi
+			done
+		fi)
+	done
+fi
+
+<end ui>
+<begin locale>
+# locale post-install
+
+<end locale>
+<end %POST-INSTALL>
+
+<begin %POST-UNINSTALL>
+<begin HEADER>
+%postun [LABEL]
+<end HEADER>
+
+<begin glue>
+# glue post-uninstall
+
+<end glue>
+<begin ui>
+# ui post-uninstall
+
+<end ui>
+<begin locale>
+# locale post-uninstall
+
+<end locale>
+<end %POST-UNINSTALL>
+
+<begin $CHANGELOG>
+
+* Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX18
+- Added cleaned up French translation as provided by Meaulnes Legler.
+
+* Tue Jan 07 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX17
+- Added cleaned up French translation as provided by Meaulnes Legler.
+
+* Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX16
+- Merged in locales for the Netherlands ('nl_NL').
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX15
+- Fixes all around.
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX14
+- Modified glue/handlers/web_alias_redirects.pl to obtain the port number of the HTTP port from CODB and to use 
+  that one instead of a hardcoded port 80.
+
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX13
+- Small fix to ui/web/vsiteMod.php
+
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX12
+- Added glue/handlers/system_reseller_delete.pl, which fires on User deletion. If the User in question has the
+  capability 'manageSite' and owns Vsites, then all Vsites (and their users) associated to him will be deleted
+  as well.
+
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX11
+- Modified ui/web/vsiteMod.php and ui/web/vsiteModSave.php to give users with the capability 'serverManage' the
+  ability to modify the owner of a Vsite. They can select all 'adminUser' with the capability 'manageSite' to
+  be the owner of a Vsite. Or they can change it back to 'admin', which is the default value anyway. Resellers
+  (which is capability 'manageSite') or 'siteAdmin' users won't see the pulldown, as the info is hidden from them.
+
+* Tue Dec 10 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX10
+- Modified ui/web/manageAdmin.php as we no longer need to add 'modifyJava' to users with 'manageAdmin' Capability.
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX09
+- Removed capability 'serverSystemFirewall' from ui/web/manageAdmin.php. As we don't have a
+  localization for that (it's in base-firewall.mod) it blows up by showing the pootle headers.
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX08
+- Fixed a typo in glue/schemas/php.schema
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX07
+- Small fix to ui/web/manageAdmin.php
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX06
+- ui/web/manageAdmin.php needs 'modifyJava' as mandatory capability if the user has 'manageSite'.
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX05
+- Small localization fix in vsiteList.php
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX04
+- Small fixes in ui/web/vsiteList.php and ui/web/manageAdmin.php
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX03
+- Fixed more missing locale stuff. Seriously, why weren't they there? 
+- Fixed an idiosynchracy in vsiteList.php. The pointy thing needed to point into the other direction.
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX02
+- Fixed a 'Assigning the return value of new by reference is deprecated' Error in manageAdmin.php
+- Added missing locale string for 'cap_manageSite'.
+
+* Sun Dec 08 2013 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX01
+- Preparational build for 5207R/5208R. Doesn't include new GUI yet.
+- Merged in new locales from 5207R ("es_ES", "fr_FR", "it_IT", "pt_PT").
+- Dropped all two character locales.
+- Converted "ja_JP" from EUC-JP to UTF-8.
+- New Capabilities for admin. 
+- The DNS management authority is subdivided (Hideki Oride).
+- Add 'admin' for default alias for virtual site. 
+- Resolved the issue that the ServerAlias was lost when SSL got enabled/disabled.
+- Add new feature by Oride-san. 
+-- The feature the user limit for the administrator. 
+-- The feature the enable/disable shell access for the administrator. 
+-- The feature that admin only can configure the template for the vsite. 
+-- The feature that enable 'server_admin' is the specific rule for 'admin_name' + '_' for user prefix. 
+- Half disabled Oride-san's prefix stuff to merge it with our own. Have to see how compatible this is now.
+
+* Fri Jan 18 2013 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX105
+- Added support for PHP-5.4, as we need to set 'register_globals' to 'Off' for that.
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl
+- Updated ui/web/vsite_phpHandler.php ui/web/vsite_php.php ui/web/php_serverHandler.php ui/web/php_server.php
+- We basically hide the 'register_globals' switch and in the background we set it to 'Off' if 
+  we have PHP >= 5.4.
+
+* Tue Sep 04 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX104
+- Added constructor/z_create_dummy_site.pl to create a dummy site when wizard has not yet
+  been finished to create and delete a dummy site. This helps to overcome the initial site 
+  creation error on 5107R and 5108R on freshly installed boxes.
+- Modified ui/web/vsiteList.php and ui/web/vsite_common.php to add 'inspect' image button
+  that opens the URL of the site in question in a new browser window. Which was long overdue.
+
+* Thu Aug 30 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX103
+- Updated ui/web/vsite_php.php to move the array choices for the PHP settings outside of the
+  if statement. There are some rare cases where we need it to fallback to sane defaults.
+
+* Fri Aug 03 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX102
+- Updated Makefile to add dependency for mod_authnz_external
+
+* Thu Jun 07 2012 Greg Kuhnert 3.0-132BX101
+- Removed if test in change_net_info - to cause vhost file to be updated reliably.
+
+* Tue May 01 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX100
+- The 'open_basedir' handling is a bit of a mess. It works, but the presentation in the GUI
+  and the underlying code are not really pretty. This code change is an attempt to nice it up.
+  For starters this introduces a cleaner separation between server wide 'open_basedir' 
+  settings and site wide 'open_basedir' settings. From now on the PHPVsite objects only
+  store 'open_basedir' paths that are not already covered server wide.
+- Modified ui/web/vsite_php.php to show the server wide 'open_basedir' settings in a read-
+  only textarea. A second textarea allows to enter additional paths.
+- Modified ui/web/vsite_phpHandler.php to be a hell of a lot smarter and to run extra 
+  checks for validating our new input.
+- Modified glue/handlers/php_vsite_handler.pl to piece together the full 'open_basedir'
+  path as it needs to be: Mandatory server wide 'open_basedir' settings plus Vsite root
+  plus whatever optional 'open_basedir' paths are specified.
+- Modified ui/web/php_server.php and ui/web/php_serverHandler.php as well to turn the 
+  textField into a textArea. Added some more logic to make sure the bare metal minimums
+  are retained even through saving incorrect or partial saves.
+- Modified glue/handlers/php_handler.pl to force an update of the PHPVsite settings of
+  Vsites whenever the server wide PHP settings are saved.
+
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX99
+- More fixes: If 'safe_mode' is enabled, 'safe_mode_allowed_env_vars' needs to be populated
+  with the variables we use in /usr/sausalito/configs/php/set_php_headers.php.
+- Updated constructor/import_php_ini_settings.pl to set these.
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_handler.pl
+- Updated glue/schemas/php_vsite.schema and glue/schemas/php.schema
+- Updated ui/web/vsite_phpHandler.php and ui/web/php_serverHandler.php
+
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX98
+- More fixes: If 'safe_mode' is enabled, /usr/sausalito/configs/php/ is outside the 
+  'safe_mode_include_dir'.
+- Modified glue/schemas/php_vsite.schema and glue/schemas/php.schema again.
+- Modified constructor/import_php_ini_settings.pl to add /usr/sausalito/configs/php/ to 
+  'safe_mode_include_dir'.
+- Modified glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl to
+  add /usr/sausalito/configs/php/ to 'safe_mode_include_dir'.
+
+* Fri Apr 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX97
+- OK, I screwed up. If suPHP is enabled, the prepend file is outside the allowed path.
+  We have to add /usr/sausalito/configs/php/ to 'open_basedir'. For this purpose the 
+  following files were updated or modified:
+- Updated constructor/import_php_ini_settings.pl
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl
+- Updated Schemas glue/schemas/php_vsite.schema and glue/schemas/php.schema
+- Updated UI ui/web/vsite_phpHandler.php and ui/web/php_serverHandler.php
+
+* Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX96
+- For better third party PKG support the extra database field 'show_safemode' was added to
+  the Class 'PHP'. It defaults to '0'. If PHP >= 5.3 is installed and 'show_safemode' is
+  manually set to '1', the safe mode related GUI form fields will be shown. Otherwise
+  they will be hidden.
+- Updated ui/web/vsite_php.php and ui/web/php_server.php for that, too.
+
+* Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX95
+- Added /usr/sausalito/sbin/php_settings_convert.pl to allow us to activate the new PHP
+  features introduced in 3.0-132BX94.
+
+* Thu Apr 19 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX94
+- Extended base-vsite with wrapper mechanisms to log PHP's mail() usage to /var/log/maillog:
+- Added PHP auto_prepend_file: /usr/sausalito/configs/php/set_php_headers.php
+- Added Sendmail wrapper for PHP: /usr/sausalito/bin/phpsendmail
+- Modified glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl so that they 
+  both edit php.ini (System/Thirdparty php.ini as well as suPHP's separate php.ini's). We 
+  now add 'mail.add_x_header=On', 'auto_prepend_file=/usr/sausalito/configs/php/set_php_headers.php'
+  and 'sendmail_path = /usr/sausalito/bin/phpsendmail' to our various php.ini's wherever applicable.
+  Additionally the Vhost container of the PHP enabled or suPHP enabled Vsites get these three new
+  parameters set via php_admin_flag or php_admin_value.
+
+* Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX93
+- Converted locale encoding from UTF-8 to ISO-8859-1.
+
+* Sun Mar 11 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX92
+- Modified glue/conf/vsite.conf to execute base/vsite/php_handler.pl on any VSITE transaction. Otherwise
+  we loose the PHP AddTypes during transactions such as web alias changes.
+
+* Fri Mar 09 2012 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX91
+- Updated ui/web/vsite_php.php and ui/web/vsite_php.php to be more flexible when rendering the pulldowns. 
+  We now honour it when someone manually edited php.ini and set a Vsite to use a previously unsupported 
+  value for supported parameters.
+
+* Sat Sep 10 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX90
+- Updated glue/handlers/suspend.pl again: Forgot to add usage of Vsite.pm
+
+* Sat Sep 10 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX89
+- Updated glue/handlers/suspend.pl: Fixed permission change on Vsite suspend/unsuspend. Wasn't working anymore.
+
+* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX88
+- Updated glue/handlers/php_vsite_handler.pl to add 'date.timezone' to suPHP Vsite's php.ini's as well.
+- Updated glue/handlers/php_tz_handler.pl again. Ideally it should update the TZ data of suPHP Vsite's php.ini's
+  as well. But this apparently cannot be done in an easy fashions via CCE set commands. Put it off for now.
+
+* Wed Sep 07 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX87
+- PHP-5.3 requires us to set 'date.timezone' somewhere. Either in php.ini or in our scripts. So we now set it
+  globally in /etc/admserv/php.ini and /etc/php.ini (or the corresponding third party php.ini - if applicable).
+  For this we read the configured system TZ data and write it off into our php.ini's.
+- Added constructor/admserv_php_ini_timezone_set.pl to set TZ in our php.ini's.
+- Modified glue/conf/vsite.conf to call glue/handlers/php_tz_handler.pl on TZ changes.
+- Added glue/handlers/php_tz_handler.pl to set TZ in our php.ini's on TZ changes.
+- Modified glue/handlers/php_handler.pl to also write TZ changes into Apache's php.ini.
+
+* Tue Aug 30 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX86
+- Incorporated a modified version of nuonce-hostfix. This module now obsoletes nuonce-hostfix.
+- Modified glue/conf/vsite.conf to get the hostfixing going.
+- Added constructor/fixhosts.
+- Added glue/handlers/fixhosts.pl to call the constructor shell script. Which is a bit dirty, but OK in this case.
+
+* Tue Aug 23 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX85
+- New feature: Our suPHP integration now supports (and creates) custom php.ini configs in the Vsite basedir.
+- Extended glue/handlers/php_vsite_handler.pl to create, modify and remove custom php.ini files on an
+  as needed basis.
+- Added /usr/sausalito/sbin/suPHP_fixer.pl to automatically generate missing custom php.ini files.
+  This constructor is executed upon glue installation after the CCEd restart. It runs silently if there
+  is nothing to do, but if suPHP is enabled on sites and the custom php.ini is missing, suPHP will be 
+  briefly turned off and back on to create the missing custom php.ini file.
+
+* Mon Aug 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX84
+- Modified glue/schemas/php.schema to add /home/ to global open_basedir settings of PHP again.
+  This is needed or suPHP will not work right for us.
+
+* Sun Aug 14 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX83
+- Modified glue/handlers/change_net_info.pl and glue/handlers/vsite_create.pl to
+  add rudimentary AWS support.
+
+* Fri Aug 12 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX82
+- Updated glue/handlers/php_handler.pl to replace Sausalito httpd restart with a system call.
+- The internal function to restart httpd didn't restart, but issue a sigterm. Needs to be investigated.
+
+* Sun Jun 26 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX81
+- Updated glue/handlers/vsite_create.pl and glue/handlers/php_vsite_handler.pl with better debugging mechanisms.
+
+* Thu Jun 16 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX80
+- Rolled back in the locales, schema and UI changes of 3.0-132BX78 to implement the new 'Web Alias Redirects' (to 
+  main site) in a better fashion.
+- Added new handler glue/handlers/web_alias_redirects.pl, which does nothing but react on 'webAliasRedirects' changes.
+  It is better to have this functionality in a dedicated handler, than having to trick several old handlers to cope 
+  with the new functionality.
+- Modified glue/conf/vsite.conf with a trigger that calls glue/handlers/web_alias_redirects.pl on changes of 
+  'webAliasRedirects' in 'Vsite' objects.
+
+* Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX79
+- Emergency rollback to 3.0-132BX77
+- Due to an unknown snafu 3.0-132BX78 looses the PHP settings on all boxes but the test server.
+
+* Wed Jun 15 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX78
+- Added the new functionality 'Web Alias Redirects' (to main site), which allows us to configure if a web alias is treated as own URL, or redirects to the main site.
+- Extended glue/schemas/vsite.schema with new switch 'webAliasRedirects' in 'Vsite' and 'VsiteDefaults'.
+- Modified ui/web/vsiteDefaults.php ui/web/vsiteDefaultsSave.php to be able to configure this as default behaviour for sites.
+- Modified ui/web/vsiteAdd.php and ui/web/vsiteAddSave.php to be able to configure this on site creation.
+- Modified ui/web/vsiteWeb.php to be able to modify this per site under 'Services' / 'Web'.
+- Modified handler glue/handlers/change_net_info.pl to be able to trigger the modification.
+- Modified glue/conf/vsite.conf to configure when and where it is triggerd.
+- This updated functionality also required changes in base-apache.mod, as we need to mess with 'VirtualHost' and 'Vsite' objects. Otherwise we loose the PHP directives from our Apache containers.
+- Modified the locale files to add locales for the new GUI switch.
+- Added /usr/sausalito/sbin/web_alias_redirects.pl to allow changing the behaviour of all sites in one go from the CLI
+
+* Mon Jun 13 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX77
+- Copied 'en' locales to 'en_US' for compatability with 5107R.
+
+* Mon Jun 13 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX76
+- Added support for site prefixes, which add an optional site wide prefix to any username of the site.
+
+* Sat Mar 12 2011 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX75
+- Reverted glue/handlers/php_vsite_handler.pl back to revision 578, backing out the changes of 3.0-132BX74, as we were loosing the PHP settings - unless suPHP was enabled, too.
+
+* Sun Mar 06 2011 Greg Kuhnert <gkuhnert@compassnetworks.com.au> 3.0-132BX74
+- Moved the sitexx.include line after PHP gui settings to allow detailed per directory configuration settings to over-ride site level configuration (see: http://devel.blueonyx.it/trac/changeset/579 ).
+
+* Mon Oct 31 2010 Taco Scargo <taco@scargo.nl> 3.0-132BX73
+- Modified vsite.conf to fix PHP configuration bug (#295)
+
+* Mon Jul 05 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX72
+- Added field 'PHP_version' to Class 'PHP' to store version of used PHP.
+- Updated constructor/import_php_ini_settings.pl to fetch that info and to store it in CODB
+- Updated handlers to use the new PHP_version checks instead of platform related checks:
+- Updated glue/handlers/php_handler.pl and glue/handlers/php_vsite_handler.pl
+- Updated GUI pages to use the new PHP_version checks instead of platform related checks:
+- Updated ui/web/fileOwner.php ui/web/vsite_phpHandler.php ui/web/vsite_php.php ui/web/php_serverHandler.php and ui/web/php_server.php
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX71
+- Modified constructor/import_php_ini_settings.pl again to add a missing backslash. Doh!
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX70
+- Modified constructor/import_php_ini_settings.pl again to handle uninstall of third party PHP case as well.
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX69
+- Modified constructor/import_php_ini_settings.pl to detect third party PHP installs
+- If detected, php-cgi location will be updated in /etc/suphp.conf
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX68
+- Fixed typo in glue/handlers/php_handler.pl
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX67
+- Updated glue/handlers/php_vsite_handler.pl to also chown /vhosts subdir if present.
+
+* Sun Jul 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX66
+- Shorted a locale string
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX65
+- Added ui/menu/fileOwner.xml ui/web/fileOwner.php and ui/web/fileOwnerHandler.php
+- They allow to select the siteAdmin that owns the site root and particularly /web of a vsite
+- Extended glue/handlers/php_vsite_handler.pl to chown the siteroot and /web accordingly
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX64
+- Safe_Mode related PHP settings for server and vsites needed to be removed from the GUI for PHP >= 5.3
+- To retain downward compatability we now do a platform check and hide these switches on 5107R and 5108R
+
+* Sat Jul 03 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX63
+- Add RewriteCond for webAliases.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX62
+- Bugfixes to some PHP-5.3 related fixes. Had used the wrong replacement functions.
+- Disabled 'Advanced Search' for Vsites in /base/vsite/vsiteList.php for now as it's horribly broken.
+
+* Tue Jun 08 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX61
+- PHP-5.3 related compat fixes
+
+* Sat Jun 05 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX60
+- Copied 'en locales to 'en_US'
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX59
+- Plenty of PHP-5.3 related compatabiliy fixes all over the place.
+- ui/web/vsite_php.php still uses POSIX style eregi_replace(), but cba to fix that now.
+
+* Fri Jun 04 2010 Michael Stauber <mstauber@solarspeed.net> 3.0-132BX58
+- Version number bump
+
+* Sun Aug 30 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ57
+- Modified glue/handlers/php_vsite_handler.pl to be more resilent about not permitting empty PHP related switches to be written to the site include files.
+- Now allows to use empty open_basedir directives. In which case the config line open_basedir will simply be left out in the site include file.
+- Also modified ui/web/vsite_php.php to allow empty open_basedir directives.
+
+* Sun Aug 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ56
+- Added ability to set PHP memory limit to valued higher than 100M.
+- Also raised possible post max size upper value.
+- Modified ui/web/vsite_php.php and ui/web/php_server.php
+
+* Wed Aug 12 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ55
+- When a Vsite has preview enabled, the preview was still working even if the site is suspended. Security risk!
+- Bug found and reported by Steve Howes. Many thanks!
+- Modified ui/web/vsiteModSave.php to set preview to disabled when a Vsite is suspended.
+- Modified glue/handlers/suspend.pl to disable preview for the site when a site is suspended.
+
+* Tue Jun 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ54
+- Modified glue/handlers/suspend.pl to use 'usermod' to lock / unlock suspended accounts.
+- This is an important security update, because without locking accounts of a suspended site those users can still use SMTP-Auth to send emails - even when the whole site is suspended.
+- Added glue/sbin/fix_user_suspension.pl as command line utility to manually sync locking and unlocking of suspended users.
+
+* Tue Jun 16 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ53
+- By default we added the /home/ directory to open_basedir. This may no longer be a good idea.
+- Modified glue/schemas/php.schema to remove /home/ directory from open_basedir.
+- Modified glue/schemas/php_vsite.schema to remove /home/ directory from open_basedir.
+- Modified constructor/import_php_ini_settings.pl to remove /home/ directory from open_basedir.
+
+* Wed Jun 10 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ52
+- During cmuImport the old paths for a sites home directory were retained for open_basedir and the new path where the site
+  now resides at just got appended. This was of course highly undesireable. 
+- Modified ui/web/vsite_php.php and ui/web/vsite_phpHandler.php to strip all /home/.sites/ references from open_basedir and 
+  added provisions to add only the correct path to a sites home directory.
+- Modified glue/handlers/php_vsite_handler.pl to do the same thing.
+
+* Mon Apr 27 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ51
+- Modified ui/web/vsite_phpHandler.php
+- Was missing provisions to set allow_url_include into CCE. 
+
+* Wed Feb 11 2009 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ50
+- Modified constructor/import_php_ini_settings.pl to remove popen and escapeshellcmd from stock php.ini options for disable_functions.
+- Enhanced constructor/import_php_ini_settings.pl further to remove those undesired options on CCE restart if Squirrelmail is installed.
+
+* Mon Dec 08 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ49
+- Updated ui/web/vsite_php.php. 'Safe Mode include directory' input box was 'rw' for siteAdmin. 
+
+* Fri Dec 05 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ48
+- Added obsolete tag for CentOS4 based Solarspeed PHP GUIs.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ47
+- Rebuilt for BlueOnyx.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ46
+- Modified ui/web/vsite_php.php to remove the save button when siteAdmin's view the page.
+- That is somewhat hackish, as MultiChoice don't take read only switches, which would be nicer.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ45
+- Fixed two minor issues in ui/web/vsite_php.php and ui/web/vsite_phpHandler.php
+- Added English and German locales for the PHP related additions.
+- Copied new English locale strings to the Japanese and Danish locales for now until someone can translate it.
+
+* Tue Dec 02 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ44
+- Still work in progress and not yet finished.
+- Added provisions to edit Apache vsite containers to insert php_admin flags, etc.
+- Modified glue/conf/vsite.conf to call new glue/handlers/php_vsite_handler.pl
+- Added glue/handlers/php_vsite_handler.pl to edit vhost containers.
+- Added ui/web/vsite_php.php and ui/web/vsite_phpHandler.php to edit a site's PHP settings.
+- Added ui/menu/vsite_php.xml to link to ui/web/vsite_php.php (under services for a site)
+- Updated glue/schemas/php_vsite.schema to reflect changes
+- Updated constructor/import_php_ini_settings.pl
+- Removed debugging provisions from glue/handlers/php_handler.pl
+- Updated ui/web/php_serverHandler.php
+- Still need to do the locales for the new changes. Rest seems to work.
+
+* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ43
+- Still work in progress and not yet finished.
+- Added ability to modify max_execution_time, max_input_time and memory_limit in php.ini
+- Extended glue/schemas/php.schema for that.
+- Extended ui/web/php_server.php and ui/web/php_serverHandler.php for that.
+- Extended constructor/import_php_ini_settings.pl and glue/handlers/php_handler.pl for that.
+
+* Mon Dec 01 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ42
+- Unfinished (!) first integration of better PHP security.
+- Added constructor/import_php_ini_settings.pl to parse the php.ini and to shove its settings into CODB.
+- Constructor enforces secure default settings in php.ini on first CCEd (re)start.
+- Added the Schemas glue/schemas/php.schema glue/schemas/php_vsite.schema and glue/schemas/php_caps.schema for that.
+- Added ui/menu/php_server.xml to show the new menu entry under "Server Management" / "Security".
+- Added ui/web/php_server.php and ui/web/php_serverHandler.php to to visualize the settings and to allow changes.
+- Edited glue/conf/vsite.conf to call new handlers on PHP related events.
+- Added glue/handlers/php_handler.pl to update php.ini and to restart Apache if needed.
+- If /etc/thirdparty_php is present, it uses the php.ini specified in that file and not /etc/php.ini
+- Added requirement for perl-handler-utils >= 1.3.0-11BQ12 as our handler needs this version or newer.
+- THIS CHANGES WORK, BUT ARE NOT YET FINISHED!
+- Missing: UI and handlers for modifying site's PHP settings, updated locales for the new i18n strings.
+- Currently disabled: Ability to edit php.ini's raw source through the GUI. Save button removed on that tab for now.
+
+* Mon Nov 24 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ41
+- Modified ui/web/manageAdmin.php to remove cracklib stuff. Cannot use it here w/o too much hassles. 
+- Fixed relocation URL on errors while editing admins to point back to right page.
+- Fixed editing page to show the username even on edit, but read only. Needed for username = passwd check.
+
+* Wed Nov 19 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ40
+- Modified ui/web/manageAdmin.php 
+- Somehow the strcasecomp for username = password as suggested by Stephanie Sullivan never made it in here.
+
+* Thu Nov 13 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ39
+- Fixed PHP5 related display issue in ui/web/vsiteMod.php
+
+* Wed Nov 12 2008 Michael Stauber <mstauber@solarspeed.net> 3.0-132BQ38
+- Merged the following changes in from 5100R:
+- fixed the version for requires sausalito-cce-server. 
+- Small update in manageAdmin.php 
+- Now uses strcasecmp() to check if password equals username in upper and lower case. 
+- use cracklib to check password. 
+- fixed the issue that siteadmin permission isn't able to be added. 
+- Did NOT merge in Hisao's ui/web/manageAdmin.php as I had that already covered in 5106R.
+
+* Sun May 18 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-132BQ32
+- Updated glue/handlers/network_destroy.pl
+
+* Tue May 13 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-132BQ31
+- Ability added to disable user owned websites.
+
+* Tue Feb 05 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-132BQ30
+- German skeleton index.html for vsite was missing.
+
+* Sun Jan 27 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-132BQ29
+- German locales added.
+
+* Tue Jan 22 2008 Michael Stauber <mstauber@solarspeed.net> 1.0-132BQ28
+- Danish locales added. Thanks to Jes Klittum!
+
+* Mon Jun 25 2007 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0-132BQ27
+- Fixed duplicate include issue.
+
+* Wed Mar 07 2007 Brian N. Smith <brian@nuonce.net> 1.0-132BQ26
+- Applied 'unique.pl' patch that Taco submited.  Supposed to allow
+- aliases same as web alias.
+
+* Sun Aug 13 2006 Brian N. Smith <brian@nuonce.net> 1.0-132BQ25
+- Added access control for siteadmin into Disable E-Mail
+
+* Sun Aug 06 2006 Brian N. Smith <brian@nuonce.net> 1.0-132BQ24
+- For Auto DNS, host "" (empty) wasn't added.  That has been fixed.
+
+* Sun Aug 06 2006 Brian N. Smith <brian@nuonce.net> 1.0-132BQ23
+- Removed postmaster
+- Removed admin
+
+* Sat Aug 05 2006 Brian N. Smith <brian@nuonce.net> 1.0-132BQ22
+- added auto-populate of email & web server aliase in vsiteAdd.php.
+- Added Auto DNS Feature.  Add multiple hostnames + 1 MX record when Auto DNS is checked
+
+* Fri Aug 04 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ21
+- add disable email feature by Brian.
+
+* Sun Jul 02 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ20
+- modify Vsite.pm to add apache@FQDN into virtusertable when Vsite is added.
+
+* Sun Mar 26 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ19
+- remove post script to remove server.conf.
+
+* Tue Mar 14 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ18
+- change skelton index.html encoding to EUC-JP.
+
+* Sun Mar 12 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ17
+- add preview site function again.
+
+* Thu Mar 09 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ16
+- remove preview site function.
+
+* Sun Dec 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ15
+- modified JavaScript to fix the browser issue with Safari by Anders, BlackSun, Inc.
+
+* Tue Nov 29 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ14
+- rebuild with devel-tools 0.5.1-0BQ7.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ13
+- fixed the issue that vsite isn't removed.
+
+* Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ12
+- add preview site function.
+
+* Tue Oct 18 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ11
+- rebuild with devel-tools 0.5.1
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ10
+- modified menu order for siteName.xml.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ9
+- modified Group tag.
+
+* Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0-132BQ8
+- fix security problem that can be accessed unauthorized function.
+- clean up spec file.
+<end $CHANGELOG>

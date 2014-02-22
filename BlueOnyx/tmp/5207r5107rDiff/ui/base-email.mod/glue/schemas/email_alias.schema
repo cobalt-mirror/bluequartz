@@ -1,0 +1,142 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: email_alias.schema
+
+    The EmailAlias object that should be used to create aliases for local
+    usernames (e.g. have mail to foo@foo.com put in user bar's mail box).
+-->
+
+<!-- EmailAlias for email aliases -->
+<class 
+    name="EmailAlias" namespace="" version="1.0"
+    createacl="ruleModifyUser"
+    destroyacl="ruleModifyUser"
+>
+    <!-- 
+        the alias to use. leave blank to create an "alias"
+        that applies to an entire domain
+    -->
+    <property 
+        name="alias" type="alphanum_plus" optional="1"
+        readacl="ruleUser" writeacl="ruleModifyUser"
+    />
+    <!-- 
+        the fqdn that this alias is for.  if fqdn is not specified,
+        the system fully-qualified domain name is used
+    -->
+    <property 
+        name="fqdn" type="fqdn" optional="1" default=""
+        readacl="ruleUser" writeacl="ruleModifyUser"
+    />
+
+    <!--
+        the action to apply.  this should be the local mailbox
+        in which the mail should be saved, or a command understood
+        by sendmail such as "error:nouser ..."
+    -->
+    <property 
+        name="action" type="scalar"
+        readacl="ruleUser" writeacl="ruleModifyUser"
+    />
+
+    <!-- 
+        the site, if any, to which this alias belongs.
+        this is needed to keep site admins from modifying other
+        sites' aliases or to system aliases
+    -->
+    <property
+        name="site" type="accountname" optional="1" default=""
+        readacl="ruleUser" writeacl="ruleModifyUser"
+    />
+
+    <!--
+        whether to rebuild virtuser when this alias is
+        created/modified/destroyed
+    -->
+    <property
+        name="build_maps" type="boolean" default="1"
+        writeacl="ruleModifyUser"
+    />
+
+    <!--
+        whether this alias should be considered local, which
+        causes the alias to be added to the aliases file in
+        addition to the virtusertable so mail to alias with no
+        @domain appended will be sent to user action locally
+    -->
+    <property
+        name="local_alias" type="boolean" default="0"
+        writeacl="ruleModifyUser"
+    />
+</class>
+
+<!--
+	ProtectedEmailAlias class
+	just like EmailAlias, but can only be modified by server
+	administrators
+
+	should only be used for server administrator accounts and
+	system accounts created along with virtual sites (root, postmaster, etc.)
+-->
+<class 
+    name="ProtectedEmailAlias" namespace="" version="1.0"
+    createacl="ruleCapable(adminUser)"
+    destroyacl="ruleCapable(adminUser)"
+>
+    <!-- 
+        the alias to use. leave blank to create an "alias"
+        that applies to an entire domain
+    -->
+    <property 
+        name="alias" type="alphanum_plus" optional="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <!-- 
+        the fqdn that this alias is for.  if fqdn is not specified,
+        the system fully-qualified domain name is used
+    -->
+    <property 
+        name="fqdn" type="fqdn" optional="1" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!--
+        the action to apply.  this should be the local mailbox
+        in which the mail should be saved, or a command understood
+        by sendmail such as "error:nouser ..."
+    -->
+    <property 
+        name="action" type="scalar"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!-- 
+        the site, if any, to which this alias belongs.
+        this is needed to keep site admins from modifying other
+        sites' aliases or to system aliases
+    -->
+    <property
+        name="site" type="accountname" optional="1" default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!--
+        whether to rebuild virtuser when this alias is
+        created/modified/destroyed
+    -->
+    <property
+        name="build_maps" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <!--
+        whether this alias should be considered local, which
+        causes the alias to be added to the aliases file in
+        addition to the virtusertable so mail to alias with no
+        @domain appended will be sent to user action locally
+    -->
+    <property
+        name="local_alias" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>

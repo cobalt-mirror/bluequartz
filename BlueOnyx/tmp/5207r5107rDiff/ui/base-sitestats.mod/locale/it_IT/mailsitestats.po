@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "customizeBut"
+msgstr "[[base-sitestats.customizeBut]]"
+
+msgid "customizeBut_help"
+msgstr "[[base-sitestats.customizeBut_help]]"
+
+msgid "generateBut"
+msgstr "[[base-sitestats.generateBut]]"
+
+msgid "generateBut_help"
+msgstr "[[base-sitestats.generateBut_help]]"
+
+msgid "summaryStats"
+msgstr "Posta utilizzo Statistiche riassuntive"
+
+msgid "reportGenerated"
+msgstr "[[base-sitestats.reportGenerated]]"
+
+msgid "reportGenerated_help"
+msgstr "[[base-sitestats.reportGenerated_help]]"
+
+msgid "firstRequest"
+msgstr "Primo mail"
+
+msgid "firstRequest_help"
+msgstr "La data della prima posta coperta in questo rapporto. [[base-sitestats.requestCoverageHint]]"
+
+msgid "lastRequest"
+msgstr "Ultimo Email"
+
+msgid "lastRequest_help"
+msgstr "La data dell'ultima posta coperta in questo rapporto. [[base-sitestats.requestCoverageHint]]"
+
+msgid "successfulRequests"
+msgstr "Messaggi totali gestite"
+
+msgid "successfulRequests_help"
+msgstr "Questo è il totale di tutte le email gestite."
+
+msgid "bytesTransfered"
+msgstr "[[base-sitestats.bytesTransfered]]"
+
+msgid "bytesTransfered_help"
+msgstr "[[base-sitestats.bytesTransfered_help]]"
+
+msgid "otherStatistics"
+msgstr "Altri Posta Statistiche"
+
+msgid "vsitesReportBut"
+msgstr "[[base-sitestats.vsitesReportBut]]"
+
+msgid "vsitesReportBut_help"
+msgstr "[[base-sitestats.vsitesReportBut_help]]"
+
+msgid "periodicReportBut"
+msgstr "[[base-sitestats.periodicReportBut]]"
+
+msgid "periodicReportBut_help"
+msgstr "[[base-sitestats.periodicReportBut_help]]"
+
+msgid "historicalReportBut"
+msgstr "[[base-sitestats.historicalReportBut]]"
+
+msgid "historicalReportBut_help"
+msgstr "[[base-sitestats.historicalReportBut_help]]"
+
+msgid "domainReportBut"
+msgstr "Le richieste per dominio"
+
+msgid "domainReportBut_help"
+msgstr "Ottenere report che mostrano i domini da cui richieste sono state originarie."
+
+msgid "typesReportBut"
+msgstr "Le richieste per tipo di file"
+
+msgid "typesReportBut_help"
+msgstr "Categorizza richieste dai tipi di file."
+
+msgid "requestReportBut"
+msgstr "Mail inviati o ricevuti per Indirizzo"
+
+msgid "requestReportBut_help"
+msgstr "Questo riporta l'uso della posta da parte dell'utente per la posta in entrata o in uscita."
+
+msgid "downloadLogBut"
+msgstr "[[base-sitestats.downloadLogBut]]"
+
+msgid "downloadLogBut_help"
+msgstr "[[base-sitestats.downloadLogBut_help]]"
+
+msgid "dailyHistory"
+msgstr "[[base-sitestats.dailyHistory]]"
+
+msgid "weeklyHistory"
+msgstr "[[base-sitestats.weeklyHistory]]"
+
+msgid "monthlyHistory"
+msgstr "[[base-sitestats.monthlyHistory]]"
+
+msgid "dailyHistory_help"
+msgstr "[[base-sitestats.dailyHistory_help]]"
+
+msgid "weeklyHistory_help"
+msgstr "[[base-sitestats.weeklyHistory_help]]"
+
+msgid "monthlyHistory_help"
+msgstr "[[base-sitestats.monthlyHistory_help]]"
+
+msgid "daily"
+msgstr "[[base-sitestats.daily]]"
+
+msgid "hourly"
+msgstr "[[base-sitestats.hourly]]"
+
+msgid "daily_help"
+msgstr "[[base-sitestats.daily_help]]"
+
+msgid "hourly_help"
+msgstr "[[base-sitestats.hourly_help]]"
+
+msgid "domainStats"
+msgstr "Dominio Statistiche"
+
+msgid "domain"
+msgstr "[[base-sitestats.domain]]"
+
+msgid "requests"
+msgstr "Messaggi"
+
+msgid "requests_help"
+msgstr "Il numero di messaggi di posta elettronica gestito."
+
+msgid "vsiteStatsOut"
+msgstr "Posta inviata da Host Name"
+
+msgid "vsiteStatsIn"
+msgstr "E-mail ricevuta da Host Name"
+
+msgid "bytes"
+msgstr "[[base-sitestats.bytes]]"
+
+msgid "bytes_help"
+msgstr "[[base-sitestats.bytes_help]]"
+
+msgid "pbytes"
+msgstr "[[base-sitestats.pbytes]]"
+
+msgid "pbytes_help"
+msgstr "[[base-sitestats.pbytes_help]]"
+
+msgid "site"
+msgstr "Nome Host"
+
+msgid "site_help"
+msgstr "Questo è il nome della macchina da o verso cui la posta è stato inviato."
+
+msgid "typeStats"
+msgstr "Le richieste per Formato di file"
+
+msgid "filetype"
+msgstr "[[base-sitestats.filetype]]"
+
+msgid "filetype_help"
+msgstr "[[base-sitestats.filetype_help]]"
+
+msgid "vsites_out"
+msgstr "Posta inviata"
+
+msgid "vsites_out_help"
+msgstr "Clicca qui per vedere i migliori siti da cui mail è stata inviata."
+
+msgid "vsites_in"
+msgstr "Mail ricevuta"
+
+msgid "vsites_in_help"
+msgstr "Clicca qui per consultare le altre a cui mail è stata inviata."
+
+msgid "requestStatsIn"
+msgstr "Mail ricevuta da indirizzo"
+
+msgid "requestStatsOut"
+msgstr "Posta inviata da Indirizzo"
+
+msgid "requestFileOut"
+msgstr "Indirizzo"
+
+msgid "requestFileOut_help"
+msgstr "L'indirizzo da cui la mail è stata inviata. Si noti che questo si basa sia posta in entrata e in uscita. Pertanto, questo può includere indirizzi non ospitati su questo server."
+
+msgid "requestFileIn"
+msgstr "Indirizzo"
+
+msgid "requestFileIn_help"
+msgstr "L'indirizzo al quale la posta elettronica è stato inviato. Si noti che questo si basa sia posta in entrata e in uscita. Pertanto, questo può includere indirizzi non ospitati su questo server."
+
+msgid "requestNumber"
+msgstr "Messaggi di posta elettronica"
+
+msgid "requestNumber_help"
+msgstr "Il numero di messaggi di posta elettronica per questo utente."
+
+msgid "requestOutBut"
+msgstr "Email inviata"
+
+msgid "requestOutBut_help"
+msgstr "Clicca qui per vedere le migliori indirizzi da cui mail è stata inviata."
+
+msgid "requestInBut"
+msgstr "E-mail ricevuta"
+
+msgid "requestInBut_help"
+msgstr "Clicca qui per visualizzare gli indirizzi migliori per cui mail è stata inviata."
+
+msgid "fullDailyDesc"
+msgstr "[[base-sitestats.fullDailyDesc]]"
+
+msgid "fullWeeklyDesc"
+msgstr "[[base-sitestats.fullWeeklyDesc]]"
+
+msgid "fullMonthlyDesc"
+msgstr "[[base-sitestats.fullMonthlyDesc]]"
+
+msgid "hourlySummaryDesc"
+msgstr "[[base-sitestats.hourlySummaryDesc]]"
+
+msgid "dailySummaryDesc"
+msgstr "[[base-sitestats.dailySummaryDesc]]"
+

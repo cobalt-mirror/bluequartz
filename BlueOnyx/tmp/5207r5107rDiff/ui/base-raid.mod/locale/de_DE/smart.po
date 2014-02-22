@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "SMARTnameTag"
+msgstr "Self-Monitoring Analysis and Reporting Technology (SMART) Status-Details"
+
+msgid "noAMobject"
+msgstr "Kann Active Monitor Objekt nicht finden"
+
+msgid "errRefreshingSnapshot"
+msgstr "Fehler Aufnahme Momentaufnahme der SMART-Status"
+
+msgid "errRegettingObject"
+msgstr "Fehlerwiederfindungs ​​Active Monitor Objekt"
+
+msgid "smartFailures"
+msgstr "Eine oder mehrere Ihrer Festplatten hat einen Fehler. Bitte sichern Sie Ihr System und ersetzen Sie die defekte Platte. (FIXME! die Festplatte sollte ich ersetzen?)"
+
+msgid "smartDeclining"
+msgstr "Folgende Antriebe haben begonnen, zu schwächen, sind aber noch in der Lage, ohne Verlust der Daten führen: [[VAR.display_names.]] Bitte beziehen [[base-sauce-basic.techSupportURL]] um Hilfe bei Austausch eines geschwächten Laufwerk."
+
+msgid "smartOK"
+msgstr "Antriebsselbstüberwachung normal arbeitet auf allen installierten Laufwerke."
+
+msgid "turned_off_drives"
+msgstr "Folgende Antriebe sind zu Beginn zu scheitern und wurden deaktiviert: [[VAR.display_names.]] Bitte beziehen [[base-sauce-basic.techSupportURL]] für Hilfe, wie die Sicherung und ersetzen Sie die ausgefallenen Laufwerke."
+
+msgid "unsafe"
+msgstr "Folgende Antriebe sind zu Beginn zu scheitern, kann aber nicht aus, ohne dass Informationen eingeschaltet werden: [[VAR.display_names.]] Bitte beziehen [[base-sauce-basic.techSupportURL]] für Hilfe, wie die Sicherung und ersetzen Sie die ausgefallenen Laufwerke."
+
+msgid "standalone"
+msgstr "Folgende Antriebe sind zu Beginn zu scheitern, kann aber nicht aus, ohne dass Informationen eingeschaltet werden: [[VAR.display_names.]] Bitte auf [[base-sauce-basic.techSupportURL]] für Hilfe, wie die Sicherung und ersetzen eigenständige ausgefallenen Laufwerke verweisen."
+
+msgid "drive_off"
+msgstr "Dieses Laufwerk ausgeschaltet wurde, weil es ausgefallen ist. Bitte beziehen [[base-sauce-basic.techSupportURL]] Anweisungen zum Austauschen dieses Laufwerk."
+
+msgid "unsafe_drive"
+msgstr "Dieses Laufwerk ist ausgefallen, aber ohne Informationen zu verlieren kann nicht ausgeschaltet werden. Bitte beziehen [[base-sauce-basic.techSupportURL]] Anweisungen zum Austauschen der Festplatte."
+
+msgid "unsafe_drive_standalone"
+msgstr "Dieses Laufwerk ist ausgefallen, aber ohne Informationen zu verlieren kann nicht ausgeschaltet werden. Bitte beziehen [[base-sauce-basic.techSupportURL]] Anweisungen zum Ersetzen einer Stand-alone-Laufwerk."
+
+msgid "drive_declining"
+msgstr "Dieses Laufwerk hat begonnen, schwächen aber derzeit in der Lage, ohne Datenverlust führen. Bitte beziehen [[base-sauce-basic.techSupportURL]] Anweisungen zum Austauschen eines rückläufigen Festplatte."
+
