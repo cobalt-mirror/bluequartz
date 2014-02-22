@@ -9,6 +9,7 @@ include_once("Product.php");
 include_once("uifc/PagedBlock.php");
 include_once("AutoFeatures.php");
 include_once("Capabilities.php");
+include_once("BXEncoding.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
@@ -35,6 +36,7 @@ $useroid = $oids[0];
 $user = $cceClient->get($oids[0]);
 $userDisk = $cceClient->get($oids[0], "Disk");
 $userEmail = $cceClient->get($oids[0], "Email");
+
 $group = $user["site"];
 
 // Find out if FTP access for non-siteAdmins is enabled or disabled for this site:
@@ -57,13 +59,13 @@ $block->addFormField(
 
 $prop=$i18n->getProperty("needSortName");
 if($prop=="yes"){
-	$sortName=$factory->getFullName("sortNameField",$user["sortName"]);
-	$sortName->setOptional('silent');
-	$block->addFormField(
+  $sortName=$factory->getFullName("sortNameField",$user["sortName"]);
+  $sortName->setOptional('silent');
+  $block->addFormField(
           $sortName,
-	  $factory->getLabel("sortNameField"),
-	  "account"
-	);
+    $factory->getLabel("sortNameField"),
+    "account"
+  );
 }
 
 $password = $factory->getPassword("passwordField");
@@ -91,7 +93,7 @@ $quota = $factory->getInteger(
                         1, $site_quota);
 // quota is not optional for site members on raqs
 if (!isset($group)) {
-	$quota->setOptional('silent');
+  $quota->setOptional('silent');
 }
 
 if($max_quota && $max_quota != -1)
@@ -183,8 +185,8 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
     $forward_emails->setOptional('silent');
 
     $forwardEnable->addFormField(
-	$forward_emails,
-	$factory->getLabel("forwardEmailField")
+  $forward_emails,
+  $factory->getLabel("forwardEmailField")
     );
     $forwardEnable->addFormField(
         $factory->getBoolean("forwardSaveField", $userEmail["forwardSave"]),
@@ -194,9 +196,9 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
     $forward = $factory->getMultiChoice("forwardEnableField");
     $forward->addOption($forwardEnable);
     $block->addFormField(
-	$forward,
-	$factory->getLabel("forwardEnableField"),
-	"email"
+  $forward,
+  $factory->getLabel("forwardEnableField"),
+  "email"
     );
 
     $enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
@@ -224,14 +226,14 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
     
     $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
     $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
-  
-    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"]), $factory->getLabel("autoResponderMessageField"));
+
+    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", BXEncoding::toWin1252($userEmail["vacationMsg"])), $factory->getLabel("autoResponderMessageField"));
     $autoResponder = $factory->getMultiChoice("autoResponderField");
     $autoResponder->addOption($enableAutoResponder);
     $block->addFormField(
-	$autoResponder,
-	$factory->getLabel("autoResponderField"),
-	"email"
+  $autoResponder,
+  $factory->getLabel("autoResponderField"),
+  "email"
     );
 
 }
@@ -256,51 +258,44 @@ else {
     } 
 
     if ($userEmail["forwardEnable"] == "1") {
-	$userEmail["forwardEnable"] = "forwardEnable";
+  $userEmail["forwardEnable"] = "forwardEnable";
     }
 
     $block->addFormField(
-	$factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"], 'r'),
-	$factory->getLabel("forwardEmailField"),
-	"Hidden"
+  $factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"], 'r'),
+  $factory->getLabel("forwardEmailField"),
+  "Hidden"
     );
 
     $block->addFormField(
-	$factory->getBoolean("forwardSaveField", $userEmail["forwardSave"], 'r'),
-	$factory->getLabel("forwardSaveField"),
-	"Hidden"
+  $factory->getBoolean("forwardSaveField", $userEmail["forwardSave"], 'r'),
+  $factory->getLabel("forwardSaveField"),
+  "Hidden"
     );
 
     $block->addFormField(
-	$factory->getBoolean("forwardEnableField", $userEmail["forwardEnable"], 'r'),
-	$factory->getLabel("forwardEnableField"),
-	"Hidden"
+  $factory->getBoolean("forwardEnableField", $userEmail["forwardEnable"], 'r'),
+  $factory->getLabel("forwardEnableField"),
+  "Hidden"
     );
 
     $block->addFormField(
-	$factory->getBoolean("enableAutoResponderField", $userEmail["vacationOn"], 'r'),
-	$factory->getLabel("enableAutoResponderField"),
-	"Hidden"
+  $factory->getBoolean("enableAutoResponderField", $userEmail["vacationOn"], 'r'),
+  $factory->getLabel("enableAutoResponderField"),
+  "Hidden"
     );
     
     $block->addFormField( 
-	 $factory->getTimeStamp("autoRespondStartDate", $start, "datetime", "r"), 
-	 $factory->getLabel("autoRespondStartDate"), 
-	 "Hidden" 
+   $factory->getTimeStamp("autoRespondStartDate", $start, "datetime", "r"), 
+   $factory->getLabel("autoRespondStartDate"), 
+   "Hidden" 
     ); 
     
     $block->addFormField( 
-	 $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime", "r"), 
-	 $factory->getLabel("autoRespondStopDate"), 
-	 "Hidden" 
+   $factory->getTimeStamp("autoRespondStopDate", $stop, "datetime", "r"), 
+   $factory->getLabel("autoRespondStopDate"), 
+   "Hidden" 
     );
-    
-    $block->addFormField(
-	$factory->getTextBlock("autoResponderMessageField", $userEmail["vacationMsg"], 'r'),
-	$factory->getLabel("autoResponderMessageField"),
-	"Hidden"
-    );
-
 }
 
 // End: PHP5 related work around
@@ -313,7 +308,7 @@ $block->addFormField(
 
 $flags = $user["desc_readonly"] ? "r" : "rw";
 $textblock = $factory->getTextBlock("userDescField", 
-	     $i18n->interpolate($user["description"]), $flags);
+       $i18n->interpolate($user["description"]), $flags);
 $textblock->setWidth(2*$textblock->getWidth());
 if (!$user["desc_readonly"]) {
   $textblock->setOptional(true);

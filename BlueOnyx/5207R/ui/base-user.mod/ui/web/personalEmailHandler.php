@@ -4,6 +4,7 @@
 // $Id: personalEmailHandler.php 1163 2008-06-29 19:00:27Z mstauber $
 
 include_once("ServerScriptHelper.php");
+include_once("BXEncoding.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
@@ -12,14 +13,14 @@ $errors = array();
 
 // boolean cce values are only 0 or 1
 if($autoResponderField) {
-	$autoResponderField = "1";
+  $autoResponderField = "1";
 } else {
-	$autoResponderField = "0";
+  $autoResponderField = "0";
 }
 if($forwardEnableField) {
-	$forwardEnableField = "1";
+  $forwardEnableField = "1";
 } else {
-	$forwardEnableField = "0";
+  $forwardEnableField = "0";
 }
 
 if ($_autoRespondStartDate_amPm == "PM") { 
@@ -31,11 +32,11 @@ if ($_autoRespondStopDate_amPm == "PM") {
  } 
 
 $vacationMsgStart = mktime($_autoRespondStartDate_hour, $_autoRespondStartDate_minute, 
-			   $_autoRespondStartDate_second, $_autoRespondStartDate_month, 
-			   $_autoRespondStartDate_day, $_autoRespondStartDate_year); 
+         $_autoRespondStartDate_second, $_autoRespondStartDate_month, 
+         $_autoRespondStartDate_day, $_autoRespondStartDate_year); 
 $vacationMsgStop = mktime($_autoRespondStopDate_hour, $_autoRespondStopDate_minute, 
-			  $_autoRespondStopDate_second, $_autoRespondStopDate_month, 
-			  $_autoRespondStopDate_day, $_autoRespondStopDate_year); 
+        $_autoRespondStopDate_second, $_autoRespondStopDate_month, 
+        $_autoRespondStopDate_day, $_autoRespondStopDate_year); 
 
 if (($vacationMsgStop - $vacationMsgStart) < 0) { 
   $vacationMsgStop = $oldStop; 
@@ -45,13 +46,13 @@ if (($vacationMsgStop - $vacationMsgStart) < 0) {
  } 
 
 $cceClient->setObject("User", array(
-	"forwardEnable" => $forwardEnableField, 
-	"forwardEmail" => $forwardEmailField, 
-	"forwardSave" => $forwardSaveField,
-	"vacationOn" => $autoResponderField, 
-        "vacationMsg" => $autoResponderMessageField, 
-	"vacationMsgStart" => $vacationMsgStart, 
-	"vacationMsgStop" =>$vacationMsgStop),  
+  "forwardEnable" => $forwardEnableField, 
+  "forwardEmail" => $forwardEmailField, 
+  "forwardSave" => $forwardSaveField,
+  "vacationOn" => $autoResponderField, 
+        "vacationMsg" => BXEncoding::toUTF8($autoResponderMessageField), 
+  "vacationMsgStart" => $vacationMsgStart, 
+  "vacationMsgStop" =>$vacationMsgStop),  
   "Email", 
   array("name" => $serverScriptHelper->getLoginName()));
 $errors = array_merge($cceClient->errors(), $errors);

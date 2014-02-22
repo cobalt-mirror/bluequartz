@@ -7,18 +7,20 @@ use CCE;
 use Email;
 use Sauce::Util;
 
-my $Postfix_cf = Email::PostfixMainCF;
-
-my $cce = new CCE( Domain => 'base-email' );
-
-$cce->connectfd();
-
-my $obj = $cce->event_object();
-
-if ($obj->{hostname} || $obj->{domainname} || 
-	($cce->event_property() eq 'acceptFor')) {
-	Sauce::Util::editfile($Postfix_cf, *make_main_cf, $obj );
-}
+# For now we don't need this:
+#
+#my $Postfix_cf = Email::PostfixMainCF;
+#
+#my $cce = new CCE( Domain => 'base-email' );
+#
+#$cce->connectfd();
+#
+#my $obj = $cce->event_object();
+#
+#if ($obj->{hostname} || $obj->{domainname} || 
+#	($cce->event_property() eq 'acceptFor')) {
+#	Sauce::Util::editfile($Postfix_cf, *make_main_cf, $obj );
+#}
 
 $cce->bye('SUCCESS');
 exit(0);

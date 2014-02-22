@@ -113,6 +113,20 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
+- Modified glue/schemas/dns.schema to add the ACL 'siteDNS' to various
+  CODB objects that need them.
+
+* Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
+- Server Administrators with 'Site DNS Management' were unable to access
+  the DNS management of Vsites.
+- Fixed ACL in ui/menu/base-dns-vsite.xml
+- Fixed ACL in ui/web/vsite_dns_add_mx.php
+- Fixed ACL in ui/web/vsite_records.php
+- Fixed ACL in ui/web/vsite_dns_soa.php
+- Fixed ACL in ui/web/vsite_dns_add.php
+
 * Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
 - Added cleaned up French translation as provided by Meaulnes Legler.
 

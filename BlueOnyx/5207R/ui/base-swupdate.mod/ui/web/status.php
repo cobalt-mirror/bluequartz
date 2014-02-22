@@ -35,7 +35,7 @@ header("location: /base/swupdate/download.php?packageOID=$oid&backUrl=$backbackU
 	else if (strstr($cmd, 'install'))
 		print($i18n->get("installrefresh"));
 	print($page->toFooterHtml());
-	print('<SCRIPT LANGUAGE="javascript">setTimeout("top.location.reload();", 7000);</SCRIPT>');	
+print('<SCRIPT LANGUAGE="javascript">setTimeout("top.location.reload();", 7000);</SCRIPT>');	
 	$cceClient->setObject("System", array("uiCMD" => '', 'progress' => '100'), "SWUpdate");
 	exit;
 }

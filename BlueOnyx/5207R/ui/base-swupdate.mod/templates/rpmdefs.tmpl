@@ -52,6 +52,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0700,root,root)%{RootDir}/sbin/pkg_prepare.pl
 %attr(0700,root,root)%{RootDir}/sbin/pkg_uninstall.pl
 %attr(0700,root,root)%{RootDir}/sbin/swupdate_tmp_clean.pl
+%attr(0700,root,root)%{RootDir}/sbin/rpm-clean-duplicates.pl
 %attr(0644,root,root)%{RootDir}/perl/SWUpdate.pm
 %attr(0644,root,root)%config /etc/cron.d/swupdate_tmp_clean.cron
 %attr(0700,root,root)%dir /root/.gnupg
@@ -129,6 +130,12 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Feb 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX13
+- Added /usr/sausalito/sbin/rpm-clean-duplicates.pl, which is a new
+  helper script to manually clean up the RPM database. It detects RPM
+  duplicates and dumps out shell commands that allow to remove these
+  RPM duplicates manually.
 
 * Tue Jan 07 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX12
 - Added cleaned up French translation as provided by Antoine Hayoz.

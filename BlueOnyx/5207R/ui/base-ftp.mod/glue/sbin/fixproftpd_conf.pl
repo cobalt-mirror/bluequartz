@@ -52,11 +52,7 @@ foreach $ip (@unique_ips) {
 	    print "        TLSVerifyClient off\n";
 	    print "        TLSOptions NoCertRequest NoSessionReuseRequired\n";
 	    print "        TLSRenegotiate required off\n";
-	    print "        TLSOptions NoCertRequest\n";
-	    print "        TLSRenegotiate required off\n";
 	    print "        TLSOptions UseImplicitSSL\n";
-	    print "        # The 'standard' implicit FTPS port is 990\n";
-	    print "        Port 990\n";
 	    print "</VirtualHost>\n";
 	    print "\n"
 	};

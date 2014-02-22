@@ -1,6 +1,6 @@
 <?php
 
-// Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 // Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 // $Id: pooling.php
 
@@ -45,6 +45,16 @@ $oids = $cceClient->findx('User',
 foreach ($oids as $oid) { 
   $admins[$oid] = $cceClient->get($oid); 
 } 
+
+// Add 'admin' as well:
+$oids = $cceClient->findx('User', 
+                                array('name' => 'admin'), 
+                                array(), 
+                                'ascii', 
+                                'name');
+foreach ($oids as $oid) { 
+  $admins[$oid] = $cceClient->get($oid); 
+}
 
 $oids = $cceClient->findx('IPPoolingRange', array(), array(), 'old_numeric', 'creation_time');
 $ranges = array();
@@ -94,9 +104,10 @@ $factory = $serverScriptHelper->getHtmlComponentFactory("base-network", "/base/n
 $page = $factory->getPage();
 
 $rangeList = $factory->getScrollList("rangeList", 
-				array("min", "max", "admin", " "));
+        array("min", "max", "admin", " "));
 
 reset($ranges);
+
 while (list($oid, $range) = each($ranges)) {
 
   // Loop through data and add the entries to scroll list
@@ -225,7 +236,7 @@ function handlePage() {
     case 'delete':
       $ok = $cceClient->destroy($act_on);
       if (!$ok) {
-	return $cceClient->errors();
+  return $cceClient->errors();
       }
       break;
     case 'save':
@@ -264,10 +275,10 @@ function handlePage() {
   
   return;
 }
-		    
+        
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

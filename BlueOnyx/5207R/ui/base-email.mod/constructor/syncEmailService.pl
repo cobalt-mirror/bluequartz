@@ -1,7 +1,7 @@
 #!/usr/bin/perl -I. -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
 # $Id: syncEmailService.pl Sat 10 Apr 2010 07:30:55 AM CEST mstauber $
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2008-2013 Team BlueOnyx, All rights reserved.
+# Copyright 2008-2014 Team BlueOnyx, All rights reserved.
 
 use Sauce::Util;
 use Sauce::Config;
@@ -49,7 +49,8 @@ if (! -d "/usr/share/ssl/certs") {
 	system("mkdir /usr/share/ssl/certs");
 }
 system("/bin/cp /etc/pki/tls/certs/ca-bundle.crt /usr/share/ssl/certs/");
-system("cat /etc/admserv/certs/key /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
+system("echo \"\" > /etc/admserv/certs/blank.txt"); 
+system("cat /etc/admserv/certs/key /etc/admserv/certs/blank.txt /etc/admserv/certs/certificate > /usr/share/ssl/certs/sendmail.pem");
 system("chmod 0600 /usr/share/ssl/certs/sendmail.pem");
 
 system("/bin/cp /etc/admserv/certs/key /etc/pki/dovecot/private/dovecot.pem");
@@ -77,12 +78,25 @@ if ($model eq "5106R") {
 Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
 system('rm -f /etc/dovecot.conf.backup.*');
 
+# Handle Dovecot intermediate cert:
+if (-f "/etc/admserv/certs/ca-certs") {
+    system("/bin/cp /etc/admserv/certs/ca-certs /etc/pki/dovecot/certs/ca.pem");
+}
+else {
+    system("touch /etc/pki/dovecot/certs/ca.pem");
+}
+chmod 0600, "/etc/pki/dovecot/certs/ca.pem";
+
+# Edit /etc/dovecot/conf.d/10-ssl.conf:
+&edit_dovecot_intermediate;
+
 Sauce::Service::service_toggle_init('dovecot', 1);
 
 # sync sendmail settings
 # submission port
 my $run = 0;
-if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {    $run = 1;
+if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
+    $run = 1;
 }
 
 # settings smtp, smtps and submission port
@@ -189,10 +203,10 @@ sub make_sendmail_mc
 
     # 5106R Diffie-Hellmann File:
     if ($model eq "5106R") {
-	$DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
+	   $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
     }
     else {
-	$DiffieHellmann = "";
+	   $DiffieHellmann = "";
     }
 
 	# MaxRecipientsPerMessage
@@ -237,7 +251,33 @@ sub make_sendmail_mc
             print $_;
         }
     }
-    return 1;}
+    return 1;
+}
+
+sub edit_dovecot_intermediate {
+
+    # Build output hash:
+    $server_dovecot_settings_writeoff = { 
+        'ssl_ca' => "</etc/pki/dovecot/certs/ca.pem"
+    };
+
+    # Write changes using Sauce::Util::hash_edit_function:
+
+    $ok = Sauce::Util::editfile(
+        "/etc/dovecot/conf.d/10-ssl.conf",
+        *Sauce::Util::hash_edit_function,
+        '#',
+        { 're' => '=', 'val' => ' = ' },
+        $server_dovecot_settings_writeoff);
+
+    system('/bin/rm -f /etc/dovecot/conf.d/10-ssl.conf.backup.*');
+
+    # Error handling:
+    unless ($ok) {
+        $cce->bye('FAIL', "Error while editing /etc/dovecot/conf.d/10-ssl.conf!");
+        exit(1);
+    }
+}
 
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 

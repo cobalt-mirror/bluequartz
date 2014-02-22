@@ -9,7 +9,7 @@ include_once("ServerScriptHelper.php");
 $serverScriptHelper = new ServerScriptHelper();
 
 // Only dnsAdmin should be here
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
   header("location: /error/forbidden.html");
   return;
 }

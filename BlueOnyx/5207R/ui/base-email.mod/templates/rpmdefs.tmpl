@@ -94,12 +94,26 @@ if [ $1 = 2 ]; then
     /usr/sausalito/bin/remove_domain.pl
 fi
 
-cat /etc/dovecot/conf.d/10-ssl.conf.bx > /etc/dovecot/conf.d/10-ssl.conf
+# Check if we already have the ciphers set:
+if [ -f /etc/dovecot/conf.d/10-ssl.conf ]; then
+  ISPRESENT=`cat /etc/dovecot/conf.d/10-ssl.conf|grep ^ssl_cipher_list|wc -l`
+else
+  ISPRESENT=0
+fi
+
+# If the ciphers are not yet set, copy the new config over:
+if (test $ISPRESENT = 0 ); then
+  cat /etc/dovecot/conf.d/10-ssl.conf.bx > /etc/dovecot/conf.d/10-ssl.conf
+fi
+
+# If CCE is running we run this to set the intermediate cert if it is missing:
+if [ -S /usr/sausalito/cced.socket ]; then
+  /usr/sausalito/constructor/base/email/syncEmailService.pl
+fi
 
 if [ -f /var/run/dovecot/login/imap ]; then
 	/etc/init.d/dovecot restart
 fi
-
 
 <end glue>
 <begin ui>
@@ -132,6 +146,26 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Feb 18 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX10
+- Modified constructor/syncEmailService.pl and glue/handlers/copy_certs.pl
+  to copy/create the intermediate cert files for Dovecot. If no intermediates
+  are being used by AdmServ, then a blank file is created instead. 
+  10-ssl.conf is thenupdated and the needed 'ssl_ca' line is added, pointing
+  to the intermediate. The editing uses Sauce::Util, which will prevent that
+  the line shows up twice in case someone has already added it.
+
+* Thu Feb 13 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX09
+- On Server host- and domain-name changes handler hostname.pl failed.
+  We actually don't need it, as it's only needed for Postfix.
+- Modified glue/handlers/hostname.pl to disable the disturbing sections.
+- Modified glue/conf/email.conf to disable calling hostname.pl
+- Modified glue/handlers/system.pl to nicen up formatting.
+
+* Sun Feb 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX08
+- The concatenation fix for sendmail.pem had gone walkies. Added it again.
+- Fixed glue/handlers/copy_certs.pl
+- Fixed constructor/syncEmailService.pl
 
 * Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX07
 - Added cleaned up French translation as provided by Meaulnes Legler.
