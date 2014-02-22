@@ -3,6 +3,6 @@
     url="/base/dns/vsite_records.php?group=[[VAR.group]]"
 >
     <parent id="base_siteservices" order="20">
-        <access require="dnsAdmin"/>
+        <access require="siteDNS"/>
     </parent>
 </item>

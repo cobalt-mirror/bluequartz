@@ -325,4 +325,10 @@ msgstr "La porta specificata come nuova porta HTTP è già in uso da un altro se
 msgid "SSLportInUse"
 msgstr "La porta specificata come nuova porta HTTPS/SSL è già in uso da un altro servizio. Si prega di scegliere invece un'altra porta."
 
+msgid "HSTS"
+msgstr "HSTS"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) è un meccanismo di politica di sicurezza web in base al quale un server web dichiara che i programmi utente conformi (come un browser web) sono ad interagire con esso tramite connessioni HTTPS solo sicure (ossia HTTP stratificato su TLS / SSL). HSTS è un protocollo standard IETF traccia ed è specificato nella RFC 6797. Per maggiori informazioni si veda: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+
 

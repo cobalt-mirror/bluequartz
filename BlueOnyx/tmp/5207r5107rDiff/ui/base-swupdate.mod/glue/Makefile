@@ -11,7 +11,7 @@ ifdef PREFIX
 CCETOPDIR = $(PREFIX)/usr/sausalito
 endif
 
-SCRIPTS=pkg_install.pl pkg_prepare.pl grab_updates.pl pkg_uninstall.pl swupdate_tmp_clean.pl
+SCRIPTS=pkg_install.pl pkg_prepare.pl grab_updates.pl pkg_uninstall.pl swupdate_tmp_clean.pl rpm-clean-duplicates.pl
 PERLLIB=SWUpdate.pm
 
 all:

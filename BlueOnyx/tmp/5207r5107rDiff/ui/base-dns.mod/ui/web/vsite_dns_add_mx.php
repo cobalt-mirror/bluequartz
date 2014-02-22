@@ -10,7 +10,7 @@ $serverScriptHelper = new ServerScriptHelper();
 $i18n = $serverScriptHelper->getI18n("base-dns");
 
 //Only users with adminUser capability should be here
-if (!$serverScriptHelper->getAllowed('dnsAdmin')) {
+if (!$serverScriptHelper->getAllowed('siteDNS')) {
     header("location: /error/forbidden.html");
     return;
 }

@@ -13,6 +13,10 @@
 
 <class name="System" namespace="Web" version="1.0">
     <property 
+        name="HSTS" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
         name="httpPort" type="int" default="80"
         writeacl="ruleCapable(modifyHttpd)"
     />

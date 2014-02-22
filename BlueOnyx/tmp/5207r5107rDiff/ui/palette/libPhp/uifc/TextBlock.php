@@ -19,6 +19,7 @@ class TextBlock extends FormField {
   var $height;
   var $width;
   var $wrap;
+  var $value;
 
   //
   // public methods
@@ -33,7 +34,7 @@ class TextBlock extends FormField {
   function TextBlock(&$page, $id, $value = "", $emptyMessage = "") {
     // superclass constructor
     $this->FormField($page, $id, $value, "", $emptyMessage);
-
+    $this->value = $value;
     $this->height = $GLOBALS["_FormField_height"];
     $this->width = $GLOBALS["_FormField_width"];
     $this->wrap = false;
@@ -83,7 +84,7 @@ class TextBlock extends FormField {
 
   function toHtml($style = "") {
     $builder = new FormFieldBuilder();
-    $formField = $builder->makeTextAreaField($this->getId(), $this->getValue(), $this->getAccess(), $this->height, $this->width, "", $this->wrap ? "on" : "off");
+    $formField = $builder->makeTextAreaField($this->getId(), $this->value, $this->getAccess(), $this->height, $this->width, "", $this->wrap ? "on" : "off");
     $formField .= $builder->makeJavaScript($this, "", $GLOBALS["_FormField_TextField_submit"]);
 
     return $formField;

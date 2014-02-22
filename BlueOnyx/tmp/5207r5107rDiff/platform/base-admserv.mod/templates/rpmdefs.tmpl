@@ -155,19 +155,20 @@ fi
 
 <begin $CHANGELOG>
 
-* Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX02
+* Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.1-0BX04
 - Modified ciphers and protocols in glue/etc/admserv/conf.d/ssl.conf 
   again, so that we now can use TLSv1.2 if available.
 
-* Mon Dec 30 2013 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX01
-- Version number bump due to RPM publishing snafu.
+* Tue Dec 31 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.1-0BX03
+- Accidentially pushed the 5207R changes to the 5107R versions of this module.
+  And pushed it to the testing YUM repository. So this is now the rollback.
 
-* Mon Dec 30 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.1-0BX02
-- Somehow the change of UID for AdmServ from 'apache' to 'admserv' got dropped.
-  Readding it again.
-
-* Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.1-0BX01
-- Modified for 5207R/5208R with new configs.
+* Mon Dec 30 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.1-0BX02 
+- Somehow the change of UID for AdmServ from 'apache' to 'admserv' got dropped. 
+  Readding it again. 
+ 
+* Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 2.0.1-0BX01 
+- Modified for 5207R/5208R with new configs. 
 
 * Wed Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.2-0BX01
 - Disabled some modules for SL6.

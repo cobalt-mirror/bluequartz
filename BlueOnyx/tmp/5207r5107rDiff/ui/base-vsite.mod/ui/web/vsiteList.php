@@ -168,7 +168,7 @@ if ($searchtext !== '') {
         if ( $loginName !== 'admin') { 
                 $exact = array('createdUser' => $loginName); 
         } 
-        $vsites = $cce->findx('Vsite', $exact, array(), $sort_type, $sortField); 
+        $vsites = $cce->findx('Vsite', $exact, array(), "", "");  
 } 
  
 $vsite_disk = 0; 

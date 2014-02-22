@@ -164,16 +164,16 @@ $settings->addFormField(
 // vsite disk info
 $disk = $cce->get($vsite['OID'], 'Disk');
 
-$disk_dev = $cce->getObject('Disk', 
-    array('mountPoint' => $vsite['volume']), '');
+$disk_dev = $cce->getObject('Disk', array('mountPoint' => $vsite['volume']), '');
 
-// dirty hack not to use /home partition 
-if (count($disk_dev) == 0) { 
-        $disk_dev = $cce->getObject('Disk', 
-                array('mountPoint' => '/'), ''); 
+// Dirty hack not to use /home partition. Kicks in if we don't have a disk partition
+// after our last search or if the reported disk has no size information. Then we use
+// the size information from the / partition instead:
+if ((count($disk_dev) == 0) || ($disk_dev['total'] == "")) { 
+        $disk_dev = $cce->getObject('Disk', array('mountPoint' => '/'), ''); 
 } 
 
-if($disk_dev['total']) {
+if ($disk_dev['total']) {
         $partitionMax = sprintf("%.0f", ($disk_dev['total'] / 1024)); 
 } 
  
@@ -194,12 +194,12 @@ if ($sites['quota'] > 0) {
 }
 
 // site quota
-$site_quota = $factory->getInteger('quota', 
-    $disk['quota'], 1, $partitionMax, $access); 
+$site_quota = $factory->getInteger('quota', $disk['quota'], 1, $partitionMax, $access); 
 
 // don't show bounds if it is read-only
-if ($access == 'rw')
+if ($access == 'rw') {
     $site_quota->showBounds(1);
+}
 
 $settings->addFormField(
         $site_quota,
@@ -217,17 +217,18 @@ $user_maxusers -= $vsite['maxusers'];
  
 if ($sites['user'] > 0) { 
     $userMax = $sites['user'] - $user_maxusers; 
-} 
-#$userMax = $user_maxusers; 
-if($vsite['createdUser'] != "admin") { 
-    $userMaxField = $factory->getInteger("maxusers", $vsite["maxusers"], 1, $userMax, $access); 
-} else { 
+}
+
+if ($vsite['createdUser'] != "admin") { 
+    $userMaxField = $factory->getInteger("maxusers", $vsite["maxusers"], 1, $userMax, $access);
+} else {
     $userMaxField = $factory->getInteger("maxusers", $vsite["maxusers"], 1, '', $access); 
 } 
- 
-// don't show bounds if it is read-only 
-if ($access == 'rw' && $vsite['createdUser'] != "admin") 
+
+// Show bounds if it is the field is 'RW', if the user is not 'admin'. But only if $userMax is really set:
+if ($access == 'rw' && $vsite['createdUser'] != "admin" && isset($userMax)) {
         $userMaxField->showBounds(1); 
+}
  
 $settings->addFormField( 
         $userMaxField, 
@@ -299,8 +300,8 @@ print $page->toFooterHtml();
 // nice people say goodbye
 $helper->destructor();
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

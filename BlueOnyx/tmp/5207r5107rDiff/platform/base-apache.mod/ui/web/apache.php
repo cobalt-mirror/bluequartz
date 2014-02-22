@@ -111,6 +111,12 @@ else {
 		$factory->getLabel("sslPortField")
 	);
 
+	// Checkbox for 'Header add Strict-Transport-Security':
+	$block->addFormField(
+		$factory->getBoolean("HSTS", $web["HSTS"]),
+		$factory->getLabel("HSTS")
+	);
+
 	$max_client = $factory->getInteger("maxClientsField", $web["maxClients"], 1, $web["maxClientsAdvised"]);
 	$max_client->setWidth(5);
 	$max_client->showBounds(1);
