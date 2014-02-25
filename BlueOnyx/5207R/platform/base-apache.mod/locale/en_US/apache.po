@@ -331,3 +331,12 @@ msgstr "The port you specified as new HTTP port is already in use by another ser
 
 msgid "SSLportInUse"
 msgstr "The port you specified as new HTTPS/SSL port is already in use by another service. Please choose another port instead."
+
+# HSTS:
+
+msgid "HSTS"
+msgstr "HSTS"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) is a web security policy mechanism whereby a web server declares that complying user agents (such as a web browser) are to interact with it using only secure HTTPS connections (i.e. HTTP layered over TLS/SSL). HSTS is an IETF standards track protocol and is specified in RFC 6797. For more info see: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+

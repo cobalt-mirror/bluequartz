@@ -323,3 +323,10 @@ msgstr "De poort die u hebt opgegeven als nieuwe HTTP-poort is al in gebruik doo
 msgid "SSLportInUse"
 msgstr "De poort die u hebt opgegeven als nieuwe HTTPS/SSL poort is al in gebruik door een andere dienst. Kies in plaats daarvan een andere poort."
 
+msgid "HSTS"
+msgstr "HSTS"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) is een web veiligheidsbeleid mechanisme waarbij een webserver verklaart dat voldoet user agents (zoals een webbrowser) zijn om te interageren met het gebruik van alleen beveiligde HTTPS-verbindingen (dwz HTTP gelaagd over TLS / SSL). HST is een IETF-normen spoor protocol en is gespecificeerd in RFC 6797. Voor meer info zie: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
+
+

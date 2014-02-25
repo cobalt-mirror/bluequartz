@@ -367,4 +367,9 @@ msgstr "Havnen, du har angivet som ny HTTP-port er allerede i brug af en anden t
 msgid "SSLportInUse"
 msgstr "Havnen, du har angivet som ny HTTPS/SSL port er allerede i brug af en anden tjeneste. Vælg venligst en anden port i stedet."
 
+msgid "HSTS"
+msgstr "HSTS"
+
+msgid "HSTS_help"
+msgstr "HTTP Strict Transport Security (HSTS) er et web sikkerhedspolitik mekanisme, hvorved en webserver erklærer, at opfylder bruger agenter (såsom en webbrowser) er at interagere med den ved hjælp af kun sikre HTTPS-forbindelser (dvs. HTTP lagdelt over TLS / SSL). TGV er en IETF standarder track protokol og er specificeret i RFC 6797. For mere info se: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
