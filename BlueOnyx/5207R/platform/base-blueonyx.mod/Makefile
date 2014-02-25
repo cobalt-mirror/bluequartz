@@ -6,10 +6,10 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=blueonyx
 
-BUILD=20131204
+BUILD=20140205
 
 VERSION=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5108R"; else  echo -n "5107R"; fi)
-RELEASE=4.$(BUILD)BX109
+RELEASE=4.$(BUILD)BX110
 
 # add a buildarch if desired
 BUILDARCH=noarch
