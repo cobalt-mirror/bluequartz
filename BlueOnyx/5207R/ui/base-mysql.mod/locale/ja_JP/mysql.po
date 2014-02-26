@@ -8,6 +8,183 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "ALTER_ROUTINE"
+msgstr "ROUTINE、ALTER"
+
+msgid "ALTER_ROUTINE_help"
+msgstr "ストアドルーチンの修正と削除を許可します。（MySQL5以上のみ有効）"
+
+msgid "ALTER_help"
+msgstr "既存のテーブルの構造の変更を許可します。"
+
+msgid "CREATE_ROUTINE"
+msgstr "CREATE_ROUTINE"
+
+msgid "CREATE_ROUTINE_help"
+msgstr "ストアドルーチンの作成を許可します。（MySQL5以上のみ有効）"
+
+msgid "CREATE_VIEW"
+msgstr "CREATE VIEW"
+
+msgid "CREATE_VIEW_help"
+msgstr "新しいビューの作成を許可します。（MySQL5以上のみ有効）"
+
+msgid "CREATE_help"
+msgstr "新しいデータベースとテーブルの作成を許可します。"
+
+msgid "CreateFailDBExists"
+msgstr ""
+"そのMySQLデータベースは、すでにMySQLのデータベースのテーブルに存在します。"
+
+msgid "CreateFailDatabaseExists"
+msgstr "MySQLデータベースが既に存在していること。"
+
+msgid "CreateFailUserExists"
+msgstr "そのMySQLのユーザーは既にMySQLユーザーテーブルに存在する。"
+
+msgid "DELETE_help"
+msgstr "データを削除することができます。"
+
+msgid "DIVIDER_FOUR"
+msgstr "リソースの制限："
+
+msgid "DIVIDER_ONE"
+msgstr "データ特権："
+
+msgid "DIVIDER_THREE"
+msgstr "構造権限（デフォルトではすべて許可されていません）："
+
+msgid "DIVIDER_TWO"
+msgstr "構造権限（デフォルトですべて許可されています）："
+
+msgid "DIVIDER_ZERO"
+msgstr "デフォルトのデータベース権限："
+
+msgid "DROP_help"
+msgstr "データベースとテーブルの削除を許可。"
+
+msgid "EXECUTE_help"
+msgstr "ストアドルーチンの実行を許可します。（MySQL5以上のみ有効）"
+
+msgid "EXPLAIN_RIGHTS"
+msgstr ""
+"新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
+"ルトの権限で作成されます。"
+
+msgid "FILE_help"
+msgstr ""
+"ファイルからデータをインポートし、ファイルにデータをエクスポートすることがで"
+"きます。デフォルトで設定されていません。"
+
+msgid "INDEX_help"
+msgstr "インデックスを作成してドロップすることができます。"
+
+msgid "INSERT_help"
+msgstr "データの挿入と交換ができます。"
+
+msgid "MAX_CONNECTIONS_PER_HOUR"
+msgstr "MAX_CONNECTIONS_PER_HOUR"
+
+msgid "MAX_CONNECTIONS_PER_HOUR_help"
+msgstr ""
+"ユーザーが１時間の間にログインできる回数を設定します。 '0' は無制限です。"
+
+msgid "MAX_QUERIES_PER_HOUR"
+msgstr "MAX_QUERIES_PER_HOUR"
+
+msgid "MAX_QUERIES_PER_HOUR_help"
+msgstr ""
+"ユーザーが１時間の間に行う事のできるクエリ数を設定します。 '0' は無制限です。"
+
+msgid "MAX_UPDATES_PER_HOUR"
+msgstr "MAX_UPDATES_PER_HOUR"
+
+msgid "MAX_UPDATES_PER_HOUR_help"
+msgstr ""
+"ユーザーが１時間の間に行う事のできる更新数を設定します。 '0' は無制限です。"
+
+msgid "MYSQL_ROOT_Settings_divider"
+msgstr ""
+"MySQLのrootユーザの設定 - データベースの初期化と設定や保守のために必要。"
+
+msgid "MySQL_Config_desc"
+msgstr "MySQLの設定"
+
+msgid "MySQL_Config_desc_help"
+msgstr "自動MySQLのデータベースとユーザーの作成を構成することができます。"
+
+msgid "MySQL_Config_head"
+msgstr "MySQLの設定変更"
+
+msgid "MySQL_Config_head_help"
+msgstr "MySQLサーバの構成。"
+
+msgid "MySQL_DIVIDER_ONE"
+msgstr "自動作成されたユーザーのデフォルトの権利："
+
+msgid "MySQL_Info_Text"
+msgstr ""
+"新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
+"ルトの権限で作成されます。"
+
+msgid "MySQL_Local_divider"
+msgstr "ローカルのMySQLサーバ："
+
+msgid "MySQL_Login_divider"
+msgstr "MySQLのrootユーザーの詳細："
+
+msgid "MySQL_Remote_divider"
+msgstr "MySQLサーバの詳細："
+
+msgid "MySQL_Settings_divider"
+msgstr "MySQLユーザとデータベースの自動作成のための設定を行います。"
+
+msgid "MySQL_Settings_head"
+msgstr "MySQLの設定"
+
+msgid "MySQL_Status_divider"
+msgstr "MySQLの接続ステータス："
+
+msgid "MySQL_TAB_ONE"
+msgstr "MySQLのユーザーとデータベースを自動作成"
+
+msgid "MySQL_TAB_ONE_help"
+msgstr ""
+"あなたが自動的に各サイトのMySQLのユーザーとデータベースを作成することができま"
+"す。"
+
+msgid "MySQL_TAB_TWO"
+msgstr "/etc/my.cnfを編集"
+
+msgid "MySQL_TAB_TWO_help"
+msgstr "あなたは、GUIを介して直接/etc/my.cnfを編集することができます。"
+
+msgid "MySQL_menu"
+msgstr "MySQL"
+
+msgid "MySQL_menu_help"
+msgstr ""
+"アプリケーションは、MySQLと通信できるように、MySQLの関連する設定を構成しま"
+"す。"
+
+msgid "SELECT_help"
+msgstr "データを読み込むことができます。"
+
+msgid "SHOW_VIEW"
+msgstr "SHOW_VIEW"
+
+msgid "SHOW_VIEW_help"
+msgstr "SHOW CREATE VIEW クエリの実行を許可します。(MySQL5以上のみ有効）"
+
+msgid "TEMPORARY"
+msgstr "CREATE TEMPORARY TABLES"
+
+msgid "TEMPORARY_help"
+msgstr "CREATE TEMPORARY TABLE の使用を許可します。"
+
+msgid "UPDATE_help"
+msgstr "データを変更することができます。"
+
 msgid "amDetailsTitle"
 msgstr "MySQLサーバの詳細"
 
@@ -20,11 +197,41 @@ msgstr "MySQLサーバは正常に動作していません。手動で再起動�
 msgid "amStatusOK"
 msgstr "MySQLサーバは正常に動作しています。"
 
+msgid "back_to_key_request"
+msgstr "前のページに戻る"
+
+msgid "back_to_key_request_help"
+msgstr "前のページに戻ります。"
+
 msgid "current_pass"
 msgstr "現在のパスワード："
 
 msgid "current_pass_help"
-msgstr "現在のパスワードに入力してください"
+msgstr "現在のパスワードを入力してください"
+
+msgid "customer_company"
+msgstr "会社名："
+
+msgid "customer_company_help"
+msgstr ""
+"ここにあなたの所属する組織名を入力してください。組織に所属していない場合は、"
+"代わりにドメイン名を使用してください。"
+
+msgid "customer_email"
+msgstr "メールアドレス："
+
+msgid "customer_email_help"
+msgstr ""
+"ここにメールアドレスを入力してください。これは、購入のためSolarspeed.netオン"
+"ラインストアで使用したものと同じ電子メールアドレスでなければなりません。"
+
+msgid "customer_name"
+msgstr "氏名："
+
+msgid "customer_name_help"
+msgstr ""
+"あなたの名前をここに入力してください。これは、http://www.solarspeed.netでソフ"
+"トウェアを購入したときの名前でなければなりません"
 
 msgid "delete_backup"
 msgstr "バックアップを削除"
@@ -44,26 +251,81 @@ msgstr "実行されるSQLダンプ"
 msgid "dump_help"
 msgstr "MySQLのダンプを実行"
 
+msgid "email_key_request"
+msgstr "Eメールキーリクエスト"
+
+msgid "email_key_request_help"
+msgstr ""
+"このボタンを押すと、メールがkeyrequest@solarspeed.netに送信されます。電子メー"
+"ルは、お名前、会社名、電子メールアドレスが含まれます。私たちはあなたのための"
+"「プロダクトキー」を生成できるように、それはまた、「サーバキーを 'メールでお"
+"知らせいたします。"
+
 msgid "filesize"
 msgstr "ファイルサイズ："
 
 msgid "filesize_help"
-msgstr "MySQLのダンプ·ファイルのサイズ"
+msgstr "MySQLのダンプファイルのサイズ"
 
 msgid "last_backup"
-msgstr "最後のバックアップさ："
+msgstr "最終バックアップ："
 
 msgid "last_backup_help"
-msgstr "バックアップは、最後の起こったときを見てください"
+msgstr "最後にバックアップを実施した日付が表示されます。"
+
+msgid "mail_status"
+msgstr "Eメールステータス："
+
+msgid "mail_status_help"
+msgstr ""
+"メールキーリクエスト配信の状況。あなたの登録メールがkeyrequest@solarspeed.net"
+"へ送信することができたかどうかお知らせします。"
+
+msgid "my_cnf"
+msgstr "/etc/my.cnfを編集："
+
+msgid "my_cnf_help"
+msgstr ""
+"ここでは、直接のmy.cnfを編集することができます。入力した内容は、このエディタ"
+"ではチェックされませんのでご注意ください。タイプミスや誤った設定をおこなった"
+"場合、最悪サーバが起動しなくなる恐れもあります。"
+
+msgid "mysql_default_privileges"
+msgstr "デフォルトの権限："
+
+msgid "mysql_default_privileges_help"
+msgstr ""
+"新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
+"ルトの権限で作成されます。"
 
 msgid "mysql_enabled"
 msgstr "MySQLサーバを有効にします。"
 
 msgid "mysql_enabled_help"
-msgstr "MySQLサーバを有効にする]をクリック"
+msgstr "チェックするとMySQLサーバを有効にします。"
+
+msgid "mysql_head"
+msgstr "MySQL設定"
 
 msgid "mysql_header"
 msgstr "MySQLサーバ"
+
+msgid "mysql_license"
+msgstr "ライセンス管理："
+
+msgid "mysql_license_help"
+msgstr ""
+"このソフトウェアは、作品を著作権で保護し、サーバーごとにライセンスが必要で"
+"す。あなたは、要求ビューまたはここにサーバライセンスを管理できます。"
+
+msgid "mysql_status_incorrect"
+msgstr "MySQLの接続が確立できません。設定を確認してください。"
+
+msgid "mysql_status_ok"
+msgstr "この設定で可能なMySQL接続。"
+
+msgid "mysql_status_unconfigured"
+msgstr "設定を構成してください。"
 
 msgid "mysqldump"
 msgstr "データベーススナップショットを作成します。"
@@ -75,7 +337,9 @@ msgid "mysqlpass"
 msgstr "新しいパスワード："
 
 msgid "mysqlpass_help"
-msgstr "あなたは限り、あなたは現在のパスワードを知っているように、MySQLのパスワードを変更することができます。"
+msgstr ""
+"あなたは限り、あなたは現在のパスワードを知っているように、MySQLのパスワードを"
+"変更することができます。"
 
 msgid "password"
 msgstr "MySQLのパスワード"
@@ -83,56 +347,132 @@ msgstr "MySQLのパスワード"
 msgid "password_help"
 msgstr "MySQLは主ユーザーのパスワード"
 
+msgid "product_key"
+msgstr "プロダクトキー："
+
+msgid "product_key_help"
+msgstr ""
+"「プロダクトキー」は、ソフトウェアのライセンスです。それはそれがためにライセ"
+"ンスを取得したサーバーにインストールされている場合は、ソフトウェアのロックを"
+"解除します。"
+
+msgid "root_has_no_pwd"
+msgstr ""
+"MySQLのrootユーザーのためのMySQLのパスワードは明らかにまだ設定されていませ"
+"ん！ MySQLのユーザー「ルート」のパスワードを設定してください！"
+
 msgid "server"
 msgstr "サーバー"
 
 msgid "server_help"
 msgstr "MySQLサーバを有効にすると無効"
 
-msgid "sqldump"
-msgstr "SQL DBのダンプ"
+msgid "server_key"
+msgstr "サーバキー："
 
-msgid "sqldump_help"
-msgstr "テキストフ​​ァイルにすべてのデータベースをダンプ"
+msgid "server_key_help"
+msgstr ""
+"「サーバーキーは 'あなたはそれがためにライセンスを取得したサーバー上でソフト"
+"ウェアを実行する場合、私たちを識別するのに役立ちます、自動的に生成される一意"
+"の識別子です。"
 
-msgid "sqlpass"
-msgstr "パスワードを変更"
+msgid "solmysqlDB"
+msgstr "データベース名"
 
-msgid "sqlpass_help"
-msgstr "あなたのMySQLのパスワードを変更することができます。また、現在のパスワードを知っている提供、MySQLのパスワードをクリアすることができます。そうするためには、単純に空の「新しいパスワード」フィールドにしておきます。"
+msgid "solmysqlDB_help"
+msgstr "このサイトのMySQLデータベースの名前。"
 
-msgid "username"
-msgstr "MySQLのユーザー名"
+msgid "solmysqlFullText"
+msgstr "MySQLのユーザーとデータベース"
 
-msgid "username_help"
-msgstr "MySQLのメインユーザーのユーザー"
+msgid "solmysqlFullText_help"
+msgstr ""
+"あなたは自動的にMySQLデータベースと、このサイトのMySQLユーザを作成したり、削"
+"除することができます。注意：チェックボックスがすでにオンになっている場合、そ"
+"れをオフにし、変更を保存すると、MySQLのデータベースとユーザーを削除します。"
 
-msgid "MySQL_Settings_head"
-msgstr "MySQLの設定"
+msgid "solmysqlHost"
+msgstr "データベースホスト"
 
-msgid "MySQL_Settings_divider"
-msgstr "MySQLユーザとデータベースの自動作成のための設定を行います。"
+msgid "solmysqlHost_help"
+msgstr "MySQLサーバが動作しているホスト。デフォルトは 'localhost' です。"
+
+msgid "solmysqlPass"
+msgstr "パスワード"
+
+msgid "solmysqlPass_help"
+msgstr "問題のMySQLユーザのためのMySQLのパスワード。"
+
+msgid "solmysqlPort"
+msgstr "ポート"
+
+msgid "solmysqlPort_help"
+msgstr "MySQLサーバーが待機しているポート。通常、これは'3306 'です。"
+
+msgid "solmysqlUsername"
+msgstr "ユーザ名"
+
+msgid "solmysqlUsername_help"
+msgstr ""
+"MySQLのユーザのユーザ名。唯一の下の指定されたデータベースの権限とアクセス許可"
+"を持っています。"
+
+msgid "solmysql_DB"
+msgstr "[[base-mysql.solmysqlDB]]"
+
+msgid "solmysql_DB_help"
+msgstr "[[base-mysql.solmysqlDB_help]]"
+
+msgid "solmysql_Port"
+msgstr "[[base-mysql.solmysqlPort]]"
+
+msgid "solmysql_Port_help"
+msgstr "[[base-mysql.solmysqlPort_help]]"
+
+msgid "solmysql_enabled"
+msgstr "[[base-mysql.solmysqlFullText]]"
+
+msgid "solmysql_enabled_help"
+msgstr "[[base-mysql.solmysqlFullText_help]]"
+
+msgid "solmysql_host"
+msgstr "[[base-mysql.solmysqlHost]]"
+
+msgid "solmysql_host_help"
+msgstr "[[base-mysql.solmysqlHost_help]]"
+
+msgid "solmysql_pass"
+msgstr "[[base-mysql.solmysqlPass]]"
+
+msgid "solmysql_pass_help"
+msgstr "[[base-mysql.solmysqlPass_help]]"
+
+msgid "solmysql_username"
+msgstr "[[base-mysql.solmysqlUsername]]"
+
+msgid "solmysql_username_help"
+msgstr "[[base-mysql.solmysqlUsername_help]]"
 
 msgid "sql_host"
 msgstr "MySQLのホスト："
 
 msgid "sql_host_help"
-msgstr "MySQLサーバが配置されているホスト。アプリケーションがMySQLに接続できるように指定する必要があります。デフォルトでは、 'localhost'の必要があります。"
+msgstr ""
+"MySQLサーバが配置されているホスト。アプリケーションがMySQLに接続できるように"
+"指定する必要があります。 デフォルトは 'localhost' です。"
 
 msgid "sql_port"
 msgstr "MySQLのポート："
 
 msgid "sql_port_help"
-msgstr "MySQLは指定されたホストの到達可能なTCP / IPポート。デフォルトでは'3306 'でなければなりません。"
-
-msgid "MYSQL_ROOT_Settings_divider"
-msgstr "MySQLのrootユーザの設定 - データベースの初期化と設定や保守のために必要。"
+msgstr "MySQLサーバが使用するTCP/IPポート番号。デフォルトは'3306 'です。"
 
 msgid "sql_root"
 msgstr "MySQLのユーザー："
 
 msgid "sql_root_help"
-msgstr "「ルート」権限を持つMySQLのユーザのユーザ名。デフォルトでは、「ルート」でなければなりません。"
+msgstr ""
+"'root' 権限を持つMySQLのユーザのユーザ名。デフォルト設定は 'root' です。"
 
 msgid "sql_rootpassword"
 msgstr "MySQLのパスワード："
@@ -144,320 +484,42 @@ msgid "sql_status"
 msgstr "MySQLの状態："
 
 msgid "sql_status_help"
-msgstr "あなたのMySQL接続の状態が表示され、それはあなたが上で指定したログイン詳細をMySQLサーバに接続することが可能です。"
+msgstr ""
+"あなたのMySQL接続の状態が表示され、それはあなたが上で指定したログイン詳細を"
+"MySQLサーバに接続することが可能です。"
 
-msgid "mysql_status_unconfigured"
-msgstr "設定を構成してください。"
+msgid "sqldump"
+msgstr "SQL DBのダンプ"
 
-msgid "mysql_status_incorrect"
-msgstr "MySQLの接続が確立できません。設定を確認してください。"
+msgid "sqldump_help"
+msgstr "テキストファイルにすべてのデータベースをダンプ"
 
-msgid "mysql_status_ok"
-msgstr "この設定で可能なMySQL接続。"
+msgid "sqlpass"
+msgstr "パスワードを変更"
 
-msgid "MySQL_menu"
-msgstr "MySQLの"
+msgid "sqlpass_help"
+msgstr ""
+"あなたのMySQLのパスワードを変更することができます。また、現在のパスワードを"
+"知っている提供、MySQLのパスワードをクリアすることができます。そうするために"
+"は、単純に空の「新しいパスワード」フィールドにしておきます。"
 
-msgid "MySQL_menu_help"
-msgstr "アプリケーションは、MySQLと通信できるように、MySQLの関連する設定を構成します。"
-
-msgid "MySQL_Local_divider"
-msgstr "ローカルのMySQLサーバ："
-
-msgid "MySQL_Remote_divider"
-msgstr "MySQLサーバの詳細："
-
-msgid "MySQL_Login_divider"
-msgstr "MySQLのrootユーザーの詳細："
-
-msgid "MySQL_Status_divider"
-msgstr "MySQLの接続ステータス："
-
-msgid "mysql_head"
-msgstr "MySQL設定"
-
-msgid "my_cnf"
-msgstr "は、/etc/my.cnfに編集："
-
-msgid "my_cnf_help"
-msgstr "ここでは、直接のmy.cnfを編集することができます。何か意味が入力した内容は、このエディタがチェックされませんのでご注意ください。これはタイプミスや誤った定義を修正していません。"
-
-msgid "mysql_license"
-msgstr "ライセンス管理："
-
-msgid "mysql_license_help"
-msgstr "このソフトウェアは、作品を著作権で保護し、サーバーごとにライセンスが必要です。あなたは、要求ビューまたはここにサーバライセンスを管理できます。"
-
-msgid "customer_name"
-msgstr "顧客名："
-
-msgid "customer_name_help"
-msgstr "あなたの名前をここに入力してください。これは、http://www.solarspeed.netでソフトウェアを購入したときの名前でなければなりません"
-
-msgid "customer_email"
-msgstr "顧客の電子メール："
-
-msgid "customer_email_help"
-msgstr "ここにメールアドレスを入力してください。これは、購入のためSolarspeed.netオンラインストアで使用した同じ電子メールアドレスでなければなりません。"
-
-msgid "customer_company"
-msgstr "会社名："
-
-msgid "customer_company_help"
-msgstr "ここにあなたの会社名を入力してください。あなたが組み込まれていない場合は、代わりにドメイン名を使用してください。"
-
-msgid "server_key"
-msgstr "サーバキー："
-
-msgid "server_key_help"
-msgstr "「サーバーキーは 'あなたはそれがためにライセンスを取得したサーバー上でソフトウェアを実行する場合、私たちを識別するのに役立ちます、自動的に生成される一意の識別子です。"
-
-msgid "product_key"
-msgstr "プロダクトキー："
-
-msgid "product_key_help"
-msgstr "「プロダクトキー」は、ソフトウェアのライセンスです。それはそれがためにライセンスを取得したサーバーにインストールされている場合は、ソフトウェアのロックを解除します。"
-
-msgid "email_key_request"
-msgstr "Eメールキーリクエスト"
-
-msgid "email_key_request_help"
-msgstr "このボタンを押すと、メールがkeyrequest@solarspeed.netに送信されます。電子メールは、お名前、会社名、電子メールアドレスが含まれます。私たちはあなたのための「プロダクトキー」を生成できるように、それはまた、「サーバキーを 'メールでお知らせいたします。"
-
-msgid "mail_status"
-msgstr "Eメールステータス："
-
-msgid "mail_status_help"
-msgstr "メールキーリクエスト配信の状況。あなたの登録メールがkeyrequest@solarspeed.netに送ることができればあなたに伝えます"
-
-msgid "back_to_key_request"
-msgstr "前のページに戻る"
-
-msgid "back_to_key_request_help"
-msgstr "前のページに戻ります。"
-
-msgid "MySQL_Config_head"
-msgstr "MySQLの設定変更"
-
-msgid "MySQL_Config_head_help"
-msgstr "MySQLサーバの構成。"
-
-msgid "MySQL_Config_desc"
-msgstr "MySQLの設定"
-
-msgid "MySQL_Config_desc_help"
-msgstr "自動MySQLのデータベースとユーザーの作成を構成することができます。"
-
-msgid "MySQL_TAB_ONE"
-msgstr "MySQLのユーザーとデータベースを自動作成"
-
-msgid "MySQL_TAB_ONE_help"
-msgstr "あなたが自動的に各サイトのMySQLのユーザーとデータベースを作成することができます。"
-
-msgid "MySQL_TAB_TWO"
-msgstr "は、/etc/my.cnfの編集者"
-
-msgid "MySQL_TAB_TWO_help"
-msgstr "あなたは、GUIを介して直接に/etc/my.cnfのを編集することができます。"
+msgid "sqlstatus_fail"
+msgstr ""
+"MySQLの接続が確立できません。最初の「ネットワークサービス」/「MySQLの設定変"
+"更」の下の設定を確認してください。 MySQLが動作している場合にも参照してくださ"
+"い。"
 
 msgid "udb_switch"
 msgstr "MySQLの自動作成"
 
 msgid "udb_switch_help"
-msgstr "GUIを使用してMySQLユーザとデータベースの自動作成を可能にする。いずれかの新しいサイトを作成する際に、または既存のサイトの「WEB」のサービスを編集して。唯一のサーバー管理者はこの機能を持っています。"
-
-msgid "solmysqlFullText"
-msgstr "MySQLのユーザーとデータベース"
-
-msgid "solmysqlFullText_help"
-msgstr "あなたは自動的にMySQLデータベースと、このサイトのMySQLユーザを作成したり、削除することができます。注意：チェックボックスがすでにオンになっている場合、それをオフにし、変更を保存すると、MySQLのデータベースとユーザーを削除します。"
-
-msgid "solmysqlUsername"
-msgstr "ユーザ名"
-
-msgid "solmysqlUsername_help"
-msgstr "MySQLのユーザのユーザ名。唯一の下の指定されたデータベースの権限とアクセス許可を持っています。"
-
-msgid "solmysqlPass"
-msgstr "パスワード"
-
-msgid "solmysqlPass_help"
-msgstr "問題のMySQLユーザのためのMySQLのパスワード。"
-
-msgid "solmysqlDB"
-msgstr "データベース名"
-
-msgid "solmysqlDB_help"
-msgstr "このサイトのMySQLデータベースの名前。"
-
-msgid "solmysqlHost"
-msgstr "データベースホスト"
-
-msgid "solmysqlHost_help"
-msgstr "MySQLサーバが動作しているホスト。通常、これは 'localhost'のです。"
-
-msgid "solmysqlPort"
-msgstr "ポート"
-
-msgid "solmysqlPort_help"
-msgstr "MySQLサーバーが待機しているポート。通常、これは'3306 'です。"
-
-msgid "MySQL_DIVIDER_ONE"
-msgstr "自動作成されたユーザーのデフォルトの権利："
-
-msgid "mysql_default_privileges"
-msgstr "デフォルトの権限："
-
-msgid "mysql_default_privileges_help"
-msgstr "新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォルトの権限で作成されます。"
-
-msgid "EXPLAIN_RIGHTS"
-msgstr "新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォルトの権限で作成されます。"
-
-msgid "DIVIDER_ZERO"
-msgstr "デフォルトのデータベース権限："
-
-msgid "DIVIDER_ONE"
-msgstr "データ特権："
-
-msgid "DIVIDER_TWO"
-msgstr "構造権限（デフォルトですべてが許可されています）："
-
-msgid "DIVIDER_THREE"
-msgstr "構造権限（デフォルトでは、これらが付与されていません）。"
-
-msgid "DIVIDER_FOUR"
-msgstr "リソースの制限："
-
-msgid "SELECT_help"
-msgstr "データを読み込むことができます。"
-
-msgid "INSERT_help"
-msgstr "データの挿入と交換ができます。"
-
-msgid "UPDATE_help"
-msgstr "データを変更することができます。"
-
-msgid "DELETE_help"
-msgstr "データを削除することができます。"
-
-msgid "FILE_help"
-msgstr "ファイルからデータをインポートし、ファイルにデータをエクスポートすることができます。デフォルトで設定されていません。"
-
-msgid "CREATE_help"
-msgstr "データベースとテーブルを作成することができます。"
-
-msgid "ALTER_help"
-msgstr "既存のテーブルの構造を変更することができます。"
-
-msgid "INDEX_help"
-msgstr "インデックスを作成してドロップすることができます。"
-
-msgid "DROP_help"
-msgstr "データベースとテーブルの削除を許可。"
-
-msgid "TEMPORARY"
-msgstr "一時テーブルのCREATE"
-
-msgid "TEMPORARY_help"
-msgstr "一時テーブルを作成することができます。"
-
-msgid "CREATE_VIEW"
-msgstr "CREATE VIEWを"
-
-msgid "CREATE_VIEW_help"
-msgstr "新しいビューを作成することができます。 （のみのMySQL5で利用可能な、またはより良い。）"
-
-msgid "SHOW_VIEW"
-msgstr "ビューの表示"
-
-msgid "SHOW_VIEW_help"
-msgstr "ショーはVIEWクエリを作成実行することができます。 （のみのMySQL5で利用可能な、またはより良い。）"
-
-msgid "CREATE_ROUTINE"
-msgstr "ルーチンを作成"
-
-msgid "CREATE_ROUTINE_help"
-msgstr "ストアドルーチンを作成することができます。 （のみのMySQL5で利用可能な、またはより良い。）"
-
-msgid "ALTER_ROUTINE"
-msgstr "ROUTINE、ALTER"
-
-msgid "ALTER_ROUTINE_help"
-msgstr "ストアドルーチンの変更し、ドロップを可能にする。 （のみのMySQL5で利用可能な、またはより良い。）"
-
-msgid "EXECUTE_help"
-msgstr "店舗ルーチンの実行が可能です。 （のみのMySQL5で利用可能な、またはより良い。）"
-
-msgid "MAX_QUERIES_PER_HOUR"
-msgstr "MAXはPER時間に照会"
-
-msgid "MAX_QUERIES_PER_HOUR_help"
-msgstr "ユーザーは時間あたりのサーバに送信することがクエリの数を制限します。 '0 'は無制限を意味する。"
-
-msgid "MAX_UPDATES_PER_HOUR"
-msgstr "MAXアップデートPER HOUR"
-
-msgid "MAX_UPDATES_PER_HOUR_help"
-msgstr "ユーザーが時間あたりに実行可能性のあるテーブルまたはデータベースを変更するコマンドの数を制限します。 '0 'は無制限を意味する。"
-
-msgid "MAX_CONNECTIONS_PER_HOUR"
-msgstr "HOURあたりの最大接続"
-
-msgid "MAX_CONNECTIONS_PER_HOUR_help"
-msgstr "ユーザーが時間ごとのオープンも接続の数を制限します。 '0 'は無制限を意味する。"
-
-msgid "MySQL_Info_Text"
-msgstr "新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォルトの権限で作成されます。"
-
-msgid "root_has_no_pwd"
-msgstr "MySQLのrootユーザーのためのMySQLのパスワードは明らかにまだ設定されていません！ MySQLのユーザー「ルート」のパスワードを設定してください！"
-
-msgid "sqlstatus_fail"
-msgstr "MySQLの接続が確立できません。最初の「ネットワークサービス」/「MySQLの設定変更」の下の設定を確認してください。 MySQLが動作している場合にも参照してください。"
-
-msgid "solmysql_enabled"
-msgstr "[[base-mysql.solmysqlFullText]]"
-
-msgid "solmysql_enabled_help"
-msgstr "[[base-mysql.solmysqlFullText_help]]"
-
-msgid "solmysql_username"
-msgstr "[[base-mysql.solmysqlUsername]]"
-
-msgid "solmysql_username_help"
-msgstr "[[base-mysql.solmysqlUsername_help]]"
-
-msgid "solmysql_pass"
-msgstr "[[base-mysql.solmysqlPass]]"
-
-msgid "solmysql_pass_help"
-msgstr "[[base-mysql.solmysqlPass_help]]"
-
-msgid "solmysql_DB"
-msgstr "[[base-mysql.solmysqlDB]]"
-
-msgid "solmysql_DB_help"
-msgstr "[[base-mysql.solmysqlDB_help]]"
-
-msgid "solmysql_host"
-msgstr "[[base-mysql.solmysqlHost]]"
-
-msgid "solmysql_host_help"
-msgstr "[[base-mysql.solmysqlHost_help]]"
-
-msgid "solmysql_Port"
-msgstr "[[base-mysql.solmysqlPort]]"
-
-msgid "solmysql_Port_help"
-msgstr "[[base-mysql.solmysqlPort_help]]"
-
-msgid "CreateFailUserExists"
-msgstr "そのMySQLのユーザーは既にMySQLユーザーテーブルに存在する。"
-
-msgid "CreateFailDBExists"
-msgstr "そのMySQLデータベースは、すでにMySQLのデータベースのテーブルに存在します。"
-
-msgid "CreateFailDatabaseExists"
-msgstr "MySQLデータベースが既に存在していること。"
-
+msgstr ""
+"GUIを使用してMySQLユーザとデータベースの自動作成を可能にする。いずれかの新し"
+"いサイトを作成する際に、または既存のサイトの「WEB」のサービスを編集して。唯一"
+"のサーバー管理者はこの機能を持っています。"
+
+msgid "username"
+msgstr "MySQLのユーザー名"
+
+msgid "username_help"
+msgstr "MySQLのメインユーザーのユーザー"
