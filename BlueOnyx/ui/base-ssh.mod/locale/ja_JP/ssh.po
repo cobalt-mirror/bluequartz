@@ -1,25 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "enableSSH"
 msgstr "SSHサーバを有効にする"
 
 msgid "enableSSH_help"
-msgstr "SSHを有効にシェルアクセスを持つユーザは、SSHクライアントソフトウェアを使用して、このサーバに接続することができます。 sshはクライアントとサーバの間で送信されるパスワードを含むすべてのデータを暗号化するので、SSHを使用することが一般的とTelnetの使用よりも安全と考えられている。"
+msgstr "シェルアクセスを有効に設定されたユーザは、SSHクライアントソフトウェアを"
+"使用して、このサーバに接続することができます。SSHはクライアントとサーバの間で"
+"送信されるパスワードを含むすべてのデータを暗号化するので、一般的にTelnetを使用"
+"するよりも安全と考えられています。"
 
 msgid "SSH_Port"
-msgstr "SSHポート："
+msgstr "SSH Port:"
 
 msgid "SSH_Port_help"
-msgstr "デフォルトでは、SSHはポート22/TCP上で実行されます。ただし、自動化されたブルートフォースログイン攻撃を回避しようとするために、代わりに別のポートで実行するように設定することができます。"
+msgstr "デフォルトでは、SSHはポート22/TCP上で実行されます。自動化されたブルート"
+"フォースログイン攻撃を回避しようとするために、代わりに別のポートで実行する"
+"ように設定することができます。"
 
 msgid "SSH_Proto"
-msgstr "SSHプロトコル："
+msgstr "SSH Protocol:"
 
 msgid "SSH_Proto_help"
-msgstr "プロトコルバージョン1とバージョン2：SSHには2つのプロトコルをサポートしています。二人はより高度で安全です。可能であれば、あなただけのプロトコル2を使用する必要があります。のみをサポートプロトコル1が代わりにそのにフォールバックできるように古いアプリケーション間しかし、あなたはまた、'2に設定1 '、プロトコル2をサポートするアプリケーションがそれを使用される場合には、することができます。"
+msgstr "SSHは、プロトコル1と2の2つのプロトコルをサポートします: プロトコル2は、"
+"より高度で安全であり、可能であればプロトコル2のみ使用するべきです。"
+"プロトコル1にしか対応していないアプリケーションを使用する必要がある場合は"
+"'2,1' を設定する事で、自動的にフォールバックされた接続が可能となります。"
+
 
 msgid "SSHrootLogin"
-msgstr "SSHルートログイン："
+msgstr "SSH Root Login:"
 
 msgid "SSHrootLogin_help"
-msgstr "ユーザ 'root'で、デフォルトでは、セキュリティ上の理由から直接SSHログインは、通常許可されていません。必要な場合は、ここでそれを許可することができます。"
+msgstr "セキュリティ上の理由から'root'ユーザが直接SSHでアクセスする事"
+"は許可されていません。必要に応じて、ここで許可する事ができます。"
 
