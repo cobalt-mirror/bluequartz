@@ -48,13 +48,11 @@ $cceClient->setObject("System", array("uiCMD" => "", "message" => "[[base-swupda
 if($locationField == "url") {
 
   // check if URL is secure
-  if(substr($urlField, 0, 8) != "https://" && substr($urlField, 0, 7) != "http://" && substr($urlField, 0, 6) != "ftp://") 
-  {
-    print($serverScriptHelper->toHandlerHtml($pageUrl, 
-      	array(new Error("[[base-swupdate.invalidUrl]]"))));
-
-    $serverScriptHelper->destructor();
-    exit();
+  if ((substr($urlField, 0, 8) != "https://" && substr($urlField, 0, 7) != "http://" && substr($urlField, 0, 6) != "ftp://")
+     || (preg_match('/[";&(\s+)(\')(\\\)]/', $urlField))) {
+      print($serverScriptHelper->toHandlerHtml($pageUrl, array(new Error("[[base-swupdate.invalidUrl]]"))));
+      $serverScriptHelper->destructor();
+      exit();
   }
 
   // package name is the last piece of the URL
