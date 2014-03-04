@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=swupdate
 
 VERSION=1.4.1
-RELEASE=0BX15
+RELEASE=0BX16
 
 # add a buildarch if desired
 BUILDARCH=noarch
