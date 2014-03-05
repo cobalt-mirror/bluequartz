@@ -1118,6 +1118,7 @@ sub generate_record_MX
   if ($obj->{mail_server_priority} =~ m/^\s*Low/i) { $value = 40; }
   if ($obj->{mail_server_priority} =~ m/^\s*High/i) { $value = 30; }
   if ($obj->{mail_server_priority} =~ m/^\s*Very_High/i) { $value = 20; }
+  if ($obj->{mail_server_priority} =~ m/^\s*Extremely_High/i) { $value = 0; }
 
   return
     formalize_hostname($obj->{hostname}, $obj->{domainname})

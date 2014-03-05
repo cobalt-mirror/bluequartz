@@ -4,7 +4,7 @@
   data="^(A|PTR|CNAME|MX|TXT|NS|SN)$"/>
 <typedef name="dns_email" type="re" data="^[a-zA-Z0-9_-]+\@[a-zA-Z0-9\._-]+$"/>
 <typedef name="dns_zone_format" type="re" data="^(RFC2317|DION|OCN-JT|USER)$"/>
-<typedef name="mx_priority" type="re" data="^(very_high|high|low|very_low)$"/>
+<typedef name="mx_priority" type="re" data="^(extremely_high|very_high|high|low|very_low)$"/>
 
 <!-- global DNS settings -->
 
