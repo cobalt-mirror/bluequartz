@@ -59,7 +59,7 @@ nuclear facility.
 #include <sessionmgr.h>
 
 #define IDSTR 	"Cobalt Configuration Engine (CCE) version " CCE_VERSION
-#define COPYRIGHT "Copyright (c) 1999,2000 Cobalt Networks, Inc.\nCopyright (c) 2014 Team BlueOnyx, BLUEONYX.IT"
+#define COPYRIGHT "Copyright (c) 1999,2000 Cobalt Networks, Inc. - Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT "
 #define CREDITS 	"   by: \n" \
 			"     Andrew Bose \n" \
 			"     Kevin Chiu \n" \
