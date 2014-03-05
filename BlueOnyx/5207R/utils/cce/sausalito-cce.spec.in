@@ -1,5 +1,8 @@
-# $Id: sausalito-cce.spec.in 1162 2008-06-28 18:29:44Z mstauber $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: sausalito-cce.spec.in
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 
 %define extension_dir %(php-config --extension-dir)
 
@@ -179,6 +182,9 @@ fi
 %changelog
 
 %changelog
+
+* Tue Mar 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.82.1-1BX01
+- Updated basetypes.schema for 520XR.
 
 * Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX12
 - Fixed weird (but reproduceable) error in CceClient.php.

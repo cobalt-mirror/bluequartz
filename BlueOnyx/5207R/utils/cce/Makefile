@@ -1,5 +1,8 @@
-# $Id: Makefile 1162 2008-06-28 18:29:44Z mstauber $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: Makefile
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # Top level Makefile for CCE
 
 # this must be before includes
@@ -13,10 +16,10 @@ CCEMODULE = sausalito-cce
 CCERPMSPEC = $(CCEMODULE).spec
 
 CCE_V_MAJ=0
-CCE_V_MIN=81
+CCE_V_MIN=82
 CCE_V_PATCH=1
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX12
+RPMRELEASE=1BX01
 
 DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
 	ccewrap pperl
