@@ -104,7 +104,7 @@ $block->addFormField(
 );
 
 // MX Priority:
-$mx_priority_select = $factory->getMultiChoice("mx_priority", array_values(array("very_high", "high", "low", "very_low")));
+$mx_priority_select = $factory->getMultiChoice("mx_priority", array_values(array("extremely_high", "very_high", "high", "low", "very_low")));
 $mx_priority_select->setSelected($systemObj['mail_server_priority'], true);
 $block->addFormField($mx_priority_select, $factory->getLabel("mx_priority"), $pageID);
 
