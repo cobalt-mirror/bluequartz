@@ -460,30 +460,6 @@ msgstr "Delivery Priority"
 msgid "mx_priority_help"
 msgstr "Select the priority of mail delivery to the mail server.  The delivery priority specifies the order in which a series of multiple mail server machines should try to be contacted for mail delivery.  The Delivery Priority setting is only useful if multiple MX records are specified for a domain or network."
 
-msgid "very_high"
-msgstr "Very High (20)"
-
-msgid "high"	
-msgstr "High (30)"
-
-msgid "low"	
-msgstr "Low (40)"
-
-msgid "very_low"
-msgstr "Very Low (50)"
-
-msgid "mx_dir_very_high"
-msgstr "Mail Highest"
-
-msgid "mx_dir_high"	
-msgstr "Mail High"
-
-msgid "mx_dir_low"	
-msgstr "Mail Low"
-
-msgid "mx_dir_very_low"
-msgstr "Mail Lowest"
-
 msgid "mx_host_name_invalid"
 msgstr "The specified host name contains invalid characters."
 
@@ -1131,3 +1107,31 @@ msgstr "Site DNS Management"
 msgid "extremely_high"
 msgstr "Extremely High (0)"
 
+msgid "very_high"
+msgstr "Very High (20)"
+
+msgid "high"	
+msgstr "High (30)"
+
+msgid "low"	
+msgstr "Low (40)"
+
+msgid "very_low"
+msgstr "Very Low (50)"
+
+#-----------------
+
+msgid "mx_dir_very_high"
+msgstr "MX: Very High"
+
+msgid "mx_dir_extremely_high"
+msgstr "MX: Extremely High"
+
+msgid "mx_dir_high"	
+msgstr "MX: Mail High"
+
+msgid "mx_dir_low"	
+msgstr "MX: Mail Low"
+
+msgid "mx_dir_very_low"
+msgstr "MX: Mail Lowest"

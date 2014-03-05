@@ -446,30 +446,6 @@ msgstr "Priority levering"
 msgid "mx_priority_help"
 msgstr "Selecteer de prioriteit van postbezorging naar de mailserver. De levering prioriteit bepaalt de volgorde waarin een reeks van meerdere mailserver machines moet proberen te worden voor postbezorging. De instelling Delivery Prioriteit is alleen nuttig als meerdere MX-records zijn opgegeven voor een domein of netwerk."
 
-msgid "very_high"
-msgstr "Zeer hoog (20)"
-
-msgid "high"
-msgstr "Hoog (30)"
-
-msgid "low"
-msgstr "Laag (40)"
-
-msgid "very_low"
-msgstr "Zeer laag (50)"
-
-msgid "mx_dir_very_high"
-msgstr "Mail Hoogste"
-
-msgid "mx_dir_high"
-msgstr "Mail High"
-
-msgid "mx_dir_low"
-msgstr "Mail Low"
-
-msgid "mx_dir_very_low"
-msgstr "Mail Laagste"
-
 msgid "mx_host_name_invalid"
 msgstr "De opgegeven hostnaam bevat ongeldige tekens."
 
@@ -1076,5 +1052,36 @@ msgstr "Server DNS Management"
 msgid "cap_siteDNS"
 msgstr "Site DNS Management"
 
+#--------------------------
+
 msgid "extremely_high"
 msgstr "Extreem Hoog (0)"
+
+msgid "very_high"
+msgstr "Zeer hoog (20)"
+
+msgid "high"
+msgstr "Hoog (30)"
+
+msgid "low"
+msgstr "Laag (40)"
+
+msgid "very_low"
+msgstr "Zeer laag (50)"
+
+#--------------------------
+
+msgid "mx_dir_extremely_high"
+msgstr "MX: Extreem Hoog"
+
+msgid "mx_dir_very_high"
+msgstr "MX: Zeer hoog"
+
+msgid "mx_dir_high"
+msgstr "MX: Hoog"
+
+msgid "mx_dir_low"
+msgstr "MX: Laag"
+
+msgid "mx_dir_very_low"
+msgstr "MX: Zeer laag"

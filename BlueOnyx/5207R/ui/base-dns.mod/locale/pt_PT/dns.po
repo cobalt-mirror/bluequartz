@@ -446,30 +446,6 @@ msgstr "Prioridade de entrega"
 msgid "mx_priority_help"
 msgstr "Selecione a prioridade de entrega de correio para o servidor de correio. A prioridade de entrega especifica a ordem na qual uma série de várias máquinas do servidor de correio deve tentar ser contactado para entrega de correio. A definição de prioridades de entrega só é útil se vários registros MX são especificados para um domínio ou de rede."
 
-msgid "very_high"
-msgstr "Muito Alta (20)"
-
-msgid "high"
-msgstr "Alta (30)"
-
-msgid "low"
-msgstr "Baixo (40)"
-
-msgid "very_low"
-msgstr "Muito baixo (50)"
-
-msgid "mx_dir_very_high"
-msgstr "Envie Maior"
-
-msgid "mx_dir_high"
-msgstr "Correio alta"
-
-msgid "mx_dir_low"
-msgstr "Correio Baixo"
-
-msgid "mx_dir_very_low"
-msgstr "Envie mais baixo"
-
 msgid "mx_host_name_invalid"
 msgstr "O nome do host especificado contém caracteres inválidos."
 
@@ -1076,5 +1052,36 @@ msgstr "Gerenciamento de servidor DNS"
 msgid "cap_siteDNS"
 msgstr "Gerenciamento de DNS do site"
 
+#-------------------------------
+
 msgid "extremely_high"
 msgstr "Extremamente Alta (0)"
+
+msgid "very_high"
+msgstr "Muito Alta (20)"
+
+msgid "high"
+msgstr "Alta (30)"
+
+msgid "low"
+msgstr "Baixo (40)"
+
+msgid "very_low"
+msgstr "Muito baixo (50)"
+
+#-------------------------------
+
+msgid "mx_dir_extremely_high"
+msgstr "MX: Extremamente Alta"
+
+msgid "mx_dir_very_high"
+msgstr "MX: Muito Alta"
+
+msgid "mx_dir_high"
+msgstr "MX: Alta"
+
+msgid "mx_dir_low"
+msgstr "MX: Baixo"
+
+msgid "mx_dir_very_low"
+msgstr "MX: Muito baixo"

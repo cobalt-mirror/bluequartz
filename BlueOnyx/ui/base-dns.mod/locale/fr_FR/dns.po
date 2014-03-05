@@ -469,30 +469,6 @@ msgstr "Priorité de livraison"
 msgid "mx_priority_help"
 msgstr "Sélectionnez la priorité de distribution des courriels au serveur de messagerie. La priorité de livraison spécifie l'ordre dans lequel plusieurs serveurs de messagerie doivent essayer d'être contacté pour la livraison du courrier. Le réglage de la priorité de livraison n'est nécéssaire que si plusieurs enregistrements MX sont spécifiées pour un domaine ou un réseau."
 
-msgid "very_high"
-msgstr "Très élevée (20)"
-
-msgid "high"
-msgstr "Élevée (30)"
-
-msgid "low"
-msgstr "Faible (40)"
-
-msgid "very_low"
-msgstr "Très faible (50)"
-
-msgid "mx_dir_very_high"
-msgstr "MX très élevé"
-
-msgid "mx_dir_high"
-msgstr "MX élevé"
-
-msgid "mx_dir_low"
-msgstr "MX faible"
-
-msgid "mx_dir_very_low"
-msgstr "MX très faible"
-
 msgid "mx_host_name_invalid"
 msgstr "Le nom d'hôte spécifié contient des caractères non valides."
 
@@ -1125,6 +1101,36 @@ msgstr "Gestion Serveur DNS"
 msgid "cap_siteDNS"
 msgstr "Gestion Sites DNS"
 
+#------------------------------
+
 msgid "extremely_high"
 msgstr "Extrêmement haute (0)"
 
+msgid "very_high"
+msgstr "Très élevée (20)"
+
+msgid "high"
+msgstr "Élevée (30)"
+
+msgid "low"
+msgstr "Faible (40)"
+
+msgid "very_low"
+msgstr "Très faible (50)"
+
+#------------------------------
+
+msgid "mx_dir_extremely_high"
+msgstr "MX: extrêmement haute"
+
+msgid "mx_dir_very_high"
+msgstr "MX: très élevé"
+
+msgid "mx_dir_high"
+msgstr "MX: élevé"
+
+msgid "mx_dir_low"
+msgstr "MX: faible"
+
+msgid "mx_dir_very_low"
+msgstr "MX: très faible"

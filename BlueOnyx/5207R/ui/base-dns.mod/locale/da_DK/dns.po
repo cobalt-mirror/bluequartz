@@ -538,9 +538,6 @@ msgstr "Serverindstillinger"
 msgid "global_settings_help"
 msgstr "Dette er standardværdier for domænenavneserveren."
 
-msgid "high"
-msgstr "Høj (30)"
-
 msgid "inetaddr_rule"
 msgstr ""
 "En IP-adresse er en serie af fire tal mellem 0 og 255 adskilt af punktum og "
@@ -562,9 +559,6 @@ msgstr "Handling"
 
 msgid "listAction_help"
 msgstr "Disse knapper benyttes til at redigere eller fjerne domænenavnekort."
-
-msgid "low"
-msgstr "Lav (40)"
 
 msgid "modifyDNS"
 msgstr "[[base-dns.title]] Indstillinger"
@@ -598,18 +592,6 @@ msgstr "[[base-dns.title]] Redigér sekundær tjeneste"
 
 msgid "modify_soa"
 msgstr "[[base-dns.title]] Redigér Start of Authority (SOA)"
-
-msgid "mx_dir_high"
-msgstr "Mail høj"
-
-msgid "mx_dir_low"
-msgstr "Mail lav"
-
-msgid "mx_dir_very_high"
-msgstr "Mail højest"
-
-msgid "mx_dir_very_low"
-msgstr "Mail lavest"
 
 msgid "mx_domain_name"
 msgstr "Domænenavn"
@@ -1208,12 +1190,6 @@ msgstr "Indtast tekstfunktionen."
 msgid "txt_strings_invalid"
 msgstr "Den indtastede tekstfunktion indeholder ugyldige karakterer."
 
-msgid "very_high"
-msgstr "Meget høj (20)"
-
-msgid "very_low"
-msgstr "Meget lav (50)"
-
 msgid "zone_format"
 msgstr "Zonefilformat"
 
@@ -1373,7 +1349,37 @@ msgstr "Server DNS Management"
 msgid "cap_siteDNS"
 msgstr "Webstedet DNS Management"
 
+#------------------------
+
 msgid "extremely_high"
 msgstr "Ekstremt Høj (0)"
 
+msgid "very_high"
+msgstr "Meget høj (20)"
+
+msgid "high"
+msgstr "Høj (30)"
+
+msgid "low"
+msgstr "Lav (40)"
+
+msgid "very_low"
+msgstr "Meget lav (50)"
+
+#------------------------
+
+msgid "mx_dir_extremely_high"
+msgstr "MX: Ekstremt Høj"
+
+msgid "mx_dir_very_high"
+msgstr "MX: Meget høj"
+
+msgid "mx_dir_high"
+msgstr "MX: Mail høj"
+
+msgid "mx_dir_low"
+msgstr "MX: Mail lav"
+
+msgid "mx_dir_very_low"
+msgstr "MX: Mail lavest"
 
