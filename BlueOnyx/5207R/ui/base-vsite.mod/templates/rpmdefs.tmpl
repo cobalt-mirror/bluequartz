@@ -136,6 +136,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Mar 08 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX22
+- Small security fix to ui/web/vsiteDel.php to make sure 'manageSite'
+  users can only delete their own Vsites and not those of others, too.
+  Otherwise some sneaky URL manipulation might allow that.
+- Fixed typo in locale/en_US/vsite.po
+
 * Fri Feb 21 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX21
 - Modified ui/web/vsiteMod.php to address a problem with getInteger()
   in regards to max allowed Vsite diskspace and max number of allowed
