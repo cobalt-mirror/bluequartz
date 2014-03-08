@@ -32,6 +32,37 @@ if ($cce->suspended() !== false) {
 	exit;
 }
 
+//
+//-----	Security checks:
+//
+//		We need to find out if the Vsite with that 'name' exists.
+//		But we also need to make sure that it is under the ownership
+//		of the currently logged in 'createdUser'. Of course user
+//		'admin' has rights to delete all Vsites.
+//
+
+// Prep search array:
+$exact = array('name' => $group);
+
+// We're not admin, so we limit the search to 'createdUser' => $loginName:
+if ($loginName != 'admin') {
+		// If the user is not 'admin', then we only return Vsites that this user owns:
+        $exact = array_merge($exact, array('createdUser' => $loginName));  
+}
+
+// Get a list of Vsite OID's:
+$vsites = $cce->findx('Vsite', $exact, array(), "", "");
+
+// At this point we should have one object. Not more and not less:
+if (count($vsites) != "1") {
+	// Don't play games with us!
+	// Nice people say goodbye, or CCEd waits forever:
+	$cce->bye();
+	$helper->destructor();
+	header("location: /error/forbidden.html");
+	return;
+}
+
 // initialize status to avoid race conditions
 fopen("http://localhost:444/status.php?statusId=remove$group&title=[[base-vsite.deletingSite]]&message=[[base-vsite.removingUsers]]&progress=0", "r");
 
