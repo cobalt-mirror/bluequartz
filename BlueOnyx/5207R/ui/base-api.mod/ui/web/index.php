@@ -7,10 +7,10 @@
  *
  * @package   BlueOnyx base-api.mod
  * @author    Michael Stauber
- * @copyright Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+ * @copyright Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
  * @link      http://www.solarspeed.net
  * @license   http://devel.blueonyx.it/pub/BlueOnyx/licenses/SUN-modified-BSD-License.txt
- * @version   2.0
+ * @version   2.1
  *
  * @info      Creation of this module was sponsored by VIRTBIZ Internet Services: http://www.virtbiz.com
  *
@@ -54,6 +54,7 @@ if (array_key_exists('login', $_POST)) {
 }
 else {
     echo "BlueOnyx API: You're not doing this right.";
+    error_log("BlueOnyx API: You're not doing this right.");
     exit;
 }
 // If we don't have a valid $sessionId and a matching $_POST['login'], then
@@ -115,13 +116,29 @@ error_log("BlueOnyx API: Access from $ip to port " . $_SERVER['SERVER_PORT']);
 
 if ((isset($_POST['payload'])) && (($_POST['action'] != "reboot") || ($_POST['action'] != "shutdown") || ($_POST['action'] != "usage") || ($_POST['action'] != "status")))  {
   $payload = json_decode($_POST['payload']);
+
+  //--- Start: Debug output
+  //$pp = $_POST['payload'];
+  //error_log("BlueOnyx API: " . $_POST['action'] . " requested.");
+  //error_log("BlueOnyx API Payload: $pp");
+  //--- Stop: Debug output
+
+  if ($payload == NULL) {
+  	error_log("BlueOnyx API: JSON decoding returned NULL!");
+  	error_log("BlueOnyx API: JSON error: " . json_last_error());
+    error_log("BlueOnyx API: Not continuing without JSON data!");
+    // nice people say aufwiedersehen
+    $helper->destructor();
+    exit;    
+  }
+
   if (isset($payload->clientsdetails)) {
     $clientsdetails = json_decode($payload->clientsdetails);
     $payload->clientsdetails = "";
   }
 }
 elseif ((!isset($_POST['payload'])) && (($_POST['action'] == "reboot") ||($_POST['action'] == "shutdown") || ($_POST['action'] == "usage") || ($_POST['action'] == "status")))  {
-  //error_log("BlueOnyx API: " . $_POST['action'] . " requested.");
+  error_log("BlueOnyx API: " . $_POST['action'] . " requested.");
 }
 else {
   // No payload? Something went wrong!
@@ -137,7 +154,6 @@ else {
 //
 
 if (($_POST['action'] == "create") && ($payload->producttype != "hostingaccount")) {
-  echo "BlueOnyx API: At this time only producttype 'hostingaccount' is supported.";
   error_log("BlueOnyx API: At this time only producttype 'hostingaccount' is supported.");
   // nice people say aufwiedersehen
   $helper->destructor();
@@ -169,32 +185,32 @@ if ($_POST['action'] == "create") {
 
       // If that went well, we create the User, too:
       if (is_array($result)) {
-	$result = do_create_user($payload, $clientsdetails, $helper, $result);
-	if ($result == "success") {
-	  // nice people say aufwiedersehen
-	  $helper->destructor();
-	  echo $result;
-	  exit;
-	}
-	else {
-	  // This should never fire, as other errors trigger first. But one never knows:
-	  echo "BlueOnyx API: Unknown error during Vsite and User creation, sorry.";
-	  // nice people say aufwiedersehen
-	  $helper->destructor();
-	  exit;
-	}
+          $result = do_create_user($payload, $clientsdetails, $helper, $result);
+          if ($result == "success") {
+            // nice people say aufwiedersehen
+            $helper->destructor();
+            echo $result;
+            exit;
+          }
+          else {
+            // This should never fire, as other errors trigger first. But one never knows:
+            error_log("BlueOnyx API: Unknown error during Vsite and User creation, sorry.");
+            // nice people say aufwiedersehen
+            $helper->destructor();
+            exit;
+          }
       }
       else {
-	echo "BlueOnyx API: Sorry, the Vsite was not created properly.";
-	// nice people say aufwiedersehen
-	$helper->destructor();
-	exit;
+        error_log("BlueOnyx API: Sorry, the Vsite was not created properly.");
+        // nice people say aufwiedersehen
+        $helper->destructor();
+        exit;
       }
     }
     else {
-      echo "BlueOnyx API: Did not receive sufficient data to finish this transaction.";
-	// nice people say aufwiedersehen
-	$helper->destructor();
+      error_log("BlueOnyx API: Did not receive sufficient data to finish this transaction.");
+    	// nice people say aufwiedersehen
+    	$helper->destructor();
       exit;
     }
 }
@@ -214,16 +230,17 @@ elseif ($_POST['action'] == "changepass") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-	  echo "BlueOnyx API: An error happened during the password change.";
-	  exit;	  
+    	  error_log("BlueOnyx API: An error happened during the password change.");
+    	  exit;
       }
       else {
-	echo "success";
-	exit;
+      	echo "success";
+      	exit;
       }
     }
 }
 elseif ($_POST['action'] == "suspend") {
+  error_log("BlueOnyx API: Suspend action called.");
   if ((isset($payload->domain)) &&
       (isset($payload->ipaddr)) &&
       (isset($payload->username)) &&
@@ -233,6 +250,15 @@ elseif ($_POST['action'] == "suspend") {
       (isset($clientsdetails->email))) 
     {
 
+      //error_log("BlueOnyx API: Suspend action had these parameters:");
+      //error_log("BlueOnyx API: " . $payload->domain . " (domain)");
+      //error_log("BlueOnyx API: $payload->ipaddr (ipaddr)");
+      //error_log("BlueOnyx API: $payload->username (username)");
+      //error_log("BlueOnyx API: $payload->password (password)");
+      //error_log("BlueOnyx API: $clientsdetails->firstname (firstname)");
+      //error_log("BlueOnyx API: $clientsdetails->lastname (lastname)");
+      //error_log("BlueOnyx API: $clientsdetails->email (email)");
+
       $host_details = get_fqdn_details($payload->domain);
       $cceClient->setObject("Vsite", array("suspend" => "1"), "", array("fqdn" => $host_details['fqdn']));
       $errors = $cceClient->errors();
@@ -241,16 +267,27 @@ elseif ($_POST['action'] == "suspend") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-	  echo "BlueOnyx API: An error happened during the suspension of the Vsite.";
-	  exit;	  
+    	  error_log("BlueOnyx API: An error happened during the suspension of the Vsite.");
+    	  exit;	  
       }
       else {
-	echo "success";
-	exit;
+      	echo "success";
+      	exit;
       }
+    }
+    else {
+      //error_log("BlueOnyx API: Suspend action was missing required parameters.");
+      //error_log("BlueOnyx API: " . $payload->domain . " (domain)");
+      //error_log("BlueOnyx API: $payload->ipaddr (ipaddr)");
+      //error_log("BlueOnyx API: $payload->username (username)");
+      //error_log("BlueOnyx API: $payload->password (password)");
+      //error_log("BlueOnyx API: $clientsdetails->firstname (firstname)");
+      //error_log("BlueOnyx API: $clientsdetails->lastname (lastname)");
+      //error_log("BlueOnyx API: $clientsdetails->email (email)");
     }
 }
 elseif ($_POST['action'] == "unsuspend") {
+  error_log("BlueOnyx API: Unsuspend action called.");
   if ((isset($payload->domain)) &&
       (isset($payload->ipaddr)) &&
       (isset($payload->username)) &&
@@ -267,12 +304,12 @@ elseif ($_POST['action'] == "unsuspend") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-	  echo "BlueOnyx API: An error happened during unsuspension of the Vsite.";
-	  exit;	  
+    	  error_log("BlueOnyx API: An error happened during unsuspension of the Vsite.");
+    	  exit;
       }
       else {
-	echo "success";
-	exit;
+      	echo "success";
+      	exit;
       }
     }
 }
@@ -319,30 +356,30 @@ elseif ($_POST['action'] == "destroy") {
 
       // Find out if the site is suspended. In that case we unsuspend it first:
       if ($VsiteSettings['suspend'] == "1") {
-	$host_details = get_fqdn_details($payload->domain);
-	$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
-	$errors = $cceClient->errors();
+      	$host_details = get_fqdn_details($payload->domain);
+      	$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
+      	$errors = $cceClient->errors();
       }
 
       // Destroy the Vsite and all its Users and data:
       if (isset($VsiteSettings['name'])) {
-	$cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
-	$helper->fork($cmd, 'root');
+      	$cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
+      	$helper->fork($cmd, 'root');
       }
       else {
-	$errors = array("error" => "Site not there!");
+        $errors = array("error" => "Site not there!");
       }
 
       // nice people say aufwiedersehen
       $helper->destructor();
 
       if (count($errors) >= "1") {
-	  echo "BlueOnyx API: An error happened during the deletion of the Vsite.";
-	  exit;	  
+    	  error_log("BlueOnyx API: An error happened during the deletion of the Vsite.");
+    	  exit;
       }
       else {
-	echo "success";
-	exit;
+      	echo "success";
+      	exit;
       }
     }
 }
@@ -366,26 +403,26 @@ elseif ($_POST['action'] == "modify") {
 
       // If that went well, we create the User, too:
       if ($result == "success") {
-	// nice people say aufwiedersehen
-	$helper->destructor();
-	echo $result;
-	exit;
+        // nice people say aufwiedersehen
+        $helper->destructor();
+        echo $result;
+        exit;
       }
       else {
-	// This should never fire, as other errors trigger first. But one never knows:
-	echo "BlueOnyx API: Unknown error during modification of the Vsite. Sorry.";
-	// nice people say aufwiedersehen
-	$helper->destructor();
-	exit;
+        // This should never fire, as other errors trigger first. But one never knows:
+        error_log("BlueOnyx API: Unknown error during modification of the Vsite. Sorry.");
+        // nice people say aufwiedersehen
+        $helper->destructor();
+        exit;
       }
       //error_log();
     }
     else {
-	// This should never fire, as other errors trigger first. But one never knows:
-	echo "BlueOnyx API: Unknown error during modification of the Vsite. Not enough data.";
-	// nice people say aufwiedersehen
-	$helper->destructor();
-	exit;
+      // This should never fire, as other errors trigger first. But one never knows:
+      error_log("BlueOnyx API: Unknown error during modification of the Vsite. Not enough data.");
+      // nice people say aufwiedersehen
+      $helper->destructor();
+      exit;
     }
 }
 elseif ($_POST['action'] == "reboot") {
@@ -398,12 +435,12 @@ elseif ($_POST['action'] == "reboot") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-	  echo "BlueOnyx API: An error happened while attempting to reboot the server.";
-	  exit;	  
+        error_log("BlueOnyx API: An error happened while attempting to reboot the server.");
+        exit;	  
       }
       else {
-	echo "success";
-	exit;
+        echo "success";
+        exit;
       }
 }
 elseif ($_POST['action'] == "shutdown") {
@@ -416,12 +453,12 @@ elseif ($_POST['action'] == "shutdown") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-	  echo "BlueOnyx API: An error happened while attempting to shutdown the server.";
-	  exit;	  
+        error_log("BlueOnyx API: An error happened while attempting to shutdown the server.");
+        exit;
       }
       else {
-	echo "success";
-	exit;
+        echo "success";
+        exit;
       }
 }
 elseif ($_POST['action'] == "statusdetailed") {
@@ -439,34 +476,35 @@ elseif ($_POST['action'] == "statusdetailed") {
       $amenabled = $amobj["enabled"];
 
       $stmap = array(
-	  "N" => "N/A", 
-	  "G" => "Normal", 
-	  "Y" => "Problem", 
-	  "R" => "Severe Problem");
+        "N" => "N/A", 
+        "G" => "Normal", 
+        "Y" => "Problem", 
+        "R" => "Severe Problem"
+       );
 
       $status = "Status for BlueOnyx (" . $System['productBuild'] . ")<br>\n\n";
 
       for ($i=0; $i < count($am_names); ++$i) {
-	  $nspace = $cceClient->get($amobj["OID"], $am_names[$i]);
-	  if (!$nspace["hideUI"]) {
-	      $iname = $i18n->interpolate($nspace["nameTag"]);
+        $nspace = $cceClient->get($amobj["OID"], $am_names[$i]);
+        if (!$nspace["hideUI"]) {
+            $iname = $i18n->interpolate($nspace["nameTag"]);
 
-	      if (!$amenabled) {
-		  $icon = "Not Monitored";
-	      } else if (!$nspace["enabled"]) {
-		  $icon = "Disabled";
-	      } else if (!$nspace["monitor"]) {
-		  $icon = "Not Monitored";
-	      } else {
-		  $icon = $stmap[$nspace["currentState"]];
-	      }
+            if (!$amenabled) {
+              $icon = "Not Monitored";
+            } else if (!$nspace["enabled"]) {
+              $icon = "Disabled";
+            } else if (!$nspace["monitor"]) {
+              $icon = "Not Monitored";
+            } else {
+              $icon = $stmap[$nspace["currentState"]];
+            }
 
-	      if ($nspace["UIGroup"] == "system") {
-		  $status_system .= $iname . ": " . $icon . "<br>\n";
-	      } else if ($nspace["UIGroup"] == "service") {
-		  $status_service .= $iname . ": " . $icon . "<br>\n";
-	      }
-	  }
+            if ($nspace["UIGroup"] == "system") {
+              $status_system .= $iname . ": " . $icon . "<br>\n";
+            } else if ($nspace["UIGroup"] == "service") {
+              $status_service .= $iname . ": " . $icon . "<br>\n";
+            }
+        }
       }
 
       $result = $status;
@@ -493,45 +531,50 @@ elseif ($_POST['action'] == "status") {
       $amenabled = $amobj["enabled"];
 
       $stmap = array(
-	  "N" => "N/A", 
-	  "G" => "Normal", 
-	  "Y" => "Problem", 
-	  "R" => "Severe Problem");
+    	  "N" => "N/A", 
+    	  "G" => "Normal", 
+    	  "Y" => "Problem", 
+    	  "R" => "Severe Problem"
+       );
 
       $yellow = "0";
       $red = "0";
 
       for ($i=0; $i < count($am_names); ++$i) {
-	  $nspace = $cceClient->get($amobj["OID"], $am_names[$i]);
-	  if (!$nspace["hideUI"]) {
-	      if ($nspace["currentState"] == "Y") {
-		  $yellow++;
-	      }
-	      if ($nspace["currentState"] == "R") {
-		  $red++;
-	      }
-	  }
+        $nspace = $cceClient->get($amobj["OID"], $am_names[$i]);
+        if (!$nspace["hideUI"]) {
+            if ($nspace["currentState"] == "Y") {
+              $yellow++;
+            }
+            if ($nspace["currentState"] == "R") {
+              $red++;
+            }
+        }
       }
 
       if (($yellow == "0") || ($red == "0")) {
-	$result = "G";
+        $result = "G";
       }
       elseif (($yellow == "1") || ($red == "0")) {
-	$result = "Y";
+        $result = "Y";
       }
       elseif (($yellow == "1") || ($red == "1")) {
-	$result = "R";
+        $result = "R";
       }
       elseif (($yellow == "0") || ($red == "1")) {
-	$result = "R";
+        $result = "R";
       }
       else {
-	$result = "G";
+        $result = "G";
       }
       // nice people say aufwiedersehen
       $helper->destructor();
 
       echo $result;
+}
+else {
+	error_log("BlueOnyx API: Requested action couldn't be determined.");
+	error_log("BlueOnyx API: POST action was: '" . $_POST['action'] . "'.");
 }
 
 //
@@ -613,30 +656,30 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
   // If Auto-DNS is enabled, we grant this user the caplevel of 'dnsAdmin' as well:
   if (isset($payload->auto_dns)) {
       if ($payload->auto_dns == "1") {
-	  $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+        $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
+        $errors = array_merge($errors, $cceClient->errors());
 
-	  // But beyond that we also need to add the domain name to the list of Domains under his DNS control:
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+        // But beyond that we also need to add the domain name to the list of Domains under his DNS control:
+        $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
+        $errors = array_merge($errors, $cceClient->errors());
 
-	  // Update the DNS server with the new DNS zones:
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+        // Update the DNS server with the new DNS zones:
+        list($sysoid) = $cceClient->find("System");
+        $cceClient->set($sysoid, "DNS", array("commit" => time()));
+        $errors = array_merge($errors, $cceClient->errors());
       }
       else {
-	  $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+        $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&"));
+        $errors = array_merge($errors, $cceClient->errors());
 
-	  // But beyond that we also need to remove the domain name to the list of Domains under his DNS control:
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => ""));
-	  $errors = array_merge($errors, $cceClient->errors());
+        // But beyond that we also need to remove the domain name to the list of Domains under his DNS control:
+        $cceClient->set($vsiteOID, 'DNS', array('domains' => ""));
+        $errors = array_merge($errors, $cceClient->errors());
 
-	  // Update the DNS server with the new DNS zones:
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+        // Update the DNS server with the new DNS zones:
+        list($sysoid) = $cceClient->find("System");
+        $cceClient->set($sysoid, "DNS", array("commit" => time()));
+        $errors = array_merge($errors, $cceClient->errors());
       }
   }
 
@@ -702,61 +745,61 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
 	    $the_user_rights = array();
 	    if ($db_rights['SELECT'] == "1") {
-		 array_push($the_user_rights, "SELECT");
+        array_push($the_user_rights, "SELECT");
 	    }
 	    if ($db_rights['INSERT'] == "1") {
-		array_push($the_user_rights, "INSERT");
+        array_push($the_user_rights, "INSERT");
 	    }
 	    if ($db_rights['UPDATE'] == "1") {
-		array_push($the_user_rights, "UPDATE");
+        array_push($the_user_rights, "UPDATE");
 	    }
 	    if ($db_rights['DELETE'] == "1") {
-		array_push($the_user_rights, "DELETE");
+        array_push($the_user_rights, "DELETE");
 	    }
 	    if ($db_rights['FILE'] == "1") {
-		array_push($the_user_rights, "FILE");
+        array_push($the_user_rights, "FILE");
 	    }
 	    if ($db_rights['CREATE'] == "1") {
-		array_push($the_user_rights, "CREATE");
+        array_push($the_user_rights, "CREATE");
 	    }
 	    if ($db_rights['DROP'] == "1") {
-		array_push($the_user_rights, "DROP");
+        array_push($the_user_rights, "DROP");
 	    }
 	    if ($db_rights['INDEX'] == "1") {
-		array_push($the_user_rights, "INDEX");
+        array_push($the_user_rights, "INDEX");
 	    }
 	    if ($db_rights['ALTER'] == "1") {
-		array_push($the_user_rights, "ALTER");
+        array_push($the_user_rights, "ALTER");
 	    }
 	    if ($db_rights['TEMPORARY'] == "1") {
-		array_push($the_user_rights, "CREATE TEMPORARY TABLES");
+        array_push($the_user_rights, "CREATE TEMPORARY TABLES");
 	    }
 
 	    if ($db_rights['CREATE_VIEW'] == "1") {
-		array_push($the_user_rights, "CREATE VIEW");
+        array_push($the_user_rights, "CREATE VIEW");
 	    }
 	    if ($db_rights['SHOW_VIEW'] == "1") {
-		array_push($the_user_rights, "SHOW VIEW");
+        array_push($the_user_rights, "SHOW VIEW");
 	    }
 	    if ($db_rights['CREATE_ROUTINE'] == "1") {
-		array_push($the_user_rights, "CREATE ROUTINE");
+        array_push($the_user_rights, "CREATE ROUTINE");
 	    }
 	    if ($db_rights['ALTER_ROUTINE'] == "1") {
-		array_push($the_user_rights, "ALTER ROUTINE");
+        array_push($the_user_rights, "ALTER ROUTINE");
 	    }
 	    if ($db_rights['EXECUTE'] == "1") {
-		array_push($the_user_rights, "EXECUTE");
+        array_push($the_user_rights, "EXECUTE");
 	    }
 
 	    $inhalt = count($the_user_rights);
 	    $inhalt--;
 	    for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
-		if ($inhalt > $x) {
-		    $my_user_rights .= $the_user_rights[$x] . ", "; 
-		}
-		else {
-		    $my_user_rights .= $the_user_rights[$x] . ""; 
-		}
+        if ($inhalt > $x) {
+            $my_user_rights .= $the_user_rights[$x] . ", "; 
+        }
+        else {
+            $my_user_rights .= $the_user_rights[$x] . ""; 
+        }
 	    }
 	    $the_user_rights = $my_user_rights;
 
@@ -799,7 +842,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 	    // Setup MySQL-User step2:
 	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
 	    $query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$sql_host';\n";
-    	    $result = mysql_query($query);
+      $result = mysql_query($query);
 
 	    // Setup MySQL-User step3:
 	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
@@ -811,9 +854,9 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
 	    // Did we have MySQL errors?
 	    if (count($mysql_error) >= "1") {
-		// Delete MySQL-User and Database:
-		error_log("Deleting MySQL database and user during API related Vsite modifcation.");
-		delete_mysql_stuff($VsiteSettings, $cceClient);
+        // Delete MySQL-User and Database:
+        error_log("Deleting MySQL database and user during API related Vsite modifcation.");
+        delete_mysql_stuff($VsiteSettings, $cceClient);
 	    }
 	  }
   }
@@ -824,34 +867,34 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
     // If we're here, MySQL was enabled, but it is now supposed to be off.
     // In that case we need to remove the database and user:
 
-	// Get Vsite Settings:
-	$VsiteSettings = $cceClient->get($vsiteOID, '');
+    // Get Vsite Settings:
+    $VsiteSettings = $cceClient->get($vsiteOID, '');
 
-	// Get Vsite's MySQL settings:
-	$VsiteMySQL = $cceClient->get($vsiteOID, "MYSQL_Vsite");
+    // Get Vsite's MySQL settings:
+    $VsiteMySQL = $cceClient->get($vsiteOID, "MYSQL_Vsite");
 
-	if ($VsiteMySQL['enabled'] == "1") {
-	      // Get Server's MySQL access details:
-	      $getthisOID = $cceClient->find("MySQL");
-	      $mysql_settings = $cceClient->get($getthisOID[0]);
+    if ($VsiteMySQL['enabled'] == "1") {
+          // Get Server's MySQL access details:
+          $getthisOID = $cceClient->find("MySQL");
+          $mysql_settings = $cceClient->get($getthisOID[0]);
 
-	      // Server MySQL settings:
-	      $sql_root               = $mysql_settings['sql_root'];
-	      $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-	      $sql_host               = $mysql_settings['sql_host'];
-	      $sql_port               = $mysql_settings['sql_port'];
-	      $sql_host_and_port = $sql_host . ":" . $sql_port;
+          // Server MySQL settings:
+          $sql_root               = $mysql_settings['sql_root'];
+          $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+          $sql_host               = $mysql_settings['sql_host'];
+          $sql_port               = $mysql_settings['sql_port'];
+          $sql_host_and_port = $sql_host . ":" . $sql_port;
 
-	      // Store the setings in $VsiteSettings as well:
-	      $VsiteSettings['sql_username'] = $VsiteMySQL['username'];
-	      $VsiteSettings['sql_database'] = $VsiteMySQL['DB'];
-	      $VsiteSettings['sql_host'] = $sql_host;
-	      $VsiteSettings['sql_root'] = $sql_root;
-	      $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
+          // Store the setings in $VsiteSettings as well:
+          $VsiteSettings['sql_username'] = $VsiteMySQL['username'];
+          $VsiteSettings['sql_database'] = $VsiteMySQL['DB'];
+          $VsiteSettings['sql_host'] = $sql_host;
+          $VsiteSettings['sql_root'] = $sql_root;
+          $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
 
-	      error_log("Running delete_mysql_stuff function.");
-	      delete_mysql_stuff($VsiteSettings, $cceClient);
-	}
+          error_log("Running delete_mysql_stuff function.");
+          delete_mysql_stuff($VsiteSettings, $cceClient);
+    }
   }
 
   // CGI:
@@ -899,10 +942,10 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
   // Auto-DNS:
   if (isset($payload->auto_dns)) {
       if ($payload->auto_dns == "1") {
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+        $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
+        list($sysoid) = $cceClient->find("System");
+        $cceClient->set($sysoid, "DNS", array("commit" => time()));
+        $errors = array_merge($errors, $cceClient->errors());
       }
   }
 
@@ -914,7 +957,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
       // Delete MySQL-User and Database:
       delete_mysql_stuff($VsiteSettings, $cceClient);
 
-      echo "BlueOnyx API: Sorry, an error occured while modifying the various services for the Vsite.";
+      error_log("BlueOnyx API: Sorry, an error occured while modifying the various services for the Vsite.");
   }
   elseif (count($mysql_error) >= "1") {
 
@@ -924,7 +967,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
       // Delete MySQL-User and Database:
       delete_mysql_stuff($VsiteSettings, $cceClient);
 
-      echo "BlueOnyx API: Sorry, an error occured while setting up the MySQL database of this Vsite.";
+      error_log("BlueOnyx API: Sorry, an error occured while setting up the MySQL database of this Vsite.");
       // nice people say aufwiedersehen
       $helper->destructor();
       exit;
@@ -977,10 +1020,10 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
   $errors = $cceClient->errors();
 
   if (count($errors) >= "1") {
-      echo "BlueOnyx API: Sorry, the Vsite did not create properly.";
-      // nice people say aufwiedersehen
-      $helper->destructor();
-      exit;
+    error_log("BlueOnyx API: Sorry, the Vsite did not create properly.");
+    // nice people say aufwiedersehen
+    $helper->destructor();
+    exit;
   }
 
   // Setup disk-quota:
@@ -990,7 +1033,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 	  $errors = array_merge($errors, $cceClient->errors());
   }
   if (count($errors) >= "1") {
-      echo "BlueOnyx API: Sorry, could not set disk-quota information for Vsite.";
+    error_log("BlueOnyx API: Sorry, could not set disk-quota information for Vsite.");
   }
 
   // Now set the various options:
@@ -1044,61 +1087,61 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
 	    $the_user_rights = array();
 	    if ($db_rights['SELECT'] == "1") {
-		 array_push($the_user_rights, "SELECT");
+        array_push($the_user_rights, "SELECT");
 	    }
 	    if ($db_rights['INSERT'] == "1") {
-		array_push($the_user_rights, "INSERT");
+        array_push($the_user_rights, "INSERT");
 	    }
 	    if ($db_rights['UPDATE'] == "1") {
-		array_push($the_user_rights, "UPDATE");
+        array_push($the_user_rights, "UPDATE");
 	    }
 	    if ($db_rights['DELETE'] == "1") {
-		array_push($the_user_rights, "DELETE");
+        array_push($the_user_rights, "DELETE");
 	    }
 	    if ($db_rights['FILE'] == "1") {
-		array_push($the_user_rights, "FILE");
+        array_push($the_user_rights, "FILE");
 	    }
 	    if ($db_rights['CREATE'] == "1") {
-		array_push($the_user_rights, "CREATE");
+        array_push($the_user_rights, "CREATE");
 	    }
 	    if ($db_rights['DROP'] == "1") {
-		array_push($the_user_rights, "DROP");
+        array_push($the_user_rights, "DROP");
 	    }
 	    if ($db_rights['INDEX'] == "1") {
-		array_push($the_user_rights, "INDEX");
+        array_push($the_user_rights, "INDEX");
 	    }
 	    if ($db_rights['ALTER'] == "1") {
-		array_push($the_user_rights, "ALTER");
+        array_push($the_user_rights, "ALTER");
 	    }
 	    if ($db_rights['TEMPORARY'] == "1") {
-		array_push($the_user_rights, "CREATE TEMPORARY TABLES");
+        array_push($the_user_rights, "CREATE TEMPORARY TABLES");
 	    }
 
 	    if ($db_rights['CREATE_VIEW'] == "1") {
-		array_push($the_user_rights, "CREATE VIEW");
+        array_push($the_user_rights, "CREATE VIEW");
 	    }
 	    if ($db_rights['SHOW_VIEW'] == "1") {
-		array_push($the_user_rights, "SHOW VIEW");
+        array_push($the_user_rights, "SHOW VIEW");
 	    }
 	    if ($db_rights['CREATE_ROUTINE'] == "1") {
-		array_push($the_user_rights, "CREATE ROUTINE");
+        array_push($the_user_rights, "CREATE ROUTINE");
 	    }
 	    if ($db_rights['ALTER_ROUTINE'] == "1") {
-		array_push($the_user_rights, "ALTER ROUTINE");
+        array_push($the_user_rights, "ALTER ROUTINE");
 	    }
 	    if ($db_rights['EXECUTE'] == "1") {
-		array_push($the_user_rights, "EXECUTE");
+        array_push($the_user_rights, "EXECUTE");
 	    }
 
 	    $inhalt = count($the_user_rights);
 	    $inhalt--;
 	    for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
-		if ($inhalt > $x) {
-		    $my_user_rights .= $the_user_rights[$x] . ", "; 
-		}
-		else {
-		    $my_user_rights .= $the_user_rights[$x] . ""; 
-		}
+        if ($inhalt > $x) {
+            $my_user_rights .= $the_user_rights[$x] . ", "; 
+        }
+        else {
+            $my_user_rights .= $the_user_rights[$x] . ""; 
+        }
 	    }
 	    $the_user_rights = $my_user_rights;
 
@@ -1141,7 +1184,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 	    // Setup MySQL-User step2:
 	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
 	    $query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$sql_host';\n";
-    	    $result = mysql_query($query);
+      $result = mysql_query($query);
 
 	    // Setup MySQL-User step3:
 	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
@@ -1153,8 +1196,8 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
 	    // Did we have MySQL errors?
 	    if (count($mysql_error) >= "1") {
-		// Delete MySQL-User and Database:
-		delete_mysql_stuff($VsiteSettings, $cceClient);
+        // Delete MySQL-User and Database:
+        delete_mysql_stuff($VsiteSettings, $cceClient);
 	    }
 	  }
   }
@@ -1204,10 +1247,10 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
   // Auto-DNS:
   if (isset($payload->auto_dns)) {
       if ($payload->auto_dns == "1") {
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+        $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
+        list($sysoid) = $cceClient->find("System");
+        $cceClient->set($sysoid, "DNS", array("commit" => time()));
+        $errors = array_merge($errors, $cceClient->errors());
       }
   }
 
@@ -1219,7 +1262,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
       // Delete MySQL-User and Database:
       delete_mysql_stuff($VsiteSettings, $cceClient);
 
-      echo "BlueOnyx API: Sorry, an error occured while enabling the various services for the Vsite.";
+      error_log("BlueOnyx API: Sorry, an error occured while enabling the various services for the Vsite.");
   }
   elseif (count($mysql_error) >= "1") {
 
@@ -1229,7 +1272,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
       // Delete MySQL-User and Database:
       delete_mysql_stuff($VsiteSettings, $cceClient);
 
-      echo "BlueOnyx API: Sorry, an error occured while setting up the MySQL database of this Vsite.";
+      error_log("BlueOnyx API: Sorry, an error occured while setting up the MySQL database of this Vsite.");
       // nice people say aufwiedersehen
       $helper->destructor();
       exit;
@@ -1247,7 +1290,7 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
 
   // Build comments:
-  $comments = $clientsdetails->firstname . " " . $clientsdetails->lastname . "\n" . $clientsdetails->email . "\n" . $clientsdetails->companyname . "\n";
+  $comments = $clientsdetails->firstname . " " . $clientsdetails->lastname . "\n" . $clientsdetails->email . "\n";
 
   // Do the User create CCE transaction:
   $cceClient = $helper->getCceClient();
@@ -1273,7 +1316,7 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
   $errors = $cceClient->errors();
 
   if (count($errors) >= "1") {
-      echo "BlueOnyx API: Sorry, the siteAdmin-User did not create properly.";
+      error_log("BlueOnyx API: Sorry, the siteAdmin-User did not create properly.");
 
       // We have an error and an incompletly created Vsite. So we destroy the Vsite:
       $cceClient->destroy($VsiteSettings['OID']);
@@ -1293,7 +1336,7 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
 	  $errors = array_merge($errors, $cceClient->errors());
   }
   if (count($errors) >= "1") {
-      echo "BlueOnyx API: Sorry, could not set disk-quota information for the siteAdmin-User.";
+      error_log("BlueOnyx API: Sorry, could not set disk-quota information for the siteAdmin-User.");
   }
 
   // Setup Email forwarding:
@@ -1302,7 +1345,7 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
       $errors = array_merge($errors, $cceClient->errors());
   }
   if (count($errors) >= "1") {
-      echo "BlueOnyx API: Sorry, could not set up email forwarding for the siteAdmin-User.";
+      error_log("BlueOnyx API: Sorry, could not set up email forwarding for the siteAdmin-User.");
   }
 
   // Setup nicer email alias:
@@ -1323,8 +1366,8 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
   // If Auto-DNS is enabled, we grant this user the caplevel of 'dnsAdmin' as well:
   if (isset($payload->auto_dns)) {
       if ($payload->auto_dns == "1") {
-	  $cceClient->set($userOID, '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+        $cceClient->set($userOID, '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
+        $errors = array_merge($errors, $cceClient->errors());
       }
   }
 
@@ -1336,7 +1379,7 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
       // Delete MySQL-User and Database:
       delete_mysql_stuff($VsiteSettings, $cceClient);
 
-      echo "BlueOnyx API: Sorry, an error happened during User creation.";
+      error_log("BlueOnyx API: Sorry, an error happened during User creation.");
       // nice people say aufwiedersehen
       $helper->destructor();
       exit;
@@ -1458,26 +1501,40 @@ function get_fqdn_details($domain_to_check) {
 // nice people say aufwiedersehen
 $helper->destructor();
 
+
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
-Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+All Rights Reserved.
 
-Redistribution and use in source and binary forms, with or without modification, 
-are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
 
--Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright 
+   notice, this list of conditions and the following disclaimer in 
+   the documentation and/or other materials provided with the 
+   distribution.
 
--Redistribution in binary form must reproduce the above copyright notice, 
-this list of conditions and the following disclaimer in the documentation and/or 
-other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
 
-Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-be used to endorse or promote products derived from this software without 
-specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
 
-This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+You acknowledge that this software is not designed or intended for 
+use in the design, construction, operation or maintenance of any 
+nuclear facility.
 
-You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 */
 ?>
