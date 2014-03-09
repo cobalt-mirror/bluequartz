@@ -123,6 +123,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Mar 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX08
+- Updated main API page, as JSON encoded client details contained too
+  much garbage we didn't need. This would sometimes exceed the max
+  length of stuff that we can POST that way. Cut it down to firstname,
+  lastname and email. Rest is not needed.
+
 * Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX07
 - Added cleaned up French translation as provided by Meaulnes Legler.
 
