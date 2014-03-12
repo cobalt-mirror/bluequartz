@@ -98,7 +98,7 @@ my @groups = (
                     'serverStatsServerFTP', 'serverStatsServerEmail', 
                     'serverStatsServerDisk', 'serverShowActiveMonitor', 
                     'serverActiveMonitor', 'manageSite','menuServerServerStats', 
-                    'managePackage', 'siteAdmin', 'siteSSL', 'siteAnonFTP', 'siteShell'
+                    'managePackage', 'siteAdmin', 'siteSSL', 'siteAnonFTP', 'siteShell', 'siteDNS'
                               )
         }
             );
