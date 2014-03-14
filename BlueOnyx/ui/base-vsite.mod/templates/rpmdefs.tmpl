@@ -59,6 +59,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,-,-) /usr/sausalito/sbin/suPHP_fixer.pl
 %attr(0755,-,-) /usr/sausalito/sbin/php_settings_convert.pl
 %attr(0755,-,-) /usr/sausalito/sbin/phpsendmail
+%attr(0755,-,-) /usr/sausalito/sbin/MassIPChange.pl
 %attr(0755,-,-) /usr/sausalito/configs/php/set_php_headers.php
 
 <end glue>
@@ -135,6 +136,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Mar 14 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX23
+- Added /usr/sausalito/sbin/MassIPChange.pl
 
 * Sat Mar 08 2014 Michael Stauber <mstauber@solarspeed.net> 3.1-0BX22
 - Small security fix to ui/web/vsiteDel.php to make sure 'manageSite'
