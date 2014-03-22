@@ -15,7 +15,7 @@ msgid "ipAddr"
 msgstr "Adresse IP"
 
 msgid "ipAddr_help"
-msgstr "C'est l'adresse IP du site."
+msgstr "L'adresse IP du site."
 
 msgid "domain"
 msgstr "Nom de Domaine"
@@ -27,19 +27,19 @@ msgid "fqdn"
 msgstr "Nom de domaine pleinement qualifié"
 
 msgid "fqdn_help"
-msgstr "Il s'agit du nom complet du site, également connu comme «&nbsp;nom de domaine complètement qualifié&nbsp;» ou FQDN (Fully Qualified Domain Name). Il est trié d'abord par le nom de domaine et ensuite par le nom d'hôte."
+msgstr "Il s'agit du nom complet du site, également connu comme « nom de domaine complètement qualifié » ou FQDN (Fully Qualified Domain Name). Il est trié d'abord par le nom de domaine et ensuite par le nom d'hôte."
 
 msgid "enterFqdn"
 msgstr "Hôte et Nom de domaine"
 
 msgid "enterFqdn_help"
-msgstr "Taper le nom d'hôte du site dans le premier champ et le nom de domaine dans le second champ. Par exemple, le nom d'hôte pourrait être www, mail, etc. Le nom de domaine pourrait être example.com, BlueOnyx.org, etc."
+msgstr "Saisir le nom d'hôte du site dans le premier champ et le nom de domaine dans le second champ. Par exemple, le nom d'hôte pourrait être www, mail, etc. Le nom de domaine pourrait être example.com, BlueOnyx.org, etc."
 
 msgid "hostName"
 msgstr "Nom d'hôte"
 
 msgid "hostName_help"
-msgstr "C'est le nom d'hôte du site. Un nom d'hôte est la première partie d'un nom de domaine complet. Par exemple, «&nbsp;mail&nbsp;» et «&nbsp;www&nbsp;» sont des noms d'hôtes valides."
+msgstr "Le nom d'hôte du site. Un nom d'hôte est la première partie d'un nom de domaine complet. Par exemple, « mail » et « www » sont des noms d'hôtes valides."
 
 msgid "generalSettings"
 msgstr "Paramètres généraux"
@@ -72,13 +72,13 @@ msgid "webAliases"
 msgstr "Alias du serveur-Web"
 
 msgid "webAliases_help"
-msgstr "Ajoutez des hôtes supplémentaires ou des noms de domaine pour lesquels ce site virtuel doit accepter les requêtes Web. Séparez les entrées multiples par des virgules ou des espaces. Exemple: www2.example.com, www.example.com. Notez que le serveur DNS doit être configuré de sorte à pouvoir résoudre ces adresses alias additionnelles en plus du nom du site."
+msgstr "Ajoutez des hôtes supplémentaires ou des noms de domaine pour lesquels ce site virtuel doit accepter les requêtes Web. Séparez les entrées multiples par des virgules ou des espaces. Exemple : www2.example.com, www.example.com. Notez que le serveur DNS doit être configuré de sorte à pouvoir résoudre ces adresses alias additionnelles en plus du nom du site."
 
 msgid "mailAliases"
 msgstr "Alias e-mail du serveur"
 
 msgid "mailAliases_help"
-msgstr "Ajoutez des hôtes supplémentaires ou des noms de domaine pour lesquels ce site virtuel doit accepter les connexions de messagerie e-mail [port SMTP 25] . Séparer les entrées multiples par des virgules ou des espaces. Exemple: mail2.example.com, mail.example.com."
+msgstr "Ajoutez des hôtes supplémentaires ou des noms de domaine pour lesquels ce site virtuel doit accepter les connexions de messagerie e-mail [port SMTP 25] . Séparer les entrées multiples par des virgules ou des espaces. Exemple : mail2.example.com, mail.example.com."
 
 msgid "otherServices"
 msgstr "Services et options"
@@ -199,7 +199,7 @@ msgid "search_vsite_results"
 msgstr "Résultats de la recherche ([[VAR.num]] sites virtuels trouvés)"
 
 msgid "search_vsite_nonefound"
-msgstr "Aucun site virtuel n'a été trouvé avec ces paramètres&nbsp;; essayer d'affiner la recherche avec des critères différents."
+msgstr "Aucun site virtuel n'a été trouvé avec ces paramètres ; essayer d'affiner la recherche avec des critères différents."
 
 # common search strings
 
@@ -210,7 +210,7 @@ msgid "numResultsPerPage_help"
 msgstr "Définissez le nombre de sites à afficher par page. Les sites restants seront visibles en sélectionnant la page souhaitée dans le menu en haut de la liste."
 
 msgid "numResultsPerPage_invalid"
-msgstr "Désolé, la valeur saisie pour «&nbsp;[[base-vsite.numResultsPerPage]]&nbsp;» est soit trop petite ou n'est pas un nombre. Veuillez taper un nombre entier supérieur ou égal à un."
+msgstr "Désolé, la valeur saisie pour « [[base-vsite.numResultsPerPage]] » est soit trop petite ou n'est pas un nombre. Veuillez taper un nombre entier supérieur ou égal à un."
 
 msgid "searchOptions"
 msgstr "Options de recherche"
@@ -247,7 +247,7 @@ msgstr "Créer une nouvelle recherche."
 # delete site button
 
 msgid "siteRemoveConfirm"
-msgstr "Etes-vous sûr de vouloir supprimer le site [[VAR.fqdn]]&nbsp;?"
+msgstr "Etes-vous sûr de vouloir supprimer le site [[VAR.fqdn]] ?"
 
 msgid "deletingSite"
 msgstr "Site en cours de suppression, veuillez patienter ..."
@@ -309,10 +309,10 @@ msgstr "Paramètres du site virtuel [[VAR.site]]"
 # site add/mod error messages
 
 msgid "webAliases_invalid"
-msgstr "L'alias du serveur-Web «&nbsp;[[VAR.invalidValue]]&nbsp;» n'est pas valide."
+msgstr "L'alias du serveur-Web « [[VAR.invalidValue]] » n'est pas valide."
 
 msgid "mailAliases_invalid"
-msgstr "L'alias du serveur de messagerie «&nbsp;[[VAR.invalidValue]]&nbsp;» n'est pas valide."
+msgstr "L'alias du serveur de messagerie « [[VAR.invalidValue]] » n'est pas valide."
 
 # usage statitics menu
 
@@ -325,7 +325,7 @@ msgstr "Afficher des informations sur l'utilisation des ressources pour ce site.
 # manageAdmin screen
 
 msgid "manageAdminUsersBlurb"
-msgstr "La création de comptes d'administrateur de serveur autres que le compte «&nbsp;admin&nbsp;» permet à l'administrateur du  système d'autoriser à des tiers en confiance à gérer le serveur. Ces comptes d'utilisateurs d'administration peuvent être créés pour avoir tous les mêmes pouvoirs, à l'exception de la gestion des comptes d'administrateur, que le compte «&nbsp;admin&nbsp;». Ils peuvent également être créés avec plus de limites sur les aspects du serveur qu'ils sont autorisés à contrôler."
+msgstr "La création de comptes d'administrateur de serveur autres que le compte « admin » permet à l'administrateur du  système d'autoriser à des tiers en confiance à gérer le serveur. Ces comptes d'utilisateurs d'administration peuvent être créés pour avoir tous les mêmes pouvoirs, à l'exception de la gestion des comptes d'administrateur, que le compte « admin ». Ils peuvent également être créés avec plus de limites sur les aspects du serveur qu'ils sont autorisés à contrôler."
 
 msgid "manageAdminUsers"
 msgstr "Administrateurs du serveur"
@@ -343,13 +343,13 @@ msgid "rootAccess"
 msgstr "Accès Root"
 
 msgid "rootAccess_help"
-msgstr "Permettre un accès root permet à l'utilisateur d'administration à utiliser le programme `su` pour devenir l'utilisateur root lorsqu'il est connecté au serveur via telnet ou SSH. S'il est activé, un nouveau compte root avec le nom d'utilisateur «&nbsp;root-&lt;nom_utilisateur&gt;&nbsp;», &nbsp;&lt;nom_utilisateur&gt;&nbsp; étant l'utilisateur avec un accès root, sera créé. Le nouveau compte aura le même mot de passe que son compte normal. Par exemple, un utilisateur d'administration avec le nom d'utilisateur 'bob' peut employer la commande `su - root-bob` avec son mot de passe pour devenir l'utilisateur root."
+msgstr "Permettre un accès root permet à l'utilisateur d'administration à utiliser le programme `su` pour devenir l'utilisateur root lorsqu'il est connecté au serveur via telnet ou SSH. S'il est activé, un nouveau compte root avec le nom d'utilisateur « root-&lt;nom_utilisateur&gt; »,  &lt;nom_utilisateur&gt;  étant l'utilisateur avec un accès root, sera créé. Le nouveau compte aura le même mot de passe que son compte normal. Par exemple, un utilisateur d'administration avec le nom d'utilisateur 'bob' peut employer la commande `su - root-bob` avec son mot de passe pour devenir l'utilisateur root."
 
 msgid "adminPowers"
 msgstr "Droits d'accès additionnels"
 
 msgid "adminPowers_help"
-msgstr "Ceci gère les limitations d'un utilisateur d'administration à avoir certaines aptitudes qui sont normalement réservées seulement à l'utilisateur «&nbsp;admin&nbsp;». Déplacer les capacités supplémentaires que ce compte d'administrateur de serveur doit être autorisée à partir du [[base-vsite.disallowedAbilities]] colonne à la [[base-vsite.allowedAbilities]] colonne."
+msgstr "Ceci gère les limitations d'un utilisateur d'administration à avoir certaines aptitudes qui sont normalement réservées seulement à l'utilisateur « admin ». Déplacer les capacités supplémentaires que ce compte d'administrateur de serveur doit être autorisée à partir du [[base-vsite.disallowedAbilities]] colonne à la [[base-vsite.allowedAbilities]] colonne."
 
 msgid "allowedAbilities"
 msgstr "Aptitudes supplémentaires"
@@ -450,24 +450,24 @@ msgid "fqdnTooLong"
 msgstr "Désolé, le nom hôte.domaine est trop long. La longueur du nom de domaine complètement qualifié FQDN doit être inférieure à 255 caractères."
 
 msgid "localhostNotAllowed"
-msgstr "Le nom d'hôte «&nbsp;localhost&nbsp;» est réservé et ne peut pas être spécifié comme le nom d'hôte d'un site virtuel."
+msgstr "Le nom d'hôte « localhost » est réservé et ne peut pas être spécifié comme le nom d'hôte d'un site virtuel."
 
 msgid "fqdnInUse"
-msgstr "La combinaison nom d'hôte et nom de domaine «&nbsp;[[VAR.fqdn]]&nbsp;» est déjà utilisé par un autre site virtuel."
+msgstr "La combinaison nom d'hôte et nom de domaine « [[VAR.fqdn]] » est déjà utilisé par un autre site virtuel."
 
 msgid "usedWebAliases"
-msgstr "Les alias de serveur-web suivants sont déjà utilisés et ne peuvent pas être utilisés&nbsp;: [[VAR.aliases]]"
+msgstr "Les alias de serveur-web suivants sont déjà utilisés et ne peuvent pas être utilisés : [[VAR.aliases]]"
 
 msgid "usedMailAliases"
-msgstr "Les alias de serveur de messagerie suivants sont déjà utilisés et ne peuvent pas être utilisés&nbsp;: [[VAR.aliases]]"
+msgstr "Les alias de serveur de messagerie suivants sont déjà utilisés et ne peuvent pas être utilisés : [[VAR.aliases]]"
 
 # aliases.pl
 
 msgid "cantCreateMailAlias"
-msgstr "[[base-vsite.operationFailed]] L'alias de messagerie «&nbsp;[[VAR.alias]]&nbsp;» n'a pas pu être créé."
+msgstr "[[base-vsite.operationFailed]] L'alias de messagerie « [[VAR.alias]] » n'a pas pu être créé."
 
 msgid "cantUpdateMailAlias"
-msgstr "[[base-vsite.operationFailed]] L'alias de messagerie «&nbsp;[[VAR.alias]]&nbsp;» ne pouvait pas être mis à jour."
+msgstr "[[base-vsite.operationFailed]] L'alias de messagerie « [[VAR.alias]] » ne pouvait pas être mis à jour."
 
 msgid "cantUpdateUserMailAliases"
 msgstr "[[base-vsite.operationFailed]] Impossible de mettre à jour les informations e-mail pour les utilisateurs appartenant à ce site."
@@ -478,13 +478,13 @@ msgid "cantCreateAtypeRecord"
 msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée DNS pour [[VAR.fqdn]]."
 
 msgid "cantCreateWebAlias"
-msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée DNS pour l'alias de serveur-web «&nbsp;[[VAR.alias]]&nbsp;» reliant [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée DNS pour l'alias de serveur-web « [[VAR.alias]] » reliant [[VAR.fqdn]]."
 
 msgid "cantCreateAtypeRecordForMail"
-msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée DNS de type A pour l'alias du serveur de messagerie «&nbsp;[[VAR.alias]]&nbsp;» reliant [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée DNS de type A pour l'alias du serveur de messagerie « [[VAR.alias]] » reliant [[VAR.fqdn]]."
 
 msgid "cantCreateMXRecordForMailAlias"
-msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée type MX DNS pour l'alias du serveur de messagerie «&nbsp;[[VAR.alias]]&nbsp;» reliant [[VAR.fqdn]]."
+msgstr "[[base-vsite.operationFailed]] Impossible de créer l'entrée type MX DNS pour l'alias du serveur de messagerie « [[VAR.alias]] » reliant [[VAR.fqdn]]."
 
 msgid "cantRestartDns"
 msgstr "[[base-vsite.operationFailed]] Impossible de redémarrer le serveur DNS."
@@ -500,7 +500,7 @@ msgstr "[[base-vsite.operationFailed]] Impossible de mettre à jour les nouveaux
 # maxuser.pl
 
 msgid "overUserLimit"
-msgstr "[[base-vsite.operationFailed]] Le site «&nbsp;[[VAR.fqdn]]&nbsp;» a dépassé le nombre maximum d'utilisateurs qu'il est autorisé à avoir."
+msgstr "[[base-vsite.operationFailed]] Le site « [[VAR.fqdn]] » a dépassé le nombre maximum d'utilisateurs qu'il est autorisé à avoir."
 
 # network_destroy.pl
 
@@ -567,7 +567,7 @@ msgstr "[[base-vsite.operationFailed]] Impossible de créer l'interface de rése
 # watch_disk.pl
 
 msgid "diskUsedBySites"
-msgstr "Ce périphérique de stockage ne peut pas être modifié parce que les sites suivants s'y trouvent&nbsp;: [[VAR.sites]]. Veuillez supprimer ces sites avant de désactiver ce périphérique ou alors empêcher qu'il puisse héberger des répertoires d'accueil."
+msgstr "Ce périphérique de stockage ne peut pas être modifié parce que les sites suivants s'y trouvent : [[VAR.sites]]. Veuillez supprimer ces sites avant de désactiver ce périphérique ou alors empêcher qu'il puisse héberger des répertoires d'accueil."
 
 # system_adminuser.pl
 
@@ -655,7 +655,7 @@ msgid "cantAddUserToServerAdminGroup"
 msgstr "Impossible d'ajouter [[VAR.user]] au groupe d'administrateurs de serveur."
 
 msgid "systemFqdnNotAllowed"
-msgstr "Nom illicite, la combinaison nom d'hôte et nom de domaine «&nbsp;[[VAR.fqdn]]&nbsp;» est déjà utilisé par le système."
+msgstr "Nom illicite, la combinaison nom d'hôte et nom de domaine « [[VAR.fqdn]] » est déjà utilisé par le système."
 
 # preview site
 
@@ -695,16 +695,16 @@ msgid "php_ini_security_settings"
 msgstr "Principaux paramètres PHP"
 
 msgid "php_ini_security_settings_help"
-msgstr "Principaux paramètres de sécurité et de performance pour tout le serveur. Ces changements sont appliqués directement au fichier de configuration principal «&nbsp;php.ini&nbsp;»."
+msgstr "Principaux paramètres de sécurité et de performance pour tout le serveur. Ces changements sont appliqués directement au fichier de configuration principal « php.ini »."
 
 msgid "php_ini_expert_mode"
-msgstr "Réviser «&nbsp;php.ini&nbsp;»"
+msgstr "Réviser « php.ini »"
 
 msgid "php_ini_expert_mode_help"
-msgstr "Cette page vous permet de consulter tout fichier de configuration principal «&nbsp;php.ini&nbsp;» et énumère toutes les options, pas seulement celles de la page précédente. Veuillez noter que l'enregistrement de modifications dans ce fichier n'est pas possible ici."
+msgstr "Cette page vous permet de consulter tout fichier de configuration principal « php.ini » et énumère toutes les options, pas seulement celles de la page précédente. Veuillez noter que l'enregistrement de modifications dans ce fichier n'est pas possible ici."
 
 msgid "php_ini_location"
-msgstr "Lieu d'enregistrement&nbsp;:"
+msgstr "Lieu d'enregistrement :"
 
 msgid "php_ini_location_help"
 msgstr "Ceci montre où votre fichier php.ini se trouve."
@@ -719,31 +719,31 @@ msgid "safe_mode"
 msgstr "Safe Mode"
 
 msgid "safe_mode_help"
-msgstr "Le mode 'sans échec' &quot;Safe&nbsp;Mode&quot; de PHP est une tentative de résoudre le problème de permissions entre utilisateurs du serveur. Activé, les scripts PHP ne pourront ouvrir que les fichiers appartenant au même utilisateur (UID) et au même groupe (GID). AVERTISSEMENT&nbsp;: ne pas désactiver &quot;Safe&nbsp;Mode&quot;&nbsp;! C'est une invitation à se faire pirater..."
+msgstr "Le mode 'sans échec' &quot;Safe Mode&quot; de PHP est une tentative de résoudre le problème de permissions entre utilisateurs du serveur. Activé, les scripts PHP ne pourront ouvrir que les fichiers appartenant au même utilisateur (UID) et au même groupe (GID). AVERTISSEMENT : ne pas désactiver &quot;Safe Mode&quot; ! C'est une invitation à se faire pirater..."
 
 msgid "safe_mode_gid"
 msgstr "Safe Mode GID"
 
 msgid "safe_mode_gid_help"
-msgstr "Par défaut, le Safe&nbsp;Mode compare avec UID/GID les permissions 'utilisateur' et 'groupe' des fichiers lors de leur ouverture et ne permet d'ouvrir que ceux appartenant au même UID et GID. En activant cette directive, il n'y aura qu'une comparaison GID et les utilisateurs du même groupe pourront se partager l'ouverture de leurs fichiers."
+msgstr "Par défaut, le Safe Mode compare avec UID/GID les permissions 'utilisateur' et 'groupe' des fichiers lors de leur ouverture et ne permet d'ouvrir que ceux appartenant au même UID et GID. En activant cette directive, il n'y aura qu'une comparaison GID et les utilisateurs du même groupe pourront se partager l'ouverture de leurs fichiers."
 
 msgid "safe_mode_include_dir"
 msgstr "Safe Mode Include Directory"
 
 msgid "safe_mode_include_dir_help"
-msgstr "Le contrôle UID/GID de Safe&nbsp;Mode est ignoré pour les fichiers inclus dans ce répertoire et ses sous-répertoires. Pour inclure plusieurs répertoires au lieu d'un seul, séparer ceux-ci par un double-point&nbsp;: (point-virgule sous Windows). Le répertoire spécifié est en fait un préfixe, pas un nom de répertoire. Cela signifie que «&nbsp;safe_mode_include_dir&nbsp;=&nbsp;/dir/incl&nbsp;» permet d'accéder également à «&nbsp;/dir/include&nbsp;» et à «&nbsp;/dir/incls&nbsp;» si ceux-ci existent. Pour restreindre l'accès à un dossier spécifique, ajoutez un slash final. Par exemple&nbsp;: «&nbsp;safe_mode_include_dir&nbsp;=&nbsp;/dir/incl/&nbsp;». Si la valeur de cette directive est vide, aucun fichier avec les UID/GID différents ne pourront être inclus."
+msgstr "Le contrôle UID/GID de Safe Mode est ignoré pour les fichiers inclus dans ce répertoire et ses sous-répertoires. Pour inclure plusieurs répertoires au lieu d'un seul, séparer ceux-ci par un double-point : (point-virgule sous Windows). Le répertoire spécifié est en fait un préfixe, pas un nom de répertoire. Cela signifie que « safe_mode_include_dir = /dir/incl » permet d'accéder également à « /dir/include » et à « /dir/incls » si ceux-ci existent. Pour restreindre l'accès à un dossier spécifique, ajoutez un slash final. Par exemple : « safe_mode_include_dir = /dir/incl/ ». Si la valeur de cette directive est vide, aucun fichier avec les UID/GID différents ne pourront être inclus."
 
 msgid "safe_mode_exec_dir"
 msgstr "Safe Mode Exec Directory"
 
 msgid "safe_mode_exec_dir_help"
-msgstr "Si PHP est utilisé en Safe&nbsp;Mode, la fonction PHP system() et d'autres fonctions accomplissant des programmes systèmes refusent de démarrer des programmes qui ne sont pas dans ce répertoire."
+msgstr "Si PHP est utilisé en Safe Mode, la fonction PHP system() et d'autres fonctions accomplissant des programmes systèmes refusent de démarrer des programmes qui ne sont pas dans ce répertoire."
 
 msgid "safe_mode_allowed_env_vars"
 msgstr "Safe Mode Allowed Envelope Variables"
 
 msgid "safe_mode_allowed_env_vars_help"
-msgstr "Modifier certaines variables d'environnement peut être une faille de sécurité potentielle. Cette directive contient une liste séparée par des virgules des préfixes. En mode Safe&nbsp;Mode, l'utilisateur ne peut modifier les variables d'environnement dont les noms commencent par les préfixes fournis ici. Par défaut, les utilisateurs ne seront pas en mesure de définir des variables d'environnement qui commencent par PHP_ (par exemple PHP_FOO&nbsp;=&nbsp;BAR). AVERTISSEMENT&nbsp;: Si cette directive est vide, PHP autorisera la modification de TOUTES les variables d'environnement!"
+msgstr "Modifier certaines variables d'environnement peut être une faille de sécurité potentielle. Cette directive contient une liste séparée par des virgules des préfixes. En mode Safe Mode, l'utilisateur ne peut modifier les variables d'environnement dont les noms commencent par les préfixes fournis ici. Par défaut, les utilisateurs ne seront pas en mesure de définir des variables d'environnement qui commencent par PHP_ (par exemple PHP_FOO = BAR). AVERTISSEMENT : Si cette directive est vide, PHP autorisera la modification de TOUTES les variables d'environnement!"
 
 msgid "safe_mode_protected_env_vars"
 msgstr "Safe Mode Protected Envelope Variables"
@@ -755,7 +755,7 @@ msgid "disable_functions"
 msgstr "Disable Functions"
 
 msgid "disable_functions_help"
-msgstr "Cette directive vous permet de désactiver certaines fonctions pour des raisons de sécurité. Elle prend une liste des noms de fonctions séparées par des virgules. disable_functions n'est pas affectée par le Safe&nbsp;Mode."
+msgstr "Cette directive vous permet de désactiver certaines fonctions pour des raisons de sécurité. Elle prend une liste des noms de fonctions séparées par des virgules. disable_functions n'est pas affectée par le Safe Mode."
 
 msgid "disable_classes"
 msgstr "Disable Classes:"
@@ -773,19 +773,19 @@ msgid "allow_url_include"
 msgstr "Allow URL Include"
 
 msgid "allow_url_include_help"
-msgstr "(Applicable uniquement pour PHP&nbsp;&gt;=&nbsp;5.2.0) Si désactivé, allow_url_include empêche l'accès aux fichiers distants par le biais des déclarations include et require, mais le laisse disponible pour d'autres fonctions de fichiers comme fopen() et file_get_contents. Veuillez noter&nbsp;: les déclarations include et require sont des points d'attaque les plus courants des tentatives d'injection de code, de sorte que ce paramètre bouche ce trou de sécurité sans affecter les capacités d'accès aux fichiers à distance des fonctions standard PHP relatifs aux fichiers. Par défaut, allow_url_include est désactivé."
+msgstr "(Applicable uniquement pour PHP &gt;= 5.2.0) Si désactivé, allow_url_include empêche l'accès aux fichiers distants par le biais des déclarations include et require, mais le laisse disponible pour d'autres fonctions de fichiers comme fopen() et file_get_contents. Veuillez noter : les déclarations include et require sont des points d'attaque les plus courants des tentatives d'injection de code, de sorte que ce paramètre bouche ce trou de sécurité sans affecter les capacités d'accès aux fichiers à distance des fonctions standard PHP relatifs aux fichiers. Par défaut, allow_url_include est désactivé."
 
 msgid "upload_max_filesize"
 msgstr "Upload Max Filesize"
 
 msgid "upload_max_filesize_help"
-msgstr "upload_max_filesize limite la taille maximale des fichiers téléchargés vers le serveur. Des attaquants peuvent essayer d'envoyer des fichiers démesurés pour épuiser les ressources du système&nbsp;; en définissant une valeur ici, vous pouvez atténuer certains des dommages causés par ces attaques. Par défaut, PHP définit cette valeur à 2&nbsp;MO."
+msgstr "upload_max_filesize limite la taille maximale des fichiers téléchargés vers le serveur. Des attaquants peuvent essayer d'envoyer des fichiers démesurés pour épuiser les ressources du système ; en définissant une valeur ici, vous pouvez atténuer certains des dommages causés par ces attaques. Par défaut, PHP définit cette valeur à 2 MO."
 
 msgid "post_max_size"
 msgstr "POST Max Size"
 
 msgid "post_max_size_help"
-msgstr "Cette protection permet de limiter la taille maximale des demandes POST que PHP traitera. Les attaquants peuvent essayer d'envoyer des requêtes POST démesurés pour épuiser les ressources du système&nbsp;; en définissant une valeur ici, vous pouvez atténuer certains des dommages causés par ces attaques."
+msgstr "Cette protection permet de limiter la taille maximale des demandes POST que PHP traitera. Les attaquants peuvent essayer d'envoyer des requêtes POST démesurés pour épuiser les ressources du système ; en définissant une valeur ici, vous pouvez atténuer certains des dommages causés par ces attaques."
 
 msgid "max_execution_time"
 msgstr "Max Execution Time"
@@ -815,7 +815,7 @@ msgid "php_vsite_head"
 msgstr "Configuration PHP pour [[VAR.vsite]]"
 
 msgid "PHPVsiteStatusBox_header"
-msgstr "Attention&nbsp;:"
+msgstr "Attention :"
 
 msgid "phpVsiteNotEnabled"
 msgstr "PHP n'est pas activé pour ce site virtuel. Aucune option PHP ne peut être configurée si PHP n'est pas activé pour ce site."
@@ -824,7 +824,7 @@ msgid "php_ini"
 msgstr "php.ini"
 
 msgid "php_ini_help"
-msgstr "Contenu de «&nbsp;php.ini&nbsp;». Pour l'analyse seulement, les changements ne peuvent pas être enregistrés."
+msgstr "Contenu de « php.ini ». Pour l'analyse seulement, les changements ne peuvent pas être enregistrés."
 
 ### fileOwner additions:
 
@@ -832,7 +832,7 @@ msgid "fileOwner_head"
 msgstr "Propriétaire de tout le contenu dans /web de [[VAR.vsite]]"
 
 msgid "prefered_siteAdmin"
-msgstr "SiteAdmin qui possède /web&nbsp;:"
+msgstr "SiteAdmin qui possède /web :"
 
 msgid "prefered_siteAdmin_help"
 msgstr "Si suPHP est activé, ce champ doit mentionner un SiteAdmin de ce site ou les scripts PHP ne fonctionneront pas. En désignant un propriétaire dans la liste des SiteAdmins, le répertoire /web de ce site sera chown'ed récursivement à l'UID de l'utilisateur sélectionné même si suPHP n'est pas activé. Par la suite, tous les fichiers et dossiers dans /web appartiendront à l'utilisateur sélectionné."
@@ -849,16 +849,16 @@ msgid "prefix"
 msgstr "Site Prefix:"
 
 msgid "prefix_help"
-msgstr "Le «&nbsp;préfixe de site&nbsp;» est un préfixe optionnel qui permet d'identifier des utilisateurs ou des services liés à un site. Si spécifié, cet préfixe sera antéposé à tous les identifiants des utilisateurs nouvellement créés. Un préfixe doit contenir que des caractères alphanumériques (que des chiffres, des lettres en minuscule, le tiret - ou/et le sous-trait _) et ne peut pas avoir plus que 5 caractères. Veuillez noter&nbsp;: Un préfixe peut être ajouté ou modifié à une date ultérieure, mais cela n'affectera pas les identifiants déjà présents."
+msgstr "Le « préfixe de site » est un préfixe optionnel qui permet d'identifier des utilisateurs ou des services liés à un site. Si spécifié, cet préfixe sera antéposé à tous les identifiants des utilisateurs nouvellement créés. Un préfixe doit contenir que des caractères alphanumériques (que des chiffres, des lettres en minuscule, le tiret - ou/et le sous-trait _) et ne peut pas avoir plus que 5 caractères. Veuillez noter : Un préfixe peut être ajouté ou modifié à une date ultérieure, mais cela n'affectera pas les identifiants déjà présents."
 
 msgid "prefixTooLong"
-msgstr "Le «&nbsp;préfixe de site&nbsp;» que vous avez spécifié est supérieur à 5 caractères."
+msgstr "Le « préfixe de site » que vous avez spécifié est supérieur à 5 caractères."
 
 msgid "prefixInUse"
-msgstr "Le «&nbsp;préfixe de site&nbsp;» que vous avez indiqué est déjà utilisé par un autre site&nbsp;: [[VAR.fqdn]]"
+msgstr "Le « préfixe de site » que vous avez indiqué est déjà utilisé par un autre site : [[VAR.fqdn]]"
 
 msgid "prefixInvalidChars"
-msgstr "Le «&nbsp;préfixe de site&nbsp;» que vous avez spécifié contient des caractères non pris en charge. Seuls les caractères alphanumériques sont autorisés, ce qui signifie des lettres et des chiffres, mais pas plus de cinq au total."
+msgstr "Le « préfixe de site » que vous avez spécifié contient des caractères non pris en charge. Seuls les caractères alphanumériques sont autorisés, ce qui signifie des lettres et des chiffres, mais pas plus de cinq au total."
 
 # ---- end Prefix
 
@@ -868,7 +868,7 @@ msgid "webAliasRedirects"
 msgstr "Redirection d'alias de Serveur-Web"
 
 msgid "webAliasRedirects_help"
-msgstr "Si un site a plusieurs «&nbsp;alias de serveur-web&nbsp;», ou alias-web, deux scénarios sont possibles&nbsp;: (a) Une demande d'URL à un URL d'alias-web est dirigée vers la page principale des sites URL. C'est le comportement par défaut. (b) Une demande d'URL à un alias-web ne sera pas dirigé vers le site principal URL. L'alias-web ressemblera alors à un site indépendant. Veuillez noter que ce comportement peut être gênant pour les statistiques web et/ou certains systèmes CMS."
+msgstr "Si un site a plusieurs « alias de serveur-web », ou alias-web, deux scénarios sont possibles : (a) Une demande d'URL à un URL d'alias-web est dirigée vers la page principale des sites URL. C'est le comportement par défaut. (b) Une demande d'URL à un alias-web ne sera pas dirigé vers le site principal URL. L'alias-web ressemblera alors à un site indépendant. Veuillez noter que ce comportement peut être gênant pour les statistiques web et/ou certains systèmes CMS."
 
 # --- End webAliasRedirects
 
@@ -878,18 +878,18 @@ msgid "open_basedir_mandatory"
 msgstr "Open Basedir (serveur)"
 
 msgid "open_basedir_mandatory_help"
-msgstr "Ce sont les paramètres «&nbsp;open_basedir&nbsp;» définis pour tout le serveur dans la rubrique «&nbsp;[[base-alpine.sysmanage]]&nbsp;» / «&nbsp;[[base-alpine.security]]&nbsp;» / «&nbsp;PHP&nbsp;». Ils sont obligatoires pour chaque site virtuel. Dans le champ ci-dessous vous pouvez spécifier des répertoires supplémentaires qui devraient être ajoutés à la directive «&nbsp;open_basedir&nbsp;»."
+msgstr "Ce sont les paramètres « open_basedir » définis pour tout le serveur dans la rubrique « [[base-alpine.sysmanage]] » / « [[base-alpine.security]] » / « PHP ». Ils sont obligatoires pour chaque site virtuel. Dans le champ ci-dessous vous pouvez spécifier des répertoires supplémentaires qui devraient être ajoutés à la directive « open_basedir »."
 
 msgid "open_basedir"
 msgstr "Open Basedir (site virtuel)"
 
 msgid "open_basedir_help"
-msgstr "La directive «&nbsp;open_basedir&nbsp;» limite l'accès aux fichiers-scripts PHP pour certains répertoires. Le champ «&nbsp;Open Basedir (serveur)&nbsp;» de ci-dessus définit à quels répertoires les scripts PHP ont déjà accès. Si ces scripts PHP ont besoin d'accès supplémentaires à d'autres répertoires, ils peuvent être spécifiés ici. Lorsque le fichier est en dehors de l'arborescence spécifiée, PHP y refusera l'accès."
+msgstr "La directive « open_basedir » limite l'accès aux fichiers-scripts PHP pour certains répertoires. Le champ « Open Basedir (serveur) » de ci-dessus définit à quels répertoires les scripts PHP ont déjà accès. Si ces scripts PHP ont besoin d'accès supplémentaires à d'autres répertoires, ils peuvent être spécifiés ici. Lorsque le fichier est en dehors de l'arborescence spécifiée, PHP y refusera l'accès."
 
 # --- End 'open_basedir'
 
 msgid "siteRemove"
-msgstr "Supprimer ce site."
+msgstr "Supprimer ce site:."
 
 msgid "sitePreview"
 msgstr "Aperçu de ce site."
@@ -904,7 +904,7 @@ msgid "siteRemoveConfirmNeutral"
 msgstr "Etes-vous sûr de vouloir supprimer ce site virtuel?"
 
 msgid "removeConfirmInfo"
-msgstr "Ceci supprimera également tous les comptes utilisateurs, les e-mails et les données de ce site virtuel&nbsp;; cette action ne peut être annulée."
+msgstr "Ceci supprimera également tous les comptes utilisateurs, les e-mails et les données de ce site virtuel ; cette action ne peut être annulée."
 
 msgid "Actions"
 msgstr "Actions"
@@ -927,7 +927,7 @@ msgid "disabled_help"
 msgstr "[[palette.disabled]]"
 
 msgid "PHP_version"
-msgstr "Version de PHP&nbsp;:"
+msgstr "Version de PHP :"
 
 msgid "PHP_version_help"
 msgstr "Affiche la version de PHP du serveur-web."
@@ -959,7 +959,7 @@ msgid "maxVsiteUpper"
 msgstr "512"
 
 msgid "VsiteMaxError"
-msgstr "La valeur pour «&nbsp;[[base-vsite.maxVsiteField]]&nbsp;» doit être inférieure à [[base-vsite.maxVsiteUpper]]."
+msgstr "La valeur pour « [[base-vsite.maxVsiteField]] » doit être inférieure à [[base-vsite.maxVsiteUpper]]."
 
 msgid "maxVsiteAlreadyMade"
 msgstr "Le nombre actuel de sites virtuels tel que défini par [[base-vsite.maxVsiteField]]."
@@ -968,7 +968,7 @@ msgid "userPrefixField"
 msgstr "préfixe de l'identifiant"
 
 msgid "userPrefixField_help"
-msgstr "Entrez un préfixe précédant l'identifiant. Exemple: ex2_, toto-"
+msgstr "Entrez un préfixe précédant l'identifiant. Exemple : ex2_, toto-"
 
 msgid "userPrefixEnabled"
 msgstr "Activer l'option préfixe identifiant"
@@ -989,10 +989,10 @@ msgid "userSitesUser_help"
 msgstr "Le nombre maximum d'utilisateurs qui peuvent être créés sur ce serveur."
 
 msgid "maxDiskAlreadyMade"
-msgstr "La quantité d'espace disque en cours d'utilisation d'après le quota «&nbsp;[[base-vsite.quota]]&nbsp;»."
+msgstr "La quantité d'espace disque en cours d'utilisation d'après le quota « [[base-vsite.quota]] »."
 
 msgid "maxUsersAlreadyMade"
-msgstr "Le nombre d'utilisateurs existants d'après le quota «&nbsp;[[base-vsite.userSitesUser]]&nbsp;»."
+msgstr "Le nombre d'utilisateurs existants d'après le quota « [[base-vsite.userSitesUser]] »."
 
 msgid "createdUser"
 msgstr "Propriétaire"
