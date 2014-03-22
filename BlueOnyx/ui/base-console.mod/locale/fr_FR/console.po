@@ -254,7 +254,7 @@ msgid "host_fqdn"
 msgstr "Hostname"
 
 msgid "host_fqdn_help"
-msgstr "Nom de l'hôte correspondant à l'adresse IP avec un historique d'échecs de connexion. « N/A » (not available) signifie que cette adresse IP ne dispose pas de « Reverse-DNS » et ne peut donc pas être attribuée à un hôte. Si elle montre « localhost », cela ne signifie pas nécessairement que l'attaque provenait de votre serveur. Il ya beaucoup de FAIs (Fournisseur d'Accès Internet), principalement asiatiques, qui définissent le Reverse-DNS de leur réseau à « localhost »."
+msgstr "Nom de l'hôte correspondant à l'adresse IP avec un historique d'échecs de connexion. « N/A » (not available) signifie que cette adresse IP ne dispose pas de « Reverse-DNS » et ne peut donc pas être attribuée à un hôte. Si elle montre « localhost », cela ne signifie pas nécessairement que l'attaque provenait de votre serveur. Il y a beaucoup de FAIs (Fournisseur d'Accès Internet), principalement asiatiques, qui définissent le Reverse-DNS de leur réseau à « localhost »."
 
 msgid "/var/log/cron"
 msgstr "/var/log/cron"
@@ -304,3 +304,7 @@ msgstr "/var/log/admserv/adm_error"
 msgid "/var/log/admserv/adm_error_help"
 msgstr "/var/log/admserv/adm_error"
 
+#------------
+
+msgid "cap_menuServerSecurity"
+msgstr "Sécurité serveur"

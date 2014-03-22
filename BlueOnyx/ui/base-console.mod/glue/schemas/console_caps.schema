@@ -1,0 +1,11 @@
+<class
+    name="Capabilities" namespace="menuServerSecurity" version="0.1"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(menuServerSecurity)"
+    />
+    <property
+        name="nameTag" type="scalar" default="[[base-console.cap_menuServerSecurity]]"
+    />
+</class>
