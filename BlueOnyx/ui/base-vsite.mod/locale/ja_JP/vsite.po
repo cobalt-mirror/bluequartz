@@ -661,22 +661,22 @@ msgid "userwebs"
 msgstr "ユーザ所有のウェブを有効に"
 
 msgid "userwebs_help"
-msgstr "有効にした場合、各ユーザーはhttp://www.example.com/を介してメインウェブサイトのウェブスペースと到達〜ユーザ名/から分離されている彼自身のウェブスペースを持っています。ユーザーは、自分のWeb /専用のディレクトリにFTPを通じて、自分のWebページをアップロードすることができます。"
+msgstr "有効にした場合、各ユーザはhttp://www.example.com/を介してメインウェブサイトのウェブスペースと到達〜ユーザ名/から分離されている彼自身のウェブスペースを持っています。ユーザは、自分のWeb /専用のディレクトリにFTPを通じて、自分のWebページをアップロードすることができます。"
 
 msgid "php_server"
 msgstr "PHPの設定"
 
 msgid "php_serverDescription"
-msgstr "このページでは、PHPのセキュリティとパフォーマンス関連の設定を構成することができます。これらの変更は、PHPのphp.iniの設定ファイルに適用されます。 PHPは非常に強力であり、しばしばサーバーを悪用するために使用することができることを心に留めておいてください。したがって、我々は非常に限定的かつ安全な方法でそれを設定します。あなたは、サイトごとにこれらの制限を緩めることができます。"
+msgstr "このページでは、PHPのセキュリティとパフォーマンス関連の設定を構成することができます。これらの変更は、PHPのphp.iniの設定ファイルに適用されます。 PHPは非常に強力であり、しばしばサーバを悪用するために使用することができることを心に留めておいてください。したがって、我々は非常に限定的かつ安全な方法でそれを設定します。あなたは、サイトごとにこれらの制限を緩めることができます。"
 
 msgid "php_server_head"
-msgstr "サーバーワイドPHPの設定"
+msgstr "サーバワイドPHPの設定"
 
 msgid "php_ini_security_settings"
 msgstr "メインのPHPの設定"
 
 msgid "php_ini_security_settings_help"
-msgstr "サーバー全体のレベルで適用される主なセキュリティとパフォーマンス設定。これらの変更は、直接php.iniファイルに適用されます。"
+msgstr "サーバ全体のレベルで適用される主なセキュリティとパフォーマンス設定。これらの変更は、直接php.iniファイルに適用されます。"
 
 msgid "php_ini_expert_mode"
 msgstr "レビューphp.iniの"
@@ -694,7 +694,7 @@ msgid "register_globals"
 msgstr "グローバルを登録します。"
 
 msgid "register_globals_help"
-msgstr "最大限のセキュリティを確保するためには、 &#39;off&#39;に &#39;register_globalsが&#39;を設定しなければなりません。それ以外の場合は、unsecurelyプログラムされたPHPスクリプトは、あなたのサーバーをハックするために使用することができることを容易に可能である。"
+msgstr "最大限のセキュリティを確保するためには、 &#39;off&#39;に &#39;register_globalsが&#39;を設定しなければなりません。それ以外の場合は、unsecurelyプログラムされたPHPスクリプトは、あなたのサーバをハックするために使用することができることを容易に可能である。"
 
 msgid "safe_mode"
 msgstr "セーフモード："
@@ -724,13 +724,13 @@ msgid "safe_mode_allowed_env_vars"
 msgstr "セーフモードevelope変数を許さ："
 
 msgid "safe_mode_allowed_env_vars_help"
-msgstr "特定の環境変数を設定すると、潜在的なセキュリティ違反かもしれません。このディレクティブは、接頭辞のカンマ区切りのリストが含まれています。セーフモードでは、ユーザーは唯一名前がここに付属の接頭辞で始まる環境変数を変更することがあります。デフォルトでは、ユーザーはPHP_（例えばPHP_FOO = BAR）で始まる環境変数を設定することができるようになります。注意：このディレクティブが空の場合、PHPはユーザーが任意の環境変数を変更できるようになる！"
+msgstr "特定の環境変数を設定すると、潜在的なセキュリティ違反かもしれません。このディレクティブは、接頭辞のカンマ区切りのリストが含まれています。セーフモードでは、ユーザは唯一名前がここに付属の接頭辞で始まる環境変数を変更することがあります。デフォルトでは、ユーザはPHP_（例えばPHP_FOO = BAR）で始まる環境変数を設定することができるようになります。注意：このディレクティブが空の場合、PHPはユーザが任意の環境変数を変更できるようになる！"
 
 msgid "safe_mode_protected_env_vars"
 msgstr "セーフモード保護された封筒の変数："
 
 msgid "safe_mode_protected_env_vars_help"
-msgstr "このディレクティブは、エンドユーザーがをputenv（）を使用して変更することはできないという環境変数のカンマ区切りのリストが含まれています。 safe_mode_allowed_env_varsが変更することを許可するように設定されている場合でも、これらの変数は保護されます。"
+msgstr "このディレクティブは、エンドユーザがをputenv（）を使用して変更することはできないという環境変数のカンマ区切りのリストが含まれています。 safe_mode_allowed_env_varsが変更することを許可するように設定されている場合でも、これらの変数は保護されます。"
 
 msgid "disable_functions"
 msgstr "機能を無効にします。"
@@ -748,7 +748,7 @@ msgid "allow_url_fopen"
 msgstr "URLのFOPENを許可："
 
 msgid "allow_url_fopen_help"
-msgstr "有効にした場合、allow_url_fopenをPHPのファイル関数ができます - などはfile_get_contents（など）をし、含まれており、文を必要とする -  FTPまたはWebサイトのように、遠隔地からのデータを取得することができます。プログラマは、頻繁にこのことを忘れて、コードインジェクションの脆弱性にそれらを開放し、これらの関数にユーザー提供のデータを渡すときにフィルタリング適切な入力をしない。 PHPベースのWebアプリケーションで報告されたコードインジェクションの脆弱性とハック多数のallow_url_fopenをと不正な入力フィルタリングを有効にすることの組み合わせによって引き起こされます。デフォルトではオフ。"
+msgstr "有効にした場合、allow_url_fopenをPHPのファイル関数ができます - などはfile_get_contents（など）をし、含まれており、文を必要とする -  FTPまたはWebサイトのように、遠隔地からのデータを取得することができます。プログラマは、頻繁にこのことを忘れて、コードインジェクションの脆弱性にそれらを開放し、これらの関数にユーザ提供のデータを渡すときにフィルタリング適切な入力をしない。 PHPベースのWebアプリケーションで報告されたコードインジェクションの脆弱性とハック多数のallow_url_fopenをと不正な入力フィルタリングを有効にすることの組み合わせによって引き起こされます。デフォルトではオフ。"
 
 msgid "allow_url_include"
 msgstr "URLが含まれることができます："
@@ -784,7 +784,7 @@ msgid "memory_limit"
 msgstr "メモリ制限："
 
 msgid "memory_limit_help"
-msgstr "スクリプトが使用できるメモリの量を定義します。高い値に設定、これはリソースを使い果たすしようと貧しいプログラミング手法がオフに伝播することができる環境を作成した攻撃に対して脆弱なサーバーを残します。"
+msgstr "スクリプトが使用できるメモリの量を定義します。高い値に設定、これはリソースを使い果たすしようと貧しいプログラミング手法がオフに伝播することができる環境を作成した攻撃に対して脆弱なサーバを残します。"
 
 msgid "vsitephpMenu"
 msgstr "PHP"
@@ -811,49 +811,60 @@ msgid "fileOwner_head"
 msgstr "[[VAR.vsite]]のためのすべて/ Webコンテンツの所有者"
 
 msgid "prefered_siteAdmin"
-msgstr "/ウェブを所有SiteAdmin："
+msgstr "/webを所有するSiteAdmin："
 
 msgid "prefered_siteAdmin_help"
-msgstr "suPHPが有効になっている場合、このフィールドは、このサイトの既存siteAdminに設定する必要があります、またはあなたのPHPスクリプトが実行されません。あなたはsuPHPが有効になっていない場合でも：あなたがsiteAdminsのリストから所有者を選択した場合、あなたのサイトの/ webディレクトリを選択したユーザのUIDに再帰的にchown&#39;edされます。手段：/ウェブ内のすべてのファイルとフォルダは、その後、選択したユーザーによって所有されます。"
+msgstr "suPHPが有効になっている場合、このフィールドはサイトの所有者に設定する必要があります。"
+"suPHPが有効になっていない場合でもあなたがsiteAdminsのリストから所有者を選択した場合、あなたの"
+"サイトの/web ディレクトリを選択したユーザのUIDに再帰的にchownされ、/web 内のすべてのファイル"
+"とフォルダは、選択したユーザによって所有されます。"
 
 msgid "fileOwnerMenu"
-msgstr "ウェブ所有"
+msgstr "ウェブ所有者"
 
 msgid "fileOwnerDesc"
-msgstr "このメニュー項目は、あなたのサイト/ Webフォルダ（およびすべてのファイルとフォルダ内！）の所有権を変更することができます。それはあなたがsuPHP有効にしている場合particulary重要です所有者としてsiteAdminを選択することができます。 suPHPが有効になっていると、あなたの/ Webフォルダの所有者としてsiteAdminをお持ちでない場合は、あなたのサイトの当時のPHPスクリプトが実行されません。"
+msgstr "このメニュー項目は、あなたのサイト/Webフォルダ（およびすべてのファイルとフォルダ内）の所有権を変更することができます。それはあなたがsuPHP有効にしている場合particulary重要です所有者としてsiteAdminを選択することができます。 suPHPが有効になっていると、あなたの/ Webフォルダの所有者としてsiteAdminをお持ちでない場合は、あなたのサイトの当時のPHPスクリプトが実行されません。"
 
 msgid "prefix"
-msgstr "サイトの接頭辞："
+msgstr "サイトPrefix："
 
 msgid "prefix_help"
-msgstr "&#39;サイト接頭辞は、&#39;あなたは、サイトに関連するユーザやサービスを識別することを可能にするオプションの接頭辞です。設定した場合は、すべての（新たに作成された）ユーザー名は、この文字列が付けられます。接頭辞は英数字でなければなりません（数字及び/または文字のみ）と5文字より長くないかもしれません。ご注意：接頭辞は後で追加または変更することができます。しかし、そうすることは、すでに存在しているユーザ名のいずれかには影響しません。"
+msgstr "サイトに関連するユーザやサービスを識別することを可能にするPrefixです。設定した場合は、すべての"
+"（新たに作成された）ユーザ名に対して、この文字列が先頭に付けられます。Prefixは5文字以下の英数字でなければ"
+"なりません。　注意：Prefixは後で追加または変更することができます。しかし、すでに存在しているユーザ名には反映しません。"
 
 msgid "prefixTooLong"
-msgstr "指定した &#39;サイト接頭辞は&#39; 5文字を超えています。"
+msgstr "指定したPrefixは、5文字を超えています。"
 
 msgid "prefixInUse"
-msgstr "指定した &#39;サイト接頭辞は&#39;別のサイトですでに使用されている[[VAR.fqdn]]"
+msgstr "指定したPrefixは、別のサイトですでに使用されています。[[VAR.fqdn]]"
 
 msgid "prefixInvalidChars"
-msgstr "指定した &#39;サイト接頭辞&#39;はサポートされていない文字が含まれています。唯一の英数字文字は文字と数字を意味する、許されませんが、これ以上、合計で5よりもされています。"
+msgstr "指定したPrefixは、サポートされていない文字が含まれています。英数字文字以外は利用できません。"
 
 msgid "webAliasRedirects"
 msgstr "ウェブエイリアスリダイレクト"
 
 msgid "webAliasRedirects_help"
-msgstr "サイトは複数のWebサーバのエイリアス &quot;を持っている場合は、その後の行動は、次の2種類が可能です：（a）は &#39;WebサーバのエイリアスのURLへのURL要求がメインのサイトURLにリダイレクトします。これがデフォルトです。 （b）は &#39;Webサーバエイリアス&#39;へのURL要求がメインのサイトURLにリダイレクトされません。代わりにエイリアスは、自分自身で独立したサイトのようになります。この動作は、Web統計および/または特定のCMSシステムと面倒なことができますのでご了承ください。"
+msgstr "サイトが複数のWebサーバのエイリアスを持っている場合は、その後の行動は、次の2種類が可能です：（a）は WebサーバのエイリアスのURLへの要求がメインのサイトURLにリダイレクトします。これがデフォルトです。 （b）は WebサーバエイリアスへのURL要求がメインのサイトURLにリダイレクトされません。代わりにエイリアスは、自分自身で独立したサイトのようになります。この動作は、Web統計および特定のCMSシステムに不都合が発生しますのでご了承ください。"
 
 msgid "open_basedir_mandatory"
-msgstr "オープンBASEDIR（サーバー）："
+msgstr "Open Basedir（サーバ）："
 
 msgid "open_basedir_mandatory_help"
-msgstr "これらは &#39;サーバ管理&#39; / &#39;セキュリティ&#39; / &#39;PHP&#39;下全体のサーバーに対して定義されている &#39;open_basedirの&#39;設定です。彼らは、すべての仮想サイトに必須です。下のフィールドには、 &#39;open_basedirの&#39;ディレクティブに追加されるべきである追加のディレクトリを指定することができます。"
+msgstr "これらは、サーバ管理 / セキュリティ / PHP で設定されているopen_basedirの設定です。"
+"これらは、全ての仮想サイトに必須です。下のフィールドには、open_basedirのディレクティブに追加される"
+"べきである追加ディレクトリを指定することができます。"
 
 msgid "open_basedir"
-msgstr "オープンBASEDIR（Vsite）："
+msgstr "Open Basedir（Vsite）："
 
 msgid "open_basedir_help"
-msgstr "&#39;open_basedirの&#39;ディレクティブは、特定のディレクトリにPHPスクリプトのファイルアクセスを制限します。 &#39;BASEDIR（サーバー）オープン&#39;フィールドは、上記のPHPスクリプトは、すでにこのサーバー上へのアクセス権を持っているディレクトリへのあなたを示しています。このサイトのPHPスクリプトはさらにディレクトリへの追加のアクセスを必要とする場合は、ここでこれらのディレクトリを指定することができます。ファイルが指定されたディレクトリツリーの外にある場合、PHPはそれを開くことを拒否します。"
+msgstr "open_basedirのディレクティブは、特定のディレクトリにPHPスクリプトのファイルアクセスを制限します。"
+"上記のOpen_Basedir（サーバ）フィールドは、PHPスクリプトが すでにこのサーバ上でアクセス権を持っている"
+"ディレクトリを示しています。このサイトのPHPスクリプトが、さらにディレクトリへの追加のアクセスを必要とする"
+"場合は、ここでディレクトリを追加指定することができます。ファイルが指定されたディレクトリツリーの外にある"
+"場合、PHPはそれを開くことを拒否します。"
 
 msgid "siteRemove"
 msgstr "このサイトを削除します。"
@@ -865,13 +876,13 @@ msgid "Features"
 msgstr "特長"
 
 msgid "Features_help"
-msgstr "示しているサービスや機能は、この仮想サイトで有効になっている。"
+msgstr "この仮想サイトで有効になっているサービスや機能を示しています。"
 
 msgid "siteRemoveConfirmNeutral"
-msgstr "あなたは、この仮想サイトを削除してもよろしいですか？"
+msgstr "この仮想サイトを削除してもよろしいですか？"
 
 msgid "removeConfirmInfo"
-msgstr "これはまた、すべてのユーザーアカウント、メールやこの仮想サイトのサイトデータを削除し、元に戻すことはできません。"
+msgstr "この仮想サイトのすべてのユーザアカウント、メールやサイトデータを削除し、元に戻すことはできません。"
 
 msgid "Actions"
 msgstr "アクション"
@@ -915,7 +926,7 @@ msgid "maxVsiteField"
 msgstr "最大仮想サイト"
 
 msgid "maxVsiteField_help"
-msgstr "このサーバー上の仮想サイトの最大数。"
+msgstr "このサーバ上の仮想サイトの最大数。"
 
 msgid "maxVsiteUpper"
 msgstr "512"
@@ -927,34 +938,34 @@ msgid "maxVsiteAlreadyMade"
 msgstr "[base-vsite.maxVsiteField]]あたりに定義されるように仮想サイトの現在の数。"
 
 msgid "userPrefixField"
-msgstr "ユーザー接頭部"
+msgstr "ユーザプレフィックス"
 
 msgid "userPrefixField_help"
 msgstr "ユーザ名のプレフィックスを入力してください。例：customerA_、site1_"
 
 msgid "userPrefixEnabled"
-msgstr "ユーザーの接頭辞を使用可能に"
+msgstr "ユーザプレフィックスを使用可能に"
 
 msgid "userPrefixEnabled_help"
-msgstr "機能ユーザーのプレフィックスを有効にすると、すべての新しいユーザー名は、この接頭辞を付けることがます。"
+msgstr "ユーザのプレフィックス機能を有効にすると、すべての新しいユーザ名へ、この接頭辞を付けることがます。"
 
 msgid "userShell"
 msgstr "シェルアクセスを有効にする"
 
 msgid "userShell_help"
-msgstr "TelnetやSSHなどのサービスを使用してサーバーに接続できるユーザーを作成できるようにシェルアクセスを有効にします。"
+msgstr "TelnetやSSHなどのサービスを使用してサーバに接続できるユーザを作成できるようにシェルアクセスを有効にします。"
 
 msgid "userSitesUser"
-msgstr "最大ユーザー"
+msgstr "最大ユーザ"
 
 msgid "userSitesUser_help"
-msgstr "このサーバー上に作成することができるユーザーの最大数。"
+msgstr "このサーバ上に作成することができるユーザの最大数。"
 
 msgid "maxDiskAlreadyMade"
 msgstr "現在、[base-vsite.quota]]に従って、使用中のディスク領域の量。"
 
 msgid "maxUsersAlreadyMade"
-msgstr "[base-vsite.userSitesUser]]に従って、現在現存するユーザーの数。"
+msgstr "[base-vsite.userSitesUser]]に従って、現在現存するユーザの数。"
 
 msgid "createdUser"
 msgstr "オーナー"
@@ -969,17 +980,17 @@ msgid "adminSites"
 msgstr "仮想サイトの管理"
 
 msgid "adminSites_help"
-msgstr "このユーザーの管理下にある仮想サイト。"
+msgstr "このユーザの管理下にある仮想サイト。"
 
 msgid "userSitesQuota"
 msgstr "最大ディスククォータ"
 
 msgid "userSitesQuota_help"
-msgstr "この管理者に関連付けられているすべての仮想サイトを持っているかもしれないとディスククォータの最大量。"
+msgstr "この管理者に関連付けられているすべての仮想サイトのディスククォータの最大量。"
 
 msgid "userSitesMax"
 msgstr "サイトの数"
 
 msgid "userSitesMax_help"
-msgstr "このように管理者が作成できる仮想サイトの最大数。"
+msgstr "この管理者が作成できる仮想サイトの最大数。"
 
