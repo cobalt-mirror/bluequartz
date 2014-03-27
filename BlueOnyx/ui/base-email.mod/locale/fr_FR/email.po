@@ -78,7 +78,7 @@ msgid "amEmailRed"
 msgstr "Il y a un grave problème avec le système de messagerie."
 
 msgid "amEmailYellow"
-msgstr "Il ya un problème avec le système de messagerie."
+msgstr "Il y a un problème avec le système de messagerie."
 
 msgid "amIMAPBadResponse"
 msgstr "Le serveur IMAP a donné une mauvaise réponse."
@@ -483,7 +483,7 @@ msgid "amSMTPAuthNameTag"
 msgstr "Serveur SASL-AUTH (SMTP-Auth)"
 
 msgid "amSMTPAuthNotRunning"
-msgstr "Le serveur SASL-AUTH (Simple Authentication and Security Layer - SMTP-Auth) ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver et réactiver le serveur SMTP-AUTH à nouveau pour voir si cela résout le problème. Si le serveur SMTP-Auth ne fonctionne toujours pas, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous « [[base-power.reboot]] » dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si le serveur SMTP-Auth ne démarre toujours pas, veuillez vous référer au support technique [[base-sauce-basic.techSupportURL]]."
+msgstr "Le serveur SASL-AUTH (Simple Authentication and Security Layer - SMTP-Auth) ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver et réactiver le serveur SMTP-AUTH à nouveau pour voir si cela résout le problème. Si le serveur SMTP-Auth ne fonctionne toujours pas, essayez de redémarrer le serveur lui-même en cliquant sur [[base-power.reboot]] dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si le serveur SMTP-Auth ne démarre toujours pas, veuillez vous référer au support technique [[base-sauce-basic.techSupportURL]]."
 
 msgid "amSMTPAuthStatusOK"
 msgstr "Le serveur SMTP-AUTH fonctionne normalement."
@@ -498,7 +498,7 @@ msgid "ampopRelayNameTag"
 msgstr "Service POP Authenticated Relay"
 
 msgid "ampopRelayNotRunning"
-msgstr "Le service de relais authentifié POP (POP Authenticated Relaying service) ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver et réactiver le service authentifié POP à nouveau pour voir si cela résout le problème. Si le service POP Authenticated Relay ne fonctionne toujours pas, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous « [[base-power.reboot]] » dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si le service POP Authenticated Relay ne démarre toujours pas, veuillez vous référer au support technique [[base-sauce-basic.techSupportURL]]."
+msgstr "Le service de relais authentifié POP (POP Authenticated Relaying service) ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver et réactiver le service authentifié POP à nouveau pour voir si cela résout le problème. Si le service POP Authenticated Relay ne fonctionne toujours pas, essayez de redémarrer le serveur lui-même en cliquant sur [[base-power.reboot]] dans le menu [[base-power.power]] sous [[base-alpine.serverconfig]]. Si le service POP Authenticated Relay ne démarre toujours pas, veuillez vous référer au support technique [[base-sauce-basic.techSupportURL]]."
 
 msgid "ampopRelayStatusOK"
 msgstr "Le service de relais authentifié POP (POP Authenticated Relay service) fonctionne normalement."
