@@ -1,54 +1,7 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl
 # $Id: vacation.pl
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 
 # usage: vacation.pl [message] [from-address]
-
-# Version 1.1.1.3.stable.sendmail.09
-# modified by rickard.osser@bluapp.com 20110718
-# Added functionality for setting start/stop date for messages.
-#
-# Version 1.1.1.2.stable.sendmail.08
-# modified by mstauber@solarspeed.net 20081218
-# The internal mailer as provided by Sauce::I18nMail is (and always has been!) a piece
-# of garbage that's fubare'ed beyond believe. That bloody mailer doesn't even know how
-# to build email headers right. This interfered with vacation messages in a quite messy
-# way. Patricko tried to solve this in 2005 with a work around, but I just went in
-# and switched to something that works instead. So we now mail through MIME::Lite
-#
-# Version 1.1.1.2.stable.sendmail.07
-# modified by mstauber@solarspeed.net 20081206
-# Added group and user quota check. Vacation messages are not send if user or his group
-# are over quota. Reason: We cannot handle the bounces from joe-jobs that terribly well. 
-#
-# modified by patricko@staff.singnet.com.sg 20071219
-# Changelog: Try 1: fixed local loop. eg: auto-reply to mailer-daemon
-# Changelog: Try 2: Fixed compat issue with MS Outlook 2003 webmail
-# Changelog: Try 3: Drop invalid from: entries
-# Changelog: Try 4: Parse mailto: entries, let .db handle 1 notice for n days
-# Changelog: Try 5: Detection changed to 'From ' instead of 'From: ', try 4 is void
-# Changelog: Try 6: Move STDIN code section up
-# Changelog: Try 7: Reduce one CCE lockup See: 1.0
-#################### Special, custom NON RFC only for Sendmail ###################
-# ps: By doing so, no changes to existing CCE schema and sendmail build
-#     This script will reply via RCPT TO:(derived) from the 'for' field
-#     *** In another word, this version taken care of email/domain aliases ***
-#
-# Changelog: Try 8: Factor in Sendmail >= 8.12 log format, /for/
-# Changelog: Try 9: Use Sendmail 'for' TAG to reply mail 
-##################################################################################
-# Changelog: Try 10: If 'for' TAG doesnt exist then revert back to OLD CODE
-# Changelog: Try 11: Speed up email <header> passing as <body> is dropped 
-# Changelog: Try 12: Set 'for' TAG to null when address is invalid 
-# Changelog: Try 13: Re-Commented and adjusted some whitespace 
-# Changelog: Try 14: Unbuffered output for STDIN
-# Changelog: Try 15: Commented out Breakloop and use proper loop exit
-# Changelog: Try 16: Fixed Cannot send out vacation msg coz sendmail permission on some platforms
-#                    - dsn=5.6.0, stat=Data format error, from=<username>@<DOMAIN is missing>
-#                    Workaround: HARDCODED the Envelope, From: root and To: Receipent on $Sendmail -froot -oi $sendto
-#                    NOTE: add 'root' to /etc/mail/trusted-users
-# Changelog: Try 17: Add Log4perl perl module for debugging - COMMENTED OUT
-#                    NOTE: you have to install Log-Dispatch-2.20.tar.gz, Log-Log4perl-1.14.tar.gz
  
 use strict;
 use lib qw( /usr/sausalito/perl );
@@ -62,6 +15,7 @@ use FileHandle;
 use I18nMail;
 use Quota;
 use MIME::Lite;
+use Encode qw/encode decode/;
 
 # Declare DEBUGGING
 #use Log::Log4perl;
@@ -306,10 +260,17 @@ if ($is_overquota eq "0") {
     my $mail = new I18nMail;
     $mail->setLang($locale);
 
-    my $subject=$i18n->get("[[base-email.vacationSubject]]");
-    my $format=$i18n->getProperty("vacationSubject","base-email");
-    my %data=(NAME=>$fullname,EMAIL=>"<$user_from>",MSG=>$subject);
+    my $subject = $i18n->get("[[base-email.vacationSubject]]");
+    my $format = $i18n->getProperty("vacationSubject","base-email");
+    my %data = (NAME => $fullname, EMAIL => "<$user_from>", MSG => $subject);
     $format=~s/(NAME|EMAIL|MSG)/$data{$1}/g;
+
+    # If the users locale preference is Japanese, then the Subject is now 
+    # in EUC-JP, which we cannot mail with MIME::Lite. We need to convert
+    # it into UTF-8 first:
+    if ($user->{localePreference} == "ja_JP") {
+      $format = decode("euc-jp", $format)
+    }
 
     $mail->setSubject($format);
     $mail->setFrom("$fullname <$user_from>");
@@ -330,7 +291,7 @@ if ($is_overquota eq "0") {
     my $send_msg = MIME::Lite->new(
         From     => "$fullname <$user_from>",
         To       => $sendto,
-        Subject  => $format,
+        Subject  => encode('MIME-Header', $format),
         Data     => $msg
     );
 
@@ -350,7 +311,6 @@ if ($is_overquota eq "0") {
 #$logger->info("Send to: $sendto");
 #$logger->info("Subject: $format");
 #$logger->info("Body: $msg");
-
 
 # database locking sub-routine
 # returns a filehandle that will need to be closed after unlock is called
@@ -380,24 +340,37 @@ sub unlock {
 }
 
 # 
-# Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without modification, 
-# are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright 
+#   notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#   notice, this list of conditions and the following disclaimer in 
+#   the documentation and/or other materials provided with the 
+#   distribution.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation and/or 
-# other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its 
+#   contributors may be used to endorse or promote products derived 
+#   from this software without specific prior written permission.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-# 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
 # 
