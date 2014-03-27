@@ -147,6 +147,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Mar 27 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX11
+- Fix for Japanese vacation messages.
+- Modified glue/handlers/vacation.pl to store .vacation_msg in UTF-8 format
+  even (and especially if) the locale preference is set to Japanese.
+- Modified glue/usr/local/sbin/vacation.pl to email out Japanese vacation
+  messages in UTF-8 encoding. For this the subject had to be turned from
+  EUC-JP into UTF-8 as well and the subject itself needed proper 
+  MIME-encoding.
+
 * Thu Feb 18 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX10
 - Modified constructor/syncEmailService.pl and glue/handlers/copy_certs.pl
   to copy/create the intermediate cert files for Dovecot. If no intermediates
