@@ -43,8 +43,11 @@ Sauce::Util::chmodfile(0644, $forward_file);
 Sauce::Util::chownfile(@pwent[2,3], $forward_file);
 
 # Turn the EUC-JP encoded Vacation Message into UTF-8:
-if ($user->{localePreference} == "ja_JP") {
+if (($user->{localePreference} == "ja_JP") && (!-d "/usr/sausalito/ui/chorizo")) {
 	$mail->{vacationMsg} = decode("euc-jp", $mail->{vacationMsg});
+}
+else {
+	$mail->{vacationMsg} = decode("UTF-8", $mail->{vacationMsg});
 }
 
 my $msgfile = $homedir . '/.vacation_msg';
