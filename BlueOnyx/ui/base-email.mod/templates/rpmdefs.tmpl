@@ -147,6 +147,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX14
+- Modified glue/handlers/vacation.pl yet again. 510XR was moved entirely
+  to UTF-8, too. So we no longer need to transform from EUC-JP to UTF-8,
+  as it is stored in UTF-8 right away.
+
+* Sat Mar 29 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX13 
+- Modified glue/handlers/vacation.pl yet again. 520XR was moved entirely 
+  to UTF-8. This neccesitates that the vacation message is written off 
+  in pure UTF-8 for all languages including Japanese. 
+
 * Sat Mar 29 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX13
 - Modified glue/handlers/vacation.pl yet again. 520XR was moved entirely
   to UTF-8. This neccesitates that the vacation message is written off
