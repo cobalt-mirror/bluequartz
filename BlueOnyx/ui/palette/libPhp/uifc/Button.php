@@ -214,14 +214,24 @@ class Button extends HtmlComponent {
         // language which does not use the ISO-8859-1 charset, so we
         // do a special case for that.
        $encoding = $i18n->getProperty("encoding", "palette");
-       if ($encoding == "none" || !strpos($encoding, "8859-1") === false ) {
-          $specialChars = array_merge(get_html_translation_table(HTML_SPECIALCHARS), get_html_translation_table(HTML_ENTITIES));
-          $escaped_description = strtr(strtr($description, array_flip($specialChars)), $specialChars);
-        } else {
+//       if ($encoding == "none" || !strpos($encoding, "8859-1") === false ) {
+//          $specialChars = array_merge(get_html_translation_table(HTML_SPECIALCHARS), get_html_translation_table(HTML_ENTITIES));
+//          $escaped_description = strtr(strtr($description, array_flip($specialChars)), $specialChars);
+//        } else {
           $description = htmlspecialchars($description);
+//        }
+
+        $is_legacy = exec("cat /etc/build|grep 5106R|wc -l");
+        if (($encoding == "EUC-JP") && ($is_legacy == "1")) {
+          $description = I18n::Utf8Encode($description);
         }
+
         // using interpolateJs this way is not very clean, but this works for now
         $escaped_description = $i18n->interpolateJs("[[VAR.string]]", array("string" => $description));
+
+        if (($encoding == "EUC-JP") && ($is_legacy == "1")) {
+          $escaped_description = $description;
+        }
 
         $javascript .="document._button_description_$id = '$escaped_description'";
         $mouseOver = "$logMouseOver return top.code.info_mouseOver(document._button_description_$id)";

@@ -59,8 +59,8 @@ class BXLocale extends FormField {
 
       // browser is a special case
       if($possibleLocale == "browser") {
-	$labelToValues[$i18n->get("browser", "palette")] = "browser";
-	continue;
+  $labelToValues[$i18n->get("browser", "palette")] = "browser";
+  continue;
       }
 
       // see if the whole locale is defined
@@ -68,8 +68,8 @@ class BXLocale extends FormField {
       $localeTag = "locale_".$possibleLocale;
       $fullLocale = $i18n->get($localeTag, "palette");
       if($fullLocale != $localeTag) {
-	$labelToValues[$fullLocale] = $possibleLocale;
-	continue;
+  $labelToValues[$fullLocale] = $possibleLocale;
+  continue;
       }
 
       // get language code
@@ -78,23 +78,23 @@ class BXLocale extends FormField {
 
       // screen out language codes that are not in ISO 639 standard
       if($language == $languageTag)
-	continue;
+  continue;
 
       // get country code
       $country = "";
       if(strlen($possibleLocale) >= 5) {
-	$countryTag = strtolower(substr($possibleLocale, 3, 2));
-	$country = $i18n->get($countryTag, "palette");
+  $countryTag = strtolower(substr($possibleLocale, 3, 2));
+  $country = $i18n->get($countryTag, "palette");
 
-	// screen out country codes that are not in ISO 3166 standard
-	if($country == $countryTag)
-	  continue;
+  // screen out country codes that are not in ISO 3166 standard
+  if($country == $countryTag)
+    continue;
       }
 
       if($country == "")
-	$labelToValues[$i18n->get("localeLanguage", "palette", array("language" => $language))] = $possibleLocale;
+  $labelToValues[$i18n->get("localeLanguage", "palette", array("language" => $language))] = $possibleLocale;
       else
-	$labelToValues[$i18n->get("localeLanguageCountry", "palette", array("language" => $language, "country" => $country))] = $possibleLocale;
+  $labelToValues[$i18n->get("localeLanguageCountry", "palette", array("language" => $language, "country" => $country))] = $possibleLocale;
     }
 
     // sort by labels
@@ -106,12 +106,23 @@ class BXLocale extends FormField {
     $sortedLocales = array_values($labelToValues);
     for($i = 0; $i < count($sortedLocales); $i++) {
       if($sortedLocales[$i] == $value) {
-	$selectedIndex = $i;
-	break;
+  $selectedIndex = $i;
+  break;
       }
     }
 
-    return $builder->makeSelectField($id, $this->getAccess(), 1, $GLOBALS["_FormField_width"], false, $formId, "", array_keys($labelToValues), array_values($labelToValues), array($selectedIndex));
+    // On 5106R our pulldown needs to be trimmed down to just the language
+    // identifiers if we're on Japanese:
+    $is_legacy = exec("cat /etc/build|grep 5106R|wc -l");
+    $encoding = $i18n->getProperty("encoding", "palette");
+    if (($encoding == "EUC-JP") && ($is_legacy == "1")) {
+      // Japanese:
+      return $builder->makeSelectField($id, $this->getAccess(), 1, $GLOBALS["_FormField_width"], false, $formId, "", array_values($labelToValues), array_values($labelToValues), array($selectedIndex));
+    }
+    else {
+      // All else:
+      return $builder->makeSelectField($id, $this->getAccess(), 1, $GLOBALS["_FormField_width"], false, $formId, "", array_keys($labelToValues), array_values($labelToValues), array($selectedIndex));
+    }
   }
 }
 /*
