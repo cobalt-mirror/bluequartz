@@ -154,6 +154,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.2-0BX03
+- Modified glue/etc/admserv/conf/httpd.conf to set 'AddDefaultCharset'  
+  to off. This allows us to set the charset in the page headers.  
+- Modified glue/etc/admserv/php.ini to hard wire charsets to UTF-8:  
+  default_charset, exif.encode_unicode, iconv.input_encoding, 
+  iconv.internal_encoding and iconv.output_encoding all set to UTF-8. 
+
 * Sun Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.2-0BX02
 - Fixed linebreak in mod_ssl.conf
 
