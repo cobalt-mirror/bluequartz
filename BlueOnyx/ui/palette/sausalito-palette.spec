@@ -57,6 +57,17 @@ fi
 
 %changelog
 
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX33
+- Added improved French locale as provided by Meaulnes Legler.
+- In 0.5.2-0BX26 we switched to pure UTF-8 locales, but they didn't work
+  right. So the dirty work around with the 'windows-1252' charset was
+  introduced. We now say good bye to that and switch to pure UTF-8
+  for real.
+- Charset change in web/nav/flow.php
+- Charset change in web/nav/cList.php
+- Charset change in web/nav/single.php
+- Charset change in libPhp/uifc/Page.php
+
 * Thu Feb 27 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX32
 - Small locale fix in German locales.
 

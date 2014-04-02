@@ -1,105 +1,109 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#
+# These strings are used throughout the UI and are necessarily general in nature.
+#
+
 msgid "sort"
 msgstr "Trier"
 
 msgid "sort_help"
-msgstr "Cliquez ici pour trier la liste par cette colonne."
+msgstr "Cliquer ici pour trier la liste par cette colonne."
 
 msgid "add"
 msgstr "Ajouter"
 
 msgid "add_help"
-msgstr "Cliquez ici pour ajouter un élément."
+msgstr "Cliquer ici pour ajouter un élément."
 
 msgid "modify"
 msgstr "Modifier"
 
 msgid "modify_help"
-msgstr "Cliquez ici pour modifier cet article."
+msgstr "Cliquer ici pour modifier cet élément."
 
 msgid "modify_disabled_help"
-msgstr "Cet article ne peut pas être modifié."
+msgstr "Cet élément ne peut pas être modifié."
 
 msgid "remove"
 msgstr "Supprimer"
 
 msgid "remove_help"
-msgstr "Cliquez ici pour supprimer cet élément."
+msgstr "Cliquer ici pour supprimer cet élément."
 
 msgid "remove_disabled_help"
-msgstr "Cet article ne peut pas être supprimé."
+msgstr "Cet élément ne peut pas être supprimé."
 
 msgid "back"
 msgstr "Retour"
 
 msgid "back_help"
-msgstr "Cliquez ici pour revenir à la page précédente."
+msgstr "Cliquer ici pour revenir à la page précédente."
 
 msgid "forward"
-msgstr "Vers l&#39;avant"
+msgstr "Prochain"
 
 msgid "forward_help"
-msgstr "Cliquez ici pour aller de l&#39;avant à la page suivante."
+msgstr "Cliquer ici pour aller à la page suivante."
 
 msgid "save"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
 msgid "save_help"
-msgstr "Cliquez ici pour enregistrer les modifications apportées à cette page."
+msgstr "Cliquer ici pour enregistrer les modifications apportées à cette page."
 
 msgid "cancel"
-msgstr "Résilier"
+msgstr "Annuler"
 
 msgid "cancel_help"
-msgstr "Cliquez ici pour annuler toutes les modifications apportées à cette page."
+msgstr "Cliquer ici pour annuler toutes les modifications apportées à cette page."
 
 msgid "detail"
 msgstr "Détails"
 
 msgid "detail_help"
-msgstr "Cliquez ici pour voir plus de détails sur ce point."
+msgstr "Cliquer ici pour voir plus de détails sur ce point."
 
 msgid "defaultEmptyMessage"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[VAR.name]]. [[VAR.rule]]"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[VAR.name]]. [[VAR.rule]]"
 
 msgid "defaultInvalidMessage"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[VAR.name]]. [[VAR.rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[VAR.name]]. [[VAR.rule]]"
 
 msgid "cceDown"
-msgstr "Un composant système essentiel (CCE) est actuellement ne fonctionne pas. S&#39;il vous plaît essayer de nouveau dans quelques instants."
+msgstr "Un composant système essentiel (CCE) est ne fonctionne actuellement pas. Veuillez réessayer à nouveau dans quelques instants."
 
 msgid "emptyList"
 msgstr "Cette liste est actuellement vide."
 
 msgid "entryCountPlural"
-msgstr "[[VAR.count]] Entrées"
+msgstr "[[VAR.count]] entrées"
 
 msgid "entryCountSingular"
-msgstr "[[VAR.count]] Entrée"
+msgstr "[[VAR.count]] entrée"
 
 msgid "entryRange"
-msgstr "Entrées [[VAR.from]] - [[VAR.to]]"
+msgstr "de [[VAR.from]] à [[VAR.to]]"
 
 msgid "logout"
 msgstr "Déconnexion"
 
 msgid "logoutHelp"
-msgstr "Cliquez ici pour vous déconnecter du système."
+msgstr "Cliquer ici pour se déconnecter du système."
 
 msgid "logoutConfirm"
 msgstr "Etes-vous sûr de vouloir vous déconnecter du système?"
 
 msgid "browser"
-msgstr "<Set From Browser Options>"
+msgstr "<défini par les options du navigateur>"
 
 msgid "localeLanguage"
 msgstr "[[VAR.language]]"
@@ -111,7 +115,7 @@ msgid "import"
 msgstr "Importer"
 
 msgid "import_help"
-msgstr "En cliquant ici vous lancer votre carnet d&#39;adresses et vous permettre de sélectionner les adresses e-mail à utiliser pour ce champ."
+msgstr "Ceci lancera votre Carnet d'Adresses et vous permettra de sélectionner des adresses e-mail à utiliser dans ce champ."
 
 msgid "navigationTitle"
 msgstr "[[VAR.userName]] connecté sur [[VAR.hostName]]"
@@ -123,121 +127,129 @@ msgid "optional"
 msgstr "optionnel"
 
 msgid "repeat"
-msgstr "Entrez à nouveau"
+msgstr "Saisir à nouveau"
 
 msgid "statusSignalFailure"
 msgstr "Échec"
 
 msgid "statusSignalFailure_help"
-msgstr "Cet article a échoué."
+msgstr "Ceci n'a pas réussi."
 
 msgid "statusSignalNew"
 msgstr "Nouveau"
 
 msgid "statusSignalNew_help"
-msgstr "Cet article est nouveau."
+msgstr "Cet élément est nouveau."
 
 msgid "statusSignalOld"
 msgstr "Vieux"
 
 msgid "statusSignalOld_help"
-msgstr "Cet article est vieux."
+msgstr "Cet élément est vieux."
 
 msgid "statusSignalReplied"
 msgstr "Répondit"
 
 msgid "statusSignalReplied_help"
-msgstr "Cet article a répondu à."
+msgstr "Cet élément a répondu à"
 
 msgid "statusSignalNone"
 msgstr "Statut non disponible"
 
 msgid "statusSignalNone_help"
-msgstr "Cet article n&#39;a pas d&#39;indicateur."
+msgstr "Cet élément n'a pas d'indicateur."
 
 msgid "statusSignalDisabled"
-msgstr "Article non permis"
+msgstr "Élément non permis"
 
 msgid "statusSignalDisabled_help"
-msgstr "Cet article est désactivée."
+msgstr "Cet élément est désactivé."
 
 msgid "statusSignalNoMonitor"
-msgstr "Surveillance pas activé"
+msgstr "Surveillance pas activée"
 
 msgid "statusSignalNoMonitor_help"
-msgstr "Cet article n&#39;est pas surveillé."
+msgstr "Cet élément n'est pas surveillé."
 
 msgid "statusSignalPending"
-msgstr "Actuellement en cours d&#39;exécution"
+msgstr "Actuellement opérationnel"
 
 msgid "statusSignalPending_help"
-msgstr "Cet article n&#39;est actuellement pas en cours d&#39;exécution."
+msgstr "Cet élément n'est actuellement pas opérationnel."
 
 msgid "statusSignalNormal"
-msgstr "Normale"
+msgstr "Normal"
 
 msgid "statusSignalNormal_help"
-msgstr "Cet article est normal."
+msgstr "Cet élément est normal."
 
 msgid "statusSignalProblem"
 msgstr "Problème"
 
 msgid "statusSignalProblem_help"
-msgstr "Cet article a un problème."
+msgstr "Cet élément a un problème."
 
 msgid "statusSignalSevereProblem"
 msgstr "Problème grave"
 
 msgid "statusSignalSevereProblem_help"
-msgstr "Cet article a un problème grave."
+msgstr "Cet élément a un problème grave."
 
 msgid "statusSignalSuccess"
 msgstr "Succès"
 
 msgid "statusSignalSuccess_help"
-msgstr "Cet article a réussi."
+msgstr "Cet élément a réussi."
 
 msgid "noInstances"
-msgstr "Désolé, mais l&#39;opération a échoué. Le système n&#39;a pas pu trouver une instance de la classe [[VAR.class]] pour modifier."
+msgstr "Désolé, mais l'opération a échoué. Le système n'a pas pu trouver une instance de la classe [[VAR.class]] à modifier."
 
 msgid "tooManyInstances"
-msgstr "Désolé, mais l&#39;opération a échoué. Le système a trouvé plus d&#39;une instance de la classe [[VAR.class]] pour modifier."
+msgstr "Désolé, mais l'opération a échoué. Le système a trouvé plus d'une instance de la classe [[VAR.class]] à modifier."
 
 msgid "uninstall"
 msgstr "Désinstaller"
 
 msgid "uninstall_help"
-msgstr "Cliquez ici pour désinstaller un élément."
+msgstr "Cliquer ici pour désinstaller un élément."
 
 msgid "uninstall_disabled_help"
-msgstr "Cet article ne peut pas être désinstallé."
+msgstr "Cet élément ne peut pas être désinstallé."
 
 msgid "wait"
-msgstr "S&#39;il vous plaît attendez que les modifications à remplir."
+msgstr "Veuillez attendre que les modifications aient été terminées."
+
+#
+# status page stuff
+#
 
 msgid "messageField"
 msgstr "État de la tâche"
 
 msgid "messageField_help"
-msgstr "Ce champ indique l&#39;état actuel de la tâche d&#39;effectuer."
+msgstr "Ce champ indique l'état actuel de la tâche à effectuer."
 
 msgid "progressField"
 msgstr "Progression de la tâche"
 
 msgid "progressField_help"
-msgstr "Il s&#39;agit de la progression de la tâche d&#39;effectuer."
+msgstr "Affiche la progression de la tâche à effectuer."
 
 msgid "submessageField"
-msgstr "Sous-tâche État"
+msgstr "État de la sous-tâche"
 
 msgid "submessageField_help"
-msgstr "Ce champ indique l&#39;état actuel de la sous-tâche de la scène."
+msgstr "Ce champ indique l'état actuel de la sous-tâche à effectuer."
 
 msgid "subprogressField"
-msgstr "Sous-tâche Progress"
+msgstr "Progression de la sous-tâche"
 
 msgid "subprogressField_help"
-msgstr "C&#39;est l&#39;état d&#39;avancement de la sous-tâche de la scène."
+msgstr "Affiche la progression de la sous-tâche à effectuer."
+
+#
+# MultiFileUpload Stuff
+#
 
 msgid "noFiles"
 msgstr "_______ Aucun fichier _______"
@@ -264,46 +276,60 @@ msgid "fileToAttach"
 msgstr "Fichier"
 
 msgid "fileToAttach_help"
-msgstr "Sélectionnez un fichier à télécharger et cliquez sur le bouton «Soumettre» pour continuer ou appuyez sur «Annuler» pour fermer cette fenêtre."
+msgstr "Sélectionner un fichier à télécharger et cliquer sur le bouton « [[basic-palette.addAttachmentButton]] » pour continuer ou appuyer sur « [[basic-palette.cancel]] » pour fermer cette fenêtre."
 
 msgid "fileUpload_invalid"
-msgstr "Désolé, vous n&#39;avez pas sélectionné un fichier à télécharger."
+msgstr "Désolé, vous n'avez pas sélectionné de fichier à télécharger."
 
 msgid "addAttachmentButton"
 msgstr "Soumettre"
 
 msgid "addAttachmentButton_help"
-msgstr "Cliquez ici après avoir sélectionné le fichier que vous souhaitez télécharger."
+msgstr "Cliquer ici après avoir sélectionné le fichier que vous souhaitez télécharger."
 
 msgid "errorGettingFile"
-msgstr "Téléchargez erreur"
+msgstr "Erreur de téléchargement"
 
 msgid "errorOccuredWhilereceivingFile"
-msgstr "Désolé, une erreur s&#39;est produite lors de la réception du dossier. S&#39;il vous plaît essayer de nouveau."
+msgstr "Désolé, une erreur s'est produite lors de la réception du fichier. Veuillez essayer à nouveau."
 
+#
+# Numerics
+#
 msgid "integerBounds"
 msgstr "([[VAR.minBound]] - [[VAR.maxBound]])"
 
+#
+# Time Stuff
+#
+
+# possible VARs: date
 msgid "date"
 msgstr "[[VAR.date]]"
 
+# possible VARs: hour, amPm
 msgid "hour"
 msgstr "[[VAR.hour]]"
 
+# possible VARs: minute
 msgid "minute"
 msgstr "[[VAR.minute]]"
 
+# possible VARs: year
 msgid "year"
 msgstr "[[VAR.year]]"
 
+# possible VARs: month, date, year, hour, minute, amPm
 msgid "dateTimeFormat"
-msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]] [[VAR.12Hour]]: [[VAR.minute]] [[VAR.amPm]]"
+msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]] [[VAR.12Hour]]:[[VAR.minute]] [[VAR.amPm]]"
 
+# possible VARs: month, date, year
 msgid "dateFormat"
 msgstr "[[VAR.month]] [[VAR.date]] [[VAR.year]]"
 
+# possible VARs: hour, minute, amPm
 msgid "timeFormat"
-msgstr "[[VAR.hour]]: [[VAR.minute]] [[VAR.amPm]]"
+msgstr "[[VAR.hour]]:[[VAR.minute]] [[VAR.amPm]]"
 
 msgid "am"
 msgstr "AM"
@@ -348,7 +374,7 @@ msgid "12month"
 msgstr "Décembre"
 
 msgid "0000Hour"
-msgstr "12"
+msgstr "00"
 
 msgid "0100Hour"
 msgstr "1"
@@ -387,73 +413,77 @@ msgid "1200Hour"
 msgstr "12"
 
 msgid "1300Hour"
-msgstr "1"
+msgstr "13"
 
 msgid "1400Hour"
-msgstr "2"
+msgstr "14"
 
 msgid "1500Hour"
-msgstr "3"
+msgstr "15"
 
 msgid "1600Hour"
-msgstr "4"
+msgstr "16"
 
 msgid "1700Hour"
-msgstr "5"
+msgstr "17"
 
 msgid "1800Hour"
-msgstr "6"
+msgstr "18"
 
 msgid "1900Hour"
-msgstr "7"
+msgstr "19"
 
 msgid "2000Hour"
-msgstr "8"
+msgstr "20"
 
 msgid "2100Hour"
-msgstr "9"
+msgstr "21"
 
 msgid "2200Hour"
-msgstr "10"
+msgstr "22"
 
 msgid "2300Hour"
-msgstr "11"
+msgstr "23"
+
+# -- Months (short):
 
 msgid "01month_short"
 msgstr "Jan"
 
 msgid "02month_short"
-msgstr "Février"
+msgstr "Fév"
 
 msgid "03month_short"
 msgstr "Mar"
 
 msgid "04month_short"
-msgstr "Avril"
+msgstr "Avr"
 
 msgid "05month_short"
 msgstr "Mai"
 
 msgid "06month_short"
-msgstr "Juin"
+msgstr "Jun"
 
 msgid "07month_short"
-msgstr "Juillet"
+msgstr "Jul"
 
 msgid "08month_short"
-msgstr "Août"
+msgstr "Aoû"
 
 msgid "09month_short"
-msgstr "Septembre"
+msgstr "Sep"
 
 msgid "10month_short"
-msgstr "Octobre"
+msgstr "Oct"
 
 msgid "11month_short"
-msgstr "Novembre"
+msgstr "Nov"
 
 msgid "12month_short"
-msgstr "Décembre"
+msgstr "Déc"
+
+#-- Weekdays (long):
 
 msgid "sunday"
 msgstr "Dimanche"
@@ -476,6 +506,8 @@ msgstr "Vendredi"
 msgid "saturday"
 msgstr "Samedi"
 
+#-- Weekdays (short):
+
 msgid "sunday_short"
 msgstr "Di"
 
@@ -497,6 +529,10 @@ msgstr "Ve"
 msgid "saturday_short"
 msgstr "Sa"
 
+#
+# Time Zone Stuff
+#
+
 msgid "Africa"
 msgstr "Afrique"
 
@@ -510,7 +546,7 @@ msgid "Atlantic"
 msgstr "Océan Atlantique"
 
 msgid "Europe"
-msgstr "L&#39;Europe"
+msgstr "Europe"
 
 msgid "Indian"
 msgstr "Océan Indien"
@@ -519,7 +555,7 @@ msgid "NorthAmerica"
 msgstr "Amérique du Nord"
 
 msgid "Oceania"
-msgstr "Océanie (Australie)"
+msgstr "Océanie (avec Australie)"
 
 msgid "SouthAmerica"
 msgstr "Amérique du Sud"
@@ -528,7 +564,7 @@ msgid "UTC"
 msgstr "Décalages UTC"
 
 msgid "NorthAmerica/AG"
-msgstr "Antigua-et-Barbuda"
+msgstr "Antigua et Barbuda"
 
 msgid "America/St_Johns"
 msgstr "St. Johns"
@@ -540,10 +576,10 @@ msgid "America/Nassau"
 msgstr "Nassau"
 
 msgid "NorthAmerica/BB"
-msgstr "Barbade"
+msgstr "Barbade (Barbados)"
 
 msgid "America/Barbados"
-msgstr "Barbade"
+msgstr "Barbade (Barbados)"
 
 msgid "NorthAmerica/BZ"
 msgstr "Belize"
@@ -1230,7 +1266,7 @@ msgid "Africa/Brazzaville"
 msgstr "Brazzaville"
 
 msgid "Africa/CI"
-msgstr "Côte d&#39;Ivoire"
+msgstr "Côte d'Ivoire"
 
 msgid "Africa/Abidjan"
 msgstr "Abidjan"
@@ -1530,7 +1566,7 @@ msgid "Pacific/Fiji"
 msgstr "Fidji"
 
 msgid "Oceania/CL"
-msgstr "L&#39;île de Pâques (Chili)"
+msgstr "L'île de Pâques (Chili)"
 
 msgid "Pacific/Easter"
 msgstr "De Pâques"
@@ -1650,7 +1686,7 @@ msgid "Atlantic/Bermuda"
 msgstr "Bermudes"
 
 msgid "Atlantic/ES"
-msgstr "Canaries (Espagne)"
+msgstr "Canaries, Îles (Espagne)"
 
 msgid "Atlantic/Canary"
 msgstr "Canaries"
@@ -1758,49 +1794,49 @@ msgid "US/Samoa"
 msgstr "Samoa"
 
 msgid "US/Aleutian"
-msgstr "Aléoutiennes Temps"
+msgstr "Îles Aléoutiennes"
 
 msgid "US/Hawaii"
 msgstr "Hawaii"
 
 msgid "US/Alaska"
-msgstr "Temps de l&#39;Alaska"
+msgstr "Alaskan Time (Heure de l'Alaska)"
 
 msgid "US/Pacific"
-msgstr "Heure du Pacifique"
+msgstr "Pacific Time (Heure du Pacifique)"
 
 msgid "US/Arizona"
 msgstr "Arizona"
 
 msgid "US/Mountain"
-msgstr "Heure des Rocheuses"
+msgstr "Mountain Time (Heure des Rocheuses)"
 
 msgid "US/Central"
-msgstr "Central Time"
+msgstr "Central Time (Heure USA Centre)"
 
 msgid "US/East-Indiana"
 msgstr "Est Indiana"
 
 msgid "US/Eastern"
-msgstr "Heure de l&#39;Est"
+msgstr "Eastern Time (Heure USA Est)"
 
 msgid "NorthAmerica/CA"
 msgstr "Canada"
 
 msgid "Canada/Pacific"
-msgstr "Heure du Pacifique"
+msgstr "Pacific Time (Heure du Pacifique)"
 
 msgid "Canada/Yukon"
-msgstr "Temps Yukon"
+msgstr "Yukon Time (Heure du Yukon)"
 
 msgid "Canada/Central"
-msgstr "Central Time"
+msgstr "Central Time (Heure Centre Canada)"
 
 msgid "Canada/Eastern"
-msgstr "Heure de l&#39;Est"
+msgstr "Eastern Time (Heure Canada Est)"
 
 msgid "Canada/Mountain"
-msgstr "Heure des Rocheuses"
+msgstr "Mountain Time (Heure des Rocheuses)"
 
 msgid "Canada/Newfoundland"
 msgstr "Terre-Neuve"
@@ -2031,7 +2067,7 @@ msgid "Australia/Hobart"
 msgstr "Hobart"
 
 msgid "Oceania/US"
-msgstr "Îles américaine dans le Pacifique Sud"
+msgstr "Îles américaines dans le Pacifique Sud"
 
 msgid "Pacific/Johnston"
 msgstr "Johnston"
@@ -2040,16 +2076,16 @@ msgid "Pacific/Midway"
 msgstr "Midway"
 
 msgid "Pacific/Wake"
-msgstr "Réveillez"
+msgstr "Pacific Wake"
 
 msgid "Oceania/MH"
 msgstr "Îles Marshall"
 
 msgid "Pacific/Kwajalein"
-msgstr "Kwajalein"
+msgstr "Pacific Kwajalein"
 
 msgid "Pacific/Majuro"
-msgstr "Majuro"
+msgstr "Pacific Majuro"
 
 msgid "Oceania/NZ"
 msgstr "Nouvelle-Zélande"
@@ -2058,7 +2094,7 @@ msgid "Pacific/Auckland"
 msgstr "Auckland"
 
 msgid "Pacific/Chatham"
-msgstr "Chatham"
+msgstr "Pacific Chatham"
 
 msgid "Oceania/FM"
 msgstr "Micronésie"
@@ -2067,34 +2103,34 @@ msgid "Pacific/Kosrae"
 msgstr "Kosrae"
 
 msgid "Pacific/Ponape"
-msgstr "Ponape"
+msgstr "Pacific Ponape"
 
 msgid "Pacific/Truk"
-msgstr "Truk"
+msgstr "Pacific Truk"
 
 msgid "Pacific/Yap"
-msgstr "Yap"
+msgstr "Pacific Yap"
 
 msgid "Oceania/KI"
 msgstr "Kirbati"
 
 msgid "Pacific/Enderbury"
-msgstr "Enderbury"
+msgstr "Pacific Enderbury"
 
 msgid "Pacific/Kiritimati"
-msgstr "Kiritimati"
+msgstr "Pacific Kiritimati"
 
 msgid "Pacific/Tarawa"
-msgstr "Tarawa"
+msgstr "Pacific Tarawa"
 
 msgid "Oceania/PF"
 msgstr "Polynésie française"
 
 msgid "Pacific/Gambier"
-msgstr "Gambier"
+msgstr "Pacific Gambier"
 
 msgid "Pacific/Marquesas"
-msgstr "Marquises"
+msgstr "Pacific Marquesas"
 
 msgid "Pacific/Tahiti"
 msgstr "Tahiti"
@@ -2106,7 +2142,7 @@ msgid "Antarctica/Casey"
 msgstr "Casey"
 
 msgid "Antarctica/DumontDUrville"
-msgstr "Dumont D&#39;Urville"
+msgstr "Dumont D'Urville"
 
 msgid "Antarctica/Mawson"
 msgstr "Mawson"
@@ -2121,7 +2157,7 @@ msgid "Antarctica/South_Pole"
 msgstr "Pôle Sud"
 
 msgid "Atlantic/PT"
-msgstr "Îles portugais dans l&#39;Atlantique"
+msgstr "Îles portugaises d'Atlantique"
 
 msgid "Atlantic/Azores"
 msgstr "Açores"
@@ -2212,6 +2248,10 @@ msgstr "UTC-13: 00"
 
 msgid "Etc/GMT-14"
 msgstr "UTC-14: 00"
+
+#
+# ISO 3166 Country Code
+#
 
 msgid "ad"
 msgstr "Andorre"
@@ -2334,7 +2374,7 @@ msgid "ch"
 msgstr "Suisse"
 
 msgid "ci"
-msgstr "Côte-d&#39;Ivoire (Cote D&#39;Ivoire)"
+msgstr "Côte-d'Ivoire (Cote D'Ivoire)"
 
 msgid "ck"
 msgstr "Îles Cook"
@@ -2355,7 +2395,7 @@ msgid "cr"
 msgstr "Costa Rica"
 
 msgid "cs"
-msgstr "Ancien la Tchécoslovaquie"
+msgstr "Ancienne Tchécoslovaquie"
 
 msgid "cu"
 msgstr "Cuba"
@@ -2430,7 +2470,7 @@ msgid "fr"
 msgstr "France"
 
 msgid "fx"
-msgstr "France (Territoire du européenne)"
+msgstr "France (continent européen)"
 
 msgid "ga"
 msgstr "Gabon"
@@ -2445,7 +2485,7 @@ msgid "ge"
 msgstr "Géorgie"
 
 msgid "gf"
-msgstr "Guyana français"
+msgstr "Guyane française"
 
 msgid "gh"
 msgstr "Ghana"
@@ -2463,7 +2503,7 @@ msgid "gn"
 msgstr "Guinée"
 
 msgid "gp"
-msgstr "Guadeloupe (français)"
+msgstr "Guadeloupe (française)"
 
 msgid "gq"
 msgstr "Guinée équatoriale"
@@ -2472,7 +2512,7 @@ msgid "gr"
 msgstr "Grèce"
 
 msgid "gs"
-msgstr "S. la Géorgie et Isls S. Sandwich du."
+msgstr "S.Georgia et S.Sandwich Isles (Géorgie du Sud-et-les Îles Sandwich du Sud)"
 
 msgid "gt"
 msgstr "Guatemala"
@@ -2490,7 +2530,7 @@ msgid "hk"
 msgstr "Hong Kong"
 
 msgid "hm"
-msgstr "Les îles Heard et McDonald"
+msgstr "Heard et McDonald Isles (Îles Heard-et-MacDonald)"
 
 msgid "hn"
 msgstr "Honduras"
@@ -2517,7 +2557,7 @@ msgid "in"
 msgstr "Inde"
 
 msgid "io"
-msgstr "Territoire britannique de l&#39;océan Indien"
+msgstr "Territoire britannique de l'océan Indien"
 
 msgid "iq"
 msgstr "Irak"
@@ -2640,7 +2680,7 @@ msgid "mp"
 msgstr "Îles Mariannes du Nord"
 
 msgid "mq"
-msgstr "Martinique (Français)"
+msgstr "Martinique (F)"
 
 msgid "mr"
 msgstr "Mauritanie"
@@ -2673,7 +2713,7 @@ msgid "na"
 msgstr "Namibie"
 
 msgid "nc"
-msgstr "Nouvelle-Calédonie (Français)"
+msgstr "Nouvelle-Calédonie (F)"
 
 msgid "ne"
 msgstr "Niger"
@@ -2754,7 +2794,7 @@ msgid "qa"
 msgstr "Qatar"
 
 msgid "re"
-msgstr "Réunion (Français)"
+msgstr "La Réunion (F)"
 
 msgid "ro"
 msgstr "Roumanie"
@@ -2790,7 +2830,7 @@ msgid "si"
 msgstr "Slovénie"
 
 msgid "sj"
-msgstr "Les îles Svalbard et Jan Mayen"
+msgstr "Îles Svalbard et Jan Mayen"
 
 msgid "sk"
 msgstr "République slovaque"
@@ -2904,10 +2944,10 @@ msgid "ve"
 msgstr "Venezuela"
 
 msgid "vg"
-msgstr "Virgin Islands (British)"
+msgstr "Îles Vierges britanniques"
 
 msgid "vi"
-msgstr "Iles Vierges (USA)"
+msgstr "Îles Vierges des États-Unis"
 
 msgid "vn"
 msgstr "Vietnam"
@@ -2941,6 +2981,10 @@ msgstr "Congo, République démocratique du"
 
 msgid "zw"
 msgstr "Zimbabwe"
+
+#
+# ISO 639 Language Code
+#
 
 msgid "lang_aa"
 msgstr "Afar"
@@ -3350,6 +3394,12 @@ msgstr "Chinois"
 msgid "lang_zu"
 msgstr "Zulu"
 
+#
+#Translation for specific locales
+#
+
+# Start: basic 'validator' checks
+
 msgid "locale_zh_CN"
 msgstr "Chinois simplifié"
 
@@ -3357,82 +3407,92 @@ msgid "locale_zh_TW"
 msgstr "Chinois traditionnel"
 
 msgid "pwCheckStr"
-msgstr "essai de résistance du mot de passe"
+msgstr "Test de qualité du mot de passe"
+
+# New strings for BlueOnyx NG:
 
 msgid "val_required"
 msgstr "Ce champ est obligatoire."
 
 msgid "val_remote"
-msgstr "S&#39;il vous plaît corriger ce domaine."
+msgstr "Veuillez corriger ce champ."
 
 msgid "val_email"
-msgstr "S&#39;il vous plaît entrer une adresse email valide."
+msgstr "Veuillez saisir une adresse e-mail valide."
 
 msgid "val_date"
-msgstr "S&#39;il vous plaît entrer une date valide."
+msgstr "Veuillez taper une date valide."
 
 msgid "val_dateISO"
-msgstr "S&#39;il vous plaît entrer une date valide (ISO)."
+msgstr "Veuillez taper une date valide (ISO)."
 
 msgid "val_number"
-msgstr "S&#39;il vous plaît entrer un numéro valide."
+msgstr "Veuillez taper un numéro valide."
 
 msgid "val_digits"
-msgstr "S&#39;il vous plaît entrer que des chiffres."
+msgstr "Veuillez ne taper que des chiffres."
 
 msgid "val_creditcard"
-msgstr "S&#39;il vous plaît entrer un numéro de carte de crédit valide."
+msgstr "Veuillez taper un numéro de carte de crédit valide."
 
 msgid "val_equalTo"
-msgstr "S&#39;il vous plaît entrez la même valeur à nouveau."
+msgstr "Veuillez saisir la même valeur à nouveau."
 
 msgid "val_accept"
-msgstr "S&#39;il vous plaît entrer une valeur avec une extension valide."
+msgstr "Veuillez saisir une valeur avec une extension valide."
 
 msgid "val_maxlength"
-msgstr "Vous avez entré plus de caractères que permis."
+msgstr "Vous avez saisi plus de caractères que permis."
 
 msgid "val_minlength"
-msgstr "Vous avez entré caractères insuffisantes."
+msgstr "Vous n'avez pas saisi assez de caractères."
 
 msgid "val_rangelength"
 msgstr "La valeur saisie est hors de la plage autorisée."
 
 msgid "val_range"
-msgstr "S&#39;il vous plaît entrer une valeur qui est à l&#39;intérieur de la plage autorisée."
+msgstr "Veuillez taper une valeur qui est à l'intérieur de la plage autorisée."
 
 msgid "val_max"
-msgstr "La valeur saisie est supérieure autorisée."
+msgstr "La valeur saisie est trop grande."
 
 msgid "val_min"
-msgstr "La valeur saisie est inférieure autorisée."
+msgstr "La valeur saisie est trop petite."
 
 msgid "val_url"
-msgstr "S&#39;il vous plaît entrer une URL valide."
+msgstr "Veuillez saisir une URL valide."
+
+# End: basic 'validator' checks
+
+# Start: Extended 'validator' checks
 
 msgid "val_is_required"
 msgstr "Le champ [[VAR.field]] est nécessaire."
+
+# End: Extended 'validator' checks
+
+# Start: Style Switcher
 
 msgid "layout"
 msgstr "Mise en page"
 
 msgid "fluid"
-msgstr "Fluid"
+msgstr "Fluide"
 
 msgid "fixed"
-msgstr "Correction d&#39;"
+msgstr "Fixe"
 
 msgid "menus"
 msgstr "Menus"
 
 msgid "side"
-msgstr "Side"
+msgstr "Latéral"
 
 msgid "top"
-msgstr "Supérieur"
+msgstr "Top"
 
 msgid "slide"
-msgstr "Glissez"
+msgstr "Glissant"
 
 msgid "theme"
 msgstr "Thème"
@@ -3441,10 +3501,10 @@ msgid "dark"
 msgstr "Sombre"
 
 msgid "light"
-msgstr "Léger"
+msgstr "Clair"
 
 msgid "BGs"
-msgstr "BG"
+msgstr "Arrière-plans"
 
 msgid "silver"
 msgstr "Argent"
@@ -3453,10 +3513,10 @@ msgid "wood"
 msgstr "Bois"
 
 msgid "squares"
-msgstr "Squares"
+msgstr "Carrés"
 
 msgid "noise"
-msgstr "Noise"
+msgstr "Bruissement et neige"
 
 msgid "stripes"
 msgstr "Rayures"
@@ -3471,22 +3531,26 @@ msgid "punched"
 msgstr "Perforé"
 
 msgid "honeycomb"
-msgstr "Honeycomb"
+msgstr "nid d'abeilles"
 
 msgid "timber"
-msgstr "Timber"
+msgstr "Boiseries"
+
+# End: Style Switcher
 
 msgid "autogrow_expanding"
-msgstr "Ce champ ne cesse de s&#39;élargir, tout comme sur Facebook."
+msgstr "Ce champ ne cesse de s'élargir, tout comme sur Facebook."
 
 msgid "autogrow_prefill"
-msgstr "Vous continuez à taper, je garde de plus en plus ..."
+msgstr "Vous continuez à taper, je grandis ..."
 
 msgid "page_render_part_one"
-msgstr "La page en"
+msgstr "Page affichée en"
 
 msgid "page_render_part_two"
 msgstr "secondes"
+
+# Start: Calendar stuff
 
 msgid "next"
 msgstr "Suivant"
@@ -3495,86 +3559,98 @@ msgid "previous"
 msgstr "Précédent"
 
 msgid "done"
-msgstr "Fait"
+msgstr "Accompli"
 
 msgid "today"
-msgstr "Aujourd&#39;hui"
+msgstr "Aujourd'hui"
+
+# End: Calendar stuff
+
+# Start: Adminica Icon helptexts:
 
 msgid "icon_toggle"
 msgstr "Basculer cet élément."
 
 msgid "icon_grabber"
-msgstr "Déplacez cet élément."
+msgstr "Déplacer cet élément."
 
 msgid "icon_window"
 msgstr "Ouvrir dans une nouvelle fenêtre du navigateur."
 
 msgid "icon_show_all_tabs"
-msgstr "Développer tous les onglets et affiche toutes les informations dans un seul onglet."
+msgstr "Regrouper tous les onglets et afficher toutes leurs informations dans un seul onglet."
+
+# End: Adminica Icon helptexts
+
+# Start: Error page localization:
 
 msgid "401title"
-msgstr "Authorization Required"
+msgstr "Autorisation requise"
 
 msgid "401text"
-msgstr "Ce serveur n&#39;a pas pu vérifier que vous êtes autorisé à accéder au document que vous avez demandé. Soit vous avez fourni de mauvaises informations d&#39;identification (par exemple mauvais mot de passe), ou votre navigateur ne comprend pas comment fournir les informations d&#39;identification requises."
+msgstr "Le serveur n'a pas pu vérifier si vous êtes autorisé à accéder au document que vous avez demandé. Soit vous avez fourni une fausse identification (par exemple un mauvais mot de passe) ou votre navigateur ne peut pas fournir les informations d'identification requises. (401: Authorization Required)"
 
 msgid "403title"
-msgstr "Interdite"
+msgstr "Interdit"
 
 msgid "403text"
-msgstr "Vous n&#39;avez pas la permission d&#39;accéder au fichier demandé sur ce serveur."
+msgstr "Vous n'avez pas la permission d'accéder au fichier demandé sur ce serveur. (403: Forbidden)"
 
 msgid "404title"
 msgstr "Fichier introuvable"
 
 msgid "404text"
-msgstr "L&#39;URL demandée n&#39;a pas été trouvée sur ce serveur."
+msgstr "L'URL demandée n'a pas été trouvée sur ce serveur. (404: File Not Found)"
 
 msgid "500title"
-msgstr "Internal Server Error"
+msgstr "Erreur interne du serveur"
 
 msgid "500text"
-msgstr "Le serveur a rencontré une erreur interne et a été incapable de compléter votre demande."
+msgstr "Le serveur a rencontré une erreur interne et a été incapable de compléter votre demande. (500: Internal Server Error)"
 
 msgid "pageNotDoneYetTitle"
 msgstr "Erreur de transition"
 
 msgid "pageNotDoneYetText"
-msgstr "La page GUI que vous tentez d&#39;accéder n&#39;est pas encore converti en BlueOnyx 5207R ou 5208R. S&#39;il vous plaît faire une mise à jour YUM et également cocher la case «Mises à jour de logiciels» pour mises à jour de toute tierce PKGs du parti que vous pourriez avoir installés. Si cela ne résout pas le problème, s&#39;il vous plaît contactez le fournisseur du logiciel que vous avez essayé d&#39;utiliser lorsque l&#39;erreur s&#39;est produite."
+msgstr "La page GUI que vous tentez d'accéder n'est pas encore convertie en BlueOnyx 5207R ou 5208R. Veuillez faire une mise à jour YUM et également cocher la case « Mises à jour de logiciels » pour mises à jour de tous les PKGs installés. Si cela ne résout pas le problème, veuillez contactez le fournisseur du logiciel que vous avez essayé d'utiliser lorsque l'erreur s'est produite."
+
+# End: Error page localization
 
 # Start: Datatables
+
 msgid "sProcessing"
 msgstr "Traitement en cours..."
 
 msgid "sLengthMenu"
-msgstr "Afficher _MENU_ &eacute;l&eacute;ments"
+msgstr "Afficher _MENU_ éléments"
 
 msgid "sZeroRecords"
-msgstr "Aucun &eacute;l&eacute;ment &agrave; afficher"
+msgstr "Pas d'enregistrements disponibles"
 
 msgid "sInfo"
-msgstr "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments"
+msgstr "De _START_ à _END_ de _TOTAL_ éléments"
 
 msgid "sInfoEmpty"
-msgstr "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments"
+msgstr "Affichage de 0 à 0 de 0 éléments"
 
 msgid "sInfoFiltered"
-msgstr "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)"
+msgstr "(filtré de _MAX_ éléments au total)"
 
 msgid "sSearch"
-msgstr "Rechercher&nbsp;:"
+msgstr "Rechercher :"
 
 msgid "sFirst"
 msgstr "Premier"
 
 msgid "sLast"
-msgstr "Pr&eacute;c&eacute;dent"
+msgstr "Dernier"
 
 msgid "sPrevious"
 msgstr "[[palette.previous]]"
 
 msgid "sNext"
 msgstr "[[palette.next]]"
+
 # End: Datatables
 
 msgid "Yes"
@@ -3590,7 +3666,7 @@ msgid "disabled"
 msgstr "Cet élément est désactivé."
 
 msgid "notprivileged"
-msgstr "Vous n'avez pas les privilèges de modifier cet article."
+msgstr "Vous n'avez pas les privilèges de modifier cet élément."
 
 msgid "disabled_short"
 msgstr "Désactivé"
@@ -3602,7 +3678,7 @@ msgid "demo_mode_short"
 msgstr "Démo"
 
 msgid "demo_mode"
-msgstr "Ce serveur fonctionne en mode démo. Gain de change a été désactivé sur certaines pages."
+msgstr "Ce serveur fonctionne en mode démo. L'enregistrement de modifications a été désactivé sur certaines pages."
 
 ## New Countries:
 
@@ -3643,7 +3719,7 @@ msgid "ss"
 msgstr "Sud-Soudan"
 
 msgid "sx"
-msgstr "Sint Maarten (Dutch part)"
+msgstr "Saint-Martin (partie hollandaise)"
 
 msgid "tl"
 msgstr "Timor-Leste"
@@ -3651,41 +3727,43 @@ msgstr "Timor-Leste"
 msgid "ps"
 msgstr "Palestine"
 
+## Updated Password Check:
+
 msgid "pw_way_too_short"
-msgstr "Il est beaucoup trop court!"
+msgstr "Il est bien trop court !"
 
 msgid "pw_too_short"
-msgstr "Il est trop courte!"
+msgstr "Il est trop court !"
 
 msgid "pw_not_nuff_different"
 msgstr "Il ne contient pas assez de caractères différents."
 
 msgid "pw_all_whitespace"
-msgstr "C'est tous les espaces!"
+msgstr "Il n'y a que des espaces !"
 
 msgid "pw_too_simple"
-msgstr "Il est trop simpliste ou trop systématique!"
+msgstr "Il est trop simpliste ou trop systématique !"
 
 msgid "pw_insurance_number"
-msgstr "Il ressemble à un numéro de sécurité sociale!"
+msgstr "Il ressemble à un numéro de sécurité sociale !"
 
 msgid "pw_dictionary_word"
-msgstr "Il est basé sur un mot du dictionnaire!"
+msgstr "Il est basé sur un mot du dictionnaire !"
 
 msgid "pw_reversed_dictionary_word"
-msgstr "Il est basé sur un mot du dictionnaire inversé!"
+msgstr "Il est basé sur un mot du dictionnaire inversé !"
 
 msgid "pw_strong_password"
-msgstr "Mot de passe fort."
+msgstr "Mot de passe solide."
 
 msgid "pw_not_identical"
 msgstr "Les deux mots de passe saisis ne sont pas identiques."
 
 msgid "addAll"
-msgstr "Ajouter tous"
+msgstr "Ajouter tous les"
 
 msgid "removeAll"
 msgstr "Retirez tous les"
 
 msgid "itemsCount"
-msgstr "articles sélectionnés"
+msgstr "éléments sélectionnés"
