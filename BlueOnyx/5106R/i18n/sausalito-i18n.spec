@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.71.1
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,9 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX04
+- Added some PHP-5.1.6 specific changes to php/I18n.php.
 
 * Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX03 
 - Modified php/I18n.php to make sure all get*() and interpolate*() functions 

@@ -83,7 +83,7 @@ class I18n {
   }
 
   function Utf8Encode($text) {
-      if ( detectUTF8($text) == "1" ) {
+      if (I18n::detectUTF8($text) == "1" ) {
           return $text;
       }
       return BXEncoding::toUTF8($text);
@@ -103,17 +103,14 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("get($tag, $domain, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n get stub";
 
-    $out_txt = i18n_get($this->handle, $tag, $domain, $vars);
-    if (mb_check_encoding($out_txt, "utf8") == TRUE ){
-      return $out_txt;
-    }
-    if ((I18n::detectUTF8($out_txt) == "1") || ($this->Language == "ja_JP")) {
-      $out_txt_clean = mb_convert_encoding($out_txt, "UTF-8", "EUC-JP");
+    $out_text = i18n_get($this->handle, $tag, $domain, $vars);
+    $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
+    if (($this->Language == "ja_JP")) {
+      return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
     }
     else {
-      $out_txt_clean = BXEncoding::toUTF8($out_txt);
+      return BXEncoding::toUTF8($out_text_clean);
     }
-    return $out_txt_clean;
   }
 
   // description: get a localized string and encode it into Javascript friendly
@@ -132,10 +129,7 @@ class I18n {
 
     $out_text = i18n_get_js($this->handle, $tag, $domain, $vars);
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
-    if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
-      return $out_text_clean;
-    }
-    if ((I18n::detectUTF8($out_text_clean) == "1") || ($this->Language == "ja_JP")) {
+    if (($this->Language == "ja_JP")) {
       return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
     }
     else {
@@ -160,16 +154,11 @@ class I18n {
     if($GLOBALS["_I18n_isStub"])  return "I18n getHtml stub";
 
     $out_txt = i18n_get_html($this->handle, $tag, $domain, $vars);
-    if (mb_check_encoding($out_txt, "utf8") == TRUE ){
-      $out_txt_clean = $out_txt;
+    if (($this->Language == "ja_JP")) {
+      $out_txt_clean = mb_convert_encoding($out_txt, "UTF-8", "EUC-JP");
     }
     else {
-      if ((I18n::detectUTF8($out_txt) == "1") || ($this->Language == "ja_JP")) {
-        $out_txt_clean = mb_convert_encoding($out_txt, "UTF-8", "EUC-JP");
-      }
-      else {
-        $out_txt_clean = BXEncoding::toUTF8($out_txt);
-      }
+      $out_txt_clean = BXEncoding::toUTF8($out_txt);
     }
 
     // New: This is outright stuuuuuuuuuuupid! i18n_get_html() doesn't return HTML. Far from it!
@@ -192,10 +181,7 @@ class I18n {
 
     $out_text = i18n_interpolate($this->handle, $magicstr, $vars);
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
-    if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
-      return $out_text_clean;
-    } 
-    if ((I18n::detectUTF8($out_text_clean) == "1") || ($this->Language == "ja_JP")) {
+    if (($this->Language == "ja_JP")) {
       return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
     }
     else {
@@ -216,10 +202,7 @@ class I18n {
 
     $out_text = i18n_interpolate_js($this->handle, $magicstr, $vars);
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
-    if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
-      return $out_text_clean;
-    } 
-    if ((I18n::detectUTF8($out_text_clean) == "1") || ($this->Language == "ja_JP")) {
+    if (($this->Language == "ja_JP")) {
       return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
     }
     else {
@@ -239,16 +222,11 @@ class I18n {
     if($GLOBALS["_I18n_isStub"])  return "I18n interpolateHtml stub";
 
     $out_text = i18n_interpolate_html($this->handle, $magicstr, $vars);
-    if (mb_check_encoding($out_text, "utf8") == TRUE ){
-      $out_txt_clean = $out_text;
+    if (($this->Language == "ja_JP")) {
+      $out_txt_clean = mb_convert_encoding($out_text, "UTF-8", "EUC-JP");
     }
     else {
-      if ((I18n::detectUTF8($out_text) == "1") || ($this->Language == "ja_JP")) {
-        $out_txt_clean = mb_convert_encoding($out_text, "UTF-8", "EUC-JP");
-      }
-      else {
-        $out_txt_clean = BXEncoding::toUTF8($out_text);
-      }
+      $out_txt_clean = BXEncoding::toUTF8($out_text);
     }
 
     // New: This is outright stuuuuuuuuuuupid! i18n_get_html() doesn't return HTML. Far from it!
