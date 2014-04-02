@@ -115,8 +115,14 @@ class Label extends HtmlComponent {
       if($system->getConfig("logPath") != "") {
 	$logMouseOver = "top.code.uiLog_log('mouseOver', 'Label', '$label');";
 	$logMouseOut = "top.code.uiLog_log('mouseOut', 'Label', '$label');";
+
 	$logClick = "onClick=\"top.code.uiLog_log('click', 'Label', '$label');\"";
       }
+
+    $is_legacy = exec("cat /etc/build|grep 5106R|wc -l");
+    if (($encoding == "EUC-JP") && ($is_legacy == "1")) {
+      $description = I18n::Utf8Encode($this->getDescription());
+    }
 
       $javascript = "document._label_".$id."_description = '$description';"; 
       return "\n<SCRIPT language=\"javascript\">\n\t$javascript \n</SCRIPT>\n<A STYLE=\"$styleStr\" HREF=\"javascript: void 0\" onMouseOver=\"$logMouseOver return top.code.info_mouseOver(document._label_".$id."_description)\" onMouseOut=\"$logMouseOut return top.code.info_mouseOut();\" $logClick>$label</A>";

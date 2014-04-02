@@ -44,6 +44,7 @@ class CobaltUI
 
     var $AfterHeaders; // Html to be placed after headers
     var $Vars; // The Criteria variables used for the find
+    public $Language;
 
     function CobaltUI ($sessionId , $domain = "none") 
     {
@@ -52,6 +53,7 @@ class CobaltUI
         $this->Cce =& $Helper->getCceClient();
         $this->Domain = $domain;
         $this->I18n =& $Helper->getI18n($domain, $HTTP_ACCEPT_LANGUGE);
+        $this->Language = $HTTP_ACCEPT_LANGUGE;
         if (!$this->I18n) 
         {
             print "<hr><b>ERROR: no i18n object for $domain</b><hr>\n";
@@ -390,7 +392,6 @@ class CobaltUI
     function AddGenericButton($target_url = "", $text_label = "") 
     {
         $this->_getUIFC("Button");
-
         $label = new Label(
                     $this->Page,
                     $this->_transTag($text_label,"html"),
@@ -762,12 +763,9 @@ class CobaltUI
     #   selname -- name of the "selected" column (presently left)
     #   unselname -- name of the "unselected" column (now right)
     #   elements -- array of all elements (selected & unselected)
-    function &SetSelectField($tag, $selname, $unselname, $elements,
-        $opts = false)
-    {
+    function &SetSelectField($tag, $selname, $unselname, $elements, $opts = false) {
         $sel_elems = $this->Data[$tag];
         $unsel_elems = arrayToString($elements);
-
         $this->_getUIFC("SetSelector");    
         $sel = new SetSelector(
                     $this->Page,
@@ -802,11 +800,11 @@ class CobaltUI
     {
         $i = 0; // Multichoice object sucks. need to keep an index to
                 // select options.
-    
+
         $this->_getUIFC("MultiChoice");
         $this->_getUIFC("Option");
         $obj = new MultiChoice($this->Page, $tag);
-    
+
         $anyselected = false;
         while ($val =& current($data)) 
         {
@@ -819,7 +817,7 @@ class CobaltUI
             {
                 $label =& $val;
             }
-            
+
             $labelObj = new Label(
                             $this->Page, 
                             $this->_transTag(
@@ -899,8 +897,20 @@ class CobaltUI
         } 
         else if ($quoting == "html") 
         {
-            // $trans = $this->I18n->interpolate($message);
-            $trans = $this->I18n->interpolateHtml($message);
+
+            // On 5106R our pulldown needs to be trimmed down to just the language
+            // identifiers if we're on Japanese:
+            $is_legacy = exec("cat /etc/build|grep 5106R|wc -l");
+            $encoding = $this->I18nPalette->getProperty("encoding", "palette");
+            if (($encoding == "EUC-JP") && ($is_legacy == "1")) {
+                $trans = I18n::Utf8Encode($this->I18n->interpolate($message));
+            }
+            elseif ($is_legacy == "1") {
+                $trans = $this->I18n->interpolate($message);
+            }
+            else {
+                $trans = $this->I18n->interpolateHtml($message);
+            }
         } 
         else 
         {

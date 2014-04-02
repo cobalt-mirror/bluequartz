@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.5.2
-Release: 0BX33%{?dist}
+Release: 0BX34%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,15 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX34
+- Last change (0.5.2-0BX33) works fine on all platforms but 5106R. The old
+  PHP-5.1.6 shows its ugly face. Added platform specific alterations that
+  kick in when the platform is 5106R and the language is Japanese.
+- Modified libPhp/CobaltUI.php - don't we just love that sucker.
+- Modified libPhp/uifc/Button.php
+- Modified libPhp/uifc/Label.php
+- Modified libPhp/uifc/BXLocale.php
 
 * Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX33
 - Added improved French locale as provided by Meaulnes Legler.
