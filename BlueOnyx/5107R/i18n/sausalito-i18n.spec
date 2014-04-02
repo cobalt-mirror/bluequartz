@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.71.1
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -101,6 +101,11 @@ if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
 fi
 
 %changelog
+
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX04
+- Modified php/I18n.php to make sure all get*() and interpolate*() functions
+  return proper UTF-8 locales. This allows us to display all languages
+  including Japanese in UTF-8. This is a modified backport from 520XR.
 
 * Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX03   
 - Cracklib for x86_64 has a bug in cracklib.h as per https://bugs.php.net/bug.php?id=57463
