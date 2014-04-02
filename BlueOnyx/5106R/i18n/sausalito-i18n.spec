@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.71.1
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,11 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX03 
+- Modified php/I18n.php to make sure all get*() and interpolate*() functions 
+  return proper UTF-8 locales. This allows us to display all languages 
+  including Japanese in UTF-8. This is a modified backport from 520XR. 
 
 * Sat Dec 14 2013 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX02
 - Merged in locale support for the Netherlands ('nl_NL').
