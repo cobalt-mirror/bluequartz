@@ -102,6 +102,11 @@ fi
 
 %changelog
 
+* Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX04
+- Modified php/I18n.php to make sure all get*() and interpolate*() functions 
+  return proper UTF-8 locales. This allows us to display all languages 
+  including Japanese in UTF-8.
+
 * Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX03   
 - Cracklib for x86_64 has a bug in cracklib.h as per https://bugs.php.net/bug.php?id=57463
 - Added cracklib/crack/libcrack/src/cracklib.h.i686

@@ -9,6 +9,7 @@ $isI18nDefined = true;
 
 // used by encodeString
 include_once('EncodingConv.php');
+include_once('BXEncoding.php');
 
 //
 // private class variables
@@ -24,28 +25,29 @@ class I18n {
   //
 
   var $handle;
+  private $Language;
 
   //
   // public methods
   //
 
-	// description: constructor
-	// param: domain: a string that describes the domain
-	// param: langs: an optional string that contains a comma separated list
-	//     of preferred locale. Most important locales appears first.
-	//     e.g. "en_US, en_AU, zh, de_DE"
-	function I18n($domain = "", $langs = "") 
-	{
-		if($GLOBALS["_I18n_isDebug"]) print("I18n($domain, $langs)\n");
-		if($GLOBALS["_I18n_isStub"]) return;
+  // description: constructor
+  // param: domain: a string that describes the domain
+  // param: langs: an optional string that contains a comma separated list
+  //     of preferred locale. Most important locales appears first.
+  //     e.g. "en_US, en_AU, zh, de_DE"
+  function I18n($domain = "", $langs = "") 
+  {
+    if($GLOBALS["_I18n_isDebug"]) print("I18n($domain, $langs)\n");
+    if($GLOBALS["_I18n_isStub"]) return;
 
-		if($langs == "" && getenv("LANG") == "") {
-			$langs = "en_US";
-		}
+    if($langs == "" && getenv("LANG") == "") {
+      $langs = "en_US";
+    }
 
-		// If the detected language is not 'de_DE', 'da_DK', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL' or 'ja_JP', we fall back to 'en_US'.
-		// This was added particularly for 5107R/5108R (and later) as it would default to German otherwise:
-		$my_lang = explode(',', $langs);
+    // If the detected language is not 'de_DE', 'da_DK', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL' or 'ja_JP', we fall back to 'en_US'.
+    // This was added particularly for 5107R/5108R (and later) as it would default to German otherwise:
+    $my_lang = explode(',', $langs);
     if ((($my_lang[0] != "de-DE") && ($my_lang[0] != "de_DE")) &&
         (($my_lang[0] != "da-DK") && ($my_lang[0] != "da_DK")) &&
         (($my_lang[0] != "es-ES") && ($my_lang[0] != "es_ES")) &&
@@ -57,8 +59,35 @@ class I18n {
             $langs = "en_US";
     }
 
-		$this->handle = i18n_new($domain, $langs);
-	}
+    $this->Language = $my_lang[0];
+
+    $this->handle = i18n_new($domain, $langs);
+  }
+
+  /**
+   *
+   *  Simple function to detect if a string is UTF-8 or not.
+   *
+   */
+
+  function detectUTF8($string) {
+          return preg_match('%(?:
+          [\xC2-\xDF][\x80-\xBF]              # non-overlong 2-byte
+          |\xE0[\xA0-\xBF][\x80-\xBF]             # excluding overlongs
+          |[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}      # straight 3-byte
+          |\xED[\x80-\x9F][\x80-\xBF]             # excluding surrogates
+          |\xF0[\x90-\xBF][\x80-\xBF]{2}        # planes 1-3
+          |[\xF1-\xF3][\x80-\xBF]{3}              # planes 4-15
+          |\xF4[\x80-\x8F][\x80-\xBF]{2}        # plane 16
+          )+%xs', $string);
+  }
+
+  function Utf8Encode($text) {
+      if ( detectUTF8($text) == "1" ) {
+          return $text;
+      }
+      return BXEncoding::toUTF8($text);
+  }
 
   // description: get a localized string
   // param: tag: the tag of the string. Identical to the msgid string in the
@@ -74,7 +103,17 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("get($tag, $domain, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n get stub";
 
-    return i18n_get($this->handle, $tag, $domain, $vars);
+    $out_txt = i18n_get($this->handle, $tag, $domain, $vars);
+    if (mb_check_encoding($out_txt, "utf8") == TRUE ){
+      return $out_txt;
+    }
+    if ((I18n::detectUTF8($out_txt) == "1") || ($this->Language == "ja_JP")) {
+      $out_txt_clean = mb_convert_encoding($out_txt, "UTF-8", "EUC-JP");
+    }
+    else {
+      $out_txt_clean = BXEncoding::toUTF8($out_txt);
+    }
+    return $out_txt_clean;
   }
 
   // description: get a localized string and encode it into Javascript friendly
@@ -91,7 +130,17 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("getJs($tag, $domain, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n getJs stub";
 
-    return i18n_get_js($this->handle, $tag, $domain, $vars);
+    $out_text = i18n_get_js($this->handle, $tag, $domain, $vars);
+    $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
+    if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
+      return $out_text_clean;
+    }
+    if ((I18n::detectUTF8($out_text_clean) == "1") || ($this->Language == "ja_JP")) {
+      return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
+    }
+    else {
+      return BXEncoding::toUTF8($out_text_clean);
+    }
   }
 
   // description: get a localized string and encode it into HTML friendly
@@ -110,7 +159,26 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("getHtml($tag, $domain, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n getHtml stub";
 
-    return i18n_get_html($this->handle, $tag, $domain, $vars);
+    $out_txt = i18n_get_html($this->handle, $tag, $domain, $vars);
+    if (mb_check_encoding($out_txt, "utf8") == TRUE ){
+      $out_txt_clean = $out_txt;
+    }
+    else {
+      if ((I18n::detectUTF8($out_txt) == "1") || ($this->Language == "ja_JP")) {
+        $out_txt_clean = mb_convert_encoding($out_txt, "UTF-8", "EUC-JP");
+      }
+      else {
+        $out_txt_clean = BXEncoding::toUTF8($out_txt);
+      }
+    }
+
+    // New: This is outright stuuuuuuuuuuupid! i18n_get_html() doesn't return HTML. Far from it!
+    // Additionally we may have single quotes and/or HTML escaped entities in our locales. That
+    // totally messes up tooltips if we present them escaped in single quotes. So we do the insane
+    // thing of passing the return of i18n_get_html() first through htmlspecialchars_decode(),
+    // then through html_entity_decode() and finally through htmlentities() to get all the crap
+    // properly escaped in correct HTML code.
+    return htmlentities(html_entity_decode(htmlspecialchars_decode($out_txt_clean, ENT_QUOTES), ENT_QUOTES), ENT_QUOTES | ENT_IGNORE, "UTF-8");
   }
 
   // description: get a localized string out of a fully qualified tag
@@ -122,7 +190,17 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("interpolate($magicstr, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n interpolate stub";
 
-    return i18n_interpolate($this->handle, $magicstr, $vars);
+    $out_text = i18n_interpolate($this->handle, $magicstr, $vars);
+    $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
+    if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
+      return $out_text_clean;
+    } 
+    if ((I18n::detectUTF8($out_text_clean) == "1") || ($this->Language == "ja_JP")) {
+      return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
+    }
+    else {
+      return BXEncoding::toUTF8($out_text_clean);
+    }
   }
 
   // description: get a localized string out of a fully qualified tag and
@@ -136,7 +214,17 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("interpolateJs($magicstr, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n interpolateJs stub";
 
-    return i18n_interpolate_js($this->handle, $magicstr, (array)$vars);
+    $out_text = i18n_interpolate_js($this->handle, $magicstr, $vars);
+    $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
+    if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
+      return $out_text_clean;
+    } 
+    if ((I18n::detectUTF8($out_text_clean) == "1") || ($this->Language == "ja_JP")) {
+      return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
+    }
+    else {
+      return BXEncoding::toUTF8($out_text_clean);
+    }
   }
 
   // description: get a localized string out of a fully qualified tag and
@@ -150,7 +238,26 @@ class I18n {
     if($GLOBALS["_I18n_isDebug"]) print("interpolateHtml($magicstr, $vars)\n");
     if($GLOBALS["_I18n_isStub"])  return "I18n interpolateHtml stub";
 
-    return i18n_interpolate_html($this->handle, $magicstr, $vars);
+    $out_text = i18n_interpolate_html($this->handle, $magicstr, $vars);
+    if (mb_check_encoding($out_text, "utf8") == TRUE ){
+      $out_txt_clean = $out_text;
+    }
+    else {
+      if ((I18n::detectUTF8($out_text) == "1") || ($this->Language == "ja_JP")) {
+        $out_txt_clean = mb_convert_encoding($out_text, "UTF-8", "EUC-JP");
+      }
+      else {
+        $out_txt_clean = BXEncoding::toUTF8($out_text);
+      }
+    }
+
+    // New: This is outright stuuuuuuuuuuupid! i18n_get_html() doesn't return HTML. Far from it!
+    // Additionally we may have single quotes and/or HTML escaped entities in our locales. That
+    // totally messes up tooltips if we present them escaped in single quotes. So we do the insane
+    // thing of passing the return of i18n_get_html() first through htmlspecialchars_decode(),
+    // then through html_entity_decode() and finally through htmlentities() to get all the crap
+    // properly escaped in correct HTML code.
+    return htmlentities(html_entity_decode(htmlspecialchars_decode($out_txt_clean, ENT_QUOTES), ENT_QUOTES), ENT_QUOTES | ENT_IGNORE, "UTF-8");
   }
 
   // description: get a property value from the property file
@@ -217,74 +324,89 @@ class I18n {
     return i18n_strftime($this->handle, $format, $time);
   }
 
-	/*
-	 * Encode a string properly based on the current locale.
-	 * args:
-	 *	string to encode
-	 *	To encoding (optional).  Encoding to convert string to.
-	 *	From encoding (optional).  Assume the passed in string is in
-	 *	this encoding rather than determining the encoding
-	 *	automatically.
-	 *	locale (optional) to encode for.  If not specified, the locale 
-	 *	of the I18n object is used.
-	 *	is used.
+  /*
+   * Encode a string properly based on the current locale.
+   * args:
+   *  string to encode
+   *  To encoding (optional).  Encoding to convert string to.
+   *  From encoding (optional).  Assume the passed in string is in
+   *  this encoding rather than determining the encoding
+   *  automatically.
+   *  locale (optional) to encode for.  If not specified, the locale 
+   *  of the I18n object is used.
+   *  is used.
 
-	 *	
-	 * returns:
-	 *	The encoded string if successful.
-	 *	boolean false if there is an error.
-	 */
-	function encodeString($string, $toEncoding = '', $fromEncoding = '',
-			      $locale = '')
-	{
-		if ($locale == '') {
-			$locales = $this->getLocales();
-			if ($locales[0] == '') {
-				return false;
-			}
-			$locale = $locales[0];
-		}
-	
-		// this is kind of a hack, but at least it hides the hack here.
-		if (preg_match("/^ja/i", $locale)) {
-			$encConv = new EncodingConv($string, 'japanese',
-						    $fromEncoding);
-			if ($toEncoding == '') {
-				return $encConv->toUTF8();
-			} else {
-				return $encConv->doJapanese($string,
-							    $toEncoding,
-							    $fromEncoding);
-			}
-		} else {
-			/*
-			 * okay, so this is only japanese for now, but one day 
-			 * this could be useful for unicode
-			 */
-			return $string;
-		}
-	}
+   *  
+   * returns:
+   *  The encoded string if successful.
+   *  boolean false if there is an error.
+   */
+  function encodeString($string, $toEncoding = '', $fromEncoding = '',
+            $locale = '')
+  {
+    if ($locale == '') {
+      $locales = $this->getLocales();
+      if ($locales[0] == '') {
+        return false;
+      }
+      $locale = $locales[0];
+    }
+  
+    // this is kind of a hack, but at least it hides the hack here.
+    if (preg_match("/^ja/i", $locale)) {
+      $encConv = new EncodingConv($string, 'japanese',
+                $fromEncoding);
+      if ($toEncoding == '') {
+        return $encConv->toUTF8();
+      } else {
+        return $encConv->doJapanese($string,
+                  $toEncoding,
+                  $fromEncoding);
+      }
+    } else {
+      /*
+       * okay, so this is only japanese for now, but one day 
+       * this could be useful for unicode
+       */
+      return $string;
+    }
+  }
 }
+
 /*
-Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
-Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2003 Sun Microsystems, Inc. 
+All Rights Reserved.
 
-Redistribution and use in source and binary forms, with or without modification, 
-are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
 
--Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright 
+   notice, this list of conditions and the following disclaimer in 
+   the documentation and/or other materials provided with the 
+   distribution.
 
--Redistribution in binary form must reproduce the above copyright notice, 
-this list of conditions and the following disclaimer in the documentation and/or 
-other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
 
-Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-be used to endorse or promote products derived from this software without 
-specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
 
-This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+You acknowledge that this software is not designed or intended for 
+use in the design, construction, operation or maintenance of any 
+nuclear facility.
 
-You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 */
 ?>
