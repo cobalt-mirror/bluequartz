@@ -60,13 +60,12 @@ if ($HTTP_GET_VARS['secure']) { $secure = "checked"; }
 preg_match("/^([^:]+)/", $HTTP_SERVER_VARS['HTTP_HOST'], $matches);
 $hostname = $matches[0];
 
-if(($charset=$i18n->getProperty("encoding","palette"))!="none")
-	header("Content-type: text/html; charset=$charset");
+header("Content-type: text/html; charset=UTF-8");
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php if ($charset != "none") {echo $charset;} else {echo "UTF-8";} ?>" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style type="text/css">
 <!--
 small {<?php print($myStyle->toTextStyle("small")); ?>}
