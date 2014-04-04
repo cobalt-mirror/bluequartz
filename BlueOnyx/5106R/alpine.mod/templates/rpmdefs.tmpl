@@ -76,7 +76,9 @@ information for [VENDOR]-[SERVICE].
 
 <begin capstone>
 # capstone post-install
-/usr/sausalito/constructor/base/alpine/12_handle_sl_repos.pl
+if [ -f /usr/sausalito/constructor/base/alpine/12_handle_sl_repos.pl ];then
+  /usr/sausalito/constructor/base/alpine/12_handle_sl_repos.pl
+fi
 <end capstone>
 
 <begin glue>
