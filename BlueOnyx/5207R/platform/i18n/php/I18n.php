@@ -83,7 +83,10 @@ class I18n {
   }
 
   function Utf8Encode($text) {
-      if ( detectUTF8($text) == "1" ) {
+      if (mb_detect_encoding($text, "JIS, EUC-JP, ISO-8859-1, ISO-8859-15, windows-1252, UTF-8") == "EUC-JP") {
+        $text = mb_convert_encoding($text, "UTF-8", "EUC-JP");
+      }
+      if (I18n::detectUTF8($text) == "1" ) {
           return $text;
       }
       return BXEncoding::toUTF8($text);
