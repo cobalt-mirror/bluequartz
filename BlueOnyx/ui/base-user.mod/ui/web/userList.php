@@ -135,7 +135,7 @@ $i_am = $serverScriptHelper->loginUser['name'];
 
 for ($i = $start; $i < count($oids) && $i < $start + $pageLength; $i++) {
 	$user = $cceClient->get($oids[$i]);
-	$fullName = $user["fullName"];
+	$fullName = I18n::Utf8Encode($user["fullName"]);
 
 	$userName = $user["name"];
 

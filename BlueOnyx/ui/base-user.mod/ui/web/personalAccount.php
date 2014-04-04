@@ -36,7 +36,7 @@ if (count($errors) > 0) {
 }
 
 $block->addFormField(
-  $factory->getFullName("fullNameField", $user["fullName"]),
+  $factory->getFullName("fullNameField", I18n::Utf8Encode($user["fullName"])),
   $factory->getLabel("fullNameField")
 );
 

@@ -52,7 +52,7 @@ $block->addPage("account", $factory->getLabel("account"));
 $block->addPage("email", $factory->getLabel("email"));
 
 $block->addFormField(
-  $factory->getFullName("fullNameField", $user["fullName"]),
+  $factory->getFullName("fullNameField", I18n::Utf8Encode($user["fullName"])),
   $factory->getLabel("fullNameField"),
   "account"
 );
@@ -227,7 +227,7 @@ if (($_PagedBlock_selectedId_modifyUser == "email") && ($_PagedBlock_selectedId_
     $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
     $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
 
-    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", BXEncoding::toWin1252($userEmail["vacationMsg"])), $factory->getLabel("autoResponderMessageField"));
+    $enableAutoResponder->addFormField($factory->getTextBlock("autoResponderMessageField", I18n::Utf8Encode($userEmail["vacationMsg"])), $factory->getLabel("autoResponderMessageField"));
     $autoResponder = $factory->getMultiChoice("autoResponderField");
     $autoResponder->addOption($enableAutoResponder);
     $block->addFormField(
@@ -308,7 +308,7 @@ $block->addFormField(
 
 $flags = $user["desc_readonly"] ? "r" : "rw";
 $textblock = $factory->getTextBlock("userDescField", 
-       $i18n->interpolate($user["description"]), $flags);
+       $i18n->interpolate(I18n::Utf8Encode($user["description"])), $flags);
 $textblock->setWidth(2*$textblock->getWidth());
 if (!$user["desc_readonly"]) {
   $textblock->setOptional(true);
