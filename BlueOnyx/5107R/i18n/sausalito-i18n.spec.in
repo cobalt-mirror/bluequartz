@@ -102,6 +102,10 @@ fi
 
 %changelog
 
+* Fri Apr 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX05
+- Modified php/I18n.php to extend Utf8Encode() with an automatic converter
+  from EUC-JP to UTF-8.
+
 * Wed Apr 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX04
 - Modified php/I18n.php to make sure all get*() and interpolate*() functions
   return proper UTF-8 locales. This allows us to display all languages
