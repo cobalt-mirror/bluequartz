@@ -62,18 +62,10 @@ $enableAutoResponder->addFormField($factory->getTimeStamp("oldStop", $oldStop, "
 $enableAutoResponder->addFormField($autoRespondStartDate, $factory->getLabel("autoRespondStartDate")); 
 $enableAutoResponder->addFormField($autoRespondStopDate, $factory->getLabel("autoRespondStopDate")); 
 
-if ($User['localePreference'] != "ja_JP") {
-  $enableAutoResponder->addFormField(
-    $factory->getTextBlock("autoResponderMessageField", BXEncoding::toWin1252($userEmail["vacationMsg"])),
-    $factory->getLabel("autoResponderMessageField")
-  );
-}
-else {
-  $enableAutoResponder->addFormField(
-    $factory->getTextBlock("autoResponderMessageField", EncodingConv::doJapanese($userEmail["vacationMsg"], "euc")),
-    $factory->getLabel("autoResponderMessageField")
-  );
-}
+$enableAutoResponder->addFormField(
+  $factory->getTextBlock("autoResponderMessageField", I18n::Utf8Encode($userEmail["vacationMsg"])),
+  $factory->getLabel("autoResponderMessageField")
+);
 
 $autoResponder->addOption($enableAutoResponder);
 $block->addFormField($autoResponder, $factory->getLabel("autoResponderField"));
