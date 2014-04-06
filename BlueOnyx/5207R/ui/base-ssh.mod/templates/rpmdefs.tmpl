@@ -118,6 +118,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Apr 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX05
+- Modified glue/handlers/sshd_handler.pl to disable 'AllowTcpForwarding' 
+  and 'X11Forwarding' by default. This is a security related fix to
+  prevent SPAM sending via SSH tunnel. Reminder: Users do NOT need a
+  valid shell to create a SSH tunnel. Tunneled SPAM then gets sent from
+  'localhost', which circumvents the usual relay checks. For more info
+  see [BlueOnyx:15092].
+
 * Thu Feb 27 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX04
 - Merged in better locales for Japanese as provided by Hiroyuki Sasahide.
 - Added missing locale headers to some non-Enlish locales.
