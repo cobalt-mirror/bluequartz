@@ -70,6 +70,10 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+if [ -S /usr/sausalito/cced.socket ]; then
+	# Force updated of sshd_config:
+	/usr/sausalito/constructor/base/ssh/import_sshd_settings.pl
+fi
 
 <end glue>
 <begin ui>
@@ -117,6 +121,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Apr 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX06
+- Added call to constructor/base/ssh/import_sshd_settings.pl on RPM post
+  install to force an update of the sshd_config and a SSHd restart.
 
 * Sun Apr 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX05
 - Modified glue/handlers/sshd_handler.pl to disable 'AllowTcpForwarding' 
