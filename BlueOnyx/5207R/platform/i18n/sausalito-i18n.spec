@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.71.1
-Release: 0BX05%{?dist}
+Release: 0BX06%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -101,6 +101,11 @@ if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
 fi
 
 %changelog
+
+* Thu Apr 10 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX06
+- Modified php/I18n.php to improve the order of charsets in mb_detect_encoding()
+  as per Hisao Shibuya's suggestion.
+
 * Fri Apr 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX05
 - Modified php/I18n.php to extend Utf8Encode() with an automatic converter
   from EUC-JP to UTF-8.
