@@ -119,6 +119,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Apr 10 2014 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX11
+- Small update to ui/web/userMod.php: The field sortName also needed a dose
+  of I18n::Utf8Encode(), as it might contain EUC-JP data.
+  
 * Fri Apr 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX10
 - More Japanese troubles on fields that allow alphanumplus input in Japanese.
 - Modified ui/web/personalEmail.php to use I18n::Utf8Encode() on problematic fields.
