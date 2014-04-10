@@ -59,7 +59,7 @@ $block->addFormField(
 
 $prop=$i18n->getProperty("needSortName");
 if($prop=="yes"){
-  $sortName=$factory->getFullName("sortNameField",$user["sortName"]);
+  $sortName=$factory->getFullName("sortNameField", I18n::Utf8Encode($user["sortName"]));
   $sortName->setOptional('silent');
   $block->addFormField(
           $sortName,
