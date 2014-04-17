@@ -3,7 +3,6 @@
 
 # usage: vacation.pl [message] [from-address]
  
-use strict;
 use lib qw( /usr/sausalito/perl );
 use Sauce::Config;
 use CCE;
@@ -15,29 +14,15 @@ use FileHandle;
 use I18nMail;
 use Quota;
 use MIME::Lite;
+use MIME::Base64;
+use utf8;
 use Encode qw/encode decode/;
 
-# Declare DEBUGGING
-#use Log::Log4perl;
-
-#my $log_conf = q/
-#    log4perl.category = INFO, Logfile, Screen
-#
-#    log4perl.appender.Logfile = Log::Log4perl::Appender::File
-#    log4perl.appender.Logfile.filename = debug-vacation-pl.log
-#    log4perl.appender.Logfile.mode = append
-#    log4perl.appender.Logfile.layout = Log::Log4perl::Layout::SimpleLayout
-#
-#    log4perl.appender.Screen        = Log::Log4perl::Appender::Screen
-#    log4perl.appender.Screen.layout = Log::Log4perl::Layout::SimpleLayout
-#/;
-
-#Log::Log4perl::init( \$log_conf );
-#my $logger = Log::Log4perl::get_logger();
-
-# TESTING - Test variables
-#$logger->info("Starting $0");
-#$logger->error("Bad thing happened");
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG) {
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 ### Add by patricko@staff.singnet.com.sg 20060725
 my @ignores = (
@@ -53,8 +38,6 @@ my ($opt_d)=(0);
 ### End Add by patricko@staff.singnet.com.sg 20060725
 
 my ($message_file,$user_from) = @ARGV;
-
-my $Sendmail = Sauce::Config::bin_sendmail;
 
 my @pwent = getpwnam($user_from);
 my $Vaca_dir = $pwent[7];
@@ -147,8 +130,8 @@ my ($oid) = $cce->find("User", { 'name' => $user_from });
 my ($ok, $user) = $cce->get($oid);
 
 if( not $ok ) { 
-	$cce->bye('FAIL', '[[base-email.cantGetUserInfo]]'); 
-	exit(255);
+  $cce->bye('FAIL', '[[base-email.cantGetUserInfo]]'); 
+  exit(255);
 }
 
 ($ok, my $userEmailObj) = $cce->get($oid, 'Email');
@@ -159,36 +142,33 @@ else
 {
  if ($user->{site} ne '') 
  {
-	my ($v_oid) = $cce->find('Vsite', { 'name' => $user->{site} });
-	my ($v_ok, $vsite) = $cce->get($v_oid);
-	
-	$user_from .= '@' . $vsite->{fqdn};
+  my ($v_oid) = $cce->find('Vsite', { 'name' => $user->{site} });
+  my ($v_ok, $vsite) = $cce->get($v_oid);
+  
+  $user_from .= '@' . $vsite->{fqdn};
  }
 }
 
 # set locale for i18n
 my $locale = $user->{localePreference};
 if( not -d "/usr/share/locale/$locale" && not -d "/usr/local/share/locale/$locale" ) {
-	$locale = I18n::i18n_getSystemLocale($cce);
+  $locale = I18n::i18n_getSystemLocale($cce);
 }
 
 
 # Check start/stop date
-
 my $startDate = $userEmailObj->{vacationMsgStart};
 my $stopDate = $userEmailObj->{vacationMsgStop};
 
 if ($startDate ne $stopDate) {
     if ( ! ($startDate < time() && $stopDate > time())) {
-	# We will not use vacation!
-	$cce->bye('SUCCESS');
-	exit;
+      # We will not use vacation!
+      $cce->bye('SUCCESS');
+      exit;
     }
 }
 
-
 my $fullname = $user->{fullName};
-
 $fullname ||= $user_from;
 
 $cce->bye('SUCCESS');
@@ -203,14 +183,14 @@ $i18n->setLocale($locale);
 
 my %vacadb;
 
-my $vacadb = tie(%vacadb,'DB_File',"$Vaca_dir/.$username.db",O_RDWR|O_CREAT,0666)
-    || die "Cannot open vacation database: $!\n";
+my $vacadb = tie(%vacadb,'DB_File',"$Vaca_dir/.$username.db",O_RDWR|O_CREAT,0666) || die "Cannot open vacation database: $!\n";
 
 $vacadb{$sendto} ||= 0;
 
 if ($vacadb{$sendto} >= ($^T - 604800))
 {
     # They've been given a reply recently
+    &debug_msg("Not sending vacation message of $user_from to $sendto, as he received one already.\n");
     untie %vacadb;
     exit;
 }
@@ -219,11 +199,11 @@ else
     # lock the db just to be safe, this returns a filehandle that needs
     # to be closed after vacadb is untied
     my $fh = &lock($vacadb);
-
+    &debug_msg("Locking vacation database of $user_from.\n");
     $vacadb{$sendto} = $^T;
-
     &unlock($vacadb, $fh);  # this also undefines $vacadb
     untie %vacadb;
+    &debug_msg("Unlocking vacation database of $user_from.\n");
     $fh->close();
 }
 
@@ -248,17 +228,17 @@ my $diff = "20";
 my $is_overquota = "0";
 if (($group_used + $diff >= $group_quota) || ($used + $diff >= $quota)) {
     my $is_overquota = "1";
+
+    &debug_msg("Not sending vacation message of user $user_from as his account or his site is over quota.\n");
     
     # User or group is over quota. Exit silently.
-    $cce->bye('FAIL', "The recipient mailbox is full or the site he belongs to is over the allocated quota. Message delivery terminated."); 
+    $cce->bye('FAIL', "The recipient mailbox is full or the site he belongs to is over the allocated quota. Message delivery terminated.");
+    exit(0);
 }
 
 ## End Quota checks
 
 if ($is_overquota eq "0") {
-
-    my $mail = new I18nMail;
-    $mail->setLang($locale);
 
     my $subject = $i18n->get("[[base-email.vacationSubject]]");
     my $format = $i18n->getProperty("vacationSubject","base-email");
@@ -268,30 +248,27 @@ if ($is_overquota eq "0") {
     # If the users locale preference is Japanese, then the Subject is now 
     # in EUC-JP, which we cannot mail with MIME::Lite. We need to convert
     # it into UTF-8 first:
-    if ($user->{localePreference} == "ja_JP") {
+    &debug_msg("Locale preference of user $user_from: $locale\n");
+    if ($locale eq "ja_JP") {
+      &debug_msg("Converting Japanese vacation message to UTF-8 for user $user_from.\n");
       $format = decode("euc-jp", $format)
     }
-
-    $mail->setSubject($format);
-    $mail->setFrom("$fullname <$user_from>");
-    $mail->addRawTo($sendto);
 
     open (INMESSAGE, "$message_file") || die "Can't open message file $!\n";
     my $msg;
     {local $/=undef;$msg=<INMESSAGE>};
     close INMESSAGE;
 
-#    No, thanks. The internal email function is (and always has been!) fubar.
-#    $mail->setBody($msg);
-#    open (OUT, "|$Sendmail -froot -oi $sendto") || die "Can't open sendmail $!\n";
-#    print OUT $mail->toText();
-#    close OUT;
+    # Decode Subject:
+    utf8::decode($format);
+    # Turn Subject into MIME-B:
+    $mail_subject = encode("MIME-B", $format);
 
     # Build the message using MIME::Lite instead:
     my $send_msg = MIME::Lite->new(
-        From     => "$fullname <$user_from>",
+        From     => $fullname . " <$user_from>",
         To       => $sendto,
-        Subject  => encode('MIME-Header', $format),
+        Subject  => $mail_subject,
         Data     => $msg
     );
 
@@ -299,44 +276,44 @@ if ($is_overquota eq "0") {
     $send_msg->attr("content-type"         => "text/plain");
     $send_msg->attr("content-type.charset" => "UTF-8");
 
+    &debug_msg("Sending vacation message of user $user_from to $sendto.\n");
+
     # Out with the email:
     $send_msg->send;
 
 }
 
-#DEBUGGING
-#$logger->info("Sendmail: $Sendmail");
-#$logger->info("User_from: $user_from");
-#$logger->info("Fullname: $fullname");
-#$logger->info("Send to: $sendto");
-#$logger->info("Subject: $format");
-#$logger->info("Body: $msg");
-
 # database locking sub-routine
 # returns a filehandle that will need to be closed after unlock is called
 sub lock {
-	my $db = shift;
-	my $fd = $db->fd;
-	my $fh = new FileHandle("+<&=$fd");
-
-	my $return_buffer;
-	fcntl($fh, F_SETLKW, $return_buffer);
-
-	return $fh;
+  my $db = shift;
+  my $fd = $db->fd;
+  my $fh = new FileHandle("+<&=$fd");
+  my $return_buffer = "";
+  fcntl($fh, F_SETLKW, $return_buffer);
+  return $fh;
 }
 
 # database unlocking sub-routine
 sub unlock {
-	my $db = shift;
-	my $fh = shift;
+  my $db = shift;
+  my $fh = shift;
+  $db->sync;  # just in case
+  # remove the lock on the filehandle
+  my $return_buffer = "";
+  fcntl($fh, F_UNLCK, $return_buffer);
+  undef $db;
+}
 
-	$db->sync;  # just in case
-
-	# remove the lock on the filehandle
-	my $return_buffer;
-	fcntl($fh, F_UNLCK, $return_buffer);
-	
-	undef $db;
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','LOG_MAIL');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 
