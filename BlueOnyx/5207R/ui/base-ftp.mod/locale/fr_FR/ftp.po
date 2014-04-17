@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,43 +15,43 @@ msgid "anonFtp"
 msgstr "Anonymous FTP"
 
 msgid "anonFtp_help"
-msgstr "Activer le service FTP anonyme pour le site."
+msgstr "Activer le service FTP-anonyme pour le site."
 
 msgid "ftp_help"
-msgstr "Cliquez ici pour changer [[base-ftp.ftpSettings]]."
+msgstr "Cliquez ici pour changer « [[base-ftp.ftpSettings]] »."
 
 msgid "ftpSettings"
-msgstr "File Transfer Protocol (FTP) Paramètres"
+msgstr "Paramètres FTP"
 
 msgid "enableServerField"
 msgstr "Activer le serveur"
 
 msgid "enableServerField_help"
-msgstr "Tournez la fonctionnalité protocole de transfert de fichiers (FTP) ou le désactiver. L&#39;accès FTP anonyme pour un site spécifique peut être configuré en allant à [[base-ftp.anonFtp]] dans le [[base-vsite.services]] menu sous [[base-alpine.sitemanage]] pour le site."
+msgstr "Activer ou désactiver le service de transfert de fichiers FTP (File Transfer Protocol). L'accès FTP-anonyme pour un site spécifique peut être configuré pour ce site en allant à « [[base-ftp.anonFtp]] » dans le menu [[base-vsite.services]] sous [[base-alpine.sitemanage]]."
 
 msgid "maxUserField"
-msgstr "Nombre maximum d&#39;utilisateurs simultanés"
+msgstr "Nombre maximum d'utilisateurs simultanés"
 
 msgid "maxUserField_rule"
-msgstr "S&#39;il vous plaît entrer un nombre dans la plage spécifiée. La valeur par défaut est 25."
+msgstr "La valeur par défaut est de 25. Veuillez taper un nombre dans la plage spécifiée."
 
 msgid "maxUserField_help"
-msgstr "Définissez le nombre maximum d&#39;utilisateurs pouvant être connectés au serveur FTP en même temps. [[base-ftp.maxUserField_rule]]"
+msgstr "Définissez le nombre maximum d'utilisateurs pouvant être connectés au serveur FTP en même temps. [[base-ftp.maxUserField_rule]]"
 
 msgid "useReverseDNSField"
 msgstr "Recherche du nom"
 
 msgid "useReverseDNSField_help"
-msgstr "Cela active la recherche du nom pour le serveur FTP. Cela provoque le serveur pour effectuer une recherche DNS sur l&#39;IP du client lorsqu&#39;il se connecte au serveur, et l&#39;enregistrer dans les fichiers journaux. Cette information hostname est alors disponible dans les rapports FTP d&#39;utilisation du serveur. Sans cette fonction, seules les adresses IP des clients sont consignés dans le rapport de domaine de l&#39;utilisation du serveur FTP. ATTENTION: L&#39;activation de cette option permet de diminuer les performances de votre serveur FTP."
+msgstr "Ceci incite une recherche du nom du serveur FTP. L'adresse IP de celui-ci sera recherché dans la base de données DNS lorsque le client se connecte au serveur et l'enregistra dans les fichiers-journal. Le « hostname » est alors enregistré dans les rapports d'utilisation FTP du serveur. Sans cette fonction, seules les adresses IP des clients seront listées. ATTENTION : L'activation de cette option peut de diminuer la performance du serveur FTP."
 
 msgid "connectRateField"
-msgstr "Taux maximal de connexion"
+msgstr "Maximum de connexions"
 
 msgid "connectRateField_help"
-msgstr "Entrez le nombre maximal de connexions autorisées par minute. Les nouvelles connexions seront refusées si le taux de raccordement a atteint cette limite."
+msgstr "Taper le nombre maximal de connexions autorisées par minute. Les nouvelles connexions seront refusées si le taux de connexions a atteint cette limite."
 
 msgid "connectRateField_rule"
-msgstr "S&#39;il vous plaît entrer un nombre dans la plage spécifiée. La valeur par défaut est 80."
+msgstr "Veuillez taper un nombre dans la plage spécifiée. La valeur par défaut est 80."
 
 msgid "basic"
 msgstr "Basic"
@@ -60,43 +60,47 @@ msgid "advanced"
 msgstr "Avancé"
 
 msgid "basic_help"
-msgstr "Le serveur FTP peut être activée ou désactivée ici."
+msgstr "Activer ou désactiver le serveur FTP."
 
 msgid "advanced_help"
-msgstr "Les paramètres du serveur FTP peuvent être gérés ici."
+msgstr "Paramètrage du serveur FTP."
+
+# ----- Active Monitor
 
 msgid "amFTPNameTag"
-msgstr "File Transfer Protocol (FTP) Serveur"
+msgstr "Serveur FTP (File Transfer Protocol)"
 
 msgid "amDetailsTitle"
-msgstr "File Transfer Protocol (FTP) Détails du serveur"
+msgstr "Détails du serveur FTP (File Transfer Protocol) pour le transfert de fichiers."
 
 msgid "amNotResponding"
-msgstr "Le serveur FTP ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver le serveur FTP hors tension puis de nouveau pour voir si cela résout le problème. Si le serveur FTP n&#39;est toujours pas à démarrer, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]] . Si le serveur FTP n&#39;est toujours pas à démarrer, s&#39;il vous plaît se référer [[base-sauce-basic.techSupportURL]] pour le support technique."
+msgstr "Le serveur FTP (File Transfer Protocol) pour le transfert de fichiers ne fonctionne pas et ne peut pas être redémarré. Dans le [[base-apache.amAdmservNameTag]], essayez de désactiver et réactiver le serveur FTP à nouveau pour voir si cela résout le problème. Si le serveur FTP ne fonctionne toujours pas, essayez de redémarrer le serveur lui-même en cliquant sur le [[base-power.reboot]] dans le [[base-power.power]] menu sous [[base-alpine.serverconfig]] . Si le serveur FTP ne démarre toujours pas, veuillez vous référer au support technique [[base-sauce-basic.techSupportURL]]."
 
 msgid "base-ftp.amBadResponse"
-msgstr "Le serveur FTP a donné une mauvaise réponse."
+msgstr "Le serveur FTP a donné une réponse erronée."
 
 msgid "amStatusOK"
 msgstr "Le serveur FTP fonctionne normalement."
 
+# ---- Handler messages
+
 msgid "badUser"
-msgstr "Si les fichiers de configuration du serveur ont été supprimés ou modifiés manuellement, s&#39;il vous plaît restaurer les versions originales et réessayez."
+msgstr "Si les fichiers de configuration du serveur ont été supprimés ou modifiés manuellement, veuillez rétablir les versions originales et réessayer."
 
 msgid "cantConfigFile"
-msgstr "Désolé, une erreur s&#39;est produite en essayant de modifier les fichiers de configuration FTP. [[base-ftp.badUser]]"
+msgstr "Désolé, une erreur s'est produite en essayant de modifier les fichiers de configuration FTP. [[base-ftp.badUser]]"
 
 msgid "quoteExceedsSorry"
-msgstr "Désolé, le quota pour le FTP anonyme est plus élevé que le quota pour le site, [[VAR.quota]] MB."
+msgstr "Désolé, le quota pour le FTP-anonyme est plus élevé que le quota pour le site : [[VAR.quota]] MO."
 
 msgid "quotaExceedsSiteQuota"
-msgstr "[[base-ftp.quoteExceedsSorry]] S&#39;il vous plaît entrer une valeur inférieure ou égale à [[VAR.quota]] Mo pour le quota FTP anonyme."
+msgstr "[[base-ftp.quoteExceedsSorry]] Veuillez taper une valeur inférieure ou égale à [[VAR.quota]] Mo pour le quota FTP-anonyme."
 
 msgid "quotaExceedsSiteQuotaEnabled"
-msgstr "[[base-ftp.quotaExceedsSorry]] Anonymous FTP n&#39;a pas été activée. Anonymous FTP peut être activée en modifiant les paramètres du site pour le nouveau site."
+msgstr "[[base-ftp.quotaExceedsSorry]] Anonymous FTP n'a pas été activé. Anonymous FTP peut être activé en modifiant les paramètres du nouveau site."
 
 msgid "siteQuotaLessThanFtpQuota"
-msgstr "L&#39;espace disque maximal autorisé est inférieur au maximum autorisé télécharger d&#39;espace disque pour FTP anonyme qui est actuellement [[VAR.quota]] MB. Désactiver FTP anonyme ou diminuer la valeur maximale autorisée pour télécharger d&#39;espace disque pour le FTP anonyme, si elle est inférieure ou égale à l&#39;espace disque maximal autorisé souhaité pour le site."
+msgstr "L'espace disque maximal autorisé est inférieur à l'espace disque maximal autorisé pour le FTP-anonyme qui est actuellement de [[VAR.quota]] MO. Désactiver FTP-anonyme ou diminuer la valeur d'espace disque maximale autorisée pour le FTP-anonyme pour qu' elle soit inférieure ou égale à l'espace disque maximal autorisé pour le site."
 
 msgid "modAnonFtp"
 msgstr "[[base-ftp.anonFtp]] Configuration du [[VAR.fqdn]]"
@@ -105,40 +109,40 @@ msgid "ftpFullText"
 msgstr "Activer [[base-ftp.anonFtp]]"
 
 msgid "ftpFullText_help"
-msgstr "Cochez cette case pour activer le service FTP anonyme pour le site."
+msgstr "Cochez cette case pour activer le service FTP-anonyme pour le site."
 
 msgid "uploadDiskSpace"
 msgstr "Téléchargez espace disque"
 
 msgid "ftpQuota"
-msgstr "Maximale autorisée [[base-ftp.uploadDiskSpace]] (MB)"
+msgstr "autorisation maximale : [[base-ftp.uploadDiskSpace]] (MO)"
 
 msgid "ftpQuota_help"
-msgstr "La limite en mégaoctets (Mo) pour les téléchargements FTP anonymes."
+msgstr "La limite en mégaoctets (MO) pour les téléchargements FTP-anonymes."
 
 msgid "ftpquota_invalid"
-msgstr "Désolé, la valeur saisie pour [[base-ftp.ftpQuota]] est soit pas un nombre ou non dans l&#39;intervalle spécifié à côté du champ. S&#39;il vous plaît entrer un nombre qui se situe dans la plage donnée."
+msgstr "Désolé, la valeur saisie pour [[base-ftp.ftpQuota]] est soit pas un nombre soit pas dans l'intervalle spécifié à côté du champ. Veuillez taper un nombre qui se situe dans la plage indiquée."
 
 msgid "ftpquota_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-ftp.ftpQuota]]."
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-ftp.ftpQuota]]."
 
 msgid "AnonFtp_quota_invalid"
-msgstr "Désolé, la valeur saisie pour [[base-ftp.ftpQuota]] est soit pas un nombre ou est inférieur à un. S&#39;il vous plaît entrer un nombre supérieur ou égal à un."
+msgstr "Désolé, la valeur saisie pour [[base-ftp.ftpQuota]] est soit pas un nombre soit inférieure à un. Veuillez taper un nombre supérieur ou égal à un."
 
 msgid "AnonFtp_quota_empty"
 msgstr "[[base-ftp.ftpquota_empty]]"
 
 msgid "ftpUsers"
-msgstr "Connexions simultanées maximum"
+msgstr "Maximum de connexions simultanées"
 
 msgid "ftpUsers_help"
-msgstr "Le nombre maximum d&#39;utilisateurs FTP anonymes qui peuvent être connectés au serveur en même temps."
+msgstr "Le nombre maximum d'utilisateurs FTP-anonymes qui peuvent être connectés au serveur en même temps."
 
 msgid "ftpusers_invalid"
-msgstr "Désolé, la valeur saisie pour [[base ftp.ftpUsers]] est soit pas un nombre ou inférieur à un. S&#39;il vous plaît entrer un nombre supérieur ou égal à un."
+msgstr "Désolé, la valeur saisie pour [[base ftp.ftpUsers]] est soit pas un nombre ou inférieur à un. Veuillez taper un nombre supérieur ou égal à un."
 
 msgid "ftpusers_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base ftp.ftpUsers]]. S&#39;il vous plaît entrer un nombre supérieur ou égal à un."
+msgstr "Désolé, vous n'avez pas tapé de valeur pour [[base ftp.ftpUsers]]. Veuillez taper un nombre supérieur ou égal à un."
 
 msgid "AnonFtp_maxConnections_invalid"
 msgstr "[[base-ftp.ftpusers_invalid]]"
@@ -146,41 +150,45 @@ msgstr "[[base-ftp.ftpusers_invalid]]"
 msgid "AnonFtp_maxConnections_empty"
 msgstr "[[base-ftp.ftpusers_empty]]"
 
+# ui extension strings
+
 msgid "ftpTabName"
 msgstr "[[base-ftp.anonFtp]]"
 
 msgid "ftpTabName_help"
-msgstr "Modifiez les paramètres FTP anonyme."
+msgstr "Modifier les paramètres FTP-anonyme."
 
 msgid "anonEnable"
-msgstr "Permettre"
+msgstr "Activer"
+
+# handler error messages for Vsite related handlers
 
 msgid "anonymousFtpInUse"
-msgstr "Anonymous FTP n&#39;a pas pu être activé, car un autre site avec la même adresse IP, [[VAR.ipaddr]], est déjà en utilisant un FTP anonyme."
+msgstr "Le FTP-anonyme n'a pas pu être activé parce qu'un autre site avec la même adresse IP [[VAR.ipaddr] l'utilise déjà."
 
 msgid "cantSuspendFtpSite"
-msgstr "Le site virtuel ne pouvait être suspendue en raison FTP pour le site ne peut pas être désactivé."
+msgstr "Le site virtuel ne pouvait être désactivé parce que l'FTP du site ne peut également pas être désactivé."
 
 msgid "cantSuspendFtp"
-msgstr "Le site ne pouvait être suspendue car l&#39;accès FTP pour le site ne peut pas être désactivé."
+msgstr "Le site ne pouvait être désactivé car l'accès FTP pour le site ne peut pas être désactivé."
 
 msgid "cantUnsuspendFtpSite"
-msgstr "Le site virtuel ne peut pas être sans sursis parce que l&#39;accès FTP pour le site n&#39;a pas pu être restauré."
+msgstr "Le site virtuel n'a pas pu être rétabli parce que l'accès FTP pour le site n'a pas pu être réparé."
 
 msgid "unsuspendAnonFtpInUse"
-msgstr "Le site qui a été repris de façon utilisait FTP anonyme quand il a été suspendu, mais un autre site avec la même adresse IP est maintenant en utilisant FTP anonyme. FTP anonyme de ce site a été désactivé."
+msgstr "Le site relancé utilisait FTP-anonyme quand il a été désactivé. Mais maintenant, c'est un autre site avec la même adresse IP qui utilise FTP-anonyme. FTP-anonyme a donc été désactivé pour de ce site ."
 
 msgid "cantUnsuspendFtp"
-msgstr "Le site ne peut pas être sans sursis, parce que l&#39;accès FTP n&#39;a pas pu être restauré pour ce site."
+msgstr "Le site n'a pas pu être réactivé parce que l'accès FTP n'a pas pu être rétabli pour ce site."
 
 msgid "cantDetermineHomeDir"
-msgstr "Impossible de déterminer le répertoire d&#39;accueil du site avec le nom, [[VAR.site]]."
+msgstr "Impossible de déterminer le répertoire d'accueil du site avec le nom [[VAR.site]]."
 
 msgid "anonServiceQuota"
-msgstr "Anonymous FTP"
+msgstr "Quota FTP-anonyme"
 
 msgid "couldNotSetFtpQuotaMon"
-msgstr "Anonyme surveillance des quotas FTP n&#39;a pas pu être correctement configuré."
+msgstr "La surveillance des quotas FTP-anonyme n'a pas pu être correctement configuré."
 
 msgid "couldNotUpdateFtpQuotaMon"
 msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
@@ -189,31 +197,33 @@ msgid "couldNotClearFtpQuotaMon"
 msgstr "[[base-ftp.couldNotSetFtpQuotaMon]]"
 
 msgid "cantReadAnonFtp"
-msgstr "Impossible de lire les paramètres FTP anonymes de ce site."
+msgstr "Impossible de lire les paramètres FTP-anonymes de ce site."
 
 msgid "cantUpdateFtpSite"
-msgstr "Anonyme paramètres FTP n&#39;a pas pu être mis à jour."
+msgstr "Les paramètres FTP n'ont pas pu être mis à jour."
 
 msgid "createFtpSiteFailed"
 msgstr "Impossible de créer la configuration du serveur FTP pour [[VAR.ipaddr]]."
 
 msgid "migrateAnonFtpImpossible"
-msgstr "L&#39;adresse IP ne peut pas être modifié à [[VAR.ipaddr]]. FTP anonyme de ce site est activé, mais il ya un autre site avec l&#39;adresse IP spécifiée qui utilise également un FTP anonyme. Désactivation FTP anonyme pour les deux sites corrigera ce problème."
+msgstr "L'adresse IP ne peut pas être modifié à [[VAR.ipaddr]]. L'FTP-anonyme de ce site est activé, mais il y a un autre site avec la même adresse IP qui utilise également un FTP-anonyme. La désactivation du FTP-anonyme pour les deux sites corrigera ce problème."
 
 msgid "migrateAnonFtpFailed"
-msgstr "Impossible de migrer les paramètres FTP anonymes pour ce site."
+msgstr "Impossible de migrer les paramètres FTP-anonymes pour ce site."
+
+# Changes after adding functionality to disable FTP access for non-siteAdmins:
 
 msgid "ftpnonadmin"
-msgstr "Permettre à l&#39;utilisateur (s) l&#39;accès au FTP"
+msgstr "Permettre l'accès au FTP aux utilisateurs"
 
 msgid "ftpnonadmin_help"
-msgstr "Les utilisateurs qui sont SiteAdministrators allways peuvent FTP sur le serveur - aussi longtemps que le service FTP en général est activé. Si vous aussi vous voulez permettre aux utilisateurs réguliers d&#39;accéder à leur espace de fichiers par FTP, puis cochez cette case."
+msgstr "Tant que le service FTP est activé, les utilisateurs « SiteAdmin » pourront toujours utiliser FTP pour transférer des fichiers au serveur. Pour permettre la même fonctionnalité FTP aux utilisateurs réguliers, cochez cette case."
 
 msgid "siteFtp"
 msgstr "FTP"
 
 msgid "siteFtp_help"
-msgstr "Gérer l&#39;accès FTP pour ce site - y compris le service FTP anonyme."
+msgstr "Gérer l'accès FTP pour ce site - y compris le service FTP-anonyme."
 
 msgid "ChangeSiteFtp"
 msgstr "Paramètres FTP pour [[VAR.fqdn]]"

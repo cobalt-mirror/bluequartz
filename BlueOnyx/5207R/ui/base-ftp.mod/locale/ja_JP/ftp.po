@@ -215,10 +215,11 @@ msgstr "このサイトの匿名 FTP 設定をマイグレートできません�
 # Changes after adding functionality to disable FTP access for non-siteAdmins:
 
 msgid "ftpnonadmin"
-msgstr "FTPへのユーザー（S）アクセスを許可"
+msgstr "FTPへのユーザーアクセスを許可"
 
 msgid "ftpnonadmin_help"
-msgstr "SiteAdministratorsであるユーザーは、サーバーにFTPをオールウェイズすることができます - 限り、一般的なFTPサービスが有効になっているよう。あなたは、正規のユーザーがFTPでそのファイル·スペースにアクセスできるようにしたい場合は、このボックスをチェック。"
+msgstr "SiteAdministratorsであるユーザーに限り、FTPサーバへアクセスする事ができます。正規の一般ユーザーがFTPで"
+"割り当てられたファイルスペースにアクセスできるようにしたい場合は、このボックスをチェックします。"
 
 msgid "siteFtp"
 msgstr "FTP"
@@ -244,4 +245,6 @@ msgid "enableSFTPserverField"
 msgstr "FTPSを有効にする"
 
 msgid "enableSFTPserverField_help"
-msgstr "オンまたはオフにFTPS（FTP、SSL/TLSで）機能をオンにします。 FTPSは、ポート990/TCP上で動作し、FTPサーバへの安全な接続を可能にします。それは、FTPに接続するための好ましい方法である必要があります。 FTPクライアントは、この機能を利用することができるように 'TLSを明示的にFTP'を使用する必要があります。"
+msgstr "FTPS（FTP with SSL/TLS）機能をオンにします。 FTPSは、ポート990/TCP上で動作し、FTPサーバへの安全な"
+"接続を可能にします。これは、FTPに接続するための好ましい方法です。 FTPクライアントは、この機能を利用する"
+"ことができるように 'FTP over TLS'を使用する必要があります。"
