@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx and Bluapp AB'
 SERVICE=email
 
 VERSION=1.6.0
-RELEASE=0BX14
+RELEASE=0BX15
 
 # add a buildarch if desired
 BUILDARCH=noarch
