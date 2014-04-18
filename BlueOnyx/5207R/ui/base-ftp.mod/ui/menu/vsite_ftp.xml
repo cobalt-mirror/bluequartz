@@ -3,6 +3,6 @@
     url="/base/ftp/vsiteFtp.php?group=[[VAR.group]]"
 >
     <parent id="base_siteservices" order="20">
-        <access require="siteAnonFTP"/>
+        <access require="siteAdmin"/>
     </parent>
 </item>
