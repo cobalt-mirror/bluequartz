@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=java
 
 VERSION=3.0.1
-RELEASE=0BX04
+RELEASE=0BX05
 
 # add a buildarch if desired
 #BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES= apache-jasper apache-jasper-javadoc apache-tomcat-apis base-java-am base-java-glue base-java-locale base-java-ui jakarta-commons-collections-tomcat5 jakarta-commons-dbcp-tomcat5 jakarta-commons-pool-tomcat5 tomcat6 tomcat6-admin-webapps tomcat6-docs-webapp tomcat6-el-2.1-api tomcat6-javadoc tomcat6-jsp-2.1-api tomcat6-lib tomcat6-servlet-2.5-api tomcat6-webapps php-process
+REQUIRES= apache-jasper apache-jasper-javadoc apache-tomcat-apis base-java-am base-java-glue base-java-ui jakarta-commons-collections-tomcat5 jakarta-commons-dbcp-tomcat5 jakarta-commons-pool-tomcat5 tomcat6 tomcat6-admin-webapps tomcat6-docs-webapp tomcat6-el-2.1-api tomcat6-javadoc tomcat6-jsp-2.1-api tomcat6-lib tomcat6-servlet-2.5-api tomcat6-webapps php-process
 OBSOLETES= mod_jk mod_jk-ap20
 
 #########
