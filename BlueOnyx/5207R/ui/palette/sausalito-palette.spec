@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
-Version: 0.5.2
-Release: 0BX35%{?dist}
+Version: 0.9.9
+Release: 0BX01%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,10 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX01
+- New major version for 520XR.
+- Modified conf/ui.cfg for Chorizo based 520XR.
 
 * Fri Apr 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.5.2-0BX35
 - Added libPhp/BXBrowserLocale.php to properly detect the browser locale.

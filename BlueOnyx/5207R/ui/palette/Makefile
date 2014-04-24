@@ -12,8 +12,8 @@ INSTALLDIRS = conf libPhp web menu
 CCEMODULE = sausalito-palette
 CCERPMSPEC = sausalito-palette.spec
 
-VERSION=0.5.2
-RELEASE=0BX35
+VERSION=0.9.9
+RELEASE=0BX01
 
 LOCALES=$(shell dir=locale; \
                 if [ -d $$dir ]; then \
