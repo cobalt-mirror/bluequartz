@@ -189,7 +189,7 @@
     /> 
 
     <property
-        name="webAliases" type="fqdn" array="yes" optional="yes"
+        name="webAliases" type="fqdnPlusWildcard" array="yes" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
     <!-- Web Alias Redirects (to main site name)-->
