@@ -101,25 +101,30 @@
   data="^(([1-9])|([12][0-9])|(3[0-2])|((0|128|192|224|240|248|252|254|255)\\.0\\.0\\.0)|255\\.((0|128|192|224|240|248|252|254|255)\\.0\\.0)|255\\.255\\.((0|128|192|224|240|248|252|254|255)\\.0)|255\\.255\\.255\\.((0|128|192|224|240|248|252|254|255)))$"
 />
 
-<typedef name="fqdn" type="re" 
-  data="^([A-Za-z0-9][A-Za-z0-9\-]*\\.)+[A-Za-z]+$"
+<typedef name="fqdn" type="re"
+  data="^([a-z0-9][a-z0-9\-]*\\.)+[a-z]+$"
 />
 
-<typedef name="hostname" 	type="re"
-  data="^[_A-Za-z0-9][A-Za-z0-9\-]*(\\.[A-Za-z0-9][A-Za-z0-9\-]*)*$"
+<typedef name="fqdnPlusWildcard" type="re"
+  data="^(((([_a-z0-9]|[_a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[_a-z0-9][a-z0-9\-]*[a-z0-9]))|(^\\*))\\.[a-z0-9][a-z0-9\-]*([\\.][a-z0-9][a-z0-9\-]*)*$" 
+/>
+
+<typedef name="hostname" type="re"
+  data="^(([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[a-z0-9][a-z0-9\-]*[a-z0-9])$"  
+/>
+
+<typedef name="hostnamePlusWildcard" type="re"
+  data="(^(([_a-z0-9]|[_a-z0-9][a-z0-9\-]*[a-z0-9])\.)*([a-z0-9]|[_a-z0-9][a-z0-9\-]*[a-z0-9])$)|(^\\*$)"
 />
 
 <typedef name="domainname" 	type="re"
-  data="^[A-Za-z0-9][A-Za-z0-9\-]*([\\.][A-Za-z0-9][A-Za-z0-9\-]*)*$"
+  data="^[a-z0-9][a-z0-9\-]*([\\.][a-z0-9][a-z0-9\-]*)*$"
 />
 
-<!-- Not Yet Done: -->
+<!-- Not Yet perfect, but this will do for now: -->
 <typedef name="domainnames" 	type="re"
-  data="^(.*)$"
+  data="((^[a-z0-9][a-z0-9\-]*([\\.][a-z0-9][a-z0-9\-]*))|([a-z0-9][a-z0-9\-]*([\\.][a-z0-9][a-z0-9\-]*)([,]|[\r\n]{0,999})))$"
 />
-
-<!--  data="(([a-zA-Z0-9](-*[a-zA-Z0-9]+)*(\.[a-zA-Z0-9](-*[a-zA-Z0-9]+)*)+)([,]|[\r\n]{0,1}))" -->
-
 
 <typedef
 	name="password"

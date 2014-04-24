@@ -183,6 +183,11 @@ fi
 
 %changelog
 
+* Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX01
+- New major version for 520XR.
+- Modified /usr/sausalito/schemas/basetypes.schema for 520XR.
+- Modified cscp/Makefile to bump CSCP version to 0.99.
+
 * Wed Mar 05 2014 Michael Stauber <mstauber@solarspeed.net> 0.82.1-1BX02
 - Dependency update.
 
