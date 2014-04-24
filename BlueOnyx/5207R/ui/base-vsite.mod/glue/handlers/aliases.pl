@@ -1,6 +1,5 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: aliases.pl
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 #
 # handle any configuration for the mailAliases and webAliases fields
 # like adding mail alias routes to the virtusertable and mail aliases 
@@ -12,8 +11,12 @@ use Sauce::Config;
 use Base::Httpd qw(httpd_set_server_aliases);
 use Sauce::Service qw(service_run_init);
 
-my $DEBUG = 0;
-if ($DEBUG) { use Data::Dumper; }
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $cce = new CCE('Domain' => 'base-vsite');
 $cce->connectfd();
@@ -149,15 +152,14 @@ if ($cce->event_is_destroy())
 					'fqdn' => $vsite_old->{fqdn}
 				});
 	
-		$DEBUG && print STDERR 'oids: ', join(', ', @aliases), "\n";
+		&debug_msg("oids: " . join(', ', @aliases) . "\n");
 		for my $alias (@aliases)
 		{
-			my ($ok, $badkeys, @info) = $cce->set($alias, '', 
-										{ 'fqdn' => $vsite->{fqdn} });
-			$DEBUG && print STDERR "set $alias, ok = $ok\n";
-			$DEBUG && print STDERR Dumper($badkeys, \@info);
+			my ($ok, $badkeys, @info) = $cce->set($alias, '', { 'fqdn' => $vsite->{fqdn} });
+			&debug_msg("set $alias, ok = $ok \n");
 			if (!$ok)
 			{
+				&debug_msg("[[base-vsite.cantUpdateUserMailAliases]]\n");
 				$cce->bye('FAIL', '[[base-vsite.cantUpdateUserMailAliases]]');
 				exit(1);
 			}
@@ -168,10 +170,12 @@ if ($cce->event_is_destroy())
 	if (exists($vsite->{webAliases}))
 	{
 		# map into a hash and then take the keys to avoid duplicates
+		&debug_msg("webAliases: " . $vsite->{webAliases} . "\n");
 		my %web_aliases = map { $_ => 1 } $cce->scalar_to_array($vsite->{webAliases});
 		my @web_aliases = keys %web_aliases;
 		if (!httpd_set_server_aliases(\@web_aliases, $vsite->{name}))
 		{
+			&debug_msg("[[base-vsite.cantUpdateWebAliases]]\n");
 			$cce->bye('FAIL', '[[base-vsite.cantUpdateWebAliases]]');
 			exit(1);
 		}
@@ -180,24 +184,52 @@ if ($cce->event_is_destroy())
 	}
 }
 
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 $cce->bye('SUCCESS');
 exit(0);
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#	 notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#	 notice, this list of conditions and the following disclaimer in 
+#	 the documentation and/or other materials provided with the 
+#	 distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#	 contributors may be used to endorse or promote products derived 
+#	 from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

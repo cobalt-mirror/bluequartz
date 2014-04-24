@@ -1,6 +1,9 @@
 <!--
  $Id: vsite.schema
- Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+ Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+ Copyright (c) 2003 Sun Microsystems, Inc. 
+ All Rights Reserved.
 -->
 
 <class 
@@ -13,7 +16,7 @@
     <property 
         name="name" type="word" 
         writeacl="ruleCapable(adminUser)" 
-	readacl="ruleAll"
+	    readacl="ruleAll"
     />
     
     <!-- the hostname, non-qualified-->
@@ -32,7 +35,7 @@
     <property 
         name="fqdn" type="fqdn" 
         writeacl="ruleCapable(adminUser)"
-	readacl="ruleAll"
+	    readacl="ruleAll"
     />
 
     <!-- The ip address used by the site, may be shared by sites -->
@@ -43,7 +46,7 @@
 
     <!-- fqdn aliases for the web server -->
     <property 
-        name="webAliases" type="fqdn" array="yes" optional="yes"
+        name="webAliases" type="fqdnPlusWildcard" array="yes" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
 

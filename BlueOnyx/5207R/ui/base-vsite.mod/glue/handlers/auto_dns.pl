@@ -1,15 +1,23 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: auto_dns.pl,v 1.18.2.2 2006/08/05 15:27:33 bsmith Exp $
-# Copyright 2000-2002 Sun Microsystems, Inc., All rights reserved.
-# Multiple AutoDNS Addon - Brian N. Smith / NuOnce Networks, Inc.
+# $Id: auto_dns.pl
 #
 # handle auto dns configuration for a virtual site
+#
+# Note: We used to do CNAME records for aliases. Which is
+# 		a horrible sin. We preach NOT to use CNAME records
+#		and then this bloody script goes ahead and creates
+#		them! <waaaaaah!!!!>
+#		So all aliases are now created as A records instead
+#		and encountered CNAME records will be deleted.
 
 use CCE;
 
-# Debug, Will-style
-my $DEBUG = 0;
-$DEBUG && warn `date`. "$0\n";
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
 
 my $cce = new CCE("Domain" => "base-vsite");
 $cce->connectfd();
@@ -94,7 +102,7 @@ if ($vsite_old->{dns_auto} && $cce->event_is_destroy()) {
 	push(@alias_hosts, $cce->scalar_to_array($vsite_old->{webAliases}));
 	foreach my $host (@alias_hosts) {
 		$host =~ s/\.$vsite_old->{domain}$//; # strip domain
-		$DEBUG && warn "Searching for records hostname: $host\n";
+		&debug_msg("Searching for records hostname: $host\n");
 		push(@marked_for_death,
 		     $cce->find('DnsRecord',
 				{
@@ -105,13 +113,12 @@ if ($vsite_old->{dns_auto} && $cce->event_is_destroy()) {
 	}
 
 	foreach my $rip (@marked_for_death) {
-		$DEBUG && warn "Deleting oid: $rip...\n";
+		&debug_msg("Deleting oid: $rip...\n");
 		next unless ($rip);
 		my($ok) = $cce->destroy($rip);
-		$DEBUG && warn " ...$ok\n"; # ignore $ret for repeat/cleanup
 	}
 
-	$DEBUG && warn "commiting changes to bind\n";
+	&debug_msg("Commiting changes to bind\n");
 	my($ok) = $cce->set($sysoid, "DNS", { 'commit' => time() });
 	$cce->bye('SUCCESS');
 	exit 0;
@@ -298,8 +305,20 @@ if ($vsite->{dns_auto} &&
 			# we only do auto dns for an alias if it is in the same
 			# domain as the vsite
 			#
+			$gotAlias = "0";
 			if ($alias =~ /^(.*)\.$vsite->{domain}$/) {
 				my $alias_host = $1;
+				$gotAlias = "1";
+				&debug_msg("1 Processing webAlias: $alias\n");
+			}
+			if ($alias eq $vsite->{domain}) {
+				my $alias_host = "";
+				$gotAlias = "1";
+				&debug_msg("2 Processing webAlias: $alias\n");
+			}
+			if ($gotAlias == "1") {
+
+				&debug_msg("First pass of processing webAlias\n");
 
 				#### First pass for A records
 			
@@ -322,7 +341,8 @@ if ($vsite->{dns_auto} &&
 						{
 						'type' => 'A',
 						'hostname' => $alias_host,
-						'domainname' => $vsite->{domain}
+						'domainname' => $vsite->{domain},
+						'ipaddr' => $vsite->{ipaddr}
 						});
 	
 					if ($dns_record) {
@@ -332,12 +352,13 @@ if ($vsite->{dns_auto} &&
 					} else {
 						#
 						# The alias is all ours, delete
-						# CNAME first if necessary
+						# A record first if necessary
 						my ($rip) = $cce->find("DnsRecord",
 							{
-							'type' => 'CNAME',
+							'type' => 'A',
 							'hostname' => $alias_host,
-							'domainname' => $vsite->{domain}
+							'domainname' => $vsite->{domain},
+							'ipaddr' => $vsite->{ipaddr}
 							}
 						);
 						if ($rip =~ /^\d+$/) {
@@ -396,7 +417,7 @@ if ($vsite->{dns_auto} &&
 
 				# The alias is all ours
 				$mx_index = 3 if ($mx_index > 3);
-				$DEBUG && warn "Creating MX record for $alias_host, priority index $mx_index\n";
+				&debug_msg("Creating MX record for $alias_host, priority index $mx_index\n");
 				($ok) = $cce->create("DnsRecord",
 					{
 					'type' => 'MX',
@@ -477,6 +498,8 @@ if ($vsite->{dns_auto} &&
 	%new_aliases = map { $_ => 1 } 
 		$cce->scalar_to_array($vsite->{webAliases});
 
+	@new_webAliases = $cce->scalar_to_array($vsite->{webAliases});
+
 	#
 	# old_aliases should be null if auto dns is just being turned on, and
 	# it should be whatever the old aliases actually are if auto dns 
@@ -486,79 +509,88 @@ if ($vsite->{dns_auto} &&
 		%old_aliases = ();
 	} else {
 		%old_aliases = map { $_ => 1 } 
-                    $cce->scalar_to_array($vsite_old->{webAliases}); 
+        $cce->scalar_to_array($vsite_old->{webAliases}); 
 	}
 
 	# figure out which aliases are new
-	for my $alias (keys %new_aliases) {
-		#
-		# we only do auto dns for an alias if it is in the same
-		# domain as the vsite
-		#
+	foreach $alias (@new_webAliases) {
+
+		&debug_msg("3 Processing webAlias: \"$alias\"\n");
+
 		if ($alias =~ /^(.*)\.$vsite->{domain}$/) {
-			my $alias_host = $1;
+			$alias_host = $1;
+			&debug_msg("3a webAlias: \"$alias\" with hostname \"$alias_host\"\n");
+		}
 
-			# check if the specified alias already exists
-			my ($dns_record) = $cce->find("DnsRecord", 
-				{
-				'type' => 'CNAME',
-				'hostname' => $alias_host, 
-				'domainname' => $vsite->{domain},
-				'alias_hostname' => $vsite->{hostname},
-				'alias_domainname' => $vsite->{domain}
-				}
-			);
-			# check if an authoritative A record exists
-			my ($dns_a_record) = $cce->find("DnsRecord", 
-				{
-				'type' => 'A',
-				'hostname' => $alias_host, 
-				'domainname' => $vsite->{domain},
-				}
-			);
+		if ($alias eq $vsite->{domain}) {
+			$alias_host = "";
+			&debug_msg("3b webAlias: \"$alias\" with hostname \"$alias_host\"\n");
+		}
 
-			# don't add if it already exists
-			if ($dns_record || $dns_a_record) {
-				$DEBUG && warn "Skipping web alias record $alias_host, already exists\n";
-				next;
-			} 
+		&debug_msg("4 Processing webAlias: \"$alias\" with hostname \"$alias_host\"\n");
 
-			# make sure someone else isn't using the alias
-			($dns_record) = $cce->find("DnsRecord",
-				{
-				'type' => 'CNAME',
-				'hostname' => $alias_host,
-				'domainname' => $vsite->{domain}
-				}
-			);
-
-			if ($dns_record) {
-				push @used_aliases, ($alias_host . 
-					"." . $vsite->{domain});
-				$DEBUG && warn "Web alias record $alias_host in alternate use\n";
-				next;
+		# check if an authoritative A record exists
+		my ($dns_a_record) = $cce->find("DnsRecord", 
+			{
+			'type' => 'A',
+			'hostname' => $alias_host, 
+			'domainname' => $vsite->{domain},
 			}
+		);
 
-			# The alias is all ours
-			$DEBUG && warn "Creating web alias record $alias_host\n";
-			($ok) = $cce->create("DnsRecord",
-				{
-				'type' => 'CNAME',
-				'hostname' => $alias_host,
-				'domainname' => $vsite->{domain},
-				'alias_hostname' => $vsite->{hostname},
-				'alias_domainname' => $vsite->{domain},
-				}
-			);
-			if (not $ok) {
-				$DEBUG && warn "Create web alias record $alias_host FAILED, bailing\n";
-				$cce->bye('FAIL', 'cantCreateWebAlias',
-                               {
-                                   'fqdn' => $vsite->{fqdn},
-                                   'alias' => ($alias_host . $vsite->{domain})
-                               });
-				exit(1);
+		# don't add if it already exists
+		if ($dns_a_record) {
+			&debug_msg("Skipping web alias record \"$alias_host\", already exists as OID $dns_a_record\n");
+			next;
+		} 
+
+		# make sure someone else isn't using the alias
+		($dns_record) = $cce->find("DnsRecord",
+			{
+			'type' => 'A',
+			'hostname' => $alias_host,
+			'domainname' => $vsite->{domain}
 			}
+		);
+
+		if ($dns_record) {
+			push @used_aliases, ($alias_host . "." . $vsite->{domain});
+			&debug_msg("Web alias record $alias_host in alternate use\n");
+			next;
+		}
+
+		# Check for identical CNAME records and silently delete them:
+		push(@marked_for_death,
+		     $cce->find('DnsRecord',
+				{
+					'type' => "CNAME",
+					'hostname' => $alias_host,
+					'domainname' => $vsite->{domain}
+				}));
+		foreach my $rip (@marked_for_death) {
+			&debug_msg("Deleting CNAME oid: $rip...\n");
+			next unless ($rip);
+			my($ok) = $cce->destroy($rip);
+		}
+
+		# The alias is all ours
+		&debug_msg("Creating web alias record $alias_host\n");
+		($ok) = $cce->create("DnsRecord",
+			{
+			'type' => 'A',
+			'hostname' => $alias_host,
+			'domainname' => $vsite->{domain},
+			'ipaddr' => $vsite->{ipaddr}
+			}
+		);
+		if (not $ok) {
+			&debug_msg("Create web alias record $alias_host FAILED, bailing\n");
+			$cce->bye('FAIL', 'cantCreateWebAlias',
+                           {
+                               'fqdn' => $vsite->{fqdn},
+                               'alias' => ($alias_host . $vsite->{domain})
+                           });
+			exit(1);
 		}
 	}
 	
@@ -581,11 +613,10 @@ if ($vsite->{dns_auto} &&
 
 			my @dns_records = $cce->find("DnsRecord",
 				{
-				'type' => 'CNAME',
+				'type' => 'A',
 				'hostname' => $alias_host,
 				'domainname' => $alias_domain,
-				'alias_hostname' => $vsite->{hostname},
-				'alias_domainname' => $vsite->{domain},
+				'ipaddr' => $vsite->{ipaddr}
 				});
 
 			# delete all the records found
@@ -598,7 +629,7 @@ if ($vsite->{dns_auto} &&
 }
 
 if ($vsite->{dns_auto}) {
-	$DEBUG && warn "commiting changes to bind\n";
+	&debug_msg("Commiting changes to bind\n");
 	($ok) = $cce->set($sysoid, "DNS", { 'commit' => time() });
 
 	if (not $ok) {
@@ -625,10 +656,10 @@ sub update_records
 	my @dns_records = @_;
 
 	if($DEBUG) {
-		warn "Migrating record oids:\n";
-		warn join(', ', @dns_records)."\n";
-		foreach my $key (keys %{$delta}) { 
-			warn "Key: $key, val: " . $delta->{$key} . "\n"; 
+		&debug_msg("Migrating record oids:\n");
+		&debug_msg(join(', ', @dns_records)."\n");
+		foreach my $key (keys %{$delta}) {
+			&debug_msg("Key: $key, val: " . $delta->{$key} . "\n"); 
 		}
 	}
 
@@ -642,22 +673,51 @@ sub update_records
 	}
 	return 1;
 }
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2008 Brian N. Smith / NuOnce Networks, Inc.
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#	 notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#	 notice, this list of conditions and the following disclaimer in 
+#	 the documentation and/or other materials provided with the 
+#	 distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#	 contributors may be used to endorse or promote products derived 
+#	 from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
