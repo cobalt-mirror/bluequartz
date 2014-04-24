@@ -25,7 +25,7 @@ msgstr "パスワード："
 
 msgid "TomcatAdminPassField_help"
 msgstr ""
-"、Tomcatの管理バックエンドにログインするには、ここで指定したパスワードを持つ"
+"Tomcatの管理バックエンドにログインするには、ここで指定したパスワードを持つ"
 "ユーザー '管理'としてログインする必要があります。このパスワードは（とする必要"
 "があります！）サーバーのパスワードとは異なる場合があります。"
 
@@ -60,11 +60,11 @@ msgid "amJavaDetails"
 msgstr "[[base-java.amJavaNameTag]]詳細"
 
 msgid "amJavaNameTag"
-msgstr "のJavaServer Pages（JSP）とサーブレット"
+msgstr "javaServer Pages（JSP）とサーブレット"
 
 msgid "amNotRunning"
 msgstr ""
-"のJavaServer Pagesおよびサーブレットが実行されていないと再起動できませんでし"
+"JavaServer Pagesおよびサーブレットが実行されていないと再起動できませんでし"
 "た。で[[ベースapache.amAdmservNameTag]]、これが問題を修正するかどうかを確認す"
 "るには、もう一度入れ直しのJavaServer Pagesおよびサーブレットサービスをオフに"
 "してみてください。のJavaServer Pagesおよびサーブレットのサービスがまだ起動で"
@@ -75,7 +75,7 @@ msgstr ""
 "照してください。"
 
 msgid "amStatusOK"
-msgstr "のJavaServer Pagesおよびサーブレットは正常に動作しています。"
+msgstr "JavaServer Pagesおよびサーブレットは正常に動作しています。"
 
 msgid "badFileName"
 msgstr ""
@@ -126,7 +126,7 @@ msgstr ""
 "のJavaServer Pages（JSP）とサーブレットの使用を可能にするために有効にします。"
 
 msgid "enabledField"
-msgstr "サーバー（Tomcatの）を有効に"
+msgstr "サーバー(Tomcat)を有効に"
 
 msgid "enabledField_help"
 msgstr "Java仮想マシンを有効にします。"
@@ -199,14 +199,13 @@ msgstr "Javaの設定"
 
 msgid "java_help"
 msgstr ""
-"のJavaServer構成とパフォーマンスの設定を変更するには、ここをクリックしてくだ"
-"さい。"
+"JavaServerの構成とパフォーマンスの設定を変更するには、ここをクリックしてください。"
 
 msgid "loaded"
 msgstr "ロード"
 
 msgid "loadingWar"
-msgstr "[[base-java.warName]]ロードされている。しばらくお待ちください。"
+msgstr "[[base-java.warName]]ロード中です。しばらくお待ちください。"
 
 msgid "locationFieldEnter"
 msgstr "Webアーカイブファイル"
@@ -224,12 +223,11 @@ msgid "maxClientsField"
 msgstr "最大同時セッション数"
 
 msgid "maxClientsField_help"
-msgstr "同時Javaアプリケーション接続の最大数を指定します。"
+msgstr "Javaアプリケーションへの同時接続最大数を指定します。"
 
 msgid "maxClientsField_invalid"
 msgstr ""
-"Javaのセッションの最大数が無効です。指定された範囲内の整数を入力してくださ"
-"い。"
+"Javaセッションの最大数が無効です。指定された範囲内の整数を入力してください。"
 
 msgid "modWar"
 msgstr "[[VAR.item]]用[[base-java.warName]]の設定を変更します"
@@ -327,20 +325,20 @@ msgid "warListPathHeader_help"
 msgstr "これは[[base-java.warName]]インストールされているサブサイトのWebです。"
 
 msgid "warName"
-msgstr "Webアーカイブ（。戦争）"
+msgstr "Webアーカイブ(.war)"
 
 msgid "warNameHeader"
 msgstr "名前"
 
 msgid "warNameHeader_help"
 msgstr ""
-"これがインストールされているファイルのファイル名である[[base-java.warName]]。"
+"インストールされているファイル名[[base-java.warName]]。"
 
 msgid "warName_help"
-msgstr "インストールのアーカイブ名[[base-java.warName]]。"
+msgstr "インストールするアーカイブ名[[base-java.warName]]。"
 
 msgid "warNames"
-msgstr "[[VAR.fqdn]]用のWebアーカイブ（。戦争）一覧"
+msgstr "[[VAR.fqdn]]用のWebアーカイブ(.war)一覧"
 
 msgid "warNames_menu"
-msgstr "Webアーカイブ（。戦争）一覧"
+msgstr "Webアーカイブ(.war)一覧"
