@@ -4,9 +4,9 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=mailman
 
-# MAJVERSION is 0 until alpha release.
-VERSION=1.1.0
-RELEASE=0BX04
+# MAJVERSION
+VERSION=2.0.0
+RELEASE=0BX01
 
 INSTALL=install
 
@@ -17,7 +17,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES=mailman base-blueonyx-capstone base-blueonyx-glue base-mailman-am base-mailman-locale-ja_JP
+REQUIRES=mailman base-blueonyx-capstone base-blueonyx-glue base-mailman-am
 #OBSOLETES=majordomo base-maillist-capstone base-maillist-ui base-maillist-glue 
 
 include /usr/sausalito/devel/module.mk

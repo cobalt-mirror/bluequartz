@@ -502,3 +502,19 @@ msgstr "List Address:"
 msgid "listAddress_help"
 msgstr "This is the email address that this mailing list is reachable at. To post messages to this list, send your emails to this address."
 
+##--- new for 520XR:
+
+msgid "removeConfirmQuestion"
+msgstr "Are you sure you want to delete this mailing list?"
+
+msgid "ListRemoveConfirmInfo"
+msgstr "Please confirm that you want to delete the mailing-list. The mailing-list and all its messages will be removed. This action cannot be undone."
+
+msgid "selected_help"
+msgstr "Shows which local users are subscribed to the mailing-list. You can mark or unmark the checkboxes to change the subscription status."
+
+msgid "fullName"
+msgstr "Full Name"
+
+msgid "fullName_help"
+msgstr "Full name of the user."

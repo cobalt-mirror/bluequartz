@@ -14,16 +14,16 @@ msgid "mailmans"
 msgstr "Mailinglisten"
 
 msgid "mailmansHelp"
-msgstr "[[base-mailman.mailmanList_menu]] können hier eingestellt werden."
+msgstr "Verwaltung von Mailinglisten"
 
 
 # --- Mailing Lists page
 
 msgid "mailmanList_menu"
-msgstr "Mailingisten"
+msgstr "Mailinglisten"
 
 msgid "mailmanList"
-msgstr "Mailinglisten in [[VAR.group]]"
+msgstr "Mailinglisten der Domäne [[VAR.group]]"
 
 msgid "mailmanNameHeader"
 msgstr "Name"
@@ -71,7 +71,7 @@ msgid "edit_locals"
 msgstr "Bearbeiten"
 
 msgid "edit_locals_help"
-msgstr "Hier klicken, um die lokalen Teilnehmer auszuwählen, die Teilnehmer dieser Mailingliste sind."
+msgstr "Hier klicken, um nur die lokalen Teilnehmer anzuzeigen, welche Teilnehmer dieser Mailingliste sind."
 
 msgid "localsSearch"
 msgstr "Benutzerliste suchen"
@@ -145,10 +145,10 @@ msgid "modifyMailList"
 msgstr "Einstellungen der Mailingliste für [[VAR.listName]] modifizieren"
 
 msgid "basic"
-msgstr "Grund"
+msgstr "Grundkonfiguration"
 
 msgid "advanced"
-msgstr "Fortgeschritten"
+msgstr "Fortgeschrittene Einstellungen"
 
 msgid "basic_help"
 msgstr "Hier klicken, um die Grundeinstellungen der Mailingliste zu konfigurieren."
@@ -166,10 +166,10 @@ msgid "listName_help"
 msgstr "Geben Sie den Namen der Mailingliste ein.  [[base-mailman.listName_rule]]"
 
 msgid "listName_invalid"
-msgstr "Entschuldigung, [[VAR.invalidValue]] ist ein ungültiger Wert für [[base-mailman.listName]].  [[base-mailman.listName_rule]]"
+msgstr "Entschuldigung, [[VAR.invalidValue]] ist ein ungültiger Wert für [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
 
 msgid "listName_empty"
-msgstr "Entschuldigung, Sie haben keinen Wert eingegeben für [[base-mailman.listName]].   [[base-mailman.listName_rule]]"
+msgstr "Entschuldigung, Sie haben keinen Wert eingegeben für [[base-mailman.listName]]. [[base-mailman.listName_rule]]"
 
 msgid "workgroupMembers"
 msgstr "Gruppenteilnehmer"
@@ -237,10 +237,10 @@ msgstr "Geben Sie zusätzliche Informationen oder Kommentare über die Mailingli
 # ----- Add/modify a mailing list Advanced
 
 msgid "moderator"
-msgstr "Besitzer/Moderator"
+msgstr "Eigentümer/Moderator"
 
 msgid "moderator_rule"
-msgstr "Bitte geben Sie eine korrekte Emailadresse oder einen gültigen Benutzernamen von dieser Serveranwendung ein.  Die Voreinstellung ist admin. Zum Bsp., benutzer@beispiel.com oder admin sind gültige Einträge."
+msgstr "Bitte geben Sie die volllständige Email-Adresse des Eigentümers oder Moderators dieser Mailingliste ein."
 
 msgid "moderator_help"
 msgstr "Geben Sie die Email-Adresse des Benutzers ein, der alle administrativen Aufgaben für diese Mailingliste erfüllen wird.  [[base-mailman.moderator_rule]]"
@@ -254,22 +254,22 @@ msgstr "Ungültiger Moderator: Der Benutzer [[VAR.moderator]] scheint nicht zu e
 
 
 msgid "moderator_empty"
-msgstr "Entschuldigung, Sie haben keinen Wert eingegeben für [[base-mailman.moderator]].  Sie müssen einen Wert eingeben, selbt wenn keine Moderatorenregeln für die Mailingliste festgelegt wurden.  [[base-mailman.moderator_rule]]"
+msgstr "Entschuldigung, Sie haben keinen Wert eingegeben für [[base-mailman.moderator]]. Sie müssen einen Wert eingeben, selbt wenn keine Moderatorenregeln für die Mailingliste festgelegt wurden. [[base-mailman.moderator_rule]]"
 
 msgid "policies"
-msgstr "Regeln"
+msgstr "Verwaltungs-Richtlinien"
 
 msgid "apassword"
 msgstr "Passwort"
 
 msgid "apassword_help"
-msgstr "Geben Sie ein administratives Passwort für diese Mailingliste ein. Dieses Passwort wird für bestimmte administrative Aufgaben an der Liste via Mail vorgenommen werden (z.B. ,Subskription erlauben oder Nachrichten bearbeiten). Falls Sie nicht planen solche Dinge vorzunehmen, können Sie das Feld leer lassen."
+msgstr "Geben Sie ein administratives Passwort für diese Mailingliste ein. Dieses Passwort wird für bestimmte administrative Aufgaben benötigt (z.B. Subskriptionen erlauben oder Nachrichten freischalten)."
 
 msgid "postingPolicy"
 msgstr "Posting Regeln"
 
 msgid "postingPolicy_help"
-msgstr "Wählen Sie eine Posting Regel für diese Mailingliste. Wenn Sie Moderator Bestätigt Alle Nachrichten wählen, wird jede Nachricht die Bestätigung des Listenbesitzers/Moderators erfordern. "
+msgstr "Wählen Sie eine Posting Regel für diese Mailingliste. Wenn Sie Moderator Bestätigt Alle Nachrichten wählen, wird für jede Nachricht die Bestätigung des Listenbesitzers/Moderators erforderlich."
 
 msgid "any"
 msgstr "Alle Benutzer können Nachrichten posten "
@@ -287,13 +287,13 @@ msgid "subscriptionPolicy_help"
 msgstr "Wählen Sie die Subscription Regeln für die Liste aus. Benutzer können sich für die Liste an- oder abmelden, indem Sie eine Mail and die Adresse mailman@[[VAR.fqdn]] mit den Worten 'subscribe list' oder 'unsubscribe list' (list ist der Name der Mailingliste) in der Nachricht schreiben.  Falls die Regeln 'Geschlossen' sind, wird die Nachricht zu dem Besitzer geschickt; er kann entscheiden, ob die Subscription erlaubt werden soll. Die Bestätigung für Unsubscribe ist nie notwendig."
 
 msgid "open"
-msgstr "Offen: jeder Benutzer kann subscribe."
+msgstr "Offen: Jeder kann der Liste beitreten."
 
 msgid "closed"
-msgstr "Geschlossen: Die Bestätigung des Listenbesitzers ist vor Subscription notwendig."
+msgstr "Geschlossen: Die Bestätigung des Moderators ist vor Listenbeitritt notwendig."
 
 msgid "confirm"
-msgstr "Bestätigung: E-Mail Bestätigung ist für Subscription notwendig."
+msgstr "Bestätigung: E-Mail Bestätigung ist für Listenbeitritt notwendig."
 
 msgid "maxlength"
 msgstr "Maximale Nachrichtenlänge "
@@ -361,7 +361,7 @@ msgid "CannotDeleteGroupMaillist"
 msgstr "Entschuldigung, die Mailinglisten für Benutzergruppen auf dieser Serveranwendung können nicht gelöscht werden."
 
 msgid "Could-not-create-mailman"
-msgstr "Entschuldigung, ein Fehler ist aufgetreten. Die Mailingliste konnte nicht angelegt werden. "
+msgstr "Entschuldigung, ein Fehler ist aufgetreten. Die Mailingliste konnte nicht angelegt werden."
 
 
 
@@ -502,3 +502,21 @@ msgstr "List Adresse:"
 
 msgid "listAddress_help"
 msgstr "Dies ist die E-Mail-Adresse, über welche diese Mailingliste erreichbar ist. Um Nachrichten an diese Liste zu senden, schicken Sie Ihre E-Mails an diese Adresse."
+
+####
+
+msgid "removeConfirmQuestion"
+msgstr "Sind Sie sicher, dass Sie diese Mailing-Liste löschen wollen?"
+
+msgid "ListRemoveConfirmInfo"
+msgstr "Bitte bestätigen Sie, dass Sie die Mailing-Liste löschen möchten. Die Mailingliste und alle Nachrichten werden entfernt. Diese Aktion kann nicht rückgängig gemacht werden."
+
+msgid "selected_help"
+msgstr "Zeigt an, welche lokale Benutzer die Mailing-Liste abonniert haben. Sie können mittels der Checkboxen den Abo-Status lokaler Benutzer ändern."
+
+msgid "fullName"
+msgstr "Vollständiger Name"
+
+msgid "fullName_help"
+msgstr "Vollständiger Name des Benutzers."
+
