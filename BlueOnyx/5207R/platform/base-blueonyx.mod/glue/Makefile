@@ -1,5 +1,5 @@
 BUILD=20140426
-PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5208R"; else  echo -n "5207R"; fi)
+PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5208"; else  echo -n "5207"; fi)
 
 all:
 
