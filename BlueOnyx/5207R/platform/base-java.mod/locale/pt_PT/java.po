@@ -284,3 +284,20 @@ msgstr "Atenção: Tomcat está parado"
 msgid "TomCatStatusBox_info"
 msgstr "Enquanto Tomcat está parado, você não será capaz de clicar em qualquer um dos botões administrativas no menu abaixo. Tomcat será iniciado automaticamente assim que pelo menos um site virtual tem o JSP serviço habilitado."
 
+###
+
+msgid "urlField_help"
+msgstr "Digite uma URL que começa com http:// ou ftp:// para baixar o arquivo de um local na Internet."
+
+msgid "fileField_help"
+msgstr "Fazer upload de um arquivo de seu computador local."
+
+msgid "loaded_help"
+msgstr "Instale um arquivo que atualmente reside no diretório /web do seu site virtual."
+
+msgid "removeConfirmQuestion"
+msgstr "Tem certeza de que deseja excluir este item?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Por favor, confirme que você deseja remover este item. Isso não pode ser desfeita."
+

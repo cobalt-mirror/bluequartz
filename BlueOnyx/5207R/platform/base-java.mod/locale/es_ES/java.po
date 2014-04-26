@@ -284,3 +284,20 @@ msgstr "Nota: Tomcat se detiene"
 msgid "TomCatStatusBox_info"
 msgstr "Mientras Tomcat se detiene, no podrá hacer clic en cualquiera de los botones administrativas en el menú inferior. Tomcat se inicie automáticamente tan pronto como al menos un sitio virtual tiene el servicio JSP habilitado."
 
+###
+
+msgid "urlField_help"
+msgstr "Ingrese una URL que comienza con http:// o ftp:// para descargar el archivo desde una ubicación en Internet."
+
+msgid "fileField_help"
+msgstr "Carga un archivo desde el equipo local."
+
+msgid "loaded_help"
+msgstr "Instalación de un archivo que reside actualmente en el directorio /web de su sitio virtual."
+
+msgid "removeConfirmQuestion"
+msgstr "¿Está seguro que desea eliminar este artículo?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Por favor confirme que desea eliminar este artículo. Esto no se puede deshacer."
+

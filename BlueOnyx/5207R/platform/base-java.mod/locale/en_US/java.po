@@ -279,3 +279,21 @@ msgstr "Please note: Tomcat is stopped"
 msgid "TomCatStatusBox_info"
 msgstr "As long as Tomcat is stopped, you will be unable to click on any of the administrative buttons in the menu below. Tomcat will automatically start as soon as at least one virtual site has the service JSP enabled."
 
+###
+
+msgid "urlField_help"
+msgstr "Enter a URL beginning with either http:// or ftp:// to download the file from a location on the Internet."
+
+msgid "fileField_help"
+msgstr "Upload a file from your local computer."
+
+msgid "loaded_help"
+msgstr "Install a file that currently resides in the /web directory of your virtual site."
+
+###
+
+msgid "removeConfirmQuestion"
+msgstr "Are you sure you want to delete this item?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Please confirm that you want to remove this item. This cannot be undone."

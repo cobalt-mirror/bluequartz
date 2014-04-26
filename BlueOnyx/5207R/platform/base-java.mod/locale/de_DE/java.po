@@ -286,3 +286,22 @@ msgstr "Bitte beachten Sie: Tomcat ist gestoppt"
 
 msgid "TomCatStatusBox_info"
 msgstr "Solange Tomcat gestoppt ist, sind die administrativen Schaltflächen in diesem Menü deaktiviert. Tomcat wird automatisch gestartet, sobald mindestens eine virtuelle Seite den Dienst JSP aktiviert hat."
+
+###
+
+msgid "urlField_help"
+msgstr "Geben Sie eine URL beginnend mit http:// oder ftp:// ein, um eine Datei von einem Speicherort im Internet zu laden und zu installieren."
+
+msgid "fileField_help"
+msgstr "Hochladen einer Datei von Ihrem lokalen Rechner."
+
+msgid "loaded_help"
+msgstr "Installieren Sie eine Datei, die derzeit im /web-Verzeichnis Ihrer virtuellen Site liegt."
+
+msgid "removeConfirmQuestion"
+msgstr "Sind Sie sicher, dass Sie diesen Artikel löschen möchten?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Bitte bestätigen Sie, dass Sie diesen Artikel entfernen möchten. Dies kann nicht rückgängig gemacht werden."
+
+
