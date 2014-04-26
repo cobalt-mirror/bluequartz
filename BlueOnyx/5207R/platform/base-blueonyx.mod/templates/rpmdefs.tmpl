@@ -76,8 +76,8 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/triggers/*
 /etc/build
 /var/www/html/*
-%dir /usr/share/doc/blueonyx-release-5106R
-/usr/share/doc/blueonyx-release-5106R/*
+%dir /usr/share/doc/blueonyx-release-520XR
+/usr/share/doc/blueonyx-release-520XR/*
 <end glue>
 
 <begin ui>
@@ -165,7 +165,7 @@ fi
 # install BlueOnyx pgp key
 /bin/rpm -q gpg-pubkey-5202f88b-491b00bc > /dev/null 2>&1
 if [ $? = 1 ]; then
-  /bin/rpm --import /usr/share/doc/blueonyx-release-5106R/RPM-GPG-KEY-NUSOL-5106R
+  /bin/rpm --import /usr/share/doc/blueonyx-release-510XR/RPM-GPG-KEY-NUSOL-5106R
 fi
 
 # pwdb2shadow
@@ -240,11 +240,7 @@ fi
 /bin/cp /usr/sausalito/triggers/sysklogd/syslog.logrotate /etc/logrotate.d/syslog
 
 %triggerin glue -- webalizer
-%if "%fedora" == "1"
-/bin/cp /usr/sausalito/triggers/webalizer/webalizer-fc1.conf /etc/webalizer.conf
-%else
 /bin/cp /usr/sausalito/triggers/webalizer/webalizer.conf /etc/webalizer.conf
-%endif
 
 %triggerin glue -- httpd
 if [ -f /etc/logrotate.d/httpd ]; then
@@ -301,80 +297,12 @@ if [ -f /etc/logwatch/conf/ignore.conf ]; then
 fi
 %endif
 
-%if "%centos" == "5"
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS5 /sbin/ifup
-%triggerin glue -- httpd
-/usr/bin/perl -pi -e 's|^ServerTokens OS|ServerTokens ProductOnly|g' /etc/httpd/conf/httpd.conf
-# Fix /etc/logrotate.conf, because we want to rotate daily and we want to compress the logs:
-/usr/bin/perl -pi -e 's|^# rotate log files weekly|# rotate log files daily|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^weekly|daily|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^# keep 4 weeks worth of backlogs|# keep 366 days worth of backlogs|g' /etc/logrotate.conf
-/usr/bin/perl -pi -e 's|^rotate 4|rotate 366|g' /etc/logrotate.conf
-%triggerin glue -- logrotate
-/usr/bin/perl -pi -e 's|^#compress|compress|g' /etc/logrotate.conf
-# Fix Logwatch's ignore.conf to ignore error message on Proftpd using virtualhost containers for single IP setups:
-if [ -f /etc/logwatch/conf/ignore.conf ]; then
-  grep '^warning: "ProFTPD" address/port' /etc/logwatch/conf/ignore.conf > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'warning: "ProFTPD" address/port' >> /etc/logwatch/conf/ignore.conf
-  fi
-fi
-%endif
-
-%if "%centos" == "4"
-%triggerin glue -- centos-yumconf
-/bin/cp /usr/sausalito/triggers/centos-yumconf/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo 
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS4.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS4 /sbin/ifup
-%endif
-
-%if "%centos" == "4"
-%triggerin glue -- dovecot
-/bin/cat /etc/dovecot.conf | \
-/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
--e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
-> /etc/dovecot.conf.new
-/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
-%endif
-
-%if "%centos" == "5"
-%triggerin glue -- dovecot
-/bin/cat /etc/dovecot.conf | \
-/bin/sed -e 's|#default_mail_env =|default_mail_env = mbox:~/mail/:INBOX=mbox|' \
--e 's|#pop3_uidl_format = %08Xu%08Xv|pop3_uidl_format = %08Xu%08Xv|' \
-> /etc/dovecot.conf.new
-/bin/mv /etc/dovecot.conf.new /etc/dovecot.conf
-%endif
-
 %if "%centos" == "6"
 %triggerin glue -- dovecot
 perl -pi -e 's|^#disable_plaintext_auth = (.*)|disable_plaintext_auth = no|g' /etc/dovecot/conf.d/10-auth.conf
 perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
 %endif
 
-%if "%centos" == "3"
-%triggerin glue -- yum
-/bin/cp /usr/sausalito/triggers/yum/yum-centos3.conf /etc/yum.conf
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS3.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-CentOS3 /sbin/ifup
-%endif
-
-%if "%fedora" == "1"
-%triggerin glue -- yum
-/bin/cp /usr/sausalito/triggers/yum/yum-fc1.conf /etc/yum.conf
-%triggerin glue -- iptables
-/bin/cp /usr/sausalito/triggers/iptables/iptables-FC1.init /etc/init.d/iptables
-%triggerin glue -- initscripts
-/bin/cp /usr/sausalito/triggers/initscripts/ifup-FC1 /sbin/ifup
-%endif
 <end $TRIGGERIN>
 
 <begin $TRIGGERUN>
@@ -394,6 +322,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Sat Apr 26 2014 Michael Stauber <mstauber@solarspeed.net> 4.20140426BX111 
+- Version number bump.
+- Trimmed fat.
 
 * Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 4.20140205BX110 
 - Version number bump.
