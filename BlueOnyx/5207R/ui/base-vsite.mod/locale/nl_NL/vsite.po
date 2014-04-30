@@ -932,3 +932,40 @@ msgstr "Aantal locaties"
 msgid "userSitesMax_help"
 msgstr "Maximum aantal virtuele sites die aldus beheerder mag maken."
 
+#
+
+msgid "resellerPowers"
+msgstr "[[base-vsite.cap_manageSite]]: Extra rechten"
+
+msgid "resellerPowers_help"
+msgstr "Als een gebruiker de rechten van '[[base-vsite.cap_manageSite]]' heeft, kan hij virtueel sites te maken en te beheren. Sites kunnen bepaalde functies gebruiken, zoals PHP, suPHP, MySQL en ga zo maar door. Echter, zou u niet wilt toegang en bruikbaarheid van functies zoals 'Shell Access' of 'Anonymous FTP' verlenen. U kunt toestaan ​​of hier dergelijke functies te ontkennen."
+
+msgid "cap_resellerPHP"
+msgstr "PHP"
+
+msgid "cap_resellerSUPHP"
+msgstr "suPHP"
+
+msgid "cap_resellerMySQL"
+msgstr "MySQL"
+
+msgid "cap_resellerJSP"
+msgstr "JSP"
+
+msgid "cap_resellerCGI"
+msgstr "CGI"
+
+msgid "cap_resellerSSI"
+msgstr "SSI"
+
+msgid "cap_resellerSSL"
+msgstr "SSL"
+
+msgid "cap_resellerFTP"
+msgstr "FTP"
+
+msgid "cap_resellerAnonFTP"
+msgstr "AnonFTP"
+
+msgid "cap_resellerShell"
+msgstr "Shell"

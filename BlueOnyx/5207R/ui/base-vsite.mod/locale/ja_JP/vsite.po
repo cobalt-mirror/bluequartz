@@ -932,7 +932,7 @@ msgid "maxVsiteUpper"
 msgstr "512"
 
 msgid "VsiteMaxError"
-msgstr "値がに入力された[base-vsite.maxVsiteField]]、[base-vsite.maxVsiteUpper]]未満でなければなりません。"
+msgstr "値がに入力された[[base-vsite.maxVsiteField]]、[[base-vsite.maxVsiteUpper]]未満でなければなりません。"
 
 msgid "maxVsiteAlreadyMade"
 msgstr "あなたはすでにあなたが作成するために許可されている仮想サイトの最大量を作成しました。これ以上のサイトが、この時点で作成することはできません。"
@@ -994,3 +994,40 @@ msgstr "サイトの数"
 msgid "userSitesMax_help"
 msgstr "この管理者が作成できる仮想サイトの最大数。"
 
+#
+
+msgid "resellerPowers"
+msgstr "[[base-vsite.cap_manageSite]]：追加の権利"
+
+msgid "resellerPowers_help"
+msgstr "ユーザーが「[[base-vsite.cap_manageSite]]の権利を持っている場合、彼は仮想サイトを作成して管理することができます。サイトはこのようなというように、PHP、suPHP、MySQLとの特定の機能を使用することができます。ただし、「シェルアクセス」または「匿名FTP」などの機能へのアクセスと操作性を付与したくない場合があります。あなたがここにそのような機能を許可または拒否することができます。"
+
+msgid "cap_resellerPHP"
+msgstr "PHP"
+
+msgid "cap_resellerSUPHP"
+msgstr "suPHP"
+
+msgid "cap_resellerMySQL"
+msgstr "MySQL"
+
+msgid "cap_resellerJSP"
+msgstr "JSP"
+
+msgid "cap_resellerCGI"
+msgstr "CGI"
+
+msgid "cap_resellerSSI"
+msgstr "SSI"
+
+msgid "cap_resellerSSL"
+msgstr "SSL"
+
+msgid "cap_resellerFTP"
+msgstr "FTP"
+
+msgid "cap_resellerAnonFTP"
+msgstr "AnonFTP"
+
+msgid "cap_resellerShell"
+msgstr "Shell"

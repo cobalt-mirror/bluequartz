@@ -1000,4 +1000,40 @@ msgstr "Anzahl der Websites"
 msgid "userSitesMax_help"
 msgstr "Maximale Anzahl von virtuellen Sites, die dieser Administrator anlegen darf."
 
+#
 
+msgid "resellerPowers"
+msgstr "[[base-vsite.cap_manageSite]]: Zusätzliche Rechte"
+
+msgid "resellerPowers_help"
+msgstr "Wenn ein Benutzer '[[base-vsite.cap_manageSite]]' Rechte hat, kann er virtuelle Websites erstellen und verwalten. Websites können bestimmte Funktionalitäten wie PHP, suPHP, MySQL und andere nutzen. Allerdings möchten Sie dem Benutzer möglicherweise nicht unbeding 'Shell-Zugang' oder 'Anonymes FTP' erlauben. Hier können Sie bestimmen, welche Funktionalitäten von virtuellen Sites dieser Benutzer ggf. aktivieren kann."
+
+msgid "cap_resellerPHP"
+msgstr "PHP"
+
+msgid "cap_resellerSUPHP"
+msgstr "suPHP"
+
+msgid "cap_resellerMySQL"
+msgstr "MySQL"
+
+msgid "cap_resellerJSP"
+msgstr "JSP"
+
+msgid "cap_resellerCGI"
+msgstr "CGI"
+
+msgid "cap_resellerSSI"
+msgstr "SSI"
+
+msgid "cap_resellerSSL"
+msgstr "SSL"
+
+msgid "cap_resellerFTP"
+msgstr "FTP"
+
+msgid "cap_resellerAnonFTP"
+msgstr "AnonFTP"
+
+msgid "cap_resellerShell"
+msgstr "Shell"

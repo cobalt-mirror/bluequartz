@@ -1109,4 +1109,42 @@ msgstr "Antallet af websteder"
 msgid "userSitesMax_help"
 msgstr "Maksimalt antal virtuelle websteder, der dermed administrator er tilladt at skabe."
 
+##
+
+
+msgid "resellerPowers"
+msgstr "[[base-vsite.cap_manageSite]]: Yderligere rettigheder"
+
+msgid "resellerPowers_help"
+msgstr "Hvis en bruger har '[[base-vsite.cap_manageSite]]' rettigheder, kan han oprette og administrere virtuelle sites. Websteder kan bruge visse funktioner såsom PHP, suphp, MySQL og så videre. Men måske du ikke ønsker at give adgang til og anvendeligheden af ​​funktioner som 'Shell adgang' eller 'anonym FTP'. Du kan tillade eller nægte sådanne funktioner her."
+
+msgid "cap_resellerPHP"
+msgstr "PHP"
+
+msgid "cap_resellerSUPHP"
+msgstr "suPHP"
+
+msgid "cap_resellerMySQL"
+msgstr "MySQL"
+
+msgid "cap_resellerJSP"
+msgstr "JSP"
+
+msgid "cap_resellerCGI"
+msgstr "CGI"
+
+msgid "cap_resellerSSI"
+msgstr "SSI"
+
+msgid "cap_resellerSSL"
+msgstr "SSL"
+
+msgid "cap_resellerFTP"
+msgstr "FTP"
+
+msgid "cap_resellerAnonFTP"
+msgstr "AnonFTP"
+
+msgid "cap_resellerShell"
+msgstr "Shell"
 
