@@ -81,8 +81,26 @@ my @groups = (
             'name' => 'adminUser',
             'shown' => 1,
             'capabilities' => $cce->array_to_scalar(
-                                'siteAdmin', 'siteSSL',
-                                'siteAnonFTP', 'siteShell'
+                                'siteAdmin',
+                                'siteSSL',
+                                'siteAnonFTP', 
+                                'siteShell' 
+                              )
+        },
+        {
+            'name' => 'reseller',
+            'shown' => 1,
+            'capabilities' => $cce->array_to_scalar(
+                                'resellerPHP',
+                                'resellerSUPHP',
+                                'resellerMySQL',
+                                'resellerJSP',
+                                'resellerCGI',
+                                'resellerSSI',
+                                'resellerSSL',
+                                'resellerFTP',
+                                'resellerAnonFTP',
+                                'resellerShell'
                               )
         },
         {
