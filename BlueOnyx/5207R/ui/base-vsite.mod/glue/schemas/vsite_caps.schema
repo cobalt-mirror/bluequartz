@@ -1,5 +1,4 @@
 <!--
-    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
     $Id: vsite_caps.schema
 
     This capability specifies who can modify admin's special privileges
@@ -40,4 +39,16 @@
     <property 
         name="nameTag" type="scalar" default="[[base-vsite.cap_manageSite]]" 
     /> 
-</class> 
+</class>
+
+<class 
+    name="Capabilities" namespace="systemAdministrator" version="0.1" 
+> 
+    <property 
+        name="capable" type="boolean" default="0" 
+        readacl="ruleCapable(systemAdministrator)" 
+    /> 
+    <property 
+        name="nameTag" type="scalar" default="[[base-vsite.cap_systemAdministrator]]" 
+    /> 
+</class>
