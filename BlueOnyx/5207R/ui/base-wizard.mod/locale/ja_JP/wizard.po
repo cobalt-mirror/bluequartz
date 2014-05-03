@@ -569,3 +569,48 @@ msgstr "半角の英小文字、数字、ハイフン、ピリオドだけが使
 
 msgid "vsite_domainNameField_help"
 msgstr "このサーバのドメインネームを入力してください。ホスト名とドメインネームの組み合せにより、このサーバを一意に識別する名前を付けてください。[[base-wizard.vsite_domainNameField_rule]]"
+
+###
+
+msgid "wiz_with_no_pass"
+msgstr "新しいBlueOnxサーバーへようこそ。 Webベースのセットアップウィザードを起動するために管理者パスワードを入力してください。"
+
+msgid "license_acceptance"
+msgstr "使用条件への同意"
+
+msgid "license_acceptance_help"
+msgstr "[[base-wizard.mustAcceptToUse]]"
+
+msgid "iso_wizard_title"
+msgstr "[[base-product.productName]]セットアップ·ウィザード"
+
+msgid "wizard_locale_header"
+msgstr "言語"
+
+msgid "wizard_locale_header_sub"
+msgstr "言語設定"
+
+msgid "wizard_license_header"
+msgstr "ライセンス"
+
+msgid "wizard_license_header_sub"
+msgstr "BlueOnyxライセンス"
+
+msgid "wiz_finalize"
+msgstr "まとめる"
+
+msgid "wiz_finalize_help"
+msgstr "セットアップを終了"
+
+msgid "finalize_blurb_header"
+msgstr "初期設定を完了さ："
+
+msgid "finalize_blurb_text"
+msgstr "あなた[[base-product.productName]]の初期構成を完成させるために、下のボタンをクリックしてください。"
+
+msgid "finalize_help_us"
+msgstr "BlueOnyxは無料で利用できます。すべての目的のために、彼らは、個人的、商業、教育あるいは何でもあなたのためにそれを使用することがありかもしれません。しかし：、BlueOnyxが更新さを維持し、それに新しい機能を追加し、更新されたISOイメージを解放すると、多くの仕事である。あなたBlueOnyxのような場合は、プロジェクトに何かを寄付を検討したりであなたの[[base-product.productName]]用モジュールの追加購入を検討してください<a href=\"http://shop.blueonyx.it/\" target=\"_blank\">BlueOnyxショップ</a> 。あなたに感謝し、BlueOnyxを使用してお楽しみください！"
+
+msgid "wizardSysSettings_help"
+msgstr "ネットワークとパスワードを入力します。"
+

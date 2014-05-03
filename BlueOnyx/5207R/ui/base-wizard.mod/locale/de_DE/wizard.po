@@ -539,7 +539,7 @@ msgid "licenseClick"
 msgstr "Um die Lizenzbestimmungen zu akzeptieren oder abzulehnen, müssen Sie bis an das Ende der Lizenzbedingungen scrollen."
 
 msgid "mustAcceptToUse"
-msgstr "Sie müssen angeben, ob Sie die Lizenzbedingungen akzeptieren, um die [[base-alpine.osName]] Open Source Software zu verwenden."
+msgstr "Sie müssen die Lizenzbedingungen akzeptieren, um die [[base-alpine.osName]] Open Source Software zu verwenden."
 
 msgid "license"
 msgstr "[[base-product.productLicense]]"
@@ -571,4 +571,48 @@ msgstr "Bitte nur alphanumerische Zeichen in Kleinschreibung verwenden. Bindestr
 
 msgid "vsite_domainNameField_help"
 msgstr "Geben Sie bitte den Domänennamen dieses Servers ein. Die Kombination von Hostname und Domänen-Namen sollten so gewählt werden, dass sie diesen Server einwandfrei identifizieren können.  [[base-wizard.vsite_domainNameField_rule]]"
+
+###
+
+msgid "wiz_with_no_pass"
+msgstr "Willkommen auf Ihrer neuen BlueOnx Server. Bitte geben Sie das Admin-Passwort ein, um den Web-basierten Setup-Assistenten zu starten."
+
+msgid "license_acceptance"
+msgstr "Lizenz-Vereinbarung"
+
+msgid "license_acceptance_help"
+msgstr "[[base-wizard.mustAcceptToUse]]"
+
+msgid "iso_wizard_title"
+msgstr "[[base-product.productName]] Setup-Assistent"
+
+msgid "wizard_locale_header"
+msgstr "Sprache"
+
+msgid "wizard_locale_header_sub"
+msgstr "Sprachen-Setup"
+
+msgid "wizard_license_header"
+msgstr "Lizenz"
+
+msgid "wizard_license_header_sub"
+msgstr "BlueOnyx Lizenz"
+
+msgid "wiz_finalize"
+msgstr "Finalisieren"
+
+msgid "wiz_finalize_help"
+msgstr "Setup abschließen"
+
+msgid "finalize_blurb_header"
+msgstr "Abschließen der Ersteinrichtung:"
+
+msgid "finalize_blurb_text"
+msgstr "Mit dem Knopf am Ende dieses Formulares können Sie die Konfiguration Ihres [[base-product.productName]] abschließen. Ihr Server kann danach verwendet werden."
+
+msgid "finalize_help_us"
+msgstr "BlueOnyx ist kostenfrei für alle Zwecke verfügbar: Egal ob privat, gewerblich, für Bildungseinrichtungen oder für welchen Zweck auch immer Sie es einsetzen möchten. Allerdings: Für uns ist die Pflege, Weiterentwicklung, Bereitstellung von Aktualisationen, neuen Funktionen und der Bau der Installationsmedien eine Menge Arbeit. Wenn Sie BlueOnyx einsetzen und auch in Zukunft nicht darauf verzichten möchten, dann ziehen Sie bitte in Erwägung, das BlueOnyx-Projekt auch finanziell zu unterstützen. Entweder durch den Kauf von Zusatz-Modulen im <a href=\"http://shop.blueonyx.it/\" target=\"_blank\">BlueOnyx-Shop</a>, oder durch Spenden. Vielen Dank und viel Spaß mit BlueOnyx!"
+
+msgid "wizardSysSettings_help"
+msgstr "Netzwerk und Passwort."
 

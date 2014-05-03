@@ -561,3 +561,48 @@ msgstr "Please enter only lowercase alphanumeric characters, dashes or periods. 
 
 msgid "vsite_domainNameField_help"
 msgstr "Enter the domain name of this server appliance. The host name and the domain name combined together should uniquely identify this server appliance. [[base-wizard.vsite_domainNameField_rule]]"
+
+### For new Wizard:
+
+msgid "wiz_with_no_pass"
+msgstr "Welcome to your new BlueOnx server. Please enter the admin password to start the web based setup wizard."
+
+msgid "license_acceptance"
+msgstr "License Acceptance"
+
+msgid "license_acceptance_help"
+msgstr "[[base-wizard.mustAcceptToUse]]"
+
+msgid "iso_wizard_title"
+msgstr "[[base-product.productName]] Setup-Wizard"
+
+msgid "wizard_locale_header"
+msgstr "Language"
+
+msgid "wizard_locale_header_sub"
+msgstr "Language Setup"
+
+msgid "wizard_license_header"
+msgstr "License"
+
+msgid "wizard_license_header_sub"
+msgstr "BlueOnyx License"
+
+msgid "wiz_finalize"
+msgstr "Finalize"
+
+msgid "wiz_finalize_help"
+msgstr "Finish the setup"
+
+msgid "finalize_blurb_header"
+msgstr "Finalize the initial setup:"
+
+msgid "finalize_blurb_text"
+msgstr "Please click on the button below to finalize the initial configuration of your [[base-product.productName]]."
+
+msgid "finalize_help_us"
+msgstr "BlueOnyx is available free of charge. For all purposes, may they be personal, commercial, educational or whatever else you might want to use it for. However: Keeping BlueOnyx updated, adding new features to it and releasing updated ISO images is a lot of work. If you like BlueOnyx, then please consider donating something to the project or consider purchasing add on modules for your [[base-product.productName]] in the <a href=\"http://shop.blueonyx.it/\" target=\"_blank\">BlueOnyx Shop</a>. Thank you and enjoy using BlueOnyx!"
+
+msgid "wizardSysSettings_help"
+msgstr "Network and password."
+
