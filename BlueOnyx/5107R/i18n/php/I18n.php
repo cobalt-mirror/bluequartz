@@ -219,6 +219,10 @@ class I18n {
 
     $out_text = i18n_interpolate_js($this->handle, $magicstr, $vars);
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
+    // Replace all double-quotation marks with single ones:
+    $out_text_clean = preg_replace('/"/', "'", $out_text_clean);
+    // We don't really want to HTML'ize this, but we might have to:
+    //$out_text_clean = htmlentities($out_text_clean, ENT_QUOTES | ENT_IGNORE, "UTF-8");
     if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
       return $out_text_clean;
     } 
