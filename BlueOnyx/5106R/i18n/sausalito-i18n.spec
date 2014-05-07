@@ -3,7 +3,7 @@
 Summary: Cobalt i18n library
 Name: sausalito-i18n
 Version: 0.71.1
-Release: 0BX06%{?dist}
+Release: 0BX07%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -93,6 +93,11 @@ if [ -d "/usr/share/locale/ja_JP.eucjp" ]; then
 fi
 
 %changelog
+
+* Tue May 07 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX07
+- Modified php/I18n.php to have interpolateJs() replace double-quotes with
+  single quotes. Otherwise we might have cases where certain locales prevent
+  the loading of the GUI framework.
 
 * Thu Apr 10 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX06
 - Modified php/I18n.php to improve the order of charsets in mb_detect_encoding()

@@ -205,6 +205,8 @@ class I18n {
 
     $out_text = i18n_interpolate_js($this->handle, $magicstr, $vars);
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
+    // Replace all double-quotation marks with single ones:
+    $out_text_clean = preg_replace('/"/', "'", $out_text_clean);
     if (($this->Language == "ja_JP")) {
       return mb_convert_encoding($out_text_clean, "UTF-8", "EUC-JP");
     }
