@@ -164,6 +164,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue May 07 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX01
+- Major version number bump for 520XR.
+- Added requirement for perl-File-ReadBackwards
+- Modified glue/slogtail/messages.pl to use perl-File-ReadBackwards so
+  that we can exclude the new SSH related CODB transactions from being
+  shown in the GUIs logfile viewer. 
+
 * Sat Mar 22 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.1-0BX05
 - Made Capability 'menuServerSecurity' assignable so that the 'Security'
   menu can be made visible with everything beyond.
