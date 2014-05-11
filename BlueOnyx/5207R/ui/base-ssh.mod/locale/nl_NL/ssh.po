@@ -32,3 +32,116 @@ msgstr "SSH Root Inloggen:"
 msgid "SSHrootLogin_help"
 msgstr "Standaard en om veiligheidsredenen direct SSH login als gebruiker 'root' is meestal niet toegestaan. Indien nodig, kunt u het hier te staan."
 
+###
+
+msgid "basicSettingsTab"
+msgstr "Basisinstellingen"
+
+msgid "advancedSettingsTab"
+msgstr "SSH Key/Cert management"
+
+msgid "PasswordAuthentication"
+msgstr "Password Authentication"
+
+msgid "PasswordAuthentication_help"
+msgstr "Geeft aan of wachtwoord authenticatie SSH is toegestaan. De standaard is 'ja'. Als u hebt ingesteld SSH sleutels of certificaten, kunt u uit wachtwoordauthenticatie zetten voor extra veiligheid. Alleen toestaan ​​key / cert gebaseerd SSH logins is het veiliger mode."
+
+msgid "RSAAuthentication"
+msgstr "RSA Authentication"
+
+msgid "RSAAuthentication_help"
+msgstr "Geeft aan of pure RSA authenticatie is toegestaan. De standaard is 'nee', omdat we meestal staan ​​alleen SSH protocol versie 2 en deze optie geldt alleen voor protocol versie 1 alleen."
+
+msgid "PubkeyAuthentication"
+msgstr "Public Key Authenticatie"
+
+msgid "PubkeyAuthentication_help"
+msgstr "Geeft aan of de publieke sleutel wordt toegestaan. De standaard is 'ja'. Merk op dat deze optie geldt voor protocol versie 2 alleen."
+
+msgid "key_present"
+msgstr "SSH sleutels"
+
+msgid "key_present_help"
+msgstr "Geeft aan of SSH publieke en private sleutels aanwezig zijn. Zo niet, kunt u het vakje aanvinken en hebben ze gemaakt."
+
+msgid "cert_present"
+msgstr "PEM Certificaten"
+
+msgid "cert_present_help"
+msgstr "Geeft aan of SSH publieke en private PEM-certificaten aanwezig zijn. Zo niet, kunt u het vakje aanvinken en hebben ze gemaakt."
+
+msgid "keys_present_msg"
+msgstr "[[VAR.bits]] bit private en publieke sleutel aanwezig."
+
+msgid "certs_present_msg"
+msgstr "[[VAR.bits]] bit private en publieke PEM certificaten aanwezig."
+
+msgid "but_needs_root_access"
+msgstr " Maar om in te loggen door SSH als root moet je 'root' toegang toe te staan ​​door SSH."
+
+msgid "AuthKeyList"
+msgstr "Stelt van: [[VAR.authkey_file]]"
+
+msgid "key_type"
+msgstr "Type"
+
+msgid "key_type_help"
+msgstr "Toont het van de publieke sleutel."
+
+msgid "key_payload"
+msgstr "Sleutel"
+
+msgid "key_payload_help"
+msgstr "Toont de eerste 15 en de laatste 15 tekens van de geïnstalleerde publieke sleutel."
+
+msgid "key_userhost"
+msgstr "Gebruiker en gastheer"
+
+msgid "key_userhost_help"
+msgstr "Geeft de gebruiker en gastheer waarvoor deze publieke sleutel is geldig. Zolang deze publieke sleutel is geïnstalleerd, kan iedereen met de bijbehorende private key (of certificaat) inloggen op deze server met SSH."
+
+msgid "bits"
+msgstr "Bits"
+
+msgid "bits_help"
+msgstr "Geeft de bit-lengte van de geïnstalleerde publieke sleutel of certificaat. Sleutels of certificaten met een langere bit-lengte worden over het algemeen beschouwd als veiliger."
+
+msgid "listAction"
+msgstr "Actie"
+
+msgid "listAction_help"
+msgstr "Hiermee kunt u een geïnstalleerde publieke sleutel te verwijderen. De gebruiker en host is dan niet meer toegestaan ​​om in te loggen met die sleutel of certificaat. Let op: Als dat de gebruiker momenteel is aangemeld, dan zal dit niet zijn verbinding te verbreken. Maar hij zal niet worden toegestaan ​​om opnieuw in te loggen met die sleutel of certificaat."
+
+msgid "AKRemove"
+msgstr "Verwijder de geselecteerde openbare sleutel uit authorized_keys"
+
+msgid "AKRemoveConfirmNeutral"
+msgstr "Bevestig publieke sleutel te verwijderen:"
+
+msgid "removeConfirmInfo"
+msgstr "Wil je echt wilt deze publieke sleutel van geautoriseerde sleutels te verwijderen? Dit voorkomt dat de gebruiker en host opnieuw aan te melden met de opgegeven sleutel of certificaat."
+
+msgid "UploadPubKeyHead"
+msgstr "Upload een publieke sleutel toevoegen aan [[VAR.authkey_file]]"
+
+msgid "UploadPubkey"
+msgstr "Upload Public Key"
+
+msgid "UploadPubkey_help"
+msgstr "Hiermee kunt u een publieke sleutel uploaden. Het zal worden toegevoegd automatisch authorized_keys."
+
+msgid "keyDownloadHeader"
+msgstr "Download Public Key en / of PEM Certificaat:"
+
+msgid "export_id_rsa_pub"
+msgstr "Download Public Key"
+
+msgid "export_id_rsa_pub_help"
+msgstr "Hiermee kunt u de publieke sleutel downloaden van deze server, zodat u deze kunt toevoegen aan authorized_keys op een andere server."
+
+msgid "export_root_pem"
+msgstr "Download PEM Certificaat"
+
+msgid "export_root_pem_help"
+msgstr "Hiermee kunt u de PEM certificaat van deze server te downloaden. Vervolgens kunt u het in uw SSH-client om een ​​verbinding met SSH op deze server tot stand."
+

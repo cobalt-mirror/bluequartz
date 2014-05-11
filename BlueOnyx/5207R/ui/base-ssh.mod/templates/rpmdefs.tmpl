@@ -122,6 +122,22 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun May 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX01
+- Major version number bump for 520XR.
+- Added SSH key/cert managament to the GUI. This is the first rought draft
+  which is still missing some bits and pieces.
+- Modified glue/schemas/ssh.schema for new CODB database fields.
+- Modified glue/conf/ssh.conf
+- Modified constructor/import_sshd_settings.pl to read in more sshd_config
+  parameters to store them in CODB.
+- Modified glue/handlers/sshd_handler.pl to write a new sshd_config with our
+  added parameters.
+- Added improved French locales as provided by Meaulness Legler. Although I had
+  to add the new locale strings for the SSH key managements to it. So if in doubt:
+  The part where spelling and grammar suck is all mine and courtesy of Google 
+  Translate.
+- Added new locale strings to all locales.
+
 * Sun Apr 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX06
 - Added call to constructor/base/ssh/import_sshd_settings.pl on RPM post
   install to force an update of the sshd_config and a SSHd restart.

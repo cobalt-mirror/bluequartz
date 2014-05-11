@@ -5,6 +5,10 @@
 
 # Debugging switch:
 $DEBUG = "0";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+    &debug_msg("Debug enabled.\n");
+}
 
 # Uncomment correct type:
 $whatami = "constructor";
@@ -30,6 +34,10 @@ else {
     $cce->connectuds();
 }
 
+# Array setup:
+@yes = ('Yes', 'yes', '1');
+@boolKeys = ('PermitRootLogin', 'PasswordAuthentication', 'RSAAuthentication', 'PubkeyAuthentication');
+
 # Config file present?
 if (-f $sshd_config) {
 
@@ -37,13 +45,13 @@ if (-f $sshd_config) {
 	&items_of_interest;
 
 	# Read, parse and hash config:
-        &ini_read;
+    &ini_read;
         
-        # Verify input and set defaults if needed:
-        &verify;
+    # Verify input and set defaults if needed:
+    &verify;
         
-        # Shove ouput into CCE:
-        &feedthemonster;
+    # Shove ouput into CCE:
+    &feedthemonster;
 }
 else {
 	# Ok, we have a problem: No config file found.
@@ -64,11 +72,12 @@ sub ini_read {
         next if $line =~ /^\s*$/;               	# skip blank lines
         next if $line =~ /^\#*$/;               	# skip comment lines
         if ($line =~ /^([A-Za-z_\.]\w*)/) {		
-	    $line =~s/\#(.*)$//g; 			# Remove trailing comments in lines
-	    $line =~s/\"//g; 				# Remove double quotation marks
+			$line =~s/\#(.*)$//g; 					# Remove trailing comments in lines
+			$line =~s/\"//g; 						# Remove double quotation marks
 
-            @row = split (/ /, $line);			# Split row at the delimiter
-    	    $CONFIG{$row[0]} = $row[1];			# Hash the splitted row elements
+            @row = split (/ /, $line);				# Split row at the delimiter
+            &debug_msg("Reading: $row[0] - $row[1] \n");
+    	    $CONFIG{$row[0]} = $row[1];				# Hash the splitted row elements
         }
     }
     close(F);
@@ -85,46 +94,71 @@ sub verify {
     ($ok, $sshd_settings) = $cce->get($oid, "SSH");
 
     if ($#oids < 0) {
-	$first_run = "1";
+		$first_run = "1";
     }
     else {
-	if ($sshd_settings{'force_update'} eq "") {
-	    $first_run = "1";
-	}
-	else {
-	    $first_run = "0";
-	}
+		if ($sshd_settings{'force_update'} eq "") {
+		    $first_run = "1";
+		}
+		else {
+		    $first_run = "0";
+		}
     }
 
     # Go through list of config switches we're interested in:
     foreach $entry (@whatweneed) {
-	if (!$CONFIG{"$entry"}) {
-	    # Found key without value - setting defaults for those that need it:
-	    if ($entry eq "PermitRootLogin") {
-		$CONFIG{"$entry"} = "0";
-	    }
-	    if ($entry eq "Protocol") {
-		$CONFIG{"$entry"} = "2";
-	    }
-	    if ($entry eq "Port") {
-		$CONFIG{"$entry"} = "22";
-	    }
-	}
-	# Convert to schema format:
-	if (($CONFIG{"PermitRootLogin"} eq "No") || ($CONFIG{"PermitRootLogin"} eq "no")) {
-		$CONFIG{"PermitRootLogin"} = "0";
-	}
-	if (($CONFIG{"PermitRootLogin"} eq "Yes") || ($CONFIG{"PermitRootLogin"} eq "yes")) {
-		$CONFIG{"PermitRootLogin"} = "1";
-	}
-	# For debugging only:
+		if (!$CONFIG{"$entry"}) {
+		    # Found key without value - setting defaults for those that need it:
+		    if ($entry eq "PermitRootLogin") {
+		    	&debug_msg("Defaulting: $entry - $CONFIG{$entry}\n");
+				$CONFIG{"$entry"} = "0";
+		    }
+		    if ($entry eq "Protocol") {
+		    	&debug_msg("Defaulting: $entry - $CONFIG{$entry}\n");
+				$CONFIG{"$entry"} = "2";
+		    }
+		    if ($entry eq "Port") {
+		    	&debug_msg("Defaulting: $entry - $CONFIG{$entry}\n");
+				$CONFIG{"$entry"} = "22";
+		    }
+		    if ($entry eq "PasswordAuthentication") {
+		    	&debug_msg("Defaulting: $entry - $CONFIG{$entry}\n");
+				$CONFIG{"$entry"} = "yes";
+		    }
+		    if ($entry eq "RSAAuthentication") {
+		    	&debug_msg("Defaulting: $entry - $CONFIG{$entry}\n");
+				$CONFIG{"$entry"} = "no";
+		    }
+		    if ($entry eq "PubkeyAuthentication") {
+		    	&debug_msg("Defaulting: $entry - $CONFIG{$entry}\n");
+				$CONFIG{"$entry"} = "yes";
+		    }
+		}
+		# Convert selected config file values (No|no|Yes|yes) to bool (0|1) for CODB:
+		if (in_array(\@boolKeys, $entry)) {
+			if (in_array(\@yes, $CONFIG{$entry})) {
+				$CONFIG{$entry} = '1';
+			}
+			else {
+				$CONFIG{$entry} = '0';
+			}
+		}
+
+		# For debugging only:
         if ($DEBUG == "1") {
-	    print $entry . " = " . $CONFIG{"$entry"} . "\n";
-	}
+		    print $entry . " = " . $CONFIG{"$entry"} . "\n";
+		}
+		&debug_msg("Post-Verify: $entry - $CONFIG{$entry}\n");
     }
 }
 
 sub feedthemonster {
+
+	if ($DEBUG == "1") {
+	    foreach $entry (@whatweneed) {
+			print $entry . " = " . $CONFIG{"$entry"} . "\n";
+	    }
+	}
 
     @oid = $cce->find('System');
     ($ok, $sshd_settings) = $cce->get($oid);
@@ -135,19 +169,43 @@ sub feedthemonster {
         ($ok) = $cce->set($sys_oid, 'SSH',{
 	    'Port' => $CONFIG{"Port"},  
 	    'Protocol' => $CONFIG{"Protocol"},   
-	    'PermitRootLogin' => $CONFIG{"PermitRootLogin"},   
+	    'PermitRootLogin' => $CONFIG{"PermitRootLogin"},
+	    'XPasswordAuthentication' => $CONFIG{"PasswordAuthentication"},
+	    'RSAAuthentication' => $CONFIG{"RSAAuthentication"},
+	    'PubkeyAuthentication' => $CONFIG{"PubkeyAuthentication"},
 	    'force_update' => time()  
         });
     
+
 }
 
 sub items_of_interest {
     # List of config switches that we're interested in:
     @whatweneed = ( 
-	'PermitRootLogin', 
-	'Protocol', 
-	'Port' 
+		'PermitRootLogin', 
+		'Protocol', 
+		'Port',
+		'PasswordAuthentication',
+		'RSAAuthentication',
+		'PubkeyAuthentication'
 	);
+}
+
+sub in_array {
+	my ($arr,$search_for) = @_;
+	my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+	return (exists($items{$search_for}))?1:0;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 $cce->bye('SUCCESS');
@@ -156,7 +214,6 @@ exit(0);
 # 
 # Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

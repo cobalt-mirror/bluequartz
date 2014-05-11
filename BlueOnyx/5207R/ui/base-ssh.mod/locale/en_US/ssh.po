@@ -26,3 +26,116 @@ msgstr "SSH Root Login:"
 
 msgid "SSHrootLogin_help"
 msgstr "By default and for security reasons direct SSH login as user 'root' is typically not allowed. If needed, you can allow it here."
+
+###
+
+msgid "basicSettingsTab"
+msgstr "Basic Settings"
+
+msgid "advancedSettingsTab"
+msgstr "SSH Key/Cert Management"
+
+msgid "PasswordAuthentication"
+msgstr "Password Authentication"
+
+msgid "PasswordAuthentication_help"
+msgstr "Specifies whether password authentication to SSH is allowed. The default is 'yes'. If you have set up SSH keys or certificates, you can turn off password authentication for added security. Only allowing key/cert based SSH logins is the more secure fashion."
+
+msgid "RSAAuthentication"
+msgstr "RSA Authentication"
+
+msgid "RSAAuthentication_help"
+msgstr "Specifies whether pure RSA authentication is allowed. The default is 'no', as we usually allow only SSH protocol version 2 and this option applies only to protocol version 1 only."
+
+msgid "PubkeyAuthentication"
+msgstr "Public Key Authentication"
+
+msgid "PubkeyAuthentication_help"
+msgstr "Specifies whether public key authentication is allowed. The default is 'yes'. Note that this option applies to protocol version 2 only."
+
+msgid "key_present"
+msgstr "SSH Keys"
+
+msgid "key_present_help"
+msgstr "Shows if SSH public and private keys are present. If not, you can tick the checkbox and have them created."
+
+msgid "cert_present"
+msgstr "PEM Certificates"
+
+msgid "cert_present_help"
+msgstr "Shows if SSH public and private PEM certificates are present. If not, you can tick the checkbox and have them created."
+
+msgid "keys_present_msg"
+msgstr "[[VAR.bits]] bit private and public key present."
+
+msgid "certs_present_msg"
+msgstr "[[VAR.bits]] bit private and public PEM certificates present."
+
+msgid "but_needs_root_access"
+msgstr " But in order to login by SSH as root you need to allow 'root' access by SSH."
+
+msgid "AuthKeyList"
+msgstr "Contends of: [[VAR.authkey_file]]"
+
+msgid "key_type"
+msgstr "Type"
+
+msgid "key_type_help"
+msgstr "Shows the type of the public key."
+
+msgid "key_payload"
+msgstr "Key"
+
+msgid "key_payload_help"
+msgstr "Shows the first 15 and last 15 characters of the installed public key."
+
+msgid "key_userhost"
+msgstr "User and host"
+
+msgid "key_userhost_help"
+msgstr "Shows the user and host for which this public key is valid. As long as this public key is installed, anyone with the matching private key (or certificate) can login to this server by SSH."
+
+msgid "bits"
+msgstr "Bits"
+
+msgid "bits_help"
+msgstr "Shows the bit-length of the installed public key or certificate. Keys or certificates with longer bit-length are generally considered safer."
+
+msgid "listAction"
+msgstr "Action"
+
+msgid "listAction_help"
+msgstr "Allows you to delete an installed public key. The user and host is then no longer allowed to login with that key or certificate. Please note: If that user is currently logged in, then this will not terminate his connection. But he won't be allowed to login again with that key or certificate."
+
+msgid "AKRemove"
+msgstr "Remove the selected public key from authorized_keys"
+
+msgid "AKRemoveConfirmNeutral"
+msgstr "Confirm public key removal:"
+
+msgid "removeConfirmInfo"
+msgstr "Do you really want to remove this public key from authorized keys? This will prevent that user and host from logging in again with the given key or certificate."
+
+msgid "UploadPubKeyHead"
+msgstr "Upload a public key and add it to [[VAR.authkey_file]]"
+
+msgid "UploadPubkey"
+msgstr "Upload Public Key"
+
+msgid "UploadPubkey_help"
+msgstr "This allows you to upload a public key. It will be added to authorized_keys automatically."
+
+msgid "keyDownloadHeader"
+msgstr "Download Public Key and/or PEM Certificate:"
+
+msgid "export_id_rsa_pub"
+msgstr "Download Public Key"
+
+msgid "export_id_rsa_pub_help"
+msgstr "This allows you to download the public key from this server, so that you can add it to authorized_keys on another server."
+
+msgid "export_root_pem"
+msgstr "Download PEM Certificate"
+
+msgid "export_root_pem_help"
+msgstr "This allows you to download the PEM certificate from this server. You can then use it in your SSH client to establish a connection to SSH on this server."

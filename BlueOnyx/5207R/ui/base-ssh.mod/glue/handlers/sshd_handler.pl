@@ -5,6 +5,10 @@
 
 # Debugging switch:
 $DEBUG = "0";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+    &debug_msg("Debug enabled.\n");
+}
 
 # Location of sshd_config:
 $sshd_config = "/etc/ssh/sshd_config";
@@ -43,19 +47,18 @@ if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($SSH_server_OID
     # Someone used the GUI to edit some parameters. Update
     # the existing config and restart the daemon:
     if (-f $sshd_config) {
-    # Edit config:
-    &ini_read;
-    &edit_sshd_config;
+        # Edit config:
+        &ini_read;
+        &edit_sshd_config;
 
-
-    # Restart daemon:   
-    &restart_sshd;
+        # Restart daemon:   
+        &restart_sshd;
     }
     else {
-    # Ok, we have a problem: No config found.
-    # So we just weep silently and exit. 
-    $cce->bye('FAIL', "sshd_config not found!");
-    exit(1);
+        # Ok, we have a problem: No config found.
+        # So we just weep silently and exit. 
+        $cce->bye('FAIL', "sshd_config not found!");
+        exit(1);
     }
 
     # If we have a /root/.bashrc we edit it if needed:
@@ -72,47 +75,71 @@ exit(0);
 sub restart_sshd {
     # Restarts SSHd - hard restart - if services is enabled:
     if ($sshd_settings->{"enabled"} eq "1") {
-    service_run_init('sshd', 'restart');
+        service_run_init('sshd', 'restart');
     }
 }
 
 sub edit_sshd_config {
 
-    # Convert CODB values to output values:
+    # Convert selected CODB bool values (0|1) to config file values (No|no|Yes|yes):
     if ($sshd_settings->{"PermitRootLogin"} eq "0") {
-    $sshd_settings->{"PermitRootLogin"} = "no";
+        $sshd_settings->{"PermitRootLogin"} = "no";
     }
     else {
-    $sshd_settings->{"PermitRootLogin"} = "yes";
+        $sshd_settings->{"PermitRootLogin"} = "yes";
+    }
+
+    if ($sshd_settings->{"XPasswordAuthentication"} eq "0") {
+        $sshd_settings->{"XPasswordAuthentication"} = "no";
+    }
+    else {
+        $sshd_settings->{"XPasswordAuthentication"} = "yes";
+    }
+    
+    if ($sshd_settings->{"RSAAuthentication"} eq "0") {
+        $sshd_settings->{"RSAAuthentication"} = "no";
+    }
+    else {
+        $sshd_settings->{"RSAAuthentication"} = "yes";
+    }
+
+    if ($sshd_settings->{"PubkeyAuthentication"} eq "0") {
+        $sshd_settings->{"PubkeyAuthentication"} = "no";
+    }
+    else {
+        $sshd_settings->{"PubkeyAuthentication"} = "yes";
     }
 
     if (($sshd_settings->{"Protocol"} ne "2") && ($sshd_settings->{"Protocol"} ne "2,1") && ($sshd_settings->{"Protocol"} ne "1,2") && ($sshd_settings->{"Protocol"} ne "1")) {
-    $sshd_settings->{"Protocol"} = "2";
+        $sshd_settings->{"Protocol"} = "2";
     }
 
     &portlist;
     $portfound = "0";
     foreach $port (@portlist) {
-    if ($sshd_settings->{"Port"} eq $port) {
-        $portfound = "1";
-    }
+        if ($sshd_settings->{"Port"} eq $port) {
+            $portfound = "1";
+        }
     }
     if ($portfound ne "1") {
-    if ($CONFIG{'Port'}) {
-        $sshd_settings->{"Port"} = $CONFIG{'Port'};
-    }
-    else {
-        $sshd_settings->{"Port"} = "22";
-    }
+        if ($CONFIG{'Port'}) {
+            $sshd_settings->{"Port"} = $CONFIG{'Port'};
+        }
+        else {
+            $sshd_settings->{"Port"} = "22";
+        }
     }
 
     # Build output hash:
     $server_sshd_settings_writeoff = { 
-    'PermitRootLogin' => $sshd_settings->{"PermitRootLogin"}, 
-    'Port' => $sshd_settings->{"Port"}, 
-    'Protocol' => $sshd_settings->{"Protocol"},
-    'X11Forwarding' => 'no',
-    'AllowTcpForwarding' => 'no'
+        'PermitRootLogin' => $sshd_settings->{"PermitRootLogin"}, 
+        'PasswordAuthentication' => $sshd_settings->{"XPasswordAuthentication"}, 
+        'RSAAuthentication' => $sshd_settings->{"RSAAuthentication"}, 
+        'PubkeyAuthentication' => $sshd_settings->{"PubkeyAuthentication"}, 
+        'Port' => $sshd_settings->{"Port"}, 
+        'Protocol' => $sshd_settings->{"Protocol"},
+        'X11Forwarding' => 'no',
+        'AllowTcpForwarding' => 'no'
     };
 
     # Write changes to config file using Sauce::Util::hash_edit_function. The really GREAT thing
@@ -191,22 +218,22 @@ EOF
         my $found = 0;
 
         while(<$in>) {
-                if(/^\/bin\/echo(.*)$/) {
-                        $DEBUG && warn "WITHIN codeBase, neato: $_";
-                        $found = 1;
-                        if (($enabled eq "no") && (! -e "/proc/user_beancounters")) {
-                            print $out $_;
-                        }
-                }
-                else {
+            if(/^\/bin\/echo(.*)$/) {
+                    $DEBUG && warn "WITHIN codeBase, neato: $_";
+                    $found = 1;
+                    if (($enabled eq "no") && (! -e "/proc/user_beancounters")) {
                         print $out $_;
-                }
+                    }
+            }
+            else {
+                    print $out $_;
+            }
         }
         $DEBUG && warn "Found in block? $found\n";
 
-    if (($enabled eq "no") && (!$found) && (! -e "/proc/user_beancounters")) {
-        print $out $codeBase;
-    }
+        if (($enabled eq "no") && (!$found) && (! -e "/proc/user_beancounters")) {
+            print $out $codeBase;
+        }
         return 1;
 }
 
@@ -233,13 +260,29 @@ sub ini_read {
 
 }
 
+sub in_array {
+    my ($arr,$search_for) = @_;
+    my %items = map {$_ => 1} @$arr; # create a hash out of the array values
+    return (exists($items{$search_for}))?1:0;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 $cce->bye('SUCCESS');
 exit(0);
 
 # 
 # Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
