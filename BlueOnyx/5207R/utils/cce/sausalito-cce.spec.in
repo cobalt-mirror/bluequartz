@@ -183,6 +183,11 @@ fi
 
 %changelog
 
+* Sun May 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX02
+- Modified ccewrap/ccewrap.conf to add a few more allowed commands to it,
+  which we need for SSH key management. It's also fairly safe to add the
+  tail command to it, which will be useful for a better base-console.mod.
+
 * Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX01
 - New major version for 520XR.
 - Modified /usr/sausalito/schemas/basetypes.schema for 520XR.
