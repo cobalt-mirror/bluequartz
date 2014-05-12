@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=console
 
 VERSION=2.0.0
-RELEASE=0BX01
+RELEASE=0BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -17,7 +17,7 @@ BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
-REQUIRES= perl-File-ReadBackwards
+#REQUIRES= perl-File-ReadBackwards
 
 #########
 # some useful defines
