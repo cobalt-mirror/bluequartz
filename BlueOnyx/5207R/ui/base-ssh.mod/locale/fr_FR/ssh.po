@@ -145,3 +145,10 @@ msgstr "Télécharger Certificat PEM"
 msgid "export_root_pem_help"
 msgstr "Cela vous permet de télécharger le certificat PEM de ce serveur. Vous pouvez ensuite utiliser dans votre client SSH pour établir une connexion SSH sur ce serveur."
 
+###
+
+msgid "pers_shell_menu"
+msgstr "Accès SSH"
+
+msgid "pers_shell_menu_help"
+msgstr "Vous permet de créer et de gérer vos clés SSH et certificats PEM pour vos connexions SSH."
