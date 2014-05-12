@@ -49,7 +49,7 @@ if (($cce->event_is_modify())) {
         &debug_msg("Working with the System Object.\n");
 
         # Set work directory for user 'root':
-        $user_ssh_dir = '/root/.sshextra';
+        $user_ssh_dir = '/root/.ssh';
 
         # Create the directory if it doesn't exist:
         if (!-d $user_ssh_dir) {
