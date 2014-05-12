@@ -32,6 +32,18 @@
         writeacl="ruleCapable(serverShell)"
     />
 
+    <property 
+        name="keycreate" type="int" default="0"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleModifyUser"
+    />
+
+    <property 
+        name="certcreate" type="int" default="0"
+        readacl="ruleSelf OR ruleModifyUser"
+        writeacl="ruleModifyUser"
+    />
+
     <property
         name="XPasswordAuthentication" type="boolean" default="1"
         writeacl="ruleCapable(serverShell)"

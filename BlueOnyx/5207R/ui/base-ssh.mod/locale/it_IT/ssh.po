@@ -153,3 +153,11 @@ msgstr "Accesso SSH"
 msgid "pers_shell_menu_help"
 msgstr "Consente di creare e gestire le chiavi SSH e certificati PEM per i dati di accesso SSH."
 
+###
+
+msgid "SSH_keylength"
+msgstr "SSH lunghezza bit"
+
+msgid "SSH_keylength_help"
+msgstr "Specifica il numero di bit nella chiave per le chiavi di nuova costituzione o certificati. L'impostazione predefinita è 2048 bit. In generale, 2048 bit è considerato sufficiente, ma è possibile creare chiavi con più bit. Si prega di notare che le chiavi più lunghe creano più tempo per creare. Chiavi più lunghe hanno anche un impatto negativo sulle prestazioni SSH."
+

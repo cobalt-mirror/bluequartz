@@ -153,4 +153,10 @@ msgstr "SSH Access"
 msgid "pers_shell_menu_help"
 msgstr "Hiermee kunt u uw SSH sleutels en PEM certificaten voor uw SSH logins aanmaken en beheren."
 
+##
 
+msgid "SSH_keylength"
+msgstr "SSH Key bitlengte"
+
+msgid "SSH_keylength_help"
+msgstr "Bepaalt het aantal bits in de sleutel voor nieuwe sleutels of certificaten. De standaardwaarde is 2048 bits. In het algemeen wordt 2048 bits voldoende geacht, maar je kunt toetsen met meer bits te creëren. Let op: langere sleutels langer te creëren. Langere toetsen hebben ook een negatieve invloed op SSH prestaties."

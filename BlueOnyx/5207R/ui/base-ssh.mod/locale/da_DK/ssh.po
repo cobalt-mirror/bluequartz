@@ -161,3 +161,11 @@ msgstr "SSH adgang"
 msgid "pers_shell_menu_help"
 msgstr "Giver dig mulighed for at oprette og administrere dine SSH-nøgler og PEM certifikater for dine SSH logins."
 
+##
+
+msgid "SSH_keylength"
+msgstr "SSH Key Length"
+
+msgid "SSH_keylength_help"
+msgstr "Angiver antallet af bits i nøglen for nyoprettede nøgler eller certifikater. Standarden er 2048 bits. Generelt er 2048 bits betragtes som tilstrækkelig, men du kan oprette nøgler med flere bit. Bemærk venligst, at længere nøgler skaber længere tid at oprette. Længere nøgler har også en negativ indvirkning på SSH ydeevne."
+

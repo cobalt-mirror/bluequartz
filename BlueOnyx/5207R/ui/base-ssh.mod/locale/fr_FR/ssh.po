@@ -152,3 +152,12 @@ msgstr "Accès SSH"
 
 msgid "pers_shell_menu_help"
 msgstr "Vous permet de créer et de gérer vos clés SSH et certificats PEM pour vos connexions SSH."
+
+###
+
+msgid "SSH_keylength"
+msgstr "SSH longueur de bits"
+
+msgid "SSH_keylength_help"
+msgstr "Indique le nombre de bits dans la clé pour les clés ou certificats nouvellement créés. La valeur par défaut est de 2048 bits. Généralement, 2048 bits est considérée comme suffisante, mais vous pouvez créer des clés avec plus de bits. S'il vous plaît noter que des clés plus longues créent plus de créer. Des clés plus longues ont également un impact négatif sur les performances de SSH."
+
