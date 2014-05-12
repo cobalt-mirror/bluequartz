@@ -55,7 +55,7 @@ if (($cce->event_is_modify())) {
         if (!-d $user_ssh_dir) {
             system("/bin/mkdir $user_ssh_dir");
             system("/bin/chown root:root $user_ssh_dir");
-            system("/bin/chmod 600 $user_ssh_dir");
+            system("/bin/chmod 700 $user_ssh_dir");
         }
         # Create public/private key:
         if ((!-f "$user_ssh_dir/id_rsa") || (!-f "$user_ssh_dir/id_rsa.pub")) {
@@ -107,7 +107,7 @@ if (($cce->event_is_modify())) {
         if (!-d $user_ssh_dir) {
             system("/bin/mkdir $user_ssh_dir");
             system("/bin/chown $uid:$gid $user_ssh_dir");
-            system("/bin/chmod 600 $user_ssh_dir");
+            system("/bin/chmod 700 $user_ssh_dir");
         }
         # Create public/private key:
         if ((!-f "$user_ssh_dir/id_rsa") || (!-f "$user_ssh_dir/id_rsa.pub")) {
