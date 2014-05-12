@@ -183,6 +183,9 @@ fi
 
 %changelog
 
+* Mon May 12 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX03
+- Modified ccewrap/ccewrap.conf to add touch and wc.
+
 * Sun May 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX02
 - Modified ccewrap/ccewrap.conf to add a few more allowed commands to it,
   which we need for SSH key management. It's also fairly safe to add the
