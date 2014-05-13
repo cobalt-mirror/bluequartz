@@ -261,4 +261,34 @@ sauce-basic.mod to base-user.mod.
     />    
 </class>
 
+<class 
+    name="UserExtraServices" version="1.0"
+    createacl="ruleAdmin,ruleCreateVsite" 
+    destroyacl="ruleAdmin,ruleDestroyVsite"
+>
+    <property 
+        name="site" type="alphanum" optional="yes"
+        writeacl="ruleAdmin,ruleCreateVsite"
+    />    
+</class>
 
+<CLASS name="UserExtraServices" namespace="EmailSettings" version="1.0" writeacl="ruleAll" readacl="ruleAll" createacl="ruleModifyUser" destroyacl="ruleModifyUser">
+    <property name="featureEnabled" 
+    type="boolean" 
+    default="1"
+        type="boolean"
+        default="0"
+        writeacl="ruleAll"
+        readacl="ruleAll"
+        createacl="ruleModifyUser"
+        destroyacl="ruleModifyUser"
+    />
+  <property name="enabled" 
+    type="boolean" 
+    default="0" 
+    writeacl="ruleCapable(adminUser)"
+        readacl="ruleAll"
+        createacl="ruleModifyUser"
+        destroyacl="ruleModifyUser"
+   />
+</CLASS>
