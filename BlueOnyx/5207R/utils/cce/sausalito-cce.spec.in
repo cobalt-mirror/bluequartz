@@ -183,6 +183,10 @@ fi
 
 %changelog
 
+* Wed May 14 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX04
+- Updated basetypes.schema for the IMAP Sync related extras and fixed a
+  few other regular expressions.
+
 * Mon May 12 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX03
 - Modified ccewrap/ccewrap.conf to add touch and wc.
 

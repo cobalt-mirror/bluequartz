@@ -4,6 +4,10 @@
 	Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
 	Copyright (c) 2003 Sun Microsystems, Inc. 
 	All Rights Reserved.
+
+	Sample and simple working multiline regexp as example:
+	^(LOGIN|PLAIN)$|^(((LOGIN|PLAIN)([,]|[\\r\\n]){0,1}){0,999})$
+
 -->
 <SCHEMA NAME =		"Base Datatypes"
 	VENDOR =	"BlueOnyx"
@@ -81,9 +85,9 @@
   data="(^[A-Za-z0-9][A-Za-z0-9\-]*([\\.][A-Za-z0-9][A-Za-z0-9\-]*)*$)|(^([A-Za-z0-9][A-Za-z0-9\-]*\\.)+[A-Za-z]+$)|(^(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])$)"
 />
 
-// Multiple NetAddresses - not yet done
+// Multiple NetAddresses - as good as it gets:
 <typedef name="NetAddresses" type="re" 
-  data="^(.*)$"
+  data="^((([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])|(([a-z0-9][a-z0-9\-]*\\.)+[a-z]+))$|^((((([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])|(([a-z0-9][a-z0-9\-]*\\.)+[a-z]+))([,]|[\\r\\n]){0,1}){0,999})$"
 />
 
 // Single IP-Addresses with Netmask:
@@ -131,6 +135,30 @@
 	type="re"
 	data="^[^\001-\037\177]{6,24}$"
 />
+
+<typedef 
+	name="AuthProtos" 
+	type="re" 
+	data="(LOGIN|PLAIN|CRAM-MD5|OAUTH)"/>
+
+<typedef 
+    name="IMAPtype" 
+    type="re" 
+    data="(IMAP|SSL|TLS)"/>
+
+<typedef 
+  name="fq_email_address_or_username" 
+  type="re" 
+  data="(^[a-zA-Z0-9\\._-]+\@[a-zA-Z0-9\\._-]+$)|(^[A-Za-z0-9\\._-]+$)"
+  errmsg = "[[base-email.bad_blockUserField]]"
+/>
+
+<!-- Not Yet perfect, but this will do for now: -->
+<typedef 
+    name="IP_or_FQDN" 
+    type="re" 
+    data="(^([a-z0-9][a-z0-9\-]*\\.)+[a-z]+$)|(^(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])\\.(([0-9])|([1-9][0-9])|(1[0-9][0-9])|2[0-4][0-9]|25[0-5])$)"/>
+
 </SCHEMA>
 
 <SCHEMA NAME =		"Base Security Rules"
