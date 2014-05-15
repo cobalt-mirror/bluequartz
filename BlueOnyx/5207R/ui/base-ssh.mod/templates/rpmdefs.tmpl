@@ -122,6 +122,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu May 15 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX05
+- Modified glue/handlers/sshd_handler.pl to add 'StrictModes no' to our
+  sshd_config. This deals with the slightly elevalted permissions on
+  users home directories.
+- Modified glue/handlers/ssh_keycert.pl to chmod a bit more restrictively.
+
 * Mon May 12 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX04
 - Modified glue/handlers/ssh_keycert.pl as we need 700 perms on .ssh
 

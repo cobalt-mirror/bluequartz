@@ -139,6 +139,7 @@ sub edit_sshd_config {
         'Port' => $sshd_settings->{"Port"}, 
         'Protocol' => $sshd_settings->{"Protocol"},
         'X11Forwarding' => 'no',
+        'StrictModes' => 'no',
         'AllowTcpForwarding' => 'no'
     };
 
