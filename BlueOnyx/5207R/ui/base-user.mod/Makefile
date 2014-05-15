@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES= base-email-capstone >= 1.3.0-0BQ16 sausalito-cce-server >= 0.80.3-1BQ34 base-admserv-capstone >= 1.0.1-0BQ11 sausalito-i18n >= 0.70.2-86BQ16 authconfig >= 5.3.12-2.el5 sausalito-i18n >= 0.70.2-86BQ16 base-blueonyx-capstone >= 2.20080501 perl-Unix-ConfigFile >= 0.06-SOL1
+REQUIRES= imapsync base-email-capstone >= 1.3.0-0BQ16 sausalito-cce-server >= 0.80.3-1BQ34 base-admserv-capstone >= 1.0.1-0BQ11 sausalito-i18n >= 0.70.2-86BQ16 authconfig >= 5.3.12-2.el5 sausalito-i18n >= 0.70.2-86BQ16 base-blueonyx-capstone >= 2.20080501 perl-Unix-ConfigFile >= 0.06-SOL1
 
 #########
 # some useful defines
