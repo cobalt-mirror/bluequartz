@@ -448,4 +448,104 @@ msgstr "Are you sure you want to remove this user?"
 msgid "userRemoveConfirmInfo"
 msgstr "This will remove the account of this user and will also delete all emails, files and data of this user. This operation cannot be undone."
 
+##-- ImapSync Additions:
+
+msgid "EmailSettings"
+msgstr "Basic Settings"
+
+msgid "ImapSync"
+msgstr "IMAP Synchronization"
+
+msgid "sync_desc_text"
+msgstr "IMAP Synchronization allows you to copy the emails and IMAP folders from one mailbox to another. This can be used to import emails of a single user from another server after a server migration. It can also be used to export emails of a local user to a mailbox locate on another server."
+
+msgid "ImapSyncField"
+msgstr "IMAP Synchronization"
+
+msgid "ImapSyncField_help"
+msgstr "When you tick the 'Enable' checkbox, have all required fields filled out and save the changes, then this server will attempt to import emails via ImapSync from the remote to the local destination. A logfile of the transaction is created and can then be viewed to determine if the transfer was successful or not."
+
+msgid "SourceHostHeader"
+msgstr "Server FROM which you want to import:"
+
+msgid "source"
+msgstr "Source Server"
+
+msgid "source_help"
+msgstr "This can be the hostname or the IP-address of the remote server from which you want to import."
+
+msgid "sourceUsername"
+msgstr "Source Username"
+
+msgid "sourceUsername_help"
+msgstr "Please enter the login details for the remote server. Depending on the server architecture this can either be the username, or the email-address. Not all servers support logins with the email-address, though. In that case use the username instead. If you export from another [[base-product.productName]] server, then just specify the username."
+
+msgid "sourcePass"
+msgstr "Source Password"
+
+msgid "sourcePass_help"
+msgstr "Please enter the password of the remote email account."
+
+msgid "sourceProto"
+msgstr "Source Protocol"
+
+msgid "sourceProto_help"
+msgstr "This is the IMAP protocol used for connecting to the remote server. Choose 'IMAP' for unencrypted regular IMAP. If the remote server supports either 'SSL' or 'TLS', then choose them instead to establish a more secure connection."
+
+msgid "sourceAuth"
+msgstr "Source Auth"
+
+msgid "sourceAuth_help"
+msgstr "Please specify the Authentication Mechanism that the remote server supports. This usually is 'PLAIN' or 'LOGIN', but you can also try 'CRAM-MD5'. If you plan to import from Google Mail, then please try 'OAUTH' instead."
+
+msgid "TargetHostHeader"
+msgstr "Server TO which you want to import:"
+
+msgid "target"
+msgstr "Target Server"
+
+msgid "target_help"
+msgstr "This can be the hostname or the IP-address of the server to which you want to import. If you want to import the emails onto this [[base-product.productName]] server, then you can leave the IP-address at the default value of '127.0.0.1'."
+
+msgid "targetUsername"
+msgstr "Target Username"
+
+msgid "targetUsername_help"
+msgstr "Please enter the login details for the server to which you want to import the emails. Depending on the server architecture this can either be the username, or the email-address. If you import to a [[base-product.productName]] server, then just specify the username."
+
+msgid "targetPass"
+msgstr "Target Password"
+
+msgid "targetPass_help"
+msgstr "Please enter the password of the email account to which you want to import the emails."
+
+msgid "targetProto"
+msgstr "Target Protocol"
+
+msgid "targetProto_help"
+msgstr "This is the IMAP protocol used for connecting to the local server. Choose 'IMAP' for unencrypted regular IMAP. If the remote server supports either 'SSL' or 'TLS', then choose them instead to establish a more secure connection. If you want to import the emails onto this [[base-product.productName]] server, then you can usually leave it at the default value of 'SSL', as long as the server administrator has IMAP over SSL enabled here."
+
+msgid "targetAuth"
+msgstr "Target Auth"
+
+msgid "targetAuth_help"
+msgstr "Please specify the Authentication Mechanism that the remote server supports. This usually is 'PLAIN' or 'LOGIN', but you can also try 'CRAM-MD5'. If you plan to import from Google Mail, then please try 'OAUTH' instead. If you plan to import to this [[base-product.productName]] server, then you can leave it at the default 'PLAIN'."
+
+msgid "LogFileHeader"
+msgstr "IMAP Synchronization Logfile:"
+
+msgid "logdelete"
+msgstr "Delete Logfile"
+
+msgid "logdelete_help"
+msgstr "If you tick this box and save this page, then the logfile created during the last IMAP Synchronization will be deleted."
+
+msgid "ViewImapSyncLog"
+msgstr "View Logfile"
+
+msgid "ViewImapSyncLog_help"
+msgstr "This allows you to examine the logfile that was created during the last IMAP synchronization."
+
+msgid "ImapSyncRunFailed"
+msgstr "The IMAP Synchronization has failed. Please examine the logfile, as it might indicate a reason for this. Possible causes are usually incorrect login details or incorrect protocol and/or authentication mechanisms. Please correct the problems and try it again."
 

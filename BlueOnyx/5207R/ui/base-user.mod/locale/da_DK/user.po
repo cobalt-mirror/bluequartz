@@ -451,3 +451,104 @@ msgstr "Er du sikker på du vil fjerne denne bruger?"
 msgid "userRemoveConfirmInfo"
 msgstr "Dette vil fjerne kontoen for denne bruger og vil også slette alle e-mails, filer og data af denne bruger. Denne handling kan ikke fortrydes."
 
+### IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Grundlæggende indstillinger"
+
+msgid "ImapSync"
+msgstr "IMAP Synkronisering"
+
+msgid "sync_desc_text"
+msgstr "IMAP synkronisering kan du kopiere e-mails og IMAP-mapper fra en postkasse til en anden. Dette kan bruges til at importere e-mails af en enkelt bruger fra en anden server efter en server migration. Det kan også bruges til at eksportere e-mails af en lokal bruger til en postkasse finde på en anden server."
+
+msgid "ImapSyncField"
+msgstr "IMAP Synkronisering"
+
+msgid "ImapSyncField_help"
+msgstr "Når du markerer afkrydsningsfeltet 'Enable', alle obligatoriske felter er udfyldt og gemme ændringerne, så denne server vil forsøge at importere e-mails via ImapSync fra fjernbetjeningen til den lokale destination. En logfil af transaktionen er oprettet og kan derefter ses at afgøre, om overførslen lykkedes eller ej."
+
+msgid "SourceHostHeader"
+msgstr "Server, hvorfra du vil importere:"
+
+msgid "source"
+msgstr "Source Server"
+
+msgid "source_help"
+msgstr "Dette kan være værtsnavnet eller IP-adressen på den eksterne server, som du vil importere."
+
+msgid "sourceUsername"
+msgstr "Kilde Brugernavn"
+
+msgid "sourceUsername_help"
+msgstr "Indtast login detaljer til den eksterne server. Afhængig af server arkitektur, kan dette enten være brugernavn, eller e-mail-adresse. Ikke alle servere understøtter logins med den e-mail-adresse, selv om. I så fald bruge brugernavnet i stedet. Hvis du eksporterer fra en anden [[base-product.productName]] server, så bare angive brugernavn."
+
+msgid "sourcePass"
+msgstr "Kilde Password"
+
+msgid "sourcePass_help"
+msgstr "Indtast adgangskoden på den eksterne e-mail-konto."
+
+msgid "sourceProto"
+msgstr "Kilde protokol"
+
+msgid "sourceProto_help"
+msgstr "Dette er IMAP-protokollen bruges til at forbinde til en ekstern server. Vælg 'IMAP' for ukrypteret regelmæssig IMAP. Hvis den eksterne server understøtter enten 'SSL' eller 'TLS', herefter vælges dem i stedet for at etablere en mere sikker forbindelse."
+
+msgid "sourceAuth"
+msgstr "Kilde Auth"
+
+msgid "sourceAuth_help"
+msgstr "Angiv autencitetsmekanisme at den eksterne server understøtter. Denne regel er 'PLAIN' eller 'LOGIN', men du kan også prøve 'CRAM-MD5'. Hvis du planlægger at importere fra Google Mail, så prøv 'OAuth' i stedet."
+
+msgid "TargetHostHeader"
+msgstr "Server, som du vil importere:"
+
+msgid "target"
+msgstr "Target Server"
+
+msgid "target_help"
+msgstr "Dette kan være værtsnavnet eller IP-adressen på den server, som du vil importere. Hvis du vil importere e-mails på denne [[base-product.productName]] server, så kan du lade IP-adressen på den standard værdi af '127 .0.0.1 '."
+
+msgid "targetUsername"
+msgstr "Target Brugernavn"
+
+msgid "targetUsername_help"
+msgstr "Indtast login detaljer for den server, som du ønsker at importere e-mails. Afhængig af server arkitektur, kan dette enten være brugernavn, eller e-mail-adresse. Hvis du importerer til en [[base-product.productName]] server, så bare angive brugernavn."
+
+msgid "targetPass"
+msgstr "Målret kodeord"
+
+msgid "targetPass_help"
+msgstr "Indtast venligst adgangskoden for e-mail-konto, som du ønsker at importere e-mails."
+
+msgid "targetProto"
+msgstr "Target Protocol"
+
+msgid "targetProto_help"
+msgstr "Dette er IMAP-protokollen bruges til at forbinde til den lokale server. Vælg 'IMAP' for ukrypteret regelmæssig IMAP. Hvis den eksterne server understøtter enten 'SSL' eller 'TLS', herefter vælges dem i stedet for at etablere en mere sikker forbindelse. Hvis du vil importere e-mails på denne [[base-product.productName]] server, så kan du normalt lade det blive ved den standard værdi af 'SSL', så længe serveren administrator har IMAP over SSL aktiveret her."
+
+msgid "targetAuth"
+msgstr "Target Auth"
+
+msgid "targetAuth_help"
+msgstr "Angiv autencitetsmekanisme at den eksterne server understøtter. Denne regel er 'PLAIN' eller 'LOGIN', men du kan også prøve 'CRAM-MD5'. Hvis du planlægger at importere fra Google Mail, så prøv 'OAuth' i stedet. Hvis du planlægger at importere til denne [[base-product.productName]] server, så kan du lade det blive ved default 'PLAIN."
+
+msgid "LogFileHeader"
+msgstr "IMAP Synkronisering logfil:"
+
+msgid "logdelete"
+msgstr "Slet Logfil"
+
+msgid "logdelete_help"
+msgstr "Hvis du markerer dette felt, og gem denne side, så logfilen skabt under den sidste IMAP Synkroniseringen vil blive slettet."
+
+msgid "ViewImapSyncLog"
+msgstr "Vis logfil"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Dette giver dig mulighed for at undersøge logfilen, der blev oprettet under den sidste IMAP synkronisering."
+
+msgid "ImapSyncRunFailed"
+msgstr "IMAP Synkronisering mislykkedes. Undersøge venligst logfil, da det kan indikere en grund til dette. Mulige årsager er som regel forkerte login-oplysninger eller forkert protokol og / eller godkendelse mekanismer. Venligst rette problemerne og prøve det igen."
+

@@ -444,3 +444,104 @@ msgstr "Você tem certeza que deseja remover este usuário?"
 msgid "userRemoveConfirmInfo"
 msgstr "Isto irá remover a conta deste usuário e também irá apagar todos os e-mails, arquivos e dados deste usuário. Esta operação não pode ser desfeita."
 
+### IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Basic Settings"
+
+msgid "ImapSync"
+msgstr "Sincronização IMAP"
+
+msgid "sync_desc_text"
+msgstr "Sincronização IMAP permite que você copie os e-mails e pastas IMAP de uma caixa de correio para outro. Isso pode ser usado para importar e-mails de um único usuário de outro servidor após uma migração de servidor. Também pode ser usada para exportar e-mails de um utilizador local localizar uma caixa de correio de um outro servidor."
+
+msgid "ImapSyncField"
+msgstr "Sincronização IMAP"
+
+msgid "ImapSyncField_help"
+msgstr "Quando você marcar a caixa de seleção 'Ativar', ter todos os campos preenchidos e salvar as alterações, em seguida, este servidor irá tentar importar e-mails via imapsync do controle remoto para o destino local. Um arquivo de log da transação é criado e podem ser visualizados para determinar se a transferência foi bem sucedida ou não."
+
+msgid "SourceHostHeader"
+msgstr "Servidor do qual você deseja importar:"
+
+msgid "source"
+msgstr "Fonte Servidor"
+
+msgid "source_help"
+msgstr "Este pode ser o nome ou o endereço IP do servidor remoto a partir do qual você deseja importar."
+
+msgid "sourceUsername"
+msgstr "Fonte Usuário"
+
+msgid "sourceUsername_help"
+msgstr "Por favor insira os detalhes de login para o servidor remoto. Dependendo da arquitetura de servidor que pode ser tanto o nome de usuário ou o endereço de email. Nem todos os logins de apoio os servidores com o endereço de email, no entanto. Nesse caso, utilize o nome de usuário em seu lugar. Se você exportar a partir de outro servidor [[base-product.productName]], em seguida, basta especificar o nome de usuário."
+
+msgid "sourcePass"
+msgstr "Fonte senha"
+
+msgid "sourcePass_help"
+msgstr "Por favor, digite a senha da conta de e-mail remoto."
+
+msgid "sourceProto"
+msgstr "Fonte Protocolo"
+
+msgid "sourceProto_help"
+msgstr "Este é o protocolo IMAP utilizado para conexão com o servidor remoto. Escolha 'IMAP' para IMAP normal sem criptografia. Se o servidor remoto suporta tanto 'SSL' ou 'TLS', então escolhê-los, em vez de estabelecer uma conexão mais segura."
+
+msgid "sourceAuth"
+msgstr "Fonte Auth"
+
+msgid "sourceAuth_help"
+msgstr "Por favor, especifique o mecanismo de autenticação que o servidor remoto suporta. Isso geralmente é 'PLAIN' ou 'LOGIN', mas você também pode tentar 'CRAM-MD5'. Se você pretende importar do Google Mail, em seguida, por favor tente 'OAuth' em vez."
+
+msgid "TargetHostHeader"
+msgstr "Servidor para o qual você deseja importar:"
+
+msgid "target"
+msgstr "Servidor de destino"
+
+msgid "target_help"
+msgstr "Este pode ser o nome ou o endereço IP do servidor ao qual você deseja importar. Se você deseja importar os e-mails para este servidor [[base-product.productName]], então você pode deixar o endereço IP com o valor padrão de '127.0.0.1'."
+
+msgid "targetUsername"
+msgstr "Alvo Usuário"
+
+msgid "targetUsername_help"
+msgstr "Por favor insira os detalhes de login para o servidor para o qual você deseja importar os e-mails. Dependendo da arquitetura de servidor que pode ser tanto o nome de usuário ou o endereço de email. Se você importar para um servidor [[base-product.productName]], em seguida, basta especificar o nome de usuário."
+
+msgid "targetPass"
+msgstr "Alvo senha"
+
+msgid "targetPass_help"
+msgstr "Por favor, digite a senha da conta de e-mail para o qual você deseja importar os e-mails."
+
+msgid "targetProto"
+msgstr "Protocolo Alvo"
+
+msgid "targetProto_help"
+msgstr "Este é o protocolo IMAP utilizado para conectar-se ao servidor local. Escolha 'IMAP' para IMAP normal sem criptografia. Se o servidor remoto suporta tanto 'SSL' ou 'TLS', então escolhê-los, em vez de estabelecer uma conexão mais segura. Se você deseja importar os e-mails para este servidor [[base-product.productName]], então você geralmente pode deixá-lo no valor padrão de 'SSL', desde que o administrador do servidor tem IMAP sobre SSL habilitado aqui."
+
+msgid "targetAuth"
+msgstr "Alvo Auth"
+
+msgid "targetAuth_help"
+msgstr "Por favor, especifique o mecanismo de autenticação que o servidor remoto suporta. Isso geralmente é 'PLAIN' ou 'LOGIN', mas você também pode tentar 'CRAM-MD5'. Se você pretende importar do Google Mail, em seguida, por favor tente 'OAuth' em vez. Se você planeja importar a este servidor [[base-product.productName]], então você pode deixá-lo no padrão 'PLAIN'."
+
+msgid "LogFileHeader"
+msgstr "IMAP Sincronização Logfile:"
+
+msgid "logdelete"
+msgstr "Excluir Logfile"
+
+msgid "logdelete_help"
+msgstr "Se você marcar esta caixa e salvar esta página, em seguida, o arquivo de log criado durante a última sincronização IMAP serão eliminados."
+
+msgid "ViewImapSyncLog"
+msgstr "Ver Logfile"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Isso permite que você examine o arquivo de log que foi criado durante a última sincronização IMAP."
+
+msgid "ImapSyncRunFailed"
+msgstr "A sincronização IMAP falhou. Por favor, examine o arquivo de log, pois pode indicar uma razão para isso. As possíveis causas são geralmente detalhes de login incorretas ou mecanismos de protocolo e / ou autenticação incorreta. Corrija os problemas e tente novamente."
+

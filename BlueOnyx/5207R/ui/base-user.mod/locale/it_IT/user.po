@@ -444,3 +444,106 @@ msgstr "Sei sicuro di voler rimuovere questo utente?"
 msgid "userRemoveConfirmInfo"
 msgstr "Questo eliminerà l'account di tale utente e verranno eliminate anche tutte le email, i file ei dati di questo utente. Questa operazione non può essere annullata."
 
+### IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Impostazioni di base"
+
+msgid "ImapSync"
+msgstr "Sincronizzazione IMAP"
+
+msgid "sync_desc_text"
+msgstr "La sincronizzazione IMAP consente di copiare le email e le cartelle IMAP da una cassetta postale a un altro. Questo può essere usato per importare le email di un singolo utente da un altro server dopo una migrazione di server. Può anche essere utilizzato per esportare email di un utente locale di una cassetta postale localizzare su un altro server."
+
+msgid "ImapSyncField"
+msgstr "Sincronizzazione IMAP"
+
+msgid "ImapSyncField_help"
+msgstr "Quando si spunta la casella 'Abilita', hanno tutti i campi obbligatori compilato e salvare le modifiche, allora questo server tenterà di importare i messaggi di posta elettronica tramite imapsync dal telecomando alla destinazione locale. Un file di log della transazione viene creata e può quindi essere visualizzato per determinare se il trasferimento ha avuto successo o meno."
+
+msgid "SourceHostHeader"
+msgstr "Server da cui si desidera importare:"
+
+msgid "source"
+msgstr "Server di origine"
+
+msgid "source_help"
+msgstr "Questo può essere il nome host o l'indirizzo IP del server remoto da cui si desidera importare."
+
+msgid "sourceUsername"
+msgstr "Fonte utente"
+
+msgid "sourceUsername_help"
+msgstr "Si prega di inserire i dati d'accesso per il server remoto. A seconda della architettura server può essere sia il nome utente, o l'indirizzo e-mail. Non tutti gli account di accesso di supporto server con l'indirizzo e-mail, però. In tal caso, utilizzare invece il nome utente. Se si esporta da un altro server [[base-product.productName]], poi basta specificare il nome utente."
+
+msgid "sourcePass"
+msgstr "Fonte password"
+
+msgid "sourcePass_help"
+msgstr "Si prega di inserire la password dell'account di posta elettronica remoto."
+
+msgid "sourceProto"
+msgstr "Fonte protocollo"
+
+msgid "sourceProto_help"
+msgstr "Questo è il protocollo IMAP utilizzato per la connessione al server remoto. Scegliere 'IMAP' per non crittografato IMAP regolare. Se il server remoto supporta sia 'SSL' o 'TLS', scegliendo loro invece di stabilire una connessione più sicura."
+
+msgid "sourceAuth"
+msgstr "Fonte Auth"
+
+msgid "sourceAuth_help"
+msgstr "Si prega di specificare il meccanismo di autenticazione che il server remoto supporta. Questo di solito è 'PLAIN' o 'LOGIN', ma si può anche provare 'CRAM-MD5'. Se si prevede di importare da Google Mail, poi riprova 'OAuth' invece."
+
+msgid "TargetHostHeader"
+msgstr "Server a cui si desidera importare:"
+
+msgid "target"
+msgstr "Server di destinazione"
+
+msgid "target_help"
+msgstr "Questo può essere il nome host o l'indirizzo IP del server a cui si desidera importare. Se si desidera importare le e-mail su questo server [[base-product.productName]], allora si può lasciare l'indirizzo IP al valore di default di '127.0.0.1'."
+
+msgid "targetUsername"
+msgstr "Obiettivo Nome utente"
+
+msgid "targetUsername_help"
+msgstr "Si prega di inserire i dati d'accesso per il server a cui si desidera importare le e-mail. A seconda della architettura server può essere sia il nome utente, o l'indirizzo e-mail. Se si importa un server [[base-product.productName]], poi basta specificare il nome utente."
+
+msgid "targetPass"
+msgstr "Obiettivo password"
+
+msgid "targetPass_help"
+msgstr "Si prega di inserire la password dell'account di posta elettronica a cui si desidera importare le e-mail."
+
+msgid "targetProto"
+msgstr "Protocollo di destinazione"
+
+msgid "targetProto_help"
+msgstr "Questo è il protocollo IMAP utilizzato per la connessione al server locale. Scegliere 'IMAP' per non crittografato IMAP regolare. Se il server remoto supporta sia 'SSL' o 'TLS', scegliendo loro invece di stabilire una connessione più sicura. Se si desidera importare le e-mail su questo server [[base-product.productName]], allora di solito si può lasciare al valore predefinito di 'SSL', fino a quando l'amministratore del server ha IMAP su SSL abilitata qui."
+
+msgid "targetAuth"
+msgstr "Obiettivo Auth"
+
+msgid "targetAuth_help"
+msgstr "Si prega di specificare il meccanismo di autenticazione che il server remoto supporta. Questo di solito è 'PLAIN' o 'LOGIN', ma si può anche provare 'CRAM-MD5'. Se si prevede di importare da Google Mail, poi riprova 'OAuth' invece. Se avete intenzione di importare questo server [[base-product.productName]], allora si può lasciare al default 'NORMALE'."
+
+msgid "LogFileHeader"
+msgstr "IMAP Sincronizzazione Logfile:"
+
+msgid "logdelete"
+msgstr "Elimina file di log"
+
+msgid "logdelete_help"
+msgstr "Se si seleziona questa casella e salvare questa pagina, allora il file di log creato durante l'ultima sincronizzazione IMAP verranno eliminati."
+
+msgid "ViewImapSyncLog"
+msgstr "Visualizza file di log"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Ciò consente di esaminare il file di log che è stato creato durante l'ultima sincronizzazione IMAP."
+
+msgid "ImapSyncRunFailed"
+msgstr "La sincronizzazione IMAP non è riuscita. Si prega di esaminare il file di log, in quanto potrebbe indicare una ragione per questo. Le possibili cause sono di solito errati dati d'accesso o meccanismi di protocollo e / o di autenticazione errato. Si prega di correggere i problemi e provare di nuovo."
+
+
+

@@ -450,3 +450,104 @@ msgstr "Sind Sie sicher, dass Sie diesen Benutzer entfernen möchten?"
 msgid "userRemoveConfirmInfo"
 msgstr "Wenn Sie fortfahren, wird das Konto dieses Benutzers gelöscht. Dabei werden auch alle E-Mails, Dateien und Daten dieses Benutzers gelöscht. Dieser Vorgang kann nicht rückgängig gemacht werden."
 
+#--- IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Grundeinstellung"
+
+msgid "ImapSync"
+msgstr "IMAP-Synchronisation"
+
+msgid "sync_desc_text"
+msgstr "Per IMAP-Synchronisation können Sie E-Mails und IMAP Ordner von einem Postfach in ein anderes Postfach kopieren. Damit ist es möglich, E-Mails eines Benutzers von einem anderen Server zu importieren. Es kann auch verwendet werden, um E-Mails von einem lokalen Benutzer in ein Postfach auf einem externen Server zu exportieren."
+
+msgid "ImapSyncField"
+msgstr "IMAP-Synchronisation"
+
+msgid "ImapSyncField_help"
+msgstr "Wenn Sie das Kontrollkästchen 'Aktivieren' markieren, alle Pflichtfelder ausgefüllt sind und Sie die Änderungen speichern, dann wird dieser Server versuchen, E-Mails mittels 'imapsync' zu importieren. Eine Protokolldatei der Transaktion wird erstellt und kann danach eingesehen werden. Entwaige Fehler werden in diesem Logfile vermerkt."
+
+msgid "SourceHostHeader"
+msgstr "Server von dem Sie importieren möchten:"
+
+msgid "source"
+msgstr "Quell-Server"
+
+msgid "source_help"
+msgstr "Geben Sie hier den Hostnamen oder die IP-Adresse des entfernten Servers ein, von dem Sie importieren möchten."
+
+msgid "sourceUsername"
+msgstr "Benutzername"
+
+msgid "sourceUsername_help"
+msgstr "Bitte geben Sie die Zugangsdaten für den Server ein, von dem Sie importieren möchten. Je nach Server-Architektur kann dies entweder der Benutzername oder die E-Mail-Adresse sein. Nicht alle Server unterstützen Logins mit der E-Mail-Adresse. In diesem Fall verwenden Sie stattdessen den Benutzernamen. Wenn Sie von einem anderen [[base-product.productName]] Server exportieren, dann geben Sie bitte nur den Benutzernamen ein."
+
+msgid "sourcePass"
+msgstr "Passwort"
+
+msgid "sourcePass_help"
+msgstr "Bitte geben Sie das Passwort für das E-Mail-Konto ein, von welchem Sie exportieren wollen."
+
+msgid "sourceProto"
+msgstr "Protokoll"
+
+msgid "sourceProto_help"
+msgstr "Dies ist das IMAP-Protokoll, welches für die Verbindung zum Remote-Server verwendet wird. Wählen Sie 'IMAP' für unverschlüsseltes IMAP. Falls der Remote-Server entweder 'SSL oder 'TLS' unterstützt, sollten Sie das bevorzugt verwenden, damit die Übertragung verschlüsselt erfolgt."
+
+msgid "sourceAuth"
+msgstr "Authentifizierung"
+
+msgid "sourceAuth_help"
+msgstr "Bitte geben Sie den Authentifizierungs-Mechanismus an, welcher vom Remote-Server unterstützt wird. In der Regel sollte das 'PLAIN' oder 'LOGIN' sein. Aber Sie können auch 'CRAM-MD5' verwenden, falls der Remote-Server dies erwartet. Wenn Emails aus Google Mail importieren möchten, dann versuchen Sie bitte stattdessen 'OAUTH'."
+
+msgid "TargetHostHeader"
+msgstr "Server auf den Sie importieren möchten:"
+
+msgid "target"
+msgstr "Zielserver"
+
+msgid "target_help"
+msgstr "Geben Sie hier den Hostnamen oder die IP-Adresse des Servers ein, zu dem Sie die Emails migrieren möchten. Wenn Sie die E-Mails auf diesen [[base-product.productName]] Server importieren möchten, dann können Sie die IP-Adresse auf dem Standardwert von '127.0.0.1 lassen."
+
+msgid "targetUsername"
+msgstr "Benutzername"
+
+msgid "targetUsername_help"
+msgstr "Bitte geben Sie hier die Zugangsdaten für den Server ein, zu dem Sie die E-Mails importieren möchten. Je nach Server-Architektur kann dies entweder der Benutzername oder die E-Mail-Adresse sein. Wenn Sie die Emails auf diesen [[base-product.productName]] Server importieren möchten, dann verwenden Sie bitte nur den Benutzernamen."
+
+msgid "targetPass"
+msgstr "Passwort"
+
+msgid "targetPass_help"
+msgstr "Bitte geben Sie das Passwort des E-Mail-Kontos ein, zu dem Sie die E-Mails importieren möchten."
+
+msgid "targetProto"
+msgstr "Protokoll"
+
+msgid "targetProto_help"
+msgstr "Dies ist das IMAP-Protokoll, welches für die Verbindung zum dem Server verwendet wird, zu dem Sie die Emails migrieren möchten. Wählen Sie 'IMAP' für unverschlüsseltes IMAP. Falls der Ziel-Server entweder 'SSL oder 'TLS' unterstützt, sollten Sie das bevorzugt verwenden, damit die Übertragung verschlüsselt erfolgt.Wenn Sie die E-Mails auf diesen [[base-product.productName]] Server importieren wollen, dann können Sie den das Protokoll auf 'SSL' belassen. Sofern der Server-Administrator IMAP über SSL aktiviert hat, sollte das funktionieren."
+
+msgid "targetAuth"
+msgstr "Authentifizierung"
+
+msgid "targetAuth_help"
+msgstr "Bitte geben Sie den Authentifizierungs-Mechanismus an, welcher vom Ziel-Server unterstützt wird. In der Regel sollte das 'PLAIN' oder 'LOGIN' sein. Aber Sie können auch 'CRAM-MD5' verwenden, falls der Ziel-Server dies erwartet. Wenn Emails aus Google Mail importieren möchten, dann versuchen Sie bitte stattdessen 'OAUTH'. Wenn Sie die E-Mails auf diesen [[base-product.productName]] Server migrieren, dann sollten Sie die vorgegebene Auswahl auf 'PLAIN' belassen."
+
+msgid "LogFileHeader"
+msgstr "Logfile der IMAP-Synchronisation:"
+
+msgid "logdelete"
+msgstr "Logfile löschen"
+
+msgid "logdelete_help"
+msgstr "Wenn Sie dieses Kästchen markieren und speichern, dann wird die Protokolldatei der letzten IMAP-Synchronisation gelöscht."
+
+msgid "ViewImapSyncLog"
+msgstr "Logfile anzeigen"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Durch Klick auf diesen Knopf können Sie die Protokolldatei der letzten IMAP-Synchronisation einsehen."
+
+msgid "ImapSyncRunFailed"
+msgstr "Die IMAP-Synchronisation ist fehlgeschlagen. Bitte prüfen Sie das Logfile der IMAP-Synchronisation, da es sicher Hinweise darauf gibt, warum die Verbindung oder der Transfer fehlgeschlagen ist. Mögliche Ursachen sind meist falsche Login-Daten, falsches Protokoll und/oder Authentifizierungs-Mechanismen. Bitte korrigieren Sie Ihre Eingaben entsprechend und versuchen Sie es erneut."
+

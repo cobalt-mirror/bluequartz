@@ -444,3 +444,104 @@ msgstr "Weet u zeker dat u deze gebruiker wilt verwijderen?"
 msgid "userRemoveConfirmInfo"
 msgstr "Dit zal de rekening van deze gebruiker te verwijderen en zal ook verwijdert alle e-mails, bestanden en gegevens van deze gebruiker. Deze bewerking kan niet ongedaan worden gemaakt."
 
+### IMAP Sync:
+
+msgid "EmailSettings"
+msgstr "Basisinstellingen"
+
+msgid "ImapSync"
+msgstr "IMAP Synchronisatie"
+
+msgid "sync_desc_text"
+msgstr "IMAP synchronisatie kunt u de e-mails en IMAP-mappen van de ene mailbox naar de andere kopiëren. Dit kan worden gebruikt om e-mails van een gebruiker van een andere server na een server migratie importeren. Het kan ook worden gebruikt om e-mails van een lokale gebruiker een mailbox te exporteren lokaliseren op een andere server."
+
+msgid "ImapSyncField"
+msgstr "IMAP Synchronisatie"
+
+msgid "ImapSyncField_help"
+msgstr "Wanneer u het selectievakje 'Enable' aanvinken, hebben alle verplichte velden ingevuld en sla de wijzigingen, dan is deze server zal proberen om e-mails via imapsync importeren van de afstandsbediening om de lokale bestemming. Een logfile van de transactie wordt gemaakt en kan vervolgens worden bekeken om te bepalen of de overdracht wel of niet succesvol was."
+
+msgid "SourceHostHeader"
+msgstr "Server van waaruit u wilt importeren:"
+
+msgid "source"
+msgstr "Bron Server"
+
+msgid "source_help"
+msgstr "Dit kan de hostnaam of het IP-adres van de externe server van waaruit u wilt importeren zijn."
+
+msgid "sourceUsername"
+msgstr "Bron Gebruikersnaam"
+
+msgid "sourceUsername_help"
+msgstr "Vul de inloggegevens voor de externe server. Afhankelijk van de server architectuur dit kan zowel de gebruikersnaam of het e-mailadres. Niet alle servers ondersteunen logins met het e-mailadres, dat wel. In dat geval gebruikt u de gebruikersnaam in plaats daarvan. Als u exporteren vanuit een andere [[base-product.productName]] server, dan gewoon de gebruikersnaam."
+
+msgid "sourcePass"
+msgstr "Bron Password"
+
+msgid "sourcePass_help"
+msgstr "Vul het wachtwoord van de externe e-mailaccount."
+
+msgid "sourceProto"
+msgstr "Bron Protocol"
+
+msgid "sourceProto_help"
+msgstr "Dit is het IMAP-protocol gebruikt voor het verbinden met de externe server. Kies 'IMAP' voor ongecodeerde gewone IMAP. Als de remote server ondersteunt ofwel 'SSL' of 'TLS', kiezen ze dan in plaats daarvan naar een meer veilige verbinding tot stand."
+
+msgid "sourceAuth"
+msgstr "Bron Auth"
+
+msgid "sourceAuth_help"
+msgstr "Gelieve het authenticatie mechanisme dat de server op afstand ondersteunt. Dit is meestal 'PLAIN' of 'LOGIN', maar je kunt ook proberen 'CRAM-MD5'. Als u van plan bent om te importeren van Google Mail, probeer dan 'OAuth' plaats."
+
+msgid "TargetHostHeader"
+msgstr "Server waarmee u wilt importeren:"
+
+msgid "target"
+msgstr "Target Server"
+
+msgid "target_help"
+msgstr "Dit kan de hostnaam of het IP-adres van de server waarmee u wilt importeren zijn. Als u de e-mails naar deze [[base-product.productName]] server importeren, dan kunt u het IP-adres te verlaten op de standaard waarde van '127.0.0.1'."
+
+msgid "targetUsername"
+msgstr "Doel Gebruikersnaam"
+
+msgid "targetUsername_help"
+msgstr "Vul de inloggegevens van de server waarmee u de e-mails te importeren. Afhankelijk van de server architectuur dit kan zowel de gebruikersnaam of het e-mailadres. Als u importeert een [[base-product.productName]] server, dan gewoon de gebruikersnaam."
+
+msgid "targetPass"
+msgstr "Target Wachtwoord"
+
+msgid "targetPass_help"
+msgstr "Vul het wachtwoord van de e-mailaccount waaraan u de e-mails te importeren."
+
+msgid "targetProto"
+msgstr "Doel Protocol"
+
+msgid "targetProto_help"
+msgstr "Dit is het IMAP-protocol wordt gebruikt voor aansluiting op de lokale server. Kies 'IMAP' voor ongecodeerde gewone IMAP. Als de remote server ondersteunt ofwel 'SSL' of 'TLS', kiezen ze dan in plaats daarvan naar een meer veilige verbinding tot stand. Als u de e-mails naar deze [[base-product.productName]] server importeren, dan kun je meestal verlaat deze bij de standaard waarde van 'SSL', zolang de serverbeheerder heeft IMAP over SSL hier."
+
+msgid "targetAuth"
+msgstr "Doel Auth"
+
+msgid "targetAuth_help"
+msgstr "Gelieve het authenticatie mechanisme dat de server op afstand ondersteunt. Dit is meestal 'PLAIN' of 'LOGIN', maar je kunt ook proberen 'CRAM-MD5'. Als u van plan bent om te importeren van Google Mail, probeer dan 'OAuth' plaats. Als u van plan bent om te importeren om deze [[base-product.productName]] server, dan kun je deze op de standaardwaarde blijven 'plain'."
+
+msgid "LogFileHeader"
+msgstr "IMAP Synchronisatie Logfile:"
+
+msgid "logdelete"
+msgstr "Verwijder Logfile"
+
+msgid "logdelete_help"
+msgstr "Als u hier een vinkje zetten en sla deze pagina dan de logfile gemaakt tijdens de laatste IMAP synchronisatie zullen worden verwijderd."
+
+msgid "ViewImapSyncLog"
+msgstr "Bekijk Logfile"
+
+msgid "ViewImapSyncLog_help"
+msgstr "Hiermee kunt u het logbestand dat is ontstaan ​​tijdens de laatste IMAP synchronisatie onderzoeken."
+
+msgid "ImapSyncRunFailed"
+msgstr "De IMAP-synchronisatie is mislukt. Kijk dan in de logfile, als het kan een reden voor dit zou kunnen wijzen. Mogelijke oorzaken zijn meestal onjuist login gegevens of onjuiste protocol en / of authenticatie mechanismen. Corrigeer de problemen en probeer het opnieuw."
+

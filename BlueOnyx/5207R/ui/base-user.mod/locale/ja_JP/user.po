@@ -471,3 +471,104 @@ msgstr "あなたは、このユーザーを削除してもよろしいですか
 msgid "userRemoveConfirmInfo"
 msgstr "これは、このユーザーのアカウントを削除し、また、このユーザーのすべての電子メール、ファイルやデータを削除します。この操作は元に戻すことができません。"
 
+### IMAP-Sync
+
+msgid "EmailSettings"
+msgstr "基本設定"
+
+msgid "ImapSync"
+msgstr "IMAPの同期"
+
+msgid "sync_desc_text"
+msgstr "IMAPの同期では、別のメールボックスから電子メールやIMAPフォルダをコピーすることができます。これは、サーバーの移行後に、別のサーバーから単一のユーザの電子メールをインポートするために使用することができます。また、別のサーバー上にメールボックスにローカルユーザの電子メールをエクスポートするために使用することができます。"
+
+msgid "ImapSyncField"
+msgstr "IMAPの同期"
+
+msgid "ImapSyncField_help"
+msgstr "あなたは「有効にする」のチェックボックスにチェックを入れた場合に、すべての必須項目を記入し、変更を保存している場合、このサーバーはローカルの宛先にリモートからimapsyncのを経由して電子メールをインポートしようとします。トランザクションのログファイルが作成され、その後、転送が成功したかどうかを決定するために閲覧することができる。"
+
+msgid "SourceHostHeader"
+msgstr "インポートする元のサーバー："
+
+msgid "source"
+msgstr "ソースサーバ"
+
+msgid "source_help"
+msgstr "これは、インポート元のホスト名またはリモートサーバーのIPアドレスです。"
+
+msgid "sourceUsername"
+msgstr "ソース名"
+
+msgid "sourceUsername_help"
+msgstr "リモートサーバのログイン情報を入力してください。サーバーアーキテクチャによっては、これはどちらのユーザ名、または電子メール·アドレスを指定できます。ていないすべてのサーバーは、しかし、電子メールアドレスでのログインをサポートしています。その場合、代わりにユーザー名を使用しています。別[[base-product.productName]]サーバからエクスポートした場合は、単にユーザ名を指定します。"
+
+msgid "sourcePass"
+msgstr "ソースのパスワード"
+
+msgid "sourcePass_help"
+msgstr "リモートの電子メールアカウントのパスワードを入力してください。"
+
+msgid "sourceProto"
+msgstr "ソースプロトコル"
+
+msgid "sourceProto_help"
+msgstr "これは、リモートサーバーに接続するために使用するIMAPプロトコルである。暗号化されていない、通常のIMAPの「IMAP」を選択します。リモートサーバが「SSL」または「TLS」のどちらかをサポートしている場合は、より安全な接続を確立するために、代わりにそれらを選択します。"
+
+msgid "sourceAuth"
+msgstr "ソース認証"
+
+msgid "sourceAuth_help"
+msgstr "リモートサーバがサポートする認証メカニズムを指定してください。これは通常、 'PLAIN'または 'ログイン'ですが、あなたはまた、「CRAM-MD5」を試すことができます。あなたがGoogle Mailからインポートする場合は、代わりに「OAuthの」をお試しください。"
+
+msgid "TargetHostHeader"
+msgstr "インポートするために、サーバー："
+
+msgid "target"
+msgstr "ターゲット·サーバー"
+
+msgid "target_help"
+msgstr "これは、インポートする先のホスト名またはサーバーのIPアドレスです。この[[base-product.productName]]サーバーに電子メールをインポートしたい場合は、'127 .0.0.1 'のデフォルト値のIPアドレスを残すことができます。"
+
+msgid "targetUsername"
+msgstr "ターゲット·ユーザー名"
+
+msgid "targetUsername_help"
+msgstr "あなたが電子メールをインポートする先のサーバのログイン情報を入力してください。サーバーアーキテクチャによっては、これはどちらのユーザ名、または電子メール·アドレスを指定できます。あなたは[[base-product.productName]]サーバにインポートする場合は、ユーザ名だけを指定します。"
+
+msgid "targetPass"
+msgstr "パスワードをターゲットに"
+
+msgid "targetPass_help"
+msgstr "あなたが電子メールをインポートする先の電子メールアカウントのパスワードを入力してください。"
+
+msgid "targetProto"
+msgstr "ターゲットプロトコル"
+
+msgid "targetProto_help"
+msgstr "これは、ローカルサーバーへの接続に使用されるIMAPプロトコルである。暗号化されていない、通常のIMAPの「IMAP」を選択します。リモートサーバが「SSL」または「TLS」のどちらかをサポートしている場合は、より安全な接続を確立するために、代わりにそれらを選択します。この[[base-product.productName]]サーバーに電子メールをインポートしたい場合は、通常であれば、サーバ管理者がSSL経由でIMAPが、ここで有効になっているように、「SSL」のデフォルト値のままにしておくことができます。"
+
+msgid "targetAuth"
+msgstr "ターゲット認証"
+
+msgid "targetAuth_help"
+msgstr "リモートサーバがサポートする認証メカニズムを指定してください。これは通常、 'PLAIN'または 'ログイン'ですが、あなたはまた、「CRAM-MD5」を試すことができます。あなたがGoogle Mailからインポートする場合は、代わりに「OAuthの」をお試しください。この[[base-product.productName]]サーバにインポートする場合は、デフォルトの「PLAIN」のままにしておくことができます。"
+
+msgid "LogFileHeader"
+msgstr "IMAPの同期ログファイル："
+
+msgid "logdelete"
+msgstr "ログファイルを削除します"
+
+msgid "logdelete_help"
+msgstr "このボックスをチェックし、このページを保存した場合、最後のIMAP同期中に作成されたログファイルは削除されます。"
+
+msgid "ViewImapSyncLog"
+msgstr "ビュー·ログファイル"
+
+msgid "ViewImapSyncLog_help"
+msgstr "これは、最後のIMAP同期中に作成されたログファイルを調べることができます。"
+
+msgid "ImapSyncRunFailed"
+msgstr "IMAPの同期に失敗しました。それはこの理由を示している可能性がありますように、ログファイルを調べてください。考えられる原因は、通常、不正なログインの詳細や、誤ったプロトコルおよび/または認証メカニズムである。問題を修正して再度お試しください。"
+
