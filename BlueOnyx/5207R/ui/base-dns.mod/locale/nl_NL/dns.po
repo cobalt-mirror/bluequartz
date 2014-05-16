@@ -1170,3 +1170,35 @@ msgstr "SoftFail (Niet compliant zal worden geaccepteerd, maar gemarkeerd)"
 msgid "neutral_maybe"
 msgstr "Neutraal (Mails zal waarschijnlijk worden aanvaard)"
 
+### AAA Records:
+
+msgid "create_dns_recAAAA"
+msgstr "[[base-dns.title]] Nieuwe [[base-dns.aaaa_record]]"
+
+msgid "modify_dns_recAAAA"
+msgstr "[[base-dns.title]] Wijzigen [[base-dns.aaaa_record]]"
+
+msgid "aaaa_ip_address"
+msgstr "IPv6-adres"
+
+msgid "aaaa_ip_address_help"
+msgstr "Voer het IPv6-adres voor dit record. [[base-dns.aaaa_record_explain]]"
+
+msgid "aaaa_ip_address_invalid"
+msgstr "Het opgegeven IPv6-adres is ongeldig. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_ip_address_empty"
+msgstr "Specificeer het IPv6-adres waarnaar de host-en domeinnaam zal oplossen. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_record"
+msgstr "IPv6 Forward-adres (AAAA) Record"
+
+msgid "aaaa_record_explain"
+msgstr "Een [[base-dns.aaaa_record]] biedt de vertaling van een volledig gekwalificeerde domeinnaam naar een IPv6-adres. Een volledig gekwalificeerde domeinnaam kan bestaan ​​uit zowel een hostnaam en een domeinnaam of alleen een domeinnaam."
+
+msgid "ipV6addr_rule"
+msgstr "AAAA registers werken op dezelfde wijze als A-records. Maar in plaats van te wijzen van een website naar een IPv4 IP-adres (213.171.111.2 bijvoorbeeld), zullen ze wijzen een weg naar een IPv6-adres (bijvoorbeeld: c32:2214:ff2a)."
+
+msgid "aaaa_dir"
+msgstr "IPv6 Forward"
+

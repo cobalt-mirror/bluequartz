@@ -1169,3 +1169,35 @@ msgstr "SoftFail (Não compatível serão aceitas, mas marcado)"
 msgid "neutral_maybe"
 msgstr "Neutro (e-mails serão provavelmente aceita)"
 
+### AAA Records:
+
+msgid "create_dns_recAAAA"
+msgstr "[[base-dns.title]] Adicionar Novo [[base-dns.aaaa_record]]"
+
+msgid "modify_dns_recAAAA"
+msgstr "[[base-dns.title]] Modificar [[base-dns.aaaa_record]]"
+
+msgid "aaaa_ip_address"
+msgstr "Endereço IPv6"
+
+msgid "aaaa_ip_address_help"
+msgstr "Digite o endereço IPv6 para esse registro. [[base-dns.aaaa_record_explain]]"
+
+msgid "aaaa_ip_address_invalid"
+msgstr "O endereço IPv6 especificado é inválido. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_ip_address_empty"
+msgstr "Por favor, especifique o endereço IPv6 para o qual o host e nome de domínio irá resolver. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_record"
+msgstr "IPv6 Encaminhar Endereço (AAAA) Gravar"
+
+msgid "aaaa_record_explain"
+msgstr "A [[base-dns.aaaa_record]] fornece a tradução de um nome de domínio totalmente qualificado para um endereço IPv6. Um nome de domínio totalmente qualificado pode ser composto de um nome de host e um nome de domínio ou apenas um nome de domínio."
+
+msgid "ipV6addr_rule"
+msgstr "Registros AAAA funcionam da mesma forma que um registros. Mas ao invés de apontar um site para um endereço IP IPv4 (213.171.111.2 por exemplo), que vai apontar um para um endereço IPv6 (tais como: c32:2214:ff2a)."
+
+msgid "aaaa_dir"
+msgstr "IPv6 Para a frente"
+

@@ -1228,3 +1228,35 @@ msgstr "Softfailは（対応の受け入れられますが、マークされて�
 msgid "neutral_maybe"
 msgstr "ニュートラル（メールはおそらく受け入れられます）"
 
+### AAA Records:
+
+msgid "create_dns_recAAAA"
+msgstr "新しい[[base-dns.aaaa_record]]を追加[[base-dns.title]]"
+
+msgid "modify_dns_recAAAA"
+msgstr "[[base-dns.title]]変更[[base-dns.aaaa_record]]"
+
+msgid "aaaa_ip_address"
+msgstr "IPv6アドレス"
+
+msgid "aaaa_ip_address_help"
+msgstr "このレコードのIPv6アドレスを入力してください。 [[base-dns.aaaa_record_explain]]"
+
+msgid "aaaa_ip_address_invalid"
+msgstr "指定されたIPv6アドレスが無効です。 [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_ip_address_empty"
+msgstr "ホスト名とドメイン名の解決先のIPv6アドレスを指定してください。 [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_record"
+msgstr "IPv6のフォワードアドレス（AAAA）レコード"
+
+msgid "aaaa_record_explain"
+msgstr "[[base-dns.aaaa_record]]は、IPv6アドレスへの完全修飾ドメイン名からの翻訳を提供します。完全修飾ドメイン名、ホスト名とドメイン名またはドメイン名だけの両方で構成することができる。"
+
+msgid "ipV6addr_rule"
+msgstr "AAAAレコードは、レコードと同じように動作します。むしろ、IPv4のIPアドレス（例：213.171.111.2）に向かってウェブサイトを指しているよりも、彼らは（2214年：c32:2214:ff2aなど）のIPv6アドレスの方に指します。"
+
+msgid "aaaa_dir"
+msgstr "IPv6のフォワード"
+

@@ -1,7 +1,7 @@
 <!-- $Id: dns.schema -->
 
 <typedef name="dns_record_type" type="re"
-  data="^(A|PTR|CNAME|MX|TXT|NS|SN)$"/>
+  data="^(A|AAAA|PTR|CNAME|MX|TXT|NS|SN)$"/>
 <typedef name="dns_email" type="re" data="^[a-zA-Z0-9_-]+\@[a-zA-Z0-9\._-]+$"/>
 <typedef name="dns_zone_format" type="re" data="^(RFC2317|DION|OCN-JT|USER)$"/>
 <typedef name="mx_priority" type="re" data="^(extremely_high|very_high|high|low|very_low)$"/>
@@ -174,7 +174,7 @@ How the fields of DnsRecord are meant to be used:
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
   <property name="domainname" type="domainname" default="" optional="true"
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
-  <property name="ipaddr" type="ipaddr" default="" optional="true"
+  <property name="ipaddr" type="ipaddrIPv4IPv6" default="" optional="true"
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
   <property name="netmask" type="netmask" default="" optional="true"
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
@@ -213,4 +213,3 @@ How the fields of DnsRecord are meant to be used:
     writeacl="ruleCapable(serverDNS) OR ruleCapable(siteDNS)"/>
 
 </class>
-

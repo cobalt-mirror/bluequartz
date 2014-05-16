@@ -1172,3 +1172,35 @@ msgstr "SoftFail (Non conforme accettati ma contrassegnato)"
 msgid "neutral_maybe"
 msgstr "Neutro (mail saranno probabilmente accettate)"
 
+### AAA Records:
+
+msgid "create_dns_recAAAA"
+msgstr "[[base-dns.title]] Aggiungi nuovo [[base-dns.aaaa_record]]"
+
+msgid "modify_dns_recAAAA"
+msgstr "[[base-dns.title]] Modifica [[base-dns.aaaa_record]]"
+
+msgid "aaaa_ip_address"
+msgstr "Indirizzo IPv6"
+
+msgid "aaaa_ip_address_help"
+msgstr "Inserire l'indirizzo IPv6 per questo record. [[base-dns.aaaa_record_explain]]"
+
+msgid "aaaa_ip_address_invalid"
+msgstr "L'indirizzo IPv6 specificato non è valido. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_ip_address_empty"
+msgstr "Si prega di specificare l'indirizzo IPv6 a cui l'host e nome di dominio si risolveranno. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_record"
+msgstr "IPv6 Forward Address (AAAA) Record"
+
+msgid "aaaa_record_explain"
+msgstr "A [[base-dns.aaaa_record]] fornisce la traduzione da un nome di dominio pienamente qualificato ad un indirizzo IPv6. Un nome di dominio completo può essere composto sia un nome host e un nome di dominio o solo un nome di dominio."
+
+msgid "ipV6addr_rule"
+msgstr "Record AAAA funzionano nello stesso modo di un record. Ma piuttosto che puntare un sito web verso un indirizzo IPv4 IP (213.171.111.2 per esempio), che indicheranno un verso un indirizzo IPv6 (come ad esempio: c32:2214:ff2a)."
+
+msgid "aaaa_dir"
+msgstr "IPv6 Forward"
+

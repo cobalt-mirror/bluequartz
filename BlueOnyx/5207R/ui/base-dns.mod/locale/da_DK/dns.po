@@ -1466,3 +1466,35 @@ msgstr "SoftFail (Ikke kompatibel vil blive accepteret, men mærkes)"
 msgid "neutral_maybe"
 msgstr "Neutral (Mails bliver sandsynligvis accepteret)"
 
+### AAA Records:
+
+msgid "create_dns_recAAAA"
+msgstr "[[base-dns.title]] Tilføj ny [[base-dns.aaaa_record]]"
+
+msgid "modify_dns_recAAAA"
+msgstr "[[base-dns.title]] Rediger [[base-dns.aaaa_record]]"
+
+msgid "aaaa_ip_address"
+msgstr "IPv6-adresse"
+
+msgid "aaaa_ip_address_help"
+msgstr "Indtast IPv6-adressen til denne oplysning. [[base-dns.aaaa_record_explain]]"
+
+msgid "aaaa_ip_address_invalid"
+msgstr "Den angivne IPv6-adresse er ugyldig. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_ip_address_empty"
+msgstr "Angiv IPv6-adresse, som værts-og domænenavn vil løse. [[base-dns.ipV6addr_rule]]"
+
+msgid "aaaa_record"
+msgstr "Adresse IPv6 Forward (AAAA) Record"
+
+msgid "aaaa_record_explain"
+msgstr "En [[base-dns.aaaa_record]] giver oversættelse fra et fuldt kvalificeret domænenavn til en IPv6-adresse. En fuldt kvalificeret domænenavn kan være sammensat af både et værtsnavn og et domænenavn eller kun et domænenavn."
+
+msgid "ipV6addr_rule"
+msgstr "AAAA records arbejde på samme måde som A-records. Men i stedet for at pege en hjemmeside i retning af en IPv4 IP-adresse (213.171.111.2 for eksempel), vil de pege en retning af en IPv6-adresse (såsom: c32:2214:ff2a)."
+
+msgid "aaaa_dir"
+msgstr "IPv6 Forward"
+

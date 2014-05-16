@@ -1,14 +1,11 @@
 #!/usr/bin/perl
-# $Id: dns_generate.pl Mo 01 Apr 2013 01:42:15 CEST mstauber $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
+# $Id: dns_generate.pl
 #
 # Rewriting the code to generate the DNS db files 
 #
 # reminder: the Domain class is defined at the end of this file, and
 # is not separate.
-# C. Hemsing: Addition for custom include named.conf file
 #
-#use strict;
 
 my $TTL = 86400; # default failed lookup, delegation
 
@@ -172,7 +169,7 @@ sub collate_domains_and_networks ()
     if (!$ok) { print STDERR "Very Odd: Could not get object $oid\n"; next; }
 
     $_ = $obj->{type};
-    if (m/^(A)|(CNAME)|(MX)|(TXT)|(NS)|(SN)$/ && $obj->{domainname}) {
+    if (m/^(A)|(AAAA)|(CNAME)|(MX)|(TXT)|(NS)|(SN)$/ && $obj->{domainname}) {
       $DEBUG && warn "Found record $oid $_ with domain: $obj->{domainname}\n";
 
       if (!defined($index->{$obj->{domainname}})) {
@@ -919,6 +916,7 @@ sub generate_dns_record
   return "; record skipped: could not read object $oid\n" if (!$ok || !$obj);
   
   if ($obj->{type} eq 'A') { return $self->generate_record_A($obj); }
+  if ($obj->{type} eq 'AAAA') { return $self->generate_record_AAAA($obj); }
   if ($obj->{type} eq 'PTR') { return $self->generate_record_PTR($obj); }
   if ($obj->{type} eq 'SN') { return $self->generate_record_SN($obj); }
   if ($obj->{type} eq 'CNAME') { return $self->generate_record_CNAME($obj); }
@@ -946,6 +944,18 @@ sub generate_record_A
   
   return formalize_hostname($obj->{hostname}, $obj->{domainname}) .
     "\tin a $obj->{ipaddr}\n";
+}
+
+########################################
+# generate_record_AAAA
+########################################
+sub generate_record_AAAA
+{
+  my $self = shift;
+  my $obj = shift;
+  
+  return formalize_hostname($obj->{hostname}, $obj->{domainname}) .
+    "\tin aaaa $obj->{ipaddr}\n";
 }
 
 ########################################
@@ -1336,23 +1346,38 @@ sub get_network
     return join '.', @ipAddrNums;
 }
 
-
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#   notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#   notice, this list of conditions and the following disclaimer in 
+#   the documentation and/or other materials provided with the 
+#   distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#   contributors may be used to endorse or promote products derived 
+#   from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
