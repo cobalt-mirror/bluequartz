@@ -1205,7 +1205,7 @@ msgid "aaaa_ip_address"
 msgstr "IPv6-Adresse"
 
 msgid "aaaa_ip_address_help"
-msgstr "Geben Sie die IPv6-Adresse für diesen Datensatz ein. [[base-dns.aaaa_record_explain]]"
+msgstr "Geben Sie die IPv6-Adresse für diesen Datensatz ein. [[base-dns.aaaa_record_explain]] [[base-dns.ipV6addr_rule]]"
 
 msgid "aaaa_ip_address_invalid"
 msgstr "Die angegebene IPv6-Adresse ist ungültig. [[base-dns.ipV6addr_rule]]"
@@ -1214,10 +1214,10 @@ msgid "aaaa_ip_address_empty"
 msgstr "Bitte geben Sie die IPv6-Adresse ein, die mit diesem Host- und/oder Domänen-Name verknüpft werden soll. [[base-dns.ipV6addr_rule]]"
 
 msgid "aaaa_record"
-msgstr "IPv6 Forward Address (AAAA) Record anlegen"
+msgstr "IPv6 Forward (AAAA) Record"
 
 msgid "aaaa_record_explain"
-msgstr "Ein [[base-dns.aaaa_record]] bietet die Übersetzung von einem vollqualifizierten Domain-Namen in eine IPv6-Adresse. Ein vollqualifizierten Domain-Name kann sowohl aus einem Host-Namen und Domain-Namen als auch nur aus einen Domain-Namen bestehen."
+msgstr "Ein IPv6 DNS Record bietet die Übersetzung von einem vollqualifizierten Domain-Namen in eine IPv6-Adresse. Ein vollqualifizierten Domain-Name kann sowohl aus einem Host-Namen und Domain-Namen als auch nur aus einen Domain-Namen bestehen."
 
 msgid "ipV6addr_rule"
 msgstr "AAAA-Records funktionieren in der gleichen Weise wie A-Records. Aber anstatt zu einer IPv4 IP-Adresse zuu zeigen (Beispiel: 213.171.111.2) zeigen diese auf eine IPv6 IP-Adresse (Beispiel: c32:2214:ff2a)"
