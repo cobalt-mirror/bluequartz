@@ -183,6 +183,10 @@ fi
 
 %changelog
 
+* Fri May 16 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX06
+- Updated basetypes.schema to add 'ipaddrIPv4IPv6' and 'ipaddrIPv6' to
+  validate fields with either IPv4 or IPv6 IP address or only IPv6 IP address.
+
 * Thu May 15 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX05
 - Modified ccewrap/ccewrap_conf.c
 
