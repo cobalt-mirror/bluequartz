@@ -1108,3 +1108,88 @@ msgstr "MX (Niedrig)"
 
 msgid "mx_dir_very_low"
 msgstr "MX (Niedrigst)"
+
+## ---------------------------------- SPF Wizard:
+
+
+msgid "spf_wizard"
+msgstr "SPF-Assistent"
+
+msgid "spf_intro_text"
+msgstr "Dieser Assistent führt Sie durch den Prozess der Erstellung oder Bearbeitung eines SPF-Eintrags für Ihre DNS-Domäne.</p><p>Wenn Sie den so erstellten DNS-Eintrag verwenden möchten, dann kopieren Sie ihn bitte in das Feld 'Text Record' im obigen Formular.</p><p>Für vollständige Informationen zum Thema SPF-Einträge finden Sie unter dieser URL: <a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "Resultierender DNS-Eintrag (zum Einfügen in 'Text Record')"
+
+msgid "your_domain"
+msgstr "Ihre Domäne:"
+
+msgid "your_domain_help"
+msgstr "Die Domäne für welche dieser SPF-Eintrag gültig sein soll. <br/>Beispiel: <b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "Erlaube MX Einträgen dieser Domäne mails für diese Domäne zu versenden:"
+
+msgid "allow_mx_help"
+msgstr "Falls diese Domäne MX-Einträge hat, so erlaubt diese Einstellung, dass diese Server Emails für diese Domäne versenden dürfen. Beispiel:<br><b>mx1.domain.com<br>mx2.domain.com</b>"
+
+msgid "no"
+msgstr "Nein"
+
+msgid "yes_recommended"
+msgstr "Ja (empfohlen)"
+
+msgid "allow_current_ip"
+msgstr "Darf die primäre IP-Adresse dieser Domäne E-Mails versenden?"
+
+msgid "allow_current_ip_help"
+msgstr "Erlaubt es der primären IP-Adresse dieser Domäne Emails zu versenden.<br>Haupt IP: <b>10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "Dürfen alle Domänen mit dem gleichen Hostnamen wie diese Domäne <span id=\"domainSP\" style=\"font-weight: bold;\"></span> E-Mails verschicken?"
+
+msgid "allow_hostname_help"
+msgstr "Ist es allen Subdomänen gestattet, E-Mails für diese Haupt-Domäne zu senden?"
+
+msgid "no_recommended"
+msgstr "Nein (empfohlen)"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "allow_ip_cidr"
+msgstr "IP-Adressen im CIDR-Format, welche E-Mails dieser Domäne empfangen oder senden:"
+
+msgid "allow_ip_cidr_help"
+msgstr "Fügen Sie die Server-IP-Adressen (mit Subnetz-Maske) für alle Domänen ein, die E-Mails für diesen Server verschicken oder empfangen. Verwenden Sie /32 als Maske für eine einzelne IP-Adressen.<br>Beispiel:<b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "In einer anderen Server-Hostnamen, die liefern oder Relais-Mail für diese Domain können:"
+
+msgid "allow_other_hostname_help"
+msgstr "Fügen Sie den Hostnamen jedes anderen Servers an, der E-Mails für diese Domäne verschickt oder empfängt. Hostnamen müssen mit Leerzeichen voneinander getrennt werden. <br/>Beispiel:<b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "Alle anderen Domänen, welche E-Mails dieser Domäne senden oder empfangen:"
+
+msgid "any_other_domains_help"
+msgstr "Alle anderen Domänen, welche E-Mails für diese Domäne senden. Mit Leerzeichen voneinander getrennt.<br/>Beispiel:<b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "Wie streng sollten der Server die SPF-Einstellungen auslegen?"
+
+msgid "how_strict_help"
+msgstr "Wählen Sie die Option, die am besten passt."
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "Fehlschlagen (Nicht konforme E-Mails werden abgelehnt)"
+
+msgid "softfail"
+msgstr "SoftFail (Nicht konform ist zulässig, wird aber markiert)"
+
+msgid "neutral_maybe"
+msgstr "Neutral (Mails werden wahrscheinlich angenommen werden)"
+

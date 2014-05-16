@@ -1383,3 +1383,86 @@ msgstr "MX: Mail lav"
 msgid "mx_dir_very_low"
 msgstr "MX: Mail lavest"
 
+## ---------------------------------- SPF Wizard:
+
+msgid "spf_wizard"
+msgstr "Guiden SPF"
+
+msgid "spf_intro_text"
+msgstr "Denne guide vil guide dig gennem processen med at oprette eller redigere en SPF-post til din DNS-domæne.</p><p>Du bør tilføje denne DNS-post i feltet 'Tekst Record' ovenfor.</p><p>For fuldstændige oplysninger henvises til SPF record Homepage på <a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "DNS opslag (kopiere og indsætte denne i 'Tekst Record')"
+
+msgid "your_domain"
+msgstr "Dit domæne:"
+
+msgid "your_domain_help"
+msgstr "Domænet, som du ønsker at tilføje SPF record.<br/>dvs <b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "Tillad servere opført som MX til at sende e-mail for dette domæne:"
+
+msgid "allow_mx_help"
+msgstr "Er disse MX-servere sende e-mails til dette domæne Aktuelle handlere?:<br><b>mx1.domain.com<br>mx2.domain.com</b>"
+
+msgid "no"
+msgstr "Nej"
+
+msgid "yes_recommended"
+msgstr "Ja (anbefales)"
+
+msgid "allow_current_ip"
+msgstr "Tillad aktuelle IP-adresse på domænet for at sende e-mail til dette domæne:"
+
+msgid "allow_current_ip_help"
+msgstr "Må domænet vigtigste IP sende e-mails for dette domæne?<br>Main IP: <b>10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "Tillad enhver hostname slutter i <span id=\"domainSP\" style=\"font-weight: bold;\"></span> at sende e-mail til dette domæne:"
+
+msgid "allow_hostname_help"
+msgstr "Er alle subdomæner lov til at sende e-mails til denne vigtigste domæne?"
+
+msgid "no_recommended"
+msgstr "Nej (anbefales)"
+
+msgid "yes"
+msgstr "ja"
+
+msgid "allow_ip_cidr"
+msgstr "IP-adresser i CIDR format, der leverer eller relæ mail for dette domæne:"
+
+msgid "allow_ip_cidr_help"
+msgstr "Tilsæt server IP-adresser, der kan sende e-mail med subnet mask rum adskilt. Brug /32 for en enkelt IP.<br />dvs <b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "Tilføj en anden server hostname, der kan levere eller videresende post for dette domæne:"
+
+msgid "allow_other_hostname_help"
+msgstr "Tilsæt de servere, der har lov til at sende mails til dette domæne rum adskilt.<br/>dvs <b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "Eventuelle domæner, der kan levere eller relay mail for dette domæne:"
+
+msgid "any_other_domains_help"
+msgstr "Tilføj andre domæner, der kan sende e-mails for dette domæne, sådan en tredjepart tjeneste rum adskilt.<br />dvs <b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "Hvor strenge skal være serverne behandler e-mails?"
+
+msgid "how_strict_help"
+msgstr "Vælg den indstilling, der passer bedst."
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "Fail (Ikke kompatibel vil blive afvist)"
+
+msgid "softfail"
+msgstr "SoftFail (Ikke kompatibel vil blive accepteret, men mærkes)"
+
+msgid "neutral_maybe"
+msgstr "Neutral (Mails bliver sandsynligvis accepteret)"
+

@@ -1085,3 +1085,88 @@ msgstr "MX: Laag"
 
 msgid "mx_dir_very_low"
 msgstr "MX: Zeer laag"
+
+## ---------------------------------- SPF Wizard:
+
+
+msgid "spf_wizard"
+msgstr "SPF Wizard"
+
+msgid "spf_intro_text"
+msgstr "Deze wizard leidt u door het proces van het maken of bewerken van een SPF-record voor uw DNS-domeinnaam.</p><p>U dient deze DNS-record toe te voegen in het veld 'Tekst Record' hierboven.</p><p>Voor volledige informatie verwijzen wij u naar de SPF-record Homepage op <a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "De DNS-vermelding (kopieer en plak deze in 'Tekst Record')"
+
+msgid "your_domain"
+msgstr "Uw Domein:"
+
+msgid "your_domain_help"
+msgstr "Het domein waarvoor u de SPF record toe te voegen.<br/>dwz <b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "Laat vermeld als MX servers om e-mail voor dit domein:"
+
+msgid "allow_mx_help"
+msgstr "Hebben deze MX servers e-mails versturen voor dit domein Huidige handlers?:<br><b>mx1.domain.com<br>mx2.domain.com</b>"
+
+msgid "no"
+msgstr "Geen"
+
+msgid "yes_recommended"
+msgstr "Ja (aanbevolen)"
+
+msgid "allow_current_ip"
+msgstr "Sta de huidige IP-adres van het domein om e-mail voor dit domein:"
+
+msgid "allow_current_ip_help"
+msgstr "Heeft het domein hoofd IP e-mails versturen voor dit domein?<br>Hoofd IP: <b>10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "Laat eventuele hostnaam die eindigt in <span id=\"domainSP\" style=\"font-weight: bold;\"></span> om e-mail voor dit domein:"
+
+msgid "allow_hostname_help"
+msgstr "Zijn alle subdomeinen toegestaan ​​om e-mails voor dit hoofddomein sturen?"
+
+msgid "no_recommended"
+msgstr "Geen (aanbevolen)"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "allow_ip_cidr"
+msgstr "IP-adressen in CIDR indeling die leveren of relais mail voor dit domein:"
+
+msgid "allow_ip_cidr_help"
+msgstr "Voeg de server IP-adressen die mail kan verzenden met subnetmasker ruimte gescheiden. Gebruik /32 voor een enkele IP.<br/>dwz <b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "Voeg een andere server hostname die kunnen leveren of relais mail voor dit domein:"
+
+msgid "allow_other_hostname_help"
+msgstr "Voeg de servers die zijn toegestaan ​​om e-mails te sturen voor dit domein ruimte gescheiden.<br/>dwz <b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "Elke domeinen die kunnen leveren of relais mail voor dit domein:"
+
+msgid "any_other_domains_help"
+msgstr "Voeg andere domeinen die e-mails voor dit domein kunt verzenden, een derde in de dienstruimte gescheiden.<br />dwz <b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "Hoe streng moet worden de servers het behandelen van de e-mails?"
+
+msgid "how_strict_help"
+msgstr "Selecteer de optie die het beste past."
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "Fail (Niet compliant zal worden verworpen)"
+
+msgid "softfail"
+msgstr "SoftFail (Niet compliant zal worden geaccepteerd, maar gemarkeerd)"
+
+msgid "neutral_maybe"
+msgstr "Neutraal (Mails zal waarschijnlijk worden aanvaard)"
+

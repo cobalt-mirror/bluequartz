@@ -1088,3 +1088,87 @@ msgstr "MX: Posta Basso"
 
 msgid "mx_dir_very_low"
 msgstr "MX: Posta più basso"
+
+## ---------------------------------- SPF Wizard:
+
+msgid "spf_wizard"
+msgstr "SPF Wizard"
+
+msgid "spf_intro_text"
+msgstr "Questa procedura guidata vi guiderà attraverso il processo di creazione o di modifica di un record SPF per il dominio DNS. </p><p> Si dovrebbe aggiungere questo record DNS nel campo 'Record Testo' sopra.</p><p> Per informazioni complete, fare riferimento al record SPF Homepage su <a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "La voce DNS (copia e incolla questo nel 'Record Text')"
+
+msgid "your_domain"
+msgstr "Il tuo dominio:"
+
+msgid "your_domain_help"
+msgstr "Il dominio per cui si desidera aggiungere il record SPF.<br/>Per esempio <b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "Consenti server elencati come MX per inviare e-mail per questo dominio:"
+
+msgid "allow_mx_help"
+msgstr "Do questi server MX inviare e-mail a questo dominio gestori attuali?:<br><b>mx1.domain.com <br> mx2.domain.com</b>"
+
+msgid "no"
+msgstr "No"
+
+msgid "yes_recommended"
+msgstr "Sì (scelta consigliata)"
+
+msgid "allow_current_ip"
+msgstr "Lasciare attuale indirizzo IP del dominio per inviare e-mail per questo dominio:"
+
+msgid "allow_current_ip_help"
+msgstr "Do il main IP del dominio inviare e-mail per questo dominio?<br>IP principale: <b>10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "Lasciare ogni hostname che termina in <span id=\"domainSP\" style=\"font-weight: bold;\"></span> per inviare e-mail per questo dominio:"
+
+msgid "allow_hostname_help"
+msgstr "Sono tutti i sottodomini possono inviare messaggi di posta elettronica per questo dominio principale?"
+
+msgid "no_recommended"
+msgstr "No (consigliato)"
+
+msgid "yes"
+msgstr "Sì"
+
+msgid "allow_ip_cidr"
+msgstr "Gli indirizzi IP in formato CIDR che offrono o inoltrata la posta per questo dominio:"
+
+msgid "allow_ip_cidr_help"
+msgstr "Aggiungere gli indirizzi IP del server che possono inviare la posta con spazio subnet mask separati. Usare /32 per un singolo IP.<br/>Per esempio <b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "Aggiungere qualsiasi altro nome host del server che possono consegnare o inoltrare la posta per questo dominio:"
+
+msgid "allow_other_hostname_help"
+msgstr "Aggiungere i server che sono autorizzati a inviare mail per questo spazio dominio separato.<br/>cioè <b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "Tutti i domini che possono consegnare o inoltrare la posta per questo dominio:"
+
+msgid "any_other_domains_help"
+msgstr "Aggiungere altri domini che possono inviare messaggi di posta elettronica per questo dominio, tale terzo spazio servizi di terze parti separate.<br/>cioè <b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "Come stretto dovrebbe essere il server che trattano le e-mail?"
+
+msgid "how_strict_help"
+msgstr "Selezionare l'opzione che meglio si adatta."
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "Fail (Non conforme saranno respinte)"
+
+msgid "softfail"
+msgstr "SoftFail (Non conforme accettati ma contrassegnato)"
+
+msgid "neutral_maybe"
+msgstr "Neutro (mail saranno probabilmente accettate)"
+

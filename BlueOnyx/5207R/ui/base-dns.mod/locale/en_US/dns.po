@@ -1135,3 +1135,86 @@ msgstr "MX: Mail Low"
 
 msgid "mx_dir_very_low"
 msgstr "MX: Mail Lowest"
+
+## ---------------------------------- SPF Wizard:
+
+msgid "spf_wizard"
+msgstr "SPF Wizard"
+
+msgid "spf_intro_text"
+msgstr "This wizard will guide you through the process of creating or editing a SPF record for your DNS domain.</p><p>You should add this DNS record into the field 'Text Record' above.</p><p>For complete details, please refer to the SPF record Homepage at <a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "The DNS entry (copy and paste this into 'Text Record')"
+
+msgid "your_domain"
+msgstr "Your Domain:"
+
+msgid "your_domain_help"
+msgstr "The domain for which you want to add the SPF record.<br/>i.e. <b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "Allow servers listed as MX to send email for this domain:"
+
+msgid "allow_mx_help"
+msgstr "Do these MX servers send emails for this domain?Current handlers:<br><b>mx1.domain.com<br>mx2.domain.com</b>"
+
+msgid "no"
+msgstr "No"
+
+msgid "yes_recommended"
+msgstr "Yes (recommended)"
+
+msgid "allow_current_ip"
+msgstr "Allow current IP address of the domain to send email for this domain:"
+
+msgid "allow_current_ip_help"
+msgstr "Do the domain main IP send emails for this domain?<br>Main IP: <b>10.0.0.1<b>"
+
+msgid "allow_hostname"
+msgstr "Allow any hostname ending in <span id=\"domainSP\" style=\"font-weight: bold;\"></span> to send email for this domain:"
+
+msgid "allow_hostname_help"
+msgstr "Are all subdomains allowed to send emails for this main domain?"
+
+msgid "no_recommended"
+msgstr "No (recommended)"
+
+msgid "yes"
+msgstr "yes"
+
+msgid "allow_ip_cidr"
+msgstr "IP addresses in CIDR format that deliver or relay mail for this domain:"
+
+msgid "allow_ip_cidr_help"
+msgstr "Add the server IP addresses that may send mail with subnet mask space separated. Use /32 for a single IP.<br />i.e. <b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "Add any other server hostname that may deliver or relay mail for this domain:"
+
+msgid "allow_other_hostname_help"
+msgstr "Add the servers that are allowed to send mails for this domain space separated.<br/>i.e. <b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "Any domains that may deliver or relay mail for this domain:"
+
+msgid "any_other_domains_help"
+msgstr "Add other domains that can send emails for this domain, such as third party services. Space separated.<br />i.e. <b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "How strict should be the servers treating the emails?"
+
+msgid "how_strict_help"
+msgstr "Select the option that fits best."
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "Fail (Not compliant will be rejected)"
+
+msgid "softfail"
+msgstr "SoftFail (Not compliant will be accepted but marked)"
+
+msgid "neutral_maybe"
+msgstr "Neutral (Mails will be probably accepted)"

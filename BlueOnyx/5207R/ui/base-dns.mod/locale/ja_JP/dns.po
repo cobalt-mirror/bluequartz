@@ -1144,3 +1144,87 @@ msgstr "メール (低優先)"
 
 msgid "mx_dir_very_low"
 msgstr "メール (最低優先)"
+
+## ---------------------------------- SPF Wizard:
+
+msgid "spf_wizard"
+msgstr "SPFウィザード"
+
+msgid "spf_intro_text"
+msgstr "このウィザードは、DNSドメインのSPFレコードを作成または編集するプロセスをガイドします。 </p><p>あなたが上にあるフィールド 'テキストレコード'にこのDNSレコードを追加する必要があります。 </p><p>完全な詳細については、次のSPFレコードのホームページをご参照ください<a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "DNSエントリ（ 'テキストレコード」にこれをコピーして貼り付ける）"
+
+msgid "your_domain"
+msgstr "あなたのドメイン："
+
+msgid "your_domain_help"
+msgstr "あなたがSPFレコードを追加するドメイン。 <br/>つまり<b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "MXのようにリストされたサーバーは、このドメインの電子メールを送信することができます："
+
+msgid "allow_mx_help"
+msgstr "これらのMXサーバーは、このドメインの電子メールを送信ください現在のハンドラを？：<br><b>mx1.domain.com<br>mx2.domain.com</b>"
+
+msgid "no"
+msgstr "いいえ"
+
+msgid "yes_recommended"
+msgstr "はい（推奨）"
+
+msgid "allow_current_ip"
+msgstr "このドメインの電子メールを送信するドメインの現在のIPアドレスを許可する："
+
+msgid "allow_current_ip_help"
+msgstr "ドメインの主なIPは、このドメインの電子メールを送信しますか？ <br>メインIPアドレス<b>：10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "できるようで終わるすべてのホスト名<span id=\"domainSP\" style=\"font-weight: bold;\"></span>このドメインの電子メールを送信するには、次のように"
+
+msgid "allow_hostname_help"
+msgstr "すべてのサブドメインは、このメインドメインのために電子メールを送信することが許可されていますか？"
+
+msgid "no_recommended"
+msgstr "いいえ（推奨）しない"
+
+msgid "yes"
+msgstr "はい"
+
+msgid "allow_ip_cidr"
+msgstr "配送またはこのドメインのメールを中継CIDR形式のIPアドレス："
+
+msgid "allow_ip_cidr_help"
+msgstr "分離サブネットマスクスペースでメールを送信することができ、サーバのIPアドレスを追加します。 /32は、単一のIPのために使用してください。 <br />すなわち<b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "このドメインのメールの配信または中継することができる任意の他のサーバーのホスト名を追加します。"
+
+msgid "allow_other_hostname_help"
+msgstr "分離このドメイン空間のためのメールを送信することが許可されているサーバーを追加します。<br/>すなわち<b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "このドメインのメールの配信または中継することができる任意のドメイン："
+
+msgid "any_other_domains_help"
+msgstr "このドメインの電子メールを送信することができ、他のドメインを追加し、このようなサードパーティのサービス空間を分離した。<br/>すなわち<b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "どのように厳格な電子メールを処理するサーバーである必要がありますか？"
+
+msgid "how_strict_help"
+msgstr "最高のフィットオプションを選択します。"
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "失敗（準拠したんは拒否されます）"
+
+msgid "softfail"
+msgstr "Softfailは（対応の受け入れられますが、マークされていません）"
+
+msgid "neutral_maybe"
+msgstr "ニュートラル（メールはおそらく受け入れられます）"
+

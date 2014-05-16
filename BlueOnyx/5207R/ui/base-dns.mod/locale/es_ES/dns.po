@@ -1085,3 +1085,87 @@ msgstr "MX: Correo baja"
 
 msgid "mx_dir_very_low"
 msgstr "MX: Correo Menor"
+
+## ---------------------------------- SPF Wizard:
+
+msgid "spf_wizard"
+msgstr "Asistente SPF"
+
+msgid "spf_intro_text"
+msgstr "Este asistente le guiará a través del proceso de crear o editar un registro SPF para su dominio DNS. </p><p> Usted debe agregar este registro DNS en el campo 'Record Texto' arriba. </p><p> Para obtener más detalles, consulte el registro SPF en la página de inicio <a href='http://www.openspf.org/' target='_blank'>http://www.openspf.org/</a>"
+
+msgid "dns_entry_header"
+msgstr "La entrada de DNS (copiar y pegar esto en 'Record Text')"
+
+msgid "your_domain"
+msgstr "Su dominio:"
+
+msgid "your_domain_help"
+msgstr "El dominio para el que desea agregar el registro SPF. <br/> es decir <b>example.com</b>"
+
+msgid "allow_mx"
+msgstr "Permitir a los servidores que aparecen como MX para enviar correo electrónico para este dominio:"
+
+msgid "allow_mx_help"
+msgstr "¿Estos servidores MX envían mensajes de correo electrónico para este dominio manipuladores actuales?:<br><b>mx1.domain.com <br> mx2.domain.com</b>"
+
+msgid "no"
+msgstr "No"
+
+msgid "yes_recommended"
+msgstr "Sí (recomendado)"
+
+msgid "allow_current_ip"
+msgstr "Permitir dirección IP actual del dominio para enviar correo electrónico para este dominio:"
+
+msgid "allow_current_ip_help"
+msgstr "Foro de la IP principal de dominio envía mensajes de correo electrónico para este dominio?<br>IP principal:<b>10.0.0.1</b>"
+
+msgid "allow_hostname"
+msgstr "Permitir cualquier nombre que termina en <span id=\"domainSP\" style=\"font-weight: bold;\"></span> para enviar correo electrónico para este dominio:"
+
+msgid "allow_hostname_help"
+msgstr "¿Están todos los subdominios pueden enviar mensajes de correo electrónico para este dominio principal?"
+
+msgid "no_recommended"
+msgstr "No (se recomienda)"
+
+msgid "yes"
+msgstr "Sí"
+
+msgid "allow_ip_cidr"
+msgstr "Direcciones IP en formato CIDR que entregan o reenvía correo para este dominio:"
+
+msgid "allow_ip_cidr_help"
+msgstr "Agregue las direcciones IP de servidores que pueden enviar correo con espacio máscara de subred separada. Utilice /32 para una sola dirección IP.<br />es decir <b>10.0.0.1/32 192.168.0.1/28</b>"
+
+msgid "allow_other_hostname"
+msgstr "Añadir cualquier otro nombre de host del servidor que pueden entregar o retransmitir correo para este dominio:"
+
+msgid "allow_other_hostname_help"
+msgstr "Agregue los servidores que tienen permiso para enviar correos para este espacio de dominio separada.<br/>es decir <b>ns1.example.com ns2.example.com</b>"
+
+msgid "any_other_domains"
+msgstr "Cualquier dominio que puede entregar o retransmitir correo para este dominio:"
+
+msgid "any_other_domains_help"
+msgstr "Añadir otros dominios que pueden enviar mensajes de correo electrónico para este dominio, un tercer espacio, tales servicios de terceros separada.<br />es decir <b>3rdparty.com 1stparty.com</b>"
+
+msgid "how_strict"
+msgstr "¿Con qué rigor deben ser los servidores de tratamiento de los mensajes de correo electrónico?"
+
+msgid "how_strict_help"
+msgstr "Seleccione la opción que mejor se adapte."
+
+msgid "dash"
+msgstr "-"
+
+msgid "fail_notcompliant"
+msgstr "Falla (No compatible será rechazada)"
+
+msgid "softfail"
+msgstr "SoftFail (No conforme se aceptarán pero marcado)"
+
+msgid "neutral_maybe"
+msgstr "Neutral (Mails serán probablemente aceptadas)"
+
