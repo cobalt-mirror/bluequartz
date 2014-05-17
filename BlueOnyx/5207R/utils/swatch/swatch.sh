@@ -9,6 +9,12 @@ FIND=`which find`
 XARGS=`which xargs`
 TOUCH=`which touch`
 REM=`which rm`
+CCEDUP=`/usr/sausalito/bin/check_cce.pl`
+
+if [ "$CCEDUP" != "SUCCESS" ];then
+        /usr/sausalito/bin/cced_unstuck.sh >/dev/null 2>&1
+        sleep 5
+fi
 
 if [ -f $lockfile ] ; then
         $FIND $lockfile -type f -cmin +25 -print | $XARGS $REM >/dev/null 2>&1
@@ -24,6 +30,7 @@ if [ -f "/tmp/.swatch.lock" ]; then
         exit
 else
         $TOUCH /tmp/.swatch.lock
+        #echo "Running Swatch"
         /usr/sbin/swatch -c /etc/swatch.conf
         $REM -f /tmp/.swatch.lock
 fi
@@ -33,4 +40,3 @@ fi
 
 $REM -f $lockfile
 exit
-
