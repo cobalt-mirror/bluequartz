@@ -184,6 +184,10 @@ fi
 
 %changelog
 
+* Sun May 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX09
+- Added a bit more professionalism to ccewrap/cced_unstuck.sh
+- Added /usr/bin/sar to ccewrap/ccewrap.conf for stats galore.
+
 * Fri May 16 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX08
 - Small modification to ccewrap/cced_unstuck.sh as the killall command
   doesn't do well with Zombies. Now uses a grepped ps for cced as well.
