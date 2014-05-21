@@ -103,6 +103,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Wed May 21 2014 Michael Stauber <mstauber@solarspeed.net> 3.0.0-1BX01
+- Major version number bump for 520XR
+- Modified glue/handlers/groupusage.pl, which was storing used quota
+  amounts in bytes, while all our other quota settings in CODB are stored
+  in megabytes. Fixed it to now store in megabytes, too. Rounded up.
+
 * Wed Feb 05 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.2-1BX03
 - Added cleaned up French translation as provided by Meaulnes Legler.
 
