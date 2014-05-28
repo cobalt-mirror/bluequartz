@@ -1,7 +1,7 @@
 Summary: System Watcher
 Name: swatch
 Version: XX_VER_XX
-Release: 0BX22%{?dist}
+Release: 0BX23%{?dist}
 Vendor: Project BlueOnyx
 License: BSD
 Group: System Environment/BlueOnyx
@@ -73,6 +73,10 @@ fi
 #fi   
 
 %changelog
+* Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX23
+- Modified swatch.sh to check CCEd status with /usr/sausalito/bin/check_cce.pl 
+- If CCEd is down or unresponsive it runs /usr/sausalito/bin/cced_unstuck.sh 
+- Added improved French translation as provided by Meaulnes Legler. 
 
 * Fri Dec 20 2013 Michael Stauber <mstauber@solarspeed.net> 3.0.2-0BX22
 - Non-English locales were broken in Emails again. Fixed.
