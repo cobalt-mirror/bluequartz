@@ -41,7 +41,7 @@ Configuration Engine.
 %package client
 Group: System Environment/BlueOnyx
 Summary: The CCE client libraries
-Requires: glib, glib-ghash, pam, httpd, base-admserv-glue
+Requires: glib, glib-ghash, pam, httpd, base-admserv-glue perl-Time-Out
 
 %description client
 The cce-client package contains the client-side parts of the Cobalt 
@@ -118,6 +118,9 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 
 %files client
 %attr(-,root,XX_USER_HTTPD_XX)/usr/sausalito/bin/ccewrap
+/usr/sausalito/bin/cced_unstuck.sh
+/usr/sausalito/bin/check_cce.pl
+/etc/sudoers.d/admserv
 %config %attr(-,root,root)/etc/ccewrap.conf
 %defattr(-,root,root)
 %doc LICENSE.txt
@@ -179,6 +182,26 @@ fi
 %changelog
 
 %changelog
+
+* Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX13
+- Backport from 5207R/utils/cce 0.99.1-1BX07 - 0.99.1-1BX10:
+- Added dependency for perl-Time-Out to client package. 
+- Added ccewrap/check_cce.pl to check if CCEd is running and accepting  
+  connections. 
+- Added ccewrap/cced_unstuck.sh to rehash CCEd if it is not. 
+- Added ccewrap/admserv to allow AdmServ to use sudo to run  
+  ccewrap/cced_unstuck.sh 
+- Of all the changes I ever did this is probably the most controversial 
+  one. ServerScriptHelper now can restart CCEd in case it is unresponsive 
+  or down. This happens so seamlessly, that a GUI user might not even  
+  notice that it was down to begin with. However, this call bypasses  
+  CCEWrapper, as CCEd is down or unresponsive anyway. With CCEWrapper we  
+  could restart CCEd. Without we can't. So granting sudo access to just  
+  one shell script (without passing parameters) is lightly more sensible 
+  than to show an error message and refuse to work until someone had the 
+  good grace to restart CCEd. I think this addition has a lot of benefit  
+  at very little risk. Whether CCEDWrappper is more secure than a locked  
+  down single sudo call is hard to tell. 
 
 * Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX12
 - Fixed weird (but reproduceable) error in CceClient.php.
