@@ -218,6 +218,7 @@ my $is_group = "1";
 
 # do query for group's quota:
 my ($group_used, $group_quota) = Quota::query($dev_a, $gid, $is_group);
+&debug_msg("Quota: group_used: $group_used - group_quota: $group_quota\n");
 
 # do query for user's quota:
 my $dev = Quota::getqcarg($Vaca_dir);
@@ -226,7 +227,7 @@ my ($used, $quota) = Quota::query($dev, $uid);
 my $diff = "20";
 
 my $is_overquota = "0";
-if (($group_used + $diff >= $group_quota) || ($used + $diff >= $quota)) {
+if ((($group_used + $diff >= $group_quota) || ($used + $diff >= $quota)) && ($group_quota gt "0")) {
     my $is_overquota = "1";
 
     &debug_msg("Not sending vacation message of user $user_from as his account or his site is over quota.\n");
