@@ -1,6 +1,5 @@
 <?php
-// Copyright 2000, 2001 Sun Microsystems, Inc.  All rights reserved.
-// $Id: ServerScriptHelper.php 836 2006-08-04 17:43:55Z bsmith $
+// $Id: ServerScriptHelper.php
 
 // description:
 // This class is designed to ease the development of server-side scripts. It is
@@ -52,8 +51,22 @@ class ServerScriptHelper {
   //     If not supplied, global $sessionId is used
   // param: loginName: the login name of the user in string. Optional.
   //     If not supplied, global $loginName is used, otherwise PHP_AUTH_USER
-  function ServerScriptHelper($sessionId = "", $loginName = "") 
-  {
+  function ServerScriptHelper($sessionId = "", $loginName = "") {
+
+    // Call me a dirty little bastard. But CCEd gets stuck sometimes.
+    // Which throws a wrench into the entire GUI. So this is how we
+    // handle it: This script tries to establish a connection to CCEd.
+    // It has a timeout of five seconds. After which it reports 'TIMEOUT':
+    $cce_check = shell_exec('/usr/sausalito/bin/check_cce.pl');
+    // If we do have a 'TIMEOUT' or no output at all, then we get down and dirty:
+    if (($cce_check == "TIMEOUT") || ($cce_check == "")) {
+      // We run the unstuck script vi SUDO. This is the ONLY command that user
+      // 'admserv' has sudo capabilities for and it kills off stray CCEd processes,
+      // pperld and cced.init. It then does a fast cced.init rehash to get us back up:
+      $cce_unstuck = shell_exec('/usr/bin/sudo /usr/sausalito/bin/cced_unstuck.sh');
+    }
+    // If we get here, CCEd should be running. Either again, or because it was fine.
+
     // use global session ID if ID not supplied through parameter
     if($sessionId == "")
         global $sessionId;
@@ -78,6 +91,20 @@ class ServerScriptHelper {
     $product = $this->getProductCode();
     $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
+    // Call me a dirty little bastard. But CCEd gets stuck sometimes.
+    // Which throws a wrench into the entire GUI. So this is how we
+    // handle it: This script tries to establish a connection to CCEd.
+    // It has a timeout of five seconds. After which it reports 'TIMEOUT':
+    $cce_check = shell_exec('/usr/sausalito/bin/check_cce.pl');
+    // If we do have a 'TIMEOUT' or no output at all, then we get down and dirty:
+    if (($cce_check == "TIMEOUT") || ($cce_check == "")) {
+      // We run the unstuck script vi SUDO. This is the ONLY command that user
+      // 'admserv' has sudo capabilities for and it kills off stray CCEd processes,
+      // pperld and cced.init. It then does a fast cced.init rehash to get us back up:
+      $cce_unstuck = shell_exec('/usr/bin/sudo /usr/sausalito/bin/cced_unstuck.sh');
+    }
+    // If we get here, CCEd should be running. Either again, or because it was fine.
+
     if ($this->hasCCE()) 
     {
         include_once('CceClient.php');
@@ -97,8 +124,8 @@ class ServerScriptHelper {
             if(file_exists($path)) 
             {
                 $messageFile = fopen($path, "r");
-	            $messageTag = fgets($messageFile, 1024);
-	            fclose($messageFile);
+              $messageTag = fgets($messageFile, 1024);
+              fclose($messageFile);
             }
             // we use default locale here because locale preference is stored in CCE
             $i18n = new I18n;
@@ -123,17 +150,17 @@ class ServerScriptHelper {
 </HTML>");
             exit;
         }
-	
+  
         // only AUTH if not on Monterey
         if (!$this->isMonterey) 
         {
             if (!$cceClient->authkey($loginName, $sessionId)) 
             {
-	            error_log("ServerScriptHelper.ServerScriptHelper(): Cannot authenticate to CCE (login name: $loginName, session ID: $sessionId)"); 
-	            // tell users their sessions are expired and redirect
-	            // set the target here to point to where to go back to after login
-	            header("cache-control: no-cache");
-	            print("
+              error_log("ServerScriptHelper.ServerScriptHelper(): Cannot authenticate to CCE (login name: $loginName, session ID: $sessionId)"); 
+              // tell users their sessions are expired and redirect
+              // set the target here to point to where to go back to after login
+              header("cache-control: no-cache");
+              print("
 <HTML>
   <HEAD>
     <META HTTP-EQUIV=\"expires\" CONTENT=\"-1\">
@@ -145,7 +172,7 @@ class ServerScriptHelper {
       var pathname = top.location.pathname;
       // IE4.0 has a bug that location.pathname contains port at the beginning
       if(top.location.port != null && top.location.port != \"\" && pathname.indexOf(\"/:\"+top.location.port) == 0)
-	pathname = pathname.substring(2+top.location.port.length);
+  pathname = pathname.substring(2+top.location.port.length);
       var url = \"/login.php?expired=true&target=\"+escape(pathname+top.location.search+top.location.hash);
 
       top.location = url;
@@ -154,21 +181,21 @@ class ServerScriptHelper {
     </SCRIPT>
   </BODY>
 </HTML>");
-	            exit;
+              exit;
             }
      
             // get the login user from CCE
-	    /* this code doesn't make sense
-	       you can't auth without a User object
-	       so this code will never get run
-	       
+      /* this code doesn't make sense
+         you can't auth without a User object
+         so this code will never get run
+         
             $oids = $cceClient->find("User", array("name" => $this->loginName));
             if(count($oids) == 0) 
             {
-	            error_log("ServerScriptHelper.ServerScriptHelper(): Cannot get user from CCE (name: $loginName)");
-	            // redirect
-	            header("cache-control: no-cache");
-	            print("
+              error_log("ServerScriptHelper.ServerScriptHelper(): Cannot get user from CCE (name: $loginName)");
+              // redirect
+              header("cache-control: no-cache");
+              print("
 <HTML>
   <HEAD>
     <META HTTP-EQUIV=\"expires\" CONTENT=\"-1\">
@@ -182,19 +209,19 @@ class ServerScriptHelper {
     </SCRIPT>
   </BODY>
 </HTML>");
-	            exit;
+              exit;
             }
-	    */
+      */
 
             $this->loginUser = $cceClient->get($cceClient->whoami());
         }
     
         // initialize
         $this->i18n = array();
-	// initialize timezone
-	$timeObj = $cceClient->getObject("System", array(), "Time");
-	$systemTimeZone = $timeObj["timeZone"];
-	date_default_timezone_set($systemTimeZone);
+  // initialize timezone
+  $timeObj = $cceClient->getObject("System", array(), "Time");
+  $systemTimeZone = $timeObj["timeZone"];
+  date_default_timezone_set($systemTimeZone);
     }
   }
 
@@ -312,7 +339,7 @@ class ServerScriptHelper {
   //   the path and any arguments
   // param: mode: The mode to use in this popen
   // param: runas: the user to run the program as, defaults to the currently
-  //	logged in user if not specified
+  //  logged in user if not specified
   // returns: a file handle to be read from
   function popen($cmd, $mode = "r", $runas = "")
   {
@@ -351,7 +378,7 @@ class ServerScriptHelper {
     $this->isMonterey = preg_match("/35[0-9][0-9]R/", $product);
 
     // call ccewrap
-    //$cmd = escapeShellCmd($cmd);	
+    //$cmd = escapeShellCmd($cmd);  
     putenv("CCE_SESSIONID=". $sessionId);
     putenv("CCE_USERNAME=". $this->loginName);
     putenv("CCE_REQUESTUSER=". $runas);
@@ -365,7 +392,7 @@ class ServerScriptHelper {
       
     // prepare return
     while (list($key,$val)=each($array)) 
-      $output .= "$val\n";	
+      $output .= "$val\n";  
 
     // clean up
     putenv("CCE_SESSIONID=");
@@ -408,7 +435,7 @@ class ServerScriptHelper {
 
     if ( $this->isMonterey && in_array( $PHP_AUTH_USER, posix_getgrnam("site-adm"))) {
       $accessRights[] = "siteAdministrator";
-    }	
+    } 
 
     return $accessRights;
   }
@@ -519,14 +546,14 @@ class ServerScriptHelper {
       // remove all the q stuff because IE already sorted the entries
       $index = strpos($locale, ";");
       if($index)
-	$locale = substr($locale, 0, $index);
+  $locale = substr($locale, 0, $index);
 
       // make country code uppercase
       if(strlen($locale) > 3)
-	$locale = substr($locale, 0, 3).strtoupper(substr($locale, 3, strlen($locale)-3));
+  $locale = substr($locale, 0, 3).strtoupper(substr($locale, 3, strlen($locale)-3));
 
       if($i > 0)
-	$httpAcceptLanguage .= ",";
+  $httpAcceptLanguage .= ",";
 
       $httpAcceptLanguage .= $locale;
     }
@@ -634,7 +661,7 @@ class ServerScriptHelper {
     }
     else // do things the old way
     {
-        // maintain as little overhead as possible	
+        // maintain as little overhead as possible  
         $errorJavascript = "<SCRIPT LANGUAGE=\"javascript\">\n";
         $errorJavascript .= $this->toErrorJavascript($errors);
         $errorJavascript .= "</SCRIPT>\n";
@@ -654,9 +681,9 @@ class ServerScriptHelper {
     $i18n = $this->getI18n();
     $encoding = $i18n->getProperty('encoding', 'palette');
     if ($encoding != 'none') {
-    	$encoding = "; charset=$encoding";
+      $encoding = "; charset=$encoding";
     } else {
-    	$encoding = '';
+      $encoding = '';
     }
 
     return "
@@ -864,7 +891,7 @@ $post_vars_html
         // commented out monterey-specific cruft
         // pretty much all future products will have CCE
         // return file_exists("/etc/rc.d/init.d/cced.init");
-	return true;
+  return true;
     }
 
     // this should not be used outside this class
@@ -899,24 +926,41 @@ $post_vars_html
     }
 
 }
+
 /*
-Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2003 Sun Microsystems, Inc. 
+All Rights Reserved.
 
-Redistribution and use in source and binary forms, with or without modification, 
-are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright 
+   notice, this list of conditions and the following disclaimer.
 
--Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright 
+   notice, this list of conditions and the following disclaimer in 
+   the documentation and/or other materials provided with the 
+   distribution.
 
--Redistribution in binary form must reproduce the above copyright notice, 
-this list of conditions and the following disclaimer in the documentation and/or 
-other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its 
+   contributors may be used to endorse or promote products derived 
+   from this software without specific prior written permission.
 
-Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-be used to endorse or promote products derived from this software without 
-specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
 
-This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+You acknowledge that this software is not designed or intended for 
+use in the design, construction, operation or maintenance of any 
+nuclear facility.
 
-You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
 */
 ?>

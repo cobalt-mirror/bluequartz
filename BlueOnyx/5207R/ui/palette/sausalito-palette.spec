@@ -57,6 +57,10 @@ fi
 
 %changelog
 
+* Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX02
+- Modified libPhp/ServerScriptHelper.php with check if CCEd is responsive.
+- If not, it now has the capability to restart it.
+
 * Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX01
 - New major version for 520XR.
 - Modified conf/ui.cfg for Chorizo based 520XR.
