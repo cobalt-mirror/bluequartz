@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.9.9
-Release: 0BX01%{?dist}
+Release: 0BX03%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -56,6 +56,9 @@ fi
 /etc/ccewrap.d/*
 
 %changelog
+
+* Thu Jun 26 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX03
+- Small locale fix.
 
 * Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX02
 - Modified libPhp/ServerScriptHelper.php with check if CCEd is responsive.
