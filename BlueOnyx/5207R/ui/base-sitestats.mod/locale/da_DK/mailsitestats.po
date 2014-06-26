@@ -250,3 +250,302 @@ msgstr "[[base-sitestats.weeklyHistory]]"
 
 msgid "weeklyHistory_help"
 msgstr "[[base-sitestats.weeklyHistory_help]]"
+
+## New strings for sendmailanalyzer based /sitestats/summaryEmail:
+
+msgid "sa_stats_label"
+msgstr "Statistik for perioden:"
+
+msgid "daily_weekly_summary"
+msgstr "Daglig / Ugentlig oversigt"
+
+msgid "hourly_summary"
+msgstr "Time oversigt"
+
+msgid "yearly_summary"
+msgstr "Årlig Oversigt"
+
+msgid "monthly_summary"
+msgstr "Månedlig Oversigt"
+
+msgid "months"
+msgstr "Måneder"
+
+msgid "hours"
+msgstr "Åbningstider"
+
+msgid "select_an_alias"
+msgstr "Vælg et Alias"
+
+msgid "global_cat_messaging"
+msgstr "+ Messaging"
+
+msgid "global_cat_spamming"
+msgstr "+ Spamming"
+
+msgid "global_cat_virus"
+msgstr "+ Virus"
+
+msgid "global_cat_notification"
+msgstr "+ Anmeldelse"
+
+msgid "global_cat_rejection"
+msgstr "+ Afvisning"
+
+msgid "global_cat_status"
+msgstr "+ Status"
+
+msgid "global_cat_smtpauth"
+msgstr "+ SMTP Auth"
+
+msgid "top_cat_senders"
+msgstr "* Afsendere"
+
+msgid "top_cat_recipients"
+msgstr "* Modtagere"
+
+msgid "top_cat_spamming"
+msgstr "* Spamming"
+
+msgid "top_cat_virus"
+msgstr "* Virus"
+
+msgid "top_cat_notification"
+msgstr "* Meddelelse"
+
+msgid "top_cat_rejection"
+msgstr "* Afvisning"
+
+msgid "top_cat_smtpauth"
+msgstr "* SMTP Auth"
+
+msgid "av_spamassassin"
+msgstr "- SpamAssassin"
+
+msgid "sa_nodata"
+msgstr "Ingen data tilgængelig for denne periode."
+
+msgid "messaging_flows"
+msgstr "Beskeder strømme"
+
+msgid "messages"
+msgstr "Meddelelser"
+
+msgid "size"
+msgstr "Størrelse"
+
+msgid "mean"
+msgstr "Mean"
+
+msgid "incoming"
+msgstr "Indgående"
+
+msgid "local_incomming"
+msgstr "Lokal indkommende"
+
+msgid "total_incomming"
+msgstr "Samlet indkommende"
+
+msgid "outgoing"
+msgstr "Udgående"
+
+msgid "local_delivery"
+msgstr "Lokal levering"
+
+msgid "total_outgoing"
+msgstr "Samlet udgående"
+
+msgid "inbound"
+msgstr "Indgående"
+
+msgid "outbound"
+msgstr "Udgående"
+
+msgid "number_of_messages"
+msgstr "Antallet af beskeder"
+
+msgid "size_mb"
+msgstr "Størrelse (MB)"
+
+msgid "percentage"
+msgstr "Procent"
+
+msgid "external_to_internal"
+msgstr "Ekstern -> Intern"
+
+msgid "external_to_external"
+msgstr "Ekstern -> Ekstern"
+
+msgid "internal_to_internal"
+msgstr "Intern -> Internal"
+
+msgid "internal_to_external"
+msgstr "Intern -> Ekstern"
+
+msgid "delivery_direction"
+msgstr "Levering Direction"
+
+msgid "different_senders_recipients"
+msgstr "Forskellige afsendere / modtagere"
+
+msgid "senders"
+msgstr "Afsendere"
+
+msgid "recipients"
+msgstr "Modtagere"
+
+msgid "spamming_flows"
+msgstr "Spamming flyder"
+
+msgid "size_per_msg"
+msgstr "Size / msg"
+
+msgid "spam_delivery_flows"
+msgstr "Spam levering flyder"
+
+msgid "spamming_flow"
+msgstr "Spamming Flow"
+
+msgid "delivery_status_notification"
+msgstr "Meddelelse om leveringsstatus"
+
+msgid "in_error"
+msgstr "I fejl"
+
+msgid "total"
+msgstr "Samlet"
+
+msgid "dsn_delivery_flows"
+msgstr "DSN levering flyder"
+
+msgid "dsn_flow"
+msgstr "DSN Flow"
+
+msgid "rejection_flows"
+msgstr "Afvisning flyder"
+
+msgid "syserr_flows"
+msgstr "Syserr flyder"
+
+msgid "messaging_status"
+msgstr "Beskeder status"
+
+msgid "smtpauth_server"
+msgstr "SMTP Auth: server"
+
+msgid "mechanism"
+msgstr "Mechanism"
+
+msgid "count"
+msgstr "Tæl"
+
+msgid "authentication_flow_server"
+msgstr "Authentication Flow: server"
+
+msgid "top_sender_relay"
+msgstr "Top Sender Relæ"
+
+msgid "other"
+msgstr "Andet"
+
+msgid "top_sender_domains"
+msgstr "Top Sender Domain (top 100)"
+
+msgid "top_sender_domain"
+msgstr "Top Sender Domain"
+
+msgid "top_sender_relays"
+msgstr "Top Sender Relæ (top 100)"
+
+msgid "top_sender_addresses"
+msgstr "Top Sender Address (top 100)"
+
+msgid "top_sender_address"
+msgstr "Top Sender Address"
+
+msgid "top_recipient relay"
+msgstr "Top Modtager Relæ"
+
+msgid "top_recipient_domains"
+msgstr "Top Modtager Domain (top 100)"
+
+msgid "top_recipient_domain"
+msgstr "Top modtagerens domæne"
+
+msgid "top_recipient_relays"
+msgstr "Top Modtager Relæ (top 100)"
+
+msgid "top_recipient_relay"
+msgstr "Top Modtager Relæ"
+
+msgid "top_recipient_addresses"
+msgstr "Top Modtagere Adresse (top 100)"
+
+msgid "top_recipient_address"
+msgstr "Top Modtagere Adresse"
+
+msgid "lbl_top_spam_rules"
+msgstr "Top Spams Regler"
+
+msgid "lbl_top_spammers_domain"
+msgstr "Top Spammere Domain"
+
+msgid "lbl_top_spammers_relay"
+msgstr "Top Spammere Relæer"
+
+msgid "lbl_top_spammers_address"
+msgstr "Top Spammere adresse"
+
+msgid "lbl_top_recipients_address"
+msgstr "Top Modtagere Adresse"
+
+msgid "lbl_top_dsn_status"
+msgstr "Top DSN status"
+
+msgid "lbl_top_dsn_senders"
+msgstr "Top DSN afsendere"
+
+msgid "lbl_top_dsn_relays"
+msgstr "Top DSN Relæer"
+
+msgid "lbl_top_dsn_recipients"
+msgstr "Top DSN Modtagere"
+
+msgid "lbl_top_rules"
+msgstr "Top Regler"
+
+msgid "lbl_top_domains"
+msgstr "Top Domains"
+
+msgid "lbl_top_relays"
+msgstr "Top Relæer"
+
+msgid "lbl_top_senders"
+msgstr "Top afsendere"
+
+msgid "lbl_top_status"
+msgstr "Top status"
+
+msgid "system_messages"
+msgstr "System-beskeder"
+
+msgid "lbl_top_mechanism"
+msgstr "Top Mechanism"
+
+msgid "lbl_top_relay"
+msgstr "Top Relæ"
+
+msgid "lbl_top_AUTHID"
+msgstr "Top AUTHID"
+
+msgid "lbl_topspam_spams"
+msgstr "Top Spams (top 100)"
+
+msgid "lbl_topspam_scores"
+msgstr "Top spam scoringer"
+
+msgid "lbl_topspam_autolearnstats"
+msgstr "AutoLearn Statistik"
+
+msgid "top_individual_spam_rules"
+msgstr "Top individuelle SPAM regler"

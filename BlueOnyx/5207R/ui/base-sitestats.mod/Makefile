@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=sitestats
 
-VERSION=1.1
-RELEASE=0BX05
+VERSION=2.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -20,7 +20,7 @@ BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES_UI=coreutils httpd analog
+REQUIRES_UI=coreutils httpd analog sendmailanalyzer
 
 #########
 # some useful defines

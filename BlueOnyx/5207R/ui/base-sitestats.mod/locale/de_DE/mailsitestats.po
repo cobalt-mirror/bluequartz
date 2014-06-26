@@ -236,3 +236,301 @@ msgstr "[[base-sitestats.weeklyHistory]]"
 msgid "weeklyHistory_help"
 msgstr "[[base-sitestats.weeklyHistory_help]]"
 
+## New strings for sendmailanalyzer based /sitestats/summaryEmail:
+
+msgid "sa_stats_label"
+msgstr "Statistik für den Zeitraum:"
+
+msgid "daily_weekly_summary"
+msgstr "Tägliche / wöchentlich Übersicht"
+
+msgid "hourly_summary"
+msgstr "Stündliche Übersicht"
+
+msgid "yearly_summary"
+msgstr "Jahresübersicht"
+
+msgid "monthly_summary"
+msgstr "Monatliche Übersicht"
+
+msgid "months"
+msgstr "Monate"
+
+msgid "hours"
+msgstr "Stunden"
+
+msgid "select_an_alias"
+msgstr "Wählen Sie ein Alias"
+
+msgid "global_cat_messaging"
+msgstr "+ Nachrichten"
+
+msgid "global_cat_spamming"
+msgstr "+ Spamming"
+
+msgid "global_cat_virus"
+msgstr "+ Virus"
+
+msgid "global_cat_notification"
+msgstr "+ Benachrichtigung"
+
+msgid "global_cat_rejection"
+msgstr "+ Ablehnungen"
+
+msgid "global_cat_status"
+msgstr "+ Status"
+
+msgid "global_cat_smtpauth"
+msgstr "+ SMTP Auth"
+
+msgid "top_cat_senders"
+msgstr "* Absender"
+
+msgid "top_cat_recipients"
+msgstr "* Empfänger"
+
+msgid "top_cat_spamming"
+msgstr "* Spamming"
+
+msgid "top_cat_virus"
+msgstr "* Virus"
+
+msgid "top_cat_notification"
+msgstr "* Benachrichtigung"
+
+msgid "top_cat_rejection"
+msgstr "* Ablehnung"
+
+msgid "top_cat_smtpauth"
+msgstr "* SMTP-Auth"
+
+msgid "av_spamassassin"
+msgstr "- Spamassassin"
+
+msgid "sa_nodata"
+msgstr "Für diesen Zeitraum stehen keine Daten zur Verfügung."
+
+msgid "messaging_flows"
+msgstr "Nachrichten-Ströme"
+
+msgid "messages"
+msgstr "Nachrichten"
+
+msgid "size"
+msgstr "Größe"
+
+msgid "mean"
+msgstr "Schnitt"
+
+msgid "incoming"
+msgstr "Eingehend"
+
+msgid "local_incomming"
+msgstr "Lokal eingehenden"
+
+msgid "total_incomming"
+msgstr "Insgesamt eingehenden"
+
+msgid "outgoing"
+msgstr "Abgehend"
+
+msgid "local_delivery"
+msgstr "Lokale Zustellung"
+
+msgid "total_outgoing"
+msgstr "Insgesamt ausgehend"
+
+msgid "inbound"
+msgstr "Eingehend"
+
+msgid "outbound"
+msgstr "Ausgehend"
+
+msgid "number_of_messages"
+msgstr "Anzahl der Nachrichten"
+
+msgid "size_mb"
+msgstr "Größe (MB)"
+
+msgid "percentage"
+msgstr "Prozentsatz"
+
+msgid "external_to_internal"
+msgstr "Extern -> Intern"
+
+msgid "external_to_external"
+msgstr "Extern -> Extern"
+
+msgid "internal_to_internal"
+msgstr "Intern -> Intern"
+
+msgid "internal_to_external"
+msgstr "Intern -> Extern"
+
+msgid "delivery_direction"
+msgstr "Lieferrichtung"
+
+msgid "different_senders_recipients"
+msgstr "Verschiedene Absender/Empfänger"
+
+msgid "senders"
+msgstr "Absender"
+
+msgid "recipients"
+msgstr "Empfänger"
+
+msgid "spamming_flows"
+msgstr "Spamming-Fluss"
+
+msgid "size_per_msg"
+msgstr "Größe/Nachricht"
+
+msgid "spam_delivery_flows"
+msgstr "Spam-Fluss"
+
+msgid "spamming_flow"
+msgstr "Spam-Fluss"
+
+msgid "delivery_status_notification"
+msgstr "Delivery Status Notification"
+
+msgid "in_error"
+msgstr "Fehler"
+
+msgid "total"
+msgstr "Gesamt"
+
+msgid "dsn_delivery_flows"
+msgstr "DSN Lieferströme"
+
+msgid "dsn_flow"
+msgstr "DSN Fluss"
+
+msgid "rejection_flows"
+msgstr "Ablehnungs-Fluss"
+
+msgid "syserr_flows"
+msgstr "Syserr-Fluss"
+
+msgid "messaging_status"
+msgstr "Messaging-Status"
+
+msgid "smtpauth_server"
+msgstr "SMTP-Auth: Server"
+
+msgid "mechanism"
+msgstr "Mechanismus"
+
+msgid "count"
+msgstr "Anzahl"
+
+msgid "authentication_flow_server"
+msgstr "Authentifizierung: Server"
+
+msgid "top_sender_relay"
+msgstr "Top-Relay-Sender"
+
+msgid "other"
+msgstr "Andere"
+
+msgid "top_sender_domains"
+msgstr "Top Absender Domain (Top 100)"
+
+msgid "top_sender_domain"
+msgstr "Top Absender Domain"
+
+msgid "top_sender_relays"
+msgstr "Top Sender Relay (Top 100)"
+
+msgid "top_sender_addresses"
+msgstr "Top Absenderadresse (Top 100)"
+
+msgid "top_sender_address"
+msgstr "Top Absenderadresse"
+
+msgid "top_recipient relay"
+msgstr "Top Relay-Empfänger"
+
+msgid "top_recipient_domains"
+msgstr "Top Empfänger-Domain (Top-100)"
+
+msgid "top_recipient_domain"
+msgstr "Top Empfänger-Domain"
+
+msgid "top_recipient_relays"
+msgstr "Top Relay-Empfänger (Top 100)"
+
+msgid "top_recipient_relay"
+msgstr "Top Relay-Empfänger"
+
+msgid "top_recipient_addresses"
+msgstr "Top Empfängeradresse (Top 100)"
+
+msgid "top_recipient_address"
+msgstr "Top Empfängeradresse"
+
+msgid "lbl_top_spam_rules"
+msgstr "Top Spam Regeln"
+
+msgid "lbl_top_spammers_domain"
+msgstr "Top Spammer-Domain"
+
+msgid "lbl_top_spammers_relay"
+msgstr "Top Spammer-Relais"
+
+msgid "lbl_top_spammers_address"
+msgstr "Top Spammer-Adresse"
+
+msgid "lbl_top_recipients_address"
+msgstr "Top Empfängeradresse"
+
+msgid "lbl_top_dsn_status"
+msgstr "Top DSN-Status"
+
+msgid "lbl_top_dsn_senders"
+msgstr "Top DSN-Absender"
+
+msgid "lbl_top_dsn_relays"
+msgstr "Top DSN-Relais"
+
+msgid "lbl_top_dsn_recipients"
+msgstr "Top DSN-Empfänger"
+
+msgid "lbl_top_rules"
+msgstr "Top Regeln"
+
+msgid "lbl_top_domains"
+msgstr "Top Domains"
+
+msgid "lbl_top_relays"
+msgstr "Top Relais"
+
+msgid "lbl_top_senders"
+msgstr "Top Absender"
+
+msgid "lbl_top_status"
+msgstr "Top Status"
+
+msgid "system_messages"
+msgstr "Systemmeldungen"
+
+msgid "lbl_top_mechanism"
+msgstr "Top Mechanismus"
+
+msgid "lbl_top_relay"
+msgstr "Top Relay"
+
+msgid "lbl_top_AUTHID"
+msgstr "Top AUTHID"
+
+msgid "lbl_topspam_spams"
+msgstr "Top Spams (Top 100)"
+
+msgid "lbl_topspam_scores"
+msgstr "Top Spam-Score"
+
+msgid "lbl_topspam_autolearnstats"
+msgstr "Selbstlern-Statistik"
+
+msgid "top_individual_spam_rules"
+msgstr "Top SPAM-Regeln"

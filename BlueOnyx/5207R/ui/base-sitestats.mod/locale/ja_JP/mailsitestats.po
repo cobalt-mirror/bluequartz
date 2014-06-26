@@ -238,3 +238,302 @@ msgstr "[[base-sitestats.hourlySummaryDesc]]"
 
 msgid "dailySummaryDesc"
 msgstr "[[base-sitestats.dailySummaryDesc]]"
+
+## New strings for sendmailanalyzer based /sitestats/summaryEmail:
+
+msgid "sa_stats_label"
+msgstr "期間の統計情報："
+
+msgid "daily_weekly_summary"
+msgstr "毎日/毎週まとめ"
+
+msgid "hourly_summary"
+msgstr "時間ごとの概要"
+
+msgid "yearly_summary"
+msgstr "毎年の概要"
+
+msgid "monthly_summary"
+msgstr "毎月の概要"
+
+msgid "months"
+msgstr "ヶ月"
+
+msgid "hours"
+msgstr "営業時間"
+
+msgid "select_an_alias"
+msgstr "エイリアスを選択"
+
+msgid "global_cat_messaging"
+msgstr "+メッセージ"
+
+msgid "global_cat_spamming"
+msgstr "+スパム行為"
+
+msgid "global_cat_virus"
+msgstr "+ウイルス"
+
+msgid "global_cat_notification"
+msgstr "+通知"
+
+msgid "global_cat_rejection"
+msgstr "+拒否"
+
+msgid "global_cat_status"
+msgstr "+ステータス"
+
+msgid "global_cat_smtpauth"
+msgstr "+ SMTP認証"
+
+msgid "top_cat_senders"
+msgstr "*送信者"
+
+msgid "top_cat_recipients"
+msgstr "*受信者"
+
+msgid "top_cat_spamming"
+msgstr "*スパム行為"
+
+msgid "top_cat_virus"
+msgstr "*ウイルス"
+
+msgid "top_cat_notification"
+msgstr "*通知"
+
+msgid "top_cat_rejection"
+msgstr "*拒否"
+
+msgid "top_cat_smtpauth"
+msgstr "* SMTP認証"
+
+msgid "av_spamassassin"
+msgstr "-  SpamAssassinの"
+
+msgid "sa_nodata"
+msgstr "この期間にはデータがありません。"
+
+msgid "messaging_flows"
+msgstr "メッセージング·フロー"
+
+msgid "messages"
+msgstr "メッセージ"
+
+msgid "size"
+msgstr "サイズ"
+
+msgid "mean"
+msgstr "平均"
+
+msgid "incoming"
+msgstr "入ってくる"
+
+msgid "local_incomming"
+msgstr "地元の着信"
+
+msgid "total_incomming"
+msgstr "合計の着信"
+
+msgid "outgoing"
+msgstr "出ていく"
+
+msgid "local_delivery"
+msgstr "ローカル配信"
+
+msgid "total_outgoing"
+msgstr "総発信"
+
+msgid "inbound"
+msgstr "本国行きの"
+
+msgid "outbound"
+msgstr "外国行きの"
+
+msgid "number_of_messages"
+msgstr "メッセージの数"
+
+msgid "size_mb"
+msgstr "サイズ（MB）"
+
+msgid "percentage"
+msgstr "割合"
+
+msgid "external_to_internal"
+msgstr "外部 - >内部"
+
+msgid "external_to_external"
+msgstr "外部 - >外部"
+
+msgid "internal_to_internal"
+msgstr "内部 - >内部"
+
+msgid "internal_to_external"
+msgstr "内部 - >外部"
+
+msgid "delivery_direction"
+msgstr "搬送方向"
+
+msgid "different_senders_recipients"
+msgstr "異なる送信者/受信者"
+
+msgid "senders"
+msgstr "送信者"
+
+msgid "recipients"
+msgstr "受信者"
+
+msgid "spamming_flows"
+msgstr "スパムフロー"
+
+msgid "size_per_msg"
+msgstr "サイズ/ MSG"
+
+msgid "spam_delivery_flows"
+msgstr "スパム配信·フロー"
+
+msgid "spamming_flow"
+msgstr "スパムフロー"
+
+msgid "delivery_status_notification"
+msgstr "配信状態通知"
+
+msgid "in_error"
+msgstr "誤った"
+
+msgid "total"
+msgstr "合計"
+
+msgid "dsn_delivery_flows"
+msgstr "DSN送達流れる"
+
+msgid "dsn_flow"
+msgstr "DSNの流れ"
+
+msgid "rejection_flows"
+msgstr "拒否フロー"
+
+msgid "syserr_flows"
+msgstr "SYSERRフロー"
+
+msgid "messaging_status"
+msgstr "メッセージングの状況"
+
+msgid "smtpauth_server"
+msgstr "SMTP認証：サーバー"
+
+msgid "mechanism"
+msgstr "メカニズム"
+
+msgid "count"
+msgstr "カウント"
+
+msgid "authentication_flow_server"
+msgstr "認証フロー：サーバ"
+
+msgid "top_sender_relay"
+msgstr "上位送信リレー"
+
+msgid "other"
+msgstr "その他"
+
+msgid "top_sender_domains"
+msgstr "上位送信者ドメイン（トップ100）"
+
+msgid "top_sender_domain"
+msgstr "トップ送信者ドメイン"
+
+msgid "top_sender_relays"
+msgstr "上位送信リレー（トップ100）"
+
+msgid "top_sender_addresses"
+msgstr "トップ送信元アドレス（上位100）"
+
+msgid "top_sender_address"
+msgstr "トップ送信者アドレス"
+
+msgid "top_recipient relay"
+msgstr "トップ受信者リレー"
+
+msgid "top_recipient_domains"
+msgstr "トップ受信者のドメイン（トップ100）"
+
+msgid "top_recipient_domain"
+msgstr "トップ受信者のドメイン"
+
+msgid "top_recipient_relays"
+msgstr "トップ受信者リレー（トップ100）"
+
+msgid "top_recipient_relay"
+msgstr "トップ受信者リレー"
+
+msgid "top_recipient_addresses"
+msgstr "トップ受信者は、（トップ100）をアドレス"
+
+msgid "top_recipient_address"
+msgstr "トップ受信者アドレス"
+
+msgid "lbl_top_spam_rules"
+msgstr "トップスパムルール"
+
+msgid "lbl_top_spammers_domain"
+msgstr "トップスパマードメイン"
+
+msgid "lbl_top_spammers_relay"
+msgstr "トップスパマーリレー"
+
+msgid "lbl_top_spammers_address"
+msgstr "トップスパマー住所"
+
+msgid "lbl_top_recipients_address"
+msgstr "トップ受信者アドレス"
+
+msgid "lbl_top_dsn_status"
+msgstr "トップDSNステータス"
+
+msgid "lbl_top_dsn_senders"
+msgstr "トップDSN送信者"
+
+msgid "lbl_top_dsn_relays"
+msgstr "トップDSNリレー"
+
+msgid "lbl_top_dsn_recipients"
+msgstr "トップDSN受信者"
+
+msgid "lbl_top_rules"
+msgstr "トップルール"
+
+msgid "lbl_top_domains"
+msgstr "トップドメイン"
+
+msgid "lbl_top_relays"
+msgstr "トップリレー"
+
+msgid "lbl_top_senders"
+msgstr "上位送信者"
+
+msgid "lbl_top_status"
+msgstr "先頭"
+
+msgid "system_messages"
+msgstr "システムメッセージ"
+
+msgid "lbl_top_mechanism"
+msgstr "トップ機構"
+
+msgid "lbl_top_relay"
+msgstr "トップリレー"
+
+msgid "lbl_top_AUTHID"
+msgstr "トップAUTHID"
+
+msgid "lbl_topspam_spams"
+msgstr "トップスパム（トップ100）"
+
+msgid "lbl_topspam_scores"
+msgstr "トップスパムスコア"
+
+msgid "lbl_topspam_autolearnstats"
+msgstr "自動学習の統計"
+
+msgid "top_individual_spam_rules"
+msgstr "トップ個々のスパムルール"
