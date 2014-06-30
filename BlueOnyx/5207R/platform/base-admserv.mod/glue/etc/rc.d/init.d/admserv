@@ -31,7 +31,7 @@ conffile=/etc/admserv/conf/httpd.conf
 [ -f $ADMSERV ] || exit 1
 
 start() {
-	ipcs -s | grep admserv | awk '{print $2;}' | while read -r line; do ipcrm sem "$^Cne"; done > /dev/null
+	for i in `ipcs -s | awk '/admserv/ {print $2}'`; do (ipcrm -s $i); done
 	echo -n "Starting admin web server: "
 	export LANG LC_ALL LINGUAS
 	export PHPRC="/etc/admserv"
@@ -68,6 +68,8 @@ kill_httpd()
 	if [ "$pid" != "" ]; then
 		kill -KILL $pid
 	fi
+
+	for i in `ipcs -s | awk '/admserv/ {print $2}'`; do (ipcrm -s $i); done
 	
 	pid=`pidofproc $prog`
 	if [ "$pid" == "" ]; then
