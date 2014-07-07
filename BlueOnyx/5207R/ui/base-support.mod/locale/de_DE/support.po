@@ -17,7 +17,7 @@ msgstr "Hier finden Sie Möglichkeiten der Diagnose, können Support-Anfragen un
 msgid "support_settingsMenu"
 msgstr "Einstellungen"
 
-msgid "support_settingsMenu"
+msgid "support_settingsMenu_help"
 msgstr "Hier können Sie die BlueOnyx Support-Funktionen konfigurieren."
 
 msgid "support_settings"
@@ -174,7 +174,7 @@ msgid "bugDescription"
 msgstr "Beschreibung"
 
 msgid "bugDescription_help"
-msgstr "Bitte geben Sie eine detaillierte Beschreibung des Problems ein. Teilen Sie uns auch bitte alle sonstigen relevanten Informationen mit, die von Bedeutung sind und zum Auftreten des Fehlers geführt haben. Bitte seien Sie dabei so spezifisch und detailliert wie möglich. "Geht nicht!" ist zum Beispiel ein Fehlerbericht, mit dem wir nicht gerade sonderlich viel anfangen können."
+msgstr "Bitte geben Sie eine detaillierte Beschreibung des Problems ein. Teilen Sie uns auch bitte alle sonstigen relevanten Informationen mit, die von Bedeutung sind und zum Auftreten des Fehlers geführt haben. Bitte seien Sie dabei so spezifisch und detailliert wie möglich. 'Geht nicht!' ist zum Beispiel ein Fehlerbericht, mit dem wir nicht gerade sonderlich viel anfangen können."
 
 msgid "include_sos"
 msgstr "SOS-Report anhängen"
@@ -189,7 +189,7 @@ msgid "ticketDescription"
 msgstr "Beschreibung"
 
 msgid "ticketDescription_help"
-msgstr "Bitte geben Sie eine detaillierte Beschreibung des Problems ein. Teilen Sie uns auch bitte alle sonstigen relevanten Informationen mit, die von Bedeutung sind und zum Auftreten des Fehlers geführt haben. Teilen Sie bitte genau mit, welche Arbeiten ausgeführt werden sollen. Bitte seien Sie dabei so spezifisch und detailliert wie möglich. "Geht nicht! Hilfe!" ist zum Beispiel eine Support-Anfrage, mit der wir erstmal wenig anfangen können und die dann zu unnötigen Rückfragen führt. Bitte beachten Sie: Eine Support-Anfrage an sich ist kostenlos. Falls Kosten anfallen, erhalten Sie von uns einen verbindlichen Kostenvoranschlag bevor wir mit kostenpflichtigen Arbeiten anfangen. Ggf. müssen wir uns zur Erstellung des Kostenvoranschlages zunächst auf Ihrem Server einloggen, um uns einen Überblick zu verschaffen, oder weitere Informationen von Ihnen einholen."
+msgstr "Bitte geben Sie eine detaillierte Beschreibung des Problems ein. Teilen Sie uns auch bitte alle sonstigen relevanten Informationen mit, die von Bedeutung sind und zum Auftreten des Fehlers geführt haben. Teilen Sie bitte genau mit, welche Arbeiten ausgeführt werden sollen. Bitte seien Sie dabei so spezifisch und detailliert wie möglich. 'Geht nicht! Hilfe!' ist zum Beispiel eine Support-Anfrage, mit der wir erstmal wenig anfangen können und die dann zu unnötigen Rückfragen führt. Bitte beachten Sie: Eine Support-Anfrage an sich ist kostenlos. Falls Kosten anfallen, erhalten Sie von uns einen verbindlichen Kostenvoranschlag bevor wir mit kostenpflichtigen Arbeiten anfangen. Ggf. müssen wir uns zur Erstellung des Kostenvoranschlages zunächst auf Ihrem Server einloggen, um uns einen Überblick zu verschaffen, oder weitere Informationen von Ihnen einholen."
 
 msgid "ticket_subject"
 msgstr "Betreff"
@@ -306,7 +306,7 @@ msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
 msgid "severity_urgent"
-msgstr "Katastrophale Auswirkungen, die sich stark auf die geschäftskritischen Bereiche einer Organisation auswirken. Mögliche Auswirkungen: Server und/oder missionskritische Dienste und Anwendungen funktionieren nicht und können aus eigenen Mitteln und eigenem Wissensstand nicht wieder in Funktion versetzt werden.
+msgstr "Katastrophale Auswirkungen, die sich stark auf die geschäftskritischen Bereiche einer Organisation auswirken. Mögliche Auswirkungen: Server und/oder missionskritische Dienste und Anwendungen funktionieren nicht und können aus eigenen Mitteln und eigenem Wissensstand nicht wieder in Funktion versetzt werden."
 
 msgid "severity_high"
 msgstr "Bedeutende Auswirkungen, die zu Betriebsstörungen führen und den Geschäftsbetrieb einschränken."
