@@ -123,7 +123,7 @@ msgid "sos_present_help"
 msgstr "Shows if a SOS-Report is present."
 
 msgid "sos_epoch"
-msgstr "Create on"
+msgstr "Created on"
 
 msgid "sos_epoch_help"
 msgstr "Shows the creation date and time of the current SOS-Report."
@@ -305,21 +305,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "Catastrophic issues which severely impact the mission-critical operations of an organization. This may mean that the operational servers, development systems or customer applications are down or not functioning and no procedural workaround exists."
-
-msgid "severity_high"
-msgstr "High-impact issues in which the customers operation is disrupted, but there is some capacity to produce."
-
-msgid "severity_medium"
-msgstr "Partial non-critical functionality loss, or issues which impair some operations but allow the customer to perform their critical tasks. This may be a minor issue with limited loss or no loss of functionality and limited impact to the customers functionality."
-
-msgid "severity_low"
-msgstr "General usage questions, recommendations for product enhancement, or development work."
-
-msgid "severity_unspecified"
-msgstr "Importance not specified"
-
 msgid "Priority"
 msgstr "Priority"
 
@@ -337,3 +322,46 @@ msgstr "Recipient"
 
 msgid "recipient_selector_help"
 msgstr "Allows you to choose the recipient of this Support Ticket."
+
+###
+
+msgid "bugreportTitle_help"
+msgstr "Allows you to submit a Bugreport to BlueOnyx. Please use this to report problems with and deficiencies of the BlueOnyx GUI."
+
+msgid "new_ticket"
+msgstr "New Ticket"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Catastrophic issues which severely impact the mission-critical operations of an organization. This may mean that the operational servers, development systems or customer applications are down or not functioning and no procedural workaround exists."
+
+msgid "severity_high_help"
+msgstr "High-impact issues in which the customers operation is disrupted, but there is some capacity to produce."
+
+msgid "severity_medium_help"
+msgstr "Partial non-critical functionality loss, or issues which impair some operations but allow the customer to perform their critical tasks. This may be a minor issue with limited loss or no loss of functionality and limited impact to the customers functionality."
+
+msgid "severity_low_help"
+msgstr "General usage questions, recommendations for product enhancement, or development work."
+
+msgid "severity_unspecified_help"
+msgstr "Importance not specified"
+

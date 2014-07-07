@@ -305,21 +305,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "Katastrophale Auswirkungen, die sich stark auf die geschäftskritischen Bereiche einer Organisation auswirken. Mögliche Auswirkungen: Server und/oder missionskritische Dienste und Anwendungen funktionieren nicht und können aus eigenen Mitteln und eigenem Wissensstand nicht wieder in Funktion versetzt werden."
-
-msgid "severity_high"
-msgstr "Bedeutende Auswirkungen, die zu Betriebsstörungen führen und den Geschäftsbetrieb einschränken."
-
-msgid "severity_medium"
-msgstr "Teilweise Verlust von nicht-kritischer Funktionalität. Oder Auswirkungen, die nur einige unkritische Subsysteme betreffen. Dies kann ein kleines Problem mit begrenzten Verlust oder ohne Verlust von Funktionalität sein, welches geringe Auswirkungen auf den Geschäftsbetrieb hat."
-
-msgid "severity_low"
-msgstr "Allgemeine Nutzungs-Fragen. Empfehlungen für die Produktverbesserung oder für zukünftige Verbesserungen."
-
-msgid "severity_unspecified"
-msgstr "Bedeutung nicht angegeben"
-
 msgid "Priority"
 msgstr "Priorität"
 
@@ -338,3 +323,44 @@ msgstr "Empfänger"
 msgid "recipient_selector_help"
 msgstr "Hier können Sie den Empfänger des Support-Tickets wählen."
 
+###
+
+msgid "bugreportTitle_help"
+msgstr "Hier können Sie einen Bugreport an BlueOnyx einreichen. Bitte nutzen Sie dieses Formular um Probleme der GUI an BlueOnyx zu melden."
+
+msgid "new_ticket"
+msgstr "Neues Ticket"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Katastrophale Auswirkungen, die sich stark auf die geschäftskritischen Bereiche einer Organisation auswirken. Mögliche Auswirkungen: Server und/oder missionskritische Dienste und Anwendungen funktionieren nicht und können aus eigenen Mitteln und eigenem Wissensstand nicht wieder in Funktion versetzt werden."
+
+msgid "severity_high_help"
+msgstr "Bedeutende Auswirkungen, die zu Betriebsstörungen führen und den Geschäftsbetrieb einschränken."
+
+msgid "severity_medium_help"
+msgstr "Teilweise Verlust von nicht-kritischer Funktionalität. Oder Auswirkungen, die nur einige unkritische Subsysteme betreffen. Dies kann ein kleines Problem mit begrenzten Verlust oder ohne Verlust von Funktionalität sein, welches geringe Auswirkungen auf den Geschäftsbetrieb hat."
+
+msgid "severity_low_help"
+msgstr "Allgemeine Nutzungs-Fragen. Empfehlungen für die Produktverbesserung oder für zukünftige Verbesserungen."
+
+msgid "severity_unspecified_help"
+msgstr "Bedeutung nicht angegeben"

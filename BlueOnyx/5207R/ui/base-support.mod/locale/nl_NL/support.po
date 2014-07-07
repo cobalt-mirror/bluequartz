@@ -305,21 +305,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "Katastrofisch kwesties die ernstige gevolgen voor de missie-kritische operaties van een organisatie. Dit kan betekenen dat de operationele servers, ontwikkeling systemen of applicaties van de klant naar beneden zijn of niet functioneren en geen procedurele oplossing bestaat."
-
-msgid "severity_high"
-msgstr "Slagvaste problemen op waarbij de klanten operatie verstoord, maar er zijn vermogen te produceren."
-
-msgid "severity_medium"
-msgstr "Gedeeltelijke niet-kritische functionaliteit verlies, of problemen die sommige operaties schaden maar laat de klant om hun kritische taken uit te voeren. Dit kan een klein probleem met een beperkt verlies of geen verlies van functionaliteit en beperkte impact op de klanten functionaliteit."
-
-msgid "severity_low"
-msgstr "Algemeen gebruik vragen, aanbevelingen voor versterking product, of ontwikkelingswerk."
-
-msgid "severity_unspecified"
-msgstr "Belang niet gespecificeerd"
-
 msgid "Priority"
 msgstr "Prioriteit"
 
@@ -337,4 +322,46 @@ msgstr "Recipiënt"
 
 msgid "recipient_selector_help"
 msgstr "Hiermee kunt u de ontvanger van deze support ticket kiezen."
+
+###
+
+msgid "bugreportTitle_help"
+msgstr "Hiermee kunt u een Bugreport leggen aan BlueOnyx. Gebruik dit om problemen met en tekortkomingen van de BlueOnyx GUI melden."
+
+msgid "new_ticket"
+msgstr "Nieuw Ticket"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Katastrofisch kwesties die ernstige gevolgen voor de missie-kritische operaties van een organisatie. Dit kan betekenen dat de operationele servers, ontwikkeling systemen of applicaties van de klant naar beneden zijn of niet functioneren en geen procedurele oplossing bestaat."
+
+msgid "severity_high_help"
+msgstr "Slagvaste problemen op waarbij de klanten operatie verstoord, maar er zijn vermogen te produceren."
+
+msgid "severity_medium"
+msgstr "Gedeeltelijke niet-kritische functionaliteit verlies, of problemen die sommige operaties schaden maar laat de klant om hun kritische taken uit te voeren. Dit kan een klein probleem met een beperkt verlies of geen verlies van functionaliteit en beperkte impact op de klanten functionaliteit."
+
+msgid "severity_low_help"
+msgstr "Algemeen gebruik vragen, aanbevelingen voor versterking product, of ontwikkelingswerk."
+
+msgid "severity_unspecified_help"
+msgstr "Belang niet gespecificeerd"
 

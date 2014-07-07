@@ -305,21 +305,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "Problemas catastróficos que afectan gravemente a las operaciones de misión crítica de una organización. Esto puede significar que los servidores operativos, sistemas de desarrollo o aplicaciones de los clientes se han reducido o no funciona y no existe una solución procesal."
-
-msgid "severity_high"
-msgstr "Temas de alto impacto en la que se interrumpe la operación de los clientes, pero hay una cierta capacidad de producir."
-
-msgid "severity_medium"
-msgstr "Pérdida de funcionalidad no crítica parcial o cuestiones que deterioran algunas operaciones, pero permiten a los clientes realizar sus tareas críticas. Esto puede ser un problema menor con pérdida limitada o ninguna pérdida de funcionalidad e impacto limitado a la funcionalidad de los clientes."
-
-msgid "severity_low"
-msgstr "Preguntas generales de uso, las recomendaciones para la mejora de productos, o el trabajo de desarrollo."
-
-msgid "severity_unspecified"
-msgstr "Importancia no especificada"
-
 msgid "Priority"
 msgstr "Prioridad"
 
@@ -338,3 +323,44 @@ msgstr "Beneficiario"
 msgid "recipient_selector_help"
 msgstr "Le permite elegir el destinatario de este Ticket."
 
+###
+
+msgid "bugreportTitle_help"
+msgstr "Le permite enviar un informe de error a BlueOnyx. Por favor, use este reportar problemas con y deficiencias de la GUI BlueOnyx."
+
+msgid "new_ticket"
+msgstr "Nuevo Ticket"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Problemas catastróficos que afectan gravemente a las operaciones de misión crítica de una organización. Esto puede significar que los servidores operativos, sistemas de desarrollo o aplicaciones de los clientes se han reducido o no funciona y no existe una solución procesal."
+
+msgid "severity_high_help"
+msgstr "Temas de alto impacto en la que se interrumpe la operación de los clientes, pero hay una cierta capacidad de producir."
+
+msgid "severity_medium_help"
+msgstr "Pérdida de funcionalidad no crítica parcial o cuestiones que deterioran algunas operaciones, pero permiten a los clientes realizar sus tareas críticas. Esto puede ser un problema menor con pérdida limitada o ninguna pérdida de funcionalidad e impacto limitado a la funcionalidad de los clientes."
+
+msgid "severity_low_help"
+msgstr "Preguntas generales de uso, las recomendaciones para la mejora de productos, o el trabajo de desarrollo."
+
+msgid "severity_unspecified_help"
+msgstr "Importancia no especificada"

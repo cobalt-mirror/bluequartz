@@ -305,21 +305,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "Questions catastrophiques qui ont un impact considérablement les opérations stratégiques d'une organisation. Cela peut signifier que les serveurs opérationnels, systèmes de développement ou les applications des clients sont en panne ou ne fonctionne pas et aucune solution de contournement de la procédure existe."
-
-msgid "severity_high"
-msgstr "Questions à fort impact dans lequel l'opération de clients est perturbé, mais il ya une certaine capacité à produire."
-
-msgid "severity_medium"
-msgstr "Perte partielle de fonctionnalités non critiques ou questions qui nuisent à certaines opérations, mais permettent au client de s'acquitter de leurs tâches essentielles. Cela peut être un problème mineur avec une perte limitée ou aucune perte de fonctionnalité et de l'impact limité de la fonctionnalité des clients."
-
-msgid "severity_low"
-msgstr "Questions générales d'utilisation, des recommandations pour l'amélioration des produits, ou des travaux de développement."
-
-msgid "severity_unspecified"
-msgstr "Importance non spécifié"
-
 msgid "Priority"
 msgstr "Priorité"
 
@@ -338,3 +323,44 @@ msgstr "Destinataire"
 msgid "recipient_selector_help"
 msgstr "Vous permet de choisir le destinataire de ce ticket de support."
 
+###
+
+msgid "bugreportTitle_help"
+msgstr "Vous permet de soumettre un rapport de bogue à BlueOnyx. S'il vous plaît l'utiliser pour signaler des problèmes avec et les carences de la BlueOnyx GU"
+
+msgid "new_ticket"
+msgstr "Nouveau Ticket"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Questions catastrophiques qui ont un impact considérablement les opérations stratégiques d'une organisation. Cela peut signifier que les serveurs opérationnels, systèmes de développement ou les applications des clients sont en panne ou ne fonctionne pas et aucune solution de contournement de la procédure existe."
+
+msgid "severity_high_help"
+msgstr "Questions à fort impact dans lequel l'opération de clients est perturbé, mais il ya une certaine capacité à produire."
+
+msgid "severity_medium_help"
+msgstr "Perte partielle de fonctionnalités non critiques ou questions qui nuisent à certaines opérations, mais permettent au client de s'acquitter de leurs tâches essentielles. Cela peut être un problème mineur avec une perte limitée ou aucune perte de fonctionnalité et de l'impact limité de la fonctionnalité des clients."
+
+msgid "severity_low_help"
+msgstr "Questions générales d'utilisation, des recommandations pour l'amélioration des produits, ou des travaux de développement."
+
+msgid "severity_unspecified_help"
+msgstr "Importance non spécifié"

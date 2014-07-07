@@ -302,21 +302,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "Katastrofale spørgsmål, som alvorligt påvirke de forretningskritiske operationer i en organisation. Dette kan betyde, at de operationelle servere, udviklings systemer eller kundernes applikationer er nede eller ikke fungerer, og ingen proceduremæssige workaround eksisterer."
-
-msgid "severity_high"
-msgstr "High-impact spørgsmål, hvor kunderne drift er afbrudt, men der er en vis kapacitet til at producere."
-
-msgid "severity_medium"
-msgstr "Delvis ikke-kritiske funktionalitet tab eller problemer, som hæmmer nogle operationer, men tillader kunden at udføre deres kritiske opgaver. Dette kan være et mindre problem med begrænset tab eller ingen tab af funktionalitet og begrænset indvirkning på kunderne funktionalitet."
-
-msgid "severity_low"
-msgstr "Generel brug spørgsmål, anbefalinger for produkt ekstraudstyr, eller udviklingsarbejde."
-
-msgid "severity_unspecified"
-msgstr "Betydningen ikke specificeret"
-
 msgid "Priority"
 msgstr "Prioritet"
 
@@ -335,3 +320,44 @@ msgstr "Modtager"
 msgid "recipient_selector_help"
 msgstr "Giver dig mulighed for at vælge modtageren af ​​denne Support Ticket."
 
+###
+
+msgid "bugreportTitle_help"
+msgstr "Giver dig mulighed for at indsende en fejlrapport for BlueOnyx. Brug venligst dette til at rapportere problemer med og mangler i BlueOnyx GUI."
+
+msgid "new_ticket"
+msgstr "Ny Billet"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "Katastrofale spørgsmål, som alvorligt påvirke de forretningskritiske operationer i en organisation. Dette kan betyde, at de operationelle servere, udviklings systemer eller kundernes applikationer er nede eller ikke fungerer, og ingen proceduremæssige workaround eksisterer."
+
+msgid "severity_high_help"
+msgstr "High-impact spørgsmål, hvor kunderne drift er afbrudt, men der er en vis kapacitet til at producere."
+
+msgid "severity_medium_help"
+msgstr "Delvis ikke-kritiske funktionalitet tab eller problemer, som hæmmer nogle operationer, men tillader kunden at udføre deres kritiske opgaver. Dette kan være et mindre problem med begrænset tab eller ingen tab af funktionalitet og begrænset indvirkning på kunderne funktionalitet."
+
+msgid "severity_low_help"
+msgstr "Generel brug spørgsmål, anbefalinger for produkt ekstraudstyr, eller udviklingsarbejde."
+
+msgid "severity_unspecified_help"
+msgstr "Betydningen ikke specificeret"

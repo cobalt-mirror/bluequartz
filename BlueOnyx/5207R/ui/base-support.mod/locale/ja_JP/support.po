@@ -305,21 +305,6 @@ msgstr "[[base-support.prio_low]]"
 msgid "prio_unspecified_help"
 msgstr "[[base-support.prio_unspecified]]"
 
-msgid "severity_urgent"
-msgstr "深刻な組織のミッションクリティカルな業務に影響を与える致命的な問題。これは、運用サーバー、開発システムや顧客アプリケーションがダウンしているかいない機能していることを意味するかもしれないし、何の手続きの回避策は存在しません。"
-
-msgid "severity_high"
-msgstr "顧客操作は中断が生産するいくつかの能力があるとされている耐衝撃性の問題。"
-
-msgid "severity_medium"
-msgstr "部分的な非重要な機能の損失、または一部の操作性を損なうが、顧客が彼らの重要なタスクを実行できるような問題。これは限られた損失や顧客機能への機能性と影響は限定的損失のないマイナーな問題になることがあります。"
-
-msgid "severity_low"
-msgstr "一般的な使用に関する質問、製品の強化のための推奨事項、または開発作業。"
-
-msgid "severity_unspecified"
-msgstr "重要指定されていない"
-
 msgid "Priority"
 msgstr "優先"
 
@@ -337,4 +322,46 @@ msgstr "受信者"
 
 msgid "recipient_selector_help"
 msgstr "このサポートチケットの受信者を選択することができます。"
+
+###
+
+msgid "bugreportTitle_help"
+msgstr "あなたはBlueOnyxに問題をバグ報告を提出することができます。に問題とBlueOnyxのGUIの欠陥を報告するために、これを使用してください。"
+
+msgid "new_ticket"
+msgstr "新しいチケット"
+
+###
+
+msgid "severity_urgent"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "severity_high"
+msgstr "[[base-support.prio_high]]"
+
+msgid "severity_medium"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "severity_low"
+msgstr "[[base-support.prio_low]]"
+
+msgid "severity_unspecified"
+msgstr "[[base-support.prio_unspecified]]"
+
+###
+
+msgid "severity_urgent_help"
+msgstr "深刻な組織のミッションクリティカルな業務に影響を与える致命的な問題。これは、運用サーバー、開発システムや顧客アプリケーションがダウンしているかいない機能していることを意味するかもしれないし、何の手続きの回避策は存在しません。"
+
+msgid "severity_high_help"
+msgstr "顧客操作は中断が生産するいくつかの能力があるとされている耐衝撃性の問題。"
+
+msgid "severity_medium_help"
+msgstr "部分的な非重要な機能の損失、または一部の操作性を損なうが、顧客が彼らの重要なタスクを実行できるような問題。これは限られた損失や顧客機能への機能性と影響は限定的損失のないマイナーな問題になることがあります。"
+
+msgid "severity_low_help"
+msgstr "一般的な使用に関する質問、製品の強化のための推奨事項、または開発作業。"
+
+msgid "severity_unspecified_help"
+msgstr "重要指定されていない"
 
