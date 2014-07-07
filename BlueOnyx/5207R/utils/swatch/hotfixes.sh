@@ -42,5 +42,10 @@ NUMNSS=`/bin/cat /etc/httpd/conf.d/nss.conf | /bin/grep NSSEnforceValidCerts | /
     fi
 fi
 
+# Run Passive Monitor Support Account watcher (if present):
+if [ -f /usr/sausalito/swatch/bin/am_support.pl ]; then
+        /usr/sausalito/swatch/bin/am_support.pl
+fi
+
 exit
 
