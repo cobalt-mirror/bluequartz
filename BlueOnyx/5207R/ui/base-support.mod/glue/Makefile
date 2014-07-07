@@ -12,7 +12,7 @@ CCETOPDIR = $(PREFIX)/usr/sausalito
 endif
 
 SCRIPTS=sosreport-helper.pl sosreport.sh
-AMBIN=am_support.pl
+AMBIN=am/am_support.pl
 
 all:
 
