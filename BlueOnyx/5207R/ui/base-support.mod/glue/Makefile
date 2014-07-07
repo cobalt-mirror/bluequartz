@@ -18,7 +18,7 @@ all:
 
 install:
 	mkdir -p $(CCESBINDIR)
-	mkdir -p $(CCEPERLDIR)
+	mkdir -p $(SWATCHBINDIR)
 	(cd sbin; \
 	$(INSTALL) $(INSTALL_SBINFLAGS) $(SCRIPTS) $(CCESBINDIR); \
 	$(INSTALL) $(INSTALL_SBINFLAGS) $(AMBIN) $(SWATCHBINDIR))
