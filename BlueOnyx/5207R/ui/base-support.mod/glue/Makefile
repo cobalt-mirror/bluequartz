@@ -19,13 +19,12 @@ all:
 install:
 	mkdir -p $(CCESBINDIR)
 	mkdir -p $(SWATCHBINDIR)
-	(cd sbin; \
+	mkdir -p $(SWATCHCONFDIR)/base/support
 	for file in $(SCRIPTS); do \
 	        $(INSTALL) $(INSTALL_BINFLAGS) $$file $(CCESBINDIR); \
 	done
 	for file in $(AMBIN); do \
 	        $(INSTALL) $(INSTALL_BINFLAGS) $$file $(SWATCHBINDIR); \
 	done
-
 rpm:
 

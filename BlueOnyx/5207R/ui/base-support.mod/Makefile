@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=no
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
