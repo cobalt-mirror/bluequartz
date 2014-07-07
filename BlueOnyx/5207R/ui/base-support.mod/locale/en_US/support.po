@@ -1,0 +1,360 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "support_settingsMenu"
+msgstr "Support"
+
+msgid "support_settingsMenu_help"
+msgstr "This menu provides access to facilities for debugging, support, bug reports and feature requests."
+
+msgid "support_settingsMenu"
+msgstr "Settings"
+
+msgid "support_settingsMenu_help"
+msgstr "Allows you to configure the BlueOnyx support features."
+
+msgid "support_settings"
+msgstr "Support Settings"
+
+msgid "basic_tab"
+msgstr "Basic Settings"
+
+msgid "wiki_tab"
+msgstr "Wiki Settings"
+
+msgid "isp_tab"
+msgstr "ISP Details"
+
+msgid "Error_NewLinQ_Down"
+msgstr "A connection to newlinq.blueonyx.it could not be established. Without that you will not be able to submit a bug report or ticket."
+
+msgid "client_name"
+msgstr "Your Name"
+
+msgid "client_name_help"
+msgstr "Please enter your name here. It will be used on the support email to identify who is sending the email."
+
+msgid "client_email"
+msgstr "Your Email"
+
+msgid "client_email_help"
+msgstr "Email address that is used for the support request. If the server is linked via NewLinQ, then this will default to the email address that has been used to register this server with NewLinQ."
+
+msgid "support_account"
+msgstr "Support Account"
+
+msgid "support_account_help"
+msgstr "Reserved account name for an 'admin' like System-Administrator account. This account will be created when you choose to grant server access to BlueOnyx (or your ISP) for troubleshooting. The support email will then include the login details and the public SSH key of this account. The support account is only temporary and expires after a configureable amount of time. At the expiry date, the support account will be deleted automatically. Or you can delete it manually once the support ticket is closed."
+
+msgid "wiki_enabled"
+msgstr "Wiki enabled"
+
+msgid "wiki_enabled_help"
+msgstr "Defines if the BlueOnyx Wiki is enabled. If it is, then all relevant GUI pages will have a link at the bottom that links the GUI page to the respective Wiki topic."
+
+msgid "wiki_baseURL"
+msgstr "Wiki URL"
+
+msgid "wiki_baseURL_help"
+msgstr "The domain name at which the Wiki is located. Default: wiki.blueonyx.it"
+
+msgid "wiki_tabbed"
+msgstr "Wiki Overlay"
+
+msgid "wiki_tabbed_help"
+msgstr "Two methods are available as to how the Wiki pages are opened. The default is an overlay into which the external Wiki page is loaded. This then shows on top of the existing GUI page. If you untick this box, then a click on the Wiki icon will open the Wiki page in a new browser tab instead."
+
+msgid "isp_support_name"
+msgstr "ISP Name"
+
+msgid "isp_support_name_help"
+msgstr "Aside from requesting support from BlueOnyx you can also direct your support requests to your ISP - in case you are entitled to support from him. If so, enter the name of the ISP here."
+
+msgid "isp_support_email"
+msgstr "ISP Email"
+
+msgid "isp_support_email_help"
+msgstr "Email address for support inquiries to your ISP. If you choose to send the support request to your ISP, this is the email address that the request will be delivered to."
+
+msgid "isp_support_identifier"
+msgstr "Server ID"
+
+msgid "isp_support_identifier_help"
+msgstr "This field can be used to specify more information about the server in question. Such as the Rack number, server ID or other means that your ISP uses to find the server in the datacenter."
+
+msgid "wiki"
+msgstr "Wiki"
+
+msgid "wiki_help"
+msgstr "If you click on this button it will open a link to an external Wiki with more information about this page."
+
+msgid "sos_reportMenu"
+msgstr "SOS-Report"
+
+msgid "sos_reportMenu_help"
+msgstr "The SOS-Report is a feature that allows you to create a diagnostic dump with all relevant server configurations and logfiles. It can be included in all bug reports and support tickets and allows a third party (BlueOnyx.it Support or your ISP) to diagnose your server without logging into it."
+
+msgid "sos_delete"
+msgstr "Delete Report"
+
+msgid "sos_delete_help"
+msgstr "If you tick this box and hit save, then the SOS-Report will be deleted."
+
+msgid "Err_sos_report_being_generated"
+msgstr "A SOS-Report is currently being generated. This will take several minutes (no kidding). It may take as long as 5-10 minutes until the report is ready. Please come back later to review the generated report."
+
+msgid "sos_generate"
+msgstr "Generate SOS-Report"
+
+msgid "sos_generate_help"
+msgstr "Tick this checkbox and save the changes to generate a SOS-Report. The generation of the SOS-Report will take several minutes (no kidding). It may take as long as 5-10 minutes until the report is ready."
+
+msgid "sos_present"
+msgstr "SOS-Report"
+
+msgid "sos_present_help"
+msgstr "Shows if a SOS-Report is present."
+
+msgid "sos_epoch"
+msgstr "Create on"
+
+msgid "sos_epoch_help"
+msgstr "Shows the creation date and time of the current SOS-Report."
+
+msgid "sos_delete"
+msgstr "Delete Report"
+
+msgid "sos_delete_help"
+msgstr "If you tick this box and save the changes, then the current SOS-Report will be deleted. Afterwards you can create a new SOS-Report if you wish."
+
+msgid "Err_sender_contact_details"
+msgstr "Please complete your contact details in the menu '[[base-support.support_settingsMenu]]' first."
+
+msgid "sender"
+msgstr "Sender:"
+
+msgid "recipient"
+msgstr "Recipient:"
+
+msgid "recipient_name"
+msgstr "Reciepient Name"
+
+msgid "recipient_name_help"
+msgstr "Name of the recipient of the bugreport."
+
+msgid "recipient_email"
+msgstr "Recipient Email Address"
+
+msgid "recipient_email_help"
+msgstr "Email address of the BlueOnyx.it Bugtracker."
+
+msgid "bugreportTitle"
+msgstr "Bugreport"
+
+msgid "bugreport_subject"
+msgstr "Subject"
+
+msgid "bugreport_subject_help"
+msgstr "Please enter a descriptive subject that best describes the problem that you are reporting."
+
+msgid "server_model"
+msgstr "Server Model"
+
+msgid "server_model_help"
+msgstr "Shows the model of the server and the build version. This is included in bugreports and tickets."
+
+msgid "bugURL"
+msgstr "Bug URL"
+
+msgid "bugURL_help"
+msgstr "If the bug happened on a particular GUI page, then please include the URL of the page where this happened. Example: /vsite/addVsite"
+
+msgid "bugDescription"
+msgstr "Description"
+
+msgid "bugDescription_help"
+msgstr "Please enter a detailed description of the problem you encountered. Also please include any other information which might be of relevance or any error message that you did encounter. Please be specific and please be detailed. 'Doesn't work!' isn't a bugreport that we can work with."
+
+msgid "include_sos"
+msgstr "Include SOS-Report"
+
+msgid "include_sos_help"
+msgstr "Allows you to include the SOS-Report in your bugreport. In this case the external URL to the SOS-Report will be included in the bugreport email, so that the BlueOnyx developers can access it. You hereby grant your permission for BlueOnyx.it to access the SOS-Report for troubleshooting."
+
+msgid "Err_writing_tempfile"
+msgstr "There was an error writing the temporary file for the bugreport. The bugreport cannot be sent, sorry."
+
+msgid "ticketDescription"
+msgstr "Description"
+
+msgid "ticketDescription_help"
+msgstr "Please enter a detailed description of your support request. Also please include any other information which might be of relevance or any error message that you did encounter. Please be specific and please be detailed about the work that you want us to carry out on your server. Please note: If charges apply for the work you request, then we will provide you with a price quotation before any paid work is being carried out."
+
+msgid "ticket_subject"
+msgstr "Ticket Subject"
+
+msgid "ticket_subject_help"
+msgstr "Please enter a descriptive subject that best describes your request for support."
+
+msgid "ticket_num_selector"
+msgstr "Ticket Number"
+
+msgid "ticket_num_selector_help"
+msgstr "If you have open tickets with BlueOnyx Support, the ticket numbers of these tickets will be shown here (newest to oldest). You can then choose to append this new ticket to an existing one. Or you can choose 'New Ticket' to create a new ticket (which is the default)."
+
+msgid "ticketURL"
+msgstr "Ticket URL"
+
+msgid "ticketURL_help"
+msgstr "If your support request is related to a particular URL, then please include it here."
+
+msgid "ticket"
+msgstr "Support Request"
+
+msgid "ticket_help"
+msgstr "Allows you to file a support request with BlueOnyx.it or (optionally) your ISP."
+
+msgid "allow_access"
+msgstr "Allow Access"
+
+msgid "allow_access_help"
+msgstr "Please read carefully: When you submit a ticket with this checkbox ticked, then a special System-Administrator account (Usually 'alter-admin') will be created. That account will have a random password set, which will be included in the Support Request. Additionally the public PEM certificate of this account will be attached to this Support Request, along with the information about the server hostname, IP-Address and the port that SSH runs on. By ticking this checkbox you grant BlueOnyx.it technicians permission to login to your server for diagnostics an to carry out the work that you specified in your support request. If costs arise out of the work of BlueOnyx.it technicians, then a price quotation will be presented to you before the paid work is initiated. Paid work will only be carried out with your consent."
+
+msgid "never"
+msgstr "Never"
+
+msgid "3_days"
+msgstr "3 days"
+
+msgid "5_days"
+msgstr "5 days"
+
+msgid "7_days"
+msgstr "7 days"
+
+msgid "10_days"
+msgstr "10 days"
+
+msgid "14_days"
+msgstr "14 days"
+
+msgid "30_days"
+msgstr "30 days"
+
+msgid "90_days"
+msgstr "90 days"
+
+msgid "180_days"
+msgstr "180 days"
+
+msgid "365_days"
+msgstr "365 days"
+
+msgid "SAExpiry"
+msgstr "Expiry Date"
+
+msgid "SAExpiry_help"
+msgstr "Defines an expiry date for the Support Account. Default: 7 days. After the selected period the account will be deleted automatically - unless you choose 'unlimited'. If you create another Support Ticked with enabled Support Account before the existing account expires, then the existing Support Account will be deleted and a new one will be created. Which involves a password change and new generation of SSH keys and PEM certificates."
+
+msgid "Error_support_account_reserved"
+msgstr "The username you have chosen is reserved for the Support Account. Please choose another username instead."
+
+msgid "sa_desc_manageAdmin"
+msgstr "This the Support Account user. You may delete him any time you wish. But you cannot modify the capabilities of this account, as it needs root/admin like capabilities for diagnosis and troubleshooting."
+
+msgid "Err_problem_sending_ticket"
+msgstr "A problem occured while trying to submit your Support Ticket. It could be that the website https://support.blueonyx.it us currently not reachable. Please try again and/or check in your browser if the website is reachable."
+
+msgid "Err_problem_sending_bugreport"
+msgstr "A problem occured while trying to submit your Bugreport. It could be that the website https://support.blueonyx.it us currently not reachable. Please try again and/or check in your browser if the website is reachable."
+
+msgid "TicketSent"
+msgstr "Your Support Ticket has been submitted."
+
+msgid "BugreportSent"
+msgstr "Your Bugreport has been submitted. Many thanks for taking the time to do so. We will look into the matter as soon as we can."
+
+msgid "prio_urgent"
+msgstr "Extremely important"
+
+msgid "prio_high"
+msgstr "Very important"
+
+msgid "prio_medium"
+msgstr "Average importance"
+
+msgid "prio_low"
+msgstr "Not very important"
+
+msgid "prio_unspecified"
+msgstr "Importance not specified"
+
+msgid "prio_urgent_help"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "prio_high_help"
+msgstr "[[base-support.prio_high]]"
+
+msgid "prio_medium_help"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "prio_low_help"
+msgstr "[[base-support.prio_low]]"
+
+msgid "prio_unspecified_help"
+msgstr "[[base-support.prio_unspecified]]"
+
+msgid "severity_urgent"
+msgstr "Extremely important"
+
+msgid "severity_high"
+msgstr "Very important"
+
+msgid "severity_medium"
+msgstr "Average importance"
+
+msgid "severity_low"
+msgstr "Not very important"
+
+msgid "severity_unspecified"
+msgstr "Importance not specified"
+
+msgid "severity_urgent"
+msgstr "Catastrophic issues which severely impact the mission-critical operations of an organization. This may mean that the operational servers, development systems or customer applications are down or not functioning and no procedural workaround exists."
+
+msgid "severity_high"
+msgstr "High-impact issues in which the customers operation is disrupted, but there is some capacity to produce."
+
+msgid "severity_medium"
+msgstr "Partial non-critical functionality loss, or issues which impair some operations but allow the customer to perform their critical tasks. This may be a minor issue with limited loss or no loss of functionality and limited impact to the customers functionality."
+
+msgid "severity_low"
+msgstr "General usage questions, recommendations for product enhancement, or development work."
+
+msgid "severity_unspecified"
+msgstr "Importance not specified"
+
+msgid "Priority"
+msgstr "Priority"
+
+msgid "Priority_help"
+msgstr "This field is used for internal weighting of the bug reports importance."
+
+msgid "Severity"
+msgstr "Severity"
+
+msgid "Severity_help"
+msgstr "This field is used for describing the criticality of the issue you are reporting and it explain us which impact the issue has on your usability of our product."
+
+msgid "recipient_selector"
+msgstr "Recipient"
+
+msgid "recipient_selector_help"
+msgstr "Allows you to choose the recipient of this Support Ticket."

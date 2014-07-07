@@ -1,0 +1,334 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "support_settingsMenu"
+msgstr "Einstellungen"
+
+msgid "support_settingsMenu_help"
+msgstr "Hier können Sie die BlueOnyx Support-Funktionen konfigurieren."
+
+msgid "support_settings"
+msgstr "Einstellungen"
+
+msgid "basic_tab"
+msgstr "Grundeinstellungen"
+
+msgid "wiki_tab"
+msgstr "Wiki-Einstellungen"
+
+msgid "isp_tab"
+msgstr "ISP-Details"
+
+msgid "Error_NewLinQ_Down"
+msgstr "Eine Verbindung zu newlinq.blueonyx.it konnte nicht hergestellt werden. Ohne eine solche Verbindung ist das Senden eines Fehlerberichtes oder Tickets nicht möglich."
+
+msgid "client_name"
+msgstr "Ihr Name"
+
+msgid "client_name_help"
+msgstr "Bitte geben Sie hier Ihren Namen ein, damit wir wissen, mit wem wir es zu tun haben."
+
+msgid "client_email"
+msgstr "Ihre E-Mail"
+
+msgid "client_email_help"
+msgstr "E-Mail-Adresse, die für den Support-Anfrage verwendet wird. Wenn dieser Server bereits mit NewLinQ verbunden ist, so wird hier automatisch die Email-Adresse angezeigt, mit dem Sie sich bei NewLinQ angemeldet haben."
+
+msgid "support_account"
+msgstr "Support-Konto"
+
+msgid "support_account_help"
+msgstr "Reservierter Name für ein System-Administrator-Konto ähnlich dem von Benutzer 'admin'. Dieses Konto wird automatisch erstellt, wenn Sie bei Support-Tickets den Fernzugang aktivieren um BlueOnyx (oder Ihrem ISP oder Technik-Dienstleister) zur Problemösung Zugriff zum Server zu ermöglichen. Die Supportanfrage beinhaltet dann automatisch die Zugangsdaten, ein zufällig generiertes Passwort und das SSH PEM-Zertifikat für den SSH Login. Ein Support-Konto ist in der Regel nur vorübergehend aktiv und kann nach einer voreinstellbaren Zeit (Standard: 7 Tage) automatisch gelöscht werden. Wahlweise können Sie bei der Erstellung des Tickets einen längeren oder kürzeren Zeitraum vorgeben. Sie können das Support-Konto nach der Erstellung auch jederzeit wieder manuell löschen."
+
+msgid "wiki_enabled"
+msgstr "Wiki aktiv"
+
+msgid "wiki_enabled_help"
+msgstr "Legt fest, ob das BlueOnyx Wiki aktiviert ist. Wenn ja, dann erhalten alle relevanten GUI-Seiten einen 'Wiki'-Knopf am unteren Rand, der zu den damit verknüpften Wiki-Themen führt."
+
+msgid "wiki_baseURL"
+msgstr "Wiki-URL"
+
+msgid "wiki_baseURL_help"
+msgstr "Der Domain-Name, unter der das Wiki zu erreichen ist. Standard: wiki.blueonyx.it"
+
+msgid "wiki_tabbed"
+msgstr "Wiki Overlay"
+
+msgid "wiki_tabbed_help"
+msgstr "Zwei Methoden sind, wie die Wiki-Seiten geöffnet werden, zur Verfügung. Der Standardwert ist ein Overlay, in die der externen Wiki-Seite geladen wird. Beim Klick auf den Wiki-Knopf wird dann die Wiki-Seite als Layer über die derzeit geöffnete GUI-Seite gelegt. Wenn Sie dieses Feld deaktivieren, dann öffnet ein Klick auf das Wiki-Symbol stattdessen die Wiki-Seite in einem neuen Browser-Tab."
+
+msgid "isp_support_name"
+msgstr "ISP Name"
+
+msgid "isp_support_name_help"
+msgstr "In der Regel gehen Ihre Support-Ticket Anfragen an den BlueOnyx Support. Sie können alternativ jedoch auch die Kontaktdaten Ihres ISP's, Server-Hosters oder technik-Dienstleisters hinterlegen. Dann haben Sie bei zukünftigen Support-Tickets die Möglichkeit, die Tickets entweder an BlueOnyx oder Ihren Dienstleister zu schicken. Tragen Sie hier den Namen des ISP's oder des Dienstleisters ein."
+
+msgid "isp_support_email"
+msgstr "ISP E-Mail"
+
+msgid "isp_support_email_help"
+msgstr "E-Mail-Adresse für Support-Anfragen an Ihren ISP oder Technik-Dienstleister. Wenn Sie die Support-Anfrage an Ihren ISP senden möchten, ist dies die E-Mail-Adresse, an die Ihre Support-Anfrage geschickt wird."
+
+msgid "isp_support_identifier"
+msgstr "Server-ID"
+
+msgid "isp_support_identifier_help"
+msgstr "Dieses Feld kann verwendet werden, um den betreffenden Server genauer zu identifizieren. Hier können Sie zum Beispiel die Rack-Nummer, Server-ID oder andere faktoren angeben, die Ihr ISP benötigt, um den Server im Rechenzentrum zu finden."
+
+msgid "wiki"
+msgstr "Wiki"
+
+msgid "wiki_help"
+msgstr "Weiterführende Informationen über diese GUI-Seite können Sie auf dem BlueOnyx Wiki einsehen. Bei einem Klick auf diesen Knopf öffnet sich die entsprechende Wiki-Seite."
+
+msgid "sos_reportMenu"
+msgstr "SOS-Report"
+
+msgid "sos_reportMenu_help"
+msgstr "Der SOS-Report ist ein Feature, mit dem Sie eine Diagnose-Report mit allen relevanten Server-Konfigurationen und Protokolldateien erstellen können. Ein SOS-Report kann an Bugreports und Support-Tickets angehangen werden, um eine bessere Ferndiagnose zu ermöglichen."
+
+msgid "sos_delete"
+msgstr "Bericht löschen"
+
+msgid "sos_delete_help"
+msgstr "Wenn Sie dieses Kästchen markieren und die Änderungen speichern, dann wird der derzeit vorhandene SOS-Report gelöscht. Danach können Sie dann jederzeit einen neuen SOS-Report erstellen."
+
+msgid "Err_sos_report_being_generated"
+msgstr "Ein SOS-Report wird derzeit erstellt. Dies kann mehrere Minuten dauern (kein Scherz). Es kann durchaus 5-10 Minuten dauern, bis der Bericht erstellt ist. Bitte kommen Sie später wieder, um den erstellten Bereicht einzusehen."
+
+msgid "sos_generate"
+msgstr "SOS-Report erstellen"
+
+msgid "sos_generate_help"
+msgstr "Markieren Sie dieses Kontrollkästchen und speichern Sie die Änderungen, um eine SOS-Report zu generieren. Die Erzeugung des SOS-Report dauert einige Minuten (kein Scherz). Es kann durchaus 5-10 Minuten dauern, bis der Bericht fertig ist."
+
+msgid "sos_present"
+msgstr "SOS-Report"
+
+msgid "sos_present_help"
+msgstr "Zeigt an, ob ein SOS-Report vorhanden ist."
+
+msgid "sos_epoch"
+msgstr "Erstelldatum"
+
+msgid "sos_epoch_help"
+msgstr "Zeigt Datum und Uhrzeit an dem der aktuell vorhandene SOS-Report erstellt wurde."
+
+msgid "Err_sender_contact_details"
+msgstr "Bitte geben Sie zunächst Ihre Kontaktdaten im Menü '[[base-support.support_settingsMenu]]' an."
+
+msgid "sender"
+msgstr "Absender:"
+
+msgid "recipient"
+msgstr "Empfänger:"
+
+msgid "recipient_name"
+msgstr "Empfänger-Name"
+
+msgid "recipient_name_help"
+msgstr "Name des Empfängers des Bugreports."
+
+msgid "recipient_email"
+msgstr "Empfänger E-Mail"
+
+msgid "recipient_email_help"
+msgstr "E-Mail-Adresse des BlueOnyx.it Bugtrackers."
+
+msgid "bugreportTitle"
+msgstr "Bugreport"
+
+msgid "bugreport_subject"
+msgstr "Betreff"
+
+msgid "bugreport_subject_help"
+msgstr "Bitte geben Sie einen aussagekräftigen Betreff an, der am besten das zu meldende Problem beschreibt."
+
+msgid "server_model"
+msgstr "Server-Modell"
+
+msgid "server_model_help"
+msgstr "Zeigt das Modell des Servers und die Build-Version. Dies wird automatisch in Bugreports und Tickets eingefügt, damit wir das Server-Modell und die Version der Software erkennen."
+
+msgid "bugURL"
+msgstr "Bug-URL"
+
+msgid "bugURL_help"
+msgstr "Wenn der Fehler auf einer bestimmten GUI-Seite auftritt, dann geben Sie hier bitte die URL der Seite ein. Beispiel: /vsite/addVsite"
+
+msgid "bugDescription"
+msgstr "Beschreibung"
+
+msgid "bugDescription_help"
+msgstr "Bitte geben Sie eine detaillierte Beschreibung des Problems ein. Teilen Sie uns auch bitte alle sonstigen relevanten Informationen mit, die von Bedeutung sind und zum Auftreten des Fehlers geführt haben. Bitte seien Sie dabei so spezifisch und detailliert wie möglich. "Geht nicht!" ist zum Beispiel ein Fehlerbericht, mit dem wir nicht gerade sonderlich viel anfangen können."
+
+msgid "include_sos"
+msgstr "SOS-Report anhängen"
+
+msgid "include_sos_help"
+msgstr "Hier können Sie bestimmen, ob Sie einen aktuellen SOS-Report an Ihren Bugreport anhängen möchten. In diesem Fall wird die externe URL des SOS-Reports dem Bugreport hinzugefügt, so dass der BlueOnyx-Support darauf zugreifen kann. Sie erteilen somit dem BlueOnyx-Support auch die Erlaubnis, auf den generierten SOS-Report zuzugreifen und die Daten darin auszuwerten. Jegliche daraus gewonnenen Erkentnisse werden selbstverständlich vertraulich und diskret behandelt."
+
+msgid "Err_writing_tempfile"
+msgstr "Es gab einen Fehler beim Schreiben der temporären Datei für den Fehlerbericht. Der Fehlerbericht kann nicht gesendet werden, sorry."
+
+msgid "ticketDescription"
+msgstr "Beschreibung"
+
+msgid "ticketDescription_help"
+msgstr "Bitte geben Sie eine detaillierte Beschreibung des Problems ein. Teilen Sie uns auch bitte alle sonstigen relevanten Informationen mit, die von Bedeutung sind und zum Auftreten des Fehlers geführt haben. Teilen Sie bitte genau mit, welche Arbeiten ausgeführt werden sollen. Bitte seien Sie dabei so spezifisch und detailliert wie möglich. "Geht nicht! Hilfe!" ist zum Beispiel eine Support-Anfrage, mit der wir erstmal wenig anfangen können und die dann zu unnötigen Rückfragen führt. Bitte beachten Sie: Eine Support-Anfrage an sich ist kostenlos. Falls Kosten anfallen, erhalten Sie von uns einen verbindlichen Kostenvoranschlag bevor wir mit kostenpflichtigen Arbeiten anfangen. Ggf. müssen wir uns zur Erstellung des Kostenvoranschlages zunächst auf Ihrem Server einloggen, um uns einen Überblick zu verschaffen, oder weitere Informationen von Ihnen einholen."
+
+msgid "ticket_subject"
+msgstr "Betreff"
+
+msgid "ticket_subject_help"
+msgstr "Bitte geben Sie einen aussagekräftigen Betreff an, der am besten das Thema Ihrer Support-Anfrage beschreibt."
+
+msgid "ticket_num_selector"
+msgstr "Ticket Nummer"
+
+msgid "ticket_num_selector_help"
+msgstr "Wenn Sie bereits offene Support-Tickets beim BlueOnyx-Support haben, können Sie in dieser Liste das entsprechende Ticket auswählen. Neue Tickets werden zuerst angezeigt. Alternativ können Sie natürlich auch ein neues Ticket aufmachen."
+
+msgid "ticketURL"
+msgstr "Ticket-URL"
+
+msgid "ticketURL_help"
+msgstr "Wenn sich Ihre Support-Anfrage auf eine bestimmte GUI-Seite (oder Webseite) bezieht, dann geben Sie hier bitte die URL der Seite ein. Beispiel: /vsite/addVsite"
+
+msgid "ticket"
+msgstr "Support-Anfrage"
+
+msgid "ticket_help"
+msgstr "Hier können Sie eine Support-Anfrage an den BlueOnyx-Support oder Ihren ISP oder Technik-Dienstleister stellen."
+
+msgid "allow_access"
+msgstr "Fernzugriff"
+
+msgid "allow_access_help"
+msgstr "Bitte genau lesen: Wenn Sie eine Support-Anfrage einreichen und dieses Feld markiert haben, dann wird ein spezielles System-Administrator-Konto ('alter-admin') angelegt. Dem Konto werden Root-Zugang und System-Administrator-Rechte verliehen und es wird ein 16-stelliges zufälliges Passwort und ein SSH-PEM-Zertifikat generiert. Diese Informationen werden zusammen mit der IP, dem Hostnamen des Servers und den SSH-Konfigurations-Einstellungen in die Support-Anfrage mit aufgenommen. Durch Anklicken dieses Kontrollkästchens erlauben Sie den Technikern von BlueOnyx.it, sich auf Ihrem Server einzuloggen und die von Ihnen angefragten Arbeiten zu erledigen. Sollte dies mit Kosten verbunden sein, so erhalten Sie vor Anfallen der Kosten einen verbindlichen Kostenvoranschlag."
+
+msgid "never"
+msgstr "Unbegrenzt"
+
+msgid "3_days"
+msgstr "3 Tage"
+
+msgid "5_days"
+msgstr "5 Tage"
+
+msgid "7_days"
+msgstr "7 Tage"
+
+msgid "10_days"
+msgstr "10 Tage"
+
+msgid "14_days"
+msgstr "14 Tage"
+
+msgid "30_days"
+msgstr "30 Tage"
+
+msgid "90_days"
+msgstr "90 Tage"
+
+msgid "180_days"
+msgstr "180 Tage"
+
+msgid "365_days"
+msgstr "365 Tage"
+
+msgid "SAExpiry"
+msgstr "Verfallsdatum"
+
+msgid "SAExpiry_help"
+msgstr "Definiert ein Verfallsdatum für das Support-Konto des System-Administrators 'alter-admin'. Standard: 7 Tage. Nach der voreingestellten Zeit wird das Konto automatisch gelöscht werden. Es sei denn, Sie haben bei Erstellung der Support-Anfrage 'unbegrenzt' ausgewählt. Wenn Sie eine weitere Support-Anfrage mit aktiviertem Fernzugang erstellen, bevor das bereits bestehende Support-Konto abgelaufen ist, dann wird ein neues Passwort generiert und neue SSH-Zertifikate erstellt."
+
+msgid "Error_support_account_reserved"
+msgstr "Der von Ihnen gewählte Benutzername ist dem 'Support-Konto' vorbehalten. Bitte wählen Sie einen anderen Benutzernamen."
+
+msgid "sa_desc_manageAdmin"
+msgstr "Dies ist das 'Support-Konto', welches automatisch bei einer Support-Anfrage mit aktiviertem Fernzugang erstellt wurde. Sie können (und sollten) die Einstellungen dieses Konto nicht ändern, solange die Support-Anfrage nicht beendet ist. Sie können das Konto natürlich jederzeit vor Ablauf seines Verfallsdatums löschen und somit weiteren Zugang sperren."
+
+msgid "Err_problem_sending_ticket"
+msgstr "Leider trat ein Problem auf und Ihr Support-Ticket konnte nicht eingereicht werden. Es könnte sein, dass die Website https://support.blueonyx.it derzeit nicht erreichbar ist. Bitte versuchen Sie es erneut und/oder überprüfen Sie in Ihrem Browser, ob die Website erreichbar ist."
+
+msgid "Err_problem_sending_bugreport"
+msgstr "Leider trat ein Problem auf und Ihr Bugreport konnte nicht eingereicht werden. Es könnte sein, dass die Website https://support.blueonyx.it derzeit nicht erreichbar ist. Bitte versuchen Sie es erneut und/oder überprüfen Sie in Ihrem Browser, ob die Website erreichbar ist."
+
+msgid "TicketSent"
+msgstr "Ihr Support-Ticket wurde eingereicht. Wir setzen uns in Kürze mit Ihnen in Verbindung."
+
+msgid "BugreportSent"
+msgstr "Ihre Bugreport wurde übermittelt. Vielen Dank, dass Sie sich die Zeit nahmen. Wir werden uns der Angelegenheit so schnell wie möglich annehmen."
+
+msgid "prio_urgent"
+msgstr "Extrem wichtig"
+
+msgid "prio_high"
+msgstr "Sehr wichtig"
+
+msgid "prio_medium"
+msgstr "Mittlere Bedeutung"
+
+msgid "prio_low"
+msgstr "Nicht sehr wichtig"
+
+msgid "prio_unspecified"
+msgstr "Bedeutung nicht angegeben"
+
+msgid "prio_urgent_help"
+msgstr "[[base-support.prio_urgent]]"
+
+msgid "prio_high_help"
+msgstr "[[base-support.prio_high]]"
+
+msgid "prio_medium_help"
+msgstr "[[base-support.prio_medium]]"
+
+msgid "prio_low_help"
+msgstr "[[base-support.prio_low]]"
+
+msgid "prio_unspecified_help"
+msgstr "[[base-support.prio_unspecified]]"
+
+msgid "severity_urgent"
+msgstr "Katastrophale Auswirkungen, die sich stark auf die geschäftskritischen Bereiche einer Organisation auswirken. Mögliche Auswirkungen: Server und/oder missionskritische Dienste und Anwendungen funktionieren nicht und können aus eigenen Mitteln und eigenem Wissensstand nicht wieder in Funktion versetzt werden.
+
+msgid "severity_high"
+msgstr "Bedeutende Auswirkungen, die zu Betriebsstörungen führen und den Geschäftsbetrieb einschränken."
+
+msgid "severity_medium"
+msgstr "Teilweise Verlust von nicht-kritischer Funktionalität. Oder Auswirkungen, die nur einige unkritische Subsysteme betreffen. Dies kann ein kleines Problem mit begrenzten Verlust oder ohne Verlust von Funktionalität sein, welches geringe Auswirkungen auf den Geschäftsbetrieb hat."
+
+msgid "severity_low"
+msgstr "Allgemeine Nutzungs-Fragen. Empfehlungen für die Produktverbesserung oder für zukünftige Verbesserungen."
+
+msgid "severity_unspecified"
+msgstr "Bedeutung nicht angegeben"
+
+msgid "Priority"
+msgstr "Priorität"
+
+msgid "Priority_help"
+msgstr "Dieses Feld wird für die interne Gewichtung der Fehlerberichte verwendet."
+
+msgid "Severity"
+msgstr "Schwere"
+
+msgid "Severity_help"
+msgstr "Dieses Feld ist für die Kritikalität des von Ihnen gemeldete Problem benötigt. Es teilt uns mit, welche Auswirkungen das Problem auf Ihren Geschäftsbetrieb hat und erlaubt uns so, Ihre Anfrage mit entsprechender Priorität zu behandeln."
+
+msgid "recipient_selector"
+msgstr "Empfänger"
+
+msgid "recipient_selector_help"
+msgstr "Hier können Sie den Empfänger des Support-Tickets wählen."
+
