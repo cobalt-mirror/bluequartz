@@ -77,6 +77,7 @@ EOT
 	}
 
     my $last;
+    my $enableSSL = 0;
     while(<$in>)
     {
         if(/^<\/VirtualHost>/i) { $last = $_; last; }
@@ -99,10 +100,30 @@ EOT
     print $out $end, "\n";
     print $out $last;
 
-    # preserve the remainder of the config file
-    while(<$in>)
-    {
-        print $out $_;
+    # Preserve the remainder of the config file and continue with the SSL
+    # Section if it is present:
+    while(<$in>) {
+        if(/^<\/VirtualHost>/i) { $enableSSL = 1; $last = $_; last; }
+
+        if(/^$begin$/) {
+            while(<$in>) {
+                if(/^$end$/) { last; }
+            }
+        }
+        else {
+            print $out $_;
+        }
+    }
+
+    if ($enableSSL) {
+        print $out $begin, "\n";
+        print $out $script_conf;
+        print $out $end, "\n";
+        print $out $last;
+
+        while(<$in>) {
+            print $out $_;
+        }
     }
 
     return 1;

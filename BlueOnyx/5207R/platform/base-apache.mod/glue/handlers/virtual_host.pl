@@ -141,6 +141,41 @@ Include $include_file
 </VirtualHost>
 END
 
+    # write SSL config
+    my $cafile;
+    if ($vhost->{ssl} && $vhost->{ssl_expires}) {
+        if (-f "$vhost->{basedir}/certs/ca-certs")
+        {
+            $cafile = "SSLCACertificateFile $vhost->{basedir}/certs/ca-certs";
+        }
+
+        $vhost_conf .=<<END;
+
+NameVirtualHost $vhost->{ipaddr}:$sslPort
+<VirtualHost *:$sslPort>
+SSLengine on
+$cafile
+SSLCertificateFile $vhost->{basedir}/certs/certificate
+SSLCertificateKeyFile $vhost->{basedir}/certs/key
+ServerName $vhost->{fqdn}
+ServerAdmin $vhost->{serverAdmin}
+DocumentRoot $vhost->{documentRoot}
+ErrorDocument 401 /error/401-authorization.html
+ErrorDocument 403 /error/403-forbidden.html
+ErrorDocument 404 /error/404-file-not-found.html
+ErrorDocument 500 /error/500-internal-server-error.html
+RewriteEngine on
+RewriteCond %{HTTP_HOST}                !^$vhost->{ipaddr}(:$sslPort)?\$
+RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$sslPort)?\$ [NC]
+$aliasRewriteSSL
+RewriteRule ^/(.*)                      https://$vhost->{fqdn}/\$1 [L,R=301]
+RewriteOptions inherit
+AliasMatch ^/~([^/]+)(/(.*))?           $user_root
+Include $include_file
+</VirtualHost>
+END
+    }
+
     # append line marking the end of the section specifically owned by the VirtualHost
     my $end_mark = "# end of VirtualHost owned section\n";
     $vhost_conf .= $end_mark;

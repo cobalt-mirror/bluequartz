@@ -47,12 +47,13 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 /etc/suexec.conf
-/etc/httpd/conf.d/ssl_perl.conf
+#/etc/httpd/conf.d/ssl_perl.conf
 /etc/httpd/conf.d/security.conf
 /usr/sausalito/sbin/fix_302_httpd_redirects.pl 
 /usr/sausalito/sbin/fix_web-and-email-server-aliasses.pl 
 /usr/sausalito/sbin/set_default_php_settings.pl
 /usr/sausalito/sbin/toggle_ssl.pl
+/usr/sausalito/sbin/SSL_fixer.pl
 [AUTOFILL]
 
 <end glue>
@@ -150,6 +151,23 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jul 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX03
+- [SNI support]: Support for multiple SSL-enabled Vsites on the same IP.
+- Removed /etc/httpd/conf.d/ssl_perl.conf
+- Modified glue/conf/Apache.conf
+- Added glue/sbin/SSL_fixer.pl
+- Modified glue/Makefile
+- Added glue/handlers/vsite_caCerts.pl
+- Modified glue/handlers/webscripting.pl
+- Modified glue/handlers/webscripting2.pl
+- Modified glue/handlers/webscripting3.pl
+- Modified glue/handlers/virtual_host.pl
+- Added glue/httpd/ssl_bx.conf
+- Updated main Makefile and templates/rpmdefs.tmpl
+- Basically we're no longer using ssl_perl.conf to dynamically generate
+  Vhost containers for SSL-enabled Vsites. Instead we write off the 
+  Vhost containers into the Vsites siteX Apache config file.
 
 * Mon Jul 07 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX02
 - Modified glue/handlers/reload.pl to take out the admserv reload. It has

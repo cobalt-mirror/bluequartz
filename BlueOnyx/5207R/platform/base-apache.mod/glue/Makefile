@@ -9,7 +9,7 @@
 #		install_links -- creates links instead of copies of files (for dbging)
 #		rpm -- rolls an rpm for this stuff
 
-SCRIPTS=sbin/fix_302_httpd_redirects.pl sbin/fix_web-and-email-server-aliasses.pl sbin/set_default_php_settings.pl sbin/toggle_ssl.pl
+SCRIPTS=sbin/fix_302_httpd_redirects.pl sbin/fix_web-and-email-server-aliasses.pl sbin/set_default_php_settings.pl sbin/toggle_ssl.pl sbin/SSL_fixer.pl
 
 ifdef CCETOPDIR
 include $(CCETOPDIR)/devel/defines.mk
@@ -28,8 +28,9 @@ install_etc:
 
 install_httpdconf:
 	mkdir -p $(PREFIX)/etc/httpd/conf.d
-	install -o root -g root -m 644 httpd/ssl_perl.conf $(PREFIX)/etc/httpd/conf.d
+	#install -o root -g root -m 644 httpd/ssl_perl.conf $(PREFIX)/etc/httpd/conf.d
 	install -o root -g root -m 644 httpd/security.conf $(PREFIX)/etc/httpd/conf.d
+	install -o root -g root -m 644 httpd/ssl_bx.conf $(PREFIX)/etc/httpd/conf.d
 
 install_sbin:
 	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/sausalito/sbin; \
