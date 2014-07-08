@@ -151,6 +151,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Jul 07 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX02
+- Modified glue/handlers/reload.pl to take out the admserv reload. It has
+  undesirable side effetcs when admin changes the locale and then leaves
+  admserv either stopped, or in a non-functional state. Hence it had to go.
+
 * Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX01
 - New major version for 520XR.
 - Modified glue/schemas/apache.schema to allow webAlias with wildcard.
