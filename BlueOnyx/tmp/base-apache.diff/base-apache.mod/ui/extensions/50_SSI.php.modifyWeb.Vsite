@@ -1,0 +1,43 @@
+<?php
+// $Id: 50_SSI.php.modifyWeb.Vsite,v 1.1 2001/11/05 08:08:12 pbose Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+
+include('UIExtension.php');
+
+class SSIExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$cce = $ServerScriptHelper->getCceClient();
+
+		// will assume the container is a PagedBlock for the time being
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-apache");
+
+		$featureSSI = $cce->get($parameters['CCE_OID'], 'SSI');
+
+		if ($parameters['IS_SITE_ADMIN']) {
+			if ( $featureSSI['enabled'] )
+				$container->addFormField(
+					$factory->getBoolean('ssi', $featureSSI['enabled'], 'r'),
+					$factory->getLabel('ssi'), $page_id
+					);
+		} else {
+				$container->addFormField(
+					$factory->getBoolean('ssi', $featureSSI['enabled'], 'rw'),
+					$factory->getLabel('ssi'), $page_id
+					);
+		}
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+    global $ssi;
+		$cce = $ServerScriptHelper->getCceClient();
+
+    $cce->set($parameters['CCE_OID'], 'SSI', array('enabled' => $ssi));
+    $errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

@@ -1,0 +1,1 @@
+*/5 * * * * root    /usr/local/sbin/suphp_session_file_clear.sh > /dev/null 2>&1

@@ -1,0 +1,57 @@
+<?php
+// $Id: 30_PHP.php.defaults.Vsite,v 1.1 2001/11/15 02:53:50 pbaltz Exp $
+// Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+//
+// ui extension to set default settings for php
+
+if(defined("PHP_EXTENSION_DEFAULTS_VSITE"))
+{
+    return 1;
+}
+define("PHP_EXTENSION_DEFAULTS_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class PHPExtension extends UIExtension
+{
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-apache");
+        $cce = $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], 'PHP');
+       
+        if (!in_array('webScripting', $container->getPageIds()))
+        {
+            $container->addPage(
+                "webScripting", 
+                $factory->getLabel("webScripting"));
+        }
+
+        $phpEnable = $factory->getOption("PHP_enabled", $defaults['enabled']);
+        $phpEnable->addFormField(
+          $factory->getBoolean("suPHP_enabled", $defaults['suPHP_enabled']),
+          $factory->getLabel("enableSuPHP")
+        );
+        $php = $factory->getMultiChoice("PHP_enabled");
+        $php->addOption($phpEnable);
+        $container->addFormField($php, $factory->getLabel("php"), "webScripting");
+    }
+
+    function handle(&$helper, &$errors, &$cce_info)
+    {
+        global $PHP_enabled, $suPHP_enabled;
+
+        $cce = $helper->getCceClient();
+
+        $cce->set($cce_info["CCE_SERVICES_OID"], 'PHP',
+                array(
+                    'enabled' => ($PHP_enabled ? 1 : 0),
+                    'suPHP_enabled' => $suPHP_enabled
+                ));
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+
+

@@ -1,0 +1,14 @@
+<class name="System" namespace="ControlPanel" version="1.0">
+    <property
+        name="urlAdminAccess" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="urlSiteadminAccess" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+    <property
+        name="urlPersonalAccess" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
