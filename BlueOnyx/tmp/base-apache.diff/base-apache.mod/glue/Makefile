@@ -1,4 +1,4 @@
-# $Id: Makefile 1538 2010-10-13 09:46:37Z oride $
+# $Id: Makefile 352 2004-05-28 02:10:53Z shibuya $
 #
 # Makefile to install handlers.  Right now, it's a bit perl-specific,
 # but it can be easily generalized.
@@ -9,6 +9,8 @@
 #		install_links -- creates links instead of copies of files (for dbging)
 #		rpm -- rolls an rpm for this stuff
 
+SCRIPTS=sbin/fix_302_httpd_redirects.pl sbin/fix_web-and-email-server-aliasses.pl sbin/set_default_php_settings.pl sbin/toggle_ssl.pl
+
 ifdef CCETOPDIR
 include $(CCETOPDIR)/devel/defines.mk
 else
@@ -18,17 +20,17 @@ endif
 INSTALL = /usr/bin/install -m 0700 -o root 
 PWD = $(shell pwd)
 
-install: install_crond install_sbin install_etc install_httpdconf
+install: install_etc install_httpdconf install_sbin
 
 install_etc: 
 	mkdir -p $(PREFIX)/etc/
 	install -m 0600 -o root etc/suexec.conf $(PREFIX)/etc/
 
-install_crond:
-	mkdir -p $(PREFIX)/etc/cron.d/
-	install -m 0600 -o root etc/cron.d/suphp_session_file_clear.cron $(PREFIX)/etc/cron.d/
+install_httpdconf:
+	mkdir -p $(PREFIX)/etc/httpd/conf.d
+	install -o root -g root -m 644 httpd/ssl_perl.conf $(PREFIX)/etc/httpd/conf.d
+	install -o root -g root -m 644 httpd/security.conf $(PREFIX)/etc/httpd/conf.d
 
 install_sbin:
-	mkdir -p $(PREFIX)/usr/local/sbin/
-	install -m 0750 -o root usr/local/sbin/suphp_session_file_clear.sh $(PREFIX)/usr/local/sbin/
-
+	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/sausalito/sbin; \
+	$(INSTALL) -o root -m 0755 $(SCRIPTS) $(PREFIX)//usr/sausalito/sbin/; \

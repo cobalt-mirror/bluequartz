@@ -1,6 +1,6 @@
 <!--
     Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-    $Id: vsite_services.schema 1492 2010-06-20 09:23:06Z shibuya $
+    $Id: vsite_services.schema
 
     This registers the scripting portion of VirtualHosts as a service
     available to Vsites.  This makes the service part of VirtualHosts
@@ -21,6 +21,7 @@
         name="enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
+
     <property
         name="suPHP_enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
@@ -54,20 +55,20 @@
         writeacl="ruleCapable(adminUser)"
     />
 </class>
-<class 
-    name="VsiteServices" namespace="USERWEBS" version="1.0" 
-> 
-    <property name="featureEnabled" type="boolean" default="1"/> 
+<class
+    name="VsiteServices" namespace="USERWEBS" version="1.0"
+>
+    <property name="featureEnabled" type="boolean" default="0"/>
+    
+    <property
+        name="i18nName" type="scalar" default="[[base-apache.userwebsI18nName]]"
+    />
 
     <property 
-        name="i18nName" type="scalar" default="[[base-apache.userwebsI18nName]]" 
-    /> 
- 
-    <property  
-        name="enabled" type="boolean" default="1" 
-        writeacl="ruleCapable(adminUser)" 
-    /> 
-</class> 
+        name="enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>
 
 <!-- Tack some more namespaces onto Vsite -->
 <class 
@@ -78,10 +79,16 @@
         name="enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
+
     <property
         name="suPHP_enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
-    />
+    /> 
+
+    <property
+        name="prefered_siteAdmin" type="scalar" default=""
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
+    /> 
 </class>
 <class 
     name="Vsite" namespace="CGI" version="1.0"
@@ -101,12 +108,12 @@
         writeacl="ruleCapable(adminUser)"
     />
 </class>
-<class  
-    name="Vsite" namespace="USERWEBS" version="1.0" 
-    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)" 
-> 
-    <property  
-        name="enabled" type="boolean" default="1" 
-        writeacl="ruleCapable(adminUser)" 
-    /> 
-</class> 
+<class 
+    name="Vsite" namespace="USERWEBS" version="1.0"
+    createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
+>
+    <property 
+        name="enabled" type="boolean" default="1"
+        writeacl="ruleCapable(adminUser)"
+    />
+</class>

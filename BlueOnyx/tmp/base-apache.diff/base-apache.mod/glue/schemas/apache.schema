@@ -1,5 +1,5 @@
 <!--
-    $Id: apache.schema 1490 2010-06-19 09:11:09Z shibuya $
+    $Id: apache.schema
     Copyright(c) 2000 Cobalt Networks, Inc.
     Author: Kevin K.M. Chiu
 -->
@@ -12,6 +12,18 @@
 -->
 
 <class name="System" namespace="Web" version="1.0">
+    <property 
+        name="HSTS" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="httpPort" type="int" default="80"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
+    <property 
+        name="sslPort" type="int" default="443"
+        writeacl="ruleCapable(modifyHttpd)"
+    />
     <property 
         name="cgiAccess" type="cgiAccess" default="subset"
         writeacl="ruleCapable(serverHttpd)"
@@ -52,6 +64,67 @@
         name="reload" type="uint" optional="yes"
         writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin) OR ruleCapable(serverHttpd)"
     />
+
+    <!-- Switches for Apache configuration of /home/.sites/ in /etc/httpd/conf.d/blueonyx.conf -->
+
+    <property 
+        name="Options_All" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="Options_FollowSymLinks" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="Options_Includes" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="Options_Indexes" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="Options_MultiViews" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="Options_SymLinksIfOwnerMatch" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+
+
+    <property 
+        name="AllowOverride_All" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="AllowOverride_AuthConfig" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="AllowOverride_FileInfo" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="AllowOverride_Indexes" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="AllowOverride_Limit" type="boolean" default="1"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+    <property 
+        name="AllowOverride_Options" type="boolean" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+
+
+    <!-- Switche that toggles rewriting of /etc/httpd/conf.d/blueonyx.conf -->
+    <property 
+        name="Writeback_BlueOnyx_Conf" type="int" default="0"
+        writeacl="ruleCapable(serverHttpd)"
+    />
+
 </class>
 
 <!-- 
@@ -105,16 +178,23 @@
         name="site_preview" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
+
+    <property 
+        name="ssl" type="boolean" default="0" 
+        writeacl="ruleCapable(adminUser)" 
+    /> 
+    <property 
+        name="sslDirty" type="scalar" optional="yes" 
+        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" 
+    /> 
+
     <property
-        name="ssl" type="boolean" default="0"
+        name="webAliases" type="fqdnPlusWildcard" array="yes" optional="yes"
         writeacl="ruleCapable(adminUser)"
     />
+    <!-- Web Alias Redirects (to main site name)-->
     <property
-        name="sslDirty" type="scalar" optional="yes"
-        writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
-    />
-    <property
-        name="webAliases" type="fqdn" array="yes" optional="yes"
+        name="webAliasRedirects" type="boolean" default="0"  
         writeacl="ruleCapable(adminUser)"
     />
 </class>

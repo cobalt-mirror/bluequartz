@@ -1,7 +1,6 @@
 <?php
 /*
- * Copyright 2000-2002 Sun Microsystems, Inc.  All rights reserved.
- * $Id: apacheHandler.php 1538 2010-10-13 09:46:37Z oride $
+ * $Id: apacheHandler.php
  */
 
 include_once("ArrayPacker.php");
@@ -10,7 +9,7 @@ include_once("Product.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 
-// Only serverHttpd should be here
+// Only 'serverHttpd' should be here
 if (!$serverScriptHelper->getAllowed('serverHttpd')) {
   header("location: /error/forbidden.html");
   return;
@@ -21,8 +20,12 @@ $product = new Product($cceClient);
 
 $oids = $cceClient->find("System");
 
-if(!$product->isRaq())
-{
+// get web
+$web = $cceClient->getObject("System", array(), "Web");
+
+$errors = array();
+
+if(!$product->isRaq()) {
 	// set System.Frontpage settings
 	$frontpage = $cceClient->get($oids[0], "Frontpage");
 
@@ -32,44 +35,94 @@ if(!$product->isRaq())
 		$attributes["passwordWebmaster"] = $passwordWebmasterField;
 
 	$cceClient->set($oids[0], "Frontpage", $attributes);
-	$errors = $cceClient->errors();
+	$errors[] = $cceClient->errors();
 
 	// set System.Web settings
 	$cgiAccessMap = array("cgiAll" => "all", "cgiNone" => "subset", "cgiSubset" => "subset");
 	$cgiUsers = ($cgiAccessField == "cgiNone") ? "" : $cgiUsersField;
 	$cceClient->setObject("System", array("cgiAccess" => $cgiAccessMap[$cgiAccessField], "cgiUsers" => $cgiUsers), "Web");
-	$errors = array_merge($errors, $cceClient->errors());
-} else {
+	$errors[] = array_merge($errors, $cceClient->errors());
+} 
+else {
 	// Apache server parameters only
 
 	// min spares needs to be less than or equal to max spares
 	if ($minSpareField > $maxSpareField) {
-		$errors = array(new Error('[[base-apache.MinMaxError]]'));
-	} else {
+		array_push($errors, new Error('[[base-apache.MinMaxError]]'));
+	} 
+	else {
 		$apache_config = array(
+			"httpPort" => $httpPortField,
+			"sslPort" => $sslPortField,
+
+			"HSTS" => $HSTS,
+
 			"minSpare" => $minSpareField, 
 			"maxSpare" => $maxSpareField, 
 			"maxClients" => $maxClientsField, 
-			"hostnameLookups" => $hostnameLookupsField);
+			"hostnameLookups" => $hostnameLookupsField,
+			
+			"Options_All" => $Options_All,
+			"Options_FollowSymLinks" => $Options_FollowSymLinks,			
+			"Options_Includes" => $Options_Includes,
+			"Options_Indexes" => $Options_Indexes,			
+			"Options_MultiViews" => $Options_MultiViews,
+			"Options_SymLinksIfOwnerMatch" => $Options_SymLinksIfOwnerMatch,			
 
-		$ok = $cceClient->set($oids[0], "Web", $apache_config);
-		$errors = array_merge((array)$errors, $cceClient->errors());
-		if ($ok && ($maxClientsField < $maxSpareField)) {
-			array_push($errors,
-				   new Error('[[base-apache.ClientMaxError]]'));
+			"AllowOverride_All" => $AllowOverride_All,
+			"AllowOverride_AuthConfig" => $AllowOverride_AuthConfig,			
+			"AllowOverride_FileInfo" => $AllowOverride_FileInfo,
+			"AllowOverride_Indexes" => $AllowOverride_Indexes,			
+			"AllowOverride_Limit" => $AllowOverride_Limit,
+			"AllowOverride_Options" => $AllowOverride_Options,			
+
+			"Writeback_BlueOnyx_Conf" => time()
+
+			);
+
+		// Check if the HTTP/SSL ports are in use:
+		$HTTPportInUse = `/bin/netstat -tupan|/bin/grep LISTEN|awk '{print \$4}'|cut -d : -f2|egrep -v '^[[:space:]]*\$'| egrep -E '^$httpPortField\$'|wc -l`;
+		$SSLportInUse = `/bin/netstat -tupan|/bin/grep LISTEN|awk '{print \$4}'|cut -d : -f2|egrep -v '^[[:space:]]*\$'| egrep -E '^$sslPortField\$'|wc -l`;
+
+ 		$HTTPportInUse = preg_replace('/\n$/','',$HTTPportInUse); 
+ 		$SSLportInUse = preg_replace('/\n$/','',$SSLportInUse); 
+
+		if (($HTTPportInUse != "0") && ($web['httpPort'] != $httpPortField)) {
+			array_push($errors, new Error('[[base-apache.httpPortInUse]]'));
 		}
-	
-		$controlpanel_config = array(
-			"urlAdminAccess" => $urlAdminAccess, 
-			"urlSiteadminAccess" => $urlSiteadminAccess, 
-			"urlPersonalAccess" => $urlPersonalAccess);
-		$ok = $cceClient->set($oids[0], "ControlPanel", $controlpanel_config);
+		elseif (($SSLportInUse != "0") && ($web['sslPort'] != $sslPortField)) {
+			array_push($errors, new Error('[[base-apache.SSLportInUse]]'));
+		}
+		elseif ($maxClientsField < $maxSpareField) {
+		    array_push($errors, new Error('[[base-apache.ClientMaxError]]'));
+		}
+		else {
+		    $ok = $cceClient->set($oids[0], "Web", $apache_config);
+		    array_push($errors, $cceClient->errors());
+
+			if (($web['httpPort'] != $httpPortField) || ($web['sslPort'] != $sslPortField)) {
+			    // In case the HTTP-port or SSL-port are changed, we also need to update all 
+			    // VHost containers with the new port information. Which is a bit messy. But
+			    // We can simply do so by updating all 'VirtualHost.fqdn' and let our
+			    // existing handler base/apache/virtual_host.pl take care of it:
+			    $Vsites = $cceClient->find("Vsite");
+			    foreach ($Vsites as $VH) {
+			    	$VSsettings = $cceClient->get($VH);
+			    	$ok = $cceClient->set($VH, "", array('fqdn' => "a" . $VSsettings['fqdn']));
+					$ok = $cceClient->set($VH, "", array('fqdn' => $VSsettings['fqdn']));
+			    }
+			}
+		}
 	}
+
 }
 print($serverScriptHelper->toHandlerHtml("/base/apache/apache.php", $errors));
 
 $serverScriptHelper->destructor();
+
 /*
+Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 
 Redistribution and use in source and binary forms, with or without modification, 

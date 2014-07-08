@@ -3,7 +3,7 @@
 // Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 //
 
-include('UIExtension.php');
+include_once('UIExtension.php');
 
 class SSIExtension extends UIExtension
 {

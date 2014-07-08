@@ -36,14 +36,15 @@ class PHPExtension extends UIExtension
             $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
         }
 
-        $phpEnable = $factory->getOption("PHP_enabled", $defaults['enabled']);
-        $phpEnable->addFormField(
-          $factory->getBoolean("suPHP_enabled", $defaults['suPHP_enabled']),
-          $factory->getLabel("enableSuPHP")
-        );
-        $php = $factory->getMultiChoice("PHP_enabled");
-        $php->addOption($phpEnable);
-        $container->addFormField($php, $factory->getLabel("php"), $pageId);
+        $phpEnable = $factory->getOption("PHP_enabled", $defaults['enabled']); 
+        $phpEnable->addFormField( 
+          $factory->getBoolean("suPHP_enabled", $defaults['suPHP_enabled']), 
+          $factory->getLabel("enableSuPHP") 
+        ); 
+        $php = $factory->getMultiChoice("PHP_enabled"); 
+        $php->addOption($phpEnable); 
+        $container->addFormField($php, $factory->getLabel("php"), $pageId);         
+
     }
 
     function handle(&$helper, &$errors, &$cce_info)
@@ -53,10 +54,16 @@ class PHPExtension extends UIExtension
         $cce =& $helper->getCceClient();
 
         $cce->set($cce_info["CCE_OID"], 'PHP', 
-                array(
-                    'enabled' => ($PHP_enabled ? 1 : 0),
-                    'suPHP_enabled' => $suPHP_enabled
-                ));
+                array( 
+                    'enabled' => ($PHP_enabled ? 1 : 0), 
+                    'suPHP_enabled' => $suPHP_enabled 
+                )); 
+
+	if ($suPHP_enabled == "1") {
+	    // disable UserWebs if suPHP is activated
+            $cce->set($cce_info["CCE_OID"], 'USERWEBS',
+                array('enabled' => "0"));
+	}
 
         $errors = array_merge($errors, $cce->errors());
     }

@@ -1,16 +1,16 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl -I.
-# $Id: regen_httpd_figlet
+# $Id: set_apache_hostname.pl
 #
-# this handler is responsible for maintaining the per-Workgroup configuration
-# files for Apache.
+# This constructor sets the ServerAdmin and ServerName in the Apache config of
+# both the public Apache and AdmServ. It does NOT restart both services by intent,
+# so the changes will only take effect during the next restart of these services.
 #
 # Depends on:
 #		System.hostname
 #		System.domainname
-#
-# MPBug fixed.
 
 my $confdir = '/etc/httpd/conf';
+my $aconfdir = '/etc/admserv/conf';
 
 use Sauce::Config;
 use FileHandle;
@@ -18,7 +18,7 @@ use File::Copy;
 use CCE;
 
 my $cce = new CCE;
-$cce->connectfd();
+$cce->connectuds();
 
 my ($oid) = $cce->find("System");
 my ($ok, $obj) = $cce->get($oid);
@@ -30,29 +30,16 @@ $hostname =~ s/\.${domain}$//;
 my $fqdn = $hostname . '.' . $domain;
 my $httpPort = $web->{'httpPort'};
 
-my $minSpare = $web->{minSpare};
-my $maxSpare = $web->{maxSpare};
-my $maxClients = $web->{maxClients};
-my $hostLookups = $web->{hostnameLookups};
-if($hostLookups) {
-  $hostLookups = 'on';
-} else {
-  $hostLookups = 'off';
-}
-
 umask(0077);
 my $stage = "$confdir/httpd.conf~";
 open(HTTPD, "$confdir/httpd.conf");
 unlink($stage);
 sysopen(STAGE, $stage, 1|O_CREAT|O_EXCL, 0600) || die;
 while(<HTTPD>) {
+  s|^ServerTokens OS|ServerTokens ProductOnly|g;
   s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
   s/^ServerName\s.+$/ServerName $fqdn/;
   s/^#ServerName\s.+$/ServerName $fqdn/;
-  s/^MinSpareServers\s.+$/MinSpareServers $minSpare/;
-  s/^MaxSpareServers\s.+$/MaxSpareServers $maxSpare/;
-  s/^MaxClients\s.+$/MaxClients $maxClients/;
-  s/^HostnameLookups\s.+$/HostnameLookups $hostLookups/;
   s/^Listen\s.+$/Listen $httpPort/;
   
   print STAGE;
@@ -64,9 +51,49 @@ chmod(0644, $stage);
 if(-s $stage) {
   move($stage,"$confdir/httpd.conf");
   chmod(0644, "$confdir/httpd.conf"); # paranoia
-  $cce->bye("SUCCESS");
+  $apache_ok = "1";
 } else {
+  $apache_ok = "0";
+}
+
+# Handle admserv:
+umask(0077);
+my $astage = "$aconfdir/httpd.conf~";
+open(HTTPD, "$aconfdir/httpd.conf");
+unlink($astage);
+sysopen(STAGE, $astage, 1|O_CREAT|O_EXCL, 0600) || die;
+while(<HTTPD>) {
+  s|^ServerTokens OS|ServerTokens ProductOnly|g;
+  s/^ServerAdmin\s.+$/ServerAdmin admin\@$fqdn/;
+  s/^ServerName\s.+$/ServerName $fqdn/;
+  s/^#ServerName\s.+$/ServerName $fqdn/;
+  s|^AddDefaultCharset\s.+$|AddDefaultCharset UTF-8|g;
+
+  print STAGE;
+}
+close(STAGE);
+close(HTTPD);
+
+chmod(0644, $astage);
+if(-s $astage) {
+  move($astage,"$aconfdir/httpd.conf");
+  chmod(0644, "$aconfdir/httpd.conf"); # paranoia
+  $admserv_ok = "1";
+} else {
+  $admserv_ok = "0";
+}
+
+if (($apache_ok == "1") && ($admserv_ok == "1")) {
+  $cce->bye("SUCCESS");
+}
+else {
   $cce->bye("FAILURE");
+}
+
+# Fix GID and permissions one /etc/httpd/alias/ for new mod_nss:
+if ( -d "/etc/httpd/alias" ) {
+	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chgrp apache {} \;');
+	system('find /etc/httpd/alias -user root -name "*.db" -exec /bin/chmod g+r {} \;');
 }
 
 exit(0);

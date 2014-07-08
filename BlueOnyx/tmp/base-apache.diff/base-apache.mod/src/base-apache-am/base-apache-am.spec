@@ -1,10 +1,10 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
-Version: 1.0.2
-Release: 4BQ10%{?dist}
+Version: 1.0.4
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
-Group: System Environment/BlueQuartz
+Group: System Environment/BlueOnyx
 Source: base-apache-am.tar.gz
 BuildRoot: /tmp/base-apache-am
 
@@ -25,8 +25,23 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
-* Wed Mar 10 2010 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ10
-- remove .svn directory from rpm package.
+
+* Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX01
+- As we added theability to change the default HTTP port, it is necessary
+  to modify the Active Monitor component that checks if HTTP is working.
+- Added am_apache.sh to call a modified am_apache.exp with the correct
+  port information as argument. The port information is obtained by
+  parsing httpd.conf for the correct Apache port based on the ^Listen
+  parameter.  
+
+* Wed Dec 04 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.3-0BX01
+- Remove .svn directory from rpm package.
+
+* Wed Dec 03 2008 Michael Stauber <mstauber@solarspeed.net> 1.0.2-4BQ11
+- Rebuilt for BlueOnyx
+
+* Sun Feb 03 2008 Hisao SHIBUYA <shibuya@bluequartz.org> 1.0.2-4BQ10
+- add sign to the package.
 
 * Mon Oct 31 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 1.0.2-4BQ9
 - add dist macro for release.
