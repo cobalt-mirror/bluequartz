@@ -156,7 +156,7 @@ END
 
     # write SSL config
     my $cafile;
-    if ($vhost->{ssl} && $vhost->{ssl_expires}) {
+    if (($vhost->{ssl} && $vhost->{ssl_expires}) && (-f "$vhost->{basedir}/certs/certificate") && (-f "$vhost->{basedir}/certs/key")) {
         if (-f "$vhost->{basedir}/certs/ca-certs")
         {
             $cafile = "SSLCACertificateFile $vhost->{basedir}/certs/ca-certs";

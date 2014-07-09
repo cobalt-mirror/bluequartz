@@ -154,6 +154,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jul 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX05
+- Modified glue/handlers/virtual_host.pl to check if a vsite has a cert
+  and key before we try to turn SSL on. Otherwise Apache might barf.
+
 * Tue Jul 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
 - After adding basic SNI support and removing ssl_perl.conf we had temporarily
   dropped HSTS-support and the better-crypto-ciphers and protocols. Also
