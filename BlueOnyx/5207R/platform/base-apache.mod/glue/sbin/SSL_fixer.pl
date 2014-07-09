@@ -41,9 +41,6 @@ if ($id ne "0") {
 @vhosts = ();
 (@vhosts) = $cce->findx('Vsite');
 
-# Start sane:
-$found = "0";
-
 # Walk through all Vsites:
 for $vsite (@vhosts) {
 
@@ -51,13 +48,14 @@ for $vsite (@vhosts) {
     ($ok, $xvsite_SSL) = $cce->get($vsite, 'SSL');
 
     if ($xvsite_SSL->{'enabled'} == "1") {
-    	if ($found == "0") {
-    	    print "Going through all SSL enabled Vsites to make sure they all have their SSL-Vhost container.\n";
-    	    $found++;
-    	}
     	print "Vsite $my_vsite->{fqdn} has SSL enabled. Toggling it off and back on.\n";
     	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
     	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
+    }
+    if ($xvsite_SSL->{'enabled'} == "0") {
+    	print "Vsite $my_vsite->{fqdn} does not have SSL enabled. Toggling it on and back off.\n";
+    	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '1' });
+    	($ok) = $cce->set($vsite, 'SSL', { 'enabled' => '0' });
     }
 }
 

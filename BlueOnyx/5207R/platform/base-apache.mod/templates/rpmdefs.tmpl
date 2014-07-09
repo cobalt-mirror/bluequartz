@@ -55,6 +55,7 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/sbin/set_default_php_settings.pl
 /usr/sausalito/sbin/toggle_ssl.pl
 /usr/sausalito/sbin/SSL_fixer.pl
+/etc/ccewrap.d/base/apache/apache.xml
 [AUTOFILL]
 
 <end glue>
@@ -152,6 +153,19 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Jul 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
+- After adding basic SNI support and removing ssl_perl.conf we had temporarily
+  dropped HSTS-support and the better-crypto-ciphers and protocols. Also
+  changes of the HTTPS-port were no longer propagated to the configs. This
+  had to be hacked in again in this release.
+- Modified glue/handlers/virtual_host.pl to support better-crypto and HSTS.
+- Modified glue/sbin/SSL_fixer.pl for fast Vhost updates accross the board.
+- Modified glue/handlers/regen_httpd_figlet to propagate SSL port changes
+  to our SSL Master-Config file /etc/httpd/conf.d/ssl_bx.conf
+- As the chorizo-gui now uses SSL_fixer.pl for fast Vhost updates, it was
+  necessary to add it to CCEWrap. This was done via the CCEWrap config file.
+- Added /etc/ccewrap.d/base/apache/apache.xml
 
 * Tue Jul 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX03
 - [SNI support]: Support for multiple SSL-enabled Vsites on the same IP.

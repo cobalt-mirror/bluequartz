@@ -23,8 +23,9 @@ PWD = $(shell pwd)
 install: install_etc install_httpdconf install_sbin
 
 install_etc: 
-	mkdir -p $(PREFIX)/etc/
+	mkdir -p $(PREFIX)/etc/ccewrap.d/base/apache
 	install -m 0600 -o root etc/suexec.conf $(PREFIX)/etc/
+	install -m 0644 -o root ccewrap/apache.xml $(PREFIX)/etc/ccewrap.d/base/apache/apache.xml
 
 install_httpdconf:
 	mkdir -p $(PREFIX)/etc/httpd/conf.d

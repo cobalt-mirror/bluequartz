@@ -49,8 +49,21 @@ $sslPort = "443";
 if ($objWeb->{'sslPort'}) {
     $sslPort = $objWeb->{'sslPort'};
 }
+
+$HSTS = '0';
+$HSTS_head = "";
+$HSTS_tail = "";
+$HSTS_line = '';
+if ($objWeb->{'HSTS'} == '1') {
+    $HSTS = $objWeb->{'HSTS'};
+    $HSTS_head = "Header always set Strict-Transport-Security";
+    $HSTS_tail = "max-age=15768000";
+    $HSTS_line = $HSTS_head . ' "' . $HSTS_tail .';"';
+}
+
 &debug_msg("HTTP Port: $httpPort\n");
 &debug_msg("SSL Port: $sslPort\n");
+&debug_msg("HSTS: $HSTS\n");
 
 # make sure the directory exists before trying to edit the file
 if (!-d $Base::Httpd::vhost_dir)
@@ -154,6 +167,10 @@ END
 NameVirtualHost $vhost->{ipaddr}:$sslPort
 <VirtualHost *:$sslPort>
 SSLengine on
+SSLProtocol +ALL -SSLv2
+SSLHonorCipherOrder On
+SSLCipherSuite DHE+AES256-CBC-SHA:AES256-GCM-SHA:AES128-GCM-SHA256:HIGH:!aNULL:!eNULL:!EXP:!LOW:!MD5:!RC4
+$HSTS_line
 $cafile
 SSLCertificateFile $vhost->{basedir}/certs/certificate
 SSLCertificateKeyFile $vhost->{basedir}/certs/key
@@ -175,6 +192,49 @@ Include $include_file
 </VirtualHost>
 END
     }
+
+    # Explanation on the SSL Ciphers SSL Protocol and SSL CipherSuites: The fuckers at RedHat had 
+    # crippled OpenSSL so that elliptic curve ciphers were missing. Go figure. Honest broker? My ass!
+    #
+    # They added some of them back in RHEL6.5. See: https://bugzilla.redhat.com/show_bug.cgi?id=319901
+    # As far as Apache is concerned, the ECDHE ciphers *still* do not work. For that we would need Apache 2.4.
+    # On the bright side, TLSv1.2 is finally working with this version of OpenSSL.
+    # 
+    # For securing HTTPS we want to achieve the following:
+    # - Do not use weak or comprimised ciphers: OK (as best as possible)
+    # - Use Strict Transport Security (HSTS): OK, but make it optional, as it can be a pain in the ass.
+    # - Support Forward Secrecy (PFS) for as many browsers as possible: OK, but fail for Internet Explorer.
+    #
+    # With ECDHE not available (which we'd need to get PFS working with IE browsers), we fall back to DHE,
+    # which allows Forward Secrecy on all browsers. Execept the ones from Microsoft. It's the next best 
+    # thing below ECDHE and if someone wants to use any version of IE, then I don't care about these lemmings.
+    #
+    # Most Microsoft browsers post Windows XP's IE will use either TLS_RSA_WITH_AES_256_CBC_SHA instead.
+    # Chrome, Firefox, Opera and Safari will almost all use TLS_DHE_RSA_WITH_AES_256_CBC_SHA instead, which 
+    # allows Forward Secrecy. Anything but IE6/XP, IE8/XP, Java 6u45 and Java 7u25 (which will use 168bit keys)
+    # will use 256bit keys instead. 
+    #
+    # Protocols: Only IE6/XP will use SSLv3. All the rest default to TLS1.0 or TLSv1.2.
+    #
+    # Ciphers: RC4 and other weak ciphers have been disabled.
+    #
+    # As we now support SNI, some browsers or Robots are left out as far as HTTPS is concerned. 
+    #
+    # That includes:
+    #
+    # - Android 2.3.7       No SNI
+    # - BingBot Dec 2013    No SNI
+    # - IE 6 / XP           No SNI
+    # - IE 8 / XP           No SNI
+    # - Java 6u45           No SNI
+    # 
+    # Which is not really our problem. We're not sacrificing our security for fuckers that haven't
+    # heard the shot yet and who can't be assed to use a more recent OS.
+    #
+    # Further reading: https://bettercrypto.org/static/applied-crypto-hardening.pdf
+    # But note: Their suggested cipher-string and ours are different. Despite that we
+    # achieve the same results for all browsers and also retained compatibility with IE6/XP
+    # and IE8/XP until we went all out for SNI. Since then it's bye, bye for IE users on XP.
 
     # append line marking the end of the section specifically owned by the VirtualHost
     my $end_mark = "# end of VirtualHost owned section\n";
