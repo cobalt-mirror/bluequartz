@@ -3,6 +3,6 @@
     url="/mysql/mysqlserver"
 >
     <parent id="base_controlpanel" order="80">
-        <access require="networkServices"/>
+        <access require="serverNetwork"/>
     </parent>
 </item>

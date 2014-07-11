@@ -3,7 +3,7 @@
         url="/mysql/mysqlconfig"
 >
     <parent id="base_controlpanel" order="81">
-        <access require="networkServices"/>
+        <access require="serverNetwork"/>
     </parent>
 </item>
 
