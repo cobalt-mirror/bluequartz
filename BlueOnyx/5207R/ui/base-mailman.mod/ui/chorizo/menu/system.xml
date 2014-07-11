@@ -1,0 +1,9 @@
+<item
+  id="base_mailman_system"
+  label="[[base-mailman.menu_system_mailman]]"
+  description="[[base-mailman.menu_system_mailman_help]]"
+  url="/mailman/mailmanmanager">
+  <parent id="base_controlpanel" order="31">
+	<access require="serverEmail"/>
+  </parent>
+</item>
