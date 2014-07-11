@@ -1,0 +1,11 @@
+<item 
+    id="base_console_logfiles" 
+    label="[[base-console.logfilesMenu]]" 
+    description="[[base-console.logfilesMenu_help]]" 
+    url="/console/console_logfiles"
+>
+
+    <parent id="base_security" order="102">
+        <access require="serverConfig"/>
+    </parent>
+</item>

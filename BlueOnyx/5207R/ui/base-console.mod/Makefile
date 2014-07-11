@@ -7,13 +7,13 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=console
 
 VERSION=2.0.0
-RELEASE=0BX02
+RELEASE=0BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch
 
 # locale exclude pattern
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no

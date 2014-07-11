@@ -1,0 +1,11 @@
+<item 
+    id="base_console_procs" 
+    label="[[base-console.procsMenu]]" 
+    description="[[base-console.procsMenu_help]]" 
+    url="/console/consoleprocs"
+>
+
+    <parent id="base_security" order="100">
+        <access require="serverConfig"/>
+    </parent>
+</item>
