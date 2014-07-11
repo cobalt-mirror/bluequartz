@@ -1,0 +1,10 @@
+<item
+	id="base_sitepooling"
+	label="[[base-network.sitepooling]]"
+	description="[[base-network.sitepoolingDescription]]"
+	url="/network/pooling"
+>
+	<parent id="base_serverconfig" order="30">
+		<access require="serverIpPooling"/>
+	</parent>
+</item>

@@ -1,18 +1,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+# --- Menu
+
 msgid "ethernet"
 msgstr "TCP/IP"
 
 msgid "ethernet_help"
-msgstr "Cliquez ici pour changer Paramètres TCP/IP."
+msgstr "Cliquer ici pour changer les paramètres TCP/IP."
 
 msgid "tcpIpSettings"
 msgstr "Réglages TCP/IP"
@@ -21,52 +23,60 @@ msgid "wan"
 msgstr "Internet"
 
 msgid "wan_help"
-msgstr "Cliquez ici pour modifier les paramètres d&#39;Internet."
+msgstr "Cliquer ici pour modifier les paramètres d'Internet."
+
+# --- TCP/IP Page
 
 msgid "primarySettings"
 msgstr "Paramètres principaux"
 
 msgid "primarySettings_help"
-msgstr "Réglages des ports Ethernet réels du serveur en plus des paramètres DNS des serveurs et des hôtes et des noms de domaine."
+msgstr "Configuration des ports Ethernet réels du serveur, des paramètres DNS des serveurs et des hôtes et noms de domaine."
 
 msgid "aliasSettings"
-msgstr "alias d&#39;interface"
+msgstr "Alias d'Interface"
 
 msgid "aliasSettings_help"
-msgstr "Paramètres des adresses IP supplémentaires pour lesquels ce serveur doit répondre."
+msgstr "Les adresses IP supplémentaires auxquelles ce serveur doit répondre."
+
+msgid "alphanum_rule"
+msgstr "Veuillez employer uniquement des caractères permis (alphanumériques) qui sont : des chiffres, des lettres sans accents en minuscules « a-z », le tiret « - », le sous-trait « _ » ou le point « . »"
 
 msgid "enterFqdn"
-msgstr "Hôte et le nom de domaine"
+msgstr "Hôte et nom de domaine"
 
 msgid "enterFqdn_help"
-msgstr "Entrer le nom d&#39;hôte du serveur dans le premier champ et le nom de domaine dans le second champ. Par exemple, www est un nom d&#39;hôte valide, et example.com est un nom de domaine valide. S&#39;il vous plaît entrer seulement minuscules caractères alphanumériques, des tirets ou des périodes."
+msgstr "Saisir le nom d'hôte du serveur dans le premier champ et le nom de domaine dans le second champ. [[base-network.alphanum_rule]]. Par exemple, « www » est un nom d'hôte valide, et « example.com » est un nom de domaine valide."
 
 msgid "hostNameField"
-msgstr "Nom d&#39;hôte"
+msgstr "Nom d'hôte"
 
 msgid "hostNameField_rule"
-msgstr "S&#39;il vous plaît entrer seulement minuscules caractères alphanumériques, des tirets ou des périodes. Par exemple, www est une entrée valide."
+msgstr "[[base-network.alphanum_rule]]. Par exemple, « www » est une entrée valide."
 
 msgid "hostNameField_help"
-msgstr "Entrez le nom d&#39;hôte de ce serveur. Le nom d&#39;hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-network.hostNameField_rule]]"
+msgstr "Saisir le nom d'hôte de ce serveur. Le nom d'hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-network.hostNameField_rule]]"
 
 msgid "domainNameField"
 msgstr "Nom de domaine"
 
 msgid "domainNameField_rule"
-msgstr "S&#39;il vous plaît entrer seulement minuscules caractères alphanumériques, des tirets ou des périodes. Le premier caractère doit être une lettre, et le dernier caractère doit être une lettre ou un chiffre. Par exemple, example.com est une entrée valide."
+msgstr "[[base-network.alphanum_rule]]. De plus, le premier caractère doit être une lettre et le dernier caractère doit être une lettre ou un chiffre. Par exemple, « example.com » est une entrée valide."
 
 msgid "domainNameField_help"
-msgstr "Entrez le nom de domaine de ce serveur. Le nom d&#39;hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-network.domainNameField_rule]]"
+msgstr "Saisir le nom de domaine de ce serveur. Le nom d'hôte et le nom de domaine combinés devraient identifier de manière unique ce serveur. [[base-network.domainNameField_rule]]"
 
 msgid "dnsAddressesField"
 msgstr "Serveurs DNS"
 
 msgid "dnsAddressesField_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide. Laissant ce champ vide permet d&#39;éviter cette machine de trouver d&#39;autres machines par nom d&#39;hôte ou de domaine et causera des difficultés de mise en réseau."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide. En laissant ce champ vide, cette machine aura des difficultés à trouver d'autres machines par nom d'hôte ou de domaine ce qui causera des difficultés de connexion dans le réseau."
 
 msgid "dnsAddressesField_help"
-msgstr "Saisissez l&#39;adresse IP ou des adresses de votre serveur de nom de domaine local ou serveurs. Un serveur de nom de domaine traduit les noms textuelles d&#39;hôte et des noms de domaine en adresses IP numériques, et vice-versa. [[base-network.dnsAddressesField_rule]]"
+msgstr "Saisissez l'adresse IP ou les adresses de votre ou de vos serveurs DNS locaux. Un serveur DNS (serveur de noms de domaine) traduit les noms d'hôte et les noms de domaine en adresses IP numériques, et vice-versa. [[base-network.dnsAddressesField_rule]]"
+
+# interface names. These only show up in the UI if their corresponding
+# network device actually exists according to the kernel. 10 should be enough.
 
 msgid "interfaceeth0"
 msgstr "Interface primaire"
@@ -120,7 +130,9 @@ msgid "interfaceeth9"
 msgstr "Dixième Interface"
 
 msgid "helpeth9"
-msgstr "dixième d&#39;interface"
+msgstr "dixième Interface"
+
+# leave these forms, because they may be used somewhere
 
 msgid "primaryInterface"
 msgstr "Interface primaire"
@@ -129,43 +141,45 @@ msgid "secondaryInterface"
 msgstr "Interface secondaire"
 
 msgid "ipAddressNetMaskMismatch"
-msgstr "Désolé, le masque de réseau IP est nécessaire si le champ Adresse IP est rempli po [[base-network.netMaskField_rule]]"
+msgstr "Désolé, le [[base-network.netMaskField]] est nécessaire si [[base-network.ipAddressField]] y figure. [[base-network.netMaskField_rule]]"
 
 msgid "netMaskIpAddressMismatch"
-msgstr "Désolé, le [[base-network.ipAddressField]] est nécessaire si le [[base-network.netMaskField]] champ est rempli po [[base-network.ipAddressField_rule]]"
+msgstr "Désolé, l'[[base-network.ipAddressField]] est nécessaire si le [[base-network.netMaskField]] y figure. [[base-network.ipAddressField_rule]]"
 
 msgid "macAddressField"
 msgstr "Adresse MAC"
 
 msgid "macAddressField_help"
-msgstr "Le Control (MAC) d&#39;accès aux médias est l&#39;adresse matérielle de la carte d&#39;interface réseau. Cette adresse matérielle est un identifiant unique et ne peut être modifiée après la fabrication."
+msgstr "Le « MAC » (Media Access Control) est un texte-chaîne alphanumérique représentant l'adresse matérielle de la carte d'interface réseau. Cette adresse matérielle est un identifiant unique et ne peut être modifié après la fabrication."
+
+# alias settings page for TCP/IP settings
 
 msgid "addAliasButton"
-msgstr "Ajouter Alias"
+msgstr "Ajouter alias"
 
 msgid "addAliasButton_help"
 msgstr "Ajouter un nouvel alias pour ce serveur."
 
 msgid "aliasName"
-msgstr "Alias ​​de l&#39;interface"
+msgstr "Alias de l'interface"
 
 msgid "aliasName_help"
-msgstr "L&#39;interface et le nombre d&#39;alias avec lequel cet alias est associé."
+msgstr "L'interface et le nombre d'alias avec lequel cet alias est associé."
 
 msgid "aliasIpaddr"
 msgstr "[[base-network.ipAddressField]]"
 
 msgid "aliasIpaddr_help"
-msgstr "L&#39;adresse IP sur laquelle cet alias est à l&#39;écoute."
+msgstr "L'adresse IP sur laquelle cet alias est à l'écoute."
 
 msgid "aliasNetmask"
-msgstr "Masque"
+msgstr "Masque réseau"
 
 msgid "aliasNetmask_empty"
-msgstr "Désolé, vous n&#39;avez pas entré un masque pour cet alias. [[base-network.route_form_netmask_rule]]"
+msgstr "Désolé, vous n'avez pas saisi de masque pour cet alias. [[base-network.route_form_netmask_rule]]"
 
 msgid "aliasNetmask_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] n&#39;est pas un masque valide. [[base-network.route_form_netmask_rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas un masque valide. [[base-network.route_form_netmask_rule]]"
 
 msgid "aliasNetmask_help"
 msgstr "Le masque de réseau pour cet alias."
@@ -174,37 +188,39 @@ msgid "aliasActions"
 msgstr "Actions"
 
 msgid "aliasActions_help"
-msgstr "Cliquez sur l&#39;icône Modifier pour modifier les paramètres de cet alias. Cliquez sur l&#39;icône Supprimer pour supprimer cet alias."
+msgstr "Cliquer sur l'icône [[base-palette.modify]] pour changer les paramètres de cet alias. Cliquer sur l'icône [[base-palette.remove]] pour supprimer cet alias."
 
 msgid "aliaseth0"
-msgstr "Alias ​​primaires de l&#39;interface [[VAR.num]]"
+msgstr "Alias de l'[[base-network.interfaceeth0]] [[VAR.num]]"
 
 msgid "aliaseth1"
-msgstr "Alias ​​interface secondaire [[VAR.num]]"
+msgstr "Alias de l'[[base-network.interfaceeth1]] [[VAR.num]]"
 
 msgid "aliaseth2"
-msgstr "Alias ​​d&#39;interface tiers [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth2]] [[VAR.num]]"
 
 msgid "aliaseth3"
-msgstr "Quatrième Alias ​​Interface [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth3]] [[VAR.num]]"
 
 msgid "aliaseth4"
-msgstr "Alias ​​cinquième de l&#39;interface [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth4]] [[VAR.num]]"
 
 msgid "aliaseth5"
-msgstr "Sixième Alias ​​Interface [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth5]] [[VAR.num]]"
 
 msgid "aliaseth6"
-msgstr "Septième Alias ​​Interface [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth6]] [[VAR.num]]"
 
 msgid "aliaseth7"
-msgstr "Alias ​​de l&#39;interface huitième [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth7]] [[VAR.num]]"
 
 msgid "aliaseth8"
-msgstr "Alias ​​de l&#39;interface neuvième [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth5]] [[VAR.num]]"
 
 msgid "aliaseth9"
-msgstr "Alias ​​de l&#39;interface dixième [[VAR.num]]"
+msgstr "Alias de la [[base-network.interfaceeth9]] [[VAR.num]]"
+
+# add/modify alias page
 
 msgid "addAlias"
 msgstr "Ajouter Alias"
@@ -216,112 +232,115 @@ msgid "assocIface"
 msgstr "Interface"
 
 msgid "assocIface_help"
-msgstr "L&#39;interface réelle à laquelle cet alias doit être associée."
+msgstr "L'interface réelle à laquelle cet alias doit être associé."
 
 msgid "aliasModIpaddr"
 msgstr "[[base-network.ipAddressField]]"
 
 msgid "aliasModIpaddr_empty"
-msgstr "Désolé, vous n&#39;avez pas entré l&#39;adresse IP sur laquelle cet alias devraient écouter. [[base-network.ipAddressField_rule]]"
+msgstr "Désolé, vous n'avez pas saisi l'adresse IP à laquelle cet alias devrait écouter. [[base-network.ipAddressField_rule]]"
 
 msgid "aliasModIpaddr_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] n&#39;est pas une adresse IP valide. [[base-network.ipAddressField_rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une adresse IP valide. [[base-network.ipAddressField_rule]]"
 
 msgid "aliasModIpaddr_help"
-msgstr "L&#39;adresse IP sur laquelle cet alias devraient écouter."
+msgstr "L'adresse IP à laquelle cet alias devrait écouter."
+
+# Add static Routes
 
 msgid "routes"
 msgstr "Modifier les routes statiques"
 
 msgid "routes_help"
-msgstr "Cliquez ici pour créer des routes statiques à partir de ce serveur à d&#39;autres sous-réseaux."
+msgstr "Cliquer ici pour créer des routes statiques à partir de ce serveur à d'autres sous-réseaux."
 
+	# list
 msgid "routeList-list-title"
 msgstr "Liste des routes statiques"
 
 msgid "createRoute"
-msgstr "Ajouter Route statique"
+msgstr "Ajouter une Route Statique"
 
 msgid "route-target"
-msgstr "Réseau Adresse IP cible"
+msgstr "Adresse IP cible"
 
 msgid "route-target_help"
-msgstr "C&#39;est l&#39;adresse IP du sous-réseau auquel l&#39;itinéraire statique indiquées concernent."
+msgstr "L'adresse IP du sous-réseau auquel l'itinéraire statique indiqué réfère."
 
 msgid "route-netmask"
 msgstr "Cible Masque de sous-réseau"
 
 msgid "route-netmask_help"
-msgstr "C&#39;est le masque de sous-réseau auquel l&#39;itinéraire statique indiquées concernent."
+msgstr "Le masque de sous-réseau auquel l'itinéraire statique indiquées concernent."
 
 msgid "route-gateway"
 msgstr "Passerelle"
 
 msgid "route-gateway_help"
-msgstr "Il s&#39;agit de la passerelle réseau par laquelle le trafic réseau du sous-réseau cible sera acheminé."
+msgstr "Il s'agit de la passerelle réseau par laquelle le trafic réseau du sous-réseau cible sera acheminé."
 
 msgid "route-device"
 msgstr "Appareil"
 
 msgid "route-device_help"
-msgstr "C&#39;est l&#39;interface réseau par laquelle tout le trafic de la route statique sera acheminé."
+msgstr "L'interface réseau par laquelle tout le trafic de la route statique sera acheminé."
 
 msgid "modifyRoute"
-msgstr "Modifier Route statique"
+msgstr "Modifier Route Statique"
 
 msgid "verify_delete"
-msgstr "Etes-vous sûr de vouloir supprimer la route statique [[VAR.route]]?"
+msgstr "Etes-vous sûr de vouloir supprimer la route statique [[VAR.route]] ?"
 
 msgid "route_form_target"
 msgstr "sous-réseau cible"
 
 msgid "route_form_target_help"
-msgstr "Entrez l&#39;adresse IP du sous-réseau d&#39;être re-routé. [[base-network.route_form_target_rule]]"
+msgstr "Taper l'adresse IP du sous-réseau d'être re-routé. [[base-network.route_form_target_rule]]"
 
 msgid "route_form_target_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.0 est une entrée valide."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.0 est une entrée valide."
 
 msgid "route_form_target_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
 
 msgid "route_form_target_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.route_form_target]]. [[base-network.route_form_target_rule]]"
 
 msgid "route_form_netmask"
 msgstr "Masque de réseau cible"
 
 msgid "route_form_netmask_help"
-msgstr "Entrez le masque de réseau du sous-réseau d&#39;être re-routé. [[base-network.route_form_netmask_rule]]"
+msgstr "Taper le masque réseau du sous-réseau re-routé. [[base-network.route_form_netmask_rule]]"
 
 msgid "route_form_netmask_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 255.255.255.0 est une entrée valide."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 255.255.255.0 est une entrée valide."
 
 msgid "route_form_netmask_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
 
 msgid "route_form_netmask_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.route_form_netmask]]. [[base-network.route_form_netmask_rule]]"
 
 msgid "route_form_gateway"
 msgstr "Passerelle"
 
 msgid "route_form_gateway_help"
-msgstr "Saisissez l&#39;adresse IP de la passerelle réseau sur le sous-réseau de ce serveur à travers lequel les paquets à destination du sous-réseau cible seront réacheminés. [[base-network.route_form_gateway_rule]]"
+msgstr "Taper l'adresse IP de la passerelle du sous-réseau de ce serveur. Les paquets à destination du sous-réseau cible seront réacheminés par cette passerelle réseau. [[base-network.route_form_gateway_rule]]"
 
 msgid "route_form_gateway_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
 
 msgid "route_form_gateway_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
 
 msgid "route_form_gateway_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.route_form_gateway]]. [[base-network.route_form_gateway_rule]]"
 
 msgid "route_form_device"
 msgstr "Interface réseau"
 
 msgid "route_form_device_help"
-msgstr "Sélectionnez l&#39;interface réseau par lequel des paquets à destination du sous-réseau cible seront réacheminés. Si aucun périphérique n&#39;est spécifié, un dispositif sera choisi en fonction de l&#39;adresse IP de la passerelle réseau."
+msgstr "Sélectionner l'interface réseau par lequel des paquets à destination du sous-réseau cible seront réacheminés. Si aucun interface n'est spécifié, il en sera choisi en fonction de l'adresse IP de la passerelle réseau."
 
 msgid "route_form_device-eth0"
 msgstr "Interface Ethernet primaire (eth0)"
@@ -354,19 +373,23 @@ msgid "route_form_device-eth9"
 msgstr "Interface Ethernet (eth9)"
 
 msgid "route_form_device-ppp0"
-msgstr "Interface protocole Point-to-Point (ppp0)"
+msgstr "Interface au protocole Point-to-Point (ppp0)"
 
 msgid "routeList_action_header"
 msgstr "Actions"
 
 msgid "routeList_action_header_help"
-msgstr "Cliquez sur l&#39;icône Modifier pour modifier les paramètres d&#39;un itinéraire, ou cliquez sur l&#39;icône Supprimer pour supprimer un itinéraire."
+msgstr "Cliquer sur l'icône [[base-palette.modify]] pour changer les paramètres d'un itinéraire ou sur l'icône [[base-palette.remove]] pour supprimer un itinéraire."
+
+# --- Internet Page
+
+	# change type drop-down
 
 msgid "changeMode"
 msgstr "Changer la connexion Internet pour ..."
 
 msgid "none"
-msgstr "Aucun ou Intranet Utilisez uniquement"
+msgstr "Aucune ou uniquement Intranet"
 
 msgid "broadband"
 msgstr "Modem câble ou DSL"
@@ -377,32 +400,36 @@ msgstr "Passerelle sur réseau local (LAN)"
 msgid "narrowband"
 msgstr "Modem analogique ou RNIS"
 
+	# - Gateway on LAN
+
 msgid "lanSettings"
 msgstr "Réglages Internet - Passerelle sur réseau local (LAN)"
 
 msgid "gatewayField"
-msgstr "Server Gateway"
+msgstr "Passerelle (Server Gateway)"
 
 msgid "gatewayField_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
 
 msgid "gatewayField_help"
-msgstr "Saisissez l&#39;adresse IP de la passerelle du réseau local pour ce serveur. C&#39;est la porte d&#39;entrée pour les interfaces primaires et secondaires. Une passerelle de réseau permet à votre serveur de se connecter au monde extérieur de votre zone de réseau local. [[base-network.gatewayField_rule]]"
+msgstr "Taper l'adresse IP de la passerelle du réseau local pour ce serveur. C'est la porte d'entrée pour les interfaces primaires et secondaires. Une passerelle de réseau permet à votre serveur de se connecter au monde extérieur de votre zone de réseau local. [[base-network.gatewayField_rule]]"
 
 msgid "forwardField"
-msgstr "IP forwarding et masquerading"
+msgstr "IP Forwarding / Masquerading"
 
 msgid "forwardField_help"
-msgstr "Sélectionnez la méthode de transmission de paquets à travers l&#39;appareil de serveur. Choisir la transmission de paquets sur le masquage permet la traduction d&#39;adresse réseau. Cela permet à votre organisation de partager l&#39;accès à Internet en traduisant tout le trafic réseau entre une adresse IP accessible au public et de nombreuses adresses IP privées à travers cet appareil de serveur. Choisir seulement la transmission de paquets sans masquage permet au trafic uniquement entre une interface réseau et l&#39;autre sans fournir la traduction d&#39;adresse réseau. Choisir aucune transmission de paquets ne permet pas de trafic entre une interface réseau et l&#39;autre."
+msgstr "Sélectionner la méthode de transmission des paquets par ce serveur. « IP Forwarding » transfère les paquets entre le réseau externe et interne, « Masquerading » permet le NAT (Network Address Translation), la traduction d'adresses réseau. Le choix « [[base-network.forwardNat]] » permet le partage de l'accès à Internet en traduisant tout le trafic réseau entre une adresse IP externe accessible au public et de nombreuses adresses IP privées internes à travers de cet interface. Le choix « [[base-network.forward]] » permet qu'un seul et unique trafic entre une interface réseau externe et l'autre interne (IP Forwarding) sans fournir de NAT (Masquerading). En choisissant aucune transmission de paquets avec « [[base-network.forwardOff]] », il n'y aura pas de trafic entre le réseau externe et l'autre interne."
 
 msgid "forward"
-msgstr "Seuls les paquets IP avant"
+msgstr "Uniquement Forward IP Packets"
 
 msgid "forwardNat"
-msgstr "Transmettre les paquets IP sur le masquage"
+msgstr "Forward IP Packets avec Masquerading"
 
 msgid "forwardOff"
-msgstr "Ne pas faire suivre les paquets IP"
+msgstr "pas de IP Forwarding"
+
+# --- Cable Modem/DSL
 
 msgid "broadbandSettings"
 msgstr "Réglages Internet - Modem câble ou DSL"
@@ -411,136 +438,149 @@ msgid "networkField"
 msgstr "Interface secondaire"
 
 msgid "networkField_help"
-msgstr "Sélectionnez la configuration de réseau approprié pour l&#39;interface secondaire de ce serveur."
+msgstr "Sélectionner la configuration de réseau appropriée pour l'interface secondaire de ce serveur."
 
 msgid "dhcp"
-msgstr "Obtenir automatiquement en utilisant Dynamic Host Configuration Protocol (DHCP)"
+msgstr "Obtenir automatiquement en utilisant DHCP (Dynamic Host Configuration Protocol)"
 
 msgid "dhcpHostNameField"
-msgstr "Client Nom d&#39;hôte"
+msgstr "Nom d'hôte du client"
 
 msgid "dhcpHostNameField_rule"
-msgstr "S&#39;il vous plaît entrer seulement minuscules caractères alphanumériques, des tirets ou des périodes. Par exemple, www est une entrée valide."
+msgstr "[[base-network.alphanum_rule]]."
 
 msgid "dhcpHostNameField_help"
-msgstr "Entrez le nom d&#39;hôte qui identifie ce serveur en tant que client Dynamic Host Configuration Protocol (DHCP). [[base-network.dhcpHostNameField_rule]]"
+msgstr "Saisir le nom d'hôte qui identifie ce serveur en tant que client DHCP (Dynamic Host Configuration Protocol). [[base-network.dhcpHostNameField_rule]]"
 
 msgid "dhcpHostNameField_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-network.dhcpHostNameField]]. [[base-network.dhcpHostNameField_rule]]"
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.dhcpHostNameField]]. [[base-network.dhcpHostNameField_rule]]"
 
 msgid "dhcpClientIdField"
-msgstr "l&#39;identification du client"
+msgstr "Identification du client"
 
 msgid "dhcpClientIdField_help"
-msgstr "Entrez la chaîne d&#39;identification qui identifie ce serveur en tant que client Dynamic Host Configuration Protocol (DHCP)."
+msgstr "Saisir le texte-chaîne identifiant ce serveur en tant que client DHCP (Dynamic Host Configuration Protocol)."
 
 msgid "pppoe"
-msgstr "Obtenir automatiquement en utilisant le protocole point à point sur Ethernet (PPPoE)"
+msgstr "Obtenir automatiquement en utilisant le protocole PPPoE (Point-to-Point Protocol Over Ethernet)"
 
 msgid "pppUserNameField"
-msgstr "Nom d&#39;utilisateur"
+msgstr "Nom d'utilisateur"
 
 msgid "pppUserNameField_help"
-msgstr "Entrez le nom d&#39;utilisateur utilisé pour se connecter à votre fournisseur d&#39;accès à Internet."
+msgstr "Saisir le nom d'utilisateur utilisé pour se connecter à votre fournisseur d'accès à Internet."
 
 msgid "pppUserNameField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.pppUserNameField]]."
+msgstr "Désolé, vous n'avez pas entré de valeur pour [[base-network.pppUserNameField]]."
 
 msgid "pppPasswordField"
 msgstr "Mot de passe"
 
 msgid "pppPasswordField_help"
-msgstr "Entrez le mot de passe utilisé pour se connecter à votre fournisseur d&#39;accès à Internet."
+msgstr "Saisir le mot de passe utilisé pour se connecter à votre fournisseur d'accès à Internet."
 
 msgid "pppPasswordField_invalid"
-msgstr "Désolé, vous n&#39;avez pas entré le même mot de passe dans les deux champs. Le même mot de passe est entré dans les deux champs pour se protéger contre les erreurs de frappe. S&#39;il vous plaît essayer de nouveau."
+msgstr "Désolé, vous n'avez pas saisi le même mot de passe dans les deux champs. Le même mot de passe doit figurer dans les deux champs pour se protéger contre les erreurs de frappe. Veuillez essayer de nouveau."
 
 msgid "static"
 msgstr "Spécifier manuellement"
+
+# general ip and netmask strings, there is specialized help text
+# for the primary and secondary interfaces. all other interfaces use these.
 
 msgid "ipAddressField"
 msgstr "Adresse IP"
 
 msgid "ipAddressField_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 192.168.1.1 est une entrée valide."
 
 msgid "ipAddressField_help"
-msgstr "Entrez l&#39;adresse IP de la [[VAR.name]]. Si vous utilisez une seule connexion d&#39;interface réseau à l&#39;appareil de serveur, utilisez l&#39;interface primaire et laissez les autres interfaces vide. [[base-network.ipAddressField_rule]]"
+msgstr "Taper l'adresse IP de la [[VAR.name]]. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez les autres interfaces vide. [[base-network.ipAddressField_rule]]"
 
 msgid "ipAddressField_invalid"
-msgstr "Désolé, la valeur saisie pour [[base-network.ipAddressField]] n&#39;est pas une adresse IP. [[base-network.ipAddressField_rule]]"
+msgstr "Désolé, la valeur saisie pour [[base-network.ipAddressField]] n'est pas une adresse IP. [[base-network.ipAddressField_rule]]"
 
 msgid "netMaskField"
 msgstr "Masque de réseau IP"
 
 msgid "netMaskField_rule"
-msgstr "S&#39;il vous plaît entrer une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 255.255.255.0 est une entrée valide."
+msgstr "Veuillez taper une série de quatre nombres compris entre 0 et 255 séparés par des points. Par exemple, 255.255.255.0 est une valeur valide."
 
 msgid "netMaskField_help"
-msgstr "Entrez le masque de réseau de la [[VAR.name]]. Si vous utilisez une seule connexion d&#39;interface réseau à l&#39;appareil de serveur, utilisez l&#39;interface primaire et laissez les autres interfaces vide. [[base-network.netMaskField_rule]]"
+msgstr "Taper le masque de réseau de la [[VAR.name]]. Si vous n'utilisez qu'une seule connexion d'interface réseau au serveur, utilisez l'interface primaire et laissez les autres interfaces vides. [[base-network.netMaskField_rule]]"
 
 msgid "netMaskField_invalid"
-msgstr "Désolé, la valeur saisie pour [[base-network.netMaskField]] n&#39;est pas un masque de réseau IP. [[base-network.netMaskField_rule]]"
+msgstr "Désolé, la valeur saisie pour [[base-network.netMaskField]] n'est pas un masque de réseau IP. [[base-network.netMaskField_rule]]"
+
+# specialized help for the above fields for eth0 and eth1
+# to keep them "friendly" if no more interfaces are added
 
 msgid "ipAddressField1"
 msgstr "[[base-network.ipAddressField]]"
 
 msgid "ipAddressFieldeth0_empty"
-msgstr "Désolé, vous n&#39;avez pas entré l&#39;adresse IP de l&#39;interface principale, qui est généralement reliée au côté Intranet. [[base-network.ipAddressField_rule]]"
+msgstr "Désolé, vous n'avez pas saisi l'adresse IP de l'interface principale, qui est généralement reliée au côté Intranet. [[base-network.ipAddressField_rule]]"
 
 msgid "ipAddressField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré l&#39;adresse IP de l &#39;[[VAR.interface]]. [[base-network.ipAddressField_rule]]"
+msgstr "Désolé, vous n'avez pas saisi l'adresse IP de [[VAR.interface]]. [[base-network.ipAddressField_rule]]"
 
 msgid "ipAddressField1_help"
-msgstr "Entrez l&#39;adresse IP de l&#39;interface principale, qui est généralement reliée au côté Intranet. Si vous utilisez une seule connexion d&#39;interface réseau à l&#39;appareil de serveur, utilisez l&#39;interface primaire et laissez l&#39;interface secondaire vide. [[base-network.ipAddressField_rule]]"
+msgstr "Taper l'adresse IP de l'interface principale, qui est généralement reliée au côté Intranet. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.ipAddressField_rule]]"
 
 msgid "ipAddressField2"
 msgstr "[[base-network.ipAddressField]]"
 
 msgid "ipAddressField2_help"
-msgstr "Saisissez l&#39;adresse IP de l&#39;interface secondaire, qui est généralement reliée au côté d&#39;Internet. Si vous utilisez une seule connexion d&#39;interface réseau à l&#39;appareil de serveur, utilisez l&#39;interface primaire et laissez l&#39;interface secondaire vide. [[base-network.ipAddressField_rule]]"
+msgstr "Taper l'adresse IP de l'interface secondaire, qui est généralement reliée au côté d'Internet. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.ipAddressField_rule]]"
 
 msgid "netMaskField1"
 msgstr "[[base-network.netMaskField]]"
 
 msgid "netMaskFieldeth0_empty"
-msgstr "Désolé, vous n&#39;avez pas saisi le masque de réseau de l&#39;interface principale. [[base-network.netMaskField_rule]]"
+msgstr "Désolé, vous n'avez pas saisi le masque de réseau de l'interface principale. [[base-network.netMaskField_rule]]"
 
 msgid "netMaskField_empty"
-msgstr "Désolé, vous n&#39;avez pas saisi le masque de réseau de la [[VAR.interface]]. [[base-network.netMaskField_rule]]"
+msgstr "Désolé, vous n'avez pas saisi le masque de réseau de [[VAR.interface]]. [[base-network.netMaskField_rule]]"
 
 msgid "netMaskField1_help"
-msgstr "Entrez le masque de réseau de l&#39;interface principale. Si vous utilisez une seule connexion d&#39;interface réseau à l&#39;appareil de serveur, utilisez l&#39;interface primaire et laissez l&#39;interface secondaire vide. [[base-network.netMaskField_rule]]"
+msgstr "Taper le masque de réseau de l'interface principale. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.netMaskField_rule]]"
 
 msgid "netMaskField2"
 msgstr "[[base-network.netMaskField]]"
 
 msgid "netMaskField2_help"
-msgstr "Entrez le masque de réseau de l&#39;interface secondaire. Si vous utilisez une seule connexion d&#39;interface réseau à l&#39;appareil de serveur, utilisez l&#39;interface primaire et laissez l&#39;interface secondaire vide. [[base-network.netMaskField_rule]]"
+msgstr "Taper le masque de réseau de l'interface secondaire. Si vous utilisez une seule connexion d'interface réseau à l'appareil de serveur, utilisez l'interface primaire et laissez l'interface secondaire vide. [[base-network.netMaskField_rule]]"
+
+# error message to protect routes and aliases from having their
+# interface disabled
 
 msgid "ifaceUsedByRoute"
-msgstr "L&#39;interface ne peut pas être désactivé, car il est utilisé par un itinéraire statique (s). S&#39;il vous plaît supprimer les routes statiques à l&#39;aide de cette interface avant de désactiver l&#39;interface."
+msgstr "L'interface ne peut pas être désactivée car elle est utilisée par un ou plusieurs itinéraires statiques. Veuillez supprimer les routes statiques à l'aide de cette interface avant de la désactiver."
 
 msgid "ifaceUsedByAlias"
-msgstr "L&#39;interface ne peut pas être désactivé, car il est nécessaire par un alias d&#39;interface (es). Tous les alias d&#39;interface pour l&#39;interface doit être supprimée avant elle peut être désactivée."
+msgstr "L'interface ne peut pas être désactivée car il est nécessaire par un ou plusieurs alias d'interface. Tous les alias d'interface doivent être supprimés avant que celle-ci puisse être désactivée."
 
 msgid "natField"
-msgstr "Masquage IP"
+msgstr "IP Masquerading"
 
 msgid "natField_help"
-msgstr "Sélectionnez cette option pour cet appareil de serveur effectuer le masquage d&#39;IP. Masquage d&#39;IP permet la traduction d&#39;adresses réseau qui permet à votre organisation de partager l&#39;accès à Internet en traduisant à travers cet appareil de serveur tout le trafic réseau entre votre seule adresse IP accessible au public et vos nombreuses adresses IP privées accessibles."
+msgstr "Sélectionner cette option pour cet appareil de serveur effectuer le « IP Masquerading », le masquage d'IP. Celui-ci permet le NAT (Network Address Translation), la traduction d'adresses réseau, qui autorise le partage de l'accès à Internet en traduisant tout le trafic réseau entre une adresse IP externe accessible au public et de nombreuses adresses IP privées internes."
+
+# No internet connection
 
 msgid "wanNoneMessage"
-msgstr "Il n&#39;ya pas de connexion Internet."
+msgstr "Il n'y a pas de connexion Internet."
 
 msgid "wanNoneConfirm"
-msgstr "Etes-vous sûr que vous ne voulez pas spécifier un type de connexion Internet?"
+msgstr "Etes-vous sûr de ne pas vouloir spécifier un type de connexion Internet?"
+
+# Modem/ISDN  NOTE: These strings are also in the file wizard.po in the module base-wizard.mod. They need to be in both places
 
 msgid "modemAuthModeField"
-msgstr "Mode d&#39;authentification"
+msgstr "Mode d'authentification"
 
 msgid "modemAuthModeField_help"
-msgstr "Il existe deux modes d&#39;authentification communes pour une utilisation avec les connexions réseau commuté. Consultez votre fournisseur de service pour le mode d&#39;authentification à utiliser."
+msgstr "Il existe deux modes d'authentification communes pour une utilisation avec les connexions d'accès à distance commutées dial-up. Consultez votre fournisseur de service pour le mode d'authentification à utiliser."
 
 msgid "pap"
 msgstr "PAP"
@@ -549,19 +589,19 @@ msgid "chap"
 msgstr "CHAP"
 
 msgid "modemAuthHostField"
-msgstr "Hôte du serveur"
+msgstr "Nom d'hôte du serveur"
 
 msgid "modemAuthHostField_help"
-msgstr "Le serveur d&#39;accès distant hostname est nécessaire pour l&#39;authentification CHAP dial-up. Consultez votre fournisseur de services pour le nom du serveur si l&#39;authentification CHAP est utilisé."
+msgstr "Le nom d'hôte serveur d'accès distant dial-up est nécessaire pour l'authentification CHAP. Consultez votre fournisseur de services pour le nom du serveur si l'authentification CHAP est utilisé."
 
 msgid "modemAuthHostField_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-network.modemAuthHostField]]."
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.modemAuthHostField]]."
 
 msgid "modemConnStatus"
 msgstr "État de la connexion"
 
 msgid "modemConnStatus_help"
-msgstr "Cela montre l&#39;état actuel de la connexion et indique si le modem est actuellement connecté à votre fournisseur de services Internet."
+msgstr "Cela montre l'état actuel de la connexion et indique si le modem est actuellement connecté à votre fournisseur de services Internet."
 
 msgid "modemSettings"
 msgstr "Réglages Internet - modem analogique ou RNIS"
@@ -570,112 +610,116 @@ msgid "modemConnModeField"
 msgstr "Mode de connexion"
 
 msgid "modemConnModeField_help"
-msgstr "Indiquez si la connexion modem doit toujours être établie, devrait être établi uniquement lorsque cela est nécessaire pour une connexion sortante, ou ne devrait jamais être établie."
+msgstr "Indiquer si la connexion modem doit toujours être établie, doit être établie uniquement lorsque cela est nécessaire pour une connexion sortante ou ne devrait jamais être établie."
 
 msgid "demand"
 msgstr "Connexion sur demande seulement"
 
 msgid "on"
-msgstr "Connexion Toujours"
+msgstr "Connexion toujours activée"
 
 msgid "off"
-msgstr "Connexion Toujours désactivé"
+msgstr "Connexion toujours désactivée"
 
 msgid "modemUserNameField"
-msgstr "Dial-Up Compte Nom d&#39;utilisateur"
+msgstr "Identifiant du compte Dial-Up"
 
 msgid "modemUserNameField_help"
-msgstr "Entrez le nom d&#39;utilisateur du compte dial-up utilisé pour se connecter à votre fournisseur d&#39;accès à Internet."
+msgstr "Saisir le nom d'utilisateur du compte dial-up utilisé pour se connecter à votre fournisseur d'accès à l'Internet."
 
 msgid "modemUserNameField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.modemUserNameField]]. S&#39;il vous plaît entrer le nom d&#39;utilisateur du compte dial-up utilisé pour se connecter à votre fournisseur d&#39;accès à Internet."
+msgstr "Désolé, vous n'avez pas entré de valeur pour [[base-network.modemUserNameField]]. Veuillez saisir le nom d'utilisateur du compte dial-up utilisé pour se connecter à votre fournisseur d'accès à Internet."
 
 msgid "modemPasswordField"
-msgstr "Compte Dial-Up Mot de passe"
+msgstr "Mot de passe du compte Dial-Up"
 
 msgid "modemPasswordField_help"
-msgstr "Entrez le mot de passe du compte d&#39;accès à distance permettant de se connecter à votre fournisseur d&#39;accès à Internet. Le même mot de passe est entré dans les deux champs pour se protéger contre les erreurs de frappe."
+msgstr "Saisir le mot de passe du compte d'accès à distance dial-up permettant de se connecter à votre fournisseur d'accès à Internet. Le même mot de passe doit figurer dans les deux champs pour se protéger contre les erreurs de frappe."
 
 msgid "modemPasswordField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.modemPasswordField]]. S&#39;il vous plaît entrer le mot de passe du compte d&#39;accès à distance permettant de se connecter à votre fournisseur d&#39;accès à Internet."
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-network.modemPasswordField]]. Veuillez saisir le mot de passe du compte d'accès à distance dial-up permettant de se connecter à votre fournisseur d'accès à Internet."
 
 msgid "modemPasswordField_invalid"
-msgstr "Désolé, vous n&#39;avez pas entré le même mot de passe dans les deux champs. Le même mot de passe est entré dans les deux champs pour se protéger contre les erreurs de frappe. S&#39;il vous plaît essayer de nouveau."
+msgstr "[[base-network.passwordWebmasterField_invalid]]"
 
 msgid "modemPhoneField"
 msgstr "Numéro de téléphone"
 
 msgid "modemPhoneField_help"
-msgstr "Entrez le numéro de téléphone de votre fournisseur d&#39;accès à Internet."
+msgstr "Taper le numéro de téléphone de votre fournisseur d'accès à Internet."
 
 msgid "modemPhoneField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.modemPhoneField]]. S&#39;il vous plaît entrer le numéro de téléphone de votre fournisseur d&#39;accès à Internet."
+msgstr "Désolé, vous n'avez pas saisi de valeur pour [[base-network.modemPhoneField]]. Veuillez taper le numéro de téléphone de votre fournisseur d'accès à Internet."
 
 msgid "modemInitStrField"
-msgstr "Modem Chaîne d&#39;initialisation"
+msgstr "Texte-chaîne d' initialisation du modem"
 
 msgid "modemInitStrField_help"
-msgstr "Entrez la chaîne d&#39;initialisation du modem qui sera transmis au modem avant de composer. Vous devez entrer une chaîne d&#39;initialisation ou de votre serveur ne sera pas en mesure d&#39;utiliser votre modem. Si vous ne connaissez pas votre modems chaîne d&#39;initialisation correcte, essayez d&#39;entrer «ATZ» ou consulter la documentation de votre modem."
+msgstr "Saisir le texte-chaîne d'initialisation du modem qui sera transmis au modem avant de composer le numéro. Vous devez saisir un text-chaîne d'initialisation ou de votre serveur ne sera pas en mesure d'utiliser votre modem. Si vous ne connaissez pas l'initialisation correcte de votre modem , essayez de saisir « ATZ » ou consulter la documentation de votre modem."
 
 msgid "modemInitStrField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré de valeur pour [[base-network.modemInitStrField]]. Vous devez entrer une chaîne d&#39;initialisation ou de votre serveur ne sera pas en mesure d&#39;utiliser votre modem. Si vous ne connaissez pas votre modems chaîne d&#39;initialisation correcte, essayez d&#39;entrer «ATZ» ou consulter la documentation de votre modem."
+msgstr "Désolé, vous n'avez pas entré de valeur pour [[base-network.modemInitStrField]]. Vous devez saisir un texte-chaîne d'initialisation ou de votre serveur ne sera pas en mesure d'utiliser votre modem. Si vous ne connaissez pas l'initialisation correcte de votre modem , essayez de saisir « ATZ » ou consulter la documentation de votre modem."
 
 msgid "modemIpField"
 msgstr "Adresse IP locale"
 
 msgid "modemIpField_help"
-msgstr "Entrez l&#39;adresse IP locale à cette extrémité de la connexion modem seulement si elle a été statique attribuée par votre fournisseur d&#39;accès à Internet."
+msgstr "Taper l'adresse IP locale à cette extrémité de la connexion modem seulement si elle a été statique attribuée par votre fournisseur d'accès à Internet."
 
 msgid "modemIpField_invalid"
-msgstr "Désolé, [[VAR.invalidValue]] est une valeur correcte pour [[base-network.modemIpField]]."
+msgstr "Désolé, [[VAR.invalidValue]] n'est pas une valeur correcte pour [[base-network.modemIpField]]."
 
 msgid "modemSpeedField"
 msgstr "Vitesse du modem (Baud)"
 
 msgid "modemSpeedField_help"
-msgstr "Sélection de la vitesse de la connexion de ligne série pour le modem. La valeur par défaut est 115200."
+msgstr "Sélection de la vitesse de la connexion de ligne série pour le modem. La valeur par défaut est 115'200."
 
 msgid "modemPulseField"
 msgstr "Activer Pulse Dialing"
 
 msgid "modemPulseField_help"
-msgstr "Tournez impulsion ou désactiver la numérotation. L&#39;activation de cette fonctionnalité va utiliser impulsion de numérotation au lieu de la numérotation par tonalité. La valeur par défaut est de laisser impulsion de numérotation off."
+msgstr "Numérotation par impulsions ou par tonalité. La valeur par défaut est la numérotation par tonalité."
 
 msgid "saveTest"
-msgstr "Enregistrez et testez"
+msgstr "Enregistrer et tester"
 
 msgid "saveTest_help"
-msgstr "Cela permettra d&#39;économiser vos paramètres actuels et tenter un test de connexion à votre fournisseur de services Internet pour vérifier les réglages."
+msgstr "Cela permettra d'enregistrer vos paramètres actuels et tenter un test de connexion à votre fournisseur d'accès Internet (FAI) pour vérifier."
+
+# --- IP Address change confirm notice
 
 msgid "confirmNoDhcp"
-msgstr "Votre [[VAR.interface]] paramètres ont été obtenus à partir d&#39;un serveur Dynamic Host Configuration Protocol (DHCP).\nChanging ces paramètres s&#39;éteignent recherches DHCP sur le [[VAR.interface]]. Voulez-vous continuer?"
+msgstr "Vos paramètres [[VAR.interface]] ont été obtenus à partir d'un serveur HHCP (Dynamic Host Configuration Protocol).\nEn changeant ces paramètres, les recherches DHCP sur [[VAR.interface]] ne seront plus activées. Voulez-vous continuer ?"
 
 msgid "ethernetChanged"
-msgstr "Vos paramètres réseau ont changé. Dans quelques instants, le système tentera de se connecter à votre nouvelle adresse IP.\nSi la page de connexion ne s&#39;affiche pas, s&#39;il vous plaît vous connecter à votre serveur applicatif en saisissant la nouvelle adresse dans votre navigateur."
+msgstr "Vos paramètres réseau ont changé. Dans quelques instants, le système tentera de se connecter à votre nouvelle adresse IP.\nSi la page de connexion ne s'affiche pas, veuillez vous connecter à votre serveur en saisissant la nouvelle adresse dans votre navigateur."
 
 msgid "confirmMigrateAliases"
-msgstr "Le [[VAR.interface]] a un alias d&#39;interface qui en dépendent. La désactivation de l&#39;interface provoque ces alias de l&#39;interface d&#39;être déplacés à l&#39;interface principale. Les alias peuvent être déplacés vers une autre interface après le changement en modifiant chaque alias.\n\nVoulez-vous sûr que vous voulez désactiver la fonction [[VAR.interface]]?"
+msgstr "Le [[VAR.interface]] a un alias d'interface qui en dépend. La désactivation de l'interface provoque ces alias de l'interface  à être déplacés vers l'interface principale. Les alias peuvent être déplacés vers une autre interface après le changement en modifiant chaque alias.\n\nÊtes-vous sûr que vous voulez désactiver la fonction [[VAR.interface]] ?"
 
 msgid "adminRedirect"
-msgstr "En quelques secondes, vous devriez être redirigé vers la nouvelle adresse IP. Si vous n&#39;êtes pas redirigé, s&#39;il vous plaît cliquez sur le [[base-network.reconnect]] bouton ci-dessous pour tenter de se connecter à la nouvelle adresse IP. Si cela échoue, modification de l&#39;adresse IP peut avoir échoué, et vous devez cliquer sur le [[base-network.oldIPReconnect]] pour tenter de se reconnecter au serveur adresse IP précédente."
+msgstr "En quelques secondes, vous devriez être redirigé vers la nouvelle adresse IP. Si vous n'êtes pas redirigé, veuillez cliquer sur le bouton [[base-network.reconnect]] ci-dessous pour tenter de se connecter à la nouvelle adresse IP. Si cela échoue, modification de l'adresse IP peut avoir échoué, et vous devez cliquer sur le [[base-network.oldIPReconnect]] pour tenter de se reconnecter au serveur à l'adresse IP précédente."
 
 msgid "reconnect"
-msgstr "Connectez-vous à une nouvelle adresse"
+msgstr "Connectez-vous à la nouvelle adresse"
 
 msgid "reconnect_help"
-msgstr "Cliquez ici pour vous connecter aux serveurs nouvelle adresse IP."
+msgstr "Cliquer ici pour vous connecter au serveur avec la nouvelle adresse IP."
 
 msgid "oldIPReconnect"
-msgstr "Connectez-vous à Ancienne adresse"
+msgstr "Connectez-vous à l'ancienne adresse"
 
 msgid "oldIPReconnect_help"
-msgstr "Cliquez ici pour essayer de se reconnecter à l&#39;ancienne adresse IP des serveurs. Cela ne devrait être utilisée que si la connexion à la nouvelle adresse IP avec le bouton [[base-network.reconnect]] a échoué."
+msgstr "Cliquer ici pour essayer de se reconnecter à l'ancienne adresse IP du serveur. Ceci n'est nécessaire que si la connexion à la nouvelle adresse IP a échoué avec le bouton [[base-network.reconnect]]."
+
+# --- Network Usage Info
 
 msgid "netUsage"
 msgstr "Réseau"
 
 msgid "netUsage_help"
-msgstr "statistiques d&#39;utilisation du réseau peuvent être trouvés ici."
+msgstr "Les statistiques d'utilisation du réseau."
 
 msgid "amNetUsage"
 msgstr "Utilisation du réseau"
@@ -684,13 +728,13 @@ msgid "eth0"
 msgstr "Interface primaire (eth0)"
 
 msgid "eth0_help"
-msgstr "Les statistiques pour l&#39;interface réseau primaire"
+msgstr "Les statistiques pour l'interface du réseau primaire"
 
 msgid "eth1"
 msgstr "Interface secondaire (eth1)"
 
 msgid "eth1_help"
-msgstr "Les statistiques pour l&#39;interface réseau secondaire"
+msgstr "Les statistiques pour l'interface du réseau secondaire"
 
 msgid "eth2"
 msgstr "Interface réseau (eth2)"
@@ -719,134 +763,117 @@ msgstr "Interface réseau (eth9)"
 msgid "ppp0"
 msgstr "Interface protocole Point-to-Point (ppp0)"
 
+# --- Active Monitor
+
 msgid "amIface"
 msgstr "Interface réseau"
 
 msgid "amIface_help"
-msgstr "C&#39;est l&#39;identifiant d&#39;interface réseau."
+msgstr "L'identifiant d'interface réseau."
 
 msgid "amSentB"
-msgstr "Sent (Octets)"
+msgstr "Envoyé (Octets)"
 
 msgid "amSentB_help"
-msgstr "C&#39;est le nombre total d&#39;octets envoyés sur cette interface réseau."
+msgstr "Le total d'octets envoyés de cet interface réseau."
 
 msgid "amRcvdB"
 msgstr "Reçu (Octets)"
 
 msgid "amRcvdB_help"
-msgstr "Il s&#39;agit du nombre total d&#39;octets reçus sur cette interface réseau."
+msgstr "Le total d'octets reçus par cet interface réseau."
 
 msgid "amErrors"
 msgstr "Erreurs"
 
 msgid "amErrors_help"
-msgstr "Ceci est le nombre total d&#39;erreurs envoyés ou reçus sur cette interface réseau."
+msgstr "Le nombre total d'erreurs envoyées ou reçues par cet interface réseau."
 
 msgid "amColls"
 msgstr "Collisions"
 
 msgid "amColls_help"
-msgstr "C&#39;est le nombre total de collisions détectées sur cette interface réseau."
+msgstr "Le nombre total de collisions détectées sur cette interface réseau."
 
 msgid "amNetworkNameTag"
 msgstr "État du réseau"
 
 msgid "amNetDetails"
-msgstr "Réseau des détails d&#39;état"
+msgstr "Détails sur l'état du réseau"
 
 msgid "amIfaceIsDown"
-msgstr "L&#39;interface réseau [[VAR.iface]] est en panne."
+msgstr "L'interface réseau [[VAR.iface]] est en panne."
 
 msgid "amGatewayIsUnreachable"
-msgstr "La passerelle de réseau n&#39;est pas accessible. Veuillez vérifier que le câble réseau est branché correctement et que vos paramètres réseau sont correctement configurés. Vous pouvez configurer les paramètres du réseau, soit par le [[base-apache.amAdmservNameTag]], ou par l&#39;écran LCD du panneau avant. Vérifiez également que le réseau lui-même fonctionne correctement."
+msgstr "La passerelle de réseau n'est pas accessible. Veuillez vérifier que le câble réseau est branché correctement et que vos paramètres réseau sont convenablement configurés. Vous pouvez configurer les paramètres du réseau soit dans « [[base-apache.amAdmservNameTag]] » soit par l'écran LCD du panneau avant. Vérifiez également que le réseau lui-même fonctionne correctement."
 
 msgid "amNetworkOK"
 msgstr "Le réseau fonctionne normalement."
 
 msgid "dialoutWindowing"
-msgstr "Période de connexion"
+msgstr "Durée de connexion"
 
 msgid "dialoutWindowing_help"
-msgstr "l&#39;utilisation du modem peut être limité à certaines heures de la journée. Par défaut, le modem est autorisé à composer n&#39;importe quel moment de la journée."
+msgstr "L'utilisation du modem peut être limitée à certaines heures de la journée. Par défaut, le modem est autorisé à composer le numéro de connexion à n'importe quel moment de la journée."
 
 msgid "dialTimes"
-msgstr "Connectez fois"
+msgstr "Nombre de connexions"
 
 msgid "noDialTimes"
-msgstr "Ne pas brancher"
+msgstr "Ne pas se connecter"
+
+# Strings for Connection Period time labels
 
 msgid "modem_hour_0"
-msgstr "00 heures 00-à-00h59"
-
+msgstr "00:00 - 00:59"
 msgid "modem_hour_1"
-msgstr "01 heures 00-1h59"
-
+msgstr "01:00 - 01:59"
 msgid "modem_hour_2"
-msgstr "2 heures 00-02h59"
-
+msgstr "02:00 - 02:59"
 msgid "modem_hour_3"
-msgstr "03 heures 00-3h59"
-
+msgstr "03:00 - 03:59"
 msgid "modem_hour_4"
-msgstr "4 heures 00-04h59"
-
+msgstr "04:00 - 04:59"
 msgid "modem_hour_5"
-msgstr "05 heures 00-05h59"
-
+msgstr "05:00 - 05:59"
 msgid "modem_hour_6"
-msgstr "6 heures 00-06h59"
-
+msgstr "06:00 - 06:59"
 msgid "modem_hour_7"
-msgstr "7 heures 00-07h59"
-
+msgstr "07:00 - 07:59"
 msgid "modem_hour_8"
-msgstr "08 heures 00-08h59"
-
+msgstr "08:00 - 08:59"
 msgid "modem_hour_9"
-msgstr "09 heures 00-à-09h59"
-
+msgstr "09:00 - 09:59"
 msgid "modem_hour_10"
-msgstr "10:00-10:59"
-
+msgstr "10:00 - 10:59"
 msgid "modem_hour_11"
-msgstr "11:00-11:59"
-
+msgstr "11:00 - 11:59"
 msgid "modem_hour_12"
-msgstr "12:00-12:59"
-
+msgstr "12:00 - 12:59"
 msgid "modem_hour_13"
-msgstr "13h00-13h59"
-
+msgstr "13:00 - 13:59"
 msgid "modem_hour_14"
-msgstr "14:00-14:59"
-
+msgstr "14:00 - 14:59"
 msgid "modem_hour_15"
-msgstr "15h00-15h59"
-
+msgstr "15:00 - 15:59"
 msgid "modem_hour_16"
-msgstr "16h00-16h59"
-
+msgstr "16:00 - 16:59"
 msgid "modem_hour_17"
-msgstr "17h00-17h59"
-
+msgstr "17:00 - 17:59"
 msgid "modem_hour_18"
-msgstr "18h00-18h59"
-
+msgstr "18:00 - 18:59"
 msgid "modem_hour_19"
-msgstr "19h00-19h59"
-
+msgstr "19:00 - 19:59"
 msgid "modem_hour_20"
-msgstr "20:00-20:59"
-
+msgstr "20:00 - 20:59"
 msgid "modem_hour_21"
-msgstr "21h00-21h59"
-
+msgstr "21:00 - 21:59"
 msgid "modem_hour_22"
-msgstr "22h00-22h59"
-
+msgstr "22:00 - 22:59"
 msgid "modem_hour_23"
-msgstr "23h00-23h59"
+msgstr "23:00 - 23:59"
+
+# for modem_status.pl invoked directly from modem.php
 
 msgid "cantGetModem"
 msgstr "[[base-modem.cantGetModem]]"
@@ -860,20 +887,22 @@ msgstr "[[base-modem.offNow]]"
 msgid "onNow"
 msgstr "[[base-modem.onNow]]"
 
+# stuff from sauce-basic that belongs here
+
 msgid "gateway-not-reachable"
-msgstr "La passerelle spécifiée n&#39;a pas pu être atteint. S&#39;il vous plaît assurez-vous que votre passerelle est dans un sous-réseau accessible. Vous pourriez également vouloir vérifier vos règles de routage direct."
+msgstr "La passerelle spécifiée n'a pas pu être atteinte. Veuillez vous assurer que votre passerelle est dans un sous-réseau accessible. Vous devriez également vérifier les règles de routage direct."
 
 msgid "gatewayWithinOwnTargetSubnet"
-msgstr "Désolé, cette route n&#39;a pas pu être ajouté à la table de routage. La passerelle ([[VAR.gateway]]) ne peut pas se trouver dans le sous-réseau cible ([[VAR.target]])."
+msgstr "Désolé, cette route n'a pas pu être ajoutée à la table de routage. La passerelle ([[VAR.gateway]]) ne peut pas se trouver dans le sous-réseau cible ([[VAR.target]])."
 
 msgid "invalid-route"
-msgstr "Désolé, la route de [[VAR.network]] n&#39;a pas pu être ajouté à la table de routage. Il est possible que la passerelle spécifié, [[VAR.gateway]], est inaccessible. La cible est [[VAR.network]] qui doit être accessible par l&#39;intermédiaire de la passerelle, [[VAR.gateway]], et la liaison est ajoutée à l&#39;interface, [[VAR.device]]."
+msgstr "Désolé, la route de [[VAR.network]] n'a pas pu être ajoutée à la table de routage. Il est possible que la passerelle spécifiée [[VAR.gateway]] n'est pas inaccessible. La cible est [[VAR.network]] et doit être accessible par l'intermédiaire de la passerelle [[VAR.gateway]] et la liaison est ajoutée à l'interface [[VAR.device]]."
 
 msgid "badDefaultGateway"
-msgstr "Désolé, la passerelle par défaut, [[VAR.gateway]], est inaccessible avec la configuration actuelle. S&#39;il vous plaît vérifier les paramètres réseau pour s&#39;assurer au moins une des interfaces réseau se trouve sur le même réseau que la passerelle par défaut."
+msgstr "Désolé, la passerelle par défaut [[VAR.gateway]] est inaccessible avec la configuration actuelle. Veuillez vérifier les paramètres réseau pour s'assurer qu'au moins une des interfaces réseau se trouve sur le même réseau que la passerelle par défaut."
 
 msgid "disable-interface-first"
-msgstr "Désolé, vous ne pouvez pas supprimer les paramètres d&#39;une interface réseau compatible. S&#39;il vous plaît désactiver l&#39;interface avant de tenter de supprimer les paramètres."
+msgstr "Désolé, vous ne pouvez pas supprimer les paramètres d'une interface réseau compatible. Veuillez désactiver l'interface avant de tenter de supprimer les paramètres."
 
 msgid "amNetStats"
 msgstr "Statistiques réseau"
@@ -885,31 +914,31 @@ msgid "recv_bytes"
 msgstr "Octets reçus"
 
 msgid "recv_bytes_help"
-msgstr "Le nombre d&#39;octets reçus sur l&#39;interface de réseau."
+msgstr "Le nombre d'octets reçus par l'interface de réseau."
 
 msgid "recv_packets"
 msgstr "Paquets reçus"
 
 msgid "recv_packets_help"
-msgstr "Le nombre de paquets reçus sur l&#39;interface de réseau."
+msgstr "Le nombre de paquets reçus par l'interface de réseau."
 
 msgid "sent_bytes"
 msgstr "Octets envoyés"
 
 msgid "sent_bytes_help"
-msgstr "Le nombre d&#39;octets envoyés sur l&#39;interface de réseau."
+msgstr "Le nombre d'octets envoyés par l'interface de réseau."
 
 msgid "sent_packets"
 msgstr "Les paquets envoyés"
 
 msgid "sent_packets_help"
-msgstr "Le nombre de paquets envoyés sur l&#39;interface de réseau."
+msgstr "Le nombre de paquets envoyés par l'interface de réseau."
 
 msgid "errors"
 msgstr "Erreurs"
 
 msgid "errors_help"
-msgstr "Le nombre d&#39;erreurs de transmission et de réception sur l&#39;interface réseau. Un grand nombre d&#39;erreurs peut être le signe de problèmes de réseau."
+msgstr "Le nombre d'erreurs de transmission et de réception sur l'interface réseau. Un grand nombre d'erreurs peut être le signe de problèmes de réseau."
 
 msgid "collisions"
 msgstr "Collisions"
@@ -920,6 +949,8 @@ msgstr "Le nombre de collisions de réseau. Un grand nombre de collisions peut �
 msgid "stats_disabled"
 msgstr "Interface désactivé"
 
+# --- IP Pooling strings
+
 msgid "pooling_block"
 msgstr "[[base-network.sitepooling]]"
 
@@ -927,109 +958,114 @@ msgid "enabledField"
 msgstr "Activé"
 
 msgid "enabledField_help"
-msgstr "Activer [[base-network.sitepooling]]. Seules les adresses IP dans les plages ci-dessous seront autorisés pour une utilisation par des sites virtuels."
+msgstr "Activer [[base-network.sitepooling]]. Seules les adresses IP dans les plages ci-dessous seront autorisées a être utilisées par des sites virtuels."
 
 msgid "rangeList"
-msgstr "Des limites acceptables"
+msgstr "Limites acceptables"
 
 msgid "min"
 msgstr "Début de la plage"
 
 msgid "min_help"
-msgstr "Il s&#39;agit de l&#39;adresse IP à partir de la gamme."
+msgstr "L'adresse IP du début de plage."
 
 msgid "max"
-msgstr "Fin de Gamme"
+msgstr "Fin de la plage"
 
 msgid "max_help"
-msgstr "C&#39;est l&#39;adresse IP de fin de la plage."
+msgstr "L'adresse IP de la fin de la plage."
 
 msgid "add"
 msgstr "Ajouter"
 
 msgid "add_help"
-msgstr "Cliquez ici pour ajouter la plage à la liste."
+msgstr "Cliquer ici pour ajouter la plage à la liste."
 
 msgid "save"
 msgstr "Sauvegarder"
 
 msgid "save_help"
-msgstr "Cliquez ici pour enregistrer les modifications apportées à la gamme."
+msgstr "Cliquer ici pour enregistrer les modifications apportées à la plage."
 
 msgid "saveEnabled"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
 msgid "saveEnabled_help"
-msgstr "Cliquez ici pour sauver l&#39;état Activé."
+msgstr "Cliquer ici pour enregistrer l'activation."
 
 msgid "sitepooling"
-msgstr "L&#39;allocation des adresses IP"
+msgstr "L'allocation des adresses IP"
 
 msgid "sitepoolingDescription"
-msgstr "Cliquez ici pour spécifier les plages d&#39;adresses IP acceptables pour ce serveur."
+msgstr "Cliquer ici pour spécifier les plages d'adresses IP acceptables pour ce serveur."
 
 msgid "restricted"
-msgstr "L&#39;accès à cette page a été restreint."
+msgstr "L'accès à cette page a été restreinte."
 
 msgid "cant_enable_pooling"
-msgstr "L&#39;adresse IP suivante (s) ne sont pas dans l&#39;une des plages autorisées: [[VAR.ips_not_covered]]. S&#39;il vous plaît créer une gamme qui comprend les adresse (s) avant d&#39;activer [[base-network.sitepooling]]."
+msgstr "Les adresses IP suivantes ne sont pas dans l'une des plages autorisées : [[VAR.ips_not_covered]]. Veuillez créer une plage qui inclut ces adresses avant d'activer [[base-network.sitepooling]]."
 
 msgid "missing_part_of_range"
-msgstr "Vous avez entré une plage non valide. S&#39;il vous plaît entrer à la fois un début et une adresse IP de fin. Si vous souhaitez entrer dans une gamme qui couvre une seule adresse IP, s&#39;il vous plaît entrez l&#39;adresse IP à la fois le début et la fin de la plage."
+msgstr "Vous avez défini une plage non valide. Veuillez taper les adresses IP du début et de la fin de plage. Si vous souhaitez saisir dans une plage avec une seule adresse IP, veuillez taper la même adresse IP à la fois au début et la fin de la plage."
 
 msgid "minGreaterThanMax"
-msgstr "Le début IP [[VAR.range_min]] de l&#39;intervalle est supérieur à l&#39;IP de fin [[VAR.range_max]]. S&#39;il vous plaît entrer une adresse IP de début qui est inférieur ou égal à la fin de la plage."
+msgstr "L'adresse IP [[VAR.range_min]] du début de la plage est supérieur à celle de la fin [[VAR.range_max]]. Veuillez taper une adresse IP de début qui est inférieure ou égale à la fin de la plage."
 
 msgid "ip_not_in_range"
-msgstr "L&#39;adresse IP [[VAR.ipaddr]] n&#39;est pas dans l&#39;une des plages valides. S&#39;il vous plaît choisir une autre adresse IP."
+msgstr "L'adresse IP [[VAR.ipaddr]] n'est pas dans l'une des plages valides. Veuillez choisir une autre adresse IP."
 
 msgid "cant_change_range"
-msgstr "Désolé, je ne peux pas changer la gamme spécifiée. L&#39;adresse IP suivante (s) sont dans cette fourchette: [[VAR.affected_ips]]."
+msgstr "Désolé, la plage spécifiée ne peut être changée. Les adresses IP suivantes sont dans cette gamme : [[VAR.affected_ips]]."
 
 msgid "ip_restricted"
-msgstr "L&#39;adresse IP [[VAR.ipaddr]] n&#39;est pas autorisé. S&#39;il vous plaît choisir une autre adresse IP."
+msgstr "L'adresse IP [[VAR.ipaddr]] n'est pas autorisé. Veuillez choisir une autre adresse IP."
 
 msgid "cant_delete_range"
-msgstr "Désolé, je ne peux pas supprimer la plage spécifiée. L&#39;adresse IP suivante (s) sont dans cette fourchette: [[VAR.affected_ips]]."
+msgstr "Désolé, la plage spécifiée ne peut être supprimée. Les adresses IP suivantes sont dans cette gamme : [[VAR.affected_ips]]."
 
 msgid "cancel"
-msgstr "Résilier"
+msgstr "Annuler"
 
 msgid "cancel_help"
-msgstr "Cliquez ici pour annuler les modifications apportées à la gamme."
+msgstr "Cliquer ici pour annuler les modifications apportées à la gamme."
 
 msgid "valid_ranges"
-msgstr "Gammes valides:"
+msgstr "Plages valides :"
 
 msgid "valid_ranges_help"
-msgstr "Seules les adresses IP dans les plages listés sont autorisés pour une utilisation sur le système."
+msgstr "Seules les adresses IP dans les plages listées sont autorisées à être utilisées par le système."
+
+# (some) handler error messages
+# no_duplicates.pl
 
 msgid "noDuplicateDevices"
-msgstr "Une autre interface ou pseudonyme est déjà attribué le nom de l&#39;appareil, [[VAR.device]]. Le nom du périphérique pour chaque interface et alias doit être unique."
+msgstr "Un autre interface ou alias a déjà le nom [[VAR.device]]. Le nom du périphérique pour chaque interface et alias doit être unique."
 
 msgid "noDuplicateIPsAllowed"
-msgstr "Une autre interface ou un alias à l&#39;adresse IP, [[VAR.ipaddr]], qui existe déjà. L&#39;adresse IP de chaque interface et alias doit être unique."
+msgstr "Il existe déjà un autre interface ou un alias avec l'adresse IP [[VAR.ipaddr]]. L'adresse IP de chaque interface et alias doit être unique."
+
+# validate_netmask.pl
 
 msgid "invalidNetmaskReal"
-msgstr "Désolé, la valeur saisie pour le masque de réseau, [[VAR.netmask]], le [[VAR.device]] n&#39;est pas un masque utilisable. [[base-network.validNetmaskHelp]]"
+msgstr "Désolé, la valeur saisie pour le masque de réseau [[VAR.netmask]] du périphérique [[VAR.device]] n'est pas un masque utilisable. [[base-network.validNetmaskHelp]]"
 
 msgid "invalidNetmaskAlias"
-msgstr "Désolé, la valeur saisie pour le masque de réseau, [[VAR.netmask]], n&#39;est pas un masque utilisable. [[base-network.validNetmaskHelp]]"
+msgstr "Désolé, la valeur saisie pour le masque de réseau [[VAR.netmask]] n'est pas un masque utilisable. [[base-network.validNetmaskHelp]]"
 
 msgid "validNetmaskHelp"
-msgstr "Masques de réseau utilisables doivent être constitués d&#39;une série de quatre nombres compris entre 0 et 255 séparés par des points. Si vous souhaitez spécifier un sous-réseau, les chiffres principaux doivent être 255 et le numéro de sous-réseau doit être de 128, 192, 224, 240, 248, 252, ou 254. Par exemple, 255.255.0.0 255.128.0.0 et masque de réseau sont utilisables."
+msgstr "Les masques de réseau utilisables doivent être constitués d'une série de quatre nombres compris entre 0 et 255 séparés par des points. Si vous souhaitez spécifier un sous-réseau, les chiffres principaux doivent être 255 et le numéro de sous-réseau doit être de 128, 192, 224, 240, 248, 252, ou 254. Par exemple, 255.255.0.0 et 255.128.0.0 sont des masques de réseau utilisables."
 
 msgid "openvz_vps"
-msgstr "Il s'agit d'un OpenVZ VPS. Les paramètres réseau (tels que le nom d'hôte, nom de domaine, les serveurs DNS et passerelle) ne peuvent être modifiés sur le nœud maître. Pas dans les VPS lui-même. Ci-dessous vous pouvez contrôler les paramètres actuellement configurés pour ce VPS."
+msgstr "Ceci est un VPS OpenVZ. Les paramètres réseau (tels que le nom d'hôte, le nom de domaine, les serveurs DNS et la passerelle) ne peuvent être modifiés que dans le Master-Node, pas dans le VPS lui-même. Les paramètres de configuration actuels de ce VPS peuvent être consultés ci-dessous."
 
 msgid "cap_serverIpPooling"
 msgstr "Paramètres allocation d'adresses IP"
 
 msgid "cap_serverNetwork"
-msgstr "Paramètres TCP / IP"
+msgstr "Paramètres TCP/IP"
 
 msgid "admin"
 msgstr "Administrateurs de serveurs"
 
 msgid "admin_help"
-msgstr "Ce sont les administrateurs de serveur pour cette plage d'adresses IP."
+msgstr "Vice les administrateurs de serveur pour cette plage d'adresses IP."
