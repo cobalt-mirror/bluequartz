@@ -7,7 +7,7 @@ VENDORNAME='Project BlueQuartz'
 SERVICE=istat
 
 VERSION=1.2.0
-RELEASE=0BX05
+RELEASE=0BX06
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,11 +15,12 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
-BUILDSRC=no
+BUILDSRC=yes
 
 REQUIRES=istatd
+BUILDREQUIRES=libxml2-devel
 
 include /usr/sausalito/devel/module.mk
