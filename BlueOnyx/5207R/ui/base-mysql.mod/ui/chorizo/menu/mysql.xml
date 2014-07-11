@@ -1,0 +1,8 @@
+<item id="base_mysql" label="[[base-mysql.MySQL_menu]]" 
+    description="[[base-mysql.MySQL_menu_help]]" 
+    url="/mysql/mysqlserver"
+>
+    <parent id="base_controlpanel" order="80">
+        <access require="networkServices"/>
+    </parent>
+</item>
