@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.6.0
-Release: 0BX01%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -10,7 +10,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
-Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++
+Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++ libxml2-devel
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
@@ -53,6 +53,9 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX03
+- Added requirement for libxml2-devel
 
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX02
 - Modified scripts/mod_rpmize and rules/module.mk for better .svn excludes.
