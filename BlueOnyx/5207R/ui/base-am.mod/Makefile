@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=am
 
 VERSION=2.0.0
-RELEASE=0BX01
+RELEASE=0BX02
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDLOCALE=yes
 BUILDGLUE=yes
 BUILDSRC=yes
