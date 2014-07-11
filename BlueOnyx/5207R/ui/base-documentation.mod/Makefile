@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=documentation
 
 VERSION=1.1.0
-RELEASE=0BX03
+RELEASE=0BX04
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,7 +19,7 @@ BUILDARCH=noarch
 # or rpm gets confused
 EXTRAEXCLUDES=--exclude 'pkgs'
 
-BUILDUI=yes
+BUILDUI=new
 BUILDLOCALE=yes
 BUILDGLUE=no
 BUILDSRC=no
