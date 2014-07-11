@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
-Version: 0.5.3
-Release: 0BX02%{?dist}
+Version: 0.6.0
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,20 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX01
+- Updated to the new BlueOnyx RPM format for the Chorizo-GUI of 520XR.
+- Added new defines to rules/defines.mk 
+- Modified rules/module.mk to handle the new directory structure. 
+- Modified scripts/mod_rpmize to handle the new directory structure.
+- Axed a lot of garbage from glue/etc/rpm/macros.blueonyx
+- Additionally a BlueOnyx modules (toplevel) Makefile can now have
+- four settings for BUILDUI: yes, no, old and new. Selecting yes will
+  build with old and new GUI or whichever of the two is present. 
+  Selecting old will build with the old GUI only. Naturally selecting
+  new will only build with the new GUI instead.
+
+- Merged in locales support for the Netherlands ('nl_NL').
 
 * Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX02
 - Merged in locales support for the Netherlands ('nl_NL').

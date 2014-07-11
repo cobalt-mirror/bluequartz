@@ -21,6 +21,13 @@ UILOCALES=web
 UIEXTENSIONS=extensions
 UILCD=lcd
 
+#
+## Chorizo-Defines:
+#
+CHORIZO_MENUS=chorizo/menu
+CHORIZO_SERVICES=chorizo/web
+CHORIZO_EXTENSIONS=chorizo/extensions
+
 GLUEDIRS=schemas conf
 GLUEBINDIRS=handlers rules
 
@@ -144,7 +151,7 @@ mod_specfile:
 	fi; \
 	CCEBASE=$(CCEBASE) VENDOR=$(VENDOR) VENDORNAME=$(VENDORNAME) \
 	SERVICE=$(SERVICE) LCDDIR=$(LCDDIR) \
-	UIDIRS="$(UIMENUS) $(UISERVICES) $(UIEXTENSIONS) $(UILCD)" \
+	UIDIRS="$(UIMENUS) $(UISERVICES) $(UIEXTENSIONS) $(UILCD) $(CHORIZO_MENUS) $(CHORIZO_SERVICES) $(CHORIZO_EXTENSIONS)" \
 	VERSION=$(VERSION) RELEASE=$(RELEASE) LOCALES="$(LOCALES)" \
 	BUILDUI=$(BUILDUI) BUILDGLUE=$(BUILDGLUE) REQUIRES="$(REQUIRES) " \
 	BUILDLOCALE=$(BUILDLOCALE) BUILDARCH=$(BUILDARCH) \
@@ -194,7 +201,7 @@ mod_perl:
 	fi
 
 mod_ui:
-	-@if [ x"$(BUILDUI)" = x"yes" ]; then \
+	@if ([ x"$(BUILDUI)" = x"yes" ] || [ x"$(BUILDUI)" = x"old" ] || [ x"$(BUILDUI)" = x"new" ] ) ; then \
 		echo "building ui..."; \
 		if [ -d "ui/$(VENDORNAME)" ]; then \
 			dir="ui/$(VENDORNAME)"; \
@@ -306,69 +313,141 @@ mod_destructor:
 mod_capstone: mod_constructor mod_destructor
 
 install_ui:
-	-@if [ x"$(BUILDUI)" = x"yes" ]; then \
-		if [ -d "ui/$(VENDORNAME)" ]; then \
+	if ( [ x"$(BUILDUI)" = x"yes" ] || [ x"$(BUILDUI)" = x"old" ] || [ x"$(BUILDUI)" = x"new" ] ) ; then \
+		echo "BUILDUI is YES or OLD or NEW"; \
+		if [ -d "ui/$(VENDORNAME)" ];then\
 			dir="ui/$(VENDORNAME)"; \
 		else \
 			dir=ui; \
 		fi; \
-		echo "installing $$dir..."; \
-		for item in $(UIMENUS); do \
-			FLIST=`find $$dir/$$item -follow -type f 2>/dev/null \
-				| grep -v CVS | grep -v '/\.' `; \
-			if [ -n "$$FLIST" ]; then \
-			    echo "  -- installing $$item" ; \
-			    mkdir -p $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE); \
-			    $(INSTALL_OTH) $$FLIST \
-				$(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE); \
-			fi; \
-		done; \
+		if ( [ x"$(BUILDUI)" = x"yes" ] || [ x"$(BUILDUI)" = x"old" ] ) ; then \
+			echo "BUILDUI is YES or OLD"; \
+			echo "installing UIMENUS $$dir..."; \
+			for item in $(UIMENUS); do \
+				FLIST=`find $$dir/$$item -follow -type f 2>/dev/null \
+					| grep -v CVS | grep -v '/\.' `; \
+				if [ -n "$$FLIST" ]; then \
+				    echo "  -- installing $$item" ; \
+				    mkdir -p $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE); \
+				    $(INSTALL_OTH) $$FLIST \
+					$(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE); \
+				fi; \
+			done; \
+		fi; \
+		if ( [ x"$(BUILDUI)" = x"yes" ] || [ x"$(BUILDUI)" = x"new" ] ) ; then \
+			echo "BUILDUI is YES or NEW"; \
+			echo "installing CHORIZO_MENUS $$dir..."; \
+			for item in $(CHORIZO_MENUS); do \
+				FLIST=`find $$dir/$$item -follow -type f 2>/dev/null \
+					| grep -v CVS | grep -v '/\.' `; \
+				if [ -n "$$FLIST" ]; then \
+				    echo "  -- installing $$item" ; \
+				    mkdir -p $(CHORIZOMENU)/$(VENDOR)/$(SERVICE); \
+				    echo "  -- CHORIZO Menu: installing SERVICE: $(SERVICE) to $(CHORIZOMENU)/$(VENDOR)/$(SERVICE)" ; \
+				    $(INSTALL_OTH) $$FLIST $(CHORIZOMENU)/$(VENDOR)/$(SERVICE); \
+				fi; \
+			done; \
+			echo "installing $$dir..."; \
+			for item in $(CHORIZO_SERVICES); do \
+				echo "  -- CHORIZO VENDOR: Using Vendor: $(VENDOR)" ; \
+			    mkdir -p $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/config; \
+			    mkdir -p $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/controllers; \
+			    mkdir -p $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/models; \
+			    mkdir -p $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/views; \
+				FLIST=`find $$dir/$$item/config -follow -type f 2>/dev/null \
+					| grep -v CVS | grep -v '/\.' `; \
+				if [ -n "$$FLIST" ]; then \
+				    echo "  -- installing $$item" ; \
+				    echo "  -- FILELIST: $$FLIST" ; \
+				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/config; \
+				fi; \
+				FLIST=`find $$dir/$$item/controllers -follow -type f 2>/dev/null \
+					| grep -v CVS | grep -v '/\.' `; \
+				if [ -n "$$FLIST" ]; then \
+				    echo "  -- installing $$item" ; \
+				    echo "  -- FILELIST: $$FLIST" ; \
+				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/controllers; \
+				fi; \
+				FLIST=`find $$dir/$$item/models -follow -type f 2>/dev/null \
+					| grep -v CVS | grep -v '/\.' `; \
+				if [ -n "$$FLIST" ]; then \
+				    echo "  -- installing $$item" ; \
+				    echo "  -- FILELIST: $$FLIST" ; \
+				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/models; \
+				fi; \
+				FLIST=`find $$dir/$$item/views -follow -type f 2>/dev/null \
+					| grep -v CVS | grep -v '/\.' `; \
+				if [ -n "$$FLIST" ]; then \
+				    echo "  -- installing $$item" ; \
+				    echo "  -- FILELIST: $$FLIST" ; \
+				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/views; \
+				fi; \
+			done; \
+			for item in $(CHORIZO_EXTENSIONS); do \
+				if [ -d "$$dir/$$item" ]; then \
+					echo "  -- installing CHORIZO_EXTENSIONS $$item"; \
+					FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" -printf "%P "`; \
+					for file in $$FLIST; do \
+						domain=`echo $$file | gawk -F . '{ printf "%s.%s", $$(NF-1), $$(NF); }'`; \
+						install_name=`echo $$file | sed -e 's/\.[[:alnum:]]\+\.[[:alnum:]]\+$$//'`; \
+						echo "  -- CHORIZO-EXTENSION: item: $$item - domain: $$domain - name: $$install_name"; \
+						if [ x"$$domain" != x"$$install_name" ]; then \
+							mkdir -p $(CHORIZOEXT)/$$domain/; \
+							$(INSTALL_OTH) $$dir/$$item/$$file $(CHORIZOEXT)/$$domain/$$install_name; \
+						fi; \
+					done; \
+				fi; \
+			done; \
+		fi; \
 		exclude=""; \
-		for locale in $(LOCALES); do \
-			exclude="$$exclude -and -not -path *\.$$locale"; \
-		done; \
-		for item in $(UISERVICES); do \
-			if [ -d "$$dir/$$item" ]; then \
-				echo "  -- installing $$item" ; \
-				`cd $$dir/$$item; find -follow -type d $$exclude \
-					-not -path "*/.*" -not -path "*/CVS*" \
-					-exec mkdir -p $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE)/{} \;`; \
-				`cd $$dir/$$item; find -follow -type f $$exclude \
-					-not -path "*/.*" -not -path "*/CVS*" \
-					-exec $(INSTALL_OTH) {} $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE)/{} \;`; \
+		if ( [ x"$(BUILDUI)" = x"yes" ] || [ x"$(BUILDUI)" = x"old" ] ) ; then \
+			echo "BUILDUI is YES or OLD"; \
+			for locale in $(LOCALES); do \
+				exclude="$$exclude -and -not -path *\.$$locale"; \
+			done; \
+			for item in $(UISERVICES); do \
+				if [ -d "$$dir/$$item" ]; then \
+					echo "  -- installing UISERVICES $$item" ; \
+					`cd $$dir/$$item; find -follow -type d $$exclude \
+						-not -path "*/.*" -not -path "*/CVS*" \
+						-exec mkdir -p $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE)/{} \;`; \
+					`cd $$dir/$$item; find -follow -type f $$exclude \
+						-not -path "*/.*" -not -path "*/CVS*" \
+						-exec $(INSTALL_OTH) {} $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE)/{} \;`; \
+				fi; \
+			done; \
+			for item in $(UIEXTENSIONS); do \
+				if [ -d "$$dir/$$item" ]; then \
+					echo "  -- installing UIEXTENSIONS $$item"; \
+					FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" -printf "%P "`; \
+					for file in $$FLIST; do \
+						domain=`echo $$file | gawk -F . '{ printf "%s.%s", $$(NF-1), $$(NF); }'`; \
+						install_name=`echo $$file | sed -e 's/\.[[:alnum:]]\+\.[[:alnum:]]\+$$//'`; \
+						if [ x"$$domain" != x"$$install_name" ]; then \
+							mkdir -p $(CCEDIR)/ui/$$item/$$domain/; \
+							$(INSTALL_OTH) $$dir/$$item/$$file $(CCEDIR)/ui/$$item/$$domain/$$install_name; \
+						fi; \
+					done; \
+				fi; \
+			done; \
+			for item in $(UILCD); do \
+				if [ -d "$$dir/$$item" ]; then \
+					echo "  -- installing UILCD $$item"; \
+					FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" \
+						-not -path "*/.*" -printf "%P "`; \
+					for file in $$FLIST; do \
+						dirname=`dirname $$file`; \
+						if [ "$$dirname" != "" ]; then \
+							mkdir -m 0500 -p $(LCDINSTALLDIR)/$$dirname; \
+						fi; \
+						$(INSTALL) $(INSTALL_SBINFLAGS) $$dir/$$item/$$file \
+							$(LCDINSTALLDIR)/$$dirname; \
+					done; \
+				fi; \
+			done; \
+			if [ -f $$dir/Makefile ]; then \
+				PREFIX=$(PREFIX) make -C $$dir install; \
 			fi; \
-		done; \
-		for item in $(UIEXTENSIONS); do \
-			if [ -d "$$dir/$$item" ]; then \
-				echo "  -- installing $$item"; \
-				FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" -printf "%P "`; \
-				for file in $$FLIST; do \
-					domain=`echo $$file | gawk -F . '{ printf "%s.%s", $$(NF-1), $$(NF); }'`; \
-					install_name=`echo $$file | sed -e 's/\.[[:alnum:]]\+\.[[:alnum:]]\+$$//'`; \
-					if [ x"$$domain" != x"$$install_name" ]; then \
-						mkdir -p $(CCEDIR)/ui/$$item/$$domain/; \
-						$(INSTALL_OTH) $$dir/$$item/$$file $(CCEDIR)/ui/$$item/$$domain/$$install_name; \
-					fi; \
-				done; \
-			fi; \
-		done; \
-		for item in $(UILCD); do \
-			if [ -d "$$dir/$$item" ]; then \
-				echo "  -- installing $$item"; \
-				FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" \
-					-not -path "*/.*" -printf "%P "`; \
-				for file in $$FLIST; do \
-					dirname=`dirname $$file`; \
-					if [ "$$dirname" != "" ]; then \
-						mkdir -m 0500 -p $(LCDINSTALLDIR)/$$dirname; \
-					fi; \
-					$(INSTALL) $(INSTALL_SBINFLAGS) $$dir/$$item/$$file \
-						$(LCDINSTALLDIR)/$$dirname; \
-				done; \
-			fi; \
-		done; \
-		if [ -f $$dir/Makefile ]; then \
-			PREFIX=$(PREFIX) make -C $$dir install; \
 		fi; \
 	fi
 
