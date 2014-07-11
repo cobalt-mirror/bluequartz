@@ -66,8 +66,6 @@ done
   Selecting old will build with the old GUI only. Naturally selecting
   new will only build with the new GUI instead.
 
-- Merged in locales support for the Netherlands ('nl_NL').
-
 * Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX02
 - Merged in locales support for the Netherlands ('nl_NL').
 
