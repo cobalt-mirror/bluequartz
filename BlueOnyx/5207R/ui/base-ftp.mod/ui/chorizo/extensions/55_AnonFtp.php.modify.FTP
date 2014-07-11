@@ -1,0 +1,128 @@
+<?php
+// $Id: 55_AnonFtp.php.modify.FTP
+// AnonFtp.php.create.Vsite
+// Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
+
+include_once('UIExtension.php');
+
+class AnonFtpExtension extends UIExtension
+{
+    function display(&$ServerScriptHelper, &$container, $parameters)
+    {
+        $factory = $ServerScriptHelper->getHtmlComponentFactory("base-ftp");
+        $cce = $ServerScriptHelper->getCceClient();
+
+        //--- Start: Capabilities handling:
+        $CI =& get_instance();
+
+        // Get $sessionId and $loginName from Cookie (if they are set):
+        $sessionId = $CI->input->cookie('sessionId');
+        $loginName = $CI->input->cookie('loginName');
+        $locale = $CI->input->cookie('locale');
+
+        // Initialize Capabilities so that we can poll the access rights as well:
+        $Capabilities = new Capabilities($cce, $loginName, $sessionId);
+
+        // Only 'serverFTP' and 'manageSite' can modify things on this page.
+        // Site admins can view it for informational purposes.
+        if ($Capabilities->getAllowed('serverFTP')){
+            $access = 'rw';
+        }
+        elseif ($Capabilities->getAllowed('manageSite')) {
+            $access = 'rw';
+        }
+        else {
+            $access = 'r';
+        }
+        //--- Stop: Capabilities handling:
+
+        $defaults = $cce->get($parameters["CCE_OID"], "AnonFtp");
+        $vsite_disk = $cce->get($parameters["CCE_OID"], 'Disk');
+
+        //
+        //-- Reseller: Can the reseller that owns this Vsite modify this?
+        //
+        $Vsite = $cce->get($parameters['CCE_OID'], '');
+        $VsiteOwnerObj = $cce->getObject("User", array("name" => $Vsite['createdUser']));
+        if ($VsiteOwnerObj['name'] != "admin") {
+            $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
+            if (!in_array('resellerAnonFTP', $resellerCaps)) {
+                $defaults["enabled"] = '0';
+                $access = 'r';
+            }
+        }
+
+        //-- 
+
+        // construct all the form fields needed, note that only simple
+        // form fields are allowd.  no composite form fields
+        $ftpQuota =& $factory->getInteger("ftpQuota", $defaults["quota"], 1, $vsite_disk['quota'], $access);
+        $ftpQuota->setType('memdisk');
+        $ftpQuota->showBounds(FALSE);
+
+        $ftpUsers =& $factory->getInteger("ftpUsers", $defaults["maxConnections"], 1, $vsite_disk['quota'], $access);
+        $ftpUsers->setType('number');
+        $ftpUsers->showBounds(FALSE);
+    
+        // now add the form fields to the block, assume PagedBlock
+        if (isset($parameters['CAN_ADD_PAGE']))
+        {
+            $pageId = "SiteFtp";
+            $container->addPage($pageId, $factory->getLabel("ftpTabName"));
+        }
+        else
+        {
+            $pageId = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+        }
+ 
+        $anonFtp =& $factory->getMultiChoice('anonFtp');
+        $enable =& $factory->getOption("anonEnable", $defaults["enabled"], $access);
+        $enable->setLabel($factory->getLabel('anonEnable', false));
+        
+        $enable->addFormField($ftpQuota, $factory->getLabel("ftpQuota"), $pageId);
+        $enable->addFormField($ftpUsers, $factory->getLabel("ftpUsers"), $pageId);
+        $anonFtp->addOption($enable);
+        
+        $container->addFormField(
+                    $anonFtp,
+                    $factory->getLabel('anonFtp'),
+                    $pageId);
+    }
+
+    function handle(&$ServerScriptHelper, &$errors, $parameters, &$attributes) {
+        $this->attributes = $attributes;
+
+        $cce = $ServerScriptHelper->getCceClient();
+
+        $anonFtp_enabled = "0";
+        if (isset($this->attributes['anonFtp'])) {
+            if ($this->attributes['anonFtp'] == "1") {
+                $anonFtp_enabled = "1";
+            }
+        }
+
+        // Check if our quota has a unit:
+        $pattern = '/^(\d*\.{0,1}\d+)(K|M|G|T)$/';
+        if (preg_match($pattern, $attributes['ftpQuota'], $matches, PREG_OFFSET_CAPTURE)) {
+            // Quota has a unit:
+            $this->attributes['ftpQuota'] = (unsimplify_number($this->attributes['ftpQuota'], "K")/1000);
+        }
+        else {
+            // Quota has no unit:
+            $this->attributes['ftpQuota'] = $this->attributes['ftpQuota'];
+        }
+        
+        // simply set the values in CCE
+        $cce->set($parameters["CCE_OID"], "AnonFtp",
+            array(
+                "enabled" => $anonFtp_enabled, 
+                "quota" => $this->attributes['ftpQuota'], 
+                "maxConnections" => $this->attributes['ftpUsers']
+            ));
+    
+        // add any errors that occured so they can get back to the UI
+        $errors = array_merge($errors, $cce->errors());
+    }
+}
+?>
