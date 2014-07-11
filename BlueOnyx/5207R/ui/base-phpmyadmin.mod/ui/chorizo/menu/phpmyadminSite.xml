@@ -1,0 +1,12 @@
+<item 
+    id="base_phpmyadminSite" 
+    label="[[base-phpmyadmin.PMA]]" 
+    description="[[base-phpmyadmin.PMA_help]]" 
+    url="/phpmyadmin/site?group=[[VAR.group]]"
+    module="server"
+>
+    <parent id="base_programsSite" order="10">
+        <access require="siteAdmin"/>
+    </parent>
+
+</item>
