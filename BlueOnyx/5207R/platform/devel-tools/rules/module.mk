@@ -42,7 +42,7 @@ LOCALES=$(shell if [ -d "locale/$(VENDORNAME)" ]; then \
 			dir=locale; \
 		fi; \
 		if [ -d $$dir ]; then \
-			cd $$dir; tmp='-I CVS'; \
+			cd $$dir; tmp='-I .svn'; \
 			for i in $(XLOCALEPAT); do \
 	 			tmp="$$tmp -I $$i"; \
 			done; \
@@ -325,7 +325,7 @@ install_ui:
 			echo "installing UIMENUS $$dir..."; \
 			for item in $(UIMENUS); do \
 				FLIST=`find $$dir/$$item -follow -type f 2>/dev/null \
-					| grep -v CVS | grep -v '/\.' `; \
+					| grep -v CVS | grep -v '/\.' | grep -v '/\.svn' `; \
 				if [ -n "$$FLIST" ]; then \
 				    echo "  -- installing $$item" ; \
 				    mkdir -p $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE); \
@@ -339,7 +339,7 @@ install_ui:
 			echo "installing CHORIZO_MENUS $$dir..."; \
 			for item in $(CHORIZO_MENUS); do \
 				FLIST=`find $$dir/$$item -follow -type f 2>/dev/null \
-					| grep -v CVS | grep -v '/\.' `; \
+					| grep -v CVS | grep -v '/\.' | grep -v '/\.svn' `; \
 				if [ -n "$$FLIST" ]; then \
 				    echo "  -- installing $$item" ; \
 				    mkdir -p $(CHORIZOMENU)/$(VENDOR)/$(SERVICE); \
@@ -355,28 +355,28 @@ install_ui:
 			    mkdir -p $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/models; \
 			    mkdir -p $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/views; \
 				FLIST=`find $$dir/$$item/config -follow -type f 2>/dev/null \
-					| grep -v CVS | grep -v '/\.' `; \
+					| grep -v CVS | grep -v '/\.' | grep -v '/\.svn' `; \
 				if [ -n "$$FLIST" ]; then \
 				    echo "  -- installing $$item" ; \
 				    echo "  -- FILELIST: $$FLIST" ; \
 				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/config; \
 				fi; \
 				FLIST=`find $$dir/$$item/controllers -follow -type f 2>/dev/null \
-					| grep -v CVS | grep -v '/\.' `; \
+					| grep -v CVS | grep -v '/\.' | grep -v '/\.svn' `; \
 				if [ -n "$$FLIST" ]; then \
 				    echo "  -- installing $$item" ; \
 				    echo "  -- FILELIST: $$FLIST" ; \
 				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/controllers; \
 				fi; \
 				FLIST=`find $$dir/$$item/models -follow -type f 2>/dev/null \
-					| grep -v CVS | grep -v '/\.' `; \
+					| grep -v CVS | grep -v '/\.' | grep -v '/\.svn' `; \
 				if [ -n "$$FLIST" ]; then \
 				    echo "  -- installing $$item" ; \
 				    echo "  -- FILELIST: $$FLIST" ; \
 				    $(INSTALL_OTH) $$FLIST $(CHORIZOWEB)/$(VENDOR)/$(SERVICE)/models; \
 				fi; \
 				FLIST=`find $$dir/$$item/views -follow -type f 2>/dev/null \
-					| grep -v CVS | grep -v '/\.' `; \
+					| grep -v CVS | grep -v '/\.' | grep -v '/\.svn' `; \
 				if [ -n "$$FLIST" ]; then \
 				    echo "  -- installing $$item" ; \
 				    echo "  -- FILELIST: $$FLIST" ; \
@@ -386,7 +386,7 @@ install_ui:
 			for item in $(CHORIZO_EXTENSIONS); do \
 				if [ -d "$$dir/$$item" ]; then \
 					echo "  -- installing CHORIZO_EXTENSIONS $$item"; \
-					FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" -printf "%P "`; \
+					FLIST=`find $$dir/$$item -type f -not -path "*/.svn*" -printf "%P "`; \
 					for file in $$FLIST; do \
 						domain=`echo $$file | gawk -F . '{ printf "%s.%s", $$(NF-1), $$(NF); }'`; \
 						install_name=`echo $$file | sed -e 's/\.[[:alnum:]]\+\.[[:alnum:]]\+$$//'`; \
@@ -409,17 +409,17 @@ install_ui:
 				if [ -d "$$dir/$$item" ]; then \
 					echo "  -- installing UISERVICES $$item" ; \
 					`cd $$dir/$$item; find -follow -type d $$exclude \
-						-not -path "*/.*" -not -path "*/CVS*" \
+						-not -path "*/.*" -not -path "*/.svn*" \
 						-exec mkdir -p $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE)/{} \;`; \
 					`cd $$dir/$$item; find -follow -type f $$exclude \
-						-not -path "*/.*" -not -path "*/CVS*" \
+						-not -path "*/.*" -not -path "*/.svn*" \
 						-exec $(INSTALL_OTH) {} $(CCEDIR)/ui/$$item/$(VENDOR)/$(SERVICE)/{} \;`; \
 				fi; \
 			done; \
 			for item in $(UIEXTENSIONS); do \
 				if [ -d "$$dir/$$item" ]; then \
 					echo "  -- installing UIEXTENSIONS $$item"; \
-					FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" -printf "%P "`; \
+					FLIST=`find $$dir/$$item -type f -not -path "*/.svn*" -printf "%P "`; \
 					for file in $$FLIST; do \
 						domain=`echo $$file | gawk -F . '{ printf "%s.%s", $$(NF-1), $$(NF); }'`; \
 						install_name=`echo $$file | sed -e 's/\.[[:alnum:]]\+\.[[:alnum:]]\+$$//'`; \
@@ -433,7 +433,7 @@ install_ui:
 			for item in $(UILCD); do \
 				if [ -d "$$dir/$$item" ]; then \
 					echo "  -- installing UILCD $$item"; \
-					FLIST=`find $$dir/$$item -type f -not -path "*/CVS*" \
+					FLIST=`find $$dir/$$item -type f -not -path "*/.svn*" \
 						-not -path "*/.*" -printf "%P "`; \
 					for file in $$FLIST; do \
 						dirname=`dirname $$file`; \
@@ -487,7 +487,7 @@ install_locale: mod_locale
 		done; \
 		for item in $(UILOCALES); do \
 			FLIST=`find $$dir/$$item -follow -type f $$include \
-				2>/dev/null | grep -v CVS | grep -v '/\.'`; \
+				2>/dev/null | grep -v CVS | grep -v '/\.' | grep -v '/\.svn'`; \
 echo $$FLIST; \
 			if [ -n "$$FLIST" ]; then \
 			    echo "  -- installing $$item" ; \
@@ -523,11 +523,11 @@ install_glue:
 		echo "installing glue..."; \
 		for name in $(GLUEDIRS); do \
 			FLIST=`find $$dir/$$name -follow -type f 2>/dev/null \
-				| grep -v CVS | grep -v '/\.'`; \
+				| grep -v CVS | grep -v '/\.' | grep -v '/\.svn'`; \
 			if [ -n "$$FLIST" ]; then \
 			    echo "  -- installing $$name" ; \
 			    mkdir -p $(CCEDIR)/$$name/$(VENDOR)/$(SERVICE); \
-			find $$dir/$$name -follow \( -name CVS -o -name '.??*' \) -prune -or \
+			find $$dir/$$name -follow \( -name CVS -o -name '.svn' \) -prune -or \
 				-type f -exec $(INSTALL_OTH) \{} \
 				$(CCEDIR)/$$name/$(VENDOR)/$(SERVICE) \; ; \
 			fi; \
@@ -537,7 +537,7 @@ install_glue:
 		if [ -n "$$FLIST" ] ; then \
 			echo "  -- installing ccewrap" ; \
 			mkdir -p $(CCEWRAPD)/$(VENDOR)/$(SERVICE) ; \
-			find $$dir/ccewrap -follow \( -name CVS -o -name '\.??*' \) -prune -or \
+			find $$dir/ccewrap -follow \( -name CVS -o -name '\.svn' \) -prune -or \
 				-type f -exec $(INSTALL_OTH) \{} \
 				$(CCEWRAPD)/$(VENDOR)/$(SERVICE) \; ; \
 		fi; \
@@ -547,7 +547,7 @@ install_glue:
 			if [ -n "$$FLIST" ]; then \
 			    echo "  -- installing $$name" ; \
 			    mkdir -p $(CCEDIR)/$$name/$(VENDOR)/$(SERVICE); \
-			    find $$dir/$$name \( -name CVS -o -name '\.??*' \) -prune -or -type f \
+			    find $$dir/$$name \( -name CVS -o -name '\.svn' \) -prune -or -type f \
 			    	-exec $(INSTALL_BIN) \{} \
 			   	 $(CCEDIR)/$$name/$(VENDOR)/$(SERVICE) \; ; \
 			fi; \
@@ -571,7 +571,7 @@ install_perl:
 		else \
 			vendor_dir=`echo -n $(VENDOR) | $(PERL) -e '$$foo = <STDIN>; print ucfirst($$foo);'`; \
 			mkdir -p $(CCEDIR)/perl/$$vendor_dir; \
-			FLIST=`find $$dir -type f -not -path '*CVS*' \
+			FLIST=`find $$dir -type f -not -path '*.svn*' \
 				-not -name '\.*'`; \
 			for file in $$FLIST; do \
 				sans_perl=`echo $$file | sed -e 's/^perl\///'`; \
@@ -602,7 +602,7 @@ install_capstone:
 			$(CCEDIR)/capstone/$(VENDOR)-$(SERVICE).cap ;\
 	fi
 
-	-@FLIST=`find constructor -type f 2>/dev/null | grep -v CVS | grep -v '/\.'`; \
+	-@FLIST=`find constructor -type f 2>/dev/null | grep -v CVS | grep -v '/\.' | grep -v '/\.svn'`; \
 	if [ -n "$$FLIST" ]; then \
 		mkdir -p $(CCEDIR)/constructor/$(VENDOR)/$(SERVICE); \
 		echo "installing constructor..."; \
@@ -610,7 +610,7 @@ install_capstone:
 			$(CCEDIR)/constructor/$(VENDOR)/$(SERVICE); \
 	fi 
 
-	-@FLIST=`find destructor -type f 2>/dev/null | grep -v CVS | grep -v '/\.'`; \
+	-@FLIST=`find destructor -type f 2>/dev/null | grep -v CVS | grep -v '/\.' | grep -v '/\.svn'`; \
 	if [ -n "$$FLIST" ]; then \
 		mkdir -p $(CCEDIR)/destructor/$(VENDOR)/$(SERVICE); \
 		echo "installing constructor..."; \

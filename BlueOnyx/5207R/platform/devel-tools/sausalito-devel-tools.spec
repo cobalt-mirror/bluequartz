@@ -54,6 +54,9 @@ done
 
 %changelog
 
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX02
+- Modified scripts/mod_rpmize and rules/module.mk for better .svn excludes.
+
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX01
 - Updated to the new BlueOnyx RPM format for the Chorizo-GUI of 520XR.
 - Added new defines to rules/defines.mk 

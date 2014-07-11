@@ -271,6 +271,7 @@ sub print_section
                                 while (my $file = readdir(CHO)) {
                                     if ($file eq '.') { next; }
                                     if ($file eq '..') { next; }
+                                    if ($file eq '.svn') { next; }
                                     if (! -d "$uidir/$file") {
                                         print "CHORIZO web: $uidir/$file is not a directory! \n";
                                         next; 
