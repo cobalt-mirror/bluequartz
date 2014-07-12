@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgid "generateBut_help"
 msgstr "[[Base-sitestats.generateBut_help]]"
 
 msgid "summaryStats"
-msgstr "L&#39;utilisation du Web Statistiques sommaires"
+msgstr "L'utilisation du Web Statistiques sommaires"
 
 msgid "reportGenerated"
 msgstr "[[Base-sitestats.reportGenerated]]"
@@ -33,31 +33,31 @@ msgid "firstRequest"
 msgstr "Première demande"
 
 msgid "firstRequest_help"
-msgstr "La date de la première demande couverte par ce rapport. [[Base-sitestats.requestCoverageHint]]"
+msgstr "La date de la première requête couverte par ce rapport. [[Base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
-msgstr "Last Request"
+msgstr "Dernière demande"
 
 msgid "lastRequest_help"
 msgstr "La date de la dernière requête traitée dans ce rapport. [[Base-sitestats.requestCoverageHint]]"
 
 msgid "successfulRequests"
-msgstr "Nombre de requêtes réussies"
+msgstr "Nombre de demandes réussies"
 
 msgid "successfulRequests_help"
 msgstr "Ceci est le total des requêtes réussies."
 
 msgid "pageRequests"
-msgstr "Page Requests"
+msgstr "Demandes de pages"
 
 msgid "pageRequests_help"
-msgstr "C&#39;est le nombre de pages demandées. Une page est un fichier qui se termine en. Html,. Htm,. Asp, ou /."
+msgstr "Le nombre de pages sollicitées. Une page est un fichier qui se termine en « .html », « .htm », « .asp », ou « / »."
 
 msgid "failedRequests"
 msgstr "Demandes ayant échoué"
 
 msgid "failedRequests_help"
-msgstr "Quand les gens demandent fichiers inexistants, le serveur de l&#39;appareil génère une mauvaise demande. Cette catégorie comprend également les requêtes malformées et autres demandes erronées."
+msgstr "Quand des utilisateurs sollicitent des fichiers inexistants, le serveur génère une requête erronée. Cette catégorie comprend également les requêtes inexactes et autres fausses demandes."
 
 msgid "bytesTransfered"
 msgstr "[[Base-sitestats.bytesTransfered]]"
@@ -69,16 +69,16 @@ msgid "distinctFiles"
 msgstr "Fichiers distincts desservis"
 
 msgid "distinctFiles_help"
-msgstr "Nombre de fichiers distincts desservis par ce serveur de l&#39;appliance."
+msgstr "Le nombre de fichiers distincts desservis par ce serveur."
 
 msgid "uniqueHosts"
-msgstr "Ordinateurs uniques demande de contenu"
+msgstr "Ordinateurs uniques demandant un contenu"
 
 msgid "uniqueHosts_help"
-msgstr "Ceci affiche le nombre d&#39;ordinateurs uniques contact avec ce serveur. Il vous donne une idée approximative de combien de personnes différentes le contenu téléchargé à partir de ce serveur de l&#39;appliance. Note: Plusieurs ordinateurs derrière un pare-feu ou un serveur proxy sera considéré comme une seule adresse."
+msgstr "Ceci affiche le nombre d'ordinateurs uniques contactant ce serveur. Il vous donne une idée approximative du nombre de personnes différentes téléchargeant du contenu de ce serveur. Note : Plusieurs ordinateurs derrière un pare-feu ou un serveur proxy seront considérés comme une seule adresse."
 
 msgid "otherStatistics"
-msgstr "Autres statistiques d&#39;utilisation du Web"
+msgstr "Autres statistiques d'utilisation du Web"
 
 msgid "vsitesReportBut"
 msgstr "[[Base-sitestats.vsitesReportBut]]"
@@ -108,7 +108,7 @@ msgid "typesReportBut"
 msgstr "Demandes par type de fichier"
 
 msgid "typesReportBut_help"
-msgstr "Catégorise les demandes par les types de fichiers."
+msgstr "Catégorise les demandes par type de fichiers."
 
 msgid "requestReportBut"
 msgstr "[[Base-sitestats.requestReportBut]]"
@@ -168,7 +168,7 @@ msgid "requests_help"
 msgstr "Le nombre de demandes traitées."
 
 msgid "vsiteStats"
-msgstr "Web utilisation par site virtuel"
+msgstr "Utilisation Web par site virtuel"
 
 msgid "bytes"
 msgstr "[[Base-sitestats.bytes]]"
@@ -198,7 +198,7 @@ msgid "filetype_help"
 msgstr "[[Base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "Demander Statistiques"
+msgstr "Requêtes Statistiques"
 
 msgid "requestFile"
 msgstr "[[Base-sitestats.requestFile]]"

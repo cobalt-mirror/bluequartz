@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,8 +20,10 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
+# summary page
+
 msgid "summaryStats"
-msgstr "FTP utilisation Statistiques sommaires"
+msgstr "Résumé des statistiques de l'utilisation FTP"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -33,31 +35,31 @@ msgid "firstRequest"
 msgstr "Premier transfert"
 
 msgid "firstRequest_help"
-msgstr "La date du premier transfert couverte dans ce rapport. [[base-sitestats.requestCoverageHint]]"
+msgstr "La date du premier transfert mentionné dans ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
 msgstr "Dernier transfert"
 
 msgid "lastRequest_help"
-msgstr "La date du dernier transfert couvert dans ce rapport. [[base-sitestats.requestCoverageHint]]"
+msgstr "La date du dernier transfert mentionné dans ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "totalSent"
 msgstr "Total des fichiers envoyés"
 
 msgid "totalSent_help"
-msgstr "C&#39;est le nombre total de fichiers envoyés."
+msgstr "Le nombre total de fichiers envoyés par FTP."
 
 msgid "totalReceived"
 msgstr "Nombre de dossiers reçus"
 
 msgid "totalReceived_help"
-msgstr "C&#39;est le nombre total de dossiers reçus."
+msgstr "Le nombre total de fichiers reçus par FTP."
 
 msgid "successfulRequests"
-msgstr "Total des transferts réussis"
+msgstr "Total des transferts accomplis"
 
 msgid "successfulRequests_help"
-msgstr "Ceci est le total des transferts réussis."
+msgstr "Le total des transferts FTP accomplis."
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -66,19 +68,21 @@ msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
 msgid "distinctFiles"
-msgstr "Fichiers distincts transférés"
+msgstr "Fichiers dissemblables transférés"
 
 msgid "distinctFiles_help"
-msgstr "Nombre de fichiers distincts transférés par ce serveur."
+msgstr "Le nombre de fichiers divergents transférés par ce serveur."
 
 msgid "uniqueHosts"
-msgstr "Ordinateurs uniques Transfert de fichiers"
+msgstr "Ordinateurs uniques transférant des fichiers"
 
 msgid "uniqueHosts_help"
-msgstr "Ceci affiche le nombre d&#39;ordinateurs uniques contact avec ce serveur. Il donne une idée de combien de personnes différentes le contenu téléchargé à partir de ce serveur. Note: Plusieurs ordinateurs derrière un pare-feu ou un serveur proxy sera considéré comme une seule adresse."
+msgstr "Ceci affiche le nombre d'ordinateurs uniques en contact avec ce serveur. Il donne une idée de la quantité de personnes différentes qui ont téléchargé du contenu de ce serveur. Note : Plusieurs ordinateurs derrière un pare-feu ou un serveur proxy seront considéré comme un seul."
+
+# summary links
 
 msgid "otherStatistics"
-msgstr "Autres Statistiques d&#39;accès FTP"
+msgstr "Autres statistiques d'accès FTP"
 
 msgid "vsitesReportBut"
 msgstr "[[base-sitestats.vsitesReportBut]]"
@@ -99,16 +103,16 @@ msgid "historicalReportBut_help"
 msgstr "[[base-sitestats.historicalReportBut_help]]"
 
 msgid "domainReportBut"
-msgstr "Demandes par domaine"
+msgstr "Requêtes par domaine"
 
 msgid "domainReportBut_help"
-msgstr "Obtenez des rapports montrant les domaines depuis lesquels les demandes étaient originaires."
+msgstr "Obtenez des rapports montrant les domaines ayant sollicité."
 
 msgid "typesReportBut"
-msgstr "Demandes par type de fichier"
+msgstr "Requêtes par type de fichier"
 
 msgid "typesReportBut_help"
-msgstr "Décompose demandes des types de fichiers."
+msgstr "Analyse les types de fichiers sollicités."
 
 msgid "requestReportBut"
 msgstr "[[base-sitestats.requestReportBut]]"
@@ -153,7 +157,7 @@ msgid "hourly_help"
 msgstr "[[base-sitestats.hourly_help]]"
 
 msgid "domainStats"
-msgstr "Domaine Statistiques"
+msgstr "Statistiques des domaines"
 
 msgid "domain"
 msgstr "[[base-sitestats.domain]]"
@@ -165,10 +169,10 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "requests_help"
-msgstr "Le nombre de fichiers transférés."
+msgstr "Le nombre de fichiers transférés par FTP."
 
 msgid "vsiteStats"
-msgstr "FTP utilisent par site virtuel"
+msgstr "Utilisation FTP par site virtuel"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -189,7 +193,7 @@ msgid "site_help"
 msgstr "[[base-sitestats.site_help]]"
 
 msgid "typeStats"
-msgstr "Demandes par type de fichier"
+msgstr "Requêtes par type de fichier"
 
 msgid "filetype"
 msgstr "[[base-sitestats.filetype]]"
@@ -198,13 +202,13 @@ msgid "filetype_help"
 msgstr "[[base-sitestats.filetype_help]]"
 
 msgid "requestStats"
-msgstr "Top Fichiers transférés"
+msgstr "Fichiers le plus souvent transférés"
 
 msgid "requestFile"
 msgstr "[[base-sitestats.requestFile]]"
 
 msgid "requestFile_help"
-msgstr "Le nom du fichier demandé par rapport au répertoire de base du site. Le répertoire de base pour le site \"www.example.com\", par exemple, serait \"/home/sites/www.example.com\"."
+msgstr "Le nom du fichier sollicité par rapport au répertoire de base du site. Par exemple, le répertoire de base pour le site « www.example.com » serait « /home/sites/www.example.com »."
 
 msgid "requestNumber"
 msgstr "[[base-sitestats.requestNumber]]"

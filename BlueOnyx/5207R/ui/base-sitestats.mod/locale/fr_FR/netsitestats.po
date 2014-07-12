@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,8 +20,10 @@ msgstr "[[base-sitestats.generateBut]]"
 msgid "generateBut_help"
 msgstr "[[base-sitestats.generateBut_help]]"
 
+# summary page
+
 msgid "summaryStats"
-msgstr "L&#39;utilisation du réseau Statistiques sommaires"
+msgstr "Statistiques de l'utilisation du réseau"
 
 msgid "reportGenerated"
 msgstr "[[base-sitestats.reportGenerated]]"
@@ -33,13 +35,13 @@ msgid "firstRequest"
 msgstr "Première activité"
 
 msgid "firstRequest_help"
-msgstr "La date de la première activité couverte par ce rapport. [[base-sitestats.requestCoverageHint]]"
+msgstr "La date de la première activité enregistrée dans ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "lastRequest"
 msgstr "Dernière activité"
 
 msgid "lastRequest_help"
-msgstr "La date de la dernière activité couverte par ce rapport. [[base-sitestats.requestCoverageHint]]"
+msgstr "La date de la dernière activité enregistrée dans ce rapport. [[base-sitestats.requestCoverageHint]]"
 
 msgid "bytesTransfered"
 msgstr "[[base-sitestats.bytesTransfered]]"
@@ -47,14 +49,16 @@ msgstr "[[base-sitestats.bytesTransfered]]"
 msgid "bytesTransfered_help"
 msgstr "[[base-sitestats.bytesTransfered_help]]"
 
+# summary links
+
 msgid "otherStatistics"
-msgstr "Autres statistiques d&#39;utilisation du réseau"
+msgstr "Autres statistiques d'utilisation du réseau"
 
 msgid "vsitesReportBut"
-msgstr "Utilisez par IP"
+msgstr "Utilisation par IP"
 
 msgid "vsitesReportBut_help"
-msgstr "Obtenez un rapport d&#39;utilisation du réseau basé sur l&#39;adresse IP."
+msgstr "Obtenez un rapport de l'utilisation du réseau selon l'adresse IP."
 
 msgid "periodicReportBut"
 msgstr "[[base-sitestats.periodicReportBut]]"
@@ -108,7 +112,7 @@ msgid "requests"
 msgstr "[[base-sitestats.requests]]"
 
 msgid "vsiteStats"
-msgstr "L&#39;utilisation du réseau par adresse IP"
+msgstr "L'utilisation du réseau par adresse IP"
 
 msgid "bytes"
 msgstr "[[base-sitestats.bytes]]"
@@ -126,7 +130,7 @@ msgid "site"
 msgstr "Adresse IP"
 
 msgid "site_help"
-msgstr "Le trafic a été comptabilisée sur la base de l&#39;adresse IP. \"Autre\" se réfère à diffuser trafic non destiné à une adresse IP spécifique."
+msgstr "Le trafic a été considéré sur la base de l'adresse IP. « Autre » se réfère un trafic réseau non destiné à une adresse IP spécifique."
 
 msgid "typeStats"
 msgstr "Demandes par type de fichier"
