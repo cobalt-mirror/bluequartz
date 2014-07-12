@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=power
 
 VERSION=1.2.0
-RELEASE=0BX02
+RELEASE=0BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDLOCALE=yes
 BUILDGLUE=yes
 BUILDSRC=no

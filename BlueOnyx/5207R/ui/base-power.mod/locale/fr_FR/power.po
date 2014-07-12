@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,52 +9,52 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "power"
-msgstr "Puissance"
+msgstr "Mise en marche"
 
 msgid "powerHelp"
-msgstr "Cliquez ici pour redémarrer le serveur applicatif."
+msgstr "Cliquer ici pour redémarrer le serveur."
 
 msgid "shutdownMessage"
-msgstr "Pour des raisons de sécurité, cet appareil de serveur ne peut pas être arrêté grâce à l&#39;interface utilisateur Web. <BR> S&#39;il vous plaît arrêter manuellement."
+msgstr "Pour des raisons de sécurité, ce serveur ne peut pas être arrêté par le biais de l'interface utilisateur Web. <BR> Veuillez arrêter manuellement."
 
 msgid "shutdownInstructions"
-msgstr "Pour éteindre l&#39;appareil du serveur, reportez-vous au manuel du matériel du serveur."
+msgstr "Pour éteindre le serveur, reportez-vous à son manuel."
 
 msgid "shutdownInstructions_softpower"
-msgstr "Pour éteindre l&#39;appareil du serveur, reportez-vous au manuel du matériel du serveur."
+msgstr "Pour éteindre le serveur, reportez-vous à son manuel."
 
 msgid "acpi_power_subject"
-msgstr "Puissance arrêt d&#39;erreur"
+msgstr "Erreur d'arrêt du serveur"
 
 msgid "acpi_power_shutdown"
-msgstr "La tension d&#39;alimentation est hors de portée. Par mesure de sécurité, l&#39;appareil de serveur est en cours de fermeture. Si le problème persiste, s&#39;il vous plaît contacter le support technique."
+msgstr "La tension d'alimentation n'est pas adéquate. Le serveur va s'arrêter par mesure de sécurité. Si le problème persiste, veuillez contacter le support technique."
 
 msgid "rebootMessage"
-msgstr "Cliquez sur le bouton ci-dessous pour redémarrer le système. Le système sera indisponible pendant plusieurs minutes, car il s&#39;éteint et redémarre tous les services. Une fois le système redémarré, le bureau du serveur sera à nouveau disponible."
+msgstr "Cliquer sur le bouton ci-dessous pour redémarrer le serveur. En éteignant et redémarrant tous les services, le système ne sera pas accessible pendant plusieurs minutes. Une fois redémarré, le « [[base-apache.amAdmservNameTag]] » sera à nouveau disponible."
 
 msgid "reboot_title"
-msgstr "Redémarrage du système"
+msgstr "Redémarrage du serveur"
 
 msgid "shutdown_title"
-msgstr "Arrêter le système"
+msgstr "Arrêter le serveur"
 
 msgid "reboot_menu"
-msgstr "Reboot / Shutdown"
+msgstr "Arrêt / Démarrage"
 
 msgid "reboot_menu_help"
-msgstr "Cliquez ici pour obtenir des instructions sur l&#39;arrêt et le redémarrage de l&#39;appareil de serveur."
+msgstr "Cliquer ici pour obtenir des instructions sur l'arrêt et le redémarrage du serveur."
 
 msgid "reboot"
 msgstr "Redémarrer maintenant"
 
 msgid "reboot_help"
-msgstr "Cliquez ici pour redémarrer le serveur applicatif."
+msgstr "Cliquer ici pour redémarrer le serveur."
 
 msgid "askRebootConfirmation"
-msgstr "Êtes-vous sûr de vouloir redémarrer l&#39;appareil de serveur?"
+msgstr "Êtes-vous sûr de vouloir redémarrer le serveur?"
 
 msgid "rebooting"
-msgstr "L&#39;appareil de serveur est maintenant redémarre. Il devrait être disponible à nouveau dans quelques minutes."
+msgstr "Le serveur est maintenant en train de redémarrer. Il devrait être à nouveau disponible dans quelques minutes."
 
 msgid "poweroptions_menu"
 msgstr "Puissance"
@@ -63,43 +63,43 @@ msgid "poweroptions_menu_help"
 msgstr "Cette page vous permet de redémarrer ou arrêter le serveur."
 
 msgid "powerOptions_block"
-msgstr "Options d&#39;alimentation"
+msgstr "Options d'alimentation"
 
 msgid "powermode"
-msgstr "Mesures prises lorsqu&#39;un alimentation est rétablie après une panne de courant"
+msgstr "Mesures prises lorsque l'alimentation est rétablie après une panne de courant"
 
 msgid "powermode_help"
-msgstr "Ceci définit le comportement du système lorsque l&#39;alimentation est rétablie après une panne de courant."
+msgstr "Ceci définit le comportement du système lorsque l'alimentation est rétablie après une panne de courant."
 
 msgid "same"
-msgstr "Remettre le système en le même état qu&#39;avant panne de courant"
+msgstr "Remettre le système dans le même état qu'avant la panne de courant"
 
 msgid "on"
-msgstr "Mettez le système sous"
+msgstr "Redémarrer le système"
 
 msgid "off"
-msgstr "Laissez le système éteint"
+msgstr "Laisser le système éteint"
 
 msgid "controlPower"
-msgstr "Alimentation par"
+msgstr "Déroulement"
 
 msgid "wakeOnlan"
-msgstr "Wake on LAN"
+msgstr "Wake On LAN"
 
 msgid "wakeoptions_menu"
 msgstr "Options Réveil"
 
 msgid "wakeoptions_menu_help"
-msgstr "Cliquez ici pour régler le Wake On LAN comportement du système."
+msgstr "Cliquer ici pour définir le comportement « Wake On LAN », la mise en marche du serveur télécommandée par le réseau."
 
 msgid "wakeMode_block"
 msgstr "Mode Wake"
 
 msgid "wakemode"
-msgstr "À distance Mettez le système (Wake On LAN)"
+msgstr "Démarrage télécommandé (Wake On LAN)"
 
 msgid "wakemode_help"
-msgstr "Ceci définit le sillage du système sur la capacité LAN, ce qui vous permet d&#39;alimenter à distance le système sur un réseau."
+msgstr "Ceci met « Wake On LAN » en place, la mise en marche du serveur télécommandée par le réseau."
 
 msgid "none"
 msgstr "Jamais"
@@ -111,85 +111,85 @@ msgid "activity"
 msgstr "Activité"
 
 msgid "wakenow_menu"
-msgstr "Réveillez maintenant"
+msgstr "Démarrer maintenant"
 
 msgid "wakenow_menu_help"
-msgstr "Cliquez ici pour vous réveiller d&#39;autres machines sur le réseau."
+msgstr "Cliquer ici pour démarrer à distance d'autres machines sur le réseau."
 
 msgid "wakeNow_block"
-msgstr "Réveillez maintenant"
+msgstr "Démarrer maintenant"
 
 msgid "mac_addresses"
-msgstr "Adresses MAC se réveiller"
+msgstr "Adresses MAC à démarrer"
 
 msgid "mac_addresses_help"
-msgstr "Entrez les adresses MAC des machines que vous voulez réveiller."
+msgstr "Taper les adresses MAC des serveurs distants à mettre en marche."
 
 msgid "wakenow_button"
-msgstr "Réveillez maintenant"
+msgstr "Démarrer maintenant"
 
 msgid "wakenow_button_help"
-msgstr "Cliquez ici pour réveiller les machines avec les adresses MAC cotées."
+msgstr "Cliquer ici pour démarrer les serveurs avec les adresses MAC mentionnées."
 
 msgid "shutdown_menu"
-msgstr "Fermeture"
+msgstr "Arrêt"
 
 msgid "shutdown_menu_help"
-msgstr "Cliquez ici pour éteindre le serveur. Pour éteindre le serveur et vous aurez besoin d'un accès physique à elle pour pouvoir la reprendre. Ce ne serait pas la meilleure des idées. J'espère que vous savez ce que vous faites. Sérieusement."
+msgstr "Cliquer ici pour éteindre définitivement le serveur. ATTENTION : Pour le démarrer à nouveau, vous aurez besoin d'un accès physique à la machine elle-même et à son interrupteur d'alimentation. J'espère que vous savez ce que vous faites. Sérieusement !"
 
 msgid "couldNotWakeMachine"
-msgstr "Impossible de réveiller la machine avec l&#39;adresse MAC [[VAR.address]]."
+msgstr "Impossible de démarrer le serveur avec l'adresse MAC [[VAR.address]]."
 
 msgid "willPowerUp1"
-msgstr "Will Power On"
+msgstr "Démarrera"
 
 msgid "willPowerUp2"
-msgstr "Quand Powered"
+msgstr "En marche"
 
 msgid "remainOff1"
 msgstr "Restera éteint"
 
 msgid "remainOff2"
-msgstr "Quand Powered"
+msgstr "En marche"
 
 msgid "samePower1"
-msgstr "Will Power On Si"
+msgstr "Arrêt au cas où"
 
 msgid "samePower2"
-msgstr "En avant la perte"
+msgstr "En marche avant perte"
 
 msgid "powerName"
 msgstr "Alimentation du système"
 
 msgid "powerOK"
-msgstr "Le bloc d&#39;alimentation et la batterie fonctionnent normalement."
+msgstr "Le bloc d'alimentation et la batterie fonctionnent normalement."
 
 msgid "powerLow"
-msgstr "L&#39;alimentation est faible."
+msgstr "L'alimentation est faible."
 
 msgid "batteryCritical"
-msgstr "La tension de la batterie est extrêmement faible. Cela peut être un signe d&#39;une batterie défaillante. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour le support technique."
+msgstr "La tension de la batterie est extrêmement faible. Cela peut être un signe d'une batterie défaillante. Veuillez consulter le support technique au [[base-sauce-basic.techSupportURL]]."
 
 msgid "batteryCriticalSubject"
-msgstr "Système de tension de batterie faible"
+msgstr "Voltage faible de la batterie système"
 
 msgid "powerCritical"
-msgstr "L&#39;alimentation ne fonctionne pas à sa tension spécifiée. Cela peut être le signe d&#39;une défaillance de l&#39;alimentation. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour le support technique."
+msgstr "L'alimentation ne fonctionne pas à sa tension spécifiée. Cela peut être le signe d'une défaillance de l'alimentation. Veuillez consulter le support technique au [[base-sauce-basic.techSupportURL]]."
 
 msgid "amPowerDetails"
-msgstr "Détails du système d&#39;alimentation"
+msgstr "Détails du système d'alimentation"
 
 msgid "errSettingWakeMode"
-msgstr "Le système a échoué dans vos réglages de sillage demandé. S&#39;il vous plaît se référer à [[base-sauce-basic.techSupportURL]] pour le support technique."
+msgstr "Le système a échoué avec les paramètres « Wake On LAN » spécifiés. Veuillez consulter le support technique au [[base-sauce-basic.techSupportURL]]."
 
 msgid "cant_get_power_info"
-msgstr "Impossible d&#39;obtenir des informations sur les valeurs de puissance du système."
+msgstr "Impossible d'obtenir des informations sur les paramètres d'alimentation du système."
 
 msgid "askShutdownConfirmation"
-msgstr "Êtes-vous sûr de vouloir arrêter le serveur applicatif?"
+msgstr "Êtes-vous sûr de vouloir arrêter le serveur ?"
 
 msgid "shutting-down"
-msgstr "L&#39;appareil de serveur est maintenant en cours d&#39;arrêt."
+msgstr "Le serveur est maintenant en cours d'arrêt."
 
 msgid "cap_serverPower"
 msgstr "Paramètres d'alimentation"
