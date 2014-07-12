@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,19 +9,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "subdomain_header"
-msgstr "Configuration de sous-domaine"
+msgstr "Configuration de sous-domaines"
 
 msgid "vsite_enabled"
-msgstr "Activer Sous-domaines"
+msgstr "Admettre des sous-domaines"
 
 msgid "vsite_enabled_help"
-msgstr "Permet d&#39;activer Sous-domaines pour les hôtes virtuels"
+msgstr "Permet d'activer des sous-domaines pour les hôtes virtuels"
 
 msgid "default_max_subdomains"
-msgstr "Nombre par défaut de Sous-domaines"
+msgstr "Nombre par défaut de sous-domaines"
 
 msgid "default_max_subdomains_help"
-msgstr "Vous permet de créer une base de la valeur par défaut de chaque site peut créer"
+msgstr "Vous permet de créer une base du nombre par défaut de sous-domaines que chaque site peut créer"
 
 msgid "vlist_header"
 msgstr "Tous les sites virtuels disponibles"
@@ -33,91 +33,91 @@ msgid "v_name_help"
 msgstr "Nom du site virtuel"
 
 msgid "v_subdomain"
-msgstr "Nombre de Sous-domaines"
+msgstr "Nombre de sous-domaines"
 
 msgid "v_subdomain_help"
-msgstr "Indique le nombre de sous-domaines sont permis"
+msgstr "Indique le nombre de sous-domaines autorisés"
 
 msgid "v_subdomain_enabled"
 msgstr "Statut"
 
 msgid "v_subdomain_enabled_help"
-msgstr "Suivre l&#39;état de chaque VEMPLACEMENT. Est-il activé ou désactivé?"
+msgstr "Suivre l'état de chaque site virtuel. Est-il activé ou désactivé?"
 
 msgid "vsite_header"
 msgstr "Paramètres de sous-domaine"
 
 msgid "vsite_name"
-msgstr "Site nom d&#39;hôte virtuel"
+msgstr "Nom d'hôte du site virtuel"
 
 msgid "vsite_name_help"
-msgstr "Le nom de votre site virtuel"
+msgstr "Le nom de domaine de votre site virtuel"
 
 msgid "max_subdomains"
-msgstr "Le nombre maximum de Sous-domaines"
+msgstr "Le nombre maximum de sous-domaines"
 
 msgid "max_subdomains_help"
-msgstr "Le nombre maximum de sous-domaines que vous êtes autorisé à accueillir"
+msgstr "Le nombre maximum de sous-domaines que vous êtes autorisé à aménager"
 
 msgid "sub_title"
-msgstr "Configuration sous Domaines"
+msgstr "Configuration des sous-domaines"
 
 msgid "sub_domain"
-msgstr "Sous Domain"
+msgstr "Sous-domaine"
 
 msgid "sub_domain_help"
 msgstr "Nom de vos sous-domaines"
 
 msgid "sub_path"
-msgstr "Sous Chemin de domaine"
+msgstr "Chemin du sous-domaine"
 
 msgid "sub_path_help"
-msgstr "Chemin de votre Sous-domaines"
+msgstr "Chemin d'accès complet de vos sous-domaines"
 
 msgid "vsite_add_header"
 msgstr "Ajouter un sous-domaine"
 
 msgid "enterFqdn"
-msgstr "Entrez le nom du sous-domaine"
+msgstr "Saisir le nom du sous-domaine"
 
 msgid "enterFqdn_help"
-msgstr "Entrez le nom du sous-domaine"
+msgstr "Saisir le nom du sous-domaine"
 
 msgid "hostname"
-msgstr "Nom d&#39;hôte"
+msgstr "Nom d'hôte"
 
 msgid "hostname_help"
-msgstr "Nom de votre nouveau sous-domaine"
+msgstr "Nom de domaine de votre nouveau sous-domaine"
 
 msgid "domainname"
 msgstr "Nom de domaine"
 
 msgid "domainname_help"
-msgstr "Nom de votre domaine"
+msgstr "Nom de domaine"
 
 msgid "button_cancel"
-msgstr "Résilier"
+msgstr "Annuler"
 
 msgid "button_cancel_help"
-msgstr "Annuler Configuration"
+msgstr "Annuler la configuration"
 
 msgid "php"
 msgstr "Activer PHP Scripting"
 
 msgid "php_help"
-msgstr "Permet PHP pour votre sous-domaine"
+msgstr "Permettre l'utilisation de scripts PHP à votre sous-domaine"
 
 msgid "cgi"
-msgstr "Activer Common Gateway Interface (CGI)"
+msgstr "Activer CGI (Common Gateway Interface)"
 
 msgid "cgi_help"
-msgstr "Permet à CGI de votre sous-domaine"
+msgstr "Permettre l'utilisation de CGI (Common Gateway Interface) à votre sous-domaine"
 
 msgid "ssi"
-msgstr "Activer le serveur Includes (SSI) Side"
+msgstr "Activer SSI (Server Side Includes)"
 
 msgid "ssi_help"
-msgstr "Activer le serveur Side Includes pour votre sous-domaine"
+msgstr "Permettre l'utilisation de SSI (Server Side Includes) à votre sous-domaine"
 
 msgid "vsite_mod_header"
 msgstr "Modifier les paramètres de sous-domaine"
@@ -132,37 +132,37 @@ msgid "php_head"
 msgstr "PHP"
 
 msgid "php_head_help"
-msgstr "Indique si vous avez activé PHP sur le site virtuel"
+msgstr "Indique l'activation de PHP pour le site virtuel"
 
 msgid "cgi_head"
 msgstr "CGI"
 
 msgid "cgi_head_help"
-msgstr "Indique si vous avez activé CGI sur le site virtuel"
+msgstr "Indique l'activation de CGI pour le site virtuel"
 
 msgid "ssi_head"
 msgstr "SSI"
 
 msgid "ssi_head_help"
-msgstr "Indique si vous avez activé la SSI sur le site virtuel"
+msgstr "Indique l'activation de SSI pour le site virtuel"
 
 msgid "default_settings"
-msgstr "Paramètres par défaut pour config inital"
+msgstr "Paramètres par défaut pour la configuration initiale"
 
 msgid "divider_subdomains"
-msgstr "Configuration pour les domaines sous"
+msgstr "Configuration des sous-domaines"
 
 msgid "enabled"
-msgstr "User sous-domaine"
+msgstr "Sous-domaine pour utilisateur"
 
 msgid "enabled_help"
-msgstr "Créer un sous-domaine pour l&#39;utilisateur comme: user.domaine.tld"
+msgstr "Créer un sous-domaine pour l'utilisateur tel que : identifiant.domaine.tld"
 
 msgid "webpath"
 msgstr "Chemin Web"
 
 msgid "webpath_help"
-msgstr "Le chemin d&#39;accès au contenu du sous-domaine. Ce ne sera pas automatiquement supprimée si vous supprimer cette entrée plus tard"
+msgstr "Le chemin d'accès au contenu du sous-domaine. Celui-ci ne sera pas automatiquement supprimé en l'ôtant ultérieurement."
 
 msgid "webdir"
 msgstr "Répertoire Web"
@@ -171,22 +171,22 @@ msgid "webdir_help"
 msgstr "Le répertoire qui contient le contenu Web pour le sous-domaine"
 
 msgid "rootpath"
-msgstr "Répertoire de base de la racine"
+msgstr "Répertoire racine"
 
 msgid "rootpath_help"
-msgstr "Le chemin, que ce soit à webdirectory du VEMPLACEMENT, ou le sous-répertoire sous-domaine"
+msgstr "Le chemin d'accès soit au répertoire Web du site virtuel soit au sous-répertoire du sous-domaine"
 
 msgid "menu_vsite_subdomains"
 msgstr "Sous-domaines"
 
 msgid "menu_vsite_subdomains_help"
-msgstr "Gérez vos sous-domaines"
+msgstr "Gérer les sous-domaines"
 
 msgid "menu_system_subdomains"
 msgstr "Sous-domaines"
 
 msgid "menu_system_subdomains_help"
-msgstr "Autoriser les sites à créer des sous-domaines virtuels."
+msgstr "Autoriser les sites virtuels à créer des sous-domaines."
 
 msgid "sub_dom_remove_header"
 msgstr "Domaine enlèvement sous:"
@@ -195,5 +195,4 @@ msgid "sub_dom_remove_question"
 msgstr "Etes-vous sûr de vouloir supprimer ce sous-domaine? Cette opération ne peut être annulée."
 
 msgid "duplicateEntry"
-msgstr "N'existe déjà un sous-domaine avec ce nom."
-
+msgstr "N'existe déjà un sous-domaine avec ce nom.

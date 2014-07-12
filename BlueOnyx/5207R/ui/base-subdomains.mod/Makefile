@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=subdomains
 
 VERSION=2.2.0
-RELEASE=0BX09
+RELEASE=0BX10
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
