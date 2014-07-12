@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=raid
 
 VERSION=0.1.3
-RELEASE=0BX04
+RELEASE=0BX05
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes

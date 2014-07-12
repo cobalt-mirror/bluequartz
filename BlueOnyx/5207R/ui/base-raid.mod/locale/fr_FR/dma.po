@@ -12,10 +12,10 @@ msgid "DMAnameTag"
 msgstr "État de l'accès direct à la mémoire DMA"
 
 msgid "dma_fixed_drives"
-msgstr "L'accès direct à la mémoire DMA (Direct Memory Access) a été désactivé pour les lecteurs de dique dur suivants : [[VAR.display_names]]. Il a réactivé avec succès par « [[base-am.activeMonitor]] ». Si ces lecteurs continuent d'avoir des problèmes de DMA, veuillez recourir à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde de vos données et pour le remplacement ces lecteurs posant des problèmes de DMA."
+msgstr "L'accès direct à la mémoire DMA (Direct Memory Access) a été désactivé pour les lecteurs de disque dur suivants : [[VAR.display_names]]. Il a réactivé avec succès par « [[base-am.activeMonitor]] ». Si ces lecteurs continuent d'avoir des problèmes de DMA, veuillez recourir à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde de vos données et pour le remplacement ces lecteurs posant des problèmes de DMA."
 
 msgid "dma_off_drives"
-msgstr "L'accès direct à la mémoire DMA (Direct Memory Access) a été désactivé pour les lecteurs de dique dur suivants : [[VAR.display_names]] et il n'a pas pu être réactivé par « [[base-am.activeMonitor]] ». Veuillez recourir à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde de vos données et pour remplacer ces lecteurs posant des problèmes de DMA."
+msgstr "L'accès direct à la mémoire DMA (Direct Memory Access) a été désactivé pour les lecteurs de disque dur suivants : [[VAR.display_names]] et il n'a pas pu être réactivé par « [[base-am.activeMonitor]] ». Veuillez recourir à [[base-sauce-basic.techSupportURL]] pour obtenir des instructions sur la sauvegarde de vos données et pour remplacer ces lecteurs posant des problèmes de DMA."
 
 msgid "dma_ok"
 msgstr "L'accès direct à la mémoire DMA (Direct Memory Access) fonctionne normalement."
