@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=wizard
 
 VERSION=2.0.0
-RELEASE=0BX02
+RELEASE=0BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -18,7 +18,7 @@ DEFLOCALE=en_US
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
