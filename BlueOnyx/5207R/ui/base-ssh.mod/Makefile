@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=ssh
 
 VERSION=2.0
-RELEASE=0BX05
+RELEASE=0BX06
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDLOCALE=yes
 BUILDGLUE=yes
 BUILDSRC=no
