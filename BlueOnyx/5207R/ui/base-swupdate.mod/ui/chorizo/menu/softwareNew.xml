@@ -1,0 +1,11 @@
+<item 
+    id="base_softwareNew" 
+    label="[[base-swupdate.softwareNew]]" 
+    description="[[base-swupdate.softwareNew_help]]"
+    icon="vault"
+    url="/swupdate/newSoftware"
+>
+    <parent id="base_software" order="20">
+        <access require="managePackage"/>
+    </parent>
+</item>

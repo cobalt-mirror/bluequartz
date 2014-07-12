@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,74 +9,76 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "swupdate_shopLabel"
-msgstr "BlueOnyx Boutique"
+msgstr "Boutique BlueOnyx"
 
 msgid "swupdate_shopLabelDesc"
-msgstr "Voir ce logiciel supplémentaire est disponible pour votre serveur BlueOnyx dans la boutique BlueOnyx."
+msgstr "Voir dans la boutique BlueOnyx les logiciels supplémentaires disponibles pour votre serveur BlueOnyx."
 
 msgid "ShopTitle"
-msgstr "BlueOnyx Boutique"
+msgstr "Boutique BlueOnyx"
 
 msgid "ErrorMSG"
-msgstr "Erreur:"
+msgstr "Erreur :"
 
 msgid "ErrorMSGdesc"
-msgstr "Cette page afficherait généralement la liste des logiciels supplémentaires disponibles dans la boutique en BlueOnyx. Cependant, votre serveur peut apparemment pas résoudre le nom de domaine de la boutique en question, ou l&#39;accès à ce domaine est actuellement pas possible pour d&#39;autres raisons. Cela n&#39;a aucun impact sur les fonctionnalités de ce serveur, mais vous pouvez aussi être incapable d&#39;obtenir les mises à jour YUM tant que ce problème persiste."
+msgstr "Généralement, cette page affiche la liste des logiciels supplémentaires disponibles dans la boutique BlueOnyx. Cependant, votre serveur ne peut apparemment pas résoudre le nom de domaine de la boutique en question ou l'accès à ce domaine n'est actuellement pas possible pour d'autres raisons. Cela n'a aucun impact sur les fonctionnalités de ce serveur ; mais si le problème persiste, vous risquez d'être incapable d'obtenir les mises à jour YUM."
 
 msgid "ShopSelector_General_head"
-msgstr "BlueOnyx configurer une boutique"
+msgstr "Configurer la boutique BlueOnyx"
 
 msgid "ShopSelector_General_configuration"
-msgstr "Choisissez votre Boutique BlueOnyx:"
+msgstr "Choisir la boutique BlueOnyx :"
 
 msgid "ShopSelector_Info"
-msgstr "Info:"
+msgstr "Info :"
 
 msgid "ShopSelector_Info_help"
-msgstr "Affiche plus d&#39;informations."
+msgstr "Affiche plus d'informations."
 
 msgid "ShopSelector_Info_Text"
-msgstr "Logiciel supplémentaire commercialement emballés et pris en charge par votre appareil de serveur BlueOnyx est disponible à partir de diverses sources. Ci-dessous vous pouvez choisir le fournisseur désiré voir quel logiciel est disponible."
+msgstr "Les logiciels supplémentaires commerciaux pris en charge par votre serveur BlueOnyx sont disponibles à partir de diverses sources. Vous pouvez choisir ci-dessous le fournisseur désiré."
 
 msgid "SHOP_SELECTOR"
-msgstr "Fournisseur:"
+msgstr "Fournisseur :"
 
 msgid "SHOP_SELECTOR_help"
-msgstr "Ce menu déroulant vous permet de choisir votre fournisseur souhaité pour le logiciel supplémentaire BlueOnyx."
+msgstr "Ce menu déroulant vous permet de choisir le fournisseur souhaité du logiciel supplémentaire BlueOnyx."
 
 msgid "CAT_SELECTOR"
-msgstr "Catégories de produits:"
+msgstr "Catégories de produits :"
 
 msgid "CAT_SELECTOR_help"
-msgstr "Ce menu déroulant vous permet de choisir votre catégorie désirée de logiciel supplémentaire BlueOnyx."
+msgstr "Ce menu déroulant vous permet de choisir la catégorie désirée du logiciel supplémentaire BlueOnyx."
 
 msgid "product_name"
-msgstr "Nom du produit:"
+msgstr "Nom du produit :"
 
 msgid "product_name_help"
 msgstr "Affiche le nom du produit en question."
 
 msgid "ErrorMSGNoProducts"
-msgstr "S&#39;il vous plaît noter:"
+msgstr "Veuillez noter :"
 
 msgid "ErrorMSGNoProducts_help"
-msgstr "Affiche plus d&#39;informations."
+msgstr "Affiche plus d'informations."
 
 msgid "ErrorNoProductsInCategory"
-msgstr "Il n&#39;y a aucun produit dans cette catégorie. S&#39;il vous plaît vérifier une autre catégorie."
+msgstr "Il n'y a aucun produit dans cette catégorie. Veuillez en choisir une autre."
 
 msgid "openURL"
 msgstr "URL"
 
 msgid "openURL_help"
-msgstr "Cliquez sur cette icône pour voir la description complète du produit et de prix dans la boutique sélectionnée ci-dessus. La page de la boutique se charge à l&#39;intérieur de cadres de votre interface graphique."
+msgstr "Cliquez sur cette icône pour voir la description complète du produit et de prix dans la boutique sélectionnée ci-dessus. La page de la boutique se charge à l'intérieur de cadres de votre interface graphique."
+
+#-----
 
 msgid "thx_bxUsage"
-msgstr "Merci d&#39;utiliser BlueOnyx!"
+msgstr "Merci d'utiliser BlueOnyx !"
 
 msgid "bx_ffa"
-msgstr "BlueOnyx lui-même est open source et disponible gratuitement."
+msgstr "BlueOnyx est Open Source et disponible gratuitement."
 
 msgid "bx_comBlurb"
-msgstr "Cependant, le logiciel d&#39;assistance et extra professionnel est disponible dans la <a href='http://shop.blueonyx.it/' target='_blank'>boutique BlueOnyx</a> ."
+msgstr "Cependant, des logiciels d'assistance et de l'aide professionnelle est disponible dans la <a href='http://shop.blueonyx.it/' target='_blank'>boutique BlueOnyx</a> ."
 

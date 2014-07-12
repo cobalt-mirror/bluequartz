@@ -1,129 +1,139 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+# ----- SW Updates Tab
+
 msgid "software"
-msgstr "Mises à jour logicielles"
+msgstr "Mises à jour de logiciels"
 
 msgid "software_help"
-msgstr "Le [[base-swupdate.software]] section vous permet de vérifier et d&#39;installer les paquets nouveaux ou mis à jour logicielles."
+msgstr "La section [[base-swupdate.software]] vous permet de vérifier et d'installer les progiciels (produits ou ensemble de logiciels) nouveaux ou des mises à jour."
+
+# ----- Menu items
 
 msgid "softwareNew"
-msgstr "Logiciels tiers"
+msgstr "Logiciels de tiers"
 
 msgid "softwareNew_help"
-msgstr "Cliquez ici pour vérifier et installer un nouveau logiciel disponible auprès de tiers."
+msgstr "Cliquer ici pour vérifier et installer un nouveau logiciel disponible auprès de tiers."
 
 msgid "softwareNewSun"
-msgstr "[[base-alpine.osName]] Logiciel"
+msgstr "Logiciel [[base-alpine.osName]]"
 
 msgid "softwareNewSun_help"
-msgstr "Cliquez ici pour vérifier et installer un nouveau logiciel disponible à partir de [[base-alpine.osVendor]]."
+msgstr "Cliquer ici pour vérifier et installer un nouveau logiciel disponible à auprès de [[base-alpine.osVendor]]."
 
 msgid "softwareUpdate"
 msgstr "Mises à jour de tiers"
 
 msgid "softwareUpdate_help"
-msgstr "Cliquez ici pour vérifier et installer les mises à jour logicielles disponibles auprès de tiers."
+msgstr "Cliquer ici pour vérifier et installer les mises à jour de logiciels disponibles auprès de tiers."
 
 msgid "softwareUpdateSun"
-msgstr "[[base-alpine.osName]] Mises à jour"
+msgstr "Mises à jour [[base-alpine.osName]]"
 
 msgid "softwareUpdateSun_help"
-msgstr "Cliquez ici pour vérifier et installer les mises à jour logicielles disponibles à partir de [[base-alpine.osVendor]]."
+msgstr "Cliquer ici pour vérifier et installer les mises à jour logicielles disponibles auprès de [[base-alpine.osVendor]]."
 
 msgid "softwareInstalled"
 msgstr "Logiciels installés"
 
 msgid "softwareInstalled_help"
-msgstr "Cliquez ici pour consulter la liste des logiciels qui sont actuellement installé sur le système."
+msgstr "Cliquer ici pour consulter la liste des logiciels qui sont actuellement installés sur le système."
 
 msgid "softwareSettings"
 msgstr "Réglages"
 
 msgid "softwareSettings_help"
-msgstr "Cliquez ici pour changer [[base-swupdate.software]] Paramètres."
+msgstr "Cliquer ici pour changer les paramètres [[base-swupdate.software]]."
+
+# ----- Splash screen message
 
 msgid "splashSoftwareMessage"
-msgstr "Le [[base-swupdate.software]] section vous permet de gérer les applications installées sur le système."
+msgstr "La section [[base-swupdate.software]] vous permet de gérer les applications installées sur le système."
+
+# --- Common strings
 
 msgid "install"
-msgstr "Installez"
+msgstr "Installer"
 
 msgid "install_help"
-msgstr "Cliquez ici pour installer le logiciel spécifié."
+msgstr "Cliquer ici pour installer le progiciel spécifié."
 
 msgid "installField"
-msgstr "Installez les détails"
+msgstr "Détails d'installation"
 
 msgid "installField_help"
-msgstr "Cliquez sur l&#39;icône pour afficher plus d&#39;informations sur l&#39;obtention et l&#39;installation de ce package."
+msgstr "Cliquer sur l'icône pour afficher plus d'informations sur l'obtention et l'installation de ce progiciel."
 
 msgid "prepare"
 msgstr "Préparer"
 
 msgid "prepare_help"
-msgstr "Cliquez ici pour préparer le progiciel d&#39;installation."
+msgstr "Cliquer ici pour préparer le progiciel d'installation."
+
+# package info
 
 msgid "nameField"
 msgstr "Nom"
 
 msgid "nameField_help"
-msgstr "Cela montre le nom du logiciel."
+msgstr "Le nom du progiciel."
 
 msgid "versionField"
 msgstr "Version"
 
 msgid "versionField_help"
-msgstr "Cela montre la version du progiciel."
+msgstr "La version du progiciel."
 
 msgid "vendorField"
 msgstr "Fournisseur"
 
 msgid "vendorField_help"
-msgstr "Cela montre le fournisseur du logiciel."
+msgstr "Le fournisseur du progiciel."
 
 msgid "copyrightField"
-msgstr "Droit d&#39;auteur"
+msgstr "Droit d'auteur"
 
 msgid "copyrightField_help"
-msgstr "Cela montre l&#39;auteur associé au logiciel."
+msgstr "L'auteur associé au progiciel."
 
 msgid "descriptionField"
 msgstr "Description"
 
 msgid "descriptionField_help"
-msgstr "Cela montre une description du logiciel."
+msgstr "La description du progiciel."
 
 msgid "licenseField"
 msgstr "Licence"
 
 msgid "licenseField_help"
-msgstr "Cela montre le contrat de licence pour le package."
+msgstr "Le contrat de licence du progiciel."
 
 msgid "accept"
 msgstr "Accepter"
 
 msgid "accept_help"
-msgstr "Cliquez ici pour accepter les termes du contrat de licence."
+msgstr "Cliquer ici pour accepter les termes du contrat de licence."
 
 msgid "decline"
 msgstr "Refuser"
 
 msgid "decline_help"
-msgstr "Cliquez ici pour refuser le contrat de licence."
+msgstr "Cliquer ici pour refuser le contrat de licence."
 
 msgid "typeField"
 msgstr "Catégorie"
 
 msgid "typeField_help"
-msgstr "Cela montre le type d&#39;emballage."
+msgstr "Cela montre le type de progiciel."
 
 msgid "New"
 msgstr "Nouveau"
@@ -138,22 +148,22 @@ msgid "locationField"
 msgstr "Emplacement"
 
 msgid "locationField_help"
-msgstr "C&#39;est l&#39;endroit à partir duquel le logiciel sera téléchargé lors de l&#39;installation."
+msgstr "La source d'où le logiciel sera téléchargé lors de l'installation."
 
 msgid "locationLocal"
-msgstr "Cet appareil de serveur"
+msgstr "Ce serveur"
 
 msgid "sizeField"
 msgstr "Taille (Mo)"
 
 msgid "sizeField_help"
-msgstr "C&#39;est la taille de l&#39;emballage."
+msgstr "La taille du progiciel."
 
 msgid "uninstallableField"
-msgstr "Installable"
+msgstr "Non installable"
 
 msgid "uninstallableField_help"
-msgstr "Ce champ indique si le paquet peut être désinstallé après qu&#39;il ait été installé."
+msgstr "Ce champ indique si le progiciel peut être désinstallé après avoir été installé."
 
 msgid "yes"
 msgstr "Oui"
@@ -165,52 +175,60 @@ msgid "none"
 msgstr "Aucun"
 
 msgid "packagesNeededField"
-msgstr "Paquets dépendants"
+msgstr "Progiciels dépendants"
 
 msgid "packagesNeededField_help"
-msgstr "Les forfaits mentionnés ici doit être installé sur le système avant que ce paquet peut être installé en toute sécurité."
+msgstr "Les progiciels mentionnés ici doivent être installés sur le système avant que cet ensemble puisse être installé en toute sécurité."
+
+# --- general user input strings
 
 msgid "locationFieldEnter"
 msgstr "Emplacement"
 
 msgid "locationFieldEnter_help"
-msgstr "Entrez l&#39;emplacement à partir duquel le logiciel doit être obtenu. Entrez une URL commençant par http:// ou ftp:// pour télécharger le package à partir d&#39;un emplacement sur Internet, ou entrez l&#39;emplacement du fichier d&#39;un package à télécharger. Cliquez sur Parcourir pour choisir un fichier sur votre disque dur local. Si vous avez téléchargé les paquets au répertoire / home / packages sur votre appareil de serveur, la possibilité de choisir l&#39;un de ces forfaits seront également disponibles."
+msgstr "Spécifier l'emplacement à partir duquel le logiciel doit être obtenu. Saisir soit une URL commençant par http:// ou ftp:// pour télécharger le progiciel à partir d'une adresse Internet soit l'emplacement du fichier d'un progiciel à télécharger. Cliquer sur Parcourir pour choisir un fichier sur votre disque dur local. Si vous avez téléchargé des progiciels au répertoire local /home/package, vous aurez l'option de choisir l'un des emballages disponibles."
 
 msgid "invalidUrl"
-msgstr "L&#39;URL spécifiée n&#39;est pas valide. [[base-swupdate.urlField_rule]]"
+msgstr "L'URL spécifiée n'est pas valide. [[base-swupdate.urlField_rule]]"
+
+# ----- New Software List Page
 
 msgid "availableListNew"
-msgstr "Disponible Nouvelle liste de logiciel"
+msgstr "Nouvelle liste de logiciels disponibles"
 
 msgid "checkNow"
-msgstr "Vérifiez la disponibilité maintenant"
+msgstr "Vérifier maintenant la disponibilité"
 
 msgid "checkNow_help"
-msgstr "Cliquez ici pour vérifier si de nouveaux logiciels sont disponibles."
+msgstr "Cliquer ici pour vérifier si de nouveaux logiciels sont disponibles."
 
 msgid "manualInstall"
 msgstr "Installation manuelle"
 
 msgid "manualInstall_help"
-msgstr "Cliquez ici pour effectuer une installation manuelle de progiciels."
+msgstr "Cliquer ici pour effectuer une installation manuelle de progiciels."
 
 msgid "removePackage"
-msgstr "Voulez-vous vraiment supprimer le &#39;[[VAR.packageName]]&#39; paquet du système? Ce package n&#39;a pas encore été installé."
+msgstr "Voulez-vous vraiment supprimer le progiciel '[[VAR.packageName]]' du système ? Il n'a pas encore été installé."
+
+# ----- Software Updates
 
 msgid "checkNowUpdate"
 msgstr "[[base-swupdate.checkNow]]"
 
 msgid "checkNowUpdate_help"
-msgstr "Cliquez ici pour vérifier si des mises à jour logicielles sont disponibles."
+msgstr "Cliquer ici pour vérifier si des mises à jour sont disponibles."
 
 msgid "manualInstallUpdate"
 msgstr "Installation manuelle"
 
 msgid "manualInstallUpdate_help"
-msgstr "Cliquez ici pour effectuer une installation manuelle des mises à jour logicielles."
+msgstr "Cliquer ici pour effectuer une installation manuelle des mises à jour."
 
 msgid "availableListUpdates"
-msgstr "Disponible Liste des mises à jour de logiciel"
+msgstr "Liste des mises à jour disponibles"
+
+# ----- View software details & install page
 
 msgid "downloadSoftware"
 msgstr "Installer le logiciel"
@@ -219,7 +237,9 @@ msgid "unknownSize"
 msgstr "Inconnue"
 
 msgid "rebootpopup"
-msgstr "Votre appareil de serveur devra redémarrer après l&#39;installation de ce package. Voulez-vous continuer?"
+msgstr "Le serveur devra redémarrer après l'installation de ce progiciel. Voulez-vous continuer ?"
+
+# ----- Manual install
 
 msgid "url"
 msgstr "URL"
@@ -228,79 +248,85 @@ msgid "urlField"
 msgstr "[[base-swupdate.url]]"
 
 msgid "urlField_rule"
-msgstr "Entrez une URL commençant par http:// ou ftp:// pour télécharger le package à partir d&#39;un emplacement sur Internet."
+msgstr "Saisir une URL commençant par http:// ou ftp:// pour télécharger le progiciel à partir d'un emplacement sur Internet."
 
 msgid "upload"
-msgstr "Téléchargez"
+msgstr "Télécharger"
 
 msgid "loaded"
-msgstr "Les paquets dans / home / forfaits"
+msgstr "Les progiciels dans le répertoire /home/packages"
 
 msgid "fileField"
-msgstr "Téléchargez emplacement du fichier"
+msgstr "Emplacement du fichier à télécharger"
+
+# empty/invalid the same, specify both to be safe
 
 msgid "fileField_empty"
-msgstr "Désolé, vous n&#39;avez pas entré un emplacement de fichier d&#39;un package à télécharger. Cliquez sur Parcourir pour choisir un fichier sur votre disque dur local."
+msgstr "Désolé, vous n'avez pas saisi l'emplacement d'un fichier de progiciel à télécharger. Cliquer sur Parcourir pour choisir un fichier de votre disque dur local."
 
 msgid "fileField_invalid"
 msgstr "[[base-swupdate.fileField_empty]]"
 
 msgid "invalidUpload"
-msgstr "Le fichier spécifié n&#39;a pas pu être téléchargé avec succès."
+msgstr "Le fichier spécifié n'a pas pu être téléchargé avec succès."
+
+# ---- Status page
 
 msgid "installStatus"
 msgstr "Statut - [[VAR.fileName]]"
 
 msgid "statusField"
-msgstr "Message d&#39;état"
+msgstr "Message d'état"
 
 msgid "statusField_help"
-msgstr "Ce champ indique l&#39;état actuel du paquet qui est installé ou supprimé."
+msgstr "Ce champ indique l'état actuel du progiciel qui est installé ou supprimé."
 
 msgid "progressField"
-msgstr "Progress"
+msgstr "Progrès"
 
 msgid "progressField_help"
-msgstr "Il s&#39;agit de la progression de l&#39;installation ou de suppression."
+msgstr "La progression de l'installation ou de la suppression."
 
 msgid "dlPercent"
-msgstr "Téléchargement du fichier [[VAR.file]]: [[VAR.percent]]% fait"
+msgstr "Téléchargement du fichier [[VAR.file]] : [[VAR.percent]]% effectué"
+
+# ---- Install/remove errors & status messages
 
 msgid "initializing"
 msgstr "Initialisation ..."
 
 msgid "downloading"
-msgstr "Téléchargement paquet ..."
+msgstr "Téléchargement du progiciel ..."
 
 msgid "installing"
-msgstr "Installation de package ..."
+msgstr "Installation du progiciel ..."
 
 msgid "executingPreInstallScript"
-msgstr "Exécution de script de pré-installation (s) ..."
+msgstr "Exécution du script de pré-installation (s) ..."
 
 msgid "executingPostInstallScript"
-msgstr "Exécution de script de post-installation (s) ..."
+msgstr "Exécution du script de post-installation (s) ..."
 
 msgid "installingRpm"
-msgstr "Installation composant [[VAR.rpm]] ..."
+msgstr "Installation du composant [[VAR.rpm]] ..."
 
 msgid "fail"
-msgstr "Manqué"
+msgstr "échoué"
 
 msgid "success"
-msgstr "Succès"
+msgstr "succès"
 
 msgid "currentlyUninstalling"
-msgstr "Paquet est actuellement en cours de désinstallation."
+msgstr "Le progiciel est actuellement en cours de désinstallation."
 
 msgid "cantUninstall"
-msgstr "Le package ne peut pas être supprimée car elle n&#39;est pas marquée comme installable."
+msgstr "Le progiciel ne peut pas être supprimée car il n'est pas caractérisé installable."
 
 msgid "dependent"
-msgstr "Le forfait ne peut être supprimé parce que les logiciels suivants exigent qu&#39;il soit installé: [[VAR.depend]]"
+msgstr "Le progiciel ne peut être supprimé parce que les logiciels suivants exigent qu'il soit installé : [[VAR.depend]]"
 
 msgid "removingRPM"
-msgstr "Retrait RPM du paquet."
+msgstr "Retrait des RPMs du progiciel."
 
 msgid "runningUninstallScript"
 msgstr "Exécution de script de désinstallation."
@@ -309,88 +335,92 @@ msgid "uninstalled"
 msgstr "Désinstallation complète."
 
 msgid "notUninstalled"
-msgstr "La désinstallation a échoué car il n&#39;y avait rien qui pourrait être enlevée."
+msgstr "La désinstallation a échoué car il n'y avait rien à retirer."
 
 msgid "packageInstallSuccess"
-msgstr "L&#39;installation des modules de succès."
+msgstr "Succès de l'installation des modules."
+
+# -- generic message for other strings
 
 msgid "notInstalled"
-msgstr "Le logiciel n&#39;a pas été installé."
+msgstr "Le progiciel n'a pas été installé."
 
 msgid "cannotDownloadUrl"
-msgstr "Désolé, le fichier de package n&#39;a pas pu être téléchargé à partir de l&#39;URL spécifiée. S&#39;il vous plaît vérifier l&#39;URL et essayez à nouveau. [[base-swupdate.notInstalled]]"
+msgstr "Désolé, le progiciel n'a pas pu être téléchargé à partir de l'URL spécifiée. Veuillez vérifier l'URL et essayez à nouveau. [[base-swupdate.notInstalled]]"
 
 msgid "badFileName"
-msgstr "Laisser un nom de fichier du fichier de paquet n&#39;est pas valide. S&#39;il vous plaît vérifier le nom et essayer à nouveau. [[base-swupdate.notInstalled]]"
+msgstr "Désolé, le nom de fichier du fichier du progiciel n'est pas valide. Veuillez vérifier le nom et essayer à nouveau. [[base-swupdate.notInstalled]]"
 
 msgid "packageAlreadyInstalled"
-msgstr "Le logiciel est déjà installé."
+msgstr "Le progiciel est déjà installé."
 
 msgid "verifyingPackage"
-msgstr "Vérification paquet ..."
+msgstr "Vérification du progiciel ..."
 
 msgid "badPackage"
-msgstr "Le fichier du package est incomplète. Le packing_list est invalide ou manquante. [[base-swupdate.notInstalled]]"
+msgstr "Le fichier du progiciel est incomplet. Le packing_list est invalide ou manquant. [[base-swupdate.notInstalled]]"
 
 msgid "badFormat"
-msgstr "Il y avait une erreur de vérifier le fichier de package. Il peut être corrompu, ou il peut ne pas avoir l&#39;information d&#39;authentification correct. [[base-swupdate.notInstalled]]"
+msgstr "Une erreur est survenue en vérifiant le fichier du progiciel. Il peut être corrompu ou il peut ne pas avoir l'information d'authentification correcte. [[base-swupdate.notInstalled]]"
 
 msgid "CCEsetError"
-msgstr "Il y avait une erreur dans l&#39;ajout du package de la base de données du CCE. Le packing_list package peut être non valide. [[base-swupdate.notInstalled]]"
+msgstr "Une erreur est survenue en ajoutant du package à la base de données CCE. Le packing_list peut être non valide. [[base-swupdate.notInstalled]]"
 
 msgid "failedDep"
-msgstr "Le logiciel a besoin d&#39;autre logiciel (s) doit être installé en premier. S&#39;il vous plaît installer le package suivant (s): [[VAR.dep]]."
+msgstr "Le progiciel a besoin d'avoir d'autre logiciels installés auparavant. Veuillez installer le(s) ensemble(s) suivant(s) : [[VAR.dep]]."
 
 msgid "installLock"
-msgstr "Un autre paquet est actuellement installé ou désinstallé. S&#39;il vous plaît réessayer plus tard."
+msgstr "Un autre progiciel est actuellement en cours d'installation ou de désinstallation. Veuillez réessayer plus tard."
 
 msgid "obsoletePkg"
-msgstr "Le [[VAR.name]] paquet n&#39;était pas installé, car il n&#39;est plus d&#39;actualité."
+msgstr "Le progiciel [[VAR.name]]t n'a pas été installé car il n'est plus à jour."
 
 msgid "badProduct"
-msgstr "Le [[VAR.name]] paquet n&#39;était pas installé, car il n&#39;a pas été créé pour ce serveur."
+msgstr "Le progiciel [[VAR.name]] n'a pas été installé car il n'est pas compatible avec la version [[base-alpine.osName]] de ce serveur."
 
 msgid "hostNotFound"
-msgstr "L&#39;hôte spécifié dans l&#39;URL pour [[VAR.file]] n&#39;a pas été trouvé. [[base-swupdate.notInstalled]]"
+msgstr "L'hôte spécifié dans l'URL pour [[VAR.file]] n'a pas été trouvé. [[base-swupdate.notInstalled]]"
 
 msgid "fileNotFound"
-msgstr "Le paquet [[VAR.file]] n&#39;a pas été trouvé à l&#39;emplacement spécifié."
+msgstr "Le progiciel [[VAR.file]] n'a pas été trouvé à l'emplacement spécifié."
 
 msgid "hostRefused"
-msgstr "L&#39;hôte spécifié dans l&#39;URL pour [[VAR.file]] refusé la connexion."
+msgstr "L'hôte spécifié dans l'URL pour [[VAR.file]] a refusé la connexion."
 
 msgid "notDownloaded"
-msgstr "Le paquet [[VAR.file]] n&#39;a pas pu télécharger correctement, peut-être parce que le serveur où se trouve le pack connaît des problèmes."
+msgstr "Le progiciel [[VAR.file]] n'a pas pu être téléchargé correctement, le serveur où il se trouve a apparemment des problèmes."
 
 msgid "noLocation"
-msgstr "Aucun emplacement spécifié pour obtenir le paquet."
+msgstr "Aucun emplacement spécifié pour obtenir le progiciel."
 
 msgid "missingRPM"
-msgstr "Le fichier du package est incomplète. Un ou plusieurs RPM (s) font défaut."
+msgstr "Le fichier du progiciel est incomplet. Un ou plusieurs RPM(s) manquent."
 
 msgid "missingSRPM"
-msgstr "Le fichier du package est incomplète. Un ou plusieurs SRPM (s) font défaut."
+msgstr "Le fichier du progiciel est incomplet. Un ou plusieurs SRPM(s) manquent."
 
 msgid "preInstallFailed"
-msgstr "Il y avait un problème avec le fichier de package. Le script de pré-installation a échoué."
+msgstr "Il y a eu un problème avec le fichier de progiciel. Le script de pré-installation a échoué."
 
 msgid "postInstallFailed"
-msgstr "Il y avait un problème avec le fichier de package. Le script de post-installation a échoué."
+msgstr "Il y a eu un problème avec le fichier de progiciel. Le script de post-installation a échoué."
 
 msgid "rpmInstallError"
-msgstr "Il y avait un problème avec le fichier de package. Une erreur s&#39;est produite lors de l&#39;installation du RPM [[VAR.rpm]]."
+msgstr "Il y a eu un problème avec le fichier de progiciel. Une erreur est survenue lors de l'installation du RPM [[VAR.rpm]]."
 
 msgid "errorWGET"
-msgstr "Désolé, une erreur s&#39;est produite lors de l&#39;exécution wget."
+msgstr "Désolé, une erreur est survenue lors de l'exécution de wget."
 
 msgid "rebooting"
-msgstr "L&#39;appareil de serveur est maintenant redémarre. Il devrait être disponible à nouveau dans quelques minutes."
+msgstr "Le serveur va maintenant redémarrer. Il sera à nouveau disponible dans quelques minutes."
 
 msgid "uninstallrefresh"
-msgstr "Le package désinstallé. En un instant, l&#39;interface utilisateur sera actualisé afin de supprimer les services fournis par le paquet."
+msgstr "Le progiciel a été désinstallé avec succès. En un instant, l'interface utilisateur sera actualisé afin de supprimer les services fournis par ce progiciel."
 
 msgid "installrefresh"
-msgstr "Le package installé avec succès. En un instant, l&#39;interface utilisateur sera actualisé afin de vous donner accès à de nouveaux services."
+msgstr "Le progiciel a été installé avec succès. En un instant, l'interface utilisateur sera actualisé afin de donner accès aux nouveaux services."
+
+# ------ Installed Software List
 
 msgid "installedList"
 msgstr "Liste des logiciels installés"
@@ -399,13 +429,15 @@ msgid "uninstall"
 msgstr "Désinstaller"
 
 msgid "uninstall_help"
-msgstr "Si le logiciel peut être désinstallé, en cliquant sur le bouton Désinstaller pour le paquet retirer du système."
+msgstr "Si le logiciel peut être désinstallé, le bouton Désinstaller le retirera du système."
 
 msgid "uninstallConfirm"
-msgstr "Etes-vous sûr que vous voulez désinstaller &#39;[[VAR.packageName]]?"
+msgstr "Etes-vous sûr de vouloir désinstaller [[VAR.packageName]] ?"
+
+# ------ Settings page
 
 msgid "softwareInstallSettings"
-msgstr "[[base-swupdate.software]] Paramètres"
+msgstr "Paramètres [[base-swupdate.software]]"
 
 msgid "basic"
 msgstr "Basic"
@@ -417,19 +449,19 @@ msgid "advanced"
 msgstr "Avancé"
 
 msgid "advanced_help"
-msgstr "Moins paramètres couramment utilisés peuvent être trouvés ici."
+msgstr "Les réglages moins fréquents peuvent être trouvés ici."
 
 msgid "scheduleField"
-msgstr "Query Schedule"
+msgstr "Fréquence d'actualisation"
 
 msgid "scheduleField_help"
-msgstr "Modifier la fréquence à laquelle [[base-swupdate.software]] serveur est vérifié pour les paquets nouveaux ou mis à jour logicielles."
+msgstr "Modifier la fréquence à laquelle [[base-swupdate.software]] vérifie les nouveaux progiciels ou leur mise à jour."
 
 msgid "hourly"
-msgstr "Horaire"
+msgstr "D'heure en heure"
 
 msgid "daily"
-msgstr "Daily"
+msgstr "Quotidiennement"
 
 msgid "weekly"
 msgstr "Hebdomadaire"
@@ -444,58 +476,58 @@ msgid "emailField"
 msgstr "Les e-mails de notification"
 
 msgid "emailField_help"
-msgstr "Entrez l&#39;adresse e-mail (s) à laquelle la notification de packages ou des erreurs dans les requêtes de mise à jour logicielle nouvelles ou mises à jour logicielles doivent être envoyés. L&#39;option que vous choisissez pour la notification logiciel Light détermine quand notifications par courrier électronique sont envoyées. Laissez ce champ vide si vous ne souhaitez pas recevoir ces notifications."
+msgstr "Saisir l'adresse e-mail à laquelle la notification de progiciels ou des erreurs dans les requêtes de mise à jour doivent être envoyés. L'option que vous choisissez pour [[base-swupdate.notificationLightField]] détermine quand notifications seront envoyées par e-mail. Laisser ce champ vide pour ne pas recevoir de notifications."
 
 msgid "pkgOIDmissing"
-msgstr "Il y avait un problème récupérer des informations sur le package. Le colis peut être déjà été supprimé. Si ce n&#39;est pas le cas, s&#39;il vous plaît essayer à nouveau. Si le problème persiste, s&#39;il vous plaît contacter le support technique ([[base-sauce-basic.techSupportEmail]])."
+msgstr "Il y a eu un problème en récupérant des informations sur le progiciel. Il peut être déjà été supprimé. Si ce n'est pas le cas, veuillez essayer à nouveau. Si le problème persiste, veuillez contacter le support technique ([[base-sauce-basic.techSupportEmail]])."
 
 msgid "serverField"
-msgstr "[[base-swupdate.software]] Serveurs"
+msgstr "Serveurs [[base-swupdate.software]]"
 
 msgid "defaultServer"
 msgstr "newlinq.blueonyx.it"
 
 msgid "serverField_help"
-msgstr "Entrez les URL des emplacements de serveur pour interroger de nouveaux logiciels et mises à jour. L&#39;URL de l&#39;emplacement du serveur par défaut est [[base-swupdate.defaultServer]]."
+msgstr "Saisir les URL des serveurs à consulter pour obtenir de nouveaux logiciels et des mises à jour. L'URL du serveur par défaut est [[base-swupdate.defaultServer]]."
 
 msgid "serverFieldInvalid"
-msgstr "[[base-swupdate.software]] n&#39;a pas pu contacter le serveur spécifié. S&#39;il vous plaît fait en sorte qu&#39;il est accessible à partir de votre appareil de serveur."
+msgstr "[[base-swupdate.software]] n'a pas pu contacter le serveur spécifié. Veuillez vous assurer qu'il soit accessible depuis ce serveur."
 
 msgid "httpProxyField"
-msgstr "Proxy HTTP: Port"
+msgstr "Proxy HTTP:Port"
 
 msgid "httpProxyField_help"
-msgstr "Entrez le serveur proxy et le port pour les requêtes HTTP si un serveur proxy est nécessaire pour atteindre l&#39;extérieur de votre pare-feu. Exemple: proxy.example.com: 8080."
+msgstr "Saisir le serveur proxy et le port pour les requêtes HTTP si un serveur proxy est nécessaire pour passer à l'extérieur de votre pare-feu. Exemple : proxy.example.com:8080."
 
 msgid "httpProxyInvalid"
-msgstr "[[base-swupdate.software]] n&#39;a pas pu contacter le serveur proxy HTTP. S&#39;il vous plaît assurez-vous qu&#39;il est accessible à partir de votre appareil de serveur."
+msgstr "[[base-swupdate.software]] n'a pas pu contacter le serveur proxy HTTP. Veuillez vous assurer qu'il soit accessible depuis ce serveur."
 
 msgid "ftpProxyField"
-msgstr "FTP Proxy: Port"
+msgstr "FTP Proxy:Port"
 
 msgid "ftpProxyField_help"
-msgstr "Entrez le serveur proxy et le port pour les requêtes FTP si un serveur proxy est nécessaire pour atteindre l&#39;extérieur de votre pare-feu. Exemple: proxy.example.com: 8080."
+msgstr "Saisir le serveur proxy et le port pour les requêtes FTP si un serveur proxy est nécessaire  pour passer à l'extérieur de votre pare-feu. Exemple : proxy.example.com:8080."
 
 msgid "ftpProxyInvalid"
-msgstr "[[base-swupdate.software]] n&#39;a pas pu contacter le serveur proxy FTP. S&#39;il vous plaît assurez-vous qu&#39;il est accessible à partir de votre appareil de serveur."
+msgstr "[[base-swupdate.software]] n'a pas pu contacter le serveur proxy FTP. Veuillez vous assurer qu'il soit accessible depuis ce serveur."
 
 msgid "autoField"
 msgstr "Installer mises à jour automatiquement"
 
 msgid "autoField_help"
-msgstr "S&#39;il est activé, [[base-swupdate.software]] installera automatiquement les paquets authentifiés."
+msgstr "L'option activée, [[base-swupdate.software]] installera automatiquement les progiciels authentifiés."
 
 msgid "requireSignatureField"
-msgstr "Les colis doivent être authentifiés"
+msgstr "Les progiciels doivent être authentifiés"
 
 msgid "requireSignatureField_help"
-msgstr "S&#39;il est activé, [[base-swupdate.software]] va installer uniquement les paquets qui ont passé un contrôle d&#39;authentification."
+msgstr "L'option activée, [[base-swupdate.software]] installera uniquement les progiciels qui ont passé un contrôle d'authentification."
 
 msgid "checkSetField"
-msgstr "Logiciel pour vérifier"
+msgstr "Logiciels à vérifier"
 
 msgid "checkSetField_help"
-msgstr "Choisissez le type de logiciel qui sera vérifié à chaque requête de mise à jour logicielle."
+msgstr "Choisir le type de logiciel qui sera vérifié à chaque requête de mise à jour."
 
 msgid "all"
 msgstr "Tous les logiciels"
@@ -504,67 +536,73 @@ msgid "updates"
 msgstr "Mises à jour seulement"
 
 msgid "notificationLightField"
-msgstr "Avis logiciel Light"
+msgstr "Avis de Logiciels"
 
 msgid "notificationLightField_help"
-msgstr "Changer le type d&#39;un nouveau logiciel pour activer la notification Light Software, et le cas échéant, quel type de nouveau logiciel apparaîtra dans les emails de notification."
+msgstr "Définir le type de nouveau logiciel ou de nouvelle mise à jour qui, le cas échéant, déclenchera une notification de leur disponibilité dans l'interface utilisateur et par e-mail."
+
+# --- software update icon
 
 msgid "update"
-msgstr "Mettre à jour"
+msgstr "Mise à jour"
 
 msgid "update_help"
-msgstr "Cliquez ici pour vérifier et installer des paquets nouveaux ou mis à jour logicielles. Cette icône change de couleur quand les paquets nouveaux ou mis à jour logicielles sont disponibles."
+msgstr "Cliquer ici pour vérifier et installer les progiciels nouveaux ou les mises à jour. Cette icône change de couleur quand de nouveaux progiciels ou des mises à jour sont disponibles."
+
+# ----- Strings for e-mails
 
 msgid "QueryErrorSubject"
-msgstr "Il y avait un problème interrogation de la [[base-swupdate.software]] serveur."
+msgstr "Il y a eu un problème en consultant le serveur [[base-swupdate.software]]."
 
 msgid "NoProductInfoBody"
-msgstr "Le [[base-swupdate.software]] serveur n&#39;a pas reconnu votre produit. [[base-sauce-basic.contactTechSupport]]"
+msgstr "Le serveur [[base-swupdate.software]] n'a pas reconnu votre produit. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "NoSWUpdateServerSubject"
-msgstr "Aucune URL spécifiée pour le [[base-swupdate.software]] serveur."
+msgstr "Aucune URL spécifiée pour le serveur [[base-swupdate.software]]."
 
 msgid "NoSWUpdateServerBody"
-msgstr "L&#39;emplacement de la [[base-swupdate.software]] serveur n&#39;a pas pu être déterminée. S&#39;il vous plaît allez à la page [[base-swupdate.software]] Paramètres et spécifier une URL pour le [[base-swupdate.software]] serveur."
+msgstr "L'emplacement du serveur [[base-swupdate.software]] n'a pas pu être déterminée. Veuillez aller à la page Paramètres [[base-swupdate.software]] et spécifier une URL pour le serveur [[base-swupdate.software]]."
 
 msgid "NoSystemInfoSubject"
-msgstr "[[base-swupdate.software]] est incapable de déterminer des informations de système."
+msgstr "[[base-swupdate.software]] est incapable de déterminer des informations du système."
 
 msgid "NoSystemInfoBody"
-msgstr "Le serveur n&#39;a pas pu déterminer les informations système requise par le [[base-swupdate.software]] serveur. [[base-sauce-basic.contactTechSupport]]"
+msgstr "Le serveur n'a pas pu déterminer les informations système requise par le serveur [[base-swupdate.software]]. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "NoPackageListBody"
-msgstr "[[base-swupdate.software]] n&#39;a pas pu récupérer la liste des packages à partir de la [[base-swupdate.software]] serveur situé à [[VAR.location]]. S&#39;il vous plaît assurez-vous que [[VAR.location]] est valide [[base-swupdate.software]] serveur et que vous pouvez interroger à partir de votre navigateur Web."
+msgstr "[[base-swupdate.software]] n'a pas pu récupérer la liste des progiciels depuis le serveur [[base-swupdate.software]] situé à [[VAR.location]]. Veuillez vous assurer que [[VAR.location]] est un serveur [[base-swupdate.software]] valide et que vous pouvez le consulter depuis votre navigateur Web."
 
 msgid "BadPackageFmtBody"
 msgstr "Le serveur a renvoyé informations sur le package que [[base-swupdate.software]] ne comprenait pas. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "NoPackagesBody"
-msgstr "Il n&#39;y a pas de nouveaux paquets disponibles en téléchargement."
+msgstr "Il n'y a pas de nouveaux progiciels disponibles."
 
 msgid "UnknownErrorBody"
-msgstr "[[base-swupdate.software]] a reçu une erreur inconnue ([[VAR.error]]) lorsqu&#39;on tente de contacter le serveur situé à [[VAR.location]]."
+msgstr "[[base-swupdate.software]] a reçu une erreur inconnue ([[VAR.error]]) en tentant de contacter le serveur situé à [[VAR.location]]."
 
 msgid "NewUpdatesSubject"
-msgstr "Un nouveau logiciel est disponible pour votre appareil de serveur"
+msgstr "Un nouveau logiciel est disponible pour ce serveur"
 
 msgid "NewUpdatesBody"
-msgstr "S&#39;il vous plaît consulter le menu [[base-swupdate.software]] si vous souhaitez installer les paquets suivants:"
+msgstr "Veuillez consulter le menu [[base-swupdate.software]] si vous souhaitez installer les progiciels suivants :"
+
+# Capabilities
 
 msgid "capgroup_adminBlueLinq"
 msgstr "Gérer BlueLinQ"
 
 msgid "capgroup_adminBlueLinq_help"
-msgstr "Ce droit administratif permet à un utilisateur de gérer BlueLinQ. Cela permet à un utilisateur d&#39;installer de nouveaux logiciels et de mettre à jour le logiciel existant."
+msgstr "Ce droit administratif permet à un utilisateur de gérer BlueLinQ. Cela permet à celui-ci d'installer de nouveaux logiciels et de mettre à jour les logiciels existants."
 
 msgid "3rdpartypkg_warning"
-msgstr "S&#39;IL VOUS PLAÎT NOTE: L&#39;installation d&#39;un package tiers ou mise à jour peut provoquer le dysfonctionnement du serveur, crash, ou devenir instable. En outre, les paquets provenant de sources non fiables peuvent permettre à un éditeur malveillant ou à l&#39;utilisateur de prendre le contrôle du serveur. S&#39;il vous plaît installer uniquement les paquets provenant d&#39;une source de tiers de confiance."
+msgstr "veuillez noter : L'installation d'un progiciel ou d'une mise à jour d'un tiers peut provoquer le dysfonctionnement du serveur, son crash ou de devenir instable. En outre, les progiciels provenant de sources non fiables peuvent permettre à un éditeur ou utilisateur malveillant de prendre contrôle du serveur. Veuillez installer uniquement les progiciels provenant d'une source de confiance."
 
 msgid "warning_header"
-msgstr "Attention!"
+msgstr "Attention !"
 
 msgid "cap_managePackage"
-msgstr "Mises à jour de logiciels de gestion"
+msgstr "Gestion des mises à jour"
 
 # ---
 
@@ -600,3 +638,4 @@ msgstr "Mettre à jour"
 
 msgid "BXupdate_help"
 msgstr "Il s'agit d'une mise à jour pour un paquet que vous avez déjà installé."
+

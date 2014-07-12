@@ -6,8 +6,8 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=swupdate
 
-VERSION=1.4.1
-RELEASE=0BX17
+VERSION=1.5.0
+RELEASE=0BX01
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,12 +15,12 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
 
-REQUIRES = perl-Sort-Versions wget lynx php-soap sausalito-palette >= 0.5.2-0BX21 base-api-capstone base-istat-capstone perl-Sys-Hostname-FQDN
+REQUIRES = perl-Sort-Versions wget lynx php-soap sausalito-palette >= 0.5.2-0BX21 base-api-capstone base-istat-capstone perl-Sys-Hostname-FQDN base-support-capstone
 
 #########
 # some useful defines
