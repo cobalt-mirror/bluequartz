@@ -1,0 +1,9 @@
+<!-- this is the menu item 'Add Vsite'  -->
+<item id="base_addSite" label="[[base-vsite.siteaddbut]]" 
+    description="[[base-vsite.siteaddbut_help]]"
+    icon="bended_arrow_right"
+    url="/vsite/vsiteAdd">
+    <parent id="base_sitemanageVSL" order="5">
+    	<access require="manageSite"/>
+    </parent>
+</item>
