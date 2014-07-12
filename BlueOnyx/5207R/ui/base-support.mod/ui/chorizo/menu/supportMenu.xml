@@ -1,0 +1,10 @@
+<item 
+    id="base_support" 
+    label="[[base-support.supportMenu]]" 
+    description="[[base-support.supportMenu_help]]"
+    icon="phone_3"
+>
+    <parent id="base_software" order="15">
+        <access require="managePackage"/>
+    </parent>
+</item>

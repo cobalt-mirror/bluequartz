@@ -4,7 +4,7 @@
 # This handler is run whenever a SOS-Report needs to be deleted.
 
 # Debugging switch:
-$DEBUG = "1";
+$DEBUG = "0";
 if ($DEBUG)
 {
         use Sys::Syslog qw( :DEFAULT setlogsock);
