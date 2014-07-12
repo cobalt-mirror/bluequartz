@@ -1,0 +1,12 @@
+<item 
+    id="2nuonce_base_ssh2" 
+    label="SSH" 
+    description="[[base-remote.connect_help]]" 
+    url="/remote/ssh"
+    module="user"
+>
+    <parent id="base_programsPersonal" order="20">
+        <access require="shellAccessEnabled"/>
+    </parent>
+
+</item>

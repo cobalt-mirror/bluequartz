@@ -7,13 +7,13 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=remote
 
 VERSION=1.2.0
-RELEASE=0BX03
+RELEASE=0BX04
 
 # add a buildarch if desired
 BUILDARCH=noarch
 
 # locale exclude pattern
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
