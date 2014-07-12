@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,17 +9,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "bad_action"
-msgstr "L&#39;action spécifiée n&#39;existe pas ou n&#39;est pas exécutable."
+msgstr "L'action spécifiée n'existe pas ou n'est pas exécutable."
 
 msgid "bad_start_time"
-msgstr "L&#39;heure de début spécifiée n&#39;est pas valide."
+msgstr "L'heure de début spécifiée n'est pas valide."
 
 msgid "cannot_create_timer"
-msgstr "Impossible d&#39;ajouter un nouveau calendrier au fichier /etc/cron.d."
+msgstr "Impossible d'ajouter un nouvel horaire au fichier /etc/cron.d."
 
 msgid "timer_add_failed"
-msgstr "Impossible d&#39;ajouter une nouvelle annexe à cron."
+msgstr "Impossible d'ajouter de nouvel horaire à cron."
 
 msgid "timer_delete_failed"
-msgstr "Pourrait supprimer le fichier spécifié dans /etc/cron.d."
+msgstr "Le fichier spécifié dans /etc/cron.d a pu être supprimé."
 
