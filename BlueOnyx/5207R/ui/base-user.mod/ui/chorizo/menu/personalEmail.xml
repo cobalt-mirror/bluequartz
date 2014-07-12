@@ -1,0 +1,9 @@
+<item 
+  id="base_personalEmail" 
+  label="[[base-user.personalEmail]]" 
+  description="[[base-user.personalEmail_help]]" 
+  url="/user/personalEmail" 
+  icon="v_card_2"
+  module="user">
+  <parent id="base_personalProfile" order="20"/>
+</item>
