@@ -233,7 +233,9 @@ class Wizard extends MX_Controller {
 				//    [oldTimeZone] => US/Eastern
 
 				// Password empty?
-				$my_errors[] = bx_pw_check($i18n, $attributes['newPasswordField'], $attributes['_newPasswordField_repeat']);
+				if (bx_pw_check($i18n, $attributes['newPasswordField'], $attributes['_newPasswordField_repeat']) != "") {
+					$my_errors[] = bx_pw_check($i18n, $attributes['newPasswordField'], $attributes['_newPasswordField_repeat']);
+				}
 				// License accepted?
 				if (!isset($attributes['license_acceptance'])) {
 					$my_errors[] = ErrorMessage($i18n->get("[[base-wizard.accept_help]]"). '<br>' . $i18n->get("[[base-wizard.decline_help]]"));
@@ -275,8 +277,9 @@ class Wizard extends MX_Controller {
 				if (isset($attributes['_newPasswordField_repeat'])) {
 					$passwd_repeat = $attributes['_newPasswordField_repeat'];
 				}
-				$my_errors = bx_pw_check($i18n, $passwd, $passwd_repeat);
-
+				if (bx_pw_check($i18n, $passwd, $passwd_repeat) != "") {
+					$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+				}
 				if ($attributes['newPasswordField']) {
   					$user_attributes["password"] = $attributes['newPasswordField'];
   				}
