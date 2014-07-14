@@ -174,7 +174,9 @@ class Mysqlserver extends MX_Controller {
 			}
 			if ((isset($form_data['newpass'])) || (isset($form_data['_newpass_repeat']))) {
 				if ($form_data['newpass'] != "") {
-					$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+					if (bx_pw_check($i18n, $passwd, $passwd_repeat) != "") {
+						$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+					}
 				}
 			}
 
