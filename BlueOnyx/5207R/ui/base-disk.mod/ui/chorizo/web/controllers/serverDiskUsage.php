@@ -287,6 +287,11 @@ class ServerDiskUsage extends MX_Controller {
 	        }
 	    }
 
+	    // If all fails, assume / and set $unlimited so it's not undefined:
+	    if (!isset($unlimited)) {
+	    	$unlimited = $disk['total'];
+	    }
+
 		// Push out the Scrollist with the partition disk usage:
 		$block->addFormField(
 		        $factory->addBXDivider("summary", ""),
