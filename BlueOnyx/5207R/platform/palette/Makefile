@@ -7,13 +7,15 @@ include $(CCETOPDIR)/devel/defines.mk
 BASEDIR = $(CCEDIR)
 UIDIR = $(BASEDIR)/ui
 
-INSTALLDIRS = conf libPhp web menu
+INSTALLDIRS = conf web
+MENUDIR = menu
+DOCDIR = docs
 
 CCEMODULE = sausalito-palette
 CCERPMSPEC = sausalito-palette.spec
 
 VERSION=0.9.9
-RELEASE=0BX03
+RELEASE=0BX04
 
 LOCALES=$(shell dir=locale; \
                 if [ -d $$dir ]; then \
@@ -44,6 +46,10 @@ install: install_locale
 		install -D -o root -g root -m 755 {} $(BASEDIR)/{} \;
 	cd ccewrap; find . -type f -not -regex ".*svn.*" -exec \
 		install -D -o root -g root -m 644 {} $(CCEWRAPD)/{} \;
+	find $(MENUDIR) -type f -not -regex ".*svn.*" -exec \
+		install -D -o root -g root -m 644 {} $(CCEDIR)/ui/chorizo/{} \;
+	cd $(DOCDIR); find . -type f -not -regex ".*svn.*" -exec \
+		install -D -o root -g root -m 644 {} $(PREFIX)/usr/share/doc/blueonyx-release-520XR/{} \;
 #	make -C locale/en install
 #	make -C locale/ja install
 

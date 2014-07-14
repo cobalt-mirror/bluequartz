@@ -1,7 +1,7 @@
 Summary: Cobalt UI Library
 Name: sausalito-palette
 Version: 0.9.9
-Release: 0BX03%{?dist}
+Release: 0BX04%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -46,16 +46,26 @@ fi
 
 %files
 %defattr(-,root,root)
-/usr/sausalito/ui/menu/palette
+#/usr/sausalito/ui/menu/palette
 /usr/sausalito/ui/conf
-/usr/sausalito/ui/libPhp
+#/usr/sausalito/ui/libPhp
 /usr/sausalito/ui/web
 /usr/sausalito/sbin/writeFile.pl
 /usr/share/locale/*/LC_MESSAGES/*
 /usr/share/locale/*/*.prop
 /etc/ccewrap.d/*
+/usr/sausalito/ui/chorizo/menu/palette/*
+/usr/share/doc/blueonyx-release-520XR/*
 
 %changelog
+
+* Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX04
+- Small locale fixes.
+- Removed old libPhp, web and menu directory.
+- Added Chorizo menus and moved them to the right places.
+- This module has a docs directory. Outdated, but valueable. Included it.
+- Just added web/libJs/ajax_lib.js back, as our password checker still
+  needs it. Go figure.
 
 * Thu Jun 26 2014 Michael Stauber <mstauber@solarspeed.net> 0.9.9-0BX03
 - Small locale fix.
