@@ -230,7 +230,7 @@ class AmStatus extends MX_Controller {
 				$details = $factory->getCompositeFormField(array($fancy_button, $link_button));
 
 				$nspace_helper = explode('/', $nspace["URL"]);
-	            if (($nspace["URL"] == "") || (!is_file("/usr/sausalito/ui/chorizo/ci/application/modules/core/" . $nspace_helper[1] . "/controllers/" . $nspace_helper[2] . ".php"))) {
+	            if (($nspace["URL"] == "") || (!is_file("/usr/sausalito/ui/chorizo/ci/application/modules/base/" . $nspace_helper[1] . "/controllers/" . $nspace_helper[2] . ".php"))) {
 					$fancy_button->setDisabled(TRUE);
 					$link_button->setDisabled(TRUE);
 			    }
