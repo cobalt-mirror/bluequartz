@@ -24,10 +24,10 @@ class PHPExtension extends UIExtension
         
         $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
 
-        if ($defaults['enabled']) { 
+        if (($defaults['suPHP_enabled'] == '0') && ($defaults['enabled'] == '1')) { 
           $php_enabler = array("disabled" => "0", "php" => "1", "enableSuPHP" => "0"); 
         }
-        elseif ($defaults['suPHP_enabled']) { 
+        elseif (($defaults['suPHP_enabled'] == '1') && ($defaults['enabled'] == '1')) { 
           $php_enabler = array("disabled" => "0", "php" => "0", "enableSuPHP" => "1"); 
         }
         else {
