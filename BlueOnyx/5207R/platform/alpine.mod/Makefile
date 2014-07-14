@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=alpine
 
 VERSION=1.0
-RELEASE=1BX02
+RELEASE=1BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 #BUILDSRC=yes
@@ -41,6 +41,9 @@ SYSCONFIG=$(ETCDIR)/sysconfig
 CONFIG_DIR=etc/sysconfig
 CONFIG_FILES=firstboot
 
+# CodeIgniter Root:
+CIROOT=$(CCEDIR)/ui/chorizo
+
 MKDIR=mkdir -p
 
 remove:
@@ -55,7 +58,6 @@ install: install_perl install_config
 	find web -type f -not -path "*/CVS*" $$exclude -exec install -D -o root -g root -m 644 {} $(CCEDIR)/ui/{} \;
 	$(MKDIR) $(CCEDIR)/ui/web/libImage
 	find libImage -type f -not -path "*/CVS*" $$exclude -exec install -D -o root -g root -m 644 {} $(CCEDIR)/ui/web/{} \;
-	find manuals -type f -not -path "*CVS*" -exec install {} -D -o root -g root -m 644 $(WEBROOT)/{} \;
 	include="-false"; \
 	for locale in $(LOCALES); do \
 		include="$$include -or -path *\.$$locale"; \
@@ -72,6 +74,11 @@ install: install_perl install_config
 			fi; \
 		fi; \
 	done;
+	$(MKDIR) $(CCEDIR)/ui/chorizo/ci
+	find ci -type f -not -path ".svn" -exec install {} -D -o root -g root -m 644 $(CIROOT)/{} \;
+	$(MKDIR) $(PREFIX)/usr/share/doc/blueonyx-release-520XR
+	find CHORIZO-readme.txt -type f -not -path ".svn" -exec install {} -D -o root -g root -m 644 $(PREFIX)/usr/share/doc/blueonyx-release-520XR/{} \;
+	find CHORIZO-readme.txt -type f -not -path ".svn" -exec install {} -D -o root -g root -m 644 $(CIROOT)/ci/{} \;
 
 install_config:
 	@$(MKDIR) $(SYSCONFIG)

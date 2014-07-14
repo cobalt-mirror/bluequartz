@@ -52,18 +52,21 @@ information for [VENDOR]-[SERVICE].
 
 <begin ui>
 [AUTOFILL]
-%{RootDir}/ui/web/*.php
 %{RootDir}/ui/web/robots.txt
-%{RootDir}/ui/web/*.html*
-%{RootDir}/ui/web/error
 %{RootDir}/ui/web/libImage/*
+%{RootDir}/ui/web/.adm/*
+%{RootDir}/ui/web/.htaccess
+%{RootDir}/ui/web/index.php
+%config(noreplace) %{RootDir}/ui/web/.adm/styles/customer/customer.css
+%{RootDir}/ui/chorizo/ci/*
+/usr/share/doc/blueonyx-release-520XR/CHORIZO-readme.txt
+%{RootDir}/ui/chorizo/ci/CHORIZO-readme.txt
 
 <end ui>
 
 <begin capstone>
 %{RootDir}/capstone/%{Vendor}-%{Service}.cap
 /etc/sysconfig/firstboot
-/usr/sausalito/ui/web/manuals/*
 [AUTOFILL]
 
 <end capstone>
@@ -104,6 +107,11 @@ information for [VENDOR]-[SERVICE].
 <begin ui>
 # ui post-uninstall
 
+# Set random number for $config['encryption_key'] in the CodeIgniter config:
+RANDNUMA=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
+RANDNUMB=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
+/bin/sed -i -e "s/cf81d0da4acb2dbf276413111e8e4d48/$RANDNUMA$RANDNUMB/" /usr/sausalito/ui/chorizo/ci/application/config/config.php
+
 <end ui>
 <begin locale>
 # locale post-uninstall
@@ -112,6 +120,15 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX03
+- Chorizo-fied base-alpine: This module now contains enough changes to
+  warrant a complete name change. I resisted that urge. It now contains
+  the CodeIgniter base-install and configuration, various modifications
+  to CodeIgniter, the UIFC classes, helpers and libraries of Chorizo and
+  some base modules such as the ones for /gui and /login.
+- Added CHORIZO-readme.txt
+- Added randomized encryption_key for ci/application/config/config.php
 
 * Tue Apr 29 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX02
 - Modified constructor/setup_capabilities.pl to add 'CapabilityGroup' 
