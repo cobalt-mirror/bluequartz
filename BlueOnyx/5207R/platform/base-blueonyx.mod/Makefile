@@ -6,10 +6,11 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=blueonyx
 
-BUILD=20140426
+SUBVER=BETA01
+BUILD=$(shell date --rfc-3339=date | sed s/-//g)$(SUBVER)
 
 VERSION=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5208R"; else  echo -n "5207R"; fi)
-RELEASE=4.$(BUILD)BX111
+RELEASE=4.$(BUILD)
 
 # add a buildarch if desired
 BUILDARCH=noarch
