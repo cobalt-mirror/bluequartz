@@ -211,7 +211,9 @@ class UserMod extends MX_Controller {
 			}
 			else {
 				// Password change requested. Check strength and take the new password:
-				$my_errors[] = bx_pw_check($i18n, $attributes['passwordField'], $attributes['_passwordField_repeat']);
+				if (bx_pw_check($i18n, $attributes['passwordField'], $attributes['_passwordField_repeat']) != "") {
+					$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+				}
 				$settings['password'] = $attributes['passwordField'];
 			}
 

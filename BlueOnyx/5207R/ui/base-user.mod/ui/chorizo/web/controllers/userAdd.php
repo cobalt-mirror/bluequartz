@@ -229,7 +229,10 @@ class UserAdd extends MX_Controller {
 			if (isset($attributes['_passwordField_repeat'])) {
 				$passwd_repeat = $attributes['_passwordField_repeat'];
 			}
-			$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+
+			if (bx_pw_check($i18n, $passwd, $passwd_repeat) != "") {
+				$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+			}
 
 		}
 
