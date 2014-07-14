@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=java
 
 VERSION=4.0.0
-RELEASE=0BX02
+RELEASE=0BX03
 
 # add a buildarch if desired
 #BUILDARCH=noarch
@@ -15,7 +15,7 @@ RELEASE=0BX02
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
