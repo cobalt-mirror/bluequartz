@@ -122,8 +122,7 @@ SERIALNUMBER=`echo get $SOID | /usr/sausalito/bin/cceclient | grep ^102.*serialN
 
 if [ -z "$SERIALNUMBER" ]
 then
-  echo "Unable to find serial number"
-  exit 1
+  SERIALNUMBER='none';
 fi
 
 if [ -z "$MODEL" ]
