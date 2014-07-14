@@ -12,15 +12,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-i18n-root
 Requires: glib >= 1.2.7
 Requires: base-admserv-glue >= 1.0.1
-%if "%sles" == "9"
-BuildRequires: php4-devel
-%endif
-%if "%tlas" == "2"
-BuildRequires: php4
-%endif
-%if 0%{?fedora}%{?centos}
 BuildRequires: php-devel
-%endif
 
 %description
 sausalito-i18n is a wrapper library for i18n functions.
@@ -50,7 +42,7 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
 /usr/sausalito/bin/i18n_get
 /usr/sausalito/bin/i18n_translate
 /usr/sausalito/bin/i18n_locales
-/usr/sausalito/ui/libPhp/*
+#/usr/sausalito/ui/libPhp/*
 %{extension_dir}/*
 /usr/sausalito/perl/I18n.pm
 /usr/sausalito/perl/SendEmail.pm
@@ -101,6 +93,12 @@ if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
 fi
 
 %changelog
+
+* Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.80.1-0BX01
+- Build for 520XR.
+- Removed libPhp directory, as its contends are now included in base-alpine.
+- Removed php/EncodingConv.php as it's now in base-alpine.
+- Removed php/I18n.php as it's now in base-alpine.
 
 * Thu Apr 10 2014 Michael Stauber <mstauber@solarspeed.net> 0.71.1-0BX06
 - Modified php/I18n.php to improve the order of charsets in mb_detect_encoding()

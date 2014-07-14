@@ -40,8 +40,6 @@ install: i18n.so
 	$(INSTALL) -d $(CCEDIR)/ui/web
 	$(INSTALL) -d $(PREFIX)/etc/php.d
 	$(INSTALL) $(INSTALL_SHLIBFLAGS) i18n.so $(CCEPHPLIBDIR)
-	$(INSTALL) I18n.php $(CCEPHPCLASSDIR)
-	$(INSTALL) EncodingConv.php $(CCEPHPCLASSDIR)
 	$(INSTALL) test_i18n.php $(CCEDIR)/ui/web/
 
 local_clean:
