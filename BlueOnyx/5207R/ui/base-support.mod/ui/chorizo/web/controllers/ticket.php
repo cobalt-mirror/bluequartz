@@ -651,21 +651,23 @@ class Ticket extends MX_Controller {
 			);
 
 			// Allow to append to existing ticket if there are any:
-			if (is_array($existing_tickets)) {
+			if (isset($existing_tickets)) {
+				if (is_array($existing_tickets)) {
 
-				$opt_new_ticket = array('new_ticket' => 'new_ticket');
-				$ticket_selector = array_merge($opt_new_ticket, $existing_tickets);
+					$opt_new_ticket = array('new_ticket' => 'new_ticket');
+					$ticket_selector = array_merge($opt_new_ticket, $existing_tickets);
 
-		        // Add pulldown for Ticket selector:
-		        $ticket_num_selector = $factory->getMultiChoice("ticket_num_selector", array_values($ticket_selector));
-		        $ticket_num_selector->setSelected('new_ticket', true);
-		        $ticket_num_selector->setOptional(false);
-		        $block->addFormField(
-		    		$ticket_num_selector, 
-		    		$factory->getLabel("ticket_num_selector"), 
-		    		$defaultPage
-		    	);
-		    }
+			        // Add pulldown for Ticket selector:
+			        $ticket_num_selector = $factory->getMultiChoice("ticket_num_selector", array_values($ticket_selector));
+			        $ticket_num_selector->setSelected('new_ticket', true);
+			        $ticket_num_selector->setOptional(false);
+			        $block->addFormField(
+			    		$ticket_num_selector, 
+			    		$factory->getLabel("ticket_num_selector"), 
+			    		$defaultPage
+			    	);
+			    }
+			}
 
 			$server_model = $factory->getTextField("server_model", $system['productName'] . ' (' . $system['productBuildString'] . ')', 'r');
 			$server_model->setType("");
