@@ -471,8 +471,8 @@ class Ticket extends MX_Controller {
 			}
 			else {
 				// ISP data hasn't been set and there was only the choice to mail BlueOnyx Support:
-				$attributes_clone['recipient_name'] = $Support['recipient_name'];
-				$attributes_clone['recipient_email'] = $Support['recipient_email'];
+				$attributes_clone['recipient_name'] = $Support['bx_support_name'];
+				$attributes_clone['recipient_email'] = $Support['bx_support_email'];
 			}
 			//
 			//-- Priority/Severity:
@@ -651,8 +651,10 @@ class Ticket extends MX_Controller {
 			);
 
 			// Allow to append to existing ticket if there are any:
-			if (isset($existing_tickets)) {
-				if (is_array($existing_tickets)) {
+			if (!isset($existing_tickets)) {
+				$existing_tickets = array();
+			}
+			if (is_array($existing_tickets)) {
 
 					$opt_new_ticket = array('new_ticket' => 'new_ticket');
 					$ticket_selector = array_merge($opt_new_ticket, $existing_tickets);
@@ -666,8 +668,7 @@ class Ticket extends MX_Controller {
 			    		$factory->getLabel("ticket_num_selector"), 
 			    		$defaultPage
 			    	);
-			    }
-			}
+		    }
 
 			$server_model = $factory->getTextField("server_model", $system['productName'] . ' (' . $system['productBuildString'] . ')', 'r');
 			$server_model->setType("");
