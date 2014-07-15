@@ -7,7 +7,7 @@ URL:            http://www.blueonyx.it
 License:        Sun modified BSD
 Group:          System
 BuildRoot:      %{_tmppath}/%{name}-root
-BuildArch:      i386
+BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
 Summary:        Shell tools for importing, deleting and modyfing DNS.

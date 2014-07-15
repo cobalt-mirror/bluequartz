@@ -9,7 +9,7 @@ MPATH=`pwd`
 echo -n "Taring Up "
 /bin/rm -f blueonyx-dnstoolbox.tar.gz
 /bin/rm -f *.rpm
-rm -f /usr/src/redhat/RPMS/i386/blueonyx-dnstoolbox-*.rpm
+rm -f /usr/src/redhat/RPMS/noarch/blueonyx-dnstoolbox-*.rpm
 rm -f /usr/src/redhat/SRPMS/blueonyx-dnstoolbox-*.src.rpm 
 /bin/tar cfpz blueonyx-dnstoolbox.tar.gz blueonyx-dnstoolbox/ blueonyx-dnstoolbox.spec --exclude=.svn
 
@@ -22,7 +22,7 @@ rm -f blueonyx-dnstoolbox.tar.gz >/dev/null 2>&1
 
 echo -n "Moving new RPMs"
 
-cp /usr/src/redhat/RPMS/i386/blueonyx-dnstoolbox-*.i386.rpm $MPATH 
+cp /usr/src/redhat/RPMS/noarch/blueonyx-dnstoolbox-*.noarch.rpm $MPATH 
 cp /usr/src/redhat/SRPMS/blueonyx-dnstoolbox-*.src.rpm $MPATH
 echo -n "[ "; echo -en "\\033[1;36mOK\\033[0;39m"; echo " ]"
 echo
