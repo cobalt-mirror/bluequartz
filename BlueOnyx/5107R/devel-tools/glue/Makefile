@@ -1,19 +1,5 @@
-BUILD=20100519
-PRODUCT=$(shell \
-if [ -f /etc/fedora-release ] && [ "`rpm -q --qf=%{version} fedora-release`" = "1" ]; then echo '5100'; fi; \
-if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "3" ]; then echo '5101'; fi; \
-if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "4" ]; then \
-  if [ "`rpm -q --qf=%{arch} centos-release`" = "i386" ]; then echo '5102'; fi; \
-  if [ "`rpm -q --qf=%{arch} centos-release`" = "x86_64" ]; then echo '5103'; fi; \
-  if [ "`rpm -q --qf=%{arch} centos-release`" = "ppc" ]; then echo '5104'; fi; \
-  if [ "`rpm -q --qf=%{arch} centos-release`" = "alpha" ]; then echo '5104'; fi; \
-fi; \
-if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "5" ]; then echo '5106'; fi; \
-
-if [ -f /etc/redhat-release ] && [ "`rpm -q --qf=%{version} centos-release`" = "6" ]; then \
-  if [ "`uname -m`" = "i686" ]; then echo '5107'; fi; \
-  if [ "`uname -m`" = "x86_64" ]; then echo '5108'; fi; \
-)
+BUILD=$(shell date --rfc-3339=date | sed s/-//g)
+PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5208"; else  echo -n "5207"; fi)
 
 all:
 

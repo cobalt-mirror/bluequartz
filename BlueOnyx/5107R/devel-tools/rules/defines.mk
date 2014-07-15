@@ -16,6 +16,16 @@ CCESESSIONSDIR=$(CCEDIR)/sessions
 CCEHANDLERDIR=$(CCEDIR)/handlers
 CCEWRAPD=$(PREFIX)/etc/ccewrap.d
 
+#
+### Start: Chorizo:
+#
+CHORIZOWEB=$(CCEDIR)/ui/chorizo/ci/application/modules
+CHORIZOMENU=$(CCEDIR)/ui/chorizo/menu
+CHORIZOEXT=$(CCEDIR)/ui/chorizo/extensions
+#
+### Stop: Chorizo:
+#
+
 CCELOCALEDIR=$(PREFIX)/usr/share/locale/
 
 CCECDEFS=-I$(CCEINCDIR) -D_REENTRANT

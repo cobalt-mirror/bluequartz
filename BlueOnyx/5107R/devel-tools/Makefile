@@ -3,8 +3,8 @@ include rules/defines.mk
 CCEMODULE = sausalito-devel-tools
 CCERPMSPEC = sausalito-devel-tools.spec
 
-VERSION=0.5.3
-RELEASE=0BX02
+VERSION=0.6.0
+RELEASE=0BX04
 
 DIRS = scripts libdebug rules templates glue
 

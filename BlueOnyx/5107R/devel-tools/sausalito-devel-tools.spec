@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
-Version: 0.5.3
-Release: 0BX02%{?dist}
+Version: 0.6.0
+Release: 0BX04%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -10,7 +10,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
-Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++
+Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++ libxml2-devel pam-devel glib2-devel flex bison
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
@@ -53,6 +53,27 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX04
+- Added requirement for pam-devel glib2-devel flex bison
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX03
+- Added requirement for libxml2-devel
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX02
+- Modified scripts/mod_rpmize and rules/module.mk for better .svn excludes.
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX01
+- Updated to the new BlueOnyx RPM format for the Chorizo-GUI of 520XR.
+- Added new defines to rules/defines.mk 
+- Modified rules/module.mk to handle the new directory structure. 
+- Modified scripts/mod_rpmize to handle the new directory structure.
+- Axed a lot of garbage from glue/etc/rpm/macros.blueonyx
+- Additionally a BlueOnyx modules (toplevel) Makefile can now have
+- four settings for BUILDUI: yes, no, old and new. Selecting yes will
+  build with old and new GUI or whichever of the two is present. 
+  Selecting old will build with the old GUI only. Naturally selecting
+  new will only build with the new GUI instead.
 
 * Sat Dec 15 2013 Michael Stauber <mstauber@solarspeed.net> 0.5.3-0BX02
 - Merged in locales support for the Netherlands ('nl_NL').
