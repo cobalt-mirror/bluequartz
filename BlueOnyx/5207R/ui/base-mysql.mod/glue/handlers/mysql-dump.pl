@@ -33,10 +33,10 @@ my ($ok, $MySQL) = $cce->get($moids[0], "");
 $host = $MySQL->{'sql_host'};
 $port = $MySQL->{'sql_port'};
 
-$file = '/usr/sausalito/ui/ci/application/modules/core/mysql/models/mysql-dump.sql';
+$file = '/usr/sausalito/ui/chorizo/ci/application/modules/base/mysql/models/mysql-dump.sql';
 
-if (!-d '/usr/sausalito/ui/ci/application/modules/core/mysql/models') {
-	system("/bin/mkdir -p /usr/sausalito/ui/ci/application/modules/core/mysql/models");
+if (!-d '/usr/sausalito/ui/chorizo/ci/application/modules/base/mysql/models') {
+	system("/bin/mkdir -p /usr/sausalito/ui/chorizo/ci/application/modules/base/mysql/models");
 }
 
 if ( $pass eq "-1" ) {

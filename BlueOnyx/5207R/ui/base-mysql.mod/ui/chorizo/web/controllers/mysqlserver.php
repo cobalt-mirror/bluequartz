@@ -252,7 +252,7 @@ class Mysqlserver extends MX_Controller {
 		//
 
 		// Location of the backup file:
-		$backup_file = "/usr/sausalito/ui/ci/application/modules/core/mysql/models/mysql-dump.sql";
+		$backup_file = "/usr/sausalito/ui/chorizo/ci/application/modules/base/mysql/models/mysql-dump.sql";
 
 		// MySQL PID:
 		$pid = `/sbin/pidof mysqld`;

@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=mysql
 
 VERSION=2.1.0
-RELEASE=0BX11
+RELEASE=0BX12
 
 # add a buildarch if desired
 BUILDARCH=noarch
