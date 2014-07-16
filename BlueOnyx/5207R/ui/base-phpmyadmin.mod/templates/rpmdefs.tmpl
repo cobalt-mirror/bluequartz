@@ -76,7 +76,7 @@ if [ "$AUTH_TYPE" ] ; then
     chmod 644 $ADMINCONFIG
     exit 0
 else
-    cat /etc/phpMyAdmin/config.inc.php|	sed "s/\['auth_type'\]     = 'http';/\['auth_type'\]     = 'signon';\n\$cfg\['Servers'\]\[\$i\]\['SignonSession'\] = 'SignonSession';\n\$cfg\['Servers'\]\[\$i\]\['SignonURL'\]     = '\/base\/phpmyadmin\/index.php';\n\/\/ \$cfg\['Servers'\]\[\$i\]\['auth_type'\]     = 'http';/g" > $ADMINCONFIG.new
+    cat /etc/phpMyAdmin/config.inc.php|	sed "s/\['auth_type'\]     = 'http';/\['auth_type'\]     = 'signon';\n\$cfg\['Servers'\]\[\$i\]\['SignonSession'\] = 'SignonSession';\n\$cfg\['Servers'\]\[\$i\]\['SignonURL'\]     = '\/phpmyadmin\/login';\n\/\/ \$cfg\['Servers'\]\[\$i\]\['auth_type'\]     = 'http';/g" > $ADMINCONFIG.new
     mv $ADMINCONFIG.new $ADMINCONFIG
     chmod 644 $ADMINCONFIG
 fi
@@ -119,6 +119,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Jul 16 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX03
+- Fix in base-phpmyadmin.mod/constructor/pma_apache.pl
+- Fix in base-phpmyadmin.mod/glue/configs/phpMyAdmin.conf
+- Fixed signon fixer in post-install.
 
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX02
 - Chorizo GUI added, old GUI disabled.

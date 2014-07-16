@@ -1,6 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
 # $Id: pma_apache.pl 
-# Copyright 2006-2013 Team Blueonyx. All rights reserved.
+# Copyright 2006-2014 Team Blueonyx. All rights reserved.
 
 # Location of sample phpMyAdmin.conf:
 $sample_conf = "/usr/sausalito/configs/phpmyadmin/phpMyAdmin.conf";
@@ -36,15 +36,15 @@ if ( -f $sample_conf )  {
         }
     }
 
-    # On bad results copy the "good" squirrelmail.conf from AdmServ over to the public Apache:
+    # On bad results copy the "good" phpMyAdmin.conf from AdmServ over to the public Apache:
     unless (($CHECK_CONFIG == "1") && ($CHECK_CONFIG_AGAIN == "1")) {
         if ( -e $admserv_conf ) {
             # Copy config over:
             system("/bin/cp $sample_conf $admserv_conf");
             if ( -f $apache_conf )  {
                 system("/bin/cp $sample_conf $apache_conf");
-                # Reload Apache:
-                Sauce::Service::service_run_init('httpd', 'reload');
+                # Restart Apache:
+                Sauce::Service::service_run_init('httpd', 'restart');
             }
         }
     }
