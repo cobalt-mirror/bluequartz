@@ -1,0 +1,66 @@
+#!/usr/bin/perl -I../perl_modules
+# $Id: siteGroups 922 2003-07-17 15:22:40Z will $
+
+use TreeXml;
+
+my $fileName = "/tmp/cmu.xml";
+my $tree = readXml($fileName, 0, 0 );
+
+my @vsites = orderVsites($tree);
+my $i = 1;
+foreach $a (@vsites) {
+	warn $a." => site".$i."\n";
+	$i++
+}
+
+sub orderVsites
+# this is intened to line up the site group names if possible
+# Arguments: the vsite data stucture
+# Return: an array with the order to create the vsites
+{
+	my $vTree = shift;
+
+	my $maxVsites = 2000;
+	my @vOrder = ();
+	my @vLast = ();
+	# get the currently used site groups
+	setgrent();
+	my %curGroups;
+	while (my $group = getgrent) {
+		next if($group !~ /^site\d+/);
+    	$curGroups{$group} = 1;
+	}
+
+	my %siteHash;
+	my $cnt = 0;
+	# create a hash of fqdn => groupname also get a count of vsites
+	foreach my $vsite (keys %{ $vTree->{vsites} }) {
+		my $vsiteTree = $vTree->{vsites}->{$vsite};
+		# if we have group name we go last
+		if(!$vsiteTree->{name}) { push(@vLast, $vsite); } 
+		elsif($vsiteTree->{name} eq 'home') { push(@vLast, $vsite); } 
+		else { $siteHash{ $vsiteTree->{name} } = $vsite; }
+		$cnt++;
+	}
+	for(my $i = 1; $i < $maxVsites; $i++) {
+		my $name = "site".$i;
+		if(exists($curGroups{$name})) { push(@vLast,$siteHash{$name}); } 
+		elsif(defined($siteHash{$name})) { push(@vOrder,$siteHash{$name}); }	
+	}
+
+	#warn "vOrder is: ", @vOrder, "\n";
+	#warn "vLast is: ", @vLast, "\n";
+	foreach my $site (@vLast) { push(@vOrder, $site); }
+
+	# sanity check, keeping the same group isn't worth losing a vsite
+	if(scalar(@vOrder) ne $cnt) {
+		warn "ERROR: orderVsites lost a vsite going with random order\n";
+		@vOrder = ();
+		foreach my $vsite (keys %{ $vTree->{vsites} }) {
+			push(@vOrder, $vsite);
+		}
+	}
+	return(@vOrder);
+}
+
+

@@ -1,0 +1,9 @@
+<item 
+    id="base_programsPersonal" label="[[base-alpine.base-programs]]" 
+    description="[[base-alpine.base-programs_description]]" 
+    url="/gui"
+    icon="robot"
+    requiresChildren="1"
+>
+    <parent id="base_personalProfile" order="900"/>
+</item>

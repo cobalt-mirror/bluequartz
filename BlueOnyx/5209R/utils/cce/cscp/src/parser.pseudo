@@ -1,0 +1,48 @@
+caller() 
+{
+	cscp_cmd cmd;
+	cscp_state state = CSCP_STATE_AUTH;
+	while(1) {
+		cmd = read_cmd(state);
+		if (cmd == EOF_CMD) {
+			break;
+		}
+		if (!cmd_valid(cmd, state)) {
+			return EBADCMDFORSTATE;
+		}
+		process(cmd);
+	}
+}
+
+read_cmd(cscp_state state) 
+{
+	int cmd, token;
+	list_t list;
+	cscp_cmd *ret;
+
+	cmd = yylex(); /* lex changes to token state */
+	while ((token = yylex()) != TOK_EOL) {
+		add_to_list(list, item, yytext);
+	}
+
+	ret = build_cmds[cmd](list);
+	if (!ret) {
+		ERROR;
+	}
+	return ret;
+}
+
+build_<cmd_specific>_cmd(list_t list)
+{
+	cscp_cmd *cmd = malloc(...);
+
+	for each item in list {
+		if (item_makes_sense(item)) {
+			process_item(item, cmd);
+		} else {
+			free(cmd);
+			return NULL;
+		}
+	}
+	return cmd;
+}

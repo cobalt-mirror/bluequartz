@@ -1,0 +1,9 @@
+<item 
+    id="base_controlpanel" 
+    label="[[base-alpine.controlpanel]]" 
+    description="[[base-alpine.controlpanelDescription]]"
+    icon="download_to_computer"
+    requiresChildren="1"
+>
+    <parent id="base_sysmanage" order="20"/>
+</item>

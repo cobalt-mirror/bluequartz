@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "cceDown"
+msgstr "Le moteur de configuration Cobalt CCE (Cobalt Configuration Engine) ne fonctionne pas. [[base-am.activeMonitor]] ne peut pas fonctionner sans le CCE. Essayez de redémarrer le service 'cced.init' ou de redémarrer le serveur via SSH. Si [[base-am.activeMonitor]] ne fonctionne toujours pas, veuillez vous référer à [[base-sauce-basic.techSupportURL]] pour le support technique."
+
+msgid "defGreenMsg"
+msgstr "Ce composant est normal"
+
+msgid "defRedMsg"
+msgstr "Il ya un grave problème avec ce composant"
+
+msgid "defUnknownMsg"
+msgstr "L'état de ce composant est inconnu"
+
+msgid "defYellowMsg"
+msgstr "Il ya un problème avec ce composant"
+
+msgid "emailBody"
+msgstr "[[base-am.activeMonitor]] a détecté des changements récents dans l'état du serveur\nPour plus d'informations, veuillez voir la section de [[base-am.activeMonitor]] du [[base-apache.amAdmservNameTag]]\n\nRésumé des changements :"
+
+msgid "emailSubject"
+msgstr "Changements de [[base-am.activeMonitor]]"
+

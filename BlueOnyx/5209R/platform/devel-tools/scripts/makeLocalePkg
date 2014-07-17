@@ -1,0 +1,203 @@
+#!/usr/bin/perl
+
+# Author: Kevin K.M. Chiu
+# Copyright 2000, Cobalt Networks.  All rights reserved.
+# $Id: makeLocalePkg 3 2003-07-17 15:19:15Z will $
+
+# This script makes a PKG file that contains locale RPMs
+
+use strict;
+use Cwd;
+
+# constants
+my $buildDir = "/tmp/pkg";
+my $rpmDir = "/usr/src/redhat/RPMS/noarch";
+my $tmpDir = "/tmp";
+my @localeSensitiveKeys = ("Copyright", "License", "LongDesc", "NameTag", "ShortDesc", "VendorTag", "VersionTag");
+my $msgfmtCommand = "/usr/bin/msgfmt";
+
+# check command-line arguments
+if($#ARGV < 1) {
+    print "Usage: $0 <modules directory> <packing_list template> <locale> [<locale>...]\n";
+    print "       Module directory should contain all the modules\n\n";
+    exit 1;
+}
+
+my ($rootDir, $packingListTmpl, @locales) = @ARGV;
+
+# save current working directory
+my $workingDir = cwd();
+
+# find all the modules
+opendir(DIR, $rootDir) || die "Error: Cannot open $rootDir: $!";
+my @modules = readdir(DIR);
+closedir(DIR);
+
+# clean up module list
+@modules = grep !/^\./, @modules;
+my @cleanModuleList = ();
+my $module;
+foreach $module (@modules) {
+    if(-d "$workingDir/$module") {
+	push @cleanModuleList, $module;
+    }
+}
+@modules = @cleanModuleList;
+
+# save current working directory
+my $saveDir = cwd();
+# make RPM for all modules
+my @builtModules = ();
+my $module;
+foreach $module (@modules) {
+    # skip those without locale stuff
+    if(! -d "$workingDir/$module/locale") {
+	print "Skipping $module...\n";
+	next;
+    }
+
+    print "Making RPM for $module...\n";
+
+    chdir "$workingDir/$module";
+
+    # silent make
+    # need to install locale files for all locales first
+    # otherwise, mod_rpmize will not pack them into locale RPMs
+    `make install`;
+    `make rpm 2>/dev/null`;
+
+    # record
+    push @builtModules, $module;
+}
+
+# restore working directory
+chdir($saveDir);
+
+# get the list of RPMs built
+opendir(DIR, $rpmDir) || die "Error: Cannot open $rpmDir: $!";
+my @builtRpms = readdir(DIR);
+closedir(DIR);
+@builtRpms = grep !/^\./, @builtRpms;
+
+# make build directory
+system("mkdir -p $buildDir/RPMS");
+my $locale;
+for $locale (@locales) {
+    system("mkdir -p $buildDir/pkginfo/locale/$locale");
+}
+
+# Move all the locale RPMs into build directory
+my $rpmList = '';
+my $builtModule;
+foreach $builtModule (@builtModules) {
+    # get the name of the module
+    if($builtModule =~ /^([^\.]+)\.mod$/) {
+	$builtModule = $1;
+    }
+
+#    print "$builtModule\n";
+
+    my $builtRpm;
+    foreach $builtRpm (@builtRpms) {
+	my $locale;
+	foreach $locale (@locales) {
+	    if($builtRpm =~ /^$builtModule-locale-$locale.+\.rpm$/) {
+		# record
+		$rpmList .= "RPM:\t$builtRpm\n";
+
+		# copy RPM to build directory
+		`cp $rpmDir/$builtRpm $buildDir/RPMS`;
+	    }
+	}
+    }
+}
+
+# make packing_list
+open(TMPL, "<$packingListTmpl") || die "Error: Cannot open $packingListTmpl: $!";
+open(PACKINGLIST, ">$buildDir/packing_list") || die "Error: Cannot open $buildDir/packing_list: $!";
+
+# scan through the template
+# a hash of locales to hashes of message ID to message string.
+my %strings = {};
+my $vendor = "";
+my $name = "";
+my $version = "";
+my $line;
+while($line = <TMPL>) {
+    # read in values for identification
+    if($line =~ /^Vendor:\s*(.*)$/) {
+	$vendor = $1;
+    }
+    if($line =~ /^Name:\s*(.*)$/) {
+	$name = $1;
+    }
+    if($line =~ /^Version:\s*(.*)$/) {
+	$version = $1;
+    }
+
+    # we treat locale sensitive lines specially
+    my $isLocaleSensitive = 0;
+    my $localeSensitiveKey;
+    foreach $localeSensitiveKey (@localeSensitiveKeys) {
+	if($line =~ /^$localeSensitiveKey:\s*([^:]+):\s*(.*)$/) {
+	    $isLocaleSensitive = 1;
+
+	    # print to packing_list
+	    print PACKINGLIST "$localeSensitiveKey:\t[[$vendor-$name-$version.$localeSensitiveKey]]\n";
+
+	    # $1 is locale, $2 is the string
+
+	    # make new set of strings if necessary
+	    if(!$strings{$1}) {
+		$strings{$1} = {};
+	    }
+
+	    # add string to set
+	    $strings{$1}{$localeSensitiveKey} = $2;
+	}
+    }
+
+    if($line =~/^\[\/Package\]$/) {
+	# print RPM list before the end of package
+	print PACKINGLIST "\n$rpmList";
+    }
+
+    if(!$isLocaleSensitive) {
+	print PACKINGLIST $line;
+    }
+}
+
+# clean up
+close(TMPL);
+close(PACKINGLIST);
+
+# build the .mo files
+my $locale;
+foreach $locale (@locales) {
+    # give a name to PO files
+    my $poName = "$tmpDir/$locale.po";
+
+    # make PO files
+    open(PO, ">$poName") || die "Error: Cannot open $poName: $!";
+    my $msgId;
+    foreach $msgId (keys %{$strings{$locale}}) {
+	print PO "msgid \"$msgId\"\n";
+	print PO "msgstr \"".$strings{$locale}{$msgId}."\"\n";
+	print PO "\n";
+    }
+    close(PO);
+
+    # compile .po into .mo
+    system("msgfmt $poName -o $buildDir/pkginfo/locale/$locale/$vendor-$name-$version.mo");
+
+    # clean up
+    unlink($poName);
+}
+
+# tar up the pkg
+system("tar czvf $workingDir/$vendor-$name-$version.pkg -C $buildDir . >/dev/null 2>&1");
+
+# clean up
+system("rm -rf $buildDir");
+
+exit 0;
