@@ -28,7 +28,7 @@ sausalito-cce has both the server and client parts of cce.
 %package server
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
-Requires: glib, glib-ghash, pam
+Requires: glib, glib-ghash, pam, rsyslog
 %if "%centos" == "5" 
 Requires: audit-libs 
 %endif 
@@ -140,6 +140,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 if [ "$1" = "1" ]; then
 	/sbin/chkconfig --add cced.init
 	/sbin/chkconfig --add pam_abl
+	/sbin/chkconfig --add rsyslog
 fi
 
 %postun server
@@ -210,6 +211,8 @@ fi
   good grace to restart CCEd. I think this addition has a lot of benefit  
   at very little risk. Whether CCEDWrappper is more secure than a locked  
   down single sudo call is hard to tell. 
+- Added dependency for rsyslog and provisions to turn it on. Without
+  logging facility CCEd startups hang in limbo otherwise.
 
 * Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX12
 - Fixed weird (but reproduceable) error in CceClient.php.
