@@ -976,13 +976,13 @@ class BxPage extends MX_Controller {
 					              });
 					            </script>');
 
-					$wiki = '<a class="various" target="_self" href="http://' . $Support['wiki_baseURL'] . '/' . uri_string() . '" data-fancybox-type="iframe">' . "\n";
+					$wiki = '<a class="various" target="_self" href="http://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '" data-fancybox-type="iframe">' . "\n";
 					$wiki .= '<button class="fancybox light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
 					$wiki .= '</a>' . "\n";
 				}
 				else {
 					// Use Link-Button to open in new tab:
-					$wiki = '<a target="_blank" href="http://' . $Support['wiki_baseURL'] . '/' . uri_string() . '">' . "\n";
+					$wiki = '<a target="_blank" href="http://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '">' . "\n";
 					$wiki .= '<button class="light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
 					$wiki .= '</a>' . "\n";
 				}
