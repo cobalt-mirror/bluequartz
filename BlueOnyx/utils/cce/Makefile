@@ -13,10 +13,10 @@ CCEMODULE = sausalito-cce
 CCERPMSPEC = $(CCEMODULE).spec
 
 CCE_V_MAJ=0
-CCE_V_MIN=81
+CCE_V_MIN=82
 CCE_V_PATCH=1
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX13
+RPMRELEASE=1BX01
 
 DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
 	ccewrap pperl
@@ -40,6 +40,7 @@ depend: .depend dynamic.mk
 		echo $(MAKE) -C $$a depend || exit 1; \
 	done
 	@touch .depend
+	/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || :
 
 dynamic.mk: Makefile
 	@rm -f $@
@@ -157,9 +158,9 @@ endif
 		$(RPMBUILD) -ta /tmp/sausalito-cce.tar.gz; \
 	fi
 	-@mkdir as_rpms || /bin/true
-	cp `find $(RPM_TOPDIR)/RPMS -follow -type f -newer $(TIMEFILE)` as_rpms
+	cp `find /root/rpmbuild/RPMS/x86_64/ -follow -type f -newer $(TIMEFILE)` as_rpms/
 	-@mkdir as_srpms || /bin/true
-	cp `find $(RPM_TOPDIR)/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms
+	cp `find /root/rpmbuild/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms/
 	-@/bin/rm -f $(TIMEFILE)
 
 specfile: $(CCERPMSPEC).in
