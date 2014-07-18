@@ -41,7 +41,7 @@ Configuration Engine.
 %package client
 Group: System Environment/BlueOnyx
 Summary: The CCE client libraries
-Requires: glib, glib-ghash, pam, httpd, base-admserv-glue perl-Time-Out
+Requires: glib, glib-ghash, pam, httpd, base-admserv-glue perl-Time-Out, rsyslog 
 
 %description client
 The cce-client package contains the client-side parts of the Cobalt 
@@ -140,6 +140,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 if [ "$1" = "1" ]; then
 	/sbin/chkconfig --add cced.init
 	/sbin/chkconfig --add pam_abl
+	/sbin/chkconfig --add rsyslog 
 fi
 
 %postun server
@@ -206,6 +207,8 @@ fi
   some internals around. See: https://bugs.php.net/bug.php?id=61479
   This should take care of it.
 - client/httpd/blueonyx.conf: Fixed login links.
+- Added dependency for rsyslog and provisions to turn it on. Without 
+  logging facility CCEd startups hang in limbo otherwise.
 
 * Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX13
 - Backport from 5207R/utils/cce 0.99.1-1BX07 - 0.99.1-1BX10:
