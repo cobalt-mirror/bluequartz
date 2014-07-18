@@ -35,7 +35,7 @@ LDCONFIG = ldconfig
 
 
 # common cflags for a lib
-ST_SH_COMMON_CFLAGS = -D_REENTRANT -Wno-errors
+ST_SH_COMMON_CFLAGS = -D_REENTRANT -Wno-error
 
 # flags for building static libs
 ST_CFLAGS = $(CFLAGS) $(ST_SH_COMMON_CFLAGS)
