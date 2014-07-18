@@ -1,6 +1,6 @@
 SUBVER=BETA01
 BUILD=$(shell date --rfc-3339=date | sed s/-//g)-$(SUBVER)
-PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5208"; else  echo -n "5207"; fi)
+PRODUCT=5209
 
 all:
 
