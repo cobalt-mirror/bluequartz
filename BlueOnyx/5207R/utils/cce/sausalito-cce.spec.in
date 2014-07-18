@@ -175,6 +175,9 @@ if [ $1 = 2 ]; then
 	/bin/chmod u+s /usr/sausalito/bin/ccewrap
 fi
 
+# The joys of config(noreplace)! We have to fix it this way:
+/bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf.d/blueonyx.conf
+
 %postun client
 # reload httpd
 if [ "$1" -ge "1" ]; then
@@ -184,7 +187,11 @@ fi
 
 %changelog
 
-* Sun May 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX10
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX12
+- Fixed login URL redirection in client/httpd/blueonyx.conf
+- Run a search and replace against blueonyx.conf to fix the login URL, too.
+
+* Sun May 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX11
 - Just one more addition to ccewrap/cced_unstuck.sh.
 
 * Sun May 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX09
