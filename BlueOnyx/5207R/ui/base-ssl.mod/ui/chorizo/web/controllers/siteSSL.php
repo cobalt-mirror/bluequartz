@@ -359,6 +359,9 @@ class SiteSSL extends MX_Controller {
 		            $value = $CODBDATA[$var];
 		            if ($var == 'country') {
 		                $value = $i18n->get($CODBDATA[$var]);
+		                if (preg_match('/^Project-Id-Version.*/', $value)) {
+		                	$value = "";
+		                }
 		            }
 		                
 		            $block->addFormField(
