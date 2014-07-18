@@ -285,9 +285,16 @@ class Summary extends MX_Controller {
 		if (isset($Sitestats['startYear'])) {
 			$sdate = $Sitestats['startYear'] . ":" . $Sitestats['startMonth'] . ":" . $Sitestats['startDay'] . ":00:00:00";
 		}
+
 		$edate = time();
 		if (isset($Sitestats['endYear'])) {
 			$edate = $Sitestats['endYear'] . ":" . $Sitestats['endMonth'] . ":" . $Sitestats['endDay'] . ":23:59:59";
+		}
+		if ($Sitestats['startYear'] < '2000') {
+			$sdate = time()-24*60*60;
+		}
+		if ($Sitestats['endYear'] < '2000') {
+			$edate = time();
 		}
 
 		$block->addFormField(
@@ -398,7 +405,6 @@ class Summary extends MX_Controller {
 					break;
 				}
 			}
-
 			if (!isset($entry["FL"])) {
 				$entry["FL"][$label] = $factory->getLabel("failedRequests");
 				$BxPage->setLabel('failedRequests', $i18n->getClean("failedRequests"), $i18n->getWrapped("failedRequests_help"));
