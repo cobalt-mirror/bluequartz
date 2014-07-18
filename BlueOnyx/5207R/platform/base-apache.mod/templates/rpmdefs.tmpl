@@ -140,6 +140,10 @@ fi
 
 <begin glue>
 # glue post-uninstall
+# Fix login links in preview config:
+if [ -f /etc/httpd/conf/vhosts/preview ]; then
+  /bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf/vhosts/preview
+fi
 
 <end glue>
 <begin ui>
@@ -153,6 +157,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX08
+- Fixed login links in glue/handlers/preview.pl
+- Extended glue post install with a search and replace for that, too.
 
 * Mon Jul 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX07
 - Small bugfix in ui/chorizo/extensions/10_PHP.php.defaults.Vsite
