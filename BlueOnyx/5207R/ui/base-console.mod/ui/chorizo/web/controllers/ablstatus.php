@@ -266,7 +266,7 @@ class Ablstatus extends MX_Controller {
 					$status = '					<button class="light tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '"><span>' . $i18n->getHtml("[[palette.No]]") . '</span></button>';
 				}
 			    if ($HOSTSLIST[$hostnum]['blocking'] == "0") {
-		        	$actions->setDisabled(true);
+		        	//$actions->setDisabled(true);
 	    	   	}
 	            $scrollList->addEntry(array(
 	                $HOSTSLIST[$hostnum]['host_ip'],
@@ -337,7 +337,7 @@ class Ablstatus extends MX_Controller {
 					$uremove_button->setImageOnly(TRUE);
 
 				    if ($USERLIST[$usernum]['blocking'] == "0") {
-			        	$actions->setDisabled(true);
+			        	//$actions->setDisabled(true);
 					}
 		            $scrollListusers->addEntry(array(
 		                $USERLIST[$usernum]['username'],
