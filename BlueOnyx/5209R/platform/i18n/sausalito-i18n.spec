@@ -2,7 +2,7 @@
 
 Summary: Cobalt i18n library
 Name: sausalito-i18n
-Version: 0.80.1
+Version: 0.81.1
 Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
@@ -94,6 +94,18 @@ fi
 
 %changelog
 
+* Thu Jul 17 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-0BX01
+- Build for 5209R on EL7. And that was quite a birth.
+- Cracklib 0.4 won't build against PHP-5.4. Applied Gentoo patches from
+  http://data.gpo.zugaina.org/gentoo/dev-php/pecl-crack/ for that.
+- Added cracklib/fix-pecl-bug-5765.patch
+- Added cracklib/fix-php-5-4-support.patch
+- These patches are applied to ourcracklib sources.
+- cracklib/Makefile: Removed arch related provisions. This is x86_84 only now.
+- php/i18n.c wouldn't compile. Changed 'function_entry' to 'zend_function_entry'
+  and each 'pval' to 'zval' as per https://bugs.php.net/bug.php?id=61479
+- php/Makefile: Added -Wno-error compiler flag, or warnings are treated as errors.
+
 * Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.80.1-0BX01
 - Build for 520XR.
 - Removed libPhp directory, as its contends are now included in base-alpine.
@@ -159,7 +171,7 @@ fi
 - Modified php/I18n.php to make sure that if no supported locale is detected,
   then 'en_US' will be used instead.
 
-* Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
+* Thu Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
 - Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
 
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
@@ -222,7 +234,7 @@ fi
 * Sat Jun 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.70.2-86BQ3
 - support x86_64 environment
 
-* Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.70.2-86BQ1
+* Thu Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.70.2-86BQ1
 - build for Blue Quartz
 
 * Thu Mar 14 2002 Patrick Baltz <patrick.baltz@sun.com>
@@ -241,7 +253,7 @@ fi
 * Wed Apr 26 2000 Adrian Sun <asun@cobalt.com>
 - renamed 
 
-* Tue Mar 15 2000 Adrian Sun <asun@cobalt.com>
+* Wed Mar 15 2000 Adrian Sun <asun@cobalt.com>
 - re-worked source tree
 
 * Tue Feb 29 2000 Adrian Sun <asun@cobalt.com>

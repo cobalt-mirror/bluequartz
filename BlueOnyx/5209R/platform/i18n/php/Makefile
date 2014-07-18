@@ -29,7 +29,7 @@ PHP_INC = $(shell if [ -x /usr/bin/php-config ]; then \
 		fi)
 
 INC = $(PHP_INC) -I../src/include -I$(CCEINCDIR)
-CFLAGS =-Dbool=char -DHAS_BOOL -D_REENTRANT -fPIC $(INC) `glib-config --cflags`
+CFLAGS =-Dbool=char -Wno-error -DHAS_BOOL -D_REENTRANT -fPIC $(INC) `glib-config --cflags`
 CCESHLIB_LIBS=-L../src -li18n `glib-config --libs`
 
 all: dep shlib

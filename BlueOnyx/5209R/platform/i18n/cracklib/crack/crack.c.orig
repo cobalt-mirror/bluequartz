@@ -38,7 +38,7 @@ static int le_crack;
 
 /* {{{ crack_functions[]
  */
-zend_function_entry crack_functions[] = {
+function_entry crack_functions[] = {
 	PHP_FE(crack_opendict,			NULL)
 	PHP_FE(crack_closedict,			NULL)
 	PHP_FE(crack_check,				NULL)
@@ -96,7 +96,6 @@ static int php_crack_checkpath(char* path TSRMLS_DC)
 	int filename_len;
 	int result = SUCCESS;
 	
-#if PHP_VERSION_ID < 50400
 	if (PG(safe_mode)) {
 		filename_len = strlen(path) + 10;
 		filename = (char *) emalloc(filename_len);
@@ -128,7 +127,6 @@ static int php_crack_checkpath(char* path TSRMLS_DC)
 			return FAILURE;
 		}
 	}
-#endif
 	
 	if (php_check_open_basedir(path TSRMLS_CC)) {
 		return FAILURE;

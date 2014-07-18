@@ -44,9 +44,9 @@
 #define STRINGSIZE                          1024
 #define TRUNCSTRINGSIZE                     (STRINGSIZE/4)
 
-typedef u_int8_t int8;
-typedef u_int16_t int16;
-typedef u_int32_t int32;
+typedef unsigned char int8;
+typedef unsigned short int int16;
+typedef unsigned int int32;
 
 #ifndef NUMWORDS
 # define NUMWORDS                           16

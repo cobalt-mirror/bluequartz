@@ -9,7 +9,7 @@
 #include "php_i18n.h"
 #include <cce/i18n.h>
 
-function_entry i18n_functions[] = {
+zend_function_entry i18n_functions[] = {
 	PHP_FE(i18n_new,	NULL)
 	PHP_FE(i18n_get,	NULL)
 	PHP_FE(i18n_get_js,	NULL)
@@ -65,7 +65,7 @@ php_i18n_close(i18n_handle *i18n)
 
 PHP_FUNCTION(i18n_new)
 {
-	pval *locale, *domain;
+	zval *locale, *domain;
 	int argc;
 	i18n_handle *i18n;
 	int index;
@@ -106,7 +106,7 @@ PHP_FUNCTION(i18n_new)
 
 PHP_FUNCTION( i18n_availlocales )
 {
-	pval *domain;
+	zval *domain;
 	int argc;
 	int type;
 	GSList *result;
@@ -134,7 +134,7 @@ PHP_FUNCTION( i18n_availlocales )
 
 PHP_FUNCTION( i18n_locales )
 {
-	pval *i18n_index, *domain;
+	zval *i18n_index, *domain;
 	int argc;
 	i18n_handle *i18n;
 	int type;
@@ -171,7 +171,7 @@ PHP_FUNCTION( i18n_locales )
 
 PHP_FUNCTION( i18n_get_property )
 {
-	pval *i18n_index, *property, *domain, *language;
+	zval *i18n_index, *property, *domain, *language;
 	int argc;
 	/* Don't know why we need type yet. */
 	int type;
@@ -211,7 +211,7 @@ PHP_FUNCTION( i18n_get_property )
 
 PHP_FUNCTION(i18n_get_file)
 {
-	pval *i18n_index, *file;
+	zval *i18n_index, *file;
 	int argc;
 	/* Type is filled with the type number of a i18n_handle */
 	int type;
@@ -241,7 +241,7 @@ PHP_FUNCTION(i18n_get_file)
 
 PHP_FUNCTION(i18n_interpolate)
 {
-	pval *i18n_index, *magicstr, *vars;
+	zval *i18n_index, *magicstr, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -284,7 +284,7 @@ PHP_FUNCTION(i18n_interpolate)
 
 PHP_FUNCTION(i18n_interpolate_js)
 {
-	pval *i18n_index, *magicstr, *vars;
+	zval *i18n_index, *magicstr, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -327,7 +327,7 @@ PHP_FUNCTION(i18n_interpolate_js)
 
 PHP_FUNCTION(i18n_interpolate_html)
 {
-	pval *i18n_index, *magicstr, *vars;
+	zval *i18n_index, *magicstr, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -370,7 +370,7 @@ PHP_FUNCTION(i18n_interpolate_html)
 
 PHP_FUNCTION(i18n_get)
 {
-	pval *i18n_index, *tag, *domain, *vars;
+	zval *i18n_index, *tag, *domain, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -428,7 +428,7 @@ PHP_FUNCTION(i18n_get)
 
 PHP_FUNCTION(i18n_get_js)
 {
-	pval *i18n_index, *tag, *domain, *vars;
+	zval *i18n_index, *tag, *domain, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -486,7 +486,7 @@ PHP_FUNCTION(i18n_get_js)
 
 PHP_FUNCTION(i18n_get_html)
 {
-	pval *i18n_index, *tag, *domain, *vars;
+	zval *i18n_index, *tag, *domain, *vars;
 	i18n_handle *i18n;
 	i18n_vars *i18n_vars;
 	int argc;
@@ -596,7 +596,7 @@ PHP_FUNCTION(i18n_strftime)
 {
 	i18n_handle *i18n;
 	char *result;
-	pval *i18n_index, *format, *time;
+	zval *i18n_index, *format, *time;
 	int argc, type;
 	char *format_str;
 

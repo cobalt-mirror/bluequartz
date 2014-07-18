@@ -9,7 +9,7 @@ CCERPMSPEC=$(CCEMODULE).spec
 DIRS=src php perl cracklib
 
 V_MAJ=0
-V_MIN=80
+V_MIN=81
 VERSION=$(V_MAJ).$(V_MIN).1
 RELEASE=0BX01
 
