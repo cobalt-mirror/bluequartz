@@ -1,4 +1,4 @@
-CCE_TOPDIR=/home/devel/BlueOnyx/trunk/BlueOnyx/5209R/utils/cce
+CCE_TOPDIR=/tmp/cceunfuck/cce
 CCE_V_MAJ=0
 CCE_V_MIN=82
 CCE_V_PATCH=1

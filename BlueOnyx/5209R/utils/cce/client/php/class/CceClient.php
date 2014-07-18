@@ -338,9 +338,11 @@ class CceClient {
     $scalar = preg_replace("/^&/", "", $scalar);
     $scalar = preg_replace("/&$/", "", $scalar);
     $array = explode("&", $scalar);
-    for($i = 0; $i < count($array); $i++) {
+    for($i = 0; $i < count($array); $i++)
+    {
       $array[$i] = preg_replace("/\+/", " ", $array[$i]);
-      $array[$i] = preg_replace("/%([0-9a-fA-F]{2})/e", "chr(hexdec('\\1'))", $array[$i]);
+      $array[$i] = preg_replace("/%([0-9a-fA-F]{2})/e",
+                                "chr(hexdec('\\1'))", $array[$i]);
     }
 
     return $array;

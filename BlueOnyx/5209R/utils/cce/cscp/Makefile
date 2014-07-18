@@ -5,7 +5,7 @@
 include ../dynamic.mk
 
 CSCP_V_MAJ = 0
-CSCP_V_MIN = 80
+CSCP_V_MIN = 99
 
 INCLUDES += -I./include
 
