@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
-Version: 0.6.0
-Release: 0BX04%{?dist}
+Version: 0.7.0
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -10,7 +10,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
-Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++ libxml2-devel pam-devel glib2-devel flex bison
+Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel gcc-c++ libxml2-devel pam-devel glib2-devel flex bison
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
@@ -53,6 +53,11 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Thu Jul 17 2014 Michael Stauber <mstauber@solarspeed.net> 0.7.0-0BX01
+- Cleaned up requires for EL7. Some stuff has moved into gcc.
+- Version number bump to 5209R
+- rules/libs.mk: Added -Wno-error to CFLAGS.
 
 * Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX04
 - Added requirement for pam-devel glib2-devel flex bison
