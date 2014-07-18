@@ -191,22 +191,6 @@ fi
 
 %changelog
 
-* Thu Jul 17 2014 Michael Stauber <mstauber@solarspeed.net> 0.82.1-1BX01
-- Made CCE PHP-5.4 ready for 5209R on EL7.
-- Bumped version to 0.82.1-1BX01
-- Makefile: If we need user 'admserv' for the build, then our build should 
-  make sure he actually exists to begin with. Also replaced non-working
-  RPM_TOPDIR with hard coded locations as to where to find the built
-  RPMs and SRPMs.
-- Fixed dates in sausalito-cce.spec.in
-- dynamic.mk: Fixed XXE_TOPDIR path
-- rules.mk: Appended CFLAGS with -w1. Still shows warnings  on compile, 
-  (which we want to see) but no longer treats them as show stopping errors.
-- client/php/src/cce.c: Wouldn't compile as PHP-5.4 has changed
-  some internals around. See: https://bugs.php.net/bug.php?id=61479
-  This should take care of it.
-- client/httpd/blueonyx.conf: Fixed login links.
-
 * Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX13
 - Backport from 5207R/utils/cce 0.99.1-1BX07 - 0.99.1-1BX10:
 - Added dependency for perl-Time-Out to client package. 
@@ -346,7 +330,7 @@ fi
 * Sun Jun 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ29
 - add requires httpd for client package.
 
-* Fri May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
+* Thu May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
 - modified initscript to add static route at starting.
 
 * Mon Jan 16 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ27
@@ -377,7 +361,7 @@ fi
 * Thu Oct 20 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ20
 - use vendor macro for vendor tag.
 
-* Wed Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
+* Tue Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
 - rebuild with devel-tools 0.5.1
 
 * Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ18
@@ -416,7 +400,7 @@ fi
 * Thu Mar 25 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ4
 - change cced.init for Blue Quartz 5100R
 
-* Thu Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
+* Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
 - build for Blue Quartz
 
 * Wed Feb 27 2002 CCE Team <cce@sun.com>
