@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5200Rscanin.pl Sun 05 Feb 2012 04:58:56 AM CET mstauber $
+# $Id: 5209Rscanin.pl Sun 05 Feb 2012 04:58:56 AM CET mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion

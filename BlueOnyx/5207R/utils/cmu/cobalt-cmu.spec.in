@@ -17,11 +17,8 @@ Requires: perl(XML::Parser)
 %description
 Cobalt Migration Utility (CMU)
 
-CMU is used to migrate virtual site, user, groups and other data and meta-data 
-seamlessly between multiple Cobalt platforms.  It (will) also provides 
-tools for migrating from the third party platforms to the Cobalt 
-platform.  
-
+CMU is used to migrate virtual site, user, group and other data seamlessly 
+between multiple platforms (Cobalt, TLAS, BlueQuartz and BlueOnyx).
 
 %prep
 %setup -n cpr
@@ -67,6 +64,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,man) /usr/man/*/*
 
 %changelog
+
+* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net>
+- version 2.92-0BX01
+- Added platform support for 5209R.
+- Compacted some regular expressions for platform detection.
+- Fix of GZip function yet again in Archive/Tar.pm
 
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net>
 - version 2.91-0BX02

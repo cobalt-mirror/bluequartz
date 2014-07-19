@@ -163,7 +163,7 @@ sub buildTar
 	} elsif($self->type eq "groups") {
 		if($self->build =~ /^Qube/) {
 			$homeDir = "/home/groups/".$self->name;
-		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^5106R$/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
+		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^510[6-8]R$/ || $self->build =~ /^520[7-9]R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
 			$homeDir = $self->{baseDir};
 		} elsif($self->build =~ /^RaQ/) {
 			$homeDir = "/home/sites/".$self->name;
@@ -198,7 +198,7 @@ sub buildTar
 		$self->setBaseDir($homeDir."/private");
 	} else { 
 		$self->addIgnore("web");
-		if(($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) && $self->type eq "groups") {
+		if(($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^510[6-8]R$/ || $self->build =~ /^520[7-9]R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) && $self->type eq "groups") {
 			$self->addIgnore("users");
 			$self->addIgnore(".users");
 		}	
@@ -419,7 +419,7 @@ sub extractTar
 	} elsif($self->type eq "groups") {
 		if($self->build =~ /^Qube/) {
 			$homeDir = "/home/groups/".$self->name;
-		} elsif($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R$/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
+		} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^510[6-8]R$/ || $self->build =~ /^520[7-9]R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
 			$homeDir = "/home/sites/".$self->name;
 		} else {
 			warn "ERROR extractTar: Cannot find build type: ", $self->build, "\n";
@@ -505,7 +505,7 @@ sub extractTar
 				qx(/bin/chgrp mail $mailDest);
 				chmod 0660, $mailDest;
 				
-			} elsif($self->build =~ /^RaQ550/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R/) {
+			} elsif($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^510[6-8]R$/ || $self->build =~ /^520[7-9]R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
 				if(-l $homeDir."/mbox") {
 					warn "WARN $homeDir/mbox is a symlink - removing it.\n";
 					unlink($homeDir.'/mbox');
@@ -613,7 +613,7 @@ sub setAttr
 #		if($file->{name} =~ /\%/) { $file->{name} =~ s/\%/\\\%/g; }
 		if($file->{name} =~ /\`/) { $file->{name} =~ s/\`/\\\`/g; } #`
 
-		if($self->build =~ /^RaQ/ || $self->build =~ /^5100R/ || $self->build =~ /^5106R/ || $self->build =~ /^5107R$/ || $self->build =~ /^5108R$/ || $self->build =~ /^5207R$/ || $self->build =~ /^5208R$/ || $self->build =~ /^516[0-1]R/ || $self->build =~ /^5200R/ || $self->build =~ /^TLAS1HE/ || $self->build =~ /^TLAS2/) {
+		if($self->build =~ /^RaQ550$/ || $self->build =~ /^5100R$/ || $self->build =~ /^510[6-8]R$/ || $self->build =~ /^520[7-9]R$/ || $self->build =~ /^516[0-1]R$/ || $self->build =~ /^5200R$/ || $self->build =~ /^TLAS1HE$/ || $self->build =~ /^TLAS2$/) {
 			$ret = chown((getpwnam($file->{uid}))[2],
 			 (getgrnam($self->{gid}))[2], $file->{name} );
 			$ret = ($ret > 0)? 0: 1;
