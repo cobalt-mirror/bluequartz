@@ -110,7 +110,8 @@ class VsiteDel extends MX_Controller {
 		else {
 			// We continue with the deletion:
 			// Initialize status to avoid race conditions
-			fopen("http://localhost:444/status.php?statusId=remove$delSite&title=[[base-vsite.deletingSite]]&message=[[base-vsite.removingUsers]]&progress=0", "r");
+			// ... actually, let's not do that now.
+			//fopen("http://localhost:444/status.php?statusId=remove$delSite&title=[[base-vsite.deletingSite]]&message=[[base-vsite.removingUsers]]&progress=0", "r");
 
 			// Command to execute:
 			$cmd = "/usr/sausalito/sbin/vsite_destroy.pl $delSite \"/vsite/vsiteList\"";
