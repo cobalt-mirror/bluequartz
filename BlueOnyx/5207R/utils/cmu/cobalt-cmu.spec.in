@@ -3,7 +3,7 @@
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: Team BlueOnyx
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -65,7 +65,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
-* Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net>
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net>
+- version 2.92-0BX02
+- Some fixes all around to get it working.
+
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net>
 - version 2.92-0BX01
 - Added platform support for 5209R.
 - Compacted some regular expressions for platform detection.
