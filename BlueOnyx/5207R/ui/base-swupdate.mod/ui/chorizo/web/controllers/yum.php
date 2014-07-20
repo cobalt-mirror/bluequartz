@@ -258,7 +258,7 @@ class Yum extends MX_Controller {
 		  			$yum_update = 1;
 					$entry = preg_replace("/\s+/", " ", $entry);
 					$a_entry = preg_split("/ /", $entry);
-					if ($a_entry[0] != "") {
+					if (($a_entry[0] != "") && ((isset($a_entry[0])) && (isset($a_entry[1])) && (isset($a_entry[2])))) {
 					    $ScrollList->addEntry(array(
 						    $a_entry[0],
 						    $a_entry[1],
