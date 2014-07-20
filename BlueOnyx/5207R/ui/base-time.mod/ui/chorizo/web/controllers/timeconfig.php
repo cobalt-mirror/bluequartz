@@ -152,6 +152,10 @@ class Timeconfig extends MX_Controller {
 				$timeZone == "US/Eastern";
 			}
 
+			if ($attributes['_systemDate_amPm'] == "PM") {
+				$attributes['_systemDate_hour'] += 12;
+			}
+
 			$date = mktime($attributes['_systemDate_hour'], $attributes['_systemDate_minute'], "00", $attributes['_systemDate_month'], $attributes['_systemDate_day'], $attributes['_systemDate_year']);
 			if ($date and ($date != $attributes['oldTime'])) {
 		        $time = $date;
