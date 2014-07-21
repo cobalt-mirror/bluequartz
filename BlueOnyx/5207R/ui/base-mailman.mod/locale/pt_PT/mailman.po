@@ -420,55 +420,55 @@ msgid "WelcomeMessageBody"
 msgstr "Este e-mail foi enviado a você para notificá-lo de que o arquivamento da lista de discussão '[[VAR.name]] foi habilitado para os usuários com contas neste servidor. Esses usuários serão capazes de acessar esse arquivo de dentro do WebMail. Não há necessidade de responder a esta mensagem."
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "mailman_enabled"
 msgstr "Ativar Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Carteiro tem um daemon, que precisa ser executado para que as mensagens da lista de discussão a ser processos. Você pode ativar ou desativar este serviço aqui. O comando de linha de comando para parar, iniciar ou reiniciar MailMan é: / etc / init.d / carteiro parar | start | restart"
+msgstr "Carteiro tem um daemon, que precisa ser executado para que as mensagens da lista de discussão a ser processos. Você pode ativar ou desativar este serviço aqui. O comando de linha de comando para parar, iniciar ou reiniciar Mailman é: /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Senha:"
 
 msgid "oldpass_help"
-msgstr "As funções administrativas da MailMan são protegidos com uma senha gerada automaticamente. Este campo de texto mostra a senha que foi gerada por este servidor na configuração inicial."
+msgstr "As funções administrativas da Mailman são protegidos com uma senha gerada automaticamente. Este campo de texto mostra a senha que foi gerada por este servidor na configuração inicial."
 
 msgid "MailMan_Admin"
-msgstr "MailMan Administração interface"
+msgstr "Mailman Administração interface"
 
 msgid "MailMan_Admin_help"
-msgstr "Este botão permite que você acesse a interface de administração MailMan. Este link foi adicionado para a sua conveniência, mas em termos práticos, você nunca deve usá-lo, a menos que você realmente saiba o que está fazendo ali. Por favor use o GUI BlueOnyx para adicionar ou excluir listas de discussão em seu lugar."
+msgstr "Este botão permite que você acesse a interface de administração Mailman. Este link foi adicionado para a sua conveniência, mas em termos práticos, você nunca deve usá-lo, a menos que você realmente saiba o que está fazendo ali. Por favor use o GUI BlueOnyx para adicionar ou excluir listas de discussão em seu lugar."
 
 msgid "menu_system_mailman"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "menu_system_mailman_help"
-msgstr "Clique aqui para gerenciar a lista de discussão serviço MailMan."
+msgstr "Clique aqui para gerenciar a lista de discussão serviço Mailman."
 
 msgid "vsiteMailMan_Admin"
-msgstr "MailMan Administração interface"
+msgstr "Mailman Administração interface"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "Este botão permite que você acesse a interface de administração MailMan para algumas das opções de configuração mais avançadas de MailMan."
+msgstr "Este botão permite que você acesse a interface de administração Mailman para algumas das opções de configuração mais avançadas de Mailman."
 
 msgid "MailMan_Archive"
-msgstr "MailMan Arquivo"
+msgstr "Mailman Arquivo"
 
 msgid "MailMan_Archive_help"
-msgstr "Este botão permite que você acesse o arquivo MailMan pública de seu mailing list."
+msgstr "Este botão permite que você acesse o arquivo Mailman pública de seu mailing list."
 
 msgid "amDetailsTitle"
 msgstr "Carteiro Serviço detalhes"
 
 msgid "amMAILMANNameTag"
-msgstr "MailMan Mailing List Daemon"
+msgstr "Mailman Mailing List Daemon"
 
 msgid "amMAILMANNotRunning"
-msgstr "O serviço MailMan não está a funcionar normalmente. Por favor, tente reiniciá-lo manualmente."
+msgstr "O serviço Mailman não está a funcionar normalmente. Por favor, tente reiniciá-lo manualmente."
 
 msgid "amMAILMANStatusOK"
-msgstr "O serviço MailMan está funcionando normalmente."
+msgstr "O serviço Mailman está funcionando normalmente."
 
 msgid "listAddress"
 msgstr "Lista de Endereços:"

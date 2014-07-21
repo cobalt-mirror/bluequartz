@@ -420,22 +420,22 @@ msgid "WelcomeMessageBody"
 msgstr "Este correo electrónico ha sido enviado a usted para informarle de que el archivo de la lista de correo &#39;[[VAR.name]]&#39; se ha habilitado para los usuarios con cuentas de este servidor. Los usuarios podrán acceder a este archivo desde dentro de WebMail. No hay necesidad de responder a este mensaje."
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "mailman_enabled"
 msgstr "Habilitar Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman tiene un demonio que necesita ejecutarse en orden para mensajes de listas de correo como procesos. Puede activar o desactivar este servicio aquí. El comando de línea de comandos para detener, iniciar o reiniciar MailMan es: / etc / init.d / mailman parada | Inicio | restart"
+msgstr "Mailman tiene un demonio que necesita ejecutarse en orden para mensajes de listas de correo como procesos. Puede activar o desactivar este servicio aquí. El comando de línea de comandos para detener, iniciar o reiniciar Mailman es: /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Contraseña:"
 
 msgid "oldpass_help"
-msgstr "Las funciones administrativas de MailMan están protegidos con una contraseña generada automáticamente. Este campo de texto muestra la contraseña que se ha generado para este servidor en la configuración inicial."
+msgstr "Las funciones administrativas de Mailman están protegidos con una contraseña generada automáticamente. Este campo de texto muestra la contraseña que se ha generado para este servidor en la configuración inicial."
 
 msgid "MailMan_Admin"
-msgstr "Interfaz de administración MailMan"
+msgstr "Interfaz de administración Mailman"
 
 msgid "MailMan_Admin_help"
 msgstr "Este botón le permite acceder a la interfaz de administración cartero. Este enlace ha sido añadido a su conveniencia, pero en la práctica nunca se debe utilizar a menos que realmente sepa lo que está haciendo allí. Utilice el BlueOnyx GUI para añadir o eliminar las listas de correo en su lugar."
@@ -447,28 +447,28 @@ msgid "menu_system_mailman_help"
 msgstr "Haga clic aquí para administrar la lista de distribución de servicios cartero."
 
 msgid "vsiteMailMan_Admin"
-msgstr "Interfaz de administración MailMan"
+msgstr "Interfaz de administración Mailman"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "Este botón le permite acceder a la interfaz de administración MailMan para algunas de las opciones de configuración más avanzadas de cartero."
+msgstr "Este botón le permite acceder a la interfaz de administración Mailman para algunas de las opciones de configuración más avanzadas de cartero."
 
 msgid "MailMan_Archive"
-msgstr "MailMan Archivo"
+msgstr "Mailman Archivo"
 
 msgid "MailMan_Archive_help"
-msgstr "Este botón le permite acceder a los archivos MailMan pública de su lista de correo."
+msgstr "Este botón le permite acceder a los archivos Mailman pública de su lista de correo."
 
 msgid "amDetailsTitle"
-msgstr "MailMan Servicio detalles"
+msgstr "Mailman Servicio detalles"
 
 msgid "amMAILMANNameTag"
-msgstr "MailMan lista de correo Daemon"
+msgstr "Mailman lista de correo Daemon"
 
 msgid "amMAILMANNotRunning"
-msgstr "El servicio MailMan NO está funcionando normalmente. Por favor, intente reiniciar manualmente."
+msgstr "El servicio Mailman NO está funcionando normalmente. Por favor, intente reiniciar manualmente."
 
 msgid "amMAILMANStatusOK"
-msgstr "El servicio MailMan está funcionando normalmente."
+msgstr "El servicio Mailman está funcionando normalmente."
 
 msgid "listAddress"
 msgstr "Lista de direcciones:"

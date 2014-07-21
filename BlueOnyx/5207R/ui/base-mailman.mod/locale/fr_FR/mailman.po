@@ -440,47 +440,47 @@ msgstr "[[base-maillist.WelcomeMessageBody]]"
 # ------- Strings for System tab of Mailman
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "mailman_enabled"
 msgstr "Activer [[base-mailman.MailMan_header]] :"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman a un logiciel (daemon) qui opère en arrière-plan pour que des messages des listes puissent être acheminés. Vous pouvez activer ou désactiver ce service ici. En ligne de commande, la syntaxe pour arrêter, démarrer ou redémarrer MailMan est : /etc/init.d/mailman stop | start | restart"
+msgstr "Mailman a un logiciel (daemon) qui opère en arrière-plan pour que des messages des listes puissent être acheminés. Vous pouvez activer ou désactiver ce service ici. En ligne de commande, la syntaxe pour arrêter, démarrer ou redémarrer Mailman est : /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Mot de passe :"
 
 msgid "oldpass_help"
-msgstr "Les fonctions administratives de MailMan sont protégées par un mot de passe généré automatiquement. Ce champ affiche le mot de passe qui a été généré pour ce serveur lors de la configuration initiale."
+msgstr "Les fonctions administratives de Mailman sont protégées par un mot de passe généré automatiquement. Ce champ affiche le mot de passe qui a été généré pour ce serveur lors de la configuration initiale."
 
 msgid "MailMan_Admin"
 msgstr "Interface d'administration de [[base-mailman.MailMan_header]]"
 
 msgid "MailMan_Admin_help"
-msgstr "Vous pouvez accéder ici à l'interface d'administration de MailMan bien qu'en pratique, il n'est pas nécessaire de l'utiliser (sauf si vous êtes vraiment sûr de ce que vous faites). Veuillez plutôt utiliser l'interface « BlueOnyx » pour ajouter ou supprimer des listes de diffusion."
+msgstr "Vous pouvez accéder ici à l'interface d'administration de Mailman bien qu'en pratique, il n'est pas nécessaire de l'utiliser (sauf si vous êtes vraiment sûr de ce que vous faites). Veuillez plutôt utiliser l'interface « BlueOnyx » pour ajouter ou supprimer des listes de diffusion."
 
 msgid "menu_system_mailman"
 msgstr "[[base-mailman.MailMan_header]]"
 
 msgid "menu_system_mailman_help"
-msgstr "Cliquez ici pour gérer le service de listes de diffusion MailMan."
+msgstr "Cliquez ici pour gérer le service de listes de diffusion Mailman."
 
-# ------- Extra strings for vsite management of MailMan:
+# ------- Extra strings for vsite management of Mailman:
 
 msgid "vsiteMailMan_Admin"
 msgstr "Interface d'administration de [[base-mailman.MailMan_header]]"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "Ce bouton vous permet d'accéder à l'interface d'administration de MailMan pour certaines des options de configuration plus avancées."
+msgstr "Ce bouton vous permet d'accéder à l'interface d'administration de Mailman pour certaines des options de configuration plus avancées."
 
 msgid "MailMan_Archive"
 msgstr "Archives [[base-mailman.MailMan_header]]"
 
 msgid "MailMan_Archive_help"
-msgstr "Ce bouton vous permet d'accéder aux l'archives publiques de votre liste de diffusion MailMan."
+msgstr "Ce bouton vous permet d'accéder aux l'archives publiques de votre liste de diffusion Mailman."
 
-# ------- Extra strings for AM components of MailMan:
+# ------- Extra strings for AM components of Mailman:
 
 msgid "amDetailsTitle"
 msgstr "Détails du service [[base-mailman.MailMan_header]]"

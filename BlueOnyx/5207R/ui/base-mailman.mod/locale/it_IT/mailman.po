@@ -426,7 +426,7 @@ msgid "mailman_enabled"
 msgstr "Abilita Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman ha un demone che deve essere eseguito in modo che i messaggi delle liste di essere processi. È possibile attivare o disattivare questo servizio qui. Il comando della riga di comando per arrestare, avviare o riavviare Mailman è: / etc / init.d / mailman Stop | Inizio | restart"
+msgstr "Mailman ha un demone che deve essere eseguito in modo che i messaggi delle liste di essere processi. È possibile attivare o disattivare questo servizio qui. Il comando della riga di comando per arrestare, avviare o riavviare Mailman è: /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Password:"

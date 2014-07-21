@@ -437,61 +437,61 @@ msgstr "This email has been sent to you to notify you that archiving of the mail
 # ------- Strings for System tab of Mailman
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "mailman_enabled"
 msgstr "Enable Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart MailMan is: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart Mailman is: /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Password:"
 
 msgid "oldpass_help"
-msgstr "The administrative functions of MailMan are protected with an automatically generated password. This textfield shows the password that was generated for this server upon initial setup."
+msgstr "The administrative functions of Mailman are protected with an automatically generated password. This textfield shows the password that was generated for this server upon initial setup."
 
 msgid "MailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "Mailman Admin Interface"
 
 msgid "MailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface. This link has been added for your convinience, but in practical terms you should never use it unless you really know what you are doing there. Please use the BlueOnyx GUI to add or delete mailing lists instead."
+msgstr "This button allows you to access the Mailman admin interface. This link has been added for your convinience, but in practical terms you should never use it unless you really know what you are doing there. Please use the BlueOnyx GUI to add or delete mailing lists instead."
 
 msgid "menu_system_mailman"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "menu_system_mailman_help"
-msgstr "Click here to manage the mailing list service MailMan."
+msgstr "Click here to manage the mailing list service Mailman."
 
 
-# ------- Extra strings for vsite management of MailMan:
+# ------- Extra strings for vsite management of Mailman:
 
 msgid "vsiteMailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "Mailman Admin Interface"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "This button allows you to access the MailMan admin interface for some of the more advanced configuration options of MailMan."
+msgstr "This button allows you to access the Mailman admin interface for some of the more advanced configuration options of Mailman."
 
 msgid "MailMan_Archive"
-msgstr "MailMan Archive"
+msgstr "Mailman Archive"
 
 msgid "MailMan_Archive_help"
-msgstr "This button allows you to access the public MailMan archive of your mailing list." 
+msgstr "This button allows you to access the public Mailman archive of your mailing list." 
 
 
-# ------- Extra strings for AM components of MailMan:
+# ------- Extra strings for AM components of Mailman:
 
 msgid "amDetailsTitle"
-msgstr "MailMan Service Details"
+msgstr "Mailman Service Details"
 
 msgid "amMAILMANNameTag"
-msgstr "MailMan Mailing List Daemon"
+msgstr "Mailman Mailing List Daemon"
 
 msgid "amMAILMANNotRunning"
-msgstr "The MailMan service is NOT operating normally. Please try to manually restart it."
+msgstr "The Mailman service is NOT operating normally. Please try to manually restart it."
 
 msgid "amMAILMANStatusOK"
-msgstr "The MailMan service is operating normally."
+msgstr "The Mailman service is operating normally."
 
 
 # ------- Extra strings for showing mailing list address:

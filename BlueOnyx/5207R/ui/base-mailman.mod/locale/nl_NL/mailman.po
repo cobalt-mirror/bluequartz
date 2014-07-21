@@ -420,49 +420,49 @@ msgid "WelcomeMessageBody"
 msgstr "Deze e-mail is verstuurd aan u om u op de hoogte dat het archiveren van de mailinglijst '[[VAR.name]]' is ingeschakeld voor gebruikers met een account op deze server. Deze gebruikers zullen in staat zijn om toegang tot dit archief vanuit webmail. Er is geen noodzaak om te reageren op dit bericht."
 
 msgid "MailMan_header"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "mailman_enabled"
 msgstr "Enable Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman heeft een daemon, die moet draaien om voor mailinglijst berichten naar processen. U kunt hier in-of uitschakelen van deze service. De command line commando om te stoppen, starten of herstarten MailMan is: /etc/init.d/mailman stop|start|herstart"
+msgstr "Mailman heeft een daemon, die moet draaien om voor mailinglijst berichten naar processen. U kunt hier in-of uitschakelen van deze service. De command line commando om te stoppen, starten of herstarten Mailman is: /etc/init.d/mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Wachtwoord:"
 
 msgid "oldpass_help"
-msgstr "De administratieve functies van MailMan zijn beveiligd met een automatisch gegenereerd wachtwoord. Dit tekstveld toont het wachtwoord dat werd gegenereerd voor deze server bij de eerste setup."
+msgstr "De administratieve functies van Mailman zijn beveiligd met een automatisch gegenereerd wachtwoord. Dit tekstveld toont het wachtwoord dat werd gegenereerd voor deze server bij de eerste setup."
 
 msgid "MailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "Mailman Admin Interface"
 
 msgid "MailMan_Admin_help"
 msgstr "Met deze knop krijgt u toegang tot de postbode admin interface. Deze koppeling is toegevoegd voor uw gemak, maar in de praktijk moet je nooit gebruiken, tenzij je echt weet wat je daar doet. Gebruik de BlueOnyx GUI naar mailinglijsten plaats toe te voegen of te verwijderen."
 
 msgid "menu_system_mailman"
-msgstr "MailMan"
+msgstr "Mailman"
 
 msgid "menu_system_mailman_help"
-msgstr "Klik hier om de mailinglijst dienst MailMan beheren."
+msgstr "Klik hier om de mailinglijst dienst Mailman beheren."
 
 msgid "vsiteMailMan_Admin"
-msgstr "MailMan Admin Interface"
+msgstr "Mailman Admin Interface"
 
 msgid "vsiteMailMan_Admin_help"
-msgstr "Met deze knop krijgt u toegang tot de postbode admin interface voor een aantal van de meer geavanceerde configuratie-opties van MailMan."
+msgstr "Met deze knop krijgt u toegang tot de postbode admin interface voor een aantal van de meer geavanceerde configuratie-opties van Mailman."
 
 msgid "MailMan_Archive"
-msgstr "MailMan Archief"
+msgstr "Mailman Archief"
 
 msgid "MailMan_Archive_help"
-msgstr "Met deze knop krijgt u toegang tot de openbare MailMan archief van uw mailinglijst."
+msgstr "Met deze knop krijgt u toegang tot de openbare Mailman archief van uw mailinglijst."
 
 msgid "amDetailsTitle"
-msgstr "MailMan Service Details"
+msgstr "Mailman Service Details"
 
 msgid "amMAILMANNameTag"
-msgstr "MailMan Mailing List Daemon"
+msgstr "Mailman Mailing List Daemon"
 
 msgid "amMAILMANNotRunning"
 msgstr "De postbode Service is niet normaal. Probeer handmatig opnieuw starten."
