@@ -88,6 +88,15 @@ information for [VENDOR]-[SERVICE].
 <begin ui>
 # ui post-install
 
+# Set random number for $config['encryption_key'] in the CodeIgniter config:
+RANDNUMA=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
+RANDNUMB=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
+/bin/sed -i -e "s/cf81d0da4acb2dbf276413111e8e4d48/$RANDNUMA$RANDNUMB/" /usr/sausalito/ui/chorizo/ci/application/config/config.php
+
+if [ -d /usr/sausalito/ui/chorizo/ci/application/modules/compass ]; then
+        /bin/rm -Rf /usr/sausalito/ui/chorizo/ci/application/modules/compass
+fi
+
 <end ui>
 <begin locale>
 # locale post-install
@@ -106,11 +115,6 @@ information for [VENDOR]-[SERVICE].
 <end glue>
 <begin ui>
 # ui post-uninstall
-
-# Set random number for $config['encryption_key'] in the CodeIgniter config:
-RANDNUMA=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
-RANDNUMB=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
-/bin/sed -i -e "s/cf81d0da4acb2dbf276413111e8e4d48/$RANDNUMA$RANDNUMB/" /usr/sausalito/ui/chorizo/ci/application/config/config.php
 
 <end ui>
 <begin locale>
