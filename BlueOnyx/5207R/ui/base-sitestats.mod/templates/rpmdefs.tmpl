@@ -127,6 +127,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Jul 22 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX05
+- Modified ui/chorizo/web/controllers/summaryEmail.php to fix a 
+  potential data structure problem. Key 'summary' must be excluded
+  before we determine the oldest available month for statistics.
+
 * Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX04
 - Fixed time/date defaults in ui/chorizo/web/controllers/summary.php
   If no date was given, it defaulted to 10-10-2010.

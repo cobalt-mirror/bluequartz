@@ -683,10 +683,21 @@ class SummaryEmail extends MX_Controller {
 		// Get the oldest date that we have stats for.
 		$tmpStats = $STATS;
 		$oldestYear = array_shift(array_values($YEARS));
-		$oldestMonth = array_shift(array_keys($tmpStats[$oldestYear]));
-		foreach ($tmpStats[$oldestYear][$oldestMonth] as $key => $value) {
+
+		foreach ($tmpStats[$oldestYear] as $key => $value) {
 			if ($key == 'summary') {
-				unset($tmpStats[$oldestYear][$oldestMonth][$key]);
+				unset($tmpStats[$oldestYear][$key]);
+			}
+		}
+		$oldestMonth = array_shift(array_keys($tmpStats[$oldestYear]));
+
+		if (isset($tmpStats[$oldestYear][$oldestMonth]))  {
+			if (is_array($tmpStats[$oldestYear][$oldestMonth])) {
+				foreach ($tmpStats[$oldestYear][$oldestMonth] as $key => $value) {
+					if ($key == 'summary') {
+						unset($tmpStats[$oldestYear][$oldestMonth][$key]);
+					}
+				}
 			}
 		}
 		$oldestDay = array_shift(array_keys($tmpStats[$oldestYear][$oldestMonth]));
