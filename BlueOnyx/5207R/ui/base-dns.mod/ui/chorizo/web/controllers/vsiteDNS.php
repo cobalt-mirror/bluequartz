@@ -141,7 +141,6 @@ class vsiteDNS extends MX_Controller {
 
 		// Shove submitted input into $form_data after passing it through the XSS filter:
 		$form_data = $CI->input->post(NULL, TRUE);
-
 		// Form fields that are required to have input:
 		$required_keys = array();
 
@@ -152,7 +151,9 @@ class vsiteDNS extends MX_Controller {
 
     	// Items we do NOT want to submit to CCE:
     	$ignore_attributes = array("BlueOnyx_Info_Text");
+
 		if (is_array($form_data)) {
+
 			// Function GetFormAttributes() walks through the $form_data and returns us the $parameters we want to
 			// submit to CCE. It intelligently handles checkboxes, which only have "on" set when they are ticked.
 			// In that case it pulls the unticked status from the hidden checkboxes and addes them to $parameters.
@@ -188,7 +189,10 @@ class vsiteDNS extends MX_Controller {
 		//
 
 		if ($CI->input->post(NULL, TRUE)) {
-
+			// Make sure we have the $group set:
+			if ((isset($group)) && (!isset($attributes['group']))) {
+				$attributes['group'] = $group;
+			}
 		}
 
 		//
@@ -200,7 +204,6 @@ class vsiteDNS extends MX_Controller {
 
 		// If we have no errors and have POST data, we submit to CODB:
 		if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
-
 			// Update list of domains we're responsible for:
 			if ((isset($attributes['dnsNames'])) && (isset($attributes['group']))) {
 				$cceClient->set($vsite['OID'], 'DNS', array("domains" => $attributes['dnsNames']));
@@ -303,8 +306,10 @@ class vsiteDNS extends MX_Controller {
 			            );
 
 			$_settings->addFormField(
-				$factory->getTextField("group", $group, ""),
-				$factory->getLabel("empty"));
+				$factory->getRawHTML("group", '<INPUT TYPE="HIDDEN" NAME="group" VALUE="' . $group . '">'),
+				$factory->getLabel("group"), 
+				$defaultPage
+			);
 
 			$_settings->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
 		}
@@ -778,7 +783,7 @@ class vsiteDNS extends MX_Controller {
 		// Add the DNS picklist. Only 'systemAdministrator' and Resellers with 'siteDNS' can see this:
 		if (($Capabilities->getAllowed('adminUser')) ||	(($Capabilities->getAllowed('manageSite')) && ($Capabilities->getAllowed('siteDNS')))) {
 			$page_body[] = $_settings->toHtml();
-			$page_body[] = "<br>";
+			$page_body[] = "<br>\n";
 		}
 
 		// Only show the ScrollList and the shebang around it if we have DNS
