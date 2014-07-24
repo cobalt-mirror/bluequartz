@@ -87,18 +87,17 @@ class Capabilities {
         // this is quicker besides systemAdministrator should be
         // able to view everything whether there is a capability group
         // or not
-
         if ($oid == -1) 
         {
             $currentuser = 1;
             $oid = $this->loginUser["OID"];
         }
 
-        if ($this->loginUser['systemAdministrator']) {
+        if (($this->loginUser['systemAdministrator']) && ($oid == -1)) {
             // Fast 'yes' to all rights, because we sure *are* system administrator:
             return 1;
         }
-        if (!$this->loginUser['systemAdministrator'] && $capName == 'adminUser') { 
+        if ((!$this->loginUser['systemAdministrator']) && ($oid == -1) && ($capName == 'adminUser')) { 
           // Fast 'no' to the question for 'adminUser', because we simply aren't.
           // Do not get get confused here. Resellers are 'adminUser', but we do
           // NOT treat them as such unless they also have the 'systemAdministrator'
@@ -261,7 +260,7 @@ class Capabilities {
     $cce = $this->cceClient;
     if (isset($this->capabilityGroups[$capName])) {
       if ($this->capabilityGroups[$capName]!=null) {
-	       return $this->capabilityGroups[$capName];
+         return $this->capabilityGroups[$capName];
       }
     }
     if (($group = $this->cceClient->getObject("CapabilityGroup", array("name"=>$capName)))!=null) {
