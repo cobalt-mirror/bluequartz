@@ -212,8 +212,8 @@ class VsiteShell extends MX_Controller {
 		$block->setSideTabs(FALSE);
 		$block->setDefaultPage($defaultPage);
 
-		$block->addFormField($factory->getTextField('group', $group, ''), $defaultPage);
-		$block->addFormField($factory->getTextField('save', '1', ''), $defaultPage);
+		$block->addFormField($factory->getTextField('group', $group, ''), $factory->getLabel('group'), $defaultPage);
+		$block->addFormField($factory->getTextField('save', '1', ''), $factory->getLabel('save'), $defaultPage);
 
 		$shellEnable = $factory->getBoolean('Shell_enabled', $siteShell['enabled'], $access);
 		$block->addFormField($shellEnable, $factory->getLabel('enableShell'), $defaultPage);
