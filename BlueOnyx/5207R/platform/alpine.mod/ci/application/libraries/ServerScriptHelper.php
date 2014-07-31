@@ -156,8 +156,8 @@ class ServerScriptHelper {
             if(file_exists($path)) 
             {
                 $messageFile = fopen($path, "r");
-	            $messageTag = fgets($messageFile, 1024);
-	            fclose($messageFile);
+              $messageTag = fgets($messageFile, 1024);
+              fclose($messageFile);
             }
             // we use default locale here because locale preference is stored in CCE
             $i18n = new I18n;
@@ -182,15 +182,15 @@ class ServerScriptHelper {
 </HTML>");
             exit;
         }
-	
+  
         // only AUTH if not on Monterey
         if (!$this->isMonterey) {
             if (!$cceClient->authkey($loginName, $sessionId)) {
-	            error_log("ServerScriptHelper.ServerScriptHelper(): Cannot authenticate to CCE (login name: $loginName, session ID: $sessionId)"); 
-	            // tell users their sessions are expired and redirect
-	            // set the target here to point to where to go back to after login
-	            header("cache-control: no-cache");
-	            print("
+              error_log("ServerScriptHelper.ServerScriptHelper(): Cannot authenticate to CCE (login name: $loginName, session ID: $sessionId)"); 
+              // tell users their sessions are expired and redirect
+              // set the target here to point to where to go back to after login
+              header("cache-control: no-cache");
+              print("
 <HTML>
   <HEAD>
     <META HTTP-EQUIV=\"expires\" CONTENT=\"-1\">
@@ -202,7 +202,7 @@ class ServerScriptHelper {
       var pathname = top.location.pathname;
       // IE4.0 has a bug that location.pathname contains port at the beginning
       if(top.location.port != null && top.location.port != \"\" && pathname.indexOf(\"/:\"+top.location.port) == 0)
-	pathname = pathname.substring(2+top.location.port.length);
+  pathname = pathname.substring(2+top.location.port.length);
       var url = \"/expired/true/target\"+escape(pathname+top.location.search+top.location.hash);
 
       top.location = url;
@@ -211,20 +211,21 @@ class ServerScriptHelper {
     </SCRIPT>
   </BODY>
 </HTML>");
-	            exit;
+              exit;
             }
-      	    else {
-      		    $cceClient->authkey($loginName, $sessionId);
-      	    }
+            else {
+              $cceClient->authkey($loginName, $sessionId);
+            }
             $this->loginUser = $cceClient->get($cceClient->whoami());
         }
     
         // initialize
         $this->i18n = array();
-      	// initialize timezone
-      	$timeObj = $cceClient->getObject("System", array(), "Time");
-      	$systemTimeZone = $timeObj["timeZone"];
-      	date_default_timezone_set($systemTimeZone);
+        // initialize timezone
+        $timeObj = $cceClient->getObject("System", array(), "Time");
+        $systemTimeZone = $timeObj["timeZone"];
+        @date_default_timezone_set($systemTimeZone);
+        $retvalTZ = @date_default_timezone_get();
     }
   }
 
@@ -327,7 +328,7 @@ class ServerScriptHelper {
   //   the path and any arguments
   // param: mode: The mode to use in this popen
   // param: runas: the user to run the program as, defaults to the currently
-  //	logged in user if not specified
+  //  logged in user if not specified
   // returns: a file handle to be read from
   function popen($cmd, $mode = "r", $runas = "") {
     if (!isset($sessionId)) {
@@ -385,7 +386,7 @@ class ServerScriptHelper {
       
     // prepare return
     while (list($key,$val)=each($array)) {
-      $output .= "$val\n";	
+      $output .= "$val\n";  
     }
 
     // clean up
@@ -450,7 +451,7 @@ class ServerScriptHelper {
 
     if (in_array($loginName, posix_getgrnam("site-adm"))) {
       $accessRights[] = "siteAdministrator";
-    }	
+    } 
 
     return array_unique($accessRights);
   }
@@ -548,14 +549,14 @@ class ServerScriptHelper {
       // remove all the q stuff because IE already sorted the entries
       $index = strpos($locale, ";");
       if($index) {
-	      $locale = substr($locale, 0, $index);
+        $locale = substr($locale, 0, $index);
       }
       // make country code uppercase
       if(strlen($locale) > 3) {
-	       $locale = substr($locale, 0, 3).strtoupper(substr($locale, 3, strlen($locale)-3));
+         $locale = substr($locale, 0, 3).strtoupper(substr($locale, 3, strlen($locale)-3));
       }
       if($i > 0) {
-	     $httpAcceptLanguage .= ",";
+       $httpAcceptLanguage .= ",";
       }
       $httpAcceptLanguage .= $locale;
     }
@@ -681,10 +682,10 @@ class ServerScriptHelper {
     $encoding = $ini_langs['charset'];
 
     if ($encoding != 'none') {
-    	$encoding = "; charset=$encoding";
+      $encoding = "; charset=$encoding";
     }
     else {
-    	$encoding = '';
+      $encoding = '';
     }
     return "
 <HTML>
@@ -890,7 +891,7 @@ $post_vars_html
         // commented out monterey-specific cruft
         // pretty much all future products will have CCE
         // return file_exists("/etc/rc.d/init.d/cced.init");
-	     return true;
+       return true;
     }
 
     // this should not be used outside this class
@@ -1006,8 +1007,8 @@ $post_vars_html
       $oids = $cce->find("CapabilityGroup");
 
       foreach($oids as $oid) {
-      	$obj = $cce->get($oid);
-      	$this->getCapabilityGroup($obj['name'], $obj);
+        $obj = $cce->get($oid);
+        $this->getCapabilityGroup($obj['name'], $obj);
       }
       $this->_gotAllCapabilityGroups = 1;
       return $this->capabilityGroups;
@@ -1017,7 +1018,7 @@ $post_vars_html
     // description: returns an array of all the declared cce-level capabilities
     function getAllCapabilities() {
       if (count($this->capabilities)) {
-      	return ($this->capabilities); 
+        return ($this->capabilities); 
       }
       $this->capabilities = $this->cceClient->names("Capabilities");
       return $this->capabilities;
@@ -1027,25 +1028,25 @@ $post_vars_html
     // description:  gets the capabilityGroup and caches it
     function &getCapabilityGroup($capName, $data = null) {
       if ($data) {
-      	// we are given the data to cache.
-      	$this->capabilityGroups[$capName] = $data;
-      	return $this->capabilityGroups[$capName];
+        // we are given the data to cache.
+        $this->capabilityGroups[$capName] = $data;
+        return $this->capabilityGroups[$capName];
       }
       // check if we already checked and couldn't find this capname
       if (isset($this->capabilityGroups[$capName])) {
-      	if (isset($this->notCapabilityGroups[$capName]) || ($this->capabilityGroups[$capName]==null && $this->_gotAllCapabilityGroups)) {
-      	 return null;
-      	}
+        if (isset($this->notCapabilityGroups[$capName]) || ($this->capabilityGroups[$capName]==null && $this->_gotAllCapabilityGroups)) {
+         return null;
+        }
       }
       $cce = $this->cceClient;
       if (isset($this->capabilityGroups[$capName])) {
-      	if ($this->capabilityGroups[$capName]!=null) {
-      	  return $this->capabilityGroups[$capName];
-      	}
+        if ($this->capabilityGroups[$capName]!=null) {
+          return $this->capabilityGroups[$capName];
+        }
       }
       if (($group = $this->cceClient->getObject("CapabilityGroup", array("name"=>$capName)))!=null) {
-      	$this->capabilityGroups[$capName] = $group;
-      	return $this->capabilityGroups[$capName];
+        $this->capabilityGroups[$capName] = $group;
+        return $this->capabilityGroups[$capName];
       }
       $this->notCapabilityGroups[$capName] = 1;
       $null = "NULL";
@@ -1062,14 +1063,14 @@ $post_vars_html
     function Capabilities($cce = NULL, $loginName = NULL, $sessionId = NULL) {
 
       if ($cce != NULL) {
-      	$this->cceClient =& $cce;
+        $this->cceClient =& $cce;
       }
       else {
-      	$this->cceClient = new CceClient();
-      	// FIXME check connect and authkey for failure
-      	$this->cceClient->connect();
-      	$this->cceClient->authkey($loginName, $sessionId);
-      	$this->myCce = 1;
+        $this->cceClient = new CceClient();
+        // FIXME check connect and authkey for failure
+        $this->cceClient->connect();
+        $this->cceClient->authkey($loginName, $sessionId);
+        $this->myCce = 1;
       }
 
       $iam = $this->cceClient->whoami();

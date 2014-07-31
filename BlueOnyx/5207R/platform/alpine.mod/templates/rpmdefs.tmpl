@@ -125,6 +125,17 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Jul 31 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX08
+- Today my grandmother would have had her 87th birthday. Sadly she passed
+  away earlier this year. Rest in peace, Anneliese Stauber. You're gone,
+  but not forgotten.
+- More PHP related timeZone madness: date_default_timezone_set() does not
+  recognize 'UTC' as valid timezone and throws an E_WARNING. Crazy. 
+- Fixed ci/application/libraries/ServerScriptHelper.php
+- Fixed ci/application/libraries/uifc/TimeStamp.php
+- Both fixes involve silencing the warnings by running the commands with
+  the @-prefix. That'll work unltil they change it from E_WARNING to E_ERROR.
+
 * Wed Jul 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX07
 - Modified ci/application/libraries/Capabilities.php as our fast check
   on systemAdministrator capabilities was excluding the possibility
