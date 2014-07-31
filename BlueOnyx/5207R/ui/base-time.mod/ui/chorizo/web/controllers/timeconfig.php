@@ -152,6 +152,10 @@ class Timeconfig extends MX_Controller {
 				$timeZone == "US/Eastern";
 			}
 
+			if (!isset($attributes['_systemDate_amPm'])) {
+				$attributes['_systemDate_amPm'] = "AM";
+			}
+
 			if ($attributes['_systemDate_amPm'] == "PM") {
 				$attributes['_systemDate_hour'] += 12;
 			}
