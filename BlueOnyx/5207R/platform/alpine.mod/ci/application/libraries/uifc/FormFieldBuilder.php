@@ -144,11 +144,11 @@ class FormFieldBuilder {
     if ($access == "r") {
         // Single checkbox:
         if ((!is_array($value))) {
-        	if ($value == "1") {
+          if ($value == "1") {
             $helptext = $i18n->getWrapped("[[palette.enabled]]") . "<br>" . $i18n->getHtml("[[palette.notprivileged]]");
             $fields = ' <label for="' . $id . '" title="' . $helptext . '" class="tooltip hover uniform"><div class="ui-icon ui-icon-check"></div></label>';
             $fields .= "\n" . $this->makeHiddenField($id, $value);
-        	}
+          }
           else {
             $helptext = $i18n->getWrapped("[[palette.disabled]]") . "<br>" . $i18n->getHtml("[[palette.notprivileged]]");
             $fields = ' <label for="' . $id . '" title="' . $helptext . '" class="tooltip hover uniform"><div class="ui-icon ui-icon-cancel"></div></label>';
@@ -221,16 +221,26 @@ class FormFieldBuilder {
       $section_start = "";
       $section_end = "";
     }
+    if ($extraClasses != " nolabel") {
+      $out = '
+                                      <fieldset class="label_side top uniform' . $extraClasses . '">
+                                        ' . $section_start . '
+                                              <label for="' . $id . '" title="' . $helptext . '" class="tooltip hover uniform">' . $label . '</label>
+                                              <div>' .
+                                                $fields . '
+                                              </div>
+                                        ' . $section_end . '
+                                      </fieldset>';
+    }
+    else {
+      $out = '
+                                        ' . $section_start . '
+                                              <div>' .
+                                                $fields . '
+                                              </div>
+                                        ' . $section_end;
+    }
 
-    $out = '
-                                    <fieldset class="label_side top uniform' . $extraClasses . '">
-                                      ' . $section_start . '
-                                            <label for="' . $id . '" title="' . $helptext . '" class="tooltip hover uniform">' . $label . '</label>
-                                            <div>' .
-                                              $fields . '
-                                            </div>
-                                      ' . $section_end . '
-                                    </fieldset>';
     return $out;
   }
 
@@ -758,54 +768,54 @@ class FormFieldBuilder {
 
     switch($access) {
       case "":
-      	if(!$isMultiple)
-      	  return $this->makeHiddenField($id, $values[$selectedIndexes[0]]);
+        if(!$isMultiple)
+          return $this->makeHiddenField($id, $values[$selectedIndexes[0]]);
 
-      	$result = "";
-      	for($i = 0; $i < count($selectedIndexes); $i++)
-      	  $result .= $this->makeHiddenField($id, $values[$selectedIndexes[$i]]);
-      	return $result;
+        $result = "";
+        for($i = 0; $i < count($selectedIndexes); $i++)
+          $result .= $this->makeHiddenField($id, $values[$selectedIndexes[$i]]);
+        return $result;
 
       case "r":
-      	if(!$isMultiple)
-      	  // HTML safe
-      	  return htmlspecialchars($labels[$selectedIndexes[0]]).$this->makeHiddenField($id, $values[$selectedIndexes[0]]);
+        if(!$isMultiple)
+          // HTML safe
+          return htmlspecialchars($labels[$selectedIndexes[0]]).$this->makeHiddenField($id, $values[$selectedIndexes[0]]);
 
-      	$result = "";
-      	for($i = 0; $i < count($selectedIndexes); $i++)
-      	  // HTML safe
-      	  $result .= htmlspecialchars($labels[$selectedIndexes[$i]]).$this->makeHiddenField($id, $values[$selectedIndexes[$i]]);
-      	return $result;
+        $result = "";
+        for($i = 0; $i < count($selectedIndexes); $i++)
+          // HTML safe
+          $result .= htmlspecialchars($labels[$selectedIndexes[$i]]).$this->makeHiddenField($id, $values[$selectedIndexes[$i]]);
+        return $result;
 
       // impossible case
       case "w":
 
       case "rw":
-	$multiple = ($isMultiple) ? "MULTIPLE" : "";
+  $multiple = ($isMultiple) ? "MULTIPLE" : "";
 
-	// log activity if necessary
-	$system = new System();
-	// log value if only one option can be selected
-	$value = !$isMultiple ? ", this.options[this.selectedIndex].value" : "";
-	$logChange = ($system->getConfig("logPath") != "") ? "top.code.uiLog_log('change', 'FormField', '$id' $value);" : "";
+  // log activity if necessary
+  $system = new System();
+  // log value if only one option can be selected
+  $value = !$isMultiple ? ", this.options[this.selectedIndex].value" : "";
+  $logChange = ($system->getConfig("logPath") != "") ? "top.code.uiLog_log('change', 'FormField', '$id' $value);" : "";
 
-	$onChange = ($onChange != "" || $logChange != "") ? "onChange=\"$logChange $onChange\"" : "";
+  $onChange = ($onChange != "" || $logChange != "") ? "onChange=\"$logChange $onChange\"" : "";
 
   // Uniform dropdown selectors look like the crap:
-	//$result = "<SELECT $multiple NAME=\"$id\" ID=\"$id\" $onChange SIZE=\"$size\" class=\"uniform full_width\" style=\"opacity: 0;\">\n";
+  //$result = "<SELECT $multiple NAME=\"$id\" ID=\"$id\" $onChange SIZE=\"$size\" class=\"uniform full_width\" style=\"opacity: 0;\">\n";
   // So we don't use them for now:
   $result = "  <SELECT $multiple NAME=\"$id\" ID=\"$id\" $onChange SIZE=\"$size\" class=\"selector\">\n";
 
   $selector_pairs = array();
 
-	for($i = 0; $i < count($labels); $i++) {
-	  $label = $labels[$i];
-	  $value = $values[$i];
+  for($i = 0; $i < count($labels); $i++) {
+    $label = $labels[$i];
+    $value = $values[$i];
 
-	  // HTML safe
-	  $value = htmlspecialchars($value);
+    // HTML safe
+    $value = htmlspecialchars($value);
     $selector_pairs[$value] = $label;
-	}
+  }
 
   // Do we need to sort?
   if ($this->getSorted()) {
@@ -821,9 +831,9 @@ class FormFieldBuilder {
     $i++;
   }
 
-	// do not put any new lines here because fields that use this code may
-	// want no line breaks to be shown on screen
-	$result .= "</SELECT>";
+  // do not put any new lines here because fields that use this code may
+  // want no line breaks to be shown on screen
+  $result .= "</SELECT>";
 
   // If a Label and Description are set, we use them. If not, then we
   // calculate these based on the ID of the FormObject:
@@ -1184,21 +1194,21 @@ class FormFieldBuilder {
 //
 //    switch($access) {
 //      case "":
-//	return $this->makeHiddenField($id, $value);
+//  return $this->makeHiddenField($id, $value);
 //
 //      case "r":
-//	return $shortval;
+//  return $shortval;
 //
 //      case "R":
-//	return $shortval;
+//  return $shortval;
 //
 //      case "w":
-//	$value = "";
-//	break;
+//  $value = "";
+//  break;
 //
 //      case "rw":
-//	$value = "VALUE=\"$value\"";
-//	break;
+//  $value = "VALUE=\"$value\"";
+//  break;
 //    }
 //
 //    // log activity if necessary
@@ -1277,18 +1287,18 @@ class FormFieldBuilder {
         return $this->makeHiddenField($id, $value);
 
       case "r":
-      	// HTML safe
-      	$value = htmlspecialchars($value);
+        // HTML safe
+        $value = htmlspecialchars($value);
 
-      	// preserve line breaks
-      	$value = preg_replace("/\r?\n/", "<BR>", $value);
+        // preserve line breaks
+        $value = preg_replace("/\r?\n/", "<BR>", $value);
         $textarea = "<p>" . $value . "</p>";
         $optional_text = '';
         $optional_line = '';
 
       case "w":
-      	$value = "";
-      	break;
+        $value = "";
+        break;
 
       case "rw":
         $textarea = '<textarea name="'. $textarea_name . '" title="' . $i18n->get("[[palette.autogrow_expanding]]") . '" class="tooltip autogrow ' . $this->type . $optional_class . '" placeholder="' . $i18n->get("[[palette.autogrow_prefill]]") . '">' . $value . '</textarea>' . "\n";
@@ -1330,26 +1340,26 @@ class FormFieldBuilder {
         return $this->makeHiddenField($id, $valueString);
 
       case "r":
-      	for($i = 0; $i < count($values); $i++) {
-      	  if($i > 0) {
-      	    $result .= "<BR>";
+        for($i = 0; $i < count($values); $i++) {
+          if($i > 0) {
+            $result .= "<BR>";
           }
-      	  // HTML safe
-      	  $result .= htmlspecialchars($values[$i]);
-      	}
-      	$result .= $this->makeHiddenField($id, $valueString);
+          // HTML safe
+          $result .= htmlspecialchars($values[$i]);
+        }
+        $result .= $this->makeHiddenField($id, $valueString);
 
 //
         $valueText = implode("\n", $values);
         $result = $this->makeTextAreaField($id, $valueText, "r", $this->i18n, $this->type, $this->isOptional, $rows, $columns, "");
 //
 
-      	return $result;
+        return $result;
 
       case "w":
-      	// clear off values
-      	$values = array();
-      	break;
+        // clear off values
+        $values = array();
+        break;
 
       case "rw":
         break;

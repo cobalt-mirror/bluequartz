@@ -86,13 +86,20 @@ class Boolean extends FormField {
       $builder->setDescription("");
     }
 
+    if ($this->getLabelType() != "label_side top") {
+      $extraClasses = $this->getLabelType();
+    }
+    else {
+      $extraClasses = '';
+    }
+
     // This is bloody stupid, too: Checkboxes now only create POST data if they are ticked. Even then
     // the value is not "1", but "on" instead. Which makes parsing of POST data a real mess. So we
     // create hidden fields for each Checkbox which are named "checkbox-$id". We parse these with the
     // function GetFormAttributes() from helpers/blueonyx_helper.php:
     $formField = $builder->makeHiddenField("checkbox-" . $id, $value);
     // Generate the CheckBox:
-    $formField .= $builder->makeCheckboxField($id, $value, $this->getAccess(), $i18n, $onClick);
+    $formField .= $builder->makeCheckboxField($id, $value, $this->getAccess(), $i18n, $onClick, $extraClasses);
 
      return $formField;
   }
