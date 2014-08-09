@@ -188,6 +188,7 @@ class AmStatus extends MX_Controller {
 
 	    for ($i=0; $i < count($am_names); ++$i) {
 	        $nspace = $cceClient->get($CODBDATA['OID'], $am_names[$i]);
+
 	        if (!isset($nspace["hideUI"])) {
             	$iname = $i18n->interpolate($nspace["nameTag"]);
 
@@ -222,6 +223,20 @@ class AmStatus extends MX_Controller {
 				// Put it back together:
 				$nspace["URL"] = '/' . $vendor . $module . '/' . $filename;
 
+				$nspace_helper = explode('/', $nspace["URL"]);
+				$module_dirs = array("base", "Compass", "solarspeed", "other");
+
+				if (in_array($nspace_helper[1], $module_dirs)) {
+					$nspace_helper[0] = $nspace_helper[1];
+					$nspace_helper[1] = $nspace_helper[2];
+					$nspace_helper[2] = $nspace_helper[3];
+					unset($nspace_helper[3]);
+					$nspace["URL"] = '/' . $module . '/' . $filename;
+				}
+				else {
+					$nspace_helper[0] = "base";
+				}
+
 				$fancy_button = $factory->getFancyButton($nspace["URL"] . "?short=1", "", "DEMO-OVERRIDE");
 				$fancy_button->setImageOnly(TRUE);
 				$link_button = $factory->getLinkButton($nspace["URL"], "[[palette.detail]]", "DEMO-OVERRIDE");
@@ -229,8 +244,7 @@ class AmStatus extends MX_Controller {
 
 				$details = $factory->getCompositeFormField(array($fancy_button, $link_button));
 
-				$nspace_helper = explode('/', $nspace["URL"]);
-	            if (($nspace["URL"] == "") || (!is_file("/usr/sausalito/ui/chorizo/ci/application/modules/base/" . $nspace_helper[1] . "/controllers/" . $nspace_helper[2] . ".php"))) {
+	            if (($nspace["URL"] == "") || (!is_file("/usr/sausalito/ui/chorizo/ci/application/modules/" . $nspace_helper[0] . "/" . $nspace_helper[1] . "/controllers/" . $nspace_helper[2] . ".php"))) {
 					$fancy_button->setDisabled(TRUE);
 					$link_button->setDisabled(TRUE);
 			    }
