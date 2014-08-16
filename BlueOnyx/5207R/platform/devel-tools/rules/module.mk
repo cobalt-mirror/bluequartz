@@ -2,6 +2,17 @@
 
 include /usr/sausalito/devel/defines.mk
 
+#
+# The code below relates only to authorised package developers - not used for anyone else
+#
+
+WHAM_ME=$(shell if [ -f /usr/sausalito/devel/wham.mk ]; then echo TRUE; fi)
+
+ifeq ($(WHAM_ME),TRUE)
+    include /usr/sausalito/devel/wham.mk
+endif
+
+
 MSGFMT=msgfmt
 REENCODE=/usr/sausalito/bin/reencode.pl
 PERL=/usr/bin/perl

@@ -54,6 +54,12 @@ done
 
 %changelog
 
+* Sat Aug 16 2014 Greg Kuhnert 0.6.0.0BX05
+- Updated module.mk - adding hooks for developer framework
+- Updated ftp_put for new default hostname
+- Updated ftp_put to prevent echo of password during entry
+- updated makePkg to exclude SVN directories
+
 * Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX04
 - Added requirement for pam-devel glib2-devel flex bison
 
@@ -96,7 +102,7 @@ done
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX08
 - Updated dependencies.
 
-* Sat Mar 03 2012 Greg Kuhnerg 0.5.1-0BX07
+* Sat Mar 03 2012 Greg Kuhnert 0.5.1-0BX07
 - Updated module.mk to fix a few problems for building PKG files
 - Updated makePkg to copy scripts directory
 

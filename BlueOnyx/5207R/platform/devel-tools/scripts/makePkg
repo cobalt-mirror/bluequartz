@@ -237,7 +237,7 @@ close(IN);
 close(OUT);
 
 # tar up the PKG
-`cd $tmpTarDir; $tar czf $moduleDir/$vendor-$service-$version-$release.pkg .`;
+`cd $tmpTarDir; $tar --exclude '.svn' -czf $moduleDir/$vendor-$service-$version-$release.pkg .`;
 
 # clean up
 `$rm -r $tmpTarDir`;
