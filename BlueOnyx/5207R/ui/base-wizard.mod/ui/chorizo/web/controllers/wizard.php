@@ -1381,13 +1381,20 @@ nuclear facility.';
 			}
 			$serialNumber = $system['serialNumber'];
 
+			// According to a bug report w/o much info there was a case where the $errors might
+			// have been a string instead of an array. Hence the explode failed. So we play it
+			// double safe here:
+			if (is_array($errors)) {
+				$errors = implode('', $errors);
+			}
+
 			// Assemble data:
 			$data = array(
 				'charset' => $charset,
 				'localization' => $localization,
 				'loginName' => 'admin',
 				'page_title' => $hostname_new . ': ' . $i18n->getHtml("[[base-wizard.iso_wizard_title]]"),
-				'errors' => implode('', $errors),
+				'errors' => $errors,
 				'fullName' => 'Administrator',
 				'layout' => $layout,
 				'extra_headers' => '',
