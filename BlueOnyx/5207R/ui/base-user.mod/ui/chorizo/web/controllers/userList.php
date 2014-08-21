@@ -352,17 +352,24 @@ class UserList extends MX_Controller {
 		$CreatedUserAccountsAllSites = count($Users);
 
 		// Show "Add"-button if this Vsite hasn't yet reached max number of accounts:
+		$buttonContainerButtons = array();
 		if ($CreatedUserAccountsAllSites < $vsiteObj['maxusers']) {
 			// Generate +Add button:
 			$addAdminUser = "/user/userAdd?group=$group";
-			$addbutton = $factory->getAddButton($addAdminUser, '[[base-user.add_user_help]]', "DEMO-OVERRIDE");
-			$buttonContainer = $factory->getButtonContainer("userList", $addbutton);
-			$block->addFormField(
-				$buttonContainer,
-				$factory->getLabel("userList"),
-				$defaultPage
-			);
+			$buttonContainerButtons[] = $factory->getAddButton($addAdminUser, '[[base-user.add_user_help]]', "DEMO-OVERRIDE");
 		}
+
+		// Show 'Edit User Template' Button:
+		$userTemplateURL = "/user/userDefaults?group=$group";
+		$buttonContainerButtons[] = $factory->getButton($userTemplateURL, '[[base-user.userDefaults]]', "DEMO-OVERRIDE");
+		$buttonContainer = $factory->getButtonContainer("", $buttonContainerButtons);
+
+		// Out with the Button-Container:
+		$block->addFormField(
+			$buttonContainer,
+			$factory->getLabel("userList"),
+			$defaultPage
+		);
 
 		// Push out the Scrollist:
 		$block->addFormField(
