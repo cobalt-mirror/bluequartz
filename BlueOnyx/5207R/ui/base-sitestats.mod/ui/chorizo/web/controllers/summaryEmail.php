@@ -79,6 +79,9 @@ class SummaryEmail extends MX_Controller {
 	}
 
 	private function getDay() {
+		if (!isset($this->day)) {
+			$this->day = date('d', strtotime("now"));
+		}
 		return $this->day;
 	}
 
@@ -102,6 +105,9 @@ class SummaryEmail extends MX_Controller {
 	}
 
 	private function getMonth() {
+		if (!isset($this->month)) {
+			$this->month = date('m', strtotime("now"));
+		}
 		return $this->month;
 	}
 
@@ -110,6 +116,9 @@ class SummaryEmail extends MX_Controller {
 	}
 
 	private function getYear() {
+		if (!isset($this->year)) {
+			$this->year = date('Y', strtotime("now"));
+		}
 		return $this->year;
 	}
 
@@ -474,6 +483,11 @@ class SummaryEmail extends MX_Controller {
 					}
 				}
 			}
+			else {
+				// Safe fallback:
+				$period = "week";
+				$this->setWeek($this->calcWeek(date("Y")."-".date("m")."-".date("d")));
+			}
 		}
 		else {
 			// No date realated POST data, so get date from URL string:
@@ -581,8 +595,8 @@ class SummaryEmail extends MX_Controller {
 		// Array setup:
 		$STATS = array();
 		$good_hours = array('00', '01', '02', '03', '04', '05', '06', '07', '08', '09',
-							'10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
-							'20', '21', '22', '23');
+				    '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
+				    '20', '21', '22', '23');
 
 		$Full_Month_Locales = array(
 								'01' => "01month",
@@ -689,6 +703,11 @@ class SummaryEmail extends MX_Controller {
 				unset($tmpStats[$oldestYear][$key]);
 			}
 		}
+		
+		if (isset($tmpStats[$oldestYear]['weeks'])) {
+		    unset($tmpStats[$oldestYear]['weeks']);
+		}
+		
 		$oldestMonth = array_shift(array_keys($tmpStats[$oldestYear]));
 
 		if (isset($tmpStats[$oldestYear][$oldestMonth]))  {
@@ -703,7 +722,6 @@ class SummaryEmail extends MX_Controller {
 		$oldestDay = array_shift(array_keys($tmpStats[$oldestYear][$oldestMonth]));
 		unset($tmpStats);
 		$minDate = "'" . $oldestYear . '-' . $oldestMonth . '-' . $oldestDay . "'";
-
 
 		// Construct the URL parameters based on the currently selected date and group:
 		if ($period == "day") {
