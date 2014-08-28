@@ -214,7 +214,7 @@ class Apiindex extends MX_Controller {
 
 		error_log("BlueOnyx API: Access from $ip to port " . $_SERVER['SERVER_PORT']);
 
-		if ((isset($form_data['payload'])) && (($form_data['action'] != "reboot") || ($form_data['action'] != "shutdown") || ($form_data['action'] != "usage") || ($form_data['action'] != "status")))  {
+		if ((isset($form_data['payload'])) && (($form_data['action'] != "reboot") || ($form_data['action'] != "shutdown") || ($form_data['action'] != "usage") || ($form_data['action'] != "status") || ($form_data['action'] != "destroy")))  {
 		  	$payload = json_decode($form_data['payload']);
 		  if (isset($payload->clientsdetails)) {
 			$clientsdetails = json_decode($payload->clientsdetails);
@@ -234,7 +234,7 @@ class Apiindex extends MX_Controller {
 		  }
 
 		}
-		elseif ((!isset($form_data['payload'])) && (($form_data['action'] == "reboot") ||($form_data['action'] == "shutdown") || ($form_data['action'] == "usage") || ($form_data['action'] == "status")))  {
+		elseif ((!isset($form_data['payload'])) && (($form_data['action'] == "reboot") ||($form_data['action'] == "shutdown") || ($form_data['action'] == "usage") || ($form_data['action'] == "status") || ($form_data['action'] == "destroy")))  {
 		  	//error_log("BlueOnyx API: " . $form_data['action'] . " requested.");
 		}
 		else {
@@ -284,12 +284,12 @@ class Apiindex extends MX_Controller {
 
 		      // If that went well, we create the User, too:
 		      if (is_array($result)) {
-		      	error_log("BlueOnyx API: Vsite $payload->domain created successfully.");
+		      	//error_log("BlueOnyx API: Vsite $payload->domain created successfully.");
 				$result = do_create_user($payload, $clientsdetails, $helper, $result);
 				if ($result == "success") {
 					// nice people say aufwiedersehen
 					$data['result'] = $result;
-					error_log("BlueOnyx API: Done, reporting: $result");
+					//error_log("BlueOnyx API: Done, reporting: $result");
 					$cceClient->bye();
 					$helper->destructor();
 					$CI->load->view('apiindex_view', $data);
@@ -382,7 +382,7 @@ class Apiindex extends MX_Controller {
 		      }
 		      else {
 				$data['result'] = "success";
-				error_log("BlueOnyx API: " . $data['result']);
+				//error_log("BlueOnyx API: " . $data['result']);
 				$cceClient->bye();
 				$helper->destructor();
 				$CI->load->view('apiindex_view', $data);
@@ -425,81 +425,85 @@ class Apiindex extends MX_Controller {
 		    }
 		}
 		elseif ($form_data['action'] == "destroy") {
-		  if ((isset($payload->domain)) &&
-		      (isset($payload->ipaddr)) &&
-		      (isset($payload->username)) &&
-		      (isset($payload->password)) &&  
-		      (isset($clientsdetails->firstname)) &&  
-		      (isset($clientsdetails->lastname)) &&  
-		      (isset($clientsdetails->email))) 
+			//error_log("Processing 'destroy' request ...");
+		  	if ((isset($payload->domain)) &&
+				(isset($payload->ipaddr)) &&
+				(isset($payload->username)) &&
+				(isset($payload->password)) &&  
+				(isset($clientsdetails->firstname)) &&  
+				(isset($clientsdetails->lastname)) &&  
+				(isset($clientsdetails->email))) 
 		    {
-		      // Get Vsite OID:
-		      $host_details = get_fqdn_details($payload->domain);
-		      $vsiteOID = $cceClient->find("Vsite", array("fqdn" => $host_details['fqdn']));
-
-		      // Get Vsite Settings:
-		      $VsiteSettings = $cceClient->get($vsiteOID[0], '');
-
-		      // Get Vsite's MySQL settings:
-		      $VsiteMySQL = $cceClient->get($vsiteOID[0], "MYSQL_Vsite");
-
-		      if ($VsiteMySQL['enabled'] == "1") {
-			    // Get Server's MySQL access details:
-			    $getthisOID = $cceClient->find("MySQL");
-			    $mysql_settings = $cceClient->get($getthisOID[0]);
-
-			    // Server MySQL settings:
-			    $sql_root               = $mysql_settings['sql_root'];
-			    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-			    $sql_host               = $mysql_settings['sql_host'];
-			    $sql_port               = $mysql_settings['sql_port'];
-			    $sql_host_and_port = $sql_host . ":" . $sql_port;
-
-			    // Store the setings in $VsiteSettings as well:
-			    $VsiteSettings['sql_username'] = $sql_username;
-			    $VsiteSettings['sql_database'] = $sql_database;
-			    $VsiteSettings['sql_host'] = $sql_host;
-			    $VsiteSettings['sql_root'] = $sql_root;
-			    $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-			
-			    delete_mysql_stuff($VsiteSettings, $cceClient);
-		      }
-
-		      // Find out if the site is suspended. In that case we unsuspend it first:
-		      if ($VsiteSettings['suspend'] == "1") {
+	    		//error_log("Processing 'destroy' request for $payload->domain - $payload->ipaddr");
+				// Get Vsite OID:
 				$host_details = get_fqdn_details($payload->domain);
-				$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
-				$errors = $cceClient->errors();
-		      }
+				//error_log("Calculated FQDN for $payload->domain is: " . $host_details['fqdn']);
+				$vsiteOID = $cceClient->find("Vsite", array("fqdn" => $host_details['fqdn']));
+				//error_log("Found OID for $payload->domain is: " . $vsiteOID[0]);
 
-		      // Destroy the Vsite and all its Users and data:
-		      if (isset($VsiteSettings['name'])) {
-				$cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
-				$helper->fork($cmd, 'root');
-		      }
-		      else {
-				$errors = array("error" => "Site not there!");
-		      }
+				// Get Vsite Settings:
+				$VsiteSettings = $cceClient->get($vsiteOID[0], '');
 
-		      // nice people say aufwiedersehen
-		      $helper->destructor();
+				// Get Vsite's MySQL settings:
+				$VsiteMySQL = $cceClient->get($vsiteOID[0], "MYSQL_Vsite");
 
-		      if (count($errors) >= "1") {
-				$data['result'] = "BlueOnyx API: An error happened during the deletion of the Vsite.";
-				error_log($data['result']);
-				$cceClient->bye();
+				if ($VsiteMySQL['enabled'] == "1") {
+					// Get Server's MySQL access details:
+					$getthisOID = $cceClient->find("MySQL");
+					$mysql_settings = $cceClient->get($getthisOID[0]);
+
+					// Server MySQL settings:
+					$sql_root               = $mysql_settings['sql_root'];
+					$sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+
+					// Store the setings in $VsiteSettings as well:
+					$VsiteSettings['sql_username'] = $VsiteMySQL['username'];
+					$VsiteSettings['sql_database'] = $VsiteMySQL['DB'];
+					$VsiteSettings['sql_host'] = $VsiteMySQL['host'];
+					$VsiteSettings['sql_root'] = $sql_root;
+					$VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
+
+					delete_mysql_stuff($VsiteSettings, $cceClient);
+				}
+
+				// Find out if the site is suspended. In that case we unsuspend it first:
+				if ($VsiteSettings['suspend'] == "1") {
+					$host_details = get_fqdn_details($payload->domain);
+					$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
+					$errors = $cceClient->errors();
+				}
+
+				// Destroy the Vsite and all its Users and data:
+				if (isset($VsiteSettings['name'])) {
+					//error_log("Running /usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name']);
+					$cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
+					$no_return = '';
+					$helper->shell($cmd, $no_return, 'root', $sessionId);
+				}
+				else {
+					error_log("Site not there!");
+					$errors = array("error" => "Site not there!");
+				}
+
+				// nice people say aufwiedersehen
 				$helper->destructor();
-				$CI->load->view('apiindex_view', $data);
-				return;
-		      }
-		      else {
-				$data['result'] = "success";
-				error_log("BlueOnyx API: " . $data['result']);
-				$cceClient->bye();
-				$helper->destructor();
-				$CI->load->view('apiindex_view', $data);
-				return;
-		      }
+
+				if (count($errors) >= "1") {
+					$data['result'] = "BlueOnyx API: An error happened during the deletion of the Vsite.";
+					error_log($data['result']);
+					$cceClient->bye();
+					$helper->destructor();
+					$CI->load->view('apiindex_view', $data);
+					return;
+				}
+				else {
+					$data['result'] = "success";
+					//error_log("BlueOnyx API: " . $data['result']);
+					$cceClient->bye();
+					$helper->destructor();
+					$CI->load->view('apiindex_view', $data);
+					return;
+				}
 		    }
 		}
 		elseif ($form_data['action'] == "modify") {
@@ -516,7 +520,7 @@ class Apiindex extends MX_Controller {
 		    {
 
 		      // Create Vsite:
-		      $result = do_modify_vsite($payload, $clientsdetails, $helper);
+		      $result = do_modify_vsite($payload, $clientsdetails, $helper, "modify");
 
 		      // If that went well, we create the User, too:
 		      if ($result == "success") {
@@ -600,25 +604,26 @@ class Apiindex extends MX_Controller {
 		}
 		elseif ($form_data['action'] == "statusdetailed") {
 
-		      $factory = $helper->getHtmlComponentFactory("base-am");
-		      $i18n = $factory->i18n;
+			$factory = $helper->getHtmlComponentFactory("base-am");
+			$i18n = $factory->i18n;
 
-		      // Force run of Swatch:
-		      $helper->fork("/usr/sbin/swatch -c /etc/swatch.conf", "root");
+			// Force run of Swatch:
+			$no_return = '';
+			$helper->shell("/usr/sbin/swatch -c /etc/swatch.conf", $no_return, 'root', $sessionId);
 
-		      // Poll CCE for our ActiveMonitor details:
-		      $amobj = $cceClient->getObject("ActiveMonitor");
-		      $am_names = $cceClient->names("ActiveMonitor");
-		      $System = $cceClient->getObject("System");
-		      $amenabled = $amobj["enabled"];
+			// Poll CCE for our ActiveMonitor details:
+			$amobj = $cceClient->getObject("ActiveMonitor");
+			$am_names = $cceClient->names("ActiveMonitor");
+			$System = $cceClient->getObject("System");
+			$amenabled = $amobj["enabled"];
 
-		      $stmap = array(
-			  "N" => "N/A", 
-			  "G" => "Normal", 
-			  "Y" => "Problem", 
-			  "R" => "Severe Problem");
+			$stmap = array(
+			"N" => "N/A", 
+			"G" => "Normal", 
+			"Y" => "Problem", 
+			"R" => "Severe Problem");
 
-		      $status = "Status for BlueOnyx (" . $System['productBuild'] . ")<br>\n\n";
+			$status = "Status for BlueOnyx (" . $System['productBuild'] . ")<br>\n\n";
 
 		      for ($i=0; $i < count($am_names); ++$i) {
 			  	$nspace = $cceClient->get($amobj["OID"], $am_names[$i]);
