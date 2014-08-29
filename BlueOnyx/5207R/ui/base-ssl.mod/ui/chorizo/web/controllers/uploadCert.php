@@ -286,8 +286,16 @@ class UploadCert extends MX_Controller {
 		    );
 
 		// Add some hidden fields that we need later:
-		$block->addFormField($factory->getTextField('save', 1, ''));
-		$block->addFormField($factory->getTextField('group', $CODBDATA['group'], ''));
+		$block->addFormField(
+		    $factory->getTextField('save', '1', ''),
+		    $factory->getLabel('save'),
+		    $defaultPage
+		    );
+		$block->addFormField(
+		    $factory->getTextField('group', $CODBDATA['group'], ''),
+		    $factory->getLabel('group'),
+		    $defaultPage
+		    );
 
 		//
 		//--- Add the Save/Cancel buttons (not for AdmServ-Cert, though)

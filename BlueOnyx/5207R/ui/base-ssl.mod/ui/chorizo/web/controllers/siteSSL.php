@@ -68,6 +68,12 @@ class SiteSSL extends MX_Controller {
 			}
 
 		    $CODBDATA =& $cceClient->getObject('Vsite', array('name' => $get_form_data['group']), 'SSL');
+		    if ($CODBDATA == "") {
+				// Nice people say goodbye, or CCEd waits forever:
+				$cceClient->bye();
+				$serverScriptHelper->destructor();
+				Log403Error("/gui/Forbidden403#donthavethat");
+		    }
 		    $CODBDATA['group'] = $siteGroup;
 		}
 		else {
@@ -269,9 +275,42 @@ class SiteSSL extends MX_Controller {
 		$import =& $factory->getButton('/ssl/uploadCert?group=' . $CODBDATA['group'], 'import', 'DEMO-OVERRIDE');
 		$exportButton =& $factory->getButton('/ssl/siteSSL?group=' . $CODBDATA['group'] . '&type=cert&action=export', 'export');
 
-		// Assume that if the expires field is blank there is no cert to export
-		if ($CODBDATA['expires'] == '') {
-		    $exportButton->setDisabled(true);
+		// Set export button to TRUE by default:
+		$exportButton->setDisabled(TRUE);
+
+		if ($CODBDATA['group']) {
+		    list($oid) = $cceClient->find('Vsite', array('name' => $CODBDATA['group']));
+		    $vsite_info = $cceClient->get($oid);
+		    $fqdn = $vsite_info['fqdn'];
+		}
+		else {
+		    $fqdn = '[[base-ssl.serverDesktop]]';
+		}
+
+	    // Check if certificate and key are present:
+	    if ($fqdn != '[[base-ssl.serverDesktop]]') {
+	    	$file = $vsite_info['basedir'] . '/certs/certificate';
+	    }
+	    else {
+	    	$file = '/etc/admserv/certs/certificate';
+	    }
+	    $cmd = '/bin/cat ' . $file . '|/usr/bin/wc -l';
+		$serverScriptHelper->shell($cmd, $cert_cmd_return, 'root', $sessionId);
+		$certificate_present = rtrim($cert_cmd_return);
+
+	    if ($fqdn != '[[base-ssl.serverDesktop]]') {
+	    	$file = $vsite_info['basedir'] . '/certs/key';
+	    }
+	    else {
+	    	$file = '/etc/admserv/certs/key';
+	    }
+	    $cmd = '/bin/cat ' . $file . '|/usr/bin/wc -l';
+		$serverScriptHelper->shell($cmd, $key_cmd_return, 'root', $sessionId);
+		$key_present = rtrim($key_cmd_return);
+
+	    // If we have an expiration date, a key and a cert, then we allow the cert to be exported:
+		if (($CODBDATA['expires'] != "") && ($certificate_present > 0) && ($key_present > 0)) {
+		    $exportButton->setDisabled(FALSE);
 		}
 
 		// Add #1 Button-Container:
@@ -283,15 +322,6 @@ class SiteSSL extends MX_Controller {
 		//
 		// -- Add PagedBlock with Cert Info:
 		//
-
-		if ($CODBDATA['group']) {
-		    list($oid) = $cceClient->find('Vsite', array('name' => $CODBDATA['group']));
-		    $vsite_info = $cceClient->get($oid);
-		    $fqdn = $vsite_info['fqdn'];
-		}
-		else {
-		    $fqdn = '[[base-ssl.serverDesktop]]';
-		}
 
 		$defaultPage = "basic";
 		$block =& $factory->getPagedBlock("sslCertInfo", array($defaultPage));
@@ -331,16 +361,19 @@ class SiteSSL extends MX_Controller {
 	        }
 	    }
 
-        //--
-
+	    // If we don't have a certificate or key, then we do not allow to enable:
+	    if (($certificate_present == 0) || ($key_present == 0)) {
+	    	$CODBDATA['enabled'] = '0';
+	    	$access = 'r';
+	    }
 	    $block->addFormField(
 	        $factory->getBoolean('enabled', $CODBDATA['enabled'], $access),
 	        $factory->getLabel('enabled'),
 	        $defaultPage
 	        );
 
-	    // If we have an expiration date, we show the cert information:
-		if ($CODBDATA['expires'] != "") {
+	    // If we have an expiration date, a key and a cert, then we show the cert information:
+		if (($CODBDATA['expires'] != "") && ($certificate_present > 0) && ($key_present > 0)) {
 		    $cert_sections = array(
 		                    'location' => array('city', 'state', 'country'), 
 		                    'orgInfo' => array('orgName', 'orgUnit'),

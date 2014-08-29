@@ -120,6 +120,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Aug 29 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX07
+- Modified ui/chorizo/web/controllers/uploadCert.php
+- Modified ui/chorizo/web/controllers/siteSSL.php
+- Fixes a bug reported by Dirk Estenfeld. The hidden fields for group
+  and save action weren't sent via POST data due to the labels missing.
+  Additionally reworked the scripts to check presence of key and 
+  certificate file. If one or both are missing, no cert information
+  will be shown and the checkbox for enable SSL will be turned off and
+  will be set to disabled. 
+
 * Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX06
 - Modified ui/chorizo/web/controllers/siteSSL.php to prevent pootle header
   showing on empty country definition.
