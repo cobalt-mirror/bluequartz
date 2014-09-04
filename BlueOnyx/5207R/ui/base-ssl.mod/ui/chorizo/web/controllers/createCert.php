@@ -326,8 +326,10 @@ class CreateCert extends MX_Controller {
 		        );
 
 		// City:
+		$city =& $factory->getTextField('city', $CODBDATA['city']);
+		$city->setType('alphanum_plus_space');
 		$block->addFormField(
-		    $factory->getTextField('city', $CODBDATA['city']),
+		    $city,
 		    $factory->getLabel('city'),
 	        $defaultPage
 		    );
@@ -335,6 +337,7 @@ class CreateCert extends MX_Controller {
 		// State:
 		$stateOrProvince =& $factory->getTextField('state', $CODBDATA['state']);
 		$stateOrProvince->setOptional('silent');
+		$stateOrProvince->setType('alphanum_plus_space');
 		$block->addFormField(
 			$stateOrProvince,
 			$factory->getLabel('state'),
@@ -356,8 +359,10 @@ class CreateCert extends MX_Controller {
 		        );
 
 		// Organization Name:
+		$orgName =& $factory->getTextField('orgName', $CODBDATA['orgName']);
+		$orgName->setType('alphanum_plus_space');
 		$block->addFormField(
-		    $factory->getTextField('orgName', $CODBDATA['orgName']),
+		    $orgName,
 		    $factory->getLabel('orgName'),
 		    $defaultPage
 		    );
@@ -365,6 +370,7 @@ class CreateCert extends MX_Controller {
 		// Unit:
 		$org_unit =& $factory->getTextField('orgUnit', $CODBDATA['orgUnit']);
 		$org_unit->setOptional(true);
+		$org_unit->setType('alphanum_plus_space');
 		$block->addFormField(
 		    $org_unit,
 		    $factory->getLabel('orgUnit'),

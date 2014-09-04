@@ -120,6 +120,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX08
+. Modified ui/chorizo/web/controllers/createCert.php to allow input
+  fields to use the new validator 'alphanum_plus_space' where applicable.
+  After all, company names and such might have unmlauts and spaces.
+  Sadly we cannot make this accept all Unicode, as jQuery doesn't allow
+  that without a lot of dirty hacks.
+
 * Fri Aug 29 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX07
 - Modified ui/chorizo/web/controllers/uploadCert.php
 - Modified ui/chorizo/web/controllers/siteSSL.php
