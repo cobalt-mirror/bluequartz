@@ -187,6 +187,9 @@ fi
 
 %changelog
 
+* Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX13
+- Updated basetypes.schema to add 'alphanum_plus_space' to it.
+
 * Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX12
 - Fixed login URL redirection in client/httpd/blueonyx.conf
 - Run a search and replace against blueonyx.conf to fix the login URL, too.
