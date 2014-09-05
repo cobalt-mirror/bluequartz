@@ -187,6 +187,11 @@ fi
 
 %changelog
 
+* Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX14
+- Superstitious release number bump.
+- Simplified 'alphanum_plus_space' in basetypes.schema and added '&' to 
+  allowed characters.
+
 * Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX13
 - Updated basetypes.schema to add 'alphanum_plus_space' to it.
 
