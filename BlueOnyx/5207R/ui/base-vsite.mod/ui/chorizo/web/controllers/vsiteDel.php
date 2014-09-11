@@ -82,9 +82,9 @@ class VsiteDel extends MX_Controller {
 		// Prep search array:
 		$exact = array('name' => $delSite);
 
-		// We're not admin, so we limit the search to 'createdUser' => $loginName:
-		if ($loginName != 'admin') {
-				// If the user is not 'admin', then we only return Vsites that this user owns:
+		// We're not 'systemAdministrator', so we limit the search to 'createdUser' => $loginName:
+		if (!$Capabilities->getAllowed('systemAdministrator')) {
+				// If the user is not 'systemAdministrator', then we only return Vsites that this user owns:
 		        $exact = array_merge($exact, array('createdUser' => $loginName));  
 		}
 
