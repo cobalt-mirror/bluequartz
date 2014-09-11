@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 # Author: Brian N. Smith
-# Copyright 2006, NuOnce Networks, Inc.  All rights reserved.
-# $Id: dnsImport.pl,v 2.2 Sun Aug 30 01:36:20 2009 mstauber Exp $
+# $Id: dnsImport.pl
 
 # This file is based off of Jeff Bilicki's dnsImport.  It has been modified in order
 # to allow you to import files from a RaQ550 / TLAS or even CentOS.
@@ -342,7 +341,8 @@ sub add_PTR {
     $hash->{ipaddr} = $net . "." . $record[0];
     $hash->{hostname} = $host;
     $hash->{domainname} = $domain;
-    $hash->{netmask} = get_netmask();
+#    $hash->{netmask} = get_netmask();
+    $hash->{netmask} = '255.255.255.0';
 
     my ($ok, $bad, @info) = $cce->create('DnsRecord', $hash);
     if($ok == 0) {
@@ -445,3 +445,38 @@ sub commit_changes {
     $cce->commit();
 }
 
+# 
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2006, NuOnce Networks, Inc.
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#    notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#    notice, this list of conditions and the following disclaimer in 
+#    the documentation and/or other materials provided with the 
+#    distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#    contributors may be used to endorse or promote products derived 
+#    from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 

@@ -1,5 +1,5 @@
 Name:           blueonyx-dnstoolbox
-Version: 	1.0.6
+Version: 	1.0.7
 Release: 	1%{?dist}
 Packager:       'Project BlueOnyx'
 Vendor:         'Project BlueOnyx'
@@ -7,7 +7,7 @@ URL:            http://www.blueonyx.it
 License:        Sun modified BSD
 Group:          System
 BuildRoot:      %{_tmppath}/%{name}-root
-BuildArch:      i386
+BuildArch:      noarch
 Distribution:   BlueOnyx
 Source:         %{name}.tar.gz
 Summary:        Shell tools for importing, deleting and modyfing DNS.
@@ -69,6 +69,12 @@ rm -R -f $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+
+* Thu Sep 11 2014 Michael Stauber <mstauber@solarspeed.net> [1.0.7-1]
+- Import of PTR records got the netmask wrong. Hardwired to '255.255.255.0' for now
+  in /usr/sausalito/sbin/dnsImport.pl
+- Added /usr/sausalito/sbin/dns-slavezones.pl
+- Added /usr/sausalito/sbin/dnsImport.pl
 
 * Sun Aug 30 2009 Michael Stauber <mstauber@solarspeed.net> [1.0.6-1]
 - Modified /usr/sausalito/sbin/dnsDeleteAllRecords.pl as it wasn't deleting all DnsSlaveZone's
