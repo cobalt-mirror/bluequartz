@@ -764,21 +764,26 @@ class ServerDiskUsage extends MX_Controller {
 	    $handle = $serverScriptHelper->popen($cmd, "r", "root");
 	    $sites = array();
 	    $numsites = 0;
-	    while (!feof($handle)) {
-	      $string = fgets($handle, 256);
-	      $string = chop($string);
-	      if (!$string) {
-        	// empty lines don't count
-		  	continue;
-	      }
-	      $pieces = preg_split("/\s+/", $string);
-	      // put into hash by name...
-	      $sites[$pieces[0]] = $pieces;
-	      // and by number
-	      $sites[$numsites] = $pieces;
+		while (!feof($handle)) {
+			$string = fgets($handle, 256);
+			$string = chop($string);
+			if (!$string) {
+				// empty lines don't count
+				continue;
+			}
+			$pieces = preg_split("/\s+/", $string);
 
-	      $numsites++;
-	    }
+			// If we don't have three pieces, the info is faulty and will be ignored:
+			if (count($pieces) != '3') {
+				continue;
+			}
+
+			// put into hash by name...
+			$sites[$pieces[0]] = $pieces;
+			// and by number
+			$sites[$numsites] = $pieces;
+			$numsites++;
+		}
 
 	    // this is used only when sites are sorted by name
 	    $cce_vsites = $cceClient->findx('Vsite', array(), array(), 'hostname', 'fqdn');
@@ -895,20 +900,26 @@ class ServerDiskUsage extends MX_Controller {
 	    $handle = $serverScriptHelper->popen($cmd, "r", "root");
 	    $sites = array();
 	    $numsites = 0;
-	    while (!feof($handle)) {
-	      $string = fgets($handle, 256);
-	      $string = chop($string);
-	      if (!$string) {
-	        // empty lines don't count
-		  	continue;
-	      }
-	      $pieces = preg_split("/\s+/", $string);
-	      // put into hash by name...
-	      $sites[$pieces[0]] = $pieces;
-	      // and by number
-	      $sites[$numsites] = $pieces;
-	      $numsites++;
-	    }
+		while (!feof($handle)) {
+			$string = fgets($handle, 256);
+			$string = chop($string);
+			if (!$string) {
+				// empty lines don't count
+				continue;
+			}
+			$pieces = preg_split("/\s+/", $string);
+
+			// If we don't have three pieces, the info is faulty and will be ignored:
+			if (count($pieces) != '3') {
+				continue;
+			}
+
+			// put into hash by name...
+			$sites[$pieces[0]] = $pieces;
+			// and by number
+			$sites[$numsites] = $pieces;
+			$numsites++;
+		}
 
 	    // this is used only when sites are sorted by name
 	    $cce_vsites = $cceClient->findx('Vsite', array(), array(), 'hostname', 'fqdn');
@@ -1031,16 +1042,22 @@ class ServerDiskUsage extends MX_Controller {
 	    $handle = $serverScriptHelper->popen($cmd, "r", "root");
 	    
 	    $users = array();
-	    while (!feof($handle)) {
-	      $string = fgets($handle, 256);
-	      $string = chop($string);
-	      if (!$string) {
-	          // empty lines don't count
-		  continue;
-	      }
-	      $pieces = preg_split("/\s+/", $string);
-	      $users[] = $pieces;
-	    }
+		while (!feof($handle)) {
+			$string = fgets($handle, 256);
+			$string = chop($string);
+			if (!$string) {
+				// empty lines don't count
+				continue;
+			}
+			$pieces = preg_split("/\s+/", $string);
+
+			// If we don't have three pieces, the info is faulty and will be ignored:
+			if (count($pieces) != '3') {
+				continue;
+			}
+
+			$users[] = $pieces;
+		}
 	    
 	    $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
@@ -1150,16 +1167,22 @@ class ServerDiskUsage extends MX_Controller {
 	    $handle = $serverScriptHelper->popen($cmd, "r", "root");
 	    
 	    $users = array();
-	    while (!feof($handle)) {
-	      $string = fgets($handle, 256);
-	      $string = chop($string);
-	      if (!$string) {
-	        // empty lines don't count
-		  	continue;
-	      }
-	      $pieces = preg_split("/\s+/", $string);
-	      $users[] = $pieces;
-	    }
+		while (!feof($handle)) {
+			$string = fgets($handle, 256);
+			$string = chop($string);
+			if (!$string) {
+				// empty lines don't count
+				continue;
+			}
+			$pieces = preg_split("/\s+/", $string);
+
+			// If we don't have three pieces, the info is faulty and will be ignored:
+			if (count($pieces) != '3') {
+				continue;
+			}
+
+			$users[] = $pieces;
+		}
     
 	    $am_obj = $cceClient->getObject('ActiveMonitor', array(), 'Disk');
 
