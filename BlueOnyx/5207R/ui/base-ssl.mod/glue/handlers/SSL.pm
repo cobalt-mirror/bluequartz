@@ -236,7 +236,7 @@ sub ssl_set_identity
     Sauce::Util::modifyfile("$cert_dir/certificate");
     if(system($OPENSSL, 'x509', '-days', $days, '-req', '-signkey',
             "$cert_dir/key", '-in', "$cert_dir/request", 
-            '-out', "$cert_dir/certificate")) 
+            '-out', "$cert_dir/certificate", '-sha256')) 
     {
         return -3;
     }
@@ -308,7 +308,7 @@ sub ssl_cert_to_req
 
     my @request = ();
     
-    if (!open(CERT, "$OPENSSL x509 -x509toreq -signkey $cert_dir/key -in $cert_dir/certificate |"))
+    if (!open(CERT, "$OPENSSL x509 -x509toreq -sha256 -signkey $cert_dir/key -in $cert_dir/certificate |"))
     {
         return 0;
     }
