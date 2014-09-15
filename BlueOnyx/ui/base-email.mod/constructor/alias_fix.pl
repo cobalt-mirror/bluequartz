@@ -1,39 +1,26 @@
-#!/usr/bin/perl -w -I/usr/sausalito/perl -I/usr/sausalito/handlers/base/email
-# $Id: remove_domain.pl
+#!/usr/bin/perl -I/usr/sausalito/perl
+# $Id: alias_fix.pl
+#
 
-use strict;
 use CCE;
-
 my $cce = new CCE;
+my $conf = '/var/lib/cobalt';
+
 $cce->connectuds();
 
-my @oids = $cce->find('System');
-if (not @oids) {
-	$cce->bye('FAIL');
-	exit 1;
-}
+# Remove misplaced alias databases - if present:
+system("/bin/rm -f /etc/aliases");
+system("/bin/rm -f /etc/aliases.db");
 
-(my $ok, my $sys_obj) = $cce->get($oids[0]);
-($ok, my $obj) = $cce->get($oids[0], 'Email');
-unless ($ok and $obj) {
-	$cce->bye('FAIL');
-	exit 1;
-}
+# Run 'newaliases' for good measure:
+system("/usr/bin/newaliases");
 
-my %relayAllow;
-map { $relayAllow{$_} = 1; } $cce->scalar_to_array($obj->{relayFor});
-if ($sys_obj->{domainname} ne '' && !$relayAllow{$sys_obj->{domainname}}) {
-	# remove domainname from access
-	system("perl -pi -e 's|^$sys_obj->{domainname}\tRELAY||g' /etc/mail/access");
-	system("/usr/bin/newaliases");
-}
+$cce->bye();
+exit 0;
 
-$cce->bye('SUCCESS');
-exit(0);
 # 
 # Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

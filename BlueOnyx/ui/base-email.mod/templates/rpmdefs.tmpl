@@ -147,6 +147,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Sep 15 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX17
+- Dovecot was not properly disabled when turned off in the GUI. Fixed.
+- Modified constructor/syncEmailService.pl
+- Modified glue/handlers/enable.pl
+- Fiddled a newalias run into various handlers. I trust this more than
+  makemap hash after all.
+- Added constructor/alias_fix.pl from 520XR. It actually should go into
+  base-blueonyx.mod, but in 510XR we keep it in base-email.mod to avoid
+  that 30k BlueOnyx servers get a new sendmail.cf and sendmail.mc.
+
 * Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX16
 - Small mod to glue/usr/local/sbin/vacation.pl to handle quota better.
 

@@ -14,39 +14,22 @@ $cce->connectuds();
 
 my @oids = $cce->find('System');
 if (not @oids) {
-	$cce->bye('FAIL');
-	exit 1;
+    $cce->bye('FAIL');
+    exit 1;
 }
 
 my ($ok, $obj) = $cce->get($oids[0], 'Email');
 unless ($ok and $obj) {
-	$cce->bye('FAIL');
-	exit 1;
+    $cce->bye('FAIL');
+    exit 1;
 }
-
-# stop xinetd mail services
-my $pop = Sauce::Service::service_get_xinetd('pop3');
-my $imap = Sauce::Service::service_get_xinetd('imap');
-if ($pop) {
-    Sauce::Service::service_set_xinetd('pop3', 'off');
-    system('rm -f /etc/xinetd.d/pop3.backup.*');
-}
-if ($imap) {
-    Sauce::Service::service_set_xinetd('imap', 'off');
-    system('rm -f /etc/xinetd.d/imap.backup.*');
-}
-
-if ($pop || $imap) {
-    Sauce::Service::service_send_signal('xinetd', 'HUP');
-}
-
 
 # make certs file
 if (! -d "/usr/share/ssl") {
-	system("mkdir /usr/share/ssl");
+    system("mkdir /usr/share/ssl");
 }
 if (! -d "/usr/share/ssl/certs") {
-	system("mkdir /usr/share/ssl/certs");
+    system("mkdir /usr/share/ssl/certs");
 }
 system("/bin/cp /etc/pki/tls/certs/ca-bundle.crt /usr/share/ssl/certs/");
 system("echo \"\" > /etc/admserv/certs/blank.txt"); 
@@ -69,8 +52,8 @@ my ($build, $model, $lang) = ($fullbuild =~ m/^build (\S+) for a (\S+) in (\S+)/
 if ($model eq "5106R") {
     # Create Diffie-Hellman file:
     if (! -e "/usr/share/ssl/certs/sendmail.dh") {
-	system("/usr/bin/openssl dhparam -out /usr/share/ssl/certs/sendmail.dh 1024");
-	system("chmod 0600 /usr/share/ssl/certs/sendmail.dh");
+    system("/usr/bin/openssl dhparam -out /usr/share/ssl/certs/sendmail.dh 1024");
+    system("chmod 0600 /usr/share/ssl/certs/sendmail.dh");
     }
 }
 
@@ -90,7 +73,15 @@ chmod 0600, "/etc/pki/dovecot/certs/ca.pem";
 # Edit /etc/dovecot/conf.d/10-ssl.conf:
 &edit_dovecot_intermediate;
 
-Sauce::Service::service_toggle_init('dovecot', 1);
+# Stop mail services if they are disabled. Which do not use xinetd.
+if (($obj->{'enablePop'} eq '0') && ($obj->{'enablePops'} eq '0') && ($obj->{'enableImap'} eq '0') && ($obj->{'enableImaps'} eq '0')) {
+    system("/sbin/service dovecot stop");
+    system("/sbin/chkconfig --del dovecot");
+}
+else {
+    system("/sbin/chkconfig --add dovecot");
+    Sauce::Service::service_toggle_init('dovecot', 1);
+}
 
 # sync sendmail settings
 # submission port
@@ -203,13 +194,13 @@ sub make_sendmail_mc
 
     # 5106R Diffie-Hellmann File:
     if ($model eq "5106R") {
-	   $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
+       $DiffieHellmann = "define(`confDH_PARAMETERS',`/usr/share/ssl/certs/sendmail.dh')\n";
     }
     else {
-	   $DiffieHellmann = "";
+       $DiffieHellmann = "";
     }
 
-	# MaxRecipientsPerMessage
+    # MaxRecipientsPerMessage
         if( $obj->{maxRecipientsPerMessage} ) {
             # Maximum number of recipients per SMTP envelope:
             $maxRecipientsPerMessage_line = "define(`confMAX_RCPTS_PER_MESSAGE',". $obj->{maxRecipientsPerMessage} .")\n";
@@ -235,18 +226,18 @@ sub make_sendmail_mc
         }
         elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) { 
             print $maxRecipientsPerMessage_line;
-	}
-	elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
-		# Do nothing and remove this line.
-	}
-	elsif ( /^MAILER\(procmail\)dnl/o ) {
+    }
+    elsif ( /^define\(\`confDH_PARAMETERS/o ) { 
+        # Do nothing and remove this line.
+    }
+    elsif ( /^MAILER\(procmail\)dnl/o ) {
             print $_;
-	    if (($model eq "5106R") && ($Dh_found == "0")) {
-		# Add the Diffie-Hellmann line:
-		print $DiffieHellmann;
-		$Dh_found = "1";
-	    }
-	}
+        if (($model eq "5106R") && ($Dh_found == "0")) {
+        # Add the Diffie-Hellmann line:
+        print $DiffieHellmann;
+        $Dh_found = "1";
+        }
+    }
         else {
             print $_;
         }
@@ -279,22 +270,38 @@ sub edit_dovecot_intermediate {
     }
 }
 
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
