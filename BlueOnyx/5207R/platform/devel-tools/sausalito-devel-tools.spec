@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.6.0
-Release: 0BX04%{?dist}
+Release: 0BX06%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,11 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX06
+- Added /usr/sausalito/bin/rpmsorter.sh
+- Updated makePkg to use rpmsorter.sh
+- Updated module.mk to use rpmsorter.sh
 
 * Sat Aug 16 2014 Greg Kuhnert 0.6.0.0BX05
 - Updated module.mk - adding hooks for developer framework

@@ -159,9 +159,11 @@ while($line = <IN>) {
     }
 
     if (!-f "/usr/sausalito/devel/.pkgsort") {
-      # Dump list of RPMs in an unsorted fashion (traditional behaviour):
+      # Dump list of RPMs into a sorted fashion:
       # put in RPM list before the end
       if($line =~ /^\s*\[\/Package\]/) {
+        my $inrpms = `/usr/sausalito/bin/rpmsorter.sh $rpmsDir`;
+        @rpms = split /\s+/, $inrpms;
 	my $rpm;
 	foreach $rpm (@rpms) {
 	    print OUT "RPM: $rpm\n";
@@ -169,7 +171,7 @@ while($line = <IN>) {
       }
     }
     else {
-      ### Start: Sort 
+      ### Start: Sort very basically
       # Sort RPMs in a fashion that doesn't resolve dependencies yet, but at least maintain
       # the bare neccessities: locate, ui, glue and capstone get installed in that order.
       # But only after anything else has been installed.

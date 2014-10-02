@@ -262,7 +262,7 @@ mod_packing_list: FORCE
 	fi
 	foundrpms=; \
 	if [ x"$(BUILDSRC)" = x"yes" ]; then \
-		foundrpms=`find rpms -type f -name \*.rpm -printf "%P "`; \
+		foundrpms=`/usr/sausalito/bin/rpmsorter.sh rpms`; \
 	fi; \
 	rm -f packing_list.foo; \
 	if [ ! -f packing_list ]; then touch packing_list packing_list.foo; fi; \
@@ -739,7 +739,8 @@ package:
 	cat pkgdefs.tmpl | $(SUBSTVARS_CMD) Vendor=$(VENDORNAME) Name=$(SERVICE) Version=$(VERSION) > package_tmp/packing_list
 
 #	add RPMS, SRPMS entries into packing_list
-	for rpms in package_tmp/RPMS/*; do \
+	SORTEDRPMSNEW=`/root/rpmsorter.sh package_tmp/RPMS/` ;\
+	for rpms in $$SORTEDRPMSNEW; do \
 		echo RPM: `basename $$rpms` >> package_tmp/packing_list; \
 	done;
 
