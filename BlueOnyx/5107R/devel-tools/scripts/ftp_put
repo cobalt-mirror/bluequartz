@@ -5,8 +5,8 @@ use Net::FTP;
 my $method = 'ftp';
 my $user = $ENV{FTP_USER} || undef;
 my $password = $ENV{FTP_PASSWORD} || undef;
-my $host = "10.9.25.1"; # glazed.cobalt.com
-my $dir = "/fargo/carmel/rpms";
+my $host = "pkgsubmit.compassnetworks.com.au";
+my $dir = "/";
 my @files = ();
 
 while(defined($_ = shift(@ARGV))) {

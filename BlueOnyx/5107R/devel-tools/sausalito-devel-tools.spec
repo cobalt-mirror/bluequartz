@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.6.0
-Release: 0BX04%{?dist}
+Release: 0BX09%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -54,6 +54,26 @@ done
 
 %changelog
 
+* Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX09
+- Yet more fixes for the rpmsorter.sh stuff. 
+
+* Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX08
+- More fixes for the rpmsorter.sh stuff. 
+
+* Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX07
+- Some cross platform fixes for the rpmsorter.sh stuff.
+
+* Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX06
+- Added /usr/sausalito/bin/rpmsorter.sh
+- Updated makePkg to use rpmsorter.sh
+- Updated module.mk to use rpmsorter.sh
+
+* Sat Aug 16 2014 Greg Kuhnert 0.6.0.0BX05
+- Updated module.mk - adding hooks for developer framework
+- Updated ftp_put for new default hostname
+- Updated ftp_put to prevent echo of password during entry
+- updated makePkg to exclude SVN directories
+
 * Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX04
 - Added requirement for pam-devel glib2-devel flex bison
 
@@ -96,7 +116,7 @@ done
 * Tue Mar 20 2012 Michael Stauber <mstauber@solarspeed.net> 0.5.1-0BX08
 - Updated dependencies.
 
-* Sat Mar 03 2012 Greg Kuhnerg 0.5.1-0BX07
+* Sat Mar 03 2012 Greg Kuhnert 0.5.1-0BX07
 - Updated module.mk to fix a few problems for building PKG files
 - Updated makePkg to copy scripts directory
 
