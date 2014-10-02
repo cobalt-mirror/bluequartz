@@ -58,8 +58,7 @@ sub get_file_path
     my $file;
     foreach $file (@files) {
     $file =~ /^(([^\/]+\/){$dirDepth})(.*)$/;
-    push @fullPaths, '%{RootDir}/' . $1 .
-        '%{Vendor}/%{Service}/' . $3 . "\n";
+    push @fullPaths, '%{RootDir}/' . $1 . '%{Vendor}/%{Service}/' . $3 . "\n";
     }
 
     return @fullPaths;
@@ -107,17 +106,17 @@ sub print_section
     my @gluebits = ('conf', 'schemas', 'handlers', 'am', 'rules');
 
     foreach $type (@types) 
-      {
+    {
        	next if ($type eq 'CAPSTONE' and $ENV{NOCAPSTONES});
 
-        if (($type eq 'CAPSTONE') or $ENV{"BUILD$type"} eq 'yes') 
+        if (($type eq 'CAPSTONE') or (($ENV{"BUILD$type"} eq 'yes') or ($ENV{"BUILDUI"} eq 'old') or ($ENV{"BUILDUI"} eq 'new')))
         {
             $type = lc $type;
 
             if ($section eq 'DESCRIPTION') 
             {
 
-		my $seen_locale = "0";
+                my $seen_locale = "0";
 
                 # special-case locale 
                 if ($type eq 'locale') 
@@ -144,21 +143,17 @@ sub print_section
                 } 
                 elsif ($type eq 'glue' && $requires_glue ne '')
                 {
-                    print_type($fh, $section, $type, $type,
-                            xlate_line($requires_glue) , %hash);
+                    print_type($fh, $section, $type, $type, xlate_line($requires_glue) , %hash);
                     $requires .= "[VENDOR]-[SERVICE]-$type ";
                 }
                 elsif ($type eq 'ui' && $requires_ui ne '')
                 {
-                    print_type($fh, $section, $type, $type,
-                            xlate_line($requires_ui) , %hash);
+                    print_type($fh, $section, $type, $type, xlate_line($requires_ui) , %hash);
                     $requires .= "[VENDOR]-[SERVICE]-$type ";
                 }
                 else 
                 {
-                    print_type($fh, $section, $type, $type, 
-                        ($type eq 'capstone') ? 
-                            xlate_line($requires) : '', %hash);
+                    print_type($fh, $section, $type, $type, ($type eq 'capstone') ? xlate_line($requires) : '', %hash);
                     $requires .= "[VENDOR]-[SERVICE]-$type ";
                 }
 
@@ -190,68 +185,159 @@ sub print_section
                 if ($type eq 'ui') 
                 {
                     foreach my $uibit (@uibits) 
-		    {
-		      my $uidir = "ui/$ENV{VENDORNAME}/$uibit";
-		      my $uidirSegments = 3;
-		      if (! -d $uidir) 
+        		    {
+
+                        print "PROCESSING UIBIT: $uibit \n";
+
+                        my $uidir = "ui/$ENV{VENDORNAME}/$uibit";
+                        my $uidirSegments = 3;
+                        if (! -d $uidir) 
                         {
-			  $uidir = "ui/$uibit";
-			  $uidirSegments = 2;
-			  # see if the sub directory is there at all
-			  if (! -d $uidir) { next; }
+                            $uidir = "ui/$uibit";
+                            $uidirSegments = 2;
+                            # see if the sub directory is there at all
+                            if (! -d $uidir) { next; }
                         }
-		      
-		      # find all locale-sensitive files to exclude
-		      my $exclude = '';
-		      my $locale;
-		      foreach $locale (@locales) 
+
+                        # find all locale-sensitive files to exclude
+                        my $exclude = '';
+                        my $locale;
+                        foreach $locale (@locales) 
                         {
-			  $exclude .= " -and -not -path \"*\\.$locale\"";
+                            $exclude .= " -and -not -path \"*\\.$locale\"";
                         }
-		      
-		      my @files = ();
-		      
-		      # FIXME: as with many things in this file there are 
-		      # special cases.  The way things are setup needs to
-		      # be rethought, so we can avoid the need for special
-		      # cases all over the place.
-		      if ($uibit eq 'lcd') # special case 1
+
+                        my @files = ();
+
+                        # FIXME: as with many things in this file there are 
+                        # special cases.  The way things are setup needs to
+                        # be rethought, so we can avoid the need for special
+                        # cases all over the place.
+                        if ($uibit eq 'lcd')
                         {
-			  #call recursive subroutine to get all the files
-			    $line .= join("\n",
-			  		&generate_full_paths($uidir, $ENV{LCDDIR},
-			  				     '.\/CVS\/*|.\/\.'));
-                        }
-		      elsif ($uibit eq 'extensions') # special case 2
-                        {
-			  opendir(EXTS, $uidir) 
-			    or die { "Can't open $uidir: $!\n" };
-			  while (my $file = readdir(EXTS))
-                            {
-			      if (! -f "$uidir/$file") { next; }
-			      $file =~ /^([^\.]+\.[^\.]+)\.([^\.]+\.[^\.]+)$/;
-			      my ($install_file, $domain) = ($1, $2);
-			      if ($install_file && $domain)
-                                {
-				  $line .= '%{RootDir}' 
-				    . "/ui/$uibit/$domain/$install_file\n";
-                                }
+                            # special case 1
+                            #call recursive subroutine to get all the files
+                            if (($ENV{"BUILDUI"} eq 'old') || ($ENV{"BUILDUI"} eq 'yes')) {
+                                $line .= join("\n", &generate_full_paths($uidir, $ENV{LCDDIR}, '.\/CVS\/*|.\/\.'));
                             }
-			  closedir(EXTS);
                         }
-		      else # the default behaviour
+                        elsif ($uibit eq 'extensions') # special case 2
                         {
-			  # find all files to include
-			  # exclude all hidden files (.whatever) since nfs 
-			  # and cvs seem to like to drop these
-			  @files = `find $uidir -type f -and -not -path "*/\\.*" $exclude | grep -v CVS`;
-			  
-			  # RPM needs full path
-			  $line .= join '', 
-			  get_file_path($uidirSegments, @files);
+                            if (($ENV{"BUILDUI"} eq 'old') || ($ENV{"BUILDUI"} eq 'yes')) {
+                                opendir(EXTS, $uidir) 
+                                or die { "Can't open $uidir: $!\n" };
+                                while (my $file = readdir(EXTS))
+                                {
+                                    if (! -f "$uidir/$file") { next; }
+                                    $file =~ /^([^\.]+\.[^\.]+)\.([^\.]+\.[^\.]+)$/;
+                                    my ($install_file, $domain) = ($1, $2);
+                                    if ($install_file && $domain)
+                                    {
+                                        $line .= '%{RootDir}' . "/ui/$uibit/$domain/$install_file\n";
+                                    }
+                                }
+                                closedir(EXTS);
+                            }
+                        }
+
+                        #
+                        ## Start: Handle Chorizo UI (menu)
+                        #
+                        elsif ($uibit eq 'chorizo/menu') {
+
+                            if (($ENV{"BUILDUI"} eq 'new') || ($ENV{"BUILDUI"} eq 'yes')) {
+                                opendir(CHO, $uidir) or die { "CHORIZO menu: Can't open $uidir: $!\n" };
+                                while (my $file = readdir(CHO)) {
+                                    if (! -f "$uidir/$file") {
+                                        print "CHORIZO menu: $uidir/$file is not a file! \n";
+                                        next; 
+                                    }
+                                    print "CHORIZO menu: Processing uidir/file: $uidir / $file \n";
+                                    $line .= '%{RootDir}' . "/ui/chorizo/menu/%{Vendor}/%{Service}/$file\n";
+                                }
+                                closedir(CHO);
+                            }
+                        }
+                        #
+                        ## End: Handle Chorizo UI (menu)
+                        #
+
+                        #
+                        ## Start: Handle Chorizo UI (web)
+                        #
+                        elsif ($uibit eq 'chorizo/web') {
+                            if (($ENV{"BUILDUI"} eq 'new') || ($ENV{"BUILDUI"} eq 'yes')) {
+                                opendir(CHO, $uidir) or die { "CHORIZO web: Can't open $uidir: $!\n" };
+                                while (my $file = readdir(CHO)) {
+                                    if ($file eq '.') { next; }
+                                    if ($file eq '..') { next; }
+                                    if ($file eq '.svn') { next; }
+                                    if (! -d "$uidir/$file") {
+                                        print "CHORIZO web: $uidir/$file is not a directory! \n";
+                                        next; 
+                                    }
+                                    print "CHORIZO web: Processing uidir/file: $uidir / $file \n";
+                                    my $chosub = "$uidir/$file";
+                                    opendir(CHOSUB, $chosub) or die { "CHORIZO web: Can't open $chosub: $!\n" };
+                                    while (my $subfile = readdir(CHOSUB)) {
+                                        if (! -f "$uidir/$file/$subfile") {
+                                            print "CHORIZO menu: $uidir/$file/$subfile is not a file! \n";
+                                            next; 
+                                        }
+                                        print "CHORIZO web: Processing subfile $subfile \n";
+                                        $line .= '%{RootDir}' . "/ui/chorizo/ci/application/modules/%{Vendor}/%{Service}/$file/$subfile\n";
+                                        print "CHORIZO web file-line: " . '%{RootDir}' . "/ui/chorizo/ci/application/modules/%{Vendor}/%{Service}/$file/$subfile\n";
+                                    }
+                                    closedir(CHOSUB);
+                                }
+                                closedir(CHO);
+                            }
+                        }
+
+                        #
+                        ## End: Handle Chorizo UI (web)
+                        #
+
+                        #
+                        ## Start: Handle Chorizo UI (extensions)
+                        #
+                        elsif ($uibit eq 'chorizo/extensions') {
+
+                            if (($ENV{"BUILDUI"} eq 'new') || ($ENV{"BUILDUI"} eq 'yes')) {
+                                opendir(CHO, $uidir) or die { "CHORIZO extensions: Can't open $uidir: $!\n" };
+                                while (my $file = readdir(CHO)) {
+                                    if (! -f "$uidir/$file") { next; }
+                                    $file =~ /^([^\.]+\.[^\.]+)\.([^\.]+\.[^\.]+)$/;
+                                    my ($install_file, $domain) = ($1, $2);
+                                    if ($install_file && $domain)
+                                    {
+                                        print "CHORIZO extensions: Processing uidir/file: $uidir / $file to destination: /ui/chorizo/extensions/$domain/$install_file \n";
+                                        $line .= '%{RootDir}' . "/ui/chorizo/extensions/$domain/$install_file\n";
+                                    }
+                                }
+                                closedir(CHO);
+                            }
+                        }
+
+                        #
+                        ## End: Handle Chorizo UI (extensions)
+                        #
+
+                        else # the default behaviour
+                        {
+                            if (($ENV{"BUILDUI"} eq 'old') || ($ENV{"BUILDUI"} eq 'yes')) {
+                                # find all files to include
+                                # exclude all hidden files (.whatever) since nfs 
+                                # and cvs seem to like to drop these
+                                @files = `find $uidir -type f -and -not -path "*/\\.*" $exclude | grep -v CVS`;
+
+                                # RPM needs full path
+                                $line .= join '', 
+                                get_file_path($uidirSegments, @files);
+                            }
                         } # end if $uibit eq 'something'
                     }
-		} 
+                } 
                 elsif ($type eq 'capstone') 
                 {
                     # we also special-case capstones
@@ -298,14 +384,12 @@ sub print_section
                             {
                                 next if /^\.{1,2}/;
                                 next unless -f "${gluedir}/$_";
-                                $line .= '%{RootDir}/' . $tgtname. 
-                                    '/%{Vendor}/%{Service}' . "\n";
+                                $line .= '%{RootDir}/' . $tgtname. '/%{Vendor}/%{Service}' . "\n";
                                 $flag = 1;
                                 print STDERR "$name:\n";
                                 last;
                             }
-                            $flag || 
-                                print STDERR "WARNING: $gluedir was empty.\n";
+                            $flag || print STDERR "WARNING: $gluedir was empty.\n";
                             close(GDIR);
                         } 
                         else 
@@ -323,21 +407,20 @@ sub print_section
                             . ucfirst($ENV{VENDOR}) . "/*\n";
                     }
 
-		    # Another hard-coded section.  Handle the ccewrap xml 
-		    # files
-		    my $ccewrapdir = 'ccewrap';
-		    if (-d "glue/$ccewrapdir") 
-		    {
-		        $line .= '/etc/ccewrap.d/%{Vendor}/%{Service}' . "\n";
-		    }
-		    
-		}
+        		    # Another hard-coded section.  Handle the ccewrap xml 
+        		    # files
+        		    my $ccewrapdir = 'ccewrap';
+        		    if (-d "glue/$ccewrapdir") 
+        		    {
+        		        $line .= '/etc/ccewrap.d/%{Vendor}/%{Service}' . "\n";
+        		    }
+                }
 
-		# now print out what we have
+        		# now print out what we have
                 print STDERR "$section $type =\n$line\n\n";
                 print_type($fh, $section, $type, $type, $line, %hash);
 
-            } 
+            }
             elsif ($type eq 'locale') 
             {
 	        # we always deal with locales differently 
@@ -350,10 +433,10 @@ sub print_section
                 }
 
                 foreach $locale (@locales) 
-		  {
-		    next if ($ENV{XLOCALEPAT} =~ /"$locale"/);
+                {
+                    next if ($ENV{XLOCALEPAT} =~ /"$locale"/);
 		    
-		    my $line = "";
+                    my $line = "";
 
                     # add all .mo files in locale directory
                     opendir LOCALE, "$localedir/$locale/" 
@@ -363,8 +446,7 @@ sub print_section
                         if ($entry =~ /^(.*)\.po$/) 
                         {
                             $line .= "/usr/share/locale/$locale/LC_MESSAGES/";
-                            $line .= ($ENV{LOCALE_NO_VENDOR}) ? 
-                                        "${1}.mo\n" : "%{Vendor}-${1}.mo\n";
+                            $line .= ($ENV{LOCALE_NO_VENDOR}) ? "${1}.mo\n" : "%{Vendor}-${1}.mo\n";
                         }
                         # this is to handle style XML files in gallery
                         elsif ($entry =~ /^(.*)\.xml$/i) 
@@ -395,8 +477,7 @@ sub print_section
                     # RPM needs full path
                     $line .= join '', get_file_path($uidirSegments, @files);
 
-                    print_type($fh, $section, $type, "$type-$locale",
-                            $line, %hash);
+                    print_type($fh, $section, $type, "$type-$locale", $line, %hash);
                 }
             } 
             else 
@@ -536,3 +617,38 @@ sub generate_full_paths
     return @files;
 }
 
+# 
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
