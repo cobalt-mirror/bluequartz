@@ -739,7 +739,7 @@ package:
 	cat pkgdefs.tmpl | $(SUBSTVARS_CMD) Vendor=$(VENDORNAME) Name=$(SERVICE) Version=$(VERSION) > package_tmp/packing_list
 
 #	add RPMS, SRPMS entries into packing_list
-	SORTEDRPMSNEW=`/root/rpmsorter.sh package_tmp/RPMS/` ;\
+	SORTEDRPMSNEW=`/usr/sausalito/bin/rpmsorter.sh package_tmp/RPMS/` ;\
 	for rpms in $$SORTEDRPMSNEW; do \
 		echo RPM: `basename $$rpms` >> package_tmp/packing_list; \
 	done;
