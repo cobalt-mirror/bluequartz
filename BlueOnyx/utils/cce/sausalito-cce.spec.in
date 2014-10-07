@@ -191,6 +191,11 @@ fi
 
 %changelog
 
+* Tue Oct 07 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX14
+- Backported basetypes.schema from 520XR to allow common GUI RPMs for all
+  platforms. The AV-SPAM for example uses typedef 'InetAddress', which
+  an old BlueOnyx otherwise won't have.
+
 * Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX13
 - Backport from 5207R/utils/cce 0.99.1-1BX07 - 0.99.1-1BX10:
 - Added dependency for perl-Time-Out to client package. 
