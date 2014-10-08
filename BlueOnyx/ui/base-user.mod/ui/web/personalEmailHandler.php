@@ -4,9 +4,11 @@
 
 include_once("ServerScriptHelper.php");
 include_once("BXEncoding.php");
+include_once("AutoFeatures.php");
 
 $serverScriptHelper = new ServerScriptHelper();
 $cceClient = $serverScriptHelper->getCceClient();
+$autoFeatures = new AutoFeatures($serverScriptHelper);
 
 $errors = array();
 
@@ -52,17 +54,27 @@ else {
   $vacMsg = EncodingConv::doJapanese($autoResponderMessageField, "euc");
 }
 
-$cceClient->setObject("User", array(
-  "forwardEnable" => $forwardEnableField, 
-  "forwardEmail" => $forwardEmailField, 
-  "forwardSave" => $forwardSaveField,
-  "vacationOn" => $autoResponderField, 
-  "vacationMsg" => $vacMsg, 
-  "vacationMsgStart" => $vacationMsgStart, 
-  "vacationMsgStop" =>$vacationMsgStop),  
-  "Email", 
-  array("name" => $serverScriptHelper->getLoginName()));
-$errors = array_merge($cceClient->errors(), $errors);
+if ($_POST['_PagedBlock_selectedId_emailSettingsFor'] == 'personalEmail') {
+  $cceClient->setObject("User", array(
+    "forwardEnable" => $forwardEnableField, 
+    "forwardEmail" => $forwardEmailField, 
+    "forwardSave" => $forwardSaveField,
+    "vacationOn" => $autoResponderField, 
+    "vacationMsg" => $vacMsg, 
+    "vacationMsgStart" => $vacationMsgStart, 
+    "vacationMsgStop" =>$vacationMsgStop),  
+    "Email", 
+    array("name" => $serverScriptHelper->getLoginName()));
+  $errors = array_merge($cceClient->errors(), $errors);
+}
+
+// Handle autofeatures
+$user = $cceClient->getObject("User", array("name" => $serverScriptHelper->getLoginName()));
+list($userservices) = $cceClient->find("UserExtraServices");
+//print_r(array($userservices));
+//$af_errors = $userservices;
+$af_errors = $autoFeatures->handle("User.Email", array("CCE_SERVICES_OID" => $userservices, "CCE_OID" => $user['OID']));
+$errors = array_merge($errors, $af_errors);
 
 print($serverScriptHelper->toHandlerHtml("personalEmail.php", $errors));
 

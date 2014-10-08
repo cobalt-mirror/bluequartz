@@ -5,8 +5,10 @@
 include_once("ServerScriptHelper.php");
 include_once("uifc/PagedBlock.php");
 include_once("BXEncoding.php");
+include_once("AutoFeatures.php");
 
 $serverScriptHelper = new ServerScriptHelper();
+$autoFeatures = new AutoFeatures($serverScriptHelper);
 $cceClient = $serverScriptHelper->getCceClient();
 $factory = $serverScriptHelper->getHtmlComponentFactory("base-user", "personalEmailHandler.php");
 $loginName = $serverScriptHelper->getLoginName();
@@ -20,6 +22,8 @@ $page = $factory->getPage();
 $block = new PagedBlock($page, "emailSettingsFor", $factory->getLabel("emailSettingsFor", false, array("userName" => $loginName)));
 $block->processErrors($serverScriptHelper->getErrors());
 
+$block->addPage("personalEmail", $factory->getLabel("personalEmail"));
+
 $forwardEnable = $factory->getOption("forwardEnable", $userEmail["forwardEnable"]);
 $forwardEnable->addFormField(
   $factory->getEmailAddressList("forwardEmailField", $userEmail["forwardEmail"]),
@@ -32,7 +36,7 @@ $forwardEnable->addFormField(
 
 $forward = $factory->getMultiChoice("forwardEnableField");
 $forward->addOption($forwardEnable);
-$block->addFormField($forward, $factory->getLabel("forwardEnableField"));
+$block->addFormField($forward, $factory->getLabel("forwardEnableField"), 'personalEmail');
 
 $autoResponder = $factory->getMultiChoice("autoResponderField");
 $enableAutoResponder = $factory->getOption("enableAutoResponderField", $userEmail["vacationOn"]);
@@ -68,12 +72,16 @@ $enableAutoResponder->addFormField(
 );
 
 $autoResponder->addOption($enableAutoResponder);
-$block->addFormField($autoResponder, $factory->getLabel("autoResponderField"));
+$block->addFormField($autoResponder, $factory->getLabel("autoResponderField"), 'personalEmail');
 
 $block->addFormField(
   $factory->getTextField("locale", $User['localePreference'], ""),
   $factory->getLabel("locale")
 );
+
+// Display AutoFeatures:
+list($userServices) = $cceClient->find("UserExtraServices");
+$autoFeatures->display($block, "User.Email", array("CCE_SERVICES_OID" => $userServices, "CCE_OID" => $User['OID']));
 
 $block->addButton($factory->getSaveButton($page->getSubmitAction()));
 

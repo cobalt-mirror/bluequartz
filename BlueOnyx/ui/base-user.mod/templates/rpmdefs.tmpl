@@ -119,6 +119,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Oct 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX12
+- Backport from 520XR for compatability with the AV-SPAM:
+- Added 'UserExtraServices' to glue/schemas/user.schema
+- Added 'UserExtraServices' . 'EmailSettings' to glue/schemas/user.schema
+- Added constructor/48_createUserExtraServices.pl to create 'UserExtraServices'.
+- Purpose: Additional AutoFeatures for UserManagement.
+- Modified ui/web/personalEmail.php and ui/web/personalEmailHandler.php to
+  make use of 'UserExtraServices'.
+
 * Thu Apr 10 2014 Michael Stauber <mstauber@solarspeed.net> 1.3.0-0BX11
 - Small update to ui/web/userMod.php: The field sortName also needed a dose
   of I18n::Utf8Encode(), as it might contain EUC-JP data.
