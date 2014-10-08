@@ -264,23 +264,36 @@ ccewrapconf_issystemadministrator(struct ccewrapconf_t *conf)
 int 
 isSystemAdministrator(cce_handle_t *cce, char *user){
 
-	int ret = 0;
-	cscp_oid_t oid;
-	GSList *oids;
-	cce_props_t *props = cce_props_new();
+	int ret = 1;
 
-	cce_props_set(props, "name", user);
-	
-	/* check for systemAdmin! */
-	oids = cce_find_sorted_cmnd(cce, "User", props, NULL, 0);
-	oid = (cscp_oid_t)oids->data;	
-	cce_props_destroy(props);
-
-	props = cce_get_cmnd(cce, oid, "");
-
-	/* cce boolean is "" or "0" - very PERLy...*/
-	ret = (strcmp(cce_props_get(props, "systemAdministrator"), "")
-	 && strcmp(cce_props_get(props, "systemAdministrator"), "0"));
+	/*
+	*	Yeah, this is a really good idea. but it doesn't work.
+	*	CCEWrap may check if the User has the 'systemAdministrator'
+	*	flag. But it executes the command anyway. The only difference
+	*	between it being called by an 'systemAdministrator' is that
+	*	CCEWrap creates a return value. Which it omits sending back
+	*	if the User is NOT a 'systemAdministrator'. So in general
+	*	the idea of limiting the sending of the return value is rather
+	*	futile, because at that time the command has already been
+	*	executed. So I'm disabling this for now. -- mstauber
+	*
+	*	cscp_oid_t oid;
+	*	GSList *oids;
+	*	cce_props_t *props = cce_props_new();
+	*
+	*	cce_props_set(props, "name", user);
+	*/	
+		/* check for systemAdmin! */
+	/*	oids = cce_find_sorted_cmnd(cce, "User", props, NULL, 0);
+	*	oid = (cscp_oid_t)oids->data;	
+	*	cce_props_destroy(props);
+	*
+	*	props = cce_get_cmnd(cce, oid, "");
+	*/
+		/* cce boolean is "" or "0" - very PERLy...*/
+	/*	ret = (strcmp(cce_props_get(props, "systemAdministrator"), "")
+	*	 && strcmp(cce_props_get(props, "systemAdministrator"), "0"));
+	*/
 
 	return ret;
 }

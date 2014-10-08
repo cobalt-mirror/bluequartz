@@ -1,4 +1,4 @@
-CCE_TOPDIR=/trunk/shared/devel/BlueOnyx/trunk/BlueOnyx/utils/cce
+CCE_TOPDIR=/home/devel/BlueOnyx/trunk/BlueOnyx/utils/cce
 CCE_V_MAJ=0
 CCE_V_MIN=81
 CCE_V_PATCH=1

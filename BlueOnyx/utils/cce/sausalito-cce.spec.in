@@ -191,6 +191,10 @@ fi
 
 %changelog
 
+* Wed Oct 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX15
+- Backported modified ccewrap/ccewrap_conf.c from 520XR
+- Backported ccewrap/ccewrap.conf from 520XR
+
 * Tue Oct 07 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX14
 - Backported basetypes.schema from 520XR to allow common GUI RPMs for all
   platforms. The AV-SPAM for example uses typedef 'InetAddress', which
