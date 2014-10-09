@@ -49,6 +49,8 @@ class UploadCert extends MX_Controller {
 		$get_form_data = $CI->input->get(NULL, TRUE);
 		if (isset($get_form_data['group'])) {
 
+			$group = $get_form_data['group'];
+
 			// Extra check to make sure a siteAdmin isn't messing with the URL param for "group"
 			// and then tries to get access to another Vsites certs:
 			if (!$Capabilities->getAllowed('manageSite')) {
@@ -154,6 +156,7 @@ class UploadCert extends MX_Controller {
 			    if (!is_file($data['full_path'])) {
 					//file opening problems
 			        $ci_errors[] = new CceError('huh', 0, 'cert', "[[base-ssl.sslImportError4]]");
+			        $group = $attributes['group'];
 			    }
 			    else {
 			    	$tmp_cert = $data['full_path'];
@@ -229,9 +232,14 @@ class UploadCert extends MX_Controller {
 	    //-- Generate page:
 	    //
 
+		// Pass group along in URL's:
+		$urlAppendix = "";
+		if (isset($group)) {
+			$urlAppendix = "?group=" . $group;
+		}
 
 		// Prepare Page:
-		$factory = $serverScriptHelper->getHtmlComponentFactory("base-ssl", "/ssl/uploadCert");
+		$factory = $serverScriptHelper->getHtmlComponentFactory("base-ssl", "/ssl/uploadCert$urlAppendix");
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
@@ -301,7 +309,7 @@ class UploadCert extends MX_Controller {
 		//--- Add the Save/Cancel buttons (not for AdmServ-Cert, though)
 		//
 		$block->addButton($factory->getSaveButton($BxPage->getSubmitAction()));
-		$block->addButton($factory->getCancelButton("/ssl/siteSSL?group=" . $CODBDATA['group']));
+		$block->addButton($factory->getCancelButton("/ssl/siteSSL$urlAppendix"));
 
 		// Nice people say goodbye, or CCEd waits forever:
 		$cceClient->bye();

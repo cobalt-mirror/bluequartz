@@ -415,7 +415,7 @@ class SiteSSL extends MX_Controller {
 		}
 		else {
 			// We don't have any Cert info:
-			$my_TEXT = $i18n->interpolateHtml('[[base-ssl.noCertInfo]]');
+			$my_TEXT = $i18n->interpolate('[[base-ssl.noCertInfo]]');
 			$cert_info_text = $factory->getTextField("_", $my_TEXT, 'r');
 			$cert_info_text->setLabelType("nolabel");
 			$block->addFormField(
