@@ -115,6 +115,31 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sat Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
+- Version number bump due to radical behaviour changes.
+- Implemented, improvised and adapted Hideki Oride's MySQL changes from
+  the BlueQuartz 5200R code tree. It's indeed way better to offload the
+  creation/deletion of MySQL users and databases into Handlers instead
+  of stuffing that into the UI or into UIExtensions. That way we can now
+  also easily check if a database or DB user already exists, whereas
+  that would have complicated the MySQL UIExtensions just a bit more.
+  Database usernames and Database names are now auto-generated and 
+  prefixed with 'vsite_', which allows us to also already fill in the
+  username and database name on Vsite creation, as we no longer would
+  need to predict the Vsite group. This also sorts the follow on
+  problem that after a cmuImport site2 might have the database user
+  'site44' and the database name 'site44_db'. We no longer use the
+  group for that, but instead a randomized 7 character alpha-numeric
+  string.
+- Modified glue/conf/mysql.conf
+- Added glue/handlers/destroy_mysql_data.pl
+- Added glue/handlers/create_mysql_data.pl
+- Modified and activated glue/handlers/exist_user_and_db_check.pl
+- Renamed most schema files for easier comprehension.
+- Cleanup of ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite
+- Cleanup of ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite
+- Grammar fix in locale/de_DE/mysql.po
+
 * Wed Jul 16 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX13
 - Fixed path in glue/handlers/mysql-del-backup.pl as well.
 

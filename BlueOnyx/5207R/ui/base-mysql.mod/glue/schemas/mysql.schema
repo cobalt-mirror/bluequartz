@@ -1,0 +1,15 @@
+<CLASS name="System" namespace="mysql" version="1.2">
+  <PROPERTY name="enabled" type="boolean" default=""/>
+  <PROPERTY name="onoff" type="int" default=""/>
+  <PROPERTY name="delete" type="word" default=""/>
+  <PROPERTY name="mysqluser" type="word" default="root"/>
+  <PROPERTY name="oldpass" type="word" optional = "true" default=""/>
+  <PROPERTY name="newpass" type="word" optional = "true" default=""/>
+  <PROPERTY name="changepass" type="word" default=""/>
+  <PROPERTY name="username" type="word" default="root"/>
+  <PROPERTY name="password" type="scalar" optional = "true" default=""/>
+  <PROPERTY name="dump" type="word" default=""/>
+
+  <PROPERTY name="dumpdate" type="scalar" default="- n/a -"/>
+  <PROPERTY name="dumpsize" type="scalar" default="- n/a -"/>
+</CLASS>
