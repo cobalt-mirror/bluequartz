@@ -319,6 +319,12 @@ class EmailSettingsExtension extends UIExtension {
             $errors = array_merge($errors, $my_errors);
         }
 
+        // Special case: If user is disabled, forwarding WILL be off:
+        $user = $cceClient->get($prams['CCE_OID']);
+        if ($user['ui_enabled'] == "0") {
+            $attributes['forwardEnable'] = "0";
+        }
+
         // No errors? Submit to CODB:
         if (count($errors) == "0") {
             // Assemble the data we want to submit:
