@@ -58,7 +58,7 @@ done
 - Rollback to 5207R level of patchiness, rollback of -Wno-error and 
   more el7 fixes.
 
-* Thu Jul 17 2014 Michael Stauber <mstauber@solarspeed.net> 0.7.0-0BX01 
+* Sun Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.7.0-0BX01 
 - Cleaned up requires for EL7. Some stuff has moved into gcc. 
 - Version number bump to 5209R 
 - rules/libs.mk: Added -Wno-error to CFLAGS. 
