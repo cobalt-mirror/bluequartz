@@ -333,25 +333,25 @@ elseif ($_POST['action'] == "destroy") {
       $VsiteMySQL = $cceClient->get($vsiteOID[0], "MYSQL_Vsite");
 
       if ($VsiteMySQL['enabled'] == "1") {
-	    // Get Server's MySQL access details:
-	    $getthisOID = $cceClient->find("MySQL");
-	    $mysql_settings = $cceClient->get($getthisOID[0]);
+  	    // Get Server's MySQL access details:
+  	    $getthisOID = $cceClient->find("MySQL");
+  	    $mysql_settings = $cceClient->get($getthisOID[0]);
 
-	    // Server MySQL settings:
-	    $sql_root               = $mysql_settings['sql_root'];
-	    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-	    $sql_host               = $mysql_settings['sql_host'];
-	    $sql_port               = $mysql_settings['sql_port'];
-	    $sql_host_and_port = $sql_host . ":" . $sql_port;
+  	    // Server MySQL settings:
+  	    $sql_root               = $mysql_settings['sql_root'];
+  	    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+  	    $sql_host               = $mysql_settings['sql_host'];
+  	    $sql_port               = $mysql_settings['sql_port'];
+  	    $sql_host_and_port = $sql_host . ":" . $sql_port;
 
-	    // Store the setings in $VsiteSettings as well:
-	    $VsiteSettings['sql_username'] = $sql_username;
-	    $VsiteSettings['sql_database'] = $sql_database;
-	    $VsiteSettings['sql_host'] = $sql_host;
-	    $VsiteSettings['sql_root'] = $sql_root;
-	    $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-	
-	    delete_mysql_stuff($VsiteSettings, $cceClient);
+  	    // Store the setings in $VsiteSettings as well:
+  	    $VsiteSettings['sql_username'] = $sql_username;
+  	    $VsiteSettings['sql_database'] = $sql_database;
+  	    $VsiteSettings['sql_host'] = $sql_host;
+  	    $VsiteSettings['sql_root'] = $sql_root;
+  	    $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
+  	
+  	    delete_mysql_stuff($VsiteSettings, $cceClient);
       }
 
       // Find out if the site is suspended. In that case we unsuspend it first:
@@ -720,9 +720,17 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 	  $mysql_settings = $cceClient->getObject("MySQL", array());
 
 	  // Set up MySQL username, DB-name and MySQL-password:
-	  $sql_username = $VsiteSettings['name'];
-	  $sql_database = $VsiteSettings['name'] . '_db';
-	  $my_random_password = createRandomPassword();
+    $vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
+    $sql_username = "vsite_" . MySQLcreateRandomPassword('7');
+    $sql_database =  $sql_username . '_db';
+    $my_random_password = MySQLcreateRandomPassword();
+
+    if ($payload->mysql == "1") {
+      $MySQLaction = 'create';
+    }
+    else {
+      $MySQLaction = 'destroy';
+    }
 
 	  // Do the deeds:
 	  if ($payload->mysql == "1") {
@@ -732,132 +740,10 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 							    "hidden" => time(),
 							    "DB" => $sql_database,
 							    "port" => $mysql_settings['sql_port'],
-							    "enabled" => "1"));
+							    "enabled" => "1",
+                  $MySQLaction => time()
+                  ));
 	    $errors = array_merge($errors, $cceClient->errors());
-
-	    // Actual MySQL setup:
-	    // <sigh> Now comes the bother: We actually have to create the MySQL database and user on foot:
-	    $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
-
-	    $MAX_QUERIES_PER_HOUR = $db_rights['MAX_QUERIES_PER_HOUR'];
-	    $MAX_CONNECTIONS_PER_HOUR = $db_rights['MAX_CONNECTIONS_PER_HOUR'];
-	    $MAX_UPDATES_PER_HOUR = $db_rights['MAX_UPDATES_PER_HOUR'];	    
-
-	    $the_user_rights = array();
-	    if ($db_rights['SELECT'] == "1") {
-        array_push($the_user_rights, "SELECT");
-	    }
-	    if ($db_rights['INSERT'] == "1") {
-        array_push($the_user_rights, "INSERT");
-	    }
-	    if ($db_rights['UPDATE'] == "1") {
-        array_push($the_user_rights, "UPDATE");
-	    }
-	    if ($db_rights['DELETE'] == "1") {
-        array_push($the_user_rights, "DELETE");
-	    }
-	    if ($db_rights['FILE'] == "1") {
-        array_push($the_user_rights, "FILE");
-	    }
-	    if ($db_rights['CREATE'] == "1") {
-        array_push($the_user_rights, "CREATE");
-	    }
-	    if ($db_rights['DROP'] == "1") {
-        array_push($the_user_rights, "DROP");
-	    }
-	    if ($db_rights['INDEX'] == "1") {
-        array_push($the_user_rights, "INDEX");
-	    }
-	    if ($db_rights['ALTER'] == "1") {
-        array_push($the_user_rights, "ALTER");
-	    }
-	    if ($db_rights['TEMPORARY'] == "1") {
-        array_push($the_user_rights, "CREATE TEMPORARY TABLES");
-	    }
-
-	    if ($db_rights['CREATE_VIEW'] == "1") {
-        array_push($the_user_rights, "CREATE VIEW");
-	    }
-	    if ($db_rights['SHOW_VIEW'] == "1") {
-        array_push($the_user_rights, "SHOW VIEW");
-	    }
-	    if ($db_rights['CREATE_ROUTINE'] == "1") {
-        array_push($the_user_rights, "CREATE ROUTINE");
-	    }
-	    if ($db_rights['ALTER_ROUTINE'] == "1") {
-        array_push($the_user_rights, "ALTER ROUTINE");
-	    }
-	    if ($db_rights['EXECUTE'] == "1") {
-        array_push($the_user_rights, "EXECUTE");
-	    }
-
-	    $inhalt = count($the_user_rights);
-	    $inhalt--;
-	    for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
-        if ($inhalt > $x) {
-            $my_user_rights .= $the_user_rights[$x] . ", "; 
-        }
-        else {
-            $my_user_rights .= $the_user_rights[$x] . ""; 
-        }
-	    }
-	    $the_user_rights = $my_user_rights;
-
-	    $getthisOID = $cceClient->find("MySQL");
-	    $mysql_settings_exists = 0;
-	    $mysql_settings = $cceClient->get($getthisOID[0]);
-
-	    // MySQL settings:
-	    $sql_root               = $mysql_settings['sql_root'];
-	    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-	    $sql_host               = $mysql_settings['sql_host'];
-	    $sql_port               = $mysql_settings['sql_port'];
-	    $sql_host_and_port = $sql_host . ":" . $sql_port;
-
-	    // Store the setings in $VsiteSettings as well:
-	    $VsiteSettings['sql_username'] = $sql_username;
-	    $VsiteSettings['sql_database'] = $sql_database;
-	    $VsiteSettings['sql_host'] = $sql_host;
-	    $VsiteSettings['sql_root'] = $sql_root;
-	    $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-
-	    // MySQL-Error:
-	    $mysql_error = array();
-
-	    // Make MySQL connection:
-	    $fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error[] = mysql_error();
-
-	    // Dropping primary database:
-	    $query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
-	    $result = mysql_query($query);
-	
-	    // Create Vsite database:
-	    $query = "CREATE DATABASE `".$sql_database."`;\n";
-	    $result = mysql_query($query);
-
-	    // Setup MySQL-User step1:
-	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	    $query = "GRANT USAGE ON * . * TO '$sql_username'@'$sql_host' IDENTIFIED BY '$my_random_password' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
-	    $result = mysql_query($query);
-	    // Setup MySQL-User step2:
-	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	    $query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$sql_host';\n";
-      $result = mysql_query($query);
-
-	    // Setup MySQL-User step3:
-	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	    $query = "FLUSH PRIVILEGES;\n";
-	    $result = mysql_query($query);
-
-	    // Closing connection
-	    mysql_close($fixed_mysql_link);
-
-	    // Did we have MySQL errors?
-	    if (count($mysql_error) >= "1") {
-        // Delete MySQL-User and Database:
-        error_log("Deleting MySQL database and user during API related Vsite modifcation.");
-        delete_mysql_stuff($VsiteSettings, $cceClient);
-	    }
 	  }
   }
   else {
@@ -1061,10 +947,17 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 	  // Set up MySQL username, DB-name and MySQL-password:
 	  $sql_username = $VsiteSettings['name'];
 	  $sql_database = $VsiteSettings['name'] . '_db';
-	  $my_random_password = createRandomPassword();
+	  $my_random_password = MySQLcreateRandomPassword();
 
 	  // Get MySQL Server settings from CCE:
 	  $mysql_settings = $cceClient->getObject("MySQL", array());
+
+    if ($payload->mysql == "1") {
+      $MySQLaction = 'create';
+    }
+    else {
+      $MySQLaction = 'destroy';
+    }
 
 	  // Do the deeds:
 	  if ($payload->mysql == "1") {
@@ -1074,131 +967,10 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 							    "hidden" => time(),
 							    "DB" => $sql_database,
 							    "port" => $mysql_settings['sql_port'],
-							    "enabled" => "1"));
+							    "enabled" => "1",
+                  $MySQLaction => time()
+                  ));
 	    $errors = array_merge($errors, $cceClient->errors());
-
-	    // Actual MySQL setup:
-	    // <sigh> Now comes the bother: We actually have to create the MySQL database and user on foot:
-	    $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
-
-	    $MAX_QUERIES_PER_HOUR = $db_rights['MAX_QUERIES_PER_HOUR'];
-	    $MAX_CONNECTIONS_PER_HOUR = $db_rights['MAX_CONNECTIONS_PER_HOUR'];
-	    $MAX_UPDATES_PER_HOUR = $db_rights['MAX_UPDATES_PER_HOUR'];	    
-
-	    $the_user_rights = array();
-	    if ($db_rights['SELECT'] == "1") {
-        array_push($the_user_rights, "SELECT");
-	    }
-	    if ($db_rights['INSERT'] == "1") {
-        array_push($the_user_rights, "INSERT");
-	    }
-	    if ($db_rights['UPDATE'] == "1") {
-        array_push($the_user_rights, "UPDATE");
-	    }
-	    if ($db_rights['DELETE'] == "1") {
-        array_push($the_user_rights, "DELETE");
-	    }
-	    if ($db_rights['FILE'] == "1") {
-        array_push($the_user_rights, "FILE");
-	    }
-	    if ($db_rights['CREATE'] == "1") {
-        array_push($the_user_rights, "CREATE");
-	    }
-	    if ($db_rights['DROP'] == "1") {
-        array_push($the_user_rights, "DROP");
-	    }
-	    if ($db_rights['INDEX'] == "1") {
-        array_push($the_user_rights, "INDEX");
-	    }
-	    if ($db_rights['ALTER'] == "1") {
-        array_push($the_user_rights, "ALTER");
-	    }
-	    if ($db_rights['TEMPORARY'] == "1") {
-        array_push($the_user_rights, "CREATE TEMPORARY TABLES");
-	    }
-
-	    if ($db_rights['CREATE_VIEW'] == "1") {
-        array_push($the_user_rights, "CREATE VIEW");
-	    }
-	    if ($db_rights['SHOW_VIEW'] == "1") {
-        array_push($the_user_rights, "SHOW VIEW");
-	    }
-	    if ($db_rights['CREATE_ROUTINE'] == "1") {
-        array_push($the_user_rights, "CREATE ROUTINE");
-	    }
-	    if ($db_rights['ALTER_ROUTINE'] == "1") {
-        array_push($the_user_rights, "ALTER ROUTINE");
-	    }
-	    if ($db_rights['EXECUTE'] == "1") {
-        array_push($the_user_rights, "EXECUTE");
-	    }
-
-	    $inhalt = count($the_user_rights);
-	    $inhalt--;
-	    for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
-        if ($inhalt > $x) {
-            $my_user_rights .= $the_user_rights[$x] . ", "; 
-        }
-        else {
-            $my_user_rights .= $the_user_rights[$x] . ""; 
-        }
-	    }
-	    $the_user_rights = $my_user_rights;
-
-	    $getthisOID = $cceClient->find("MySQL");
-	    $mysql_settings_exists = 0;
-	    $mysql_settings = $cceClient->get($getthisOID[0]);
-
-	    // MySQL settings:
-	    $sql_root               = $mysql_settings['sql_root'];
-	    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-	    $sql_host               = $mysql_settings['sql_host'];
-	    $sql_port               = $mysql_settings['sql_port'];
-	    $sql_host_and_port = $sql_host . ":" . $sql_port;
-
-	    // Store the setings in $VsiteSettings as well:
-	    $VsiteSettings['sql_username'] = $sql_username;
-	    $VsiteSettings['sql_database'] = $sql_database;
-	    $VsiteSettings['sql_host'] = $sql_host;
-	    $VsiteSettings['sql_root'] = $sql_root;
-	    $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-
-	    // MySQL-Error:
-	    $mysql_error = array();
-
-	    // Make MySQL connection:
-	    $fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error[] = mysql_error();
-
-	    // Dropping primary database:
-	    $query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
-	    $result = mysql_query($query);
-	
-	    // Create Vsite database:
-	    $query = "CREATE DATABASE `".$sql_database."`;\n";
-	    $result = mysql_query($query);
-
-	    // Setup MySQL-User step1:
-	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	    $query = "GRANT USAGE ON * . * TO '$sql_username'@'$sql_host' IDENTIFIED BY '$my_random_password' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
-	    $result = mysql_query($query);
-	    // Setup MySQL-User step2:
-	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	    $query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$sql_host';\n";
-      $result = mysql_query($query);
-
-	    // Setup MySQL-User step3:
-	    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	    $query = "FLUSH PRIVILEGES;\n";
-	    $result = mysql_query($query);
-
-	    // Closing connection
-	    mysql_close($fixed_mysql_link);
-
-	    // Did we have MySQL errors?
-	    if (count($mysql_error) >= "1") {
-        // Delete MySQL-User and Database:
-        delete_mysql_stuff($VsiteSettings, $cceClient);
-	    }
 	  }
   }
 
@@ -1390,70 +1162,21 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
   }
 }
 
-function createRandomPassword() {
-    /**
-     * The letter l (lowercase L) and the number 1
-     * have been removed, as they can be mistaken
-     * for each other.
-    */
-
-    $chars = "abcFGHJKhijkmnovdefgABRSTUVWXCDEwxyzLMNOPQYZ023pqrstu456789";
-    srand((double)microtime()*1000000);
-    $i = 0;
-    $pass = '' ;
-
-    while ($i <= 7) {
-        $num = rand() % 33;
-        $tmp = substr($chars, $num, 1);
-        $pass = $pass . $tmp;
-        $i++;
-    }
-    return $pass;
+function MySQLcreateRandomPassword($length='7') {
+  $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+  $pass = array(); //remember to declare $pass as an array
+  $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+  for ($i = 0; $i < $length; $i++) {
+    $n = rand(0, $alphaLength);
+    $pass[] = $alphabet[$n];
+  }
+  return implode($pass); //turn the array into a string
 }
 
 function delete_mysql_stuff ($VsiteSettings, $cceClient) {
 
-    $sql_username = $VsiteSettings['sql_username'];
-    $sql_database = $VsiteSettings['sql_database'];
-    $sql_host = $VsiteSettings['sql_host'];
-    $sql_root = $VsiteSettings['sql_root'];
-    $sql_rootpassword = $VsiteSettings['sql_rootpassword'];
-
-    // Set up new MySQL-Error array:
-    $mysql_error = array();
-
-    // Make MySQL connection:
-    $fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error[] = mysql_error();
-
-    // Revoke privileges and drop user:
-    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-    $query = "REVOKE ALL PRIVILEGES ON * . * FROM '$sql_username'@'$sql_host';\n";
-    $result = mysql_query($query);
-
-    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-    $query = "REVOKE ALL PRIVILEGES ON `$sql_database` . * FROM '$sql_username'@'$sql_host';\n";
-    $result = mysql_query($query);
-
-    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-    $query = "REVOKE GRANT OPTION ON * . * FROM '$sql_username'@'$sql_host';\n";
-    $result = mysql_query($query);
-
-    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-    $query = "DROP USER '$sql_username'@'$sql_host';\n";
-    $result = mysql_query($query);
-
-    mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-    $query = "FLUSH PRIVILEGES;\n";
-    $result = mysql_query($query);
-
-    $query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
-    $result = mysql_query($query);
-
-    // Closing connection
-    mysql_close($fixed_mysql_link);
-
     // Set MySQL_Vsite to disabled, too:
-    $cceClient->set($VsiteSettings['OID'], 'MYSQL_Vsite', array("enabled" => "0"));
+    $cceClient->set($VsiteSettings['OID'], 'MYSQL_Vsite', array("enabled" => "0", 'destroy' => time()));
     $errors = $cceClient->errors();
 
 }
