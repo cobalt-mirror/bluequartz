@@ -1,0 +1,9 @@
+<item id="base_mysqlconfig" label="[[base-mysql.MySQL_Config_desc]]"
+        description="[[base-mysql.MySQL_Config_desc_help]]"
+        url="/mysql/mysqlconfig"
+>
+    <parent id="base_controlpanel" order="81">
+        <access require="serverNetwork"/>
+    </parent>
+</item>
+

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Last-Translator: Automatically generated\n"
+"Last-Translator: Meaulnes Legler <blue@waveweb.ch>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -9,22 +9,22 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "amDetailsTitle"
-msgstr "MySQL Server Détails"
+msgstr "Détails du serveur MySQL"
 
 msgid "amMysqlNameTag"
-msgstr "Le serveur MySQL"
+msgstr "Serveur MySQL"
 
 msgid "amNotAccepting"
-msgstr "Le serveur MySQL ne fonctionne pas normalement. S&#39;il vous plaît essayez de redémarrer manuellement."
+msgstr "Le serveur MySQL ne fonctionne pas normalement. Veuillez essayez de redémarrer manuellement."
 
 msgid "amStatusOK"
 msgstr "Le serveur MySQL fonctionne normalement."
 
 msgid "current_pass"
-msgstr "Mot de passe actuel:"
+msgstr "Mot de passe actuel :"
 
 msgid "current_pass_help"
-msgstr "S&#39;il vous plaît entrer votre mot de passe actuel"
+msgstr "Veuillez saisir votre mot de passe actuel"
 
 msgid "delete_backup"
 msgstr "Supprimer la sauvegarde"
@@ -33,55 +33,55 @@ msgid "delete_backup_help"
 msgstr "Supprimer votre fichier de sauvegarde MySQL"
 
 msgid "download_backup"
-msgstr "Télécharger DB sauvegarde"
+msgstr "Télécharger le fichier de sauvegarde"
 
 msgid "download_backup_help"
-msgstr "Télécharger l&#39;instantané actuel de votre base de données"
+msgstr "Télécharger la sauvegarde actuelle de votre base de données"
 
 msgid "dump"
-msgstr "Exécuter Dump SQL"
+msgstr "Engager SQL Dump"
 
 msgid "dump_help"
-msgstr "Exécuter MySQL Dump"
+msgstr "Opérer l'aménagement d'un MySQL-Dump"
 
 msgid "filesize"
-msgstr "Taille du fichier:"
+msgstr "Taille du fichier :"
 
 msgid "filesize_help"
-msgstr "La taille de votre fichier de dump MySQL"
+msgstr "La taille de votre fichier MySQL-Dump"
 
 msgid "last_backup"
-msgstr "Dernière sauvegarde:"
+msgstr "Dernière sauvegarde :"
 
 msgid "last_backup_help"
-msgstr "Regardez quand la dernière sauvegarde est arrivé"
+msgstr "Quand la dernière sauvegarde s'est produite"
 
 msgid "mysql_enabled"
-msgstr "Activer le serveur MySQL:"
+msgstr "Activer le serveur MySQL :"
 
 msgid "mysql_enabled_help"
-msgstr "Cliquer pour activer le serveur MySQL"
+msgstr "Cliquer pour faire opérer le serveur MySQL"
 
 msgid "mysql_header"
-msgstr "Le serveur MySQL"
+msgstr "Serveur MySQL"
 
 msgid "mysqldump"
-msgstr "Créer Snap Shot de base de données"
+msgstr "Créer un « Snap Shot », une reproduction de la base de données"
 
 msgid "mysqldump_help"
 msgstr "Sauvegardez toutes vos bases de données"
 
 msgid "mysqlpass"
-msgstr "Nouveau mot de passe:"
+msgstr "Nouveau mot de passe :"
 
 msgid "mysqlpass_help"
-msgstr "Vous permet de changer votre mot de passe MySQL, aussi longtemps que vous connaissez le mot de passe actuel."
+msgstr "Vous permet de changer votre mot de passe MySQL - tant que vous connaissez le mot de passe actuel."
 
 msgid "password"
 msgstr "Mot de passe MySQL"
 
 msgid "password_help"
-msgstr "Le mot de passe pour l&#39;utilisateur principal de MySQL"
+msgstr "Le mot de passe pour l'utilisateur principal de MySQL"
 
 msgid "server"
 msgstr "Serveur"
@@ -90,67 +90,69 @@ msgid "server_help"
 msgstr "Activer et désactiver le serveur MySQL"
 
 msgid "sqldump"
-msgstr "DB SQL Dump"
+msgstr "Sauvegarde SQL Dump"
 
 msgid "sqldump_help"
-msgstr "Videz toutes les bases de données dans un fichier texte"
+msgstr "Sauvegarder toutes les bases de données dans un fichier texte"
 
 msgid "sqlpass"
 msgstr "Modifier mot de passe"
 
 msgid "sqlpass_help"
-msgstr "Vous permet de changer votre mot de passe MySQL. Peut aussi être utilisé pour effacer un mot de passe MySQL, pourvu que vous sachiez le mot de passe actuel. Pour ce faire, laissez simplement le champ «Nouveau mot de passe &#39;vide."
+msgstr "Vous permet de changer votre mot de passe MySQL. Peut aussi être utilisé pour effacer un mot de passe MySQL - tant que vous connaissez le mot de passe actuel. Pour ce faire, laissez simplement le champ « [[base-mysql.mysqlpass]] » vide."
 
 msgid "username"
-msgstr "Nom d&#39;utilisateur MySQL"
+msgstr "Identifiant d'utilisateur MySQL"
 
 msgid "username_help"
-msgstr "L&#39;utilisateur principal utilisateur de MySQL"
+msgstr "L'utilisateur principal de MySQL (typiquement 'root')"
+
+# Solarspeed additions:
 
 msgid "MySQL_Settings_head"
 msgstr "Réglages MySQL"
 
 msgid "MySQL_Settings_divider"
-msgstr "Configurer les paramètres de création automatique d&#39;utilisateurs et de bases de données MySQL."
+msgstr "Configurer les paramètres de création d'utilisateurs et de bases de données MySQL automatiquement."
 
 msgid "sql_host"
-msgstr "Serveur MySQL:"
+msgstr "Hôte MySQL:"
 
 msgid "sql_host_help"
-msgstr "Hôte sur lequel le serveur MySQL est situé. Doit être précisée afin que les applications peuvent se connecter à MySQL. Par défaut, ce devrait être &#39;localhost&#39;."
+msgstr "Hôte sur lequel le serveur MySQL opère, 'localhost' est l'hôte par défaut. Doit être précisé afin que les applications peuvent se connecter à MySQL. "
 
 msgid "sql_port"
 msgstr "MySQL Port:"
 
 msgid "sql_port_help"
-msgstr "Port TCP/IP sur lequel MySQL est accessible à l&#39;hôte spécifié. Par défaut, ce devrait être &#39;3306 &#39;."
+msgstr "Port TCP/IP sur lequel MySQL est accessible à l'hôte spécifié. '3306' est le port par défaut."
 
 msgid "MYSQL_ROOT_Settings_divider"
-msgstr "MySQL paramètres d&#39;utilisateur root - nécessaires pour l&#39;initialisation de la base de données, la configuration et la maintenance:"
+msgstr "Paramètres MySQL de l'utilisateur 'root' - nécessaires pour l'initialisation, la configuration et la maintenance de la base de données :"
 
 msgid "sql_root"
-msgstr "MySQL User:"
+msgstr "Utilisateur MySQL :"
 
 msgid "sql_root_help"
-msgstr "Nom de l&#39;utilisateur MySQL avec les privilèges &#39;root&#39;. Par défaut, ce devrait être &#39;root&#39;."
+msgstr "Identifiant de l'utilisateur MySQL avec les privilèges 'root'. Par défaut, ça devrait être 'root'."
 
 msgid "sql_rootpassword"
-msgstr "Mot de passe MySQL:"
+msgstr "Mot de passe MySQL :"
 
 msgid "sql_rootpassword_help"
-msgstr "Mot de passe de l&#39;utilisateur «root» de MySQL."
+msgstr "Mot de passe de l'utilisateur MySQL 'root'."
 
 msgid "sql_status"
-msgstr "MySQL Statut:"
+msgstr "Statut MySQL :"
 
 msgid "sql_status_help"
-msgstr "Affiche l&#39;état de votre connexion MySQL et si il est possible de se connecter au serveur MySQL avec les informations de connexion que vous avez spécifiées ci-dessus."
+msgstr "Affiche l'état de votre connexion MySQL et si la connexion au serveur MySQL est possible avec les informations spécifiées ci-dessus."
 
 msgid "mysql_status_unconfigured"
-msgstr "S&#39;il vous plaît configurer les paramètres."
+msgstr "Veuillez configurer les paramètres."
 
 msgid "mysql_status_incorrect"
-msgstr "Connexion MySQL ne peut être établie. Vérifiez les paramètres."
+msgstr "La connexion MySQL ne peut être établie. Vérifiez les paramètres."
 
 msgid "mysql_status_ok"
 msgstr "Connexion MySQL possible avec ces paramètres."
@@ -159,76 +161,78 @@ msgid "MySQL_menu"
 msgstr "MySQL"
 
 msgid "MySQL_menu_help"
-msgstr "Configurez les paramètres relatifs MySQL, ainsi que les applications peuvent communiquer avec MySQL."
+msgstr "Configurez les paramètres MySQL pour que les applications puissent y accéder."
 
 msgid "MySQL_Local_divider"
-msgstr "Local serveur MySQL:"
+msgstr "Serveur MySQL local :"
 
 msgid "MySQL_Remote_divider"
-msgstr "MySQL Server Détails:"
+msgstr "Détails du serveur MySQL :"
 
 msgid "MySQL_Login_divider"
-msgstr "&#39;Root&#39; MySQL détails de l&#39;utilisateur:"
+msgstr "Détails de l'utilisateur MySQL 'root' :"
 
 msgid "MySQL_Status_divider"
-msgstr "MySQL Connection Status:"
+msgstr "Statut de la connexion MySQL :"
+
+### mysqlusers start:
 
 msgid "mysql_head"
 msgstr "Configuration MySQL"
 
 msgid "my_cnf"
-msgstr "/etc/my.cnf éditeur:"
+msgstr "Édition de /etc/my.cnf :"
 
 msgid "my_cnf_help"
-msgstr "Ici vous pouvez modifier votre my.cnf directement. S&#39;il vous plaît noter que cet éditeur ne vérifie pas si ce que vous entrez n&#39;a aucun sens. Il ne corriger des coquilles ou des définitions erronées."
+msgstr "Ici, vous pouvez lire et modifier directement votre fichier de configuration 'my.cnf'. Procédez avec prudence car cet éditeur ne vérifie pas les erreurs de syntaxe ou des définitions erronées."
 
 msgid "mysql_license"
-msgstr "Gestion des licences:"
+msgstr "Gestion des licences :"
 
 msgid "mysql_license_help"
-msgstr "Ce logiciel est protégé par copyright travail et nécessite une licence par serveur. Vous pouvez demander, afficher ou gérer votre licence de serveur ici."
+msgstr "Ce logiciel est protégé par copyright et nécessite une licence par serveur. Vous pouvez demander, afficher ou gérer votre licence de serveur ici."
 
 msgid "customer_name"
-msgstr "Nom du client:"
+msgstr "Nom du client :"
 
 msgid "customer_name_help"
-msgstr "S&#39;il vous plaît entrer votre nom ici. Cela devrait être le nom sous lequel vous avez acheté le logiciel à http://www.solarspeed.net"
+msgstr "Veuillez saisir votre nom ici. Cela devrait être le nom sous lequel vous avez acheté le logiciel à http://www.solarspeed.net"
 
 msgid "customer_email"
-msgstr "Client Email:"
+msgstr "E-mail du client :"
 
 msgid "customer_email_help"
-msgstr "S&#39;il vous plaît, entrez votre adresse e-mail ici. Cela devrait être la même adresse e-mail que vous avez utilisé dans la boutique en ligne de Solarspeed.net pour l&#39;achat."
+msgstr "Veuillez saisir votre adresse e-mail ici. Cela doit être la même adresse e-mail que vous avez utilisé lors de l'achat en ligne chez Solarspeed.net."
 
 msgid "customer_company"
-msgstr "Nom de l&#39;entreprise:"
+msgstr "Nom de l'entreprise :"
 
 msgid "customer_company_help"
-msgstr "S&#39;il vous plaît entrer le nom de votre société ici. Si vous ne sont pas incorporés, s&#39;il vous plaît utiliser votre nom de domaine à la place."
+msgstr "Veuillez saisir le nom de votre société ici. Si vous n'êtes pas une entreprise, veuillez utiliser votre nom de domaine à la place."
 
 msgid "server_key"
-msgstr "Clé du serveur:"
+msgstr "Clé du Serveur :"
 
 msgid "server_key_help"
-msgstr "Le «Server Key &#39;est un identifiant unique, généré automatiquement qui nous aide à identifier si vous exécutez le logiciel sur le serveur qui a été autorisé pour."
+msgstr "La Clé du Serveur (Server Key) est un identifiant unique généré automatiquement qui nous aide à contrôler si le logiciel opère sur le serveur autorisé grâce à sa licence."
 
 msgid "product_key"
-msgstr "Clé du produit:"
+msgstr "Clé du Produit :"
 
 msgid "product_key_help"
-msgstr "Le &#39;Product Key&#39; est votre licence du logiciel. Il déverrouille le logiciel s&#39;il est installé sur le serveur qui a été autorisé pour."
+msgstr "La Clé du Produit (Product Key) est votre licence du logiciel. Il déverrouille celui-ci s'il est installé sur le serveur autorisé grâce à sa licence."
 
 msgid "email_key_request"
-msgstr "Email demande de clé"
+msgstr "Demande de clé par courriel"
 
 msgid "email_key_request_help"
-msgstr "Lorsque vous appuyez sur ce bouton, un email est envoyé à keyrequest@solarspeed.net. L&#39;e-mail contient votre nom, nom de la société et l&#39;adresse e-mail. Il sera également envoyer la touche &#39;serveur&#39; de sorte que nous pouvons générer un &#39;Product Key&#39; pour vous."
+msgstr "En appuyant sur ce bouton, un courriel sera envoyé à keyrequest@solarspeed.net. Ce courriel contiendra votre nom, le nom de la société et votre adresse e-mail. Il contiendra également la Clé du Serveur (Server Key) de sorte que nous pourrons vous générer une Clé du Produit (Product Key) qui vous sera retournée."
 
 msgid "mail_status"
-msgstr "Email Statut:"
+msgstr "Statut clé par courriel :"
 
 msgid "mail_status_help"
-msgstr "Statut de la livraison de demande de clé Email. Vous indique si votre mail d&#39;inscription peut être envoyé à keyrequest@solarspeed.net"
+msgstr "Statut de la livraison de demande de clé par courriel. Vous indique si votre mail d'inscription peut être envoyé à keyrequest@solarspeed.net"
 
 msgid "back_to_key_request"
 msgstr "Retour à la page précédente"
@@ -237,7 +241,7 @@ msgid "back_to_key_request_help"
 msgstr "Retourne à la page précédente."
 
 msgid "MySQL_Config_head"
-msgstr "MySQL Config"
+msgstr "Configuration MySQL"
 
 msgid "MySQL_Config_head_help"
 msgstr "Configuration de votre serveur MySQL."
@@ -246,43 +250,43 @@ msgid "MySQL_Config_desc"
 msgstr "Réglages MySQL"
 
 msgid "MySQL_Config_desc_help"
-msgstr "Permet de configurer la base de données MySQL automatique et la création de l&#39;utilisateur."
+msgstr "Permet de configurer la création automatique la base de données MySQL et de son utilisateur."
 
 msgid "MySQL_TAB_ONE"
-msgstr "Les utilisateurs et les bases de données Création automatique de MySQL"
+msgstr "création automatique des éléments MySQL"
 
 msgid "MySQL_TAB_ONE_help"
-msgstr "Vous permet de créer automatiquement les utilisateurs MySQL et pour chaque site."
+msgstr "Vous permet de créer automatiquement les bases de données et les utilisateurs MySQL avec des valeurs par défaut pour chaque site."
 
 msgid "MySQL_TAB_TWO"
-msgstr "/etc/my.cnf Editor"
+msgstr "Éditeur /etc/my.cnf"
 
 msgid "MySQL_TAB_TWO_help"
-msgstr "Vous permet d&#39;éditer le fichier /etc/my.cnf directement via l&#39;interface graphique."
+msgstr "[[base-mysql.my_cnf_help]]"
 
 msgid "udb_switch"
-msgstr "MySQL auto-créer"
+msgstr "Auto-créer MySQL"
 
 msgid "udb_switch_help"
-msgstr "Permet la création automatique d&#39;utilisateurs MySQL et bases de données via l&#39;interface graphique. Soit lors de la création d&#39;un nouveau site, ou en modifiant les services «Web» d&#39;un site existant. Seuls les administrateurs de serveurs ont cette capacité."
+msgstr "Permet la création automatique d'utilisateurs MySQL et de bases de données via l'interface graphique soit lors de la création d'un nouveau site ou en modifiant les services « Web » d'un site existant. Seuls les administrateurs de serveurs y sont autorisés."
 
 msgid "solmysqlFullText"
-msgstr "Utilisateur MySQL et base de données"
+msgstr "Utilisateur et base de données MySQL"
 
 msgid "solmysqlFullText_help"
-msgstr "Vous permet de créer ou de supprimer automatiquement une base de données MySQL et un utilisateur MySQL pour ce site. ATTENTION: Si la case est déjà cochée, décochez et enregistrer les modifications va supprimer la base de données MySQL et l&#39;utilisateur."
+msgstr "Vous permet de créer ou de supprimer automatiquement un utilisateur et une base de données MySQL pour ce site. ATTENTION : Si vous décochez une case déjà cochée et enregistrez ces modifications, cela supprimera la base de données ET l'utilisateur MySQL."
 
 msgid "solmysqlUsername"
-msgstr "Nom d&#39;utilisateur"
+msgstr "Identifiant d'utilisateur"
 
 msgid "solmysqlUsername_help"
-msgstr "Nom de l&#39;utilisateur MySQL. A des droits et des autorisations que pour la base de données spécifiée ci-dessous."
+msgstr "L'identifiant de l'utilisateur MySQL. Celui-ci n'a les droits et les autorisations que pour la base de données spécifiée ci-dessous."
 
 msgid "solmysqlPass"
 msgstr "Mot de passe"
 
 msgid "solmysqlPass_help"
-msgstr "Mot de passe MySQL pour l&#39;utilisateur MySQL en question."
+msgstr "Mot de passe pour l'utilisateur MySQL en question."
 
 msgid "solmysqlDB"
 msgstr "Nom de base de données"
@@ -294,46 +298,46 @@ msgid "solmysqlHost"
 msgstr "Hôte de base de données"
 
 msgid "solmysqlHost_help"
-msgstr "Hôte sur lequel le serveur MySQL est en marche. Il s&#39;agit généralement &#39;localhost&#39;."
+msgstr "Hôte sur lequel le serveur MySQL est opérationnel. Typiquement, c'est 'localhost'."
 
 msgid "solmysqlPort"
 msgstr "Port"
 
 msgid "solmysqlPort_help"
-msgstr "Port sur lequel le serveur MySQL est à l&#39;écoute. Typiquement, cela est &#39;3306 &#39;."
+msgstr "Port sur lequel le serveur MySQL est à l'écoute. Typiquement, c'est '3306 '."
 
 msgid "MySQL_DIVIDER_ONE"
-msgstr "droits de défaut sur les utilisateurs auto-créé:"
+msgstr "Droits par défaut des utilisateurs créés automatiquement :"
 
 msgid "mysql_default_privileges"
-msgstr "Les droits par défaut:"
+msgstr "Privilèges par défaut :"
 
 msgid "mysql_default_privileges_help"
-msgstr "Les nouveaux utilisateurs de MySQL seront créés avec les privilèges par défaut suivantes pour leur propre base de données, comme indiqué ci-dessous."
+msgstr "Les nouveaux utilisateurs MySQL auront par défaut les privilèges suivants pour leur propre base de données :"
 
 msgid "EXPLAIN_RIGHTS"
-msgstr "Les nouveaux utilisateurs de MySQL seront créés avec les privilèges par défaut suivantes pour leur propre base de données, comme indiqué ci-dessous."
+msgstr "Les nouveaux utilisateurs MySQL auront par défaut les privilèges indiqués ci-dessous pour leur propre base de données."
 
 msgid "DIVIDER_ZERO"
-msgstr "privilèges de base de données par défaut:"
+msgstr "Privilèges par défaut de la base de données :"
 
 msgid "DIVIDER_ONE"
-msgstr "privilèges de données:"
+msgstr "Privilèges des données:"
 
 msgid "DIVIDER_TWO"
-msgstr "privilèges de structure (par défaut tous sont accordées):"
+msgstr "Privilèges structurels (tous accordées par défaut) :"
 
 msgid "DIVIDER_THREE"
-msgstr "privilèges de structure (par défaut elles ne sont pas accordées):"
+msgstr "Privilèges structurels (aucun accordé par défaut) :"
 
 msgid "DIVIDER_FOUR"
-msgstr "Limites de ressources:"
+msgstr "Limites des ressources :"
 
 msgid "SELECT_help"
 msgstr "Permet la lecture des données."
 
 msgid "INSERT_help"
-msgstr "Permet d&#39;insérer et remplacer des données."
+msgstr "Permet d'insérer et de remplacer des données."
 
 msgid "UPDATE_help"
 msgstr "Permet de changer les données."
@@ -342,10 +346,10 @@ msgid "DELETE_help"
 msgstr "Permet de supprimer les données."
 
 msgid "FILE_help"
-msgstr "Permet d&#39;importer des données à partir de fichiers et l&#39;exportation de données vers des fichiers. Non défini par défaut."
+msgstr "Permet d'importer des données depuis des fichiers et d'exporter des données vers des fichiers. Pas concédé par défaut."
 
 msgid "CREATE_help"
-msgstr "Permet de créer des bases de données et des tableaux."
+msgstr "Permet de créer des bases de données et ses tables."
 
 msgid "ALTER_help"
 msgstr "Permet de modifier la structure des tables existantes."
@@ -354,67 +358,69 @@ msgid "INDEX_help"
 msgstr "Permet de créer et de supprimer des index."
 
 msgid "DROP_help"
-msgstr "Permet de déposer des bases de données et des tableaux."
+msgstr "Permet de déposer des bases de données et ses tables."
 
 msgid "TEMPORARY"
 msgstr "Créer des tables temporaires"
 
 msgid "TEMPORARY_help"
-msgstr "Permet de créer des tables temporaires."
+msgstr "Permet de créer temporairement des tables de base de données ."
 
 msgid "CREATE_VIEW"
 msgstr "CREATE VIEW"
 
 msgid "CREATE_VIEW_help"
-msgstr "Permet de créer de nouveaux points de vue. (Uniquement disponible en MySQL5 ou mieux)."
+msgstr "Permet de créer de nouveaux genres d'affichage. (Uniquement disponible en MySQL5 ou mieux)."
 
 msgid "SHOW_VIEW"
-msgstr "Afficher Afficher"
+msgstr "SHOW VIEW"
 
 msgid "SHOW_VIEW_help"
-msgstr "Permet d&#39;effectuer des requêtes SHOW CREATE VIEW. (Uniquement disponible en MySQL5 ou mieux)."
+msgstr "Permet d'effectuer des requêtes SHOW CREATE VIEW. (Uniquement disponible en MySQL5 ou mieux)."
 
 msgid "CREATE_ROUTINE"
 msgstr "CREATE ROUTINE"
 
 msgid "CREATE_ROUTINE_help"
-msgstr "Permet de créer des procédures stockées. (Uniquement disponible en MySQL5 ou mieux)."
+msgstr "Permet de créer des procédures stockées au préalable. (Uniquement disponible en MySQL5 ou mieux)."
 
 msgid "ALTER_ROUTINE"
 msgstr "ALTER ROUTINE"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "Permet de modifier et l&#39;abandon des procédures stockées. (Uniquement disponible en MySQL5 ou mieux)."
+msgstr "Permet la modification et l'abandon de procédures préalablement stockées. (Uniquement disponible en MySQL5 ou mieux)."
 
 msgid "EXECUTE_help"
-msgstr "Permet de faire tourner des routines de magasins. (Uniquement disponible en MySQL5 ou mieux)."
+msgstr "Permet d'opérer des routines d'emmagasinement. (Uniquement disponible en MySQL5 ou mieux)."
 
 msgid "MAX_QUERIES_PER_HOUR"
-msgstr "MAX DEMANDES PAR HEURE"
+msgstr "MAX QUERIES PER HOUR"
 
 msgid "MAX_QUERIES_PER_HOUR_help"
-msgstr "Limite le nombre de requêtes d&#39;un utilisateur peut envoyer au serveur par heure. &#39;0 &#39;Signifie aucune limite."
+msgstr "Limite le nombre de requêtes par heure qu'un utilisateur peut envoyer au serveur. '0' signifie aucune limite."
 
 msgid "MAX_UPDATES_PER_HOUR"
-msgstr "MISES À JOUR maximum par heure"
+msgstr "MAX UPDATES PER HOUR"
 
 msgid "MAX_UPDATES_PER_HOUR_help"
-msgstr "Limite le nombre de commandes qui modifient une table ou une base de données, l&#39;utilisateur peut exécuter par heure. &#39;0 &#39;Signifie aucune limite."
+msgstr "Limite le nombre de commandes qui modifient une table ou une base de données que l'utilisateur peut envoyer par heure. '0' signifie aucune limite."
 
 msgid "MAX_CONNECTIONS_PER_HOUR"
-msgstr "Connexions max PAR HEURE"
+msgstr "MAX CONNECTIONS PER HOUR"
 
 msgid "MAX_CONNECTIONS_PER_HOUR_help"
-msgstr "Limite le nombre de connexions que l&#39;utilisateur peut ouvrir par heure. &#39;0 &#39;Signifie aucune limite."
+msgstr "Limite le nombre de connexions que l'utilisateur peut ouvrir par heure. '0' signifie aucune limite."
 
 msgid "MySQL_Info_Text"
-msgstr "Les nouveaux utilisateurs de MySQL seront créés avec les privilèges par défaut suivantes pour leur propre base de données, comme indiqué ci-dessous."
+msgstr "Les nouveaux utilisateurs MySQL seront créés pour leur propre base de données avec les privilèges par défaut suivants, comme indiqué ci-dessous."
+
+#
 
 msgid "root_has_no_pwd"
-msgstr "Mot de passe MySQL pour l&#39;utilisateur MySQL root apparemment pas encore réglé! S&#39;il vous plaît définir un mot de passe «root» de MySQL de l&#39;utilisateur!"
+msgstr "Un mot de passe MySQL pour l'utilisateur 'root' n'a apparemment pas encore été défini ! Veuillez définir un mot de passe pour de l'utilisateur MySQL 'root' !"
 
 msgid "sqlstatus_fail"
-msgstr "Connexion MySQL ne peut être établie. S'il vous plaît vérifier les paramètres sous «Services réseau» / «MySQL». Voir aussi si MySQL est en marche."
+msgstr "La connexion MySQL ne peut pas être établie. Veuillez vérifier les paramètres sous « [[base-alpine.controlpanel]] » / « MySQL ». Voir aussi si MySQL est en marche."
 
 ## Label renaming for 5200R:
 
@@ -457,7 +463,7 @@ msgid "solmysql_Port_help"
 msgstr "[[base-mysql.solmysqlPort_help]]"
 
 msgid "CreateFailUserExists"
-msgstr "Cet utilisateur MySQL existe déjà dans la table d'utilisateur MySQL."
+msgstr "Cet utilisateur MySQL existe déjà dans la table d'utilisateurs MySQL."
 
 msgid "CreateFailDBExists"
 msgstr "Cette base de données MySQL existe déjà dans la table de base de données MySQL."
