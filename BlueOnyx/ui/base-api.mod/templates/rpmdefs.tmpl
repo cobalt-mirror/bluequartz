@@ -123,6 +123,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Oct 12 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX09
+- Modified ui/web/index.php to change the creation of MySQL users and
+  database to the new Handler based methods. This way we retain a more
+  coherent naming scheme for GUI and API based database handling.
+
 * Sat Mar 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX08
 - Updated main API page, as JSON encoded client details contained too
   much garbage we didn't need. This would sometimes exceed the max
