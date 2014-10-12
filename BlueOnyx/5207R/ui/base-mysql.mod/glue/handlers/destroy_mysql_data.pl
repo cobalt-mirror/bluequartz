@@ -146,10 +146,10 @@ sub remove_db_and_user {
 	&debug_msg("Dumper: " . Dumper($dbh) . "\n");
 	
 	if (!$dbh) {
-		$message .= "Can not Connect MySQL Server\n";
+		$message .= "Can not Connect MySQL database: $siteMysql ... might be gone already.\n";
 		$db_check_fail = 1;
-		$cce->bye('FAIL', $message);
-		exit(1);
+		$cce->bye('SUCCESS', $message);
+		exit(0);
 	}
 	
 	$query = "DROP DATABASE IF EXISTS $siteMysql_db";
