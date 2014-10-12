@@ -42,6 +42,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   $vsiteOID = $vsiteOIDHelper[0];
 
   error_log("BlueOnyx API: OID for Vsite " . $host_details['fqdn'] . " is: " . $vsiteOID);
+  error_log("Error count before Vsite modification: " . count($errors));
 
   // Do the Vsite create CCE transaction:
   $cceClient->set($vsiteOID,  "",
@@ -62,14 +63,18 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 				  'site_preview' => $vsiteDefaults['site_preview']
 				  )
 			  );
+  // Commented out, as this will always return an error array with one element,
+  // even if there *was* no error to begin with. Funny how that goes.
+  //$errors = $cceClient->errors();
 
-  $errors = $cceClient->errors();
+  error_log("Error count past Vsite modification: undetermined, as it will always bugger out.");
 
   // Setup disk-quota:
   if ($vsiteOID) {
 	  $quota = $payload->disk;
 	  $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past Quota set: " . count($errors));
   }
 
   // Find the siteAdmin for this site and update his disk-quota as well:
@@ -81,10 +86,12 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   if (($userHelper[0]) && ($payload->forwardemail == "1")) {
 	  $cceClient->set($userHelper[0], 'Email', array('forwardEnable' => "1", "forwardEmail" => "&" . $clientsdetails->email . "&", "forwardSave" => "0"));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past Email forwarding: " . count($errors));
   }
   else {
 	  $cceClient->set($userHelper[0], 'Email', array('forwardEnable' => "0"));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past Email forwarding: " . count($errors));
   }
 
   // Handle suPHP. If enabled, we set the web-ownerships to this User:
@@ -97,33 +104,41 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 	  $errors = array_merge($errors, $cceClient->errors());
   }
 
+  error_log("Error count past prefered_siteAdmin settings: " . count($errors));
+
   // If Auto-DNS is enabled, we grant this user the caplevel of 'dnsAdmin' as well:
   if (isset($payload->auto_dns)) {
 	  if ($payload->auto_dns == "1") {
-	  $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+		$cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&dnsAdmin&"));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past Auto-DNS settings #1: " . count($errors));
 
-	  // But beyond that we also need to add the domain name to the list of Domains under his DNS control:
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+		// But beyond that we also need to add the domain name to the list of Domains under his DNS control:
+		$cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past Auto-DNS settings #2: " . count($errors));
 
-	  // Update the DNS server with the new DNS zones:
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+		// Update the DNS server with the new DNS zones:
+		list($sysoid) = $cceClient->find("System");
+		$cceClient->set($sysoid, "DNS", array("commit" => time()));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past Auto-DNS settings #3: " . count($errors));
 	  }
 	  else {
-	  $cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&"));
-	  $errors = array_merge($errors, $cceClient->errors());
+		$cceClient->set($userHelper[0], '', array('capLevels' => "&siteAdmin&"));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past Auto-DNS settings #1b: " . count($errors));
 
-	  // But beyond that we also need to remove the domain name to the list of Domains under his DNS control:
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => ""));
-	  $errors = array_merge($errors, $cceClient->errors());
+		// But beyond that we also need to remove the domain name to the list of Domains under his DNS control:
+		$cceClient->set($vsiteOID, 'DNS', array('domains' => ""));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past Auto-DNS settings #2b: " . count($errors));
 
-	  // Update the DNS server with the new DNS zones:
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+		// Update the DNS server with the new DNS zones:
+		list($sysoid) = $cceClient->find("System");
+		$cceClient->set($sysoid, "DNS", array("commit" => time()));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past Auto-DNS settings #3b: " . count($errors));
 	  }
   }
 
@@ -133,6 +148,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   if (isset($payload->jsp)) {
 	  $cceClient->set($vsiteOID, 'Java', array('enabled' => $payload->jsp));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past JSP settings: " . count($errors));
   }
   // PHP:
   if (isset($payload->php)) {
@@ -143,6 +159,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 	  if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
 	  $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past PHP settings: " . count($errors));
   }
   // MySQL:
 
@@ -163,9 +180,16 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 	  $mysql_settings = $cceClient->getObject("MySQL", array());
 
 	  // Set up MySQL username, DB-name and MySQL-password:
-	  $sql_username = $VsiteSettings['name'];
-	  $sql_database = $VsiteSettings['name'] . '_db';
-	  $my_random_password = createRandomPassword();
+	  $sql_username = "vsite_" . createRandomPassword('7');
+	  $sql_database = $sql_username . '_db';
+	  $my_random_password = createRandomPassword("8", "alpha");
+
+	  if ($payload->mysql == "1") {
+	  	$sql_action = 'create';
+	  }
+	  else {
+	  	$sql_action = 'destroy';
+	  }
 
 	  // Do the deeds:
 	  if ($payload->mysql == "1") {
@@ -175,133 +199,11 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 								"hidden" => time(),
 								"DB" => $sql_database,
 								"port" => $mysql_settings['sql_port'],
-								"enabled" => "1"));
+								"enabled" => "1",
+								$sql_action => time()
+								));
 		$errors = array_merge($errors, $cceClient->errors());
-
-		// Actual MySQL setup:
-		// <sigh> Now comes the bother: We actually have to create the MySQL database and user on foot:
-		$db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
-
-		$MAX_QUERIES_PER_HOUR = $db_rights['MAX_QUERIES_PER_HOUR'];
-		$MAX_CONNECTIONS_PER_HOUR = $db_rights['MAX_CONNECTIONS_PER_HOUR'];
-		$MAX_UPDATES_PER_HOUR = $db_rights['MAX_UPDATES_PER_HOUR'];	    
-
-		$the_user_rights = array();
-		if ($db_rights['SELECT'] == "1") {
-			array_push($the_user_rights, "SELECT");
-		}
-		if ($db_rights['INSERT'] == "1") {
-			array_push($the_user_rights, "INSERT");
-		}
-		if ($db_rights['UPDATE'] == "1") {
-			array_push($the_user_rights, "UPDATE");
-		}
-		if ($db_rights['DELETE'] == "1") {
-			array_push($the_user_rights, "DELETE");
-		}
-		if ($db_rights['FILE'] == "1") {
-			array_push($the_user_rights, "FILE");
-		}
-		if ($db_rights['CREATE'] == "1") {
-			array_push($the_user_rights, "CREATE");
-		}
-		if ($db_rights['DROP'] == "1") {
-			array_push($the_user_rights, "DROP");
-		}
-		if ($db_rights['INDEX'] == "1") {
-			array_push($the_user_rights, "INDEX");
-		}
-		if ($db_rights['ALTER'] == "1") {
-			array_push($the_user_rights, "ALTER");
-		}
-		if ($db_rights['TEMPORARY'] == "1") {
-			array_push($the_user_rights, "CREATE TEMPORARY TABLES");
-		}
-
-		if ($db_rights['CREATE_VIEW'] == "1") {
-			array_push($the_user_rights, "CREATE VIEW");
-		}
-		if ($db_rights['SHOW_VIEW'] == "1") {
-			array_push($the_user_rights, "SHOW VIEW");
-		}
-		if ($db_rights['CREATE_ROUTINE'] == "1") {
-			array_push($the_user_rights, "CREATE ROUTINE");
-		}
-		if ($db_rights['ALTER_ROUTINE'] == "1") {
-			array_push($the_user_rights, "ALTER ROUTINE");
-		}
-		if ($db_rights['EXECUTE'] == "1") {
-			array_push($the_user_rights, "EXECUTE");
-		}
-
-		$inhalt = count($the_user_rights);
-		$inhalt--;
-		$my_user_rights = "";
-		for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
-			if ($inhalt > $x) {
-				$my_user_rights .= $the_user_rights[$x] . ", "; 
-			}
-			else {
-				$my_user_rights .= $the_user_rights[$x] . ""; 
-			}
-		}
-		$the_user_rights = $my_user_rights;
-
-		$getthisOID = $cceClient->find("MySQL");
-		$mysql_settings_exists = 0;
-		$mysql_settings = $cceClient->get($getthisOID[0]);
-
-		// MySQL settings:
-		$sql_root               = $mysql_settings['sql_root'];
-		$sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-		$sql_host               = $mysql_settings['sql_host'];
-		$sql_port               = $mysql_settings['sql_port'];
-		$sql_host_and_port = $sql_host . ":" . $sql_port;
-
-		// Store the setings in $VsiteSettings as well:
-		$VsiteSettings['sql_username'] = $sql_username;
-		$VsiteSettings['sql_database'] = $sql_database;
-		$VsiteSettings['sql_host'] = $sql_host;
-		$VsiteSettings['sql_root'] = $sql_root;
-		$VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-
-		// MySQL-Error:
-		$mysql_error = array();
-
-		// Make MySQL connection:
-		$fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error[] = mysql_error();
-
-		// Dropping primary database:
-		$query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
-		$result = mysql_query($query);
-	
-		// Create Vsite database:
-		$query = "CREATE DATABASE `".$sql_database."`;\n";
-		$result = mysql_query($query);
-
-		// Setup MySQL-User step1:
-		@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-		$query = "GRANT USAGE ON * . * TO '$sql_username'@'$sql_host' IDENTIFIED BY '$my_random_password' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
-		$result = mysql_query($query);
-		// Setup MySQL-User step2:
-		@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-		$query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$sql_host';\n";
-		$result = mysql_query($query);
-
-		// Setup MySQL-User step3:
-		@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-		$query = "FLUSH PRIVILEGES;\n";
-		$result = mysql_query($query);
-
-		// Closing connection
-		@mysql_close($fixed_mysql_link);
-
-		// Did we have MySQL errors?
-		if (count($mysql_error) >= "1") {
-			// Delete MySQL-User and Database:
-			error_log("BlueOnyx API: Deleting MySQL database and user during API related Vsite modifcation.");
-			delete_mysql_stuff($VsiteSettings, $cceClient);
-		}
+		error_log("Error count past MySQL settings: " . count($errors));
 	  }
   }
   elseif ((isset($payload->mysql)) && ($payload->mysql == "1") && ($mysql_vsite_settings['enabled'] == "1")) {
@@ -341,6 +243,7 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 
 		  error_log("Running delete_mysql_stuff function.");
 		  delete_mysql_stuff($VsiteSettings, $cceClient);
+		  error_log("Error count past MySQL deletion: " . count($errors));
 	}
   }
 
@@ -348,51 +251,59 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
   if (isset($payload->cgi)) {
 	  $cceClient->set($vsiteOID, 'CGI', array('enabled' => $payload->cgi));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past CGI settings: " . count($errors));
   }
 
   // SSI:
   if (isset($payload->ssi)) {
 	  $cceClient->set($vsiteOID, 'SSI', array('enabled' => $payload->ssi));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past SSI settings: " . count($errors));
   }
 
   // bwlimit:
   if ((isset($payload->bwlimit)) && (isset($payload->bwlimitVal))) {
 	  $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past ApacheBandwidth settings: " . count($errors));
   }
 
   // FTP:
   if (isset($payload->ftp)) {
 	  $cceClient->set($vsiteOID, 'FTPNONADMIN', array('enabled' => $payload->ftp));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past FTPNONADMIN settings: " . count($errors));
   }
 
   // userwebs:
   if (isset($payload->userwebs)) {
 	  $cceClient->set($vsiteOID, 'USERWEBS', array('enabled' => $payload->userwebs));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past USERWEBS settings: " . count($errors));
   }
 
   // Shell-access:
   if (isset($payload->shell)) {
 	  $cceClient->set($vsiteOID, 'Shell', array('enabled' => $payload->shell));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past Shell settings: " . count($errors));
   }
   
   // Sub-Domains:
   if ((isset($payload->subdomains)) && (isset($payload->subdomainsMax))) {
 	  $cceClient->set($vsiteOID, 'subdomains', array('vsite_enabled' => $payload->subdomains, 'max_subdomains' => $payload->subdomainsMax));
 	  $errors = array_merge($errors, $cceClient->errors());
+	  error_log("Error count past subdomains settings: " . count($errors));
   }
 
   // Auto-DNS:
   if (isset($payload->auto_dns)) {
 	  if ($payload->auto_dns == "1") {
-	  $cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
-	  list($sysoid) = $cceClient->find("System");
-	  $cceClient->set($sysoid, "DNS", array("commit" => time()));
-	  $errors = array_merge($errors, $cceClient->errors());
+		$cceClient->set($vsiteOID, 'DNS', array('domains' => "&" . $host_details['domain'] . "&"));
+		list($sysoid) = $cceClient->find("System");
+		$cceClient->set($sysoid, "DNS", array("commit" => time()));
+		$errors = array_merge($errors, $cceClient->errors());
+		error_log("Error count past auto_dns settings: " . count($errors));
 	  }
   }
 
@@ -405,24 +316,15 @@ function do_modify_vsite ($payload, $clientsdetails, $helper, $action="unknown")
 			// Delete MySQL-User and Database:
 			delete_mysql_stuff($VsiteSettings, $cceClient);
 			error_log("BlueOnyx API: Sorry, an error occured while modifying the various services for the Vsite.");
+			error_log("Total Error count: " . count($errors));
+			error_log("Errors: " . print_rp($errors));
+		}
+		else {
+			error_log("BlueOnyx API: Sorry, an error occured while modifying the various services for the Vsite.");
+			error_log("Total Error count: " . count($errors));
+			error_log("Errors: " . print_rp($errors));
 		}
 
-  }
-  elseif (count($mysql_error) >= "1") {
-
-	// We have an error and an incompletly created Vsite. So we destroy the Vsite:
-	if ($action != "modify") {
-		$cceClient->destroy($vsiteOID);
-
-		// Delete MySQL-User and Database:
-		delete_mysql_stuff($VsiteSettings, $cceClient);
-
-		error_log("BlueOnyx API: Sorry, an error occured while setting up the MySQL database of this Vsite.");
-
-		// nice people say aufwiedersehen
-		$helper->destructor();
-		exit;
-	}
   }
   else {
 	$result = "success";
@@ -517,12 +419,19 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 	  $VsiteSettings = $cceClient->get($vsiteOID, '');
 
 	  // Set up MySQL username, DB-name and MySQL-password:
-	  $sql_username = $VsiteSettings['name'];
-	  $sql_database = $VsiteSettings['name'] . '_db';
+	  $sql_username = "vsite_" . createRandomPassword('7');
+	  $sql_database = $sql_username . '_db';
 	  $my_random_password = createRandomPassword("8", "alpha");
 
 	  // Get MySQL Server settings from CCE:
 	  $mysql_settings = $cceClient->getObject("MySQL", array());
+
+	  if ($payload->mysql == "1") {
+	  	$sql_action = 'create';
+	  }
+	  else {
+	  	$sql_action = 'destroy';
+	  }
 
 	  // Do the deeds:
 	  if ($payload->mysql == "1") {
@@ -532,132 +441,11 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 								"hidden" => time(),
 								"DB" => $sql_database,
 								"port" => $mysql_settings['sql_port'],
-								"enabled" => "1"));
+								"enabled" => "1",
+								$sql_action => time()
+								));
+
 		$errors = array_merge($errors, $cceClient->errors());
-
-		// Actual MySQL setup:
-		// <sigh> Now comes the bother: We actually have to create the MySQL database and user on foot:
-		$db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
-
-		$MAX_QUERIES_PER_HOUR = $db_rights['MAX_QUERIES_PER_HOUR'];
-		$MAX_CONNECTIONS_PER_HOUR = $db_rights['MAX_CONNECTIONS_PER_HOUR'];
-		$MAX_UPDATES_PER_HOUR = $db_rights['MAX_UPDATES_PER_HOUR'];	    
-
-		$the_user_rights = array();
-		if ($db_rights['SELECT'] == "1") {
-			array_push($the_user_rights, "SELECT");
-		}
-		if ($db_rights['INSERT'] == "1") {
-			array_push($the_user_rights, "INSERT");
-		}
-		if ($db_rights['UPDATE'] == "1") {
-			array_push($the_user_rights, "UPDATE");
-		}
-		if ($db_rights['DELETE'] == "1") {
-			array_push($the_user_rights, "DELETE");
-		}
-		if ($db_rights['FILE'] == "1") {
-			array_push($the_user_rights, "FILE");
-		}
-		if ($db_rights['CREATE'] == "1") {
-			array_push($the_user_rights, "CREATE");
-		}
-		if ($db_rights['DROP'] == "1") {
-			array_push($the_user_rights, "DROP");
-		}
-		if ($db_rights['INDEX'] == "1") {
-			array_push($the_user_rights, "INDEX");
-		}
-		if ($db_rights['ALTER'] == "1") {
-			array_push($the_user_rights, "ALTER");
-		}
-		if ($db_rights['TEMPORARY'] == "1") {
-			array_push($the_user_rights, "CREATE TEMPORARY TABLES");
-		}
-
-		if ($db_rights['CREATE_VIEW'] == "1") {
-			array_push($the_user_rights, "CREATE VIEW");
-		}
-		if ($db_rights['SHOW_VIEW'] == "1") {
-			array_push($the_user_rights, "SHOW VIEW");
-		}
-		if ($db_rights['CREATE_ROUTINE'] == "1") {
-			array_push($the_user_rights, "CREATE ROUTINE");
-		}
-		if ($db_rights['ALTER_ROUTINE'] == "1") {
-			array_push($the_user_rights, "ALTER ROUTINE");
-		}
-		if ($db_rights['EXECUTE'] == "1") {
-			array_push($the_user_rights, "EXECUTE");
-		}
-
-		$inhalt = count($the_user_rights);
-		$inhalt--;
-		$my_user_rights = "";
-		for ( $x = 0; $x < count ( $the_user_rights ); $x++ ) {
-			if ($inhalt > $x) {
-				$my_user_rights .= $the_user_rights[$x] . ", "; 
-			}
-			else {
-				$my_user_rights .= $the_user_rights[$x] . ""; 
-			}
-		}
-		$the_user_rights = $my_user_rights;
-
-		$getthisOID = $cceClient->find("MySQL");
-		$mysql_settings_exists = 0;
-		$mysql_settings = $cceClient->get($getthisOID[0]);
-
-		// MySQL settings:
-		$sql_root               = $mysql_settings['sql_root'];
-		$sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-		$sql_host               = $mysql_settings['sql_host'];
-		$sql_port               = $mysql_settings['sql_port'];
-		$sql_host_and_port = $sql_host . ":" . $sql_port;
-
-		// Store the setings in $VsiteSettings as well:
-		$VsiteSettings['sql_username'] = $sql_username;
-		$VsiteSettings['sql_database'] = $sql_database;
-		$VsiteSettings['sql_host'] = $sql_host;
-		$VsiteSettings['sql_root'] = $sql_root;
-		$VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-
-		// MySQL-Error:
-		$mysql_error = array();
-
-		// Make MySQL connection:
-		$fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error[] = mysql_error();
-
-		// Dropping primary database:
-		$query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
-		$result = mysql_query($query);
-
-		// Create Vsite database:
-		$query = "CREATE DATABASE `".$sql_database."`;\n";
-		$result = mysql_query($query);
-
-		// Setup MySQL-User step1:
-		@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-		$query = "GRANT USAGE ON * . * TO '$sql_username'@'$sql_host' IDENTIFIED BY '$my_random_password' WITH MAX_QUERIES_PER_HOUR $MAX_QUERIES_PER_HOUR MAX_CONNECTIONS_PER_HOUR $MAX_CONNECTIONS_PER_HOUR MAX_UPDATES_PER_HOUR $MAX_UPDATES_PER_HOUR;\n";
-		$result = mysql_query($query);
-		// Setup MySQL-User step2:
-		@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-		$query = "GRANT $the_user_rights ON `$sql_database`. * TO '$sql_username'@'$sql_host';\n";
-		$result = mysql_query($query);
-
-		// Setup MySQL-User step3:
-		@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-		$query = "FLUSH PRIVILEGES;\n";
-		$result = mysql_query($query);
-
-		// Closing connection
-		@mysql_close($fixed_mysql_link);
-
-		// Did we have MySQL errors?
-		if (count($mysql_error) >= "1") {
-			// Delete MySQL-User and Database:
-			delete_mysql_stuff($VsiteSettings, $cceClient);
-		}
 	  }
 	}
 
@@ -865,39 +653,9 @@ function delete_mysql_stuff ($VsiteSettings, $cceClient) {
 	// Set up new MySQL-Error array:
 	$mysql_error = array();
 
-	// Make MySQL connection:
-	$fixed_mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error[] = mysql_error();
-
-	// Revoke privileges and drop user:
-	@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	$query = "REVOKE ALL PRIVILEGES ON * . * FROM '$sql_username'@'$sql_host';\n";
-	$result = mysql_query($query);
-
-	@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	$query = "REVOKE ALL PRIVILEGES ON `$sql_database` . * FROM '$sql_username'@'$sql_host';\n";
-	$result = mysql_query($query);
-
-	@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	$query = "REVOKE GRANT OPTION ON * . * FROM '$sql_username'@'$sql_host';\n";
-	$result = mysql_query($query);
-
-	@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	$query = "DROP USER '$sql_username'@'$sql_host';\n";
-	$result = mysql_query($query);
-
-	@mysql_select_db("mysql") or $mysql_error[] = mysql_error();
-	$query = "FLUSH PRIVILEGES;\n";
-	$result = mysql_query($query);
-
-	$query = "DROP DATABASE IF EXISTS `".$sql_database."`;\n";
-	$result = mysql_query($query);
-
-	// Closing connection
-	@mysql_close($fixed_mysql_link);
-
 	// Set MySQL_Vsite to disabled, too:
-	$cceClient->set($VsiteSettings['OID'], 'MYSQL_Vsite', array("enabled" => "0"));
-	$errors = $cceClient->errors();
+	$cceClient->set($VsiteSettings['OID'], 'MYSQL_Vsite', array("enabled" => "0", 'destroy' => time()));
+	$mysql_error = $cceClient->errors();
 
 }
 
