@@ -1,8 +1,6 @@
-# For Fedora Core
-
 # We only need provisions for RHEL7 / CentOS7 / SL7 here:
 
-## EL6:
+## EL7:
 %dist .el7
 
 %debug_package %{nil}
