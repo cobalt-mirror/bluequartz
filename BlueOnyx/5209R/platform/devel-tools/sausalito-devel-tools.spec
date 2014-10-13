@@ -10,7 +10,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/devel-root
 Provides: perl(BTO)
 BuildRequires: glib-devel
-Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel libgcj-devel gcc-java gcc-c++ libxml2-devel pam-devel glib2-devel flex bison
+Requires: cpp gcc glib-ghash imake subversion rpm-build autoconf automake re2c glib-devel file-devel popt-devel rpm-devel libstdc++-devel zlib-devel gcc-c++ libxml2-devel pam-devel glib2-devel flex bison
 
 %description
 sausalito-devel-tools the basic Cobalt development environment.
