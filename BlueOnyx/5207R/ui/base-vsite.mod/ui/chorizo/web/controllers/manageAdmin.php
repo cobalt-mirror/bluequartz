@@ -325,8 +325,34 @@ class ManageAdmin extends MX_Controller {
 		            	$new_settings['password'] = $attributes['password'];
 		            }
 		        }
-		            
-		        $big_ok = $cceClient->set($_oid, '', $new_settings);    			
+
+		        $big_ok = $cceClient->set($_oid, '', $new_settings);
+
+				// CCE errors that might have happened during submit to CODB:
+				$errors = array_merge($errors, $cceClient->errors());
+
+				if ((isset($Support['support_account'])) && (!isset($_oid))) {
+					if ($Support['support_account'] == $attributes['userName']) {
+						$my_errors[] = ErrorMessage($i18n->get("[[base-support.Error_support_account_reserved]]"));
+					}
+				}
+
+				// Handle expiry date changes:
+				if ((isset($Support['support_account'])) && (isset($_oid))) {
+					// Run if SAExpiry is supplied, this is the defined support account *and* it has an expiry defined to begin with:
+					if ((isset($attributes['SAExpiry'])) && ($Support['support_account'] == $attributes['userName']) && ($Support['access_epoch'] != '0')) {
+						// Puzzle the date and time back together:
+						if (isset($attributes['_SAExpiry_day']) && isset($attributes['_SAExpiry_month']) && isset($attributes['_SAExpiry_year']) && isset($attributes['_SAExpiry_hour']) && isset($attributes['_SAExpiry_minute'])) {
+							$attributes['SAExpiry'] = mktime ($attributes['_SAExpiry_hour'], $attributes['_SAExpiry_minute'], '00', $attributes['_SAExpiry_month'], $attributes['_SAExpiry_day'], $attributes['_SAExpiry_year']);
+						}
+						// Update expiry date in CODB:
+						$sup_cfg = array('access_epoch' => $attributes['SAExpiry']);
+						$cceClient->setObject("System", $sup_cfg, "Support");
+						// CCE errors that might have happened during submit to CODB:
+						$errors = array_merge($errors, $cceClient->errors());
+					}
+				}
+
     		}
 
 			// CCE errors that might have happened during submit to CODB:
