@@ -273,10 +273,10 @@ _dbg_strdup(char *str, char *f, int l)
 
 	snprintf(buf, DEBUG_BUFFER_LEN, "%s", p);
 	if (clean_str(buf)) {
-		MDPRINTF("dbg_strdup[%s:%d]: added %p (%d bytes)(\"%s\")\n", 
+		MDPRINTF("dbg_strdup[%s:%d]: added %p (%zu bytes)(\"%s\")\n", 
 			f, l, p, strlen(p)+1, buf);
 	} else {
-		MDPRINTF("dbg_strdup[%s:%d]: added %p (%d bytes)\n", 
+		MDPRINTF("dbg_strdup[%s:%d]: added %p (%zu bytes)\n", 
 			f, l, p, strlen(p)+1);
 	}
 
