@@ -43,6 +43,13 @@
 	data="^([A-Za-z0-9\\._-]{2,})(([,]|[\\r\\n])[A-Za-z0-9\\._-]{2,})*$"
 />
 
+<!-- alphanum_plus_space is alphanumeric data plus a "safe" subset of punctuation, spaces and selected unicode characters-->
+<typedef
+	name="alphanum_plus_space"
+	type="re"
+	data="^[A-Za-z0-9&àáâäãåèéêëìíîïòóôöõøùúûüÿýñçčšžÀÁÂÄÃÅÈÉÊËÌÍÎÏÒÓÔÖÕØÙÚÛÜŸÝÑßÇŒÆČŠŽ∂ð\\._-\s]+$"
+/>
+
 <!-- Int is a signed integer -->
 <typedef name="int" 		type="re" 	data="^((\-?[1-9][0-9]*)|0)$"/>
 

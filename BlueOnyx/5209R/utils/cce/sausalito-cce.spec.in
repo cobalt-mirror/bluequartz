@@ -1,5 +1,8 @@
-# $Id: sausalito-cce.spec.in 1162 2008-06-28 18:29:44Z mstauber $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: sausalito-cce.spec.in
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 
 %define extension_dir %(php-config --extension-dir)
 
@@ -13,7 +16,7 @@ Group: System Environment/BlueOnyx
 Source: sausalito-cce.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
-BuildRequires: glib-devel, pam-devel
+BuildRequires: glib-devel, pam-devel, glib2-devel
 BuildRequires: flex, bison
 BuildRequires: php-devel
 
@@ -41,7 +44,7 @@ Configuration Engine.
 %package client
 Group: System Environment/BlueOnyx
 Summary: The CCE client libraries
-Requires: glib, glib-ghash, pam, httpd, base-admserv-glue perl-Time-Out, rsyslog 
+Requires: glib, glib-ghash, pam, httpd, base-admserv-glue perl-Time-Out
 
 %description client
 The cce-client package contains the client-side parts of the Cobalt 
@@ -108,13 +111,13 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /lib/security/*
 # For 64-bit pam_abl if this is a 64-bit system:
 %ifarch x86_64 
-/lib64/security/*
+#/lib64/security/*
 %endif
 
-/var/lib/abl
-/usr/bin/pam_abl
-/usr/sausalito/bin/pam_abl_gui
-%config(noreplace) /etc/security/pam_abl.conf
+#/var/lib/abl
+#/usr/bin/pam_abl
+#/usr/sausalito/bin/pam_abl_gui
+#%config(noreplace) /etc/security/pam_abl.conf
 
 %files client
 %attr(-,root,XX_USER_HTTPD_XX)/usr/sausalito/bin/ccewrap
@@ -139,22 +142,21 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 # only run on install, not upgrade 
 if [ "$1" = "1" ]; then
 	/sbin/chkconfig --add cced.init
-	/sbin/chkconfig --add pam_abl
-	/sbin/chkconfig --add rsyslog 
+	#/sbin/chkconfig --add pam_abl
 fi
 
 %postun server
 # only run if this is the last instance to be removed
 if [ "$1" = "0" ]; then
 	/sbin/chkconfig --del cced.init
-	/sbin/chkconfig --del pam_abl
+	#/sbin/chkconfig --del pam_abl
 fi
 
 # restart cced.init on upgrade
 if [ "$1" -ge "1" ]; then
 	service cced.init restart >/dev/null 2>&1
-	/sbin/chkconfig --add pam_abl
-	service pam_abl restart >/dev/null 2>&1
+	#/sbin/chkconfig --add pam_abl
+	#service pam_abl restart >/dev/null 2>&1
 fi
 
 %post client
@@ -167,19 +169,14 @@ if [ "$1" = "1" ]; then
 	/sbin/ldconfig
 fi
 
-PRODUCT=$(cat /etc/build |grep 5106R|wc -l);
-ADMSERV=$(cat /etc/sudoers|grep admserv|wc -l);
-if [ "$PRODUCT" = "1" ]; then
-	if [ "$ADMSERV" = "0" ]; then
-		cat /etc/sudoers.d/admserv >> /etc/sudoers
-	fi
-fi
-
 # resetup the owner of ccewrap
 if [ $1 = 2 ]; then
  	/bin/chgrp admserv /usr/sausalito/bin/ccewrap
 	/bin/chmod u+s /usr/sausalito/bin/ccewrap
 fi
+
+# The joys of config(noreplace)! We have to fix it this way:
+/bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf.d/blueonyx.conf
 
 %postun client
 # reload httpd
@@ -190,45 +187,77 @@ fi
 
 %changelog
 
-%changelog
+* Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX14
+- Superstitious release number bump.
+- Simplified 'alphanum_plus_space' in basetypes.schema and added '&' to 
+  allowed characters.
 
-* Thu Jul 17 2014 Michael Stauber <mstauber@solarspeed.net> 0.82.1-1BX01
-- Made CCE PHP-5.4 ready for 5209R on EL7.
-- Bumped version to 0.82.1-1BX01
-- Makefile: If we need user 'admserv' for the build, then our build should 
-  make sure he actually exists to begin with. Also replaced non-working
-  RPM_TOPDIR with hard coded locations as to where to find the built
-  RPMs and SRPMs.
-- Fixed dates in sausalito-cce.spec.in
-- dynamic.mk: Fixed XXE_TOPDIR path
-- rules.mk: Appended CFLAGS with -w1. Still shows warnings  on compile, 
-  (which we want to see) but no longer treats them as show stopping errors.
-- client/php/src/cce.c: Wouldn't compile as PHP-5.4 has changed
-  some internals around. See: https://bugs.php.net/bug.php?id=61479
-  This should take care of it.
-- client/httpd/blueonyx.conf: Fixed login links.
-- Added dependency for rsyslog and provisions to turn it on. Without 
-  logging facility CCEd startups hang in limbo otherwise.
+* Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX13
+- Updated basetypes.schema to add 'alphanum_plus_space' to it.
 
-* Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX13
-- Backport from 5207R/utils/cce 0.99.1-1BX07 - 0.99.1-1BX10:
-- Added dependency for perl-Time-Out to client package. 
-- Added ccewrap/check_cce.pl to check if CCEd is running and accepting  
-  connections. 
-- Added ccewrap/cced_unstuck.sh to rehash CCEd if it is not. 
-- Added ccewrap/admserv to allow AdmServ to use sudo to run  
-  ccewrap/cced_unstuck.sh 
-- Of all the changes I ever did this is probably the most controversial 
-  one. ServerScriptHelper now can restart CCEd in case it is unresponsive 
-  or down. This happens so seamlessly, that a GUI user might not even  
-  notice that it was down to begin with. However, this call bypasses  
-  CCEWrapper, as CCEd is down or unresponsive anyway. With CCEWrapper we  
-  could restart CCEd. Without we can't. So granting sudo access to just  
-  one shell script (without passing parameters) is lightly more sensible 
-  than to show an error message and refuse to work until someone had the 
-  good grace to restart CCEd. I think this addition has a lot of benefit  
-  at very little risk. Whether CCEDWrappper is more secure than a locked  
-  down single sudo call is hard to tell. 
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX12
+- Fixed login URL redirection in client/httpd/blueonyx.conf
+- Run a search and replace against blueonyx.conf to fix the login URL, too.
+
+* Sun May 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX11
+- Just one more addition to ccewrap/cced_unstuck.sh.
+
+* Sun May 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX09
+- Added a bit more professionalism to ccewrap/cced_unstuck.sh
+- Added /usr/bin/sar to ccewrap/ccewrap.conf for stats galore.
+
+* Fri May 16 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX08
+- Small modification to ccewrap/cced_unstuck.sh as the killall command
+  doesn't do well with Zombies. Now uses a grepped ps for cced as well.
+
+* Fri May 16 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX07
+- Added dependency for perl-Time-Out to client package.
+- Added ccewrap/check_cce.pl to check if CCEd is running and accepting 
+  connections.
+- Added ccewrap/cced_unstuck.sh to rehash CCEd if it is not.
+- Added ccewrap/admserv to allow AdmServ to use sudo to run 
+  ccewrap/cced_unstuck.sh
+- Of all the changes I ever did this is probably the most controversial
+  one. ServerScriptHelper now can restart CCEd in case it is unresponsive
+  or down. This happens so seamlessly, that a GUI user might not even 
+  notice that it was down to begin with. However, this call bypasses 
+  CCEWrapper, as CCEd is down or unresponsive anyway. With CCEWrapper we 
+  could restart CCEd. Without we can't. So granting sudo access to just 
+  one shell script (without passing parameters) is lightly more sensible
+  than to show an error message and refuse to work until someone had the
+  good grace to restart CCEd. I think this addition has a lot of benefit 
+  at very little risk. Whether CCEDWrappper is more secure than a locked 
+  down single sudo call is hard to tell.
+
+* Fri May 16 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX06
+- Updated basetypes.schema to add 'ipaddrIPv4IPv6' and 'ipaddrIPv6' to
+  validate fields with either IPv4 or IPv6 IP address or only IPv6 IP address.
+
+* Thu May 15 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX05
+- Modified ccewrap/ccewrap_conf.c
+
+* Wed May 14 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX04
+- Updated basetypes.schema for the IMAP Sync related extras and fixed a
+  few other regular expressions.
+
+* Mon May 12 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX03
+- Modified ccewrap/ccewrap.conf to add touch and wc.
+
+* Sun May 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX02
+- Modified ccewrap/ccewrap.conf to add a few more allowed commands to it,
+  which we need for SSH key management. It's also fairly safe to add the
+  tail command to it, which will be useful for a better base-console.mod.
+
+* Thu Apr 24 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX01
+- New major version for 520XR.
+- Modified /usr/sausalito/schemas/basetypes.schema for 520XR.
+- Modified cscp/Makefile to bump CSCP version to 0.99.
+
+* Wed Mar 05 2014 Michael Stauber <mstauber@solarspeed.net> 0.82.1-1BX02
+- Dependency update.
+
+* Tue Mar 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.82.1-1BX01
+- Updated basetypes.schema for 520XR.
 
 * Wed Dec 18 2013 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX12
 - Fixed weird (but reproduceable) error in CceClient.php.
@@ -349,7 +378,7 @@ fi
 * Sun Jun 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ29
 - add requires httpd for client package.
 
-* Fri May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
+* Thu May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
 - modified initscript to add static route at starting.
 
 * Mon Jan 16 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ27
@@ -380,7 +409,7 @@ fi
 * Thu Oct 20 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ20
 - use vendor macro for vendor tag.
 
-* Wed Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
+* Tue Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
 - rebuild with devel-tools 0.5.1
 
 * Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ18
@@ -419,7 +448,7 @@ fi
 * Thu Mar 25 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ4
 - change cced.init for Blue Quartz 5100R
 
-* Thu Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
+* Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
 - build for Blue Quartz
 
 * Wed Feb 27 2002 CCE Team <cce@sun.com>

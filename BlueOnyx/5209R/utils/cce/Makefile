@@ -1,5 +1,8 @@
-# $Id: Makefile 1162 2008-06-28 18:29:44Z mstauber $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+# $Id: Makefile
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # Top level Makefile for CCE
 
 # this must be before includes
@@ -13,13 +16,12 @@ CCEMODULE = sausalito-cce
 CCERPMSPEC = $(CCEMODULE).spec
 
 CCE_V_MAJ=0
-CCE_V_MIN=82
+CCE_V_MIN=99
 CCE_V_PATCH=1
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX01
+RPMRELEASE=1BX14
 
-DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
-	ccewrap pperl
+DIRS = common scalar conf codb ed cscp sessionmgr server client pam ccewrap pperl
 
 COMMONLIB = libcce_common.a
 COMMONLIB_DIRS = common scalar conf codb ed cscp sessionmgr
@@ -40,7 +42,6 @@ depend: .depend dynamic.mk
 		echo $(MAKE) -C $$a depend || exit 1; \
 	done
 	@touch .depend
-	/usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || :
 
 dynamic.mk: Makefile
 	@rm -f $@
@@ -91,7 +92,7 @@ server client: dynamic.mk $(COMMONLIB) FORCE
 	@echo
 	@$(MAKE) -C $@ all
 
-tools: pam pam_abl ccewrap pperl
+tools: pam ccewrap pperl
 
 pam: dynamic.mk $(COMMONLIB) FORCE
 	$(MAKE) -C $@ all
@@ -158,9 +159,9 @@ endif
 		$(RPMBUILD) -ta /tmp/sausalito-cce.tar.gz; \
 	fi
 	-@mkdir as_rpms || /bin/true
-	cp `find /root/rpmbuild/RPMS/x86_64/ -follow -type f -newer $(TIMEFILE)` as_rpms/
+	cp `find $(RPM_TOPDIR)/RPMS -follow -type f -newer $(TIMEFILE)` as_rpms
 	-@mkdir as_srpms || /bin/true
-	cp `find /root/rpmbuild/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms/
+	cp `find $(RPM_TOPDIR)/SRPMS -follow -type f -newer $(TIMEFILE)` as_srpms
 	-@/bin/rm -f $(TIMEFILE)
 
 specfile: $(CCERPMSPEC).in
@@ -177,9 +178,9 @@ mod_locale:
 install_locale:
 	$(MAKE) -C client install_locale
 
-install: all server-inst client-inst pam-inst pam_abl-inst ccewrap-inst pperl-inst
+install: all server-inst client-inst pam-inst ccewrap-inst pperl-inst
 
-server-inst client-inst pam-inst pam_abl-inst ccewrap-inst pperl-inst: %-inst: %
+server-inst client-inst pam-inst ccewrap-inst pperl-inst: %-inst: %
 	$(MAKE) -C $< install
 
 uninstall junk:

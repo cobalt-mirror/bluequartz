@@ -3,16 +3,6 @@ Building requires the following RPMs to be installed:
 BuildRequires: glib-devel, pam-devel
 BuildRequires: glib-ghash
 BuildRequires: flex, bison
-BuildRequires: php-devel
-BuildRequires: php
+BuildRequires: php4-devel
+BuildRequires: php4
 BuildRequires: db4-devel (for pam_abl)
-
-Actually, it helps to have the whole shebang installed:
-
-php-soap php-common php-pear-Mail php-process php-pear php-pear-Net-Socket php-pear-Auth-SASL php php-gd php-mysql php-pdo php-mcrypt php-devel php-xml php-imap php-mbstring php-pear-Net-SMTP php-cli
-
-glib and glib-devel are usually on Epel.
-
-glib-ghash is available as SRPM via devel.blueonyx.it/pub ... check the SRPMS directories.
-
-

@@ -12,7 +12,7 @@
 
 #include <php_cce.h>
 
-zend_function_entry ccephp_functions[] = {
+static zend_function_entry ccephp_functions[] = {
 	PHP_FE(ccephp_auth, NULL)
 	PHP_FE(ccephp_suspend, NULL)
 	PHP_FE(ccephp_resume, NULL)
