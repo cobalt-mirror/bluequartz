@@ -264,108 +264,98 @@ class MYSQL_VsiteExtension extends UIExtension {
 		// [solmysql_host] => localhost
 		// [solmysql_Port] => 3306
 
+		$cce = $ServerScriptHelper->getCceClient();
+
 		// Get POST attributes:
 		$this->attributes = $attributes;
 
-		// Start sane with MySQL off:
-		$solmysql = "0";
-
-		// Find out if MySQL should be enabled:
-		if (isset($this->attributes['solmysql_enabled'])) {
-			if ($this->attributes['solmysql_enabled'] == "1") {
-				// MySQL is enabled.
-				$solmysql = "1";
-			}
+		// Is this a Vsite create procedure?
+		$freshly_created_vsite = '0';
+		if (!isset($this->attributes['group'])) {
+			$freshly_created_vsite = '1';
 		}
 
-		// Hate to do it, but we have to sort the params one by one:
-		$solmysql_Status = "";
-		if (isset($this->attributes['solmysql_Status'])) {
-			$solmysql_Status = $this->attributes['solmysql_Status'];
-		}
+		// Get items of interest:
+		$VsiteObject = $cce->get($parameters['CCE_OID']);
+		$MYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
 
-		$solmysql_username = "";
-		if (isset($this->attributes['solmysql_username'])) {
-			$solmysql_username = $this->attributes['solmysql_username'];
-		}
+		// Should MySQL be turned on or off?
+		if ($this->attributes['solmysql_enabled'] == '1') {
+			// It should be turned on or be left on.
 
-		$solmysql_pass = "";
-		if (isset($this->attributes['solmysql_pass'])) {
-			$solmysql_pass = $this->attributes['solmysql_pass'];
-		}
+			// Current state is:
+			if ($MYSQL_Vsite['enabled'] == '1') {
+				// It is already on. Do we just save the same info, or do we change it?
+				if (($MYSQL_Vsite['username'] != $this->attributes['solmysql_username']) || ($MYSQL_Vsite['DB'] != $this->attributes['solmysql_DB'])) {
+					// Username and or DB are different from what we had on record. So we destroy the new database and user first and then create
+					// a new one with the new details.
 
-		$solmysql_DB = "";
-		if (isset($this->attributes['solmysql_DB'])) {
-			$solmysql_DB = $this->attributes['solmysql_DB'];
-		}
+					// Destroy existing user and DB:
+					$action = 'destroy';
+					$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+										'enabled' => '0',
+										'username' => $MYSQL_Vsite['username'],
+										'pass' => $MYSQL_Vsite['pass'],
+										'DB' => $MYSQL_Vsite['DB'],
+										'host' => $MYSQL_Vsite['host'],
+										'port' => $MYSQL_Vsite['port'],
+										'hidden' => time(),
+										$action => time()
+										));
+					$errors = array_merge($errors, $cce->errors());
 
-		$solmysql_host = "localhost";
-		if (isset($this->attributes['solmysql_host'])) {
-			$solmysql_host = $this->attributes['solmysql_host'];
-		}
+					// Create new user and DB:
+					$action = 'create';
+					$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+										'enabled' => $this->attributes['solmysql_enabled'],
+										'username' => $this->attributes['solmysql_username'],
+										'pass' => $this->attributes['solmysql_pass'],
+										'DB' => $this->attributes['solmysql_DB'],
+										'host' => $this->attributes['solmysql_host'],
+										'port' => $this->attributes['solmysql_Port'],
+										'hidden' => time(),
+										$action => time()
+										));
+					$errors = array_merge($errors, $cce->errors());
 
-		$solmysql_Port = "3306";
-		if (isset($this->attributes['solmysql_Port'])) {
-			$solmysql_Port = $this->attributes['solmysql_Port'];
-		}
-
-		// If we have 'group' set, then this is an existing Vsite and
-		// not one that we're just creating:
-		if (isset($this->attributes['group'])) {
-			$fqdn = $this->attributes['hostName'] . "." . $this->attributes['domain'];
-		}
-		else {
-			$cce = $ServerScriptHelper->getCceClient();
-			$feature_site = $cce->get($parameters['CCE_OID']);
-			$fqdn = $feature_site['fqdn'];
-		}
-
-		// Check CODB to see if we already have a 'MySQL_Vsite' object for this Vsite:
-		$cce = $ServerScriptHelper->getCceClient();
-		$featureMYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
-		$solmysqlExists_Status = $featureMYSQL_Vsite['enabled'];
-
-		
-		if ($solmysql_host != 'localhost') {
-			$unmodified_sql_host = $fqdn;
-		}
-		else {
-			$unmodified_sql_host = $solmysql_host;
-		}
-
-		if ($solmysql_Status == "") { // True on Vsite create
-		
-			if (($solmysqlExists_Status != $solmysql) && ($solmysql_username != "")) { 
-				// Existing DB, but MySQL is off. Or MySQL is enabled and no existing DB.
-				// Additionally: Username is blank if this is a Vsite create re-run.
-
-				// Start - MySQL
-				// End - MySQL
-			}
-
-			if ($solmysql == "1") {
-				$action = 'create';
+				}
+				else {
+					// Username and/or DB are the same as before. So we just update the info without 'create' or 'destroy':
+					$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+										'username' => $this->attributes['solmysql_username'],
+										'pass' => $this->attributes['solmysql_pass'],
+										'DB' => $this->attributes['solmysql_DB'],
+										'host' => $this->attributes['solmysql_host'],
+										'port' => $this->attributes['solmysql_Port'],
+										));
+					$errors = array_merge($errors, $cce->errors());
+				}
 			}
 			else {
-				$action = 'destroy';
-			}
-
-			if (($solmysql_username != "") && ($solmysql_DB != "")) {
-				// Create Vsite namespace 'MYSQL_Vsite':
-				$cce = $ServerScriptHelper->getCceClient();
-					$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
-									'enabled' => $solmysql, 
-									'username' => $solmysql_username,
-									'pass' => $solmysql_pass,
-									'DB' => $solmysql_DB,
-									'host' => $solmysql_host,
-									'port' => $solmysql_Port,
+				// It wasn't on to begin with. Which means: We have no database or user to worry about.
+				// So we can freely create a new user and database without worries.
+				$action = 'create';
+				$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+									'enabled' => $this->attributes['solmysql_enabled'],
+									'username' => $this->attributes['solmysql_username'],
+									'pass' => $this->attributes['solmysql_pass'],
+									'DB' => $this->attributes['solmysql_DB'],
+									'host' => $this->attributes['solmysql_host'],
+									'port' => $this->attributes['solmysql_Port'],
 									'hidden' => time(),
 									$action => time()
 									));
 				$errors = array_merge($errors, $cce->errors());
 			}
-			$ret = ini_set("display_errors", "On");
+		}
+		else {
+			// MySQL has been unticked. So we unscrupulously run a delete:
+			$action = 'destroy';
+			$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+								'enabled' => '0',
+								$action => time()
+								));
+			$errors = array_merge($errors, $cce->errors());
 		}
 	}
 }
