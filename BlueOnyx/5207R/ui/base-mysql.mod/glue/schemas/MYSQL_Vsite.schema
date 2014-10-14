@@ -93,5 +93,5 @@
 
 </class>
 
-<typedef name="mysqlusername" type="re" data="^[A-Za-z0-9][A-Za-z0-9_%]{1,15}$" /> 
-<typedef name="mysqldatabase" type="re" data="^[A-Za-z0-9][A-Za-z0-9_%]{1,63}$" /> 
+<typedef name="mysqlusername" type="re" data="^[A-Za-z0-9][-]{0,4}[A-Za-z0-9_%]{1,15}$" /> 
+<typedef name="mysqldatabase" type="re" data="^[A-Za-z0-9][-]{0,8}[A-Za-z0-9_%]{1,63}$" /> 
