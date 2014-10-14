@@ -302,7 +302,8 @@ class MYSQL_VsiteExtension extends UIExtension {
 										'hidden' => time(),
 										$action => time()
 										));
-					$errors = array_merge($errors, $cce->errors());
+					// Don't show error, as deletion might fail when DB is already gone:
+					//$errors = array_merge($errors, $cce->errors());
 
 					// Create new user and DB:
 					$action = 'create';
@@ -355,7 +356,8 @@ class MYSQL_VsiteExtension extends UIExtension {
 								'enabled' => '0',
 								$action => time()
 								));
-			$errors = array_merge($errors, $cce->errors());
+			// Don't show error, as deletion might fail when DB is already gone:
+			//$errors = array_merge($errors, $cce->errors());
 		}
 	}
 }
