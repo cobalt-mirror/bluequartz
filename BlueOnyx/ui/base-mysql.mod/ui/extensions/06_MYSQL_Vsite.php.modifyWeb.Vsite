@@ -14,280 +14,314 @@ $db_rights = $cceClient->getObject("System", array(), "MYSQLUSERS_DEFAULTS");
 if ($db_rights['solsitemysql'] == "1") {
 
 	class MYSQL_VsiteExtension extends UIExtension {
-	function display(&$ServerScriptHelper, &$container, $parameters) {
-		global $group;
-			$ret = ini_set("display_errors", "Off");
+		function display(&$ServerScriptHelper, &$container, $parameters) {
+			global $group;
+				$ret = ini_set("display_errors", "Off");
 
-		$cce = $ServerScriptHelper->getCceClient();
+			$cce = $ServerScriptHelper->getCceClient();
 
-		// will assume the container is a PagedBlock for the time being
-		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
-		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-mysql");
+			// will assume the container is a PagedBlock for the time being
+			$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+			$factory = $ServerScriptHelper->getHtmlComponentFactory("base-mysql");
 
-		$featureMYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
+			$featureMYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
 
-		// Find and validate presence of 'MySQL' and pull the data:
-		$serverScriptHelper = new ServerScriptHelper();
-		$cceClient = $serverScriptHelper->getCceClient();
-		$helper = new ServerScriptHelper($sessionId);
-		$cceHelper =& $helper->getCceClient();
-		$getthisOID = $cce->find("MySQL");
-		$mysql_settings_exists = 0;
-		$mysql_settings = $cceClient->get($getthisOID[0]);
+			// Find and validate presence of 'MySQL' and pull the data:
+			$serverScriptHelper = new ServerScriptHelper();
+			$cceClient = $serverScriptHelper->getCceClient();
+			$helper = new ServerScriptHelper($sessionId);
+			$cceHelper =& $helper->getCceClient();
+			$getthisOID = $cce->find("MySQL");
+			$mysql_settings_exists = 0;
+			$mysql_settings = $cceClient->get($getthisOID[0]);
 
-		// MySQL settings:
-		$sql_root               = $mysql_settings['sql_root'];
-		$sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-		$sql_host               = $mysql_settings['sql_host'];
-		$sql_port               = $mysql_settings['sql_port'];
-		
-		// Configure defaults:
-		if (!$sql_root) { $sql_root = "root"; }
-		if (!$sql_host) { $sql_host = "localhost"; }
-		if (!$sql_port) { $sql_port = "3306"; }
-
-		if (($sql_host != "localhost") || ($sql_host != "127.0.0.1")) {
-				$my_sql_host = $sql_host . ":" . $sql_port;
-				$con_sql_host = $my_sql_host;
-		}
-
-		// Get FQDN of the server:
-		$getthisFQDN = $cce->find("System");
-		$this_FQDN_info = $cceClient->get($getthisFQDN[0]);
-		$this_host = $this_FQDN_info['hostname'];
-		$this_domain = $this_FQDN_info['domainname'];
-		$this_FQDN = $this_host . "." . $this_domain;
-		
-		// Test MySQL connection: (1 = OK, 0 = not OK)
-		$mysql_link = mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
-		mysql_select_db("mysql") or $mysql_error = mysql_error();
-		mysql_close($mysql_link);
-		if ($mysql_error != "") {
-				$mysql_status = "0";
-		}
-		else {
-				$mysql_status = "1";
-		}
-		
-		if ($parameters['IS_SITE_ADMIN']) {
-			if ( $featureMYSQL_Vsite['enabled'] ) {
-						$solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
-						$enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'r');
-						$enable->setLabel($factory->getLabel('enable', false));
-						$solmysqlField->addOption($enable);
+			// MySQL settings:
+			$sql_root               = $mysql_settings['sql_root'];
+			$sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+			$sql_host               = $mysql_settings['sql_host'];
+			$sql_port               = $mysql_settings['sql_port'];
 			
-						$solmysqlUsername = $factory->getTextField('solmysql_username', $featureMYSQL_Vsite['username'], 'r');
-						$solmysqlUsername->setMaxLength("16");                        
-						$solmysqlUsername->setOptional(false);
-						$solmysqlUsername->setPreserveData(false);
-						$enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
+			// Configure defaults:
+			if (!$sql_root) { $sql_root = "root"; }
+			if (!$sql_host) { $sql_host = "localhost"; }
+			if (!$sql_port) { $sql_port = "3306"; }
 
-						$solmysqlPass = $factory->getTextField('solmysql_pass', $featureMYSQL_Vsite['pass'], 'r');
-						$solmysqlPass->setOptional(false);
-						$solmysqlPass->setPreserveData(false);
-						$enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
-
-						$solmysqlDB = $factory->getTextField('solmysql_DB', $featureMYSQL_Vsite['DB'], 'r');
-						$solmysqlDB->setMaxLength("16");
-						$solmysqlDB->setOptional(false);
-						$solmysqlDB->setPreserveData(false);
-						$enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
-
-						$solmysqlHost = $factory->getTextField('solmysql_host', $sql_host, 'r');
-						$solmysqlHost->setOptional(false);
-						$solmysqlHost->setPreserveData(false);
-						$enable->addFormField($solmysqlHost, $factory->getLabel('solmysqlHost'));
-
-						$solmysqlPort = $factory->getTextField('solmysql_Port', $sql_port, 'r');
-						$solmysqlPort->setOptional(false);
-						$solmysqlPort->setPreserveData(false);
-						$enable->addFormField($solmysqlPort, $factory->getLabel('solmysqlPort'));
-
-			// Hidden field for FQDN:
-						$container->addFormField(
-										$factory->getTextField('this_FQDN', $this_FQDN, 'r'),
-										$factory->getLabel('this_FQDN'), "hidden"
-									);
-
-			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+			if (($sql_host != "localhost") || ($sql_host != "127.0.0.1")) {
+					$my_sql_host = $sql_host . ":" . $sql_port;
+					$con_sql_host = $my_sql_host;
 			}
 
-		} else {
+			// Get FQDN of the server:
+			$getthisFQDN = $cce->find("System");
+			$this_FQDN_info = $cceClient->get($getthisFQDN[0]);
+			$this_host = $this_FQDN_info['hostname'];
+			$this_domain = $this_FQDN_info['domainname'];
+			$this_FQDN = $this_host . "." . $this_domain;
 			
-			if ($mysql_status == "1") {
-			// MySQL status is OK:
-			
-			if ( $featureMYSQL_Vsite['enabled'] ) {
-				$prot = 'r';
-				$protdel = 'rw';
+			// Test MySQL connection: (1 = OK, 0 = not OK)
+			$mysql_link = mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+			mysql_select_db("mysql") or $mysql_error = mysql_error();
+			mysql_close($mysql_link);
+			if ($mysql_error != "") {
+					$mysql_status = "0";
 			}
 			else {
-				$prot = 'rw';			
-				$protdel = 'r';
+					$mysql_status = "1";
 			}
+			
+			if ($parameters['IS_SITE_ADMIN']) {
+				if ( $featureMYSQL_Vsite['enabled'] ) {
+							$solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
+							$enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'r');
+							$enable->setLabel($factory->getLabel('enable', false));
+							$solmysqlField->addOption($enable);
+				
+							$solmysqlUsername = $factory->getTextField('solmysql_username', $featureMYSQL_Vsite['username'], 'r');
+							$solmysqlUsername->setMaxLength("16");                        
+							$solmysqlUsername->setOptional(false);
+							$solmysqlUsername->setPreserveData(false);
+							$enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
 
-			if ( !$featureMYSQL_Vsite['enabled'] ) {
-				// Feature not active, generate username, password and DBname:
-				// Resolve which site this is for:
-				$vsite = $cce->getObject('Vsite', array('name' => $group));
-				$vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
-				$my_username = "vsite_" . createRandomPassword('7');
-				$my_dbname =  $my_username . '_db';
-				$my_random_password = createRandomPassword();
-			}
-			else {
-				// Feature enabled already, read saved values from CCE:
-				$my_username = $featureMYSQL_Vsite['username'];
-				$my_random_password = $featureMYSQL_Vsite['pass'];
-				$my_dbname = $featureMYSQL_Vsite['DB'];
-			}
+							$solmysqlPass = $factory->getTextField('solmysql_pass', $featureMYSQL_Vsite['pass'], 'r');
+							$solmysqlPass->setOptional(false);
+							$solmysqlPass->setPreserveData(false);
+							$enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
 
-						$solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
-						$enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'rw');
-						$enable->setLabel($factory->getLabel('enable', false));
-						$solmysqlField->addOption($enable);
+							$solmysqlDB = $factory->getTextField('solmysql_DB', $featureMYSQL_Vsite['DB'], 'r');
+							$solmysqlDB->setMaxLength("16");
+							$solmysqlDB->setOptional(false);
+							$solmysqlDB->setPreserveData(false);
+							$enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
 
-						$solmysqlUsername = $factory->getTextField('solmysql_username', $my_username, $prot);
-						$solmysqlUsername->setMaxLength("16");
-						$solmysqlUsername->setOptional(false);
-						$solmysqlUsername->setPreserveData(false);
-						$enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
+							$solmysqlHost = $factory->getTextField('solmysql_host', $sql_host, 'r');
+							$solmysqlHost->setOptional(false);
+							$solmysqlHost->setPreserveData(false);
+							$enable->addFormField($solmysqlHost, $factory->getLabel('solmysqlHost'));
 
-						$solmysqlPass = $factory->getTextField('solmysql_pass', $my_random_password, $prot);
-						$solmysqlPass->setOptional(false);
-						$solmysqlPass->setPreserveData(false);
-						$enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
+							$solmysqlPort = $factory->getTextField('solmysql_Port', $sql_port, 'r');
+							$solmysqlPort->setOptional(false);
+							$solmysqlPort->setPreserveData(false);
+							$enable->addFormField($solmysqlPort, $factory->getLabel('solmysqlPort'));
 
-						$solmysqlDB = $factory->getTextField('solmysql_DB', $my_dbname, $prot);
-						$solmysqlDB->setMaxLength("16");
-						$solmysqlDB->setOptional(false);
-						$solmysqlDB->setPreserveData(false);
-						$enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
-
-						$solmysqlHost = $factory->getTextField('solmysql_host', $sql_host, 'r');
-						$solmysqlHost->setOptional(false);
-						$solmysqlHost->setPreserveData(false);
-						$enable->addFormField($solmysqlHost, $factory->getLabel('solmysqlHost'));
-
-						$solmysqlPort = $factory->getTextField('solmysql_Port', $sql_port, 'r');
-						$solmysqlPort->setOptional(false);
-						$solmysqlPort->setPreserveData(false);
-						$enable->addFormField($solmysqlPort, $factory->getLabel('solmysqlPort'));
-
-			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
-
-			// Hidden field for previous status:
-						$container->addFormField(
-										$factory->getTextField('solmysql_Hidden', $featureMYSQL_Vsite['hidden'], 'r'),
-										$factory->getLabel('solmysql_Hidden'), "hidden"
+				// Hidden field for FQDN:
+							$container->addFormField(
+											$factory->getTextField('this_FQDN', $this_FQDN, 'r'),
+											$factory->getLabel('this_FQDN'), "hidden"
 										);
 
-			// Hidden field for FQDN:
-						$container->addFormField(
-										$factory->getTextField('this_FQDN', $this_FQDN, 'r'),
-										$factory->getLabel('this_FQDN'), "hidden"
-									);
+				$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+				}
+
+			} else {
+				
+				if ($mysql_status == "1") {
+				// MySQL status is OK:
+				
+				if ( $featureMYSQL_Vsite['enabled'] ) {
+					$prot = 'r';
+					$protdel = 'rw';
+				}
+				else {
+					$prot = 'rw';			
+					$protdel = 'r';
+				}
+
+				if ( !$featureMYSQL_Vsite['enabled'] ) {
+					// Feature not active, generate username, password and DBname:
+					// Resolve which site this is for:
+					$vsite = $cce->getObject('Vsite', array('name' => $group));
+					$vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
+					$my_username = "vsite_" . createRandomPassword('7');
+					$my_dbname =  $my_username . '_db';
+					$my_random_password = createRandomPassword();
+				}
+				else {
+					// Feature enabled already, read saved values from CCE:
+					$my_username = $featureMYSQL_Vsite['username'];
+					$my_random_password = $featureMYSQL_Vsite['pass'];
+					$my_dbname = $featureMYSQL_Vsite['DB'];
+				}
+
+							$solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
+							$enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'rw');
+							$enable->setLabel($factory->getLabel('enable', false));
+							$solmysqlField->addOption($enable);
+
+							$solmysqlUsername = $factory->getTextField('solmysql_username', $my_username, $prot);
+							$solmysqlUsername->setMaxLength("16");
+							$solmysqlUsername->setOptional(false);
+							$solmysqlUsername->setPreserveData(false);
+							$enable->addFormField($solmysqlUsername, $factory->getLabel('solmysqlUsername'));
+
+							$solmysqlPass = $factory->getTextField('solmysql_pass', $my_random_password, $prot);
+							$solmysqlPass->setOptional(false);
+							$solmysqlPass->setPreserveData(false);
+							$enable->addFormField($solmysqlPass, $factory->getLabel('solmysqlPass'));
+
+							$solmysqlDB = $factory->getTextField('solmysql_DB', $my_dbname, $prot);
+							$solmysqlDB->setMaxLength("16");
+							$solmysqlDB->setOptional(false);
+							$solmysqlDB->setPreserveData(false);
+							$enable->addFormField($solmysqlDB, $factory->getLabel('solmysqlDB'));
+
+							$solmysqlHost = $factory->getTextField('solmysql_host', $sql_host, 'r');
+							$solmysqlHost->setOptional(false);
+							$solmysqlHost->setPreserveData(false);
+							$enable->addFormField($solmysqlHost, $factory->getLabel('solmysqlHost'));
+
+							$solmysqlPort = $factory->getTextField('solmysql_Port', $sql_port, 'r');
+							$solmysqlPort->setOptional(false);
+							$solmysqlPort->setPreserveData(false);
+							$enable->addFormField($solmysqlPort, $factory->getLabel('solmysqlPort'));
+
+				$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+
+				// Hidden field for previous status:
+							$container->addFormField(
+											$factory->getTextField('solmysql_Hidden', $featureMYSQL_Vsite['hidden'], 'r'),
+											$factory->getLabel('solmysql_Hidden'), "hidden"
+											);
+
+				// Hidden field for FQDN:
+							$container->addFormField(
+											$factory->getTextField('this_FQDN', $this_FQDN, 'r'),
+											$factory->getLabel('this_FQDN'), "hidden"
+										);
+				
+				}
+				else {
+				// MySQL status is not OK:
+
+							$solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
+							$enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'rw');
+							$enable->setLabel($factory->getLabel('enable', false));
+							$solmysqlField->addOption($enable);
+				
+							$sql_Status = "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running.";
+
+							$solmysqlStatus = $factory->getTextField('sql_status', $sql_Status, 'r');
+							$solmysqlStatus->setOptional(false);
+							$solmysqlStatus->setPreserveData(false);
+							$enable->addFormField($solmysqlStatus, $factory->getLabel('sql_status'));
+
+				$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+				}
+			}
+		}
+
+		function handle(&$ServerScriptHelper, &$errors, $parameters) {
+			global $solmysql;
+			global $solmysql_enabled;
+			global $solmysql_Status;
+			global $solmysql_username;
+			global $solmysql_pass;
+			global $solmysql_DB;
+			global $solmysql_host;
+			global $solmysql_Port;
+
+			global $sql_root;
+			global $sql_rootpassword;
+		
+			global $group;    
+			global $hostname;
+			global $domain;
 			
+			global $this_FQDN;
+
+			$cce = $ServerScriptHelper->getCceClient();
+
+			// Get items of interest:
+			$VsiteObject = $cce->get($parameters['CCE_OID']);
+			$MYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
+
+			if ($solmysql_enabled == "&solmysql&") {
+				$solmysql_enabled = "1";
 			}
 			else {
-			// MySQL status is not OK:
+				$solmysql_enabled = "0";
+			}
 
-						$solmysqlField =& $factory->getMultiChoice('solmysql_enabled');
-						$enable =& $factory->getOption('solmysql', $featureMYSQL_Vsite['enabled'], 'rw');
-						$enable->setLabel($factory->getLabel('enable', false));
-						$solmysqlField->addOption($enable);
-			
-						$sql_Status = "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running.";
+			// Should MySQL be turned on or off?
+			if ($solmysql_enabled == '1') {
+				// It should be turned on or be left on.
 
-						$solmysqlStatus = $factory->getTextField('sql_status', $sql_Status, 'r');
-						$solmysqlStatus->setOptional(false);
-						$solmysqlStatus->setPreserveData(false);
-						$enable->addFormField($solmysqlStatus, $factory->getLabel('sql_status'));
+				// Current state is:
+				if ($MYSQL_Vsite['enabled'] == '1') {
+					// It is already on. Do we just save the same info, or do we change it?
+					if (($MYSQL_Vsite['username'] != $solmysql_username) || ($MYSQL_Vsite['DB'] != $solmysql_DB)) {
+						// Username and or DB are different from what we had on record. So we destroy the new database and user first and then create
+						// a new one with the new details.
 
-			$container->addFormField($solmysqlField, $factory->getLabel('solmysqlFullText'), $page_id);
+						// Destroy existing user and DB:
+						$action = 'destroy';
+						$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+											'enabled' => '0',
+											'username' => $MYSQL_Vsite['username'],
+											'pass' => $MYSQL_Vsite['pass'],
+											'DB' => $MYSQL_Vsite['DB'],
+											'host' => $MYSQL_Vsite['host'],
+											'port' => $MYSQL_Vsite['port'],
+											'hidden' => time(),
+											$action => time()
+											));
+						// Don't show error, as deletion might fail when DB is already gone:
+						//$errors = array_merge($errors, $cce->errors());
+
+						// Create new user and DB:
+						$action = 'create';
+						$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+											'enabled' => $solmysql_enabled,
+											'username' => $solmysql_username,
+											'pass' => $solmysql_pass,
+											'DB' => $solmysql_DB,
+											'host' => $solmysql_host,
+											'port' => $solmysql_Port,
+											'hidden' => time(),
+											$action => time()
+											));
+						$errors = array_merge($errors, $cce->errors());
+
+					}
+					else {
+						// Username and/or DB are the same as before. So we just update the info without 'create' or 'destroy':
+						$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+											'username' => $solmysql_username,
+											'pass' => $solmysql_pass,
+											'DB' => $solmysql_DB,
+											'host' => $solmysql_host,
+											'port' => $solmysql_Port,
+											));
+						$errors = array_merge($errors, $cce->errors());
+					}
+				}
+				else {
+					// It wasn't on to begin with. Which means: We have no database or user to worry about.
+					// So we can freely create a new user and database without worries.
+					$action = 'create';
+					$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+										'enabled' => $solmysql_enabled,
+										'username' => $solmysql_username,
+										'pass' => $solmysql_pass,
+										'DB' => $solmysql_DB,
+										'host' => $solmysql_host,
+										'port' => $solmysql_Port,
+										'hidden' => time(),
+										$action => time()
+										));
+					$errors = array_merge($errors, $cce->errors());
+				}
+			}
+			else {
+				// MySQL has been unticked. So we unscrupulously run a delete:
+				$action = 'destroy';
+				$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
+									'enabled' => '0',
+									$action => time()
+									));
+				// Don't show error, as deletion might fail when DB is already gone:
+				//$errors = array_merge($errors, $cce->errors());
 			}
 		}
-	}
-
-	function handle(&$ServerScriptHelper, &$errors, $parameters) {
-		global $solmysql;
-		global $solmysql_enabled;
-		global $solmysql_Status;
-		global $solmysql_username;
-		global $solmysql_pass;
-		global $solmysql_DB;
-		global $solmysql_host;
-		global $solmysql_Port;
-
-		global $sql_root;
-		global $sql_rootpassword;
-	
-		global $group;    
-		global $hostname;
-		global $domain;
-		
-		global $this_FQDN;
-		
-		if ((!$group) || ($group == "")) {
-			$fqdn = $hostname . "." . $domain;
-		}
-		else {
-			$cce = $ServerScriptHelper->getCceClient();
-			$feature_site = $cce->get($parameters['CCE_OID']);
-			$fqdn = $feature_site['fqdn'];
-		}
-
-		$cce = $ServerScriptHelper->getCceClient();
-		$featureMYSQL_Vsite = $cce->get($parameters['CCE_OID'], 'MYSQL_Vsite');
-		$solmysqlx_Status = $featureMYSQL_Vsite['enabled'];
-		
-		if ($solmysql_enabled == "&solmysql&") {
-			$mysolmysql_enabled = "1";
-		}
-		else {
-			$mysolmysql_enabled = "0";
-		}
-
-		if ($solmysql_host != 'localhost') {
-			$unmodified_sql_host = $this_FQDN;
-		}
-		else {
-			$unmodified_sql_host = $solmysql_host;
-		}
-
-		if ($solmysql_Status == "") {
-		
-		if ($solmysqlx_Status != $mysolmysql_enabled) {
-
-			// Start - MySQL
-			// End - MySQL
-		}
-
-		if ($mysolmysql_enabled == "1") {
-			$action = 'create';
-		}
-		else {
-			$action = 'destroy';
-		}
-
-		// Create Vsite namespace 'MYSQL_Vsite':
-		if (($solmysql_username) && ($solmysql_DB)) {
-			$cce = $ServerScriptHelper->getCceClient();
-				$cce->set($parameters['CCE_OID'], 'MYSQL_Vsite', array(
-								'enabled' => $mysolmysql_enabled, 
-								'username' => $solmysql_username,
-								'pass' => $solmysql_pass,
-								'DB' => $solmysql_DB,
-								'host' => $solmysql_host,
-								'port' => $solmysql_Port,
-								'hidden' => time(),
-								$action => time()
-								));
-			$errors = array_merge($errors, $cce->errors());
-		}
-		$ret = ini_set("display_errors", "On");
-		}
-	}
 	}
 }
 

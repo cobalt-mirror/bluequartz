@@ -115,6 +115,14 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX02
+- Massive cleanup in ui/chorizo/extensions/15_MYSQL_Vsite.php.create.Vsite
+- Massive cleanup in ui/chorizo/extensions/15_MYSQL_Vsite.php.modifyWeb.Vsite
+- Massive cleanup in ui/extensions/06_MYSQL_Vsite.php.create.Vsite
+- Massive cleanup in ui/extensions/06_MYSQL_Vsite.php.modifyWeb.Vsite
+- There was a pretty big kink in the logic and it prevented saves when the
+  MySQL details didn't change. Pretty stupid actually.
+
 * Sat Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX01
 - Version number bump due to radical behaviour changes.
 - Implemented, improvised and adapted Hideki Oride's MySQL changes from
