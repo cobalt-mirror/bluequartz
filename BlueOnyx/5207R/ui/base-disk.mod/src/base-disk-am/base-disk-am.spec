@@ -1,7 +1,7 @@
 Summary: Binaries and scripts used by Active Monitor for base-disk
 Name: base-disk-am
 Version: 1.2.0
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -29,6 +29,15 @@ This package contains a number of binaries and scripts used by the Active
 Monitor subsystem to monitor services provided by the base-disk module.  
 
 %changelog
+
+* Mon Oct 13 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX02
+- Modified src/base-disk-am/get_quotas.pl to add debugging. Also added a check that if
+  there is only one disk (think OpenVZ, Cloud or similar) which is mounted, is 'internal'
+  and has the flag 'isHomePartition', then we use it, but check for the sites on /home
+  instead. This eleminates the last vestiges of BlueOnyx really needing a /home
+  partition. This is the one work around that eleminates the need for all the other
+  duct-tape measures in this regards. Still works if the other usual band-aids are
+  already applied on a box.
 
 * Thu Dec 05 2013 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX01
 - Modified am_disk.pl to allow mailing in 'ja_JP' again. Now that our Japanese locales are
