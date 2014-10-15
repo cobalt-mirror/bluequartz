@@ -13,7 +13,7 @@ RELEASE=0BX03
 BUILDARCH=noarch
 
 # locale exclude pattern
-BUILDUI=old
+BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no
