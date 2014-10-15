@@ -124,8 +124,8 @@ if ((isset($_POST['payload'])) && (($_POST['action'] != "reboot") || ($_POST['ac
   //--- Stop: Debug output
 
   if ($payload == NULL) {
-  	error_log("BlueOnyx API: JSON decoding returned NULL!");
-  	error_log("BlueOnyx API: JSON error: " . json_last_error());
+    error_log("BlueOnyx API: JSON decoding returned NULL!");
+    error_log("BlueOnyx API: JSON error: " . json_last_error());
     error_log("BlueOnyx API: Not continuing without JSON data!");
     // nice people say aufwiedersehen
     $helper->destructor();
@@ -209,8 +209,8 @@ if ($_POST['action'] == "create") {
     }
     else {
       error_log("BlueOnyx API: Did not receive sufficient data to finish this transaction.");
-    	// nice people say aufwiedersehen
-    	$helper->destructor();
+      // nice people say aufwiedersehen
+      $helper->destructor();
       exit;
     }
 }
@@ -230,12 +230,12 @@ elseif ($_POST['action'] == "changepass") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-    	  error_log("BlueOnyx API: An error happened during the password change.");
-    	  exit;
+        error_log("BlueOnyx API: An error happened during the password change.");
+        exit;
       }
       else {
-      	echo "success";
-      	exit;
+        echo "success";
+        exit;
       }
     }
 }
@@ -267,12 +267,12 @@ elseif ($_POST['action'] == "suspend") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-    	  error_log("BlueOnyx API: An error happened during the suspension of the Vsite.");
-    	  exit;	  
+        error_log("BlueOnyx API: An error happened during the suspension of the Vsite.");
+        exit;   
       }
       else {
-      	echo "success";
-      	exit;
+        echo "success";
+        exit;
       }
     }
     else {
@@ -304,12 +304,12 @@ elseif ($_POST['action'] == "unsuspend") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-    	  error_log("BlueOnyx API: An error happened during unsuspension of the Vsite.");
-    	  exit;
+        error_log("BlueOnyx API: An error happened during unsuspension of the Vsite.");
+        exit;
       }
       else {
-      	echo "success";
-      	exit;
+        echo "success";
+        exit;
       }
     }
 }
@@ -333,38 +333,38 @@ elseif ($_POST['action'] == "destroy") {
       $VsiteMySQL = $cceClient->get($vsiteOID[0], "MYSQL_Vsite");
 
       if ($VsiteMySQL['enabled'] == "1") {
-  	    // Get Server's MySQL access details:
-  	    $getthisOID = $cceClient->find("MySQL");
-  	    $mysql_settings = $cceClient->get($getthisOID[0]);
+        // Get Server's MySQL access details:
+        $getthisOID = $cceClient->find("MySQL");
+        $mysql_settings = $cceClient->get($getthisOID[0]);
 
-  	    // Server MySQL settings:
-  	    $sql_root               = $mysql_settings['sql_root'];
-  	    $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
-  	    $sql_host               = $mysql_settings['sql_host'];
-  	    $sql_port               = $mysql_settings['sql_port'];
-  	    $sql_host_and_port = $sql_host . ":" . $sql_port;
+        // Server MySQL settings:
+        $sql_root               = $mysql_settings['sql_root'];
+        $sql_rootpassword       = $mysql_settings['sql_rootpassword'];
+        $sql_host               = $mysql_settings['sql_host'];
+        $sql_port               = $mysql_settings['sql_port'];
+        $sql_host_and_port = $sql_host . ":" . $sql_port;
 
-  	    // Store the setings in $VsiteSettings as well:
-  	    $VsiteSettings['sql_username'] = $sql_username;
-  	    $VsiteSettings['sql_database'] = $sql_database;
-  	    $VsiteSettings['sql_host'] = $sql_host;
-  	    $VsiteSettings['sql_root'] = $sql_root;
-  	    $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
-  	
-  	    delete_mysql_stuff($VsiteSettings, $cceClient);
+        // Store the setings in $VsiteSettings as well:
+        $VsiteSettings['sql_username'] = $sql_username;
+        $VsiteSettings['sql_database'] = $sql_database;
+        $VsiteSettings['sql_host'] = $sql_host;
+        $VsiteSettings['sql_root'] = $sql_root;
+        $VsiteSettings['sql_rootpassword'] = $sql_rootpassword;
+    
+        delete_mysql_stuff($VsiteSettings, $cceClient);
       }
 
       // Find out if the site is suspended. In that case we unsuspend it first:
       if ($VsiteSettings['suspend'] == "1") {
-      	$host_details = get_fqdn_details($payload->domain);
-      	$cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
-      	$errors = $cceClient->errors();
+        $host_details = get_fqdn_details($payload->domain);
+        $cceClient->setObject("Vsite", array("suspend" => "0"), "", array("fqdn" => $host_details['fqdn']));
+        $errors = $cceClient->errors();
       }
 
       // Destroy the Vsite and all its Users and data:
       if (isset($VsiteSettings['name'])) {
-      	$cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
-      	$helper->fork($cmd, 'root');
+        $cmd = "/usr/sausalito/sbin/vsite_destroy.pl " . $VsiteSettings['name'];
+        $helper->fork($cmd, 'root');
       }
       else {
         $errors = array("error" => "Site not there!");
@@ -374,12 +374,12 @@ elseif ($_POST['action'] == "destroy") {
       $helper->destructor();
 
       if (count($errors) >= "1") {
-    	  error_log("BlueOnyx API: An error happened during the deletion of the Vsite.");
-    	  exit;
+        error_log("BlueOnyx API: An error happened during the deletion of the Vsite.");
+        exit;
       }
       else {
-      	echo "success";
-      	exit;
+        echo "success";
+        exit;
       }
     }
 }
@@ -436,7 +436,7 @@ elseif ($_POST['action'] == "reboot") {
 
       if (count($errors) >= "1") {
         error_log("BlueOnyx API: An error happened while attempting to reboot the server.");
-        exit;	  
+        exit;   
       }
       else {
         echo "success";
@@ -531,10 +531,10 @@ elseif ($_POST['action'] == "status") {
       $amenabled = $amobj["enabled"];
 
       $stmap = array(
-    	  "N" => "N/A", 
-    	  "G" => "Normal", 
-    	  "Y" => "Problem", 
-    	  "R" => "Severe Problem"
+        "N" => "N/A", 
+        "G" => "Normal", 
+        "Y" => "Problem", 
+        "R" => "Severe Problem"
        );
 
       $yellow = "0";
@@ -573,8 +573,8 @@ elseif ($_POST['action'] == "status") {
       echo $result;
 }
 else {
-	error_log("BlueOnyx API: Requested action couldn't be determined.");
-	error_log("BlueOnyx API: POST action was: '" . $_POST['action'] . "'.");
+  error_log("BlueOnyx API: Requested action couldn't be determined.");
+  error_log("BlueOnyx API: POST action was: '" . $_POST['action'] . "'.");
 }
 
 //
@@ -601,31 +601,31 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
   // Do the Vsite create CCE transaction:
   $cceClient->set($vsiteOID,  "",
-			  array(
-				  'hostname' => $host_details['hostname'],
-				  'domain' => $host_details['domain'],
-				  'fqdn' => ($host_details['hostname'] . '.' . $host_details['domain']),
-				  'ipaddr' => $payload->ipaddr,
-				  'webAliases' => $host_details['domain'],
-				  'webAliasRedirects' => $vsiteDefaults['webAliasRedirects'],
-				  'emailDisabled' => $vsiteDefaults['emailDisabled'],
-				  'mailAliases' => $host_details['domain'],
-				  "mailCatchAll" => "",
-				  'volume' => "/home",
-				  'maxusers' => $payload->users,
-				  'dns_auto' => $payload->auto_dns,
-				  'prefix' => "",
-				  'site_preview' => $vsiteDefaults['site_preview']
-			      )
-			  );
+        array(
+          'hostname' => $host_details['hostname'],
+          'domain' => $host_details['domain'],
+          'fqdn' => ($host_details['hostname'] . '.' . $host_details['domain']),
+          'ipaddr' => $payload->ipaddr,
+          'webAliases' => $host_details['domain'],
+          'webAliasRedirects' => $vsiteDefaults['webAliasRedirects'],
+          'emailDisabled' => $vsiteDefaults['emailDisabled'],
+          'mailAliases' => $host_details['domain'],
+          "mailCatchAll" => "",
+          'volume' => "/home",
+          'maxusers' => $payload->users,
+          'dns_auto' => $payload->auto_dns,
+          'prefix' => "",
+          'site_preview' => $vsiteDefaults['site_preview']
+            )
+        );
 
   $errors = $cceClient->errors();
 
   // Setup disk-quota:
   if ($vsiteOID) {
-	  $quota = $payload->disk;
-	  $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $quota = $payload->disk;
+    $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // Find the siteAdmin for this site and update his disk-quota as well:
@@ -645,12 +645,12 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
   // Handle suPHP. If enabled, we set the web-ownerships to this User:
   if ($payload->php == "suPHP") {
-	  $cceClient->set($vsiteOID, 'PHP', array('prefered_siteAdmin' => $payload->username));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'PHP', array('prefered_siteAdmin' => $payload->username));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   else {
-	  $cceClient->set($vsiteOID, 'PHP', array('prefered_siteAdmin' => "apache"));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'PHP', array('prefered_siteAdmin' => "apache"));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // If Auto-DNS is enabled, we grant this user the caplevel of 'dnsAdmin' as well:
@@ -687,18 +687,18 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
   // JSP:
   if (isset($payload->jsp)) {
-	  $cceClient->set($vsiteOID, 'Java', array('enabled' => $payload->jsp));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'Java', array('enabled' => $payload->jsp));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   // PHP:
   if (isset($payload->php)) {
-	  // Possible options: No,Yes,suPHP
-	  $php = "0"; 
-	  $suPHP = "0";
-	  if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
-	  if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
-	  $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
-	  $errors = array_merge($errors, $cceClient->errors());
+    // Possible options: No,Yes,suPHP
+    $php = "0"; 
+    $suPHP = "0";
+    if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
+    if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
+    $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   // MySQL:
 
@@ -709,17 +709,17 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
   if ((isset($payload->mysql)) && ($payload->mysql == "1") && ($mysql_vsite_settings['enabled'] == "0")) {
 
-	  error_log("MySQL was not enabled before, but should be on now.");
+    error_log("MySQL was not enabled before, but should be on now.");
 
-	  // IF we're here, MySQL wasn't enabled before. So we do that now:
+    // IF we're here, MySQL wasn't enabled before. So we do that now:
     
-	  // Find out group of Vsite:
-	  $VsiteSettings = $cceClient->get($vsiteOID, '');
+    // Find out group of Vsite:
+    $VsiteSettings = $cceClient->get($vsiteOID, '');
 
-	  // Get MySQL Server settings from CCE:
-	  $mysql_settings = $cceClient->getObject("MySQL", array());
+    // Get MySQL Server settings from CCE:
+    $mysql_settings = $cceClient->getObject("MySQL", array());
 
-	  // Set up MySQL username, DB-name and MySQL-password:
+    // Set up MySQL username, DB-name and MySQL-password:
     $vs_site = $vsite["hostname"] . '.' . $vsite["domain"];
     $sql_username = "vsite_" . MySQLcreateRandomPassword('7');
     $sql_database =  $sql_username . '_db';
@@ -732,19 +732,19 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
       $MySQLaction = 'destroy';
     }
 
-	  // Do the deeds:
-	  if ($payload->mysql == "1") {
-	    $cceClient->set($vsiteOID, 'MYSQL_Vsite', array("username" => $sql_username,
-							    "pass" => $my_random_password,
-							    "host" => $mysql_settings['sql_host'],
-							    "hidden" => time(),
-							    "DB" => $sql_database,
-							    "port" => $mysql_settings['sql_port'],
-							    "enabled" => "1",
+    // Do the deeds:
+    if ($payload->mysql == "1") {
+      $cceClient->set($vsiteOID, 'MYSQL_Vsite', array("username" => $sql_username,
+                  "pass" => $my_random_password,
+                  "host" => $mysql_settings['sql_host'],
+                  "hidden" => time(),
+                  "DB" => $sql_database,
+                  "port" => $mysql_settings['sql_port'],
+                  "enabled" => "1",
                   $MySQLaction => time()
                   ));
-	    $errors = array_merge($errors, $cceClient->errors());
-	  }
+      $errors = array_merge($errors, $cceClient->errors());
+    }
   }
   else {
 
@@ -785,44 +785,44 @@ function do_modify_vsite ($payload, $clientsdetails, $helper) {
 
   // CGI:
   if (isset($payload->cgi)) {
-	  $cceClient->set($vsiteOID, 'CGI', array('enabled' => $payload->cgi));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'CGI', array('enabled' => $payload->cgi));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // SSI:
   if (isset($payload->ssi)) {
-	  $cceClient->set($vsiteOID, 'SSI', array('enabled' => $payload->ssi));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'SSI', array('enabled' => $payload->ssi));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // bwlimit:
   if ((isset($payload->bwlimit)) && (isset($payload->bwlimitVal))) {
-	  $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // FTP:
   if (isset($payload->ftp)) {
-	  $cceClient->set($vsiteOID, 'FTPNONADMIN', array('enabled' => $payload->ftp));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'FTPNONADMIN', array('enabled' => $payload->ftp));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // userwebs:
   if (isset($payload->userwebs)) {
-	  $cceClient->set($vsiteOID, 'USERWEBS', array('enabled' => $payload->userwebs));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'USERWEBS', array('enabled' => $payload->userwebs));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // Shell-access:
   if (isset($payload->shell)) {
-	  $cceClient->set($vsiteOID, 'Shell', array('enabled' => $payload->shell));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'Shell', array('enabled' => $payload->shell));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   
   // Sub-Domains:
   if ((isset($payload->subdomains)) && (isset($payload->subdomainsMax))) {
-	  $cceClient->set($vsiteOID, 'subdomains', array('vsite_enabled' => $payload->subdomains, 'max_subdomains' => $payload->subdomainsMax));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'subdomains', array('vsite_enabled' => $payload->subdomains, 'max_subdomains' => $payload->subdomainsMax));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // Auto-DNS:
@@ -885,23 +885,23 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
   // Do the Vsite create CCE transaction:
   $vsiteOID = $cceClient->create("Vsite", 
-			  array(
-				  'hostname' => $host_details['hostname'],
-				  'domain' => $host_details['domain'],
-				  'fqdn' => ($host_details['hostname'] . '.' . $host_details['domain']),
-				  'ipaddr' => $payload->ipaddr,
-				  'webAliases' => $host_details['domain'],
-				  'webAliasRedirects' => $vsiteDefaults['webAliasRedirects'],
-				  'emailDisabled' => $vsiteDefaults['emailDisabled'],
-				  'mailAliases' => $host_details['domain'],
-				  "mailCatchAll" => "",
-				  'volume' => "/home",
-				  'maxusers' => $payload->users,
-				  'dns_auto' => $payload->auto_dns,
-				  'prefix' => "",
-				  'site_preview' => $vsiteDefaults['site_preview']
-			      )
-			  );
+        array(
+          'hostname' => $host_details['hostname'],
+          'domain' => $host_details['domain'],
+          'fqdn' => ($host_details['hostname'] . '.' . $host_details['domain']),
+          'ipaddr' => $payload->ipaddr,
+          'webAliases' => $host_details['domain'],
+          'webAliasRedirects' => $vsiteDefaults['webAliasRedirects'],
+          'emailDisabled' => $vsiteDefaults['emailDisabled'],
+          'mailAliases' => $host_details['domain'],
+          "mailCatchAll" => "",
+          'volume' => "/home",
+          'maxusers' => $payload->users,
+          'dns_auto' => $payload->auto_dns,
+          'prefix' => "",
+          'site_preview' => $vsiteDefaults['site_preview']
+            )
+        );
 
   $errors = $cceClient->errors();
 
@@ -914,9 +914,9 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
   // Setup disk-quota:
   if ($vsiteOID) {
-	  $quota = $payload->disk;
-	  $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $quota = $payload->disk;
+    $cceClient->set($vsiteOID, 'Disk', array('quota' => $quota));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   if (count($errors) >= "1") {
     error_log("BlueOnyx API: Sorry, could not set disk-quota information for Vsite.");
@@ -926,31 +926,32 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
 
   // JSP:
   if (isset($payload->jsp)) {
-	  $cceClient->set($vsiteOID, 'Java', array('enabled' => $payload->jsp));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'Java', array('enabled' => $payload->jsp));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   // PHP:
   if (isset($payload->php)) {
-	  // Possible options: No,Yes,suPHP
-	  $php = "0"; 
-	  $suPHP = "0";
-	  if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
-	  if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
-	  $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
-	  $errors = array_merge($errors, $cceClient->errors());
+    // Possible options: No,Yes,suPHP
+    $php = "0"; 
+    $suPHP = "0";
+    if ($payload->php == "Yes") { $php = "1"; $suPHP = "0"; }
+    if ($payload->php == "suPHP") { $php = "1"; $suPHP = "1"; }
+    $cceClient->set($vsiteOID, 'PHP', array('enabled' => $php, "suPHP_enabled" => $suPHP));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   // MySQL:
   if (isset($payload->mysql)) {
-	  // Find out group of Vsite:
-	  $VsiteSettings = $cceClient->get($vsiteOID, '');
+    // Find out group of Vsite:
+    $VsiteSettings = $cceClient->get($vsiteOID, '');
 
-	  // Set up MySQL username, DB-name and MySQL-password:
-	  $sql_username = $VsiteSettings['name'];
-	  $sql_database = $VsiteSettings['name'] . '_db';
-	  $my_random_password = MySQLcreateRandomPassword();
+    // Set up MySQL username, DB-name and MySQL-password:
 
-	  // Get MySQL Server settings from CCE:
-	  $mysql_settings = $cceClient->getObject("MySQL", array());
+    $sql_username = "vsite_" . MySQLcreateRandomPassword('7');
+    $sql_database =  $sql_username . '_db';
+    $my_random_password = MySQLcreateRandomPassword();
+
+    // Get MySQL Server settings from CCE:
+    $mysql_settings = $cceClient->getObject("MySQL", array());
 
     if ($payload->mysql == "1") {
       $MySQLaction = 'create';
@@ -959,61 +960,61 @@ function do_create_vsite ($payload, $clientsdetails, $helper) {
       $MySQLaction = 'destroy';
     }
 
-	  // Do the deeds:
-	  if ($payload->mysql == "1") {
-	    $cceClient->set($vsiteOID, 'MYSQL_Vsite', array("username" => $sql_username,
-							    "pass" => $my_random_password,
-							    "host" => $mysql_settings['sql_host'],
-							    "hidden" => time(),
-							    "DB" => $sql_database,
-							    "port" => $mysql_settings['sql_port'],
-							    "enabled" => "1",
+    // Do the deeds:
+    if ($payload->mysql == "1") {
+      $cceClient->set($vsiteOID, 'MYSQL_Vsite', array("username" => $sql_username,
+                  "pass" => $my_random_password,
+                  "host" => $mysql_settings['sql_host'],
+                  "hidden" => time(),
+                  "DB" => $sql_database,
+                  "port" => $mysql_settings['sql_port'],
+                  "enabled" => "1",
                   $MySQLaction => time()
                   ));
-	    $errors = array_merge($errors, $cceClient->errors());
-	  }
+      $errors = array_merge($errors, $cceClient->errors());
+    }
   }
 
   // CGI:
   if (isset($payload->cgi)) {
-	  $cceClient->set($vsiteOID, 'CGI', array('enabled' => $payload->cgi));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'CGI', array('enabled' => $payload->cgi));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // SSI:
   if (isset($payload->ssi)) {
-	  $cceClient->set($vsiteOID, 'SSI', array('enabled' => $payload->ssi));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'SSI', array('enabled' => $payload->ssi));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // bwlimit:
   if ((isset($payload->bwlimit)) && (isset($payload->bwlimitVal))) {
-	  $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'ApacheBandwidth', array('enabled' => $payload->bwlimit, 'speed' => $payload->bwlimitVal));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // FTP:
   if (isset($payload->ftp)) {
-	  $cceClient->set($vsiteOID, 'FTPNONADMIN', array('enabled' => $payload->ftp));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'FTPNONADMIN', array('enabled' => $payload->ftp));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // userwebs:
   if (isset($payload->userwebs)) {
-	  $cceClient->set($vsiteOID, 'USERWEBS', array('enabled' => $payload->userwebs));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'USERWEBS', array('enabled' => $payload->userwebs));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // Shell-access:
   if (isset($payload->shell)) {
-	  $cceClient->set($vsiteOID, 'Shell', array('enabled' => $payload->shell));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'Shell', array('enabled' => $payload->shell));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   
   // Sub-Domains:
   if ((isset($payload->subdomains)) && (isset($payload->subdomainsMax))) {
-	  $cceClient->set($vsiteOID, 'subdomains', array('vsite_enabled' => $payload->subdomains, 'max_subdomains' => $payload->subdomainsMax));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($vsiteOID, 'subdomains', array('vsite_enabled' => $payload->subdomains, 'max_subdomains' => $payload->subdomainsMax));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // Auto-DNS:
@@ -1067,23 +1068,23 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
   // Do the User create CCE transaction:
   $cceClient = $helper->getCceClient();
   $userOID = $cceClient->create("User", 
-			  array(
-				"fullName" => $clientsdetails->firstname . " " . $clientsdetails->lastname,
-				"ftpDisabled" => "0", 
-				"capLevels" => "&siteAdmin&", 
-				"sortName" => "", 
-				"emailDisabled" => "0",
-				"volume" => "/home",
-				"description" => "",
-				"name" => $payload->username,
-				"password" => $payload->password,
-				"stylePreference" => "BlueOnyx",
-				"site" => $VsiteSettings['name'],
-				"enabled" => "1",
-				"localePreference" => "browser",
-				"description" => $comments
-			      )
-			  );
+        array(
+        "fullName" => $clientsdetails->firstname . " " . $clientsdetails->lastname,
+        "ftpDisabled" => "0", 
+        "capLevels" => "&siteAdmin&", 
+        "sortName" => "", 
+        "emailDisabled" => "0",
+        "volume" => "/home",
+        "description" => "",
+        "name" => $payload->username,
+        "password" => $payload->password,
+        "stylePreference" => "BlueOnyx",
+        "site" => $VsiteSettings['name'],
+        "enabled" => "1",
+        "localePreference" => "browser",
+        "description" => $comments
+            )
+        );
 
   $errors = $cceClient->errors();
 
@@ -1103,9 +1104,9 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
 
   // Setup disk-quota:
   if ($userOID) {
-	  $quota = $payload->disk;
-	  $cceClient->set($userOID, 'Disk', array('quota' => $quota));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $quota = $payload->disk;
+    $cceClient->set($userOID, 'Disk', array('quota' => $quota));
+    $errors = array_merge($errors, $cceClient->errors());
   }
   if (count($errors) >= "1") {
       error_log("BlueOnyx API: Sorry, could not set disk-quota information for the siteAdmin-User.");
@@ -1122,17 +1123,17 @@ function do_create_user ($payload, $clientsdetails, $helper, $VsiteSettings) {
 
   // Setup nicer email alias:
   if ($userOID) {
-	  if (($clientsdetails->firstname) && ($clientsdetails->firstname != "")) {
-	    $firstname = "&" . strtolower($clientsdetails->firstname) . "&";
-	    $cceClient->set($userOID, 'Email', array("aliases" => $firstname));
-	    $errors = array_merge($errors, $cceClient->errors());
-	  }
+    if (($clientsdetails->firstname) && ($clientsdetails->firstname != "")) {
+      $firstname = "&" . strtolower($clientsdetails->firstname) . "&";
+      $cceClient->set($userOID, 'Email', array("aliases" => $firstname));
+      $errors = array_merge($errors, $cceClient->errors());
+    }
   }
 
   // Handle suPHP. If enabled, we set the web-ownerships to this User:
   if ($payload->php == "suPHP") {
-	  $cceClient->set($VsiteSettings['OID'], 'PHP', array('prefered_siteAdmin' => $payload->username));
-	  $errors = array_merge($errors, $cceClient->errors());
+    $cceClient->set($VsiteSettings['OID'], 'PHP', array('prefered_siteAdmin' => $payload->username));
+    $errors = array_merge($errors, $cceClient->errors());
   }
 
   // If Auto-DNS is enabled, we grant this user the caplevel of 'dnsAdmin' as well:
