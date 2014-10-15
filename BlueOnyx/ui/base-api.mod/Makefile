@@ -6,14 +6,14 @@ VENDOR=base
 VENDORNAME='Team BlueOnyx'
 SERVICE=api
 
-VERSION=1.0.0
-RELEASE=0BX09
+VERSION=1.1.0
+RELEASE=0BX03
 
 # add a buildarch if desired
 BUILDARCH=noarch
 
 # locale exclude pattern
-BUILDUI=yes
+BUILDUI=old
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=no

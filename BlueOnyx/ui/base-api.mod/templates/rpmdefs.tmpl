@@ -123,10 +123,17 @@ fi
 
 <begin $CHANGELOG>
 
-* Sun Oct 12 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX09
-- Modified ui/web/index.php to change the creation of MySQL users and
-  database to the new Handler based methods. This way we retain a more
-  coherent naming scheme for GUI and API based database handling.
+* Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX03
+- Version number bump due to up-port of old GUI ui/web/index.php with the
+  new MySQL handling.
+
+* Thu Aug 28 2014 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX02
+- The API was a trainwreck and got derailed somewhere along the lines due
+  to later code changes. Should be working now.
+- Massive fixes in ui/chorizo/web/controllers/apiindex.php
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX01
+- Chorizo GUI added, old GUI disabled.
 
 * Sat Mar 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.0-0BX08
 - Updated main API page, as JSON encoded client details contained too
