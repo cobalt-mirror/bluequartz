@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=mysql
 
 VERSION=2.2.0
-RELEASE=0BX04
+RELEASE=0BX05
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,7 +15,7 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=old
+BUILDUI=yes
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
