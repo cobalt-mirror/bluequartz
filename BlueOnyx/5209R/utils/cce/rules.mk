@@ -61,7 +61,8 @@ LDCONFIG = /sbin/ldconfig
 # macros useful for sub-Makefiles
 CCE_CFLAGS = -ggdb -dH -Wcast-qual -Werror `glib-config --cflags`  -D_GNU_SOURCE
 CCE_INCLUDES = -I$(CCE_TOPDIR)/include
-CCE_DEBUG = -DDEBUG -O0 -ggdb -dH
+#CCE_DEBUG = -DDEBUG -O0 -ggdb -dH
+CCE_DEBUG = -DDEBUG -ggdb -dH
 CCE_LIBS = -L$(CCE_TOPDIR) -lcce_common `glib-config --libs` -lpam -lfl
 
 # sane defaults
