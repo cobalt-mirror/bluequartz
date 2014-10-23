@@ -64,11 +64,8 @@ extern int txnstopflag;
 		struct timeval ts; \
 		struct tm *tm; \
 		gettimeofday(&ts, NULL); \
-		tm = localtime((const time_t *)&(ts.tv_sec)); \
-		tm->tm_year += 1900; \
 		if (cce_debug_mask & (m)) { \
 			fprintf(stderr, "%02d:%02d:%02d.%ld [%li] (%s:%d): ", \
-				tm->tm_hour, tm->tm_min, tm->tm_sec, \
 				ts.tv_usec , \
 				(long)getpid() , __FILE__ , __LINE__); \
 			fprintf(stderr, __VA_ARGS__); \

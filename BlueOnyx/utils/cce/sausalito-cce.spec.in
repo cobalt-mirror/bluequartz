@@ -190,6 +190,12 @@ fi
 %changelog
 
 %changelog
+* Wed Oct 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX16
+- Modified include/cce_common.h to rip out the localtime() call as it is
+  not async-signal-safe and this apparently is the root cause of our cced
+  turning zombie state on asynchronous access. Squish one 15 year old bug.
+- Modified rules.mk to remove the -O0 gcc flag for now. It'll come back
+  eventually.
 
 * Wed Oct 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.1-1BX15
 - Backported modified ccewrap/ccewrap_conf.c from 520XR
