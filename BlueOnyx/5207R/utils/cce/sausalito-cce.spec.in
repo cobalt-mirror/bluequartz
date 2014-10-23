@@ -187,10 +187,19 @@ fi
 
 %changelog
 
+* Wed Oct 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX15
+- Modified include/cce_common.h to rip out the localtime() call as it is
+  not async-signal-safe and this apparently is the root cause of our cced
+  turning zombie state on asynchronous access. Squish one 15 year old bug.
+- Modified rules.mk to remove the -O0 gcc flag for now. It'll come back
+  eventually.
+
 * Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX14
 - Superstitious release number bump.
 - Simplified 'alphanum_plus_space' in basetypes.schema and added '&' to 
   allowed characters.
+- Added server/system-auth-cce.pam.5209R to module, although it'll not
+  yet make it into the RPM.
 
 * Thu Sep 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX13
 - Updated basetypes.schema to add 'alphanum_plus_space' to it.
