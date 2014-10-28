@@ -147,6 +147,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Oct 27 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX21
+- Updated 10-ssl.conf.bx for Dovecot 2.2.15
+- Updated Require in Makefile to require Dovecot >= 2.2.15
+- Disabled SSLv3 for Dovecot, set ssl_prefer_server_ciphers to yes changed
+  ssl_dh_parameters_length from 1024 to 2048 and updated ssl_cipher_list
+  with latest suggestion from bettercrypto.org
+
 * Sat Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX20
 - Modified glue/handlers/forward.pl to turn off forwarding on suspend.
 
