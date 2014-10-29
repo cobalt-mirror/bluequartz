@@ -79,10 +79,6 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
-    /etc/init.d/httpd restart
-fi
 
 # Make sure that the Apache alias database ownership is setup properly.
 if [ -f /etc/httpd/alias/cert8.db ]; then
@@ -122,6 +118,27 @@ if [ -f "/etc/httpd/conf/vhosts/site1" ]; then
         sed -i -e 's/^#RewriteRule ^\/(.*)/RewriteRule ^\/(.*)/' /etc/httpd/conf/vhosts/site*
 fi
 
+# Fix login links in preview config:
+if [ -f /etc/httpd/conf/vhosts/preview ]; then
+  /bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf/vhosts/preview
+fi
+
+# Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs:
+if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
+  /usr/sausalito/sbin/SSL_fixer.pl
+fi
+
+# Run Swatch to get Apache back up if SSL_fixer.pl let it fell on its face:
+if [ -f /usr/sbin/swatch ]; then
+  /usr/sbin/swatch
+fi
+
+# Restart CCEd and Apache for good measure:
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+    /etc/init.d/httpd restart
+fi
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -140,10 +157,6 @@ fi
 
 <begin glue>
 # glue post-uninstall
-# Fix login links in preview config:
-if [ -f /etc/httpd/conf/vhosts/preview ]; then
-  /bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf/vhosts/preview
-fi
 
 <end glue>
 <begin ui>
@@ -157,6 +170,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Oct 29 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX10
+- Modified glue/handlers/virtual_host.pl to turn off SSLv3.
+- Cleaned up and extended post-install scripts.
 
 * Thu Oct 09 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX09
 - Fixed WebAlias loss on SSL changes by modifying glue/conf/Apache.conf
