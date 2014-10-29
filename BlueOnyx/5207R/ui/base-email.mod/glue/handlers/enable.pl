@@ -18,7 +18,27 @@ my $old_obj = $cce->event_old();
 my $obj = $cce->event_object();
 
 # dovecot settings first
-Sauce::Util::editfile('/etc/dovecot.conf', *make_dovecot_conf, $obj );
+Sauce::Util::editfile('/etc/dovecot/dovecot.conf', *make_dovecot_conf, $obj );
+
+if(!Sauce::Util::replaceblock('/etc/dovecot/conf.d/10-master.conf',
+    'service imap-login {',
+    &make_imap_block($obj),
+    '  # Number of connections to handle before starting a new process. Typically')
+    ) {
+    $cce->warn('[[base-email.cantEditFile]]', { 'file' => '/etc/dovecot/conf.d/10-master.conf' });
+    $cce->bye('FAIL');
+    exit(1);
+}
+
+if(!Sauce::Util::replaceblock('/etc/dovecot/conf.d/10-master.conf',
+    'service pop3-login {',
+    &make_pop3_block($obj),
+    'service lmtp {')
+    ) {
+    $cce->warn('[[base-email.cantEditFile]]', { 'file' => '/etc/dovecot/conf.d/10-master.conf' });
+    $cce->bye('FAIL');
+    exit(1);
+}
 
 # Stop Dovecot if all related services are turned off:
 if (($obj->{'enablePop'} eq '0') && ($obj->{'enablePops'} eq '0') && ($obj->{'enableImap'} eq '0') && ($obj->{'enableImaps'} eq '0')) {
@@ -57,11 +77,11 @@ $DEBUG && warn "Think poprelayd is running? $popRelay\nShould be? $newpopRelay\n
 Sauce::Service::service_toggle_init('poprelayd', $obj->{popRelay}); 
 
 if($newpopRelay eq 'on') {
-	$DEBUG && warn "linking custodiat into place\n";
-	Sauce::Util::linkfile('/usr/local/sbin/poprelayd.custodiat', '/etc/cron.quarter-daily/poprelayd.custodiat');
+    $DEBUG && warn "linking custodiat into place\n";
+    Sauce::Util::linkfile('/usr/local/sbin/poprelayd.custodiat', '/etc/cron.quarter-daily/poprelayd.custodiat');
 } else {
-	$DEBUG && warn "unlinking custodiat\n";
-	Sauce::Util::unlinkfile('/etc/cron.quarter-daily/poprelayd.custodiat');
+    $DEBUG && warn "unlinking custodiat\n";
+    Sauce::Util::unlinkfile('/etc/cron.quarter-daily/poprelayd.custodiat');
 }
 
 Sauce::Service::service_restart_xinetd();
@@ -81,20 +101,12 @@ sub make_dovecot_conf
 
     my $protocols;
 
-    if ($obj->{enableImap}) {
+    if (($obj->{enableImap}) || ($obj->{enableImaps})) {
         $protocols .= " imap";
     }
 
-    if ($obj->{enableImaps}) {
-        $protocols .= " imaps";
-    }
-
-    if ($obj->{enablePop}) {
+    if (($obj->{enablePop}) || ($obj->{enablePops})) {
         $protocols .= " pop3";
-    }
-
-    if ($obj->{enablePops}) {
-        $protocols .= " pop3s";
     }
 
     select $out;
@@ -106,6 +118,49 @@ sub make_dovecot_conf
         }
     }
     return 1;
+}
+
+sub make_imap_block
+{
+    my $obj = shift;
+
+    $imap_out = "  inet_listener imap {\n";
+    if ($obj->{enableImap}) {
+        $imap_out .= "    port = 143\n";
+    }
+    else {
+        $imap_out .= "    port = 0\n";
+    }
+    $imap_out .= "  }\n  inet_listener imaps {\n";
+    if ($obj->{enableImaps}) {
+        $imap_out .= "    port = 993\n    ssl = yes\n  }\n";
+    }
+    else {
+        $imap_out .= "    port = 0\n    ssl = no\n  }\n";
+    }
+    return $imap_out;
+}
+
+sub make_pop3_block
+{
+    my $obj = shift;
+
+    $pop3_out = "  inet_listener pop3 {\n";
+    if ($obj->{enablePop}) {
+        $pop3_out .= "    port = 110\n";
+    }
+    else {
+        $pop3_out .= "    port = 0\n";
+    }
+    $pop3_out .= "  }\n  inet_listener pop3s {\n";
+    if ($obj->{enablePops}) {
+        $pop3_out .= "    port = 995\n    ssl = yes\n  }\n";
+    }
+    else {
+        $pop3_out .= "    port = 0\n    ssl = no\n  }\n";
+    }
+    $pop3_out .= "}\n";
+    return $pop3_out;
 }
 
 sub make_sendmail_mc
