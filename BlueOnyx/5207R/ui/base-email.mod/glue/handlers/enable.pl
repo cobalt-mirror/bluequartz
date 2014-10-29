@@ -112,7 +112,7 @@ sub make_dovecot_conf
     select $out;
     while (<$in>) {
         if (/protocols =/o) {
-            print "protocols = $protocols\n";
+            print "protocols =$protocols\n";
         } else {
             print $_;
         }
