@@ -76,10 +76,6 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
-    /etc/init.d/httpd restart
-fi
 
 # Make sure that the Apache alias database ownership is setup properly.
 if [ -f /etc/httpd/alias/cert8.db ]; then
@@ -115,8 +111,12 @@ fi
 
 # Walk through /etc/httpd/conf/vhosts/site* and comment out the RewriteRule line that breaks SSL:
 if [ -f "/etc/httpd/conf/vhosts/site1" ]; then
-        echo "Found!"
         sed -i -e 's/^#RewriteRule ^\/(.*)/RewriteRule ^\/(.*)/' /etc/httpd/conf/vhosts/site*
+fi
+
+if [ -S /usr/sausalito/cced.socket ]; then
+    /etc/init.d/cced.init restart
+    /etc/init.d/httpd restart
 fi
 
 <end glue>
@@ -150,6 +150,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Oct 29 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX11
+- Modified glue/httpd/ssl_perl.conf to turn off SSLv3.
+- Cleaned up and post-install scripts.
 
 * Thu Oct 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.1-0BX10
 - Fixed WebAlias loss on SSL changes by modifying glue/conf/Apache.conf
