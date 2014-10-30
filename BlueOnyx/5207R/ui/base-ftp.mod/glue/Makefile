@@ -3,7 +3,7 @@ CCEBASE = /usr/sausalito
 endif
 include $(CCEBASE)/devel/defines.mk
 
-SCRIPTS=sbin/ftpaccess.pl sbin/fixproftpd_conf.pl
+SCRIPTS=sbin/ftpaccess.pl sbin/fixproftpd_conf.pl sbin/fixproftpds_conf.pl
 
 all:
 
