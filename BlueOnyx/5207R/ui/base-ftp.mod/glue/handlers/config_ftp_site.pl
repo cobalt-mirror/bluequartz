@@ -34,7 +34,7 @@ if (!Sauce::Util::editfile(
 
 if (!Sauce::Util::editfile(
 				ftp::ftps_getconf, 
-				*edit_ftpconfig, 
+				*edit_ftpsconfig, 
 				$ftp_site, $ftp_site_old))
 {
 	$cce->bye('FAIL', '[[base-ftp.cantUpdateConfig]]');
