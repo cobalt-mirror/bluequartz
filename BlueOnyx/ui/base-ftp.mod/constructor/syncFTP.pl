@@ -32,10 +32,16 @@ $settings{'MaxClients'} = $obj->{maxConnections};
 $settings{'UseReverseDNS'} = $obj->{useReverseDNS} ? 'on' : 'off';
 $settings{'IdentLookups'} = 'off';
 Sauce::Util::editblock('/etc/proftpd.conf',
-		       *Sauce::Util::keyvalue_edit_fcn,
-		       '# begin global -- do not delete',
-		       '# end global -- do not delete',
-		       '#', ' ', undef, %settings);
+		*Sauce::Util::keyvalue_edit_fcn,
+		'# begin global -- do not delete',
+		'# end global -- do not delete',
+		'#', ' ', undef, %settings);
+
+Sauce::Util::editblock('/etc/proftpds.conf',
+		*Sauce::Util::keyvalue_edit_fcn,
+		'# begin global -- do not delete',
+		'# end global -- do not delete',
+		'#', ' ', undef, %settings);
 
 # Force IdentLookups off to be included in the Global section.
 my $data = "AllowOverwrite		yes
@@ -52,6 +58,11 @@ Sauce::Util::replaceblock('/etc/proftpd.conf',
 			  $data,
 			  '</Global>');
 
+Sauce::Util::replaceblock('/etc/proftpds.conf',
+			  '<Global>',
+			  $data,
+			  '</Global>');
+
 # handle guest
 my $err = Sauce::Util::editblock(ftp::ftp_getconf, *ftp::edit_anon,
 				 '# begin anonymous -- do not delete',
@@ -60,6 +71,12 @@ my $err = Sauce::Util::editblock(ftp::ftp_getconf, *ftp::edit_anon,
 				 $fobj->{guestUser}, $fobj->{guestGroup},
 				 $fobj->{guestWorkGroup});
 
+my $err = Sauce::Util::editblock(ftp::ftps_getconf, *ftp::edit_anon,
+				 '# begin anonymous -- do not delete',
+				 '# end anonymous -- do not delete',
+				 $fobj->{guestEnabled}, 
+				 $fobj->{guestUser}, $fobj->{guestGroup},
+				 $fobj->{guestWorkGroup});
 
 # handle enabled
 my $old = Sauce::Service::service_get_xinetd('proftpd') ? 'on' : 'off';

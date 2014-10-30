@@ -11,9 +11,19 @@ sub ftp_getconf
 	return '/etc/proftpd.conf';
 }
 
+sub ftps_getconf
+{
+	return '/etc/proftpds.conf';
+}
+
 sub ftp_getscript
 {
 	return '/etc/xinetd.d/proftpd';
+}
+
+sub ftps_getscript
+{
+	return '/etc/xinetd.d/proftpds';
 }
 
 sub ftp_anonscript

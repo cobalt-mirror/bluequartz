@@ -24,12 +24,21 @@ my $ftp_site_old = $cce->event_old();
 
 # add, modify, or remove the vhost entry
 if (!Sauce::Util::editfile(
-                ftp::ftp_getconf, 
-                *edit_ftpconfig, 
-                $ftp_site, $ftp_site_old))
+				ftp::ftp_getconf, 
+				*edit_ftpconfig, 
+				$ftp_site, $ftp_site_old))
 {
-    $cce->bye('FAIL', '[[base-ftp.cantUpdateConfig]]');
-    exit(1);
+	$cce->bye('FAIL', '[[base-ftp.cantUpdateConfig]]');
+	exit(1);
+}
+
+if (!Sauce::Util::editfile(
+				ftp::ftps_getconf, 
+				*edit_ftpsconfig, 
+				$ftp_site, $ftp_site_old))
+{
+	$cce->bye('FAIL', '[[base-ftp.cantUpdateConfig]]');
+	exit(1);
 }
 
 $cce->bye('SUCCESS');
@@ -43,46 +52,46 @@ sub edit_ftpconfig
 	my $config_printed = 0;
 	my $site_config;
 
-    if ($ftp_site->{enabled})
-    {
-        $site_config =<<END;
+	if ($ftp_site->{enabled})
+	{
+		$site_config =<<END;
 <VirtualHost $ftp_site->{ipaddr}>
-    DefaultRoot     / wheel
+	DefaultRoot     / wheel
 	DefaultRoot		/ $Base::Vsite::SERVER_ADMIN_GROUP
 	DefaultRoot		~/../../.. $Base::Vsite::SITE_ADMIN_GROUP
 	DefaultRoot		~ !$Base::Vsite::SITE_ADMIN_GROUP
 	AllowOverwrite	on
-        DefaultChdir		/web
+	DefaultChdir    /web
 	DisplayLogin	.ftphelp
 END
 
-        # add denyGroups and denyUsers sections
-        if ($ftp_site->{denyGroups} || $ftp_site->{denyUsers})
-        {
-            $site_config .= "\t<Limit LOGIN>\n";
-            if ($ftp_site->{denyGroups})
-            {
-                my @groups = $cce->scalar_to_array($ftp_site->{denyGroups});
-                # need one DenyGroup line per group, because proftpd does
-                # a logical and of the comma-seperated group info after
-                # the DenyGroup directive
-                for my $group (@groups)
-                {
-                    # always exclude wheel, so admin doesn't get locked out
-                    $site_config .= "\t\tDenyGroup $group,!wheel\n";
-                }
-            }
-            if ($ftp_site->{denyUsers})
-            {
-                my @users = $cce->scalar_to_array($ftp_site->{denyUsers});
-                # same as groups, need one DenyUser per user
-                for my $user (@users)
-                {
-                    $site_config .= "\t\tDenyUser $user\n";
-                }
-            }
-            $site_config .= "\t</Limit>\n";
-        } # end if denyUsers or denyGroups
+		# add denyGroups and denyUsers sections
+		if ($ftp_site->{denyGroups} || $ftp_site->{denyUsers})
+		{
+			$site_config .= "\t<Limit LOGIN>\n";
+			if ($ftp_site->{denyGroups})
+			{
+				my @groups = $cce->scalar_to_array($ftp_site->{denyGroups});
+				# need one DenyGroup line per group, because proftpd does
+				# a logical and of the comma-seperated group info after
+				# the DenyGroup directive
+				for my $group (@groups)
+				{
+					# always exclude wheel, so admin doesn't get locked out
+					$site_config .= "\t\tDenyGroup $group,!wheel\n";
+				}
+			}
+			if ($ftp_site->{denyUsers})
+			{
+				my @users = $cce->scalar_to_array($ftp_site->{denyUsers});
+				# same as groups, need one DenyUser per user
+				for my $user (@users)
+				{
+					$site_config .= "\t\tDenyUser $user\n";
+				}
+			}
+			$site_config .= "\t</Limit>\n";
+		} # end if denyUsers or denyGroups
 
 		my $group = $ftp_site->{anonymousOwner};
 
@@ -90,19 +99,9 @@ END
 		{
 			my $ftp_dir = $ftp_site->{anonBasedir} . '/ftp';
 			$site_config .= ftp::ftp_anonscript(uc($group), 'nobody', 
-                                        $group, $ftp_dir, 
-                                        $ftp_site->{maxConnections});
+										$group, $ftp_dir, 
+										$ftp_site->{maxConnections});
 		}
-
-        $site_config .= "    TLSEngine on\n";
-        $site_config .= "    TLSLog /var/log/proftpd/tls.log\n";
-        $site_config .= "    TLSRequired off\n";
-        $site_config .= "    TLSRSACertificateFile /etc/pki/dovecot/certs/dovecot.pem\n";
-        $site_config .= "    TLSRSACertificateKeyFile /etc/pki/dovecot/private/dovecot.pem\n";
-        $site_config .= "    TLSVerifyClient off\n";
-        $site_config .= "    TLSOptions NoCertRequest NoSessionReuseRequired\n";
-        $site_config .= "    TLSRenegotiate required off\n";
-        $site_config .= "    TLSOptions UseImplicitSSL\n";
 
 		$site_config .= "</VirtualHost>\n";
 	}
@@ -126,6 +125,94 @@ END
 	return 1;
 }
 
+sub edit_ftpsconfig
+{
+	my ($in, $out, $ftp_site, $ftp_site_old) = @_;
+
+	my $config_printed = 0;
+	my $site_config;
+
+	if ($ftp_site->{enabled})
+	{
+		$site_config =<<END;
+<VirtualHost $ftp_site->{ipaddr}>
+	DefaultRoot     / wheel
+	DefaultRoot		/ $Base::Vsite::SERVER_ADMIN_GROUP
+	DefaultRoot		~/../../.. $Base::Vsite::SITE_ADMIN_GROUP
+	DefaultRoot		~ !$Base::Vsite::SITE_ADMIN_GROUP
+	AllowOverwrite	on
+	DefaultChdir    /web
+	DisplayLogin	.ftphelp
+END
+
+		# add denyGroups and denyUsers sections
+		if ($ftp_site->{denyGroups} || $ftp_site->{denyUsers})
+		{
+			$site_config .= "\t<Limit LOGIN>\n";
+			if ($ftp_site->{denyGroups})
+			{
+				my @groups = $cce->scalar_to_array($ftp_site->{denyGroups});
+				# need one DenyGroup line per group, because proftpd does
+				# a logical and of the comma-seperated group info after
+				# the DenyGroup directive
+				for my $group (@groups)
+				{
+					# always exclude wheel, so admin doesn't get locked out
+					$site_config .= "\t\tDenyGroup $group,!wheel\n";
+				}
+			}
+			if ($ftp_site->{denyUsers})
+			{
+				my @users = $cce->scalar_to_array($ftp_site->{denyUsers});
+				# same as groups, need one DenyUser per user
+				for my $user (@users)
+				{
+					$site_config .= "\t\tDenyUser $user\n";
+				}
+			}
+			$site_config .= "\t</Limit>\n";
+		} # end if denyUsers or denyGroups
+
+		my $group = $ftp_site->{anonymousOwner};
+
+		if ($ftp_site->{anonymous})
+		{
+			my $ftp_dir = $ftp_site->{anonBasedir} . '/ftp';
+			$site_config .= ftp::ftp_anonscript(uc($group), 'nobody', 
+										$group, $ftp_dir, 
+										$ftp_site->{maxConnections});
+		}
+
+		$site_config .= "	TLSEngine on\n";
+		$site_config .= "	TLSLog /var/log/proftpd/tls.log\n";
+		$site_config .= "	TLSRequired off\n";
+		$site_config .= "	TLSRSACertificateFile /etc/pki/dovecot/certs/dovecot.pem\n";
+		$site_config .= "	TLSRSACertificateKeyFile /etc/pki/dovecot/private/dovecot.pem\n";
+		$site_config .= "	TLSVerifyClient off\n";
+		$site_config .= "	TLSOptions NoCertRequest NoSessionReuseRequired UseImplicitSSL\n";
+		$site_config .= "	TLSRenegotiate required off\n";
+
+		$site_config .= "</VirtualHost>\n";
+	}
+
+	while (<$in>)
+	{
+		# skip everything in the vhost section we are looking for
+		if (/^<VirtualHost $ftp_site_old->{ipaddr}>$/ ... /^<\/VirtualHost>$/)
+		{
+			next;
+		}
+
+		print $out $_;
+	}
+
+	if ($ftp_site->{enabled})
+	{
+		print $out $site_config;
+	}
+
+	return 1;
+}
 
 # Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
