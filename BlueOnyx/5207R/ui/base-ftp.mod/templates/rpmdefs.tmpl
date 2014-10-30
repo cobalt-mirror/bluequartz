@@ -85,12 +85,14 @@ if [ $1 = 2 ]; then
 
 	# Replace the onboard proftpd.conf with proftpd.conf.dist:
 	/bin/cat /etc/proftpd.conf.dist > /etc/proftpd.conf
+	/bin/cat /etc/proftpds.conf.dist > /etc/proftpds.conf
 
 	# Re-add the now missing VirtualHost containers - but only do so
 	# if a previous proftpd was already installed. Because then it was
 	# an upgrade, not a first install:
 	if [ -f /etc/proftpd.conf.bqold ]; then
 	    /usr/sausalito/sbin/fixproftpd_conf.pl >> /etc/proftpd.conf
+	    /usr/sausalito/sbin/fixproftpds_conf.pl >> /etc/proftpds.conf
 	    # Restart of xinetd:
 	    /etc/init.d/xinetd restart
 	fi
