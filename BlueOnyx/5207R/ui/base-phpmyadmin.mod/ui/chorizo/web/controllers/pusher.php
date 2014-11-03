@@ -42,15 +42,36 @@ class Pusher extends MX_Controller {
 		// Get URL params:
 		$get_form_data = $CI->input->get(NULL, TRUE);
 
-		// -- Actual page logic start:
+		// Check if we have a $pm cookie:
+		$pm_cookie = $CI->input->cookie('pm');
+		if (isset($pm_cookie)) {
+			// Yes? Use it!
+			$pm = $CI->input->cookie('pm');
+		}
+		if (isset($get_form_data['pm'])) {
+			$pm = $get_form_data['pm'];
+		}
 
+		// -- Actual page logic start:
 		if ($Capabilities->getAllowed('systemAdministrator')) {
-		    $systemOid = $cceClient->getObject("System", array(), "mysql");
-		    $db_username = $systemOid{'mysqluser'};
-		    $mysqlOid = $cceClient->find("MySQL");
-		    $mysqlData = $cceClient->get($mysqlOid[0]);
-		    $db_pass = $mysqlData{'sql_rootpassword'};
-		    $db_host = $mysqlData{'sql_host'};
+			if ((isset($pm)) && (isset($get_form_data['group']))) {
+			    // Get MYSQL_Vsite settings for this site:
+			    list($sites) = $cceClient->find("Vsite", array("name" => $get_form_data['group']));
+			    $MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
+			    // Fetch MySQL details for this site:
+			    $db_enabled = $MYSQL_Vsite['enabled'];
+			    $db_username = $MYSQL_Vsite['username'];
+			    $db_pass = $MYSQL_Vsite['pass'];
+			    $db_host = $MYSQL_Vsite['host'];
+			}
+			else {
+				$systemOid = $cceClient->getObject("System", array(), "mysql");
+				$db_username = $systemOid{'mysqluser'};
+				$mysqlOid = $cceClient->find("MySQL");
+				$mysqlData = $cceClient->get($mysqlOid[0]);
+				$db_pass = $mysqlData{'sql_rootpassword'};
+				$db_host = $mysqlData{'sql_host'};
+			}
 		}
 		elseif ($Capabilities->getAllowed('siteAdmin')) {
 		    // get user:

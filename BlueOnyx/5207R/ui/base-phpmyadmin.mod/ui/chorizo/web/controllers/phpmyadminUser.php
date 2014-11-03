@@ -55,12 +55,27 @@ class PhpmyadminUser extends MX_Controller {
 		$get_form_data = $CI->input->get(NULL, TRUE);
 		// -- Actual page logic start:
 		if ($Capabilities->getAllowed('systemAdministrator')) {
-		    $systemOid = $cceClient->getObject("System", array(), "mysql");
-		    $db_username = $systemOid{'mysqluser'};
-		    $mysqlOid = $cceClient->find("MySQL");
-		    $mysqlData = $cceClient->get($mysqlOid[0]);
-		    $db_pass = $mysqlData{'sql_rootpassword'};
-		    $db_host = $mysqlData{'sql_host'};
+			if ((preg_match('/phpmyadmin\/site/', uri_string())) && (isset($get_form_data['group']))) {
+			    // Get MYSQL_Vsite settings for this site:
+			    list($sites) = $cceClient->find("Vsite", array("name" => $get_form_data['group']));
+			    $MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
+			    // Fetch MySQL details for this site:
+			    $db_enabled = $MYSQL_Vsite['enabled'];
+			    $db_username = $MYSQL_Vsite['username'];
+			    $db_pass = $MYSQL_Vsite['pass'];
+			    $db_host = $MYSQL_Vsite['host'];
+			}
+			else {
+				$systemOid = $cceClient->getObject("System", array(), "mysql");
+				$db_username = $systemOid{'mysqluser'};
+				$mysqlOid = $cceClient->find("MySQL");
+				$mysqlData = $cceClient->get($mysqlOid[0]);
+				$db_pass = $mysqlData{'sql_rootpassword'};
+				$db_host = $mysqlData{'sql_host'};
+			}
+			if (isset($get_form_data['group'])) {
+				$group = $get_form_data['group'];
+			}
 		}
 		elseif ((!$Capabilities->getAllowed('systemAdministrator')) && ($Capabilities->getAllowed('manageSite'))) {
 		    // If we get here, the user is a Reseller. Get his User object:
@@ -77,7 +92,7 @@ class PhpmyadminUser extends MX_Controller {
 		    $user = $cceClient->get($oids[0]);
 	    	$group = $user["site"];
 
-	    	// Check if that's the same group he requested access to:
+			// Check if that's the same group he requested access to:
 			if (isset($get_form_data['group'])) {
 				if ($group != $get_form_data['group']) {
 					// Sneaky Bastard:
@@ -120,6 +135,14 @@ class PhpmyadminUser extends MX_Controller {
 		    $db_host = "localhost";
 		}
 
+		if (preg_match("/phpmyadmin\/login/i", uri_string())) {
+			$cceClient->bye();
+			$serverScriptHelper->destructor();
+			// Redirect:
+			header("Location: /phpmyadmin/signon");
+			exit;
+		}
+
 	    //-- Generate page:
 		if ($am_reseller == TRUE) {
 		    //-- Generate page:
@@ -151,7 +174,6 @@ class PhpmyadminUser extends MX_Controller {
 			}
 			if (preg_match('/phpmyadmin\/site/', uri_string())) {
 				if (in_array($ugroup, $OwnedVsiteList)) {
-					$uri = '/phpmyadmin/pusher?group=' . $ugroup;
 
 					// Prepare Page:
 					$BxPage = new BxPage();
@@ -166,6 +188,8 @@ class PhpmyadminUser extends MX_Controller {
 						$BxPage->setVerticalMenuChild('base_phpmyadminPersonal');
 						$page_module = 'base_personalProfile';
 					}
+
+					$uri = '/phpmyadmin/pusher?group=' . $ugroup . '&pm=' . $page_module;
 
 					// Get the FQDN of the Vsite:
 					$resVsite = $cceClient->getObject("Vsite", array("name" => $ugroup));
@@ -185,6 +209,10 @@ class PhpmyadminUser extends MX_Controller {
 													$errors
 												);
 
+					// If we know the page module, we set the cookie for it:
+					if (isset($pm)) {
+						setcookie("pm", set_value($pm));
+					}
 
 					// Out with the page:
 				    $BxPage->render($page_module, $page_body);
@@ -198,7 +226,6 @@ class PhpmyadminUser extends MX_Controller {
 				}
 			}
 			else {
-
 				// Prepare Page:
 				$factory = $serverScriptHelper->getHtmlComponentFactory("base-phpmyadmin", "/phpmyadmin/$redir");
 				$BxPage = $factory->getPage();
@@ -249,6 +276,11 @@ class PhpmyadminUser extends MX_Controller {
 
 				$page_body[] = $block->toHtml();
 
+				// If we know the page module, we set the cookie for it:
+				if (isset($pm)) {
+					setcookie("pm", set_value($pm));
+				}
+
 				// Out with the page:
 			    $BxPage->render($page_module, $page_body);
 			}
@@ -265,36 +297,39 @@ class PhpmyadminUser extends MX_Controller {
 			// - once under 'server_management' / 'base_programs'
 			//
 
+			if ((preg_match("/phpmyadmin\/server/i", uri_string())) && ($Capabilities->getAllowed('systemAdministrator'))) {
+				$BxPage->setVerticalMenu('base_programs');
+				$page_module = 'base_sysmanage';
+				$pm = 'server';
+			}
+			if ((preg_match("/phpmyadmin\/server/i", uri_string())) && (!$Capabilities->getAllowed('systemAdministrator'))) {
+				// Nice people say goodbye, or CCEd waits forever:
+				$cceClient->bye();
+				$serverScriptHelper->destructor();
+				Log403Error("/gui/Forbidden403");
+			}
+			if ((preg_match("/phpmyadmin\/site/i", uri_string())) && ($Capabilities->getAllowed('siteAdmin'))) {
+				$BxPage->setVerticalMenu('base_programsSite');
+				$page_module = 'base_siteadmin';
+				$pm = 'site';
+			}
+			if ((preg_match("/phpmyadmin\/site/i", uri_string())) && (!$Capabilities->getAllowed('siteAdmin'))) {
+				// Nice people say goodbye, or CCEd waits forever:
+				$cceClient->bye();
+				$serverScriptHelper->destructor();
+				Log403Error("/gui/Forbidden403");
+			}
+			if (preg_match("/phpmyadmin\/user/i", uri_string())) {
+				$BxPage->setVerticalMenu('base_programsPersonal');
+				$page_module = 'base_personalProfile';
+				$pm = 'personal';
+			}
+
 			if (isset($group)) {
-				$uri = '/phpmyadmin/pusher?group=' . $group;
+				$uri = '/phpmyadmin/pusher?group=' . $group . '&pm=' . $pm;
 			}
 			else {
 				$uri = '/phpmyadmin/pusher';
-			}
-
-			if ((uri_string() == "phpmyadmin/server") && ($Capabilities->getAllowed('adminUser'))) {
-				$BxPage->setVerticalMenu('base_programs');
-				$page_module = 'base_sysmanage';
-			}
-			if ((uri_string() == "phpmyadmin/server") && (!$Capabilities->getAllowed('adminUser'))) {
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				Log403Error("/gui/Forbidden403");
-			}
-			if ((uri_string() == "phpmyadmin/site") && ($Capabilities->getAllowed('siteAdmin'))) {
-				$BxPage->setVerticalMenu('base_programsSite');
-				$page_module = 'base_siteadmin';
-			}
-			if ((uri_string() == "phpmyadmin/site") && (!$Capabilities->getAllowed('siteAdmin'))) {
-				// Nice people say goodbye, or CCEd waits forever:
-				$cceClient->bye();
-				$serverScriptHelper->destructor();
-				Log403Error("/gui/Forbidden403");
-			}
-			if (uri_string() == "phpmyadmin/user") {
-				$BxPage->setVerticalMenu('base_programsPersonal');
-				$page_module = 'base_personalProfile';
 			}
 
 			// Are we here via "Site Management" / "Programs"?
@@ -303,12 +338,17 @@ class PhpmyadminUser extends MX_Controller {
 				$ugroup = $get_form_data['group'];
 			}
 
+			// If $pm is unknown, we poll it from the cookie:
+			if (!isset($pm)) {
+				$pm = $CI->input->cookie('pm');
+			}
+
 			// If the login credentials in the session data have changed, then we need to do a little
 			// round-about. We unset the session data, redirect twice and then get the login form.
 			if (!isset($page_module)) {
 				$BxPage->setVerticalMenu('base_programsPersonal');
 				$page_module = 'base_personalProfile';
-				$uri = '/phpmyadmin/signon';
+				$uri = '/phpmyadmin/signon&pm=' . $pm;
 
 				$session_name = 'SignonSession';
 				session_name($session_name);
@@ -329,11 +369,17 @@ class PhpmyadminUser extends MX_Controller {
 				$BxPage->setVerticalMenu('base_siteadmin');
 				$BxPage->setVerticalMenuChild('base_phpmyadminSite');
 				$page_module = 'base_sitemanage';
+				$pm = 'site';
 			}
 
 			// Nice people say goodbye, or CCEd waits forever:
 			$cceClient->bye();
 			$serverScriptHelper->destructor();
+
+			// If we know the page module, we set the cookie for it:
+			if (isset($pm)) {
+				setcookie("pm", set_value($pm));
+			}
 
 			// Page body:
 			$page_body[] = addInputForm(
