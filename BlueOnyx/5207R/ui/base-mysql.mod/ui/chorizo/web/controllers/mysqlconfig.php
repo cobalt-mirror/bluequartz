@@ -39,8 +39,8 @@ class Mysqlconfig extends MX_Controller {
 
 		// -- Actual page logic start:
 
-		// Not adminUser? Bye, bye!
-		if (!$Capabilities->getAllowed('adminUser')) {
+		// Not serverNetwork? Bye, bye!
+		if (!$Capabilities->getAllowed('serverNetwork')) {
 			// Nice people say goodbye, or CCEd waits forever:
 			$cceClient->bye();
 			$serverScriptHelper->destructor();

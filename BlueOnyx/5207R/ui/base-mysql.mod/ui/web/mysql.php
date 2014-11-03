@@ -25,7 +25,7 @@
 	$i18n = $serverScriptHelper->getI18n("base-mysql");
 	$cceClient = $serverScriptHelper->getCceClient();
 
-	if (!$serverScriptHelper->getAllowed('adminUser')) {
+	if (!$serverScriptHelper->getAllowed('serverNetwork')) {
 		header("location: /error/forbidden.html");
 		return;
 	}
