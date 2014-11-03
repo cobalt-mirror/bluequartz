@@ -239,8 +239,7 @@ class vsiteEmail extends MX_Controller {
 			);
 
 		// Mail server aliases
-		$mailAliasesField = $factory->getDomainNameList("mailAliases", 
-		                        $vsite["mailAliases"], $access);
+		$mailAliasesField = $factory->getDomainNameList("mailAliases", $vsite["mailAliases"], $access);
 		$mailAliasesField->setOptional(true);
 		$block->addFormField(
 		        $mailAliasesField,
@@ -248,9 +247,9 @@ class vsiteEmail extends MX_Controller {
 		        );
 
 		// Site email catch-all
-		$mailCatchAllField = $factory->getEmailAddress("mailCatchAll", 
-		                        $vsite["mailCatchAll"], $access);
+		$mailCatchAllField = $factory->getTextField("mailCatchAll", $vsite["mailCatchAll"], $access);
 		$mailCatchAllField->setOptional(true);
+		$mailCatchAllField->setType('alphanum_plus');
 		$block->addFormField(
 		        $mailCatchAllField,
 		        $factory->getLabel("mailCatchAll"), $defaultPage
