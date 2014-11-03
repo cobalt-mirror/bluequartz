@@ -44,7 +44,7 @@ class Pusher extends MX_Controller {
 
 		// -- Actual page logic start:
 
-		if ($Capabilities->getAllowed('adminUser')) {
+		if ($Capabilities->getAllowed('systemAdministrator')) {
 		    $systemOid = $cceClient->getObject("System", array(), "mysql");
 		    $db_username = $systemOid{'mysqluser'};
 		    $mysqlOid = $cceClient->find("MySQL");

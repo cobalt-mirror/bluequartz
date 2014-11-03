@@ -120,6 +120,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Nov 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
+- Added in better MySQL handling for resellers. If Resellers access 
+  Vsite / Programs / phpMyAdmin they access it with the rights of the
+  Vsite. If they go Personal Profile / Programs / phpMyAdmin they see
+  a list of Vsites in a table. If a Vsite has MySQL enabled, it redirects
+  them to Vsite / Programs / phpMyAdmin and loads phpMyAdmin with the
+  rights of that Vsite.
+- Also fixed some ACL issues.
+
 * Wed Jul 16 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX03
 - Fix in base-phpmyadmin.mod/constructor/pma_apache.pl
 - Fix in base-phpmyadmin.mod/glue/configs/phpMyAdmin.conf

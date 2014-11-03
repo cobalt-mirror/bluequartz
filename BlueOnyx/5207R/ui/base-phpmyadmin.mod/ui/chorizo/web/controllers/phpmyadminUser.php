@@ -54,7 +54,7 @@ class PhpmyadminUser extends MX_Controller {
 		// Get URL params:
 		$get_form_data = $CI->input->get(NULL, TRUE);
 		// -- Actual page logic start:
-		if ($Capabilities->getAllowed('adminUser')) {
+		if ($Capabilities->getAllowed('systemAdministrator')) {
 		    $systemOid = $cceClient->getObject("System", array(), "mysql");
 		    $db_username = $systemOid{'mysqluser'};
 		    $mysqlOid = $cceClient->find("MySQL");
@@ -62,7 +62,7 @@ class PhpmyadminUser extends MX_Controller {
 		    $db_pass = $mysqlData{'sql_rootpassword'};
 		    $db_host = $mysqlData{'sql_host'};
 		}
-		elseif ((!$Capabilities->getAllowed('adminUser')) && ($Capabilities->getAllowed('manageSite'))) {
+		elseif ((!$Capabilities->getAllowed('systemAdministrator')) && ($Capabilities->getAllowed('manageSite'))) {
 		    // If we get here, the user is a Reseller. Get his User object:
 		    $oids = $cceClient->find("User", array("name" => $loginName));
 		    $useroid = $oids[0];
@@ -121,19 +121,12 @@ class PhpmyadminUser extends MX_Controller {
 		}
 
 	    //-- Generate page:
-
 		if ($am_reseller == TRUE) {
 		    //-- Generate page:
 
 		    // Get the Vsites he owns:
 		    $sites = $cceClient->findx("Vsite", array("createdUser" => $loginName));
-
-			if (preg_match('/phpmyadmin\/site/', uri_string())) {
-				$redir = 'site';
-			}
-			else {
-				$redir = 'user';
-			}
+			$redir = 'site';
 
 		    // Get MySQL_Vsite details for all Vsites he owns:
 		    foreach ($sites as $key => $oid) {
@@ -156,16 +149,26 @@ class PhpmyadminUser extends MX_Controller {
 				// We have a group URL string:
 				$ugroup = $get_form_data['group'];
 			}
-			if (isset($get_form_data['reseller'])) {
+			if (preg_match('/phpmyadmin\/site/', uri_string())) {
 				if (in_array($ugroup, $OwnedVsiteList)) {
 					$uri = '/phpmyadmin/pusher?group=' . $ugroup;
 
 					// Prepare Page:
 					$BxPage = new BxPage();
 
-					$BxPage->setVerticalMenu('base_programsPersonal');
-					$BxPage->setVerticalMenuChild('base_phpmyadminPersonal');
-					$page_module = 'base_personalProfile';
+					if (preg_match('/phpmyadmin\/site/', uri_string())) {
+						$BxPage->setVerticalMenu('base_programsSite');
+						$BxPage->setVerticalMenuChild('base_phpmyadminSite');
+						$page_module = 'base_sitemanage';
+					}
+					else {
+						$BxPage->setVerticalMenu('base_programsPersonal');
+						$BxPage->setVerticalMenuChild('base_phpmyadminPersonal');
+						$page_module = 'base_personalProfile';
+					}
+
+					// Get the FQDN of the Vsite:
+					$resVsite = $cceClient->getObject("Vsite", array("name" => $ugroup));
 
 					// Nice people say goodbye, or CCEd waits forever:
 					$cceClient->bye();
@@ -173,7 +176,7 @@ class PhpmyadminUser extends MX_Controller {
 
 					// Page body:
 					$page_body[] = addInputForm(
-													$i18n->get("[[base-phpmyadmin.PMA_logon]]"),
+													$i18n->get("[[base-phpmyadmin.PMA_logon]]") . ' - ' . $resVsite['fqdn'],
 													array("window" => $uri, "toggle" => "#"), 
 													addIframe($uri, "auto", $BxPage),
 													"",
