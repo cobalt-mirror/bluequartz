@@ -260,12 +260,14 @@ class Timeconfig extends MX_Controller {
 		if (!is_file("/proc/user_beancounters")) {
 		    $ntpAddress = $factory->getNetAddress("ntpAddress",$CODBDATA["ntpAddress"]);
 		    $ntpAddress->setOptional(true);
+		    $ntpAddress->setMaxLength(50);
 		    $block->addFormField($ntpAddress, $factory->getLabel("ntpAddress"));
 
 		}
 		else {
 		    $ntpAddress = $factory->getTextField("ntpAddress",$CODBDATA["ntpAddress"], "");
 		    $ntpAddress->setOptional(true);
+		    $ntpAddress->setMaxLength(50);
 		    $block->addFormField($ntpAddress, $factory->getLabel("ntpAddress"));			
 		}
 
