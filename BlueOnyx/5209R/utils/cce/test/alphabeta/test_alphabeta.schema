@@ -1,0 +1,21 @@
+<!--
+	$Id: test_alphabeta.schema 259 2004-01-03 06:28:40Z shibuya $
+	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+-->
+
+<class name="Alpha" namespace="" version="1.0"
+	createacl="ruleAll" destroyacl="ruleAll">
+  <property name="name" type="scalar" readacl="ruleAll" writeacl="ruleAll"/>
+</class>
+
+<class name="Beta" namespace="" version="1.0"
+	createacl="ruleAll" destroyacl="ruleAll">
+  <property name="name" type="scalar" readacl="ruleAll" writeacl="ruleAll"/>
+  <property name="foo" type="scalar" readacl="ruleAll" writeacl="ruleAll"/>
+</class>
+
+<class name="Beta" namespace="foo" version="1.0"
+	createacl="ruleAll" destroyacl="ruleAll">
+  <property name="other" type="scalar" default="0" readacl="ruleAll" writeacl="ruleAll"/>
+</class>
+

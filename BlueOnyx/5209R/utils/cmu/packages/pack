@@ -1,0 +1,224 @@
+#!/usr/bin/perl
+# Writen by Jeff Bilicki <jeffb@cobaltnet.com>
+# Cobalt Networks 1999
+#  -g           GM Update
+#  -b           Beta Version Number
+#  -p           Path where the Update file are
+#  -n           Name of the out package file
+#  -f           Locatation of fargo rpms
+
+use File::Copy;
+use Getopt::Std;
+
+# PreDefined Vars
+my $pack_list = "packing_list";
+my $uninst = "uninstall_me";
+my $upgrade = "upgrade_me";
+my $tmp = "/tmp/build";
+my $vCheck = "../versioncheck.pl";
+my %exclude = (CVS 	=>	1,
+		Makefile	=>	1,
+		make		=>	1);
+my $scripts = "scripts";
+my $misc    = "misc";
+my $patches = "patches";
+
+getopts('gbp:n:f:h');
+use vars qw($opt_g $opt_b $opt_p $opt_n $opt_f $opt_h);
+
+usage() if($opt_h);
+my (%update);
+my ($gm,$beta,$path,$name,$fargo);
+
+die "Can't find path\n" if (!$opt_p);
+
+$name = $opt_n if ($opt_n);
+$fargo = "/usr/src/redhat/RPMS/noarch";
+$path = $opt_p; 
+ 
+# Set up some define dirs
+my $rpms_dir = $tmp."\/RPMS";
+
+
+check_pieces();
+
+build_update();
+
+sub build_update
+# Build it!
+{
+    print "\nRunning\n";    
+    get_name(); 
+	# copy in versioncheck.pl
+	if ( -f $vCheck ) {
+		system("/bin/cp $vCheck $path");
+	} else {
+		print "Cannot find $vCheck\n";
+    }
+    copy_scripts($path);
+    copy_rpms($path);
+
+
+    # get the beta name and number
+    print "Package: $name\n";
+    # Build the Tar
+    chdir($tmp);
+    system("tar czvf ../$name.pkg *"); 
+    # system("rm -rf $tmp");
+
+}
+
+sub copy_rpms
+{
+      # Copy in the rpms
+      my ($real_rpm,$rpm_dest,$update);
+      my ($cwd,$update) = @_;
+      if ($update) {
+	$rpm_dest = $tmp."/".$update."/RPMS";
+      } else {
+	$rpm_dest = $tmp."/RPMS";
+      }      
+      open(PACK, "$cwd/$pack_list") || die "Cannot open: $!\n";
+      while (<PACK>) {
+	chomp;
+	if (/^RPM:/) {
+		($null,$rpm) = split(" ");
+		$real_rpm = $rpm;
+		$real_rpm =~ /(^\d+)(.*)/;
+		if ($1) {
+			$rpm = $2;
+			copy ("$fargo/$rpm","$rpm_dest/$real_rpm");
+		} else {	
+			copy ("$fargo/$rpm",$rpm_dest);
+		}
+	}
+      }
+      close(PACK);
+}
+
+sub copy_scripts
+{
+      # arg should be the dir
+      my ($file,$flag,$script_dest);
+      my ($cwd,$update) = @_;
+      if ($update) {
+	$script_dest = $tmp."/".$update;
+      } else {
+	$script_dest = $tmp;
+      }      
+      open(LS, "ls $cwd |") || die "Cannot run ls on $cwd\n";
+      while(<LS>) {
+	chomp;
+	$file = $_;	
+	$flag = 1;
+	foreach (keys (%exclude)) {
+		if ($_ eq $file) { $flag = 0; last; }
+	}
+	copy ("$cwd/$file","$script_dest") if ($flag);
+	chmod(0755,"$script_dest/$file") unless ($file eq $pack_list);
+      }
+      close(LS);
+
+}
+
+
+sub get_name
+{
+     my ($pack_name,$ver);
+     if (! $name) {
+	open(PACK, "$path/$pack_list") || die "Cannot open: $!\n";
+	while (<PACK>) {
+		chomp;
+		if (/^Package:/) {
+			($null,$pack_name) = split(" "); 	
+		} elsif (/^Version:/) {
+			($null,$ver) = split(" ");
+		}
+	}
+	$name = $pack_name."-".$ver;
+	close(PACK);
+     }
+}
+
+sub check_pieces
+{
+
+    # Make sure the important parts are there
+    die "Cannot find packing_list: $path\/$pack_list" if (! -f "$path/$pack_list"); 
+
+    #die "Cannot find uninst: $path/$uninst" if (! -f "$path/$uninst"); 
+    #die "Cannot find upgrade: $path/$upgrade" if (! -f "$path/$upgrade"); 
+
+    if (-d $tmp) {
+	system("rm -rf $tmp");
+    }
+    mkdir ($tmp, 0755);
+    mkdir ("$rpms_dir", 0755);
+
+    if (! $fargo) {
+	if (-d "/fargo/fargo/rpms") {
+		$fargo = "/fargo/fargo/rpms";
+	} elsif (-d "/mnt/fargo/rpms") {
+		$fargo = "/mnt/fargo/rpms";
+	} elsif (-d "/mnt//fargo/fargo/rpms") {
+		$fargo = "/mnt/fargo/fargo/rpms";
+	} else {
+		print "Cannot find fargo rpms directory\n";
+		exit 1;
+	}
+    } elsif (! -d $fargo) {
+	print "Bad directory: $fargo\n";
+	exit 1;
+    }
+
+	
+}
+
+sub add_beta_hooks
+{
+    my $check_build = "../../scripts/check_build.pl";
+    my $prep_unit = "../../scripts/prep_unit";
+    my $upgrade_me = $tmp."\/".$upgrade;
+    my $tmp_upgrade = $tmp."\/upgrade_me.1";
+    my $found = 0; 
+
+    # copy in the scripts 
+    copy($check_build, $tmp) or die "Cannot find scripts directory\n";
+    copy($prep_unit, $tmp) or die "Cannot find scripts directory\n";
+    chmod(0755,"$tmp/check_build.pl");
+    chmod(0755,"$tmp/prep_unit");
+	
+    open(UP, "< $upgrade_me") or die "Can't open $upgrade_me\n";
+    open(TMP, "> $tmp_upgrade") or die "Can't open $!\n";
+    
+    while (<UP>) {
+	if (($found == 1) &&  /(^\n)/) {
+ 		print TMP "\n\/bin\/sh \$UPGRADE_DIR\/prep_unit 1>\&2 >> /dev/null\n"; 
+		$found++;
+	} elsif (/(^fi\n)/ && ($found == 0))  {
+		$found = 1;
+	} elsif (/^exit 0/) {
+		print TMP "perl \$UPGRADE_DIR\/check_build.pl -q 1>\&2 > /root/install_check\&\n\n";
+	}
+	print TMP $_;
+     }
+
+     close(UP);
+     close(TMP);
+     move($tmp_upgrade, $upgrade_me) or warn "upgrade_me could not be modified\n";
+     chmod(0755,$upgrade_me);
+
+}
+
+sub usage
+{
+    print "Usage: $0 [options]\n\n";
+    print " Creates a standard package file.\n\n";
+    print "   -g           GM Update\n";
+    print "   -b           Beta Version Number\n";
+    print "   -p           Path where the Update file are\n";
+    print "   -n	   Name of the out package file\n";
+    print "   -f	   Locatation of fargo rpms\n";
+    print "   -h	   Print out this help\n";
+    exit;
+}

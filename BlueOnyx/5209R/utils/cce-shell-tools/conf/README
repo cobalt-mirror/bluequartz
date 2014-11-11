@@ -1,0 +1,79 @@
+Notes:
+-------------
+If the tools are running on a CCE based machine, note the xml creates the data
+structure that is passed directly to CCE.  This was done to make it easy to add
+options and paramters.  The nameSpace field will should only be used on products 
+with CCE controling the system.  Right now that is RaQ550 and Qube3 (not RaQXTR)
+-------------
+Do not use value as tag name expect in single line, single value expressions like:
+	<product value = "RaQ550"/>
+This will break:
+	<ref value = "enabled" labelValue = "1"/>
+-------------
+How-to use a ref.
+This was a tricky implementation.  References will only be converted if the
+option is provided, otherwise they will be ignored.  The best way to explain
+how they work is to use the example of adding a virtual site with FrontPage
+Server Extensions (fpx) enabled (ugh).  To enable fpx you need to set two
+parameters (enabled and webmaster password) which I wanted to be able to set on
+a single command line, the xml looks like:
+<fpx opts = "fpx=s x>fpx enable-fpx>fpx"
+	label = "passwordWebmaster"
+	nameSpace  = "Frontpage"
+	help = "[[base-shell-tools.fpxVsiteEnable]]">
+	<ref label = "enabled" labelValue = "1"/>
+</fpx>
+
+The data sturcture will look like:
+	
+
+
+------------
+Here is how to add a third party script.  Create the xml file in
+/usr/cce-shell-tools/conf/ and make sure its extension is .xml
+
+This line is required for the xml to be well formed
+<shell>
+
+First decide what products this applies to use the following format:
+  <product value = "RaQXTR"/>
+  <product value = "Qube3"/>
+
+Then define what program will use this script
+  <caddvsite>
+
+You must be carefull not re-use opts use by standard vars, who ever is last
+read in will control that option space. The opts value is passed directly to
+GetOpt::Mixed 
+	<mysql opts = "mysql enable-mysql>mysql"
+
+This where the value string, int, etc (if apporiate) will be stored in the
+data structure.
+	label = "mysql"
+
+This is the location of the script that will run.  It will be passed @ARGV
+	script = "/home/mysql/bin/addvsitetable"
+
+Scope makes sure if you are storing data in the label that will it not barf
+when that data is added to CCE
+	scope = "private"
+
+Help text, and close the mysql tag
+	help = "Help text, which will be internationalized"/>
+
+Close the program name tag
+  </caddvsite>
+
+If you have an add, you should have a delete (not always, but it is good to
+clean up after yourself, or so says my mother.)
+  <cdelvsite>
+	<mysql opts = "mysql disable-mysql>mysql"
+		label = "mysql" 
+		script = "/home/mysql/bin/delvsitetable"
+		scope = "private"
+		help = "[[base-shell-tools.mysqlVsiteEnable]]"/>
+  </cdelvsite>
+
+This line is required for the xml to be well formed
+</shell>
+

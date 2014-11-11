@@ -1,0 +1,114 @@
+#!/usr/bin/perl -I../perl_modules
+# $Id: fileIn 922 2003-07-17 15:22:40Z will $
+
+#use strict;
+use lib "../perl_modules";
+use TreeXml;
+
+my $DEBUG = 1;
+
+my $fileName = "/tmp/cmu.xml";
+
+my $tree = readXml($fileName, 0);
+
+#warn "tree: ", $tree, "\n";
+#foreach my $i (keys %{ $tree->{vsite} }) {
+#	warn "$i => ", $tree->{vsite}->{$i},"\n";
+#}
+
+#warn "multiple: ", $tree->{users}->{music}->{aliases}, "\n";
+#warn "signle: ", $tree->{users}->{jeffb}->{aliases}, "\n";
+
+#warn "multiple2: ", $tree->{mailLists}->{all}->{intRecips}->{recip}, "\n";
+#warn "signle2: ", $tree->{mailLists}->{one}->{intRecips}->{recip}, "\n";
+use Data::Dumper;
+#warn "mult:\n", Dumper($tree->{users}->{music}->{aliases}), "\n";
+#warn "sing:\n", Dumper($tree->{users}->{jeffb}->{aliases}), "\n";
+
+print Dumper($tree);
+
+my $migrate = {};
+TreeXml::addNode('migrate', $tree, $migrate);
+TreeXml::writeXml($migrate,"/tmp/out.xml");
+
+
+sub convertXML
+# Arguments: old xml tree data structure
+# Retrun: the newly format data structure
+# side effect:  kicking punk ass
+{
+	my $xmlFile = shift || return;
+	
+	# initialize the data structure
+	my $nTree = {};
+	my $vsite = {};
+
+	$oTree = TreeXml::readXml($xmlFile, 0);
+	if(! exists($oTree->{vsite})) {
+		die "Could not find any vsite data in $xmlFile\n";
+	}
+	foreach my $site (keys %{ $oTree }) {
+		if(! $site->{name}) {
+			warn "Cannot find vsite fqdn\n";
+			next;
+		}
+		$vsite->{ $site->{name} } = reorgVsite($site); 
+
+	}
+	TreeXml::addNode("vsite", $nTree, $vsite);
+
+	return($nTree);
+}
+
+sub reorgVsite
+# Arguments: old vsite data structure
+# Returns: new data structure
+# Side effects: calls reorgUser and reorgMailList
+{
+	my $vTree = shift || return;
+	my $nTree = {};
+	
+	
+
+	
+
+}
+
+sub reorgUser
+# Arguments: old User data structure
+# returns: shiny happy data
+# side effect:
+{
+
+
+}
+
+sub reorgMailList
+# Arguments: old Mailing List data structure
+# returns: shiny happy data
+# side effect:
+{
+
+
+
+}
+
+sub transData
+# Arguments: old vsite data
+# reutns: remapped data based on predefined data structs.
+# side effect: whinny crying babies on planes
+{
+	my $trans = shift;
+	my $obj  = shift || return;
+	foreach my $data (keys %{ $obj } ) {
+
+
+
+	}
+
+	return($obj);
+}
+
+
+
+

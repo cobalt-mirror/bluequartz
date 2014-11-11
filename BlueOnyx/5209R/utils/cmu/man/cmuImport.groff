@@ -1,0 +1,48 @@
+./" $Id: cmuImport.groff 930 2004-04-13 22:28:12Z anders $ 
+./" Process file with
+./" groff -Tascii -man
+.TH cmuImport 8 "" "" ""
+.SH NAME
+cmuImport \- loads groups, users, and settings from data files on to a Cobalt appliance
+.SH SYNOPSIS
+cmuImport [ options... ]
+.SH DESCRIPTION
+cmuImport reads provided data files which contain exported groups, users, and the associated settings and adds them to the current Cobalt appliance. After completion, the imported objects should be accessable from the administrative web interface.
+.SH OPTIONS
+-a import admin's files
+.LP
+-c import configuration only
+.LP
+-d directory of that contains the exported data files
+.LP
+-p Do NOT import the user passwords, userPasswd in /etc/cmu/cobaltBase.xml will be
+used instead
+.LP
+-s Use this session ID, this will recreate an import using the file named
+<file>.<sessionID> 
+.LP
+-n Import only these sites ie -n "ftp.foo.com,www.bar.com" (RaQ only)
+.LP
+-D Import DNS server settings this only works if -D was provided on cmuExport
+.LP
+-A skip adjust script, this is dangerous
+.LP
+-s Import Server Administrators (RaQ550 only)
+.LP
+-S Skip conflict resolution.  Only use this if you now what you are doing!
+.LP
+-C skip scanin script, this is useful for see what conflict exsist
+.LP
+-h help text
+.SH FILES
+.I /etc/cmu/cmuConfig.xml
+.RS
+The main configuration file. See
+.BR cmuConfig.xml (5)
+for futher details.
+.SH AUTHOR
+Cobalt Networks, Inc.
+Sun Microsystems, Inc.
+.SH SEE ALSO
+.BR cmuExport(8),
+.BR cmuConfig.xml(5)

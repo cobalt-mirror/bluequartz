@@ -1,0 +1,394 @@
+Cobalt Configuration Client Library
+$Id: ClientSpec.txt 3 2003-07-17 15:19:15Z will $
+Copyright Cobalt Networks 2000.
+
+0. Contents
+1. Name
+2. Terms
+3. Overview
+ 3.1 Low Level Overview
+ 3.2 Mid Level Overview
+ 3.3 High Level Overview
+4. HLL API's.
+ 4.1 PHP
+ 4.2 Perl
+ 4.3 Python/TCL/Guile/Perl (SWIG.)
+
+1. Name
+
+  CCE Lib: Cobalt Configuration Client Library.
+  
+  It's a silly name, but it disambiguates nicely from everything else
+  in CCE.
+
+  In terms of name space this library lives in cce_* as it is the only library
+  that will be directly accessed by the end user.
+
+2.0 Terms
+
+  Client:
+    A program using the library to request or change information.
+
+  Actuator, Handler:
+    A program being called by CCE to effect a change.
+
+3.0 Overview
+
+  The CCE Lib provides a simplified API to access the CCE back end.  Direct
+  access to the CSCP commands is provided, along with a set of toolkit
+  functions that simplify common configuration tasks.
+  
+  The CCE Lib is meant to be used for all communications with the CCE
+  library (ie. communication from either user interface clients or from
+  event handler clients).
+
+  Note: A perl library has becaome standard for the use of handlers. This is
+  not documented here as it is not based off the cce C library.
+
+/**
+  The general overview of cce interaction from the point of view of a client
+  or an actuator is for the most part a process of generating a
+  command/request (struct CscpLine) which is passed to the CCE, the results
+  are then parsed into a result (struct CscpResult) and returned to the user.
+  
+  All interaction is done through a CceConnection object which provides little
+  more than the connection to the socket and the state of the connection.
+  
+  Once the connection has been created it is assumed that all CCE data will
+  only come in response to an client request. Out of bounds data will have to
+  wait until later. CSCP spec seems to say that the only data that is sent
+  without client request is the version string.
+  
+  A higher level library is built on top of this V. basic protocol level
+  one (Which will still be exposed to the end user.). Levels basically
+  devolve from the highest level to the lowest in terms of knowledge of
+  the underling system and evolve in the other direction in terms of
+  flexibility.  All three levels should be exposed.
+**/
+
+3.1 Low Level API
+
+  The low level of the c6 library gives direct access to the CSCP 
+  protocol and response.
+
+  Four data structures are introduced:
+    cscp_conn_t  - a handle for the connection to the back end
+    cscp_cmnd_t  - a cscp command, in parsed format
+    cscp_resp_t - a cscp command response
+    cscp_line_t - a line of a cscp command response
+    
+  Functions for manipulating the cscp_conn_t structure:
+    cscp_conn_t * cscp_conn_new(void);
+    void          cscp_conn_destroy(cscp_conn_t *);
+    int           cscp_conn_auth(cscp_conn_t*, char *username, char *password);
+    cscp_resp_t * cscp_conn_do(cscp_conn_t*, cscp_cmnd_t*);
+    int           cscp_conn_poll(cscp_conn_t*);
+	/* Checks to see if the connection is ready for more commands */
+	int           cscp_conn_is_finished(cscp_conn_t*);
+    
+  (cscp_conn_poll is used to poll for asynchronous messages in Status state,
+   as well as being used internally to fetch results.)
+
+  Functions for manipulating the cscp_cmnd_t structure:
+    cscp_cmnd_t * cscp_cmnd_new();
+    void         cscp_cmnd_destroy(cscp_cmnd_t*);
+    void         cscp_cmnd_setcmnd(cscp_cmnd_t*, int cmnd);
+    int          cscp_cmnd_getcmnd(cscp_cmnd_t*);
+    void         cscp_cmnd_addscalar(cscp_cmnd_t*, cce_scalar *scalar); /*copy*/
+    void         cscp_cmnd_addstr(cscp_cmnd_t*, char *str); /*copy*/
+    cce_scalar * cscp_cmnd_getparam(cscp_cmnd_t*, int pos);
+    int          cscp_cmnd_getnumparams(cscp_cmnd_t*);
+	char *       cscp_cmnd_serialise(cscp_cmnd_t*);
+
+  Functions for manipulating the cscp_resp_t structure:
+    cscp_resp_t * cscp_resp_new();
+    void          cscp_resp_destroy(cscp_resp_t*);
+    int           cscp_resp_add_line( cscp_resp_t *t, cscp_line_t *t);
+    int           cscp_resp_is_success(cscp_resp_t*);
+	void          cscp_resp_rewind(cscp_resp_t*);
+    cscp_line_t * cscp_resp_nextline(cscp_resp_t*);
+	cscp_line_t * cscp_resp_lastline(cscp_resp_t*);
+	int           cscp_resp_is_finished(cscp_resp_t *);
+
+  Functions for manipulating the cscp_line_t structure:
+    cscp_line_t * cscp_line_new();
+    void          cscp_line_destroy(cscp_line_t*);
+    int           cscp_line_parse(cscp_line_t*, char*);
+    int           cscp_line_getcode(cscp_line_t*);
+    char*         cscp_line_getparam(cscp_line_t*,int pos);
+
+  Notes:
+  
+    Style rule 1: prefer copy over reference.  For example, in 
+      cscp_cmnd_addscalar, add a copy of the scalar object to the
+      cmnd object, rather than reference the original.  The tradeoff
+      is that we're sacrificing some memory consumption for
+      much simpler memory management (one pointer for each data).
+
+  Example of use:
+  
+    cscp_conn_t *con;
+    cscp_cmnd_t *cmnd;
+    cscp_resp_t *resp;
+    
+    /* connect and authenticate */
+    con = cscp_conn_new();
+    if (!cscp_conn_auth(con, username, password)) {
+      ... failed to connect/authenticate ...
+    }
+    
+    /* construct a set command */
+    cmnd = cscp_cmnd_new();
+    cscp_cmnd_setcmnd(cmnd, CSCP_CMD_SET);
+    cscp_cmnd_addstr(cmnd, "00000001");
+    cscp_cmnd_addstr(cmnd, "property");
+    cscp_cmnd_addscalar(cmnd, value_sc);
+    
+    /* execute command */
+    resp = cscp_conn_do (con, cmnd);
+    
+    /* evaluate response */
+    if (!cscp_resp_is_success(resp)) {
+      ... handle failure ...
+    }
+  
+
+3.2 Protocol Level API ("Mid Level")
+
+  This middle level of the library provides wrappers around the low-level
+  functions to implement the CSCP protocol.  There is more or less a
+  1:1 mapping of CSCP commands to Protocol Level functions.
+  
+  The set of protocol level functions is defined here.  In general,
+  functions that return type "int" return true for success and false for
+  failure. Equally functions that returns structures also return NULL for
+  failure.
+
+
+  Creation and destruction of CCE handles are all the memory managment that
+  need be done by the author for anything reutrned from the CCE client.
+
+	cce_handle_t *cce_handle_new();
+
+	void cce_handle_destroy(cce_handle_t *handle);
+
+
+
+   CCE Auth command returns NULL on failure or a session key on success.
+	char        *cce_auth_cmnd(
+			cce_handle_t *handle,
+			char *user,
+			char *pass);
+
+
+   CCE authkey attempt to authenticatre by user and key.
+	int         cce_authkey_cmnd(
+			cce_handle_t *handle,
+			char *user,
+			char *sessionid);
+
+   CCE Create creates a new object of type "class" with the props as passed.
+	cscp_oid_t  cce_create_cmnd(
+			cce_handle_t *handle,
+			char *class,
+			cce_props_t *props );
+
+   Destroys the specified OID.
+	int         cce_destroy_cmnd(
+			cce_handle_t *handle,
+			cscp_oid_t oid );
+
+   Sets an oids attributes in the specified namespace. NULL for no name
+   space.
+	int         cce_set_cmnd(
+			cce_handle_t *handle,
+			cscp_oid_t oid,
+			char *namespace,
+			cce_props_t *props );
+
+   Gets the properties of an object, NULL for an error.
+	cce_props_t *cce_get_cmnd(
+			cce_handle_t *handle,
+			cscp_oid_t oid,
+			char *namespace );
+
+   Commit all changes of the current transaction (Not implemented in the
+	server.)
+	int	     cce_commit_cmnd(
+			cce_handle_t *handle );
+
+   Returns a GSList of char*'s of the namespaces in the specified oid.
+	GSList		*cce_names_oid_cmnd(
+				cce_handle_t *handle,
+				cscp_oid_t oid);
+
+   Returns a GSList of char*'s of the namespaces in the specified class.
+	GSList		*cce_names_class_cmnd(
+				cce_handle_t *handle,
+				char *class );
+
+   Returns a GSList of cscp_oid_t's of the objects of the specified class
+        matching the given props. Search in namespaces by having full stop
+        separated <Namespace>.<prop> properties.
+
+	GSList      *cce_find_cmnd(
+				cce_handle_t *handle,
+				char *classname,
+				cce_props_t *props );
+
+cce_find_sorted_cmnd
+
+	Like "cce_find_cmnd", except an optional additional sort key
+	can be specified for ordering the OID that are returned.
+	If sorttype is 0, an alphabetic sort is performed.  If
+	sorttype is 1, a numeric sort is performed.
+
+	GSList	    *cce_find_sorted_cmnd(
+				cce_handle_t *handle,
+				char *classname,
+				cce_props_t * props,
+				char *sortkey, int sorttype);
+
+   Have the current sessionId key rendered invalid.
+	int         cce_endkey_cmnd(
+				cce_handle_t *handle );
+
+   Disconnect.
+	int         cce_bye_cmnd(
+				cce_handle_t *handle );
+
+   Returns the OID of the user you are connected as.
+	cscp_oid_t  cce_whoami_cmnd(
+				cce_handle_t *handle );
+
+
+   Connects to the socket listening on the path specified. Returns
+   true for success if it fetches the firstheader successfully.
+	int cce_connect_cmnd( cce_handle_t *handle, char *path);
+
+   Returns a GSList of cce_error_t objects that came from the last command.
+	GSList       *cce_last_errors_cmnd(cce_handle_t *handle);
+
+   This is what they look like.
+	typedef struct cce_error_t {
+		/* This is the error code. The last two digits of the line
+		 * which caused it */
+		unsigned int code;
+		/* The oid which caused this error, 0 if an oid was not
+		 * specified. */
+		cscp_oid_t oid;
+		/* The key/class/namespace that this message refers to. */
+		char *key;
+		/* A free form text message passed from the handler. */
+		char *message;
+	} cce_error_t;
+
+/* Create and destroy props. */
+cce_props_t *cce_props_new();
+void cce_props_destroy( cce_props_t *props );
+
+/* Mark what kind of state the object represented by the hash is in.
+ * generally only used by handlers to knwo if they have to add, create
+ * or destroy the object. */
+typedef enum {
+	CCE_NONE = 0,
+	CCE_MODIFIED,
+	CCE_CREATED,
+	CCE_DESTROYED
+} cce_props_state_t;
+
+/* Functions for working with properties. */
+char *cce_props_get      (cce_props_t *, char *key);
+char *cce_props_get_new  (cce_props_t *, char *key);
+char *cce_props_get_old  (cce_props_t *, char *key);
+void  cce_props_set      (cce_props_t *, char *key, char *value);
+void  cce_props_set_new  (cce_props_t *, char *key, char *value);
+void  cce_props_set_old  (cce_props_t *, char *key, char *value);
+
+/* FIXME: DANGER: BAD: Not renterrant. */
+
+/* Rewind the pointer for the current key */
+void  cce_props_reinit   (cce_props_t *);
+/* Get the next key */
+char *cce_props_nextkey  (cce_props_t *);
+
+/* Returns the state as it appear in the enum listed above. */
+cce_props_state_t cce_props_state( cce_props_t *);
+
+/* GSList of which properies have changed in this hash. */
+GSList *cce_props_changed( cce_props_t *);
+
+
+/*
+ * Start up the cce connection to stdin/stout and grab the handler info
+ * being feed to us.
+ */
+cscp_oid_t cce_connect_handler_cmnd( cce_handle_t *handle );
+
+/*
+ * Say goodbye nicely, tell sauced how we finished, and a message if we failed
+ */
+int cce_bye_handler_cmnd(
+	cce_handle_t *handle,
+	cce_handler_ret status,
+	char *message );
+
+/* Aren't we snooty, normal clients can only say good bye, the all mighty
+ * handlers can say good bye in three different ways.. */
+typedef enum {
+	CCE_SUCCESS = 0,
+	CCE_FAIL,
+	CCE_DEFER
+} cce_handler_ret;
+
+/*
+ * Report bad data.
+ */
+int cce_bad_data_cmnd(
+		cce_handle_t *handler,
+		cscp_oid_t oid,
+		char *namespace,
+		char *key,
+		char *reason);
+
+3.3 Object level API.
+
+    Shall be constructed in SWIG by adding methods to handler_ret objects as
+    well as cce_props_t objects. Not in this spin. Not even close.
+
+4.1 PHP
+
+    The PHP is a relative one to one mappiung of these command with the
+    difference that the interface is somewhat OO. The cllas
+    cce_connect(handle, path) becomes
+
+    $cce->connect( $path ); in php.
+
+    Also cce_props_t in an out are replaced by perfectly normal hashes,
+    GSLists are replaced by arrays and cce_error_t is replaced by CceError
+    class, which provides no extra functionality and is a useless idea.
+
+	CceError provides the following interfaces..
+
+	To create you pass in 
+		$code,
+		$oid,
+		$key,
+		$message
+
+	From there you can use $error->getCode() $error->getKey() to get at
+	the variable you already had anyways.
+
+	You can also use getVars() to get the contents back as a hash to use in
+	interpolating with messages (The base php function cce_error ( Non class
+	wrapped. ) actually does jsut return an array of hashes. )
+
+4.2 Perl
+
+    perldoc -I/usr/sausalito/perl/ CCE
+
+4.3 SWIG ( Perl/Python/TCL/Guile )
+
+    I should really redo all API's in swig. Swig is good. This would involve
+	writing a PHP swig wrapper though, which is arguably a good thing for i18n
+	as well as anything further we should do.

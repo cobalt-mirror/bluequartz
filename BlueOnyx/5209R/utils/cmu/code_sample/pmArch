@@ -1,0 +1,44 @@
+#!/usr/bin/perl 
+
+use lib qw(/home/cpr/perl_modules);
+use Archive;
+require TreeXml;
+import TreeXml qw(&addNode &writeXml &readXml $VERSION);
+
+my $tree = {};
+my $archive = {};
+addNode('archive', $archive, $tree);
+
+
+my @ig = ("_vti",".forward",".vacation_msg","cvs");
+my $file = "/home/tmp/test.tar.gz";
+my $dir = "/home/users/jeffb";
+my $fList = Archive::getList($dir, @ig);
+if($fList->{totalSize}) {
+	addNode('public', $fList, $archive);
+	$destFile = $file;
+	#	doit($dir, $file, @{ $fList->{good} });
+	Archive::createTar($dir, $file, $fList)
+
+} 
+writeXml($tree, "/tmp/fileout.xml");
+
+exit 0;
+
+#sub doit
+#{
+#	my $baseDir = shift;
+#	my $tarName = shift;
+#	my @files = @_;
+#
+#	warn "createTar for $baseDir\n";
+#
+#	chdir "$baseDir" || die "Could not chdir to $baseDir: $!\n";
+#
+#	my $tar = Archive::Tar->new();
+#	$tar->create_archive($tarName, 9, @files);
+#
+#	return($ret);
+#}
+#
+
