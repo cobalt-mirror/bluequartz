@@ -88,6 +88,15 @@ information for [VENDOR]-[SERVICE].
 <begin ui>
 # ui post-install
 
+# Set random number for $config['encryption_key'] in the CodeIgniter config:
+RANDNUMA=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
+RANDNUMB=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
+/bin/sed -i -e "s/cf81d0da4acb2dbf276413111e8e4d48/$RANDNUMA$RANDNUMB/" /usr/sausalito/ui/chorizo/ci/application/config/config.php
+
+if [ -d /usr/sausalito/ui/chorizo/ci/application/modules/compass ]; then
+        /bin/rm -Rf /usr/sausalito/ui/chorizo/ci/application/modules/compass
+fi
+
 <end ui>
 <begin locale>
 # locale post-install
@@ -107,11 +116,6 @@ information for [VENDOR]-[SERVICE].
 <begin ui>
 # ui post-uninstall
 
-# Set random number for $config['encryption_key'] in the CodeIgniter config:
-RANDNUMA=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
-RANDNUMB=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
-/bin/sed -i -e "s/cf81d0da4acb2dbf276413111e8e4d48/$RANDNUMA$RANDNUMB/" /usr/sausalito/ui/chorizo/ci/application/config/config.php
-
 <end ui>
 <begin locale>
 # locale post-uninstall
@@ -120,6 +124,49 @@ RANDNUMB=`/usr/bin/od -vAn -N8 -tx8 < /dev/urandom | /bin/sed -e 's/^\s//'`;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Nov 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX013
+- Modified ci/application/helpers/blueonyx_helper.php to add the cURL
+  option 'CURLOPT_TIMEOUT' to catch if an URL is unresponsive.
+
+* Sun Oct 12 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX012
+- Modified ci/application/helpers/bxapi_helper.php to implement the new
+  handling of creating/destroying MySQL users and databases. Also added
+  a lot more debugging.
+
+* Mon Oct 06 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX011
+- Updated ci/application/helpers/amdetail_helper.php. It still had a split()
+  in it, which naturally is deprecated. Incredible.
+
+* Thu Aug 28 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX010
+- The API was a trainwreck and got derailed somewhere along the lines due
+  to later code changes. Should be working now.
+- Massive fixes in ci/application/helpers/bxapi_helper.php
+
+* Sat Aug 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX09
+- UIFC function getBoolean() didn't support the 'nolabel' parameter.
+- Fixed in ci/application/libraries/uifc/FormFieldBuilder.php
+- Fixed in ci/application/libraries/uifc/Boolean.php
+
+* Thu Jul 31 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX08
+- Today my grandmother would have had her 87th birthday. Sadly she passed
+  away earlier this year. Rest in peace, Anneliese Stauber. You're gone,
+  but not forgotten.
+- More PHP related timeZone madness: date_default_timezone_set() does not
+  recognize 'UTC' as valid timezone and throws an E_WARNING. Crazy. 
+- Fixed ci/application/libraries/ServerScriptHelper.php
+- Fixed ci/application/libraries/uifc/TimeStamp.php
+- Both fixes involve silencing the warnings by running the commands with
+  the @-prefix. That'll work unltil they change it from E_WARNING to E_ERROR.
+
+* Wed Jul 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX07
+- Modified ci/application/libraries/Capabilities.php as our fast check
+  on systemAdministrator capabilities was excluding the possibility
+  that we might ask for the Caps of another OID than ourselves.
+
+* Mon Jul 21 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX06
+- Renamed 'compass' module directory to 'Compass' for compatability 
+  reasons.
 
 * Wed Jul 16 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX05
 - Added /userguide/ to Wiki-basepath.

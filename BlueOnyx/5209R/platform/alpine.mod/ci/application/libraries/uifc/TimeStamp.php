@@ -107,14 +107,14 @@ class TimeStamp extends FormField {
 
     // We use the TZ as defined in php.ini, which is now set to the system
     // TZ through the GUI and corresponding handlers and constructors: 
-    $selectedMonth = date("m", $value);
-    $selectedDay = date("d", $value);
-    $selectedYear = date("Y", $value);
-    $selectedHour = date("H", $value);
-    $selectedHour12 = date("h", $value);
-    $selectedMinute = date("i", $value);
-    $selectedSecond = date("s", $value);
-    $selectedAmPm = date("A", $value);
+    $selectedMonth = @date("m", $value);
+    $selectedDay = @date("d", $value);
+    $selectedYear = @date("Y", $value);
+    $selectedHour = @date("H", $value);
+    $selectedHour12 = @date("h", $value);
+    $selectedMinute = @date("i", $value);
+    $selectedSecond = @date("s", $value);
+    $selectedAmPm = @date("A", $value);
 
     if ($selectedAmPm == "") { $selectedAmPm = "AM"; }
 
@@ -134,18 +134,18 @@ class TimeStamp extends FormField {
         // Cheesily strip leading zeroes.  
         $selectedMonth  = preg_replace('/^0/', '', $selectedMonth);
 
-      	// get month string
-      	$monthTag = ($selectedMonth < 10) ? "0".($selectedMonth)."month" : ($selectedMonth)."month";
-      	$month = $i18n->getHtml($monthTag, "palette");
+        // get month string
+        $monthTag = ($selectedMonth < 10) ? "0".($selectedMonth)."month" : ($selectedMonth)."month";
+        $month = $i18n->getHtml($monthTag, "palette");
       }
 
       if($format == "datetime" || $format == "time") {
-      	// get hour string
-      	$hour = $i18n->getHtml($selectedHour."00Hour", "palette");
+        // get hour string
+        $hour = $i18n->getHtml($selectedHour."00Hour", "palette");
 
-      	// get am/pm string
-      	$amPmTag = ($selectedHour < 12) ? "am" : "pm";
-      	$amPm = $i18n->getHtml($amPmTag, "palette");
+        // get am/pm string
+        $amPmTag = ($selectedHour < 12) ? "am" : "pm";
+        $amPm = $i18n->getHtml($amPmTag, "palette");
       }
 
       $result = $builder->makeHiddenField($id, $value);
@@ -209,9 +209,9 @@ class TimeStamp extends FormField {
       $monthLabels = array();
       $monthValues = array();
       for($i = 0; $i < 12; $i++) {
-      	$j = $i + 1; $month = ($j < 10) ? "0".$j : $j;
-      	$monthLabels[$i] = $i18n->get($month."month", "palette");
-      	$monthValues[$i] = $month;
+        $j = $i + 1; $month = ($j < 10) ? "0".$j : $j;
+        $monthLabels[$i] = $i18n->get($month."month", "palette");
+        $monthValues[$i] = $month;
       }
       $monthField= $builder->makeNakedSelectField($monthId, $access, $this->i18n, 1, 3, false, $formId, "", $monthLabels, $monthValues, array("$selectedMonth"));
 
@@ -219,9 +219,9 @@ class TimeStamp extends FormField {
       $dayLabels = array();
       $dayValues = array();
       for($i = 1; $i < 32; $i++) {
-  	    $j = $i; $day = ($j < 10) ? "0".$j : $j;
-  	    $dayLabels[] = $i18n->getHtml("date", "palette", array("date" => $day));
-  	    $dayValues[] = $day;
+        $j = $i; $day = ($j < 10) ? "0".$j : $j;
+        $dayLabels[] = $i18n->getHtml("date", "palette", array("date" => $day));
+        $dayValues[] = $day;
       }
       
       $dayField = $builder->makeNakedSelectField($dayId, $access, $this->i18n, 1, 2, false, $formId, "", $dayLabels, $dayValues,array("$selectedDay"));
@@ -230,8 +230,8 @@ class TimeStamp extends FormField {
       $yearLabels = array();
       $yearValues = array();
       for($i = 2010; $i < 2036; $i++) {
-  	    $yearLabels[] = $i18n->getHtml("year","palette",array("year" => $i));
-  	    $yearValues[] = $i;
+        $yearLabels[] = $i18n->getHtml("year","palette",array("year" => $i));
+        $yearValues[] = $i;
       }
       $yearField= $builder->makeNakedSelectField($yearId, $access, $this->i18n, 1, 4, false, $formId, "", $yearLabels, $yearValues,array($selectedYear));
 
@@ -240,22 +240,22 @@ class TimeStamp extends FormField {
 
       $dateAry = preg_split('//',$dateProp, -1, PREG_SPLIT_NO_EMPTY);
 
-    	for($i=0;$i<count($dateAry);$i++){
-    		switch($dateAry[$i]){
-    			case "Y":
-    				$result.=$yearField;
-    				break;
-    			case "M":
-    				$result.=$monthField;
-    				break;
-    			case "D":
-    				$result.=$dayField;
-    				break;
-    			default:
-    				$result.=$dateAry[$i];
-    				break;
-    		}
-    	}
+      for($i=0;$i<count($dateAry);$i++){
+        switch($dateAry[$i]){
+          case "Y":
+            $result.=$yearField;
+            break;
+          case "M":
+            $result.=$monthField;
+            break;
+          case "D":
+            $result.=$dayField;
+            break;
+          default:
+            $result.=$dateAry[$i];
+            break;
+        }
+      }
     }
 
     // take care of time
@@ -269,10 +269,10 @@ class TimeStamp extends FormField {
       $hourLabels = array();
       $hourValues = array();
       for($i = 0; $i < 24; $i++) {
-      	$hour = ($i < 10) ? (!$i?"00":"0".$i) : $i;
-        //	$amPmTag = ($i < 12) ? "am" : "pm";
-      	$hourLabels[$i] = $i18n->getHtml("hour", "palette", array("hour" => $i18n->getHtml($hour."00Hour", "palette")));
-      	$hourValues[$i] = $i;
+        $hour = ($i < 10) ? (!$i?"00":"0".$i) : $i;
+        //  $amPmTag = ($i < 12) ? "am" : "pm";
+        $hourLabels[$i] = $i18n->getHtml("hour", "palette", array("hour" => $i18n->getHtml($hour."00Hour", "palette")));
+        $hourValues[$i] = $i;
       }
       $hour24Field = $builder->makeNakedSelectField($hourId, $access, $this->i18n, 1, 2, false, $formId, "", $hourLabels,$hourValues,array($selectedHour+0)); 
 
@@ -290,48 +290,48 @@ class TimeStamp extends FormField {
       $minuteLabels = array();
       $minuteValues = array();
       for($i = 0; $i < 60; $i++) {
-      	$minute = ($i < 10) ? (!$i?"00":"0".$i) : $i;
-      	$minuteLabels[] = $i18n->getHtml("minute","palette",array("minute" => $minute));
-      	$minuteValues[] = $minute;
+        $minute = ($i < 10) ? (!$i?"00":"0".$i) : $i;
+        $minuteLabels[] = $i18n->getHtml("minute","palette",array("minute" => $minute));
+        $minuteValues[] = $minute;
       }
       $minuteField = $builder->makeNakedSelectField($minuteId, $access, $this->i18n, 1, 2, false, $formId, "", $minuteLabels, $minuteValues,array($selectedMinute+0));
 
-    	//make AM/PM select
-    	$amPmLabels = array($i18n->get("am","palette"),$i18n->get("pm","palette"));
-    	$amPmValues = array("AM","PM");
+      //make AM/PM select
+      $amPmLabels = array($i18n->get("am","palette"),$i18n->get("pm","palette"));
+      $amPmValues = array("AM","PM");
 
-    	$amPmField = $builder->makeNakedSelectField($amPmId, $access, $this->i18n, 1, 2, false,$formId,"",$amPmLabels,$amPmValues,array($selectedAmPm));
+      $amPmField = $builder->makeNakedSelectField($amPmId, $access, $this->i18n, 1, 2, false,$formId,"",$amPmLabels,$amPmValues,array($selectedAmPm));
 
-    	//get date property
-    	$timeProp=$i18n->get("timeFormat","palette",array("hour"=>"H", "minute"=>"M","amPm"=>"A"));
+      //get date property
+      $timeProp=$i18n->get("timeFormat","palette",array("hour"=>"H", "minute"=>"M","amPm"=>"A"));
 
-    	$timeAry = preg_split('//', $timeProp, -1, PREG_SPLIT_NO_EMPTY);
+      $timeAry = preg_split('//', $timeProp, -1, PREG_SPLIT_NO_EMPTY);
 
-    	$amPmBool=0;
+      $amPmBool=0;
 
-    	if(preg_match("/A/",$timeProp)){
-    		$amPmBool=1;
-    	}
+      if(preg_match("/A/",$timeProp)){
+        $amPmBool=1;
+      }
 
-    	if ($format == 'datetime') {
-    		$result .= '<BR>';
-    	}
-    	for($i=0;$i<count($timeAry);$i++){
-    		switch($timeAry[$i]){
-    			case "H":
-    				$result.=($amPmBool)?$hour12Field : $hour24Field;
-    				break;
-    			case "M":
-    				$result.=$minuteField;
-    				break;
-    			case "A":
-    				$result.=$amPmField;
-    				break;
-    			default:
-    				$result.=$timeAry[$i];
-    				break;
-    		}
-    	}
+      if ($format == 'datetime') {
+        $result .= '<BR>';
+      }
+      for($i=0;$i<count($timeAry);$i++){
+        switch($timeAry[$i]){
+          case "H":
+            $result.=($amPmBool)?$hour12Field : $hour24Field;
+            break;
+          case "M":
+            $result.=$minuteField;
+            break;
+          case "A":
+            $result.=$amPmField;
+            break;
+          default:
+            $result.=$timeAry[$i];
+            break;
+        }
+      }
     }
 
     if (isset($page->BXLabel[$id])) {

@@ -87,18 +87,18 @@ class Capabilities {
         // this is quicker besides systemAdministrator should be
         // able to view everything whether there is a capability group
         // or not
-
-        if ($oid == -1) 
-        {
+        $currentuser = 0;
+        if ($oid == -1) {
             $currentuser = 1;
             $oid = $this->loginUser["OID"];
         }
-
-        if ($this->loginUser['systemAdministrator']) {
-            // Fast 'yes' to all rights, because we sure *are* system administrator:
-            return 1;
+        if (($currentuser == 1) && ($this->loginUser['systemAdministrator'])) {
+          // We want to know the caps for the current users. AND that user is
+          // 'systemAdministrator'. Spare the trouble and return a fast 'yes':
+          return 1;
         }
-        if (!$this->loginUser['systemAdministrator'] && $capName == 'adminUser') { 
+
+        if ((!$this->loginUser['systemAdministrator']) && ($oid == -1) && ($capName == 'adminUser')) { 
           // Fast 'no' to the question for 'adminUser', because we simply aren't.
           // Do not get get confused here. Resellers are 'adminUser', but we do
           // NOT treat them as such unless they also have the 'systemAdministrator'
@@ -107,7 +107,6 @@ class Capabilities {
         }
 
         $caps = $this->listAllowed($oid);
-
         if (in_array($capName, $caps)) {
             return 1;
         }
@@ -261,7 +260,7 @@ class Capabilities {
     $cce = $this->cceClient;
     if (isset($this->capabilityGroups[$capName])) {
       if ($this->capabilityGroups[$capName]!=null) {
-	       return $this->capabilityGroups[$capName];
+         return $this->capabilityGroups[$capName];
       }
     }
     if (($group = $this->cceClient->getObject("CapabilityGroup", array("name"=>$capName)))!=null) {

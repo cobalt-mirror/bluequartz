@@ -395,7 +395,7 @@ $config['proxy_ips'] = '';
 $config['modules_locations'] = array(
     APPPATH.'modules/base/' => '../modules/base/',
     APPPATH.'modules/solarspeed/' => '../modules/solarspeed/',
-    APPPATH.'modules/compass/' => '../modules/compass/',
+    APPPATH.'modules/Compass/' => '../modules/Compass/',
     APPPATH.'modules/other/' => '../modules/other/',
 );
 

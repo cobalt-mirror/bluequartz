@@ -546,6 +546,7 @@ function areWeOnline($domain) {
 
    // Initialize curl:
    $curlInit = curl_init($domain);
+   curl_setopt($curlInit,CURLOPT_TIMEOUT,10);
    curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,10);
    curl_setopt($curlInit,CURLOPT_HEADER,true);
    curl_setopt($curlInit,CURLOPT_NOBODY,true);
@@ -567,6 +568,7 @@ function get_data($url) {
 	$timeout = 5;
 	curl_setopt($ch,CURLOPT_URL,$url);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+	curl_setopt($ch,CURLOPT_TIMEOUT,$timeout);
 	curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
 	curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
 	$error = curl_error($ch);

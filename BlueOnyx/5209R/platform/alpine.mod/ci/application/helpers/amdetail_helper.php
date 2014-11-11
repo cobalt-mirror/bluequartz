@@ -10,7 +10,7 @@
  * @package   CI Blueonyx
  * @author    Michael Stauber
  * @author    Tim Hockin (original Cobalt Networks code)
- * @copyright Copyright (c) 2013 Michael Stauber, SOLARSPEED.NET
+ * @copyright Copyright (c) 2013-2014 Michael Stauber, SOLARSPEED.NET
  * @link      http://www.solarspeed.net
  * @license   http://devel.blueonyx.it/pub/BlueOnyx/licenses/SUN-modified-BSD-License.txt
  * @version   2.0
@@ -87,7 +87,7 @@ function am_detail_block($factory, $cce, $nsname, $name = "") {
 			  if (strstr($nspace["currentMessage"], "\n")) {
 			    // if it's multiline, we'll put the strings
 			    // into a VerticalComposite
-			    $imsg = split("\n", $nspace["currentMessage"]);
+			    $imsg = explode("\n", $nspace["currentMessage"]);
 			    for ($i = 0; $i < count($imsg); $i++) {
 			      $imsg[$i] = $i18n->interpolate($imsg[$i]);
 			    }
