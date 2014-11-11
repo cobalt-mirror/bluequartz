@@ -1,2 +1,0 @@
-Defaults:admserv   !requiretty
-%admserv        ALL=(root) NOPASSWD: /usr/sausalito/bin/cced_unstuck.sh
