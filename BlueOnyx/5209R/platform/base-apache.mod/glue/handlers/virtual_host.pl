@@ -167,7 +167,7 @@ END
 NameVirtualHost $vhost->{ipaddr}:$sslPort
 <VirtualHost *:$sslPort>
 SSLengine on
-SSLProtocol +ALL -SSLv2
+SSLProtocol +ALL -SSLv2 -SSLv3
 SSLHonorCipherOrder On
 SSLCipherSuite DHE+AES256-CBC-SHA:AES256-GCM-SHA:AES128-GCM-SHA256:HIGH:!aNULL:!eNULL:!EXP:!LOW:!MD5:!RC4
 $HSTS_line
@@ -214,7 +214,8 @@ END
     # allows Forward Secrecy. Anything but IE6/XP, IE8/XP, Java 6u45 and Java 7u25 (which will use 168bit keys)
     # will use 256bit keys instead. 
     #
-    # Protocols: Only IE6/XP will use SSLv3. All the rest default to TLS1.0 or TLSv1.2.
+    # Protocols: Only IE6/XP would use SSLv3, which we disabled due to the 'Pootle'-vulnerability. So IE6/XP
+    # users will no longer be able to connect. All the rest default to TLSv1.2, TLSv1.1 or (at worst) TLSv1.0.
     #
     # Ciphers: RC4 and other weak ciphers have been disabled.
     #
@@ -224,7 +225,7 @@ END
     #
     # - Android 2.3.7       No SNI
     # - BingBot Dec 2013    No SNI
-    # - IE 6 / XP           No SNI
+    # - IE 6 / XP           No SNI, no available protocols, unable to connect.
     # - IE 8 / XP           No SNI
     # - Java 6u45           No SNI
     # 
