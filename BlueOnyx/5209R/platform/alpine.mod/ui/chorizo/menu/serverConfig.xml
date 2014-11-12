@@ -1,9 +1,0 @@
-<item 
-    id="base_serverconfig" 
-    label="[[base-alpine.serverconfig]]" 
-    description="[[base-alpine.serverconfigDescription]]"
-    icon="cog_2"
-    requiresChildren="1"
->
-    <parent id="base_sysmanage" order="30"/>
-</item>
