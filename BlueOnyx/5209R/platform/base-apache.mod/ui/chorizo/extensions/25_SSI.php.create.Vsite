@@ -1,0 +1,76 @@
+<?php
+// $Id: 25_SSI.php.create.Vsite
+// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+//
+// ui extension to set settings for ssi Vsite creation
+
+if(defined("SSI_EXTENSION_CREATE_VSITE"))
+{
+    return 1;
+}
+define("SSI_EXTENSION_CREATE_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class SSIExtension extends UIExtension
+{
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-apache");
+        $cce =& $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], 'SSI');
+        
+        if ($cce_info['CAN_ADD_PAGE'])
+        {
+            $pageId = 'webScripting';
+            // only add page if not already there
+            if (!in_array('webScripting', $container->getPageIds()))
+            {
+                $container->addPage("webScripting", 
+                    $factory->getLabel("webScripting"));
+            }
+        }
+        else
+        {
+            $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
+        }
+
+        //
+        //-- Reseller: Can the reseller that owns this Vsite modify this?
+        //
+        $VsiteOwnerObj = $cce->get($cce->whoami());
+        $access = "rw";
+        if ($VsiteOwnerObj['name'] != "admin") {
+            $resellerCaps = $cce->scalar_to_array($VsiteOwnerObj['capabilities']);
+            if (!in_array('resellerSSI', $resellerCaps)) {
+                $defaults["enabled"] = '0';
+                $access = 'r';
+            }
+        }
+
+        //--
+
+	    $container->addFormField(
+			$factory->getBoolean('ssi', $defaults['enabled'], $access),
+		    $factory->getLabel('ssi'),
+		    $pageId
+            );
+    }
+
+    function handle(&$helper, &$errors, &$cce_info, &$attributes) {
+
+        $this->attributes = $attributes;
+
+        $cce =& $helper->getCceClient();
+
+        $cce->set($cce_info["CCE_OID"], 'SSI', array('enabled' => $this->attributes['ssi']));
+
+        $errors = array_merge($errors, $cce->errors());
+
+    }
+
+}
+
+

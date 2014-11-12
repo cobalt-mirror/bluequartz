@@ -1,0 +1,11 @@
+<item id="base_apache" label="[[base-apache.apache]]" 
+    description="[[base-apache.apache_help]]" 
+    url="/base/apache/apache.php"
+>
+    <parent id="base_webServices" order="10">
+        <access require="adminUser"/>
+    </parent>
+    <parent id="base_controlpanel" order="10">
+        <access require="serverHttpd"/>
+    </parent>
+</item>

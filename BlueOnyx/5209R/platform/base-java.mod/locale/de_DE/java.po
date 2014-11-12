@@ -1,0 +1,307 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "java"
+msgstr "Java"
+
+msgid "java_help"
+msgstr "Klicken Sie hier um die Einstellungen des Java-Servers zu ändern."
+
+msgid "warName"
+msgstr "Web Archiv (.war)"
+
+msgid "warNames"
+msgstr "Web Archiv (.war) Liste für [[VAR.fqdn]]"
+
+msgid "warNames_menu"
+msgstr "Web Archive (.war) List"
+
+msgid "warName_help"
+msgstr "Der Archive-Name des installierten [[base-java.warName]]."
+
+msgid "enabledField"
+msgstr "Server aktivieren (Tomcat)"
+
+msgid "enabledField_help"
+msgstr "Java Virtual Machine aktivieren."
+
+msgid "maxClientsField"
+msgstr "Maximale Anzahl von Simultanverbindungen"
+
+msgid "maxClientsField_help"
+msgstr "Geben Sie hier die maximale Anzahl simultaner Verbindungen für Java-Applikationen ein."
+
+msgid "maxClientsField_invalid"
+msgstr "Die maximale Anzahl von Java-Sitzungen ist ungültig. Geben Sie bitte eine Ganzzahl innerhalb des angegebenen Bereiches ein."
+
+msgid "javaSettings"
+msgstr "Java-Einstellungen"
+
+msgid "javaApps"
+msgstr "Java-Applikationen"
+
+msgid "javaApps_help"
+msgstr "Verwaltung der [[base-java.warNames_menu]]."
+
+msgid "warList"
+msgstr "[[base-java.warNames]]"
+
+msgid "warNameHeader"
+msgstr "Name"
+
+msgid "warNameHeader_help"
+msgstr "Dies ist der Name des installierten [[base-java.warName]]."
+
+msgid "warListPathHeader"
+msgstr "Speicherort"
+
+msgid "warListPathHeader_help"
+msgstr "Dies ist das Verzeichnis innerhalb eines Web-Verzeichnisses, in welchem das [[base-java.warName]] installiert wurde."
+
+msgid "warListActionHeader"
+msgstr "Aktion"
+
+msgid "warListActionHeader_help"
+msgstr "Klicken Sie auf die Schaltfläche 'Entfernen', um das Web Archiv aus dem Installationsordner zu entfernen."
+
+msgid "addWar"
+msgstr "Neues Web Archiv zu [[VAR.item]] hinzufügen"
+
+msgid "modWar"
+msgstr "Anpassen der Einstellungen des  [[base-java.warName]] für [[VAR.item]]"
+
+msgid "locationFieldEnter"
+msgstr "Web Archiv Datei"
+
+msgid "locationFieldEnter_help"
+msgstr "Geben Sie den Ort ein, wo die  .war Datei gefunden werden kann. Falls Sie die Datei über das Internet herunterladen möchten, so geben Sie einen URL ein, die entweder mit http:// oder ftp:// anfängt. Oder klicken Sie auf \"Suchen\", um eine Datei von Ihrem lokalen Rechner auf den Server hochzuladen. Falls Sie .war Dateien in das Stammverzeichnis des Web-Ordners geladen haben, können Sie diese aus dem Optionsmenü auswählen."
+
+msgid "url"
+msgstr "URL"
+
+msgid "urlField"
+msgstr "URL"
+
+msgid "urlField_empty"
+msgstr "Es wurde keine URL angegeben. [[locationFieldEnter_help]]"
+
+msgid "urlField_rule"
+msgstr "Geben Sie bitte eine URL ein, die entweder mit http:// oder ftp:// anfängt, um die Datei über das Internet auf den Server herunter zu laden."
+
+msgid "invalidUrl"
+msgstr "Die angegebene URL ist ungültig. [[base-java.urlField_rule]]"
+
+msgid "upload"
+msgstr "Hochladen"
+
+msgid "fileField"
+msgstr "Hochladen"
+
+msgid "fileField_empty"
+msgstr "Die heraufgeladene Datei fehlt. [[locationFieldEnter_help]]"
+
+msgid "loaded"
+msgstr "Geladen"
+
+msgid "targetName"
+msgstr "Installationsort"
+
+msgid "targetName_help"
+msgstr "Der Inhalt des [[base-java.warName]] wird in dieses Verzeichnis extrahiert. Falls nötig wird dazu ein Unterverzeichnis angelegt."
+
+msgid "targetName_missing"
+msgstr "Ein Zielverzeichnis muss angegeben werden. [[base-java.targetName_help]]"
+
+msgid "targetName_invalid"
+msgstr "Der angegebene [[base-java.targetName]] beinhaltet ungültige Buchstaben oder Zeichen. Bitte entfernen Sie diese."
+
+msgid "targetField"
+msgstr "Installationsort"
+
+msgid "targetField_empty"
+msgstr "Der angegebene Installationsort ist nicht vorhanden. [[base-java.targetName_help]]"
+
+msgid "confirm_archive_removal"
+msgstr "Sind Sie sicher, dass sie das Verzeichnis [[VAR.path]] und seinen Inhalt dauerhaft löschen möchten?"
+
+# Aktiver Monitor
+msgid "amJavaNameTag"
+msgstr "Java Server Pages (JSP) und Servlets"
+
+msgid "amJavaDetails"
+msgstr "[[base-java.amJavaNameTag]] Details"
+
+msgid "amStatusOK"
+msgstr "Java Server Pages und Servlets funktionieren einwandfrei."
+
+msgid "amNotRunning"
+msgstr "Java Server Pages und Servlets funktionieren nicht und der dazugehörige Dienst konnte nicht neu gestartet werden. Bitte versuchen Sie, unter [[base-apache.amAdmservNameTag]] den Dienst Java Server Pages und Servlets zu deaktivieren und neu zu aktivieren und prüfen Sie, ob dies das Problem behebt. Falls Java Server Pages und Servelts danach noch immer nicht funktionieren, versuchen Sie, den Server neu zu starten."
+
+msgid "javaName"
+msgstr "Java Server Pages (JSP) und Servlets"
+
+msgid "enableJava"
+msgstr "JSP und Servlets aktivieren"
+
+msgid "enableJava_help"
+msgstr "Aktiviert die Unterstützung für Java Server Pages (JSP) und Servlets."
+
+msgid "installStatus"
+msgstr "Status der Installation von [[VAR.fileName]]"
+
+msgid "statusField"
+msgstr "Statusmeldung"
+
+msgid "statusField_help"
+msgstr "Dieses Feld zeigt den momentanen Status des [[base-java.warName]], welches gerade installiert wird."
+
+msgid "progressField"
+msgstr "Fortschrittsanzeige"
+
+msgid "progressField_help"
+msgstr "Zeigt den Fortschritt der Installation an."
+
+msgid "dlPercent"
+msgstr "Der Download des Files [[VAR.file]] ist zu [[VAR.percent]]% abgeschlossen."
+
+# ---- Install/remove errors & status messages
+msgid "initializing"
+msgstr "Initialisierung ..."
+
+msgid "downloading"
+msgstr "Lade [[base-java.warName]] herunter ..."
+
+msgid "installing"
+msgstr "Installiere [[base-java.warName]] ..."
+
+msgid "fail"
+msgstr "Fehler"
+
+msgid "success"
+msgstr "Erfolg"
+
+# -- generic message for other strings
+msgid "notInstalled"
+msgstr "Die Software [[base-java.warName]] konnte nicht installiert werden."
+
+msgid "cannotDownloadUrl"
+msgstr "Die Datei [[base-java.warName]] konnte nicht von der angegebenen URL geladen werden. Bitte prüfen Sie die URL und versuchen Sie es erneut. [[base-java.notInstalled]]"
+
+msgid "badFileName"
+msgstr "Der Name der [[base-java.warName]] Datei ist ungültig. Bitte prüfen Sie den Namen und versuchen Sie es erneut. [[base-java.notInstalled]]"
+
+msgid "verifyingPackage"
+msgstr "Überprüfe [[base-java.warName]] ..."
+
+msgid "badPackage"
+msgstr "Das [[base-java.warName]] ist fehlerhaft oder unvollständig. Die Packdatei (packing_list) fehlt oder ist unvollständig. [[base-swupdate.notInstalled]]"
+
+msgid "hostNotFound"
+msgstr "Der Host- oder Domänenname in der URL konnte nicht gefunden werden. [[base-swupdate.notInstalled]]"
+
+msgid "fileNotFound"
+msgstr "Das [[base-java.warName]] [[VAR.file]] konnte an der angegebenen Stelle nicht gefunden werden."
+
+msgid "hostRefused"
+msgstr "Der Host, welcher in der URL für [[VAR.file]] angegeben war, lehnte einen Verbindungsaufbau ab."
+
+msgid "downloadFailure"
+msgstr "Der Download des [[base-java.warName]] konnte nicht erfolgreich abgeschlossen werden. Dies könnte durch ein Problem auf Seiten des Download-Servers verursacht worden sein, oder Sie haben unzureichende Schreibrechte für diesen Download."
+
+msgid "noLocation"
+msgstr "Es wurde kein Speicherort für [[base-java.warName]] angegeben."
+
+msgid "errorWGET"
+msgstr "Während des Aufrufs des Download-Managers 'wget' ist ein Fehler aufgetreten."
+
+msgid "unknownFileFormat"
+msgstr "Die hochgeladene Datei ist entweder defekt, oder in einen nicht unterstützten Format."
+
+msgid "notToUserHome"
+msgstr "Die .war Datei kann nicht im Heimatverzeichnis eines Benutzers gespeichert werden."
+
+msgid "loadingWar"
+msgstr "Das [[base-java.warName]] wird geladen. Bitte warten."
+
+msgid "connectionRefused"
+msgstr "Der Download-Versuch wurde vom fraglichen Server abgelehnt."
+
+msgid "installFailure"
+msgstr "Die Installation des [[base-java.warName]] konnte nicht erfolgreich abgeschlossen werden."
+
+msgid "couldNotCreateTarget"
+msgstr "Das Zielverzeichnis konnte nicht angelegt werden, da Sie nicht über ausreichende Schreibprivilegien verfügen."
+
+msgid "jarFailure"
+msgstr "Das [[base-java.warName]] konnte nicht entpackt werden. Die Datei ist vermutlich beschädigt."
+
+msgid "installedWar"
+msgstr "Das [[base-java.warName]] wurde erfolgreich installiert."
+
+msgid "javaNotEnabled"
+msgstr "Unterstützung für JSP und Servlets ist momentan nicht aktiviert. Bitte veranlassen Sie den Administrator dieses Servers dazu, Unterstützung für JSP und Servlets für diese virtuelle Site zu aktivieren, bevor Sie Web Archive (.war) installieren."
+
+msgid "TomcatAdminInterface"
+msgstr "Tomcat Admin Interface"
+
+msgid "TomcatManagerInterface"
+msgstr "Tomcat Manager Interface"
+
+msgid "TomcatHostManagerInterface"
+msgstr "Tomcat Host Manager Interface"
+
+msgid "TomcatManagerStatus"
+msgstr "Tomcat Manager Status"
+
+msgid "TomcatManager"
+msgstr "Tomcat"
+
+msgid "TomcatManager_desc"
+msgstr "Verwalten Sie hier die Einstellungen Ihres Tomcat Servers."
+
+msgid "TomcatManager_help"
+msgstr "[[base-java.TomcatManager_desc]]"
+
+msgid "TomcatAdminPassHeader"
+msgstr "Tomcat Admin Passwort"
+
+msgid "AdminPassInformation"
+msgstr "Setzen Sie ein Passwort für den Tomcat Admin:"
+
+msgid "TomcatAdminPassField"
+msgstr "Passwort:"
+
+msgid "TomcatAdminPassField_help"
+msgstr "Um in die Administrationsoberfläche von Tomcat einzuloggen, verwenden Sie den Benutzernamen 'admin' und das hier eingegebene Passwort. Dieses Passwort sollte nicht identisch mit dem Server-Passwort sein."
+
+msgid "TomcatStausBox_header"
+msgstr "Bitte beachten Sie: Tomcat ist gestoppt"
+
+msgid "TomCatStatusBox_info"
+msgstr "Solange Tomcat gestoppt ist, sind die administrativen Schaltflächen in diesem Menü deaktiviert. Tomcat wird automatisch gestartet, sobald mindestens eine virtuelle Seite den Dienst JSP aktiviert hat."
+
+###
+
+msgid "urlField_help"
+msgstr "Geben Sie eine URL beginnend mit http:// oder ftp:// ein, um eine Datei von einem Speicherort im Internet zu laden und zu installieren."
+
+msgid "fileField_help"
+msgstr "Hochladen einer Datei von Ihrem lokalen Rechner."
+
+msgid "loaded_help"
+msgstr "Installieren Sie eine Datei, die derzeit im /web-Verzeichnis Ihrer virtuellen Site liegt."
+
+msgid "removeConfirmQuestion"
+msgstr "Sind Sie sicher, dass Sie diesen Artikel löschen möchten?"
+
+msgid "userRemoveConfirmInfo"
+msgstr "Bitte bestätigen Sie, dass Sie diesen Artikel entfernen möchten. Dies kann nicht rückgängig gemacht werden."
+
+

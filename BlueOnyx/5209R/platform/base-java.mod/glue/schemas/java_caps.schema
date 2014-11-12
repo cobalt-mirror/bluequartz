@@ -1,0 +1,14 @@
+<!--
+    Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+    $Id: java_caps.schema
+
+    Capabilities for java.
+-->
+<class
+    name="Capabilities" namespace="modifyJava" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(modifyJava)"
+    />
+</class>

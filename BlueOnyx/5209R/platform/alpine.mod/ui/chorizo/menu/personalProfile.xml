@@ -1,0 +1,12 @@
+<item 
+    id="base_personalProfile" 
+    label="[[base-alpine.base-personalProfile]]" 
+    description="[[base-alpine.base-personalProfile_description]]" 
+    url="/user/personalAccount"
+    icon="admin_user"
+    module="user"
+>
+    <parent id="root" order="40"/>
+    <parent id="sitemanageRoot" order="50"/>
+    <parent id="nonAdminSiteRoot" order="50"/>
+</item>

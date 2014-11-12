@@ -1,0 +1,66 @@
+<?php
+// $Id: 20_USERWEBS.php.modifyWeb.Vsite,v 1.1 Mon 12 May 2008 10:30:59 PM EDT mstauber Exp $
+//
+
+include_once('UIExtension.php');
+
+class USERWEBSExtension extends UIExtension
+{
+	function display(&$ServerScriptHelper, &$container, $parameters)
+	{
+		$cce = $ServerScriptHelper->getCceClient();
+
+		// will assume the container is a PagedBlock for the time being
+		$page_id = $parameters['PAGED_BLOCK_DEFAULT_PAGE'];
+		$factory = $ServerScriptHelper->getHtmlComponentFactory("base-apache");
+
+		$featureUSERWEBS = $cce->get($parameters['CCE_OID'], 'USERWEBS');
+		$featurePHP = $cce->get($parameters['CCE_OID'], 'PHP');
+
+		if ($featurePHP['suPHP_enabled'] == "1") {
+		    $featureUSERWEBS['enabled'] = "0";
+		}
+
+		if ($parameters['IS_SITE_ADMIN']) {
+			if (!$featurePHP['suPHP_enabled']) {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'rw'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
+			elseif ($featurePHP['suPHP_enabled'] == "1") {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'r'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
+		} else {
+			if ($featurePHP['suPHP_enabled'] == "0") {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'rw'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
+			elseif ($featurePHP['suPHP_enabled'] == "1") {
+				$container->addFormField(
+					$factory->getBoolean('userwebs', $featureUSERWEBS['enabled'], 'r'),
+					$factory->getLabel('userwebs'), $page_id
+					);
+			}
+		}
+	}
+
+	function handle(&$ServerScriptHelper, &$errors, $parameters)
+	{
+    global $userwebs;
+	$cce = $ServerScriptHelper->getCceClient();
+	$featurePHP = $cce->get($parameters['CCE_OID'], 'PHP');
+	if ($featurePHP['suPHP_enabled'] == "1") {
+	    $userwebs = "0";
+	}
+
+    $cce->set($parameters['CCE_OID'], 'USERWEBS', array('enabled' => $userwebs));
+    $errors = array_merge($errors, $cce->errors());
+	}
+}
+?>

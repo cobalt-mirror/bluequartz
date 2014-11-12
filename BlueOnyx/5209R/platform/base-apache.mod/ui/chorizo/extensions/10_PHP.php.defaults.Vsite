@@ -1,0 +1,78 @@
+<?php
+// $Id: 50_PHP.php.defaults.Vsite
+// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+//
+// ui extension to set settings for php Vsite creation
+
+if(defined("PHP_EXTENSION_CREATE_VSITE"))
+{
+    return 1;
+}
+define("PHP_EXTENSION_CREATE_VSITE", 1);
+
+include_once("UIExtension.php");
+
+class PHPExtension extends UIExtension
+{
+    function display(&$helper, &$container, &$cce_info)
+    {
+        $factory =& $helper->getHtmlComponentFactory("base-apache");
+        $cce =& $helper->getCceClient();
+    
+        $defaults = $cce->get($cce_info["CCE_SERVICES_OID"], "PHP");
+        
+        $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
+
+        if (($defaults['suPHP_enabled'] == '0') && ($defaults['enabled'] == '1')) { 
+          $php_enabler = array("disabled" => "0", "php" => "1", "enableSuPHP" => "0"); 
+        }
+        elseif (($defaults['suPHP_enabled'] == '1') && ($defaults['enabled'] == '1')) { 
+          $php_enabler = array("disabled" => "0", "php" => "0", "enableSuPHP" => "1"); 
+        }
+        else {
+          $php_enabler = array("disabled" => "1", "php" => "0", "enableSuPHP" => "0"); 
+        }
+
+        $container->addFormField(
+                $factory->getRadio("PHP_enabled", $php_enabler, "rw"),
+                $factory->getLabel("PHP_enabled"),
+                $pageId
+                );
+
+    }
+
+    function handle(&$helper, &$errors, &$cce_info, &$attributes)
+    {
+        //global $PHP_enabled, $suPHP_enabled;
+        $this->attributes = $attributes;
+
+        $cce =& $helper->getCceClient();
+
+        // Note the double check. On additional form submit after an error radio settings
+        // can change from "value" to "&value&" due to serialization. So we check for both:
+
+        if (($this->attributes['PHP_enabled'] == "php") || ($this->attributes['PHP_enabled'] == "&php&")) {
+          $php_params = array( 
+                        'enabled' => "1", 
+                        'suPHP_enabled' => "0"
+                    );
+        }
+        elseif (($this->attributes['PHP_enabled'] == "enableSuPHP") || ($this->attributes['PHP_enabled'] == "&enableSuPHP&")) {
+          $php_params = array( 
+                        'enabled' => "1", 
+                        'suPHP_enabled' => "1"
+                    );
+        }
+        else {
+          $php_params = array( 
+                        'enabled' => "0", 
+                        'suPHP_enabled' => "0"
+                    );
+        }
+
+        $cce->set($cce_info["CCE_SERVICES_OID"], 'PHP', $php_params); 
+
+        $errors = array_merge($errors, $cce->errors());
+    }
+}

@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "osName"
+msgstr "BlueOnyx"
+
+msgid "osVendor"
+msgstr "Project BlueOnyx"
+
+msgid "osDescription"
+msgstr "De [[base-alpine.osName]] is de basis software voor de [[base-product.productName]]. Dit softwarepakket is nodig om voor uw server apparaat te laten functioneren."
+
+msgid "vendorSite"
+msgstr "http://BlueOnyx.it/"
+
+msgid "sysmanage"
+msgstr "Server Management"
+
+msgid "sysmanageDescription"
+msgstr "Server Administration. Klik hier om de server te beheren."
+
+msgid "security"
+msgstr "Veiligheid"
+
+msgid "securityDescription"
+msgstr "Klik hier om certificaten en server beveiliging te beheren."
+
+msgid "sitemanage"
+msgstr "Site Management"
+
+msgid "sitemanageDescription"
+msgstr "Klik hier voor het maken, bewerken en beheren van virtuele server (dat is, de site) instellingen, gebruikers accounts, en back-ups."
+
+msgid "controlpanel"
+msgstr "Network Services"
+
+msgid "controlpanelDescription"
+msgstr "Klik hier om de diensten van de server te controleren."
+
+msgid "serverconfig"
+msgstr "Systeeminstellingen"
+
+msgid "serverconfigDescription"
+msgstr "Klik hier om te netwerken, bandbreedte en tijd van de server te configureren."
+
+msgid "cpservicesDescription"
+msgstr "Klik hier om virtuele sites en gebruikersaccounts beheren."
+
+msgid "sysmaintenance"
+msgstr "Onderhoud"
+
+msgid "sysmaintenanceDescription"
+msgstr "Klik hier om server onderhoud uitvoeren, zoals back-up systeem, controle op de opslag, en herstarten."
+
+msgid "serverusage"
+msgstr "Server Gebruik"
+
+msgid "serverusageDescription"
+msgstr "Klik hier om het totale gebruik van statistieken te bekijken voor deze server apparaat."
+
+msgid "siteusage"
+msgstr "Rapport"
+
+msgid "siteusageDescription"
+msgstr "Klik hier om het gebruik van statistieken te bekijken voor deze website."
+
+msgid "netusage"
+msgstr "Netwerk"
+
+msgid "netusageDescription"
+msgstr "Klik hier om de totale gebruik van het netwerk voor deze server te bekijken."
+
+msgid "webusage"
+msgstr "Web"
+
+msgid "webusageDescription"
+msgstr "Klik hier om het gebruik van internet statistieken te bekijken."
+
+msgid "ftpusage"
+msgstr "FTP"
+
+msgid "ftpusageDescription"
+msgstr "Klik hier om FTP gebruiksstatistieken bekijken."
+
+msgid "mailusage"
+msgstr "Mail"
+
+msgid "mailusageDescription"
+msgstr "Klik hier om e-mailgebruik statistieken te bekijken."
+
+msgid "sysinfo"
+msgstr "System Information"
+
+msgid "sysinfoDescription"
+msgstr "Klik hier om de server configuratie-informatie te bekijken."
+
+msgid "sysbackuprestore"
+msgstr "Backup and Restore"
+
+msgid "sysbackuprestoreDescription"
+msgstr "Klik hier om een ​​back-up of de server gegevens te herstellen."
+
+msgid "usermgmt"
+msgstr "User Management"
+
+msgid "usermgmtDescription"
+msgstr "Klik hier om gebruikers toe te voegen, te wijzigen of te verwijderen."
+
+msgid "base-programs"
+msgstr "Programma's"
+
+msgid "base-programs_description"
+msgstr "De afdeling Programma's hebt u toegang tot geïnstalleerde programma's."
+
+msgid "splashProgramsMessage"
+msgstr "De afdeling Programma's hebt u toegang tot handige productiviteit tools en applicaties."
+
+msgid "splashPersonalMessage"
+msgstr "De Persoonlijke Profiel sectie kunt u uw gebruikersaccount instellingen bekijken en bewerken."
+
+msgid "base-personalProfile"
+msgstr "Persoonlijk profiel"
+
+msgid "base-personalProfile_description"
+msgstr "De Persoonlijke Profiel sectie kunt u uw user account informatie te bekijken."
+
+msgid "wizardSysSettings"
+msgstr "Systeeminstellingen"
+
+msgid "wizardSysSettings_help"
+msgstr ""
+
+msgid "wizardRaid"
+msgstr "Raid Setup"
+
+msgid "wizardRaid_help"
+msgstr ""
+
+msgid "wizardRaidBuild"
+msgstr "Raid Setup"
+
+msgid "wizardRaidBuild_help"
+msgstr ""
+
+msgid "wizardRegister"
+msgstr "Registratie"
+
+msgid "wizardRegister_help"
+msgstr ""
+
+msgid "wizardFinish"
+msgstr ""
+
+msgid "wizardFinish_help"
+msgstr ""
+
+msgid "loginPageTitle"
+msgstr "Inloggen - [[base-product.productName]] - [[VAR.hostname]]"
+
+msgid "login"
+msgstr "Inloggen - [[VAR.hostname]]"
+
+msgid "loginMissingCookies"
+msgstr "Voordat u probeert in te loggen, kunt u controleren of uw browser ondersteunt functie voor cookies."
+
+msgid "loginExpiredMessage"
+msgstr "Uw login sessie is verlopen. Om opnieuw in te loggen, voer dan uw gebruikersnaam en wachtwoord."
+
+msgid "loginByeMessage"
+msgstr "Dank u voor het gebruik van de [[base-product.productName]]."
+
+msgid "loginOkMessage"
+msgstr "Om in te loggen vult u uw gebruikersnaam en wachtwoord."
+
+msgid "loginAuthFailed"
+msgstr "Je hebt niet ingevoerd een juiste gebruikersnaam en / of wachtwoord. Probeer het opnieuw."
+
+msgid "loginNoCssMessage"
+msgstr "Voordat u probeert in te loggen, kunt u controleren of uw browser ondersteunt Cascading Style Sheets functionaliteit."
+
+msgid "loginNoJsMessage"
+msgstr "Voordat u probeert in te loggen, kunt u controleren of uw browser ondersteunt JavaScript-functionaliteit."
+
+msgid "loginPageUsername"
+msgstr "Gebruikersnaam:"
+
+msgid "loginPagePassword"
+msgstr "Wachtwoord:"
+
+msgid "loginPageSecurity"
+msgstr "Beveiligde verbinding:"
+
+msgid "loginPageLogin"
+msgstr "Login"
+
+msgid "documentation"
+msgstr "Documentatie"
+
+msgid "documentation_help"
+msgstr "Klik hier om online handleidingen voor deze server apparaat bekijken."
+
+msgid "pdfDescen"
+msgstr "BlueOnyx Hosting Edition Manual (Engels)"
+
+msgid "pdfDescja"
+msgstr "BlueOnyx Hosting Edition Manual (Japans)"
+
+msgid "pdfDescen_US"
+msgstr "BlueOnyx Hosting Edition Manual (Engels)"
+
