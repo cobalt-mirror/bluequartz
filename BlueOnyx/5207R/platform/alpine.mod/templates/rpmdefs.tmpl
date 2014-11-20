@@ -125,6 +125,18 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Nov 19 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX015
+- Bump from 1.0 to 1.1 for general (but transparent) API changes.
+- Release number continues and will do so through the Chorizo life-cycle.
+- In preparation for 5209R I modified ci/application/libraries/CceClient.php
+  to check for the presence of a loaded cce.so PHP module for AdmServ. If
+  that module is loaded, we will use it to let CceClient communicate with
+  CCEd. If the module is not present, then the new Class CCE.php will be
+  used instead.
+- Added ci/application/libraries/CCE.php to use PHP methods to natively
+  talk with CCEd via the Unix socket. Please see the description in the
+  header of said Class for more information about the How and Why.
+
 * Wed Nov 19 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-1BX014
 - Modified ci/application/libraries/uifc/PagedBlock.php for better 
   variable handling in error messages.
