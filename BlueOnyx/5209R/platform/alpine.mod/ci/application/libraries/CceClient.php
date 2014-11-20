@@ -31,13 +31,91 @@ class CceClient {
   var $handle;
   var $isConnected;
 
+  // Connection method: 
+  // TRUE = PHP Class
+  // FALSE = PHP Module
+  var $NATIVE;
+
+  // Username:
+  var $Username;
+
+  // SessionId:
+  var $SessionId;
+
+  // Password:
+  var $Password;
+
+  // Self:
+  var $self;
+
+  // ERRORS:
+  var $ERRORS;
+
+  // OID (for errors related to SET transactions):
+  var $OID;
+
   //
   // public methods
   //
 
+  function setNative($CM) {
+    $this->NATIVE = $CM;
+  }
+
+  function getNative() {
+    return $this->NATIVE;
+  }
+
+  function setUsername($Username = "") {
+    $this->Username = $Username;
+  }
+
+  function getUsername() {
+    $CI =& get_instance();
+    if (!isset($this->Username)) {
+      $this->Username = $CI->input->cookie('loginName');
+    }
+    return $this->Username;
+  }
+
+  function setSessionId($SessionId = "") {
+    $this->SessionId = $SessionId;
+  }
+
+  function getSessionId() {
+    $CI =& get_instance();
+    if (!isset($this->SessionId)) {
+      $this->SessionId = $CI->input->cookie('sessionId');
+    }
+    return $this->SessionId;
+  }
+
+  function setPassword($Password = "") {
+    $this->Password = $Password;
+  }
+
+  function getPassword() {
+    return $this->Password;
+  }
+
   // description: constructor
   function CceClient() {
-    $this->handle = ccephp_new();
+
+    // Check if cce.so is loaded:
+    if (function_exists('ccephp_new')) {
+      // It is. 
+      $this->setNative(FALSE);
+      // Use it:
+      $this->handle = ccephp_new();
+    }
+    else {
+      // It is not.
+      $this->setNative(TRUE);
+      // So we do it the hard way via CCE.php:
+      $CI =& get_instance();
+      $CI->load->library('CCE');
+      $this->handle = CCE::ccephp_new();
+    }
 
     // set default
     $this->isConnected = FALSE;
@@ -48,7 +126,12 @@ class CceClient {
   // param: password: password in string
   // returns: session ID if succeed, empty string if failed
   function auth($userName, $password) {
-    return ccephp_auth($this->handle, $userName, $password);
+    if (!$this->getNative()) {
+      return ccephp_auth($this->handle, $userName, $password);
+    }
+    else {
+      return CCE::ccephp_auth($userName, $password);
+    }
   }
 
   // description: set CCE read-only.
@@ -56,49 +139,88 @@ class CceClient {
   // param: reason: reason for CCE being read-only
   // returns: true is successful
   function suspend( $reason ) {
-    return ccephp_suspend( $this->handle, $reason );
+    if (!$this->getNative()) {
+      return ccephp_suspend( $this->handle, $reason );
+    }
+    else {
+      return CCE::ccephp_suspend($reason);
+    }
   }
 
   // description: set CCE read-write after a call to suspend().
   // Requires: systemAdministrator access
   // returns: true is successful
   function resume( ) {
-    return ccephp_resume( $this->handle );
+    if (!$this->getNative()) {
+      return ccephp_resume( $this->handle );
+    }
+    else {
+      return CCE::ccephp_resume();
+    }
   }
 
   // description: authenticate using a session id
   function authkey( $userName, $sessionId ) {
-    return ccephp_authkey( $this->handle, $userName, $sessionId );
+    if (!$this->getNative()) {
+      return ccephp_authkey( $this->handle, $userName, $sessionId );
+    }
+    else {
+      return CCE::ccephp_authkey($userName, $sessionId );
+    }
   }
 
   // description: determine the currently authenticated user
   // returns: the oid of the user object
   function whoami( ) {
-    return ccephp_whoami( $this->handle );
+    if (!$this->getNative()) {
+      return ccephp_whoami( $this->handle );
+    }
+    else {
+      return CCE::ccephp_whoami();
+    }
   }
 
   // description: disconnect from cce
   function bye() {
     $this->isConnected = false;
-
-    return ccephp_bye($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_bye($this->handle);
+    }
+    else {
+      return CCE::ccephp_bye();
+    }
   }
 
   // description: begin delayed-handler mode
   function begin() {
-    return ccephp_begin($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_begin($this->handle);
+    }
+    else {
+      return CCE::ccephp_begin();
+    }
   }
 
   // description: trigger all handlers to run since begin() call
   // returns: a success code based on the success or failure of all
   //          operations since begin()
   function commit() {
-    return ccephp_commit($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_commit($this->handle);
+    }
+    else {
+      return CCE::ccephp_commit();
+    }
   }
 
   // end authenticated session to cce
   function endkey() {
-    return ccephp_endkey($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_endkey($this->handle);
+    }
+    else {
+      return CCE::ccephp_endkey();
+    }
   }
 
   // description: connect to CCE
@@ -111,7 +233,12 @@ class CceClient {
       $socketPath = $system->getConfig("ccedSocketPath");
     }
 
-    $this->isConnected = ccephp_connect($this->handle, $socketPath);
+    if (!$this->getNative()) {
+      $this->isConnected = ccephp_connect($this->handle, $socketPath);
+    }
+    else {
+      $this->isConnected = CCE::ccephp_connect($socketPath);
+    }
 
     return $this->isConnected;
   }
@@ -119,21 +246,36 @@ class CceClient {
   // description: determine if CCE is suspended or not
   // returns: reason string if suspended, false otherwise
   function suspended() {
-    return ccephp_suspended($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_suspended($this->handle);
+    }
+    else {
+      return CCE::ccephp_suspended();
+    }
   }
 
   // description: create a CCE object of type $class, with properties in $vars
   // returns: oid of created object, or 0 on failure
   // usage: $oid = $cce->create($class, array( 'property' => 'value' ));
   function create($class, $vars = array()) {
-    return ccephp_create($this->handle, $class, $vars);
+    if (!$this->getNative()) {
+      return ccephp_create($this->handle, $class, $vars);
+    }
+    else {
+      return CCE::ccephp_create($class, $vars);
+    }
   }
 
   // description: destroy the CCE object with oid $oid
   // returns: boolean true for success, false for failure
   // usage: $ok = $cce->destroy($oid);
   function destroy($oid) {
-    return ccephp_destroy($this->handle, $oid);
+    if (!$this->getNative()) {
+      return ccephp_destroy($this->handle, $oid);
+    }
+    else {
+      return CCE::ccephp_destroy($oid);
+    }
   }
 
   // description: destroy all objects of type $class that matching the
@@ -154,7 +296,13 @@ class CceClient {
   function errors() {
     $errorObjs = array();
 
-    $errors = ccephp_errors($this->handle);
+    if (!$this->getNative()) {
+      $errors = ccephp_errors($this->handle);
+    }
+    else {
+     $errors = CCE::ccephp_errors(); 
+    }
+
     for($i = 0; $i < count($errors); $i++) {
       $error = $errors[$i];
       if (isset($error["key"])){
@@ -179,34 +327,52 @@ class CceClient {
   // information about a particular error, include "code", "oid",
   // "key", and "message".
   function raw_errors() {
-    return ccephp_errors($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_errors($this->handle);
+    }
+    else {
+     return CCE::ccephp_errors(); 
+    }
   }
 
   // the legacy find command
   // returns: matching $oids
   // usage: $oids = $cce->find($class, array( 'property' => 'value'));
   function find($class, $vars = array()) {
-    return ccephp_find($this->handle, $class, $vars, "", 0);
+    if (!$this->getNative()) {
+      return ccephp_find($this->handle, $class, $vars, "", 0);
+    }
+    else {
+      return CCE::ccephp_find($class, $vars, "", 0);
+    }
   }
 
   // find objects, returning a list sorted by the values in
   // the $key attribute
   // sort is ascii sort
   // returns: matching $oids
-  // usage: $oids = $cce->findSorted($class, $sortkey,
-  //                                 array( 'property' => 'value'));
-  // DEPRECATED
+  // usage: $oids = $cce->findSorted($class, $sortkey, array( 'property' => 'value'));
+  // DEPRECATED - this just does a regular find()
   function findSorted($class, $key, $vars = array()) {
-    return ccephp_find($this->handle, $class, $vars, $key, 0);
+    if (!$this->getNative()) {
+      return ccephp_find($this->handle, $class, $vars, $key, 0);
+    }
+    else {
+      return CCE::ccephp_find($class, $vars, $key, 0);
+    }
   }
 
   // like findSorted, but sort is numeric instead of ascii.
   // returns: matching $oids
-  // usage: $oids = $cce->findSorted($class, $sortkey,
-  //                                 array( 'property' => 'value'));
-  // DEPRECATED
+  // usage: $oids = $cce->findSorted($class, $sortkey, array( 'property' => 'value'));
+  // DEPRECATED - this just does a regular find()
   function findNSorted($class, $key, $vars = array()) {
-    return ccephp_find($this->handle, $class, $vars, $key, 1);
+    if (!$this->getNative()) {
+      return ccephp_find($this->handle, $class, $vars, $key, 1);
+    }
+    else {
+      return CCE::ccephp_find($class, $vars, $key, 1);
+    }
   }
 
   // Description: advanced method of finding objects
@@ -218,45 +384,48 @@ class CceClient {
   //           : ascii, old_numeric, locale, ip, hostname
   // $sortprop : name of property (key) on which to sort
   // returns: matching $oids
-  // usage: $oids = $cce->findx($class, $vars, $regex_vars,
-  //                            $sorttype, $sortkey);
-  function findx($class, $vars = array(), $revars = array(),
-   $sorttype="", $sortprop = "") {
-    return ccephp_findx($this->handle, $class, $vars, $revars,
-        $sorttype, $sortprop);
+  // usage: $oids = $cce->findx($class, $vars, $regex_vars, $sorttype, $sortkey);
+  function findx($class, $vars = array(), $revars = array(), $sorttype="", $sortprop = "") {
+    if (!$this->getNative()) {
+      return ccephp_findx($this->handle, $class, $vars, $revars, $sorttype, $sortprop);
+    }
+    else {
+      return CCE::ccephp_findx($class, $vars, $revars, $sorttype, $sortprop);
+    }
   }
 
   // description: gets the $namespace of the CCE object with given $oid
   // returns: a property hash or null if the object cannot be found
   // usage: $object = $cce->get($oid, $namespace);
   function get($oid, $namespace = "") {
-    return ccephp_get($this->handle, $oid, $namespace);
+    if (!$this->getNative()) {
+      return ccephp_get($this->handle, $oid, $namespace);
+    }
+    else {
+     return CCE::ccephp_get($oid, $namespace); 
+    }
   }
 
   // description: get a CCE object matching given properties
   //              the match is done using 'find', so no findx parameters
   //              can be used
   // returns: a property hash or null if the object cannot be found
-  // usage: $object = $cce->getObject($class,
-  //                                  array( 'property' => 'value'),
-  //                                  $namespace);
-  // DEPRECATED
+  // usage: $object = $cce->getObject($class, array( 'property' => 'value'), $namespace);
   function getObject($class, $vars = array(), $namespace = "") {
     $oids = $this->find($class, $vars);
-    if(count($oids) > 0)
+    if ((count($oids) > 0) && (isset($oids[0]))) {
       return $this->get($oids[0], $namespace);
-    else
-      return null;
+    }
+    else {
+      return NULL;
+    }
   }
 
   // description: get an array of CCE objects matching given properties
   //              the match is done using 'find', so no findx parameters
   //              can be used
   // returns: an array of property hashes, or null if no objects can be found
-  // usage: $objects = $cce->getObjects($class,
-  //                                    array( 'property' => 'value'),
-  //                                    $namespace);
-  // DEPRECATED
+  // usage: $objects = $cce->getObjects($class, array( 'property' => 'value'), $namespace);
   function getObjects($class, $vars = array(), $namespace = "") {
     $oids = $this->find($class, $vars);
 
@@ -277,41 +446,47 @@ class CceClient {
   // usage: $namespaces = $cce->names($oid); OR
   // usage: $namespaces = $cce->names($classname);
   function names($arg) {
-    return ccephp_names($this->handle, $arg);
+    if (!$this->getNative()) {
+      return ccephp_names($this->handle, $arg);
+    }
+    else {
+      return CCE::ccephp_names($arg);
+    }
   }
 
   // description: set object properties in CCE
   // returns: boolean true for success, boolean false for failure
   // usage: $ok = $cce->set($oid, $namespace, array( 'property' => 'value'));
   function set($oid, $namespace = "", $vars = array()) {
-    return ccephp_set($this->handle, $oid, $namespace, $vars);
+    if (!$this->getNative()) {
+      return ccephp_set($this->handle, $oid, $namespace, $vars);
+    }
+    else {
+      return CCE::ccephp_set($oid, $namespace, $vars);
+    }
   }
 
   // description: set a CCE object
   //              the match is done using 'find', so no findx parameters
   //              can be used
   // returns: true on success, false otherwise
-  // usage: $ok = $cce->set($class, array( 'property' => 'value'),
-  //                        $namespace, array( 'findkey' => 'findvalue'));
-  // DEPRECATED
-  function setObject($class, $setVars = array(), $namespace = "",
-                     $findVars = array()) {
+  // usage: $ok = $cce->set($class, array( 'property' => 'value'), $namespace, array( 'findkey' => 'findvalue'));
+  function setObject($class, $setVars = array(), $namespace = "", $findVars = array()) {
     $oids = $this->find($class, $findVars);
-    if(count($oids) > 0)
+    if (count($oids) > 0) {
       return $this->set($oids[0], $namespace, $setVars);
-    else
+    }
+    else {
       return 0;
+    }
   }
 
   // description: set a CCE object. If it does not exist, create it
   //              the match is done using 'find', so no findx parameters
   //              can be used
   // returns: true on success, false otherwise
-  // usage: $ok = $cce->set($class, array( 'property' => 'value'),
-  //                        $namespace, array( 'findkey' => 'findvalue'));
-  // DEPRECATED
-  function setObjectForce($class, $setVars = array(),
-                          $namespace = "", $findVars = array()) {
+  // usage: $ok = $cce->set($class, array( 'property' => 'value'), $namespace, array( 'findkey' => 'findvalue'));
+  function setObjectForce($class, $setVars = array(), $namespace = "", $findVars = array()) {
     $oids = $this->find($class, $findVars);
 
     // create if necessary
@@ -322,27 +497,30 @@ class CceClient {
     return $this->setObject($class, $setVars, $namespace, $findVars);
   }
 
-  // description: determines if the current session is a handler in
-  //              rollback mode.
+  // description: determines if the current session is a handler in rollback mode.
   function isRollback() {
-    return ccephp_is_rollback($this->handle);
+    if (!$this->getNative()) {
+      return ccephp_is_rollback($this->handle);
+    }
+    else {
+      return CCE::ccephp_is_rollback();
+    }
   }
 
   // description: converts a array into a CCE-encoded scalar
   function array_to_scalar( $array ) {
     $result = "&";
-  	if (is_array($array)) {
-      		$result = "&";
-      		foreach($array as $value) {
-        			$value = preg_replace("/([^A-Za-z0-9_\. -])/e",
-                              "sprintf('%%%02X', ord('\\1'))", $value);
-        			$value = preg_replace("/ /", "+", $value);
+    if (is_array($array)) {
+          $result = "&";
+          foreach($array as $value) {
+              $value = preg_replace("/([^A-Za-z0-9_\. -])/e", "sprintf('%%%02X', ord('\\1'))", $value);
+              $value = preg_replace("/ /", "+", $value);
 
-        			$result .= $value . "&";
-      		}
-  	}
-     	if ($result == "&") $result = "";
-      	return $result;
+              $result .= $value . "&";
+          }
+    }
+      if ($result == "&") $result = "";
+        return $result;
   }
 
   // description: converts a CCE-encoded scalar into an array

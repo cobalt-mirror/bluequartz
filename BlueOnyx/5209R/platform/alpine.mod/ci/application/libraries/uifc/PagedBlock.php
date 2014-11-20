@@ -1023,7 +1023,7 @@ class PagedBlock extends Block {
         if (($this->getDisplayErrors() == TRUE) && ($i == "0")) {
           if (is_array($my_BXErrors)) {
             $result .= '<fieldset class="label_top top">' . "\n";
-            if (count($my_BXErrors) > 0) { 
+            if (count($my_BXErrors) > 0) {
               foreach ($my_BXErrors as $key => $value) {
                 if (!is_object($value)) {
                   if (is_array($value)) {
@@ -1039,7 +1039,12 @@ class PagedBlock extends Block {
                 }
                 else {
                   // Error is an object? Nice. Deal with that, too:
-                  $result .= ErrorMessage($i18n->get($value->message)) . "<br>";
+                  if (is_array($value->vars)) {
+                    $result .= ErrorMessage($i18n->get($value->message, "", $value->vars)) . "<br>";
+                  }
+                  else {
+                    $result .= ErrorMessage($i18n->get($value->message)) . "<br>";
+                  }
                 }
               }     
             }
