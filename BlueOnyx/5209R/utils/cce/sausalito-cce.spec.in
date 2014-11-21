@@ -132,9 +132,9 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /usr/sausalito/bin/cceclient
 /usr/sausalito/lib/*.so*
 /usr/sausalito/include/*
-/usr/sausalito/ui/libPhp/*
+#/usr/sausalito/ui/libPhp/*
 /usr/sausalito/perl/*
-%{extension_dir}/*
+#%{extension_dir}/*
 /usr/share/locale/*
 %config(noreplace) /etc/httpd/conf.d/blueonyx.conf
 
@@ -186,6 +186,12 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX16
+- And another not async-signal-safe gettimeofday() in include/cce_common.h
+  Which is yet another debugging function we don't need. I replaced it with
+  time(), but best would be if it could be ripped out entirely.
+- Modified client/Makefile to no longer build the cce.so module.
 
 * Wed Oct 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX15
 - Modified include/cce_common.h to rip out the localtime() call as it is
@@ -387,7 +393,7 @@ fi
 * Sun Jun 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ29
 - add requires httpd for client package.
 
-* Thu May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
+* Fri May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
 - modified initscript to add static route at starting.
 
 * Mon Jan 16 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ27
@@ -418,7 +424,7 @@ fi
 * Thu Oct 20 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ20
 - use vendor macro for vendor tag.
 
-* Tue Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
+* Wed Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
 - rebuild with devel-tools 0.5.1
 
 * Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ18
@@ -457,7 +463,7 @@ fi
 * Thu Mar 25 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ4
 - change cced.init for Blue Quartz 5100R
 
-* Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
+* Thu Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
 - build for Blue Quartz
 
 * Wed Feb 27 2002 CCE Team <cce@sun.com>
