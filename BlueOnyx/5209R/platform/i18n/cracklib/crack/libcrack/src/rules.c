@@ -433,7 +433,7 @@ cracklib_mangle(char *input, char *control)
 					return (char *) 0;
 				}
 				
-				if (strlen(area) <= limit) {
+				if ((int) strlen(area) <= limit) {
 					return (char *) 0;
 				}
 				break;
@@ -450,7 +450,7 @@ cracklib_mangle(char *input, char *control)
 					return (char *) 0;
 				}
 				
-				if (strlen(area) >= limit) {
+				if ((int) strlen(area) >= limit) {
 					return (char *) 0;
 				}
 				break;

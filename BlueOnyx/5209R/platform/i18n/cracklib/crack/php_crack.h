@@ -17,7 +17,7 @@
    +----------------------------------------------------------------------+
  */
 
-/* $Id: php_crack.h,v 1.7 2005/09/05 12:27:12 skettler Exp $ */
+/* $Id: php_crack.h 257091 2008-04-10 15:51:36Z sfox $ */
 
 #ifndef PHP_CRACK_H
 #define PHP_CRACK_H
@@ -37,6 +37,8 @@
 extern zend_module_entry crack_module_entry;
 
 #define crack_module_ptr &crack_module_entry
+
+#define PHP_CRACK_VERSION "0.5.0-dev"
 
 PHP_MINIT_FUNCTION(crack);
 PHP_MSHUTDOWN_FUNCTION(crack);

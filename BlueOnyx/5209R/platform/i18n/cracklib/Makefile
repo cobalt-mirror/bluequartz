@@ -31,7 +31,12 @@ build:
 	cd crack ; make
 
 install:
-	$(INSTALL) -o root -m 0755 crack/.libs/crack.so $(CCEPHPLIBDIR)
+	#$(INSTALL) -o root -m 0755 crack/.libs/crack.so $(CCEPHPLIBDIR)
+	$(INSTALL) -d $(CCEPHPLIBDIR)
+	$(INSTALL) -d $(CCEPHPCLASSDIR)
+	$(INSTALL) -d $(CCEDIR)/ui/web
+	$(INSTALL) -d $(PREFIX)/etc/php.d
+	$(INSTALL) -o root -m 0755 crack/modules/crack.so $(CCEPHPLIBDIR)
 	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/share/dict; \
 	$(INSTALL) -o root dict/cracklib-words -m 0644 $(PREFIX)/usr/share/dict/; \
 	$(INSTALL) -o root dict/pw_dict.hwm -m 0644 $(PREFIX)/usr/share/dict/; \

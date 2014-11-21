@@ -43,16 +43,16 @@ rm -f $RPM_BUILD_ROOT/usr/sausalito/ui/web/test_i18n.php
 /usr/sausalito/bin/i18n_translate
 /usr/sausalito/bin/i18n_locales
 #/usr/sausalito/ui/libPhp/*
-%{extension_dir}/*
+#%{extension_dir}/*
 /usr/sausalito/perl/I18n.pm
 /usr/sausalito/perl/SendEmail.pm
 /usr/sausalito/perl/I18nMail.pm
 /usr/sausalito/perl/JConv.pl
 /usr/sausalito/bin/i18nmail.pl
-/usr/share/dict/cracklib-words 
-/usr/share/dict/pw_dict.hwm 
-/usr/share/dict/pw_dict.pwd 
-/usr/share/dict/pw_dict.pwi 
+#/usr/share/dict/cracklib-words 
+#/usr/share/dict/pw_dict.hwm 
+#/usr/share/dict/pw_dict.pwd 
+#/usr/share/dict/pw_dict.pwi 
 
 %files devel
 %defattr(-,root,root)
@@ -93,6 +93,10 @@ if [ -d "/usr/share/locale/ja_JP.utf8" ]; then
 fi
 
 %changelog
+
+* Thu Nov 20 2014 Michael Stauber <mstauber@solarspeed.net> 0.81.2-0BX01
+- Cracklib updated to last version from SVN. Still blows up. Disabled.
+- i18n PHP module build disabled, as we now replace it with a PHP class.
 
 * Sun Jul 13 2014 Michael Stauber <mstauber@solarspeed.net> 0.80.1-0BX01
 - Build for 520XR.
@@ -159,7 +163,7 @@ fi
 - Modified php/I18n.php to make sure that if no supported locale is detected,
   then 'en_US' will be used instead.
 
-* Sat Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
+* Thu Jun 03 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX22
 - Version number bump due to PHP upgrade to PHP-5.3.2 in RHEL 6 Beta 2
 
 * Wed Jun 02 2010 Michael Stauber <mstauber@solarspeed.net> 0.70.2-86BX20
@@ -222,7 +226,7 @@ fi
 * Sat Jun 11 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.70.2-86BQ3
 - support x86_64 environment
 
-* Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.70.2-86BQ1
+* Thu Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.70.2-86BQ1
 - build for Blue Quartz
 
 * Thu Mar 14 2002 Patrick Baltz <patrick.baltz@sun.com>
@@ -241,7 +245,7 @@ fi
 * Wed Apr 26 2000 Adrian Sun <asun@cobalt.com>
 - renamed 
 
-* Tue Mar 15 2000 Adrian Sun <asun@cobalt.com>
+* Wed Mar 15 2000 Adrian Sun <asun@cobalt.com>
 - re-worked source tree
 
 * Tue Feb 29 2000 Adrian Sun <asun@cobalt.com>
