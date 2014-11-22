@@ -152,7 +152,12 @@ class I18nNative {
     }
     else {
       $segments = explode('.', $magicstr);
-      $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+      if (isset($segments[1])) {
+        $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+      }
+      else {
+        $message = i18nNative::i18n_do_it($magicstr, i18nNative::getDomain(), $vars); 
+      }
     }
     return $message;
   }
@@ -173,7 +178,12 @@ class I18nNative {
     }
     else {
       $segments = explode('.', $magicstr);
-      $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+      if (isset($segments[1])) {
+        $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+      }
+      else {
+        $message = i18nNative::i18n_do_it($magicstr, i18nNative::getDomain(), $vars); 
+      }
     }
     return $message;
   }
@@ -194,7 +204,12 @@ class I18nNative {
     }
     else {
       $segments = explode('.', $magicstr);
-      $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+      if (isset($segments[1])) {
+        $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+      }
+      else {
+        $message = i18nNative::i18n_do_it($magicstr, i18nNative::getDomain(), $vars); 
+      }
     }
     return $message;
   }
