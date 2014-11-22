@@ -1126,6 +1126,7 @@ class PagedBlock extends Block {
               if (is_array($this->BxPage->getLabel($formFieldObj_id))) {
                 foreach ($this->BxPage->getLabel($formFieldObj_id) as $label => $description) {
                   // Stuff the label and the description into our FormField Object:
+                  if (!isset($formFieldObj->page)) { $formFieldObj->page = new stdClass(); }
                   $formFieldObj->page->Label = array($label => $description);
                   // Also manually set the current Object ID into that FormField Object, because
                   // at this time that information might be incorrect:

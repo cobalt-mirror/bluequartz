@@ -1108,74 +1108,97 @@ function bx_pw_check($i18n, $password = "", $pass_repeat = "") {
 		}
 		elseif ($password) {
 
-		    // Open CrackLib Dictionary for usage:
-		    @$dictionary = crack_opendict('/usr/share/dict/pw_dict');
+			if (function_exists('crack_opendict')) {
 
-		    // Perform password check with cracklib:
-		    $check = crack_check($dictionary, $password);
+			    // Open CrackLib Dictionary for usage:
+			    @$dictionary = crack_opendict('/usr/share/dict/pw_dict');
 
-		    // Retrieve messages from cracklib:
-		    $diag = crack_getlastmessage();
+			    // Perform password check with cracklib:
+			    $check = crack_check($dictionary, $password);
 
-		    if ($diag == 'strong password') {
-		        // Nothing to do. Cracklib thinks it's a good password.
-		    }
-		    else {
+			    // Retrieve messages from cracklib:
+			    $diag = crack_getlastmessage();
 
-				// Parse the return strings from cracklib and localize them:
-				if (preg_match('/^it\'s WAY too short$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_way_too_short]]");
-				}
-				elseif (preg_match('/^it is too short$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_too_short]]");
-				}
-				elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
-				}
-				elseif (preg_match('/^it is all whitespace$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_all_whitespace]]");
-				}
-				elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_too_simple]]");
-				}
-				elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_insurance_number]]");
-				}
-				elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_dictionary_word]]");
-				}
-				elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
-				}
-				elseif (preg_match('/^strong password$/', $diag)) {
-					$diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
+			    if ($diag == 'strong password') {
+			        // Nothing to do. Cracklib thinks it's a good password.
+			    }
+			    else {
+
+					// Parse the return strings from cracklib and localize them:
+					if (preg_match('/^it\'s WAY too short$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_way_too_short]]");
+					}
+					elseif (preg_match('/^it is too short$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_too_short]]");
+					}
+					elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
+					}
+					elseif (preg_match('/^it is all whitespace$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_all_whitespace]]");
+					}
+					elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_too_simple]]");
+					}
+					elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_insurance_number]]");
+					}
+					elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_dictionary_word]]");
+					}
+					elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
+					}
+					elseif (preg_match('/^strong password$/', $diag)) {
+						$diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
+					}
+					else {
+						// In case the localization fails, return the cracklib output directly:
+						$diag_result = $diag;
+					}
+
+					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
+					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
+			    }
+
+			    // Close cracklib dictionary:
+			    crack_closedict($dictionary);
+			}
+			else {
+				// No Cracklib support available. We have alternatives, though:
+
+				$CI =& get_instance();
+				$CI->load->library('StupidPass');
+				// Override the default errors messages
+				$hardlang = array(
+				'length' => $i18n->getHtml("[[palette.pw_way_too_short]]"),
+				'upper'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
+				'lower'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
+				'numeric'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
+				'special'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
+				'common' => $i18n->getHtml("[[palette.pw_dictionary_word]]"),
+				'environ'=> $i18n->getHtml("[[palette.pw_too_simple]]"));
+
+				// Supply reference of the environment (company, hostname, username, etc)
+				$environmental = array('blueonyx', 'admin');
+				$sp = new StupidPass(40, $environmental, '/usr/sausalito/ui/chorizo/ci/application/libraries/stupid-pass/StupidPass.default.dict', $hardlang);
+				if ($sp->validate($password) === false) {
+					$PWerrors = $sp->get_errors();
+					$diag_result = $PWerrors[0];
+					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
+					$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
 				}
 				else {
-					// In case the localization fails, return the cracklib output directly:
-					$diag_result = $diag;
+					$diag_result = $i18n->getHtml("[[palette.pw_strong_password]]");
 				}
-
-				$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-password-invalid]]") . '<br>' . $diag_result);
-				$my_errors[] = ErrorMessage($i18n->get("[[base-user.error-invalid-password]]"));
-		    }
-
-		    // Close cracklib dictionary:
-		    crack_closedict($dictionary);
+			}
 		}
 
-	if (is_array($my_errors)) {
-		if (count($my_errors) >= "1") {
-			return $my_errors;
+		if (is_array($my_errors)) {
+			if (count($my_errors) >= "1") {
+				return $my_errors;
+			}
 		}
-		else {
-			//$out = array();
-			//return $out;
-		}
-	}
-	else {
-		//$out = array();
-		//return $out;
-	}
 }
 
 /**

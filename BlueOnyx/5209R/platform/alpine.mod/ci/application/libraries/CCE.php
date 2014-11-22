@@ -346,7 +346,9 @@ class CCE {
 
   // Auth:
   function ccephp_auth($userName, $password) {
-    CCE::ccephp_new("AUTH ". CCE::_escape($userName) . " " . CCE::_escape($password));
+    // The password must be escaped and the only valid char for that is a double quote.
+    // CCEd will not accept single quoted values:
+    CCE::ccephp_new("AUTH ". CCE::_escape($userName) . " \"" . CCE::_escape($password) . "\"");
     if ($this->self['sessionid'] != "") {
       setcookie("loginName", $userName);
       $this->setUsername($userName);
@@ -554,10 +556,14 @@ class CCE {
     $socket = @stream_socket_client("unix:///$socketPath", $errorno, $errorstr, $timeout);
     @stream_set_timeout($socket, $timeout);
 
+    if (is_bool($socket)) {
+      return FALSE;
+    }
+
     // If we have Username and Password we use AUTH:
     if ((isset($this->Username)) && (isset($this->Password))) {
       if (($this->Username != '') && ($this->Password != '')) {
-        fwrite($socket, "AUTH $this->Username $this->Password\n");
+        fwrite($socket, "AUTH $this->Username \"" . $this->Password . "\"\n");
       }
     }
     elseif ((isset($this->Username)) && (isset($this->SessionId))) {
