@@ -105,6 +105,9 @@ class UserDiskUsage extends MX_Controller {
 		// convert into MB / GB, TB:
 		$available = simplify_number_diskspace($available, "kb", "2", "B");
 		$used = simplify_number_diskspace($used, "kb", "2", "B");
+		if ($used == "") {
+			$used = "0B";
+		}
 		$free = simplify_number_diskspace($free, "kb", "2", "B");
 
 		// Show over quota notification:
@@ -125,7 +128,7 @@ class UserDiskUsage extends MX_Controller {
 		$BxPage = new BxPage();
 
 		$page_body[] = addInputForm(
-									$i18n->get("[[base-disk.diskUsageFor]]", false, array("userName" => $loginName)), 
+									$i18n->get("diskUsageFor", "base-disk", array("userName" => $loginName)), 
 									array("toggle" => "#"),
 									addTextField("userDiskUsed", "", $used, "base-disk", "", "r", $i18n) .
 									addTextField("userDiskFree", "", $free, "base-disk", "", "r", $i18n) .
