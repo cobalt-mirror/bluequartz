@@ -31,7 +31,7 @@
     /> 
  
     <property  
-        name="host" type="word" default="localhost" 
+        name="host" type="word" default="127.0.0.1" 
         writeacl="ruleCapable(adminUser)" 
     /> 
  
@@ -67,7 +67,7 @@
     />
 
     <property 
-        name="host" type="word" default="localhost"
+        name="host" type="word" default="127.0.0.1"
         writeacl="ruleCapable(adminUser)"
     />
 

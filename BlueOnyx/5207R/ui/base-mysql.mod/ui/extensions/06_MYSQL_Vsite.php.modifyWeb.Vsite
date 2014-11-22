@@ -51,6 +51,10 @@ if ($db_rights['solsitemysql'] == "1") {
 					$con_sql_host = $my_sql_host;
 			}
 
+			if ($sql_host == "localhost") {
+				$sql_host = "127.0.0.1";
+			}
+
 			// Get FQDN of the server:
 			$getthisFQDN = $cce->find("System");
 			$this_FQDN_info = $cceClient->get($getthisFQDN[0]);
@@ -59,7 +63,7 @@ if ($db_rights['solsitemysql'] == "1") {
 			$this_FQDN = $this_host . "." . $this_domain;
 			
 			// Test MySQL connection: (1 = OK, 0 = not OK)
-			$mysql_link = mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+			$mysql_link = mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
 			mysql_select_db("mysql") or $mysql_error = mysql_error();
 			mysql_close($mysql_link);
 			if ($mysql_error != "") {

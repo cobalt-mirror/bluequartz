@@ -20,7 +20,7 @@
         />
         <property name="sql_host"
             type="scalar"
-            default="localhost"
+            default="127.0.0.1"
             optional="true"
             writeacl="ruleCapable(adminUser)"
         />

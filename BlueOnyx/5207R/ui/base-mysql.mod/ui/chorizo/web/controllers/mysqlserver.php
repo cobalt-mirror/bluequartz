@@ -309,7 +309,7 @@ class Mysqlserver extends MX_Controller {
 
 		// Configure defaults:
 		if (!$sql_root) { $sql_root = "root"; }
-		if (!$sql_host) { $sql_host = "localhost"; }
+		if (!$sql_host) { $sql_host = "127.0.0.1"; }
 		if (!$sql_port) { $sql_port = "3306"; }
 
 		if (($sql_host != "localhost") || ($sql_host != "127.0.0.1")) {
@@ -321,16 +321,21 @@ class Mysqlserver extends MX_Controller {
 		    $mysql_is_local = "0";
 		}
 		
+		if ($sql_host == "localhost") {
+			$sql_host = "127.0.0.1";
+		}
+
 		// Test MySQL connection:
 		$ret = ini_set("display_errors", "Off");
 		$mysql_error = "";
-		$mysql_link = @mysql_connect($con_sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+		$mysql_link = @mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
 		$ret = ini_set("display_errors", "On");
 		if (!$mysql_error) {
 		    @mysql_select_db("mysql") or $mysql_error = mysql_error();
 		    @mysql_close($mysql_link);
 		}
 		$mysql_no_connect = "0";
+
 		if ($mysql_error) {
 		    // MySQL connection not possible:	    
 		    $mysql_status = $i18n->interpolate("[[base-mysql.mysql_status_incorrect]]");
