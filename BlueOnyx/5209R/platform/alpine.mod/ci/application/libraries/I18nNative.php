@@ -141,9 +141,14 @@ class I18nNative {
     preg_match($zpattern, $magicstr, $found);
     if (isset($found[1])) {
       $segments = explode('.', $found[1]);
-      $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-      $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
-      $message = preg_replace($ypattern, $kmessage, $magicstr);
+      if (isset($segments[1])) {
+        $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+        $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
+        $message = preg_replace($ypattern, $kmessage, $magicstr);
+      }
+      else {
+        $message = i18nNative::i18n_do_it($found[1], i18nNative::getDomain(), $vars);
+      }
     }
     else {
       $segments = explode('.', $magicstr);
@@ -157,9 +162,14 @@ class I18nNative {
     preg_match($zpattern, $magicstr, $found);
     if (isset($found[1])) {
       $segments = explode('.', $found[1]);
-      $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-      $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
-      $message = preg_replace($ypattern, $kmessage, $magicstr);
+      if (isset($segments[1])) {
+        $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+        $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
+        $message = preg_replace($ypattern, $kmessage, $magicstr);
+      }
+      else {
+        $message = i18nNative::i18n_do_it($found[1], i18nNative::getDomain(), $vars);
+      }
     }
     else {
       $segments = explode('.', $magicstr);
@@ -173,9 +183,14 @@ class I18nNative {
     preg_match($zpattern, $magicstr, $found);
     if (isset($found[1])) {
       $segments = explode('.', $found[1]);
-      $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-      $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
-      $message = preg_replace($ypattern, $kmessage, $magicstr);
+      if (isset($segments[1])) {
+        $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+        $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
+        $message = preg_replace($ypattern, $kmessage, $magicstr);
+      }
+      else {
+        $message = i18nNative::i18n_do_it($found[1], i18nNative::getDomain(), $vars);
+      }
     }
     else {
       $segments = explode('.', $magicstr);
