@@ -234,14 +234,14 @@ class Wizard extends MX_Controller {
 
 				// Password empty?
 				if (bx_pw_check($i18n, $attributes['newPasswordField'], $attributes['_newPasswordField_repeat']) != "") {
-					$my_errors[] = bx_pw_check($i18n, $attributes['newPasswordField'], $attributes['_newPasswordField_repeat']);
+					$my_errors = bx_pw_check($i18n, $attributes['newPasswordField'], $attributes['_newPasswordField_repeat']);
 				}
 				// License accepted?
 				if (!isset($attributes['license_acceptance'])) {
-					$my_errors[] = ErrorMessage($i18n->get("[[base-wizard.accept_help]]"). '<br>' . $i18n->get("[[base-wizard.decline_help]]"));
+					$my_errors = ErrorMessage($i18n->get("[[base-wizard.accept_help]]"). '<br>' . $i18n->get("[[base-wizard.decline_help]]"));
 				}
 				if ((!isset($attributes['hostNameField'])) || (!isset($attributes['domainNameField']))) {
-					$my_errors[] = ErrorMessage($i18n->get("[[base-wizard.enterFqdn_help]]"));
+					$my_errors = ErrorMessage($i18n->get("[[base-wizard.enterFqdn_help]]"));
 				}
 			}
 
@@ -251,7 +251,6 @@ class Wizard extends MX_Controller {
 
 			// Join the various error messages:
 			$errors = array_merge($ci_errors, $my_errors);
-
 			// If we have no errors and have POST data, we submit to CODB:
 			if ((count($errors) == "0") && ($CI->input->post(NULL, TRUE))) {
 
@@ -278,7 +277,7 @@ class Wizard extends MX_Controller {
 					$passwd_repeat = $attributes['_newPasswordField_repeat'];
 				}
 				if (bx_pw_check($i18n, $passwd, $passwd_repeat) != "") {
-					$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+					$my_errors = bx_pw_check($i18n, $passwd, $passwd_repeat);
 				}
 				if ($attributes['newPasswordField']) {
   					$user_attributes["password"] = $attributes['newPasswordField'];
