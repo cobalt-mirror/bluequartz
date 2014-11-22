@@ -159,6 +159,9 @@ class I18nNative {
         $message = i18nNative::i18n_do_it($magicstr, i18nNative::getDomain(), $vars); 
       }
     }
+    if ($message == "") {
+      return $magicstr;
+    }
     return $message;
   }
 
@@ -185,6 +188,9 @@ class I18nNative {
         $message = i18nNative::i18n_do_it($magicstr, i18nNative::getDomain(), $vars); 
       }
     }
+    if ($message == "") {
+      return $magicstr;
+    }
     return $message;
   }
 
@@ -210,6 +216,9 @@ class I18nNative {
       else {
         $message = i18nNative::i18n_do_it($magicstr, i18nNative::getDomain(), $vars); 
       }
+    }
+    if ($message == "") {
+      return $magicstr;
     }
     return $message;
   }
