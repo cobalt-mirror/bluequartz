@@ -44,10 +44,6 @@ include_once('EncodingConv.php');
 //
 // private class variables
 //
-// set to true to print debug messages
-$GLOBALS["_I18n_isDebug"] = false;
-// set to true to put the class in stub mode
-$GLOBALS["_I18n_isStub"] = false;
 
 class I18n {
   //
@@ -56,9 +52,22 @@ class I18n {
 
   var $handle;
 
+  // Connection method: 
+  // TRUE = PHP Class
+  // FALSE = PHP Module
+  var $NATIVE;
+
   //
   // public methods
   //
+
+  function setNative($CM) {
+    $this->NATIVE = $CM;
+  }
+
+  function getNative() {
+    return $this->NATIVE;
+  }
 
   // description: constructor
   // param: domain: a string that describes the domain
@@ -66,8 +75,6 @@ class I18n {
   //     of preferred locale. Most important locales appears first.
   //     e.g. "en_US, en_AU, zh, de_DE"
   function I18n($domain = "", $langs = "") {
-    if($GLOBALS["_I18n_isDebug"]) print("I18n($domain, $langs)\n");
-    if($GLOBALS["_I18n_isStub"]) return;
 
     if (!is_array($langs)) {
       $my_lang[] = $langs;
@@ -95,7 +102,22 @@ class I18n {
     if($foundlang != '1') {
       $langs = "en_US";
     }
-    $this->handle = i18n_new($domain, $langs);
+
+    // Check if i18n.so is loaded:
+    if (function_exists('i18n_new')) {
+      // It is. 
+      $this->setNative(FALSE);
+      // Use it:
+      $this->handle = i18n_new($domain, $langs);
+    }
+    else {
+      // It is not.
+      $this->setNative(TRUE);
+      // So we do it the hard way via i18nNative.php:
+      $CI =& get_instance();
+      $CI->load->library('i18nNative');
+      $this->handle = i18nNative::i18n_new($domain, $langs);
+    }
   }
 
   /**
@@ -137,7 +159,12 @@ class I18n {
   //     "My name is [[VAR.name]]", then "My name is Kevin" is returned
   // returns: a localized string if it is found or the tag otherwise
   function get($tag, $domain = "", $vars = array()) {
-    $out_txt = i18n_get($this->handle, $tag, $domain, $vars);
+    if (!$this->getNative()) {
+      $out_txt = i18n_get($this->handle, $tag, $domain, $vars);
+    }
+    else {
+      $out_txt = i18nNative::i18n_get($tag, $domain, $vars);
+    }
     if (mb_check_encoding($out_txt, "utf8") == TRUE ){
       return $out_txt;
     }
@@ -157,7 +184,12 @@ class I18n {
   function getWrapped($tag, $domain = "", $vars = array()) {
     $CI =& get_instance();
     $ini_langs = initialize_languages(FALSE);
-    $out_txt = i18n_get($this->handle, $tag, $domain, $vars);
+    if (!$this->getNative()) {
+      $out_txt = i18n_get($this->handle, $tag, $domain, $vars);
+    }
+    else {
+      $out_txt = i18nNative::i18n_get($tag, $domain, $vars);
+    }
     if (mb_check_encoding($out_txt, "utf8") == TRUE ){
       $out_txt_clean = $out_txt;
     }
@@ -188,7 +220,12 @@ class I18n {
   // Used for places where we need an unwrapped localization where all erronous HTML code
   // is transformed into something formsafe. For example for pulldowns and similar.
   function getClean($tag, $domain = "", $vars = array()) {
-    $out_text = i18n_get($this->handle, $tag, $domain, $vars);
+    if (!$this->getNative()) {
+      $out_text = i18n_get($this->handle, $tag, $domain, $vars);
+    }
+    else {
+      $out_text = i18nNative::i18n_get($tag, $domain, $vars); 
+    }
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
     if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
       return $out_text_clean;
@@ -214,7 +251,12 @@ class I18n {
   // returns: a Javacsript friendly localized string if it is found or the tag
   //     otherwise
   function getJs($tag, $domain = "", $vars = array()) {
-    $out_text = i18n_get_js($this->handle, $tag, $domain, $vars);
+    if (!$this->getNative()) {
+      $out_text = i18n_get_js($this->handle, $tag, $domain, $vars);
+    }
+    else {
+      $out_text = i18nNative::i18n_get_js($tag, $domain, $vars);
+    }
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
     if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
       return $out_text_clean;
@@ -242,7 +284,12 @@ class I18n {
   // returns: a HTML friendly localized string if it is found or the tag
   //     otherwise
   function getHtml($tag, $domain = "", $vars = array()) {
-    $out_txt = i18n_get_html($this->handle, $tag, $domain, $vars);
+    if (!$this->getNative()) {
+      $out_txt = i18n_get_html($this->handle, $tag, $domain, $vars);
+    }
+    else {
+      $out_txt = i18nNative::i18n_get_html($tag, $domain, $vars);
+    }
     $CI =& get_instance();
     $ini_langs = initialize_languages(FALSE);
     if (mb_check_encoding($out_txt, "utf8") == TRUE ){
@@ -272,7 +319,12 @@ class I18n {
   // param: vars: a hash of variable key strings to value strings. Optional
   // returns: a localized string or magicstr if interpolation failed
   function interpolate($magicstr, $vars = array()) {
-    $out_text = i18n_interpolate($this->handle, $magicstr, $vars);
+    if (!$this->getNative()) {
+      $out_text = i18n_interpolate($this->handle, $magicstr, $vars);
+    }
+    else {
+      $out_text = i18nNative::i18n_interpolate($magicstr, $vars);
+    }
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
     if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
       return $out_text_clean;
@@ -295,7 +347,12 @@ class I18n {
   // returns: a Javacsript friendly localized string or magicstr if
   //     interpolation failed
   function interpolateJs($magicstr, $vars = array()) {
-    $out_text = i18n_interpolate_js($this->handle, $magicstr, $vars);
+    if (!$this->getNative()) {
+      $out_text = i18n_interpolate_js($this->handle, $magicstr, $vars);
+    }
+    else {
+      $out_text = i18nNative::i18n_interpolate_js($magicstr, $vars);
+    }
     $out_text_clean = html_entity_decode(htmlspecialchars_decode($out_text, ENT_QUOTES), ENT_QUOTES);
     if (mb_check_encoding($out_text_clean, "utf8") == TRUE ){
       return $out_text_clean;
@@ -318,7 +375,12 @@ class I18n {
   // returns: a HTMl friendly localized string or magicstr if
   //     interpolation failed
   function interpolateHtml($magicstr, $vars = array()) {
-    $out_text = i18n_interpolate_html($this->handle, $magicstr, $vars);
+    if (!$this->getNative()) {
+      $out_text = i18n_interpolate_html($this->handle, $magicstr, $vars);
+    }
+    else {
+      $out_text = i18nNative::i18n_interpolate_html($magicstr, $vars);
+    }
     $CI =& get_instance();
     $ini_langs = initialize_languages(FALSE);
     if (mb_check_encoding($out_text, "utf8") == TRUE ){
@@ -354,10 +416,13 @@ class I18n {
   //     e.g. "en_US, en_AU, zh, de_DE". Optional. If not supplied, the one
   //     supplied to I18n constructor is used.
   function getProperty($property, $domain = "", $lang = "") {
-    if($GLOBALS["_I18n_isDebug"]) print("getProperty($property, $domain, $lang)\n");
-    if($GLOBALS["_I18n_isStub"])  return "I18n getProperty stub";
-
-    return i18n_get_property($this->handle, $property, $domain, $lang);
+    if (!$this->getNative()) {
+      return i18n_get_property($this->handle, $property, $domain, $lang);
+    }
+    else {
+      // To hell with it. We don't really use it, so we return something sane:
+      return "";
+    }
   }
 
   // descrption: get the path of the file of the most suitable locale
@@ -367,10 +432,13 @@ class I18n {
   // param: file: the full path of the file in question
   // returns: the full path of the file of the most suitable locale
   function getFile($file) {
-    if($GLOBALS["_I18n_isDebug"]) print("getFile($file)\n");
-    if($GLOBALS["_I18n_isStub"])  return "I18n getFile stub";
-
-    return i18n_get_file($this->handle, $file);
+    if (!$this->getNative()) {
+      return i18n_get_file($this->handle, $file);
+    }
+    else {
+      // Chorizo doesn't use this. So we return the same $file:
+      return $file;
+    }
   }
 
   // description: get a list of available locales for a domain or everything
@@ -378,10 +446,13 @@ class I18n {
   // param: domain: i18n domain in string. Optional
   // returns: an array of locale strings
   function getAvailableLocales($domain = "") {
-    if($GLOBALS["_I18n_isDebug"]) print("getAvailableLocales($domain)\n");
-    if($GLOBALS["_I18n_isStub"])  return "I18n getAvailableLocales stub";
-
-    return i18n_availlocales($domain);
+    if (!$this->getNative()) {
+      return i18n_availlocales($domain);
+    }
+    else {
+      // Same shit as getLocales() one function below:
+      return i18nNative::i18n_locales($domain);
+    }
   }
 
   // description: get a list of negotiated locales
@@ -389,10 +460,12 @@ class I18n {
   // returns: an array of locale strings
   //     The first one being to most important and so on
   function getLocales($domain = "") {
-    if($GLOBALS["_I18n_isDebug"]) print("getLocales($domain)\n");
-    if($GLOBALS["_I18n_isStub"])  return "I18n getLocales stub";
-
-    return i18n_locales($this->handle, $domain);
+    if (!$this->getNative()) {
+      return i18n_locales($this->handle, $domain);
+    }
+    else {
+      return i18nNative::i18n_locales($domain);
+    }
   }
 
   // description: wrapper to strftime()
@@ -400,9 +473,6 @@ class I18n {
   // param: time: the epochal time
   // returns: a strftime() formatted string
   function strftime ($format = "", $time = 0) {
-    if($GLOBALS["_I18n_isDebug"]) print("strftime($format, $time)\n");
-    if($GLOBALS["_I18n_isStub"])  return "I18n strftime stub";
-
     return i18n_strftime($this->handle, $format, $time);
   }
 

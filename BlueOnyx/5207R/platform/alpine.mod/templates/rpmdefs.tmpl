@@ -125,6 +125,32 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX016
+- Preparational build for 5209R with CCEd/i18n/cracklib related changes.
+- ci/application/helpers/blueonyx_helper.php: Support for cracklib/StupidPass
+- ci/application/helpers/uifc_ng_helper.php: Locale fixes for getBar()
+- ci/application/libraries/CCE.php: Fixed password escaping.
+- ci/application/libraries/I18n.php: Various fixes.
+- ci/application/libraries/I18nNative.php: Added and interpolate fixed.
+- ci/application/libraries/uifc/Bar.php: Locale fixes.
+- ci/application/libraries/uifc/PagedBlock.php: Object pre-declaration added.
+- ci/application/modules/base/gui/controllers/check_password.php: Modified to
+  use either cracklib or fallback to StupidPass if no cracklib is available.
+  As is the settings for StupidPass are pretty anal-retentive. This will sure
+  cause an uproar unless toned down a little.
+- Added ci/application/libraries/StupidPass.php
+- Added ci/application/libraries/stupid-pass/LICENSE.txt
+- Added ci/application/libraries/stupid-pass/README.md
+- Added ci/application/libraries/stupid-pass/StupidPass.class.php
+- Added ci/application/libraries/stupid-pass/StupidPass.default.dict
+- Added ci/application/libraries/stupid-pass/test.php
+- Notes: This build makes Chorizo independent of the underlying PHP version,
+  as cracklib.so, cce.so and i18n.so are now complemented/replaced by native
+  PHP classes that are used if AdmServ's PHP doesn't have said modules loaded.
+  However: We still heavily discourage usage of PHP versions that Chorizo wasn't
+  specifically built for or tested against. If you do and find bugs, you can
+  keep them.
+
 * Wed Nov 19 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX015
 - Bump from 1.0 to 1.1 for general (but transparent) API changes.
 - Release number continues and will do so through the Chorizo life-cycle.

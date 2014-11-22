@@ -53,12 +53,10 @@ function getBar ($palette, $name, $percentage, $bartext, $i18n) {
 	// $bartext:	text below progress bar
 	// $i18n:		parents $i18n object
 
-	$tp1 = $palette . "." . $name;
-	$text = $i18n->getHtml("[[$palette.$tp1]]");
-
+	$combined = $palette . "." . $name;
+	$text = $i18n->getHtml("[[$combined]]");
 	$h = $palette . "." . $name . '_help';
 	$helptext = $i18n->getWrapped("[[$h]]");
-
 	$percentage_helptext = $bartext;
 
 	$out = '

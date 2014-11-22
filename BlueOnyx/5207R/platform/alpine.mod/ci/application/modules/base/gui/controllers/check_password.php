@@ -74,43 +74,70 @@ class Check_Password extends MX_Controller {
 		// Start sane:
 		$data['result'] = $i18n->getHtml("[[palette.pw_way_too_short]]");
 
-		// Poll cracklib:
-		$dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
-		$check = crack_check($dictionary, $password);
-		$diag = crack_getlastmessage();
-		crack_closedict($dictionary);
+		if (function_exists('crack_opendict')) {
+			// Poll cracklib:
+			$dictionary = crack_opendict('/usr/share/dict/pw_dict') or die('Unable to open CrackLib dictionary');
+			$check = crack_check($dictionary, $password);
+			$diag = crack_getlastmessage();
+			crack_closedict($dictionary);
 
-		// Parse the return strings from cracklib and localize them:
-		if (preg_match('/^it\'s WAY too short$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_way_too_short]]");
-		}
-		elseif (preg_match('/^it is too short$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_too_short]]");
-		}
-		elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
-		}
-		elseif (preg_match('/^it is all whitespace$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_all_whitespace]]");
-		}
-		elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_too_simple]]");
-		}
-		elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_insurance_number]]");
-		}
-		elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_dictionary_word]]");
-		}
-		elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
-		}
-		elseif (preg_match('/^strong password$/', $diag)) {
-			$data['result'] = $i18n->getHtml("[[palette.pw_strong_password]]");
+			// Parse the return strings from cracklib and localize them:
+			if (preg_match('/^it\'s WAY too short$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_way_too_short]]");
+			}
+			elseif (preg_match('/^it is too short$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_too_short]]");
+			}
+			elseif (preg_match('/^it does not contain enough DIFFERENT characters$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_not_nuff_different]]");
+			}
+			elseif (preg_match('/^it is all whitespace$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_all_whitespace]]");
+			}
+			elseif (preg_match('/^it is too simplistic\/systematic$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_too_simple]]");
+			}
+			elseif (preg_match('/^it looks like a National Insurance (.*)$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_insurance_number]]");
+			}
+			elseif (preg_match('/^it is based on a dictionary word$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_dictionary_word]]");
+			}
+			elseif (preg_match('/^it is based on a \(reversed\) dictionary word$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_reversed_dictionary_word]]");
+			}
+			elseif (preg_match('/^strong password$/', $diag)) {
+				$data['result'] = $i18n->getHtml("[[palette.pw_strong_password]]");
+			}
+			else {
+				// In case the localization fails, return the cracklib output directly:
+				$data['result'] = $diag;
+			}
 		}
 		else {
-			// In case the localization fails, return the cracklib output directly:
-			$data['result'] = $diag;
+			$CI =& get_instance();
+			$CI->load->library('StupidPass');
+
+			// Override the default errors messages
+			$hardlang = array(
+			'length' => $i18n->getHtml("[[palette.pw_way_too_short]]"),
+			'upper'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
+			'lower'  => $i18n->getHtml("[[palette.pw_not_nuff_different]]"),
+			'numeric'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
+			'special'=> $i18n->getHtml("[[palette.pw_too_simple]]"),
+			'common' => $i18n->getHtml("[[palette.pw_dictionary_word]]"),
+			'environ'=> $i18n->getHtml("[[palette.pw_too_simple]]"));
+
+			// Supply reference of the environment (company, hostname, username, etc)
+			$environmental = array('blueonyx', 'admin');
+			$sp = new StupidPass(40, $environmental, '/usr/sausalito/ui/chorizo/ci/application/libraries/stupid-pass/StupidPass.default.dict', $hardlang);
+			if ($sp->validate($password) === false) {
+				$PWerrors = $sp->get_errors();
+				$data['result'] = $PWerrors[0];
+			}
+			else {
+				$data['result'] = $i18n->getHtml("[[palette.pw_strong_password]]");
+			}
 		}
 
 		// Show the results:

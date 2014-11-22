@@ -121,7 +121,6 @@ class Bar extends FormField {
     }
 
     $out = '';
-
     if ($this->getLabelType() != "nolabel") {
       $out .= '
                                                           <fieldset class="label_side">
