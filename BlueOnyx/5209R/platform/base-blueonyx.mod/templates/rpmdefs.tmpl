@@ -262,7 +262,7 @@ if [ ! -f /etc/mail/aliases ]; then
   if [ $? = 1 ]; then
     echo 'root:		admin' >> /etc/mail/aliases
   fi
-  /etc/init.d/sendmail condrestart
+  /sbin/service sendmail condrestart
 fi
 if [ ! -f /usr/share/sendmail-cf/hack/popauth.m4 ]; then
   /bin/cp /usr/sausalito/configs/sendmail/popauth.m4 \
@@ -317,7 +317,7 @@ if [ ! -f /etc/mail/aliases ]; then
   if [ $? = 1 ]; then
     echo 'root:		admin' >> /etc/mail/aliases
   fi
-  /etc/init.d/sendmail condrestart
+  /sbin/service sendmail condrestart
 fi
 <end $TRIGGERUN>
 
