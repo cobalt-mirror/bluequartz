@@ -14,7 +14,8 @@ OBJS = $(patsubst %.c,%.o,$(SRCS))
 DAEMON = cced
 CLIENT = cceclient
 
-SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "system-auth-cce.pam.64-bit"; else  echo -n "system-auth-cce.pam"; fi)
+#SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "system-auth-cce.pam.64-bit"; else  echo -n "system-auth-cce.pam"; fi)
+SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "system-auth-cce.pam.5209R"; else echo -n "system-auth-cce.pam.64-bit"; fi else echo -n "system-auth-cce.pam"; fi)
 
 all: $(DAEMON) $(CLIENT)
 	

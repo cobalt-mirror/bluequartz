@@ -187,6 +187,12 @@ fi
 
 %changelog
 
+* Sat Nov 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX17
+- Forced locale set in cced.init, as some Constructors/Handlers depend on
+  the locale to be 'en_US' when parsing command results.
+- Conditional activation of server/system-auth-cce.pam.5209R in 
+  cce/server/Makefile
+
 * Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX16
 - And another not async-signal-safe gettimeofday() in include/cce_common.h
   Which is yet another debugging function we don't need. I replaced it with

@@ -18,6 +18,9 @@
 
 RETVAL=0
 export PERL5LIB=/usr/sausalito/perl:$PERL5LIB
+export LANG=en_US
+export LC_ALL=en_US.UTF-8
+export LINGUAS="en_US ja da_DK de_DE"
 
 # See how we were called.
 case "$1" in
