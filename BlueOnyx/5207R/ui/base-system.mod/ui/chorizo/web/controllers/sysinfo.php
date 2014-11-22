@@ -140,12 +140,14 @@ class Sysinfo extends MX_Controller {
 		}
 
 		// convert to GB
-		$diskTotal = round($systemDisk["disk1Total"]*10/1024/1024)/10;
-		if($diskTotal != 0) {
-		  $block->addFormField(
-		    $factory->getInteger("diskField", $diskTotal, "", "", "r"),
-		    $factory->getLabel("diskField")
-		  );
+		if (isset($systemDisk["disk1Total"])) {
+			$diskTotal = round($systemDisk["disk1Total"]*10/1024/1024)/10;
+			if($diskTotal != 0) {
+			  $block->addFormField(
+			    $factory->getInteger("diskField", $diskTotal, "", "", "r"),
+			    $factory->getLabel("diskField")
+			  );
+			}
 		}
 
 		if($systemMemory["physicalMemTotal"] != "") {
