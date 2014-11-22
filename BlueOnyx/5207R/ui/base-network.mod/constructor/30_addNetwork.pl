@@ -1,8 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl -I.
-# $Id: 30_addNetwork.pl 1146 2008-06-06 23:57:38Z mstauber $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-
-# author: jmayer@cobalt.com
+# $Id: 30_addNetwork.pl
+# Original author: jmayer@cobalt.com
 
 # this needs use lib because it isn't a handler
 use lib qw(/usr/sausalito/handlers/base/network);
@@ -46,17 +44,31 @@ for my $device (@devices)
     my $data = join('', `$Network::IFCONFIG $device`);
     if ($data =~ m/^$device/s) 
     {
-        if ($data =~ m/inet addr:\s*(\S+)/s) 
+
+        # Format EL5/EL6:
+        # venet0:0  Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+        #           inet addr:38.114.102.15  P-t-P:38.114.102.15  Bcast:38.114.102.15  Mask:255.255.255.255
+        #           UP BROADCAST POINTOPOINT RUNNING NOARP  MTU:1500  Metric:1
+        #
+        # Format EL7:
+        # venet0:0: flags=211<UP,BROADCAST,POINTOPOINT,RUNNING,NOARP>  mtu 1500
+        #         inet 38.114.102.16  netmask 255.255.255.255  broadcast 38.114.102.16  destination 38.114.102.16
+        #         unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 0  (UNSPEC)
+
+        if (($data =~ m/inet addr:\s*(\S+)/s) || ($data =~ m/inet \s*(\S+)/s))
         {
             $ip = $1;
+            $DEBUG && print STDERR "IP: $ip\n";
         }
-        if ($data =~ m/Mask:\s*(\S+)/s) 
+        if (($data =~ m/Mask:\s*(\S+)/s) || ($data =~ m/netmask\s*(\S+)/s))
         {
             $nm = $1;
+            $DEBUG && print STDERR "Mask: $nm\n";
         }
-        if ($data =~ m/HWaddr\s*(\S+)/s)
+        if (($data =~ m/HWaddr\s*(\S+)/s) || ($data =~ m/unspec\s*(\S+)\s*txqueuelen/s))
         {
             $mac = $1;
+            $DEBUG && print STDERR "MAC: $mac\n";
         }
     }
 
@@ -66,6 +78,24 @@ for my $device (@devices)
     if (scalar(@oids) == 1) 
     {
         $oid = $oids[0];
+
+        # Update info in CODB:
+        if ($ip && $nm) 
+        {
+            $obj->{ipaddr} = $ip;
+            $obj->{netmask} = $nm;
+            $obj->{mac} = $mac;
+            $obj->{enabled} = 1;
+
+            # If we're on AWS, set bootproto=dhcp:
+            if ($is_aws == "1") {
+                $obj->{bootproto} = 'dhcp';
+            }
+
+            $DEBUG && print STDERR "Updating config: $ip/$nm in OID $oid\n";
+            my ($ok) = $cce->set($oid, '', $obj);
+        } 
+
     } 
     elsif (scalar(@oids) == 0) 
     {
@@ -87,9 +117,9 @@ for my $device (@devices)
             $obj->{mac} = $mac;
             $obj->{enabled} = 1;
 
-	    # If we're on AWS, set bootproto=dhcp:
+            # If we're on AWS, set bootproto=dhcp:
             if ($is_aws == "1") {
-        	$obj->{bootproto} = 'dhcp';
+                $obj->{bootproto} = 'dhcp';
             }
 
         } 
@@ -138,22 +168,22 @@ for my $device (@devices)
 
     # make sure the real flag is properly set
     if (! -f "/proc/user_beancounters") { 
-	# Handle standard ethX setups:
-    	if ($oid && $device !~ /:\d+$/) {
-		$cce->set($oid, '', { 'real' => 1 });
-    	}
-    	elsif ($oid) {
-        	$cce->set($oid, '', { 'real' => 0 });
-    	}
+    # Handle standard ethX setups:
+        if ($oid && $device !~ /:\d+$/) {
+        $cce->set($oid, '', { 'real' => 1 });
+        }
+        elsif ($oid) {
+            $cce->set($oid, '', { 'real' => 0 });
+        }
     }
     else {
-	# Handle OpenVZ cases where venet0:0 is the (first) real interface
-	if ($oid && $device =~ /:0/) {
-		$cce->set($oid, '', { 'real' => 1 });
-    	}
-    	elsif ($oid) {
-        	$cce->set($oid, '', { 'real' => 0 });
-    	}
+    # Handle OpenVZ cases where venet0:0 is the (first) real interface
+    if ($oid && $device =~ /:0/) {
+        $cce->set($oid, '', { 'real' => 1 });
+        }
+        elsif ($oid) {
+            $cce->set($oid, '', { 'real' => 0 });
+        }
     $cce->set($oid, '', { 'mac' => $mac });
     }
 }
@@ -164,18 +194,18 @@ exit($errors);
 sub hack_on_nat {
     my ($oid) = $cce->find('System');
     if ($oid) {
-	if (! -f "/proc/user_beancounters") {
-        	my ($ok) = $cce->set($oid, 'Network', { 
+    if (! -f "/proc/user_beancounters") {
+            my ($ok) = $cce->set($oid, 'Network', { 
                             'nat' => '1',
                             'ipForwarding' => '1',
                         });
-	}
-	else {
-        	my ($ok) = $cce->set($oid, 'Network', { 
+    }
+    else {
+            my ($ok) = $cce->set($oid, 'Network', { 
                             'nat' => '0',
                             'ipForwarding' => '0',
                         });
-	}
+    }
         if (not $ok) {
             $cce->warn('[[base-network.cantTurnOnNat]]');
         }
@@ -216,24 +246,38 @@ sub onboot
     return $onboot;
 }
 
-
-
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without 
-# modification, are permitted provided that the following conditions are met:
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# -Redistribution of source code must retain the above copyright notice, 
-# this list of conditions and the following disclaimer.
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation  
-# and/or other materials provided with the distribution.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
