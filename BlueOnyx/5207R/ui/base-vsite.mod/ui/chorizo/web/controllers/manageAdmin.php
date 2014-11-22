@@ -235,7 +235,7 @@ class ManageAdmin extends MX_Controller {
 					$passwd_repeat = $form_data['_password_repeat'];
 				}
 				if (bx_pw_check($i18n, $passwd, $passwd_repeat) != "") {
-					$my_errors[] = bx_pw_check($i18n, $passwd, $passwd_repeat);
+					$my_errors = bx_pw_check($i18n, $passwd, $passwd_repeat);
 				}
 
 				// Support-Module has a reserved username for the support account:
@@ -426,20 +426,22 @@ class ManageAdmin extends MX_Controller {
 		    	else {
 		    		$tmpresellerPowers = $cceClient->scalar_to_array($attributes['resellerPowers']);
 		    	}
-		    	// Get current User object:
-				$tempResData = $cceClient->get($_oid);
-				$tempCurrCaps = scalar_to_array($tempResData['capabilities']);
-				foreach ($possible_reseller_caps as $key => $value) {
-					// Remove all reseller caps from currently used caps:
-					if (($key = array_search($value, $tempCurrCaps)) !== false) {
-					    unset($tempCurrCaps[$key]);
+		    	if (isset($_oid)) {
+			    	// Get current User object:
+					$tempResData = $cceClient->get($_oid);
+					$tempCurrCaps = scalar_to_array($tempResData['capabilities']);
+					foreach ($possible_reseller_caps as $key => $value) {
+						// Remove all reseller caps from currently used caps:
+						if (($key = array_search($value, $tempCurrCaps)) !== false) {
+						    unset($tempCurrCaps[$key]);
+						}
 					}
+			        $modified_settings = array(
+	                    'capabilities' => $cceClient->array_to_scalar(array_unique(array_merge($tempCurrCaps, $tmpresellerPowers)))
+	                    );
+					$big_ok = $cceClient->set($_oid, '', $modified_settings);
+					$errors = array_merge($errors, $cceClient->errors());
 				}
-		        $modified_settings = array(
-                    'capabilities' => $cceClient->array_to_scalar(array_unique(array_merge($tempCurrCaps, $tmpresellerPowers)))
-                    );
-				$big_ok = $cceClient->set($_oid, '', $modified_settings);
-				$errors = array_merge($errors, $cceClient->errors());
 		    }
 
 			// Out with the errors:
@@ -572,7 +574,7 @@ class ManageAdmin extends MX_Controller {
 			$userShell = $cceClient->get($_oid, 'Shell');
 		}
 		else {
-			$userShell = '0';
+			$userShell['enabled'] = '0';
 		}
 		$block->addFormField(
 		    $factory->getBoolean('shell', ($userShell['enabled'] ? 1 : 0)),
