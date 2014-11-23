@@ -420,8 +420,7 @@ class I18n {
       return i18n_get_property($this->handle, $property, $domain, $lang);
     }
     else {
-      // To hell with it. We don't really use it, so we return something sane:
-      return "";
+      return i18nNative::i18n_get_property($property, $domain, $lang);
     }
   }
 

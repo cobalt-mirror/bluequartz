@@ -42,7 +42,6 @@ class Number extends FormField {
   // Sets the current label
   function setCurrentLabel($label) {
     $this->Label = $label;
-    print_rp($this->Label);
   }
 
   // Returns the current label
@@ -173,7 +172,6 @@ class Number extends FormField {
       $builder->setCurrentLabel("");
       $builder->setDescription("");
     }
-
     $formField = $builder->makeTextField($id, $value, $access, $i18n, $checktype, "", 0, "");
 
     $form =& $page->getForm();
