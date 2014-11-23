@@ -185,13 +185,7 @@ class Shop extends MX_Controller {
 				$start_time = time();
 
 				// Process the Shoplist:
-				$ch = curl_init($shoplist_url);
-				curl_setopt($ch, CURLOPT_HEADER, 0);
-				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
-				$output = curl_exec($ch);
-				curl_close($ch);
+				$output = get_data($shoplist_url);
 				$output = preg_replace('/"/', '', $output);
 				$arr_shoplist = explode("\n", $output);
 				$numshop = "0";
@@ -203,32 +197,28 @@ class Shop extends MX_Controller {
 
 				foreach ($arr_shoplist as $items) {
 					$item = explode(",", $items);
-					$shop_id[] = $item[0];
-					// Start: Small work around for wrong NewLinQ response on shop URLs
-					if ($item[1] == "shop.solarspeed.net") {
-					      $new_item = "www.solarspeed.net";
-					      $shop_url[] = $new_item;
+					if (isset($item[0])) {
+						$shop_id[] = $item[0];
+						// Start: Small work around for wrong NewLinQ response on shop URLs
+						if ($item[1] == "shop.solarspeed.net") {
+						      $new_item = "www.solarspeed.net";
+						      $shop_url[] = $new_item;
+						}
+						elseif ($item[1] == "www2.compassnetworks.com.au") {
+						      $new_item = "www.compassnetworks.com.au";
+						      $shop_url[] = $new_item;
+						}
+						else {
+							 $shop_url[] = $item[1];
+						}
+						// End: Small work around for wrong NewLinQ response on shop URLs
+						$shop_cur[] = $item[2];
+						$numshop++;
 					}
-					elseif ($item[1] == "www2.compassnetworks.com.au") {
-					      $new_item = "www.compassnetworks.com.au";
-					      $shop_url[] = $new_item;
-					}
-					else {
-						 $shop_url[] = $item[1];
-					}
-					// End: Small work around for wrong NewLinQ response on shop URLs
-					$shop_cur[] = $item[2];
-					$numshop++;
 				}
 
 				// Process the Categories:
-				$ch = curl_init($categories_url);
-				curl_setopt($ch, CURLOPT_HEADER, 0);
-				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
-				$output = curl_exec($ch);
-				curl_close($ch);
+				$output = get_data($categories_url);
 				$output = preg_replace('/"/', '', $output);
 				$arr_catlist = explode("\n", $output);
 				$categories = array();
@@ -242,13 +232,7 @@ class Shop extends MX_Controller {
 				}
 
 				// Process the Products:
-				$ch = curl_init($products_url);
-				curl_setopt($ch, CURLOPT_HEADER, 0);
-				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
-				$output = curl_exec($ch);
-				curl_close($ch);
+				$output = get_data($products_url);
 
 				// The parsed CSV of the product list has each product end with a quotation mark followed by a newline.
 				// So this is where we split the products:
@@ -304,13 +288,7 @@ class Shop extends MX_Controller {
 				}
 
 				// Process the Catprod and map the products to their parent categories:
-				$ch = curl_init($catprod_url);
-				curl_setopt($ch, CURLOPT_HEADER, 0);
-				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_USERAGENT, 'BlueLinQ/1.0');
-				$output = curl_exec($ch);
-				curl_close($ch);
+				$output = get_data($catprod_url);
 				$output = preg_replace('/"/', '', $output);
 				$arr_catprods = explode("\n", $output);
 
