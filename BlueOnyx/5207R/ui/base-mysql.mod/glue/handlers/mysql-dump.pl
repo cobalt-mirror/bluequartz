@@ -1,7 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# Authors: Brian N. Smith and Michael Stauber
-# Copyright 2006, NuOnce Networks, Inc. and Solarspeed Ltd. All rights reserved.
 # $Id: mysql-dump.pl
+#
 
 use CCE;
 use Sauce::Util;
@@ -56,6 +55,7 @@ exit 0;
 # 
 # Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (C) 2006, NuOnce Networks, Inc. All rights reserved.
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

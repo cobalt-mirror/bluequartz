@@ -115,6 +115,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Sun Nov 23 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX08
+- Added perl-DBI to list of requirements.
+- Modified handlers to check for MySQLd process in a fashion compatible
+  with both Systemd and InitV. Needs modified Sauce/Service.pm
+
 * Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX07
 - Preparational build for 5209R. 'localhost' changed to '127.0.0.1' for
   usage with both MySQL and MariaDB.

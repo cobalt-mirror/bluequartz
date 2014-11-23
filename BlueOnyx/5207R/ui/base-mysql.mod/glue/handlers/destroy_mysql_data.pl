@@ -221,22 +221,13 @@ sub remove_db_and_user {
 
 sub check_mysqld_status {
 	# Check if MySQLd is running:
-	$cmd_mysqld = '/etc/init.d/mysqld';
 	$sts_mysqld = "UNKNOWN";
-	$status_tempfile = '/tmp/.ststmp';
-
-	# MySQLd:
-	$rtn_mysqld = system("$cmd_mysqld status > $status_tempfile");
-	open (F, $status_tempfile) || die "Could not open $status_tempfile: $!";
-	while ($line = <F>) {
-		chomp($line);
-		next if $line =~ /^\s*$/;
-		if ($line =~ /[0-9]/) {
-				$sts_mysqld = "RUNNING";
-		}
+	$cmd_mysqld = `pidof mysqld|wc -l`;
+	$cmd_mysqld = chomp($cmd_mysqld);
+	&debug_msg("MySQL status: " . $cmd_mysqld . "\n");
+	if ($cmd_mysqld eq "1") {
+		$sts_mysqld = "RUNNING";
 	}
-	close(F);
-	system("/bin/rm -f $status_tempfile");
 }
 
 sub debug_msg {

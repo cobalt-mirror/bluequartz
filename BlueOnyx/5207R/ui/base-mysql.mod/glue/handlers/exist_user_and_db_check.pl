@@ -125,7 +125,6 @@ sub debug_msg {
 # Copyright (c) 2010 Hideki Oride <oride@gachapom.jp>
 # Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
