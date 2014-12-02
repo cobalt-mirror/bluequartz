@@ -1,4 +1,4 @@
-# $Id: module.mk 960 2006-10-11 15:30:06Z shibuya $
+# $Id: module.mk
 
 include /usr/sausalito/devel/defines.mk
 
@@ -45,6 +45,20 @@ GLUEBINDIRS=handlers rules
 FTP_PUT=$(CCEBIN)/ftp_put
 TIMEFILE:=/tmp/make.tmp
 SUBSTVARS_CMD=$(CCEBIN)/makePackageVars
+
+#
+## Locale defines:
+#
+
+# Get Product version:
+#
+# All instances of XXX_PRODUCT_VERSION_XXX in locales will be replaced with this:
+PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "5209R"; else echo -n "5208R"; fi else echo -n "5207R"; fi)
+
+# Find out if we're using MySQL or MariaDB:
+#
+# All instances of XXX_DBTYPE_XXX in locales will be replaced with this:
+DBTYPE=$(shell if [ $(PRODUCT) = "5209R" ]; then echo -n "MariaDB"; else echo -n "MySQL"; fi)
 
 # bleah
 LOCALES=$(shell if [ -d "locale/$(VENDORNAME)" ]; then \
@@ -247,8 +261,15 @@ mod_locale:
 		fi; \
 		for file in $$dir/*.po; do \
 			file=$$dir/`basename $$file .po`; \
+			echo "Copying $$file.po to $$file.po.tmp"; \
+			/bin/cp $$file.po $$file.po.tmp; \
+			echo "$$file.po.tmp: Replacing XXX_PRODUCT_VERSION_XXX with $(PRODUCT)"; \
+			/bin/sed -i -e 's@XXX_PRODUCT_VERSION_XXX@$(PRODUCT)@' $$file.po.tmp; \
+			echo "$$file.po.tmp: Replacing XXX_DBTYPE_XXX with $(DBTYPE)"; \
+			/bin/sed -i -e 's@XXX_DBTYPE_XXX@$(DBTYPE)@' $$file.po.tmp; \
 			echo "building $$file.mo..."; \
-			$(MSGFMT) $$file.po -o $$file.mo || exit 1; \
+			$(MSGFMT) $$file.po.tmp -o $$file.mo || exit 1; \
+			/bin/rm -f $$file.po.tmp; \
 		done; \
 	done; \
 	fi
