@@ -206,7 +206,12 @@ class mailmanList extends MX_Controller {
 					$members = array_merge($members, (array)"". $groupText . (array)"");
 				}
 
-				$desc = $i18n->interpolate($ml["description"]);
+				if ($ml["description"] == "") {
+					$desc = "";
+				}
+				else {
+					$desc = $i18n->interpolate($ml["description"]);
+				}
 				$msg = $i18n->get("confirm_removal_of_list", "", array('list' => $ml["name"]));
 
 				// Add Buttons for Edit/View and Delete:

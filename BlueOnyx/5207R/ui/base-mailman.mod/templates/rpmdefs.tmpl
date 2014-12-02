@@ -122,6 +122,13 @@ fi;
 
 <begin $CHANGELOG
 
+* Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
+- Fixes in ui/chorizo/web/controllers/mailmanMod.php to allow username
+  or emailAddress for moderator name. Also empty subscriber list no
+  longer triggers undeclared variable indexes on submit.
+- Fixed ui/chorizo/web/controllers/mailmanList.php to no longer show
+  gettext header for empty list description.
+
 * Mon Jul 21 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX03
 - Updated locale strings to consistently change MailMan to Mailman.
 

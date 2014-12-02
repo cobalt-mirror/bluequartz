@@ -222,6 +222,18 @@ class mailmanMod extends MX_Controller {
 		//
 
 		if ($CI->input->post(NULL, TRUE)) {
+			if (!isset($attributes['localSubs'])) {
+				$attributes['localSubs'] = "";
+			}
+			if (!isset($attributes['remote_recips'])) {
+				$attributes['remote_recips'] = "";
+			}
+			if (!isset($attributes['remote_recips_digest'])) {
+				$attributes['remote_recips_digest'] = "";
+			}
+			if (!isset($attributes['description'])) {
+				$attributes['description'] = " ";
+			}
 		}
 
 		//
@@ -458,9 +470,9 @@ class mailmanMod extends MX_Controller {
 		//-- Advanced:
 		//
 
-		$block->addFormField($factory->getEmailAddress("moderator", $moderator),
-				$factory->getLabel("moderator"),
-				$advancedId);
+		$moderatorAddy = $factory->getTextField("moderator", $moderator);
+		$moderatorAddy->setType("fq_email_address_or_username");
+		$block->addFormField($moderatorAddy, $factory->getLabel("moderator"), $advancedId);
 		$pass = $factory->getPassword("apassword", $apassword, false);
 		$pass->setOptional("silent");
 		$block->addFormField($pass,
