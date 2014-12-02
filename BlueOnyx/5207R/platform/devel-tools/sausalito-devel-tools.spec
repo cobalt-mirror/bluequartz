@@ -1,7 +1,7 @@
 Summary: Cobalt development tools
 Name: sausalito-devel-tools
 Version: 0.6.0
-Release: 0BX09%{?dist}
+Release: 0BX10%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -53,6 +53,12 @@ done
 /etc/rpm/macros.blueonyx
 
 %changelog
+
+* Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX10
+- Updated module.mk to add automated replacements in locale files based
+  on product version and MySQL/MariaDB presence. Instances of 
+  XXX_PRODUCT_VERSION_XXX get replaced with the build number. Instances
+  of XXX_DBTYPE_XXX get replaced with MySQL or MariaDB when applicable.
 
 * Wed Oct 01 2014 Michael Stauber <mstauber@solarspeed.net> 0.6.0-0BX09
 - Yet more fixes for the rpmsorter.sh stuff. 
