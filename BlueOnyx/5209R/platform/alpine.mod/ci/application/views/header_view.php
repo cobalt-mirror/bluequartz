@@ -75,9 +75,9 @@
 
         <div class="user_box dark_box clearfix">
                 <img src="/.adm/images/interface/contact.png" width="55" alt="Profile Pic" />
-                <h3><?php echo gethostname(); ?></h3>
-                <h2><?php echo $loginName; ?></h2>
-                <h3><a class="text_shadow" href="<?php echo $profile_link; ?>"><?php echo $fullName; ?></a></h3>
+                <h3 style="overflow: hidden;"><?php echo gethostname(); ?></h3>
+                <h2 style="overflow: hidden;"><?php echo $loginName; ?></h2>
+                <h3 style="overflow: hidden;"><a class="text_shadow" href="<?php echo $profile_link; ?>"><?php echo $fullName; ?></a></h3>
         </div><!-- #user_box -->
 </div><!-- #topbar -->
 
@@ -90,9 +90,9 @@
 
         <div class="user_box dark_box clearfix">
                 <img src="/.adm/images/interface/contact.png" width="55" alt="Profile Pic" />
-        		<h3><?php echo gethostname(); ?></h3>
-                <h2><?php echo $loginName; ?></h2>
-                <h3><a href="<?php echo $profile_link; ?>"><?php echo $fullName; ?></a></h3>
+        		<h3 style="overflow: hidden;"><?php echo gethostname(); ?></h3>
+                <h2 style="overflow: hidden;"><?php echo $loginName; ?></h2>
+                <h3 style="overflow: hidden;"><a href="<?php echo $profile_link; ?>"><?php echo $fullName; ?></a></h3>
         </div><!-- #user_box -->
 
         <ul class="side_accordion" id="nav_side"> <!-- add class 'open_multiple' to change to from accordion to toggles -->
@@ -105,9 +105,9 @@
 <!-- Start: Stackbar Code (pulled in): -->
 <div id="stackbar" class="stackbar">    <div class="user_box dark_box clearfix">
                 <img src="/.adm/images/interface/contact.png" width="55" alt="Profile Pic" />
-                <h3><?php echo gethostname(); ?></h3>
-                <h2><?php echo $loginName; ?></h2>
-                <h3><a href="<?php echo $profile_link; ?>"><?php echo $profile_text; ?></a></h3>
+                <h3 style="overflow: hidden;"><?php echo gethostname(); ?></h3>
+                <h2 style="overflow: hidden;"><?php echo $loginName; ?></h2>
+                <h3 style="overflow: hidden;"><a href="<?php echo $profile_link; ?>"><?php echo $profile_text; ?></a></h3>
         </div>
         <ul class="">
 <!-- Start: Insert vertical menu here-->
