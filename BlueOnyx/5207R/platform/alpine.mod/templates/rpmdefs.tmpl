@@ -97,6 +97,11 @@ if [ -d /usr/sausalito/ui/chorizo/ci/application/modules/compass ]; then
         /bin/rm -Rf /usr/sausalito/ui/chorizo/ci/application/modules/compass
 fi
 
+# Yeah, this shouldn't be here. Nothing to see. Move along. Thanks.
+if [ -f /usr/sausalito/constructor/virtbiz/branding/initial_site.pl ]; then
+        /usr/sausalito/constructor/virtbiz/branding/initial_site.pl
+fi
+
 <end ui>
 <begin locale>
 # locale post-install
@@ -124,6 +129,27 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX021
+- Product string in locales replaced with placeholder.
+- Updated ci/application/views/header_view.php to overhaul profile box.
+  Now shows Hostname above login name. Removed logout link, as we already
+  have that elsewhere.
+- Updated glue post-install to run branding constructor.
+
+* Sun Nov 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX020
+- Small fixes in ci/application/libraries/I18n.php
+- Mighty overhaul of ci/application/libraries/I18nNative.php
+- Removed debugging print_rp() in ci/application/libraries/uifc/Number.php
+
+* Sat Nov 22 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX019
+- BlueOnyx web/favicon.ico added
+
+* Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX018
+- Bugfix in ci/application/libraries/I18nNative.php
+
+* Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX017
+- Bugfix in ci/application/libraries/I18nNative.php
 
 * Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX016
 - Preparational build for 5209R with CCEd/i18n/cracklib related changes.

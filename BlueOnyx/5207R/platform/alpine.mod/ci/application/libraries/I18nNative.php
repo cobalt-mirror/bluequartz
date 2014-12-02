@@ -38,6 +38,8 @@
  * need that. The new GUI (as far as I can tell right now) handles plain UTF-8 text just fine
  * and I don't see a specific need to change this.
  *
+ * And DAAAAAAMN ... this is so much slower than the PHP module.
+ *
  */
 
 global $isI18nNativeDefined;
@@ -115,73 +117,115 @@ class I18nNative {
   }
 
   function i18n_get_html($tag, $domain, $vars="") {
-    if ($domain == "") {
-      $domain = i18nNative::getDomain();
-    }
-    if (preg_match('/\[\[(.*)\]\]/', $tag)) {
-      return i18nNative::i18n_interpolate($tag, $vars);
-    }
-    $message = i18nNative::i18n_do_it($tag, $domain, $vars);
-    return $message;
+    return i18nNative::i18n_get($tag, $domain, $vars);
   }
 
   function i18n_get_js($tag, $domain, $vars="") {
-    if ($domain == "") {
-      $domain = i18nNative::getDomain();
-    }
-    if (preg_match('/\[\[(.*)\]\]/', $tag)) {
-      return i18nNative::i18n_interpolate($tag, $vars);
-    }
-    $message = i18nNative::i18n_do_it($tag, $domain, $vars);
-    return $message;
+    return i18nNative::i18n_get($tag, $domain, $vars);
   }
 
   function i18n_interpolate($magicstr, $vars) {
-    $zpattern = '/\[\[(.*)\]\]/';
-    preg_match($zpattern, $magicstr, $found);
-    if (isset($found[1])) {
-      $segments = explode('.', $found[1]);
-      $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-      $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
-      $message = preg_replace($ypattern, $kmessage, $magicstr);
+    $message = "";
+    $found = "";
+    $insideVars = "";
+    //
+    // Legend:
+    //--------
+    // domain example: base-email
+    // tag example:    personalEmail
+    //
+    // This regular expression should find the following:
+    // [[tag]]
+    // [[domain.tag]]
+    // [[domain.tag,var=value]]
+    // [[domain.tag,var=value,var2,value2,...]]
+    //
+    // If it doesn't, then we have to fallbacks that kick in at the end of this.
+    //
+    $zpattern = '/\[\[([A-Za-z0-9\._-]{1,}\.){0,}[A-Za-z0-9_-]{1,}[,\w+=\"?(\d+)\"?]{0,}\]\]/';
+    preg_match_all($zpattern, $magicstr, $found, PREG_PATTERN_ORDER);
+    if (is_array($found[0])) {
+      if (count($found[0]) > "0") {
+        // We have found at least one [[instance]] in $magicstr:
+        $insideVars = "";
+        foreach ($found[0] as $key => $insideTag) {
+          // Strip the '[[' and ']]':
+          $insideTag = preg_replace("/\[\[/", "", $insideTag);
+          $insideTag = preg_replace("/\]\]/", "", $insideTag);
+          $insideTag = preg_replace("/\"/", "", $insideTag);
+          // Check if we have values attached:
+          if (preg_match('/,/', $insideTag)) {
+            $valTags = explode(',', $insideTag);
+            if (isset($valTags[0])) {
+              $foundDomYTag = $valTags[0];
+            }
+            foreach ($valTags as $VTkey => $VTvalue) {
+              if ($VTvalue != $foundDomYTag) {
+                $TMPinsideVars = explode('=', $VTvalue);
+                $insideVars[$TMPinsideVars[0]] = $TMPinsideVars[1];
+              }
+            }
+            if (is_array($insideVars)) {
+              $vars = $insideVars;
+            }
+            // Get an Array with Domain + Tag:
+            $DomainYtag = explode('.', $valTags[0]);
+            if (isset($DomainYtag[1])) {
+              // We really DO have a domain and a tag.
+              if ((isset($DomainYtag[0])) && (isset($DomainYtag[1]))) {
+                $message .= i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
+              }
+            }
+            else {
+              // We just had a Tag and inside-vars, but no domain:
+              $message .= i18nNative::i18n_do_it($found[1], i18nNative::getDomain(), $vars);
+            }
+            if (count($found[0]) > "1") {
+              // We have found more than one [[instance]] in $magicstr.
+              // So we join them back together with a space:
+              $message .= " ";
+            }
+          }
+        }
+      }
     }
-    else {
-      $segments = explode('.', $magicstr);
-      $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
+
+    if ($message == "") {
+      // If we got here, then [[domain.tag]] had no variable attached like [[domain.tag,var=foo]].
+      // Or the regular expression at the very top of the function didn't match anything.
+      // Could be a couple of things. So this is our last ditch effort to produce something:
+      // Strip the '[[' and ']]' first of all:
+      $insideTag = preg_replace("/\[\[/", "", $magicstr);
+      $insideTag = preg_replace("/\]\]/", "", $insideTag);
+      // Explode at the dot (if there is any):
+      $DomainYtag = explode('.', $insideTag);
+      if (isset($DomainYtag[1])) {
+        // We had a dot. Cool. So we have domain and tag and use both:
+        $message = i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
+      }
+      else {
+        // we had no dot. So we have a tag and no domain. We use the tag and the last
+        // known domain then:
+        $message = i18nNative::i18n_do_it($insideTag, i18nNative::getDomain(), $vars); 
+      }
     }
+
+    // Last line of defense: If we still have nothing, then we're royally screwed. Instead of
+    // returning nothing, we just return the $magicstring:
+    if ($message == "") {
+      $message = $magicstr;
+    }
+
+    // Close your eyes. It won't hurt:
     return $message;
   }
 
   function i18n_interpolate_js($magicstr, $vars) {
-    $zpattern = '/\[\[(.*)\]\]/';
-    preg_match($zpattern, $magicstr, $found);
-    if (isset($found[1])) {
-      $segments = explode('.', $found[1]);
-      $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-      $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
-      $message = preg_replace($ypattern, $kmessage, $magicstr);
-    }
-    else {
-      $segments = explode('.', $magicstr);
-      $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-    }
-    return $message;
+    return i18nNative::i18n_interpolate($magicstr, $vars);
   }
 
   function i18n_interpolate_html($magicstr, $vars) {
-    $zpattern = '/\[\[(.*)\]\]/';
-    preg_match($zpattern, $magicstr, $found);
-    if (isset($found[1])) {
-      $segments = explode('.', $found[1]);
-      $kmessage = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-      $ypattern = "/\[\[$segments[0]\.$segments[1]\]\]/";
-      $message = preg_replace($ypattern, $kmessage, $magicstr);
-    }
-    else {
-      $segments = explode('.', $magicstr);
-      $message = i18nNative::i18n_do_it($segments[1], $segments[0], $vars);
-    }
-    return $message;
+    return i18nNative::i18n_interpolate($magicstr, $vars);
   }
 
   function i18n_do_it($tag, $domain, $vars="") {
@@ -191,12 +235,30 @@ class I18nNative {
     if ($domain == "") {
       $domain = i18nNative::getDomain();
     }
+
+    // Check if we have a locale for this domain in the desired language:
+    $directory = '/usr/share/locale/' . $lang . '/LC_MESSAGES/' . $domain . '.mo';
+    if (!is_file($directory)) {
+      // We don't? Dang! Check if we have one in *any* language:
+      $availableLocales = i18nNative::i18n_locales($domain);
+      if (!in_array($lang, $availableLocales)) {
+        // Still nothing? Let's see if we got one in any other language:
+        if (isset($availableLocales[0])) {
+          // Well, we do have *something* else. Which is better than
+          // having nothing. So we use that instead:
+          $lang = $availableLocales[0];
+        }
+      }
+    }
+
+    // Bind the locale:
     $directory = "/usr/share/locale";
     setlocale( LC_MESSAGES, $lang);
     bindtextdomain($domain, $directory);
     textdomain($domain);
     bind_textdomain_codeset($domain, 'UTF-8');
 
+    // Get our text from the locale:
     $message = dcgettext($domain, $tag, '5');
 
     // Check if the $message contains [[STUFF]] that needs to be replaced:
@@ -282,6 +344,34 @@ class I18nNative {
 
     // Return the results:
     return $detected_langs;
+  }
+
+  // description: get a property value from the property file
+  //     /usr/share/locale/<locale>/<domain>.prop. Properties are defined as
+  //     "<name>: <value>\n" in the file. One line for each property. Comments
+  //     starts with "#"
+  // param: property: the name of the property in string
+  // param: domain: the domain of the property in string. Optional. If not
+  //     supplied, the one supplied to I18n constructor is used.
+  // param: langs: an optional string that contains a comma separated list
+  //     of preferred locale. Most important locales appears first.
+  //     e.g. "en_US, en_AU, zh, de_DE". Optional. If not supplied, the one
+  //     supplied to I18n constructor is used.
+  function i18n_get_property($property, $domain, $lang="") {
+    if ($lang == "") {
+      $lang = i18nNative::getLanguage();
+    }
+    $item = "";
+    $propFile = "/usr/share/locale/" . $lang . "/" . $domain . ".prop";
+    if (is_file($propFile)) {
+      $item = `cat $propFile|grep $property|cut -d : -f2`;
+      if ($item != "") {
+        $item = ltrim($item);
+        $item = rtrim($item);
+      }
+      return $item;
+    }
+
   }
 
 }
