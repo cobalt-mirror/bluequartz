@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=alpine
 
 VERSION=1.1
-RELEASE=1BX20
+RELEASE=1BX21
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -59,9 +59,6 @@ install: install_perl install_config
 	$(MKDIR) $(CCEDIR)/ui/web/libImage
 	find libImage -type f -not -path "*/CVS*" $$exclude -exec install -D -o root -g root -m 644 {} $(CCEDIR)/ui/web/{} \;
 	include="-false"; \
-	for locale in $(LOCALES); do \
-		include="$$include -or -path *\.$$locale"; \
-	done; \
 	FLIST=`find web/error -follow -type f $$include \
 		2>/dev/null | grep -v CVS | grep -v '/\.'`; \
 	for file in $$FLIST; do \
