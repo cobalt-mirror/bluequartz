@@ -1,14 +1,14 @@
 msgid "amDetailsTitle"
-msgstr "XXX_DBTYPE_XXX Server Details"
+msgstr "MySQL Server Details"
 
 msgid "amMysqlNameTag"
-msgstr "XXX_DBTYPE_XXX Server"
+msgstr "MySQL Server"
 
 msgid "amNotAccepting"
-msgstr "The XXX_DBTYPE_XXX server is NOT operating normally. Please try to manually restart it."
+msgstr "The MySQL server is NOT operating normally. Please try to manually restart it."
 
 msgid "amStatusOK"
-msgstr "The XXX_DBTYPE_XXX server is operating normally."
+msgstr "The MySQL server is operating normally."
 
 msgid "current_pass"
 msgstr "Current Password:"
@@ -20,7 +20,7 @@ msgid "delete_backup"
 msgstr "Delete Backup"
 
 msgid "delete_backup_help"
-msgstr "Delete your XXX_DBTYPE_XXX backup file"
+msgstr "Delete your MySQL backup file"
 
 msgid "download_backup"
 msgstr "Download DB Backup"
@@ -32,13 +32,13 @@ msgid "dump"
 msgstr "Run SQL Dump"
 
 msgid "dump_help"
-msgstr "Execute XXX_DBTYPE_XXX Dump"
+msgstr "Execute MySQL Dump"
 
 msgid "filesize"
 msgstr "File Size:"
 
 msgid "filesize_help"
-msgstr "The size of your XXX_DBTYPE_XXX dump file"
+msgstr "The size of your MySQL dump file"
 
 msgid "last_backup"
 msgstr "Last Backed Up:"
@@ -47,13 +47,13 @@ msgid "last_backup_help"
 msgstr "Look at when the backup last happened"
 
 msgid "mysql_enabled"
-msgstr "Enable XXX_DBTYPE_XXX Server:"
+msgstr "Enable MySQL Server:"
 
 msgid "mysql_enabled_help"
-msgstr "Click to enable XXX_DBTYPE_XXX Server"
+msgstr "Click to enable MySQL Server"
 
 msgid "mysql_header"
-msgstr "XXX_DBTYPE_XXX Server"
+msgstr "MySQL Server"
 
 msgid "mysqldump"
 msgstr "Create Database Snap Shot"
@@ -65,19 +65,19 @@ msgid "mysqlpass"
 msgstr "New Password:"
 
 msgid "mysqlpass_help"
-msgstr "Allows you to change your XXX_DBTYPE_XXX password, as long as you know the current password."
+msgstr "Allows you to change your MySQL password, as long as you know the current password."
 
 msgid "password"
-msgstr "XXX_DBTYPE_XXX Password"
+msgstr "MySQL Password"
 
 msgid "password_help"
-msgstr "The password for the main user of XXX_DBTYPE_XXX"
+msgstr "The password for the main user of MySQL"
 
 msgid "server"
 msgstr "Server"
 
 msgid "server_help"
-msgstr "Enable & Disable XXX_DBTYPE_XXX Server"
+msgstr "Enable & Disable MySQL Server"
 
 msgid "sqldump"
 msgstr "SQL DB Dump"
@@ -89,86 +89,86 @@ msgid "sqlpass"
 msgstr "Change Password"
 
 msgid "sqlpass_help"
-msgstr "Allows you to change your XXX_DBTYPE_XXX password. Can also be used to clear a XXX_DBTYPE_XXX password, provided you know the current password. To do so simply leave the 'New Password' field empty."
+msgstr "Allows you to change your MySQL password. Can also be used to clear a MySQL password, provided you know the current password. To do so simply leave the 'New Password' field empty."
 
 msgid "username"
-msgstr "XXX_DBTYPE_XXX Username"
+msgstr "MySQL Username"
 
 msgid "username_help"
-msgstr "The main user user for XXX_DBTYPE_XXX"
+msgstr "The main user user for MySQL"
 
 # Solarspeed additions:
 
-msgid "XXX_DBTYPE_XXX_Settings_head"
-msgstr "XXX_DBTYPE_XXX Settings"
+msgid "MySQL_Settings_head"
+msgstr "MySQL Settings"
 
-msgid "XXX_DBTYPE_XXX_Settings_divider"
-msgstr "Configure the settings for automatic creation of XXX_DBTYPE_XXX users and databases."
+msgid "MySQL_Settings_divider"
+msgstr "Configure the settings for automatic creation of MySQL users and databases."
 
 msgid "sql_host"
-msgstr "XXX_DBTYPE_XXX Host:"
+msgstr "MySQL Host:"
 
 msgid "sql_host_help"
-msgstr "Host on which the XXX_DBTYPE_XXX server is located. Needs to be specified so that applications can connect to XXX_DBTYPE_XXX. By default this should be 'localhost'."
+msgstr "Host on which the MySQL server is located. Needs to be specified so that applications can connect to MySQL. By default this should be 'localhost'."
 
 msgid "sql_port"
-msgstr "XXX_DBTYPE_XXX Port:"
+msgstr "MySQL Port:"
 
 msgid "sql_port_help"
-msgstr "TCP/IP port on which XXX_DBTYPE_XXX is reachable on the specified host. By default this should be '3306'."
+msgstr "TCP/IP port on which MySQL is reachable on the specified host. By default this should be '3306'."
 
 msgid "MYSQL_ROOT_Settings_divider"
-msgstr "XXX_DBTYPE_XXX root user settings - needed for database initialisation, setup and maintenance:"
+msgstr "MySQL root user settings - needed for database initialisation, setup and maintenance:"
 
 msgid "sql_root"
-msgstr "XXX_DBTYPE_XXX User:"
+msgstr "MySQL User:"
 
 msgid "sql_root_help"
-msgstr "Username of the XXX_DBTYPE_XXX user with 'root' privileges. By default this should be 'root'."
+msgstr "Username of the MySQL user with 'root' privileges. By default this should be 'root'."
 
 msgid "sql_rootpassword"
-msgstr "XXX_DBTYPE_XXX Password:"
+msgstr "MySQL Password:"
 
 msgid "sql_rootpassword_help"
-msgstr "Password of the XXX_DBTYPE_XXX 'root' user."
+msgstr "Password of the MySQL 'root' user."
 
 msgid "sql_status"
-msgstr "XXX_DBTYPE_XXX Status:"
+msgstr "MySQL Status:"
 
 msgid "sql_status_help"
-msgstr "Shows the status of your XXX_DBTYPE_XXX connection and if it is possible to connect to the XXX_DBTYPE_XXX server with the login details that you specified above."
+msgstr "Shows the status of your MySQL connection and if it is possible to connect to the MySQL server with the login details that you specified above."
 
 msgid "mysql_status_unconfigured"
 msgstr "Please configure the settings."
 
 msgid "mysql_status_incorrect"
-msgstr "XXX_DBTYPE_XXX connection cannot be established. Check settings."
+msgstr "MySQL connection cannot be established. Check settings."
 
 msgid "mysql_status_ok"
-msgstr "XXX_DBTYPE_XXX connection possible with this settings."
+msgstr "MySQL connection possible with this settings."
 
-msgid "XXX_DBTYPE_XXX_menu"
-msgstr "XXX_DBTYPE_XXX"
+msgid "MySQL_menu"
+msgstr "MySQL"
 
-msgid "XXX_DBTYPE_XXX_menu_help"
-msgstr "Configure the XXX_DBTYPE_XXX related settings, so that applications can communicate with XXX_DBTYPE_XXX."
+msgid "MySQL_menu_help"
+msgstr "Configure the MySQL related settings, so that applications can communicate with MySQL."
 
-msgid "XXX_DBTYPE_XXX_Local_divider"
-msgstr "Local XXX_DBTYPE_XXX server:"
+msgid "MySQL_Local_divider"
+msgstr "Local MySQL server:"
 
-msgid "XXX_DBTYPE_XXX_Remote_divider"
-msgstr "XXX_DBTYPE_XXX Server Details:"
+msgid "MySQL_Remote_divider"
+msgstr "MySQL Server Details:"
 
-msgid "XXX_DBTYPE_XXX_Login_divider"
-msgstr "XXX_DBTYPE_XXX 'root' user details:"
+msgid "MySQL_Login_divider"
+msgstr "MySQL 'root' user details:"
 
-msgid "XXX_DBTYPE_XXX_Status_divider"
-msgstr "XXX_DBTYPE_XXX Connection Status:"
+msgid "MySQL_Status_divider"
+msgstr "MySQL Connection Status:"
 
 ### mysqlusers start:
 
 msgid "mysql_head"
-msgstr "XXX_DBTYPE_XXX Configuration"
+msgstr "MySQL Configuration"
 
 msgid "my_cnf"
 msgstr "/etc/my.cnf Editor:"
@@ -230,83 +230,83 @@ msgstr "Return to the previous page"
 msgid "back_to_key_request_help"
 msgstr "Returns you to the previous page."
 
-msgid "XXX_DBTYPE_XXX_Config_head"
-msgstr "XXX_DBTYPE_XXX Config"
+msgid "MySQL_Config_head"
+msgstr "MySQL Config"
 
-msgid "XXX_DBTYPE_XXX_Config_head_help"
-msgstr "Configuration of your XXX_DBTYPE_XXX Server."
+msgid "MySQL_Config_head_help"
+msgstr "Configuration of your MySQL Server."
 
-msgid "XXX_DBTYPE_XXX_Config_desc"
-msgstr "XXX_DBTYPE_XXX Settings"
+msgid "MySQL_Config_desc"
+msgstr "MySQL Settings"
 
-msgid "XXX_DBTYPE_XXX_Config_desc_help"
-msgstr "Allows you to configure the automatic XXX_DBTYPE_XXX database and user creation."
+msgid "MySQL_Config_desc_help"
+msgstr "Allows you to configure the automatic MySQL database and user creation."
 
-msgid "XXX_DBTYPE_XXX_TAB_ONE"
-msgstr "Auto-Create XXX_DBTYPE_XXX Users and Databases"
+msgid "MySQL_TAB_ONE"
+msgstr "Auto-Create MySQL Users and Databases"
 
-msgid "XXX_DBTYPE_XXX_TAB_ONE_help"
-msgstr "Allows you to automatically create XXX_DBTYPE_XXX Users and Databases for each site."
+msgid "MySQL_TAB_ONE_help"
+msgstr "Allows you to automatically create MySQL Users and Databases for each site."
 
-msgid "XXX_DBTYPE_XXX_TAB_TWO"
+msgid "MySQL_TAB_TWO"
 msgstr "/etc/my.cnf Editor"
 
-msgid "XXX_DBTYPE_XXX_TAB_TWO_help"
+msgid "MySQL_TAB_TWO_help"
 msgstr "Allows you to edit /etc/my.cnf directly through the GUI."
 
 msgid "udb_switch"
-msgstr "XXX_DBTYPE_XXX auto-create"
+msgstr "MySQL auto-create"
 
 msgid "udb_switch_help"
-msgstr "Allows automatic creation of XXX_DBTYPE_XXX users and databases through the GUI. Either upon creating a new site, or by editing the 'Web' services of an existing site. Only server administrators have this capability."
+msgstr "Allows automatic creation of MySQL users and databases through the GUI. Either upon creating a new site, or by editing the 'Web' services of an existing site. Only server administrators have this capability."
 
 msgid "solmysqlFullText"
-msgstr "XXX_DBTYPE_XXX user and database"
+msgstr "MySQL user and database"
 
 msgid "solmysqlFullText_help"
-msgstr "Allows you to automatically create or remove a XXX_DBTYPE_XXX database and a XXX_DBTYPE_XXX user for this site. PLEASE NOTE: If the checkbox is already checked, then unchecking it and saving the changes will remove the XXX_DBTYPE_XXX database AND the user."
+msgstr "Allows you to automatically create or remove a MySQL database and a MySQL user for this site. PLEASE NOTE: If the checkbox is already checked, then unchecking it and saving the changes will remove the MySQL database AND the user."
 
 msgid "solmysqlUsername"
 msgstr "Username"
 
 msgid "solmysqlUsername_help"
-msgstr "Username of the XXX_DBTYPE_XXX user. Has rights and permissions only for the database specified below."
+msgstr "Username of the MySQL user. Has rights and permissions only for the database specified below."
 
 msgid "solmysqlPass"
 msgstr "Password"
 
 msgid "solmysqlPass_help"
-msgstr "XXX_DBTYPE_XXX password for the XXX_DBTYPE_XXX user in question."
+msgstr "MySQL password for the MySQL user in question."
 
 msgid "solmysqlDB"
 msgstr "Database Name"
 
 msgid "solmysqlDB_help"
-msgstr "Name of the XXX_DBTYPE_XXX database for this site."
+msgstr "Name of the MySQL database for this site."
 
 msgid "solmysqlHost"
 msgstr "Database Host"
 
 msgid "solmysqlHost_help"
-msgstr "Host on which the XXX_DBTYPE_XXX server is running. Typically this is 'localhost'."
+msgstr "Host on which the MySQL server is running. Typically this is 'localhost'."
 
 msgid "solmysqlPort"
 msgstr "Port"
 
 msgid "solmysqlPort_help"
-msgstr "Port on which the XXX_DBTYPE_XXX server is listening. Typically this is '3306'."
+msgstr "Port on which the MySQL server is listening. Typically this is '3306'."
 
-msgid "XXX_DBTYPE_XXX_DIVIDER_ONE"
+msgid "MySQL_DIVIDER_ONE"
 msgstr "Default rights on auto-created users:"
 
 msgid "mysql_default_privileges"
 msgstr "Default privileges:"
 
 msgid "mysql_default_privileges_help"
-msgstr "New XXX_DBTYPE_XXX users will be created with the following default privileges for their own database as shown below."
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
 
 msgid "EXPLAIN_RIGHTS"
-msgstr "New XXX_DBTYPE_XXX users will be created with the following default privileges for their own database as shown below."
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
 
 msgid "DIVIDER_ZERO"
 msgstr "Default database privileges:"
@@ -360,28 +360,28 @@ msgid "CREATE_VIEW"
 msgstr "CREATE VIEW"
 
 msgid "CREATE_VIEW_help"
-msgstr "Allows creating new views. (Only available in XXX_DBTYPE_XXX5 or better.)"
+msgstr "Allows creating new views. (Only available in MySQL5 or better.)"
 
 msgid "SHOW_VIEW"
 msgstr "SHOW VIEW"
 
 msgid "SHOW_VIEW_help"
-msgstr "Allows performing SHOW CREATE VIEW queries. (Only available in XXX_DBTYPE_XXX5 or better.)"
+msgstr "Allows performing SHOW CREATE VIEW queries. (Only available in MySQL5 or better.)"
 
 msgid "CREATE_ROUTINE"
 msgstr "CREATE ROUTINE"
 
 msgid "CREATE_ROUTINE_help"
-msgstr "Allows creating stored routines. (Only available in XXX_DBTYPE_XXX5 or better.)"
+msgstr "Allows creating stored routines. (Only available in MySQL5 or better.)"
 
 msgid "ALTER_ROUTINE"
 msgstr "ALTER ROUTINE"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "Allows altering and dropping of stored routines. (Only available in XXX_DBTYPE_XXX5 or better.)"
+msgstr "Allows altering and dropping of stored routines. (Only available in MySQL5 or better.)"
 
 msgid "EXECUTE_help"
-msgstr "Allows running of store routines. (Only available in XXX_DBTYPE_XXX5 or better.)"
+msgstr "Allows running of store routines. (Only available in MySQL5 or better.)"
 
 msgid "MAX_QUERIES_PER_HOUR"
 msgstr "MAX QUERIES PER HOUR"
@@ -401,16 +401,16 @@ msgstr "MAX CONNECTIONS PER HOUR"
 msgid "MAX_CONNECTIONS_PER_HOUR_help"
 msgstr "Limits the number of connections the user may open per hour. '0' means no limit."
 
-msgid "XXX_DBTYPE_XXX_Info_Text"
-msgstr "New XXX_DBTYPE_XXX users will be created with the following default privileges for their own database as shown below."
+msgid "MySQL_Info_Text"
+msgstr "New MySQL users will be created with the following default privileges for their own database as shown below."
 
 #
 
 msgid "root_has_no_pwd"
-msgstr "XXX_DBTYPE_XXX password for XXX_DBTYPE_XXX-root user apparently not yet set! Please set a password for XXX_DBTYPE_XXX-user 'root'!"
+msgstr "MySQL password for MySQL-root user apparently not yet set! Please set a password for MySQL-user 'root'!"
 
 msgid "sqlstatus_fail"
-msgstr "XXX_DBTYPE_XXX connection cannot be established. Please check the settings under 'Network Services' / 'XXX_DBTYPE_XXX Config' first. Also see if XXX_DBTYPE_XXX is running."
+msgstr "MySQL connection cannot be established. Please check the settings under 'Network Services' / 'MySQL Config' first. Also see if MySQL is running."
 
 ## Label renaming for 5200R:
 
@@ -453,10 +453,10 @@ msgid "solmysql_Port_help"
 msgstr "[[base-mysql.solmysqlPort_help]]"
 
 msgid "CreateFailUserExists"
-msgstr "That XXX_DBTYPE_XXX user already exists in the XXX_DBTYPE_XXX user table."
+msgstr "That MySQL user already exists in the MySQL user table."
 
 msgid "CreateFailDBExists"
-msgstr "That XXX_DBTYPE_XXX database already exists in the XXX_DBTYPE_XXX database table."
+msgstr "That MySQL database already exists in the MySQL database table."
 
 msgid "CreateFailDatabaseExists"
-msgstr "That XXX_DBTYPE_XXX database already exists."
+msgstr "That MySQL database already exists."

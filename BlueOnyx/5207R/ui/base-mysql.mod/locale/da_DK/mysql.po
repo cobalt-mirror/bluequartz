@@ -9,16 +9,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "amDetailsTitle"
-msgstr "XXX_DBTYPE_XXX Server Detaljer"
+msgstr "MySQL Server Detaljer"
 
 msgid "amMysqlNameTag"
-msgstr "XXX_DBTYPE_XXX Server"
+msgstr "MySQL Server"
 
 msgid "amNotAccepting"
-msgstr "XXX_DBTYPE_XXX-serverens kører ikke normalt. Prøv at manuelt genstarte den."
+msgstr "MySQL-serverens kører ikke normalt. Prøv at manuelt genstarte den."
 
 msgid "amStatusOK"
-msgstr "XXX_DBTYPE_XXX-serverens fungerer normalt."
+msgstr "MySQL-serverens fungerer normalt."
 
 msgid "current_pass"
 msgstr "Nuværende adgangskode:"
@@ -30,7 +30,7 @@ msgid "delete_backup"
 msgstr "Slet sikkerhedskopi"
 
 msgid "delete_backup_help"
-msgstr "Slet dine XXX_DBTYPE_XXX backup-fil"
+msgstr "Slet dine MySQL backup-fil"
 
 msgid "download_backup"
 msgstr "Hent DB Backup"
@@ -42,13 +42,13 @@ msgid "dump"
 msgstr "Kør SQL Dump"
 
 msgid "dump_help"
-msgstr "Udfør XXX_DBTYPE_XXX Dump"
+msgstr "Udfør MySQL Dump"
 
 msgid "filesize"
 msgstr "Fil størrelse:"
 
 msgid "filesize_help"
-msgstr "Størrelsen på din XXX_DBTYPE_XXX dump fil"
+msgstr "Størrelsen på din MySQL dump fil"
 
 msgid "last_backup"
 msgstr "Sidste Backed Up:"
@@ -57,13 +57,13 @@ msgid "last_backup_help"
 msgstr "Se på, når backup sidst skete"
 
 msgid "mysql_enabled"
-msgstr "Aktiver XXX_DBTYPE_XXX Server:"
+msgstr "Aktiver MySQL Server:"
 
 msgid "mysql_enabled_help"
-msgstr "Klik for at aktivere XXX_DBTYPE_XXX Server"
+msgstr "Klik for at aktivere MySQL Server"
 
 msgid "mysql_header"
-msgstr "XXX_DBTYPE_XXX Server"
+msgstr "MySQL Server"
 
 msgid "mysqldump"
 msgstr "Opret database Snap Shot"
@@ -75,19 +75,19 @@ msgid "mysqlpass"
 msgstr "Ny adgangskode:"
 
 msgid "mysqlpass_help"
-msgstr "Giver dig mulighed for at ændre din XXX_DBTYPE_XXX-adgangskode, så længe du kender den aktuelle adgangskode."
+msgstr "Giver dig mulighed for at ændre din MySQL-adgangskode, så længe du kender den aktuelle adgangskode."
 
 msgid "password"
-msgstr "XXX_DBTYPE_XXX adgangskode"
+msgstr "MySQL adgangskode"
 
 msgid "password_help"
-msgstr "Kodeordet for den vigtigste bruger af XXX_DBTYPE_XXX"
+msgstr "Kodeordet for den vigtigste bruger af MySQL"
 
 msgid "server"
 msgstr "Server"
 
 msgid "server_help"
-msgstr "Aktivér & Deaktiver XXX_DBTYPE_XXX Server"
+msgstr "Aktivér & Deaktiver MySQL Server"
 
 msgid "sqldump"
 msgstr "SQL DB Dump"
@@ -99,82 +99,82 @@ msgid "sqlpass"
 msgstr "Skift adgangskode"
 
 msgid "sqlpass_help"
-msgstr "Giver dig mulighed for at ændre din XXX_DBTYPE_XXX-adgangskode. Kan også bruges til at rydde en XXX_DBTYPE_XXX-adgangskode, hvis du kender den aktuelle adgangskode. For at gøre dette skal du blot lade feltet 'Ny adgangskode' tomme."
+msgstr "Giver dig mulighed for at ændre din MySQL-adgangskode. Kan også bruges til at rydde en MySQL-adgangskode, hvis du kender den aktuelle adgangskode. For at gøre dette skal du blot lade feltet 'Ny adgangskode' tomme."
 
 msgid "username"
-msgstr "XXX_DBTYPE_XXX brugernavn"
+msgstr "MySQL brugernavn"
 
 msgid "username_help"
-msgstr "Den vigtigste bruger bruger til XXX_DBTYPE_XXX"
+msgstr "Den vigtigste bruger bruger til MySQL"
 
-msgid "XXX_DBTYPE_XXX_Settings_head"
-msgstr "XXX_DBTYPE_XXX-indstillinger"
+msgid "MySQL_Settings_head"
+msgstr "MySQL-indstillinger"
 
-msgid "XXX_DBTYPE_XXX_Settings_divider"
-msgstr "Konfigurer indstillingerne for automatisk oprettelse af XXX_DBTYPE_XXX brugere og databaser."
+msgid "MySQL_Settings_divider"
+msgstr "Konfigurer indstillingerne for automatisk oprettelse af MySQL brugere og databaser."
 
 msgid "sql_host"
-msgstr "XXX_DBTYPE_XXX Host:"
+msgstr "MySQL Host:"
 
 msgid "sql_host_help"
-msgstr "Host, hvor XXX_DBTYPE_XXX-serveren er placeret. Skal specificeres, så programmer kan forbinde til XXX_DBTYPE_XXX. Som standard er denne skal være 'localhost'."
+msgstr "Host, hvor MySQL-serveren er placeret. Skal specificeres, så programmer kan forbinde til MySQL. Som standard er denne skal være 'localhost'."
 
 msgid "sql_port"
-msgstr "XXX_DBTYPE_XXX Havn:"
+msgstr "MySQL Havn:"
 
 msgid "sql_port_help"
-msgstr "TCP / IP-port, hvor XXX_DBTYPE_XXX er tilgængelig på den angivne vært. Som standard er denne skulle være '3306 '."
+msgstr "TCP / IP-port, hvor MySQL er tilgængelig på den angivne vært. Som standard er denne skulle være '3306 '."
 
 msgid "MYSQL_ROOT_Settings_divider"
-msgstr "XXX_DBTYPE_XXX root brugerindstillinger - der er nødvendige for database initialisering, opsætning og vedligeholdelse:"
+msgstr "MySQL root brugerindstillinger - der er nødvendige for database initialisering, opsætning og vedligeholdelse:"
 
 msgid "sql_root"
-msgstr "XXX_DBTYPE_XXX Bruger:"
+msgstr "MySQL Bruger:"
 
 msgid "sql_root_help"
-msgstr "Brugernavn af XXX_DBTYPE_XXX bruger med 'root privilegier. Som standard er denne skal være 'rod'."
+msgstr "Brugernavn af MySQL bruger med 'root privilegier. Som standard er denne skal være 'rod'."
 
 msgid "sql_rootpassword"
-msgstr "XXX_DBTYPE_XXX Password:"
+msgstr "MySQL Password:"
 
 msgid "sql_rootpassword_help"
-msgstr "Adgangskoden for XXX_DBTYPE_XXX 'rod' bruger."
+msgstr "Adgangskoden for MySQL 'rod' bruger."
 
 msgid "sql_status"
-msgstr "XXX_DBTYPE_XXX: Status:"
+msgstr "MySQL: Status:"
 
 msgid "sql_status_help"
-msgstr "Viser status af din XXX_DBTYPE_XXX-forbindelse, og hvis det er muligt at forbinde til XXX_DBTYPE_XXX-serveren med login detaljer, som du angivet ovenfor."
+msgstr "Viser status af din MySQL-forbindelse, og hvis det er muligt at forbinde til MySQL-serveren med login detaljer, som du angivet ovenfor."
 
 msgid "mysql_status_unconfigured"
 msgstr "Venligst konfigurere indstillingerne."
 
 msgid "mysql_status_incorrect"
-msgstr "Der kan ikke etableres XXX_DBTYPE_XXX-forbindelse. Kontrollér indstillingerne."
+msgstr "Der kan ikke etableres MySQL-forbindelse. Kontrollér indstillingerne."
 
 msgid "mysql_status_ok"
-msgstr "XXX_DBTYPE_XXX forbindelse muligt med disse indstillinger."
+msgstr "MySQL forbindelse muligt med disse indstillinger."
 
-msgid "XXX_DBTYPE_XXX_menu"
-msgstr "XXX_DBTYPE_XXX"
+msgid "MySQL_menu"
+msgstr "MySQL"
 
-msgid "XXX_DBTYPE_XXX_menu_help"
-msgstr "Konfigurer XXX_DBTYPE_XXX relaterede indstillinger, så programmer kan kommunikere med XXX_DBTYPE_XXX."
+msgid "MySQL_menu_help"
+msgstr "Konfigurer MySQL relaterede indstillinger, så programmer kan kommunikere med MySQL."
 
-msgid "XXX_DBTYPE_XXX_Local_divider"
-msgstr "Lokal XXX_DBTYPE_XXX-server:"
+msgid "MySQL_Local_divider"
+msgstr "Lokal MySQL-server:"
 
-msgid "XXX_DBTYPE_XXX_Remote_divider"
-msgstr "XXX_DBTYPE_XXX Server detaljer:"
+msgid "MySQL_Remote_divider"
+msgstr "MySQL Server detaljer:"
 
-msgid "XXX_DBTYPE_XXX_Login_divider"
-msgstr "XXX_DBTYPE_XXX 'root' brugeroplysninger:"
+msgid "MySQL_Login_divider"
+msgstr "MySQL 'root' brugeroplysninger:"
 
-msgid "XXX_DBTYPE_XXX_Status_divider"
-msgstr "XXX_DBTYPE_XXX Connection Status:"
+msgid "MySQL_Status_divider"
+msgstr "MySQL Connection Status:"
 
 msgid "mysql_head"
-msgstr "XXX_DBTYPE_XXX konfiguration"
+msgstr "MySQL konfiguration"
 
 msgid "my_cnf"
 msgstr "/etc/my.cnf Redaktør:"
@@ -236,83 +236,83 @@ msgstr "Tilbage til den foregående side"
 msgid "back_to_key_request_help"
 msgstr "Vender tilbage til den forrige side."
 
-msgid "XXX_DBTYPE_XXX_Config_head"
-msgstr "XXX_DBTYPE_XXX Config"
+msgid "MySQL_Config_head"
+msgstr "MySQL Config"
 
-msgid "XXX_DBTYPE_XXX_Config_head_help"
-msgstr "Konfiguration af din XXX_DBTYPE_XXX Server."
+msgid "MySQL_Config_head_help"
+msgstr "Konfiguration af din MySQL Server."
 
-msgid "XXX_DBTYPE_XXX_Config_desc"
-msgstr "XXX_DBTYPE_XXX-indstillinger"
+msgid "MySQL_Config_desc"
+msgstr "MySQL-indstillinger"
 
-msgid "XXX_DBTYPE_XXX_Config_desc_help"
-msgstr "Giver dig mulighed for at konfigurere den automatiske XXX_DBTYPE_XXX-database og bruger-skabelse."
+msgid "MySQL_Config_desc_help"
+msgstr "Giver dig mulighed for at konfigurere den automatiske MySQL-database og bruger-skabelse."
 
-msgid "XXX_DBTYPE_XXX_TAB_ONE"
-msgstr "Auto-Opret XXX_DBTYPE_XXX brugere og databaser"
+msgid "MySQL_TAB_ONE"
+msgstr "Auto-Opret MySQL brugere og databaser"
 
-msgid "XXX_DBTYPE_XXX_TAB_ONE_help"
-msgstr "Giver dig mulighed for automatisk at oprette XXX_DBTYPE_XXX brugere og databaser for hvert websted."
+msgid "MySQL_TAB_ONE_help"
+msgstr "Giver dig mulighed for automatisk at oprette MySQL brugere og databaser for hvert websted."
 
-msgid "XXX_DBTYPE_XXX_TAB_TWO"
+msgid "MySQL_TAB_TWO"
 msgstr "/etc/my.cnf Editor"
 
-msgid "XXX_DBTYPE_XXX_TAB_TWO_help"
+msgid "MySQL_TAB_TWO_help"
 msgstr "Giver dig mulighed for at redigere /etc/my.cnf direkte gennem GUI."
 
 msgid "udb_switch"
-msgstr "XXX_DBTYPE_XXX auto-skabe"
+msgstr "MySQL auto-skabe"
 
 msgid "udb_switch_help"
-msgstr "Muliggør automatisk oprettelse af XXX_DBTYPE_XXX brugere og databaser via GUI. Enten ved at oprette et nyt websted, eller ved at redigere 'Web »tjenesteydelser af et eksisterende site. Eneste server administratorer har denne evne."
+msgstr "Muliggør automatisk oprettelse af MySQL brugere og databaser via GUI. Enten ved at oprette et nyt websted, eller ved at redigere 'Web »tjenesteydelser af et eksisterende site. Eneste server administratorer har denne evne."
 
 msgid "solmysqlFullText"
-msgstr "XXX_DBTYPE_XXX bruger og database"
+msgstr "MySQL bruger og database"
 
 msgid "solmysqlFullText_help"
-msgstr "Giver dig mulighed for automatisk at oprette eller fjerne en XXX_DBTYPE_XXX-database og en XXX_DBTYPE_XXX bruger for dette websted. BEMÆRK: Hvis afkrydsningsfeltet allerede er markeret, og derefter afmarkere den og gemme ændringerne fjerne XXX_DBTYPE_XXX-databasen og brugeren."
+msgstr "Giver dig mulighed for automatisk at oprette eller fjerne en MySQL-database og en MySQL bruger for dette websted. BEMÆRK: Hvis afkrydsningsfeltet allerede er markeret, og derefter afmarkere den og gemme ændringerne fjerne MySQL-databasen og brugeren."
 
 msgid "solmysqlUsername"
 msgstr "Brugernavn"
 
 msgid "solmysqlUsername_help"
-msgstr "Brugernavnet på den XXX_DBTYPE_XXX bruger. Har rettigheder og tilladelser kun til databasen er angivet nedenfor."
+msgstr "Brugernavnet på den MySQL bruger. Har rettigheder og tilladelser kun til databasen er angivet nedenfor."
 
 msgid "solmysqlPass"
 msgstr "Adgangskode"
 
 msgid "solmysqlPass_help"
-msgstr "XXX_DBTYPE_XXX adgangskode til XXX_DBTYPE_XXX pågældende bruger."
+msgstr "MySQL adgangskode til MySQL pågældende bruger."
 
 msgid "solmysqlDB"
 msgstr "Database Name"
 
 msgid "solmysqlDB_help"
-msgstr "Navn på den XXX_DBTYPE_XXX-database til dette websted."
+msgstr "Navn på den MySQL-database til dette websted."
 
 msgid "solmysqlHost"
 msgstr "Database Host"
 
 msgid "solmysqlHost_help"
-msgstr "Host, hvor XXX_DBTYPE_XXX-serveren kører. Typisk er 'localhost'."
+msgstr "Host, hvor MySQL-serveren kører. Typisk er 'localhost'."
 
 msgid "solmysqlPort"
 msgstr "Port"
 
 msgid "solmysqlPort_help"
-msgstr "Port, hvor XXX_DBTYPE_XXX-serveren lytter. Typisk er '3306 '."
+msgstr "Port, hvor MySQL-serveren lytter. Typisk er '3306 '."
 
-msgid "XXX_DBTYPE_XXX_DIVIDER_ONE"
+msgid "MySQL_DIVIDER_ONE"
 msgstr "Standard rettigheder på auto-skabte brugere:"
 
 msgid "mysql_default_privileges"
 msgstr "Standard privilegier:"
 
 msgid "mysql_default_privileges_help"
-msgstr "Nye brugere af XXX_DBTYPE_XXX vil blive skabt med følgende standardindstillinger privilegier for deres egen database, som vist nedenfor."
+msgstr "Nye brugere af MySQL vil blive skabt med følgende standardindstillinger privilegier for deres egen database, som vist nedenfor."
 
 msgid "EXPLAIN_RIGHTS"
-msgstr "Nye brugere af XXX_DBTYPE_XXX vil blive skabt med følgende standardindstillinger privilegier for deres egen database, som vist nedenfor."
+msgstr "Nye brugere af MySQL vil blive skabt med følgende standardindstillinger privilegier for deres egen database, som vist nedenfor."
 
 msgid "DIVIDER_ZERO"
 msgstr "Standard database privilegier:"
@@ -366,28 +366,28 @@ msgid "CREATE_VIEW"
 msgstr "CREATE VIEW"
 
 msgid "CREATE_VIEW_help"
-msgstr "Tillader oprettelse af nye synspunkter. (Kun tilgængelig i XXX_DBTYPE_XXX5 eller bedre.)"
+msgstr "Tillader oprettelse af nye synspunkter. (Kun tilgængelig i MySQL5 eller bedre.)"
 
 msgid "SHOW_VIEW"
 msgstr "Vis visning"
 
 msgid "SHOW_VIEW_help"
-msgstr "Tillader udførelse af SHOW CREATE VIEW forespørgsler. (Kun tilgængelig i XXX_DBTYPE_XXX5 eller bedre.)"
+msgstr "Tillader udførelse af SHOW CREATE VIEW forespørgsler. (Kun tilgængelig i MySQL5 eller bedre.)"
 
 msgid "CREATE_ROUTINE"
 msgstr "CREATE RUTINE"
 
 msgid "CREATE_ROUTINE_help"
-msgstr "Tillader oprettelse af gemte rutiner. (Kun tilgængelig i XXX_DBTYPE_XXX5 eller bedre.)"
+msgstr "Tillader oprettelse af gemte rutiner. (Kun tilgængelig i MySQL5 eller bedre.)"
 
 msgid "ALTER_ROUTINE"
 msgstr "ALTER RUTINE"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "Tillader ændring og sletning af gemte rutiner. (Kun tilgængelig i XXX_DBTYPE_XXX5 eller bedre.)"
+msgstr "Tillader ændring og sletning af gemte rutiner. (Kun tilgængelig i MySQL5 eller bedre.)"
 
 msgid "EXECUTE_help"
-msgstr "Tillader kørsel af butikken rutiner. (Kun tilgængelig i XXX_DBTYPE_XXX5 eller bedre.)"
+msgstr "Tillader kørsel af butikken rutiner. (Kun tilgængelig i MySQL5 eller bedre.)"
 
 msgid "MAX_QUERIES_PER_HOUR"
 msgstr "MAX forespørgsler pr HOUR"
@@ -407,14 +407,14 @@ msgstr "MAX forbindelser per time"
 msgid "MAX_CONNECTIONS_PER_HOUR_help"
 msgstr "Begrænser antallet af forbindelser brugeren må åbne pr time. '0 'Betyder ingen grænse."
 
-msgid "XXX_DBTYPE_XXX_Info_Text"
-msgstr "Nye brugere af XXX_DBTYPE_XXX vil blive skabt med følgende standardindstillinger privilegier for deres egen database, som vist nedenfor."
+msgid "MySQL_Info_Text"
+msgstr "Nye brugere af MySQL vil blive skabt med følgende standardindstillinger privilegier for deres egen database, som vist nedenfor."
 
 msgid "root_has_no_pwd"
-msgstr "XXX_DBTYPE_XXX adgangskode til XXX_DBTYPE_XXX-root bruger tilsyneladende endnu ikke er indstillet! Skal du indstille en adgangskode til XXX_DBTYPE_XXX-user 'root'!"
+msgstr "MySQL adgangskode til MySQL-root bruger tilsyneladende endnu ikke er indstillet! Skal du indstille en adgangskode til MySQL-user 'root'!"
 
 msgid "sqlstatus_fail"
-msgstr "Der kan ikke etableres XXX_DBTYPE_XXX-forbindelse. Kontroller indstillingerne under 'Network Services' / 'XXX_DBTYPE_XXX config' først. Også se om XXX_DBTYPE_XXX kører."
+msgstr "Der kan ikke etableres MySQL-forbindelse. Kontroller indstillingerne under 'Network Services' / 'MySQL config' først. Også se om MySQL kører."
 
 msgid "solmysql_enabled"
 msgstr "[[base-mysql.solmysqlFullText]]"
@@ -453,11 +453,11 @@ msgid "solmysql_Port_help"
 msgstr "[[base-mysql.solmysqlPort_help]]"
 
 msgid "CreateFailUserExists"
-msgstr "At XXX_DBTYPE_XXX bruger findes allerede i XXX_DBTYPE_XXX bruger tabellen."
+msgstr "At MySQL bruger findes allerede i MySQL bruger tabellen."
 
 msgid "CreateFailDBExists"
-msgstr "At XXX_DBTYPE_XXX-database findes allerede i XXX_DBTYPE_XXX-database tabellen."
+msgstr "At MySQL-database findes allerede i MySQL-database tabellen."
 
 msgid "CreateFailDatabaseExists"
-msgstr "Findes allerede, at XXX_DBTYPE_XXX-database."
+msgstr "Findes allerede, at MySQL-database."
 
