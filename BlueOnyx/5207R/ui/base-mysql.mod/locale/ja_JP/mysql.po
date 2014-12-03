@@ -8,11 +8,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "DBTYPE"
+msgstr "XXX_DBTYPE_XXX"
+
 msgid "ALTER_ROUTINE"
 msgstr "ROUTINE、ALTER"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "ストアドルーチンの修正と削除を許可します。（MySQL5以上のみ有効）"
+msgstr "ストアドルーチンの修正と削除を許可します。（[[base-mysql.DBTYPE]]5以上のみ有効）"
 
 msgid "ALTER_help"
 msgstr "既存のテーブルの構造の変更を許可します。"
@@ -21,26 +24,26 @@ msgid "CREATE_ROUTINE"
 msgstr "CREATE_ROUTINE"
 
 msgid "CREATE_ROUTINE_help"
-msgstr "ストアドルーチンの作成を許可します。（MySQL5以上のみ有効）"
+msgstr "ストアドルーチンの作成を許可します。（[[base-mysql.DBTYPE]]5以上のみ有効）"
 
 msgid "CREATE_VIEW"
 msgstr "CREATE VIEW"
 
 msgid "CREATE_VIEW_help"
-msgstr "新しいビューの作成を許可します。（MySQL5以上のみ有効）"
+msgstr "新しいビューの作成を許可します。（[[base-mysql.DBTYPE]]5以上のみ有効）"
 
 msgid "CREATE_help"
 msgstr "新しいデータベースとテーブルの作成を許可します。"
 
 msgid "CreateFailDBExists"
 msgstr ""
-"そのMySQLデータベースは、すでにMySQLのデータベースのテーブルに存在します。"
+"その[[base-mysql.DBTYPE]]データベースは、すでに[[base-mysql.DBTYPE]]のデータベースのテーブルに存在します。"
 
 msgid "CreateFailDatabaseExists"
-msgstr "MySQLデータベースが既に存在していること。"
+msgstr "[[base-mysql.DBTYPE]]データベースが既に存在していること。"
 
 msgid "CreateFailUserExists"
-msgstr "そのMySQLのユーザーは既にMySQLユーザーテーブルに存在する。"
+msgstr "その[[base-mysql.DBTYPE]]のユーザーは既に[[base-mysql.DBTYPE]]ユーザーテーブルに存在する。"
 
 msgid "DELETE_help"
 msgstr "データを削除することができます。"
@@ -64,11 +67,11 @@ msgid "DROP_help"
 msgstr "データベースとテーブルの削除を許可。"
 
 msgid "EXECUTE_help"
-msgstr "ストアドルーチンの実行を許可します。（MySQL5以上のみ有効）"
+msgstr "ストアドルーチンの実行を許可します。（[[base-mysql.DBTYPE]]5以上のみ有効）"
 
 msgid "EXPLAIN_RIGHTS"
 msgstr ""
-"新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
+"新しい[[base-mysql.DBTYPE]]ユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
 "ルトの権限で作成されます。"
 
 msgid "FILE_help"
@@ -105,52 +108,52 @@ msgstr ""
 
 msgid "MYSQL_ROOT_Settings_divider"
 msgstr ""
-"MySQLのrootユーザの設定 - データベースの初期化と設定や保守のために必要。"
+"[[base-mysql.DBTYPE]]のrootユーザの設定 - データベースの初期化と設定や保守のために必要。"
 
 msgid "MySQL_Config_desc"
-msgstr "MySQLの設定"
+msgstr "[[base-mysql.DBTYPE]]の設定"
 
 msgid "MySQL_Config_desc_help"
-msgstr "自動MySQLのデータベースとユーザーの作成を構成することができます。"
+msgstr "自動[[base-mysql.DBTYPE]]のデータベースとユーザーの作成を構成することができます。"
 
 msgid "MySQL_Config_head"
-msgstr "MySQLの設定変更"
+msgstr "[[base-mysql.DBTYPE]]の設定変更"
 
 msgid "MySQL_Config_head_help"
-msgstr "MySQLサーバの構成。"
+msgstr "[[base-mysql.DBTYPE]]サーバの構成。"
 
 msgid "MySQL_DIVIDER_ONE"
 msgstr "自動作成されたユーザーのデフォルトの権利："
 
 msgid "MySQL_Info_Text"
 msgstr ""
-"新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
+"新しい[[base-mysql.DBTYPE]]ユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
 "ルトの権限で作成されます。"
 
 msgid "MySQL_Local_divider"
-msgstr "ローカルのMySQLサーバ："
+msgstr "ローカルの[[base-mysql.DBTYPE]]サーバ："
 
 msgid "MySQL_Login_divider"
-msgstr "MySQLのrootユーザーの詳細："
+msgstr "[[base-mysql.DBTYPE]]のrootユーザーの詳細："
 
 msgid "MySQL_Remote_divider"
-msgstr "MySQLサーバの詳細："
+msgstr "[[base-mysql.DBTYPE]]サーバの詳細："
 
 msgid "MySQL_Settings_divider"
-msgstr "MySQLユーザとデータベースの自動作成のための設定を行います。"
+msgstr "[[base-mysql.DBTYPE]]ユーザとデータベースの自動作成のための設定を行います。"
 
 msgid "MySQL_Settings_head"
-msgstr "MySQLの設定"
+msgstr "[[base-mysql.DBTYPE]]の設定"
 
 msgid "MySQL_Status_divider"
-msgstr "MySQLの接続ステータス："
+msgstr "[[base-mysql.DBTYPE]]の接続ステータス："
 
 msgid "MySQL_TAB_ONE"
-msgstr "MySQLのユーザーとデータベースを自動作成"
+msgstr "[[base-mysql.DBTYPE]]のユーザーとデータベースを自動作成"
 
 msgid "MySQL_TAB_ONE_help"
 msgstr ""
-"あなたが自動的に各サイトのMySQLのユーザーとデータベースを作成することができま"
+"あなたが自動的に各サイトの[[base-mysql.DBTYPE]]のユーザーとデータベースを作成することができま"
 "す。"
 
 msgid "MySQL_TAB_TWO"
@@ -160,11 +163,11 @@ msgid "MySQL_TAB_TWO_help"
 msgstr "あなたは、GUIを介して直接/etc/my.cnfを編集することができます。"
 
 msgid "MySQL_menu"
-msgstr "MySQL"
+msgstr "[[base-mysql.DBTYPE]]"
 
 msgid "MySQL_menu_help"
 msgstr ""
-"アプリケーションは、MySQLと通信できるように、MySQLの関連する設定を構成しま"
+"アプリケーションは、[[base-mysql.DBTYPE]]と通信できるように、[[base-mysql.DBTYPE]]の関連する設定を構成しま"
 "す。"
 
 msgid "SELECT_help"
@@ -174,7 +177,7 @@ msgid "SHOW_VIEW"
 msgstr "SHOW_VIEW"
 
 msgid "SHOW_VIEW_help"
-msgstr "SHOW CREATE VIEW クエリの実行を許可します。(MySQL5以上のみ有効）"
+msgstr "SHOW CREATE VIEW クエリの実行を許可します。([[base-mysql.DBTYPE]]5以上のみ有効）"
 
 msgid "TEMPORARY"
 msgstr "CREATE TEMPORARY TABLES"
@@ -186,16 +189,16 @@ msgid "UPDATE_help"
 msgstr "データを変更することができます。"
 
 msgid "amDetailsTitle"
-msgstr "MySQLサーバの詳細"
+msgstr "[[base-mysql.DBTYPE]]サーバの詳細"
 
 msgid "amMysqlNameTag"
-msgstr "MySQLサーバ"
+msgstr "[[base-mysql.DBTYPE]]サーバ"
 
 msgid "amNotAccepting"
-msgstr "MySQLサーバは正常に動作していません。手動で再起動してみてください。"
+msgstr "[[base-mysql.DBTYPE]]サーバは正常に動作していません。手動で再起動してみてください。"
 
 msgid "amStatusOK"
-msgstr "MySQLサーバは正常に動作しています。"
+msgstr "[[base-mysql.DBTYPE]]サーバは正常に動作しています。"
 
 msgid "back_to_key_request"
 msgstr "前のページに戻る"
@@ -237,7 +240,7 @@ msgid "delete_backup"
 msgstr "バックアップを削除"
 
 msgid "delete_backup_help"
-msgstr "MySQLのバックアップファイルを削除します。"
+msgstr "[[base-mysql.DBTYPE]]のバックアップファイルを削除します。"
 
 msgid "download_backup"
 msgstr "DBバックアップをダウンロード"
@@ -249,7 +252,7 @@ msgid "dump"
 msgstr "実行されるSQLダンプ"
 
 msgid "dump_help"
-msgstr "MySQLのダンプを実行"
+msgstr "[[base-mysql.DBTYPE]]のダンプを実行"
 
 msgid "email_key_request"
 msgstr "Eメールキーリクエスト"
@@ -265,7 +268,7 @@ msgid "filesize"
 msgstr "ファイルサイズ："
 
 msgid "filesize_help"
-msgstr "MySQLのダンプファイルのサイズ"
+msgstr "[[base-mysql.DBTYPE]]のダンプファイルのサイズ"
 
 msgid "last_backup"
 msgstr "最終バックアップ："
@@ -295,20 +298,20 @@ msgstr "デフォルトの権限："
 
 msgid "mysql_default_privileges_help"
 msgstr ""
-"新しいMySQLユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
+"新しい[[base-mysql.DBTYPE]]ユーザーは、以下に示すように、独自のデータベースのための次のデフォ"
 "ルトの権限で作成されます。"
 
 msgid "mysql_enabled"
-msgstr "MySQLサーバを有効にします。"
+msgstr "[[base-mysql.DBTYPE]]サーバを有効にします。"
 
 msgid "mysql_enabled_help"
-msgstr "チェックするとMySQLサーバを有効にします。"
+msgstr "チェックすると[[base-mysql.DBTYPE]]サーバを有効にします。"
 
 msgid "mysql_head"
-msgstr "MySQL設定"
+msgstr "[[base-mysql.DBTYPE]]設定"
 
 msgid "mysql_header"
-msgstr "MySQLサーバ"
+msgstr "[[base-mysql.DBTYPE]]サーバ"
 
 msgid "mysql_license"
 msgstr "ライセンス管理："
@@ -319,10 +322,10 @@ msgstr ""
 "す。あなたは、要求ビューまたはここにサーバライセンスを管理できます。"
 
 msgid "mysql_status_incorrect"
-msgstr "MySQLの接続が確立できません。設定を確認してください。"
+msgstr "[[base-mysql.DBTYPE]]の接続が確立できません。設定を確認してください。"
 
 msgid "mysql_status_ok"
-msgstr "この設定で可能なMySQL接続。"
+msgstr "この設定で可能な[[base-mysql.DBTYPE]]接続。"
 
 msgid "mysql_status_unconfigured"
 msgstr "設定を構成してください。"
@@ -338,14 +341,14 @@ msgstr "新しいパスワード："
 
 msgid "mysqlpass_help"
 msgstr ""
-"あなたは限り、あなたは現在のパスワードを知っているように、MySQLのパスワードを"
+"あなたは限り、あなたは現在のパスワードを知っているように、[[base-mysql.DBTYPE]]のパスワードを"
 "変更することができます。"
 
 msgid "password"
-msgstr "MySQLのパスワード"
+msgstr "[[base-mysql.DBTYPE]]のパスワード"
 
 msgid "password_help"
-msgstr "MySQLは主ユーザーのパスワード"
+msgstr "[[base-mysql.DBTYPE]]は主ユーザーのパスワード"
 
 msgid "product_key"
 msgstr "プロダクトキー："
@@ -358,14 +361,14 @@ msgstr ""
 
 msgid "root_has_no_pwd"
 msgstr ""
-"MySQLのrootユーザーのためのMySQLのパスワードは明らかにまだ設定されていませ"
-"ん！ MySQLのユーザー「ルート」のパスワードを設定してください！"
+"[[base-mysql.DBTYPE]]のrootユーザーのための[[base-mysql.DBTYPE]]のパスワードは明らかにまだ設定されていませ"
+"ん！ [[base-mysql.DBTYPE]]のユーザー「ルート」のパスワードを設定してください！"
 
 msgid "server"
 msgstr "サーバー"
 
 msgid "server_help"
-msgstr "MySQLサーバを有効にすると無効"
+msgstr "[[base-mysql.DBTYPE]]サーバを有効にすると無効"
 
 msgid "server_key"
 msgstr "サーバキー："
@@ -380,41 +383,41 @@ msgid "solmysqlDB"
 msgstr "データベース名"
 
 msgid "solmysqlDB_help"
-msgstr "このサイトのMySQLデータベースの名前。"
+msgstr "このサイトの[[base-mysql.DBTYPE]]データベースの名前。"
 
 msgid "solmysqlFullText"
-msgstr "MySQLのユーザーとデータベース"
+msgstr "[[base-mysql.DBTYPE]]のユーザーとデータベース"
 
 msgid "solmysqlFullText_help"
 msgstr ""
-"あなたは自動的にMySQLデータベースと、このサイトのMySQLユーザを作成したり、削"
+"あなたは自動的に[[base-mysql.DBTYPE]]データベースと、このサイトの[[base-mysql.DBTYPE]]ユーザを作成したり、削"
 "除することができます。注意：チェックボックスがすでにオンになっている場合、そ"
-"れをオフにし、変更を保存すると、MySQLのデータベースとユーザーを削除します。"
+"れをオフにし、変更を保存すると、[[base-mysql.DBTYPE]]のデータベースとユーザーを削除します。"
 
 msgid "solmysqlHost"
 msgstr "データベースホスト"
 
 msgid "solmysqlHost_help"
-msgstr "MySQLサーバが動作しているホスト。デフォルトは 'localhost' です。"
+msgstr "[[base-mysql.DBTYPE]]サーバが動作しているホスト。デフォルトは 'localhost' です。"
 
 msgid "solmysqlPass"
 msgstr "パスワード"
 
 msgid "solmysqlPass_help"
-msgstr "問題のMySQLユーザのためのMySQLのパスワード。"
+msgstr "問題の[[base-mysql.DBTYPE]]ユーザのための[[base-mysql.DBTYPE]]のパスワード。"
 
 msgid "solmysqlPort"
 msgstr "ポート"
 
 msgid "solmysqlPort_help"
-msgstr "MySQLサーバーが待機しているポート。通常、これは'3306 'です。"
+msgstr "[[base-mysql.DBTYPE]]サーバーが待機しているポート。通常、これは'3306 'です。"
 
 msgid "solmysqlUsername"
 msgstr "ユーザ名"
 
 msgid "solmysqlUsername_help"
 msgstr ""
-"MySQLのユーザのユーザ名。唯一の下の指定されたデータベースの権限とアクセス許可"
+"[[base-mysql.DBTYPE]]のユーザのユーザ名。唯一の下の指定されたデータベースの権限とアクセス許可"
 "を持っています。"
 
 msgid "solmysql_DB"
@@ -454,39 +457,39 @@ msgid "solmysql_username_help"
 msgstr "[[base-mysql.solmysqlUsername_help]]"
 
 msgid "sql_host"
-msgstr "MySQLのホスト："
+msgstr "[[base-mysql.DBTYPE]]のホスト："
 
 msgid "sql_host_help"
 msgstr ""
-"MySQLサーバが配置されているホスト。アプリケーションがMySQLに接続できるように"
+"[[base-mysql.DBTYPE]]サーバが配置されているホスト。アプリケーションが[[base-mysql.DBTYPE]]に接続できるように"
 "指定する必要があります。 デフォルトは 'localhost' です。"
 
 msgid "sql_port"
-msgstr "MySQLのポート："
+msgstr "[[base-mysql.DBTYPE]]のポート："
 
 msgid "sql_port_help"
-msgstr "MySQLサーバが使用するTCP/IPポート番号。デフォルトは'3306 'です。"
+msgstr "[[base-mysql.DBTYPE]]サーバが使用するTCP/IPポート番号。デフォルトは'3306 'です。"
 
 msgid "sql_root"
-msgstr "MySQLのユーザー："
+msgstr "[[base-mysql.DBTYPE]]のユーザー："
 
 msgid "sql_root_help"
 msgstr ""
-"'root' 権限を持つMySQLのユーザのユーザ名。デフォルト設定は 'root' です。"
+"'root' 権限を持つ[[base-mysql.DBTYPE]]のユーザのユーザ名。デフォルト設定は 'root' です。"
 
 msgid "sql_rootpassword"
-msgstr "MySQLのパスワード："
+msgstr "[[base-mysql.DBTYPE]]のパスワード："
 
 msgid "sql_rootpassword_help"
-msgstr "MySQLのrootユーザーのパスワード。"
+msgstr "[[base-mysql.DBTYPE]]のrootユーザーのパスワード。"
 
 msgid "sql_status"
-msgstr "MySQLの状態："
+msgstr "[[base-mysql.DBTYPE]]の状態："
 
 msgid "sql_status_help"
 msgstr ""
-"あなたのMySQL接続の状態が表示され、それはあなたが上で指定したログイン詳細を"
-"MySQLサーバに接続することが可能です。"
+"あなたの[[base-mysql.DBTYPE]]接続の状態が表示され、それはあなたが上で指定したログイン詳細を"
+"[[base-mysql.DBTYPE]]サーバに接続することが可能です。"
 
 msgid "sqldump"
 msgstr "SQL DBのダンプ"
@@ -499,27 +502,27 @@ msgstr "パスワードを変更"
 
 msgid "sqlpass_help"
 msgstr ""
-"あなたのMySQLのパスワードを変更することができます。また、現在のパスワードを"
-"知っている提供、MySQLのパスワードをクリアすることができます。そうするために"
+"あなたの[[base-mysql.DBTYPE]]のパスワードを変更することができます。また、現在のパスワードを"
+"知っている提供、[[base-mysql.DBTYPE]]のパスワードをクリアすることができます。そうするために"
 "は、単純に空の「新しいパスワード」フィールドにしておきます。"
 
 msgid "sqlstatus_fail"
 msgstr ""
-"MySQLの接続が確立できません。最初の「ネットワークサービス」/「MySQLの設定変"
-"更」の下の設定を確認してください。 MySQLが動作している場合にも参照してくださ"
+"[[base-mysql.DBTYPE]]の接続が確立できません。最初の「ネットワークサービス」/「[[base-mysql.DBTYPE]]の設定変"
+"更」の下の設定を確認してください。 [[base-mysql.DBTYPE]]が動作している場合にも参照してくださ"
 "い。"
 
 msgid "udb_switch"
-msgstr "MySQLの自動作成"
+msgstr "[[base-mysql.DBTYPE]]の自動作成"
 
 msgid "udb_switch_help"
 msgstr ""
-"GUIを使用してMySQLユーザとデータベースの自動作成を可能にする。いずれかの新し"
+"GUIを使用して[[base-mysql.DBTYPE]]ユーザとデータベースの自動作成を可能にする。いずれかの新し"
 "いサイトを作成する際に、または既存のサイトの「WEB」のサービスを編集して。唯一"
 "のサーバー管理者はこの機能を持っています。"
 
 msgid "username"
-msgstr "MySQLのユーザー名"
+msgstr "[[base-mysql.DBTYPE]]のユーザー名"
 
 msgid "username_help"
-msgstr "MySQLのメインユーザーのユーザー"
+msgstr "[[base-mysql.DBTYPE]]のメインユーザーのユーザー"

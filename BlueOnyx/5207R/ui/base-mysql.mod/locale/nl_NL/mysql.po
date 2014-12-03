@@ -8,17 +8,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "DBTYPE"
+msgstr "XXX_DBTYPE_XXX"
+
 msgid "amDetailsTitle"
-msgstr "MySQL Server Details"
+msgstr "[[base-mysql.DBTYPE]] Server Details"
 
 msgid "amMysqlNameTag"
-msgstr "MySQL Server"
+msgstr "[[base-mysql.DBTYPE]] Server"
 
 msgid "amNotAccepting"
-msgstr "De MySQL server is NIET normaal. Probeer handmatig opnieuw starten."
+msgstr "De [[base-mysql.DBTYPE]] server is NIET normaal. Probeer handmatig opnieuw starten."
 
 msgid "amStatusOK"
-msgstr "De MySQL server werkt normaal."
+msgstr "De [[base-mysql.DBTYPE]] server werkt normaal."
 
 msgid "current_pass"
 msgstr "Huidig ​​wachtwoord:"
@@ -30,7 +33,7 @@ msgid "delete_backup"
 msgstr "Delete Backup"
 
 msgid "delete_backup_help"
-msgstr "Verwijder je MySQL back-upbestand"
+msgstr "Verwijder je [[base-mysql.DBTYPE]] back-upbestand"
 
 msgid "download_backup"
 msgstr "Download DB Backup"
@@ -42,13 +45,13 @@ msgid "dump"
 msgstr "Run SQL Dump"
 
 msgid "dump_help"
-msgstr "Uitvoeren MySQL Dump"
+msgstr "Uitvoeren [[base-mysql.DBTYPE]] Dump"
 
 msgid "filesize"
 msgstr "Bestand Grootte:"
 
 msgid "filesize_help"
-msgstr "De grootte van uw MySQL dump file"
+msgstr "De grootte van uw [[base-mysql.DBTYPE]] dump file"
 
 msgid "last_backup"
 msgstr "Laatste Backed Up:"
@@ -57,13 +60,13 @@ msgid "last_backup_help"
 msgstr "Kijken wanneer de back-up laatste gebeurde"
 
 msgid "mysql_enabled"
-msgstr "Enable MySQL Server:"
+msgstr "Enable [[base-mysql.DBTYPE]] Server:"
 
 msgid "mysql_enabled_help"
-msgstr "Klik om MySQL te schakelen Server"
+msgstr "Klik om [[base-mysql.DBTYPE]] te schakelen Server"
 
 msgid "mysql_header"
-msgstr "MySQL Server"
+msgstr "[[base-mysql.DBTYPE]] Server"
 
 msgid "mysqldump"
 msgstr "Database maken Snap Shot"
@@ -75,19 +78,19 @@ msgid "mysqlpass"
 msgstr "Nieuw wachtwoord:"
 
 msgid "mysqlpass_help"
-msgstr "Hiermee kunt u uw MySQL wachtwoord te wijzigen, zolang u het huidige wachtwoord weet."
+msgstr "Hiermee kunt u uw [[base-mysql.DBTYPE]] wachtwoord te wijzigen, zolang u het huidige wachtwoord weet."
 
 msgid "password"
-msgstr "MySQL wachtwoord"
+msgstr "[[base-mysql.DBTYPE]] wachtwoord"
 
 msgid "password_help"
-msgstr "Het wachtwoord voor de hoofdgebruiker van MySQL"
+msgstr "Het wachtwoord voor de hoofdgebruiker van [[base-mysql.DBTYPE]]"
 
 msgid "server"
 msgstr "Server"
 
 msgid "server_help"
-msgstr "Inschakelen en uitschakelen MySQL Server"
+msgstr "Inschakelen en uitschakelen [[base-mysql.DBTYPE]] Server"
 
 msgid "sqldump"
 msgstr "SQL DB Dump"
@@ -99,82 +102,82 @@ msgid "sqlpass"
 msgstr "Wachtwoord wijzigen"
 
 msgid "sqlpass_help"
-msgstr "Hiermee kunt u uw MySQL wachtwoord te wijzigen. Kan ook gebruikt worden om een ​​MySQL wachtwoord te wissen, mits u het huidige wachtwoord weet. Om dit te doen laat u het veld 'Nieuw wachtwoord' leeg."
+msgstr "Hiermee kunt u uw [[base-mysql.DBTYPE]] wachtwoord te wijzigen. Kan ook gebruikt worden om een ​​[[base-mysql.DBTYPE]] wachtwoord te wissen, mits u het huidige wachtwoord weet. Om dit te doen laat u het veld 'Nieuw wachtwoord' leeg."
 
 msgid "username"
-msgstr "MySQL Gebruikersnaam"
+msgstr "[[base-mysql.DBTYPE]] Gebruikersnaam"
 
 msgid "username_help"
-msgstr "De hoofdgebruiker gebruiker voor MySQL"
+msgstr "De hoofdgebruiker gebruiker voor [[base-mysql.DBTYPE]]"
 
 msgid "MySQL_Settings_head"
-msgstr "MySQL-instellingen"
+msgstr "[[base-mysql.DBTYPE]]-instellingen"
 
 msgid "MySQL_Settings_divider"
-msgstr "De instellingen voor het automatisch aanmaken van MySQL gebruikers en databases te configureren."
+msgstr "De instellingen voor het automatisch aanmaken van [[base-mysql.DBTYPE]] gebruikers en databases te configureren."
 
 msgid "sql_host"
-msgstr "MySQL Host:"
+msgstr "[[base-mysql.DBTYPE]] Host:"
 
 msgid "sql_host_help"
-msgstr "Host waarop de MySQL-server zich bevindt. Moet worden gespecificeerd zodat applicaties kan verbinding maken met MySQL. Standaard is deze 'localhost' zou moeten zijn."
+msgstr "Host waarop de [[base-mysql.DBTYPE]]-server zich bevindt. Moet worden gespecificeerd zodat applicaties kan verbinding maken met [[base-mysql.DBTYPE]]. Standaard is deze 'localhost' zou moeten zijn."
 
 msgid "sql_port"
-msgstr "MySQL Port:"
+msgstr "[[base-mysql.DBTYPE]] Port:"
 
 msgid "sql_port_help"
-msgstr "TCP/IP-poort waarop MySQL is bereikbaar op de opgegeven host. Standaard staat deze zou moeten zijn '3306 '."
+msgstr "TCP/IP-poort waarop [[base-mysql.DBTYPE]] is bereikbaar op de opgegeven host. Standaard staat deze zou moeten zijn '3306 '."
 
 msgid "MYSQL_ROOT_Settings_divider"
-msgstr "MySQL root gebruiker instellingen - die nodig zijn voor de database initialisatie, installatie en onderhoud:"
+msgstr "[[base-mysql.DBTYPE]] root gebruiker instellingen - die nodig zijn voor de database initialisatie, installatie en onderhoud:"
 
 msgid "sql_root"
-msgstr "MySQL Gebruiker:"
+msgstr "[[base-mysql.DBTYPE]] Gebruiker:"
 
 msgid "sql_root_help"
-msgstr "Gebruikersnaam van de MySQL gebruiker met 'root' privileges. Standaard is deze 'root' zou moeten zijn."
+msgstr "Gebruikersnaam van de [[base-mysql.DBTYPE]] gebruiker met 'root' privileges. Standaard is deze 'root' zou moeten zijn."
 
 msgid "sql_rootpassword"
-msgstr "MySQL Password:"
+msgstr "[[base-mysql.DBTYPE]] Password:"
 
 msgid "sql_rootpassword_help"
-msgstr "Wachtwoord van de MySQL 'root' gebruiker."
+msgstr "Wachtwoord van de [[base-mysql.DBTYPE]] 'root' gebruiker."
 
 msgid "sql_status"
-msgstr "MySQL Status:"
+msgstr "[[base-mysql.DBTYPE]] Status:"
 
 msgid "sql_status_help"
-msgstr "Geeft de status van uw MySQL-verbinding en of het mogelijk is om verbinding te maken met de MySQL-server met de inloggegevens die u hierboven opgaf."
+msgstr "Geeft de status van uw [[base-mysql.DBTYPE]]-verbinding en of het mogelijk is om verbinding te maken met de [[base-mysql.DBTYPE]]-server met de inloggegevens die u hierboven opgaf."
 
 msgid "mysql_status_unconfigured"
 msgstr "Gelieve de instellingen configureren."
 
 msgid "mysql_status_incorrect"
-msgstr "MySQL-verbinding niet kan worden vastgesteld. Controleer de instellingen."
+msgstr "[[base-mysql.DBTYPE]]-verbinding niet kan worden vastgesteld. Controleer de instellingen."
 
 msgid "mysql_status_ok"
-msgstr "MySQL verbinding mogelijk met deze instellingen."
+msgstr "[[base-mysql.DBTYPE]] verbinding mogelijk met deze instellingen."
 
 msgid "MySQL_menu"
-msgstr "MySQL"
+msgstr "[[base-mysql.DBTYPE]]"
 
 msgid "MySQL_menu_help"
-msgstr "Configureer de MySQL-gerelateerde instellingen, zodat applicaties kunnen communiceren met MySQL."
+msgstr "Configureer de [[base-mysql.DBTYPE]]-gerelateerde instellingen, zodat applicaties kunnen communiceren met [[base-mysql.DBTYPE]]."
 
 msgid "MySQL_Local_divider"
-msgstr "Lokale MySQL server:"
+msgstr "Lokale [[base-mysql.DBTYPE]] server:"
 
 msgid "MySQL_Remote_divider"
-msgstr "MySQL Server details:"
+msgstr "[[base-mysql.DBTYPE]] Server details:"
 
 msgid "MySQL_Login_divider"
-msgstr "MySQL 'root' gebruiker gegevens:"
+msgstr "[[base-mysql.DBTYPE]] 'root' gebruiker gegevens:"
 
 msgid "MySQL_Status_divider"
-msgstr "MySQL Connection Status:"
+msgstr "[[base-mysql.DBTYPE]] Connection Status:"
 
 msgid "mysql_head"
-msgstr "MySQL Configuratie"
+msgstr "[[base-mysql.DBTYPE]] Configuratie"
 
 msgid "my_cnf"
 msgstr "/etc/my.cnf Editor:"
@@ -237,22 +240,22 @@ msgid "back_to_key_request_help"
 msgstr "Keert u terug naar de vorige pagina."
 
 msgid "MySQL_Config_head"
-msgstr "MySQL Config"
+msgstr "[[base-mysql.DBTYPE]] Config"
 
 msgid "MySQL_Config_head_help"
-msgstr "Configuratie van uw MySQL Server."
+msgstr "Configuratie van uw [[base-mysql.DBTYPE]] Server."
 
 msgid "MySQL_Config_desc"
-msgstr "MySQL-instellingen"
+msgstr "[[base-mysql.DBTYPE]]-instellingen"
 
 msgid "MySQL_Config_desc_help"
-msgstr "Hiermee kunt u de automatische MySQL database en het aanmaken van gebruikers configureren."
+msgstr "Hiermee kunt u de automatische [[base-mysql.DBTYPE]] database en het aanmaken van gebruikers configureren."
 
 msgid "MySQL_TAB_ONE"
-msgstr "Auto-Create MySQL gebruikers en databases"
+msgstr "Auto-Create [[base-mysql.DBTYPE]] gebruikers en databases"
 
 msgid "MySQL_TAB_ONE_help"
-msgstr "Kunt u MySQL gebruikers en databases automatisch te creëren voor elke site."
+msgstr "Kunt u [[base-mysql.DBTYPE]] gebruikers en databases automatisch te creëren voor elke site."
 
 msgid "MySQL_TAB_TWO"
 msgstr "/etc/my.cnf Editor"
@@ -261,46 +264,46 @@ msgid "MySQL_TAB_TWO_help"
 msgstr "Hiermee kunt u rechtstreeks bewerken /etc/my.cnf via de GUI."
 
 msgid "udb_switch"
-msgstr "MySQL automatisch opzetten"
+msgstr "[[base-mysql.DBTYPE]] automatisch opzetten"
 
 msgid "udb_switch_help"
-msgstr "Maakt automatisch creëren van MySQL gebruikers en databases via de GUI. Hetzij op het creëren van een nieuwe site, of door de 'Web' diensten van een bestaande site te bewerken. Alleen server beheerders hebben deze mogelijkheid."
+msgstr "Maakt automatisch creëren van [[base-mysql.DBTYPE]] gebruikers en databases via de GUI. Hetzij op het creëren van een nieuwe site, of door de 'Web' diensten van een bestaande site te bewerken. Alleen server beheerders hebben deze mogelijkheid."
 
 msgid "solmysqlFullText"
-msgstr "MySQL gebruiker en database"
+msgstr "[[base-mysql.DBTYPE]] gebruiker en database"
 
 msgid "solmysqlFullText_help"
-msgstr "Hiermee kunt u automatisch aanmaken of verwijderen van een MySQL database en een MySQL gebruiker voor deze website. LET OP: Als het selectievakje al is aangevinkt, dan vinkje het en de wijzigingen zal de MySQL database en de gebruiker te verwijderen."
+msgstr "Hiermee kunt u automatisch aanmaken of verwijderen van een [[base-mysql.DBTYPE]] database en een [[base-mysql.DBTYPE]] gebruiker voor deze website. LET OP: Als het selectievakje al is aangevinkt, dan vinkje het en de wijzigingen zal de [[base-mysql.DBTYPE]] database en de gebruiker te verwijderen."
 
 msgid "solmysqlUsername"
 msgstr "Gebruikersnaam"
 
 msgid "solmysqlUsername_help"
-msgstr "Gebruikersnaam van de MySQL gebruiker. Heeft rechten en machtigingen alleen voor de database hieronder aangegeven."
+msgstr "Gebruikersnaam van de [[base-mysql.DBTYPE]] gebruiker. Heeft rechten en machtigingen alleen voor de database hieronder aangegeven."
 
 msgid "solmysqlPass"
 msgstr "Wachtwoord"
 
 msgid "solmysqlPass_help"
-msgstr "MySQL wachtwoord voor de MySQL gebruiker in kwestie."
+msgstr "[[base-mysql.DBTYPE]] wachtwoord voor de [[base-mysql.DBTYPE]] gebruiker in kwestie."
 
 msgid "solmysqlDB"
 msgstr "Database Naam"
 
 msgid "solmysqlDB_help"
-msgstr "Naam van de MySQL database voor deze website."
+msgstr "Naam van de [[base-mysql.DBTYPE]] database voor deze website."
 
 msgid "solmysqlHost"
 msgstr "Database Host"
 
 msgid "solmysqlHost_help"
-msgstr "Host waarop de MySQL-server draait. Normaal gesproken is dit 'localhost'."
+msgstr "Host waarop de [[base-mysql.DBTYPE]]-server draait. Normaal gesproken is dit 'localhost'."
 
 msgid "solmysqlPort"
 msgstr "Haven"
 
 msgid "solmysqlPort_help"
-msgstr "Poort waarop de MySQL-server luistert. Normaal gesproken is dit '3306 '."
+msgstr "Poort waarop de [[base-mysql.DBTYPE]]-server luistert. Normaal gesproken is dit '3306 '."
 
 msgid "MySQL_DIVIDER_ONE"
 msgstr "Default rechten automatisch aangemaakt gebruikers:"
@@ -309,10 +312,10 @@ msgid "mysql_default_privileges"
 msgstr "Standaard privileges:"
 
 msgid "mysql_default_privileges_help"
-msgstr "Worden nieuwe MySQL gebruikers worden gemaakt met de volgende standaard rechten voor hun eigen gegevensbank zoals hieronder getoond."
+msgstr "Worden nieuwe [[base-mysql.DBTYPE]] gebruikers worden gemaakt met de volgende standaard rechten voor hun eigen gegevensbank zoals hieronder getoond."
 
 msgid "EXPLAIN_RIGHTS"
-msgstr "Worden nieuwe MySQL gebruikers worden gemaakt met de volgende standaard rechten voor hun eigen gegevensbank zoals hieronder getoond."
+msgstr "Worden nieuwe [[base-mysql.DBTYPE]] gebruikers worden gemaakt met de volgende standaard rechten voor hun eigen gegevensbank zoals hieronder getoond."
 
 msgid "DIVIDER_ZERO"
 msgstr "Standaard database privileges:"
@@ -366,28 +369,28 @@ msgid "CREATE_VIEW"
 msgstr "CREATE VIEW"
 
 msgid "CREATE_VIEW_help"
-msgstr "Staat het maken van nieuwe inzichten. (Alleen beschikbaar in MySQL5 of beter.)"
+msgstr "Staat het maken van nieuwe inzichten. (Alleen beschikbaar in [[base-mysql.DBTYPE]]5 of beter.)"
 
 msgid "SHOW_VIEW"
 msgstr "SHOW VIEW"
 
 msgid "SHOW_VIEW_help"
-msgstr "Laat uitvoeren SHOW CREATE VIEW queries. (Alleen beschikbaar in MySQL5 of beter.)"
+msgstr "Laat uitvoeren SHOW CREATE VIEW queries. (Alleen beschikbaar in [[base-mysql.DBTYPE]]5 of beter.)"
 
 msgid "CREATE_ROUTINE"
 msgstr "CREATE ROUTINEMATIGE"
 
 msgid "CREATE_ROUTINE_help"
-msgstr "Staat het maken van opgeslagen routines. (Alleen beschikbaar in MySQL5 of beter.)"
+msgstr "Staat het maken van opgeslagen routines. (Alleen beschikbaar in [[base-mysql.DBTYPE]]5 of beter.)"
 
 msgid "ALTER_ROUTINE"
 msgstr "ALTER ROUTINEMATIGE"
 
 msgid "ALTER_ROUTINE_help"
-msgstr "Hiermee veranderen en neerzetten van opgeslagen routines. (Alleen beschikbaar in MySQL5 of beter.)"
+msgstr "Hiermee veranderen en neerzetten van opgeslagen routines. (Alleen beschikbaar in [[base-mysql.DBTYPE]]5 of beter.)"
 
 msgid "EXECUTE_help"
-msgstr "Maakt het mogelijk om van de winkel routines. (Alleen beschikbaar in MySQL5 of beter.)"
+msgstr "Maakt het mogelijk om van de winkel routines. (Alleen beschikbaar in [[base-mysql.DBTYPE]]5 of beter.)"
 
 msgid "MAX_QUERIES_PER_HOUR"
 msgstr "MAX zoekopdrachten per UUR"
@@ -408,13 +411,13 @@ msgid "MAX_CONNECTIONS_PER_HOUR_help"
 msgstr "Beperkt het aantal verbindingen de gebruiker per uur mag openen. '0 'Betekent dat er geen limiet."
 
 msgid "MySQL_Info_Text"
-msgstr "Worden nieuwe MySQL gebruikers worden gemaakt met de volgende standaard rechten voor hun eigen gegevensbank zoals hieronder getoond."
+msgstr "Worden nieuwe [[base-mysql.DBTYPE]] gebruikers worden gemaakt met de volgende standaard rechten voor hun eigen gegevensbank zoals hieronder getoond."
 
 msgid "root_has_no_pwd"
-msgstr "MySQL wachtwoord voor MySQL-root gebruiker blijkbaar nog niet ingesteld! Stel een wachtwoord voor MySQL-gebruiker 'root'!"
+msgstr "[[base-mysql.DBTYPE]] wachtwoord voor [[base-mysql.DBTYPE]]-root gebruiker blijkbaar nog niet ingesteld! Stel een wachtwoord voor [[base-mysql.DBTYPE]]-gebruiker 'root'!"
 
 msgid "sqlstatus_fail"
-msgstr "MySQL-verbinding niet kan worden vastgesteld. Controleer de instellingen onder 'Network Services'/'MySQL Config' eerste. Zie ook als MySQL draait."
+msgstr "[[base-mysql.DBTYPE]]-verbinding niet kan worden vastgesteld. Controleer de instellingen onder 'Network Services'/'[[base-mysql.DBTYPE]] Config' eerste. Zie ook als [[base-mysql.DBTYPE]] draait."
 
 msgid "solmysql_enabled"
 msgstr "[[base-mysql.solmysqlFullText]]"
@@ -453,11 +456,11 @@ msgid "solmysql_Port_help"
 msgstr "[[base-mysql.solmysqlPort_help]]"
 
 msgid "CreateFailUserExists"
-msgstr "Dat MySQL gebruiker bestaat al in de MySQL gebruiker tafel."
+msgstr "Dat [[base-mysql.DBTYPE]] gebruiker bestaat al in de [[base-mysql.DBTYPE]] gebruiker tafel."
 
 msgid "CreateFailDBExists"
-msgstr "Dat MySQL database al bestaat in de MySQL database tabel."
+msgstr "Dat [[base-mysql.DBTYPE]] database al bestaat in de [[base-mysql.DBTYPE]] database tabel."
 
 msgid "CreateFailDatabaseExists"
-msgstr "Dat MySQL database al bestaat."
+msgstr "Dat [[base-mysql.DBTYPE]] database al bestaat."
 
