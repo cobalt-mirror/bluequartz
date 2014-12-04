@@ -75,7 +75,7 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init rehash
+    /usr/sausalito/sbin/cced.init rehash
 fi
 if [ -d /var/named/chroot/var/named ]; then
   chmod 0770 /var/named/chroot/var/named
@@ -113,6 +113,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX09
+- Some Systemd love in post-install.
 
 * Wed Jul 23 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX08
 - Modified ui/chorizo/web/controllers/vsiteDNS.php as the group wasn't
