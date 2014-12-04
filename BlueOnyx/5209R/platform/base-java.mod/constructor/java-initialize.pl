@@ -13,7 +13,7 @@ my $cce = new CCE;
 
 $cce->connectuds();
 
-$cmd_tomcat = '/etc/init.d/tomcat6';
+$cmd_tomcat = '/sbin/service tomcat6';
 $sts_tomcat = "UNKNOWN";
 $sts_tempfile = '/tmp/.tomcat6';
 $tomcat_properties = '/etc/tomcat6/tomcat-users.xml';
