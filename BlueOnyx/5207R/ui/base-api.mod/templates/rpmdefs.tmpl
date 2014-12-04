@@ -73,7 +73,7 @@ information for [VENDOR]-[SERVICE].
 
 # Restart CCEd unless we're updating through the GUI:
 if [ ! -f /tmp/yum.updating ]; then
-    /etc/init.d/cced.init rehash
+    /sbin/service cced.init rehash
 fi
 
 <end glue>
@@ -122,6 +122,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX04
+- Some Systemd love in post-install script.
 
 * Tue Oct 14 2014 Michael Stauber <mstauber@solarspeed.net> 1.1.0-0BX03
 - Version number bump due to up-port of old GUI ui/web/index.php with the
