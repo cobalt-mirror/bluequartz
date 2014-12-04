@@ -105,13 +105,6 @@ if [ -f /etc/httpd/conf.d/manual.conf ]; then
   /bin/rm -f /etc/httpd/conf.d/manual.conf
 fi
 
-# A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
-# This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
-if [ -f /etc/init.d/avahi-daemon ]; then
-        /etc/init.d/avahi-daemon stop >/dev/null 2>&1
-        /sbin/chkconfig --level 2345 avahi-daemon off
-fi
-
 # Walk through /etc/httpd/conf/vhosts/site* and comment out the RewriteRule line that breaks SSL:
 if [ -f "/etc/httpd/conf/vhosts/site1" ]; then
         echo "Found!"
@@ -135,8 +128,8 @@ fi
 
 # Restart CCEd and Apache for good measure:
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
-    /etc/init.d/httpd restart
+    /sbin/service cced.init restart
+    /sbin/service httpd restart
 fi
 
 <end glue>
@@ -170,6 +163,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX12
+- Systemd related changes in constructor/set_httpd_alias_perms.pl and
+  post-install scripts.
 
 * Thu Oct 30 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX11
 - Modified /usr/sausalito/sbin/SSL_fixer.pl so that aliases and PHP 
