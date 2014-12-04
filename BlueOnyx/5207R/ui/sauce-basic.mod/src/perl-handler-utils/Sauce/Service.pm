@@ -141,16 +141,47 @@ sub service_set_init
 	my $level;
 	
 	if (@runlevels) {
-        	$level = ' --level ';
-        	$level .= join('',@runlevels);
+		$level = ' --level ';
+		$level .= join('',@runlevels);
 		$state = 'off' unless $state eq 'on';
-    		`/sbin/chkconfig $level $service $state`;
+
+		# Define Systemd state:
+		my $SystemdState = 'disable';
+		if ($state eq "on") {
+			$SystemdState = 'enable';
+		}
+
+		# Set state:
+		if (-f "/usr/bin/systemctl") {
+			`/usr/bin/systemctl $SystemdState $service.service`;
+		}
+		else {
+			`/sbin/chkconfig $level $service $state`;
+		}
 	} else {
 		if (service_get_init($service) == -1) {
-			`/sbin/chkconfig --add $service`;
+			# Set state:
+			if (-f "/usr/bin/systemctl") {
+				`/usr/bin/systemctl enable $service.service`;
+			}
+			else {
+				`/sbin/chkconfig --add $service`;
+			}
 		}
 		my $cmd = ($state eq 'on') ? 'on' : 'off';
-    		`/sbin/chkconfig $service $cmd`;
+
+		# Define Systemd state:
+		my $SystemdXState = 'disable';
+		if ($cmd eq "on") {
+			$SystemdXState = 'enable';
+		}
+		# Set state:
+		if (-f "/usr/bin/systemctl") {
+			`/usr/bin/systemctl $SystemdXState $service.service`;
+		}
+		else {
+			`/sbin/chkconfig $service $cmd`;
+		}
 	}
 
 	#
