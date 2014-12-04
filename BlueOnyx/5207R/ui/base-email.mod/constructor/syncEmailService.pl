@@ -132,6 +132,12 @@ system('/bin/rm -f /etc/mail/sendmail.mc.backup.*');
 &debug_msg("Rebuilding sendmail.cf");
 system("m4 /usr/share/sendmail-cf/m4/cf.m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf");
 
+# Fix EL7 related Systemd fuck-up (thank you, RedHat!):
+if (-f "/lib/systemd/system/sendmail.service") {
+    system("/bin/sed -i -e 's#^PIDFile=/run/sendmail.pid#PIDFile=/var/run/sendmail.pid#' /lib/systemd/system/sendmail.service");
+    system("/usr/bin/systemctl daemon-reload");
+}
+
 # need to start sendmail?
 if ($run) {
     Sauce::Service::service_toggle_init('sendmail', 1);
