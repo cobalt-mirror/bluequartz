@@ -13,7 +13,7 @@ if [ ! -f /etc/mail/aliases ]; then
 fi
 
 # Handle Mailman presence:
-if [ -f /etc/rc.d/init.d/mailman ]; then
+if [ -f /usr/lib/mailman/bin/add_members ]; then
 	cp -p $CONFDIR/sendmail.mc.mailman /etc/mail/sendmail.mc
 else
 	touch /tmp/nolist.mailmain
@@ -36,6 +36,10 @@ fi
 
 cp -p $CONFDIR/popauth.m4 /usr/share/sendmail-cf/hack/popauth.m4
 
+if [ -f /usr/sausalito/constructor/base/email/syncEmailService.pl ];then
+	/usr/sausalito/constructor/base/email/syncEmailService.pl
+fi
+
 if [ -f /usr/sausalito/constructor/solarspeed/av_spam/aa_initial_inst.pl ];then
 	/usr/sausalito/constructor/solarspeed/av_spam/aa_initial_inst.pl
 fi
@@ -56,4 +60,3 @@ done
 
 # route nobody to /dev/null so that admin does not receive a copy of every ml msg
 /bin/sed -i -e s"/^nobody:.*$/nobody:\t\t\/dev\/null/" /etc/mail/aliases
-
