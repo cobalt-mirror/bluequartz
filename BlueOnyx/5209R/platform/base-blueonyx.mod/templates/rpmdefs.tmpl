@@ -273,7 +273,7 @@ fi
 /usr/sausalito/constructor/base/time/syncTimeZone.pl
 
 # for distributions
-%if "%centos" == "6"
+%if "%centos" == "7"
 %triggerin glue -- iptables
 /bin/cp /usr/sausalito/triggers/iptables/iptables-CentOS5.init /etc/init.d/iptables
 %triggerin glue -- initscripts
@@ -297,7 +297,7 @@ if [ -f /etc/logwatch/conf/ignore.conf ]; then
 fi
 %endif
 
-%if "%centos" == "6"
+%if "%centos" == "7"
 %triggerin glue -- dovecot
 perl -pi -e 's|^#disable_plaintext_auth = (.*)|disable_plaintext_auth = no|g' /etc/dovecot/conf.d/10-auth.conf
 perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
