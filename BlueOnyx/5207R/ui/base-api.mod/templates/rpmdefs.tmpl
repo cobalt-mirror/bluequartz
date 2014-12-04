@@ -73,7 +73,7 @@ information for [VENDOR]-[SERVICE].
 
 # Restart CCEd unless we're updating through the GUI:
 if [ ! -f /tmp/yum.updating ]; then
-    /sbin/service cced.init rehash
+    /usr/sausalito/sbin/cced.init rehash
 fi
 
 <end glue>
