@@ -121,7 +121,7 @@ fi
 /usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 
 if [ $1 = 2 ]; then
-    /etc/init.d/admserv condrestart
+    /sbin/service admserv condrestart
 fi
 <end glue>
 <begin ui>
@@ -154,6 +154,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX13
+- Some more Systemd love in post-install script.
 
 * Sat Nov 22 2014 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX12
 - Added custom error log destination to AdmServ's httpd.conf
