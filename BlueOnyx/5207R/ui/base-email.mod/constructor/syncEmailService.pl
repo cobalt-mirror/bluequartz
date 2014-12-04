@@ -81,11 +81,11 @@ chmod 0600, "/etc/pki/dovecot/certs/ca.pem";
 
 # Stop mail services if they are disabled. Which do not use xinetd.
 if (($obj->{'enablePop'} eq '0') && ($obj->{'enablePops'} eq '0') && ($obj->{'enableImap'} eq '0') && ($obj->{'enableImaps'} eq '0')) {
-    system("/sbin/service dovecot stop");
-    system("/sbin/chkconfig --del dovecot");
+    Sauce::Service::service_run_init('dovecot', 'stop');
+    Sauce::Service::service_set_init('dovecot', 0);
 }
 else {
-    system("/sbin/chkconfig --add dovecot");
+    Sauce::Service::service_set_init('dovecot', 1);
     Sauce::Service::service_toggle_init('dovecot', 1);
 }
 
