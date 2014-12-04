@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
-Version: 1.3.1
-Release: 0BX02%{?dist}
+Version: 1.4.0
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,9 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX01
+- Modified Sauce/Service.pm to deal with Systemd if present.
 
 * Wed Aug 31 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX02
 - Modified Sauce/Service.pm with a special case for 'crond' to prevent forking
