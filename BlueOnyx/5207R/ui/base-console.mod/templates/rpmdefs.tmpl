@@ -82,11 +82,11 @@ information for [VENDOR]-[SERVICE].
 
 # Restart CCEd unless we're updating through the GUI:
 if [ ! -f /tmp/yum.updating ]; then
-    /etc/init.d/cced.init restart
+    /sbin/service cced.init restart
 fi
 
 # Restart CRONd:
-/etc/init.d/crond restart > /dev/null 2>&1
+/sbin/service crond restart > /dev/null 2>&1
 
 <end glue>
 <begin ui>
@@ -134,6 +134,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX05
+- Some Systemd love in post-install and handlers.
 
 * Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
 - ui/chorizo/web/controllers/ablstatus.php: Call of setDisabled() on a 
