@@ -127,7 +127,7 @@ sub thirdparty_check {
 
 sub restart_apache {
     # Restarts Apache - hard restart:
-    system("/etc/init.d/httpd restart");
+    system("/sbin/service httpd restart");
 }
 
 sub edit_php_ini {

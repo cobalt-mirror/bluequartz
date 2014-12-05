@@ -85,7 +85,7 @@ information for [VENDOR]-[SERVICE].
 # glue post-install
 # This is not needed at the moment:
 #if [ -S /usr/sausalito/cced.socket ]; then
-#    /etc/init.d/cced.init restart
+#    /usr/sausalito/sbin/cced.init restart
 #    /usr/sausalito/sbin/suPHP_fixer.pl
 #    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
 #fi
@@ -136,6 +136,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX12
+- Systemd related fixes.
 
 * Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX11
 - ui/chorizo/web/controllers/manageAdmin.php: Error handling overhauled.
