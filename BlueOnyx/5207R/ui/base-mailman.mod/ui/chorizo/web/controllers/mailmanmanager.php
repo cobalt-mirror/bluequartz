@@ -151,8 +151,8 @@ class Mailmanmanager extends MX_Controller {
 		$page_module = 'base_sysmanage';
 
 		// Is MailMan running?
-		$pid = `/etc/init.d/mailman status`;
-		if (preg_match("/is running/i", $pid)) {
+		$pid = `/sbin/service mailman status`;
+		if (preg_match("/running/i", $pid)) {
 			$my_enabled = 1;
 			$access="rw";
 		} else {

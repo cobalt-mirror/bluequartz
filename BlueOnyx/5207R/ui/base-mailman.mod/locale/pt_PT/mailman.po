@@ -426,7 +426,7 @@ msgid "mailman_enabled"
 msgstr "Ativar Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Carteiro tem um daemon, que precisa ser executado para que as mensagens da lista de discussão a ser processos. Você pode ativar ou desativar este serviço aqui. O comando de linha de comando para parar, iniciar ou reiniciar Mailman é: /etc/init.d/mailman stop|start|restart"
+msgstr "Carteiro tem um daemon, que precisa ser executado para que as mensagens da lista de discussão a ser processos. Você pode ativar ou desativar este serviço aqui. O comando de linha de comando para parar, iniciar ou reiniciar Mailman é: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Senha:"

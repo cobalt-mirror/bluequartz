@@ -426,7 +426,7 @@ msgid "mailman_enabled"
 msgstr "Aktiver Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman har en dæmon, der skal køre, for postliste beskeder altid vil være processer. Du kan aktivere eller deaktivere denne tjeneste her. Kommandolinjen kommando til at stoppe, starte eller genstarte mailman er: /etc/init.d/mailman-stop | start | restart"
+msgstr "Mailman har en dæmon, der skal køre, for postliste beskeder altid vil være processer. Du kan aktivere eller deaktivere denne tjeneste her. Kommandolinjen kommando til at stoppe, starte eller genstarte mailman er: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Password:"

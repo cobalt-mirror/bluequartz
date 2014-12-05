@@ -20,11 +20,11 @@ if (@oids) {
     # If MailMan is enabled, start the service:
     if ($enabled eq "1") {
 	system("/sbin/chkconfig --level 2345 mailman on");
-	system("/etc/init.d/mailman restart > /dev/null 2>&1");
+	system("/sbin/service mailman restart > /dev/null 2>&1");
     }
     else {
 	system("/sbin/chkconfig --level 2345 mailman off");
-	system("/etc/init.d/mailman stop > /dev/null 2>&1");
+	system("/sbin/service mailman stop > /dev/null 2>&1");
     }
 
     # While we're switching MailMan on or off, we also tell ActiveMonitor

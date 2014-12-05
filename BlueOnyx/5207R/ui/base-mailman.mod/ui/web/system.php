@@ -15,8 +15,8 @@
 
 	$factory = $serverScriptHelper->getHtmlComponentFactory("base-mailman", "/base/mailman/systemHandler.php");
 
-	$pid = `/etc/init.d/mailman status`;
-	if (preg_match("/is running/i", $pid)) {
+	$pid = `/sbin/service mailman status`;
+	if (preg_match("/running/i", $pid)) {
 		$my_enabled = 1;
 		$access="rw";
 	} else {

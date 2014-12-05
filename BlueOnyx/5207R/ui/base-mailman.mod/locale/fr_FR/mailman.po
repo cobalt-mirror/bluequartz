@@ -446,7 +446,7 @@ msgid "mailman_enabled"
 msgstr "Activer [[base-mailman.MailMan_header]] :"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman a un logiciel (daemon) qui opère en arrière-plan pour que des messages des listes puissent être acheminés. Vous pouvez activer ou désactiver ce service ici. En ligne de commande, la syntaxe pour arrêter, démarrer ou redémarrer Mailman est : /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman a un logiciel (daemon) qui opère en arrière-plan pour que des messages des listes puissent être acheminés. Vous pouvez activer ou désactiver ce service ici. En ligne de commande, la syntaxe pour arrêter, démarrer ou redémarrer Mailman est: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Mot de passe :"

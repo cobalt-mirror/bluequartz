@@ -77,11 +77,11 @@ information for [VENDOR]-[SERVICE].
 
 # Fix sendmail.cf and sendmail.mc:
 /usr/sausalito/scripts/initSendmail.sh
-/etc/init.d/sendmail condrestart
+/sbin/service sendmail condrestart
 
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    /usr/sausalito/sbin/cced.init rehash
 fi
 
 <end glue>
@@ -121,6 +121,14 @@ fi;
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX05
+- Systemd related fixes in post-install.
+- Updated all locales to refer to /sbin/service as it's still compatible.
+- Updated glue/handlers/mailman_activate.pl
+- Updated glue/handlers/newaliases.sh
+- Fixed check for Mailman status in ui/chorizo/web/controllers/mailmanmanager.php
+- Fixed check for Mailman status in ui/web/system.php
 
 * Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX04
 - Fixes in ui/chorizo/web/controllers/mailmanMod.php to allow username

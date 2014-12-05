@@ -443,7 +443,7 @@ msgid "mailman_enabled"
 msgstr "Enable Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart Mailman is: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman has a daemon, which needs to run in order for mailing list messages to be processes. You can enable or disable this service here. The command line command to stop, start or restart Mailman is: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Password:"

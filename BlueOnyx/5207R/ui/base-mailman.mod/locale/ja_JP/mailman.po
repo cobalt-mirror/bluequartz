@@ -299,7 +299,7 @@ msgstr ""
 "Mailmanはメーリングリストのメッセージがプロセスであるためには実行する必要があ"
 "るデーモンを持っています。必要であれば、ここでサービスを有効または無効にする"
 "ことができます。停止Mailmanがある開始または再起動するコマンドラインコマン"
-"ド：|開始|ます。/etc/init.d/mailmanの停止、再起動"
+"ド：|開始|ます。/sbin/service mailman stop|start|restart"
 
 msgid "mailmans"
 msgstr "メーリングリスト"

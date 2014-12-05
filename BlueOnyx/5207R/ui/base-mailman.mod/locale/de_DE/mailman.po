@@ -453,7 +453,7 @@ msgid "mailman_enabled"
 msgstr "Aktivieren Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman ist der Dämon für Mailing-Listen. Der Dienst muss laufen, damit Mailing-Listen funktionieren. Hier können Sie den Dienst aktivieren oder deaktivieren. Der Kommandozeilen-Befehl um Mailman zu stoppen, starten oder neu starten ist: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman ist der Dämon für Mailing-Listen. Der Dienst muss laufen, damit Mailing-Listen funktionieren. Hier können Sie den Dienst aktivieren oder deaktivieren. Der Kommandozeilen-Befehl um Mailman zu stoppen, starten oder neu starten ist: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Passwort:"

@@ -426,7 +426,7 @@ msgid "mailman_enabled"
 msgstr "Habilitar Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman tiene un demonio que necesita ejecutarse en orden para mensajes de listas de correo como procesos. Puede activar o desactivar este servicio aquí. El comando de línea de comandos para detener, iniciar o reiniciar Mailman es: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman tiene un demonio que necesita ejecutarse en orden para mensajes de listas de correo como procesos. Puede activar o desactivar este servicio aquí. El comando de línea de comandos para detener, iniciar o reiniciar Mailman es: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Contraseña:"

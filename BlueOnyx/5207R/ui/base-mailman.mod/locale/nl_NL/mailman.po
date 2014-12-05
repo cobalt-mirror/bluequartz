@@ -426,7 +426,7 @@ msgid "mailman_enabled"
 msgstr "Enable Mailman:"
 
 msgid "mailman_enabled_help"
-msgstr "Mailman heeft een daemon, die moet draaien om voor mailinglijst berichten naar processen. U kunt hier in-of uitschakelen van deze service. De command line commando om te stoppen, starten of herstarten Mailman is: /etc/init.d/mailman stop|start|restart"
+msgstr "Mailman heeft een daemon, die moet draaien om voor mailinglijst berichten naar processen. U kunt hier in-of uitschakelen van deze service. De command line commando om te stoppen, starten of herstarten Mailman is: /sbin/service mailman stop|start|restart"
 
 msgid "oldpass"
 msgstr "Wachtwoord:"
