@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-dns-am
 Name: base-dns-am
 Version: 1.1
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-dns-am.  
 
 %changelog
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX02
+- Systemd related changes.
 
 * Thu Dec 05 2013 Michael Stauber <mstauber@solarspeed.net> 1.1-0BX01
 - Removed .svn directory from rpm package. 

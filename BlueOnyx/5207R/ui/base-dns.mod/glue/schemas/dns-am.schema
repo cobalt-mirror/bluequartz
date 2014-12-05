@@ -8,7 +8,7 @@
         default="/usr/sausalito/swatch/bin/am_dns.sh"/>
 
     <property name="restart"		type="scalar"	
-	default="/etc/rc.d/init.d/named restart >/dev/null 2>&amp;1"/>
+	default="/sbin/service named restart >/dev/null 2>&amp;1"/>
     <property name="retries"		type="int"	default="2"/>
     <property name="greenMsg"		type="scalar"	
 	default="[[base-dns.amStatusOK]]"/>
