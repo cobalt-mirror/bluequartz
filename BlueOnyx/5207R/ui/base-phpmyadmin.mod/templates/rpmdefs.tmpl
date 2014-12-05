@@ -84,10 +84,6 @@ fi
 <begin glue>
 # glue post-install
 
-#if [ -S /usr/sausalito/cced.socket ]; then
-#    /etc/init.d/cced.init restart
-#fi
-
 <end glue>
 <begin ui>
 # ui post-install
@@ -119,6 +115,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX06
+- Removed cced.init restart from post-install. Not needed.
 
 * Mon Nov 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX05
 - Some more fixes, as we had a loop if the MySQL database credentials
