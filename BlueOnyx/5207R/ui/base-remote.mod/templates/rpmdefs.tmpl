@@ -76,7 +76,7 @@ information for [VENDOR]-[SERVICE].
 
 # Restart CCEd unless we're updating through the GUI:
 if [ ! -f /tmp/yum.updating ]; then
-    /etc/init.d/cced.init restart
+    /usr/sausalito/sbin/cced.init rehash
 fi
 
 <end glue>
@@ -125,6 +125,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
+- Systemd related fixes in post-install.
 
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
 - Chorizo GUI added, old GUI disabled.
