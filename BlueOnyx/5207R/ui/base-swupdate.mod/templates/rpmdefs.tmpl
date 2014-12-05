@@ -87,17 +87,14 @@ if [ ! -e /home/.pkg_install_tmp ]; then
   /bin/mkdir -p /home/.pkg_install_tmp
   /bin/chmod 755 /home/.pkg_install_tmp
 fi
-#if [ -e /usr/sausalito/ui/web/nuonce-solarspeed/yum/yumgui.php ]; then
-#  /bin/rpm -e nuonce-solarspeed-yumgui >/dev/null 2>&1
-#fi
 
 # Restart CCEd:
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    /usr/sausalito/sbin/cced.init restart
 fi
 
 # Restart Crond:
-/etc/init.d/crond restart
+/sbin/service crond restart
 
 <end glue>
 <begin ui>
@@ -130,6 +127,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX04
+- Systemd related fixes.
 
 * Sun Nov 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX03
 - Some cleanup in ui/chorizo/web/controllers/shop.php
