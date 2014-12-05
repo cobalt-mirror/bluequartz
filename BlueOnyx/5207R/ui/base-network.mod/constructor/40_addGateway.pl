@@ -109,7 +109,7 @@ if ((!$gateway) || ((-f "/proc/user_beancounters") && (!$gatewaydev))) {
         	&edit_sys_network;
         
         	# Restart Network:
-        	system("/etc/init.d/network restart > /dev/null 2>&1");
+        	system("/sbin/service network restart > /dev/null 2>&1");
     	    }
     	    $p->close();
 	}
