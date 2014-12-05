@@ -184,7 +184,7 @@ sub _spawn_child
 
 	# check if this action needs to be upgraded to a start
 	if (($action ne 'stop') && ($action ne 'start') &&
-	    (system("/etc/rc.d/init.d/$service", 'status') != 0)) {
+	    (system("/sbin/service $service", 'status') != 0)) {
 		#
 		# not currently running, upgrade to a start 
 		#
@@ -192,14 +192,14 @@ sub _spawn_child
 		$action = 'start';
 	}
 
-	system("/etc/rc.d/init.d/$service", $action);
+	system("/sbin/service $service", $action);
 
 	for (my $i = 0;; $i++) {
 		if (($action eq 'stop') &&
-		    (system("/etc/rc.d/init.d/$service", 'status') != 0)) {
+		    (system("/sbin/service $service", 'status') != 0)) {
 			last;
 		} elsif (($action ne 'stop') &&
-			 (system("/etc/rc.d/init.d/$service", 'status') == 0)) {
+			 (system("/sbin/service $service", 'status') == 0)) {
 			last;
 		}
 		sleep(1);
@@ -273,7 +273,7 @@ sub _check_queue
 			 exists($event_queue->{$key}->{state})) {
 			# verify that the service is in the correct state
 			if ($event_queue->{$key}->{state} &&
-			    (system("/etc/rc.d/init.d/$key", 'status') != 0)) {
+			    (system("/sbin/service $key", 'status') != 0)) {
 
 				# should be running, but isn't
 				my $pid = &_spawn_child($key, 'start');
@@ -281,7 +281,7 @@ sub _check_queue
 					 "$pid for $key start");
 
 			} elsif (!$event_queue->{$key}->{state} &&
-				 (system("/etc/rc.d/init.d/$key", 'status') == 0)) {
+				 (system("/sbin/service $key", 'status') == 0)) {
 				# should not be running, but is
 				my $pid = &_spawn_child($key, 'stop');
 				&_logmsg("Inconsistent state.  spawned child " .
