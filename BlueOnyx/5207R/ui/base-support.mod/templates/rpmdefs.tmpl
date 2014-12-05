@@ -73,11 +73,6 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
-# Restart CCEd:
-#if [ -S /usr/sausalito/cced.socket ]; then
-#    /etc/init.d/cced.init restart
-#fi
-
 <end glue>
 <begin ui>
 # ui post-install
@@ -109,6 +104,9 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX07
+- Removed CCEd restart from post-install.
 
 * Tue Jul 15 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX06
 - Another bugfix in ui/chorizo/web/controllers/ticket.php
