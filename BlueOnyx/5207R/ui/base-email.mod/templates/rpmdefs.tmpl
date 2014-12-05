@@ -87,7 +87,7 @@ if [ ! -d /etc/mail ]; then \
 fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init rehash
+    /usr/sausalito/sbin/cced.init rehash
 fi
 
 if [ $1 = 2 ]; then
@@ -112,7 +112,7 @@ if [ -S /usr/sausalito/cced.socket ]; then
 fi
 
 if [ -f /var/run/dovecot/login/imap ]; then
-	/etc/init.d/dovecot restart
+	/sbin/service dovecot restart
 fi
 
 <end glue>
@@ -146,6 +146,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX26
+- Some Systemd love in post-install and AM-scripts.
 
 * Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX25
 - One more fix in constructor/syncEmailService.pl. We better use 

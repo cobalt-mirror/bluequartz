@@ -13,10 +13,10 @@ expect {
         # try to restart
         # use catch so we don't report errors on the exec,
         # only on the dialog itself
-        catch {exec /etc/init.d/poprelayd restart >&/dev/null} result
+        catch {exec /sbin/service poprelayd restart >&/dev/null} result
         sleep 5
         # redo test, fail if get an error again
-        # spawn /etc/rc.d/init.d/poprelayd status
+        # spawn /sbin/service poprelayd status
 	spawn /usr/sausalito/swatch/bin/check-popb4smtp.sh
         expect {
             "is running..." {}
