@@ -6,7 +6,7 @@ source /usr/sausalito/swatch/statecodes.tcl
 log_user 0
 
 # we use telnet to connect
-# spawn /etc/rc.d/init.d/mailman status
+# spawn /usr/sausalito/swatch/bin/check-mailman.sh
 spawn /usr/sausalito/swatch/bin/check-mailman.sh
 expect {
     "is running..." {}
@@ -14,11 +14,11 @@ expect {
         # try to restart
         # use catch so we don't report errors on the exec,
         # only on the dialog itself
-        catch {exec /etc/rc.d/init.d/mailman restart >&/dev/null} result
+        catch {exec /sbin/service mailman restart >&/dev/null} result
         sleep 5
         # redo test, fail if get an error again
-        # spawn /etc/rc.d/init.d/mailman status
-	spawn /usr/sausalito/swatch/bin/check-mailman.sh
+        # spawn /usr/sausalito/swatch/bin/check-mailman.sh
+        spawn /usr/sausalito/swatch/bin/check-mailman.sh
         expect {
             "is running..." {}
             default {
