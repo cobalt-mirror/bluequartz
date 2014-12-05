@@ -138,6 +138,9 @@ fi
   restart CCEd in case it's down. Due to the nature of how we call
   CceClient.php in the login script ServerScriptHelper.php wasn't doing
   that for us.
+- Removed call to Stylist in ci/application/libraries/ReportHelper.php
+  as we're no longer really needing that. And it was the source of the
+  'undefined index' errors on first UI access to the statistics.
 
 * Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX021
 - Product string in locales replaced with placeholder.

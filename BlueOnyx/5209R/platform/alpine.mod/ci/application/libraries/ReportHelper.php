@@ -12,7 +12,7 @@ $isReportHelperDefined = true;
 
 include_once("I18n.php");
 include_once("uifc/HtmlComponentFactory.php");
-include_once("uifc/Stylist.php");
+//include_once("uifc/Stylist.php");
 include_once("uifc/Button.php");
 
 class ReportHelper {
@@ -45,11 +45,13 @@ class ReportHelper {
 		$this->style = $argStyle;
 		$this->locale = $argLocale;
 
-		$this->i18n = new I18n("base-{$argType}sitestats", 
-							 $this->locale);
+		$this->i18n = new I18n("base-{$argType}sitestats", $this->locale);
 
-		$this->stylist = new Stylist();
-		$this->stylist->setResource($argStyle, $this->locale);
+		// Deprecated:
+		//$this->stylist = new Stylist();
+		//$this->stylist->setResource($argStyle, $this->locale);
+		// Just set it to TRUE and be done with it:
+		$this->stylist = TRUE;
 
 		/* 
 		 * Analog output label decoder ring
