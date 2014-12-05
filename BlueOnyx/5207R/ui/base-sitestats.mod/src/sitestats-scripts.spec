@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX25%{?dist}
+Release: 26BX26%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -16,6 +16,9 @@ and monitoring network traffic and the php user interface for
 generating and viewing reports.
 
 %changelog
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX26
+- Systemd related fixes in log_traffic.
 
 * Fri Dec 06 2013 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX25
 - Removed .svn from package.

@@ -76,7 +76,7 @@ mkdir -p $RPM_BUILD_ROOT/%{RootDir}/ui/web/%{Vendor}/%{Service}/img
 <begin glue>
 # glue post-install
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init restart
+    /usr/sausalito/sbin/cced.init rehash
 fi
 
 <end glue>
@@ -126,6 +126,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX07
+- Systemd related fixes in post-install.
+- Systemd related fixes in base-sitestats-scripts.
 
 * Sun Aug 24 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX06
 - More fixes to ui/chorizo/web/controllers/summaryEmail.php to catch

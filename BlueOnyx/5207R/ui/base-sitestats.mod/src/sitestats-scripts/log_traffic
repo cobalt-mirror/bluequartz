@@ -226,11 +226,11 @@ cat $STATUSFILE | awk '
 if [ $NEED_RESTART ]; then
 	if [ $TABLES ]; then
 		if [ ! -d "/etc/apf" ];then
-		    /etc/init.d/iptables restart
+		    /sbin/service  restart
 		fi
 	else
 		if [ ! -d "/etc/apf" ];then
-		    /etc/init.d/ipchains restart
+		    /sbin/service restart
 		fi
 	fi
 fi
