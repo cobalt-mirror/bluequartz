@@ -7,7 +7,7 @@ VENDORNAME='Team BlueOnyx'
 SERVICE=raid
 
 VERSION=0.1.3
-RELEASE=0BX05
+RELEASE=0BX06
 
 # add a buildarch if desired
 BUILDARCH=noarch

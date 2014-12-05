@@ -47,8 +47,8 @@ information for [VENDOR]-[SERVICE].
 <end locale>
 
 <begin glue>
-/etc/init.d/mdchk
-/etc/init.d/fix_grub
+/sbin/service mdchk start
+/sbin/service fix_grub start
 /sbin/lsraid
 [AUTOFILL]
 
@@ -128,6 +128,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 0.1.3-0BX06
+- Systemd related fixes in post-install.
 
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 0.1.3-0BX05
 - Chorizo GUI added, old GUI disabled.
