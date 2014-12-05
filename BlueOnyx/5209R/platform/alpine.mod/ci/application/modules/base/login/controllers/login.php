@@ -38,6 +38,20 @@ class Login extends MX_Controller {
 			}
 		}
 
+		// Call me a dirty little bastard. But CCEd gets stuck sometimes.
+		// Which throws a wrench into the entire GUI. So this is how we
+		// handle it: This script tries to establish a connection to CCEd.
+		// It has a timeout of five seconds. After which it reports 'TIMEOUT':
+		$cce_check = shell_exec('/usr/sausalito/bin/check_cce.pl');
+		// If we do have a 'TIMEOUT' or no output at all, then we get down and dirty:
+		if (($cce_check == "TIMEOUT") || ($cce_check == "")) {
+			// We run the unstuck script vi SUDO. This is the ONLY command that user
+			// 'admserv' has sudo capabilities for and it kills off stray CCEd processes,
+			// pperld and cced.init. It then does a fast cced.init rehash to get us back up:
+			$cce_unstuck = shell_exec('/usr/bin/sudo /usr/sausalito/bin/cced_unstuck.sh');
+		}
+		// If we get here, CCEd should be running. Either again, or because it was fine.
+
 	    if(!$cceClient->connect()) {
 			if($locale == "") {
 				$this->load->library('System');

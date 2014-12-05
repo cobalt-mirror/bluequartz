@@ -138,7 +138,6 @@ class ServerScriptHelper {
       $cce_unstuck = shell_exec('/usr/bin/sudo /usr/sausalito/bin/cced_unstuck.sh');
     }
     // If we get here, CCEd should be running. Either again, or because it was fine.
-
     if ($this->hasCCE()) {
         $this->cceClient = new CceClient();
         $cceClient = $this->cceClient;
