@@ -71,9 +71,6 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-#if [ -S /usr/sausalito/cced.socket ]; then
-#    /etc/init.d/cced.init restart
-#fi
 
 <end glue>
 <begin ui>
@@ -110,6 +107,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX05
+- Removed cced.init restart from post-install. Not needed.
 
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.2.0-0BX04
 - Chorizo GUI added, old GUI disabled.
