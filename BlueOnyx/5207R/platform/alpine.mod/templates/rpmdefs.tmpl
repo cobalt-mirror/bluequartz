@@ -130,6 +130,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX022
+- Several bugfixes regarding the native CCE Class. It return the expected
+  result when CCEd was down. Fixed ci/application/libraries/CCE.php
+- Small fix in ci/application/libraries/ServerScriptHelper.php
+- Modified ci/application/modules/base/login/controllers/login.php to
+  restart CCEd in case it's down. Due to the nature of how we call
+  CceClient.php in the login script ServerScriptHelper.php wasn't doing
+  that for us.
+
 * Tue Dec 02 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX021
 - Product string in locales replaced with placeholder.
 - Updated ci/application/views/header_view.php to overhaul profile box.

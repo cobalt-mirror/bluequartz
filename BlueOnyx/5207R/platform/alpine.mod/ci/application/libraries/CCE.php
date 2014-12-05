@@ -153,7 +153,14 @@ class CCE {
   }
 
   // Initialize CCE:
-  function ccephp_new($message = "") {
+  function ccephp_new($message = "WHOAMI") {
+
+    // Note on $message:
+    //
+    // If no $message is set, we default on sending a "WHOAMI". The simple
+    // reason is that on each connect we need to execute at least one
+    // successful command to set self[success] to TRUE to determine if CCEd
+    // is working or not. 
 
     // DTS state:
     // Start sane and check if we are in delayed transaction state (DTS).
@@ -221,7 +228,10 @@ class CCE {
     }
 
     if (isset($this->self['success'])) {
-      return TRUE;
+      if ($this->self['success'] == "1") {
+        return TRUE;
+      }
+      return FALSE;
     }
     else {
       return FALSE;
