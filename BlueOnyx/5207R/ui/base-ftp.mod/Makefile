@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=ftp
 
 VERSION=1.3.1
-RELEASE=0BX08
+RELEASE=0BX09
 
 # add a buildarch if desired
 BUILDARCH=noarch
