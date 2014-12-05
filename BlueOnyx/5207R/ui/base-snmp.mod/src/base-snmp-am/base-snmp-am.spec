@@ -1,7 +1,7 @@
 Summary: Scripts used to integrate SNMP into ActiveMonitor
 Name: base-snmp-am
 Version: 1.0.2
-Release: 1BX02%{?dist}
+Release: 1BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -26,6 +26,9 @@ The scripts necessary to check the current status of the SNMP daemon.
 This is called by swatch+cce as part of the ActiveMonitor subsystem.
 
 %changelog
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.2-1BX03
+- Systemd related fixes.
 
 * Sat Dec 07 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.2-1BX02
 - Removed .svn directory from package.

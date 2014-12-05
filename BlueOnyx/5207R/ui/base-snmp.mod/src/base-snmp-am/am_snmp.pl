@@ -26,7 +26,7 @@ if ($fail) {
     # can't directly call "system" since snmpd doesn't close stdin
     # and as a result, swatch would keep waiting forever
     # my_system handles the closing of stdin/stdout and so it all works
-    AM::Util::my_system('/etc/init.d/snmpd restart >/dev/null 2>&1');
+    AM::Util::my_system('/sbin/service snmpd restart >/dev/null 2>&1');
     sleep 3;
     $fail = system("/usr/bin/snmpwalk -v 2c -c $object->{readCommunity} localhost system.sysName >/dev/null 2>&1");
     if ($fail) {
