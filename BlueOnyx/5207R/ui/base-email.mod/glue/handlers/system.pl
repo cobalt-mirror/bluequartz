@@ -1,7 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/email/
-# $Id: system.pl Mon 01 Mar 2010 08:41:56 PM CET mstauber $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2010 Team BlueOnyx, All rights reserved.
+# $Id: system.pl 
 
 use CCE;
 
@@ -12,7 +10,8 @@ use Sauce::Config;
 
 # Globals.
 my $Sendmail_mc = Email::SendmailMC;
-my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
+# This actually no longer exists and hasn't been around for a while:
+#my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
 my $Sendmail_sysconfig_file = "/etc/sysconfig/sendmail";
 
 # These should be globals..
