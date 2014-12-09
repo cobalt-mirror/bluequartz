@@ -15,7 +15,7 @@ expect {
         # try to restart
         # use catch so we don't report errors on the exec,
         # only on the dialog itself
-        catch {exec /etc/rc.d/init.d/httpd restart >&/dev/null}
+        catch {exec /sbin/service httpd restart >&/dev/null}
         sleep 5
         # redo test, fail if get an error again
         spawn telnet localhost $PORT

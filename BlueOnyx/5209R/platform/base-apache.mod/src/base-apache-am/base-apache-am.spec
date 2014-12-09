@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
 Version: 1.0.4
-Release: 0BX01%{?dist}
+Release: 0BX02%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX02
+- Systemd love added.
 
 * Thu Dec 12 2013 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX01
 - As we added theability to change the default HTTP port, it is necessary

@@ -111,6 +111,13 @@ if [ -f "/etc/httpd/conf/vhosts/site1" ]; then
         sed -i -e 's/^#RewriteRule ^\/(.*)/RewriteRule ^\/(.*)/' /etc/httpd/conf/vhosts/site*
 fi
 
+# A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
+# This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
+if [ -f /etc/avahi/avahi-daemon.conf ]; then
+        /sbin/service stop >/dev/null 2>&1
+        /sbin/chkconfig --level 2345 avahi-daemon off
+fi
+
 # Fix login links in preview config:
 if [ -f /etc/httpd/conf/vhosts/preview ]; then
   /bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf/vhosts/preview
@@ -126,10 +133,10 @@ if [ -f /usr/sbin/swatch ]; then
   /usr/sbin/swatch
 fi
 
-# Restart CCEd and Apache for good measure:
+# Rehash/Restart CCEd and Apache for good measure:
 if [ -S /usr/sausalito/cced.socket ]; then
-    /sbin/service cced.init restart
-    /sbin/service httpd restart
+    /usr/sausalito/sbin/cced.init rehash
+    /sbin/service restart
 fi
 
 <end glue>
@@ -163,6 +170,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX13
+- More Systemd related fixes and changes added.
 
 * Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX12
 - Systemd related changes in constructor/set_httpd_alias_perms.pl and
