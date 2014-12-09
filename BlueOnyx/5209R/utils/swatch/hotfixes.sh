@@ -8,7 +8,7 @@ if [ -d "/var/lib/php/session" ];then
 	fi
 fi
 
-# On 5107R/5108R remove the OS supplied YUM autoupdater, as we bring our own:
+# Remove the OS supplied YUM autoupdater (if present), as we bring our own:
 if [ -f /etc/cron.daily/yum-autoupdate ] ; then
 	rm -f /etc/cron.daily/yum-autoupdate
 fi
