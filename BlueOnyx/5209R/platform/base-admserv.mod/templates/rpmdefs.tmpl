@@ -120,6 +120,10 @@ fi
 # Add user 'admserv':
 /usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 
+if [ -f /usr/bin/systemctl ];then
+  /usr/bin/systemctl daemon-reload
+fi
+
 if [ $1 = 2 ]; then
     /sbin/service admserv condrestart
 fi
