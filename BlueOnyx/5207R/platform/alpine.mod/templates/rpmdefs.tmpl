@@ -102,6 +102,12 @@ if [ -f /usr/sausalito/constructor/virtbiz/branding/initial_site.pl ]; then
         /usr/sausalito/constructor/virtbiz/branding/initial_site.pl
 fi
 
+# This is a horrible script that old versions of the blueonyx-cd-installer might have
+# brought aboard. We need to remove it:
+if [ -f /usr/sausalito/constructor/base/blueonyx/51_set_default_services.pl ];then
+  /bin/rm -f /usr/sausalito/constructor/base/blueonyx/51_set_default_services.pl
+fi
+
 <end ui>
 <begin locale>
 # locale post-install
@@ -129,6 +135,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX023
+- Another fix in post-install.
 
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX022
 - Several bugfixes regarding the native CCE Class. It return the expected
