@@ -31,9 +31,9 @@ sausalito-cce has both the server and client parts of cce.
 %package server
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
-Requires: glib, glib-ghash, pam
+Requires: glib, glib-ghash, pam, policycoreutils
 %if "%centos" == "5" 
-Requires: audit-libs 
+Requires: audit-libs
 %endif 
 
 
@@ -76,6 +76,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/sausalito/lib
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/include
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/perl
 mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
+mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 mkdir -p $RPM_BUILD_ROOT/etc/pam.d
 mkdir -p $RPM_BUILD_ROOT/etc/security
 mkdir -p $RPM_BUILD_ROOT/var/lib/abl
@@ -107,6 +108,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 %dir /usr/sausalito/include
 %dir /usr/sausalito/perl
 /etc/rc.d/init.d/*
+/usr/lib/systemd/system/*
 /etc/pam.d/*
 /lib/security/*
 # For 64-bit pam_abl if this is a 64-bit system:
@@ -141,22 +143,36 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 %post server
 # only run on install, not upgrade 
 if [ "$1" = "1" ]; then
-	/sbin/chkconfig --add cced.init
-	/sbin/chkconfig --add pam_abl
+  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+    /usr/bin/systemctl daemon-reload
+    /usr/bin/systemctl enable cced.init.service 
+    /sbin/chkconfig --add pam_abl
+  else 
+  	/sbin/chkconfig --add cced.init
+  	/sbin/chkconfig --add pam_abl
+  fi
 fi
 
 %postun server
 # only run if this is the last instance to be removed
 if [ "$1" = "0" ]; then
-	/sbin/chkconfig --del cced.init
-	/sbin/chkconfig --del pam_abl
+
+  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+    /usr/bin/systemctl daemon-reload
+    /usr/bin/systemctl disable cced.init.service
+    /sbin/chkconfig --del cced.init
+    /sbin/chkconfig --del pam_abl
+  else 
+    /sbin/chkconfig --del cced.init
+    /sbin/chkconfig --del pam_abl
+  fi
 fi
 
 # restart cced.init on upgrade
 if [ "$1" -ge "1" ]; then
-	service cced.init restart >/dev/null 2>&1
+	/sbin/service cced.init restart >/dev/null 2>&1
 	/sbin/chkconfig --add pam_abl
-	service pam_abl restart >/dev/null 2>&1
+	/sbin/service pam_abl restart >/dev/null 2>&1
 fi
 
 %post client
@@ -181,11 +197,21 @@ fi
 %postun client
 # reload httpd
 if [ "$1" -ge "1" ]; then
-	service httpd restart >/dev/null 2>&1
-	service admserv restart >/dev/null 2>&1
+	/sbin/service httpd restart >/dev/null 2>&1
+	/sbin/service admserv restart >/dev/null 2>&1
 fi
 
 %changelog
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX18
+- Systemd related fixes and additions.
+- Added policycoreutils to requirements for Server.
+- Modified rules.mk to add RPM_TOPDIR and SYSTEMD_INITDIR
+- Added Systemd Unit-File server/cced.init.service for CCEd.
+- Modified server/Makefile to install Systemd Unit-File and to also place
+  a copy of the old InitV cced.init in /usr/sausalito/sbin/.
+- Cosmetic fixes in server/cced.init
+- Some Systemd love in RPM post-install scripts.
 
 * Sat Nov 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX17
 - Forced locale set in cced.init, as some Constructors/Handlers depend on

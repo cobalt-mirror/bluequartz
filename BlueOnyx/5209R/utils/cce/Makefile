@@ -19,10 +19,9 @@ CCE_V_MAJ=0
 CCE_V_MIN=99
 CCE_V_PATCH=1
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX17
+RPMRELEASE=1BX18
 
-DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl \
-	ccewrap pperl
+DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl ccewrap pperl
 
 COMMONLIB = libcce_common.a
 COMMONLIB_DIRS = common scalar conf codb ed cscp sessionmgr

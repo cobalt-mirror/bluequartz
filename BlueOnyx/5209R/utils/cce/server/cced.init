@@ -31,10 +31,9 @@ case "$1" in
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
-	echo "Running CCE constructors: "
-	/usr/sausalito/bin/cce_construct 2>&1 \
-		| logger -p local0.debug -t "CONSTRUCTOR"
-	/usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
+	echo -n "Running CCE constructors: "
+	/usr/sausalito/bin/cce_construct 2>&1 | logger -p local0.debug -t "CONSTRUCTOR" /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
+	echo done
 	;;
   hash)
 	# Start daemons.
@@ -43,7 +42,7 @@ case "$1" in
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
-	echo "Skipping run of CCE constructors: "
+	echo -n "Skipping run of CCE constructors: "
 	/usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
 	echo done
 	;;
