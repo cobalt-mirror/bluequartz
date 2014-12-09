@@ -9,9 +9,9 @@ make
 echo "** make install"
 make install
 echo "** reload httpd, admserv, cced"
-/etc/rc.d/init.d/cced.init reload
-/etc/rc.d/init.d/admserv reload
-/etc/rc.d/init.d/httpd reload
 killall pperld 2>/dev/null
+/usr/sausalito/sbin/cced.init reload
+/sbin/service admserv reload
+/sbin/service httpd reload
 echo ""
 echo "** Fin"
