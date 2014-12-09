@@ -74,6 +74,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+
+if [ -f /usr/bin/systemctl ];then
+  /usr/bin/systemctl daemon-reload
+fi
+
 if [ "$1" = 1 ]; then
         for file in admserv; do
                 /sbin/chkconfig --add $file
@@ -120,12 +125,8 @@ fi
 # Add user 'admserv':
 /usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 
-if [ -f /usr/bin/systemctl ];then
-  /usr/bin/systemctl daemon-reload
-fi
-
 if [ $1 = 2 ]; then
-    /sbin/service admserv condrestart
+    /sbin/service admserv restart
 fi
 <end glue>
 <begin ui>
@@ -158,6 +159,14 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Dec 09 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX15
+- Removed double definition of cgi-bin in httpd.conf
+- Changed condrestart to restart for Systemd
+- Apache 2.4 uses /etc/httpd/conf.modules.d/, which contains stuff that
+  conflicts with what we need for AdmServ. So I pulled all relevant
+  entries from that into httpd.conf directly.
+- Overhauled ssl.conf again.
 
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX14
 - Version bump to 2.2.0 for EL7.
