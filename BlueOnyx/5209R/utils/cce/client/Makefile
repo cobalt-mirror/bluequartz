@@ -26,22 +26,22 @@ LOCALES=$(shell dir=locale; \
 ifneq ($(SLK_BUILD), yes)
 all: mod_locale
 	make -C src all
-#	make -C php all
+	make -C php all
 
 clean:
 	make -C src clean
-#	make -C php clean
+	make -C php clean
 	rm -f *.spec
 	rm -f locale/*/*.mo
 endif
 
 install: perl_inst install_locale install_httpdconf
 	make -C src install
-#	make -C php install
+	make -C php install
 
 test: 
 	make -C src test
-#	make -C php test
+	make -C php test
 
 install_httpdconf:
 	mkdir -p $(PREFIX)/etc/httpd/conf.d

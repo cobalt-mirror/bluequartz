@@ -134,9 +134,9 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 /usr/sausalito/bin/cceclient
 /usr/sausalito/lib/*.so*
 /usr/sausalito/include/*
-#/usr/sausalito/ui/libPhp/*
+/usr/sausalito/ui/libPhp/*
 /usr/sausalito/perl/*
-#%{extension_dir}/*
+%{extension_dir}/*
 /usr/share/locale/*
 %config(noreplace) /etc/httpd/conf.d/blueonyx.conf
 
@@ -202,6 +202,15 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX19
+- I don't want to have different CCE modules for 5207R/5208R and 5209R if
+  we can actually avoid that. This should do it.
+- Modified client/php/src/Makefile with a conditional build of the PHP module.
+  If we are on 5209R we don't build and just install a cce.so.dummy file. On
+  all other platforms we actually build and install the cce.so instead.
+- Modified sausalito-cce.spec.in to again include the files for the dirs
+  /usr/sausalito/ui/libPhp/ and the PHP-extension_dir.
 
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX18
 - Systemd related fixes and additions.
