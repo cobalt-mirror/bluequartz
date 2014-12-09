@@ -13,7 +13,7 @@ expect {
 	# try to restart
 	# use catch so we don't report errors on the exec,
 	# only on the dialog itself
-	catch {exec /etc/rc.d/init.d/tomcat6 restart >&/dev/null}
+	catch {exec /sbin/service tomcat6 restart >&/dev/null}
 	sleep 5
 	# redo test, fail if get an error again
 	spawn telnet localhost 8080
