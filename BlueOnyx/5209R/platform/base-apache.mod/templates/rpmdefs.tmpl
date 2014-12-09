@@ -136,7 +136,7 @@ fi
 # Rehash/Restart CCEd and Apache for good measure:
 if [ -S /usr/sausalito/cced.socket ]; then
     /usr/sausalito/sbin/cced.init rehash
-    /sbin/service restart
+    /sbin/service httpd restart
 fi
 
 <end glue>
@@ -170,6 +170,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Tue Dec 09 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX14
+- Post-install fix in glue.
 
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX13
 - More Systemd related fixes and changes added.
