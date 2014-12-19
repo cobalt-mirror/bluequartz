@@ -1,0 +1,18 @@
+#%PAM-1.0
+# This file is auto-generated.
+# User changes will be destroyed the next time authconfig is run.
+auth        required      pam_env.so
+#auth        requisite     pam_abl.so config=/etc/security/pam_abl.conf check_only
+#auth        required     pam_abl.so config=/etc/security/pam_abl.conf
+auth        sufficient    pam_unix.so likeauth nullok
+auth        required      pam_deny.so
+
+account     required      pam_unix.so
+
+password    required      pam_cracklib.so retry=3
+password    sufficient    pam_unix.so nullok use_authtok md5 shadow
+#auth        optional      pam_abl.so config=/etc/security/pam_abl.conf record_attempt
+password    required      pam_deny.so
+
+session     required      pam_limits.so
+session     required      pam_unix.so

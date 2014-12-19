@@ -1,0 +1,40 @@
+
+msgid "cceErrorSentence"
+msgstr "Siamo spiacenti, si è verificato un errore interno del server."
+
+msgid "cceHandlerErrorSentence"
+msgstr "Siamo spiacenti, si è verificato un errore interno del server. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownAttr"
+msgstr "[[base-cce.cceErrorSentence]] L'attributo [[VAR.key]] è sconosciuta. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownClass"
+msgstr "[[base-cce.cceErrorSentence]] La classe [[VAR.key]] è sconosciuta. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownNs"
+msgstr "[[base-cce.cceErrorSentence]] Lo spazio dei nomi [[VAR.key]] è sconosciuta. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownOid"
+msgstr "[[base-cce.cceErrorSentence]] L'oggetto [[VAR.oid]] è sconosciuta. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "permissionDenied"
+msgstr "[[base-cce.cceErrorSentence]] Il permesso per [[VAR.key]] viene negato. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownErrorCode"
+msgstr "[[base-cce.cceErrorSentence]] Si è verificato un errore sconosciuto. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidType"
+msgstr "[[base-cce.cceErrorSentence]] Il tipo [[VAR.key]] non è valido. [[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidData"
+msgstr "Spiacente, i dati inseriti nel campo [[VAR.key]] non è valido. Si prega di controllare i dati inseriti e riprovare."
+
+msgid "outOfMemory"
+msgstr "[[base-cce.cceErrorSentence]] Il sistema non è in grado di allocare memoria sufficiente per continuare."
+
+msgid "badRegex"
+msgstr "[[base-cce.cceErrorSentence]] L'espressione regolare [[VAR.key]] non è valido."
+
+msgid "suspended"
+msgstr "Il Desktop Server è attualmente bloccato. Le modifiche non sono ammessi in questo momento. [[VAR.key]]"
+

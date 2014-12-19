@@ -1,0 +1,122 @@
+diff -Naurp pam_abl.orig/config.c pam_abl/config.c
+--- pam_abl.orig/config.c	2005-10-12 21:22:25.000000000 +0200
++++ pam_abl/config.c	2008-04-12 12:50:45.000000000 +0200
+@@ -95,6 +95,9 @@ void config_clear(pam_handle_t *pamh, ab
+     args->user_purge      = USER_PURGE;
+ 
+     args->strs            = NULL;
++
++    args->record_attempt  = 0;
++    args->check_only 	  = 0;
+ }
+ 
+ static int parse_arg(const char *arg, abl_args *args) {
+@@ -132,6 +135,10 @@ static int parse_arg(const char *arg, ab
+         }
+     } else if (v = is_arg("config", arg), NULL != v) {
+         config_parse_file(v, args);
++    } else if (!strcmp(arg, "record_attempt")) {
++    		args->record_attempt = 1;
++    } else if (!strcmp(arg, "check_only")) {
++    		args->check_only = 1;
+     } else {
+         log_out(args, LOG_ERR, "Illegal option: %s", arg);
+         return EINVAL;
+diff -Naurp pam_abl.orig/pam_abl.c pam_abl/pam_abl.c
+--- pam_abl.orig/pam_abl.c	2005-10-12 21:22:26.000000000 +0200
++++ pam_abl/pam_abl.c	2008-04-12 12:50:45.000000000 +0200
+@@ -291,7 +291,7 @@ static int check_host(const abl_args *ar
+         }
+         if (NULL != rhost) {
+             log_debug(args, "Checking host %s", rhost);
+-            return check(args, args->host_db, user, service, args->host_rule, rhost, tm, rv);
++            return check(args, args->host_db, rhost, service, args->host_rule, rhost, tm, rv);
+         } else {
+             log_debug(args, "PAM_RHOST is NULL");
+             return 0;
+@@ -344,7 +344,7 @@ static void cleanup(pam_handle_t *pamh, 
+         abl_args *args = data;
+         log_debug(args, "In cleanup, err is %08x", err);
+ 
+-        if (err && (err & PAM_DATA_REPLACE) == 0) {
++        if (err && (err & PAM_DATA_REPLACE) == 0 && !args->check_only) {
+             record_attempt(args);
+         }
+         config_free(args);
+@@ -371,7 +371,12 @@ PAM_EXTERN int pam_sm_authenticate(pam_h
+             goto fail;
+         }
+ 
+-        check_attempt(args, &rv);
++        if (args->record_attempt) {
++		record_attempt(args);
++		return PAM_AUTH_ERR;
++	}
++
++	check_attempt(args, &rv);
+         if (rv) {
+             const char *rhost, *user, *service;
+             if (PAM_SUCCESS == pam_get_item(args->pamh, PAM_RHOST,   (const void **) &rhost  ) &&
+diff -Naurp pam_abl.orig/pam_abl.h pam_abl/pam_abl.h
+--- pam_abl.orig/pam_abl.h	2005-10-12 21:22:27.000000000 +0200
++++ pam_abl/pam_abl.h	2008-04-12 12:50:45.000000000 +0200
+@@ -100,6 +100,9 @@ typedef struct {
+     const char      *user_rule;
+     long            user_purge;
+ 
++    int		    record_attempt;
++    int		    check_only;
++
+     /* Storage */
+     abl_string      *strs;
+ } abl_args;
+diff -Naurp pam_abl.orig/rule.c pam_abl/rule.c
+--- pam_abl.orig/rule.c	2005-10-12 21:22:27.000000000 +0200
++++ pam_abl/rule.c	2008-04-12 12:50:50.000000000 +0200
+@@ -117,7 +117,7 @@ static int wordlen(const char *rp) {
+     while (*rp != '\0' &&
+            *rp != '/'  &&
+            *rp != '|'  &&
+-           *rp != ':'  &&
++           *rp != '='  &&
+            !isspace(*rp)) {
+         rp++;
+         l++;
+@@ -230,7 +230,7 @@ static int check_clause(const abl_args *
+     log_debug(args, "Name matched, next char is '%c'", **rp);
+ 
+     /* The name part matches so now check the trigger clauses */
+-    if (**rp != ':') {
++    if (**rp != '=') {
+         return 0;
+     }
+ 
+@@ -277,13 +277,13 @@ int rule_purge(DBT *rec, long maxage, ti
+  * trigger      ::= number '/' period
+  * triglist     ::= trigger
+  *              |   trigger ',' triglist
+- * userclause   ::= userspec ':' triglist
++ * userclause   ::= userspec '=' triglist
+  * rule         ::= userclause
+  *              |   userclause /\s+/ rule
+  *
+  * This gives rise to rules like
+  *
+- * !root|admin/sshd:10/1m,100/1d root:10/3m
++ * !root|admin/sshd=10/1m,100/1d root=10/3m
+  *
+  * which means for accounts other than 'root' or 'admin' trigger if there were ten
+  * or more events in the last minute or 100 or more events in the last day. For
+diff -Naurp pam_abl.orig/tools/pam_abl.c pam_abl/tools/pam_abl.c
+--- pam_abl.orig/tools/pam_abl.c	2005-10-12 21:22:28.000000000 +0200
++++ pam_abl/tools/pam_abl.c	2008-04-12 12:50:50.000000000 +0200
+@@ -153,7 +153,7 @@ static void showblocking(const abl_args 
+     int op = 0;
+     while (*rule) {
+         const char *up;
+-        const char *colon = strchr(rule, ':');
++        const char *colon = strchr(rule, '=');
+         if (NULL == colon) {
+             break;
+         }
+

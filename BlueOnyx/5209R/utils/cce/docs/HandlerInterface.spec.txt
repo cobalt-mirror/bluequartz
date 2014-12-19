@@ -1,0 +1,57 @@
+Sauced Handler Interface Specification
+--------------------------------------
+$Id: HandlerInterface.spec.txt 3 2003-07-17 15:19:15Z will $
+
+1.0 Abstract
+
+  This spec documents an interface for communication between the
+  CCEd and an event handler.  
+  
+  In this world, handlers are invoked as a direct response to a
+  CREATE or SET command, and so the handler only needs to worry
+  about one object's worth of data changing at a go.
+
+2.0 The Fork-And-Exec Interface
+
+  A handler of the form:
+  		exec:/path/to/my/program
+  is started when the handler is triggered using a fork and exec.
+  
+  The handler's environment is set up such that:
+    STDIN (fd 0) is used to read data from the CCEd server
+    STDOUT (fd 1) is used to write data back to the CCEd server
+    STDERR (fd 2) is redirected to /dev/null.
+  
+  Communication between CCEd and the handler is then conducted as
+  described in section 4.0.
+
+3.0 The Unix Domain Socket Interface
+
+  A handler of this form:
+  		uds:/path/to/my/pipe
+  is connected to via a unix domain socket.  Sauced attempts to
+  open the socket file for read and write, and uses that file descriptor
+  to communicate with the handler in the manner described in section 4.0.
+
+4.0 Sauced - Handler communcation.
+
+	As soon as CCEd has connected to the handler (either by starting the
+  handler and communication via stdin/stdout, or by some other means),
+  CCEd starts speaking the CSCP protocol to the handler.  This
+  begins with CCEd sending the CSCP header to the handler.
+
+	After the handler has been transmitted, CCEd waits for CSCP
+  commands from the handler and responds to them interactively.
+  
+  The handler should terminate by issuing a "BYE" command with some
+  exit code ("SUCCESS", "FAIL", or "DEFER").
+  
+  If the exit code isn't specified by the handler, or if the handler
+  closes the connection without issuing a BYE command, the handler
+  is assumed to have failed with the message "handler-error."  ie. as
+  if the handler had issued the command:
+
+	  	BYE FAIL
+      
+  See the CSCP specification document (see CSCP.spec.txt) for details
+  of the CSCP-Lite protocol.
