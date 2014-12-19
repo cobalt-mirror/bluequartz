@@ -129,8 +129,22 @@ class AliasModify extends MX_Controller {
 				}
 				if (!is_file("/etc/DEMO")) {
 					$ok = $cceClient->set($oid, '', array('enabled' => '0'));
-	    			if (count($cceClient->errors()) == 0) {
+					$rawDCCEerrors = $cceClient->errors();
+	    			if (count($rawDCCEerrors) == 0) {
 	    				$cceClient->destroy($oid);
+	    			}
+	    			else {
+						foreach ($rawDCCEerrors as $object => $objData) {
+							// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+							$my_errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+						}
+						$encoded_errors = json_encode($my_errors);
+						// Nice people say goodbye, or CCEd waits forever:
+						$cceClient->bye();
+						$serverScriptHelper->destructor();
+						// Redirect with error message:
+						header("Location: /network/ethernet?errorMsg=" . urlencode($encoded_errors) . "#tabs-2");
+						exit;
 	    			}
 	    		}
 				// Nice people say goodbye, or CCEd waits forever:
@@ -177,8 +191,10 @@ class AliasModify extends MX_Controller {
 
 				$settings = array('ipaddr' => $attributes['ipaddr'], 'netmask' => $attributes['netmask']);
 
-				if ($attributes['device'] != $attributes['old_device']) {
-					$settings['device'] = find_free_device($cceClient, $attributes['device']);
+				if ((isset($attributes['device'])) && (isset($attributes['old_device']))) {
+					if ($attributes['device'] != $attributes['old_device']) {
+						$settings['device'] = find_free_device($cceClient, $attributes['device']);
+					}
 				}
 
 				// Security Check:
@@ -229,6 +245,7 @@ class AliasModify extends MX_Controller {
 				$post_URL = "/network/aliasModify?ACTION=D&_oid=" . $get_form_data['_oid'];
 			}			
 		}
+
 		$factory = $serverScriptHelper->getHtmlComponentFactory("base-network", $post_URL);
 		$BxPage = $factory->getPage();
 		$BxPage->setErrors($errors);
@@ -297,7 +314,15 @@ class AliasModify extends MX_Controller {
 		$ipfield->setInvalidMessage($i18n->getJs('aliasModIpaddr_invalid'));
 		$ipfield->setEmptyMessage($i18n->getJs('aliasModIpaddr_empty'));
 
-		$block->addFormField($ipfield,$factory->getLabel('aliasModIpaddr'), $defaultPage);
+		// Need to set Label/Description manually, as it's not working in the addFormField() call below:
+		$ipfield->setCurrentLabel($i18n->getClean('[[base-network.aliasIpaddr]]'));
+		$ipfield->setDescription($i18n->getClean('[[base-network.aliasIpaddr_help]]'));
+
+		$block->addFormField(
+					$ipfield,
+					$factory->getLabel('aliasModIpaddr'), 
+					$defaultPage
+				);
 				
 		$netmaskfield = $factory->getNetAddress('netmask', $current['netmask']);
 		$netmaskfield->setInvalidMessage($i18n->getJs('aliasNetmask_invalid'));

@@ -387,6 +387,12 @@ class Ethernet extends MX_Controller {
 			$errors = array_merge($vps_msg, $errors);
 		}
 
+		// Get errorMsg from URL string.
+		$get_form_data = $CI->input->get(NULL, TRUE);
+		if (isset($get_form_data['errorMsg'])) {
+			$errors[] = @json_decode(urldecode($get_form_data['errorMsg']));
+		}
+
 		$BxPage->setErrors($errors);
 		$i18n = $factory->getI18n();
 
