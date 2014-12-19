@@ -137,6 +137,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Dec 18 2014 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX13
+- Modified ui/chorizo/web/controllers/manageAdmin.php to remove all
+  reseller related Vsite capabilities if the user no longer has the 
+  capLevel of 'manageSite'. This whole concept needs more work as we
+  ideally should not be setting 'capabilities' directly.
+
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX12
 - Systemd related fixes.
 

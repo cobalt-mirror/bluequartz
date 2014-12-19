@@ -420,12 +420,7 @@ class ManageAdmin extends MX_Controller {
 				$errors = array_merge($errors, $cceClient->errors());
 		    }
 		    else {
-		    	if (!isset($attributes['resellerPowers'])) {
-		    		$tmpresellerPowers = array();
-		    	}
-		    	else {
-		    		$tmpresellerPowers = $cceClient->scalar_to_array($attributes['resellerPowers']);
-		    	}
+		    	$tmpresellerPowers = array();
 		    	if (isset($_oid)) {
 			    	// Get current User object:
 					$tempResData = $cceClient->get($_oid);
