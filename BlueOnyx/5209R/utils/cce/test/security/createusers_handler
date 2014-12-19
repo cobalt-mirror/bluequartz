@@ -1,9 +1,0 @@
-#!/usr/bin/perl
-# $Id: createusers_handler 259 2004-01-03 06:28:40Z shibuya $
-# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
-
-print "CREATE User name=admin enabled=1 systemAdministrator=1\n";
-print "CREATE User name=test1 enabled=1 vsite=one vsiteadmin=1 capabilities=\"&foo&bar&\"\n";
-print "CREATE User name=test2 enabled=1 vsite=two vsiteadmin=1 capabilities=\"&baz&\"\n";
-
-print "BYE SUCCESS\n";
