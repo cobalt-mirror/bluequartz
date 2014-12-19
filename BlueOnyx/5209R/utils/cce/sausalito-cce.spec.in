@@ -17,7 +17,7 @@ Source: sausalito-cce.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel, glib2-devel
-BuildRequires: flex, bison
+BuildRequires: flex, bison, flex-devel
 BuildRequires: php-devel
 
 
@@ -206,6 +206,10 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Thu Dec 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX21
+- BuildRequires updated with flex-devel.
+- Small fix in cced.init.
 
 * Tue Dec 09 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX20
 - Some more post-install fixes.

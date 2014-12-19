@@ -32,7 +32,8 @@ case "$1" in
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
 	echo -n "Running CCE constructors: "
-	/usr/sausalito/bin/cce_construct 2>&1 | logger -p local0.debug -t "CONSTRUCTOR" /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
+	/usr/sausalito/bin/cce_construct > /dev/null 2>&1
+	logger -p local0.debug -t "CONSTRUCTOR" /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
 	echo done
 	;;
   hash)
