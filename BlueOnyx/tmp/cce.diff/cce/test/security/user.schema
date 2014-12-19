@@ -1,0 +1,19 @@
+<!--
+	$Id: user.schema 259 2004-01-03 06:28:40Z shibuya $
+	Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+-->
+<SCHEMA NAME = "users"
+	VENDOR = "me"
+	VERSION = "0.1">
+
+<class name="User" namespace="" version="0.1">
+	<property name="name" type="scalar" readacl="ruleAll"/>
+	<property name="enabled" type="scalar" readacl="ruleAll"/>
+	<property name="capabilities" type="scalar" readacl="ruleAll" array="1"/>
+	<property name="vsite" type="scalar"/>
+	<property name="systemAdministrator" type="scalar"/>
+	<property name="vsiteadmin" type="scalar"/>
+</class>
+
+</SCHEMA>
+

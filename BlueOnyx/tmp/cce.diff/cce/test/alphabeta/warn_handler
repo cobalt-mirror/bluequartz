@@ -1,0 +1,15 @@
+#!/usr/bin/perl
+# $Id: warn_handler 259 2004-01-03 06:28:40Z shibuya $
+# Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
+
+use lib qw( ../../../../client/perl );
+
+use CCE;
+$cce = new CCE; $cce->connectfd();
+
+$cce->warn("[[one.two]]");
+$cce->warn("[[two.three]]");
+$cce->info("[[three.four]]");
+$cce->bye("SUCCESS");
+exit(0);
+

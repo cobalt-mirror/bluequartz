@@ -1,0 +1,18 @@
+dl dt {
+	font-weight: bold;
+}
+
+dl dd {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+td {
+	vertical-align: top;
+}
+
+table.config td, table.syntax td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	font-family: monospace;
+}
