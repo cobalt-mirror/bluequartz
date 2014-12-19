@@ -14,7 +14,8 @@ OBJS = $(patsubst %.c,%.o,$(SRCS))
 DAEMON = cced
 CLIENT = cceclient
 
-SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "system-auth-cce.pam.64-bit"; else  echo -n "system-auth-cce.pam"; fi)
+#SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "system-auth-cce.pam.64-bit"; else  echo -n "system-auth-cce.pam"; fi)
+SACPAM=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "system-auth-cce.pam.5209R"; else echo -n "system-auth-cce.pam.64-bit"; fi else echo -n "system-auth-cce.pam"; fi)
 
 all: $(DAEMON) $(CLIENT)
 	
@@ -50,8 +51,13 @@ install: all
 	@-mkdir -p $(CCE_SCHEMADIR)
 	@-mkdir -p $(SYS_INITDIR)
 	@-mkdir -p $(SYS_PAMDIR)
+	@-mkdir -p $(SYSTEMD_INITDIR)
 	@$(INSTALL) $(INST_SBINFLAGS) $(DAEMON) $(CCE_SBINDIR)
 	@echo Installed $(DAEMON) in $(CCE_SBINDIR)
+	@$(INSTALL) $(INST_BINFLAGS) cced.init $(CCE_SBINDIR)
+	@echo Installed cced.init in $(CCE_SBINDIR)
+	@$(INSTALL) $(INST_BINFLAGS) cced.init.service $(SYSTEMD_INITDIR)
+	@echo Installed cced.init.service in $(SYSTEMD_INITDIR)
 	@$(INSTALL) $(INST_BINFLAGS) $(CLIENT) $(CCE_BINDIR)
 	@echo Installed $(CLIENT) in $(CCE_BINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cce_construct $(CCE_BINDIR)
@@ -70,12 +76,14 @@ install: all
 
 uninstall:
 	$(RM) -f $(CCE_SBINDIR)/$(DAEMON)
+	$(RM) -f $(CCE_SBINDIR)/cced.init
 	$(RM) -f $(CCE_BINDIR)/$(CLIENT)
 	$(RM) -f $(CCE_SCHEMADIR)/cced.schema
 	$(RM) -f $(CCE_SCHEMADIR)/basetypes.schema
 	$(RM) -f $(SYS_INITDIR)/cced
 	$(RM) -f $(SYS_PAMDIR)/cced
 	$(RM) -f $(SYS_PAMDIR)/system-auth-cce
+	$(RM) -f $(SYSTEMD_INITDIR)/cced.init.service
 
 clean:
 	$(RM) -f $(OBJS) $(DAEMON) $(CLIENT) .depend

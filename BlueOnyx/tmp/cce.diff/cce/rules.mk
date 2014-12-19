@@ -35,8 +35,11 @@ CCE_PERLDIR = $(CCE_INSTALLDIR)/perl
 CCE_SESSIONDIR = $(CCE_INSTALLDIR)/sessions
 
 SYS_INITDIR = $(PREFIX)/etc/rc.d/init.d
+SYSTEMD_INITDIR = $(PREFIX)/usr/lib/systemd/system
 SYS_PAMDIR = $(PREFIX)/etc/pam.d
 SYS_APACHELIBDIR = $(PREFIX)/usr/lib/apache
+
+RPM_TOPDIR = /usr/src/redhat
 
 # install flags
 INST_DEFAULT = -o root -g root
