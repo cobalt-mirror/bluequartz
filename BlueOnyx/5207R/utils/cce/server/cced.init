@@ -18,6 +18,9 @@
 
 RETVAL=0
 export PERL5LIB=/usr/sausalito/perl:$PERL5LIB
+export LANG=en_US
+export LC_ALL=en_US.UTF-8
+export LINGUAS="en_US ja da_DK de_DE"
 
 # See how we were called.
 case "$1" in
@@ -28,10 +31,10 @@ case "$1" in
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
-	echo "Running CCE constructors: "
-	/usr/sausalito/bin/cce_construct 2>&1 \
-		| logger -p local0.debug -t "CONSTRUCTOR"
-	/usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
+	echo -n "Running CCE constructors: "
+	/usr/sausalito/bin/cce_construct > /dev/null 2>&1
+	logger -p local0.debug -t "CONSTRUCTOR" /usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
+	echo done
 	;;
   hash)
 	# Start daemons.
@@ -40,7 +43,7 @@ case "$1" in
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cced
-	echo "Skipping run of CCE constructors: "
+	echo -n "Skipping run of CCE constructors: "
 	/usr/sausalito/handlers/base/network/change_route.pl -c 2>/dev/null
 	echo done
 	;;

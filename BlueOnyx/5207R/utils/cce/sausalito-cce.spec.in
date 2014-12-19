@@ -17,7 +17,7 @@ Source: sausalito-cce.tar.gz
 Prefix: /usr/sausalito
 BuildRoot: /var/tmp/cce-root
 BuildRequires: glib-devel, pam-devel, glib2-devel
-BuildRequires: flex, bison
+BuildRequires: flex, bison, flex-devel
 BuildRequires: php-devel
 
 
@@ -31,9 +31,9 @@ sausalito-cce has both the server and client parts of cce.
 %package server
 Group: System Environment/BlueOnyx
 Summary: The CCE server daemon
-Requires: glib, glib-ghash, pam
+Requires: glib, glib-ghash, pam, policycoreutils
 %if "%centos" == "5" 
-Requires: audit-libs 
+Requires: audit-libs
 %endif 
 
 
@@ -76,6 +76,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/sausalito/lib
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/include
 mkdir -p $RPM_BUILD_ROOT/usr/sausalito/perl
 mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
+mkdir -p $RPM_BUILD_ROOT/usr/lib/systemd/system
 mkdir -p $RPM_BUILD_ROOT/etc/pam.d
 mkdir -p $RPM_BUILD_ROOT/etc/security
 mkdir -p $RPM_BUILD_ROOT/var/lib/abl
@@ -107,6 +108,7 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 %dir /usr/sausalito/include
 %dir /usr/sausalito/perl
 /etc/rc.d/init.d/*
+/usr/lib/systemd/system/*
 /etc/pam.d/*
 /lib/security/*
 # For 64-bit pam_abl if this is a 64-bit system:
@@ -139,24 +141,42 @@ make install PREFIX=$RPM_BUILD_ROOT CCETOPDIR=/usr/sausalito
 %config(noreplace) /etc/httpd/conf.d/blueonyx.conf
 
 %post server
+
+# Reload Daemon anyway (if EL7):
+if [ -f /usr/bin/systemctl ];then
+  /usr/bin/systemctl daemon-reload
+fi
+
+# restart cced.init on upgrade
+if [ "$1" -ge "1" ]; then
+  /sbin/service cced.init restart >/dev/null 2>&1
+  /sbin/chkconfig --add pam_abl
+  /sbin/service pam_abl restart >/dev/null 2>&1
+fi
+
 # only run on install, not upgrade 
 if [ "$1" = "1" ]; then
-	/sbin/chkconfig --add cced.init
-	/sbin/chkconfig --add pam_abl
+  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+    /usr/bin/systemctl enable cced.init.service 
+    /sbin/chkconfig --add pam_abl
+  else 
+  	/sbin/chkconfig --add cced.init
+  	/sbin/chkconfig --add pam_abl
+  fi
 fi
 
 %postun server
 # only run if this is the last instance to be removed
 if [ "$1" = "0" ]; then
-	/sbin/chkconfig --del cced.init
-	/sbin/chkconfig --del pam_abl
-fi
-
-# restart cced.init on upgrade
-if [ "$1" -ge "1" ]; then
-	service cced.init restart >/dev/null 2>&1
-	/sbin/chkconfig --add pam_abl
-	service pam_abl restart >/dev/null 2>&1
+  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+    /usr/bin/systemctl daemon-reload
+    /usr/bin/systemctl disable cced.init.service
+    /sbin/chkconfig --del cced.init
+    /sbin/chkconfig --del pam_abl
+  else 
+    /sbin/chkconfig --del cced.init
+    /sbin/chkconfig --del pam_abl
+  fi
 fi
 
 %post client
@@ -181,11 +201,49 @@ fi
 %postun client
 # reload httpd
 if [ "$1" -ge "1" ]; then
-	service httpd restart >/dev/null 2>&1
-	service admserv restart >/dev/null 2>&1
+	/sbin/service httpd restart >/dev/null 2>&1
+	/sbin/service admserv restart >/dev/null 2>&1
 fi
 
 %changelog
+
+* Thu Dec 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX21
+- BuildRequires updated with flex-devel.
+- Small fix in cced.init.
+
+* Tue Dec 09 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX20
+- Some more post-install fixes.
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX19
+- I don't want to have different CCE modules for 5207R/5208R and 5209R if
+  we can actually avoid that. This should do it.
+- Modified client/php/src/Makefile with a conditional build of the PHP module.
+  If we are on 5209R we don't build and just install a cce.so.dummy file. On
+  all other platforms we actually build and install the cce.so instead.
+- Modified sausalito-cce.spec.in to again include the files for the dirs
+  /usr/sausalito/ui/libPhp/ and the PHP-extension_dir.
+
+* Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX18
+- Systemd related fixes and additions.
+- Added policycoreutils to requirements for Server.
+- Modified rules.mk to add RPM_TOPDIR and SYSTEMD_INITDIR
+- Added Systemd Unit-File server/cced.init.service for CCEd.
+- Modified server/Makefile to install Systemd Unit-File and to also place
+  a copy of the old InitV cced.init in /usr/sausalito/sbin/.
+- Cosmetic fixes in server/cced.init
+- Some Systemd love in RPM post-install scripts.
+
+* Sat Nov 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX17
+- Forced locale set in cced.init, as some Constructors/Handlers depend on
+  the locale to be 'en_US' when parsing command results.
+- Conditional activation of server/system-auth-cce.pam.5209R in 
+  cce/server/Makefile
+
+* Fri Nov 21 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX16
+- And another not async-signal-safe gettimeofday() in include/cce_common.h
+  Which is yet another debugging function we don't need. I replaced it with
+  time(), but best would be if it could be ripped out entirely.
+- Modified client/Makefile to no longer build the cce.so module.
 
 * Wed Oct 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX15
 - Modified include/cce_common.h to rip out the localtime() call as it is
@@ -387,7 +445,7 @@ fi
 * Sun Jun 18 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ29
 - add requires httpd for client package.
 
-* Thu May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
+* Fri May 05 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ28
 - modified initscript to add static route at starting.
 
 * Mon Jan 16 2006 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ27
@@ -418,7 +476,7 @@ fi
 * Thu Oct 20 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ20
 - use vendor macro for vendor tag.
 
-* Tue Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
+* Wed Oct 19 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ19
 - rebuild with devel-tools 0.5.1
 
 * Mon Aug 15 2005 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ18
@@ -457,7 +515,7 @@ fi
 * Thu Mar 25 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ4
 - change cced.init for Blue Quartz 5100R
 
-* Tue Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
+* Thu Jan 08 2004 Hisao SHIBUYA <shibuya@alpha.or.jp> 0.80.2-1BQ1
 - build for Blue Quartz
 
 * Wed Feb 27 2002 CCE Team <cce@sun.com>
