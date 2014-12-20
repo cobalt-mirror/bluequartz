@@ -110,8 +110,12 @@ class Yum extends MX_Controller {
 		//
 
 		if ($CI->input->post(NULL, TRUE)) {
-			$cleaned_autoupdate_choices = array($i18n->getClean("[[palette.enabled_short]]") => "On", $i18n->getClean("[[palette.disabled_short]]") => "Off");
-			$attributes['autoupdate'] = $cleaned_autoupdate_choices[$attributes['autoupdate']];
+			if ($attributes['autoupdate'] == "1") {
+				$attributes['autoupdate'] = "On";
+			}
+			else {
+				$attributes['autoupdate'] = "Off";
+			}
 			$attributes['y_force_update'] = mt_rand();
 		}
 		else {
@@ -283,19 +287,18 @@ class Yum extends MX_Controller {
 		//--- Settings:
 		//
 
-		// Settings:
-		if($CODBDATA["autoupdate"] == "On") {
-		    $autoupdate_choices=array("On" => $i18n->getClean("[[palette.enabled_short]]"), "Off" => $i18n->getClean("[[palette.disabled_short]]"));
+		if ($CODBDATA["autoupdate"] == "On") {
+			$CODBDATA["autoupdate"] = "1";
 		}
 		else {
-			//Strict, but safe default:
-		    $autoupdate_choices=array("Off" => $i18n->getClean("[[palette.disabled_short]]"), "On" => $i18n->getClean("[[palette.enabled_short]]"));
+			$CODBDATA["autoupdate"] = "0";
 		}
 
-		// Display YUM enabler switch:
-		$autoupdate_select = $factory->getMultiChoice("autoupdate", array($i18n->getClean("[[palette.enabled_short]]"), $i18n->getClean("[[palette.disabled_short]]")), array($autoupdate_choices));
-		$autoupdate_select->setSelected($autoupdate_choices[$CODBDATA["autoupdate"]], true);
-		$block->addFormField($autoupdate_select, $factory->getLabel("autoupdate"), "Settings");
+		$block->addFormField(
+		  $factory->getBoolean("autoupdate", $CODBDATA["autoupdate"]),
+		  $factory->getLabel("autoupdate"),
+		  "Settings"
+		);
 
 		$exclude_box = $factory->getTextBlock("yumguiEXCLUDE", $CODBDATA["yumguiEXCLUDE"]);
 		$exclude_box->setHeight("5");

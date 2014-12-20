@@ -128,6 +128,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Dec 20 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX05
+- For consistency reasons it makes no sense to use pulldowns here and
+  booleans there. So I modified the YUM update enabler to use booleans
+  as well. Also added a fallback default value, which had been missing
+  from the previous implementation in ui/chorizo/web/controllers/yum.php
+
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.5.0-0BX04
 - Systemd related fixes.
 
