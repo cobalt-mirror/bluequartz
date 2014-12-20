@@ -18,9 +18,9 @@ $DEBUG && open(STDERR, ">>/tmp/jsp-vsite");
 $DEBUG && warn $0.' '.`date`;
 eval('use strict;') if ($DEBUG);
 
-my $tomcat_conf = '/etc/tomcat6/server.xml';
-my $tomcat_init = '/sbin/service tomcat6';
-my $tomcat_policy = '/etc/tomcat6/catalina.policy';
+my $tomcat_conf = '/etc/tomcat/server.xml';
+my $tomcat_init = '/sbin/service tomcat';
+my $tomcat_policy = '/etc/tomcat/catalina.policy';
 
 my $cce = new CCE;
 # my $cce = new CCE("Domain" => 'base-java');

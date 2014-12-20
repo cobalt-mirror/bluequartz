@@ -1,8 +1,0 @@
-<item id="base_java_apps" label="[[base-java.javaApps]]" 
-    description="[[base-java.javaApps_help]]" 
-    url="/base/java/warList.php?group=[[VAR.group]]"
->
-    <parent id="base_siteadmin" order="55">
-        <access require="siteAdmin"/>
-    </parent>
-</item>

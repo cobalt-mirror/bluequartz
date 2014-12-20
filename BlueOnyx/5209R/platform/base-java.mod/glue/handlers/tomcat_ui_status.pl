@@ -22,7 +22,7 @@ sub tomcat_pstest {
         open(PS, "/bin/ps axwww|") || die "Process list command '/bin/ps' unavailable: $!";
         while(<PS>)
         {
-                if (/java/ && /tomcat6/)
+                if (/java/ && /tomcat/)
                 {
                         $running = 1;
                         last;

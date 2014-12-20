@@ -3,7 +3,7 @@
 # Copyright 2008, Solarspeed Ltd. and NuOnce Networks, Inc., All rights reserved.
 #
 # On first (re)start of CCE after base-java install copy the distributed config
-# files into the right places and restart tomcat6 if need be.
+# files into the right places and restart tomcat if need be.
 
 use lib qw(/usr/sausalito/perl);
 use CCE;
@@ -13,26 +13,26 @@ my $cce = new CCE;
 
 $cce->connectuds();
 
-$cmd_tomcat = '/sbin/service tomcat6';
+$cmd_tomcat = '/sbin/service tomcat';
 $sts_tomcat = "UNKNOWN";
-$sts_tempfile = '/tmp/.tomcat6';
-$tomcat_properties = '/etc/tomcat6/tomcat-users.xml';
+$sts_tempfile = '/tmp/.tomcat';
+$tomcat_properties = '/etc/tomcat/tomcat-users.xml';
 
 # Only do anything if we haven't already performed this step:
-if (! -f "/etc/tomcat6/.setup") {
-    system("/bin/cp /etc/tomcat6/tomcat-users.xml.dist /etc/tomcat6/tomcat-users.xml");
-    system("/bin/cp /etc/tomcat6/tomcat6.logrotate.dist /etc/logrotate.d/tomcat6");
-    system("/bin/chmod 0660 /etc/tomcat6/tomcat-users.xml");
-    system("/bin/chown tomcat:tomcat /etc/tomcat6/tomcat-users.xml");
-    system("/bin/touch /etc/tomcat6/.setup");
-    system("/bin/echo '# Do not remove this file. Thanks!' >> /etc/tomcat6/.setup");
+if (! -f "/etc/tomcat/.setup") {
+    system("/bin/cp /etc/tomcat/tomcat-users.xml.dist /etc/tomcat/tomcat-users.xml");
+    system("/bin/cp /etc/tomcat/tomcat.logrotate.dist /etc/logrotate.d/tomcat");
+    system("/bin/chmod 0660 /etc/tomcat/tomcat-users.xml");
+    system("/bin/chown tomcat:tomcat /etc/tomcat/tomcat-users.xml");
+    system("/bin/touch /etc/tomcat/.setup");
+    system("/bin/echo '# Do not remove this file. Thanks!' >> /etc/tomcat/.setup");
 
     # Set the password for Tomcat user 'admin' to some random string of 11 character length:
     # We do this to prevent the introduction of a default password weakness:
     $random_string=&generate_random_string(11);
     $ret = Sauce::Util::editfile($tomcat_properties, *edit_policy, $random_string);
 
-    # Check tomcat6 status - this will work regardless which language the console is set to:
+    # Check tomcat status - this will work regardless which language the console is set to:
     $rtn_tomcat = system("$cmd_tomcat status > $sts_tempfile");
     open (F, $sts_tempfile) || die "Could not open $sts_tempfile: $!";
     while ($line = <F>) {
@@ -48,7 +48,7 @@ if (! -f "/etc/tomcat6/.setup") {
     close(F);
     system("/bin/rm -f $sts_tempfile");
     
-    # tomcat6 is already running. We need to restart it:
+    # tomcat is already running. We need to restart it:
     if ($sts_tomcat eq "RUNNING") {
 	system("$cmd_tomcat restart > /dev/null 2>&1");
     }

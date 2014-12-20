@@ -50,9 +50,9 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 %config /etc/profile.d/java.sh
 %config /etc/httpd/conf.d/mod_jk.conf
-%config /etc/tomcat6/jk/workers.properties
-%config(noreplace)/etc/tomcat6/tomcat-users.xml.dist
-%config(noreplace)/etc/tomcat6/tomcat6.logrotate.dist
+%config /etc/tomcat/jk/workers.properties
+%config(noreplace)/etc/tomcat/tomcat-users.xml.dist
+%config(noreplace)/etc/tomcat/tomcat.logrotate.dist
 %attr(0755,root,root)%{RootDir}/sbin/java_load_war.pl
 
 %ifarch %ix86
@@ -116,6 +116,16 @@ information for [VENDOR]-[SERVICE].
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sat Dec 20 2014 Michael Stauber <mstauber@solarspeed.net> 5.0.0-0BX01
+- Rebuild for 5209R on EL7. Which means Tomcat 7 and Apache 2.4.
+- Updated all dependencies to ensure that everything needed gets installed.
+- Updated mod_jk to pre-built v1.2.40 in module directory.
+- Updated mod_jk configuration. Might need some work.
+- Changed all code references and paths from 'tomcat6' to 'tomcat'.
+- Removed UI of old GUI entirely. Just Chorizo from now on.
+- General cleanup of module tree.
+- This needs further work, as it's just a rough draft.
 
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 4.0.0-0BX04
 - Some Systemd love for El7. This module still needs a lot of work in 

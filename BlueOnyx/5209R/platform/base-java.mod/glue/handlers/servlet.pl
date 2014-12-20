@@ -13,8 +13,8 @@ use Base::HomeDir qw(homedir_get_group_dir);
 my $DEBUG = 0;
 $DEBUG && warn "$0 ".`date`;
 
-my $servlet_conf = '/etc/tomcat6/web.xml';
-my $server_conf = '/etc/tomcat6/server.xml';
+my $servlet_conf = '/etc/tomcat/web.xml';
+my $server_conf = '/etc/tomcat/server.xml';
 
 my $cce = new CCE('Domain' => 'base-java');
 $cce->connectfd();

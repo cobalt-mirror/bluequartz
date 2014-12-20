@@ -4,7 +4,7 @@
 # Will DeHaan <null@sun.com>
 
 # configure here: (mostly)
-my $SERVICE = "tomcat6";	# name of initd script for this daemon
+my $SERVICE = "tomcat";	# name of initd script for this daemon
 my $RESTART = "restart"; # restart action
 my $NAMESPACE = 'Java';
 my $CONF = '/etc/httpd/conf/httpd.conf';
@@ -188,7 +188,7 @@ sub tomcat_pstest
 	open(PS, "/bin/ps axwww|") || die "Process list command '/bin/ps' unavailable: $!";
 	while(<PS>)
 	{
-		if (/java/ && /tomcat6/)
+		if (/java/ && /tomcat/)
 		{
 			$running = 1;
 			last;
