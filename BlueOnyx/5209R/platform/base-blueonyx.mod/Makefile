@@ -23,7 +23,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl sendmail-cf m4 sendmail cronie crontabs perl
+REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl sendmail-cf m4 sendmail cronie crontabs perl perl-Switch
 REQUIRES_GLUE=base-email-capstone base-time-capstone base-user-capstone at dovecot php base-admserv-capstone base-support-capstone
 
 include /usr/sausalito/devel/module.mk
