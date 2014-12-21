@@ -41,7 +41,7 @@ exit(0);
 
 sub edit_policy {
         my ($in, $out, $max) = @_;
-	my $maxConnect = "  <user username=\"admin\" password=\"$max\" roles=\"admin,manager\"/>\n";
+	my $maxConnect = "  <user username=\"admin\" password=\"$max\" roles=\"admin,manager-gui,admin-gui\"/>\n";
 
 	while(<$in>) {
 		if(/  <user username=\"admin\" password(.+)$/) {
