@@ -1,9 +1,8 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
 # $Id: dns_restart.pl
 #
 # starts, stops, and restarts a service on demand, with some extra
 # safety checks.  jm.
-
 
 # configure here: (mostly)
 my $SERVICE = "named";	# name of initd script for this daemon
@@ -52,6 +51,12 @@ my $running = 0;
 
 $DEBUG && warn "Running? $running, Enabled in CCE? ".$obj->{enabled};
 
+# Check if we have Systemd:
+if (-f "/usr/bin/systemctl") {
+  # Got Systemd:
+  $SERVICE = "named-chroot";
+}
+
 # do the right thing
 if (!$running && $obj->{enabled}) {
   system("/sbin/service ${SERVICE} start >/dev/null 2>&1");
@@ -67,6 +72,7 @@ elsif ($running && $obj->{enabled}) {
 # is it running now?
 $running = 0;
 {
+  $SERVICE = "named";
   my $fh = new FileHandle("</var/named/chroot/var/run/named/$SERVICE.pid");
   if ($fh) {
     my $pid = <$fh>; chomp($pid);

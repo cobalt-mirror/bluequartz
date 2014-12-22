@@ -114,6 +114,15 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX10
+- More EL7 related fixes.
+- Updated module requirements, as EL7 didn't bring bind-utils aboard by
+  itself with our old requirements.
+- EL7 also splits the RC scripts for named into named and named-chroot.
+  We're using chroot for named, so things get a bit tricky. Applied fixes
+  and work arounds for that throughout handlers and constructors.
+- Updated AM scripts to take the split RC scripts into account, too.
+
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX09
 - Some Systemd love in post-install and elsewhere.
 

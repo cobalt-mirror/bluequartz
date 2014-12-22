@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: am_dns.sh 259 2004-01-03 06:28:40Z shibuya $
+# $Id: am_dns.sh
 # Bind test
 
 # Load return codes
@@ -16,8 +16,13 @@
 
 if [ $? -gt 0 ]; then
 
-	# Merciful restart attempt
-	/sbin/service named restart > /dev/null 2>&1
+	# Merciful restart attempt:
+	if [ -f /usr/bin/systemctl ]; then
+		# We're on EL7 with split named/named-chroot Unit files:
+		/sbin/service named-chroot restart > /dev/null 2>&1
+	else
+		/sbin/service named restart > /dev/null 2>&1
+	fi
 
 	# Re-test
 	/usr/bin/host -W 2 127.0.0.1 127.0.0.1 | grep '1.0.0.127.in-addr.arpa.' >/dev/null

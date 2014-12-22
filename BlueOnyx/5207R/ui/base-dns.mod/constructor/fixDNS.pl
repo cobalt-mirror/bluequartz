@@ -1,8 +1,7 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# Copyright 2010 Bluapp AB, Rickard Osser <rickard.osser@bluapp.com>, All rights reserved.
 #
-# RHEL/CentOS is normally running SE-linux, this is turned off by default on all Bluapp/BlueOnyx
-# installations, this makes it impossible to save AXFR zone-transfers if we don't add "ENABLE_ZONE_WRITE=yes"
+# RHEL/CentOS is normally running SE-linux, this is turned off by default by us.
+# This makes it impossible to save AXFR zone-transfers if we don't add "ENABLE_ZONE_WRITE=yes"
 # to /etc/sysconfig/named.
 #
 
@@ -31,6 +30,14 @@ system('rm -f /etc/sysconfig/named.backup.*');
 my ($sysoid) = $cce->find("System");
 my ($ok, $obj) = $cce->get($sysoid, "DNS");
 
+# Check if we have Systemd:
+if (-f "/usr/bin/systemctl") {
+  # Got Systemd:
+  $SERVICE = "named-chroot";
+}
+else {
+  $SERVICE = "named";
+}
 
 my $running = 0;
 {
@@ -55,23 +62,18 @@ print "RUNNING: $running, ". $obj->{enabled}."\n";
 
 # do the right thing
 if (!$running && $obj->{enabled}) {
-    Sauce::Service::service_run_init('named', 'start');
+    Sauce::Service::service_run_init($SERVICE, 'start');
     sleep(1); # wait for named to really start
 } elsif ($running && !$obj->{enabled}) {
-    Sauce::Service::service_run_init('named', 'stop');
+    Sauce::Service::service_run_init($SERVICE, 'stop');
 } elsif ($running && $obj->{enabled}) {
-    Sauce::Service::service_run_init('named', 'restart');
+    Sauce::Service::service_run_init($SERVICE, 'restart');
 }
-
-
-
-
 
 $cce->bye('SUCCESS');
 exit(0);
 
-sub fix_sysconfig_named
-{
+sub fix_sysconfig_named {
     my $in  = shift;
     my $out = shift;
 
@@ -80,16 +82,53 @@ sub fix_sysconfig_named
     
     select $out;
     while (<$in>) {
-	if (/^ENABLE_ZONE_WRITE/o ) {
-	    print "$ZONEWRITE\n";
-	    $done = 1;
-	} else {
-	    print $_;
-	}
+      if (/^ENABLE_ZONE_WRITE/o ) {
+        print "$ZONEWRITE\n";
+        $done = 1;
+      }
+      else {
+        print $_;
+      }
     }
-    
+
     if (!$done) {
-	print "$ZONEWRITE\n";
+      print "$ZONEWRITE\n";
     }
     return 1;
 }
+
+# 
+# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2010 Bluapp AB, Rickard Osser <rickard.osser@bluapp.com>
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#   notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#   notice, this list of conditions and the following disclaimer in 
+#   the documentation and/or other materials provided with the 
+#   distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#   contributors may be used to endorse or promote products derived 
+#   from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
