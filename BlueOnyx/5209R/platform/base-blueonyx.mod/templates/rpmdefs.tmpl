@@ -69,6 +69,7 @@ information for [VENDOR]-[SERVICE].
 %config /etc/sysconfig/blueonyx
 %attr(0755,root,root) /usr/sausalito/sbin/*
 %attr(0755,root,root) /usr/sausalito/scripts/*
+%attr(0750,root,root) /root/network_settings.sh
 %dir /usr/sausalito/runonce
 %dir /usr/sausalito/configs
 /usr/sausalito/configs/*
@@ -99,6 +100,13 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
+
+if [ $1 -eq 1 ]; then
+  # ONLY run this on first install, NOT upgrades!
+  # This creates the persistend network rules with ethX style interfaces:
+  /usr/sausalito/sbin/write_udev.pl > /etc/udev/rules.d/70-persistent-net.rules
+fi
+
 if [ $1 -eq 1 ]; then
   if [ ! -d "/usr/sausalito/runonce" ];then
     mkdir -p /usr/sausalito/runonce
@@ -322,6 +330,23 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141222-BX06
+- So far blueonyx-cd-installer did most of the heavy lifting after installs
+  for setting up BlueOnyx correctly. This resulted in lots of hacks on all
+  odds and ends. This is the first attempt to make it cleaner and to merge
+  those scripts from blueonyx-cd-installer into base-blueonyx instead. With
+  the required EL7 related fixes.
+- Added glue/etc/cron.daily
+- Added glue/etc/cron.daily/tmpwatch.cron
+- Added glue/root/network_settings.sh
+- Added glue/sbin/minicalc.pl
+- Added glue/sbin/set_eth.pl
+- Added glue/sbin/set_gw.pl
+- Added glue/sbin/write_udev.pl
+- Heavily extended glue/scripts/initServices.sh
+- Alias fix in glue/scripts/initSendmail.sh
+- Post-install fixes.
 
 * Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141203-BX05
 - Adapted glue/scripts/initSendmail.sh, triggers and post-install scripts for EL7

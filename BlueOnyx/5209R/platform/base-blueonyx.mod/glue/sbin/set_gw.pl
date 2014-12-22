@@ -1,28 +1,35 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: alias_fix.pl
+# $Id: set_gw.pl
 #
+# Script to set Gateway in CCE.
+#
+# Example Syntax:
+# ./set_gw.pl configure DEFAULTGW 
 
 use CCE;
 my $cce = new CCE;
-my $conf = '/var/lib/cobalt';
 
 $cce->connectuds();
 
-# Remove misplaced alias databases - if present:
-if (-f "/etc/aliases") {
-	if (!-f "/etc/mail/aliases") {
-		system("/bin/cp /etc/aliases /etc/mail/aliases");
-		system("/bin/cp /etc/aliases.db /etc/mail/aliases.db");
-	}
+if (defined($ARGV[1])) {
+    if ($ARGV[0] = "configure") {
+        $DEFAULTGW = $ARGV[1];
+    }
 }
-system("/bin/rm -f /etc/aliases");
-system("/bin/rm -f /etc/aliases.db");
+if (!$DEFAULTGW) {
+        print "Syntax: /usr/sausalito/sbin/set_gw.pl configure <Gateway-IP>\n";
+        $cce->bye('FAIL');
+        exit 1;
+}
+else {
+    ($sys_oid) = $cce->find('System', '');
+    ($ok) = $cce->set($sys_oid, '',{
+        "gateway" => $DEFAULTGW
+    });
+}
 
-# Run 'newaliases' for good measure:
-system("/usr/bin/newaliases");
-
-$cce->bye();
-exit 0;
+$cce->bye('SUCCESS');
+exit(0);
 
 # 
 # Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
@@ -30,16 +37,16 @@ exit 0;
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
-#	 notice, this list of conditions and the following disclaimer.
+#     notice, this list of conditions and the following disclaimer.
 # 
 # 2. Redistributions in binary form must reproduce the above copyright 
-#	 notice, this list of conditions and the following disclaimer in 
-#	 the documentation and/or other materials provided with the 
-#	 distribution.
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
 # 
 # 3. Neither the name of the copyright holder nor the names of its 
-#	 contributors may be used to endorse or promote products derived 
-#	 from this software without specific prior written permission.
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
 # 
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
 # "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 

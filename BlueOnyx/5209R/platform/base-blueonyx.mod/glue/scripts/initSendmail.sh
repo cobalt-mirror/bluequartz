@@ -5,6 +5,13 @@ if [ ! -f /etc/mail/aliases ]; then
   if [ -f /etc/mail/aliases.rpmsave ]; then
     mv /etc/mail/aliases.rpmsave /etc/mail/aliases
   fi
+
+  # Move misplaced alias databases - if present:
+  if [ -f /etc/aliases ]; then
+  	/bin/cp /etc/aliases /etc/mail/aliases
+  	/bin/cp /etc/aliases.db /etc/mail/aliases.db
+  fi
+
   grep '^root:' /etc/mail/aliases > /dev/null 2>&1
   if [ $? = 1 ]; then
     echo 'root:		admin' >> /etc/mail/aliases

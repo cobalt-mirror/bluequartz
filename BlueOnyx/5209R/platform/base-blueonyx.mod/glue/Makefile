@@ -10,6 +10,7 @@ install:
 	mkdir -p $(PREFIX)/etc
 	mkdir -p $(PREFIX)/etc/rc.d/init.d
 	mkdir -p $(PREFIX)/etc/logrotate.d
+	mkdir -p $(PREFIX)/root
 	mkdir -p $(PREFIX)/etc/locks
 	mkdir -p $(PREFIX)/usr/sausalito/sbin
 	mkdir -p $(PREFIX)/usr/sausalito/scripts
@@ -21,6 +22,7 @@ install:
 	tar cBf - --exclude '.svn' triggers | (cd $(PREFIX)/usr/sausalito/ ; tar xBf -)
 	mkdir -p $(PREFIX)/var/www/html
 	install -m 0644 httpd/index.html $(PREFIX)/var/www/html/index.html
+	tar cBf - --exclude '.svn' root | (cd $(PREFIX)/root ; tar xBf -)
 	tar cBf - --exclude '.svn' sbin | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
 	tar cBf - --exclude '.svn' scripts | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
 	tar cBf - --exclude '.svn' configs | (cd $(PREFIX)/usr/sausalito ; tar xBf -)
