@@ -154,15 +154,18 @@ if [ "$1" -ge "1" ]; then
   /sbin/service pam_abl restart >/dev/null 2>&1
 fi
 
-# only run on install, not upgrade 
+# Run on install and upgrade 
+if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+  /usr/bin/systemctl enable cced.init.service 
+  /sbin/chkconfig --add pam_abl
+else 
+	/sbin/chkconfig --add cced.init
+	/sbin/chkconfig --add pam_abl
+fi
+
+# Only run on install, not upgrade 
 if [ "$1" = "1" ]; then
-  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
-    /usr/bin/systemctl enable cced.init.service 
-    /sbin/chkconfig --add pam_abl
-  else 
-  	/sbin/chkconfig --add cced.init
-  	/sbin/chkconfig --add pam_abl
-  fi
+  /usr/sausalito/sbin/cced.init restart >/dev/null 2>&1
 fi
 
 %postun server
@@ -206,6 +209,10 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX22
+- On fresh installs CCEd.init isn't auto-stated. Juggled post-install
+  scripts around.
 
 * Thu Dec 18 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX21
 - BuildRequires updated with flex-devel.
