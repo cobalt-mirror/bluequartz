@@ -339,6 +339,9 @@ class CCE {
       CCE::ccephp_new("GET $oid");
     }
     else {
+      if (is_array($oid)) {
+        $oid = $oid[0];
+      }
       CCE::ccephp_new("GET $oid . $namespace");
     }
     if (is_array($this->self['object'])) {

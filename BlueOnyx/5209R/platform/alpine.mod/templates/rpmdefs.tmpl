@@ -136,6 +136,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX024
+- Bugfix in CCE.php: ccephp_get() sometimes gets an $oid that is an array
+  instead of a string. Added is_array() check. If it is an array, then we 
+  only process the first element of the get request.
+
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX023
 - Another fix in post-install.
 
