@@ -123,6 +123,11 @@ if [ -f /etc/httpd/conf/vhosts/preview ]; then
   /bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf/vhosts/preview
 fi
 
+# Make sure /etc/httpd/conf/mime.types is there. The RPM "mailcap" brings it aboard:
+if [ ! -f /etc/httpd/conf/mime.types ]; then
+  /bin/cp /etc/mime.types /etc/httpd/conf/mime.types
+fi
+
 # Run SSL_fixer.pl to enforce writing of updated SSL Vhost configs:
 if [ -f /usr/sausalito/sbin/SSL_fixer.pl ]; then
   /usr/sausalito/sbin/SSL_fixer.pl
@@ -170,6 +175,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX15
+- Updated post-install to copy /etc/mime.types to /etc/httpd/conf/mime.types
+- Added requirement for mailcap, which brings /etc/mime.types aboard.
 
 * Tue Dec 09 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX14
 - Post-install fix in glue.
