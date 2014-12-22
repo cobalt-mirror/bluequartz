@@ -613,6 +613,53 @@ class SummaryEmail extends MX_Controller {
 								'12' => "12month"
 							);
 
+		// Do we have stats to display? If not, stop here:
+		if (!isset($server_statsDir)) {
+			$defaultPage = "basicSettingsTab";
+			$factory =& $serverScriptHelper->getHtmlComponentFactory('base-mailsitestats', "");
+
+			// Prepare Page:
+			$BxPage = $factory->getPage();
+			$BxPage->setErrors($errors);
+			$i18n = $factory->getI18n();
+
+			$block = $factory->getPagedBlock("summaryStats", array($defaultPage));
+			$block->setToggle("#");
+			$block->setSideTabs(FALSE);
+			$block->setDefaultPage($defaultPage);
+
+			// Out with the message_delivery_flows_table:
+			$no_data = $this->i18n->get("[[base-mailsitestats.sa_nodata]]");
+			$block->addFormField(
+				$factory->getRawHTML("no_data", $no_data),
+				$factory->getLabel("no_data"),
+				$defaultPage
+			);
+
+			$page_body[] = $block->toHtml();
+
+			// Set Menu items:
+			if ($group == "server") {
+				$BxPage->setVerticalMenu('base_serverusage');
+				$page_module = 'base_sysmanage';
+				$BxPage->setVerticalMenuChild('base_server_mailusage');
+			}
+			else {
+				$BxPage->setVerticalMenu('base_siteusage');
+				$BxPage->setVerticalMenuChild('base_webusage');
+				$page_module = 'base_sitemanage';
+				$BxPage->setVerticalMenuChild('base_mailusage');
+			}
+			            
+			// Nice people say goodbye, or CCEd waits forever:
+			$cceClient->bye();
+			$serverScriptHelper->destructor();
+
+			// Out with the page:
+		    $BxPage->render($page_module, $page_body);
+		    return;
+		}
+
 		// Now map it out nicely:
 		if (isset($baremetalStats[$server_statsDir])) {
 			foreach ($baremetalStats[$server_statsDir] as $year => $y_value) {
