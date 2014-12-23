@@ -347,13 +347,13 @@ class Login extends MX_Controller {
 			  }
 
 			  // Send cookies that expire at end of the browser session. 
-			  setcookie("loginName", set_value('username_field'));
-			  setcookie("sessionId", $sessionId);
-			  setcookie("userip", $userip);
+			  setcookie("loginName", set_value('username_field'), time()+60*60*24*365, "/");
+			  setcookie("sessionId", $sessionId, "0", "/");
+			  setcookie("userip", $userip, "0", "/");
 			  //setcookie("skin_switcher_php-style", $skin);
 
 			  // Set new locale to cookie, too, but set an expiry of 365 days:
-			  $cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31572500');
+			  $cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31536000');
 			  $this->input->set_cookie($cookie);
 
 			  //
@@ -374,7 +374,7 @@ class Login extends MX_Controller {
 
 	  		  // Push out cookies for the Users known Style:
 			  foreach ($usersChorizoStyle as $key => $value) {
-			    $theme_cookie = array('name' => $key, 'path' => '/', 'value' => $value, 'expire' => '31572500');
+			    $theme_cookie = array('name' => $key, 'path' => '/', 'value' => $value, 'expire' => '31536000');
 			    $this->input->set_cookie($theme_cookie);
 			  }
 	

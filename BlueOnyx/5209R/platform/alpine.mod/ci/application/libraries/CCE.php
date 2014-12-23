@@ -363,7 +363,7 @@ class CCE {
     // CCEd will not accept single quoted values:
     CCE::ccephp_new("AUTH ". CCE::_escape($userName) . " \"" . CCE::_escape($password) . "\"");
     if ($this->self['sessionid'] != "") {
-      setcookie("loginName", $userName);
+      setcookie("loginName", $userName, time()+60*60*24*365, "/");
       $this->setUsername($userName);
       $this->setSessionId($this->self['sessionid']);
     }
@@ -374,8 +374,9 @@ class CCE {
   function ccephp_authkey($userName, $sessionId) {
     CCE::ccephp_new("AUTHKEY ". CCE::_escape($userName) . " $sessionId");
     if ($this->self['success'] == '1') {
-      $this->setSessionId($this->self['sessionid']);
-      $this->SessionId = $this->self['sessionid'];
+      $this->setSessionId($sessionId);
+      $this->SessionId = $sessionId;
+      setcookie("sessionId", $sessionId, "0", "/");
     }
     else {
       delete_cookie("sessionId");
