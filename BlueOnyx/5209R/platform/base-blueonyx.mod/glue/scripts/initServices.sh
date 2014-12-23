@@ -1,10 +1,11 @@
 #!/bin/sh
 
 # Disable some services that do not need to be on
-services="smartd autofs irqbalance netfs microcode_ctl mdchk kudzu iscsid iscsi sysstat ip6tables auditd kdump lldpad fcoe atd messagebus NetworkManager lldpad fcoe cups netfs portreserve"
+services="smartd autofs irqbalance netfs microcode_ctl mdchk kudzu iscsid iscsi sysstat ip6tables auditd kdump lldpad fcoe atd messagebus NetworkManager lldpad fcoe cups netfs portreserve firewalld"
 for service in $services; do
   /sbin/chkconfig $service off >/dev/null 2>&1
-  /sbin/chkconfig --del $service >/dev/null 2>&1       
+  /sbin/chkconfig --del $service >/dev/null 2>&1
+  /usr/bin/systemctl disable $service.service > /dev/null 2>&1
 done
 
 # Remount /tmp to be non-executable!
@@ -97,10 +98,29 @@ LIB=/usr/sausalito/lib
 /bin/egrep "^$LIB[   ]*$" /etc/ld.so.conf > /dev/null || /bin/echo $LIB >> /etc/ld.so.conf
 /sbin/ldconfig
 
-services="cced.init httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
+## Enable all needed services:
+onservices="cced.init httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
 for service in $services; do
-  /sbin/chkconfig $service on > /dev/null 2>&1
-  /sbin/service $service restart > /dev/null 2>&1
+  /sbin/chkconfig $onservices on > /dev/null 2>&1
+  /usr/bin/systemctl enable $service.service > /dev/null 2>&1
+done
+
+## Restart all network services:
+# Ping target: Gatway:
+#IRX=`ip r | grep default | cut -d ' ' -f 3`
+# Ping Target: Google DNS:
+IRX="8.8.8.8"
+NETWORK=`ping -q -w 1 -c 1 $IRX > /dev/null && echo ok || echo error`
+if [ "$NETWORK" == "ok" ]; then
+  #echo "Network OK";
+  hupservices="cced.init httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
+else
+  #echo "Network NOT OK";
+  hupservices="cced.init"
+fi
+
+for service in $services; do
+  /sbin/service $hupservices restart > /dev/null 2>&1
 done
 
 # Create a file in /tmp to show us that we did run:

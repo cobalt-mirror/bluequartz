@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -f /proc/user_beancounters ]; then
+  /bin/echo "This is an OpenVZ VPS. Network settings may not be changed from inside the VPS."
+  exit;
+fi
+
 : ${DIALOG=dialog}
 
 CDTITLE="Team BluOnyx Presents - Network Reconfigure"
@@ -9,6 +14,7 @@ TITLE="Network Setup Utility"
 IPADDRESS=`ifconfig  | grep 'inet '| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}'`
 NETMASK=`ifconfig | grep $IPADDRESS | awk '{ print $4}'`
 DEFAULTGW=`/sbin/ip route | awk '/default/ { print $3 }'`
+DNSSERVER=`cat /etc/resolv.conf |grep ^nameserver|awk '{ print $2}'|head -1`
 
 function GetIP() {
 MSG="Please Enter your IP Address\n\n"
@@ -40,13 +46,24 @@ exec 3>&-
 RESET=0
 }
 
+function GetDNS() {
+MSG="Please Enter your DNS Server IP\n\n"
+exec 3>&1
+DNSSERVER="`$DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE"  \
+  --inputbox "$MSG" 15 70 $DNSSERVER 2>&1 1>&3`"
+retval=$?
+exec 3>&-
+RESET=0
+}
+
 function Confirm() {
 MSG="
 Please Confirm your Network Settings\n\n
 IP Address : $IPADDRESS\n
 Netmask    : $NETMASK\n
 Gateway    : $DEFAULTGW\n
-\n\n
+DNS Server : $DNSSERVER\n
+\n
 Accept?"
 $DIALOG --nocancel --backtitle "$CDTITLE" --title "$TITLE" \
   --yesno "$MSG" 0 0
@@ -58,11 +75,12 @@ NO=1
 GetIP
 GetNM
 GetGW
+GetDNS
 Confirm
 if [ "$IPADDRESS" == "" ]; then NO=1; fi
 if [ "$NETMASK" == "" ]; then NO=1; fi
 if [ "$DEFAULTGW" == "" ]; then NO=1; fi
-
+if [ "$DNSSERVER" == "" ]; then NO=1; fi
 if [ "$NO" == "0" ]; then
 
   # Change the default gateway
@@ -75,6 +93,10 @@ if [ "$NO" == "0" ]; then
   # Create/Update /etc/udev/rules.d/70-persistent-net.rules:
   if [ ! -f /etc/udev/rules.d/70-persistent-net.rules ]; then
     /usr/sausalito/sbin/write_udev.pl > /etc/udev/rules.d/70-persistent-net.rules
+    # Let's get rid of ifcfg-* files for non-ethX interfaces:
+    /bin/cp /etc/sysconfig/network-scripts/ifcfg-* /tmp/
+    /bin/rm -f /etc/sysconfig/network-scripts/ifcfg-*
+    /bin/cp /tmp/ifcfg-lo /etc/sysconfig/network-scripts/
   fi
 
   # Configure up the init scripts for eth0 properly.
@@ -90,10 +112,11 @@ if [ "$NO" == "0" ]; then
   # Convince Sausalito that we are using eth0 & have proper IP info already
   /usr/sausalito/sbin/set_eth.pl configure eth0 $IPADDRESS $NETMASK
   /usr/sausalito/sbin/set_gw.pl configure $DEFAULTGW
+  /usr/sausalito/sbin/set_dns.pl configure $DNSSERVER
 
   # restart daemons
   echo "Restarting Daemons ... "
-  services="network cced.init httpd admserv xinetd sendmail"
+  services="network"
   for service in $services; do
     /sbin/chkconfig $service on > /dev/null 2>&1
     /sbin/service $service restart > /dev/null 2>&1

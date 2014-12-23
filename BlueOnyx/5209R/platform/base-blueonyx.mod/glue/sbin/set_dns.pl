@@ -1,10 +1,10 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# $Id: set_eth.pl
+# $Id: set_dns.pl
 #
-# Script to set Network config in CCE.
+# Script to set DNS in CCE.
 #
 # Example Syntax:
-# ./set_eth.pl configure eth0 10.1.224.1 255.255.0.0
+# ./set_dns.pl configure DNS
 
 use CCE;
 my $cce = new CCE;
@@ -13,43 +13,19 @@ $cce->connectuds();
 
 if (defined($ARGV[1])) {
     if ($ARGV[0] = "configure") {
-        $device = $ARGV[1];
-        $ipaddr = $ARGV[2];
-        $netmask = $ARGV[3];
+        $DNS = $ARGV[1];
     }
 }
-if ((!$device) && (!$ipaddr) && (!$netmask)) {
-    print "Syntax: /usr/sausalito/sbin/set_eth.pl configure <device> <IP> <Netmask> \n";
-    $cce->bye('FAIL');
-    exit 1;
+if (!$DNS) {
+        print "Syntax: /usr/sausalito/sbin/set_dns.pl configure <DNS-Server-IP>\n";
+        $cce->bye('FAIL');
+        exit 1;
 }
 else {
-
-    # Check if this Network object already exists:
-    @oids = $cce->find('Network', {'device' => $device});
-
-    if ($#oids < 0) {
-        # Object not yet in CCE. Creating it:
-        ($ok) = $cce->create('Network', {
-            "device" => $device,
-            "bootproto" => "none",
-            "ipaddr" => $ipaddr,
-            "netmask" => $netmask,
-            "enabled" => "1",
-            "real" => "1"
-        });
-    }
-    else {
-        # Object in CCE. Updating it:
-        ($ok) = $cce->set($oids[0], '',{
-            "device" => $device,
-            "bootproto" => "none",
-            "ipaddr" => $ipaddr,
-            "netmask" => $netmask,
-            "enabled" => "1",
-            "real" => "1"
-        });
-    }
+    ($sys_oid) = $cce->find('System', '');
+    ($ok) = $cce->set($sys_oid, '',{
+        "dns" => "&" . $DNS . "&"
+    });
 }
 
 $cce->bye('SUCCESS');
@@ -88,4 +64,4 @@ exit(0);
 # You acknowledge that this software is not designed or intended for 
 # use in the design, construction, operation or maintenance of any 
 # nuclear facility.
-# 
+#

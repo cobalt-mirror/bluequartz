@@ -101,10 +101,23 @@ information for [VENDOR]-[SERVICE].
 <begin glue>
 # glue post-install
 
+# Handle SELinux:
+/bin/sed -i -e 's@^SELINUX=enforcing@SELINUX=disabled@' /etc/selinux/config
+
 if [ $1 -eq 1 ]; then
   # ONLY run this on first install, NOT upgrades!
+
   # This creates the persistend network rules with ethX style interfaces:
   /usr/sausalito/sbin/write_udev.pl > /etc/udev/rules.d/70-persistent-net.rules
+
+  # Handle Quota:
+  QUOTASTATUS=`/sbin/quotaon -pa|wc -l`
+  if [ "$QUOTASTATUS" == "2" ]; then
+    # Quota is good!
+  else
+
+  fi
+
 fi
 
 if [ $1 -eq 1 ]; then
@@ -330,6 +343,17 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141222-BX07
+- Various fixes.
+- Added requirement for selinux-policy to make sure we're installed after
+  SELinux.
+- Added post-install sed command to turn SELinux off.
+- Added glue/sbin/set_dns.pl
+- Modified glue/sbin/set_eth.pl to set eth0 to 'real'.
+- Modified glue/scripts/initServices.sh to ónly restart CCEd if we have no
+  network yet. Otherwise restart all network services.
+- Modified glue/root/network_settings.sh to set DNS as well.
 
 * Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141222-BX06
 - So far blueonyx-cd-installer did most of the heavy lifting after installs
