@@ -111,13 +111,13 @@ class Wizard extends MX_Controller {
 	    $charset = $ini_langs['charset'];
 
 		// Send cookies that expire in one hour: 
-		setcookie("loginName", 'admin', time()+3600);
+		setcookie("loginName", 'admin', time()+60*60*24*365, "/");
 		if ($sessionId != "") {
-			setcookie("sessionId", $sessionId, time()+3600);
+			setcookie("sessionId", $sessionId, "0", "/");
 		}
 
 		// Set new locale to cookie, too, but set an expiry of 365 days:
-		$cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31572500');
+		$cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31536000');
 		$this->input->set_cookie($cookie);
 
 		// Check if the visitor is using a browser or a mobile device:
@@ -293,7 +293,7 @@ class Wizard extends MX_Controller {
 				$errors = array_merge($errors, $cceClient->errors());
 
 				// Set new locale to cookie, too:
-				$cookie = array('name' => 'locale', 'path' => '/', 'value' => $attributes['localeField'], 'expire' => '31572500');
+				$cookie = array('name' => 'locale', 'path' => '/', 'value' => $attributes['localeField'], 'expire' => '31536000');
 				$CI->input->set_cookie($cookie);
 
 				//
@@ -530,13 +530,13 @@ class Wizard extends MX_Controller {
 					$cceClient->setObject('System', array('isLicenseAccepted' => '1', 'isRegistered' => '0'), '');
 
 					// Send cookies that expire in one hour:
-					setcookie("loginName", 'admin', time()+3600);
+					setcookie("loginName", 'admin', time()+60*60*24*365, "/");
 					if ($sessionId != "") {
-						setcookie("sessionId", $sessionId, time()+3600);
+						setcookie("sessionId", $sessionId, "0", "/");
 					}
 
 					// Set new locale to cookie, too, but set an expiry of 365 days:
-					$cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31572500');
+					$cookie = array('name' => 'locale', 'path' => '/', 'value' => $locale, 'expire' => '31536000');
 					$this->input->set_cookie($cookie);
 
 					//
@@ -554,7 +554,7 @@ class Wizard extends MX_Controller {
 
 					// Push out cookies for the Users known Style:
 					foreach ($ChorizoDefaultStyle as $key => $value) {
-						$theme_cookie = array('name' => $key, 'path' => '/', 'value' => $value, 'expire' => '31572500');
+						$theme_cookie = array('name' => $key, 'path' => '/', 'value' => $value, 'expire' => '31536000');
 						$this->input->set_cookie($theme_cookie);
 					}
 
