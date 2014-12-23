@@ -222,15 +222,15 @@ cat $STATUSFILE | awk '
 
 	}' trafficfile=$TRAFFICFILE logfile=$LOGFILE tables=$TABLES statusfile=$STATUSFILE oldin=$OLD_INPUT oldout=$OLD_OUTPUT oldforward=$OLD_FORWARD "date=$DATE" initialize=$INITIALIZE >> $LOGFILE
 
-# restart iptables if table dows not exit
+# restart iptables if table does not exist
 if [ $NEED_RESTART ]; then
 	if [ $TABLES ]; then
-		if [ ! -d "/etc/apf" ];then
-		    /sbin/service  restart
+		if [ -d "/etc/apf" ];then
+			/sbin/service apf restart
 		fi
-	else
+	else    
 		if [ ! -d "/etc/apf" ];then
-		    /sbin/service restart
+			/sbin/service iptables restart
 		fi
 	fi
 fi
