@@ -111,6 +111,8 @@ systemctl stop mariadb.service &>/dev/null || :
 /bin/ln -s /home/mysql/ /var/lib/mysql
 /usr/bin/mysql_install_db >/dev/null 2>&1
 /bin/chown mysql:mysql -Rf /home/mysql
+touch /var/log/mariadb.log
+/bin/chown mysql:mysql /var/log/mariadb.log
 
 ## Restart all network services:
 
@@ -127,19 +129,19 @@ IRX="8.8.8.8"
 NETWORK=`ping -q -w 1 -c 1 $IRX > /dev/null && echo ok || echo error`
 if [ "$NETWORK" == "ok" ]; then
   #echo "Network OK";
-  systemctl restart network.service &>/dev/null || :
-  systemctl restart httpd.service &>/dev/null || :
-  systemctl restart admserv.service &>/dev/null || :
-  systemctl restart xinetd.service &>/dev/null || :
-  systemctl restart sendmail.service &>/dev/null || :
-  systemctl restart mariadb.service &>/dev/null || :
-  systemctl restart named-chroot.service &>/dev/null || :
-  systemctl restart saslauthd.service &>/dev/null || :
+  systemctl restart network.service
+  systemctl restart httpd.service
+  systemctl restart admserv.service
+  systemctl restart xinetd.service
+  systemctl restart sendmail.service
+  systemctl restart mariadb.service
+  systemctl restart named-chroot.service
+  systemctl restart saslauthd.service
 
 else
   #echo "Network NOT OK";
-  systemctl restart network.service &>/dev/null || :
-  systemctl restart mariadb.service &>/dev/null || :
+  systemctl restart network.service
+  systemctl restart mariadb.service
 fi
 
 # Create a file in /tmp to show us that we did run:

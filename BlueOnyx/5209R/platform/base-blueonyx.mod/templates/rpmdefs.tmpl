@@ -113,32 +113,10 @@ if [ ! -S /usr/sausalito/cced.socket ]; then
   /usr/sausalito/sbin/cced.init restart &>/dev/null || :
 fi
 
-### Fix fucking RH Firewall shit:
-# Stop and disable firewalld:
-systemctl stop firewalld.service
-systemctl disable firewalld.service
-# Turn module unload off for iptables:
-/bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
-# Enable and start iptables:
-systemctl enable iptables.service
-systemctl start iptables.service
-# Flush previous iptables rules and load our standard rules:
-/etc/cron.hourly/log_traffic
-
 if [ $1 -eq 1 ]; then
   # ONLY run this on first install, NOT upgrades!
-
   # This creates the persistend network rules with ethX style interfaces:
   /usr/sausalito/sbin/write_udev.pl > /etc/udev/rules.d/70-persistent-net.rules
-
-  ## Handle Quota:
-  #QUOTASTATUS=`/sbin/quotaon -pa|wc -l`
-  #if [ "$QUOTASTATUS" == "2" ]; then
-  #  # Quota is good!
-  #else
-  #
-  #fi
-
 fi
 
 if [ $1 -eq 1 ]; then
@@ -364,6 +342,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141223-BX10
+- More fixes.
 
 * Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141223-BX09
 - More fixes.
