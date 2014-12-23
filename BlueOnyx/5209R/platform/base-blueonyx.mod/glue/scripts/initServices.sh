@@ -113,22 +113,34 @@ systemctl stop mariadb.service &>/dev/null || :
 /bin/chown mysql:mysql -Rf /home/mysql
 
 ## Restart all network services:
-# Ping target: Gatway:
-#IRX=`ip r | grep default | cut -d ' ' -f 3`
+
+GATEWAY=`ip r | grep default | cut -d ' ' -f 3`
+GATEWAYPRESENT=`ip r | grep default | cut -d ' ' -f 3|wc -l`
+
+if [ "$GATEWAYPRESENT" == "1" ]; then
+  # IF we have a gateway already, then we stored it:
+  echo "GATEWAY=$GATEWAY" >> /etc/sysconfig/network
+fi
+
 # Ping Target: Google DNS:
 IRX="8.8.8.8"
 NETWORK=`ping -q -w 1 -c 1 $IRX > /dev/null && echo ok || echo error`
 if [ "$NETWORK" == "ok" ]; then
   #echo "Network OK";
-  hupservices="httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
+  systemctl restart network.service &>/dev/null || :
+  systemctl restart httpd.service &>/dev/null || :
+  systemctl restart admserv.service &>/dev/null || :
+  systemctl restart xinetd.service &>/dev/null || :
+  systemctl restart sendmail.service &>/dev/null || :
+  systemctl restart mariadb.service &>/dev/null || :
+  systemctl restart named-chroot.service &>/dev/null || :
+  systemctl restart saslauthd.service &>/dev/null || :
+
 else
   #echo "Network NOT OK";
-  hupservices="network mariadb"
+  systemctl restart network.service &>/dev/null || :
+  systemctl restart mariadb.service &>/dev/null || :
 fi
-
-for service in $hupservices; do
-  systemctl restart $hupservices.service > /dev/null 2>&1
-done
 
 # Create a file in /tmp to show us that we did run:
 touch /tmp/initServices.sh.hasrun
