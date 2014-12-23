@@ -3,9 +3,8 @@
 # Disable some services that do not need to be on
 services="smartd autofs irqbalance netfs microcode_ctl mdchk kudzu iscsid iscsi sysstat ip6tables auditd kdump lldpad fcoe atd messagebus NetworkManager lldpad fcoe cups netfs portreserve firewalld"
 for service in $services; do
-  /sbin/chkconfig $service off >/dev/null 2>&1
-  /sbin/chkconfig --del $service >/dev/null 2>&1
-  /usr/bin/systemctl disable $service.service > /dev/null 2>&1
+  systemctl stop $service.service
+  systemctl disable $service.service
 done
 
 # Remount /tmp to be non-executable!
@@ -102,8 +101,16 @@ LIB=/usr/sausalito/lib
 onservices="cced.init httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
 for service in $services; do
   /sbin/chkconfig $onservices on > /dev/null 2>&1
-  /usr/bin/systemctl enable $service.service > /dev/null 2>&1
+  systemctl enable $service.service > /dev/null 2>&1
 done
+
+# Change MySQL database store to /home
+systemctl stop mariadb.service &>/dev/null || :
+/bin/rm -Rf /var/lib/mysql >/dev/null 2>&1
+/bin/mkdir -p /home/mysql
+/bin/ln -s /home/mysql/ /var/lib/mysql
+/usr/bin/mysql_install_db >/dev/null 2>&1
+/bin/chown mysql:mysql -Rf /home/mysql
 
 ## Restart all network services:
 # Ping target: Gatway:
@@ -113,14 +120,14 @@ IRX="8.8.8.8"
 NETWORK=`ping -q -w 1 -c 1 $IRX > /dev/null && echo ok || echo error`
 if [ "$NETWORK" == "ok" ]; then
   #echo "Network OK";
-  hupservices="cced.init httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
+  hupservices="httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
 else
   #echo "Network NOT OK";
-  hupservices="cced.init"
+  hupservices="network mariadb"
 fi
 
-for service in $services; do
-  /sbin/service $hupservices restart > /dev/null 2>&1
+for service in $hupservices; do
+  systemctl restart $hupservices.service > /dev/null 2>&1
 done
 
 # Create a file in /tmp to show us that we did run:

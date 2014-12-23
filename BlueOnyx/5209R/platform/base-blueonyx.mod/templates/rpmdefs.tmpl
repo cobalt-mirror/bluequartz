@@ -104,19 +104,28 @@ information for [VENDOR]-[SERVICE].
 # Handle SELinux:
 /bin/sed -i -e 's@^SELINUX=enforcing@SELINUX=disabled@' /etc/selinux/config
 
+# Enable CCEd:
+systemctl enable cced.init.service &>/dev/null || :
+
+# Check if CCEd is up:
+if [ ! -S /usr/sausalito/cced.socket ]; then
+  # Not up - restarting:
+  /usr/sausalito/sbin/cced.init restart &>/dev/null || :
+fi
+
 if [ $1 -eq 1 ]; then
   # ONLY run this on first install, NOT upgrades!
 
   # This creates the persistend network rules with ethX style interfaces:
   /usr/sausalito/sbin/write_udev.pl > /etc/udev/rules.d/70-persistent-net.rules
 
-  # Handle Quota:
-  QUOTASTATUS=`/sbin/quotaon -pa|wc -l`
-  if [ "$QUOTASTATUS" == "2" ]; then
-    # Quota is good!
-  else
-
-  fi
+  ## Handle Quota:
+  #QUOTASTATUS=`/sbin/quotaon -pa|wc -l`
+  #if [ "$QUOTASTATUS" == "2" ]; then
+  #  # Quota is good!
+  #else
+  #
+  #fi
 
 fi
 
@@ -343,6 +352,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141223-BX08
+- More fixes.
 
 * Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141222-BX07
 - Various fixes.
