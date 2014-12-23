@@ -192,9 +192,6 @@ fi
 - split-logs fix to prevent partial-day logs from being added
   more than once to site logs
 
-* Fri Oct 10 2001 Will DeHaan <null@sun.com> 1.0-9
-- separated start from restart in iptables init script
-
 * Tue Aug 7 2001 Will DeHaan <null@sun.com> 1.0-5
 - added distributed-site paths
 
@@ -221,8 +218,6 @@ fi
 
 %install
 make PREFIX=$RPM_BUILD_ROOT install
-
-%post
 
 %clean
 rm -rf $RPM_BUILD_ROOT
