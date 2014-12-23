@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX27%{?dist}
+Release: 26BX28%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -17,9 +17,7 @@ generating and viewing reports.
 
 %post
 
-PRODUCT=$(shell if [ `uname -m` = "x86_64" ]; then if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then echo -n "5209R"; else echo -n "5208R"; fi else echo -n "5207R"; fi)
-
-if [ $(PRODUCT) = "5209R" ]; then
+if [ -f /bin/systemctl ]; then
   # Check if CCEd is up:
   if [ ! -S /usr/sausalito/cced.socket ]; then
     # Not up - restarting:
@@ -33,13 +31,16 @@ if [ $(PRODUCT) = "5209R" ]; then
   # Turn module unload off for iptables:
   /bin/sed -i -e 's@^IPTABLES_MODULES_UNLOAD="yes"@IPTABLES_MODULES_UNLOAD="no"@' /etc/sysconfig/iptables-config
   # Enable and start iptables:
-  systemctl enable iptables.service
-  systemctl start iptables.service
+  /sbin/chkconfig iptables on
+  /sbin/service iptables restart &>/dev/null || :
   # Flush previous iptables rules and load our standard rules:
   /etc/cron.hourly/log_traffic
 fi
 
 %changelog
+
+* Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX28
+- More post-install fixes.
 
 * Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX27
 - Fixes in log_traffic.
