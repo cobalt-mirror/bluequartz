@@ -820,11 +820,9 @@ nuclear facility.';
 			    $is_aws = "0";
 			}
 
-			if ($is_aws == "0") {
-				$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
-				$gw->setOptional(true);
-				$step_3->addHtmlComponent($gw, $factory->getLabel("gatewayField"), $defaultPage);
-			}
+			$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
+			$gw->setOptional(true);
+			$step_3->addHtmlComponent($gw, $factory->getLabel("gatewayField"), $defaultPage);
 
 			// real interfaces
 			// ascii sorted, this may be a problem if there are more than 10 interfaces
@@ -1432,8 +1430,8 @@ nuclear facility.';
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
