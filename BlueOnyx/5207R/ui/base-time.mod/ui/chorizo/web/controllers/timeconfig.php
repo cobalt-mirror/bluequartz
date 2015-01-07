@@ -164,7 +164,7 @@ class Timeconfig extends MX_Controller {
 			if ($date and ($date != $attributes['oldTime'])) {
 		        $time = $date;
 			}
-			if (!$time) {
+			if (!isset($time)) {
 			    $time = time();
 			}
 
