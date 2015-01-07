@@ -42,8 +42,7 @@ for my $device (@devices)
     my $nm = '';
     my $mac = '';
     my $data = join('', `$Network::IFCONFIG $device`);
-    if ($data =~ m/^$device/s) 
-    {
+    if ($data =~ m/^$device/s) {
 
         # Format EL5/EL6:
         # venet0:0  Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
@@ -247,8 +246,8 @@ sub onboot
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

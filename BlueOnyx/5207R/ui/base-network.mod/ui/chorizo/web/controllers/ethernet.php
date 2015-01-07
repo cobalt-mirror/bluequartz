@@ -458,8 +458,30 @@ class Ethernet extends MX_Controller {
 		  $default_page
 		);
 
-		if (($product->isRaq()) && ($is_aws == "0")) {
-			$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $fieldprot);
+		if ($product->isRaq()) {
+			if ($is_aws == "1") {
+				if (!isset($system["gateway"])) {
+					// AWS and Gateway not defined. Make it editable:
+					$gwFprot = 'rw';
+				}
+				else {
+					if ($system["gateway"] == "") {
+						// AWS and Gateway not set. Make it editable:
+						$gwFprot = 'rw';
+					}
+					else {
+						// AWS, Gateway is set and not empty. Show it.
+						// But do not allow to edit it:
+						$gwFprot = 'r';
+					}
+				}
+			}
+			else {
+				// Not AWS. Allow edits if they are allowed for any of
+				// the other network related fields:
+				$gwFprot = $fieldprot;
+			}
+			$gw = $factory->getIpAddress("gatewayField", $system["gateway"], $gwFprot);
 			$gw->setOptional(true);
 			$block->addFormField($gw, $factory->getLabel("gatewayField"), $default_page);
 		}

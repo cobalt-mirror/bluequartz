@@ -102,6 +102,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Wed Jan 07 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX10
+- If /etc/sysconfig/network doesn't contain a Gateway, or if CODBs System
+  object doesn't yet contain one, we get an undefined index in a GUI page.
+  Modified ui/chorizo/web/controllers/ethernet.php to fix this.
+- Some minor clean up in constructors.
+
 * Fri Dec 19 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX09
 - Various fixes in ui/chorizo/web/controllers/aliasModify.php to get around
   incorrect error handling and reporting and undefined indexes.
