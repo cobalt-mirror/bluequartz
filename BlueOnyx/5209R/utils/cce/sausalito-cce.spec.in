@@ -1,6 +1,6 @@
 # $Id: sausalito-cce.spec.in
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 
@@ -209,6 +209,10 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Thu Jan 08 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX23
+- Modified client/httpd/blueonyx.conf according to the Apache upgrade
+  guide at http://httpd.apache.org/docs/2.4/upgrading.html
 
 * Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX22
 - On fresh installs CCEd.init isn't auto-stated. Juggled post-install

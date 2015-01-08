@@ -1,6 +1,6 @@
 # $Id: Makefile
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # Top level Makefile for CCE
@@ -19,7 +19,7 @@ CCE_V_MAJ=0
 CCE_V_MIN=99
 CCE_V_PATCH=1
 CCE_VERSION=$(CCE_V_MAJ).$(CCE_V_MIN).$(CCE_V_PATCH)
-RPMRELEASE=1BX22
+RPMRELEASE=1BX23
 
 DIRS = common scalar conf codb ed cscp sessionmgr server client pam pam_abl ccewrap pperl
 
