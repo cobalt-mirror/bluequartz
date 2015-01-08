@@ -213,6 +213,7 @@ fi
 * Thu Jan 08 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX23
 - Modified client/httpd/blueonyx.conf according to the Apache upgrade
   guide at http://httpd.apache.org/docs/2.4/upgrading.html
+- Added Directory containers for GUI images as suggested by Dirk Estenfeld.
 
 * Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX22
 - On fresh installs CCEd.init isn't auto-stated. Juggled post-install
