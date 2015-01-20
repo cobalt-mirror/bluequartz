@@ -56,6 +56,8 @@ install: all
 	@echo Installed $(DAEMON) in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cced.init $(CCE_SBINDIR)
 	@echo Installed cced.init in $(CCE_SBINDIR)
+	@$(INSTALL) $(INST_BINFLAGS) start_cced.sh $(CCE_SBINDIR)
+	@echo Installed start_cced.sh in $(CCE_SBINDIR)
 	@$(INSTALL) $(INST_BINFLAGS) cced.init.service $(SYSTEMD_INITDIR)
 	@echo Installed cced.init.service in $(SYSTEMD_INITDIR)
 	@$(INSTALL) $(INST_BINFLAGS) $(CLIENT) $(CCE_BINDIR)

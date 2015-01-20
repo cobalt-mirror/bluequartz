@@ -4,10 +4,10 @@ After=network.target remote-fs.target nss-lookup.target
 Before=admserv.service netfs.service sendmail.service httpd.service sshd.service
 
 [Service]
-Type=forking
-
-# Config file - if we ever want one it would go there:
-EnvironmentFile=-/etc/sysconfig/cced
+# We do NOT want CCEd to be started in the background in parallel. When it starts,
+# all other processes that need it have to wait for CCEd to finish. Hence we use
+# the Systemd type 'oneshot' here:
+Type=oneshot
 
 # Fun and games. Systemd doesn't support any non-standard parameters. Just the usual 
 # stop, start, reload, condrestart and that's it. Yet they plan to bloat Systemd with
@@ -16,9 +16,13 @@ EnvironmentFile=-/etc/sysconfig/cced
 # can call /usr/sausalito/sbin/cced.init and issue a rehash or the other non-standard
 # parameters that we might need:
 
-ExecStart=/usr/sausalito/sbin/cced.init start
+ExecStart=/usr/sausalito/sbin/start_cced.sh
 ExecReload=/usr/sausalito/sbin/cced.init reload
 ExecStop=/usr/sausalito/sbin/cced.init stop
+RemainAfterExit=yes
+
+# Config file - if we ever want one it would go there:
+EnvironmentFile=-/etc/sysconfig/cced
 
 # We send a SIGTERM signal right after the ExecStop, which will kill CCEd for sure. 
 KillSignal=SIGTERM
@@ -26,3 +30,4 @@ PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target
+Alias=cced.init
