@@ -98,57 +98,79 @@ if ($whatami eq "handler") {
     # Event is create or modify:
     if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
-	# Edit the vhost container or die!:
-	&debug_msg("Editing Vhost $vsite->{'name'} through php_vsite_handler.pl \n");
-	if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
-	    &debug_msg("Failed to edit Vhost $vsite->{'name'}  through php_vsite_handler.pl \n");
-	    $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
-	    exit(1);
-	}
+    # Edit the vhost container or die!:
+    &debug_msg("Editing Vhost $vsite->{'name'} through php_vsite_handler.pl \n");
+    if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
+        &debug_msg("Failed to edit Vhost $vsite->{'name'}  through php_vsite_handler.pl \n");
+        $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
+        exit(1);
+    }
 
-	# Handle custom php.ini for suPHP enabled sites:
-	$basedir_vsite = $vsite->{"basedir"};
-	$custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
-	
-	if ($vsite_php->{'suPHP_enabled'} == "1") {
+    # Handle custom php.ini for suPHP enabled sites:
+    $basedir_vsite = $vsite->{"basedir"};
+    $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
+    
+    if ($vsite_php->{'suPHP_enabled'} == "1") {
 
-		# If there is already a custom php.ini, delete it first:
-		if (-f $custom_php_ini_path) {
-		    &debug_msg("Deleting old $custom_php_ini_path through php_vsite_handler.pl \n");
-		    system("/usr/bin/chattr -i $custom_php_ini_path");
-		    system("/bin/rm -f $custom_php_ini_path");
-		}
+        # If there is already a custom php.ini, delete it first:
+        if (-f $custom_php_ini_path) {
+            &debug_msg("Deleting old $custom_php_ini_path through php_vsite_handler.pl \n");
+            system("/usr/bin/chattr -i $custom_php_ini_path");
+            system("/bin/rm -f $custom_php_ini_path");
+        }
 
-		# Copy main php.ini (thirdparty one or from distribution) to vsite's basedir:
-		system("/bin/cp $php_ini $custom_php_ini_path");
-		system("/bin/chmod 644 $custom_php_ini_path");
-		system("/bin/chown root:root $custom_php_ini_path");
+        # Copy main php.ini (thirdparty one or from distribution) to vsite's basedir:
+        system("/bin/cp $php_ini $custom_php_ini_path");
+        system("/bin/chmod 644 $custom_php_ini_path");
+        system("/bin/chown root:root $custom_php_ini_path");
 
-		# Run a search and replace through Vsite php.ini to update it with the PHP
-		# settings configured for this site:
-		&debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl \n");
-                &edit_php_ini;
+        # Run a search and replace through Vsite php.ini to update it with the PHP
+        # settings configured for this site:
+        &debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl \n");
+        &edit_php_ini;
 
-		# Protect Vsite php.ini against modification.
-		# As it's root owned and 644, this may be a bit redundant:
-		system("/usr/bin/chattr +i $custom_php_ini_path");
-	    
-	}
-	else {
-	    # suPHP disabled. Delete custom php.ini:
-	    $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
-	    if (-f $custom_php_ini_path) {
-		system("/usr/bin/chattr -i $custom_php_ini_path");
-		system("/bin/rm -f $custom_php_ini_path");
-		&debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
-	    }
-	}
+        # Protect Vsite php.ini against modification.
+        # As it's root owned and 644, this may be a bit redundant:
+        system("/usr/bin/chattr +i $custom_php_ini_path");
 
-	# prefered_siteAdmin toggles chowning of /web ownership:
-	&change_owner;
-	
-	# Restart Apache:
-	&restart_apache;
+        #
+        ### Find out if this Vsite has Subdomains and if so, give them a php.ini as well:
+        #
+        @SUBDOMAINS = $cce->find('Subdomains', { 'group' => $vsite->{'name'} });
+        foreach $subOID ( @SUBDOMAINS ) {
+            ($ok, $subdomvals) = $cce->get($subOID);
+            $sub_ini = $subdomvals->{'webpath'} . "/php.ini";
+            if ((-f $custom_php_ini_path) && (!-l $sub_ini)) {
+                system("ln -s $custom_php_ini_path $sub_ini");
+            }
+        }
+    }
+    else {
+        # suPHP disabled. Delete custom php.ini:
+        $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
+        if (-f $custom_php_ini_path) {
+        system("/usr/bin/chattr -i $custom_php_ini_path");
+        system("/bin/rm -f $custom_php_ini_path");
+        &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
+        }
+        #
+        ### Find out if this Vsite has Subdomains and if so, remove their a php.ini:
+        #
+        @SUBDOMAINS = $cce->find('Subdomains', { 'group' => $vsite->{'name'} });
+        foreach $subOID ( @SUBDOMAINS ) {
+            ($ok, $subdomvals) = $cce->get($subOID);
+            $sub_ini = $subdomvals->{'webpath'} . "/php.ini";
+            if ((!-f $custom_php_ini_path) && (-l $sub_ini)) {
+                system("rm -f $custom_php_ini_path $sub_ini");
+            }
+        }
+    }
+
+    # prefered_siteAdmin toggles chowning of /web ownership:
+    &change_owner;
+    
+    # Restart Apache:
+    &restart_apache;
     }
 }
 
@@ -170,89 +192,89 @@ sub edit_vhost {
 
         if ($vsite_php->{"enabled"} eq "1") {
 
-	    # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
-	    @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
-	    @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
-	    @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+        # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+        @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+        @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+        @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
         
-	    # Remove duplicates:
-	    foreach my $var ( @smi_temp_joined ){
-    		if ( ! grep( /$var/, @safe_mode_include_dir ) ){
-        	    push(@safe_mode_include_dir, $var );
-    		}
-	    }
-	    $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+        # Remove duplicates:
+        foreach my $var ( @smi_temp_joined ){
+            if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+                push(@safe_mode_include_dir, $var );
+            }
+        }
+        $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
 
-	    # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
-	    @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
-	    @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
-	    @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+        # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+        @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+        @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+        @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
         
-	    # Remove duplicates:
-	    foreach my $var ( @smaev_temp_joined ){
-    		if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
-        	    push(@safe_mode_allowed_env_vars, $var );
-    		}
-	    }
-	    $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+        # Remove duplicates:
+        foreach my $var ( @smaev_temp_joined ){
+            if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+                push(@safe_mode_allowed_env_vars, $var );
+            }
+        }
+        $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
-	    if ($legacy_php == "1") {
-		    # These options only apply to PHP versions prior to PHP-5.3:
-		    if ($vsite_php_settings->{"safe_mode"} ne "") {
-			$script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
-		    }
-		    if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
-			$script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-		    }
-		    if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
-			$script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
-		    }
-		    if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
-			$script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
-		    }
+        if ($legacy_php == "1") {
+            # These options only apply to PHP versions prior to PHP-5.3:
+            if ($vsite_php_settings->{"safe_mode"} ne "") {
+            $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+            $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+            }
+            if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+            $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+            $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+            }
 
-		    if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
-			$script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
-		    }
-		    if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
-			$script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
-		    }
-	    }
+            if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+            $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+            $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+            }
+        }
 
-	    if ($vsite_php_settings->{"register_globals"} ne "") {
-		$script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
-	        $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"allow_url_include"} ne "") {
-		$script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
-	    }
+        if ($vsite_php_settings->{"register_globals"} ne "") {
+        $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+            $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"allow_url_include"} ne "") {
+        $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+        }
 
-	    if ($vsite_php_settings->{"open_basedir"} ne "") {
-		$script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
-	    }
+        if ($vsite_php_settings->{"open_basedir"} ne "") {
+        $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
+        }
 
-	    if ($vsite_php_settings->{"post_max_size"} ne "") {
-		$script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
-		$script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"max_execution_time"} ne "") {
-		$script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"max_input_time"} ne "") {
-		$script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
-	    }
-	    if ($vsite_php_settings->{"memory_limit"} ne "") {
-		$script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
-	    }
+        if ($vsite_php_settings->{"post_max_size"} ne "") {
+        $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+        $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_execution_time"} ne "") {
+        $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_input_time"} ne "") {
+        $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"memory_limit"} ne "") {
+        $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+        }
 
-	    # Email related:
-	    $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
-	    $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
-	    $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+        # Email related:
+        $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
+        $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+        $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
 
         }
 
@@ -322,14 +344,14 @@ sub change_owner {
     $new_GID = $vsite->{"name"};
 
     if (($new_owner ne "") && ($webdir ne "") && ($vsite_basedir ne "")) {
-	# Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
-	system("/bin/chown -R $new_owner:$new_GID $webdir");
-	# Also chown the basedir of the site to this users UID, but don't do it recursively:
-	system("/bin/chown $new_owner:$new_GID $vsite_basedir");
-	# If we have subdomains under /vhosts, we need to chown them as well:
-	if (-d "$vsite_basedir/vhosts") {
-	    system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
-	}
+    # Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
+    system("/bin/chown -R $new_owner:$new_GID $webdir");
+    # Also chown the basedir of the site to this users UID, but don't do it recursively:
+    system("/bin/chown $new_owner:$new_GID $vsite_basedir");
+    # If we have subdomains under /vhosts, we need to chown them as well:
+    if (-d "$vsite_basedir/vhosts") {
+        system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
+    }
     }
 }
 
@@ -425,7 +447,7 @@ sub edit_php_ini {
 
     # Error handling:
     unless ($ok) {
-	&debug_msg("Error while editing $custom_php_ini_path through php_vsite_handler.pl \n");
+    &debug_msg("Error while editing $custom_php_ini_path through php_vsite_handler.pl \n");
         $cce->bye('FAIL', "Error while editing $custom_php_ini_path!");
         exit(1);
     }
@@ -451,14 +473,14 @@ sub open_basedir_handling {
     # We need to remove any site path references from open_basedir, because they could be from the wrong site,
     # like during a cmuImport, when it inherited the path it had on the server it was exported from.
     foreach $entry (@vsite_php_settings_temp) {
-	$entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
-	if ($entry) {
-	    push(@vsite_php_settings_new, $entry);
-	    &debug_msg("Pushing $entry \n");
-	}
-	else {
-	    &debug_msg("Not pushing $entry \n");
-	}
+    $entry =~ s/\/home\/.sites\/(.*)\/(.*)\///;
+    if ($entry) {
+        push(@vsite_php_settings_new, $entry);
+        &debug_msg("Pushing $entry \n");
+    }
+    else {
+        &debug_msg("Not pushing $entry \n");
+    }
     }
 
     # Assemble the output:
@@ -481,8 +503,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
