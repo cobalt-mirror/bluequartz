@@ -19,7 +19,7 @@
     writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
     readacl="ruleAll" > 
 
-  <PROPERTY name="hostname" type="alphanum" default=""
+  <PROPERTY name="hostname" type="alphanum_plus" default=""
     writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />
   <PROPERTY name="webpath" type="scalar" default=""
     writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)" />

@@ -120,6 +120,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jan 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
+- Modified glue/schemas/subdomainsVsite.schema to allow hostnames for
+  subdomains of type alphanum_plus instead of just alphanum.
+- Modified glue/handlers/subdomain-new.pl to create the symbolic link
+  in the subdomains web path to the Vsite's php.ini if suPHP is active.
+
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
 - Chorizo GUI added, old GUI disabled.
 - Added improved French translation as provided my Meaulnes Legler.
