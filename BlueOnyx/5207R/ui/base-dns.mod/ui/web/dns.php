@@ -61,7 +61,7 @@ $Ui->IpAddressList( "zone_xfer_ipaddr", array( "Optional" => 'loud') );
 
 $Ui->Divider( "rate_limits" );
 $Ui->Boolean( "rate_limits_enabled" );
-$Ui->Integer( "responses_per_second", 1, 1024);
+$Ui->Integer( "responses_per_second", 1, 1000);
 $Ui->Integer( "window", 1, 128);
 
 $Ui->Divider( "dns_logging" );

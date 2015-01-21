@@ -318,7 +318,7 @@ class Dnsmanager extends MX_Controller {
 			"advanced"
 		);
 
-		$responses_per_second = $factory->getInteger("responses_per_second", $dns["responses_per_second"], 1, "1024");
+		$responses_per_second = $factory->getInteger("responses_per_second", $dns["responses_per_second"], 1, "1000");
 		$responses_per_second->setWidth(4);
 		$responses_per_second->showBounds(1);
 		$block->addFormField(
