@@ -158,15 +158,18 @@ class UserAdd extends MX_Controller {
 			}
 
 			// Handle FTP access clauses:
-			if (!isset($attributes['ftpForNonSiteAdmins'])) {
-		    	$attributes['hasNoFTPaccess'] = "1";
+			if (!isset($ftpnonadmin)) {
+		    	$ftpnonadmin = "0";
+			}
+			if ($ftpnonadmin == "0") {
+				$attributes['ftpDisabled'] = "1";
 			}
 			else {
-			    $attributes['hasNoFTPaccess'] = "0";
+				$attributes['ftpDisabled'] = "0";
 			}
 
 			if ($attributes['siteAdministrator'] == "1") {
-			    $attributes['hasNoFTPaccess'] = "0";
+			    $attributes['ftpDisabled'] = "0";
 			}
 
 			// If a prefix is given, prepend it to the userName:
@@ -193,7 +196,7 @@ class UserAdd extends MX_Controller {
 			                "fullName" =>$attributes['fullNameField'], 
 			                "password" => $attributes['passwordField'], 
 			        		"emailDisabled" => $attributes['emailDisabled'],
-			        		"ftpDisabled" => $attributes['hasNoFTPaccess'],
+			        		"ftpDisabled" => $attributes['ftpDisabled'],
 			                "localePreference" => "browser", 
 			                "stylePreference" => "BlueOnyx", 
 			                "volume" => $attributes['volume'],
@@ -494,8 +497,8 @@ class UserAdd extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

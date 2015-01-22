@@ -190,19 +190,21 @@ class UserMod extends MX_Controller {
 			}
 
 			// Handle FTP access clauses:
-			if (!isset($attributes['ftpForNonSiteAdmins'])) {
-				$hasNoFTPaccess = "1";
+			if (!isset($ftpnonadmin)) {
+		    	$ftpnonadmin = "0";
+			}
+			if ($ftpnonadmin == "0") {
+				$settings['ftpDisabled'] = "1";
 			}
 			else {
-				$hasNoFTPaccess = "0";
+				$settings['ftpDisabled'] = "0";
 			}
 
 			if ($attributes['siteAdministrator'] == "1") {
-				$hasNoFTPaccess = "0";
+			    $settings['ftpDisabled'] = "0";
 			}
 
 			$settings['emailDisabled'] = $attributes['emailDisabled'];
-			$settings['ftpDisabled'] = $hasNoFTPaccess;
 
 			// Password change?
 			if (($attributes['passwordField'] == "") && ($attributes['_passwordField_repeat'] == "")) {
@@ -483,8 +485,8 @@ class UserMod extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
