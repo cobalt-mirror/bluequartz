@@ -878,6 +878,45 @@ class PagedBlock extends Block {
       }
     }
 
+    //-- Start: Errors
+    // This modification shows the errors on all tabs (once) instead of showing
+    // it just on the tab where it happened. Which was confusing, because the
+    // error might have been on an inactive tab. So this is better. Also works
+    // correctly if the tabs are unified into one page and then shows the error
+    // once.
+    //
+    // Show BXErrors:
+    if ($this->getDisplayErrors() == TRUE) {
+      if (is_array($my_BXErrors)) {
+        if (count($my_BXErrors) > 0) {
+          foreach ($my_BXErrors as $key => $value) {
+            if (!is_object($value)) {
+              if (is_array($value)) {
+                // Grrr .... got another array inside the array? Deal with it:
+                foreach ($value as $newkey => $newvalue) {
+                  $result_head .= $newvalue;
+                }
+              }
+              else {
+                // No separate array insite the error array? Out with it:
+                $result_head .= $value;
+              }
+            }
+            else {
+              // Error is an object? Nice. Deal with that, too:
+              if (is_array($value->vars)) {
+                $result_head .= ErrorMessage($i18n->get($value->message, "", $value->vars)) . "<br>";
+              }
+              else {
+                $result_head .= ErrorMessage($i18n->get($value->message)) . "<br>";
+              }
+            }
+          }     
+        }
+      }
+    }
+    //-- Stop: Errors
+
     // Dump in the form fields that are vsible on this page or tab (tabbing is done later):
 
     // is this page visited before?
@@ -1006,6 +1045,10 @@ class PagedBlock extends Block {
       $vertical_stretcher_close = '';
     }
 
+    //--
+    // Old location of the Error display.
+    //--
+
     //for($i = 0; $i < count($ms_FormFields['PIDS']); $i++) {
     for($i = 0; $i < count($seenTabs); $i++) { // <-- Keeps better track of the order of tabs than $ms_FormFields['PIDS']!!!
       $currentTab = $seenTabs[$i];
@@ -1018,39 +1061,6 @@ class PagedBlock extends Block {
         $result .= '                  <div id="tabs-' . $z . '" class="block">' . "\n";
         $result .= $vertical_stretcher_open;
 
-
-        // Show BXErrors:
-        if (($this->getDisplayErrors() == TRUE) && ($i == "0")) {
-          if (is_array($my_BXErrors)) {
-            $result .= '<fieldset class="label_top top">' . "\n";
-            if (count($my_BXErrors) > 0) {
-              foreach ($my_BXErrors as $key => $value) {
-                if (!is_object($value)) {
-                  if (is_array($value)) {
-                    // Grrr .... got another array inside the array? Deal with it:
-                    foreach ($value as $newkey => $newvalue) {
-                      $result .= $newvalue;
-                    }
-                  }
-                  else {
-                    // No separate array insite the error array? Out with it:
-                    $result .= $value;
-                  }
-                }
-                else {
-                  // Error is an object? Nice. Deal with that, too:
-                  if (is_array($value->vars)) {
-                    $result .= ErrorMessage($i18n->get($value->message, "", $value->vars)) . "<br>";
-                  }
-                  else {
-                    $result .= ErrorMessage($i18n->get($value->message)) . "<br>";
-                  }
-                }
-              }     
-            }
-            $result .= '</fieldset>' . "\n";
-          }
-        }
 
         // Check if the FormField belongs into this tab. If so, print it:
         foreach ($ms_FormFields['FFID'] as $IDnum => $FFvsTab) {
@@ -1165,8 +1175,8 @@ class PagedBlock extends Block {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
