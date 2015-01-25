@@ -33,6 +33,13 @@ sub find_site_of_user {
         ($ok, $user) = $cce->get($vsoid);
         $usite = $user->{site};
 
+        # Find out if the user is systemAdministrator:
+        if ($user->{systemAdministrator} eq "1") {
+            # He is. Then we exit here:
+            $cce->bye('SUCCESS');
+            exit(0);
+        }
+
         # Is the user a siteAdmin?
         $isSiteAdmin = "0";
         if ($user->{capabilities} =~ /siteAdmin/) {
