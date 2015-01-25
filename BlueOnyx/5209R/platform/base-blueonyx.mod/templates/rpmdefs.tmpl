@@ -79,6 +79,7 @@ information for [VENDOR]-[SERVICE].
 /var/www/html/*
 %dir /usr/share/doc/blueonyx-release-520XR
 /usr/share/doc/blueonyx-release-520XR/*
+/usr/lib/systemd/system/blueonyx.service
 <end glue>
 
 <begin ui>
@@ -174,7 +175,8 @@ else
   echo 'MECH=pam' > /etc/sysconfig/saslauthd
 fi
 /usr/sausalito/constructor/base/email/syncEmailService.pl
-/sbin/chkconfig --add blueonyx
+#/sbin/chkconfig --add blueonyx
+systemctl enable blueonyx.service > /dev/null 2>&1
 
 # install pgp key
 #/bin/rpm -q gpg-pubkey-f888eeac-47462ece > /dev/null 2>&1
@@ -342,6 +344,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Sat Jan 24 2015 Michael Stauber <mstauber@solarspeed.net> 4.20150124-BX11
+- More fixes. Added unit file for BlueOnyx and sbin/bx_runonce.sh. 
 
 * Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 4.20141223-BX10
 - More fixes.

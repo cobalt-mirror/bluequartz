@@ -111,8 +111,10 @@ systemctl stop mariadb.service &>/dev/null || :
 /bin/ln -s /home/mysql/ /var/lib/mysql
 /usr/bin/mysql_install_db >/dev/null 2>&1
 /bin/chown mysql:mysql -Rf /home/mysql
-touch /var/log/mariadb.log
-/bin/chown mysql:mysql /var/log/mariadb.log
+
+# Fix MariaDB logfile:
+touch /var/log/mariadb/mariadb.log
+chown mysql:mysql /var/log/mariadb/mariadb.log
 
 ## Restart all network services:
 
