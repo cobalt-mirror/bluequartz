@@ -100,7 +100,7 @@ LIB=/usr/sausalito/lib
 ## Enable all needed services:
 onservices="cced.init httpd admserv xinetd sendmail mariadb named-chroot network saslauthd"
 for service in $services; do
-  /sbin/chkconfig $onservices on > /dev/null 2>&1
+  #/sbin/chkconfig $onservices on > /dev/null 2>&1
   systemctl enable $service.service > /dev/null 2>&1
 done
 

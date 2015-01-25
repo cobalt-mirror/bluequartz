@@ -1,7 +1,7 @@
 [Unit]
 Description=BlueOnyx - Setup Assistent
-After=network.target remote-fs.target nss-lookup.target cced.init.service
-Before=admserv.service netfs.service sendmail.service httpd.service sshd.service
+After=remote-fs.target nss-lookup.target 
+Before=network.target cced.init.service admserv.service netfs.service sendmail.service httpd.service sshd.service
 
 [Service]
 Type=oneshot
