@@ -137,6 +137,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX15
+- Modified glue/handlers/php_handler.pl to use either service or
+  systemctl. But systemctl must be run with --no-block for this to work.
+
 * Wed Jan 21 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX14
 - Modified glue/handlers/php_vsite_handler.pl to create/remove a symbolic
   link in Subdomain directories to the Vsite's php.ini when suPHP is
