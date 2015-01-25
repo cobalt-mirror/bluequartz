@@ -57,16 +57,24 @@ sub service_run_init
 	}
 	if ($service eq 'crond') {
 		`killall -9 crond`;
-		`/sbin/service $service $arg`;
+		# Restarts Service:
+		if (-f "/usr/bin/systemctl") { 
+			# Got Systemd: 
+			system("systemctl $arg $service.service --no-block"); 
+		} 
+		else { 
+			# Thank God, no Systemd: 
+			system("/sbin/service $service $arg"); 
+		}
+		#`/sbin/service $service $arg`;
 		return(0);
 	}
 	unless ($options =~ /\bnobg\b/) {
 	
 	    if ($pid = fork()) {
-	    
-		waitpid($pid, 0);
-		# Success, whether it really worked or not...
-		return 1;
+			waitpid($pid, 0);
+			# Success, whether it really worked or not...
+			return 1;
 	    }
 	    close(STDIN);
 	    close(STDOUT);
@@ -76,7 +84,16 @@ sub service_run_init
 	    
 	if ($options =~ /\bnobg\b/)
 	{
-		`/sbin/service $service $arg`;
+		# Restarts Service:
+		if (-f "/usr/bin/systemctl") { 
+			# Got Systemd: 
+			system("systemctl $arg $service.service --no-block"); 
+		} 
+		else { 
+			# Thank God, no Systemd: 
+			system("/sbin/service $service $arg"); 
+		}
+		#`/sbin/service $service $arg`;
 
 		# Return 1 on success instead of the standard unix command 0
 		if ($? == 0) {
@@ -86,8 +103,16 @@ sub service_run_init
 	}
 	else
 	{
-		`/sbin/service $service $arg`;
-		
+		# Restarts Service:
+		if (-f "/usr/bin/systemctl") { 
+			# Got Systemd: 
+			system("systemctl $arg $service.service --no-block"); 
+		} 
+		else { 
+			# Thank God, no Systemd: 
+			system("/sbin/service $service $arg"); 
+		}
+		#`/sbin/service $service $arg`;
 	}
 	
 	exit 0 unless ($options =~ /\bnobg\b/);
@@ -275,10 +300,9 @@ sub service_set_inetd
 {
 	my ($service, $state, $rate) = @_;
 
-	my $ret = Sauce::Util::editfile(inetd_conf(), *_edit_inetd, 
-				     $service, $state, $rate);
+	my $ret = Sauce::Util::editfile(inetd_conf(), *_edit_inetd, $service, $state, $rate);
 	chmod(inetd_perm(), inetd_conf());
-        return $ret;
+    return $ret;
 }
 
 sub service_set_multi_inetd
@@ -346,27 +370,27 @@ sub service_get_multi_xinetd
  
 sub _edit_xinetd
 {
-        my ($input, $output, $service, $enabled, $rate) = @_;
-	my $instances_done = 'false';
+	    my ($input, $output, $service, $enabled, $rate) = @_;
+		my $instances_done = 'false';
 
-        while (<$input>) {
-                if (/^(\s*disable\s.*=)\s/) {
-                        print $output ($enabled eq 'on') ? "$1 no" : "$1 yes";
-                        print $output "\n";
-                        next;
-                }
-		if (/^(\s*instances\s.*=)\s/ && $rate ne '') {
-			print $output "$1 $rate";
-			print $output "\n";
-			$instances_done = 'true';
-			next;
-		}
-		if (/^}$/ && $instances_done eq 'false' && $rate ne '') {
-			print $output "\tinstances = $rate";
-			print $output "\n}\n";
-			next;
-		}
-                print $output $_;
+    	while (<$input>) {
+			if (/^(\s*disable\s.*=)\s/) {
+				print $output ($enabled eq 'on') ? "$1 no" : "$1 yes";
+				print $output "\n";
+				next;
+			}
+			if (/^(\s*instances\s.*=)\s/ && $rate ne '') {
+				print $output "$1 $rate";
+				print $output "\n";
+				$instances_done = 'true';
+				next;
+			}
+			if (/^}$/ && $instances_done eq 'false' && $rate ne '') {
+				print $output "\tinstances = $rate";
+				print $output "\n}\n";
+				next;
+			}
+			print $output $_;
         }
         return 1;
 }
@@ -377,8 +401,7 @@ sub service_set_xinetd
 {
         my ($service, $state, $rate) = @_;
         my $conf_file = xinetd_conf_dir() . "/$service";
-        my $ret = Sauce::Util::editfile($conf_file, *_edit_xinetd,
-                                     $service, $state, $rate);
+        my $ret = Sauce::Util::editfile($conf_file, *_edit_xinetd, $service, $state, $rate);
         chmod(xinetd_perm(), $conf_file);
         return $ret;
 }
@@ -391,8 +414,7 @@ sub service_set_multi_xinetd
  
         foreach my $key (keys %settings) {
                 my $conf_file = xinetd_conf_dir() . "/$key";
-                my $ret = Sauce::Util::editfile($conf_file, *_edit_xinetd,
-                                             $key, $settings{$key});
+                my $ret = Sauce::Util::editfile($conf_file, *_edit_xinetd, $key, $settings{$key});
                 chmod(xinetd_perm(), $conf_file);
         }
         return 0;
@@ -406,8 +428,8 @@ sub service_restart_xinetd
 }
  
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

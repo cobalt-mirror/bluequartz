@@ -1,7 +1,7 @@
 Summary: Perl modules that contain useful utility functions for handlers.
 Name: perl-handler-utils
 Version: 1.4.0
-Release: 0BX02%{?dist}
+Release: 0BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -33,6 +33,10 @@ This package contains a number of perl modules that contain useful
 utility functions for writing cced event handler scripts.
 
 %changelog
+
+* Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX03
+- More Systemd related fixes. Use systemctl if present and if we're
+  stopping or starting a service we use --no-block without exception.
 
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.4.0-0BX02
 - More Systemd related fixes.
