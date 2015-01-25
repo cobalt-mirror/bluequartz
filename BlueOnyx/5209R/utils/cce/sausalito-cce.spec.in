@@ -210,6 +210,12 @@ fi
 
 %changelog
 
+* Tue Jan 20 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX24
+- Added /usr/sausalito/sbin/start_cced.sh
+- Changed CCEd Unit file to oneshot and to use above script for startups.
+- Happy birthday, grandpa Kurt. Today would have been your 95th birthday.
+  I miss you.
+
 * Thu Jan 08 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX23
 - Modified client/httpd/blueonyx.conf according to the Apache upgrade
   guide at http://httpd.apache.org/docs/2.4/upgrading.html
