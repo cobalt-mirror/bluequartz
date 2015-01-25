@@ -7,6 +7,12 @@ for service in $services; do
   systemctl disable $service.service
 done
 
+# Just to be fucking sure the fucking firewalld is off:
+systemctl stop firewalld.service --no-block
+systemctl disable firewalld.service
+rm -f /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service
+rm -f /etc/systemd/system/basic.target.wants/firewalld.service
+
 # Remount /tmp to be non-executable!
 /usr/bin/perl -pi -e "if (/\/tmp/) { s/defaults/noexec,nosuid,rw/ }" /etc/fstab
 /bin/mount -o remount /tmp >/dev/null 2>&1
@@ -126,25 +132,26 @@ if [ "$GATEWAYPRESENT" == "1" ]; then
   echo "GATEWAY=$GATEWAY" >> /etc/sysconfig/network
 fi
 
-# Ping Target: Google DNS:
-IRX="8.8.8.8"
-NETWORK=`ping -q -w 1 -c 1 $IRX > /dev/null && echo ok || echo error`
-if [ "$NETWORK" == "ok" ]; then
-  #echo "Network OK";
-  systemctl restart network.service
-  systemctl restart httpd.service
-  systemctl restart admserv.service
-  systemctl restart xinetd.service
-  systemctl restart sendmail.service
-  systemctl restart mariadb.service
-  systemctl restart named-chroot.service
-  systemctl restart saslauthd.service
-
-else
-  #echo "Network NOT OK";
-  systemctl restart network.service
-  systemctl restart mariadb.service
-fi
+#### We run this before the network is up. So we don't actually restart stuff:
+## Ping Target: Google DNS:
+#IRX="8.8.8.8"
+#NETWORK=`ping -q -w 1 -c 1 $IRX > /dev/null && echo ok || echo error`
+#if [ "$NETWORK" == "ok" ]; then
+#  #echo "Network OK";
+#  systemctl restart network.service --no-block &>/dev/null || :
+#  systemctl restart httpd.service --no-block &>/dev/null || :
+#  systemctl restart admserv.service --no-block &>/dev/null || :
+#  systemctl restart xinetd.service --no-block &>/dev/null || :
+#  systemctl restart sendmail.service --no-block &>/dev/null || :
+#  systemctl restart mariadb.service --no-block &>/dev/null || :
+#  systemctl restart named-chroot.service --no-block &>/dev/null || :
+#  systemctl restart saslauthd.service --no-block &>/dev/null || :
+#
+#else
+#  #echo "Network NOT OK";
+#  systemctl restart network.service --no-block &>/dev/null || :
+#  systemctl restart mariadb.service --no-block &>/dev/null || :
+#fi
 
 # Create a file in /tmp to show us that we did run:
 touch /tmp/initServices.sh.hasrun
