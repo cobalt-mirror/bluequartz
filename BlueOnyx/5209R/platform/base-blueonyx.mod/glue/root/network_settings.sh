@@ -114,6 +114,9 @@ if [ "$NO" == "0" ]; then
   /usr/sausalito/sbin/set_gw.pl configure $DEFAULTGW
   /usr/sausalito/sbin/set_dns.pl configure $DNSSERVER
 
+  # Remove all non-ethX style interfaces except for lo:
+  ls -k1 /etc/sysconfig/network-scripts/ifcfg-*|grep -v ifcfg-lo|grep -v ifcfg-eth|xargs rm -f
+
   # Turn off the EL7 firewall:
   systemctl stop firewalld.service --no-block &>/dev/null || :
   systemctl disable firewalld.service &>/dev/null || :
