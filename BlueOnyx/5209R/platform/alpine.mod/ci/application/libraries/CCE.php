@@ -376,6 +376,7 @@ class CCE {
     if ($this->self['success'] == '1') {
       $this->setSessionId($sessionId);
       $this->SessionId = $sessionId;
+      $this->self['sessionid'] = $sessionId;
       setcookie("sessionId", $sessionId, "0", "/");
     }
     else {
@@ -390,7 +391,10 @@ class CCE {
   // WHOAMI
   function ccephp_whoami() {
     CCE::ccephp_new("WHOAMI");
-    return $this->self['oidlist'][0];
+    if (isset($this->self['oidlist'][0])) {
+      return $this->self['oidlist'][0];
+    }
+    return NULL;
   }
 
   // NAMES

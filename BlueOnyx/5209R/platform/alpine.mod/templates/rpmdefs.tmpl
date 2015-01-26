@@ -136,6 +136,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX027
+- Modified ci/application/libraries/CCE.php as authkey wouldn't return
+  the sessionId during first ccephp_authkey() call. Additionally 
+  ccephp_whoami() might encounter an empty array and therefore get
+  indexing problems. Fixed as well.
+
 * Thu Jan 22 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX026
 - Modified ci/application/libraries/uifc/PagedBlock.php to move error
   message display aray further up so that errors are visible even if
