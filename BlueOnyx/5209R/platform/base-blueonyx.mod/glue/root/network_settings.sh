@@ -13,7 +13,7 @@ TITLE="Network Setup Utility"
 
 IPADDRESS=`ifconfig  | grep 'inet '| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $2}'`
 NETMASK=`ifconfig | grep $IPADDRESS | awk '{ print $4}'`
-DEFAULTGW=`/sbin/ip route | awk '/default/ { print $3 }'`
+DEFAULTGW=`/sbin/ip route | awk '/default/ { print $3 }'|head -1`
 DNSSERVER=`cat /etc/resolv.conf |grep ^nameserver|awk '{ print $2}'|head -1`
 
 function GetIP() {
@@ -114,19 +114,28 @@ if [ "$NO" == "0" ]; then
   /usr/sausalito/sbin/set_gw.pl configure $DEFAULTGW
   /usr/sausalito/sbin/set_dns.pl configure $DNSSERVER
 
+  # Turn off the EL7 firewall:
+  systemctl stop firewalld.service --no-block &>/dev/null || :
+  systemctl disable firewalld.service &>/dev/null || :
+  rm -f /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service
+  rm -f /etc/systemd/system/basic.target.wants/firewalld.service
+
   # restart daemons
   echo "Restarting Daemons ... "
-  services="network"
-  for service in $services; do
-    /sbin/chkconfig $service on > /dev/null 2>&1
-    /sbin/service $service restart > /dev/null 2>&1
-  done
+  systemctl disable NetworkManager.service &>/dev/null || :
+  systemctl stop NetworkManager.service --no-block &>/dev/null || :
+  rm -f /etc/systemd/system/multi-user.target.wants/NetworkManager.service
+  rm -f /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
+  rm -f /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
+
+  systemctl enable network.service &>/dev/null || :
+  systemctl restart network.service &>/dev/null || :
 
 fi
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

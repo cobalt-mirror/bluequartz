@@ -227,6 +227,17 @@ if [ -f /etc/dovecot/conf.d/10-mail.conf ]; then
 	perl -pi -e 's|^#mail_location =(.*)|mail_location = mbox:~/mail/:INBOX=mbox|g' /etc/dovecot/conf.d/10-mail.conf
 fi
 
+# Handle EL7 Firewall shit:
+systemctl disable firewalld.service
+rm -f /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service
+rm -f /etc/systemd/system/basic.target.wants/firewalld.service
+
+# Handle NetworkManager:
+systemctl disable NetworkManager.service
+rm -f /etc/systemd/system/multi-user.target.wants/NetworkManager.service
+rm -f /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
+rm -f /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -344,6 +355,9 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.20150125-BX15
+- Yet more post-install fixes.
 
 * Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.20150125-BX14
 - More post-install fixes. Fucking Systemd bullshit.

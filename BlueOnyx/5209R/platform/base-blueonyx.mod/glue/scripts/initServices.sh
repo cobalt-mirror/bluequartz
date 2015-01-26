@@ -1,17 +1,17 @@
 #!/bin/sh
 
-# Disable some services that do not need to be on
-services="smartd autofs irqbalance netfs microcode_ctl mdchk kudzu iscsid iscsi sysstat ip6tables auditd kdump lldpad fcoe atd messagebus NetworkManager lldpad fcoe cups netfs portreserve firewalld"
-for service in $services; do
-  systemctl stop $service.service
-  systemctl disable $service.service
-done
-
 # Just to be fucking sure the fucking firewalld is off:
-systemctl stop firewalld.service --no-block
+systemctl stop firewalld.service --no-block &>/dev/null || :
 systemctl disable firewalld.service
 rm -f /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service
 rm -f /etc/systemd/system/basic.target.wants/firewalld.service
+
+# Disable some services that do not need to be on
+services="smartd autofs irqbalance netfs microcode_ctl mdchk kudzu iscsid iscsi sysstat ip6tables auditd kdump lldpad fcoe atd messagebus NetworkManager lldpad fcoe cups netfs portreserve firewalld"
+for service in $services; do
+  #systemctl stop $service.service --no-block &>/dev/null || :
+  systemctl disable $service.service
+done
 
 # Remount /tmp to be non-executable!
 /usr/bin/perl -pi -e "if (/\/tmp/) { s/defaults/noexec,nosuid,rw/ }" /etc/fstab
