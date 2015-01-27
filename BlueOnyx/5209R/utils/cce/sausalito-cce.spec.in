@@ -210,6 +210,10 @@ fi
 
 %changelog
 
+* Tue Jan 27 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX25
+- Modified client/httpd/blueonyx.conf again as there was still some old
+  style access control in it.
+
 * Tue Jan 20 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX24
 - Added /usr/sausalito/sbin/start_cced.sh
 - Changed CCEd Unit file to oneshot and to use above script for startups.
