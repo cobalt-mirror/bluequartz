@@ -136,6 +136,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX029
+- Modified ci/application/libraries/CCE.php as it wasn't properly handling
+  '305 WARN' messages from CCEd.
+- Modified ci/application/libraries/I18nNative.php as it had issues to 
+  interpolate domains without a dot. But worse: If a magicstring had
+  dots in it (like an IP) the regular expression for it wouldn't fire.
+  Instead of fixing the complicated regular expression I did something
+  that will probably bite us in the ass again later. But it seems to work
+  for now.
+
 * Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX028
 - Modified constructor/setup_capabilities.pl to add the Reseller
   Capabilities for the new 5209R PHP options.

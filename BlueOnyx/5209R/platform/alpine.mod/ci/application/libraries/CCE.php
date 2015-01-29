@@ -792,6 +792,15 @@ class CCE {
         }
       }
 
+      if (preg_match('/^305 WARN\s(.*)$/', $line, $matches)) {
+        if (isset($matches[1])) {
+          $this->self['info'][$this->OID] = $matches[1];
+          CCE::setError($matches[1], $this->OID, "", $matches[1]);
+          continue;
+        }
+      }
+
+
       if (preg_match('/30([0-1][3-7])(.*)/', $line, $matches)) {
         if (isset($matches[1])) {
           $this->self['info'][$this->OID] = $matches[0];
@@ -945,12 +954,28 @@ class CCE {
     return $out;
   }
 
-  function setError($code, $oid, $key="",$msg) {
+  function setError($code, $oid, $key="", $msg) {
     $numErrs = count($this->ERRORS);
     $this->ERRORS[$numErrs]['code'] = $code;
     $this->ERRORS[$numErrs]['oid'] = $oid;
     $this->ERRORS[$numErrs]['key'] = $key;
     $this->ERRORS[$numErrs]['message'] = $msg;
+
+    if (preg_match('/\[\[(.*),(.*)\]\]/', $msg, $joinedMatches)) {
+      if (count($joinedMatches) == "3") {
+        $xvarkRay = explode('=', $joinedMatches[2]);
+        if (isset($xvarkRay[1])) {
+          if (preg_match('/\"(.*)\"/', $xvarkRay[1], $cleanTagVar)) {
+            $xvarkRay[1] = preg_replace('/\\\\/','',$xvarkRay[1]);
+            $xvarkRay[1] = rtrim($xvarkRay[1]);
+            $xvarkRay[1] = ltrim($xvarkRay[1]);
+          }
+        }
+        $this->ERRORS[$numErrs]['code'] = "[[$joinedMatches[1]]]";
+        $this->ERRORS[$numErrs]['key'] = $xvarkRay;
+      }
+    }
+
     if ($numErrs != "0") {
       $numErrs++;
     }
@@ -963,8 +988,8 @@ class CCE {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
