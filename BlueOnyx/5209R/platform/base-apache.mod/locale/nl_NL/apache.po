@@ -328,7 +328,7 @@ msgid "php_help"
 msgstr "Deze optie biedt PHP via libphp5.so, die ook bekend staat als mod_php. Deze optie is meestal de snelste manier om PHP verzoeken uit te voeren. Echter, deze optie gebruikt de apache systeem gebruiker om alle PHP aanvragen dienen. Dit kan problemen veroorzaken bij het PHP-scripts bestanden en mappen te maken, omdat ze dan zullen eigendom zijn van apache, ook."
 
 msgid "enableSuPHP"
-msgstr "Enable suPHP"
+msgstr "suPHP"
 
 msgid "enableSuPHP_help"
 msgstr "Deze optie biedt PHP via mod_suphp. Het is een zeer flexibele en veilige manier om PHP aanvragen dienen. Als u suPHP selecteert, dan is de PHP-scripts zal lopen met de UID en GID van de eigenaar van de virtuele website. Zorg ervoor dat u een SiteAdmin configureren als eigenaar van uw /web folder via de '[[base-vsite.fileOwnerMenu]]' menu!"

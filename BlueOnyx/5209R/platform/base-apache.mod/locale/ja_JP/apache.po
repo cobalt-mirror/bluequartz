@@ -343,7 +343,7 @@ msgid "php_help"
 msgstr "また、このオプションは、mod_phpをとして知られているlibphp5.so、を通してPHPを提供します。このオプションは、通常、PHPのリクエストを実行するための最速の方法です。ただし、このオプションはすべてのPHPリクエストを処理するために、Apache·システム·ユーザーを使用しています。彼らはその後も、アパッチによって所有されるように、PHPスクリプトは、ファイルやフォルダを作成するときに問題を作成することができます。"
 
 msgid "enableSuPHP"
-msgstr "suPHPを有効にする"
+msgstr "suPHP"
 
 msgid "enableSuPHP_help"
 msgstr "このオプションは、mod_suphpを通してPHPを提供します。これは、PHPのリクエストを処理するために非常に柔軟で安全な方法です。あなたがsuPHPを選択した場合は、PHPスクリプトは、仮想サイトの所有者のUIDとGIDで実行されます。 「[[base-vsite.fileOwnerMenu]] 'メニューを通して、あなたの/webフォルダの所有者としてsiteAdminを設定してください！"

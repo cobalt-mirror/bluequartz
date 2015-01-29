@@ -361,7 +361,7 @@ msgid "php_help"
 msgstr "Diese Option aktiviert PHP durch die Verwendung von libphp5.so, welches auch als mod_php bekannt ist. Diese Option ist in der Regel der schnellste Weg, um PHP-Anwendungen auszuführen. Allerdings verwendet diese Option den System-Benutzer 'apache', um alle PHP-Scripte auszuführen. Dies kann zu Problemen führen, wenn PHP-Skripte Dateien und Ordner anlegen, da diese dann dem System-Benutzer 'apache' gehören."
 
 msgid "enableSuPHP"
-msgstr "SuPHP aktivieren"
+msgstr "suPHP"
 
 msgid "enableSuPHP_help"
 msgstr "Diese Option aktiviert PHP durch die Verwendung von mod_suphp. Es ist ein sehr flexibler und sicherer Weg, um PHP-Scripte auszuführen. Wenn Sie suPHP aktivieren, werden alle PHP-Skripte mit der UID und GID des Besitzers der virtuellen Site ausgeführt. Achten Sie bitte darauf, eine Siteadmin als Eigentümer Ihres /web Ordners zu konfigurieren. Dies können Sie im Menüpunkt '[[base-vsite.fileOwnerMenu]]' tun."

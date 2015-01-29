@@ -375,7 +375,7 @@ msgid "php_help"
 msgstr "Denne mulighed giver PHP gennem libphp5.so, som også er kendt som mod_php. Denne indstilling er normalt den hurtigste måde at udføre PHP anmodninger. Men denne funktion bruger apache systembruger at betjene alle PHP anmodninger. Dette kan skabe problemer, når PHP-scripts oprette filer og mapper, da de så vil være ejet af apache, også."
 
 msgid "enableSuPHP"
-msgstr "Aktiver suphp"
+msgstr "suphp"
 
 msgid "enableSuPHP_help"
 msgstr "Denne mulighed giver PHP gennem mod_suphp. Det er en meget fleksibel og sikker måde at tjene PHP anmodninger. Hvis du vælger suphp, så PHP-scripts vil køre med UID og GID for ejeren af ​​den virtuelle site. Sørg for at konfigurere en Siteadmin som ejer af din /web mappe gennem 'Web Ejerskab' menuen!"
