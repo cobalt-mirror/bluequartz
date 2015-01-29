@@ -109,20 +109,6 @@ class I18nNative {
     if ($domain == "") {
       $domain = i18nNative::getDomain();
     }
-
-//    if (preg_match('/\[\[(.*),(.*)\]\]/', $tag, $pfsmatches)) {
-//      print_rp("Found");
-//      print_rp($pfsmatches);
-//      print_rp(count($pfsmatches));
-//      if (count($pfsmatches) == "3") {
-//        $varRay = explode('=', $pfsmatches[2]);
-//        print_rp($varRay);
-//        $vars = $varRay;
-//        $tag = "[[$pfsmatches[1]]]";
-//      }
-//      return i18nNative::i18n_interpolate($tag, $vars);
-//    }
-
     if (preg_match('/\[\[(.*)\]\]/', $tag)) {
       return i18nNative::i18n_interpolate($tag, $vars);
     }

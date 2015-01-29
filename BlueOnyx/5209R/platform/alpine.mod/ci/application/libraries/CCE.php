@@ -800,7 +800,6 @@ class CCE {
         }
       }
 
-
       if (preg_match('/30([0-1][3-7])(.*)/', $line, $matches)) {
         if (isset($matches[1])) {
           $this->self['info'][$this->OID] = $matches[0];
