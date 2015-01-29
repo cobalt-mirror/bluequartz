@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx'
 SERVICE=apache
 
 VERSION=2.1.0
-RELEASE=0BX17
+RELEASE=0BX18
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -19,7 +19,7 @@ BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
-REQUIRES= mod_suphp perl-Tie-DxHash mailcap php-fpm mod_fcgid
+REQUIRES= mod_suphp perl-Tie-DxHash mailcap php-fpm mod_fcgid mod_ruid2
 
 #########
 # some useful defines

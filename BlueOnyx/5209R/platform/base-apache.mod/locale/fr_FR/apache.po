@@ -173,12 +173,6 @@ msgstr "Activer Common Gateway Interface (CGI)"
 msgid "cgi_help"
 msgstr "Permettre l'utilisation des applications CGI."
 
-msgid "php"
-msgstr "Activer PHP Scripting"
-
-msgid "php_help"
-msgstr "Permettre l'utilisation de scripts PHP."
-
 msgid "ssi"
 msgstr "Activer Server Side Includes (SSI)"
 
@@ -308,12 +302,6 @@ msgstr "PHP Scripting activé"
 msgid "PHP_enabled_help"
 msgstr "L'utilisation de scripts PHP est autorisée."
 
-msgid "enableSuPHP"
-msgstr "Activer suPHP"
-
-msgid "enableSuPHP_help"
-msgstr "Permettre l'utilisation de suPHP de sorte que les scripts PHP opèrent avec l'UID de leur propriétaire. Assurez-vous de configurer dans le menu «&nbsp;[[base-vsite.fileOwnerMenu]]&nbsp;» un SiteAdmin en tant que propriétaire du répertoire /web&nbsp;! ATTENTION&nbsp;! Si suPHP est activé, la fonction d'espace web privé ne sera plus pris en charge et les utilisateurs non-SiteAdmin n'auront plus leur répertoire individuel."
-
 msgid "disabled"
 msgstr "Désactivé"
 
@@ -349,3 +337,32 @@ msgstr "HSTS:"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) est un mécanisme de politique de sécurité Web par lequel un serveur web déclare que conformes agents utilisateurs (comme un navigateur Web) sont d'interagir avec lui en utilisant des connexions HTTPS ne sécurisées (ie HTTP couches sur TLS / SSL). Gares TGV est une des normes voie de protocole IETF et est spécifié dans la RFC 6797. Pour plus d'informations, voir: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+######### New for 5209R:
+
+# CHANGED:
+
+msgid "php"
+msgstr "PHP (DSO)"
+
+msgid "php_help"
+msgstr "Cette option permet par libphp5.so PHP, qui est également connu comme mod_php. Cette option est généralement le moyen le plus rapide pour exécuter les demandes de PHP. Toutefois, cette option utilise l'utilisateur du système d'Apache pour servir toutes les demandes de PHP. Cela peut créer des problèmes lors de son exécution PHP créer des fichiers et des dossiers, car ils seront alors détenues par apache, aussi."
+
+msgid "enableSuPHP"
+msgstr "Activer suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Cette option fournit PHP travers mod_suphp. Ce est une façon très souple et sécuritaire pour servir les requêtes PHP. Si vous sélectionnez suPHP, les scripts PHP se exécutent avec l'UID et le GID du propriétaire du site virtuel. Ne oubliez pas de configurer un Siteadmin en tant que propriétaire de votre dossier /web travers le menu '[[base-vsite.fileOwnerMenu]]'!"
+
+# NEW:
+
+msgid "enableModRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "enableModRUID_help"
+msgstr "Cette option fournit PHP travers libphp5.so et module Apache mod_ruid2.so. Cette option est généralement le moyen le plus rapide pour exécuter les demandes PHP de manière sécurisée. Le module supplémentaire mod_ruid2 va exécuter les scripts PHP avec l'UID et le GID du propriétaire du site virtuel. Ne oubliez pas de configurer un Siteadmin en tant que propriétaire de votre dossier /web travers le menu '[[base-vsite.fileOwnerMenu]]'!"
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "Cette option fournit PHP PHP-FPM travers et mod_fcgid. A cette époque, nous fournissons cette options expérimentales qui permet d'exécuter des scripts PHP Apache de l'utilisateur avec la configuration par défaut de PHP. Se il vous plaît noter que tous les paramètres de PHP spécifique VEMPLACEMENT ne seront pas utilisés. Au lieu de cela les paramètres globaux et serveur large PHP seront utilisées."

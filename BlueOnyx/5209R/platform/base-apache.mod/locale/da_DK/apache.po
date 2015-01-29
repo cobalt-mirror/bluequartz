@@ -215,9 +215,6 @@ msgstr ""
 "ordbog. Adgangskode er følsomme over for forskelle mellem små og store "
 "bogstaver."
 
-msgid "php"
-msgstr "Aktiver PHP"
-
 msgid "phpI18nName"
 msgstr "PHP Scripting"
 
@@ -332,12 +329,6 @@ msgstr "Aktiver PHP Scripting"
 msgid "PHP_enabled_help"
 msgstr "Aktivere brugen af ​​PHP-scripts."
 
-msgid "enableSuPHP"
-msgstr "Aktiver suphp"
-
-msgid "enableSuPHP_help"
-msgstr "Aktivere brugen af ​​suphp så PHP-scripts kører med UID deres ejer. Vær sikker på at konfigurere en Siteadmin som ejer af din /web mappe via &#39;Web Ejerskab&#39; menuen! BEMÆRK: Hvis der suphp er aktiveret, bruger ejede webs understøttes ikke længere, og at funktionen vil blive slukket."
-
 msgid "disabled"
 msgstr "Deaktiveret"
 
@@ -373,3 +364,32 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) er et web sikkerhedspolitik mekanisme, hvorved en webserver erklærer, at opfylder bruger agenter (såsom en webbrowser) er at interagere med den ved hjælp af kun sikre HTTPS-forbindelser (dvs. HTTP lagdelt over TLS / SSL). TGV er en IETF standarder track protokol og er specificeret i RFC 6797. For mere info se: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+######### New for 5209R:
+
+# CHANGED:
+
+msgid "php"
+msgstr "PHP (DSO)"
+
+msgid "php_help"
+msgstr "Denne mulighed giver PHP gennem libphp5.so, som også er kendt som mod_php. Denne indstilling er normalt den hurtigste måde at udføre PHP anmodninger. Men denne funktion bruger apache systembruger at betjene alle PHP anmodninger. Dette kan skabe problemer, når PHP-scripts oprette filer og mapper, da de så vil være ejet af apache, også."
+
+msgid "enableSuPHP"
+msgstr "Aktiver suphp"
+
+msgid "enableSuPHP_help"
+msgstr "Denne mulighed giver PHP gennem mod_suphp. Det er en meget fleksibel og sikker måde at tjene PHP anmodninger. Hvis du vælger suphp, så PHP-scripts vil køre med UID og GID for ejeren af ​​den virtuelle site. Sørg for at konfigurere en Siteadmin som ejer af din /web mappe gennem 'Web Ejerskab' menuen!"
+
+# NEW:
+
+msgid "enableModRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "enableModRUID_help"
+msgstr "Denne mulighed giver PHP gennem libphp5.so og Apache-modulet mod_ruid2.so. Denne indstilling er normalt den hurtigste måde at udføre PHP anmodninger på en sikker måde. Den ekstra modul mod_ruid2 vil køre PHP-scripts med UID og GID for ejeren af ​​den virtuelle site. Sørg for at konfigurere en Siteadmin som ejer af din /web mappe gennem 'Web Ejerskab' menuen!"
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "Denne mulighed giver PHP via PHP-FPM og mod_fcgid. På dette tidspunkt Vi leverer denne som eksperimentelle muligheder, der gør det muligt at køre PHP-scripts som bruger apache med standard PHP-konfiguration. Bemærk, at eventuelle Vsite specifik PHP-indstillinger ikke vil blive brugt. I stedet de globale og server bred PHP-indstillinger vil blive brugt."

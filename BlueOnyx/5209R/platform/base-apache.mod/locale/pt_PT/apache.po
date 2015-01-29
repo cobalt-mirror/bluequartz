@@ -161,12 +161,6 @@ msgstr "Ativar Common Gateway Interface (CGI)"
 msgid "cgi_help"
 msgstr "Permitir o uso de aplicativos CGI."
 
-msgid "php"
-msgstr "Ativar Scripting PHP"
-
-msgid "php_help"
-msgstr "Permitir o uso de scripts PHP."
-
 msgid "ssi"
 msgstr "Ativar Server-Side Includes (SSI)"
 
@@ -290,12 +284,6 @@ msgstr "Ativar Scripting PHP"
 msgid "PHP_enabled_help"
 msgstr "Permitir o uso de scripts PHP."
 
-msgid "enableSuPHP"
-msgstr "Ativar suPHP"
-
-msgid "enableSuPHP_help"
-msgstr "Permitir o uso de suPHP para que os scripts PHP funcionar com o UID do seu proprietário. Certifique-se de configurar um siteadmin como proprietário da pasta /web através do menu 'Propriedade Web'! ATENÇÃO: Se suPHP está habilitado, o usuário de propriedade teias não são mais suportados e que o recurso vai ficar desligado."
-
 msgid "disabled"
 msgstr "Inválido"
 
@@ -331,4 +319,32 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) é um mecanismo de política de segurança web em que um servidor web declara que os agentes cumprem (como um navegador) devem interagir com ele usando conexões HTTPS apenas seguros (ou seja, em camadas HTTP sobre TLS / SSL). HSTS é um protocolo padrão IETF pista e é especificado na RFC 6797. Para mais informações consulte: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+######### New for 5209R:
 
+# CHANGED:
+
+msgid "php"
+msgstr "PHP (DSO)"
+
+msgid "php_help"
+msgstr "Esta opção oferece PHP através libphp5.so, que também é conhecido como mod_php. Esta opção é geralmente o caminho mais rápido para executar pedidos de PHP. No entanto, esta opção utiliza o usuário do sistema apache para servir todos os pedidos de PHP. Isso pode criar problemas quando scripts PHP criar arquivos e pastas, como eles vão, então, ser possuído por apache também."
+
+msgid "enableSuPHP"
+msgstr "Ativar suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Esta opção oferece PHP através mod_suphp. É uma maneira muito flexível e segura para atender as solicitações de PHP. Se você selecionar suPHP, então os scripts PHP será executado com o UID e GID do dono do sítio virtual. Certifique-se de configurar um siteadmin como proprietário de sua pasta /web através do menu '[[base-vsite.fileOwnerMenu]]'!"
+
+# NEW:
+
+msgid "enableModRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "enableModRUID_help"
+msgstr "Esta opção oferece PHP através libphp5.so eo Apache módulo mod_ruid2.so. Esta opção é geralmente o caminho mais rápido para executar pedidos de PHP de uma forma segura. O módulo adicional mod_ruid2 vai executar os scripts PHP com o UID e GID do dono do sítio virtual. Certifique-se de configurar um siteadmin como proprietário de sua pasta /web através do menu 'Ownership Web '!"
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "Esta opção oferece PHP através de PHP-FPM e mod_fcgid. Neste momento nós fornecemos esta opção como experimentais que permite executar scripts PHP como apache usuário com a configuração padrão do PHP. Por favor, note que todas as configurações específicas do PHP Vsite não será utilizado. Em vez disso, as configurações globais e servidor ampla PHP será usado."

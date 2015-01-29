@@ -172,12 +172,6 @@ msgstr "CGI (Common Gateway Interface) を有効にする"
 msgid "cgi_help"
 msgstr "このボックスをチェックすると、CGI アプリケーションの使用が許可されます。"
 
-msgid "php"
-msgstr "PHP スクリプトを有効にする"
-
-msgid "php_help"
-msgstr "このボックスをチェックすると、PHP スクリプトの使用が許可されます。"
-
 msgid "ssi"
 msgstr "SSI (Server-Side Includes) を有効にする"
 
@@ -303,12 +297,6 @@ msgstr "PHPスクリプトを有効にする"
 msgid "PHP_enabled_help"
 msgstr "PHPスクリプトの使用を有効にします。"
 
-msgid "enableSuPHP"
-msgstr "suPHPを有効にする"
-
-msgid "enableSuPHP_help"
-msgstr "PHPスクリプトは、その所有者のUIDを使用して実行するようにsuPHPの使用を有効にします。 &#39;ウェブの所有権&#39;メニューを通じて/ Webフォルダの所有者としてsiteAdminを設定してください！注意：suPHPが有効になっている場合は、ユーザが所有するウェブサポートされなくなって、その機能がオフになってしまいます。"
-
 msgid "disabled"
 msgstr "使用禁止"
 
@@ -343,4 +331,34 @@ msgstr "のHSTS"
 
 msgid "HSTS_help"
 msgstr "HTTPの厳格なトランスポートセキュリティ（のHST）は、Webサーバーが（Webブラウザなど）準拠のユーザーエージェントにのみ、安全なHTTPS接続（つまり、HTTPレイヤード上のTLS / SSL）を使用してそれと対話することであることを宣言し、それによってWebセキュリティポリシーメカニズムです。のHSTは、IETF標準化過程プロトコルであり、RFC 6797で規定されています。詳細情報については以下を参照してください。http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Securityを"
+
+######### New for 5209R:
+
+# CHANGED:
+
+msgid "php"
+msgstr "PHP（DSO）"
+
+msgid "php_help"
+msgstr "また、このオプションは、mod_phpをとして知られているlibphp5.so、を通してPHPを提供します。このオプションは、通常、PHPのリクエストを実行するための最速の方法です。ただし、このオプションはすべてのPHPリクエストを処理するために、Apache·システム·ユーザーを使用しています。彼らはその後も、アパッチによって所有されるように、PHPスクリプトは、ファイルやフォルダを作成するときに問題を作成することができます。"
+
+msgid "enableSuPHP"
+msgstr "suPHPを有効にする"
+
+msgid "enableSuPHP_help"
+msgstr "このオプションは、mod_suphpを通してPHPを提供します。これは、PHPのリクエストを処理するために非常に柔軟で安全な方法です。あなたがsuPHPを選択した場合は、PHPスクリプトは、仮想サイトの所有者のUIDとGIDで実行されます。 「[[base-vsite.fileOwnerMenu]] 'メニューを通して、あなたの/webフォルダの所有者としてsiteAdminを設定してください！"
+
+# NEW:
+
+msgid "enableModRUID"
+msgstr "PHP（DSO）+ mod_ruid2"
+
+msgid "enableModRUID_help"
+msgstr "このオプションは、libphp5.soとApacheモジュールmod_ruid2.soを通してPHPを提供します。このオプションは、通常、安全な方法でPHPのリクエストを実行する最速の方法です。仮想サイトの所有者のUIDとGIDでPHPスクリプトを実行しますmod_ruid2余分なモジュール。 「[[base-vsite.fileOwnerMenu]] 'メニューを通して、あなたの/webフォルダの所有者としてsiteAdminを設定してください！"
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "このオプションは、PHP-FPMとmod_fcgidを通してPHPを提供します。この時点では、デフォルトのPHP設定を持つユーザーApacheなどのPHPスクリプトを実行することができ、このような実験的なオプションを提供します。すべてのVsite特定のPHPの設定は使用されませんのでご注意ください。代わりに、グローバルおよびサーバワイドPHPの設定が使用されます。"
 

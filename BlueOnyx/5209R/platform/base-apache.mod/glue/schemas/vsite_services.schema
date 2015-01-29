@@ -86,6 +86,16 @@
     /> 
 
     <property
+        name="mod_ruid_enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    /> 
+
+    <property
+        name="fpm_enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    /> 
+
+    <property
         name="prefered_siteAdmin" type="scalar" default=""
         writeacl="ruleCapable(adminUser) OR ruleCapable(siteAdmin)"
     /> 

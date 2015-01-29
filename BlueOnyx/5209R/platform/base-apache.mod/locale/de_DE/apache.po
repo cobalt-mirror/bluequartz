@@ -152,14 +152,8 @@ msgstr "Sie haben nicht das gleiche Passwort in beide Felder eingegeben. Das gle
 msgid "passwordWebmasterField_rule"
 msgstr "Das Passwort sollte zwischen 3 und 16 Zeichen lang sein. Ein angemessenes Passwort sollte mindestens 5 Zeichen enthalten und aus einer Kombination von Klein- und Großbuchstaben sowie Zahlen und Satzzeichen bestehen. Verwenden Sie keine Wörter, die man in einem Wörterbuch finden kann. Bitte beachten Sie, dass Groß- und Kleinschreibung bei Passwörtern berücksichtigt wird."
 
-msgid "php"
-msgstr "PHP Scripting Einschalten"
-
 msgid "phpI18nName"
 msgstr "PHP Scripting"
-
-msgid "php_help"
-msgstr "Nutzung von PHP Scripts einschalten."
 
 msgid "ssi"
 msgstr "Server-Side Includes (SSI) einschalten"
@@ -322,12 +316,6 @@ msgstr "PHP Scripting Aktivieren"
 msgid "PHP_enabled_help"
 msgstr "Aktivieren Sie die Verwendung von PHP-Skripten."
 
-msgid "enableSuPHP"
-msgstr "suPHP Aktivieren"
-
-msgid "enableSuPHP_help"
-msgstr "Aktivieren Sie die Verwendung von suPHP, so werden PHP-Skripte mit der UID ihres Besitzers ausgeführt. Achten Sie darauf, einen siteAdmin als Eigentümer Ihres /web Ordner konfiguriert zu haben. Das geschieht durch das &quot;Web Ownership&quot;-Menü! BITTE BEACHTEN SIE: Wenn suPHP aktiviert ist, sind die /web-Ordner in Heimatverzeichnissen von Benutzern nicht mehr zu erreichen und dieses separate Feature wird automatisch beim Aktivieren von suPHP deaktiviert."
-
 msgid "disabled"
 msgstr "Deaktiviert"
 
@@ -362,3 +350,29 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) ist ein Web-Sicherheits-Mechanismus, bei dem ein Web-Server erklärt, dass mit ihm agierende User Agents (wie Web-Browser) nur sichere HTTPS-Verbindungen (dh.: HTTP-Ebene über TLS/SSL) zu benutzen haben. HSTS ist ein IETF-Standard-Protokoll und ist in RFC 6797 spezifiziert. Für weitere Informationen siehe: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+######### New for 5209R:
+
+# CHANGED:
+
+msgid "php"
+msgstr "PHP (DSO)"
+
+msgid "php_help"
+msgstr "Diese Option aktiviert PHP durch die Verwendung von libphp5.so, welches auch als mod_php bekannt ist. Diese Option ist in der Regel der schnellste Weg, um PHP-Anwendungen auszuführen. Allerdings verwendet diese Option den System-Benutzer 'apache', um alle PHP-Scripte auszuführen. Dies kann zu Problemen führen, wenn PHP-Skripte Dateien und Ordner anlegen, da diese dann dem System-Benutzer 'apache' gehören."
+
+msgid "enableSuPHP"
+msgstr "SuPHP aktivieren"
+
+msgid "enableSuPHP_help"
+msgstr "Diese Option aktiviert PHP durch die Verwendung von mod_suphp. Es ist ein sehr flexibler und sicherer Weg, um PHP-Scripte auszuführen. Wenn Sie suPHP aktivieren, werden alle PHP-Skripte mit der UID und GID des Besitzers der virtuellen Site ausgeführt. Achten Sie bitte darauf, eine Siteadmin als Eigentümer Ihres /web Ordners zu konfigurieren. Dies können Sie im Menüpunkt '[[base-vsite.fileOwnerMenu]]' tun."
+
+# NEW:
+
+msgid "enableModRUID_help"
+msgstr "Diese Option aktiviert PHP durch libphp5.so und dem Apache-Modul mod_ruid2.so. Diese Option ist in der Regel der schnellste Weg, um PHP-Anforderungen in einer sicheren Art und Weise durchzuführen. Das Zusatzmodul mod_ruid2 führt PHP-Skripte mit der UID und GID des Besitzers der virtuellen Site aus. Achten Sie darauf, eine Siteadmin als Eigentümer Ihres /web Ordner konfigurieren. Dies können Sie im Menüpunkt '[[base-vsite.fileOwnerMenu]]' tun."
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "Diese Option aktiviert PHP durch PHP-FPM und mod_fcgid. Momentan stellen wir diese als experimentelle Optionen zur Verfügung, die PHP-Skripte als Benutzer apache mit der Standard-PHP-Konfiguration ausführt. Bitte beachten Sie, dass dabei alle PHP Einstellungen der Vsite ignoriert werden. Stattdessen werden die globalen und serverweite PHP-Einstellungen verwendet."

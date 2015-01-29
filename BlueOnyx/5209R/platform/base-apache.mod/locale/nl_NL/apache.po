@@ -161,12 +161,6 @@ msgstr "Enable Common Gateway Interface (CGI)"
 msgid "cgi_help"
 msgstr "Maken het gebruik van CGI-toepassingen."
 
-msgid "php"
-msgstr "Enable PHP Scripting"
-
-msgid "php_help"
-msgstr "Maken het gebruik van PHP scripts."
-
 msgid "ssi"
 msgstr "Enable Server-Side Includes (SSI)"
 
@@ -290,12 +284,6 @@ msgstr "Enable PHP Scripting"
 msgid "PHP_enabled_help"
 msgstr "Maken het gebruik van PHP scripts."
 
-msgid "enableSuPHP"
-msgstr "Enable suPHP"
-
-msgid "enableSuPHP_help"
-msgstr "Maken het gebruik van suPHP zodat PHP scripts uitgevoerd met de UID van hun eigenaar. Zorg ervoor dat u een siteadmin configureren als eigenaar van uw /web folder via de 'Web Ownership' menu! LET OP: Als suPHP is ingeschakeld, worden de gebruiker eigendom webben niet meer ondersteund en die functie zal krijgen uitgeschakeld."
-
 msgid "disabled"
 msgstr "Invalide"
 
@@ -329,4 +317,33 @@ msgstr "HSTS"
 msgid "HSTS_help"
 msgstr "HTTP Strict Transport Security (HSTS) is een web veiligheidsbeleid mechanisme waarbij een webserver verklaart dat voldoet user agents (zoals een webbrowser) zijn om te interageren met het gebruik van alleen beveiligde HTTPS-verbindingen (dwz HTTP gelaagd over TLS / SSL). HST is een IETF-normen spoor protocol en is gespecificeerd in RFC 6797. Voor meer info zie: http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"
 
+######### New for 5209R:
+
+# CHANGED:
+
+msgid "php"
+msgstr "PHP (DSO)"
+
+msgid "php_help"
+msgstr "Deze optie biedt PHP via libphp5.so, die ook bekend staat als mod_php. Deze optie is meestal de snelste manier om PHP verzoeken uit te voeren. Echter, deze optie gebruikt de apache systeem gebruiker om alle PHP aanvragen dienen. Dit kan problemen veroorzaken bij het PHP-scripts bestanden en mappen te maken, omdat ze dan zullen eigendom zijn van apache, ook."
+
+msgid "enableSuPHP"
+msgstr "Enable suPHP"
+
+msgid "enableSuPHP_help"
+msgstr "Deze optie biedt PHP via mod_suphp. Het is een zeer flexibele en veilige manier om PHP aanvragen dienen. Als u suPHP selecteert, dan is de PHP-scripts zal lopen met de UID en GID van de eigenaar van de virtuele website. Zorg ervoor dat u een SiteAdmin configureren als eigenaar van uw /web folder via de '[[base-vsite.fileOwnerMenu]]' menu!"
+
+# NEW:
+
+msgid "enableModRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "enableModRUID_help"
+msgstr "Deze optie biedt PHP via libphp5.so en de Apache-module mod_ruid2.so. Deze optie is meestal de snelste manier om PHP verzoeken uit te voeren op een veilige manier. De extra module mod_ruid2 de PHP-scripts met de UID en GID van de eigenaar van de virtuele site zal draaien. Zorg ervoor dat u een SiteAdmin configureren als eigenaar van uw /web folder via de '[[base-vsite.fileOwnerMenu]]' menu!"
+
+msgid "enableModFPM"
+msgstr "FPM/FastCGI"
+
+msgid "enableModFPM_help"
+msgstr "Deze optie biedt PHP via PHP-FPM en mod_fcgid. Op dit moment bieden wij dit als experimentele opties die het mogelijk maakt om PHP scripts draaien als gebruiker apache met de standaard PHP configuratie. Houdt u er rekening mee dat alle Vsite specifieke PHP instellingen niet zal worden gebruikt. In plaats van de mondiale en server breed PHP instellingen worden gebruikt."
 
