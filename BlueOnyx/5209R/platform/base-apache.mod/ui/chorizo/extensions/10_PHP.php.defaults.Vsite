@@ -1,7 +1,7 @@
 <?php
 // $Id: 50_PHP.php.defaults.Vsite
-// Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-// Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+// Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+// Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 //
 // ui extension to set settings for php Vsite creation
 
@@ -24,14 +24,25 @@ class PHPExtension extends UIExtension
         
         $pageId = $cce_info['PAGED_BLOCK_DEFAULT_PAGE'];
 
-        if (($defaults['suPHP_enabled'] == '0') && ($defaults['enabled'] == '1')) { 
-          $php_enabler = array("disabled" => "0", "php" => "1", "enableSuPHP" => "0"); 
+        //    [enabled] => 1
+        //    [mod_ruid_enabled] => 0
+        //    [suPHP_enabled] => 1
+        //    [fpm_enabled] => 0
+
+        if (($defaults['enabled'] == "1") && ($defaults['mod_ruid_enabled'] == "0") && ($defaults['suPHP_enabled'] == "0") && ($defaults['fpm_enabled'] == "0")) { 
+            $php_enabler = array("disabled" => "0", "php" => "1", "enableModRUID" => "0", "enableSuPHP" => "0", "enableModFPM" => "0"); 
         }
-        elseif (($defaults['suPHP_enabled'] == '1') && ($defaults['enabled'] == '1')) { 
-          $php_enabler = array("disabled" => "0", "php" => "0", "enableSuPHP" => "1"); 
+        elseif (($defaults['enabled'] == "1") && ($defaults['mod_ruid_enabled'] == "0") && ($defaults['suPHP_enabled'] == "1") && ($defaults['fpm_enabled'] == "0")) { 
+            $php_enabler = array("disabled" => "0", "php" => "0", "enableModRUID" => "0", "enableSuPHP" => "1", "enableModFPM" => "0"); 
+        }
+        elseif (($defaults['enabled'] == "1") && ($defaults['mod_ruid_enabled'] == "1") && ($defaults['suPHP_enabled'] == "0") && ($defaults['fpm_enabled'] == "0")) { 
+            $php_enabler = array("disabled" => "0", "php" => "0", "enableModRUID" => "1", "enableSuPHP" => "0", "enableModFPM" => "0"); 
+        }
+        elseif (($defaults['enabled'] == "1") && ($defaults['mod_ruid_enabled'] == "0") && ($defaults['suPHP_enabled'] == "0") && ($defaults['fpm_enabled'] == "1")) { 
+            $php_enabler = array("disabled" => "0", "php" => "0", "enableModRUID" => "0", "enableSuPHP" => "0", "enableModFPM" => "1"); 
         }
         else {
-          $php_enabler = array("disabled" => "1", "php" => "0", "enableSuPHP" => "0"); 
+            $php_enabler = array("disabled" => "1", "php" => "0", "enableModRUID" => "0", "enableSuPHP" => "0", "enableModFPM" => "0"); 
         }
 
         $container->addFormField(
@@ -55,19 +66,41 @@ class PHPExtension extends UIExtension
         if (($this->attributes['PHP_enabled'] == "php") || ($this->attributes['PHP_enabled'] == "&php&")) {
           $php_params = array( 
                         'enabled' => "1", 
-                        'suPHP_enabled' => "0"
+                        'mod_ruid_enabled' => "0",
+                        'suPHP_enabled' => "0",
+                        'fpm_enabled' => "0"
+                    );
+        }
+        elseif (($this->attributes['PHP_enabled'] == "enableModRUID") || ($this->attributes['PHP_enabled'] == "&enableModRUID&")) {
+          $php_params = array( 
+                        'enabled' => "1", 
+                        'mod_ruid_enabled' => "1",
+                        'suPHP_enabled' => "0",
+                        'fpm_enabled' => "0"
                     );
         }
         elseif (($this->attributes['PHP_enabled'] == "enableSuPHP") || ($this->attributes['PHP_enabled'] == "&enableSuPHP&")) {
           $php_params = array( 
                         'enabled' => "1", 
-                        'suPHP_enabled' => "1"
+                        'mod_ruid_enabled' => "0",
+                        'suPHP_enabled' => "1",
+                        'fpm_enabled' => "0"
+                    );
+        }
+        elseif (($this->attributes['PHP_enabled'] == "enableModFPM") || ($this->attributes['PHP_enabled'] == "&enableModFPM&")) {
+          $php_params = array( 
+                        'enabled' => "1", 
+                        'mod_ruid_enabled' => "0",
+                        'suPHP_enabled' => "0",
+                        'fpm_enabled' => "1"
                     );
         }
         else {
           $php_params = array( 
                         'enabled' => "0", 
-                        'suPHP_enabled' => "0"
+                        'mod_ruid_enabled' => "0",
+                        'suPHP_enabled' => "0",
+                        'fpm_enabled' => "0"
                     );
         }
 

@@ -188,6 +188,13 @@ systemctl restart php-fpm.service --no-block
 - Modified glue/schemas/vsite_services.schema to add the new PHP options.
 - Added missing requirement for mod_ruid2.
 - Modified all locales to change or add the new PHP related descriptions.
+- Modified glue/schemas/vsite_services.schema to edit 'VsiteServices' 
+  namespace='PHP' to extend it with 'mod_ruid_enabled' and 'fpm_enabled'.
+- Modified ui/chorizo/extensions/10_PHP.php.* to wiggle in the new PHP
+  options.
+- Modified glue/handlers/webscripting.pl to handle the new PHP options.
+- Modified glue/handlers/webscripting2.pl to handle the new PHP options.
+- Modified glue/handlers/webscripting3.pl to handle the new PHP options.
 
 * Wed Jan 28 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX17
 - Post install fix to enable and start php-fpm.

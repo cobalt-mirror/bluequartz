@@ -24,6 +24,7 @@ my $vsite = $cce->event_object();
 my($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
 ($ok, my $cgi) = $cce->get($cce->event_oid(), 'CGI');
 ($ok, my $ssi) = $cce->get($cce->event_oid(), 'SSI');
+($ok, my $Vsite) = $cce->get($cce->event_oid(), '');
 
 if(not $ok)
 {
@@ -52,29 +53,69 @@ sub edit_vhost
     my $begin = '# BEGIN WebScripting SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.';
     my $end = '# END WebScripting SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.';
 
-	if ($cgi->{enabled})
-	{
-		$script_conf .= "AddHandler cgi-wrapper .cgi\nAddHandler cgi-wrapper .pl\n";
-	}
+    if ($cgi->{enabled})
+    {
+        $script_conf .= "AddHandler cgi-wrapper .cgi\nAddHandler cgi-wrapper .pl\n";
+    }
 
-	if ($ssi->{enabled})
-	{
-		$script_conf .= "AddHandler server-parsed .shtml\nAddType text/html .shtml\n";
-	}
+    if ($ssi->{enabled})
+    {
+        $script_conf .= "AddHandler server-parsed .shtml\nAddType text/html .shtml\n";
+    }
 
-	if ($php->{enabled})
-	{
+    # Get prefered_siteAdmin for ownerships:
+    if ($php->{prefered_siteAdmin} ne "") {
+        $prefered_siteAdmin = $php->{prefered_siteAdmin};
+    }
+    else {
+        $prefered_siteAdmin = 'apache';
+    }
+
+
+
+    if ($php->{enabled})
+    {
+                # Handle suPHP:
                 if ($php->{suPHP_enabled}) { 
                         $script_conf .= <<EOT
-suPHP_Engine on
-suPHP_ConfigPath /home/sites/$fqdn
-suPHP_AddHandler x-httpd-suphp
-AddHandler x-httpd-suphp .php
+<IfModule mod_suphp.c>
+    suPHP_Engine on
+    suPHP_UserGroup $prefered_siteAdmin $Vsite->{name}
+    AddType application/x-httpd-suphp .php
+    AddHandler x-httpd-suphp .php .php5 .php4 .php3 .phtml
+    suPHP_AddHandler x-httpd-suphp
+    suPHP_ConfigPath $Vsite->{basedir}/
+</IfModule>
 EOT
-                } else { 
-                        $script_conf .= "AddType application/x-httpd-php .php5\nAddType application/x-httpd-php .php4\nAddType application/x-httpd-php .php\n"; 
+                }
+                # Handle mod_ruid2:
+                elsif ($php->{mod_ruid_enabled}) {
+                        $script_conf .= <<EOT
+<FilesMatch \\.php\$>
+    SetHandler application/x-httpd-php
+</FilesMatch>
+<IfModule mod_ruid2.c>
+     RMode config
+     RUidGid $prefered_siteAdmin $Vsite->{name}
+</IfModule>
+EOT
+                }
+                # Handle FPM/FastCGI:
+                elsif ($php->{fpm_enabled}) {
+                        $script_conf .= <<EOT
+ProxyPassMatch ^/(.*\\.php(/.*)?)\$
+unix:/var/run/php5-fpm.sock|fcgi://127.0.0.1:9000$Vsite->{basedir}/web/
+EOT
+                }
+                # Handle 'regular' PHP via DSO:
+                else { 
+                        $script_conf .= <<EOT
+<FilesMatch \\.php\$>
+    SetHandler application/x-httpd-php
+</FilesMatch>
+EOT
                 } 
-	}
+    }
 
     my $last;
     my $enableSSL = 0;
@@ -142,8 +183,8 @@ sub debug_msg {
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

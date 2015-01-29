@@ -23,9 +23,20 @@
     />
 
     <property
+        name="mod_ruid_enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
+    <property
         name="suPHP_enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"
     />
+
+    <property
+        name="fpm_enabled" type="boolean" default="0"
+        writeacl="ruleCapable(adminUser)"
+    />
+
 </class>
 <class
     name="VsiteServices" namespace="CGI" version="1.0"
