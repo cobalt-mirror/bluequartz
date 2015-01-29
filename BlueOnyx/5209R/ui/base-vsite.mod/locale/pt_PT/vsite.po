@@ -764,14 +764,8 @@ msgstr "Proprietário de todo o conteúdo /web para [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "SiteAdmin que possui /web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Se suPHP está habilitado, então este campo deve ser definido como um siteadmin existente deste site ou de seus scripts PHP não será executado. Mesmo se você não tem suPHP ativada: Se você optar por um proprietário da lista de siteAdmins, então o diretório /web de seu site será chown'ed recursivamente para o UID do usuário selecionado. Meios: Todos os arquivos e pastas em /web irá depois ser propriedade do usuário selecionado."
-
 msgid "fileOwnerMenu"
 msgstr "Propriedade Web"
-
-msgid "fileOwnerDesc"
-msgstr "Este item de menu permite que você mude a propriedade da pasta /web do seu site (e todos os arquivos e pastas dentro!). Ele permite que você escolha um siteadmin como proprietário, o que é particularmente importante se você tiver suPHP habilitado. Se suPHP está ativado e você não tem um siteadmin como proprietário da pasta /web, então scripts PHP do seu site não será executado."
 
 msgid "prefix"
 msgstr "Prefixo Site:"
