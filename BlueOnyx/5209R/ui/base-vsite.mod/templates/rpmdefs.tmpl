@@ -137,6 +137,20 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX18
+- New PHP integration for Apache 2.4, which includes PHP (DSO), mod_ruid2,
+  suPHP and FPM/FastCGI. This requires various changes.
+- Updated constructors. Mostly housekeeping stuff.
+- glue/schemas/reseller_caps.schema: Updated to add new Reseller 
+  Capabilities for the new PHP options.
+- glue/schemas/php.schema: Housekeeping stuff.
+- glue/schemas/php_vsite.schema: Housekeeping stuff.
+- glue/schemas/vsite.schema: Housekeeping stuff.
+- Updated all locales with updated/changed descriptions for the PHP stuff.
+
+* Wed Jan 28 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX17
+- Version number bump to 4.1 for 5209R's new PHP handling.
+
 * Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX16
 - Modified glue/handlers/php_zt_handler.pl to use either service or
   systemctl. But systemctl must be run with --no-block for this to work.

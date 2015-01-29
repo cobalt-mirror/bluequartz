@@ -813,17 +813,8 @@ msgstr "[[VAR.vsite]]のためのすべて/ Webコンテンツの所有者"
 msgid "prefered_siteAdmin"
 msgstr "/webを所有するSiteAdmin："
 
-msgid "prefered_siteAdmin_help"
-msgstr "suPHPが有効になっている場合、このフィールドはサイトの所有者に設定する必要があります。"
-"suPHPが有効になっていない場合でもあなたがsiteAdminsのリストから所有者を選択した場合、あなたの"
-"サイトの/web ディレクトリを選択したユーザのUIDに再帰的にchownされ、/web 内のすべてのファイル"
-"とフォルダは、選択したユーザによって所有されます。"
-
 msgid "fileOwnerMenu"
 msgstr "ウェブ所有者"
-
-msgid "fileOwnerDesc"
-msgstr "このメニュー項目は、あなたのサイト/Webフォルダ（およびすべてのファイルとフォルダ内）の所有権を変更することができます。それはあなたがsuPHP有効にしている場合particulary重要です所有者としてsiteAdminを選択することができます。 suPHPが有効になっていると、あなたの/ Webフォルダの所有者としてsiteAdminをお持ちでない場合は、あなたのサイトの当時のPHPスクリプトが実行されません。"
 
 msgid "prefix"
 msgstr "サイトPrefix："
@@ -1044,3 +1035,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "[[base-vsite.cap_resellerFPM]]または[[base-vsite.cap_resellerSUPHP]]が有効になっている場合、このフィールドは、このサイトの既存のsiteAdminに設定する必要がありますか、あなたのPHPスクリプトは実行されません。あなたが[[base-vsite.cap_resellerFPM]]または[[base-vsite.cap_resellerSUPHP]]が有効になっていない場合でも：あなたはsiteAdminsのリストから所有者を選択した場合は、あなたのサイトの/webディレクトリは、選択したユーザーのUIDに再帰的にchown'edされます。意味：/web内のすべてのファイルとフォルダが、その後、選択したユーザによって所有されます。"
+
+msgid "fileOwnerDesc"
+msgstr "このメニュー項目はあなたのサイトの/webフォルダ（と！内のすべてのファイルとフォルダ）の所有権を変更することができます。それはあなたが[[base-vsite.cap_resellerFPM]]または[[base-vsite.cap_resellerSUPHP]]を有効にしている場合はparticulary重要です所有者としてsiteAdminを、選択することができます。 [[base-vsite.cap_resellerFPM]]または[[base-vsite.cap_resellerSUPHP]]が有効になっていると、あなたの/webフォルダの所有者としてsiteAdminをお持ちでない場合は、あなたのサイトのPHPスクリプトは実行されません。"
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+

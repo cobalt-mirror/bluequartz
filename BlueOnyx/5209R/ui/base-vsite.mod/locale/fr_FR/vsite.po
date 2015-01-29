@@ -834,14 +834,8 @@ msgstr "Propriétaire de tout le contenu dans /web de [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "SiteAdmin qui possède /web :"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Si suPHP est activé, ce champ doit mentionner un SiteAdmin de ce site ou les scripts PHP ne fonctionneront pas. En désignant un propriétaire dans la liste des SiteAdmins, le répertoire /web de ce site sera chown'ed récursivement à l'UID de l'utilisateur sélectionné même si suPHP n'est pas activé. Par la suite, tous les fichiers et dossiers dans /web appartiendront à l'utilisateur sélectionné."
-
 msgid "fileOwnerMenu"
 msgstr "Propriétaires Web"
-
-msgid "fileOwnerDesc"
-msgstr "Désignez ici un SiteAdmin de ce site comme propriétaire du répertoire /web, de tous ses sous-répertoires et de ses fichiers. Ceci est particulièrement important si suPHP est activé. Si suPHP est activé et que vous n'avez pas une Siteadmin en tant que propriétaire de votre dossier /web, les scripts PHP ne fonctionneront pas."
 
 # ---- start Prefix
 
@@ -1073,3 +1067,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Si [[base-vsite.cap_resellerFPM]] ou [[base-vsite.cap_resellerSUPHP]] est activé, ce champ doit être réglé sur un Siteadmin existante de ce site ou vos scripts PHP ne fonctionnera pas. Même si vous ne avez pas [[base-vsite.cap_resellerFPM]] ou [[base-vsite.cap_resellerSUPHP]] activées: Si vous choisissez un propriétaire de la liste des siteAdmins, le répertoire /web de votre site sera chown'ed récursive à l'UID de l'utilisateur sélectionné. Moyens: Tous les fichiers et dossiers dans /web seront ensuite appartenir à l'utilisateur sélectionné."
+
+msgid "fileOwnerDesc"
+msgstr "Cette entrée de menu vous permet de changer la propriété du dossier /web de votre site (et tous les fichiers et dossiers à l'intérieur!). Il vous permet de choisir un Siteadmin en tant que propriétaire, qui est particulièrement important si vous avez [[base-vsite.cap_resellerFPM]] ou [[base-vsite.cap_resellerSUPHP]] activés. Si [[base-vsite.cap_resellerFPM]] ou [[base-vsite.cap_resellerSUPHP]] est activé et vous ne avez pas un Siteadmin en tant que propriétaire de votre dossier /web, les scripts PHP de votre site ne fonctionnera pas."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+

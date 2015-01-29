@@ -30,6 +30,30 @@
 </class>
 
 <class
+    name="Capabilities" namespace="resellerRUID" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(resellerRUID)"
+    />
+    <property 
+        name="nameTag" type="scalar" default="[[base-vsite.cap_resellerRUID]]" 
+    />     
+</class>
+
+<class
+    name="Capabilities" namespace="resellerFPM" version="1.0"
+>
+    <property
+        name="capable" type="boolean" default="1"
+        readacl="ruleCapable(resellerFPM)"
+    />
+    <property 
+        name="nameTag" type="scalar" default="[[base-vsite.cap_resellerFPM]]" 
+    />     
+</class>
+
+<class
     name="Capabilities" namespace="resellerMySQL" version="1.0"
 >
     <property

@@ -791,14 +791,8 @@ msgstr "Owner of all /web content for [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "SiteAdmin that owns /web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "If suPHP is enabled, then this field must be set to an existing siteAdmin of this site, or your PHP scripts won't run. Even if you don't have suPHP enabled: If you choose an owner from the list of siteAdmins, then the /web directory of your site will be chown'ed recursively to the UID of the selected user. Means: All files and folders in /web will afterwards be owned by the selected user."
-
 msgid "fileOwnerMenu"
 msgstr "Web Ownership"
-
-msgid "fileOwnerDesc"
-msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have suPHP enabled. If suPHP is enabled and you don't have a siteAdmin as owner of your /web folder, then PHP scripts of your site will not run."
 
 # ---- start Prefix
 
@@ -988,7 +982,7 @@ msgid "resellerPowers_help"
 msgstr "If a user has '[[base-vsite.cap_manageSite]]' rights, he can create and manage virtual sites. Sites can use certain features such as PHP, suPHP, MySQL and so on. However, you might not want to grant access and usability of features like 'Shell Access' or 'Anonymous FTP'. You can allow or deny such features here."
 
 msgid "cap_resellerPHP"
-msgstr "PHP"
+msgstr "PHP (DSO)"
 
 msgid "cap_resellerSUPHP"
 msgstr "suPHP"
@@ -1029,3 +1023,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "If [[base-vsite.cap_resellerFPM]] or [[base-vsite.cap_resellerSUPHP]] is enabled, then this field must be set to an existing siteAdmin of this site or your PHP scripts won't run. Even if you don't have [[base-vsite.cap_resellerFPM]] or [[base-vsite.cap_resellerSUPHP]] enabled: If you choose an owner from the list of siteAdmins, then the /web directory of your site will be chown'ed recursively to the UID of the selected user. Means: All files and folders in /web will afterwards be owned by the selected user."
+
+msgid "fileOwnerDesc"
+msgstr "This menu entry allows you to change the ownership of the /web folder of your site (and all files and folders within!). It allows you to choose a siteAdmin as owner, which is particulary important if you have [[base-vsite.cap_resellerFPM]] or [[base-vsite.cap_resellerSUPHP]] enabled. If [[base-vsite.cap_resellerFPM]] or [[base-vsite.cap_resellerSUPHP]] is enabled and you don't have a siteAdmin as owner of your /web folder, then the PHP scripts of your site will not run."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+

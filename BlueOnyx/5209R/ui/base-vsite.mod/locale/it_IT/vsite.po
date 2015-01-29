@@ -764,14 +764,8 @@ msgstr "Proprietario di tutti i contenuti /web per [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "Siteadmin che possiede /web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Se suPHP è abilitata, questo campo deve essere impostato su un Siteadmin esistente di questo sito, o non verrà eseguito script PHP. Anche se non si dispone di suPHP abilitata: se si sceglie un proprietario dall'elenco di siteAdmins, la directory /web del tuo sito sarà chown'ed in modo ricorsivo per l'UID dell'utente selezionato. Mezzi: Tutti i file e le cartelle in /web saranno poi essere di proprietà dell'utente selezionato."
-
 msgid "fileOwnerMenu"
 msgstr "Proprietà Web"
-
-msgid "fileOwnerDesc"
-msgstr "Questa voce di menu consente di modificare la proprietà della cartella / web del tuo sito (e tutti i file e le cartelle all'interno!). Esso consente di scegliere un siteadmin come proprietario, che è particolarmente importante se si è suPHP abilitato. Se suPHP è abilitata e non si dispone di un Siteadmin come proprietario della cartella / web, gli script PHP allora del tuo sito non verrà eseguito."
 
 msgid "prefix"
 msgstr "Prefisso del sito:"
@@ -984,3 +978,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Se [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] è abilitato, quindi questo campo deve essere impostato su un siteadmin esistente di questo sito o di script PHP non verrà eseguito. Anche se non si dispone di [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] abilitati: se si sceglie un proprietario dalla lista dei siteAdmins, quindi la directory /web del vostro sito sarà chown'ed ricorsivamente alla UID dell'utente selezionato. Mezzi: Tutti i file e le cartelle in /web saranno poi essere di proprietà dell'utente selezionato."
+
+msgid "fileOwnerDesc"
+msgstr "Questa voce di menu consente di modificare la proprietà della cartella /web del vostro sito (e tutti i file e cartelle all'interno!). Permette di scegliere un siteadmin come proprietario, che è particolarmente importante se si dispone di [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] abilitati. Se [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] è abilitata e non si dispone di un anonymous come proprietario della cartella /web, poi gli script PHP del vostro sito non verrà eseguito."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+

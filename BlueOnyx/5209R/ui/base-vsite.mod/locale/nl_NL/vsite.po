@@ -764,14 +764,8 @@ msgstr "Eigenaar van alle /web content voor [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "SiteAdmin dat /web bezit:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Als suPHP is ingeschakeld, dan is dit veld moet worden ingesteld op een bestaande siteadmin van deze site of uw PHP-scripts worden niet uitgevoerd. Zelfs als u niet beschikt over suPHP ingeschakeld: Als u kiest voor een eigenaar uit de lijst van siteAdmins, dan is de /web directory van uw site zal worden recursief chown'ed de UID van de geselecteerde gebruiker. Betekent: alle bestanden en mappen in /web zal nadien eigendom van de geselecteerde gebruiker."
-
 msgid "fileOwnerMenu"
 msgstr "Web Ownership"
-
-msgid "fileOwnerDesc"
-msgstr "Dit menu-item kunt u de eigenaar van de web map/van uw website (en alle bestanden en mappen binnen!) Veranderen. Hiermee kunt u een siteadmin als eigenaar, dat is bijzonder belangrijk als u suPHP ingeschakeld kiezen. Als suPHP is ingeschakeld en u geen siteadmin als eigenaar van uw /web-map, dan PHP scripts van uw site zal niet draaien."
 
 msgid "prefix"
 msgstr "Site Prefix:"
@@ -982,3 +976,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Als [[base-vsite.cap_resellerFPM]] of [[base-vsite.cap_resellerSUPHP]] is ingeschakeld, dan is dit veld moet worden ingesteld op een bestaande SiteAdmin van deze site of uw PHP-scripts zullen niet worden uitgevoerd. Zelfs als u niet beschikt over [[base-vsite.cap_resellerFPM]] of [[base-vsite.cap_resellerSUPHP]] ingeschakeld: Als u een eigenaar van de lijst van siteAdmins kiest, dan is de /web directory van uw site zal worden recursief chown'ed aan de UID van de geselecteerde gebruiker. Betekent: alle bestanden en mappen in /web zal achteraf worden eigendom van de geselecteerde gebruiker."
+
+msgid "fileOwnerDesc"
+msgstr "Dit menu-item kunt u de eigenaar van de map /web van uw site te veranderen (en alle bestanden en mappen binnen!). Hiermee kunt u een SiteAdmin als eigenaar, die zeer belangrijk is als je [[base-vsite.cap_resellerFPM]] of [[base-vsite.cap_resellerSUPHP]] ingeschakeld te kiezen. Als [[base-vsite.cap_resellerFPM]] of [[base-vsite.cap_resellerSUPHP]] is ingeschakeld en je hebt geen SiteAdmin als eigenaar van uw /web map hebben, dan is de PHP-scripts van uw site zal niet worden uitgevoerd."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+

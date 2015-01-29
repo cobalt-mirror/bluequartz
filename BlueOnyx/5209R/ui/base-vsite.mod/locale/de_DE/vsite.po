@@ -828,14 +828,8 @@ msgstr "Besitzer von /web für [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "SiteAdmin für /web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Wenn suPHP aktiviert ist, dann muss dieses Feld zu einem bestehenden siteAdmins dieser Website gesetzt werden, oder Ihre PHP-Skripte werden nicht ausgeführt. Auch wenn Sie nicht suPHP aktiviert haben: Wenn Sie einen Eigentümer aus der Liste der siteAdmins wählen, dann wird das /web-Verzeichnis Ihrer Website rekursiv auf die UID des ausgewählten Benutzers ge-chown&#39;ed werden. Bedeutet: Alle Dateien und Ordner in /web werden danach dem ausgewählten Benutzer gehören."
-
 msgid "fileOwnerMenu"
 msgstr "Web-Eigentümer"
-
-msgid "fileOwnerDesc"
-msgstr "Dieser Menüeintrag ermöglicht es Ihnen, den Eigentümer des /web Ordners Ihrer Website (und alle Dateien und Ordner innerhalb!) zu ändern. Es ermöglicht es Ihnen, eine siteadmin als Eigentümer zu definieren. Das ist besonders dann wichtig, wenn suPHP aktiviert ist. Wenn suPHP aktiviert ist und Sie keinen siteadmin als Eigentümer Ihres /web-Ordners gesetzt haben, dann werden die PHP-Skripte Ihrer Website nicht ausgeführt."
 
 msgid "prefix"
 msgstr "Standardpräfix:"
@@ -1050,3 +1044,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Wenn [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] aktiviert ist, dann muss in dieses Feld ein vorhandener Siteadmin als Eigentümer des /web-Ordners festgelegt werden. PHP-Skripte werden dann mit der UID und GID des Eigentümers ausgeführt. Auch wenn [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] nicht aktiviert sind: Wenn Sie einen Eigentümer aus der Liste der siteAdmins wählen, dann werden die Eigentumsverhältnisse des /web Verzeichnis Ihrer Website rekursiv auf die UID des ausgewählten Benutzers geändert.Bedeutet: Alle Dateien und Ordner in /web werden danach dem ausgewählten Benutzer gehören."
+
+msgid "fileOwnerDesc"
+msgstr "Dieser Menüeintrag erlaubt es, den Eigentümer des /web-Verzeichnis Ihrer Website zu ändern. Das schließt auch alle Dateien und Ordner darun ein. Es erlaubt Ihnen, einen Siteadmin als Eigentümer festzulegen. Dies ist besonders wichtig, wenn Sie [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] aktivieren haben. Wenn [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] aktiviert sind und Sie haben keinen Siteadmin als Eigentümer ausgewählt, dann werden PHP-Skripte Ihrer Website nicht ausgeführt."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+

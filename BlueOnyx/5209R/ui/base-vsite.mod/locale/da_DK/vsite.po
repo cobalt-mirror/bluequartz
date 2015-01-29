@@ -937,14 +937,8 @@ msgstr "Ejer af alt / web-indhold for [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "Siteadmin der ejer / web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Hvis suphp er aktiveret, så dette felt skal indstilles til en eksisterende Siteadmin af dette websted eller dine PHP scripts vil ikke køre. Selv hvis du ikke har suphp aktiveret: Hvis du vælger en ejer fra listen over siteAdmins, så / web directory på dit websted vil blive chown&#39;ed rekursivt til UID for det valgte bruger. Midler: Alle filer og mapper i / nettet vil bagefter være ejet af den valgte bruger."
-
 msgid "fileOwnerMenu"
 msgstr "Web Ejerskab"
-
-msgid "fileOwnerDesc"
-msgstr "Dette menupunkt giver dig mulighed for at ændre ejerskabet af / web mappe på dit websted (og alle filer og mapper inden!). Det giver dig mulighed for at vælge en Siteadmin som ejer, som er af særligt vigtigt, hvis du suphp har aktiveret. Hvis suphp er aktiveret, og du ikke har en Siteadmin som ejer af din / web mappe vil derefter PHP-scripts på dit websted ikke køre."
 
 msgid "prefix"
 msgstr "Sitet Præfiks:"
@@ -1160,3 +1154,22 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Hvis [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] er aktiveret, så dette felt skal indstilles til en eksisterende Siteadmin af dette websted eller dine PHP scripts vil ikke køre. Selv hvis du ikke har [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] aktiveret: Hvis du vælger en ejer fra listen over siteAdmins, så /web bibliotek på dit websted vil blive chown'ed rekursivt til UID for den valgte bruger. Midler: Alle filer og mapper i /web vil bagefter være ejet af den valgte bruger."
+
+msgid "fileOwnerDesc"
+msgstr "Dette menupunkt giver mulighed for at ændre ejerskabet af /web mappe på dit websted (og alle filer og mapper i!). Det giver dig mulighed for at vælge en Siteadmin som ejer, der er af særligt vigtigt, hvis du har [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] aktiveret. Hvis [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] er aktiveret, og du ikke har en Siteadmin som ejer af din /web mappe, så PHP-scripts på dit websted vil ikke køre."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+
