@@ -176,6 +176,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Jan 28 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX16
+- Major version number bump to 2.1.0.
+- Added requirement for php-fpm and mod_fcgid.
+- Modified constructor/import_apache_settings.pl for some reformatting.
+- Modified constructor/fix_php_conf.pl to comment out everything in 
+  php.conf that we don't need anymore. And it's basically almost all.
+
 * Mon Dec 22 2014 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX15
 - Updated post-install to copy /etc/mime.types to /etc/httpd/conf/mime.types
 - Added requirement for mailcap, which brings /etc/mime.types aboard.
