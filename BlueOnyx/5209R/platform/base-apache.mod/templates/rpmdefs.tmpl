@@ -144,6 +144,12 @@ if [ -S /usr/sausalito/cced.socket ]; then
     /sbin/service httpd restart
 fi
 
+# Enable service php-fpm:
+systemctl enable php-fpm.service
+
+# Start service php-fpm:
+systemctl restart php-fpm.service
+
 <end glue>
 <begin ui>
 # ui post-install
@@ -175,6 +181,9 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Wed Jan 28 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX17
+- Post install fix to enable and start php-fpm.
 
 * Wed Jan 28 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX16
 - Major version number bump to 2.1.0.
