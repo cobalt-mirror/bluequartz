@@ -1,0 +1,11 @@
+<item 
+    id="base_vsite_general" 
+    label="[[base-vsite.generalSettings]]" 
+    description="[[base-vsite.generalSettings_help]]" 
+    url="/vsite/vsiteMod?group=[[VAR.group]]"
+    icon="create_write"
+>
+    <parent id="base_sitemanage" order="20">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

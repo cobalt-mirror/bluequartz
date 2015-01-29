@@ -1,0 +1,11 @@
+<item 
+    id="base_siteusage" 
+    label="[[base-vsite.siteusage]]" 
+    description="[[base-vsite.siteusageDescription]]"
+    requiresChildren="1"
+    icon="graph"
+>
+    <parent id="base_sitemanage" order="80">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

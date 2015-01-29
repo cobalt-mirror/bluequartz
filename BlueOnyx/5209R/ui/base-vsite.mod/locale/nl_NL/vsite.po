@@ -1,0 +1,984 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "basicSettingsTab_help"
+msgstr "Configureren van de meest gebruikte instellingen."
+
+msgid "ipAddr"
+msgstr "IP-adres"
+
+msgid "ipAddr_help"
+msgstr "Dit is het IP-adres van de site."
+
+msgid "domain"
+msgstr "Domeinnaam"
+
+msgid "domain_help"
+msgstr "Dit is de domeinnaam van de site. Een domeinnaam is het tweede deel van een volledig gekwalificeerde domeinnaam. Bijvoorbeeld example.com en BlueOnyx.org zijn geldig domeinnamen."
+
+msgid "fqdn"
+msgstr "Volledige hostnaam"
+
+msgid "fqdn_help"
+msgstr "Dit is de volledige naam van de site en is ook bekend als de volledig gekwalificeerde domeinnaam. De volledige hostnaam wordt gesorteerd per domein en vervolgens door de hostnaam."
+
+msgid "enterFqdn"
+msgstr "Host en Domain Name"
+
+msgid "enterFqdn_help"
+msgstr "Voer de hostnaam van de site in het eerste veld en de domeinnaam in het tweede veld. Zo kon de hostnaam www, mail, etc. zijn De domeinnaam zou kunnen zijn example.com, BlueOnyx.org, etc."
+
+msgid "hostName"
+msgstr "Hostnaam"
+
+msgid "hostName_help"
+msgstr "Dit is de naam van de website gastheer. Een hostnaam is het eerste deel van een volledig gekwalificeerde domeinnaam. Bijvoorbeeld, mail en www zijn geldig hostnamen."
+
+msgid "generalSettings"
+msgstr "Algemene instellingen"
+
+msgid "generalSettings_help"
+msgstr "Voor deze website aan te passen en te configureren sommige diensten."
+
+msgid "services"
+msgstr "Diensten"
+
+msgid "quota"
+msgstr "Maximaal toegestaan ​​Disk Space"
+
+msgid "quota_help"
+msgstr "De maximale schijfruimte op de server beschikbaar om een ​​plaats voor bestanden."
+
+msgid "maxUsers"
+msgstr "Maximaal toegestaan ​​aantal gebruikers"
+
+msgid "maxUsers_help"
+msgstr "Het maximum aantal gebruikersaccounts dat een site kan hebben."
+
+msgid "dns_auto"
+msgstr "Automatische DNS configuratie"
+
+msgid "dns_auto_help"
+msgstr "Automatische DNS configuratie beheert DNS-records voor deze website. Web-en e-mail-server aliassen worden alleen ondersteund als zij de naam van de site domeinnaam te delen. Deze service is niet de domeinnaam te registreren met een topniveauregistrator."
+
+msgid "webAliases"
+msgstr "Web Server Alias"
+
+msgid "webAliases_help"
+msgstr "Voer extra host of domeinnamen waarvoor deze virtuele site moet webverzoeken accepteren. Scheid meerdere items met een komma of spatie. Voorbeeld: www2.example.com, www.example.com. Merk op dat DNS moet worden geconfigureerd om alias adressen op te lossen, naast de naam van de site."
+
+msgid "mailAliases"
+msgstr "Email Server Alias"
+
+msgid "mailAliases_help"
+msgstr "Voer extra host of domeinnamen waarvoor deze virtuele site moet e-mail [SMTP poort 25] verbindingen te accepteren. Scheid meerdere items met een komma of spatie. Voorbeeld: mail2.example.com, mail.example.com."
+
+msgid "otherServices"
+msgstr "Diensten en functies"
+
+msgid "otherServices_help"
+msgstr "Of uit te schakelen verschillende diensten."
+
+msgid "exitSitemgmt"
+msgstr "Exit Site Management"
+
+msgid "exitSitemgmtHelp"
+msgstr "Sluit dit venster."
+
+msgid "sitesettings"
+msgstr "Site-instellingen"
+
+msgid "sitesettingsDescription"
+msgstr "Klik hier om een ​​algemene site en service-instellingen te wijzigen."
+
+msgid "windowTitle"
+msgstr "Het beheren van virtuele terrein [[VAR.vsite]] als [[VAR.user]]"
+
+msgid "virtualSiteList"
+msgstr "Virtual Site Lijst"
+
+msgid "virtualSiteList_help"
+msgstr "Klik hier om virtuele websites op deze server maken of wijzigen."
+
+msgid "listSuspended"
+msgstr "Hangend"
+
+msgid "listSuspended_help"
+msgstr "Dit geeft aan dat de site wordt opgeschort. Als een site wordt opgeschort, zal de toegang voor gebruikers van de site en het web en ftp-site die ermee verbonden zijn uitgeschakeld."
+
+msgid "searchBy"
+msgstr "Zoeken"
+
+msgid "searchBy_help"
+msgstr "Kies het pand site waarop u wilt zoeken. Sites die de in het veld wordt ingevoerd voor de gekozen accommodatie tekst zal worden opgenomen."
+
+msgid "searchCriteria"
+msgstr "Zoekcriteria"
+
+msgid "searchCriteria_help"
+msgstr "Kies hoe u het opgegeven kenmerk zoeken. De drop-down box kan worden gebruikt om te beperken hoe exact de zoektekst moet worden afgestemd. Voer de zoektekst in het veld."
+
+msgid "vsiteSearch"
+msgstr "Zoek Virtual Sites"
+
+msgid "searchbut"
+msgstr "Zoeken"
+
+msgid "searchbut_help"
+msgstr "Zoek naar virtuele websites die overeenkomen met de gekozen eigenschappen."
+
+msgid "advancedSearch"
+msgstr "Geavanceerd zoeken"
+
+msgid "advancedSearch_help"
+msgstr "Zoeken naar sites met behulp van andere criteria."
+
+msgid "sitedefaultsbut"
+msgstr "Bewerk Virtual Site Template"
+
+msgid "sitedefaultsbut_help"
+msgstr "Bewerk de instellingen die automatisch worden ingevuld bij het toevoegen van een virtuele website."
+
+msgid "siteaddbut"
+msgstr "Site toevoegen"
+
+msgid "siteaddbut_help"
+msgstr "Voeg een nieuwe virtuele site naar deze server."
+
+msgid "suspend"
+msgstr "Opschorten"
+
+msgid "suspend_help"
+msgstr "Indien aangevinkt, wordt deze site opgeschort. Schorsing van een site zal volledig toegang voor de gebruikers van deze site alsmede het web en ftp-site in verband met het uit te schakelen."
+
+msgid "siteUses"
+msgstr "Site gebruikt"
+
+msgid "="
+msgstr "is"
+
+msgid "begins"
+msgstr "Begint met"
+
+msgid "ends"
+msgstr "Eindigt met"
+
+msgid "contains"
+msgstr "Bevat"
+
+msgid "not_contains"
+msgstr "Bevat geen"
+
+msgid "inSubnet"
+msgstr "is subnet"
+
+msgid "notInSubnet"
+msgstr "is niet in subnet"
+
+msgid "search_vsite_results_1"
+msgstr "Zoekresultaten (1 Virtual Site Gevonden)"
+
+msgid "search_vsite_results"
+msgstr "Zoekresultaten ([[VAR.num]] Virtual Sites Gevonden)"
+
+msgid "search_vsite_nonefound"
+msgstr "Geen Virtual sites gevonden met deze zoekopdracht, probeer het verkleinen van uw zoekcriteria."
+
+msgid "numResultsPerPage"
+msgstr "Sites Per Pagina"
+
+msgid "numResultsPerPage_help"
+msgstr "Stel het aantal sites weergeven op de pagina in een keer. De overige plaatsen zullen beschikbaar zijn bij de gewenste pagina te selecteren in het menu aan de bovenkant van de lijst."
+
+msgid "numResultsPerPage_invalid"
+msgstr "Sorry, de ingevoerde voor [[base-vsite.numResultsPerPage]] waarde is te klein of geen nummer. Voer een geheel getal groter dan of gelijk aan een."
+
+msgid "searchOptions"
+msgstr "Zoek opties"
+
+msgid "displayOptions"
+msgstr "Weergave-opties"
+
+msgid "siteUses_help"
+msgstr "Selecteer de gewenste diensten aan sites met behulp van deze specifieke diensten te vinden."
+
+msgid "suspended"
+msgstr "Hangend"
+
+msgid "suspended_help"
+msgstr "Selecteer naar sites die momenteel worden opgeschort vinden."
+
+msgid "searchResults"
+msgstr "Virtuele Site Search Results"
+
+msgid "modifySearch"
+msgstr "Zoek wijzigen"
+
+msgid "modifySearch_help"
+msgstr "Wijzig de zoekcriteria gebruikt om de huidige lijst te genereren."
+
+msgid "newSearch"
+msgstr "Nieuwe zoekopdracht"
+
+msgid "newSearch_help"
+msgstr "Maak een nieuwe zoekopdracht."
+
+msgid "siteRemoveConfirm"
+msgstr "Weet u zeker dat u de site, [[VAR.fqdn]] verwijderen?"
+
+msgid "deletingSite"
+msgstr "Het verwijderen van de site, even geduld ..."
+
+msgid "removingUsers"
+msgstr "Verwijderen van gebruikers"
+
+msgid "removingSite"
+msgstr "Het verwijderen van de site"
+
+msgid "noSuchSite"
+msgstr "De opgegeven site, [[VAR.site]], kon niet worden gevonden."
+
+msgid "removeFailed"
+msgstr "Site verwijderen is mislukt"
+
+msgid "vsiteDefaults"
+msgstr "Virtual Site Template"
+
+msgid "siteDefaultsTab"
+msgstr "Basisinstellingen"
+
+msgid "siteDefaultsTab_help"
+msgstr "Wijzig de standaard netwerk, gebruikers-en disk grenzen, en e-mailinstellingen voor de nieuwe virtuele sites."
+
+msgid "defaultIpAddr"
+msgstr "[[base-vsite.ipAddr]]"
+
+msgid "defaultIpAddr_help"
+msgstr "Het standaard IP-adres dat wordt ingevuld bij het toevoegen van een site."
+
+msgid "defaultDomain"
+msgstr "[[base-vsite.domain]]"
+
+msgid "defaultDomain_help"
+msgstr "De standaard domein waartoe nieuwe sites zal behoren."
+
+msgid "defaultHome"
+msgstr "Standaard Directory (/home)"
+
+msgid "homePartition"
+msgstr "Sitemap Locatie"
+
+msgid "homePartition_help"
+msgstr "Kies de directory locatie waar deze site home directory zal worden gevestigd. De /home directory is de standaardlocatie en is gelegen op de interne harde schijf van de server. De andere mappen bevinden zich op extra opslagruimte. Als een site home directory is gelegen op een extra opslagapparaat, uitschakelen of verwijderen van dat apparaat zal leiden tot een site om niet-functioneel geworden."
+
+msgid "newVsiteSettings"
+msgstr "Nieuwe Virtual Site"
+
+msgid "modVsiteSettings"
+msgstr "Virtuele Site-instellingen voor [[VAR.site]]"
+
+msgid "webAliases_invalid"
+msgstr "Webserver alias [[VAR.invalidValue]] is ongeldig."
+
+msgid "mailAliases_invalid"
+msgstr "E-mail server alias [[VAR.invalidValue]] is ongeldig."
+
+msgid "siteusage"
+msgstr "Gebruiksinformatie"
+
+msgid "siteusageDescription"
+msgstr "Bekijk informatie over het gebruik van bronnen voor deze site."
+
+msgid "manageAdminUsersBlurb"
+msgstr "Aparte server administrator accounts aanmaakt dan de 'admin' account stelt de systeembeheerder om vertrouwde derden de server te beheren. Administrator accounts kunnen worden gemaakt om alle dezelfde bevoegdheden, behalve voor het beheer administrator accounts, dat de 'admin' account heeft bij hebben. Administrator accounts kunnen ook worden gemaakt met meer beperkingen op welke aspecten van de server ze mogen controleren."
+
+msgid "manageAdminUsers"
+msgstr "Server-beheerders"
+
+msgid "addAdminHelp"
+msgstr "Maak een nieuwe server administrator account."
+
+msgid "manageAdmin"
+msgstr "Wijzig Server Administrator Instellingen voor [[VAR.name]]"
+
+msgid "manageAdminDescription"
+msgstr "Aanmaken en beheren van serverbeheerder accounts. [[base-vsite.manageAdminUsersBlurb]]"
+
+msgid "rootAccess"
+msgstr "Root-toegang"
+
+msgid "rootAccess_help"
+msgstr "Root-toegang inschakelen kan de admin gebruiker om het programma 'su' gebruiken om de root gebruiker worden wanneer aangemeld bij de server via telnet of ssh. Indien ingeschakeld, een nieuwe root account met de gebruikersnaam 'root-<gebruikersnaam>', waar <username> is de naam van de gebruiker met root-toegang, zal worden gecreëerd. De nieuwe account wordt hetzelfde wachtwoord hebben als gewone account van de gebruiker. Bijvoorbeeld, voor een beheerder met een gebruikersnaam van 'bob' de gebruiker 'bob' kon het commando 'su - root-bob' run, en voer hun account wachtwoord om de root-gebruiker te worden."
+
+msgid "adminPowers"
+msgstr "Extra Toegangsrechten"
+
+msgid "adminPowers_help"
+msgstr "Hierdoor kan het herstel van bepaalde vaardigheden om een ​​serverbeheerder die normaal zijn voorbehouden aan de 'admin' gebruiker alleen. Verplaats extra mogelijkheden die deze server administrator account moet worden toegestaan ​​uit de kolom [[base-vsite.disallowedAbilities]] naar de kolom [[base-vsite.allowedAbilities]]."
+
+msgid "allowedAbilities"
+msgstr "Extra Abilities"
+
+msgid "disallowedAbilities"
+msgstr "Beschikbaar Abilities"
+
+msgid "userSuspended"
+msgstr "Hangend"
+
+msgid "userSuspended_help"
+msgstr "Geeft aan of een server administrator account is geschorst."
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "no"
+msgstr "Geen"
+
+msgid "suspendUser"
+msgstr "Opschorten Gebruiker"
+
+msgid "suspendUser_help"
+msgstr "Schorsing van een gebruiker wordt voorkomen dat de gebruiker toegang krijgt tot de server. Gebruikers kunnen geen verbinding maken met de server, terwijl ze worden opgehangen."
+
+msgid "mailCatchAll"
+msgstr "Catch-All E-mailadres"
+
+msgid "mailCatchAll_help"
+msgstr "Geef een e-mailadres aan berichten die zijn geadresseerd aan onbekende gebruikers en mailinglijsten ontvangen. Indien leeg gelaten, e-mail gericht aan onbekende gebruikers of mailinglijsten worden niet geaccepteerd. Als het opgegeven adres niet bestaat, kan mailen naar onbekende gebruikers en mailinglijsten worden afgewezen net alsof er geen adres is opgegeven."
+
+msgid "adminUsersList"
+msgstr "Server Administrator List"
+
+msgid "fullName"
+msgstr "Volledige Naam"
+
+msgid "fullName_help"
+msgstr "De volledige naam van de gebruiker."
+
+msgid "userName"
+msgstr "Gebruikers Naam"
+
+msgid "userName_help"
+msgstr "De gebruikersnaam van de gebruiker."
+
+msgid "actions"
+msgstr "Acties"
+
+msgid "actions_help"
+msgstr "Klik op het potlood om de gebruiker te wijzigen. Klik op de prullenbak om de gebruiker te verwijderen."
+
+msgid "deleteQuestion"
+msgstr "Weet u zeker dat u de beheerder, [[VAR.name]] verwijderen?"
+
+msgid "deletingUser"
+msgstr "Het verwijderen van de gebruiker, even geduld ..."
+
+msgid "createAdminUser"
+msgstr "Nieuwe Server Administrator"
+
+msgid "userNameCreate"
+msgstr "[[base-vsite.userName]]"
+
+msgid "userNameCreate_help"
+msgstr "Voer de gebruikersnaam voor de nieuwe serverbeheerder."
+
+msgid "userPassword"
+msgstr "Wachtwoord"
+
+msgid "userPassword_help"
+msgstr "Voer het wachtwoord van de gebruiker."
+
+msgid "userDiskQuota"
+msgstr "Maximaal toegestaan ​​Disk Space"
+
+msgid "userDiskQuota_help"
+msgstr "Geef de maximale hoeveelheid schijfruimte die de gebruiker zou moeten worden toegestaan ​​om te gebruiken op deze server. Laat het veld leeg om de gebruiker toegang tot een onbeperkte hoeveelheid schijfruimte te geven."
+
+msgid "userInformation"
+msgstr "Informatie voor de gebruiker"
+
+msgid "adminOptions"
+msgstr "Opties Administrator"
+
+msgid "cantReadVsite"
+msgstr "[[base-vsite.operationFailed]] Kan de informatie voor deze website te krijgen van CCE."
+
+msgid "fqdnTooLong"
+msgstr "Sorry, de host-en domeinnaam is te lang. De lengte van de gecombineerde host-en domeinnaam moet minder dan 255 tekens."
+
+msgid "localhostNotAllowed"
+msgstr "De hostnaam, localhost, is gereserveerd en kan niet worden opgegeven als de naam van een virtuele website host."
+
+msgid "fqdnInUse"
+msgstr "De opgegeven hostnaam en domeinnaam combinatie, [[VAR.fqdn]], is in gebruik door een andere virtuele locatie."
+
+msgid "usedWebAliases"
+msgstr "De volgende web-server aliassen zijn in gebruik en kan niet worden ingesteld: [[VAR.aliases]]"
+
+msgid "usedMailAliases"
+msgstr "De volgende mail server aliassen zijn in gebruik en kan niet worden ingesteld: [[VAR.aliases]]"
+
+msgid "cantCreateMailAlias"
+msgstr "[[base-vsite.operationFailed]] De mail alias, [[VAR.alias]], kan niet worden gemaakt."
+
+msgid "cantUpdateMailAlias"
+msgstr "[[base-vsite.operationFailed]] De mail alias, [[VAR.alias]], kon niet worden bijgewerkt."
+
+msgid "cantUpdateUserMailAliases"
+msgstr "[[base-vsite.operationFailed]] Kan de e-mail informatie voor de gebruikers die op deze site behoren te werken."
+
+msgid "cantCreateAtypeRecord"
+msgstr "[[base-vsite.operationFailed]] Kan de DNS-vermelding voor [[VAR.fqdn]] creëren."
+
+msgid "cantCreateWebAlias"
+msgstr "[[base-vsite.operationFailed]] Kan de DNS-vermelding voor de webserver alias, [[VAR.alias]], voor [[VAR.fqdn]] creëren."
+
+msgid "cantCreateAtypeRecordForMail"
+msgstr "[[base-vsite.operationFailed]] Kan de A-type DNS-vermelding voor de mailserver alias, [[VAR.alias]], voor [[VAR.fqdn]] creëren."
+
+msgid "cantCreateMXRecordForMailAlias"
+msgstr "[[base-vsite.operationFailed]] Kan de MX soort DNS-vermelding voor de mailserver alias, [[VAR.alias]], voor [[VAR.fqdn]] creëren."
+
+msgid "cantRestartDns"
+msgstr "[[base-vsite.operationFailed]] Kan de DNS-server opnieuw op."
+
+msgid "cantMigrateDnsRecords"
+msgstr "[[base-vsite.operationFailed]] Kan de DNS entries updaten voor [[VAR.fqdn]] naar de nieuwe site informatie overeenkomen."
+
+msgid "cantUpdateVhost"
+msgstr "[[base-vsite.operationFailed]] Kan de webserver informatie voor deze site bij te werken."
+
+msgid "overUserLimit"
+msgstr "[[base-vsite.operationFailed]] De site, [[VAR.fqdn]], heeft het maximum aantal gebruikers dat het toegestaan ​​is om te hebben overschreden."
+
+msgid "vsiteUsingIpAddress"
+msgstr "De netwerkinterface kan niet worden uitgeschakeld, omdat een of meer sites gebruiken het IP-adres dat is toegewezen aan de interface."
+
+msgid "vsiteUsingChangingIP"
+msgstr "Het IP-adres kan niet worden gewijzigd, omdat een of meer sites zijn met behulp van het huidige IP-adres is toegewezen aan deze interface."
+
+msgid "cantDisableVhost"
+msgstr "[[base-vsite.operationFailed]] Kan de site web-server uit te schakelen."
+
+msgid "cantSuspendUsers"
+msgstr "[[base-vsite.operationFailed]] Kan niet alle gebruikers van de site op te schorten."
+
+msgid "cantUpdateSiteAdminCaps"
+msgstr "[[base-vsite.operationFailed]] Kan de mogelijkheden voor site-beheerders aan."
+
+msgid "couldNotAddAdminAccount"
+msgstr "[[base-vsite.operationFailed]] De admin gebruikersaccount voor [[VAR.fqdn]] kan niet worden gemaakt."
+
+msgid "cantAddSystemGroup"
+msgstr "De site kan niet worden gemaakt, omdat het systeem niet in staat was om de site systeem groep te maken."
+
+msgid "cantSetSiteGroup"
+msgstr "De site kan niet worden gemaakt, omdat de informatie van de site niet kan worden bijgewerkt met het bijbehorende systeem groepsnaam."
+
+msgid "cantAddVirtualHost"
+msgstr "De site kan niet worden gemaakt, omdat de bijbehorende web-server niet kan worden gemaakt."
+
+msgid "cantAddFtpVhost"
+msgstr "Kan geen FTP-server toegang van deze site te maken."
+
+msgid "cantAddSystemAlias"
+msgstr "Niet in staat om het systeem e-mail alias, [[VAR.alias]], maken voor deze site. Zorg dat er geen gebruiker op het systeem wordt met behulp van de alias en probeer het opnieuw."
+
+msgid "vsiteUserOwnsAlias"
+msgstr "Niet in staat om het systeem e-mail alias, [[VAR.alias]], maken voor deze site. De gebruiker, [[VAR.user]], die lid is van de site, [[VAR.site]], lijkt te worden met behulp van de alias. Verwijder de alias uit [[VAR.user]] en probeer het opnieuw."
+
+msgid "userOwnsAlias"
+msgstr "Niet in staat om het systeem e-mail alias, [[VAR.alias]], maken voor deze site. De gebruiker, [[VAR.user]], die geen lid van een site (eventueel een serverbeheerder), lijkt te worden met behulp van de alias. Verwijder de alias uit [[VAR.user]] en probeer het opnieuw."
+
+msgid "cantDestroyNetwork"
+msgstr "Kan de netwerkinterface in verband met het IP-adres van deze site uitschakelen. Dit belette niet dat de site wordt verwijderd."
+
+msgid "siteMembersFound"
+msgstr "De locatie kan niet worden verwijderd, door sommige gebruikers rekeningen van de site niet zijn verwijderd. Gelieve de verklaring van de gebruiker lijst van de site om te zien welke gebruikersaccounts blijven."
+
+msgid "cantCreateNetwork"
+msgstr "[[base-vsite.operationFailed]] Kan de netwerkinterface in verband met het IP-adres van deze site."
+
+msgid "diskUsedBySites"
+msgstr "Dit apparaat kan niet worden gewijzigd, omdat de volgende sites bevinden zich op het: [[VAR.sites]]. Verwijder deze sites voor het uitschakelen van het apparaat of het maken van het niet beschikbaar zijn voor gebruik als een home directory."
+
+msgid "cantRemoveAdminFromGroup"
+msgstr "Kan [[VAR.user]] van de site groep, [[VAR.group]] verwijderen."
+
+msgid "cantAddAdminToGroup"
+msgstr "Kan [[VAR.user]] naar de site groep, [[VAR.group]] voegen."
+
+msgid "cantCreateSiteAdminGroup"
+msgstr "Kan sitebeheerders groep te maken."
+
+msgid "cantRemoveUserFromSiteAdminGroup"
+msgstr "Kan [[VAR.user]] uit de groep beheerders van de website te verwijderen."
+
+msgid "cantAddUserToSiteAdminGroup"
+msgstr "Kan [[VAR.user]] aan de groep sitebeheerders toe te voegen."
+
+msgid "cantRemoveUserFromServerAdminGroup"
+msgstr "Kan [[VAR.user]] uit de groep server administrators verwijderen."
+
+msgid "sitemanage"
+msgstr "Site Management"
+
+msgid "sitemanageDescription"
+msgstr "Klik hier om virtuele sites en gebruikersaccounts beheren."
+
+msgid "sitetabDescription"
+msgstr "Beheer site-instellingen zoals gebruikersaccounts, mailinglijsten, ftp, en back-up."
+
+msgid "sitetabDescription_menu"
+msgstr "Kies uit de onderstaande menu om de instellingen voor [[VAR.hostname]], inclusief gebruikersaccounts, mailinglijsten, ftp, en back-up te beheren."
+
+msgid "mod_name"
+msgstr "module naam"
+
+msgid "version"
+msgstr "versie 1.0"
+
+msgid "operationFailed"
+msgstr "De bewerking is mislukt."
+
+msgid "basicSettingsTab"
+msgstr "Basisinstellingen"
+
+msgid "sitemaintenance"
+msgstr "Onderhoud"
+
+msgid "sitemaintenanceDescription"
+msgstr "Klik hier om site-onderhoud uit te voeren, zoals backup en restore."
+
+msgid "siteservices"
+msgstr "Diensten"
+
+msgid "siteservicesDescription"
+msgstr "Klik hier om de beschikbare diensten te configureren voor deze website."
+
+msgid "siteweb"
+msgstr "Web"
+
+msgid "siteweb_help"
+msgstr "Klik hier om web opties, zoals scripting talen te configureren."
+
+msgid "siteWebSettings"
+msgstr "Web Instellingen voor [[VAR.fqdn]]"
+
+msgid "siteEmailSettings"
+msgstr "E-mailinstellingen voor [[VAR.fqdn]]"
+
+msgid "sitemail"
+msgstr "E-mail"
+
+msgid "sitemail_help"
+msgstr "Klik hier om e-mail opties, zoals website aliassen te configureren."
+
+msgid "diskQuota_invalid"
+msgstr "Sorry, de ingevoerde voor [[base-vsite.userDiskQuota]] waarde is te klein of geen nummer. [[base-vsite.diskQuota_rule]]"
+
+msgid "diskQuota_rule"
+msgstr "Voer een getal groter dan of gelijk aan een schijfruimte van deze gebruiker te beperken. Laat het veld leeg om de gebruiker toegang tot alle beschikbare schijfruimte op het apparaat waarop de gebruiker home directory is gevestigd te geven."
+
+msgid "cantAddUserToServerAdminGroup"
+msgstr "Kan [[VAR.user]] aan de groep server administrators toe te voegen."
+
+msgid "systemFqdnNotAllowed"
+msgstr "De opgegeven hostnaam en domeinnaam combinatie, [[VAR.fqdn]], is in gebruik door het systeem."
+
+msgid "site_preview"
+msgstr "Voorbeeld Site Configuration"
+
+msgid "site_preview_help"
+msgstr "Indien aangevinkt, wordt voorvertoning site gemaakt. U krijgt toegang tot voorbeeld site op http://ServerName/VsiteName/."
+
+msgid "cantChangeSitePreview"
+msgstr "Kan niet veranderen Voorbeeld siteconfiguratie"
+
+msgid "emailDisabled"
+msgstr "E-mail uitschakelen voor Domain"
+
+msgid "emailDisabled_help"
+msgstr "Dit zal de mogelijkheid voor het domein om e-mails te ontvangen uitgeschakeld"
+
+msgid "userwebs"
+msgstr "Enable gebruiker eigendom webs"
+
+msgid "userwebs_help"
+msgstr "Indien ingeschakeld, dan heeft elke gebruiker zijn eigen webruimte, die gescheiden is van de belangrijkste website webruimte en bereikbaar via http://www.example.com/ ~ username /. Gebruikers kunnen vervolgens uploaden hun eigen webpagina's via FTP in hun eigen /web directory."
+
+msgid "php_server"
+msgstr "PHP-instellingen"
+
+msgid "php_serverDescription"
+msgstr "Deze pagina kunt u de beveiliging en de prestaties gerelateerde instellingen van PHP configureren. Deze wijzigingen worden toegepast op uw php.ini configuratiebestand van PHP. Houd er rekening mee dat PHP is zeer krachtig en kan vaak worden gebruikt om een ​​server te exploiteren. Vandaar dat we te configureren in een zeer restrictief en veilige manier. U kunt deze beperkingen op een per-site basis los."
+
+msgid "php_server_head"
+msgstr "Server breed PHP-instellingen"
+
+msgid "php_ini_security_settings"
+msgstr "Belangrijkste PHP-instellingen"
+
+msgid "php_ini_security_settings_help"
+msgstr "Hoofd beveiliging en prestatie-instellingen van toepassing op een server niveau. Deze wijzigingen worden direct toegepast op uw php.ini bestand."
+
+msgid "php_ini_expert_mode"
+msgstr "Beoordeling php.ini"
+
+msgid "php_ini_expert_mode_help"
+msgstr "Deze pagina kunt u het hele php.ini bestand beoordelen en toont alle opties - niet alleen de paar bewerkbare Ones. Let op: wijzigingen op deze pagina opslaan is niet mogelijk."
+
+msgid "php_ini_location"
+msgstr "Locatie:"
+
+msgid "php_ini_location_help"
+msgstr "Dit toont waar je php.ini bestand zich bevindt."
+
+msgid "register_globals"
+msgstr "Register Globals:"
+
+msgid "register_globals_help"
+msgstr "Voor maximale veiligheid moet u 'register_globals' ingesteld op 'Off'. Anders is het goed mogelijk dat unsecurely geprogrammeerd PHP scripts kunnen worden gebruikt om uw server te hacken."
+
+msgid "safe_mode"
+msgstr "Veilige modus:"
+
+msgid "safe_mode_help"
+msgstr "De veilige modus van PHP is een poging om de gedeelde server-security probleem op te lossen. Indien ingeschakeld PHP scripts alleen zal worden toegestaan ​​om bestanden die eigendom zijn van de * dezelfde * gebruiker (UID) en groep (GID) te openen. VEILIGHEID WAARSCHUWING: U * MOET NIET * schakelen veilige modus. Het uitschakelen van de veilige modus is een uitnodiging om gehackt."
+
+msgid "safe_mode_gid"
+msgstr "Veilige modus GID:"
+
+msgid "safe_mode_gid_help"
+msgstr "Standaard wordt de Veilige modus werkt een UID/GID vergelijken controleren bij het openen van bestanden en kan alleen bestanden die eigendom zijn van dezelfde UID/GID openen. Als u dit wilt ontspannen om gewoon een GID vergelijken, en schakel vervolgens safe_mode_gid."
+
+msgid "safe_mode_include_dir"
+msgstr "Veilige modus bevatten directory:"
+
+msgid "safe_mode_include_dir_help"
+msgstr "UID/GID controles worden omzeild wanneer inclusief bestanden uit deze map en submappen. Deze richtlijn kan een dubbele punt (puntkomma op Windows) nemen afgescheiden pad, in plaats van slechts een enkele map. De vermelde beperking is eigenlijk een prefix, geen naam van een map. Dit betekent dat 'safe_mode_include_dir=/dir/incl' biedt tevens toegang tot '/dir/include' en '/dir/incls, voorzover die bestaan. Wanneer u alleen toegang tot de opgegeven map te beperken, eindigen met een slash. Bijvoorbeeld: 'safe_mode_include_dir=/dir/incl/'. Als de waarde van deze richtlijn is leeg, kan geen bestanden met verschillende UID/GID worden opgenomen."
+
+msgid "safe_mode_exec_dir"
+msgstr "Veilige modus exec directory:"
+
+msgid "safe_mode_exec_dir_help"
+msgstr "Als PHP wordt gebruikt in de veilige modus, system () en de andere functies uitvoeren systeemprogramma's weigeren om programma's die niet in deze map te starten."
+
+msgid "safe_mode_allowed_env_vars"
+msgstr "Veilige modus toegestaan ​​evelope variabelen:"
+
+msgid "safe_mode_allowed_env_vars_help"
+msgstr "Het instellen van bepaalde omgevingsvariabelen kan een potentiële inbreuk op de beveiliging zijn. Deze richtlijn bevat een door komma's gescheiden lijst met voorvoegsels. In de veilige modus, kan de gebruiker alleen wijzigen omgevingsvariabelen waarvan de naam begint met de hier geleverde voorvoegsels. Standaard zullen de gebruikers alleen kunnen omgevingsvariabelen die beginnen met PHP_ (bijv. PHP_FOO = BAR) ingesteld. Opmerking: Als deze richtlijn leeg is, zal PHP laat de gebruiker ENIGE omgevingsvariabele te wijzigen!"
+
+msgid "safe_mode_protected_env_vars"
+msgstr "Veilige modus beschermde envelop variabelen:"
+
+msgid "safe_mode_protected_env_vars_help"
+msgstr "Deze richtlijn bevat een door komma's gescheiden lijst van omgevingsvariabelen die de eindgebruiker niet in staat zal zijn om te veranderen met behulp van putenv (). Deze variabelen worden beschermd, zelfs wanneer safe_mode_allowed_env_vars is ingesteld om te veranderen."
+
+msgid "disable_functions"
+msgstr "Uitschakelen functies:"
+
+msgid "disable_functions_help"
+msgstr "Dit geeft je de mogelijkheid om bepaalde functies om veiligheidsredenen uit te schakelen. Het duurt op een door komma's gescheiden lijst van functienamen. disable_functions wordt niet beïnvloed door de veilige modus."
+
+msgid "disable_classes"
+msgstr "Uitschakelen klassen:"
+
+msgid "disable_classes_help"
+msgstr "Dit geeft je de mogelijkheid om bepaalde klassen voor veiligheidsredenen schakelen. Het duurt op een door komma's gescheiden lijst van class namen. disable_classes wordt niet beïnvloed door de veilige modus."
+
+msgid "allow_url_fopen"
+msgstr "Laat URL fopen:"
+
+msgid "allow_url_fopen_help"
+msgstr "Indien ingeschakeld, allow_url_fopen laat PHP bestand functies - zoals file_get_contents () en de include en vereisen verklaringen - kunnen gegevens ophalen vanaf externe locaties, zoals een FTP-of website. Programmeurs deze vaak vergeten en niet over de juiste ingang filtering niet doen bij het passeren van de gebruiker gegevens verstrekt aan deze functies, hebben zodat ook code-injectie kwetsbaarheden. Een groot aantal van de code-injectie kwetsbaarheden en hacks gerapporteerd in PHP-gebaseerde web-applicaties worden veroorzaakt door de combinatie van het inschakelen allow_url_fopen en slechte invoerfilteren. Standaard uitgeschakeld."
+
+msgid "allow_url_include"
+msgstr "Toestaan ​​URL zijn:"
+
+msgid "allow_url_include_help"
+msgstr "(Alleen van toepassing voor PHP> = 5.2.0) Indien uitgeschakeld, allow_url_include bars remote file toegang via de include en vereisen verklaringen, maar laat het beschikbaar voor andere bestandsformaten functies zoals fopen () en file_get_contents. Let op: onder en vereisen zijn de meest voorkomende aanval punten voor code injectie pogingen, dus deze instelling stekkers die bepaalde gat zonder dat de externe toegang tot bestanden mogelijkheden van de standaard file functies. Standaard is allow_url_include uitgeschakeld."
+
+msgid "upload_max_filesize"
+msgstr "Upload max bestandsgrootte:"
+
+msgid "upload_max_filesize_help"
+msgstr "upload_max_filesize beperkt de maximale grootte van bestanden die PHP zal aanvaarden via uploads. Aanvallers kunnen proberen om grove oversized bestanden naar uw systeem middelen uitputten, door het instellen van een realistische waarde hier kunt u een deel van de schade te beperken door deze aanvallen. Standaard PHP stelt deze waarde te 2MB."
+
+msgid "post_max_size"
+msgstr "Bericht maximale grootte:"
+
+msgid "post_max_size_help"
+msgstr "Deze bescherming kunt u de maximale grootte POST-aanvraag die PHP zal verwerken beperken. Aanvallers kunnen proberen om grove oversized POST-aanvragen verzenden naar uw systeem middelen uitputten, door het instellen van een realistische waarde hier kunt u een deel van de schade te beperken door deze aanvallen."
+
+msgid "max_execution_time"
+msgstr "Max uitvoeringstijd:"
+
+msgid "max_execution_time_help"
+msgstr "Maximale tijd elk script kan uitvoeren."
+
+msgid "max_input_time"
+msgstr "Max ingang tijd:"
+
+msgid "max_input_time_help"
+msgstr "Maximale tijd elk script kan besteden parsen verzoek gegevens."
+
+msgid "memory_limit"
+msgstr "Geheugen limiet:"
+
+msgid "memory_limit_help"
+msgstr "Hiermee wordt bepaald hoeveel geheugen een script mag gebruiken. Instellingen dit op een hoge waarde verlaat de server kwetsbaar voor aanvallen die proberen om middelen uitputten en creëert een omgeving waarin slechte programmering praktijken ongecontroleerd kan verspreiden."
+
+msgid "vsitephpMenu"
+msgstr "PHP"
+
+msgid "vsitephpMenuDesc"
+msgstr "PHP gerelateerde veiligheid en ressource voor deze virtuele website. Hiermee kunt u de PHP-gerelateerde veiligheid en resource-instellingen op een per-site basis afzonderlijk aanpassen."
+
+msgid "php_vsite_head"
+msgstr "PHP-instellingen voor [[VAR.vsite]]"
+
+msgid "PHPVsiteStatusBox_header"
+msgstr "Let op:"
+
+msgid "phpVsiteNotEnabled"
+msgstr "PHP is niet ingeschakeld voor deze virtuele website. Voordat PHP niet is ingeschakeld in het algemeen, kunnen geen andere PHP gerelateerde opties worden geconfigureerd."
+
+msgid "php_ini"
+msgstr "php.ini"
+
+msgid "php_ini_help"
+msgstr "Raw stelt van uw php.ini bestand. Alleen voor beoordeling. Wijzigingen kunnen niet worden opgeslagen op deze pagina."
+
+msgid "fileOwner_head"
+msgstr "Eigenaar van alle /web content voor [[VAR.vsite]]"
+
+msgid "prefered_siteAdmin"
+msgstr "SiteAdmin dat /web bezit:"
+
+msgid "prefered_siteAdmin_help"
+msgstr "Als suPHP is ingeschakeld, dan is dit veld moet worden ingesteld op een bestaande siteadmin van deze site of uw PHP-scripts worden niet uitgevoerd. Zelfs als u niet beschikt over suPHP ingeschakeld: Als u kiest voor een eigenaar uit de lijst van siteAdmins, dan is de /web directory van uw site zal worden recursief chown'ed de UID van de geselecteerde gebruiker. Betekent: alle bestanden en mappen in /web zal nadien eigendom van de geselecteerde gebruiker."
+
+msgid "fileOwnerMenu"
+msgstr "Web Ownership"
+
+msgid "fileOwnerDesc"
+msgstr "Dit menu-item kunt u de eigenaar van de web map/van uw website (en alle bestanden en mappen binnen!) Veranderen. Hiermee kunt u een siteadmin als eigenaar, dat is bijzonder belangrijk als u suPHP ingeschakeld kiezen. Als suPHP is ingeschakeld en u geen siteadmin als eigenaar van uw /web-map, dan PHP scripts van uw site zal niet draaien."
+
+msgid "prefix"
+msgstr "Site Prefix:"
+
+msgid "prefix_help"
+msgstr "De 'Site voorvoegsel' is een optionele prefix waarmee u gebruikers of diensten met betrekking tot een site te identificeren. Indien ingesteld, zullen alle (nieuw opgerichte) gebruikersnamen worden voorafgegaan met deze string. Een voorvoegsel mag alfanumeriek (cijfers en / of alleen letters) en mag niet langer dan vijf tekens. Let op: Een voorvoegsel kan worden toegevoegd of gewijzigd op een later tijdstip. Maar dit zal niet van invloed gebruikersnamen die al aanwezig zijn."
+
+msgid "prefixTooLong"
+msgstr "De 'Site Prefix' u hebt opgegeven is langer dan 5 karakters."
+
+msgid "prefixInUse"
+msgstr "De 'Site Prefix' u hebt opgegeven is al in gebruik door een andere site: [[VAR.fqdn]]"
+
+msgid "prefixInvalidChars"
+msgstr "De 'Site Prefix' u hebt opgegeven bevat niet-ondersteunde tekens. Alleen alfanumerieke tekens zijn toegestaan, welke letters en cijfers betekent, maar niet meer dan vijf in totaal."
+
+msgid "webAliasRedirects"
+msgstr "Web Alias ​​Omleidingen"
+
+msgid "webAliasRedirects_help"
+msgstr "Als een site heeft meerdere 'Web Server Alias', vervolgens twee soorten gedragingen zijn mogelijk: (a) Een URL-aanvraag naar een 'Web Server Alias' URL zal omleiden naar de belangrijkste plaatsen URL. Dit is de standaard. (B) Een URL-aanvraag naar een 'Web Server Alias' zal niet leiden naar de belangrijkste plaatsen URL. In plaats van de alias eruit zal zien een onafhankelijke site op zijn eigen. Houd er rekening mee dat dit gedrag lastig met web statistieken en / of bepaalde CMS systemen kan zijn."
+
+msgid "open_basedir_mandatory"
+msgstr "Open basedir (Server):"
+
+msgid "open_basedir_mandatory_help"
+msgstr "Dit zijn de 'open_basedir' instellingen als gedefinieerd voor de hele server onder 'Server Management'/'Beveiliging'/'PHP'. Ze zijn verplicht voor iedere virtuele plaats. In het veld hieronder kunt u extra mappen die moeten worden toegevoegd aan de 'open_basedir' richtlijn te geven."
+
+msgid "open_basedir"
+msgstr "Open basedir (Vsite):"
+
+msgid "open_basedir_help"
+msgstr "De 'open_basedir' richtlijn beperkt de toegang tot bestanden van PHP scripts om bepaalde mappen. De 'Open basedir (Server)' veld hierboven ziet u welke mappen PHP scripts toegang hebben reeds op deze server. Als de PHP-scripts van deze site hebben extra toegang tot verdere mappen, dan kun je deze mappen opgeven. Wanneer het bestand is buiten de opgegeven directory-boom, zal PHP weigeren om het te openen."
+
+msgid "siteRemove"
+msgstr "Deze site verwijderen."
+
+msgid "sitePreview"
+msgstr "Een voorbeeld van deze site."
+
+msgid "Features"
+msgstr "Functies"
+
+msgid "Features_help"
+msgstr "Laat zien welke diensten en functies zijn ingeschakeld voor deze virtuele website."
+
+msgid "siteRemoveConfirmNeutral"
+msgstr "Weet u zeker dat u deze virtuele site te verwijderen?"
+
+msgid "removeConfirmInfo"
+msgstr "Dit zal ook verwijdert alle gebruikersaccounts, e-mails en de site gegevens van deze virtuele plaats en kan niet ongedaan worden gemaakt."
+
+msgid "Actions"
+msgstr "Acties"
+
+msgid "Actions_help"
+msgstr "Deze knoppen kunt u wijzigen, bekijken of verwijderen van een virtuele website."
+
+msgid "sitedefaultsbutNeutral"
+msgstr "Sjabloon"
+
+msgid "sitedefaultsbutNeutral_help"
+msgstr "Bewerk de instellingen die automatisch worden ingevuld bij het toevoegen van een virtuele website."
+
+msgid "disabled"
+msgstr "Invalide"
+
+msgid "disabled_help"
+msgstr "[[palette.disabled]]"
+
+msgid "PHP_version"
+msgstr "PHP Versie:"
+
+msgid "PHP_version_help"
+msgstr "Toont de versie van PHP van de openbare webserver."
+
+msgid "cap_serverVsite"
+msgstr "Virtual Site-instellingen"
+
+msgid "vsite"
+msgstr "Virtual Site-instellingen"
+
+msgid "vsite_help"
+msgstr "Klik hier om de virtuele site-instellingen wijzigen."
+
+msgid "vsiteSettings"
+msgstr "Virtual Site-instellingen"
+
+msgid "maxVsiteField"
+msgstr "Maximum Virtual Sites"
+
+msgid "maxVsiteField_help"
+msgstr "Het maximum aantal voor virtuele websites op deze server."
+
+msgid "maxVsiteUpper"
+msgstr "512"
+
+msgid "VsiteMaxError"
+msgstr "De ingevoerde voor [[base-vsite.maxVsiteField]] waarde moet kleiner zijn dan [[base-vsite.maxVsiteUpper]] zijn."
+
+msgid "maxVsiteAlreadyMade"
+msgstr "U al gemaakt de maximale hoeveelheid virtueel sites die je mag maken. Niet meer sites kunnen worden gemaakt op dit moment."
+
+msgid "userPrefixField"
+msgstr "Gebruiker Prefix"
+
+msgid "userPrefixField_help"
+msgstr "Voer de gebruikersnaam prefix. Voorbeeld: customerA_, site1_"
+
+msgid "userPrefixEnabled"
+msgstr "Enable gebruiker prefix"
+
+msgid "userPrefixEnabled_help"
+msgstr "Wanneer de functie gebruiker prefix is ​​ingeschakeld, worden alle nieuwe gebruikersnamen worden voorafgegaan door dit voorvoegsel."
+
+msgid "userShell"
+msgstr "Enable Shell toegang"
+
+msgid "userShell_help"
+msgstr "Enable shell toegang tot de creatie van gebruikers die verbinding kan maken met de server via diensten zoals Telnet en SSH mogelijk te maken."
+
+msgid "userSitesUser"
+msgstr "Maximum Gebruikers"
+
+msgid "userSitesUser_help"
+msgstr "Het maximum aantal gebruikers dat kan worden gemaakt op deze server."
+
+msgid "maxDiskAlreadyMade"
+msgstr "De hoeveelheid schijfruimte die momenteel in gebruik als per [[base-vsite.quota]]."
+
+msgid "maxUsersAlreadyMade"
+msgstr "Het aantal gebruikers momenteel in het bestaan ​​als per [[base-vsite.userSitesUser]]."
+
+msgid "createdUser"
+msgstr "Eigenaar"
+
+msgid "createdUser_help"
+msgstr "Geeft de eigenaar van deze virtuele terrein."
+
+msgid "cap_manageSite"
+msgstr "Virtual Site Management"
+
+msgid "adminSites"
+msgstr "Virtual Sitebeheer"
+
+msgid "adminSites_help"
+msgstr "Virtuele locaties die onder het beheer van deze gebruiker."
+
+msgid "userSitesQuota"
+msgstr "Maximum Disk Quota"
+
+msgid "userSitesQuota_help"
+msgstr "Maximale hoeveelheid schijfruimte, dat alle virtuele websites verbonden aan deze beheerder zou kunnen hebben."
+
+msgid "userSitesMax"
+msgstr "Aantal locaties"
+
+msgid "userSitesMax_help"
+msgstr "Maximum aantal virtuele sites die aldus beheerder mag maken."
+
+#
+
+msgid "resellerPowers"
+msgstr "[[base-vsite.cap_manageSite]]: Extra rechten"
+
+msgid "resellerPowers_help"
+msgstr "Als een gebruiker de rechten van '[[base-vsite.cap_manageSite]]' heeft, kan hij virtueel sites te maken en te beheren. Sites kunnen bepaalde functies gebruiken, zoals PHP, suPHP, MySQL en ga zo maar door. Echter, zou u niet wilt toegang en bruikbaarheid van functies zoals 'Shell Access' of 'Anonymous FTP' verlenen. U kunt toestaan ​​of hier dergelijke functies te ontkennen."
+
+msgid "cap_resellerPHP"
+msgstr "PHP"
+
+msgid "cap_resellerSUPHP"
+msgstr "suPHP"
+
+msgid "cap_resellerMySQL"
+msgstr "MySQL"
+
+msgid "cap_resellerJSP"
+msgstr "JSP"
+
+msgid "cap_resellerCGI"
+msgstr "CGI"
+
+msgid "cap_resellerSSI"
+msgstr "SSI"
+
+msgid "cap_resellerSSL"
+msgstr "SSL"
+
+msgid "cap_resellerFTP"
+msgstr "FTP"
+
+msgid "cap_resellerAnonFTP"
+msgstr "AnonFTP"
+
+msgid "cap_resellerShell"
+msgstr "Shell"
+
+###
+
+msgid "cap_systemAdministrator"
+msgstr "System-Administrator"
+
+##
+
+msgid "SAExpiry"
+msgstr "[[base-support.SAExpiry]]"
+
+msgid "SAExpiry_help"
+msgstr "[[base-support.SAExpiry_help]]"

@@ -1,0 +1,10 @@
+<item 
+    id="base_sitemaintenance" 
+    label="[[base-vsite.sitemaintenance]]" 
+    description="[[base-vsite.sitemaintenanceDescription]]"
+    requiresChildren="1"
+>
+    <parent id="base_sitemanage" order="90">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

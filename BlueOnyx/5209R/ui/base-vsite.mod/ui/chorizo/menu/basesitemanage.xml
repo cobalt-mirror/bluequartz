@@ -1,0 +1,10 @@
+<item
+	id="base_sitemanage"
+	label="[[base-vsite.sitemanage]]"
+	description="[[base-vsite.sitemanageDescription]]"
+	icon="frames"
+>
+	<parent id="root" order="10">
+		<access require="siteAdmin"/>
+	</parent>
+</item>

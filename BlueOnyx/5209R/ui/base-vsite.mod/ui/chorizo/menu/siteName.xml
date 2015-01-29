@@ -1,0 +1,14 @@
+<item 
+    id="base_siteName" 
+    label="[[VAR.hostname]]" 
+    description="[[base-vsite.sitetabDescription_menu]]"
+    url="/user/userList?group=[[VAR.group]]"
+    module="vsite"
+    type="modify"
+    icon="firefox"
+    requiresChildren="0"
+>
+    <parent id="base_sitemanage" order="2">
+        <access require="manageSite"/>
+    </parent>
+</item>

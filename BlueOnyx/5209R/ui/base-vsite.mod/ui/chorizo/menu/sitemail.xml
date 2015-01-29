@@ -1,0 +1,14 @@
+<!--
+ $Id: sitemail.xml
+-->
+
+<item 
+    id="base_sitemail" 
+    label="[[base-vsite.sitemail]]" 
+    description="[[base-vsite.sitemail_help]]" 
+    url="/vsite/vsiteEmail?group=[[VAR.group]]"
+>
+    <parent id="base_siteservices" order="30">
+        <access require="siteAdmin"/>
+    </parent>
+</item>

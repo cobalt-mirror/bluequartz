@@ -1,0 +1,12 @@
+<item 
+    id="base_siteservices" 
+    label="[[base-vsite.siteservices]]" 
+    description="[[base-vsite.siteservicesDescription]]"
+    requiresChildren="1"
+    icon="cog_2"
+>
+    <parent id="base_sitemanage" order="30">
+        <access require="siteAdmin"/>
+    </parent>
+</item>
+
