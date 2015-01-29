@@ -148,7 +148,7 @@ fi
 systemctl enable php-fpm.service
 
 # Start service php-fpm:
-systemctl restart php-fpm.service
+systemctl restart php-fpm.service --no-block
 
 <end glue>
 <begin ui>
