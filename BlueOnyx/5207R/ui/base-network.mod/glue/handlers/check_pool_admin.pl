@@ -6,6 +6,12 @@
 #       If IP pooling enabled, checks that the given IP address is
 #       within the pool of acceptable IPs.
 
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 use lib qw(/usr/sausalito/perl);
 use lib qw(/usr/sausalito/handlers/base/network);
 use CCE;
@@ -22,67 +28,95 @@ my $vsite_new = $cce->event_new();
 my ($sysoid) = $cce->find('System');
 my ($ok, $network) = $cce->get($sysoid, 'Network');
 if (!$ok) {
-    $cce->bye('FAIL');
-    exit 1;
+	$cce->bye('FAIL');
+	exit 1;
 }
 
 if ($network->{pooling} && $vsite_new->{ipaddr}) {
-    my (@oids) = $cce->find('IPPoolingRange');
-    my @ranges = ();
+	my (@oids) = $cce->find('IPPoolingRange');
+	my @ranges = ();
 
-    # get ranges
-    foreach $a_oid (@oids) {
-	my ($ok, $range) = $cce->get($a_oid);
-	if (!$ok) {
-	    $cce->bye('FAIL');
-	    exit 1;
-	}
-	my @adminArray = $cce->scalar_to_array($range->{admin});
-	my $result = 0;
-	if ($vsite_new->{createdUser} ne 'admin') {
-	    foreach my $admin (@adminArray) {
-		if ($admin eq $vsite_new->{createdUser}) {
-		    $result = 1;
+	# get ranges
+	foreach $a_oid (@oids) {
+		my ($ok, $range) = $cce->get($a_oid);
+		if (!$ok) {
+			$cce->bye('FAIL');
+			exit 1;
 		}
-	    }
-	} else {
-	    $result = 1;
+		my @adminArray = $cce->scalar_to_array($range->{admin});
+		my $result = 0;
+		if ($vsite_new->{createdUser} ne 'admin') {
+			foreach my $admin (@adminArray) {
+				if ($admin eq $vsite_new->{createdUser}) {
+					$result = 1;
+				}
+			}
+		}
+		else {
+			$result = 1;
+		}
+		if ($result) {
+			push @ranges, $range;
+		}
 	}
-	if ($result) {
-	    push @ranges, $range;
+
+	my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, [ $vsite_new->{ipaddr} ]);
+	if (@error_ips) {
+		&debug_msg("Warn: ip_restricted - " . $vsite_new->{ipaddr} . " \n");
+		$cce->warn('ip_restricted', {'ipaddr' => $vsite_new->{ipaddr}});
+		$cce->bye('FAIL');
+		exit 1;
 	}
-    }
-    
-    my (@error_ips) = IpPooling::validate_pooling_state(\@ranges, [ $vsite_new->{ipaddr} ]);
-    if (@error_ips) {
-	$cce->warn('ip_restricted', {'ipaddr' => $vsite_new->{ipaddr}});
-	$cce->bye('FAIL');
-	exit 1;
-    }
 }
 
 $cce->bye('SUCCESS');
 exit 0;
 
-#
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
+
+# 
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2010 Hisao Shibuya
-# Copyright (c) 2013 Team BlueOnyx, BLUEONYX.IT
-# Copyright (c) 2003 Sun Microsystems, Inc. All  Rights Reserved.
+# Copyright (c) 2003 Sun Microsystems, Inc. 
+# All Rights Reserved.
 # 
-# Redistribution and use in source and binary forms, with or without modification, 
-# are permitted provided that the following conditions are met:
+# 1. Redistributions of source code must retain the above copyright 
+#	 notice, this list of conditions and the following disclaimer.
 # 
-# -Redistribution of source code must retain the above copyright notice, this  list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright 
+#	 notice, this list of conditions and the following disclaimer in 
+#	 the documentation and/or other materials provided with the 
+#	 distribution.
 # 
-# -Redistribution in binary form must reproduce the above copyright notice, 
-# this list of conditions and the following disclaimer in the documentation and/or 
-# other materials provided with the distribution.
+# 3. Neither the name of the copyright holder nor the names of its 
+#	 contributors may be used to endorse or promote products derived 
+#	 from this software without specific prior written permission.
 # 
-# Neither the name of Sun Microsystems, Inc. or the names of contributors may 
-# be used to endorse or promote products derived from this software without 
-# specific prior written permission.
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
 # 
-# This software is provided "AS IS," without a warranty of any kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. SUN MICROSYSTEMS, INC. ("SUN") AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-# 
-# You acknowledge that  this software is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility.
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
 # 
