@@ -182,6 +182,10 @@ systemctl restart php-fpm.service --no-block
 
 <begin $CHANGELOG>
 
+* Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX20
+- Modified glue/handlers/reload_httpd.pl to let it reload Apache directly
+  without the roundabout through Sauce::Service.
+
 * Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX19
 - Bugfix in glue/handlers/webscripting.pl.
 - Bugfix in glue/handlers/webscripting2.pl.
