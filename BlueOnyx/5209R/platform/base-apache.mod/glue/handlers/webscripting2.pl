@@ -103,8 +103,7 @@ EOT
                 # Handle FPM/FastCGI:
                 elsif ($php->{fpm_enabled}) {
                         $script_conf .= <<EOT
-ProxyPassMatch ^/(.*\\.php(/.*)?)\$
-unix:/var/run/php5-fpm.sock|fcgi://127.0.0.1:9000$Vsite->{basedir}/web/
+ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:9000$Vsite->{basedir}/web/
 EOT
                 }
                 # Handle 'regular' PHP via DSO:
