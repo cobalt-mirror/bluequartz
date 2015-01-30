@@ -182,6 +182,17 @@ systemctl restart php-fpm.service --no-block
 
 <begin $CHANGELOG>
 
+* Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX21
+- Modified constructor/set_apache_hostname.pl to fiddle with logging.
+- Modified constructor/set_httpd_alias_perms.pl to delete the config
+  file /etc/httpd/conf.d/userdir.conf if it is present.
+- Modified glue/handlers/preview.pl to comment out NameVirtualHost.
+- Modified glue/handlers/userwebs.pl to handle UserDir parameter.
+- Modified glue/handlers/virtual_host.pl to add the UserDir container
+  as well as commenting out the NameVirtualHost line.
+- Modified glue/httpd/security.conf added CustomLog line and ServerTokens.
+- Modified glue/httpd/ssl_bx.conf to comment out NameVirtualHost.
+
 * Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX20
 - Modified glue/handlers/reload_httpd.pl to let it reload Apache directly
   without the roundabout through Sauce::Service.

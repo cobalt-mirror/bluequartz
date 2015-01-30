@@ -128,7 +128,7 @@ sub edit_vhost
 
     my $vhost_conf =<<END;
 # owned by VirtualHost
-NameVirtualHost $vhost->{ipaddr}:$httpPort
+#NameVirtualHost $vhost->{ipaddr}:$httpPort
 
 # ServerRoot needs to be set. Otherwise all the vhosts 
 # need to go in httpd.conf, which could get very large 
@@ -149,6 +149,9 @@ RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$httpPort)?\$ [NC]
 $aliasRewrite
 RewriteRule ^/(.*)                      http://$vhost->{fqdn}/\$1 [L,R=301]
 RewriteOptions inherit
+<IfModule mod_userdir.c>
+    UserDir enabled
+</IfModule>
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
 </VirtualHost>
@@ -187,6 +190,9 @@ RewriteCond %{HTTP_HOST}                !^$vhost->{fqdn}(:$sslPort)?\$ [NC]
 $aliasRewriteSSL
 RewriteRule ^/(.*)                      https://$vhost->{fqdn}/\$1 [L,R=301]
 RewriteOptions inherit
+<IfModule mod_userdir.c>
+    UserDir enabled
+</IfModule>
 AliasMatch ^/~([^/]+)(/(.*))?           $user_root
 Include $include_file
 </VirtualHost>

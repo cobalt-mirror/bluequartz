@@ -134,7 +134,7 @@ if (!$param->{ipaddr}) {
 
     my $preview_conf =<<END;
 # /etc/httpd/conf/vhost/preview
-NameVirtualHost $param->{ipaddr}:$httpPort
+#NameVirtualHost $param->{ipaddr}:$httpPort
 <VirtualHost $param->{ipaddr}:$httpPort>
 ServerName $param->{fqdn}
 DocumentRoot /var/www/html
@@ -170,8 +170,8 @@ END
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

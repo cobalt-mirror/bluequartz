@@ -33,6 +33,11 @@ if (-e "/etc/httpd/conf.d/server.conf") {
 	system('/bin/rm -f /etc/httpd/conf.d/server.conf');
 }
 
+# Also remove userdir.conf
+if (-e "/etc/httpd/conf.d/userdir.conf") {
+	system('/bin/rm -f /etc/httpd/conf.d/userdir.conf');
+}
+
 # A lot of BX servers have ImageMagick installed, which in turn installs and activates the avahi-daemon.
 # This daemon is not really needed and certainly should not be running. Hence we stop it and turn it off:
 if (-f "/etc/avahi/avahi-daemon.conf") {
@@ -44,8 +49,8 @@ $cce->bye('SUCCESS');
 exit 0;
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 
