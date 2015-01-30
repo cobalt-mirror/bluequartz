@@ -364,6 +364,10 @@ class I18nNative {
     if ($domain == "") {
       $domain = i18nNative::getDomain();
     }
+    if ($domain == "VAR") {
+      // Shit happens. If $domain is set to VAR, we take a shortcut:
+      $domain = "palette";
+    }
     // Otherwise examine the locale directories for all locales of this $domain:
     $directory = '/usr/share/locale/*/LC_MESSAGES/' . $domain . '.mo';
     $map = `/bin/ls -k1 $directory`;
