@@ -163,15 +163,12 @@ class VsiteAdd extends MX_Controller {
 							 )
 							);
 
-				// CCE errors that might have happened during CREATE action:
-				$errors = array_merge($errors, $cceClient->errors());
-
 				// CCE errors that might have happened during submit to CODB:
-//				$CCEerrors = $cceClient->errors();
-//				foreach ($CCEerrors as $object => $objData) {
-//					// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-//					$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-//				}
+				$CCEerrors = $cceClient->errors();
+				foreach ($CCEerrors as $object => $objData) {
+					// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+					$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+				}
 
 				// Setup Quota information:
 				if ($vsiteOID) {
@@ -773,8 +770,8 @@ class VsiteAdd extends MX_Controller {
 	}
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
