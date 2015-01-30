@@ -76,8 +76,14 @@ class VsiteList extends MX_Controller {
 				foreach ($AutoFeaturesList as $key => $value) {
 					$featureOID = $cceClient->get($site, $value);
 					if ($value == "PHP") {
-						if ($featureOID['suPHP_enabled'] == "1") {
+						if ($featureOID['mod_ruid_enabled'] == "1") {
+							$vsiteSettings['FEATURE']['RUID'] = $featureOID['mod_ruid_enabled'];
+						}
+						elseif ($featureOID['suPHP_enabled'] == "1") {
 							$vsiteSettings['FEATURE']['suPHP'] = $featureOID['suPHP_enabled'];
+						}
+						elseif ($featureOID['fpm_enabled'] == "1") {
+							$vsiteSettings['FEATURE']['FPM'] = $featureOID['fpm_enabled'];
 						}
 						else {
 							$vsiteSettings['FEATURE']['PHP'] = $featureOID['enabled'];
@@ -123,19 +129,22 @@ class VsiteList extends MX_Controller {
 				$iconlist = array();
 				foreach ($vsiteSettings['FEATURE'] as $key => $value) {
 					if ($key == "SSL") { $F_text = "SSL"; $F_tooltip = "SSL"; }
-					elseif ($key == "MYSQL_Vsite") { $F_text = "SQL"; $F_tooltip = "MySQL"; }
+					elseif ($key == "MYSQL_Vsite") { $F_text = "SQL"; $F_tooltip = "MySQL or MariaDB"; }
 					elseif ($key == "Java") { $F_text = "JSP"; $F_tooltip = "JSP";  }
 					elseif ($key == "USERWEBS") { $F_text = "~"; $F_tooltip = "User owned webs";  }
 					elseif ($key == "CGI") { $F_text = "CGI"; $F_tooltip = "CGI";  }
 					elseif ($key == "SSI") { $F_text = "SSI"; $F_tooltip = "SSI";  }
 					elseif ($key == "ApacheBandwidth") { $F_text = "Limit"; $F_tooltip = "Bandwidth Limits";  }
-					elseif ($key == "PHP") { $F_text = "PHP"; $F_tooltip = "PHP"; }
+					elseif ($key == "PHP") { $F_text = "PHP"; $F_tooltip = "PHP (DSO)"; }
+					elseif ($key == "RUID") { $F_text = "PHP+"; $F_tooltip = "PHP (DSO) + mod_ruid2"; }
 					elseif ($key == "suPHP") { $F_text = "suPHP"; $F_tooltip = "suPHP"; }
+					elseif ($key == "FPM") { $F_text = "PHP-FPM"; $F_tooltip = "PHP via FPM/FastCGI"; }
 					elseif ($key == "FTPNONADMIN") { $F_text = "FTP"; $F_tooltip = "FTP"; }
 					elseif ($key == "AnonFtp") { $F_text = "anonFTP"; $F_tooltip = "Anonymous FTP"; }
 					else { $F_text = $key; $F_tooltip = $key; }
 					if ($value == "1") {
-						$iconlist[] = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getHtml($F_tooltip) . '" disabled>'. $F_text . '</button>';
+						//$iconlist[] = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getHtml($F_tooltip) . '" disabled>'. $F_text . '</button>';
+						$iconlist[] = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getHtml($F_tooltip) . '">'. $F_text . '</button>';
 					}
 					else {
 						// Hide inactive icons for now. That way we can use the search form to find sites with certain active features:
@@ -338,8 +347,8 @@ class VsiteList extends MX_Controller {
 	}		
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
