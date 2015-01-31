@@ -112,6 +112,15 @@ foreach my $fqdn (@vsiteNames) {
 		$vRef->{dns_auto} = 0;
 	}
 
+	# Delete references for PHP (DSO) + mod_ruid2 and PHP-FPM, as pre-5209R platforms
+	# don't have it yet. This makes the Vsite . PHP settings fall back to regular PHP:
+	#
+	# Step #1: Remove the "Vsite" . "PHP" subclass entirely. Or the create Vsite fails:
+	delete $vRef->{PHP} if(defined $vRef->{PHP});
+	# Step #2: Remove the vTree "Vsite" . "PHP" key/value pairs for mod_ruid2 and FPM:
+	delete $vTree->{PHP}->{mod_ruid_enabled} if (defined $vTree->{PHP}->{mod_ruid_enabled});
+	delete $vTree->{PHP}->{fpm_enabled} if (defined $vTree->{PHP}->{fpm_enabled});
+
 	####################
 	## We set the quota to an insanely high value during this stage and later 
 	# on reset it to the desired quota amount:
