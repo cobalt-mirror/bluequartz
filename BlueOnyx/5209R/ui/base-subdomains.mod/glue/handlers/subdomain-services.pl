@@ -1,8 +1,6 @@
 #!/usr/bin/perl -I/usr/sausalito/perl
-# Author: Brian N. Smith
-# Copyright 2008, NuOnce Networks, Inc.  All rights reserved.
-# Copyright 2010, Team BlueOnyx. All rights reserved.
-# $Id: subdomain-services.pl, v2.0 2008/12/30 13:14:00 Exp $
+# Initial Author: Brian N. Smith
+# $Id: subdomain-services.pl
 
 use CCE;
 use Switch;
@@ -61,27 +59,51 @@ foreach $service (@services) {
             $vgroup = $subdomain->{'group'};
             @vsiteoid = $cce->find('Vsite', { 'name' => $vgroup });
             ($ok, $vsite_php) = $cce->get($vsiteoid[0], "PHP");
-	    &debug_msg("1: vsiteoid[0]: $vsiteoid[0] \n");
 
             # Get PHPVsite:
             ($ok, $vsite_php_settings) = $cce->get($vsiteoid[0], "PHPVsite");
 
-	    &debug_msg("2: vsiteoid[0]: $vsiteoid[0] \n");
+            $serviceCFG .= "# created by subdomain-new.pl\n";
 
-            $serviceCFG .= "# created by subdomain-services.pl\n";
-
-	    &debug_msg("suPHP_enabled: $vsite_php->{'suPHP_enabled'} \n");
-
-            if ($vsite_php->{'suPHP_enabled'} == "1") {
-                $serviceCFG .= "  suPHP_Engine on\n";
-                $serviceCFG .= "  suPHP_ConfigPath $web_dir\n";
-                $serviceCFG .= "  suPHP_AddHandler x-httpd-suphp\n";
-                $serviceCFG .= "  AddHandler x-httpd-suphp .php\n";
+            # Get prefered_siteAdmin for ownerships:
+            ($ok, $Vsite) = $cce->get($vsiteoid[0], '');
+            if ($vsite_php->{prefered_siteAdmin} ne "") {
+                $prefered_siteAdmin = $vsite_php->{prefered_siteAdmin};
             }
             else {
-                $serviceCFG .= "  AddType application/x-httpd-php .php\n";
-                $serviceCFG .= "  AddType application/x-httpd-php .php4\n";
-                $serviceCFG .= "  AddType application/x-httpd-php .php5\n";
+                $prefered_siteAdmin = 'apache';
+            }
+
+            if ( $$service->{'suPHP_enabled'} ) {
+                # Handle suPHP:
+                $serviceCFG .= "#<IfModule mod_suphp.c>\n";
+                $serviceCFG .= "    suPHP_Engine on\n";
+                $serviceCFG .= "    suPHP_UserGroup $prefered_siteAdmin $Vsite->{name}\n";
+                $serviceCFG .= "    AddType application/x-httpd-suphp .php\n";
+                $serviceCFG .= "    AddHandler x-httpd-suphp .php .php5 .php4 .php3 .phtml\n";
+                $serviceCFG .= "    suPHP_AddHandler x-httpd-suphp\n";
+                $serviceCFG .= "    suPHP_ConfigPath $Vsite->{'basedir'}/\n";
+                $serviceCFG .= "#</IfModule>\n";
+            }
+            # Handle mod_ruid2:
+            elsif ($$service->{mod_ruid_enabled}) {
+                $serviceCFG .= "<FilesMatch \\.php\$>\n";
+                $serviceCFG .= "    SetHandler application/x-httpd-php\n";
+                $serviceCFG .= "</FilesMatch>\n";
+                $serviceCFG .= "<IfModule mod_ruid2.c>\n";
+                $serviceCFG .= "     RMode config\n";
+                $serviceCFG .= "     RUidGid $prefered_siteAdmin $Vsite->{name}\n";
+                $serviceCFG .= "</IfModule>\n";
+            }
+            # Handle FPM/FastCGI:
+            elsif ($$service->{fpm_enabled}) {
+                $serviceCFG .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:9000$web_dir\n";
+            }
+            # Handle 'regular' PHP via DSO:
+            else { 
+                $serviceCFG .= "<FilesMatch \\.php\$>\n";
+                $serviceCFG .= "    SetHandler application/x-httpd-php\n";
+                $serviceCFG .= "</FilesMatch>\n";
             }
 
             # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
@@ -252,3 +274,39 @@ sub debug_msg {
 
 $cce->bye('SUCCESS');
 exit(0);
+
+# 
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2008 NuOnce Networks, Inc.
+# All Rights Reserved.
+# 
+# 1. Redistributions of source code must retain the above copyright 
+#     notice, this list of conditions and the following disclaimer.
+# 
+# 2. Redistributions in binary form must reproduce the above copyright 
+#     notice, this list of conditions and the following disclaimer in 
+#     the documentation and/or other materials provided with the 
+#     distribution.
+# 
+# 3. Neither the name of the copyright holder nor the names of its 
+#     contributors may be used to endorse or promote products derived 
+#     from this software without specific prior written permission.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS 
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE 
+# COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT 
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+# POSSIBILITY OF SUCH DAMAGE.
+# 
+# You acknowledge that this software is not designed or intended for 
+# use in the design, construction, operation or maintenance of any 
+# nuclear facility.
+# 
