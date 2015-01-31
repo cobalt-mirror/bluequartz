@@ -97,7 +97,22 @@ foreach $service (@services) {
             }
             # Handle FPM/FastCGI:
             elsif ($$service->{fpm_enabled}) {
-                $serviceCFG .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:9000$web_dir\n";
+                # Assign a port number based on the GID of the Vsite.
+                # Our GID's for siteX start at 1001, so we need to add
+                # 8000 to it to get above 9000.
+                ($_name, $_passwd, $gid, $_members) = getgrnam($Vsite->{name});
+                if ($gid ne "") {
+                    $fpmPort = $gid+8000;
+                }
+                else {
+                    # Fallback if we didn't get a port:
+                    $fpmPort = 9000;
+                }
+                # Double fallback:
+                if ($fpmPort < 9000) {
+                    $fpmPort = 9000;
+                }
+                $serviceCFG .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$web_dir\n";
             }
             # Handle 'regular' PHP via DSO:
             else { 

@@ -120,7 +120,15 @@ fi
 
 <begin $CHANGELOG>
 
-* Wed Jan 21 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX01
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX02
+- Modified the handlers to use the PHP-FPM port based on the numerical
+  GID of the parent Vsite. That way they run off the separate PHP-FPM 
+  pool of that Vsite with all the relevant and correct PHP related
+  settings.
+- Modified glue/handlers/subdomain-new.pl
+- Modified glue/handlers/subdomain-services.pl
+
+* Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 2.3.0-0BX01
 - Removed separate suPHP php.ini for subdomains as we don't need it anymore.
 - Updated all handlers to support our new PHP options for 5209R.
 
