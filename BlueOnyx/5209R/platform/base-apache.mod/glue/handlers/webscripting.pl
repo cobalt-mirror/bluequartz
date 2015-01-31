@@ -76,43 +76,52 @@ sub edit_vhost
     if ($php->{enabled})
     {
                 # Handle suPHP:
-                if ($php->{suPHP_enabled}) { 
-                        $script_conf .= <<EOT
-<IfModule mod_suphp.c>
-    suPHP_Engine on
-    suPHP_UserGroup $prefered_siteAdmin $Vsite->{name}
-    AddType application/x-httpd-suphp .php
-    AddHandler x-httpd-suphp .php .php5 .php4 .php3 .phtml
-    suPHP_AddHandler x-httpd-suphp
-    suPHP_ConfigPath $Vsite->{basedir}/
-</IfModule>
-EOT
+                if ($php->{suPHP_enabled}) {
+                    # Handle suPHP:
+                    $script_conf .= "<IfModule mod_suphp.c>\n";
+                    $script_conf .= "    suPHP_Engine on\n";
+                    $script_conf .= "    suPHP_UserGroup $prefered_siteAdmin $Vsite->{name}\n";
+                    $script_conf .= "    AddType application/x-httpd-suphp .php\n";
+                    $script_conf .= "    AddHandler x-httpd-suphp .php .php5 .php4 .php3 .phtml\n";
+                    $script_conf .= "    suPHP_AddHandler x-httpd-suphp\n";
+                    $script_conf .= "    suPHP_ConfigPath $Vsite->{basedir}/\n";
+                    $script_conf .= "</IfModule>\n";
                 }
                 # Handle mod_ruid2:
                 elsif ($php->{mod_ruid_enabled}) {
-                        $script_conf .= <<EOT
-<FilesMatch \\.php\$>
-    SetHandler application/x-httpd-php
-</FilesMatch>
-<IfModule mod_ruid2.c>
-     RMode config
-     RUidGid $prefered_siteAdmin $Vsite->{name}
-</IfModule>
-EOT
+                    $script_conf .= "<FilesMatch \\.php\$>\n";
+                    $script_conf .= "    SetHandler application/x-httpd-php\n";
+                    $script_conf .= "</FilesMatch>\n";
+                    $script_conf .= "<IfModule mod_ruid2.c>\n";
+                    $script_conf .= "     RMode config\n";
+                    $script_conf .= "     RUidGid $prefered_siteAdmin $Vsite->{name}\n";
+                    $script_conf .= "</IfModule>\n";
                 }
                 # Handle FPM/FastCGI:
                 elsif ($php->{fpm_enabled}) {
-                        $script_conf .= <<EOT
-ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:9000$Vsite->{basedir}/web/
-EOT
+                        # Assign a port number based on the GID of the Vsite.
+                        # Our GID's for siteX start at 1001, so we need to add
+                        # 8000 to it to get above 9000.
+                        ($_name, $_passwd, $gid, $_members) = getgrnam($Vsite->{name});
+                        if ($gid ne "") {
+                            $fpmPort = $gid+8000;
+                        }
+                        else {
+                            # Fallback if we didn't get a port:
+                            $fpmPort = 9000;
+                        }
+                        # Double fallback:
+                        if ($fpmPort < 9000) {
+                            $fpmPort = 9000;
+                        }
+                        # Join the config together:
+                        $script_conf .= "ProxyPassMatch ^/(.*\\.php(/.*)?)\$ fcgi://127.0.0.1:$fpmPort$Vsite->{basedir}/web/\n";
                 }
                 # Handle 'regular' PHP via DSO:
-                else { 
-                        $script_conf .= <<EOT
-<FilesMatch \\.php\$>
-    SetHandler application/x-httpd-php
-</FilesMatch>
-EOT
+                else {
+                    $script_conf .= "<FilesMatch \\.php\$>\n";
+                    $script_conf .= "    SetHandler application/x-httpd-php\n";
+                    $script_conf .= "</FilesMatch>\n";
                 } 
     }
 

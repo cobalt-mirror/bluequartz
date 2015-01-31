@@ -182,6 +182,16 @@ systemctl restart php-fpm.service --no-block
 
 <begin $CHANGELOG>
 
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX22
+- Modified the webscripting handlers again. For better readability the 
+  print until EOT was changed to regular prints. Additionally the FPM
+  related ProxyPassMatch directive now gets a port number calculated on
+  the numerical GID of the Vsite group, but greater than 9000. That way
+  each Vsite's PHP-FPM pool gets its own port.
+- Modified glue/handlers/webscripting.pl
+- Modified glue/handlers/webscripting2.pl
+- Modified glue/handlers/webscripting3.pl
+
 * Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX21
 - Modified constructor/set_apache_hostname.pl to fiddle with logging.
 - Modified constructor/set_httpd_alias_perms.pl to delete the config
