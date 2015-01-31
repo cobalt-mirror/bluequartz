@@ -137,6 +137,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX22
+- Modified glue/handlers/php_vsite_handler.pl to automatically create
+  PHP-FPM pools based on the numerical GID of the Vsite. The pool
+  configs are created in /etc/php-fpm.d/ and are populated with the
+  correct parameters and settings. Including all of the relevant
+  Vsite PHP settings. When done, PHP-FPM is reloaded.
+
 * Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX21
 - Modified glue/handlers/php_vsite_handler.pl to remove support for 
   separate suPHP php.ini for subdomains as we don't need it anymore.

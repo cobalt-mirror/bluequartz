@@ -98,56 +98,64 @@ if ($whatami eq "handler") {
     # Event is create or modify:
     if ((($cce->event_is_create()) || ($cce->event_is_modify()))) {
 
-    # Edit the vhost container or die!:
-    &debug_msg("Editing Vhost $vsite->{'name'} through php_vsite_handler.pl \n");
-    if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
-        &debug_msg("Failed to edit Vhost $vsite->{'name'}  through php_vsite_handler.pl \n");
-        $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
-        exit(1);
-    }
+        # Edit the vhost container or die!:
+        &debug_msg("Editing Vhost $vsite->{'name'} through php_vsite_handler.pl \n");
+        if(!Sauce::Util::editfile(httpd_get_vhost_conf_file($vsite->{"name"}), *edit_vhost, $vsite_php_settings)) {
+            &debug_msg("Failed to edit Vhost $vsite->{'name'}  through php_vsite_handler.pl \n");
+            $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
+            exit(1);
+        }
 
-    # Handle custom php.ini for suPHP enabled sites:
-    $basedir_vsite = $vsite->{"basedir"};
-    $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
-    
-    if ($vsite_php->{'suPHP_enabled'} == "1") {
+        # Handle custom php.ini for suPHP enabled sites:
+        $basedir_vsite = $vsite->{"basedir"};
+        $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
+        
+        if ($vsite_php->{'suPHP_enabled'} == "1") {
 
-        # If there is already a custom php.ini, delete it first:
-        if (-f $custom_php_ini_path) {
-            &debug_msg("Deleting old $custom_php_ini_path through php_vsite_handler.pl \n");
+            # If there is already a custom php.ini, delete it first:
+            if (-f $custom_php_ini_path) {
+                &debug_msg("Deleting old $custom_php_ini_path through php_vsite_handler.pl \n");
+                system("/usr/bin/chattr -i $custom_php_ini_path");
+                system("/bin/rm -f $custom_php_ini_path");
+            }
+
+            # Copy main php.ini (thirdparty one or from distribution) to vsite's basedir:
+            system("/bin/cp $php_ini $custom_php_ini_path");
+            system("/bin/chmod 644 $custom_php_ini_path");
+            system("/bin/chown root:root $custom_php_ini_path");
+
+            # Run a search and replace through Vsite php.ini to update it with the PHP
+            # settings configured for this site:
+            &debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl \n");
+            &edit_php_ini;
+
+            # Protect Vsite php.ini against modification.
+            # As it's root owned and 644, this may be a bit redundant:
+            system("/usr/bin/chattr +i $custom_php_ini_path");
+        }
+        else {
+            # suPHP disabled. Delete custom php.ini:
+            $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
+            if (-f $custom_php_ini_path) {
             system("/usr/bin/chattr -i $custom_php_ini_path");
             system("/bin/rm -f $custom_php_ini_path");
+            &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
+            }
         }
 
-        # Copy main php.ini (thirdparty one or from distribution) to vsite's basedir:
-        system("/bin/cp $php_ini $custom_php_ini_path");
-        system("/bin/chmod 644 $custom_php_ini_path");
-        system("/bin/chown root:root $custom_php_ini_path");
-
-        # Run a search and replace through Vsite php.ini to update it with the PHP
-        # settings configured for this site:
-        &debug_msg("Configuring $custom_php_ini_path through php_vsite_handler.pl \n");
-        &edit_php_ini;
-
-        # Protect Vsite php.ini against modification.
-        # As it's root owned and 644, this may be a bit redundant:
-        system("/usr/bin/chattr +i $custom_php_ini_path");
-    }
-    else {
-        # suPHP disabled. Delete custom php.ini:
-        $custom_php_ini_path = $vsite->{'basedir'} . "/php.ini";
-        if (-f $custom_php_ini_path) {
-        system("/usr/bin/chattr -i $custom_php_ini_path");
-        system("/bin/rm -f $custom_php_ini_path");
-        &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
+        # For better readability it's in if-else:
+        if ($vsite_php->{'fpm_enabled'} == "1") {
+            &handle_fpm_pools;
         }
-    }
+        else {
+            &handle_fpm_pools
+        }
 
-    # prefered_siteAdmin toggles chowning of /web ownership:
-    &change_owner;
-    
-    # Restart Apache:
-    &restart_apache;
+        # prefered_siteAdmin toggles chowning of /web ownership:
+        &change_owner;
+        
+        # Restart Apache:
+        &restart_apache;
     }
 }
 
@@ -167,93 +175,93 @@ sub edit_vhost {
     my $begin = '# BEGIN PHP SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.';
     my $end = '# END PHP SECTION.  DO NOT EDIT MARKS OR IN BETWEEN.';
 
-        if ($vsite_php->{"enabled"} eq "1") {
+    if ($vsite_php->{"enabled"} eq "1") {
 
-        # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
-        @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
-        @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
-        @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
-        
-        # Remove duplicates:
-        foreach my $var ( @smi_temp_joined ){
-            if ( ! grep( /$var/, @safe_mode_include_dir ) ){
-                push(@safe_mode_include_dir, $var );
-            }
+    # Making sure 'safe_mode_include_dir' has the bare minimum defaults:
+    @smi_temporary = split(":", $vsite_php_settings->{"safe_mode_include_dir"});
+    @smi_baremetal_minimums = ('/usr/sausalito/configs/php/', '.');
+    @smi_temp_joined = (@smi_temporary, @smi_baremetal_minimums);
+    
+    # Remove duplicates:
+    foreach my $var ( @smi_temp_joined ){
+        if ( ! grep( /$var/, @safe_mode_include_dir ) ){
+            push(@safe_mode_include_dir, $var );
         }
-        $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
+    }
+    $vsite_php_settings->{"safe_mode_include_dir"} = join(":", @safe_mode_include_dir);
 
-        # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
-        @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
-        @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
-        @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
-        
-        # Remove duplicates:
-        foreach my $var ( @smaev_temp_joined ){
-            if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
-                push(@safe_mode_allowed_env_vars, $var );
-            }
+    # Making sure 'safe_mode_allowed_env_vars' has the bare minimum defaults:
+    @smaev_temporary = split(",", $vsite_php_settings->{"safe_mode_allowed_env_vars"});
+    @smi_baremetal_minimums = ('PHP_','_HTTP_HOST','_SCRIPT_NAME','_SCRIPT_FILENAME','_DOCUMENT_ROOT','_REMOTE_ADDR','_SOWNER');
+    @smaev_temp_joined = (@smaev_temporary, @smi_baremetal_minimums);
+    
+    # Remove duplicates:
+    foreach my $var ( @smaev_temp_joined ){
+        if ( ! grep( /$var/, @safe_mode_allowed_env_vars ) ){
+            push(@safe_mode_allowed_env_vars, $var );
         }
-        $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
+    }
+    $vsite_php_settings->{"safe_mode_allowed_env_vars"} = join(",", @safe_mode_allowed_env_vars);
 
-        if ($legacy_php == "1") {
-            # These options only apply to PHP versions prior to PHP-5.3:
-            if ($vsite_php_settings->{"safe_mode"} ne "") {
+    if ($legacy_php == "1") {
+        # These options only apply to PHP versions prior to PHP-5.3:
+        if ($vsite_php_settings->{"safe_mode"} ne "") {
             $script_conf .= 'php_admin_flag safe_mode ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
-            }
-            if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+        }
+        if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
             $script_conf .= 'php_admin_flag safe_mode_gid ' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
-            }
-            if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+        }
+        if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
             $script_conf .= 'php_admin_value safe_mode_allowed_env_vars ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
-            }
-            if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+        }
+        if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
             $script_conf .= 'php_admin_value safe_mode_exec_dir ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
-            }
+        }
 
-            if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+        if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
             $script_conf .= 'php_admin_value safe_mode_include_dir ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
-            }
-            if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+        }
+        if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
             $script_conf .= 'php_admin_value safe_mode_protected_env_vars ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
-            }
         }
+    }
 
-        if ($vsite_php_settings->{"register_globals"} ne "") {
+    if ($vsite_php_settings->{"register_globals"} ne "") {
         $script_conf .= 'php_admin_flag register_globals ' . $vsite_php_settings->{"register_globals"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
-            $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"allow_url_include"} ne "") {
+    }
+    if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+        $script_conf .= 'php_admin_flag allow_url_fopen ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
+    }
+    if ($vsite_php_settings->{"allow_url_include"} ne "") {
         $script_conf .= 'php_admin_flag allow_url_include ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
-        }
+    }
 
-        if ($vsite_php_settings->{"open_basedir"} ne "") {
+    if ($vsite_php_settings->{"open_basedir"} ne "") {
         $script_conf .= 'php_admin_value open_basedir ' . $vsite_php_settings->{"open_basedir"} . "\n";
-        }
+    }
 
-        if ($vsite_php_settings->{"post_max_size"} ne "") {
+    if ($vsite_php_settings->{"post_max_size"} ne "") {
         $script_conf .= 'php_admin_value post_max_size ' . $vsite_php_settings->{"post_max_size"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+    }
+    if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
         $script_conf .= 'php_admin_value upload_max_filesize ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"max_execution_time"} ne "") {
+    }
+    if ($vsite_php_settings->{"max_execution_time"} ne "") {
         $script_conf .= 'php_admin_value max_execution_time ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"max_input_time"} ne "") {
+    }
+    if ($vsite_php_settings->{"max_input_time"} ne "") {
         $script_conf .= 'php_admin_value max_input_time ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
-        }
-        if ($vsite_php_settings->{"memory_limit"} ne "") {
+    }
+    if ($vsite_php_settings->{"memory_limit"} ne "") {
         $script_conf .= 'php_admin_value memory_limit ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
-        }
+    }
 
-        # Email related:
-        $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
-        $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
-        $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+    # Email related:
+    $script_conf .= 'php_admin_flag mail.add_x_header On' . "\n";
+    $script_conf .= 'php_admin_value sendmail_path /usr/sausalito/sbin/phpsendmail' . "\n";
+    $script_conf .= 'php_admin_value auto_prepend_file /usr/sausalito/configs/php/set_php_headers.php' . "\n";
 
-        }
+    }
 
     my $last;
     my $enableSSL = 0;
@@ -474,6 +482,165 @@ sub open_basedir_handling {
 
     # More debugging output:
     &debug_msg("Open Basedir is now set to: $vsite_php_settings->{'open_basedir'} \n");
+}
+
+sub handle_fpm_pools {
+ 
+     # Get new prefered owner:
+    $pool_UID = $vsite_php->{'prefered_siteAdmin'};
+
+    # Get sites basedir:
+    $vsite_basedir = $vsite->{"basedir"};
+
+    # Get group just to be sure:
+    $pool_group = $vsite->{"name"};
+
+    # Pool Port:
+    # Assign a port number based on the GID of the Vsite.
+    # Our GID's for siteX start at 1001, so we need to add
+    # 8000 to it to get above 9000.
+    ($_name, $_passwd, $gid, $_members) = getgrnam($pool_group);
+    if ($gid ne "") {
+        $fpmPort = $gid+8000;
+    }
+    else {
+        # Fallback if we didn't get a port:
+        $fpmPort = 9000;
+    }
+
+    # Double fallback:
+    if ($fpmPort < 9000) {
+        $fpmPort = 9000;
+    }
+
+    # Location of the PHP-FPM pool file:
+    $pool_file = "/etc/php-fpm.d/$pool_group.conf";
+
+    if ($vsite_php->{'fpm_enabled'} == "0") {
+        &debug_msg("Deleting PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
+        # Delete Pool file:
+        system("/bin/rm -f $pool_file");
+    }
+    else {
+
+        &debug_msg("Creating PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
+        
+        #
+        ### Define Pool config file contends:
+        #
+
+        $pool_conf = '; Global PHP-FPM settings for this Vsite:' . "\n";
+        $pool_conf .= '[global]' . "\n";
+        $pool_conf .= 'log_level = notice' . "\n";
+        $pool_conf .= 'emergency_restart_threshold = 0' . "\n";
+        $pool_conf .= 'emergency_restart_interval = 0' . "\n";
+        $pool_conf .= 'process_control_timeout = 0' . "\n";
+        $pool_conf .= 'daemonize = yes' . "\n";
+        $pool_conf .= '' . "\n";
+        $pool_conf .= '; Pool name and settings:' . "\n";
+        $pool_conf .= '[site1]' . "\n";
+        $pool_conf .= 'listen = 127.0.0.1:' . $fpmPort . "\n";
+        $pool_conf .= 'listen.allowed_clients = 127.0.0.1' . "\n";
+        $pool_conf .= 'listen.owner = ' . $pool_UID . "\n";
+        $pool_conf .= 'listen.group = ' . $pool_group . "\n";
+        $pool_conf .= 'listen.mode = 0666' . "\n";
+        $pool_conf .= '' . "\n";
+        $pool_conf .= '; UID/GID:' . "\n";
+        $pool_conf .= 'user = ' . $pool_UID . "\n";
+        $pool_conf .= 'group = ' . $pool_group . "\n";
+        $pool_conf .= '' . "\n";
+        $pool_conf .= '; Set to \'ondemand\' and set limits:' . "\n";
+        $pool_conf .= 'pm = ondemand' . "\n";
+        $pool_conf .= 'pm.max_children = 5' . "\n";
+        $pool_conf .= 'pm.process_idle_timeout = 10s' . "\n";
+        $pool_conf .= 'pm.max_requests = 500' . "\n";
+        $pool_conf .= '' . "\n";
+        $pool_conf .= '; Set session path to a directory owned by process user' . "\n";
+        $pool_conf .= 'php_value[session.save_handler] = files' . "\n";
+        $pool_conf .= 'php_value[session.save_path] = /var/lib/php/session' . "\n";
+        $pool_conf .= '' . "\n";
+        $pool_conf .= '; PHP Vsite settings' . "\n";
+
+        # Piece the individual PHP Vsite settings together:
+
+        if ($legacy_php == "1") {
+            # These options only apply to PHP versions prior to PHP-5.3:
+            if ($vsite_php_settings->{"safe_mode"} ne "") {
+                $pool_conf .= 'php_admin_flag[safe_mode] = ' . $vsite_php_settings->{"safe_mode"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_gid"} ne "") {
+                $pool_conf .= 'php_admin_flag[safe_mode_gid] =' . $vsite_php_settings->{"safe_mode_gid"} . "\n";
+            }
+            if ($vsite_php_settings->{"safe_mode_allowed_env_vars"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_allowed_env_vars] = ' . $vsite_php_settings->{"safe_mode_allowed_env_vars"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_exec_dir"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_exec_dir] = ' . $vsite_php_settings->{"safe_mode_exec_dir"} . "\n"; 
+            }
+
+            if ($vsite_php_settings->{"safe_mode_include_dir"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_include_dir] = ' . $vsite_php_settings->{"safe_mode_include_dir"} . "\n"; 
+            }
+            if ($vsite_php_settings->{"safe_mode_protected_env_vars"} ne "") {
+                $pool_conf .= 'php_admin_value[safe_mode_protected_env_vars] = ' . $vsite_php_settings->{"safe_mode_protected_env_vars"} . "\n"; 
+            }
+        }
+
+        if ($vsite_php_settings->{"register_globals"} ne "") {
+            $pool_conf .= 'php_admin_flag[register_globals] = ' . $vsite_php_settings->{"register_globals"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"allow_url_fopen"} ne "") {
+            $pool_conf .= 'php_admin_flag[allow_url_fopen] = ' . $vsite_php_settings->{"allow_url_fopen"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"allow_url_include"} ne "") {
+            $pool_conf .= 'php_admin_flag[allow_url_include] = ' . $vsite_php_settings->{"allow_url_include"} . "\n"; 
+        }
+
+        if ($vsite_php_settings->{"open_basedir"} ne "") {
+            $pool_conf .= 'php_admin_value[open_basedir] = ' . $vsite_php_settings->{"open_basedir"} . "\n";
+        }
+
+        if ($vsite_php_settings->{"post_max_size"} ne "") {
+            $pool_conf .= 'php_admin_value[post_max_size] =' . $vsite_php_settings->{"post_max_size"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"upload_max_filesize"} ne "") {
+            $pool_conf .= 'php_admin_value[upload_max_filesize] = ' . $vsite_php_settings->{"upload_max_filesize"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_execution_time"} ne "") {
+            $pool_conf .= 'php_admin_value[max_execution_time] = ' . $vsite_php_settings->{"max_execution_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"max_input_time"} ne "") {
+            $pool_conf .= 'php_admin_value[max_input_time] = ' . $vsite_php_settings->{"max_input_time"} . "\n"; 
+        }
+        if ($vsite_php_settings->{"memory_limit"} ne "") {
+            $pool_conf .= 'php_admin_value[memory_limit] = ' . $vsite_php_settings->{"memory_limit"} . "\n"; 
+        }
+
+        # Email related:
+        $pool_conf .= 'php_admin_flag[mail.add_x_header] = On' . "\n";
+        $pool_conf .= 'php_admin_value[sendmail_path] = /usr/sausalito/sbin/phpsendmail' . "\n";
+        $pool_conf .= 'php_admin_value[auto_prepend_file] = /usr/sausalito/configs/php/set_php_headers.php' . "\n";
+
+        # Edit the Pool config file or die!:
+        &debug_msg("Editing PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
+
+        if(!Sauce::Util::editfile($pool_file, *pool_printer)) {
+            &debug_msg("Failed to edit PHP-FPM pool config $pool_file through php_vsite_handler.pl \n");
+            $cce->bye('FAIL', '[[base-apache.cantEditVhost]]');
+            exit(1);
+        }
+    }
+
+    # Restart PHP-FPM:
+    &debug_msg("Reloading PHP-FPM through php_vsite_handler.pl \n");
+    service_run_init('php-fpm', 'reload');
+
+}
+
+sub pool_printer {
+    ($in, $out) = @_;
+    print $out $pool_conf;
+    return 1;
 }
 
 $cce->bye('SUCCESS');
