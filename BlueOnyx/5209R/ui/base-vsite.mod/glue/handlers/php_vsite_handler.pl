@@ -132,18 +132,6 @@ if ($whatami eq "handler") {
         # Protect Vsite php.ini against modification.
         # As it's root owned and 644, this may be a bit redundant:
         system("/usr/bin/chattr +i $custom_php_ini_path");
-
-        #
-        ### Find out if this Vsite has Subdomains and if so, give them a php.ini as well:
-        #
-        @SUBDOMAINS = $cce->find('Subdomains', { 'group' => $vsite->{'name'} });
-        foreach $subOID ( @SUBDOMAINS ) {
-            ($ok, $subdomvals) = $cce->get($subOID);
-            $sub_ini = $subdomvals->{'webpath'} . "/php.ini";
-            if ((-f $custom_php_ini_path) && (!-l $sub_ini)) {
-                system("ln -s $custom_php_ini_path $sub_ini");
-            }
-        }
     }
     else {
         # suPHP disabled. Delete custom php.ini:
@@ -152,17 +140,6 @@ if ($whatami eq "handler") {
         system("/usr/bin/chattr -i $custom_php_ini_path");
         system("/bin/rm -f $custom_php_ini_path");
         &debug_msg("Deleting $custom_php_ini_path through php_vsite_handler.pl \n");
-        }
-        #
-        ### Find out if this Vsite has Subdomains and if so, remove their a php.ini:
-        #
-        @SUBDOMAINS = $cce->find('Subdomains', { 'group' => $vsite->{'name'} });
-        foreach $subOID ( @SUBDOMAINS ) {
-            ($ok, $subdomvals) = $cce->get($subOID);
-            $sub_ini = $subdomvals->{'webpath'} . "/php.ini";
-            if ((!-f $custom_php_ini_path) && (-l $sub_ini)) {
-                system("rm -f $custom_php_ini_path $sub_ini");
-            }
         }
     }
 
@@ -344,14 +321,14 @@ sub change_owner {
     $new_GID = $vsite->{"name"};
 
     if (($new_owner ne "") && ($webdir ne "") && ($vsite_basedir ne "")) {
-    # Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
-    system("/bin/chown -R $new_owner:$new_GID $webdir");
-    # Also chown the basedir of the site to this users UID, but don't do it recursively:
-    system("/bin/chown $new_owner:$new_GID $vsite_basedir");
-    # If we have subdomains under /vhosts, we need to chown them as well:
-    if (-d "$vsite_basedir/vhosts") {
-        system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
-    }
+        # Chown this sites /web to the prefered UID and also re-set the GID while we're at it:
+        system("/bin/chown -R $new_owner:$new_GID $webdir");
+        # Also chown the basedir of the site to this users UID, but don't do it recursively:
+        system("/bin/chown $new_owner:$new_GID $vsite_basedir");
+        # If we have subdomains under /vhosts, we need to chown them as well:
+        if (-d "$vsite_basedir/vhosts") {
+            system("/bin/chown -R $new_owner:$new_GID $vsite_basedir/vhosts");
+        }
     }
 }
 
