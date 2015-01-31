@@ -716,15 +716,15 @@ class BxPage extends MX_Controller {
 							}
 						}
 
-						$nav_html_menu .= "<li><a href='$u' " . $xtra_class . "title=\"" . $menutext . "\n" . $i18n->getHtml($_SiteMap_items[$MenuItem]['description']) . "\"><img src='/.adm/images/icons/small/grey/" . $_SiteMap_items[$MenuItem]['icon'] . ".png'/>" . '<IMG BORDER="0" WIDTH="11" HEIGHT="0" SRC="/libImage/spaceHolder.gif">' . $AMtopLight . "</a></li>" . "\n";
+						$nav_html_menu .= "<li><a href='$u' " . $xtra_class . "title=\"" . $menutext . "\n" . $i18n->getHtml($_SiteMap_items[$MenuItem]['description']) . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $_SiteMap_items[$MenuItem]['icon'] . ".png'/>" . '<IMG BORDER="0" WIDTH="11" HEIGHT="0" SRC="/libImage/spaceHolder.gif">' . $AMtopLight . "</a></li>" . "\n";
 					}
 					elseif ($_SiteMap_items[$MenuItem]['icon']) {
 						// Menu entry has a custom icon:
-						$nav_html_menu .= "<li><a href='$u' title=\"" . $i18n->getHtml($_SiteMap_items[$MenuItem]['description']) . "\"><img src='/.adm/images/icons/small/grey/" . $_SiteMap_items[$MenuItem]['icon'] . ".png'/><span>$menutext</span></a></li>" . "\n";
+						$nav_html_menu .= "<li><a href='$u' title=\"" . $i18n->getHtml($_SiteMap_items[$MenuItem]['description']) . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $_SiteMap_items[$MenuItem]['icon'] . ".png'/><span>$menutext</span></a></li>" . "\n";
 					}
 					else {
 						// Regular menu entry with the stock icon:
-						$nav_html_menu .= "<li><a href='$u' title=\"" . $i18n->getHtml($_SiteMap_items[$MenuItem]['description']) . "\"><img src='/.adm/images/icons/small/grey/coverflow.png'/><span>$menutext</span></a></li>" . "\n";
+						$nav_html_menu .= "<li><a href='$u' title=\"" . $i18n->getHtml($_SiteMap_items[$MenuItem]['description']) . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/coverflow.png'/><span>$menutext</span></a></li>" . "\n";
 					}
 
 					// Bump the number:
@@ -802,10 +802,10 @@ class BxPage extends MX_Controller {
 								$side_html_menu .= "<li><a href='javascript: void 0' $my_data_dialog>&nbsp;</a>"; // </li>								
 							}
 							elseif (!array_key_exists($active_menu_item_for_display, $submenu_entry)) {
-								$side_html_menu .= "<li><a href='$u' $my_data_dialog title=\"" . $description_cleaned . "\"><img src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>"; // </li>
+								$side_html_menu .= "<li><a href='$u' $my_data_dialog title=\"" . $description_cleaned . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>"; // </li>
 							}
 							else {
-								$side_html_menu .= "<li><a href='$u' class=\"pjax btn btn-modal tooltip hover\" title=\"" . $description_cleaned . "\"><img src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>\n"; // </li>
+								$side_html_menu .= "<li><a href='$u' class=\"pjax btn btn-modal tooltip hover\" title=\"" . $description_cleaned . "\"><img width='24' height='24' src='/.adm/images/icons/small/grey/" . $horiz_icon . ".png'/>$menutext</a>\n"; // </li>
 								// JavaScript sub-menu opener:
 								$side_html_menu .= "<script type=\"text/javascript\">";
 								$side_html_menu .= "$('.btn-modal').click();"; // <- This works better.
@@ -851,7 +851,7 @@ class BxPage extends MX_Controller {
 								}
 								if ($_SiteMap_items[$MenuItem]['id'] == $active_menu_item_for_display) {
 							  		$active_side_menu_entry = ' data-adminica-side-inner="' . $sme . '"';
-							  		$side_html_menu .= "		<li><a href='$u' class='tooltip hover' title=\"" . $i18n->getWrapped($_SiteMap_items[$MenuItem]['description']) . "\"><img src='/.adm/images/icons/small/white/pencil.png' width='24' height='24'>$menutext</a></li>\n";
+							  		$side_html_menu .= "		<li><a href='$u' class='tooltip hover' title=\"" . $i18n->getWrapped($_SiteMap_items[$MenuItem]['description']) . "\"><img width='24' height='24' src='/.adm/images/icons/small/white/pencil.png' width='24' height='24'>$menutext</a></li>\n";
 							  	}
 							  	else {
 							  		$side_html_menu .= "		<li><a href='$u' class='tooltip hover' title=\"" . $i18n->getWrapped($_SiteMap_items[$MenuItem]['description']) . "\">$alert_icon $menutext</a></li>\n";
@@ -977,13 +977,13 @@ class BxPage extends MX_Controller {
 					            </script>');
 
 					$wiki = '<a class="various" target="_self" href="http://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '" data-fancybox-type="iframe">' . "\n";
-					$wiki .= '<button class="fancybox light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
+					$wiki .= '<button class="fancybox light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img width="24" height="24" src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
 					$wiki .= '</a>' . "\n";
 				}
 				else {
 					// Use Link-Button to open in new tab:
 					$wiki = '<a target="_blank" href="http://' . $Support['wiki_baseURL'] . '/userguide/' . uri_string() . '">' . "\n";
-					$wiki .= '<button class="light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
+					$wiki .= '<button class="light small has_text img_icon tooltip hover" title="' . $i18n->getWrapped("[[base-support.wiki_help]]") . '"><img width="24" height="24" src="/.adm/images/icons/small/grey/info_about.png"><span>' . $i18n->getHtml("[[base-support.wiki]]") . '</span></button>' . "\n";
 					$wiki .= '</a>' . "\n";
 				}
 			}
