@@ -50,6 +50,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) /usr/shell-tools/perl/Getopt/*.pm
 
 %changelog
+* Sat Jan 31 2015 Michael Stauber <mstauber@blueonyx.it>
+- 2.31-0BX01
+- Added 5209R platform.
+
 * Wed Aug 24 2011 Michael Stauber <mstauber@blueonyx.it>
 - 2.30-0BX01
 - Added 5207R and 5208R platforms.

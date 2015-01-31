@@ -9,7 +9,7 @@ CWD = `pwd`
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.30
+VERSION   =   2.31
 
 BUILD_DIR =   /tmp/shell-tools
 TMP_DIR   =   $(BUILD_DIR)/shell-tools
@@ -99,6 +99,13 @@ raq550: cmu
 5208r: cmu
 	sed -e 's/\[PRODUCT\]/5208R/' < $(SPEC_IN) > $(SPEC_FILE)
 	sed -e 's/\[PRODUCT\]/5208R/' < $(MAKE_IN) > $(MAKE_FILE)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
+	$(RPMBUILD) -ta $(TMPTAR)
+
+5209r: cmu
+	sed -e 's/\[PRODUCT\]/5209R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5209R/' < $(MAKE_IN) > $(MAKE_FILE)
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE)
 	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) shell-tools
 	$(RPMBUILD) -ta $(TMPTAR)
