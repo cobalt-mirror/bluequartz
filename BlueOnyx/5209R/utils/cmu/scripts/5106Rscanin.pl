@@ -112,6 +112,11 @@ foreach my $fqdn (@vsiteNames) {
 		$vRef->{dns_auto} = 0;
 	}
 
+	# Delete references for PHP (DSO) + mod_ruid2 and PHP-FPM, as pre-5209R platforms
+	# don't have it yet. This makes the Vsite . PHP settings fall back to regular PHP:
+	delete $vRef->{PHP}->{mod_ruid_enabled} if(defined $vRef->{PHP}->{mod_ruid_enabled});
+	delete $vRef->{PHP}->{fpm_enabled} if(defined $vRef->{PHP}->{fpm_enabled});
+
 	####################
 	## We set the quota to an insanely high value during this stage and later 
 	# on reset it to the desired quota amount:
@@ -219,6 +224,9 @@ foreach my $user (@keys) {
 	if(!defined $uRef->{stylePreference}) {
 		$uRef->{stylePreference} = 'trueBlue';
 	}
+
+	# Remove ChorizoStyle from User as pre-Chorizo doesn't have it:
+	delete $uRef->{ChorizoStyle} if(defined $uRef->{ChorizoStyle});
 
 	#########
 	# We set the user's disk quota to unlimited during this stage and later on reset it to

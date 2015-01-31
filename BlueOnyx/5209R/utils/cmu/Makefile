@@ -3,14 +3,14 @@
 #
 # usage: make <product>
 #
-# $Id: Makefile 1066 2008-01-27 09:21:48Z shibuya $
+# $Id: Makefile
 
 CWD = `pwd`
 
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.92
+VERSION   =   2.93
 
 BUILD_DIR =   /tmp/cmu
 TMP_DIR   =   $(BUILD_DIR)/cpr

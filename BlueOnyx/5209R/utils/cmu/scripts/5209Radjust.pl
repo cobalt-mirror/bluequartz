@@ -22,7 +22,7 @@ if($cfg->isSess) {
 
 my $tree = TreeXml::readXml($cmuXml, 0);
 
-$tree->{adjustPlatform} = "5208R";
+$tree->{adjustPlatform} = "5209R";
 
 require Jcode; 
 require MIME::Base64; 
@@ -34,15 +34,15 @@ if (defined $tree->{user}) {
 	my @keys = keys %{ $tree->{user}}; 
 
 	my @adminCaps = ('serverHttpd', 'serverFTP', 'serverEmail', 'serverDNS', 
-        'serverSNMP', 'serverShell', 'serveriStat', 'serverSSL', 
-        'serverSystemFirewall', 'serverNetwork', 
-        'serverVsite', 'serverTime', 'serverInformation', 
-        'serverServerDesktop', 'serverStatsServerNetwork', 
-        'serverStatsServerWebalizer', 'serverStatsServerWeb', 
-        'serverStatsServerFTP', 'serverStatsServerEmail', 
-        'serverStatsServerDisk', 'serverShowActiveMonitor', 
-        'serverActiveMonitor', 'manageSite','menuServerServerStats', 
-        'managePackage'); 
+                    'serverSNMP', 'serverShell', 'serveriStat', 'serverSSL', 
+                    'serverSystemFirewall', 'serverNetwork', 
+                    'serverVsite', 'serverTime', 'serverInformation', 
+                    'serverServerDesktop', 'serverStatsServerNetwork', 
+                    'serverStatsServerWebalizer', 'serverStatsServerWeb', 
+                    'serverStatsServerFTP', 'serverStatsServerEmail', 
+                    'serverStatsServerDisk', 'serverShowActiveMonitor', 
+                    'serverActiveMonitor', 'manageSite','menuServerServerStats', 
+                    'managePackage', 'siteAdmin', 'siteSSL', 'siteAnonFTP', 'siteShell', 'siteDNS'); 
  
 	foreach my $user (@keys) { 
         my $admin; 
