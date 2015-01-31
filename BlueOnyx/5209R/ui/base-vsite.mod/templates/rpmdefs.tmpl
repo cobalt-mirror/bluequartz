@@ -143,6 +143,8 @@ fi
   configs are created in /etc/php-fpm.d/ and are populated with the
   correct parameters and settings. Including all of the relevant
   Vsite PHP settings. When done, PHP-FPM is reloaded.
+- Modified glue/handlers/php_handler.pl to update the PHP-FPM master
+  pool file /etc/php-fpm.d/www.conf with the global PHP settings.
 
 * Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX21
 - Modified glue/handlers/php_vsite_handler.pl to remove support for 

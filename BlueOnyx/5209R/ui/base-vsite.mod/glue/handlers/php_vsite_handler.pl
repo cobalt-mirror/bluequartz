@@ -538,7 +538,7 @@ sub handle_fpm_pools {
         $pool_conf .= 'daemonize = yes' . "\n";
         $pool_conf .= '' . "\n";
         $pool_conf .= '; Pool name and settings:' . "\n";
-        $pool_conf .= '[site1]' . "\n";
+        $pool_conf .= '[' . $pool_group . ']' . "\n";
         $pool_conf .= 'listen = 127.0.0.1:' . $fpmPort . "\n";
         $pool_conf .= 'listen.allowed_clients = 127.0.0.1' . "\n";
         $pool_conf .= 'listen.owner = ' . $pool_UID . "\n";
