@@ -61,15 +61,15 @@ if( ! $cce->{destroyflag} ) {
 $cce->bye('SUCCESS');
 exit 0;
 
-sub get_snmp_server_on
-# Is the snmp server set to be on?
-# Returns 1 if the snmp server is activated, 0 if deactivated
-#   This reflects what ought to be, *not* what is
-# Arguments: none
-# Side effects: none
-{
+sub get_snmp_server_on {
+	# Is the snmp server set to be on?
+	# Returns 1 if the snmp server is activated, 0 if deactivated
+	#   This reflects what ought to be, *not* what is
+	# Arguments: none
+	# Side effects: none
 	if (Sauce::Service::service_get_init($service) == -1) {
 		return 0;
+	}
 	else {
 		return 1;
 	}
@@ -156,8 +156,8 @@ sub set_snmp_community
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
