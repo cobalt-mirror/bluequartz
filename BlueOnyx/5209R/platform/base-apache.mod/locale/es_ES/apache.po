@@ -347,4 +347,4 @@ msgid "enableModFPM"
 msgstr "FPM/FastCGI"
 
 msgid "enableModFPM_help"
-msgstr "Esta opción proporciona PHP a través de PHP-FPM y mod_fcgid. En este momento ofrecemos esta opción como experimentales que permiten ejecutar scripts PHP como apache usuario con la configuración por defecto de PHP. Tenga en cuenta que no se utilizarán los ajustes PHP específica Vsite. En su lugar se utilizará la configuración global y nivel de servidor PHP."
+msgstr "Esta opción proporciona PHP a través de PHP-FPM y mod_fcgid. Esta es una manera rápida y segura de atender las solicitudes de PHP. Los scripts PHP pueden ser ejecutados con el UID y el GID del dueño del sitio virtual. Asegúrese de configurar un siteadmin como propietario de la carpeta /web través del menú '[[base-vsite.fileOwnerMenu]]'!"

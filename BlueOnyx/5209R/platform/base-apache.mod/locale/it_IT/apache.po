@@ -341,10 +341,10 @@ msgid "enableModRUID"
 msgstr "PHP (DSO) + mod_ruid2"
 
 msgid "enableModRUID_help"
-msgstr "Questa opzione fornisce PHP attraverso libphp5.so e il modulo di Apache mod_ruid2.so. Questa opzione è di solito il modo più veloce per eseguire le richieste PHP in modo sicuro. Il modulo aggiuntivo mod_ruid2 saranno eseguire gli script PHP con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un anonymous come proprietario della cartella /web attraverso il menu 'Web Ownership'!"
+msgstr "Questa opzione fornisce PHP attraverso libphp5.so e il modulo di Apache mod_ruid2.so. Questa opzione è di solito il modo più veloce per eseguire le richieste PHP in modo sicuro. Il modulo aggiuntivo mod_ruid2 saranno eseguire gli script PHP con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un anonymous come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"
 
 msgid "enableModFPM"
 msgstr "FPM/FastCGI"
 
 msgid "enableModFPM_help"
-msgstr "Questa opzione fornisce PHP tramite PHP-FPM e mod_fcgid. In questo momento abbiamo a disposizione questa opzione come sperimentali che permettono di eseguire gli script PHP come apache utente con la configurazione di default di PHP. Si prega di notare che non verranno utilizzati le impostazioni specifiche PHP Vsite. Invece saranno utilizzate le impostazioni globali di PHP e server largo."
+msgstr "Questa opzione fornisce PHP tramite PHP-FPM e mod_fcgid. Questo è un modo veloce e sicuro per servire le richieste PHP. Gli script PHP possono essere eseguiti con l'UID e GID del proprietario del sito virtuale. Accertarsi di configurare un anonymous come proprietario della cartella /web attraverso il menu '[[base-vsite.fileOwnerMenu]]'!"

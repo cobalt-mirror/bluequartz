@@ -365,4 +365,4 @@ msgid "enableModFPM"
 msgstr "FPM/FastCGI"
 
 msgid "enableModFPM_help"
-msgstr "Cette option fournit PHP PHP-FPM travers et mod_fcgid. A cette époque, nous fournissons cette options expérimentales qui permet d'exécuter des scripts PHP Apache de l'utilisateur avec la configuration par défaut de PHP. Se il vous plaît noter que tous les paramètres de PHP spécifique VEMPLACEMENT ne seront pas utilisés. Au lieu de cela les paramètres globaux et serveur large PHP seront utilisées."
+msgstr "Cette option fournit PHP-FPM travers et mod_fcgid. Ce est une façon rapide et sécurisée pour mieux servir les requêtes PHP. Les scripts PHP peuvent être exécutées avec l'UID et le GID du propriétaire du site virtuel. Ne oubliez pas de configurer un Siteadmin en tant que propriétaire de votre dossier /web travers le menu '[[base-vsite.fileOwnerMenu]]'!"

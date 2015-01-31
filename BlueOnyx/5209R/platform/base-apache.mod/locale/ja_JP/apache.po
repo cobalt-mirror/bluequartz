@@ -360,5 +360,5 @@ msgid "enableModFPM"
 msgstr "FPM/FastCGI"
 
 msgid "enableModFPM_help"
-msgstr "このオプションは、PHP-FPMとmod_fcgidを通してPHPを提供します。この時点では、デフォルトのPHP設定を持つユーザーApacheなどのPHPスクリプトを実行することができ、このような実験的なオプションを提供します。すべてのVsite特定のPHPの設定は使用されませんのでご注意ください。代わりに、グローバルおよびサーバワイドPHPの設定が使用されます。"
+msgstr "このオプションは、PHP-FPMとmod_fcgidを通してPHPを提供します。これはPHPの要求を処理するための高速かつ安全な方法です。 PHPスクリプトは、仮想サイトの所有者のUIDとGIDで実行することができます。 「[[base-vsite.fileOwnerMenu]] 'メニューを通して、あなたの/webフォルダの所有者としてsiteAdminを設定してください！"
 
