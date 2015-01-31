@@ -33,16 +33,16 @@ if (defined $tree->{user}) {
 	my ($j, $name); 
 	my @keys = keys %{ $tree->{user}}; 
 
-	my @adminCaps = ('serverHttpd', 'serverFTP', 'serverEmail', 'serverDNS', 
-        'serverSNMP', 'serverShell', 'serveriStat', 'serverSSL', 
-        'serverSystemFirewall', 'serverNetwork', 
-        'serverVsite', 'serverTime', 'serverInformation', 
-        'serverServerDesktop', 'serverStatsServerNetwork', 
-        'serverStatsServerWebalizer', 'serverStatsServerWeb', 
-        'serverStatsServerFTP', 'serverStatsServerEmail', 
-        'serverStatsServerDisk', 'serverShowActiveMonitor', 
-        'serverActiveMonitor', 'manageSite','menuServerServerStats', 
-        'managePackage'); 
+    my @adminCaps = ('serverHttpd', 'serverFTP', 'serverEmail', 'serverDNS', 
+                    'serverSNMP', 'serverShell', 'serveriStat', 'serverSSL', 
+                    'serverSystemFirewall', 'serverNetwork', 
+                    'serverVsite', 'serverTime', 'serverInformation', 
+                    'serverServerDesktop', 'serverStatsServerNetwork', 
+                    'serverStatsServerWebalizer', 'serverStatsServerWeb', 
+                    'serverStatsServerFTP', 'serverStatsServerEmail', 
+                    'serverStatsServerDisk', 'serverShowActiveMonitor', 
+                    'serverActiveMonitor', 'manageSite','menuServerServerStats', 
+                    'managePackage', 'siteAdmin', 'siteSSL', 'siteAnonFTP', 'siteShell', 'siteDNS'); 
  
 	foreach my $user (@keys) { 
         my $admin; 

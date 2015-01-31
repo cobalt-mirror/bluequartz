@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: 5100Rscanin.pl Sun 05 Feb 2012 04:58:56 AM CET mstauber $
+# $Id: 5209Rscanin.pl Sun 05 Feb 2012 04:58:56 AM CET mstauber $
 # Cobalt Networks, Inc http://www.cobalt.com
 # Copyright 2001 Sun Microsystems, Inc.  All rights reserved.
 # C. Hemsing: minor repair on tilde expansion
@@ -112,15 +112,6 @@ foreach my $fqdn (@vsiteNames) {
 		$vRef->{dns_auto} = 0;
 	}
 
-	# Delete references for PHP (DSO) + mod_ruid2 and PHP-FPM, as pre-5209R platforms
-	# don't have it yet. This makes the Vsite . PHP settings fall back to regular PHP:
-	#
-	# Step #1: Remove the "Vsite" . "PHP" subclass entirely. Or the create Vsite fails:
-	delete $vRef->{PHP} if(defined $vRef->{PHP});
-	# Step #2: Remove the vTree "Vsite" . "PHP" key/value pairs for mod_ruid2 and FPM:
-	delete $vTree->{PHP}->{mod_ruid_enabled} if (defined $vTree->{PHP}->{mod_ruid_enabled});
-	delete $vTree->{PHP}->{fpm_enabled} if (defined $vTree->{PHP}->{fpm_enabled});
-
 	####################
 	## We set the quota to an insanely high value during this stage and later 
 	# on reset it to the desired quota amount:
@@ -155,12 +146,12 @@ foreach my $fqdn (@vsiteNames) {
 	}
 	$cce->unLoadNamespace($vTree, $oid);
 
-	if($vTree->{Frontpage}->{enabled} && $cfg->noPasswd eq 'f' && 
-		defined $vTree->{Frontpage}->{passwordWebmaster}
-	) { 
-		RaQUtil::setFpxPass("/home/sites/".$fqdn, 
-			$vTree->{Frontpage}->{passwordWebmaster}) 
-	}
+#	if($vTree->{Frontpage}->{enabled} && $cfg->noPasswd eq 'f' && 
+#		defined $vTree->{Frontpage}->{passwordWebmaster}
+#	) { 
+#		RaQUtil::setFpxPass("/home/sites/".$fqdn, 
+#			$vTree->{Frontpage}->{passwordWebmaster}) 
+#	}
 
 	# remove the default page
 	if(-f "/home/sites/".$fqdn."/web/index.html") {
@@ -228,9 +219,6 @@ foreach my $user (@keys) {
 	if(!defined $uRef->{stylePreference}) {
 		$uRef->{stylePreference} = 'trueBlue';
 	}
-
-	# Remove ChorizoStyle from User as pre-Chorizo doesn't have it:
-	delete $uRef->{ChorizoStyle} if(defined $uRef->{ChorizoStyle});
 
 	#########
 	# We set the user's disk quota to unlimited during this stage and later on reset it to

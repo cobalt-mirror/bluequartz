@@ -37,6 +37,7 @@ $validExport = {
 	'5161R' =>	1,
 	'5207R' =>	1,
 	'5208R' =>	1,
+	'5209R' =>	1,
 	'5200R' =>	1,
 	TLAS1HE	=>	1,
 	TLAS2	=>	1
@@ -55,6 +56,7 @@ $validImport = {
 	'5161R' =>	1,
 	'5207R' =>	1,
 	'5208R' =>	1,
+	'5209R' =>	1,
 	'5200R' =>	1,
 	TLAS1HE	=>	1,
 	TLAS2	=>	1
@@ -81,14 +83,15 @@ $validImport = {
                '5107R' => '5108R',
                '5108R' => '5207R',
                '5207R' => '5208R',
-               '5208R' => '5106R'
+               '5208R' => '5209R',
+               '5209R' => '5106R'
                );
         
     # Note: The old adjustPath was just from the oldest model to the newest.
     # This only allowed migrations from an old platform to a newer. But not
     # going from 5108R 'down' to 5106R - for example.
     # So at the end of the old adjustPath (which ended with 5161R) I added
-    # 5108R again and make it adjustable to the bottom end of the supported
+    # 5109R again and make it adjustable to the bottom end of the supported
     # platform list: 5106R.
 
 1;
@@ -157,6 +160,7 @@ sub getBuild
 		"5161R",			"5161R",
 		"5207R",			"5207R",
 		"5208R",			"5208R",
+		"5209R",			"5209R",
 		"5200R",			"5200R",
 		# TLAS
 		"TLAS1HE",			"TLAS1HE",

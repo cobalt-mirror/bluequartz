@@ -112,6 +112,15 @@ foreach my $fqdn (@vsiteNames) {
 		$vRef->{dns_auto} = 0;
 	}
 
+	# Delete references for PHP (DSO) + mod_ruid2 and PHP-FPM, as pre-5209R platforms
+	# don't have it yet. This makes the Vsite . PHP settings fall back to regular PHP:
+	#
+	# Step #1: Remove the "Vsite" . "PHP" subclass entirely. Or the create Vsite fails:
+	delete $vRef->{PHP} if(defined $vRef->{PHP});
+	# Step #2: Remove the vTree "Vsite" . "PHP" key/value pairs for mod_ruid2 and FPM:
+	delete $vTree->{PHP}->{mod_ruid_enabled} if (defined $vTree->{PHP}->{mod_ruid_enabled});
+	delete $vTree->{PHP}->{fpm_enabled} if (defined $vTree->{PHP}->{fpm_enabled});
+
 	####################
 	## We set the quota to an insanely high value during this stage and later 
 	# on reset it to the desired quota amount:
@@ -367,19 +376,8 @@ foreach my $list (@keys) {
 my $cmd;
 if($cfg->dns eq 't') {
 	warn "INFO: Importing DNS records\n";
-	if($tree->{exportPlatform} eq 'RaQ550' ||
-	   $tree->{exportPlatform} eq '5100R' ||
-	   $tree->{exportPlatform} eq '5106R' ||
-	   $tree->{exportPlatform} eq '5107R' ||
-	   $tree->{exportPlatform} eq '5108R' ||
-           $tree->{exportPlatform} eq '5160R' ||
-           $tree->{exportPlatform} eq '5161R' ||
-           $tree->{exportPlatform} eq '5207R' ||
-           $tree->{exportPlatform} eq '5208R' ||
-	   $tree->{exportPlatform} eq '5200R' ||
-	   $tree->{exportPlatform} eq 'TLAS1HE' ||
-	   $tree->{exportPlatform} eq 'TLAS2') {
-		warn "INFO: RaQ550 to RaQ550, BlueQuartz 5100R, BlueOnyx (5106R, 5107R, 5108R, 5207R or 5208R) or TLAS HE DNS migration not done yet\n"
+	if($tree->{exportPlatform} =~ /(RaQ550|5100R|5200R|TLAS1HE|Qube3|510[6-8]R|520[7-9]R|516[0-1]R)/) {
+		warn "INFO: DNS migration for this platform is handled separately and not by CMU.\n"
 	} elsif(-f $cfg->destDir.'/records') {
 		$cmd = '/usr/cmu/scripts/dnsImport '.$cfg->destDir.'/records';
 		system($cmd);

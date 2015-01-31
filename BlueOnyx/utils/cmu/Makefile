@@ -3,14 +3,14 @@
 #
 # usage: make <product>
 #
-# $Id: Makefile 1066 2008-01-27 09:21:48Z shibuya $
+# $Id: Makefile
 
 CWD = `pwd`
 
 # Some definitions
 INSTALL = /usr/bin/install
 
-VERSION   =   2.91
+VERSION   =   2.93
 
 BUILD_DIR =   /tmp/cmu
 TMP_DIR   =   $(BUILD_DIR)/cpr
@@ -106,6 +106,12 @@ RAQ550_LIBS = \
 	$(wildcard scripts/5208R*.pl)
 
 5208R_LIBS = \
+	RaQUtil.pm
+
+5209R_SCRIPTS = \
+	$(wildcard scripts/5209R*.pl)
+
+5209R_LIBS = \
 	RaQUtil.pm
 
 5160R_SCRIPTS = \
@@ -381,6 +387,22 @@ raq550:: cmu base adjust
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5208R/packing_list
 	(cd $(PKG_DIR)/5208R;make)
 
+5209r:: cmu base adjust
+	for t in $(5209R_SCRIPTS) ; do \
+	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
+    done
+	for t in $(5209R_LIBS) ; do \
+	 $(INSTALL) -o $(CMUUSER) -m0600 lib/$$t $(PERLDIR)/$$t ; \
+    done
+	sed -e 's/\[PRODUCT\]/5209R/' < $(SPEC_IN) > $(SPEC_FILE)
+	sed -e 's/\[PRODUCT\]/5209R/' < $(MAKE_IN) > $(MAKE_FILE)
+	$(CP) conf/5209R.cobaltBase.xml $(BASE_CONF)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(SPEC_FILE) $(MAKE_FILE) $(BASE_CONF)
+	/bin/tar -X $(TMP_DIR)/ignore -C $(BUILD_DIR) -czvf $(TMPTAR) cpr
+	$(RPMBUILD) -ta $(TMPTAR)
+	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/5209R/packing_list
+	(cd $(PKG_DIR)/5209R;make)
+
 5160r:: cmu base adjust
 	for t in $(5160R_SCRIPTS) ; do \
 	 $(INSTALL) -o $(CMUUSER) -m0700 $$t $(TMP_DIR)/$$t ; \
@@ -475,7 +497,7 @@ qube3:: cmu base
 	perl -pi -e 's#\[VERSION\]#$(VERSION)#' $(PKG_DIR)/Qube3/packing_list
 	(cd $(PKG_DIR)/Qube3;make)
 
-all:: raq2 raq3 raq4 raqxtr raq550 5100r 5106r 5107r 5108r 5207r 5208r 5160r 5161r 5200r tlas1he tlas2 qube2 qube3
+all:: raq2 raq3 raq4 raqxtr raq550 5100r 5106r 5107r 5108r 5207r 5208r 5209r 5160r 5161r 5200r tlas1he tlas2 qube2 qube3
 
 raq1:: cmu
 	(cd $(TMP_DIR);sed -e 's/\[PRODUCT\]/RaQ1/' < $(SPEC_FILE) > $(SPEC_NEW))

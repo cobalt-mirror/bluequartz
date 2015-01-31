@@ -53,7 +53,7 @@ cmuLog("INFO", "$0 running in directory: ".$cfg->destDir."\n");
 #
 # get the admin password if we need it
 my $password;
-if (($build =~ /(5106R)/) || ($build =~ /(5107R)/) || ($build =~ /(5108R)/) || ($build =~ /(5207R)/) || ($build =~ /(5208R)/)) {
+if ($build =~ /(510[6-8]R|520[7-9]R)/) {
     # Root check
     my $id = get_uid('root');
     if ($id ne "0") {
@@ -61,7 +61,7 @@ if (($build =~ /(5106R)/) || ($build =~ /(5107R)/) || ($build =~ /(5108R)/) || (
 	exit 1
     }
 }
-elsif($build =~ /(RaQ550)/ || $build =~ /(TLAS1HE)/ || $build =~ /(TLAS2)/) {
+else {
 	$password = checkPass();
 	$cfg->putGlb('adminPassword', $password);	
 }

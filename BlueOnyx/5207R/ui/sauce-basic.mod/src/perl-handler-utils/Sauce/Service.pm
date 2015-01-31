@@ -13,6 +13,13 @@ require Exporter;
 	     service_send_signal 
 	    );
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 use lib '/usr/sausalito/perl';
 use Sauce::Util;
 use Sauce::Service::Client;
@@ -38,22 +45,36 @@ sub service_run_init
 	#
 	# check httpd is running $arg is reload
 	#
-	$pidHttpd = `pidof httpd|wc -l`;
-	chomp($pidHttpd);
-	if ($service eq 'httpd' && $arg eq 'reload' && ($pidHttpd == "1")) {
-		my $ssc = new Sauce::Service::Client;
-		if (!$ssc->connect()) {
-			return(0);
-		}
-		if (!$ssc->register_event($service, $arg)) {
-			return(0);
-		}
-		if (!$ssc->bye()) {
-			# this can actually never fail currently
-			return(0);
-		}
+	#$pidHttpd = `pidof httpd|wc -l`;
+	#chomp($pidHttpd);
+	#if ($service eq 'httpd' && $arg eq 'reload' && ($pidHttpd == "1")) {
+	if ($service eq 'httpd' && $arg eq 'reload') {
+		#my $ssc = new Sauce::Service::Client;
+		#if (!$ssc->connect()) {
+		#	return(0);
+		#}
+		#if (!$ssc->register_event($service, $arg)) {
+		#	return(0);
+		#}
+		#if (!$ssc->bye()) {
+		#	# this can actually never fail currently
+		#	return(0);
+		#}
+		#return(1);
 
-		return(1);
+		&debug_msg("Fail2: [[base-apache.cantEditVhost]]\n");
+
+		if (-f "/usr/bin/systemctl") { 
+			# Got Systemd: 
+			&debug_msg("Running: systemctl $arg $service.service --no-block\n");
+			system("systemctl $arg $service.service --no-block"); 
+		} 
+		else { 
+			# Thank God, no Systemd: 
+			&debug_msg("Running: /sbin/service $service $arg\n");
+			system("/sbin/service $service $arg"); 
+		}
+		return(0);
 	}
 	if ($service eq 'crond') {
 		`killall -9 crond`;
@@ -426,7 +447,19 @@ sub service_restart_xinetd
 {
         service_send_signal('xinetd', 'HUP');
 }
- 
+
+# For debugging:
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
 # Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
 # Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT

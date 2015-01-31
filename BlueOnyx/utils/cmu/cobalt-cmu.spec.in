@@ -1,9 +1,9 @@
-# $Id: cobalt-cmu.spec.in 1066 2008-01-27 09:21:48Z shibuya $
+# $Id: cobalt-cmu.spec.in
 
 Summary: Cobalt Migration Utility
 Name: [PRODUCT]-cmu
 Version: [VERSION]
-Release: 0BX03%{?dist}
+Release: 0BX01%{?dist}
 Vendor: Team BlueOnyx
 License: Sun modified BSD
 Group: Applications/Archiving
@@ -17,11 +17,8 @@ Requires: perl(XML::Parser)
 %description
 Cobalt Migration Utility (CMU)
 
-CMU is used to migrate virtual site, user, groups and other data and meta-data 
-seamlessly between multiple Cobalt platforms.  It (will) also provides 
-tools for migrating from the third party platforms to the Cobalt 
-platform.  
-
+CMU is used to migrate virtual site, user, group and other data seamlessly 
+between multiple platforms (Cobalt, TLAS, BlueQuartz and BlueOnyx).
 
 %prep
 %setup -n cpr
@@ -68,10 +65,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 
-* Fri Feb 07 2014 Michael Stauber <mstauber@solarspeed.net>
-- version 2.91-0BX03
-- Reverted compression scheme again in perl_modules/Archive/Tar.pm
-  Otherwise cmu would act up on 5107R/5108R.
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net>
+- version 2.93-0BX01
+- New CMU for 5209R. First draft.
+- All 520XR adjust scripts get the new adminUser Capabilities set.
+- All pre-5209R scanin scripts discard the new PHP options.
+- All pre-5207R scanin scripts discard ChorizoStyle on import.
+
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net>
+- version 2.92-0BX02
+- Some fixes all around to get it working.
+
+* Fri Jul 18 2014 Michael Stauber <mstauber@solarspeed.net>
+- version 2.92-0BX01
+- Added platform support for 5209R.
+- Compacted some regular expressions for platform detection.
+- Fix of GZip function yet again in Archive/Tar.pm
 
 * Mon Dec 09 2013 Michael Stauber <mstauber@solarspeed.net>
 - version 2.91-0BX02
