@@ -362,3 +362,19 @@ msgstr "FPM/FastCGI"
 msgid "enableModFPM_help"
 msgstr "このオプションは、PHP-FPMとmod_fcgidを通してPHPを提供します。これはPHPの要求を処理するための高速かつ安全な方法です。 PHPスクリプトは、仮想サイトの所有者のUIDとGIDで実行することができます。 「[[base-vsite.fileOwnerMenu]] 'メニューを通して、あなたの/webフォルダの所有者としてsiteAdminを設定してください！"
 
+#
+#### PHP-FPM Active Monitor components:
+#
+
+msgid "amPHPFPMNameTag"
+msgstr "PHP-FPM"
+
+msgid "amPHPFPMDetails"
+msgstr "[[base-apache.amPHPFPMNameTag]]"
+
+msgid "amPHPFPMStatusOK"
+msgstr "サービスPHP-FPMは正常に動作しています。"
+
+msgid "amPHPFPMNotRunning"
+msgstr "サービス[[base-apache.amPHPFPMNameTag]]が実行されていないと再起動できませんでした。本サービスに関連するエラーメッセージのためのログファイルをチェックし、問題を解決するには、コマンドラインからrootとして「systemctl status php-fpm.service'を実行してください。それでも[[base-apache.amPHPFPMNameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
+

@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-apache-am
 Name: base-apache-am
-Version: 1.0.4
-Release: 0BX02%{?dist}
+Version: 1.0.5
+Release: 0BX01%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,6 +25,9 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-apache-am.  
 
 %changelog
+
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 1.0.5-0BX01
+- Added Monitor for PHP-FPM.
 
 * Mon Dec 08 2014 Michael Stauber <mstauber@solarspeed.net> 1.0.4-0BX02
 - Systemd love added.

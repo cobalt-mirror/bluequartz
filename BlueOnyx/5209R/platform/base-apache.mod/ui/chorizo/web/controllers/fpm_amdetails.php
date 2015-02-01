@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Web_amdetails extends MX_Controller {
+class Fpm_amdetails extends MX_Controller {
 
 	/**
 	 * Index Page for this controller.
 	 *
-	 * Past the login page this loads the page for /apache/web_amdetails.
+	 * Past the login page this loads the page for /apache/fpm_amdetails.
 	 *
 	 */
 
@@ -87,7 +87,7 @@ class Web_amdetails extends MX_Controller {
 		//--- Print Detail Block:
 		//
 
-		$page_body[] = am_detail_block($factory, $cceClient, "Apache", "[[base-apache.amApacheDetails]]");
+		$page_body[] = am_detail_block($factory, $cceClient, "PHPFPM", "[[base-apache.amPHPFPMDetails]]");
 
 		if ($fancy == TRUE) {
 			$page_body[] = '</div>';
@@ -109,9 +109,8 @@ class Web_amdetails extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
-Copyright (c) 2003 Sun Microsystems, Inc. 
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

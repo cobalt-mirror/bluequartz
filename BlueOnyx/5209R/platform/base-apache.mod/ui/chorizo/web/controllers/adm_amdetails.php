@@ -83,15 +83,11 @@ class Adm_amdetails extends MX_Controller {
 			$page_body[] = '<br><div id="main_container" class="container_16">';
 		}
 
-//---
-
 		//
 		//--- Print Detail Block:
 		//
 
 		$page_body[] = am_detail_block($factory, $cceClient, "Admserv", "[[base-apache.amAdmservDetails]]");
-
-//---	
 
 		if ($fancy == TRUE) {
 			$page_body[] = '</div>';
