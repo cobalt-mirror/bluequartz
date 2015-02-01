@@ -98,8 +98,13 @@ class Memory_details extends MX_Controller {
 		$kernelver = `uname -r`;
 		if (preg_match('/^2.4/', $kernelver)) {
 		    $kernel = 2.4;
-		} elseif (preg_match('/^2.6/', $kernelver)) {
+		}
+		elseif (preg_match('/^2.6/', $kernelver)) {
 		    $kernel = 2.6;
+		}
+		else {
+			# This works for kernel 3.10 (EL7) as well, so we use it for now:
+			$kernel = 2.6;
 		}
 		$mttl = `cat /proc/meminfo | grep MemTotal`;
 		$mfree = `cat /proc/meminfo | grep MemFree`;
@@ -765,8 +770,8 @@ class Memory_details extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
