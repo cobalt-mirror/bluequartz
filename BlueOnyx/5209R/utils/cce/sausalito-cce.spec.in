@@ -147,36 +147,43 @@ if [ -f /usr/bin/systemctl ];then
   /usr/bin/systemctl daemon-reload
 fi
 
-# restart cced.init on upgrade
-if [ "$1" -ge "1" ]; then
-  /sbin/service cced.init restart >/dev/null 2>&1
-  /sbin/chkconfig --add pam_abl
-  /sbin/service pam_abl restart >/dev/null 2>&1
-fi
-
-# Run on install and upgrade 
-if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
-  /usr/bin/systemctl enable cced.init.service 
-  /sbin/chkconfig --add pam_abl
-else 
-	/sbin/chkconfig --add cced.init
-	/sbin/chkconfig --add pam_abl
-fi
-
-# Only run on install, not upgrade 
-if [ "$1" = "1" ]; then
-  /usr/sausalito/sbin/cced.init restart >/dev/null 2>&1
-fi
-
-%postun server
-# only run if this is the last instance to be removed
-if [ "$1" = "0" ]; then
+if [ "$1" -eq "1" ]; then
+  # Install
   if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
-    /usr/bin/systemctl daemon-reload
-    /usr/bin/systemctl disable cced.init.service
-    /sbin/chkconfig --del cced.init
-    /sbin/chkconfig --del pam_abl
+    /usr/bin/systemctl enable cced.init.service 
+    /sbin/chkconfig --add pam_abl
   else 
+    /sbin/chkconfig --add cced.init
+    /sbin/chkconfig --add pam_abl
+  fi
+fi
+if [ "$1" -gt "1" ]; then
+  # Upgrade
+  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+    /usr/bin/systemctl enable cced.init.service 
+    /usr/bin/systemctl restart cced.init.service 
+    /sbin/chkconfig --add pam_abl
+    /sbin/service pam_abl restart >/dev/null 2>&1
+  else 
+    /sbin/chkconfig --add cced.init
+    /sbin/service cced.init restart >/dev/null 2>&1
+    /sbin/chkconfig --add pam_abl
+    /sbin/service pam_abl restart >/dev/null 2>&1
+  fi
+fi
+
+%preun server
+# only run if this is the last instance to be removed
+if [ "$1" -eq "0" ]; then
+  if [ `cat /etc/build |grep 5209R|wc -l` = "1" ]; then
+    /usr/bin/systemctl stop cced.init.service
+    /usr/bin/systemctl disable cced.init.service
+    /usr/bin/systemctl daemon-reload
+    /sbin/service pam_abl stop
+    /sbin/chkconfig --del pam_abl
+  else
+    /sbin/service cced.init stop
+    /sbin/service pam_abl stop
     /sbin/chkconfig --del cced.init
     /sbin/chkconfig --del pam_abl
   fi
@@ -193,10 +200,8 @@ if [ "$1" = "1" ]; then
 fi
 
 # resetup the owner of ccewrap
-if [ $1 = 2 ]; then
- 	/bin/chgrp admserv /usr/sausalito/bin/ccewrap
-	/bin/chmod u+s /usr/sausalito/bin/ccewrap
-fi
+/bin/chgrp admserv /usr/sausalito/bin/ccewrap
+/bin/chmod u+s /usr/sausalito/bin/ccewrap
 
 # The joys of config(noreplace)! We have to fix it this way:
 /bin/sed -i -e 's/login\.php/login/' /etc/httpd/conf.d/blueonyx.conf
@@ -209,6 +214,9 @@ if [ "$1" -ge "1" ]; then
 fi
 
 %changelog
+
+* Sun Feb 01 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX26
+- Cleanup of RPM scripts for 5209R CD building.
 
 * Tue Jan 27 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX25
 - Modified client/httpd/blueonyx.conf again as there was still some old
