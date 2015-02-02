@@ -11,12 +11,6 @@ if [ ! -f /etc/mail/aliases ]; then
   	/bin/cp /etc/aliases /etc/mail/aliases
   	/bin/cp /etc/aliases.db /etc/mail/aliases.db
   fi
-
-  grep '^root:' /etc/mail/aliases > /dev/null 2>&1
-  if [ $? = 1 ]; then
-    echo 'root:		admin' >> /etc/mail/aliases
-  fi
-  /usr/bin/newaliases
 fi
 
 # Handle Mailman presence:
@@ -67,3 +61,11 @@ done
 
 # route nobody to /dev/null so that admin does not receive a copy of every ml msg
 /bin/sed -i -e s"/^nobody:.*$/nobody:\t\t\/dev\/null/" /etc/mail/aliases
+
+# Redirect 'root' emails to 'admin':
+grep '^root:' /etc/mail/aliases > /dev/null 2>&1
+if [ $? = 1 ]; then
+  echo 'root:   admin' >> /etc/mail/aliases
+fi
+/usr/bin/newaliases
+

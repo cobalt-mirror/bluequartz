@@ -236,7 +236,7 @@ rm -f /etc/systemd/system/basic.target.wants/firewalld.service
 systemctl disable NetworkManager.service
 rm -f /etc/systemd/system/multi-user.target.wants/NetworkManager.service
 rm -f /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service
-rm -f /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service
+rm -f /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service &>/dev/null || :
 
 <end glue>
 <begin ui>
@@ -355,6 +355,10 @@ fi
 <end $TRIGGERUN>
 
 <begin $CHANGELOG>
+
+* Mon Feb 02 2015 Michael Stauber <mstauber@solarspeed.net> 4.20150202-BX17
+- Modified glue/scripts/initSendmail.sh to fix the default aliases.
+- Small fixes in RPM post-install scripts.
 
 * Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 4.20150125-BX16
 - Yet more post-install fixes.
