@@ -137,6 +137,12 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Feb 02 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX24
+- Modified glue/handlers/php_vsite_handler.pl to fall back to 'apache'
+  as UID if 'prefered_siteAdmin' is empty.
+- Modified glue/handlers/vsite_destroy.pl to remove the PHP-FPM pool
+  file on Vsite destroy and to reload PHP-FPM afterwards.
+
 * Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX23
 - Modified constructor/import_php_ini_settings.pl to check if the 
   PHP-FPM master-pool file has already been updated to the new parameters.

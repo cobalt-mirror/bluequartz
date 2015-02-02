@@ -489,6 +489,11 @@ sub handle_fpm_pools {
     # Get new prefered owner:
     $pool_UID = $vsite_php->{'prefered_siteAdmin'};
 
+    # Fallback:
+    if ($pool_UID eq "") {
+        $pool_UID = 'apache';
+    }
+
     # Get sites basedir:
     $vsite_basedir = $vsite->{"basedir"};
 
