@@ -428,98 +428,101 @@ class Wizard extends MX_Controller {
 						$devices = array('eth0', 'eth1');
 					}
 
-				    // special array for admin if errors
-				    $admin_if_errors = array();
-					for ($i = 0; $i < 1; $i++) { // Screw it, we only do the first two devices.
-						$var_name = "ipAddressField" . $devices[$i];
-						$ip_field = $attributes[$var_name];
-						$var_name = "ipAddressOrig" . $devices[$i];
-						$ip_orig = $attributes[$var_name];
-						$var_name = "netMaskField" . $devices[$i];
-						$nm_field = $attributes[$var_name];
-						$var_name = "netMaskOrig" . $devices[$i];
-						$nm_orig = $attributes[$var_name];
-						$var_name = "bootProtoField" . $devices[$i];
-						$boot_field = $attributes[$var_name];
+					// Only set Network objects if we have interfaces to begin with:
+					if (is_set($devices['eth0'])) {
+					    // special array for admin if errors
+					    $admin_if_errors = array();
+						for ($i = 0; $i < 1; $i++) { // Screw it, we only do the first two devices.
+							$var_name = "ipAddressField" . $devices[$i];
+							$ip_field = $attributes[$var_name];
+							$var_name = "ipAddressOrig" . $devices[$i];
+							$ip_orig = $attributes[$var_name];
+							$var_name = "netMaskField" . $devices[$i];
+							$nm_field = $attributes[$var_name];
+							$var_name = "netMaskOrig" . $devices[$i];
+							$nm_orig = $attributes[$var_name];
+							$var_name = "bootProtoField" . $devices[$i];
+							$boot_field = $attributes[$var_name];
 
-						// setup or set disabled
-						if ($ip_field == '') {
-							// first migrate any aliases to eth0 (possibly do this better)
-							$aliases = $cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
-							for ($k = 0; $k < count($aliases); $k++) {
-								$new_device = find_free_device($cceClient, 'eth0');
-								$ok = $cceClient->set($aliases[$k], '', array('device' => $new_device));
-								$errors = array_merge($errors, $cceClient->errors());
+							// setup or set disabled
+							if ($ip_field == '') {
+								// first migrate any aliases to eth0 (possibly do this better)
+								$aliases = $cceClient->findx('Network', array(), array('device' => "^$devices[$i]:"));
+								for ($k = 0; $k < count($aliases); $k++) {
+									$new_device = find_free_device($cceClient, 'eth0');
+									$ok = $cceClient->set($aliases[$k], '', array('device' => $new_device));
+									$errors = array_merge($errors, $cceClient->errors());
+								}
+
+								$cceClient->setObject(
+									'Network', 
+									array("enabled" => "0"), 
+									"",
+									array("device" => $devices[$i])
+								);
+
+								if ($devices[$i] == $adminIf) {
+									$admin_if_errors = $cceClient->errors();
+								}
+								else {
+									$errors = array_merge($errors, $cceClient->errors());
+								}
 							}
+							elseif ($ip_field && (($ip_field != $ip_orig) || ($nm_field != $nm_orig))) {
 
-							$cceClient->setObject(
-								'Network', 
-								array("enabled" => "0"), 
-								"",
-								array("device" => $devices[$i])
-							);
+								// Set redirect IP for when we're done:
+								$redirect_to_new_ip = $ip_field;
 
-							if ($devices[$i] == $adminIf) {
-								$admin_if_errors = $cceClient->errors();
-							}
-							else {
-								$errors = array_merge($errors, $cceClient->errors());
-							}
-						}
-						elseif ($ip_field && (($ip_field != $ip_orig) || ($nm_field != $nm_orig))) {
+								// since we only deal with real interfaces here, things are simpler
+								// than they could be
+								if ($ip_field != $ip_orig) {
+									// check to see if there is an alias that is already using
+									// the new ip address.  if there is, destroy the Network object
+									// for this device, and assign the alias this device name.
 
-							// Set redirect IP for when we're done:
-							$redirect_to_new_ip = $ip_field;
+									$alias = $cceClient->find('Network', 
+														array(
+															'real' => 0,
+															'ipaddr' => $ip_field
+															));
 
-							// since we only deal with real interfaces here, things are simpler
-							// than they could be
-							if ($ip_field != $ip_orig) {
-								// check to see if there is an alias that is already using
-								// the new ip address.  if there is, destroy the Network object
-								// for this device, and assign the alias this device name.
-
-								$alias = $cceClient->find('Network', 
-													array(
-														'real' => 0,
-														'ipaddr' => $ip_field
-														));
-
-								if (isset($alias[0])) {
-									$ok = $cceClient->set($alias, '',
+									if (isset($alias[0])) {
+										$ok = $cceClient->set($alias, '',
+											array(
+												'device' => $devices[$i],
+												'real' => 1,
+												'ipaddr' => $ip_field,
+												'netmask' => $nm_field,
+												'enabled' => 1,
+												'bootproto' => 'none'
+												));
+										$errors = array_merge($errors, $cceClient->errors());
+										if (!$ok) {
+											break;
+										}
+										else {
+											continue;
+										}
+									}
+								}
+								$cceClient->setObject('Network',
 										array(
-											'device' => $devices[$i],
-											'real' => 1,
 											'ipaddr' => $ip_field,
 											'netmask' => $nm_field,
 											'enabled' => 1,
 											'bootproto' => 'none'
-											));
+											),
+									   '', array('device' => $devices[$i]));
+
+								if ($devices[$i] == $adminIf) {
+									$admin_if_errors = $cceClient->errors();
+								}
+								else {
 									$errors = array_merge($errors, $cceClient->errors());
-									if (!$ok) {
-										break;
-									}
-									else {
-										continue;
-									}
 								}
 							}
-							$cceClient->setObject('Network',
-									array(
-										'ipaddr' => $ip_field,
-										'netmask' => $nm_field,
-										'enabled' => 1,
-										'bootproto' => 'none'
-										),
-								   '', array('device' => $devices[$i]));
-
-							if ($devices[$i] == $adminIf) {
-								$admin_if_errors = $cceClient->errors();
-							}
-							else {
-								$errors = array_merge($errors, $cceClient->errors());
-							}
 						}
-				    }
+					}
 				}
 
 				//
