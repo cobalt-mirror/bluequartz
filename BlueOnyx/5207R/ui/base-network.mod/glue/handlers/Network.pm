@@ -33,13 +33,13 @@ sub find_eth_ifaces
 		{
 			if (! -f "/proc/user_beancounters") {
 				# Normal network interfaces:
-				if (!/^(eth\d+)\s/) { next; }
+				if (!/^(eth\d+)(:){0,1}\s/) { next; }
 				# found an existing interface
 				push @eth_ifaces, $1;
 			}
 			else {
 				# OpenVZ network interfaces:
-				if (!/^(venet\d+)\s/) { next; }
+				if (!/^(venet\d+)(:){0,1}\s/) { next; }
 				# found an existing interface
 				push @eth_ifaces, $1;
 			}

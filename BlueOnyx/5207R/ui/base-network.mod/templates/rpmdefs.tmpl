@@ -102,6 +102,11 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Mon Feb 02 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX12
+- Modified glue/handlers/Network.pm as the regular expression wasn't
+  firing correctly on ifconfig parsing on EL7. There is now a colon where
+  used to be none after the network interface name.
+
 * Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-1BX11
 - Extended glue/handlers/check_pool_admin.pl with debugging.
 
