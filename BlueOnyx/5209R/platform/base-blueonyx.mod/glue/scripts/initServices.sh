@@ -32,12 +32,13 @@ done
 /bin/echo "alias rm=\"rm -f\"" >> /etc/profile
 /bin/echo "alias lsd=\"ls -ld */\"" >> /etc/profile
 /bin/echo "alias pico=\"pico -w\"" >> /etc/profile
-/bin/echo "# Source global definitions" > /root/.bashrc
-/bin/echo "if [ -f /etc/bashrc ]; then" >> /root/.bashrc
-/bin/echo "        . /etc/bashrc" >> /root/.bashrc
-/bin/echo "fi" >> /root/.bashrc
 
 if [ ! -f /tmp/finish_install.sh ];then
+  /bin/echo "# Source global definitions" > /root/.bashrc
+  /bin/echo "if [ -f /etc/bashrc ]; then" >> /root/.bashrc
+  /bin/echo "        . /etc/bashrc" >> /root/.bashrc
+  /bin/echo "fi" >> /root/.bashrc
+
   # Tell people how to reconfigure network via the CLI
   /bin/echo "/bin/echo \"\"" >> /root/.bashrc
   /bin/echo "/bin/echo \"To change your network settings from the command line, run\"" >> /root/.bashrc
