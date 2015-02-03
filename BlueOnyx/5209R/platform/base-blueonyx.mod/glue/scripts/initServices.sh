@@ -33,8 +33,9 @@ done
 /bin/echo "alias lsd=\"ls -ld */\"" >> /etc/profile
 /bin/echo "alias pico=\"pico -w\"" >> /etc/profile
 
-if [ ! -f /tmp/finish_install.sh ];then
-  /bin/echo "# Source global definitions" > /root/.bashrc
+if [ ! -f /root/finish_install.sh ];then
+  /bin/echo "# Added by initServices.sh" > /root/.bashrc
+  /bin/echo "# Source global definitions" >> /root/.bashrc
   /bin/echo "if [ -f /etc/bashrc ]; then" >> /root/.bashrc
   /bin/echo "        . /etc/bashrc" >> /root/.bashrc
   /bin/echo "fi" >> /root/.bashrc
