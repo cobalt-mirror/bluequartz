@@ -31,6 +31,10 @@ $hostname =~ s/\.${domain}$//;
 my $fqdn = $hostname . '.' . $domain;
 my $httpPort = $web->{'httpPort'};
 
+if ($httpPort eq "") {
+  $httpPort = '80';
+}
+
 umask(0077);
 my $stage = "$confdir/httpd.conf~";
 open(HTTPD, "$confdir/httpd.conf");
