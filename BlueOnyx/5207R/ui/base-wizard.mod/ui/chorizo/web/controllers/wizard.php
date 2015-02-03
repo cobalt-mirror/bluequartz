@@ -429,7 +429,7 @@ class Wizard extends MX_Controller {
 					}
 
 					// Only set Network objects if we have interfaces to begin with:
-					if (is_set($devices['eth0'])) {
+					if (isset($devices['eth0'])) {
 					    // special array for admin if errors
 					    $admin_if_errors = array();
 						for ($i = 0; $i < 1; $i++) { // Screw it, we only do the first two devices.
