@@ -6,7 +6,7 @@ VENDOR=base
 VENDORNAME='Project BlueOnyx'
 SERVICE=blueonyx
 
-SUBVER=BX18
+SUBVER=BX19
 BUILD=$(shell date --rfc-3339=date | sed s/-//g)$(SUBVER)
 
 VERSION=$(shell if [ `uname -m` = "x86_64" ]; then  echo -n "5209R"; else  echo -n "5209R"; fi)

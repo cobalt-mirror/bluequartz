@@ -37,13 +37,15 @@ done
 /bin/echo "        . /etc/bashrc" >> /root/.bashrc
 /bin/echo "fi" >> /root/.bashrc
 
-# Tell people how to reconfigure network via the CLI
-/bin/echo "/bin/echo \"\"" >> /root/.bashrc
-/bin/echo "/bin/echo \"To change your network settings from the command line, run\"" >> /root/.bashrc
-/bin/echo "/bin/echo \"the command /root/network_settings.sh\"" >> /root/.bashrc
-/bin/echo "/bin/echo \"\"" >> /root/.bashrc
-/bin/echo "/bin/echo \"To remove this notice, edit /root/.bashrc\"" >> /root/.bashrc
-/bin/echo "/bin/echo \"\"" >> /root/.bashrc
+if [ ! -f /tmp/finish_install.sh ];then
+  # Tell people how to reconfigure network via the CLI
+  /bin/echo "/bin/echo \"\"" >> /root/.bashrc
+  /bin/echo "/bin/echo \"To change your network settings from the command line, run\"" >> /root/.bashrc
+  /bin/echo "/bin/echo \"the command /root/network_settings.sh\"" >> /root/.bashrc
+  /bin/echo "/bin/echo \"\"" >> /root/.bashrc
+  /bin/echo "/bin/echo \"To remove this notice, edit /root/.bashrc\"" >> /root/.bashrc
+  /bin/echo "/bin/echo \"\"" >> /root/.bashrc
+fi
 
 # Change MAIL environment variable
 /usr/bin/perl -pi -e 's/MAIL=.*/MAIL=\"\$HOME\/mbox\"/' /etc/profile
