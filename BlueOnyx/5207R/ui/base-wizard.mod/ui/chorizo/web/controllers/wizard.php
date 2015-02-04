@@ -1384,8 +1384,18 @@ nuclear facility.';
 			// According to a bug report w/o much info there was a case where the $errors might
 			// have been a string instead of an array. Hence the explode failed. So we play it
 			// double safe here:
+			if (is_string($errors)) {
+				if (!is_object($errors)) {
+					$errors = implode('', $errors);
+				}
+			}
 			if (is_array($errors)) {
-				$errors = implode('', $errors);
+				if (count($errors) == "0") {
+					$errors = '';
+				}
+				else {
+					$errors = implode('', $errors);
+				}
 			}
 
 			// Assemble data:
