@@ -136,6 +136,16 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX035
+- More fixes in ci/application/libraries/CCE.php. Two issues here:
+- ['info'] sometimes contains garbage after a successful transaction.
+  That raises an Error object. Added change that a successful 
+  transaction wipes out the ['info'] field now.
+- Sometimes we have weird GET transaction without OID. Probably the
+  result of getObject() calls to Objects to which we're not privileged.
+  Modified ccephp_get() to ignore requests without OID and to return
+  a "-1" instead.
+
 * Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX034
 - Added /home check into platform/alpine.mod/perl/HomeDir.pm to get
   better support for situations where we don't have a /home partition.

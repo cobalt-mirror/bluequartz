@@ -229,6 +229,13 @@ class CCE {
 
     if (isset($this->self['success'])) {
       if ($this->self['success'] == "1") {
+        // Ok, this is somewhat strange. Maybe I'm shooting myself in the
+        // foot here: On a "SET <SYSTEM> . Time" transaction the partial
+        // epoch ends up in the ['info']. This raises an Error object, but
+        // an incomplete one. A successful transaction doesn't have an
+        // ['info'] set anyway. So if the transaction IS a success, we can
+        // (in theory) wipe the ['info'] field clean. So let's do that here:
+        $this->self['info'] = '';
         return TRUE;
       }
       return FALSE;
@@ -335,6 +342,10 @@ class CCE {
 
   // Get the object:
   function ccephp_get($oid, $namespace) {
+    if ($oid == "") {
+      // Want fries with that? Nothing to get!
+      return "-1";
+    }
     if ($namespace == "") {
       CCE::ccephp_new("GET $oid");
     }
@@ -610,9 +621,13 @@ class CCE {
     // Get CCEd's collective responses to our transactions:
     $result = CCE::_parse_response(stream_get_contents($socket));
 
-    // Store Socket-Errors:
-    CCE::setERRNO($errorno);
-    CCE::setERRSTR($errorstr);
+    if (isset($errorno)) {
+      if ($errorno != "0") {
+        // Store Socket-Errors:
+        CCE::setERRNO($errorno);
+        CCE::setERRSTR($errorstr);
+      }
+    }
 
     // If we do not have a 'sessionid' reported from the last connection
     // attempt, then we delete the 'sessionid' Cookie and internal vars
