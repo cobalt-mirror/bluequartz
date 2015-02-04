@@ -640,7 +640,6 @@ class CCE {
       $this->setSessionId('');
       $this->SessionId = '';
     }
-
     return $result;
   }
 
@@ -817,8 +816,10 @@ class CCE {
 
       if (preg_match('/30([0-1][3-7])(.*)/', $line, $matches)) {
         if (isset($matches[1])) {
-          $this->self['info'][$this->OID] = $matches[0];
-          CCE::setError($matches[1], $this->OID, "", $matches[0]);
+          if ($this->OID) {
+            $this->self['info'][$this->OID] = $matches[0];
+            CCE::setError($matches[1], $this->OID, "", $matches[0]);
+          }
           continue;
         }
       }

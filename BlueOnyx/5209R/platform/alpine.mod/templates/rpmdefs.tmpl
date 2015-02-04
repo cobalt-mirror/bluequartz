@@ -136,6 +136,17 @@ fi
 
 <begin $CHANGELOG>
 
+* Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX036
+- One more fix for ci/application/libraries/CCE.php. A sucky regular
+  expression in _parse_response() was responsible for numeric values
+  in responses to trigger the set ['info'] field with an array that
+  has no key, but the partial value from the CODB database field.
+  Fixes this by preventing the set of the ['info'] array if we have
+  no valid key. And the bug only triggered because the timestamp of
+  this moment actually matches the regular expression we're looking
+  for. That's what we call a timebomb. 'Bomb defused, counter-terrorists
+  win.'
+
 * Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX035
 - More fixes in ci/application/libraries/CCE.php. Two issues here:
 - ['info'] sometimes contains garbage after a successful transaction.
