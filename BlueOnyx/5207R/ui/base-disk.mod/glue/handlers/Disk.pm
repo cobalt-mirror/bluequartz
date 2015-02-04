@@ -46,6 +46,9 @@ sub setquota
 	my $home = $Base::HomeDir::HOME_ROOT;
 	my $BlocksPerMB = $DiskInfo::BYTES_PER_BLOCK;
 	# user or group
+	&debug_msg("Creation type is: $type \n");
+	&debug_msg("Creation limit is: $limit \n");
+	&debug_msg("Creation disk is: $disk \n");
 	if ($type eq 'User') {
 		$type = 0;
 		$id = getpwnam($name);
@@ -58,6 +61,7 @@ sub setquota
 
 		# volume for users lives in main namespace
 		push @dirs, ($obj->{volume} ? $obj->{volume} : $home);
+		&debug_msg("Using Volume: $obj->{volume} \n");
 	} else {
 		$type = 1;
 		$id = getgrnam($name);
