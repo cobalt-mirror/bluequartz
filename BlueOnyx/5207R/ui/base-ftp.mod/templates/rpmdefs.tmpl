@@ -145,6 +145,10 @@ fi
 
 <begin $CHANGELOG>
 
+* Wed Feb 04 2015 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX12
+- Modified glue/handlers/user_ftp_access.pl to exit early if user is an
+  adminUser. Otherwise server administrators don't get created.
+
 * Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX11
 - Modified glue/handlers/user_ftp_access.pl to exit early if user is
   systemAdministrator. Otherwise user 'admin' doesn't get created on
