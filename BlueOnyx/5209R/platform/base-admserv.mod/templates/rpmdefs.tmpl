@@ -125,6 +125,7 @@ fi
 # Add user 'admserv':
 /usr/sbin/useradd -c "Admserv" -u 49 -s /sbin/nologin -r -d /usr/sausalito/ui admserv 2> /dev/null || : 
 
+# Restart AdmServ on upgrades:
 if [ $1 = 2 ]; then
     /sbin/service admserv restart
 fi
@@ -159,6 +160,11 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX20
+- Added extension=crack.so to /etc/admserv/php.ini for cracklib support.
+- Now that we have cracklib working again under PHP-5.4.16 we can as well
+  use it and do away with the analy retentive PHP password class.
 
 * Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX19
 - Modified glue/etc/admserv/conf.d/security.conf to fix log location.
