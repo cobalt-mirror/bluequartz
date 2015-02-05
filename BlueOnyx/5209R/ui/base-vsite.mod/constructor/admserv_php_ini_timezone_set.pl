@@ -73,6 +73,8 @@ sub edit_php_ini {
         $cce->bye('FAIL', "Error while editing $php_ini!");
         exit(1);
     }
+    # If we exited without error we remove the backup from the edit:
+    system("/bin/rm -f /etc/admserv/php.ini.backup.*");
 }
 
 $cce->bye('SUCCESS');
