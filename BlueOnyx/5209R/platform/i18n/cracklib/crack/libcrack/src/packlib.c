@@ -91,9 +91,9 @@ cracklib_pw_open(char *prefix, char *mode)
     strcpy(name, prefix);
     strcat(name, ".pwi");
 	if (!(pdesc->ifp = fopen(name, mode))) {
-		perror(name);
 		fclose(pdesc->dfp);
-		FREE(name);
+		perror(name);
+        FREE(name);
 		FREE(pdesc);
 		
 		return (CRACKLIB_PWDICT *) 0;
@@ -128,9 +128,6 @@ cracklib_pw_open(char *prefix, char *mode)
 			
 			fclose(ifp);
 			fclose(dfp);
-			if (wfp) { 
-				fclose(wfp);
-			}
 			FREE(pdesc);
 			
 			return (CRACKLIB_PWDICT *) 0;
@@ -152,9 +149,6 @@ cracklib_pw_open(char *prefix, char *mode)
 			
 			fclose(ifp);
 			fclose(dfp);
-			if (wfp) { 
-				fclose(wfp);
-			}
 			FREE(pdesc);
 			
 			return (CRACKLIB_PWDICT *) 0;
@@ -165,9 +159,6 @@ cracklib_pw_open(char *prefix, char *mode)
 		
 			fclose(ifp);
 			fclose(dfp);
-			if (wfp) { 
-				fclose(wfp);
-			}
 			FREE(pdesc);
 			
 			return (CRACKLIB_PWDICT *) 0;

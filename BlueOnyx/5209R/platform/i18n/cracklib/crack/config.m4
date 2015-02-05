@@ -1,19 +1,12 @@
 dnl
-dnl $Id: config.m4 199440 2005-10-28 15:44:02Z skettler $
+dnl $Id: config.m4,v 1.11 2005/09/05 12:27:12 skettler Exp $
 dnl
 
 PHP_ARG_WITH(crack, for cracklib support,
 [  --with-crack            Include crack support.])
 
 if test "$PHP_CRACK" != "no"; then
-  AC_CHECK_HEADERS(sys/types.h)
-  AC_CHECK_TYPES([u_int8_t, u_int16_t, u_int32_t], [], [], [
-#include <stdio.h>
-#ifdef HAVE_SYS_TYPES_H
-# include <sys/types.h>
-#endif
-])
-  
+
   if test "$PHP_CRACK" != "yes"; then
     AC_MSG_ERROR(Only the bundled library is supported right now)
     

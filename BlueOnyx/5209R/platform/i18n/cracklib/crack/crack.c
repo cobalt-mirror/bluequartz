@@ -16,7 +16,7 @@
    |          Sascha Kettler                                              |
    +----------------------------------------------------------------------+
  */
-/* $Id: crack.c 326013 2012-06-07 16:13:34Z felipe $ */
+/* $Id: crack.c,v 1.26 2005/09/21 08:59:57 skettler Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -60,7 +60,9 @@ zend_module_entry crack_module_entry = {
 	PHP_RINIT(crack),
 	PHP_RSHUTDOWN(crack),
 	PHP_MINFO(crack),
-	PHP_CRACK_VERSION,
+#if ZEND_MODULE_API_NO >= 20010901
+	"0.3",
+#endif
 	STANDARD_MODULE_PROPERTIES,
 };
 /* }}} */
@@ -155,6 +157,7 @@ static int php_crack_get_default_dict(INTERNAL_FUNCTION_PARAMETERS)
 {
 	if ((-1 == CRACKG(default_dict)) && (NULL != CRACKG(default_dictionary))) {
 		CRACKLIB_PWDICT *pwdict;
+		printf("trying to open: %s\n", CRACKG(default_dictionary));
 		pwdict = cracklib_pw_open(CRACKG(default_dictionary), "r");
 		if (NULL != pwdict) {
 			ZEND_REGISTER_RESOURCE(return_value, pwdict, le_crack);
@@ -231,7 +234,6 @@ PHP_MINFO_FUNCTION(crack)
 {
 	php_info_print_table_start();
 	php_info_print_table_header(2, "crack support", "enabled");
-	php_info_print_table_row(2, "extension version", PHP_CRACK_VERSION);
 	php_info_print_table_end();
 	
 	DISPLAY_INI_ENTRIES();
