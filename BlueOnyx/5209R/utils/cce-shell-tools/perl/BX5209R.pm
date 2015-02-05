@@ -1,6 +1,6 @@
-# $Id: BX5207R.pm 
+# $Id: BX5209R.pm
 
-package BX5207R;
+package BX5209R;
 
 use Configurator;
 use vars qw(@ISA);

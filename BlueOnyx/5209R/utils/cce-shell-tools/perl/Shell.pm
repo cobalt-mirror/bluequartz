@@ -143,7 +143,7 @@ sub convertOpts
 	if($self->{opts}->isLabelValue($opt)) {
 		$val = $self->{opts}->labelValue($opt);
 	}
-	if($val == 1 && $self->build !~ /^(RaQ550|BQ5100R|TLAS2|Qube3|BO5106R|BX5107R|BX5108R|BX5207R|BX5208R)$/) {
+	if($val == 1 && $self->build !~ /^(RaQ550|BQ5100R|TLAS2|Qube3|BO5106R|BX5107R|BX5108R|BX5207R|BX5208R|BX5209R)$/) {
 		$val = $self->convertBool($val);
 	}
 	
