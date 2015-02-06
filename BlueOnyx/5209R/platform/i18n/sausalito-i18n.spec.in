@@ -12,7 +12,7 @@ Prefix: /usr/sausalito
 BuildRoot: /var/tmp/sausalito-i18n-root
 Requires: glib >= 1.2.7
 Requires: base-admserv-glue >= 1.0.1
-BuildRequires: php-devel
+BuildRequires: php-devel cracklib-devel
 
 %description
 sausalito-i18n is a wrapper library for i18n functions.
