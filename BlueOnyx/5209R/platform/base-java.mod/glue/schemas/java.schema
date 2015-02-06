@@ -22,7 +22,7 @@
         writeacl="ruleCapable(adminUser)"
     />
 	<property 
-        name="JavaAdminPass" type="password" default="password"
+        name="JavaAdminPass" type="alphanum_plus" default="password"
         writeacl="ruleCapable(adminUser)"
     />
 </class>
