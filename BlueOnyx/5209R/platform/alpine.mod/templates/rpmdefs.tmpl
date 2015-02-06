@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thue Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX037
+- Another fix to ci/application/libraries/CCE.php in regards to escaping
+  of values that we submit to CODB. This should make sure that passwords
+  (and other data) can contain the full range of special characters found
+  on the en_US keyboard. This doesn't include umlauts, accents Pound or
+  Euro-sign, as CODB won't accept them without transposition anyway.
+
 * Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX036
 - One more fix for ci/application/libraries/CCE.php. A sucky regular
   expression in _parse_response() was responsible for numeric values

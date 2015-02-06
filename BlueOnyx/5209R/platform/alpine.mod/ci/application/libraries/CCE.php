@@ -888,7 +888,7 @@ class CCE {
     }
 
     // Replace certain double escapements and safe characters with their unsafe variants:
-    $text = str_replace(array('\\\\', '\\"', "\\a", "\\b", "\\f", '\\n', "\\t", "&quot;"), array("\\", '\"', "\a", "\b", "\f", "\n", "\t", '"'), $text); 
+    $text = str_replace(array('\\\\', '\\"', "\\a", "\\b", "\\f", '\\n', "\\t", "\\\""), array("\\", '\"', "\a", "\b", "\f", "\n", "\t", '"'), $text); 
 
     // Split the whole she-bang into individual characters:
     $pattern = str_split($text);
@@ -938,7 +938,7 @@ class CCE {
     }
 
     // Replace unwanted chars with their double escaped counterparts or another safe replacement:
-    $out = str_replace(array("\\", "\a", "\b", "\f", "\n", "\t", '"', '$'), array( '\\\\', "\\a", "\\b", "\\f", "\\n", "\\t", "&quot;", "\\$"), $text); 
+    $out = str_replace(array("\\", "\a", "\b", "\f", "\n", "\t", '"', '$', '&quot;', '&amp;', '&#39;', '&lt;', '&gt;'), array( "\\\\", "\\a", "\\b", "\\f", "\\n", "\\t", "\\\"", "\\$", '\"', '\&', "'", '<', '>'), $text); 
     return $out;
   }
 
