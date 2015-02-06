@@ -313,46 +313,38 @@ class Wizard extends MX_Controller {
 
 		  		// Actual submit to CODB:
 		  		$cceClient->setObject("System", $mysql_data, "mysql");
-
-				// Track MySQL Password change separately:
-				$m_error = $cceClient->errors();
-				$mysql_error = array();
-				$errors = array_merge($errors, $m_error);
-				$mysql_error = array_merge($errors, $m_error);
+		  		$errors = array_merge($errors, $cceClient->errors());
 
 				// Now handle the set to the CODB object "MySQL" as well.
-				// But only if we don't have errors:
-				if (count($mysql_error) == "0") {
-					$getthisOID = $cceClient->find("MySQL");
-					$mysql_settings_exists = 0;
-					$mysql_settings = $cceClient->get($getthisOID[0]);
-					if (!isset($mysql_settings['timestamp'])) {
-						$mysqlOID = $cceClient->create("MySQL",
-							array(
-								'sql_host' => 'localhost',
-								'sql_port' => '3306',
-								'sql_root' => 'root',
-								'sql_rootpassword' => $attributes['sql_rootpassword'],
-								'savechanges' => time(),
-								'timestamp' => time()
-							)
-						);
-					}
-					else {
-						$mysqlOID = $cceClient->find("MySQL");
-						$cceClient->set($mysqlOID[0], "",
-							array(
-								'sql_host' => 'localhost',
-								'sql_port' => '3306',
-								'sql_root' => 'root',
-								'sql_rootpassword' => $attributes['sql_rootpassword'],
-								'savechanges' => time(),
-								'timestamp' => time()
-							)
-						);
-					}
-					$errors = array_merge($errors, $cceClient->errors());
+				$getthisOID = $cceClient->find("MySQL");
+				$mysql_settings_exists = 0;
+				$mysql_settings = $cceClient->get($getthisOID[0]);
+				if (!isset($mysql_settings['timestamp'])) {
+					$mysqlOID = $cceClient->create("MySQL",
+						array(
+							'sql_host' => 'localhost',
+							'sql_port' => '3306',
+							'sql_root' => 'root',
+							'sql_rootpassword' => $attributes['sql_rootpassword'],
+							'savechanges' => time(),
+							'timestamp' => time()
+						)
+					);
 				}
+				else {
+					$mysqlOID = $cceClient->find("MySQL");
+					$cceClient->set($mysqlOID[0], "",
+						array(
+							'sql_host' => 'localhost',
+							'sql_port' => '3306',
+							'sql_root' => 'root',
+							'sql_rootpassword' => $attributes['sql_rootpassword'],
+							'savechanges' => time(),
+							'timestamp' => time()
+						)
+					);
+				}
+				$errors = array_merge($errors, $cceClient->errors());
 
 				//
 				//-- Set TimeZone:
