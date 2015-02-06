@@ -313,11 +313,16 @@ class Wizard extends MX_Controller {
 
 		  		// Actual submit to CODB:
 		  		$cceClient->setObject("System", $mysql_data, "mysql");
-				$errors = array_merge($errors, $cceClient->errors());
+
+				// Track MySQL Password change separately:
+				$m_error = $cceClient->errors();
+				$mysql_error = array();
+				$errors = array_merge($errors, $m_error);
+				$mysql_error = array_merge($errors, $m_error);
 
 				// Now handle the set to the CODB object "MySQL" as well.
 				// But only if we don't have errors:
-		  		if (count($errors) == "0") {
+				if (count($mysql_error) == "0") {
 					$getthisOID = $cceClient->find("MySQL");
 					$mysql_settings_exists = 0;
 					$mysql_settings = $cceClient->get($getthisOID[0]);
