@@ -20,9 +20,16 @@ $cce->connectfd();
 my $oid = $cce->event_oid();
 my $obj = $cce->event_object();
 
+$firstboot = "0";
 my @oids = $cce->find('System');
 if (!defined($oids[0])) {
 	exit 0;
+}
+else {
+    ($ok, $obj) = $cce->get($oids[0]);
+    if ($obj->{isLicenseAccepted} == "0") {
+        $firstboot = "1";
+    }
 }
 
 my ($ok, $nuMySQL) = $cce->get($oids[0], "mysql");
@@ -44,6 +51,15 @@ $new = $nuMySQL->{'newpass'};
 &debug_msg("user: " . $user . "\n");
 &debug_msg("old: " . $old . "\n");
 &debug_msg("new: " . $new . "\n");
+
+# Make sure MySQL runs before we change the password:
+if (($firstboot eq "1") || ($nuMySQL->{enabled} eq "0")) {
+    ($ok) = $cce->set($oids[0], 'mysql',{
+            "enabled" => "1",
+            "onoff" => time()
+
+    });
+}
 
 if (( $old eq "-1" ) && ($new ne "")) {
 	&debug_msg("Setting new: " . $new . "\n");

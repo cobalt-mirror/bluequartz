@@ -7,7 +7,7 @@
 -->
 
 <CLASS name="System" namespace="mysql" version="1.2">
-  <PROPERTY name="enabled" type="boolean" default=""/>
+  <PROPERTY name="enabled" type="boolean" default="1"/>
   <PROPERTY name="onoff" type="int" default=""/>
   <PROPERTY name="delete" type="word" default=""/>
   <PROPERTY name="mysqluser" type="word" default="root"/>

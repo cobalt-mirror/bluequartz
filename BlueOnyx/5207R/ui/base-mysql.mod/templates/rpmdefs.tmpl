@@ -115,6 +115,12 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Fri Feb 06 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX12
+- MySQL should be running and enabled before wizard tries to set the
+  password. Likewise: If MySQL is stopped and we want to set/change the
+  password, we need to fire it up first. Updated schema file, constructor
+  and handler to deal with this.
+
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
 - MySQL password related fixes. We don't want to allow someone to set a
   MySQL password that cannot be used by mysql_connect() or other 
