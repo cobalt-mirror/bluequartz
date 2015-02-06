@@ -125,6 +125,9 @@ information for [VENDOR]-[SERVICE].
 - Modified glue/schemas/mysql.schema
 - Modified glue/handlers/mysql-changePass.pl to make sure the shell
   commands for setting passwords are properly escaped.
+- Changes in ui/chorizo/web/controllers/mysqlserver.php to set 'MySQL'
+  Object after 'System' . 'mysql' has finished w/o errors. Also some
+  more escaping of the MySQL password.
 
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
 - Systemd related fixes.

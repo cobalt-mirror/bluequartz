@@ -204,42 +204,46 @@ class Mysqlserver extends MX_Controller {
 				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
 			}
 
-			// Now handle the set to the CODB object "MySQL" as well:
-			$getthisOID = $cceClient->find("MySQL");
-			$mysql_settings_exists = 0;
-			$mysql_settings = $cceClient->get($getthisOID[0]);
-			if (!$mysql_settings['timestamp']) {
-		            $mysqlOID = $cceClient->create("MySQL",
-		                    array(
-		                        'sql_host' => $form_data['sql_host'],
-		                        'sql_port' => $form_data['sql_port'],
-		                        'sql_root' => $sql_root,
-		                        'sql_rootpassword' => $sql_rootpassword,
-		                        'savechanges' => time(),
-		                        'timestamp' => time()
-		                    )
-		            );
-			}
-			else {
-		            $mysqlOID = $cceClient->find("MySQL");
-		            $cceClient->set($mysqlOID[0], "",
-		                    array(
-		                        'sql_host' => $form_data['sql_host'],
-		                        'sql_port' => $form_data['sql_port'],
-		                        'sql_root' => $sql_root,
-		                        'sql_rootpassword' => $sql_rootpassword,
-		                        'savechanges' => time(),
-		                        'timestamp' => time()
-		                    )
-		            );
+			if (count($errors) == "0") {
+
+				// Now handle the set to the CODB object "MySQL" as well:
+				$getthisOID = $cceClient->find("MySQL");
+				$mysql_settings_exists = 0;
+				$mysql_settings = $cceClient->get($getthisOID[0]);
+				if (!$mysql_settings['timestamp']) {
+					$mysqlOID = $cceClient->create("MySQL",
+						array(
+							'sql_host' => $form_data['sql_host'],
+							'sql_port' => $form_data['sql_port'],
+							'sql_root' => $sql_root,
+							'sql_rootpassword' => $sql_rootpassword,
+							'savechanges' => time(),
+							'timestamp' => time()
+						)
+					);
+				}
+				else {
+					$mysqlOID = $cceClient->find("MySQL");
+					$cceClient->set($mysqlOID[0], "",
+						array(
+							'sql_host' => $form_data['sql_host'],
+							'sql_port' => $form_data['sql_port'],
+							'sql_root' => $sql_root,
+							'sql_rootpassword' => $sql_rootpassword,
+							'savechanges' => time(),
+							'timestamp' => time()
+						)
+					);
+				}
+
+				// CCE errors that might have happened during submit to CODB:
+				$CCEerrors = $cceClient->errors();
+				foreach ($CCEerrors as $object => $objData) {
+					// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
+					$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
+				}
 			}
 
-			// CCE errors that might have happened during submit to CODB:
-			$CCEerrors = $cceClient->errors();
-			foreach ($CCEerrors as $object => $objData) {
-				// When we fetch the CCE errors it tells us which field it bitched on. And gives us an error message, which we can return:
-				$errors[] = ErrorMessage($i18n->get($objData->message, true, array('key' => $objData->key)) . '<br>&nbsp;');
-			}
 			// No errors. Reload the entire page to load it with the updated values:
 			if ((count($errors) == "0")) {
 				header("Location: /mysql/mysqlserver");
@@ -328,7 +332,8 @@ class Mysqlserver extends MX_Controller {
 		// Test MySQL connection:
 		$ret = ini_set("display_errors", "Off");
 		$mysql_error = "";
-		$mysql_link = @mysql_connect($sql_host, $sql_root, $sql_rootpassword) or $mysql_error = mysql_error();
+
+		$mysql_link = @mysql_connect("$sql_host", "$sql_root", "$sql_rootpassword") or $mysql_error = mysql_error();
 		$ret = ini_set("display_errors", "On");
 		if (!$mysql_error) {
 		    @mysql_select_db("mysql") or $mysql_error = mysql_error();
@@ -590,8 +595,8 @@ class Mysqlserver extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
