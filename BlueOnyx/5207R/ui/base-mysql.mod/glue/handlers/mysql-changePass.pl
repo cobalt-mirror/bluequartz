@@ -7,6 +7,13 @@ use CCE;
 use Sauce::Util;
 use Sauce::Service;
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectfd();
 
@@ -34,22 +41,45 @@ $user = $nuMySQL->{'mysqluser'};
 $old = $nuMySQL->{'oldpass'};
 $new = $nuMySQL->{'newpass'};
 
+&debug_msg("user: " . $user . "\n");
+&debug_msg("old: " . $old . "\n");
+&debug_msg("new: " . $new . "\n");
+
 if (( $old eq "-1" ) && ($new ne "")) {
-    $cmd = `/usr/bin/mysqladmin --user=$user --host=$host --port=$sql_port password $new`;
+	&debug_msg("Setting new: " . $new . "\n");
+	$cmdline = "/usr/bin/mysqladmin --user=$user --host=$host --port=$port password " . '"' . $new . '"';
+    system($cmdline);
+    &debug_msg($cmdline . "\n");
 } 
 elsif (($old != "") && ($new == "")) {
-    $cmd = `/usr/bin/mysqladmin --user=$user --host=$host --port=$sql_port --password=$old password ""`;
+	$cmdline = "/usr/bin/mysqladmin --user=$user --host=$host --port=$port --password=" . '"' . $old . '"' . " password \"\"";
+    system($cmdline);
+    &debug_msg($cmdline . "\n");
 }
 else {
-    $cmd = `/usr/bin/mysqladmin --user=$user --host=$host --port=$sql_port --password=$old password $new`;
+	&debug_msg("Setting new: " . $new . "\n");
+	$cmdline = "/usr/bin/mysqladmin --user=$user --host=$host --port=$port --password=" . '"' . $old . '"' . " password " . '"' . $new . '"';
+    system($cmdline);
+    &debug_msg($cmdline . "\n");
 }
 
 $cce->bye('SUCCESS');
 exit 0;
 
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
+}
+
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (C) 2006, NuOnce Networks, Inc. All rights reserved.
 # All Rights Reserved.
 # 

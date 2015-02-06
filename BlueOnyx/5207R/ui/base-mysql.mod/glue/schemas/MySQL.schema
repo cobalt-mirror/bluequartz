@@ -1,6 +1,9 @@
 <!--
  $Id: mysql.schema
- Copyright 2006-2008 NuOnce Networks, Inc. and Solarspeed Ltd. All rights reserved.
+ Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+ Copyright (c) 2008 NuOnce Networks, Inc.
+ All Rights Reserved.
 -->
 
 <class
@@ -14,8 +17,9 @@
             writeacl="ruleCapable(adminUser)"
         />
         <property name="sql_rootpassword"
-            type="password"
+            type="alphanum_plus"
             optional="true"
+            default="" 
             writeacl="ruleCapable(adminUser)"
         />
         <property name="sql_host"

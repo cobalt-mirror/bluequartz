@@ -115,6 +115,17 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX11
+- MySQL password related fixes. We don't want to allow someone to set a
+  MySQL password that cannot be used by mysql_connect() or other 
+  means. Which makes it necessary to restrict the passwords to the type
+  'alphanum_plus'. This required various changes in Schema files.
+- Modified glue/schemas/MYSQL_Vsite.schema
+- Modified glue/schemas/MySQL.schema
+- Modified glue/schemas/mysql.schema
+- Modified glue/handlers/mysql-changePass.pl to make sure the shell
+  commands for setting passwords are properly escaped.
+
 * Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 2.2.0-0BX10
 - Systemd related fixes.
 

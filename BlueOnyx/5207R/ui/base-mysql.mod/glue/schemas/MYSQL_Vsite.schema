@@ -1,5 +1,10 @@
-<!-- Author: Michael Stauber mstauber@solarspeed.net -->
-<!-- Copyright 2006-2013, Solarspeed.net. All rights reserved. -->
+<!--
+ $Id: mysql.schema
+ Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+ Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
+ Copyright (c) 2008 NuOnce Networks, Inc.
+ All Rights Reserved.
+-->
 
 <class
     name="VsiteServices" namespace="MYSQL_Vsite" version="1.0"
@@ -21,7 +26,7 @@
     /> 
  
     <property  
-        name="pass" type="password" default="" 
+        name="pass" type="alphanum_plus" default="" 
         writeacl="ruleCapable(adminUser)" 
     /> 
  
@@ -57,7 +62,7 @@
     />
 
     <property 
-        name="pass" type="password" default=""
+        name="pass" type="alphanum_plus" default=""
         writeacl="ruleCapable(adminUser)"
     />
 
