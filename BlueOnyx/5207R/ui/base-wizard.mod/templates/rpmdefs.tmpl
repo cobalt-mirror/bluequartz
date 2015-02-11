@@ -103,7 +103,13 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
-* Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX15.
+* Tue Feb 10 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX16
+- Error handling in wizard.php was still failing due to the multiple
+  formats that $errors might have: String, Array with Objects, Array with
+  Arrays or Array with Strings. Re-used the error handling from PagedBlock
+  to solve this, as it already was flexible enough.
+
+* Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX15
 - If it is stupid but works ...
 
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX14

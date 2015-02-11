@@ -1383,20 +1383,65 @@ nuclear facility.';
 			}
 			$serialNumber = $system['serialNumber'];
 
-			// According to a bug report w/o much info there was a case where the $errors might
-			// have been a string instead of an array. Hence the explode failed. So we play it
-			// double safe here:
-			if (is_string($errors)) {
-				if (!is_object($errors)) {
-					$errors = implode('', $errors);
-				}
-			}
+			//
+			//--- Error handling:
+			//
+
+			// If we have errors, they're in a format like this:
+			//
+			//		Array
+			//		(
+			//		    [0] => CceError Object
+			//		        (
+			//		            [code] => 302 BAD DATA
+			//		            [oid] => 17
+			//		            [key] => makeErr
+			//		            [message] => "[[base-cce.unknownAttr]]"
+			//		            [vars] => Array
+			//		                (
+			//		                    [code] => 302 BAD DATA
+			//		                    [oid] => 17
+			//		                    [key] => makeErr
+			//		                )
+			//		        )
+			//		)
+			//
+			// So that's an array containing separate Error Objects. But we might as well get an
+			// Array that contains an Array with an Error instead of an CceError Object. We need
+			// to handle this flexibly.
+
+			$errors_string = '';
+			// Toplevel $errors is an Array? If not we simply ignore it.
 			if (is_array($errors)) {
-				if (count($errors) == "0") {
-					$errors = '';
-				}
-				else {
-					$errors = implode('', $errors);
+				// It is an Array.
+				if (count($errors) > 0) {
+					// It has one or more elements. Loop through them:
+					foreach ($errors as $key => $value) {
+						if (!is_object($value)) {
+							// Not an Object, but an Array?
+							if (is_array($value)) {
+								// Grrr .... got another array inside the array? Deal with it:
+								foreach ($value as $newkey => $newvalue) {
+									$errors_string .= $newvalue;
+								}
+							}
+							else {
+								// No separate array insite the error array? Out with it:
+								$errors_string .= $value;
+							}
+						}
+						else {
+							// Error is an Object? Nice. Deal with that, too:
+							if (is_array($value->vars)) {
+								// CceError Object has vars set. Use them:
+								$errors_string .= ErrorMessage($i18n->get($value->message, "", $value->vars)) . "<br>";
+							}
+							else {
+								// CceError Object has no vars set. Fine, too:
+								$errors_string .= ErrorMessage($i18n->get($value->message)) . "<br>";
+							}
+						}
+					}
 				}
 			}
 
@@ -1406,7 +1451,7 @@ nuclear facility.';
 				'localization' => $localization,
 				'loginName' => 'admin',
 				'page_title' => $hostname_new . ': ' . $i18n->getHtml("[[base-wizard.iso_wizard_title]]"),
-				'errors' => $errors,
+				'errors' => $errors_string,
 				'fullName' => 'Administrator',
 				'layout' => $layout,
 				'extra_headers' => '',
