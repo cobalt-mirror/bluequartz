@@ -127,6 +127,12 @@ class Mysqlconfig extends MX_Controller {
 				// Only then the handler will take care of it. But we only do so if the new
 				// my.cnf's diff result is different from the existing /etc/my.cnf
 				$attributes['soltab'] = "two";
+
+				// Define who runs CCEwrap:
+				$runas = 'root';
+				$ret = $serverScriptHelper->shell("/bin/cp /tmp/my.cnf /etc/my.cnf", $nfk, 'root', $sessionId);
+				$ret = $serverScriptHelper->shell("/bin/chown root:root /etc/my.cnf", $nfk, 'root', $sessionId);
+				$ret = $serverScriptHelper->shell("/bin/rm -f /tmp/my.cnf", $nfk, 'root', $sessionId);
 			}
 		}
 
@@ -404,8 +410,8 @@ class Mysqlconfig extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

@@ -5,28 +5,30 @@
 
 use CCE;
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG)
+{
+        use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectfd();
 
 my $oid = $cce->event_oid();
 my $obj = $cce->event_object();
 
-my $mysql_ini = "/etc/my.cnf";
-my $mysql_tmp = "/tmp/my.cnf";
-my $mysql_temp = "/tmp/my.cnf.clean";
-
 my @oids = $cce->find('System');
 if (!defined($oids[0])) {
-	print STDERR "mysql: Sorry, no System object in CCE found!\n";
-	exit 0;
+    print STDERR "mysql: Sorry, no System object in CCE found!\n";
+    exit 0;
 }
 
 my ($ok, $mysqlValues) = $cce->get($oids[0], "MYSQLUSERS_DEFAULTS");
 
 if ($mysqlValues->{soltab} eq "two") {
     if ($ok) {
-	mysqlWriteConf();
-	mysqlReloadMYSQL();
+        &mysqlReloadMYSQL;
     }
 }
 
@@ -34,7 +36,7 @@ $cce->bye('SUCCESS');
 exit(0);
 
 ##
-## Reload Apache
+## Reload MySQL
 ##
 
 sub mysqlReloadMYSQL {
@@ -42,28 +44,27 @@ sub mysqlReloadMYSQL {
     $cmd_mysqld = chomp($cmd_chk_build);
     if ($cmd_mysqld eq "1") {
         # 5209R with MariaDB:
-        system("/sbin/service mysqld restart > /dev/null 2>&1");
+        system("/bin/systemctl restart mysqld.service --no-block > /dev/null 2>&1");
     }
     else {
         system("/sbin/service mysqld restart > /dev/null 2>&1");
     }
 }
 
-##
-## mysqlWriteConf
-## Saves mysql configuration into /etc/mysql.conf
-##
-
-sub mysqlWriteConf {
-    system("/bin/sed 's/\r//' $mysql_tmp > $mysql_temp");
-    system("/bin/cp $mysql_temp $mysql_ini");
-    system("/bin/rm -f $mysql_tmp");
-    system("/bin/rm -f $mysql_temp");
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
+    }
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 
