@@ -23,7 +23,7 @@ BUILDGLUE=yes
 BUILDLOCALE=no
 BUILDSRC=no
 
-REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl sendmail-cf m4 sendmail cronie crontabs perl perl-Switch perl-CGI sed dialog sausalito-cce-server sausalito-cce-client quota perl-Quota net-tools selinux-policy which rsyslog logrotate
+REQUIRES=httpd php iptables base-alpine-capstone /sbin/chkconfig swatch cyrus-sasl sendmail-cf m4 sendmail cronie crontabs perl perl-Switch perl-CGI sed dialog sausalito-cce-server sausalito-cce-client quota perl-Quota net-tools selinux-policy which rsyslog logrotate zip patch unzip bzip2 elfutils rsync xml-common libtar deltarpm diff fuse-sshfs
 OBSOLETES=postfix
 REQUIRES_GLUE=base-email-capstone base-time-capstone base-user-capstone at dovecot php base-admserv-capstone base-support-capstone base-network-capstone
 
