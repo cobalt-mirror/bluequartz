@@ -746,7 +746,6 @@ class BxPage extends MX_Controller {
 			$active_nav_inner_entry = " ";
 
       		foreach ($root_children_sort_order as $MenuItem => $MenuSort) {
-
 				$menutext = $i18n->getHtml($_SiteMap_items[$MenuItem]['label'], "", array("hostname" => $vsite['fqdn']));
 				if (isset($_SiteMap_items[$MenuItem]['url'])) {
 				  $u = $_SiteMap_items[$MenuItem]['url'];
@@ -797,7 +796,6 @@ class BxPage extends MX_Controller {
 
 							// Description may contain variables. Deal with them:
 							$description_cleaned = fixInternalURLs($i18n->getWrapped($_SiteMap_items[$MenuItem]['description']), array('group' => $group, 'fqdn' => $hostName));
-
 							if ($_SiteMap_items[$MenuItem]['id'] == 'base_siteSpacer') {
 								$side_html_menu .= "<li><a href='javascript: void 0' $my_data_dialog>&nbsp;</a>"; // </li>								
 							}
@@ -1073,8 +1071,8 @@ class BxPage extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 

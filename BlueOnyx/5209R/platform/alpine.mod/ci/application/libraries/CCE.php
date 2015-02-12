@@ -342,17 +342,26 @@ class CCE {
 
   // Get the object:
   function ccephp_get($oid, $namespace) {
-    if ($oid == "") {
-      // Want fries with that? Nothing to get!
+    if (is_array($oid)) {
+      // IF $oid is an array we only process the first element:
+      if (isset($oid[0])) {
+        $oid = $oid[0];
+      }
+      else {
+        // First element is not set, return "-1":
+        return "-1";
+      }
+    }
+    if (($oid == "") || (!is_string($oid))) {
+      // If OID is empty or not a string, then
+      // something went wrong and we just return
+      // a -1 to indicate a failure.
       return "-1";
     }
     if ($namespace == "") {
       CCE::ccephp_new("GET $oid");
     }
     else {
-      if (is_array($oid)) {
-        $oid = $oid[0];
-      }
       CCE::ccephp_new("GET $oid . $namespace");
     }
     if (is_array($this->self['object'])) {

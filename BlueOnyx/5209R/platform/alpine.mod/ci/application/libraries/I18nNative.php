@@ -225,14 +225,21 @@ class I18nNative {
             $DomainYtag = explode('.', $found[1]);
             // We really DO have a domain and a tag.
             if ((isset($DomainYtag[0])) && (isset($DomainYtag[1]))) {
-              $message .= i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
+              if ($DomainYtag[0] == "VAR") {
+                // If the Domain equals with VAR, then the tag is a substitute that we need
+                // to replace. Checl if $vars has a matching tag for a replacement:
+                if (isset($vars[$DomainYtag[1]])) {
+                  // Yes, it has. Use it:
+                  $message .= $vars[$DomainYtag[1]];
+                }
+              }
+              else {
+                $message .= i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
+              }
             }
           }
-
-
         }
       }
-
     }
 
     if ($message == "") {
@@ -244,6 +251,7 @@ class I18nNative {
       $insideTag = preg_replace("/\]\]/", "", $insideTag);
       // Explode at the dot (if there is any):
       $DomainYtag = explode('.', $insideTag);
+
       if (isset($DomainYtag[1])) {
         // We had a dot. Cool. So we have domain and tag and use both:
         $message = i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);

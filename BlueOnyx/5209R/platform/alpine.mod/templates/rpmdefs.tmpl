@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Feb 12 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX038
+- Modified ci/application/libraries/CCE.php to fix ccephp_get() to make
+  sure that $oid is not empty, not an array and really is a string.
+  Otherwise return -1 to indicate a failure.
+- Modified ci/application/libraries/I18nNative.php as it wasn't properly
+  replacing [[VAR.hostname]] and other substitutions in some places.
+
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX037
 - Another fix to ci/application/libraries/CCE.php in regards to escaping
   of values that we submit to CODB. This should make sure that passwords
