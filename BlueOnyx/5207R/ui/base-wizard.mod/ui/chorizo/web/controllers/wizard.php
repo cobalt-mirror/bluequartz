@@ -680,22 +680,23 @@ class Wizard extends MX_Controller {
 	    //-- Generate page:
 	    //
 
-	    // Find out if the web based initial setup has been completed:
-	    $system = $cceClient->getObject('System');
+		// Find out if the web based initial setup has been completed:
+		$system = $cceClient->getObject('System');
+		$TZ = $cceClient->getObject("System", array(), "Time");
 
-	    if ((!isset($system['productLanguage'])) || (!isset($system['dns'])) || (!isset($system['gateway'])) || (!isset($system['timeZone']))) {
-	    	// Vital information in CODB object 'System' is missing.
-	    	// Or the 'System' object is not yet there.
-	    	//
-	    	// Generate a "please wait" page via Wizard::wizard_reload():
+		if ((!isset($system['productLanguage'])) || (!isset($system['dns'])) || (!isset($system['gateway'])) || (!isset($TZ['timeZone']))) {
+			// Vital information in CODB object 'System' is missing.
+			// Or the 'System' object is not yet there.
+			//
+			// Generate a "please wait" page via Wizard::wizard_reload():
 			Wizard::wizard_reload();
-	    }
+		}
 
-	    if ($system['isLicenseAccepted'] == "1" ) {
-		    // Web based setup *has* been completed. Redirect to /gui
-		    header("Location: /gui");
-		    exit;
-	    }
+		if ($system['isLicenseAccepted'] == "1" ) {
+			// Web based setup *has* been completed. Redirect to /gui
+			header("Location: /gui");
+			exit;
+		}
 
 		// Set default Wait Overlay:
 		$this->Overlay = "			<script>
