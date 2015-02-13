@@ -621,3 +621,13 @@ msgstr "[[base-mysql.password]]"
 msgid "sql_rootpassword_help"
 msgstr "[[base-mysql.password_help]]"
 
+#
+### New for Wizard Startup Page:
+#
+
+msgid "wizard_refresh_header"
+msgstr "Setup Wizard BlueOnyx: Un attimo per favore."
+
+msgid "wizard_refresh_text"
+msgstr "Un componente del sistema cruciale (CCED) è ancora in fase di avvio e non ha ancora finito tutte le attività di configurazione correlate. <br><br> Hai già il login come utente 'root' e configurato le impostazioni di rete? Se no, si prega di farlo ora. Se una shell di login non vi reindirizza automaticamente il programma di installazione per configurare le impostazioni di rete, quindi è possibile eseguire il programma manualmente. Lo si può trovare in questa posizione: /root/network_settings.sh <br><br> Se le impostazioni di rete sono già stati progettati e si continua a visualizzare il messaggio, quindi si prega di attendere per i costruttori CCED per terminare i loro compiti di impostazione correlati. <br><br> Questa pagina si aggiorna automaticamente ogni 10 secondi fino CCED ha terminato l'esecuzione delle attività di configurazione correlate."
+

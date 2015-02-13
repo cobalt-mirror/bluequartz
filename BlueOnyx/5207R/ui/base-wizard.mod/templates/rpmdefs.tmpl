@@ -103,6 +103,18 @@ information for [VENDOR]-[SERVICE].
 
 <begin $CHANGELOG>
 
+* Thu Feb 12 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX17
+- We're still getting undefined indexes if certain 'System' objects are
+  not yet there. And they're not yet there because CCEd is still running
+  constructors or setup related tasks. Or the network settings have not
+  yet been configured via one of the two shell setup tools. To prevent
+  this I now added a check for the vital 'System' key's that must be
+  present. If they are not present, the GUI will not load the usual
+  forms, but will redirect to an Error/Info-Page that refreshes every
+  10 seconds until the vital 'System' objects are set. One way or the 
+  other.
+- Updated all locales with the new Error/Info-Page strings.
+
 * Tue Feb 10 2015 Michael Stauber <mstauber@solarspeed.net> 2.0.0-0BX16
 - Error handling in wizard.php was still failing due to the multiple
   formats that $errors might have: String, Array with Objects, Array with

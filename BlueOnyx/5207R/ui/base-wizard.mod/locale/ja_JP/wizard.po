@@ -625,3 +625,13 @@ msgstr "[[base-mysql.password]]"
 msgid "sql_rootpassword_help"
 msgstr "[[base-mysql.password_help]]"
 
+#
+### New for Wizard Startup Page:
+#
+
+msgid "wizard_refresh_header"
+msgstr "BlueOnyxセットアップウィザード：しばらくお待ちください。"
+
+msgid "wizard_refresh_text"
+msgstr "重要なシステムコンポーネント（CCEd）がまだ起動されており、まだすべてのセットアップ関連のタスクを完了していません。 <br><br>あなたは既にrootユーザーとしてログインし、ネットワークの設定を構成しましたか？そうでない場合には、今そうしてください。シェルのログインが自動的にネットワーク設定を構成するには、セットアッププログラムにリダイレクトしない場合は、手動でそのプログラムを実行することができます。あなたはこの場所でそれを見つけることができます：/root/network_settings.sh <br><br>ネットワーク設定がすでに設定されているとあなたはまだこのメッセージが表示された場合、彼らのセットアップ関連のタスクを完了するCCEdコンストラクタをお待ちください。 <br><br> CCEdセットアップ関連のタスクを実行が終了するまで、このページは10秒ごとに自動的に更新されます。"
+

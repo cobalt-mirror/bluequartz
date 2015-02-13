@@ -823,3 +823,14 @@ msgstr "[[base-mysql.password]]"
 msgid "sql_rootpassword_help"
 msgstr "[[base-mysql.password_help]]"
 
+#
+### New for Wizard Startup Page:
+#
+
+
+msgid "wizard_refresh_header"
+msgstr "Guiden BlueOnyx Setup: Et øjeblik."
+
+msgid "wizard_refresh_text"
+msgstr "Et afgørende systemkomponent (CCED) stadig opstart og er endnu ikke afsluttet alle setup opgaver. <br><br> Har du allerede logge på som bruger 'root' og konfigureret netværksindstillingerne? Hvis ikke, så skal du gøre det nu. Hvis en shell login ikke automatisk omdirigere dig til setup-programmet til at konfigurere netværksindstillingerne, så kan du køre programmet manuelt. Du kan finde den på dette sted: /root/network_settings.sh <br><br> Hvis netværksindstillingerne allerede er konfigureret, og du stadig ser denne meddelelse, så skal du vente CCED konstruktører at afslutte deres setup opgaver. <br><br> Denne side opdateres automatisk hvert 10. sekund, indtil CCED er færdig køre installationsprogrammet opgaver."
+

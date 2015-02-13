@@ -616,3 +616,14 @@ msgstr "[[base-mysql.password]]"
 
 msgid "sql_rootpassword_help"
 msgstr "[[base-mysql.password_help]]"
+
+#
+### New for Wizard Startup Page:
+#
+
+msgid "wizard_refresh_header"
+msgstr "BlueOnyx Setup Wizard: One moment please."
+
+msgid "wizard_refresh_text"
+msgstr "A crucial system component (CCEd) is still starting up and has not yet finished all setup related tasks.<br><br>Did you already login as user 'root' and configured the network settings? If not, then please do so now. If a shell login does not automatically redirect you to the setup program to configure the network settings, then you can run that program manually. You can find it at this location: /root/network_settings.sh <br><br>If the network settings have already been configured and you still see this message, then please wait for the CCEd constructors to finish their setup related tasks.<br><br>This page will refresh automatically every 10 seconds until CCEd has finished running the setup related tasks."
+

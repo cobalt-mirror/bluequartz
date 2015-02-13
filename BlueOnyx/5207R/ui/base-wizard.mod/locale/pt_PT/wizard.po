@@ -621,4 +621,13 @@ msgstr "[[base-mysql.password]]"
 msgid "sql_rootpassword_help"
 msgstr "[[base-mysql.password_help]]"
 
+#
+### New for Wizard Startup Page:
+#
+
+msgid "wizard_refresh_header"
+msgstr "Assistente de configuração BlueOnyx: Um momento por favor."
+
+msgid "wizard_refresh_text"
+msgstr "Um componente fundamental do sistema (CCED) ainda está iniciando e ainda não terminou todas as tarefas de configuração relacionados.<br><br>Será que você já login como usuário 'root' e configurado as definições de rede? Se não, então por favor, faça isso agora. Se um login shell não redireciona automaticamente para o programa de instalação para configurar as definições de rede, então você pode executar esse programa manualmente. Você pode encontrá-lo neste local: /root/network_settings.sh<br><br>Se as configurações de rede já foram configurados e você ainda vê esta mensagem, por favor, aguarde os construtores CCED para concluir suas tarefas de configuração relacionados.<br><br>Esta página será atualizada automaticamente a cada 10 segundos até CCED terminar a execução das tarefas de configuração relacionados."
 

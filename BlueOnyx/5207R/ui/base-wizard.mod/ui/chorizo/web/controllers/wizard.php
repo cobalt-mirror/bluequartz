@@ -12,6 +12,101 @@ class Wizard extends MX_Controller {
 	 * And there is a REASON why we use $cceClient->bye(); so often in here!
 	 */
 
+	public function wizard_reload() {
+
+		// Start with blank debug info:
+		$debug = "";
+
+		$CI =& get_instance();
+
+	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
+	    $CI->load->helper('blueonyx');
+	    init_libraries();
+
+	    // Profiling and Benchmarking:
+	    bx_profiler(FALSE);
+
+	    // Get $sessionId and $loginName from Cookie (if they are set):
+	    $sessionId = $CI->input->cookie('sessionId');
+	    $loginName = $CI->input->cookie('loginName');
+
+	    // Get the IP address of the user accessing the GUI:
+	    $userip = $CI->input->ip_address();
+
+	    // locale and charset setup:
+	    $ini_langs = initialize_languages(FALSE);
+	    $locale = $ini_langs['locale'];
+	    $localization = $ini_langs['localization'];
+	    $charset = $ini_langs['charset'];
+
+		$domain = 'base-wizard';
+
+	    // Set headers:
+	    $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate");
+	    $this->output->set_header("Cache-Control: post-check=0, pre-check=0");
+	    $this->output->set_header("Pragma: no-cache"); 
+	    $this->output->set_header("Content-language: $localization");
+	    $this->output->set_header("Content-type: text/html; charset=$charset");
+
+		$title = PoorMansBabelFish("wizard_refresh_header", $locale, $domain);
+		$text = PoorMansBabelFish("wizard_refresh_text", $locale, $domain);
+
+		// Prepare page:
+		$data_head = array(
+			'charset' => $charset,
+			'page_title' => $title,
+			'layout' => "layout_fixed.css",
+			'extra_headers' => "<meta http-equiv=\"refresh\" content=\"10\" />",
+			'overlay' => ""
+		);
+
+		$page_body = '
+			<div id="pjax">
+					<div id="wrapper">
+						<div class="isolate">
+							<div class="center">
+								<div class="main_container full_size container_16 clearfix">
+									<div class="box grid_16 tabs">
+										<ul class="tab_header clearfix">
+											<li><a href="#tabs-1">' . $title . '</a></li>
+										</ul>
+										<div class="controls">
+											<a href="#" class="toggle"></a>
+										</div>
+										<div class="toggle_container">
+											<div id="tabs-1" class="block">
+												<div class="section">
+													
+													<h1>' . $title . '</h1>
+													<p>' . $text . '</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<a id="login_logo" href="/gui/"><span>
+      								BlueOnyx
+							    </span></a>
+							</div>
+						</div>
+					<div class="display_none">
+			</div>';
+
+		$data_body = array(
+			'page_body' => $page_body
+		);
+
+		$data_foot = array();
+
+		// Set Localization:
+		$data_head['localization'] = $localization;
+
+		// Show the HTML Page:
+		$this->load->view('neutral_header_view', $data_head);
+		$this->load->view('gui_view', $data_body);
+		$this->load->view('neutral_footer_view', $data_foot);
+	}
+
 	public function index()	{
 	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
 	    $this->load->helper('blueonyx');
@@ -587,6 +682,14 @@ class Wizard extends MX_Controller {
 
 	    // Find out if the web based initial setup has been completed:
 	    $system = $cceClient->getObject('System');
+
+	    if ((!isset($system['productLanguage'])) || (!isset($system['dns'])) || (!isset($system['gateway'])) || (!isset($system['timeZone']))) {
+	    	// Vital information in CODB object 'System' is missing.
+	    	// Or the 'System' object is not yet there.
+	    	//
+	    	// Generate a "please wait" page via Wizard::wizard_reload():
+			Wizard::wizard_reload();
+	    }
 
 	    if ($system['isLicenseAccepted'] == "1" ) {
 		    // Web based setup *has* been completed. Redirect to /gui
