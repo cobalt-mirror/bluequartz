@@ -1,18 +1,19 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl 
 # $Id: setup_capabilities.pl
 # Setup all necessary capability groups for the product
-# this maybe should go elsewhere or the really detailed stuff should 
-# be read in, maybe?
 
-use strict;
 use lib qw(/usr/sausalito/perl);
 use CCE;
+use Data::Dumper;
 
-my $cce = new CCE;
+$cce = new CCE;
 $cce->connectuds();
 
+$build = `cat /etc/build | grep 5209R | wc -l`;
+chomp($build);
+
 # create all minor groups
-my @groups = (
+@groups = (
         {
             'name' => 'menuServerNetworkServices',
             'shown' => 1,
@@ -88,22 +89,6 @@ my @groups = (
                               )
         },
         {
-            'name' => 'reseller',
-            'shown' => 1,
-            'capabilities' => $cce->array_to_scalar(
-                                'resellerPHP',
-                                'resellerSUPHP',
-                                'resellerMySQL',
-                                'resellerJSP',
-                                'resellerCGI',
-                                'resellerSSI',
-                                'resellerSSL',
-                                'resellerFTP',
-                                'resellerAnonFTP',
-                                'resellerShell'
-                              )
-        },
-        {
             'name' => 'admin',
             'shown' => 1,
             'capabilities' => $cce->array_to_scalar(
@@ -121,7 +106,57 @@ my @groups = (
         }
             );
 
-# now loop through all the capability groups and create as necessary
+# Reseller caps:
+
+if ($build == "1") {
+    # Special reseller caps for 5209R:
+    @groups_reseller = (
+        {
+            'name' => 'reseller',
+            'shown' => 1,
+            'capabilities' => $cce->array_to_scalar(
+                'resellerPHP',
+                'resellerSUPHP',
+                'resellerRUID',
+                'resellerFPM',
+                'resellerMySQL',
+                'resellerJSP',
+                'resellerCGI',
+                'resellerSSI',
+                'resellerSSL',
+                'resellerFTP',
+                'resellerAnonFTP',
+                'resellerShell'
+            )
+        }
+    );
+}
+else {
+    # Older reseller caps for 5207R/5208R:
+    @groups_reseller = (
+        {
+            'name' => 'reseller',
+            'shown' => 1,
+            'capabilities' => $cce->array_to_scalar(
+                'resellerPHP',
+                'resellerSUPHP',
+                'resellerMySQL',
+                'resellerJSP',
+                'resellerCGI',
+                'resellerSSI',
+                'resellerSSL',
+                'resellerFTP',
+                'resellerAnonFTP',
+                'resellerShell'
+            )
+        }
+    );
+}
+
+# Merge:
+@groups = (@groups, @groups_reseller);
+
+# Now loop through all the capability groups and create as necessary
 for my $cap (@groups)
 {
     my ($oid) = $cce->find('CapabilityGroup', { 'name' => $cap->{name} });
@@ -149,8 +184,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

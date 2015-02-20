@@ -229,6 +229,13 @@ class CCE {
 
     if (isset($this->self['success'])) {
       if ($this->self['success'] == "1") {
+        // Ok, this is somewhat strange. Maybe I'm shooting myself in the
+        // foot here: On a "SET <SYSTEM> . Time" transaction the partial
+        // epoch ends up in the ['info']. This raises an Error object, but
+        // an incomplete one. A successful transaction doesn't have an
+        // ['info'] set anyway. So if the transaction IS a success, we can
+        // (in theory) wipe the ['info'] field clean. So let's do that here:
+        $this->self['info'] = '';
         return TRUE;
       }
       return FALSE;
@@ -335,13 +342,26 @@ class CCE {
 
   // Get the object:
   function ccephp_get($oid, $namespace) {
+    if (is_array($oid)) {
+      // IF $oid is an array we only process the first element:
+      if (isset($oid[0])) {
+        $oid = $oid[0];
+      }
+      else {
+        // First element is not set, return "-1":
+        return "-1";
+      }
+    }
+    if (($oid == "") || (!is_string($oid))) {
+      // If OID is empty or not a string, then
+      // something went wrong and we just return
+      // a -1 to indicate a failure.
+      return "-1";
+    }
     if ($namespace == "") {
       CCE::ccephp_new("GET $oid");
     }
     else {
-      if (is_array($oid)) {
-        $oid = $oid[0];
-      }
       CCE::ccephp_new("GET $oid . $namespace");
     }
     if (is_array($this->self['object'])) {
@@ -376,7 +396,8 @@ class CCE {
     if ($this->self['success'] == '1') {
       $this->setSessionId($sessionId);
       $this->SessionId = $sessionId;
-      setcookie("sessionId", $sessionId, "0", "/");
+      $this->self['sessionid'] = $sessionId;
+      @setcookie("sessionId", $sessionId, "0", "/");
     }
     else {
       delete_cookie("sessionId");
@@ -390,7 +411,10 @@ class CCE {
   // WHOAMI
   function ccephp_whoami() {
     CCE::ccephp_new("WHOAMI");
-    return $this->self['oidlist'][0];
+    if (isset($this->self['oidlist'][0])) {
+      return $this->self['oidlist'][0];
+    }
+    return NULL;
   }
 
   // NAMES
@@ -606,9 +630,13 @@ class CCE {
     // Get CCEd's collective responses to our transactions:
     $result = CCE::_parse_response(stream_get_contents($socket));
 
-    // Store Socket-Errors:
-    CCE::setERRNO($errorno);
-    CCE::setERRSTR($errorstr);
+    if (isset($errorno)) {
+      if ($errorno != "0") {
+        // Store Socket-Errors:
+        CCE::setERRNO($errorno);
+        CCE::setERRSTR($errorstr);
+      }
+    }
 
     // If we do not have a 'sessionid' reported from the last connection
     // attempt, then we delete the 'sessionid' Cookie and internal vars
@@ -621,7 +649,6 @@ class CCE {
       $this->setSessionId('');
       $this->SessionId = '';
     }
-
     return $result;
   }
 
@@ -788,10 +815,20 @@ class CCE {
         }
       }
 
+      if (preg_match('/^305 WARN\s(.*)$/', $line, $matches)) {
+        if (isset($matches[1])) {
+          $this->self['info'][$this->OID] = $matches[1];
+          CCE::setError($matches[1], $this->OID, "", $matches[1]);
+          continue;
+        }
+      }
+
       if (preg_match('/30([0-1][3-7])(.*)/', $line, $matches)) {
         if (isset($matches[1])) {
-          $this->self['info'][$this->OID] = $matches[0];
-          CCE::setError($matches[1], $this->OID, "", $matches[0]);
+          if ($this->OID) {
+            $this->self['info'][$this->OID] = $matches[0];
+            CCE::setError($matches[1], $this->OID, "", $matches[0]);
+          }
           continue;
         }
       }
@@ -860,7 +897,7 @@ class CCE {
     }
 
     // Replace certain double escapements and safe characters with their unsafe variants:
-    $text = str_replace(array('\\\\', '\\"', "\\a", "\\b", "\\f", '\\n', "\\t", "&quot;"), array("\\", '\"', "\a", "\b", "\f", "\n", "\t", '"'), $text); 
+    $text = str_replace(array('\\\\', '\\"', "\\a", "\\b", "\\f", '\\n', "\\t", "\\\""), array("\\", '\"', "\a", "\b", "\f", "\n", "\t", '"'), $text); 
 
     // Split the whole she-bang into individual characters:
     $pattern = str_split($text);
@@ -910,7 +947,7 @@ class CCE {
     }
 
     // Replace unwanted chars with their double escaped counterparts or another safe replacement:
-    $out = str_replace(array("\\", "\a", "\b", "\f", "\n", "\t", '"', '$'), array( '\\\\', "\\a", "\\b", "\\f", "\\n", "\\t", "&quot;", "\\$"), $text); 
+    $out = str_replace(array("\\", "\a", "\b", "\f", "\n", "\t", '"', '$', '&quot;', '&amp;', '&#39;', '&lt;', '&gt;'), array( "\\\\", "\\a", "\\b", "\\f", "\\n", "\\t", "\\\"", "\\$", '\"', '\&', "'", '<', '>'), $text); 
     return $out;
   }
 
@@ -941,12 +978,28 @@ class CCE {
     return $out;
   }
 
-  function setError($code, $oid, $key="",$msg) {
+  function setError($code, $oid, $key="", $msg) {
     $numErrs = count($this->ERRORS);
     $this->ERRORS[$numErrs]['code'] = $code;
     $this->ERRORS[$numErrs]['oid'] = $oid;
     $this->ERRORS[$numErrs]['key'] = $key;
     $this->ERRORS[$numErrs]['message'] = $msg;
+
+    if (preg_match('/\[\[(.*),(.*)\]\]/', $msg, $joinedMatches)) {
+      if (count($joinedMatches) == "3") {
+        $xvarkRay = explode('=', $joinedMatches[2]);
+        if (isset($xvarkRay[1])) {
+          if (preg_match('/\"(.*)\"/', $xvarkRay[1], $cleanTagVar)) {
+            $xvarkRay[1] = preg_replace('/\\\\/','',$xvarkRay[1]);
+            $xvarkRay[1] = rtrim($xvarkRay[1]);
+            $xvarkRay[1] = ltrim($xvarkRay[1]);
+          }
+        }
+        $this->ERRORS[$numErrs]['code'] = "[[$joinedMatches[1]]]";
+        $this->ERRORS[$numErrs]['key'] = $xvarkRay;
+      }
+    }
+
     if ($numErrs != "0") {
       $numErrs++;
     }
@@ -959,8 +1012,8 @@ class CCE {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
