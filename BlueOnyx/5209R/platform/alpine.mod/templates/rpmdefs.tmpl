@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Feb 20 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX040
+- It is time to merge the alpine.mod from 5209R/5208R/5207R into a single
+  module that works on all the Chorizo platforms.
+- Modified constructor/setup_capabilities.pl to add a platform check before
+  setting the reseller caps. 5209R has two extra caps to deal with the new
+  PHP implementation. So we set them only on 5209R.
+
 * Fri Feb 20 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX039
 - Small fix in ci/application/libraries/CCE.php
 - Updated the CSS files to remove the 10 pixel spacing below .alert
