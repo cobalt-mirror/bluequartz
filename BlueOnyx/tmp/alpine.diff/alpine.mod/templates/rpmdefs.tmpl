@@ -136,6 +136,88 @@ fi
 
 <begin $CHANGELOG>
 
+* Fri Feb 20 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX039
+- Small fix in ci/application/libraries/CCE.php
+- Updated the CSS files to remove the 10 pixel spacing below .alert
+  elements:
+- Modified web/.adm/styles/adminica/combined-common-mini.css
+- Modified web/.adm/styles/adminica/combined-common.cs
+
+* Thu Feb 12 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX038
+- Modified ci/application/libraries/CCE.php to fix ccephp_get() to make
+  sure that $oid is not empty, not an array and really is a string.
+  Otherwise return -1 to indicate a failure.
+- Modified ci/application/libraries/I18nNative.php as it wasn't properly
+  replacing [[VAR.hostname]] and other substitutions in some places.
+
+* Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX037
+- Another fix to ci/application/libraries/CCE.php in regards to escaping
+  of values that we submit to CODB. This should make sure that passwords
+  (and other data) can contain the full range of special characters found
+  on the en_US keyboard. This doesn't include umlauts, accents Pound or
+  Euro-sign, as CODB won't accept them without transposition anyway.
+
+* Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX036
+- One more fix for ci/application/libraries/CCE.php. A sucky regular
+  expression in _parse_response() was responsible for numeric values
+  in responses to trigger the set ['info'] field with an array that
+  has no key, but the partial value from the CODB database field.
+  Fixes this by preventing the set of the ['info'] array if we have
+  no valid key. And the bug only triggered because the timestamp of
+  this moment actually matches the regular expression we're looking
+  for. That's what we call a timebomb. 'Bomb defused, counter-terrorists
+  win.'
+
+* Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX035
+- More fixes in ci/application/libraries/CCE.php. Two issues here:
+- ['info'] sometimes contains garbage after a successful transaction.
+  That raises an Error object. Added change that a successful 
+  transaction wipes out the ['info'] field now.
+- Sometimes we have weird GET transaction without OID. Probably the
+  result of getObject() calls to Objects to which we're not privileged.
+  Modified ccephp_get() to ignore requests without OID and to return
+  a "-1" instead.
+
+* Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX034
+- Added /home check into platform/alpine.mod/perl/HomeDir.pm to get
+  better support for situations where we don't have a /home partition.
+
+* Mon Feb 02 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX033
+- Modified ci/application/libraries/ServerScriptHelper.php to hardwire
+  timeZone if we don't get one from CODB.
+
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX032
+- Bugfix in ci/application/libraries/uifc/TimeStamp.php. AM told me that
+  a service had been running fine since January 32. That kinda stuck out.
+
+* Sat Jan 31 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX031
+- Modified platform/alpine.mod/ci/application/libraries/BxPage.php. Newer
+  Firefox versions sometimes don't show the icons. Added a fixed width
+  and height of 24 pixels to the HTML IMG tag of all icons.
+
+* Fri Jan 30 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX030
+- Added platform/alpine.mod/web/.adm/index.html
+
+* Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX029
+- Modified ci/application/libraries/CCE.php as it wasn't properly handling
+  '305 WARN' messages from CCEd.
+- Modified ci/application/libraries/I18nNative.php as it had issues to 
+  interpolate domains without a dot. But worse: If a magicstring had
+  dots in it (like an IP) the regular expression for it wouldn't fire.
+  Instead of fixing the complicated regular expression I did something
+  that will probably bite us in the ass again later. But it seems to work
+  for now.
+
+* Thu Jan 29 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX028
+- Modified constructor/setup_capabilities.pl to add the Reseller
+  Capabilities for the new 5209R PHP options.
+
+* Sun Jan 25 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX027
+- Modified ci/application/libraries/CCE.php as authkey wouldn't return
+  the sessionId during first ccephp_authkey() call. Additionally 
+  ccephp_whoami() might encounter an empty array and therefore get
+  indexing problems. Fixed as well.
+
 * Thu Jan 22 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX026
 - Modified ci/application/libraries/uifc/PagedBlock.php to move error
   message display aray further up so that errors are visible even if

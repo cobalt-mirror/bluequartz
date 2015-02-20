@@ -188,6 +188,58 @@ class I18nNative {
           }
         }
       }
+      if ((isset($found[0])) && ($message == "")) {
+        // IF we get here, we have no message yet. The $zpattern didn't trigger.
+        // This could be because there are more dots in the $magicstr then we expected.
+        // Se we do it the really hard way:
+        $zRESpattern = '/\[\[(.*)\]\]/';
+        preg_match($zRESpattern, $magicstr, $found);
+        if (isset($found[1])) {
+          // We got a full [[]] enclosed tag. Check if it has a comma:
+          $zCMApattern = '/,/';
+          preg_match($zCMApattern, $found[1], $CMAfound);
+          if (isset($CMAfound[0])) {
+            // It has a comma. Split at it:
+            $comaSplit = preg_split('/,/', $found[1]);
+            if (count($comaSplit >= "2")) {
+              $DomainYtag = explode('.', $comaSplit[0]);
+              if (isset($comaSplit[1])) {
+                // Split the resulting vars at the equal sign:
+                $equalSplit = preg_split('/=/', $comaSplit[1]);
+                if (isset($equalSplit[1])) {
+                  // Strip \" away as it looks weird:
+                  $equalSplit[1] = preg_replace('/\\\\"/', '', $equalSplit[1]);
+                }
+                // Assemble the vars:
+                $vars = array($equalSplit[0] => $equalSplit[1]);
+              }
+
+              // We really DO have a domain and a tag and vars - use them:
+              if ((isset($DomainYtag[0])) && (isset($DomainYtag[1]))) {
+                $message .= i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
+              }
+            }
+          }
+          else {
+            // We only have a short DomainTag such as 'palette' and no comma:
+            $DomainYtag = explode('.', $found[1]);
+            // We really DO have a domain and a tag.
+            if ((isset($DomainYtag[0])) && (isset($DomainYtag[1]))) {
+              if ($DomainYtag[0] == "VAR") {
+                // If the Domain equals with VAR, then the tag is a substitute that we need
+                // to replace. Checl if $vars has a matching tag for a replacement:
+                if (isset($vars[$DomainYtag[1]])) {
+                  // Yes, it has. Use it:
+                  $message .= $vars[$DomainYtag[1]];
+                }
+              }
+              else {
+                $message .= i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
+              }
+            }
+          }
+        }
+      }
     }
 
     if ($message == "") {
@@ -199,6 +251,7 @@ class I18nNative {
       $insideTag = preg_replace("/\]\]/", "", $insideTag);
       // Explode at the dot (if there is any):
       $DomainYtag = explode('.', $insideTag);
+
       if (isset($DomainYtag[1])) {
         // We had a dot. Cool. So we have domain and tag and use both:
         $message = i18nNative::i18n_do_it($DomainYtag[1], $DomainYtag[0], $vars);
@@ -319,6 +372,10 @@ class I18nNative {
     if ($domain == "") {
       $domain = i18nNative::getDomain();
     }
+    if ($domain == "VAR") {
+      // Shit happens. If $domain is set to VAR, we take a shortcut:
+      $domain = "palette";
+    }
     // Otherwise examine the locale directories for all locales of this $domain:
     $directory = '/usr/share/locale/*/LC_MESSAGES/' . $domain . '.mo';
     $map = `/bin/ls -k1 $directory`;
@@ -377,8 +434,8 @@ class I18nNative {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

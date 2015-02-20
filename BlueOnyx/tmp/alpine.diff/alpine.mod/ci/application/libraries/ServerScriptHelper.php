@@ -222,6 +222,11 @@ class ServerScriptHelper {
         $this->i18n = array();
         // initialize timezone
         $timeObj = $cceClient->getObject("System", array(), "Time");
+
+        if (!isset($timeObj["timeZone"])) {
+          $timeObj["timeZone"] = "America/New_York";
+        }
+
         $systemTimeZone = $timeObj["timeZone"];
         @date_default_timezone_set($systemTimeZone);
         $retvalTZ = @date_default_timezone_get();

@@ -151,10 +151,10 @@ class TimeStamp extends FormField {
       $result = $builder->makeHiddenField($id, $value);
 
       if($format == "datetime") {
-        $result .= $i18n->get("dateTimeFormat", "palette", array("month" => $month, "date" => $selectedDay+1, "year" => $selectedYear, "24hour" => $selectedHour, "12Hour" => ($selectedHour12 + 0), "minute" => $selectedMinute, "amPm" => $amPm));
+        $result .= $i18n->get("dateTimeFormat", "palette", array("month" => $month, "date" => $selectedDay, "year" => $selectedYear, "24hour" => $selectedHour, "12Hour" => ($selectedHour12), "minute" => $selectedMinute, "amPm" => $amPm));
       }
       elseif($format == "date") {
-        $result .= $i18n->get("dateFormat", "palette", array("month" => $month, "date" => $selectedDay+1, "year" => $selectedYear));
+        $result .= $i18n->get("dateFormat", "palette", array("month" => $month, "date" => $selectedDay, "year" => $selectedYear));
       }
       else {
         $result .= $i18n->get("timeFormat", "palette", array("hour" => $hour, "minute" => $selectedMinute, "amPm" => $amPm));
@@ -365,8 +365,8 @@ class TimeStamp extends FormField {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 Copyright (c) 2003 Sun Microsystems, Inc. 
 All Rights Reserved.
 
