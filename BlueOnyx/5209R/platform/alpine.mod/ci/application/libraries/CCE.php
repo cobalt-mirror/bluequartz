@@ -397,7 +397,7 @@ class CCE {
       $this->setSessionId($sessionId);
       $this->SessionId = $sessionId;
       $this->self['sessionid'] = $sessionId;
-      setcookie("sessionId", $sessionId, "0", "/");
+      @setcookie("sessionId", $sessionId, "0", "/");
     }
     else {
       delete_cookie("sessionId");
