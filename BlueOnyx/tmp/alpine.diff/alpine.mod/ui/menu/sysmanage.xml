@@ -1,9 +1,0 @@
-<item 
-    id="base_sysmanage" 
-    label="[[base-alpine.sysmanage]]" 
-    description="[[base-alpine.sysmanageDescription]]"
->
-	<parent id="root" order="1">
-		<access require="serverManage"/>
-	</parent>
-</item>

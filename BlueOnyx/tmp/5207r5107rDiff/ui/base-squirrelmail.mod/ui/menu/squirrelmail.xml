@@ -1,8 +1,0 @@
-<item 
-    id="base_squirrelmail" 
-    label="[[base-squirrelmail.sqMail]]" 
-    description="[[base-squirrelmail.sqMail_help]]" 
-    url="/base/squirrelmail/index.php"
->
-    <parent id="base_personalProfile" order="13"/>
-</item>

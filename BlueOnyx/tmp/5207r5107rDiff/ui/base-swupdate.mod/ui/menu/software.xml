@@ -1,9 +1,0 @@
-<item 
-    id="base_software" 
-    label="[[base-swupdate.software]]" 
-    description="[[base-swupdate.software_help]]" 
->
-    <parent id="root" order="20">
-        <access require="managePackage"/>
-    </parent>
-</item>

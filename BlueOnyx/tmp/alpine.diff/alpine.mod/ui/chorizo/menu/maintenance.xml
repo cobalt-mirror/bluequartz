@@ -1,9 +1,0 @@
-<item 
-    id="base_sysmaintenance" 
-    label="[[base-alpine.sysmaintenance]]" 
-    description="[[base-alpine.sysmaintenanceDescription]]"
-    icon="locked_2"
-    requiresChildren="1"
->
-    <parent id="base_sysmanage" order="45"/>
-</item>
