@@ -270,8 +270,12 @@ class VsiteAdd extends MX_Controller {
 
 		$vsite = $cceClient->get($sysoid, "Vsite"); 
 		$vsiteoids = $cceClient->find("Vsite"); 
-		if ($vsite['maxVsite'] <= count($vsiteoids)) { 
-		    $errors[] = new Error('[[base-vsite.maxVsiteAlreadyMade]]');
+		if ($vsite['maxVsite'] <= count($vsiteoids)) {
+			// The limit doesn't apply to systemAdministrators! 
+			if (!$Capabilities->getAllowed('systemAdministrator')) {
+				// But to everyone else:
+		    	$errors[] = new Error('[[base-vsite.maxVsiteAlreadyMade]]');
+		    }
 		} 
 
 		$defaultPage = "basicSettingsTab";
