@@ -137,6 +137,11 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Feb 23 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX26
+- Modified ui/chorizo/web/controllers/vsiteAdd.php to prevent the
+  maxVsite limit to kick in for 'admin' or other 'systemAdministrator'
+  users.
+
 * Thu Feb 05 2015 Michael Stauber <mstauber@solarspeed.net> 4.1-0BX25
 - Modified constructor/admserv_php_ini_timezone_set.pl to remove backups
   of AdmServ's php.ini that are no longer needed.
