@@ -41,6 +41,10 @@ $new = $cce->event_new();
 ($ok, $sshd_settings) = $cce->get($oid, "SSH");
 $SSH_server_OID = $oid;
 
+# Get 'System' Object:
+@sysoids = $cce->find('System');
+($ok, $System) = $cce->get($sysoids[0]);
+
 # We're creating or modifying the SSH object:
 if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($SSH_server_OID eq $oid)) {
 
@@ -82,11 +86,14 @@ sub restart_sshd {
 sub edit_sshd_config {
 
     # Convert selected CODB bool values (0|1) to config file values (No|no|Yes|yes):
-    if ($sshd_settings->{"PermitRootLogin"} eq "0") {
-        $sshd_settings->{"PermitRootLogin"} = "no";
-    }
-    else {
-        $sshd_settings->{"PermitRootLogin"} = "yes";
+    if ($System->{isLicenseAccepted} eq "1") {
+        # Only modify the 'PermitRootLogin' settings if the initial setup has been completed.
+        if ($sshd_settings->{"PermitRootLogin"} eq "0") {
+            $sshd_settings->{"PermitRootLogin"} = "no";
+        }
+        else {
+            $sshd_settings->{"PermitRootLogin"} = "yes";
+        }
     }
 
     if ($sshd_settings->{"XPasswordAuthentication"} eq "0") {
@@ -202,13 +209,21 @@ sub handle_bashrc {
 
 sub bashrc_edit {
 
-    # If PermitRootLogin is allowed, we need to remove the /bin/echo lines
-    # from /root/.bashrc. Otherwise RSYNC and SCP as root will not work.
-    # Under Aventurin{e} in a BlueOnyx template we will not append the
-    # echo lines in any case, as /root/network_settings.sh doesn't exist.
+    # The kickstart scripts or the installer add echo lines to /root/.bashrc
+    # that explain how to change the network settings. These lines must be 
+    # removed if PermitRootLogin is allowed. Otherwise RSYNC and SCP as root 
+    # will not work. Additionally: Once removed, these lines should not really
+    # come back on their own. So we only add them under the following conditions:
+    #
+    # - $sshd_settings->{"PermitRootLogin"} is still set to '0'
+    # - $System->{isLicenseAccepted} is still set to '0'
+    # - /root/network_settings.sh actually (still) exists.
+    #
 
-        my($in, $out, $enabled) = @_;
-        my $codeBase = <<EOF;
+    &debug_msg("Editing /root/.bashrc - PermitRootLogin is set to: " . $sshd_settings->{"PermitRootLogin"} . "\n");
+
+    my($in, $out, $enabled) = @_;
+    my $codeBase = <<EOF;
 /bin/echo ""
 /bin/echo "To change your network settings from the command line, run"
 /bin/echo "the command /root/network_settings.sh"
@@ -216,26 +231,28 @@ sub bashrc_edit {
 /bin/echo "To remove this notice, edit /root/.bashrc"
 /bin/echo ""
 EOF
-        my $found = 0;
+    my $found = 0;
 
-        while(<$in>) {
-            if(/^\/bin\/echo(.*)$/) {
-                    $DEBUG && warn "WITHIN codeBase, neato: $_";
-                    $found = 1;
-                    if (($enabled eq "no") && (! -e "/proc/user_beancounters")) {
-                        print $out $_;
-                    }
-            }
-            else {
-                    print $out $_;
-            }
+    while(<$in>) {
+        if(/^\/bin\/echo(.*)$/) {
+            $found = 1;
+            &debug_msg("Found echo lines, removing them.\n");
         }
-        $DEBUG && warn "Found in block? $found\n";
+        else {
+            &debug_msg("Printing $_. \n");
+            print $out $_;
+        }
+    }
 
-        if (($enabled eq "no") && (!$found) && (! -e "/proc/user_beancounters")) {
-            print $out $codeBase;
-        }
-        return 1;
+    #if (($enabled eq "no") && (!$found) && (! -e "/proc/user_beancounters")) {
+    if (($sshd_settings->{"PermitRootLogin"} eq "0") && ($System->{isLicenseAccepted} eq "0") && (-f "/root/network_settings.sh")) {
+        &debug_msg("PermitRootLogin is set to '0', 'isLicenseAccepted' is set to '0': Adding network settings line to /root/.bashrc. \n");
+        print $out $codeBase;
+    }
+    else {
+        &debug_msg("System is past initial setup, PermitRootLogin is not '0' or /root/network_settings.sh missing. Not adding network settings line to /root/.bashrc \n");
+    }
+    return 1;
 }
 
 # Read and parse config:
@@ -282,8 +299,8 @@ $cce->bye('SUCCESS');
 exit(0);
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # All Rights Reserved.
 # 
 # 1. Redistributions of source code must retain the above copyright 

@@ -122,6 +122,14 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Feb 26 2015 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX07
+- Modified glue/handlers/sshd_handler.pl to make sure that 'PermitRootLogin'
+  is only modified if the system is past the initial web based setup.
+- Additionally made sure that /root/.bashrc only gets the network settings
+  lines added if 'PermitRootLogin' is still set to '0', the initial web
+  based setup has not been completed AND /root/network_settings.sh
+  actually exists.
+
 * Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 2.0-0BX06
 - Chorizo GUI added, old GUI disabled.
 
