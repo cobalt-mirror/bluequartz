@@ -244,7 +244,6 @@ EOF
         }
     }
 
-    #if (($enabled eq "no") && (!$found) && (! -e "/proc/user_beancounters")) {
     if (($sshd_settings->{"PermitRootLogin"} eq "0") && ($System->{isLicenseAccepted} eq "0") && (-f "/root/network_settings.sh")) {
         &debug_msg("PermitRootLogin is set to '0', 'isLicenseAccepted' is set to '0': Adding network settings line to /root/.bashrc. \n");
         print $out $codeBase;
