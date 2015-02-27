@@ -60,6 +60,7 @@ information for [VENDOR]-[SERVICE].
 %attr(0755,-,-) /usr/sausalito/sbin/php_settings_convert.pl
 %attr(0755,-,-) /usr/sausalito/sbin/phpsendmail
 %attr(0755,-,-) /usr/sausalito/sbin/MassIPChange.pl
+%attr(0755,-,-) /usr/sausalito/sbin/free_admin_alias.pl
 %attr(0755,-,-) /usr/sausalito/configs/php/set_php_headers.php
 
 <end glue>
@@ -83,12 +84,9 @@ information for [VENDOR]-[SERVICE].
 
 <begin glue>
 # glue post-install
-# This is not needed at the moment:
-#if [ -S /usr/sausalito/cced.socket ]; then
-#    /usr/sausalito/sbin/cced.init restart
-#    /usr/sausalito/sbin/suPHP_fixer.pl
-#    /usr/sausalito/sbin/php_settings_convert.pl >/dev/null 2>&1
-#fi
+if [ -S /usr/sausalito/cced.socket ]; then
+    /usr/sausalito/sbin/free_admin_alias.pl
+fi
 
 <end glue>
 <begin ui>
@@ -136,6 +134,15 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Feb 27 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX18
+- Edited glue/handlers/Vsite.pm to remove 'admin' from ProtectedEmailAliases.
+- Added glue/sbin/free_admin_alias.pl to remove 'admin' alias from the
+  'ProtectedEmailAlias' object of existing Vsites for transitional
+  purposes.
+- Modified glue/Makefile to add glue/sbin/free_admin_alias.pl
+- Modified glue post-install to run glue/sbin/free_admin_alias.pl on 
+  RPM install/upgrade.
 
 * Mon Feb 23 2015 Michael Stauber <mstauber@solarspeed.net> 4.0-0BX17
 - Modified ui/chorizo/web/controllers/vsiteAdd.php to prevent the
