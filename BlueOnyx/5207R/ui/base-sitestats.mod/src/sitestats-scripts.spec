@@ -1,7 +1,7 @@
 Summary: Server and site statistics for web, ftp, email, and network traffic
 Name: base-sitestats-scripts
 Version: 1.0
-Release: 26BX28%{?dist}
+Release: 26BX29%{?dist}
 Vendor: Project BlueOnyx
 License: Sun modified BSD
 Group: System Environment/BlueOnax
@@ -38,6 +38,10 @@ if [ -f /bin/systemctl ]; then
 fi
 
 %changelog
+
+* Thu Feb 26 2015 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX29
+- Various 5209R related changes, as our analog now resides under the 
+  path /usr/sausalito/analogbx to avoid a conflict with Anaconda.
 
 * Tue Dec 23 2014 Michael Stauber <mstauber@solarspeed.net> 1.0-26BX28
 - More post-install fixes.

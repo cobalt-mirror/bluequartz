@@ -3,10 +3,13 @@
 # Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
 # Consolidated log distribution by virtual site
 
-use strict;
-
 # Global Variables
-my $Analog_cmd = '/usr/bin/analog';
+if (-f '/usr/bin/analogbx') {
+	my $Analog_cmd      = '/usr/bin/analogbx';
+}
+else {
+	my $Analog_cmd      = '/usr/bin/analog';
+}
 my $Htgroup_dir = '/home/.sites';
 my $Logdir = 'logs'; # site logs directory
 my %domains;         # hash of vsite fqdn's

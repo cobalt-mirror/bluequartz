@@ -10,7 +10,12 @@
 use File::Copy;
 use CCE;
 
-my $analog      = '/usr/bin/analog';
+if (-f '/usr/bin/analogbx') {
+	my $analog      = '/usr/bin/analogbx';
+}
+else {
+	my $analog      = '/usr/bin/analog';
+}
 my $configFn    = '/etc/analog.cfg';
 my $configTmpl  = $configFn.'.tmpl';
 my @types 	= ('web', 'mail', 'net', 'ftp');
