@@ -409,7 +409,7 @@ class ScrollList extends HtmlComponentFactory {
                                   <tr>' . "\n";
 
     foreach($this->entryLabels as $key) {
-      $result .= '                                    <th style="width: 100%;"><label for="' . $key . '" title="' . $this->i18n->getWrapped($key . '_help') . '" class="tooltip hover">' . $this->i18n->getHtml($key) . '</label></th>' . "\n";
+      $result .= '                                    <th class="datatable_head"><label for="' . $key . '" title="' . $this->i18n->getWrapped($key . '_help') . '" class="tooltip hover">' . $this->i18n->getHtml($key) . '</label></th>' . "\n";
     }
 
     $result .= '
@@ -455,23 +455,11 @@ class ScrollList extends HtmlComponentFactory {
 
         // get the width for this column (if specified):
         if (isset($this->columnWidths)) {
-          $columnWidths = $this->getColumnWidths();
-          if (isset($columnWidths[$x_numColumns])) {
-            $width = $columnWidths[$x_numColumns];
-            if (preg_match('/(.*)%/', $width)) {
-              $suffix = "";
-            }
-            else {
-              $suffix = "px";
-            }
-            $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . '; width: ' . $width . $suffix . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";          
-          }
-          else {
-            $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
-          }
+          $columnWidths = "";
+            $result .= '                  <td class="' . $alignment . ' dt_' . $x_numColumns . '">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
         }
         else {
-          $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
+          $result .= '                  <td class="' . $alignment . ' dt_' . $x_numColumns . '">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
         }
         $x_numColumns++;
       }

@@ -594,7 +594,7 @@ class FormFieldBuilder {
     $this->range = $range;
     if (isset($this->range)) {
       if ($this->range != '') {
-        $this->range = '<span>' . $this->range . '</span>';
+        $this->range = '<span class="range_text">' . $this->range . '</span>';
       }
     }
     else {
@@ -720,7 +720,7 @@ class FormFieldBuilder {
       }
       elseif ($this->getLabelType() != "nolabel") {
         $out .= '
-                                            <label for="' . $id . '" title="' . $helptext . '" class="tooltip right uniform">' . $label . '<span>' . $optional_text . '</span></label>';
+                                            <label for="' . $id . '" title="' . $helptext . '" class="tooltip right uniform">' . $label . '<span class="info_text">' . $optional_text . '</span></label>';
       }
       else {
         $out .= "";
