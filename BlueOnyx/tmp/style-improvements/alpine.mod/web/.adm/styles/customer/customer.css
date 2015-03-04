@@ -21,6 +21,7 @@ table td { padding: 8px 5px!important; }
 #userList table td button, #virtualSiteList table td button { margin: 2px; }
 #userList .center.dt_5 > br, #virtualSiteList .right.dt_5 > br { display: none; }
 #userList .center.dt_5 { white-space: nowrap; }
+#virtualSiteList .dt_4 > br { display: none; }
 
 /* Tweaks for settings Forms */
 fieldset.label_side > div { padding: 6px 10px!important; }
