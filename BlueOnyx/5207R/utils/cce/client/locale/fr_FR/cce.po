@@ -1,4 +1,12 @@
-
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "cceErrorSentence"
 msgstr "Une erreur interne de serveur s'est produite."
@@ -19,7 +27,7 @@ msgid "unknownOid"
 msgstr "[[base-cce.cceErrorSentence]] L'objet [[VAR.key]] est inconnu. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "permissionDenied"
-msgstr "[[base-cce.cceErrorSentence]] La permission pour [[VAR.key]] est refusée. [[base-sauce-basic.contactTechSupport]]"
+msgstr "[[base-cce.cceErrorSentence]] La permission pour [[VAR.key]] est refusÃ©e. [[base-sauce-basic.contactTechSupport]]"
 
 msgid "unknownErrorCode"
 msgstr "[[base-cce.cceErrorSentence]] Une erreur inconnue s'est produite. [[base-sauce-basic.contactTechSupport]]"
@@ -27,9 +35,12 @@ msgstr "[[base-cce.cceErrorSentence]] Une erreur inconnue s'est produite. [[base
 msgid "invalidType"
 msgstr "[[base-cce.cceErrorSentence]] Le type [[VAR.key]] est incorrect. [[base-sauce-basic.contactTechSupport]]"
 
-	# User input invalid but validation fell through
+# User input invalid but validation fell through
 msgid "invalidData"
-msgstr "Les données entrées dans le champ [[VAR.key]] sont incorrectes. Vérifiez les données saisies et réessayez."
+msgstr "Les donnÃ©es entrÃ©es dans le champ [[VAR.key]] sont incorrectes. VÃ©rifiez les donnÃ©es saisies et rÃ©essayez."
 
 msgid "outOfMemory"
-msgstr "[[base-cce.cceErrorSentence]] Le système ne peut pas allouer suffisamment de mémoire pour poursuivre."
+msgstr "[[base-cce.cceErrorSentence]] Le systÃ¨me ne peut pas allouer suffisamment de mÃ©moire pour poursuivre."
+
+msgid "fq_email_address_or_username_errmsg"
+msgstr "Nom d'utilisateur ou adresse e-mail."
