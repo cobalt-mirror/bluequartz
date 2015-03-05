@@ -168,7 +168,7 @@
   name="fq_email_address_or_username" 
   type="re" 
   data="(^[a-zA-Z0-9\\._-]+\@[a-zA-Z0-9\\._-]+$)|(^[A-Za-z0-9\\._-]+$)"
-  errmsg = "[[base-email.bad_blockUserField]]"
+  errmsg = "[[base-cce.fq_email_address_or_username_errmsg]]"
 />
 
 <!-- Not Yet perfect, but this will do for now: -->

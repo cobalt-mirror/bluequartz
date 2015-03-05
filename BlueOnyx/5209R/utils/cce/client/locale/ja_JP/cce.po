@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "cceErrorSentence"
+msgstr "申し訳ありませんが、内部サーバーエラーが発生しました。"
+
+msgid "cceHandlerErrorSentence"
+msgstr "申し訳ありませんが、内部サーバーエラーが発生しました。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownAttr"
+msgstr "[[VAR.key]]が不明な属性を[[base-cce.cceErrorSentence]]。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownClass"
+msgstr "[[base-cce.cceErrorSentence]]クラス[[VAR.key]]は不明です。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownNs"
+msgstr "[[base-cce.cceErrorSentence]]名前空間の[[VAR.key]]は不明です。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownOid"
+msgstr "[[base-cce.cceErrorSentence]]オブジェクト[[VAR.oid]]は不明です。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "permissionDenied"
+msgstr "[[VAR.key]]用[[base-cce.cceErrorSentence]]許可が拒否されました。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "unknownErrorCode"
+msgstr "[[base-cce.cceErrorSentence]]未知のエラーが発生しました。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidType"
+msgstr "[[base-cce.cceErrorSentence]]型[[VAR.key]]が無効です。 [[base-sauce-basic.contactTechSupport]]"
+
+msgid "invalidData"
+msgstr "申し訳ありませんが、フィールド[[VAR.key]]に入力されたデータは無効です。あなたの入力をチェックして、もう一度お試しください。"
+
+msgid "outOfMemory"
+msgstr "[[base-cce.cceErrorSentence]]システムは継続して十分なメモリを割り当てることができません。"
+
+msgid "badRegex"
+msgstr "[[base-cce.cceErrorSentence]]正規表現[[VAR.key]]は無効です。"
+
+msgid "suspended"
+msgstr "サーバーのデスクトップが現在ロックされています。変更は、この時点で許可されていません。 [[VAR.key]]"
+
+msgid "fq_email_address_or_username_errmsg"
+msgstr "ユーザー名または電子メールアドレスを入力してください。"
+

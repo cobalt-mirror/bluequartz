@@ -215,6 +215,10 @@ fi
 
 %changelog
 
+* Thu Mar 05 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX27
+- Overhauled all client/locales as this was a bit overdue.
+- Modified baseType Schemas to use internal error messages where applicable.
+
 * Sun Feb 01 2015 Michael Stauber <mstauber@solarspeed.net> 0.99.1-1BX26
 - Cleanup of RPM scripts for 5209R CD building.
 
