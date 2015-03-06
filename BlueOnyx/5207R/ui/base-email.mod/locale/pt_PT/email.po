@@ -527,4 +527,12 @@ msgstr "Z-push é uma aplicação open-source para sincronizar PDAs compatíveis
 msgid "cap_serverEmail"
 msgstr "Configurações de e-mail"
 
+###
+
+msgid "hideHeadersField"
+msgstr "Esconder cabeçalhos anteriores"
+
+msgid "hideHeadersField_help"
+msgstr "Se esta opção for selecionada, em seguida, o servidor de correio irá esconder quaisquer cabeçalhos anteriores em e-mails que ele passa para destinos remotos. A origem dos e-mails aparecerão para ser este servidor de correio. Mesmo se ela foi recebida de outro lugar. Este tem os seguintes benefícios: Ele esconde o endereço IP interno de remetentes de correio ou servidores mail autorizados que retransmitem para. No lado negativo: Se o servidor é usado para enviar SPAM, em seguida, os cabeçalhos extras desaparecidas tornar mais difícil para você determinar a verdadeira origem desses e-mails. Portanto, use esse recurso com cautela. Padrão: Não habilitado."
+
 

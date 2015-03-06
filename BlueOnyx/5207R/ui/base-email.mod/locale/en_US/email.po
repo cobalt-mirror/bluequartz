@@ -527,3 +527,10 @@ msgstr "Z-push is an open-source application to synchronize ActiveSync compatibl
 msgid "cap_serverEmail"
 msgstr "Email Server Settings"
 
+### 
+
+msgid "hideHeadersField"
+msgstr "Hide Previous Headers"
+
+msgid "hideHeadersField_help"
+msgstr "When this checkbox is ticked, then the mail server will hide any previous headers in emails that it passes on to remote destinations. The origin of the emails will appear to be this mail server. Even if it was received from somewhere else. This has the following benefits: It hides the domestic IP address of mail senders or authorized mail servers that you relay for. On the downside: If your server is used to send SPAM, then the missing extra headers make it more difficult for you to determine the real origin of those emails. So use this feature with caution. Default: Not enabled."

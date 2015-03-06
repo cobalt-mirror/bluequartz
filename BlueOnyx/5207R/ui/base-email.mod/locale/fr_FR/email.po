@@ -526,3 +526,11 @@ msgstr "Z-Push est une application open-source pour synchroniser les PDAs et té
 
 msgid "cap_serverEmail"
 msgstr "Paramètres serveur de messagerie"
+
+###
+
+msgid "hideHeadersField"
+msgstr "Cachez-têtes Précédent"
+
+msgid "hideHeadersField_help"
+msgstr "Lorsque cette case est cochée, alors le serveur de messagerie permet de masquer les en-têtes précédents dans les emails qu'il passe à des destinations lointaines. L'origine des e-mails apparaît être ce serveur de messagerie. Même si elle a été reçue d'ailleurs. Cela présente les avantages suivants: Il cache l'adresse IP interne de expéditeurs de courrier ou les serveurs autorisés de messagerie que vous relayez pour. Sur le plan négatif: Si votre serveur est utilisé pour envoyer du spam, alors les têtes supplémentaires manquants rendent plus difficile pour vous de déterminer l'origine réelle de ces courriels. Il faut donc utiliser cette fonction avec prudence. Par défaut: Non activée."

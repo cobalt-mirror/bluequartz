@@ -528,3 +528,11 @@ msgstr "Z-push is an open-source application to synchronize ActiveSync compatibl
 msgid "cap_serverEmail"
 msgstr "E-Mail-Server-Einstellungen"
 
+###
+
+msgid "hideHeadersField"
+msgstr "Frühere Header entfernen"
+
+msgid "hideHeadersField_help"
+msgstr "Wenn dieses Kontrollkästchen aktiviert ist, wird dieser Mail-Server alle vorherigen 'received'-Header in E-Mails verstecken wenn er E-Mails an andere Server ausliefert. Dem Empfänger wird dann vorgegaukelt, dass die E-Mails ihren Ursprung auf diesem Mail-Server haben und vorher durch keine anderen Relais gelaufen sind. Dies hat folgende Vorteile: Es verbirgt die heimische IP-Adresse des Mail-Absenders oder autorisierter E-Mail-Server, die über Ihren Mail-Server E-Mails verschicken dürfen. Auf der anderen Seite: Wenn Ihr Server zum Versand von SPAM verwendet wird, dann erschweren die nun fehlenden vorherigen Header die Suche nach dem wahren Ursprung der E-Mails. Verwenden Sie diese Funktion daher mit entsprechender Vorsicht. Üblicherweise ist diese Funktion nicht aktiviert."
+

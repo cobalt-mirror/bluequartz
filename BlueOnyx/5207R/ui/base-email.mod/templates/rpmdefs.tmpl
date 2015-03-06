@@ -147,6 +147,20 @@ fi
 
 <begin $CHANGELOG>
 
+* Thu Mar 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX28
+- Added feature to (optionally) suppress previous headers from sent email
+  messages. Configureable under 'Network Services' / 'Email' / 'Advanced'.
+- Modified glue/schemas/email.schema to add 'hideHeaders' to 'System' . 
+  'Email'.
+- Modified glue/handlers/system.pl to handle the required sendmail.mc 
+  configuration to implement this feature.
+- Modified ui/chorizo/web/controllers/emailsettings.php to add the needed
+  checkbox to toggle this feature in the new GUI.
+- Modified glue/conf/email.conf to trigger this config change.
+- Extended all locales with the new texts for this feature.
+- Modified ui/web/email.php and ui/web/emailHandler.php to also add this
+  to the old GUI.
+
 * Tue Feb 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX27
 - Added requirement for cyrus-sasl-plain to Makefile.
 
