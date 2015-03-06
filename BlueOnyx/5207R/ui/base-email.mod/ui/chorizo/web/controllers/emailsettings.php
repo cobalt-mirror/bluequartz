@@ -344,6 +344,13 @@ class Emailsettings extends MX_Controller {
 		  "advanced"
 		);
 
+		// Hide prior received headers:
+		$block->addFormField(
+		  $factory->getBoolean("hideHeaders", $email["hideHeaders"]),
+		  $factory->getLabel("hideHeadersField"),
+		  "advanced"
+		);
+
 		$poprelay = $factory->getBoolean("popRelay", $email["popRelay"]);
 		$poprelay->setOptional(true);
 		$block->addFormField(

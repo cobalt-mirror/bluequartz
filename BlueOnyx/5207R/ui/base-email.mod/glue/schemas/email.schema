@@ -171,5 +171,11 @@
 	default="0"
 	writeacl="ruleCapable(serverEmail)"
     />
+
+    <property 
+    name="hideHeaders" type="int" optional="true"
+    default="0"
+    writeacl="ruleCapable(serverEmail)"
+    />
 </class>
 
