@@ -365,8 +365,8 @@ class mailmanMod extends MX_Controller {
 		    $access = 'rw';
 		}
 		elseif (($Capabilities->getAllowed('siteAdmin')) && ($group == $Capabilities->loginUser['site'])) {
-		    $access = 'r';
-		    $is_site_admin = TRUE;
+			$access = 'rw';
+			$is_site_admin = TRUE;
 		}
 		else {
 			// Nice people say goodbye, or CCEd waits forever:
@@ -557,8 +557,8 @@ class mailmanMod extends MX_Controller {
 }
 
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 

@@ -13,22 +13,22 @@
 
     <!-- epoch time, update trigger -->
     <property name="force_update" type="scalar" default="" optional="true"
-	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
 
     <!-- Status of MailList (1 = enabled, 0 = disabled) -->
     <property name="enabled" type="int" default="" optional="true"
-	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
 
     <!-- Initial setup of MailList was completed (1 = true, 0 = false) -->
     <property name="configured" type="int" default="0" optional="true"
-	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
 
     <!-- MailList admin password -->
     <property name="admin_pw" type="scalar" default="" optional="true"
-	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
     />
 
 </class>
@@ -41,14 +41,14 @@
 
     <!-- epoch time, update trigger -->
     <property 
-	name="commit" type="int" default="1"
-	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    name="commit" type="int" default="1"
+    writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin))"
     />
 
     <!-- specific site, else all lists will be counted -->
     <property 
-	name="site" type="word" default="" optional="true"
-	writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin) AND ruleMailingLists )"
+    name="site" type="word" default="" optional="true"
+    writeacl="ruleCapable(adminUser) OR ( ruleCapable(siteAdmin))"
     />
 </class>
 
