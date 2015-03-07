@@ -9,6 +9,12 @@ use Sauce::Service;
 use CCE;
 use Email;
 
+# Debugging switch:
+$DEBUG = "0";
+if ($DEBUG) {
+    use Sys::Syslog qw( :DEFAULT setlogsock);
+}
+
 my $cce = new CCE;
 $cce->connectuds();
 
@@ -75,11 +81,11 @@ chmod 0600, "/etc/pki/dovecot/certs/ca.pem";
 
 # Stop mail services if they are disabled. Which do not use xinetd.
 if (($obj->{'enablePop'} eq '0') && ($obj->{'enablePops'} eq '0') && ($obj->{'enableImap'} eq '0') && ($obj->{'enableImaps'} eq '0')) {
-    system("/sbin/service dovecot stop");
-    system("/sbin/chkconfig --del dovecot");
+    Sauce::Service::service_run_init('dovecot', 'stop');
+    Sauce::Service::service_set_init('dovecot', 0);
 }
 else {
-    system("/sbin/chkconfig --add dovecot");
+    Sauce::Service::service_set_init('dovecot', 1);
     Sauce::Service::service_toggle_init('dovecot', 1);
 }
 
@@ -94,8 +100,43 @@ if ($obj->{enableSMTP} || $obj->{enableSMTPS} || $obj->{enableSubmissionPort}) {
 my $maxMessageSize = $obj->{maxMessageSize};
 my $maxRecipientsPerMessage = $obj->{maxRecipientsPerMessage};
 
+#
+## Remove existing RBLs from sendmail.mc:
+#
+system("/bin/cat /etc/mail/sendmail.mc|/bin/grep -v '^FEATURE(dnsbl' > /etc/mail/sendmail.mc.norbl");
+system("/bin/mv /etc/mail/sendmail.mc.norbl /etc/mail/sendmail.mc");
+
+#
+## Get RBL config (if present):
+#
+@rbloids = $cce->find('dnsbl');
+foreach $rbloid (@rbloids) {
+    &debug_msg("Found RBL-OID $rbloid \n");
+    ($ok, $RBLSettings) = $cce->get($rbloid, '');
+
+    # Fiddle the active RBL settings back into sendmail.mc:
+    $ret = Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc_rbl, $RBLSettings);
+    if (!$ret) {
+        $cce->bye('FAIL', 'cantEditFile', {'file' => Email::SendmailMC});
+        exit(0);
+    } 
+}
+
+# Edit the rest of the Sendmail settings back in:
 Sauce::Util::editfile(Email::SendmailMC, *make_sendmail_mc, $obj );
-system('rm -f /etc/mail/sendmail.mc.backup.*');
+
+# Cleanup:
+system('/bin/rm -f /etc/mail/sendmail.mc.backup.*');
+
+# Rebuilding sendmail.cf:
+&debug_msg("Rebuilding sendmail.cf");
+system("m4 /usr/share/sendmail-cf/m4/cf.m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf");
+
+# Fix EL7 related Systemd fuck-up (thank you, RedHat!):
+if (-f "/lib/systemd/system/sendmail.service") {
+    system("/bin/sed -i -e 's#^PIDFile=/run/sendmail.pid#PIDFile=/var/run/sendmail.pid#' /lib/systemd/system/sendmail.service");
+    system("/usr/bin/systemctl daemon-reload");
+}
 
 # need to start sendmail?
 if ($run) {
@@ -267,6 +308,77 @@ sub edit_dovecot_intermediate {
     unless ($ok) {
         $cce->bye('FAIL', "Error while editing /etc/dovecot/conf.d/10-ssl.conf!");
         exit(1);
+    }
+}
+
+sub make_sendmail_mc_rbl {
+    my $in  = shift;
+    my $out = shift;
+    my $obj = shift;
+
+    my $blacklistHost;
+    my $deferTemporary;
+    my $active;
+    my $prefix;
+    my $defer;
+    my $searchString;
+    my %Printed_line = ( blacklistHost => 0);
+    my $mailer_lines = 0;
+    my @Mailer_line = ();
+
+    if ($obj->{active} ) {
+        $prefix = "";
+    }
+    else {
+        $prefix = "dnl ";
+    }
+    if ($obj->{deferTemporary} ) {
+        $defer = "`t'";
+    }
+    else {
+        $defer = "";
+    }
+    if ($obj->{blacklistHost} ) {
+        $blacklistHost = $prefix . "FEATURE(dnsbl, `". $obj->{blacklistHost} ."',,$defer)\n";
+    }
+    else {
+        $blacklistHost = "";
+    }
+    
+    select $out;
+    while( <$in> ) {
+        if ( /^MAILER\(/o ) {
+            $Mailer_line[$mailer_lines] = $_;
+            $mailer_lines++;
+        }
+        else {
+            print $_;
+        }
+    }
+
+    foreach my $key (keys %Printed_line ) {
+        if ($Printed_line{$key} != 1) {
+            print $blacklistHost;
+        }
+    }
+    
+    if ($mailer_lines) {
+        foreach my $line (@Mailer_line) {
+            print $line;
+        }
+    }
+    
+    return 1;
+}
+
+sub debug_msg {
+    if ($DEBUG) {
+        my $msg = shift;
+        $user = $ENV{'USER'};
+        setlogsock('unix');
+        openlog($0,'','user');
+        syslog('info', "$ARGV[0]: $msg");
+        closelog;
     }
 }
 

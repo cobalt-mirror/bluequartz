@@ -7,7 +7,7 @@ VENDORNAME='Project BlueOnyx and Bluapp AB'
 SERVICE=email
 
 VERSION=1.6.0
-RELEASE=0BX19
+RELEASE=0BX28
 
 # add a buildarch if desired
 BUILDARCH=noarch
@@ -15,12 +15,12 @@ BUILDARCH=noarch
 # locale exclude pattern
 #XLOCALEPAT=
 
-BUILDUI=yes
+BUILDUI=new
 BUILDGLUE=yes
 BUILDLOCALE=yes
 BUILDSRC=yes
 
-REQUIRES = procmail sendmail dovecot >= 2.2.15 poprelayd base-blueonyx-glue perl-MIME-Lite >= 3.023-2 perl-Email-Date-Format >= 1.002-1 base-email-am blueonyx-z-push >= 1.3 php-pear-Mail >= 1.1.4
+REQUIRES = procmail sendmail cyrus-sasl-plain dovecot >= 2.2.15 poprelayd base-blueonyx-glue perl-MIME-Lite >= 3.023-2 perl-Email-Date-Format >= 1.002-1 base-email-am blueonyx-z-push >= 1.3 php-pear-Mail >= 1.1.4
 
 #########
 # some useful defines

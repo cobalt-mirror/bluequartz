@@ -1,7 +1,5 @@
 #!/usr/bin/perl -w -I/usr/sausalito/perl/ -I/usr/sausalito/handlers/base/email/
-# $Id: system.pl Mon 01 Mar 2010 08:41:56 PM CET mstauber $
-# Copyright 2000, 2001 Sun Microsystems, Inc., All rights reserved.
-# Copyright 2010 Team BlueOnyx, All rights reserved.
+# $Id: system.pl 
 
 use CCE;
 
@@ -12,7 +10,8 @@ use Sauce::Config;
 
 # Globals.
 my $Sendmail_mc = Email::SendmailMC;
-my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
+# This actually no longer exists and hasn't been around for a while:
+#my $Sendmail_flush_script = "/etc/rc.d/init.d/sendmail_flush_script";
 my $Sendmail_sysconfig_file = "/etc/sysconfig/sendmail";
 
 # These should be globals..
@@ -74,14 +73,17 @@ sub make_sendmail_mc
 	my $maxMessageSize_line;
 	my $maxRecipientsPerMessage_line;
 	my $smartRelay_line;
+	my $hideHeaders_line;
 	my $masqDomain_line;
 	my $deliveryMode_line;
 	my $delayChecks_line;
 
-	my %Printed_line = ( privacy => 0,
+	my %Printed_line = ( 
+		privacy => 0,
 		maxMessageSize => 0,
 		maxRecipientsPerMessage => 0,
 		smartRelay => 0,
+		hideHeaders => 0,
 		masqDomain => 0,
 		delayChecks => 0 );
 	my @Mailer_line = ();
@@ -131,56 +133,67 @@ sub make_sendmail_mc
 	    $delayChecks_line = "dnl FEATURE(delay_checks)dnl\n";
 	}
 
+	if( $obj->{hideHeaders} ) {
+	    $hideHeaders_line = "define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+	} else {
+	    $hideHeaders_line = "dnl define(`confRECEIVED_HEADER',`by \$j \$?r with \$r\$. id \$i; \$b')dnl\n";
+	}
+
 	my $mailer_lines = 0;
 	select $out;
 	while( <$in> ) {
 	    if( ( /^define\(`confPRIVACY_FLAGS'/o ||/^dnl define\(`confPRIVACY_FLAGS'/o ) && ! $Printed_line{'privacy'} ) {
-                 $Printed_line{'privacy'}++;
-		 print $privacy_line;
+			$Printed_line{'privacy'}++;
+			print $privacy_line;
 	    } elsif ( /^define\(`confMAX_MESSAGE_SIZE'/o || /^dnl define\(`confMAX_MESSAGE_SIZE'/o ) { #`
-		$Printed_line{'maxMessageSize'}++;
-		print $maxMessageSize_line;
-	    } elsif ( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) {
-		$Printed_line{'maxRecipientsPerMessage'}++;
-		print $maxRecipientsPerMessage_line;
+			$Printed_line{'maxMessageSize'}++;
+			print $maxMessageSize_line;
+	    } elsif (( /^define\(`confMAX_RCPTS_PER_MESSAGE'/o || /^dnl define\(`confMAX_RCPTS_PER_MESSAGE'/o ) && ! $Printed_line{'maxRecipientsPerMessage'}) {
+			$Printed_line{'maxRecipientsPerMessage'}++;
+			print $maxRecipientsPerMessage_line;
 	    } elsif ( /^define\(`SMART_HOST'/o || /^dnl define\(`SMART_HOST'/o ) { #`
-		$Printed_line{'smartRelay'}++;
-		print $smartRelay_line;
+			$Printed_line{'smartRelay'}++;
+			print $smartRelay_line;
 	    } elsif ( /^MASQUERADE_AS/o || /^dnl MASQUERADE_AS/o ) {
-		$Printed_line{'masqDomain'}++;
-		print $masqDomain_line;
+			$Printed_line{'masqDomain'}++;
+			print $masqDomain_line;
 	    } elsif ( /^define\(`confDELIVERY_MODE'/o || /dnl ^define\(`confDELIVERY_MODE'/o ) { #`
-		$Printed_line{'DeliveryMode'}++;
-		print $deliveryMode_line;
+			$Printed_line{'DeliveryMode'}++;
+			print $deliveryMode_line;
 	    } elsif ( /^FEATURE\(delay_checks/o || /^dnl FEATURE\(delay_checks/o ) {
-		$Printed_line{'delayChecks'}++;
-		print $delayChecks_line;
+			$Printed_line{'delayChecks'}++;
+			print $delayChecks_line;
 	    } elsif ( /^MAILER\(/o ) {
-                $Mailer_line[$mailer_lines] = $_;
-                $mailer_lines++;
+			$Mailer_line[$mailer_lines] = $_;
+			$mailer_lines++;
+		} elsif( ( /^define\(`confRECEIVED_HEADER'/o ||/^dnl define\(`confRECEIVED_HEADER'/o ) && ! $Printed_line{'hideHeaders'} ) {
+			$Printed_line{'hideHeaders'}++;
+			print $hideHeaders_line;
 	    } else {
-		print $_;
+			print $_;
 	    }
 	}
 
 	foreach my $key ( keys %Printed_line ) {
-		if ($Printed_line{$key} != 1) {
-                        if ($key == 'maxRecipientsPerMessage') {
+		if ($Printed_line{$key} == 0) {
+                        if ($key eq 'maxRecipientsPerMessage') {
                             print $maxRecipientsPerMessage_line;
-                        } elsif ($key == 'delayChecks') {
+                        } elsif ($key eq 'delayChecks') {
                             print $delayChecks_line;
+                        } elsif ($key eq 'hideHeaders') {
+                            print $hideHeaders_line;
                         } else {
-			    $cce->warn("error_writing_sendmail_mc");
-			    print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
+							$cce->warn("error_writing_sendmail_mc");
+							print STDERR "Writing sendmail_mc found $Printed_line{$key} occurences of $key\n";
                        }
 		}
  	}
 
-        if( $mailer_lines ) {
-            foreach my $line (@Mailer_line) {
-	        print $line;
-            }
-        }
+	if( $mailer_lines ) {
+		foreach my $line (@Mailer_line) {
+			print $line;
+		}
+	}
 
 	return 1;
 }
@@ -226,8 +239,8 @@ sub set_queue_time
 }
 
 # 
-# Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-# Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+# Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+# Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 # Copyright (c) 2003 Sun Microsystems, Inc. 
 # All Rights Reserved.
 # 

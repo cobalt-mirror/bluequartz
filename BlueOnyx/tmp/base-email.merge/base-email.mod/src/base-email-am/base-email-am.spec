@@ -1,7 +1,7 @@
 Summary: Active Monitor support for base-email-am
 Name: base-email-am
 Version: 1.3.1
-Release: 1BX02%{?dist}
+Release: 1BX03%{?dist}
 Vendor: %{vendor}
 License: Sun modified BSD
 Group: System Environment/BlueOnyx
@@ -25,7 +25,11 @@ This package contains binaries and scripts used by the Active Monitor
 subsystem for base-email-am.  
 
 %changelog
-* Thu Dec 05 2013 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX01
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX03
+- Some Systemd love in AM-Scripts.
+
+* Thu Dec 05 2013 Michael Stauber <mstauber@solarspeed.net> 1.3.1-0BX02
 - Removed .svn directory from rpm package. 
 
 * Wed Aug 31 2011 Michael Stauber <mstauber@solarspeed.net> 1.3.1-1BX01

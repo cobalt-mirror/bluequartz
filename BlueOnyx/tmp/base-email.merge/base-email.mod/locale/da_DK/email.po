@@ -635,3 +635,11 @@ msgstr "Z-Push er en open-source program til at synkronisere ActiveSync kompatib
 msgid "cap_serverEmail"
 msgstr "E-mail-indstillinger"
 
+###
+
+msgid "hideHeadersField"
+msgstr "Skjul Tidligere headere"
+
+msgid "hideHeadersField_help"
+msgstr "Når dette afkrydsningsfelt er markeret, så mailserveren vil skjule eventuelle tidligere overskrifter i e-mails, som det videregiver til fjerne destinationer. Oprindelsen af ​​de e-mails vil synes at være denne mailserver. Selv om det blev modtaget fra et andet sted. Dette har følgende fordele: Det skjuler den indenlandske IP-adresse postafsendere eller autoriserede mailservere, du relæ til. Nedadrettede: Hvis din server bruges til at sende SPAM, så de manglende ekstra headers gøre det sværere for dig at bestemme den virkelige oprindelse af disse e-mails. Så brug denne funktion med forsigtighed. Standard: ikke aktiveret."
+

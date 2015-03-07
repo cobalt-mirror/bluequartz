@@ -8,718 +8,530 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid	"CFaccessDenied"
-msgstr	"アクセスを拒否されました"
+msgid "CFaccessDenied"
+msgstr "アクセスが拒否されました"
 
-msgid	"CFauthNotAllowed"
-msgstr	" は無許可 "
+msgid "CFauthNotAllowed"
+msgstr "として動作するように許可されていません"
 
-msgid	"CFcolonInHostname"
-msgstr	"ホスト名にコロンは使えません"
+msgid "CFcolonInHostname"
+msgstr "ホスト名の部分では違法コロン"
 
-msgid	"CFdomainRequired"
-msgstr	"ドメインネームは必須です"
+msgid "CFdomainRequired"
+msgstr "必要なドメイン名"
 
-msgid	"CFinvalidHostname"
-msgstr	"ホスト名が不正です"
+msgid "CFinvalidHostname"
+msgstr "無効なホスト名"
 
-msgid	"CFinvalidListSyntax"
-msgstr	"宛先アドレスの List:; 文法が不正です"
+msgid "CFinvalidListSyntax"
+msgstr "リスト：;受信者のアドレスのための不正な構文"
 
-msgid	"CFnotAuthenticated"
-msgstr	"は認証されていません"
+msgid "CFnotAuthenticated"
+msgstr "認証されていません"
 
-msgid	"CFrealDomainRequired"
-msgstr	"実ドメインネームは必須です"
+msgid "CFrealDomainRequired"
+msgstr "必要な実際のドメイン名"
 
-msgid	"CFrelayDenied"
-msgstr ""
-"リレーは拒否されました。メールの宛先情報などを再度確認し、"
-"問題がなければメールソフトなどを再起動して下さい。"
+msgid "CFrelayDenied"
+msgstr "拒否されたリレーします。最初のメールをチェックしたり、メールクライアントを再起動してください。"
 
-msgid	"CFrelayDeniedFailed"
-msgstr "IP名の問い合わせに失敗したため、"
-"リレーは拒否されました。"
+msgid "CFrelayDeniedFailed"
+msgstr "拒否されたリレーします。 IP名の検索に失敗しました"
 
-msgid	"CFrelayDeniedForged"
-msgstr	"IP 名が虚偽と見なされるため、リレーは拒否されました。"
+msgid "CFrelayDeniedForged"
+msgstr "拒否されたリレーします。 IP名は、おそらく鍛造"
 
-msgid	"CFrelayDeniedTemp"
-msgstr ""
-"クライアントアドレス用の PTR レコード"
-"を解決できなかったため、リレーは一時的に拒否されました。"
+msgid "CFrelayDeniedTemp"
+msgstr "一時的に拒否されたリレーします。クライアントアドレス用のPTRレコードを解決できません。"
 
-msgid	"CFsenderDomainNoexist"
-msgstr	"差出人アドレスに指定されたドメインが見つかりません"
+msgid "CFsenderDomainNoexist"
+msgstr "送信者アドレスのドメインが存在しません"
 
-msgid	"CFuserAddressRequired"
-msgstr	"ユーザのアドレスが必要です"
+msgid "CFuserAddressRequired"
+msgstr "ユーザアドレスが必要"
 
-msgid	"IMAP"
-msgstr	"IMAP サービス"
+msgid "IMAP"
+msgstr "IMAPサービス"
 
-msgid	"POP"
-msgstr	"POP サービス"
+msgid "POP"
+msgstr "POPサービス"
 
-msgid	"SMTP"
-msgstr	"SMTP サービス"
+msgid "SMTP"
+msgstr "SMTPサービス"
 
-msgid	"activated"
-msgstr	"Status"
+msgid "advanced"
+msgstr "高度な"
 
-msgid	"activated_help"
-msgstr "ブラックリストの機能が稼動しているかどうか、"
-"ここで確かめます。"
+msgid "advanced_help"
+msgstr "このような配信スケジュールと最大メールサイズなどの高度な[[base-email.emailSettings]]を設定するには、ここをクリックしてください。"
 
-msgid	"activeField"
-msgstr "サービスの起動"
+msgid "aliasInUse"
+msgstr "申し訳ありませんが、電子メールエイリアス、[[VAR.name]]は、このシステム上ですでに使用されています。別のものをお選び下さい。"
 
-msgid	"activeField_help"
-msgstr "貴方がこのブラックリストサービスを起動したければ、"
-"このオプションを選択します。"
+msgid "amEmailGreen"
+msgstr "電子メールシステムは正常に動作しています。"
 
-msgid	"addmx"
-msgstr	"追加"
+msgid "amEmailNameTag"
+msgstr "電子メールサーバ"
 
-msgid	"addmx_help"
-msgstr "ここに新しい第2メールドメインを加えます。"
-
-msgid	"advanced"
-msgstr	"詳細"
-
-msgid	"advanced_help"
-msgstr	""
-"配信スケジュールや最大電子メールサイズなど、"
-"[[base-email.emailSetting""s]] の詳細を設定できます。"
-
-msgid	"aliasInUse"
-msgstr ""
-"[[VAR.name]] "
-"という電子メールエイリアスは既に使われています。"
-"別の名前をご指定ください。"
-
-msgid	"amEmailGreen"
-msgstr	"電子メールシステムは正常に機能しています。"
+msgid "amEmailRed"
+msgstr "電子メールシステムとの深刻な問題があります。"
 
-msgid	"amEmailNameTag"
-msgstr	"電子メールサーバ"
+msgid "amEmailYellow"
+msgstr "電子メールシステムに問題がある。"
 
-msgid	"amEmailRed"
-msgstr	"電子メールシステムに深刻な問題があります。"
+msgid "amIMAPBadResponse"
+msgstr "IMAPサーバーが不正な応答を与えた。"
 
-msgid	"amEmailYellow"
-msgstr	"電子メールシステムに問題があります。"
-
-msgid	"amIMAPBadResponse"
-msgstr	"IMAP サーバが正しく応答しませんでした。"
-
-msgid	"amIMAPDetails"
-msgstr	"IMAP（Internet Message Access Protocol）サーバの詳細"
-
-msgid	"amIMAPNameTag"
-msgstr	"IMAP サーバ"
-
-msgid	"amIMAPNotRunning"
-msgstr ""
-"IMAP "
-"サーバは動作しておらず、起動することもできませんでした。"
-"「[[base-apache.amAdmservNameTag]]」で、IMAP "
-"サーバを一旦オフにして「保存」ボタンをクリックしてから、"
-"もう一度オンにして 再起動を試みて下さい。それでも IMAP "
-"サーバが正しく起動しない場合には、[[base-alpine.serverconfig]]"
-"の [[base-power.power]] メニューにある "
-"「[[base-power.reboot]]」ボタンをクリックして、"
-"サーバ本体を再起動してください。それでも IMAP "
-"サーバが起動しない場合には、[[base-sauce-basic.techSupportURL]]"
-"にあるテクニカルサポートサービスをご利用ください。"
-
-msgid	"amIMAPStatusOK"
-msgstr	"IMAP サーバは正常に動作しています。"
-
-msgid	"amPOP3BadResponse"
-msgstr	"POP サーバが正しく応答しませんでした。"
-
-msgid	"amPOP3Details"
-msgstr	"POP（Post Office Protocol）サーバの詳細"
-
-msgid	"amPOP3NameTag"
-msgstr	"POP サーバ"
-
-msgid	"amPOP3NotRunning"
-msgstr ""
-"POP "
-"サーバは動作しておらず、起動することもできませんでした。"
-"「[[base-apache.amAdmservNameTag]]」で、POPサーバを"
-"一旦オフにして「保存」ボタンをクリックしてから、"
-"再起動を試みて下さい。POP サーバが"
-"正しく起動しない場合には、[[base-alpine.serverconfig]] "
-"の [[base-power.power]] メニューにある "
-"「[[base-power.reboot]]」ボタンをクリックして、"
-"サーバ本体を再起動してください。それでも POP サーバ"
-"が起動しない場合には、[[base-sauce-basic.techSupportURL]] "
-"にあるテクニカルサポートサービスをご利用ください。"
-
-msgid	"amPOP3StatusOK"
-msgstr	"POP サーバは正常に動作しています。"
-
-msgid	"amSMTPBadResponse"
-msgstr	"SMTP サーバが正しく応答しませんでした。"
-
-msgid	"amSMTPDetails"
-msgstr	"SMTP（Simple Mail Transfer Protocol）サーバの詳細"
-
-msgid	"amSMTPNameTag"
-msgstr	"SMTP サーバ"
-
-msgid	"amSMTPNotRunning"
-msgstr ""
-"SMTP サーバは動作しておらず、"
-"起動することもできませんでした。過剰負荷のためSMTP "
-"サーバが一時的にシャットダウンしている可能性もありますので、"
-"アクティブモニターで 負荷をご確認ください。"
-"負荷に問題がない場合には、「[[base-apache.amAdmservNameTag]]」"
-"で SMTP サーバを一旦オフにして「保存」ボタンをクリックしてから、"
-"もう一度オンにして 再起動を試みて下さい。 SMTP "
-"サーバが正しく起動しない場合には、[[base-alpine.serverconfig]]"
-"の[[base-power.power]] "
-"メニューにある「[[base-power.reboot]]」ボタンをクリックして、"
-"サーバ本体を再起動してください。それでも SMTP "
-"サーバを起動しない場合には、[[base-sauce-basic.techSupportURL]]"
-"にあるテクニカルサポートサービスをご利用ください。"
-
-msgid	"amSMTPStatusOK"
-msgstr	"SMTP サーバは正常に動作しています。"
-
-msgid	"apopEnabled"
-msgstr	"APOP (認証 POP)"
-
-msgid	"apopEnabled_help"
-msgstr	"このユーザには APOP (認証 POP) が有効にされています。"
-
-msgid	"apopFullText"
-msgstr	"APOP を有効にする"
-
-msgid	"apopFullText_help"
-msgstr	"APOP (認証 POP) を有効にします。"
-
-msgid	"apopPwRequired"
-msgstr "APOP の使用をユーザに許可するには、"
-"パスワードの指定が必要です。"
-
-msgid	"badUser"
-msgstr ""
-"メールサーバ設定ファイルを削除または手動で"
-"変更してある場合には、元のファイルのオリジナルに戻して"
-"もう一度 試して下さい。"
-
-msgid	"bad_blockUserField"
-msgstr ""
-"「[[base-email.blockUserField]]」フィールドに"
-"入力したアドレスが不正です。電子メールアドレス"
-"を正しい形式で入力してください。デフォルトでは、"
-"空白となります。記入例は user@example.com などです。"
-
-msgid	"basic"
-msgstr	"基本"
-
-msgid	"basic_help"
-msgstr	"基本的な[[base-email.emailSettings]]を設定できます。"
-
-msgid	"blackList"
-msgstr "ブラックリスト・サービス"
-
-msgid	"blackList_help"
-msgstr ""
-"ブラックリスト・サービスを行う異なるホストのリストです。"
-"記入例は 'zen.spamhaus.org' などです。"
-
-msgid	"blacklist"
-msgstr "ブラックリスト登録"
-
-msgid	"blacklistHostExists_error"
-msgstr ""
-"貴方が登録したいブラックリストの<FQDN>を入力します、"
-"記入例は 'zen.spamhaus.org' などです。"
-
-msgid	"blacklistHostField"
-msgstr "ブラックリストサービス"
-
-msgid	"blacklistHostField_help"
-msgstr ""
-"貴方が登録したいブラックリストの<FQDN>を入力します、"
-"記入例は 'zen.spamhaus.org' などです。"
-
-msgid	"blacklistRemoveEntry"
-msgstr ""
-"本当に [[VAR.blacklistHost]] ブラックリスト・エントリーを "
-"削除しますか？"
-
-msgid	"blacklist_help"
-msgstr "電子メールサービスにブラックリストに載せる"
-"DNSBLを登録するにはここをクリックして下さい。"
-
-msgid	"blockHostField"
-msgstr "これらのホスト／ドメインからの電子メールの受信を"
-"拒否する："
-
-msgid	"blockHostField_help"
-msgstr ""
-"このサーバへの電子メールの配信を禁止したいホスト名や"
-"ドメインネームがあれば、を入力してください。"
-"[base-email.blockHostField_rule]]"
-
-msgid	"blockHostField_rule"
-msgstr ""
-"ホスト名またはドメインネームを正しい形式で入力してください。"
-"デフォルトでは、この項目は空白です。"
-"記入例は  www.spam.com、spam.com などです。"
-	"など）"
-
-msgid	"blockUserField"
-msgstr	"これらのユーザからの電子メールの受信を拒否する："
-
-msgid	"blockUserField_help"
-msgstr ""
-"このサーバへの電子メールの配信を禁止したいユーザがいれば、"
-"その電子メールアドレスを入れて下さい。"
-"[base-email.blockUserField_rule]]"
-	"]]"
-
-msgid	"blockUserField_rule"
-msgstr ""
-"電子メールアドレスを正しい形式で入力してください。"
-"デフォルトでは、この項目は空白です。"
-"記入例は user@spam.com などです。"
-
-msgid	"cantCreateAlias"
-msgstr	"このユーザの電子メールエイリアスは設定されていません。"
-
-msgid	"cantEditFile"
-msgstr ""
-"電子メール設定ファイルの更新中にエラーが発生しました。"
-"[[base-email.badUser]]"
-
-msgid	"cantGetUserInfo"
-msgstr	"Vacation は CCE からユーザ情報を入手できませんでした。"
-
-msgid	"could_not_tie_apop"
-msgstr	"システムエラーが発生しました。[[base-email.badUser]]"
-
-msgid	"couldnt_create_args_file"
-msgstr ""
-"電子メール設定ファイルの更新中にエラーが"
-"発生しました。[[base-email.badUser]]"
-
-msgid	"couldnt_enable_imap_pop"
-msgstr ""
-"システムの設定に失敗したため、POP または IMAP "
-"サーバをリセットできませんでした。[[base-email.badUser]]"
-
-msgid	"couldnt_enable_sendmail"
-msgstr ""
-"システムの設定に失敗したため、SMTP "
-"サーバを起動できませんでした。[[base-email.badUser]]"
-
-msgid	"couldnt_make_map"
-msgstr ""
-"電子メールサーバマップファイルの作成中にエラーが"
-"発生しました。[[base-email.badUser]]"
-
-msgid	"couldnt_write_sendmailcf"
-msgstr ""
-"SMTP "
-"サーバ設定ファイルの書き込み中にエラーが"
-"発生しました。[[base-email.badUser]]"
-
-msgid	"deferField"
-msgstr "一時処理"
-
-msgid	"deferField_help"
-msgstr ""
-"通常メールサーバーは、入って来るメールの中に"
-"ブラックリストを見つけると "
-"相手方のサーバーにエラーを返します。"
-"もし貴方がこのフィールドをクリックすると、"
-"そのエラーメッセージが一時的に延期されます。"
-
-msgid "delayChecksField"
-msgstr "delay_checks の有効"
-
-msgid "delayChecksField_help"
-msgstr ""
-"delay_checks は Sendmail の 接続確認処理の順番を変更（後回"
-"しに）します。 これは もし貴方が RBLブラックリスト機能を オン"
-" にしている場合、非常に良いレスポンスを生むでしょう。"
-
-msgid	"domainExists_error"
-msgstr ""
-"そのドメイン名は第2メールサーバーの項目で"
-"すでに使用されています。"
-
-msgid	"domainExists_in_relay_error"
-msgstr ""
-"そのドメイン名はメールリレーの項目で"
-"すでに使用されています。"
-
-msgid	"domainExists_in_site_error"
-msgstr ""
-"そのドメイン名はサーバーのサイトの項目で"
-"すでに使用されています。"
-
-msgid	"domainField"
+msgid "amIMAPDetails"
+msgstr "インターネットメッセージアクセスプロトコル（IMAP）サーバーの詳細"
+
+msgid "amIMAPNameTag"
+msgstr "IMAPサーバ"
+
+msgid "amIMAPNotRunning"
+msgstr "IMAPサーバーが動作していないと再起動できませんでした。 [[base-apache.amAdmservNameTag]]では、これが問題を修正するかどうかを確認するために入れ直しIMAPサーバーを回してみてください。 IMAPサーバがまだ起動できない場合は、[[base-alpine.serverconfig]]下[[base-power.power]]メニューの[[base-power.reboot]]]ボタンをクリックして、サーバー自体を再起動してください。 IMAPサーバがまだ起動できない場合は、テクニカルサポートについて[[base-sauce-basic.techSupportURL]]を参照してください。"
+
+msgid "amIMAPStatusOK"
+msgstr "IMAPサーバーが正常に動作しています。"
+
+msgid "amPOP3BadResponse"
+msgstr "POPサーバは、不正な応答を与えた。"
+
+msgid "amPOP3Details"
+msgstr "ポストオフィスプロトコル（POP）サーバーの詳細"
+
+msgid "amPOP3NameTag"
+msgstr "POPサーバー"
+
+msgid "amPOP3NotRunning"
+msgstr "POPサーバーが実行されていないと再起動できませんでした。 [[base-apache.amAdmservNameTag]]では、これが問題を修正するかどうかを確認するために入れ直しPOPサーバを回してみてください。 POPサーバーがまだ起動できない場合は、[[base-alpine.serverconfig]]下[[base-power.power]]メニューの[[base-power.reboot]]]ボタンをクリックして、サーバー自体を再起動してください。 POPサーバーがまだ起動できない場合は、テクニカルサポートについて[[base-sauce-basic.techSupportURL]]を参照してください。"
+
+msgid "amPOP3StatusOK"
+msgstr "POPサーバーは正常に動作しています。"
+
+msgid "amSMTPBadResponse"
+msgstr "SMTPサーバが悪い応答を与えた。"
+
+msgid "amSMTPDetails"
+msgstr "簡易メール転送プロトコル（SMTP）サーバーの詳細"
+
+msgid "amSMTPNameTag"
+msgstr "SMTPサーバー"
+
+msgid "amSMTPNotRunning"
+msgstr "SMTPサーバが稼働していないと再起動できませんでした。 SMTPサーバは、極端な負荷の下で、一時的に自分自身をシャットダウンすることがあります。サーバーのCPU負荷を確認してください。負荷が問題であると表示されない場合は、[[base-apache.amAdmservNameTag]]に行き、これが問題を修正するかどうかを確認するために入れ直し、SMTPサーバーを回してみてください。 SMTPサーバがまだ起動できない場合は、[[base-alpine.serverconfig]]下[[base-power.power]]メニューの[[base-power.reboot]]]ボタンをクリックして、サーバー自体を再起動してみてください。 SMTPサーバがまだ起動できない場合は、テクニカルサポートについて[[base-sauce-basic.techSupportURL]]を参照してください。"
+
+msgid "amSMTPStatusOK"
+msgstr "SMTPサーバが正常に動作している。"
+
+msgid "apopEnabled"
+msgstr "認証されたPOP（APOP）"
+
+msgid "apopEnabled_help"
+msgstr "認証されたPOP（APOP）は、このユーザーに対して有効になっています。"
+
+msgid "apopFullText"
+msgstr "APOPを有効にする"
+
+msgid "apopFullText_help"
+msgstr "認証されたPOP（APOP）を有効にします。"
+
+msgid "apopPwRequired"
+msgstr "そのユーザーのパスワードがAPOPを有効にするために必要です。"
+
+msgid "badUser"
+msgstr "メールサーバの設定ファイルが削除または手動で変更された場合は、元のバージョンを復元し、再度お試しください。"
+
+msgid "bad_blockUserField"
+msgstr "申し訳ありませんが、あなたは[[base-email.blockUserField]]に無効なアドレスを入力しました。適切な形式のメールアドレスを入力してください。デフォルト値は空のフィールドを残しておくことです。例えば、user@example.comは有効なエントリです。"
+
+msgid "basic"
+msgstr "基本"
+
+msgid "basic_help"
+msgstr "基本[[base-email.emailSettings]]を設定するには、ここをクリックしてください。"
+
+msgid "blockHostField"
+msgstr "ホスト/ドメインからのメールをブロック"
+
+msgid "blockHostField_help"
+msgstr "このサーバーにメールを配信するために許可されていないホスト名とドメイン名を入力します。 [[base-email.blockHostField_rule]]"
+
+msgid "blockHostField_rule"
+msgstr "適切にフォーマットされたホスト名またはドメイン名を入力してください。デフォルト値は、このフィールドを空のままにすることです。たとえば、www.example.comとexample.comは有効なエントリです。"
+
+msgid "blockUserField"
+msgstr "ユーザーからのメールをブロック"
+
+msgid "blockUserField_help"
+msgstr "このサーバーにメールを配信するために許可されていない利用者の電子メールアドレスを入力してください。 [[base-email.blockUserField_rule]]"
+
+msgid "blockUserField_rule"
+msgstr "適切な形式のメールアドレスを入力してください。デフォルト値は、このフィールドを空のままにすることです。例えば、user@example.comは有効なエントリです。"
+
+msgid "cantCreateAlias"
+msgstr "メールエイリアスは、このユーザのために作成されていませんでした。"
+
+msgid "cantEditFile"
+msgstr "電子メールの設定ファイルを編集しようとしているときに申し訳ありませんが、エラーが発生しました。 [[base-email.badUser]]"
+
+msgid "cantGetUserInfo"
+msgstr "休暇は、CCEからユーザー情報を取得できませんでした。"
+
+msgid "could_not_tie_apop"
+msgstr "申し訳ありませんが、システムエラーが発生しました。 [[base-email.badUser]]"
+
+msgid "couldnt_create_args_file"
+msgstr "電子メールの設定ファイルを編集しようとしているときに申し訳ありませんが、エラーが発生しました。 [[base-email.badUser]]"
+
+msgid "couldnt_enable_imap_pop"
+msgstr "申し訳ありませんが、POPまたはIMAPサーバーがあるため、システム構成障害が、現時点ではリセットできませんでした。 [[base-email.badUser]]"
+
+msgid "couldnt_enable_sendmail"
+msgstr "申し訳ありませんが、SMTPサーバはシステム構成の障害に起因し、この時点で開始できませんでした。 [[base-email.badUser]]"
+
+msgid "couldnt_make_map"
+msgstr "電子メールサーバのマップファイルを作成しようとしているときに申し訳ありませんが、エラーが発生しました。 [[base-email.badUser]]"
+
+msgid "couldnt_write_sendmailcf"
+msgstr "SMTPサーバの設定ファイルを記述しようとしているときに申し訳ありませんが、エラーが発生しました。 [[base-email.badUser]]"
+
+msgid "duplicateKeys"
+msgstr "ブロッキングおよび中継情報が更新できませんでした。中継とブロッキングの両方にリストされている重複したホストまたはドメインがあります。ホストまたはドメインからのメールがブロックされ、同時に中継することができません。"
+
+msgid "emailServers"
+msgstr "電子メールサーバ"
+
+msgid "emailServers_help"
+msgstr "[[base-email.emailServers]]を設定するには、ここをクリックしてください。"
+
+msgid "emailServers_menu"
+msgstr "Eメール"
+
+msgid "emailServices"
+msgstr "Eメールサービス"
+
+msgid "emailServices_help"
+msgstr "[[base-email.emailServices]]を設定するには、ここをクリックしてください。"
+
+msgid "emailSettings"
+msgstr "電子メールサーバの設定"
+
+msgid "enableApop"
+msgstr "APOPを有効にする"
+
+msgid "enableApop_help"
+msgstr "ユーザーに対してAPOPを有効にします。 APOPは、POP3サーバへの認証の安全な方法です。このオプションでは、FetchmailにまたはEudoraのような特定のメールリーダーでのみ使用できます。"
+
+msgid "enableImapField"
+msgstr "IMAPサーバを使用可能に"
+
+msgid "enableImapField_help"
+msgstr "オンまたはオフにインターネットメッセージアクセスプロトコル（IMAP）サービスをオンにします。このサービスを有効にすると、ユーザーがIMAPをサポートする電子メールクライアントを使用して、このサーバアプライアンスから電子メールを取得することができます。 IMAPは、ユーザーがサーバー上の電子メールを保存することができますが、ユーザーが自分のメールを操作している時間内にサーバーへの継続的なアクセスを必要とします。"
+
+msgid "enableImapsField"
+msgstr "IMAPSサーバを有効にする"
+
+msgid "enableImapsField_help"
+msgstr "TLS / SSLオンまたはオフ（IMAPS）サービス経由でインターネットメッセージアクセスプロトコルをオンにします。このサービスを有効にすると、ユーザーはIMAPSをサポートする電子メールクライアントを使用して、このサーバアプライアンスから電子メールを取得することができます。 IMAPSは、ユーザーがサーバー上の電子メールを保存することができますが、ユーザーが自分のメールを操作している時間内にサーバーへの継続的なアクセスを必要とします。"
+
+msgid "enablePopField"
+msgstr "POPサーバーを有効にする"
+
+msgid "enablePopField_help"
+msgstr "オンまたはオフにポストオフィスプロトコル（POP）メール検索サービスをオンにします。このサービスを有効にすると、ユーザーはほとんどの標準的な電子メールクライアントを使用して、このサーバアプライアンスから電子メールを取得することができます。"
+
+msgid "enablePopsField"
+msgstr "POPSサーバを有効"
+
+msgid "enablePopsField_help"
+msgstr "TLS / SSLオンまたはオフ（POPS）メール検索サービスを介してポストオフィスプロトコルをオンにします。このサービスを有効にすると、ユーザーはほとんどの標準的な電子メールクライアントを使用して、このサーバアプライアンスから電子メールを取得することができます。"
+
+msgid "enableSMTPAuthField"
+msgstr "SMTP認証を有効にする"
+
+msgid "enableSMTPAuthField_help"
+msgstr "簡易メール転送プロトコル（SMTP）サービスをオンまたはオフにします。"
+
+msgid "enableSMTPSField"
+msgstr "SMTPSサーバを有効にする"
+
+msgid "enableSMTPSField_help"
+msgstr "オンまたはオフにSSLサービス経由でSMTPをオンにします。"
+
+msgid "enableServersField"
+msgstr "SMTPサーバーを有効にする"
+
+msgid "enableServersField_help"
+msgstr "簡易メール転送プロトコル（SMTP）サービスをオンまたはオフにします。 SMTPを有効にすると、このサーバアプライアンスが他のサーバーとの間でインターネット電子メールを送受信するためのSMTPサーバとして動作するようになります。 SMTPは、ユーザーが電子メールを送信するため、このサーバアプライアンスを使用することができます。"
+
+msgid "enableSubmissionPortField"
+msgstr "サブミッションポートを有効にする"
+
+msgid "enableSubmissionPortField_help"
+msgstr "オンまたはオフにサブミッションポート（587）をオンにします。"
+
+msgid "imapConnectRateField"
+msgstr "最大IMAP接続率"
+
+msgid "imapConnectRateField_help"
+msgstr "毎分最大接続数を入力してください。接続速度がこの制限に達した場合、新しい接続は拒否されます。"
+
+msgid "imapConnectRateField_invalid"
+msgstr "指定された範囲内で数値を入力してください。デフォルト値は1024です。"
+
+msgid "imapConnectRateField_missing"
+msgstr "[[base-email.imapConnectRateField_invalid]]"
+
+msgid "masqAddressCantBeLocalhost"
+msgstr "申し訳ありませんが、強制送信者ドメインがlocalhostにすることはできません。"
+
+msgid "masqAddressField"
+msgstr "強制送信者ドメイン"
+
+msgid "masqAddressField_help"
+msgstr "このサーバーのユーザーから送信される電子メールのFrom：アドレス上書きするドメイン名またはIPアドレスを入力します。この機能は、ドメインマスカレードと呼ばれています。 [[base-email.masqAddressField_rule]]"
+
+msgid "masqAddressField_rule"
+msgstr "適切にフォーマットされたIPアドレス、ホスト名、またはドメイン名を入力してください。デフォルト値は、このフィールドを空のままにすることです。たとえば、192.168.1.100、www.example.comとexample.comは有効なエントリです。"
+
+msgid "maxEmailSizeField"
+msgstr "Eメールの最大サイズ（MB）"
+
+msgid "maxEmailSizeField_help"
+msgstr "このサーバで送受信する電子メールメッセージの最大サイズを設定します。 [[base-email.maxEmailSizeField_rule]]"
+
+msgid "maxEmailSizeField_rule"
+msgstr "0以上の整数を入力してください。デフォルト値は、このサーバーが任意のサイズの電子メールメッセージを送受信できるようになりますどのこのフィールドを空のままにすることです。"
+
+msgid "nonExistentUser"
+msgstr "[[VAR.users]]を：次のローカルユーザ名が存在しないため、転送が有効にすることはできません。転送アドレスのリストからこれらのユーザーを削除、または転送を有効にする前にユーザーを作成してください。"
+
+msgid "popConnectRateField"
+msgstr "最大のPOP接続レート"
+
+msgid "popConnectRateField_help"
+msgstr "[[base-email.imapConnectRateField_help]]"
+
+msgid "popConnectRateField_invalid"
+msgstr "指定された範囲内で数値を入力してください。デフォルト値は80です。"
+
+msgid "popConnectRateField_missing"
+msgstr "[[base-email.popConnectRateField_invalid]]"
+
+msgid "popRelayField"
+msgstr "POP認証リレー"
+
+msgid "popRelayField_help"
+msgstr "POP認証によるSMTPリレーの信頼を有効にするためにチェックしてください。チェックした場合、成功してメールをチェックするPOPを使用するすべてのユーザーは、SMTPサービスを使用して電子メールを送信するために30分間信頼されます。この機能は、頻繁に旅行するユーザのために適している。"
+
+msgid "queue0"
+msgstr "即時の"
+
+msgid "queue1440"
+msgstr "毎日"
+
+msgid "queue15"
+msgstr "15分ごと"
+
+msgid "queue30"
+msgstr "30分ごと"
+
+msgid "queue360"
+msgstr "6時間ごと"
+
+msgid "queue60"
+msgstr "毎時"
+
+msgid "queueTimeField"
+msgstr "納期予定"
+
+msgid "queueTimeField_help"
+msgstr "このサーバアプライアンスは、送信メールを配信する頻度を設定します。即納可能な限り迅速にメールを送信しますが、フルタイムのインターネット接続が必要です。定期的な送達は、ダイヤルオンデマンドなどのパートタイムのインターネット接続での使用に最適です。"
+
+msgid "receiveField"
+msgstr "メールホスト/ドメイン宛ての受信"
+
+msgid "receiveField_help"
+msgstr "このサーバーが電子メールを受信する対象のカスタムホスト名またはドメイン名のリストを入力します。たとえば、www.example.comとexample.comは有効なエントリです。"
+
+msgid "receiveField_rule"
+msgstr "適切にフォーマットされたホスト名またはドメイン名を入力してください。デフォルト値は、サーバーアプライアンスの完全修飾ドメイン名です。たとえば、www.example.comとexample.comは有効なエントリです。"
+
+msgid "relayField"
+msgstr "ホスト/ドメイン/ IPアドレスからのメールをリレー"
+
+msgid "relayField_help"
+msgstr "このサーバーを介して電子メールを中継することを許可されたIPアドレス、ホスト名またはドメイン名を入力してください。どこから接続しているマシンのIPアドレス、ホストまたはドメイン名がこのフィールドに入力されていない限り、ユーザーはこのサーバーを介して送信する電子メールを送信することはできません。 [[base-email.relayField_rule]]"
+
+msgid "relayField_rule"
+msgstr "このサーバーを使用して電子メールをリレーするために信頼されるIPアドレス、ホスト名とドメイン名のリストを入力してください。ネットワークは、0を使用して指定することができる。たとえば、サブネットマスク255.255.0.0を持つネットワーク192.168.1.1のリレーができるように、アドレス192.168.0.0を指定してください。"
+
+msgid "smartRelayField"
+msgstr "スマートリレーサーバ"
+
+msgid "smartRelayField_help"
+msgstr "すべての送信メールがルーティングされるを介して電子メールサーバの完全修飾ドメイン名を入力します。"
+
+msgid "smartRelayField_rule"
+msgstr "適切にフォーマットされた完全修飾ドメイン名を入力してください。デフォルト値は、このフィールドを空のままにすることです。たとえば「example.com」は有効なエントリです。"
+
+msgid "mx"
+msgstr "セカンダリメールサーバ"
+
+msgid "mx_help"
+msgstr "セカンダリメール·サービスを構成するには、ここをクリックしてください。"
+
+msgid "mx2List"
+msgstr "セカンダリメール·サーバリスト"
+
+msgid "addmx"
+msgstr "加える"
+
+msgid "addmx_help"
+msgstr "ここに新しいセカンダリメールドメインを追加します。"
+
+msgid "secondaryDomain"
+msgstr "セカンダリサービス"
+
+msgid "secondaryDomain_help"
+msgstr "これは、このサーバ上でセカンダリメールサービスを持っているドメインのリストです。"
+
+msgid "secondarySettings"
+msgstr "二次設定"
+
+msgid "domainField"
 msgstr "ドメイン名"
 
-msgid	"domainField_help"
-msgstr ""
-"好きなドメイン名を入力してください。 "
-"貴方は第2メールサーバーを追加できます。"
+msgid "domainField_help"
+msgstr "あなたはどのセカンダリmailserviceとを追加したいしたいドメイン名を入力します。"
 
-msgid	"duplicateKeys"
-msgstr ""
-"受信拒否とメールリレーに関する情報を更新できませんでした。"
-"拒否とメールリレー許可は定義が重なり合う事が許されません。"
-"同一のホストまたはドメインからの電子メールの受信拒否と"
-"リレーは同時に行行えません。"
+msgid "maptoField"
+msgstr "メールサーバー"
 
-msgid	"emailServers"
-msgstr	"電子メールサーバ"
+msgid "maptoField_help"
+msgstr "ドメインのための主要なメールサーバーを入力してください。"
 
-msgid	"emailServers_help"
-msgstr	"[[base-email.emailServers]]を設定できます。"
+msgid "domainExists_in_relay_error"
+msgstr "ドメイン名は、リレーメールフィールドですでに使用されています。"
 
-msgid	"emailServers_menu"
-msgstr	"電子メール"
+msgid "domainExists_in_site_error"
+msgstr "ドメイン名は、サーバー上のサイトで既に使用されています。"
 
-msgid	"emailServices"
-msgstr	"電子メールサービス"
+msgid "domainExists_error"
+msgstr "ドメイン名は、セカンダリメールサーバ部ですでに使用されています。"
 
-msgid	"emailServices_help"
-msgstr	"[[base-email.emailServices]]を設定できます。"
+msgid "mxRemoveEntry"
+msgstr "あなたは[[VAR.mxHost]] MXサーバー·レコードを削除してもよろしいですか？"
 
-msgid	"emailSettings"
-msgstr	"電子メールサーバの設定"
+msgid "userEmail"
+msgstr "ユーザーのための電子メールオプション"
 
-msgid	"enableApop"
-msgstr	"APOP を有効にする"
+msgid "blacklist"
+msgstr "ブラックリスト"
 
-msgid	"enableApop_help"
-msgstr ""
-"このユーザが APOP を使えるようにできます。"
-"APOP (認証 POP) は、POP3 "
-"サーバに対する安全な認証方式で、Fetchmail や Eudora "
-"などのメールクライアントでサポートされています。"
+msgid "blacklist_help"
+msgstr "電子メールサービスへのDNSBLブラックリストを追加するには、ここをクリックしてください。"
 
-msgid	"enableImapField"
-msgstr	"IMAP サーバを有効にする"
+msgid "blackList"
+msgstr "ブラックリスト·サービス"
 
-msgid	"enableImapField_help"
-msgstr ""
-"IMAP（Internet Message Access "
-"Protocol）を有効にするかどうかを指定します。"
-"IMAP を有効にすると、ユーザは "
-"IMAP 対応の電子メールクライアントを使って電子メール"
-"を受信できます。IMAP を使うと、"
-"ユーザはサーバ上にある電子メールをダウンロードしないで"
-"直接読むことができます。"
-"他方、IMAP でメールを操作している間はサーバーへのアクセス"
-"が維持し続けなければならない、という必要が生じます。"
+msgid "blackList_help"
+msgstr "これはブラックリストのサービスを提供するさまざまなホストのリストである。すなわち 'zen.spamhaus.org'。"
 
-msgid	"enableImapsField"
-msgstr	"IMAPS サーバを有効にする"
+msgid "activated"
+msgstr "ステータス"
 
-msgid	"enableImapsField_help"
-msgstr ""
-	"IMAPS（Internet Message Access Protocol over "
-	"TLS/SSL）を有効にするかどうかを指定します。IMAPS "
-	"を有効にすると、ユーザは IMAPS "
-	"対応の電子メールクライアントを使って電子メールを受信できます。IMAPS "
-	"を使うと、ユーザはサーバ上にある電子メールをダウンローしないで直接読"
-	"直接読むことができます。"
-	"他方、IMAP でメールを操作している間はサーバーへのアクセス"
-	"を維持し続けなければならない、という必要が生じます。"
+msgid "activated_help"
+msgstr "ブラックリストエントリがアクティブであるかどうかここでは見ることができます。"
 
-msgid	"enablePopField"
-msgstr	"POP サーバを有効にする"
+msgid "blacklistHostExists_error"
+msgstr "ブラックリスト·サービスは、すでに別のものにホスト名を変更、追加されています。"
 
-msgid	"enablePopField_help"
-msgstr ""
-"POP（Post Office "
-"Protocol）メール受信サービスを有効にするかどうかを"
-"指定します。POP "
-"を有効にすると、ユーザは一般的な電子メールクライアントを"
-"使ってこのサーバから電子メールをダウンロードし"
-"パソコン上で読む事ができます。"
+msgid "blacklistRemoveEntry"
+msgstr "あなたは[[VAR.blacklistHost]]ブラックリスト·サービス·エントリを削除してもよろしいですか？"
 
-msgid	"enablePopsField"
-msgstr	"POPS サーバを有効にする"
+msgid "blacklistHostField"
+msgstr "ブラックリストサービス"
 
-msgid	"enablePopsField_help"
-msgstr ""
-"POPS（Post Office Protocol over "
-"TLS/SSL）メール受信サービスを有効にするかどうかを"
-"指定します。POPS "
-"を有効にすると、ユーザは一般的な電子メールクライアントを"
-"使ってこのサーバから電子メールを暗号化データとして"
-"ダウンロードしパソコン上で読む事ができます。"
+msgid "blacklistHostField_help"
+msgstr "入力する<FQDN>使用するブラックリストのサービス、すなわち。 'zen.spamhaus.org'。"
 
-msgid	"enableSMTPAuthField"
-msgstr	"SMTP Auth を有効にする"
+msgid "deferField"
+msgstr "延期一時"
 
-msgid	"enableSMTPAuthField_help"
-msgstr	"SMTP Auth を有効にするかどうかを指定します。"
+msgid "deferField_help"
+msgstr "このフィールドは、メール·サーバーをクリックすると、ブラックリストサービスに至る問題がある場合は、受信メールサーバ、したがって一時保留するメッセージを一時的なエラーが返されます。メールサーバのデフォルトの動作は、それがブラックリスト·サービスに到達できない場合、メールを受け入れることです。"
 
-msgid	"enableSMTPSField"
-msgstr	"SMTPS サーバを有効にする"
+msgid "activeField"
+msgstr "サービスをアクティブにする"
 
-msgid	"enableSMTPSField_help"
-msgstr	"SMTP over SSL を有効にするかどうかを指定します。"
+msgid "activeField_help"
+msgstr "このブラックリストのサービスを有効にする場合は、このオプションを選択します。"
 
-msgid	"enableServersField"
-msgstr	"SMTP サーバを有効にする"
+msgid "vacationSubject"
+msgstr "からの自動返信"
 
-msgid	"enableServersField_help"
-msgstr	"SMTP（Simple Mail Transfer "
-	"Protocol）を有効にするかどうかを指定します。SMTP "
-	"を有効にすると、このサーバを SMTP "
-	"サーバとして使い、インターネット上にある他のサーバとの間で"
-	"電子メールを送受信できます。"
+msgid "amSMTPAuthBadResponse"
+msgstr "SASLAUTHd（SMTP-AUTH）サーバーが不正な応答を与えた。"
 
-msgid	"enableSubmissionPortField"
-msgstr	"サブミッションポートを有効にする"
+msgid "amSMTPAuthDetails"
+msgstr "SASLAUTHd（SMTP-AUTH）サーバーの詳細"
 
-msgid	"enableSubmissionPortField_help"
-msgstr	"サブミッションポートでのメール送受信を有効にします。"
+msgid "amSMTPAuthNameTag"
+msgstr "SASLAUTHdサーバー"
+
+msgid "amSMTPAuthNotRunning"
+msgstr "SASLAUTHdサーバが稼働していないと再起動できませんでした。 [[base-apache.amAdmservNameTag]]では、これが問題を修正するかどうかを確認するためにもう一度入れ直し、SMTP-AUTHサーバーを回してみてください。 SMTP-AUTHのサーバーがまだ起動できない場合は、[[base-alpine.serverconfig]]下[[base-power.power]]メニューの[[base-power.reboot]]]ボタンをクリックして、サーバー自体を再起動してみてください。 SMTP-AUTHのサーバーがまだ起動できない場合は、テクニカルサポートについて[[base-sauce-basic.techSupportURL]]を参照してください。"
+
+msgid "amSMTPAuthStatusOK"
+msgstr "SMTP-AUTHサーバーが正常に動作しています。"
+
+msgid "ampopRelayBadResponse"
+msgstr "POP認証リレーサーバが不正な応答を与えた。"
+
+msgid "ampopRelayDetails"
+msgstr "POP認証リレーサービスの詳細"
+
+msgid "ampopRelayNameTag"
+msgstr "POP認証リレーサービス"
+
+msgid "ampopRelayNotRunning"
+msgstr "POP認証リレーサービスが実行されていないと再起動できませんでした。 [[base-apache.amAdmservNameTag]]では、これが問題を修正するかどうかを確認するために再度オフにして、POP認証リレーサービスを回してみてください。 POP認証リレーサービスがまだ起動できない場合は、[[base-alpine.serverconfig]]下[[base-power.power]]メニューの[[base-power.reboot]]]ボタンをクリックして、サーバー自体を再起動してみてください。 POP認証リレーサービスがまだ起動できない場合は、テクニカルサポートについて[[base-sauce-basic.techSupportURL]]を参照してください。"
+
+msgid "ampopRelayStatusOK"
+msgstr "POP認証リレーサービスが正常に動作しています。"
+
+msgid "error_writing_sendmail_mc"
+msgstr "更新されたの/etc/mail/sendmail.mcを書き込むことができませんでした。破損のためにあなたのsendmail.mcを確認してください。安全なデフォルトに戻すには、コピーを/usr/sausalito/configs/sendmail/sendmail.mcを/etc/sendmail.mc sendmailは/とは、再試行してください。"
+
+msgid "maxRecipientsPerMessageField"
+msgstr "メッセージごとの最大受信者"
+
+msgid "maxRecipientsPerMessageField_help"
+msgstr "電子メールメッセージのエンベロープを持っているかもしれないか多くの受信者を定義します。メールはここで指定したよりも多くの受信者がある場合は、電子メールは拒否されます。"
+
+msgid "delayChecksField"
+msgstr "delay_checksを有効にする"
+
+msgid "delayChecksField_help"
+msgstr "delay_checksは、接続が正しいかどうかをRBLブラックリストを使用している場合、これは私たちに良いオプションですオーダーSendmailのチェックを変更します。"
 
 msgid "enableZpushField"
-msgstr "Z-Push を有効"
+msgstr "Z-プッシュを有効にする"
 
 msgid "enableZpushField_help"
-msgstr ""
-"Z-push は ActiveSync互換性をもつ PDA や SmartPhone に対して "
-"電子メールを同期させるオープン・ソース・アプリケーションです "
-"詳しい情報や 設定方法は : "
-" http://www.blueonyx.it/index.php?page=z-push"
-"にアクセスして、内容をブラウザー翻訳などでお読み下さい。"
-
-msgid	"error_writing_sendmail_mc"
-msgstr ""
-    "最新の /etc/mail/sendmail.mc を作成できませんでした。"
-	"sendmail.mc は壊れています。 安全なデフォルトを回復するためには、"
-	"/usr/sausalito/configs/sendmail/sendmail.mc を /etc/mail/sendmail.mc "
-	"にコピーして もう一度試行して下さい。"
-
-msgid	"imapConnectRateField"
-msgstr	"最大許容 IMAP 接続数"
-
-msgid	"imapConnectRateField_help"
-msgstr ""
-"１分間あたりに許容する IMAP 接続の最大数を指定してください。"
-" IMAP 接続の数が指定値に達すると、"
-"その後の新規接続リクエストは拒否されます。"
-
-
-msgid	"imapConnectRateField_invalid"
-msgstr	"「最大許容 IMAP "
-	"接続数」フィールドに、指定範囲内の数字を入力してください。"
-	"デフォルト は 1024 です。"
-
-msgid	"imapConnectRateField_missing"
-msgstr	"[[base-email.imapConnectRateField_invalid]]"
-
-msgid	"maptoField"
-msgstr	"メールサーバー"
-
-msgid	"maptoField_help"
-msgstr	"メインのメールサーバを登録してください。"
-
-msgid	"masqAddressCantBeLocalhost"
-msgstr	"強制差出人ドメインに localhost は指定できません。"
-
-msgid	"masqAddressField"
-msgstr	"送信者ドメインの強制使用"
-
-msgid	"masqAddressField_help"
-msgstr	""
-"このサーバのユーザが送信する電子メールの差出人アドレスの"
-"ドメイン名もしくはIPアドレスを入力してください。この機能は"
-"「ドメインマスカレード」とも"
-"呼ばれます。[[base-email.masqAddressField_rule]]"
-
-msgid	"masqAddressField_rule"
-msgstr	""
-"IPアドレス、ホスト名、またはドメインネームを正しい形式で"
-"入力してください。デフォルトは空白です。"
-"記入例は 192.168.1.100、www.BlueOnyx.org、BlueOnyx.org などです。"
-
-msgid	"maxEmailSizeField"
-msgstr	"最大メールサイズ （MB）"
-
-msgid	"maxEmailSizeField_help"
-msgstr ""
-"このサーバが送受信する電子メールメッセージの最大サイズを"
-"指定できます。[[base-email.maxEmailSizeField_rule]]"
-
-msgid	"maxEmailSizeField_rule"
-msgstr ""
-"一定サイズを超える電子メールメッセージの送受信を禁止したい"
-"場合には、ここに (1) "
-"以上の整数を入力してください。空欄のまま残すと、デフォルト設定"
-"（サイズ制限なし）が使われます。"
-
-msgid	"maxRecipientsPerMessageField"
-msgstr	"最大 受取人指定数（１メール当り)"
-
-msgid	"maxRecipientsPerMessageField_help"
-msgstr ""
-"１通のメールの中に、何人の受取人を記載できるかを入力します。 "
-"ここで指定されたより多くの受取人がいれば、"
-"そのメールは拒絶されるでしょう。 "
-
-msgid	"mx"
-msgstr	"セカンダリ メールサーバー"
-
-msgid	"mx2List"
-msgstr	"セカンダリ メールサーバーの一覧"
-
-msgid	"mxRemoveEntry"
-msgstr ""
-"本当に [[VAR.mxHost]] MXサーバー・レコードを"
-"削除を削除しますか？"
-
-msgid	"mx_help"
-msgstr	"セカンダリ メールサーバーを設定する場合ここをクリック"
-
-msgid	"nonExistentUser"
-msgstr ""
-"次の名前を持つローカルユーザが見つからないため、"
-"メールを転送できません。"
-"[[VAR.users]]  "
-"転送先アドレスのリストからこれらを削除するか、"
-"転送指定の前にユーザを先に作ってください。"
-
-msgid	"popConnectRateField"
-msgstr	"最大許容 POP 接続数"
-
-msgid	"popConnectRateField_help"
-msgstr ""
-"１分間あたりに許容する POP 接続の最大数を指定してください。POP "
-"接続の数が指定値に達すると、その後の新規接続リクエストは拒否"
-"されます。"
-
-msgid	"popConnectRateField_invalid"
-msgstr ""
-"「最大許容 POP "
-"接続数」フィールドに、指定範囲内の数字を入力してください。"
-"デフォルトは 80 です。"
-
-msgid	"popConnectRateField_missing"
-msgstr	"[[base-email.popConnectRateField_invalid]]"
-
-msgid	"popRelayField"
-msgstr	"POP 認証リレー"
-
-msgid	"popRelayField_help"
-msgstr ""
-"このボックスをチェックにすると、POP 認証による SMTP "
-"リレートラストが有効になります。この機能を有効にすると、"
-"POPを使って電子メールを受信できたユーザには、その後 30 分間"
-"認証なしで SMTP サービスを使った電子メールの送信が許可"
-"されます。これは、頻繁に外出や出張が多いユーザーに便利です。"
-
-msgid	"queue0"
-msgstr	"即時"
-
-msgid	"queue1440"
-msgstr	"１日１回"
-
-msgid	"queue15"
-msgstr	"15分毎"
-
-msgid	"queue30"
-msgstr	"30分毎"
-
-msgid	"queue360"
-msgstr	"６時間毎"
-
-msgid	"queue60"
-msgstr	"１時間毎"
-
-msgid	"queueTimeField"
-msgstr	"配信の頻度"
-
-msgid	"queueTimeField_help"
-msgstr ""
-"このサーバが配信待ちの電子メールを転送する時間間隔を設定でき"
-"ます。即時配達は、メールをできるだけ速く送りますが、"
-"インターネットへの常時接続が必要です。周期的な配達は"
-"モデムによるダイヤルアップ接続などの配信に適しています。"
-
-msgid	"receiveField"
-msgstr	"これらのホスト／ドメイン宛の電子メールを受信する："
-
-msgid	"receiveField_help"
-msgstr ""
-"このサーバは、ここで指定するホスト名または"
-"ドメインネーム宛ての電子メールを受け取ります。"
-"入力例は www.example.com とexample.com です。"
-
-msgid	"receiveField_rule"
-msgstr ""
-"ホスト名またはドメインネームを正しい形式で入力してください。"
-"このサーバが電子メールを受取る宛先ドメイン名です。"
-"（指定例： www.BlueOnyx.org、BlueOnyx.org など）"
-
-msgid	"relayField"
-msgstr	"電子メールのリレーを許可するホスト／ドメイン／IP アドレス："
-
-msgid	"relayField_help"
-msgstr ""
-"このフィールドには、このサーバを使った電子メールのリレーを許可"
-"する IP アドレス、ホスト名、ドメインネームの一覧を指定します。"
-"ユーザが接続しているマシンのIPアドレス、ホストあるいは領域名が、"
-"この項目に入っていない場合、ユーザはこのサーバーでメールの送信が"
-"できないでしょう。[[base-email.relayField_rule]]"
-
-msgid	"relayField_rule"
-msgstr ""
-"このサーバを経由した電子メールのリレーを許可するサーバまたは"
-"クライアントの IP アドレス、ホスト名、ドメインネームを入力"
-"してください。その際、0 を使ってネットワークを指定することも"
-"できます。例えば、192.168.0.0 という IP アドレスを指定する"
-"ことにより、255.255.0.0 というサブネットマスクを持つ "
-"192.168.1.1 というネットワークからのリレーを許可できます。"
-
-msgid	"secondaryDomain"
-msgstr	"セカンダリーサーバー"
-
-msgid	"secondaryDomain_help"
-msgstr ""
-"このサーバーにとってセカンダリー・メールサービスを行って "
-"くれるメールサーバーの一覧です。"
-
-msgid	"secondarySettings"
-msgstr	"セカンダリー設定"
-
-msgid	"smartRelayField"
-msgstr	"スマートリレーサーバ"
-
-msgid	"smartRelayField_help"
-msgstr ""
-"この指定された資格のあるドメインから送信された"
-"電子メールは、該当サーバーでは完全に安全であると処置される。"
-
-
-msgid	"smartRelayField_rule"
-msgstr ""
-"ドメインネームを正しい形式で入力してください。デフォルトでは、"
-"この項目は空白です。記入例は luquartz.org などです。"
-
-msgid	"userEmail"
-msgstr	"ユーザの電子メール設定"
-
-msgid	"vacationSubject"
-msgstr	"からの自動応答"
+msgstr "Z-プッシュは、彼らに電子メールへのアクセスを可能にするActiveSyncの互換性のある携帯情報端末や携帯電話を同期させるためのオープンソースのアプリケーションです。 http://www.blueonyx.it/index.php?page=z-push：Z-プッシュを参照の使用方法の詳細については"
 
 msgid "cap_serverEmail"
 msgstr "電子メールサーバの設定"
+
+###
+
+msgid "hideHeadersField"
+msgstr "前ヘッダーを非表示にする"
+
+msgid "hideHeadersField_help"
+msgstr "このチェックボックスがチェックされている場合には、その後、メールサーバは、リモートの宛先に渡す電子メ​​ールの以前のヘッダを非表示になります。電子メールの起源はこのメールサーバように見えます。それはどこか別の場所から受信した場合であっても。これには次の利点があります。これは、メールの送信者またはあなたが中継を許可されたメールサーバの国内のIPアドレスを隠します。下がり気味で：あなたのサーバがスパムを送信するために使用されている場合は、不足している余分なヘッダは、それがより困難にあなたがそれらの電子メールの本当の起源を決定するために作る。だから、慎重にこの機能を使用する。デフォルト：有効になっていない。"
 

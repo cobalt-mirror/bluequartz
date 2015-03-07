@@ -14,7 +14,7 @@ sub SendmailCF { return '/etc/mail/sendmail.cf'; }
 sub SendmailMC { return '/etc/mail/sendmail.mc'; }
 sub SendmailCW { return '/etc/mail/local-host-names'; }
 
-if (-f "/etc/rc.d/init.d/mailman") {
+if (-f "/usr/lib/mailman/bin/add_members") {
         sub MajordomoAliases { return '/etc/mail/aliases.mailman'; }
 }
 if (-f "/usr/local/majordomo/bin/approve") {

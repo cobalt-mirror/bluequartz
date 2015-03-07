@@ -527,3 +527,12 @@ msgstr "Z-push is een open-source applicatie ActiveSync compatibele PDA's en mob
 msgid "cap_serverEmail"
 msgstr "Email Server Settings"
 
+###
+
+msgid "hideHeadersField"
+msgstr "Verberg Vorige Headers"
+
+msgid "hideHeadersField_help"
+msgstr "Wanneer dit selectievakje is aangevinkt, dan is de mailserver zal verbergen eerdere headers in e-mails die het doorgeeft naar verre bestemmingen. De herkomst van de e-mails zal verschijnen op deze mail server. Zelfs als het werd ontvangen van ergens anders. Dit heeft de volgende voordelen: Het verbergt de binnenlandse IP-adres van de afzenders of geautoriseerde mailservers die je relais voor. Aan de andere kant: Als uw server wordt gebruikt om spam te versturen, dan is het ontbreken van extra headers maken het moeilijker voor u om de werkelijke oorsprong van die e-mails te bepalen. Dus gebruik deze functie met de nodige voorzichtigheid. Standaard: Niet ingeschakeld."
+
+
