@@ -87,10 +87,14 @@ if [ ! -d /etc/mail ]; then \
 fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
-    /etc/init.d/cced.init rehash
+  if [ -f /usr/sausalito/sbin/cced.init ]; then
+    /usr/sausalito/sbin/cced.init rehash
+  else
+    /sbin/service cced.init rehash
+  fi
 fi
 
-if [ $1 = 2 ]; then
+if [ $1 -gt 1 ]; then
     /usr/sausalito/bin/remove_domain.pl
 fi
 
@@ -112,7 +116,15 @@ if [ -S /usr/sausalito/cced.socket ]; then
 fi
 
 if [ -f /var/run/dovecot/login/imap ]; then
-	/etc/init.d/dovecot restart
+	/sbin/service dovecot restart
+fi
+
+# To make sure all email related services are really running we run Swatch.
+# But only if this is an upgrade of an existing RPM and not a fresh install:
+if [ $1 -gt 1 ]; then
+  if [ -f /usr/sbin/swatch ]; then
+    /usr/sbin/swatch
+  fi
 fi
 
 <end glue>
@@ -147,24 +159,67 @@ fi
 
 <begin $CHANGELOG>
 
-* Mon Oct 27 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX19
-- Updated 10-ssl.conf.bx for Dovecot 2.2.15
-- Updated Require in Makefile to require Dovecot >= 2.2.15
+* Sat Mar 07 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX29
+- Prepared package for merge down to release it for 5106R, 5207R and 5108R
+  as well. Modified various post-install transactions for that.
+
+* Thu Mar 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX28
+- Added feature to (optionally) suppress previous headers from sent email
+  messages. Configureable under 'Network Services' / 'Email' / 'Advanced'.
+- Modified glue/schemas/email.schema to add 'hideHeaders' to 'System' . 
+  'Email'.
+- Modified glue/handlers/system.pl to handle the required sendmail.mc 
+  configuration to implement this feature.
+- Modified ui/chorizo/web/controllers/emailsettings.php to add the needed
+  checkbox to toggle this feature in the new GUI.
+- Modified glue/conf/email.conf to trigger this config change.
+- Extended all locales with the new texts for this feature.
+- Modified ui/web/email.php and ui/web/emailHandler.php to also add this
+  to the old GUI.
+
+* Tue Feb 24 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX27
+- Added requirement for cyrus-sasl-plain to Makefile.
+
+* Thu Dec 04 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX26
+- Some Systemd love in post-install and AM-scripts.
+
+* Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX25
+- One more fix in constructor/syncEmailService.pl. We better use 
+  Sauce::Service consistently for best compatability with InitV, Upstart
+  and Systemd.
+
+* Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX24
+- Modified constructor/syncEmailService.pl to deal with EL7 related oddities.
+
+* Wed Dec 03 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX23
+- Updated constructor/syncEmailService.pl to handle RBL settings as well.
+
+* Tue Oct 28 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX22
 - Modified glue/handlers/enable.pl to handle the new config file format
   of Dovecot > 2.2.
 
-* Sat Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX18
-- Modified glue/handlers/forward.pl to turn off forwarding on suspend. 
+* Mon Oct 27 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX21
+- Updated 10-ssl.conf.bx for Dovecot 2.2.15
+- Updated Require in Makefile to require Dovecot >= 2.2.15
+- Disabled SSLv3 for Dovecot, set ssl_prefer_server_ciphers to yes changed
+  ssl_dh_parameters_length from 1024 to 2048 and updated ssl_cipher_list
+  with latest suggestion from bettercrypto.org
 
-* Mon Sep 15 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX17
+* Sat Oct 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX20
+- Modified glue/handlers/forward.pl to turn off forwarding on suspend.
+
+* Tue Sep 09 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX19
 - Dovecot was not properly disabled when turned off in the GUI. Fixed.
 - Modified constructor/syncEmailService.pl
 - Modified glue/handlers/enable.pl
 - Fiddled a newalias run into various handlers. I trust this more than
   makemap hash after all.
-- Added constructor/alias_fix.pl from 520XR. It actually should go into
-  base-blueonyx.mod, but in 510XR we keep it in base-email.mod to avoid
-  that 30k BlueOnyx servers get a new sendmail.cf and sendmail.mc.
+
+* Wed Jul 16 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX18
+- Several locale fixes.
+
+* Fri Jul 11 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX17
+- Chorizo GUI added, old GUI disabled.
 
 * Wed May 28 2014 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX16
 - Small mod to glue/usr/local/sbin/vacation.pl to handle quota better.

@@ -457,68 +457,67 @@ msgstr "Dieser Domänen-Name ist bereits in der Rubrik sekundärer Mailserver in
 
 
 msgid "error_writing_sendmail_mc"
-msgstr "Could not write an updated /etc/mail/sendmail.mc. Please check your sendmail.mc for corruptions. To restore a safe default, copy /usr/sausalito/configs/sendmail/sendmail.mc to /etc/mail/sendmail.mc and try again."
+msgstr "Es konnte keine aktualisierte /etc/mail/sendmail.mc geschrieben werden. Bitte überprüfen Sie Ihre sendmail.mc auf Veränderungen. Um auf einen gesicherten Stand zurückzukehren kopieren Sie bitte /usr/sausalito/configs/sendmail/sendmail.mc nach /etc/mail/sendmail.mc um und versuchen Sie es dann erneut."
 
 msgid "maxRecipientsPerMessageField"
-msgstr "Maximum Recipients per Message:"
+msgstr "Maximale Empfänger pro Nachricht"
 
 msgid "maxRecipientsPerMessageField_help"
-msgstr "Defines how many recipients the envelope of an email message may have. If emails have more recipients than specified here, then the email will be rejected."
+msgstr "Legt fest, wie viele Empfänger die einer E-Mail maximal haben darf. Wenn E-Mails mehr Empfänger haben, als hier angegeben, dann wird der Versand der E-Mailabgelehnt."
 
 msgid "delayChecksField"
-msgstr "Enable delay_checks"
-  
+msgstr "delay_checks aktivieren"
+
 msgid "delayChecksField_help"
-msgstr "delay_checks changes the order Sendmail checks if a connection is correct or not, this is a good option to us if you use RBL blacklists."
+msgstr "delay_checks ändert die Reihenfolge, in der Sendmail überprüft, ob eine Verbindung korrekt ist oder nicht. Diese Option ist nützlich, wenn Sie RBL-Blacklisten verwenden."
 
-msgid "addmx" 
-msgstr "Add"
+msgid "addmx"
+msgstr "Hinzufügen"
 
-msgid "mxRemoveEntry" 
-msgstr "Are you sure you want to delete the [[VAR.mxHost]] MX server-record?" 
+msgid "mxRemoveEntry"
+msgstr "Sind Sie sicher, dass Sie den [[VAR.mxHost]] MX-Server-Datensatz löschen wollen?" 
 
-msgid "blacklist" 
-msgstr "Blacklisting" 
+msgid "blacklist"
+msgstr "Blacklisting"
 
-msgid "blacklist_help" 
-msgstr "Click here to add DNSBLs Blacklisting to the e-mail service." 
+msgid "blacklist_help"
+msgstr "Klicken Sie hier, um DNSBLs Blacklisting an die E-Mail-Dienst hinzuzufügen."
 
-msgid "blackList" 
-msgstr "Blacklist Services" 
+msgid "blackList"
+msgstr "Blacklisten"
 
-msgid "blackList_help" 
-msgstr "This is the list of different hosts that provide Blacklist services. ie 'zen.spamhaus.org'." 
+msgid "blackList_help"
+msgstr "Dies sind Listen der verschiedenen Hosts, die als RBLs verwendet werden. Zum Beispiel 'zen.spamhaus.org'."
 
-msgid "activated" 
-msgstr "Status" 
+msgid "activated"
+msgstr "Status"
 
-msgid "activated_help" 
-msgstr "Here you can see if the Blacklist entry is active or not." 
+msgid "activated_help"
+msgstr "Hier können Sie sehen on ein Blacklist-Eintrag aktiv ist oder nicht."
 
-msgid "blacklistHostExists_error" 
-msgstr "The Blacklist service has already been added, change the hostname to something else." 
+msgid "blacklistHostExists_error"
+msgstr "Diese Blackliste wurde bereits hinzugefügt. Bitte ändern Sie den Hostnamen auf etwas anderes."
 
-msgid "blacklistRemoveEntry" 
-msgstr "Are you sure you want to delete the [[VAR.blacklistHost]] Blacklist service entry?" 
+msgid "blacklistRemoveEntry"
+msgstr "Sind Sie sicher, dass Sie die Blacklisten-Dienst [[VAR.blacklistHost]] löschen möchten?"
 
-msgid "blacklistHostField" 
-msgstr "Blacklist service" 
+msgid "blacklistHostField"
+msgstr "Blacklist-Dienst"
 
-msgid "blacklistHostField_help" 
-msgstr "Enter the <FQDN> of the Blacklist service you want to use, ie. 'zen.spamhaus.org'." 
+msgid "blacklistHostField_help"
+msgstr "Geben Sie die <FQDN> des Blacklisten-Dienstes an, den Sie verwenden möchten. Zum Beispiel 'zen.spamhaus.org.'"
 
-msgid "deferField" 
-msgstr "Defer Temporary" 
+msgid "deferField"
+msgstr "Temporär ablehnen"
 
-msgid "deferField_help" 
-msgstr "If you click this field, the mail-server, if there is a problem reaching the Blacklist service, will return a temporary error to the incoming mail-server and thus temporary defer the message. The default behaviour of the mail-server is to accept the mail if it can't reach the Blacklist-service." 
+msgid "deferField_help"
+msgstr "Wenn Sie dieses Feld markieren, wird der Mail-Server bei temporärem Ausfall des Blacklisten-Services die Email-Annahme zu verweigern. Das Standardverhalten des E-Mail-Servers ist es, Emails auch dann anzunehmen, wenn der Blacklisten-Dienst nicht erreichbar ist."
 
-msgid "activeField" 
-msgstr "Activate service" 
+msgid "activeField"
+msgstr "Dienst aktivieren"
 
-msgid "activeField_help" 
-msgstr "Select this option if you want to activate this Blacklist service." 
-
+msgid "activeField_help"
+msgstr "Wählen Sie diese Option, wenn Sie diese Blacklist-Dienst aktivieren möchten."
 
 msgid "enableZpushField"
 msgstr "Enable Z-Push"
@@ -528,4 +527,12 @@ msgstr "Z-push is an open-source application to synchronize ActiveSync compatibl
 
 msgid "cap_serverEmail"
 msgstr "E-Mail-Server-Einstellungen"
+
+###
+
+msgid "hideHeadersField"
+msgstr "Frühere Header entfernen"
+
+msgid "hideHeadersField_help"
+msgstr "Wenn dieses Kontrollkästchen aktiviert ist, wird dieser Mail-Server alle vorherigen 'received'-Header in E-Mails verstecken wenn er E-Mails an andere Server ausliefert. Dem Empfänger wird dann vorgegaukelt, dass die E-Mails ihren Ursprung auf diesem Mail-Server haben und vorher durch keine anderen Relais gelaufen sind. Dies hat folgende Vorteile: Es verbirgt die heimische IP-Adresse des Mail-Absenders oder autorisierter E-Mail-Server, die über Ihren Mail-Server E-Mails verschicken dürfen. Auf der anderen Seite: Wenn Ihr Server zum Versand von SPAM verwendet wird, dann erschweren die nun fehlenden vorherigen Header die Suche nach dem wahren Ursprung der E-Mails. Verwenden Sie diese Funktion daher mit entsprechender Vorsicht. Üblicherweise ist diese Funktion nicht aktiviert."
 

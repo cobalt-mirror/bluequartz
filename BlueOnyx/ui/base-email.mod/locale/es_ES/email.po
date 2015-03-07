@@ -515,7 +515,14 @@ msgstr "Habilitar Z-Push"
 msgid "enableZpushField_help"
 msgstr "Z-push es una aplicación de código abierto para sincronizar PDAs compatibles con ActiveSync y teléfonos móviles, lo que les permite acceder a los correos electrónicos. Para obtener más información acerca de cómo usar Z-Push ver: http://www.blueonyx.it/index.php?page=z-push"
 
-
 msgid "cap_serverEmail"
 msgstr "Configuración correo electrónico"
+
+###
+
+msgid "hideHeadersField"
+msgstr "Ocultar encabezados anteriores"
+
+msgid "hideHeadersField_help"
+msgstr "Cuando esta casilla está marcada, entonces el servidor de correo ocultará cualquier encabezado anteriores en los correos electrónicos que se transmite a los destinos remotos. El origen de los mensajes de correo electrónico aparecerá como este servidor de correo. Incluso si se ha recibido de otro lugar. Esto tiene las siguientes ventajas: Se oculta la dirección IP interna de remitentes de correo o servidores de correo autorizada que usted Relevo por. En el lado negativo: Si el servidor se utiliza para enviar SPAM, entonces los encabezados adicionales que faltan hacen que sea más difícil para usted para determinar el origen real de los mensajes de correo electrónico. Así que utilice esta función con precaución. Por defecto: no se ha activado."
 

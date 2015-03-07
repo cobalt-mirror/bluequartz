@@ -527,3 +527,11 @@ msgstr "Z-push è un software open-source per la sincronizzazione ActiveSync PDA
 msgid "cap_serverEmail"
 msgstr "Impostazioni server di posta"
 
+###
+
+msgid "hideHeadersField"
+msgstr "Nascondi intestazioni precedenti"
+
+msgid "hideHeadersField_help"
+msgstr "Quando questa casella è spuntata, quindi il server di posta nascondere le intestazioni precedenti in email che passa a destinazioni remote. L'origine dei messaggi di posta elettronica appare essere questo server di posta. Anche se è stato ricevuto da qualche altra parte. Questo ha i seguenti vantaggi: Nasconde l'indirizzo IP interno di mittenti di posta o server di posta autorizzati che relè per. Il lato negativo: Se il server viene utilizzato per inviare SPAM, quindi mancanti intestazioni aggiuntive rendono più difficile per voi per determinare l'effettiva origine di quei messaggi di posta elettronica. Quindi utilizzare questa funzione con cautela. Predefinita: Non abilitato."
+

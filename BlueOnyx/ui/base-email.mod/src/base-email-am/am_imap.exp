@@ -13,7 +13,7 @@ expect {
 	# try to restart
 	# use catch so we don't report errors on the exec,
 	# only on the dialog itself
-	catch {exec /etc/rc.d/init.d/dovecot restart >&/dev/null} 
+	catch {exec /sbin/service dovecot restart >&/dev/null} 
 	sleep 3
 	# redo test, fail if get an error again
 	spawn telnet localhost 143
