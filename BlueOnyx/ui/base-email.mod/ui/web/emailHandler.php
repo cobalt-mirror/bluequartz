@@ -36,7 +36,10 @@ $maxRecipientsPerMessageMap =
 // empty maximum message size means no limits
 // convert MB to KB
 $max = $maxEmailSizeField ? $maxEmailSizeField*1024 : "";
-//echo "<li> max = $max";
+
+if ($hideHeaders != "1") {
+    $hideHeaders = "0";
+}
 
 $cceClient->setObject("System", 
   array(
@@ -60,7 +63,7 @@ $cceClient->setObject("System",
     "deniedUsers" => $blockUserField, 
     "masqAddress" => $masqAddressField,
     "smartRelay" => $smartRelayField,
-    "hideHeaders" => $hideHeadersField,
+    "hideHeaders" => $hideHeaders,
     "deniedHosts" => $blockHostField), 
   "Email");
   
