@@ -87,10 +87,14 @@ if [ ! -d /etc/mail ]; then \
 fi
 
 if [ -S /usr/sausalito/cced.socket ]; then
+  if [ -f /usr/sausalito/sbin/cced.init ]; then
     /usr/sausalito/sbin/cced.init rehash
+  else
+    /sbin/service cced.init rehash
+  fi
 fi
 
-if [ $1 = 2 ]; then
+if [ $1 -gt 1 ]; then
     /usr/sausalito/bin/remove_domain.pl
 fi
 
@@ -113,6 +117,14 @@ fi
 
 if [ -f /var/run/dovecot/login/imap ]; then
 	/sbin/service dovecot restart
+fi
+
+# To make sure all email related services are really running we run Swatch.
+# But only if this is an upgrade of an existing RPM and not a fresh install:
+if [ $1 -gt 1 ]; then
+  if [ -f /usr/sbin/swatch ]; then
+    /usr/sbin/swatch
+  fi
 fi
 
 <end glue>
@@ -146,6 +158,10 @@ fi
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Sat Mar 07 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX29
+- Prepared package for merge down to release it for 5106R, 5207R and 5108R
+  as well. Modified various post-install transactions for that.
 
 * Thu Mar 05 2015 Michael Stauber <mstauber@solarspeed.net> 1.6.0-0BX28
 - Added feature to (optionally) suppress previous headers from sent email
