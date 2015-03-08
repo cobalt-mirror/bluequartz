@@ -42,13 +42,12 @@ $httpPort = "80";
 if ($objWeb->{'httpPort'}) {
     $httpPort = $objWeb->{'httpPort'};
 }
-else {
 
-}
 $sslPort = "443";
 if ($objWeb->{'sslPort'}) {
     $sslPort = $objWeb->{'sslPort'};
 }
+
 &debug_msg("HTTP Port: $httpPort\n");
 &debug_msg("SSL Port: $sslPort\n");
 
