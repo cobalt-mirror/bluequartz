@@ -543,7 +543,7 @@ class SummaryEmail extends MX_Controller {
 		//$ret = $serverScriptHelper->shell("/usr/bin/sa_cache -a", $sareport, 'root', $sessionId);
 
 		// Location of the directory with statistics:
-		$Stats_dir = '/var/lib/sendmailanalyzer';
+		$Stats_dir = '/home/.sendmailanalyzer';
 
 		if (!is_dir($Stats_dir)) {
 			// If we don't have stats we don't go any further and throw an error.
