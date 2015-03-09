@@ -148,6 +148,9 @@ fi
 - Added web/.adm/styles/adminica/maronoff-mini.css
 - Merged maronoff.css into web/.adm/styles/adminica/combined-common.css
 - Merged maronoff-mini.css into web/.adm/styles/adminica/combined-common-mini.css
+- Partial rollback of the ci/application/libraries/uifc/ScrollList.php changes.
+  When setWidth is used, we set the style manually. When it is not used, we use
+  td class instead of td style.
 
 * Fri Feb 20 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX040
 - It is time to merge the alpine.mod from 5209R/5208R/5207R into a single

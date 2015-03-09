@@ -100,7 +100,7 @@ class ScrollList extends HtmlComponentFactory {
   // description: set the message to be displayed when the list is empty
   // param: msg: an I18n tag of the form [[domain.messageId]] for interpolation
   function setEmptyMessage($msg = "") {
-	   $this->emptyMsg = $msg;
+     $this->emptyMsg = $msg;
   }
 
   // description: get all buttons added to the list
@@ -455,8 +455,20 @@ class ScrollList extends HtmlComponentFactory {
 
         // get the width for this column (if specified):
         if (isset($this->columnWidths)) {
-          $columnWidths = "";
-            $result .= '                  <td class="' . $alignment . ' dt_' . $x_numColumns . '">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
+          $columnWidths = $this->getColumnWidths();
+          if (isset($columnWidths[$x_numColumns])) {
+            $width = $columnWidths[$x_numColumns];
+            if (preg_match('/(.*)%/', $width)) {
+              $suffix = "";
+            }
+            else {
+              $suffix = "px";
+            }
+            $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . '; width: ' . $width . $suffix . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
+          }
+          else {
+            $result .= '                  <td style="vertical-align:middle; text-align:' . $alignment . ';">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
+          }
         }
         else {
           $result .= '                  <td class="' . $alignment . ' dt_' . $x_numColumns . '">' . $this->entries[$x_numColumns][$x_numRows] . '</td>' . "\n";
