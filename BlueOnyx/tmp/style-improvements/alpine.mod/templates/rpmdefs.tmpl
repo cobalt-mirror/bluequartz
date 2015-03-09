@@ -136,6 +136,19 @@ fi
 
 <begin $CHANGELOG>
 
+* Mon Mar 09 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX041
+- Small fix in ci/application/libraries/I18nNative.php's i18n_interpolate()
+  function. It wasn't handling substitutions of more than one VAR correctly.
+- Merged in Michael Aronoff's CSS improvements:
+- Modified ci/application/libraries/uifc/CompositeFormField.php
+- Modified ci/application/libraries/uifc/FormFieldBuilder.php
+- Modified ci/application/libraries/uifc/ScrollList.php
+- Added web/.adm/styles/adminica/maronoff.css
+- Fixed a small improperly escaped comment at the end of maronoff.css
+- Added web/.adm/styles/adminica/maronoff-mini.css
+- Merged maronoff.css into web/.adm/styles/adminica/combined-common.css
+- Merged maronoff-mini.css into web/.adm/styles/adminica/combined-common-mini.css
+
 * Fri Feb 20 2015 Michael Stauber <mstauber@solarspeed.net> 1.1-1BX040
 - It is time to merge the alpine.mod from 5209R/5208R/5207R into a single
   module that works on all the Chorizo platforms.

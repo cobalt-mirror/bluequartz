@@ -204,14 +204,17 @@ class I18nNative {
             if (count($comaSplit >= "2")) {
               $DomainYtag = explode('.', $comaSplit[0]);
               if (isset($comaSplit[1])) {
-                // Split the resulting vars at the equal sign:
-                $equalSplit = preg_split('/=/', $comaSplit[1]);
-                if (isset($equalSplit[1])) {
-                  // Strip \" away as it looks weird:
-                  $equalSplit[1] = preg_replace('/\\\\"/', '', $equalSplit[1]);
+                unset($comaSplit[0]);
+                foreach ($comaSplit as $CSkey => $CSvalue) {
+                  // Split the resulting vars at the equal sign:
+                  $equalSplit = preg_split('/=/', $CSvalue);
+                  if (isset($equalSplit[1])) {
+                    // Strip \" away as it looks weird:
+                    $equalSplit[1] = preg_replace('/\\\\"/', '', $equalSplit[1]);
+                  }
+                  // Assemble the vars:
+                  $vars[$equalSplit[0]] = $equalSplit[1];
                 }
-                // Assemble the vars:
-                $vars = array($equalSplit[0] => $equalSplit[1]);
               }
 
               // We really DO have a domain and a tag and vars - use them:
