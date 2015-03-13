@@ -18,21 +18,21 @@ class PhpmyadminUser extends MX_Controller {
 
 		$CI =& get_instance();
 		
-	    // We load the BlueOnyx helper library first of all, as we heavily depend on it:
-	    $this->load->helper('blueonyx');
-	    init_libraries();
+		// We load the BlueOnyx helper library first of all, as we heavily depend on it:
+		$this->load->helper('blueonyx');
+		init_libraries();
 
-  		// Need to load 'BxPage' for page rendering:
-  		$this->load->library('BxPage');
+		// Need to load 'BxPage' for page rendering:
+		$this->load->library('BxPage');
 		$MX =& get_instance();
 
-	    // Get $sessionId and $loginName from Cookie (if they are set):
-	    $sessionId = $CI->input->cookie('sessionId');
-	    $loginName = $CI->input->cookie('loginName');
-	    $locale = $CI->input->cookie('locale');
+		// Get $sessionId and $loginName from Cookie (if they are set):
+		$sessionId = $CI->input->cookie('sessionId');
+		$loginName = $CI->input->cookie('loginName');
+		$locale = $CI->input->cookie('locale');
 
-	    // Line up the ducks for CCE-Connection:
-	    include_once('ServerScriptHelper.php');
+		// Line up the ducks for CCE-Connection:
+		include_once('ServerScriptHelper.php');
 		$serverScriptHelper = new ServerScriptHelper($sessionId, $loginName);
 		$cceClient = $serverScriptHelper->getCceClient();
 		$user = $cceClient->getObject("User", array("name" => $loginName));
@@ -56,14 +56,14 @@ class PhpmyadminUser extends MX_Controller {
 		// -- Actual page logic start:
 		if ($Capabilities->getAllowed('systemAdministrator')) {
 			if ((preg_match('/phpmyadmin\/site/', uri_string())) && (isset($get_form_data['group']))) {
-			    // Get MYSQL_Vsite settings for this site:
-			    list($sites) = $cceClient->find("Vsite", array("name" => $get_form_data['group']));
-			    $MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
-			    // Fetch MySQL details for this site:
-			    $db_enabled = $MYSQL_Vsite['enabled'];
-			    $db_username = $MYSQL_Vsite['username'];
-			    $db_pass = $MYSQL_Vsite['pass'];
-			    $db_host = $MYSQL_Vsite['host'];
+				// Get MYSQL_Vsite settings for this site:
+				list($sites) = $cceClient->find("Vsite", array("name" => $get_form_data['group']));
+				$MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
+				// Fetch MySQL details for this site:
+				$db_enabled = $MYSQL_Vsite['enabled'];
+				$db_username = $MYSQL_Vsite['username'];
+				$db_pass = $MYSQL_Vsite['pass'];
+				$db_host = $MYSQL_Vsite['host'];
 			}
 			else {
 				$systemOid = $cceClient->getObject("System", array(), "mysql");
@@ -78,19 +78,19 @@ class PhpmyadminUser extends MX_Controller {
 			}
 		}
 		elseif ((!$Capabilities->getAllowed('systemAdministrator')) && ($Capabilities->getAllowed('manageSite'))) {
-		    // If we get here, the user is a Reseller. Get his User object:
-		    $oids = $cceClient->find("User", array("name" => $loginName));
-		    $useroid = $oids[0];
-		    $am_reseller = TRUE;
+			// If we get here, the user is a Reseller. Get his User object:
+			$oids = $cceClient->find("User", array("name" => $loginName));
+			$useroid = $oids[0];
+			$am_reseller = TRUE;
 		}
 		elseif ($Capabilities->getAllowed('siteAdmin')) {
-		    // get user:
-		    $oids = $cceClient->find("User", array("name" => $loginName));
-		    $useroid = $oids[0];
+			// get user:
+			$oids = $cceClient->find("User", array("name" => $loginName));
+			$useroid = $oids[0];
 
-		    // Check which site the user belongs to:
-		    $user = $cceClient->get($oids[0]);
-	    	$group = $user["site"];
+			// Check which site the user belongs to:
+			$user = $cceClient->get($oids[0]);
+			$group = $user["site"];
 
 			// Check if that's the same group he requested access to:
 			if (isset($get_form_data['group'])) {
@@ -102,28 +102,28 @@ class PhpmyadminUser extends MX_Controller {
 				}
 			}
 
-		    if (isset($group)) {
-			    // Get MYSQL_Vsite settings for this site:
-			    list($sites) = $cceClient->find("Vsite", array("name" => $group));
-			    $MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
-			    // Fetch MySQL details for this site:
-			    $db_enabled = $MYSQL_Vsite['enabled'];
-			    $db_username = $MYSQL_Vsite['username'];
-			    $db_pass = $MYSQL_Vsite['pass'];
-			    $db_host = $MYSQL_Vsite['host'];
+			if (isset($group)) {
+				// Get MYSQL_Vsite settings for this site:
+				list($sites) = $cceClient->find("Vsite", array("name" => $group));
+				$MYSQL_Vsite = $cceClient->get($sites, 'MYSQL_Vsite');
+				// Fetch MySQL details for this site:
+				$db_enabled = $MYSQL_Vsite['enabled'];
+				$db_username = $MYSQL_Vsite['username'];
+				$db_pass = $MYSQL_Vsite['pass'];
+				$db_host = $MYSQL_Vsite['host'];
 			}
 			else {
 				$db_enabled = "0";
 			}
 
-		    if ($db_enabled == "0") {
-		        $db_host = "localhost";
-		        $db_username = "";
-		        $db_pass = "";
-		    }
+			if ($db_enabled == "0") {
+				$db_host = "localhost";
+				$db_username = "";
+				$db_pass = "";
+			}
 		}
 		else {
-		  	$loginName = "";
+			$loginName = "";
 			// Nice people say goodbye, or CCEd waits forever:
 			$cceClient->bye();
 			$serverScriptHelper->destructor();
@@ -132,7 +132,7 @@ class PhpmyadminUser extends MX_Controller {
 
 		// Sanity checks:
 		if (!isset($db_host)) {
-		    $db_host = "localhost";
+			$db_host = "localhost";
 		}
 
 		if (preg_match("/phpmyadmin\/login/i", uri_string())) {
@@ -143,30 +143,32 @@ class PhpmyadminUser extends MX_Controller {
 			exit;
 		}
 
-	    //-- Generate page:
+		//-- Generate page:
 		if ($am_reseller == TRUE) {
-		    //-- Generate page:
+			//-- Generate page:
 
-		    // Get the Vsites he owns:
-		    $sites = $cceClient->findx("Vsite", array("createdUser" => $loginName));
+			// Get the Vsites he owns:
+			$sites = $cceClient->findx("Vsite", array("createdUser" => $loginName));
 			$redir = 'site';
 
-		    // Get MySQL_Vsite details for all Vsites he owns:
-		    foreach ($sites as $key => $oid) {
-		    	$Vsite[] = $cceClient->get($oid);
-		    	$MYSQL_Vsite[] = $cceClient->get($oid, 'MYSQL_Vsite');
-		    	$phpMyAdminList[0][$key] = $Vsite[$key]['fqdn'];
-		    	$OwnedVsiteList[] = $Vsite[$key]['name'];
+			$phpMyAdminList = array();
 
-		    	if ($MYSQL_Vsite[$key]['enabled'] == "1") {
+			// Get MySQL_Vsite details for all Vsites he owns:
+			foreach ($sites as $key => $oid) {
+				$Vsite[] = $cceClient->get($oid);
+				$MYSQL_Vsite[] = $cceClient->get($oid, 'MYSQL_Vsite');
+				$phpMyAdminList[0][$key] = $Vsite[$key]['fqdn'];
+				$OwnedVsiteList[] = $Vsite[$key]['name'];
+
+				if ($MYSQL_Vsite[$key]['enabled'] == "1") {
 					$phpMyAdminList[1][$key] = '<button class="tiny text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.Yes]]") . '" disabled>'. $i18n->getHtml("[[palette.Yes]]") . '</button>';
-			    	$phpMyAdminList[2][$key] = '<button title="' . $i18n->getHtml("[[palette.modify]]") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/phpmyadmin/' . $redir . '?group=' . $Vsite[$key]['name'] . '&reseller=1" target="_self" formtarget="_self"><div class="ui-icon ui-icon-pencil"></div></button>';
-		    	}
-		    	else {
-		    		$phpMyAdminList[1][$key] = '<button class="tiny light text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '" disabled>'. $i18n->getHtml("[[palette.No]]") . '</button>';
-			    	$phpMyAdminList[2][$key] = '<button title="' . $i18n->getHtml("[[palette.modify]]") . '" class="tiny icon_only div_icon tooltip hover right link_button" target="_self" formtarget="_self" disabled><div class="ui-icon ui-icon-circle-close"></div></button>';
-		    	}
-		    }
+					$phpMyAdminList[2][$key] = '<button title="' . $i18n->getHtml("[[palette.modify]]") . '" class="tiny icon_only div_icon tooltip hover right link_button" data-link="/phpmyadmin/' . $redir . '?group=' . $Vsite[$key]['name'] . '&reseller=1" target="_self" formtarget="_self"><div class="ui-icon ui-icon-pencil"></div></button>';
+				}
+				else {
+					$phpMyAdminList[1][$key] = '<button class="tiny light text_only has_text tooltip hover" title="' . $i18n->getHtml("[[palette.No]]") . '" disabled>'. $i18n->getHtml("[[palette.No]]") . '</button>';
+					$phpMyAdminList[2][$key] = '<button title="' . $i18n->getHtml("[[palette.modify]]") . '" class="tiny icon_only div_icon tooltip hover right link_button" target="_self" formtarget="_self" disabled><div class="ui-icon ui-icon-circle-close"></div></button>';
+				}
+			}
 
 			if (isset($get_form_data['group'])) {
 				// We have a group URL string:
@@ -215,7 +217,7 @@ class PhpmyadminUser extends MX_Controller {
 					}
 
 					// Out with the page:
-				    $BxPage->render($page_module, $page_body);
+					$BxPage->render($page_module, $page_body);
 
 				}
 				else {
@@ -252,16 +254,16 @@ class PhpmyadminUser extends MX_Controller {
 				$block->setDefaultPage($defaultPage);
 
 				$scrollList = $factory->getScrollList("phpMyAdmin", array("fqdn", "MySQL_menu", " "), $phpMyAdminList); 
-			    $scrollList->setAlignments(array("left", "center", "center"));
-			    $scrollList->setDefaultSortedIndex('0');
-			    $scrollList->setSortOrder('ascending');
-			    $scrollList->setSortDisabled(array('2'));
-			    $scrollList->setPaginateDisabled(FALSE);
-			    $scrollList->setSearchDisabled(FALSE);
-			    $scrollList->setSelectorDisabled(FALSE);
-			    $scrollList->enableAutoWidth(FALSE);
-			    $scrollList->setInfoDisabled(FALSE);
-			    $scrollList->setColumnWidths(array("500", "200", "39")); // Max: 739px
+				$scrollList->setAlignments(array("left", "center", "center"));
+				$scrollList->setDefaultSortedIndex('0');
+				$scrollList->setSortOrder('ascending');
+				$scrollList->setSortDisabled(array('2'));
+				$scrollList->setPaginateDisabled(FALSE);
+				$scrollList->setSearchDisabled(FALSE);
+				$scrollList->setSelectorDisabled(FALSE);
+				$scrollList->enableAutoWidth(FALSE);
+				$scrollList->setInfoDisabled(FALSE);
+				$scrollList->setColumnWidths(array("500", "200", "39")); // Max: 739px
 
 				// Push out the Scrollist:
 				$block->addFormField(
@@ -282,7 +284,7 @@ class PhpmyadminUser extends MX_Controller {
 				}
 
 				// Out with the page:
-			    $BxPage->render($page_module, $page_body);
+				$BxPage->render($page_module, $page_body);
 			}
 		}
 		else {
@@ -394,13 +396,13 @@ class PhpmyadminUser extends MX_Controller {
 
 
 			// Out with the page:
-		    $BxPage->render($page_module, $page_body);
+			$BxPage->render($page_module, $page_body);
 		}
 	}		
 }
 /*
-Copyright (c) 2014 Michael Stauber, SOLARSPEED.NET
-Copyright (c) 2014 Team BlueOnyx, BLUEONYX.IT
+Copyright (c) 2015 Michael Stauber, SOLARSPEED.NET
+Copyright (c) 2015 Team BlueOnyx, BLUEONYX.IT
 All Rights Reserved.
 
 1. Redistributions of source code must retain the above copyright 
