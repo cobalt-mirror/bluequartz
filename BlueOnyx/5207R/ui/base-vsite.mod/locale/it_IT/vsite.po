@@ -764,14 +764,8 @@ msgstr "Proprietario di tutti i contenuti /web per [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "Siteadmin che possiede /web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Se suPHP è abilitata, questo campo deve essere impostato su un Siteadmin esistente di questo sito, o non verrà eseguito script PHP. Anche se non si dispone di suPHP abilitata: se si sceglie un proprietario dall'elenco di siteAdmins, la directory /web del tuo sito sarà chown'ed in modo ricorsivo per l'UID dell'utente selezionato. Mezzi: Tutti i file e le cartelle in /web saranno poi essere di proprietà dell'utente selezionato."
-
 msgid "fileOwnerMenu"
 msgstr "Proprietà Web"
-
-msgid "fileOwnerDesc"
-msgstr "Questa voce di menu consente di modificare la proprietà della cartella / web del tuo sito (e tutti i file e le cartelle all'interno!). Esso consente di scegliere un siteadmin come proprietario, che è particolarmente importante se si è suPHP abilitato. Se suPHP è abilitata e non si dispone di un Siteadmin come proprietario della cartella / web, gli script PHP allora del tuo sito non verrà eseguito."
 
 msgid "prefix"
 msgstr "Prefisso del sito:"
@@ -984,3 +978,85 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Se [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] è abilitato, quindi questo campo deve essere impostato su un siteadmin esistente di questo sito o di script PHP non verrà eseguito. Anche se non si dispone di [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] abilitati: se si sceglie un proprietario dalla lista dei siteAdmins, quindi la directory /web del vostro sito sarà chown'ed ricorsivamente alla UID dell'utente selezionato. Mezzi: Tutti i file e le cartelle in /web saranno poi essere di proprietà dell'utente selezionato."
+
+msgid "fileOwnerDesc"
+msgstr "Questa voce di menu consente di modificare la proprietà della cartella /web del vostro sito (e tutti i file e cartelle all'interno!). Permette di scegliere un siteadmin come proprietario, che è particolarmente importante se si dispone di [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] abilitati. Se [[base-vsite.cap_resellerFPM]] o [[base-vsite.cap_resellerSUPHP]] è abilitata e non si dispone di un anonymous come proprietario della cartella /web, poi gli script PHP del vostro sito non verrà eseguito."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]] (Reseller)"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "In questo modo le capacità rivenditore correlati per questo account. Se questa casella è spuntata, quindi l'utente ha la possibilità di creare, gestire ed eliminare i siti virtuali e utenti. Egli può creare il numero di siti virtuali e utenti, come definito nelle impostazioni di seguito. Inoltre è possibile lo concedere l'accesso ad alcune funzionalità di questi siti virtuali. Come PHP, MySQL, FTP e così via."
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "Funzioni aggiuntive per i rivenditori: se questa casella è spuntata, quindi l'utente può gestire i record DNS per i siti virtuali che sono sotto il suo controllo."
+
+msgid "advancedSettingsTab"
+msgstr "Impostazioni avanzate"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]] (Usare con estrema cautela!)"
+
+msgid "adminOptions_desc"
+msgstr "Di seguito è riportato un elenco di funzionalità aggiuntive che possono essere concesse a un amministratore di server. Per Reseller nessuno di questi sono rilevanti e non deve essere utilizzato. Si prega di utilizzare queste funzionalità con estrema cautela e pregiudizi. Se si concede System-amministratore and/or accesso root, l'amministratore del server in questione riceve il pieno controllo e senza limiti sul server. Pari per l'utente amministratore o root del server. Se lo si desidera è possibile concedere un amministratore di server diversi livelli di accesso che fanno parte del GUI visibile a lui che di solito sono visibili solo al Sistema-amministratore (admin-conto). Ancora: Si prega di utilizzare questo con estrema cautela e non concedono i rivenditori l'accesso a queste caratteristiche - a meno che non sia assolutamente inevitabile."
+
+msgid "attemptToDisableUsedPHP"
+msgstr "Questa versione di PHP non può essere disattivato perché Apache sta utilizzando come versione predefinita PHP. Si prega di passare a un altro Apache versione di PHP predefinita. Poi provare a disattivare nuovamente la versione di PHP e dovrebbe funzionare."
+
+###
+
+msgid "PHP_version_os"
+msgstr "PHP Version (OS):"
+
+msgid "PHP_version_os_help"
+msgstr "Questo mostra la versione PHP del sistema operativo sottostante. Il server web pubblico è in esecuzione con PHP optional di una versione diversa. Quindi questo sistema operativo fornito versione di PHP non è attualmente disponibile per l'esecuzione di siti virtuali, come il terzo PHP (o uno di loro - se si dispone di più installato) stanno prendendo la precedenza."
+

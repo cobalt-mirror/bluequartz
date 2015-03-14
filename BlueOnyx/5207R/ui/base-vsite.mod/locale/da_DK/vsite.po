@@ -937,14 +937,8 @@ msgstr "Ejer af alt / web-indhold for [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "Siteadmin der ejer / web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Hvis suphp er aktiveret, så dette felt skal indstilles til en eksisterende Siteadmin af dette websted eller dine PHP scripts vil ikke køre. Selv hvis du ikke har suphp aktiveret: Hvis du vælger en ejer fra listen over siteAdmins, så / web directory på dit websted vil blive chown&#39;ed rekursivt til UID for det valgte bruger. Midler: Alle filer og mapper i / nettet vil bagefter være ejet af den valgte bruger."
-
 msgid "fileOwnerMenu"
 msgstr "Web Ejerskab"
-
-msgid "fileOwnerDesc"
-msgstr "Dette menupunkt giver dig mulighed for at ændre ejerskabet af / web mappe på dit websted (og alle filer og mapper inden!). Det giver dig mulighed for at vælge en Siteadmin som ejer, som er af særligt vigtigt, hvis du suphp har aktiveret. Hvis suphp er aktiveret, og du ikke har en Siteadmin som ejer af din / web mappe vil derefter PHP-scripts på dit websted ikke køre."
 
 msgid "prefix"
 msgstr "Sitet Præfiks:"
@@ -1160,3 +1154,85 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Hvis [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] er aktiveret, så dette felt skal indstilles til en eksisterende Siteadmin af dette websted eller dine PHP scripts vil ikke køre. Selv hvis du ikke har [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] aktiveret: Hvis du vælger en ejer fra listen over siteAdmins, så /web bibliotek på dit websted vil blive chown'ed rekursivt til UID for den valgte bruger. Midler: Alle filer og mapper i /web vil bagefter være ejet af den valgte bruger."
+
+msgid "fileOwnerDesc"
+msgstr "Dette menupunkt giver mulighed for at ændre ejerskabet af /web mappe på dit websted (og alle filer og mapper i!). Det giver dig mulighed for at vælge en Siteadmin som ejer, der er af særligt vigtigt, hvis du har [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] aktiveret. Hvis [[base-vsite.cap_resellerFPM]] eller [[base-vsite.cap_resellerSUPHP]] er aktiveret, og du ikke har en Siteadmin som ejer af din /web mappe, så PHP-scripts på dit websted vil ikke køre."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]] (forhandler)"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "Dette gør det muligt forhandler relaterede muligheder for denne konto. Hvis dette afkrydsningsfelt er markeret, så denne bruger har mulighed for at oprette, administrere og slette virtuelle sites og brugere. Han kan oprette lige så mange virtuelle sites og brugere som defineret i indstillingerne nedenfor. Derudover kan du give ham adgang til visse funktioner for disse virtuelle steder. Såsom PHP, MySQL, FTP og så videre."
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "Ekstra funktion for forhandlere: Hvis dette afkrydsningsfelt er markeret, så bruger kan også administrere DNS-posterne for de virtuelle websteder, der er under hans kontrol."
+
+msgid "advancedSettingsTab"
+msgstr "Avancerede indstillinger"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]] (Bruges med yderste forsigtighed!)"
+
+msgid "adminOptions_desc"
+msgstr "Herunder er en liste over yderligere funktioner, der kan ydes til en server administrator. For forhandler ingen af ​​disse er relevante og bør ikke anvendes. Brug venligst disse kapaciteter med ekstrem forsigtighed og forbehold. Hvis du giver System-Administrator and/or Root Access, så administratoren pågældende server modtager fuld og ubegrænset kontrol over serveren. Lig med admin eller rod bruger af serveren. Hvis det ønskes, kan du tildele en server administrator forskellige niveauer for adgang, der gør dele af GUI synligt for ham, at der normalt kun synlige for System-Administrator (admin-konto). Igen: Brug venligst denne med stor forsigtighed og ikke indrømmer forhandlere adgang til disse funktioner - med mindre det er absolut uundgåeligt."
+
+msgid "attemptToDisableUsedPHP"
+msgstr "Denne version af PHP kan ikke deaktiveres, da Apache i øjeblikket bruger det som standard PHP version. Venligst skifte Apache til en anden standard PHP version først. Så prøv at deaktivere PHP versionen igen, og det bør arbejde."
+
+##
+
+msgid "PHP_version_os"
+msgstr "PHP Version (OS):"
+
+msgid "PHP_version_os_help"
+msgstr "Dette viser PHP version af det underliggende operativsystem. Din offentlige webserver kører i øjeblikket med en valgfri PHP på en anden version. Derfor er denne OS forudsat PHP version er i øjeblikket ikke tilgængelig til at køre virtuelle steder, som den tredje part PHP (eller en af ​​dem - hvis du har flere installeret) tager forrang."
+

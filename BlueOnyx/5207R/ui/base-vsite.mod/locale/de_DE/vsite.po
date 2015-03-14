@@ -828,14 +828,8 @@ msgstr "Besitzer von /web für [[VAR.vsite]]"
 msgid "prefered_siteAdmin"
 msgstr "SiteAdmin für /web:"
 
-msgid "prefered_siteAdmin_help"
-msgstr "Wenn suPHP aktiviert ist, dann muss dieses Feld zu einem bestehenden siteAdmins dieser Website gesetzt werden, oder Ihre PHP-Skripte werden nicht ausgeführt. Auch wenn Sie nicht suPHP aktiviert haben: Wenn Sie einen Eigentümer aus der Liste der siteAdmins wählen, dann wird das /web-Verzeichnis Ihrer Website rekursiv auf die UID des ausgewählten Benutzers ge-chown&#39;ed werden. Bedeutet: Alle Dateien und Ordner in /web werden danach dem ausgewählten Benutzer gehören."
-
 msgid "fileOwnerMenu"
 msgstr "Web-Eigentümer"
-
-msgid "fileOwnerDesc"
-msgstr "Dieser Menüeintrag ermöglicht es Ihnen, den Eigentümer des /web Ordners Ihrer Website (und alle Dateien und Ordner innerhalb!) zu ändern. Es ermöglicht es Ihnen, eine siteadmin als Eigentümer zu definieren. Das ist besonders dann wichtig, wenn suPHP aktiviert ist. Wenn suPHP aktiviert ist und Sie keinen siteadmin als Eigentümer Ihres /web-Ordners gesetzt haben, dann werden die PHP-Skripte Ihrer Website nicht ausgeführt."
 
 msgid "prefix"
 msgstr "Standardpräfix:"
@@ -1050,3 +1044,85 @@ msgstr "[[base-support.SAExpiry]]"
 
 msgid "SAExpiry_help"
 msgstr "[[base-support.SAExpiry_help]]"
+
+######### New for 5209R:
+
+# Changed:
+
+msgid "prefered_siteAdmin_help"
+msgstr "Wenn [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] aktiviert ist, dann muss in dieses Feld ein vorhandener Siteadmin als Eigentümer des /web-Ordners festgelegt werden. PHP-Skripte werden dann mit der UID und GID des Eigentümers ausgeführt. Auch wenn [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] nicht aktiviert sind: Wenn Sie einen Eigentümer aus der Liste der siteAdmins wählen, dann werden die Eigentumsverhältnisse des /web Verzeichnis Ihrer Website rekursiv auf die UID des ausgewählten Benutzers geändert.Bedeutet: Alle Dateien und Ordner in /web werden danach dem ausgewählten Benutzer gehören."
+
+msgid "fileOwnerDesc"
+msgstr "Dieser Menüeintrag erlaubt es, den Eigentümer des /web-Verzeichnis Ihrer Website zu ändern. Das schließt auch alle Dateien und Ordner darun ein. Es erlaubt Ihnen, einen Siteadmin als Eigentümer festzulegen. Dies ist besonders wichtig, wenn Sie [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] aktivieren haben. Wenn [[base-vsite.cap_resellerFPM]] oder [[base-vsite.cap_resellerSUPHP]] aktiviert sind und Sie haben keinen Siteadmin als Eigentümer ausgewählt, dann werden PHP-Skripte Ihrer Website nicht ausgeführt."
+
+# NEW:
+
+msgid "cap_resellerRUID"
+msgstr "PHP (DSO) + mod_ruid2"
+
+msgid "cap_resellerFPM"
+msgstr "FPM/FastCGI"
+
+#
+### Added for support of multiple PHP versions:
+#
+
+msgid "PHP_version_Field"
+msgstr "[[base-apache.PHP_version_Field]]"
+
+msgid "PHP_version_Field_help"
+msgstr "[[base-apache.PHP_version_Field_help]]"
+
+msgid "setDefaultPHPVersion"
+msgstr "[[base-apache.setDefaultPHPVersion]]"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "[[base-apache.setDefaultPHPVersion_help]]"
+
+msgid "extraPHPversions"
+msgstr "[[base-apache.extraPHPversions]]"
+
+msgid "extraPHPversions_help"
+msgstr "[[base-apache.extraPHPversions_help]]"
+
+msgid "register_globals_exception"
+msgstr "[[base-apache.register_globals_exception]]"
+
+msgid "register_globals_exception_help"
+msgstr "[[base-apache.register_globals_exception_help]]"
+
+msgid "adminSites_new"
+msgstr "[[base-vsite.adminSites]] (Reseller)"
+
+msgid "CapManageSite"
+msgstr "[[base-vsite.cap_manageSite]]"
+
+msgid "CapManageSite_help"
+msgstr "Mit dieser Einstellung können Sie diesem Konto Reseller-Rechte vergeben. Wenn aktiviert, dann hat dieser Benutzer die Möglichkeit, virtuelle Sites und Benutzer-Konten anzulegen, zu verwalten und zu löschen. Er kann so viele Sites und Benutzer anlegen, wie in den unten aufgeführten Einstellungen definiert. Zusätzlich können Sie ihm den Zugriff auf bestimmte Funktionen für virtuellen Sites gewähren. Wie zum Beispiel PHP, MySQL, FTP und einige andere."
+
+msgid "CapSiteDNS"
+msgstr "[[base-dns.cap_siteDNS]]"
+
+msgid "CapSiteDNS_help"
+msgstr "Zusätzliche Funktion für Reseller: Wenn das Kontrollkästchen aktiviert ist, dann kann dieser Benutzer auch DNS-Einträge für die von ihm angelegten virtuellen Sites verwalten."
+
+msgid "advancedSettingsTab"
+msgstr "Experten-Modus"
+
+msgid "adminOptions_new"
+msgstr "[[base-vsite.adminOptions]] (VORSICHT!)"
+
+msgid "adminOptions_desc"
+msgstr "Hier ist eine Liste von zusätzlichen Rechten, die optional gewährt werden können. Für Reseller sollte dies jedoch *niemals* nötig sein, eines (oder mehrere) dieser Rechte zu vergeben. Bitte seien Sie bei der Vergabe diese optionalen Rechte äußerst knauserig und übervorsichtig. Wenn Sie das Recht 'System-Administrator' und/oder 'Root-Zugang' vergeben, so hat der Rechte-Empfänger vollen und uneingeschränkten Zugang auf *alle* Daten auf dem Server und ebensoviele Rechte, wie der Benutzer 'admin' und 'root' zusammen. Bei Bedarf und absoluter Notwendigkeit können Sie einzelnen extrem vertrauenswürdigen Nutzern fein abgestuft Rechte geben, die dann zusätzliche Elemente der GUI für ihn sichtbar machen, die ansonsten nur dem 'admin'-Konto zugänglich sind. Nochmals: Nutzen Sie diese Möglichkeit mit äußerster Vorsicht und Zurückhaltung."
+
+msgid "attemptToDisableUsedPHP"
+msgstr "Diese Version von PHP kann nicht deaktiviert werden, weil sie derzeit von Apache als Standard-PHP-Version verwendet wird. Stellen Sie bitte zunächst Apache auf eine andere PHP-Version um, die Sie nicht deaktivieren möchten. Danach können Sie dann die gewünschte PHP-Version erfolgreich deaktivieren."
+
+##
+
+msgid "PHP_version_os"
+msgstr "PHP-Version (OS):"
+
+msgid "PHP_version_os_help"
+msgstr "Dies zeigt die PHP-Version des Betriebssystems. Ihr Apache Web-Server benutzt jedoch derzeit eine andere PHP-Version aus einem optionalen Zusatz-Paket. Deswegen steht diese vom Betriebssystem zur Verfügung gestellte PHP-Version nicht für virtuelle Sites zur Verfügung, da PHP-Versionen aus optionalen Paketen Vorrang haben."
+
