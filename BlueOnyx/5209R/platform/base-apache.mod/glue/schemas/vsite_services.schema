@@ -13,6 +13,12 @@
 >
     <property name="featureEnabled" type="boolean" default="1"/>
 
+   <property name="version"
+        type="scalar"
+        default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
     <property
         name="i18nName" type="scalar" default="[[base-apache.phpI18nName]]"
     />
@@ -86,6 +92,13 @@
     name="Vsite" namespace="PHP" version="1.0"
     createacl="ruleCapable(adminUser)" destroyacl="ruleCapable(adminUser)"
 >
+
+   <property name="version"
+        type="scalar"
+        default=""
+        writeacl="ruleCapable(adminUser)"
+    />
+
     <property 
         name="enabled" type="boolean" default="0"
         writeacl="ruleCapable(adminUser)"

@@ -56,9 +56,9 @@ class USERWEBSExtension extends UIExtension
             $USERWEBS_enabled = "1";
         }
 
-        // But turn 'userwebs' off if suPHP is enabled for a Vsite:
+        // But turn 'userwebs' off if suPHP or 'PHP-FPM' is enabled for a Vsite:
         $featurePHP = $cce->get($cce_info['CCE_OID'], 'PHP');
-        if ($featurePHP['suPHP_enabled'] == "1") {
+        if (($featurePHP['suPHP_enabled'] == "1") || ($featurePHP['fpm_enabled'] == "1")) {
                 $USERWEBS_enabled = "0";
         }
 

@@ -14,6 +14,8 @@ if ($DEBUG)
         use Sys::Syslog qw( :DEFAULT setlogsock);
 }
 
+$extra_PHP_basepath = '/home/solarspeed/';
+
 my $cce = new CCE;
 $cce->connectfd();
 
@@ -25,6 +27,61 @@ my($ok, $php) = $cce->get($cce->event_oid(), 'PHP');
 ($ok, my $cgi) = $cce->get($cce->event_oid(), 'CGI');
 ($ok, my $ssi) = $cce->get($cce->event_oid(), 'SSI');
 ($ok, my $Vsite) = $cce->get($cce->event_oid(), '');
+
+###
+
+#
+## Check for presence of third party extra PHP versions:
+#
+
+# Known PHP versions:
+%known_php_versions = (
+                        'PHP53' => '5.3',
+                        'PHP54' => '5.4',
+                        'PHP55' => '5.5',
+                        'PHP56' => '5.6'
+                        );
+
+%php_handlers = (
+                        'PHPOS' => 'x-httpd-suphp',
+                        'PHP53' => 'x-httpd-suphp-5.3',
+                        'PHP54' => 'x-httpd-suphp-5.4',
+                        'PHP55' => 'x-httpd-suphp-5.5',
+                        'PHP56' => 'x-httpd-suphp-5.6'
+                        );
+
+@sysoids = $cce->find('PHP');
+$PHP_server_OID = $sysoids[0];
+($ok, $PHP) = $cce->get($PHP_server_OID);
+
+# Check if known extra PHP versions are present. If so, update CODB accordingly:
+if (defined($PHP_server_OID)) {
+    for $phpVer (keys %known_php_versions) {
+        $phpFpmPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/sbin/php-fpm";
+        $phpBinaryPath = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/bin/php";
+        $known_php_inis{$phpVer} = $extra_PHP_basepath . "php-" . $known_php_versions{$phpVer} . "/etc/php.ini";
+        $reportedVersion = `$phpBinaryPath -v|grep "(cli)"|awk {'print \$2'}`;
+        chomp($reportedVersion);
+        $seen_php_versions{$phpVer} = $reportedVersion;
+        $seen_php_versions{$reportedVersion} = $phpVer;
+        # Add FPM pool files to the mix:
+        $xpool_file = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/www.conf';
+        $xpool_directory = '/etc/php-fpm-' . $known_php_versions{$phpVer} . '.d/';
+        if ( -f $xpool_file ) {
+            $known_php_fpm_pool_files{$phpVer} = $xpool_file;
+            $known_php_fpm_pool_directories{$phpVer} = $xpool_directory;
+            $known_php_fpm_pool_services{$phpVer} = 'php-fpm-' . $known_php_versions{$phpVer};
+        }
+        else {
+            &debug_msg("Not adding $xpool_file as it's not there! \n");
+        }
+    }
+}
+else {
+    $cce->bye('FAIL');
+    exit(1);
+}
+###
 
 if(not $ok)
 {
@@ -71,19 +128,20 @@ sub edit_vhost
         $prefered_siteAdmin = 'apache';
     }
 
-
-
     if ($php->{enabled})
     {
                 # Handle suPHP:
                 if ($php->{suPHP_enabled}) {
                     # Handle suPHP:
+
+                    &debug_msg("suPHP: I should be using $php_handlers{$php->{version}} for this.\n");
+
                     $script_conf .= "<IfModule mod_suphp.c>\n";
                     $script_conf .= "    suPHP_Engine on\n";
                     $script_conf .= "    suPHP_UserGroup $prefered_siteAdmin $Vsite->{name}\n";
-                    $script_conf .= "    AddType application/x-httpd-suphp .php\n";
-                    $script_conf .= "    AddHandler x-httpd-suphp .php .php5 .php4 .php3 .phtml\n";
-                    $script_conf .= "    suPHP_AddHandler x-httpd-suphp\n";
+                    $script_conf .= "    AddType application/" . $php_handlers{$php->{version}} . " .php\n";
+                    $script_conf .= "    AddHandler " . $php_handlers{$php->{version}} . " .php .php5 .php4 .php3 .phtml\n";
+                    $script_conf .= "    suPHP_AddHandler " . $php_handlers{$php->{version}} . "\n";
                     $script_conf .= "    suPHP_ConfigPath $Vsite->{basedir}/\n";
                     $script_conf .= "</IfModule>\n";
                 }

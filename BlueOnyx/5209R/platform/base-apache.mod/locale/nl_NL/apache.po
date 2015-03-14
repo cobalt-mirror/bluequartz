@@ -364,3 +364,73 @@ msgid "amPHPFPMNotRunning"
 msgstr "De service [[base-apache.amPHPFPMNameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze dienst en run 'systemctl status php-fpm.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPMNameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
 
 
+#
+## Added for support of multiple extra-PHP versions:
+#
+
+msgid "setDefaultPHPVersion"
+msgstr "Default PHP Versie:"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "Standaard loopt uw ​​Apache webserver met PHP-versie van het besturingssysteem geleverd. Als u extra PHP-versies geïnstalleerd (beschikbaar in de BlueOnyx Shop), dan kunt u kiezen voor een andere PHP-versies naar de standaard voor de Apache webserver. Deze geselecteerde PHP-versie wordt vervolgens gebruikt op alle virtuele sites die PHP gebruiken als DSO of dat het gebruik van PHP via DSO en mod_ruid2."
+
+msgid "extraPHPversions"
+msgstr "PHP-versies beschikbaar voor virtuele locaties:"
+
+msgid "extraPHPversions_help"
+msgstr "Als u meerdere PHP-versies geïnstalleerd, dan kunt u kiezen welke beschikbaar is voor gebruik op virtuele sites zijn. Als je een PHP-versie geïnstalleerd die u niet meer wenst te gebruiken, dan kun je deze verplaatsen naar de rechterkant van de tabel hieronder. Alle virtuele sites die momenteel gebruikt het zal dan worden teruggezet naar de meegeleverde OS PHP-versie. Daarnaast gehandicapten PHP-versie is dan niet meer te selecteren tijdens het maken van nieuwe virtuele sites."
+
+msgid "register_globals_exception"
+msgstr "PHP-5.3 uitzondering"
+
+msgid "register_globals_exception_help"
+msgstr "Sinds PHP-5.4 de functie 'Register Globals' daadwerkelijk is verwijderd uit PHP. Daarom is de GUI niet meer mogelijk maakt om 'Register Globals' staat voor PHP-5.4 en later. Echter: Als u de optioneel verkrijgbare PHP-5.3-pakket geïnstalleerd en ingeschakeld, dan kunt u dit vakje aanvinken. Dat zal u toelaten om 'Register Globals' op 'Aan' voor virtuele sites die met behulp van PHP-5.3."
+
+msgid "PHP_version_Field"
+msgstr "Vsite PHP Versie:"
+
+msgid "PHP_version_Field_help"
+msgstr "Dit toont de PHP-versie voor deze virtuele website. Als er meerdere PHP-versies zijn geïnstalleerd op de server en ofwel suPHP of PHP-FPM wordt gebruikt, dan is het mogelijk om ofwel de meegeleverde OS-versie van PHP, of een PHP-versie via een van de optioneel verkrijgbare PHP pakketten geleverd kiezen. Bijgewerkt extra PHP-pakketten zijn beschikbaar in de BlueOnyx Store en andere versie van PHP zijn beschikbaar. Meerdere PHP pakketten kunnen tegelijkertijd worden geïnstalleerd. Per virtuele website slechts één PHP versie kan worden gebruikt, hoewel de verschillende virtuele locaties gemakkelijk verschillende PHP-versies kan draaien."
+
+msgid "amPHPFPMMASTERNameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] (OS)"
+
+msgid "amPHPFPMMASTERStatusOK"
+msgstr "De service PHP-FPM (OS) werkt normaal."
+
+msgid "amPHPFPMMASTERNotRunning"
+msgstr "De service [[base-apache.amPHPFPMNameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze dienst en run 'systemctl status php-fpm.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPMNameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amPHPFPM53NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
+
+msgid "amPHPFPM53StatusOK"
+msgstr "De service PHP-FPM (voor PHP-5.6) werkt normaal."
+
+msgid "amPHPFPM53NotRunning"
+msgstr "De service [[base-apache.amPHPFPM53NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.3.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM53NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amPHPFPM54NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.4"
+
+msgid "amPHPFPM54StatusOK"
+msgstr "De service PHP-FPM (voor PHP-5.4) werkt normaal."
+
+msgid "amPHPFPM54NotRunning"
+msgstr "De service [[base-apache.amPHPFPM54NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.4.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM54NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amPHPFPM55NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.5"
+
+msgid "amPHPFPM55StatusOK"
+msgstr "De service PHP-FPM (voor PHP-5.5) werkt normaal."
+
+msgid "amPHPFPM55NotRunning"
+msgstr "De service [[base-apache.amPHPFPM55NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.5.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM55NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+
+msgid "amPHPFPM56NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
+
+msgid "amPHPFPM56NotRunning"
+msgstr "De service [[base-apache.amPHPFPM56NameTag]] draait niet en kon niet worden hervat. Kijk dan op de logfiles voor foutmeldingen in verband met deze service en run 'systemctl status php-fpm-5.6.service' als root vanaf de opdrachtregel om het probleem op te lossen. Als u nog steeds geen toegang tot de [[base-apache.amPHPFPM56NameTag]], kunt u terecht op [[base-sauce-basic.techSupportURL]] voor technische ondersteuning."
+

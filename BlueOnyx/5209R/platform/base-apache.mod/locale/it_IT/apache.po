@@ -365,3 +365,73 @@ msgstr "Il servizio di PHP-FPM funziona normalmente."
 msgid "amPHPFPMNotRunning"
 msgstr "Il [[base-apache.amPHPFPMNameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-fpm.service ' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPMNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
 
+#
+## Added for support of multiple extra-PHP versions:
+#
+
+msgid "setDefaultPHPVersion"
+msgstr "Predefinito PHP Version:"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "Per impostazione predefinita, il server web Apache funziona con la versione di PHP fornita dal sistema operativo. Se si dispone di versioni di PHP aggiuntivi installati (disponibili nel BlueOnyx negozio), quindi è possibile scegliere un diverso versioni di PHP come predefinito per il server web Apache. Questa versione di PHP selezionato viene poi utilizzato su tutti i siti virtuali che utilizzano PHP come DSO o che utilizzano PHP tramite DSO e mod_ruid2."
+
+msgid "extraPHPversions"
+msgstr "Versioni disponibili per i siti virtuali PHP:"
+
+msgid "extraPHPversions_help"
+msgstr "Se si dispone di più versioni di PHP installati, allora si può scegliere quali sono disponibili per l'utilizzo su siti virtuali. Se si dispone di una versione di PHP installata che non si desidera più utilizzare, allora si può passare al lato destro della tabella. Tutti i siti virtuali che attualmente utilizzano lo saranno poi annullate per il sistema operativo in dotazione versione di PHP. Inoltre, la versione di PHP disabile è quindi più selezionabili durante la creazione di nuovi siti virtuali."
+
+msgid "register_globals_exception"
+msgstr "PHP-5.3 eccezione"
+
+msgid "register_globals_exception_help"
+msgstr "Dal PHP-5.4 la funzione 'Register Globals' è stato effettivamente rimosso da PHP. Pertanto, la GUI non permette di abilitare 'Register Globals' per PHP-5.4 e versioni successive. Tuttavia: Se avete il opzionale pacchetto PHP-5.3 installato e attivato, quindi è possibile barrare questa casella. Che vi permetterà di impostare 'Register Globals' a 'On' per i siti virtuali che utilizzano PHP-5.3."
+
+msgid "PHP_version_Field"
+msgstr "Vsite PHP Version:"
+
+msgid "PHP_version_Field_help"
+msgstr "Questo mostra la versione di PHP per questo sito virtuale. Se più versioni di PHP sono installati sul server e viene utilizzato sia suPHP o PHP-FPM, allora è possibile scegliere tra la versione del sistema operativo in dotazione di PHP, o una versione di PHP fornita tramite uno dei pacchetti PHP opzionali. Aggiornato pacchetti PHP supplementari sono disponibili nel BlueOnyx Store e diversa versione di PHP sono disponibili. Pacchetti PHP multipli possono essere installati allo stesso tempo. Per sito virtuale solo una versione PHP può essere usato, anche se diversi siti virtuali possono eseguire facilmente diverse versioni di PHP."
+
+msgid "amPHPFPMMASTERNameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] (OS)"
+
+msgid "amPHPFPMMASTERStatusOK"
+msgstr "Il servizio di PHP-FPM (OS) sta funzionando normalmente."
+
+msgid "amPHPFPMMASTERNotRunning"
+msgstr "Il [[base-apache.amPHPFPMNameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'stato php-fpm.service systemctl' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPMNameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+
+msgid "amPHPFPM53NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
+
+msgid "amPHPFPM53StatusOK"
+msgstr "Il servizio di PHP-FPM (per PHP-5.6) funziona normalmente."
+
+msgid "amPHPFPM53NotRunning"
+msgstr "Il [[base-apache.amPHPFPM53NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.3.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM53NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+
+msgid "amPHPFPM54NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.4"
+
+msgid "amPHPFPM54StatusOK"
+msgstr "Il servizio di PHP-FPM (per PHP-5.4) funziona normalmente."
+
+msgid "amPHPFPM54NotRunning"
+msgstr "Il [[base-apache.amPHPFPM54NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.4.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM54NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+
+msgid "amPHPFPM55NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.5"
+
+msgid "amPHPFPM55StatusOK"
+msgstr "Il servizio di PHP-FPM (per PHP-5.5) funziona normalmente."
+
+msgid "amPHPFPM55NotRunning"
+msgstr "Il [[base-apache.amPHPFPM55NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.5.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM55NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+
+msgid "amPHPFPM56NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
+
+msgid "amPHPFPM56NotRunning"
+msgstr "Il [[base-apache.amPHPFPM56NameTag]] servizio non è in esecuzione e non può essere riavviato. Si prega di controllare i file di log per i messaggi di errore relativi a questo servizio ed eseguire 'systemctl status php-FPM-5.6.service' come root dalla riga di comando per risolvere il problema. Se siete ancora in grado di accedere al [[base-apache.amPHPFPM56NameTag]], si prega di visitare [[base-sauce-basic.techSupportURL]] per il supporto tecnico."
+

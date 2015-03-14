@@ -56,6 +56,24 @@ information for [VENDOR]-[SERVICE].
 /usr/sausalito/sbin/toggle_ssl.pl
 /usr/sausalito/sbin/SSL_fixer.pl
 /etc/ccewrap.d/base/apache/apache.xml
+
+/usr/sausalito/configs/systemd/php-fpm.service
+/usr/lib/systemd/system/php-fpm-5.3.service
+/usr/lib/systemd/system/php-fpm-5.4.service
+/usr/lib/systemd/system/php-fpm-5.5.service
+/usr/lib/systemd/system/php-fpm-5.6.service
+
+#%ghost %attr(0664,root,root) /etc/php-fpm-5.3.d/
+#%ghost %attr(0664,root,root) /etc/php-fpm-5.4.d/
+#%ghost %attr(0664,root,root) /etc/php-fpm-5.5.d/
+#%ghost %attr(0664,root,root) /etc/php-fpm-5.6.d/
+
+%config(noreplace)/etc/php-fpm.d/www.conf
+%config(noreplace)/etc/php-fpm-5.3.d/www.conf
+%config(noreplace)/etc/php-fpm-5.4.d/www.conf
+%config(noreplace)/etc/php-fpm-5.5.d/www.conf
+%config(noreplace)/etc/php-fpm-5.6.d/www.conf
+
 [AUTOFILL]
 
 <end glue>
@@ -144,11 +162,20 @@ if [ -S /usr/sausalito/cced.socket ]; then
     /sbin/service httpd restart
 fi
 
-# Enable service php-fpm:
-systemctl enable php-fpm.service
+if [ -f /usr/bin/systemctl ]; then
 
-# Start service php-fpm:
-systemctl restart php-fpm.service --no-block
+	# Copy our modified php-fpm.service over:
+	cp /usr/sausalito/configs/systemd/php-fpm.service /usr/lib/systemd/system/php-fpm.service
+
+	# Reload
+	systemctl daemon-reload --no-block
+
+	# Enable service php-fpm:
+	systemctl enable php-fpm.service
+
+	# Start service php-fpm:
+	systemctl restart php-fpm.service --no-block
+fi
 
 <end glue>
 <begin ui>
@@ -181,6 +208,30 @@ systemctl restart php-fpm.service --no-block
 <end %POST-UNINSTALL>
 
 <begin $CHANGELOG>
+
+* Fri Mar 13 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.1-0BX25
+- Added support for multiple PHP versions at the same time. That required
+  some extensive changes to base-apache and base-vsite.
+- Modified glue/handlers/webscripting.pl (and clones) to deal with different
+  PHP-FPM pools for each version of PHP. Also added modified suPHP support to
+  deal with different handlers for each PHP version.
+- Modified glue/schemas/fpm-am.schema to monitor the extra PHP-FPM pools, too.
+- Added rc/base-apache-am/am_phpfpm5*.pl to monitor/restart the extra pools.
+- Extended glue/schemas/vsite_services.schema with ability to choose a prefered
+  version of PHP for Vsites in the Vsite template.
+- Modified ui/chorizo/extensions/10_PHP.php* to make the PHP version selectable
+  provided the respective conditions for it are met.
+- Modified ui/chorizo/extensions/40_USERWEBS.php.* to turn UserWebs off if suPHP
+  or PHP-FPM are active.
+- Modified ui/chorizo/web/controllers/fpm_amdetails.php to conditionally show 
+  monitoring for all PHP-FPM pools. Provided they are active. We only show the
+  monitoring for a given extra PHP pool if that version of PHP is actually
+  installed.
+- Added the PHP-FPM Systemd Unit files for all extra-PHP pools. And a modified
+  one for the stock PHP-FPM pool that automatically restarts PHP-FPM if it should
+  be running and has failed.
+- Added default toplevel pool files for all PHP-FPM pools as config files.
+- Updated all locales with the new strings.
 
 * Tue Feb 03 2015 Michael Stauber <mstauber@solarspeed.net> 2.1.0-0BX24
 - Fix in constructor/set_apache_hostname.pl to set a default for port.

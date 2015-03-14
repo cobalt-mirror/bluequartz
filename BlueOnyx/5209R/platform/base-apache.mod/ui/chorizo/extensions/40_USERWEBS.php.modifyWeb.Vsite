@@ -26,7 +26,7 @@ class USERWEBSExtension extends UIExtension
         // Turn 'userwebs' off if suPHP is enabled for a Vsite:
         $access = 'rw';
         $featurePHP = $cce->get($cce_info['CCE_OID'], 'PHP');
-        if ($featurePHP['suPHP_enabled'] == "1") {
+        if (($featurePHP['suPHP_enabled'] == "1") || ($featurePHP['fpm_enabled'] == "1")) {
                 $USERWEBS_enabled = "0";
                 $access = 'r';
         }

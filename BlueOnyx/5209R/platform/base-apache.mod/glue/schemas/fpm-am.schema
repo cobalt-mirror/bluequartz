@@ -6,8 +6,8 @@
     <property name="enabled"            type="boolean"      default="1"/>
     <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
 
-    <property name="type"               type="scalar"       default="exec"/>
-    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_phpfpm.pl"/>
+    <property name="type"               type="scalar"       default="aggregate"/>
+    <property name="typeData"           type="scalar"       default="PHPFPMMASTER FPMPHP53 FPMPHP54 FPMPHP55 FPMPHP56"/>
 
     <property name="aggMember"          type="boolean"      default="0"/>
     <property name="greenMsg"           type="scalar"       default="[[base-apache.amPHPFPMStatusOK]]"/>
@@ -22,4 +22,109 @@
     <property name="URL"                type="scalar" default="/base/apache/fpm_amdetails.php"/>
     <property name="UIGroup"            type="scalar"   default="service"/>
 
+</class>
+
+<!-- This is the AM Namespace for monitoring 'PHP-FPM-MASTER' -->
+<class name="ActiveMonitor"             namespace="PHPFPMMASTER"  version="1.1">
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_phpfpm.pl"/>
+
+    <property name="aggMember"          type="boolean"      default="1"/>
+    <property name="greenMsg"           type="scalar"       default="[[base-apache.amPHPFPMMASTERStatusOK]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-apache.amPHPFPMMASTERNotRunning]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-apache.amPHPFPMMASTERNameTag]]"/>
+
+    <property name="hideUI"             type="boolean"      default="1"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring 'PHP-FPM-53' -->
+<class name="ActiveMonitor"             namespace="FPMPHP53"  version="1.1">
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_phpfpm53.pl"/>
+
+    <property name="aggMember"          type="boolean"      default="1"/>
+    <property name="greenMsg"           type="scalar"       default="[[base-apache.amPHPFPM53StatusOK]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-apache.amPHPFPM53NotRunning]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-apache.amPHPFPM53NameTag]]"/>
+
+    <property name="hideUI"             type="boolean"      default="1"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring 'PHP-FPM-54' -->
+<class name="ActiveMonitor"             namespace="FPMPHP54"  version="1.1">
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_phpfpm54.pl"/>
+
+    <property name="aggMember"          type="boolean"      default="1"/>
+    <property name="greenMsg"           type="scalar"       default="[[base-apache.amPHPFPM54StatusOK]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-apache.amPHPFPM54NotRunning]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-apache.amPHPFPM54NameTag]]"/>
+
+    <property name="hideUI"             type="boolean"      default="1"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring 'PHP-FPM-55' -->
+<class name="ActiveMonitor"             namespace="FPMPHP55"  version="1.1">
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_phpfpm55.pl"/>
+
+    <property name="aggMember"          type="boolean"      default="1"/>
+    <property name="greenMsg"           type="scalar"       default="[[base-apache.amPHPFPM55StatusOK]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-apache.amPHPFPM55NotRunning]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-apache.amPHPFPM55NameTag]]"/>
+
+    <property name="hideUI"             type="boolean"      default="1"/>
+</class>
+
+<!-- This is the AM Namespace for monitoring 'PHP-FPM-56' -->
+<class name="ActiveMonitor"             namespace="FPMPHP56"  version="1.1">
+    <property name="enabled"            type="boolean"      default="1"/>
+    <property name="monitor"            writeACL="ruleCapable(serverActiveMonitor)" type="boolean"  default="1"/>
+
+    <property name="type"               type="scalar"       default="exec"/>
+    <property name="typeData"           type="scalar"       default="/usr/sausalito/swatch/bin/am_phpfpm56.pl"/>
+
+    <property name="aggMember"          type="boolean"      default="1"/>
+    <property name="greenMsg"           type="scalar"       default="[[base-apache.amPHPFPM56StatusOK]]"/>
+    <property name="redMsg"             type="scalar"       default="[[base-apache.amPHPFPM56NotRunning]]"/>
+
+    <property name="currentState"       type="amstate"      default="G"/>
+    <property name="lastChange"         type="uint"         default="0"/>
+    <property name="lastRun"            type="uint"         default="0"/>
+    <property name="currentMessage"     type="scalar"       default=""/>
+    <property name="nameTag"            type="scalar"       default="[[base-apache.amPHPFPM56NameTag]]"/>
+
+    <property name="hideUI"             type="boolean"      default="1"/>
 </class>

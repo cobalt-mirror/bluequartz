@@ -393,3 +393,73 @@ msgstr "Der Service PHP-FPM arbeitet normal."
 msgid "amPHPFPMNotRunning"
 msgstr "Der Service [[base-apache.amPHPFPMNameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Server-Logfiles auf Fehlermeldungen und führen Sie den Befehl 'systemctl status php-fpm.service' als root auf der Kommandozeile aus, um das Problem diagnostizieren. Falls Sie das Problem nicht beheben können und [[base-apache.amPHPFPMNameTag]] weiterhin nicht läuft, besuchen Sie bitte [[base-sauce-basic.techSupportURL]] um technischen Support zu erhalten."
 
+#
+## Added for support of multiple extra-PHP versions:
+#
+
+msgid "setDefaultPHPVersion"
+msgstr "Standard PHP Version:"
+
+msgid "setDefaultPHPVersion_help"
+msgstr "Standardmäßig läuft der Apache-Webserver mit der PHP-Version des Betriebssystemes. Wenn Sie zusätzliche PHP-Versionen installiert haben (im BlueOnyx Shop verfügbar), dann können Sie hier eine andere PHP-Versionen auswählen. Die dann ausgewählte PHP-Version wird dann die neue Standard-PHP-Version für den Apache-Webserver. Diese ausgewählte PHP-Version wird dann bei allen virtuellen Seiten aktiviert, welche PHP als DSO oder PHP mittels DSO und mod_ruid2 verwenden. Sind mehrere PHP-Versionen installiert und verfügbar und wird suPHP oder PHP-FPM verwendet, so ist die eingesetzte PHP-Version für die betreffende virtuelle Seite frei wählbar."
+
+msgid "extraPHPversions"
+msgstr "Verfügbare PHP-Versionen für virtuelle Sites:"
+
+msgid "extraPHPversions_help"
+msgstr "Wenn mehrere PHP-Versionen installiert sind, dann können Sie wählen, welche davon für den Einsatz auf virtuellen Sites verfügbar sind. Wenn Sie eine PHP-Version installiert haben, die Sie aber nicht mehr verwenden möchten, dann schieben Sie diese nach Rechts und speichern Sie. Diese PHP Version wird dann aus der Zirkulation genommen. Virtuelle Sites, welche diese PHP-Version noch verwenden, werden dann auf die Standard-PHP-Version zurück gestellt. Zusätzlich stehen PHP-Versionen, welche auf diese Weise deaktiviert wurden nicht mehr bei der Konfiguration von virtuellen Sites zur Verfügung."
+
+msgid "register_globals_exception"
+msgstr "PHP-5.3 Ausnahme"
+
+msgid "register_globals_exception_help"
+msgstr "Ab der Version PHP-5.4 steht die Funktion 'Register Globals' effektiv nicht mehr zur Verfügung. Deshalb bietet die GUI in der Regel auch keine Möglichkeit mehr, 'Register Globals' für PHP-5.4 (und neuer) zu aktivieren. Falls Sie jedoch das optionale PHP-5.3 Paket aus dem BlueOnyx Shop installiert haben, können Sie hier einen Haken setzen. Das erlaubt dann, auf jenen virtuellen Sites, die PHP-5.3 einsetzen 'Register Globals' bei Bedarf und selektiv für diese virtuelle Site zu aktivieren."
+
+msgid "PHP_version_Field"
+msgstr "Vsite PHP Version:"
+
+msgid "PHP_version_Field_help"
+msgstr "Dieses Feld zeigt die PHP-Version an, welche für diese virtuelle Site verwendet wird. Sofern mehrere PHP-Versionen auf diesem Server gleichzeitig zur Verfügung stehen (und entweder suPHP oder PHP-FPM verwendet wird) kann ausgewählt werden, welche PHP-Version für diese Site verwendet werden soll. Zusätzliche PHP Pakete verschiedener PHP-Versionen sind im BlueOnyx-Shop verfügbar. Es können mehrere Pakete verschiedener PHP-Versionen gleichzeitig installiert werden, was die Auswahl an PHP-Versionen für virtuelle Sites erhöht."
+
+msgid "amPHPFPMMASTERNameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] (OS)"
+
+msgid "amPHPFPMMASTERStatusOK"
+msgstr "Der Dienst PHP-FPM (OS) arbeitet normal."
+
+msgid "amPHPFPMMASTERNotRunning"
+msgstr "Der Dienst [[base-apache.amPHPFPMNameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Protokolldateien auf Fehlermeldungen betreffend dieses Dienstes führen Sie den Befehl 'systemctl status php-fpm.service' als root auf der Kommandozeile zu Diagnosezwecken aus. Falls das nicht zu einer Lösung des Problemes beiträgt und Sie den Dienst [[base-apache.amPHPFPMNameTag]] nicht manuell starten können, dann besuchen Sie bitte [[base-sauce-basic.techSupportURL]] für technischen Support."
+
+msgid "amPHPFPM53NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
+
+msgid "amPHPFPM53StatusOK"
+msgstr "Der Dienst PHP-FPM (für PHP-5.6) arbeitet normal."
+
+msgid "amPHPFPM53NotRunning"
+msgstr "Der Dienst [[base-apache.amPHPFPM53NameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Protokolldateien auf Fehlermeldungen betreffend dieses Dienstes führen Sie den Befehl 'systemctl status php-fpm-5.3.service' als root auf der Kommandozeile zu Diagnosezwecken aus. Falls das nicht zu einer Lösung des Problemes beiträgt und Sie den Dienst [[base-apache.amPHPFPM53NameTag]] nicht manuell starten können, dann besuchen Sie bitte [[base-sauce-basic.techSupportURL]] für technischen Support."
+
+msgid "amPHPFPM54NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.4"
+
+msgid "amPHPFPM54StatusOK"
+msgstr "Der Dienst PHP-FPM (für PHP-5.4) arbeitet normal."
+
+msgid "amPHPFPM54NotRunning"
+msgstr "Der Dienst [[base-apache.amPHPFPM54NameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Protokolldateien auf Fehlermeldungen betreffend dieses Dienstes führen Sie den Befehl 'systemctl status php-fpm-5.4.service' als root auf der Kommandozeile zu Diagnosezwecken aus. Falls das nicht zu einer Lösung des Problemes beiträgt und Sie den Dienst [[base-apache.amPHPFPM54NameTag]] nicht manuell starten können, dann besuchen Sie bitte [[base-sauce-basic.techSupportURL]] für technischen Support."
+
+msgid "amPHPFPM55NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.5"
+
+msgid "amPHPFPM55StatusOK"
+msgstr "Der Dienst PHP-FPM (für PHP-5.5) arbeitet normal."
+
+msgid "amPHPFPM55NotRunning"
+msgstr "Der Dienst [[base-apache.amPHPFPM55NameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Protokolldateien auf Fehlermeldungen betreffend dieses Dienstes führen Sie den Befehl 'systemctl status php-fpm-5.5.service' als root auf der Kommandozeile zu Diagnosezwecken aus. Falls das nicht zu einer Lösung des Problemes beiträgt und Sie den Dienst [[base-apache.amPHPFPM55NameTag]] nicht manuell starten können, dann besuchen Sie bitte [[base-sauce-basic.techSupportURL]] für technischen Support."
+
+msgid "amPHPFPM56NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
+
+msgid "amPHPFPM56NotRunning"
+msgstr "Der Dienst [[base-apache.amPHPFPM56NameTag]] läuft nicht und konnte nicht gestartet werden. Bitte prüfen Sie die Protokolldateien auf Fehlermeldungen betreffend dieses Dienstes führen Sie den Befehl 'systemctl status php-fpm-5.6.service' als root auf der Kommandozeile zu Diagnosezwecken aus. Falls das nicht zu einer Lösung des Problemes beiträgt und Sie den Dienst [[base-apache.amPHPFPM56NameTag]] nicht manuell starten können, dann besuchen Sie bitte [[base-sauce-basic.techSupportURL]] für technischen Support."
+

@@ -20,7 +20,7 @@ endif
 INSTALL = /usr/bin/install -m 0700 -o root 
 PWD = $(shell pwd)
 
-install: install_etc install_httpdconf install_sbin
+install: install_etc install_httpdconf install_sbin install_fpm
 
 install_etc: 
 	mkdir -p $(PREFIX)/etc/ccewrap.d/base/apache
@@ -35,4 +35,23 @@ install_httpdconf:
 
 install_sbin:
 	$(INSTALL) -d -o root -m 0755 $(PREFIX)/usr/sausalito/sbin; \
-	$(INSTALL) -o root -m 0755 $(SCRIPTS) $(PREFIX)//usr/sausalito/sbin/; \
+	$(INSTALL) -o root -m 0755 $(SCRIPTS) $(PREFIX)/usr/sausalito/sbin/; \
+
+install_fpm:
+	mkdir -p $(PREFIX)/usr/lib/systemd/system/
+	mkdir -p $(PREFIX)/usr/sausalito/configs/systemd/
+	install -o root -g root -m 644 php-fpm/php-fpm.service $(PREFIX)/usr/sausalito/configs/systemd/
+	install -o root -g root -m 644 php-fpm/php-fpm-5.3.service $(PREFIX)/usr/lib/systemd/system/
+	install -o root -g root -m 644 php-fpm/php-fpm-5.4.service $(PREFIX)/usr/lib/systemd/system/
+	install -o root -g root -m 644 php-fpm/php-fpm-5.5.service $(PREFIX)/usr/lib/systemd/system/
+	install -o root -g root -m 644 php-fpm/php-fpm-5.6.service $(PREFIX)/usr/lib/systemd/system/
+	mkdir -p $(PREFIX)/etc/php-fpm.d
+	mkdir -p $(PREFIX)/etc/php-fpm-5.3.d
+	mkdir -p $(PREFIX)/etc/php-fpm-5.4.d
+	mkdir -p $(PREFIX)/etc/php-fpm-5.5.d
+	mkdir -p $(PREFIX)/etc/php-fpm-5.6.d
+	install -o root -g root -m 644 php-fpm/etc/php-fpm.d/www.conf $(PREFIX)/etc/php-fpm.d/www.conf
+	install -o root -g root -m 644 php-fpm/etc/php-fpm-5.3.d/www.conf $(PREFIX)/etc/php-fpm-5.3.d/www.conf
+	install -o root -g root -m 644 php-fpm/etc/php-fpm-5.4.d/www.conf $(PREFIX)/etc/php-fpm-5.4.d/www.conf
+	install -o root -g root -m 644 php-fpm/etc/php-fpm-5.5.d/www.conf $(PREFIX)/etc/php-fpm-5.5.d/www.conf
+	install -o root -g root -m 644 php-fpm/etc/php-fpm-5.6.d/www.conf $(PREFIX)/etc/php-fpm-5.6.d/www.conf

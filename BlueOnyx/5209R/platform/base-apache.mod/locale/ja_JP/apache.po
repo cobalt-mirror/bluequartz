@@ -378,3 +378,72 @@ msgstr "サービスPHP-FPMは正常に動作しています。"
 msgid "amPHPFPMNotRunning"
 msgstr "サービス[[base-apache.amPHPFPMNameTag]]が実行されていないと再起動できませんでした。本サービスに関連するエラーメッセージのためのログファイルをチェックし、問題を解決するには、コマンドラインからrootとして「systemctl status php-fpm.service'を実行してください。それでも[[base-apache.amPHPFPMNameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
 
+#
+## Added for support of multiple extra-PHP versions:
+#
+
+msgid "setDefaultPHPVersion"
+msgstr "デフォルトのPHPバージョン："
+
+msgid "setDefaultPHPVersion_help"
+msgstr "デフォルトでは、Apacheのウェブサーバは、OSによって供給されたPHPのバージョンで動作します。あなたは（BlueOnyxショップで販売中）がインストールされ、追加のPHPのバージョンを持っている場合は、Apacheウェブサーバのデフォルトにするために、異なるバージョンのPHPを選択することができます。この選択されたPHPのバージョンは、その後DSOまたはDSOとmod_ruid2経由その使用PHPとしてPHPを使用するすべての仮想サイト上で使用されます。"
+
+msgid "extraPHPversions"
+msgstr "仮想サイトで使用可能なPHPのバージョン："
+
+msgid "extraPHPversions_help"
+msgstr "複数のPHPのバージョンがインストールされている場合は、仮想サイト上での使用のために利用可能なものを選択することができます。あなたは、もはや使用したいことをインストールされていないPHPのバージョンを使用している場合は、下の表の右側に移動することができます。現在それを使用しているすべての仮想サイトはその後、OS付属のPHPのバージョンに戻されます。さらに無効PHPのバージョンは、新しい仮想サイトの作成中に、もはや選択可能ではない。"
+
+msgid "register_globals_exception"
+msgstr "PHP-5.3例外"
+
+msgid "register_globals_exception_help"
+msgstr "PHP-5.4の特徴なので「グローバル変数の登録は、「効果的にPHPから削除されました。そのため、GUIは、もはやPHP-5.4と後で「グローバル変数の登録」を有効にすることができません。ただし：あなたは、必要に応じて利用できるPHP-5.3パッケージがインストールされ、有効になっている場合は、このチェックボックスをチェックすることができます。つまり、PHP-5.3を使用している仮想サイトのための「ON」に「グローバル変数の登録 'を設定することができます。"
+
+msgid "PHP_version_Field"
+msgstr "Vsite PHPバージョン："
+
+msgid "PHP_version_Field_help"
+msgstr "これは、この仮想サイトのPHPバージョンを示しています。複数のPHPのバージョンがサーバーにインストールされているとsuPHPやPHP-FPMのいずれかが使用されている場合、それは、PHPのOSが提供するバージョン、または必要に応じて利用可能なPHPパッケージの1を介して供給されたPHPのバージョンのどちらかを選択することが可能である。更新された余分なPHPパッケージは、BlueOnyxストアで提供され、PHPの異なるバージョンが用意されています。複数のPHPパッケージは同時にインストールすることができる。異なる仮想サイトが簡単に別のバージョンのPHPを実行することができますが、仮想サイトごとに1つだけのPHPのバージョンを使用することができる。"
+
+msgid "amPHPFPMMASTERNameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]]（OS）"
+
+msgid "amPHPFPMMASTERStatusOK"
+msgstr "サービスPHP-FPM（OS）が正常に動作しています。"
+
+msgid "amPHPFPMMASTERNotRunning"
+msgstr "サービス[[base-apache.amPHPFPMNameTag]]が実行されていないと再起動できませんでした。本サービスに関連するエラーメッセージのためのログファイルをチェックし、問題を解決するには、コマンドラインからrootとして「systemctlステータスのphp-fpm.service 'を実行してください。それでも[[base-apache.amPHPFPMNameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
+
+msgid "amPHPFPM53NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.3"
+
+msgid "amPHPFPM53StatusOK"
+msgstr "サービスPHP-FPM（PHP-5.6用）が正常に動作しています。"
+
+msgid "amPHPFPM53NotRunning"
+msgstr "サービス[[base-apache.amPHPFPM53NameTag]]が実行されていないと再起動できませんでした。このサービスに関連するエラーメッセージをログファイルをチェックし、問題を解決するには、コマンドラインからルートとして「systemctlステータスのphp-FPM-5.3.service 'を実行してください。それでも[[base-apache.amPHPFPM53NameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
+
+msgid "amPHPFPM54NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.4"
+
+msgid "amPHPFPM54StatusOK"
+msgstr "サービスPHP-FPM（PHP-5.4用）が正常に動作しています。"
+
+msgid "amPHPFPM54NotRunning"
+msgstr "サービス[[base-apache.amPHPFPM54NameTag]]が実行されていないと再起動できませんでした。このサービスに関連するエラーメッセージをログファイルをチェックし、問題を解決するには、コマンドラインからルートとして「systemctlステータスのphp-FPM-5.4.service 'を実行してください。それでも[[base-apache.amPHPFPM54NameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
+
+msgid "amPHPFPM55NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.5"
+
+msgid "amPHPFPM55StatusOK"
+msgstr "サービスPHP-FPM（PHP-5.5用）が正常に動作しています。"
+
+msgid "amPHPFPM55NotRunning"
+msgstr "サービス[[base-apache.amPHPFPM55NameTag]]が実行されていないと再起動できませんでした。このサービスに関連するエラーメッセージをログファイルをチェックし、問題を解決するには、コマンドラインからルートとして「systemctlステータスのphp-FPM-5.5.service 'を実行してください。それでも[[base-apache.amPHPFPM55NameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"
+
+msgid "amPHPFPM56NameTag"
+msgstr "[[base-apache.amPHPFPMNameTag]] 5.6"
+
+msgid "amPHPFPM56NotRunning"
+msgstr "サービス[[base-apache.amPHPFPM56NameTag]]が実行されていないと再起動できませんでした。このサービスに関連するエラーメッセージをログファイルをチェックし、問題を解決するには、コマンドラインからルートとして「systemctlステータスのphp-FPM-5.6.service 'を実行してください。それでも[[base-apache.amPHPFPM56NameTag]]にアクセスできない場合は、技術サポートのために[[base-sauce-basic.techSupportURL]]をご覧ください。"

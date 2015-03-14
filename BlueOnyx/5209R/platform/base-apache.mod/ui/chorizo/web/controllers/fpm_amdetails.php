@@ -87,7 +87,19 @@ class Fpm_amdetails extends MX_Controller {
 		//--- Print Detail Block:
 		//
 
-		$page_body[] = am_detail_block($factory, $cceClient, "PHPFPM", "[[base-apache.amPHPFPMDetails]]");
+		$page_body[] = am_detail_block($factory, $cceClient, "PHPFPMMASTER", "[[base-apache.amPHPFPMMASTERNameTag]]");
+		if (is_dir('/home/solarspeed/php-5.3')) {
+			$page_body[] = am_detail_block($factory, $cceClient, "FPMPHP53", "[[base-apache.amPHPFPM53NameTag]]");
+		}
+		if (is_dir('/home/solarspeed/php-5.4')) {
+			$page_body[] = am_detail_block($factory, $cceClient, "FPMPHP54", "[[base-apache.amPHPFPM54NameTag]]");
+		}
+		if (is_dir('/home/solarspeed/php-5.5')) {
+			$page_body[] = am_detail_block($factory, $cceClient, "FPMPHP55", "[[base-apache.amPHPFPM55NameTag]]");
+		}
+		if (is_dir('/home/solarspeed/php-5.6')) {
+			$page_body[] = am_detail_block($factory, $cceClient, "FPMPHP56", "[[base-apache.amPHPFPM56NameTag]]");
+		}
 
 		if ($fancy == TRUE) {
 			$page_body[] = '</div>';
