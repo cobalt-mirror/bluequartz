@@ -136,6 +136,13 @@ fi
 
 <begin $CHANGELOG>
 
+* Sat Mar 14 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX29
+- Bugfix in glue/sbin/vsite_destroy.pl: It was using the wrong UID and GID to
+  create the /tmp/paletteStatus/ directory and contends. Switched to 'admserv'.
+- Modified glue/handlers/php_handler.pl to set PHPVsite on Vsite create with
+  the default values inherited from the main PHP object.
+- Small fix in glue/handlers/php_vsite_handler.pl.
+
 * Fri Mar 13 2015 Michael Stauber <mstauber@solarspeed.net> 4.2-0BX28
 - Added support for multiple PHP versions at the same time. That required
   some extensive changes to base-apache and base-vsite.

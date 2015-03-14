@@ -177,6 +177,31 @@ if ($whatami eq "handler") {
         }
     }
 
+    if ($cce->event_is_create()) {
+        &debug_msg("EVENT IS CREATE: $oid.\n");
+
+        $new_vsite_php_settings_writeoff = { 
+                'allow_url_fopen' => $PHP->{"allow_url_fopen"}, 
+                'allow_url_include' => $PHP->{"allow_url_include"},
+                'register_globals' => 'Off',  
+                'open_basedir' => $PHP->{"open_basedir"}, 
+                'post_max_size' => $PHP->{"post_max_size"}, 
+                'upload_max_filesize' => $PHP->{"upload_max_filesize"},
+                'max_execution_time' => $PHP->{"max_execution_time"}, 
+                'max_input_time' => $PHP->{"max_input_time"}, 
+                'memory_limit' => $PHP->{"memory_limit"},
+                'force_update' => time()
+        };
+
+        if (($seen_php_versions{$PHP->{"PHP_version"}} eq 'PHP53') && ($PHP->{'register_globals_exception'} eq "1")) {
+            &debug_msg("PHP-5.3 detected. Applying 'register_globals_exception' and setting 'register_globals' to 'On'.\n");
+            $new_vsite_php_settings_writeoff->{'register_globals'} = 'On';
+        }
+
+        &debug_msg("Populating new Vsite's PHPVsite with defaults from Server's PHP config.\n");
+        ($ok) = $cce->set($oid, 'PHPVsite', $new_vsite_php_settings_writeoff);
+    }
+
     # We're creating or modifying the main server PHP object:
     if ((($cce->event_is_create()) || ($cce->event_is_modify())) && ($PHP_server_OID eq $oid)) {
 

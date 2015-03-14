@@ -445,7 +445,6 @@ sub edit_php_ini {
                 'sendmail_path' => '/usr/sausalito/sbin/phpsendmail',
                 'auto_prepend_file' => '/usr/sausalito/configs/php/set_php_headers.php',
                 'date.timezone' => "'" . $timezone . "'"
-
         };
     }
     else {
@@ -460,7 +459,6 @@ sub edit_php_ini {
                 'register_globals' => $vsite_php_settings->{"register_globals"}, 
                 'allow_url_fopen' => $vsite_php_settings->{"allow_url_fopen"}, 
                 'allow_url_include' => $vsite_php_settings->{"allow_url_include"}, 
-                'open_basedir' => $out_open_basedir, 
                 'post_max_size' => $vsite_php_settings->{"post_max_size"}, 
                 'upload_max_filesize' => $vsite_php_settings->{"upload_max_filesize"},
                 'max_execution_time' => $vsite_php_settings->{"max_execution_time"}, 
