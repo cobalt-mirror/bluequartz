@@ -63,11 +63,6 @@ information for [VENDOR]-[SERVICE].
 /usr/lib/systemd/system/php-fpm-5.5.service
 /usr/lib/systemd/system/php-fpm-5.6.service
 
-#%ghost %attr(0664,root,root) /etc/php-fpm-5.3.d/
-#%ghost %attr(0664,root,root) /etc/php-fpm-5.4.d/
-#%ghost %attr(0664,root,root) /etc/php-fpm-5.5.d/
-#%ghost %attr(0664,root,root) /etc/php-fpm-5.6.d/
-
 %config(noreplace)/etc/php-fpm.d/www.conf
 %config(noreplace)/etc/php-fpm-5.3.d/www.conf
 %config(noreplace)/etc/php-fpm-5.4.d/www.conf

@@ -123,10 +123,6 @@ class PHPExtension extends UIExtension
                 $pageId
                 );
 
-//print_rp($defaults);
-//print_rp($php_enabler);
-
-
         $AKPE = array_keys($php_enabler);
 
         if (
