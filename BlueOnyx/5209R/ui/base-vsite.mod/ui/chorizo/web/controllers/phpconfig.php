@@ -277,11 +277,11 @@ class Phpconfig extends MX_Controller {
 			}
 		}
 
+		$all_php_versions = array('PHPOS' => $CODBDATA['PHP_version_os']);
+		$all_php_versions_reverse = array($CODBDATA['PHP_version_os'] => 'PHPOS');
+
 		// Assemble data for getSetSelector() for enabling/disabling PHP versions:
 		if (count($extraPHPs) > "0") {
-
-			$all_php_versions = array('PHPOS' => $CODBDATA['PHP_version_os']);
-			$all_php_versions_reverse = array($CODBDATA['PHP_version_os'] => 'PHPOS');
 
 			$all_available_php_versions = array();
 			$all_available_php_versions_labels = array();
@@ -318,11 +318,23 @@ class Phpconfig extends MX_Controller {
 			$extraPHPversions->setOptional(true);
 		}
 
-		// Add a pulldown that allows to change the default PHP version of Apache to
-		// one of the extra PHP versions:
-		$setDefaultPHPVersion_select = $factory->getMultiChoice("setDefaultPHPVersion", array_values($all_php_versions));
-		$setDefaultPHPVersion_select->setSelected($CODBDATA['PHP_version'], true);
-		$block->addFormField($setDefaultPHPVersion_select, $factory->getLabel("setDefaultPHPVersion"), "php_ini_security_settings");
+		if (count($all_php_versions) > '1') {
+			// Add a pulldown that allows to change the default PHP version of Apache to
+			// one of the extra PHP versions:
+			$setDefaultPHPVersion_select = $factory->getMultiChoice("setDefaultPHPVersion", array_values($all_php_versions));
+			$setDefaultPHPVersion_select->setSelected($CODBDATA['PHP_version'], true);
+			$block->addFormField($setDefaultPHPVersion_select, $factory->getLabel("setDefaultPHPVersion"), "php_ini_security_settings");
+		}
+		else {
+			// Add a hidden textField instead (no need to confuse people):
+			$setDefaultPHPVersion = $factory->getTextField("setDefaultPHPVersion", $CODBDATA['PHP_version_os'], "");
+			$setDefaultPHPVersion->setOptional ('silent');
+			$block->addFormField(
+			    $setDefaultPHPVersion,
+			    $factory->getLabel("setDefaultPHPVersion"),
+			    "php_ini_security_settings"
+			);
+		}
 
 		// Display the getSetSelector():
 		if (count($extraPHPs) > "0") {
